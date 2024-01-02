@@ -5,6 +5,7 @@ package com.pulumi.fastly;
 
 import com.pulumi.core.Output;
 import com.pulumi.core.annotations.Import;
+import com.pulumi.exceptions.MissingRequiredPropertyException;
 import java.lang.Boolean;
 import java.lang.String;
 import java.util.List;
@@ -281,8 +282,12 @@ public final class TlsSubscriptionArgs extends com.pulumi.resources.ResourceArgs
         }
 
         public TlsSubscriptionArgs build() {
-            $.certificateAuthority = Objects.requireNonNull($.certificateAuthority, "expected parameter 'certificateAuthority' to be non-null");
-            $.domains = Objects.requireNonNull($.domains, "expected parameter 'domains' to be non-null");
+            if ($.certificateAuthority == null) {
+                throw new MissingRequiredPropertyException("TlsSubscriptionArgs", "certificateAuthority");
+            }
+            if ($.domains == null) {
+                throw new MissingRequiredPropertyException("TlsSubscriptionArgs", "domains");
+            }
             return $;
         }
     }

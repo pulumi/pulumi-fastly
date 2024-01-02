@@ -4,6 +4,7 @@
 package com.pulumi.fastly.outputs;
 
 import com.pulumi.core.annotations.CustomType;
+import com.pulumi.exceptions.MissingRequiredPropertyException;
 import java.lang.Boolean;
 import java.lang.String;
 import java.util.List;
@@ -142,17 +143,26 @@ public final class GetTlsPlatformCertificateResult {
 
         @CustomType.Setter
         public Builder configurationId(String configurationId) {
-            this.configurationId = Objects.requireNonNull(configurationId);
+            if (configurationId == null) {
+              throw new MissingRequiredPropertyException("GetTlsPlatformCertificateResult", "configurationId");
+            }
+            this.configurationId = configurationId;
             return this;
         }
         @CustomType.Setter
         public Builder createdAt(String createdAt) {
-            this.createdAt = Objects.requireNonNull(createdAt);
+            if (createdAt == null) {
+              throw new MissingRequiredPropertyException("GetTlsPlatformCertificateResult", "createdAt");
+            }
+            this.createdAt = createdAt;
             return this;
         }
         @CustomType.Setter
         public Builder domains(List<String> domains) {
-            this.domains = Objects.requireNonNull(domains);
+            if (domains == null) {
+              throw new MissingRequiredPropertyException("GetTlsPlatformCertificateResult", "domains");
+            }
+            this.domains = domains;
             return this;
         }
         public Builder domains(String... domains) {
@@ -160,27 +170,42 @@ public final class GetTlsPlatformCertificateResult {
         }
         @CustomType.Setter
         public Builder id(String id) {
-            this.id = Objects.requireNonNull(id);
+            if (id == null) {
+              throw new MissingRequiredPropertyException("GetTlsPlatformCertificateResult", "id");
+            }
+            this.id = id;
             return this;
         }
         @CustomType.Setter
         public Builder notAfter(String notAfter) {
-            this.notAfter = Objects.requireNonNull(notAfter);
+            if (notAfter == null) {
+              throw new MissingRequiredPropertyException("GetTlsPlatformCertificateResult", "notAfter");
+            }
+            this.notAfter = notAfter;
             return this;
         }
         @CustomType.Setter
         public Builder notBefore(String notBefore) {
-            this.notBefore = Objects.requireNonNull(notBefore);
+            if (notBefore == null) {
+              throw new MissingRequiredPropertyException("GetTlsPlatformCertificateResult", "notBefore");
+            }
+            this.notBefore = notBefore;
             return this;
         }
         @CustomType.Setter
         public Builder replace(Boolean replace) {
-            this.replace = Objects.requireNonNull(replace);
+            if (replace == null) {
+              throw new MissingRequiredPropertyException("GetTlsPlatformCertificateResult", "replace");
+            }
+            this.replace = replace;
             return this;
         }
         @CustomType.Setter
         public Builder updatedAt(String updatedAt) {
-            this.updatedAt = Objects.requireNonNull(updatedAt);
+            if (updatedAt == null) {
+              throw new MissingRequiredPropertyException("GetTlsPlatformCertificateResult", "updatedAt");
+            }
+            this.updatedAt = updatedAt;
             return this;
         }
         public GetTlsPlatformCertificateResult build() {

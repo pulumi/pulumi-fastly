@@ -4,6 +4,7 @@
 package com.pulumi.fastly.outputs;
 
 import com.pulumi.core.annotations.CustomType;
+import com.pulumi.exceptions.MissingRequiredPropertyException;
 import java.lang.Boolean;
 import java.lang.String;
 import java.util.Objects;
@@ -143,41 +144,55 @@ public final class ServiceComputeLoggingSplunk {
 
         @CustomType.Setter
         public Builder name(String name) {
-            this.name = Objects.requireNonNull(name);
+            if (name == null) {
+              throw new MissingRequiredPropertyException("ServiceComputeLoggingSplunk", "name");
+            }
+            this.name = name;
             return this;
         }
         @CustomType.Setter
         public Builder tlsCaCert(@Nullable String tlsCaCert) {
+
             this.tlsCaCert = tlsCaCert;
             return this;
         }
         @CustomType.Setter
         public Builder tlsClientCert(@Nullable String tlsClientCert) {
+
             this.tlsClientCert = tlsClientCert;
             return this;
         }
         @CustomType.Setter
         public Builder tlsClientKey(@Nullable String tlsClientKey) {
+
             this.tlsClientKey = tlsClientKey;
             return this;
         }
         @CustomType.Setter
         public Builder tlsHostname(@Nullable String tlsHostname) {
+
             this.tlsHostname = tlsHostname;
             return this;
         }
         @CustomType.Setter
         public Builder token(String token) {
-            this.token = Objects.requireNonNull(token);
+            if (token == null) {
+              throw new MissingRequiredPropertyException("ServiceComputeLoggingSplunk", "token");
+            }
+            this.token = token;
             return this;
         }
         @CustomType.Setter
         public Builder url(String url) {
-            this.url = Objects.requireNonNull(url);
+            if (url == null) {
+              throw new MissingRequiredPropertyException("ServiceComputeLoggingSplunk", "url");
+            }
+            this.url = url;
             return this;
         }
         @CustomType.Setter
         public Builder useTls(@Nullable Boolean useTls) {
+
             this.useTls = useTls;
             return this;
         }

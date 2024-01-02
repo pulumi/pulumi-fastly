@@ -4,6 +4,7 @@
 package com.pulumi.fastly.outputs;
 
 import com.pulumi.core.annotations.CustomType;
+import com.pulumi.exceptions.MissingRequiredPropertyException;
 import java.lang.Integer;
 import java.lang.String;
 import java.util.List;
@@ -130,7 +131,10 @@ public final class ServiceVclDirector {
 
         @CustomType.Setter
         public Builder backends(List<String> backends) {
-            this.backends = Objects.requireNonNull(backends);
+            if (backends == null) {
+              throw new MissingRequiredPropertyException("ServiceVclDirector", "backends");
+            }
+            this.backends = backends;
             return this;
         }
         public Builder backends(String... backends) {
@@ -138,31 +142,39 @@ public final class ServiceVclDirector {
         }
         @CustomType.Setter
         public Builder comment(@Nullable String comment) {
+
             this.comment = comment;
             return this;
         }
         @CustomType.Setter
         public Builder name(String name) {
-            this.name = Objects.requireNonNull(name);
+            if (name == null) {
+              throw new MissingRequiredPropertyException("ServiceVclDirector", "name");
+            }
+            this.name = name;
             return this;
         }
         @CustomType.Setter
         public Builder quorum(@Nullable Integer quorum) {
+
             this.quorum = quorum;
             return this;
         }
         @CustomType.Setter
         public Builder retries(@Nullable Integer retries) {
+
             this.retries = retries;
             return this;
         }
         @CustomType.Setter
         public Builder shield(@Nullable String shield) {
+
             this.shield = shield;
             return this;
         }
         @CustomType.Setter
         public Builder type(@Nullable Integer type) {
+
             this.type = type;
             return this;
         }

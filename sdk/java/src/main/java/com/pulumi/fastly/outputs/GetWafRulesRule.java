@@ -4,6 +4,7 @@
 package com.pulumi.fastly.outputs;
 
 import com.pulumi.core.annotations.CustomType;
+import com.pulumi.exceptions.MissingRequiredPropertyException;
 import java.lang.Integer;
 import java.lang.String;
 import java.util.Objects;
@@ -47,17 +48,26 @@ public final class GetWafRulesRule {
 
         @CustomType.Setter
         public Builder latestRevisionNumber(Integer latestRevisionNumber) {
-            this.latestRevisionNumber = Objects.requireNonNull(latestRevisionNumber);
+            if (latestRevisionNumber == null) {
+              throw new MissingRequiredPropertyException("GetWafRulesRule", "latestRevisionNumber");
+            }
+            this.latestRevisionNumber = latestRevisionNumber;
             return this;
         }
         @CustomType.Setter
         public Builder modsecRuleId(Integer modsecRuleId) {
-            this.modsecRuleId = Objects.requireNonNull(modsecRuleId);
+            if (modsecRuleId == null) {
+              throw new MissingRequiredPropertyException("GetWafRulesRule", "modsecRuleId");
+            }
+            this.modsecRuleId = modsecRuleId;
             return this;
         }
         @CustomType.Setter
         public Builder type(String type) {
-            this.type = Objects.requireNonNull(type);
+            if (type == null) {
+              throw new MissingRequiredPropertyException("GetWafRulesRule", "type");
+            }
+            this.type = type;
             return this;
         }
         public GetWafRulesRule build() {

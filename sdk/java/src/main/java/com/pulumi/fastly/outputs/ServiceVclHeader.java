@@ -4,6 +4,7 @@
 package com.pulumi.fastly.outputs;
 
 import com.pulumi.core.annotations.CustomType;
+import com.pulumi.exceptions.MissingRequiredPropertyException;
 import java.lang.Boolean;
 import java.lang.Integer;
 import java.lang.String;
@@ -200,62 +201,82 @@ public final class ServiceVclHeader {
 
         @CustomType.Setter
         public Builder action(String action) {
-            this.action = Objects.requireNonNull(action);
+            if (action == null) {
+              throw new MissingRequiredPropertyException("ServiceVclHeader", "action");
+            }
+            this.action = action;
             return this;
         }
         @CustomType.Setter
         public Builder cacheCondition(@Nullable String cacheCondition) {
+
             this.cacheCondition = cacheCondition;
             return this;
         }
         @CustomType.Setter
         public Builder destination(String destination) {
-            this.destination = Objects.requireNonNull(destination);
+            if (destination == null) {
+              throw new MissingRequiredPropertyException("ServiceVclHeader", "destination");
+            }
+            this.destination = destination;
             return this;
         }
         @CustomType.Setter
         public Builder ignoreIfSet(@Nullable Boolean ignoreIfSet) {
+
             this.ignoreIfSet = ignoreIfSet;
             return this;
         }
         @CustomType.Setter
         public Builder name(String name) {
-            this.name = Objects.requireNonNull(name);
+            if (name == null) {
+              throw new MissingRequiredPropertyException("ServiceVclHeader", "name");
+            }
+            this.name = name;
             return this;
         }
         @CustomType.Setter
         public Builder priority(@Nullable Integer priority) {
+
             this.priority = priority;
             return this;
         }
         @CustomType.Setter
         public Builder regex(@Nullable String regex) {
+
             this.regex = regex;
             return this;
         }
         @CustomType.Setter
         public Builder requestCondition(@Nullable String requestCondition) {
+
             this.requestCondition = requestCondition;
             return this;
         }
         @CustomType.Setter
         public Builder responseCondition(@Nullable String responseCondition) {
+
             this.responseCondition = responseCondition;
             return this;
         }
         @CustomType.Setter
         public Builder source(@Nullable String source) {
+
             this.source = source;
             return this;
         }
         @CustomType.Setter
         public Builder substitution(@Nullable String substitution) {
+
             this.substitution = substitution;
             return this;
         }
         @CustomType.Setter
         public Builder type(String type) {
-            this.type = Objects.requireNonNull(type);
+            if (type == null) {
+              throw new MissingRequiredPropertyException("ServiceVclHeader", "type");
+            }
+            this.type = type;
             return this;
         }
         public ServiceVclHeader build() {

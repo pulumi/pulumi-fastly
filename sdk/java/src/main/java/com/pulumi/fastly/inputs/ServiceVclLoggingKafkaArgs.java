@@ -5,6 +5,7 @@ package com.pulumi.fastly.inputs;
 
 import com.pulumi.core.Output;
 import com.pulumi.core.annotations.Import;
+import com.pulumi.exceptions.MissingRequiredPropertyException;
 import java.lang.Boolean;
 import java.lang.Integer;
 import java.lang.String;
@@ -744,9 +745,15 @@ public final class ServiceVclLoggingKafkaArgs extends com.pulumi.resources.Resou
         }
 
         public ServiceVclLoggingKafkaArgs build() {
-            $.brokers = Objects.requireNonNull($.brokers, "expected parameter 'brokers' to be non-null");
-            $.name = Objects.requireNonNull($.name, "expected parameter 'name' to be non-null");
-            $.topic = Objects.requireNonNull($.topic, "expected parameter 'topic' to be non-null");
+            if ($.brokers == null) {
+                throw new MissingRequiredPropertyException("ServiceVclLoggingKafkaArgs", "brokers");
+            }
+            if ($.name == null) {
+                throw new MissingRequiredPropertyException("ServiceVclLoggingKafkaArgs", "name");
+            }
+            if ($.topic == null) {
+                throw new MissingRequiredPropertyException("ServiceVclLoggingKafkaArgs", "topic");
+            }
             return $;
         }
     }

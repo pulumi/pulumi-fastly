@@ -5,6 +5,7 @@ package com.pulumi.fastly;
 
 import com.pulumi.core.Output;
 import com.pulumi.core.annotations.Import;
+import com.pulumi.exceptions.MissingRequiredPropertyException;
 import java.lang.String;
 import java.util.Objects;
 
@@ -74,7 +75,9 @@ public final class TlsSubscriptionValidationArgs extends com.pulumi.resources.Re
         }
 
         public TlsSubscriptionValidationArgs build() {
-            $.subscriptionId = Objects.requireNonNull($.subscriptionId, "expected parameter 'subscriptionId' to be non-null");
+            if ($.subscriptionId == null) {
+                throw new MissingRequiredPropertyException("TlsSubscriptionValidationArgs", "subscriptionId");
+            }
             return $;
         }
     }

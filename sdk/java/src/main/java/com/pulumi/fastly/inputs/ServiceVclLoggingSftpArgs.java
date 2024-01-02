@@ -5,6 +5,7 @@ package com.pulumi.fastly.inputs;
 
 import com.pulumi.core.Output;
 import com.pulumi.core.annotations.Import;
+import com.pulumi.exceptions.MissingRequiredPropertyException;
 import java.lang.Integer;
 import java.lang.String;
 import java.util.Objects;
@@ -706,11 +707,21 @@ public final class ServiceVclLoggingSftpArgs extends com.pulumi.resources.Resour
         }
 
         public ServiceVclLoggingSftpArgs build() {
-            $.address = Objects.requireNonNull($.address, "expected parameter 'address' to be non-null");
-            $.name = Objects.requireNonNull($.name, "expected parameter 'name' to be non-null");
-            $.path = Objects.requireNonNull($.path, "expected parameter 'path' to be non-null");
-            $.sshKnownHosts = Objects.requireNonNull($.sshKnownHosts, "expected parameter 'sshKnownHosts' to be non-null");
-            $.user = Objects.requireNonNull($.user, "expected parameter 'user' to be non-null");
+            if ($.address == null) {
+                throw new MissingRequiredPropertyException("ServiceVclLoggingSftpArgs", "address");
+            }
+            if ($.name == null) {
+                throw new MissingRequiredPropertyException("ServiceVclLoggingSftpArgs", "name");
+            }
+            if ($.path == null) {
+                throw new MissingRequiredPropertyException("ServiceVclLoggingSftpArgs", "path");
+            }
+            if ($.sshKnownHosts == null) {
+                throw new MissingRequiredPropertyException("ServiceVclLoggingSftpArgs", "sshKnownHosts");
+            }
+            if ($.user == null) {
+                throw new MissingRequiredPropertyException("ServiceVclLoggingSftpArgs", "user");
+            }
             return $;
         }
     }

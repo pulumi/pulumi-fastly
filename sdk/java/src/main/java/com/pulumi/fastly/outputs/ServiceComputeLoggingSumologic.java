@@ -4,6 +4,7 @@
 package com.pulumi.fastly.outputs;
 
 import com.pulumi.core.annotations.CustomType;
+import com.pulumi.exceptions.MissingRequiredPropertyException;
 import java.lang.String;
 import java.util.Objects;
 import java.util.Optional;
@@ -72,17 +73,24 @@ public final class ServiceComputeLoggingSumologic {
 
         @CustomType.Setter
         public Builder messageType(@Nullable String messageType) {
+
             this.messageType = messageType;
             return this;
         }
         @CustomType.Setter
         public Builder name(String name) {
-            this.name = Objects.requireNonNull(name);
+            if (name == null) {
+              throw new MissingRequiredPropertyException("ServiceComputeLoggingSumologic", "name");
+            }
+            this.name = name;
             return this;
         }
         @CustomType.Setter
         public Builder url(String url) {
-            this.url = Objects.requireNonNull(url);
+            if (url == null) {
+              throw new MissingRequiredPropertyException("ServiceComputeLoggingSumologic", "url");
+            }
+            this.url = url;
             return this;
         }
         public ServiceComputeLoggingSumologic build() {

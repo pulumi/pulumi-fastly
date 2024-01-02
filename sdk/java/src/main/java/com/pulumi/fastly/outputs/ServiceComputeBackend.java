@@ -4,6 +4,7 @@
 package com.pulumi.fastly.outputs;
 
 import com.pulumi.core.annotations.CustomType;
+import com.pulumi.exceptions.MissingRequiredPropertyException;
 import java.lang.Boolean;
 import java.lang.Integer;
 import java.lang.String;
@@ -368,121 +369,149 @@ public final class ServiceComputeBackend {
 
         @CustomType.Setter
         public Builder address(String address) {
-            this.address = Objects.requireNonNull(address);
+            if (address == null) {
+              throw new MissingRequiredPropertyException("ServiceComputeBackend", "address");
+            }
+            this.address = address;
             return this;
         }
         @CustomType.Setter
         public Builder betweenBytesTimeout(@Nullable Integer betweenBytesTimeout) {
+
             this.betweenBytesTimeout = betweenBytesTimeout;
             return this;
         }
         @CustomType.Setter
         public Builder connectTimeout(@Nullable Integer connectTimeout) {
+
             this.connectTimeout = connectTimeout;
             return this;
         }
         @CustomType.Setter
         public Builder errorThreshold(@Nullable Integer errorThreshold) {
+
             this.errorThreshold = errorThreshold;
             return this;
         }
         @CustomType.Setter
         public Builder firstByteTimeout(@Nullable Integer firstByteTimeout) {
+
             this.firstByteTimeout = firstByteTimeout;
             return this;
         }
         @CustomType.Setter
         public Builder healthcheck(@Nullable String healthcheck) {
+
             this.healthcheck = healthcheck;
             return this;
         }
         @CustomType.Setter
         public Builder keepaliveTime(@Nullable Integer keepaliveTime) {
+
             this.keepaliveTime = keepaliveTime;
             return this;
         }
         @CustomType.Setter
         public Builder maxConn(@Nullable Integer maxConn) {
+
             this.maxConn = maxConn;
             return this;
         }
         @CustomType.Setter
         public Builder maxTlsVersion(@Nullable String maxTlsVersion) {
+
             this.maxTlsVersion = maxTlsVersion;
             return this;
         }
         @CustomType.Setter
         public Builder minTlsVersion(@Nullable String minTlsVersion) {
+
             this.minTlsVersion = minTlsVersion;
             return this;
         }
         @CustomType.Setter
         public Builder name(String name) {
-            this.name = Objects.requireNonNull(name);
+            if (name == null) {
+              throw new MissingRequiredPropertyException("ServiceComputeBackend", "name");
+            }
+            this.name = name;
             return this;
         }
         @CustomType.Setter
         public Builder overrideHost(@Nullable String overrideHost) {
+
             this.overrideHost = overrideHost;
             return this;
         }
         @CustomType.Setter
         public Builder port(@Nullable Integer port) {
+
             this.port = port;
             return this;
         }
         @CustomType.Setter
         public Builder shareKey(@Nullable String shareKey) {
+
             this.shareKey = shareKey;
             return this;
         }
         @CustomType.Setter
         public Builder shield(@Nullable String shield) {
+
             this.shield = shield;
             return this;
         }
         @CustomType.Setter
         public Builder sslCaCert(@Nullable String sslCaCert) {
+
             this.sslCaCert = sslCaCert;
             return this;
         }
         @CustomType.Setter
         public Builder sslCertHostname(@Nullable String sslCertHostname) {
+
             this.sslCertHostname = sslCertHostname;
             return this;
         }
         @CustomType.Setter
         public Builder sslCheckCert(@Nullable Boolean sslCheckCert) {
+
             this.sslCheckCert = sslCheckCert;
             return this;
         }
         @CustomType.Setter
         public Builder sslCiphers(@Nullable String sslCiphers) {
+
             this.sslCiphers = sslCiphers;
             return this;
         }
         @CustomType.Setter
         public Builder sslClientCert(@Nullable String sslClientCert) {
+
             this.sslClientCert = sslClientCert;
             return this;
         }
         @CustomType.Setter
         public Builder sslClientKey(@Nullable String sslClientKey) {
+
             this.sslClientKey = sslClientKey;
             return this;
         }
         @CustomType.Setter
         public Builder sslSniHostname(@Nullable String sslSniHostname) {
+
             this.sslSniHostname = sslSniHostname;
             return this;
         }
         @CustomType.Setter
         public Builder useSsl(@Nullable Boolean useSsl) {
+
             this.useSsl = useSsl;
             return this;
         }
         @CustomType.Setter
         public Builder weight(@Nullable Integer weight) {
+
             this.weight = weight;
             return this;
         }

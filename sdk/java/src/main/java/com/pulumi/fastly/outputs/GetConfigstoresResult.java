@@ -4,6 +4,7 @@
 package com.pulumi.fastly.outputs;
 
 import com.pulumi.core.annotations.CustomType;
+import com.pulumi.exceptions.MissingRequiredPropertyException;
 import com.pulumi.fastly.outputs.GetConfigstoresStore;
 import java.lang.String;
 import java.util.List;
@@ -58,12 +59,18 @@ public final class GetConfigstoresResult {
 
         @CustomType.Setter
         public Builder id(String id) {
-            this.id = Objects.requireNonNull(id);
+            if (id == null) {
+              throw new MissingRequiredPropertyException("GetConfigstoresResult", "id");
+            }
+            this.id = id;
             return this;
         }
         @CustomType.Setter
         public Builder stores(List<GetConfigstoresStore> stores) {
-            this.stores = Objects.requireNonNull(stores);
+            if (stores == null) {
+              throw new MissingRequiredPropertyException("GetConfigstoresResult", "stores");
+            }
+            this.stores = stores;
             return this;
         }
         public Builder stores(GetConfigstoresStore... stores) {

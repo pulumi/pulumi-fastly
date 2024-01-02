@@ -4,6 +4,7 @@
 package com.pulumi.fastly.outputs;
 
 import com.pulumi.core.annotations.CustomType;
+import com.pulumi.exceptions.MissingRequiredPropertyException;
 import java.lang.Boolean;
 import java.lang.String;
 import java.util.Objects;
@@ -87,21 +88,27 @@ public final class ServiceVclWaf {
 
         @CustomType.Setter
         public Builder disabled(@Nullable Boolean disabled) {
+
             this.disabled = disabled;
             return this;
         }
         @CustomType.Setter
         public Builder prefetchCondition(@Nullable String prefetchCondition) {
+
             this.prefetchCondition = prefetchCondition;
             return this;
         }
         @CustomType.Setter
         public Builder responseObject(String responseObject) {
-            this.responseObject = Objects.requireNonNull(responseObject);
+            if (responseObject == null) {
+              throw new MissingRequiredPropertyException("ServiceVclWaf", "responseObject");
+            }
+            this.responseObject = responseObject;
             return this;
         }
         @CustomType.Setter
         public Builder wafId(@Nullable String wafId) {
+
             this.wafId = wafId;
             return this;
         }

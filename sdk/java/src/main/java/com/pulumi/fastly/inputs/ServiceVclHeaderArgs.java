@@ -5,6 +5,7 @@ package com.pulumi.fastly.inputs;
 
 import com.pulumi.core.Output;
 import com.pulumi.core.annotations.Import;
+import com.pulumi.exceptions.MissingRequiredPropertyException;
 import java.lang.Boolean;
 import java.lang.Integer;
 import java.lang.String;
@@ -485,10 +486,18 @@ public final class ServiceVclHeaderArgs extends com.pulumi.resources.ResourceArg
         }
 
         public ServiceVclHeaderArgs build() {
-            $.action = Objects.requireNonNull($.action, "expected parameter 'action' to be non-null");
-            $.destination = Objects.requireNonNull($.destination, "expected parameter 'destination' to be non-null");
-            $.name = Objects.requireNonNull($.name, "expected parameter 'name' to be non-null");
-            $.type = Objects.requireNonNull($.type, "expected parameter 'type' to be non-null");
+            if ($.action == null) {
+                throw new MissingRequiredPropertyException("ServiceVclHeaderArgs", "action");
+            }
+            if ($.destination == null) {
+                throw new MissingRequiredPropertyException("ServiceVclHeaderArgs", "destination");
+            }
+            if ($.name == null) {
+                throw new MissingRequiredPropertyException("ServiceVclHeaderArgs", "name");
+            }
+            if ($.type == null) {
+                throw new MissingRequiredPropertyException("ServiceVclHeaderArgs", "type");
+            }
             return $;
         }
     }

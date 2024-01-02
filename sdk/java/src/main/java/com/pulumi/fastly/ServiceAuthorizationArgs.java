@@ -5,6 +5,7 @@ package com.pulumi.fastly;
 
 import com.pulumi.core.Output;
 import com.pulumi.core.annotations.Import;
+import com.pulumi.exceptions.MissingRequiredPropertyException;
 import java.lang.String;
 import java.util.Objects;
 
@@ -148,9 +149,15 @@ public final class ServiceAuthorizationArgs extends com.pulumi.resources.Resourc
         }
 
         public ServiceAuthorizationArgs build() {
-            $.permission = Objects.requireNonNull($.permission, "expected parameter 'permission' to be non-null");
-            $.serviceId = Objects.requireNonNull($.serviceId, "expected parameter 'serviceId' to be non-null");
-            $.userId = Objects.requireNonNull($.userId, "expected parameter 'userId' to be non-null");
+            if ($.permission == null) {
+                throw new MissingRequiredPropertyException("ServiceAuthorizationArgs", "permission");
+            }
+            if ($.serviceId == null) {
+                throw new MissingRequiredPropertyException("ServiceAuthorizationArgs", "serviceId");
+            }
+            if ($.userId == null) {
+                throw new MissingRequiredPropertyException("ServiceAuthorizationArgs", "userId");
+            }
             return $;
         }
     }

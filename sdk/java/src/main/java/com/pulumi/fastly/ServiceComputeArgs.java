@@ -5,6 +5,7 @@ package com.pulumi.fastly;
 
 import com.pulumi.core.Output;
 import com.pulumi.core.annotations.Import;
+import com.pulumi.exceptions.MissingRequiredPropertyException;
 import com.pulumi.fastly.inputs.ServiceComputeBackendArgs;
 import com.pulumi.fastly.inputs.ServiceComputeDictionaryArgs;
 import com.pulumi.fastly.inputs.ServiceComputeDomainArgs;
@@ -1039,7 +1040,9 @@ public final class ServiceComputeArgs extends com.pulumi.resources.ResourceArgs 
         }
 
         public ServiceComputeArgs build() {
-            $.domains = Objects.requireNonNull($.domains, "expected parameter 'domains' to be non-null");
+            if ($.domains == null) {
+                throw new MissingRequiredPropertyException("ServiceComputeArgs", "domains");
+            }
             return $;
         }
     }

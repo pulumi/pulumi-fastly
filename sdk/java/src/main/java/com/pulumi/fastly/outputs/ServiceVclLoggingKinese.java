@@ -4,6 +4,7 @@
 package com.pulumi.fastly.outputs;
 
 import com.pulumi.core.annotations.CustomType;
+import com.pulumi.exceptions.MissingRequiredPropertyException;
 import java.lang.Integer;
 import java.lang.String;
 import java.util.Objects;
@@ -171,52 +172,66 @@ public final class ServiceVclLoggingKinese {
 
         @CustomType.Setter
         public Builder accessKey(@Nullable String accessKey) {
+
             this.accessKey = accessKey;
             return this;
         }
         @CustomType.Setter
         public Builder format(@Nullable String format) {
+
             this.format = format;
             return this;
         }
         @CustomType.Setter
         public Builder formatVersion(@Nullable Integer formatVersion) {
+
             this.formatVersion = formatVersion;
             return this;
         }
         @CustomType.Setter
         public Builder iamRole(@Nullable String iamRole) {
+
             this.iamRole = iamRole;
             return this;
         }
         @CustomType.Setter
         public Builder name(String name) {
-            this.name = Objects.requireNonNull(name);
+            if (name == null) {
+              throw new MissingRequiredPropertyException("ServiceVclLoggingKinese", "name");
+            }
+            this.name = name;
             return this;
         }
         @CustomType.Setter
         public Builder placement(@Nullable String placement) {
+
             this.placement = placement;
             return this;
         }
         @CustomType.Setter
         public Builder region(@Nullable String region) {
+
             this.region = region;
             return this;
         }
         @CustomType.Setter
         public Builder responseCondition(@Nullable String responseCondition) {
+
             this.responseCondition = responseCondition;
             return this;
         }
         @CustomType.Setter
         public Builder secretKey(@Nullable String secretKey) {
+
             this.secretKey = secretKey;
             return this;
         }
         @CustomType.Setter
         public Builder topic(String topic) {
-            this.topic = Objects.requireNonNull(topic);
+            if (topic == null) {
+              throw new MissingRequiredPropertyException("ServiceVclLoggingKinese", "topic");
+            }
+            this.topic = topic;
             return this;
         }
         public ServiceVclLoggingKinese build() {

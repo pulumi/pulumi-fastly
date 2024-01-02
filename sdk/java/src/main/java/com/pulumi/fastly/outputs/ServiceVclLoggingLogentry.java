@@ -4,6 +4,7 @@
 package com.pulumi.fastly.outputs;
 
 import com.pulumi.core.annotations.CustomType;
+import com.pulumi.exceptions.MissingRequiredPropertyException;
 import java.lang.Boolean;
 import java.lang.Integer;
 import java.lang.String;
@@ -144,41 +145,53 @@ public final class ServiceVclLoggingLogentry {
 
         @CustomType.Setter
         public Builder format(@Nullable String format) {
+
             this.format = format;
             return this;
         }
         @CustomType.Setter
         public Builder formatVersion(@Nullable Integer formatVersion) {
+
             this.formatVersion = formatVersion;
             return this;
         }
         @CustomType.Setter
         public Builder name(String name) {
-            this.name = Objects.requireNonNull(name);
+            if (name == null) {
+              throw new MissingRequiredPropertyException("ServiceVclLoggingLogentry", "name");
+            }
+            this.name = name;
             return this;
         }
         @CustomType.Setter
         public Builder placement(@Nullable String placement) {
+
             this.placement = placement;
             return this;
         }
         @CustomType.Setter
         public Builder port(@Nullable Integer port) {
+
             this.port = port;
             return this;
         }
         @CustomType.Setter
         public Builder responseCondition(@Nullable String responseCondition) {
+
             this.responseCondition = responseCondition;
             return this;
         }
         @CustomType.Setter
         public Builder token(String token) {
-            this.token = Objects.requireNonNull(token);
+            if (token == null) {
+              throw new MissingRequiredPropertyException("ServiceVclLoggingLogentry", "token");
+            }
+            this.token = token;
             return this;
         }
         @CustomType.Setter
         public Builder useTls(@Nullable Boolean useTls) {
+
             this.useTls = useTls;
             return this;
         }

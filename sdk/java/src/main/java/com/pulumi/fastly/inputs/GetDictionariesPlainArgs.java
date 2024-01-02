@@ -4,6 +4,7 @@
 package com.pulumi.fastly.inputs;
 
 import com.pulumi.core.annotations.Import;
+import com.pulumi.exceptions.MissingRequiredPropertyException;
 import java.lang.Integer;
 import java.lang.String;
 import java.util.Objects;
@@ -91,8 +92,12 @@ public final class GetDictionariesPlainArgs extends com.pulumi.resources.InvokeA
         }
 
         public GetDictionariesPlainArgs build() {
-            $.serviceId = Objects.requireNonNull($.serviceId, "expected parameter 'serviceId' to be non-null");
-            $.serviceVersion = Objects.requireNonNull($.serviceVersion, "expected parameter 'serviceVersion' to be non-null");
+            if ($.serviceId == null) {
+                throw new MissingRequiredPropertyException("GetDictionariesPlainArgs", "serviceId");
+            }
+            if ($.serviceVersion == null) {
+                throw new MissingRequiredPropertyException("GetDictionariesPlainArgs", "serviceVersion");
+            }
             return $;
         }
     }

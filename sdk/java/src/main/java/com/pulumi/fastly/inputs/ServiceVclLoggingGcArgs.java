@@ -5,6 +5,7 @@ package com.pulumi.fastly.inputs;
 
 import com.pulumi.core.Output;
 import com.pulumi.core.annotations.Import;
+import com.pulumi.exceptions.MissingRequiredPropertyException;
 import java.lang.Integer;
 import java.lang.String;
 import java.util.Objects;
@@ -632,8 +633,12 @@ public final class ServiceVclLoggingGcArgs extends com.pulumi.resources.Resource
         }
 
         public ServiceVclLoggingGcArgs build() {
-            $.bucketName = Objects.requireNonNull($.bucketName, "expected parameter 'bucketName' to be non-null");
-            $.name = Objects.requireNonNull($.name, "expected parameter 'name' to be non-null");
+            if ($.bucketName == null) {
+                throw new MissingRequiredPropertyException("ServiceVclLoggingGcArgs", "bucketName");
+            }
+            if ($.name == null) {
+                throw new MissingRequiredPropertyException("ServiceVclLoggingGcArgs", "name");
+            }
             return $;
         }
     }

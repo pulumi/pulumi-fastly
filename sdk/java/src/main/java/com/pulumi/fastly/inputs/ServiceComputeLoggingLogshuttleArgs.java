@@ -5,6 +5,7 @@ package com.pulumi.fastly.inputs;
 
 import com.pulumi.core.Output;
 import com.pulumi.core.annotations.Import;
+import com.pulumi.exceptions.MissingRequiredPropertyException;
 import java.lang.String;
 import java.util.Objects;
 
@@ -148,9 +149,15 @@ public final class ServiceComputeLoggingLogshuttleArgs extends com.pulumi.resour
         }
 
         public ServiceComputeLoggingLogshuttleArgs build() {
-            $.name = Objects.requireNonNull($.name, "expected parameter 'name' to be non-null");
-            $.token = Objects.requireNonNull($.token, "expected parameter 'token' to be non-null");
-            $.url = Objects.requireNonNull($.url, "expected parameter 'url' to be non-null");
+            if ($.name == null) {
+                throw new MissingRequiredPropertyException("ServiceComputeLoggingLogshuttleArgs", "name");
+            }
+            if ($.token == null) {
+                throw new MissingRequiredPropertyException("ServiceComputeLoggingLogshuttleArgs", "token");
+            }
+            if ($.url == null) {
+                throw new MissingRequiredPropertyException("ServiceComputeLoggingLogshuttleArgs", "url");
+            }
             return $;
         }
     }

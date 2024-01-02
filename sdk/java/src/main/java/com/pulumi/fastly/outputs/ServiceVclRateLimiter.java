@@ -4,6 +4,7 @@
 package com.pulumi.fastly.outputs;
 
 import com.pulumi.core.annotations.CustomType;
+import com.pulumi.exceptions.MissingRequiredPropertyException;
 import com.pulumi.fastly.outputs.ServiceVclRateLimiterResponse;
 import java.lang.Integer;
 import java.lang.String;
@@ -214,67 +215,94 @@ public final class ServiceVclRateLimiter {
 
         @CustomType.Setter
         public Builder action(String action) {
-            this.action = Objects.requireNonNull(action);
+            if (action == null) {
+              throw new MissingRequiredPropertyException("ServiceVclRateLimiter", "action");
+            }
+            this.action = action;
             return this;
         }
         @CustomType.Setter
         public Builder clientKey(String clientKey) {
-            this.clientKey = Objects.requireNonNull(clientKey);
+            if (clientKey == null) {
+              throw new MissingRequiredPropertyException("ServiceVclRateLimiter", "clientKey");
+            }
+            this.clientKey = clientKey;
             return this;
         }
         @CustomType.Setter
         public Builder featureRevision(@Nullable Integer featureRevision) {
+
             this.featureRevision = featureRevision;
             return this;
         }
         @CustomType.Setter
         public Builder httpMethods(String httpMethods) {
-            this.httpMethods = Objects.requireNonNull(httpMethods);
+            if (httpMethods == null) {
+              throw new MissingRequiredPropertyException("ServiceVclRateLimiter", "httpMethods");
+            }
+            this.httpMethods = httpMethods;
             return this;
         }
         @CustomType.Setter
         public Builder loggerType(@Nullable String loggerType) {
+
             this.loggerType = loggerType;
             return this;
         }
         @CustomType.Setter
         public Builder name(String name) {
-            this.name = Objects.requireNonNull(name);
+            if (name == null) {
+              throw new MissingRequiredPropertyException("ServiceVclRateLimiter", "name");
+            }
+            this.name = name;
             return this;
         }
         @CustomType.Setter
         public Builder penaltyBoxDuration(Integer penaltyBoxDuration) {
-            this.penaltyBoxDuration = Objects.requireNonNull(penaltyBoxDuration);
+            if (penaltyBoxDuration == null) {
+              throw new MissingRequiredPropertyException("ServiceVclRateLimiter", "penaltyBoxDuration");
+            }
+            this.penaltyBoxDuration = penaltyBoxDuration;
             return this;
         }
         @CustomType.Setter
         public Builder ratelimiterId(@Nullable String ratelimiterId) {
+
             this.ratelimiterId = ratelimiterId;
             return this;
         }
         @CustomType.Setter
         public Builder response(@Nullable ServiceVclRateLimiterResponse response) {
+
             this.response = response;
             return this;
         }
         @CustomType.Setter
         public Builder responseObjectName(@Nullable String responseObjectName) {
+
             this.responseObjectName = responseObjectName;
             return this;
         }
         @CustomType.Setter
         public Builder rpsLimit(Integer rpsLimit) {
-            this.rpsLimit = Objects.requireNonNull(rpsLimit);
+            if (rpsLimit == null) {
+              throw new MissingRequiredPropertyException("ServiceVclRateLimiter", "rpsLimit");
+            }
+            this.rpsLimit = rpsLimit;
             return this;
         }
         @CustomType.Setter
         public Builder uriDictionaryName(@Nullable String uriDictionaryName) {
+
             this.uriDictionaryName = uriDictionaryName;
             return this;
         }
         @CustomType.Setter
         public Builder windowSize(Integer windowSize) {
-            this.windowSize = Objects.requireNonNull(windowSize);
+            if (windowSize == null) {
+              throw new MissingRequiredPropertyException("ServiceVclRateLimiter", "windowSize");
+            }
+            this.windowSize = windowSize;
             return this;
         }
         public ServiceVclRateLimiter build() {

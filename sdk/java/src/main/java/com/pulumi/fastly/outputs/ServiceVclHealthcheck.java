@@ -4,6 +4,7 @@
 package com.pulumi.fastly.outputs;
 
 import com.pulumi.core.annotations.CustomType;
+import com.pulumi.exceptions.MissingRequiredPropertyException;
 import java.lang.Integer;
 import java.lang.String;
 import java.util.List;
@@ -200,16 +201,19 @@ public final class ServiceVclHealthcheck {
 
         @CustomType.Setter
         public Builder checkInterval(@Nullable Integer checkInterval) {
+
             this.checkInterval = checkInterval;
             return this;
         }
         @CustomType.Setter
         public Builder expectedResponse(@Nullable Integer expectedResponse) {
+
             this.expectedResponse = expectedResponse;
             return this;
         }
         @CustomType.Setter
         public Builder headers(@Nullable List<String> headers) {
+
             this.headers = headers;
             return this;
         }
@@ -218,46 +222,61 @@ public final class ServiceVclHealthcheck {
         }
         @CustomType.Setter
         public Builder host(String host) {
-            this.host = Objects.requireNonNull(host);
+            if (host == null) {
+              throw new MissingRequiredPropertyException("ServiceVclHealthcheck", "host");
+            }
+            this.host = host;
             return this;
         }
         @CustomType.Setter
         public Builder httpVersion(@Nullable String httpVersion) {
+
             this.httpVersion = httpVersion;
             return this;
         }
         @CustomType.Setter
         public Builder initial(@Nullable Integer initial) {
+
             this.initial = initial;
             return this;
         }
         @CustomType.Setter
         public Builder method(@Nullable String method) {
+
             this.method = method;
             return this;
         }
         @CustomType.Setter
         public Builder name(String name) {
-            this.name = Objects.requireNonNull(name);
+            if (name == null) {
+              throw new MissingRequiredPropertyException("ServiceVclHealthcheck", "name");
+            }
+            this.name = name;
             return this;
         }
         @CustomType.Setter
         public Builder path(String path) {
-            this.path = Objects.requireNonNull(path);
+            if (path == null) {
+              throw new MissingRequiredPropertyException("ServiceVclHealthcheck", "path");
+            }
+            this.path = path;
             return this;
         }
         @CustomType.Setter
         public Builder threshold(@Nullable Integer threshold) {
+
             this.threshold = threshold;
             return this;
         }
         @CustomType.Setter
         public Builder timeout(@Nullable Integer timeout) {
+
             this.timeout = timeout;
             return this;
         }
         @CustomType.Setter
         public Builder window(@Nullable Integer window) {
+
             this.window = window;
             return this;
         }

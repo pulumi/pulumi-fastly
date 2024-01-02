@@ -4,6 +4,7 @@
 package com.pulumi.fastly.outputs;
 
 import com.pulumi.core.annotations.CustomType;
+import com.pulumi.exceptions.MissingRequiredPropertyException;
 import java.lang.String;
 import java.util.List;
 import java.util.Objects;
@@ -87,11 +88,13 @@ public final class ServiceVclGzip {
 
         @CustomType.Setter
         public Builder cacheCondition(@Nullable String cacheCondition) {
+
             this.cacheCondition = cacheCondition;
             return this;
         }
         @CustomType.Setter
         public Builder contentTypes(@Nullable List<String> contentTypes) {
+
             this.contentTypes = contentTypes;
             return this;
         }
@@ -100,6 +103,7 @@ public final class ServiceVclGzip {
         }
         @CustomType.Setter
         public Builder extensions(@Nullable List<String> extensions) {
+
             this.extensions = extensions;
             return this;
         }
@@ -108,7 +112,10 @@ public final class ServiceVclGzip {
         }
         @CustomType.Setter
         public Builder name(String name) {
-            this.name = Objects.requireNonNull(name);
+            if (name == null) {
+              throw new MissingRequiredPropertyException("ServiceVclGzip", "name");
+            }
+            this.name = name;
             return this;
         }
         public ServiceVclGzip build() {

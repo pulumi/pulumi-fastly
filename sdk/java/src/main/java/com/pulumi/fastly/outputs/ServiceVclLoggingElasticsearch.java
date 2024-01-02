@@ -4,6 +4,7 @@
 package com.pulumi.fastly.outputs;
 
 import com.pulumi.core.annotations.CustomType;
+import com.pulumi.exceptions.MissingRequiredPropertyException;
 import java.lang.Integer;
 import java.lang.String;
 import java.util.Objects;
@@ -255,81 +256,103 @@ public final class ServiceVclLoggingElasticsearch {
 
         @CustomType.Setter
         public Builder format(@Nullable String format) {
+
             this.format = format;
             return this;
         }
         @CustomType.Setter
         public Builder formatVersion(@Nullable Integer formatVersion) {
+
             this.formatVersion = formatVersion;
             return this;
         }
         @CustomType.Setter
         public Builder index(String index) {
-            this.index = Objects.requireNonNull(index);
+            if (index == null) {
+              throw new MissingRequiredPropertyException("ServiceVclLoggingElasticsearch", "index");
+            }
+            this.index = index;
             return this;
         }
         @CustomType.Setter
         public Builder name(String name) {
-            this.name = Objects.requireNonNull(name);
+            if (name == null) {
+              throw new MissingRequiredPropertyException("ServiceVclLoggingElasticsearch", "name");
+            }
+            this.name = name;
             return this;
         }
         @CustomType.Setter
         public Builder password(@Nullable String password) {
+
             this.password = password;
             return this;
         }
         @CustomType.Setter
         public Builder pipeline(@Nullable String pipeline) {
+
             this.pipeline = pipeline;
             return this;
         }
         @CustomType.Setter
         public Builder placement(@Nullable String placement) {
+
             this.placement = placement;
             return this;
         }
         @CustomType.Setter
         public Builder requestMaxBytes(@Nullable Integer requestMaxBytes) {
+
             this.requestMaxBytes = requestMaxBytes;
             return this;
         }
         @CustomType.Setter
         public Builder requestMaxEntries(@Nullable Integer requestMaxEntries) {
+
             this.requestMaxEntries = requestMaxEntries;
             return this;
         }
         @CustomType.Setter
         public Builder responseCondition(@Nullable String responseCondition) {
+
             this.responseCondition = responseCondition;
             return this;
         }
         @CustomType.Setter
         public Builder tlsCaCert(@Nullable String tlsCaCert) {
+
             this.tlsCaCert = tlsCaCert;
             return this;
         }
         @CustomType.Setter
         public Builder tlsClientCert(@Nullable String tlsClientCert) {
+
             this.tlsClientCert = tlsClientCert;
             return this;
         }
         @CustomType.Setter
         public Builder tlsClientKey(@Nullable String tlsClientKey) {
+
             this.tlsClientKey = tlsClientKey;
             return this;
         }
         @CustomType.Setter
         public Builder tlsHostname(@Nullable String tlsHostname) {
+
             this.tlsHostname = tlsHostname;
             return this;
         }
         @CustomType.Setter
         public Builder url(String url) {
-            this.url = Objects.requireNonNull(url);
+            if (url == null) {
+              throw new MissingRequiredPropertyException("ServiceVclLoggingElasticsearch", "url");
+            }
+            this.url = url;
             return this;
         }
         @CustomType.Setter
         public Builder user(@Nullable String user) {
+
             this.user = user;
             return this;
         }

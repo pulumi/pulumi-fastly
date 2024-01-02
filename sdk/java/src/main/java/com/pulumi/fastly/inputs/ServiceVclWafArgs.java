@@ -5,6 +5,7 @@ package com.pulumi.fastly.inputs;
 
 import com.pulumi.core.Output;
 import com.pulumi.core.annotations.Import;
+import com.pulumi.exceptions.MissingRequiredPropertyException;
 import java.lang.Boolean;
 import java.lang.String;
 import java.util.Objects;
@@ -188,7 +189,9 @@ public final class ServiceVclWafArgs extends com.pulumi.resources.ResourceArgs {
         }
 
         public ServiceVclWafArgs build() {
-            $.responseObject = Objects.requireNonNull($.responseObject, "expected parameter 'responseObject' to be non-null");
+            if ($.responseObject == null) {
+                throw new MissingRequiredPropertyException("ServiceVclWafArgs", "responseObject");
+            }
             return $;
         }
     }

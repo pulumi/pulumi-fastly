@@ -4,6 +4,7 @@
 package com.pulumi.fastly.outputs;
 
 import com.pulumi.core.annotations.CustomType;
+import com.pulumi.exceptions.MissingRequiredPropertyException;
 import java.lang.Integer;
 import java.lang.String;
 import java.util.Objects;
@@ -101,26 +102,33 @@ public final class ServiceVclCacheSetting {
 
         @CustomType.Setter
         public Builder action(@Nullable String action) {
+
             this.action = action;
             return this;
         }
         @CustomType.Setter
         public Builder cacheCondition(@Nullable String cacheCondition) {
+
             this.cacheCondition = cacheCondition;
             return this;
         }
         @CustomType.Setter
         public Builder name(String name) {
-            this.name = Objects.requireNonNull(name);
+            if (name == null) {
+              throw new MissingRequiredPropertyException("ServiceVclCacheSetting", "name");
+            }
+            this.name = name;
             return this;
         }
         @CustomType.Setter
         public Builder staleTtl(@Nullable Integer staleTtl) {
+
             this.staleTtl = staleTtl;
             return this;
         }
         @CustomType.Setter
         public Builder ttl(@Nullable Integer ttl) {
+
             this.ttl = ttl;
             return this;
         }

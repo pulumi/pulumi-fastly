@@ -5,6 +5,7 @@ package com.pulumi.fastly.inputs;
 
 import com.pulumi.core.Output;
 import com.pulumi.core.annotations.Import;
+import com.pulumi.exceptions.MissingRequiredPropertyException;
 import com.pulumi.fastly.inputs.ServiceVclRateLimiterResponseArgs;
 import java.lang.Integer;
 import java.lang.String;
@@ -522,13 +523,27 @@ public final class ServiceVclRateLimiterArgs extends com.pulumi.resources.Resour
         }
 
         public ServiceVclRateLimiterArgs build() {
-            $.action = Objects.requireNonNull($.action, "expected parameter 'action' to be non-null");
-            $.clientKey = Objects.requireNonNull($.clientKey, "expected parameter 'clientKey' to be non-null");
-            $.httpMethods = Objects.requireNonNull($.httpMethods, "expected parameter 'httpMethods' to be non-null");
-            $.name = Objects.requireNonNull($.name, "expected parameter 'name' to be non-null");
-            $.penaltyBoxDuration = Objects.requireNonNull($.penaltyBoxDuration, "expected parameter 'penaltyBoxDuration' to be non-null");
-            $.rpsLimit = Objects.requireNonNull($.rpsLimit, "expected parameter 'rpsLimit' to be non-null");
-            $.windowSize = Objects.requireNonNull($.windowSize, "expected parameter 'windowSize' to be non-null");
+            if ($.action == null) {
+                throw new MissingRequiredPropertyException("ServiceVclRateLimiterArgs", "action");
+            }
+            if ($.clientKey == null) {
+                throw new MissingRequiredPropertyException("ServiceVclRateLimiterArgs", "clientKey");
+            }
+            if ($.httpMethods == null) {
+                throw new MissingRequiredPropertyException("ServiceVclRateLimiterArgs", "httpMethods");
+            }
+            if ($.name == null) {
+                throw new MissingRequiredPropertyException("ServiceVclRateLimiterArgs", "name");
+            }
+            if ($.penaltyBoxDuration == null) {
+                throw new MissingRequiredPropertyException("ServiceVclRateLimiterArgs", "penaltyBoxDuration");
+            }
+            if ($.rpsLimit == null) {
+                throw new MissingRequiredPropertyException("ServiceVclRateLimiterArgs", "rpsLimit");
+            }
+            if ($.windowSize == null) {
+                throw new MissingRequiredPropertyException("ServiceVclRateLimiterArgs", "windowSize");
+            }
             return $;
         }
     }

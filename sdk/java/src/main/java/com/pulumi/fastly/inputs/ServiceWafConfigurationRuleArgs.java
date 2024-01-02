@@ -5,6 +5,7 @@ package com.pulumi.fastly.inputs;
 
 import com.pulumi.core.Output;
 import com.pulumi.core.annotations.Import;
+import com.pulumi.exceptions.MissingRequiredPropertyException;
 import java.lang.Integer;
 import java.lang.String;
 import java.util.Objects;
@@ -151,8 +152,12 @@ public final class ServiceWafConfigurationRuleArgs extends com.pulumi.resources.
         }
 
         public ServiceWafConfigurationRuleArgs build() {
-            $.modsecRuleId = Objects.requireNonNull($.modsecRuleId, "expected parameter 'modsecRuleId' to be non-null");
-            $.status = Objects.requireNonNull($.status, "expected parameter 'status' to be non-null");
+            if ($.modsecRuleId == null) {
+                throw new MissingRequiredPropertyException("ServiceWafConfigurationRuleArgs", "modsecRuleId");
+            }
+            if ($.status == null) {
+                throw new MissingRequiredPropertyException("ServiceWafConfigurationRuleArgs", "status");
+            }
             return $;
         }
     }
