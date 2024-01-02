@@ -4,6 +4,7 @@
 package com.pulumi.fastly.outputs;
 
 import com.pulumi.core.annotations.CustomType;
+import com.pulumi.exceptions.MissingRequiredPropertyException;
 import java.lang.Integer;
 import java.lang.String;
 import java.util.Objects;
@@ -71,17 +72,26 @@ public final class ServiceVclRateLimiterResponse {
 
         @CustomType.Setter
         public Builder content(String content) {
-            this.content = Objects.requireNonNull(content);
+            if (content == null) {
+              throw new MissingRequiredPropertyException("ServiceVclRateLimiterResponse", "content");
+            }
+            this.content = content;
             return this;
         }
         @CustomType.Setter
         public Builder contentType(String contentType) {
-            this.contentType = Objects.requireNonNull(contentType);
+            if (contentType == null) {
+              throw new MissingRequiredPropertyException("ServiceVclRateLimiterResponse", "contentType");
+            }
+            this.contentType = contentType;
             return this;
         }
         @CustomType.Setter
         public Builder status(Integer status) {
-            this.status = Objects.requireNonNull(status);
+            if (status == null) {
+              throw new MissingRequiredPropertyException("ServiceVclRateLimiterResponse", "status");
+            }
+            this.status = status;
             return this;
         }
         public ServiceVclRateLimiterResponse build() {

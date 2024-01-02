@@ -5,6 +5,7 @@ package com.pulumi.fastly.inputs;
 
 import com.pulumi.core.Output;
 import com.pulumi.core.annotations.Import;
+import com.pulumi.exceptions.MissingRequiredPropertyException;
 import java.lang.Integer;
 import java.lang.String;
 import java.util.Objects;
@@ -632,10 +633,18 @@ public final class ServiceVclLoggingCloudfileArgs extends com.pulumi.resources.R
         }
 
         public ServiceVclLoggingCloudfileArgs build() {
-            $.accessKey = Objects.requireNonNull($.accessKey, "expected parameter 'accessKey' to be non-null");
-            $.bucketName = Objects.requireNonNull($.bucketName, "expected parameter 'bucketName' to be non-null");
-            $.name = Objects.requireNonNull($.name, "expected parameter 'name' to be non-null");
-            $.user = Objects.requireNonNull($.user, "expected parameter 'user' to be non-null");
+            if ($.accessKey == null) {
+                throw new MissingRequiredPropertyException("ServiceVclLoggingCloudfileArgs", "accessKey");
+            }
+            if ($.bucketName == null) {
+                throw new MissingRequiredPropertyException("ServiceVclLoggingCloudfileArgs", "bucketName");
+            }
+            if ($.name == null) {
+                throw new MissingRequiredPropertyException("ServiceVclLoggingCloudfileArgs", "name");
+            }
+            if ($.user == null) {
+                throw new MissingRequiredPropertyException("ServiceVclLoggingCloudfileArgs", "user");
+            }
             return $;
         }
     }

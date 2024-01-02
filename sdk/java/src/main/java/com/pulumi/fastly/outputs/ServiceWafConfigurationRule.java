@@ -4,6 +4,7 @@
 package com.pulumi.fastly.outputs;
 
 import com.pulumi.core.annotations.CustomType;
+import com.pulumi.exceptions.MissingRequiredPropertyException;
 import java.lang.Integer;
 import java.lang.String;
 import java.util.Objects;
@@ -73,17 +74,24 @@ public final class ServiceWafConfigurationRule {
 
         @CustomType.Setter
         public Builder modsecRuleId(Integer modsecRuleId) {
-            this.modsecRuleId = Objects.requireNonNull(modsecRuleId);
+            if (modsecRuleId == null) {
+              throw new MissingRequiredPropertyException("ServiceWafConfigurationRule", "modsecRuleId");
+            }
+            this.modsecRuleId = modsecRuleId;
             return this;
         }
         @CustomType.Setter
         public Builder revision(@Nullable Integer revision) {
+
             this.revision = revision;
             return this;
         }
         @CustomType.Setter
         public Builder status(String status) {
-            this.status = Objects.requireNonNull(status);
+            if (status == null) {
+              throw new MissingRequiredPropertyException("ServiceWafConfigurationRule", "status");
+            }
+            this.status = status;
             return this;
         }
         public ServiceWafConfigurationRule build() {

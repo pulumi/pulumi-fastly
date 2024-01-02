@@ -4,6 +4,7 @@
 package com.pulumi.fastly.outputs;
 
 import com.pulumi.core.annotations.CustomType;
+import com.pulumi.exceptions.MissingRequiredPropertyException;
 import com.pulumi.fastly.outputs.GetWafRulesRule;
 import java.lang.Integer;
 import java.lang.String;
@@ -116,6 +117,7 @@ public final class GetWafRulesResult {
 
         @CustomType.Setter
         public Builder excludeModsecRuleIds(@Nullable List<Integer> excludeModsecRuleIds) {
+
             this.excludeModsecRuleIds = excludeModsecRuleIds;
             return this;
         }
@@ -124,11 +126,15 @@ public final class GetWafRulesResult {
         }
         @CustomType.Setter
         public Builder id(String id) {
-            this.id = Objects.requireNonNull(id);
+            if (id == null) {
+              throw new MissingRequiredPropertyException("GetWafRulesResult", "id");
+            }
+            this.id = id;
             return this;
         }
         @CustomType.Setter
         public Builder modsecRuleIds(@Nullable List<Integer> modsecRuleIds) {
+
             this.modsecRuleIds = modsecRuleIds;
             return this;
         }
@@ -137,6 +143,7 @@ public final class GetWafRulesResult {
         }
         @CustomType.Setter
         public Builder publishers(@Nullable List<String> publishers) {
+
             this.publishers = publishers;
             return this;
         }
@@ -145,7 +152,10 @@ public final class GetWafRulesResult {
         }
         @CustomType.Setter
         public Builder rules(List<GetWafRulesRule> rules) {
-            this.rules = Objects.requireNonNull(rules);
+            if (rules == null) {
+              throw new MissingRequiredPropertyException("GetWafRulesResult", "rules");
+            }
+            this.rules = rules;
             return this;
         }
         public Builder rules(GetWafRulesRule... rules) {
@@ -153,6 +163,7 @@ public final class GetWafRulesResult {
         }
         @CustomType.Setter
         public Builder tags(@Nullable List<String> tags) {
+
             this.tags = tags;
             return this;
         }

@@ -4,6 +4,7 @@
 package com.pulumi.fastly.outputs;
 
 import com.pulumi.core.annotations.CustomType;
+import com.pulumi.exceptions.MissingRequiredPropertyException;
 import java.lang.Boolean;
 import java.lang.String;
 import java.util.Objects;
@@ -79,21 +80,27 @@ public final class ServiceVclDictionary {
 
         @CustomType.Setter
         public Builder dictionaryId(@Nullable String dictionaryId) {
+
             this.dictionaryId = dictionaryId;
             return this;
         }
         @CustomType.Setter
         public Builder forceDestroy(@Nullable Boolean forceDestroy) {
+
             this.forceDestroy = forceDestroy;
             return this;
         }
         @CustomType.Setter
         public Builder name(String name) {
-            this.name = Objects.requireNonNull(name);
+            if (name == null) {
+              throw new MissingRequiredPropertyException("ServiceVclDictionary", "name");
+            }
+            this.name = name;
             return this;
         }
         @CustomType.Setter
         public Builder writeOnly(@Nullable Boolean writeOnly) {
+
             this.writeOnly = writeOnly;
             return this;
         }

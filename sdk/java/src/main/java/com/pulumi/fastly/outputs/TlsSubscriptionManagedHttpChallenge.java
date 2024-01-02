@@ -49,16 +49,19 @@ public final class TlsSubscriptionManagedHttpChallenge {
 
         @CustomType.Setter
         public Builder recordName(@Nullable String recordName) {
+
             this.recordName = recordName;
             return this;
         }
         @CustomType.Setter
         public Builder recordType(@Nullable String recordType) {
+
             this.recordType = recordType;
             return this;
         }
         @CustomType.Setter
         public Builder recordValues(@Nullable List<String> recordValues) {
+
             this.recordValues = recordValues;
             return this;
         }

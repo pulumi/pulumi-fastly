@@ -5,6 +5,7 @@ package com.pulumi.fastly.inputs;
 
 import com.pulumi.core.Output;
 import com.pulumi.core.annotations.Import;
+import com.pulumi.exceptions.MissingRequiredPropertyException;
 import java.lang.String;
 import java.util.Objects;
 import java.util.Optional;
@@ -261,8 +262,12 @@ public final class ServiceComputeLoggingKineseArgs extends com.pulumi.resources.
         }
 
         public ServiceComputeLoggingKineseArgs build() {
-            $.name = Objects.requireNonNull($.name, "expected parameter 'name' to be non-null");
-            $.topic = Objects.requireNonNull($.topic, "expected parameter 'topic' to be non-null");
+            if ($.name == null) {
+                throw new MissingRequiredPropertyException("ServiceComputeLoggingKineseArgs", "name");
+            }
+            if ($.topic == null) {
+                throw new MissingRequiredPropertyException("ServiceComputeLoggingKineseArgs", "topic");
+            }
             return $;
         }
     }

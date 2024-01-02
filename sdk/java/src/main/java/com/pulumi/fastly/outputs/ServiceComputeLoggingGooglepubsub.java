@@ -4,6 +4,7 @@
 package com.pulumi.fastly.outputs;
 
 import com.pulumi.core.annotations.CustomType;
+import com.pulumi.exceptions.MissingRequiredPropertyException;
 import java.lang.String;
 import java.util.Objects;
 import java.util.Optional;
@@ -114,32 +115,48 @@ public final class ServiceComputeLoggingGooglepubsub {
 
         @CustomType.Setter
         public Builder accountName(@Nullable String accountName) {
+
             this.accountName = accountName;
             return this;
         }
         @CustomType.Setter
         public Builder name(String name) {
-            this.name = Objects.requireNonNull(name);
+            if (name == null) {
+              throw new MissingRequiredPropertyException("ServiceComputeLoggingGooglepubsub", "name");
+            }
+            this.name = name;
             return this;
         }
         @CustomType.Setter
         public Builder projectId(String projectId) {
-            this.projectId = Objects.requireNonNull(projectId);
+            if (projectId == null) {
+              throw new MissingRequiredPropertyException("ServiceComputeLoggingGooglepubsub", "projectId");
+            }
+            this.projectId = projectId;
             return this;
         }
         @CustomType.Setter
         public Builder secretKey(String secretKey) {
-            this.secretKey = Objects.requireNonNull(secretKey);
+            if (secretKey == null) {
+              throw new MissingRequiredPropertyException("ServiceComputeLoggingGooglepubsub", "secretKey");
+            }
+            this.secretKey = secretKey;
             return this;
         }
         @CustomType.Setter
         public Builder topic(String topic) {
-            this.topic = Objects.requireNonNull(topic);
+            if (topic == null) {
+              throw new MissingRequiredPropertyException("ServiceComputeLoggingGooglepubsub", "topic");
+            }
+            this.topic = topic;
             return this;
         }
         @CustomType.Setter
         public Builder user(String user) {
-            this.user = Objects.requireNonNull(user);
+            if (user == null) {
+              throw new MissingRequiredPropertyException("ServiceComputeLoggingGooglepubsub", "user");
+            }
+            this.user = user;
             return this;
         }
         public ServiceComputeLoggingGooglepubsub build() {

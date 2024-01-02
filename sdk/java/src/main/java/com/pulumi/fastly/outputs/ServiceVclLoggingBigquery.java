@@ -4,6 +4,7 @@
 package com.pulumi.fastly.outputs;
 
 import com.pulumi.core.annotations.CustomType;
+import com.pulumi.exceptions.MissingRequiredPropertyException;
 import java.lang.String;
 import java.util.Objects;
 import java.util.Optional;
@@ -184,56 +185,79 @@ public final class ServiceVclLoggingBigquery {
 
         @CustomType.Setter
         public Builder accountName(@Nullable String accountName) {
+
             this.accountName = accountName;
             return this;
         }
         @CustomType.Setter
         public Builder dataset(String dataset) {
-            this.dataset = Objects.requireNonNull(dataset);
+            if (dataset == null) {
+              throw new MissingRequiredPropertyException("ServiceVclLoggingBigquery", "dataset");
+            }
+            this.dataset = dataset;
             return this;
         }
         @CustomType.Setter
         public Builder email(String email) {
-            this.email = Objects.requireNonNull(email);
+            if (email == null) {
+              throw new MissingRequiredPropertyException("ServiceVclLoggingBigquery", "email");
+            }
+            this.email = email;
             return this;
         }
         @CustomType.Setter
         public Builder format(@Nullable String format) {
+
             this.format = format;
             return this;
         }
         @CustomType.Setter
         public Builder name(String name) {
-            this.name = Objects.requireNonNull(name);
+            if (name == null) {
+              throw new MissingRequiredPropertyException("ServiceVclLoggingBigquery", "name");
+            }
+            this.name = name;
             return this;
         }
         @CustomType.Setter
         public Builder placement(@Nullable String placement) {
+
             this.placement = placement;
             return this;
         }
         @CustomType.Setter
         public Builder projectId(String projectId) {
-            this.projectId = Objects.requireNonNull(projectId);
+            if (projectId == null) {
+              throw new MissingRequiredPropertyException("ServiceVclLoggingBigquery", "projectId");
+            }
+            this.projectId = projectId;
             return this;
         }
         @CustomType.Setter
         public Builder responseCondition(@Nullable String responseCondition) {
+
             this.responseCondition = responseCondition;
             return this;
         }
         @CustomType.Setter
         public Builder secretKey(String secretKey) {
-            this.secretKey = Objects.requireNonNull(secretKey);
+            if (secretKey == null) {
+              throw new MissingRequiredPropertyException("ServiceVclLoggingBigquery", "secretKey");
+            }
+            this.secretKey = secretKey;
             return this;
         }
         @CustomType.Setter
         public Builder table(String table) {
-            this.table = Objects.requireNonNull(table);
+            if (table == null) {
+              throw new MissingRequiredPropertyException("ServiceVclLoggingBigquery", "table");
+            }
+            this.table = table;
             return this;
         }
         @CustomType.Setter
         public Builder template(@Nullable String template) {
+
             this.template = template;
             return this;
         }

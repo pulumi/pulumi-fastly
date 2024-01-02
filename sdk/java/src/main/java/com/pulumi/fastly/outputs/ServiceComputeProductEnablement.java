@@ -73,16 +73,19 @@ public final class ServiceComputeProductEnablement {
 
         @CustomType.Setter
         public Builder fanout(@Nullable Boolean fanout) {
+
             this.fanout = fanout;
             return this;
         }
         @CustomType.Setter
         public Builder name(@Nullable String name) {
+
             this.name = name;
             return this;
         }
         @CustomType.Setter
         public Builder websockets(@Nullable Boolean websockets) {
+
             this.websockets = websockets;
             return this;
         }

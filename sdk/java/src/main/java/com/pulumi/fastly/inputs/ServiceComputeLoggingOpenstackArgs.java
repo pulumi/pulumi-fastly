@@ -5,6 +5,7 @@ package com.pulumi.fastly.inputs;
 
 import com.pulumi.core.Output;
 import com.pulumi.core.annotations.Import;
+import com.pulumi.exceptions.MissingRequiredPropertyException;
 import java.lang.Integer;
 import java.lang.String;
 import java.util.Objects;
@@ -484,11 +485,21 @@ public final class ServiceComputeLoggingOpenstackArgs extends com.pulumi.resourc
         }
 
         public ServiceComputeLoggingOpenstackArgs build() {
-            $.accessKey = Objects.requireNonNull($.accessKey, "expected parameter 'accessKey' to be non-null");
-            $.bucketName = Objects.requireNonNull($.bucketName, "expected parameter 'bucketName' to be non-null");
-            $.name = Objects.requireNonNull($.name, "expected parameter 'name' to be non-null");
-            $.url = Objects.requireNonNull($.url, "expected parameter 'url' to be non-null");
-            $.user = Objects.requireNonNull($.user, "expected parameter 'user' to be non-null");
+            if ($.accessKey == null) {
+                throw new MissingRequiredPropertyException("ServiceComputeLoggingOpenstackArgs", "accessKey");
+            }
+            if ($.bucketName == null) {
+                throw new MissingRequiredPropertyException("ServiceComputeLoggingOpenstackArgs", "bucketName");
+            }
+            if ($.name == null) {
+                throw new MissingRequiredPropertyException("ServiceComputeLoggingOpenstackArgs", "name");
+            }
+            if ($.url == null) {
+                throw new MissingRequiredPropertyException("ServiceComputeLoggingOpenstackArgs", "url");
+            }
+            if ($.user == null) {
+                throw new MissingRequiredPropertyException("ServiceComputeLoggingOpenstackArgs", "user");
+            }
             return $;
         }
     }

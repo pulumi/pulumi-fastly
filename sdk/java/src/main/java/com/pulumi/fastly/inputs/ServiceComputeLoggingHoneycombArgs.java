@@ -5,6 +5,7 @@ package com.pulumi.fastly.inputs;
 
 import com.pulumi.core.Output;
 import com.pulumi.core.annotations.Import;
+import com.pulumi.exceptions.MissingRequiredPropertyException;
 import java.lang.String;
 import java.util.Objects;
 
@@ -148,9 +149,15 @@ public final class ServiceComputeLoggingHoneycombArgs extends com.pulumi.resourc
         }
 
         public ServiceComputeLoggingHoneycombArgs build() {
-            $.dataset = Objects.requireNonNull($.dataset, "expected parameter 'dataset' to be non-null");
-            $.name = Objects.requireNonNull($.name, "expected parameter 'name' to be non-null");
-            $.token = Objects.requireNonNull($.token, "expected parameter 'token' to be non-null");
+            if ($.dataset == null) {
+                throw new MissingRequiredPropertyException("ServiceComputeLoggingHoneycombArgs", "dataset");
+            }
+            if ($.name == null) {
+                throw new MissingRequiredPropertyException("ServiceComputeLoggingHoneycombArgs", "name");
+            }
+            if ($.token == null) {
+                throw new MissingRequiredPropertyException("ServiceComputeLoggingHoneycombArgs", "token");
+            }
             return $;
         }
     }

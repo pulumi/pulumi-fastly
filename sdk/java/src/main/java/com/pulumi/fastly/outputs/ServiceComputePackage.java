@@ -72,16 +72,19 @@ public final class ServiceComputePackage {
 
         @CustomType.Setter
         public Builder content(@Nullable String content) {
+
             this.content = content;
             return this;
         }
         @CustomType.Setter
         public Builder filename(@Nullable String filename) {
+
             this.filename = filename;
             return this;
         }
         @CustomType.Setter
         public Builder sourceCodeHash(@Nullable String sourceCodeHash) {
+
             this.sourceCodeHash = sourceCodeHash;
             return this;
         }

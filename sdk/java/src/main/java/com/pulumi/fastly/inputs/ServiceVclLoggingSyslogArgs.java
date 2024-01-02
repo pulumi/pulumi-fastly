@@ -5,6 +5,7 @@ package com.pulumi.fastly.inputs;
 
 import com.pulumi.core.Output;
 import com.pulumi.core.annotations.Import;
+import com.pulumi.exceptions.MissingRequiredPropertyException;
 import java.lang.Boolean;
 import java.lang.Integer;
 import java.lang.String;
@@ -559,8 +560,12 @@ public final class ServiceVclLoggingSyslogArgs extends com.pulumi.resources.Reso
         }
 
         public ServiceVclLoggingSyslogArgs build() {
-            $.address = Objects.requireNonNull($.address, "expected parameter 'address' to be non-null");
-            $.name = Objects.requireNonNull($.name, "expected parameter 'name' to be non-null");
+            if ($.address == null) {
+                throw new MissingRequiredPropertyException("ServiceVclLoggingSyslogArgs", "address");
+            }
+            if ($.name == null) {
+                throw new MissingRequiredPropertyException("ServiceVclLoggingSyslogArgs", "name");
+            }
             return $;
         }
     }

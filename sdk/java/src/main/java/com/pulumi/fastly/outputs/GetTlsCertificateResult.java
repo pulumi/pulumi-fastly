@@ -4,6 +4,7 @@
 package com.pulumi.fastly.outputs;
 
 import com.pulumi.core.annotations.CustomType;
+import com.pulumi.exceptions.MissingRequiredPropertyException;
 import java.lang.Boolean;
 import java.lang.String;
 import java.util.List;
@@ -170,12 +171,18 @@ public final class GetTlsCertificateResult {
 
         @CustomType.Setter
         public Builder createdAt(String createdAt) {
-            this.createdAt = Objects.requireNonNull(createdAt);
+            if (createdAt == null) {
+              throw new MissingRequiredPropertyException("GetTlsCertificateResult", "createdAt");
+            }
+            this.createdAt = createdAt;
             return this;
         }
         @CustomType.Setter
         public Builder domains(List<String> domains) {
-            this.domains = Objects.requireNonNull(domains);
+            if (domains == null) {
+              throw new MissingRequiredPropertyException("GetTlsCertificateResult", "domains");
+            }
+            this.domains = domains;
             return this;
         }
         public Builder domains(String... domains) {
@@ -183,42 +190,66 @@ public final class GetTlsCertificateResult {
         }
         @CustomType.Setter
         public Builder id(String id) {
-            this.id = Objects.requireNonNull(id);
+            if (id == null) {
+              throw new MissingRequiredPropertyException("GetTlsCertificateResult", "id");
+            }
+            this.id = id;
             return this;
         }
         @CustomType.Setter
         public Builder issuedTo(String issuedTo) {
-            this.issuedTo = Objects.requireNonNull(issuedTo);
+            if (issuedTo == null) {
+              throw new MissingRequiredPropertyException("GetTlsCertificateResult", "issuedTo");
+            }
+            this.issuedTo = issuedTo;
             return this;
         }
         @CustomType.Setter
         public Builder issuer(String issuer) {
-            this.issuer = Objects.requireNonNull(issuer);
+            if (issuer == null) {
+              throw new MissingRequiredPropertyException("GetTlsCertificateResult", "issuer");
+            }
+            this.issuer = issuer;
             return this;
         }
         @CustomType.Setter
         public Builder name(String name) {
-            this.name = Objects.requireNonNull(name);
+            if (name == null) {
+              throw new MissingRequiredPropertyException("GetTlsCertificateResult", "name");
+            }
+            this.name = name;
             return this;
         }
         @CustomType.Setter
         public Builder replace(Boolean replace) {
-            this.replace = Objects.requireNonNull(replace);
+            if (replace == null) {
+              throw new MissingRequiredPropertyException("GetTlsCertificateResult", "replace");
+            }
+            this.replace = replace;
             return this;
         }
         @CustomType.Setter
         public Builder serialNumber(String serialNumber) {
-            this.serialNumber = Objects.requireNonNull(serialNumber);
+            if (serialNumber == null) {
+              throw new MissingRequiredPropertyException("GetTlsCertificateResult", "serialNumber");
+            }
+            this.serialNumber = serialNumber;
             return this;
         }
         @CustomType.Setter
         public Builder signatureAlgorithm(String signatureAlgorithm) {
-            this.signatureAlgorithm = Objects.requireNonNull(signatureAlgorithm);
+            if (signatureAlgorithm == null) {
+              throw new MissingRequiredPropertyException("GetTlsCertificateResult", "signatureAlgorithm");
+            }
+            this.signatureAlgorithm = signatureAlgorithm;
             return this;
         }
         @CustomType.Setter
         public Builder updatedAt(String updatedAt) {
-            this.updatedAt = Objects.requireNonNull(updatedAt);
+            if (updatedAt == null) {
+              throw new MissingRequiredPropertyException("GetTlsCertificateResult", "updatedAt");
+            }
+            this.updatedAt = updatedAt;
             return this;
         }
         public GetTlsCertificateResult build() {

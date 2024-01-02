@@ -4,6 +4,7 @@
 package com.pulumi.fastly.outputs;
 
 import com.pulumi.core.annotations.CustomType;
+import com.pulumi.exceptions.MissingRequiredPropertyException;
 import java.lang.Boolean;
 import java.lang.Integer;
 import java.lang.String;
@@ -228,71 +229,89 @@ public final class ServiceVclLoggingSyslog {
 
         @CustomType.Setter
         public Builder address(String address) {
-            this.address = Objects.requireNonNull(address);
+            if (address == null) {
+              throw new MissingRequiredPropertyException("ServiceVclLoggingSyslog", "address");
+            }
+            this.address = address;
             return this;
         }
         @CustomType.Setter
         public Builder format(@Nullable String format) {
+
             this.format = format;
             return this;
         }
         @CustomType.Setter
         public Builder formatVersion(@Nullable Integer formatVersion) {
+
             this.formatVersion = formatVersion;
             return this;
         }
         @CustomType.Setter
         public Builder messageType(@Nullable String messageType) {
+
             this.messageType = messageType;
             return this;
         }
         @CustomType.Setter
         public Builder name(String name) {
-            this.name = Objects.requireNonNull(name);
+            if (name == null) {
+              throw new MissingRequiredPropertyException("ServiceVclLoggingSyslog", "name");
+            }
+            this.name = name;
             return this;
         }
         @CustomType.Setter
         public Builder placement(@Nullable String placement) {
+
             this.placement = placement;
             return this;
         }
         @CustomType.Setter
         public Builder port(@Nullable Integer port) {
+
             this.port = port;
             return this;
         }
         @CustomType.Setter
         public Builder responseCondition(@Nullable String responseCondition) {
+
             this.responseCondition = responseCondition;
             return this;
         }
         @CustomType.Setter
         public Builder tlsCaCert(@Nullable String tlsCaCert) {
+
             this.tlsCaCert = tlsCaCert;
             return this;
         }
         @CustomType.Setter
         public Builder tlsClientCert(@Nullable String tlsClientCert) {
+
             this.tlsClientCert = tlsClientCert;
             return this;
         }
         @CustomType.Setter
         public Builder tlsClientKey(@Nullable String tlsClientKey) {
+
             this.tlsClientKey = tlsClientKey;
             return this;
         }
         @CustomType.Setter
         public Builder tlsHostname(@Nullable String tlsHostname) {
+
             this.tlsHostname = tlsHostname;
             return this;
         }
         @CustomType.Setter
         public Builder token(@Nullable String token) {
+
             this.token = token;
             return this;
         }
         @CustomType.Setter
         public Builder useTls(@Nullable Boolean useTls) {
+
             this.useTls = useTls;
             return this;
         }

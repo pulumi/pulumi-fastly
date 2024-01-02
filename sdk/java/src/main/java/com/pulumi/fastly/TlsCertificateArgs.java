@@ -5,6 +5,7 @@ package com.pulumi.fastly;
 
 import com.pulumi.core.Output;
 import com.pulumi.core.annotations.Import;
+import com.pulumi.exceptions.MissingRequiredPropertyException;
 import java.lang.String;
 import java.util.Objects;
 import java.util.Optional;
@@ -113,7 +114,9 @@ public final class TlsCertificateArgs extends com.pulumi.resources.ResourceArgs 
         }
 
         public TlsCertificateArgs build() {
-            $.certificateBody = Objects.requireNonNull($.certificateBody, "expected parameter 'certificateBody' to be non-null");
+            if ($.certificateBody == null) {
+                throw new MissingRequiredPropertyException("TlsCertificateArgs", "certificateBody");
+            }
             return $;
         }
     }

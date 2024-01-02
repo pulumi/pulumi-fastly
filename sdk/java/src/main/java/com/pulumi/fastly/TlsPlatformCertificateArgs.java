@@ -5,6 +5,7 @@ package com.pulumi.fastly;
 
 import com.pulumi.core.Output;
 import com.pulumi.core.annotations.Import;
+import com.pulumi.exceptions.MissingRequiredPropertyException;
 import java.lang.Boolean;
 import java.lang.String;
 import java.util.Objects;
@@ -188,9 +189,15 @@ public final class TlsPlatformCertificateArgs extends com.pulumi.resources.Resou
         }
 
         public TlsPlatformCertificateArgs build() {
-            $.certificateBody = Objects.requireNonNull($.certificateBody, "expected parameter 'certificateBody' to be non-null");
-            $.configurationId = Objects.requireNonNull($.configurationId, "expected parameter 'configurationId' to be non-null");
-            $.intermediatesBlob = Objects.requireNonNull($.intermediatesBlob, "expected parameter 'intermediatesBlob' to be non-null");
+            if ($.certificateBody == null) {
+                throw new MissingRequiredPropertyException("TlsPlatformCertificateArgs", "certificateBody");
+            }
+            if ($.configurationId == null) {
+                throw new MissingRequiredPropertyException("TlsPlatformCertificateArgs", "configurationId");
+            }
+            if ($.intermediatesBlob == null) {
+                throw new MissingRequiredPropertyException("TlsPlatformCertificateArgs", "intermediatesBlob");
+            }
             return $;
         }
     }

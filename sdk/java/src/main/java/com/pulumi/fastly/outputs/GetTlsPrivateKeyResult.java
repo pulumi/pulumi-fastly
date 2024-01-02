@@ -4,6 +4,7 @@
 package com.pulumi.fastly.outputs;
 
 import com.pulumi.core.annotations.CustomType;
+import com.pulumi.exceptions.MissingRequiredPropertyException;
 import java.lang.Boolean;
 import java.lang.Integer;
 import java.lang.String;
@@ -128,37 +129,58 @@ public final class GetTlsPrivateKeyResult {
 
         @CustomType.Setter
         public Builder createdAt(String createdAt) {
-            this.createdAt = Objects.requireNonNull(createdAt);
+            if (createdAt == null) {
+              throw new MissingRequiredPropertyException("GetTlsPrivateKeyResult", "createdAt");
+            }
+            this.createdAt = createdAt;
             return this;
         }
         @CustomType.Setter
         public Builder id(String id) {
-            this.id = Objects.requireNonNull(id);
+            if (id == null) {
+              throw new MissingRequiredPropertyException("GetTlsPrivateKeyResult", "id");
+            }
+            this.id = id;
             return this;
         }
         @CustomType.Setter
         public Builder keyLength(Integer keyLength) {
-            this.keyLength = Objects.requireNonNull(keyLength);
+            if (keyLength == null) {
+              throw new MissingRequiredPropertyException("GetTlsPrivateKeyResult", "keyLength");
+            }
+            this.keyLength = keyLength;
             return this;
         }
         @CustomType.Setter
         public Builder keyType(String keyType) {
-            this.keyType = Objects.requireNonNull(keyType);
+            if (keyType == null) {
+              throw new MissingRequiredPropertyException("GetTlsPrivateKeyResult", "keyType");
+            }
+            this.keyType = keyType;
             return this;
         }
         @CustomType.Setter
         public Builder name(String name) {
-            this.name = Objects.requireNonNull(name);
+            if (name == null) {
+              throw new MissingRequiredPropertyException("GetTlsPrivateKeyResult", "name");
+            }
+            this.name = name;
             return this;
         }
         @CustomType.Setter
         public Builder publicKeySha1(String publicKeySha1) {
-            this.publicKeySha1 = Objects.requireNonNull(publicKeySha1);
+            if (publicKeySha1 == null) {
+              throw new MissingRequiredPropertyException("GetTlsPrivateKeyResult", "publicKeySha1");
+            }
+            this.publicKeySha1 = publicKeySha1;
             return this;
         }
         @CustomType.Setter
         public Builder replace(Boolean replace) {
-            this.replace = Objects.requireNonNull(replace);
+            if (replace == null) {
+              throw new MissingRequiredPropertyException("GetTlsPrivateKeyResult", "replace");
+            }
+            this.replace = replace;
             return this;
         }
         public GetTlsPrivateKeyResult build() {

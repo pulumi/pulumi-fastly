@@ -4,6 +4,7 @@
 package com.pulumi.fastly.outputs;
 
 import com.pulumi.core.annotations.CustomType;
+import com.pulumi.exceptions.MissingRequiredPropertyException;
 import java.lang.String;
 import java.util.Objects;
 
@@ -98,27 +99,42 @@ public final class GetTlsActivationResult {
 
         @CustomType.Setter
         public Builder certificateId(String certificateId) {
-            this.certificateId = Objects.requireNonNull(certificateId);
+            if (certificateId == null) {
+              throw new MissingRequiredPropertyException("GetTlsActivationResult", "certificateId");
+            }
+            this.certificateId = certificateId;
             return this;
         }
         @CustomType.Setter
         public Builder configurationId(String configurationId) {
-            this.configurationId = Objects.requireNonNull(configurationId);
+            if (configurationId == null) {
+              throw new MissingRequiredPropertyException("GetTlsActivationResult", "configurationId");
+            }
+            this.configurationId = configurationId;
             return this;
         }
         @CustomType.Setter
         public Builder createdAt(String createdAt) {
-            this.createdAt = Objects.requireNonNull(createdAt);
+            if (createdAt == null) {
+              throw new MissingRequiredPropertyException("GetTlsActivationResult", "createdAt");
+            }
+            this.createdAt = createdAt;
             return this;
         }
         @CustomType.Setter
         public Builder domain(String domain) {
-            this.domain = Objects.requireNonNull(domain);
+            if (domain == null) {
+              throw new MissingRequiredPropertyException("GetTlsActivationResult", "domain");
+            }
+            this.domain = domain;
             return this;
         }
         @CustomType.Setter
         public Builder id(String id) {
-            this.id = Objects.requireNonNull(id);
+            if (id == null) {
+              throw new MissingRequiredPropertyException("GetTlsActivationResult", "id");
+            }
+            this.id = id;
             return this;
         }
         public GetTlsActivationResult build() {

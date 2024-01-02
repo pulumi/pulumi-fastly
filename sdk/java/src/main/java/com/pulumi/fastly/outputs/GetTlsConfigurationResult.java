@@ -4,6 +4,7 @@
 package com.pulumi.fastly.outputs;
 
 import com.pulumi.core.annotations.CustomType;
+import com.pulumi.exceptions.MissingRequiredPropertyException;
 import com.pulumi.fastly.outputs.GetTlsConfigurationDnsRecord;
 import java.lang.Boolean;
 import java.lang.String;
@@ -157,17 +158,26 @@ public final class GetTlsConfigurationResult {
 
         @CustomType.Setter
         public Builder createdAt(String createdAt) {
-            this.createdAt = Objects.requireNonNull(createdAt);
+            if (createdAt == null) {
+              throw new MissingRequiredPropertyException("GetTlsConfigurationResult", "createdAt");
+            }
+            this.createdAt = createdAt;
             return this;
         }
         @CustomType.Setter("default")
         public Builder default_(Boolean default_) {
-            this.default_ = Objects.requireNonNull(default_);
+            if (default_ == null) {
+              throw new MissingRequiredPropertyException("GetTlsConfigurationResult", "default_");
+            }
+            this.default_ = default_;
             return this;
         }
         @CustomType.Setter
         public Builder dnsRecords(List<GetTlsConfigurationDnsRecord> dnsRecords) {
-            this.dnsRecords = Objects.requireNonNull(dnsRecords);
+            if (dnsRecords == null) {
+              throw new MissingRequiredPropertyException("GetTlsConfigurationResult", "dnsRecords");
+            }
+            this.dnsRecords = dnsRecords;
             return this;
         }
         public Builder dnsRecords(GetTlsConfigurationDnsRecord... dnsRecords) {
@@ -175,7 +185,10 @@ public final class GetTlsConfigurationResult {
         }
         @CustomType.Setter
         public Builder httpProtocols(List<String> httpProtocols) {
-            this.httpProtocols = Objects.requireNonNull(httpProtocols);
+            if (httpProtocols == null) {
+              throw new MissingRequiredPropertyException("GetTlsConfigurationResult", "httpProtocols");
+            }
+            this.httpProtocols = httpProtocols;
             return this;
         }
         public Builder httpProtocols(String... httpProtocols) {
@@ -183,17 +196,26 @@ public final class GetTlsConfigurationResult {
         }
         @CustomType.Setter
         public Builder id(String id) {
-            this.id = Objects.requireNonNull(id);
+            if (id == null) {
+              throw new MissingRequiredPropertyException("GetTlsConfigurationResult", "id");
+            }
+            this.id = id;
             return this;
         }
         @CustomType.Setter
         public Builder name(String name) {
-            this.name = Objects.requireNonNull(name);
+            if (name == null) {
+              throw new MissingRequiredPropertyException("GetTlsConfigurationResult", "name");
+            }
+            this.name = name;
             return this;
         }
         @CustomType.Setter
         public Builder tlsProtocols(List<String> tlsProtocols) {
-            this.tlsProtocols = Objects.requireNonNull(tlsProtocols);
+            if (tlsProtocols == null) {
+              throw new MissingRequiredPropertyException("GetTlsConfigurationResult", "tlsProtocols");
+            }
+            this.tlsProtocols = tlsProtocols;
             return this;
         }
         public Builder tlsProtocols(String... tlsProtocols) {
@@ -201,12 +223,18 @@ public final class GetTlsConfigurationResult {
         }
         @CustomType.Setter
         public Builder tlsService(String tlsService) {
-            this.tlsService = Objects.requireNonNull(tlsService);
+            if (tlsService == null) {
+              throw new MissingRequiredPropertyException("GetTlsConfigurationResult", "tlsService");
+            }
+            this.tlsService = tlsService;
             return this;
         }
         @CustomType.Setter
         public Builder updatedAt(String updatedAt) {
-            this.updatedAt = Objects.requireNonNull(updatedAt);
+            if (updatedAt == null) {
+              throw new MissingRequiredPropertyException("GetTlsConfigurationResult", "updatedAt");
+            }
+            this.updatedAt = updatedAt;
             return this;
         }
         public GetTlsConfigurationResult build() {

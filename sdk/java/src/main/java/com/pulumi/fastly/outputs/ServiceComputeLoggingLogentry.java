@@ -4,6 +4,7 @@
 package com.pulumi.fastly.outputs;
 
 import com.pulumi.core.annotations.CustomType;
+import com.pulumi.exceptions.MissingRequiredPropertyException;
 import java.lang.Boolean;
 import java.lang.Integer;
 import java.lang.String;
@@ -88,21 +89,29 @@ public final class ServiceComputeLoggingLogentry {
 
         @CustomType.Setter
         public Builder name(String name) {
-            this.name = Objects.requireNonNull(name);
+            if (name == null) {
+              throw new MissingRequiredPropertyException("ServiceComputeLoggingLogentry", "name");
+            }
+            this.name = name;
             return this;
         }
         @CustomType.Setter
         public Builder port(@Nullable Integer port) {
+
             this.port = port;
             return this;
         }
         @CustomType.Setter
         public Builder token(String token) {
-            this.token = Objects.requireNonNull(token);
+            if (token == null) {
+              throw new MissingRequiredPropertyException("ServiceComputeLoggingLogentry", "token");
+            }
+            this.token = token;
             return this;
         }
         @CustomType.Setter
         public Builder useTls(@Nullable Boolean useTls) {
+
             this.useTls = useTls;
             return this;
         }

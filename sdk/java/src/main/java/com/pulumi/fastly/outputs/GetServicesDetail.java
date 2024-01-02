@@ -4,6 +4,7 @@
 package com.pulumi.fastly.outputs;
 
 import com.pulumi.core.annotations.CustomType;
+import com.pulumi.exceptions.MissingRequiredPropertyException;
 import java.lang.Integer;
 import java.lang.String;
 import java.util.Objects;
@@ -77,42 +78,66 @@ public final class GetServicesDetail {
 
         @CustomType.Setter
         public Builder comment(String comment) {
-            this.comment = Objects.requireNonNull(comment);
+            if (comment == null) {
+              throw new MissingRequiredPropertyException("GetServicesDetail", "comment");
+            }
+            this.comment = comment;
             return this;
         }
         @CustomType.Setter
         public Builder createdAt(String createdAt) {
-            this.createdAt = Objects.requireNonNull(createdAt);
+            if (createdAt == null) {
+              throw new MissingRequiredPropertyException("GetServicesDetail", "createdAt");
+            }
+            this.createdAt = createdAt;
             return this;
         }
         @CustomType.Setter
         public Builder customerId(String customerId) {
-            this.customerId = Objects.requireNonNull(customerId);
+            if (customerId == null) {
+              throw new MissingRequiredPropertyException("GetServicesDetail", "customerId");
+            }
+            this.customerId = customerId;
             return this;
         }
         @CustomType.Setter
         public Builder id(String id) {
-            this.id = Objects.requireNonNull(id);
+            if (id == null) {
+              throw new MissingRequiredPropertyException("GetServicesDetail", "id");
+            }
+            this.id = id;
             return this;
         }
         @CustomType.Setter
         public Builder name(String name) {
-            this.name = Objects.requireNonNull(name);
+            if (name == null) {
+              throw new MissingRequiredPropertyException("GetServicesDetail", "name");
+            }
+            this.name = name;
             return this;
         }
         @CustomType.Setter
         public Builder type(String type) {
-            this.type = Objects.requireNonNull(type);
+            if (type == null) {
+              throw new MissingRequiredPropertyException("GetServicesDetail", "type");
+            }
+            this.type = type;
             return this;
         }
         @CustomType.Setter
         public Builder updatedAt(String updatedAt) {
-            this.updatedAt = Objects.requireNonNull(updatedAt);
+            if (updatedAt == null) {
+              throw new MissingRequiredPropertyException("GetServicesDetail", "updatedAt");
+            }
+            this.updatedAt = updatedAt;
             return this;
         }
         @CustomType.Setter
         public Builder version(Integer version) {
-            this.version = Objects.requireNonNull(version);
+            if (version == null) {
+              throw new MissingRequiredPropertyException("GetServicesDetail", "version");
+            }
+            this.version = version;
             return this;
         }
         public GetServicesDetail build() {

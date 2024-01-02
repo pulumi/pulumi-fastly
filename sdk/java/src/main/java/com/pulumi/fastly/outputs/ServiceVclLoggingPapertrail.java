@@ -4,6 +4,7 @@
 package com.pulumi.fastly.outputs;
 
 import com.pulumi.core.annotations.CustomType;
+import com.pulumi.exceptions.MissingRequiredPropertyException;
 import java.lang.Integer;
 import java.lang.String;
 import java.util.Objects;
@@ -129,36 +130,49 @@ public final class ServiceVclLoggingPapertrail {
 
         @CustomType.Setter
         public Builder address(String address) {
-            this.address = Objects.requireNonNull(address);
+            if (address == null) {
+              throw new MissingRequiredPropertyException("ServiceVclLoggingPapertrail", "address");
+            }
+            this.address = address;
             return this;
         }
         @CustomType.Setter
         public Builder format(@Nullable String format) {
+
             this.format = format;
             return this;
         }
         @CustomType.Setter
         public Builder formatVersion(@Nullable Integer formatVersion) {
+
             this.formatVersion = formatVersion;
             return this;
         }
         @CustomType.Setter
         public Builder name(String name) {
-            this.name = Objects.requireNonNull(name);
+            if (name == null) {
+              throw new MissingRequiredPropertyException("ServiceVclLoggingPapertrail", "name");
+            }
+            this.name = name;
             return this;
         }
         @CustomType.Setter
         public Builder placement(@Nullable String placement) {
+
             this.placement = placement;
             return this;
         }
         @CustomType.Setter
         public Builder port(Integer port) {
-            this.port = Objects.requireNonNull(port);
+            if (port == null) {
+              throw new MissingRequiredPropertyException("ServiceVclLoggingPapertrail", "port");
+            }
+            this.port = port;
             return this;
         }
         @CustomType.Setter
         public Builder responseCondition(@Nullable String responseCondition) {
+
             this.responseCondition = responseCondition;
             return this;
         }

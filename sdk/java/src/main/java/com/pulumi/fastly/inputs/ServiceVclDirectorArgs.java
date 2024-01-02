@@ -5,6 +5,7 @@ package com.pulumi.fastly.inputs;
 
 import com.pulumi.core.Output;
 import com.pulumi.core.annotations.Import;
+import com.pulumi.exceptions.MissingRequiredPropertyException;
 import java.lang.Integer;
 import java.lang.String;
 import java.util.List;
@@ -310,8 +311,12 @@ public final class ServiceVclDirectorArgs extends com.pulumi.resources.ResourceA
         }
 
         public ServiceVclDirectorArgs build() {
-            $.backends = Objects.requireNonNull($.backends, "expected parameter 'backends' to be non-null");
-            $.name = Objects.requireNonNull($.name, "expected parameter 'name' to be non-null");
+            if ($.backends == null) {
+                throw new MissingRequiredPropertyException("ServiceVclDirectorArgs", "backends");
+            }
+            if ($.name == null) {
+                throw new MissingRequiredPropertyException("ServiceVclDirectorArgs", "name");
+            }
             return $;
         }
     }

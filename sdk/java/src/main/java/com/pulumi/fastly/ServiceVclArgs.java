@@ -5,6 +5,7 @@ package com.pulumi.fastly;
 
 import com.pulumi.core.Output;
 import com.pulumi.core.annotations.Import;
+import com.pulumi.exceptions.MissingRequiredPropertyException;
 import com.pulumi.fastly.inputs.ServiceVclAclArgs;
 import com.pulumi.fastly.inputs.ServiceVclBackendArgs;
 import com.pulumi.fastly.inputs.ServiceVclCacheSettingArgs;
@@ -1521,7 +1522,9 @@ public final class ServiceVclArgs extends com.pulumi.resources.ResourceArgs {
         }
 
         public ServiceVclArgs build() {
-            $.domains = Objects.requireNonNull($.domains, "expected parameter 'domains' to be non-null");
+            if ($.domains == null) {
+                throw new MissingRequiredPropertyException("ServiceVclArgs", "domains");
+            }
             return $;
         }
     }

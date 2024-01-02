@@ -4,6 +4,7 @@
 package com.pulumi.fastly.outputs;
 
 import com.pulumi.core.annotations.CustomType;
+import com.pulumi.exceptions.MissingRequiredPropertyException;
 import com.pulumi.fastly.outputs.GetServicesDetail;
 import java.lang.String;
 import java.util.List;
@@ -72,7 +73,10 @@ public final class GetServicesResult {
 
         @CustomType.Setter
         public Builder details(List<GetServicesDetail> details) {
-            this.details = Objects.requireNonNull(details);
+            if (details == null) {
+              throw new MissingRequiredPropertyException("GetServicesResult", "details");
+            }
+            this.details = details;
             return this;
         }
         public Builder details(GetServicesDetail... details) {
@@ -80,12 +84,18 @@ public final class GetServicesResult {
         }
         @CustomType.Setter
         public Builder id(String id) {
-            this.id = Objects.requireNonNull(id);
+            if (id == null) {
+              throw new MissingRequiredPropertyException("GetServicesResult", "id");
+            }
+            this.id = id;
             return this;
         }
         @CustomType.Setter
         public Builder ids(List<String> ids) {
-            this.ids = Objects.requireNonNull(ids);
+            if (ids == null) {
+              throw new MissingRequiredPropertyException("GetServicesResult", "ids");
+            }
+            this.ids = ids;
             return this;
         }
         public Builder ids(String... ids) {

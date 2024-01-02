@@ -5,6 +5,7 @@ package com.pulumi.fastly.inputs;
 
 import com.pulumi.core.Output;
 import com.pulumi.core.annotations.Import;
+import com.pulumi.exceptions.MissingRequiredPropertyException;
 import java.lang.Integer;
 import java.lang.String;
 import java.util.List;
@@ -495,9 +496,15 @@ public final class ServiceVclHealthcheckArgs extends com.pulumi.resources.Resour
         }
 
         public ServiceVclHealthcheckArgs build() {
-            $.host = Objects.requireNonNull($.host, "expected parameter 'host' to be non-null");
-            $.name = Objects.requireNonNull($.name, "expected parameter 'name' to be non-null");
-            $.path = Objects.requireNonNull($.path, "expected parameter 'path' to be non-null");
+            if ($.host == null) {
+                throw new MissingRequiredPropertyException("ServiceVclHealthcheckArgs", "host");
+            }
+            if ($.name == null) {
+                throw new MissingRequiredPropertyException("ServiceVclHealthcheckArgs", "name");
+            }
+            if ($.path == null) {
+                throw new MissingRequiredPropertyException("ServiceVclHealthcheckArgs", "path");
+            }
             return $;
         }
     }
