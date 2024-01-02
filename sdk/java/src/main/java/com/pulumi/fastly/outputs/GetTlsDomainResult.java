@@ -4,6 +4,7 @@
 package com.pulumi.fastly.outputs;
 
 import com.pulumi.core.annotations.CustomType;
+import com.pulumi.exceptions.MissingRequiredPropertyException;
 import java.lang.String;
 import java.util.List;
 import java.util.Objects;
@@ -99,17 +100,26 @@ public final class GetTlsDomainResult {
 
         @CustomType.Setter
         public Builder domain(String domain) {
-            this.domain = Objects.requireNonNull(domain);
+            if (domain == null) {
+              throw new MissingRequiredPropertyException("GetTlsDomainResult", "domain");
+            }
+            this.domain = domain;
             return this;
         }
         @CustomType.Setter
         public Builder id(String id) {
-            this.id = Objects.requireNonNull(id);
+            if (id == null) {
+              throw new MissingRequiredPropertyException("GetTlsDomainResult", "id");
+            }
+            this.id = id;
             return this;
         }
         @CustomType.Setter
         public Builder tlsActivationIds(List<String> tlsActivationIds) {
-            this.tlsActivationIds = Objects.requireNonNull(tlsActivationIds);
+            if (tlsActivationIds == null) {
+              throw new MissingRequiredPropertyException("GetTlsDomainResult", "tlsActivationIds");
+            }
+            this.tlsActivationIds = tlsActivationIds;
             return this;
         }
         public Builder tlsActivationIds(String... tlsActivationIds) {
@@ -117,7 +127,10 @@ public final class GetTlsDomainResult {
         }
         @CustomType.Setter
         public Builder tlsCertificateIds(List<String> tlsCertificateIds) {
-            this.tlsCertificateIds = Objects.requireNonNull(tlsCertificateIds);
+            if (tlsCertificateIds == null) {
+              throw new MissingRequiredPropertyException("GetTlsDomainResult", "tlsCertificateIds");
+            }
+            this.tlsCertificateIds = tlsCertificateIds;
             return this;
         }
         public Builder tlsCertificateIds(String... tlsCertificateIds) {
@@ -125,7 +138,10 @@ public final class GetTlsDomainResult {
         }
         @CustomType.Setter
         public Builder tlsSubscriptionIds(List<String> tlsSubscriptionIds) {
-            this.tlsSubscriptionIds = Objects.requireNonNull(tlsSubscriptionIds);
+            if (tlsSubscriptionIds == null) {
+              throw new MissingRequiredPropertyException("GetTlsDomainResult", "tlsSubscriptionIds");
+            }
+            this.tlsSubscriptionIds = tlsSubscriptionIds;
             return this;
         }
         public Builder tlsSubscriptionIds(String... tlsSubscriptionIds) {

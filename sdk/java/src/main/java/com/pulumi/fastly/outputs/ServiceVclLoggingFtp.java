@@ -4,6 +4,7 @@
 package com.pulumi.fastly.outputs;
 
 import com.pulumi.core.annotations.CustomType;
+import com.pulumi.exceptions.MissingRequiredPropertyException;
 import java.lang.Integer;
 import java.lang.String;
 import java.util.Objects;
@@ -255,82 +256,108 @@ public final class ServiceVclLoggingFtp {
 
         @CustomType.Setter
         public Builder address(String address) {
-            this.address = Objects.requireNonNull(address);
+            if (address == null) {
+              throw new MissingRequiredPropertyException("ServiceVclLoggingFtp", "address");
+            }
+            this.address = address;
             return this;
         }
         @CustomType.Setter
         public Builder compressionCodec(@Nullable String compressionCodec) {
+
             this.compressionCodec = compressionCodec;
             return this;
         }
         @CustomType.Setter
         public Builder format(@Nullable String format) {
+
             this.format = format;
             return this;
         }
         @CustomType.Setter
         public Builder formatVersion(@Nullable Integer formatVersion) {
+
             this.formatVersion = formatVersion;
             return this;
         }
         @CustomType.Setter
         public Builder gzipLevel(@Nullable Integer gzipLevel) {
+
             this.gzipLevel = gzipLevel;
             return this;
         }
         @CustomType.Setter
         public Builder messageType(@Nullable String messageType) {
+
             this.messageType = messageType;
             return this;
         }
         @CustomType.Setter
         public Builder name(String name) {
-            this.name = Objects.requireNonNull(name);
+            if (name == null) {
+              throw new MissingRequiredPropertyException("ServiceVclLoggingFtp", "name");
+            }
+            this.name = name;
             return this;
         }
         @CustomType.Setter
         public Builder password(String password) {
-            this.password = Objects.requireNonNull(password);
+            if (password == null) {
+              throw new MissingRequiredPropertyException("ServiceVclLoggingFtp", "password");
+            }
+            this.password = password;
             return this;
         }
         @CustomType.Setter
         public Builder path(String path) {
-            this.path = Objects.requireNonNull(path);
+            if (path == null) {
+              throw new MissingRequiredPropertyException("ServiceVclLoggingFtp", "path");
+            }
+            this.path = path;
             return this;
         }
         @CustomType.Setter
         public Builder period(@Nullable Integer period) {
+
             this.period = period;
             return this;
         }
         @CustomType.Setter
         public Builder placement(@Nullable String placement) {
+
             this.placement = placement;
             return this;
         }
         @CustomType.Setter
         public Builder port(@Nullable Integer port) {
+
             this.port = port;
             return this;
         }
         @CustomType.Setter
         public Builder publicKey(@Nullable String publicKey) {
+
             this.publicKey = publicKey;
             return this;
         }
         @CustomType.Setter
         public Builder responseCondition(@Nullable String responseCondition) {
+
             this.responseCondition = responseCondition;
             return this;
         }
         @CustomType.Setter
         public Builder timestampFormat(@Nullable String timestampFormat) {
+
             this.timestampFormat = timestampFormat;
             return this;
         }
         @CustomType.Setter
         public Builder user(String user) {
-            this.user = Objects.requireNonNull(user);
+            if (user == null) {
+              throw new MissingRequiredPropertyException("ServiceVclLoggingFtp", "user");
+            }
+            this.user = user;
             return this;
         }
         public ServiceVclLoggingFtp build() {

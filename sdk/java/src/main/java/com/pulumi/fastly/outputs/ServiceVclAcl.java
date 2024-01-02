@@ -4,6 +4,7 @@
 package com.pulumi.fastly.outputs;
 
 import com.pulumi.core.annotations.CustomType;
+import com.pulumi.exceptions.MissingRequiredPropertyException;
 import java.lang.Boolean;
 import java.lang.String;
 import java.util.Objects;
@@ -73,17 +74,22 @@ public final class ServiceVclAcl {
 
         @CustomType.Setter
         public Builder aclId(@Nullable String aclId) {
+
             this.aclId = aclId;
             return this;
         }
         @CustomType.Setter
         public Builder forceDestroy(@Nullable Boolean forceDestroy) {
+
             this.forceDestroy = forceDestroy;
             return this;
         }
         @CustomType.Setter
         public Builder name(String name) {
-            this.name = Objects.requireNonNull(name);
+            if (name == null) {
+              throw new MissingRequiredPropertyException("ServiceVclAcl", "name");
+            }
+            this.name = name;
             return this;
         }
         public ServiceVclAcl build() {

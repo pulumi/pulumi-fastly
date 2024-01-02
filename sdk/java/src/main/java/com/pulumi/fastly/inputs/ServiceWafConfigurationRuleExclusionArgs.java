@@ -5,6 +5,7 @@ package com.pulumi.fastly.inputs;
 
 import com.pulumi.core.Output;
 import com.pulumi.core.annotations.Import;
+import com.pulumi.exceptions.MissingRequiredPropertyException;
 import java.lang.Integer;
 import java.lang.String;
 import java.util.List;
@@ -236,9 +237,15 @@ public final class ServiceWafConfigurationRuleExclusionArgs extends com.pulumi.r
         }
 
         public ServiceWafConfigurationRuleExclusionArgs build() {
-            $.condition = Objects.requireNonNull($.condition, "expected parameter 'condition' to be non-null");
-            $.exclusionType = Objects.requireNonNull($.exclusionType, "expected parameter 'exclusionType' to be non-null");
-            $.name = Objects.requireNonNull($.name, "expected parameter 'name' to be non-null");
+            if ($.condition == null) {
+                throw new MissingRequiredPropertyException("ServiceWafConfigurationRuleExclusionArgs", "condition");
+            }
+            if ($.exclusionType == null) {
+                throw new MissingRequiredPropertyException("ServiceWafConfigurationRuleExclusionArgs", "exclusionType");
+            }
+            if ($.name == null) {
+                throw new MissingRequiredPropertyException("ServiceWafConfigurationRuleExclusionArgs", "name");
+            }
             return $;
         }
     }

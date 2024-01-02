@@ -5,6 +5,7 @@ package com.pulumi.fastly.inputs;
 
 import com.pulumi.core.Output;
 import com.pulumi.core.annotations.Import;
+import com.pulumi.exceptions.MissingRequiredPropertyException;
 import java.lang.Integer;
 import java.lang.String;
 import java.util.Objects;
@@ -410,11 +411,21 @@ public final class ServiceVclLoggingGooglepubsubArgs extends com.pulumi.resource
         }
 
         public ServiceVclLoggingGooglepubsubArgs build() {
-            $.name = Objects.requireNonNull($.name, "expected parameter 'name' to be non-null");
-            $.projectId = Objects.requireNonNull($.projectId, "expected parameter 'projectId' to be non-null");
-            $.secretKey = Objects.requireNonNull($.secretKey, "expected parameter 'secretKey' to be non-null");
-            $.topic = Objects.requireNonNull($.topic, "expected parameter 'topic' to be non-null");
-            $.user = Objects.requireNonNull($.user, "expected parameter 'user' to be non-null");
+            if ($.name == null) {
+                throw new MissingRequiredPropertyException("ServiceVclLoggingGooglepubsubArgs", "name");
+            }
+            if ($.projectId == null) {
+                throw new MissingRequiredPropertyException("ServiceVclLoggingGooglepubsubArgs", "projectId");
+            }
+            if ($.secretKey == null) {
+                throw new MissingRequiredPropertyException("ServiceVclLoggingGooglepubsubArgs", "secretKey");
+            }
+            if ($.topic == null) {
+                throw new MissingRequiredPropertyException("ServiceVclLoggingGooglepubsubArgs", "topic");
+            }
+            if ($.user == null) {
+                throw new MissingRequiredPropertyException("ServiceVclLoggingGooglepubsubArgs", "user");
+            }
             return $;
         }
     }

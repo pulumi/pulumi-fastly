@@ -5,6 +5,7 @@ package com.pulumi.fastly;
 
 import com.pulumi.core.Output;
 import com.pulumi.core.annotations.Import;
+import com.pulumi.exceptions.MissingRequiredPropertyException;
 import java.lang.Boolean;
 import java.lang.Object;
 import java.lang.String;
@@ -157,8 +158,12 @@ public final class ConfigstoreEntriesArgs extends com.pulumi.resources.ResourceA
         }
 
         public ConfigstoreEntriesArgs build() {
-            $.entries = Objects.requireNonNull($.entries, "expected parameter 'entries' to be non-null");
-            $.storeId = Objects.requireNonNull($.storeId, "expected parameter 'storeId' to be non-null");
+            if ($.entries == null) {
+                throw new MissingRequiredPropertyException("ConfigstoreEntriesArgs", "entries");
+            }
+            if ($.storeId == null) {
+                throw new MissingRequiredPropertyException("ConfigstoreEntriesArgs", "storeId");
+            }
             return $;
         }
     }

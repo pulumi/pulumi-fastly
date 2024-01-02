@@ -5,6 +5,7 @@ package com.pulumi.fastly;
 
 import com.pulumi.core.Output;
 import com.pulumi.core.annotations.Import;
+import com.pulumi.exceptions.MissingRequiredPropertyException;
 import com.pulumi.fastly.inputs.ServiceWafConfigurationRuleArgs;
 import com.pulumi.fastly.inputs.ServiceWafConfigurationRuleExclusionArgs;
 import java.lang.Boolean;
@@ -1196,7 +1197,9 @@ public final class ServiceWafConfigurationArgs extends com.pulumi.resources.Reso
         }
 
         public ServiceWafConfigurationArgs build() {
-            $.wafId = Objects.requireNonNull($.wafId, "expected parameter 'wafId' to be non-null");
+            if ($.wafId == null) {
+                throw new MissingRequiredPropertyException("ServiceWafConfigurationArgs", "wafId");
+            }
             return $;
         }
     }

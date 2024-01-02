@@ -4,6 +4,7 @@
 package com.pulumi.fastly.outputs;
 
 import com.pulumi.core.annotations.CustomType;
+import com.pulumi.exceptions.MissingRequiredPropertyException;
 import java.lang.String;
 import java.util.Objects;
 import java.util.Optional;
@@ -86,22 +87,30 @@ public final class GetPackageHashResult {
 
         @CustomType.Setter
         public Builder content(@Nullable String content) {
+
             this.content = content;
             return this;
         }
         @CustomType.Setter
         public Builder filename(@Nullable String filename) {
+
             this.filename = filename;
             return this;
         }
         @CustomType.Setter
         public Builder hash(String hash) {
-            this.hash = Objects.requireNonNull(hash);
+            if (hash == null) {
+              throw new MissingRequiredPropertyException("GetPackageHashResult", "hash");
+            }
+            this.hash = hash;
             return this;
         }
         @CustomType.Setter
         public Builder id(String id) {
-            this.id = Objects.requireNonNull(id);
+            if (id == null) {
+              throw new MissingRequiredPropertyException("GetPackageHashResult", "id");
+            }
+            this.id = id;
             return this;
         }
         public GetPackageHashResult build() {

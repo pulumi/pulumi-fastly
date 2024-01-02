@@ -5,6 +5,7 @@ package com.pulumi.fastly.inputs;
 
 import com.pulumi.core.Output;
 import com.pulumi.core.annotations.Import;
+import com.pulumi.exceptions.MissingRequiredPropertyException;
 import java.lang.String;
 import java.util.Objects;
 import java.util.Optional;
@@ -335,12 +336,24 @@ public final class ServiceComputeLoggingBigqueryArgs extends com.pulumi.resource
         }
 
         public ServiceComputeLoggingBigqueryArgs build() {
-            $.dataset = Objects.requireNonNull($.dataset, "expected parameter 'dataset' to be non-null");
-            $.email = Objects.requireNonNull($.email, "expected parameter 'email' to be non-null");
-            $.name = Objects.requireNonNull($.name, "expected parameter 'name' to be non-null");
-            $.projectId = Objects.requireNonNull($.projectId, "expected parameter 'projectId' to be non-null");
-            $.secretKey = Objects.requireNonNull($.secretKey, "expected parameter 'secretKey' to be non-null");
-            $.table = Objects.requireNonNull($.table, "expected parameter 'table' to be non-null");
+            if ($.dataset == null) {
+                throw new MissingRequiredPropertyException("ServiceComputeLoggingBigqueryArgs", "dataset");
+            }
+            if ($.email == null) {
+                throw new MissingRequiredPropertyException("ServiceComputeLoggingBigqueryArgs", "email");
+            }
+            if ($.name == null) {
+                throw new MissingRequiredPropertyException("ServiceComputeLoggingBigqueryArgs", "name");
+            }
+            if ($.projectId == null) {
+                throw new MissingRequiredPropertyException("ServiceComputeLoggingBigqueryArgs", "projectId");
+            }
+            if ($.secretKey == null) {
+                throw new MissingRequiredPropertyException("ServiceComputeLoggingBigqueryArgs", "secretKey");
+            }
+            if ($.table == null) {
+                throw new MissingRequiredPropertyException("ServiceComputeLoggingBigqueryArgs", "table");
+            }
             return $;
         }
     }

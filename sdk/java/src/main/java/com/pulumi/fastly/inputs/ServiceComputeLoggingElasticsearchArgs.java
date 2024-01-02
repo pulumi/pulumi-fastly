@@ -5,6 +5,7 @@ package com.pulumi.fastly.inputs;
 
 import com.pulumi.core.Output;
 import com.pulumi.core.annotations.Import;
+import com.pulumi.exceptions.MissingRequiredPropertyException;
 import java.lang.Integer;
 import java.lang.String;
 import java.util.Objects;
@@ -484,9 +485,15 @@ public final class ServiceComputeLoggingElasticsearchArgs extends com.pulumi.res
         }
 
         public ServiceComputeLoggingElasticsearchArgs build() {
-            $.index = Objects.requireNonNull($.index, "expected parameter 'index' to be non-null");
-            $.name = Objects.requireNonNull($.name, "expected parameter 'name' to be non-null");
-            $.url = Objects.requireNonNull($.url, "expected parameter 'url' to be non-null");
+            if ($.index == null) {
+                throw new MissingRequiredPropertyException("ServiceComputeLoggingElasticsearchArgs", "index");
+            }
+            if ($.name == null) {
+                throw new MissingRequiredPropertyException("ServiceComputeLoggingElasticsearchArgs", "name");
+            }
+            if ($.url == null) {
+                throw new MissingRequiredPropertyException("ServiceComputeLoggingElasticsearchArgs", "url");
+            }
             return $;
         }
     }

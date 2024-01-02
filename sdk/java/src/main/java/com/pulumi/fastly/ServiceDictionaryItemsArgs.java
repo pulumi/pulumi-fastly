@@ -5,6 +5,7 @@ package com.pulumi.fastly;
 
 import com.pulumi.core.Output;
 import com.pulumi.core.annotations.Import;
+import com.pulumi.exceptions.MissingRequiredPropertyException;
 import java.lang.Boolean;
 import java.lang.Object;
 import java.lang.String;
@@ -190,8 +191,12 @@ public final class ServiceDictionaryItemsArgs extends com.pulumi.resources.Resou
         }
 
         public ServiceDictionaryItemsArgs build() {
-            $.dictionaryId = Objects.requireNonNull($.dictionaryId, "expected parameter 'dictionaryId' to be non-null");
-            $.serviceId = Objects.requireNonNull($.serviceId, "expected parameter 'serviceId' to be non-null");
+            if ($.dictionaryId == null) {
+                throw new MissingRequiredPropertyException("ServiceDictionaryItemsArgs", "dictionaryId");
+            }
+            if ($.serviceId == null) {
+                throw new MissingRequiredPropertyException("ServiceDictionaryItemsArgs", "serviceId");
+            }
             return $;
         }
     }

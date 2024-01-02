@@ -4,6 +4,7 @@
 package com.pulumi.fastly.outputs;
 
 import com.pulumi.core.annotations.CustomType;
+import com.pulumi.exceptions.MissingRequiredPropertyException;
 import java.lang.String;
 import java.util.List;
 import java.util.Objects;
@@ -141,27 +142,42 @@ public final class GetTlsSubscriptionResult {
 
         @CustomType.Setter
         public Builder certificateAuthority(String certificateAuthority) {
-            this.certificateAuthority = Objects.requireNonNull(certificateAuthority);
+            if (certificateAuthority == null) {
+              throw new MissingRequiredPropertyException("GetTlsSubscriptionResult", "certificateAuthority");
+            }
+            this.certificateAuthority = certificateAuthority;
             return this;
         }
         @CustomType.Setter
         public Builder commonName(String commonName) {
-            this.commonName = Objects.requireNonNull(commonName);
+            if (commonName == null) {
+              throw new MissingRequiredPropertyException("GetTlsSubscriptionResult", "commonName");
+            }
+            this.commonName = commonName;
             return this;
         }
         @CustomType.Setter
         public Builder configurationId(String configurationId) {
-            this.configurationId = Objects.requireNonNull(configurationId);
+            if (configurationId == null) {
+              throw new MissingRequiredPropertyException("GetTlsSubscriptionResult", "configurationId");
+            }
+            this.configurationId = configurationId;
             return this;
         }
         @CustomType.Setter
         public Builder createdAt(String createdAt) {
-            this.createdAt = Objects.requireNonNull(createdAt);
+            if (createdAt == null) {
+              throw new MissingRequiredPropertyException("GetTlsSubscriptionResult", "createdAt");
+            }
+            this.createdAt = createdAt;
             return this;
         }
         @CustomType.Setter
         public Builder domains(List<String> domains) {
-            this.domains = Objects.requireNonNull(domains);
+            if (domains == null) {
+              throw new MissingRequiredPropertyException("GetTlsSubscriptionResult", "domains");
+            }
+            this.domains = domains;
             return this;
         }
         public Builder domains(String... domains) {
@@ -169,17 +185,26 @@ public final class GetTlsSubscriptionResult {
         }
         @CustomType.Setter
         public Builder id(String id) {
-            this.id = Objects.requireNonNull(id);
+            if (id == null) {
+              throw new MissingRequiredPropertyException("GetTlsSubscriptionResult", "id");
+            }
+            this.id = id;
             return this;
         }
         @CustomType.Setter
         public Builder state(String state) {
-            this.state = Objects.requireNonNull(state);
+            if (state == null) {
+              throw new MissingRequiredPropertyException("GetTlsSubscriptionResult", "state");
+            }
+            this.state = state;
             return this;
         }
         @CustomType.Setter
         public Builder updatedAt(String updatedAt) {
-            this.updatedAt = Objects.requireNonNull(updatedAt);
+            if (updatedAt == null) {
+              throw new MissingRequiredPropertyException("GetTlsSubscriptionResult", "updatedAt");
+            }
+            this.updatedAt = updatedAt;
             return this;
         }
         public GetTlsSubscriptionResult build() {

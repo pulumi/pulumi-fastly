@@ -5,6 +5,7 @@ package com.pulumi.fastly;
 
 import com.pulumi.core.Output;
 import com.pulumi.core.annotations.Import;
+import com.pulumi.exceptions.MissingRequiredPropertyException;
 import java.lang.String;
 import java.util.Objects;
 import java.util.Optional;
@@ -150,7 +151,9 @@ public final class UserArgs extends com.pulumi.resources.ResourceArgs {
         }
 
         public UserArgs build() {
-            $.login = Objects.requireNonNull($.login, "expected parameter 'login' to be non-null");
+            if ($.login == null) {
+                throw new MissingRequiredPropertyException("UserArgs", "login");
+            }
             return $;
         }
     }

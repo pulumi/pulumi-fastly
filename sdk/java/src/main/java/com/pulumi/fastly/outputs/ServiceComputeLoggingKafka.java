@@ -4,6 +4,7 @@
 package com.pulumi.fastly.outputs;
 
 import com.pulumi.core.annotations.CustomType;
+import com.pulumi.exceptions.MissingRequiredPropertyException;
 import java.lang.Boolean;
 import java.lang.Integer;
 import java.lang.String;
@@ -242,76 +243,97 @@ public final class ServiceComputeLoggingKafka {
 
         @CustomType.Setter
         public Builder authMethod(@Nullable String authMethod) {
+
             this.authMethod = authMethod;
             return this;
         }
         @CustomType.Setter
         public Builder brokers(String brokers) {
-            this.brokers = Objects.requireNonNull(brokers);
+            if (brokers == null) {
+              throw new MissingRequiredPropertyException("ServiceComputeLoggingKafka", "brokers");
+            }
+            this.brokers = brokers;
             return this;
         }
         @CustomType.Setter
         public Builder compressionCodec(@Nullable String compressionCodec) {
+
             this.compressionCodec = compressionCodec;
             return this;
         }
         @CustomType.Setter
         public Builder name(String name) {
-            this.name = Objects.requireNonNull(name);
+            if (name == null) {
+              throw new MissingRequiredPropertyException("ServiceComputeLoggingKafka", "name");
+            }
+            this.name = name;
             return this;
         }
         @CustomType.Setter
         public Builder parseLogKeyvals(@Nullable Boolean parseLogKeyvals) {
+
             this.parseLogKeyvals = parseLogKeyvals;
             return this;
         }
         @CustomType.Setter
         public Builder password(@Nullable String password) {
+
             this.password = password;
             return this;
         }
         @CustomType.Setter
         public Builder requestMaxBytes(@Nullable Integer requestMaxBytes) {
+
             this.requestMaxBytes = requestMaxBytes;
             return this;
         }
         @CustomType.Setter
         public Builder requiredAcks(@Nullable String requiredAcks) {
+
             this.requiredAcks = requiredAcks;
             return this;
         }
         @CustomType.Setter
         public Builder tlsCaCert(@Nullable String tlsCaCert) {
+
             this.tlsCaCert = tlsCaCert;
             return this;
         }
         @CustomType.Setter
         public Builder tlsClientCert(@Nullable String tlsClientCert) {
+
             this.tlsClientCert = tlsClientCert;
             return this;
         }
         @CustomType.Setter
         public Builder tlsClientKey(@Nullable String tlsClientKey) {
+
             this.tlsClientKey = tlsClientKey;
             return this;
         }
         @CustomType.Setter
         public Builder tlsHostname(@Nullable String tlsHostname) {
+
             this.tlsHostname = tlsHostname;
             return this;
         }
         @CustomType.Setter
         public Builder topic(String topic) {
-            this.topic = Objects.requireNonNull(topic);
+            if (topic == null) {
+              throw new MissingRequiredPropertyException("ServiceComputeLoggingKafka", "topic");
+            }
+            this.topic = topic;
             return this;
         }
         @CustomType.Setter
         public Builder useTls(@Nullable Boolean useTls) {
+
             this.useTls = useTls;
             return this;
         }
         @CustomType.Setter
         public Builder user(@Nullable String user) {
+
             this.user = user;
             return this;
         }

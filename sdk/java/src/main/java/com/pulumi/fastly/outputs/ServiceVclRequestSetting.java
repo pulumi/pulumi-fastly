@@ -4,6 +4,7 @@
 package com.pulumi.fastly.outputs;
 
 import com.pulumi.core.annotations.CustomType;
+import com.pulumi.exceptions.MissingRequiredPropertyException;
 import java.lang.Boolean;
 import java.lang.Integer;
 import java.lang.String;
@@ -208,61 +209,75 @@ public final class ServiceVclRequestSetting {
 
         @CustomType.Setter
         public Builder action(@Nullable String action) {
+
             this.action = action;
             return this;
         }
         @CustomType.Setter
         public Builder bypassBusyWait(@Nullable Boolean bypassBusyWait) {
+
             this.bypassBusyWait = bypassBusyWait;
             return this;
         }
         @CustomType.Setter
         public Builder defaultHost(@Nullable String defaultHost) {
+
             this.defaultHost = defaultHost;
             return this;
         }
         @CustomType.Setter
         public Builder forceMiss(@Nullable Boolean forceMiss) {
+
             this.forceMiss = forceMiss;
             return this;
         }
         @CustomType.Setter
         public Builder forceSsl(@Nullable Boolean forceSsl) {
+
             this.forceSsl = forceSsl;
             return this;
         }
         @CustomType.Setter
         public Builder geoHeaders(@Nullable Boolean geoHeaders) {
+
             this.geoHeaders = geoHeaders;
             return this;
         }
         @CustomType.Setter
         public Builder hashKeys(@Nullable String hashKeys) {
+
             this.hashKeys = hashKeys;
             return this;
         }
         @CustomType.Setter
         public Builder maxStaleAge(@Nullable Integer maxStaleAge) {
+
             this.maxStaleAge = maxStaleAge;
             return this;
         }
         @CustomType.Setter
         public Builder name(String name) {
-            this.name = Objects.requireNonNull(name);
+            if (name == null) {
+              throw new MissingRequiredPropertyException("ServiceVclRequestSetting", "name");
+            }
+            this.name = name;
             return this;
         }
         @CustomType.Setter
         public Builder requestCondition(@Nullable String requestCondition) {
+
             this.requestCondition = requestCondition;
             return this;
         }
         @CustomType.Setter
         public Builder timerSupport(@Nullable Boolean timerSupport) {
+
             this.timerSupport = timerSupport;
             return this;
         }
         @CustomType.Setter
         public Builder xff(@Nullable String xff) {
+
             this.xff = xff;
             return this;
         }

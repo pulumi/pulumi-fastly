@@ -5,6 +5,7 @@ package com.pulumi.fastly.inputs;
 
 import com.pulumi.core.Output;
 import com.pulumi.core.annotations.Import;
+import com.pulumi.exceptions.MissingRequiredPropertyException;
 import java.lang.Integer;
 import java.lang.String;
 import java.util.Objects;
@@ -299,9 +300,15 @@ public final class ServiceVclLoggingPapertrailArgs extends com.pulumi.resources.
         }
 
         public ServiceVclLoggingPapertrailArgs build() {
-            $.address = Objects.requireNonNull($.address, "expected parameter 'address' to be non-null");
-            $.name = Objects.requireNonNull($.name, "expected parameter 'name' to be non-null");
-            $.port = Objects.requireNonNull($.port, "expected parameter 'port' to be non-null");
+            if ($.address == null) {
+                throw new MissingRequiredPropertyException("ServiceVclLoggingPapertrailArgs", "address");
+            }
+            if ($.name == null) {
+                throw new MissingRequiredPropertyException("ServiceVclLoggingPapertrailArgs", "name");
+            }
+            if ($.port == null) {
+                throw new MissingRequiredPropertyException("ServiceVclLoggingPapertrailArgs", "port");
+            }
             return $;
         }
     }

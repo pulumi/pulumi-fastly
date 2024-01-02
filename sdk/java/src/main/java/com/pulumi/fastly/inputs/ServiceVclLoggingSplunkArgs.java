@@ -5,6 +5,7 @@ package com.pulumi.fastly.inputs;
 
 import com.pulumi.core.Output;
 import com.pulumi.core.annotations.Import;
+import com.pulumi.exceptions.MissingRequiredPropertyException;
 import java.lang.Boolean;
 import java.lang.Integer;
 import java.lang.String;
@@ -485,9 +486,15 @@ public final class ServiceVclLoggingSplunkArgs extends com.pulumi.resources.Reso
         }
 
         public ServiceVclLoggingSplunkArgs build() {
-            $.name = Objects.requireNonNull($.name, "expected parameter 'name' to be non-null");
-            $.token = Objects.requireNonNull($.token, "expected parameter 'token' to be non-null");
-            $.url = Objects.requireNonNull($.url, "expected parameter 'url' to be non-null");
+            if ($.name == null) {
+                throw new MissingRequiredPropertyException("ServiceVclLoggingSplunkArgs", "name");
+            }
+            if ($.token == null) {
+                throw new MissingRequiredPropertyException("ServiceVclLoggingSplunkArgs", "token");
+            }
+            if ($.url == null) {
+                throw new MissingRequiredPropertyException("ServiceVclLoggingSplunkArgs", "url");
+            }
             return $;
         }
     }

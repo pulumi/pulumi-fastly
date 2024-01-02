@@ -4,6 +4,7 @@
 package com.pulumi.fastly.outputs;
 
 import com.pulumi.core.annotations.CustomType;
+import com.pulumi.exceptions.MissingRequiredPropertyException;
 import com.pulumi.fastly.outputs.GetDatacentersPop;
 import java.lang.String;
 import java.util.List;
@@ -58,12 +59,18 @@ public final class GetDatacentersResult {
 
         @CustomType.Setter
         public Builder id(String id) {
-            this.id = Objects.requireNonNull(id);
+            if (id == null) {
+              throw new MissingRequiredPropertyException("GetDatacentersResult", "id");
+            }
+            this.id = id;
             return this;
         }
         @CustomType.Setter
         public Builder pops(List<GetDatacentersPop> pops) {
-            this.pops = Objects.requireNonNull(pops);
+            if (pops == null) {
+              throw new MissingRequiredPropertyException("GetDatacentersResult", "pops");
+            }
+            this.pops = pops;
             return this;
         }
         public Builder pops(GetDatacentersPop... pops) {

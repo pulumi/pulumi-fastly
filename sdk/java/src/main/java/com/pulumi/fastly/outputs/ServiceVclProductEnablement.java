@@ -115,31 +115,37 @@ public final class ServiceVclProductEnablement {
 
         @CustomType.Setter
         public Builder brotliCompression(@Nullable Boolean brotliCompression) {
+
             this.brotliCompression = brotliCompression;
             return this;
         }
         @CustomType.Setter
         public Builder domainInspector(@Nullable Boolean domainInspector) {
+
             this.domainInspector = domainInspector;
             return this;
         }
         @CustomType.Setter
         public Builder imageOptimizer(@Nullable Boolean imageOptimizer) {
+
             this.imageOptimizer = imageOptimizer;
             return this;
         }
         @CustomType.Setter
         public Builder name(@Nullable String name) {
+
             this.name = name;
             return this;
         }
         @CustomType.Setter
         public Builder originInspector(@Nullable Boolean originInspector) {
+
             this.originInspector = originInspector;
             return this;
         }
         @CustomType.Setter
         public Builder websockets(@Nullable Boolean websockets) {
+
             this.websockets = websockets;
             return this;
         }

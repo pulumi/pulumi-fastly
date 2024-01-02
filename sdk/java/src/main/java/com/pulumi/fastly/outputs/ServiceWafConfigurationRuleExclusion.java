@@ -4,6 +4,7 @@
 package com.pulumi.fastly.outputs;
 
 import com.pulumi.core.annotations.CustomType;
+import com.pulumi.exceptions.MissingRequiredPropertyException;
 import java.lang.Integer;
 import java.lang.String;
 import java.util.List;
@@ -102,16 +103,23 @@ public final class ServiceWafConfigurationRuleExclusion {
 
         @CustomType.Setter
         public Builder condition(String condition) {
-            this.condition = Objects.requireNonNull(condition);
+            if (condition == null) {
+              throw new MissingRequiredPropertyException("ServiceWafConfigurationRuleExclusion", "condition");
+            }
+            this.condition = condition;
             return this;
         }
         @CustomType.Setter
         public Builder exclusionType(String exclusionType) {
-            this.exclusionType = Objects.requireNonNull(exclusionType);
+            if (exclusionType == null) {
+              throw new MissingRequiredPropertyException("ServiceWafConfigurationRuleExclusion", "exclusionType");
+            }
+            this.exclusionType = exclusionType;
             return this;
         }
         @CustomType.Setter
         public Builder modsecRuleIds(@Nullable List<Integer> modsecRuleIds) {
+
             this.modsecRuleIds = modsecRuleIds;
             return this;
         }
@@ -120,11 +128,15 @@ public final class ServiceWafConfigurationRuleExclusion {
         }
         @CustomType.Setter
         public Builder name(String name) {
-            this.name = Objects.requireNonNull(name);
+            if (name == null) {
+              throw new MissingRequiredPropertyException("ServiceWafConfigurationRuleExclusion", "name");
+            }
+            this.name = name;
             return this;
         }
         @CustomType.Setter
         public Builder number(@Nullable Integer number) {
+
             this.number = number;
             return this;
         }

@@ -5,6 +5,7 @@ package com.pulumi.fastly;
 
 import com.pulumi.core.Output;
 import com.pulumi.core.annotations.Import;
+import com.pulumi.exceptions.MissingRequiredPropertyException;
 import java.lang.String;
 import java.util.Objects;
 import java.util.Optional;
@@ -187,8 +188,12 @@ public final class TlsActivationArgs extends com.pulumi.resources.ResourceArgs {
         }
 
         public TlsActivationArgs build() {
-            $.certificateId = Objects.requireNonNull($.certificateId, "expected parameter 'certificateId' to be non-null");
-            $.domain = Objects.requireNonNull($.domain, "expected parameter 'domain' to be non-null");
+            if ($.certificateId == null) {
+                throw new MissingRequiredPropertyException("TlsActivationArgs", "certificateId");
+            }
+            if ($.domain == null) {
+                throw new MissingRequiredPropertyException("TlsActivationArgs", "domain");
+            }
             return $;
         }
     }

@@ -5,6 +5,7 @@ package com.pulumi.fastly;
 
 import com.pulumi.core.Output;
 import com.pulumi.core.annotations.Import;
+import com.pulumi.exceptions.MissingRequiredPropertyException;
 import com.pulumi.fastly.inputs.ServiceACLEntriesEntryArgs;
 import java.lang.Boolean;
 import java.lang.String;
@@ -200,8 +201,12 @@ public final class ServiceACLEntriesArgs extends com.pulumi.resources.ResourceAr
         }
 
         public ServiceACLEntriesArgs build() {
-            $.aclId = Objects.requireNonNull($.aclId, "expected parameter 'aclId' to be non-null");
-            $.serviceId = Objects.requireNonNull($.serviceId, "expected parameter 'serviceId' to be non-null");
+            if ($.aclId == null) {
+                throw new MissingRequiredPropertyException("ServiceACLEntriesArgs", "aclId");
+            }
+            if ($.serviceId == null) {
+                throw new MissingRequiredPropertyException("ServiceACLEntriesArgs", "serviceId");
+            }
             return $;
         }
     }

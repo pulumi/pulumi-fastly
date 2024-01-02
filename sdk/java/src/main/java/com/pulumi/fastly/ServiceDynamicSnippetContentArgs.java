@@ -5,6 +5,7 @@ package com.pulumi.fastly;
 
 import com.pulumi.core.Output;
 import com.pulumi.core.annotations.Import;
+import com.pulumi.exceptions.MissingRequiredPropertyException;
 import java.lang.Boolean;
 import java.lang.String;
 import java.util.Objects;
@@ -188,9 +189,15 @@ public final class ServiceDynamicSnippetContentArgs extends com.pulumi.resources
         }
 
         public ServiceDynamicSnippetContentArgs build() {
-            $.content = Objects.requireNonNull($.content, "expected parameter 'content' to be non-null");
-            $.serviceId = Objects.requireNonNull($.serviceId, "expected parameter 'serviceId' to be non-null");
-            $.snippetId = Objects.requireNonNull($.snippetId, "expected parameter 'snippetId' to be non-null");
+            if ($.content == null) {
+                throw new MissingRequiredPropertyException("ServiceDynamicSnippetContentArgs", "content");
+            }
+            if ($.serviceId == null) {
+                throw new MissingRequiredPropertyException("ServiceDynamicSnippetContentArgs", "serviceId");
+            }
+            if ($.snippetId == null) {
+                throw new MissingRequiredPropertyException("ServiceDynamicSnippetContentArgs", "snippetId");
+            }
             return $;
         }
     }

@@ -4,6 +4,7 @@
 package com.pulumi.fastly.outputs;
 
 import com.pulumi.core.annotations.CustomType;
+import com.pulumi.exceptions.MissingRequiredPropertyException;
 import java.lang.String;
 import java.util.Objects;
 
@@ -46,17 +47,26 @@ public final class GetTlsConfigurationDnsRecord {
 
         @CustomType.Setter
         public Builder recordType(String recordType) {
-            this.recordType = Objects.requireNonNull(recordType);
+            if (recordType == null) {
+              throw new MissingRequiredPropertyException("GetTlsConfigurationDnsRecord", "recordType");
+            }
+            this.recordType = recordType;
             return this;
         }
         @CustomType.Setter
         public Builder recordValue(String recordValue) {
-            this.recordValue = Objects.requireNonNull(recordValue);
+            if (recordValue == null) {
+              throw new MissingRequiredPropertyException("GetTlsConfigurationDnsRecord", "recordValue");
+            }
+            this.recordValue = recordValue;
             return this;
         }
         @CustomType.Setter
         public Builder region(String region) {
-            this.region = Objects.requireNonNull(region);
+            if (region == null) {
+              throw new MissingRequiredPropertyException("GetTlsConfigurationDnsRecord", "region");
+            }
+            this.region = region;
             return this;
         }
         public GetTlsConfigurationDnsRecord build() {

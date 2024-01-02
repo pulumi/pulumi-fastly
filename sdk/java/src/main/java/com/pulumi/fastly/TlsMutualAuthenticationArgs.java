@@ -5,6 +5,7 @@ package com.pulumi.fastly;
 
 import com.pulumi.core.Output;
 import com.pulumi.core.annotations.Import;
+import com.pulumi.exceptions.MissingRequiredPropertyException;
 import java.lang.Boolean;
 import java.lang.String;
 import java.util.Objects;
@@ -188,7 +189,9 @@ public final class TlsMutualAuthenticationArgs extends com.pulumi.resources.Reso
         }
 
         public TlsMutualAuthenticationArgs build() {
-            $.certBundle = Objects.requireNonNull($.certBundle, "expected parameter 'certBundle' to be non-null");
+            if ($.certBundle == null) {
+                throw new MissingRequiredPropertyException("TlsMutualAuthenticationArgs", "certBundle");
+            }
             return $;
         }
     }

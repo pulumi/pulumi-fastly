@@ -5,6 +5,7 @@ package com.pulumi.fastly.inputs;
 
 import com.pulumi.core.Output;
 import com.pulumi.core.annotations.Import;
+import com.pulumi.exceptions.MissingRequiredPropertyException;
 import java.lang.Integer;
 import java.lang.String;
 import java.util.Objects;
@@ -484,10 +485,18 @@ public final class ServiceComputeLoggingBlobstorageArgs extends com.pulumi.resou
         }
 
         public ServiceComputeLoggingBlobstorageArgs build() {
-            $.accountName = Objects.requireNonNull($.accountName, "expected parameter 'accountName' to be non-null");
-            $.container = Objects.requireNonNull($.container, "expected parameter 'container' to be non-null");
-            $.name = Objects.requireNonNull($.name, "expected parameter 'name' to be non-null");
-            $.sasToken = Objects.requireNonNull($.sasToken, "expected parameter 'sasToken' to be non-null");
+            if ($.accountName == null) {
+                throw new MissingRequiredPropertyException("ServiceComputeLoggingBlobstorageArgs", "accountName");
+            }
+            if ($.container == null) {
+                throw new MissingRequiredPropertyException("ServiceComputeLoggingBlobstorageArgs", "container");
+            }
+            if ($.name == null) {
+                throw new MissingRequiredPropertyException("ServiceComputeLoggingBlobstorageArgs", "name");
+            }
+            if ($.sasToken == null) {
+                throw new MissingRequiredPropertyException("ServiceComputeLoggingBlobstorageArgs", "sasToken");
+            }
             return $;
         }
     }

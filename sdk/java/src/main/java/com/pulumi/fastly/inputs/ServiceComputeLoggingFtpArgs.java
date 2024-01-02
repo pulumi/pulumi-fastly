@@ -5,6 +5,7 @@ package com.pulumi.fastly.inputs;
 
 import com.pulumi.core.Output;
 import com.pulumi.core.annotations.Import;
+import com.pulumi.exceptions.MissingRequiredPropertyException;
 import java.lang.Integer;
 import java.lang.String;
 import java.util.Objects;
@@ -484,11 +485,21 @@ public final class ServiceComputeLoggingFtpArgs extends com.pulumi.resources.Res
         }
 
         public ServiceComputeLoggingFtpArgs build() {
-            $.address = Objects.requireNonNull($.address, "expected parameter 'address' to be non-null");
-            $.name = Objects.requireNonNull($.name, "expected parameter 'name' to be non-null");
-            $.password = Objects.requireNonNull($.password, "expected parameter 'password' to be non-null");
-            $.path = Objects.requireNonNull($.path, "expected parameter 'path' to be non-null");
-            $.user = Objects.requireNonNull($.user, "expected parameter 'user' to be non-null");
+            if ($.address == null) {
+                throw new MissingRequiredPropertyException("ServiceComputeLoggingFtpArgs", "address");
+            }
+            if ($.name == null) {
+                throw new MissingRequiredPropertyException("ServiceComputeLoggingFtpArgs", "name");
+            }
+            if ($.password == null) {
+                throw new MissingRequiredPropertyException("ServiceComputeLoggingFtpArgs", "password");
+            }
+            if ($.path == null) {
+                throw new MissingRequiredPropertyException("ServiceComputeLoggingFtpArgs", "path");
+            }
+            if ($.user == null) {
+                throw new MissingRequiredPropertyException("ServiceComputeLoggingFtpArgs", "user");
+            }
             return $;
         }
     }

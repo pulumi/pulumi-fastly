@@ -4,6 +4,7 @@
 package com.pulumi.fastly.outputs;
 
 import com.pulumi.core.annotations.CustomType;
+import com.pulumi.exceptions.MissingRequiredPropertyException;
 import com.pulumi.fastly.outputs.GetDictionariesDictionary;
 import java.lang.Integer;
 import java.lang.String;
@@ -87,7 +88,10 @@ public final class GetDictionariesResult {
 
         @CustomType.Setter
         public Builder dictionaries(List<GetDictionariesDictionary> dictionaries) {
-            this.dictionaries = Objects.requireNonNull(dictionaries);
+            if (dictionaries == null) {
+              throw new MissingRequiredPropertyException("GetDictionariesResult", "dictionaries");
+            }
+            this.dictionaries = dictionaries;
             return this;
         }
         public Builder dictionaries(GetDictionariesDictionary... dictionaries) {
@@ -95,17 +99,26 @@ public final class GetDictionariesResult {
         }
         @CustomType.Setter
         public Builder id(String id) {
-            this.id = Objects.requireNonNull(id);
+            if (id == null) {
+              throw new MissingRequiredPropertyException("GetDictionariesResult", "id");
+            }
+            this.id = id;
             return this;
         }
         @CustomType.Setter
         public Builder serviceId(String serviceId) {
-            this.serviceId = Objects.requireNonNull(serviceId);
+            if (serviceId == null) {
+              throw new MissingRequiredPropertyException("GetDictionariesResult", "serviceId");
+            }
+            this.serviceId = serviceId;
             return this;
         }
         @CustomType.Setter
         public Builder serviceVersion(Integer serviceVersion) {
-            this.serviceVersion = Objects.requireNonNull(serviceVersion);
+            if (serviceVersion == null) {
+              throw new MissingRequiredPropertyException("GetDictionariesResult", "serviceVersion");
+            }
+            this.serviceVersion = serviceVersion;
             return this;
         }
         public GetDictionariesResult build() {
