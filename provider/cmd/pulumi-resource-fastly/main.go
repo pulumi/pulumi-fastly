@@ -19,9 +19,10 @@ package main
 import (
 	_ "embed"
 
+	"github.com/pulumi/pulumi-terraform-bridge/v3/pkg/tfbridge"
+
 	fastly "github.com/pulumi/pulumi-fastly/provider/v8"
 	"github.com/pulumi/pulumi-fastly/provider/v8/pkg/version"
-	"github.com/pulumi/pulumi-terraform-bridge/v3/pkg/tfbridge"
 )
 
 //go:embed schema-embed.json
