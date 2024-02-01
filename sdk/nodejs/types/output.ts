@@ -6,53 +6,134 @@ import * as inputs from "../types/input";
 import * as outputs from "../types/output";
 
 export interface GetConfigstoresStore {
+    /**
+     * Alphanumeric string identifying the Config Store.
+     */
     id: string;
+    /**
+     * Name for the Config Store.
+     */
     name: string;
 }
 
 export interface GetDatacentersPop {
+    /**
+     * A code representing the POP location.
+     */
     code: string;
+    /**
+     * A code representing the general region of the world in which the POP location resides.
+     */
     group: string;
+    /**
+     * The name of the POP.
+     */
     name: string;
+    /**
+     * A code representing the shielding name of the POP. The value may be empty if the POP is not available for shielding.
+     */
     shield: string;
 }
 
 export interface GetDictionariesDictionary {
+    /**
+     * Alphanumeric string identifying the Dictionary.
+     */
     id: string;
+    /**
+     * Name for the Dictionary.
+     */
     name: string;
+    /**
+     * Indicates if items in the dictionary are readable or not.
+     */
     writeOnly: boolean;
 }
 
 export interface GetKvstoresStore {
+    /**
+     * Alphanumeric string identifying the KV Store.
+     */
     id: string;
+    /**
+     * Name for the KV Store.
+     */
     name: string;
 }
 
 export interface GetSecretstoresStore {
+    /**
+     * Alphanumeric string identifying the Secrets Store.
+     */
     id: string;
+    /**
+     * Name for the Secrets Store.
+     */
     name: string;
 }
 
 export interface GetServicesDetail {
+    /**
+     * A freeform descriptive note.
+     */
     comment: string;
+    /**
+     * Date and time in ISO 8601 format.
+     */
     createdAt: string;
+    /**
+     * Alphanumeric string identifying the customer.
+     */
     customerId: string;
+    /**
+     * Alphanumeric string identifying the service.
+     */
     id: string;
+    /**
+     * The name of the service.
+     */
     name: string;
+    /**
+     * The type of this service. One of `vcl`, `wasm`.
+     */
     type: string;
+    /**
+     * Date and time in ISO 8601 format.
+     */
     updatedAt: string;
+    /**
+     * The currently activated version.
+     */
     version: number;
 }
 
 export interface GetTlsConfigurationDnsRecord {
+    /**
+     * Type of DNS record to set, e.g. A, AAAA, or CNAME.
+     */
     recordType: string;
+    /**
+     * The IP address or hostname of the DNS record.
+     */
     recordValue: string;
+    /**
+     * The regions that will be used to route traffic. Select DNS Records with a `global` region to route traffic to the most performant point of presence (POP) worldwide (global pricing will apply). Select DNS records with a `us-eu` region to exclusively land traffic on North American and European POPs.
+     */
     region: string;
 }
 
 export interface GetWafRulesRule {
+    /**
+     * The modsecurity rule's latest revision.
+     */
     latestRevisionNumber: number;
+    /**
+     * The modsecurity rule ID.
+     */
     modsecRuleId: number;
+    /**
+     * The modsecurity rule's type.
+     */
     type: string;
 }
 
@@ -3161,14 +3242,32 @@ export interface ServiceWafConfigurationRuleExclusion {
 }
 
 export interface TlsSubscriptionManagedDnsChallenge {
+    /**
+     * The name of the DNS record to add. For example `_acme-challenge.example.com`.
+     */
     recordName: string;
+    /**
+     * The type of DNS record to add, e.g. `A`, or `CNAME`.
+     */
     recordType: string;
+    /**
+     * The value to which the DNS record should point, e.g. `xxxxx.fastly-validations.com`.
+     */
     recordValue: string;
 }
 
 export interface TlsSubscriptionManagedHttpChallenge {
+    /**
+     * The name of the DNS record to add. For example `example.com`. Best accessed through a `for` expression to filter the relevant record.
+     */
     recordName: string;
+    /**
+     * The type of DNS record to add, e.g. `A`, or `CNAME`.
+     */
     recordType: string;
+    /**
+     * A list with the value(s) to which the DNS record should point.
+     */
     recordValues: string[];
 }
 

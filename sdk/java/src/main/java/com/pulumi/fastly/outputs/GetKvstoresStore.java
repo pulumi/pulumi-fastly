@@ -10,13 +10,29 @@ import java.util.Objects;
 
 @CustomType
 public final class GetKvstoresStore {
+    /**
+     * @return Alphanumeric string identifying the KV Store.
+     * 
+     */
     private String id;
+    /**
+     * @return Name for the KV Store.
+     * 
+     */
     private String name;
 
     private GetKvstoresStore() {}
+    /**
+     * @return Alphanumeric string identifying the KV Store.
+     * 
+     */
     public String id() {
         return this.id;
     }
+    /**
+     * @return Name for the KV Store.
+     * 
+     */
     public String name() {
         return this.name;
     }

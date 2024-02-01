@@ -10,21 +10,53 @@ import java.util.Objects;
 
 @CustomType
 public final class GetDatacentersPop {
+    /**
+     * @return A code representing the POP location.
+     * 
+     */
     private String code;
+    /**
+     * @return A code representing the general region of the world in which the POP location resides.
+     * 
+     */
     private String group;
+    /**
+     * @return The name of the POP.
+     * 
+     */
     private String name;
+    /**
+     * @return A code representing the shielding name of the POP. The value may be empty if the POP is not available for shielding.
+     * 
+     */
     private String shield;
 
     private GetDatacentersPop() {}
+    /**
+     * @return A code representing the POP location.
+     * 
+     */
     public String code() {
         return this.code;
     }
+    /**
+     * @return A code representing the general region of the world in which the POP location resides.
+     * 
+     */
     public String group() {
         return this.group;
     }
+    /**
+     * @return The name of the POP.
+     * 
+     */
     public String name() {
         return this.name;
     }
+    /**
+     * @return A code representing the shielding name of the POP. The value may be empty if the POP is not available for shielding.
+     * 
+     */
     public String shield() {
         return this.shield;
     }

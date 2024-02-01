@@ -10770,6 +10770,11 @@ class TlsSubscriptionManagedDnsChallenge(dict):
                  record_name: Optional[str] = None,
                  record_type: Optional[str] = None,
                  record_value: Optional[str] = None):
+        """
+        :param str record_name: The name of the DNS record to add. For example `_acme-challenge.example.com`.
+        :param str record_type: The type of DNS record to add, e.g. `A`, or `CNAME`.
+        :param str record_value: The value to which the DNS record should point, e.g. `xxxxx.fastly-validations.com`.
+        """
         if record_name is not None:
             pulumi.set(__self__, "record_name", record_name)
         if record_type is not None:
@@ -10780,16 +10785,25 @@ class TlsSubscriptionManagedDnsChallenge(dict):
     @property
     @pulumi.getter(name="recordName")
     def record_name(self) -> Optional[str]:
+        """
+        The name of the DNS record to add. For example `_acme-challenge.example.com`.
+        """
         return pulumi.get(self, "record_name")
 
     @property
     @pulumi.getter(name="recordType")
     def record_type(self) -> Optional[str]:
+        """
+        The type of DNS record to add, e.g. `A`, or `CNAME`.
+        """
         return pulumi.get(self, "record_type")
 
     @property
     @pulumi.getter(name="recordValue")
     def record_value(self) -> Optional[str]:
+        """
+        The value to which the DNS record should point, e.g. `xxxxx.fastly-validations.com`.
+        """
         return pulumi.get(self, "record_value")
 
 
@@ -10820,6 +10834,11 @@ class TlsSubscriptionManagedHttpChallenge(dict):
                  record_name: Optional[str] = None,
                  record_type: Optional[str] = None,
                  record_values: Optional[Sequence[str]] = None):
+        """
+        :param str record_name: The name of the DNS record to add. For example `example.com`. Best accessed through a `for` expression to filter the relevant record.
+        :param str record_type: The type of DNS record to add, e.g. `A`, or `CNAME`.
+        :param Sequence[str] record_values: A list with the value(s) to which the DNS record should point.
+        """
         if record_name is not None:
             pulumi.set(__self__, "record_name", record_name)
         if record_type is not None:
@@ -10830,16 +10849,25 @@ class TlsSubscriptionManagedHttpChallenge(dict):
     @property
     @pulumi.getter(name="recordName")
     def record_name(self) -> Optional[str]:
+        """
+        The name of the DNS record to add. For example `example.com`. Best accessed through a `for` expression to filter the relevant record.
+        """
         return pulumi.get(self, "record_name")
 
     @property
     @pulumi.getter(name="recordType")
     def record_type(self) -> Optional[str]:
+        """
+        The type of DNS record to add, e.g. `A`, or `CNAME`.
+        """
         return pulumi.get(self, "record_type")
 
     @property
     @pulumi.getter(name="recordValues")
     def record_values(self) -> Optional[Sequence[str]]:
+        """
+        A list with the value(s) to which the DNS record should point.
+        """
         return pulumi.get(self, "record_values")
 
 
@@ -10848,17 +10876,27 @@ class GetConfigstoresStoreResult(dict):
     def __init__(__self__, *,
                  id: str,
                  name: str):
+        """
+        :param str id: Alphanumeric string identifying the Config Store.
+        :param str name: Name for the Config Store.
+        """
         pulumi.set(__self__, "id", id)
         pulumi.set(__self__, "name", name)
 
     @property
     @pulumi.getter
     def id(self) -> str:
+        """
+        Alphanumeric string identifying the Config Store.
+        """
         return pulumi.get(self, "id")
 
     @property
     @pulumi.getter
     def name(self) -> str:
+        """
+        Name for the Config Store.
+        """
         return pulumi.get(self, "name")
 
 
@@ -10869,6 +10907,12 @@ class GetDatacentersPopResult(dict):
                  group: str,
                  name: str,
                  shield: str):
+        """
+        :param str code: A code representing the POP location.
+        :param str group: A code representing the general region of the world in which the POP location resides.
+        :param str name: The name of the POP.
+        :param str shield: A code representing the shielding name of the POP. The value may be empty if the POP is not available for shielding.
+        """
         pulumi.set(__self__, "code", code)
         pulumi.set(__self__, "group", group)
         pulumi.set(__self__, "name", name)
@@ -10877,21 +10921,33 @@ class GetDatacentersPopResult(dict):
     @property
     @pulumi.getter
     def code(self) -> str:
+        """
+        A code representing the POP location.
+        """
         return pulumi.get(self, "code")
 
     @property
     @pulumi.getter
     def group(self) -> str:
+        """
+        A code representing the general region of the world in which the POP location resides.
+        """
         return pulumi.get(self, "group")
 
     @property
     @pulumi.getter
     def name(self) -> str:
+        """
+        The name of the POP.
+        """
         return pulumi.get(self, "name")
 
     @property
     @pulumi.getter
     def shield(self) -> str:
+        """
+        A code representing the shielding name of the POP. The value may be empty if the POP is not available for shielding.
+        """
         return pulumi.get(self, "shield")
 
 
@@ -10901,6 +10957,11 @@ class GetDictionariesDictionaryResult(dict):
                  id: str,
                  name: str,
                  write_only: bool):
+        """
+        :param str id: Alphanumeric string identifying the Dictionary.
+        :param str name: Name for the Dictionary.
+        :param bool write_only: Indicates if items in the dictionary are readable or not.
+        """
         pulumi.set(__self__, "id", id)
         pulumi.set(__self__, "name", name)
         pulumi.set(__self__, "write_only", write_only)
@@ -10908,16 +10969,25 @@ class GetDictionariesDictionaryResult(dict):
     @property
     @pulumi.getter
     def id(self) -> str:
+        """
+        Alphanumeric string identifying the Dictionary.
+        """
         return pulumi.get(self, "id")
 
     @property
     @pulumi.getter
     def name(self) -> str:
+        """
+        Name for the Dictionary.
+        """
         return pulumi.get(self, "name")
 
     @property
     @pulumi.getter(name="writeOnly")
     def write_only(self) -> bool:
+        """
+        Indicates if items in the dictionary are readable or not.
+        """
         return pulumi.get(self, "write_only")
 
 
@@ -10926,17 +10996,27 @@ class GetKvstoresStoreResult(dict):
     def __init__(__self__, *,
                  id: str,
                  name: str):
+        """
+        :param str id: Alphanumeric string identifying the KV Store.
+        :param str name: Name for the KV Store.
+        """
         pulumi.set(__self__, "id", id)
         pulumi.set(__self__, "name", name)
 
     @property
     @pulumi.getter
     def id(self) -> str:
+        """
+        Alphanumeric string identifying the KV Store.
+        """
         return pulumi.get(self, "id")
 
     @property
     @pulumi.getter
     def name(self) -> str:
+        """
+        Name for the KV Store.
+        """
         return pulumi.get(self, "name")
 
 
@@ -10945,17 +11025,27 @@ class GetSecretstoresStoreResult(dict):
     def __init__(__self__, *,
                  id: str,
                  name: str):
+        """
+        :param str id: Alphanumeric string identifying the Secrets Store.
+        :param str name: Name for the Secrets Store.
+        """
         pulumi.set(__self__, "id", id)
         pulumi.set(__self__, "name", name)
 
     @property
     @pulumi.getter
     def id(self) -> str:
+        """
+        Alphanumeric string identifying the Secrets Store.
+        """
         return pulumi.get(self, "id")
 
     @property
     @pulumi.getter
     def name(self) -> str:
+        """
+        Name for the Secrets Store.
+        """
         return pulumi.get(self, "name")
 
 
@@ -10970,6 +11060,16 @@ class GetServicesDetailResult(dict):
                  type: str,
                  updated_at: str,
                  version: int):
+        """
+        :param str comment: A freeform descriptive note.
+        :param str created_at: Date and time in ISO 8601 format.
+        :param str customer_id: Alphanumeric string identifying the customer.
+        :param str id: Alphanumeric string identifying the service.
+        :param str name: The name of the service.
+        :param str type: The type of this service. One of `vcl`, `wasm`.
+        :param str updated_at: Date and time in ISO 8601 format.
+        :param int version: The currently activated version.
+        """
         pulumi.set(__self__, "comment", comment)
         pulumi.set(__self__, "created_at", created_at)
         pulumi.set(__self__, "customer_id", customer_id)
@@ -10982,41 +11082,65 @@ class GetServicesDetailResult(dict):
     @property
     @pulumi.getter
     def comment(self) -> str:
+        """
+        A freeform descriptive note.
+        """
         return pulumi.get(self, "comment")
 
     @property
     @pulumi.getter(name="createdAt")
     def created_at(self) -> str:
+        """
+        Date and time in ISO 8601 format.
+        """
         return pulumi.get(self, "created_at")
 
     @property
     @pulumi.getter(name="customerId")
     def customer_id(self) -> str:
+        """
+        Alphanumeric string identifying the customer.
+        """
         return pulumi.get(self, "customer_id")
 
     @property
     @pulumi.getter
     def id(self) -> str:
+        """
+        Alphanumeric string identifying the service.
+        """
         return pulumi.get(self, "id")
 
     @property
     @pulumi.getter
     def name(self) -> str:
+        """
+        The name of the service.
+        """
         return pulumi.get(self, "name")
 
     @property
     @pulumi.getter
     def type(self) -> str:
+        """
+        The type of this service. One of `vcl`, `wasm`.
+        """
         return pulumi.get(self, "type")
 
     @property
     @pulumi.getter(name="updatedAt")
     def updated_at(self) -> str:
+        """
+        Date and time in ISO 8601 format.
+        """
         return pulumi.get(self, "updated_at")
 
     @property
     @pulumi.getter
     def version(self) -> int:
+        """
+        The currently activated version.
+        """
         return pulumi.get(self, "version")
 
 
@@ -11026,6 +11150,11 @@ class GetTlsConfigurationDnsRecordResult(dict):
                  record_type: str,
                  record_value: str,
                  region: str):
+        """
+        :param str record_type: Type of DNS record to set, e.g. A, AAAA, or CNAME.
+        :param str record_value: The IP address or hostname of the DNS record.
+        :param str region: The regions that will be used to route traffic. Select DNS Records with a `global` region to route traffic to the most performant point of presence (POP) worldwide (global pricing will apply). Select DNS records with a `us-eu` region to exclusively land traffic on North American and European POPs.
+        """
         pulumi.set(__self__, "record_type", record_type)
         pulumi.set(__self__, "record_value", record_value)
         pulumi.set(__self__, "region", region)
@@ -11033,16 +11162,25 @@ class GetTlsConfigurationDnsRecordResult(dict):
     @property
     @pulumi.getter(name="recordType")
     def record_type(self) -> str:
+        """
+        Type of DNS record to set, e.g. A, AAAA, or CNAME.
+        """
         return pulumi.get(self, "record_type")
 
     @property
     @pulumi.getter(name="recordValue")
     def record_value(self) -> str:
+        """
+        The IP address or hostname of the DNS record.
+        """
         return pulumi.get(self, "record_value")
 
     @property
     @pulumi.getter
     def region(self) -> str:
+        """
+        The regions that will be used to route traffic. Select DNS Records with a `global` region to route traffic to the most performant point of presence (POP) worldwide (global pricing will apply). Select DNS records with a `us-eu` region to exclusively land traffic on North American and European POPs.
+        """
         return pulumi.get(self, "region")
 
 
@@ -11052,6 +11190,11 @@ class GetWafRulesRuleResult(dict):
                  latest_revision_number: int,
                  modsec_rule_id: int,
                  type: str):
+        """
+        :param int latest_revision_number: The modsecurity rule's latest revision.
+        :param int modsec_rule_id: The modsecurity rule ID.
+        :param str type: The modsecurity rule's type.
+        """
         pulumi.set(__self__, "latest_revision_number", latest_revision_number)
         pulumi.set(__self__, "modsec_rule_id", modsec_rule_id)
         pulumi.set(__self__, "type", type)
@@ -11059,16 +11202,25 @@ class GetWafRulesRuleResult(dict):
     @property
     @pulumi.getter(name="latestRevisionNumber")
     def latest_revision_number(self) -> int:
+        """
+        The modsecurity rule's latest revision.
+        """
         return pulumi.get(self, "latest_revision_number")
 
     @property
     @pulumi.getter(name="modsecRuleId")
     def modsec_rule_id(self) -> int:
+        """
+        The modsecurity rule ID.
+        """
         return pulumi.get(self, "modsec_rule_id")
 
     @property
     @pulumi.getter
     def type(self) -> str:
+        """
+        The modsecurity rule's type.
+        """
         return pulumi.get(self, "type")
 
 

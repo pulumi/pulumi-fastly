@@ -13,13 +13,37 @@ namespace Pulumi.Fastly.Outputs
     [OutputType]
     public sealed class GetServicesDetailResult
     {
+        /// <summary>
+        /// A freeform descriptive note.
+        /// </summary>
         public readonly string Comment;
+        /// <summary>
+        /// Date and time in ISO 8601 format.
+        /// </summary>
         public readonly string CreatedAt;
+        /// <summary>
+        /// Alphanumeric string identifying the customer.
+        /// </summary>
         public readonly string CustomerId;
+        /// <summary>
+        /// Alphanumeric string identifying the service.
+        /// </summary>
         public readonly string Id;
+        /// <summary>
+        /// The name of the service.
+        /// </summary>
         public readonly string Name;
+        /// <summary>
+        /// The type of this service. One of `vcl`, `wasm`.
+        /// </summary>
         public readonly string Type;
+        /// <summary>
+        /// Date and time in ISO 8601 format.
+        /// </summary>
         public readonly string UpdatedAt;
+        /// <summary>
+        /// The currently activated version.
+        /// </summary>
         public readonly int Version;
 
         [OutputConstructor]

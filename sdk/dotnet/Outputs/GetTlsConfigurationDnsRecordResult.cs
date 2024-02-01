@@ -13,8 +13,17 @@ namespace Pulumi.Fastly.Outputs
     [OutputType]
     public sealed class GetTlsConfigurationDnsRecordResult
     {
+        /// <summary>
+        /// Type of DNS record to set, e.g. A, AAAA, or CNAME.
+        /// </summary>
         public readonly string RecordType;
+        /// <summary>
+        /// The IP address or hostname of the DNS record.
+        /// </summary>
         public readonly string RecordValue;
+        /// <summary>
+        /// The regions that will be used to route traffic. Select DNS Records with a `global` region to route traffic to the most performant point of presence (POP) worldwide (global pricing will apply). Select DNS records with a `us-eu` region to exclusively land traffic on North American and European POPs.
+        /// </summary>
         public readonly string Region;
 
         [OutputConstructor]
