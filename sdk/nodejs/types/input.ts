@@ -3110,13 +3110,31 @@ export interface ServiceWafConfigurationRuleExclusion {
 }
 
 export interface TlsSubscriptionManagedDnsChallenge {
+    /**
+     * The name of the DNS record to add. For example `_acme-challenge.example.com`.
+     */
     recordName?: pulumi.Input<string>;
+    /**
+     * The type of DNS record to add, e.g. `A`, or `CNAME`.
+     */
     recordType?: pulumi.Input<string>;
+    /**
+     * The value to which the DNS record should point, e.g. `xxxxx.fastly-validations.com`.
+     */
     recordValue?: pulumi.Input<string>;
 }
 
 export interface TlsSubscriptionManagedHttpChallenge {
+    /**
+     * The name of the DNS record to add. For example `example.com`. Best accessed through a `for` expression to filter the relevant record.
+     */
     recordName?: pulumi.Input<string>;
+    /**
+     * The type of DNS record to add, e.g. `A`, or `CNAME`.
+     */
     recordType?: pulumi.Input<string>;
+    /**
+     * A list with the value(s) to which the DNS record should point.
+     */
     recordValues?: pulumi.Input<pulumi.Input<string>[]>;
 }

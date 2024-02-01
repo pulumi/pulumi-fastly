@@ -13,7 +13,13 @@ namespace Pulumi.Fastly.Outputs
     [OutputType]
     public sealed class GetConfigstoresStoreResult
     {
+        /// <summary>
+        /// Alphanumeric string identifying the Config Store.
+        /// </summary>
         public readonly string Id;
+        /// <summary>
+        /// Name for the Config Store.
+        /// </summary>
         public readonly string Name;
 
         [OutputConstructor]

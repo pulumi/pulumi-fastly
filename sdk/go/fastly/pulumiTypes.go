@@ -13847,8 +13847,11 @@ func (o ServiceWafConfigurationRuleExclusionArrayOutput) Index(i pulumi.IntInput
 }
 
 type TlsSubscriptionManagedDnsChallenge struct {
-	RecordName  *string `pulumi:"recordName"`
-	RecordType  *string `pulumi:"recordType"`
+	// The name of the DNS record to add. For example `_acme-challenge.example.com`.
+	RecordName *string `pulumi:"recordName"`
+	// The type of DNS record to add, e.g. `A`, or `CNAME`.
+	RecordType *string `pulumi:"recordType"`
+	// The value to which the DNS record should point, e.g. `xxxxx.fastly-validations.com`.
 	RecordValue *string `pulumi:"recordValue"`
 }
 
@@ -13864,8 +13867,11 @@ type TlsSubscriptionManagedDnsChallengeInput interface {
 }
 
 type TlsSubscriptionManagedDnsChallengeArgs struct {
-	RecordName  pulumi.StringPtrInput `pulumi:"recordName"`
-	RecordType  pulumi.StringPtrInput `pulumi:"recordType"`
+	// The name of the DNS record to add. For example `_acme-challenge.example.com`.
+	RecordName pulumi.StringPtrInput `pulumi:"recordName"`
+	// The type of DNS record to add, e.g. `A`, or `CNAME`.
+	RecordType pulumi.StringPtrInput `pulumi:"recordType"`
+	// The value to which the DNS record should point, e.g. `xxxxx.fastly-validations.com`.
 	RecordValue pulumi.StringPtrInput `pulumi:"recordValue"`
 }
 
@@ -13920,14 +13926,17 @@ func (o TlsSubscriptionManagedDnsChallengeOutput) ToTlsSubscriptionManagedDnsCha
 	return o
 }
 
+// The name of the DNS record to add. For example `_acme-challenge.example.com`.
 func (o TlsSubscriptionManagedDnsChallengeOutput) RecordName() pulumi.StringPtrOutput {
 	return o.ApplyT(func(v TlsSubscriptionManagedDnsChallenge) *string { return v.RecordName }).(pulumi.StringPtrOutput)
 }
 
+// The type of DNS record to add, e.g. `A`, or `CNAME`.
 func (o TlsSubscriptionManagedDnsChallengeOutput) RecordType() pulumi.StringPtrOutput {
 	return o.ApplyT(func(v TlsSubscriptionManagedDnsChallenge) *string { return v.RecordType }).(pulumi.StringPtrOutput)
 }
 
+// The value to which the DNS record should point, e.g. `xxxxx.fastly-validations.com`.
 func (o TlsSubscriptionManagedDnsChallengeOutput) RecordValue() pulumi.StringPtrOutput {
 	return o.ApplyT(func(v TlsSubscriptionManagedDnsChallenge) *string { return v.RecordValue }).(pulumi.StringPtrOutput)
 }
@@ -13953,8 +13962,11 @@ func (o TlsSubscriptionManagedDnsChallengeArrayOutput) Index(i pulumi.IntInput) 
 }
 
 type TlsSubscriptionManagedHttpChallenge struct {
-	RecordName   *string  `pulumi:"recordName"`
-	RecordType   *string  `pulumi:"recordType"`
+	// The name of the DNS record to add. For example `example.com`. Best accessed through a `for` expression to filter the relevant record.
+	RecordName *string `pulumi:"recordName"`
+	// The type of DNS record to add, e.g. `A`, or `CNAME`.
+	RecordType *string `pulumi:"recordType"`
+	// A list with the value(s) to which the DNS record should point.
 	RecordValues []string `pulumi:"recordValues"`
 }
 
@@ -13970,8 +13982,11 @@ type TlsSubscriptionManagedHttpChallengeInput interface {
 }
 
 type TlsSubscriptionManagedHttpChallengeArgs struct {
-	RecordName   pulumi.StringPtrInput   `pulumi:"recordName"`
-	RecordType   pulumi.StringPtrInput   `pulumi:"recordType"`
+	// The name of the DNS record to add. For example `example.com`. Best accessed through a `for` expression to filter the relevant record.
+	RecordName pulumi.StringPtrInput `pulumi:"recordName"`
+	// The type of DNS record to add, e.g. `A`, or `CNAME`.
+	RecordType pulumi.StringPtrInput `pulumi:"recordType"`
+	// A list with the value(s) to which the DNS record should point.
 	RecordValues pulumi.StringArrayInput `pulumi:"recordValues"`
 }
 
@@ -14026,14 +14041,17 @@ func (o TlsSubscriptionManagedHttpChallengeOutput) ToTlsSubscriptionManagedHttpC
 	return o
 }
 
+// The name of the DNS record to add. For example `example.com`. Best accessed through a `for` expression to filter the relevant record.
 func (o TlsSubscriptionManagedHttpChallengeOutput) RecordName() pulumi.StringPtrOutput {
 	return o.ApplyT(func(v TlsSubscriptionManagedHttpChallenge) *string { return v.RecordName }).(pulumi.StringPtrOutput)
 }
 
+// The type of DNS record to add, e.g. `A`, or `CNAME`.
 func (o TlsSubscriptionManagedHttpChallengeOutput) RecordType() pulumi.StringPtrOutput {
 	return o.ApplyT(func(v TlsSubscriptionManagedHttpChallenge) *string { return v.RecordType }).(pulumi.StringPtrOutput)
 }
 
+// A list with the value(s) to which the DNS record should point.
 func (o TlsSubscriptionManagedHttpChallengeOutput) RecordValues() pulumi.StringArrayOutput {
 	return o.ApplyT(func(v TlsSubscriptionManagedHttpChallenge) []string { return v.RecordValues }).(pulumi.StringArrayOutput)
 }
@@ -14059,7 +14077,9 @@ func (o TlsSubscriptionManagedHttpChallengeArrayOutput) Index(i pulumi.IntInput)
 }
 
 type GetConfigstoresStore struct {
-	Id   string `pulumi:"id"`
+	// Alphanumeric string identifying the Config Store.
+	Id string `pulumi:"id"`
+	// Name for the Config Store.
 	Name string `pulumi:"name"`
 }
 
@@ -14075,7 +14095,9 @@ type GetConfigstoresStoreInput interface {
 }
 
 type GetConfigstoresStoreArgs struct {
-	Id   pulumi.StringInput `pulumi:"id"`
+	// Alphanumeric string identifying the Config Store.
+	Id pulumi.StringInput `pulumi:"id"`
+	// Name for the Config Store.
 	Name pulumi.StringInput `pulumi:"name"`
 }
 
@@ -14130,10 +14152,12 @@ func (o GetConfigstoresStoreOutput) ToGetConfigstoresStoreOutputWithContext(ctx 
 	return o
 }
 
+// Alphanumeric string identifying the Config Store.
 func (o GetConfigstoresStoreOutput) Id() pulumi.StringOutput {
 	return o.ApplyT(func(v GetConfigstoresStore) string { return v.Id }).(pulumi.StringOutput)
 }
 
+// Name for the Config Store.
 func (o GetConfigstoresStoreOutput) Name() pulumi.StringOutput {
 	return o.ApplyT(func(v GetConfigstoresStore) string { return v.Name }).(pulumi.StringOutput)
 }
@@ -14159,9 +14183,13 @@ func (o GetConfigstoresStoreArrayOutput) Index(i pulumi.IntInput) GetConfigstore
 }
 
 type GetDatacentersPop struct {
-	Code   string `pulumi:"code"`
-	Group  string `pulumi:"group"`
-	Name   string `pulumi:"name"`
+	// A code representing the POP location.
+	Code string `pulumi:"code"`
+	// A code representing the general region of the world in which the POP location resides.
+	Group string `pulumi:"group"`
+	// The name of the POP.
+	Name string `pulumi:"name"`
+	// A code representing the shielding name of the POP. The value may be empty if the POP is not available for shielding.
 	Shield string `pulumi:"shield"`
 }
 
@@ -14177,9 +14205,13 @@ type GetDatacentersPopInput interface {
 }
 
 type GetDatacentersPopArgs struct {
-	Code   pulumi.StringInput `pulumi:"code"`
-	Group  pulumi.StringInput `pulumi:"group"`
-	Name   pulumi.StringInput `pulumi:"name"`
+	// A code representing the POP location.
+	Code pulumi.StringInput `pulumi:"code"`
+	// A code representing the general region of the world in which the POP location resides.
+	Group pulumi.StringInput `pulumi:"group"`
+	// The name of the POP.
+	Name pulumi.StringInput `pulumi:"name"`
+	// A code representing the shielding name of the POP. The value may be empty if the POP is not available for shielding.
 	Shield pulumi.StringInput `pulumi:"shield"`
 }
 
@@ -14234,18 +14266,22 @@ func (o GetDatacentersPopOutput) ToGetDatacentersPopOutputWithContext(ctx contex
 	return o
 }
 
+// A code representing the POP location.
 func (o GetDatacentersPopOutput) Code() pulumi.StringOutput {
 	return o.ApplyT(func(v GetDatacentersPop) string { return v.Code }).(pulumi.StringOutput)
 }
 
+// A code representing the general region of the world in which the POP location resides.
 func (o GetDatacentersPopOutput) Group() pulumi.StringOutput {
 	return o.ApplyT(func(v GetDatacentersPop) string { return v.Group }).(pulumi.StringOutput)
 }
 
+// The name of the POP.
 func (o GetDatacentersPopOutput) Name() pulumi.StringOutput {
 	return o.ApplyT(func(v GetDatacentersPop) string { return v.Name }).(pulumi.StringOutput)
 }
 
+// A code representing the shielding name of the POP. The value may be empty if the POP is not available for shielding.
 func (o GetDatacentersPopOutput) Shield() pulumi.StringOutput {
 	return o.ApplyT(func(v GetDatacentersPop) string { return v.Shield }).(pulumi.StringOutput)
 }
@@ -14271,9 +14307,12 @@ func (o GetDatacentersPopArrayOutput) Index(i pulumi.IntInput) GetDatacentersPop
 }
 
 type GetDictionariesDictionary struct {
-	Id        string `pulumi:"id"`
-	Name      string `pulumi:"name"`
-	WriteOnly bool   `pulumi:"writeOnly"`
+	// Alphanumeric string identifying the Dictionary.
+	Id string `pulumi:"id"`
+	// Name for the Dictionary.
+	Name string `pulumi:"name"`
+	// Indicates if items in the dictionary are readable or not.
+	WriteOnly bool `pulumi:"writeOnly"`
 }
 
 // GetDictionariesDictionaryInput is an input type that accepts GetDictionariesDictionaryArgs and GetDictionariesDictionaryOutput values.
@@ -14288,9 +14327,12 @@ type GetDictionariesDictionaryInput interface {
 }
 
 type GetDictionariesDictionaryArgs struct {
-	Id        pulumi.StringInput `pulumi:"id"`
-	Name      pulumi.StringInput `pulumi:"name"`
-	WriteOnly pulumi.BoolInput   `pulumi:"writeOnly"`
+	// Alphanumeric string identifying the Dictionary.
+	Id pulumi.StringInput `pulumi:"id"`
+	// Name for the Dictionary.
+	Name pulumi.StringInput `pulumi:"name"`
+	// Indicates if items in the dictionary are readable or not.
+	WriteOnly pulumi.BoolInput `pulumi:"writeOnly"`
 }
 
 func (GetDictionariesDictionaryArgs) ElementType() reflect.Type {
@@ -14344,14 +14386,17 @@ func (o GetDictionariesDictionaryOutput) ToGetDictionariesDictionaryOutputWithCo
 	return o
 }
 
+// Alphanumeric string identifying the Dictionary.
 func (o GetDictionariesDictionaryOutput) Id() pulumi.StringOutput {
 	return o.ApplyT(func(v GetDictionariesDictionary) string { return v.Id }).(pulumi.StringOutput)
 }
 
+// Name for the Dictionary.
 func (o GetDictionariesDictionaryOutput) Name() pulumi.StringOutput {
 	return o.ApplyT(func(v GetDictionariesDictionary) string { return v.Name }).(pulumi.StringOutput)
 }
 
+// Indicates if items in the dictionary are readable or not.
 func (o GetDictionariesDictionaryOutput) WriteOnly() pulumi.BoolOutput {
 	return o.ApplyT(func(v GetDictionariesDictionary) bool { return v.WriteOnly }).(pulumi.BoolOutput)
 }
@@ -14377,7 +14422,9 @@ func (o GetDictionariesDictionaryArrayOutput) Index(i pulumi.IntInput) GetDictio
 }
 
 type GetKvstoresStore struct {
-	Id   string `pulumi:"id"`
+	// Alphanumeric string identifying the KV Store.
+	Id string `pulumi:"id"`
+	// Name for the KV Store.
 	Name string `pulumi:"name"`
 }
 
@@ -14393,7 +14440,9 @@ type GetKvstoresStoreInput interface {
 }
 
 type GetKvstoresStoreArgs struct {
-	Id   pulumi.StringInput `pulumi:"id"`
+	// Alphanumeric string identifying the KV Store.
+	Id pulumi.StringInput `pulumi:"id"`
+	// Name for the KV Store.
 	Name pulumi.StringInput `pulumi:"name"`
 }
 
@@ -14448,10 +14497,12 @@ func (o GetKvstoresStoreOutput) ToGetKvstoresStoreOutputWithContext(ctx context.
 	return o
 }
 
+// Alphanumeric string identifying the KV Store.
 func (o GetKvstoresStoreOutput) Id() pulumi.StringOutput {
 	return o.ApplyT(func(v GetKvstoresStore) string { return v.Id }).(pulumi.StringOutput)
 }
 
+// Name for the KV Store.
 func (o GetKvstoresStoreOutput) Name() pulumi.StringOutput {
 	return o.ApplyT(func(v GetKvstoresStore) string { return v.Name }).(pulumi.StringOutput)
 }
@@ -14477,7 +14528,9 @@ func (o GetKvstoresStoreArrayOutput) Index(i pulumi.IntInput) GetKvstoresStoreOu
 }
 
 type GetSecretstoresStore struct {
-	Id   string `pulumi:"id"`
+	// Alphanumeric string identifying the Secrets Store.
+	Id string `pulumi:"id"`
+	// Name for the Secrets Store.
 	Name string `pulumi:"name"`
 }
 
@@ -14493,7 +14546,9 @@ type GetSecretstoresStoreInput interface {
 }
 
 type GetSecretstoresStoreArgs struct {
-	Id   pulumi.StringInput `pulumi:"id"`
+	// Alphanumeric string identifying the Secrets Store.
+	Id pulumi.StringInput `pulumi:"id"`
+	// Name for the Secrets Store.
 	Name pulumi.StringInput `pulumi:"name"`
 }
 
@@ -14548,10 +14603,12 @@ func (o GetSecretstoresStoreOutput) ToGetSecretstoresStoreOutputWithContext(ctx 
 	return o
 }
 
+// Alphanumeric string identifying the Secrets Store.
 func (o GetSecretstoresStoreOutput) Id() pulumi.StringOutput {
 	return o.ApplyT(func(v GetSecretstoresStore) string { return v.Id }).(pulumi.StringOutput)
 }
 
+// Name for the Secrets Store.
 func (o GetSecretstoresStoreOutput) Name() pulumi.StringOutput {
 	return o.ApplyT(func(v GetSecretstoresStore) string { return v.Name }).(pulumi.StringOutput)
 }
@@ -14577,14 +14634,22 @@ func (o GetSecretstoresStoreArrayOutput) Index(i pulumi.IntInput) GetSecretstore
 }
 
 type GetServicesDetail struct {
-	Comment    string `pulumi:"comment"`
-	CreatedAt  string `pulumi:"createdAt"`
+	// A freeform descriptive note.
+	Comment string `pulumi:"comment"`
+	// Date and time in ISO 8601 format.
+	CreatedAt string `pulumi:"createdAt"`
+	// Alphanumeric string identifying the customer.
 	CustomerId string `pulumi:"customerId"`
-	Id         string `pulumi:"id"`
-	Name       string `pulumi:"name"`
-	Type       string `pulumi:"type"`
-	UpdatedAt  string `pulumi:"updatedAt"`
-	Version    int    `pulumi:"version"`
+	// Alphanumeric string identifying the service.
+	Id string `pulumi:"id"`
+	// The name of the service.
+	Name string `pulumi:"name"`
+	// The type of this service. One of `vcl`, `wasm`.
+	Type string `pulumi:"type"`
+	// Date and time in ISO 8601 format.
+	UpdatedAt string `pulumi:"updatedAt"`
+	// The currently activated version.
+	Version int `pulumi:"version"`
 }
 
 // GetServicesDetailInput is an input type that accepts GetServicesDetailArgs and GetServicesDetailOutput values.
@@ -14599,14 +14664,22 @@ type GetServicesDetailInput interface {
 }
 
 type GetServicesDetailArgs struct {
-	Comment    pulumi.StringInput `pulumi:"comment"`
-	CreatedAt  pulumi.StringInput `pulumi:"createdAt"`
+	// A freeform descriptive note.
+	Comment pulumi.StringInput `pulumi:"comment"`
+	// Date and time in ISO 8601 format.
+	CreatedAt pulumi.StringInput `pulumi:"createdAt"`
+	// Alphanumeric string identifying the customer.
 	CustomerId pulumi.StringInput `pulumi:"customerId"`
-	Id         pulumi.StringInput `pulumi:"id"`
-	Name       pulumi.StringInput `pulumi:"name"`
-	Type       pulumi.StringInput `pulumi:"type"`
-	UpdatedAt  pulumi.StringInput `pulumi:"updatedAt"`
-	Version    pulumi.IntInput    `pulumi:"version"`
+	// Alphanumeric string identifying the service.
+	Id pulumi.StringInput `pulumi:"id"`
+	// The name of the service.
+	Name pulumi.StringInput `pulumi:"name"`
+	// The type of this service. One of `vcl`, `wasm`.
+	Type pulumi.StringInput `pulumi:"type"`
+	// Date and time in ISO 8601 format.
+	UpdatedAt pulumi.StringInput `pulumi:"updatedAt"`
+	// The currently activated version.
+	Version pulumi.IntInput `pulumi:"version"`
 }
 
 func (GetServicesDetailArgs) ElementType() reflect.Type {
@@ -14660,34 +14733,42 @@ func (o GetServicesDetailOutput) ToGetServicesDetailOutputWithContext(ctx contex
 	return o
 }
 
+// A freeform descriptive note.
 func (o GetServicesDetailOutput) Comment() pulumi.StringOutput {
 	return o.ApplyT(func(v GetServicesDetail) string { return v.Comment }).(pulumi.StringOutput)
 }
 
+// Date and time in ISO 8601 format.
 func (o GetServicesDetailOutput) CreatedAt() pulumi.StringOutput {
 	return o.ApplyT(func(v GetServicesDetail) string { return v.CreatedAt }).(pulumi.StringOutput)
 }
 
+// Alphanumeric string identifying the customer.
 func (o GetServicesDetailOutput) CustomerId() pulumi.StringOutput {
 	return o.ApplyT(func(v GetServicesDetail) string { return v.CustomerId }).(pulumi.StringOutput)
 }
 
+// Alphanumeric string identifying the service.
 func (o GetServicesDetailOutput) Id() pulumi.StringOutput {
 	return o.ApplyT(func(v GetServicesDetail) string { return v.Id }).(pulumi.StringOutput)
 }
 
+// The name of the service.
 func (o GetServicesDetailOutput) Name() pulumi.StringOutput {
 	return o.ApplyT(func(v GetServicesDetail) string { return v.Name }).(pulumi.StringOutput)
 }
 
+// The type of this service. One of `vcl`, `wasm`.
 func (o GetServicesDetailOutput) Type() pulumi.StringOutput {
 	return o.ApplyT(func(v GetServicesDetail) string { return v.Type }).(pulumi.StringOutput)
 }
 
+// Date and time in ISO 8601 format.
 func (o GetServicesDetailOutput) UpdatedAt() pulumi.StringOutput {
 	return o.ApplyT(func(v GetServicesDetail) string { return v.UpdatedAt }).(pulumi.StringOutput)
 }
 
+// The currently activated version.
 func (o GetServicesDetailOutput) Version() pulumi.IntOutput {
 	return o.ApplyT(func(v GetServicesDetail) int { return v.Version }).(pulumi.IntOutput)
 }
@@ -14713,9 +14794,12 @@ func (o GetServicesDetailArrayOutput) Index(i pulumi.IntInput) GetServicesDetail
 }
 
 type GetTlsConfigurationDnsRecord struct {
-	RecordType  string `pulumi:"recordType"`
+	// Type of DNS record to set, e.g. A, AAAA, or CNAME.
+	RecordType string `pulumi:"recordType"`
+	// The IP address or hostname of the DNS record.
 	RecordValue string `pulumi:"recordValue"`
-	Region      string `pulumi:"region"`
+	// The regions that will be used to route traffic. Select DNS Records with a `global` region to route traffic to the most performant point of presence (POP) worldwide (global pricing will apply). Select DNS records with a `us-eu` region to exclusively land traffic on North American and European POPs.
+	Region string `pulumi:"region"`
 }
 
 // GetTlsConfigurationDnsRecordInput is an input type that accepts GetTlsConfigurationDnsRecordArgs and GetTlsConfigurationDnsRecordOutput values.
@@ -14730,9 +14814,12 @@ type GetTlsConfigurationDnsRecordInput interface {
 }
 
 type GetTlsConfigurationDnsRecordArgs struct {
-	RecordType  pulumi.StringInput `pulumi:"recordType"`
+	// Type of DNS record to set, e.g. A, AAAA, or CNAME.
+	RecordType pulumi.StringInput `pulumi:"recordType"`
+	// The IP address or hostname of the DNS record.
 	RecordValue pulumi.StringInput `pulumi:"recordValue"`
-	Region      pulumi.StringInput `pulumi:"region"`
+	// The regions that will be used to route traffic. Select DNS Records with a `global` region to route traffic to the most performant point of presence (POP) worldwide (global pricing will apply). Select DNS records with a `us-eu` region to exclusively land traffic on North American and European POPs.
+	Region pulumi.StringInput `pulumi:"region"`
 }
 
 func (GetTlsConfigurationDnsRecordArgs) ElementType() reflect.Type {
@@ -14786,14 +14873,17 @@ func (o GetTlsConfigurationDnsRecordOutput) ToGetTlsConfigurationDnsRecordOutput
 	return o
 }
 
+// Type of DNS record to set, e.g. A, AAAA, or CNAME.
 func (o GetTlsConfigurationDnsRecordOutput) RecordType() pulumi.StringOutput {
 	return o.ApplyT(func(v GetTlsConfigurationDnsRecord) string { return v.RecordType }).(pulumi.StringOutput)
 }
 
+// The IP address or hostname of the DNS record.
 func (o GetTlsConfigurationDnsRecordOutput) RecordValue() pulumi.StringOutput {
 	return o.ApplyT(func(v GetTlsConfigurationDnsRecord) string { return v.RecordValue }).(pulumi.StringOutput)
 }
 
+// The regions that will be used to route traffic. Select DNS Records with a `global` region to route traffic to the most performant point of presence (POP) worldwide (global pricing will apply). Select DNS records with a `us-eu` region to exclusively land traffic on North American and European POPs.
 func (o GetTlsConfigurationDnsRecordOutput) Region() pulumi.StringOutput {
 	return o.ApplyT(func(v GetTlsConfigurationDnsRecord) string { return v.Region }).(pulumi.StringOutput)
 }
@@ -14819,9 +14909,12 @@ func (o GetTlsConfigurationDnsRecordArrayOutput) Index(i pulumi.IntInput) GetTls
 }
 
 type GetWafRulesRule struct {
-	LatestRevisionNumber int    `pulumi:"latestRevisionNumber"`
-	ModsecRuleId         int    `pulumi:"modsecRuleId"`
-	Type                 string `pulumi:"type"`
+	// The modsecurity rule's latest revision.
+	LatestRevisionNumber int `pulumi:"latestRevisionNumber"`
+	// The modsecurity rule ID.
+	ModsecRuleId int `pulumi:"modsecRuleId"`
+	// The modsecurity rule's type.
+	Type string `pulumi:"type"`
 }
 
 // GetWafRulesRuleInput is an input type that accepts GetWafRulesRuleArgs and GetWafRulesRuleOutput values.
@@ -14836,9 +14929,12 @@ type GetWafRulesRuleInput interface {
 }
 
 type GetWafRulesRuleArgs struct {
-	LatestRevisionNumber pulumi.IntInput    `pulumi:"latestRevisionNumber"`
-	ModsecRuleId         pulumi.IntInput    `pulumi:"modsecRuleId"`
-	Type                 pulumi.StringInput `pulumi:"type"`
+	// The modsecurity rule's latest revision.
+	LatestRevisionNumber pulumi.IntInput `pulumi:"latestRevisionNumber"`
+	// The modsecurity rule ID.
+	ModsecRuleId pulumi.IntInput `pulumi:"modsecRuleId"`
+	// The modsecurity rule's type.
+	Type pulumi.StringInput `pulumi:"type"`
 }
 
 func (GetWafRulesRuleArgs) ElementType() reflect.Type {
@@ -14892,14 +14988,17 @@ func (o GetWafRulesRuleOutput) ToGetWafRulesRuleOutputWithContext(ctx context.Co
 	return o
 }
 
+// The modsecurity rule's latest revision.
 func (o GetWafRulesRuleOutput) LatestRevisionNumber() pulumi.IntOutput {
 	return o.ApplyT(func(v GetWafRulesRule) int { return v.LatestRevisionNumber }).(pulumi.IntOutput)
 }
 
+// The modsecurity rule ID.
 func (o GetWafRulesRuleOutput) ModsecRuleId() pulumi.IntOutput {
 	return o.ApplyT(func(v GetWafRulesRule) int { return v.ModsecRuleId }).(pulumi.IntOutput)
 }
 
+// The modsecurity rule's type.
 func (o GetWafRulesRuleOutput) Type() pulumi.StringOutput {
 	return o.ApplyT(func(v GetWafRulesRule) string { return v.Type }).(pulumi.StringOutput)
 }
