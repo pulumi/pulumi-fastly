@@ -10,13 +10,29 @@ import java.util.Objects;
 
 @CustomType
 public final class GetSecretstoresStore {
+    /**
+     * @return Alphanumeric string identifying the Secrets Store.
+     * 
+     */
     private String id;
+    /**
+     * @return Name for the Secrets Store.
+     * 
+     */
     private String name;
 
     private GetSecretstoresStore() {}
+    /**
+     * @return Alphanumeric string identifying the Secrets Store.
+     * 
+     */
     public String id() {
         return this.id;
     }
+    /**
+     * @return Name for the Secrets Store.
+     * 
+     */
     public String name() {
         return this.name;
     }

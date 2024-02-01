@@ -13,9 +13,21 @@ namespace Pulumi.Fastly.Outputs
     [OutputType]
     public sealed class GetDatacentersPopResult
     {
+        /// <summary>
+        /// A code representing the POP location.
+        /// </summary>
         public readonly string Code;
+        /// <summary>
+        /// A code representing the general region of the world in which the POP location resides.
+        /// </summary>
         public readonly string Group;
+        /// <summary>
+        /// The name of the POP.
+        /// </summary>
         public readonly string Name;
+        /// <summary>
+        /// A code representing the shielding name of the POP. The value may be empty if the POP is not available for shielding.
+        /// </summary>
         public readonly string Shield;
 
         [OutputConstructor]

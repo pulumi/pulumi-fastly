@@ -10,17 +10,41 @@ import java.util.Objects;
 
 @CustomType
 public final class GetTlsConfigurationDnsRecord {
+    /**
+     * @return Type of DNS record to set, e.g. A, AAAA, or CNAME.
+     * 
+     */
     private String recordType;
+    /**
+     * @return The IP address or hostname of the DNS record.
+     * 
+     */
     private String recordValue;
+    /**
+     * @return The regions that will be used to route traffic. Select DNS Records with a `global` region to route traffic to the most performant point of presence (POP) worldwide (global pricing will apply). Select DNS records with a `us-eu` region to exclusively land traffic on North American and European POPs.
+     * 
+     */
     private String region;
 
     private GetTlsConfigurationDnsRecord() {}
+    /**
+     * @return Type of DNS record to set, e.g. A, AAAA, or CNAME.
+     * 
+     */
     public String recordType() {
         return this.recordType;
     }
+    /**
+     * @return The IP address or hostname of the DNS record.
+     * 
+     */
     public String recordValue() {
         return this.recordValue;
     }
+    /**
+     * @return The regions that will be used to route traffic. Select DNS Records with a `global` region to route traffic to the most performant point of presence (POP) worldwide (global pricing will apply). Select DNS records with a `us-eu` region to exclusively land traffic on North American and European POPs.
+     * 
+     */
     public String region() {
         return this.region;
     }

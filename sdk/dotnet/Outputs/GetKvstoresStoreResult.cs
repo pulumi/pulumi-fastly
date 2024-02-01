@@ -13,7 +13,13 @@ namespace Pulumi.Fastly.Outputs
     [OutputType]
     public sealed class GetKvstoresStoreResult
     {
+        /// <summary>
+        /// Alphanumeric string identifying the KV Store.
+        /// </summary>
         public readonly string Id;
+        /// <summary>
+        /// Name for the KV Store.
+        /// </summary>
         public readonly string Name;
 
         [OutputConstructor]

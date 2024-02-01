@@ -13,7 +13,13 @@ namespace Pulumi.Fastly.Outputs
     [OutputType]
     public sealed class GetSecretstoresStoreResult
     {
+        /// <summary>
+        /// Alphanumeric string identifying the Secrets Store.
+        /// </summary>
         public readonly string Id;
+        /// <summary>
+        /// Name for the Secrets Store.
+        /// </summary>
         public readonly string Name;
 
         [OutputConstructor]

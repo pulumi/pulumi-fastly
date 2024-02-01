@@ -29,7 +29,7 @@ func GetForceHttp2(ctx *pulumi.Context) bool {
 }
 
 // Set to `true` if your configuration only consumes data sources that do not require authentication, such as
-// `fastly_ip_ranges`
+// `getFastlyIpRanges`
 func GetNoAuth(ctx *pulumi.Context) bool {
 	return config.GetBool(ctx, "fastly:noAuth")
 }

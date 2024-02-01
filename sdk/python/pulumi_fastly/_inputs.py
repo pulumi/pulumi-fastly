@@ -11917,6 +11917,11 @@ class TlsSubscriptionManagedDnsChallengeArgs:
                  record_name: Optional[pulumi.Input[str]] = None,
                  record_type: Optional[pulumi.Input[str]] = None,
                  record_value: Optional[pulumi.Input[str]] = None):
+        """
+        :param pulumi.Input[str] record_name: The name of the DNS record to add. For example `_acme-challenge.example.com`.
+        :param pulumi.Input[str] record_type: The type of DNS record to add, e.g. `A`, or `CNAME`.
+        :param pulumi.Input[str] record_value: The value to which the DNS record should point, e.g. `xxxxx.fastly-validations.com`.
+        """
         if record_name is not None:
             pulumi.set(__self__, "record_name", record_name)
         if record_type is not None:
@@ -11927,6 +11932,9 @@ class TlsSubscriptionManagedDnsChallengeArgs:
     @property
     @pulumi.getter(name="recordName")
     def record_name(self) -> Optional[pulumi.Input[str]]:
+        """
+        The name of the DNS record to add. For example `_acme-challenge.example.com`.
+        """
         return pulumi.get(self, "record_name")
 
     @record_name.setter
@@ -11936,6 +11944,9 @@ class TlsSubscriptionManagedDnsChallengeArgs:
     @property
     @pulumi.getter(name="recordType")
     def record_type(self) -> Optional[pulumi.Input[str]]:
+        """
+        The type of DNS record to add, e.g. `A`, or `CNAME`.
+        """
         return pulumi.get(self, "record_type")
 
     @record_type.setter
@@ -11945,6 +11956,9 @@ class TlsSubscriptionManagedDnsChallengeArgs:
     @property
     @pulumi.getter(name="recordValue")
     def record_value(self) -> Optional[pulumi.Input[str]]:
+        """
+        The value to which the DNS record should point, e.g. `xxxxx.fastly-validations.com`.
+        """
         return pulumi.get(self, "record_value")
 
     @record_value.setter
@@ -11958,6 +11972,11 @@ class TlsSubscriptionManagedHttpChallengeArgs:
                  record_name: Optional[pulumi.Input[str]] = None,
                  record_type: Optional[pulumi.Input[str]] = None,
                  record_values: Optional[pulumi.Input[Sequence[pulumi.Input[str]]]] = None):
+        """
+        :param pulumi.Input[str] record_name: The name of the DNS record to add. For example `example.com`. Best accessed through a `for` expression to filter the relevant record.
+        :param pulumi.Input[str] record_type: The type of DNS record to add, e.g. `A`, or `CNAME`.
+        :param pulumi.Input[Sequence[pulumi.Input[str]]] record_values: A list with the value(s) to which the DNS record should point.
+        """
         if record_name is not None:
             pulumi.set(__self__, "record_name", record_name)
         if record_type is not None:
@@ -11968,6 +11987,9 @@ class TlsSubscriptionManagedHttpChallengeArgs:
     @property
     @pulumi.getter(name="recordName")
     def record_name(self) -> Optional[pulumi.Input[str]]:
+        """
+        The name of the DNS record to add. For example `example.com`. Best accessed through a `for` expression to filter the relevant record.
+        """
         return pulumi.get(self, "record_name")
 
     @record_name.setter
@@ -11977,6 +11999,9 @@ class TlsSubscriptionManagedHttpChallengeArgs:
     @property
     @pulumi.getter(name="recordType")
     def record_type(self) -> Optional[pulumi.Input[str]]:
+        """
+        The type of DNS record to add, e.g. `A`, or `CNAME`.
+        """
         return pulumi.get(self, "record_type")
 
     @record_type.setter
@@ -11986,6 +12011,9 @@ class TlsSubscriptionManagedHttpChallengeArgs:
     @property
     @pulumi.getter(name="recordValues")
     def record_values(self) -> Optional[pulumi.Input[Sequence[pulumi.Input[str]]]]:
+        """
+        A list with the value(s) to which the DNS record should point.
+        """
         return pulumi.get(self, "record_values")
 
     @record_values.setter

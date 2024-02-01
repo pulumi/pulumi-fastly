@@ -11,37 +11,101 @@ import java.util.Objects;
 
 @CustomType
 public final class GetServicesDetail {
+    /**
+     * @return A freeform descriptive note.
+     * 
+     */
     private String comment;
+    /**
+     * @return Date and time in ISO 8601 format.
+     * 
+     */
     private String createdAt;
+    /**
+     * @return Alphanumeric string identifying the customer.
+     * 
+     */
     private String customerId;
+    /**
+     * @return Alphanumeric string identifying the service.
+     * 
+     */
     private String id;
+    /**
+     * @return The name of the service.
+     * 
+     */
     private String name;
+    /**
+     * @return The type of this service. One of `vcl`, `wasm`.
+     * 
+     */
     private String type;
+    /**
+     * @return Date and time in ISO 8601 format.
+     * 
+     */
     private String updatedAt;
+    /**
+     * @return The currently activated version.
+     * 
+     */
     private Integer version;
 
     private GetServicesDetail() {}
+    /**
+     * @return A freeform descriptive note.
+     * 
+     */
     public String comment() {
         return this.comment;
     }
+    /**
+     * @return Date and time in ISO 8601 format.
+     * 
+     */
     public String createdAt() {
         return this.createdAt;
     }
+    /**
+     * @return Alphanumeric string identifying the customer.
+     * 
+     */
     public String customerId() {
         return this.customerId;
     }
+    /**
+     * @return Alphanumeric string identifying the service.
+     * 
+     */
     public String id() {
         return this.id;
     }
+    /**
+     * @return The name of the service.
+     * 
+     */
     public String name() {
         return this.name;
     }
+    /**
+     * @return The type of this service. One of `vcl`, `wasm`.
+     * 
+     */
     public String type() {
         return this.type;
     }
+    /**
+     * @return Date and time in ISO 8601 format.
+     * 
+     */
     public String updatedAt() {
         return this.updatedAt;
     }
+    /**
+     * @return The currently activated version.
+     * 
+     */
     public Integer version() {
         return this.version;
     }

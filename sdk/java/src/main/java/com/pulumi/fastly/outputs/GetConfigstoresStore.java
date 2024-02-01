@@ -10,13 +10,29 @@ import java.util.Objects;
 
 @CustomType
 public final class GetConfigstoresStore {
+    /**
+     * @return Alphanumeric string identifying the Config Store.
+     * 
+     */
     private String id;
+    /**
+     * @return Name for the Config Store.
+     * 
+     */
     private String name;
 
     private GetConfigstoresStore() {}
+    /**
+     * @return Alphanumeric string identifying the Config Store.
+     * 
+     */
     public String id() {
         return this.id;
     }
+    /**
+     * @return Name for the Config Store.
+     * 
+     */
     public String name() {
         return this.name;
     }
