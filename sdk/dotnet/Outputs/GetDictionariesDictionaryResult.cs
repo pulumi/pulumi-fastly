@@ -13,8 +13,17 @@ namespace Pulumi.Fastly.Outputs
     [OutputType]
     public sealed class GetDictionariesDictionaryResult
     {
+        /// <summary>
+        /// Alphanumeric string identifying the Dictionary.
+        /// </summary>
         public readonly string Id;
+        /// <summary>
+        /// Name for the Dictionary.
+        /// </summary>
         public readonly string Name;
+        /// <summary>
+        /// Indicates if items in the dictionary are readable or not.
+        /// </summary>
         public readonly bool WriteOnly;
 
         [OutputConstructor]

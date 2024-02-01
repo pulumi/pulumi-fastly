@@ -44,7 +44,7 @@ Object.defineProperty(exports, "forceHttp2", {
 
 /**
  * Set to `true` if your configuration only consumes data sources that do not require authentication, such as
- * `fastly_ip_ranges`
+ * `fastly.getFastlyIpRanges`
  */
 export declare const noAuth: boolean | undefined;
 Object.defineProperty(exports, "noAuth", {

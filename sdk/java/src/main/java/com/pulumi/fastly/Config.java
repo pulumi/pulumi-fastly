@@ -36,7 +36,7 @@ public final class Config {
     }
 /**
  * Set to `true` if your configuration only consumes data sources that do not require authentication, such as
- * `fastly_ip_ranges`
+ * `fastly.getFastlyIpRanges`
  * 
  */
     public Optional<Boolean> noAuth() {

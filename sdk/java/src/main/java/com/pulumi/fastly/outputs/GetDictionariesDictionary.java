@@ -11,17 +11,41 @@ import java.util.Objects;
 
 @CustomType
 public final class GetDictionariesDictionary {
+    /**
+     * @return Alphanumeric string identifying the Dictionary.
+     * 
+     */
     private String id;
+    /**
+     * @return Name for the Dictionary.
+     * 
+     */
     private String name;
+    /**
+     * @return Indicates if items in the dictionary are readable or not.
+     * 
+     */
     private Boolean writeOnly;
 
     private GetDictionariesDictionary() {}
+    /**
+     * @return Alphanumeric string identifying the Dictionary.
+     * 
+     */
     public String id() {
         return this.id;
     }
+    /**
+     * @return Name for the Dictionary.
+     * 
+     */
     public String name() {
         return this.name;
     }
+    /**
+     * @return Indicates if items in the dictionary are readable or not.
+     * 
+     */
     public Boolean writeOnly() {
         return this.writeOnly;
     }
