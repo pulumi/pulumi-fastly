@@ -67,7 +67,7 @@
             },
             "noAuth": {
                 "type": "boolean",
-                "description": "Set to `true` if your configuration only consumes data sources that do not require authentication, such as\n`fastly_ip_ranges`\n"
+                "description": "Set to `true` if your configuration only consumes data sources that do not require authentication, such as\n`fastly.getFastlyIpRanges`\n"
             }
         }
     },
@@ -3901,13 +3901,16 @@
         "fastly:index/TlsSubscriptionManagedDnsChallenge:TlsSubscriptionManagedDnsChallenge": {
             "properties": {
                 "recordName": {
-                    "type": "string"
+                    "type": "string",
+                    "description": "The name of the DNS record to add. For example `_acme-challenge.example.com`.\n"
                 },
                 "recordType": {
-                    "type": "string"
+                    "type": "string",
+                    "description": "The type of DNS record to add, e.g. `A`, or `CNAME`.\n"
                 },
                 "recordValue": {
-                    "type": "string"
+                    "type": "string",
+                    "description": "The value to which the DNS record should point, e.g. `xxxxx.fastly-validations.com`.\n"
                 }
             },
             "type": "object",
@@ -3924,16 +3927,19 @@
         "fastly:index/TlsSubscriptionManagedHttpChallenge:TlsSubscriptionManagedHttpChallenge": {
             "properties": {
                 "recordName": {
-                    "type": "string"
+                    "type": "string",
+                    "description": "The name of the DNS record to add. For example `example.com`. Best accessed through a `for` expression to filter the relevant record.\n"
                 },
                 "recordType": {
-                    "type": "string"
+                    "type": "string",
+                    "description": "The type of DNS record to add, e.g. `A`, or `CNAME`.\n"
                 },
                 "recordValues": {
                     "type": "array",
                     "items": {
                         "type": "string"
-                    }
+                    },
+                    "description": "A list with the value(s) to which the DNS record should point.\n"
                 }
             },
             "type": "object",
@@ -3950,10 +3956,12 @@
         "fastly:index/getConfigstoresStore:getConfigstoresStore": {
             "properties": {
                 "id": {
-                    "type": "string"
+                    "type": "string",
+                    "description": "Alphanumeric string identifying the Config Store.\n"
                 },
                 "name": {
-                    "type": "string"
+                    "type": "string",
+                    "description": "Name for the Config Store.\n"
                 }
             },
             "type": "object",
@@ -3970,16 +3978,20 @@
         "fastly:index/getDatacentersPop:getDatacentersPop": {
             "properties": {
                 "code": {
-                    "type": "string"
+                    "type": "string",
+                    "description": "A code representing the POP location.\n"
                 },
                 "group": {
-                    "type": "string"
+                    "type": "string",
+                    "description": "A code representing the general region of the world in which the POP location resides.\n"
                 },
                 "name": {
-                    "type": "string"
+                    "type": "string",
+                    "description": "The name of the POP.\n"
                 },
                 "shield": {
-                    "type": "string"
+                    "type": "string",
+                    "description": "A code representing the shielding name of the POP. The value may be empty if the POP is not available for shielding.\n"
                 }
             },
             "type": "object",
@@ -3998,13 +4010,16 @@
         "fastly:index/getDictionariesDictionary:getDictionariesDictionary": {
             "properties": {
                 "id": {
-                    "type": "string"
+                    "type": "string",
+                    "description": "Alphanumeric string identifying the Dictionary.\n"
                 },
                 "name": {
-                    "type": "string"
+                    "type": "string",
+                    "description": "Name for the Dictionary.\n"
                 },
                 "writeOnly": {
-                    "type": "boolean"
+                    "type": "boolean",
+                    "description": "Indicates if items in the dictionary are readable or not.\n"
                 }
             },
             "type": "object",
@@ -4022,10 +4037,12 @@
         "fastly:index/getKvstoresStore:getKvstoresStore": {
             "properties": {
                 "id": {
-                    "type": "string"
+                    "type": "string",
+                    "description": "Alphanumeric string identifying the KV Store.\n"
                 },
                 "name": {
-                    "type": "string"
+                    "type": "string",
+                    "description": "Name for the KV Store.\n"
                 }
             },
             "type": "object",
@@ -4042,10 +4059,12 @@
         "fastly:index/getSecretstoresStore:getSecretstoresStore": {
             "properties": {
                 "id": {
-                    "type": "string"
+                    "type": "string",
+                    "description": "Alphanumeric string identifying the Secrets Store.\n"
                 },
                 "name": {
-                    "type": "string"
+                    "type": "string",
+                    "description": "Name for the Secrets Store.\n"
                 }
             },
             "type": "object",
@@ -4062,28 +4081,36 @@
         "fastly:index/getServicesDetail:getServicesDetail": {
             "properties": {
                 "comment": {
-                    "type": "string"
+                    "type": "string",
+                    "description": "A freeform descriptive note.\n"
                 },
                 "createdAt": {
-                    "type": "string"
+                    "type": "string",
+                    "description": "Date and time in ISO 8601 format.\n"
                 },
                 "customerId": {
-                    "type": "string"
+                    "type": "string",
+                    "description": "Alphanumeric string identifying the customer.\n"
                 },
                 "id": {
-                    "type": "string"
+                    "type": "string",
+                    "description": "Alphanumeric string identifying the service.\n"
                 },
                 "name": {
-                    "type": "string"
+                    "type": "string",
+                    "description": "The name of the service.\n"
                 },
                 "type": {
-                    "type": "string"
+                    "type": "string",
+                    "description": "The type of this service. One of `vcl`, `wasm`.\n"
                 },
                 "updatedAt": {
-                    "type": "string"
+                    "type": "string",
+                    "description": "Date and time in ISO 8601 format.\n"
                 },
                 "version": {
-                    "type": "integer"
+                    "type": "integer",
+                    "description": "The currently activated version.\n"
                 }
             },
             "type": "object",
@@ -4106,13 +4133,16 @@
         "fastly:index/getTlsConfigurationDnsRecord:getTlsConfigurationDnsRecord": {
             "properties": {
                 "recordType": {
-                    "type": "string"
+                    "type": "string",
+                    "description": "Type of DNS record to set, e.g. A, AAAA, or CNAME.\n"
                 },
                 "recordValue": {
-                    "type": "string"
+                    "type": "string",
+                    "description": "The IP address or hostname of the DNS record.\n"
                 },
                 "region": {
-                    "type": "string"
+                    "type": "string",
+                    "description": "The regions that will be used to route traffic. Select DNS Records with a `global` region to route traffic to the most performant point of presence (POP) worldwide (global pricing will apply). Select DNS records with a `us-eu` region to exclusively land traffic on North American and European POPs.\n"
                 }
             },
             "type": "object",
@@ -4130,13 +4160,16 @@
         "fastly:index/getWafRulesRule:getWafRulesRule": {
             "properties": {
                 "latestRevisionNumber": {
-                    "type": "integer"
+                    "type": "integer",
+                    "description": "The modsecurity rule's latest revision.\n"
                 },
                 "modsecRuleId": {
-                    "type": "integer"
+                    "type": "integer",
+                    "description": "The modsecurity rule ID.\n"
                 },
                 "type": {
-                    "type": "string"
+                    "type": "string",
+                    "description": "The modsecurity rule's type.\n"
                 }
             },
             "type": "object",
