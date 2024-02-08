@@ -10,7 +10,7 @@ import * as utilities from "./utilities";
  * Fastly Config Stores entries can be imported using the corresponding Config Store ID with the `/entries` suffix, e.g.
  *
  * ```sh
- *  $ pulumi import fastly:index/configstoreEntries:ConfigstoreEntries example xxxxxxxxxxxxxxxxxxxx/entries
+ * $ pulumi import fastly:index/configstoreEntries:ConfigstoreEntries example xxxxxxxxxxxxxxxxxxxx/entries
  * ```
  */
 export class ConfigstoreEntries extends pulumi.CustomResource {

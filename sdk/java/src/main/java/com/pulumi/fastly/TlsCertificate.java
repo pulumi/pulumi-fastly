@@ -101,7 +101,7 @@ import javax.annotation.Nullable;
  * A certificate can be imported using its Fastly certificate ID, e.g.
  * 
  * ```sh
- *  $ pulumi import fastly:index/tlsCertificate:TlsCertificate demo xxxxxxxxxxx
+ * $ pulumi import fastly:index/tlsCertificate:TlsCertificate demo xxxxxxxxxxx
  * ```
  * 
  */

@@ -100,7 +100,7 @@ class Secretstore(pulumi.CustomResource):
         Fastly Secret Stores can be imported using their Store ID, e.g.
 
         ```sh
-         $ pulumi import fastly:index/secretstore:Secretstore example xxxxxxxxxxxxxxxxxxxx
+        $ pulumi import fastly:index/secretstore:Secretstore example xxxxxxxxxxxxxxxxxxxx
         ```
 
         :param str resource_name: The name of the resource.
@@ -147,7 +147,7 @@ class Secretstore(pulumi.CustomResource):
         Fastly Secret Stores can be imported using their Store ID, e.g.
 
         ```sh
-         $ pulumi import fastly:index/secretstore:Secretstore example xxxxxxxxxxxxxxxxxxxx
+        $ pulumi import fastly:index/secretstore:Secretstore example xxxxxxxxxxxxxxxxxxxx
         ```
 
         :param str resource_name: The name of the resource.
