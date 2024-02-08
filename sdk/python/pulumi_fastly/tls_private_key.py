@@ -201,7 +201,7 @@ class TlsPrivateKey(pulumi.CustomResource):
         A Private Key can be imported using its ID, e.g.
 
         ```sh
-         $ pulumi import fastly:index/tlsPrivateKey:TlsPrivateKey demo xxxxxxxxxxx
+        $ pulumi import fastly:index/tlsPrivateKey:TlsPrivateKey demo xxxxxxxxxxx
         ```
 
         :param str resource_name: The name of the resource.
@@ -238,7 +238,7 @@ class TlsPrivateKey(pulumi.CustomResource):
         A Private Key can be imported using its ID, e.g.
 
         ```sh
-         $ pulumi import fastly:index/tlsPrivateKey:TlsPrivateKey demo xxxxxxxxxxx
+        $ pulumi import fastly:index/tlsPrivateKey:TlsPrivateKey demo xxxxxxxxxxx
         ```
 
         :param str resource_name: The name of the resource.

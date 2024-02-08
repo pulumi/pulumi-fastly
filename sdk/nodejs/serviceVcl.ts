@@ -12,13 +12,15 @@ import * as utilities from "./utilities";
  * Fastly Services can be imported using their service ID, e.g.
  *
  * ```sh
- *  $ pulumi import fastly:index/serviceVcl:ServiceVcl demo xxxxxxxxxxxxxxxxxxxx
+ * $ pulumi import fastly:index/serviceVcl:ServiceVcl demo xxxxxxxxxxxxxxxxxxxx
  * ```
  *
- *  By default, either the active version will be imported, or the latest version if no version is active. Alternatively, a specific version of the service can be selected by appending an `@` followed by the version number to the service ID, e.g.
+ *  By default, either the active version will be imported, or the latest version if no version is active.
+ *
+ *  Alternatively, a specific version of the service can be selected by appending an `@` followed by the version number to the service ID, e.g.
  *
  * ```sh
- *  $ pulumi import fastly:index/serviceVcl:ServiceVcl demo xxxxxxxxxxxxxxxxxxxx@2
+ * $ pulumi import fastly:index/serviceVcl:ServiceVcl demo xxxxxxxxxxxxxxxxxxxx@2
  * ```
  */
 export class ServiceVcl extends pulumi.CustomResource {

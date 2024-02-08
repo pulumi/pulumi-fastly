@@ -69,9 +69,7 @@ import (
 // Fastly KV Stores can be imported using their Store ID, e.g.
 //
 // ```sh
-//
-//	$ pulumi import fastly:index/kvstore:Kvstore example xxxxxxxxxxxxxxxxxxxx
-//
+// $ pulumi import fastly:index/kvstore:Kvstore example xxxxxxxxxxxxxxxxxxxx
 // ```
 type Kvstore struct {
 	pulumi.CustomResourceState

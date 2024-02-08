@@ -20,13 +20,19 @@ import javax.annotation.Nullable;
 /**
  * ## Import
  * 
- * This is an example of the import command being applied to the resource named `fastly_service_dictionary_items.items` The resource ID is a combined value of the `service_id` and `dictionary_id` separated by a forward slash.
+ * This is an example of the import command being applied to the resource named `fastly_service_dictionary_items.items`
+ * 
+ *  The resource ID is a combined value of the `service_id` and `dictionary_id` separated by a forward slash.
  * 
  * ```sh
- *  $ pulumi import fastly:index/serviceDictionaryItems:ServiceDictionaryItems items xxxxxxxxxxxxxxxxxxxx/xxxxxxxxxxxxxxxxxxxx
+ * $ pulumi import fastly:index/serviceDictionaryItems:ServiceDictionaryItems items xxxxxxxxxxxxxxxxxxxx/xxxxxxxxxxxxxxxxxxxx
  * ```
  * 
- *  If Terraform is already managing remote dictionary items against a resource being imported then the user will be asked to remove it from the existing Terraform state. The following is an example of the Terraform state command to remove the resource named `fastly_service_dictionary_items.items` from the Terraform state file. $ terraform state rm fastly_service_dictionary_items.items
+ *  If Terraform is already managing remote dictionary items against a resource being imported then the user will be asked to remove it from the existing Terraform state.
+ * 
+ *  The following is an example of the Terraform state command to remove the resource named `fastly_service_dictionary_items.items` from the Terraform state file.
+ * 
+ *  $ terraform state rm fastly_service_dictionary_items.items
  * 
  */
 @ResourceType(type="fastly:index/serviceDictionaryItems:ServiceDictionaryItems")

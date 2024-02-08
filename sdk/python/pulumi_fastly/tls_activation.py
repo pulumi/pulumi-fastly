@@ -217,7 +217,7 @@ class TlsActivation(pulumi.CustomResource):
         A TLS activation can be imported using its ID, e.g.
 
         ```sh
-         $ pulumi import fastly:index/tlsActivation:TlsActivation demo xxxxxxxx
+        $ pulumi import fastly:index/tlsActivation:TlsActivation demo xxxxxxxx
         ```
 
         :param str resource_name: The name of the resource.
@@ -271,7 +271,7 @@ class TlsActivation(pulumi.CustomResource):
         A TLS activation can be imported using its ID, e.g.
 
         ```sh
-         $ pulumi import fastly:index/tlsActivation:TlsActivation demo xxxxxxxx
+        $ pulumi import fastly:index/tlsActivation:TlsActivation demo xxxxxxxx
         ```
 
         :param str resource_name: The name of the resource.
