@@ -152,7 +152,7 @@ class User(pulumi.CustomResource):
         A Fastly User can be imported using their user ID, e.g.
 
         ```sh
-         $ pulumi import fastly:index/user:User demo xxxxxxxxxxxxxxxxxxxx
+        $ pulumi import fastly:index/user:User demo xxxxxxxxxxxxxxxxxxxx
         ```
 
         :param str resource_name: The name of the resource.
@@ -188,7 +188,7 @@ class User(pulumi.CustomResource):
         A Fastly User can be imported using their user ID, e.g.
 
         ```sh
-         $ pulumi import fastly:index/user:User demo xxxxxxxxxxxxxxxxxxxx
+        $ pulumi import fastly:index/user:User demo xxxxxxxxxxxxxxxxxxxx
         ```
 
         :param str resource_name: The name of the resource.

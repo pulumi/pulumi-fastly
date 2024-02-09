@@ -84,7 +84,7 @@ namespace Pulumi.Fastly
     /// A TLS activation can be imported using its ID, e.g.
     /// 
     /// ```sh
-    ///  $ pulumi import fastly:index/tlsActivation:TlsActivation demo xxxxxxxx
+    /// $ pulumi import fastly:index/tlsActivation:TlsActivation demo xxxxxxxx
     /// ```
     /// </summary>
     [FastlyResourceType("fastly:index/tlsActivation:TlsActivation")]

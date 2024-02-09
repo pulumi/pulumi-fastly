@@ -39,7 +39,7 @@ namespace Pulumi.Fastly
     /// A Fastly User can be imported using their user ID, e.g.
     /// 
     /// ```sh
-    ///  $ pulumi import fastly:index/user:User demo xxxxxxxxxxxxxxxxxxxx
+    /// $ pulumi import fastly:index/user:User demo xxxxxxxxxxxxxxxxxxxx
     /// ```
     /// </summary>
     [FastlyResourceType("fastly:index/user:User")]

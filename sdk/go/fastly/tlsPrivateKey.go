@@ -56,9 +56,7 @@ import (
 // A Private Key can be imported using its ID, e.g.
 //
 // ```sh
-//
-//	$ pulumi import fastly:index/tlsPrivateKey:TlsPrivateKey demo xxxxxxxxxxx
-//
+// $ pulumi import fastly:index/tlsPrivateKey:TlsPrivateKey demo xxxxxxxxxxx
 // ```
 type TlsPrivateKey struct {
 	pulumi.CustomResourceState

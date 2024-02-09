@@ -22,7 +22,7 @@ import * as utilities from "./utilities";
  * A subscription can be imported using its Fastly subscription ID, e.g.
  *
  * ```sh
- *  $ pulumi import fastly:index/tlsSubscription:TlsSubscription demo xxxxxxxxxxx
+ * $ pulumi import fastly:index/tlsSubscription:TlsSubscription demo xxxxxxxxxxx
  * ```
  */
 export class TlsSubscription extends pulumi.CustomResource {

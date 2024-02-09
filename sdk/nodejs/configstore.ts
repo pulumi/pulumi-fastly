@@ -45,7 +45,7 @@ import * as utilities from "./utilities";
  * Fastly Config Stores can be imported using their Store ID, e.g.
  *
  * ```sh
- *  $ pulumi import fastly:index/configstore:Configstore example xxxxxxxxxxxxxxxxxxxx
+ * $ pulumi import fastly:index/configstore:Configstore example xxxxxxxxxxxxxxxxxxxx
  * ```
  */
 export class Configstore extends pulumi.CustomResource {

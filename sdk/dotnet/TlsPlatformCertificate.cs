@@ -122,7 +122,7 @@ namespace Pulumi.Fastly
     /// A certificate can be imported using its Fastly certificate ID, e.g.
     /// 
     /// ```sh
-    ///  $ pulumi import fastly:index/tlsPlatformCertificate:TlsPlatformCertificate demo xxxxxxxxxxx
+    /// $ pulumi import fastly:index/tlsPlatformCertificate:TlsPlatformCertificate demo xxxxxxxxxxx
     /// ```
     /// </summary>
     [FastlyResourceType("fastly:index/tlsPlatformCertificate:TlsPlatformCertificate")]

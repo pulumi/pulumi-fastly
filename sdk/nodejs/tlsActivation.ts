@@ -46,7 +46,7 @@ import * as utilities from "./utilities";
  * A TLS activation can be imported using its ID, e.g.
  *
  * ```sh
- *  $ pulumi import fastly:index/tlsActivation:TlsActivation demo xxxxxxxx
+ * $ pulumi import fastly:index/tlsActivation:TlsActivation demo xxxxxxxx
  * ```
  */
 export class TlsActivation extends pulumi.CustomResource {

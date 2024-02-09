@@ -12,13 +12,19 @@ namespace Pulumi.Fastly
     /// <summary>
     /// ## Import
     /// 
-    /// This is an example of the import command being applied to the resource named `fastly_service_acl_entries.entries` The resource ID is a combined value of the `service_id` and `acl_id` separated by a forward slash.
+    /// This is an example of the import command being applied to the resource named `fastly_service_acl_entries.entries`
+    /// 
+    ///  The resource ID is a combined value of the `service_id` and `acl_id` separated by a forward slash.
     /// 
     /// ```sh
-    ///  $ pulumi import fastly:index/serviceACLEntries:ServiceACLEntries entries xxxxxxxxxxxxxxxxxxxx/xxxxxxxxxxxxxxxxxxxx
+    /// $ pulumi import fastly:index/serviceACLEntries:ServiceACLEntries entries xxxxxxxxxxxxxxxxxxxx/xxxxxxxxxxxxxxxxxxxx
     /// ```
     /// 
-    ///  If Terraform is already managing remote acl entries against a resource being imported then the user will be asked to remove it from the existing Terraform state. The following is an example of the Terraform state command to remove the resource named `fastly_service_acl_entries.entries` from the Terraform state file. $ terraform state rm fastly_service_acl_entries.entries
+    ///  If Terraform is already managing remote acl entries against a resource being imported then the user will be asked to remove it from the existing Terraform state.
+    /// 
+    ///  The following is an example of the Terraform state command to remove the resource named `fastly_service_acl_entries.entries` from the Terraform state file.
+    /// 
+    ///  $ terraform state rm fastly_service_acl_entries.entries
     /// </summary>
     [FastlyResourceType("fastly:index/serviceACLEntries:ServiceACLEntries")]
     public partial class ServiceACLEntries : global::Pulumi.CustomResource

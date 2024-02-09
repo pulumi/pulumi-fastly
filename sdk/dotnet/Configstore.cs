@@ -69,7 +69,7 @@ namespace Pulumi.Fastly
     /// Fastly Config Stores can be imported using their Store ID, e.g.
     /// 
     /// ```sh
-    ///  $ pulumi import fastly:index/configstore:Configstore example xxxxxxxxxxxxxxxxxxxx
+    /// $ pulumi import fastly:index/configstore:Configstore example xxxxxxxxxxxxxxxxxxxx
     /// ```
     /// </summary>
     [FastlyResourceType("fastly:index/configstore:Configstore")]
