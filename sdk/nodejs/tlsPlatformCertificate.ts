@@ -75,7 +75,7 @@ import * as utilities from "./utilities";
  * A certificate can be imported using its Fastly certificate ID, e.g.
  *
  * ```sh
- *  $ pulumi import fastly:index/tlsPlatformCertificate:TlsPlatformCertificate demo xxxxxxxxxxx
+ * $ pulumi import fastly:index/tlsPlatformCertificate:TlsPlatformCertificate demo xxxxxxxxxxx
  * ```
  */
 export class TlsPlatformCertificate extends pulumi.CustomResource {

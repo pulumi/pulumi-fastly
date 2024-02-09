@@ -322,7 +322,7 @@ class TlsPlatformCertificate(pulumi.CustomResource):
         A certificate can be imported using its Fastly certificate ID, e.g.
 
         ```sh
-         $ pulumi import fastly:index/tlsPlatformCertificate:TlsPlatformCertificate demo xxxxxxxxxxx
+        $ pulumi import fastly:index/tlsPlatformCertificate:TlsPlatformCertificate demo xxxxxxxxxxx
         ```
 
         :param str resource_name: The name of the resource.
@@ -402,7 +402,7 @@ class TlsPlatformCertificate(pulumi.CustomResource):
         A certificate can be imported using its Fastly certificate ID, e.g.
 
         ```sh
-         $ pulumi import fastly:index/tlsPlatformCertificate:TlsPlatformCertificate demo xxxxxxxxxxx
+        $ pulumi import fastly:index/tlsPlatformCertificate:TlsPlatformCertificate demo xxxxxxxxxxx
         ```
 
         :param str resource_name: The name of the resource.

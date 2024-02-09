@@ -33,7 +33,7 @@ import * as utilities from "./utilities";
  * A Fastly Service Authorization can be imported using their user ID, e.g.
  *
  * ```sh
- *  $ pulumi import fastly:index/serviceAuthorization:ServiceAuthorization demo xxxxxxxxxxxxxxxxxxxx
+ * $ pulumi import fastly:index/serviceAuthorization:ServiceAuthorization demo xxxxxxxxxxxxxxxxxxxx
  * ```
  */
 export class ServiceAuthorization extends pulumi.CustomResource {

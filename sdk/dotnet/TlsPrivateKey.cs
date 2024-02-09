@@ -45,7 +45,7 @@ namespace Pulumi.Fastly
     /// A Private Key can be imported using its ID, e.g.
     /// 
     /// ```sh
-    ///  $ pulumi import fastly:index/tlsPrivateKey:TlsPrivateKey demo xxxxxxxxxxx
+    /// $ pulumi import fastly:index/tlsPrivateKey:TlsPrivateKey demo xxxxxxxxxxx
     /// ```
     /// </summary>
     [FastlyResourceType("fastly:index/tlsPrivateKey:TlsPrivateKey")]

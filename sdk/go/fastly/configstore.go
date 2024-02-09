@@ -73,9 +73,7 @@ import (
 // Fastly Config Stores can be imported using their Store ID, e.g.
 //
 // ```sh
-//
-//	$ pulumi import fastly:index/configstore:Configstore example xxxxxxxxxxxxxxxxxxxx
-//
+// $ pulumi import fastly:index/configstore:Configstore example xxxxxxxxxxxxxxxxxxxx
 // ```
 type Configstore struct {
 	pulumi.CustomResourceState

@@ -30,10 +30,12 @@ namespace Pulumi.Fastly
     /// 
     /// ## Import
     /// 
-    /// This is an example of the import command being applied to the resource named `fastly_service_waf_configuration.waf` The resource ID should be the WAF ID.
+    /// This is an example of the import command being applied to the resource named `fastly_service_waf_configuration.waf`
+    /// 
+    ///  The resource ID should be the WAF ID.
     /// 
     /// ```sh
-    ///  $ pulumi import fastly:index/serviceWafConfiguration:ServiceWafConfiguration waf xxxxxxxxxxxxxxxxxxxx
+    /// $ pulumi import fastly:index/serviceWafConfiguration:ServiceWafConfiguration waf xxxxxxxxxxxxxxxxxxxx
     /// ```
     /// </summary>
     [FastlyResourceType("fastly:index/serviceWafConfiguration:ServiceWafConfiguration")]
