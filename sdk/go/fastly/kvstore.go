@@ -27,6 +27,9 @@ import (
 //
 //	func main() {
 //		pulumi.Run(func(ctx *pulumi.Context) error {
+//			// IMPORTANT: Deleting a KV Store requires first deleting its resource_link.
+//			// This requires a two-step `pulumi up` as we can't guarantee deletion order.
+//			// e.g. resource_link deletion within fastly_service_compute might not finish first.
 //			exampleKvstore, err := fastly.NewKvstore(ctx, "exampleKvstore", nil)
 //			if err != nil {
 //				return err
