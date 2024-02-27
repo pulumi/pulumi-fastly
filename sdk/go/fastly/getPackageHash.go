@@ -33,6 +33,7 @@ import (
 //			if err != nil {
 //				return err
 //			}
+//			// ...
 //			_, err = fastly.NewServiceCompute(ctx, "exampleServiceCompute", &fastly.ServiceComputeArgs{
 //				Package: &fastly.ServiceComputePackageArgs{
 //					Filename:       pulumi.String("./path/to/package.tar.gz"),
