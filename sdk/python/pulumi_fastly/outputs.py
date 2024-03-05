@@ -11,6 +11,8 @@ from . import _utilities
 from . import outputs
 
 __all__ = [
+    'AlertDimensions',
+    'AlertEvaluationStrategy',
     'ServiceACLEntriesEntry',
     'ServiceComputeBackend',
     'ServiceComputeDictionary',
@@ -73,6 +75,7 @@ __all__ = [
     'ServiceVclLoggingLoggly',
     'ServiceVclLoggingLogshuttle',
     'ServiceVclLoggingNewrelic',
+    'ServiceVclLoggingNewrelicotlp',
     'ServiceVclLoggingOpenstack',
     'ServiceVclLoggingPapertrail',
     'ServiceVclLoggingS3',
@@ -102,6 +105,77 @@ __all__ = [
     'GetTlsConfigurationDnsRecordResult',
     'GetWafRulesRuleResult',
 ]
+
+@pulumi.output_type
+class AlertDimensions(dict):
+    def __init__(__self__, *,
+                 domains: Optional[Sequence[str]] = None,
+                 origins: Optional[Sequence[str]] = None):
+        """
+        :param Sequence[str] domains: Names of a subset of domains that the alert monitors.
+        :param Sequence[str] origins: Addresses of a subset of backends that the alert monitors.
+        """
+        if domains is not None:
+            pulumi.set(__self__, "domains", domains)
+        if origins is not None:
+            pulumi.set(__self__, "origins", origins)
+
+    @property
+    @pulumi.getter
+    def domains(self) -> Optional[Sequence[str]]:
+        """
+        Names of a subset of domains that the alert monitors.
+        """
+        return pulumi.get(self, "domains")
+
+    @property
+    @pulumi.getter
+    def origins(self) -> Optional[Sequence[str]]:
+        """
+        Addresses of a subset of backends that the alert monitors.
+        """
+        return pulumi.get(self, "origins")
+
+
+@pulumi.output_type
+class AlertEvaluationStrategy(dict):
+    def __init__(__self__, *,
+                 period: str,
+                 threshold: float,
+                 type: str):
+        """
+        :param str period: The length of time to evaluate whether the conditions have been met. The data is polled every minute. One of: `5m`, `15m`, `30m`.
+        :param float threshold: Threshold used to alert.
+        :param str type: Type of strategy to use to evaluate. One of: `above_threshold`, `below_threshold`.
+        """
+        pulumi.set(__self__, "period", period)
+        pulumi.set(__self__, "threshold", threshold)
+        pulumi.set(__self__, "type", type)
+
+    @property
+    @pulumi.getter
+    def period(self) -> str:
+        """
+        The length of time to evaluate whether the conditions have been met. The data is polled every minute. One of: `5m`, `15m`, `30m`.
+        """
+        return pulumi.get(self, "period")
+
+    @property
+    @pulumi.getter
+    def threshold(self) -> float:
+        """
+        Threshold used to alert.
+        """
+        return pulumi.get(self, "threshold")
+
+    @property
+    @pulumi.getter
+    def type(self) -> str:
+        """
+        Type of strategy to use to evaluate. One of: `above_threshold`, `below_threshold`.
+        """
+        return pulumi.get(self, "type")
+
 
 @pulumi.output_type
 class ServiceACLEntriesEntry(dict):
@@ -8289,6 +8363,126 @@ class ServiceVclLoggingNewrelic(dict):
         The name of the condition to apply.
         """
         return pulumi.get(self, "response_condition")
+
+
+@pulumi.output_type
+class ServiceVclLoggingNewrelicotlp(dict):
+    @staticmethod
+    def __key_warning(key: str):
+        suggest = None
+        if key == "formatVersion":
+            suggest = "format_version"
+        elif key == "responseCondition":
+            suggest = "response_condition"
+
+        if suggest:
+            pulumi.log.warn(f"Key '{key}' not found in ServiceVclLoggingNewrelicotlp. Access the value via the '{suggest}' property getter instead.")
+
+    def __getitem__(self, key: str) -> Any:
+        ServiceVclLoggingNewrelicotlp.__key_warning(key)
+        return super().__getitem__(key)
+
+    def get(self, key: str, default = None) -> Any:
+        ServiceVclLoggingNewrelicotlp.__key_warning(key)
+        return super().get(key, default)
+
+    def __init__(__self__, *,
+                 name: str,
+                 token: str,
+                 format: Optional[str] = None,
+                 format_version: Optional[int] = None,
+                 placement: Optional[str] = None,
+                 region: Optional[str] = None,
+                 response_condition: Optional[str] = None,
+                 url: Optional[str] = None):
+        """
+        :param str name: The unique name of the New Relic OTLP logging endpoint. It is important to note that changing this attribute will delete and recreate the resource
+        :param str token: The Insert API key from the Account page of your New Relic account
+        :param str format: Apache style log formatting. Your log must produce valid JSON that New Relic OTLP can ingest.
+        :param int format_version: The version of the custom logging format used for the configured endpoint. Can be either `1` or `2`. (default: `2`).
+        :param str placement: Where in the generated VCL the logging call should be placed.
+        :param str region: The region that log data will be sent to. Default: `US`
+        :param str response_condition: The name of the condition to apply.
+        :param str url: The optional New Relic Trace Observer URL to stream logs to for Infinite Tracing.
+        """
+        pulumi.set(__self__, "name", name)
+        pulumi.set(__self__, "token", token)
+        if format is not None:
+            pulumi.set(__self__, "format", format)
+        if format_version is not None:
+            pulumi.set(__self__, "format_version", format_version)
+        if placement is not None:
+            pulumi.set(__self__, "placement", placement)
+        if region is not None:
+            pulumi.set(__self__, "region", region)
+        if response_condition is not None:
+            pulumi.set(__self__, "response_condition", response_condition)
+        if url is not None:
+            pulumi.set(__self__, "url", url)
+
+    @property
+    @pulumi.getter
+    def name(self) -> str:
+        """
+        The unique name of the New Relic OTLP logging endpoint. It is important to note that changing this attribute will delete and recreate the resource
+        """
+        return pulumi.get(self, "name")
+
+    @property
+    @pulumi.getter
+    def token(self) -> str:
+        """
+        The Insert API key from the Account page of your New Relic account
+        """
+        return pulumi.get(self, "token")
+
+    @property
+    @pulumi.getter
+    def format(self) -> Optional[str]:
+        """
+        Apache style log formatting. Your log must produce valid JSON that New Relic OTLP can ingest.
+        """
+        return pulumi.get(self, "format")
+
+    @property
+    @pulumi.getter(name="formatVersion")
+    def format_version(self) -> Optional[int]:
+        """
+        The version of the custom logging format used for the configured endpoint. Can be either `1` or `2`. (default: `2`).
+        """
+        return pulumi.get(self, "format_version")
+
+    @property
+    @pulumi.getter
+    def placement(self) -> Optional[str]:
+        """
+        Where in the generated VCL the logging call should be placed.
+        """
+        return pulumi.get(self, "placement")
+
+    @property
+    @pulumi.getter
+    def region(self) -> Optional[str]:
+        """
+        The region that log data will be sent to. Default: `US`
+        """
+        return pulumi.get(self, "region")
+
+    @property
+    @pulumi.getter(name="responseCondition")
+    def response_condition(self) -> Optional[str]:
+        """
+        The name of the condition to apply.
+        """
+        return pulumi.get(self, "response_condition")
+
+    @property
+    @pulumi.getter
+    def url(self) -> Optional[str]:
+        """
+        The optional New Relic Trace Observer URL to stream logs to for Infinite Tracing.
+        """
+        return pulumi.get(self, "url")
 
 
 @pulumi.output_type

@@ -5,6 +5,32 @@ import * as pulumi from "@pulumi/pulumi";
 import * as inputs from "../types/input";
 import * as outputs from "../types/output";
 
+export interface AlertDimensions {
+    /**
+     * Names of a subset of domains that the alert monitors.
+     */
+    domains?: string[];
+    /**
+     * Addresses of a subset of backends that the alert monitors.
+     */
+    origins?: string[];
+}
+
+export interface AlertEvaluationStrategy {
+    /**
+     * The length of time to evaluate whether the conditions have been met. The data is polled every minute. One of: `5m`, `15m`, `30m`.
+     */
+    period: string;
+    /**
+     * Threshold used to alert.
+     */
+    threshold: number;
+    /**
+     * Type of strategy to use to evaluate. One of: `aboveThreshold`, `belowThreshold`.
+     */
+    type: string;
+}
+
 export interface GetConfigstoresStore {
     /**
      * Alphanumeric string identifying the Config Store.
@@ -2531,6 +2557,41 @@ export interface ServiceVclLoggingNewrelic {
      * The Insert API key from the Account page of your New Relic account
      */
     token: string;
+}
+
+export interface ServiceVclLoggingNewrelicotlp {
+    /**
+     * Apache style log formatting. Your log must produce valid JSON that New Relic OTLP can ingest.
+     */
+    format?: string;
+    /**
+     * The version of the custom logging format used for the configured endpoint. Can be either `1` or `2`. (default: `2`).
+     */
+    formatVersion?: number;
+    /**
+     * The unique name of the New Relic OTLP logging endpoint. It is important to note that changing this attribute will delete and recreate the resource
+     */
+    name: string;
+    /**
+     * Where in the generated VCL the logging call should be placed.
+     */
+    placement?: string;
+    /**
+     * The region that log data will be sent to. Default: `US`
+     */
+    region?: string;
+    /**
+     * The name of the condition to apply.
+     */
+    responseCondition?: string;
+    /**
+     * The Insert API key from the Account page of your New Relic account
+     */
+    token: string;
+    /**
+     * The optional New Relic Trace Observer URL to stream logs to for Infinite Tracing.
+     */
+    url?: string;
 }
 
 export interface ServiceVclLoggingOpenstack {

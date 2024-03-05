@@ -50,6 +50,7 @@ class ServiceVclArgs:
                  logging_logentries: Optional[pulumi.Input[Sequence[pulumi.Input['ServiceVclLoggingLogentryArgs']]]] = None,
                  logging_logglies: Optional[pulumi.Input[Sequence[pulumi.Input['ServiceVclLoggingLogglyArgs']]]] = None,
                  logging_logshuttles: Optional[pulumi.Input[Sequence[pulumi.Input['ServiceVclLoggingLogshuttleArgs']]]] = None,
+                 logging_newrelicotlps: Optional[pulumi.Input[Sequence[pulumi.Input['ServiceVclLoggingNewrelicotlpArgs']]]] = None,
                  logging_newrelics: Optional[pulumi.Input[Sequence[pulumi.Input['ServiceVclLoggingNewrelicArgs']]]] = None,
                  logging_openstacks: Optional[pulumi.Input[Sequence[pulumi.Input['ServiceVclLoggingOpenstackArgs']]]] = None,
                  logging_papertrails: Optional[pulumi.Input[Sequence[pulumi.Input['ServiceVclLoggingPapertrailArgs']]]] = None,
@@ -158,6 +159,8 @@ class ServiceVclArgs:
             pulumi.set(__self__, "logging_logglies", logging_logglies)
         if logging_logshuttles is not None:
             pulumi.set(__self__, "logging_logshuttles", logging_logshuttles)
+        if logging_newrelicotlps is not None:
+            pulumi.set(__self__, "logging_newrelicotlps", logging_newrelicotlps)
         if logging_newrelics is not None:
             pulumi.set(__self__, "logging_newrelics", logging_newrelics)
         if logging_openstacks is not None:
@@ -535,6 +538,15 @@ class ServiceVclArgs:
         pulumi.set(self, "logging_logshuttles", value)
 
     @property
+    @pulumi.getter(name="loggingNewrelicotlps")
+    def logging_newrelicotlps(self) -> Optional[pulumi.Input[Sequence[pulumi.Input['ServiceVclLoggingNewrelicotlpArgs']]]]:
+        return pulumi.get(self, "logging_newrelicotlps")
+
+    @logging_newrelicotlps.setter
+    def logging_newrelicotlps(self, value: Optional[pulumi.Input[Sequence[pulumi.Input['ServiceVclLoggingNewrelicotlpArgs']]]]):
+        pulumi.set(self, "logging_newrelicotlps", value)
+
+    @property
     @pulumi.getter(name="loggingNewrelics")
     def logging_newrelics(self) -> Optional[pulumi.Input[Sequence[pulumi.Input['ServiceVclLoggingNewrelicArgs']]]]:
         return pulumi.get(self, "logging_newrelics")
@@ -785,6 +797,7 @@ class _ServiceVclState:
                  logging_logentries: Optional[pulumi.Input[Sequence[pulumi.Input['ServiceVclLoggingLogentryArgs']]]] = None,
                  logging_logglies: Optional[pulumi.Input[Sequence[pulumi.Input['ServiceVclLoggingLogglyArgs']]]] = None,
                  logging_logshuttles: Optional[pulumi.Input[Sequence[pulumi.Input['ServiceVclLoggingLogshuttleArgs']]]] = None,
+                 logging_newrelicotlps: Optional[pulumi.Input[Sequence[pulumi.Input['ServiceVclLoggingNewrelicotlpArgs']]]] = None,
                  logging_newrelics: Optional[pulumi.Input[Sequence[pulumi.Input['ServiceVclLoggingNewrelicArgs']]]] = None,
                  logging_openstacks: Optional[pulumi.Input[Sequence[pulumi.Input['ServiceVclLoggingOpenstackArgs']]]] = None,
                  logging_papertrails: Optional[pulumi.Input[Sequence[pulumi.Input['ServiceVclLoggingPapertrailArgs']]]] = None,
@@ -908,6 +921,8 @@ class _ServiceVclState:
             pulumi.set(__self__, "logging_logglies", logging_logglies)
         if logging_logshuttles is not None:
             pulumi.set(__self__, "logging_logshuttles", logging_logshuttles)
+        if logging_newrelicotlps is not None:
+            pulumi.set(__self__, "logging_newrelicotlps", logging_newrelicotlps)
         if logging_newrelics is not None:
             pulumi.set(__self__, "logging_newrelics", logging_newrelics)
         if logging_openstacks is not None:
@@ -1335,6 +1350,15 @@ class _ServiceVclState:
         pulumi.set(self, "logging_logshuttles", value)
 
     @property
+    @pulumi.getter(name="loggingNewrelicotlps")
+    def logging_newrelicotlps(self) -> Optional[pulumi.Input[Sequence[pulumi.Input['ServiceVclLoggingNewrelicotlpArgs']]]]:
+        return pulumi.get(self, "logging_newrelicotlps")
+
+    @logging_newrelicotlps.setter
+    def logging_newrelicotlps(self, value: Optional[pulumi.Input[Sequence[pulumi.Input['ServiceVclLoggingNewrelicotlpArgs']]]]):
+        pulumi.set(self, "logging_newrelicotlps", value)
+
+    @property
     @pulumi.getter(name="loggingNewrelics")
     def logging_newrelics(self) -> Optional[pulumi.Input[Sequence[pulumi.Input['ServiceVclLoggingNewrelicArgs']]]]:
         return pulumi.get(self, "logging_newrelics")
@@ -1583,6 +1607,7 @@ class ServiceVcl(pulumi.CustomResource):
                  logging_logentries: Optional[pulumi.Input[Sequence[pulumi.Input[pulumi.InputType['ServiceVclLoggingLogentryArgs']]]]] = None,
                  logging_logglies: Optional[pulumi.Input[Sequence[pulumi.Input[pulumi.InputType['ServiceVclLoggingLogglyArgs']]]]] = None,
                  logging_logshuttles: Optional[pulumi.Input[Sequence[pulumi.Input[pulumi.InputType['ServiceVclLoggingLogshuttleArgs']]]]] = None,
+                 logging_newrelicotlps: Optional[pulumi.Input[Sequence[pulumi.Input[pulumi.InputType['ServiceVclLoggingNewrelicotlpArgs']]]]] = None,
                  logging_newrelics: Optional[pulumi.Input[Sequence[pulumi.Input[pulumi.InputType['ServiceVclLoggingNewrelicArgs']]]]] = None,
                  logging_openstacks: Optional[pulumi.Input[Sequence[pulumi.Input[pulumi.InputType['ServiceVclLoggingOpenstackArgs']]]]] = None,
                  logging_papertrails: Optional[pulumi.Input[Sequence[pulumi.Input[pulumi.InputType['ServiceVclLoggingPapertrailArgs']]]]] = None,
@@ -1714,6 +1739,7 @@ class ServiceVcl(pulumi.CustomResource):
                  logging_logentries: Optional[pulumi.Input[Sequence[pulumi.Input[pulumi.InputType['ServiceVclLoggingLogentryArgs']]]]] = None,
                  logging_logglies: Optional[pulumi.Input[Sequence[pulumi.Input[pulumi.InputType['ServiceVclLoggingLogglyArgs']]]]] = None,
                  logging_logshuttles: Optional[pulumi.Input[Sequence[pulumi.Input[pulumi.InputType['ServiceVclLoggingLogshuttleArgs']]]]] = None,
+                 logging_newrelicotlps: Optional[pulumi.Input[Sequence[pulumi.Input[pulumi.InputType['ServiceVclLoggingNewrelicotlpArgs']]]]] = None,
                  logging_newrelics: Optional[pulumi.Input[Sequence[pulumi.Input[pulumi.InputType['ServiceVclLoggingNewrelicArgs']]]]] = None,
                  logging_openstacks: Optional[pulumi.Input[Sequence[pulumi.Input[pulumi.InputType['ServiceVclLoggingOpenstackArgs']]]]] = None,
                  logging_papertrails: Optional[pulumi.Input[Sequence[pulumi.Input[pulumi.InputType['ServiceVclLoggingPapertrailArgs']]]]] = None,
@@ -1780,6 +1806,7 @@ class ServiceVcl(pulumi.CustomResource):
             __props__.__dict__["logging_logentries"] = logging_logentries
             __props__.__dict__["logging_logglies"] = logging_logglies
             __props__.__dict__["logging_logshuttles"] = logging_logshuttles
+            __props__.__dict__["logging_newrelicotlps"] = logging_newrelicotlps
             __props__.__dict__["logging_newrelics"] = logging_newrelics
             __props__.__dict__["logging_openstacks"] = logging_openstacks
             __props__.__dict__["logging_papertrails"] = logging_papertrails
@@ -1853,6 +1880,7 @@ class ServiceVcl(pulumi.CustomResource):
             logging_logentries: Optional[pulumi.Input[Sequence[pulumi.Input[pulumi.InputType['ServiceVclLoggingLogentryArgs']]]]] = None,
             logging_logglies: Optional[pulumi.Input[Sequence[pulumi.Input[pulumi.InputType['ServiceVclLoggingLogglyArgs']]]]] = None,
             logging_logshuttles: Optional[pulumi.Input[Sequence[pulumi.Input[pulumi.InputType['ServiceVclLoggingLogshuttleArgs']]]]] = None,
+            logging_newrelicotlps: Optional[pulumi.Input[Sequence[pulumi.Input[pulumi.InputType['ServiceVclLoggingNewrelicotlpArgs']]]]] = None,
             logging_newrelics: Optional[pulumi.Input[Sequence[pulumi.Input[pulumi.InputType['ServiceVclLoggingNewrelicArgs']]]]] = None,
             logging_openstacks: Optional[pulumi.Input[Sequence[pulumi.Input[pulumi.InputType['ServiceVclLoggingOpenstackArgs']]]]] = None,
             logging_papertrails: Optional[pulumi.Input[Sequence[pulumi.Input[pulumi.InputType['ServiceVclLoggingPapertrailArgs']]]]] = None,
@@ -1947,6 +1975,7 @@ class ServiceVcl(pulumi.CustomResource):
         __props__.__dict__["logging_logentries"] = logging_logentries
         __props__.__dict__["logging_logglies"] = logging_logglies
         __props__.__dict__["logging_logshuttles"] = logging_logshuttles
+        __props__.__dict__["logging_newrelicotlps"] = logging_newrelicotlps
         __props__.__dict__["logging_newrelics"] = logging_newrelics
         __props__.__dict__["logging_openstacks"] = logging_openstacks
         __props__.__dict__["logging_papertrails"] = logging_papertrails
@@ -2200,6 +2229,11 @@ class ServiceVcl(pulumi.CustomResource):
     @pulumi.getter(name="loggingLogshuttles")
     def logging_logshuttles(self) -> pulumi.Output[Optional[Sequence['outputs.ServiceVclLoggingLogshuttle']]]:
         return pulumi.get(self, "logging_logshuttles")
+
+    @property
+    @pulumi.getter(name="loggingNewrelicotlps")
+    def logging_newrelicotlps(self) -> pulumi.Output[Optional[Sequence['outputs.ServiceVclLoggingNewrelicotlp']]]:
+        return pulumi.get(self, "logging_newrelicotlps")
 
     @property
     @pulumi.getter(name="loggingNewrelics")

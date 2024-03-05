@@ -5,6 +5,11 @@ import * as pulumi from "@pulumi/pulumi";
 import * as utilities from "./utilities";
 
 // Export members:
+export { AlertArgs, AlertState } from "./alert";
+export type Alert = import("./alert").Alert;
+export const Alert: typeof import("./alert").Alert = null as any;
+utilities.lazyLoad(exports, ["Alert"], () => require("./alert"));
+
 export { ConfigstoreArgs, ConfigstoreState } from "./configstore";
 export type Configstore = import("./configstore").Configstore;
 export const Configstore: typeof import("./configstore").Configstore = null as any;
@@ -229,6 +234,8 @@ const _module = {
     version: utilities.getVersion(),
     construct: (name: string, type: string, urn: string): pulumi.Resource => {
         switch (type) {
+            case "fastly:index/alert:Alert":
+                return new Alert(name, <any>undefined, { urn })
             case "fastly:index/configstore:Configstore":
                 return new Configstore(name, <any>undefined, { urn })
             case "fastly:index/configstoreEntries:ConfigstoreEntries":
@@ -272,6 +279,7 @@ const _module = {
         }
     },
 };
+pulumi.runtime.registerResourceModule("fastly", "index/alert", _module)
 pulumi.runtime.registerResourceModule("fastly", "index/configstore", _module)
 pulumi.runtime.registerResourceModule("fastly", "index/configstoreEntries", _module)
 pulumi.runtime.registerResourceModule("fastly", "index/kvstore", _module)

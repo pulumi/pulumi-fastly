@@ -130,6 +130,7 @@ export class ServiceVcl extends pulumi.CustomResource {
     public readonly loggingLogentries!: pulumi.Output<outputs.ServiceVclLoggingLogentry[] | undefined>;
     public readonly loggingLogglies!: pulumi.Output<outputs.ServiceVclLoggingLoggly[] | undefined>;
     public readonly loggingLogshuttles!: pulumi.Output<outputs.ServiceVclLoggingLogshuttle[] | undefined>;
+    public readonly loggingNewrelicotlps!: pulumi.Output<outputs.ServiceVclLoggingNewrelicotlp[] | undefined>;
     public readonly loggingNewrelics!: pulumi.Output<outputs.ServiceVclLoggingNewrelic[] | undefined>;
     public readonly loggingOpenstacks!: pulumi.Output<outputs.ServiceVclLoggingOpenstack[] | undefined>;
     public readonly loggingPapertrails!: pulumi.Output<outputs.ServiceVclLoggingPapertrail[] | undefined>;
@@ -223,6 +224,7 @@ export class ServiceVcl extends pulumi.CustomResource {
             resourceInputs["loggingLogentries"] = state ? state.loggingLogentries : undefined;
             resourceInputs["loggingLogglies"] = state ? state.loggingLogglies : undefined;
             resourceInputs["loggingLogshuttles"] = state ? state.loggingLogshuttles : undefined;
+            resourceInputs["loggingNewrelicotlps"] = state ? state.loggingNewrelicotlps : undefined;
             resourceInputs["loggingNewrelics"] = state ? state.loggingNewrelics : undefined;
             resourceInputs["loggingOpenstacks"] = state ? state.loggingOpenstacks : undefined;
             resourceInputs["loggingPapertrails"] = state ? state.loggingPapertrails : undefined;
@@ -283,6 +285,7 @@ export class ServiceVcl extends pulumi.CustomResource {
             resourceInputs["loggingLogentries"] = args ? args.loggingLogentries : undefined;
             resourceInputs["loggingLogglies"] = args ? args.loggingLogglies : undefined;
             resourceInputs["loggingLogshuttles"] = args ? args.loggingLogshuttles : undefined;
+            resourceInputs["loggingNewrelicotlps"] = args ? args.loggingNewrelicotlps : undefined;
             resourceInputs["loggingNewrelics"] = args ? args.loggingNewrelics : undefined;
             resourceInputs["loggingOpenstacks"] = args ? args.loggingOpenstacks : undefined;
             resourceInputs["loggingPapertrails"] = args ? args.loggingPapertrails : undefined;
@@ -397,6 +400,7 @@ export interface ServiceVclState {
     loggingLogentries?: pulumi.Input<pulumi.Input<inputs.ServiceVclLoggingLogentry>[]>;
     loggingLogglies?: pulumi.Input<pulumi.Input<inputs.ServiceVclLoggingLoggly>[]>;
     loggingLogshuttles?: pulumi.Input<pulumi.Input<inputs.ServiceVclLoggingLogshuttle>[]>;
+    loggingNewrelicotlps?: pulumi.Input<pulumi.Input<inputs.ServiceVclLoggingNewrelicotlp>[]>;
     loggingNewrelics?: pulumi.Input<pulumi.Input<inputs.ServiceVclLoggingNewrelic>[]>;
     loggingOpenstacks?: pulumi.Input<pulumi.Input<inputs.ServiceVclLoggingOpenstack>[]>;
     loggingPapertrails?: pulumi.Input<pulumi.Input<inputs.ServiceVclLoggingPapertrail>[]>;
@@ -505,6 +509,7 @@ export interface ServiceVclArgs {
     loggingLogentries?: pulumi.Input<pulumi.Input<inputs.ServiceVclLoggingLogentry>[]>;
     loggingLogglies?: pulumi.Input<pulumi.Input<inputs.ServiceVclLoggingLoggly>[]>;
     loggingLogshuttles?: pulumi.Input<pulumi.Input<inputs.ServiceVclLoggingLogshuttle>[]>;
+    loggingNewrelicotlps?: pulumi.Input<pulumi.Input<inputs.ServiceVclLoggingNewrelicotlp>[]>;
     loggingNewrelics?: pulumi.Input<pulumi.Input<inputs.ServiceVclLoggingNewrelic>[]>;
     loggingOpenstacks?: pulumi.Input<pulumi.Input<inputs.ServiceVclLoggingOpenstack>[]>;
     loggingPapertrails?: pulumi.Input<pulumi.Input<inputs.ServiceVclLoggingPapertrail>[]>;
