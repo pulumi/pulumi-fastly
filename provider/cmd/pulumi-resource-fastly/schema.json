@@ -72,6 +72,47 @@
         }
     },
     "types": {
+        "fastly:index/AlertDimensions:AlertDimensions": {
+            "properties": {
+                "domains": {
+                    "type": "array",
+                    "items": {
+                        "type": "string"
+                    },
+                    "description": "Names of a subset of domains that the alert monitors.\n"
+                },
+                "origins": {
+                    "type": "array",
+                    "items": {
+                        "type": "string"
+                    },
+                    "description": "Addresses of a subset of backends that the alert monitors.\n"
+                }
+            },
+            "type": "object"
+        },
+        "fastly:index/AlertEvaluationStrategy:AlertEvaluationStrategy": {
+            "properties": {
+                "period": {
+                    "type": "string",
+                    "description": "The length of time to evaluate whether the conditions have been met. The data is polled every minute. One of: `5m`, `15m`, `30m`.\n"
+                },
+                "threshold": {
+                    "type": "number",
+                    "description": "Threshold used to alert.\n"
+                },
+                "type": {
+                    "type": "string",
+                    "description": "Type of strategy to use to evaluate. One of: `above_threshold`, `below_threshold`.\n"
+                }
+            },
+            "type": "object",
+            "required": [
+                "period",
+                "threshold",
+                "type"
+            ]
+        },
         "fastly:index/ServiceACLEntriesEntry:ServiceACLEntriesEntry": {
             "properties": {
                 "comment": {
@@ -3021,6 +3062,48 @@
                 "token"
             ]
         },
+        "fastly:index/ServiceVclLoggingNewrelicotlp:ServiceVclLoggingNewrelicotlp": {
+            "properties": {
+                "format": {
+                    "type": "string",
+                    "description": "Apache style log formatting. Your log must produce valid JSON that New Relic OTLP can ingest.\n"
+                },
+                "formatVersion": {
+                    "type": "integer",
+                    "description": "The version of the custom logging format used for the configured endpoint. Can be either `1` or `2`. (default: `2`).\n"
+                },
+                "name": {
+                    "type": "string",
+                    "description": "The unique name of the New Relic OTLP logging endpoint. It is important to note that changing this attribute will delete and recreate the resource\n"
+                },
+                "placement": {
+                    "type": "string",
+                    "description": "Where in the generated VCL the logging call should be placed.\n"
+                },
+                "region": {
+                    "type": "string",
+                    "description": "The region that log data will be sent to. Default: `US`\n"
+                },
+                "responseCondition": {
+                    "type": "string",
+                    "description": "The name of the condition to apply.\n"
+                },
+                "token": {
+                    "type": "string",
+                    "description": "The Insert API key from the Account page of your New Relic account\n",
+                    "secret": true
+                },
+                "url": {
+                    "type": "string",
+                    "description": "The optional New Relic Trace Observer URL to stream logs to for Infinite Tracing.\n"
+                }
+            },
+            "type": "object",
+            "required": [
+                "name",
+                "token"
+            ]
+        },
         "fastly:index/ServiceVclLoggingOpenstack:ServiceVclLoggingOpenstack": {
             "properties": {
                 "accessKey": {
@@ -4225,6 +4308,141 @@
         }
     },
     "resources": {
+        "fastly:index/alert:Alert": {
+            "description": "Provides a Fastly Alert. Alerts send notifications to custom integrations (e.g., Slack channels, PagerDuty, Microsoft Teams and New Relic) when an observed metric either exceeds or falls below a threshold.\n\n{{% examples %}}\n## Example Usage\n{{% example %}}\n\n```typescript\nimport * as pulumi from \"@pulumi/pulumi\";\nimport * as fastly from \"@pulumi/fastly\";\n\nconst exampleServiceVcl = new fastly.ServiceVcl(\"exampleServiceVcl\", {});\n// ...\nconst exampleAlert = new fastly.Alert(\"exampleAlert\", {\n    serviceId: exampleServiceVcl.id,\n    source: \"stats\",\n    metric: \"status_5xx\",\n    evaluationStrategy: {\n        type: \"above_threshold\",\n        period: \"5m\",\n        threshold: 10,\n    },\n});\n```\n```python\nimport pulumi\nimport pulumi_fastly as fastly\n\nexample_service_vcl = fastly.ServiceVcl(\"exampleServiceVcl\")\n# ...\nexample_alert = fastly.Alert(\"exampleAlert\",\n    service_id=example_service_vcl.id,\n    source=\"stats\",\n    metric=\"status_5xx\",\n    evaluation_strategy=fastly.AlertEvaluationStrategyArgs(\n        type=\"above_threshold\",\n        period=\"5m\",\n        threshold=10,\n    ))\n```\n```csharp\nusing System.Collections.Generic;\nusing System.Linq;\nusing Pulumi;\nusing Fastly = Pulumi.Fastly;\n\nreturn await Deployment.RunAsync(() =\u003e \n{\n    var exampleServiceVcl = new Fastly.ServiceVcl(\"exampleServiceVcl\");\n\n    // ...\n    var exampleAlert = new Fastly.Alert(\"exampleAlert\", new()\n    {\n        ServiceId = exampleServiceVcl.Id,\n        Source = \"stats\",\n        Metric = \"status_5xx\",\n        EvaluationStrategy = new Fastly.Inputs.AlertEvaluationStrategyArgs\n        {\n            Type = \"above_threshold\",\n            Period = \"5m\",\n            Threshold = 10,\n        },\n    });\n\n});\n```\n```go\npackage main\n\nimport (\n\t\"github.com/pulumi/pulumi-fastly/sdk/v8/go/fastly\"\n\t\"github.com/pulumi/pulumi/sdk/v3/go/pulumi\"\n)\n\nfunc main() {\n\tpulumi.Run(func(ctx *pulumi.Context) error {\n\t\texampleServiceVcl, err := fastly.NewServiceVcl(ctx, \"exampleServiceVcl\", nil)\n\t\tif err != nil {\n\t\t\treturn err\n\t\t}\n\t\t_, err = fastly.NewAlert(ctx, \"exampleAlert\", \u0026fastly.AlertArgs{\n\t\t\tServiceId: exampleServiceVcl.ID(),\n\t\t\tSource:    pulumi.String(\"stats\"),\n\t\t\tMetric:    pulumi.String(\"status_5xx\"),\n\t\t\tEvaluationStrategy: \u0026fastly.AlertEvaluationStrategyArgs{\n\t\t\t\tType:      pulumi.String(\"above_threshold\"),\n\t\t\t\tPeriod:    pulumi.String(\"5m\"),\n\t\t\t\tThreshold: pulumi.Float64(10),\n\t\t\t},\n\t\t})\n\t\tif err != nil {\n\t\t\treturn err\n\t\t}\n\t\treturn nil\n\t})\n}\n```\n```java\npackage generated_program;\n\nimport com.pulumi.Context;\nimport com.pulumi.Pulumi;\nimport com.pulumi.core.Output;\nimport com.pulumi.fastly.ServiceVcl;\nimport com.pulumi.fastly.Alert;\nimport com.pulumi.fastly.AlertArgs;\nimport com.pulumi.fastly.inputs.AlertEvaluationStrategyArgs;\nimport java.util.List;\nimport java.util.ArrayList;\nimport java.util.Map;\nimport java.io.File;\nimport java.nio.file.Files;\nimport java.nio.file.Paths;\n\npublic class App {\n    public static void main(String[] args) {\n        Pulumi.run(App::stack);\n    }\n\n    public static void stack(Context ctx) {\n        var exampleServiceVcl = new ServiceVcl(\"exampleServiceVcl\");\n\n        var exampleAlert = new Alert(\"exampleAlert\", AlertArgs.builder()        \n            .serviceId(exampleServiceVcl.id())\n            .source(\"stats\")\n            .metric(\"status_5xx\")\n            .evaluationStrategy(AlertEvaluationStrategyArgs.builder()\n                .type(\"above_threshold\")\n                .period(\"5m\")\n                .threshold(10)\n                .build())\n            .build());\n\n    }\n}\n```\n```yaml\nresources:\n  exampleServiceVcl:\n    type: fastly:ServiceVcl\n  exampleAlert:\n    type: fastly:Alert\n    properties:\n      serviceId: ${exampleServiceVcl.id}\n      source: stats\n      metric: status_5xx\n      evaluationStrategy:\n        type: above_threshold\n        period: 5m\n        threshold: 10\n```\n{{% /example %}}\n{{% /examples %}}\n\n## Import\n\nFastly Alerts can be imported using their ID, e.g.\n\n ```sh\n $ pulumi import fastly:index/alert:Alert example xxxxxxxxxxxxxxxxxxxx\n```\n\n ",
+            "properties": {
+                "description": {
+                    "type": "string",
+                    "description": "Additional text that is included in the alert notification.\n"
+                },
+                "dimensions": {
+                    "$ref": "#/types/fastly:index/AlertDimensions:AlertDimensions",
+                    "description": "More filters depending on the source type.\n"
+                },
+                "evaluationStrategy": {
+                    "$ref": "#/types/fastly:index/AlertEvaluationStrategy:AlertEvaluationStrategy",
+                    "description": "Criteria on how to alert.\n"
+                },
+                "integrationIds": {
+                    "type": "array",
+                    "items": {
+                        "type": "string"
+                    },
+                    "description": "List of integrations used to notify when alert fires.\n"
+                },
+                "metric": {
+                    "type": "string",
+                    "description": "The metric name to alert on for a specific source: [domains](https://developer.fastly.com/reference/api/metrics-stats/domain-inspector/historical), [origins](https://developer.fastly.com/reference/api/metrics-stats/origin-inspector/historical), or [stats](https://developer.fastly.com/reference/api/metrics-stats/historical-stats).\n"
+                },
+                "name": {
+                    "type": "string",
+                    "description": "The name of the alert.\n"
+                },
+                "serviceId": {
+                    "type": "string",
+                    "description": "The service which the alert monitors.\n"
+                },
+                "source": {
+                    "type": "string",
+                    "description": "The source where the metric comes from. One of: `domains`, `origins`, `stats`.\n"
+                }
+            },
+            "required": [
+                "evaluationStrategy",
+                "metric",
+                "name",
+                "serviceId",
+                "source"
+            ],
+            "inputProperties": {
+                "description": {
+                    "type": "string",
+                    "description": "Additional text that is included in the alert notification.\n"
+                },
+                "dimensions": {
+                    "$ref": "#/types/fastly:index/AlertDimensions:AlertDimensions",
+                    "description": "More filters depending on the source type.\n"
+                },
+                "evaluationStrategy": {
+                    "$ref": "#/types/fastly:index/AlertEvaluationStrategy:AlertEvaluationStrategy",
+                    "description": "Criteria on how to alert.\n"
+                },
+                "integrationIds": {
+                    "type": "array",
+                    "items": {
+                        "type": "string"
+                    },
+                    "description": "List of integrations used to notify when alert fires.\n"
+                },
+                "metric": {
+                    "type": "string",
+                    "description": "The metric name to alert on for a specific source: [domains](https://developer.fastly.com/reference/api/metrics-stats/domain-inspector/historical), [origins](https://developer.fastly.com/reference/api/metrics-stats/origin-inspector/historical), or [stats](https://developer.fastly.com/reference/api/metrics-stats/historical-stats).\n"
+                },
+                "name": {
+                    "type": "string",
+                    "description": "The name of the alert.\n"
+                },
+                "serviceId": {
+                    "type": "string",
+                    "description": "The service which the alert monitors.\n",
+                    "willReplaceOnChanges": true
+                },
+                "source": {
+                    "type": "string",
+                    "description": "The source where the metric comes from. One of: `domains`, `origins`, `stats`.\n",
+                    "willReplaceOnChanges": true
+                }
+            },
+            "requiredInputs": [
+                "evaluationStrategy",
+                "metric",
+                "serviceId",
+                "source"
+            ],
+            "stateInputs": {
+                "description": "Input properties used for looking up and filtering Alert resources.\n",
+                "properties": {
+                    "description": {
+                        "type": "string",
+                        "description": "Additional text that is included in the alert notification.\n"
+                    },
+                    "dimensions": {
+                        "$ref": "#/types/fastly:index/AlertDimensions:AlertDimensions",
+                        "description": "More filters depending on the source type.\n"
+                    },
+                    "evaluationStrategy": {
+                        "$ref": "#/types/fastly:index/AlertEvaluationStrategy:AlertEvaluationStrategy",
+                        "description": "Criteria on how to alert.\n"
+                    },
+                    "integrationIds": {
+                        "type": "array",
+                        "items": {
+                            "type": "string"
+                        },
+                        "description": "List of integrations used to notify when alert fires.\n"
+                    },
+                    "metric": {
+                        "type": "string",
+                        "description": "The metric name to alert on for a specific source: [domains](https://developer.fastly.com/reference/api/metrics-stats/domain-inspector/historical), [origins](https://developer.fastly.com/reference/api/metrics-stats/origin-inspector/historical), or [stats](https://developer.fastly.com/reference/api/metrics-stats/historical-stats).\n"
+                    },
+                    "name": {
+                        "type": "string",
+                        "description": "The name of the alert.\n"
+                    },
+                    "serviceId": {
+                        "type": "string",
+                        "description": "The service which the alert monitors.\n",
+                        "willReplaceOnChanges": true
+                    },
+                    "source": {
+                        "type": "string",
+                        "description": "The source where the metric comes from. One of: `domains`, `origins`, `stats`.\n",
+                        "willReplaceOnChanges": true
+                    }
+                },
+                "type": "object"
+            }
+        },
         "fastly:index/configstore:Configstore": {
             "description": "Provides a container that lets you store data in key-value pairs that are accessible to Compute services during request processing.\n\nIn order for a Config Store (`fastly.Configstore`) to be accessible to a [Compute](https://developer.fastly.com/learning/compute/) service you'll first need to define a Compute service (`fastly.ServiceCompute`) in your configuration, and then create a link to the Config Store from within the service using the `resource_link` block (shown in the below examples).\n\n{{% examples %}}\n## Example Usage\n{{% example %}}\n\nBasic usage:\n\n```typescript\nimport * as pulumi from \"@pulumi/pulumi\";\nimport * as fastly from \"@pulumi/fastly\";\n\n// IMPORTANT: Deleting a Config Store requires first deleting its resource_link.\n// This requires a two-step `pulumi up` as we can't guarantee deletion order.\n// e.g. resource_link deletion within fastly_service_compute might not finish first.\nconst exampleConfigstore = new fastly.Configstore(\"exampleConfigstore\", {});\nconst examplePackageHash = fastly.getPackageHash({\n    filename: \"package.tar.gz\",\n});\nconst exampleServiceCompute = new fastly.ServiceCompute(\"exampleServiceCompute\", {\n    domains: [{\n        name: \"demo.example.com\",\n    }],\n    \"package\": {\n        filename: \"package.tar.gz\",\n        sourceCodeHash: examplePackageHash.then(examplePackageHash =\u003e examplePackageHash.hash),\n    },\n    resourceLinks: [{\n        name: \"my_resource_link\",\n        resourceId: exampleConfigstore.id,\n    }],\n    forceDestroy: true,\n});\n```\n```python\nimport pulumi\nimport pulumi_fastly as fastly\n\n# IMPORTANT: Deleting a Config Store requires first deleting its resource_link.\n# This requires a two-step `pulumi up` as we can't guarantee deletion order.\n# e.g. resource_link deletion within fastly_service_compute might not finish first.\nexample_configstore = fastly.Configstore(\"exampleConfigstore\")\nexample_package_hash = fastly.get_package_hash(filename=\"package.tar.gz\")\nexample_service_compute = fastly.ServiceCompute(\"exampleServiceCompute\",\n    domains=[fastly.ServiceComputeDomainArgs(\n        name=\"demo.example.com\",\n    )],\n    package=fastly.ServiceComputePackageArgs(\n        filename=\"package.tar.gz\",\n        source_code_hash=example_package_hash.hash,\n    ),\n    resource_links=[fastly.ServiceComputeResourceLinkArgs(\n        name=\"my_resource_link\",\n        resource_id=example_configstore.id,\n    )],\n    force_destroy=True)\n```\n```csharp\nusing System.Collections.Generic;\nusing System.Linq;\nusing Pulumi;\nusing Fastly = Pulumi.Fastly;\n\nreturn await Deployment.RunAsync(() =\u003e \n{\n    // IMPORTANT: Deleting a Config Store requires first deleting its resource_link.\n    // This requires a two-step `pulumi up` as we can't guarantee deletion order.\n    // e.g. resource_link deletion within fastly_service_compute might not finish first.\n    var exampleConfigstore = new Fastly.Configstore(\"exampleConfigstore\");\n\n    var examplePackageHash = Fastly.GetPackageHash.Invoke(new()\n    {\n        Filename = \"package.tar.gz\",\n    });\n\n    var exampleServiceCompute = new Fastly.ServiceCompute(\"exampleServiceCompute\", new()\n    {\n        Domains = new[]\n        {\n            new Fastly.Inputs.ServiceComputeDomainArgs\n            {\n                Name = \"demo.example.com\",\n            },\n        },\n        Package = new Fastly.Inputs.ServiceComputePackageArgs\n        {\n            Filename = \"package.tar.gz\",\n            SourceCodeHash = examplePackageHash.Apply(getPackageHashResult =\u003e getPackageHashResult.Hash),\n        },\n        ResourceLinks = new[]\n        {\n            new Fastly.Inputs.ServiceComputeResourceLinkArgs\n            {\n                Name = \"my_resource_link\",\n                ResourceId = exampleConfigstore.Id,\n            },\n        },\n        ForceDestroy = true,\n    });\n\n});\n```\n```go\npackage main\n\nimport (\n\t\"github.com/pulumi/pulumi-fastly/sdk/v8/go/fastly\"\n\t\"github.com/pulumi/pulumi/sdk/v3/go/pulumi\"\n)\n\nfunc main() {\n\tpulumi.Run(func(ctx *pulumi.Context) error {\n\t\t// IMPORTANT: Deleting a Config Store requires first deleting its resource_link.\n\t\t// This requires a two-step `pulumi up` as we can't guarantee deletion order.\n\t\t// e.g. resource_link deletion within fastly_service_compute might not finish first.\n\t\texampleConfigstore, err := fastly.NewConfigstore(ctx, \"exampleConfigstore\", nil)\n\t\tif err != nil {\n\t\t\treturn err\n\t\t}\n\t\texamplePackageHash, err := fastly.GetPackageHash(ctx, \u0026fastly.GetPackageHashArgs{\n\t\t\tFilename: pulumi.StringRef(\"package.tar.gz\"),\n\t\t}, nil)\n\t\tif err != nil {\n\t\t\treturn err\n\t\t}\n\t\t_, err = fastly.NewServiceCompute(ctx, \"exampleServiceCompute\", \u0026fastly.ServiceComputeArgs{\n\t\t\tDomains: fastly.ServiceComputeDomainArray{\n\t\t\t\t\u0026fastly.ServiceComputeDomainArgs{\n\t\t\t\t\tName: pulumi.String(\"demo.example.com\"),\n\t\t\t\t},\n\t\t\t},\n\t\t\tPackage: \u0026fastly.ServiceComputePackageArgs{\n\t\t\t\tFilename:       pulumi.String(\"package.tar.gz\"),\n\t\t\t\tSourceCodeHash: *pulumi.String(examplePackageHash.Hash),\n\t\t\t},\n\t\t\tResourceLinks: fastly.ServiceComputeResourceLinkArray{\n\t\t\t\t\u0026fastly.ServiceComputeResourceLinkArgs{\n\t\t\t\t\tName:       pulumi.String(\"my_resource_link\"),\n\t\t\t\t\tResourceId: exampleConfigstore.ID(),\n\t\t\t\t},\n\t\t\t},\n\t\t\tForceDestroy: pulumi.Bool(true),\n\t\t})\n\t\tif err != nil {\n\t\t\treturn err\n\t\t}\n\t\treturn nil\n\t})\n}\n```\n```java\npackage generated_program;\n\nimport com.pulumi.Context;\nimport com.pulumi.Pulumi;\nimport com.pulumi.core.Output;\nimport com.pulumi.fastly.Configstore;\nimport com.pulumi.fastly.FastlyFunctions;\nimport com.pulumi.fastly.inputs.GetPackageHashArgs;\nimport com.pulumi.fastly.ServiceCompute;\nimport com.pulumi.fastly.ServiceComputeArgs;\nimport com.pulumi.fastly.inputs.ServiceComputeDomainArgs;\nimport com.pulumi.fastly.inputs.ServiceComputePackageArgs;\nimport com.pulumi.fastly.inputs.ServiceComputeResourceLinkArgs;\nimport java.util.List;\nimport java.util.ArrayList;\nimport java.util.Map;\nimport java.io.File;\nimport java.nio.file.Files;\nimport java.nio.file.Paths;\n\npublic class App {\n    public static void main(String[] args) {\n        Pulumi.run(App::stack);\n    }\n\n    public static void stack(Context ctx) {\n        var exampleConfigstore = new Configstore(\"exampleConfigstore\");\n\n        final var examplePackageHash = FastlyFunctions.getPackageHash(GetPackageHashArgs.builder()\n            .filename(\"package.tar.gz\")\n            .build());\n\n        var exampleServiceCompute = new ServiceCompute(\"exampleServiceCompute\", ServiceComputeArgs.builder()        \n            .domains(ServiceComputeDomainArgs.builder()\n                .name(\"demo.example.com\")\n                .build())\n            .package_(ServiceComputePackageArgs.builder()\n                .filename(\"package.tar.gz\")\n                .sourceCodeHash(examplePackageHash.applyValue(getPackageHashResult -\u003e getPackageHashResult.hash()))\n                .build())\n            .resourceLinks(ServiceComputeResourceLinkArgs.builder()\n                .name(\"my_resource_link\")\n                .resourceId(exampleConfigstore.id())\n                .build())\n            .forceDestroy(true)\n            .build());\n\n    }\n}\n```\n```yaml\nresources:\n  # IMPORTANT: Deleting a Config Store requires first deleting its resource_link.\n  # This requires a two-step `pulumi up` as we can't guarantee deletion order.\n  # e.g. resource_link deletion within fastly_service_compute might not finish first.\n  exampleConfigstore:\n    type: fastly:Configstore\n  exampleServiceCompute:\n    type: fastly:ServiceCompute\n    properties:\n      domains:\n        - name: demo.example.com\n      package:\n        filename: package.tar.gz\n        sourceCodeHash: ${examplePackageHash.hash}\n      resourceLinks:\n        - name: my_resource_link\n          resourceId: ${exampleConfigstore.id}\n      forceDestroy: true\nvariables:\n  examplePackageHash:\n    fn::invoke:\n      Function: fastly:getPackageHash\n      Arguments:\n        filename: package.tar.gz\n```\n{{% /example %}}\n{{% /examples %}}\n\n## Import\n\nFastly Config Stores can be imported using their Store ID, e.g.\n\n ```sh\n $ pulumi import fastly:index/configstore:Configstore example xxxxxxxxxxxxxxxxxxxx\n```\n\n ",
             "properties": {
@@ -5612,6 +5830,12 @@
                         "$ref": "#/types/fastly:index/ServiceVclLoggingLogshuttle:ServiceVclLoggingLogshuttle"
                     }
                 },
+                "loggingNewrelicotlps": {
+                    "type": "array",
+                    "items": {
+                        "$ref": "#/types/fastly:index/ServiceVclLoggingNewrelicotlp:ServiceVclLoggingNewrelicotlp"
+                    }
+                },
                 "loggingNewrelics": {
                     "type": "array",
                     "items": {
@@ -5926,6 +6150,12 @@
                     "type": "array",
                     "items": {
                         "$ref": "#/types/fastly:index/ServiceVclLoggingLogshuttle:ServiceVclLoggingLogshuttle"
+                    }
+                },
+                "loggingNewrelicotlps": {
+                    "type": "array",
+                    "items": {
+                        "$ref": "#/types/fastly:index/ServiceVclLoggingNewrelicotlp:ServiceVclLoggingNewrelicotlp"
                     }
                 },
                 "loggingNewrelics": {
@@ -6255,6 +6485,12 @@
                         "type": "array",
                         "items": {
                             "$ref": "#/types/fastly:index/ServiceVclLoggingLogshuttle:ServiceVclLoggingLogshuttle"
+                        }
+                    },
+                    "loggingNewrelicotlps": {
+                        "type": "array",
+                        "items": {
+                            "$ref": "#/types/fastly:index/ServiceVclLoggingNewrelicotlp:ServiceVclLoggingNewrelicotlp"
                         }
                     },
                     "loggingNewrelics": {

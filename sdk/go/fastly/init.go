@@ -21,6 +21,8 @@ func (m *module) Version() semver.Version {
 
 func (m *module) Construct(ctx *pulumi.Context, name, typ, urn string) (r pulumi.Resource, err error) {
 	switch typ {
+	case "fastly:index/alert:Alert":
+		r = &Alert{}
 	case "fastly:index/configstore:Configstore":
 		r = &Configstore{}
 	case "fastly:index/configstoreEntries:ConfigstoreEntries":
@@ -90,6 +92,11 @@ func init() {
 	if err != nil {
 		version = semver.Version{Major: 1}
 	}
+	pulumi.RegisterResourceModule(
+		"fastly",
+		"index/alert",
+		&module{version},
+	)
 	pulumi.RegisterResourceModule(
 		"fastly",
 		"index/configstore",

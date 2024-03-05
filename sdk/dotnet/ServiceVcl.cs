@@ -184,6 +184,9 @@ namespace Pulumi.Fastly
         [Output("loggingLogshuttles")]
         public Output<ImmutableArray<Outputs.ServiceVclLoggingLogshuttle>> LoggingLogshuttles { get; private set; } = null!;
 
+        [Output("loggingNewrelicotlps")]
+        public Output<ImmutableArray<Outputs.ServiceVclLoggingNewrelicotlp>> LoggingNewrelicotlps { get; private set; } = null!;
+
         [Output("loggingNewrelics")]
         public Output<ImmutableArray<Outputs.ServiceVclLoggingNewrelic>> LoggingNewrelics { get; private set; } = null!;
 
@@ -583,6 +586,14 @@ namespace Pulumi.Fastly
         {
             get => _loggingLogshuttles ?? (_loggingLogshuttles = new InputList<Inputs.ServiceVclLoggingLogshuttleArgs>());
             set => _loggingLogshuttles = value;
+        }
+
+        [Input("loggingNewrelicotlps")]
+        private InputList<Inputs.ServiceVclLoggingNewrelicotlpArgs>? _loggingNewrelicotlps;
+        public InputList<Inputs.ServiceVclLoggingNewrelicotlpArgs> LoggingNewrelicotlps
+        {
+            get => _loggingNewrelicotlps ?? (_loggingNewrelicotlps = new InputList<Inputs.ServiceVclLoggingNewrelicotlpArgs>());
+            set => _loggingNewrelicotlps = value;
         }
 
         [Input("loggingNewrelics")]
@@ -1043,6 +1054,14 @@ namespace Pulumi.Fastly
         {
             get => _loggingLogshuttles ?? (_loggingLogshuttles = new InputList<Inputs.ServiceVclLoggingLogshuttleGetArgs>());
             set => _loggingLogshuttles = value;
+        }
+
+        [Input("loggingNewrelicotlps")]
+        private InputList<Inputs.ServiceVclLoggingNewrelicotlpGetArgs>? _loggingNewrelicotlps;
+        public InputList<Inputs.ServiceVclLoggingNewrelicotlpGetArgs> LoggingNewrelicotlps
+        {
+            get => _loggingNewrelicotlps ?? (_loggingNewrelicotlps = new InputList<Inputs.ServiceVclLoggingNewrelicotlpGetArgs>());
+            set => _loggingNewrelicotlps = value;
         }
 
         [Input("loggingNewrelics")]

@@ -83,6 +83,7 @@ type ServiceVcl struct {
 	LoggingLogentries      ServiceVclLoggingLogentryArrayOutput      `pulumi:"loggingLogentries"`
 	LoggingLogglies        ServiceVclLoggingLogglyArrayOutput        `pulumi:"loggingLogglies"`
 	LoggingLogshuttles     ServiceVclLoggingLogshuttleArrayOutput    `pulumi:"loggingLogshuttles"`
+	LoggingNewrelicotlps   ServiceVclLoggingNewrelicotlpArrayOutput  `pulumi:"loggingNewrelicotlps"`
 	LoggingNewrelics       ServiceVclLoggingNewrelicArrayOutput      `pulumi:"loggingNewrelics"`
 	LoggingOpenstacks      ServiceVclLoggingOpenstackArrayOutput     `pulumi:"loggingOpenstacks"`
 	LoggingPapertrails     ServiceVclLoggingPapertrailArrayOutput    `pulumi:"loggingPapertrails"`
@@ -200,6 +201,7 @@ type serviceVclState struct {
 	LoggingLogentries      []ServiceVclLoggingLogentry      `pulumi:"loggingLogentries"`
 	LoggingLogglies        []ServiceVclLoggingLoggly        `pulumi:"loggingLogglies"`
 	LoggingLogshuttles     []ServiceVclLoggingLogshuttle    `pulumi:"loggingLogshuttles"`
+	LoggingNewrelicotlps   []ServiceVclLoggingNewrelicotlp  `pulumi:"loggingNewrelicotlps"`
 	LoggingNewrelics       []ServiceVclLoggingNewrelic      `pulumi:"loggingNewrelics"`
 	LoggingOpenstacks      []ServiceVclLoggingOpenstack     `pulumi:"loggingOpenstacks"`
 	LoggingPapertrails     []ServiceVclLoggingPapertrail    `pulumi:"loggingPapertrails"`
@@ -285,6 +287,7 @@ type ServiceVclState struct {
 	LoggingLogentries      ServiceVclLoggingLogentryArrayInput
 	LoggingLogglies        ServiceVclLoggingLogglyArrayInput
 	LoggingLogshuttles     ServiceVclLoggingLogshuttleArrayInput
+	LoggingNewrelicotlps   ServiceVclLoggingNewrelicotlpArrayInput
 	LoggingNewrelics       ServiceVclLoggingNewrelicArrayInput
 	LoggingOpenstacks      ServiceVclLoggingOpenstackArrayInput
 	LoggingPapertrails     ServiceVclLoggingPapertrailArrayInput
@@ -364,6 +367,7 @@ type serviceVclArgs struct {
 	LoggingLogentries      []ServiceVclLoggingLogentry      `pulumi:"loggingLogentries"`
 	LoggingLogglies        []ServiceVclLoggingLoggly        `pulumi:"loggingLogglies"`
 	LoggingLogshuttles     []ServiceVclLoggingLogshuttle    `pulumi:"loggingLogshuttles"`
+	LoggingNewrelicotlps   []ServiceVclLoggingNewrelicotlp  `pulumi:"loggingNewrelicotlps"`
 	LoggingNewrelics       []ServiceVclLoggingNewrelic      `pulumi:"loggingNewrelics"`
 	LoggingOpenstacks      []ServiceVclLoggingOpenstack     `pulumi:"loggingOpenstacks"`
 	LoggingPapertrails     []ServiceVclLoggingPapertrail    `pulumi:"loggingPapertrails"`
@@ -440,6 +444,7 @@ type ServiceVclArgs struct {
 	LoggingLogentries      ServiceVclLoggingLogentryArrayInput
 	LoggingLogglies        ServiceVclLoggingLogglyArrayInput
 	LoggingLogshuttles     ServiceVclLoggingLogshuttleArrayInput
+	LoggingNewrelicotlps   ServiceVclLoggingNewrelicotlpArrayInput
 	LoggingNewrelics       ServiceVclLoggingNewrelicArrayInput
 	LoggingOpenstacks      ServiceVclLoggingOpenstackArrayInput
 	LoggingPapertrails     ServiceVclLoggingPapertrailArrayInput
@@ -723,6 +728,10 @@ func (o ServiceVclOutput) LoggingLogglies() ServiceVclLoggingLogglyArrayOutput {
 
 func (o ServiceVclOutput) LoggingLogshuttles() ServiceVclLoggingLogshuttleArrayOutput {
 	return o.ApplyT(func(v *ServiceVcl) ServiceVclLoggingLogshuttleArrayOutput { return v.LoggingLogshuttles }).(ServiceVclLoggingLogshuttleArrayOutput)
+}
+
+func (o ServiceVclOutput) LoggingNewrelicotlps() ServiceVclLoggingNewrelicotlpArrayOutput {
+	return o.ApplyT(func(v *ServiceVcl) ServiceVclLoggingNewrelicotlpArrayOutput { return v.LoggingNewrelicotlps }).(ServiceVclLoggingNewrelicotlpArrayOutput)
 }
 
 func (o ServiceVclOutput) LoggingNewrelics() ServiceVclLoggingNewrelicArrayOutput {

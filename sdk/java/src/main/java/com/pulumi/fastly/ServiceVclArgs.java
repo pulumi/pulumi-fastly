@@ -35,6 +35,7 @@ import com.pulumi.fastly.inputs.ServiceVclLoggingLogentryArgs;
 import com.pulumi.fastly.inputs.ServiceVclLoggingLogglyArgs;
 import com.pulumi.fastly.inputs.ServiceVclLoggingLogshuttleArgs;
 import com.pulumi.fastly.inputs.ServiceVclLoggingNewrelicArgs;
+import com.pulumi.fastly.inputs.ServiceVclLoggingNewrelicotlpArgs;
 import com.pulumi.fastly.inputs.ServiceVclLoggingOpenstackArgs;
 import com.pulumi.fastly.inputs.ServiceVclLoggingPapertrailArgs;
 import com.pulumi.fastly.inputs.ServiceVclLoggingS3Args;
@@ -373,6 +374,13 @@ public final class ServiceVclArgs extends com.pulumi.resources.ResourceArgs {
         return Optional.ofNullable(this.loggingLogshuttles);
     }
 
+    @Import(name="loggingNewrelicotlps")
+    private @Nullable Output<List<ServiceVclLoggingNewrelicotlpArgs>> loggingNewrelicotlps;
+
+    public Optional<Output<List<ServiceVclLoggingNewrelicotlpArgs>>> loggingNewrelicotlps() {
+        return Optional.ofNullable(this.loggingNewrelicotlps);
+    }
+
     @Import(name="loggingNewrelics")
     private @Nullable Output<List<ServiceVclLoggingNewrelicArgs>> loggingNewrelics;
 
@@ -609,6 +617,7 @@ public final class ServiceVclArgs extends com.pulumi.resources.ResourceArgs {
         this.loggingLogentries = $.loggingLogentries;
         this.loggingLogglies = $.loggingLogglies;
         this.loggingLogshuttles = $.loggingLogshuttles;
+        this.loggingNewrelicotlps = $.loggingNewrelicotlps;
         this.loggingNewrelics = $.loggingNewrelics;
         this.loggingOpenstacks = $.loggingOpenstacks;
         this.loggingPapertrails = $.loggingPapertrails;
@@ -1192,6 +1201,19 @@ public final class ServiceVclArgs extends com.pulumi.resources.ResourceArgs {
 
         public Builder loggingLogshuttles(ServiceVclLoggingLogshuttleArgs... loggingLogshuttles) {
             return loggingLogshuttles(List.of(loggingLogshuttles));
+        }
+
+        public Builder loggingNewrelicotlps(@Nullable Output<List<ServiceVclLoggingNewrelicotlpArgs>> loggingNewrelicotlps) {
+            $.loggingNewrelicotlps = loggingNewrelicotlps;
+            return this;
+        }
+
+        public Builder loggingNewrelicotlps(List<ServiceVclLoggingNewrelicotlpArgs> loggingNewrelicotlps) {
+            return loggingNewrelicotlps(Output.of(loggingNewrelicotlps));
+        }
+
+        public Builder loggingNewrelicotlps(ServiceVclLoggingNewrelicotlpArgs... loggingNewrelicotlps) {
+            return loggingNewrelicotlps(List.of(loggingNewrelicotlps));
         }
 
         public Builder loggingNewrelics(@Nullable Output<List<ServiceVclLoggingNewrelicArgs>> loggingNewrelics) {

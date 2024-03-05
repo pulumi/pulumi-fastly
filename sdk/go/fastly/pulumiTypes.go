@@ -13,6 +13,337 @@ import (
 
 var _ = internal.GetEnvOrDefault
 
+type AlertDimensions struct {
+	// Names of a subset of domains that the alert monitors.
+	Domains []string `pulumi:"domains"`
+	// Addresses of a subset of backends that the alert monitors.
+	Origins []string `pulumi:"origins"`
+}
+
+// AlertDimensionsInput is an input type that accepts AlertDimensionsArgs and AlertDimensionsOutput values.
+// You can construct a concrete instance of `AlertDimensionsInput` via:
+//
+//	AlertDimensionsArgs{...}
+type AlertDimensionsInput interface {
+	pulumi.Input
+
+	ToAlertDimensionsOutput() AlertDimensionsOutput
+	ToAlertDimensionsOutputWithContext(context.Context) AlertDimensionsOutput
+}
+
+type AlertDimensionsArgs struct {
+	// Names of a subset of domains that the alert monitors.
+	Domains pulumi.StringArrayInput `pulumi:"domains"`
+	// Addresses of a subset of backends that the alert monitors.
+	Origins pulumi.StringArrayInput `pulumi:"origins"`
+}
+
+func (AlertDimensionsArgs) ElementType() reflect.Type {
+	return reflect.TypeOf((*AlertDimensions)(nil)).Elem()
+}
+
+func (i AlertDimensionsArgs) ToAlertDimensionsOutput() AlertDimensionsOutput {
+	return i.ToAlertDimensionsOutputWithContext(context.Background())
+}
+
+func (i AlertDimensionsArgs) ToAlertDimensionsOutputWithContext(ctx context.Context) AlertDimensionsOutput {
+	return pulumi.ToOutputWithContext(ctx, i).(AlertDimensionsOutput)
+}
+
+func (i AlertDimensionsArgs) ToAlertDimensionsPtrOutput() AlertDimensionsPtrOutput {
+	return i.ToAlertDimensionsPtrOutputWithContext(context.Background())
+}
+
+func (i AlertDimensionsArgs) ToAlertDimensionsPtrOutputWithContext(ctx context.Context) AlertDimensionsPtrOutput {
+	return pulumi.ToOutputWithContext(ctx, i).(AlertDimensionsOutput).ToAlertDimensionsPtrOutputWithContext(ctx)
+}
+
+// AlertDimensionsPtrInput is an input type that accepts AlertDimensionsArgs, AlertDimensionsPtr and AlertDimensionsPtrOutput values.
+// You can construct a concrete instance of `AlertDimensionsPtrInput` via:
+//
+//	        AlertDimensionsArgs{...}
+//
+//	or:
+//
+//	        nil
+type AlertDimensionsPtrInput interface {
+	pulumi.Input
+
+	ToAlertDimensionsPtrOutput() AlertDimensionsPtrOutput
+	ToAlertDimensionsPtrOutputWithContext(context.Context) AlertDimensionsPtrOutput
+}
+
+type alertDimensionsPtrType AlertDimensionsArgs
+
+func AlertDimensionsPtr(v *AlertDimensionsArgs) AlertDimensionsPtrInput {
+	return (*alertDimensionsPtrType)(v)
+}
+
+func (*alertDimensionsPtrType) ElementType() reflect.Type {
+	return reflect.TypeOf((**AlertDimensions)(nil)).Elem()
+}
+
+func (i *alertDimensionsPtrType) ToAlertDimensionsPtrOutput() AlertDimensionsPtrOutput {
+	return i.ToAlertDimensionsPtrOutputWithContext(context.Background())
+}
+
+func (i *alertDimensionsPtrType) ToAlertDimensionsPtrOutputWithContext(ctx context.Context) AlertDimensionsPtrOutput {
+	return pulumi.ToOutputWithContext(ctx, i).(AlertDimensionsPtrOutput)
+}
+
+type AlertDimensionsOutput struct{ *pulumi.OutputState }
+
+func (AlertDimensionsOutput) ElementType() reflect.Type {
+	return reflect.TypeOf((*AlertDimensions)(nil)).Elem()
+}
+
+func (o AlertDimensionsOutput) ToAlertDimensionsOutput() AlertDimensionsOutput {
+	return o
+}
+
+func (o AlertDimensionsOutput) ToAlertDimensionsOutputWithContext(ctx context.Context) AlertDimensionsOutput {
+	return o
+}
+
+func (o AlertDimensionsOutput) ToAlertDimensionsPtrOutput() AlertDimensionsPtrOutput {
+	return o.ToAlertDimensionsPtrOutputWithContext(context.Background())
+}
+
+func (o AlertDimensionsOutput) ToAlertDimensionsPtrOutputWithContext(ctx context.Context) AlertDimensionsPtrOutput {
+	return o.ApplyTWithContext(ctx, func(_ context.Context, v AlertDimensions) *AlertDimensions {
+		return &v
+	}).(AlertDimensionsPtrOutput)
+}
+
+// Names of a subset of domains that the alert monitors.
+func (o AlertDimensionsOutput) Domains() pulumi.StringArrayOutput {
+	return o.ApplyT(func(v AlertDimensions) []string { return v.Domains }).(pulumi.StringArrayOutput)
+}
+
+// Addresses of a subset of backends that the alert monitors.
+func (o AlertDimensionsOutput) Origins() pulumi.StringArrayOutput {
+	return o.ApplyT(func(v AlertDimensions) []string { return v.Origins }).(pulumi.StringArrayOutput)
+}
+
+type AlertDimensionsPtrOutput struct{ *pulumi.OutputState }
+
+func (AlertDimensionsPtrOutput) ElementType() reflect.Type {
+	return reflect.TypeOf((**AlertDimensions)(nil)).Elem()
+}
+
+func (o AlertDimensionsPtrOutput) ToAlertDimensionsPtrOutput() AlertDimensionsPtrOutput {
+	return o
+}
+
+func (o AlertDimensionsPtrOutput) ToAlertDimensionsPtrOutputWithContext(ctx context.Context) AlertDimensionsPtrOutput {
+	return o
+}
+
+func (o AlertDimensionsPtrOutput) Elem() AlertDimensionsOutput {
+	return o.ApplyT(func(v *AlertDimensions) AlertDimensions {
+		if v != nil {
+			return *v
+		}
+		var ret AlertDimensions
+		return ret
+	}).(AlertDimensionsOutput)
+}
+
+// Names of a subset of domains that the alert monitors.
+func (o AlertDimensionsPtrOutput) Domains() pulumi.StringArrayOutput {
+	return o.ApplyT(func(v *AlertDimensions) []string {
+		if v == nil {
+			return nil
+		}
+		return v.Domains
+	}).(pulumi.StringArrayOutput)
+}
+
+// Addresses of a subset of backends that the alert monitors.
+func (o AlertDimensionsPtrOutput) Origins() pulumi.StringArrayOutput {
+	return o.ApplyT(func(v *AlertDimensions) []string {
+		if v == nil {
+			return nil
+		}
+		return v.Origins
+	}).(pulumi.StringArrayOutput)
+}
+
+type AlertEvaluationStrategy struct {
+	// The length of time to evaluate whether the conditions have been met. The data is polled every minute. One of: `5m`, `15m`, `30m`.
+	Period string `pulumi:"period"`
+	// Threshold used to alert.
+	Threshold float64 `pulumi:"threshold"`
+	// Type of strategy to use to evaluate. One of: `aboveThreshold`, `belowThreshold`.
+	Type string `pulumi:"type"`
+}
+
+// AlertEvaluationStrategyInput is an input type that accepts AlertEvaluationStrategyArgs and AlertEvaluationStrategyOutput values.
+// You can construct a concrete instance of `AlertEvaluationStrategyInput` via:
+//
+//	AlertEvaluationStrategyArgs{...}
+type AlertEvaluationStrategyInput interface {
+	pulumi.Input
+
+	ToAlertEvaluationStrategyOutput() AlertEvaluationStrategyOutput
+	ToAlertEvaluationStrategyOutputWithContext(context.Context) AlertEvaluationStrategyOutput
+}
+
+type AlertEvaluationStrategyArgs struct {
+	// The length of time to evaluate whether the conditions have been met. The data is polled every minute. One of: `5m`, `15m`, `30m`.
+	Period pulumi.StringInput `pulumi:"period"`
+	// Threshold used to alert.
+	Threshold pulumi.Float64Input `pulumi:"threshold"`
+	// Type of strategy to use to evaluate. One of: `aboveThreshold`, `belowThreshold`.
+	Type pulumi.StringInput `pulumi:"type"`
+}
+
+func (AlertEvaluationStrategyArgs) ElementType() reflect.Type {
+	return reflect.TypeOf((*AlertEvaluationStrategy)(nil)).Elem()
+}
+
+func (i AlertEvaluationStrategyArgs) ToAlertEvaluationStrategyOutput() AlertEvaluationStrategyOutput {
+	return i.ToAlertEvaluationStrategyOutputWithContext(context.Background())
+}
+
+func (i AlertEvaluationStrategyArgs) ToAlertEvaluationStrategyOutputWithContext(ctx context.Context) AlertEvaluationStrategyOutput {
+	return pulumi.ToOutputWithContext(ctx, i).(AlertEvaluationStrategyOutput)
+}
+
+func (i AlertEvaluationStrategyArgs) ToAlertEvaluationStrategyPtrOutput() AlertEvaluationStrategyPtrOutput {
+	return i.ToAlertEvaluationStrategyPtrOutputWithContext(context.Background())
+}
+
+func (i AlertEvaluationStrategyArgs) ToAlertEvaluationStrategyPtrOutputWithContext(ctx context.Context) AlertEvaluationStrategyPtrOutput {
+	return pulumi.ToOutputWithContext(ctx, i).(AlertEvaluationStrategyOutput).ToAlertEvaluationStrategyPtrOutputWithContext(ctx)
+}
+
+// AlertEvaluationStrategyPtrInput is an input type that accepts AlertEvaluationStrategyArgs, AlertEvaluationStrategyPtr and AlertEvaluationStrategyPtrOutput values.
+// You can construct a concrete instance of `AlertEvaluationStrategyPtrInput` via:
+//
+//	        AlertEvaluationStrategyArgs{...}
+//
+//	or:
+//
+//	        nil
+type AlertEvaluationStrategyPtrInput interface {
+	pulumi.Input
+
+	ToAlertEvaluationStrategyPtrOutput() AlertEvaluationStrategyPtrOutput
+	ToAlertEvaluationStrategyPtrOutputWithContext(context.Context) AlertEvaluationStrategyPtrOutput
+}
+
+type alertEvaluationStrategyPtrType AlertEvaluationStrategyArgs
+
+func AlertEvaluationStrategyPtr(v *AlertEvaluationStrategyArgs) AlertEvaluationStrategyPtrInput {
+	return (*alertEvaluationStrategyPtrType)(v)
+}
+
+func (*alertEvaluationStrategyPtrType) ElementType() reflect.Type {
+	return reflect.TypeOf((**AlertEvaluationStrategy)(nil)).Elem()
+}
+
+func (i *alertEvaluationStrategyPtrType) ToAlertEvaluationStrategyPtrOutput() AlertEvaluationStrategyPtrOutput {
+	return i.ToAlertEvaluationStrategyPtrOutputWithContext(context.Background())
+}
+
+func (i *alertEvaluationStrategyPtrType) ToAlertEvaluationStrategyPtrOutputWithContext(ctx context.Context) AlertEvaluationStrategyPtrOutput {
+	return pulumi.ToOutputWithContext(ctx, i).(AlertEvaluationStrategyPtrOutput)
+}
+
+type AlertEvaluationStrategyOutput struct{ *pulumi.OutputState }
+
+func (AlertEvaluationStrategyOutput) ElementType() reflect.Type {
+	return reflect.TypeOf((*AlertEvaluationStrategy)(nil)).Elem()
+}
+
+func (o AlertEvaluationStrategyOutput) ToAlertEvaluationStrategyOutput() AlertEvaluationStrategyOutput {
+	return o
+}
+
+func (o AlertEvaluationStrategyOutput) ToAlertEvaluationStrategyOutputWithContext(ctx context.Context) AlertEvaluationStrategyOutput {
+	return o
+}
+
+func (o AlertEvaluationStrategyOutput) ToAlertEvaluationStrategyPtrOutput() AlertEvaluationStrategyPtrOutput {
+	return o.ToAlertEvaluationStrategyPtrOutputWithContext(context.Background())
+}
+
+func (o AlertEvaluationStrategyOutput) ToAlertEvaluationStrategyPtrOutputWithContext(ctx context.Context) AlertEvaluationStrategyPtrOutput {
+	return o.ApplyTWithContext(ctx, func(_ context.Context, v AlertEvaluationStrategy) *AlertEvaluationStrategy {
+		return &v
+	}).(AlertEvaluationStrategyPtrOutput)
+}
+
+// The length of time to evaluate whether the conditions have been met. The data is polled every minute. One of: `5m`, `15m`, `30m`.
+func (o AlertEvaluationStrategyOutput) Period() pulumi.StringOutput {
+	return o.ApplyT(func(v AlertEvaluationStrategy) string { return v.Period }).(pulumi.StringOutput)
+}
+
+// Threshold used to alert.
+func (o AlertEvaluationStrategyOutput) Threshold() pulumi.Float64Output {
+	return o.ApplyT(func(v AlertEvaluationStrategy) float64 { return v.Threshold }).(pulumi.Float64Output)
+}
+
+// Type of strategy to use to evaluate. One of: `aboveThreshold`, `belowThreshold`.
+func (o AlertEvaluationStrategyOutput) Type() pulumi.StringOutput {
+	return o.ApplyT(func(v AlertEvaluationStrategy) string { return v.Type }).(pulumi.StringOutput)
+}
+
+type AlertEvaluationStrategyPtrOutput struct{ *pulumi.OutputState }
+
+func (AlertEvaluationStrategyPtrOutput) ElementType() reflect.Type {
+	return reflect.TypeOf((**AlertEvaluationStrategy)(nil)).Elem()
+}
+
+func (o AlertEvaluationStrategyPtrOutput) ToAlertEvaluationStrategyPtrOutput() AlertEvaluationStrategyPtrOutput {
+	return o
+}
+
+func (o AlertEvaluationStrategyPtrOutput) ToAlertEvaluationStrategyPtrOutputWithContext(ctx context.Context) AlertEvaluationStrategyPtrOutput {
+	return o
+}
+
+func (o AlertEvaluationStrategyPtrOutput) Elem() AlertEvaluationStrategyOutput {
+	return o.ApplyT(func(v *AlertEvaluationStrategy) AlertEvaluationStrategy {
+		if v != nil {
+			return *v
+		}
+		var ret AlertEvaluationStrategy
+		return ret
+	}).(AlertEvaluationStrategyOutput)
+}
+
+// The length of time to evaluate whether the conditions have been met. The data is polled every minute. One of: `5m`, `15m`, `30m`.
+func (o AlertEvaluationStrategyPtrOutput) Period() pulumi.StringPtrOutput {
+	return o.ApplyT(func(v *AlertEvaluationStrategy) *string {
+		if v == nil {
+			return nil
+		}
+		return &v.Period
+	}).(pulumi.StringPtrOutput)
+}
+
+// Threshold used to alert.
+func (o AlertEvaluationStrategyPtrOutput) Threshold() pulumi.Float64PtrOutput {
+	return o.ApplyT(func(v *AlertEvaluationStrategy) *float64 {
+		if v == nil {
+			return nil
+		}
+		return &v.Threshold
+	}).(pulumi.Float64PtrOutput)
+}
+
+// Type of strategy to use to evaluate. One of: `aboveThreshold`, `belowThreshold`.
+func (o AlertEvaluationStrategyPtrOutput) Type() pulumi.StringPtrOutput {
+	return o.ApplyT(func(v *AlertEvaluationStrategy) *string {
+		if v == nil {
+			return nil
+		}
+		return &v.Type
+	}).(pulumi.StringPtrOutput)
+}
+
 type ServiceACLEntriesEntry struct {
 	// A personal freeform descriptive note
 	Comment *string `pulumi:"comment"`
@@ -10569,6 +10900,166 @@ func (o ServiceVclLoggingNewrelicArrayOutput) Index(i pulumi.IntInput) ServiceVc
 	}).(ServiceVclLoggingNewrelicOutput)
 }
 
+type ServiceVclLoggingNewrelicotlp struct {
+	// Apache style log formatting. Your log must produce valid JSON that New Relic OTLP can ingest.
+	Format *string `pulumi:"format"`
+	// The version of the custom logging format used for the configured endpoint. Can be either `1` or `2`. (default: `2`).
+	FormatVersion *int `pulumi:"formatVersion"`
+	// The unique name of the New Relic OTLP logging endpoint. It is important to note that changing this attribute will delete and recreate the resource
+	Name string `pulumi:"name"`
+	// Where in the generated VCL the logging call should be placed.
+	Placement *string `pulumi:"placement"`
+	// The region that log data will be sent to. Default: `US`
+	Region *string `pulumi:"region"`
+	// The name of the condition to apply.
+	ResponseCondition *string `pulumi:"responseCondition"`
+	// The Insert API key from the Account page of your New Relic account
+	Token string `pulumi:"token"`
+	// The optional New Relic Trace Observer URL to stream logs to for Infinite Tracing.
+	Url *string `pulumi:"url"`
+}
+
+// ServiceVclLoggingNewrelicotlpInput is an input type that accepts ServiceVclLoggingNewrelicotlpArgs and ServiceVclLoggingNewrelicotlpOutput values.
+// You can construct a concrete instance of `ServiceVclLoggingNewrelicotlpInput` via:
+//
+//	ServiceVclLoggingNewrelicotlpArgs{...}
+type ServiceVclLoggingNewrelicotlpInput interface {
+	pulumi.Input
+
+	ToServiceVclLoggingNewrelicotlpOutput() ServiceVclLoggingNewrelicotlpOutput
+	ToServiceVclLoggingNewrelicotlpOutputWithContext(context.Context) ServiceVclLoggingNewrelicotlpOutput
+}
+
+type ServiceVclLoggingNewrelicotlpArgs struct {
+	// Apache style log formatting. Your log must produce valid JSON that New Relic OTLP can ingest.
+	Format pulumi.StringPtrInput `pulumi:"format"`
+	// The version of the custom logging format used for the configured endpoint. Can be either `1` or `2`. (default: `2`).
+	FormatVersion pulumi.IntPtrInput `pulumi:"formatVersion"`
+	// The unique name of the New Relic OTLP logging endpoint. It is important to note that changing this attribute will delete and recreate the resource
+	Name pulumi.StringInput `pulumi:"name"`
+	// Where in the generated VCL the logging call should be placed.
+	Placement pulumi.StringPtrInput `pulumi:"placement"`
+	// The region that log data will be sent to. Default: `US`
+	Region pulumi.StringPtrInput `pulumi:"region"`
+	// The name of the condition to apply.
+	ResponseCondition pulumi.StringPtrInput `pulumi:"responseCondition"`
+	// The Insert API key from the Account page of your New Relic account
+	Token pulumi.StringInput `pulumi:"token"`
+	// The optional New Relic Trace Observer URL to stream logs to for Infinite Tracing.
+	Url pulumi.StringPtrInput `pulumi:"url"`
+}
+
+func (ServiceVclLoggingNewrelicotlpArgs) ElementType() reflect.Type {
+	return reflect.TypeOf((*ServiceVclLoggingNewrelicotlp)(nil)).Elem()
+}
+
+func (i ServiceVclLoggingNewrelicotlpArgs) ToServiceVclLoggingNewrelicotlpOutput() ServiceVclLoggingNewrelicotlpOutput {
+	return i.ToServiceVclLoggingNewrelicotlpOutputWithContext(context.Background())
+}
+
+func (i ServiceVclLoggingNewrelicotlpArgs) ToServiceVclLoggingNewrelicotlpOutputWithContext(ctx context.Context) ServiceVclLoggingNewrelicotlpOutput {
+	return pulumi.ToOutputWithContext(ctx, i).(ServiceVclLoggingNewrelicotlpOutput)
+}
+
+// ServiceVclLoggingNewrelicotlpArrayInput is an input type that accepts ServiceVclLoggingNewrelicotlpArray and ServiceVclLoggingNewrelicotlpArrayOutput values.
+// You can construct a concrete instance of `ServiceVclLoggingNewrelicotlpArrayInput` via:
+//
+//	ServiceVclLoggingNewrelicotlpArray{ ServiceVclLoggingNewrelicotlpArgs{...} }
+type ServiceVclLoggingNewrelicotlpArrayInput interface {
+	pulumi.Input
+
+	ToServiceVclLoggingNewrelicotlpArrayOutput() ServiceVclLoggingNewrelicotlpArrayOutput
+	ToServiceVclLoggingNewrelicotlpArrayOutputWithContext(context.Context) ServiceVclLoggingNewrelicotlpArrayOutput
+}
+
+type ServiceVclLoggingNewrelicotlpArray []ServiceVclLoggingNewrelicotlpInput
+
+func (ServiceVclLoggingNewrelicotlpArray) ElementType() reflect.Type {
+	return reflect.TypeOf((*[]ServiceVclLoggingNewrelicotlp)(nil)).Elem()
+}
+
+func (i ServiceVclLoggingNewrelicotlpArray) ToServiceVclLoggingNewrelicotlpArrayOutput() ServiceVclLoggingNewrelicotlpArrayOutput {
+	return i.ToServiceVclLoggingNewrelicotlpArrayOutputWithContext(context.Background())
+}
+
+func (i ServiceVclLoggingNewrelicotlpArray) ToServiceVclLoggingNewrelicotlpArrayOutputWithContext(ctx context.Context) ServiceVclLoggingNewrelicotlpArrayOutput {
+	return pulumi.ToOutputWithContext(ctx, i).(ServiceVclLoggingNewrelicotlpArrayOutput)
+}
+
+type ServiceVclLoggingNewrelicotlpOutput struct{ *pulumi.OutputState }
+
+func (ServiceVclLoggingNewrelicotlpOutput) ElementType() reflect.Type {
+	return reflect.TypeOf((*ServiceVclLoggingNewrelicotlp)(nil)).Elem()
+}
+
+func (o ServiceVclLoggingNewrelicotlpOutput) ToServiceVclLoggingNewrelicotlpOutput() ServiceVclLoggingNewrelicotlpOutput {
+	return o
+}
+
+func (o ServiceVclLoggingNewrelicotlpOutput) ToServiceVclLoggingNewrelicotlpOutputWithContext(ctx context.Context) ServiceVclLoggingNewrelicotlpOutput {
+	return o
+}
+
+// Apache style log formatting. Your log must produce valid JSON that New Relic OTLP can ingest.
+func (o ServiceVclLoggingNewrelicotlpOutput) Format() pulumi.StringPtrOutput {
+	return o.ApplyT(func(v ServiceVclLoggingNewrelicotlp) *string { return v.Format }).(pulumi.StringPtrOutput)
+}
+
+// The version of the custom logging format used for the configured endpoint. Can be either `1` or `2`. (default: `2`).
+func (o ServiceVclLoggingNewrelicotlpOutput) FormatVersion() pulumi.IntPtrOutput {
+	return o.ApplyT(func(v ServiceVclLoggingNewrelicotlp) *int { return v.FormatVersion }).(pulumi.IntPtrOutput)
+}
+
+// The unique name of the New Relic OTLP logging endpoint. It is important to note that changing this attribute will delete and recreate the resource
+func (o ServiceVclLoggingNewrelicotlpOutput) Name() pulumi.StringOutput {
+	return o.ApplyT(func(v ServiceVclLoggingNewrelicotlp) string { return v.Name }).(pulumi.StringOutput)
+}
+
+// Where in the generated VCL the logging call should be placed.
+func (o ServiceVclLoggingNewrelicotlpOutput) Placement() pulumi.StringPtrOutput {
+	return o.ApplyT(func(v ServiceVclLoggingNewrelicotlp) *string { return v.Placement }).(pulumi.StringPtrOutput)
+}
+
+// The region that log data will be sent to. Default: `US`
+func (o ServiceVclLoggingNewrelicotlpOutput) Region() pulumi.StringPtrOutput {
+	return o.ApplyT(func(v ServiceVclLoggingNewrelicotlp) *string { return v.Region }).(pulumi.StringPtrOutput)
+}
+
+// The name of the condition to apply.
+func (o ServiceVclLoggingNewrelicotlpOutput) ResponseCondition() pulumi.StringPtrOutput {
+	return o.ApplyT(func(v ServiceVclLoggingNewrelicotlp) *string { return v.ResponseCondition }).(pulumi.StringPtrOutput)
+}
+
+// The Insert API key from the Account page of your New Relic account
+func (o ServiceVclLoggingNewrelicotlpOutput) Token() pulumi.StringOutput {
+	return o.ApplyT(func(v ServiceVclLoggingNewrelicotlp) string { return v.Token }).(pulumi.StringOutput)
+}
+
+// The optional New Relic Trace Observer URL to stream logs to for Infinite Tracing.
+func (o ServiceVclLoggingNewrelicotlpOutput) Url() pulumi.StringPtrOutput {
+	return o.ApplyT(func(v ServiceVclLoggingNewrelicotlp) *string { return v.Url }).(pulumi.StringPtrOutput)
+}
+
+type ServiceVclLoggingNewrelicotlpArrayOutput struct{ *pulumi.OutputState }
+
+func (ServiceVclLoggingNewrelicotlpArrayOutput) ElementType() reflect.Type {
+	return reflect.TypeOf((*[]ServiceVclLoggingNewrelicotlp)(nil)).Elem()
+}
+
+func (o ServiceVclLoggingNewrelicotlpArrayOutput) ToServiceVclLoggingNewrelicotlpArrayOutput() ServiceVclLoggingNewrelicotlpArrayOutput {
+	return o
+}
+
+func (o ServiceVclLoggingNewrelicotlpArrayOutput) ToServiceVclLoggingNewrelicotlpArrayOutputWithContext(ctx context.Context) ServiceVclLoggingNewrelicotlpArrayOutput {
+	return o
+}
+
+func (o ServiceVclLoggingNewrelicotlpArrayOutput) Index(i pulumi.IntInput) ServiceVclLoggingNewrelicotlpOutput {
+	return pulumi.All(o, i).ApplyT(func(vs []interface{}) ServiceVclLoggingNewrelicotlp {
+		return vs[0].([]ServiceVclLoggingNewrelicotlp)[vs[1].(int)]
+	}).(ServiceVclLoggingNewrelicotlpOutput)
+}
+
 type ServiceVclLoggingOpenstack struct {
 	// Your OpenStack account access key
 	AccessKey string `pulumi:"accessKey"`
@@ -15024,6 +15515,10 @@ func (o GetWafRulesRuleArrayOutput) Index(i pulumi.IntInput) GetWafRulesRuleOutp
 }
 
 func init() {
+	pulumi.RegisterInputType(reflect.TypeOf((*AlertDimensionsInput)(nil)).Elem(), AlertDimensionsArgs{})
+	pulumi.RegisterInputType(reflect.TypeOf((*AlertDimensionsPtrInput)(nil)).Elem(), AlertDimensionsArgs{})
+	pulumi.RegisterInputType(reflect.TypeOf((*AlertEvaluationStrategyInput)(nil)).Elem(), AlertEvaluationStrategyArgs{})
+	pulumi.RegisterInputType(reflect.TypeOf((*AlertEvaluationStrategyPtrInput)(nil)).Elem(), AlertEvaluationStrategyArgs{})
 	pulumi.RegisterInputType(reflect.TypeOf((*ServiceACLEntriesEntryInput)(nil)).Elem(), ServiceACLEntriesEntryArgs{})
 	pulumi.RegisterInputType(reflect.TypeOf((*ServiceACLEntriesEntryArrayInput)(nil)).Elem(), ServiceACLEntriesEntryArray{})
 	pulumi.RegisterInputType(reflect.TypeOf((*ServiceComputeBackendInput)(nil)).Elem(), ServiceComputeBackendArgs{})
@@ -15148,6 +15643,8 @@ func init() {
 	pulumi.RegisterInputType(reflect.TypeOf((*ServiceVclLoggingLogshuttleArrayInput)(nil)).Elem(), ServiceVclLoggingLogshuttleArray{})
 	pulumi.RegisterInputType(reflect.TypeOf((*ServiceVclLoggingNewrelicInput)(nil)).Elem(), ServiceVclLoggingNewrelicArgs{})
 	pulumi.RegisterInputType(reflect.TypeOf((*ServiceVclLoggingNewrelicArrayInput)(nil)).Elem(), ServiceVclLoggingNewrelicArray{})
+	pulumi.RegisterInputType(reflect.TypeOf((*ServiceVclLoggingNewrelicotlpInput)(nil)).Elem(), ServiceVclLoggingNewrelicotlpArgs{})
+	pulumi.RegisterInputType(reflect.TypeOf((*ServiceVclLoggingNewrelicotlpArrayInput)(nil)).Elem(), ServiceVclLoggingNewrelicotlpArray{})
 	pulumi.RegisterInputType(reflect.TypeOf((*ServiceVclLoggingOpenstackInput)(nil)).Elem(), ServiceVclLoggingOpenstackArgs{})
 	pulumi.RegisterInputType(reflect.TypeOf((*ServiceVclLoggingOpenstackArrayInput)(nil)).Elem(), ServiceVclLoggingOpenstackArray{})
 	pulumi.RegisterInputType(reflect.TypeOf((*ServiceVclLoggingPapertrailInput)(nil)).Elem(), ServiceVclLoggingPapertrailArgs{})
@@ -15204,6 +15701,10 @@ func init() {
 	pulumi.RegisterInputType(reflect.TypeOf((*GetTlsConfigurationDnsRecordArrayInput)(nil)).Elem(), GetTlsConfigurationDnsRecordArray{})
 	pulumi.RegisterInputType(reflect.TypeOf((*GetWafRulesRuleInput)(nil)).Elem(), GetWafRulesRuleArgs{})
 	pulumi.RegisterInputType(reflect.TypeOf((*GetWafRulesRuleArrayInput)(nil)).Elem(), GetWafRulesRuleArray{})
+	pulumi.RegisterOutputType(AlertDimensionsOutput{})
+	pulumi.RegisterOutputType(AlertDimensionsPtrOutput{})
+	pulumi.RegisterOutputType(AlertEvaluationStrategyOutput{})
+	pulumi.RegisterOutputType(AlertEvaluationStrategyPtrOutput{})
 	pulumi.RegisterOutputType(ServiceACLEntriesEntryOutput{})
 	pulumi.RegisterOutputType(ServiceACLEntriesEntryArrayOutput{})
 	pulumi.RegisterOutputType(ServiceComputeBackendOutput{})
@@ -15328,6 +15829,8 @@ func init() {
 	pulumi.RegisterOutputType(ServiceVclLoggingLogshuttleArrayOutput{})
 	pulumi.RegisterOutputType(ServiceVclLoggingNewrelicOutput{})
 	pulumi.RegisterOutputType(ServiceVclLoggingNewrelicArrayOutput{})
+	pulumi.RegisterOutputType(ServiceVclLoggingNewrelicotlpOutput{})
+	pulumi.RegisterOutputType(ServiceVclLoggingNewrelicotlpArrayOutput{})
 	pulumi.RegisterOutputType(ServiceVclLoggingOpenstackOutput{})
 	pulumi.RegisterOutputType(ServiceVclLoggingOpenstackArrayOutput{})
 	pulumi.RegisterOutputType(ServiceVclLoggingPapertrailOutput{})

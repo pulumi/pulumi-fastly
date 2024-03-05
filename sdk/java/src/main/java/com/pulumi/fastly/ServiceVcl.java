@@ -39,6 +39,7 @@ import com.pulumi.fastly.outputs.ServiceVclLoggingLogentry;
 import com.pulumi.fastly.outputs.ServiceVclLoggingLoggly;
 import com.pulumi.fastly.outputs.ServiceVclLoggingLogshuttle;
 import com.pulumi.fastly.outputs.ServiceVclLoggingNewrelic;
+import com.pulumi.fastly.outputs.ServiceVclLoggingNewrelicotlp;
 import com.pulumi.fastly.outputs.ServiceVclLoggingOpenstack;
 import com.pulumi.fastly.outputs.ServiceVclLoggingPapertrail;
 import com.pulumi.fastly.outputs.ServiceVclLoggingS3;
@@ -416,6 +417,12 @@ public class ServiceVcl extends com.pulumi.resources.CustomResource {
 
     public Output<Optional<List<ServiceVclLoggingLogshuttle>>> loggingLogshuttles() {
         return Codegen.optional(this.loggingLogshuttles);
+    }
+    @Export(name="loggingNewrelicotlps", refs={List.class,ServiceVclLoggingNewrelicotlp.class}, tree="[0,1]")
+    private Output</* @Nullable */ List<ServiceVclLoggingNewrelicotlp>> loggingNewrelicotlps;
+
+    public Output<Optional<List<ServiceVclLoggingNewrelicotlp>>> loggingNewrelicotlps() {
+        return Codegen.optional(this.loggingNewrelicotlps);
     }
     @Export(name="loggingNewrelics", refs={List.class,ServiceVclLoggingNewrelic.class}, tree="[0,1]")
     private Output</* @Nullable */ List<ServiceVclLoggingNewrelic>> loggingNewrelics;

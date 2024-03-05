@@ -5,6 +5,7 @@
 from . import _utilities
 import typing
 # Export this package's modules as members:
+from .alert import *
 from .configstore import *
 from .configstore_entries import *
 from .get_configstores import *
@@ -60,6 +61,14 @@ else:
 _utilities.register(
     resource_modules="""
 [
+ {
+  "pkg": "fastly",
+  "mod": "index/alert",
+  "fqn": "pulumi_fastly",
+  "classes": {
+   "fastly:index/alert:Alert": "Alert"
+  }
+ },
  {
   "pkg": "fastly",
   "mod": "index/configstore",

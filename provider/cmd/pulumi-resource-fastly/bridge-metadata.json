@@ -1,6 +1,30 @@
 {
     "auto-aliasing": {
         "resources": {
+            "fastly_alert": {
+                "current": "fastly:index/alert:Alert",
+                "fields": {
+                    "dimensions": {
+                        "maxItemsOne": true,
+                        "elem": {
+                            "fields": {
+                                "domains": {
+                                    "maxItemsOne": false
+                                },
+                                "origins": {
+                                    "maxItemsOne": false
+                                }
+                            }
+                        }
+                    },
+                    "evaluation_strategy": {
+                        "maxItemsOne": true
+                    },
+                    "integration_ids": {
+                        "maxItemsOne": false
+                    }
+                }
+            },
             "fastly_configstore": {
                 "current": "fastly:index/configstore:Configstore"
             },
@@ -243,6 +267,9 @@
                         "maxItemsOne": false
                     },
                     "logging_newrelic": {
+                        "maxItemsOne": false
+                    },
+                    "logging_newrelicotlp": {
                         "maxItemsOne": false
                     },
                     "logging_openstack": {
