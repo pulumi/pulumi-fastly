@@ -74,6 +74,7 @@ def get_fastly_ip_ranges(opts: Optional[pulumi.InvokeOptions] = None) -> Awaitab
 
     ## Example Usage
 
+    <!--Start PulumiCodeChooser -->
     ```python
     import pulumi
     import pulumi_aws as aws
@@ -88,6 +89,7 @@ def get_fastly_ip_ranges(opts: Optional[pulumi.InvokeOptions] = None) -> Awaitab
         ipv6_cidr_blocks=fastly.ipv6_cidr_blocks,
     )])
     ```
+    <!--End PulumiCodeChooser -->
 
     [1]: https://docs.fastly.com/guides/securing-communications/accessing-fastlys-ip-ranges
     """
@@ -108,6 +110,7 @@ def get_fastly_ip_ranges_output(opts: Optional[pulumi.InvokeOptions] = None) -> 
 
     ## Example Usage
 
+    <!--Start PulumiCodeChooser -->
     ```python
     import pulumi
     import pulumi_aws as aws
@@ -122,6 +125,7 @@ def get_fastly_ip_ranges_output(opts: Optional[pulumi.InvokeOptions] = None) -> 
         ipv6_cidr_blocks=fastly.ipv6_cidr_blocks,
     )])
     ```
+    <!--End PulumiCodeChooser -->
 
     [1]: https://docs.fastly.com/guides/securing-communications/accessing-fastlys-ip-ranges
     """

@@ -14,10 +14,9 @@ namespace Pulumi.Fastly
         /// <summary>
         /// Use this data source to generate a SHA512 hash of all files (in sorted order) within the package.
         /// 
-        /// {{% examples %}}
         /// ## Example Usage
-        /// {{% example %}}
         /// 
+        /// &lt;!--Start PulumiCodeChooser --&gt;
         /// ```csharp
         /// using System.Collections.Generic;
         /// using System.Linq;
@@ -43,8 +42,7 @@ namespace Pulumi.Fastly
         /// 
         /// });
         /// ```
-        /// {{% /example %}}
-        /// {{% /examples %}}
+        /// &lt;!--End PulumiCodeChooser --&gt;
         /// </summary>
         public static Task<GetPackageHashResult> InvokeAsync(GetPackageHashArgs? args = null, InvokeOptions? options = null)
             => global::Pulumi.Deployment.Instance.InvokeAsync<GetPackageHashResult>("fastly:index/getPackageHash:getPackageHash", args ?? new GetPackageHashArgs(), options.WithDefaults());
@@ -52,10 +50,9 @@ namespace Pulumi.Fastly
         /// <summary>
         /// Use this data source to generate a SHA512 hash of all files (in sorted order) within the package.
         /// 
-        /// {{% examples %}}
         /// ## Example Usage
-        /// {{% example %}}
         /// 
+        /// &lt;!--Start PulumiCodeChooser --&gt;
         /// ```csharp
         /// using System.Collections.Generic;
         /// using System.Linq;
@@ -81,8 +78,7 @@ namespace Pulumi.Fastly
         /// 
         /// });
         /// ```
-        /// {{% /example %}}
-        /// {{% /examples %}}
+        /// &lt;!--End PulumiCodeChooser --&gt;
         /// </summary>
         public static Output<GetPackageHashResult> Invoke(GetPackageHashInvokeArgs? args = null, InvokeOptions? options = null)
             => global::Pulumi.Deployment.Instance.Invoke<GetPackageHashResult>("fastly:index/getPackageHash:getPackageHash", args ?? new GetPackageHashInvokeArgs(), options.WithDefaults());

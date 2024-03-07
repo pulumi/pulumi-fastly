@@ -138,12 +138,14 @@ def get_tls_subscription(certificate_authority: Optional[str] = None,
 
     ## Example Usage
 
+    <!--Start PulumiCodeChooser -->
     ```python
     import pulumi
     import pulumi_fastly as fastly
 
     example = fastly.get_tls_subscription(domains=["example.com"])
     ```
+    <!--End PulumiCodeChooser -->
 
 
     :param str certificate_authority: The entity that issues and certifies the TLS certificates for the subscription.
@@ -181,12 +183,14 @@ def get_tls_subscription_output(certificate_authority: Optional[pulumi.Input[Opt
 
     ## Example Usage
 
+    <!--Start PulumiCodeChooser -->
     ```python
     import pulumi
     import pulumi_fastly as fastly
 
     example = fastly.get_tls_subscription(domains=["example.com"])
     ```
+    <!--End PulumiCodeChooser -->
 
 
     :param str certificate_authority: The entity that issues and certifies the TLS certificates for the subscription.

@@ -99,12 +99,14 @@ def get_tls_domain(domain: Optional[str] = None,
 
     ## Example Usage
 
+    <!--Start PulumiCodeChooser -->
     ```python
     import pulumi
     import pulumi_fastly as fastly
 
     domain = fastly.get_tls_domain(domain="example.com")
     ```
+    <!--End PulumiCodeChooser -->
 
 
     :param str domain: Domain name to look up activations, certificates and subscriptions for.
@@ -130,12 +132,14 @@ def get_tls_domain_output(domain: Optional[pulumi.Input[str]] = None,
 
     ## Example Usage
 
+    <!--Start PulumiCodeChooser -->
     ```python
     import pulumi
     import pulumi_fastly as fastly
 
     domain = fastly.get_tls_domain(domain="example.com")
     ```
+    <!--End PulumiCodeChooser -->
 
 
     :param str domain: Domain name to look up activations, certificates and subscriptions for.

@@ -78,14 +78,14 @@ public final class ServiceVclLoggingBlobstorageArgs extends com.pulumi.resources
     }
 
     /**
-     * Apache-style string or VCL variables to use for log formatting (default: `%h %l %u %t &#34;%r&#34; %&gt;s %b`)
+     * Apache-style string or VCL variables to use for log formatting (default: `%!h(MISSING) %!l(MISSING) %!u(MISSING) %!t(MISSING) &#34;%!r(MISSING)&#34; %!&gt;(MISSING)s %!b(MISSING)`)
      * 
      */
     @Import(name="format")
     private @Nullable Output<String> format;
 
     /**
-     * @return Apache-style string or VCL variables to use for log formatting (default: `%h %l %u %t &#34;%r&#34; %&gt;s %b`)
+     * @return Apache-style string or VCL variables to use for log formatting (default: `%!h(MISSING) %!l(MISSING) %!u(MISSING) %!t(MISSING) &#34;%!r(MISSING)&#34; %!&gt;(MISSING)s %!b(MISSING)`)
      * 
      */
     public Optional<Output<String>> format() {
@@ -243,14 +243,14 @@ public final class ServiceVclLoggingBlobstorageArgs extends com.pulumi.resources
     }
 
     /**
-     * The `strftime` specified timestamp formatting (default `%Y-%m-%dT%H:%M:%S.000`)
+     * The `strftime` specified timestamp formatting (default `%!Y(MISSING)-%!m(MISSING)-%!d(MISSING)T%!H(MISSING):%!M(MISSING):%!S(MISSING).000`)
      * 
      */
     @Import(name="timestampFormat")
     private @Nullable Output<String> timestampFormat;
 
     /**
-     * @return The `strftime` specified timestamp formatting (default `%Y-%m-%dT%H:%M:%S.000`)
+     * @return The `strftime` specified timestamp formatting (default `%!Y(MISSING)-%!m(MISSING)-%!d(MISSING)T%!H(MISSING):%!M(MISSING):%!S(MISSING).000`)
      * 
      */
     public Optional<Output<String>> timestampFormat() {
@@ -381,7 +381,7 @@ public final class ServiceVclLoggingBlobstorageArgs extends com.pulumi.resources
         }
 
         /**
-         * @param format Apache-style string or VCL variables to use for log formatting (default: `%h %l %u %t &#34;%r&#34; %&gt;s %b`)
+         * @param format Apache-style string or VCL variables to use for log formatting (default: `%!h(MISSING) %!l(MISSING) %!u(MISSING) %!t(MISSING) &#34;%!r(MISSING)&#34; %!&gt;(MISSING)s %!b(MISSING)`)
          * 
          * @return builder
          * 
@@ -392,7 +392,7 @@ public final class ServiceVclLoggingBlobstorageArgs extends com.pulumi.resources
         }
 
         /**
-         * @param format Apache-style string or VCL variables to use for log formatting (default: `%h %l %u %t &#34;%r&#34; %&gt;s %b`)
+         * @param format Apache-style string or VCL variables to use for log formatting (default: `%!h(MISSING) %!l(MISSING) %!u(MISSING) %!t(MISSING) &#34;%!r(MISSING)&#34; %!&gt;(MISSING)s %!b(MISSING)`)
          * 
          * @return builder
          * 
@@ -612,7 +612,7 @@ public final class ServiceVclLoggingBlobstorageArgs extends com.pulumi.resources
         }
 
         /**
-         * @param timestampFormat The `strftime` specified timestamp formatting (default `%Y-%m-%dT%H:%M:%S.000`)
+         * @param timestampFormat The `strftime` specified timestamp formatting (default `%!Y(MISSING)-%!m(MISSING)-%!d(MISSING)T%!H(MISSING):%!M(MISSING):%!S(MISSING).000`)
          * 
          * @return builder
          * 
@@ -623,7 +623,7 @@ public final class ServiceVclLoggingBlobstorageArgs extends com.pulumi.resources
         }
 
         /**
-         * @param timestampFormat The `strftime` specified timestamp formatting (default `%Y-%m-%dT%H:%M:%S.000`)
+         * @param timestampFormat The `strftime` specified timestamp formatting (default `%!Y(MISSING)-%!m(MISSING)-%!d(MISSING)T%!H(MISSING):%!M(MISSING):%!S(MISSING).000`)
          * 
          * @return builder
          * 

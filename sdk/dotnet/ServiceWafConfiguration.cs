@@ -14,25 +14,273 @@ namespace Pulumi.Fastly
     /// 
     /// &gt; **Warning:** This provider will take precedence over any changes you make in the UI or API. Such changes are likely to be reversed if you run the provider again.
     /// 
-    /// ## Adding a WAF to an existing service
+    /// ## Example Usage
     /// 
-    /// &gt; **Warning:** A two-phase change is required when adding a WAF to an existing service
+    /// Basic usage:
     /// 
-    /// When adding a `waf` to an existing `fastly.ServiceVcl` and at the same time adding a `fastly.ServiceWafConfiguration`
-    /// resource with `waf_id = fastly_service_vcl.demo.waf[0].waf_id` might result with the in the following error:
+    /// &lt;!--Start PulumiCodeChooser --&gt;
+    /// ```csharp
+    /// using System.Collections.Generic;
+    /// using System.Linq;
+    /// using Pulumi;
+    /// using Fastly = Pulumi.Fastly;
     /// 
-    /// &gt; fastly_service_vcl.demo.waf is empty list of object
+    /// return await Deployment.RunAsync(() =&gt; 
+    /// {
+    ///     var demo = new Fastly.ServiceVcl("demo", new()
+    ///     {
+    ///         Domains = new[]
+    ///         {
+    ///             new Fastly.Inputs.ServiceVclDomainArgs
+    ///             {
+    ///                 Name = "example.com",
+    ///                 Comment = "demo",
+    ///             },
+    ///         },
+    ///         Backends = new[]
+    ///         {
+    ///             new Fastly.Inputs.ServiceVclBackendArgs
+    ///             {
+    ///                 Address = "127.0.0.1",
+    ///                 Name = "origin1",
+    ///                 Port = 80,
+    ///             },
+    ///         },
+    ///         Conditions = new[]
+    ///         {
+    ///             new Fastly.Inputs.ServiceVclConditionArgs
+    ///             {
+    ///                 Name = "WAF_Prefetch",
+    ///                 Type = "PREFETCH",
+    ///                 Statement = "req.backend.is_origin",
+    ///             },
+    ///             new Fastly.Inputs.ServiceVclConditionArgs
+    ///             {
+    ///                 Name = "WAF_always_false",
+    ///                 Statement = "false",
+    ///                 Type = "REQUEST",
+    ///             },
+    ///         },
+    ///         ResponseObjects = new[]
+    ///         {
+    ///             new Fastly.Inputs.ServiceVclResponseObjectArgs
+    ///             {
+    ///                 Name = "WAF_Response",
+    ///                 Status = 403,
+    ///                 Response = "Forbidden",
+    ///                 ContentType = "text/html",
+    ///                 Content = "&lt;html&gt;&lt;body&gt;Forbidden&lt;/body&gt;&lt;/html&gt;",
+    ///                 RequestCondition = "WAF_always_false",
+    ///             },
+    ///         },
+    ///         Waf = new Fastly.Inputs.ServiceVclWafArgs
+    ///         {
+    ///             PrefetchCondition = "WAF_Prefetch",
+    ///             ResponseObject = "WAF_Response",
+    ///         },
+    ///         ForceDestroy = true,
+    ///     });
     /// 
-    /// For this scenario, it's recommended to split the changes into two distinct steps:
+    ///     var waf = new Fastly.ServiceWafConfiguration("waf", new()
+    ///     {
+    ///         WafId = demo.Waf.Apply(waf =&gt; waf?.WafId),
+    ///         HttpViolationScoreThreshold = 100,
+    ///     });
     /// 
-    /// 1. Add the `waf` block to the `fastly.ServiceVcl` and apply the changes
-    /// 2. Add the `fastly.ServiceWafConfiguration` to the HCL and apply the changes
+    /// });
+    /// ```
+    /// &lt;!--End PulumiCodeChooser --&gt;
+    /// 
+    /// Usage with rules:
+    /// 
+    /// &lt;!--Start PulumiCodeChooser --&gt;
+    /// ```csharp
+    /// using System.Collections.Generic;
+    /// using System.Linq;
+    /// using Pulumi;
+    /// using Fastly = Pulumi.Fastly;
+    /// 
+    /// return await Deployment.RunAsync(() =&gt; 
+    /// {
+    ///     var demo = new Fastly.ServiceVcl("demo", new()
+    ///     {
+    ///         Domains = new[]
+    ///         {
+    ///             new Fastly.Inputs.ServiceVclDomainArgs
+    ///             {
+    ///                 Name = "example.com",
+    ///                 Comment = "demo",
+    ///             },
+    ///         },
+    ///         Backends = new[]
+    ///         {
+    ///             new Fastly.Inputs.ServiceVclBackendArgs
+    ///             {
+    ///                 Address = "127.0.0.1",
+    ///                 Name = "origin1",
+    ///                 Port = 80,
+    ///             },
+    ///         },
+    ///         Conditions = new[]
+    ///         {
+    ///             new Fastly.Inputs.ServiceVclConditionArgs
+    ///             {
+    ///                 Name = "WAF_Prefetch",
+    ///                 Type = "PREFETCH",
+    ///                 Statement = "req.backend.is_origin",
+    ///             },
+    ///             new Fastly.Inputs.ServiceVclConditionArgs
+    ///             {
+    ///                 Name = "WAF_always_false",
+    ///                 Statement = "false",
+    ///                 Type = "REQUEST",
+    ///             },
+    ///         },
+    ///         ResponseObjects = new[]
+    ///         {
+    ///             new Fastly.Inputs.ServiceVclResponseObjectArgs
+    ///             {
+    ///                 Name = "WAF_Response",
+    ///                 Status = 403,
+    ///                 Response = "Forbidden",
+    ///                 ContentType = "text/html",
+    ///                 Content = "&lt;html&gt;&lt;body&gt;Forbidden&lt;/body&gt;&lt;/html&gt;",
+    ///                 RequestCondition = "WAF_always_false",
+    ///             },
+    ///         },
+    ///         Waf = new Fastly.Inputs.ServiceVclWafArgs
+    ///         {
+    ///             PrefetchCondition = "WAF_Prefetch",
+    ///             ResponseObject = "WAF_Response",
+    ///         },
+    ///         ForceDestroy = true,
+    ///     });
+    /// 
+    ///     var waf = new Fastly.ServiceWafConfiguration("waf", new()
+    ///     {
+    ///         WafId = demo.Waf.Apply(waf =&gt; waf?.WafId),
+    ///         HttpViolationScoreThreshold = 100,
+    ///         Rules = new[]
+    ///         {
+    ///             new Fastly.Inputs.ServiceWafConfigurationRuleArgs
+    ///             {
+    ///                 ModsecRuleId = 1010090,
+    ///                 Revision = 1,
+    ///                 Status = "log",
+    ///             },
+    ///         },
+    ///     });
+    /// 
+    /// });
+    /// ```
+    /// &lt;!--End PulumiCodeChooser --&gt;
+    /// 
+    /// Usage with rule exclusions:
+    /// 
+    /// &gt; **Warning:** Rule exclusions are part of a **beta release**, which may be subject to breaking changes and improvements over time. For more information, see our [product and feature lifecycle](https://docs.fastly.com/products/fastly-product-lifecycle#beta) descriptions.
+    /// 
+    /// &lt;!--Start PulumiCodeChooser --&gt;
+    /// ```csharp
+    /// using System.Collections.Generic;
+    /// using System.Linq;
+    /// using Pulumi;
+    /// using Fastly = Pulumi.Fastly;
+    /// 
+    /// return await Deployment.RunAsync(() =&gt; 
+    /// {
+    ///     var demo = new Fastly.ServiceVcl("demo", new()
+    ///     {
+    ///         Domains = new[]
+    ///         {
+    ///             new Fastly.Inputs.ServiceVclDomainArgs
+    ///             {
+    ///                 Name = "example.com",
+    ///                 Comment = "demo",
+    ///             },
+    ///         },
+    ///         Backends = new[]
+    ///         {
+    ///             new Fastly.Inputs.ServiceVclBackendArgs
+    ///             {
+    ///                 Address = "127.0.0.1",
+    ///                 Name = "origin1",
+    ///                 Port = 80,
+    ///             },
+    ///         },
+    ///         Conditions = new[]
+    ///         {
+    ///             new Fastly.Inputs.ServiceVclConditionArgs
+    ///             {
+    ///                 Name = "WAF_Prefetch",
+    ///                 Type = "PREFETCH",
+    ///                 Statement = "req.backend.is_origin",
+    ///             },
+    ///             new Fastly.Inputs.ServiceVclConditionArgs
+    ///             {
+    ///                 Name = "WAF_always_false",
+    ///                 Statement = "false",
+    ///                 Type = "REQUEST",
+    ///             },
+    ///         },
+    ///         ResponseObjects = new[]
+    ///         {
+    ///             new Fastly.Inputs.ServiceVclResponseObjectArgs
+    ///             {
+    ///                 Name = "WAF_Response",
+    ///                 Status = 403,
+    ///                 Response = "Forbidden",
+    ///                 ContentType = "text/html",
+    ///                 Content = "&lt;html&gt;&lt;body&gt;Forbidden&lt;/body&gt;&lt;/html&gt;",
+    ///                 RequestCondition = "WAF_always_false",
+    ///             },
+    ///         },
+    ///         Waf = new Fastly.Inputs.ServiceVclWafArgs
+    ///         {
+    ///             PrefetchCondition = "WAF_Prefetch",
+    ///             ResponseObject = "WAF_Response",
+    ///         },
+    ///         ForceDestroy = true,
+    ///     });
+    /// 
+    ///     var waf = new Fastly.ServiceWafConfiguration("waf", new()
+    ///     {
+    ///         WafId = demo.Waf.Apply(waf =&gt; waf?.WafId),
+    ///         HttpViolationScoreThreshold = 100,
+    ///         Rules = new[]
+    ///         {
+    ///             new Fastly.Inputs.ServiceWafConfigurationRuleArgs
+    ///             {
+    ///                 ModsecRuleId = 2029718,
+    ///                 Revision = 1,
+    ///                 Status = "log",
+    ///             },
+    ///         },
+    ///         RuleExclusions = new[]
+    ///         {
+    ///             new Fastly.Inputs.ServiceWafConfigurationRuleExclusionArgs
+    ///             {
+    ///                 Name = "index page",
+    ///                 ExclusionType = "rule",
+    ///                 Condition = "req.url.basename == \"index.html\"",
+    ///                 ModsecRuleIds = new[]
+    ///                 {
+    ///                     2029718,
+    ///                 },
+    ///             },
+    ///         },
+    ///     });
+    /// 
+    /// });
+    /// ```
+    /// &lt;!--End PulumiCodeChooser --&gt;
+    /// 
+    /// Usage with rules from data source:
     /// 
     /// ## Import
     /// 
     /// This is an example of the import command being applied to the resource named `fastly_service_waf_configuration.waf`
     /// 
-    ///  The resource ID should be the WAF ID.
+    /// The resource ID should be the WAF ID.
     /// 
     /// ```sh
     /// $ pulumi import fastly:index/serviceWafConfiguration:ServiceWafConfiguration waf xxxxxxxxxxxxxxxxxxxx

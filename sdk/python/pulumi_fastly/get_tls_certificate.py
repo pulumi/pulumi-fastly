@@ -169,12 +169,14 @@ def get_tls_certificate(domains: Optional[Sequence[str]] = None,
 
     ## Example Usage
 
+    <!--Start PulumiCodeChooser -->
     ```python
     import pulumi
     import pulumi_fastly as fastly
 
     example = fastly.get_tls_certificate(name="example.com")
     ```
+    <!--End PulumiCodeChooser -->
 
 
     :param Sequence[str] domains: Domains that are listed in any certificates' Subject Alternative Names (SAN) list.
@@ -223,12 +225,14 @@ def get_tls_certificate_output(domains: Optional[pulumi.Input[Optional[Sequence[
 
     ## Example Usage
 
+    <!--Start PulumiCodeChooser -->
     ```python
     import pulumi
     import pulumi_fastly as fastly
 
     example = fastly.get_tls_certificate(name="example.com")
     ```
+    <!--End PulumiCodeChooser -->
 
 
     :param Sequence[str] domains: Domains that are listed in any certificates' Subject Alternative Names (SAN) list.

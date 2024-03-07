@@ -159,6 +159,7 @@ def get_tls_configuration(default: Optional[bool] = None,
 
     ## Example Usage
 
+    <!--Start PulumiCodeChooser -->
     ```python
     import pulumi
     import pulumi_fastly as fastly
@@ -167,6 +168,7 @@ def get_tls_configuration(default: Optional[bool] = None,
     example_tls_activation = fastly.TlsActivation("exampleTlsActivation", configuration_id=example_tls_configuration.id)
     # ...
     ```
+    <!--End PulumiCodeChooser -->
 
 
     :param bool default: Signifies whether Fastly will use this configuration as a default when creating a new TLS activation.
@@ -217,6 +219,7 @@ def get_tls_configuration_output(default: Optional[pulumi.Input[Optional[bool]]]
 
     ## Example Usage
 
+    <!--Start PulumiCodeChooser -->
     ```python
     import pulumi
     import pulumi_fastly as fastly
@@ -225,6 +228,7 @@ def get_tls_configuration_output(default: Optional[pulumi.Input[Optional[bool]]]
     example_tls_activation = fastly.TlsActivation("exampleTlsActivation", configuration_id=example_tls_configuration.id)
     # ...
     ```
+    <!--End PulumiCodeChooser -->
 
 
     :param bool default: Signifies whether Fastly will use this configuration as a default when creating a new TLS activation.

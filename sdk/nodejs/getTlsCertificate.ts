@@ -15,6 +15,7 @@ import * as utilities from "./utilities";
  *
  * ## Example Usage
  *
+ * <!--Start PulumiCodeChooser -->
  * ```typescript
  * import * as pulumi from "@pulumi/pulumi";
  * import * as fastly from "@pulumi/fastly";
@@ -23,6 +24,7 @@ import * as utilities from "./utilities";
  *     name: "example.com",
  * });
  * ```
+ * <!--End PulumiCodeChooser -->
  */
 export function getTlsCertificate(args?: GetTlsCertificateArgs, opts?: pulumi.InvokeOptions): Promise<GetTlsCertificateResult> {
     args = args || {};
@@ -119,6 +121,7 @@ export interface GetTlsCertificateResult {
  *
  * ## Example Usage
  *
+ * <!--Start PulumiCodeChooser -->
  * ```typescript
  * import * as pulumi from "@pulumi/pulumi";
  * import * as fastly from "@pulumi/fastly";
@@ -127,6 +130,7 @@ export interface GetTlsCertificateResult {
  *     name: "example.com",
  * });
  * ```
+ * <!--End PulumiCodeChooser -->
  */
 export function getTlsCertificateOutput(args?: GetTlsCertificateOutputArgs, opts?: pulumi.InvokeOptions): pulumi.Output<GetTlsCertificateResult> {
     return pulumi.output(args).apply((a: any) => getTlsCertificate(a, opts))
