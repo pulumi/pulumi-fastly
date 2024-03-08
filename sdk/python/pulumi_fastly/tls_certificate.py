@@ -236,6 +236,7 @@ class TlsCertificate(pulumi.CustomResource):
 
         Basic usage:
 
+        <!--Start PulumiCodeChooser -->
         ```python
         import pulumi
         import pulumi_fastly as fastly
@@ -260,6 +261,8 @@ class TlsCertificate(pulumi.CustomResource):
         opts=pulumi.ResourceOptions(depends_on=[key_tls_private_key]))
         # The private key has to be present before the certificate can be uploaded
         ```
+        <!--End PulumiCodeChooser -->
+
         ## Updating certificates
 
         There are three scenarios for updating a certificate:
@@ -301,6 +304,7 @@ class TlsCertificate(pulumi.CustomResource):
 
         Basic usage:
 
+        <!--Start PulumiCodeChooser -->
         ```python
         import pulumi
         import pulumi_fastly as fastly
@@ -325,6 +329,8 @@ class TlsCertificate(pulumi.CustomResource):
         opts=pulumi.ResourceOptions(depends_on=[key_tls_private_key]))
         # The private key has to be present before the certificate can be uploaded
         ```
+        <!--End PulumiCodeChooser -->
+
         ## Updating certificates
 
         There are three scenarios for updating a certificate:

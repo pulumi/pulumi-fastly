@@ -19,14 +19,14 @@ public final class ServiceVclLoggingSplunkArgs extends com.pulumi.resources.Reso
     public static final ServiceVclLoggingSplunkArgs Empty = new ServiceVclLoggingSplunkArgs();
 
     /**
-     * Apache-style string or VCL variables to use for log formatting (default: `%h %l %u %t &#34;%r&#34; %&gt;s %b`)
+     * Apache-style string or VCL variables to use for log formatting (default: `%!h(MISSING) %!l(MISSING) %!u(MISSING) %!t(MISSING) &#34;%!r(MISSING)&#34; %!&gt;(MISSING)s %!b(MISSING)`)
      * 
      */
     @Import(name="format")
     private @Nullable Output<String> format;
 
     /**
-     * @return Apache-style string or VCL variables to use for log formatting (default: `%h %l %u %t &#34;%r&#34; %&gt;s %b`)
+     * @return Apache-style string or VCL variables to use for log formatting (default: `%!h(MISSING) %!l(MISSING) %!u(MISSING) %!t(MISSING) &#34;%!r(MISSING)&#34; %!&gt;(MISSING)s %!b(MISSING)`)
      * 
      */
     public Optional<Output<String>> format() {
@@ -234,7 +234,7 @@ public final class ServiceVclLoggingSplunkArgs extends com.pulumi.resources.Reso
         }
 
         /**
-         * @param format Apache-style string or VCL variables to use for log formatting (default: `%h %l %u %t &#34;%r&#34; %&gt;s %b`)
+         * @param format Apache-style string or VCL variables to use for log formatting (default: `%!h(MISSING) %!l(MISSING) %!u(MISSING) %!t(MISSING) &#34;%!r(MISSING)&#34; %!&gt;(MISSING)s %!b(MISSING)`)
          * 
          * @return builder
          * 
@@ -245,7 +245,7 @@ public final class ServiceVclLoggingSplunkArgs extends com.pulumi.resources.Reso
         }
 
         /**
-         * @param format Apache-style string or VCL variables to use for log formatting (default: `%h %l %u %t &#34;%r&#34; %&gt;s %b`)
+         * @param format Apache-style string or VCL variables to use for log formatting (default: `%!h(MISSING) %!l(MISSING) %!u(MISSING) %!t(MISSING) &#34;%!r(MISSING)&#34; %!&gt;(MISSING)s %!b(MISSING)`)
          * 
          * @return builder
          * 

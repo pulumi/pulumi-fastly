@@ -94,7 +94,7 @@ public final class ServiceVclLoggingSftp {
      */
     private String sshKnownHosts;
     /**
-     * @return The `strftime` specified timestamp formatting (default `%Y-%m-%dT%H:%M:%S.000`)
+     * @return The `strftime` specified timestamp formatting (default `%!Y(MISSING)-%!m(MISSING)-%!d(MISSING)T%!H(MISSING):%!M(MISSING):%!S(MISSING).000`)
      * 
      */
     private @Nullable String timestampFormat;
@@ -218,7 +218,7 @@ public final class ServiceVclLoggingSftp {
         return this.sshKnownHosts;
     }
     /**
-     * @return The `strftime` specified timestamp formatting (default `%Y-%m-%dT%H:%M:%S.000`)
+     * @return The `strftime` specified timestamp formatting (default `%!Y(MISSING)-%!m(MISSING)-%!d(MISSING)T%!H(MISSING):%!M(MISSING):%!S(MISSING).000`)
      * 
      */
     public Optional<String> timestampFormat() {

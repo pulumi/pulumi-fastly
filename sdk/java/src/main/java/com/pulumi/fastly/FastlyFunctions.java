@@ -120,6 +120,8 @@ public final class FastlyFunctions {
      * Use this data source to get a list of [Fastly dictionaries](https://developer.fastly.com/reference/api/dictionaries/) for the specified service/version.
      * 
      * ## Example Usage
+     * 
+     * &lt;!--Start PulumiCodeChooser --&gt;
      * ```java
      * package generated_program;
      * 
@@ -171,6 +173,7 @@ public final class FastlyFunctions {
      *     }
      * }
      * ```
+     * &lt;!--End PulumiCodeChooser --&gt;
      * 
      * [1]: https://developer.fastly.com/reference/api/dictionaries/
      * 
@@ -182,6 +185,8 @@ public final class FastlyFunctions {
      * Use this data source to get a list of [Fastly dictionaries](https://developer.fastly.com/reference/api/dictionaries/) for the specified service/version.
      * 
      * ## Example Usage
+     * 
+     * &lt;!--Start PulumiCodeChooser --&gt;
      * ```java
      * package generated_program;
      * 
@@ -233,6 +238,7 @@ public final class FastlyFunctions {
      *     }
      * }
      * ```
+     * &lt;!--End PulumiCodeChooser --&gt;
      * 
      * [1]: https://developer.fastly.com/reference/api/dictionaries/
      * 
@@ -244,6 +250,8 @@ public final class FastlyFunctions {
      * Use this data source to get a list of [Fastly dictionaries](https://developer.fastly.com/reference/api/dictionaries/) for the specified service/version.
      * 
      * ## Example Usage
+     * 
+     * &lt;!--Start PulumiCodeChooser --&gt;
      * ```java
      * package generated_program;
      * 
@@ -295,6 +303,7 @@ public final class FastlyFunctions {
      *     }
      * }
      * ```
+     * &lt;!--End PulumiCodeChooser --&gt;
      * 
      * [1]: https://developer.fastly.com/reference/api/dictionaries/
      * 
@@ -306,6 +315,8 @@ public final class FastlyFunctions {
      * Use this data source to get a list of [Fastly dictionaries](https://developer.fastly.com/reference/api/dictionaries/) for the specified service/version.
      * 
      * ## Example Usage
+     * 
+     * &lt;!--Start PulumiCodeChooser --&gt;
      * ```java
      * package generated_program;
      * 
@@ -357,6 +368,7 @@ public final class FastlyFunctions {
      *     }
      * }
      * ```
+     * &lt;!--End PulumiCodeChooser --&gt;
      * 
      * [1]: https://developer.fastly.com/reference/api/dictionaries/
      * 
@@ -368,6 +380,8 @@ public final class FastlyFunctions {
      * Use this data source to get the [IP ranges](https://docs.fastly.com/guides/securing-communications/accessing-fastlys-ip-ranges) of Fastly edge nodes.
      * 
      * ## Example Usage
+     * 
+     * &lt;!--Start PulumiCodeChooser --&gt;
      * ```java
      * package generated_program;
      * 
@@ -406,6 +420,7 @@ public final class FastlyFunctions {
      *     }
      * }
      * ```
+     * &lt;!--End PulumiCodeChooser --&gt;
      * 
      * [1]: https://docs.fastly.com/guides/securing-communications/accessing-fastlys-ip-ranges
      * 
@@ -417,6 +432,8 @@ public final class FastlyFunctions {
      * Use this data source to get the [IP ranges](https://docs.fastly.com/guides/securing-communications/accessing-fastlys-ip-ranges) of Fastly edge nodes.
      * 
      * ## Example Usage
+     * 
+     * &lt;!--Start PulumiCodeChooser --&gt;
      * ```java
      * package generated_program;
      * 
@@ -455,6 +472,7 @@ public final class FastlyFunctions {
      *     }
      * }
      * ```
+     * &lt;!--End PulumiCodeChooser --&gt;
      * 
      * [1]: https://docs.fastly.com/guides/securing-communications/accessing-fastlys-ip-ranges
      * 
@@ -466,6 +484,8 @@ public final class FastlyFunctions {
      * Use this data source to get the [IP ranges](https://docs.fastly.com/guides/securing-communications/accessing-fastlys-ip-ranges) of Fastly edge nodes.
      * 
      * ## Example Usage
+     * 
+     * &lt;!--Start PulumiCodeChooser --&gt;
      * ```java
      * package generated_program;
      * 
@@ -504,6 +524,7 @@ public final class FastlyFunctions {
      *     }
      * }
      * ```
+     * &lt;!--End PulumiCodeChooser --&gt;
      * 
      * [1]: https://docs.fastly.com/guides/securing-communications/accessing-fastlys-ip-ranges
      * 
@@ -515,6 +536,8 @@ public final class FastlyFunctions {
      * Use this data source to get the [IP ranges](https://docs.fastly.com/guides/securing-communications/accessing-fastlys-ip-ranges) of Fastly edge nodes.
      * 
      * ## Example Usage
+     * 
+     * &lt;!--Start PulumiCodeChooser --&gt;
      * ```java
      * package generated_program;
      * 
@@ -553,6 +576,7 @@ public final class FastlyFunctions {
      *     }
      * }
      * ```
+     * &lt;!--End PulumiCodeChooser --&gt;
      * 
      * [1]: https://docs.fastly.com/guides/securing-communications/accessing-fastlys-ip-ranges
      * 
@@ -564,6 +588,8 @@ public final class FastlyFunctions {
      * Use this data source to get the [IP ranges](https://docs.fastly.com/guides/securing-communications/accessing-fastlys-ip-ranges) of Fastly edge nodes.
      * 
      * ## Example Usage
+     * 
+     * &lt;!--Start PulumiCodeChooser --&gt;
      * ```java
      * package generated_program;
      * 
@@ -602,6 +628,7 @@ public final class FastlyFunctions {
      *     }
      * }
      * ```
+     * &lt;!--End PulumiCodeChooser --&gt;
      * 
      * [1]: https://docs.fastly.com/guides/securing-communications/accessing-fastlys-ip-ranges
      * 
@@ -613,6 +640,8 @@ public final class FastlyFunctions {
      * Use this data source to get the [IP ranges](https://docs.fastly.com/guides/securing-communications/accessing-fastlys-ip-ranges) of Fastly edge nodes.
      * 
      * ## Example Usage
+     * 
+     * &lt;!--Start PulumiCodeChooser --&gt;
      * ```java
      * package generated_program;
      * 
@@ -651,6 +680,7 @@ public final class FastlyFunctions {
      *     }
      * }
      * ```
+     * &lt;!--End PulumiCodeChooser --&gt;
      * 
      * [1]: https://docs.fastly.com/guides/securing-communications/accessing-fastlys-ip-ranges
      * 
@@ -680,6 +710,8 @@ public final class FastlyFunctions {
      * Use this data source to generate a SHA512 hash of all files (in sorted order) within the package.
      * 
      * ## Example Usage
+     * 
+     * &lt;!--Start PulumiCodeChooser --&gt;
      * ```java
      * package generated_program;
      * 
@@ -718,6 +750,7 @@ public final class FastlyFunctions {
      *     }
      * }
      * ```
+     * &lt;!--End PulumiCodeChooser --&gt;
      * 
      */
     public static Output<GetPackageHashResult> getPackageHash() {
@@ -727,6 +760,8 @@ public final class FastlyFunctions {
      * Use this data source to generate a SHA512 hash of all files (in sorted order) within the package.
      * 
      * ## Example Usage
+     * 
+     * &lt;!--Start PulumiCodeChooser --&gt;
      * ```java
      * package generated_program;
      * 
@@ -765,6 +800,7 @@ public final class FastlyFunctions {
      *     }
      * }
      * ```
+     * &lt;!--End PulumiCodeChooser --&gt;
      * 
      */
     public static CompletableFuture<GetPackageHashResult> getPackageHashPlain() {
@@ -774,6 +810,8 @@ public final class FastlyFunctions {
      * Use this data source to generate a SHA512 hash of all files (in sorted order) within the package.
      * 
      * ## Example Usage
+     * 
+     * &lt;!--Start PulumiCodeChooser --&gt;
      * ```java
      * package generated_program;
      * 
@@ -812,6 +850,7 @@ public final class FastlyFunctions {
      *     }
      * }
      * ```
+     * &lt;!--End PulumiCodeChooser --&gt;
      * 
      */
     public static Output<GetPackageHashResult> getPackageHash(GetPackageHashArgs args) {
@@ -821,6 +860,8 @@ public final class FastlyFunctions {
      * Use this data source to generate a SHA512 hash of all files (in sorted order) within the package.
      * 
      * ## Example Usage
+     * 
+     * &lt;!--Start PulumiCodeChooser --&gt;
      * ```java
      * package generated_program;
      * 
@@ -859,6 +900,7 @@ public final class FastlyFunctions {
      *     }
      * }
      * ```
+     * &lt;!--End PulumiCodeChooser --&gt;
      * 
      */
     public static CompletableFuture<GetPackageHashResult> getPackageHashPlain(GetPackageHashPlainArgs args) {
@@ -868,6 +910,8 @@ public final class FastlyFunctions {
      * Use this data source to generate a SHA512 hash of all files (in sorted order) within the package.
      * 
      * ## Example Usage
+     * 
+     * &lt;!--Start PulumiCodeChooser --&gt;
      * ```java
      * package generated_program;
      * 
@@ -906,6 +950,7 @@ public final class FastlyFunctions {
      *     }
      * }
      * ```
+     * &lt;!--End PulumiCodeChooser --&gt;
      * 
      */
     public static Output<GetPackageHashResult> getPackageHash(GetPackageHashArgs args, InvokeOptions options) {
@@ -915,6 +960,8 @@ public final class FastlyFunctions {
      * Use this data source to generate a SHA512 hash of all files (in sorted order) within the package.
      * 
      * ## Example Usage
+     * 
+     * &lt;!--Start PulumiCodeChooser --&gt;
      * ```java
      * package generated_program;
      * 
@@ -953,6 +1000,7 @@ public final class FastlyFunctions {
      *     }
      * }
      * ```
+     * &lt;!--End PulumiCodeChooser --&gt;
      * 
      */
     public static CompletableFuture<GetPackageHashResult> getPackageHashPlain(GetPackageHashPlainArgs args, InvokeOptions options) {
@@ -1028,6 +1076,8 @@ public final class FastlyFunctions {
      * &gt; **Note:** If more or less than a single match is returned by the search, this provider will fail. Ensure that your search is specific enough to return a single key.
      * 
      * ## Example Usage
+     * 
+     * &lt;!--Start PulumiCodeChooser --&gt;
      * ```java
      * package generated_program;
      * 
@@ -1056,6 +1106,7 @@ public final class FastlyFunctions {
      *     }
      * }
      * ```
+     * &lt;!--End PulumiCodeChooser --&gt;
      * 
      */
     public static Output<GetTlsActivationResult> getTlsActivation() {
@@ -1071,6 +1122,8 @@ public final class FastlyFunctions {
      * &gt; **Note:** If more or less than a single match is returned by the search, this provider will fail. Ensure that your search is specific enough to return a single key.
      * 
      * ## Example Usage
+     * 
+     * &lt;!--Start PulumiCodeChooser --&gt;
      * ```java
      * package generated_program;
      * 
@@ -1099,6 +1152,7 @@ public final class FastlyFunctions {
      *     }
      * }
      * ```
+     * &lt;!--End PulumiCodeChooser --&gt;
      * 
      */
     public static CompletableFuture<GetTlsActivationResult> getTlsActivationPlain() {
@@ -1114,6 +1168,8 @@ public final class FastlyFunctions {
      * &gt; **Note:** If more or less than a single match is returned by the search, this provider will fail. Ensure that your search is specific enough to return a single key.
      * 
      * ## Example Usage
+     * 
+     * &lt;!--Start PulumiCodeChooser --&gt;
      * ```java
      * package generated_program;
      * 
@@ -1142,6 +1198,7 @@ public final class FastlyFunctions {
      *     }
      * }
      * ```
+     * &lt;!--End PulumiCodeChooser --&gt;
      * 
      */
     public static Output<GetTlsActivationResult> getTlsActivation(GetTlsActivationArgs args) {
@@ -1157,6 +1214,8 @@ public final class FastlyFunctions {
      * &gt; **Note:** If more or less than a single match is returned by the search, this provider will fail. Ensure that your search is specific enough to return a single key.
      * 
      * ## Example Usage
+     * 
+     * &lt;!--Start PulumiCodeChooser --&gt;
      * ```java
      * package generated_program;
      * 
@@ -1185,6 +1244,7 @@ public final class FastlyFunctions {
      *     }
      * }
      * ```
+     * &lt;!--End PulumiCodeChooser --&gt;
      * 
      */
     public static CompletableFuture<GetTlsActivationResult> getTlsActivationPlain(GetTlsActivationPlainArgs args) {
@@ -1200,6 +1260,8 @@ public final class FastlyFunctions {
      * &gt; **Note:** If more or less than a single match is returned by the search, this provider will fail. Ensure that your search is specific enough to return a single key.
      * 
      * ## Example Usage
+     * 
+     * &lt;!--Start PulumiCodeChooser --&gt;
      * ```java
      * package generated_program;
      * 
@@ -1228,6 +1290,7 @@ public final class FastlyFunctions {
      *     }
      * }
      * ```
+     * &lt;!--End PulumiCodeChooser --&gt;
      * 
      */
     public static Output<GetTlsActivationResult> getTlsActivation(GetTlsActivationArgs args, InvokeOptions options) {
@@ -1243,6 +1306,8 @@ public final class FastlyFunctions {
      * &gt; **Note:** If more or less than a single match is returned by the search, this provider will fail. Ensure that your search is specific enough to return a single key.
      * 
      * ## Example Usage
+     * 
+     * &lt;!--Start PulumiCodeChooser --&gt;
      * ```java
      * package generated_program;
      * 
@@ -1271,6 +1336,7 @@ public final class FastlyFunctions {
      *     }
      * }
      * ```
+     * &lt;!--End PulumiCodeChooser --&gt;
      * 
      */
     public static CompletableFuture<GetTlsActivationResult> getTlsActivationPlain(GetTlsActivationPlainArgs args, InvokeOptions options) {
@@ -1281,6 +1347,9 @@ public final class FastlyFunctions {
      * 
      * ## Example Usage
      * 
+     * &lt;!--Start PulumiCodeChooser --&gt;
+     * &lt;!--End PulumiCodeChooser --&gt;
+     * 
      */
     public static Output<GetTlsActivationIdsResult> getTlsActivationIds() {
         return getTlsActivationIds(GetTlsActivationIdsArgs.Empty, InvokeOptions.Empty);
@@ -1289,6 +1358,9 @@ public final class FastlyFunctions {
      * Use this data source to get the list of TLS Activation identifiers in Fastly.
      * 
      * ## Example Usage
+     * 
+     * &lt;!--Start PulumiCodeChooser --&gt;
+     * &lt;!--End PulumiCodeChooser --&gt;
      * 
      */
     public static CompletableFuture<GetTlsActivationIdsResult> getTlsActivationIdsPlain() {
@@ -1299,6 +1371,9 @@ public final class FastlyFunctions {
      * 
      * ## Example Usage
      * 
+     * &lt;!--Start PulumiCodeChooser --&gt;
+     * &lt;!--End PulumiCodeChooser --&gt;
+     * 
      */
     public static Output<GetTlsActivationIdsResult> getTlsActivationIds(GetTlsActivationIdsArgs args) {
         return getTlsActivationIds(args, InvokeOptions.Empty);
@@ -1307,6 +1382,9 @@ public final class FastlyFunctions {
      * Use this data source to get the list of TLS Activation identifiers in Fastly.
      * 
      * ## Example Usage
+     * 
+     * &lt;!--Start PulumiCodeChooser --&gt;
+     * &lt;!--End PulumiCodeChooser --&gt;
      * 
      */
     public static CompletableFuture<GetTlsActivationIdsResult> getTlsActivationIdsPlain(GetTlsActivationIdsPlainArgs args) {
@@ -1317,6 +1395,9 @@ public final class FastlyFunctions {
      * 
      * ## Example Usage
      * 
+     * &lt;!--Start PulumiCodeChooser --&gt;
+     * &lt;!--End PulumiCodeChooser --&gt;
+     * 
      */
     public static Output<GetTlsActivationIdsResult> getTlsActivationIds(GetTlsActivationIdsArgs args, InvokeOptions options) {
         return Deployment.getInstance().invoke("fastly:index/getTlsActivationIds:getTlsActivationIds", TypeShape.of(GetTlsActivationIdsResult.class), args, Utilities.withVersion(options));
@@ -1325,6 +1406,9 @@ public final class FastlyFunctions {
      * Use this data source to get the list of TLS Activation identifiers in Fastly.
      * 
      * ## Example Usage
+     * 
+     * &lt;!--Start PulumiCodeChooser --&gt;
+     * &lt;!--End PulumiCodeChooser --&gt;
      * 
      */
     public static CompletableFuture<GetTlsActivationIdsResult> getTlsActivationIdsPlain(GetTlsActivationIdsPlainArgs args, InvokeOptions options) {
@@ -1340,6 +1424,8 @@ public final class FastlyFunctions {
      * &gt; **Note:** If more or less than a single match is returned by the search, this provider will fail. Ensure that your search is specific enough to return a single key.
      * 
      * ## Example Usage
+     * 
+     * &lt;!--Start PulumiCodeChooser --&gt;
      * ```java
      * package generated_program;
      * 
@@ -1368,6 +1454,7 @@ public final class FastlyFunctions {
      *     }
      * }
      * ```
+     * &lt;!--End PulumiCodeChooser --&gt;
      * 
      */
     public static Output<GetTlsCertificateResult> getTlsCertificate() {
@@ -1383,6 +1470,8 @@ public final class FastlyFunctions {
      * &gt; **Note:** If more or less than a single match is returned by the search, this provider will fail. Ensure that your search is specific enough to return a single key.
      * 
      * ## Example Usage
+     * 
+     * &lt;!--Start PulumiCodeChooser --&gt;
      * ```java
      * package generated_program;
      * 
@@ -1411,6 +1500,7 @@ public final class FastlyFunctions {
      *     }
      * }
      * ```
+     * &lt;!--End PulumiCodeChooser --&gt;
      * 
      */
     public static CompletableFuture<GetTlsCertificateResult> getTlsCertificatePlain() {
@@ -1426,6 +1516,8 @@ public final class FastlyFunctions {
      * &gt; **Note:** If more or less than a single match is returned by the search, this provider will fail. Ensure that your search is specific enough to return a single key.
      * 
      * ## Example Usage
+     * 
+     * &lt;!--Start PulumiCodeChooser --&gt;
      * ```java
      * package generated_program;
      * 
@@ -1454,6 +1546,7 @@ public final class FastlyFunctions {
      *     }
      * }
      * ```
+     * &lt;!--End PulumiCodeChooser --&gt;
      * 
      */
     public static Output<GetTlsCertificateResult> getTlsCertificate(GetTlsCertificateArgs args) {
@@ -1469,6 +1562,8 @@ public final class FastlyFunctions {
      * &gt; **Note:** If more or less than a single match is returned by the search, this provider will fail. Ensure that your search is specific enough to return a single key.
      * 
      * ## Example Usage
+     * 
+     * &lt;!--Start PulumiCodeChooser --&gt;
      * ```java
      * package generated_program;
      * 
@@ -1497,6 +1592,7 @@ public final class FastlyFunctions {
      *     }
      * }
      * ```
+     * &lt;!--End PulumiCodeChooser --&gt;
      * 
      */
     public static CompletableFuture<GetTlsCertificateResult> getTlsCertificatePlain(GetTlsCertificatePlainArgs args) {
@@ -1512,6 +1608,8 @@ public final class FastlyFunctions {
      * &gt; **Note:** If more or less than a single match is returned by the search, this provider will fail. Ensure that your search is specific enough to return a single key.
      * 
      * ## Example Usage
+     * 
+     * &lt;!--Start PulumiCodeChooser --&gt;
      * ```java
      * package generated_program;
      * 
@@ -1540,6 +1638,7 @@ public final class FastlyFunctions {
      *     }
      * }
      * ```
+     * &lt;!--End PulumiCodeChooser --&gt;
      * 
      */
     public static Output<GetTlsCertificateResult> getTlsCertificate(GetTlsCertificateArgs args, InvokeOptions options) {
@@ -1555,6 +1654,8 @@ public final class FastlyFunctions {
      * &gt; **Note:** If more or less than a single match is returned by the search, this provider will fail. Ensure that your search is specific enough to return a single key.
      * 
      * ## Example Usage
+     * 
+     * &lt;!--Start PulumiCodeChooser --&gt;
      * ```java
      * package generated_program;
      * 
@@ -1583,6 +1684,7 @@ public final class FastlyFunctions {
      *     }
      * }
      * ```
+     * &lt;!--End PulumiCodeChooser --&gt;
      * 
      */
     public static CompletableFuture<GetTlsCertificateResult> getTlsCertificatePlain(GetTlsCertificatePlainArgs args, InvokeOptions options) {
@@ -1592,6 +1694,8 @@ public final class FastlyFunctions {
      * Use this data source to get the IDs of available TLS certificates for use with other resources.
      * 
      * ## Example Usage
+     * 
+     * &lt;!--Start PulumiCodeChooser --&gt;
      * ```java
      * package generated_program;
      * 
@@ -1623,6 +1727,7 @@ public final class FastlyFunctions {
      *     }
      * }
      * ```
+     * &lt;!--End PulumiCodeChooser --&gt;
      * 
      */
     public static Output<GetTlsCertificateIdsResult> getTlsCertificateIds() {
@@ -1632,6 +1737,8 @@ public final class FastlyFunctions {
      * Use this data source to get the IDs of available TLS certificates for use with other resources.
      * 
      * ## Example Usage
+     * 
+     * &lt;!--Start PulumiCodeChooser --&gt;
      * ```java
      * package generated_program;
      * 
@@ -1663,6 +1770,7 @@ public final class FastlyFunctions {
      *     }
      * }
      * ```
+     * &lt;!--End PulumiCodeChooser --&gt;
      * 
      */
     public static CompletableFuture<GetTlsCertificateIdsResult> getTlsCertificateIdsPlain() {
@@ -1672,6 +1780,8 @@ public final class FastlyFunctions {
      * Use this data source to get the IDs of available TLS certificates for use with other resources.
      * 
      * ## Example Usage
+     * 
+     * &lt;!--Start PulumiCodeChooser --&gt;
      * ```java
      * package generated_program;
      * 
@@ -1703,6 +1813,7 @@ public final class FastlyFunctions {
      *     }
      * }
      * ```
+     * &lt;!--End PulumiCodeChooser --&gt;
      * 
      */
     public static Output<GetTlsCertificateIdsResult> getTlsCertificateIds(InvokeArgs args) {
@@ -1712,6 +1823,8 @@ public final class FastlyFunctions {
      * Use this data source to get the IDs of available TLS certificates for use with other resources.
      * 
      * ## Example Usage
+     * 
+     * &lt;!--Start PulumiCodeChooser --&gt;
      * ```java
      * package generated_program;
      * 
@@ -1743,6 +1856,7 @@ public final class FastlyFunctions {
      *     }
      * }
      * ```
+     * &lt;!--End PulumiCodeChooser --&gt;
      * 
      */
     public static CompletableFuture<GetTlsCertificateIdsResult> getTlsCertificateIdsPlain(InvokeArgs args) {
@@ -1752,6 +1866,8 @@ public final class FastlyFunctions {
      * Use this data source to get the IDs of available TLS certificates for use with other resources.
      * 
      * ## Example Usage
+     * 
+     * &lt;!--Start PulumiCodeChooser --&gt;
      * ```java
      * package generated_program;
      * 
@@ -1783,6 +1899,7 @@ public final class FastlyFunctions {
      *     }
      * }
      * ```
+     * &lt;!--End PulumiCodeChooser --&gt;
      * 
      */
     public static Output<GetTlsCertificateIdsResult> getTlsCertificateIds(InvokeArgs args, InvokeOptions options) {
@@ -1792,6 +1909,8 @@ public final class FastlyFunctions {
      * Use this data source to get the IDs of available TLS certificates for use with other resources.
      * 
      * ## Example Usage
+     * 
+     * &lt;!--Start PulumiCodeChooser --&gt;
      * ```java
      * package generated_program;
      * 
@@ -1823,6 +1942,7 @@ public final class FastlyFunctions {
      *     }
      * }
      * ```
+     * &lt;!--End PulumiCodeChooser --&gt;
      * 
      */
     public static CompletableFuture<GetTlsCertificateIdsResult> getTlsCertificateIdsPlain(InvokeArgs args, InvokeOptions options) {
@@ -1838,6 +1958,8 @@ public final class FastlyFunctions {
      * &gt; **Note:** If more or less than a single match is returned by the search, this provider will fail. Ensure that your search is specific enough to return a single key.
      * 
      * ## Example Usage
+     * 
+     * &lt;!--Start PulumiCodeChooser --&gt;
      * ```java
      * package generated_program;
      * 
@@ -1872,6 +1994,7 @@ public final class FastlyFunctions {
      *     }
      * }
      * ```
+     * &lt;!--End PulumiCodeChooser --&gt;
      * 
      */
     public static Output<GetTlsConfigurationResult> getTlsConfiguration() {
@@ -1887,6 +2010,8 @@ public final class FastlyFunctions {
      * &gt; **Note:** If more or less than a single match is returned by the search, this provider will fail. Ensure that your search is specific enough to return a single key.
      * 
      * ## Example Usage
+     * 
+     * &lt;!--Start PulumiCodeChooser --&gt;
      * ```java
      * package generated_program;
      * 
@@ -1921,6 +2046,7 @@ public final class FastlyFunctions {
      *     }
      * }
      * ```
+     * &lt;!--End PulumiCodeChooser --&gt;
      * 
      */
     public static CompletableFuture<GetTlsConfigurationResult> getTlsConfigurationPlain() {
@@ -1936,6 +2062,8 @@ public final class FastlyFunctions {
      * &gt; **Note:** If more or less than a single match is returned by the search, this provider will fail. Ensure that your search is specific enough to return a single key.
      * 
      * ## Example Usage
+     * 
+     * &lt;!--Start PulumiCodeChooser --&gt;
      * ```java
      * package generated_program;
      * 
@@ -1970,6 +2098,7 @@ public final class FastlyFunctions {
      *     }
      * }
      * ```
+     * &lt;!--End PulumiCodeChooser --&gt;
      * 
      */
     public static Output<GetTlsConfigurationResult> getTlsConfiguration(GetTlsConfigurationArgs args) {
@@ -1985,6 +2114,8 @@ public final class FastlyFunctions {
      * &gt; **Note:** If more or less than a single match is returned by the search, this provider will fail. Ensure that your search is specific enough to return a single key.
      * 
      * ## Example Usage
+     * 
+     * &lt;!--Start PulumiCodeChooser --&gt;
      * ```java
      * package generated_program;
      * 
@@ -2019,6 +2150,7 @@ public final class FastlyFunctions {
      *     }
      * }
      * ```
+     * &lt;!--End PulumiCodeChooser --&gt;
      * 
      */
     public static CompletableFuture<GetTlsConfigurationResult> getTlsConfigurationPlain(GetTlsConfigurationPlainArgs args) {
@@ -2034,6 +2166,8 @@ public final class FastlyFunctions {
      * &gt; **Note:** If more or less than a single match is returned by the search, this provider will fail. Ensure that your search is specific enough to return a single key.
      * 
      * ## Example Usage
+     * 
+     * &lt;!--Start PulumiCodeChooser --&gt;
      * ```java
      * package generated_program;
      * 
@@ -2068,6 +2202,7 @@ public final class FastlyFunctions {
      *     }
      * }
      * ```
+     * &lt;!--End PulumiCodeChooser --&gt;
      * 
      */
     public static Output<GetTlsConfigurationResult> getTlsConfiguration(GetTlsConfigurationArgs args, InvokeOptions options) {
@@ -2083,6 +2218,8 @@ public final class FastlyFunctions {
      * &gt; **Note:** If more or less than a single match is returned by the search, this provider will fail. Ensure that your search is specific enough to return a single key.
      * 
      * ## Example Usage
+     * 
+     * &lt;!--Start PulumiCodeChooser --&gt;
      * ```java
      * package generated_program;
      * 
@@ -2117,6 +2254,7 @@ public final class FastlyFunctions {
      *     }
      * }
      * ```
+     * &lt;!--End PulumiCodeChooser --&gt;
      * 
      */
     public static CompletableFuture<GetTlsConfigurationResult> getTlsConfigurationPlain(GetTlsConfigurationPlainArgs args, InvokeOptions options) {
@@ -2126,6 +2264,8 @@ public final class FastlyFunctions {
      * Use this data source to get the IDs of available TLS configurations for use with other resources.
      * 
      * ## Example Usage
+     * 
+     * &lt;!--Start PulumiCodeChooser --&gt;
      * ```java
      * package generated_program;
      * 
@@ -2157,6 +2297,7 @@ public final class FastlyFunctions {
      *     }
      * }
      * ```
+     * &lt;!--End PulumiCodeChooser --&gt;
      * 
      */
     public static Output<GetTlsConfigurationIdsResult> getTlsConfigurationIds() {
@@ -2166,6 +2307,8 @@ public final class FastlyFunctions {
      * Use this data source to get the IDs of available TLS configurations for use with other resources.
      * 
      * ## Example Usage
+     * 
+     * &lt;!--Start PulumiCodeChooser --&gt;
      * ```java
      * package generated_program;
      * 
@@ -2197,6 +2340,7 @@ public final class FastlyFunctions {
      *     }
      * }
      * ```
+     * &lt;!--End PulumiCodeChooser --&gt;
      * 
      */
     public static CompletableFuture<GetTlsConfigurationIdsResult> getTlsConfigurationIdsPlain() {
@@ -2206,6 +2350,8 @@ public final class FastlyFunctions {
      * Use this data source to get the IDs of available TLS configurations for use with other resources.
      * 
      * ## Example Usage
+     * 
+     * &lt;!--Start PulumiCodeChooser --&gt;
      * ```java
      * package generated_program;
      * 
@@ -2237,6 +2383,7 @@ public final class FastlyFunctions {
      *     }
      * }
      * ```
+     * &lt;!--End PulumiCodeChooser --&gt;
      * 
      */
     public static Output<GetTlsConfigurationIdsResult> getTlsConfigurationIds(InvokeArgs args) {
@@ -2246,6 +2393,8 @@ public final class FastlyFunctions {
      * Use this data source to get the IDs of available TLS configurations for use with other resources.
      * 
      * ## Example Usage
+     * 
+     * &lt;!--Start PulumiCodeChooser --&gt;
      * ```java
      * package generated_program;
      * 
@@ -2277,6 +2426,7 @@ public final class FastlyFunctions {
      *     }
      * }
      * ```
+     * &lt;!--End PulumiCodeChooser --&gt;
      * 
      */
     public static CompletableFuture<GetTlsConfigurationIdsResult> getTlsConfigurationIdsPlain(InvokeArgs args) {
@@ -2286,6 +2436,8 @@ public final class FastlyFunctions {
      * Use this data source to get the IDs of available TLS configurations for use with other resources.
      * 
      * ## Example Usage
+     * 
+     * &lt;!--Start PulumiCodeChooser --&gt;
      * ```java
      * package generated_program;
      * 
@@ -2317,6 +2469,7 @@ public final class FastlyFunctions {
      *     }
      * }
      * ```
+     * &lt;!--End PulumiCodeChooser --&gt;
      * 
      */
     public static Output<GetTlsConfigurationIdsResult> getTlsConfigurationIds(InvokeArgs args, InvokeOptions options) {
@@ -2326,6 +2479,8 @@ public final class FastlyFunctions {
      * Use this data source to get the IDs of available TLS configurations for use with other resources.
      * 
      * ## Example Usage
+     * 
+     * &lt;!--Start PulumiCodeChooser --&gt;
      * ```java
      * package generated_program;
      * 
@@ -2357,6 +2512,7 @@ public final class FastlyFunctions {
      *     }
      * }
      * ```
+     * &lt;!--End PulumiCodeChooser --&gt;
      * 
      */
     public static CompletableFuture<GetTlsConfigurationIdsResult> getTlsConfigurationIdsPlain(InvokeArgs args, InvokeOptions options) {
@@ -2366,6 +2522,8 @@ public final class FastlyFunctions {
      * Use this data source to get the IDs of activations, certificates and subscriptions associated with a domain.
      * 
      * ## Example Usage
+     * 
+     * &lt;!--Start PulumiCodeChooser --&gt;
      * ```java
      * package generated_program;
      * 
@@ -2394,6 +2552,7 @@ public final class FastlyFunctions {
      *     }
      * }
      * ```
+     * &lt;!--End PulumiCodeChooser --&gt;
      * 
      */
     public static Output<GetTlsDomainResult> getTlsDomain(GetTlsDomainArgs args) {
@@ -2403,6 +2562,8 @@ public final class FastlyFunctions {
      * Use this data source to get the IDs of activations, certificates and subscriptions associated with a domain.
      * 
      * ## Example Usage
+     * 
+     * &lt;!--Start PulumiCodeChooser --&gt;
      * ```java
      * package generated_program;
      * 
@@ -2431,6 +2592,7 @@ public final class FastlyFunctions {
      *     }
      * }
      * ```
+     * &lt;!--End PulumiCodeChooser --&gt;
      * 
      */
     public static CompletableFuture<GetTlsDomainResult> getTlsDomainPlain(GetTlsDomainPlainArgs args) {
@@ -2440,6 +2602,8 @@ public final class FastlyFunctions {
      * Use this data source to get the IDs of activations, certificates and subscriptions associated with a domain.
      * 
      * ## Example Usage
+     * 
+     * &lt;!--Start PulumiCodeChooser --&gt;
      * ```java
      * package generated_program;
      * 
@@ -2468,6 +2632,7 @@ public final class FastlyFunctions {
      *     }
      * }
      * ```
+     * &lt;!--End PulumiCodeChooser --&gt;
      * 
      */
     public static Output<GetTlsDomainResult> getTlsDomain(GetTlsDomainArgs args, InvokeOptions options) {
@@ -2477,6 +2642,8 @@ public final class FastlyFunctions {
      * Use this data source to get the IDs of activations, certificates and subscriptions associated with a domain.
      * 
      * ## Example Usage
+     * 
+     * &lt;!--Start PulumiCodeChooser --&gt;
      * ```java
      * package generated_program;
      * 
@@ -2505,6 +2672,7 @@ public final class FastlyFunctions {
      *     }
      * }
      * ```
+     * &lt;!--End PulumiCodeChooser --&gt;
      * 
      */
     public static CompletableFuture<GetTlsDomainResult> getTlsDomainPlain(GetTlsDomainPlainArgs args, InvokeOptions options) {
@@ -2520,6 +2688,8 @@ public final class FastlyFunctions {
      * &gt; **Note:** If more or less than a single match is returned by the search, this provider will fail. Ensure that your search is specific enough to return a single key.
      * 
      * ## Example Usage
+     * 
+     * &lt;!--Start PulumiCodeChooser --&gt;
      * ```java
      * package generated_program;
      * 
@@ -2548,6 +2718,7 @@ public final class FastlyFunctions {
      *     }
      * }
      * ```
+     * &lt;!--End PulumiCodeChooser --&gt;
      * 
      */
     public static Output<GetTlsPlatformCertificateResult> getTlsPlatformCertificate() {
@@ -2563,6 +2734,8 @@ public final class FastlyFunctions {
      * &gt; **Note:** If more or less than a single match is returned by the search, this provider will fail. Ensure that your search is specific enough to return a single key.
      * 
      * ## Example Usage
+     * 
+     * &lt;!--Start PulumiCodeChooser --&gt;
      * ```java
      * package generated_program;
      * 
@@ -2591,6 +2764,7 @@ public final class FastlyFunctions {
      *     }
      * }
      * ```
+     * &lt;!--End PulumiCodeChooser --&gt;
      * 
      */
     public static CompletableFuture<GetTlsPlatformCertificateResult> getTlsPlatformCertificatePlain() {
@@ -2606,6 +2780,8 @@ public final class FastlyFunctions {
      * &gt; **Note:** If more or less than a single match is returned by the search, this provider will fail. Ensure that your search is specific enough to return a single key.
      * 
      * ## Example Usage
+     * 
+     * &lt;!--Start PulumiCodeChooser --&gt;
      * ```java
      * package generated_program;
      * 
@@ -2634,6 +2810,7 @@ public final class FastlyFunctions {
      *     }
      * }
      * ```
+     * &lt;!--End PulumiCodeChooser --&gt;
      * 
      */
     public static Output<GetTlsPlatformCertificateResult> getTlsPlatformCertificate(GetTlsPlatformCertificateArgs args) {
@@ -2649,6 +2826,8 @@ public final class FastlyFunctions {
      * &gt; **Note:** If more or less than a single match is returned by the search, this provider will fail. Ensure that your search is specific enough to return a single key.
      * 
      * ## Example Usage
+     * 
+     * &lt;!--Start PulumiCodeChooser --&gt;
      * ```java
      * package generated_program;
      * 
@@ -2677,6 +2856,7 @@ public final class FastlyFunctions {
      *     }
      * }
      * ```
+     * &lt;!--End PulumiCodeChooser --&gt;
      * 
      */
     public static CompletableFuture<GetTlsPlatformCertificateResult> getTlsPlatformCertificatePlain(GetTlsPlatformCertificatePlainArgs args) {
@@ -2692,6 +2872,8 @@ public final class FastlyFunctions {
      * &gt; **Note:** If more or less than a single match is returned by the search, this provider will fail. Ensure that your search is specific enough to return a single key.
      * 
      * ## Example Usage
+     * 
+     * &lt;!--Start PulumiCodeChooser --&gt;
      * ```java
      * package generated_program;
      * 
@@ -2720,6 +2902,7 @@ public final class FastlyFunctions {
      *     }
      * }
      * ```
+     * &lt;!--End PulumiCodeChooser --&gt;
      * 
      */
     public static Output<GetTlsPlatformCertificateResult> getTlsPlatformCertificate(GetTlsPlatformCertificateArgs args, InvokeOptions options) {
@@ -2735,6 +2918,8 @@ public final class FastlyFunctions {
      * &gt; **Note:** If more or less than a single match is returned by the search, this provider will fail. Ensure that your search is specific enough to return a single key.
      * 
      * ## Example Usage
+     * 
+     * &lt;!--Start PulumiCodeChooser --&gt;
      * ```java
      * package generated_program;
      * 
@@ -2763,6 +2948,7 @@ public final class FastlyFunctions {
      *     }
      * }
      * ```
+     * &lt;!--End PulumiCodeChooser --&gt;
      * 
      */
     public static CompletableFuture<GetTlsPlatformCertificateResult> getTlsPlatformCertificatePlain(GetTlsPlatformCertificatePlainArgs args, InvokeOptions options) {
@@ -2772,6 +2958,8 @@ public final class FastlyFunctions {
      * Use this data source to get the IDs of available Platform TLS Certificates for use with other resources.
      * 
      * ## Example Usage
+     * 
+     * &lt;!--Start PulumiCodeChooser --&gt;
      * ```java
      * package generated_program;
      * 
@@ -2802,6 +2990,7 @@ public final class FastlyFunctions {
      *     }
      * }
      * ```
+     * &lt;!--End PulumiCodeChooser --&gt;
      * 
      */
     public static Output<GetTlsPlatformCertificateIdsResult> getTlsPlatformCertificateIds() {
@@ -2811,6 +3000,8 @@ public final class FastlyFunctions {
      * Use this data source to get the IDs of available Platform TLS Certificates for use with other resources.
      * 
      * ## Example Usage
+     * 
+     * &lt;!--Start PulumiCodeChooser --&gt;
      * ```java
      * package generated_program;
      * 
@@ -2841,6 +3032,7 @@ public final class FastlyFunctions {
      *     }
      * }
      * ```
+     * &lt;!--End PulumiCodeChooser --&gt;
      * 
      */
     public static CompletableFuture<GetTlsPlatformCertificateIdsResult> getTlsPlatformCertificateIdsPlain() {
@@ -2850,6 +3042,8 @@ public final class FastlyFunctions {
      * Use this data source to get the IDs of available Platform TLS Certificates for use with other resources.
      * 
      * ## Example Usage
+     * 
+     * &lt;!--Start PulumiCodeChooser --&gt;
      * ```java
      * package generated_program;
      * 
@@ -2880,6 +3074,7 @@ public final class FastlyFunctions {
      *     }
      * }
      * ```
+     * &lt;!--End PulumiCodeChooser --&gt;
      * 
      */
     public static Output<GetTlsPlatformCertificateIdsResult> getTlsPlatformCertificateIds(InvokeArgs args) {
@@ -2889,6 +3084,8 @@ public final class FastlyFunctions {
      * Use this data source to get the IDs of available Platform TLS Certificates for use with other resources.
      * 
      * ## Example Usage
+     * 
+     * &lt;!--Start PulumiCodeChooser --&gt;
      * ```java
      * package generated_program;
      * 
@@ -2919,6 +3116,7 @@ public final class FastlyFunctions {
      *     }
      * }
      * ```
+     * &lt;!--End PulumiCodeChooser --&gt;
      * 
      */
     public static CompletableFuture<GetTlsPlatformCertificateIdsResult> getTlsPlatformCertificateIdsPlain(InvokeArgs args) {
@@ -2928,6 +3126,8 @@ public final class FastlyFunctions {
      * Use this data source to get the IDs of available Platform TLS Certificates for use with other resources.
      * 
      * ## Example Usage
+     * 
+     * &lt;!--Start PulumiCodeChooser --&gt;
      * ```java
      * package generated_program;
      * 
@@ -2958,6 +3158,7 @@ public final class FastlyFunctions {
      *     }
      * }
      * ```
+     * &lt;!--End PulumiCodeChooser --&gt;
      * 
      */
     public static Output<GetTlsPlatformCertificateIdsResult> getTlsPlatformCertificateIds(InvokeArgs args, InvokeOptions options) {
@@ -2967,6 +3168,8 @@ public final class FastlyFunctions {
      * Use this data source to get the IDs of available Platform TLS Certificates for use with other resources.
      * 
      * ## Example Usage
+     * 
+     * &lt;!--Start PulumiCodeChooser --&gt;
      * ```java
      * package generated_program;
      * 
@@ -2997,6 +3200,7 @@ public final class FastlyFunctions {
      *     }
      * }
      * ```
+     * &lt;!--End PulumiCodeChooser --&gt;
      * 
      */
     public static CompletableFuture<GetTlsPlatformCertificateIdsResult> getTlsPlatformCertificateIdsPlain(InvokeArgs args, InvokeOptions options) {
@@ -3013,6 +3217,8 @@ public final class FastlyFunctions {
      *  is specific enough to return a single key.
      * 
      * ## Example Usage
+     * 
+     * &lt;!--Start PulumiCodeChooser --&gt;
      * ```java
      * package generated_program;
      * 
@@ -3042,6 +3248,7 @@ public final class FastlyFunctions {
      *     }
      * }
      * ```
+     * &lt;!--End PulumiCodeChooser --&gt;
      * 
      */
     public static Output<GetTlsPrivateKeyResult> getTlsPrivateKey() {
@@ -3058,6 +3265,8 @@ public final class FastlyFunctions {
      *  is specific enough to return a single key.
      * 
      * ## Example Usage
+     * 
+     * &lt;!--Start PulumiCodeChooser --&gt;
      * ```java
      * package generated_program;
      * 
@@ -3087,6 +3296,7 @@ public final class FastlyFunctions {
      *     }
      * }
      * ```
+     * &lt;!--End PulumiCodeChooser --&gt;
      * 
      */
     public static CompletableFuture<GetTlsPrivateKeyResult> getTlsPrivateKeyPlain() {
@@ -3103,6 +3313,8 @@ public final class FastlyFunctions {
      *  is specific enough to return a single key.
      * 
      * ## Example Usage
+     * 
+     * &lt;!--Start PulumiCodeChooser --&gt;
      * ```java
      * package generated_program;
      * 
@@ -3132,6 +3344,7 @@ public final class FastlyFunctions {
      *     }
      * }
      * ```
+     * &lt;!--End PulumiCodeChooser --&gt;
      * 
      */
     public static Output<GetTlsPrivateKeyResult> getTlsPrivateKey(GetTlsPrivateKeyArgs args) {
@@ -3148,6 +3361,8 @@ public final class FastlyFunctions {
      *  is specific enough to return a single key.
      * 
      * ## Example Usage
+     * 
+     * &lt;!--Start PulumiCodeChooser --&gt;
      * ```java
      * package generated_program;
      * 
@@ -3177,6 +3392,7 @@ public final class FastlyFunctions {
      *     }
      * }
      * ```
+     * &lt;!--End PulumiCodeChooser --&gt;
      * 
      */
     public static CompletableFuture<GetTlsPrivateKeyResult> getTlsPrivateKeyPlain(GetTlsPrivateKeyPlainArgs args) {
@@ -3193,6 +3409,8 @@ public final class FastlyFunctions {
      *  is specific enough to return a single key.
      * 
      * ## Example Usage
+     * 
+     * &lt;!--Start PulumiCodeChooser --&gt;
      * ```java
      * package generated_program;
      * 
@@ -3222,6 +3440,7 @@ public final class FastlyFunctions {
      *     }
      * }
      * ```
+     * &lt;!--End PulumiCodeChooser --&gt;
      * 
      */
     public static Output<GetTlsPrivateKeyResult> getTlsPrivateKey(GetTlsPrivateKeyArgs args, InvokeOptions options) {
@@ -3238,6 +3457,8 @@ public final class FastlyFunctions {
      *  is specific enough to return a single key.
      * 
      * ## Example Usage
+     * 
+     * &lt;!--Start PulumiCodeChooser --&gt;
      * ```java
      * package generated_program;
      * 
@@ -3267,6 +3488,7 @@ public final class FastlyFunctions {
      *     }
      * }
      * ```
+     * &lt;!--End PulumiCodeChooser --&gt;
      * 
      */
     public static CompletableFuture<GetTlsPrivateKeyResult> getTlsPrivateKeyPlain(GetTlsPrivateKeyPlainArgs args, InvokeOptions options) {
@@ -3276,6 +3498,8 @@ public final class FastlyFunctions {
      * Use this data source to get the list of TLS private key identifiers in Fastly.
      * 
      * ## Example Usage
+     * 
+     * &lt;!--Start PulumiCodeChooser --&gt;
      * ```java
      * package generated_program;
      * 
@@ -3306,6 +3530,7 @@ public final class FastlyFunctions {
      *     }
      * }
      * ```
+     * &lt;!--End PulumiCodeChooser --&gt;
      * 
      */
     public static Output<GetTlsPrivateKeyIdsResult> getTlsPrivateKeyIds() {
@@ -3315,6 +3540,8 @@ public final class FastlyFunctions {
      * Use this data source to get the list of TLS private key identifiers in Fastly.
      * 
      * ## Example Usage
+     * 
+     * &lt;!--Start PulumiCodeChooser --&gt;
      * ```java
      * package generated_program;
      * 
@@ -3345,6 +3572,7 @@ public final class FastlyFunctions {
      *     }
      * }
      * ```
+     * &lt;!--End PulumiCodeChooser --&gt;
      * 
      */
     public static CompletableFuture<GetTlsPrivateKeyIdsResult> getTlsPrivateKeyIdsPlain() {
@@ -3354,6 +3582,8 @@ public final class FastlyFunctions {
      * Use this data source to get the list of TLS private key identifiers in Fastly.
      * 
      * ## Example Usage
+     * 
+     * &lt;!--Start PulumiCodeChooser --&gt;
      * ```java
      * package generated_program;
      * 
@@ -3384,6 +3614,7 @@ public final class FastlyFunctions {
      *     }
      * }
      * ```
+     * &lt;!--End PulumiCodeChooser --&gt;
      * 
      */
     public static Output<GetTlsPrivateKeyIdsResult> getTlsPrivateKeyIds(InvokeArgs args) {
@@ -3393,6 +3624,8 @@ public final class FastlyFunctions {
      * Use this data source to get the list of TLS private key identifiers in Fastly.
      * 
      * ## Example Usage
+     * 
+     * &lt;!--Start PulumiCodeChooser --&gt;
      * ```java
      * package generated_program;
      * 
@@ -3423,6 +3656,7 @@ public final class FastlyFunctions {
      *     }
      * }
      * ```
+     * &lt;!--End PulumiCodeChooser --&gt;
      * 
      */
     public static CompletableFuture<GetTlsPrivateKeyIdsResult> getTlsPrivateKeyIdsPlain(InvokeArgs args) {
@@ -3432,6 +3666,8 @@ public final class FastlyFunctions {
      * Use this data source to get the list of TLS private key identifiers in Fastly.
      * 
      * ## Example Usage
+     * 
+     * &lt;!--Start PulumiCodeChooser --&gt;
      * ```java
      * package generated_program;
      * 
@@ -3462,6 +3698,7 @@ public final class FastlyFunctions {
      *     }
      * }
      * ```
+     * &lt;!--End PulumiCodeChooser --&gt;
      * 
      */
     public static Output<GetTlsPrivateKeyIdsResult> getTlsPrivateKeyIds(InvokeArgs args, InvokeOptions options) {
@@ -3471,6 +3708,8 @@ public final class FastlyFunctions {
      * Use this data source to get the list of TLS private key identifiers in Fastly.
      * 
      * ## Example Usage
+     * 
+     * &lt;!--Start PulumiCodeChooser --&gt;
      * ```java
      * package generated_program;
      * 
@@ -3501,6 +3740,7 @@ public final class FastlyFunctions {
      *     }
      * }
      * ```
+     * &lt;!--End PulumiCodeChooser --&gt;
      * 
      */
     public static CompletableFuture<GetTlsPrivateKeyIdsResult> getTlsPrivateKeyIdsPlain(InvokeArgs args, InvokeOptions options) {
@@ -3510,6 +3750,8 @@ public final class FastlyFunctions {
      * Use this data source to get information about a TLS subscription.
      * 
      * ## Example Usage
+     * 
+     * &lt;!--Start PulumiCodeChooser --&gt;
      * ```java
      * package generated_program;
      * 
@@ -3538,6 +3780,7 @@ public final class FastlyFunctions {
      *     }
      * }
      * ```
+     * &lt;!--End PulumiCodeChooser --&gt;
      * 
      */
     public static Output<GetTlsSubscriptionResult> getTlsSubscription() {
@@ -3547,6 +3790,8 @@ public final class FastlyFunctions {
      * Use this data source to get information about a TLS subscription.
      * 
      * ## Example Usage
+     * 
+     * &lt;!--Start PulumiCodeChooser --&gt;
      * ```java
      * package generated_program;
      * 
@@ -3575,6 +3820,7 @@ public final class FastlyFunctions {
      *     }
      * }
      * ```
+     * &lt;!--End PulumiCodeChooser --&gt;
      * 
      */
     public static CompletableFuture<GetTlsSubscriptionResult> getTlsSubscriptionPlain() {
@@ -3584,6 +3830,8 @@ public final class FastlyFunctions {
      * Use this data source to get information about a TLS subscription.
      * 
      * ## Example Usage
+     * 
+     * &lt;!--Start PulumiCodeChooser --&gt;
      * ```java
      * package generated_program;
      * 
@@ -3612,6 +3860,7 @@ public final class FastlyFunctions {
      *     }
      * }
      * ```
+     * &lt;!--End PulumiCodeChooser --&gt;
      * 
      */
     public static Output<GetTlsSubscriptionResult> getTlsSubscription(GetTlsSubscriptionArgs args) {
@@ -3621,6 +3870,8 @@ public final class FastlyFunctions {
      * Use this data source to get information about a TLS subscription.
      * 
      * ## Example Usage
+     * 
+     * &lt;!--Start PulumiCodeChooser --&gt;
      * ```java
      * package generated_program;
      * 
@@ -3649,6 +3900,7 @@ public final class FastlyFunctions {
      *     }
      * }
      * ```
+     * &lt;!--End PulumiCodeChooser --&gt;
      * 
      */
     public static CompletableFuture<GetTlsSubscriptionResult> getTlsSubscriptionPlain(GetTlsSubscriptionPlainArgs args) {
@@ -3658,6 +3910,8 @@ public final class FastlyFunctions {
      * Use this data source to get information about a TLS subscription.
      * 
      * ## Example Usage
+     * 
+     * &lt;!--Start PulumiCodeChooser --&gt;
      * ```java
      * package generated_program;
      * 
@@ -3686,6 +3940,7 @@ public final class FastlyFunctions {
      *     }
      * }
      * ```
+     * &lt;!--End PulumiCodeChooser --&gt;
      * 
      */
     public static Output<GetTlsSubscriptionResult> getTlsSubscription(GetTlsSubscriptionArgs args, InvokeOptions options) {
@@ -3695,6 +3950,8 @@ public final class FastlyFunctions {
      * Use this data source to get information about a TLS subscription.
      * 
      * ## Example Usage
+     * 
+     * &lt;!--Start PulumiCodeChooser --&gt;
      * ```java
      * package generated_program;
      * 
@@ -3723,6 +3980,7 @@ public final class FastlyFunctions {
      *     }
      * }
      * ```
+     * &lt;!--End PulumiCodeChooser --&gt;
      * 
      */
     public static CompletableFuture<GetTlsSubscriptionResult> getTlsSubscriptionPlain(GetTlsSubscriptionPlainArgs args, InvokeOptions options) {
@@ -3733,6 +3991,9 @@ public final class FastlyFunctions {
      * 
      * ## Example Usage
      * 
+     * &lt;!--Start PulumiCodeChooser --&gt;
+     * &lt;!--End PulumiCodeChooser --&gt;
+     * 
      */
     public static Output<GetTlsSubscriptionIdsResult> getTlsSubscriptionIds() {
         return getTlsSubscriptionIds(InvokeArgs.Empty, InvokeOptions.Empty);
@@ -3741,6 +4002,9 @@ public final class FastlyFunctions {
      * Use this data source to get the list of IDs of TLS Subscriptions in Fastly.
      * 
      * ## Example Usage
+     * 
+     * &lt;!--Start PulumiCodeChooser --&gt;
+     * &lt;!--End PulumiCodeChooser --&gt;
      * 
      */
     public static CompletableFuture<GetTlsSubscriptionIdsResult> getTlsSubscriptionIdsPlain() {
@@ -3751,6 +4015,9 @@ public final class FastlyFunctions {
      * 
      * ## Example Usage
      * 
+     * &lt;!--Start PulumiCodeChooser --&gt;
+     * &lt;!--End PulumiCodeChooser --&gt;
+     * 
      */
     public static Output<GetTlsSubscriptionIdsResult> getTlsSubscriptionIds(InvokeArgs args) {
         return getTlsSubscriptionIds(args, InvokeOptions.Empty);
@@ -3759,6 +4026,9 @@ public final class FastlyFunctions {
      * Use this data source to get the list of IDs of TLS Subscriptions in Fastly.
      * 
      * ## Example Usage
+     * 
+     * &lt;!--Start PulumiCodeChooser --&gt;
+     * &lt;!--End PulumiCodeChooser --&gt;
      * 
      */
     public static CompletableFuture<GetTlsSubscriptionIdsResult> getTlsSubscriptionIdsPlain(InvokeArgs args) {
@@ -3769,6 +4039,9 @@ public final class FastlyFunctions {
      * 
      * ## Example Usage
      * 
+     * &lt;!--Start PulumiCodeChooser --&gt;
+     * &lt;!--End PulumiCodeChooser --&gt;
+     * 
      */
     public static Output<GetTlsSubscriptionIdsResult> getTlsSubscriptionIds(InvokeArgs args, InvokeOptions options) {
         return Deployment.getInstance().invoke("fastly:index/getTlsSubscriptionIds:getTlsSubscriptionIds", TypeShape.of(GetTlsSubscriptionIdsResult.class), args, Utilities.withVersion(options));
@@ -3777,6 +4050,9 @@ public final class FastlyFunctions {
      * Use this data source to get the list of IDs of TLS Subscriptions in Fastly.
      * 
      * ## Example Usage
+     * 
+     * &lt;!--Start PulumiCodeChooser --&gt;
+     * &lt;!--End PulumiCodeChooser --&gt;
      * 
      */
     public static CompletableFuture<GetTlsSubscriptionIdsResult> getTlsSubscriptionIdsPlain(InvokeArgs args, InvokeOptions options) {

@@ -9,6 +9,7 @@ import * as utilities from "./utilities";
  *
  * ## Example Usage
  *
+ * <!--Start PulumiCodeChooser -->
  * ```typescript
  * import * as pulumi from "@pulumi/pulumi";
  * import * as fastly from "@pulumi/fastly";
@@ -18,6 +19,7 @@ import * as utilities from "./utilities";
  *     id: exampleTlsPlatformCertificateIds.ids?.[0],
  * }));
  * ```
+ * <!--End PulumiCodeChooser -->
  */
 export function getTlsPlatformCertificateIds(opts?: pulumi.InvokeOptions): Promise<GetTlsPlatformCertificateIdsResult> {
 
@@ -44,6 +46,7 @@ export interface GetTlsPlatformCertificateIdsResult {
  *
  * ## Example Usage
  *
+ * <!--Start PulumiCodeChooser -->
  * ```typescript
  * import * as pulumi from "@pulumi/pulumi";
  * import * as fastly from "@pulumi/fastly";
@@ -53,6 +56,7 @@ export interface GetTlsPlatformCertificateIdsResult {
  *     id: exampleTlsPlatformCertificateIds.ids?.[0],
  * }));
  * ```
+ * <!--End PulumiCodeChooser -->
  */
 export function getTlsPlatformCertificateIdsOutput(opts?: pulumi.InvokeOptions): pulumi.Output<GetTlsPlatformCertificateIdsResult> {
     return pulumi.output(getTlsPlatformCertificateIds(opts))

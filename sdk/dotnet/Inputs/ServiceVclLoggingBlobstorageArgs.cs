@@ -37,7 +37,7 @@ namespace Pulumi.Fastly.Inputs
         public Input<int>? FileMaxBytes { get; set; }
 
         /// <summary>
-        /// Apache-style string or VCL variables to use for log formatting (default: `%h %l %u %t "%r" %&gt;s %b`)
+        /// Apache-style string or VCL variables to use for log formatting (default: `%!h(MISSING) %!l(MISSING) %!u(MISSING) %!t(MISSING) "%!r(MISSING)" %!&gt;(MISSING)s %!b(MISSING)`)
         /// </summary>
         [Input("format")]
         public Input<string>? Format { get; set; }
@@ -113,7 +113,7 @@ namespace Pulumi.Fastly.Inputs
         }
 
         /// <summary>
-        /// The `strftime` specified timestamp formatting (default `%Y-%m-%dT%H:%M:%S.000`)
+        /// The `strftime` specified timestamp formatting (default `%!Y(MISSING)-%!m(MISSING)-%!d(MISSING)T%!H(MISSING):%!M(MISSING):%!S(MISSING).000`)
         /// </summary>
         [Input("timestampFormat")]
         public Input<string>? TimestampFormat { get; set; }

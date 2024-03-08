@@ -1639,9 +1639,9 @@ class ServiceVcl(pulumi.CustomResource):
         $ pulumi import fastly:index/serviceVcl:ServiceVcl demo xxxxxxxxxxxxxxxxxxxx
         ```
 
-         By default, either the active version will be imported, or the latest version if no version is active.
+        By default, either the active version will be imported, or the latest version if no version is active.
 
-         Alternatively, a specific version of the service can be selected by appending an `@` followed by the version number to the service ID, e.g.
+        Alternatively, a specific version of the service can be selected by appending an `@` followed by the version number to the service ID, e.g.
 
         ```sh
         $ pulumi import fastly:index/serviceVcl:ServiceVcl demo xxxxxxxxxxxxxxxxxxxx@2
@@ -1682,9 +1682,9 @@ class ServiceVcl(pulumi.CustomResource):
         $ pulumi import fastly:index/serviceVcl:ServiceVcl demo xxxxxxxxxxxxxxxxxxxx
         ```
 
-         By default, either the active version will be imported, or the latest version if no version is active.
+        By default, either the active version will be imported, or the latest version if no version is active.
 
-         Alternatively, a specific version of the service can be selected by appending an `@` followed by the version number to the service ID, e.g.
+        Alternatively, a specific version of the service can be selected by appending an `@` followed by the version number to the service ID, e.g.
 
         ```sh
         $ pulumi import fastly:index/serviceVcl:ServiceVcl demo xxxxxxxxxxxxxxxxxxxx@2

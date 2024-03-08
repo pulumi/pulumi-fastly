@@ -16,25 +16,269 @@ import (
 //
 // > **Warning:** This provider will take precedence over any changes you make in the UI or API. Such changes are likely to be reversed if you run the provider again.
 //
-// ## Adding a WAF to an existing service
+// ## Example Usage
 //
-// > **Warning:** A two-phase change is required when adding a WAF to an existing service
+// Basic usage:
 //
-// When adding a `waf` to an existing `ServiceVcl` and at the same time adding a `ServiceWafConfiguration`
-// resource with `wafId = fastly_service_vcl.demo.waf[0].waf_id` might result with the in the following error:
+// <!--Start PulumiCodeChooser -->
+// ```go
+// package main
 //
-// > fastly_service_vcl.demo.waf is empty list of object
+// import (
 //
-// For this scenario, it's recommended to split the changes into two distinct steps:
+//	"github.com/pulumi/pulumi-fastly/sdk/v8/go/fastly"
+//	"github.com/pulumi/pulumi/sdk/v3/go/pulumi"
 //
-// 1. Add the `waf` block to the `ServiceVcl` and apply the changes
-// 2. Add the `ServiceWafConfiguration` to the HCL and apply the changes
+// )
+//
+//	func main() {
+//		pulumi.Run(func(ctx *pulumi.Context) error {
+//			demo, err := fastly.NewServiceVcl(ctx, "demo", &fastly.ServiceVclArgs{
+//				Domains: fastly.ServiceVclDomainArray{
+//					&fastly.ServiceVclDomainArgs{
+//						Name:    pulumi.String("example.com"),
+//						Comment: pulumi.String("demo"),
+//					},
+//				},
+//				Backends: fastly.ServiceVclBackendArray{
+//					&fastly.ServiceVclBackendArgs{
+//						Address: pulumi.String("127.0.0.1"),
+//						Name:    pulumi.String("origin1"),
+//						Port:    pulumi.Int(80),
+//					},
+//				},
+//				Conditions: fastly.ServiceVclConditionArray{
+//					&fastly.ServiceVclConditionArgs{
+//						Name:      pulumi.String("WAF_Prefetch"),
+//						Type:      pulumi.String("PREFETCH"),
+//						Statement: pulumi.String("req.backend.is_origin"),
+//					},
+//					&fastly.ServiceVclConditionArgs{
+//						Name:      pulumi.String("WAF_always_false"),
+//						Statement: pulumi.String("false"),
+//						Type:      pulumi.String("REQUEST"),
+//					},
+//				},
+//				ResponseObjects: fastly.ServiceVclResponseObjectArray{
+//					&fastly.ServiceVclResponseObjectArgs{
+//						Name:             pulumi.String("WAF_Response"),
+//						Status:           pulumi.Int(403),
+//						Response:         pulumi.String("Forbidden"),
+//						ContentType:      pulumi.String("text/html"),
+//						Content:          pulumi.String("<html><body>Forbidden</body></html>"),
+//						RequestCondition: pulumi.String("WAF_always_false"),
+//					},
+//				},
+//				Waf: &fastly.ServiceVclWafArgs{
+//					PrefetchCondition: pulumi.String("WAF_Prefetch"),
+//					ResponseObject:    pulumi.String("WAF_Response"),
+//				},
+//				ForceDestroy: pulumi.Bool(true),
+//			})
+//			if err != nil {
+//				return err
+//			}
+//			_, err = fastly.NewServiceWafConfiguration(ctx, "waf", &fastly.ServiceWafConfigurationArgs{
+//				WafId: demo.Waf.ApplyT(func(waf fastly.ServiceVclWaf) (*string, error) {
+//					return &waf.WafId, nil
+//				}).(pulumi.StringPtrOutput),
+//				HttpViolationScoreThreshold: pulumi.Int(100),
+//			})
+//			if err != nil {
+//				return err
+//			}
+//			return nil
+//		})
+//	}
+//
+// ```
+// <!--End PulumiCodeChooser -->
+//
+// Usage with rules:
+//
+// <!--Start PulumiCodeChooser -->
+// ```go
+// package main
+//
+// import (
+//
+//	"github.com/pulumi/pulumi-fastly/sdk/v8/go/fastly"
+//	"github.com/pulumi/pulumi/sdk/v3/go/pulumi"
+//
+// )
+//
+//	func main() {
+//		pulumi.Run(func(ctx *pulumi.Context) error {
+//			demo, err := fastly.NewServiceVcl(ctx, "demo", &fastly.ServiceVclArgs{
+//				Domains: fastly.ServiceVclDomainArray{
+//					&fastly.ServiceVclDomainArgs{
+//						Name:    pulumi.String("example.com"),
+//						Comment: pulumi.String("demo"),
+//					},
+//				},
+//				Backends: fastly.ServiceVclBackendArray{
+//					&fastly.ServiceVclBackendArgs{
+//						Address: pulumi.String("127.0.0.1"),
+//						Name:    pulumi.String("origin1"),
+//						Port:    pulumi.Int(80),
+//					},
+//				},
+//				Conditions: fastly.ServiceVclConditionArray{
+//					&fastly.ServiceVclConditionArgs{
+//						Name:      pulumi.String("WAF_Prefetch"),
+//						Type:      pulumi.String("PREFETCH"),
+//						Statement: pulumi.String("req.backend.is_origin"),
+//					},
+//					&fastly.ServiceVclConditionArgs{
+//						Name:      pulumi.String("WAF_always_false"),
+//						Statement: pulumi.String("false"),
+//						Type:      pulumi.String("REQUEST"),
+//					},
+//				},
+//				ResponseObjects: fastly.ServiceVclResponseObjectArray{
+//					&fastly.ServiceVclResponseObjectArgs{
+//						Name:             pulumi.String("WAF_Response"),
+//						Status:           pulumi.Int(403),
+//						Response:         pulumi.String("Forbidden"),
+//						ContentType:      pulumi.String("text/html"),
+//						Content:          pulumi.String("<html><body>Forbidden</body></html>"),
+//						RequestCondition: pulumi.String("WAF_always_false"),
+//					},
+//				},
+//				Waf: &fastly.ServiceVclWafArgs{
+//					PrefetchCondition: pulumi.String("WAF_Prefetch"),
+//					ResponseObject:    pulumi.String("WAF_Response"),
+//				},
+//				ForceDestroy: pulumi.Bool(true),
+//			})
+//			if err != nil {
+//				return err
+//			}
+//			_, err = fastly.NewServiceWafConfiguration(ctx, "waf", &fastly.ServiceWafConfigurationArgs{
+//				WafId: demo.Waf.ApplyT(func(waf fastly.ServiceVclWaf) (*string, error) {
+//					return &waf.WafId, nil
+//				}).(pulumi.StringPtrOutput),
+//				HttpViolationScoreThreshold: pulumi.Int(100),
+//				Rules: fastly.ServiceWafConfigurationRuleArray{
+//					&fastly.ServiceWafConfigurationRuleArgs{
+//						ModsecRuleId: pulumi.Int(1010090),
+//						Revision:     pulumi.Int(1),
+//						Status:       pulumi.String("log"),
+//					},
+//				},
+//			})
+//			if err != nil {
+//				return err
+//			}
+//			return nil
+//		})
+//	}
+//
+// ```
+// <!--End PulumiCodeChooser -->
+//
+// Usage with rule exclusions:
+//
+// > **Warning:** Rule exclusions are part of a **beta release**, which may be subject to breaking changes and improvements over time. For more information, see our [product and feature lifecycle](https://docs.fastly.com/products/fastly-product-lifecycle#beta) descriptions.
+//
+// <!--Start PulumiCodeChooser -->
+// ```go
+// package main
+//
+// import (
+//
+//	"github.com/pulumi/pulumi-fastly/sdk/v8/go/fastly"
+//	"github.com/pulumi/pulumi/sdk/v3/go/pulumi"
+//
+// )
+//
+//	func main() {
+//		pulumi.Run(func(ctx *pulumi.Context) error {
+//			demo, err := fastly.NewServiceVcl(ctx, "demo", &fastly.ServiceVclArgs{
+//				Domains: fastly.ServiceVclDomainArray{
+//					&fastly.ServiceVclDomainArgs{
+//						Name:    pulumi.String("example.com"),
+//						Comment: pulumi.String("demo"),
+//					},
+//				},
+//				Backends: fastly.ServiceVclBackendArray{
+//					&fastly.ServiceVclBackendArgs{
+//						Address: pulumi.String("127.0.0.1"),
+//						Name:    pulumi.String("origin1"),
+//						Port:    pulumi.Int(80),
+//					},
+//				},
+//				Conditions: fastly.ServiceVclConditionArray{
+//					&fastly.ServiceVclConditionArgs{
+//						Name:      pulumi.String("WAF_Prefetch"),
+//						Type:      pulumi.String("PREFETCH"),
+//						Statement: pulumi.String("req.backend.is_origin"),
+//					},
+//					&fastly.ServiceVclConditionArgs{
+//						Name:      pulumi.String("WAF_always_false"),
+//						Statement: pulumi.String("false"),
+//						Type:      pulumi.String("REQUEST"),
+//					},
+//				},
+//				ResponseObjects: fastly.ServiceVclResponseObjectArray{
+//					&fastly.ServiceVclResponseObjectArgs{
+//						Name:             pulumi.String("WAF_Response"),
+//						Status:           pulumi.Int(403),
+//						Response:         pulumi.String("Forbidden"),
+//						ContentType:      pulumi.String("text/html"),
+//						Content:          pulumi.String("<html><body>Forbidden</body></html>"),
+//						RequestCondition: pulumi.String("WAF_always_false"),
+//					},
+//				},
+//				Waf: &fastly.ServiceVclWafArgs{
+//					PrefetchCondition: pulumi.String("WAF_Prefetch"),
+//					ResponseObject:    pulumi.String("WAF_Response"),
+//				},
+//				ForceDestroy: pulumi.Bool(true),
+//			})
+//			if err != nil {
+//				return err
+//			}
+//			_, err = fastly.NewServiceWafConfiguration(ctx, "waf", &fastly.ServiceWafConfigurationArgs{
+//				WafId: demo.Waf.ApplyT(func(waf fastly.ServiceVclWaf) (*string, error) {
+//					return &waf.WafId, nil
+//				}).(pulumi.StringPtrOutput),
+//				HttpViolationScoreThreshold: pulumi.Int(100),
+//				Rules: fastly.ServiceWafConfigurationRuleArray{
+//					&fastly.ServiceWafConfigurationRuleArgs{
+//						ModsecRuleId: pulumi.Int(2029718),
+//						Revision:     pulumi.Int(1),
+//						Status:       pulumi.String("log"),
+//					},
+//				},
+//				RuleExclusions: fastly.ServiceWafConfigurationRuleExclusionArray{
+//					&fastly.ServiceWafConfigurationRuleExclusionArgs{
+//						Name:          pulumi.String("index page"),
+//						ExclusionType: pulumi.String("rule"),
+//						Condition:     pulumi.String("req.url.basename == \"index.html\""),
+//						ModsecRuleIds: pulumi.IntArray{
+//							pulumi.Int(2029718),
+//						},
+//					},
+//				},
+//			})
+//			if err != nil {
+//				return err
+//			}
+//			return nil
+//		})
+//	}
+//
+// ```
+// <!--End PulumiCodeChooser -->
+//
+// Usage with rules from data source:
 //
 // ## Import
 //
 // This is an example of the import command being applied to the resource named `fastly_service_waf_configuration.waf`
 //
-//	The resource ID should be the WAF ID.
+// The resource ID should be the WAF ID.
 //
 // ```sh
 // $ pulumi import fastly:index/serviceWafConfiguration:ServiceWafConfiguration waf xxxxxxxxxxxxxxxxxxxx

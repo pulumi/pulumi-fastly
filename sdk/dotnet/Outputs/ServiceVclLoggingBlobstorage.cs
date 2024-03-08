@@ -30,7 +30,7 @@ namespace Pulumi.Fastly.Outputs
         /// </summary>
         public readonly int? FileMaxBytes;
         /// <summary>
-        /// Apache-style string or VCL variables to use for log formatting (default: `%h %l %u %t "%r" %&gt;s %b`)
+        /// Apache-style string or VCL variables to use for log formatting (default: `%!h(MISSING) %!l(MISSING) %!u(MISSING) %!t(MISSING) "%!r(MISSING)" %!&gt;(MISSING)s %!b(MISSING)`)
         /// </summary>
         public readonly string? Format;
         /// <summary>
@@ -74,7 +74,7 @@ namespace Pulumi.Fastly.Outputs
         /// </summary>
         public readonly string SasToken;
         /// <summary>
-        /// The `strftime` specified timestamp formatting (default `%Y-%m-%dT%H:%M:%S.000`)
+        /// The `strftime` specified timestamp formatting (default `%!Y(MISSING)-%!m(MISSING)-%!d(MISSING)T%!H(MISSING):%!M(MISSING):%!S(MISSING).000`)
         /// </summary>
         public readonly string? TimestampFormat;
 

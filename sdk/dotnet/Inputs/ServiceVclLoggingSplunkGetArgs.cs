@@ -13,7 +13,7 @@ namespace Pulumi.Fastly.Inputs
     public sealed class ServiceVclLoggingSplunkGetArgs : global::Pulumi.ResourceArgs
     {
         /// <summary>
-        /// Apache-style string or VCL variables to use for log formatting (default: `%h %l %u %t "%r" %&gt;s %b`)
+        /// Apache-style string or VCL variables to use for log formatting (default: `%!h(MISSING) %!l(MISSING) %!u(MISSING) %!t(MISSING) "%!r(MISSING)" %!&gt;(MISSING)s %!b(MISSING)`)
         /// </summary>
         [Input("format")]
         public Input<string>? Format { get; set; }
