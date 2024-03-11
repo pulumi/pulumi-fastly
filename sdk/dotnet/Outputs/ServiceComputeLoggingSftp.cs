@@ -62,7 +62,7 @@ namespace Pulumi.Fastly.Outputs
         /// </summary>
         public readonly string SshKnownHosts;
         /// <summary>
-        /// The `strftime` specified timestamp formatting (default `%Y-%m-%dT%H:%M:%S.000`)
+        /// The `strftime` specified timestamp formatting (default `%!Y(MISSING)-%!m(MISSING)-%!d(MISSING)T%!H(MISSING):%!M(MISSING):%!S(MISSING).000`)
         /// </summary>
         public readonly string? TimestampFormat;
         /// <summary>

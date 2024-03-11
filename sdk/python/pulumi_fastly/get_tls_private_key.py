@@ -135,6 +135,7 @@ def get_tls_private_key(created_at: Optional[str] = None,
 
     ## Example Usage
 
+    <!--Start PulumiCodeChooser -->
     ```python
     import pulumi
     import pulumi_fastly as fastly
@@ -142,6 +143,7 @@ def get_tls_private_key(created_at: Optional[str] = None,
     demo = fastly.get_tls_private_key(name="demo-private-key")
     pulumi.export("privateKeyNeedsReplacing", demo.replace)
     ```
+    <!--End PulumiCodeChooser -->
 
 
     :param str created_at: Timestamp (GMT) when the private key was created.
@@ -191,6 +193,7 @@ def get_tls_private_key_output(created_at: Optional[pulumi.Input[Optional[str]]]
 
     ## Example Usage
 
+    <!--Start PulumiCodeChooser -->
     ```python
     import pulumi
     import pulumi_fastly as fastly
@@ -198,6 +201,7 @@ def get_tls_private_key_output(created_at: Optional[pulumi.Input[Optional[str]]]
     demo = fastly.get_tls_private_key(name="demo-private-key")
     pulumi.export("privateKeyNeedsReplacing", demo.replace)
     ```
+    <!--End PulumiCodeChooser -->
 
 
     :param str created_at: Timestamp (GMT) when the private key was created.

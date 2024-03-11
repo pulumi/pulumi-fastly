@@ -14,10 +14,9 @@ namespace Pulumi.Fastly
         /// <summary>
         /// Use this data source to get the list of TLS private key identifiers in Fastly.
         /// 
-        /// {{% examples %}}
         /// ## Example Usage
-        /// {{% example %}}
         /// 
+        /// &lt;!--Start PulumiCodeChooser --&gt;
         /// ```csharp
         /// using System.Collections.Generic;
         /// using System.Linq;
@@ -35,8 +34,7 @@ namespace Pulumi.Fastly
         /// 
         /// });
         /// ```
-        /// {{% /example %}}
-        /// {{% /examples %}}
+        /// &lt;!--End PulumiCodeChooser --&gt;
         /// </summary>
         public static Task<GetTlsPrivateKeyIdsResult> InvokeAsync(InvokeOptions? options = null)
             => global::Pulumi.Deployment.Instance.InvokeAsync<GetTlsPrivateKeyIdsResult>("fastly:index/getTlsPrivateKeyIds:getTlsPrivateKeyIds", InvokeArgs.Empty, options.WithDefaults());
@@ -44,10 +42,9 @@ namespace Pulumi.Fastly
         /// <summary>
         /// Use this data source to get the list of TLS private key identifiers in Fastly.
         /// 
-        /// {{% examples %}}
         /// ## Example Usage
-        /// {{% example %}}
         /// 
+        /// &lt;!--Start PulumiCodeChooser --&gt;
         /// ```csharp
         /// using System.Collections.Generic;
         /// using System.Linq;
@@ -65,8 +62,7 @@ namespace Pulumi.Fastly
         /// 
         /// });
         /// ```
-        /// {{% /example %}}
-        /// {{% /examples %}}
+        /// &lt;!--End PulumiCodeChooser --&gt;
         /// </summary>
         public static Output<GetTlsPrivateKeyIdsResult> Invoke(InvokeOptions? options = null)
             => global::Pulumi.Deployment.Instance.Invoke<GetTlsPrivateKeyIdsResult>("fastly:index/getTlsPrivateKeyIds:getTlsPrivateKeyIds", InvokeArgs.Empty, options.WithDefaults());

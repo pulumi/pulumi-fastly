@@ -11,25 +11,183 @@ import * as utilities from "./utilities";
  *
  * > **Warning:** This provider will take precedence over any changes you make in the UI or API. Such changes are likely to be reversed if you run the provider again.
  *
- * ## Adding a WAF to an existing service
+ * ## Example Usage
  *
- * > **Warning:** A two-phase change is required when adding a WAF to an existing service
+ * Basic usage:
  *
- * When adding a `waf` to an existing `fastly.ServiceVcl` and at the same time adding a `fastly.ServiceWafConfiguration`
- * resource with `wafId = fastly_service_vcl.demo.waf[0].waf_id` might result with the in the following error:
+ * <!--Start PulumiCodeChooser -->
+ * ```typescript
+ * import * as pulumi from "@pulumi/pulumi";
+ * import * as fastly from "@pulumi/fastly";
  *
- * > fastly_service_vcl.demo.waf is empty list of object
+ * const demo = new fastly.ServiceVcl("demo", {
+ *     domains: [{
+ *         name: "example.com",
+ *         comment: "demo",
+ *     }],
+ *     backends: [{
+ *         address: "127.0.0.1",
+ *         name: "origin1",
+ *         port: 80,
+ *     }],
+ *     conditions: [
+ *         {
+ *             name: "WAF_Prefetch",
+ *             type: "PREFETCH",
+ *             statement: "req.backend.is_origin",
+ *         },
+ *         {
+ *             name: "WAF_always_false",
+ *             statement: "false",
+ *             type: "REQUEST",
+ *         },
+ *     ],
+ *     responseObjects: [{
+ *         name: "WAF_Response",
+ *         status: 403,
+ *         response: "Forbidden",
+ *         contentType: "text/html",
+ *         content: "<html><body>Forbidden</body></html>",
+ *         requestCondition: "WAF_always_false",
+ *     }],
+ *     waf: {
+ *         prefetchCondition: "WAF_Prefetch",
+ *         responseObject: "WAF_Response",
+ *     },
+ *     forceDestroy: true,
+ * });
+ * const waf = new fastly.ServiceWafConfiguration("waf", {
+ *     wafId: demo.waf.apply(waf => waf?.wafId),
+ *     httpViolationScoreThreshold: 100,
+ * });
+ * ```
+ * <!--End PulumiCodeChooser -->
  *
- * For this scenario, it's recommended to split the changes into two distinct steps:
+ * Usage with rules:
  *
- * 1. Add the `waf` block to the `fastly.ServiceVcl` and apply the changes
- * 2. Add the `fastly.ServiceWafConfiguration` to the HCL and apply the changes
+ * <!--Start PulumiCodeChooser -->
+ * ```typescript
+ * import * as pulumi from "@pulumi/pulumi";
+ * import * as fastly from "@pulumi/fastly";
+ *
+ * const demo = new fastly.ServiceVcl("demo", {
+ *     domains: [{
+ *         name: "example.com",
+ *         comment: "demo",
+ *     }],
+ *     backends: [{
+ *         address: "127.0.0.1",
+ *         name: "origin1",
+ *         port: 80,
+ *     }],
+ *     conditions: [
+ *         {
+ *             name: "WAF_Prefetch",
+ *             type: "PREFETCH",
+ *             statement: "req.backend.is_origin",
+ *         },
+ *         {
+ *             name: "WAF_always_false",
+ *             statement: "false",
+ *             type: "REQUEST",
+ *         },
+ *     ],
+ *     responseObjects: [{
+ *         name: "WAF_Response",
+ *         status: 403,
+ *         response: "Forbidden",
+ *         contentType: "text/html",
+ *         content: "<html><body>Forbidden</body></html>",
+ *         requestCondition: "WAF_always_false",
+ *     }],
+ *     waf: {
+ *         prefetchCondition: "WAF_Prefetch",
+ *         responseObject: "WAF_Response",
+ *     },
+ *     forceDestroy: true,
+ * });
+ * const waf = new fastly.ServiceWafConfiguration("waf", {
+ *     wafId: demo.waf.apply(waf => waf?.wafId),
+ *     httpViolationScoreThreshold: 100,
+ *     rules: [{
+ *         modsecRuleId: 1010090,
+ *         revision: 1,
+ *         status: "log",
+ *     }],
+ * });
+ * ```
+ * <!--End PulumiCodeChooser -->
+ *
+ * Usage with rule exclusions:
+ *
+ * > **Warning:** Rule exclusions are part of a **beta release**, which may be subject to breaking changes and improvements over time. For more information, see our [product and feature lifecycle](https://docs.fastly.com/products/fastly-product-lifecycle#beta) descriptions.
+ *
+ * <!--Start PulumiCodeChooser -->
+ * ```typescript
+ * import * as pulumi from "@pulumi/pulumi";
+ * import * as fastly from "@pulumi/fastly";
+ *
+ * const demo = new fastly.ServiceVcl("demo", {
+ *     domains: [{
+ *         name: "example.com",
+ *         comment: "demo",
+ *     }],
+ *     backends: [{
+ *         address: "127.0.0.1",
+ *         name: "origin1",
+ *         port: 80,
+ *     }],
+ *     conditions: [
+ *         {
+ *             name: "WAF_Prefetch",
+ *             type: "PREFETCH",
+ *             statement: "req.backend.is_origin",
+ *         },
+ *         {
+ *             name: "WAF_always_false",
+ *             statement: "false",
+ *             type: "REQUEST",
+ *         },
+ *     ],
+ *     responseObjects: [{
+ *         name: "WAF_Response",
+ *         status: 403,
+ *         response: "Forbidden",
+ *         contentType: "text/html",
+ *         content: "<html><body>Forbidden</body></html>",
+ *         requestCondition: "WAF_always_false",
+ *     }],
+ *     waf: {
+ *         prefetchCondition: "WAF_Prefetch",
+ *         responseObject: "WAF_Response",
+ *     },
+ *     forceDestroy: true,
+ * });
+ * const waf = new fastly.ServiceWafConfiguration("waf", {
+ *     wafId: demo.waf.apply(waf => waf?.wafId),
+ *     httpViolationScoreThreshold: 100,
+ *     rules: [{
+ *         modsecRuleId: 2029718,
+ *         revision: 1,
+ *         status: "log",
+ *     }],
+ *     ruleExclusions: [{
+ *         name: "index page",
+ *         exclusionType: "rule",
+ *         condition: "req.url.basename == \"index.html\"",
+ *         modsecRuleIds: [2029718],
+ *     }],
+ * });
+ * ```
+ * <!--End PulumiCodeChooser -->
+ *
+ * Usage with rules from data source:
  *
  * ## Import
  *
  * This is an example of the import command being applied to the resource named `fastly_service_waf_configuration.waf`
  *
- *  The resource ID should be the WAF ID.
+ * The resource ID should be the WAF ID.
  *
  * ```sh
  * $ pulumi import fastly:index/serviceWafConfiguration:ServiceWafConfiguration waf xxxxxxxxxxxxxxxxxxxx

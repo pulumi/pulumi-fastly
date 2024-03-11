@@ -9,6 +9,7 @@ import * as utilities from "./utilities";
  *
  * ## Example Usage
  *
+ * <!--Start PulumiCodeChooser -->
  * ```typescript
  * import * as pulumi from "@pulumi/pulumi";
  * import * as aws from "@pulumi/aws";
@@ -23,6 +24,7 @@ import * as utilities from "./utilities";
  *     ipv6CidrBlocks: fastly.then(fastly => fastly.ipv6CidrBlocks),
  * }]});
  * ```
+ * <!--End PulumiCodeChooser -->
  *
  * [1]: https://docs.fastly.com/guides/securing-communications/accessing-fastlys-ip-ranges
  */
@@ -55,6 +57,7 @@ export interface GetFastlyIpRangesResult {
  *
  * ## Example Usage
  *
+ * <!--Start PulumiCodeChooser -->
  * ```typescript
  * import * as pulumi from "@pulumi/pulumi";
  * import * as aws from "@pulumi/aws";
@@ -69,6 +72,7 @@ export interface GetFastlyIpRangesResult {
  *     ipv6CidrBlocks: fastly.then(fastly => fastly.ipv6CidrBlocks),
  * }]});
  * ```
+ * <!--End PulumiCodeChooser -->
  *
  * [1]: https://docs.fastly.com/guides/securing-communications/accessing-fastlys-ip-ranges
  */

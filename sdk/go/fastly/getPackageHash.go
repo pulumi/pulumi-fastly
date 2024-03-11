@@ -15,6 +15,7 @@ import (
 //
 // ## Example Usage
 //
+// <!--Start PulumiCodeChooser -->
 // ```go
 // package main
 //
@@ -48,6 +49,7 @@ import (
 //	}
 //
 // ```
+// <!--End PulumiCodeChooser -->
 func GetPackageHash(ctx *pulumi.Context, args *GetPackageHashArgs, opts ...pulumi.InvokeOption) (*GetPackageHashResult, error) {
 	opts = internal.PkgInvokeDefaultOpts(opts)
 	var rv GetPackageHashResult

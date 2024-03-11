@@ -20,10 +20,9 @@ namespace Pulumi.Fastly
         /// 
         /// &gt; **Note:** If more or less than a single match is returned by the search, this provider will fail. Ensure that your search is specific enough to return a single key.
         /// 
-        /// {{% examples %}}
         /// ## Example Usage
-        /// {{% example %}}
         /// 
+        /// &lt;!--Start PulumiCodeChooser --&gt;
         /// ```csharp
         /// using System.Collections.Generic;
         /// using System.Linq;
@@ -42,8 +41,7 @@ namespace Pulumi.Fastly
         /// 
         /// });
         /// ```
-        /// {{% /example %}}
-        /// {{% /examples %}}
+        /// &lt;!--End PulumiCodeChooser --&gt;
         /// </summary>
         public static Task<GetTlsPlatformCertificateResult> InvokeAsync(GetTlsPlatformCertificateArgs? args = null, InvokeOptions? options = null)
             => global::Pulumi.Deployment.Instance.InvokeAsync<GetTlsPlatformCertificateResult>("fastly:index/getTlsPlatformCertificate:getTlsPlatformCertificate", args ?? new GetTlsPlatformCertificateArgs(), options.WithDefaults());
@@ -57,10 +55,9 @@ namespace Pulumi.Fastly
         /// 
         /// &gt; **Note:** If more or less than a single match is returned by the search, this provider will fail. Ensure that your search is specific enough to return a single key.
         /// 
-        /// {{% examples %}}
         /// ## Example Usage
-        /// {{% example %}}
         /// 
+        /// &lt;!--Start PulumiCodeChooser --&gt;
         /// ```csharp
         /// using System.Collections.Generic;
         /// using System.Linq;
@@ -79,8 +76,7 @@ namespace Pulumi.Fastly
         /// 
         /// });
         /// ```
-        /// {{% /example %}}
-        /// {{% /examples %}}
+        /// &lt;!--End PulumiCodeChooser --&gt;
         /// </summary>
         public static Output<GetTlsPlatformCertificateResult> Invoke(GetTlsPlatformCertificateInvokeArgs? args = null, InvokeOptions? options = null)
             => global::Pulumi.Deployment.Instance.Invoke<GetTlsPlatformCertificateResult>("fastly:index/getTlsPlatformCertificate:getTlsPlatformCertificate", args ?? new GetTlsPlatformCertificateInvokeArgs(), options.WithDefaults());

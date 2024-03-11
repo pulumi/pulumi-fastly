@@ -21,6 +21,8 @@ import javax.annotation.Nullable;
  * Provides a Fastly Alert. Alerts send notifications to custom integrations (e.g., Slack channels, PagerDuty, Microsoft Teams and New Relic) when an observed metric either exceeds or falls below a threshold.
  * 
  * ## Example Usage
+ * 
+ * &lt;!--Start PulumiCodeChooser --&gt;
  * ```java
  * package generated_program;
  * 
@@ -60,6 +62,7 @@ import javax.annotation.Nullable;
  *     }
  * }
  * ```
+ * &lt;!--End PulumiCodeChooser --&gt;
  * 
  * ## Import
  * 

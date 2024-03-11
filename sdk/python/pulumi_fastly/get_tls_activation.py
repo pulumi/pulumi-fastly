@@ -108,12 +108,14 @@ def get_tls_activation(certificate_id: Optional[str] = None,
 
     ## Example Usage
 
+    <!--Start PulumiCodeChooser -->
     ```python
     import pulumi
     import pulumi_fastly as fastly
 
     example = fastly.get_tls_activation(domain="example.com")
     ```
+    <!--End PulumiCodeChooser -->
 
 
     :param str certificate_id: ID of the TLS Certificate used.
@@ -154,12 +156,14 @@ def get_tls_activation_output(certificate_id: Optional[pulumi.Input[Optional[str
 
     ## Example Usage
 
+    <!--Start PulumiCodeChooser -->
     ```python
     import pulumi
     import pulumi_fastly as fastly
 
     example = fastly.get_tls_activation(domain="example.com")
     ```
+    <!--End PulumiCodeChooser -->
 
 
     :param str certificate_id: ID of the TLS Certificate used.
