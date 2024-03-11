@@ -15,7 +15,7 @@ import javax.annotation.Nullable;
 @CustomType
 public final class ServiceVclLoggingSplunk {
     /**
-     * @return Apache-style string or VCL variables to use for log formatting (default: `%h %l %u %t &#34;%r&#34; %&gt;s %b`)
+     * @return Apache-style string or VCL variables to use for log formatting (default: `%!h(MISSING) %!l(MISSING) %!u(MISSING) %!t(MISSING) &#34;%!r(MISSING)&#34; %!&gt;(MISSING)s %!b(MISSING)`)
      * 
      */
     private @Nullable String format;
@@ -77,7 +77,7 @@ public final class ServiceVclLoggingSplunk {
 
     private ServiceVclLoggingSplunk() {}
     /**
-     * @return Apache-style string or VCL variables to use for log formatting (default: `%h %l %u %t &#34;%r&#34; %&gt;s %b`)
+     * @return Apache-style string or VCL variables to use for log formatting (default: `%!h(MISSING) %!l(MISSING) %!u(MISSING) %!t(MISSING) &#34;%!r(MISSING)&#34; %!&gt;(MISSING)s %!b(MISSING)`)
      * 
      */
     public Optional<String> format() {

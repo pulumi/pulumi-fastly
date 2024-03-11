@@ -14,10 +14,9 @@ namespace Pulumi.Fastly
         /// <summary>
         /// Use this data source to get the list of IDs of TLS Subscriptions in Fastly.
         /// 
-        /// {{% examples %}}
         /// ## Example Usage
-        /// {{% example %}}
         /// 
+        /// &lt;!--Start PulumiCodeChooser --&gt;
         /// ```csharp
         /// using System.Collections.Generic;
         /// using System.Linq;
@@ -42,8 +41,7 @@ namespace Pulumi.Fastly
         ///     };
         /// });
         /// ```
-        /// {{% /example %}}
-        /// {{% /examples %}}
+        /// &lt;!--End PulumiCodeChooser --&gt;
         /// </summary>
         public static Task<GetTlsSubscriptionIdsResult> InvokeAsync(InvokeOptions? options = null)
             => global::Pulumi.Deployment.Instance.InvokeAsync<GetTlsSubscriptionIdsResult>("fastly:index/getTlsSubscriptionIds:getTlsSubscriptionIds", InvokeArgs.Empty, options.WithDefaults());
@@ -51,10 +49,9 @@ namespace Pulumi.Fastly
         /// <summary>
         /// Use this data source to get the list of IDs of TLS Subscriptions in Fastly.
         /// 
-        /// {{% examples %}}
         /// ## Example Usage
-        /// {{% example %}}
         /// 
+        /// &lt;!--Start PulumiCodeChooser --&gt;
         /// ```csharp
         /// using System.Collections.Generic;
         /// using System.Linq;
@@ -79,8 +76,7 @@ namespace Pulumi.Fastly
         ///     };
         /// });
         /// ```
-        /// {{% /example %}}
-        /// {{% /examples %}}
+        /// &lt;!--End PulumiCodeChooser --&gt;
         /// </summary>
         public static Output<GetTlsSubscriptionIdsResult> Invoke(InvokeOptions? options = null)
             => global::Pulumi.Deployment.Instance.Invoke<GetTlsSubscriptionIdsResult>("fastly:index/getTlsSubscriptionIds:getTlsSubscriptionIds", InvokeArgs.Empty, options.WithDefaults());

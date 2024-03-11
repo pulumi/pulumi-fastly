@@ -11,6 +11,7 @@ import * as utilities from "./utilities";
  *
  * ## Example Usage
  *
+ * <!--Start PulumiCodeChooser -->
  * ```typescript
  * import * as pulumi from "@pulumi/pulumi";
  * import * as fastly from "@pulumi/fastly";
@@ -38,6 +39,7 @@ import * as utilities from "./utilities";
  * });
  * export const serviceDictionaries = exampleDictionaries;
  * ```
+ * <!--End PulumiCodeChooser -->
  *
  * [1]: https://developer.fastly.com/reference/api/dictionaries/
  */
@@ -90,6 +92,7 @@ export interface GetDictionariesResult {
  *
  * ## Example Usage
  *
+ * <!--Start PulumiCodeChooser -->
  * ```typescript
  * import * as pulumi from "@pulumi/pulumi";
  * import * as fastly from "@pulumi/fastly";
@@ -117,6 +120,7 @@ export interface GetDictionariesResult {
  * });
  * export const serviceDictionaries = exampleDictionaries;
  * ```
+ * <!--End PulumiCodeChooser -->
  *
  * [1]: https://developer.fastly.com/reference/api/dictionaries/
  */

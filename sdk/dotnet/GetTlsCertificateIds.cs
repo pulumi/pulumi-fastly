@@ -14,10 +14,9 @@ namespace Pulumi.Fastly
         /// <summary>
         /// Use this data source to get the IDs of available TLS certificates for use with other resources.
         /// 
-        /// {{% examples %}}
         /// ## Example Usage
-        /// {{% example %}}
         /// 
+        /// &lt;!--Start PulumiCodeChooser --&gt;
         /// ```csharp
         /// using System.Collections.Generic;
         /// using System.Linq;
@@ -36,8 +35,7 @@ namespace Pulumi.Fastly
         ///     // ...
         /// });
         /// ```
-        /// {{% /example %}}
-        /// {{% /examples %}}
+        /// &lt;!--End PulumiCodeChooser --&gt;
         /// </summary>
         public static Task<GetTlsCertificateIdsResult> InvokeAsync(InvokeOptions? options = null)
             => global::Pulumi.Deployment.Instance.InvokeAsync<GetTlsCertificateIdsResult>("fastly:index/getTlsCertificateIds:getTlsCertificateIds", InvokeArgs.Empty, options.WithDefaults());
@@ -45,10 +43,9 @@ namespace Pulumi.Fastly
         /// <summary>
         /// Use this data source to get the IDs of available TLS certificates for use with other resources.
         /// 
-        /// {{% examples %}}
         /// ## Example Usage
-        /// {{% example %}}
         /// 
+        /// &lt;!--Start PulumiCodeChooser --&gt;
         /// ```csharp
         /// using System.Collections.Generic;
         /// using System.Linq;
@@ -67,8 +64,7 @@ namespace Pulumi.Fastly
         ///     // ...
         /// });
         /// ```
-        /// {{% /example %}}
-        /// {{% /examples %}}
+        /// &lt;!--End PulumiCodeChooser --&gt;
         /// </summary>
         public static Output<GetTlsCertificateIdsResult> Invoke(InvokeOptions? options = null)
             => global::Pulumi.Deployment.Instance.Invoke<GetTlsCertificateIdsResult>("fastly:index/getTlsCertificateIds:getTlsCertificateIds", InvokeArgs.Empty, options.WithDefaults());

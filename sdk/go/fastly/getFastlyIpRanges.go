@@ -15,6 +15,7 @@ import (
 //
 // ## Example Usage
 //
+// <!--Start PulumiCodeChooser -->
 // ```go
 // package main
 //
@@ -51,6 +52,7 @@ import (
 //	}
 //
 // ```
+// <!--End PulumiCodeChooser -->
 //
 // [1]: https://docs.fastly.com/guides/securing-communications/accessing-fastlys-ip-ranges
 func GetFastlyIpRanges(ctx *pulumi.Context, opts ...pulumi.InvokeOption) (*GetFastlyIpRangesResult, error) {

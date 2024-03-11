@@ -9,6 +9,7 @@ import * as utilities from "./utilities";
  *
  * ## Example Usage
  *
+ * <!--Start PulumiCodeChooser -->
  * ```typescript
  * import * as pulumi from "@pulumi/pulumi";
  * import * as fastly from "@pulumi/fastly";
@@ -21,6 +22,7 @@ import * as utilities from "./utilities";
  * }))));
  * export const activationDomains = exampleTlsActivation.map(a => (a.domain));
  * ```
+ * <!--End PulumiCodeChooser -->
  */
 export function getTlsActivationIds(args?: GetTlsActivationIdsArgs, opts?: pulumi.InvokeOptions): Promise<GetTlsActivationIdsResult> {
     args = args || {};
@@ -63,6 +65,7 @@ export interface GetTlsActivationIdsResult {
  *
  * ## Example Usage
  *
+ * <!--Start PulumiCodeChooser -->
  * ```typescript
  * import * as pulumi from "@pulumi/pulumi";
  * import * as fastly from "@pulumi/fastly";
@@ -75,6 +78,7 @@ export interface GetTlsActivationIdsResult {
  * }))));
  * export const activationDomains = exampleTlsActivation.map(a => (a.domain));
  * ```
+ * <!--End PulumiCodeChooser -->
  */
 export function getTlsActivationIdsOutput(args?: GetTlsActivationIdsOutputArgs, opts?: pulumi.InvokeOptions): pulumi.Output<GetTlsActivationIdsResult> {
     return pulumi.output(args).apply((a: any) => getTlsActivationIds(a, opts))

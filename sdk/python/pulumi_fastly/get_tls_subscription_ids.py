@@ -62,6 +62,7 @@ def get_tls_subscription_ids(opts: Optional[pulumi.InvokeOptions] = None) -> Awa
 
     ## Example Usage
 
+    <!--Start PulumiCodeChooser -->
     ```python
     import pulumi
     import pulumi_fastly as fastly
@@ -70,6 +71,7 @@ def get_tls_subscription_ids(opts: Optional[pulumi.InvokeOptions] = None) -> Awa
     example_tls_subscription = [fastly.get_tls_subscription(id=__value) for __key, __value in example_tls_subscription_ids.ids]
     pulumi.export("subscriptionDomains", [a.certificate_authority for a in example_tls_subscription])
     ```
+    <!--End PulumiCodeChooser -->
     """
     __args__ = dict()
     opts = pulumi.InvokeOptions.merge(_utilities.get_invoke_opts_defaults(), opts)
@@ -87,6 +89,7 @@ def get_tls_subscription_ids_output(opts: Optional[pulumi.InvokeOptions] = None)
 
     ## Example Usage
 
+    <!--Start PulumiCodeChooser -->
     ```python
     import pulumi
     import pulumi_fastly as fastly
@@ -95,5 +98,6 @@ def get_tls_subscription_ids_output(opts: Optional[pulumi.InvokeOptions] = None)
     example_tls_subscription = [fastly.get_tls_subscription(id=__value) for __key, __value in example_tls_subscription_ids.ids]
     pulumi.export("subscriptionDomains", [a.certificate_authority for a in example_tls_subscription])
     ```
+    <!--End PulumiCodeChooser -->
     """
     ...

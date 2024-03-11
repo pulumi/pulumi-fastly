@@ -19,6 +19,7 @@ namespace Pulumi.Fastly
     /// 
     /// Basic usage:
     /// 
+    /// &lt;!--Start PulumiCodeChooser --&gt;
     /// ```csharp
     /// using System.Collections.Generic;
     /// using System.Linq;
@@ -76,6 +77,8 @@ namespace Pulumi.Fastly
     ///     // The private key has to be present before the certificate can be uploaded
     /// });
     /// ```
+    /// &lt;!--End PulumiCodeChooser --&gt;
+    /// 
     /// ## Updating certificates
     /// 
     /// There are three scenarios for updating a certificate:

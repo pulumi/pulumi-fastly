@@ -393,7 +393,7 @@ export interface ServiceComputeLoggingBlobstorage {
      */
     sasToken: string;
     /**
-     * The `strftime` specified timestamp formatting (default `%Y-%m-%dT%H:%M:%S.000`)
+     * The `strftime` specified timestamp formatting (default `%!Y(MISSING)-%!m(MISSING)-%!d(MISSING)T%!H(MISSING):%!M(MISSING):%!S(MISSING).000`)
      */
     timestampFormat?: string;
 }
@@ -440,7 +440,7 @@ export interface ServiceComputeLoggingCloudfile {
      */
     region?: string;
     /**
-     * The `strftime` specified timestamp formatting (default `%Y-%m-%dT%H:%M:%S.000`)
+     * The `strftime` specified timestamp formatting (default `%!Y(MISSING)-%!m(MISSING)-%!d(MISSING)T%!H(MISSING):%!M(MISSING):%!S(MISSING).000`)
      */
     timestampFormat?: string;
     /**
@@ -510,7 +510,7 @@ export interface ServiceComputeLoggingDigitalocean {
      */
     secretKey: string;
     /**
-     * The `strftime` specified timestamp formatting (default `%Y-%m-%dT%H:%M:%S.000`)
+     * The `strftime` specified timestamp formatting (default `%!Y(MISSING)-%!m(MISSING)-%!d(MISSING)T%!H(MISSING):%!M(MISSING):%!S(MISSING).000`)
      */
     timestampFormat?: string;
 }
@@ -608,7 +608,7 @@ export interface ServiceComputeLoggingFtp {
      */
     publicKey?: string;
     /**
-     * The `strftime` specified timestamp formatting (default `%Y-%m-%dT%H:%M:%S.000`)
+     * The `strftime` specified timestamp formatting (default `%!Y(MISSING)-%!m(MISSING)-%!d(MISSING)T%!H(MISSING):%!M(MISSING):%!S(MISSING).000`)
      */
     timestampFormat?: string;
     /**
@@ -659,7 +659,7 @@ export interface ServiceComputeLoggingGc {
      */
     secretKey?: string;
     /**
-     * The `strftime` specified timestamp formatting (default `%Y-%m-%dT%H:%M:%S.000`)
+     * The `strftime` specified timestamp formatting (default `%!Y(MISSING)-%!m(MISSING)-%!d(MISSING)T%!H(MISSING):%!M(MISSING):%!S(MISSING).000`)
      */
     timestampFormat?: string;
     /**
@@ -972,7 +972,7 @@ export interface ServiceComputeLoggingOpenstack {
      */
     publicKey?: string;
     /**
-     * The `strftime` specified timestamp formatting (default `%Y-%m-%dT%H:%M:%S.000`)
+     * The `strftime` specified timestamp formatting (default `%!Y(MISSING)-%!m(MISSING)-%!d(MISSING)T%!H(MISSING):%!M(MISSING):%!S(MISSING).000`)
      */
     timestampFormat?: string;
     /**
@@ -1070,7 +1070,7 @@ export interface ServiceComputeLoggingS3 {
      */
     serverSideEncryptionKmsKeyId?: string;
     /**
-     * The `strftime` specified timestamp formatting (default `%Y-%m-%dT%H:%M:%S.000`)
+     * The `strftime` specified timestamp formatting (default `%!Y(MISSING)-%!m(MISSING)-%!d(MISSING)T%!H(MISSING):%!M(MISSING):%!S(MISSING).000`)
      */
     timestampFormat?: string;
 }
@@ -1140,7 +1140,7 @@ export interface ServiceComputeLoggingSftp {
      */
     sshKnownHosts: string;
     /**
-     * The `strftime` specified timestamp formatting (default `%Y-%m-%dT%H:%M:%S.000`)
+     * The `strftime` specified timestamp formatting (default `%!Y(MISSING)-%!m(MISSING)-%!d(MISSING)T%!H(MISSING):%!M(MISSING):%!S(MISSING).000`)
      */
     timestampFormat?: string;
     /**
@@ -1718,7 +1718,7 @@ export interface ServiceVclLoggingBlobstorage {
      */
     fileMaxBytes?: number;
     /**
-     * Apache-style string or VCL variables to use for log formatting (default: `%h %l %u %t "%r" %>s %b`)
+     * Apache-style string or VCL variables to use for log formatting (default: `%!h(MISSING) %!l(MISSING) %!u(MISSING) %!t(MISSING) "%!r(MISSING)" %!>(MISSING)s %!b(MISSING)`)
      */
     format?: string;
     /**
@@ -1762,7 +1762,7 @@ export interface ServiceVclLoggingBlobstorage {
      */
     sasToken: string;
     /**
-     * The `strftime` specified timestamp formatting (default `%Y-%m-%dT%H:%M:%S.000`)
+     * The `strftime` specified timestamp formatting (default `%!Y(MISSING)-%!m(MISSING)-%!d(MISSING)T%!H(MISSING):%!M(MISSING):%!S(MISSING).000`)
      */
     timestampFormat?: string;
 }
@@ -1825,7 +1825,7 @@ export interface ServiceVclLoggingCloudfile {
      */
     responseCondition?: string;
     /**
-     * The `strftime` specified timestamp formatting (default `%Y-%m-%dT%H:%M:%S.000`)
+     * The `strftime` specified timestamp formatting (default `%!Y(MISSING)-%!m(MISSING)-%!d(MISSING)T%!H(MISSING):%!M(MISSING):%!S(MISSING).000`)
      */
     timestampFormat?: string;
     /**
@@ -1927,7 +1927,7 @@ export interface ServiceVclLoggingDigitalocean {
      */
     secretKey: string;
     /**
-     * The `strftime` specified timestamp formatting (default `%Y-%m-%dT%H:%M:%S.000`)
+     * The `strftime` specified timestamp formatting (default `%!Y(MISSING)-%!m(MISSING)-%!d(MISSING)T%!H(MISSING):%!M(MISSING):%!S(MISSING).000`)
      */
     timestampFormat?: string;
 }
@@ -2057,7 +2057,7 @@ export interface ServiceVclLoggingFtp {
      */
     responseCondition?: string;
     /**
-     * The `strftime` specified timestamp formatting (default `%Y-%m-%dT%H:%M:%S.000`)
+     * The `strftime` specified timestamp formatting (default `%!Y(MISSING)-%!m(MISSING)-%!d(MISSING)T%!H(MISSING):%!M(MISSING):%!S(MISSING).000`)
      */
     timestampFormat?: string;
     /**
@@ -2124,7 +2124,7 @@ export interface ServiceVclLoggingGc {
      */
     secretKey?: string;
     /**
-     * The `strftime` specified timestamp formatting (default `%Y-%m-%dT%H:%M:%S.000`)
+     * The `strftime` specified timestamp formatting (default `%!Y(MISSING)-%!m(MISSING)-%!d(MISSING)T%!H(MISSING):%!M(MISSING):%!S(MISSING).000`)
      */
     timestampFormat?: string;
     /**
@@ -2648,7 +2648,7 @@ export interface ServiceVclLoggingOpenstack {
      */
     responseCondition?: string;
     /**
-     * The `strftime` specified timestamp formatting (default `%Y-%m-%dT%H:%M:%S.000`)
+     * The `strftime` specified timestamp formatting (default `%!Y(MISSING)-%!m(MISSING)-%!d(MISSING)T%!H(MISSING):%!M(MISSING):%!S(MISSING).000`)
      */
     timestampFormat?: string;
     /**
@@ -2778,7 +2778,7 @@ export interface ServiceVclLoggingS3 {
      */
     serverSideEncryptionKmsKeyId?: string;
     /**
-     * The `strftime` specified timestamp formatting (default `%Y-%m-%dT%H:%M:%S.000`)
+     * The `strftime` specified timestamp formatting (default `%!Y(MISSING)-%!m(MISSING)-%!d(MISSING)T%!H(MISSING):%!M(MISSING):%!S(MISSING).000`)
      */
     timestampFormat?: string;
 }
@@ -2880,7 +2880,7 @@ export interface ServiceVclLoggingSftp {
      */
     sshKnownHosts: string;
     /**
-     * The `strftime` specified timestamp formatting (default `%Y-%m-%dT%H:%M:%S.000`)
+     * The `strftime` specified timestamp formatting (default `%!Y(MISSING)-%!m(MISSING)-%!d(MISSING)T%!H(MISSING):%!M(MISSING):%!S(MISSING).000`)
      */
     timestampFormat?: string;
     /**
@@ -2891,7 +2891,7 @@ export interface ServiceVclLoggingSftp {
 
 export interface ServiceVclLoggingSplunk {
     /**
-     * Apache-style string or VCL variables to use for log formatting (default: `%h %l %u %t "%r" %>s %b`)
+     * Apache-style string or VCL variables to use for log formatting (default: `%!h(MISSING) %!l(MISSING) %!u(MISSING) %!t(MISSING) "%!r(MISSING)" %!>(MISSING)s %!b(MISSING)`)
      */
     format?: string;
     /**

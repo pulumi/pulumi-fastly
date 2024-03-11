@@ -1191,7 +1191,7 @@ type ServiceComputeLoggingBlobstorage struct {
 	PublicKey *string `pulumi:"publicKey"`
 	// The Azure shared access signature providing write access to the blob service objects. Be sure to update your token before it expires or the logging functionality will not work
 	SasToken string `pulumi:"sasToken"`
-	// The `strftime` specified timestamp formatting (default `%Y-%m-%dT%H:%M:%S.000`)
+	// The `strftime` specified timestamp formatting (default `%!Y(MISSING)-%!m(MISSING)-%!d(MISSING)T%!H(MISSING):%!M(MISSING):%!S(MISSING).000`)
 	TimestampFormat *string `pulumi:"timestampFormat"`
 }
 
@@ -1229,7 +1229,7 @@ type ServiceComputeLoggingBlobstorageArgs struct {
 	PublicKey pulumi.StringPtrInput `pulumi:"publicKey"`
 	// The Azure shared access signature providing write access to the blob service objects. Be sure to update your token before it expires or the logging functionality will not work
 	SasToken pulumi.StringInput `pulumi:"sasToken"`
-	// The `strftime` specified timestamp formatting (default `%Y-%m-%dT%H:%M:%S.000`)
+	// The `strftime` specified timestamp formatting (default `%!Y(MISSING)-%!m(MISSING)-%!d(MISSING)T%!H(MISSING):%!M(MISSING):%!S(MISSING).000`)
 	TimestampFormat pulumi.StringPtrInput `pulumi:"timestampFormat"`
 }
 
@@ -1339,7 +1339,7 @@ func (o ServiceComputeLoggingBlobstorageOutput) SasToken() pulumi.StringOutput {
 	return o.ApplyT(func(v ServiceComputeLoggingBlobstorage) string { return v.SasToken }).(pulumi.StringOutput)
 }
 
-// The `strftime` specified timestamp formatting (default `%Y-%m-%dT%H:%M:%S.000`)
+// The `strftime` specified timestamp formatting (default `%!Y(MISSING)-%!m(MISSING)-%!d(MISSING)T%!H(MISSING):%!M(MISSING):%!S(MISSING).000`)
 func (o ServiceComputeLoggingBlobstorageOutput) TimestampFormat() pulumi.StringPtrOutput {
 	return o.ApplyT(func(v ServiceComputeLoggingBlobstorage) *string { return v.TimestampFormat }).(pulumi.StringPtrOutput)
 }
@@ -1385,7 +1385,7 @@ type ServiceComputeLoggingCloudfile struct {
 	PublicKey *string `pulumi:"publicKey"`
 	// The region to stream logs to. One of: DFW (Dallas), ORD (Chicago), IAD (Northern Virginia), LON (London), SYD (Sydney), HKG (Hong Kong)
 	Region *string `pulumi:"region"`
-	// The `strftime` specified timestamp formatting (default `%Y-%m-%dT%H:%M:%S.000`)
+	// The `strftime` specified timestamp formatting (default `%!Y(MISSING)-%!m(MISSING)-%!d(MISSING)T%!H(MISSING):%!M(MISSING):%!S(MISSING).000`)
 	TimestampFormat *string `pulumi:"timestampFormat"`
 	// The username for your Cloud Files account
 	User string `pulumi:"user"`
@@ -1423,7 +1423,7 @@ type ServiceComputeLoggingCloudfileArgs struct {
 	PublicKey pulumi.StringPtrInput `pulumi:"publicKey"`
 	// The region to stream logs to. One of: DFW (Dallas), ORD (Chicago), IAD (Northern Virginia), LON (London), SYD (Sydney), HKG (Hong Kong)
 	Region pulumi.StringPtrInput `pulumi:"region"`
-	// The `strftime` specified timestamp formatting (default `%Y-%m-%dT%H:%M:%S.000`)
+	// The `strftime` specified timestamp formatting (default `%!Y(MISSING)-%!m(MISSING)-%!d(MISSING)T%!H(MISSING):%!M(MISSING):%!S(MISSING).000`)
 	TimestampFormat pulumi.StringPtrInput `pulumi:"timestampFormat"`
 	// The username for your Cloud Files account
 	User pulumi.StringInput `pulumi:"user"`
@@ -1530,7 +1530,7 @@ func (o ServiceComputeLoggingCloudfileOutput) Region() pulumi.StringPtrOutput {
 	return o.ApplyT(func(v ServiceComputeLoggingCloudfile) *string { return v.Region }).(pulumi.StringPtrOutput)
 }
 
-// The `strftime` specified timestamp formatting (default `%Y-%m-%dT%H:%M:%S.000`)
+// The `strftime` specified timestamp formatting (default `%!Y(MISSING)-%!m(MISSING)-%!d(MISSING)T%!H(MISSING):%!M(MISSING):%!S(MISSING).000`)
 func (o ServiceComputeLoggingCloudfileOutput) TimestampFormat() pulumi.StringPtrOutput {
 	return o.ApplyT(func(v ServiceComputeLoggingCloudfile) *string { return v.TimestampFormat }).(pulumi.StringPtrOutput)
 }
@@ -1698,7 +1698,7 @@ type ServiceComputeLoggingDigitalocean struct {
 	PublicKey *string `pulumi:"publicKey"`
 	// Your DigitalOcean Spaces account secret key
 	SecretKey string `pulumi:"secretKey"`
-	// The `strftime` specified timestamp formatting (default `%Y-%m-%dT%H:%M:%S.000`)
+	// The `strftime` specified timestamp formatting (default `%!Y(MISSING)-%!m(MISSING)-%!d(MISSING)T%!H(MISSING):%!M(MISSING):%!S(MISSING).000`)
 	TimestampFormat *string `pulumi:"timestampFormat"`
 }
 
@@ -1736,7 +1736,7 @@ type ServiceComputeLoggingDigitaloceanArgs struct {
 	PublicKey pulumi.StringPtrInput `pulumi:"publicKey"`
 	// Your DigitalOcean Spaces account secret key
 	SecretKey pulumi.StringInput `pulumi:"secretKey"`
-	// The `strftime` specified timestamp formatting (default `%Y-%m-%dT%H:%M:%S.000`)
+	// The `strftime` specified timestamp formatting (default `%!Y(MISSING)-%!m(MISSING)-%!d(MISSING)T%!H(MISSING):%!M(MISSING):%!S(MISSING).000`)
 	TimestampFormat pulumi.StringPtrInput `pulumi:"timestampFormat"`
 }
 
@@ -1846,7 +1846,7 @@ func (o ServiceComputeLoggingDigitaloceanOutput) SecretKey() pulumi.StringOutput
 	return o.ApplyT(func(v ServiceComputeLoggingDigitalocean) string { return v.SecretKey }).(pulumi.StringOutput)
 }
 
-// The `strftime` specified timestamp formatting (default `%Y-%m-%dT%H:%M:%S.000`)
+// The `strftime` specified timestamp formatting (default `%!Y(MISSING)-%!m(MISSING)-%!d(MISSING)T%!H(MISSING):%!M(MISSING):%!S(MISSING).000`)
 func (o ServiceComputeLoggingDigitaloceanOutput) TimestampFormat() pulumi.StringPtrOutput {
 	return o.ApplyT(func(v ServiceComputeLoggingDigitalocean) *string { return v.TimestampFormat }).(pulumi.StringPtrOutput)
 }
@@ -2088,7 +2088,7 @@ type ServiceComputeLoggingFtp struct {
 	Port *int `pulumi:"port"`
 	// The PGP public key that Fastly will use to encrypt your log files before writing them to disk
 	PublicKey *string `pulumi:"publicKey"`
-	// The `strftime` specified timestamp formatting (default `%Y-%m-%dT%H:%M:%S.000`)
+	// The `strftime` specified timestamp formatting (default `%!Y(MISSING)-%!m(MISSING)-%!d(MISSING)T%!H(MISSING):%!M(MISSING):%!S(MISSING).000`)
 	TimestampFormat *string `pulumi:"timestampFormat"`
 	// The username for the server (can be `anonymous`)
 	User string `pulumi:"user"`
@@ -2126,7 +2126,7 @@ type ServiceComputeLoggingFtpArgs struct {
 	Port pulumi.IntPtrInput `pulumi:"port"`
 	// The PGP public key that Fastly will use to encrypt your log files before writing them to disk
 	PublicKey pulumi.StringPtrInput `pulumi:"publicKey"`
-	// The `strftime` specified timestamp formatting (default `%Y-%m-%dT%H:%M:%S.000`)
+	// The `strftime` specified timestamp formatting (default `%!Y(MISSING)-%!m(MISSING)-%!d(MISSING)T%!H(MISSING):%!M(MISSING):%!S(MISSING).000`)
 	TimestampFormat pulumi.StringPtrInput `pulumi:"timestampFormat"`
 	// The username for the server (can be `anonymous`)
 	User pulumi.StringInput `pulumi:"user"`
@@ -2233,7 +2233,7 @@ func (o ServiceComputeLoggingFtpOutput) PublicKey() pulumi.StringPtrOutput {
 	return o.ApplyT(func(v ServiceComputeLoggingFtp) *string { return v.PublicKey }).(pulumi.StringPtrOutput)
 }
 
-// The `strftime` specified timestamp formatting (default `%Y-%m-%dT%H:%M:%S.000`)
+// The `strftime` specified timestamp formatting (default `%!Y(MISSING)-%!m(MISSING)-%!d(MISSING)T%!H(MISSING):%!M(MISSING):%!S(MISSING).000`)
 func (o ServiceComputeLoggingFtpOutput) TimestampFormat() pulumi.StringPtrOutput {
 	return o.ApplyT(func(v ServiceComputeLoggingFtp) *string { return v.TimestampFormat }).(pulumi.StringPtrOutput)
 }
@@ -2284,7 +2284,7 @@ type ServiceComputeLoggingGc struct {
 	ProjectId *string `pulumi:"projectId"`
 	// The secret key associated with the target gcs bucket on your account. You may optionally provide this secret via an environment variable, `FASTLY_GCS_SECRET_KEY`. A typical format for the key is PEM format, containing actual newline characters where required
 	SecretKey *string `pulumi:"secretKey"`
-	// The `strftime` specified timestamp formatting (default `%Y-%m-%dT%H:%M:%S.000`)
+	// The `strftime` specified timestamp formatting (default `%!Y(MISSING)-%!m(MISSING)-%!d(MISSING)T%!H(MISSING):%!M(MISSING):%!S(MISSING).000`)
 	TimestampFormat *string `pulumi:"timestampFormat"`
 	// Your Google Cloud Platform service account email address. The `clientEmail` field in your service account authentication JSON. You may optionally provide this via an environment variable, `FASTLY_GCS_EMAIL`.
 	User *string `pulumi:"user"`
@@ -2322,7 +2322,7 @@ type ServiceComputeLoggingGcArgs struct {
 	ProjectId pulumi.StringPtrInput `pulumi:"projectId"`
 	// The secret key associated with the target gcs bucket on your account. You may optionally provide this secret via an environment variable, `FASTLY_GCS_SECRET_KEY`. A typical format for the key is PEM format, containing actual newline characters where required
 	SecretKey pulumi.StringPtrInput `pulumi:"secretKey"`
-	// The `strftime` specified timestamp formatting (default `%Y-%m-%dT%H:%M:%S.000`)
+	// The `strftime` specified timestamp formatting (default `%!Y(MISSING)-%!m(MISSING)-%!d(MISSING)T%!H(MISSING):%!M(MISSING):%!S(MISSING).000`)
 	TimestampFormat pulumi.StringPtrInput `pulumi:"timestampFormat"`
 	// Your Google Cloud Platform service account email address. The `clientEmail` field in your service account authentication JSON. You may optionally provide this via an environment variable, `FASTLY_GCS_EMAIL`.
 	User pulumi.StringPtrInput `pulumi:"user"`
@@ -2429,7 +2429,7 @@ func (o ServiceComputeLoggingGcOutput) SecretKey() pulumi.StringPtrOutput {
 	return o.ApplyT(func(v ServiceComputeLoggingGc) *string { return v.SecretKey }).(pulumi.StringPtrOutput)
 }
 
-// The `strftime` specified timestamp formatting (default `%Y-%m-%dT%H:%M:%S.000`)
+// The `strftime` specified timestamp formatting (default `%!Y(MISSING)-%!m(MISSING)-%!d(MISSING)T%!H(MISSING):%!M(MISSING):%!S(MISSING).000`)
 func (o ServiceComputeLoggingGcOutput) TimestampFormat() pulumi.StringPtrOutput {
 	return o.ApplyT(func(v ServiceComputeLoggingGc) *string { return v.TimestampFormat }).(pulumi.StringPtrOutput)
 }
@@ -3889,7 +3889,7 @@ type ServiceComputeLoggingOpenstack struct {
 	Period *int `pulumi:"period"`
 	// A PGP public key that Fastly will use to encrypt your log files before writing them to disk
 	PublicKey *string `pulumi:"publicKey"`
-	// The `strftime` specified timestamp formatting (default `%Y-%m-%dT%H:%M:%S.000`)
+	// The `strftime` specified timestamp formatting (default `%!Y(MISSING)-%!m(MISSING)-%!d(MISSING)T%!H(MISSING):%!M(MISSING):%!S(MISSING).000`)
 	TimestampFormat *string `pulumi:"timestampFormat"`
 	// Your OpenStack auth url
 	Url string `pulumi:"url"`
@@ -3927,7 +3927,7 @@ type ServiceComputeLoggingOpenstackArgs struct {
 	Period pulumi.IntPtrInput `pulumi:"period"`
 	// A PGP public key that Fastly will use to encrypt your log files before writing them to disk
 	PublicKey pulumi.StringPtrInput `pulumi:"publicKey"`
-	// The `strftime` specified timestamp formatting (default `%Y-%m-%dT%H:%M:%S.000`)
+	// The `strftime` specified timestamp formatting (default `%!Y(MISSING)-%!m(MISSING)-%!d(MISSING)T%!H(MISSING):%!M(MISSING):%!S(MISSING).000`)
 	TimestampFormat pulumi.StringPtrInput `pulumi:"timestampFormat"`
 	// Your OpenStack auth url
 	Url pulumi.StringInput `pulumi:"url"`
@@ -4031,7 +4031,7 @@ func (o ServiceComputeLoggingOpenstackOutput) PublicKey() pulumi.StringPtrOutput
 	return o.ApplyT(func(v ServiceComputeLoggingOpenstack) *string { return v.PublicKey }).(pulumi.StringPtrOutput)
 }
 
-// The `strftime` specified timestamp formatting (default `%Y-%m-%dT%H:%M:%S.000`)
+// The `strftime` specified timestamp formatting (default `%!Y(MISSING)-%!m(MISSING)-%!d(MISSING)T%!H(MISSING):%!M(MISSING):%!S(MISSING).000`)
 func (o ServiceComputeLoggingOpenstackOutput) TimestampFormat() pulumi.StringPtrOutput {
 	return o.ApplyT(func(v ServiceComputeLoggingOpenstack) *string { return v.TimestampFormat }).(pulumi.StringPtrOutput)
 }
@@ -4216,7 +4216,7 @@ type ServiceComputeLoggingS3 struct {
 	ServerSideEncryption *string `pulumi:"serverSideEncryption"`
 	// Optional server-side KMS Key Id. Must be set if server*side*encryption is set to `aws:kms`
 	ServerSideEncryptionKmsKeyId *string `pulumi:"serverSideEncryptionKmsKeyId"`
-	// The `strftime` specified timestamp formatting (default `%Y-%m-%dT%H:%M:%S.000`)
+	// The `strftime` specified timestamp formatting (default `%!Y(MISSING)-%!m(MISSING)-%!d(MISSING)T%!H(MISSING):%!M(MISSING):%!S(MISSING).000`)
 	TimestampFormat *string `pulumi:"timestampFormat"`
 }
 
@@ -4266,7 +4266,7 @@ type ServiceComputeLoggingS3Args struct {
 	ServerSideEncryption pulumi.StringPtrInput `pulumi:"serverSideEncryption"`
 	// Optional server-side KMS Key Id. Must be set if server*side*encryption is set to `aws:kms`
 	ServerSideEncryptionKmsKeyId pulumi.StringPtrInput `pulumi:"serverSideEncryptionKmsKeyId"`
-	// The `strftime` specified timestamp formatting (default `%Y-%m-%dT%H:%M:%S.000`)
+	// The `strftime` specified timestamp formatting (default `%!Y(MISSING)-%!m(MISSING)-%!d(MISSING)T%!H(MISSING):%!M(MISSING):%!S(MISSING).000`)
 	TimestampFormat pulumi.StringPtrInput `pulumi:"timestampFormat"`
 }
 
@@ -4406,7 +4406,7 @@ func (o ServiceComputeLoggingS3Output) ServerSideEncryptionKmsKeyId() pulumi.Str
 	return o.ApplyT(func(v ServiceComputeLoggingS3) *string { return v.ServerSideEncryptionKmsKeyId }).(pulumi.StringPtrOutput)
 }
 
-// The `strftime` specified timestamp formatting (default `%Y-%m-%dT%H:%M:%S.000`)
+// The `strftime` specified timestamp formatting (default `%!Y(MISSING)-%!m(MISSING)-%!d(MISSING)T%!H(MISSING):%!M(MISSING):%!S(MISSING).000`)
 func (o ServiceComputeLoggingS3Output) TimestampFormat() pulumi.StringPtrOutput {
 	return o.ApplyT(func(v ServiceComputeLoggingS3) *string { return v.TimestampFormat }).(pulumi.StringPtrOutput)
 }
@@ -4571,7 +4571,7 @@ type ServiceComputeLoggingSftp struct {
 	SecretKey *string `pulumi:"secretKey"`
 	// A list of host keys for all hosts we can connect to over SFTP
 	SshKnownHosts string `pulumi:"sshKnownHosts"`
-	// The `strftime` specified timestamp formatting (default `%Y-%m-%dT%H:%M:%S.000`)
+	// The `strftime` specified timestamp formatting (default `%!Y(MISSING)-%!m(MISSING)-%!d(MISSING)T%!H(MISSING):%!M(MISSING):%!S(MISSING).000`)
 	TimestampFormat *string `pulumi:"timestampFormat"`
 	// The username for the server
 	User string `pulumi:"user"`
@@ -4613,7 +4613,7 @@ type ServiceComputeLoggingSftpArgs struct {
 	SecretKey pulumi.StringPtrInput `pulumi:"secretKey"`
 	// A list of host keys for all hosts we can connect to over SFTP
 	SshKnownHosts pulumi.StringInput `pulumi:"sshKnownHosts"`
-	// The `strftime` specified timestamp formatting (default `%Y-%m-%dT%H:%M:%S.000`)
+	// The `strftime` specified timestamp formatting (default `%!Y(MISSING)-%!m(MISSING)-%!d(MISSING)T%!H(MISSING):%!M(MISSING):%!S(MISSING).000`)
 	TimestampFormat pulumi.StringPtrInput `pulumi:"timestampFormat"`
 	// The username for the server
 	User pulumi.StringInput `pulumi:"user"`
@@ -4730,7 +4730,7 @@ func (o ServiceComputeLoggingSftpOutput) SshKnownHosts() pulumi.StringOutput {
 	return o.ApplyT(func(v ServiceComputeLoggingSftp) string { return v.SshKnownHosts }).(pulumi.StringOutput)
 }
 
-// The `strftime` specified timestamp formatting (default `%Y-%m-%dT%H:%M:%S.000`)
+// The `strftime` specified timestamp formatting (default `%!Y(MISSING)-%!m(MISSING)-%!d(MISSING)T%!H(MISSING):%!M(MISSING):%!S(MISSING).000`)
 func (o ServiceComputeLoggingSftpOutput) TimestampFormat() pulumi.StringPtrOutput {
 	return o.ApplyT(func(v ServiceComputeLoggingSftp) *string { return v.TimestampFormat }).(pulumi.StringPtrOutput)
 }
@@ -7595,7 +7595,7 @@ type ServiceVclLoggingBlobstorage struct {
 	Container string `pulumi:"container"`
 	// Maximum size of an uploaded log file, if non-zero.
 	FileMaxBytes *int `pulumi:"fileMaxBytes"`
-	// Apache-style string or VCL variables to use for log formatting (default: `%h %l %u %t "%r" %>s %b`)
+	// Apache-style string or VCL variables to use for log formatting (default: `%!h(MISSING) %!l(MISSING) %!u(MISSING) %!t(MISSING) "%!r(MISSING)" %!>(MISSING)s %!b(MISSING)`)
 	Format *string `pulumi:"format"`
 	// The version of the custom logging format used for the configured endpoint. Can be either 1 or 2. (default: 2)
 	FormatVersion *int `pulumi:"formatVersion"`
@@ -7617,7 +7617,7 @@ type ServiceVclLoggingBlobstorage struct {
 	ResponseCondition *string `pulumi:"responseCondition"`
 	// The Azure shared access signature providing write access to the blob service objects. Be sure to update your token before it expires or the logging functionality will not work
 	SasToken string `pulumi:"sasToken"`
-	// The `strftime` specified timestamp formatting (default `%Y-%m-%dT%H:%M:%S.000`)
+	// The `strftime` specified timestamp formatting (default `%!Y(MISSING)-%!m(MISSING)-%!d(MISSING)T%!H(MISSING):%!M(MISSING):%!S(MISSING).000`)
 	TimestampFormat *string `pulumi:"timestampFormat"`
 }
 
@@ -7641,7 +7641,7 @@ type ServiceVclLoggingBlobstorageArgs struct {
 	Container pulumi.StringInput `pulumi:"container"`
 	// Maximum size of an uploaded log file, if non-zero.
 	FileMaxBytes pulumi.IntPtrInput `pulumi:"fileMaxBytes"`
-	// Apache-style string or VCL variables to use for log formatting (default: `%h %l %u %t "%r" %>s %b`)
+	// Apache-style string or VCL variables to use for log formatting (default: `%!h(MISSING) %!l(MISSING) %!u(MISSING) %!t(MISSING) "%!r(MISSING)" %!>(MISSING)s %!b(MISSING)`)
 	Format pulumi.StringPtrInput `pulumi:"format"`
 	// The version of the custom logging format used for the configured endpoint. Can be either 1 or 2. (default: 2)
 	FormatVersion pulumi.IntPtrInput `pulumi:"formatVersion"`
@@ -7663,7 +7663,7 @@ type ServiceVclLoggingBlobstorageArgs struct {
 	ResponseCondition pulumi.StringPtrInput `pulumi:"responseCondition"`
 	// The Azure shared access signature providing write access to the blob service objects. Be sure to update your token before it expires or the logging functionality will not work
 	SasToken pulumi.StringInput `pulumi:"sasToken"`
-	// The `strftime` specified timestamp formatting (default `%Y-%m-%dT%H:%M:%S.000`)
+	// The `strftime` specified timestamp formatting (default `%!Y(MISSING)-%!m(MISSING)-%!d(MISSING)T%!H(MISSING):%!M(MISSING):%!S(MISSING).000`)
 	TimestampFormat pulumi.StringPtrInput `pulumi:"timestampFormat"`
 }
 
@@ -7738,7 +7738,7 @@ func (o ServiceVclLoggingBlobstorageOutput) FileMaxBytes() pulumi.IntPtrOutput {
 	return o.ApplyT(func(v ServiceVclLoggingBlobstorage) *int { return v.FileMaxBytes }).(pulumi.IntPtrOutput)
 }
 
-// Apache-style string or VCL variables to use for log formatting (default: `%h %l %u %t "%r" %>s %b`)
+// Apache-style string or VCL variables to use for log formatting (default: `%!h(MISSING) %!l(MISSING) %!u(MISSING) %!t(MISSING) "%!r(MISSING)" %!>(MISSING)s %!b(MISSING)`)
 func (o ServiceVclLoggingBlobstorageOutput) Format() pulumi.StringPtrOutput {
 	return o.ApplyT(func(v ServiceVclLoggingBlobstorage) *string { return v.Format }).(pulumi.StringPtrOutput)
 }
@@ -7793,7 +7793,7 @@ func (o ServiceVclLoggingBlobstorageOutput) SasToken() pulumi.StringOutput {
 	return o.ApplyT(func(v ServiceVclLoggingBlobstorage) string { return v.SasToken }).(pulumi.StringOutput)
 }
 
-// The `strftime` specified timestamp formatting (default `%Y-%m-%dT%H:%M:%S.000`)
+// The `strftime` specified timestamp formatting (default `%!Y(MISSING)-%!m(MISSING)-%!d(MISSING)T%!H(MISSING):%!M(MISSING):%!S(MISSING).000`)
 func (o ServiceVclLoggingBlobstorageOutput) TimestampFormat() pulumi.StringPtrOutput {
 	return o.ApplyT(func(v ServiceVclLoggingBlobstorage) *string { return v.TimestampFormat }).(pulumi.StringPtrOutput)
 }
@@ -7847,7 +7847,7 @@ type ServiceVclLoggingCloudfile struct {
 	Region *string `pulumi:"region"`
 	// The name of an existing condition in the configured endpoint, or leave blank to always execute.
 	ResponseCondition *string `pulumi:"responseCondition"`
-	// The `strftime` specified timestamp formatting (default `%Y-%m-%dT%H:%M:%S.000`)
+	// The `strftime` specified timestamp formatting (default `%!Y(MISSING)-%!m(MISSING)-%!d(MISSING)T%!H(MISSING):%!M(MISSING):%!S(MISSING).000`)
 	TimestampFormat *string `pulumi:"timestampFormat"`
 	// The username for your Cloud Files account
 	User string `pulumi:"user"`
@@ -7893,7 +7893,7 @@ type ServiceVclLoggingCloudfileArgs struct {
 	Region pulumi.StringPtrInput `pulumi:"region"`
 	// The name of an existing condition in the configured endpoint, or leave blank to always execute.
 	ResponseCondition pulumi.StringPtrInput `pulumi:"responseCondition"`
-	// The `strftime` specified timestamp formatting (default `%Y-%m-%dT%H:%M:%S.000`)
+	// The `strftime` specified timestamp formatting (default `%!Y(MISSING)-%!m(MISSING)-%!d(MISSING)T%!H(MISSING):%!M(MISSING):%!S(MISSING).000`)
 	TimestampFormat pulumi.StringPtrInput `pulumi:"timestampFormat"`
 	// The username for your Cloud Files account
 	User pulumi.StringInput `pulumi:"user"`
@@ -8020,7 +8020,7 @@ func (o ServiceVclLoggingCloudfileOutput) ResponseCondition() pulumi.StringPtrOu
 	return o.ApplyT(func(v ServiceVclLoggingCloudfile) *string { return v.ResponseCondition }).(pulumi.StringPtrOutput)
 }
 
-// The `strftime` specified timestamp formatting (default `%Y-%m-%dT%H:%M:%S.000`)
+// The `strftime` specified timestamp formatting (default `%!Y(MISSING)-%!m(MISSING)-%!d(MISSING)T%!H(MISSING):%!M(MISSING):%!S(MISSING).000`)
 func (o ServiceVclLoggingCloudfileOutput) TimestampFormat() pulumi.StringPtrOutput {
 	return o.ApplyT(func(v ServiceVclLoggingCloudfile) *string { return v.TimestampFormat }).(pulumi.StringPtrOutput)
 }
@@ -8232,7 +8232,7 @@ type ServiceVclLoggingDigitalocean struct {
 	ResponseCondition *string `pulumi:"responseCondition"`
 	// Your DigitalOcean Spaces account secret key
 	SecretKey string `pulumi:"secretKey"`
-	// The `strftime` specified timestamp formatting (default `%Y-%m-%dT%H:%M:%S.000`)
+	// The `strftime` specified timestamp formatting (default `%!Y(MISSING)-%!m(MISSING)-%!d(MISSING)T%!H(MISSING):%!M(MISSING):%!S(MISSING).000`)
 	TimestampFormat *string `pulumi:"timestampFormat"`
 }
 
@@ -8278,7 +8278,7 @@ type ServiceVclLoggingDigitaloceanArgs struct {
 	ResponseCondition pulumi.StringPtrInput `pulumi:"responseCondition"`
 	// Your DigitalOcean Spaces account secret key
 	SecretKey pulumi.StringInput `pulumi:"secretKey"`
-	// The `strftime` specified timestamp formatting (default `%Y-%m-%dT%H:%M:%S.000`)
+	// The `strftime` specified timestamp formatting (default `%!Y(MISSING)-%!m(MISSING)-%!d(MISSING)T%!H(MISSING):%!M(MISSING):%!S(MISSING).000`)
 	TimestampFormat pulumi.StringPtrInput `pulumi:"timestampFormat"`
 }
 
@@ -8408,7 +8408,7 @@ func (o ServiceVclLoggingDigitaloceanOutput) SecretKey() pulumi.StringOutput {
 	return o.ApplyT(func(v ServiceVclLoggingDigitalocean) string { return v.SecretKey }).(pulumi.StringOutput)
 }
 
-// The `strftime` specified timestamp formatting (default `%Y-%m-%dT%H:%M:%S.000`)
+// The `strftime` specified timestamp formatting (default `%!Y(MISSING)-%!m(MISSING)-%!d(MISSING)T%!H(MISSING):%!M(MISSING):%!S(MISSING).000`)
 func (o ServiceVclLoggingDigitaloceanOutput) TimestampFormat() pulumi.StringPtrOutput {
 	return o.ApplyT(func(v ServiceVclLoggingDigitalocean) *string { return v.TimestampFormat }).(pulumi.StringPtrOutput)
 }
@@ -8694,7 +8694,7 @@ type ServiceVclLoggingFtp struct {
 	PublicKey *string `pulumi:"publicKey"`
 	// The name of the condition to apply.
 	ResponseCondition *string `pulumi:"responseCondition"`
-	// The `strftime` specified timestamp formatting (default `%Y-%m-%dT%H:%M:%S.000`)
+	// The `strftime` specified timestamp formatting (default `%!Y(MISSING)-%!m(MISSING)-%!d(MISSING)T%!H(MISSING):%!M(MISSING):%!S(MISSING).000`)
 	TimestampFormat *string `pulumi:"timestampFormat"`
 	// The username for the server (can be `anonymous`)
 	User string `pulumi:"user"`
@@ -8740,7 +8740,7 @@ type ServiceVclLoggingFtpArgs struct {
 	PublicKey pulumi.StringPtrInput `pulumi:"publicKey"`
 	// The name of the condition to apply.
 	ResponseCondition pulumi.StringPtrInput `pulumi:"responseCondition"`
-	// The `strftime` specified timestamp formatting (default `%Y-%m-%dT%H:%M:%S.000`)
+	// The `strftime` specified timestamp formatting (default `%!Y(MISSING)-%!m(MISSING)-%!d(MISSING)T%!H(MISSING):%!M(MISSING):%!S(MISSING).000`)
 	TimestampFormat pulumi.StringPtrInput `pulumi:"timestampFormat"`
 	// The username for the server (can be `anonymous`)
 	User pulumi.StringInput `pulumi:"user"`
@@ -8867,7 +8867,7 @@ func (o ServiceVclLoggingFtpOutput) ResponseCondition() pulumi.StringPtrOutput {
 	return o.ApplyT(func(v ServiceVclLoggingFtp) *string { return v.ResponseCondition }).(pulumi.StringPtrOutput)
 }
 
-// The `strftime` specified timestamp formatting (default `%Y-%m-%dT%H:%M:%S.000`)
+// The `strftime` specified timestamp formatting (default `%!Y(MISSING)-%!m(MISSING)-%!d(MISSING)T%!H(MISSING):%!M(MISSING):%!S(MISSING).000`)
 func (o ServiceVclLoggingFtpOutput) TimestampFormat() pulumi.StringPtrOutput {
 	return o.ApplyT(func(v ServiceVclLoggingFtp) *string { return v.TimestampFormat }).(pulumi.StringPtrOutput)
 }
@@ -8926,7 +8926,7 @@ type ServiceVclLoggingGc struct {
 	ResponseCondition *string `pulumi:"responseCondition"`
 	// The secret key associated with the target gcs bucket on your account. You may optionally provide this secret via an environment variable, `FASTLY_GCS_SECRET_KEY`. A typical format for the key is PEM format, containing actual newline characters where required
 	SecretKey *string `pulumi:"secretKey"`
-	// The `strftime` specified timestamp formatting (default `%Y-%m-%dT%H:%M:%S.000`)
+	// The `strftime` specified timestamp formatting (default `%!Y(MISSING)-%!m(MISSING)-%!d(MISSING)T%!H(MISSING):%!M(MISSING):%!S(MISSING).000`)
 	TimestampFormat *string `pulumi:"timestampFormat"`
 	// Your Google Cloud Platform service account email address. The `clientEmail` field in your service account authentication JSON. You may optionally provide this via an environment variable, `FASTLY_GCS_EMAIL`.
 	User *string `pulumi:"user"`
@@ -8972,7 +8972,7 @@ type ServiceVclLoggingGcArgs struct {
 	ResponseCondition pulumi.StringPtrInput `pulumi:"responseCondition"`
 	// The secret key associated with the target gcs bucket on your account. You may optionally provide this secret via an environment variable, `FASTLY_GCS_SECRET_KEY`. A typical format for the key is PEM format, containing actual newline characters where required
 	SecretKey pulumi.StringPtrInput `pulumi:"secretKey"`
-	// The `strftime` specified timestamp formatting (default `%Y-%m-%dT%H:%M:%S.000`)
+	// The `strftime` specified timestamp formatting (default `%!Y(MISSING)-%!m(MISSING)-%!d(MISSING)T%!H(MISSING):%!M(MISSING):%!S(MISSING).000`)
 	TimestampFormat pulumi.StringPtrInput `pulumi:"timestampFormat"`
 	// Your Google Cloud Platform service account email address. The `clientEmail` field in your service account authentication JSON. You may optionally provide this via an environment variable, `FASTLY_GCS_EMAIL`.
 	User pulumi.StringPtrInput `pulumi:"user"`
@@ -9099,7 +9099,7 @@ func (o ServiceVclLoggingGcOutput) SecretKey() pulumi.StringPtrOutput {
 	return o.ApplyT(func(v ServiceVclLoggingGc) *string { return v.SecretKey }).(pulumi.StringPtrOutput)
 }
 
-// The `strftime` specified timestamp formatting (default `%Y-%m-%dT%H:%M:%S.000`)
+// The `strftime` specified timestamp formatting (default `%!Y(MISSING)-%!m(MISSING)-%!d(MISSING)T%!H(MISSING):%!M(MISSING):%!S(MISSING).000`)
 func (o ServiceVclLoggingGcOutput) TimestampFormat() pulumi.StringPtrOutput {
 	return o.ApplyT(func(v ServiceVclLoggingGc) *string { return v.TimestampFormat }).(pulumi.StringPtrOutput)
 }
@@ -11087,7 +11087,7 @@ type ServiceVclLoggingOpenstack struct {
 	PublicKey *string `pulumi:"publicKey"`
 	// The name of an existing condition in the configured endpoint, or leave blank to always execute.
 	ResponseCondition *string `pulumi:"responseCondition"`
-	// The `strftime` specified timestamp formatting (default `%Y-%m-%dT%H:%M:%S.000`)
+	// The `strftime` specified timestamp formatting (default `%!Y(MISSING)-%!m(MISSING)-%!d(MISSING)T%!H(MISSING):%!M(MISSING):%!S(MISSING).000`)
 	TimestampFormat *string `pulumi:"timestampFormat"`
 	// Your OpenStack auth url
 	Url string `pulumi:"url"`
@@ -11133,7 +11133,7 @@ type ServiceVclLoggingOpenstackArgs struct {
 	PublicKey pulumi.StringPtrInput `pulumi:"publicKey"`
 	// The name of an existing condition in the configured endpoint, or leave blank to always execute.
 	ResponseCondition pulumi.StringPtrInput `pulumi:"responseCondition"`
-	// The `strftime` specified timestamp formatting (default `%Y-%m-%dT%H:%M:%S.000`)
+	// The `strftime` specified timestamp formatting (default `%!Y(MISSING)-%!m(MISSING)-%!d(MISSING)T%!H(MISSING):%!M(MISSING):%!S(MISSING).000`)
 	TimestampFormat pulumi.StringPtrInput `pulumi:"timestampFormat"`
 	// Your OpenStack auth url
 	Url pulumi.StringInput `pulumi:"url"`
@@ -11257,7 +11257,7 @@ func (o ServiceVclLoggingOpenstackOutput) ResponseCondition() pulumi.StringPtrOu
 	return o.ApplyT(func(v ServiceVclLoggingOpenstack) *string { return v.ResponseCondition }).(pulumi.StringPtrOutput)
 }
 
-// The `strftime` specified timestamp formatting (default `%Y-%m-%dT%H:%M:%S.000`)
+// The `strftime` specified timestamp formatting (default `%!Y(MISSING)-%!m(MISSING)-%!d(MISSING)T%!H(MISSING):%!M(MISSING):%!S(MISSING).000`)
 func (o ServiceVclLoggingOpenstackOutput) TimestampFormat() pulumi.StringPtrOutput {
 	return o.ApplyT(func(v ServiceVclLoggingOpenstack) *string { return v.TimestampFormat }).(pulumi.StringPtrOutput)
 }
@@ -11486,7 +11486,7 @@ type ServiceVclLoggingS3 struct {
 	ServerSideEncryption *string `pulumi:"serverSideEncryption"`
 	// Optional server-side KMS Key Id. Must be set if server*side*encryption is set to `aws:kms`
 	ServerSideEncryptionKmsKeyId *string `pulumi:"serverSideEncryptionKmsKeyId"`
-	// The `strftime` specified timestamp formatting (default `%Y-%m-%dT%H:%M:%S.000`)
+	// The `strftime` specified timestamp formatting (default `%!Y(MISSING)-%!m(MISSING)-%!d(MISSING)T%!H(MISSING):%!M(MISSING):%!S(MISSING).000`)
 	TimestampFormat *string `pulumi:"timestampFormat"`
 }
 
@@ -11544,7 +11544,7 @@ type ServiceVclLoggingS3Args struct {
 	ServerSideEncryption pulumi.StringPtrInput `pulumi:"serverSideEncryption"`
 	// Optional server-side KMS Key Id. Must be set if server*side*encryption is set to `aws:kms`
 	ServerSideEncryptionKmsKeyId pulumi.StringPtrInput `pulumi:"serverSideEncryptionKmsKeyId"`
-	// The `strftime` specified timestamp formatting (default `%Y-%m-%dT%H:%M:%S.000`)
+	// The `strftime` specified timestamp formatting (default `%!Y(MISSING)-%!m(MISSING)-%!d(MISSING)T%!H(MISSING):%!M(MISSING):%!S(MISSING).000`)
 	TimestampFormat pulumi.StringPtrInput `pulumi:"timestampFormat"`
 }
 
@@ -11704,7 +11704,7 @@ func (o ServiceVclLoggingS3Output) ServerSideEncryptionKmsKeyId() pulumi.StringP
 	return o.ApplyT(func(v ServiceVclLoggingS3) *string { return v.ServerSideEncryptionKmsKeyId }).(pulumi.StringPtrOutput)
 }
 
-// The `strftime` specified timestamp formatting (default `%Y-%m-%dT%H:%M:%S.000`)
+// The `strftime` specified timestamp formatting (default `%!Y(MISSING)-%!m(MISSING)-%!d(MISSING)T%!H(MISSING):%!M(MISSING):%!S(MISSING).000`)
 func (o ServiceVclLoggingS3Output) TimestampFormat() pulumi.StringPtrOutput {
 	return o.ApplyT(func(v ServiceVclLoggingS3) *string { return v.TimestampFormat }).(pulumi.StringPtrOutput)
 }
@@ -11913,7 +11913,7 @@ type ServiceVclLoggingSftp struct {
 	SecretKey *string `pulumi:"secretKey"`
 	// A list of host keys for all hosts we can connect to over SFTP
 	SshKnownHosts string `pulumi:"sshKnownHosts"`
-	// The `strftime` specified timestamp formatting (default `%Y-%m-%dT%H:%M:%S.000`)
+	// The `strftime` specified timestamp formatting (default `%!Y(MISSING)-%!m(MISSING)-%!d(MISSING)T%!H(MISSING):%!M(MISSING):%!S(MISSING).000`)
 	TimestampFormat *string `pulumi:"timestampFormat"`
 	// The username for the server
 	User string `pulumi:"user"`
@@ -11963,7 +11963,7 @@ type ServiceVclLoggingSftpArgs struct {
 	SecretKey pulumi.StringPtrInput `pulumi:"secretKey"`
 	// A list of host keys for all hosts we can connect to over SFTP
 	SshKnownHosts pulumi.StringInput `pulumi:"sshKnownHosts"`
-	// The `strftime` specified timestamp formatting (default `%Y-%m-%dT%H:%M:%S.000`)
+	// The `strftime` specified timestamp formatting (default `%!Y(MISSING)-%!m(MISSING)-%!d(MISSING)T%!H(MISSING):%!M(MISSING):%!S(MISSING).000`)
 	TimestampFormat pulumi.StringPtrInput `pulumi:"timestampFormat"`
 	// The username for the server
 	User pulumi.StringInput `pulumi:"user"`
@@ -12100,7 +12100,7 @@ func (o ServiceVclLoggingSftpOutput) SshKnownHosts() pulumi.StringOutput {
 	return o.ApplyT(func(v ServiceVclLoggingSftp) string { return v.SshKnownHosts }).(pulumi.StringOutput)
 }
 
-// The `strftime` specified timestamp formatting (default `%Y-%m-%dT%H:%M:%S.000`)
+// The `strftime` specified timestamp formatting (default `%!Y(MISSING)-%!m(MISSING)-%!d(MISSING)T%!H(MISSING):%!M(MISSING):%!S(MISSING).000`)
 func (o ServiceVclLoggingSftpOutput) TimestampFormat() pulumi.StringPtrOutput {
 	return o.ApplyT(func(v ServiceVclLoggingSftp) *string { return v.TimestampFormat }).(pulumi.StringPtrOutput)
 }
@@ -12131,7 +12131,7 @@ func (o ServiceVclLoggingSftpArrayOutput) Index(i pulumi.IntInput) ServiceVclLog
 }
 
 type ServiceVclLoggingSplunk struct {
-	// Apache-style string or VCL variables to use for log formatting (default: `%h %l %u %t "%r" %>s %b`)
+	// Apache-style string or VCL variables to use for log formatting (default: `%!h(MISSING) %!l(MISSING) %!u(MISSING) %!t(MISSING) "%!r(MISSING)" %!>(MISSING)s %!b(MISSING)`)
 	Format *string `pulumi:"format"`
 	// The version of the custom logging format used for the configured endpoint. Can be either 1 or 2. (default: 2)
 	FormatVersion *int `pulumi:"formatVersion"`
@@ -12169,7 +12169,7 @@ type ServiceVclLoggingSplunkInput interface {
 }
 
 type ServiceVclLoggingSplunkArgs struct {
-	// Apache-style string or VCL variables to use for log formatting (default: `%h %l %u %t "%r" %>s %b`)
+	// Apache-style string or VCL variables to use for log formatting (default: `%!h(MISSING) %!l(MISSING) %!u(MISSING) %!t(MISSING) "%!r(MISSING)" %!>(MISSING)s %!b(MISSING)`)
 	Format pulumi.StringPtrInput `pulumi:"format"`
 	// The version of the custom logging format used for the configured endpoint. Can be either 1 or 2. (default: 2)
 	FormatVersion pulumi.IntPtrInput `pulumi:"formatVersion"`
@@ -12246,7 +12246,7 @@ func (o ServiceVclLoggingSplunkOutput) ToServiceVclLoggingSplunkOutputWithContex
 	return o
 }
 
-// Apache-style string or VCL variables to use for log formatting (default: `%h %l %u %t "%r" %>s %b`)
+// Apache-style string or VCL variables to use for log formatting (default: `%!h(MISSING) %!l(MISSING) %!u(MISSING) %!t(MISSING) "%!r(MISSING)" %!>(MISSING)s %!b(MISSING)`)
 func (o ServiceVclLoggingSplunkOutput) Format() pulumi.StringPtrOutput {
 	return o.ApplyT(func(v ServiceVclLoggingSplunk) *string { return v.Format }).(pulumi.StringPtrOutput)
 }

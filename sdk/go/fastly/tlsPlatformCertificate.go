@@ -21,6 +21,7 @@ import (
 //
 // Basic usage with self-signed CA:
 //
+// <!--Start PulumiCodeChooser -->
 // ```go
 // package main
 //
@@ -122,6 +123,7 @@ import (
 //	}
 //
 // ```
+// <!--End PulumiCodeChooser -->
 //
 // ## Import
 //

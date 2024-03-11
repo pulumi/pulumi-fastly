@@ -300,6 +300,7 @@ class Alert(pulumi.CustomResource):
 
         ## Example Usage
 
+        <!--Start PulumiCodeChooser -->
         ```python
         import pulumi
         import pulumi_fastly as fastly
@@ -316,6 +317,7 @@ class Alert(pulumi.CustomResource):
                 threshold=10,
             ))
         ```
+        <!--End PulumiCodeChooser -->
 
         ## Import
 
@@ -347,6 +349,7 @@ class Alert(pulumi.CustomResource):
 
         ## Example Usage
 
+        <!--Start PulumiCodeChooser -->
         ```python
         import pulumi
         import pulumi_fastly as fastly
@@ -363,6 +366,7 @@ class Alert(pulumi.CustomResource):
                 threshold=10,
             ))
         ```
+        <!--End PulumiCodeChooser -->
 
         ## Import
 

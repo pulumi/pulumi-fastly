@@ -62,6 +62,7 @@ def get_tls_configuration_ids(opts: Optional[pulumi.InvokeOptions] = None) -> Aw
 
     ## Example Usage
 
+    <!--Start PulumiCodeChooser -->
     ```python
     import pulumi
     import pulumi_fastly as fastly
@@ -70,6 +71,7 @@ def get_tls_configuration_ids(opts: Optional[pulumi.InvokeOptions] = None) -> Aw
     example_tls_activation = fastly.TlsActivation("exampleTlsActivation", configuration_id=example_tls_configuration_ids.ids[0])
     # ...
     ```
+    <!--End PulumiCodeChooser -->
     """
     __args__ = dict()
     opts = pulumi.InvokeOptions.merge(_utilities.get_invoke_opts_defaults(), opts)
@@ -87,6 +89,7 @@ def get_tls_configuration_ids_output(opts: Optional[pulumi.InvokeOptions] = None
 
     ## Example Usage
 
+    <!--Start PulumiCodeChooser -->
     ```python
     import pulumi
     import pulumi_fastly as fastly
@@ -95,5 +98,6 @@ def get_tls_configuration_ids_output(opts: Optional[pulumi.InvokeOptions] = None
     example_tls_activation = fastly.TlsActivation("exampleTlsActivation", configuration_id=example_tls_configuration_ids.ids[0])
     # ...
     ```
+    <!--End PulumiCodeChooser -->
     """
     ...

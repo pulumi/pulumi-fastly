@@ -1127,25 +1127,177 @@ class ServiceWafConfiguration(pulumi.CustomResource):
 
         > **Warning:** This provider will take precedence over any changes you make in the UI or API. Such changes are likely to be reversed if you run the provider again.
 
-        ## Adding a WAF to an existing service
+        ## Example Usage
 
-        > **Warning:** A two-phase change is required when adding a WAF to an existing service
+        Basic usage:
 
-        When adding a `waf` to an existing `ServiceVcl` and at the same time adding a `ServiceWafConfiguration`
-        resource with `waf_id = fastly_service_vcl.demo.waf[0].waf_id` might result with the in the following error:
+        <!--Start PulumiCodeChooser -->
+        ```python
+        import pulumi
+        import pulumi_fastly as fastly
 
-        > fastly_service_vcl.demo.waf is empty list of object
+        demo = fastly.ServiceVcl("demo",
+            domains=[fastly.ServiceVclDomainArgs(
+                name="example.com",
+                comment="demo",
+            )],
+            backends=[fastly.ServiceVclBackendArgs(
+                address="127.0.0.1",
+                name="origin1",
+                port=80,
+            )],
+            conditions=[
+                fastly.ServiceVclConditionArgs(
+                    name="WAF_Prefetch",
+                    type="PREFETCH",
+                    statement="req.backend.is_origin",
+                ),
+                fastly.ServiceVclConditionArgs(
+                    name="WAF_always_false",
+                    statement="false",
+                    type="REQUEST",
+                ),
+            ],
+            response_objects=[fastly.ServiceVclResponseObjectArgs(
+                name="WAF_Response",
+                status=403,
+                response="Forbidden",
+                content_type="text/html",
+                content="<html><body>Forbidden</body></html>",
+                request_condition="WAF_always_false",
+            )],
+            waf=fastly.ServiceVclWafArgs(
+                prefetch_condition="WAF_Prefetch",
+                response_object="WAF_Response",
+            ),
+            force_destroy=True)
+        waf = fastly.ServiceWafConfiguration("waf",
+            waf_id=demo.waf.waf_id,
+            http_violation_score_threshold=100)
+        ```
+        <!--End PulumiCodeChooser -->
 
-        For this scenario, it's recommended to split the changes into two distinct steps:
+        Usage with rules:
 
-        1. Add the `waf` block to the `ServiceVcl` and apply the changes
-        2. Add the `ServiceWafConfiguration` to the HCL and apply the changes
+        <!--Start PulumiCodeChooser -->
+        ```python
+        import pulumi
+        import pulumi_fastly as fastly
+
+        demo = fastly.ServiceVcl("demo",
+            domains=[fastly.ServiceVclDomainArgs(
+                name="example.com",
+                comment="demo",
+            )],
+            backends=[fastly.ServiceVclBackendArgs(
+                address="127.0.0.1",
+                name="origin1",
+                port=80,
+            )],
+            conditions=[
+                fastly.ServiceVclConditionArgs(
+                    name="WAF_Prefetch",
+                    type="PREFETCH",
+                    statement="req.backend.is_origin",
+                ),
+                fastly.ServiceVclConditionArgs(
+                    name="WAF_always_false",
+                    statement="false",
+                    type="REQUEST",
+                ),
+            ],
+            response_objects=[fastly.ServiceVclResponseObjectArgs(
+                name="WAF_Response",
+                status=403,
+                response="Forbidden",
+                content_type="text/html",
+                content="<html><body>Forbidden</body></html>",
+                request_condition="WAF_always_false",
+            )],
+            waf=fastly.ServiceVclWafArgs(
+                prefetch_condition="WAF_Prefetch",
+                response_object="WAF_Response",
+            ),
+            force_destroy=True)
+        waf = fastly.ServiceWafConfiguration("waf",
+            waf_id=demo.waf.waf_id,
+            http_violation_score_threshold=100,
+            rules=[fastly.ServiceWafConfigurationRuleArgs(
+                modsec_rule_id=1010090,
+                revision=1,
+                status="log",
+            )])
+        ```
+        <!--End PulumiCodeChooser -->
+
+        Usage with rule exclusions:
+
+        > **Warning:** Rule exclusions are part of a **beta release**, which may be subject to breaking changes and improvements over time. For more information, see our [product and feature lifecycle](https://docs.fastly.com/products/fastly-product-lifecycle#beta) descriptions.
+
+        <!--Start PulumiCodeChooser -->
+        ```python
+        import pulumi
+        import pulumi_fastly as fastly
+
+        demo = fastly.ServiceVcl("demo",
+            domains=[fastly.ServiceVclDomainArgs(
+                name="example.com",
+                comment="demo",
+            )],
+            backends=[fastly.ServiceVclBackendArgs(
+                address="127.0.0.1",
+                name="origin1",
+                port=80,
+            )],
+            conditions=[
+                fastly.ServiceVclConditionArgs(
+                    name="WAF_Prefetch",
+                    type="PREFETCH",
+                    statement="req.backend.is_origin",
+                ),
+                fastly.ServiceVclConditionArgs(
+                    name="WAF_always_false",
+                    statement="false",
+                    type="REQUEST",
+                ),
+            ],
+            response_objects=[fastly.ServiceVclResponseObjectArgs(
+                name="WAF_Response",
+                status=403,
+                response="Forbidden",
+                content_type="text/html",
+                content="<html><body>Forbidden</body></html>",
+                request_condition="WAF_always_false",
+            )],
+            waf=fastly.ServiceVclWafArgs(
+                prefetch_condition="WAF_Prefetch",
+                response_object="WAF_Response",
+            ),
+            force_destroy=True)
+        waf = fastly.ServiceWafConfiguration("waf",
+            waf_id=demo.waf.waf_id,
+            http_violation_score_threshold=100,
+            rules=[fastly.ServiceWafConfigurationRuleArgs(
+                modsec_rule_id=2029718,
+                revision=1,
+                status="log",
+            )],
+            rule_exclusions=[fastly.ServiceWafConfigurationRuleExclusionArgs(
+                name="index page",
+                exclusion_type="rule",
+                condition="req.url.basename == \\"index.html\\"",
+                modsec_rule_ids=[2029718],
+            )])
+        ```
+        <!--End PulumiCodeChooser -->
+
+        Usage with rules from data source:
 
         ## Import
 
         This is an example of the import command being applied to the resource named `fastly_service_waf_configuration.waf`
 
-         The resource ID should be the WAF ID.
+        The resource ID should be the WAF ID.
 
         ```sh
         $ pulumi import fastly:index/serviceWafConfiguration:ServiceWafConfiguration waf xxxxxxxxxxxxxxxxxxxx
@@ -1195,25 +1347,177 @@ class ServiceWafConfiguration(pulumi.CustomResource):
 
         > **Warning:** This provider will take precedence over any changes you make in the UI or API. Such changes are likely to be reversed if you run the provider again.
 
-        ## Adding a WAF to an existing service
+        ## Example Usage
 
-        > **Warning:** A two-phase change is required when adding a WAF to an existing service
+        Basic usage:
 
-        When adding a `waf` to an existing `ServiceVcl` and at the same time adding a `ServiceWafConfiguration`
-        resource with `waf_id = fastly_service_vcl.demo.waf[0].waf_id` might result with the in the following error:
+        <!--Start PulumiCodeChooser -->
+        ```python
+        import pulumi
+        import pulumi_fastly as fastly
 
-        > fastly_service_vcl.demo.waf is empty list of object
+        demo = fastly.ServiceVcl("demo",
+            domains=[fastly.ServiceVclDomainArgs(
+                name="example.com",
+                comment="demo",
+            )],
+            backends=[fastly.ServiceVclBackendArgs(
+                address="127.0.0.1",
+                name="origin1",
+                port=80,
+            )],
+            conditions=[
+                fastly.ServiceVclConditionArgs(
+                    name="WAF_Prefetch",
+                    type="PREFETCH",
+                    statement="req.backend.is_origin",
+                ),
+                fastly.ServiceVclConditionArgs(
+                    name="WAF_always_false",
+                    statement="false",
+                    type="REQUEST",
+                ),
+            ],
+            response_objects=[fastly.ServiceVclResponseObjectArgs(
+                name="WAF_Response",
+                status=403,
+                response="Forbidden",
+                content_type="text/html",
+                content="<html><body>Forbidden</body></html>",
+                request_condition="WAF_always_false",
+            )],
+            waf=fastly.ServiceVclWafArgs(
+                prefetch_condition="WAF_Prefetch",
+                response_object="WAF_Response",
+            ),
+            force_destroy=True)
+        waf = fastly.ServiceWafConfiguration("waf",
+            waf_id=demo.waf.waf_id,
+            http_violation_score_threshold=100)
+        ```
+        <!--End PulumiCodeChooser -->
 
-        For this scenario, it's recommended to split the changes into two distinct steps:
+        Usage with rules:
 
-        1. Add the `waf` block to the `ServiceVcl` and apply the changes
-        2. Add the `ServiceWafConfiguration` to the HCL and apply the changes
+        <!--Start PulumiCodeChooser -->
+        ```python
+        import pulumi
+        import pulumi_fastly as fastly
+
+        demo = fastly.ServiceVcl("demo",
+            domains=[fastly.ServiceVclDomainArgs(
+                name="example.com",
+                comment="demo",
+            )],
+            backends=[fastly.ServiceVclBackendArgs(
+                address="127.0.0.1",
+                name="origin1",
+                port=80,
+            )],
+            conditions=[
+                fastly.ServiceVclConditionArgs(
+                    name="WAF_Prefetch",
+                    type="PREFETCH",
+                    statement="req.backend.is_origin",
+                ),
+                fastly.ServiceVclConditionArgs(
+                    name="WAF_always_false",
+                    statement="false",
+                    type="REQUEST",
+                ),
+            ],
+            response_objects=[fastly.ServiceVclResponseObjectArgs(
+                name="WAF_Response",
+                status=403,
+                response="Forbidden",
+                content_type="text/html",
+                content="<html><body>Forbidden</body></html>",
+                request_condition="WAF_always_false",
+            )],
+            waf=fastly.ServiceVclWafArgs(
+                prefetch_condition="WAF_Prefetch",
+                response_object="WAF_Response",
+            ),
+            force_destroy=True)
+        waf = fastly.ServiceWafConfiguration("waf",
+            waf_id=demo.waf.waf_id,
+            http_violation_score_threshold=100,
+            rules=[fastly.ServiceWafConfigurationRuleArgs(
+                modsec_rule_id=1010090,
+                revision=1,
+                status="log",
+            )])
+        ```
+        <!--End PulumiCodeChooser -->
+
+        Usage with rule exclusions:
+
+        > **Warning:** Rule exclusions are part of a **beta release**, which may be subject to breaking changes and improvements over time. For more information, see our [product and feature lifecycle](https://docs.fastly.com/products/fastly-product-lifecycle#beta) descriptions.
+
+        <!--Start PulumiCodeChooser -->
+        ```python
+        import pulumi
+        import pulumi_fastly as fastly
+
+        demo = fastly.ServiceVcl("demo",
+            domains=[fastly.ServiceVclDomainArgs(
+                name="example.com",
+                comment="demo",
+            )],
+            backends=[fastly.ServiceVclBackendArgs(
+                address="127.0.0.1",
+                name="origin1",
+                port=80,
+            )],
+            conditions=[
+                fastly.ServiceVclConditionArgs(
+                    name="WAF_Prefetch",
+                    type="PREFETCH",
+                    statement="req.backend.is_origin",
+                ),
+                fastly.ServiceVclConditionArgs(
+                    name="WAF_always_false",
+                    statement="false",
+                    type="REQUEST",
+                ),
+            ],
+            response_objects=[fastly.ServiceVclResponseObjectArgs(
+                name="WAF_Response",
+                status=403,
+                response="Forbidden",
+                content_type="text/html",
+                content="<html><body>Forbidden</body></html>",
+                request_condition="WAF_always_false",
+            )],
+            waf=fastly.ServiceVclWafArgs(
+                prefetch_condition="WAF_Prefetch",
+                response_object="WAF_Response",
+            ),
+            force_destroy=True)
+        waf = fastly.ServiceWafConfiguration("waf",
+            waf_id=demo.waf.waf_id,
+            http_violation_score_threshold=100,
+            rules=[fastly.ServiceWafConfigurationRuleArgs(
+                modsec_rule_id=2029718,
+                revision=1,
+                status="log",
+            )],
+            rule_exclusions=[fastly.ServiceWafConfigurationRuleExclusionArgs(
+                name="index page",
+                exclusion_type="rule",
+                condition="req.url.basename == \\"index.html\\"",
+                modsec_rule_ids=[2029718],
+            )])
+        ```
+        <!--End PulumiCodeChooser -->
+
+        Usage with rules from data source:
 
         ## Import
 
         This is an example of the import command being applied to the resource named `fastly_service_waf_configuration.waf`
 
-         The resource ID should be the WAF ID.
+        The resource ID should be the WAF ID.
 
         ```sh
         $ pulumi import fastly:index/serviceWafConfiguration:ServiceWafConfiguration waf xxxxxxxxxxxxxxxxxxxx

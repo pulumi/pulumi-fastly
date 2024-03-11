@@ -16,6 +16,7 @@ import * as utilities from "./utilities";
  *
  * ## Example Usage
  *
+ * <!--Start PulumiCodeChooser -->
  * ```typescript
  * import * as pulumi from "@pulumi/pulumi";
  * import * as fastly from "@pulumi/fastly";
@@ -25,6 +26,7 @@ import * as utilities from "./utilities";
  * });
  * export const privateKeyNeedsReplacing = demo.then(demo => demo.replace);
  * ```
+ * <!--End PulumiCodeChooser -->
  */
 export function getTlsPrivateKey(args?: GetTlsPrivateKeyArgs, opts?: pulumi.InvokeOptions): Promise<GetTlsPrivateKeyResult> {
     args = args || {};
@@ -115,6 +117,7 @@ export interface GetTlsPrivateKeyResult {
  *
  * ## Example Usage
  *
+ * <!--Start PulumiCodeChooser -->
  * ```typescript
  * import * as pulumi from "@pulumi/pulumi";
  * import * as fastly from "@pulumi/fastly";
@@ -124,6 +127,7 @@ export interface GetTlsPrivateKeyResult {
  * });
  * export const privateKeyNeedsReplacing = demo.then(demo => demo.replace);
  * ```
+ * <!--End PulumiCodeChooser -->
  */
 export function getTlsPrivateKeyOutput(args?: GetTlsPrivateKeyOutputArgs, opts?: pulumi.InvokeOptions): pulumi.Output<GetTlsPrivateKeyResult> {
     return pulumi.output(args).apply((a: any) => getTlsPrivateKey(a, opts))
