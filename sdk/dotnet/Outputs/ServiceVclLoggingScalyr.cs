@@ -30,6 +30,10 @@ namespace Pulumi.Fastly.Outputs
         /// </summary>
         public readonly string? Placement;
         /// <summary>
+        /// The name of the logfile field sent to Scalyr
+        /// </summary>
+        public readonly string? ProjectId;
+        /// <summary>
         /// The region that log data will be sent to. One of `US` or `EU`. Defaults to `US` if undefined
         /// </summary>
         public readonly string? Region;
@@ -52,6 +56,8 @@ namespace Pulumi.Fastly.Outputs
 
             string? placement,
 
+            string? projectId,
+
             string? region,
 
             string? responseCondition,
@@ -62,6 +68,7 @@ namespace Pulumi.Fastly.Outputs
             FormatVersion = formatVersion;
             Name = name;
             Placement = placement;
+            ProjectId = projectId;
             Region = region;
             ResponseCondition = responseCondition;
             Token = token;

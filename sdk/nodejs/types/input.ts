@@ -949,6 +949,10 @@ export interface ServiceComputeLoggingScalyr {
      */
     name: pulumi.Input<string>;
     /**
+     * The name of the logfile field sent to Scalyr
+     */
+    projectId?: pulumi.Input<string>;
+    /**
      * The region that log data will be sent to. One of `US` or `EU`. Defaults to `US` if undefined
      */
     region?: pulumi.Input<string>;
@@ -2668,6 +2672,10 @@ export interface ServiceVclLoggingScalyr {
      * Where in the generated VCL the logging call should be placed.
      */
     placement?: pulumi.Input<string>;
+    /**
+     * The name of the logfile field sent to Scalyr
+     */
+    projectId?: pulumi.Input<string>;
     /**
      * The region that log data will be sent to. One of `US` or `EU`. Defaults to `US` if undefined
      */

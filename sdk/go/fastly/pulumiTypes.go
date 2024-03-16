@@ -4434,6 +4434,8 @@ func (o ServiceComputeLoggingS3ArrayOutput) Index(i pulumi.IntInput) ServiceComp
 type ServiceComputeLoggingScalyr struct {
 	// The unique name of the Scalyr logging endpoint. It is important to note that changing this attribute will delete and recreate the resource
 	Name string `pulumi:"name"`
+	// The name of the logfile field sent to Scalyr
+	ProjectId *string `pulumi:"projectId"`
 	// The region that log data will be sent to. One of `US` or `EU`. Defaults to `US` if undefined
 	Region *string `pulumi:"region"`
 	// The token to use for authentication (https://www.scalyr.com/keys)
@@ -4454,6 +4456,8 @@ type ServiceComputeLoggingScalyrInput interface {
 type ServiceComputeLoggingScalyrArgs struct {
 	// The unique name of the Scalyr logging endpoint. It is important to note that changing this attribute will delete and recreate the resource
 	Name pulumi.StringInput `pulumi:"name"`
+	// The name of the logfile field sent to Scalyr
+	ProjectId pulumi.StringPtrInput `pulumi:"projectId"`
 	// The region that log data will be sent to. One of `US` or `EU`. Defaults to `US` if undefined
 	Region pulumi.StringPtrInput `pulumi:"region"`
 	// The token to use for authentication (https://www.scalyr.com/keys)
@@ -4514,6 +4518,11 @@ func (o ServiceComputeLoggingScalyrOutput) ToServiceComputeLoggingScalyrOutputWi
 // The unique name of the Scalyr logging endpoint. It is important to note that changing this attribute will delete and recreate the resource
 func (o ServiceComputeLoggingScalyrOutput) Name() pulumi.StringOutput {
 	return o.ApplyT(func(v ServiceComputeLoggingScalyr) string { return v.Name }).(pulumi.StringOutput)
+}
+
+// The name of the logfile field sent to Scalyr
+func (o ServiceComputeLoggingScalyrOutput) ProjectId() pulumi.StringPtrOutput {
+	return o.ApplyT(func(v ServiceComputeLoggingScalyr) *string { return v.ProjectId }).(pulumi.StringPtrOutput)
 }
 
 // The region that log data will be sent to. One of `US` or `EU`. Defaults to `US` if undefined
@@ -11738,6 +11747,8 @@ type ServiceVclLoggingScalyr struct {
 	Name string `pulumi:"name"`
 	// Where in the generated VCL the logging call should be placed.
 	Placement *string `pulumi:"placement"`
+	// The name of the logfile field sent to Scalyr
+	ProjectId *string `pulumi:"projectId"`
 	// The region that log data will be sent to. One of `US` or `EU`. Defaults to `US` if undefined
 	Region *string `pulumi:"region"`
 	// The name of an existing condition in the configured endpoint, or leave blank to always execute.
@@ -11766,6 +11777,8 @@ type ServiceVclLoggingScalyrArgs struct {
 	Name pulumi.StringInput `pulumi:"name"`
 	// Where in the generated VCL the logging call should be placed.
 	Placement pulumi.StringPtrInput `pulumi:"placement"`
+	// The name of the logfile field sent to Scalyr
+	ProjectId pulumi.StringPtrInput `pulumi:"projectId"`
 	// The region that log data will be sent to. One of `US` or `EU`. Defaults to `US` if undefined
 	Region pulumi.StringPtrInput `pulumi:"region"`
 	// The name of an existing condition in the configured endpoint, or leave blank to always execute.
@@ -11843,6 +11856,11 @@ func (o ServiceVclLoggingScalyrOutput) Name() pulumi.StringOutput {
 // Where in the generated VCL the logging call should be placed.
 func (o ServiceVclLoggingScalyrOutput) Placement() pulumi.StringPtrOutput {
 	return o.ApplyT(func(v ServiceVclLoggingScalyr) *string { return v.Placement }).(pulumi.StringPtrOutput)
+}
+
+// The name of the logfile field sent to Scalyr
+func (o ServiceVclLoggingScalyrOutput) ProjectId() pulumi.StringPtrOutput {
+	return o.ApplyT(func(v ServiceVclLoggingScalyr) *string { return v.ProjectId }).(pulumi.StringPtrOutput)
 }
 
 // The region that log data will be sent to. One of `US` or `EU`. Defaults to `US` if undefined

@@ -3264,17 +3264,38 @@ class ServiceComputeLoggingS3(dict):
 
 @pulumi.output_type
 class ServiceComputeLoggingScalyr(dict):
+    @staticmethod
+    def __key_warning(key: str):
+        suggest = None
+        if key == "projectId":
+            suggest = "project_id"
+
+        if suggest:
+            pulumi.log.warn(f"Key '{key}' not found in ServiceComputeLoggingScalyr. Access the value via the '{suggest}' property getter instead.")
+
+    def __getitem__(self, key: str) -> Any:
+        ServiceComputeLoggingScalyr.__key_warning(key)
+        return super().__getitem__(key)
+
+    def get(self, key: str, default = None) -> Any:
+        ServiceComputeLoggingScalyr.__key_warning(key)
+        return super().get(key, default)
+
     def __init__(__self__, *,
                  name: str,
                  token: str,
+                 project_id: Optional[str] = None,
                  region: Optional[str] = None):
         """
         :param str name: The unique name of the Scalyr logging endpoint. It is important to note that changing this attribute will delete and recreate the resource
         :param str token: The token to use for authentication (https://www.scalyr.com/keys)
+        :param str project_id: The name of the logfile field sent to Scalyr
         :param str region: The region that log data will be sent to. One of `US` or `EU`. Defaults to `US` if undefined
         """
         pulumi.set(__self__, "name", name)
         pulumi.set(__self__, "token", token)
+        if project_id is not None:
+            pulumi.set(__self__, "project_id", project_id)
         if region is not None:
             pulumi.set(__self__, "region", region)
 
@@ -3293,6 +3314,14 @@ class ServiceComputeLoggingScalyr(dict):
         The token to use for authentication (https://www.scalyr.com/keys)
         """
         return pulumi.get(self, "token")
+
+    @property
+    @pulumi.getter(name="projectId")
+    def project_id(self) -> Optional[str]:
+        """
+        The name of the logfile field sent to Scalyr
+        """
+        return pulumi.get(self, "project_id")
 
     @property
     @pulumi.getter
@@ -9138,6 +9167,8 @@ class ServiceVclLoggingScalyr(dict):
         suggest = None
         if key == "formatVersion":
             suggest = "format_version"
+        elif key == "projectId":
+            suggest = "project_id"
         elif key == "responseCondition":
             suggest = "response_condition"
 
@@ -9158,6 +9189,7 @@ class ServiceVclLoggingScalyr(dict):
                  format: Optional[str] = None,
                  format_version: Optional[int] = None,
                  placement: Optional[str] = None,
+                 project_id: Optional[str] = None,
                  region: Optional[str] = None,
                  response_condition: Optional[str] = None):
         """
@@ -9166,6 +9198,7 @@ class ServiceVclLoggingScalyr(dict):
         :param str format: Apache style log formatting.
         :param int format_version: The version of the custom logging format used for the configured endpoint. Can be either 1 or 2. (default: 2).
         :param str placement: Where in the generated VCL the logging call should be placed.
+        :param str project_id: The name of the logfile field sent to Scalyr
         :param str region: The region that log data will be sent to. One of `US` or `EU`. Defaults to `US` if undefined
         :param str response_condition: The name of an existing condition in the configured endpoint, or leave blank to always execute.
         """
@@ -9177,6 +9210,8 @@ class ServiceVclLoggingScalyr(dict):
             pulumi.set(__self__, "format_version", format_version)
         if placement is not None:
             pulumi.set(__self__, "placement", placement)
+        if project_id is not None:
+            pulumi.set(__self__, "project_id", project_id)
         if region is not None:
             pulumi.set(__self__, "region", region)
         if response_condition is not None:
@@ -9221,6 +9256,14 @@ class ServiceVclLoggingScalyr(dict):
         Where in the generated VCL the logging call should be placed.
         """
         return pulumi.get(self, "placement")
+
+    @property
+    @pulumi.getter(name="projectId")
+    def project_id(self) -> Optional[str]:
+        """
+        The name of the logfile field sent to Scalyr
+        """
+        return pulumi.get(self, "project_id")
 
     @property
     @pulumi.getter

@@ -78,6 +78,21 @@ public final class ServiceVclLoggingScalyrArgs extends com.pulumi.resources.Reso
     }
 
     /**
+     * The name of the logfile field sent to Scalyr
+     * 
+     */
+    @Import(name="projectId")
+    private @Nullable Output<String> projectId;
+
+    /**
+     * @return The name of the logfile field sent to Scalyr
+     * 
+     */
+    public Optional<Output<String>> projectId() {
+        return Optional.ofNullable(this.projectId);
+    }
+
+    /**
      * The region that log data will be sent to. One of `US` or `EU`. Defaults to `US` if undefined
      * 
      */
@@ -129,6 +144,7 @@ public final class ServiceVclLoggingScalyrArgs extends com.pulumi.resources.Reso
         this.formatVersion = $.formatVersion;
         this.name = $.name;
         this.placement = $.placement;
+        this.projectId = $.projectId;
         this.region = $.region;
         this.responseCondition = $.responseCondition;
         this.token = $.token;
@@ -234,6 +250,27 @@ public final class ServiceVclLoggingScalyrArgs extends com.pulumi.resources.Reso
          */
         public Builder placement(String placement) {
             return placement(Output.of(placement));
+        }
+
+        /**
+         * @param projectId The name of the logfile field sent to Scalyr
+         * 
+         * @return builder
+         * 
+         */
+        public Builder projectId(@Nullable Output<String> projectId) {
+            $.projectId = projectId;
+            return this;
+        }
+
+        /**
+         * @param projectId The name of the logfile field sent to Scalyr
+         * 
+         * @return builder
+         * 
+         */
+        public Builder projectId(String projectId) {
+            return projectId(Output.of(projectId));
         }
 
         /**

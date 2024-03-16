@@ -19,6 +19,12 @@ namespace Pulumi.Fastly.Inputs
         public Input<string> Name { get; set; } = null!;
 
         /// <summary>
+        /// The name of the logfile field sent to Scalyr
+        /// </summary>
+        [Input("projectId")]
+        public Input<string>? ProjectId { get; set; }
+
+        /// <summary>
         /// The region that log data will be sent to. One of `US` or `EU`. Defaults to `US` if undefined
         /// </summary>
         [Input("region")]

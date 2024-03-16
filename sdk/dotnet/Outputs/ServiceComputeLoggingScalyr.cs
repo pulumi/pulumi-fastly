@@ -18,6 +18,10 @@ namespace Pulumi.Fastly.Outputs
         /// </summary>
         public readonly string Name;
         /// <summary>
+        /// The name of the logfile field sent to Scalyr
+        /// </summary>
+        public readonly string? ProjectId;
+        /// <summary>
         /// The region that log data will be sent to. One of `US` or `EU`. Defaults to `US` if undefined
         /// </summary>
         public readonly string? Region;
@@ -30,11 +34,14 @@ namespace Pulumi.Fastly.Outputs
         private ServiceComputeLoggingScalyr(
             string name,
 
+            string? projectId,
+
             string? region,
 
             string token)
         {
             Name = name;
+            ProjectId = projectId;
             Region = region;
             Token = token;
         }
