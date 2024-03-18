@@ -32,6 +32,21 @@ public final class ServiceComputeLoggingScalyrArgs extends com.pulumi.resources.
     }
 
     /**
+     * The name of the logfile field sent to Scalyr
+     * 
+     */
+    @Import(name="projectId")
+    private @Nullable Output<String> projectId;
+
+    /**
+     * @return The name of the logfile field sent to Scalyr
+     * 
+     */
+    public Optional<Output<String>> projectId() {
+        return Optional.ofNullable(this.projectId);
+    }
+
+    /**
      * The region that log data will be sent to. One of `US` or `EU`. Defaults to `US` if undefined
      * 
      */
@@ -65,6 +80,7 @@ public final class ServiceComputeLoggingScalyrArgs extends com.pulumi.resources.
 
     private ServiceComputeLoggingScalyrArgs(ServiceComputeLoggingScalyrArgs $) {
         this.name = $.name;
+        this.projectId = $.projectId;
         this.region = $.region;
         this.token = $.token;
     }
@@ -106,6 +122,27 @@ public final class ServiceComputeLoggingScalyrArgs extends com.pulumi.resources.
          */
         public Builder name(String name) {
             return name(Output.of(name));
+        }
+
+        /**
+         * @param projectId The name of the logfile field sent to Scalyr
+         * 
+         * @return builder
+         * 
+         */
+        public Builder projectId(@Nullable Output<String> projectId) {
+            $.projectId = projectId;
+            return this;
+        }
+
+        /**
+         * @param projectId The name of the logfile field sent to Scalyr
+         * 
+         * @return builder
+         * 
+         */
+        public Builder projectId(String projectId) {
+            return projectId(Output.of(projectId));
         }
 
         /**

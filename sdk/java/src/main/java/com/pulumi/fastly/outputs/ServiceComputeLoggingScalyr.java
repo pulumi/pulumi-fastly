@@ -18,6 +18,11 @@ public final class ServiceComputeLoggingScalyr {
      */
     private String name;
     /**
+     * @return The name of the logfile field sent to Scalyr
+     * 
+     */
+    private @Nullable String projectId;
+    /**
      * @return The region that log data will be sent to. One of `US` or `EU`. Defaults to `US` if undefined
      * 
      */
@@ -35,6 +40,13 @@ public final class ServiceComputeLoggingScalyr {
      */
     public String name() {
         return this.name;
+    }
+    /**
+     * @return The name of the logfile field sent to Scalyr
+     * 
+     */
+    public Optional<String> projectId() {
+        return Optional.ofNullable(this.projectId);
     }
     /**
      * @return The region that log data will be sent to. One of `US` or `EU`. Defaults to `US` if undefined
@@ -61,12 +73,14 @@ public final class ServiceComputeLoggingScalyr {
     @CustomType.Builder
     public static final class Builder {
         private String name;
+        private @Nullable String projectId;
         private @Nullable String region;
         private String token;
         public Builder() {}
         public Builder(ServiceComputeLoggingScalyr defaults) {
     	      Objects.requireNonNull(defaults);
     	      this.name = defaults.name;
+    	      this.projectId = defaults.projectId;
     	      this.region = defaults.region;
     	      this.token = defaults.token;
         }
@@ -77,6 +91,12 @@ public final class ServiceComputeLoggingScalyr {
               throw new MissingRequiredPropertyException("ServiceComputeLoggingScalyr", "name");
             }
             this.name = name;
+            return this;
+        }
+        @CustomType.Setter
+        public Builder projectId(@Nullable String projectId) {
+
+            this.projectId = projectId;
             return this;
         }
         @CustomType.Setter
@@ -96,6 +116,7 @@ public final class ServiceComputeLoggingScalyr {
         public ServiceComputeLoggingScalyr build() {
             final var _resultValue = new ServiceComputeLoggingScalyr();
             _resultValue.name = name;
+            _resultValue.projectId = projectId;
             _resultValue.region = region;
             _resultValue.token = token;
             return _resultValue;

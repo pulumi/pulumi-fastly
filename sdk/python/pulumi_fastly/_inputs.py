@@ -3652,14 +3652,18 @@ class ServiceComputeLoggingScalyrArgs:
     def __init__(__self__, *,
                  name: pulumi.Input[str],
                  token: pulumi.Input[str],
+                 project_id: Optional[pulumi.Input[str]] = None,
                  region: Optional[pulumi.Input[str]] = None):
         """
         :param pulumi.Input[str] name: The unique name of the Scalyr logging endpoint. It is important to note that changing this attribute will delete and recreate the resource
         :param pulumi.Input[str] token: The token to use for authentication (https://www.scalyr.com/keys)
+        :param pulumi.Input[str] project_id: The name of the logfile field sent to Scalyr
         :param pulumi.Input[str] region: The region that log data will be sent to. One of `US` or `EU`. Defaults to `US` if undefined
         """
         pulumi.set(__self__, "name", name)
         pulumi.set(__self__, "token", token)
+        if project_id is not None:
+            pulumi.set(__self__, "project_id", project_id)
         if region is not None:
             pulumi.set(__self__, "region", region)
 
@@ -3686,6 +3690,18 @@ class ServiceComputeLoggingScalyrArgs:
     @token.setter
     def token(self, value: pulumi.Input[str]):
         pulumi.set(self, "token", value)
+
+    @property
+    @pulumi.getter(name="projectId")
+    def project_id(self) -> Optional[pulumi.Input[str]]:
+        """
+        The name of the logfile field sent to Scalyr
+        """
+        return pulumi.get(self, "project_id")
+
+    @project_id.setter
+    def project_id(self, value: Optional[pulumi.Input[str]]):
+        pulumi.set(self, "project_id", value)
 
     @property
     @pulumi.getter
@@ -10184,6 +10200,7 @@ class ServiceVclLoggingScalyrArgs:
                  format: Optional[pulumi.Input[str]] = None,
                  format_version: Optional[pulumi.Input[int]] = None,
                  placement: Optional[pulumi.Input[str]] = None,
+                 project_id: Optional[pulumi.Input[str]] = None,
                  region: Optional[pulumi.Input[str]] = None,
                  response_condition: Optional[pulumi.Input[str]] = None):
         """
@@ -10192,6 +10209,7 @@ class ServiceVclLoggingScalyrArgs:
         :param pulumi.Input[str] format: Apache style log formatting.
         :param pulumi.Input[int] format_version: The version of the custom logging format used for the configured endpoint. Can be either 1 or 2. (default: 2).
         :param pulumi.Input[str] placement: Where in the generated VCL the logging call should be placed.
+        :param pulumi.Input[str] project_id: The name of the logfile field sent to Scalyr
         :param pulumi.Input[str] region: The region that log data will be sent to. One of `US` or `EU`. Defaults to `US` if undefined
         :param pulumi.Input[str] response_condition: The name of an existing condition in the configured endpoint, or leave blank to always execute.
         """
@@ -10203,6 +10221,8 @@ class ServiceVclLoggingScalyrArgs:
             pulumi.set(__self__, "format_version", format_version)
         if placement is not None:
             pulumi.set(__self__, "placement", placement)
+        if project_id is not None:
+            pulumi.set(__self__, "project_id", project_id)
         if region is not None:
             pulumi.set(__self__, "region", region)
         if response_condition is not None:
@@ -10267,6 +10287,18 @@ class ServiceVclLoggingScalyrArgs:
     @placement.setter
     def placement(self, value: Optional[pulumi.Input[str]]):
         pulumi.set(self, "placement", value)
+
+    @property
+    @pulumi.getter(name="projectId")
+    def project_id(self) -> Optional[pulumi.Input[str]]:
+        """
+        The name of the logfile field sent to Scalyr
+        """
+        return pulumi.get(self, "project_id")
+
+    @project_id.setter
+    def project_id(self, value: Optional[pulumi.Input[str]]):
+        pulumi.set(self, "project_id", value)
 
     @property
     @pulumi.getter

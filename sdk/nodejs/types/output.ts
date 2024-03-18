@@ -1081,6 +1081,10 @@ export interface ServiceComputeLoggingScalyr {
      */
     name: string;
     /**
+     * The name of the logfile field sent to Scalyr
+     */
+    projectId?: string;
+    /**
      * The region that log data will be sent to. One of `US` or `EU`. Defaults to `US` if undefined
      */
     region?: string;
@@ -2800,6 +2804,10 @@ export interface ServiceVclLoggingScalyr {
      * Where in the generated VCL the logging call should be placed.
      */
     placement?: string;
+    /**
+     * The name of the logfile field sent to Scalyr
+     */
+    projectId?: string;
     /**
      * The region that log data will be sent to. One of `US` or `EU`. Defaults to `US` if undefined
      */

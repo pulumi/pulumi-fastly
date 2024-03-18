@@ -1248,6 +1248,10 @@
                     "type": "string",
                     "description": "The unique name of the Scalyr logging endpoint. It is important to note that changing this attribute will delete and recreate the resource\n"
                 },
+                "projectId": {
+                    "type": "string",
+                    "description": "The name of the logfile field sent to Scalyr\n"
+                },
                 "region": {
                     "type": "string",
                     "description": "The region that log data will be sent to. One of `US` or `EU`. Defaults to `US` if undefined\n"
@@ -3335,6 +3339,10 @@
                 "placement": {
                     "type": "string",
                     "description": "Where in the generated VCL the logging call should be placed.\n"
+                },
+                "projectId": {
+                    "type": "string",
+                    "description": "The name of the logfile field sent to Scalyr\n"
                 },
                 "region": {
                     "type": "string",

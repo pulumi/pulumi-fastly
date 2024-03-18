@@ -34,6 +34,11 @@ public final class ServiceVclLoggingScalyr {
      */
     private @Nullable String placement;
     /**
+     * @return The name of the logfile field sent to Scalyr
+     * 
+     */
+    private @Nullable String projectId;
+    /**
      * @return The region that log data will be sent to. One of `US` or `EU`. Defaults to `US` if undefined
      * 
      */
@@ -79,6 +84,13 @@ public final class ServiceVclLoggingScalyr {
         return Optional.ofNullable(this.placement);
     }
     /**
+     * @return The name of the logfile field sent to Scalyr
+     * 
+     */
+    public Optional<String> projectId() {
+        return Optional.ofNullable(this.projectId);
+    }
+    /**
      * @return The region that log data will be sent to. One of `US` or `EU`. Defaults to `US` if undefined
      * 
      */
@@ -113,6 +125,7 @@ public final class ServiceVclLoggingScalyr {
         private @Nullable Integer formatVersion;
         private String name;
         private @Nullable String placement;
+        private @Nullable String projectId;
         private @Nullable String region;
         private @Nullable String responseCondition;
         private String token;
@@ -123,6 +136,7 @@ public final class ServiceVclLoggingScalyr {
     	      this.formatVersion = defaults.formatVersion;
     	      this.name = defaults.name;
     	      this.placement = defaults.placement;
+    	      this.projectId = defaults.projectId;
     	      this.region = defaults.region;
     	      this.responseCondition = defaults.responseCondition;
     	      this.token = defaults.token;
@@ -155,6 +169,12 @@ public final class ServiceVclLoggingScalyr {
             return this;
         }
         @CustomType.Setter
+        public Builder projectId(@Nullable String projectId) {
+
+            this.projectId = projectId;
+            return this;
+        }
+        @CustomType.Setter
         public Builder region(@Nullable String region) {
 
             this.region = region;
@@ -180,6 +200,7 @@ public final class ServiceVclLoggingScalyr {
             _resultValue.formatVersion = formatVersion;
             _resultValue.name = name;
             _resultValue.placement = placement;
+            _resultValue.projectId = projectId;
             _resultValue.region = region;
             _resultValue.responseCondition = responseCondition;
             _resultValue.token = token;
