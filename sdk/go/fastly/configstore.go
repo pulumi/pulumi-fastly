@@ -53,7 +53,7 @@ import (
 //				},
 //				Package: &fastly.ServiceComputePackageArgs{
 //					Filename:       pulumi.String("package.tar.gz"),
-//					SourceCodeHash: *pulumi.String(examplePackageHash.Hash),
+//					SourceCodeHash: pulumi.String(examplePackageHash.Hash),
 //				},
 //				ResourceLinks: fastly.ServiceComputeResourceLinkArray{
 //					&fastly.ServiceComputeResourceLinkArgs{
