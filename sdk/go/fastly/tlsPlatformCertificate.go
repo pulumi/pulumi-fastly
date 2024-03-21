@@ -110,7 +110,7 @@ import (
 //			_, err = fastly.NewTlsPlatformCertificate(ctx, "certTlsPlatformCertificate", &fastly.TlsPlatformCertificateArgs{
 //				CertificateBody:    certLocallySignedCert.CertPem,
 //				IntermediatesBlob:  ca.CertPem,
-//				ConfigurationId:    *pulumi.String(config.Id),
+//				ConfigurationId:    pulumi.String(config.Id),
 //				AllowUntrustedRoot: pulumi.Bool(true),
 //			}, pulumi.DependsOn([]pulumi.Resource{
 //				keyTlsPrivateKey,

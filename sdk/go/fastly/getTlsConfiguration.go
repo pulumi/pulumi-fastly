@@ -41,7 +41,7 @@ import (
 //				return err
 //			}
 //			_, err = fastly.NewTlsActivation(ctx, "exampleTlsActivation", &fastly.TlsActivationArgs{
-//				ConfigurationId: *pulumi.String(exampleTlsConfiguration.Id),
+//				ConfigurationId: pulumi.String(exampleTlsConfiguration.Id),
 //			})
 //			if err != nil {
 //				return err
