@@ -48,8 +48,10 @@ import javax.annotation.Nullable;
  *     public static void stack(Context ctx) {
  *         var demo = new ServiceVcl(&#34;demo&#34;);
  * 
+ *         //...
  *         var user = new User(&#34;user&#34;);
  * 
+ *         // ...
  *         var auth = new ServiceAuthorization(&#34;auth&#34;, ServiceAuthorizationArgs.builder()        
  *             .serviceId(demo.id())
  *             .userId(user.id())
