@@ -57,9 +57,9 @@ namespace Pulumi.Fastly
     ///         CertificateBody = "...",
     ///     }, new CustomResourceOptions
     ///     {
-    ///         DependsOn = new[]
+    ///         DependsOn =
     ///         {
-    ///             demoTlsPrivateKey,
+    ///             demoTlsPrivateKey, 
     ///         },
     ///     });
     /// 
@@ -69,9 +69,9 @@ namespace Pulumi.Fastly
     ///         Domain = "example.com",
     ///     }, new CustomResourceOptions
     ///     {
-    ///         DependsOn = new[]
+    ///         DependsOn =
     ///         {
-    ///             demoServiceVcl,
+    ///             demoServiceVcl, 
     ///         },
     ///     });
     /// 
