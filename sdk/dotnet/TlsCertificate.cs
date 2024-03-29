@@ -68,9 +68,9 @@ namespace Pulumi.Fastly
     ///         CertificateBody = cert.CertPem,
     ///     }, new CustomResourceOptions
     ///     {
-    ///         DependsOn = new[]
+    ///         DependsOn =
     ///         {
-    ///             keyTlsPrivateKey,
+    ///             keyTlsPrivateKey, 
     ///         },
     ///     });
     /// 

@@ -83,6 +83,7 @@ import javax.annotation.Nullable;
  *                 .dependsOn(keyTlsPrivateKey)
  *                 .build());
  * 
+ *         // The private key has to be present before the certificate can be uploaded
  *     }
  * }
  * ```

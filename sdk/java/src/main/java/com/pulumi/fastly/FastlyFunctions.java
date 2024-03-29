@@ -740,6 +740,7 @@ public final class FastlyFunctions {
      *             .filename(&#34;./path/to/package.tar.gz&#34;)
      *             .build());
      * 
+     *         // ...
      *         var exampleServiceCompute = new ServiceCompute(&#34;exampleServiceCompute&#34;, ServiceComputeArgs.builder()        
      *             .package_(ServiceComputePackageArgs.builder()
      *                 .filename(&#34;./path/to/package.tar.gz&#34;)
@@ -790,6 +791,7 @@ public final class FastlyFunctions {
      *             .filename(&#34;./path/to/package.tar.gz&#34;)
      *             .build());
      * 
+     *         // ...
      *         var exampleServiceCompute = new ServiceCompute(&#34;exampleServiceCompute&#34;, ServiceComputeArgs.builder()        
      *             .package_(ServiceComputePackageArgs.builder()
      *                 .filename(&#34;./path/to/package.tar.gz&#34;)
@@ -840,6 +842,7 @@ public final class FastlyFunctions {
      *             .filename(&#34;./path/to/package.tar.gz&#34;)
      *             .build());
      * 
+     *         // ...
      *         var exampleServiceCompute = new ServiceCompute(&#34;exampleServiceCompute&#34;, ServiceComputeArgs.builder()        
      *             .package_(ServiceComputePackageArgs.builder()
      *                 .filename(&#34;./path/to/package.tar.gz&#34;)
@@ -890,6 +893,7 @@ public final class FastlyFunctions {
      *             .filename(&#34;./path/to/package.tar.gz&#34;)
      *             .build());
      * 
+     *         // ...
      *         var exampleServiceCompute = new ServiceCompute(&#34;exampleServiceCompute&#34;, ServiceComputeArgs.builder()        
      *             .package_(ServiceComputePackageArgs.builder()
      *                 .filename(&#34;./path/to/package.tar.gz&#34;)
@@ -940,6 +944,7 @@ public final class FastlyFunctions {
      *             .filename(&#34;./path/to/package.tar.gz&#34;)
      *             .build());
      * 
+     *         // ...
      *         var exampleServiceCompute = new ServiceCompute(&#34;exampleServiceCompute&#34;, ServiceComputeArgs.builder()        
      *             .package_(ServiceComputePackageArgs.builder()
      *                 .filename(&#34;./path/to/package.tar.gz&#34;)
@@ -990,6 +995,7 @@ public final class FastlyFunctions {
      *             .filename(&#34;./path/to/package.tar.gz&#34;)
      *             .build());
      * 
+     *         // ...
      *         var exampleServiceCompute = new ServiceCompute(&#34;exampleServiceCompute&#34;, ServiceComputeArgs.builder()        
      *             .package_(ServiceComputePackageArgs.builder()
      *                 .filename(&#34;./path/to/package.tar.gz&#34;)
@@ -1348,6 +1354,37 @@ public final class FastlyFunctions {
      * ## Example Usage
      * 
      * &lt;!--Start PulumiCodeChooser --&gt;
+     * ```java
+     * package generated_program;
+     * 
+     * import com.pulumi.Context;
+     * import com.pulumi.Pulumi;
+     * import com.pulumi.core.Output;
+     * import com.pulumi.fastly.FastlyFunctions;
+     * import com.pulumi.fastly.inputs.GetTlsActivationIdsArgs;
+     * import java.util.List;
+     * import java.util.ArrayList;
+     * import java.util.Map;
+     * import java.io.File;
+     * import java.nio.file.Files;
+     * import java.nio.file.Paths;
+     * 
+     * public class App {
+     *     public static void main(String[] args) {
+     *         Pulumi.run(App::stack);
+     *     }
+     * 
+     *     public static void stack(Context ctx) {
+     *         final var exampleTlsActivationIds = FastlyFunctions.getTlsActivationIds(GetTlsActivationIdsArgs.builder()
+     *             .certificateId(fastly_tls_certificate.example().id())
+     *             .build());
+     * 
+     *         final var exampleTlsActivation = &#34;TODO: ForExpression&#34;;
+     * 
+     *         ctx.export(&#34;activationDomains&#34;, &#34;TODO: ForExpression&#34;);
+     *     }
+     * }
+     * ```
      * &lt;!--End PulumiCodeChooser --&gt;
      * 
      */
@@ -1360,6 +1397,37 @@ public final class FastlyFunctions {
      * ## Example Usage
      * 
      * &lt;!--Start PulumiCodeChooser --&gt;
+     * ```java
+     * package generated_program;
+     * 
+     * import com.pulumi.Context;
+     * import com.pulumi.Pulumi;
+     * import com.pulumi.core.Output;
+     * import com.pulumi.fastly.FastlyFunctions;
+     * import com.pulumi.fastly.inputs.GetTlsActivationIdsArgs;
+     * import java.util.List;
+     * import java.util.ArrayList;
+     * import java.util.Map;
+     * import java.io.File;
+     * import java.nio.file.Files;
+     * import java.nio.file.Paths;
+     * 
+     * public class App {
+     *     public static void main(String[] args) {
+     *         Pulumi.run(App::stack);
+     *     }
+     * 
+     *     public static void stack(Context ctx) {
+     *         final var exampleTlsActivationIds = FastlyFunctions.getTlsActivationIds(GetTlsActivationIdsArgs.builder()
+     *             .certificateId(fastly_tls_certificate.example().id())
+     *             .build());
+     * 
+     *         final var exampleTlsActivation = &#34;TODO: ForExpression&#34;;
+     * 
+     *         ctx.export(&#34;activationDomains&#34;, &#34;TODO: ForExpression&#34;);
+     *     }
+     * }
+     * ```
      * &lt;!--End PulumiCodeChooser --&gt;
      * 
      */
@@ -1372,6 +1440,37 @@ public final class FastlyFunctions {
      * ## Example Usage
      * 
      * &lt;!--Start PulumiCodeChooser --&gt;
+     * ```java
+     * package generated_program;
+     * 
+     * import com.pulumi.Context;
+     * import com.pulumi.Pulumi;
+     * import com.pulumi.core.Output;
+     * import com.pulumi.fastly.FastlyFunctions;
+     * import com.pulumi.fastly.inputs.GetTlsActivationIdsArgs;
+     * import java.util.List;
+     * import java.util.ArrayList;
+     * import java.util.Map;
+     * import java.io.File;
+     * import java.nio.file.Files;
+     * import java.nio.file.Paths;
+     * 
+     * public class App {
+     *     public static void main(String[] args) {
+     *         Pulumi.run(App::stack);
+     *     }
+     * 
+     *     public static void stack(Context ctx) {
+     *         final var exampleTlsActivationIds = FastlyFunctions.getTlsActivationIds(GetTlsActivationIdsArgs.builder()
+     *             .certificateId(fastly_tls_certificate.example().id())
+     *             .build());
+     * 
+     *         final var exampleTlsActivation = &#34;TODO: ForExpression&#34;;
+     * 
+     *         ctx.export(&#34;activationDomains&#34;, &#34;TODO: ForExpression&#34;);
+     *     }
+     * }
+     * ```
      * &lt;!--End PulumiCodeChooser --&gt;
      * 
      */
@@ -1384,6 +1483,37 @@ public final class FastlyFunctions {
      * ## Example Usage
      * 
      * &lt;!--Start PulumiCodeChooser --&gt;
+     * ```java
+     * package generated_program;
+     * 
+     * import com.pulumi.Context;
+     * import com.pulumi.Pulumi;
+     * import com.pulumi.core.Output;
+     * import com.pulumi.fastly.FastlyFunctions;
+     * import com.pulumi.fastly.inputs.GetTlsActivationIdsArgs;
+     * import java.util.List;
+     * import java.util.ArrayList;
+     * import java.util.Map;
+     * import java.io.File;
+     * import java.nio.file.Files;
+     * import java.nio.file.Paths;
+     * 
+     * public class App {
+     *     public static void main(String[] args) {
+     *         Pulumi.run(App::stack);
+     *     }
+     * 
+     *     public static void stack(Context ctx) {
+     *         final var exampleTlsActivationIds = FastlyFunctions.getTlsActivationIds(GetTlsActivationIdsArgs.builder()
+     *             .certificateId(fastly_tls_certificate.example().id())
+     *             .build());
+     * 
+     *         final var exampleTlsActivation = &#34;TODO: ForExpression&#34;;
+     * 
+     *         ctx.export(&#34;activationDomains&#34;, &#34;TODO: ForExpression&#34;);
+     *     }
+     * }
+     * ```
      * &lt;!--End PulumiCodeChooser --&gt;
      * 
      */
@@ -1396,6 +1526,37 @@ public final class FastlyFunctions {
      * ## Example Usage
      * 
      * &lt;!--Start PulumiCodeChooser --&gt;
+     * ```java
+     * package generated_program;
+     * 
+     * import com.pulumi.Context;
+     * import com.pulumi.Pulumi;
+     * import com.pulumi.core.Output;
+     * import com.pulumi.fastly.FastlyFunctions;
+     * import com.pulumi.fastly.inputs.GetTlsActivationIdsArgs;
+     * import java.util.List;
+     * import java.util.ArrayList;
+     * import java.util.Map;
+     * import java.io.File;
+     * import java.nio.file.Files;
+     * import java.nio.file.Paths;
+     * 
+     * public class App {
+     *     public static void main(String[] args) {
+     *         Pulumi.run(App::stack);
+     *     }
+     * 
+     *     public static void stack(Context ctx) {
+     *         final var exampleTlsActivationIds = FastlyFunctions.getTlsActivationIds(GetTlsActivationIdsArgs.builder()
+     *             .certificateId(fastly_tls_certificate.example().id())
+     *             .build());
+     * 
+     *         final var exampleTlsActivation = &#34;TODO: ForExpression&#34;;
+     * 
+     *         ctx.export(&#34;activationDomains&#34;, &#34;TODO: ForExpression&#34;);
+     *     }
+     * }
+     * ```
      * &lt;!--End PulumiCodeChooser --&gt;
      * 
      */
@@ -1408,6 +1569,37 @@ public final class FastlyFunctions {
      * ## Example Usage
      * 
      * &lt;!--Start PulumiCodeChooser --&gt;
+     * ```java
+     * package generated_program;
+     * 
+     * import com.pulumi.Context;
+     * import com.pulumi.Pulumi;
+     * import com.pulumi.core.Output;
+     * import com.pulumi.fastly.FastlyFunctions;
+     * import com.pulumi.fastly.inputs.GetTlsActivationIdsArgs;
+     * import java.util.List;
+     * import java.util.ArrayList;
+     * import java.util.Map;
+     * import java.io.File;
+     * import java.nio.file.Files;
+     * import java.nio.file.Paths;
+     * 
+     * public class App {
+     *     public static void main(String[] args) {
+     *         Pulumi.run(App::stack);
+     *     }
+     * 
+     *     public static void stack(Context ctx) {
+     *         final var exampleTlsActivationIds = FastlyFunctions.getTlsActivationIds(GetTlsActivationIdsArgs.builder()
+     *             .certificateId(fastly_tls_certificate.example().id())
+     *             .build());
+     * 
+     *         final var exampleTlsActivation = &#34;TODO: ForExpression&#34;;
+     * 
+     *         ctx.export(&#34;activationDomains&#34;, &#34;TODO: ForExpression&#34;);
+     *     }
+     * }
+     * ```
      * &lt;!--End PulumiCodeChooser --&gt;
      * 
      */
@@ -1724,6 +1916,7 @@ public final class FastlyFunctions {
      *             .certificateId(exampleTlsCertificateIds.applyValue(getTlsCertificateIdsResult -&gt; getTlsCertificateIdsResult.ids()[0]))
      *             .build());
      * 
+     *         // ...
      *     }
      * }
      * ```
@@ -1767,6 +1960,7 @@ public final class FastlyFunctions {
      *             .certificateId(exampleTlsCertificateIds.applyValue(getTlsCertificateIdsResult -&gt; getTlsCertificateIdsResult.ids()[0]))
      *             .build());
      * 
+     *         // ...
      *     }
      * }
      * ```
@@ -1810,6 +2004,7 @@ public final class FastlyFunctions {
      *             .certificateId(exampleTlsCertificateIds.applyValue(getTlsCertificateIdsResult -&gt; getTlsCertificateIdsResult.ids()[0]))
      *             .build());
      * 
+     *         // ...
      *     }
      * }
      * ```
@@ -1853,6 +2048,7 @@ public final class FastlyFunctions {
      *             .certificateId(exampleTlsCertificateIds.applyValue(getTlsCertificateIdsResult -&gt; getTlsCertificateIdsResult.ids()[0]))
      *             .build());
      * 
+     *         // ...
      *     }
      * }
      * ```
@@ -1896,6 +2092,7 @@ public final class FastlyFunctions {
      *             .certificateId(exampleTlsCertificateIds.applyValue(getTlsCertificateIdsResult -&gt; getTlsCertificateIdsResult.ids()[0]))
      *             .build());
      * 
+     *         // ...
      *     }
      * }
      * ```
@@ -1939,6 +2136,7 @@ public final class FastlyFunctions {
      *             .certificateId(exampleTlsCertificateIds.applyValue(getTlsCertificateIdsResult -&gt; getTlsCertificateIdsResult.ids()[0]))
      *             .build());
      * 
+     *         // ...
      *     }
      * }
      * ```
@@ -1991,6 +2189,7 @@ public final class FastlyFunctions {
      *             .configurationId(exampleTlsConfiguration.applyValue(getTlsConfigurationResult -&gt; getTlsConfigurationResult.id()))
      *             .build());
      * 
+     *         // ...
      *     }
      * }
      * ```
@@ -2043,6 +2242,7 @@ public final class FastlyFunctions {
      *             .configurationId(exampleTlsConfiguration.applyValue(getTlsConfigurationResult -&gt; getTlsConfigurationResult.id()))
      *             .build());
      * 
+     *         // ...
      *     }
      * }
      * ```
@@ -2095,6 +2295,7 @@ public final class FastlyFunctions {
      *             .configurationId(exampleTlsConfiguration.applyValue(getTlsConfigurationResult -&gt; getTlsConfigurationResult.id()))
      *             .build());
      * 
+     *         // ...
      *     }
      * }
      * ```
@@ -2147,6 +2348,7 @@ public final class FastlyFunctions {
      *             .configurationId(exampleTlsConfiguration.applyValue(getTlsConfigurationResult -&gt; getTlsConfigurationResult.id()))
      *             .build());
      * 
+     *         // ...
      *     }
      * }
      * ```
@@ -2199,6 +2401,7 @@ public final class FastlyFunctions {
      *             .configurationId(exampleTlsConfiguration.applyValue(getTlsConfigurationResult -&gt; getTlsConfigurationResult.id()))
      *             .build());
      * 
+     *         // ...
      *     }
      * }
      * ```
@@ -2251,6 +2454,7 @@ public final class FastlyFunctions {
      *             .configurationId(exampleTlsConfiguration.applyValue(getTlsConfigurationResult -&gt; getTlsConfigurationResult.id()))
      *             .build());
      * 
+     *         // ...
      *     }
      * }
      * ```
@@ -2294,6 +2498,7 @@ public final class FastlyFunctions {
      *             .configurationId(exampleTlsConfigurationIds.applyValue(getTlsConfigurationIdsResult -&gt; getTlsConfigurationIdsResult.ids()[0]))
      *             .build());
      * 
+     *         // ...
      *     }
      * }
      * ```
@@ -2337,6 +2542,7 @@ public final class FastlyFunctions {
      *             .configurationId(exampleTlsConfigurationIds.applyValue(getTlsConfigurationIdsResult -&gt; getTlsConfigurationIdsResult.ids()[0]))
      *             .build());
      * 
+     *         // ...
      *     }
      * }
      * ```
@@ -2380,6 +2586,7 @@ public final class FastlyFunctions {
      *             .configurationId(exampleTlsConfigurationIds.applyValue(getTlsConfigurationIdsResult -&gt; getTlsConfigurationIdsResult.ids()[0]))
      *             .build());
      * 
+     *         // ...
      *     }
      * }
      * ```
@@ -2423,6 +2630,7 @@ public final class FastlyFunctions {
      *             .configurationId(exampleTlsConfigurationIds.applyValue(getTlsConfigurationIdsResult -&gt; getTlsConfigurationIdsResult.ids()[0]))
      *             .build());
      * 
+     *         // ...
      *     }
      * }
      * ```
@@ -2466,6 +2674,7 @@ public final class FastlyFunctions {
      *             .configurationId(exampleTlsConfigurationIds.applyValue(getTlsConfigurationIdsResult -&gt; getTlsConfigurationIdsResult.ids()[0]))
      *             .build());
      * 
+     *         // ...
      *     }
      * }
      * ```
@@ -2509,6 +2718,7 @@ public final class FastlyFunctions {
      *             .configurationId(exampleTlsConfigurationIds.applyValue(getTlsConfigurationIdsResult -&gt; getTlsConfigurationIdsResult.ids()[0]))
      *             .build());
      * 
+     *         // ...
      *     }
      * }
      * ```
@@ -3992,6 +4202,34 @@ public final class FastlyFunctions {
      * ## Example Usage
      * 
      * &lt;!--Start PulumiCodeChooser --&gt;
+     * ```java
+     * package generated_program;
+     * 
+     * import com.pulumi.Context;
+     * import com.pulumi.Pulumi;
+     * import com.pulumi.core.Output;
+     * import com.pulumi.fastly.FastlyFunctions;
+     * import java.util.List;
+     * import java.util.ArrayList;
+     * import java.util.Map;
+     * import java.io.File;
+     * import java.nio.file.Files;
+     * import java.nio.file.Paths;
+     * 
+     * public class App {
+     *     public static void main(String[] args) {
+     *         Pulumi.run(App::stack);
+     *     }
+     * 
+     *     public static void stack(Context ctx) {
+     *         final var exampleTlsSubscriptionIds = FastlyFunctions.getTlsSubscriptionIds();
+     * 
+     *         final var exampleTlsSubscription = &#34;TODO: ForExpression&#34;;
+     * 
+     *         ctx.export(&#34;subscriptionDomains&#34;, &#34;TODO: ForExpression&#34;);
+     *     }
+     * }
+     * ```
      * &lt;!--End PulumiCodeChooser --&gt;
      * 
      */
@@ -4004,6 +4242,34 @@ public final class FastlyFunctions {
      * ## Example Usage
      * 
      * &lt;!--Start PulumiCodeChooser --&gt;
+     * ```java
+     * package generated_program;
+     * 
+     * import com.pulumi.Context;
+     * import com.pulumi.Pulumi;
+     * import com.pulumi.core.Output;
+     * import com.pulumi.fastly.FastlyFunctions;
+     * import java.util.List;
+     * import java.util.ArrayList;
+     * import java.util.Map;
+     * import java.io.File;
+     * import java.nio.file.Files;
+     * import java.nio.file.Paths;
+     * 
+     * public class App {
+     *     public static void main(String[] args) {
+     *         Pulumi.run(App::stack);
+     *     }
+     * 
+     *     public static void stack(Context ctx) {
+     *         final var exampleTlsSubscriptionIds = FastlyFunctions.getTlsSubscriptionIds();
+     * 
+     *         final var exampleTlsSubscription = &#34;TODO: ForExpression&#34;;
+     * 
+     *         ctx.export(&#34;subscriptionDomains&#34;, &#34;TODO: ForExpression&#34;);
+     *     }
+     * }
+     * ```
      * &lt;!--End PulumiCodeChooser --&gt;
      * 
      */
@@ -4016,6 +4282,34 @@ public final class FastlyFunctions {
      * ## Example Usage
      * 
      * &lt;!--Start PulumiCodeChooser --&gt;
+     * ```java
+     * package generated_program;
+     * 
+     * import com.pulumi.Context;
+     * import com.pulumi.Pulumi;
+     * import com.pulumi.core.Output;
+     * import com.pulumi.fastly.FastlyFunctions;
+     * import java.util.List;
+     * import java.util.ArrayList;
+     * import java.util.Map;
+     * import java.io.File;
+     * import java.nio.file.Files;
+     * import java.nio.file.Paths;
+     * 
+     * public class App {
+     *     public static void main(String[] args) {
+     *         Pulumi.run(App::stack);
+     *     }
+     * 
+     *     public static void stack(Context ctx) {
+     *         final var exampleTlsSubscriptionIds = FastlyFunctions.getTlsSubscriptionIds();
+     * 
+     *         final var exampleTlsSubscription = &#34;TODO: ForExpression&#34;;
+     * 
+     *         ctx.export(&#34;subscriptionDomains&#34;, &#34;TODO: ForExpression&#34;);
+     *     }
+     * }
+     * ```
      * &lt;!--End PulumiCodeChooser --&gt;
      * 
      */
@@ -4028,6 +4322,34 @@ public final class FastlyFunctions {
      * ## Example Usage
      * 
      * &lt;!--Start PulumiCodeChooser --&gt;
+     * ```java
+     * package generated_program;
+     * 
+     * import com.pulumi.Context;
+     * import com.pulumi.Pulumi;
+     * import com.pulumi.core.Output;
+     * import com.pulumi.fastly.FastlyFunctions;
+     * import java.util.List;
+     * import java.util.ArrayList;
+     * import java.util.Map;
+     * import java.io.File;
+     * import java.nio.file.Files;
+     * import java.nio.file.Paths;
+     * 
+     * public class App {
+     *     public static void main(String[] args) {
+     *         Pulumi.run(App::stack);
+     *     }
+     * 
+     *     public static void stack(Context ctx) {
+     *         final var exampleTlsSubscriptionIds = FastlyFunctions.getTlsSubscriptionIds();
+     * 
+     *         final var exampleTlsSubscription = &#34;TODO: ForExpression&#34;;
+     * 
+     *         ctx.export(&#34;subscriptionDomains&#34;, &#34;TODO: ForExpression&#34;);
+     *     }
+     * }
+     * ```
      * &lt;!--End PulumiCodeChooser --&gt;
      * 
      */
@@ -4040,6 +4362,34 @@ public final class FastlyFunctions {
      * ## Example Usage
      * 
      * &lt;!--Start PulumiCodeChooser --&gt;
+     * ```java
+     * package generated_program;
+     * 
+     * import com.pulumi.Context;
+     * import com.pulumi.Pulumi;
+     * import com.pulumi.core.Output;
+     * import com.pulumi.fastly.FastlyFunctions;
+     * import java.util.List;
+     * import java.util.ArrayList;
+     * import java.util.Map;
+     * import java.io.File;
+     * import java.nio.file.Files;
+     * import java.nio.file.Paths;
+     * 
+     * public class App {
+     *     public static void main(String[] args) {
+     *         Pulumi.run(App::stack);
+     *     }
+     * 
+     *     public static void stack(Context ctx) {
+     *         final var exampleTlsSubscriptionIds = FastlyFunctions.getTlsSubscriptionIds();
+     * 
+     *         final var exampleTlsSubscription = &#34;TODO: ForExpression&#34;;
+     * 
+     *         ctx.export(&#34;subscriptionDomains&#34;, &#34;TODO: ForExpression&#34;);
+     *     }
+     * }
+     * ```
      * &lt;!--End PulumiCodeChooser --&gt;
      * 
      */
@@ -4052,6 +4402,34 @@ public final class FastlyFunctions {
      * ## Example Usage
      * 
      * &lt;!--Start PulumiCodeChooser --&gt;
+     * ```java
+     * package generated_program;
+     * 
+     * import com.pulumi.Context;
+     * import com.pulumi.Pulumi;
+     * import com.pulumi.core.Output;
+     * import com.pulumi.fastly.FastlyFunctions;
+     * import java.util.List;
+     * import java.util.ArrayList;
+     * import java.util.Map;
+     * import java.io.File;
+     * import java.nio.file.Files;
+     * import java.nio.file.Paths;
+     * 
+     * public class App {
+     *     public static void main(String[] args) {
+     *         Pulumi.run(App::stack);
+     *     }
+     * 
+     *     public static void stack(Context ctx) {
+     *         final var exampleTlsSubscriptionIds = FastlyFunctions.getTlsSubscriptionIds();
+     * 
+     *         final var exampleTlsSubscription = &#34;TODO: ForExpression&#34;;
+     * 
+     *         ctx.export(&#34;subscriptionDomains&#34;, &#34;TODO: ForExpression&#34;);
+     *     }
+     * }
+     * ```
      * &lt;!--End PulumiCodeChooser --&gt;
      * 
      */

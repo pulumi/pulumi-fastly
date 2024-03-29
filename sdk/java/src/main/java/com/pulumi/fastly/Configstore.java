@@ -52,6 +52,9 @@ import javax.annotation.Nullable;
  *     }
  * 
  *     public static void stack(Context ctx) {
+ *         // IMPORTANT: Deleting a Config Store requires first deleting its resource_link.
+ *         // This requires a two-step `pulumi up` as we can&#39;t guarantee deletion order.
+ *         // e.g. resource_link deletion within fastly_service_compute might not finish first.
  *         var exampleConfigstore = new Configstore(&#34;exampleConfigstore&#34;);
  * 
  *         final var examplePackageHash = FastlyFunctions.getPackageHash(GetPackageHashArgs.builder()

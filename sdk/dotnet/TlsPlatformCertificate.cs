@@ -109,9 +109,9 @@ namespace Pulumi.Fastly
     ///         AllowUntrustedRoot = true,
     ///     }, new CustomResourceOptions
     ///     {
-    ///         DependsOn = new[]
+    ///         DependsOn =
     ///         {
-    ///             keyTlsPrivateKey,
+    ///             keyTlsPrivateKey, 
     ///         },
     ///     });
     /// 
