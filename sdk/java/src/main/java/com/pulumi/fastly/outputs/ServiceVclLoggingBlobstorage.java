@@ -34,7 +34,7 @@ public final class ServiceVclLoggingBlobstorage {
      */
     private @Nullable Integer fileMaxBytes;
     /**
-     * @return Apache-style string or VCL variables to use for log formatting (default: `%!h(MISSING) %!l(MISSING) %!u(MISSING) %!t(MISSING) &#34;%!r(MISSING)&#34; %!&gt;(MISSING)s %!b(MISSING)`)
+     * @return Apache-style string or VCL variables to use for log formatting (default: `%h %l %u %t &#34;%r&#34; %&gt;s %b`)
      * 
      */
     private @Nullable String format;
@@ -89,7 +89,7 @@ public final class ServiceVclLoggingBlobstorage {
      */
     private String sasToken;
     /**
-     * @return The `strftime` specified timestamp formatting (default `%!Y(MISSING)-%!m(MISSING)-%!d(MISSING)T%!H(MISSING):%!M(MISSING):%!S(MISSING).000`)
+     * @return The `strftime` specified timestamp formatting (default `%Y-%m-%dT%H:%M:%S.000`)
      * 
      */
     private @Nullable String timestampFormat;
@@ -124,7 +124,7 @@ public final class ServiceVclLoggingBlobstorage {
         return Optional.ofNullable(this.fileMaxBytes);
     }
     /**
-     * @return Apache-style string or VCL variables to use for log formatting (default: `%!h(MISSING) %!l(MISSING) %!u(MISSING) %!t(MISSING) &#34;%!r(MISSING)&#34; %!&gt;(MISSING)s %!b(MISSING)`)
+     * @return Apache-style string or VCL variables to use for log formatting (default: `%h %l %u %t &#34;%r&#34; %&gt;s %b`)
      * 
      */
     public Optional<String> format() {
@@ -201,7 +201,7 @@ public final class ServiceVclLoggingBlobstorage {
         return this.sasToken;
     }
     /**
-     * @return The `strftime` specified timestamp formatting (default `%!Y(MISSING)-%!m(MISSING)-%!d(MISSING)T%!H(MISSING):%!M(MISSING):%!S(MISSING).000`)
+     * @return The `strftime` specified timestamp formatting (default `%Y-%m-%dT%H:%M:%S.000`)
      * 
      */
     public Optional<String> timestampFormat() {

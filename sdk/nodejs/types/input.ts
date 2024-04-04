@@ -261,7 +261,7 @@ export interface ServiceComputeLoggingBlobstorage {
      */
     sasToken: pulumi.Input<string>;
     /**
-     * The `strftime` specified timestamp formatting (default `%!Y(MISSING)-%!m(MISSING)-%!d(MISSING)T%!H(MISSING):%!M(MISSING):%!S(MISSING).000`)
+     * The `strftime` specified timestamp formatting (default `%Y-%m-%dT%H:%M:%S.000`)
      */
     timestampFormat?: pulumi.Input<string>;
 }
@@ -308,7 +308,7 @@ export interface ServiceComputeLoggingCloudfile {
      */
     region?: pulumi.Input<string>;
     /**
-     * The `strftime` specified timestamp formatting (default `%!Y(MISSING)-%!m(MISSING)-%!d(MISSING)T%!H(MISSING):%!M(MISSING):%!S(MISSING).000`)
+     * The `strftime` specified timestamp formatting (default `%Y-%m-%dT%H:%M:%S.000`)
      */
     timestampFormat?: pulumi.Input<string>;
     /**
@@ -378,7 +378,7 @@ export interface ServiceComputeLoggingDigitalocean {
      */
     secretKey: pulumi.Input<string>;
     /**
-     * The `strftime` specified timestamp formatting (default `%!Y(MISSING)-%!m(MISSING)-%!d(MISSING)T%!H(MISSING):%!M(MISSING):%!S(MISSING).000`)
+     * The `strftime` specified timestamp formatting (default `%Y-%m-%dT%H:%M:%S.000`)
      */
     timestampFormat?: pulumi.Input<string>;
 }
@@ -476,7 +476,7 @@ export interface ServiceComputeLoggingFtp {
      */
     publicKey?: pulumi.Input<string>;
     /**
-     * The `strftime` specified timestamp formatting (default `%!Y(MISSING)-%!m(MISSING)-%!d(MISSING)T%!H(MISSING):%!M(MISSING):%!S(MISSING).000`)
+     * The `strftime` specified timestamp formatting (default `%Y-%m-%dT%H:%M:%S.000`)
      */
     timestampFormat?: pulumi.Input<string>;
     /**
@@ -527,7 +527,7 @@ export interface ServiceComputeLoggingGc {
      */
     secretKey?: pulumi.Input<string>;
     /**
-     * The `strftime` specified timestamp formatting (default `%!Y(MISSING)-%!m(MISSING)-%!d(MISSING)T%!H(MISSING):%!M(MISSING):%!S(MISSING).000`)
+     * The `strftime` specified timestamp formatting (default `%Y-%m-%dT%H:%M:%S.000`)
      */
     timestampFormat?: pulumi.Input<string>;
     /**
@@ -840,7 +840,7 @@ export interface ServiceComputeLoggingOpenstack {
      */
     publicKey?: pulumi.Input<string>;
     /**
-     * The `strftime` specified timestamp formatting (default `%!Y(MISSING)-%!m(MISSING)-%!d(MISSING)T%!H(MISSING):%!M(MISSING):%!S(MISSING).000`)
+     * The `strftime` specified timestamp formatting (default `%Y-%m-%dT%H:%M:%S.000`)
      */
     timestampFormat?: pulumi.Input<string>;
     /**
@@ -938,7 +938,7 @@ export interface ServiceComputeLoggingS3 {
      */
     serverSideEncryptionKmsKeyId?: pulumi.Input<string>;
     /**
-     * The `strftime` specified timestamp formatting (default `%!Y(MISSING)-%!m(MISSING)-%!d(MISSING)T%!H(MISSING):%!M(MISSING):%!S(MISSING).000`)
+     * The `strftime` specified timestamp formatting (default `%Y-%m-%dT%H:%M:%S.000`)
      */
     timestampFormat?: pulumi.Input<string>;
 }
@@ -1012,7 +1012,7 @@ export interface ServiceComputeLoggingSftp {
      */
     sshKnownHosts: pulumi.Input<string>;
     /**
-     * The `strftime` specified timestamp formatting (default `%!Y(MISSING)-%!m(MISSING)-%!d(MISSING)T%!H(MISSING):%!M(MISSING):%!S(MISSING).000`)
+     * The `strftime` specified timestamp formatting (default `%Y-%m-%dT%H:%M:%S.000`)
      */
     timestampFormat?: pulumi.Input<string>;
     /**
@@ -1590,7 +1590,7 @@ export interface ServiceVclLoggingBlobstorage {
      */
     fileMaxBytes?: pulumi.Input<number>;
     /**
-     * Apache-style string or VCL variables to use for log formatting (default: `%!h(MISSING) %!l(MISSING) %!u(MISSING) %!t(MISSING) "%!r(MISSING)" %!>(MISSING)s %!b(MISSING)`)
+     * Apache-style string or VCL variables to use for log formatting (default: `%h %l %u %t "%r" %>s %b`)
      */
     format?: pulumi.Input<string>;
     /**
@@ -1634,7 +1634,7 @@ export interface ServiceVclLoggingBlobstorage {
      */
     sasToken: pulumi.Input<string>;
     /**
-     * The `strftime` specified timestamp formatting (default `%!Y(MISSING)-%!m(MISSING)-%!d(MISSING)T%!H(MISSING):%!M(MISSING):%!S(MISSING).000`)
+     * The `strftime` specified timestamp formatting (default `%Y-%m-%dT%H:%M:%S.000`)
      */
     timestampFormat?: pulumi.Input<string>;
 }
@@ -1697,7 +1697,7 @@ export interface ServiceVclLoggingCloudfile {
      */
     responseCondition?: pulumi.Input<string>;
     /**
-     * The `strftime` specified timestamp formatting (default `%!Y(MISSING)-%!m(MISSING)-%!d(MISSING)T%!H(MISSING):%!M(MISSING):%!S(MISSING).000`)
+     * The `strftime` specified timestamp formatting (default `%Y-%m-%dT%H:%M:%S.000`)
      */
     timestampFormat?: pulumi.Input<string>;
     /**
@@ -1799,7 +1799,7 @@ export interface ServiceVclLoggingDigitalocean {
      */
     secretKey: pulumi.Input<string>;
     /**
-     * The `strftime` specified timestamp formatting (default `%!Y(MISSING)-%!m(MISSING)-%!d(MISSING)T%!H(MISSING):%!M(MISSING):%!S(MISSING).000`)
+     * The `strftime` specified timestamp formatting (default `%Y-%m-%dT%H:%M:%S.000`)
      */
     timestampFormat?: pulumi.Input<string>;
 }
@@ -1929,7 +1929,7 @@ export interface ServiceVclLoggingFtp {
      */
     responseCondition?: pulumi.Input<string>;
     /**
-     * The `strftime` specified timestamp formatting (default `%!Y(MISSING)-%!m(MISSING)-%!d(MISSING)T%!H(MISSING):%!M(MISSING):%!S(MISSING).000`)
+     * The `strftime` specified timestamp formatting (default `%Y-%m-%dT%H:%M:%S.000`)
      */
     timestampFormat?: pulumi.Input<string>;
     /**
@@ -1996,7 +1996,7 @@ export interface ServiceVclLoggingGc {
      */
     secretKey?: pulumi.Input<string>;
     /**
-     * The `strftime` specified timestamp formatting (default `%!Y(MISSING)-%!m(MISSING)-%!d(MISSING)T%!H(MISSING):%!M(MISSING):%!S(MISSING).000`)
+     * The `strftime` specified timestamp formatting (default `%Y-%m-%dT%H:%M:%S.000`)
      */
     timestampFormat?: pulumi.Input<string>;
     /**
@@ -2520,7 +2520,7 @@ export interface ServiceVclLoggingOpenstack {
      */
     responseCondition?: pulumi.Input<string>;
     /**
-     * The `strftime` specified timestamp formatting (default `%!Y(MISSING)-%!m(MISSING)-%!d(MISSING)T%!H(MISSING):%!M(MISSING):%!S(MISSING).000`)
+     * The `strftime` specified timestamp formatting (default `%Y-%m-%dT%H:%M:%S.000`)
      */
     timestampFormat?: pulumi.Input<string>;
     /**
@@ -2650,7 +2650,7 @@ export interface ServiceVclLoggingS3 {
      */
     serverSideEncryptionKmsKeyId?: pulumi.Input<string>;
     /**
-     * The `strftime` specified timestamp formatting (default `%!Y(MISSING)-%!m(MISSING)-%!d(MISSING)T%!H(MISSING):%!M(MISSING):%!S(MISSING).000`)
+     * The `strftime` specified timestamp formatting (default `%Y-%m-%dT%H:%M:%S.000`)
      */
     timestampFormat?: pulumi.Input<string>;
 }
@@ -2756,7 +2756,7 @@ export interface ServiceVclLoggingSftp {
      */
     sshKnownHosts: pulumi.Input<string>;
     /**
-     * The `strftime` specified timestamp formatting (default `%!Y(MISSING)-%!m(MISSING)-%!d(MISSING)T%!H(MISSING):%!M(MISSING):%!S(MISSING).000`)
+     * The `strftime` specified timestamp formatting (default `%Y-%m-%dT%H:%M:%S.000`)
      */
     timestampFormat?: pulumi.Input<string>;
     /**
@@ -2767,7 +2767,7 @@ export interface ServiceVclLoggingSftp {
 
 export interface ServiceVclLoggingSplunk {
     /**
-     * Apache-style string or VCL variables to use for log formatting (default: `%!h(MISSING) %!l(MISSING) %!u(MISSING) %!t(MISSING) "%!r(MISSING)" %!>(MISSING)s %!b(MISSING)`)
+     * Apache-style string or VCL variables to use for log formatting (default: `%h %l %u %t "%r" %>s %b`)
      */
     format?: pulumi.Input<string>;
     /**

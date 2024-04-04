@@ -105,7 +105,7 @@ namespace Pulumi.Fastly.Inputs
         public Input<string> SshKnownHosts { get; set; } = null!;
 
         /// <summary>
-        /// The `strftime` specified timestamp formatting (default `%!Y(MISSING)-%!m(MISSING)-%!d(MISSING)T%!H(MISSING):%!M(MISSING):%!S(MISSING).000`)
+        /// The `strftime` specified timestamp formatting (default `%Y-%m-%dT%H:%M:%S.000`)
         /// </summary>
         [Input("timestampFormat")]
         public Input<string>? TimestampFormat { get; set; }
