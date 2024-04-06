@@ -84,7 +84,7 @@ public final class ServiceVclLoggingGc {
      */
     private @Nullable String secretKey;
     /**
-     * @return The `strftime` specified timestamp formatting (default `%!Y(MISSING)-%!m(MISSING)-%!d(MISSING)T%!H(MISSING):%!M(MISSING):%!S(MISSING).000`)
+     * @return The `strftime` specified timestamp formatting (default `%Y-%m-%dT%H:%M:%S.000`)
      * 
      */
     private @Nullable String timestampFormat;
@@ -194,7 +194,7 @@ public final class ServiceVclLoggingGc {
         return Optional.ofNullable(this.secretKey);
     }
     /**
-     * @return The `strftime` specified timestamp formatting (default `%!Y(MISSING)-%!m(MISSING)-%!d(MISSING)T%!H(MISSING):%!M(MISSING):%!S(MISSING).000`)
+     * @return The `strftime` specified timestamp formatting (default `%Y-%m-%dT%H:%M:%S.000`)
      * 
      */
     public Optional<String> timestampFormat() {

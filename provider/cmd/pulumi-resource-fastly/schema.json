@@ -399,7 +399,7 @@
                 },
                 "timestampFormat": {
                     "type": "string",
-                    "description": "The `strftime` specified timestamp formatting (default `%!Y(MISSING)-%!m(MISSING)-%!d(MISSING)T%!H(MISSING):%!M(MISSING):%!S(MISSING).000`)\n"
+                    "description": "The `strftime` specified timestamp formatting (default `%Y-%m-%dT%H:%M:%S.000`)\n"
                 }
             },
             "type": "object",
@@ -455,7 +455,7 @@
                 },
                 "timestampFormat": {
                     "type": "string",
-                    "description": "The `strftime` specified timestamp formatting (default `%!Y(MISSING)-%!m(MISSING)-%!d(MISSING)T%!H(MISSING):%!M(MISSING):%!S(MISSING).000`)\n"
+                    "description": "The `strftime` specified timestamp formatting (default `%Y-%m-%dT%H:%M:%S.000`)\n"
                 },
                 "user": {
                     "type": "string",
@@ -542,7 +542,7 @@
                 },
                 "timestampFormat": {
                     "type": "string",
-                    "description": "The `strftime` specified timestamp formatting (default `%!Y(MISSING)-%!m(MISSING)-%!d(MISSING)T%!H(MISSING):%!M(MISSING):%!S(MISSING).000`)\n"
+                    "description": "The `strftime` specified timestamp formatting (default `%Y-%m-%dT%H:%M:%S.000`)\n"
                 }
             },
             "type": "object",
@@ -658,7 +658,7 @@
                 },
                 "timestampFormat": {
                     "type": "string",
-                    "description": "The `strftime` specified timestamp formatting (default `%!Y(MISSING)-%!m(MISSING)-%!d(MISSING)T%!H(MISSING):%!M(MISSING):%!S(MISSING).000`)\n"
+                    "description": "The `strftime` specified timestamp formatting (default `%Y-%m-%dT%H:%M:%S.000`)\n"
                 },
                 "user": {
                     "type": "string",
@@ -719,7 +719,7 @@
                 },
                 "timestampFormat": {
                     "type": "string",
-                    "description": "The `strftime` specified timestamp formatting (default `%!Y(MISSING)-%!m(MISSING)-%!d(MISSING)T%!H(MISSING):%!M(MISSING):%!S(MISSING).000`)\n"
+                    "description": "The `strftime` specified timestamp formatting (default `%Y-%m-%dT%H:%M:%S.000`)\n"
                 },
                 "user": {
                     "type": "string",
@@ -1117,7 +1117,7 @@
                 },
                 "timestampFormat": {
                     "type": "string",
-                    "description": "The `strftime` specified timestamp formatting (default `%!Y(MISSING)-%!m(MISSING)-%!d(MISSING)T%!H(MISSING):%!M(MISSING):%!S(MISSING).000`)\n"
+                    "description": "The `strftime` specified timestamp formatting (default `%Y-%m-%dT%H:%M:%S.000`)\n"
                 },
                 "url": {
                     "type": "string",
@@ -1233,7 +1233,7 @@
                 },
                 "timestampFormat": {
                     "type": "string",
-                    "description": "The `strftime` specified timestamp formatting (default `%!Y(MISSING)-%!m(MISSING)-%!d(MISSING)T%!H(MISSING):%!M(MISSING):%!S(MISSING).000`)\n"
+                    "description": "The `strftime` specified timestamp formatting (default `%Y-%m-%dT%H:%M:%S.000`)\n"
                 }
             },
             "type": "object",
@@ -1322,7 +1322,7 @@
                 },
                 "timestampFormat": {
                     "type": "string",
-                    "description": "The `strftime` specified timestamp formatting (default `%!Y(MISSING)-%!m(MISSING)-%!d(MISSING)T%!H(MISSING):%!M(MISSING):%!S(MISSING).000`)\n"
+                    "description": "The `strftime` specified timestamp formatting (default `%Y-%m-%dT%H:%M:%S.000`)\n"
                 },
                 "user": {
                     "type": "string",
@@ -2088,7 +2088,7 @@
                 },
                 "format": {
                     "type": "string",
-                    "description": "Apache-style string or VCL variables to use for log formatting (default: `%!h(MISSING) %!l(MISSING) %!u(MISSING) %!t(MISSING) \"%!r(MISSING)\" %!\u003e(MISSING)s %!b(MISSING)`)\n"
+                    "description": "Apache-style string or VCL variables to use for log formatting (default: `%h %l %u %t \"%r\" %\u003es %b`)\n"
                 },
                 "formatVersion": {
                     "type": "integer",
@@ -2133,7 +2133,7 @@
                 },
                 "timestampFormat": {
                     "type": "string",
-                    "description": "The `strftime` specified timestamp formatting (default `%!Y(MISSING)-%!m(MISSING)-%!d(MISSING)T%!H(MISSING):%!M(MISSING):%!S(MISSING).000`)\n"
+                    "description": "The `strftime` specified timestamp formatting (default `%Y-%m-%dT%H:%M:%S.000`)\n"
                 }
             },
             "type": "object",
@@ -2205,7 +2205,7 @@
                 },
                 "timestampFormat": {
                     "type": "string",
-                    "description": "The `strftime` specified timestamp formatting (default `%!Y(MISSING)-%!m(MISSING)-%!d(MISSING)T%!H(MISSING):%!M(MISSING):%!S(MISSING).000`)\n"
+                    "description": "The `strftime` specified timestamp formatting (default `%Y-%m-%dT%H:%M:%S.000`)\n"
                 },
                 "user": {
                     "type": "string",
@@ -2324,7 +2324,7 @@
                 },
                 "timestampFormat": {
                     "type": "string",
-                    "description": "The `strftime` specified timestamp formatting (default `%!Y(MISSING)-%!m(MISSING)-%!d(MISSING)T%!H(MISSING):%!M(MISSING):%!S(MISSING).000`)\n"
+                    "description": "The `strftime` specified timestamp formatting (default `%Y-%m-%dT%H:%M:%S.000`)\n"
                 }
             },
             "type": "object",
@@ -2472,7 +2472,7 @@
                 },
                 "timestampFormat": {
                     "type": "string",
-                    "description": "The `strftime` specified timestamp formatting (default `%!Y(MISSING)-%!m(MISSING)-%!d(MISSING)T%!H(MISSING):%!M(MISSING):%!S(MISSING).000`)\n"
+                    "description": "The `strftime` specified timestamp formatting (default `%Y-%m-%dT%H:%M:%S.000`)\n"
                 },
                 "user": {
                     "type": "string",
@@ -2549,7 +2549,7 @@
                 },
                 "timestampFormat": {
                     "type": "string",
-                    "description": "The `strftime` specified timestamp formatting (default `%!Y(MISSING)-%!m(MISSING)-%!d(MISSING)T%!H(MISSING):%!M(MISSING):%!S(MISSING).000`)\n"
+                    "description": "The `strftime` specified timestamp formatting (default `%Y-%m-%dT%H:%M:%S.000`)\n"
                 },
                 "user": {
                     "type": "string",
@@ -3165,7 +3165,7 @@
                 },
                 "timestampFormat": {
                     "type": "string",
-                    "description": "The `strftime` specified timestamp formatting (default `%!Y(MISSING)-%!m(MISSING)-%!d(MISSING)T%!H(MISSING):%!M(MISSING):%!S(MISSING).000`)\n"
+                    "description": "The `strftime` specified timestamp formatting (default `%Y-%m-%dT%H:%M:%S.000`)\n"
                 },
                 "url": {
                     "type": "string",
@@ -3313,7 +3313,7 @@
                 },
                 "timestampFormat": {
                     "type": "string",
-                    "description": "The `strftime` specified timestamp formatting (default `%!Y(MISSING)-%!m(MISSING)-%!d(MISSING)T%!H(MISSING):%!M(MISSING):%!S(MISSING).000`)\n"
+                    "description": "The `strftime` specified timestamp formatting (default `%Y-%m-%dT%H:%M:%S.000`)\n"
                 }
             },
             "type": "object",
@@ -3434,7 +3434,7 @@
                 },
                 "timestampFormat": {
                     "type": "string",
-                    "description": "The `strftime` specified timestamp formatting (default `%!Y(MISSING)-%!m(MISSING)-%!d(MISSING)T%!H(MISSING):%!M(MISSING):%!S(MISSING).000`)\n"
+                    "description": "The `strftime` specified timestamp formatting (default `%Y-%m-%dT%H:%M:%S.000`)\n"
                 },
                 "user": {
                     "type": "string",
@@ -3454,7 +3454,7 @@
             "properties": {
                 "format": {
                     "type": "string",
-                    "description": "Apache-style string or VCL variables to use for log formatting (default: `%!h(MISSING) %!l(MISSING) %!u(MISSING) %!t(MISSING) \"%!r(MISSING)\" %!\u003e(MISSING)s %!b(MISSING)`)\n"
+                    "description": "Apache-style string or VCL variables to use for log formatting (default: `%h %l %u %t \"%r\" %\u003es %b`)\n"
                 },
                 "formatVersion": {
                     "type": "integer",

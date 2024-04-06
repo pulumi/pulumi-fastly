@@ -273,14 +273,14 @@ public final class ServiceComputeLoggingS3Args extends com.pulumi.resources.Reso
     }
 
     /**
-     * The `strftime` specified timestamp formatting (default `%!Y(MISSING)-%!m(MISSING)-%!d(MISSING)T%!H(MISSING):%!M(MISSING):%!S(MISSING).000`)
+     * The `strftime` specified timestamp formatting (default `%Y-%m-%dT%H:%M:%S.000`)
      * 
      */
     @Import(name="timestampFormat")
     private @Nullable Output<String> timestampFormat;
 
     /**
-     * @return The `strftime` specified timestamp formatting (default `%!Y(MISSING)-%!m(MISSING)-%!d(MISSING)T%!H(MISSING):%!M(MISSING):%!S(MISSING).000`)
+     * @return The `strftime` specified timestamp formatting (default `%Y-%m-%dT%H:%M:%S.000`)
      * 
      */
     public Optional<Output<String>> timestampFormat() {
@@ -686,7 +686,7 @@ public final class ServiceComputeLoggingS3Args extends com.pulumi.resources.Reso
         }
 
         /**
-         * @param timestampFormat The `strftime` specified timestamp formatting (default `%!Y(MISSING)-%!m(MISSING)-%!d(MISSING)T%!H(MISSING):%!M(MISSING):%!S(MISSING).000`)
+         * @param timestampFormat The `strftime` specified timestamp formatting (default `%Y-%m-%dT%H:%M:%S.000`)
          * 
          * @return builder
          * 
@@ -697,7 +697,7 @@ public final class ServiceComputeLoggingS3Args extends com.pulumi.resources.Reso
         }
 
         /**
-         * @param timestampFormat The `strftime` specified timestamp formatting (default `%!Y(MISSING)-%!m(MISSING)-%!d(MISSING)T%!H(MISSING):%!M(MISSING):%!S(MISSING).000`)
+         * @param timestampFormat The `strftime` specified timestamp formatting (default `%Y-%m-%dT%H:%M:%S.000`)
          * 
          * @return builder
          * 

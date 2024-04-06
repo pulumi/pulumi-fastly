@@ -14,7 +14,7 @@ namespace Pulumi.Fastly.Outputs
     public sealed class ServiceVclLoggingSplunk
     {
         /// <summary>
-        /// Apache-style string or VCL variables to use for log formatting (default: `%!h(MISSING) %!l(MISSING) %!u(MISSING) %!t(MISSING) "%!r(MISSING)" %!&gt;(MISSING)s %!b(MISSING)`)
+        /// Apache-style string or VCL variables to use for log formatting (default: `%h %l %u %t "%r" %&gt;s %b`)
         /// </summary>
         public readonly string? Format;
         /// <summary>
