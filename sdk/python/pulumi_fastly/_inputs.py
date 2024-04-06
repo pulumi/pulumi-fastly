@@ -923,7 +923,7 @@ class ServiceComputeLoggingBlobstorageArgs:
         :param pulumi.Input[str] path: The path to upload logs to. Must end with a trailing slash. If this field is left empty, the files will be saved in the container's root path
         :param pulumi.Input[int] period: How frequently the logs should be transferred in seconds. Default `3600`
         :param pulumi.Input[str] public_key: A PGP public key that Fastly will use to encrypt your log files before writing them to disk
-        :param pulumi.Input[str] timestamp_format: The `strftime` specified timestamp formatting (default `%!Y(MISSING)-%!m(MISSING)-%!d(MISSING)T%!H(MISSING):%!M(MISSING):%!S(MISSING).000`)
+        :param pulumi.Input[str] timestamp_format: The `strftime` specified timestamp formatting (default `%Y-%m-%dT%H:%M:%S.000`)
         """
         pulumi.set(__self__, "account_name", account_name)
         pulumi.set(__self__, "container", container)
@@ -1082,7 +1082,7 @@ class ServiceComputeLoggingBlobstorageArgs:
     @pulumi.getter(name="timestampFormat")
     def timestamp_format(self) -> Optional[pulumi.Input[str]]:
         """
-        The `strftime` specified timestamp formatting (default `%!Y(MISSING)-%!m(MISSING)-%!d(MISSING)T%!H(MISSING):%!M(MISSING):%!S(MISSING).000`)
+        The `strftime` specified timestamp formatting (default `%Y-%m-%dT%H:%M:%S.000`)
         """
         return pulumi.get(self, "timestamp_format")
 
@@ -1118,7 +1118,7 @@ class ServiceComputeLoggingCloudfileArgs:
         :param pulumi.Input[int] period: How frequently log files are finalized so they can be available for reading (in seconds, default `3600`)
         :param pulumi.Input[str] public_key: The PGP public key that Fastly will use to encrypt your log files before writing them to disk
         :param pulumi.Input[str] region: The region to stream logs to. One of: DFW (Dallas), ORD (Chicago), IAD (Northern Virginia), LON (London), SYD (Sydney), HKG (Hong Kong)
-        :param pulumi.Input[str] timestamp_format: The `strftime` specified timestamp formatting (default `%!Y(MISSING)-%!m(MISSING)-%!d(MISSING)T%!H(MISSING):%!M(MISSING):%!S(MISSING).000`)
+        :param pulumi.Input[str] timestamp_format: The `strftime` specified timestamp formatting (default `%Y-%m-%dT%H:%M:%S.000`)
         """
         pulumi.set(__self__, "access_key", access_key)
         pulumi.set(__self__, "bucket_name", bucket_name)
@@ -1277,7 +1277,7 @@ class ServiceComputeLoggingCloudfileArgs:
     @pulumi.getter(name="timestampFormat")
     def timestamp_format(self) -> Optional[pulumi.Input[str]]:
         """
-        The `strftime` specified timestamp formatting (default `%!Y(MISSING)-%!m(MISSING)-%!d(MISSING)T%!H(MISSING):%!M(MISSING):%!S(MISSING).000`)
+        The `strftime` specified timestamp formatting (default `%Y-%m-%dT%H:%M:%S.000`)
         """
         return pulumi.get(self, "timestamp_format")
 
@@ -1366,7 +1366,7 @@ class ServiceComputeLoggingDigitaloceanArgs:
         :param pulumi.Input[str] path: The path to upload logs to
         :param pulumi.Input[int] period: How frequently log files are finalized so they can be available for reading (in seconds, default `3600`)
         :param pulumi.Input[str] public_key: A PGP public key that Fastly will use to encrypt your log files before writing them to disk
-        :param pulumi.Input[str] timestamp_format: The `strftime` specified timestamp formatting (default `%!Y(MISSING)-%!m(MISSING)-%!d(MISSING)T%!H(MISSING):%!M(MISSING):%!S(MISSING).000`)
+        :param pulumi.Input[str] timestamp_format: The `strftime` specified timestamp formatting (default `%Y-%m-%dT%H:%M:%S.000`)
         """
         pulumi.set(__self__, "access_key", access_key)
         pulumi.set(__self__, "bucket_name", bucket_name)
@@ -1525,7 +1525,7 @@ class ServiceComputeLoggingDigitaloceanArgs:
     @pulumi.getter(name="timestampFormat")
     def timestamp_format(self) -> Optional[pulumi.Input[str]]:
         """
-        The `strftime` specified timestamp formatting (default `%!Y(MISSING)-%!m(MISSING)-%!d(MISSING)T%!H(MISSING):%!M(MISSING):%!S(MISSING).000`)
+        The `strftime` specified timestamp formatting (default `%Y-%m-%dT%H:%M:%S.000`)
         """
         return pulumi.get(self, "timestamp_format")
 
@@ -1757,7 +1757,7 @@ class ServiceComputeLoggingFtpArgs:
         :param pulumi.Input[int] period: How frequently the logs should be transferred, in seconds (Default `3600`)
         :param pulumi.Input[int] port: The port number. Default: `21`
         :param pulumi.Input[str] public_key: The PGP public key that Fastly will use to encrypt your log files before writing them to disk
-        :param pulumi.Input[str] timestamp_format: The `strftime` specified timestamp formatting (default `%!Y(MISSING)-%!m(MISSING)-%!d(MISSING)T%!H(MISSING):%!M(MISSING):%!S(MISSING).000`)
+        :param pulumi.Input[str] timestamp_format: The `strftime` specified timestamp formatting (default `%Y-%m-%dT%H:%M:%S.000`)
         """
         pulumi.set(__self__, "address", address)
         pulumi.set(__self__, "name", name)
@@ -1915,7 +1915,7 @@ class ServiceComputeLoggingFtpArgs:
     @pulumi.getter(name="timestampFormat")
     def timestamp_format(self) -> Optional[pulumi.Input[str]]:
         """
-        The `strftime` specified timestamp formatting (default `%!Y(MISSING)-%!m(MISSING)-%!d(MISSING)T%!H(MISSING):%!M(MISSING):%!S(MISSING).000`)
+        The `strftime` specified timestamp formatting (default `%Y-%m-%dT%H:%M:%S.000`)
         """
         return pulumi.get(self, "timestamp_format")
 
@@ -1950,7 +1950,7 @@ class ServiceComputeLoggingGcArgs:
         :param pulumi.Input[int] period: How frequently the logs should be transferred, in seconds (Default 3600)
         :param pulumi.Input[str] project_id: The ID of your Google Cloud Platform project
         :param pulumi.Input[str] secret_key: The secret key associated with the target gcs bucket on your account. You may optionally provide this secret via an environment variable, `FASTLY_GCS_SECRET_KEY`. A typical format for the key is PEM format, containing actual newline characters where required
-        :param pulumi.Input[str] timestamp_format: The `strftime` specified timestamp formatting (default `%!Y(MISSING)-%!m(MISSING)-%!d(MISSING)T%!H(MISSING):%!M(MISSING):%!S(MISSING).000`)
+        :param pulumi.Input[str] timestamp_format: The `strftime` specified timestamp formatting (default `%Y-%m-%dT%H:%M:%S.000`)
         :param pulumi.Input[str] user: Your Google Cloud Platform service account email address. The `client_email` field in your service account authentication JSON. You may optionally provide this via an environment variable, `FASTLY_GCS_EMAIL`.
         """
         pulumi.set(__self__, "bucket_name", bucket_name)
@@ -2100,7 +2100,7 @@ class ServiceComputeLoggingGcArgs:
     @pulumi.getter(name="timestampFormat")
     def timestamp_format(self) -> Optional[pulumi.Input[str]]:
         """
-        The `strftime` specified timestamp formatting (default `%!Y(MISSING)-%!m(MISSING)-%!d(MISSING)T%!H(MISSING):%!M(MISSING):%!S(MISSING).000`)
+        The `strftime` specified timestamp formatting (default `%Y-%m-%dT%H:%M:%S.000`)
         """
         return pulumi.get(self, "timestamp_format")
 
@@ -3135,7 +3135,7 @@ class ServiceComputeLoggingOpenstackArgs:
         :param pulumi.Input[str] path: Path to store the files. Must end with a trailing slash. If this field is left empty, the files will be saved in the bucket's root path
         :param pulumi.Input[int] period: How frequently the logs should be transferred, in seconds. Default `3600`
         :param pulumi.Input[str] public_key: A PGP public key that Fastly will use to encrypt your log files before writing them to disk
-        :param pulumi.Input[str] timestamp_format: The `strftime` specified timestamp formatting (default `%!Y(MISSING)-%!m(MISSING)-%!d(MISSING)T%!H(MISSING):%!M(MISSING):%!S(MISSING).000`)
+        :param pulumi.Input[str] timestamp_format: The `strftime` specified timestamp formatting (default `%Y-%m-%dT%H:%M:%S.000`)
         """
         pulumi.set(__self__, "access_key", access_key)
         pulumi.set(__self__, "bucket_name", bucket_name)
@@ -3293,7 +3293,7 @@ class ServiceComputeLoggingOpenstackArgs:
     @pulumi.getter(name="timestampFormat")
     def timestamp_format(self) -> Optional[pulumi.Input[str]]:
         """
-        The `strftime` specified timestamp formatting (default `%!Y(MISSING)-%!m(MISSING)-%!d(MISSING)T%!H(MISSING):%!M(MISSING):%!S(MISSING).000`)
+        The `strftime` specified timestamp formatting (default `%Y-%m-%dT%H:%M:%S.000`)
         """
         return pulumi.get(self, "timestamp_format")
 
@@ -3393,7 +3393,7 @@ class ServiceComputeLoggingS3Args:
         :param pulumi.Input[str] s3_secret_key: AWS Secret Key of an account with the required permissions to post logs. It is **strongly** recommended you create a separate IAM user with permissions to only operate on this Bucket. This secret will be not be encrypted. Not required if `iam_role` is provided. You can provide this secret via an environment variable, `FASTLY_S3_SECRET_KEY`
         :param pulumi.Input[str] server_side_encryption: Specify what type of server side encryption should be used. Can be either `AES256` or `aws:kms`
         :param pulumi.Input[str] server_side_encryption_kms_key_id: Optional server-side KMS Key Id. Must be set if server*side*encryption is set to `aws:kms`
-        :param pulumi.Input[str] timestamp_format: The `strftime` specified timestamp formatting (default `%!Y(MISSING)-%!m(MISSING)-%!d(MISSING)T%!H(MISSING):%!M(MISSING):%!S(MISSING).000`)
+        :param pulumi.Input[str] timestamp_format: The `strftime` specified timestamp formatting (default `%Y-%m-%dT%H:%M:%S.000`)
         """
         pulumi.set(__self__, "bucket_name", bucket_name)
         pulumi.set(__self__, "name", name)
@@ -3638,7 +3638,7 @@ class ServiceComputeLoggingS3Args:
     @pulumi.getter(name="timestampFormat")
     def timestamp_format(self) -> Optional[pulumi.Input[str]]:
         """
-        The `strftime` specified timestamp formatting (default `%!Y(MISSING)-%!m(MISSING)-%!d(MISSING)T%!H(MISSING):%!M(MISSING):%!S(MISSING).000`)
+        The `strftime` specified timestamp formatting (default `%Y-%m-%dT%H:%M:%S.000`)
         """
         return pulumi.get(self, "timestamp_format")
 
@@ -3747,7 +3747,7 @@ class ServiceComputeLoggingSftpArgs:
         :param pulumi.Input[int] port: The port the SFTP service listens on. (Default: `22`)
         :param pulumi.Input[str] public_key: A PGP public key that Fastly will use to encrypt your log files before writing them to disk
         :param pulumi.Input[str] secret_key: The SSH private key for the server. If both `password` and `secret_key` are passed, `secret_key` will be preferred
-        :param pulumi.Input[str] timestamp_format: The `strftime` specified timestamp formatting (default `%!Y(MISSING)-%!m(MISSING)-%!d(MISSING)T%!H(MISSING):%!M(MISSING):%!S(MISSING).000`)
+        :param pulumi.Input[str] timestamp_format: The `strftime` specified timestamp formatting (default `%Y-%m-%dT%H:%M:%S.000`)
         """
         pulumi.set(__self__, "address", address)
         pulumi.set(__self__, "name", name)
@@ -3933,7 +3933,7 @@ class ServiceComputeLoggingSftpArgs:
     @pulumi.getter(name="timestampFormat")
     def timestamp_format(self) -> Optional[pulumi.Input[str]]:
         """
-        The `strftime` specified timestamp formatting (default `%!Y(MISSING)-%!m(MISSING)-%!d(MISSING)T%!H(MISSING):%!M(MISSING):%!S(MISSING).000`)
+        The `strftime` specified timestamp formatting (default `%Y-%m-%dT%H:%M:%S.000`)
         """
         return pulumi.get(self, "timestamp_format")
 
@@ -6054,7 +6054,7 @@ class ServiceVclLoggingBlobstorageArgs:
         :param pulumi.Input[str] sas_token: The Azure shared access signature providing write access to the blob service objects. Be sure to update your token before it expires or the logging functionality will not work
         :param pulumi.Input[str] compression_codec: The codec used for compression of your logs. Valid values are zstd, snappy, and gzip. If the specified codec is "gzip", gzip*level will default to 3. To specify a different level, leave compression*codec blank and explicitly set the level using gzip*level. Specifying both compression*codec and gzip_level in the same API request will result in an error.
         :param pulumi.Input[int] file_max_bytes: Maximum size of an uploaded log file, if non-zero.
-        :param pulumi.Input[str] format: Apache-style string or VCL variables to use for log formatting (default: `%!h(MISSING) %!l(MISSING) %!u(MISSING) %!t(MISSING) "%!r(MISSING)" %!>(MISSING)s %!b(MISSING)`)
+        :param pulumi.Input[str] format: Apache-style string or VCL variables to use for log formatting (default: `%h %l %u %t "%r" %>s %b`)
         :param pulumi.Input[int] format_version: The version of the custom logging format used for the configured endpoint. Can be either 1 or 2. (default: 2)
         :param pulumi.Input[int] gzip_level: Level of Gzip compression from `0-9`. `0` means no compression. `1` is the fastest and the least compressed version, `9` is the slowest and the most compressed version. Default `0`
         :param pulumi.Input[str] message_type: How the message should be formatted. Can be either `classic`, `loggly`, `logplex` or `blank`. Default is `classic`
@@ -6063,7 +6063,7 @@ class ServiceVclLoggingBlobstorageArgs:
         :param pulumi.Input[str] placement: Where in the generated VCL the logging call should be placed
         :param pulumi.Input[str] public_key: A PGP public key that Fastly will use to encrypt your log files before writing them to disk
         :param pulumi.Input[str] response_condition: The name of the condition to apply
-        :param pulumi.Input[str] timestamp_format: The `strftime` specified timestamp formatting (default `%!Y(MISSING)-%!m(MISSING)-%!d(MISSING)T%!H(MISSING):%!M(MISSING):%!S(MISSING).000`)
+        :param pulumi.Input[str] timestamp_format: The `strftime` specified timestamp formatting (default `%Y-%m-%dT%H:%M:%S.000`)
         """
         pulumi.set(__self__, "account_name", account_name)
         pulumi.set(__self__, "container", container)
@@ -6170,7 +6170,7 @@ class ServiceVclLoggingBlobstorageArgs:
     @pulumi.getter
     def format(self) -> Optional[pulumi.Input[str]]:
         """
-        Apache-style string or VCL variables to use for log formatting (default: `%!h(MISSING) %!l(MISSING) %!u(MISSING) %!t(MISSING) "%!r(MISSING)" %!>(MISSING)s %!b(MISSING)`)
+        Apache-style string or VCL variables to use for log formatting (default: `%h %l %u %t "%r" %>s %b`)
         """
         return pulumi.get(self, "format")
 
@@ -6278,7 +6278,7 @@ class ServiceVclLoggingBlobstorageArgs:
     @pulumi.getter(name="timestampFormat")
     def timestamp_format(self) -> Optional[pulumi.Input[str]]:
         """
-        The `strftime` specified timestamp formatting (default `%!Y(MISSING)-%!m(MISSING)-%!d(MISSING)T%!H(MISSING):%!M(MISSING):%!S(MISSING).000`)
+        The `strftime` specified timestamp formatting (default `%Y-%m-%dT%H:%M:%S.000`)
         """
         return pulumi.get(self, "timestamp_format")
 
@@ -6322,7 +6322,7 @@ class ServiceVclLoggingCloudfileArgs:
         :param pulumi.Input[str] public_key: The PGP public key that Fastly will use to encrypt your log files before writing them to disk
         :param pulumi.Input[str] region: The region to stream logs to. One of: DFW (Dallas), ORD (Chicago), IAD (Northern Virginia), LON (London), SYD (Sydney), HKG (Hong Kong)
         :param pulumi.Input[str] response_condition: The name of an existing condition in the configured endpoint, or leave blank to always execute.
-        :param pulumi.Input[str] timestamp_format: The `strftime` specified timestamp formatting (default `%!Y(MISSING)-%!m(MISSING)-%!d(MISSING)T%!H(MISSING):%!M(MISSING):%!S(MISSING).000`)
+        :param pulumi.Input[str] timestamp_format: The `strftime` specified timestamp formatting (default `%Y-%m-%dT%H:%M:%S.000`)
         """
         pulumi.set(__self__, "access_key", access_key)
         pulumi.set(__self__, "bucket_name", bucket_name)
@@ -6537,7 +6537,7 @@ class ServiceVclLoggingCloudfileArgs:
     @pulumi.getter(name="timestampFormat")
     def timestamp_format(self) -> Optional[pulumi.Input[str]]:
         """
-        The `strftime` specified timestamp formatting (default `%!Y(MISSING)-%!m(MISSING)-%!d(MISSING)T%!H(MISSING):%!M(MISSING):%!S(MISSING).000`)
+        The `strftime` specified timestamp formatting (default `%Y-%m-%dT%H:%M:%S.000`)
         """
         return pulumi.get(self, "timestamp_format")
 
@@ -6698,7 +6698,7 @@ class ServiceVclLoggingDigitaloceanArgs:
         :param pulumi.Input[str] placement: Where in the generated VCL the logging call should be placed. Can be `none` or `waf_debug`.
         :param pulumi.Input[str] public_key: A PGP public key that Fastly will use to encrypt your log files before writing them to disk
         :param pulumi.Input[str] response_condition: The name of an existing condition in the configured endpoint, or leave blank to always execute.
-        :param pulumi.Input[str] timestamp_format: The `strftime` specified timestamp formatting (default `%!Y(MISSING)-%!m(MISSING)-%!d(MISSING)T%!H(MISSING):%!M(MISSING):%!S(MISSING).000`)
+        :param pulumi.Input[str] timestamp_format: The `strftime` specified timestamp formatting (default `%Y-%m-%dT%H:%M:%S.000`)
         """
         pulumi.set(__self__, "access_key", access_key)
         pulumi.set(__self__, "bucket_name", bucket_name)
@@ -6913,7 +6913,7 @@ class ServiceVclLoggingDigitaloceanArgs:
     @pulumi.getter(name="timestampFormat")
     def timestamp_format(self) -> Optional[pulumi.Input[str]]:
         """
-        The `strftime` specified timestamp formatting (default `%!Y(MISSING)-%!m(MISSING)-%!d(MISSING)T%!H(MISSING):%!M(MISSING):%!S(MISSING).000`)
+        The `strftime` specified timestamp formatting (default `%Y-%m-%dT%H:%M:%S.000`)
         """
         return pulumi.get(self, "timestamp_format")
 
@@ -7217,7 +7217,7 @@ class ServiceVclLoggingFtpArgs:
         :param pulumi.Input[int] port: The port number. Default: `21`
         :param pulumi.Input[str] public_key: The PGP public key that Fastly will use to encrypt your log files before writing them to disk
         :param pulumi.Input[str] response_condition: The name of the condition to apply.
-        :param pulumi.Input[str] timestamp_format: The `strftime` specified timestamp formatting (default `%!Y(MISSING)-%!m(MISSING)-%!d(MISSING)T%!H(MISSING):%!M(MISSING):%!S(MISSING).000`)
+        :param pulumi.Input[str] timestamp_format: The `strftime` specified timestamp formatting (default `%Y-%m-%dT%H:%M:%S.000`)
         """
         pulumi.set(__self__, "address", address)
         pulumi.set(__self__, "name", name)
@@ -7431,7 +7431,7 @@ class ServiceVclLoggingFtpArgs:
     @pulumi.getter(name="timestampFormat")
     def timestamp_format(self) -> Optional[pulumi.Input[str]]:
         """
-        The `strftime` specified timestamp formatting (default `%!Y(MISSING)-%!m(MISSING)-%!d(MISSING)T%!H(MISSING):%!M(MISSING):%!S(MISSING).000`)
+        The `strftime` specified timestamp formatting (default `%Y-%m-%dT%H:%M:%S.000`)
         """
         return pulumi.get(self, "timestamp_format")
 
@@ -7474,7 +7474,7 @@ class ServiceVclLoggingGcArgs:
         :param pulumi.Input[str] project_id: The ID of your Google Cloud Platform project
         :param pulumi.Input[str] response_condition: Name of a condition to apply this logging.
         :param pulumi.Input[str] secret_key: The secret key associated with the target gcs bucket on your account. You may optionally provide this secret via an environment variable, `FASTLY_GCS_SECRET_KEY`. A typical format for the key is PEM format, containing actual newline characters where required
-        :param pulumi.Input[str] timestamp_format: The `strftime` specified timestamp formatting (default `%!Y(MISSING)-%!m(MISSING)-%!d(MISSING)T%!H(MISSING):%!M(MISSING):%!S(MISSING).000`)
+        :param pulumi.Input[str] timestamp_format: The `strftime` specified timestamp formatting (default `%Y-%m-%dT%H:%M:%S.000`)
         :param pulumi.Input[str] user: Your Google Cloud Platform service account email address. The `client_email` field in your service account authentication JSON. You may optionally provide this via an environment variable, `FASTLY_GCS_EMAIL`.
         """
         pulumi.set(__self__, "bucket_name", bucket_name)
@@ -7680,7 +7680,7 @@ class ServiceVclLoggingGcArgs:
     @pulumi.getter(name="timestampFormat")
     def timestamp_format(self) -> Optional[pulumi.Input[str]]:
         """
-        The `strftime` specified timestamp formatting (default `%!Y(MISSING)-%!m(MISSING)-%!d(MISSING)T%!H(MISSING):%!M(MISSING):%!S(MISSING).000`)
+        The `strftime` specified timestamp formatting (default `%Y-%m-%dT%H:%M:%S.000`)
         """
         return pulumi.get(self, "timestamp_format")
 
@@ -9496,7 +9496,7 @@ class ServiceVclLoggingOpenstackArgs:
         :param pulumi.Input[str] placement: Where in the generated VCL the logging call should be placed. Can be `none` or `waf_debug`.
         :param pulumi.Input[str] public_key: A PGP public key that Fastly will use to encrypt your log files before writing them to disk
         :param pulumi.Input[str] response_condition: The name of an existing condition in the configured endpoint, or leave blank to always execute.
-        :param pulumi.Input[str] timestamp_format: The `strftime` specified timestamp formatting (default `%!Y(MISSING)-%!m(MISSING)-%!d(MISSING)T%!H(MISSING):%!M(MISSING):%!S(MISSING).000`)
+        :param pulumi.Input[str] timestamp_format: The `strftime` specified timestamp formatting (default `%Y-%m-%dT%H:%M:%S.000`)
         """
         pulumi.set(__self__, "access_key", access_key)
         pulumi.set(__self__, "bucket_name", bucket_name)
@@ -9710,7 +9710,7 @@ class ServiceVclLoggingOpenstackArgs:
     @pulumi.getter(name="timestampFormat")
     def timestamp_format(self) -> Optional[pulumi.Input[str]]:
         """
-        The `strftime` specified timestamp formatting (default `%!Y(MISSING)-%!m(MISSING)-%!d(MISSING)T%!H(MISSING):%!M(MISSING):%!S(MISSING).000`)
+        The `strftime` specified timestamp formatting (default `%Y-%m-%dT%H:%M:%S.000`)
         """
         return pulumi.get(self, "timestamp_format")
 
@@ -9882,7 +9882,7 @@ class ServiceVclLoggingS3Args:
         :param pulumi.Input[str] s3_secret_key: AWS Secret Key of an account with the required permissions to post logs. It is **strongly** recommended you create a separate IAM user with permissions to only operate on this Bucket. This secret will be not be encrypted. Not required if `iam_role` is provided. You can provide this secret via an environment variable, `FASTLY_S3_SECRET_KEY`
         :param pulumi.Input[str] server_side_encryption: Specify what type of server side encryption should be used. Can be either `AES256` or `aws:kms`
         :param pulumi.Input[str] server_side_encryption_kms_key_id: Optional server-side KMS Key Id. Must be set if server*side*encryption is set to `aws:kms`
-        :param pulumi.Input[str] timestamp_format: The `strftime` specified timestamp formatting (default `%!Y(MISSING)-%!m(MISSING)-%!d(MISSING)T%!H(MISSING):%!M(MISSING):%!S(MISSING).000`)
+        :param pulumi.Input[str] timestamp_format: The `strftime` specified timestamp formatting (default `%Y-%m-%dT%H:%M:%S.000`)
         """
         pulumi.set(__self__, "bucket_name", bucket_name)
         pulumi.set(__self__, "name", name)
@@ -10183,7 +10183,7 @@ class ServiceVclLoggingS3Args:
     @pulumi.getter(name="timestampFormat")
     def timestamp_format(self) -> Optional[pulumi.Input[str]]:
         """
-        The `strftime` specified timestamp formatting (default `%!Y(MISSING)-%!m(MISSING)-%!d(MISSING)T%!H(MISSING):%!M(MISSING):%!S(MISSING).000`)
+        The `strftime` specified timestamp formatting (default `%Y-%m-%dT%H:%M:%S.000`)
         """
         return pulumi.get(self, "timestamp_format")
 
@@ -10364,7 +10364,7 @@ class ServiceVclLoggingSftpArgs:
         :param pulumi.Input[str] public_key: A PGP public key that Fastly will use to encrypt your log files before writing them to disk
         :param pulumi.Input[str] response_condition: The name of the condition to apply.
         :param pulumi.Input[str] secret_key: The SSH private key for the server. If both `password` and `secret_key` are passed, `secret_key` will be preferred
-        :param pulumi.Input[str] timestamp_format: The `strftime` specified timestamp formatting (default `%!Y(MISSING)-%!m(MISSING)-%!d(MISSING)T%!H(MISSING):%!M(MISSING):%!S(MISSING).000`)
+        :param pulumi.Input[str] timestamp_format: The `strftime` specified timestamp formatting (default `%Y-%m-%dT%H:%M:%S.000`)
         """
         pulumi.set(__self__, "address", address)
         pulumi.set(__self__, "name", name)
@@ -10606,7 +10606,7 @@ class ServiceVclLoggingSftpArgs:
     @pulumi.getter(name="timestampFormat")
     def timestamp_format(self) -> Optional[pulumi.Input[str]]:
         """
-        The `strftime` specified timestamp formatting (default `%!Y(MISSING)-%!m(MISSING)-%!d(MISSING)T%!H(MISSING):%!M(MISSING):%!S(MISSING).000`)
+        The `strftime` specified timestamp formatting (default `%Y-%m-%dT%H:%M:%S.000`)
         """
         return pulumi.get(self, "timestamp_format")
 
@@ -10634,7 +10634,7 @@ class ServiceVclLoggingSplunkArgs:
         :param pulumi.Input[str] name: A unique name to identify the Splunk endpoint. It is important to note that changing this attribute will delete and recreate the resource
         :param pulumi.Input[str] token: The Splunk token to be used for authentication
         :param pulumi.Input[str] url: The Splunk URL to stream logs to
-        :param pulumi.Input[str] format: Apache-style string or VCL variables to use for log formatting (default: `%!h(MISSING) %!l(MISSING) %!u(MISSING) %!t(MISSING) "%!r(MISSING)" %!>(MISSING)s %!b(MISSING)`)
+        :param pulumi.Input[str] format: Apache-style string or VCL variables to use for log formatting (default: `%h %l %u %t "%r" %>s %b`)
         :param pulumi.Input[int] format_version: The version of the custom logging format used for the configured endpoint. Can be either 1 or 2. (default: 2)
         :param pulumi.Input[str] placement: Where in the generated VCL the logging call should be placed
         :param pulumi.Input[str] response_condition: The name of the condition to apply
@@ -10706,7 +10706,7 @@ class ServiceVclLoggingSplunkArgs:
     @pulumi.getter
     def format(self) -> Optional[pulumi.Input[str]]:
         """
-        Apache-style string or VCL variables to use for log formatting (default: `%!h(MISSING) %!l(MISSING) %!u(MISSING) %!t(MISSING) "%!r(MISSING)" %!>(MISSING)s %!b(MISSING)`)
+        Apache-style string or VCL variables to use for log formatting (default: `%h %l %u %t "%r" %>s %b`)
         """
         return pulumi.get(self, "format")
 
