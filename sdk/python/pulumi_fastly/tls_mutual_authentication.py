@@ -15,17 +15,22 @@ __all__ = ['TlsMutualAuthenticationArgs', 'TlsMutualAuthentication']
 class TlsMutualAuthenticationArgs:
     def __init__(__self__, *,
                  cert_bundle: pulumi.Input[str],
+                 activation_ids: Optional[pulumi.Input[Sequence[pulumi.Input[str]]]] = None,
                  enforced: Optional[pulumi.Input[bool]] = None,
                  include: Optional[pulumi.Input[str]] = None,
                  name: Optional[pulumi.Input[str]] = None):
         """
         The set of arguments for constructing a TlsMutualAuthentication resource.
         :param pulumi.Input[str] cert_bundle: One or more certificates. Enter each individual certificate blob on a new line. Must be PEM-formatted.
+        :param pulumi.Input[Sequence[pulumi.Input[str]]] activation_ids: List of TLS Activation IDs
         :param pulumi.Input[bool] enforced: Determines whether Mutual TLS will fail closed (enforced) or fail open. A true value will require a successful Mutual TLS handshake for the connection to continue and will fail closed if unsuccessful. A false value will fail open and allow the connection to proceed (if this attribute is not set we default to `false`).
-        :param pulumi.Input[str] include: Comma-separated list of related objects to include (e.g. `tls_activations` will provide you with the TLS domain names that are related to your Mutual TLS authentication).
+        :param pulumi.Input[str] include: A comma-separated list used by the Terraform provider during a state refresh to return more data related to your mutual
+               authentication from the Fastly API (permitted values: `tls_activations`).
         :param pulumi.Input[str] name: A custom name for your mutual authentication. If name is not supplied we will auto-generate one.
         """
         pulumi.set(__self__, "cert_bundle", cert_bundle)
+        if activation_ids is not None:
+            pulumi.set(__self__, "activation_ids", activation_ids)
         if enforced is not None:
             pulumi.set(__self__, "enforced", enforced)
         if include is not None:
@@ -46,6 +51,18 @@ class TlsMutualAuthenticationArgs:
         pulumi.set(self, "cert_bundle", value)
 
     @property
+    @pulumi.getter(name="activationIds")
+    def activation_ids(self) -> Optional[pulumi.Input[Sequence[pulumi.Input[str]]]]:
+        """
+        List of TLS Activation IDs
+        """
+        return pulumi.get(self, "activation_ids")
+
+    @activation_ids.setter
+    def activation_ids(self, value: Optional[pulumi.Input[Sequence[pulumi.Input[str]]]]):
+        pulumi.set(self, "activation_ids", value)
+
+    @property
     @pulumi.getter
     def enforced(self) -> Optional[pulumi.Input[bool]]:
         """
@@ -61,7 +78,8 @@ class TlsMutualAuthenticationArgs:
     @pulumi.getter
     def include(self) -> Optional[pulumi.Input[str]]:
         """
-        Comma-separated list of related objects to include (e.g. `tls_activations` will provide you with the TLS domain names that are related to your Mutual TLS authentication).
+        A comma-separated list used by the Terraform provider during a state refresh to return more data related to your mutual
+        authentication from the Fastly API (permitted values: `tls_activations`).
         """
         return pulumi.get(self, "include")
 
@@ -85,6 +103,7 @@ class TlsMutualAuthenticationArgs:
 @pulumi.input_type
 class _TlsMutualAuthenticationState:
     def __init__(__self__, *,
+                 activation_ids: Optional[pulumi.Input[Sequence[pulumi.Input[str]]]] = None,
                  cert_bundle: Optional[pulumi.Input[str]] = None,
                  created_at: Optional[pulumi.Input[str]] = None,
                  enforced: Optional[pulumi.Input[bool]] = None,
@@ -94,14 +113,18 @@ class _TlsMutualAuthenticationState:
                  updated_at: Optional[pulumi.Input[str]] = None):
         """
         Input properties used for looking up and filtering TlsMutualAuthentication resources.
+        :param pulumi.Input[Sequence[pulumi.Input[str]]] activation_ids: List of TLS Activation IDs
         :param pulumi.Input[str] cert_bundle: One or more certificates. Enter each individual certificate blob on a new line. Must be PEM-formatted.
         :param pulumi.Input[str] created_at: Date and time in ISO 8601 format.
         :param pulumi.Input[bool] enforced: Determines whether Mutual TLS will fail closed (enforced) or fail open. A true value will require a successful Mutual TLS handshake for the connection to continue and will fail closed if unsuccessful. A false value will fail open and allow the connection to proceed (if this attribute is not set we default to `false`).
-        :param pulumi.Input[str] include: Comma-separated list of related objects to include (e.g. `tls_activations` will provide you with the TLS domain names that are related to your Mutual TLS authentication).
+        :param pulumi.Input[str] include: A comma-separated list used by the Terraform provider during a state refresh to return more data related to your mutual
+               authentication from the Fastly API (permitted values: `tls_activations`).
         :param pulumi.Input[str] name: A custom name for your mutual authentication. If name is not supplied we will auto-generate one.
         :param pulumi.Input[Sequence[pulumi.Input[str]]] tls_activations: List of alphanumeric strings identifying TLS activations.
         :param pulumi.Input[str] updated_at: Date and time in ISO 8601 format.
         """
+        if activation_ids is not None:
+            pulumi.set(__self__, "activation_ids", activation_ids)
         if cert_bundle is not None:
             pulumi.set(__self__, "cert_bundle", cert_bundle)
         if created_at is not None:
@@ -116,6 +139,18 @@ class _TlsMutualAuthenticationState:
             pulumi.set(__self__, "tls_activations", tls_activations)
         if updated_at is not None:
             pulumi.set(__self__, "updated_at", updated_at)
+
+    @property
+    @pulumi.getter(name="activationIds")
+    def activation_ids(self) -> Optional[pulumi.Input[Sequence[pulumi.Input[str]]]]:
+        """
+        List of TLS Activation IDs
+        """
+        return pulumi.get(self, "activation_ids")
+
+    @activation_ids.setter
+    def activation_ids(self, value: Optional[pulumi.Input[Sequence[pulumi.Input[str]]]]):
+        pulumi.set(self, "activation_ids", value)
 
     @property
     @pulumi.getter(name="certBundle")
@@ -157,7 +192,8 @@ class _TlsMutualAuthenticationState:
     @pulumi.getter
     def include(self) -> Optional[pulumi.Input[str]]:
         """
-        Comma-separated list of related objects to include (e.g. `tls_activations` will provide you with the TLS domain names that are related to your Mutual TLS authentication).
+        A comma-separated list used by the Terraform provider during a state refresh to return more data related to your mutual
+        authentication from the Fastly API (permitted values: `tls_activations`).
         """
         return pulumi.get(self, "include")
 
@@ -207,18 +243,28 @@ class TlsMutualAuthentication(pulumi.CustomResource):
     def __init__(__self__,
                  resource_name: str,
                  opts: Optional[pulumi.ResourceOptions] = None,
+                 activation_ids: Optional[pulumi.Input[Sequence[pulumi.Input[str]]]] = None,
                  cert_bundle: Optional[pulumi.Input[str]] = None,
                  enforced: Optional[pulumi.Input[bool]] = None,
                  include: Optional[pulumi.Input[str]] = None,
                  name: Optional[pulumi.Input[str]] = None,
                  __props__=None):
         """
-        Create a TlsMutualAuthentication resource with the given unique name, props, and options.
+        The Mutual TLS API allows for client-to-server authentication using client-side X.509 authentication.
+
+        The main Mutual Authentication object represents the certificate bundle and other configurations which support Mutual TLS for your domains.
+
+        Mutual TLS can be added to existing TLS activations to allow for client-to-server authentication. In order to use mutual TLS, you must already have active server-side TLS using either custom certificates or an enabled Fastly-managed subscription.
+
+        The examples below demonstrate how to use Mutual Authentication along with a TLS Subscription. Refer to the `TlsSubscription` resource documentation for a deeper explanation of that code.
+
         :param str resource_name: The name of the resource.
         :param pulumi.ResourceOptions opts: Options for the resource.
+        :param pulumi.Input[Sequence[pulumi.Input[str]]] activation_ids: List of TLS Activation IDs
         :param pulumi.Input[str] cert_bundle: One or more certificates. Enter each individual certificate blob on a new line. Must be PEM-formatted.
         :param pulumi.Input[bool] enforced: Determines whether Mutual TLS will fail closed (enforced) or fail open. A true value will require a successful Mutual TLS handshake for the connection to continue and will fail closed if unsuccessful. A false value will fail open and allow the connection to proceed (if this attribute is not set we default to `false`).
-        :param pulumi.Input[str] include: Comma-separated list of related objects to include (e.g. `tls_activations` will provide you with the TLS domain names that are related to your Mutual TLS authentication).
+        :param pulumi.Input[str] include: A comma-separated list used by the Terraform provider during a state refresh to return more data related to your mutual
+               authentication from the Fastly API (permitted values: `tls_activations`).
         :param pulumi.Input[str] name: A custom name for your mutual authentication. If name is not supplied we will auto-generate one.
         """
         ...
@@ -228,7 +274,14 @@ class TlsMutualAuthentication(pulumi.CustomResource):
                  args: TlsMutualAuthenticationArgs,
                  opts: Optional[pulumi.ResourceOptions] = None):
         """
-        Create a TlsMutualAuthentication resource with the given unique name, props, and options.
+        The Mutual TLS API allows for client-to-server authentication using client-side X.509 authentication.
+
+        The main Mutual Authentication object represents the certificate bundle and other configurations which support Mutual TLS for your domains.
+
+        Mutual TLS can be added to existing TLS activations to allow for client-to-server authentication. In order to use mutual TLS, you must already have active server-side TLS using either custom certificates or an enabled Fastly-managed subscription.
+
+        The examples below demonstrate how to use Mutual Authentication along with a TLS Subscription. Refer to the `TlsSubscription` resource documentation for a deeper explanation of that code.
+
         :param str resource_name: The name of the resource.
         :param TlsMutualAuthenticationArgs args: The arguments to use to populate this resource's properties.
         :param pulumi.ResourceOptions opts: Options for the resource.
@@ -244,6 +297,7 @@ class TlsMutualAuthentication(pulumi.CustomResource):
     def _internal_init(__self__,
                  resource_name: str,
                  opts: Optional[pulumi.ResourceOptions] = None,
+                 activation_ids: Optional[pulumi.Input[Sequence[pulumi.Input[str]]]] = None,
                  cert_bundle: Optional[pulumi.Input[str]] = None,
                  enforced: Optional[pulumi.Input[bool]] = None,
                  include: Optional[pulumi.Input[str]] = None,
@@ -257,6 +311,7 @@ class TlsMutualAuthentication(pulumi.CustomResource):
                 raise TypeError('__props__ is only valid when passed in combination with a valid opts.id to get an existing resource')
             __props__ = TlsMutualAuthenticationArgs.__new__(TlsMutualAuthenticationArgs)
 
+            __props__.__dict__["activation_ids"] = activation_ids
             if cert_bundle is None and not opts.urn:
                 raise TypeError("Missing required property 'cert_bundle'")
             __props__.__dict__["cert_bundle"] = cert_bundle
@@ -276,6 +331,7 @@ class TlsMutualAuthentication(pulumi.CustomResource):
     def get(resource_name: str,
             id: pulumi.Input[str],
             opts: Optional[pulumi.ResourceOptions] = None,
+            activation_ids: Optional[pulumi.Input[Sequence[pulumi.Input[str]]]] = None,
             cert_bundle: Optional[pulumi.Input[str]] = None,
             created_at: Optional[pulumi.Input[str]] = None,
             enforced: Optional[pulumi.Input[bool]] = None,
@@ -290,10 +346,12 @@ class TlsMutualAuthentication(pulumi.CustomResource):
         :param str resource_name: The unique name of the resulting resource.
         :param pulumi.Input[str] id: The unique provider ID of the resource to lookup.
         :param pulumi.ResourceOptions opts: Options for the resource.
+        :param pulumi.Input[Sequence[pulumi.Input[str]]] activation_ids: List of TLS Activation IDs
         :param pulumi.Input[str] cert_bundle: One or more certificates. Enter each individual certificate blob on a new line. Must be PEM-formatted.
         :param pulumi.Input[str] created_at: Date and time in ISO 8601 format.
         :param pulumi.Input[bool] enforced: Determines whether Mutual TLS will fail closed (enforced) or fail open. A true value will require a successful Mutual TLS handshake for the connection to continue and will fail closed if unsuccessful. A false value will fail open and allow the connection to proceed (if this attribute is not set we default to `false`).
-        :param pulumi.Input[str] include: Comma-separated list of related objects to include (e.g. `tls_activations` will provide you with the TLS domain names that are related to your Mutual TLS authentication).
+        :param pulumi.Input[str] include: A comma-separated list used by the Terraform provider during a state refresh to return more data related to your mutual
+               authentication from the Fastly API (permitted values: `tls_activations`).
         :param pulumi.Input[str] name: A custom name for your mutual authentication. If name is not supplied we will auto-generate one.
         :param pulumi.Input[Sequence[pulumi.Input[str]]] tls_activations: List of alphanumeric strings identifying TLS activations.
         :param pulumi.Input[str] updated_at: Date and time in ISO 8601 format.
@@ -302,6 +360,7 @@ class TlsMutualAuthentication(pulumi.CustomResource):
 
         __props__ = _TlsMutualAuthenticationState.__new__(_TlsMutualAuthenticationState)
 
+        __props__.__dict__["activation_ids"] = activation_ids
         __props__.__dict__["cert_bundle"] = cert_bundle
         __props__.__dict__["created_at"] = created_at
         __props__.__dict__["enforced"] = enforced
@@ -310,6 +369,14 @@ class TlsMutualAuthentication(pulumi.CustomResource):
         __props__.__dict__["tls_activations"] = tls_activations
         __props__.__dict__["updated_at"] = updated_at
         return TlsMutualAuthentication(resource_name, opts=opts, __props__=__props__)
+
+    @property
+    @pulumi.getter(name="activationIds")
+    def activation_ids(self) -> pulumi.Output[Optional[Sequence[str]]]:
+        """
+        List of TLS Activation IDs
+        """
+        return pulumi.get(self, "activation_ids")
 
     @property
     @pulumi.getter(name="certBundle")
@@ -339,7 +406,8 @@ class TlsMutualAuthentication(pulumi.CustomResource):
     @pulumi.getter
     def include(self) -> pulumi.Output[Optional[str]]:
         """
-        Comma-separated list of related objects to include (e.g. `tls_activations` will provide you with the TLS domain names that are related to your Mutual TLS authentication).
+        A comma-separated list used by the Terraform provider during a state refresh to return more data related to your mutual
+        authentication from the Fastly API (permitted values: `tls_activations`).
         """
         return pulumi.get(self, "include")
 

@@ -12,16 +12,26 @@ import (
 	"github.com/pulumi/pulumi/sdk/v3/go/pulumi"
 )
 
+// The Mutual TLS API allows for client-to-server authentication using client-side X.509 authentication.
+//
+// The main Mutual Authentication object represents the certificate bundle and other configurations which support Mutual TLS for your domains.
+//
+// Mutual TLS can be added to existing TLS activations to allow for client-to-server authentication. In order to use mutual TLS, you must already have active server-side TLS using either custom certificates or an enabled Fastly-managed subscription.
+//
+// The examples below demonstrate how to use Mutual Authentication along with a TLS Subscription. Refer to the `TlsSubscription` resource documentation for a deeper explanation of that code.
 type TlsMutualAuthentication struct {
 	pulumi.CustomResourceState
 
+	// List of TLS Activation IDs
+	ActivationIds pulumi.StringArrayOutput `pulumi:"activationIds"`
 	// One or more certificates. Enter each individual certificate blob on a new line. Must be PEM-formatted.
 	CertBundle pulumi.StringOutput `pulumi:"certBundle"`
 	// Date and time in ISO 8601 format.
 	CreatedAt pulumi.StringOutput `pulumi:"createdAt"`
 	// Determines whether Mutual TLS will fail closed (enforced) or fail open. A true value will require a successful Mutual TLS handshake for the connection to continue and will fail closed if unsuccessful. A false value will fail open and allow the connection to proceed (if this attribute is not set we default to `false`).
 	Enforced pulumi.BoolOutput `pulumi:"enforced"`
-	// Comma-separated list of related objects to include (e.g. `tlsActivations` will provide you with the TLS domain names that are related to your Mutual TLS authentication).
+	// A comma-separated list used by the Terraform provider during a state refresh to return more data related to your mutual
+	// authentication from the Fastly API (permitted values: `tls_activations`).
 	Include pulumi.StringPtrOutput `pulumi:"include"`
 	// A custom name for your mutual authentication. If name is not supplied we will auto-generate one.
 	Name pulumi.StringOutput `pulumi:"name"`
@@ -64,13 +74,16 @@ func GetTlsMutualAuthentication(ctx *pulumi.Context,
 
 // Input properties used for looking up and filtering TlsMutualAuthentication resources.
 type tlsMutualAuthenticationState struct {
+	// List of TLS Activation IDs
+	ActivationIds []string `pulumi:"activationIds"`
 	// One or more certificates. Enter each individual certificate blob on a new line. Must be PEM-formatted.
 	CertBundle *string `pulumi:"certBundle"`
 	// Date and time in ISO 8601 format.
 	CreatedAt *string `pulumi:"createdAt"`
 	// Determines whether Mutual TLS will fail closed (enforced) or fail open. A true value will require a successful Mutual TLS handshake for the connection to continue and will fail closed if unsuccessful. A false value will fail open and allow the connection to proceed (if this attribute is not set we default to `false`).
 	Enforced *bool `pulumi:"enforced"`
-	// Comma-separated list of related objects to include (e.g. `tlsActivations` will provide you with the TLS domain names that are related to your Mutual TLS authentication).
+	// A comma-separated list used by the Terraform provider during a state refresh to return more data related to your mutual
+	// authentication from the Fastly API (permitted values: `tls_activations`).
 	Include *string `pulumi:"include"`
 	// A custom name for your mutual authentication. If name is not supplied we will auto-generate one.
 	Name *string `pulumi:"name"`
@@ -81,13 +94,16 @@ type tlsMutualAuthenticationState struct {
 }
 
 type TlsMutualAuthenticationState struct {
+	// List of TLS Activation IDs
+	ActivationIds pulumi.StringArrayInput
 	// One or more certificates. Enter each individual certificate blob on a new line. Must be PEM-formatted.
 	CertBundle pulumi.StringPtrInput
 	// Date and time in ISO 8601 format.
 	CreatedAt pulumi.StringPtrInput
 	// Determines whether Mutual TLS will fail closed (enforced) or fail open. A true value will require a successful Mutual TLS handshake for the connection to continue and will fail closed if unsuccessful. A false value will fail open and allow the connection to proceed (if this attribute is not set we default to `false`).
 	Enforced pulumi.BoolPtrInput
-	// Comma-separated list of related objects to include (e.g. `tlsActivations` will provide you with the TLS domain names that are related to your Mutual TLS authentication).
+	// A comma-separated list used by the Terraform provider during a state refresh to return more data related to your mutual
+	// authentication from the Fastly API (permitted values: `tls_activations`).
 	Include pulumi.StringPtrInput
 	// A custom name for your mutual authentication. If name is not supplied we will auto-generate one.
 	Name pulumi.StringPtrInput
@@ -102,11 +118,14 @@ func (TlsMutualAuthenticationState) ElementType() reflect.Type {
 }
 
 type tlsMutualAuthenticationArgs struct {
+	// List of TLS Activation IDs
+	ActivationIds []string `pulumi:"activationIds"`
 	// One or more certificates. Enter each individual certificate blob on a new line. Must be PEM-formatted.
 	CertBundle string `pulumi:"certBundle"`
 	// Determines whether Mutual TLS will fail closed (enforced) or fail open. A true value will require a successful Mutual TLS handshake for the connection to continue and will fail closed if unsuccessful. A false value will fail open and allow the connection to proceed (if this attribute is not set we default to `false`).
 	Enforced *bool `pulumi:"enforced"`
-	// Comma-separated list of related objects to include (e.g. `tlsActivations` will provide you with the TLS domain names that are related to your Mutual TLS authentication).
+	// A comma-separated list used by the Terraform provider during a state refresh to return more data related to your mutual
+	// authentication from the Fastly API (permitted values: `tls_activations`).
 	Include *string `pulumi:"include"`
 	// A custom name for your mutual authentication. If name is not supplied we will auto-generate one.
 	Name *string `pulumi:"name"`
@@ -114,11 +133,14 @@ type tlsMutualAuthenticationArgs struct {
 
 // The set of arguments for constructing a TlsMutualAuthentication resource.
 type TlsMutualAuthenticationArgs struct {
+	// List of TLS Activation IDs
+	ActivationIds pulumi.StringArrayInput
 	// One or more certificates. Enter each individual certificate blob on a new line. Must be PEM-formatted.
 	CertBundle pulumi.StringInput
 	// Determines whether Mutual TLS will fail closed (enforced) or fail open. A true value will require a successful Mutual TLS handshake for the connection to continue and will fail closed if unsuccessful. A false value will fail open and allow the connection to proceed (if this attribute is not set we default to `false`).
 	Enforced pulumi.BoolPtrInput
-	// Comma-separated list of related objects to include (e.g. `tlsActivations` will provide you with the TLS domain names that are related to your Mutual TLS authentication).
+	// A comma-separated list used by the Terraform provider during a state refresh to return more data related to your mutual
+	// authentication from the Fastly API (permitted values: `tls_activations`).
 	Include pulumi.StringPtrInput
 	// A custom name for your mutual authentication. If name is not supplied we will auto-generate one.
 	Name pulumi.StringPtrInput
@@ -211,6 +233,11 @@ func (o TlsMutualAuthenticationOutput) ToTlsMutualAuthenticationOutputWithContex
 	return o
 }
 
+// List of TLS Activation IDs
+func (o TlsMutualAuthenticationOutput) ActivationIds() pulumi.StringArrayOutput {
+	return o.ApplyT(func(v *TlsMutualAuthentication) pulumi.StringArrayOutput { return v.ActivationIds }).(pulumi.StringArrayOutput)
+}
+
 // One or more certificates. Enter each individual certificate blob on a new line. Must be PEM-formatted.
 func (o TlsMutualAuthenticationOutput) CertBundle() pulumi.StringOutput {
 	return o.ApplyT(func(v *TlsMutualAuthentication) pulumi.StringOutput { return v.CertBundle }).(pulumi.StringOutput)
@@ -226,7 +253,8 @@ func (o TlsMutualAuthenticationOutput) Enforced() pulumi.BoolOutput {
 	return o.ApplyT(func(v *TlsMutualAuthentication) pulumi.BoolOutput { return v.Enforced }).(pulumi.BoolOutput)
 }
 
-// Comma-separated list of related objects to include (e.g. `tlsActivations` will provide you with the TLS domain names that are related to your Mutual TLS authentication).
+// A comma-separated list used by the Terraform provider during a state refresh to return more data related to your mutual
+// authentication from the Fastly API (permitted values: `tls_activations`).
 func (o TlsMutualAuthenticationOutput) Include() pulumi.StringPtrOutput {
 	return o.ApplyT(func(v *TlsMutualAuthentication) pulumi.StringPtrOutput { return v.Include }).(pulumi.StringPtrOutput)
 }

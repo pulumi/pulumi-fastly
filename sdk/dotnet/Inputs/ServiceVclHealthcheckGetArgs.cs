@@ -79,7 +79,7 @@ namespace Pulumi.Fastly.Inputs
         public Input<int>? Threshold { get; set; }
 
         /// <summary>
-        /// Timeout in milliseconds. Default `500`
+        /// Timeout in milliseconds. Default `5000`
         /// </summary>
         [Input("timeout")]
         public Input<int>? Timeout { get; set; }

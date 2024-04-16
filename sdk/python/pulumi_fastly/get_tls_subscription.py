@@ -21,10 +21,13 @@ class GetTlsSubscriptionResult:
     """
     A collection of values returned by getTlsSubscription.
     """
-    def __init__(__self__, certificate_authority=None, common_name=None, configuration_id=None, created_at=None, domains=None, id=None, state=None, updated_at=None):
+    def __init__(__self__, certificate_authority=None, certificate_ids=None, common_name=None, configuration_id=None, created_at=None, domains=None, id=None, state=None, updated_at=None):
         if certificate_authority and not isinstance(certificate_authority, str):
             raise TypeError("Expected argument 'certificate_authority' to be a str")
         pulumi.set(__self__, "certificate_authority", certificate_authority)
+        if certificate_ids and not isinstance(certificate_ids, list):
+            raise TypeError("Expected argument 'certificate_ids' to be a list")
+        pulumi.set(__self__, "certificate_ids", certificate_ids)
         if common_name and not isinstance(common_name, str):
             raise TypeError("Expected argument 'common_name' to be a str")
         pulumi.set(__self__, "common_name", common_name)
@@ -54,6 +57,14 @@ class GetTlsSubscriptionResult:
         The entity that issues and certifies the TLS certificates for the subscription.
         """
         return pulumi.get(self, "certificate_authority")
+
+    @property
+    @pulumi.getter(name="certificateIds")
+    def certificate_ids(self) -> Sequence[str]:
+        """
+        List of certificate IDs associated with the Subscription.
+        """
+        return pulumi.get(self, "certificate_ids")
 
     @property
     @pulumi.getter(name="commonName")
@@ -119,6 +130,7 @@ class AwaitableGetTlsSubscriptionResult(GetTlsSubscriptionResult):
             yield self
         return GetTlsSubscriptionResult(
             certificate_authority=self.certificate_authority,
+            certificate_ids=self.certificate_ids,
             common_name=self.common_name,
             configuration_id=self.configuration_id,
             created_at=self.created_at,
@@ -163,6 +175,7 @@ def get_tls_subscription(certificate_authority: Optional[str] = None,
 
     return AwaitableGetTlsSubscriptionResult(
         certificate_authority=pulumi.get(__ret__, 'certificate_authority'),
+        certificate_ids=pulumi.get(__ret__, 'certificate_ids'),
         common_name=pulumi.get(__ret__, 'common_name'),
         configuration_id=pulumi.get(__ret__, 'configuration_id'),
         created_at=pulumi.get(__ret__, 'created_at'),

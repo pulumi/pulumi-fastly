@@ -18,6 +18,21 @@ public final class TlsMutualAuthenticationState extends com.pulumi.resources.Res
     public static final TlsMutualAuthenticationState Empty = new TlsMutualAuthenticationState();
 
     /**
+     * List of TLS Activation IDs
+     * 
+     */
+    @Import(name="activationIds")
+    private @Nullable Output<List<String>> activationIds;
+
+    /**
+     * @return List of TLS Activation IDs
+     * 
+     */
+    public Optional<Output<List<String>>> activationIds() {
+        return Optional.ofNullable(this.activationIds);
+    }
+
+    /**
      * One or more certificates. Enter each individual certificate blob on a new line. Must be PEM-formatted.
      * 
      */
@@ -63,14 +78,16 @@ public final class TlsMutualAuthenticationState extends com.pulumi.resources.Res
     }
 
     /**
-     * Comma-separated list of related objects to include (e.g. `tls_activations` will provide you with the TLS domain names that are related to your Mutual TLS authentication).
+     * A comma-separated list used by the Terraform provider during a state refresh to return more data related to your mutual
+     * authentication from the Fastly API (permitted values: `tls_activations`).
      * 
      */
     @Import(name="include")
     private @Nullable Output<String> include;
 
     /**
-     * @return Comma-separated list of related objects to include (e.g. `tls_activations` will provide you with the TLS domain names that are related to your Mutual TLS authentication).
+     * @return A comma-separated list used by the Terraform provider during a state refresh to return more data related to your mutual
+     * authentication from the Fastly API (permitted values: `tls_activations`).
      * 
      */
     public Optional<Output<String>> include() {
@@ -125,6 +142,7 @@ public final class TlsMutualAuthenticationState extends com.pulumi.resources.Res
     private TlsMutualAuthenticationState() {}
 
     private TlsMutualAuthenticationState(TlsMutualAuthenticationState $) {
+        this.activationIds = $.activationIds;
         this.certBundle = $.certBundle;
         this.createdAt = $.createdAt;
         this.enforced = $.enforced;
@@ -150,6 +168,37 @@ public final class TlsMutualAuthenticationState extends com.pulumi.resources.Res
 
         public Builder(TlsMutualAuthenticationState defaults) {
             $ = new TlsMutualAuthenticationState(Objects.requireNonNull(defaults));
+        }
+
+        /**
+         * @param activationIds List of TLS Activation IDs
+         * 
+         * @return builder
+         * 
+         */
+        public Builder activationIds(@Nullable Output<List<String>> activationIds) {
+            $.activationIds = activationIds;
+            return this;
+        }
+
+        /**
+         * @param activationIds List of TLS Activation IDs
+         * 
+         * @return builder
+         * 
+         */
+        public Builder activationIds(List<String> activationIds) {
+            return activationIds(Output.of(activationIds));
+        }
+
+        /**
+         * @param activationIds List of TLS Activation IDs
+         * 
+         * @return builder
+         * 
+         */
+        public Builder activationIds(String... activationIds) {
+            return activationIds(List.of(activationIds));
         }
 
         /**
@@ -216,7 +265,8 @@ public final class TlsMutualAuthenticationState extends com.pulumi.resources.Res
         }
 
         /**
-         * @param include Comma-separated list of related objects to include (e.g. `tls_activations` will provide you with the TLS domain names that are related to your Mutual TLS authentication).
+         * @param include A comma-separated list used by the Terraform provider during a state refresh to return more data related to your mutual
+         * authentication from the Fastly API (permitted values: `tls_activations`).
          * 
          * @return builder
          * 
@@ -227,7 +277,8 @@ public final class TlsMutualAuthenticationState extends com.pulumi.resources.Res
         }
 
         /**
-         * @param include Comma-separated list of related objects to include (e.g. `tls_activations` will provide you with the TLS domain names that are related to your Mutual TLS authentication).
+         * @param include A comma-separated list used by the Terraform provider during a state refresh to return more data related to your mutual
+         * authentication from the Fastly API (permitted values: `tls_activations`).
          * 
          * @return builder
          * 

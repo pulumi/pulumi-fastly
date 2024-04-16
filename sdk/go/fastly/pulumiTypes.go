@@ -7233,7 +7233,7 @@ type ServiceVclHealthcheck struct {
 	Path string `pulumi:"path"`
 	// How many Healthchecks must succeed to be considered healthy. Default `3`
 	Threshold *int `pulumi:"threshold"`
-	// Timeout in milliseconds. Default `500`
+	// Timeout in milliseconds. Default `5000`
 	Timeout *int `pulumi:"timeout"`
 	// The number of most recent Healthcheck queries to keep for this Healthcheck. Default `5`
 	Window *int `pulumi:"window"`
@@ -7271,7 +7271,7 @@ type ServiceVclHealthcheckArgs struct {
 	Path pulumi.StringInput `pulumi:"path"`
 	// How many Healthchecks must succeed to be considered healthy. Default `3`
 	Threshold pulumi.IntPtrInput `pulumi:"threshold"`
-	// Timeout in milliseconds. Default `500`
+	// Timeout in milliseconds. Default `5000`
 	Timeout pulumi.IntPtrInput `pulumi:"timeout"`
 	// The number of most recent Healthcheck queries to keep for this Healthcheck. Default `5`
 	Window pulumi.IntPtrInput `pulumi:"window"`
@@ -7378,7 +7378,7 @@ func (o ServiceVclHealthcheckOutput) Threshold() pulumi.IntPtrOutput {
 	return o.ApplyT(func(v ServiceVclHealthcheck) *int { return v.Threshold }).(pulumi.IntPtrOutput)
 }
 
-// Timeout in milliseconds. Default `500`
+// Timeout in milliseconds. Default `5000`
 func (o ServiceVclHealthcheckOutput) Timeout() pulumi.IntPtrOutput {
 	return o.ApplyT(func(v ServiceVclHealthcheck) *int { return v.Timeout }).(pulumi.IntPtrOutput)
 }
