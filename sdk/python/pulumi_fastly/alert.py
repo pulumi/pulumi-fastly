@@ -305,10 +305,10 @@ class Alert(pulumi.CustomResource):
         import pulumi
         import pulumi_fastly as fastly
 
-        example_service_vcl = fastly.ServiceVcl("exampleServiceVcl")
-        # ...
-        example_alert = fastly.Alert("exampleAlert",
-            service_id=example_service_vcl.id,
+        example = fastly.ServiceVcl("example", name="my_vcl_service")
+        example_alert = fastly.Alert("example",
+            name="my_vcl_service errors",
+            service_id=example.id,
             source="stats",
             metric="status_5xx",
             evaluation_strategy=fastly.AlertEvaluationStrategyArgs(
@@ -354,10 +354,10 @@ class Alert(pulumi.CustomResource):
         import pulumi
         import pulumi_fastly as fastly
 
-        example_service_vcl = fastly.ServiceVcl("exampleServiceVcl")
-        # ...
-        example_alert = fastly.Alert("exampleAlert",
-            service_id=example_service_vcl.id,
+        example = fastly.ServiceVcl("example", name="my_vcl_service")
+        example_alert = fastly.Alert("example",
+            name="my_vcl_service errors",
+            service_id=example.id,
             source="stats",
             metric="status_5xx",
             evaluation_strategy=fastly.AlertEvaluationStrategyArgs(

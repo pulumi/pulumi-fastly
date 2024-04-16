@@ -164,9 +164,8 @@ def get_tls_configuration(default: Optional[bool] = None,
     import pulumi
     import pulumi_fastly as fastly
 
-    example_tls_configuration = fastly.get_tls_configuration(default=True)
-    example_tls_activation = fastly.TlsActivation("exampleTlsActivation", configuration_id=example_tls_configuration.id)
-    # ...
+    example = fastly.get_tls_configuration(default=True)
+    example_tls_activation = fastly.TlsActivation("example", configuration_id=example.id)
     ```
     <!--End PulumiCodeChooser -->
 
@@ -224,9 +223,8 @@ def get_tls_configuration_output(default: Optional[pulumi.Input[Optional[bool]]]
     import pulumi
     import pulumi_fastly as fastly
 
-    example_tls_configuration = fastly.get_tls_configuration(default=True)
-    example_tls_activation = fastly.TlsActivation("exampleTlsActivation", configuration_id=example_tls_configuration.id)
-    # ...
+    example = fastly.get_tls_configuration(default=True)
+    example_tls_activation = fastly.TlsActivation("example", configuration_id=example.id)
     ```
     <!--End PulumiCodeChooser -->
 

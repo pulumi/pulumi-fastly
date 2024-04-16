@@ -14,13 +14,12 @@ import * as utilities from "./utilities";
  * import * as pulumi from "@pulumi/pulumi";
  * import * as fastly from "@pulumi/fastly";
  *
- * const examplePackageHash = fastly.getPackageHash({
+ * const example = fastly.getPackageHash({
  *     filename: "./path/to/package.tar.gz",
  * });
- * // ...
- * const exampleServiceCompute = new fastly.ServiceCompute("exampleServiceCompute", {"package": {
+ * const exampleServiceCompute = new fastly.ServiceCompute("example", {"package": {
  *     filename: "./path/to/package.tar.gz",
- *     sourceCodeHash: examplePackageHash.then(examplePackageHash => examplePackageHash.hash),
+ *     sourceCodeHash: example.then(example => example.hash),
  * }});
  * ```
  * <!--End PulumiCodeChooser -->
@@ -80,13 +79,12 @@ export interface GetPackageHashResult {
  * import * as pulumi from "@pulumi/pulumi";
  * import * as fastly from "@pulumi/fastly";
  *
- * const examplePackageHash = fastly.getPackageHash({
+ * const example = fastly.getPackageHash({
  *     filename: "./path/to/package.tar.gz",
  * });
- * // ...
- * const exampleServiceCompute = new fastly.ServiceCompute("exampleServiceCompute", {"package": {
+ * const exampleServiceCompute = new fastly.ServiceCompute("example", {"package": {
  *     filename: "./path/to/package.tar.gz",
- *     sourceCodeHash: examplePackageHash.then(examplePackageHash => examplePackageHash.hash),
+ *     sourceCodeHash: example.then(example => example.hash),
  * }});
  * ```
  * <!--End PulumiCodeChooser -->

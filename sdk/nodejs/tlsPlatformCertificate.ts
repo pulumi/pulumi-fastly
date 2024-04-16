@@ -20,12 +20,12 @@ import * as utilities from "./utilities";
  * import * as fastly from "@pulumi/fastly";
  * import * as tls from "@pulumi/tls";
  *
- * const caKey = new tls.PrivateKey("caKey", {algorithm: "RSA"});
- * const keyPrivateKey = new tls.PrivateKey("keyPrivateKey", {algorithm: "RSA"});
- * const ca = new tls.SelfSignedCert("ca", {
+ * const caKey = new tls.index.PrivateKey("ca_key", {algorithm: "RSA"});
+ * const key = new tls.index.PrivateKey("key", {algorithm: "RSA"});
+ * const ca = new tls.index.SelfSignedCert("ca", {
  *     keyAlgorithm: caKey.algorithm,
  *     privateKeyPem: caKey.privateKeyPem,
- *     subjects: [{
+ *     subject: [{
  *         commonName: "Example CA",
  *     }],
  *     isCaCertificate: true,
@@ -35,10 +35,10 @@ import * as utilities from "./utilities";
  *         "server_auth",
  *     ],
  * });
- * const example = new tls.CertRequest("example", {
- *     keyAlgorithm: keyPrivateKey.algorithm,
- *     privateKeyPem: keyPrivateKey.privateKeyPem,
- *     subjects: [{
+ * const example = new tls.index.CertRequest("example", {
+ *     keyAlgorithm: key.algorithm,
+ *     privateKeyPem: key.privateKeyPem,
+ *     subject: [{
  *         commonName: "example.com",
  *     }],
  *     dnsNames: [
@@ -46,7 +46,7 @@ import * as utilities from "./utilities";
  *         "www.example.com",
  *     ],
  * });
- * const certLocallySignedCert = new tls.LocallySignedCert("certLocallySignedCert", {
+ * const cert = new tls.index.LocallySignedCert("cert", {
  *     certRequestPem: example.certRequestPem,
  *     caKeyAlgorithm: caKey.algorithm,
  *     caPrivateKeyPem: caKey.privateKeyPem,
@@ -60,9 +60,12 @@ import * as utilities from "./utilities";
  * const config = fastly.getTlsConfiguration({
  *     tlsService: "PLATFORM",
  * });
- * const keyTlsPrivateKey = new fastly.TlsPrivateKey("keyTlsPrivateKey", {keyPem: keyPrivateKey.privateKeyPem});
- * const certTlsPlatformCertificate = new fastly.TlsPlatformCertificate("certTlsPlatformCertificate", {
- *     certificateBody: certLocallySignedCert.certPem,
+ * const keyTlsPrivateKey = new fastly.TlsPrivateKey("key", {
+ *     keyPem: key.privateKeyPem,
+ *     name: "tf-demo",
+ * });
+ * const certTlsPlatformCertificate = new fastly.TlsPlatformCertificate("cert", {
+ *     certificateBody: cert.certPem,
  *     intermediatesBlob: ca.certPem,
  *     configurationId: config.then(config => config.id),
  *     allowUntrustedRoot: true,

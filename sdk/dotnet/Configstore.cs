@@ -30,15 +30,19 @@ namespace Pulumi.Fastly
     ///     // IMPORTANT: Deleting a Config Store requires first deleting its resource_link.
     ///     // This requires a two-step `pulumi up` as we can't guarantee deletion order.
     ///     // e.g. resource_link deletion within fastly_service_compute might not finish first.
-    ///     var exampleConfigstore = new Fastly.Configstore("exampleConfigstore");
+    ///     var exampleConfigstore = new Fastly.Configstore("example", new()
+    ///     {
+    ///         Name = "my_config_store",
+    ///     });
     /// 
-    ///     var examplePackageHash = Fastly.GetPackageHash.Invoke(new()
+    ///     var example = Fastly.GetPackageHash.Invoke(new()
     ///     {
     ///         Filename = "package.tar.gz",
     ///     });
     /// 
-    ///     var exampleServiceCompute = new Fastly.ServiceCompute("exampleServiceCompute", new()
+    ///     var exampleServiceCompute = new Fastly.ServiceCompute("example", new()
     ///     {
+    ///         Name = "my_compute_service",
     ///         Domains = new[]
     ///         {
     ///             new Fastly.Inputs.ServiceComputeDomainArgs
@@ -49,7 +53,7 @@ namespace Pulumi.Fastly
     ///         Package = new Fastly.Inputs.ServiceComputePackageArgs
     ///         {
     ///             Filename = "package.tar.gz",
-    ///             SourceCodeHash = examplePackageHash.Apply(getPackageHashResult =&gt; getPackageHashResult.Hash),
+    ///             SourceCodeHash = example.Apply(getPackageHashResult =&gt; getPackageHashResult.Hash),
     ///         },
     ///         ResourceLinks = new[]
     ///         {

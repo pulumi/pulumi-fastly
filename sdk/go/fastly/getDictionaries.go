@@ -28,7 +28,8 @@ import (
 //
 //	func main() {
 //		pulumi.Run(func(ctx *pulumi.Context) error {
-//			exampleServiceVcl, err := fastly.NewServiceVcl(ctx, "exampleServiceVcl", &fastly.ServiceVclArgs{
+//			exampleServiceVcl, err := fastly.NewServiceVcl(ctx, "example", &fastly.ServiceVclArgs{
+//				Name: pulumi.String("Example Service"),
 //				Domains: fastly.ServiceVclDomainArray{
 //					&fastly.ServiceVclDomainArgs{
 //						Name: pulumi.String("example.com"),
@@ -50,11 +51,11 @@ import (
 //			if err != nil {
 //				return err
 //			}
-//			exampleDictionaries := fastly.GetDictionariesOutput(ctx, fastly.GetDictionariesOutputArgs{
+//			example := fastly.GetDictionariesOutput(ctx, fastly.GetDictionariesOutputArgs{
 //				ServiceId:      exampleServiceVcl.ID(),
 //				ServiceVersion: exampleServiceVcl.ActiveVersion,
 //			}, nil)
-//			ctx.Export("serviceDictionaries", exampleDictionaries)
+//			ctx.Export("serviceDictionaries", example)
 //			return nil
 //		})
 //	}

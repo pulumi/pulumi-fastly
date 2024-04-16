@@ -14,9 +14,9 @@ import * as utilities from "./utilities";
  * import * as pulumi from "@pulumi/pulumi";
  * import * as fastly from "@pulumi/fastly";
  *
- * const exampleTlsPlatformCertificateIds = fastly.getTlsPlatformCertificateIds({});
- * const exampleTlsPlatformCertificate = exampleTlsPlatformCertificateIds.then(exampleTlsPlatformCertificateIds => fastly.getTlsPlatformCertificate({
- *     id: exampleTlsPlatformCertificateIds.ids?.[0],
+ * const example = fastly.getTlsPlatformCertificateIds({});
+ * const exampleGetTlsPlatformCertificate = example.then(example => fastly.getTlsPlatformCertificate({
+ *     id: example.ids?.[0],
  * }));
  * ```
  * <!--End PulumiCodeChooser -->
@@ -51,9 +51,9 @@ export interface GetTlsPlatformCertificateIdsResult {
  * import * as pulumi from "@pulumi/pulumi";
  * import * as fastly from "@pulumi/fastly";
  *
- * const exampleTlsPlatformCertificateIds = fastly.getTlsPlatformCertificateIds({});
- * const exampleTlsPlatformCertificate = exampleTlsPlatformCertificateIds.then(exampleTlsPlatformCertificateIds => fastly.getTlsPlatformCertificate({
- *     id: exampleTlsPlatformCertificateIds.ids?.[0],
+ * const example = fastly.getTlsPlatformCertificateIds({});
+ * const exampleGetTlsPlatformCertificate = example.then(example => fastly.getTlsPlatformCertificate({
+ *     id: example.ids?.[0],
  * }));
  * ```
  * <!--End PulumiCodeChooser -->

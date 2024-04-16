@@ -19,9 +19,7 @@ import * as utilities from "./utilities";
  * import * as fastly from "@pulumi/fastly";
  *
  * const demo = new fastly.ServiceVcl("demo", {});
- * //...
  * const user = new fastly.User("user", {});
- * // ...
  * const auth = new fastly.ServiceAuthorization("auth", {
  *     serviceId: demo.id,
  *     userId: user.id,

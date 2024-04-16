@@ -35,14 +35,14 @@ import (
 //
 //	func main() {
 //		pulumi.Run(func(ctx *pulumi.Context) error {
-//			caKey, err := tls.NewPrivateKey(ctx, "caKey", &tls.PrivateKeyArgs{
-//				Algorithm: pulumi.String("RSA"),
+//			caKey, err := tls.NewPrivateKey(ctx, "ca_key", &tls.PrivateKeyArgs{
+//				Algorithm: "RSA",
 //			})
 //			if err != nil {
 //				return err
 //			}
-//			keyPrivateKey, err := tls.NewPrivateKey(ctx, "keyPrivateKey", &tls.PrivateKeyArgs{
-//				Algorithm: pulumi.String("RSA"),
+//			key, err := tls.NewPrivateKey(ctx, "key", &tls.PrivateKeyArgs{
+//				Algorithm: "RSA",
 //			})
 //			if err != nil {
 //				return err
@@ -50,46 +50,46 @@ import (
 //			ca, err := tls.NewSelfSignedCert(ctx, "ca", &tls.SelfSignedCertArgs{
 //				KeyAlgorithm:  caKey.Algorithm,
 //				PrivateKeyPem: caKey.PrivateKeyPem,
-//				Subjects: tls.SelfSignedCertSubjectArray{
-//					&tls.SelfSignedCertSubjectArgs{
-//						CommonName: pulumi.String("Example CA"),
+//				Subject: []map[string]interface{}{
+//					map[string]interface{}{
+//						"commonName": "Example CA",
 //					},
 //				},
-//				IsCaCertificate:     pulumi.Bool(true),
-//				ValidityPeriodHours: pulumi.Int(360),
-//				AllowedUses: pulumi.StringArray{
-//					pulumi.String("cert_signing"),
-//					pulumi.String("server_auth"),
+//				IsCaCertificate:     true,
+//				ValidityPeriodHours: 360,
+//				AllowedUses: []string{
+//					"cert_signing",
+//					"server_auth",
 //				},
 //			})
 //			if err != nil {
 //				return err
 //			}
 //			example, err := tls.NewCertRequest(ctx, "example", &tls.CertRequestArgs{
-//				KeyAlgorithm:  keyPrivateKey.Algorithm,
-//				PrivateKeyPem: keyPrivateKey.PrivateKeyPem,
-//				Subjects: tls.CertRequestSubjectArray{
-//					&tls.CertRequestSubjectArgs{
-//						CommonName: pulumi.String("example.com"),
+//				KeyAlgorithm:  key.Algorithm,
+//				PrivateKeyPem: key.PrivateKeyPem,
+//				Subject: []map[string]interface{}{
+//					map[string]interface{}{
+//						"commonName": "example.com",
 //					},
 //				},
-//				DnsNames: pulumi.StringArray{
-//					pulumi.String("example.com"),
-//					pulumi.String("www.example.com"),
+//				DnsNames: []string{
+//					"example.com",
+//					"www.example.com",
 //				},
 //			})
 //			if err != nil {
 //				return err
 //			}
-//			certLocallySignedCert, err := tls.NewLocallySignedCert(ctx, "certLocallySignedCert", &tls.LocallySignedCertArgs{
+//			cert, err := tls.NewLocallySignedCert(ctx, "cert", &tls.LocallySignedCertArgs{
 //				CertRequestPem:      example.CertRequestPem,
 //				CaKeyAlgorithm:      caKey.Algorithm,
 //				CaPrivateKeyPem:     caKey.PrivateKeyPem,
 //				CaCertPem:           ca.CertPem,
-//				ValidityPeriodHours: pulumi.Int(360),
-//				AllowedUses: pulumi.StringArray{
-//					pulumi.String("cert_signing"),
-//					pulumi.String("server_auth"),
+//				ValidityPeriodHours: 360,
+//				AllowedUses: []string{
+//					"cert_signing",
+//					"server_auth",
 //				},
 //			})
 //			if err != nil {
@@ -101,14 +101,15 @@ import (
 //			if err != nil {
 //				return err
 //			}
-//			keyTlsPrivateKey, err := fastly.NewTlsPrivateKey(ctx, "keyTlsPrivateKey", &fastly.TlsPrivateKeyArgs{
-//				KeyPem: keyPrivateKey.PrivateKeyPem,
+//			keyTlsPrivateKey, err := fastly.NewTlsPrivateKey(ctx, "key", &fastly.TlsPrivateKeyArgs{
+//				KeyPem: key.PrivateKeyPem,
+//				Name:   pulumi.String("tf-demo"),
 //			})
 //			if err != nil {
 //				return err
 //			}
-//			_, err = fastly.NewTlsPlatformCertificate(ctx, "certTlsPlatformCertificate", &fastly.TlsPlatformCertificateArgs{
-//				CertificateBody:    certLocallySignedCert.CertPem,
+//			_, err = fastly.NewTlsPlatformCertificate(ctx, "cert", &fastly.TlsPlatformCertificateArgs{
+//				CertificateBody:    cert.CertPem,
 //				IntermediatesBlob:  ca.CertPem,
 //				ConfigurationId:    pulumi.String(config.Id),
 //				AllowUntrustedRoot: pulumi.Bool(true),

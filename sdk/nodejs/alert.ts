@@ -16,10 +16,10 @@ import * as utilities from "./utilities";
  * import * as pulumi from "@pulumi/pulumi";
  * import * as fastly from "@pulumi/fastly";
  *
- * const exampleServiceVcl = new fastly.ServiceVcl("exampleServiceVcl", {});
- * // ...
- * const exampleAlert = new fastly.Alert("exampleAlert", {
- *     serviceId: exampleServiceVcl.id,
+ * const example = new fastly.ServiceVcl("example", {name: "my_vcl_service"});
+ * const exampleAlert = new fastly.Alert("example", {
+ *     name: "my_vcl_service errors",
+ *     serviceId: example.id,
  *     source: "stats",
  *     metric: "status_5xx",
  *     evaluationStrategy: {

@@ -30,6 +30,7 @@ import javax.annotation.Nullable;
  * import com.pulumi.Pulumi;
  * import com.pulumi.core.Output;
  * import com.pulumi.fastly.ServiceVcl;
+ * import com.pulumi.fastly.ServiceVclArgs;
  * import com.pulumi.fastly.Alert;
  * import com.pulumi.fastly.AlertArgs;
  * import com.pulumi.fastly.inputs.AlertEvaluationStrategyArgs;
@@ -46,11 +47,13 @@ import javax.annotation.Nullable;
  *     }
  * 
  *     public static void stack(Context ctx) {
- *         var exampleServiceVcl = new ServiceVcl(&#34;exampleServiceVcl&#34;);
+ *         var example = new ServiceVcl(&#34;example&#34;, ServiceVclArgs.builder()        
+ *             .name(&#34;my_vcl_service&#34;)
+ *             .build());
  * 
- *         // ...
  *         var exampleAlert = new Alert(&#34;exampleAlert&#34;, AlertArgs.builder()        
- *             .serviceId(exampleServiceVcl.id())
+ *             .name(&#34;my_vcl_service errors&#34;)
+ *             .serviceId(example.id())
  *             .source(&#34;stats&#34;)
  *             .metric(&#34;status_5xx&#34;)
  *             .evaluationStrategy(AlertEvaluationStrategyArgs.builder()

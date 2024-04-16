@@ -29,25 +29,25 @@ namespace Pulumi.Fastly
     /// 
     /// return await Deployment.RunAsync(() =&gt; 
     /// {
-    ///     var caKey = new Tls.PrivateKey("caKey", new()
+    ///     var caKey = new Tls.Index.PrivateKey("ca_key", new()
     ///     {
     ///         Algorithm = "RSA",
     ///     });
     /// 
-    ///     var keyPrivateKey = new Tls.PrivateKey("keyPrivateKey", new()
+    ///     var key = new Tls.Index.PrivateKey("key", new()
     ///     {
     ///         Algorithm = "RSA",
     ///     });
     /// 
-    ///     var ca = new Tls.SelfSignedCert("ca", new()
+    ///     var ca = new Tls.Index.SelfSignedCert("ca", new()
     ///     {
     ///         KeyAlgorithm = caKey.Algorithm,
     ///         PrivateKeyPem = caKey.PrivateKeyPem,
-    ///         Subjects = new[]
+    ///         Subject = new[]
     ///         {
-    ///             new Tls.Inputs.SelfSignedCertSubjectArgs
+    ///             
     ///             {
-    ///                 CommonName = "Example CA",
+    ///                 { "commonName", "Example CA" },
     ///             },
     ///         },
     ///         IsCaCertificate = true,
@@ -59,15 +59,15 @@ namespace Pulumi.Fastly
     ///         },
     ///     });
     /// 
-    ///     var example = new Tls.CertRequest("example", new()
+    ///     var example = new Tls.Index.CertRequest("example", new()
     ///     {
-    ///         KeyAlgorithm = keyPrivateKey.Algorithm,
-    ///         PrivateKeyPem = keyPrivateKey.PrivateKeyPem,
-    ///         Subjects = new[]
+    ///         KeyAlgorithm = key.Algorithm,
+    ///         PrivateKeyPem = key.PrivateKeyPem,
+    ///         Subject = new[]
     ///         {
-    ///             new Tls.Inputs.CertRequestSubjectArgs
+    ///             
     ///             {
-    ///                 CommonName = "example.com",
+    ///                 { "commonName", "example.com" },
     ///             },
     ///         },
     ///         DnsNames = new[]
@@ -77,7 +77,7 @@ namespace Pulumi.Fastly
     ///         },
     ///     });
     /// 
-    ///     var certLocallySignedCert = new Tls.LocallySignedCert("certLocallySignedCert", new()
+    ///     var cert = new Tls.Index.LocallySignedCert("cert", new()
     ///     {
     ///         CertRequestPem = example.CertRequestPem,
     ///         CaKeyAlgorithm = caKey.Algorithm,
@@ -96,14 +96,15 @@ namespace Pulumi.Fastly
     ///         TlsService = "PLATFORM",
     ///     });
     /// 
-    ///     var keyTlsPrivateKey = new Fastly.TlsPrivateKey("keyTlsPrivateKey", new()
+    ///     var keyTlsPrivateKey = new Fastly.TlsPrivateKey("key", new()
     ///     {
-    ///         KeyPem = keyPrivateKey.PrivateKeyPem,
+    ///         KeyPem = key.PrivateKeyPem,
+    ///         Name = "tf-demo",
     ///     });
     /// 
-    ///     var certTlsPlatformCertificate = new Fastly.TlsPlatformCertificate("certTlsPlatformCertificate", new()
+    ///     var certTlsPlatformCertificate = new Fastly.TlsPlatformCertificate("cert", new()
     ///     {
-    ///         CertificateBody = certLocallySignedCert.CertPem,
+    ///         CertificateBody = cert.CertPem,
     ///         IntermediatesBlob = ca.CertPem,
     ///         ConfigurationId = config.Apply(getTlsConfigurationResult =&gt; getTlsConfigurationResult.Id),
     ///         AllowUntrustedRoot = true,

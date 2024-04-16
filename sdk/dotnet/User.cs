@@ -30,6 +30,7 @@ namespace Pulumi.Fastly
     ///     var demo = new Fastly.User("demo", new()
     ///     {
     ///         Login = "demo@example.com",
+    ///         Name = "Demo User",
     ///     });
     /// 
     /// });

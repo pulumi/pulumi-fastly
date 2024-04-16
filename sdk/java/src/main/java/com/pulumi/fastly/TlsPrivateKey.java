@@ -32,7 +32,7 @@ import javax.annotation.Nullable;
  * import com.pulumi.Context;
  * import com.pulumi.Pulumi;
  * import com.pulumi.core.Output;
- * import com.pulumi.tls.PrivateKey;
+ * import com.pulumi.tls.privateKey;
  * import com.pulumi.tls.PrivateKeyArgs;
  * import com.pulumi.fastly.TlsPrivateKey;
  * import com.pulumi.fastly.TlsPrivateKeyArgs;
@@ -49,12 +49,13 @@ import javax.annotation.Nullable;
  *     }
  * 
  *     public static void stack(Context ctx) {
- *         var demoPrivateKey = new PrivateKey(&#34;demoPrivateKey&#34;, PrivateKeyArgs.builder()        
+ *         var demo = new PrivateKey(&#34;demo&#34;, PrivateKeyArgs.builder()        
  *             .algorithm(&#34;RSA&#34;)
  *             .build());
  * 
  *         var demoTlsPrivateKey = new TlsPrivateKey(&#34;demoTlsPrivateKey&#34;, TlsPrivateKeyArgs.builder()        
- *             .keyPem(demoPrivateKey.privateKeyPem())
+ *             .keyPem(demo.privateKeyPem())
+ *             .name(&#34;tf-demo&#34;)
  *             .build());
  * 
  *     }

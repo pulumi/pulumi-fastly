@@ -25,18 +25,17 @@ namespace Pulumi.Fastly
         /// 
         /// return await Deployment.RunAsync(() =&gt; 
         /// {
-        ///     var examplePackageHash = Fastly.GetPackageHash.Invoke(new()
+        ///     var example = Fastly.GetPackageHash.Invoke(new()
         ///     {
         ///         Filename = "./path/to/package.tar.gz",
         ///     });
         /// 
-        ///     // ...
-        ///     var exampleServiceCompute = new Fastly.ServiceCompute("exampleServiceCompute", new()
+        ///     var exampleServiceCompute = new Fastly.ServiceCompute("example", new()
         ///     {
         ///         Package = new Fastly.Inputs.ServiceComputePackageArgs
         ///         {
         ///             Filename = "./path/to/package.tar.gz",
-        ///             SourceCodeHash = examplePackageHash.Apply(getPackageHashResult =&gt; getPackageHashResult.Hash),
+        ///             SourceCodeHash = example.Apply(getPackageHashResult =&gt; getPackageHashResult.Hash),
         ///         },
         ///     });
         /// 
@@ -61,18 +60,17 @@ namespace Pulumi.Fastly
         /// 
         /// return await Deployment.RunAsync(() =&gt; 
         /// {
-        ///     var examplePackageHash = Fastly.GetPackageHash.Invoke(new()
+        ///     var example = Fastly.GetPackageHash.Invoke(new()
         ///     {
         ///         Filename = "./path/to/package.tar.gz",
         ///     });
         /// 
-        ///     // ...
-        ///     var exampleServiceCompute = new Fastly.ServiceCompute("exampleServiceCompute", new()
+        ///     var exampleServiceCompute = new Fastly.ServiceCompute("example", new()
         ///     {
         ///         Package = new Fastly.Inputs.ServiceComputePackageArgs
         ///         {
         ///             Filename = "./path/to/package.tar.gz",
-        ///             SourceCodeHash = examplePackageHash.Apply(getPackageHashResult =&gt; getPackageHashResult.Hash),
+        ///             SourceCodeHash = example.Apply(getPackageHashResult =&gt; getPackageHashResult.Hash),
         ///         },
         ///     });
         /// 

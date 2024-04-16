@@ -67,9 +67,8 @@ def get_tls_certificate_ids(opts: Optional[pulumi.InvokeOptions] = None) -> Awai
     import pulumi
     import pulumi_fastly as fastly
 
-    example_tls_certificate_ids = fastly.get_tls_certificate_ids()
-    example_tls_activation = fastly.TlsActivation("exampleTlsActivation", certificate_id=example_tls_certificate_ids.ids[0])
-    # ...
+    example = fastly.get_tls_certificate_ids()
+    example_tls_activation = fastly.TlsActivation("example", certificate_id=example.ids[0])
     ```
     <!--End PulumiCodeChooser -->
     """
@@ -94,9 +93,8 @@ def get_tls_certificate_ids_output(opts: Optional[pulumi.InvokeOptions] = None) 
     import pulumi
     import pulumi_fastly as fastly
 
-    example_tls_certificate_ids = fastly.get_tls_certificate_ids()
-    example_tls_activation = fastly.TlsActivation("exampleTlsActivation", certificate_id=example_tls_certificate_ids.ids[0])
-    # ...
+    example = fastly.get_tls_certificate_ids()
+    example_tls_activation = fastly.TlsActivation("example", certificate_id=example.ids[0])
     ```
     <!--End PulumiCodeChooser -->
     """

@@ -18,7 +18,8 @@ import * as utilities from "./utilities";
  * import * as pulumi from "@pulumi/pulumi";
  * import * as fastly from "@pulumi/fastly";
  *
- * const demoServiceVcl = new fastly.ServiceVcl("demoServiceVcl", {
+ * const demo = new fastly.ServiceVcl("demo", {
+ *     name: "my-service",
  *     domains: [{
  *         name: "example.com",
  *     }],
@@ -28,15 +29,21 @@ import * as utilities from "./utilities";
  *     }],
  *     forceDestroy: true,
  * });
- * const demoTlsPrivateKey = new fastly.TlsPrivateKey("demoTlsPrivateKey", {keyPem: "..."});
- * const demoTlsCertificate = new fastly.TlsCertificate("demoTlsCertificate", {certificateBody: "..."}, {
+ * const demoTlsPrivateKey = new fastly.TlsPrivateKey("demo", {
+ *     keyPem: "...",
+ *     name: "demo-key",
+ * });
+ * const demoTlsCertificate = new fastly.TlsCertificate("demo", {
+ *     certificateBody: "...",
+ *     name: "demo-cert",
+ * }, {
  *     dependsOn: [demoTlsPrivateKey],
  * });
  * const test = new fastly.TlsActivation("test", {
  *     certificateId: demoTlsCertificate.id,
  *     domain: "example.com",
  * }, {
- *     dependsOn: [demoServiceVcl],
+ *     dependsOn: [demo],
  * });
  * ```
  * <!--End PulumiCodeChooser -->

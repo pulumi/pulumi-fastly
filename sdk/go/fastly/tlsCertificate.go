@@ -35,40 +35,42 @@ import (
 //
 //	func main() {
 //		pulumi.Run(func(ctx *pulumi.Context) error {
-//			keyPrivateKey, err := tls.NewPrivateKey(ctx, "keyPrivateKey", &tls.PrivateKeyArgs{
-//				Algorithm: pulumi.String("RSA"),
+//			key, err := tls.NewPrivateKey(ctx, "key", &tls.PrivateKeyArgs{
+//				Algorithm: "RSA",
 //			})
 //			if err != nil {
 //				return err
 //			}
 //			cert, err := tls.NewSelfSignedCert(ctx, "cert", &tls.SelfSignedCertArgs{
-//				KeyAlgorithm:  keyPrivateKey.Algorithm,
-//				PrivateKeyPem: keyPrivateKey.PrivateKeyPem,
-//				Subjects: tls.SelfSignedCertSubjectArray{
-//					&tls.SelfSignedCertSubjectArgs{
-//						CommonName: pulumi.String("example.com"),
+//				KeyAlgorithm:  key.Algorithm,
+//				PrivateKeyPem: key.PrivateKeyPem,
+//				Subject: []map[string]interface{}{
+//					map[string]interface{}{
+//						"commonName": "example.com",
 //					},
 //				},
-//				IsCaCertificate:     pulumi.Bool(true),
-//				ValidityPeriodHours: pulumi.Int(360),
-//				AllowedUses: pulumi.StringArray{
-//					pulumi.String("cert_signing"),
-//					pulumi.String("server_auth"),
+//				IsCaCertificate:     true,
+//				ValidityPeriodHours: 360,
+//				AllowedUses: []string{
+//					"cert_signing",
+//					"server_auth",
 //				},
-//				DnsNames: pulumi.StringArray{
-//					pulumi.String("example.com"),
+//				DnsNames: []string{
+//					"example.com",
 //				},
 //			})
 //			if err != nil {
 //				return err
 //			}
-//			keyTlsPrivateKey, err := fastly.NewTlsPrivateKey(ctx, "keyTlsPrivateKey", &fastly.TlsPrivateKeyArgs{
-//				KeyPem: keyPrivateKey.PrivateKeyPem,
+//			keyTlsPrivateKey, err := fastly.NewTlsPrivateKey(ctx, "key", &fastly.TlsPrivateKeyArgs{
+//				KeyPem: key.PrivateKeyPem,
+//				Name:   pulumi.String("tf-demo"),
 //			})
 //			if err != nil {
 //				return err
 //			}
 //			_, err = fastly.NewTlsCertificate(ctx, "example", &fastly.TlsCertificateArgs{
+//				Name:            pulumi.String("tf-demo"),
 //				CertificateBody: cert.CertPem,
 //			}, pulumi.DependsOn([]pulumi.Resource{
 //				keyTlsPrivateKey,

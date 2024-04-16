@@ -27,8 +27,9 @@ namespace Pulumi.Fastly
     /// 
     /// return await Deployment.RunAsync(() =&gt; 
     /// {
-    ///     var demoServiceVcl = new Fastly.ServiceVcl("demoServiceVcl", new()
+    ///     var demo = new Fastly.ServiceVcl("demo", new()
     ///     {
+    ///         Name = "my-service",
     ///         Domains = new[]
     ///         {
     ///             new Fastly.Inputs.ServiceVclDomainArgs
@@ -47,14 +48,16 @@ namespace Pulumi.Fastly
     ///         ForceDestroy = true,
     ///     });
     /// 
-    ///     var demoTlsPrivateKey = new Fastly.TlsPrivateKey("demoTlsPrivateKey", new()
+    ///     var demoTlsPrivateKey = new Fastly.TlsPrivateKey("demo", new()
     ///     {
     ///         KeyPem = "...",
+    ///         Name = "demo-key",
     ///     });
     /// 
-    ///     var demoTlsCertificate = new Fastly.TlsCertificate("demoTlsCertificate", new()
+    ///     var demoTlsCertificate = new Fastly.TlsCertificate("demo", new()
     ///     {
     ///         CertificateBody = "...",
+    ///         Name = "demo-cert",
     ///     }, new CustomResourceOptions
     ///     {
     ///         DependsOn =
@@ -71,7 +74,7 @@ namespace Pulumi.Fastly
     ///     {
     ///         DependsOn =
     ///         {
-    ///             demoServiceVcl, 
+    ///             demo, 
     ///         },
     ///     });
     /// 

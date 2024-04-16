@@ -32,11 +32,10 @@ import javax.annotation.Nullable;
  * import com.pulumi.Context;
  * import com.pulumi.Pulumi;
  * import com.pulumi.core.Output;
- * import com.pulumi.tls.PrivateKey;
+ * import com.pulumi.tls.privateKey;
  * import com.pulumi.tls.PrivateKeyArgs;
- * import com.pulumi.tls.SelfSignedCert;
+ * import com.pulumi.tls.selfSignedCert;
  * import com.pulumi.tls.SelfSignedCertArgs;
- * import com.pulumi.tls.inputs.SelfSignedCertSubjectArgs;
  * import com.pulumi.fastly.TlsPrivateKey;
  * import com.pulumi.fastly.TlsPrivateKeyArgs;
  * import com.pulumi.fastly.TlsCertificate;
@@ -55,16 +54,14 @@ import javax.annotation.Nullable;
  *     }
  * 
  *     public static void stack(Context ctx) {
- *         var keyPrivateKey = new PrivateKey(&#34;keyPrivateKey&#34;, PrivateKeyArgs.builder()        
+ *         var key = new PrivateKey(&#34;key&#34;, PrivateKeyArgs.builder()        
  *             .algorithm(&#34;RSA&#34;)
  *             .build());
  * 
  *         var cert = new SelfSignedCert(&#34;cert&#34;, SelfSignedCertArgs.builder()        
- *             .keyAlgorithm(keyPrivateKey.algorithm())
- *             .privateKeyPem(keyPrivateKey.privateKeyPem())
- *             .subjects(SelfSignedCertSubjectArgs.builder()
- *                 .commonName(&#34;example.com&#34;)
- *                 .build())
+ *             .keyAlgorithm(key.algorithm())
+ *             .privateKeyPem(key.privateKeyPem())
+ *             .subject(%!v(PANIC=Format method: runtime error: invalid memory address or nil pointer dereference))
  *             .isCaCertificate(true)
  *             .validityPeriodHours(360)
  *             .allowedUses(            
@@ -74,16 +71,17 @@ import javax.annotation.Nullable;
  *             .build());
  * 
  *         var keyTlsPrivateKey = new TlsPrivateKey(&#34;keyTlsPrivateKey&#34;, TlsPrivateKeyArgs.builder()        
- *             .keyPem(keyPrivateKey.privateKeyPem())
+ *             .keyPem(key.privateKeyPem())
+ *             .name(&#34;tf-demo&#34;)
  *             .build());
  * 
  *         var example = new TlsCertificate(&#34;example&#34;, TlsCertificateArgs.builder()        
+ *             .name(&#34;tf-demo&#34;)
  *             .certificateBody(cert.certPem())
  *             .build(), CustomResourceOptions.builder()
  *                 .dependsOn(keyTlsPrivateKey)
  *                 .build());
  * 
- *         // The private key has to be present before the certificate can be uploaded
  *     }
  * }
  * ```

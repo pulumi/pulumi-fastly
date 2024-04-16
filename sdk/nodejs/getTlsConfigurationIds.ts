@@ -14,9 +14,8 @@ import * as utilities from "./utilities";
  * import * as pulumi from "@pulumi/pulumi";
  * import * as fastly from "@pulumi/fastly";
  *
- * const exampleTlsConfigurationIds = fastly.getTlsConfigurationIds({});
- * const exampleTlsActivation = new fastly.TlsActivation("exampleTlsActivation", {configurationId: exampleTlsConfigurationIds.then(exampleTlsConfigurationIds => exampleTlsConfigurationIds.ids?.[0])});
- * // ...
+ * const example = fastly.getTlsConfigurationIds({});
+ * const exampleTlsActivation = new fastly.TlsActivation("example", {configurationId: example.then(example => example.ids?.[0])});
  * ```
  * <!--End PulumiCodeChooser -->
  */
@@ -50,9 +49,8 @@ export interface GetTlsConfigurationIdsResult {
  * import * as pulumi from "@pulumi/pulumi";
  * import * as fastly from "@pulumi/fastly";
  *
- * const exampleTlsConfigurationIds = fastly.getTlsConfigurationIds({});
- * const exampleTlsActivation = new fastly.TlsActivation("exampleTlsActivation", {configurationId: exampleTlsConfigurationIds.then(exampleTlsConfigurationIds => exampleTlsConfigurationIds.ids?.[0])});
- * // ...
+ * const example = fastly.getTlsConfigurationIds({});
+ * const exampleTlsActivation = new fastly.TlsActivation("example", {configurationId: example.then(example => example.ids?.[0])});
  * ```
  * <!--End PulumiCodeChooser -->
  */

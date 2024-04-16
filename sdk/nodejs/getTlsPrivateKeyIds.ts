@@ -16,7 +16,7 @@ import * as utilities from "./utilities";
  *
  * const demo = fastly.getTlsPrivateKeyIds({});
  * const example = fastly.getTlsPrivateKey({
- *     id: fastly_tls_private_key_ids.demo.ids[0],
+ *     id: demoFastlyTlsPrivateKeyIds.ids[0],
  * });
  * ```
  * <!--End PulumiCodeChooser -->
@@ -53,7 +53,7 @@ export interface GetTlsPrivateKeyIdsResult {
  *
  * const demo = fastly.getTlsPrivateKeyIds({});
  * const example = fastly.getTlsPrivateKey({
- *     id: fastly_tls_private_key_ids.demo.ids[0],
+ *     id: demoFastlyTlsPrivateKeyIds.ids[0],
  * });
  * ```
  * <!--End PulumiCodeChooser -->

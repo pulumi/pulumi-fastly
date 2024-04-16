@@ -16,7 +16,8 @@ import * as utilities from "./utilities";
  * import * as pulumi from "@pulumi/pulumi";
  * import * as fastly from "@pulumi/fastly";
  *
- * const exampleServiceVcl = new fastly.ServiceVcl("exampleServiceVcl", {
+ * const exampleServiceVcl = new fastly.ServiceVcl("example", {
+ *     name: "Example Service",
  *     domains: [{
  *         name: "example.com",
  *     }],
@@ -33,11 +34,11 @@ import * as utilities from "./utilities";
  *     ],
  *     forceDestroy: true,
  * });
- * const exampleDictionaries = fastly.getDictionariesOutput({
+ * const example = fastly.getDictionariesOutput({
  *     serviceId: exampleServiceVcl.id,
  *     serviceVersion: exampleServiceVcl.activeVersion,
  * });
- * export const serviceDictionaries = exampleDictionaries;
+ * export const serviceDictionaries = example;
  * ```
  * <!--End PulumiCodeChooser -->
  *
@@ -97,7 +98,8 @@ export interface GetDictionariesResult {
  * import * as pulumi from "@pulumi/pulumi";
  * import * as fastly from "@pulumi/fastly";
  *
- * const exampleServiceVcl = new fastly.ServiceVcl("exampleServiceVcl", {
+ * const exampleServiceVcl = new fastly.ServiceVcl("example", {
+ *     name: "Example Service",
  *     domains: [{
  *         name: "example.com",
  *     }],
@@ -114,11 +116,11 @@ export interface GetDictionariesResult {
  *     ],
  *     forceDestroy: true,
  * });
- * const exampleDictionaries = fastly.getDictionariesOutput({
+ * const example = fastly.getDictionariesOutput({
  *     serviceId: exampleServiceVcl.id,
  *     serviceVersion: exampleServiceVcl.activeVersion,
  * });
- * export const serviceDictionaries = exampleDictionaries;
+ * export const serviceDictionaries = example;
  * ```
  * <!--End PulumiCodeChooser -->
  *

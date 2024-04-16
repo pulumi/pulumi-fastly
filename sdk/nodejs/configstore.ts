@@ -21,17 +21,18 @@ import * as utilities from "./utilities";
  * // IMPORTANT: Deleting a Config Store requires first deleting its resource_link.
  * // This requires a two-step `pulumi up` as we can't guarantee deletion order.
  * // e.g. resource_link deletion within fastly_service_compute might not finish first.
- * const exampleConfigstore = new fastly.Configstore("exampleConfigstore", {});
- * const examplePackageHash = fastly.getPackageHash({
+ * const exampleConfigstore = new fastly.Configstore("example", {name: "my_config_store"});
+ * const example = fastly.getPackageHash({
  *     filename: "package.tar.gz",
  * });
- * const exampleServiceCompute = new fastly.ServiceCompute("exampleServiceCompute", {
+ * const exampleServiceCompute = new fastly.ServiceCompute("example", {
+ *     name: "my_compute_service",
  *     domains: [{
  *         name: "demo.example.com",
  *     }],
  *     "package": {
  *         filename: "package.tar.gz",
- *         sourceCodeHash: examplePackageHash.then(examplePackageHash => examplePackageHash.hash),
+ *         sourceCodeHash: example.then(example => example.hash),
  *     },
  *     resourceLinks: [{
  *         name: "my_resource_link",

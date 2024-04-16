@@ -80,9 +80,9 @@ def get_tls_activation_ids(certificate_id: Optional[str] = None,
     import pulumi
     import pulumi_fastly as fastly
 
-    example_tls_activation_ids = fastly.get_tls_activation_ids(certificate_id=fastly_tls_certificate["example"]["id"])
-    example_tls_activation = [fastly.get_tls_activation(id=__value) for __key, __value in example_tls_activation_ids.ids]
-    pulumi.export("activationDomains", [a.domain for a in example_tls_activation])
+    example = fastly.get_tls_activation_ids(certificate_id=example_fastly_tls_certificate["id"])
+    example_get_tls_activation = {__key: fastly.get_tls_activation(id=__value) for __key, __value in example.ids}
+    pulumi.export("activationDomains", [a.domain for a in example_get_tls_activation])
     ```
     <!--End PulumiCodeChooser -->
 
@@ -113,9 +113,9 @@ def get_tls_activation_ids_output(certificate_id: Optional[pulumi.Input[Optional
     import pulumi
     import pulumi_fastly as fastly
 
-    example_tls_activation_ids = fastly.get_tls_activation_ids(certificate_id=fastly_tls_certificate["example"]["id"])
-    example_tls_activation = [fastly.get_tls_activation(id=__value) for __key, __value in example_tls_activation_ids.ids]
-    pulumi.export("activationDomains", [a.domain for a in example_tls_activation])
+    example = fastly.get_tls_activation_ids(certificate_id=example_fastly_tls_certificate["id"])
+    example_get_tls_activation = {__key: fastly.get_tls_activation(id=__value) for __key, __value in example.ids}
+    pulumi.export("activationDomains", [a.domain for a in example_get_tls_activation])
     ```
     <!--End PulumiCodeChooser -->
 

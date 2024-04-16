@@ -23,12 +23,15 @@ namespace Pulumi.Fastly
     /// 
     /// return await Deployment.RunAsync(() =&gt; 
     /// {
-    ///     var exampleServiceVcl = new Fastly.ServiceVcl("exampleServiceVcl");
-    /// 
-    ///     // ...
-    ///     var exampleAlert = new Fastly.Alert("exampleAlert", new()
+    ///     var example = new Fastly.ServiceVcl("example", new()
     ///     {
-    ///         ServiceId = exampleServiceVcl.Id,
+    ///         Name = "my_vcl_service",
+    ///     });
+    /// 
+    ///     var exampleAlert = new Fastly.Alert("example", new()
+    ///     {
+    ///         Name = "my_vcl_service errors",
+    ///         ServiceId = example.Id,
     ///         Source = "stats",
     ///         Metric = "status_5xx",
     ///         EvaluationStrategy = new Fastly.Inputs.AlertEvaluationStrategyArgs

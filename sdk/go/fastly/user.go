@@ -35,6 +35,7 @@ import (
 //		pulumi.Run(func(ctx *pulumi.Context) error {
 //			_, err := fastly.NewUser(ctx, "demo", &fastly.UserArgs{
 //				Login: pulumi.String("demo@example.com"),
+//				Name:  pulumi.String("Demo User"),
 //			})
 //			if err != nil {
 //				return err

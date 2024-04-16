@@ -33,15 +33,13 @@ import javax.annotation.Nullable;
  * import com.pulumi.Context;
  * import com.pulumi.Pulumi;
  * import com.pulumi.core.Output;
- * import com.pulumi.tls.PrivateKey;
+ * import com.pulumi.tls.privateKey;
  * import com.pulumi.tls.PrivateKeyArgs;
- * import com.pulumi.tls.SelfSignedCert;
+ * import com.pulumi.tls.selfSignedCert;
  * import com.pulumi.tls.SelfSignedCertArgs;
- * import com.pulumi.tls.inputs.SelfSignedCertSubjectArgs;
- * import com.pulumi.tls.CertRequest;
+ * import com.pulumi.tls.certRequest;
  * import com.pulumi.tls.CertRequestArgs;
- * import com.pulumi.tls.inputs.CertRequestSubjectArgs;
- * import com.pulumi.tls.LocallySignedCert;
+ * import com.pulumi.tls.locallySignedCert;
  * import com.pulumi.tls.LocallySignedCertArgs;
  * import com.pulumi.fastly.FastlyFunctions;
  * import com.pulumi.fastly.inputs.GetTlsConfigurationArgs;
@@ -67,16 +65,14 @@ import javax.annotation.Nullable;
  *             .algorithm(&#34;RSA&#34;)
  *             .build());
  * 
- *         var keyPrivateKey = new PrivateKey(&#34;keyPrivateKey&#34;, PrivateKeyArgs.builder()        
+ *         var key = new PrivateKey(&#34;key&#34;, PrivateKeyArgs.builder()        
  *             .algorithm(&#34;RSA&#34;)
  *             .build());
  * 
  *         var ca = new SelfSignedCert(&#34;ca&#34;, SelfSignedCertArgs.builder()        
  *             .keyAlgorithm(caKey.algorithm())
  *             .privateKeyPem(caKey.privateKeyPem())
- *             .subjects(SelfSignedCertSubjectArgs.builder()
- *                 .commonName(&#34;Example CA&#34;)
- *                 .build())
+ *             .subject(%!v(PANIC=Format method: runtime error: invalid memory address or nil pointer dereference))
  *             .isCaCertificate(true)
  *             .validityPeriodHours(360)
  *             .allowedUses(            
@@ -85,17 +81,15 @@ import javax.annotation.Nullable;
  *             .build());
  * 
  *         var example = new CertRequest(&#34;example&#34;, CertRequestArgs.builder()        
- *             .keyAlgorithm(keyPrivateKey.algorithm())
- *             .privateKeyPem(keyPrivateKey.privateKeyPem())
- *             .subjects(CertRequestSubjectArgs.builder()
- *                 .commonName(&#34;example.com&#34;)
- *                 .build())
+ *             .keyAlgorithm(key.algorithm())
+ *             .privateKeyPem(key.privateKeyPem())
+ *             .subject(%!v(PANIC=Format method: runtime error: invalid memory address or nil pointer dereference))
  *             .dnsNames(            
  *                 &#34;example.com&#34;,
  *                 &#34;www.example.com&#34;)
  *             .build());
  * 
- *         var certLocallySignedCert = new LocallySignedCert(&#34;certLocallySignedCert&#34;, LocallySignedCertArgs.builder()        
+ *         var cert = new LocallySignedCert(&#34;cert&#34;, LocallySignedCertArgs.builder()        
  *             .certRequestPem(example.certRequestPem())
  *             .caKeyAlgorithm(caKey.algorithm())
  *             .caPrivateKeyPem(caKey.privateKeyPem())
@@ -111,11 +105,12 @@ import javax.annotation.Nullable;
  *             .build());
  * 
  *         var keyTlsPrivateKey = new TlsPrivateKey(&#34;keyTlsPrivateKey&#34;, TlsPrivateKeyArgs.builder()        
- *             .keyPem(keyPrivateKey.privateKeyPem())
+ *             .keyPem(key.privateKeyPem())
+ *             .name(&#34;tf-demo&#34;)
  *             .build());
  * 
  *         var certTlsPlatformCertificate = new TlsPlatformCertificate(&#34;certTlsPlatformCertificate&#34;, TlsPlatformCertificateArgs.builder()        
- *             .certificateBody(certLocallySignedCert.certPem())
+ *             .certificateBody(cert.certPem())
  *             .intermediatesBlob(ca.certPem())
  *             .configurationId(config.applyValue(getTlsConfigurationResult -&gt; getTlsConfigurationResult.id()))
  *             .allowUntrustedRoot(true)
