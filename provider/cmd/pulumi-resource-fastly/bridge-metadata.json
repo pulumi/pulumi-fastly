@@ -358,6 +358,9 @@
             "fastly_tls_mutual_authentication": {
                 "current": "fastly:index/tlsMutualAuthentication:TlsMutualAuthentication",
                 "fields": {
+                    "activation_ids": {
+                        "maxItemsOne": false
+                    },
                     "tls_activations": {
                         "maxItemsOne": false
                     }
@@ -561,6 +564,9 @@
             "fastly_tls_subscription": {
                 "current": "fastly:index/getTlsSubscription:getTlsSubscription",
                 "fields": {
+                    "certificate_ids": {
+                        "maxItemsOne": false
+                    },
                     "domains": {
                         "maxItemsOne": false
                     }
