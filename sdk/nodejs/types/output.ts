@@ -1648,7 +1648,7 @@ export interface ServiceVclHealthcheck {
      */
     threshold?: number;
     /**
-     * Timeout in milliseconds. Default `500`
+     * Timeout in milliseconds. Default `5000`
      */
     timeout?: number;
     /**

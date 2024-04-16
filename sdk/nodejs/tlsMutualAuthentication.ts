@@ -4,6 +4,15 @@
 import * as pulumi from "@pulumi/pulumi";
 import * as utilities from "./utilities";
 
+/**
+ * The Mutual TLS API allows for client-to-server authentication using client-side X.509 authentication.
+ *
+ * The main Mutual Authentication object represents the certificate bundle and other configurations which support Mutual TLS for your domains.
+ *
+ * Mutual TLS can be added to existing TLS activations to allow for client-to-server authentication. In order to use mutual TLS, you must already have active server-side TLS using either custom certificates or an enabled Fastly-managed subscription.
+ *
+ * The examples below demonstrate how to use Mutual Authentication along with a TLS Subscription. Refer to the `fastly.TlsSubscription` resource documentation for a deeper explanation of that code.
+ */
 export class TlsMutualAuthentication extends pulumi.CustomResource {
     /**
      * Get an existing TlsMutualAuthentication resource's state with the given name, ID, and optional extra
@@ -33,6 +42,10 @@ export class TlsMutualAuthentication extends pulumi.CustomResource {
     }
 
     /**
+     * List of TLS Activation IDs
+     */
+    public readonly activationIds!: pulumi.Output<string[] | undefined>;
+    /**
      * One or more certificates. Enter each individual certificate blob on a new line. Must be PEM-formatted.
      */
     public readonly certBundle!: pulumi.Output<string>;
@@ -45,7 +58,8 @@ export class TlsMutualAuthentication extends pulumi.CustomResource {
      */
     public readonly enforced!: pulumi.Output<boolean>;
     /**
-     * Comma-separated list of related objects to include (e.g. `tlsActivations` will provide you with the TLS domain names that are related to your Mutual TLS authentication).
+     * A comma-separated list used by the Terraform provider during a state refresh to return more data related to your mutual
+     * authentication from the Fastly API (permitted values: `tls_activations`).
      */
     public readonly include!: pulumi.Output<string | undefined>;
     /**
@@ -74,6 +88,7 @@ export class TlsMutualAuthentication extends pulumi.CustomResource {
         opts = opts || {};
         if (opts.id) {
             const state = argsOrState as TlsMutualAuthenticationState | undefined;
+            resourceInputs["activationIds"] = state ? state.activationIds : undefined;
             resourceInputs["certBundle"] = state ? state.certBundle : undefined;
             resourceInputs["createdAt"] = state ? state.createdAt : undefined;
             resourceInputs["enforced"] = state ? state.enforced : undefined;
@@ -86,6 +101,7 @@ export class TlsMutualAuthentication extends pulumi.CustomResource {
             if ((!args || args.certBundle === undefined) && !opts.urn) {
                 throw new Error("Missing required property 'certBundle'");
             }
+            resourceInputs["activationIds"] = args ? args.activationIds : undefined;
             resourceInputs["certBundle"] = args ? args.certBundle : undefined;
             resourceInputs["enforced"] = args ? args.enforced : undefined;
             resourceInputs["include"] = args ? args.include : undefined;
@@ -104,6 +120,10 @@ export class TlsMutualAuthentication extends pulumi.CustomResource {
  */
 export interface TlsMutualAuthenticationState {
     /**
+     * List of TLS Activation IDs
+     */
+    activationIds?: pulumi.Input<pulumi.Input<string>[]>;
+    /**
      * One or more certificates. Enter each individual certificate blob on a new line. Must be PEM-formatted.
      */
     certBundle?: pulumi.Input<string>;
@@ -116,7 +136,8 @@ export interface TlsMutualAuthenticationState {
      */
     enforced?: pulumi.Input<boolean>;
     /**
-     * Comma-separated list of related objects to include (e.g. `tlsActivations` will provide you with the TLS domain names that are related to your Mutual TLS authentication).
+     * A comma-separated list used by the Terraform provider during a state refresh to return more data related to your mutual
+     * authentication from the Fastly API (permitted values: `tls_activations`).
      */
     include?: pulumi.Input<string>;
     /**
@@ -138,6 +159,10 @@ export interface TlsMutualAuthenticationState {
  */
 export interface TlsMutualAuthenticationArgs {
     /**
+     * List of TLS Activation IDs
+     */
+    activationIds?: pulumi.Input<pulumi.Input<string>[]>;
+    /**
      * One or more certificates. Enter each individual certificate blob on a new line. Must be PEM-formatted.
      */
     certBundle: pulumi.Input<string>;
@@ -146,7 +171,8 @@ export interface TlsMutualAuthenticationArgs {
      */
     enforced?: pulumi.Input<boolean>;
     /**
-     * Comma-separated list of related objects to include (e.g. `tlsActivations` will provide you with the TLS domain names that are related to your Mutual TLS authentication).
+     * A comma-separated list used by the Terraform provider during a state refresh to return more data related to your mutual
+     * authentication from the Fastly API (permitted values: `tls_activations`).
      */
     include?: pulumi.Input<string>;
     /**

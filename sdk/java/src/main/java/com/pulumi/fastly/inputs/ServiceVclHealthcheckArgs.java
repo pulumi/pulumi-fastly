@@ -169,14 +169,14 @@ public final class ServiceVclHealthcheckArgs extends com.pulumi.resources.Resour
     }
 
     /**
-     * Timeout in milliseconds. Default `500`
+     * Timeout in milliseconds. Default `5000`
      * 
      */
     @Import(name="timeout")
     private @Nullable Output<Integer> timeout;
 
     /**
-     * @return Timeout in milliseconds. Default `500`
+     * @return Timeout in milliseconds. Default `5000`
      * 
      */
     public Optional<Output<Integer>> timeout() {
@@ -454,7 +454,7 @@ public final class ServiceVclHealthcheckArgs extends com.pulumi.resources.Resour
         }
 
         /**
-         * @param timeout Timeout in milliseconds. Default `500`
+         * @param timeout Timeout in milliseconds. Default `5000`
          * 
          * @return builder
          * 
@@ -465,7 +465,7 @@ public final class ServiceVclHealthcheckArgs extends com.pulumi.resources.Resour
         }
 
         /**
-         * @param timeout Timeout in milliseconds. Default `500`
+         * @param timeout Timeout in milliseconds. Default `5000`
          * 
          * @return builder
          * 

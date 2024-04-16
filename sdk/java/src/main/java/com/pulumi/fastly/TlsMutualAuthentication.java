@@ -16,8 +16,32 @@ import java.util.List;
 import java.util.Optional;
 import javax.annotation.Nullable;
 
+/**
+ * The Mutual TLS API allows for client-to-server authentication using client-side X.509 authentication.
+ * 
+ * The main Mutual Authentication object represents the certificate bundle and other configurations which support Mutual TLS for your domains.
+ * 
+ * Mutual TLS can be added to existing TLS activations to allow for client-to-server authentication. In order to use mutual TLS, you must already have active server-side TLS using either custom certificates or an enabled Fastly-managed subscription.
+ * 
+ * The examples below demonstrate how to use Mutual Authentication along with a TLS Subscription. Refer to the `fastly.TlsSubscription` resource documentation for a deeper explanation of that code.
+ * 
+ */
 @ResourceType(type="fastly:index/tlsMutualAuthentication:TlsMutualAuthentication")
 public class TlsMutualAuthentication extends com.pulumi.resources.CustomResource {
+    /**
+     * List of TLS Activation IDs
+     * 
+     */
+    @Export(name="activationIds", refs={List.class,String.class}, tree="[0,1]")
+    private Output</* @Nullable */ List<String>> activationIds;
+
+    /**
+     * @return List of TLS Activation IDs
+     * 
+     */
+    public Output<Optional<List<String>>> activationIds() {
+        return Codegen.optional(this.activationIds);
+    }
     /**
      * One or more certificates. Enter each individual certificate blob on a new line. Must be PEM-formatted.
      * 
@@ -61,14 +85,16 @@ public class TlsMutualAuthentication extends com.pulumi.resources.CustomResource
         return this.enforced;
     }
     /**
-     * Comma-separated list of related objects to include (e.g. `tls_activations` will provide you with the TLS domain names that are related to your Mutual TLS authentication).
+     * A comma-separated list used by the Terraform provider during a state refresh to return more data related to your mutual
+     * authentication from the Fastly API (permitted values: `tls_activations`).
      * 
      */
     @Export(name="include", refs={String.class}, tree="[0]")
     private Output</* @Nullable */ String> include;
 
     /**
-     * @return Comma-separated list of related objects to include (e.g. `tls_activations` will provide you with the TLS domain names that are related to your Mutual TLS authentication).
+     * @return A comma-separated list used by the Terraform provider during a state refresh to return more data related to your mutual
+     * authentication from the Fastly API (permitted values: `tls_activations`).
      * 
      */
     public Output<Optional<String>> include() {

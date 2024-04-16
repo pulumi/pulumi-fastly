@@ -65,7 +65,7 @@ public final class ServiceVclHealthcheck {
      */
     private @Nullable Integer threshold;
     /**
-     * @return Timeout in milliseconds. Default `500`
+     * @return Timeout in milliseconds. Default `5000`
      * 
      */
     private @Nullable Integer timeout;
@@ -147,7 +147,7 @@ public final class ServiceVclHealthcheck {
         return Optional.ofNullable(this.threshold);
     }
     /**
-     * @return Timeout in milliseconds. Default `500`
+     * @return Timeout in milliseconds. Default `5000`
      * 
      */
     public Optional<Integer> timeout() {

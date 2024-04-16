@@ -1516,7 +1516,7 @@ export interface ServiceVclHealthcheck {
      */
     threshold?: pulumi.Input<number>;
     /**
-     * Timeout in milliseconds. Default `500`
+     * Timeout in milliseconds. Default `5000`
      */
     timeout?: pulumi.Input<number>;
     /**

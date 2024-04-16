@@ -54,7 +54,7 @@ namespace Pulumi.Fastly.Outputs
         /// </summary>
         public readonly int? Threshold;
         /// <summary>
-        /// Timeout in milliseconds. Default `500`
+        /// Timeout in milliseconds. Default `5000`
         /// </summary>
         public readonly int? Timeout;
         /// <summary>

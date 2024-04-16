@@ -5681,7 +5681,7 @@ class ServiceVclHealthcheckArgs:
         :param pulumi.Input[int] initial: When loading a config, the initial number of probes to be seen as OK. Default `3`
         :param pulumi.Input[str] method: Which HTTP method to use. Default `HEAD`
         :param pulumi.Input[int] threshold: How many Healthchecks must succeed to be considered healthy. Default `3`
-        :param pulumi.Input[int] timeout: Timeout in milliseconds. Default `500`
+        :param pulumi.Input[int] timeout: Timeout in milliseconds. Default `5000`
         :param pulumi.Input[int] window: The number of most recent Healthcheck queries to keep for this Healthcheck. Default `5`
         """
         pulumi.set(__self__, "host", host)
@@ -5830,7 +5830,7 @@ class ServiceVclHealthcheckArgs:
     @pulumi.getter
     def timeout(self) -> Optional[pulumi.Input[int]]:
         """
-        Timeout in milliseconds. Default `500`
+        Timeout in milliseconds. Default `5000`
         """
         return pulumi.get(self, "timeout")
 
