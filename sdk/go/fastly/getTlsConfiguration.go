@@ -21,7 +21,6 @@ import (
 //
 // ## Example Usage
 //
-// <!--Start PulumiCodeChooser -->
 // ```go
 // package main
 //
@@ -51,7 +50,6 @@ import (
 //	}
 //
 // ```
-// <!--End PulumiCodeChooser -->
 func GetTlsConfiguration(ctx *pulumi.Context, args *GetTlsConfigurationArgs, opts ...pulumi.InvokeOption) (*GetTlsConfigurationResult, error) {
 	opts = internal.PkgInvokeDefaultOpts(opts)
 	var rv GetTlsConfigurationResult

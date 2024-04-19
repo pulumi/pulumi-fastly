@@ -22,7 +22,6 @@ namespace Pulumi.Fastly
         /// 
         /// ## Example Usage
         /// 
-        /// &lt;!--Start PulumiCodeChooser --&gt;
         /// ```csharp
         /// using System.Collections.Generic;
         /// using System.Linq;
@@ -44,7 +43,6 @@ namespace Pulumi.Fastly
         ///     // ...
         /// });
         /// ```
-        /// &lt;!--End PulumiCodeChooser --&gt;
         /// </summary>
         public static Task<GetTlsConfigurationResult> InvokeAsync(GetTlsConfigurationArgs? args = null, InvokeOptions? options = null)
             => global::Pulumi.Deployment.Instance.InvokeAsync<GetTlsConfigurationResult>("fastly:index/getTlsConfiguration:getTlsConfiguration", args ?? new GetTlsConfigurationArgs(), options.WithDefaults());
@@ -60,7 +58,6 @@ namespace Pulumi.Fastly
         /// 
         /// ## Example Usage
         /// 
-        /// &lt;!--Start PulumiCodeChooser --&gt;
         /// ```csharp
         /// using System.Collections.Generic;
         /// using System.Linq;
@@ -82,7 +79,6 @@ namespace Pulumi.Fastly
         ///     // ...
         /// });
         /// ```
-        /// &lt;!--End PulumiCodeChooser --&gt;
         /// </summary>
         public static Output<GetTlsConfigurationResult> Invoke(GetTlsConfigurationInvokeArgs? args = null, InvokeOptions? options = null)
             => global::Pulumi.Deployment.Instance.Invoke<GetTlsConfigurationResult>("fastly:index/getTlsConfiguration:getTlsConfiguration", args ?? new GetTlsConfigurationInvokeArgs(), options.WithDefaults());

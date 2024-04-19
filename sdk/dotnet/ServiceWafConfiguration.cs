@@ -18,7 +18,6 @@ namespace Pulumi.Fastly
     /// 
     /// Basic usage:
     /// 
-    /// &lt;!--Start PulumiCodeChooser --&gt;
     /// ```csharp
     /// using System.Collections.Generic;
     /// using System.Linq;
@@ -89,11 +88,9 @@ namespace Pulumi.Fastly
     /// 
     /// });
     /// ```
-    /// &lt;!--End PulumiCodeChooser --&gt;
     /// 
     /// Usage with rules:
     /// 
-    /// &lt;!--Start PulumiCodeChooser --&gt;
     /// ```csharp
     /// using System.Collections.Generic;
     /// using System.Linq;
@@ -173,13 +170,11 @@ namespace Pulumi.Fastly
     /// 
     /// });
     /// ```
-    /// &lt;!--End PulumiCodeChooser --&gt;
     /// 
     /// Usage with rule exclusions:
     /// 
     /// &gt; **Warning:** Rule exclusions are part of a **beta release**, which may be subject to breaking changes and improvements over time. For more information, see our [product and feature lifecycle](https://docs.fastly.com/products/fastly-product-lifecycle#beta) descriptions.
     /// 
-    /// &lt;!--Start PulumiCodeChooser --&gt;
     /// ```csharp
     /// using System.Collections.Generic;
     /// using System.Linq;
@@ -272,7 +267,6 @@ namespace Pulumi.Fastly
     /// 
     /// });
     /// ```
-    /// &lt;!--End PulumiCodeChooser --&gt;
     /// 
     /// Usage with rules from data source:
     /// 

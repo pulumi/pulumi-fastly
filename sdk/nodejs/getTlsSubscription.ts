@@ -9,7 +9,6 @@ import * as utilities from "./utilities";
  *
  * ## Example Usage
  *
- * <!--Start PulumiCodeChooser -->
  * ```typescript
  * import * as pulumi from "@pulumi/pulumi";
  * import * as fastly from "@pulumi/fastly";
@@ -18,7 +17,6 @@ import * as utilities from "./utilities";
  *     domains: ["example.com"],
  * });
  * ```
- * <!--End PulumiCodeChooser -->
  */
 export function getTlsSubscription(args?: GetTlsSubscriptionArgs, opts?: pulumi.InvokeOptions): Promise<GetTlsSubscriptionResult> {
     args = args || {};
@@ -100,7 +98,6 @@ export interface GetTlsSubscriptionResult {
  *
  * ## Example Usage
  *
- * <!--Start PulumiCodeChooser -->
  * ```typescript
  * import * as pulumi from "@pulumi/pulumi";
  * import * as fastly from "@pulumi/fastly";
@@ -109,7 +106,6 @@ export interface GetTlsSubscriptionResult {
  *     domains: ["example.com"],
  * });
  * ```
- * <!--End PulumiCodeChooser -->
  */
 export function getTlsSubscriptionOutput(args?: GetTlsSubscriptionOutputArgs, opts?: pulumi.InvokeOptions): pulumi.Output<GetTlsSubscriptionResult> {
     return pulumi.output(args).apply((a: any) => getTlsSubscription(a, opts))

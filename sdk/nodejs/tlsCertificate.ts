@@ -14,7 +14,6 @@ import * as utilities from "./utilities";
  *
  * Basic usage:
  *
- * <!--Start PulumiCodeChooser -->
  * ```typescript
  * import * as pulumi from "@pulumi/pulumi";
  * import * as fastly from "@pulumi/fastly";
@@ -41,7 +40,6 @@ import * as utilities from "./utilities";
  * });
  * // The private key has to be present before the certificate can be uploaded
  * ```
- * <!--End PulumiCodeChooser -->
  *
  * ## Updating certificates
  *

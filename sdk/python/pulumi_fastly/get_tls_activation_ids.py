@@ -75,7 +75,6 @@ def get_tls_activation_ids(certificate_id: Optional[str] = None,
 
     ## Example Usage
 
-    <!--Start PulumiCodeChooser -->
     ```python
     import pulumi
     import pulumi_fastly as fastly
@@ -84,7 +83,6 @@ def get_tls_activation_ids(certificate_id: Optional[str] = None,
     example_tls_activation = [fastly.get_tls_activation(id=__value) for __key, __value in example_tls_activation_ids.ids]
     pulumi.export("activationDomains", [a.domain for a in example_tls_activation])
     ```
-    <!--End PulumiCodeChooser -->
 
 
     :param str certificate_id: ID of TLS certificate used to filter activations
@@ -108,7 +106,6 @@ def get_tls_activation_ids_output(certificate_id: Optional[pulumi.Input[Optional
 
     ## Example Usage
 
-    <!--Start PulumiCodeChooser -->
     ```python
     import pulumi
     import pulumi_fastly as fastly
@@ -117,7 +114,6 @@ def get_tls_activation_ids_output(certificate_id: Optional[pulumi.Input[Optional
     example_tls_activation = [fastly.get_tls_activation(id=__value) for __key, __value in example_tls_activation_ids.ids]
     pulumi.export("activationDomains", [a.domain for a in example_tls_activation])
     ```
-    <!--End PulumiCodeChooser -->
 
 
     :param str certificate_id: ID of TLS certificate used to filter activations

@@ -20,7 +20,6 @@ import (
 //
 // Basic usage:
 //
-// <!--Start PulumiCodeChooser -->
 // ```go
 // package main
 //
@@ -92,11 +91,9 @@ import (
 //	}
 //
 // ```
-// <!--End PulumiCodeChooser -->
 //
 // Usage with rules:
 //
-// <!--Start PulumiCodeChooser -->
 // ```go
 // package main
 //
@@ -175,13 +172,11 @@ import (
 //	}
 //
 // ```
-// <!--End PulumiCodeChooser -->
 //
 // Usage with rule exclusions:
 //
 // > **Warning:** Rule exclusions are part of a **beta release**, which may be subject to breaking changes and improvements over time. For more information, see our [product and feature lifecycle](https://docs.fastly.com/products/fastly-product-lifecycle#beta) descriptions.
 //
-// <!--Start PulumiCodeChooser -->
 // ```go
 // package main
 //
@@ -270,7 +265,6 @@ import (
 //	}
 //
 // ```
-// <!--End PulumiCodeChooser -->
 //
 // Usage with rules from data source:
 //

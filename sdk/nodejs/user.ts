@@ -13,14 +13,12 @@ import * as utilities from "./utilities";
  *
  * Basic usage:
  *
- * <!--Start PulumiCodeChooser -->
  * ```typescript
  * import * as pulumi from "@pulumi/pulumi";
  * import * as fastly from "@pulumi/fastly";
  *
  * const demo = new fastly.User("demo", {login: "demo@example.com"});
  * ```
- * <!--End PulumiCodeChooser -->
  *
  * ## Import
  *

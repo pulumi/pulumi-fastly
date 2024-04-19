@@ -21,7 +21,6 @@ import (
 //
 // ## Example Usage
 //
-// <!--Start PulumiCodeChooser -->
 // ```go
 // package main
 //
@@ -47,7 +46,6 @@ import (
 //	}
 //
 // ```
-// <!--End PulumiCodeChooser -->
 func LookupTlsPlatformCertificate(ctx *pulumi.Context, args *LookupTlsPlatformCertificateArgs, opts ...pulumi.InvokeOption) (*LookupTlsPlatformCertificateResult, error) {
 	opts = internal.PkgInvokeDefaultOpts(opts)
 	var rv LookupTlsPlatformCertificateResult

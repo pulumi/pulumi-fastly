@@ -1131,7 +1131,6 @@ class ServiceWafConfiguration(pulumi.CustomResource):
 
         Basic usage:
 
-        <!--Start PulumiCodeChooser -->
         ```python
         import pulumi
         import pulumi_fastly as fastly
@@ -1175,11 +1174,9 @@ class ServiceWafConfiguration(pulumi.CustomResource):
             waf_id=demo.waf.waf_id,
             http_violation_score_threshold=100)
         ```
-        <!--End PulumiCodeChooser -->
 
         Usage with rules:
 
-        <!--Start PulumiCodeChooser -->
         ```python
         import pulumi
         import pulumi_fastly as fastly
@@ -1228,13 +1225,11 @@ class ServiceWafConfiguration(pulumi.CustomResource):
                 status="log",
             )])
         ```
-        <!--End PulumiCodeChooser -->
 
         Usage with rule exclusions:
 
         > **Warning:** Rule exclusions are part of a **beta release**, which may be subject to breaking changes and improvements over time. For more information, see our [product and feature lifecycle](https://docs.fastly.com/products/fastly-product-lifecycle#beta) descriptions.
 
-        <!--Start PulumiCodeChooser -->
         ```python
         import pulumi
         import pulumi_fastly as fastly
@@ -1289,7 +1284,6 @@ class ServiceWafConfiguration(pulumi.CustomResource):
                 modsec_rule_ids=[2029718],
             )])
         ```
-        <!--End PulumiCodeChooser -->
 
         Usage with rules from data source:
 
@@ -1351,7 +1345,6 @@ class ServiceWafConfiguration(pulumi.CustomResource):
 
         Basic usage:
 
-        <!--Start PulumiCodeChooser -->
         ```python
         import pulumi
         import pulumi_fastly as fastly
@@ -1395,11 +1388,9 @@ class ServiceWafConfiguration(pulumi.CustomResource):
             waf_id=demo.waf.waf_id,
             http_violation_score_threshold=100)
         ```
-        <!--End PulumiCodeChooser -->
 
         Usage with rules:
 
-        <!--Start PulumiCodeChooser -->
         ```python
         import pulumi
         import pulumi_fastly as fastly
@@ -1448,13 +1439,11 @@ class ServiceWafConfiguration(pulumi.CustomResource):
                 status="log",
             )])
         ```
-        <!--End PulumiCodeChooser -->
 
         Usage with rule exclusions:
 
         > **Warning:** Rule exclusions are part of a **beta release**, which may be subject to breaking changes and improvements over time. For more information, see our [product and feature lifecycle](https://docs.fastly.com/products/fastly-product-lifecycle#beta) descriptions.
 
-        <!--Start PulumiCodeChooser -->
         ```python
         import pulumi
         import pulumi_fastly as fastly
@@ -1509,7 +1498,6 @@ class ServiceWafConfiguration(pulumi.CustomResource):
                 modsec_rule_ids=[2029718],
             )])
         ```
-        <!--End PulumiCodeChooser -->
 
         Usage with rules from data source:
 

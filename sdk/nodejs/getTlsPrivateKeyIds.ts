@@ -9,7 +9,6 @@ import * as utilities from "./utilities";
  *
  * ## Example Usage
  *
- * <!--Start PulumiCodeChooser -->
  * ```typescript
  * import * as pulumi from "@pulumi/pulumi";
  * import * as fastly from "@pulumi/fastly";
@@ -19,7 +18,6 @@ import * as utilities from "./utilities";
  *     id: fastly_tls_private_key_ids.demo.ids[0],
  * });
  * ```
- * <!--End PulumiCodeChooser -->
  */
 export function getTlsPrivateKeyIds(opts?: pulumi.InvokeOptions): Promise<GetTlsPrivateKeyIdsResult> {
 
@@ -46,7 +44,6 @@ export interface GetTlsPrivateKeyIdsResult {
  *
  * ## Example Usage
  *
- * <!--Start PulumiCodeChooser -->
  * ```typescript
  * import * as pulumi from "@pulumi/pulumi";
  * import * as fastly from "@pulumi/fastly";
@@ -56,7 +53,6 @@ export interface GetTlsPrivateKeyIdsResult {
  *     id: fastly_tls_private_key_ids.demo.ids[0],
  * });
  * ```
- * <!--End PulumiCodeChooser -->
  */
 export function getTlsPrivateKeyIdsOutput(opts?: pulumi.InvokeOptions): pulumi.Output<GetTlsPrivateKeyIdsResult> {
     return pulumi.output(getTlsPrivateKeyIds(opts))

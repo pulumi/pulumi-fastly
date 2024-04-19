@@ -138,7 +138,6 @@ class ServiceAuthorization(pulumi.CustomResource):
 
         Basic usage:
 
-        <!--Start PulumiCodeChooser -->
         ```python
         import pulumi
         import pulumi_fastly as fastly
@@ -152,7 +151,6 @@ class ServiceAuthorization(pulumi.CustomResource):
             user_id=user.id,
             permission="purge_all")
         ```
-        <!--End PulumiCodeChooser -->
 
         ## Import
 
@@ -183,7 +181,6 @@ class ServiceAuthorization(pulumi.CustomResource):
 
         Basic usage:
 
-        <!--Start PulumiCodeChooser -->
         ```python
         import pulumi
         import pulumi_fastly as fastly
@@ -197,7 +194,6 @@ class ServiceAuthorization(pulumi.CustomResource):
             user_id=user.id,
             permission="purge_all")
         ```
-        <!--End PulumiCodeChooser -->
 
         ## Import
 

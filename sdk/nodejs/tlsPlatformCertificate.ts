@@ -14,7 +14,6 @@ import * as utilities from "./utilities";
  *
  * Basic usage with self-signed CA:
  *
- * <!--Start PulumiCodeChooser -->
  * ```typescript
  * import * as pulumi from "@pulumi/pulumi";
  * import * as fastly from "@pulumi/fastly";
@@ -70,7 +69,6 @@ import * as utilities from "./utilities";
  *     dependsOn: [keyTlsPrivateKey],
  * });
  * ```
- * <!--End PulumiCodeChooser -->
  *
  * ## Import
  *

@@ -15,7 +15,6 @@ import (
 //
 // ## Example Usage
 //
-// <!--Start PulumiCodeChooser -->
 // ```go
 // package main
 //
@@ -60,7 +59,6 @@ import (
 //	}
 //
 // ```
-// <!--End PulumiCodeChooser -->
 //
 // [1]: https://developer.fastly.com/reference/api/dictionaries/
 func GetDictionaries(ctx *pulumi.Context, args *GetDictionariesArgs, opts ...pulumi.InvokeOption) (*GetDictionariesResult, error) {

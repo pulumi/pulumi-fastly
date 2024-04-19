@@ -16,7 +16,6 @@ namespace Pulumi.Fastly
         /// 
         /// ## Example Usage
         /// 
-        /// &lt;!--Start PulumiCodeChooser --&gt;
         /// ```csharp
         /// using System.Collections.Generic;
         /// using System.Linq;
@@ -34,7 +33,6 @@ namespace Pulumi.Fastly
         /// 
         /// });
         /// ```
-        /// &lt;!--End PulumiCodeChooser --&gt;
         /// </summary>
         public static Task<GetTlsPlatformCertificateIdsResult> InvokeAsync(InvokeOptions? options = null)
             => global::Pulumi.Deployment.Instance.InvokeAsync<GetTlsPlatformCertificateIdsResult>("fastly:index/getTlsPlatformCertificateIds:getTlsPlatformCertificateIds", InvokeArgs.Empty, options.WithDefaults());
@@ -44,7 +42,6 @@ namespace Pulumi.Fastly
         /// 
         /// ## Example Usage
         /// 
-        /// &lt;!--Start PulumiCodeChooser --&gt;
         /// ```csharp
         /// using System.Collections.Generic;
         /// using System.Linq;
@@ -62,7 +59,6 @@ namespace Pulumi.Fastly
         /// 
         /// });
         /// ```
-        /// &lt;!--End PulumiCodeChooser --&gt;
         /// </summary>
         public static Output<GetTlsPlatformCertificateIdsResult> Invoke(InvokeOptions? options = null)
             => global::Pulumi.Deployment.Instance.Invoke<GetTlsPlatformCertificateIdsResult>("fastly:index/getTlsPlatformCertificateIds:getTlsPlatformCertificateIds", InvokeArgs.Empty, options.WithDefaults());

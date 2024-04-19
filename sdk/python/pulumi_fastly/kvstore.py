@@ -104,7 +104,6 @@ class Kvstore(pulumi.CustomResource):
 
         Basic usage:
 
-        <!--Start PulumiCodeChooser -->
         ```python
         import pulumi
         import pulumi_fastly as fastly
@@ -128,7 +127,6 @@ class Kvstore(pulumi.CustomResource):
             )],
             force_destroy=True)
         ```
-        <!--End PulumiCodeChooser -->
 
         ## Import
 
@@ -154,7 +152,6 @@ class Kvstore(pulumi.CustomResource):
 
         Basic usage:
 
-        <!--Start PulumiCodeChooser -->
         ```python
         import pulumi
         import pulumi_fastly as fastly
@@ -178,7 +175,6 @@ class Kvstore(pulumi.CustomResource):
             )],
             force_destroy=True)
         ```
-        <!--End PulumiCodeChooser -->
 
         ## Import
 

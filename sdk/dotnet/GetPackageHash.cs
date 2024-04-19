@@ -16,7 +16,6 @@ namespace Pulumi.Fastly
         /// 
         /// ## Example Usage
         /// 
-        /// &lt;!--Start PulumiCodeChooser --&gt;
         /// ```csharp
         /// using System.Collections.Generic;
         /// using System.Linq;
@@ -42,7 +41,6 @@ namespace Pulumi.Fastly
         /// 
         /// });
         /// ```
-        /// &lt;!--End PulumiCodeChooser --&gt;
         /// </summary>
         public static Task<GetPackageHashResult> InvokeAsync(GetPackageHashArgs? args = null, InvokeOptions? options = null)
             => global::Pulumi.Deployment.Instance.InvokeAsync<GetPackageHashResult>("fastly:index/getPackageHash:getPackageHash", args ?? new GetPackageHashArgs(), options.WithDefaults());
@@ -52,7 +50,6 @@ namespace Pulumi.Fastly
         /// 
         /// ## Example Usage
         /// 
-        /// &lt;!--Start PulumiCodeChooser --&gt;
         /// ```csharp
         /// using System.Collections.Generic;
         /// using System.Linq;
@@ -78,7 +75,6 @@ namespace Pulumi.Fastly
         /// 
         /// });
         /// ```
-        /// &lt;!--End PulumiCodeChooser --&gt;
         /// </summary>
         public static Output<GetPackageHashResult> Invoke(GetPackageHashInvokeArgs? args = null, InvokeOptions? options = null)
             => global::Pulumi.Deployment.Instance.Invoke<GetPackageHashResult>("fastly:index/getPackageHash:getPackageHash", args ?? new GetPackageHashInvokeArgs(), options.WithDefaults());

@@ -9,7 +9,6 @@ import * as utilities from "./utilities";
  *
  * ## Example Usage
  *
- * <!--Start PulumiCodeChooser -->
  * ```typescript
  * import * as pulumi from "@pulumi/pulumi";
  * import * as fastly from "@pulumi/fastly";
@@ -23,7 +22,6 @@ import * as utilities from "./utilities";
  *     sourceCodeHash: examplePackageHash.then(examplePackageHash => examplePackageHash.hash),
  * }});
  * ```
- * <!--End PulumiCodeChooser -->
  */
 export function getPackageHash(args?: GetPackageHashArgs, opts?: pulumi.InvokeOptions): Promise<GetPackageHashResult> {
     args = args || {};
@@ -75,7 +73,6 @@ export interface GetPackageHashResult {
  *
  * ## Example Usage
  *
- * <!--Start PulumiCodeChooser -->
  * ```typescript
  * import * as pulumi from "@pulumi/pulumi";
  * import * as fastly from "@pulumi/fastly";
@@ -89,7 +86,6 @@ export interface GetPackageHashResult {
  *     sourceCodeHash: examplePackageHash.then(examplePackageHash => examplePackageHash.hash),
  * }});
  * ```
- * <!--End PulumiCodeChooser -->
  */
 export function getPackageHashOutput(args?: GetPackageHashOutputArgs, opts?: pulumi.InvokeOptions): pulumi.Output<GetPackageHashResult> {
     return pulumi.output(args).apply((a: any) => getPackageHash(a, opts))
