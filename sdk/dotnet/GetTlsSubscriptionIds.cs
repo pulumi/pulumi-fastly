@@ -25,19 +25,16 @@ namespace Pulumi.Fastly
         /// 
         /// return await Deployment.RunAsync(() =&gt; 
         /// {
-        ///     var exampleTlsSubscriptionIds = Fastly.GetTlsSubscriptionIds.Invoke();
+        ///     var example = Fastly.GetTlsSubscriptionIds.Invoke();
         /// 
-        ///     var exampleTlsSubscription = .Select(__value =&gt; 
-        ///     {
-        ///         return Fastly.GetTlsSubscription.Invoke(new()
-        ///         {
-        ///             Id = __value,
-        ///         });
-        ///     }).ToList();
+        ///     var exampleGetTlsSubscription = ;
         /// 
         ///     return new Dictionary&lt;string, object?&gt;
         ///     {
-        ///         ["subscriptionDomains"] = exampleTlsSubscription,
+        ///         ["subscriptionDomains"] = exampleGetTlsSubscription.Apply(exampleGetTlsSubscription =&gt; (exampleGetTlsSubscription).Values.Select(a =&gt; 
+        ///         {
+        ///             return a.CertificateAuthority;
+        ///         }).ToList()),
         ///     };
         /// });
         /// ```
@@ -60,19 +57,16 @@ namespace Pulumi.Fastly
         /// 
         /// return await Deployment.RunAsync(() =&gt; 
         /// {
-        ///     var exampleTlsSubscriptionIds = Fastly.GetTlsSubscriptionIds.Invoke();
+        ///     var example = Fastly.GetTlsSubscriptionIds.Invoke();
         /// 
-        ///     var exampleTlsSubscription = .Select(__value =&gt; 
-        ///     {
-        ///         return Fastly.GetTlsSubscription.Invoke(new()
-        ///         {
-        ///             Id = __value,
-        ///         });
-        ///     }).ToList();
+        ///     var exampleGetTlsSubscription = ;
         /// 
         ///     return new Dictionary&lt;string, object?&gt;
         ///     {
-        ///         ["subscriptionDomains"] = exampleTlsSubscription,
+        ///         ["subscriptionDomains"] = exampleGetTlsSubscription.Apply(exampleGetTlsSubscription =&gt; (exampleGetTlsSubscription).Values.Select(a =&gt; 
+        ///         {
+        ///             return a.CertificateAuthority;
+        ///         }).ToList()),
         ///     };
         /// });
         /// ```

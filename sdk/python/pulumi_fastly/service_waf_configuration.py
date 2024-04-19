@@ -1137,6 +1137,7 @@ class ServiceWafConfiguration(pulumi.CustomResource):
         import pulumi_fastly as fastly
 
         demo = fastly.ServiceVcl("demo",
+            name="demofastly",
             domains=[fastly.ServiceVclDomainArgs(
                 name="example.com",
                 comment="demo",
@@ -1185,6 +1186,7 @@ class ServiceWafConfiguration(pulumi.CustomResource):
         import pulumi_fastly as fastly
 
         demo = fastly.ServiceVcl("demo",
+            name="demofastly",
             domains=[fastly.ServiceVclDomainArgs(
                 name="example.com",
                 comment="demo",
@@ -1240,6 +1242,7 @@ class ServiceWafConfiguration(pulumi.CustomResource):
         import pulumi_fastly as fastly
 
         demo = fastly.ServiceVcl("demo",
+            name="demofastly",
             domains=[fastly.ServiceVclDomainArgs(
                 name="example.com",
                 comment="demo",
@@ -1357,6 +1360,7 @@ class ServiceWafConfiguration(pulumi.CustomResource):
         import pulumi_fastly as fastly
 
         demo = fastly.ServiceVcl("demo",
+            name="demofastly",
             domains=[fastly.ServiceVclDomainArgs(
                 name="example.com",
                 comment="demo",
@@ -1405,6 +1409,7 @@ class ServiceWafConfiguration(pulumi.CustomResource):
         import pulumi_fastly as fastly
 
         demo = fastly.ServiceVcl("demo",
+            name="demofastly",
             domains=[fastly.ServiceVclDomainArgs(
                 name="example.com",
                 comment="demo",
@@ -1460,6 +1465,7 @@ class ServiceWafConfiguration(pulumi.CustomResource):
         import pulumi_fastly as fastly
 
         demo = fastly.ServiceVcl("demo",
+            name="demofastly",
             domains=[fastly.ServiceVclDomainArgs(
                 name="example.com",
                 comment="demo",

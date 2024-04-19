@@ -29,20 +29,20 @@ namespace Pulumi.Fastly
     /// 
     /// return await Deployment.RunAsync(() =&gt; 
     /// {
-    ///     var keyPrivateKey = new Tls.PrivateKey("keyPrivateKey", new()
+    ///     var key = new Tls.Index.PrivateKey("key", new()
     ///     {
     ///         Algorithm = "RSA",
     ///     });
     /// 
-    ///     var cert = new Tls.SelfSignedCert("cert", new()
+    ///     var cert = new Tls.Index.SelfSignedCert("cert", new()
     ///     {
-    ///         KeyAlgorithm = keyPrivateKey.Algorithm,
-    ///         PrivateKeyPem = keyPrivateKey.PrivateKeyPem,
-    ///         Subjects = new[]
+    ///         KeyAlgorithm = key.Algorithm,
+    ///         PrivateKeyPem = key.PrivateKeyPem,
+    ///         Subject = new[]
     ///         {
-    ///             new Tls.Inputs.SelfSignedCertSubjectArgs
+    ///             
     ///             {
-    ///                 CommonName = "example.com",
+    ///                 { "commonName", "example.com" },
     ///             },
     ///         },
     ///         IsCaCertificate = true,
@@ -58,13 +58,15 @@ namespace Pulumi.Fastly
     ///         },
     ///     });
     /// 
-    ///     var keyTlsPrivateKey = new Fastly.TlsPrivateKey("keyTlsPrivateKey", new()
+    ///     var keyTlsPrivateKey = new Fastly.TlsPrivateKey("key", new()
     ///     {
-    ///         KeyPem = keyPrivateKey.PrivateKeyPem,
+    ///         KeyPem = key.PrivateKeyPem,
+    ///         Name = "tf-demo",
     ///     });
     /// 
     ///     var example = new Fastly.TlsCertificate("example", new()
     ///     {
+    ///         Name = "tf-demo",
     ///         CertificateBody = cert.CertPem,
     ///     }, new CustomResourceOptions
     ///     {
@@ -74,7 +76,6 @@ namespace Pulumi.Fastly
     ///         },
     ///     });
     /// 
-    ///     // The private key has to be present before the certificate can be uploaded
     /// });
     /// ```
     /// &lt;!--End PulumiCodeChooser --&gt;

@@ -14,9 +14,8 @@ import * as utilities from "./utilities";
  * import * as pulumi from "@pulumi/pulumi";
  * import * as fastly from "@pulumi/fastly";
  *
- * const exampleTlsCertificateIds = fastly.getTlsCertificateIds({});
- * const exampleTlsActivation = new fastly.TlsActivation("exampleTlsActivation", {certificateId: exampleTlsCertificateIds.then(exampleTlsCertificateIds => exampleTlsCertificateIds.ids?.[0])});
- * // ...
+ * const example = fastly.getTlsCertificateIds({});
+ * const exampleTlsActivation = new fastly.TlsActivation("example", {certificateId: example.then(example => example.ids?.[0])});
  * ```
  * <!--End PulumiCodeChooser -->
  */
@@ -50,9 +49,8 @@ export interface GetTlsCertificateIdsResult {
  * import * as pulumi from "@pulumi/pulumi";
  * import * as fastly from "@pulumi/fastly";
  *
- * const exampleTlsCertificateIds = fastly.getTlsCertificateIds({});
- * const exampleTlsActivation = new fastly.TlsActivation("exampleTlsActivation", {certificateId: exampleTlsCertificateIds.then(exampleTlsCertificateIds => exampleTlsCertificateIds.ids?.[0])});
- * // ...
+ * const example = fastly.getTlsCertificateIds({});
+ * const exampleTlsActivation = new fastly.TlsActivation("example", {certificateId: example.then(example => example.ids?.[0])});
  * ```
  * <!--End PulumiCodeChooser -->
  */

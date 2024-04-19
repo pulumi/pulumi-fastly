@@ -68,7 +68,7 @@ def get_tls_private_key_ids(opts: Optional[pulumi.InvokeOptions] = None) -> Awai
     import pulumi_fastly as fastly
 
     demo = fastly.get_tls_private_key_ids()
-    example = fastly.get_tls_private_key(id=fastly_tls_private_key_ids["demo"]["ids"])
+    example = fastly.get_tls_private_key(id=demo_fastly_tls_private_key_ids["ids"])
     ```
     <!--End PulumiCodeChooser -->
     """
@@ -94,7 +94,7 @@ def get_tls_private_key_ids_output(opts: Optional[pulumi.InvokeOptions] = None) 
     import pulumi_fastly as fastly
 
     demo = fastly.get_tls_private_key_ids()
-    example = fastly.get_tls_private_key(id=fastly_tls_private_key_ids["demo"]["ids"])
+    example = fastly.get_tls_private_key(id=demo_fastly_tls_private_key_ids["ids"])
     ```
     <!--End PulumiCodeChooser -->
     """

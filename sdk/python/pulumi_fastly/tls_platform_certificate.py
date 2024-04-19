@@ -274,45 +274,47 @@ class TlsPlatformCertificate(pulumi.CustomResource):
         import pulumi_fastly as fastly
         import pulumi_tls as tls
 
-        ca_key = tls.PrivateKey("caKey", algorithm="RSA")
-        key_private_key = tls.PrivateKey("keyPrivateKey", algorithm="RSA")
-        ca = tls.SelfSignedCert("ca",
+        ca_key = tls.index.PrivateKey("ca_key", algorithm=RSA)
+        key = tls.index.PrivateKey("key", algorithm=RSA)
+        ca = tls.index.SelfSignedCert("ca",
             key_algorithm=ca_key.algorithm,
             private_key_pem=ca_key.private_key_pem,
-            subjects=[tls.SelfSignedCertSubjectArgs(
-                common_name="Example CA",
-            )],
+            subject=[{
+                commonName: Example CA,
+            }],
             is_ca_certificate=True,
             validity_period_hours=360,
             allowed_uses=[
-                "cert_signing",
-                "server_auth",
+                cert_signing,
+                server_auth,
             ])
-        example = tls.CertRequest("example",
-            key_algorithm=key_private_key.algorithm,
-            private_key_pem=key_private_key.private_key_pem,
-            subjects=[tls.CertRequestSubjectArgs(
-                common_name="example.com",
-            )],
+        example = tls.index.CertRequest("example",
+            key_algorithm=key.algorithm,
+            private_key_pem=key.private_key_pem,
+            subject=[{
+                commonName: example.com,
+            }],
             dns_names=[
-                "example.com",
-                "www.example.com",
+                example.com,
+                www.example.com,
             ])
-        cert_locally_signed_cert = tls.LocallySignedCert("certLocallySignedCert",
+        cert = tls.index.LocallySignedCert("cert",
             cert_request_pem=example.cert_request_pem,
             ca_key_algorithm=ca_key.algorithm,
             ca_private_key_pem=ca_key.private_key_pem,
             ca_cert_pem=ca.cert_pem,
             validity_period_hours=360,
             allowed_uses=[
-                "cert_signing",
-                "server_auth",
+                cert_signing,
+                server_auth,
             ])
         config = fastly.get_tls_configuration(tls_service="PLATFORM")
-        key_tls_private_key = fastly.TlsPrivateKey("keyTlsPrivateKey", key_pem=key_private_key.private_key_pem)
-        cert_tls_platform_certificate = fastly.TlsPlatformCertificate("certTlsPlatformCertificate",
-            certificate_body=cert_locally_signed_cert.cert_pem,
-            intermediates_blob=ca.cert_pem,
+        key_tls_private_key = fastly.TlsPrivateKey("key",
+            key_pem=key["privateKeyPem"],
+            name="tf-demo")
+        cert_tls_platform_certificate = fastly.TlsPlatformCertificate("cert",
+            certificate_body=cert["certPem"],
+            intermediates_blob=ca["certPem"],
             configuration_id=config.id,
             allow_untrusted_root=True,
             opts=pulumi.ResourceOptions(depends_on=[key_tls_private_key]))
@@ -356,45 +358,47 @@ class TlsPlatformCertificate(pulumi.CustomResource):
         import pulumi_fastly as fastly
         import pulumi_tls as tls
 
-        ca_key = tls.PrivateKey("caKey", algorithm="RSA")
-        key_private_key = tls.PrivateKey("keyPrivateKey", algorithm="RSA")
-        ca = tls.SelfSignedCert("ca",
+        ca_key = tls.index.PrivateKey("ca_key", algorithm=RSA)
+        key = tls.index.PrivateKey("key", algorithm=RSA)
+        ca = tls.index.SelfSignedCert("ca",
             key_algorithm=ca_key.algorithm,
             private_key_pem=ca_key.private_key_pem,
-            subjects=[tls.SelfSignedCertSubjectArgs(
-                common_name="Example CA",
-            )],
+            subject=[{
+                commonName: Example CA,
+            }],
             is_ca_certificate=True,
             validity_period_hours=360,
             allowed_uses=[
-                "cert_signing",
-                "server_auth",
+                cert_signing,
+                server_auth,
             ])
-        example = tls.CertRequest("example",
-            key_algorithm=key_private_key.algorithm,
-            private_key_pem=key_private_key.private_key_pem,
-            subjects=[tls.CertRequestSubjectArgs(
-                common_name="example.com",
-            )],
+        example = tls.index.CertRequest("example",
+            key_algorithm=key.algorithm,
+            private_key_pem=key.private_key_pem,
+            subject=[{
+                commonName: example.com,
+            }],
             dns_names=[
-                "example.com",
-                "www.example.com",
+                example.com,
+                www.example.com,
             ])
-        cert_locally_signed_cert = tls.LocallySignedCert("certLocallySignedCert",
+        cert = tls.index.LocallySignedCert("cert",
             cert_request_pem=example.cert_request_pem,
             ca_key_algorithm=ca_key.algorithm,
             ca_private_key_pem=ca_key.private_key_pem,
             ca_cert_pem=ca.cert_pem,
             validity_period_hours=360,
             allowed_uses=[
-                "cert_signing",
-                "server_auth",
+                cert_signing,
+                server_auth,
             ])
         config = fastly.get_tls_configuration(tls_service="PLATFORM")
-        key_tls_private_key = fastly.TlsPrivateKey("keyTlsPrivateKey", key_pem=key_private_key.private_key_pem)
-        cert_tls_platform_certificate = fastly.TlsPlatformCertificate("certTlsPlatformCertificate",
-            certificate_body=cert_locally_signed_cert.cert_pem,
-            intermediates_blob=ca.cert_pem,
+        key_tls_private_key = fastly.TlsPrivateKey("key",
+            key_pem=key["privateKeyPem"],
+            name="tf-demo")
+        cert_tls_platform_certificate = fastly.TlsPlatformCertificate("cert",
+            certificate_body=cert["certPem"],
+            intermediates_blob=ca["certPem"],
             configuration_id=config.id,
             allow_untrusted_root=True,
             opts=pulumi.ResourceOptions(depends_on=[key_tls_private_key]))

@@ -25,22 +25,19 @@ namespace Pulumi.Fastly
         /// 
         /// return await Deployment.RunAsync(() =&gt; 
         /// {
-        ///     var exampleTlsActivationIds = Fastly.GetTlsActivationIds.Invoke(new()
+        ///     var example = Fastly.GetTlsActivationIds.Invoke(new()
         ///     {
-        ///         CertificateId = fastly_tls_certificate.Example.Id,
+        ///         CertificateId = exampleFastlyTlsCertificate.Id,
         ///     });
         /// 
-        ///     var exampleTlsActivation = .Select(__value =&gt; 
-        ///     {
-        ///         return Fastly.GetTlsActivation.Invoke(new()
-        ///         {
-        ///             Id = __value,
-        ///         });
-        ///     }).ToList();
+        ///     var exampleGetTlsActivation = ;
         /// 
         ///     return new Dictionary&lt;string, object?&gt;
         ///     {
-        ///         ["activationDomains"] = exampleTlsActivation,
+        ///         ["activationDomains"] = exampleGetTlsActivation.Apply(exampleGetTlsActivation =&gt; (exampleGetTlsActivation).Values.Select(a =&gt; 
+        ///         {
+        ///             return a.Domain;
+        ///         }).ToList()),
         ///     };
         /// });
         /// ```
@@ -63,22 +60,19 @@ namespace Pulumi.Fastly
         /// 
         /// return await Deployment.RunAsync(() =&gt; 
         /// {
-        ///     var exampleTlsActivationIds = Fastly.GetTlsActivationIds.Invoke(new()
+        ///     var example = Fastly.GetTlsActivationIds.Invoke(new()
         ///     {
-        ///         CertificateId = fastly_tls_certificate.Example.Id,
+        ///         CertificateId = exampleFastlyTlsCertificate.Id,
         ///     });
         /// 
-        ///     var exampleTlsActivation = .Select(__value =&gt; 
-        ///     {
-        ///         return Fastly.GetTlsActivation.Invoke(new()
-        ///         {
-        ///             Id = __value,
-        ///         });
-        ///     }).ToList();
+        ///     var exampleGetTlsActivation = ;
         /// 
         ///     return new Dictionary&lt;string, object?&gt;
         ///     {
-        ///         ["activationDomains"] = exampleTlsActivation,
+        ///         ["activationDomains"] = exampleGetTlsActivation.Apply(exampleGetTlsActivation =&gt; (exampleGetTlsActivation).Values.Select(a =&gt; 
+        ///         {
+        ///             return a.Domain;
+        ///         }).ToList()),
         ///     };
         /// });
         /// ```

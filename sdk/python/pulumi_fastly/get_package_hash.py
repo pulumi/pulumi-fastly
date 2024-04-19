@@ -93,11 +93,10 @@ def get_package_hash(content: Optional[str] = None,
     import pulumi
     import pulumi_fastly as fastly
 
-    example_package_hash = fastly.get_package_hash(filename="./path/to/package.tar.gz")
-    # ...
-    example_service_compute = fastly.ServiceCompute("exampleServiceCompute", package=fastly.ServiceComputePackageArgs(
+    example = fastly.get_package_hash(filename="./path/to/package.tar.gz")
+    example_service_compute = fastly.ServiceCompute("example", package=fastly.ServiceComputePackageArgs(
         filename="./path/to/package.tar.gz",
-        source_code_hash=example_package_hash.hash,
+        source_code_hash=example.hash,
     ))
     ```
     <!--End PulumiCodeChooser -->
@@ -133,11 +132,10 @@ def get_package_hash_output(content: Optional[pulumi.Input[Optional[str]]] = Non
     import pulumi
     import pulumi_fastly as fastly
 
-    example_package_hash = fastly.get_package_hash(filename="./path/to/package.tar.gz")
-    # ...
-    example_service_compute = fastly.ServiceCompute("exampleServiceCompute", package=fastly.ServiceComputePackageArgs(
+    example = fastly.get_package_hash(filename="./path/to/package.tar.gz")
+    example_service_compute = fastly.ServiceCompute("example", package=fastly.ServiceComputePackageArgs(
         filename="./path/to/package.tar.gz",
-        source_code_hash=example_package_hash.hash,
+        source_code_hash=example.hash,
     ))
     ```
     <!--End PulumiCodeChooser -->

@@ -22,11 +22,10 @@ import * as utilities from "./utilities";
  * import * as pulumi from "@pulumi/pulumi";
  * import * as fastly from "@pulumi/fastly";
  *
- * const exampleTlsConfiguration = fastly.getTlsConfiguration({
+ * const example = fastly.getTlsConfiguration({
  *     "default": true,
  * });
- * const exampleTlsActivation = new fastly.TlsActivation("exampleTlsActivation", {configurationId: exampleTlsConfiguration.then(exampleTlsConfiguration => exampleTlsConfiguration.id)});
- * // ...
+ * const exampleTlsActivation = new fastly.TlsActivation("example", {configurationId: example.then(example => example.id)});
  * ```
  * <!--End PulumiCodeChooser -->
  */
@@ -131,11 +130,10 @@ export interface GetTlsConfigurationResult {
  * import * as pulumi from "@pulumi/pulumi";
  * import * as fastly from "@pulumi/fastly";
  *
- * const exampleTlsConfiguration = fastly.getTlsConfiguration({
+ * const example = fastly.getTlsConfiguration({
  *     "default": true,
  * });
- * const exampleTlsActivation = new fastly.TlsActivation("exampleTlsActivation", {configurationId: exampleTlsConfiguration.then(exampleTlsConfiguration => exampleTlsConfiguration.id)});
- * // ...
+ * const exampleTlsActivation = new fastly.TlsActivation("example", {configurationId: example.then(example => example.id)});
  * ```
  * <!--End PulumiCodeChooser -->
  */

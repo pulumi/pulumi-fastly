@@ -29,7 +29,7 @@ namespace Pulumi.Fastly
         /// 
         ///     var example = Fastly.GetTlsPrivateKey.Invoke(new()
         ///     {
-        ///         Id = fastly_tls_private_key_ids.Demo.Ids[0],
+        ///         Id = demoFastlyTlsPrivateKeyIds.Ids[0],
         ///     });
         /// 
         /// });
@@ -57,7 +57,7 @@ namespace Pulumi.Fastly
         /// 
         ///     var example = Fastly.GetTlsPrivateKey.Invoke(new()
         ///     {
-        ///         Id = fastly_tls_private_key_ids.Demo.Ids[0],
+        ///         Id = demoFastlyTlsPrivateKeyIds.Ids[0],
         ///     });
         /// 
         /// });

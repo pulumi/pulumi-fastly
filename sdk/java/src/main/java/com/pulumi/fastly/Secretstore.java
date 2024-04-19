@@ -26,6 +26,7 @@ import javax.annotation.Nullable;
  * import com.pulumi.Pulumi;
  * import com.pulumi.core.Output;
  * import com.pulumi.fastly.Secretstore;
+ * import com.pulumi.fastly.SecretstoreArgs;
  * import com.pulumi.fastly.FastlyFunctions;
  * import com.pulumi.fastly.inputs.GetPackageHashArgs;
  * import com.pulumi.fastly.ServiceCompute;
@@ -49,19 +50,22 @@ import javax.annotation.Nullable;
  *         // IMPORTANT: Deleting a Secret Store requires first deleting its resource_link.
  *         // This requires a two-step `pulumi up` as we can&#39;t guarantee deletion order.
  *         // e.g. resource_link deletion within fastly_service_compute might not finish first.
- *         var exampleSecretstore = new Secretstore(&#34;exampleSecretstore&#34;);
+ *         var exampleSecretstore = new Secretstore(&#34;exampleSecretstore&#34;, SecretstoreArgs.builder()        
+ *             .name(&#34;my_secret_store&#34;)
+ *             .build());
  * 
- *         final var examplePackageHash = FastlyFunctions.getPackageHash(GetPackageHashArgs.builder()
+ *         final var example = FastlyFunctions.getPackageHash(GetPackageHashArgs.builder()
  *             .filename(&#34;package.tar.gz&#34;)
  *             .build());
  * 
  *         var exampleServiceCompute = new ServiceCompute(&#34;exampleServiceCompute&#34;, ServiceComputeArgs.builder()        
+ *             .name(&#34;my_compute_service&#34;)
  *             .domains(ServiceComputeDomainArgs.builder()
  *                 .name(&#34;demo.example.com&#34;)
  *                 .build())
  *             .package_(ServiceComputePackageArgs.builder()
  *                 .filename(&#34;package.tar.gz&#34;)
- *                 .sourceCodeHash(examplePackageHash.applyValue(getPackageHashResult -&gt; getPackageHashResult.hash()))
+ *                 .sourceCodeHash(example.applyValue(getPackageHashResult -&gt; getPackageHashResult.hash()))
  *                 .build())
  *             .resourceLinks(ServiceComputeResourceLinkArgs.builder()
  *                 .name(&#34;my_resource_link&#34;)

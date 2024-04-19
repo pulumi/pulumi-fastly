@@ -29,12 +29,15 @@ import (
 //
 //	func main() {
 //		pulumi.Run(func(ctx *pulumi.Context) error {
-//			exampleServiceVcl, err := fastly.NewServiceVcl(ctx, "exampleServiceVcl", nil)
+//			example, err := fastly.NewServiceVcl(ctx, "example", &fastly.ServiceVclArgs{
+//				Name: pulumi.String("my_vcl_service"),
+//			})
 //			if err != nil {
 //				return err
 //			}
-//			_, err = fastly.NewAlert(ctx, "exampleAlert", &fastly.AlertArgs{
-//				ServiceId: exampleServiceVcl.ID(),
+//			_, err = fastly.NewAlert(ctx, "example", &fastly.AlertArgs{
+//				Name:      pulumi.String("my_vcl_service errors"),
+//				ServiceId: example.ID(),
 //				Source:    pulumi.String("stats"),
 //				Metric:    pulumi.String("status_5xx"),
 //				EvaluationStrategy: &fastly.AlertEvaluationStrategyArgs{

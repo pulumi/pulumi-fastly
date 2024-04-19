@@ -25,11 +25,11 @@ namespace Pulumi.Fastly
         /// 
         /// return await Deployment.RunAsync(() =&gt; 
         /// {
-        ///     var exampleTlsPlatformCertificateIds = Fastly.GetTlsPlatformCertificateIds.Invoke();
+        ///     var example = Fastly.GetTlsPlatformCertificateIds.Invoke();
         /// 
-        ///     var exampleTlsPlatformCertificate = Fastly.GetTlsPlatformCertificate.Invoke(new()
+        ///     var exampleGetTlsPlatformCertificate = Fastly.GetTlsPlatformCertificate.Invoke(new()
         ///     {
-        ///         Id = exampleTlsPlatformCertificateIds.Apply(getTlsPlatformCertificateIdsResult =&gt; getTlsPlatformCertificateIdsResult.Ids[0]),
+        ///         Id = example.Apply(getTlsPlatformCertificateIdsResult =&gt; getTlsPlatformCertificateIdsResult.Ids[0]),
         ///     });
         /// 
         /// });
@@ -53,11 +53,11 @@ namespace Pulumi.Fastly
         /// 
         /// return await Deployment.RunAsync(() =&gt; 
         /// {
-        ///     var exampleTlsPlatformCertificateIds = Fastly.GetTlsPlatformCertificateIds.Invoke();
+        ///     var example = Fastly.GetTlsPlatformCertificateIds.Invoke();
         /// 
-        ///     var exampleTlsPlatformCertificate = Fastly.GetTlsPlatformCertificate.Invoke(new()
+        ///     var exampleGetTlsPlatformCertificate = Fastly.GetTlsPlatformCertificate.Invoke(new()
         ///     {
-        ///         Id = exampleTlsPlatformCertificateIds.Apply(getTlsPlatformCertificateIdsResult =&gt; getTlsPlatformCertificateIdsResult.Ids[0]),
+        ///         Id = example.Apply(getTlsPlatformCertificateIdsResult =&gt; getTlsPlatformCertificateIdsResult.Ids[0]),
         ///     });
         /// 
         /// });

@@ -25,8 +25,9 @@ namespace Pulumi.Fastly
         /// 
         /// return await Deployment.RunAsync(() =&gt; 
         /// {
-        ///     var exampleServiceVcl = new Fastly.ServiceVcl("exampleServiceVcl", new()
+        ///     var exampleServiceVcl = new Fastly.ServiceVcl("example", new()
         ///     {
+        ///         Name = "Example Service",
         ///         Domains = new[]
         ///         {
         ///             new Fastly.Inputs.ServiceVclDomainArgs
@@ -52,7 +53,7 @@ namespace Pulumi.Fastly
         ///         ForceDestroy = true,
         ///     });
         /// 
-        ///     var exampleDictionaries = Fastly.GetDictionaries.Invoke(new()
+        ///     var example = Fastly.GetDictionaries.Invoke(new()
         ///     {
         ///         ServiceId = exampleServiceVcl.Id,
         ///         ServiceVersion = exampleServiceVcl.ActiveVersion,
@@ -60,7 +61,7 @@ namespace Pulumi.Fastly
         /// 
         ///     return new Dictionary&lt;string, object?&gt;
         ///     {
-        ///         ["serviceDictionaries"] = exampleDictionaries,
+        ///         ["serviceDictionaries"] = example,
         ///     };
         /// });
         /// ```
@@ -85,8 +86,9 @@ namespace Pulumi.Fastly
         /// 
         /// return await Deployment.RunAsync(() =&gt; 
         /// {
-        ///     var exampleServiceVcl = new Fastly.ServiceVcl("exampleServiceVcl", new()
+        ///     var exampleServiceVcl = new Fastly.ServiceVcl("example", new()
         ///     {
+        ///         Name = "Example Service",
         ///         Domains = new[]
         ///         {
         ///             new Fastly.Inputs.ServiceVclDomainArgs
@@ -112,7 +114,7 @@ namespace Pulumi.Fastly
         ///         ForceDestroy = true,
         ///     });
         /// 
-        ///     var exampleDictionaries = Fastly.GetDictionaries.Invoke(new()
+        ///     var example = Fastly.GetDictionaries.Invoke(new()
         ///     {
         ///         ServiceId = exampleServiceVcl.Id,
         ///         ServiceVersion = exampleServiceVcl.ActiveVersion,
@@ -120,7 +122,7 @@ namespace Pulumi.Fastly
         /// 
         ///     return new Dictionary&lt;string, object?&gt;
         ///     {
-        ///         ["serviceDictionaries"] = exampleDictionaries,
+        ///         ["serviceDictionaries"] = example,
         ///     };
         /// });
         /// ```

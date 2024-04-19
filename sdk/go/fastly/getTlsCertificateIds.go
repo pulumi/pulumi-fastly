@@ -28,12 +28,12 @@ import (
 //
 //	func main() {
 //		pulumi.Run(func(ctx *pulumi.Context) error {
-//			exampleTlsCertificateIds, err := fastly.GetTlsCertificateIds(ctx, nil, nil)
+//			example, err := fastly.GetTlsCertificateIds(ctx, nil, nil)
 //			if err != nil {
 //				return err
 //			}
-//			_, err = fastly.NewTlsActivation(ctx, "exampleTlsActivation", &fastly.TlsActivationArgs{
-//				CertificateId: pulumi.String(exampleTlsCertificateIds.Ids[0]),
+//			_, err = fastly.NewTlsActivation(ctx, "example", &fastly.TlsActivationArgs{
+//				CertificateId: pulumi.String(example.Ids[0]),
 //			})
 //			if err != nil {
 //				return err

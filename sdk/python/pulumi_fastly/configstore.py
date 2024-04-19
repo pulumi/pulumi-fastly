@@ -116,15 +116,16 @@ class Configstore(pulumi.CustomResource):
         # IMPORTANT: Deleting a Config Store requires first deleting its resource_link.
         # This requires a two-step `pulumi up` as we can't guarantee deletion order.
         # e.g. resource_link deletion within fastly_service_compute might not finish first.
-        example_configstore = fastly.Configstore("exampleConfigstore")
-        example_package_hash = fastly.get_package_hash(filename="package.tar.gz")
-        example_service_compute = fastly.ServiceCompute("exampleServiceCompute",
+        example_configstore = fastly.Configstore("example", name="my_config_store")
+        example = fastly.get_package_hash(filename="package.tar.gz")
+        example_service_compute = fastly.ServiceCompute("example",
+            name="my_compute_service",
             domains=[fastly.ServiceComputeDomainArgs(
                 name="demo.example.com",
             )],
             package=fastly.ServiceComputePackageArgs(
                 filename="package.tar.gz",
-                source_code_hash=example_package_hash.hash,
+                source_code_hash=example.hash,
             ),
             resource_links=[fastly.ServiceComputeResourceLinkArgs(
                 name="my_resource_link",
@@ -170,15 +171,16 @@ class Configstore(pulumi.CustomResource):
         # IMPORTANT: Deleting a Config Store requires first deleting its resource_link.
         # This requires a two-step `pulumi up` as we can't guarantee deletion order.
         # e.g. resource_link deletion within fastly_service_compute might not finish first.
-        example_configstore = fastly.Configstore("exampleConfigstore")
-        example_package_hash = fastly.get_package_hash(filename="package.tar.gz")
-        example_service_compute = fastly.ServiceCompute("exampleServiceCompute",
+        example_configstore = fastly.Configstore("example", name="my_config_store")
+        example = fastly.get_package_hash(filename="package.tar.gz")
+        example_service_compute = fastly.ServiceCompute("example",
+            name="my_compute_service",
             domains=[fastly.ServiceComputeDomainArgs(
                 name="demo.example.com",
             )],
             package=fastly.ServiceComputePackageArgs(
                 filename="package.tar.gz",
-                source_code_hash=example_package_hash.hash,
+                source_code_hash=example.hash,
             ),
             resource_links=[fastly.ServiceComputeResourceLinkArgs(
                 name="my_resource_link",

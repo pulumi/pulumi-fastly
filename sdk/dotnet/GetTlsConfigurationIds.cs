@@ -25,14 +25,13 @@ namespace Pulumi.Fastly
         /// 
         /// return await Deployment.RunAsync(() =&gt; 
         /// {
-        ///     var exampleTlsConfigurationIds = Fastly.GetTlsConfigurationIds.Invoke();
+        ///     var example = Fastly.GetTlsConfigurationIds.Invoke();
         /// 
-        ///     var exampleTlsActivation = new Fastly.TlsActivation("exampleTlsActivation", new()
+        ///     var exampleTlsActivation = new Fastly.TlsActivation("example", new()
         ///     {
-        ///         ConfigurationId = exampleTlsConfigurationIds.Apply(getTlsConfigurationIdsResult =&gt; getTlsConfigurationIdsResult.Ids[0]),
+        ///         ConfigurationId = example.Apply(getTlsConfigurationIdsResult =&gt; getTlsConfigurationIdsResult.Ids[0]),
         ///     });
         /// 
-        ///     // ...
         /// });
         /// ```
         /// &lt;!--End PulumiCodeChooser --&gt;
@@ -54,14 +53,13 @@ namespace Pulumi.Fastly
         /// 
         /// return await Deployment.RunAsync(() =&gt; 
         /// {
-        ///     var exampleTlsConfigurationIds = Fastly.GetTlsConfigurationIds.Invoke();
+        ///     var example = Fastly.GetTlsConfigurationIds.Invoke();
         /// 
-        ///     var exampleTlsActivation = new Fastly.TlsActivation("exampleTlsActivation", new()
+        ///     var exampleTlsActivation = new Fastly.TlsActivation("example", new()
         ///     {
-        ///         ConfigurationId = exampleTlsConfigurationIds.Apply(getTlsConfigurationIdsResult =&gt; getTlsConfigurationIdsResult.Ids[0]),
+        ///         ConfigurationId = example.Apply(getTlsConfigurationIdsResult =&gt; getTlsConfigurationIdsResult.Ids[0]),
         ///     });
         /// 
-        ///     // ...
         /// });
         /// ```
         /// &lt;!--End PulumiCodeChooser --&gt;

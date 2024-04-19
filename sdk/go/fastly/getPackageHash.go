@@ -28,17 +28,16 @@ import (
 //
 //	func main() {
 //		pulumi.Run(func(ctx *pulumi.Context) error {
-//			examplePackageHash, err := fastly.GetPackageHash(ctx, &fastly.GetPackageHashArgs{
+//			example, err := fastly.GetPackageHash(ctx, &fastly.GetPackageHashArgs{
 //				Filename: pulumi.StringRef("./path/to/package.tar.gz"),
 //			}, nil)
 //			if err != nil {
 //				return err
 //			}
-//			// ...
-//			_, err = fastly.NewServiceCompute(ctx, "exampleServiceCompute", &fastly.ServiceComputeArgs{
+//			_, err = fastly.NewServiceCompute(ctx, "example", &fastly.ServiceComputeArgs{
 //				Package: &fastly.ServiceComputePackageArgs{
 //					Filename:       pulumi.String("./path/to/package.tar.gz"),
-//					SourceCodeHash: pulumi.String(examplePackageHash.Hash),
+//					SourceCodeHash: pulumi.String(example.Hash),
 //				},
 //			})
 //			if err != nil {

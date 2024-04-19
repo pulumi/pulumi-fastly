@@ -20,11 +20,11 @@ import * as utilities from "./utilities";
  * import * as fastly from "@pulumi/fastly";
  * import * as tls from "@pulumi/tls";
  *
- * const keyPrivateKey = new tls.PrivateKey("keyPrivateKey", {algorithm: "RSA"});
- * const cert = new tls.SelfSignedCert("cert", {
- *     keyAlgorithm: keyPrivateKey.algorithm,
- *     privateKeyPem: keyPrivateKey.privateKeyPem,
- *     subjects: [{
+ * const key = new tls.index.PrivateKey("key", {algorithm: "RSA"});
+ * const cert = new tls.index.SelfSignedCert("cert", {
+ *     keyAlgorithm: key.algorithm,
+ *     privateKeyPem: key.privateKeyPem,
+ *     subject: [{
  *         commonName: "example.com",
  *     }],
  *     isCaCertificate: true,
@@ -35,11 +35,16 @@ import * as utilities from "./utilities";
  *     ],
  *     dnsNames: ["example.com"],
  * });
- * const keyTlsPrivateKey = new fastly.TlsPrivateKey("keyTlsPrivateKey", {keyPem: keyPrivateKey.privateKeyPem});
- * const example = new fastly.TlsCertificate("example", {certificateBody: cert.certPem}, {
+ * const keyTlsPrivateKey = new fastly.TlsPrivateKey("key", {
+ *     keyPem: key.privateKeyPem,
+ *     name: "tf-demo",
+ * });
+ * const example = new fastly.TlsCertificate("example", {
+ *     name: "tf-demo",
+ *     certificateBody: cert.certPem,
+ * }, {
  *     dependsOn: [keyTlsPrivateKey],
  * });
- * // The private key has to be present before the certificate can be uploaded
  * ```
  * <!--End PulumiCodeChooser -->
  *

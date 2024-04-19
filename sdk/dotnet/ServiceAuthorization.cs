@@ -29,10 +29,8 @@ namespace Pulumi.Fastly
     /// {
     ///     var demo = new Fastly.ServiceVcl("demo");
     /// 
-    ///     //...
     ///     var user = new Fastly.User("user");
     /// 
-    ///     // ...
     ///     var auth = new Fastly.ServiceAuthorization("auth", new()
     ///     {
     ///         ServiceId = demo.Id,

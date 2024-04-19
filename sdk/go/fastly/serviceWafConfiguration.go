@@ -34,6 +34,7 @@ import (
 //	func main() {
 //		pulumi.Run(func(ctx *pulumi.Context) error {
 //			demo, err := fastly.NewServiceVcl(ctx, "demo", &fastly.ServiceVclArgs{
+//				Name: pulumi.String("demofastly"),
 //				Domains: fastly.ServiceVclDomainArray{
 //					&fastly.ServiceVclDomainArgs{
 //						Name:    pulumi.String("example.com"),
@@ -110,6 +111,7 @@ import (
 //	func main() {
 //		pulumi.Run(func(ctx *pulumi.Context) error {
 //			demo, err := fastly.NewServiceVcl(ctx, "demo", &fastly.ServiceVclArgs{
+//				Name: pulumi.String("demofastly"),
 //				Domains: fastly.ServiceVclDomainArray{
 //					&fastly.ServiceVclDomainArgs{
 //						Name:    pulumi.String("example.com"),
@@ -195,6 +197,7 @@ import (
 //	func main() {
 //		pulumi.Run(func(ctx *pulumi.Context) error {
 //			demo, err := fastly.NewServiceVcl(ctx, "demo", &fastly.ServiceVclArgs{
+//				Name: pulumi.String("demofastly"),
 //				Domains: fastly.ServiceVclDomainArray{
 //					&fastly.ServiceVclDomainArgs{
 //						Name:    pulumi.String("example.com"),

@@ -145,7 +145,9 @@ class User(pulumi.CustomResource):
         import pulumi
         import pulumi_fastly as fastly
 
-        demo = fastly.User("demo", login="demo@example.com")
+        demo = fastly.User("demo",
+            login="demo@example.com",
+            name="Demo User")
         ```
         <!--End PulumiCodeChooser -->
 
@@ -183,7 +185,9 @@ class User(pulumi.CustomResource):
         import pulumi
         import pulumi_fastly as fastly
 
-        demo = fastly.User("demo", login="demo@example.com")
+        demo = fastly.User("demo",
+            login="demo@example.com",
+            name="Demo User")
         ```
         <!--End PulumiCodeChooser -->
 

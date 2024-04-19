@@ -34,14 +34,15 @@ import (
 //
 //	func main() {
 //		pulumi.Run(func(ctx *pulumi.Context) error {
-//			demoPrivateKey, err := tls.NewPrivateKey(ctx, "demoPrivateKey", &tls.PrivateKeyArgs{
-//				Algorithm: pulumi.String("RSA"),
+//			demo, err := tls.NewPrivateKey(ctx, "demo", &tls.PrivateKeyArgs{
+//				Algorithm: "RSA",
 //			})
 //			if err != nil {
 //				return err
 //			}
-//			_, err = fastly.NewTlsPrivateKey(ctx, "demoTlsPrivateKey", &fastly.TlsPrivateKeyArgs{
-//				KeyPem: demoPrivateKey.PrivateKeyPem,
+//			_, err = fastly.NewTlsPrivateKey(ctx, "demo", &fastly.TlsPrivateKeyArgs{
+//				KeyPem: demo.PrivateKeyPem,
+//				Name:   pulumi.String("tf-demo"),
 //			})
 //			if err != nil {
 //				return err

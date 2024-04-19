@@ -14,13 +14,13 @@ import * as utilities from "./utilities";
  * import * as pulumi from "@pulumi/pulumi";
  * import * as fastly from "@pulumi/fastly";
  *
- * const exampleTlsActivationIds = fastly.getTlsActivationIds({
- *     certificateId: fastly_tls_certificate.example.id,
+ * const example = fastly.getTlsActivationIds({
+ *     certificateId: exampleFastlyTlsCertificate.id,
  * });
- * const exampleTlsActivation = exampleTlsActivationIds.then(exampleTlsActivationIds => .map(([, ]) => (fastly.getTlsActivation({
+ * const exampleGetTlsActivation = example.then(example => .reduce((__obj, [, ]) => ({ ...__obj, [__key]: fastly.getTlsActivation({
  *     id: __value,
- * }))));
- * export const activationDomains = exampleTlsActivation.map(a => (a.domain));
+ * }) })));
+ * export const activationDomains = exampleGetTlsActivation.apply(exampleGetTlsActivation => Object.values(exampleGetTlsActivation).map(a => (a.domain)));
  * ```
  * <!--End PulumiCodeChooser -->
  */
@@ -70,13 +70,13 @@ export interface GetTlsActivationIdsResult {
  * import * as pulumi from "@pulumi/pulumi";
  * import * as fastly from "@pulumi/fastly";
  *
- * const exampleTlsActivationIds = fastly.getTlsActivationIds({
- *     certificateId: fastly_tls_certificate.example.id,
+ * const example = fastly.getTlsActivationIds({
+ *     certificateId: exampleFastlyTlsCertificate.id,
  * });
- * const exampleTlsActivation = exampleTlsActivationIds.then(exampleTlsActivationIds => .map(([, ]) => (fastly.getTlsActivation({
+ * const exampleGetTlsActivation = example.then(example => .reduce((__obj, [, ]) => ({ ...__obj, [__key]: fastly.getTlsActivation({
  *     id: __value,
- * }))));
- * export const activationDomains = exampleTlsActivation.map(a => (a.domain));
+ * }) })));
+ * export const activationDomains = exampleGetTlsActivation.apply(exampleGetTlsActivation => Object.values(exampleGetTlsActivation).map(a => (a.domain)));
  * ```
  * <!--End PulumiCodeChooser -->
  */

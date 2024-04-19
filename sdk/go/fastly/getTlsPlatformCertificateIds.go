@@ -28,12 +28,12 @@ import (
 //
 //	func main() {
 //		pulumi.Run(func(ctx *pulumi.Context) error {
-//			exampleTlsPlatformCertificateIds, err := fastly.GetTlsPlatformCertificateIds(ctx, nil, nil)
+//			example, err := fastly.GetTlsPlatformCertificateIds(ctx, nil, nil)
 //			if err != nil {
 //				return err
 //			}
 //			_, err = fastly.LookupTlsPlatformCertificate(ctx, &fastly.LookupTlsPlatformCertificateArgs{
-//				Id: pulumi.StringRef(exampleTlsPlatformCertificateIds.Ids[0]),
+//				Id: pulumi.StringRef(example.Ids[0]),
 //			}, nil)
 //			if err != nil {
 //				return err

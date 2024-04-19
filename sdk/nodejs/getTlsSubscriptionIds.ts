@@ -14,11 +14,11 @@ import * as utilities from "./utilities";
  * import * as pulumi from "@pulumi/pulumi";
  * import * as fastly from "@pulumi/fastly";
  *
- * const exampleTlsSubscriptionIds = fastly.getTlsSubscriptionIds({});
- * const exampleTlsSubscription = exampleTlsSubscriptionIds.then(exampleTlsSubscriptionIds => .map(([, ]) => (fastly.getTlsSubscription({
+ * const example = fastly.getTlsSubscriptionIds({});
+ * const exampleGetTlsSubscription = example.then(example => .reduce((__obj, [, ]) => ({ ...__obj, [__key]: fastly.getTlsSubscription({
  *     id: __value,
- * }))));
- * export const subscriptionDomains = exampleTlsSubscription.map(a => (a.certificateAuthority));
+ * }) })));
+ * export const subscriptionDomains = exampleGetTlsSubscription.apply(exampleGetTlsSubscription => Object.values(exampleGetTlsSubscription).map(a => (a.certificateAuthority)));
  * ```
  * <!--End PulumiCodeChooser -->
  */
@@ -52,11 +52,11 @@ export interface GetTlsSubscriptionIdsResult {
  * import * as pulumi from "@pulumi/pulumi";
  * import * as fastly from "@pulumi/fastly";
  *
- * const exampleTlsSubscriptionIds = fastly.getTlsSubscriptionIds({});
- * const exampleTlsSubscription = exampleTlsSubscriptionIds.then(exampleTlsSubscriptionIds => .map(([, ]) => (fastly.getTlsSubscription({
+ * const example = fastly.getTlsSubscriptionIds({});
+ * const exampleGetTlsSubscription = example.then(example => .reduce((__obj, [, ]) => ({ ...__obj, [__key]: fastly.getTlsSubscription({
  *     id: __value,
- * }))));
- * export const subscriptionDomains = exampleTlsSubscription.map(a => (a.certificateAuthority));
+ * }) })));
+ * export const subscriptionDomains = exampleGetTlsSubscription.apply(exampleGetTlsSubscription => Object.values(exampleGetTlsSubscription).map(a => (a.certificateAuthority)));
  * ```
  * <!--End PulumiCodeChooser -->
  */

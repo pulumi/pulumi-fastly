@@ -21,6 +21,7 @@ import * as utilities from "./utilities";
  * import * as fastly from "@pulumi/fastly";
  *
  * const demo = new fastly.ServiceVcl("demo", {
+ *     name: "demofastly",
  *     domains: [{
  *         name: "example.com",
  *         comment: "demo",
@@ -71,6 +72,7 @@ import * as utilities from "./utilities";
  * import * as fastly from "@pulumi/fastly";
  *
  * const demo = new fastly.ServiceVcl("demo", {
+ *     name: "demofastly",
  *     domains: [{
  *         name: "example.com",
  *         comment: "demo",
@@ -128,6 +130,7 @@ import * as utilities from "./utilities";
  * import * as fastly from "@pulumi/fastly";
  *
  * const demo = new fastly.ServiceVcl("demo", {
+ *     name: "demofastly",
  *     domains: [{
  *         name: "example.com",
  *         comment: "demo",

@@ -29,6 +29,7 @@ namespace Pulumi.Fastly
     /// {
     ///     var demo = new Fastly.ServiceVcl("demo", new()
     ///     {
+    ///         Name = "demofastly",
     ///         Domains = new[]
     ///         {
     ///             new Fastly.Inputs.ServiceVclDomainArgs
@@ -104,6 +105,7 @@ namespace Pulumi.Fastly
     /// {
     ///     var demo = new Fastly.ServiceVcl("demo", new()
     ///     {
+    ///         Name = "demofastly",
     ///         Domains = new[]
     ///         {
     ///             new Fastly.Inputs.ServiceVclDomainArgs
@@ -190,6 +192,7 @@ namespace Pulumi.Fastly
     /// {
     ///     var demo = new Fastly.ServiceVcl("demo", new()
     ///     {
+    ///         Name = "demofastly",
     ///         Domains = new[]
     ///         {
     ///             new Fastly.Inputs.ServiceVclDomainArgs

@@ -31,17 +31,20 @@ import (
 //			// IMPORTANT: Deleting a Secret Store requires first deleting its resource_link.
 //			// This requires a two-step `pulumi up` as we can't guarantee deletion order.
 //			// e.g. resource_link deletion within fastly_service_compute might not finish first.
-//			exampleSecretstore, err := fastly.NewSecretstore(ctx, "exampleSecretstore", nil)
+//			exampleSecretstore, err := fastly.NewSecretstore(ctx, "example", &fastly.SecretstoreArgs{
+//				Name: pulumi.String("my_secret_store"),
+//			})
 //			if err != nil {
 //				return err
 //			}
-//			examplePackageHash, err := fastly.GetPackageHash(ctx, &fastly.GetPackageHashArgs{
+//			example, err := fastly.GetPackageHash(ctx, &fastly.GetPackageHashArgs{
 //				Filename: pulumi.StringRef("package.tar.gz"),
 //			}, nil)
 //			if err != nil {
 //				return err
 //			}
-//			_, err = fastly.NewServiceCompute(ctx, "exampleServiceCompute", &fastly.ServiceComputeArgs{
+//			_, err = fastly.NewServiceCompute(ctx, "example", &fastly.ServiceComputeArgs{
+//				Name: pulumi.String("my_compute_service"),
 //				Domains: fastly.ServiceComputeDomainArray{
 //					&fastly.ServiceComputeDomainArgs{
 //						Name: pulumi.String("demo.example.com"),
@@ -49,7 +52,7 @@ import (
 //				},
 //				Package: &fastly.ServiceComputePackageArgs{
 //					Filename:       pulumi.String("package.tar.gz"),
-//					SourceCodeHash: pulumi.String(examplePackageHash.Hash),
+//					SourceCodeHash: pulumi.String(example.Hash),
 //				},
 //				ResourceLinks: fastly.ServiceComputeResourceLinkArray{
 //					&fastly.ServiceComputeResourceLinkArgs{
