@@ -111,7 +111,7 @@ namespace Pulumi.Fastly
     ///     {
     ///         DependsOn =
     ///         {
-    ///             keyTlsPrivateKey, 
+    ///             keyTlsPrivateKey,
     ///         },
     ///     });
     /// 
