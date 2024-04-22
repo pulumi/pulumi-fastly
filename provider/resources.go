@@ -99,7 +99,8 @@ func Provider() tfbridge.ProviderInfo {
 			},
 		},
 		DataSources: map[string]*tfbridge.DataSourceInfo{
-			"fastly_ip_ranges": {Tok: makeDataSource(mainMod, "getFastlyIpRanges")},
+			"fastly_ip_ranges":    {Tok: makeDataSource(mainMod, "getFastlyIpRanges")},
+			"fastly_vcl_snippets": {Docs: &tfbridge.DocInfo{AllowMissing: true}},
 		},
 		JavaScript: &tfbridge.JavaScriptInfo{
 			// List any npm dependencies and their versions
