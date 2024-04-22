@@ -29,6 +29,7 @@ from .get_tls_private_key import *
 from .get_tls_private_key_ids import *
 from .get_tls_subscription import *
 from .get_tls_subscription_ids import *
+from .get_vcl_snippets import *
 from .get_waf_rules import *
 from .kvstore import *
 from .provider import *

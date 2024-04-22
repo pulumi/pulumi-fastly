@@ -84,6 +84,8 @@ type Kvstore struct {
 
 	// Allow the KV Store to be deleted, even if it contains entries. Defaults to false.
 	ForceDestroy pulumi.BoolPtrOutput `pulumi:"forceDestroy"`
+	// The regional location of the KV Store. Valid values are `US`, `EU`, `ASIA`, and `AUS`.
+	Location pulumi.StringPtrOutput `pulumi:"location"`
 	// A unique name to identify the KV Store. It is important to note that changing this attribute will delete and recreate the KV Store, and discard the current entries. You MUST first delete the associated resourceLink block from your service before modifying this field.
 	Name pulumi.StringOutput `pulumi:"name"`
 }
@@ -120,6 +122,8 @@ func GetKvstore(ctx *pulumi.Context,
 type kvstoreState struct {
 	// Allow the KV Store to be deleted, even if it contains entries. Defaults to false.
 	ForceDestroy *bool `pulumi:"forceDestroy"`
+	// The regional location of the KV Store. Valid values are `US`, `EU`, `ASIA`, and `AUS`.
+	Location *string `pulumi:"location"`
 	// A unique name to identify the KV Store. It is important to note that changing this attribute will delete and recreate the KV Store, and discard the current entries. You MUST first delete the associated resourceLink block from your service before modifying this field.
 	Name *string `pulumi:"name"`
 }
@@ -127,6 +131,8 @@ type kvstoreState struct {
 type KvstoreState struct {
 	// Allow the KV Store to be deleted, even if it contains entries. Defaults to false.
 	ForceDestroy pulumi.BoolPtrInput
+	// The regional location of the KV Store. Valid values are `US`, `EU`, `ASIA`, and `AUS`.
+	Location pulumi.StringPtrInput
 	// A unique name to identify the KV Store. It is important to note that changing this attribute will delete and recreate the KV Store, and discard the current entries. You MUST first delete the associated resourceLink block from your service before modifying this field.
 	Name pulumi.StringPtrInput
 }
@@ -138,6 +144,8 @@ func (KvstoreState) ElementType() reflect.Type {
 type kvstoreArgs struct {
 	// Allow the KV Store to be deleted, even if it contains entries. Defaults to false.
 	ForceDestroy *bool `pulumi:"forceDestroy"`
+	// The regional location of the KV Store. Valid values are `US`, `EU`, `ASIA`, and `AUS`.
+	Location *string `pulumi:"location"`
 	// A unique name to identify the KV Store. It is important to note that changing this attribute will delete and recreate the KV Store, and discard the current entries. You MUST first delete the associated resourceLink block from your service before modifying this field.
 	Name *string `pulumi:"name"`
 }
@@ -146,6 +154,8 @@ type kvstoreArgs struct {
 type KvstoreArgs struct {
 	// Allow the KV Store to be deleted, even if it contains entries. Defaults to false.
 	ForceDestroy pulumi.BoolPtrInput
+	// The regional location of the KV Store. Valid values are `US`, `EU`, `ASIA`, and `AUS`.
+	Location pulumi.StringPtrInput
 	// A unique name to identify the KV Store. It is important to note that changing this attribute will delete and recreate the KV Store, and discard the current entries. You MUST first delete the associated resourceLink block from your service before modifying this field.
 	Name pulumi.StringPtrInput
 }
@@ -240,6 +250,11 @@ func (o KvstoreOutput) ToKvstoreOutputWithContext(ctx context.Context) KvstoreOu
 // Allow the KV Store to be deleted, even if it contains entries. Defaults to false.
 func (o KvstoreOutput) ForceDestroy() pulumi.BoolPtrOutput {
 	return o.ApplyT(func(v *Kvstore) pulumi.BoolPtrOutput { return v.ForceDestroy }).(pulumi.BoolPtrOutput)
+}
+
+// The regional location of the KV Store. Valid values are `US`, `EU`, `ASIA`, and `AUS`.
+func (o KvstoreOutput) Location() pulumi.StringPtrOutput {
+	return o.ApplyT(func(v *Kvstore) pulumi.StringPtrOutput { return v.Location }).(pulumi.StringPtrOutput)
 }
 
 // A unique name to identify the KV Store. It is important to note that changing this attribute will delete and recreate the KV Store, and discard the current entries. You MUST first delete the associated resourceLink block from your service before modifying this field.

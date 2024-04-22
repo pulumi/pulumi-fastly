@@ -125,6 +125,11 @@ export const getTlsSubscriptionIds: typeof import("./getTlsSubscriptionIds").get
 export const getTlsSubscriptionIdsOutput: typeof import("./getTlsSubscriptionIds").getTlsSubscriptionIdsOutput = null as any;
 utilities.lazyLoad(exports, ["getTlsSubscriptionIds","getTlsSubscriptionIdsOutput"], () => require("./getTlsSubscriptionIds"));
 
+export { GetVclSnippetsArgs, GetVclSnippetsResult, GetVclSnippetsOutputArgs } from "./getVclSnippets";
+export const getVclSnippets: typeof import("./getVclSnippets").getVclSnippets = null as any;
+export const getVclSnippetsOutput: typeof import("./getVclSnippets").getVclSnippetsOutput = null as any;
+utilities.lazyLoad(exports, ["getVclSnippets","getVclSnippetsOutput"], () => require("./getVclSnippets"));
+
 export { GetWafRulesArgs, GetWafRulesResult, GetWafRulesOutputArgs } from "./getWafRules";
 export const getWafRules: typeof import("./getWafRules").getWafRules = null as any;
 export const getWafRulesOutput: typeof import("./getWafRules").getWafRulesOutput = null as any;

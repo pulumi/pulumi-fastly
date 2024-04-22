@@ -15,14 +15,18 @@ __all__ = ['KvstoreArgs', 'Kvstore']
 class KvstoreArgs:
     def __init__(__self__, *,
                  force_destroy: Optional[pulumi.Input[bool]] = None,
+                 location: Optional[pulumi.Input[str]] = None,
                  name: Optional[pulumi.Input[str]] = None):
         """
         The set of arguments for constructing a Kvstore resource.
         :param pulumi.Input[bool] force_destroy: Allow the KV Store to be deleted, even if it contains entries. Defaults to false.
+        :param pulumi.Input[str] location: The regional location of the KV Store. Valid values are `US`, `EU`, `ASIA`, and `AUS`.
         :param pulumi.Input[str] name: A unique name to identify the KV Store. It is important to note that changing this attribute will delete and recreate the KV Store, and discard the current entries. You MUST first delete the associated resource_link block from your service before modifying this field.
         """
         if force_destroy is not None:
             pulumi.set(__self__, "force_destroy", force_destroy)
+        if location is not None:
+            pulumi.set(__self__, "location", location)
         if name is not None:
             pulumi.set(__self__, "name", name)
 
@@ -37,6 +41,18 @@ class KvstoreArgs:
     @force_destroy.setter
     def force_destroy(self, value: Optional[pulumi.Input[bool]]):
         pulumi.set(self, "force_destroy", value)
+
+    @property
+    @pulumi.getter
+    def location(self) -> Optional[pulumi.Input[str]]:
+        """
+        The regional location of the KV Store. Valid values are `US`, `EU`, `ASIA`, and `AUS`.
+        """
+        return pulumi.get(self, "location")
+
+    @location.setter
+    def location(self, value: Optional[pulumi.Input[str]]):
+        pulumi.set(self, "location", value)
 
     @property
     @pulumi.getter
@@ -55,14 +71,18 @@ class KvstoreArgs:
 class _KvstoreState:
     def __init__(__self__, *,
                  force_destroy: Optional[pulumi.Input[bool]] = None,
+                 location: Optional[pulumi.Input[str]] = None,
                  name: Optional[pulumi.Input[str]] = None):
         """
         Input properties used for looking up and filtering Kvstore resources.
         :param pulumi.Input[bool] force_destroy: Allow the KV Store to be deleted, even if it contains entries. Defaults to false.
+        :param pulumi.Input[str] location: The regional location of the KV Store. Valid values are `US`, `EU`, `ASIA`, and `AUS`.
         :param pulumi.Input[str] name: A unique name to identify the KV Store. It is important to note that changing this attribute will delete and recreate the KV Store, and discard the current entries. You MUST first delete the associated resource_link block from your service before modifying this field.
         """
         if force_destroy is not None:
             pulumi.set(__self__, "force_destroy", force_destroy)
+        if location is not None:
+            pulumi.set(__self__, "location", location)
         if name is not None:
             pulumi.set(__self__, "name", name)
 
@@ -77,6 +97,18 @@ class _KvstoreState:
     @force_destroy.setter
     def force_destroy(self, value: Optional[pulumi.Input[bool]]):
         pulumi.set(self, "force_destroy", value)
+
+    @property
+    @pulumi.getter
+    def location(self) -> Optional[pulumi.Input[str]]:
+        """
+        The regional location of the KV Store. Valid values are `US`, `EU`, `ASIA`, and `AUS`.
+        """
+        return pulumi.get(self, "location")
+
+    @location.setter
+    def location(self, value: Optional[pulumi.Input[str]]):
+        pulumi.set(self, "location", value)
 
     @property
     @pulumi.getter
@@ -97,6 +129,7 @@ class Kvstore(pulumi.CustomResource):
                  resource_name: str,
                  opts: Optional[pulumi.ResourceOptions] = None,
                  force_destroy: Optional[pulumi.Input[bool]] = None,
+                 location: Optional[pulumi.Input[str]] = None,
                  name: Optional[pulumi.Input[str]] = None,
                  __props__=None):
         """
@@ -142,6 +175,7 @@ class Kvstore(pulumi.CustomResource):
         :param str resource_name: The name of the resource.
         :param pulumi.ResourceOptions opts: Options for the resource.
         :param pulumi.Input[bool] force_destroy: Allow the KV Store to be deleted, even if it contains entries. Defaults to false.
+        :param pulumi.Input[str] location: The regional location of the KV Store. Valid values are `US`, `EU`, `ASIA`, and `AUS`.
         :param pulumi.Input[str] name: A unique name to identify the KV Store. It is important to note that changing this attribute will delete and recreate the KV Store, and discard the current entries. You MUST first delete the associated resource_link block from your service before modifying this field.
         """
         ...
@@ -206,6 +240,7 @@ class Kvstore(pulumi.CustomResource):
                  resource_name: str,
                  opts: Optional[pulumi.ResourceOptions] = None,
                  force_destroy: Optional[pulumi.Input[bool]] = None,
+                 location: Optional[pulumi.Input[str]] = None,
                  name: Optional[pulumi.Input[str]] = None,
                  __props__=None):
         opts = pulumi.ResourceOptions.merge(_utilities.get_resource_opts_defaults(), opts)
@@ -217,6 +252,7 @@ class Kvstore(pulumi.CustomResource):
             __props__ = KvstoreArgs.__new__(KvstoreArgs)
 
             __props__.__dict__["force_destroy"] = force_destroy
+            __props__.__dict__["location"] = location
             __props__.__dict__["name"] = name
         super(Kvstore, __self__).__init__(
             'fastly:index/kvstore:Kvstore',
@@ -229,6 +265,7 @@ class Kvstore(pulumi.CustomResource):
             id: pulumi.Input[str],
             opts: Optional[pulumi.ResourceOptions] = None,
             force_destroy: Optional[pulumi.Input[bool]] = None,
+            location: Optional[pulumi.Input[str]] = None,
             name: Optional[pulumi.Input[str]] = None) -> 'Kvstore':
         """
         Get an existing Kvstore resource's state with the given name, id, and optional extra
@@ -238,6 +275,7 @@ class Kvstore(pulumi.CustomResource):
         :param pulumi.Input[str] id: The unique provider ID of the resource to lookup.
         :param pulumi.ResourceOptions opts: Options for the resource.
         :param pulumi.Input[bool] force_destroy: Allow the KV Store to be deleted, even if it contains entries. Defaults to false.
+        :param pulumi.Input[str] location: The regional location of the KV Store. Valid values are `US`, `EU`, `ASIA`, and `AUS`.
         :param pulumi.Input[str] name: A unique name to identify the KV Store. It is important to note that changing this attribute will delete and recreate the KV Store, and discard the current entries. You MUST first delete the associated resource_link block from your service before modifying this field.
         """
         opts = pulumi.ResourceOptions.merge(opts, pulumi.ResourceOptions(id=id))
@@ -245,6 +283,7 @@ class Kvstore(pulumi.CustomResource):
         __props__ = _KvstoreState.__new__(_KvstoreState)
 
         __props__.__dict__["force_destroy"] = force_destroy
+        __props__.__dict__["location"] = location
         __props__.__dict__["name"] = name
         return Kvstore(resource_name, opts=opts, __props__=__props__)
 
@@ -255,6 +294,14 @@ class Kvstore(pulumi.CustomResource):
         Allow the KV Store to be deleted, even if it contains entries. Defaults to false.
         """
         return pulumi.get(self, "force_destroy")
+
+    @property
+    @pulumi.getter
+    def location(self) -> pulumi.Output[Optional[str]]:
+        """
+        The regional location of the KV Store. Valid values are `US`, `EU`, `ASIA`, and `AUS`.
+        """
+        return pulumi.get(self, "location")
 
     @property
     @pulumi.getter

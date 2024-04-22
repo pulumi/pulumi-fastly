@@ -107,6 +107,20 @@ public class Kvstore extends com.pulumi.resources.CustomResource {
         return Codegen.optional(this.forceDestroy);
     }
     /**
+     * The regional location of the KV Store. Valid values are `US`, `EU`, `ASIA`, and `AUS`.
+     * 
+     */
+    @Export(name="location", refs={String.class}, tree="[0]")
+    private Output</* @Nullable */ String> location;
+
+    /**
+     * @return The regional location of the KV Store. Valid values are `US`, `EU`, `ASIA`, and `AUS`.
+     * 
+     */
+    public Output<Optional<String>> location() {
+        return Codegen.optional(this.location);
+    }
+    /**
      * A unique name to identify the KV Store. It is important to note that changing this attribute will delete and recreate the KV Store, and discard the current entries. You MUST first delete the associated resource_link block from your service before modifying this field.
      * 
      */

@@ -28,6 +28,8 @@ import com.pulumi.fastly.inputs.GetTlsPrivateKeyArgs;
 import com.pulumi.fastly.inputs.GetTlsPrivateKeyPlainArgs;
 import com.pulumi.fastly.inputs.GetTlsSubscriptionArgs;
 import com.pulumi.fastly.inputs.GetTlsSubscriptionPlainArgs;
+import com.pulumi.fastly.inputs.GetVclSnippetsArgs;
+import com.pulumi.fastly.inputs.GetVclSnippetsPlainArgs;
 import com.pulumi.fastly.inputs.GetWafRulesArgs;
 import com.pulumi.fastly.inputs.GetWafRulesPlainArgs;
 import com.pulumi.fastly.outputs.GetConfigstoresResult;
@@ -51,6 +53,7 @@ import com.pulumi.fastly.outputs.GetTlsPrivateKeyIdsResult;
 import com.pulumi.fastly.outputs.GetTlsPrivateKeyResult;
 import com.pulumi.fastly.outputs.GetTlsSubscriptionIdsResult;
 import com.pulumi.fastly.outputs.GetTlsSubscriptionResult;
+import com.pulumi.fastly.outputs.GetVclSnippetsResult;
 import com.pulumi.fastly.outputs.GetWafRulesResult;
 import com.pulumi.resources.InvokeArgs;
 import java.util.concurrent.CompletableFuture;
@@ -4025,6 +4028,18 @@ public final class FastlyFunctions {
      */
     public static CompletableFuture<GetTlsSubscriptionIdsResult> getTlsSubscriptionIdsPlain(InvokeArgs args, InvokeOptions options) {
         return Deployment.getInstance().invokeAsync("fastly:index/getTlsSubscriptionIds:getTlsSubscriptionIds", TypeShape.of(GetTlsSubscriptionIdsResult.class), args, Utilities.withVersion(options));
+    }
+    public static Output<GetVclSnippetsResult> getVclSnippets(GetVclSnippetsArgs args) {
+        return getVclSnippets(args, InvokeOptions.Empty);
+    }
+    public static CompletableFuture<GetVclSnippetsResult> getVclSnippetsPlain(GetVclSnippetsPlainArgs args) {
+        return getVclSnippetsPlain(args, InvokeOptions.Empty);
+    }
+    public static Output<GetVclSnippetsResult> getVclSnippets(GetVclSnippetsArgs args, InvokeOptions options) {
+        return Deployment.getInstance().invoke("fastly:index/getVclSnippets:getVclSnippets", TypeShape.of(GetVclSnippetsResult.class), args, Utilities.withVersion(options));
+    }
+    public static CompletableFuture<GetVclSnippetsResult> getVclSnippetsPlain(GetVclSnippetsPlainArgs args, InvokeOptions options) {
+        return Deployment.getInstance().invokeAsync("fastly:index/getVclSnippets:getVclSnippets", TypeShape.of(GetVclSnippetsResult.class), args, Utilities.withVersion(options));
     }
     public static Output<GetWafRulesResult> getWafRules() {
         return getWafRules(GetWafRulesArgs.Empty, InvokeOptions.Empty);

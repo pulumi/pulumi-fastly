@@ -84,6 +84,12 @@ namespace Pulumi.Fastly
         public Output<bool?> ForceDestroy { get; private set; } = null!;
 
         /// <summary>
+        /// The regional location of the KV Store. Valid values are `US`, `EU`, `ASIA`, and `AUS`.
+        /// </summary>
+        [Output("location")]
+        public Output<string?> Location { get; private set; } = null!;
+
+        /// <summary>
         /// A unique name to identify the KV Store. It is important to note that changing this attribute will delete and recreate the KV Store, and discard the current entries. You MUST first delete the associated resource_link block from your service before modifying this field.
         /// </summary>
         [Output("name")]
@@ -142,6 +148,12 @@ namespace Pulumi.Fastly
         public Input<bool>? ForceDestroy { get; set; }
 
         /// <summary>
+        /// The regional location of the KV Store. Valid values are `US`, `EU`, `ASIA`, and `AUS`.
+        /// </summary>
+        [Input("location")]
+        public Input<string>? Location { get; set; }
+
+        /// <summary>
         /// A unique name to identify the KV Store. It is important to note that changing this attribute will delete and recreate the KV Store, and discard the current entries. You MUST first delete the associated resource_link block from your service before modifying this field.
         /// </summary>
         [Input("name")]
@@ -160,6 +172,12 @@ namespace Pulumi.Fastly
         /// </summary>
         [Input("forceDestroy")]
         public Input<bool>? ForceDestroy { get; set; }
+
+        /// <summary>
+        /// The regional location of the KV Store. Valid values are `US`, `EU`, `ASIA`, and `AUS`.
+        /// </summary>
+        [Input("location")]
+        public Input<string>? Location { get; set; }
 
         /// <summary>
         /// A unique name to identify the KV Store. It is important to note that changing this attribute will delete and recreate the KV Store, and discard the current entries. You MUST first delete the associated resource_link block from your service before modifying this field.

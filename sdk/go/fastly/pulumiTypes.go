@@ -15417,6 +15417,139 @@ func (o GetTlsConfigurationDnsRecordArrayOutput) Index(i pulumi.IntInput) GetTls
 	}).(GetTlsConfigurationDnsRecordOutput)
 }
 
+type GetVclSnippetsVclSnippet struct {
+	// The VCL code that specifies exactly what the snippet does.
+	Content string `pulumi:"content"`
+	// Alphanumeric string identifying a VCL Snippet.
+	Id string `pulumi:"id"`
+	// The name for the snippet.
+	Name string `pulumi:"name"`
+	// Priority determines execution order. Lower numbers execute first.
+	Priority int `pulumi:"priority"`
+	// The location in generated VCL where the snippet should be placed.
+	Type string `pulumi:"type"`
+}
+
+// GetVclSnippetsVclSnippetInput is an input type that accepts GetVclSnippetsVclSnippetArgs and GetVclSnippetsVclSnippetOutput values.
+// You can construct a concrete instance of `GetVclSnippetsVclSnippetInput` via:
+//
+//	GetVclSnippetsVclSnippetArgs{...}
+type GetVclSnippetsVclSnippetInput interface {
+	pulumi.Input
+
+	ToGetVclSnippetsVclSnippetOutput() GetVclSnippetsVclSnippetOutput
+	ToGetVclSnippetsVclSnippetOutputWithContext(context.Context) GetVclSnippetsVclSnippetOutput
+}
+
+type GetVclSnippetsVclSnippetArgs struct {
+	// The VCL code that specifies exactly what the snippet does.
+	Content pulumi.StringInput `pulumi:"content"`
+	// Alphanumeric string identifying a VCL Snippet.
+	Id pulumi.StringInput `pulumi:"id"`
+	// The name for the snippet.
+	Name pulumi.StringInput `pulumi:"name"`
+	// Priority determines execution order. Lower numbers execute first.
+	Priority pulumi.IntInput `pulumi:"priority"`
+	// The location in generated VCL where the snippet should be placed.
+	Type pulumi.StringInput `pulumi:"type"`
+}
+
+func (GetVclSnippetsVclSnippetArgs) ElementType() reflect.Type {
+	return reflect.TypeOf((*GetVclSnippetsVclSnippet)(nil)).Elem()
+}
+
+func (i GetVclSnippetsVclSnippetArgs) ToGetVclSnippetsVclSnippetOutput() GetVclSnippetsVclSnippetOutput {
+	return i.ToGetVclSnippetsVclSnippetOutputWithContext(context.Background())
+}
+
+func (i GetVclSnippetsVclSnippetArgs) ToGetVclSnippetsVclSnippetOutputWithContext(ctx context.Context) GetVclSnippetsVclSnippetOutput {
+	return pulumi.ToOutputWithContext(ctx, i).(GetVclSnippetsVclSnippetOutput)
+}
+
+// GetVclSnippetsVclSnippetArrayInput is an input type that accepts GetVclSnippetsVclSnippetArray and GetVclSnippetsVclSnippetArrayOutput values.
+// You can construct a concrete instance of `GetVclSnippetsVclSnippetArrayInput` via:
+//
+//	GetVclSnippetsVclSnippetArray{ GetVclSnippetsVclSnippetArgs{...} }
+type GetVclSnippetsVclSnippetArrayInput interface {
+	pulumi.Input
+
+	ToGetVclSnippetsVclSnippetArrayOutput() GetVclSnippetsVclSnippetArrayOutput
+	ToGetVclSnippetsVclSnippetArrayOutputWithContext(context.Context) GetVclSnippetsVclSnippetArrayOutput
+}
+
+type GetVclSnippetsVclSnippetArray []GetVclSnippetsVclSnippetInput
+
+func (GetVclSnippetsVclSnippetArray) ElementType() reflect.Type {
+	return reflect.TypeOf((*[]GetVclSnippetsVclSnippet)(nil)).Elem()
+}
+
+func (i GetVclSnippetsVclSnippetArray) ToGetVclSnippetsVclSnippetArrayOutput() GetVclSnippetsVclSnippetArrayOutput {
+	return i.ToGetVclSnippetsVclSnippetArrayOutputWithContext(context.Background())
+}
+
+func (i GetVclSnippetsVclSnippetArray) ToGetVclSnippetsVclSnippetArrayOutputWithContext(ctx context.Context) GetVclSnippetsVclSnippetArrayOutput {
+	return pulumi.ToOutputWithContext(ctx, i).(GetVclSnippetsVclSnippetArrayOutput)
+}
+
+type GetVclSnippetsVclSnippetOutput struct{ *pulumi.OutputState }
+
+func (GetVclSnippetsVclSnippetOutput) ElementType() reflect.Type {
+	return reflect.TypeOf((*GetVclSnippetsVclSnippet)(nil)).Elem()
+}
+
+func (o GetVclSnippetsVclSnippetOutput) ToGetVclSnippetsVclSnippetOutput() GetVclSnippetsVclSnippetOutput {
+	return o
+}
+
+func (o GetVclSnippetsVclSnippetOutput) ToGetVclSnippetsVclSnippetOutputWithContext(ctx context.Context) GetVclSnippetsVclSnippetOutput {
+	return o
+}
+
+// The VCL code that specifies exactly what the snippet does.
+func (o GetVclSnippetsVclSnippetOutput) Content() pulumi.StringOutput {
+	return o.ApplyT(func(v GetVclSnippetsVclSnippet) string { return v.Content }).(pulumi.StringOutput)
+}
+
+// Alphanumeric string identifying a VCL Snippet.
+func (o GetVclSnippetsVclSnippetOutput) Id() pulumi.StringOutput {
+	return o.ApplyT(func(v GetVclSnippetsVclSnippet) string { return v.Id }).(pulumi.StringOutput)
+}
+
+// The name for the snippet.
+func (o GetVclSnippetsVclSnippetOutput) Name() pulumi.StringOutput {
+	return o.ApplyT(func(v GetVclSnippetsVclSnippet) string { return v.Name }).(pulumi.StringOutput)
+}
+
+// Priority determines execution order. Lower numbers execute first.
+func (o GetVclSnippetsVclSnippetOutput) Priority() pulumi.IntOutput {
+	return o.ApplyT(func(v GetVclSnippetsVclSnippet) int { return v.Priority }).(pulumi.IntOutput)
+}
+
+// The location in generated VCL where the snippet should be placed.
+func (o GetVclSnippetsVclSnippetOutput) Type() pulumi.StringOutput {
+	return o.ApplyT(func(v GetVclSnippetsVclSnippet) string { return v.Type }).(pulumi.StringOutput)
+}
+
+type GetVclSnippetsVclSnippetArrayOutput struct{ *pulumi.OutputState }
+
+func (GetVclSnippetsVclSnippetArrayOutput) ElementType() reflect.Type {
+	return reflect.TypeOf((*[]GetVclSnippetsVclSnippet)(nil)).Elem()
+}
+
+func (o GetVclSnippetsVclSnippetArrayOutput) ToGetVclSnippetsVclSnippetArrayOutput() GetVclSnippetsVclSnippetArrayOutput {
+	return o
+}
+
+func (o GetVclSnippetsVclSnippetArrayOutput) ToGetVclSnippetsVclSnippetArrayOutputWithContext(ctx context.Context) GetVclSnippetsVclSnippetArrayOutput {
+	return o
+}
+
+func (o GetVclSnippetsVclSnippetArrayOutput) Index(i pulumi.IntInput) GetVclSnippetsVclSnippetOutput {
+	return pulumi.All(o, i).ApplyT(func(vs []interface{}) GetVclSnippetsVclSnippet {
+		return vs[0].([]GetVclSnippetsVclSnippet)[vs[1].(int)]
+	}).(GetVclSnippetsVclSnippetOutput)
+}
+
 type GetWafRulesRule struct {
 	// The modsecurity rule's latest revision.
 	LatestRevisionNumber int `pulumi:"latestRevisionNumber"`
@@ -15717,6 +15850,8 @@ func init() {
 	pulumi.RegisterInputType(reflect.TypeOf((*GetServicesDetailArrayInput)(nil)).Elem(), GetServicesDetailArray{})
 	pulumi.RegisterInputType(reflect.TypeOf((*GetTlsConfigurationDnsRecordInput)(nil)).Elem(), GetTlsConfigurationDnsRecordArgs{})
 	pulumi.RegisterInputType(reflect.TypeOf((*GetTlsConfigurationDnsRecordArrayInput)(nil)).Elem(), GetTlsConfigurationDnsRecordArray{})
+	pulumi.RegisterInputType(reflect.TypeOf((*GetVclSnippetsVclSnippetInput)(nil)).Elem(), GetVclSnippetsVclSnippetArgs{})
+	pulumi.RegisterInputType(reflect.TypeOf((*GetVclSnippetsVclSnippetArrayInput)(nil)).Elem(), GetVclSnippetsVclSnippetArray{})
 	pulumi.RegisterInputType(reflect.TypeOf((*GetWafRulesRuleInput)(nil)).Elem(), GetWafRulesRuleArgs{})
 	pulumi.RegisterInputType(reflect.TypeOf((*GetWafRulesRuleArrayInput)(nil)).Elem(), GetWafRulesRuleArray{})
 	pulumi.RegisterOutputType(AlertDimensionsOutput{})
@@ -15903,6 +16038,8 @@ func init() {
 	pulumi.RegisterOutputType(GetServicesDetailArrayOutput{})
 	pulumi.RegisterOutputType(GetTlsConfigurationDnsRecordOutput{})
 	pulumi.RegisterOutputType(GetTlsConfigurationDnsRecordArrayOutput{})
+	pulumi.RegisterOutputType(GetVclSnippetsVclSnippetOutput{})
+	pulumi.RegisterOutputType(GetVclSnippetsVclSnippetArrayOutput{})
 	pulumi.RegisterOutputType(GetWafRulesRuleOutput{})
 	pulumi.RegisterOutputType(GetWafRulesRuleArrayOutput{})
 }

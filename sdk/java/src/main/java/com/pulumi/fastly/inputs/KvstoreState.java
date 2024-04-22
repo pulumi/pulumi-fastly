@@ -32,6 +32,21 @@ public final class KvstoreState extends com.pulumi.resources.ResourceArgs {
     }
 
     /**
+     * The regional location of the KV Store. Valid values are `US`, `EU`, `ASIA`, and `AUS`.
+     * 
+     */
+    @Import(name="location")
+    private @Nullable Output<String> location;
+
+    /**
+     * @return The regional location of the KV Store. Valid values are `US`, `EU`, `ASIA`, and `AUS`.
+     * 
+     */
+    public Optional<Output<String>> location() {
+        return Optional.ofNullable(this.location);
+    }
+
+    /**
      * A unique name to identify the KV Store. It is important to note that changing this attribute will delete and recreate the KV Store, and discard the current entries. You MUST first delete the associated resource_link block from your service before modifying this field.
      * 
      */
@@ -50,6 +65,7 @@ public final class KvstoreState extends com.pulumi.resources.ResourceArgs {
 
     private KvstoreState(KvstoreState $) {
         this.forceDestroy = $.forceDestroy;
+        this.location = $.location;
         this.name = $.name;
     }
 
@@ -90,6 +106,27 @@ public final class KvstoreState extends com.pulumi.resources.ResourceArgs {
          */
         public Builder forceDestroy(Boolean forceDestroy) {
             return forceDestroy(Output.of(forceDestroy));
+        }
+
+        /**
+         * @param location The regional location of the KV Store. Valid values are `US`, `EU`, `ASIA`, and `AUS`.
+         * 
+         * @return builder
+         * 
+         */
+        public Builder location(@Nullable Output<String> location) {
+            $.location = location;
+            return this;
+        }
+
+        /**
+         * @param location The regional location of the KV Store. Valid values are `US`, `EU`, `ASIA`, and `AUS`.
+         * 
+         * @return builder
+         * 
+         */
+        public Builder location(String location) {
+            return location(Output.of(location));
         }
 
         /**
