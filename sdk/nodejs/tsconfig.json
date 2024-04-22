@@ -39,6 +39,7 @@
         "getTlsPrivateKeyIds.ts",
         "getTlsSubscription.ts",
         "getTlsSubscriptionIds.ts",
+        "getVclSnippets.ts",
         "getWafRules.ts",
         "index.ts",
         "kvstore.ts",

@@ -148,6 +148,29 @@ export interface GetTlsConfigurationDnsRecord {
     region: string;
 }
 
+export interface GetVclSnippetsVclSnippet {
+    /**
+     * The VCL code that specifies exactly what the snippet does.
+     */
+    content: string;
+    /**
+     * Alphanumeric string identifying a VCL Snippet.
+     */
+    id: string;
+    /**
+     * The name for the snippet.
+     */
+    name: string;
+    /**
+     * Priority determines execution order. Lower numbers execute first.
+     */
+    priority: number;
+    /**
+     * The location in generated VCL where the snippet should be placed.
+     */
+    type: string;
+}
+
 export interface GetWafRulesRule {
     /**
      * The modsecurity rule's latest revision.

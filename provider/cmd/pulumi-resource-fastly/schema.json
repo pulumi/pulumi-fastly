@@ -4248,6 +4248,43 @@
                 }
             }
         },
+        "fastly:index/getVclSnippetsVclSnippet:getVclSnippetsVclSnippet": {
+            "properties": {
+                "content": {
+                    "type": "string",
+                    "description": "The VCL code that specifies exactly what the snippet does.\n"
+                },
+                "id": {
+                    "type": "string",
+                    "description": "Alphanumeric string identifying a VCL Snippet.\n"
+                },
+                "name": {
+                    "type": "string",
+                    "description": "The name for the snippet.\n"
+                },
+                "priority": {
+                    "type": "integer",
+                    "description": "Priority determines execution order. Lower numbers execute first.\n"
+                },
+                "type": {
+                    "type": "string",
+                    "description": "The location in generated VCL where the snippet should be placed.\n"
+                }
+            },
+            "type": "object",
+            "required": [
+                "content",
+                "id",
+                "name",
+                "priority",
+                "type"
+            ],
+            "language": {
+                "nodejs": {
+                    "requiredInputs": []
+                }
+            }
+        },
         "fastly:index/getWafRulesRule:getWafRulesRule": {
             "properties": {
                 "latestRevisionNumber": {
@@ -4566,6 +4603,10 @@
                     "type": "boolean",
                     "description": "Allow the KV Store to be deleted, even if it contains entries. Defaults to false.\n"
                 },
+                "location": {
+                    "type": "string",
+                    "description": "The regional location of the KV Store. Valid values are `US`, `EU`, `ASIA`, and `AUS`.\n"
+                },
                 "name": {
                     "type": "string",
                     "description": "A unique name to identify the KV Store. It is important to note that changing this attribute will delete and recreate the KV Store, and discard the current entries. You MUST first delete the associated resource_link block from your service before modifying this field.\n"
@@ -4579,6 +4620,10 @@
                     "type": "boolean",
                     "description": "Allow the KV Store to be deleted, even if it contains entries. Defaults to false.\n"
                 },
+                "location": {
+                    "type": "string",
+                    "description": "The regional location of the KV Store. Valid values are `US`, `EU`, `ASIA`, and `AUS`.\n"
+                },
                 "name": {
                     "type": "string",
                     "description": "A unique name to identify the KV Store. It is important to note that changing this attribute will delete and recreate the KV Store, and discard the current entries. You MUST first delete the associated resource_link block from your service before modifying this field.\n",
@@ -4591,6 +4636,10 @@
                     "forceDestroy": {
                         "type": "boolean",
                         "description": "Allow the KV Store to be deleted, even if it contains entries. Defaults to false.\n"
+                    },
+                    "location": {
+                        "type": "string",
+                        "description": "The regional location of the KV Store. Valid values are `US`, `EU`, `ASIA`, and `AUS`.\n"
                     },
                     "name": {
                         "type": "string",
@@ -8876,6 +8925,52 @@
                 },
                 "required": [
                     "ids",
+                    "id"
+                ],
+                "type": "object"
+            }
+        },
+        "fastly:index/getVclSnippets:getVclSnippets": {
+            "inputs": {
+                "description": "A collection of arguments for invoking getVclSnippets.\n",
+                "properties": {
+                    "serviceId": {
+                        "type": "string"
+                    },
+                    "serviceVersion": {
+                        "type": "integer"
+                    }
+                },
+                "type": "object",
+                "required": [
+                    "serviceId",
+                    "serviceVersion"
+                ]
+            },
+            "outputs": {
+                "description": "A collection of values returned by getVclSnippets.\n",
+                "properties": {
+                    "id": {
+                        "description": "The provider-assigned unique ID for this managed resource.\n",
+                        "type": "string"
+                    },
+                    "serviceId": {
+                        "type": "string"
+                    },
+                    "serviceVersion": {
+                        "type": "integer"
+                    },
+                    "vclSnippets": {
+                        "items": {
+                            "$ref": "#/types/fastly:index/getVclSnippetsVclSnippet:getVclSnippetsVclSnippet"
+                        },
+                        "type": "array"
+                    }
+                },
+                "required": [
+                    "serviceId",
+                    "serviceVersion",
+                    "vclSnippets",
                     "id"
                 ],
                 "type": "object"

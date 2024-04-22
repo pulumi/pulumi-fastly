@@ -580,6 +580,14 @@
                     }
                 }
             },
+            "fastly_vcl_snippets": {
+                "current": "fastly:index/getVclSnippets:getVclSnippets",
+                "fields": {
+                    "vcl_snippets": {
+                        "maxItemsOne": false
+                    }
+                }
+            },
             "fastly_waf_rules": {
                 "current": "fastly:index/getWafRules:getWafRules",
                 "fields": {

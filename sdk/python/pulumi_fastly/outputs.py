@@ -103,6 +103,7 @@ __all__ = [
     'GetSecretstoresStoreResult',
     'GetServicesDetailResult',
     'GetTlsConfigurationDnsRecordResult',
+    'GetVclSnippetsVclSnippetResult',
     'GetWafRulesRuleResult',
 ]
 
@@ -11419,6 +11420,68 @@ class GetTlsConfigurationDnsRecordResult(dict):
         The regions that will be used to route traffic. Select DNS Records with a `global` region to route traffic to the most performant point of presence (POP) worldwide (global pricing will apply). Select DNS records with a `us-eu` region to exclusively land traffic on North American and European POPs.
         """
         return pulumi.get(self, "region")
+
+
+@pulumi.output_type
+class GetVclSnippetsVclSnippetResult(dict):
+    def __init__(__self__, *,
+                 content: str,
+                 id: str,
+                 name: str,
+                 priority: int,
+                 type: str):
+        """
+        :param str content: The VCL code that specifies exactly what the snippet does.
+        :param str id: Alphanumeric string identifying a VCL Snippet.
+        :param str name: The name for the snippet.
+        :param int priority: Priority determines execution order. Lower numbers execute first.
+        :param str type: The location in generated VCL where the snippet should be placed.
+        """
+        pulumi.set(__self__, "content", content)
+        pulumi.set(__self__, "id", id)
+        pulumi.set(__self__, "name", name)
+        pulumi.set(__self__, "priority", priority)
+        pulumi.set(__self__, "type", type)
+
+    @property
+    @pulumi.getter
+    def content(self) -> str:
+        """
+        The VCL code that specifies exactly what the snippet does.
+        """
+        return pulumi.get(self, "content")
+
+    @property
+    @pulumi.getter
+    def id(self) -> str:
+        """
+        Alphanumeric string identifying a VCL Snippet.
+        """
+        return pulumi.get(self, "id")
+
+    @property
+    @pulumi.getter
+    def name(self) -> str:
+        """
+        The name for the snippet.
+        """
+        return pulumi.get(self, "name")
+
+    @property
+    @pulumi.getter
+    def priority(self) -> int:
+        """
+        Priority determines execution order. Lower numbers execute first.
+        """
+        return pulumi.get(self, "priority")
+
+    @property
+    @pulumi.getter
+    def type(self) -> str:
+        """
+        The location in generated VCL where the snippet should be placed.
+        """
+        return pulumi.get(self, "type")
 
 
 @pulumi.output_type
