@@ -62,7 +62,7 @@ namespace Pulumi.Fastly
     ///     {
     ///         DependsOn =
     ///         {
-    ///             demoTlsPrivateKey, 
+    ///             demoTlsPrivateKey,
     ///         },
     ///     });
     /// 
@@ -74,7 +74,7 @@ namespace Pulumi.Fastly
     ///     {
     ///         DependsOn =
     ///         {
-    ///             demo, 
+    ///             demo,
     ///         },
     ///     });
     /// 
