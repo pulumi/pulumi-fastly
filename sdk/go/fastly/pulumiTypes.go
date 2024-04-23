@@ -13147,9 +13147,9 @@ func (o ServiceVclRateLimiterArrayOutput) Index(i pulumi.IntInput) ServiceVclRat
 }
 
 type ServiceVclRateLimiterResponse struct {
-	// The VCL code that specifies exactly what the snippet does
+	// HTTP response body data
 	Content string `pulumi:"content"`
-	// Value of the `Content-Type` header sent with the request
+	// HTTP Content-Type (e.g. application/json)
 	ContentType string `pulumi:"contentType"`
 	// HTTP response status code (e.g. 429)
 	Status int `pulumi:"status"`
@@ -13167,9 +13167,9 @@ type ServiceVclRateLimiterResponseInput interface {
 }
 
 type ServiceVclRateLimiterResponseArgs struct {
-	// The VCL code that specifies exactly what the snippet does
+	// HTTP response body data
 	Content pulumi.StringInput `pulumi:"content"`
-	// Value of the `Content-Type` header sent with the request
+	// HTTP Content-Type (e.g. application/json)
 	ContentType pulumi.StringInput `pulumi:"contentType"`
 	// HTTP response status code (e.g. 429)
 	Status pulumi.IntInput `pulumi:"status"`
@@ -13252,12 +13252,12 @@ func (o ServiceVclRateLimiterResponseOutput) ToServiceVclRateLimiterResponsePtrO
 	}).(ServiceVclRateLimiterResponsePtrOutput)
 }
 
-// The VCL code that specifies exactly what the snippet does
+// HTTP response body data
 func (o ServiceVclRateLimiterResponseOutput) Content() pulumi.StringOutput {
 	return o.ApplyT(func(v ServiceVclRateLimiterResponse) string { return v.Content }).(pulumi.StringOutput)
 }
 
-// Value of the `Content-Type` header sent with the request
+// HTTP Content-Type (e.g. application/json)
 func (o ServiceVclRateLimiterResponseOutput) ContentType() pulumi.StringOutput {
 	return o.ApplyT(func(v ServiceVclRateLimiterResponse) string { return v.ContentType }).(pulumi.StringOutput)
 }
@@ -13291,7 +13291,7 @@ func (o ServiceVclRateLimiterResponsePtrOutput) Elem() ServiceVclRateLimiterResp
 	}).(ServiceVclRateLimiterResponseOutput)
 }
 
-// The VCL code that specifies exactly what the snippet does
+// HTTP response body data
 func (o ServiceVclRateLimiterResponsePtrOutput) Content() pulumi.StringPtrOutput {
 	return o.ApplyT(func(v *ServiceVclRateLimiterResponse) *string {
 		if v == nil {
@@ -13301,7 +13301,7 @@ func (o ServiceVclRateLimiterResponsePtrOutput) Content() pulumi.StringPtrOutput
 	}).(pulumi.StringPtrOutput)
 }
 
-// Value of the `Content-Type` header sent with the request
+// HTTP Content-Type (e.g. application/json)
 func (o ServiceVclRateLimiterResponsePtrOutput) ContentType() pulumi.StringPtrOutput {
 	return o.ApplyT(func(v *ServiceVclRateLimiterResponse) *string {
 		if v == nil {

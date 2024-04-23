@@ -19,7 +19,6 @@ namespace Pulumi.Fastly
     /// 
     /// Basic usage with self-signed CA:
     /// 
-    /// &lt;!--Start PulumiCodeChooser --&gt;
     /// ```csharp
     /// using System.Collections.Generic;
     /// using System.Linq;
@@ -112,13 +111,12 @@ namespace Pulumi.Fastly
     ///     {
     ///         DependsOn =
     ///         {
-    ///             keyTlsPrivateKey, 
+    ///             keyTlsPrivateKey,
     ///         },
     ///     });
     /// 
     /// });
     /// ```
-    /// &lt;!--End PulumiCodeChooser --&gt;
     /// 
     /// ## Import
     /// 

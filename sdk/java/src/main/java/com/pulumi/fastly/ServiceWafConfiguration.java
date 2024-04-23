@@ -577,14 +577,14 @@ public class ServiceWafConfiguration extends com.pulumi.resources.CustomResource
         return this.noticeAnomalyScore;
     }
     /**
-     * The numeric ID assigned to the WAF Rule Exclusion
+     * The WAF firewall version
      * 
      */
     @Export(name="number", refs={Integer.class}, tree="[0]")
     private Output<Integer> number;
 
     /**
-     * @return The numeric ID assigned to the WAF Rule Exclusion
+     * @return The WAF firewall version
      * 
      */
     public Output<Integer> number() {

@@ -321,14 +321,14 @@ public final class ServiceWafConfigurationState extends com.pulumi.resources.Res
     }
 
     /**
-     * The numeric ID assigned to the WAF Rule Exclusion
+     * The WAF firewall version
      * 
      */
     @Import(name="number")
     private @Nullable Output<Integer> number;
 
     /**
-     * @return The numeric ID assigned to the WAF Rule Exclusion
+     * @return The WAF firewall version
      * 
      */
     public Optional<Output<Integer>> number() {
@@ -1008,7 +1008,7 @@ public final class ServiceWafConfigurationState extends com.pulumi.resources.Res
         }
 
         /**
-         * @param number The numeric ID assigned to the WAF Rule Exclusion
+         * @param number The WAF firewall version
          * 
          * @return builder
          * 
@@ -1019,7 +1019,7 @@ public final class ServiceWafConfigurationState extends com.pulumi.resources.Res
         }
 
         /**
-         * @param number The numeric ID assigned to the WAF Rule Exclusion
+         * @param number The WAF firewall version
          * 
          * @return builder
          * 

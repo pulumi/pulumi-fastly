@@ -51,7 +51,7 @@ namespace Pulumi.Fastly
         public Output<int> ClonedVersion { get; private set; } = null!;
 
         /// <summary>
-        /// An optional comment about the Domain.
+        /// Description field for the service. Default `Managed by Terraform`
         /// </summary>
         [Output("comment")]
         public Output<string?> Comment { get; private set; } = null!;
@@ -60,13 +60,13 @@ namespace Pulumi.Fastly
         public Output<ImmutableArray<Outputs.ServiceComputeDictionary>> Dictionaries { get; private set; } = null!;
 
         /// <summary>
-        /// The domain of the DigitalOcean Spaces endpoint (default `nyc3.digitaloceanspaces.com`)
+        /// A set of Domain names to serve as entry points for your Service
         /// </summary>
         [Output("domains")]
         public Output<ImmutableArray<Outputs.ServiceComputeDomain>> Domains { get; private set; } = null!;
 
         /// <summary>
-        /// Allow the dictionary to be deleted, even if it contains entries. Defaults to false.
+        /// Services that are active cannot be destroyed. In order to destroy the Service, set `force_destroy` to `true`. Default `false`
         /// </summary>
         [Output("forceDestroy")]
         public Output<bool?> ForceDestroy { get; private set; } = null!;
@@ -164,7 +164,7 @@ namespace Pulumi.Fastly
         public Output<ImmutableArray<Outputs.ServiceComputeLoggingSyslog>> LoggingSyslogs { get; private set; } = null!;
 
         /// <summary>
-        /// Name for this Backend. Must be unique to this Service. It is important to note that changing this attribute will delete and recreate the resource
+        /// The unique name for the Service to create
         /// </summary>
         [Output("name")]
         public Output<string> Name { get; private set; } = null!;
@@ -259,7 +259,7 @@ namespace Pulumi.Fastly
         }
 
         /// <summary>
-        /// An optional comment about the Domain.
+        /// Description field for the service. Default `Managed by Terraform`
         /// </summary>
         [Input("comment")]
         public Input<string>? Comment { get; set; }
@@ -276,7 +276,7 @@ namespace Pulumi.Fastly
         private InputList<Inputs.ServiceComputeDomainArgs>? _domains;
 
         /// <summary>
-        /// The domain of the DigitalOcean Spaces endpoint (default `nyc3.digitaloceanspaces.com`)
+        /// A set of Domain names to serve as entry points for your Service
         /// </summary>
         public InputList<Inputs.ServiceComputeDomainArgs> Domains
         {
@@ -285,7 +285,7 @@ namespace Pulumi.Fastly
         }
 
         /// <summary>
-        /// Allow the dictionary to be deleted, even if it contains entries. Defaults to false.
+        /// Services that are active cannot be destroyed. In order to destroy the Service, set `force_destroy` to `true`. Default `false`
         /// </summary>
         [Input("forceDestroy")]
         public Input<bool>? ForceDestroy { get; set; }
@@ -499,7 +499,7 @@ namespace Pulumi.Fastly
         }
 
         /// <summary>
-        /// Name for this Backend. Must be unique to this Service. It is important to note that changing this attribute will delete and recreate the resource
+        /// The unique name for the Service to create
         /// </summary>
         [Input("name")]
         public Input<string>? Name { get; set; }
@@ -574,7 +574,7 @@ namespace Pulumi.Fastly
         public Input<int>? ClonedVersion { get; set; }
 
         /// <summary>
-        /// An optional comment about the Domain.
+        /// Description field for the service. Default `Managed by Terraform`
         /// </summary>
         [Input("comment")]
         public Input<string>? Comment { get; set; }
@@ -591,7 +591,7 @@ namespace Pulumi.Fastly
         private InputList<Inputs.ServiceComputeDomainGetArgs>? _domains;
 
         /// <summary>
-        /// The domain of the DigitalOcean Spaces endpoint (default `nyc3.digitaloceanspaces.com`)
+        /// A set of Domain names to serve as entry points for your Service
         /// </summary>
         public InputList<Inputs.ServiceComputeDomainGetArgs> Domains
         {
@@ -600,7 +600,7 @@ namespace Pulumi.Fastly
         }
 
         /// <summary>
-        /// Allow the dictionary to be deleted, even if it contains entries. Defaults to false.
+        /// Services that are active cannot be destroyed. In order to destroy the Service, set `force_destroy` to `true`. Default `false`
         /// </summary>
         [Input("forceDestroy")]
         public Input<bool>? ForceDestroy { get; set; }
@@ -828,7 +828,7 @@ namespace Pulumi.Fastly
         }
 
         /// <summary>
-        /// Name for this Backend. Must be unique to this Service. It is important to note that changing this attribute will delete and recreate the resource
+        /// The unique name for the Service to create
         /// </summary>
         [Input("name")]
         public Input<string>? Name { get; set; }

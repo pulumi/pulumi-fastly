@@ -140,7 +140,6 @@ class User(pulumi.CustomResource):
 
         Basic usage:
 
-        <!--Start PulumiCodeChooser -->
         ```python
         import pulumi
         import pulumi_fastly as fastly
@@ -149,7 +148,6 @@ class User(pulumi.CustomResource):
             login="demo@example.com",
             name="Demo User")
         ```
-        <!--End PulumiCodeChooser -->
 
         ## Import
 
@@ -180,7 +178,6 @@ class User(pulumi.CustomResource):
 
         Basic usage:
 
-        <!--Start PulumiCodeChooser -->
         ```python
         import pulumi
         import pulumi_fastly as fastly
@@ -189,7 +186,6 @@ class User(pulumi.CustomResource):
             login="demo@example.com",
             name="Demo User")
         ```
-        <!--End PulumiCodeChooser -->
 
         ## Import
 

@@ -12,12 +12,12 @@ import java.util.Objects;
 @CustomType
 public final class ServiceVclRateLimiterResponse {
     /**
-     * @return The VCL code that specifies exactly what the snippet does
+     * @return HTTP response body data
      * 
      */
     private String content;
     /**
-     * @return Value of the `Content-Type` header sent with the request
+     * @return HTTP Content-Type (e.g. application/json)
      * 
      */
     private String contentType;
@@ -29,14 +29,14 @@ public final class ServiceVclRateLimiterResponse {
 
     private ServiceVclRateLimiterResponse() {}
     /**
-     * @return The VCL code that specifies exactly what the snippet does
+     * @return HTTP response body data
      * 
      */
     public String content() {
         return this.content;
     }
     /**
-     * @return Value of the `Content-Type` header sent with the request
+     * @return HTTP Content-Type (e.g. application/json)
      * 
      */
     public String contentType() {

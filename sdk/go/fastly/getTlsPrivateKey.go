@@ -24,7 +24,6 @@ import (
 //
 // ## Example Usage
 //
-// <!--Start PulumiCodeChooser -->
 // ```go
 // package main
 //
@@ -49,7 +48,6 @@ import (
 //	}
 //
 // ```
-// <!--End PulumiCodeChooser -->
 func LookupTlsPrivateKey(ctx *pulumi.Context, args *LookupTlsPrivateKeyArgs, opts ...pulumi.InvokeOption) (*LookupTlsPrivateKeyResult, error) {
 	opts = internal.PkgInvokeDefaultOpts(opts)
 	var rv LookupTlsPrivateKeyResult

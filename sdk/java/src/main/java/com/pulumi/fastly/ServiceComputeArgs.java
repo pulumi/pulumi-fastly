@@ -73,14 +73,14 @@ public final class ServiceComputeArgs extends com.pulumi.resources.ResourceArgs 
     }
 
     /**
-     * An optional comment about the Domain.
+     * Description field for the service. Default `Managed by Terraform`
      * 
      */
     @Import(name="comment")
     private @Nullable Output<String> comment;
 
     /**
-     * @return An optional comment about the Domain.
+     * @return Description field for the service. Default `Managed by Terraform`
      * 
      */
     public Optional<Output<String>> comment() {
@@ -95,14 +95,14 @@ public final class ServiceComputeArgs extends com.pulumi.resources.ResourceArgs 
     }
 
     /**
-     * The domain of the DigitalOcean Spaces endpoint (default `nyc3.digitaloceanspaces.com`)
+     * A set of Domain names to serve as entry points for your Service
      * 
      */
     @Import(name="domains", required=true)
     private Output<List<ServiceComputeDomainArgs>> domains;
 
     /**
-     * @return The domain of the DigitalOcean Spaces endpoint (default `nyc3.digitaloceanspaces.com`)
+     * @return A set of Domain names to serve as entry points for your Service
      * 
      */
     public Output<List<ServiceComputeDomainArgs>> domains() {
@@ -110,14 +110,14 @@ public final class ServiceComputeArgs extends com.pulumi.resources.ResourceArgs 
     }
 
     /**
-     * Allow the dictionary to be deleted, even if it contains entries. Defaults to false.
+     * Services that are active cannot be destroyed. In order to destroy the Service, set `force_destroy` to `true`. Default `false`
      * 
      */
     @Import(name="forceDestroy")
     private @Nullable Output<Boolean> forceDestroy;
 
     /**
-     * @return Allow the dictionary to be deleted, even if it contains entries. Defaults to false.
+     * @return Services that are active cannot be destroyed. In order to destroy the Service, set `force_destroy` to `true`. Default `false`
      * 
      */
     public Optional<Output<Boolean>> forceDestroy() {
@@ -307,14 +307,14 @@ public final class ServiceComputeArgs extends com.pulumi.resources.ResourceArgs 
     }
 
     /**
-     * Name for this Backend. Must be unique to this Service. It is important to note that changing this attribute will delete and recreate the resource
+     * The unique name for the Service to create
      * 
      */
     @Import(name="name")
     private @Nullable Output<String> name;
 
     /**
-     * @return Name for this Backend. Must be unique to this Service. It is important to note that changing this attribute will delete and recreate the resource
+     * @return The unique name for the Service to create
      * 
      */
     public Optional<Output<String>> name() {
@@ -488,7 +488,7 @@ public final class ServiceComputeArgs extends com.pulumi.resources.ResourceArgs 
         }
 
         /**
-         * @param comment An optional comment about the Domain.
+         * @param comment Description field for the service. Default `Managed by Terraform`
          * 
          * @return builder
          * 
@@ -499,7 +499,7 @@ public final class ServiceComputeArgs extends com.pulumi.resources.ResourceArgs 
         }
 
         /**
-         * @param comment An optional comment about the Domain.
+         * @param comment Description field for the service. Default `Managed by Terraform`
          * 
          * @return builder
          * 
@@ -522,7 +522,7 @@ public final class ServiceComputeArgs extends com.pulumi.resources.ResourceArgs 
         }
 
         /**
-         * @param domains The domain of the DigitalOcean Spaces endpoint (default `nyc3.digitaloceanspaces.com`)
+         * @param domains A set of Domain names to serve as entry points for your Service
          * 
          * @return builder
          * 
@@ -533,7 +533,7 @@ public final class ServiceComputeArgs extends com.pulumi.resources.ResourceArgs 
         }
 
         /**
-         * @param domains The domain of the DigitalOcean Spaces endpoint (default `nyc3.digitaloceanspaces.com`)
+         * @param domains A set of Domain names to serve as entry points for your Service
          * 
          * @return builder
          * 
@@ -543,7 +543,7 @@ public final class ServiceComputeArgs extends com.pulumi.resources.ResourceArgs 
         }
 
         /**
-         * @param domains The domain of the DigitalOcean Spaces endpoint (default `nyc3.digitaloceanspaces.com`)
+         * @param domains A set of Domain names to serve as entry points for your Service
          * 
          * @return builder
          * 
@@ -553,7 +553,7 @@ public final class ServiceComputeArgs extends com.pulumi.resources.ResourceArgs 
         }
 
         /**
-         * @param forceDestroy Allow the dictionary to be deleted, even if it contains entries. Defaults to false.
+         * @param forceDestroy Services that are active cannot be destroyed. In order to destroy the Service, set `force_destroy` to `true`. Default `false`
          * 
          * @return builder
          * 
@@ -564,7 +564,7 @@ public final class ServiceComputeArgs extends com.pulumi.resources.ResourceArgs 
         }
 
         /**
-         * @param forceDestroy Allow the dictionary to be deleted, even if it contains entries. Defaults to false.
+         * @param forceDestroy Services that are active cannot be destroyed. In order to destroy the Service, set `force_destroy` to `true`. Default `false`
          * 
          * @return builder
          * 
@@ -912,7 +912,7 @@ public final class ServiceComputeArgs extends com.pulumi.resources.ResourceArgs 
         }
 
         /**
-         * @param name Name for this Backend. Must be unique to this Service. It is important to note that changing this attribute will delete and recreate the resource
+         * @param name The unique name for the Service to create
          * 
          * @return builder
          * 
@@ -923,7 +923,7 @@ public final class ServiceComputeArgs extends com.pulumi.resources.ResourceArgs 
         }
 
         /**
-         * @param name Name for this Backend. Must be unique to this Service. It is important to note that changing this attribute will delete and recreate the resource
+         * @param name The unique name for the Service to create
          * 
          * @return builder
          * 

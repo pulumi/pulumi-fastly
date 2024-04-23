@@ -108,7 +108,6 @@ class Configstore(pulumi.CustomResource):
 
         Basic usage:
 
-        <!--Start PulumiCodeChooser -->
         ```python
         import pulumi
         import pulumi_fastly as fastly
@@ -133,7 +132,6 @@ class Configstore(pulumi.CustomResource):
             )],
             force_destroy=True)
         ```
-        <!--End PulumiCodeChooser -->
 
         ## Import
 
@@ -163,7 +161,6 @@ class Configstore(pulumi.CustomResource):
 
         Basic usage:
 
-        <!--Start PulumiCodeChooser -->
         ```python
         import pulumi
         import pulumi_fastly as fastly
@@ -188,7 +185,6 @@ class Configstore(pulumi.CustomResource):
             )],
             force_destroy=True)
         ```
-        <!--End PulumiCodeChooser -->
 
         ## Import
 

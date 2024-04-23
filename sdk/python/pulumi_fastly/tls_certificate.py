@@ -236,7 +236,6 @@ class TlsCertificate(pulumi.CustomResource):
 
         Basic usage:
 
-        <!--Start PulumiCodeChooser -->
         ```python
         import pulumi
         import pulumi_fastly as fastly
@@ -264,7 +263,6 @@ class TlsCertificate(pulumi.CustomResource):
             certificate_body=cert["certPem"],
             opts=pulumi.ResourceOptions(depends_on=[key_tls_private_key]))
         ```
-        <!--End PulumiCodeChooser -->
 
         ## Updating certificates
 
@@ -307,7 +305,6 @@ class TlsCertificate(pulumi.CustomResource):
 
         Basic usage:
 
-        <!--Start PulumiCodeChooser -->
         ```python
         import pulumi
         import pulumi_fastly as fastly
@@ -335,7 +332,6 @@ class TlsCertificate(pulumi.CustomResource):
             certificate_body=cert["certPem"],
             opts=pulumi.ResourceOptions(depends_on=[key_tls_private_key]))
         ```
-        <!--End PulumiCodeChooser -->
 
         ## Updating certificates
 

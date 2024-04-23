@@ -62,7 +62,6 @@ def get_tls_platform_certificate_ids(opts: Optional[pulumi.InvokeOptions] = None
 
     ## Example Usage
 
-    <!--Start PulumiCodeChooser -->
     ```python
     import pulumi
     import pulumi_fastly as fastly
@@ -70,7 +69,6 @@ def get_tls_platform_certificate_ids(opts: Optional[pulumi.InvokeOptions] = None
     example = fastly.get_tls_platform_certificate_ids()
     example_get_tls_platform_certificate = fastly.get_tls_platform_certificate(id=example.ids[0])
     ```
-    <!--End PulumiCodeChooser -->
     """
     __args__ = dict()
     opts = pulumi.InvokeOptions.merge(_utilities.get_invoke_opts_defaults(), opts)
@@ -88,7 +86,6 @@ def get_tls_platform_certificate_ids_output(opts: Optional[pulumi.InvokeOptions]
 
     ## Example Usage
 
-    <!--Start PulumiCodeChooser -->
     ```python
     import pulumi
     import pulumi_fastly as fastly
@@ -96,6 +93,5 @@ def get_tls_platform_certificate_ids_output(opts: Optional[pulumi.InvokeOptions]
     example = fastly.get_tls_platform_certificate_ids()
     example_get_tls_platform_certificate = fastly.get_tls_platform_certificate(id=example.ids[0])
     ```
-    <!--End PulumiCodeChooser -->
     """
     ...

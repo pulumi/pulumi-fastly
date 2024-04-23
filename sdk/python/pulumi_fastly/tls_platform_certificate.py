@@ -268,7 +268,6 @@ class TlsPlatformCertificate(pulumi.CustomResource):
 
         Basic usage with self-signed CA:
 
-        <!--Start PulumiCodeChooser -->
         ```python
         import pulumi
         import pulumi_fastly as fastly
@@ -319,7 +318,6 @@ class TlsPlatformCertificate(pulumi.CustomResource):
             allow_untrusted_root=True,
             opts=pulumi.ResourceOptions(depends_on=[key_tls_private_key]))
         ```
-        <!--End PulumiCodeChooser -->
 
         ## Import
 
@@ -352,7 +350,6 @@ class TlsPlatformCertificate(pulumi.CustomResource):
 
         Basic usage with self-signed CA:
 
-        <!--Start PulumiCodeChooser -->
         ```python
         import pulumi
         import pulumi_fastly as fastly
@@ -403,7 +400,6 @@ class TlsPlatformCertificate(pulumi.CustomResource):
             allow_untrusted_root=True,
             opts=pulumi.ResourceOptions(depends_on=[key_tls_private_key]))
         ```
-        <!--End PulumiCodeChooser -->
 
         ## Import
 

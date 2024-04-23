@@ -9,7 +9,6 @@ import * as utilities from "./utilities";
  *
  * ## Example Usage
  *
- * <!--Start PulumiCodeChooser -->
  * ```typescript
  * import * as pulumi from "@pulumi/pulumi";
  * import * as fastly from "@pulumi/fastly";
@@ -18,7 +17,6 @@ import * as utilities from "./utilities";
  *     domain: "example.com",
  * });
  * ```
- * <!--End PulumiCodeChooser -->
  */
 export function getTlsDomain(args: GetTlsDomainArgs, opts?: pulumi.InvokeOptions): Promise<GetTlsDomainResult> {
 
@@ -68,7 +66,6 @@ export interface GetTlsDomainResult {
  *
  * ## Example Usage
  *
- * <!--Start PulumiCodeChooser -->
  * ```typescript
  * import * as pulumi from "@pulumi/pulumi";
  * import * as fastly from "@pulumi/fastly";
@@ -77,7 +74,6 @@ export interface GetTlsDomainResult {
  *     domain: "example.com",
  * });
  * ```
- * <!--End PulumiCodeChooser -->
  */
 export function getTlsDomainOutput(args: GetTlsDomainOutputArgs, opts?: pulumi.InvokeOptions): pulumi.Output<GetTlsDomainResult> {
     return pulumi.output(args).apply((a: any) => getTlsDomain(a, opts))
