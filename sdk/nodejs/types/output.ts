@@ -3145,11 +3145,11 @@ export interface ServiceVclRateLimiter {
 
 export interface ServiceVclRateLimiterResponse {
     /**
-     * The VCL code that specifies exactly what the snippet does
+     * HTTP response body data
      */
     content: string;
     /**
-     * Value of the `Content-Type` header sent with the request
+     * HTTP Content-Type (e.g. application/json)
      */
     contentType: string;
     /**

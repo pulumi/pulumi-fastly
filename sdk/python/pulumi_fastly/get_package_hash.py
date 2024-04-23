@@ -88,7 +88,6 @@ def get_package_hash(content: Optional[str] = None,
 
     ## Example Usage
 
-    <!--Start PulumiCodeChooser -->
     ```python
     import pulumi
     import pulumi_fastly as fastly
@@ -99,7 +98,6 @@ def get_package_hash(content: Optional[str] = None,
         source_code_hash=example.hash,
     ))
     ```
-    <!--End PulumiCodeChooser -->
 
 
     :param str content: The contents of the Wasm deployment package as a base64 encoded string (e.g. could be provided using an input variable or via external data source output variable). Conflicts with `filename`. Exactly one of these two arguments must be specified
@@ -127,7 +125,6 @@ def get_package_hash_output(content: Optional[pulumi.Input[Optional[str]]] = Non
 
     ## Example Usage
 
-    <!--Start PulumiCodeChooser -->
     ```python
     import pulumi
     import pulumi_fastly as fastly
@@ -138,7 +135,6 @@ def get_package_hash_output(content: Optional[pulumi.Input[Optional[str]]] = Non
         source_code_hash=example.hash,
     ))
     ```
-    <!--End PulumiCodeChooser -->
 
 
     :param str content: The contents of the Wasm deployment package as a base64 encoded string (e.g. could be provided using an input variable or via external data source output variable). Conflicts with `filename`. Exactly one of these two arguments must be specified

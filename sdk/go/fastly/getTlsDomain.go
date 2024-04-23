@@ -15,7 +15,6 @@ import (
 //
 // ## Example Usage
 //
-// <!--Start PulumiCodeChooser -->
 // ```go
 // package main
 //
@@ -39,7 +38,6 @@ import (
 //	}
 //
 // ```
-// <!--End PulumiCodeChooser -->
 func GetTlsDomain(ctx *pulumi.Context, args *GetTlsDomainArgs, opts ...pulumi.InvokeOption) (*GetTlsDomainResult, error) {
 	opts = internal.PkgInvokeDefaultOpts(opts)
 	var rv GetTlsDomainResult

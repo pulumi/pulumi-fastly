@@ -56,11 +56,11 @@ class ServiceComputeArgs:
                  version_comment: Optional[pulumi.Input[str]] = None):
         """
         The set of arguments for constructing a ServiceCompute resource.
-        :param pulumi.Input[Sequence[pulumi.Input['ServiceComputeDomainArgs']]] domains: The domain of the DigitalOcean Spaces endpoint (default `nyc3.digitaloceanspaces.com`)
+        :param pulumi.Input[Sequence[pulumi.Input['ServiceComputeDomainArgs']]] domains: A set of Domain names to serve as entry points for your Service
         :param pulumi.Input[bool] activate: Conditionally prevents the Service from being activated. The apply step will continue to create a new draft version but will not activate it if this is set to `false`. Default `true`
-        :param pulumi.Input[str] comment: An optional comment about the Domain.
-        :param pulumi.Input[bool] force_destroy: Allow the dictionary to be deleted, even if it contains entries. Defaults to false.
-        :param pulumi.Input[str] name: Name for this Backend. Must be unique to this Service. It is important to note that changing this attribute will delete and recreate the resource
+        :param pulumi.Input[str] comment: Description field for the service. Default `Managed by Terraform`
+        :param pulumi.Input[bool] force_destroy: Services that are active cannot be destroyed. In order to destroy the Service, set `force_destroy` to `true`. Default `false`
+        :param pulumi.Input[str] name: The unique name for the Service to create
         :param pulumi.Input['ServiceComputePackageArgs'] package: The `package` block supports uploading or modifying Wasm packages for use in a Fastly Compute service (if omitted, ensure `activate = false` is set on `ServiceCompute` to avoid service validation errors). See Fastly's documentation on [Compute](https://developer.fastly.com/learning/compute/)
         :param pulumi.Input[Sequence[pulumi.Input['ServiceComputeResourceLinkArgs']]] resource_links: A resource link represents a link between a shared resource (such as an KV Store or Config Store) and a service version.
         :param pulumi.Input[bool] reuse: Services that are active cannot be destroyed. If set to `true` a service Terraform intends to destroy will instead be
@@ -148,7 +148,7 @@ class ServiceComputeArgs:
     @pulumi.getter
     def domains(self) -> pulumi.Input[Sequence[pulumi.Input['ServiceComputeDomainArgs']]]:
         """
-        The domain of the DigitalOcean Spaces endpoint (default `nyc3.digitaloceanspaces.com`)
+        A set of Domain names to serve as entry points for your Service
         """
         return pulumi.get(self, "domains")
 
@@ -181,7 +181,7 @@ class ServiceComputeArgs:
     @pulumi.getter
     def comment(self) -> Optional[pulumi.Input[str]]:
         """
-        An optional comment about the Domain.
+        Description field for the service. Default `Managed by Terraform`
         """
         return pulumi.get(self, "comment")
 
@@ -202,7 +202,7 @@ class ServiceComputeArgs:
     @pulumi.getter(name="forceDestroy")
     def force_destroy(self) -> Optional[pulumi.Input[bool]]:
         """
-        Allow the dictionary to be deleted, even if it contains entries. Defaults to false.
+        Services that are active cannot be destroyed. In order to destroy the Service, set `force_destroy` to `true`. Default `false`
         """
         return pulumi.get(self, "force_destroy")
 
@@ -448,7 +448,7 @@ class ServiceComputeArgs:
     @pulumi.getter
     def name(self) -> Optional[pulumi.Input[str]]:
         """
-        Name for this Backend. Must be unique to this Service. It is important to note that changing this attribute will delete and recreate the resource
+        The unique name for the Service to create
         """
         return pulumi.get(self, "name")
 
@@ -566,14 +566,14 @@ class _ServiceComputeState:
         :param pulumi.Input[bool] activate: Conditionally prevents the Service from being activated. The apply step will continue to create a new draft version but will not activate it if this is set to `false`. Default `true`
         :param pulumi.Input[int] active_version: The currently active version of your Fastly Service
         :param pulumi.Input[int] cloned_version: The latest cloned version by the provider
-        :param pulumi.Input[str] comment: An optional comment about the Domain.
-        :param pulumi.Input[Sequence[pulumi.Input['ServiceComputeDomainArgs']]] domains: The domain of the DigitalOcean Spaces endpoint (default `nyc3.digitaloceanspaces.com`)
-        :param pulumi.Input[bool] force_destroy: Allow the dictionary to be deleted, even if it contains entries. Defaults to false.
+        :param pulumi.Input[str] comment: Description field for the service. Default `Managed by Terraform`
+        :param pulumi.Input[Sequence[pulumi.Input['ServiceComputeDomainArgs']]] domains: A set of Domain names to serve as entry points for your Service
+        :param pulumi.Input[bool] force_destroy: Services that are active cannot be destroyed. In order to destroy the Service, set `force_destroy` to `true`. Default `false`
         :param pulumi.Input[bool] force_refresh: Used internally by the provider to temporarily indicate if all resources should call their associated API to update the
                local state. This is for scenarios where the service version has been reverted outside of Terraform (e.g. via the Fastly
                UI) and the provider needs to resync the state for a different active version (this is only if `activate` is `true`).
         :param pulumi.Input[bool] imported: Used internally by the provider to temporarily indicate if the service is being imported, and is reset to false once the import is finished
-        :param pulumi.Input[str] name: Name for this Backend. Must be unique to this Service. It is important to note that changing this attribute will delete and recreate the resource
+        :param pulumi.Input[str] name: The unique name for the Service to create
         :param pulumi.Input['ServiceComputePackageArgs'] package: The `package` block supports uploading or modifying Wasm packages for use in a Fastly Compute service (if omitted, ensure `activate = false` is set on `ServiceCompute` to avoid service validation errors). See Fastly's documentation on [Compute](https://developer.fastly.com/learning/compute/)
         :param pulumi.Input[Sequence[pulumi.Input['ServiceComputeResourceLinkArgs']]] resource_links: A resource link represents a link between a shared resource (such as an KV Store or Config Store) and a service version.
         :param pulumi.Input[bool] reuse: Services that are active cannot be destroyed. If set to `true` a service Terraform intends to destroy will instead be
@@ -715,7 +715,7 @@ class _ServiceComputeState:
     @pulumi.getter
     def comment(self) -> Optional[pulumi.Input[str]]:
         """
-        An optional comment about the Domain.
+        Description field for the service. Default `Managed by Terraform`
         """
         return pulumi.get(self, "comment")
 
@@ -736,7 +736,7 @@ class _ServiceComputeState:
     @pulumi.getter
     def domains(self) -> Optional[pulumi.Input[Sequence[pulumi.Input['ServiceComputeDomainArgs']]]]:
         """
-        The domain of the DigitalOcean Spaces endpoint (default `nyc3.digitaloceanspaces.com`)
+        A set of Domain names to serve as entry points for your Service
         """
         return pulumi.get(self, "domains")
 
@@ -748,7 +748,7 @@ class _ServiceComputeState:
     @pulumi.getter(name="forceDestroy")
     def force_destroy(self) -> Optional[pulumi.Input[bool]]:
         """
-        Allow the dictionary to be deleted, even if it contains entries. Defaults to false.
+        Services that are active cannot be destroyed. In order to destroy the Service, set `force_destroy` to `true`. Default `false`
         """
         return pulumi.get(self, "force_destroy")
 
@@ -1020,7 +1020,7 @@ class _ServiceComputeState:
     @pulumi.getter
     def name(self) -> Optional[pulumi.Input[str]]:
         """
-        Name for this Backend. Must be unique to this Service. It is important to note that changing this attribute will delete and recreate the resource
+        The unique name for the Service to create
         """
         return pulumi.get(self, "name")
 
@@ -1152,10 +1152,10 @@ class ServiceCompute(pulumi.CustomResource):
         :param str resource_name: The name of the resource.
         :param pulumi.ResourceOptions opts: Options for the resource.
         :param pulumi.Input[bool] activate: Conditionally prevents the Service from being activated. The apply step will continue to create a new draft version but will not activate it if this is set to `false`. Default `true`
-        :param pulumi.Input[str] comment: An optional comment about the Domain.
-        :param pulumi.Input[Sequence[pulumi.Input[pulumi.InputType['ServiceComputeDomainArgs']]]] domains: The domain of the DigitalOcean Spaces endpoint (default `nyc3.digitaloceanspaces.com`)
-        :param pulumi.Input[bool] force_destroy: Allow the dictionary to be deleted, even if it contains entries. Defaults to false.
-        :param pulumi.Input[str] name: Name for this Backend. Must be unique to this Service. It is important to note that changing this attribute will delete and recreate the resource
+        :param pulumi.Input[str] comment: Description field for the service. Default `Managed by Terraform`
+        :param pulumi.Input[Sequence[pulumi.Input[pulumi.InputType['ServiceComputeDomainArgs']]]] domains: A set of Domain names to serve as entry points for your Service
+        :param pulumi.Input[bool] force_destroy: Services that are active cannot be destroyed. In order to destroy the Service, set `force_destroy` to `true`. Default `false`
+        :param pulumi.Input[str] name: The unique name for the Service to create
         :param pulumi.Input[pulumi.InputType['ServiceComputePackageArgs']] package: The `package` block supports uploading or modifying Wasm packages for use in a Fastly Compute service (if omitted, ensure `activate = false` is set on `ServiceCompute` to avoid service validation errors). See Fastly's documentation on [Compute](https://developer.fastly.com/learning/compute/)
         :param pulumi.Input[Sequence[pulumi.Input[pulumi.InputType['ServiceComputeResourceLinkArgs']]]] resource_links: A resource link represents a link between a shared resource (such as an KV Store or Config Store) and a service version.
         :param pulumi.Input[bool] reuse: Services that are active cannot be destroyed. If set to `true` a service Terraform intends to destroy will instead be
@@ -1354,14 +1354,14 @@ class ServiceCompute(pulumi.CustomResource):
         :param pulumi.Input[bool] activate: Conditionally prevents the Service from being activated. The apply step will continue to create a new draft version but will not activate it if this is set to `false`. Default `true`
         :param pulumi.Input[int] active_version: The currently active version of your Fastly Service
         :param pulumi.Input[int] cloned_version: The latest cloned version by the provider
-        :param pulumi.Input[str] comment: An optional comment about the Domain.
-        :param pulumi.Input[Sequence[pulumi.Input[pulumi.InputType['ServiceComputeDomainArgs']]]] domains: The domain of the DigitalOcean Spaces endpoint (default `nyc3.digitaloceanspaces.com`)
-        :param pulumi.Input[bool] force_destroy: Allow the dictionary to be deleted, even if it contains entries. Defaults to false.
+        :param pulumi.Input[str] comment: Description field for the service. Default `Managed by Terraform`
+        :param pulumi.Input[Sequence[pulumi.Input[pulumi.InputType['ServiceComputeDomainArgs']]]] domains: A set of Domain names to serve as entry points for your Service
+        :param pulumi.Input[bool] force_destroy: Services that are active cannot be destroyed. In order to destroy the Service, set `force_destroy` to `true`. Default `false`
         :param pulumi.Input[bool] force_refresh: Used internally by the provider to temporarily indicate if all resources should call their associated API to update the
                local state. This is for scenarios where the service version has been reverted outside of Terraform (e.g. via the Fastly
                UI) and the provider needs to resync the state for a different active version (this is only if `activate` is `true`).
         :param pulumi.Input[bool] imported: Used internally by the provider to temporarily indicate if the service is being imported, and is reset to false once the import is finished
-        :param pulumi.Input[str] name: Name for this Backend. Must be unique to this Service. It is important to note that changing this attribute will delete and recreate the resource
+        :param pulumi.Input[str] name: The unique name for the Service to create
         :param pulumi.Input[pulumi.InputType['ServiceComputePackageArgs']] package: The `package` block supports uploading or modifying Wasm packages for use in a Fastly Compute service (if omitted, ensure `activate = false` is set on `ServiceCompute` to avoid service validation errors). See Fastly's documentation on [Compute](https://developer.fastly.com/learning/compute/)
         :param pulumi.Input[Sequence[pulumi.Input[pulumi.InputType['ServiceComputeResourceLinkArgs']]]] resource_links: A resource link represents a link between a shared resource (such as an KV Store or Config Store) and a service version.
         :param pulumi.Input[bool] reuse: Services that are active cannot be destroyed. If set to `true` a service Terraform intends to destroy will instead be
@@ -1450,7 +1450,7 @@ class ServiceCompute(pulumi.CustomResource):
     @pulumi.getter
     def comment(self) -> pulumi.Output[Optional[str]]:
         """
-        An optional comment about the Domain.
+        Description field for the service. Default `Managed by Terraform`
         """
         return pulumi.get(self, "comment")
 
@@ -1463,7 +1463,7 @@ class ServiceCompute(pulumi.CustomResource):
     @pulumi.getter
     def domains(self) -> pulumi.Output[Sequence['outputs.ServiceComputeDomain']]:
         """
-        The domain of the DigitalOcean Spaces endpoint (default `nyc3.digitaloceanspaces.com`)
+        A set of Domain names to serve as entry points for your Service
         """
         return pulumi.get(self, "domains")
 
@@ -1471,7 +1471,7 @@ class ServiceCompute(pulumi.CustomResource):
     @pulumi.getter(name="forceDestroy")
     def force_destroy(self) -> pulumi.Output[Optional[bool]]:
         """
-        Allow the dictionary to be deleted, even if it contains entries. Defaults to false.
+        Services that are active cannot be destroyed. In order to destroy the Service, set `force_destroy` to `true`. Default `false`
         """
         return pulumi.get(self, "force_destroy")
 
@@ -1627,7 +1627,7 @@ class ServiceCompute(pulumi.CustomResource):
     @pulumi.getter
     def name(self) -> pulumi.Output[str]:
         """
-        Name for this Backend. Must be unique to this Service. It is important to note that changing this attribute will delete and recreate the resource
+        The unique name for the Service to create
         """
         return pulumi.get(self, "name")
 

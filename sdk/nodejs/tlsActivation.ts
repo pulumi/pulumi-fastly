@@ -13,7 +13,6 @@ import * as utilities from "./utilities";
  *
  * Basic usage:
  *
- * <!--Start PulumiCodeChooser -->
  * ```typescript
  * import * as pulumi from "@pulumi/pulumi";
  * import * as fastly from "@pulumi/fastly";
@@ -46,7 +45,6 @@ import * as utilities from "./utilities";
  *     dependsOn: [demo],
  * });
  * ```
- * <!--End PulumiCodeChooser -->
  *
  * > **Warning:** Updating the `fastly.TlsPrivateKey`/`fastly.TlsCertificate` resources should be done in multiple plan/apply steps to avoid potential downtime. The new certificate and associated private key must first be created so they exist alongside the currently active resources. Once the new resources have been created, then the `fastly.TlsActivation` can be updated to point to the new certificate. Finally, the original key/certificate resources can be deleted.
  *

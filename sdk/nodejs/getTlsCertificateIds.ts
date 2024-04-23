@@ -9,7 +9,6 @@ import * as utilities from "./utilities";
  *
  * ## Example Usage
  *
- * <!--Start PulumiCodeChooser -->
  * ```typescript
  * import * as pulumi from "@pulumi/pulumi";
  * import * as fastly from "@pulumi/fastly";
@@ -17,7 +16,6 @@ import * as utilities from "./utilities";
  * const example = fastly.getTlsCertificateIds({});
  * const exampleTlsActivation = new fastly.TlsActivation("example", {certificateId: example.then(example => example.ids?.[0])});
  * ```
- * <!--End PulumiCodeChooser -->
  */
 export function getTlsCertificateIds(opts?: pulumi.InvokeOptions): Promise<GetTlsCertificateIdsResult> {
 
@@ -44,7 +42,6 @@ export interface GetTlsCertificateIdsResult {
  *
  * ## Example Usage
  *
- * <!--Start PulumiCodeChooser -->
  * ```typescript
  * import * as pulumi from "@pulumi/pulumi";
  * import * as fastly from "@pulumi/fastly";
@@ -52,7 +49,6 @@ export interface GetTlsCertificateIdsResult {
  * const example = fastly.getTlsCertificateIds({});
  * const exampleTlsActivation = new fastly.TlsActivation("example", {certificateId: example.then(example => example.ids?.[0])});
  * ```
- * <!--End PulumiCodeChooser -->
  */
 export function getTlsCertificateIdsOutput(opts?: pulumi.InvokeOptions): pulumi.Output<GetTlsCertificateIdsResult> {
     return pulumi.output(getTlsCertificateIds(opts))

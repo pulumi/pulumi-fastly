@@ -89,7 +89,6 @@ def get_dictionaries(service_id: Optional[str] = None,
 
     ## Example Usage
 
-    <!--Start PulumiCodeChooser -->
     ```python
     import pulumi
     import pulumi_fastly as fastly
@@ -115,7 +114,6 @@ def get_dictionaries(service_id: Optional[str] = None,
         service_version=example_service_vcl.active_version)
     pulumi.export("serviceDictionaries", example)
     ```
-    <!--End PulumiCodeChooser -->
 
     [1]: https://developer.fastly.com/reference/api/dictionaries/
 
@@ -145,7 +143,6 @@ def get_dictionaries_output(service_id: Optional[pulumi.Input[str]] = None,
 
     ## Example Usage
 
-    <!--Start PulumiCodeChooser -->
     ```python
     import pulumi
     import pulumi_fastly as fastly
@@ -171,7 +168,6 @@ def get_dictionaries_output(service_id: Optional[pulumi.Input[str]] = None,
         service_version=example_service_vcl.active_version)
     pulumi.export("serviceDictionaries", example)
     ```
-    <!--End PulumiCodeChooser -->
 
     [1]: https://developer.fastly.com/reference/api/dictionaries/
 

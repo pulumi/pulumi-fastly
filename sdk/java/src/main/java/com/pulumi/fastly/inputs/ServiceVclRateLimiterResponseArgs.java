@@ -16,14 +16,14 @@ public final class ServiceVclRateLimiterResponseArgs extends com.pulumi.resource
     public static final ServiceVclRateLimiterResponseArgs Empty = new ServiceVclRateLimiterResponseArgs();
 
     /**
-     * The VCL code that specifies exactly what the snippet does
+     * HTTP response body data
      * 
      */
     @Import(name="content", required=true)
     private Output<String> content;
 
     /**
-     * @return The VCL code that specifies exactly what the snippet does
+     * @return HTTP response body data
      * 
      */
     public Output<String> content() {
@@ -31,14 +31,14 @@ public final class ServiceVclRateLimiterResponseArgs extends com.pulumi.resource
     }
 
     /**
-     * Value of the `Content-Type` header sent with the request
+     * HTTP Content-Type (e.g. application/json)
      * 
      */
     @Import(name="contentType", required=true)
     private Output<String> contentType;
 
     /**
-     * @return Value of the `Content-Type` header sent with the request
+     * @return HTTP Content-Type (e.g. application/json)
      * 
      */
     public Output<String> contentType() {
@@ -87,7 +87,7 @@ public final class ServiceVclRateLimiterResponseArgs extends com.pulumi.resource
         }
 
         /**
-         * @param content The VCL code that specifies exactly what the snippet does
+         * @param content HTTP response body data
          * 
          * @return builder
          * 
@@ -98,7 +98,7 @@ public final class ServiceVclRateLimiterResponseArgs extends com.pulumi.resource
         }
 
         /**
-         * @param content The VCL code that specifies exactly what the snippet does
+         * @param content HTTP response body data
          * 
          * @return builder
          * 
@@ -108,7 +108,7 @@ public final class ServiceVclRateLimiterResponseArgs extends com.pulumi.resource
         }
 
         /**
-         * @param contentType Value of the `Content-Type` header sent with the request
+         * @param contentType HTTP Content-Type (e.g. application/json)
          * 
          * @return builder
          * 
@@ -119,7 +119,7 @@ public final class ServiceVclRateLimiterResponseArgs extends com.pulumi.resource
         }
 
         /**
-         * @param contentType Value of the `Content-Type` header sent with the request
+         * @param contentType HTTP Content-Type (e.g. application/json)
          * 
          * @return builder
          * 

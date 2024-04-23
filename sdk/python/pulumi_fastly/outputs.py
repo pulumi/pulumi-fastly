@@ -10342,8 +10342,8 @@ class ServiceVclRateLimiterResponse(dict):
                  content_type: str,
                  status: int):
         """
-        :param str content: The VCL code that specifies exactly what the snippet does
-        :param str content_type: Value of the `Content-Type` header sent with the request
+        :param str content: HTTP response body data
+        :param str content_type: HTTP Content-Type (e.g. application/json)
         :param int status: HTTP response status code (e.g. 429)
         """
         pulumi.set(__self__, "content", content)
@@ -10354,7 +10354,7 @@ class ServiceVclRateLimiterResponse(dict):
     @pulumi.getter
     def content(self) -> str:
         """
-        The VCL code that specifies exactly what the snippet does
+        HTTP response body data
         """
         return pulumi.get(self, "content")
 
@@ -10362,7 +10362,7 @@ class ServiceVclRateLimiterResponse(dict):
     @pulumi.getter(name="contentType")
     def content_type(self) -> str:
         """
-        Value of the `Content-Type` header sent with the request
+        HTTP Content-Type (e.g. application/json)
         """
         return pulumi.get(self, "content_type")
 

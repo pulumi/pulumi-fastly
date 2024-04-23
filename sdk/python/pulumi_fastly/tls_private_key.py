@@ -187,7 +187,6 @@ class TlsPrivateKey(pulumi.CustomResource):
 
         Basic usage:
 
-        <!--Start PulumiCodeChooser -->
         ```python
         import pulumi
         import pulumi_fastly as fastly
@@ -198,7 +197,6 @@ class TlsPrivateKey(pulumi.CustomResource):
             key_pem=demo["privateKeyPem"],
             name="tf-demo")
         ```
-        <!--End PulumiCodeChooser -->
 
         ## Import
 
@@ -228,7 +226,6 @@ class TlsPrivateKey(pulumi.CustomResource):
 
         Basic usage:
 
-        <!--Start PulumiCodeChooser -->
         ```python
         import pulumi
         import pulumi_fastly as fastly
@@ -239,7 +236,6 @@ class TlsPrivateKey(pulumi.CustomResource):
             key_pem=demo["privateKeyPem"],
             name="tf-demo")
         ```
-        <!--End PulumiCodeChooser -->
 
         ## Import
 

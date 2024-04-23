@@ -118,14 +118,14 @@ public class ServiceCompute extends com.pulumi.resources.CustomResource {
         return this.clonedVersion;
     }
     /**
-     * An optional comment about the Domain.
+     * Description field for the service. Default `Managed by Terraform`
      * 
      */
     @Export(name="comment", refs={String.class}, tree="[0]")
     private Output</* @Nullable */ String> comment;
 
     /**
-     * @return An optional comment about the Domain.
+     * @return Description field for the service. Default `Managed by Terraform`
      * 
      */
     public Output<Optional<String>> comment() {
@@ -138,28 +138,28 @@ public class ServiceCompute extends com.pulumi.resources.CustomResource {
         return Codegen.optional(this.dictionaries);
     }
     /**
-     * The domain of the DigitalOcean Spaces endpoint (default `nyc3.digitaloceanspaces.com`)
+     * A set of Domain names to serve as entry points for your Service
      * 
      */
     @Export(name="domains", refs={List.class,ServiceComputeDomain.class}, tree="[0,1]")
     private Output<List<ServiceComputeDomain>> domains;
 
     /**
-     * @return The domain of the DigitalOcean Spaces endpoint (default `nyc3.digitaloceanspaces.com`)
+     * @return A set of Domain names to serve as entry points for your Service
      * 
      */
     public Output<List<ServiceComputeDomain>> domains() {
         return this.domains;
     }
     /**
-     * Allow the dictionary to be deleted, even if it contains entries. Defaults to false.
+     * Services that are active cannot be destroyed. In order to destroy the Service, set `force_destroy` to `true`. Default `false`
      * 
      */
     @Export(name="forceDestroy", refs={Boolean.class}, tree="[0]")
     private Output</* @Nullable */ Boolean> forceDestroy;
 
     /**
-     * @return Allow the dictionary to be deleted, even if it contains entries. Defaults to false.
+     * @return Services that are active cannot be destroyed. In order to destroy the Service, set `force_destroy` to `true`. Default `false`
      * 
      */
     public Output<Optional<Boolean>> forceDestroy() {
@@ -354,14 +354,14 @@ public class ServiceCompute extends com.pulumi.resources.CustomResource {
         return Codegen.optional(this.loggingSyslogs);
     }
     /**
-     * Name for this Backend. Must be unique to this Service. It is important to note that changing this attribute will delete and recreate the resource
+     * The unique name for the Service to create
      * 
      */
     @Export(name="name", refs={String.class}, tree="[0]")
     private Output<String> name;
 
     /**
-     * @return Name for this Backend. Must be unique to this Service. It is important to note that changing this attribute will delete and recreate the resource
+     * @return The unique name for the Service to create
      * 
      */
     public Output<String> name() {

@@ -584,7 +584,7 @@ class _ServiceWafConfigurationState:
         :param pulumi.Input[int] max_file_size: The maximum allowed file size, in bytes
         :param pulumi.Input[int] max_num_args: The maximum number of arguments allowed
         :param pulumi.Input[int] notice_anomaly_score: Score value to add for notice anomalies
-        :param pulumi.Input[int] number: The numeric ID assigned to the WAF Rule Exclusion
+        :param pulumi.Input[int] number: The WAF firewall version
         :param pulumi.Input[int] paranoia_level: The configured paranoia level
         :param pulumi.Input[int] php_injection_score_threshold: PHP injection threshold
         :param pulumi.Input[int] rce_score_threshold: Remote code execution threshold
@@ -913,7 +913,7 @@ class _ServiceWafConfigurationState:
     @pulumi.getter
     def number(self) -> Optional[pulumi.Input[int]]:
         """
-        The numeric ID assigned to the WAF Rule Exclusion
+        The WAF firewall version
         """
         return pulumi.get(self, "number")
 
@@ -1131,7 +1131,6 @@ class ServiceWafConfiguration(pulumi.CustomResource):
 
         Basic usage:
 
-        <!--Start PulumiCodeChooser -->
         ```python
         import pulumi
         import pulumi_fastly as fastly
@@ -1176,11 +1175,9 @@ class ServiceWafConfiguration(pulumi.CustomResource):
             waf_id=demo.waf.waf_id,
             http_violation_score_threshold=100)
         ```
-        <!--End PulumiCodeChooser -->
 
         Usage with rules:
 
-        <!--Start PulumiCodeChooser -->
         ```python
         import pulumi
         import pulumi_fastly as fastly
@@ -1230,13 +1227,11 @@ class ServiceWafConfiguration(pulumi.CustomResource):
                 status="log",
             )])
         ```
-        <!--End PulumiCodeChooser -->
 
         Usage with rule exclusions:
 
         > **Warning:** Rule exclusions are part of a **beta release**, which may be subject to breaking changes and improvements over time. For more information, see our [product and feature lifecycle](https://docs.fastly.com/products/fastly-product-lifecycle#beta) descriptions.
 
-        <!--Start PulumiCodeChooser -->
         ```python
         import pulumi
         import pulumi_fastly as fastly
@@ -1292,7 +1287,6 @@ class ServiceWafConfiguration(pulumi.CustomResource):
                 modsec_rule_ids=[2029718],
             )])
         ```
-        <!--End PulumiCodeChooser -->
 
         Usage with rules from data source:
 
@@ -1354,7 +1348,6 @@ class ServiceWafConfiguration(pulumi.CustomResource):
 
         Basic usage:
 
-        <!--Start PulumiCodeChooser -->
         ```python
         import pulumi
         import pulumi_fastly as fastly
@@ -1399,11 +1392,9 @@ class ServiceWafConfiguration(pulumi.CustomResource):
             waf_id=demo.waf.waf_id,
             http_violation_score_threshold=100)
         ```
-        <!--End PulumiCodeChooser -->
 
         Usage with rules:
 
-        <!--Start PulumiCodeChooser -->
         ```python
         import pulumi
         import pulumi_fastly as fastly
@@ -1453,13 +1444,11 @@ class ServiceWafConfiguration(pulumi.CustomResource):
                 status="log",
             )])
         ```
-        <!--End PulumiCodeChooser -->
 
         Usage with rule exclusions:
 
         > **Warning:** Rule exclusions are part of a **beta release**, which may be subject to breaking changes and improvements over time. For more information, see our [product and feature lifecycle](https://docs.fastly.com/products/fastly-product-lifecycle#beta) descriptions.
 
-        <!--Start PulumiCodeChooser -->
         ```python
         import pulumi
         import pulumi_fastly as fastly
@@ -1515,7 +1504,6 @@ class ServiceWafConfiguration(pulumi.CustomResource):
                 modsec_rule_ids=[2029718],
             )])
         ```
-        <!--End PulumiCodeChooser -->
 
         Usage with rules from data source:
 
@@ -1694,7 +1682,7 @@ class ServiceWafConfiguration(pulumi.CustomResource):
         :param pulumi.Input[int] max_file_size: The maximum allowed file size, in bytes
         :param pulumi.Input[int] max_num_args: The maximum number of arguments allowed
         :param pulumi.Input[int] notice_anomaly_score: Score value to add for notice anomalies
-        :param pulumi.Input[int] number: The numeric ID assigned to the WAF Rule Exclusion
+        :param pulumi.Input[int] number: The WAF firewall version
         :param pulumi.Input[int] paranoia_level: The configured paranoia level
         :param pulumi.Input[int] php_injection_score_threshold: PHP injection threshold
         :param pulumi.Input[int] rce_score_threshold: Remote code execution threshold
@@ -1913,7 +1901,7 @@ class ServiceWafConfiguration(pulumi.CustomResource):
     @pulumi.getter
     def number(self) -> pulumi.Output[int]:
         """
-        The numeric ID assigned to the WAF Rule Exclusion
+        The WAF firewall version
         """
         return pulumi.get(self, "number")
 

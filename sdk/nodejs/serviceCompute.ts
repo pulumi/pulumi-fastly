@@ -65,16 +65,16 @@ export class ServiceCompute extends pulumi.CustomResource {
      */
     public /*out*/ readonly clonedVersion!: pulumi.Output<number>;
     /**
-     * An optional comment about the Domain.
+     * Description field for the service. Default `Managed by Terraform`
      */
     public readonly comment!: pulumi.Output<string | undefined>;
     public readonly dictionaries!: pulumi.Output<outputs.ServiceComputeDictionary[] | undefined>;
     /**
-     * The domain of the DigitalOcean Spaces endpoint (default `nyc3.digitaloceanspaces.com`)
+     * A set of Domain names to serve as entry points for your Service
      */
     public readonly domains!: pulumi.Output<outputs.ServiceComputeDomain[]>;
     /**
-     * Allow the dictionary to be deleted, even if it contains entries. Defaults to false.
+     * Services that are active cannot be destroyed. In order to destroy the Service, set `forceDestroy` to `true`. Default `false`
      */
     public readonly forceDestroy!: pulumi.Output<boolean | undefined>;
     /**
@@ -114,7 +114,7 @@ export class ServiceCompute extends pulumi.CustomResource {
     public readonly loggingSumologics!: pulumi.Output<outputs.ServiceComputeLoggingSumologic[] | undefined>;
     public readonly loggingSyslogs!: pulumi.Output<outputs.ServiceComputeLoggingSyslog[] | undefined>;
     /**
-     * Name for this Backend. Must be unique to this Service. It is important to note that changing this attribute will delete and recreate the resource
+     * The unique name for the Service to create
      */
     public readonly name!: pulumi.Output<string>;
     /**
@@ -263,16 +263,16 @@ export interface ServiceComputeState {
      */
     clonedVersion?: pulumi.Input<number>;
     /**
-     * An optional comment about the Domain.
+     * Description field for the service. Default `Managed by Terraform`
      */
     comment?: pulumi.Input<string>;
     dictionaries?: pulumi.Input<pulumi.Input<inputs.ServiceComputeDictionary>[]>;
     /**
-     * The domain of the DigitalOcean Spaces endpoint (default `nyc3.digitaloceanspaces.com`)
+     * A set of Domain names to serve as entry points for your Service
      */
     domains?: pulumi.Input<pulumi.Input<inputs.ServiceComputeDomain>[]>;
     /**
-     * Allow the dictionary to be deleted, even if it contains entries. Defaults to false.
+     * Services that are active cannot be destroyed. In order to destroy the Service, set `forceDestroy` to `true`. Default `false`
      */
     forceDestroy?: pulumi.Input<boolean>;
     /**
@@ -312,7 +312,7 @@ export interface ServiceComputeState {
     loggingSumologics?: pulumi.Input<pulumi.Input<inputs.ServiceComputeLoggingSumologic>[]>;
     loggingSyslogs?: pulumi.Input<pulumi.Input<inputs.ServiceComputeLoggingSyslog>[]>;
     /**
-     * Name for this Backend. Must be unique to this Service. It is important to note that changing this attribute will delete and recreate the resource
+     * The unique name for the Service to create
      */
     name?: pulumi.Input<string>;
     /**
@@ -346,16 +346,16 @@ export interface ServiceComputeArgs {
     activate?: pulumi.Input<boolean>;
     backends?: pulumi.Input<pulumi.Input<inputs.ServiceComputeBackend>[]>;
     /**
-     * An optional comment about the Domain.
+     * Description field for the service. Default `Managed by Terraform`
      */
     comment?: pulumi.Input<string>;
     dictionaries?: pulumi.Input<pulumi.Input<inputs.ServiceComputeDictionary>[]>;
     /**
-     * The domain of the DigitalOcean Spaces endpoint (default `nyc3.digitaloceanspaces.com`)
+     * A set of Domain names to serve as entry points for your Service
      */
     domains: pulumi.Input<pulumi.Input<inputs.ServiceComputeDomain>[]>;
     /**
-     * Allow the dictionary to be deleted, even if it contains entries. Defaults to false.
+     * Services that are active cannot be destroyed. In order to destroy the Service, set `forceDestroy` to `true`. Default `false`
      */
     forceDestroy?: pulumi.Input<boolean>;
     loggingBigqueries?: pulumi.Input<pulumi.Input<inputs.ServiceComputeLoggingBigquery>[]>;
@@ -385,7 +385,7 @@ export interface ServiceComputeArgs {
     loggingSumologics?: pulumi.Input<pulumi.Input<inputs.ServiceComputeLoggingSumologic>[]>;
     loggingSyslogs?: pulumi.Input<pulumi.Input<inputs.ServiceComputeLoggingSyslog>[]>;
     /**
-     * Name for this Backend. Must be unique to this Service. It is important to note that changing this attribute will delete and recreate the resource
+     * The unique name for the Service to create
      */
     name?: pulumi.Input<string>;
     /**
