@@ -16,7 +16,6 @@ namespace Pulumi.Fastly
         /// 
         /// ## Example Usage
         /// 
-        /// &lt;!--Start PulumiCodeChooser --&gt;
         /// ```csharp
         /// using System.Collections.Generic;
         /// using System.Linq;
@@ -32,7 +31,6 @@ namespace Pulumi.Fastly
         /// 
         /// });
         /// ```
-        /// &lt;!--End PulumiCodeChooser --&gt;
         /// </summary>
         public static Task<GetTlsDomainResult> InvokeAsync(GetTlsDomainArgs args, InvokeOptions? options = null)
             => global::Pulumi.Deployment.Instance.InvokeAsync<GetTlsDomainResult>("fastly:index/getTlsDomain:getTlsDomain", args ?? new GetTlsDomainArgs(), options.WithDefaults());
@@ -42,7 +40,6 @@ namespace Pulumi.Fastly
         /// 
         /// ## Example Usage
         /// 
-        /// &lt;!--Start PulumiCodeChooser --&gt;
         /// ```csharp
         /// using System.Collections.Generic;
         /// using System.Linq;
@@ -58,7 +55,6 @@ namespace Pulumi.Fastly
         /// 
         /// });
         /// ```
-        /// &lt;!--End PulumiCodeChooser --&gt;
         /// </summary>
         public static Output<GetTlsDomainResult> Invoke(GetTlsDomainInvokeArgs args, InvokeOptions? options = null)
             => global::Pulumi.Deployment.Instance.Invoke<GetTlsDomainResult>("fastly:index/getTlsDomain:getTlsDomain", args ?? new GetTlsDomainInvokeArgs(), options.WithDefaults());

@@ -18,7 +18,6 @@ namespace Pulumi.Fastly
     /// 
     /// Basic usage:
     /// 
-    /// &lt;!--Start PulumiCodeChooser --&gt;
     /// ```csharp
     /// using System.Collections.Generic;
     /// using System.Linq;
@@ -90,11 +89,9 @@ namespace Pulumi.Fastly
     /// 
     /// });
     /// ```
-    /// &lt;!--End PulumiCodeChooser --&gt;
     /// 
     /// Usage with rules:
     /// 
-    /// &lt;!--Start PulumiCodeChooser --&gt;
     /// ```csharp
     /// using System.Collections.Generic;
     /// using System.Linq;
@@ -175,13 +172,11 @@ namespace Pulumi.Fastly
     /// 
     /// });
     /// ```
-    /// &lt;!--End PulumiCodeChooser --&gt;
     /// 
     /// Usage with rule exclusions:
     /// 
     /// &gt; **Warning:** Rule exclusions are part of a **beta release**, which may be subject to breaking changes and improvements over time. For more information, see our [product and feature lifecycle](https://docs.fastly.com/products/fastly-product-lifecycle#beta) descriptions.
     /// 
-    /// &lt;!--Start PulumiCodeChooser --&gt;
     /// ```csharp
     /// using System.Collections.Generic;
     /// using System.Linq;
@@ -275,7 +270,6 @@ namespace Pulumi.Fastly
     /// 
     /// });
     /// ```
-    /// &lt;!--End PulumiCodeChooser --&gt;
     /// 
     /// Usage with rules from data source:
     /// 
@@ -413,7 +407,7 @@ namespace Pulumi.Fastly
         public Output<int> NoticeAnomalyScore { get; private set; } = null!;
 
         /// <summary>
-        /// The numeric ID assigned to the WAF Rule Exclusion
+        /// The WAF firewall version
         /// </summary>
         [Output("number")]
         public Output<int> Number { get; private set; } = null!;
@@ -867,7 +861,7 @@ namespace Pulumi.Fastly
         public Input<int>? NoticeAnomalyScore { get; set; }
 
         /// <summary>
-        /// The numeric ID assigned to the WAF Rule Exclusion
+        /// The WAF firewall version
         /// </summary>
         [Input("number")]
         public Input<int>? Number { get; set; }

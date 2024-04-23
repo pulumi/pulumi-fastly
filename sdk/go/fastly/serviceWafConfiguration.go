@@ -20,7 +20,6 @@ import (
 //
 // Basic usage:
 //
-// <!--Start PulumiCodeChooser -->
 // ```go
 // package main
 //
@@ -93,11 +92,9 @@ import (
 //	}
 //
 // ```
-// <!--End PulumiCodeChooser -->
 //
 // Usage with rules:
 //
-// <!--Start PulumiCodeChooser -->
 // ```go
 // package main
 //
@@ -177,13 +174,11 @@ import (
 //	}
 //
 // ```
-// <!--End PulumiCodeChooser -->
 //
 // Usage with rule exclusions:
 //
 // > **Warning:** Rule exclusions are part of a **beta release**, which may be subject to breaking changes and improvements over time. For more information, see our [product and feature lifecycle](https://docs.fastly.com/products/fastly-product-lifecycle#beta) descriptions.
 //
-// <!--Start PulumiCodeChooser -->
 // ```go
 // package main
 //
@@ -273,7 +268,6 @@ import (
 //	}
 //
 // ```
-// <!--End PulumiCodeChooser -->
 //
 // Usage with rules from data source:
 //
@@ -329,7 +323,7 @@ type ServiceWafConfiguration struct {
 	MaxNumArgs pulumi.IntOutput `pulumi:"maxNumArgs"`
 	// Score value to add for notice anomalies
 	NoticeAnomalyScore pulumi.IntOutput `pulumi:"noticeAnomalyScore"`
-	// The numeric ID assigned to the WAF Rule Exclusion
+	// The WAF firewall version
 	Number pulumi.IntOutput `pulumi:"number"`
 	// The configured paranoia level
 	ParanoiaLevel pulumi.IntOutput `pulumi:"paranoiaLevel"`
@@ -432,7 +426,7 @@ type serviceWafConfigurationState struct {
 	MaxNumArgs *int `pulumi:"maxNumArgs"`
 	// Score value to add for notice anomalies
 	NoticeAnomalyScore *int `pulumi:"noticeAnomalyScore"`
-	// The numeric ID assigned to the WAF Rule Exclusion
+	// The WAF firewall version
 	Number *int `pulumi:"number"`
 	// The configured paranoia level
 	ParanoiaLevel *int `pulumi:"paranoiaLevel"`
@@ -503,7 +497,7 @@ type ServiceWafConfigurationState struct {
 	MaxNumArgs pulumi.IntPtrInput
 	// Score value to add for notice anomalies
 	NoticeAnomalyScore pulumi.IntPtrInput
-	// The numeric ID assigned to the WAF Rule Exclusion
+	// The WAF firewall version
 	Number pulumi.IntPtrInput
 	// The configured paranoia level
 	ParanoiaLevel pulumi.IntPtrInput
@@ -855,7 +849,7 @@ func (o ServiceWafConfigurationOutput) NoticeAnomalyScore() pulumi.IntOutput {
 	return o.ApplyT(func(v *ServiceWafConfiguration) pulumi.IntOutput { return v.NoticeAnomalyScore }).(pulumi.IntOutput)
 }
 
-// The numeric ID assigned to the WAF Rule Exclusion
+// The WAF firewall version
 func (o ServiceWafConfigurationOutput) Number() pulumi.IntOutput {
 	return o.ApplyT(func(v *ServiceWafConfiguration) pulumi.IntOutput { return v.Number }).(pulumi.IntOutput)
 }

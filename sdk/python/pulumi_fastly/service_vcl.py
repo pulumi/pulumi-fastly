@@ -74,17 +74,14 @@ class ServiceVclArgs:
                  waf: Optional[pulumi.Input['ServiceVclWafArgs']] = None):
         """
         The set of arguments for constructing a ServiceVcl resource.
-        :param pulumi.Input[Sequence[pulumi.Input['ServiceVclDomainArgs']]] domains: The domain of the DigitalOcean Spaces endpoint (default `nyc3.digitaloceanspaces.com`)
-        :param pulumi.Input[Sequence[pulumi.Input['ServiceVclAclArgs']]] acls: The AWS [Canned ACL](https://docs.aws.amazon.com/AmazonS3/latest/userguide/acl-overview.html#canned-acl) to use for objects uploaded to the S3 bucket. Options are: `private`, `public-read`, `public-read-write`, `aws-exec-read`, `authenticated-read`, `bucket-owner-read`, `bucket-owner-full-control`
+        :param pulumi.Input[Sequence[pulumi.Input['ServiceVclDomainArgs']]] domains: A set of Domain names to serve as entry points for your Service
         :param pulumi.Input[bool] activate: Conditionally prevents the Service from being activated. The apply step will continue to create a new draft version but will not activate it if this is set to `false`. Default `true`
-        :param pulumi.Input[str] comment: An optional comment about the Director
-        :param pulumi.Input[str] default_host: Sets the host header
+        :param pulumi.Input[str] comment: Description field for the service. Default `Managed by Terraform`
+        :param pulumi.Input[str] default_host: The default hostname
         :param pulumi.Input[int] default_ttl: The default Time-to-live (TTL) for requests
-        :param pulumi.Input[bool] force_destroy: Allow the ACL to be deleted, even if it contains entries. Defaults to false.
-        :param pulumi.Input[Sequence[pulumi.Input['ServiceVclHealthcheckArgs']]] healthchecks: Name of a defined `healthcheck` to assign to this backend
+        :param pulumi.Input[bool] force_destroy: Services that are active cannot be destroyed. In order to destroy the Service, set `force_destroy` to `true`. Default `false`
         :param pulumi.Input[bool] http3: Enables support for the HTTP/3 (QUIC) protocol
-        :param pulumi.Input[str] name: A unique name to identify this ACL. It is important to note that changing this attribute will delete and recreate the ACL, and discard the current items in the ACL
-        :param pulumi.Input[Sequence[pulumi.Input['ServiceVclResponseObjectArgs']]] response_objects: The name of the response object used by the Web Application Firewall
+        :param pulumi.Input[str] name: The unique name for the Service to create
         :param pulumi.Input[bool] reuse: Services that are active cannot be destroyed. If set to `true` a service Terraform intends to destroy will instead be
                deactivated (allowing it to be reused by importing it into another Terraform project). If `false`, attempting to destroy
                an active service will cause an error. Default `false`
@@ -208,7 +205,7 @@ class ServiceVclArgs:
     @pulumi.getter
     def domains(self) -> pulumi.Input[Sequence[pulumi.Input['ServiceVclDomainArgs']]]:
         """
-        The domain of the DigitalOcean Spaces endpoint (default `nyc3.digitaloceanspaces.com`)
+        A set of Domain names to serve as entry points for your Service
         """
         return pulumi.get(self, "domains")
 
@@ -219,9 +216,6 @@ class ServiceVclArgs:
     @property
     @pulumi.getter
     def acls(self) -> Optional[pulumi.Input[Sequence[pulumi.Input['ServiceVclAclArgs']]]]:
-        """
-        The AWS [Canned ACL](https://docs.aws.amazon.com/AmazonS3/latest/userguide/acl-overview.html#canned-acl) to use for objects uploaded to the S3 bucket. Options are: `private`, `public-read`, `public-read-write`, `aws-exec-read`, `authenticated-read`, `bucket-owner-read`, `bucket-owner-full-control`
-        """
         return pulumi.get(self, "acls")
 
     @acls.setter
@@ -262,7 +256,7 @@ class ServiceVclArgs:
     @pulumi.getter
     def comment(self) -> Optional[pulumi.Input[str]]:
         """
-        An optional comment about the Director
+        Description field for the service. Default `Managed by Terraform`
         """
         return pulumi.get(self, "comment")
 
@@ -283,7 +277,7 @@ class ServiceVclArgs:
     @pulumi.getter(name="defaultHost")
     def default_host(self) -> Optional[pulumi.Input[str]]:
         """
-        Sets the host header
+        The default hostname
         """
         return pulumi.get(self, "default_host")
 
@@ -334,7 +328,7 @@ class ServiceVclArgs:
     @pulumi.getter(name="forceDestroy")
     def force_destroy(self) -> Optional[pulumi.Input[bool]]:
         """
-        Allow the ACL to be deleted, even if it contains entries. Defaults to false.
+        Services that are active cannot be destroyed. In order to destroy the Service, set `force_destroy` to `true`. Default `false`
         """
         return pulumi.get(self, "force_destroy")
 
@@ -363,9 +357,6 @@ class ServiceVclArgs:
     @property
     @pulumi.getter
     def healthchecks(self) -> Optional[pulumi.Input[Sequence[pulumi.Input['ServiceVclHealthcheckArgs']]]]:
-        """
-        Name of a defined `healthcheck` to assign to this backend
-        """
         return pulumi.get(self, "healthchecks")
 
     @healthchecks.setter
@@ -631,7 +622,7 @@ class ServiceVclArgs:
     @pulumi.getter
     def name(self) -> Optional[pulumi.Input[str]]:
         """
-        A unique name to identify this ACL. It is important to note that changing this attribute will delete and recreate the ACL, and discard the current items in the ACL
+        The unique name for the Service to create
         """
         return pulumi.get(self, "name")
 
@@ -669,9 +660,6 @@ class ServiceVclArgs:
     @property
     @pulumi.getter(name="responseObjects")
     def response_objects(self) -> Optional[pulumi.Input[Sequence[pulumi.Input['ServiceVclResponseObjectArgs']]]]:
-        """
-        The name of the response object used by the Web Application Firewall
-        """
         return pulumi.get(self, "response_objects")
 
     @response_objects.setter
@@ -821,23 +809,20 @@ class _ServiceVclState:
                  waf: Optional[pulumi.Input['ServiceVclWafArgs']] = None):
         """
         Input properties used for looking up and filtering ServiceVcl resources.
-        :param pulumi.Input[Sequence[pulumi.Input['ServiceVclAclArgs']]] acls: The AWS [Canned ACL](https://docs.aws.amazon.com/AmazonS3/latest/userguide/acl-overview.html#canned-acl) to use for objects uploaded to the S3 bucket. Options are: `private`, `public-read`, `public-read-write`, `aws-exec-read`, `authenticated-read`, `bucket-owner-read`, `bucket-owner-full-control`
         :param pulumi.Input[bool] activate: Conditionally prevents the Service from being activated. The apply step will continue to create a new draft version but will not activate it if this is set to `false`. Default `true`
         :param pulumi.Input[int] active_version: The currently active version of your Fastly Service
         :param pulumi.Input[int] cloned_version: The latest cloned version by the provider
-        :param pulumi.Input[str] comment: An optional comment about the Director
-        :param pulumi.Input[str] default_host: Sets the host header
+        :param pulumi.Input[str] comment: Description field for the service. Default `Managed by Terraform`
+        :param pulumi.Input[str] default_host: The default hostname
         :param pulumi.Input[int] default_ttl: The default Time-to-live (TTL) for requests
-        :param pulumi.Input[Sequence[pulumi.Input['ServiceVclDomainArgs']]] domains: The domain of the DigitalOcean Spaces endpoint (default `nyc3.digitaloceanspaces.com`)
-        :param pulumi.Input[bool] force_destroy: Allow the ACL to be deleted, even if it contains entries. Defaults to false.
+        :param pulumi.Input[Sequence[pulumi.Input['ServiceVclDomainArgs']]] domains: A set of Domain names to serve as entry points for your Service
+        :param pulumi.Input[bool] force_destroy: Services that are active cannot be destroyed. In order to destroy the Service, set `force_destroy` to `true`. Default `false`
         :param pulumi.Input[bool] force_refresh: Used internally by the provider to temporarily indicate if all resources should call their associated API to update the
                local state. This is for scenarios where the service version has been reverted outside of Terraform (e.g. via the Fastly
                UI) and the provider needs to resync the state for a different active version (this is only if `activate` is `true`).
-        :param pulumi.Input[Sequence[pulumi.Input['ServiceVclHealthcheckArgs']]] healthchecks: Name of a defined `healthcheck` to assign to this backend
         :param pulumi.Input[bool] http3: Enables support for the HTTP/3 (QUIC) protocol
         :param pulumi.Input[bool] imported: Used internally by the provider to temporarily indicate if the service is being imported, and is reset to false once the import is finished
-        :param pulumi.Input[str] name: A unique name to identify this ACL. It is important to note that changing this attribute will delete and recreate the ACL, and discard the current items in the ACL
-        :param pulumi.Input[Sequence[pulumi.Input['ServiceVclResponseObjectArgs']]] response_objects: The name of the response object used by the Web Application Firewall
+        :param pulumi.Input[str] name: The unique name for the Service to create
         :param pulumi.Input[bool] reuse: Services that are active cannot be destroyed. If set to `true` a service Terraform intends to destroy will instead be
                deactivated (allowing it to be reused by importing it into another Terraform project). If `false`, attempting to destroy
                an active service will cause an error. Default `false`
@@ -969,9 +954,6 @@ class _ServiceVclState:
     @property
     @pulumi.getter
     def acls(self) -> Optional[pulumi.Input[Sequence[pulumi.Input['ServiceVclAclArgs']]]]:
-        """
-        The AWS [Canned ACL](https://docs.aws.amazon.com/AmazonS3/latest/userguide/acl-overview.html#canned-acl) to use for objects uploaded to the S3 bucket. Options are: `private`, `public-read`, `public-read-write`, `aws-exec-read`, `authenticated-read`, `bucket-owner-read`, `bucket-owner-full-control`
-        """
         return pulumi.get(self, "acls")
 
     @acls.setter
@@ -1036,7 +1018,7 @@ class _ServiceVclState:
     @pulumi.getter
     def comment(self) -> Optional[pulumi.Input[str]]:
         """
-        An optional comment about the Director
+        Description field for the service. Default `Managed by Terraform`
         """
         return pulumi.get(self, "comment")
 
@@ -1057,7 +1039,7 @@ class _ServiceVclState:
     @pulumi.getter(name="defaultHost")
     def default_host(self) -> Optional[pulumi.Input[str]]:
         """
-        Sets the host header
+        The default hostname
         """
         return pulumi.get(self, "default_host")
 
@@ -1099,7 +1081,7 @@ class _ServiceVclState:
     @pulumi.getter
     def domains(self) -> Optional[pulumi.Input[Sequence[pulumi.Input['ServiceVclDomainArgs']]]]:
         """
-        The domain of the DigitalOcean Spaces endpoint (default `nyc3.digitaloceanspaces.com`)
+        A set of Domain names to serve as entry points for your Service
         """
         return pulumi.get(self, "domains")
 
@@ -1120,7 +1102,7 @@ class _ServiceVclState:
     @pulumi.getter(name="forceDestroy")
     def force_destroy(self) -> Optional[pulumi.Input[bool]]:
         """
-        Allow the ACL to be deleted, even if it contains entries. Defaults to false.
+        Services that are active cannot be destroyed. In order to destroy the Service, set `force_destroy` to `true`. Default `false`
         """
         return pulumi.get(self, "force_destroy")
 
@@ -1163,9 +1145,6 @@ class _ServiceVclState:
     @property
     @pulumi.getter
     def healthchecks(self) -> Optional[pulumi.Input[Sequence[pulumi.Input['ServiceVclHealthcheckArgs']]]]:
-        """
-        Name of a defined `healthcheck` to assign to this backend
-        """
         return pulumi.get(self, "healthchecks")
 
     @healthchecks.setter
@@ -1443,7 +1422,7 @@ class _ServiceVclState:
     @pulumi.getter
     def name(self) -> Optional[pulumi.Input[str]]:
         """
-        A unique name to identify this ACL. It is important to note that changing this attribute will delete and recreate the ACL, and discard the current items in the ACL
+        The unique name for the Service to create
         """
         return pulumi.get(self, "name")
 
@@ -1481,9 +1460,6 @@ class _ServiceVclState:
     @property
     @pulumi.getter(name="responseObjects")
     def response_objects(self) -> Optional[pulumi.Input[Sequence[pulumi.Input['ServiceVclResponseObjectArgs']]]]:
-        """
-        The name of the response object used by the Web Application Firewall
-        """
         return pulumi.get(self, "response_objects")
 
     @response_objects.setter
@@ -1649,17 +1625,14 @@ class ServiceVcl(pulumi.CustomResource):
 
         :param str resource_name: The name of the resource.
         :param pulumi.ResourceOptions opts: Options for the resource.
-        :param pulumi.Input[Sequence[pulumi.Input[pulumi.InputType['ServiceVclAclArgs']]]] acls: The AWS [Canned ACL](https://docs.aws.amazon.com/AmazonS3/latest/userguide/acl-overview.html#canned-acl) to use for objects uploaded to the S3 bucket. Options are: `private`, `public-read`, `public-read-write`, `aws-exec-read`, `authenticated-read`, `bucket-owner-read`, `bucket-owner-full-control`
         :param pulumi.Input[bool] activate: Conditionally prevents the Service from being activated. The apply step will continue to create a new draft version but will not activate it if this is set to `false`. Default `true`
-        :param pulumi.Input[str] comment: An optional comment about the Director
-        :param pulumi.Input[str] default_host: Sets the host header
+        :param pulumi.Input[str] comment: Description field for the service. Default `Managed by Terraform`
+        :param pulumi.Input[str] default_host: The default hostname
         :param pulumi.Input[int] default_ttl: The default Time-to-live (TTL) for requests
-        :param pulumi.Input[Sequence[pulumi.Input[pulumi.InputType['ServiceVclDomainArgs']]]] domains: The domain of the DigitalOcean Spaces endpoint (default `nyc3.digitaloceanspaces.com`)
-        :param pulumi.Input[bool] force_destroy: Allow the ACL to be deleted, even if it contains entries. Defaults to false.
-        :param pulumi.Input[Sequence[pulumi.Input[pulumi.InputType['ServiceVclHealthcheckArgs']]]] healthchecks: Name of a defined `healthcheck` to assign to this backend
+        :param pulumi.Input[Sequence[pulumi.Input[pulumi.InputType['ServiceVclDomainArgs']]]] domains: A set of Domain names to serve as entry points for your Service
+        :param pulumi.Input[bool] force_destroy: Services that are active cannot be destroyed. In order to destroy the Service, set `force_destroy` to `true`. Default `false`
         :param pulumi.Input[bool] http3: Enables support for the HTTP/3 (QUIC) protocol
-        :param pulumi.Input[str] name: A unique name to identify this ACL. It is important to note that changing this attribute will delete and recreate the ACL, and discard the current items in the ACL
-        :param pulumi.Input[Sequence[pulumi.Input[pulumi.InputType['ServiceVclResponseObjectArgs']]]] response_objects: The name of the response object used by the Web Application Firewall
+        :param pulumi.Input[str] name: The unique name for the Service to create
         :param pulumi.Input[bool] reuse: Services that are active cannot be destroyed. If set to `true` a service Terraform intends to destroy will instead be
                deactivated (allowing it to be reused by importing it into another Terraform project). If `false`, attempting to destroy
                an active service will cause an error. Default `false`
@@ -1909,23 +1882,20 @@ class ServiceVcl(pulumi.CustomResource):
         :param str resource_name: The unique name of the resulting resource.
         :param pulumi.Input[str] id: The unique provider ID of the resource to lookup.
         :param pulumi.ResourceOptions opts: Options for the resource.
-        :param pulumi.Input[Sequence[pulumi.Input[pulumi.InputType['ServiceVclAclArgs']]]] acls: The AWS [Canned ACL](https://docs.aws.amazon.com/AmazonS3/latest/userguide/acl-overview.html#canned-acl) to use for objects uploaded to the S3 bucket. Options are: `private`, `public-read`, `public-read-write`, `aws-exec-read`, `authenticated-read`, `bucket-owner-read`, `bucket-owner-full-control`
         :param pulumi.Input[bool] activate: Conditionally prevents the Service from being activated. The apply step will continue to create a new draft version but will not activate it if this is set to `false`. Default `true`
         :param pulumi.Input[int] active_version: The currently active version of your Fastly Service
         :param pulumi.Input[int] cloned_version: The latest cloned version by the provider
-        :param pulumi.Input[str] comment: An optional comment about the Director
-        :param pulumi.Input[str] default_host: Sets the host header
+        :param pulumi.Input[str] comment: Description field for the service. Default `Managed by Terraform`
+        :param pulumi.Input[str] default_host: The default hostname
         :param pulumi.Input[int] default_ttl: The default Time-to-live (TTL) for requests
-        :param pulumi.Input[Sequence[pulumi.Input[pulumi.InputType['ServiceVclDomainArgs']]]] domains: The domain of the DigitalOcean Spaces endpoint (default `nyc3.digitaloceanspaces.com`)
-        :param pulumi.Input[bool] force_destroy: Allow the ACL to be deleted, even if it contains entries. Defaults to false.
+        :param pulumi.Input[Sequence[pulumi.Input[pulumi.InputType['ServiceVclDomainArgs']]]] domains: A set of Domain names to serve as entry points for your Service
+        :param pulumi.Input[bool] force_destroy: Services that are active cannot be destroyed. In order to destroy the Service, set `force_destroy` to `true`. Default `false`
         :param pulumi.Input[bool] force_refresh: Used internally by the provider to temporarily indicate if all resources should call their associated API to update the
                local state. This is for scenarios where the service version has been reverted outside of Terraform (e.g. via the Fastly
                UI) and the provider needs to resync the state for a different active version (this is only if `activate` is `true`).
-        :param pulumi.Input[Sequence[pulumi.Input[pulumi.InputType['ServiceVclHealthcheckArgs']]]] healthchecks: Name of a defined `healthcheck` to assign to this backend
         :param pulumi.Input[bool] http3: Enables support for the HTTP/3 (QUIC) protocol
         :param pulumi.Input[bool] imported: Used internally by the provider to temporarily indicate if the service is being imported, and is reset to false once the import is finished
-        :param pulumi.Input[str] name: A unique name to identify this ACL. It is important to note that changing this attribute will delete and recreate the ACL, and discard the current items in the ACL
-        :param pulumi.Input[Sequence[pulumi.Input[pulumi.InputType['ServiceVclResponseObjectArgs']]]] response_objects: The name of the response object used by the Web Application Firewall
+        :param pulumi.Input[str] name: The unique name for the Service to create
         :param pulumi.Input[bool] reuse: Services that are active cannot be destroyed. If set to `true` a service Terraform intends to destroy will instead be
                deactivated (allowing it to be reused by importing it into another Terraform project). If `false`, attempting to destroy
                an active service will cause an error. Default `false`
@@ -2002,9 +1972,6 @@ class ServiceVcl(pulumi.CustomResource):
     @property
     @pulumi.getter
     def acls(self) -> pulumi.Output[Optional[Sequence['outputs.ServiceVclAcl']]]:
-        """
-        The AWS [Canned ACL](https://docs.aws.amazon.com/AmazonS3/latest/userguide/acl-overview.html#canned-acl) to use for objects uploaded to the S3 bucket. Options are: `private`, `public-read`, `public-read-write`, `aws-exec-read`, `authenticated-read`, `bucket-owner-read`, `bucket-owner-full-control`
-        """
         return pulumi.get(self, "acls")
 
     @property
@@ -2045,7 +2012,7 @@ class ServiceVcl(pulumi.CustomResource):
     @pulumi.getter
     def comment(self) -> pulumi.Output[Optional[str]]:
         """
-        An optional comment about the Director
+        Description field for the service. Default `Managed by Terraform`
         """
         return pulumi.get(self, "comment")
 
@@ -2058,7 +2025,7 @@ class ServiceVcl(pulumi.CustomResource):
     @pulumi.getter(name="defaultHost")
     def default_host(self) -> pulumi.Output[Optional[str]]:
         """
-        Sets the host header
+        The default hostname
         """
         return pulumi.get(self, "default_host")
 
@@ -2084,7 +2051,7 @@ class ServiceVcl(pulumi.CustomResource):
     @pulumi.getter
     def domains(self) -> pulumi.Output[Sequence['outputs.ServiceVclDomain']]:
         """
-        The domain of the DigitalOcean Spaces endpoint (default `nyc3.digitaloceanspaces.com`)
+        A set of Domain names to serve as entry points for your Service
         """
         return pulumi.get(self, "domains")
 
@@ -2097,7 +2064,7 @@ class ServiceVcl(pulumi.CustomResource):
     @pulumi.getter(name="forceDestroy")
     def force_destroy(self) -> pulumi.Output[Optional[bool]]:
         """
-        Allow the ACL to be deleted, even if it contains entries. Defaults to false.
+        Services that are active cannot be destroyed. In order to destroy the Service, set `force_destroy` to `true`. Default `false`
         """
         return pulumi.get(self, "force_destroy")
 
@@ -2124,9 +2091,6 @@ class ServiceVcl(pulumi.CustomResource):
     @property
     @pulumi.getter
     def healthchecks(self) -> pulumi.Output[Optional[Sequence['outputs.ServiceVclHealthcheck']]]:
-        """
-        Name of a defined `healthcheck` to assign to this backend
-        """
         return pulumi.get(self, "healthchecks")
 
     @property
@@ -2284,7 +2248,7 @@ class ServiceVcl(pulumi.CustomResource):
     @pulumi.getter
     def name(self) -> pulumi.Output[str]:
         """
-        A unique name to identify this ACL. It is important to note that changing this attribute will delete and recreate the ACL, and discard the current items in the ACL
+        The unique name for the Service to create
         """
         return pulumi.get(self, "name")
 
@@ -2306,9 +2270,6 @@ class ServiceVcl(pulumi.CustomResource):
     @property
     @pulumi.getter(name="responseObjects")
     def response_objects(self) -> pulumi.Output[Optional[Sequence['outputs.ServiceVclResponseObject']]]:
-        """
-        The name of the response object used by the Web Application Firewall
-        """
         return pulumi.get(self, "response_objects")
 
     @property

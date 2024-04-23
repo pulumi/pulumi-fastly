@@ -17,7 +17,6 @@ import * as utilities from "./utilities";
  *
  * ## Example Usage
  *
- * <!--Start PulumiCodeChooser -->
  * ```typescript
  * import * as pulumi from "@pulumi/pulumi";
  * import * as fastly from "@pulumi/fastly";
@@ -27,7 +26,6 @@ import * as utilities from "./utilities";
  * });
  * const exampleTlsActivation = new fastly.TlsActivation("example", {configurationId: example.then(example => example.id)});
  * ```
- * <!--End PulumiCodeChooser -->
  */
 export function getTlsConfiguration(args?: GetTlsConfigurationArgs, opts?: pulumi.InvokeOptions): Promise<GetTlsConfigurationResult> {
     args = args || {};
@@ -125,7 +123,6 @@ export interface GetTlsConfigurationResult {
  *
  * ## Example Usage
  *
- * <!--Start PulumiCodeChooser -->
  * ```typescript
  * import * as pulumi from "@pulumi/pulumi";
  * import * as fastly from "@pulumi/fastly";
@@ -135,7 +132,6 @@ export interface GetTlsConfigurationResult {
  * });
  * const exampleTlsActivation = new fastly.TlsActivation("example", {configurationId: example.then(example => example.id)});
  * ```
- * <!--End PulumiCodeChooser -->
  */
 export function getTlsConfigurationOutput(args?: GetTlsConfigurationOutputArgs, opts?: pulumi.InvokeOptions): pulumi.Output<GetTlsConfigurationResult> {
     return pulumi.output(args).apply((a: any) => getTlsConfiguration(a, opts))

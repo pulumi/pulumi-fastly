@@ -23,7 +23,6 @@ namespace Pulumi.Fastly
         /// 
         /// ## Example Usage
         /// 
-        /// &lt;!--Start PulumiCodeChooser --&gt;
         /// ```csharp
         /// using System.Collections.Generic;
         /// using System.Linq;
@@ -43,7 +42,6 @@ namespace Pulumi.Fastly
         ///     };
         /// });
         /// ```
-        /// &lt;!--End PulumiCodeChooser --&gt;
         /// </summary>
         public static Task<GetTlsPrivateKeyResult> InvokeAsync(GetTlsPrivateKeyArgs? args = null, InvokeOptions? options = null)
             => global::Pulumi.Deployment.Instance.InvokeAsync<GetTlsPrivateKeyResult>("fastly:index/getTlsPrivateKey:getTlsPrivateKey", args ?? new GetTlsPrivateKeyArgs(), options.WithDefaults());
@@ -60,7 +58,6 @@ namespace Pulumi.Fastly
         /// 
         /// ## Example Usage
         /// 
-        /// &lt;!--Start PulumiCodeChooser --&gt;
         /// ```csharp
         /// using System.Collections.Generic;
         /// using System.Linq;
@@ -80,7 +77,6 @@ namespace Pulumi.Fastly
         ///     };
         /// });
         /// ```
-        /// &lt;!--End PulumiCodeChooser --&gt;
         /// </summary>
         public static Output<GetTlsPrivateKeyResult> Invoke(GetTlsPrivateKeyInvokeArgs? args = null, InvokeOptions? options = null)
             => global::Pulumi.Deployment.Instance.Invoke<GetTlsPrivateKeyResult>("fastly:index/getTlsPrivateKey:getTlsPrivateKey", args ?? new GetTlsPrivateKeyInvokeArgs(), options.WithDefaults());
