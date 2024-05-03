@@ -67,7 +67,7 @@ public final class ProviderArgs extends com.pulumi.resources.ResourceArgs {
 
     /**
      * Set to `true` if your configuration only consumes data sources that do not require authentication, such as
-     * `fastly_ip_ranges`
+     * `fastly.getFastlyIpRanges`
      * 
      */
     @Import(name="noAuth", json=true)
@@ -75,7 +75,7 @@ public final class ProviderArgs extends com.pulumi.resources.ResourceArgs {
 
     /**
      * @return Set to `true` if your configuration only consumes data sources that do not require authentication, such as
-     * `fastly_ip_ranges`
+     * `fastly.getFastlyIpRanges`
      * 
      */
     public Optional<Output<Boolean>> noAuth() {
@@ -178,7 +178,7 @@ public final class ProviderArgs extends com.pulumi.resources.ResourceArgs {
 
         /**
          * @param noAuth Set to `true` if your configuration only consumes data sources that do not require authentication, such as
-         * `fastly_ip_ranges`
+         * `fastly.getFastlyIpRanges`
          * 
          * @return builder
          * 
@@ -190,7 +190,7 @@ public final class ProviderArgs extends com.pulumi.resources.ResourceArgs {
 
         /**
          * @param noAuth Set to `true` if your configuration only consumes data sources that do not require authentication, such as
-         * `fastly_ip_ranges`
+         * `fastly.getFastlyIpRanges`
          * 
          * @return builder
          * 

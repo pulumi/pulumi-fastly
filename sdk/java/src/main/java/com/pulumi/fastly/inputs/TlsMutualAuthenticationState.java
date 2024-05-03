@@ -77,19 +77,9 @@ public final class TlsMutualAuthenticationState extends com.pulumi.resources.Res
         return Optional.ofNullable(this.enforced);
     }
 
-    /**
-     * A comma-separated list used by the Terraform provider during a state refresh to return more data related to your mutual
-     * authentication from the Fastly API (permitted values: `tls_activations`).
-     * 
-     */
     @Import(name="include")
     private @Nullable Output<String> include;
 
-    /**
-     * @return A comma-separated list used by the Terraform provider during a state refresh to return more data related to your mutual
-     * authentication from the Fastly API (permitted values: `tls_activations`).
-     * 
-     */
     public Optional<Output<String>> include() {
         return Optional.ofNullable(this.include);
     }
@@ -264,25 +254,11 @@ public final class TlsMutualAuthenticationState extends com.pulumi.resources.Res
             return enforced(Output.of(enforced));
         }
 
-        /**
-         * @param include A comma-separated list used by the Terraform provider during a state refresh to return more data related to your mutual
-         * authentication from the Fastly API (permitted values: `tls_activations`).
-         * 
-         * @return builder
-         * 
-         */
         public Builder include(@Nullable Output<String> include) {
             $.include = include;
             return this;
         }
 
-        /**
-         * @param include A comma-separated list used by the Terraform provider during a state refresh to return more data related to your mutual
-         * authentication from the Fastly API (permitted values: `tls_activations`).
-         * 
-         * @return builder
-         * 
-         */
         public Builder include(String include) {
             return include(Output.of(include));
         }

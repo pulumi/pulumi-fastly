@@ -66,9 +66,6 @@ export class ServiceVcl extends pulumi.CustomResource {
      * The latest cloned version by the provider
      */
     public /*out*/ readonly clonedVersion!: pulumi.Output<number>;
-    /**
-     * Description field for the service. Default `Managed by Terraform`
-     */
     public readonly comment!: pulumi.Output<string | undefined>;
     public readonly conditions!: pulumi.Output<outputs.ServiceVclCondition[] | undefined>;
     /**
@@ -90,11 +87,6 @@ export class ServiceVcl extends pulumi.CustomResource {
      * Services that are active cannot be destroyed. In order to destroy the Service, set `forceDestroy` to `true`. Default `false`
      */
     public readonly forceDestroy!: pulumi.Output<boolean | undefined>;
-    /**
-     * Used internally by the provider to temporarily indicate if all resources should call their associated API to update the
-     * local state. This is for scenarios where the service version has been reverted outside of Terraform (e.g. via the Fastly
-     * UI) and the provider needs to resync the state for a different active version (this is only if `activate` is `true`).
-     */
     public /*out*/ readonly forceRefresh!: pulumi.Output<boolean>;
     public readonly gzips!: pulumi.Output<outputs.ServiceVclGzip[] | undefined>;
     public readonly headers!: pulumi.Output<outputs.ServiceVclHeader[] | undefined>;
@@ -142,11 +134,6 @@ export class ServiceVcl extends pulumi.CustomResource {
     public readonly rateLimiters!: pulumi.Output<outputs.ServiceVclRateLimiter[] | undefined>;
     public readonly requestSettings!: pulumi.Output<outputs.ServiceVclRequestSetting[] | undefined>;
     public readonly responseObjects!: pulumi.Output<outputs.ServiceVclResponseObject[] | undefined>;
-    /**
-     * Services that are active cannot be destroyed. If set to `true` a service Terraform intends to destroy will instead be
-     * deactivated (allowing it to be reused by importing it into another Terraform project). If `false`, attempting to destroy
-     * an active service will cause an error. Default `false`
-     */
     public readonly reuse!: pulumi.Output<boolean | undefined>;
     public readonly snippets!: pulumi.Output<outputs.ServiceVclSnippet[] | undefined>;
     /**
@@ -327,9 +314,6 @@ export interface ServiceVclState {
      * The latest cloned version by the provider
      */
     clonedVersion?: pulumi.Input<number>;
-    /**
-     * Description field for the service. Default `Managed by Terraform`
-     */
     comment?: pulumi.Input<string>;
     conditions?: pulumi.Input<pulumi.Input<inputs.ServiceVclCondition>[]>;
     /**
@@ -351,11 +335,6 @@ export interface ServiceVclState {
      * Services that are active cannot be destroyed. In order to destroy the Service, set `forceDestroy` to `true`. Default `false`
      */
     forceDestroy?: pulumi.Input<boolean>;
-    /**
-     * Used internally by the provider to temporarily indicate if all resources should call their associated API to update the
-     * local state. This is for scenarios where the service version has been reverted outside of Terraform (e.g. via the Fastly
-     * UI) and the provider needs to resync the state for a different active version (this is only if `activate` is `true`).
-     */
     forceRefresh?: pulumi.Input<boolean>;
     gzips?: pulumi.Input<pulumi.Input<inputs.ServiceVclGzip>[]>;
     headers?: pulumi.Input<pulumi.Input<inputs.ServiceVclHeader>[]>;
@@ -403,11 +382,6 @@ export interface ServiceVclState {
     rateLimiters?: pulumi.Input<pulumi.Input<inputs.ServiceVclRateLimiter>[]>;
     requestSettings?: pulumi.Input<pulumi.Input<inputs.ServiceVclRequestSetting>[]>;
     responseObjects?: pulumi.Input<pulumi.Input<inputs.ServiceVclResponseObject>[]>;
-    /**
-     * Services that are active cannot be destroyed. If set to `true` a service Terraform intends to destroy will instead be
-     * deactivated (allowing it to be reused by importing it into another Terraform project). If `false`, attempting to destroy
-     * an active service will cause an error. Default `false`
-     */
     reuse?: pulumi.Input<boolean>;
     snippets?: pulumi.Input<pulumi.Input<inputs.ServiceVclSnippet>[]>;
     /**
@@ -437,9 +411,6 @@ export interface ServiceVclArgs {
     activate?: pulumi.Input<boolean>;
     backends?: pulumi.Input<pulumi.Input<inputs.ServiceVclBackend>[]>;
     cacheSettings?: pulumi.Input<pulumi.Input<inputs.ServiceVclCacheSetting>[]>;
-    /**
-     * Description field for the service. Default `Managed by Terraform`
-     */
     comment?: pulumi.Input<string>;
     conditions?: pulumi.Input<pulumi.Input<inputs.ServiceVclCondition>[]>;
     /**
@@ -503,11 +474,6 @@ export interface ServiceVclArgs {
     rateLimiters?: pulumi.Input<pulumi.Input<inputs.ServiceVclRateLimiter>[]>;
     requestSettings?: pulumi.Input<pulumi.Input<inputs.ServiceVclRequestSetting>[]>;
     responseObjects?: pulumi.Input<pulumi.Input<inputs.ServiceVclResponseObject>[]>;
-    /**
-     * Services that are active cannot be destroyed. If set to `true` a service Terraform intends to destroy will instead be
-     * deactivated (allowing it to be reused by importing it into another Terraform project). If `false`, attempting to destroy
-     * an active service will cause an error. Default `false`
-     */
     reuse?: pulumi.Input<boolean>;
     snippets?: pulumi.Input<pulumi.Input<inputs.ServiceVclSnippet>[]>;
     /**

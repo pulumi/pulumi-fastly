@@ -36,18 +36,14 @@ type ServiceCompute struct {
 	ActiveVersion pulumi.IntOutput                 `pulumi:"activeVersion"`
 	Backends      ServiceComputeBackendArrayOutput `pulumi:"backends"`
 	// The latest cloned version by the provider
-	ClonedVersion pulumi.IntOutput `pulumi:"clonedVersion"`
-	// Description field for the service. Default `Managed by Terraform`
-	Comment      pulumi.StringPtrOutput              `pulumi:"comment"`
-	Dictionaries ServiceComputeDictionaryArrayOutput `pulumi:"dictionaries"`
+	ClonedVersion pulumi.IntOutput                    `pulumi:"clonedVersion"`
+	Comment       pulumi.StringPtrOutput              `pulumi:"comment"`
+	Dictionaries  ServiceComputeDictionaryArrayOutput `pulumi:"dictionaries"`
 	// A set of Domain names to serve as entry points for your Service
 	Domains ServiceComputeDomainArrayOutput `pulumi:"domains"`
 	// Services that are active cannot be destroyed. In order to destroy the Service, set `forceDestroy` to `true`. Default `false`
 	ForceDestroy pulumi.BoolPtrOutput `pulumi:"forceDestroy"`
-	// Used internally by the provider to temporarily indicate if all resources should call their associated API to update the
-	// local state. This is for scenarios where the service version has been reverted outside of Terraform (e.g. via the Fastly
-	// UI) and the provider needs to resync the state for a different active version (this is only if `activate` is `true`).
-	ForceRefresh pulumi.BoolOutput `pulumi:"forceRefresh"`
+	ForceRefresh pulumi.BoolOutput    `pulumi:"forceRefresh"`
 	// Used internally by the provider to temporarily indicate if the service is being imported, and is reset to false once the import is finished
 	Imported               pulumi.BoolOutput                             `pulumi:"imported"`
 	LoggingBigqueries      ServiceComputeLoggingBigqueryArrayOutput      `pulumi:"loggingBigqueries"`
@@ -83,10 +79,7 @@ type ServiceCompute struct {
 	ProductEnablement ServiceComputeProductEnablementPtrOutput `pulumi:"productEnablement"`
 	// A resource link represents a link between a shared resource (such as an KV Store or Config Store) and a service version.
 	ResourceLinks ServiceComputeResourceLinkArrayOutput `pulumi:"resourceLinks"`
-	// Services that are active cannot be destroyed. If set to `true` a service Terraform intends to destroy will instead be
-	// deactivated (allowing it to be reused by importing it into another Terraform project). If `false`, attempting to destroy
-	// an active service will cause an error. Default `false`
-	Reuse pulumi.BoolPtrOutput `pulumi:"reuse"`
+	Reuse         pulumi.BoolPtrOutput                  `pulumi:"reuse"`
 	// Description field for the version
 	VersionComment pulumi.StringPtrOutput `pulumi:"versionComment"`
 }
@@ -130,17 +123,13 @@ type serviceComputeState struct {
 	ActiveVersion *int                    `pulumi:"activeVersion"`
 	Backends      []ServiceComputeBackend `pulumi:"backends"`
 	// The latest cloned version by the provider
-	ClonedVersion *int `pulumi:"clonedVersion"`
-	// Description field for the service. Default `Managed by Terraform`
-	Comment      *string                    `pulumi:"comment"`
-	Dictionaries []ServiceComputeDictionary `pulumi:"dictionaries"`
+	ClonedVersion *int                       `pulumi:"clonedVersion"`
+	Comment       *string                    `pulumi:"comment"`
+	Dictionaries  []ServiceComputeDictionary `pulumi:"dictionaries"`
 	// A set of Domain names to serve as entry points for your Service
 	Domains []ServiceComputeDomain `pulumi:"domains"`
 	// Services that are active cannot be destroyed. In order to destroy the Service, set `forceDestroy` to `true`. Default `false`
 	ForceDestroy *bool `pulumi:"forceDestroy"`
-	// Used internally by the provider to temporarily indicate if all resources should call their associated API to update the
-	// local state. This is for scenarios where the service version has been reverted outside of Terraform (e.g. via the Fastly
-	// UI) and the provider needs to resync the state for a different active version (this is only if `activate` is `true`).
 	ForceRefresh *bool `pulumi:"forceRefresh"`
 	// Used internally by the provider to temporarily indicate if the service is being imported, and is reset to false once the import is finished
 	Imported               *bool                                `pulumi:"imported"`
@@ -177,10 +166,7 @@ type serviceComputeState struct {
 	ProductEnablement *ServiceComputeProductEnablement `pulumi:"productEnablement"`
 	// A resource link represents a link between a shared resource (such as an KV Store or Config Store) and a service version.
 	ResourceLinks []ServiceComputeResourceLink `pulumi:"resourceLinks"`
-	// Services that are active cannot be destroyed. If set to `true` a service Terraform intends to destroy will instead be
-	// deactivated (allowing it to be reused by importing it into another Terraform project). If `false`, attempting to destroy
-	// an active service will cause an error. Default `false`
-	Reuse *bool `pulumi:"reuse"`
+	Reuse         *bool                        `pulumi:"reuse"`
 	// Description field for the version
 	VersionComment *string `pulumi:"versionComment"`
 }
@@ -193,16 +179,12 @@ type ServiceComputeState struct {
 	Backends      ServiceComputeBackendArrayInput
 	// The latest cloned version by the provider
 	ClonedVersion pulumi.IntPtrInput
-	// Description field for the service. Default `Managed by Terraform`
-	Comment      pulumi.StringPtrInput
-	Dictionaries ServiceComputeDictionaryArrayInput
+	Comment       pulumi.StringPtrInput
+	Dictionaries  ServiceComputeDictionaryArrayInput
 	// A set of Domain names to serve as entry points for your Service
 	Domains ServiceComputeDomainArrayInput
 	// Services that are active cannot be destroyed. In order to destroy the Service, set `forceDestroy` to `true`. Default `false`
 	ForceDestroy pulumi.BoolPtrInput
-	// Used internally by the provider to temporarily indicate if all resources should call their associated API to update the
-	// local state. This is for scenarios where the service version has been reverted outside of Terraform (e.g. via the Fastly
-	// UI) and the provider needs to resync the state for a different active version (this is only if `activate` is `true`).
 	ForceRefresh pulumi.BoolPtrInput
 	// Used internally by the provider to temporarily indicate if the service is being imported, and is reset to false once the import is finished
 	Imported               pulumi.BoolPtrInput
@@ -239,10 +221,7 @@ type ServiceComputeState struct {
 	ProductEnablement ServiceComputeProductEnablementPtrInput
 	// A resource link represents a link between a shared resource (such as an KV Store or Config Store) and a service version.
 	ResourceLinks ServiceComputeResourceLinkArrayInput
-	// Services that are active cannot be destroyed. If set to `true` a service Terraform intends to destroy will instead be
-	// deactivated (allowing it to be reused by importing it into another Terraform project). If `false`, attempting to destroy
-	// an active service will cause an error. Default `false`
-	Reuse pulumi.BoolPtrInput
+	Reuse         pulumi.BoolPtrInput
 	// Description field for the version
 	VersionComment pulumi.StringPtrInput
 }
@@ -253,9 +232,8 @@ func (ServiceComputeState) ElementType() reflect.Type {
 
 type serviceComputeArgs struct {
 	// Conditionally prevents the Service from being activated. The apply step will continue to create a new draft version but will not activate it if this is set to `false`. Default `true`
-	Activate *bool                   `pulumi:"activate"`
-	Backends []ServiceComputeBackend `pulumi:"backends"`
-	// Description field for the service. Default `Managed by Terraform`
+	Activate     *bool                      `pulumi:"activate"`
+	Backends     []ServiceComputeBackend    `pulumi:"backends"`
 	Comment      *string                    `pulumi:"comment"`
 	Dictionaries []ServiceComputeDictionary `pulumi:"dictionaries"`
 	// A set of Domain names to serve as entry points for your Service
@@ -295,10 +273,7 @@ type serviceComputeArgs struct {
 	ProductEnablement *ServiceComputeProductEnablement `pulumi:"productEnablement"`
 	// A resource link represents a link between a shared resource (such as an KV Store or Config Store) and a service version.
 	ResourceLinks []ServiceComputeResourceLink `pulumi:"resourceLinks"`
-	// Services that are active cannot be destroyed. If set to `true` a service Terraform intends to destroy will instead be
-	// deactivated (allowing it to be reused by importing it into another Terraform project). If `false`, attempting to destroy
-	// an active service will cause an error. Default `false`
-	Reuse *bool `pulumi:"reuse"`
+	Reuse         *bool                        `pulumi:"reuse"`
 	// Description field for the version
 	VersionComment *string `pulumi:"versionComment"`
 }
@@ -306,9 +281,8 @@ type serviceComputeArgs struct {
 // The set of arguments for constructing a ServiceCompute resource.
 type ServiceComputeArgs struct {
 	// Conditionally prevents the Service from being activated. The apply step will continue to create a new draft version but will not activate it if this is set to `false`. Default `true`
-	Activate pulumi.BoolPtrInput
-	Backends ServiceComputeBackendArrayInput
-	// Description field for the service. Default `Managed by Terraform`
+	Activate     pulumi.BoolPtrInput
+	Backends     ServiceComputeBackendArrayInput
 	Comment      pulumi.StringPtrInput
 	Dictionaries ServiceComputeDictionaryArrayInput
 	// A set of Domain names to serve as entry points for your Service
@@ -348,10 +322,7 @@ type ServiceComputeArgs struct {
 	ProductEnablement ServiceComputeProductEnablementPtrInput
 	// A resource link represents a link between a shared resource (such as an KV Store or Config Store) and a service version.
 	ResourceLinks ServiceComputeResourceLinkArrayInput
-	// Services that are active cannot be destroyed. If set to `true` a service Terraform intends to destroy will instead be
-	// deactivated (allowing it to be reused by importing it into another Terraform project). If `false`, attempting to destroy
-	// an active service will cause an error. Default `false`
-	Reuse pulumi.BoolPtrInput
+	Reuse         pulumi.BoolPtrInput
 	// Description field for the version
 	VersionComment pulumi.StringPtrInput
 }
@@ -462,7 +433,6 @@ func (o ServiceComputeOutput) ClonedVersion() pulumi.IntOutput {
 	return o.ApplyT(func(v *ServiceCompute) pulumi.IntOutput { return v.ClonedVersion }).(pulumi.IntOutput)
 }
 
-// Description field for the service. Default `Managed by Terraform`
 func (o ServiceComputeOutput) Comment() pulumi.StringPtrOutput {
 	return o.ApplyT(func(v *ServiceCompute) pulumi.StringPtrOutput { return v.Comment }).(pulumi.StringPtrOutput)
 }
@@ -481,9 +451,6 @@ func (o ServiceComputeOutput) ForceDestroy() pulumi.BoolPtrOutput {
 	return o.ApplyT(func(v *ServiceCompute) pulumi.BoolPtrOutput { return v.ForceDestroy }).(pulumi.BoolPtrOutput)
 }
 
-// Used internally by the provider to temporarily indicate if all resources should call their associated API to update the
-// local state. This is for scenarios where the service version has been reverted outside of Terraform (e.g. via the Fastly
-// UI) and the provider needs to resync the state for a different active version (this is only if `activate` is `true`).
 func (o ServiceComputeOutput) ForceRefresh() pulumi.BoolOutput {
 	return o.ApplyT(func(v *ServiceCompute) pulumi.BoolOutput { return v.ForceRefresh }).(pulumi.BoolOutput)
 }
@@ -616,9 +583,6 @@ func (o ServiceComputeOutput) ResourceLinks() ServiceComputeResourceLinkArrayOut
 	return o.ApplyT(func(v *ServiceCompute) ServiceComputeResourceLinkArrayOutput { return v.ResourceLinks }).(ServiceComputeResourceLinkArrayOutput)
 }
 
-// Services that are active cannot be destroyed. If set to `true` a service Terraform intends to destroy will instead be
-// deactivated (allowing it to be reused by importing it into another Terraform project). If `false`, attempting to destroy
-// an active service will cause an error. Default `false`
 func (o ServiceComputeOutput) Reuse() pulumi.BoolPtrOutput {
 	return o.ApplyT(func(v *ServiceCompute) pulumi.BoolPtrOutput { return v.Reuse }).(pulumi.BoolPtrOutput)
 }
