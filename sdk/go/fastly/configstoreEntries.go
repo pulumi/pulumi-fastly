@@ -23,9 +23,7 @@ type ConfigstoreEntries struct {
 	pulumi.CustomResourceState
 
 	// A map representing an entry in the Config Store, (key/value)
-	Entries pulumi.MapOutput `pulumi:"entries"`
-	// Have Terraform manage the entries (default: false). If set to `true` Terraform will remove any entries that were added
-	// externally from the config seeded values.
+	Entries       pulumi.MapOutput     `pulumi:"entries"`
 	ManageEntries pulumi.BoolPtrOutput `pulumi:"manageEntries"`
 	// An alphanumeric string identifying the Config Store.
 	StoreId pulumi.StringOutput `pulumi:"storeId"`
@@ -68,19 +66,15 @@ func GetConfigstoreEntries(ctx *pulumi.Context,
 // Input properties used for looking up and filtering ConfigstoreEntries resources.
 type configstoreEntriesState struct {
 	// A map representing an entry in the Config Store, (key/value)
-	Entries map[string]interface{} `pulumi:"entries"`
-	// Have Terraform manage the entries (default: false). If set to `true` Terraform will remove any entries that were added
-	// externally from the config seeded values.
-	ManageEntries *bool `pulumi:"manageEntries"`
+	Entries       map[string]interface{} `pulumi:"entries"`
+	ManageEntries *bool                  `pulumi:"manageEntries"`
 	// An alphanumeric string identifying the Config Store.
 	StoreId *string `pulumi:"storeId"`
 }
 
 type ConfigstoreEntriesState struct {
 	// A map representing an entry in the Config Store, (key/value)
-	Entries pulumi.MapInput
-	// Have Terraform manage the entries (default: false). If set to `true` Terraform will remove any entries that were added
-	// externally from the config seeded values.
+	Entries       pulumi.MapInput
 	ManageEntries pulumi.BoolPtrInput
 	// An alphanumeric string identifying the Config Store.
 	StoreId pulumi.StringPtrInput
@@ -92,10 +86,8 @@ func (ConfigstoreEntriesState) ElementType() reflect.Type {
 
 type configstoreEntriesArgs struct {
 	// A map representing an entry in the Config Store, (key/value)
-	Entries map[string]interface{} `pulumi:"entries"`
-	// Have Terraform manage the entries (default: false). If set to `true` Terraform will remove any entries that were added
-	// externally from the config seeded values.
-	ManageEntries *bool `pulumi:"manageEntries"`
+	Entries       map[string]interface{} `pulumi:"entries"`
+	ManageEntries *bool                  `pulumi:"manageEntries"`
 	// An alphanumeric string identifying the Config Store.
 	StoreId string `pulumi:"storeId"`
 }
@@ -103,9 +95,7 @@ type configstoreEntriesArgs struct {
 // The set of arguments for constructing a ConfigstoreEntries resource.
 type ConfigstoreEntriesArgs struct {
 	// A map representing an entry in the Config Store, (key/value)
-	Entries pulumi.MapInput
-	// Have Terraform manage the entries (default: false). If set to `true` Terraform will remove any entries that were added
-	// externally from the config seeded values.
+	Entries       pulumi.MapInput
 	ManageEntries pulumi.BoolPtrInput
 	// An alphanumeric string identifying the Config Store.
 	StoreId pulumi.StringInput
@@ -203,8 +193,6 @@ func (o ConfigstoreEntriesOutput) Entries() pulumi.MapOutput {
 	return o.ApplyT(func(v *ConfigstoreEntries) pulumi.MapOutput { return v.Entries }).(pulumi.MapOutput)
 }
 
-// Have Terraform manage the entries (default: false). If set to `true` Terraform will remove any entries that were added
-// externally from the config seeded values.
 func (o ConfigstoreEntriesOutput) ManageEntries() pulumi.BoolPtrOutput {
 	return o.ApplyT(func(v *ConfigstoreEntries) pulumi.BoolPtrOutput { return v.ManageEntries }).(pulumi.BoolPtrOutput)
 }

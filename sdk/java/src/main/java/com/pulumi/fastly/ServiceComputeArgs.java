@@ -72,17 +72,9 @@ public final class ServiceComputeArgs extends com.pulumi.resources.ResourceArgs 
         return Optional.ofNullable(this.backends);
     }
 
-    /**
-     * Description field for the service. Default `Managed by Terraform`
-     * 
-     */
     @Import(name="comment")
     private @Nullable Output<String> comment;
 
-    /**
-     * @return Description field for the service. Default `Managed by Terraform`
-     * 
-     */
     public Optional<Output<String>> comment() {
         return Optional.ofNullable(this.comment);
     }
@@ -358,21 +350,9 @@ public final class ServiceComputeArgs extends com.pulumi.resources.ResourceArgs 
         return Optional.ofNullable(this.resourceLinks);
     }
 
-    /**
-     * Services that are active cannot be destroyed. If set to `true` a service Terraform intends to destroy will instead be
-     * deactivated (allowing it to be reused by importing it into another Terraform project). If `false`, attempting to destroy
-     * an active service will cause an error. Default `false`
-     * 
-     */
     @Import(name="reuse")
     private @Nullable Output<Boolean> reuse;
 
-    /**
-     * @return Services that are active cannot be destroyed. If set to `true` a service Terraform intends to destroy will instead be
-     * deactivated (allowing it to be reused by importing it into another Terraform project). If `false`, attempting to destroy
-     * an active service will cause an error. Default `false`
-     * 
-     */
     public Optional<Output<Boolean>> reuse() {
         return Optional.ofNullable(this.reuse);
     }
@@ -487,23 +467,11 @@ public final class ServiceComputeArgs extends com.pulumi.resources.ResourceArgs 
             return backends(List.of(backends));
         }
 
-        /**
-         * @param comment Description field for the service. Default `Managed by Terraform`
-         * 
-         * @return builder
-         * 
-         */
         public Builder comment(@Nullable Output<String> comment) {
             $.comment = comment;
             return this;
         }
 
-        /**
-         * @param comment Description field for the service. Default `Managed by Terraform`
-         * 
-         * @return builder
-         * 
-         */
         public Builder comment(String comment) {
             return comment(Output.of(comment));
         }
@@ -993,27 +961,11 @@ public final class ServiceComputeArgs extends com.pulumi.resources.ResourceArgs 
             return resourceLinks(List.of(resourceLinks));
         }
 
-        /**
-         * @param reuse Services that are active cannot be destroyed. If set to `true` a service Terraform intends to destroy will instead be
-         * deactivated (allowing it to be reused by importing it into another Terraform project). If `false`, attempting to destroy
-         * an active service will cause an error. Default `false`
-         * 
-         * @return builder
-         * 
-         */
         public Builder reuse(@Nullable Output<Boolean> reuse) {
             $.reuse = reuse;
             return this;
         }
 
-        /**
-         * @param reuse Services that are active cannot be destroyed. If set to `true` a service Terraform intends to destroy will instead be
-         * deactivated (allowing it to be reused by importing it into another Terraform project). If `false`, attempting to destroy
-         * an active service will cause an error. Default `false`
-         * 
-         * @return builder
-         * 
-         */
         public Builder reuse(Boolean reuse) {
             return reuse(Output.of(reuse));
         }
