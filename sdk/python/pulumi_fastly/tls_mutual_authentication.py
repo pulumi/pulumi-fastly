@@ -24,8 +24,6 @@ class TlsMutualAuthenticationArgs:
         :param pulumi.Input[str] cert_bundle: One or more certificates. Enter each individual certificate blob on a new line. Must be PEM-formatted.
         :param pulumi.Input[Sequence[pulumi.Input[str]]] activation_ids: List of TLS Activation IDs
         :param pulumi.Input[bool] enforced: Determines whether Mutual TLS will fail closed (enforced) or fail open. A true value will require a successful Mutual TLS handshake for the connection to continue and will fail closed if unsuccessful. A false value will fail open and allow the connection to proceed (if this attribute is not set we default to `false`).
-        :param pulumi.Input[str] include: A comma-separated list used by the Terraform provider during a state refresh to return more data related to your mutual
-               authentication from the Fastly API (permitted values: `tls_activations`).
         :param pulumi.Input[str] name: A custom name for your mutual authentication. If name is not supplied we will auto-generate one.
         """
         pulumi.set(__self__, "cert_bundle", cert_bundle)
@@ -77,10 +75,6 @@ class TlsMutualAuthenticationArgs:
     @property
     @pulumi.getter
     def include(self) -> Optional[pulumi.Input[str]]:
-        """
-        A comma-separated list used by the Terraform provider during a state refresh to return more data related to your mutual
-        authentication from the Fastly API (permitted values: `tls_activations`).
-        """
         return pulumi.get(self, "include")
 
     @include.setter
@@ -117,8 +111,6 @@ class _TlsMutualAuthenticationState:
         :param pulumi.Input[str] cert_bundle: One or more certificates. Enter each individual certificate blob on a new line. Must be PEM-formatted.
         :param pulumi.Input[str] created_at: Date and time in ISO 8601 format.
         :param pulumi.Input[bool] enforced: Determines whether Mutual TLS will fail closed (enforced) or fail open. A true value will require a successful Mutual TLS handshake for the connection to continue and will fail closed if unsuccessful. A false value will fail open and allow the connection to proceed (if this attribute is not set we default to `false`).
-        :param pulumi.Input[str] include: A comma-separated list used by the Terraform provider during a state refresh to return more data related to your mutual
-               authentication from the Fastly API (permitted values: `tls_activations`).
         :param pulumi.Input[str] name: A custom name for your mutual authentication. If name is not supplied we will auto-generate one.
         :param pulumi.Input[Sequence[pulumi.Input[str]]] tls_activations: List of alphanumeric strings identifying TLS activations.
         :param pulumi.Input[str] updated_at: Date and time in ISO 8601 format.
@@ -191,10 +183,6 @@ class _TlsMutualAuthenticationState:
     @property
     @pulumi.getter
     def include(self) -> Optional[pulumi.Input[str]]:
-        """
-        A comma-separated list used by the Terraform provider during a state refresh to return more data related to your mutual
-        authentication from the Fastly API (permitted values: `tls_activations`).
-        """
         return pulumi.get(self, "include")
 
     @include.setter
@@ -263,8 +251,6 @@ class TlsMutualAuthentication(pulumi.CustomResource):
         :param pulumi.Input[Sequence[pulumi.Input[str]]] activation_ids: List of TLS Activation IDs
         :param pulumi.Input[str] cert_bundle: One or more certificates. Enter each individual certificate blob on a new line. Must be PEM-formatted.
         :param pulumi.Input[bool] enforced: Determines whether Mutual TLS will fail closed (enforced) or fail open. A true value will require a successful Mutual TLS handshake for the connection to continue and will fail closed if unsuccessful. A false value will fail open and allow the connection to proceed (if this attribute is not set we default to `false`).
-        :param pulumi.Input[str] include: A comma-separated list used by the Terraform provider during a state refresh to return more data related to your mutual
-               authentication from the Fastly API (permitted values: `tls_activations`).
         :param pulumi.Input[str] name: A custom name for your mutual authentication. If name is not supplied we will auto-generate one.
         """
         ...
@@ -350,8 +336,6 @@ class TlsMutualAuthentication(pulumi.CustomResource):
         :param pulumi.Input[str] cert_bundle: One or more certificates. Enter each individual certificate blob on a new line. Must be PEM-formatted.
         :param pulumi.Input[str] created_at: Date and time in ISO 8601 format.
         :param pulumi.Input[bool] enforced: Determines whether Mutual TLS will fail closed (enforced) or fail open. A true value will require a successful Mutual TLS handshake for the connection to continue and will fail closed if unsuccessful. A false value will fail open and allow the connection to proceed (if this attribute is not set we default to `false`).
-        :param pulumi.Input[str] include: A comma-separated list used by the Terraform provider during a state refresh to return more data related to your mutual
-               authentication from the Fastly API (permitted values: `tls_activations`).
         :param pulumi.Input[str] name: A custom name for your mutual authentication. If name is not supplied we will auto-generate one.
         :param pulumi.Input[Sequence[pulumi.Input[str]]] tls_activations: List of alphanumeric strings identifying TLS activations.
         :param pulumi.Input[str] updated_at: Date and time in ISO 8601 format.
@@ -405,10 +389,6 @@ class TlsMutualAuthentication(pulumi.CustomResource):
     @property
     @pulumi.getter
     def include(self) -> pulumi.Output[Optional[str]]:
-        """
-        A comma-separated list used by the Terraform provider during a state refresh to return more data related to your mutual
-        authentication from the Fastly API (permitted values: `tls_activations`).
-        """
         return pulumi.get(self, "include")
 
     @property

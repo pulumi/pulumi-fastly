@@ -64,9 +64,6 @@ export class ServiceCompute extends pulumi.CustomResource {
      * The latest cloned version by the provider
      */
     public /*out*/ readonly clonedVersion!: pulumi.Output<number>;
-    /**
-     * Description field for the service. Default `Managed by Terraform`
-     */
     public readonly comment!: pulumi.Output<string | undefined>;
     public readonly dictionaries!: pulumi.Output<outputs.ServiceComputeDictionary[] | undefined>;
     /**
@@ -77,11 +74,6 @@ export class ServiceCompute extends pulumi.CustomResource {
      * Services that are active cannot be destroyed. In order to destroy the Service, set `forceDestroy` to `true`. Default `false`
      */
     public readonly forceDestroy!: pulumi.Output<boolean | undefined>;
-    /**
-     * Used internally by the provider to temporarily indicate if all resources should call their associated API to update the
-     * local state. This is for scenarios where the service version has been reverted outside of Terraform (e.g. via the Fastly
-     * UI) and the provider needs to resync the state for a different active version (this is only if `activate` is `true`).
-     */
     public /*out*/ readonly forceRefresh!: pulumi.Output<boolean>;
     /**
      * Used internally by the provider to temporarily indicate if the service is being imported, and is reset to false once the import is finished
@@ -126,11 +118,6 @@ export class ServiceCompute extends pulumi.CustomResource {
      * A resource link represents a link between a shared resource (such as an KV Store or Config Store) and a service version.
      */
     public readonly resourceLinks!: pulumi.Output<outputs.ServiceComputeResourceLink[] | undefined>;
-    /**
-     * Services that are active cannot be destroyed. If set to `true` a service Terraform intends to destroy will instead be
-     * deactivated (allowing it to be reused by importing it into another Terraform project). If `false`, attempting to destroy
-     * an active service will cause an error. Default `false`
-     */
     public readonly reuse!: pulumi.Output<boolean | undefined>;
     /**
      * Description field for the version
@@ -262,9 +249,6 @@ export interface ServiceComputeState {
      * The latest cloned version by the provider
      */
     clonedVersion?: pulumi.Input<number>;
-    /**
-     * Description field for the service. Default `Managed by Terraform`
-     */
     comment?: pulumi.Input<string>;
     dictionaries?: pulumi.Input<pulumi.Input<inputs.ServiceComputeDictionary>[]>;
     /**
@@ -275,11 +259,6 @@ export interface ServiceComputeState {
      * Services that are active cannot be destroyed. In order to destroy the Service, set `forceDestroy` to `true`. Default `false`
      */
     forceDestroy?: pulumi.Input<boolean>;
-    /**
-     * Used internally by the provider to temporarily indicate if all resources should call their associated API to update the
-     * local state. This is for scenarios where the service version has been reverted outside of Terraform (e.g. via the Fastly
-     * UI) and the provider needs to resync the state for a different active version (this is only if `activate` is `true`).
-     */
     forceRefresh?: pulumi.Input<boolean>;
     /**
      * Used internally by the provider to temporarily indicate if the service is being imported, and is reset to false once the import is finished
@@ -324,11 +303,6 @@ export interface ServiceComputeState {
      * A resource link represents a link between a shared resource (such as an KV Store or Config Store) and a service version.
      */
     resourceLinks?: pulumi.Input<pulumi.Input<inputs.ServiceComputeResourceLink>[]>;
-    /**
-     * Services that are active cannot be destroyed. If set to `true` a service Terraform intends to destroy will instead be
-     * deactivated (allowing it to be reused by importing it into another Terraform project). If `false`, attempting to destroy
-     * an active service will cause an error. Default `false`
-     */
     reuse?: pulumi.Input<boolean>;
     /**
      * Description field for the version
@@ -345,9 +319,6 @@ export interface ServiceComputeArgs {
      */
     activate?: pulumi.Input<boolean>;
     backends?: pulumi.Input<pulumi.Input<inputs.ServiceComputeBackend>[]>;
-    /**
-     * Description field for the service. Default `Managed by Terraform`
-     */
     comment?: pulumi.Input<string>;
     dictionaries?: pulumi.Input<pulumi.Input<inputs.ServiceComputeDictionary>[]>;
     /**
@@ -397,11 +368,6 @@ export interface ServiceComputeArgs {
      * A resource link represents a link between a shared resource (such as an KV Store or Config Store) and a service version.
      */
     resourceLinks?: pulumi.Input<pulumi.Input<inputs.ServiceComputeResourceLink>[]>;
-    /**
-     * Services that are active cannot be destroyed. If set to `true` a service Terraform intends to destroy will instead be
-     * deactivated (allowing it to be reused by importing it into another Terraform project). If `false`, attempting to destroy
-     * an active service will cause an error. Default `false`
-     */
     reuse?: pulumi.Input<boolean>;
     /**
      * Description field for the version

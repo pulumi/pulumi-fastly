@@ -142,17 +142,9 @@ public class ServiceVcl extends com.pulumi.resources.CustomResource {
     public Output<Integer> clonedVersion() {
         return this.clonedVersion;
     }
-    /**
-     * Description field for the service. Default `Managed by Terraform`
-     * 
-     */
     @Export(name="comment", refs={String.class}, tree="[0]")
     private Output</* @Nullable */ String> comment;
 
-    /**
-     * @return Description field for the service. Default `Managed by Terraform`
-     * 
-     */
     public Output<Optional<String>> comment() {
         return Codegen.optional(this.comment);
     }
@@ -236,21 +228,9 @@ public class ServiceVcl extends com.pulumi.resources.CustomResource {
     public Output<Optional<Boolean>> forceDestroy() {
         return Codegen.optional(this.forceDestroy);
     }
-    /**
-     * Used internally by the provider to temporarily indicate if all resources should call their associated API to update the
-     * local state. This is for scenarios where the service version has been reverted outside of Terraform (e.g. via the Fastly
-     * UI) and the provider needs to resync the state for a different active version (this is only if `activate` is `true`).
-     * 
-     */
     @Export(name="forceRefresh", refs={Boolean.class}, tree="[0]")
     private Output<Boolean> forceRefresh;
 
-    /**
-     * @return Used internally by the provider to temporarily indicate if all resources should call their associated API to update the
-     * local state. This is for scenarios where the service version has been reverted outside of Terraform (e.g. via the Fastly
-     * UI) and the provider needs to resync the state for a different active version (this is only if `activate` is `true`).
-     * 
-     */
     public Output<Boolean> forceRefresh() {
         return this.forceRefresh;
     }
@@ -500,21 +480,9 @@ public class ServiceVcl extends com.pulumi.resources.CustomResource {
     public Output<Optional<List<ServiceVclResponseObject>>> responseObjects() {
         return Codegen.optional(this.responseObjects);
     }
-    /**
-     * Services that are active cannot be destroyed. If set to `true` a service Terraform intends to destroy will instead be
-     * deactivated (allowing it to be reused by importing it into another Terraform project). If `false`, attempting to destroy
-     * an active service will cause an error. Default `false`
-     * 
-     */
     @Export(name="reuse", refs={Boolean.class}, tree="[0]")
     private Output</* @Nullable */ Boolean> reuse;
 
-    /**
-     * @return Services that are active cannot be destroyed. If set to `true` a service Terraform intends to destroy will instead be
-     * deactivated (allowing it to be reused by importing it into another Terraform project). If `false`, attempting to destroy
-     * an active service will cause an error. Default `false`
-     * 
-     */
     public Output<Optional<Boolean>> reuse() {
         return Codegen.optional(this.reuse);
     }

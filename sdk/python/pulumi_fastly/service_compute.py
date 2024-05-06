@@ -58,14 +58,10 @@ class ServiceComputeArgs:
         The set of arguments for constructing a ServiceCompute resource.
         :param pulumi.Input[Sequence[pulumi.Input['ServiceComputeDomainArgs']]] domains: A set of Domain names to serve as entry points for your Service
         :param pulumi.Input[bool] activate: Conditionally prevents the Service from being activated. The apply step will continue to create a new draft version but will not activate it if this is set to `false`. Default `true`
-        :param pulumi.Input[str] comment: Description field for the service. Default `Managed by Terraform`
         :param pulumi.Input[bool] force_destroy: Services that are active cannot be destroyed. In order to destroy the Service, set `force_destroy` to `true`. Default `false`
         :param pulumi.Input[str] name: The unique name for the Service to create
         :param pulumi.Input['ServiceComputePackageArgs'] package: The `package` block supports uploading or modifying Wasm packages for use in a Fastly Compute service (if omitted, ensure `activate = false` is set on `ServiceCompute` to avoid service validation errors). See Fastly's documentation on [Compute](https://developer.fastly.com/learning/compute/)
         :param pulumi.Input[Sequence[pulumi.Input['ServiceComputeResourceLinkArgs']]] resource_links: A resource link represents a link between a shared resource (such as an KV Store or Config Store) and a service version.
-        :param pulumi.Input[bool] reuse: Services that are active cannot be destroyed. If set to `true` a service Terraform intends to destroy will instead be
-               deactivated (allowing it to be reused by importing it into another Terraform project). If `false`, attempting to destroy
-               an active service will cause an error. Default `false`
         :param pulumi.Input[str] version_comment: Description field for the version
         """
         pulumi.set(__self__, "domains", domains)
@@ -180,9 +176,6 @@ class ServiceComputeArgs:
     @property
     @pulumi.getter
     def comment(self) -> Optional[pulumi.Input[str]]:
-        """
-        Description field for the service. Default `Managed by Terraform`
-        """
         return pulumi.get(self, "comment")
 
     @comment.setter
@@ -492,11 +485,6 @@ class ServiceComputeArgs:
     @property
     @pulumi.getter
     def reuse(self) -> Optional[pulumi.Input[bool]]:
-        """
-        Services that are active cannot be destroyed. If set to `true` a service Terraform intends to destroy will instead be
-        deactivated (allowing it to be reused by importing it into another Terraform project). If `false`, attempting to destroy
-        an active service will cause an error. Default `false`
-        """
         return pulumi.get(self, "reuse")
 
     @reuse.setter
@@ -566,19 +554,12 @@ class _ServiceComputeState:
         :param pulumi.Input[bool] activate: Conditionally prevents the Service from being activated. The apply step will continue to create a new draft version but will not activate it if this is set to `false`. Default `true`
         :param pulumi.Input[int] active_version: The currently active version of your Fastly Service
         :param pulumi.Input[int] cloned_version: The latest cloned version by the provider
-        :param pulumi.Input[str] comment: Description field for the service. Default `Managed by Terraform`
         :param pulumi.Input[Sequence[pulumi.Input['ServiceComputeDomainArgs']]] domains: A set of Domain names to serve as entry points for your Service
         :param pulumi.Input[bool] force_destroy: Services that are active cannot be destroyed. In order to destroy the Service, set `force_destroy` to `true`. Default `false`
-        :param pulumi.Input[bool] force_refresh: Used internally by the provider to temporarily indicate if all resources should call their associated API to update the
-               local state. This is for scenarios where the service version has been reverted outside of Terraform (e.g. via the Fastly
-               UI) and the provider needs to resync the state for a different active version (this is only if `activate` is `true`).
         :param pulumi.Input[bool] imported: Used internally by the provider to temporarily indicate if the service is being imported, and is reset to false once the import is finished
         :param pulumi.Input[str] name: The unique name for the Service to create
         :param pulumi.Input['ServiceComputePackageArgs'] package: The `package` block supports uploading or modifying Wasm packages for use in a Fastly Compute service (if omitted, ensure `activate = false` is set on `ServiceCompute` to avoid service validation errors). See Fastly's documentation on [Compute](https://developer.fastly.com/learning/compute/)
         :param pulumi.Input[Sequence[pulumi.Input['ServiceComputeResourceLinkArgs']]] resource_links: A resource link represents a link between a shared resource (such as an KV Store or Config Store) and a service version.
-        :param pulumi.Input[bool] reuse: Services that are active cannot be destroyed. If set to `true` a service Terraform intends to destroy will instead be
-               deactivated (allowing it to be reused by importing it into another Terraform project). If `false`, attempting to destroy
-               an active service will cause an error. Default `false`
         :param pulumi.Input[str] version_comment: Description field for the version
         """
         if activate is not None:
@@ -714,9 +695,6 @@ class _ServiceComputeState:
     @property
     @pulumi.getter
     def comment(self) -> Optional[pulumi.Input[str]]:
-        """
-        Description field for the service. Default `Managed by Terraform`
-        """
         return pulumi.get(self, "comment")
 
     @comment.setter
@@ -759,11 +737,6 @@ class _ServiceComputeState:
     @property
     @pulumi.getter(name="forceRefresh")
     def force_refresh(self) -> Optional[pulumi.Input[bool]]:
-        """
-        Used internally by the provider to temporarily indicate if all resources should call their associated API to update the
-        local state. This is for scenarios where the service version has been reverted outside of Terraform (e.g. via the Fastly
-        UI) and the provider needs to resync the state for a different active version (this is only if `activate` is `true`).
-        """
         return pulumi.get(self, "force_refresh")
 
     @force_refresh.setter
@@ -1064,11 +1037,6 @@ class _ServiceComputeState:
     @property
     @pulumi.getter
     def reuse(self) -> Optional[pulumi.Input[bool]]:
-        """
-        Services that are active cannot be destroyed. If set to `true` a service Terraform intends to destroy will instead be
-        deactivated (allowing it to be reused by importing it into another Terraform project). If `false`, attempting to destroy
-        an active service will cause an error. Default `false`
-        """
         return pulumi.get(self, "reuse")
 
     @reuse.setter
@@ -1152,15 +1120,11 @@ class ServiceCompute(pulumi.CustomResource):
         :param str resource_name: The name of the resource.
         :param pulumi.ResourceOptions opts: Options for the resource.
         :param pulumi.Input[bool] activate: Conditionally prevents the Service from being activated. The apply step will continue to create a new draft version but will not activate it if this is set to `false`. Default `true`
-        :param pulumi.Input[str] comment: Description field for the service. Default `Managed by Terraform`
         :param pulumi.Input[Sequence[pulumi.Input[pulumi.InputType['ServiceComputeDomainArgs']]]] domains: A set of Domain names to serve as entry points for your Service
         :param pulumi.Input[bool] force_destroy: Services that are active cannot be destroyed. In order to destroy the Service, set `force_destroy` to `true`. Default `false`
         :param pulumi.Input[str] name: The unique name for the Service to create
         :param pulumi.Input[pulumi.InputType['ServiceComputePackageArgs']] package: The `package` block supports uploading or modifying Wasm packages for use in a Fastly Compute service (if omitted, ensure `activate = false` is set on `ServiceCompute` to avoid service validation errors). See Fastly's documentation on [Compute](https://developer.fastly.com/learning/compute/)
         :param pulumi.Input[Sequence[pulumi.Input[pulumi.InputType['ServiceComputeResourceLinkArgs']]]] resource_links: A resource link represents a link between a shared resource (such as an KV Store or Config Store) and a service version.
-        :param pulumi.Input[bool] reuse: Services that are active cannot be destroyed. If set to `true` a service Terraform intends to destroy will instead be
-               deactivated (allowing it to be reused by importing it into another Terraform project). If `false`, attempting to destroy
-               an active service will cause an error. Default `false`
         :param pulumi.Input[str] version_comment: Description field for the version
         """
         ...
@@ -1354,19 +1318,12 @@ class ServiceCompute(pulumi.CustomResource):
         :param pulumi.Input[bool] activate: Conditionally prevents the Service from being activated. The apply step will continue to create a new draft version but will not activate it if this is set to `false`. Default `true`
         :param pulumi.Input[int] active_version: The currently active version of your Fastly Service
         :param pulumi.Input[int] cloned_version: The latest cloned version by the provider
-        :param pulumi.Input[str] comment: Description field for the service. Default `Managed by Terraform`
         :param pulumi.Input[Sequence[pulumi.Input[pulumi.InputType['ServiceComputeDomainArgs']]]] domains: A set of Domain names to serve as entry points for your Service
         :param pulumi.Input[bool] force_destroy: Services that are active cannot be destroyed. In order to destroy the Service, set `force_destroy` to `true`. Default `false`
-        :param pulumi.Input[bool] force_refresh: Used internally by the provider to temporarily indicate if all resources should call their associated API to update the
-               local state. This is for scenarios where the service version has been reverted outside of Terraform (e.g. via the Fastly
-               UI) and the provider needs to resync the state for a different active version (this is only if `activate` is `true`).
         :param pulumi.Input[bool] imported: Used internally by the provider to temporarily indicate if the service is being imported, and is reset to false once the import is finished
         :param pulumi.Input[str] name: The unique name for the Service to create
         :param pulumi.Input[pulumi.InputType['ServiceComputePackageArgs']] package: The `package` block supports uploading or modifying Wasm packages for use in a Fastly Compute service (if omitted, ensure `activate = false` is set on `ServiceCompute` to avoid service validation errors). See Fastly's documentation on [Compute](https://developer.fastly.com/learning/compute/)
         :param pulumi.Input[Sequence[pulumi.Input[pulumi.InputType['ServiceComputeResourceLinkArgs']]]] resource_links: A resource link represents a link between a shared resource (such as an KV Store or Config Store) and a service version.
-        :param pulumi.Input[bool] reuse: Services that are active cannot be destroyed. If set to `true` a service Terraform intends to destroy will instead be
-               deactivated (allowing it to be reused by importing it into another Terraform project). If `false`, attempting to destroy
-               an active service will cause an error. Default `false`
         :param pulumi.Input[str] version_comment: Description field for the version
         """
         opts = pulumi.ResourceOptions.merge(opts, pulumi.ResourceOptions(id=id))
@@ -1449,9 +1406,6 @@ class ServiceCompute(pulumi.CustomResource):
     @property
     @pulumi.getter
     def comment(self) -> pulumi.Output[Optional[str]]:
-        """
-        Description field for the service. Default `Managed by Terraform`
-        """
         return pulumi.get(self, "comment")
 
     @property
@@ -1478,11 +1432,6 @@ class ServiceCompute(pulumi.CustomResource):
     @property
     @pulumi.getter(name="forceRefresh")
     def force_refresh(self) -> pulumi.Output[bool]:
-        """
-        Used internally by the provider to temporarily indicate if all resources should call their associated API to update the
-        local state. This is for scenarios where the service version has been reverted outside of Terraform (e.g. via the Fastly
-        UI) and the provider needs to resync the state for a different active version (this is only if `activate` is `true`).
-        """
         return pulumi.get(self, "force_refresh")
 
     @property
@@ -1655,11 +1604,6 @@ class ServiceCompute(pulumi.CustomResource):
     @property
     @pulumi.getter
     def reuse(self) -> pulumi.Output[Optional[bool]]:
-        """
-        Services that are active cannot be destroyed. If set to `true` a service Terraform intends to destroy will instead be
-        deactivated (allowing it to be reused by importing it into another Terraform project). If `false`, attempting to destroy
-        an active service will cause an error. Default `false`
-        """
         return pulumi.get(self, "reuse")
 
     @property

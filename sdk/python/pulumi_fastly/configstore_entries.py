@@ -21,8 +21,6 @@ class ConfigstoreEntriesArgs:
         The set of arguments for constructing a ConfigstoreEntries resource.
         :param pulumi.Input[Mapping[str, Any]] entries: A map representing an entry in the Config Store, (key/value)
         :param pulumi.Input[str] store_id: An alphanumeric string identifying the Config Store.
-        :param pulumi.Input[bool] manage_entries: Have Terraform manage the entries (default: false). If set to `true` Terraform will remove any entries that were added
-               externally from the config seeded values.
         """
         pulumi.set(__self__, "entries", entries)
         pulumi.set(__self__, "store_id", store_id)
@@ -56,10 +54,6 @@ class ConfigstoreEntriesArgs:
     @property
     @pulumi.getter(name="manageEntries")
     def manage_entries(self) -> Optional[pulumi.Input[bool]]:
-        """
-        Have Terraform manage the entries (default: false). If set to `true` Terraform will remove any entries that were added
-        externally from the config seeded values.
-        """
         return pulumi.get(self, "manage_entries")
 
     @manage_entries.setter
@@ -76,8 +70,6 @@ class _ConfigstoreEntriesState:
         """
         Input properties used for looking up and filtering ConfigstoreEntries resources.
         :param pulumi.Input[Mapping[str, Any]] entries: A map representing an entry in the Config Store, (key/value)
-        :param pulumi.Input[bool] manage_entries: Have Terraform manage the entries (default: false). If set to `true` Terraform will remove any entries that were added
-               externally from the config seeded values.
         :param pulumi.Input[str] store_id: An alphanumeric string identifying the Config Store.
         """
         if entries is not None:
@@ -102,10 +94,6 @@ class _ConfigstoreEntriesState:
     @property
     @pulumi.getter(name="manageEntries")
     def manage_entries(self) -> Optional[pulumi.Input[bool]]:
-        """
-        Have Terraform manage the entries (default: false). If set to `true` Terraform will remove any entries that were added
-        externally from the config seeded values.
-        """
         return pulumi.get(self, "manage_entries")
 
     @manage_entries.setter
@@ -146,8 +134,6 @@ class ConfigstoreEntries(pulumi.CustomResource):
         :param str resource_name: The name of the resource.
         :param pulumi.ResourceOptions opts: Options for the resource.
         :param pulumi.Input[Mapping[str, Any]] entries: A map representing an entry in the Config Store, (key/value)
-        :param pulumi.Input[bool] manage_entries: Have Terraform manage the entries (default: false). If set to `true` Terraform will remove any entries that were added
-               externally from the config seeded values.
         :param pulumi.Input[str] store_id: An alphanumeric string identifying the Config Store.
         """
         ...
@@ -220,8 +206,6 @@ class ConfigstoreEntries(pulumi.CustomResource):
         :param pulumi.Input[str] id: The unique provider ID of the resource to lookup.
         :param pulumi.ResourceOptions opts: Options for the resource.
         :param pulumi.Input[Mapping[str, Any]] entries: A map representing an entry in the Config Store, (key/value)
-        :param pulumi.Input[bool] manage_entries: Have Terraform manage the entries (default: false). If set to `true` Terraform will remove any entries that were added
-               externally from the config seeded values.
         :param pulumi.Input[str] store_id: An alphanumeric string identifying the Config Store.
         """
         opts = pulumi.ResourceOptions.merge(opts, pulumi.ResourceOptions(id=id))
@@ -244,10 +228,6 @@ class ConfigstoreEntries(pulumi.CustomResource):
     @property
     @pulumi.getter(name="manageEntries")
     def manage_entries(self) -> pulumi.Output[Optional[bool]]:
-        """
-        Have Terraform manage the entries (default: false). If set to `true` Terraform will remove any entries that were added
-        externally from the config seeded values.
-        """
         return pulumi.get(self, "manage_entries")
 
     @property

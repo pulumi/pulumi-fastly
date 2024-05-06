@@ -56,9 +56,6 @@ namespace Pulumi.Fastly
         [Output("clonedVersion")]
         public Output<int> ClonedVersion { get; private set; } = null!;
 
-        /// <summary>
-        /// Description field for the service. Default `Managed by Terraform`
-        /// </summary>
         [Output("comment")]
         public Output<string?> Comment { get; private set; } = null!;
 
@@ -98,11 +95,6 @@ namespace Pulumi.Fastly
         [Output("forceDestroy")]
         public Output<bool?> ForceDestroy { get; private set; } = null!;
 
-        /// <summary>
-        /// Used internally by the provider to temporarily indicate if all resources should call their associated API to update the
-        /// local state. This is for scenarios where the service version has been reverted outside of Terraform (e.g. via the Fastly
-        /// UI) and the provider needs to resync the state for a different active version (this is only if `activate` is `true`).
-        /// </summary>
         [Output("forceRefresh")]
         public Output<bool> ForceRefresh { get; private set; } = null!;
 
@@ -226,11 +218,6 @@ namespace Pulumi.Fastly
         [Output("responseObjects")]
         public Output<ImmutableArray<Outputs.ServiceVclResponseObject>> ResponseObjects { get; private set; } = null!;
 
-        /// <summary>
-        /// Services that are active cannot be destroyed. If set to `true` a service Terraform intends to destroy will instead be
-        /// deactivated (allowing it to be reused by importing it into another Terraform project). If `false`, attempting to destroy
-        /// an active service will cause an error. Default `false`
-        /// </summary>
         [Output("reuse")]
         public Output<bool?> Reuse { get; private set; } = null!;
 
@@ -337,9 +324,6 @@ namespace Pulumi.Fastly
             set => _cacheSettings = value;
         }
 
-        /// <summary>
-        /// Description field for the service. Default `Managed by Terraform`
-        /// </summary>
         [Input("comment")]
         public Input<string>? Comment { get; set; }
 
@@ -684,11 +668,6 @@ namespace Pulumi.Fastly
             set => _responseObjects = value;
         }
 
-        /// <summary>
-        /// Services that are active cannot be destroyed. If set to `true` a service Terraform intends to destroy will instead be
-        /// deactivated (allowing it to be reused by importing it into another Terraform project). If `false`, attempting to destroy
-        /// an active service will cause an error. Default `false`
-        /// </summary>
         [Input("reuse")]
         public Input<bool>? Reuse { get; set; }
 
@@ -779,9 +758,6 @@ namespace Pulumi.Fastly
         [Input("clonedVersion")]
         public Input<int>? ClonedVersion { get; set; }
 
-        /// <summary>
-        /// Description field for the service. Default `Managed by Terraform`
-        /// </summary>
         [Input("comment")]
         public Input<string>? Comment { get; set; }
 
@@ -847,11 +823,6 @@ namespace Pulumi.Fastly
         [Input("forceDestroy")]
         public Input<bool>? ForceDestroy { get; set; }
 
-        /// <summary>
-        /// Used internally by the provider to temporarily indicate if all resources should call their associated API to update the
-        /// local state. This is for scenarios where the service version has been reverted outside of Terraform (e.g. via the Fastly
-        /// UI) and the provider needs to resync the state for a different active version (this is only if `activate` is `true`).
-        /// </summary>
         [Input("forceRefresh")]
         public Input<bool>? ForceRefresh { get; set; }
 
@@ -1140,11 +1111,6 @@ namespace Pulumi.Fastly
             set => _responseObjects = value;
         }
 
-        /// <summary>
-        /// Services that are active cannot be destroyed. If set to `true` a service Terraform intends to destroy will instead be
-        /// deactivated (allowing it to be reused by importing it into another Terraform project). If `false`, attempting to destroy
-        /// an active service will cause an error. Default `false`
-        /// </summary>
         [Input("reuse")]
         public Input<bool>? Reuse { get; set; }
 
