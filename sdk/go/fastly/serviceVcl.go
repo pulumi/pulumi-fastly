@@ -38,10 +38,9 @@ type ServiceVcl struct {
 	Backends      ServiceVclBackendArrayOutput      `pulumi:"backends"`
 	CacheSettings ServiceVclCacheSettingArrayOutput `pulumi:"cacheSettings"`
 	// The latest cloned version by the provider
-	ClonedVersion pulumi.IntOutput `pulumi:"clonedVersion"`
-	// Description field for the service. Default `Managed by Terraform`
-	Comment    pulumi.StringPtrOutput         `pulumi:"comment"`
-	Conditions ServiceVclConditionArrayOutput `pulumi:"conditions"`
+	ClonedVersion pulumi.IntOutput               `pulumi:"clonedVersion"`
+	Comment       pulumi.StringPtrOutput         `pulumi:"comment"`
+	Conditions    ServiceVclConditionArrayOutput `pulumi:"conditions"`
 	// The default hostname
 	DefaultHost pulumi.StringPtrOutput `pulumi:"defaultHost"`
 	// The default Time-to-live (TTL) for requests
@@ -52,10 +51,7 @@ type ServiceVcl struct {
 	Domains         ServiceVclDomainArrayOutput         `pulumi:"domains"`
 	Dynamicsnippets ServiceVclDynamicsnippetArrayOutput `pulumi:"dynamicsnippets"`
 	// Services that are active cannot be destroyed. In order to destroy the Service, set `forceDestroy` to `true`. Default `false`
-	ForceDestroy pulumi.BoolPtrOutput `pulumi:"forceDestroy"`
-	// Used internally by the provider to temporarily indicate if all resources should call their associated API to update the
-	// local state. This is for scenarios where the service version has been reverted outside of Terraform (e.g. via the Fastly
-	// UI) and the provider needs to resync the state for a different active version (this is only if `activate` is `true`).
+	ForceDestroy pulumi.BoolPtrOutput             `pulumi:"forceDestroy"`
 	ForceRefresh pulumi.BoolOutput                `pulumi:"forceRefresh"`
 	Gzips        ServiceVclGzipArrayOutput        `pulumi:"gzips"`
 	Headers      ServiceVclHeaderArrayOutput      `pulumi:"headers"`
@@ -97,11 +93,8 @@ type ServiceVcl struct {
 	RateLimiters      ServiceVclRateLimiterArrayOutput     `pulumi:"rateLimiters"`
 	RequestSettings   ServiceVclRequestSettingArrayOutput  `pulumi:"requestSettings"`
 	ResponseObjects   ServiceVclResponseObjectArrayOutput  `pulumi:"responseObjects"`
-	// Services that are active cannot be destroyed. If set to `true` a service Terraform intends to destroy will instead be
-	// deactivated (allowing it to be reused by importing it into another Terraform project). If `false`, attempting to destroy
-	// an active service will cause an error. Default `false`
-	Reuse    pulumi.BoolPtrOutput         `pulumi:"reuse"`
-	Snippets ServiceVclSnippetArrayOutput `pulumi:"snippets"`
+	Reuse             pulumi.BoolPtrOutput                 `pulumi:"reuse"`
+	Snippets          ServiceVclSnippetArrayOutput         `pulumi:"snippets"`
 	// Enables serving a stale object if there is an error
 	StaleIfError pulumi.BoolPtrOutput `pulumi:"staleIfError"`
 	// The default time-to-live (TTL) for serving the stale object for the version
@@ -153,10 +146,9 @@ type serviceVclState struct {
 	Backends      []ServiceVclBackend      `pulumi:"backends"`
 	CacheSettings []ServiceVclCacheSetting `pulumi:"cacheSettings"`
 	// The latest cloned version by the provider
-	ClonedVersion *int `pulumi:"clonedVersion"`
-	// Description field for the service. Default `Managed by Terraform`
-	Comment    *string               `pulumi:"comment"`
-	Conditions []ServiceVclCondition `pulumi:"conditions"`
+	ClonedVersion *int                  `pulumi:"clonedVersion"`
+	Comment       *string               `pulumi:"comment"`
+	Conditions    []ServiceVclCondition `pulumi:"conditions"`
 	// The default hostname
 	DefaultHost *string `pulumi:"defaultHost"`
 	// The default Time-to-live (TTL) for requests
@@ -167,10 +159,7 @@ type serviceVclState struct {
 	Domains         []ServiceVclDomain         `pulumi:"domains"`
 	Dynamicsnippets []ServiceVclDynamicsnippet `pulumi:"dynamicsnippets"`
 	// Services that are active cannot be destroyed. In order to destroy the Service, set `forceDestroy` to `true`. Default `false`
-	ForceDestroy *bool `pulumi:"forceDestroy"`
-	// Used internally by the provider to temporarily indicate if all resources should call their associated API to update the
-	// local state. This is for scenarios where the service version has been reverted outside of Terraform (e.g. via the Fastly
-	// UI) and the provider needs to resync the state for a different active version (this is only if `activate` is `true`).
+	ForceDestroy *bool                   `pulumi:"forceDestroy"`
 	ForceRefresh *bool                   `pulumi:"forceRefresh"`
 	Gzips        []ServiceVclGzip        `pulumi:"gzips"`
 	Headers      []ServiceVclHeader      `pulumi:"headers"`
@@ -212,11 +201,8 @@ type serviceVclState struct {
 	RateLimiters      []ServiceVclRateLimiter      `pulumi:"rateLimiters"`
 	RequestSettings   []ServiceVclRequestSetting   `pulumi:"requestSettings"`
 	ResponseObjects   []ServiceVclResponseObject   `pulumi:"responseObjects"`
-	// Services that are active cannot be destroyed. If set to `true` a service Terraform intends to destroy will instead be
-	// deactivated (allowing it to be reused by importing it into another Terraform project). If `false`, attempting to destroy
-	// an active service will cause an error. Default `false`
-	Reuse    *bool               `pulumi:"reuse"`
-	Snippets []ServiceVclSnippet `pulumi:"snippets"`
+	Reuse             *bool                        `pulumi:"reuse"`
+	Snippets          []ServiceVclSnippet          `pulumi:"snippets"`
 	// Enables serving a stale object if there is an error
 	StaleIfError *bool `pulumi:"staleIfError"`
 	// The default time-to-live (TTL) for serving the stale object for the version
@@ -237,9 +223,8 @@ type ServiceVclState struct {
 	CacheSettings ServiceVclCacheSettingArrayInput
 	// The latest cloned version by the provider
 	ClonedVersion pulumi.IntPtrInput
-	// Description field for the service. Default `Managed by Terraform`
-	Comment    pulumi.StringPtrInput
-	Conditions ServiceVclConditionArrayInput
+	Comment       pulumi.StringPtrInput
+	Conditions    ServiceVclConditionArrayInput
 	// The default hostname
 	DefaultHost pulumi.StringPtrInput
 	// The default Time-to-live (TTL) for requests
@@ -251,9 +236,6 @@ type ServiceVclState struct {
 	Dynamicsnippets ServiceVclDynamicsnippetArrayInput
 	// Services that are active cannot be destroyed. In order to destroy the Service, set `forceDestroy` to `true`. Default `false`
 	ForceDestroy pulumi.BoolPtrInput
-	// Used internally by the provider to temporarily indicate if all resources should call their associated API to update the
-	// local state. This is for scenarios where the service version has been reverted outside of Terraform (e.g. via the Fastly
-	// UI) and the provider needs to resync the state for a different active version (this is only if `activate` is `true`).
 	ForceRefresh pulumi.BoolPtrInput
 	Gzips        ServiceVclGzipArrayInput
 	Headers      ServiceVclHeaderArrayInput
@@ -295,11 +277,8 @@ type ServiceVclState struct {
 	RateLimiters      ServiceVclRateLimiterArrayInput
 	RequestSettings   ServiceVclRequestSettingArrayInput
 	ResponseObjects   ServiceVclResponseObjectArrayInput
-	// Services that are active cannot be destroyed. If set to `true` a service Terraform intends to destroy will instead be
-	// deactivated (allowing it to be reused by importing it into another Terraform project). If `false`, attempting to destroy
-	// an active service will cause an error. Default `false`
-	Reuse    pulumi.BoolPtrInput
-	Snippets ServiceVclSnippetArrayInput
+	Reuse             pulumi.BoolPtrInput
+	Snippets          ServiceVclSnippetArrayInput
 	// Enables serving a stale object if there is an error
 	StaleIfError pulumi.BoolPtrInput
 	// The default time-to-live (TTL) for serving the stale object for the version
@@ -320,9 +299,8 @@ type serviceVclArgs struct {
 	Activate      *bool                    `pulumi:"activate"`
 	Backends      []ServiceVclBackend      `pulumi:"backends"`
 	CacheSettings []ServiceVclCacheSetting `pulumi:"cacheSettings"`
-	// Description field for the service. Default `Managed by Terraform`
-	Comment    *string               `pulumi:"comment"`
-	Conditions []ServiceVclCondition `pulumi:"conditions"`
+	Comment       *string                  `pulumi:"comment"`
+	Conditions    []ServiceVclCondition    `pulumi:"conditions"`
 	// The default hostname
 	DefaultHost *string `pulumi:"defaultHost"`
 	// The default Time-to-live (TTL) for requests
@@ -372,11 +350,8 @@ type serviceVclArgs struct {
 	RateLimiters      []ServiceVclRateLimiter      `pulumi:"rateLimiters"`
 	RequestSettings   []ServiceVclRequestSetting   `pulumi:"requestSettings"`
 	ResponseObjects   []ServiceVclResponseObject   `pulumi:"responseObjects"`
-	// Services that are active cannot be destroyed. If set to `true` a service Terraform intends to destroy will instead be
-	// deactivated (allowing it to be reused by importing it into another Terraform project). If `false`, attempting to destroy
-	// an active service will cause an error. Default `false`
-	Reuse    *bool               `pulumi:"reuse"`
-	Snippets []ServiceVclSnippet `pulumi:"snippets"`
+	Reuse             *bool                        `pulumi:"reuse"`
+	Snippets          []ServiceVclSnippet          `pulumi:"snippets"`
 	// Enables serving a stale object if there is an error
 	StaleIfError *bool `pulumi:"staleIfError"`
 	// The default time-to-live (TTL) for serving the stale object for the version
@@ -394,9 +369,8 @@ type ServiceVclArgs struct {
 	Activate      pulumi.BoolPtrInput
 	Backends      ServiceVclBackendArrayInput
 	CacheSettings ServiceVclCacheSettingArrayInput
-	// Description field for the service. Default `Managed by Terraform`
-	Comment    pulumi.StringPtrInput
-	Conditions ServiceVclConditionArrayInput
+	Comment       pulumi.StringPtrInput
+	Conditions    ServiceVclConditionArrayInput
 	// The default hostname
 	DefaultHost pulumi.StringPtrInput
 	// The default Time-to-live (TTL) for requests
@@ -446,11 +420,8 @@ type ServiceVclArgs struct {
 	RateLimiters      ServiceVclRateLimiterArrayInput
 	RequestSettings   ServiceVclRequestSettingArrayInput
 	ResponseObjects   ServiceVclResponseObjectArrayInput
-	// Services that are active cannot be destroyed. If set to `true` a service Terraform intends to destroy will instead be
-	// deactivated (allowing it to be reused by importing it into another Terraform project). If `false`, attempting to destroy
-	// an active service will cause an error. Default `false`
-	Reuse    pulumi.BoolPtrInput
-	Snippets ServiceVclSnippetArrayInput
+	Reuse             pulumi.BoolPtrInput
+	Snippets          ServiceVclSnippetArrayInput
 	// Enables serving a stale object if there is an error
 	StaleIfError pulumi.BoolPtrInput
 	// The default time-to-live (TTL) for serving the stale object for the version
@@ -575,7 +546,6 @@ func (o ServiceVclOutput) ClonedVersion() pulumi.IntOutput {
 	return o.ApplyT(func(v *ServiceVcl) pulumi.IntOutput { return v.ClonedVersion }).(pulumi.IntOutput)
 }
 
-// Description field for the service. Default `Managed by Terraform`
 func (o ServiceVclOutput) Comment() pulumi.StringPtrOutput {
 	return o.ApplyT(func(v *ServiceVcl) pulumi.StringPtrOutput { return v.Comment }).(pulumi.StringPtrOutput)
 }
@@ -616,9 +586,6 @@ func (o ServiceVclOutput) ForceDestroy() pulumi.BoolPtrOutput {
 	return o.ApplyT(func(v *ServiceVcl) pulumi.BoolPtrOutput { return v.ForceDestroy }).(pulumi.BoolPtrOutput)
 }
 
-// Used internally by the provider to temporarily indicate if all resources should call their associated API to update the
-// local state. This is for scenarios where the service version has been reverted outside of Terraform (e.g. via the Fastly
-// UI) and the provider needs to resync the state for a different active version (this is only if `activate` is `true`).
 func (o ServiceVclOutput) ForceRefresh() pulumi.BoolOutput {
 	return o.ApplyT(func(v *ServiceVcl) pulumi.BoolOutput { return v.ForceRefresh }).(pulumi.BoolOutput)
 }
@@ -774,9 +741,6 @@ func (o ServiceVclOutput) ResponseObjects() ServiceVclResponseObjectArrayOutput 
 	return o.ApplyT(func(v *ServiceVcl) ServiceVclResponseObjectArrayOutput { return v.ResponseObjects }).(ServiceVclResponseObjectArrayOutput)
 }
 
-// Services that are active cannot be destroyed. If set to `true` a service Terraform intends to destroy will instead be
-// deactivated (allowing it to be reused by importing it into another Terraform project). If `false`, attempting to destroy
-// an active service will cause an error. Default `false`
 func (o ServiceVclOutput) Reuse() pulumi.BoolPtrOutput {
 	return o.ApplyT(func(v *ServiceVcl) pulumi.BoolPtrOutput { return v.Reuse }).(pulumi.BoolPtrOutput)
 }
