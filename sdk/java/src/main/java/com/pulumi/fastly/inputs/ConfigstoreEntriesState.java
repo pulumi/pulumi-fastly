@@ -33,19 +33,9 @@ public final class ConfigstoreEntriesState extends com.pulumi.resources.Resource
         return Optional.ofNullable(this.entries);
     }
 
-    /**
-     * Have Terraform manage the entries (default: false). If set to `true` Terraform will remove any entries that were added
-     * externally from the config seeded values.
-     * 
-     */
     @Import(name="manageEntries")
     private @Nullable Output<Boolean> manageEntries;
 
-    /**
-     * @return Have Terraform manage the entries (default: false). If set to `true` Terraform will remove any entries that were added
-     * externally from the config seeded values.
-     * 
-     */
     public Optional<Output<Boolean>> manageEntries() {
         return Optional.ofNullable(this.manageEntries);
     }
@@ -112,25 +102,11 @@ public final class ConfigstoreEntriesState extends com.pulumi.resources.Resource
             return entries(Output.of(entries));
         }
 
-        /**
-         * @param manageEntries Have Terraform manage the entries (default: false). If set to `true` Terraform will remove any entries that were added
-         * externally from the config seeded values.
-         * 
-         * @return builder
-         * 
-         */
         public Builder manageEntries(@Nullable Output<Boolean> manageEntries) {
             $.manageEntries = manageEntries;
             return this;
         }
 
-        /**
-         * @param manageEntries Have Terraform manage the entries (default: false). If set to `true` Terraform will remove any entries that were added
-         * externally from the config seeded values.
-         * 
-         * @return builder
-         * 
-         */
         public Builder manageEntries(Boolean manageEntries) {
             return manageEntries(Output.of(manageEntries));
         }
