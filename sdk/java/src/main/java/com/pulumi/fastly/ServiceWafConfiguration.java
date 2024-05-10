@@ -29,7 +29,8 @@ import javax.annotation.Nullable;
  * Basic usage:
  * 
  * &lt;!--Start PulumiCodeChooser --&gt;
- * ```java
+ * <pre>
+ * {@code
  * package generated_program;
  * 
  * import com.pulumi.Context;
@@ -57,57 +58,59 @@ import javax.annotation.Nullable;
  *     }
  * 
  *     public static void stack(Context ctx) {
- *         var demo = new ServiceVcl(&#34;demo&#34;, ServiceVclArgs.builder()        
- *             .name(&#34;demofastly&#34;)
+ *         var demo = new ServiceVcl("demo", ServiceVclArgs.builder()        
+ *             .name("demofastly")
  *             .domains(ServiceVclDomainArgs.builder()
- *                 .name(&#34;example.com&#34;)
- *                 .comment(&#34;demo&#34;)
+ *                 .name("example.com")
+ *                 .comment("demo")
  *                 .build())
  *             .backends(ServiceVclBackendArgs.builder()
- *                 .address(&#34;127.0.0.1&#34;)
- *                 .name(&#34;origin1&#34;)
+ *                 .address("127.0.0.1")
+ *                 .name("origin1")
  *                 .port(80)
  *                 .build())
  *             .conditions(            
  *                 ServiceVclConditionArgs.builder()
- *                     .name(&#34;WAF_Prefetch&#34;)
- *                     .type(&#34;PREFETCH&#34;)
- *                     .statement(&#34;req.backend.is_origin&#34;)
+ *                     .name("WAF_Prefetch")
+ *                     .type("PREFETCH")
+ *                     .statement("req.backend.is_origin")
  *                     .build(),
  *                 ServiceVclConditionArgs.builder()
- *                     .name(&#34;WAF_always_false&#34;)
- *                     .statement(&#34;false&#34;)
- *                     .type(&#34;REQUEST&#34;)
+ *                     .name("WAF_always_false")
+ *                     .statement("false")
+ *                     .type("REQUEST")
  *                     .build())
  *             .responseObjects(ServiceVclResponseObjectArgs.builder()
- *                 .name(&#34;WAF_Response&#34;)
- *                 .status(&#34;403&#34;)
- *                 .response(&#34;Forbidden&#34;)
- *                 .contentType(&#34;text/html&#34;)
- *                 .content(&#34;&lt;html&gt;&lt;body&gt;Forbidden&lt;/body&gt;&lt;/html&gt;&#34;)
- *                 .requestCondition(&#34;WAF_always_false&#34;)
+ *                 .name("WAF_Response")
+ *                 .status("403")
+ *                 .response("Forbidden")
+ *                 .contentType("text/html")
+ *                 .content("<html><body>Forbidden</body></html>")
+ *                 .requestCondition("WAF_always_false")
  *                 .build())
  *             .waf(ServiceVclWafArgs.builder()
- *                 .prefetchCondition(&#34;WAF_Prefetch&#34;)
- *                 .responseObject(&#34;WAF_Response&#34;)
+ *                 .prefetchCondition("WAF_Prefetch")
+ *                 .responseObject("WAF_Response")
  *                 .build())
  *             .forceDestroy(true)
  *             .build());
  * 
- *         var waf = new ServiceWafConfiguration(&#34;waf&#34;, ServiceWafConfigurationArgs.builder()        
- *             .wafId(demo.waf().applyValue(waf -&gt; waf.wafId()))
+ *         var waf = new ServiceWafConfiguration("waf", ServiceWafConfigurationArgs.builder()        
+ *             .wafId(demo.waf().applyValue(waf -> waf.wafId()))
  *             .httpViolationScoreThreshold(100)
  *             .build());
  * 
  *     }
  * }
- * ```
+ * }
+ * </pre>
  * &lt;!--End PulumiCodeChooser --&gt;
  * 
  * Usage with rules:
  * 
  * &lt;!--Start PulumiCodeChooser --&gt;
- * ```java
+ * <pre>
+ * {@code
  * package generated_program;
  * 
  * import com.pulumi.Context;
@@ -136,56 +139,57 @@ import javax.annotation.Nullable;
  *     }
  * 
  *     public static void stack(Context ctx) {
- *         var demo = new ServiceVcl(&#34;demo&#34;, ServiceVclArgs.builder()        
- *             .name(&#34;demofastly&#34;)
+ *         var demo = new ServiceVcl("demo", ServiceVclArgs.builder()        
+ *             .name("demofastly")
  *             .domains(ServiceVclDomainArgs.builder()
- *                 .name(&#34;example.com&#34;)
- *                 .comment(&#34;demo&#34;)
+ *                 .name("example.com")
+ *                 .comment("demo")
  *                 .build())
  *             .backends(ServiceVclBackendArgs.builder()
- *                 .address(&#34;127.0.0.1&#34;)
- *                 .name(&#34;origin1&#34;)
+ *                 .address("127.0.0.1")
+ *                 .name("origin1")
  *                 .port(80)
  *                 .build())
  *             .conditions(            
  *                 ServiceVclConditionArgs.builder()
- *                     .name(&#34;WAF_Prefetch&#34;)
- *                     .type(&#34;PREFETCH&#34;)
- *                     .statement(&#34;req.backend.is_origin&#34;)
+ *                     .name("WAF_Prefetch")
+ *                     .type("PREFETCH")
+ *                     .statement("req.backend.is_origin")
  *                     .build(),
  *                 ServiceVclConditionArgs.builder()
- *                     .name(&#34;WAF_always_false&#34;)
- *                     .statement(&#34;false&#34;)
- *                     .type(&#34;REQUEST&#34;)
+ *                     .name("WAF_always_false")
+ *                     .statement("false")
+ *                     .type("REQUEST")
  *                     .build())
  *             .responseObjects(ServiceVclResponseObjectArgs.builder()
- *                 .name(&#34;WAF_Response&#34;)
- *                 .status(&#34;403&#34;)
- *                 .response(&#34;Forbidden&#34;)
- *                 .contentType(&#34;text/html&#34;)
- *                 .content(&#34;&lt;html&gt;&lt;body&gt;Forbidden&lt;/body&gt;&lt;/html&gt;&#34;)
- *                 .requestCondition(&#34;WAF_always_false&#34;)
+ *                 .name("WAF_Response")
+ *                 .status("403")
+ *                 .response("Forbidden")
+ *                 .contentType("text/html")
+ *                 .content("<html><body>Forbidden</body></html>")
+ *                 .requestCondition("WAF_always_false")
  *                 .build())
  *             .waf(ServiceVclWafArgs.builder()
- *                 .prefetchCondition(&#34;WAF_Prefetch&#34;)
- *                 .responseObject(&#34;WAF_Response&#34;)
+ *                 .prefetchCondition("WAF_Prefetch")
+ *                 .responseObject("WAF_Response")
  *                 .build())
  *             .forceDestroy(true)
  *             .build());
  * 
- *         var waf = new ServiceWafConfiguration(&#34;waf&#34;, ServiceWafConfigurationArgs.builder()        
- *             .wafId(demo.waf().applyValue(waf -&gt; waf.wafId()))
+ *         var waf = new ServiceWafConfiguration("waf", ServiceWafConfigurationArgs.builder()        
+ *             .wafId(demo.waf().applyValue(waf -> waf.wafId()))
  *             .httpViolationScoreThreshold(100)
  *             .rules(ServiceWafConfigurationRuleArgs.builder()
  *                 .modsecRuleId(1010090)
  *                 .revision(1)
- *                 .status(&#34;log&#34;)
+ *                 .status("log")
  *                 .build())
  *             .build());
  * 
  *     }
  * }
- * ```
+ * }
+ * </pre>
  * &lt;!--End PulumiCodeChooser --&gt;
  * 
  * Usage with rule exclusions:
@@ -193,7 +197,8 @@ import javax.annotation.Nullable;
  * &gt; **Warning:** Rule exclusions are part of a **beta release**, which may be subject to breaking changes and improvements over time. For more information, see our [product and feature lifecycle](https://docs.fastly.com/products/fastly-product-lifecycle#beta) descriptions.
  * 
  * &lt;!--Start PulumiCodeChooser --&gt;
- * ```java
+ * <pre>
+ * {@code
  * package generated_program;
  * 
  * import com.pulumi.Context;
@@ -223,62 +228,63 @@ import javax.annotation.Nullable;
  *     }
  * 
  *     public static void stack(Context ctx) {
- *         var demo = new ServiceVcl(&#34;demo&#34;, ServiceVclArgs.builder()        
- *             .name(&#34;demofastly&#34;)
+ *         var demo = new ServiceVcl("demo", ServiceVclArgs.builder()        
+ *             .name("demofastly")
  *             .domains(ServiceVclDomainArgs.builder()
- *                 .name(&#34;example.com&#34;)
- *                 .comment(&#34;demo&#34;)
+ *                 .name("example.com")
+ *                 .comment("demo")
  *                 .build())
  *             .backends(ServiceVclBackendArgs.builder()
- *                 .address(&#34;127.0.0.1&#34;)
- *                 .name(&#34;origin1&#34;)
+ *                 .address("127.0.0.1")
+ *                 .name("origin1")
  *                 .port(80)
  *                 .build())
  *             .conditions(            
  *                 ServiceVclConditionArgs.builder()
- *                     .name(&#34;WAF_Prefetch&#34;)
- *                     .type(&#34;PREFETCH&#34;)
- *                     .statement(&#34;req.backend.is_origin&#34;)
+ *                     .name("WAF_Prefetch")
+ *                     .type("PREFETCH")
+ *                     .statement("req.backend.is_origin")
  *                     .build(),
  *                 ServiceVclConditionArgs.builder()
- *                     .name(&#34;WAF_always_false&#34;)
- *                     .statement(&#34;false&#34;)
- *                     .type(&#34;REQUEST&#34;)
+ *                     .name("WAF_always_false")
+ *                     .statement("false")
+ *                     .type("REQUEST")
  *                     .build())
  *             .responseObjects(ServiceVclResponseObjectArgs.builder()
- *                 .name(&#34;WAF_Response&#34;)
- *                 .status(&#34;403&#34;)
- *                 .response(&#34;Forbidden&#34;)
- *                 .contentType(&#34;text/html&#34;)
- *                 .content(&#34;&lt;html&gt;&lt;body&gt;Forbidden&lt;/body&gt;&lt;/html&gt;&#34;)
- *                 .requestCondition(&#34;WAF_always_false&#34;)
+ *                 .name("WAF_Response")
+ *                 .status("403")
+ *                 .response("Forbidden")
+ *                 .contentType("text/html")
+ *                 .content("<html><body>Forbidden</body></html>")
+ *                 .requestCondition("WAF_always_false")
  *                 .build())
  *             .waf(ServiceVclWafArgs.builder()
- *                 .prefetchCondition(&#34;WAF_Prefetch&#34;)
- *                 .responseObject(&#34;WAF_Response&#34;)
+ *                 .prefetchCondition("WAF_Prefetch")
+ *                 .responseObject("WAF_Response")
  *                 .build())
  *             .forceDestroy(true)
  *             .build());
  * 
- *         var waf = new ServiceWafConfiguration(&#34;waf&#34;, ServiceWafConfigurationArgs.builder()        
- *             .wafId(demo.waf().applyValue(waf -&gt; waf.wafId()))
+ *         var waf = new ServiceWafConfiguration("waf", ServiceWafConfigurationArgs.builder()        
+ *             .wafId(demo.waf().applyValue(waf -> waf.wafId()))
  *             .httpViolationScoreThreshold(100)
  *             .rules(ServiceWafConfigurationRuleArgs.builder()
  *                 .modsecRuleId(2029718)
  *                 .revision(1)
- *                 .status(&#34;log&#34;)
+ *                 .status("log")
  *                 .build())
  *             .ruleExclusions(ServiceWafConfigurationRuleExclusionArgs.builder()
- *                 .name(&#34;index page&#34;)
- *                 .exclusionType(&#34;rule&#34;)
- *                 .condition(&#34;req.url.basename == \&#34;index.html\&#34;&#34;)
+ *                 .name("index page")
+ *                 .exclusionType("rule")
+ *                 .condition("req.url.basename == \"index.html\"")
  *                 .modsecRuleIds(2029718)
  *                 .build())
  *             .build());
  * 
  *     }
  * }
- * ```
+ * }
+ * </pre>
  * &lt;!--End PulumiCodeChooser --&gt;
  * 
  * Usage with rules from data source:

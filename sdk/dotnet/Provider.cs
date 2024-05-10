@@ -80,7 +80,7 @@ namespace Pulumi.Fastly
 
         /// <summary>
         /// Set to `true` if your configuration only consumes data sources that do not require authentication, such as
-        /// `fastly_ip_ranges`
+        /// `fastly.getFastlyIpRanges`
         /// </summary>
         [Input("noAuth", json: true)]
         public Input<bool>? NoAuth { get; set; }

@@ -84,19 +84,9 @@ public class TlsMutualAuthentication extends com.pulumi.resources.CustomResource
     public Output<Boolean> enforced() {
         return this.enforced;
     }
-    /**
-     * A comma-separated list used by the Terraform provider during a state refresh to return more data related to your mutual
-     * authentication from the Fastly API (permitted values: `tls_activations`).
-     * 
-     */
     @Export(name="include", refs={String.class}, tree="[0]")
     private Output</* @Nullable */ String> include;
 
-    /**
-     * @return A comma-separated list used by the Terraform provider during a state refresh to return more data related to your mutual
-     * authentication from the Fastly API (permitted values: `tls_activations`).
-     * 
-     */
     public Output<Optional<String>> include() {
         return Codegen.optional(this.include);
     }

@@ -23,7 +23,8 @@ import javax.annotation.Nullable;
  * Basic usage:
  * 
  * &lt;!--Start PulumiCodeChooser --&gt;
- * ```java
+ * <pre>
+ * {@code
  * package generated_program;
  * 
  * import com.pulumi.Context;
@@ -46,19 +47,20 @@ import javax.annotation.Nullable;
  *     }
  * 
  *     public static void stack(Context ctx) {
- *         var demo = new ServiceVcl(&#34;demo&#34;);
+ *         var demo = new ServiceVcl("demo");
  * 
- *         var user = new User(&#34;user&#34;);
+ *         var user = new User("user");
  * 
- *         var auth = new ServiceAuthorization(&#34;auth&#34;, ServiceAuthorizationArgs.builder()        
+ *         var auth = new ServiceAuthorization("auth", ServiceAuthorizationArgs.builder()        
  *             .serviceId(demo.id())
  *             .userId(user.id())
- *             .permission(&#34;purge_all&#34;)
+ *             .permission("purge_all")
  *             .build());
  * 
  *     }
  * }
- * ```
+ * }
+ * </pre>
  * &lt;!--End PulumiCodeChooser --&gt;
  * 
  * ## Import

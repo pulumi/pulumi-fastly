@@ -75,7 +75,7 @@ export interface ProviderArgs {
     forceHttp2?: pulumi.Input<boolean>;
     /**
      * Set to `true` if your configuration only consumes data sources that do not require authentication, such as
-     * `fastly_ip_ranges`
+     * `fastly.getFastlyIpRanges`
      */
     noAuth?: pulumi.Input<boolean>;
 }

@@ -50,7 +50,7 @@ type providerArgs struct {
 	// handshakes. Default: `false`
 	ForceHttp2 *bool `pulumi:"forceHttp2"`
 	// Set to `true` if your configuration only consumes data sources that do not require authentication, such as
-	// `fastly_ip_ranges`
+	// `getFastlyIpRanges`
 	NoAuth *bool `pulumi:"noAuth"`
 }
 
@@ -65,7 +65,7 @@ type ProviderArgs struct {
 	// handshakes. Default: `false`
 	ForceHttp2 pulumi.BoolPtrInput
 	// Set to `true` if your configuration only consumes data sources that do not require authentication, such as
-	// `fastly_ip_ranges`
+	// `getFastlyIpRanges`
 	NoAuth pulumi.BoolPtrInput
 }
 

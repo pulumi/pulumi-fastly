@@ -26,7 +26,8 @@ import javax.annotation.Nullable;
  * Basic usage:
  * 
  * &lt;!--Start PulumiCodeChooser --&gt;
- * ```java
+ * <pre>
+ * {@code
  * package generated_program;
  * 
  * import com.pulumi.Context;
@@ -54,29 +55,29 @@ import javax.annotation.Nullable;
  *     }
  * 
  *     public static void stack(Context ctx) {
- *         var key = new PrivateKey(&#34;key&#34;, PrivateKeyArgs.builder()        
- *             .algorithm(&#34;RSA&#34;)
+ *         var key = new PrivateKey("key", PrivateKeyArgs.builder()        
+ *             .algorithm("RSA")
  *             .build());
  * 
- *         var cert = new SelfSignedCert(&#34;cert&#34;, SelfSignedCertArgs.builder()        
+ *         var cert = new SelfSignedCert("cert", SelfSignedCertArgs.builder()        
  *             .keyAlgorithm(key.algorithm())
  *             .privateKeyPem(key.privateKeyPem())
  *             .subject(%!v(PANIC=Format method: runtime error: invalid memory address or nil pointer dereference))
  *             .isCaCertificate(true)
  *             .validityPeriodHours(360)
  *             .allowedUses(            
- *                 &#34;cert_signing&#34;,
- *                 &#34;server_auth&#34;)
- *             .dnsNames(&#34;example.com&#34;)
+ *                 "cert_signing",
+ *                 "server_auth")
+ *             .dnsNames("example.com")
  *             .build());
  * 
- *         var keyTlsPrivateKey = new TlsPrivateKey(&#34;keyTlsPrivateKey&#34;, TlsPrivateKeyArgs.builder()        
+ *         var keyTlsPrivateKey = new TlsPrivateKey("keyTlsPrivateKey", TlsPrivateKeyArgs.builder()        
  *             .keyPem(key.privateKeyPem())
- *             .name(&#34;tf-demo&#34;)
+ *             .name("tf-demo")
  *             .build());
  * 
- *         var example = new TlsCertificate(&#34;example&#34;, TlsCertificateArgs.builder()        
- *             .name(&#34;tf-demo&#34;)
+ *         var example = new TlsCertificate("example", TlsCertificateArgs.builder()        
+ *             .name("tf-demo")
  *             .certificateBody(cert.certPem())
  *             .build(), CustomResourceOptions.builder()
  *                 .dependsOn(keyTlsPrivateKey)
@@ -84,7 +85,8 @@ import javax.annotation.Nullable;
  * 
  *     }
  * }
- * ```
+ * }
+ * </pre>
  * &lt;!--End PulumiCodeChooser --&gt;
  * 
  * ## Updating certificates

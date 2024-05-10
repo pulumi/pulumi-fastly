@@ -27,7 +27,8 @@ import javax.annotation.Nullable;
  * Basic usage with self-signed CA:
  * 
  * &lt;!--Start PulumiCodeChooser --&gt;
- * ```java
+ * <pre>
+ * {@code
  * package generated_program;
  * 
  * import com.pulumi.Context;
@@ -61,58 +62,58 @@ import javax.annotation.Nullable;
  *     }
  * 
  *     public static void stack(Context ctx) {
- *         var caKey = new PrivateKey(&#34;caKey&#34;, PrivateKeyArgs.builder()        
- *             .algorithm(&#34;RSA&#34;)
+ *         var caKey = new PrivateKey("caKey", PrivateKeyArgs.builder()        
+ *             .algorithm("RSA")
  *             .build());
  * 
- *         var key = new PrivateKey(&#34;key&#34;, PrivateKeyArgs.builder()        
- *             .algorithm(&#34;RSA&#34;)
+ *         var key = new PrivateKey("key", PrivateKeyArgs.builder()        
+ *             .algorithm("RSA")
  *             .build());
  * 
- *         var ca = new SelfSignedCert(&#34;ca&#34;, SelfSignedCertArgs.builder()        
+ *         var ca = new SelfSignedCert("ca", SelfSignedCertArgs.builder()        
  *             .keyAlgorithm(caKey.algorithm())
  *             .privateKeyPem(caKey.privateKeyPem())
  *             .subject(%!v(PANIC=Format method: runtime error: invalid memory address or nil pointer dereference))
  *             .isCaCertificate(true)
  *             .validityPeriodHours(360)
  *             .allowedUses(            
- *                 &#34;cert_signing&#34;,
- *                 &#34;server_auth&#34;)
+ *                 "cert_signing",
+ *                 "server_auth")
  *             .build());
  * 
- *         var example = new CertRequest(&#34;example&#34;, CertRequestArgs.builder()        
+ *         var example = new CertRequest("example", CertRequestArgs.builder()        
  *             .keyAlgorithm(key.algorithm())
  *             .privateKeyPem(key.privateKeyPem())
  *             .subject(%!v(PANIC=Format method: runtime error: invalid memory address or nil pointer dereference))
  *             .dnsNames(            
- *                 &#34;example.com&#34;,
- *                 &#34;www.example.com&#34;)
+ *                 "example.com",
+ *                 "www.example.com")
  *             .build());
  * 
- *         var cert = new LocallySignedCert(&#34;cert&#34;, LocallySignedCertArgs.builder()        
+ *         var cert = new LocallySignedCert("cert", LocallySignedCertArgs.builder()        
  *             .certRequestPem(example.certRequestPem())
  *             .caKeyAlgorithm(caKey.algorithm())
  *             .caPrivateKeyPem(caKey.privateKeyPem())
  *             .caCertPem(ca.certPem())
  *             .validityPeriodHours(360)
  *             .allowedUses(            
- *                 &#34;cert_signing&#34;,
- *                 &#34;server_auth&#34;)
+ *                 "cert_signing",
+ *                 "server_auth")
  *             .build());
  * 
  *         final var config = FastlyFunctions.getTlsConfiguration(GetTlsConfigurationArgs.builder()
- *             .tlsService(&#34;PLATFORM&#34;)
+ *             .tlsService("PLATFORM")
  *             .build());
  * 
- *         var keyTlsPrivateKey = new TlsPrivateKey(&#34;keyTlsPrivateKey&#34;, TlsPrivateKeyArgs.builder()        
+ *         var keyTlsPrivateKey = new TlsPrivateKey("keyTlsPrivateKey", TlsPrivateKeyArgs.builder()        
  *             .keyPem(key.privateKeyPem())
- *             .name(&#34;tf-demo&#34;)
+ *             .name("tf-demo")
  *             .build());
  * 
- *         var certTlsPlatformCertificate = new TlsPlatformCertificate(&#34;certTlsPlatformCertificate&#34;, TlsPlatformCertificateArgs.builder()        
+ *         var certTlsPlatformCertificate = new TlsPlatformCertificate("certTlsPlatformCertificate", TlsPlatformCertificateArgs.builder()        
  *             .certificateBody(cert.certPem())
  *             .intermediatesBlob(ca.certPem())
- *             .configurationId(config.applyValue(getTlsConfigurationResult -&gt; getTlsConfigurationResult.id()))
+ *             .configurationId(config.applyValue(getTlsConfigurationResult -> getTlsConfigurationResult.id()))
  *             .allowUntrustedRoot(true)
  *             .build(), CustomResourceOptions.builder()
  *                 .dependsOn(keyTlsPrivateKey)
@@ -120,7 +121,8 @@ import javax.annotation.Nullable;
  * 
  *     }
  * }
- * ```
+ * }
+ * </pre>
  * &lt;!--End PulumiCodeChooser --&gt;
  * 
  * ## Import

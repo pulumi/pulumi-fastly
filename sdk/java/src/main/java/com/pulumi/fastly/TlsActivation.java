@@ -24,7 +24,8 @@ import javax.annotation.Nullable;
  * Basic usage:
  * 
  * &lt;!--Start PulumiCodeChooser --&gt;
- * ```java
+ * <pre>
+ * {@code
  * package generated_program;
  * 
  * import com.pulumi.Context;
@@ -54,40 +55,41 @@ import javax.annotation.Nullable;
  *     }
  * 
  *     public static void stack(Context ctx) {
- *         var demo = new ServiceVcl(&#34;demo&#34;, ServiceVclArgs.builder()        
- *             .name(&#34;my-service&#34;)
+ *         var demo = new ServiceVcl("demo", ServiceVclArgs.builder()        
+ *             .name("my-service")
  *             .domains(ServiceVclDomainArgs.builder()
- *                 .name(&#34;example.com&#34;)
+ *                 .name("example.com")
  *                 .build())
  *             .backends(ServiceVclBackendArgs.builder()
- *                 .address(&#34;127.0.0.1&#34;)
- *                 .name(&#34;localhost&#34;)
+ *                 .address("127.0.0.1")
+ *                 .name("localhost")
  *                 .build())
  *             .forceDestroy(true)
  *             .build());
  * 
- *         var demoTlsPrivateKey = new TlsPrivateKey(&#34;demoTlsPrivateKey&#34;, TlsPrivateKeyArgs.builder()        
- *             .keyPem(&#34;...&#34;)
- *             .name(&#34;demo-key&#34;)
+ *         var demoTlsPrivateKey = new TlsPrivateKey("demoTlsPrivateKey", TlsPrivateKeyArgs.builder()        
+ *             .keyPem("...")
+ *             .name("demo-key")
  *             .build());
  * 
- *         var demoTlsCertificate = new TlsCertificate(&#34;demoTlsCertificate&#34;, TlsCertificateArgs.builder()        
- *             .certificateBody(&#34;...&#34;)
- *             .name(&#34;demo-cert&#34;)
+ *         var demoTlsCertificate = new TlsCertificate("demoTlsCertificate", TlsCertificateArgs.builder()        
+ *             .certificateBody("...")
+ *             .name("demo-cert")
  *             .build(), CustomResourceOptions.builder()
  *                 .dependsOn(demoTlsPrivateKey)
  *                 .build());
  * 
- *         var test = new TlsActivation(&#34;test&#34;, TlsActivationArgs.builder()        
+ *         var test = new TlsActivation("test", TlsActivationArgs.builder()        
  *             .certificateId(demoTlsCertificate.id())
- *             .domain(&#34;example.com&#34;)
+ *             .domain("example.com")
  *             .build(), CustomResourceOptions.builder()
  *                 .dependsOn(demo)
  *                 .build());
  * 
  *     }
  * }
- * ```
+ * }
+ * </pre>
  * &lt;!--End PulumiCodeChooser --&gt;
  * 
  * &gt; **Warning:** Updating the `fastly.TlsPrivateKey`/`fastly.TlsCertificate` resources should be done in multiple plan/apply steps to avoid potential downtime. The new certificate and associated private key must first be created so they exist alongside the currently active resources. Once the new resources have been created, then the `fastly.TlsActivation` can be updated to point to the new certificate. Finally, the original key/certificate resources can be deleted.

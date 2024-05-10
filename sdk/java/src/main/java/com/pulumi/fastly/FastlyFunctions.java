@@ -125,7 +125,8 @@ public final class FastlyFunctions {
      * ## Example Usage
      * 
      * &lt;!--Start PulumiCodeChooser --&gt;
-     * ```java
+     * <pre>
+     * {@code
      * package generated_program;
      * 
      * import com.pulumi.Context;
@@ -150,20 +151,20 @@ public final class FastlyFunctions {
      *     }
      * 
      *     public static void stack(Context ctx) {
-     *         var exampleServiceVcl = new ServiceVcl(&#34;exampleServiceVcl&#34;, ServiceVclArgs.builder()        
-     *             .name(&#34;Example Service&#34;)
+     *         var exampleServiceVcl = new ServiceVcl("exampleServiceVcl", ServiceVclArgs.builder()        
+     *             .name("Example Service")
      *             .domains(ServiceVclDomainArgs.builder()
-     *                 .name(&#34;example.com&#34;)
+     *                 .name("example.com")
      *                 .build())
      *             .dictionaries(            
      *                 ServiceVclDictionaryArgs.builder()
-     *                     .name(&#34;example_1&#34;)
+     *                     .name("example_1")
      *                     .build(),
      *                 ServiceVclDictionaryArgs.builder()
-     *                     .name(&#34;example_2&#34;)
+     *                     .name("example_2")
      *                     .build(),
      *                 ServiceVclDictionaryArgs.builder()
-     *                     .name(&#34;example_3&#34;)
+     *                     .name("example_3")
      *                     .build())
      *             .forceDestroy(true)
      *             .build());
@@ -173,10 +174,11 @@ public final class FastlyFunctions {
      *             .serviceVersion(exampleServiceVcl.activeVersion())
      *             .build());
      * 
-     *         ctx.export(&#34;serviceDictionaries&#34;, example.applyValue(getDictionariesResult -&gt; getDictionariesResult));
+     *         ctx.export("serviceDictionaries", example.applyValue(getDictionariesResult -> getDictionariesResult));
      *     }
      * }
-     * ```
+     * }
+     * </pre>
      * &lt;!--End PulumiCodeChooser --&gt;
      * 
      * [1]: https://developer.fastly.com/reference/api/dictionaries/
@@ -191,7 +193,8 @@ public final class FastlyFunctions {
      * ## Example Usage
      * 
      * &lt;!--Start PulumiCodeChooser --&gt;
-     * ```java
+     * <pre>
+     * {@code
      * package generated_program;
      * 
      * import com.pulumi.Context;
@@ -216,20 +219,20 @@ public final class FastlyFunctions {
      *     }
      * 
      *     public static void stack(Context ctx) {
-     *         var exampleServiceVcl = new ServiceVcl(&#34;exampleServiceVcl&#34;, ServiceVclArgs.builder()        
-     *             .name(&#34;Example Service&#34;)
+     *         var exampleServiceVcl = new ServiceVcl("exampleServiceVcl", ServiceVclArgs.builder()        
+     *             .name("Example Service")
      *             .domains(ServiceVclDomainArgs.builder()
-     *                 .name(&#34;example.com&#34;)
+     *                 .name("example.com")
      *                 .build())
      *             .dictionaries(            
      *                 ServiceVclDictionaryArgs.builder()
-     *                     .name(&#34;example_1&#34;)
+     *                     .name("example_1")
      *                     .build(),
      *                 ServiceVclDictionaryArgs.builder()
-     *                     .name(&#34;example_2&#34;)
+     *                     .name("example_2")
      *                     .build(),
      *                 ServiceVclDictionaryArgs.builder()
-     *                     .name(&#34;example_3&#34;)
+     *                     .name("example_3")
      *                     .build())
      *             .forceDestroy(true)
      *             .build());
@@ -239,10 +242,11 @@ public final class FastlyFunctions {
      *             .serviceVersion(exampleServiceVcl.activeVersion())
      *             .build());
      * 
-     *         ctx.export(&#34;serviceDictionaries&#34;, example.applyValue(getDictionariesResult -&gt; getDictionariesResult));
+     *         ctx.export("serviceDictionaries", example.applyValue(getDictionariesResult -> getDictionariesResult));
      *     }
      * }
-     * ```
+     * }
+     * </pre>
      * &lt;!--End PulumiCodeChooser --&gt;
      * 
      * [1]: https://developer.fastly.com/reference/api/dictionaries/
@@ -257,7 +261,8 @@ public final class FastlyFunctions {
      * ## Example Usage
      * 
      * &lt;!--Start PulumiCodeChooser --&gt;
-     * ```java
+     * <pre>
+     * {@code
      * package generated_program;
      * 
      * import com.pulumi.Context;
@@ -282,20 +287,20 @@ public final class FastlyFunctions {
      *     }
      * 
      *     public static void stack(Context ctx) {
-     *         var exampleServiceVcl = new ServiceVcl(&#34;exampleServiceVcl&#34;, ServiceVclArgs.builder()        
-     *             .name(&#34;Example Service&#34;)
+     *         var exampleServiceVcl = new ServiceVcl("exampleServiceVcl", ServiceVclArgs.builder()        
+     *             .name("Example Service")
      *             .domains(ServiceVclDomainArgs.builder()
-     *                 .name(&#34;example.com&#34;)
+     *                 .name("example.com")
      *                 .build())
      *             .dictionaries(            
      *                 ServiceVclDictionaryArgs.builder()
-     *                     .name(&#34;example_1&#34;)
+     *                     .name("example_1")
      *                     .build(),
      *                 ServiceVclDictionaryArgs.builder()
-     *                     .name(&#34;example_2&#34;)
+     *                     .name("example_2")
      *                     .build(),
      *                 ServiceVclDictionaryArgs.builder()
-     *                     .name(&#34;example_3&#34;)
+     *                     .name("example_3")
      *                     .build())
      *             .forceDestroy(true)
      *             .build());
@@ -305,10 +310,11 @@ public final class FastlyFunctions {
      *             .serviceVersion(exampleServiceVcl.activeVersion())
      *             .build());
      * 
-     *         ctx.export(&#34;serviceDictionaries&#34;, example.applyValue(getDictionariesResult -&gt; getDictionariesResult));
+     *         ctx.export("serviceDictionaries", example.applyValue(getDictionariesResult -> getDictionariesResult));
      *     }
      * }
-     * ```
+     * }
+     * </pre>
      * &lt;!--End PulumiCodeChooser --&gt;
      * 
      * [1]: https://developer.fastly.com/reference/api/dictionaries/
@@ -323,7 +329,8 @@ public final class FastlyFunctions {
      * ## Example Usage
      * 
      * &lt;!--Start PulumiCodeChooser --&gt;
-     * ```java
+     * <pre>
+     * {@code
      * package generated_program;
      * 
      * import com.pulumi.Context;
@@ -348,20 +355,20 @@ public final class FastlyFunctions {
      *     }
      * 
      *     public static void stack(Context ctx) {
-     *         var exampleServiceVcl = new ServiceVcl(&#34;exampleServiceVcl&#34;, ServiceVclArgs.builder()        
-     *             .name(&#34;Example Service&#34;)
+     *         var exampleServiceVcl = new ServiceVcl("exampleServiceVcl", ServiceVclArgs.builder()        
+     *             .name("Example Service")
      *             .domains(ServiceVclDomainArgs.builder()
-     *                 .name(&#34;example.com&#34;)
+     *                 .name("example.com")
      *                 .build())
      *             .dictionaries(            
      *                 ServiceVclDictionaryArgs.builder()
-     *                     .name(&#34;example_1&#34;)
+     *                     .name("example_1")
      *                     .build(),
      *                 ServiceVclDictionaryArgs.builder()
-     *                     .name(&#34;example_2&#34;)
+     *                     .name("example_2")
      *                     .build(),
      *                 ServiceVclDictionaryArgs.builder()
-     *                     .name(&#34;example_3&#34;)
+     *                     .name("example_3")
      *                     .build())
      *             .forceDestroy(true)
      *             .build());
@@ -371,10 +378,11 @@ public final class FastlyFunctions {
      *             .serviceVersion(exampleServiceVcl.activeVersion())
      *             .build());
      * 
-     *         ctx.export(&#34;serviceDictionaries&#34;, example.applyValue(getDictionariesResult -&gt; getDictionariesResult));
+     *         ctx.export("serviceDictionaries", example.applyValue(getDictionariesResult -> getDictionariesResult));
      *     }
      * }
-     * ```
+     * }
+     * </pre>
      * &lt;!--End PulumiCodeChooser --&gt;
      * 
      * [1]: https://developer.fastly.com/reference/api/dictionaries/
@@ -389,7 +397,8 @@ public final class FastlyFunctions {
      * ## Example Usage
      * 
      * &lt;!--Start PulumiCodeChooser --&gt;
-     * ```java
+     * <pre>
+     * {@code
      * package generated_program;
      * 
      * import com.pulumi.Context;
@@ -413,14 +422,15 @@ public final class FastlyFunctions {
      *     public static void stack(Context ctx) {
      *         final var fastly = FastlyFunctions.getFastlyIpRanges();
      * 
-     *         var fromFastly = new SecurityGroup(&#34;fromFastly&#34;, SecurityGroupArgs.builder()        
-     *             .name(&#34;from_fastly&#34;)
+     *         var fromFastly = new SecurityGroup("fromFastly", SecurityGroupArgs.builder()        
+     *             .name("from_fastly")
      *             .ingress(%!v(PANIC=Format method: runtime error: invalid memory address or nil pointer dereference))
      *             .build());
      * 
      *     }
      * }
-     * ```
+     * }
+     * </pre>
      * &lt;!--End PulumiCodeChooser --&gt;
      * 
      * [1]: https://docs.fastly.com/guides/securing-communications/accessing-fastlys-ip-ranges
@@ -435,7 +445,8 @@ public final class FastlyFunctions {
      * ## Example Usage
      * 
      * &lt;!--Start PulumiCodeChooser --&gt;
-     * ```java
+     * <pre>
+     * {@code
      * package generated_program;
      * 
      * import com.pulumi.Context;
@@ -459,14 +470,15 @@ public final class FastlyFunctions {
      *     public static void stack(Context ctx) {
      *         final var fastly = FastlyFunctions.getFastlyIpRanges();
      * 
-     *         var fromFastly = new SecurityGroup(&#34;fromFastly&#34;, SecurityGroupArgs.builder()        
-     *             .name(&#34;from_fastly&#34;)
+     *         var fromFastly = new SecurityGroup("fromFastly", SecurityGroupArgs.builder()        
+     *             .name("from_fastly")
      *             .ingress(%!v(PANIC=Format method: runtime error: invalid memory address or nil pointer dereference))
      *             .build());
      * 
      *     }
      * }
-     * ```
+     * }
+     * </pre>
      * &lt;!--End PulumiCodeChooser --&gt;
      * 
      * [1]: https://docs.fastly.com/guides/securing-communications/accessing-fastlys-ip-ranges
@@ -481,7 +493,8 @@ public final class FastlyFunctions {
      * ## Example Usage
      * 
      * &lt;!--Start PulumiCodeChooser --&gt;
-     * ```java
+     * <pre>
+     * {@code
      * package generated_program;
      * 
      * import com.pulumi.Context;
@@ -505,14 +518,15 @@ public final class FastlyFunctions {
      *     public static void stack(Context ctx) {
      *         final var fastly = FastlyFunctions.getFastlyIpRanges();
      * 
-     *         var fromFastly = new SecurityGroup(&#34;fromFastly&#34;, SecurityGroupArgs.builder()        
-     *             .name(&#34;from_fastly&#34;)
+     *         var fromFastly = new SecurityGroup("fromFastly", SecurityGroupArgs.builder()        
+     *             .name("from_fastly")
      *             .ingress(%!v(PANIC=Format method: runtime error: invalid memory address or nil pointer dereference))
      *             .build());
      * 
      *     }
      * }
-     * ```
+     * }
+     * </pre>
      * &lt;!--End PulumiCodeChooser --&gt;
      * 
      * [1]: https://docs.fastly.com/guides/securing-communications/accessing-fastlys-ip-ranges
@@ -527,7 +541,8 @@ public final class FastlyFunctions {
      * ## Example Usage
      * 
      * &lt;!--Start PulumiCodeChooser --&gt;
-     * ```java
+     * <pre>
+     * {@code
      * package generated_program;
      * 
      * import com.pulumi.Context;
@@ -551,14 +566,15 @@ public final class FastlyFunctions {
      *     public static void stack(Context ctx) {
      *         final var fastly = FastlyFunctions.getFastlyIpRanges();
      * 
-     *         var fromFastly = new SecurityGroup(&#34;fromFastly&#34;, SecurityGroupArgs.builder()        
-     *             .name(&#34;from_fastly&#34;)
+     *         var fromFastly = new SecurityGroup("fromFastly", SecurityGroupArgs.builder()        
+     *             .name("from_fastly")
      *             .ingress(%!v(PANIC=Format method: runtime error: invalid memory address or nil pointer dereference))
      *             .build());
      * 
      *     }
      * }
-     * ```
+     * }
+     * </pre>
      * &lt;!--End PulumiCodeChooser --&gt;
      * 
      * [1]: https://docs.fastly.com/guides/securing-communications/accessing-fastlys-ip-ranges
@@ -573,7 +589,8 @@ public final class FastlyFunctions {
      * ## Example Usage
      * 
      * &lt;!--Start PulumiCodeChooser --&gt;
-     * ```java
+     * <pre>
+     * {@code
      * package generated_program;
      * 
      * import com.pulumi.Context;
@@ -597,14 +614,15 @@ public final class FastlyFunctions {
      *     public static void stack(Context ctx) {
      *         final var fastly = FastlyFunctions.getFastlyIpRanges();
      * 
-     *         var fromFastly = new SecurityGroup(&#34;fromFastly&#34;, SecurityGroupArgs.builder()        
-     *             .name(&#34;from_fastly&#34;)
+     *         var fromFastly = new SecurityGroup("fromFastly", SecurityGroupArgs.builder()        
+     *             .name("from_fastly")
      *             .ingress(%!v(PANIC=Format method: runtime error: invalid memory address or nil pointer dereference))
      *             .build());
      * 
      *     }
      * }
-     * ```
+     * }
+     * </pre>
      * &lt;!--End PulumiCodeChooser --&gt;
      * 
      * [1]: https://docs.fastly.com/guides/securing-communications/accessing-fastlys-ip-ranges
@@ -619,7 +637,8 @@ public final class FastlyFunctions {
      * ## Example Usage
      * 
      * &lt;!--Start PulumiCodeChooser --&gt;
-     * ```java
+     * <pre>
+     * {@code
      * package generated_program;
      * 
      * import com.pulumi.Context;
@@ -643,14 +662,15 @@ public final class FastlyFunctions {
      *     public static void stack(Context ctx) {
      *         final var fastly = FastlyFunctions.getFastlyIpRanges();
      * 
-     *         var fromFastly = new SecurityGroup(&#34;fromFastly&#34;, SecurityGroupArgs.builder()        
-     *             .name(&#34;from_fastly&#34;)
+     *         var fromFastly = new SecurityGroup("fromFastly", SecurityGroupArgs.builder()        
+     *             .name("from_fastly")
      *             .ingress(%!v(PANIC=Format method: runtime error: invalid memory address or nil pointer dereference))
      *             .build());
      * 
      *     }
      * }
-     * ```
+     * }
+     * </pre>
      * &lt;!--End PulumiCodeChooser --&gt;
      * 
      * [1]: https://docs.fastly.com/guides/securing-communications/accessing-fastlys-ip-ranges
@@ -683,7 +703,8 @@ public final class FastlyFunctions {
      * ## Example Usage
      * 
      * &lt;!--Start PulumiCodeChooser --&gt;
-     * ```java
+     * <pre>
+     * {@code
      * package generated_program;
      * 
      * import com.pulumi.Context;
@@ -708,19 +729,20 @@ public final class FastlyFunctions {
      * 
      *     public static void stack(Context ctx) {
      *         final var example = FastlyFunctions.getPackageHash(GetPackageHashArgs.builder()
-     *             .filename(&#34;./path/to/package.tar.gz&#34;)
+     *             .filename("./path/to/package.tar.gz")
      *             .build());
      * 
-     *         var exampleServiceCompute = new ServiceCompute(&#34;exampleServiceCompute&#34;, ServiceComputeArgs.builder()        
+     *         var exampleServiceCompute = new ServiceCompute("exampleServiceCompute", ServiceComputeArgs.builder()        
      *             .package_(ServiceComputePackageArgs.builder()
-     *                 .filename(&#34;./path/to/package.tar.gz&#34;)
-     *                 .sourceCodeHash(example.applyValue(getPackageHashResult -&gt; getPackageHashResult.hash()))
+     *                 .filename("./path/to/package.tar.gz")
+     *                 .sourceCodeHash(example.applyValue(getPackageHashResult -> getPackageHashResult.hash()))
      *                 .build())
      *             .build());
      * 
      *     }
      * }
-     * ```
+     * }
+     * </pre>
      * &lt;!--End PulumiCodeChooser --&gt;
      * 
      */
@@ -733,7 +755,8 @@ public final class FastlyFunctions {
      * ## Example Usage
      * 
      * &lt;!--Start PulumiCodeChooser --&gt;
-     * ```java
+     * <pre>
+     * {@code
      * package generated_program;
      * 
      * import com.pulumi.Context;
@@ -758,19 +781,20 @@ public final class FastlyFunctions {
      * 
      *     public static void stack(Context ctx) {
      *         final var example = FastlyFunctions.getPackageHash(GetPackageHashArgs.builder()
-     *             .filename(&#34;./path/to/package.tar.gz&#34;)
+     *             .filename("./path/to/package.tar.gz")
      *             .build());
      * 
-     *         var exampleServiceCompute = new ServiceCompute(&#34;exampleServiceCompute&#34;, ServiceComputeArgs.builder()        
+     *         var exampleServiceCompute = new ServiceCompute("exampleServiceCompute", ServiceComputeArgs.builder()        
      *             .package_(ServiceComputePackageArgs.builder()
-     *                 .filename(&#34;./path/to/package.tar.gz&#34;)
-     *                 .sourceCodeHash(example.applyValue(getPackageHashResult -&gt; getPackageHashResult.hash()))
+     *                 .filename("./path/to/package.tar.gz")
+     *                 .sourceCodeHash(example.applyValue(getPackageHashResult -> getPackageHashResult.hash()))
      *                 .build())
      *             .build());
      * 
      *     }
      * }
-     * ```
+     * }
+     * </pre>
      * &lt;!--End PulumiCodeChooser --&gt;
      * 
      */
@@ -783,7 +807,8 @@ public final class FastlyFunctions {
      * ## Example Usage
      * 
      * &lt;!--Start PulumiCodeChooser --&gt;
-     * ```java
+     * <pre>
+     * {@code
      * package generated_program;
      * 
      * import com.pulumi.Context;
@@ -808,19 +833,20 @@ public final class FastlyFunctions {
      * 
      *     public static void stack(Context ctx) {
      *         final var example = FastlyFunctions.getPackageHash(GetPackageHashArgs.builder()
-     *             .filename(&#34;./path/to/package.tar.gz&#34;)
+     *             .filename("./path/to/package.tar.gz")
      *             .build());
      * 
-     *         var exampleServiceCompute = new ServiceCompute(&#34;exampleServiceCompute&#34;, ServiceComputeArgs.builder()        
+     *         var exampleServiceCompute = new ServiceCompute("exampleServiceCompute", ServiceComputeArgs.builder()        
      *             .package_(ServiceComputePackageArgs.builder()
-     *                 .filename(&#34;./path/to/package.tar.gz&#34;)
-     *                 .sourceCodeHash(example.applyValue(getPackageHashResult -&gt; getPackageHashResult.hash()))
+     *                 .filename("./path/to/package.tar.gz")
+     *                 .sourceCodeHash(example.applyValue(getPackageHashResult -> getPackageHashResult.hash()))
      *                 .build())
      *             .build());
      * 
      *     }
      * }
-     * ```
+     * }
+     * </pre>
      * &lt;!--End PulumiCodeChooser --&gt;
      * 
      */
@@ -833,7 +859,8 @@ public final class FastlyFunctions {
      * ## Example Usage
      * 
      * &lt;!--Start PulumiCodeChooser --&gt;
-     * ```java
+     * <pre>
+     * {@code
      * package generated_program;
      * 
      * import com.pulumi.Context;
@@ -858,19 +885,20 @@ public final class FastlyFunctions {
      * 
      *     public static void stack(Context ctx) {
      *         final var example = FastlyFunctions.getPackageHash(GetPackageHashArgs.builder()
-     *             .filename(&#34;./path/to/package.tar.gz&#34;)
+     *             .filename("./path/to/package.tar.gz")
      *             .build());
      * 
-     *         var exampleServiceCompute = new ServiceCompute(&#34;exampleServiceCompute&#34;, ServiceComputeArgs.builder()        
+     *         var exampleServiceCompute = new ServiceCompute("exampleServiceCompute", ServiceComputeArgs.builder()        
      *             .package_(ServiceComputePackageArgs.builder()
-     *                 .filename(&#34;./path/to/package.tar.gz&#34;)
-     *                 .sourceCodeHash(example.applyValue(getPackageHashResult -&gt; getPackageHashResult.hash()))
+     *                 .filename("./path/to/package.tar.gz")
+     *                 .sourceCodeHash(example.applyValue(getPackageHashResult -> getPackageHashResult.hash()))
      *                 .build())
      *             .build());
      * 
      *     }
      * }
-     * ```
+     * }
+     * </pre>
      * &lt;!--End PulumiCodeChooser --&gt;
      * 
      */
@@ -883,7 +911,8 @@ public final class FastlyFunctions {
      * ## Example Usage
      * 
      * &lt;!--Start PulumiCodeChooser --&gt;
-     * ```java
+     * <pre>
+     * {@code
      * package generated_program;
      * 
      * import com.pulumi.Context;
@@ -908,19 +937,20 @@ public final class FastlyFunctions {
      * 
      *     public static void stack(Context ctx) {
      *         final var example = FastlyFunctions.getPackageHash(GetPackageHashArgs.builder()
-     *             .filename(&#34;./path/to/package.tar.gz&#34;)
+     *             .filename("./path/to/package.tar.gz")
      *             .build());
      * 
-     *         var exampleServiceCompute = new ServiceCompute(&#34;exampleServiceCompute&#34;, ServiceComputeArgs.builder()        
+     *         var exampleServiceCompute = new ServiceCompute("exampleServiceCompute", ServiceComputeArgs.builder()        
      *             .package_(ServiceComputePackageArgs.builder()
-     *                 .filename(&#34;./path/to/package.tar.gz&#34;)
-     *                 .sourceCodeHash(example.applyValue(getPackageHashResult -&gt; getPackageHashResult.hash()))
+     *                 .filename("./path/to/package.tar.gz")
+     *                 .sourceCodeHash(example.applyValue(getPackageHashResult -> getPackageHashResult.hash()))
      *                 .build())
      *             .build());
      * 
      *     }
      * }
-     * ```
+     * }
+     * </pre>
      * &lt;!--End PulumiCodeChooser --&gt;
      * 
      */
@@ -933,7 +963,8 @@ public final class FastlyFunctions {
      * ## Example Usage
      * 
      * &lt;!--Start PulumiCodeChooser --&gt;
-     * ```java
+     * <pre>
+     * {@code
      * package generated_program;
      * 
      * import com.pulumi.Context;
@@ -958,19 +989,20 @@ public final class FastlyFunctions {
      * 
      *     public static void stack(Context ctx) {
      *         final var example = FastlyFunctions.getPackageHash(GetPackageHashArgs.builder()
-     *             .filename(&#34;./path/to/package.tar.gz&#34;)
+     *             .filename("./path/to/package.tar.gz")
      *             .build());
      * 
-     *         var exampleServiceCompute = new ServiceCompute(&#34;exampleServiceCompute&#34;, ServiceComputeArgs.builder()        
+     *         var exampleServiceCompute = new ServiceCompute("exampleServiceCompute", ServiceComputeArgs.builder()        
      *             .package_(ServiceComputePackageArgs.builder()
-     *                 .filename(&#34;./path/to/package.tar.gz&#34;)
-     *                 .sourceCodeHash(example.applyValue(getPackageHashResult -&gt; getPackageHashResult.hash()))
+     *                 .filename("./path/to/package.tar.gz")
+     *                 .sourceCodeHash(example.applyValue(getPackageHashResult -> getPackageHashResult.hash()))
      *                 .build())
      *             .build());
      * 
      *     }
      * }
-     * ```
+     * }
+     * </pre>
      * &lt;!--End PulumiCodeChooser --&gt;
      * 
      */
@@ -1049,7 +1081,8 @@ public final class FastlyFunctions {
      * ## Example Usage
      * 
      * &lt;!--Start PulumiCodeChooser --&gt;
-     * ```java
+     * <pre>
+     * {@code
      * package generated_program;
      * 
      * import com.pulumi.Context;
@@ -1071,12 +1104,13 @@ public final class FastlyFunctions {
      * 
      *     public static void stack(Context ctx) {
      *         final var example = FastlyFunctions.getTlsActivation(GetTlsActivationArgs.builder()
-     *             .domain(&#34;example.com&#34;)
+     *             .domain("example.com")
      *             .build());
      * 
      *     }
      * }
-     * ```
+     * }
+     * </pre>
      * &lt;!--End PulumiCodeChooser --&gt;
      * 
      */
@@ -1095,7 +1129,8 @@ public final class FastlyFunctions {
      * ## Example Usage
      * 
      * &lt;!--Start PulumiCodeChooser --&gt;
-     * ```java
+     * <pre>
+     * {@code
      * package generated_program;
      * 
      * import com.pulumi.Context;
@@ -1117,12 +1152,13 @@ public final class FastlyFunctions {
      * 
      *     public static void stack(Context ctx) {
      *         final var example = FastlyFunctions.getTlsActivation(GetTlsActivationArgs.builder()
-     *             .domain(&#34;example.com&#34;)
+     *             .domain("example.com")
      *             .build());
      * 
      *     }
      * }
-     * ```
+     * }
+     * </pre>
      * &lt;!--End PulumiCodeChooser --&gt;
      * 
      */
@@ -1141,7 +1177,8 @@ public final class FastlyFunctions {
      * ## Example Usage
      * 
      * &lt;!--Start PulumiCodeChooser --&gt;
-     * ```java
+     * <pre>
+     * {@code
      * package generated_program;
      * 
      * import com.pulumi.Context;
@@ -1163,12 +1200,13 @@ public final class FastlyFunctions {
      * 
      *     public static void stack(Context ctx) {
      *         final var example = FastlyFunctions.getTlsActivation(GetTlsActivationArgs.builder()
-     *             .domain(&#34;example.com&#34;)
+     *             .domain("example.com")
      *             .build());
      * 
      *     }
      * }
-     * ```
+     * }
+     * </pre>
      * &lt;!--End PulumiCodeChooser --&gt;
      * 
      */
@@ -1187,7 +1225,8 @@ public final class FastlyFunctions {
      * ## Example Usage
      * 
      * &lt;!--Start PulumiCodeChooser --&gt;
-     * ```java
+     * <pre>
+     * {@code
      * package generated_program;
      * 
      * import com.pulumi.Context;
@@ -1209,12 +1248,13 @@ public final class FastlyFunctions {
      * 
      *     public static void stack(Context ctx) {
      *         final var example = FastlyFunctions.getTlsActivation(GetTlsActivationArgs.builder()
-     *             .domain(&#34;example.com&#34;)
+     *             .domain("example.com")
      *             .build());
      * 
      *     }
      * }
-     * ```
+     * }
+     * </pre>
      * &lt;!--End PulumiCodeChooser --&gt;
      * 
      */
@@ -1233,7 +1273,8 @@ public final class FastlyFunctions {
      * ## Example Usage
      * 
      * &lt;!--Start PulumiCodeChooser --&gt;
-     * ```java
+     * <pre>
+     * {@code
      * package generated_program;
      * 
      * import com.pulumi.Context;
@@ -1255,12 +1296,13 @@ public final class FastlyFunctions {
      * 
      *     public static void stack(Context ctx) {
      *         final var example = FastlyFunctions.getTlsActivation(GetTlsActivationArgs.builder()
-     *             .domain(&#34;example.com&#34;)
+     *             .domain("example.com")
      *             .build());
      * 
      *     }
      * }
-     * ```
+     * }
+     * </pre>
      * &lt;!--End PulumiCodeChooser --&gt;
      * 
      */
@@ -1279,7 +1321,8 @@ public final class FastlyFunctions {
      * ## Example Usage
      * 
      * &lt;!--Start PulumiCodeChooser --&gt;
-     * ```java
+     * <pre>
+     * {@code
      * package generated_program;
      * 
      * import com.pulumi.Context;
@@ -1301,12 +1344,13 @@ public final class FastlyFunctions {
      * 
      *     public static void stack(Context ctx) {
      *         final var example = FastlyFunctions.getTlsActivation(GetTlsActivationArgs.builder()
-     *             .domain(&#34;example.com&#34;)
+     *             .domain("example.com")
      *             .build());
      * 
      *     }
      * }
-     * ```
+     * }
+     * </pre>
      * &lt;!--End PulumiCodeChooser --&gt;
      * 
      */
@@ -1397,7 +1441,8 @@ public final class FastlyFunctions {
      * ## Example Usage
      * 
      * &lt;!--Start PulumiCodeChooser --&gt;
-     * ```java
+     * <pre>
+     * {@code
      * package generated_program;
      * 
      * import com.pulumi.Context;
@@ -1419,12 +1464,13 @@ public final class FastlyFunctions {
      * 
      *     public static void stack(Context ctx) {
      *         final var example = FastlyFunctions.getTlsCertificate(GetTlsCertificateArgs.builder()
-     *             .name(&#34;example.com&#34;)
+     *             .name("example.com")
      *             .build());
      * 
      *     }
      * }
-     * ```
+     * }
+     * </pre>
      * &lt;!--End PulumiCodeChooser --&gt;
      * 
      */
@@ -1443,7 +1489,8 @@ public final class FastlyFunctions {
      * ## Example Usage
      * 
      * &lt;!--Start PulumiCodeChooser --&gt;
-     * ```java
+     * <pre>
+     * {@code
      * package generated_program;
      * 
      * import com.pulumi.Context;
@@ -1465,12 +1512,13 @@ public final class FastlyFunctions {
      * 
      *     public static void stack(Context ctx) {
      *         final var example = FastlyFunctions.getTlsCertificate(GetTlsCertificateArgs.builder()
-     *             .name(&#34;example.com&#34;)
+     *             .name("example.com")
      *             .build());
      * 
      *     }
      * }
-     * ```
+     * }
+     * </pre>
      * &lt;!--End PulumiCodeChooser --&gt;
      * 
      */
@@ -1489,7 +1537,8 @@ public final class FastlyFunctions {
      * ## Example Usage
      * 
      * &lt;!--Start PulumiCodeChooser --&gt;
-     * ```java
+     * <pre>
+     * {@code
      * package generated_program;
      * 
      * import com.pulumi.Context;
@@ -1511,12 +1560,13 @@ public final class FastlyFunctions {
      * 
      *     public static void stack(Context ctx) {
      *         final var example = FastlyFunctions.getTlsCertificate(GetTlsCertificateArgs.builder()
-     *             .name(&#34;example.com&#34;)
+     *             .name("example.com")
      *             .build());
      * 
      *     }
      * }
-     * ```
+     * }
+     * </pre>
      * &lt;!--End PulumiCodeChooser --&gt;
      * 
      */
@@ -1535,7 +1585,8 @@ public final class FastlyFunctions {
      * ## Example Usage
      * 
      * &lt;!--Start PulumiCodeChooser --&gt;
-     * ```java
+     * <pre>
+     * {@code
      * package generated_program;
      * 
      * import com.pulumi.Context;
@@ -1557,12 +1608,13 @@ public final class FastlyFunctions {
      * 
      *     public static void stack(Context ctx) {
      *         final var example = FastlyFunctions.getTlsCertificate(GetTlsCertificateArgs.builder()
-     *             .name(&#34;example.com&#34;)
+     *             .name("example.com")
      *             .build());
      * 
      *     }
      * }
-     * ```
+     * }
+     * </pre>
      * &lt;!--End PulumiCodeChooser --&gt;
      * 
      */
@@ -1581,7 +1633,8 @@ public final class FastlyFunctions {
      * ## Example Usage
      * 
      * &lt;!--Start PulumiCodeChooser --&gt;
-     * ```java
+     * <pre>
+     * {@code
      * package generated_program;
      * 
      * import com.pulumi.Context;
@@ -1603,12 +1656,13 @@ public final class FastlyFunctions {
      * 
      *     public static void stack(Context ctx) {
      *         final var example = FastlyFunctions.getTlsCertificate(GetTlsCertificateArgs.builder()
-     *             .name(&#34;example.com&#34;)
+     *             .name("example.com")
      *             .build());
      * 
      *     }
      * }
-     * ```
+     * }
+     * </pre>
      * &lt;!--End PulumiCodeChooser --&gt;
      * 
      */
@@ -1627,7 +1681,8 @@ public final class FastlyFunctions {
      * ## Example Usage
      * 
      * &lt;!--Start PulumiCodeChooser --&gt;
-     * ```java
+     * <pre>
+     * {@code
      * package generated_program;
      * 
      * import com.pulumi.Context;
@@ -1649,12 +1704,13 @@ public final class FastlyFunctions {
      * 
      *     public static void stack(Context ctx) {
      *         final var example = FastlyFunctions.getTlsCertificate(GetTlsCertificateArgs.builder()
-     *             .name(&#34;example.com&#34;)
+     *             .name("example.com")
      *             .build());
      * 
      *     }
      * }
-     * ```
+     * }
+     * </pre>
      * &lt;!--End PulumiCodeChooser --&gt;
      * 
      */
@@ -1667,7 +1723,8 @@ public final class FastlyFunctions {
      * ## Example Usage
      * 
      * &lt;!--Start PulumiCodeChooser --&gt;
-     * ```java
+     * <pre>
+     * {@code
      * package generated_program;
      * 
      * import com.pulumi.Context;
@@ -1691,13 +1748,14 @@ public final class FastlyFunctions {
      *     public static void stack(Context ctx) {
      *         final var example = FastlyFunctions.getTlsCertificateIds();
      * 
-     *         var exampleTlsActivation = new TlsActivation(&#34;exampleTlsActivation&#34;, TlsActivationArgs.builder()        
-     *             .certificateId(example.applyValue(getTlsCertificateIdsResult -&gt; getTlsCertificateIdsResult.ids()[0]))
+     *         var exampleTlsActivation = new TlsActivation("exampleTlsActivation", TlsActivationArgs.builder()        
+     *             .certificateId(example.applyValue(getTlsCertificateIdsResult -> getTlsCertificateIdsResult.ids()[0]))
      *             .build());
      * 
      *     }
      * }
-     * ```
+     * }
+     * </pre>
      * &lt;!--End PulumiCodeChooser --&gt;
      * 
      */
@@ -1710,7 +1768,8 @@ public final class FastlyFunctions {
      * ## Example Usage
      * 
      * &lt;!--Start PulumiCodeChooser --&gt;
-     * ```java
+     * <pre>
+     * {@code
      * package generated_program;
      * 
      * import com.pulumi.Context;
@@ -1734,13 +1793,14 @@ public final class FastlyFunctions {
      *     public static void stack(Context ctx) {
      *         final var example = FastlyFunctions.getTlsCertificateIds();
      * 
-     *         var exampleTlsActivation = new TlsActivation(&#34;exampleTlsActivation&#34;, TlsActivationArgs.builder()        
-     *             .certificateId(example.applyValue(getTlsCertificateIdsResult -&gt; getTlsCertificateIdsResult.ids()[0]))
+     *         var exampleTlsActivation = new TlsActivation("exampleTlsActivation", TlsActivationArgs.builder()        
+     *             .certificateId(example.applyValue(getTlsCertificateIdsResult -> getTlsCertificateIdsResult.ids()[0]))
      *             .build());
      * 
      *     }
      * }
-     * ```
+     * }
+     * </pre>
      * &lt;!--End PulumiCodeChooser --&gt;
      * 
      */
@@ -1753,7 +1813,8 @@ public final class FastlyFunctions {
      * ## Example Usage
      * 
      * &lt;!--Start PulumiCodeChooser --&gt;
-     * ```java
+     * <pre>
+     * {@code
      * package generated_program;
      * 
      * import com.pulumi.Context;
@@ -1777,13 +1838,14 @@ public final class FastlyFunctions {
      *     public static void stack(Context ctx) {
      *         final var example = FastlyFunctions.getTlsCertificateIds();
      * 
-     *         var exampleTlsActivation = new TlsActivation(&#34;exampleTlsActivation&#34;, TlsActivationArgs.builder()        
-     *             .certificateId(example.applyValue(getTlsCertificateIdsResult -&gt; getTlsCertificateIdsResult.ids()[0]))
+     *         var exampleTlsActivation = new TlsActivation("exampleTlsActivation", TlsActivationArgs.builder()        
+     *             .certificateId(example.applyValue(getTlsCertificateIdsResult -> getTlsCertificateIdsResult.ids()[0]))
      *             .build());
      * 
      *     }
      * }
-     * ```
+     * }
+     * </pre>
      * &lt;!--End PulumiCodeChooser --&gt;
      * 
      */
@@ -1796,7 +1858,8 @@ public final class FastlyFunctions {
      * ## Example Usage
      * 
      * &lt;!--Start PulumiCodeChooser --&gt;
-     * ```java
+     * <pre>
+     * {@code
      * package generated_program;
      * 
      * import com.pulumi.Context;
@@ -1820,13 +1883,14 @@ public final class FastlyFunctions {
      *     public static void stack(Context ctx) {
      *         final var example = FastlyFunctions.getTlsCertificateIds();
      * 
-     *         var exampleTlsActivation = new TlsActivation(&#34;exampleTlsActivation&#34;, TlsActivationArgs.builder()        
-     *             .certificateId(example.applyValue(getTlsCertificateIdsResult -&gt; getTlsCertificateIdsResult.ids()[0]))
+     *         var exampleTlsActivation = new TlsActivation("exampleTlsActivation", TlsActivationArgs.builder()        
+     *             .certificateId(example.applyValue(getTlsCertificateIdsResult -> getTlsCertificateIdsResult.ids()[0]))
      *             .build());
      * 
      *     }
      * }
-     * ```
+     * }
+     * </pre>
      * &lt;!--End PulumiCodeChooser --&gt;
      * 
      */
@@ -1839,7 +1903,8 @@ public final class FastlyFunctions {
      * ## Example Usage
      * 
      * &lt;!--Start PulumiCodeChooser --&gt;
-     * ```java
+     * <pre>
+     * {@code
      * package generated_program;
      * 
      * import com.pulumi.Context;
@@ -1863,13 +1928,14 @@ public final class FastlyFunctions {
      *     public static void stack(Context ctx) {
      *         final var example = FastlyFunctions.getTlsCertificateIds();
      * 
-     *         var exampleTlsActivation = new TlsActivation(&#34;exampleTlsActivation&#34;, TlsActivationArgs.builder()        
-     *             .certificateId(example.applyValue(getTlsCertificateIdsResult -&gt; getTlsCertificateIdsResult.ids()[0]))
+     *         var exampleTlsActivation = new TlsActivation("exampleTlsActivation", TlsActivationArgs.builder()        
+     *             .certificateId(example.applyValue(getTlsCertificateIdsResult -> getTlsCertificateIdsResult.ids()[0]))
      *             .build());
      * 
      *     }
      * }
-     * ```
+     * }
+     * </pre>
      * &lt;!--End PulumiCodeChooser --&gt;
      * 
      */
@@ -1882,7 +1948,8 @@ public final class FastlyFunctions {
      * ## Example Usage
      * 
      * &lt;!--Start PulumiCodeChooser --&gt;
-     * ```java
+     * <pre>
+     * {@code
      * package generated_program;
      * 
      * import com.pulumi.Context;
@@ -1906,13 +1973,14 @@ public final class FastlyFunctions {
      *     public static void stack(Context ctx) {
      *         final var example = FastlyFunctions.getTlsCertificateIds();
      * 
-     *         var exampleTlsActivation = new TlsActivation(&#34;exampleTlsActivation&#34;, TlsActivationArgs.builder()        
-     *             .certificateId(example.applyValue(getTlsCertificateIdsResult -&gt; getTlsCertificateIdsResult.ids()[0]))
+     *         var exampleTlsActivation = new TlsActivation("exampleTlsActivation", TlsActivationArgs.builder()        
+     *             .certificateId(example.applyValue(getTlsCertificateIdsResult -> getTlsCertificateIdsResult.ids()[0]))
      *             .build());
      * 
      *     }
      * }
-     * ```
+     * }
+     * </pre>
      * &lt;!--End PulumiCodeChooser --&gt;
      * 
      */
@@ -1931,7 +1999,8 @@ public final class FastlyFunctions {
      * ## Example Usage
      * 
      * &lt;!--Start PulumiCodeChooser --&gt;
-     * ```java
+     * <pre>
+     * {@code
      * package generated_program;
      * 
      * import com.pulumi.Context;
@@ -1958,13 +2027,14 @@ public final class FastlyFunctions {
      *             .default_(true)
      *             .build());
      * 
-     *         var exampleTlsActivation = new TlsActivation(&#34;exampleTlsActivation&#34;, TlsActivationArgs.builder()        
-     *             .configurationId(example.applyValue(getTlsConfigurationResult -&gt; getTlsConfigurationResult.id()))
+     *         var exampleTlsActivation = new TlsActivation("exampleTlsActivation", TlsActivationArgs.builder()        
+     *             .configurationId(example.applyValue(getTlsConfigurationResult -> getTlsConfigurationResult.id()))
      *             .build());
      * 
      *     }
      * }
-     * ```
+     * }
+     * </pre>
      * &lt;!--End PulumiCodeChooser --&gt;
      * 
      */
@@ -1983,7 +2053,8 @@ public final class FastlyFunctions {
      * ## Example Usage
      * 
      * &lt;!--Start PulumiCodeChooser --&gt;
-     * ```java
+     * <pre>
+     * {@code
      * package generated_program;
      * 
      * import com.pulumi.Context;
@@ -2010,13 +2081,14 @@ public final class FastlyFunctions {
      *             .default_(true)
      *             .build());
      * 
-     *         var exampleTlsActivation = new TlsActivation(&#34;exampleTlsActivation&#34;, TlsActivationArgs.builder()        
-     *             .configurationId(example.applyValue(getTlsConfigurationResult -&gt; getTlsConfigurationResult.id()))
+     *         var exampleTlsActivation = new TlsActivation("exampleTlsActivation", TlsActivationArgs.builder()        
+     *             .configurationId(example.applyValue(getTlsConfigurationResult -> getTlsConfigurationResult.id()))
      *             .build());
      * 
      *     }
      * }
-     * ```
+     * }
+     * </pre>
      * &lt;!--End PulumiCodeChooser --&gt;
      * 
      */
@@ -2035,7 +2107,8 @@ public final class FastlyFunctions {
      * ## Example Usage
      * 
      * &lt;!--Start PulumiCodeChooser --&gt;
-     * ```java
+     * <pre>
+     * {@code
      * package generated_program;
      * 
      * import com.pulumi.Context;
@@ -2062,13 +2135,14 @@ public final class FastlyFunctions {
      *             .default_(true)
      *             .build());
      * 
-     *         var exampleTlsActivation = new TlsActivation(&#34;exampleTlsActivation&#34;, TlsActivationArgs.builder()        
-     *             .configurationId(example.applyValue(getTlsConfigurationResult -&gt; getTlsConfigurationResult.id()))
+     *         var exampleTlsActivation = new TlsActivation("exampleTlsActivation", TlsActivationArgs.builder()        
+     *             .configurationId(example.applyValue(getTlsConfigurationResult -> getTlsConfigurationResult.id()))
      *             .build());
      * 
      *     }
      * }
-     * ```
+     * }
+     * </pre>
      * &lt;!--End PulumiCodeChooser --&gt;
      * 
      */
@@ -2087,7 +2161,8 @@ public final class FastlyFunctions {
      * ## Example Usage
      * 
      * &lt;!--Start PulumiCodeChooser --&gt;
-     * ```java
+     * <pre>
+     * {@code
      * package generated_program;
      * 
      * import com.pulumi.Context;
@@ -2114,13 +2189,14 @@ public final class FastlyFunctions {
      *             .default_(true)
      *             .build());
      * 
-     *         var exampleTlsActivation = new TlsActivation(&#34;exampleTlsActivation&#34;, TlsActivationArgs.builder()        
-     *             .configurationId(example.applyValue(getTlsConfigurationResult -&gt; getTlsConfigurationResult.id()))
+     *         var exampleTlsActivation = new TlsActivation("exampleTlsActivation", TlsActivationArgs.builder()        
+     *             .configurationId(example.applyValue(getTlsConfigurationResult -> getTlsConfigurationResult.id()))
      *             .build());
      * 
      *     }
      * }
-     * ```
+     * }
+     * </pre>
      * &lt;!--End PulumiCodeChooser --&gt;
      * 
      */
@@ -2139,7 +2215,8 @@ public final class FastlyFunctions {
      * ## Example Usage
      * 
      * &lt;!--Start PulumiCodeChooser --&gt;
-     * ```java
+     * <pre>
+     * {@code
      * package generated_program;
      * 
      * import com.pulumi.Context;
@@ -2166,13 +2243,14 @@ public final class FastlyFunctions {
      *             .default_(true)
      *             .build());
      * 
-     *         var exampleTlsActivation = new TlsActivation(&#34;exampleTlsActivation&#34;, TlsActivationArgs.builder()        
-     *             .configurationId(example.applyValue(getTlsConfigurationResult -&gt; getTlsConfigurationResult.id()))
+     *         var exampleTlsActivation = new TlsActivation("exampleTlsActivation", TlsActivationArgs.builder()        
+     *             .configurationId(example.applyValue(getTlsConfigurationResult -> getTlsConfigurationResult.id()))
      *             .build());
      * 
      *     }
      * }
-     * ```
+     * }
+     * </pre>
      * &lt;!--End PulumiCodeChooser --&gt;
      * 
      */
@@ -2191,7 +2269,8 @@ public final class FastlyFunctions {
      * ## Example Usage
      * 
      * &lt;!--Start PulumiCodeChooser --&gt;
-     * ```java
+     * <pre>
+     * {@code
      * package generated_program;
      * 
      * import com.pulumi.Context;
@@ -2218,13 +2297,14 @@ public final class FastlyFunctions {
      *             .default_(true)
      *             .build());
      * 
-     *         var exampleTlsActivation = new TlsActivation(&#34;exampleTlsActivation&#34;, TlsActivationArgs.builder()        
-     *             .configurationId(example.applyValue(getTlsConfigurationResult -&gt; getTlsConfigurationResult.id()))
+     *         var exampleTlsActivation = new TlsActivation("exampleTlsActivation", TlsActivationArgs.builder()        
+     *             .configurationId(example.applyValue(getTlsConfigurationResult -> getTlsConfigurationResult.id()))
      *             .build());
      * 
      *     }
      * }
-     * ```
+     * }
+     * </pre>
      * &lt;!--End PulumiCodeChooser --&gt;
      * 
      */
@@ -2237,7 +2317,8 @@ public final class FastlyFunctions {
      * ## Example Usage
      * 
      * &lt;!--Start PulumiCodeChooser --&gt;
-     * ```java
+     * <pre>
+     * {@code
      * package generated_program;
      * 
      * import com.pulumi.Context;
@@ -2261,13 +2342,14 @@ public final class FastlyFunctions {
      *     public static void stack(Context ctx) {
      *         final var example = FastlyFunctions.getTlsConfigurationIds();
      * 
-     *         var exampleTlsActivation = new TlsActivation(&#34;exampleTlsActivation&#34;, TlsActivationArgs.builder()        
-     *             .configurationId(example.applyValue(getTlsConfigurationIdsResult -&gt; getTlsConfigurationIdsResult.ids()[0]))
+     *         var exampleTlsActivation = new TlsActivation("exampleTlsActivation", TlsActivationArgs.builder()        
+     *             .configurationId(example.applyValue(getTlsConfigurationIdsResult -> getTlsConfigurationIdsResult.ids()[0]))
      *             .build());
      * 
      *     }
      * }
-     * ```
+     * }
+     * </pre>
      * &lt;!--End PulumiCodeChooser --&gt;
      * 
      */
@@ -2280,7 +2362,8 @@ public final class FastlyFunctions {
      * ## Example Usage
      * 
      * &lt;!--Start PulumiCodeChooser --&gt;
-     * ```java
+     * <pre>
+     * {@code
      * package generated_program;
      * 
      * import com.pulumi.Context;
@@ -2304,13 +2387,14 @@ public final class FastlyFunctions {
      *     public static void stack(Context ctx) {
      *         final var example = FastlyFunctions.getTlsConfigurationIds();
      * 
-     *         var exampleTlsActivation = new TlsActivation(&#34;exampleTlsActivation&#34;, TlsActivationArgs.builder()        
-     *             .configurationId(example.applyValue(getTlsConfigurationIdsResult -&gt; getTlsConfigurationIdsResult.ids()[0]))
+     *         var exampleTlsActivation = new TlsActivation("exampleTlsActivation", TlsActivationArgs.builder()        
+     *             .configurationId(example.applyValue(getTlsConfigurationIdsResult -> getTlsConfigurationIdsResult.ids()[0]))
      *             .build());
      * 
      *     }
      * }
-     * ```
+     * }
+     * </pre>
      * &lt;!--End PulumiCodeChooser --&gt;
      * 
      */
@@ -2323,7 +2407,8 @@ public final class FastlyFunctions {
      * ## Example Usage
      * 
      * &lt;!--Start PulumiCodeChooser --&gt;
-     * ```java
+     * <pre>
+     * {@code
      * package generated_program;
      * 
      * import com.pulumi.Context;
@@ -2347,13 +2432,14 @@ public final class FastlyFunctions {
      *     public static void stack(Context ctx) {
      *         final var example = FastlyFunctions.getTlsConfigurationIds();
      * 
-     *         var exampleTlsActivation = new TlsActivation(&#34;exampleTlsActivation&#34;, TlsActivationArgs.builder()        
-     *             .configurationId(example.applyValue(getTlsConfigurationIdsResult -&gt; getTlsConfigurationIdsResult.ids()[0]))
+     *         var exampleTlsActivation = new TlsActivation("exampleTlsActivation", TlsActivationArgs.builder()        
+     *             .configurationId(example.applyValue(getTlsConfigurationIdsResult -> getTlsConfigurationIdsResult.ids()[0]))
      *             .build());
      * 
      *     }
      * }
-     * ```
+     * }
+     * </pre>
      * &lt;!--End PulumiCodeChooser --&gt;
      * 
      */
@@ -2366,7 +2452,8 @@ public final class FastlyFunctions {
      * ## Example Usage
      * 
      * &lt;!--Start PulumiCodeChooser --&gt;
-     * ```java
+     * <pre>
+     * {@code
      * package generated_program;
      * 
      * import com.pulumi.Context;
@@ -2390,13 +2477,14 @@ public final class FastlyFunctions {
      *     public static void stack(Context ctx) {
      *         final var example = FastlyFunctions.getTlsConfigurationIds();
      * 
-     *         var exampleTlsActivation = new TlsActivation(&#34;exampleTlsActivation&#34;, TlsActivationArgs.builder()        
-     *             .configurationId(example.applyValue(getTlsConfigurationIdsResult -&gt; getTlsConfigurationIdsResult.ids()[0]))
+     *         var exampleTlsActivation = new TlsActivation("exampleTlsActivation", TlsActivationArgs.builder()        
+     *             .configurationId(example.applyValue(getTlsConfigurationIdsResult -> getTlsConfigurationIdsResult.ids()[0]))
      *             .build());
      * 
      *     }
      * }
-     * ```
+     * }
+     * </pre>
      * &lt;!--End PulumiCodeChooser --&gt;
      * 
      */
@@ -2409,7 +2497,8 @@ public final class FastlyFunctions {
      * ## Example Usage
      * 
      * &lt;!--Start PulumiCodeChooser --&gt;
-     * ```java
+     * <pre>
+     * {@code
      * package generated_program;
      * 
      * import com.pulumi.Context;
@@ -2433,13 +2522,14 @@ public final class FastlyFunctions {
      *     public static void stack(Context ctx) {
      *         final var example = FastlyFunctions.getTlsConfigurationIds();
      * 
-     *         var exampleTlsActivation = new TlsActivation(&#34;exampleTlsActivation&#34;, TlsActivationArgs.builder()        
-     *             .configurationId(example.applyValue(getTlsConfigurationIdsResult -&gt; getTlsConfigurationIdsResult.ids()[0]))
+     *         var exampleTlsActivation = new TlsActivation("exampleTlsActivation", TlsActivationArgs.builder()        
+     *             .configurationId(example.applyValue(getTlsConfigurationIdsResult -> getTlsConfigurationIdsResult.ids()[0]))
      *             .build());
      * 
      *     }
      * }
-     * ```
+     * }
+     * </pre>
      * &lt;!--End PulumiCodeChooser --&gt;
      * 
      */
@@ -2452,7 +2542,8 @@ public final class FastlyFunctions {
      * ## Example Usage
      * 
      * &lt;!--Start PulumiCodeChooser --&gt;
-     * ```java
+     * <pre>
+     * {@code
      * package generated_program;
      * 
      * import com.pulumi.Context;
@@ -2476,13 +2567,14 @@ public final class FastlyFunctions {
      *     public static void stack(Context ctx) {
      *         final var example = FastlyFunctions.getTlsConfigurationIds();
      * 
-     *         var exampleTlsActivation = new TlsActivation(&#34;exampleTlsActivation&#34;, TlsActivationArgs.builder()        
-     *             .configurationId(example.applyValue(getTlsConfigurationIdsResult -&gt; getTlsConfigurationIdsResult.ids()[0]))
+     *         var exampleTlsActivation = new TlsActivation("exampleTlsActivation", TlsActivationArgs.builder()        
+     *             .configurationId(example.applyValue(getTlsConfigurationIdsResult -> getTlsConfigurationIdsResult.ids()[0]))
      *             .build());
      * 
      *     }
      * }
-     * ```
+     * }
+     * </pre>
      * &lt;!--End PulumiCodeChooser --&gt;
      * 
      */
@@ -2495,7 +2587,8 @@ public final class FastlyFunctions {
      * ## Example Usage
      * 
      * &lt;!--Start PulumiCodeChooser --&gt;
-     * ```java
+     * <pre>
+     * {@code
      * package generated_program;
      * 
      * import com.pulumi.Context;
@@ -2517,12 +2610,13 @@ public final class FastlyFunctions {
      * 
      *     public static void stack(Context ctx) {
      *         final var domain = FastlyFunctions.getTlsDomain(GetTlsDomainArgs.builder()
-     *             .domain(&#34;example.com&#34;)
+     *             .domain("example.com")
      *             .build());
      * 
      *     }
      * }
-     * ```
+     * }
+     * </pre>
      * &lt;!--End PulumiCodeChooser --&gt;
      * 
      */
@@ -2535,7 +2629,8 @@ public final class FastlyFunctions {
      * ## Example Usage
      * 
      * &lt;!--Start PulumiCodeChooser --&gt;
-     * ```java
+     * <pre>
+     * {@code
      * package generated_program;
      * 
      * import com.pulumi.Context;
@@ -2557,12 +2652,13 @@ public final class FastlyFunctions {
      * 
      *     public static void stack(Context ctx) {
      *         final var domain = FastlyFunctions.getTlsDomain(GetTlsDomainArgs.builder()
-     *             .domain(&#34;example.com&#34;)
+     *             .domain("example.com")
      *             .build());
      * 
      *     }
      * }
-     * ```
+     * }
+     * </pre>
      * &lt;!--End PulumiCodeChooser --&gt;
      * 
      */
@@ -2575,7 +2671,8 @@ public final class FastlyFunctions {
      * ## Example Usage
      * 
      * &lt;!--Start PulumiCodeChooser --&gt;
-     * ```java
+     * <pre>
+     * {@code
      * package generated_program;
      * 
      * import com.pulumi.Context;
@@ -2597,12 +2694,13 @@ public final class FastlyFunctions {
      * 
      *     public static void stack(Context ctx) {
      *         final var domain = FastlyFunctions.getTlsDomain(GetTlsDomainArgs.builder()
-     *             .domain(&#34;example.com&#34;)
+     *             .domain("example.com")
      *             .build());
      * 
      *     }
      * }
-     * ```
+     * }
+     * </pre>
      * &lt;!--End PulumiCodeChooser --&gt;
      * 
      */
@@ -2615,7 +2713,8 @@ public final class FastlyFunctions {
      * ## Example Usage
      * 
      * &lt;!--Start PulumiCodeChooser --&gt;
-     * ```java
+     * <pre>
+     * {@code
      * package generated_program;
      * 
      * import com.pulumi.Context;
@@ -2637,12 +2736,13 @@ public final class FastlyFunctions {
      * 
      *     public static void stack(Context ctx) {
      *         final var domain = FastlyFunctions.getTlsDomain(GetTlsDomainArgs.builder()
-     *             .domain(&#34;example.com&#34;)
+     *             .domain("example.com")
      *             .build());
      * 
      *     }
      * }
-     * ```
+     * }
+     * </pre>
      * &lt;!--End PulumiCodeChooser --&gt;
      * 
      */
@@ -2661,7 +2761,8 @@ public final class FastlyFunctions {
      * ## Example Usage
      * 
      * &lt;!--Start PulumiCodeChooser --&gt;
-     * ```java
+     * <pre>
+     * {@code
      * package generated_program;
      * 
      * import com.pulumi.Context;
@@ -2683,12 +2784,13 @@ public final class FastlyFunctions {
      * 
      *     public static void stack(Context ctx) {
      *         final var example = FastlyFunctions.getTlsPlatformCertificate(GetTlsPlatformCertificateArgs.builder()
-     *             .domains(&#34;example.com&#34;)
+     *             .domains("example.com")
      *             .build());
      * 
      *     }
      * }
-     * ```
+     * }
+     * </pre>
      * &lt;!--End PulumiCodeChooser --&gt;
      * 
      */
@@ -2707,7 +2809,8 @@ public final class FastlyFunctions {
      * ## Example Usage
      * 
      * &lt;!--Start PulumiCodeChooser --&gt;
-     * ```java
+     * <pre>
+     * {@code
      * package generated_program;
      * 
      * import com.pulumi.Context;
@@ -2729,12 +2832,13 @@ public final class FastlyFunctions {
      * 
      *     public static void stack(Context ctx) {
      *         final var example = FastlyFunctions.getTlsPlatformCertificate(GetTlsPlatformCertificateArgs.builder()
-     *             .domains(&#34;example.com&#34;)
+     *             .domains("example.com")
      *             .build());
      * 
      *     }
      * }
-     * ```
+     * }
+     * </pre>
      * &lt;!--End PulumiCodeChooser --&gt;
      * 
      */
@@ -2753,7 +2857,8 @@ public final class FastlyFunctions {
      * ## Example Usage
      * 
      * &lt;!--Start PulumiCodeChooser --&gt;
-     * ```java
+     * <pre>
+     * {@code
      * package generated_program;
      * 
      * import com.pulumi.Context;
@@ -2775,12 +2880,13 @@ public final class FastlyFunctions {
      * 
      *     public static void stack(Context ctx) {
      *         final var example = FastlyFunctions.getTlsPlatformCertificate(GetTlsPlatformCertificateArgs.builder()
-     *             .domains(&#34;example.com&#34;)
+     *             .domains("example.com")
      *             .build());
      * 
      *     }
      * }
-     * ```
+     * }
+     * </pre>
      * &lt;!--End PulumiCodeChooser --&gt;
      * 
      */
@@ -2799,7 +2905,8 @@ public final class FastlyFunctions {
      * ## Example Usage
      * 
      * &lt;!--Start PulumiCodeChooser --&gt;
-     * ```java
+     * <pre>
+     * {@code
      * package generated_program;
      * 
      * import com.pulumi.Context;
@@ -2821,12 +2928,13 @@ public final class FastlyFunctions {
      * 
      *     public static void stack(Context ctx) {
      *         final var example = FastlyFunctions.getTlsPlatformCertificate(GetTlsPlatformCertificateArgs.builder()
-     *             .domains(&#34;example.com&#34;)
+     *             .domains("example.com")
      *             .build());
      * 
      *     }
      * }
-     * ```
+     * }
+     * </pre>
      * &lt;!--End PulumiCodeChooser --&gt;
      * 
      */
@@ -2845,7 +2953,8 @@ public final class FastlyFunctions {
      * ## Example Usage
      * 
      * &lt;!--Start PulumiCodeChooser --&gt;
-     * ```java
+     * <pre>
+     * {@code
      * package generated_program;
      * 
      * import com.pulumi.Context;
@@ -2867,12 +2976,13 @@ public final class FastlyFunctions {
      * 
      *     public static void stack(Context ctx) {
      *         final var example = FastlyFunctions.getTlsPlatformCertificate(GetTlsPlatformCertificateArgs.builder()
-     *             .domains(&#34;example.com&#34;)
+     *             .domains("example.com")
      *             .build());
      * 
      *     }
      * }
-     * ```
+     * }
+     * </pre>
      * &lt;!--End PulumiCodeChooser --&gt;
      * 
      */
@@ -2891,7 +3001,8 @@ public final class FastlyFunctions {
      * ## Example Usage
      * 
      * &lt;!--Start PulumiCodeChooser --&gt;
-     * ```java
+     * <pre>
+     * {@code
      * package generated_program;
      * 
      * import com.pulumi.Context;
@@ -2913,12 +3024,13 @@ public final class FastlyFunctions {
      * 
      *     public static void stack(Context ctx) {
      *         final var example = FastlyFunctions.getTlsPlatformCertificate(GetTlsPlatformCertificateArgs.builder()
-     *             .domains(&#34;example.com&#34;)
+     *             .domains("example.com")
      *             .build());
      * 
      *     }
      * }
-     * ```
+     * }
+     * </pre>
      * &lt;!--End PulumiCodeChooser --&gt;
      * 
      */
@@ -2931,7 +3043,8 @@ public final class FastlyFunctions {
      * ## Example Usage
      * 
      * &lt;!--Start PulumiCodeChooser --&gt;
-     * ```java
+     * <pre>
+     * {@code
      * package generated_program;
      * 
      * import com.pulumi.Context;
@@ -2955,12 +3068,13 @@ public final class FastlyFunctions {
      *         final var example = FastlyFunctions.getTlsPlatformCertificateIds();
      * 
      *         final var exampleGetTlsPlatformCertificate = FastlyFunctions.getTlsPlatformCertificate(GetTlsPlatformCertificateArgs.builder()
-     *             .id(example.applyValue(getTlsPlatformCertificateIdsResult -&gt; getTlsPlatformCertificateIdsResult.ids()[0]))
+     *             .id(example.applyValue(getTlsPlatformCertificateIdsResult -> getTlsPlatformCertificateIdsResult.ids()[0]))
      *             .build());
      * 
      *     }
      * }
-     * ```
+     * }
+     * </pre>
      * &lt;!--End PulumiCodeChooser --&gt;
      * 
      */
@@ -2973,7 +3087,8 @@ public final class FastlyFunctions {
      * ## Example Usage
      * 
      * &lt;!--Start PulumiCodeChooser --&gt;
-     * ```java
+     * <pre>
+     * {@code
      * package generated_program;
      * 
      * import com.pulumi.Context;
@@ -2997,12 +3112,13 @@ public final class FastlyFunctions {
      *         final var example = FastlyFunctions.getTlsPlatformCertificateIds();
      * 
      *         final var exampleGetTlsPlatformCertificate = FastlyFunctions.getTlsPlatformCertificate(GetTlsPlatformCertificateArgs.builder()
-     *             .id(example.applyValue(getTlsPlatformCertificateIdsResult -&gt; getTlsPlatformCertificateIdsResult.ids()[0]))
+     *             .id(example.applyValue(getTlsPlatformCertificateIdsResult -> getTlsPlatformCertificateIdsResult.ids()[0]))
      *             .build());
      * 
      *     }
      * }
-     * ```
+     * }
+     * </pre>
      * &lt;!--End PulumiCodeChooser --&gt;
      * 
      */
@@ -3015,7 +3131,8 @@ public final class FastlyFunctions {
      * ## Example Usage
      * 
      * &lt;!--Start PulumiCodeChooser --&gt;
-     * ```java
+     * <pre>
+     * {@code
      * package generated_program;
      * 
      * import com.pulumi.Context;
@@ -3039,12 +3156,13 @@ public final class FastlyFunctions {
      *         final var example = FastlyFunctions.getTlsPlatformCertificateIds();
      * 
      *         final var exampleGetTlsPlatformCertificate = FastlyFunctions.getTlsPlatformCertificate(GetTlsPlatformCertificateArgs.builder()
-     *             .id(example.applyValue(getTlsPlatformCertificateIdsResult -&gt; getTlsPlatformCertificateIdsResult.ids()[0]))
+     *             .id(example.applyValue(getTlsPlatformCertificateIdsResult -> getTlsPlatformCertificateIdsResult.ids()[0]))
      *             .build());
      * 
      *     }
      * }
-     * ```
+     * }
+     * </pre>
      * &lt;!--End PulumiCodeChooser --&gt;
      * 
      */
@@ -3057,7 +3175,8 @@ public final class FastlyFunctions {
      * ## Example Usage
      * 
      * &lt;!--Start PulumiCodeChooser --&gt;
-     * ```java
+     * <pre>
+     * {@code
      * package generated_program;
      * 
      * import com.pulumi.Context;
@@ -3081,12 +3200,13 @@ public final class FastlyFunctions {
      *         final var example = FastlyFunctions.getTlsPlatformCertificateIds();
      * 
      *         final var exampleGetTlsPlatformCertificate = FastlyFunctions.getTlsPlatformCertificate(GetTlsPlatformCertificateArgs.builder()
-     *             .id(example.applyValue(getTlsPlatformCertificateIdsResult -&gt; getTlsPlatformCertificateIdsResult.ids()[0]))
+     *             .id(example.applyValue(getTlsPlatformCertificateIdsResult -> getTlsPlatformCertificateIdsResult.ids()[0]))
      *             .build());
      * 
      *     }
      * }
-     * ```
+     * }
+     * </pre>
      * &lt;!--End PulumiCodeChooser --&gt;
      * 
      */
@@ -3099,7 +3219,8 @@ public final class FastlyFunctions {
      * ## Example Usage
      * 
      * &lt;!--Start PulumiCodeChooser --&gt;
-     * ```java
+     * <pre>
+     * {@code
      * package generated_program;
      * 
      * import com.pulumi.Context;
@@ -3123,12 +3244,13 @@ public final class FastlyFunctions {
      *         final var example = FastlyFunctions.getTlsPlatformCertificateIds();
      * 
      *         final var exampleGetTlsPlatformCertificate = FastlyFunctions.getTlsPlatformCertificate(GetTlsPlatformCertificateArgs.builder()
-     *             .id(example.applyValue(getTlsPlatformCertificateIdsResult -&gt; getTlsPlatformCertificateIdsResult.ids()[0]))
+     *             .id(example.applyValue(getTlsPlatformCertificateIdsResult -> getTlsPlatformCertificateIdsResult.ids()[0]))
      *             .build());
      * 
      *     }
      * }
-     * ```
+     * }
+     * </pre>
      * &lt;!--End PulumiCodeChooser --&gt;
      * 
      */
@@ -3141,7 +3263,8 @@ public final class FastlyFunctions {
      * ## Example Usage
      * 
      * &lt;!--Start PulumiCodeChooser --&gt;
-     * ```java
+     * <pre>
+     * {@code
      * package generated_program;
      * 
      * import com.pulumi.Context;
@@ -3165,12 +3288,13 @@ public final class FastlyFunctions {
      *         final var example = FastlyFunctions.getTlsPlatformCertificateIds();
      * 
      *         final var exampleGetTlsPlatformCertificate = FastlyFunctions.getTlsPlatformCertificate(GetTlsPlatformCertificateArgs.builder()
-     *             .id(example.applyValue(getTlsPlatformCertificateIdsResult -&gt; getTlsPlatformCertificateIdsResult.ids()[0]))
+     *             .id(example.applyValue(getTlsPlatformCertificateIdsResult -> getTlsPlatformCertificateIdsResult.ids()[0]))
      *             .build());
      * 
      *     }
      * }
-     * ```
+     * }
+     * </pre>
      * &lt;!--End PulumiCodeChooser --&gt;
      * 
      */
@@ -3190,7 +3314,8 @@ public final class FastlyFunctions {
      * ## Example Usage
      * 
      * &lt;!--Start PulumiCodeChooser --&gt;
-     * ```java
+     * <pre>
+     * {@code
      * package generated_program;
      * 
      * import com.pulumi.Context;
@@ -3212,13 +3337,14 @@ public final class FastlyFunctions {
      * 
      *     public static void stack(Context ctx) {
      *         final var demo = FastlyFunctions.getTlsPrivateKey(GetTlsPrivateKeyArgs.builder()
-     *             .name(&#34;demo-private-key&#34;)
+     *             .name("demo-private-key")
      *             .build());
      * 
-     *         ctx.export(&#34;privateKeyNeedsReplacing&#34;, demo.applyValue(getTlsPrivateKeyResult -&gt; getTlsPrivateKeyResult.replace()));
+     *         ctx.export("privateKeyNeedsReplacing", demo.applyValue(getTlsPrivateKeyResult -> getTlsPrivateKeyResult.replace()));
      *     }
      * }
-     * ```
+     * }
+     * </pre>
      * &lt;!--End PulumiCodeChooser --&gt;
      * 
      */
@@ -3238,7 +3364,8 @@ public final class FastlyFunctions {
      * ## Example Usage
      * 
      * &lt;!--Start PulumiCodeChooser --&gt;
-     * ```java
+     * <pre>
+     * {@code
      * package generated_program;
      * 
      * import com.pulumi.Context;
@@ -3260,13 +3387,14 @@ public final class FastlyFunctions {
      * 
      *     public static void stack(Context ctx) {
      *         final var demo = FastlyFunctions.getTlsPrivateKey(GetTlsPrivateKeyArgs.builder()
-     *             .name(&#34;demo-private-key&#34;)
+     *             .name("demo-private-key")
      *             .build());
      * 
-     *         ctx.export(&#34;privateKeyNeedsReplacing&#34;, demo.applyValue(getTlsPrivateKeyResult -&gt; getTlsPrivateKeyResult.replace()));
+     *         ctx.export("privateKeyNeedsReplacing", demo.applyValue(getTlsPrivateKeyResult -> getTlsPrivateKeyResult.replace()));
      *     }
      * }
-     * ```
+     * }
+     * </pre>
      * &lt;!--End PulumiCodeChooser --&gt;
      * 
      */
@@ -3286,7 +3414,8 @@ public final class FastlyFunctions {
      * ## Example Usage
      * 
      * &lt;!--Start PulumiCodeChooser --&gt;
-     * ```java
+     * <pre>
+     * {@code
      * package generated_program;
      * 
      * import com.pulumi.Context;
@@ -3308,13 +3437,14 @@ public final class FastlyFunctions {
      * 
      *     public static void stack(Context ctx) {
      *         final var demo = FastlyFunctions.getTlsPrivateKey(GetTlsPrivateKeyArgs.builder()
-     *             .name(&#34;demo-private-key&#34;)
+     *             .name("demo-private-key")
      *             .build());
      * 
-     *         ctx.export(&#34;privateKeyNeedsReplacing&#34;, demo.applyValue(getTlsPrivateKeyResult -&gt; getTlsPrivateKeyResult.replace()));
+     *         ctx.export("privateKeyNeedsReplacing", demo.applyValue(getTlsPrivateKeyResult -> getTlsPrivateKeyResult.replace()));
      *     }
      * }
-     * ```
+     * }
+     * </pre>
      * &lt;!--End PulumiCodeChooser --&gt;
      * 
      */
@@ -3334,7 +3464,8 @@ public final class FastlyFunctions {
      * ## Example Usage
      * 
      * &lt;!--Start PulumiCodeChooser --&gt;
-     * ```java
+     * <pre>
+     * {@code
      * package generated_program;
      * 
      * import com.pulumi.Context;
@@ -3356,13 +3487,14 @@ public final class FastlyFunctions {
      * 
      *     public static void stack(Context ctx) {
      *         final var demo = FastlyFunctions.getTlsPrivateKey(GetTlsPrivateKeyArgs.builder()
-     *             .name(&#34;demo-private-key&#34;)
+     *             .name("demo-private-key")
      *             .build());
      * 
-     *         ctx.export(&#34;privateKeyNeedsReplacing&#34;, demo.applyValue(getTlsPrivateKeyResult -&gt; getTlsPrivateKeyResult.replace()));
+     *         ctx.export("privateKeyNeedsReplacing", demo.applyValue(getTlsPrivateKeyResult -> getTlsPrivateKeyResult.replace()));
      *     }
      * }
-     * ```
+     * }
+     * </pre>
      * &lt;!--End PulumiCodeChooser --&gt;
      * 
      */
@@ -3382,7 +3514,8 @@ public final class FastlyFunctions {
      * ## Example Usage
      * 
      * &lt;!--Start PulumiCodeChooser --&gt;
-     * ```java
+     * <pre>
+     * {@code
      * package generated_program;
      * 
      * import com.pulumi.Context;
@@ -3404,13 +3537,14 @@ public final class FastlyFunctions {
      * 
      *     public static void stack(Context ctx) {
      *         final var demo = FastlyFunctions.getTlsPrivateKey(GetTlsPrivateKeyArgs.builder()
-     *             .name(&#34;demo-private-key&#34;)
+     *             .name("demo-private-key")
      *             .build());
      * 
-     *         ctx.export(&#34;privateKeyNeedsReplacing&#34;, demo.applyValue(getTlsPrivateKeyResult -&gt; getTlsPrivateKeyResult.replace()));
+     *         ctx.export("privateKeyNeedsReplacing", demo.applyValue(getTlsPrivateKeyResult -> getTlsPrivateKeyResult.replace()));
      *     }
      * }
-     * ```
+     * }
+     * </pre>
      * &lt;!--End PulumiCodeChooser --&gt;
      * 
      */
@@ -3430,7 +3564,8 @@ public final class FastlyFunctions {
      * ## Example Usage
      * 
      * &lt;!--Start PulumiCodeChooser --&gt;
-     * ```java
+     * <pre>
+     * {@code
      * package generated_program;
      * 
      * import com.pulumi.Context;
@@ -3452,13 +3587,14 @@ public final class FastlyFunctions {
      * 
      *     public static void stack(Context ctx) {
      *         final var demo = FastlyFunctions.getTlsPrivateKey(GetTlsPrivateKeyArgs.builder()
-     *             .name(&#34;demo-private-key&#34;)
+     *             .name("demo-private-key")
      *             .build());
      * 
-     *         ctx.export(&#34;privateKeyNeedsReplacing&#34;, demo.applyValue(getTlsPrivateKeyResult -&gt; getTlsPrivateKeyResult.replace()));
+     *         ctx.export("privateKeyNeedsReplacing", demo.applyValue(getTlsPrivateKeyResult -> getTlsPrivateKeyResult.replace()));
      *     }
      * }
-     * ```
+     * }
+     * </pre>
      * &lt;!--End PulumiCodeChooser --&gt;
      * 
      */
@@ -3471,7 +3607,8 @@ public final class FastlyFunctions {
      * ## Example Usage
      * 
      * &lt;!--Start PulumiCodeChooser --&gt;
-     * ```java
+     * <pre>
+     * {@code
      * package generated_program;
      * 
      * import com.pulumi.Context;
@@ -3500,7 +3637,8 @@ public final class FastlyFunctions {
      * 
      *     }
      * }
-     * ```
+     * }
+     * </pre>
      * &lt;!--End PulumiCodeChooser --&gt;
      * 
      */
@@ -3513,7 +3651,8 @@ public final class FastlyFunctions {
      * ## Example Usage
      * 
      * &lt;!--Start PulumiCodeChooser --&gt;
-     * ```java
+     * <pre>
+     * {@code
      * package generated_program;
      * 
      * import com.pulumi.Context;
@@ -3542,7 +3681,8 @@ public final class FastlyFunctions {
      * 
      *     }
      * }
-     * ```
+     * }
+     * </pre>
      * &lt;!--End PulumiCodeChooser --&gt;
      * 
      */
@@ -3555,7 +3695,8 @@ public final class FastlyFunctions {
      * ## Example Usage
      * 
      * &lt;!--Start PulumiCodeChooser --&gt;
-     * ```java
+     * <pre>
+     * {@code
      * package generated_program;
      * 
      * import com.pulumi.Context;
@@ -3584,7 +3725,8 @@ public final class FastlyFunctions {
      * 
      *     }
      * }
-     * ```
+     * }
+     * </pre>
      * &lt;!--End PulumiCodeChooser --&gt;
      * 
      */
@@ -3597,7 +3739,8 @@ public final class FastlyFunctions {
      * ## Example Usage
      * 
      * &lt;!--Start PulumiCodeChooser --&gt;
-     * ```java
+     * <pre>
+     * {@code
      * package generated_program;
      * 
      * import com.pulumi.Context;
@@ -3626,7 +3769,8 @@ public final class FastlyFunctions {
      * 
      *     }
      * }
-     * ```
+     * }
+     * </pre>
      * &lt;!--End PulumiCodeChooser --&gt;
      * 
      */
@@ -3639,7 +3783,8 @@ public final class FastlyFunctions {
      * ## Example Usage
      * 
      * &lt;!--Start PulumiCodeChooser --&gt;
-     * ```java
+     * <pre>
+     * {@code
      * package generated_program;
      * 
      * import com.pulumi.Context;
@@ -3668,7 +3813,8 @@ public final class FastlyFunctions {
      * 
      *     }
      * }
-     * ```
+     * }
+     * </pre>
      * &lt;!--End PulumiCodeChooser --&gt;
      * 
      */
@@ -3681,7 +3827,8 @@ public final class FastlyFunctions {
      * ## Example Usage
      * 
      * &lt;!--Start PulumiCodeChooser --&gt;
-     * ```java
+     * <pre>
+     * {@code
      * package generated_program;
      * 
      * import com.pulumi.Context;
@@ -3710,7 +3857,8 @@ public final class FastlyFunctions {
      * 
      *     }
      * }
-     * ```
+     * }
+     * </pre>
      * &lt;!--End PulumiCodeChooser --&gt;
      * 
      */
@@ -3723,7 +3871,8 @@ public final class FastlyFunctions {
      * ## Example Usage
      * 
      * &lt;!--Start PulumiCodeChooser --&gt;
-     * ```java
+     * <pre>
+     * {@code
      * package generated_program;
      * 
      * import com.pulumi.Context;
@@ -3745,12 +3894,13 @@ public final class FastlyFunctions {
      * 
      *     public static void stack(Context ctx) {
      *         final var example = FastlyFunctions.getTlsSubscription(GetTlsSubscriptionArgs.builder()
-     *             .domains(&#34;example.com&#34;)
+     *             .domains("example.com")
      *             .build());
      * 
      *     }
      * }
-     * ```
+     * }
+     * </pre>
      * &lt;!--End PulumiCodeChooser --&gt;
      * 
      */
@@ -3763,7 +3913,8 @@ public final class FastlyFunctions {
      * ## Example Usage
      * 
      * &lt;!--Start PulumiCodeChooser --&gt;
-     * ```java
+     * <pre>
+     * {@code
      * package generated_program;
      * 
      * import com.pulumi.Context;
@@ -3785,12 +3936,13 @@ public final class FastlyFunctions {
      * 
      *     public static void stack(Context ctx) {
      *         final var example = FastlyFunctions.getTlsSubscription(GetTlsSubscriptionArgs.builder()
-     *             .domains(&#34;example.com&#34;)
+     *             .domains("example.com")
      *             .build());
      * 
      *     }
      * }
-     * ```
+     * }
+     * </pre>
      * &lt;!--End PulumiCodeChooser --&gt;
      * 
      */
@@ -3803,7 +3955,8 @@ public final class FastlyFunctions {
      * ## Example Usage
      * 
      * &lt;!--Start PulumiCodeChooser --&gt;
-     * ```java
+     * <pre>
+     * {@code
      * package generated_program;
      * 
      * import com.pulumi.Context;
@@ -3825,12 +3978,13 @@ public final class FastlyFunctions {
      * 
      *     public static void stack(Context ctx) {
      *         final var example = FastlyFunctions.getTlsSubscription(GetTlsSubscriptionArgs.builder()
-     *             .domains(&#34;example.com&#34;)
+     *             .domains("example.com")
      *             .build());
      * 
      *     }
      * }
-     * ```
+     * }
+     * </pre>
      * &lt;!--End PulumiCodeChooser --&gt;
      * 
      */
@@ -3843,7 +3997,8 @@ public final class FastlyFunctions {
      * ## Example Usage
      * 
      * &lt;!--Start PulumiCodeChooser --&gt;
-     * ```java
+     * <pre>
+     * {@code
      * package generated_program;
      * 
      * import com.pulumi.Context;
@@ -3865,12 +4020,13 @@ public final class FastlyFunctions {
      * 
      *     public static void stack(Context ctx) {
      *         final var example = FastlyFunctions.getTlsSubscription(GetTlsSubscriptionArgs.builder()
-     *             .domains(&#34;example.com&#34;)
+     *             .domains("example.com")
      *             .build());
      * 
      *     }
      * }
-     * ```
+     * }
+     * </pre>
      * &lt;!--End PulumiCodeChooser --&gt;
      * 
      */
@@ -3883,7 +4039,8 @@ public final class FastlyFunctions {
      * ## Example Usage
      * 
      * &lt;!--Start PulumiCodeChooser --&gt;
-     * ```java
+     * <pre>
+     * {@code
      * package generated_program;
      * 
      * import com.pulumi.Context;
@@ -3905,12 +4062,13 @@ public final class FastlyFunctions {
      * 
      *     public static void stack(Context ctx) {
      *         final var example = FastlyFunctions.getTlsSubscription(GetTlsSubscriptionArgs.builder()
-     *             .domains(&#34;example.com&#34;)
+     *             .domains("example.com")
      *             .build());
      * 
      *     }
      * }
-     * ```
+     * }
+     * </pre>
      * &lt;!--End PulumiCodeChooser --&gt;
      * 
      */
@@ -3923,7 +4081,8 @@ public final class FastlyFunctions {
      * ## Example Usage
      * 
      * &lt;!--Start PulumiCodeChooser --&gt;
-     * ```java
+     * <pre>
+     * {@code
      * package generated_program;
      * 
      * import com.pulumi.Context;
@@ -3945,12 +4104,13 @@ public final class FastlyFunctions {
      * 
      *     public static void stack(Context ctx) {
      *         final var example = FastlyFunctions.getTlsSubscription(GetTlsSubscriptionArgs.builder()
-     *             .domains(&#34;example.com&#34;)
+     *             .domains("example.com")
      *             .build());
      * 
      *     }
      * }
-     * ```
+     * }
+     * </pre>
      * &lt;!--End PulumiCodeChooser --&gt;
      * 
      */

@@ -23,7 +23,8 @@ import javax.annotation.Nullable;
  * ## Example Usage
  * 
  * &lt;!--Start PulumiCodeChooser --&gt;
- * ```java
+ * <pre>
+ * {@code
  * package generated_program;
  * 
  * import com.pulumi.Context;
@@ -47,25 +48,26 @@ import javax.annotation.Nullable;
  *     }
  * 
  *     public static void stack(Context ctx) {
- *         var example = new ServiceVcl(&#34;example&#34;, ServiceVclArgs.builder()        
- *             .name(&#34;my_vcl_service&#34;)
+ *         var example = new ServiceVcl("example", ServiceVclArgs.builder()        
+ *             .name("my_vcl_service")
  *             .build());
  * 
- *         var exampleAlert = new Alert(&#34;exampleAlert&#34;, AlertArgs.builder()        
- *             .name(&#34;my_vcl_service errors&#34;)
+ *         var exampleAlert = new Alert("exampleAlert", AlertArgs.builder()        
+ *             .name("my_vcl_service errors")
  *             .serviceId(example.id())
- *             .source(&#34;stats&#34;)
- *             .metric(&#34;status_5xx&#34;)
+ *             .source("stats")
+ *             .metric("status_5xx")
  *             .evaluationStrategy(AlertEvaluationStrategyArgs.builder()
- *                 .type(&#34;above_threshold&#34;)
- *                 .period(&#34;5m&#34;)
+ *                 .type("above_threshold")
+ *                 .period("5m")
  *                 .threshold(10)
  *                 .build())
  *             .build());
  * 
  *     }
  * }
- * ```
+ * }
+ * </pre>
  * &lt;!--End PulumiCodeChooser --&gt;
  * 
  * ## Import

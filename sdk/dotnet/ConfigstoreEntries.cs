@@ -27,10 +27,6 @@ namespace Pulumi.Fastly
         [Output("entries")]
         public Output<ImmutableDictionary<string, object>> Entries { get; private set; } = null!;
 
-        /// <summary>
-        /// Have Terraform manage the entries (default: false). If set to `true` Terraform will remove any entries that were added
-        /// externally from the config seeded values.
-        /// </summary>
         [Output("manageEntries")]
         public Output<bool?> ManageEntries { get; private set; } = null!;
 
@@ -98,10 +94,6 @@ namespace Pulumi.Fastly
             set => _entries = value;
         }
 
-        /// <summary>
-        /// Have Terraform manage the entries (default: false). If set to `true` Terraform will remove any entries that were added
-        /// externally from the config seeded values.
-        /// </summary>
         [Input("manageEntries")]
         public Input<bool>? ManageEntries { get; set; }
 
@@ -131,10 +123,6 @@ namespace Pulumi.Fastly
             set => _entries = value;
         }
 
-        /// <summary>
-        /// Have Terraform manage the entries (default: false). If set to `true` Terraform will remove any entries that were added
-        /// externally from the config seeded values.
-        /// </summary>
         [Input("manageEntries")]
         public Input<bool>? ManageEntries { get; set; }
 
