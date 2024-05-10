@@ -155,7 +155,7 @@ var metadata []byte
 func docRuleEdits(defaults []tfbridge.DocsEdit) []tfbridge.DocsEdit {
 	return append(defaults, tfbridge.DocsEdit{
 		Path: "*",
-		Edit: func(path string, content []byte) ([]byte, error) {
+		Edit: func(_ string, content []byte) ([]byte, error) {
 			content = bytes.ReplaceAll(content,
 				[]byte(", Terraform will fail."),
 				[]byte(", this provider will fail."))
