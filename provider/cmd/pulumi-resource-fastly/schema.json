@@ -4330,7 +4330,7 @@
             },
             "noAuth": {
                 "type": "boolean",
-                "description": "Set to `true` if your configuration only consumes data sources that do not require authentication, such as\n`fastly_ip_ranges`\n"
+                "description": "Set to `true` if your configuration only consumes data sources that do not require authentication, such as\n`fastly.getFastlyIpRanges`\n"
             }
         },
         "inputProperties": {
@@ -4348,7 +4348,7 @@
             },
             "noAuth": {
                 "type": "boolean",
-                "description": "Set to `true` if your configuration only consumes data sources that do not require authentication, such as\n`fastly_ip_ranges`\n"
+                "description": "Set to `true` if your configuration only consumes data sources that do not require authentication, such as\n`fastly.getFastlyIpRanges`\n"
             }
         }
     },
@@ -4541,8 +4541,7 @@
                     "description": "A map representing an entry in the Config Store, (key/value)\n"
                 },
                 "manageEntries": {
-                    "type": "boolean",
-                    "description": "Have Terraform manage the entries (default: false). If set to `true` Terraform will remove any entries that were added\nexternally from the config seeded values.\n"
+                    "type": "boolean"
                 },
                 "storeId": {
                     "type": "string",
@@ -4562,8 +4561,7 @@
                     "description": "A map representing an entry in the Config Store, (key/value)\n"
                 },
                 "manageEntries": {
-                    "type": "boolean",
-                    "description": "Have Terraform manage the entries (default: false). If set to `true` Terraform will remove any entries that were added\nexternally from the config seeded values.\n"
+                    "type": "boolean"
                 },
                 "storeId": {
                     "type": "string",
@@ -4585,8 +4583,7 @@
                         "description": "A map representing an entry in the Config Store, (key/value)\n"
                     },
                     "manageEntries": {
-                        "type": "boolean",
-                        "description": "Have Terraform manage the entries (default: false). If set to `true` Terraform will remove any entries that were added\nexternally from the config seeded values.\n"
+                        "type": "boolean"
                     },
                     "storeId": {
                         "type": "string",
@@ -4847,8 +4844,7 @@
                     "description": "The latest cloned version by the provider\n"
                 },
                 "comment": {
-                    "type": "string",
-                    "description": "Description field for the service. Default `Managed by Terraform`\n"
+                    "type": "string"
                 },
                 "dictionaries": {
                     "type": "array",
@@ -4868,8 +4864,7 @@
                     "description": "Services that are active cannot be destroyed. In order to destroy the Service, set `force_destroy` to `true`. Default `false`\n"
                 },
                 "forceRefresh": {
-                    "type": "boolean",
-                    "description": "Used internally by the provider to temporarily indicate if all resources should call their associated API to update the\nlocal state. This is for scenarios where the service version has been reverted outside of Terraform (e.g. via the Fastly\nUI) and the provider needs to resync the state for a different active version (this is only if `activate` is `true`).\n"
+                    "type": "boolean"
                 },
                 "imported": {
                     "type": "boolean",
@@ -5050,8 +5045,7 @@
                     "description": "A resource link represents a link between a shared resource (such as an KV Store or Config Store) and a service version.\n"
                 },
                 "reuse": {
-                    "type": "boolean",
-                    "description": "Services that are active cannot be destroyed. If set to `true` a service Terraform intends to destroy will instead be\ndeactivated (allowing it to be reused by importing it into another Terraform project). If `false`, attempting to destroy\nan active service will cause an error. Default `false`\n"
+                    "type": "boolean"
                 },
                 "versionComment": {
                     "type": "string",
@@ -5078,8 +5072,7 @@
                     }
                 },
                 "comment": {
-                    "type": "string",
-                    "description": "Description field for the service. Default `Managed by Terraform`\n"
+                    "type": "string"
                 },
                 "dictionaries": {
                     "type": "array",
@@ -5273,8 +5266,7 @@
                     "description": "A resource link represents a link between a shared resource (such as an KV Store or Config Store) and a service version.\n"
                 },
                 "reuse": {
-                    "type": "boolean",
-                    "description": "Services that are active cannot be destroyed. If set to `true` a service Terraform intends to destroy will instead be\ndeactivated (allowing it to be reused by importing it into another Terraform project). If `false`, attempting to destroy\nan active service will cause an error. Default `false`\n"
+                    "type": "boolean"
                 },
                 "versionComment": {
                     "type": "string",
@@ -5306,8 +5298,7 @@
                         "description": "The latest cloned version by the provider\n"
                     },
                     "comment": {
-                        "type": "string",
-                        "description": "Description field for the service. Default `Managed by Terraform`\n"
+                        "type": "string"
                     },
                     "dictionaries": {
                         "type": "array",
@@ -5327,8 +5318,7 @@
                         "description": "Services that are active cannot be destroyed. In order to destroy the Service, set `force_destroy` to `true`. Default `false`\n"
                     },
                     "forceRefresh": {
-                        "type": "boolean",
-                        "description": "Used internally by the provider to temporarily indicate if all resources should call their associated API to update the\nlocal state. This is for scenarios where the service version has been reverted outside of Terraform (e.g. via the Fastly\nUI) and the provider needs to resync the state for a different active version (this is only if `activate` is `true`).\n"
+                        "type": "boolean"
                     },
                     "imported": {
                         "type": "boolean",
@@ -5509,8 +5499,7 @@
                         "description": "A resource link represents a link between a shared resource (such as an KV Store or Config Store) and a service version.\n"
                     },
                     "reuse": {
-                        "type": "boolean",
-                        "description": "Services that are active cannot be destroyed. If set to `true` a service Terraform intends to destroy will instead be\ndeactivated (allowing it to be reused by importing it into another Terraform project). If `false`, attempting to destroy\nan active service will cause an error. Default `false`\n"
+                        "type": "boolean"
                     },
                     "versionComment": {
                         "type": "string",
@@ -5707,8 +5696,7 @@
                     "description": "The latest cloned version by the provider\n"
                 },
                 "comment": {
-                    "type": "string",
-                    "description": "Description field for the service. Default `Managed by Terraform`\n"
+                    "type": "string"
                 },
                 "conditions": {
                     "type": "array",
@@ -5754,8 +5742,7 @@
                     "description": "Services that are active cannot be destroyed. In order to destroy the Service, set `force_destroy` to `true`. Default `false`\n"
                 },
                 "forceRefresh": {
-                    "type": "boolean",
-                    "description": "Used internally by the provider to temporarily indicate if all resources should call their associated API to update the\nlocal state. This is for scenarios where the service version has been reverted outside of Terraform (e.g. via the Fastly\nUI) and the provider needs to resync the state for a different active version (this is only if `activate` is `true`).\n"
+                    "type": "boolean"
                 },
                 "gzips": {
                     "type": "array",
@@ -5971,8 +5958,7 @@
                     }
                 },
                 "reuse": {
-                    "type": "boolean",
-                    "description": "Services that are active cannot be destroyed. If set to `true` a service Terraform intends to destroy will instead be\ndeactivated (allowing it to be reused by importing it into another Terraform project). If `false`, attempting to destroy\nan active service will cause an error. Default `false`\n"
+                    "type": "boolean"
                 },
                 "snippets": {
                     "type": "array",
@@ -6034,8 +6020,7 @@
                     }
                 },
                 "comment": {
-                    "type": "string",
-                    "description": "Description field for the service. Default `Managed by Terraform`\n"
+                    "type": "string"
                 },
                 "conditions": {
                     "type": "array",
@@ -6290,8 +6275,7 @@
                     }
                 },
                 "reuse": {
-                    "type": "boolean",
-                    "description": "Services that are active cannot be destroyed. If set to `true` a service Terraform intends to destroy will instead be\ndeactivated (allowing it to be reused by importing it into another Terraform project). If `false`, attempting to destroy\nan active service will cause an error. Default `false`\n"
+                    "type": "boolean"
                 },
                 "snippets": {
                     "type": "array",
@@ -6358,8 +6342,7 @@
                         "description": "The latest cloned version by the provider\n"
                     },
                     "comment": {
-                        "type": "string",
-                        "description": "Description field for the service. Default `Managed by Terraform`\n"
+                        "type": "string"
                     },
                     "conditions": {
                         "type": "array",
@@ -6405,8 +6388,7 @@
                         "description": "Services that are active cannot be destroyed. In order to destroy the Service, set `force_destroy` to `true`. Default `false`\n"
                     },
                     "forceRefresh": {
-                        "type": "boolean",
-                        "description": "Used internally by the provider to temporarily indicate if all resources should call their associated API to update the\nlocal state. This is for scenarios where the service version has been reverted outside of Terraform (e.g. via the Fastly\nUI) and the provider needs to resync the state for a different active version (this is only if `activate` is `true`).\n"
+                        "type": "boolean"
                     },
                     "gzips": {
                         "type": "array",
@@ -6622,8 +6604,7 @@
                         }
                     },
                     "reuse": {
-                        "type": "boolean",
-                        "description": "Services that are active cannot be destroyed. If set to `true` a service Terraform intends to destroy will instead be\ndeactivated (allowing it to be reused by importing it into another Terraform project). If `false`, attempting to destroy\nan active service will cause an error. Default `false`\n"
+                        "type": "boolean"
                     },
                     "snippets": {
                         "type": "array",
@@ -7356,8 +7337,7 @@
                     "description": "Determines whether Mutual TLS will fail closed (enforced) or fail open. A true value will require a successful Mutual TLS handshake for the connection to continue and will fail closed if unsuccessful. A false value will fail open and allow the connection to proceed (if this attribute is not set we default to `false`).\n"
                 },
                 "include": {
-                    "type": "string",
-                    "description": "A comma-separated list used by the Terraform provider during a state refresh to return more data related to your mutual\nauthentication from the Fastly API (permitted values: `tls_activations`).\n"
+                    "type": "string"
                 },
                 "name": {
                     "type": "string",
@@ -7400,8 +7380,7 @@
                     "description": "Determines whether Mutual TLS will fail closed (enforced) or fail open. A true value will require a successful Mutual TLS handshake for the connection to continue and will fail closed if unsuccessful. A false value will fail open and allow the connection to proceed (if this attribute is not set we default to `false`).\n"
                 },
                 "include": {
-                    "type": "string",
-                    "description": "A comma-separated list used by the Terraform provider during a state refresh to return more data related to your mutual\nauthentication from the Fastly API (permitted values: `tls_activations`).\n"
+                    "type": "string"
                 },
                 "name": {
                     "type": "string",
@@ -7434,8 +7413,7 @@
                         "description": "Determines whether Mutual TLS will fail closed (enforced) or fail open. A true value will require a successful Mutual TLS handshake for the connection to continue and will fail closed if unsuccessful. A false value will fail open and allow the connection to proceed (if this attribute is not set we default to `false`).\n"
                     },
                     "include": {
-                        "type": "string",
-                        "description": "A comma-separated list used by the Terraform provider during a state refresh to return more data related to your mutual\nauthentication from the Fastly API (permitted values: `tls_activations`).\n"
+                        "type": "string"
                     },
                     "name": {
                         "type": "string",
