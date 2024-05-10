@@ -13,7 +13,13 @@ namespace Pulumi.Fastly.Inputs
     public sealed class AlertEvaluationStrategyGetArgs : global::Pulumi.ResourceArgs
     {
         /// <summary>
-        /// The length of time to evaluate whether the conditions have been met. The data is polled every minute. One of: `5m`, `15m`, `30m`.
+        /// Threshold for the denominator value used in evaluations that calculate a rate or ratio. Usually used to filter out noise.
+        /// </summary>
+        [Input("ignoreBelow")]
+        public Input<double>? IgnoreBelow { get; set; }
+
+        /// <summary>
+        /// The length of time to evaluate whether the conditions have been met. The data is polled every minute. One of: `2m`, `3m`, `5m`, `15m`, `30m`.
         /// </summary>
         [Input("period", required: true)]
         public Input<string> Period { get; set; } = null!;
@@ -25,7 +31,7 @@ namespace Pulumi.Fastly.Inputs
         public Input<double> Threshold { get; set; } = null!;
 
         /// <summary>
-        /// Type of strategy to use to evaluate. One of: `above_threshold`, `below_threshold`.
+        /// Type of strategy to use to evaluate. One of: `above_threshold`, `all_above_threshold`, `below_threshold`, `percent_absolute`, `percent_decrease`, `percent_increase`.
         /// </summary>
         [Input("type", required: true)]
         public Input<string> Type { get; set; } = null!;

@@ -32,6 +32,8 @@ import javax.annotation.Nullable;
  * import com.pulumi.core.Output;
  * import com.pulumi.fastly.ServiceVcl;
  * import com.pulumi.fastly.ServiceVclArgs;
+ * import com.pulumi.fastly.Integration;
+ * import com.pulumi.fastly.IntegrationArgs;
  * import com.pulumi.fastly.Alert;
  * import com.pulumi.fastly.AlertArgs;
  * import com.pulumi.fastly.inputs.AlertEvaluationStrategyArgs;
@@ -52,6 +54,10 @@ import javax.annotation.Nullable;
  *             .name("my_vcl_service")
  *             .build());
  * 
+ *         var exampleIntegration = new Integration("exampleIntegration", IntegrationArgs.builder()        
+ *             .name("my_integration")
+ *             .build());
+ * 
  *         var exampleAlert = new Alert("exampleAlert", AlertArgs.builder()        
  *             .name("my_vcl_service errors")
  *             .serviceId(example.id())
@@ -62,6 +68,7 @@ import javax.annotation.Nullable;
  *                 .period("5m")
  *                 .threshold(10)
  *                 .build())
+ *             .integrationIds(exampleIntegration.id())
  *             .build());
  * 
  *     }

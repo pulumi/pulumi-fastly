@@ -6,6 +6,33 @@ import * as inputs from "./types/input";
 import * as outputs from "./types/output";
 import * as utilities from "./utilities";
 
+/**
+ * VCL Snippets are blocks of VCL logic inserted into your service's configuration that don't require custom VCL.
+ *
+ * Use this data source to get a list of [Fastly VCL Snippets](https://www.fastly.com/documentation/reference/api/vcl-services/snippet/) for the specified service/version.
+ *
+ * ## Example Usage
+ *
+ * ```typescript
+ * import * as pulumi from "@pulumi/pulumi";
+ * import * as fastly from "@pulumi/fastly";
+ *
+ * const exampleServiceVcl = new fastly.ServiceVcl("example", {
+ *     name: "Example Service",
+ *     domains: [{
+ *         name: "example.com",
+ *     }],
+ *     forceDestroy: true,
+ * });
+ * const example = fastly.getVclSnippetsOutput({
+ *     serviceId: exampleServiceVcl.id,
+ *     serviceVersion: exampleServiceVcl.activeVersion,
+ * });
+ * export const serviceVclSnippets = example;
+ * ```
+ *
+ * [1]: https://www.fastly.com/documentation/reference/api/vcl-services/snippet/
+ */
 export function getVclSnippets(args: GetVclSnippetsArgs, opts?: pulumi.InvokeOptions): Promise<GetVclSnippetsResult> {
 
     opts = pulumi.mergeOptions(utilities.resourceOptsDefaults(), opts || {});
@@ -19,7 +46,13 @@ export function getVclSnippets(args: GetVclSnippetsArgs, opts?: pulumi.InvokeOpt
  * A collection of arguments for invoking getVclSnippets.
  */
 export interface GetVclSnippetsArgs {
+    /**
+     * Alphanumeric string identifying the service.
+     */
     serviceId: string;
+    /**
+     * Integer identifying a service version.
+     */
     serviceVersion: number;
 }
 
@@ -31,10 +64,46 @@ export interface GetVclSnippetsResult {
      * The provider-assigned unique ID for this managed resource.
      */
     readonly id: string;
+    /**
+     * Alphanumeric string identifying the service.
+     */
     readonly serviceId: string;
+    /**
+     * Integer identifying a service version.
+     */
     readonly serviceVersion: number;
+    /**
+     * List of all VCL snippets for the version of the service.
+     */
     readonly vclSnippets: outputs.GetVclSnippetsVclSnippet[];
 }
+/**
+ * VCL Snippets are blocks of VCL logic inserted into your service's configuration that don't require custom VCL.
+ *
+ * Use this data source to get a list of [Fastly VCL Snippets](https://www.fastly.com/documentation/reference/api/vcl-services/snippet/) for the specified service/version.
+ *
+ * ## Example Usage
+ *
+ * ```typescript
+ * import * as pulumi from "@pulumi/pulumi";
+ * import * as fastly from "@pulumi/fastly";
+ *
+ * const exampleServiceVcl = new fastly.ServiceVcl("example", {
+ *     name: "Example Service",
+ *     domains: [{
+ *         name: "example.com",
+ *     }],
+ *     forceDestroy: true,
+ * });
+ * const example = fastly.getVclSnippetsOutput({
+ *     serviceId: exampleServiceVcl.id,
+ *     serviceVersion: exampleServiceVcl.activeVersion,
+ * });
+ * export const serviceVclSnippets = example;
+ * ```
+ *
+ * [1]: https://www.fastly.com/documentation/reference/api/vcl-services/snippet/
+ */
 export function getVclSnippetsOutput(args: GetVclSnippetsOutputArgs, opts?: pulumi.InvokeOptions): pulumi.Output<GetVclSnippetsResult> {
     return pulumi.output(args).apply((a: any) => getVclSnippets(a, opts))
 }
@@ -43,6 +112,12 @@ export function getVclSnippetsOutput(args: GetVclSnippetsOutputArgs, opts?: pulu
  * A collection of arguments for invoking getVclSnippets.
  */
 export interface GetVclSnippetsOutputArgs {
+    /**
+     * Alphanumeric string identifying the service.
+     */
     serviceId: pulumi.Input<string>;
+    /**
+     * Integer identifying a service version.
+     */
     serviceVersion: pulumi.Input<number>;
 }

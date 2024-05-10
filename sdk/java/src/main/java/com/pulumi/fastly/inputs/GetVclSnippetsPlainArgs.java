@@ -14,16 +14,32 @@ public final class GetVclSnippetsPlainArgs extends com.pulumi.resources.InvokeAr
 
     public static final GetVclSnippetsPlainArgs Empty = new GetVclSnippetsPlainArgs();
 
+    /**
+     * Alphanumeric string identifying the service.
+     * 
+     */
     @Import(name="serviceId", required=true)
     private String serviceId;
 
+    /**
+     * @return Alphanumeric string identifying the service.
+     * 
+     */
     public String serviceId() {
         return this.serviceId;
     }
 
+    /**
+     * Integer identifying a service version.
+     * 
+     */
     @Import(name="serviceVersion", required=true)
     private Integer serviceVersion;
 
+    /**
+     * @return Integer identifying a service version.
+     * 
+     */
     public Integer serviceVersion() {
         return this.serviceVersion;
     }
@@ -53,11 +69,23 @@ public final class GetVclSnippetsPlainArgs extends com.pulumi.resources.InvokeAr
             $ = new GetVclSnippetsPlainArgs(Objects.requireNonNull(defaults));
         }
 
+        /**
+         * @param serviceId Alphanumeric string identifying the service.
+         * 
+         * @return builder
+         * 
+         */
         public Builder serviceId(String serviceId) {
             $.serviceId = serviceId;
             return this;
         }
 
+        /**
+         * @param serviceVersion Integer identifying a service version.
+         * 
+         * @return builder
+         * 
+         */
         public Builder serviceVersion(Integer serviceVersion) {
             $.serviceVersion = serviceVersion;
             return this;

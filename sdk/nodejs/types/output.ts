@@ -18,7 +18,11 @@ export interface AlertDimensions {
 
 export interface AlertEvaluationStrategy {
     /**
-     * The length of time to evaluate whether the conditions have been met. The data is polled every minute. One of: `5m`, `15m`, `30m`.
+     * Threshold for the denominator value used in evaluations that calculate a rate or ratio. Usually used to filter out noise.
+     */
+    ignoreBelow?: number;
+    /**
+     * The length of time to evaluate whether the conditions have been met. The data is polled every minute. One of: `2m`, `3m`, `5m`, `15m`, `30m`.
      */
     period: string;
     /**
@@ -26,7 +30,7 @@ export interface AlertEvaluationStrategy {
      */
     threshold: number;
     /**
-     * Type of strategy to use to evaluate. One of: `aboveThreshold`, `belowThreshold`.
+     * Type of strategy to use to evaluate. One of: `aboveThreshold`, `allAboveThreshold`, `belowThreshold`, `percentAbsolute`, `percentDecrease`, `percentIncrease`.
      */
     type: string;
 }

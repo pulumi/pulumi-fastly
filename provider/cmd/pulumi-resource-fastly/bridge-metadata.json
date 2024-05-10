@@ -31,6 +31,9 @@
             "fastly_configstore_entries": {
                 "current": "fastly:index/configstoreEntries:ConfigstoreEntries"
             },
+            "fastly_integration": {
+                "current": "fastly:index/integration:Integration"
+            },
             "fastly_kvstore": {
                 "current": "fastly:index/kvstore:Kvstore"
             },

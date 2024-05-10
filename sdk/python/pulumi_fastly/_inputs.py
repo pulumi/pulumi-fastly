@@ -141,21 +141,25 @@ class AlertEvaluationStrategyArgs:
     def __init__(__self__, *,
                  period: pulumi.Input[str],
                  threshold: pulumi.Input[float],
-                 type: pulumi.Input[str]):
+                 type: pulumi.Input[str],
+                 ignore_below: Optional[pulumi.Input[float]] = None):
         """
-        :param pulumi.Input[str] period: The length of time to evaluate whether the conditions have been met. The data is polled every minute. One of: `5m`, `15m`, `30m`.
+        :param pulumi.Input[str] period: The length of time to evaluate whether the conditions have been met. The data is polled every minute. One of: `2m`, `3m`, `5m`, `15m`, `30m`.
         :param pulumi.Input[float] threshold: Threshold used to alert.
-        :param pulumi.Input[str] type: Type of strategy to use to evaluate. One of: `above_threshold`, `below_threshold`.
+        :param pulumi.Input[str] type: Type of strategy to use to evaluate. One of: `above_threshold`, `all_above_threshold`, `below_threshold`, `percent_absolute`, `percent_decrease`, `percent_increase`.
+        :param pulumi.Input[float] ignore_below: Threshold for the denominator value used in evaluations that calculate a rate or ratio. Usually used to filter out noise.
         """
         pulumi.set(__self__, "period", period)
         pulumi.set(__self__, "threshold", threshold)
         pulumi.set(__self__, "type", type)
+        if ignore_below is not None:
+            pulumi.set(__self__, "ignore_below", ignore_below)
 
     @property
     @pulumi.getter
     def period(self) -> pulumi.Input[str]:
         """
-        The length of time to evaluate whether the conditions have been met. The data is polled every minute. One of: `5m`, `15m`, `30m`.
+        The length of time to evaluate whether the conditions have been met. The data is polled every minute. One of: `2m`, `3m`, `5m`, `15m`, `30m`.
         """
         return pulumi.get(self, "period")
 
@@ -179,13 +183,25 @@ class AlertEvaluationStrategyArgs:
     @pulumi.getter
     def type(self) -> pulumi.Input[str]:
         """
-        Type of strategy to use to evaluate. One of: `above_threshold`, `below_threshold`.
+        Type of strategy to use to evaluate. One of: `above_threshold`, `all_above_threshold`, `below_threshold`, `percent_absolute`, `percent_decrease`, `percent_increase`.
         """
         return pulumi.get(self, "type")
 
     @type.setter
     def type(self, value: pulumi.Input[str]):
         pulumi.set(self, "type", value)
+
+    @property
+    @pulumi.getter(name="ignoreBelow")
+    def ignore_below(self) -> Optional[pulumi.Input[float]]:
+        """
+        Threshold for the denominator value used in evaluations that calculate a rate or ratio. Usually used to filter out noise.
+        """
+        return pulumi.get(self, "ignore_below")
+
+    @ignore_below.setter
+    def ignore_below(self, value: Optional[pulumi.Input[float]]):
+        pulumi.set(self, "ignore_below", value)
 
 
 @pulumi.input_type

@@ -42,6 +42,7 @@
         "getVclSnippets.ts",
         "getWafRules.ts",
         "index.ts",
+        "integration.ts",
         "kvstore.ts",
         "provider.ts",
         "secretstore.ts",

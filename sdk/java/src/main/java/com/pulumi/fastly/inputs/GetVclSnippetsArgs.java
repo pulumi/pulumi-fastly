@@ -15,16 +15,32 @@ public final class GetVclSnippetsArgs extends com.pulumi.resources.InvokeArgs {
 
     public static final GetVclSnippetsArgs Empty = new GetVclSnippetsArgs();
 
+    /**
+     * Alphanumeric string identifying the service.
+     * 
+     */
     @Import(name="serviceId", required=true)
     private Output<String> serviceId;
 
+    /**
+     * @return Alphanumeric string identifying the service.
+     * 
+     */
     public Output<String> serviceId() {
         return this.serviceId;
     }
 
+    /**
+     * Integer identifying a service version.
+     * 
+     */
     @Import(name="serviceVersion", required=true)
     private Output<Integer> serviceVersion;
 
+    /**
+     * @return Integer identifying a service version.
+     * 
+     */
     public Output<Integer> serviceVersion() {
         return this.serviceVersion;
     }
@@ -54,20 +70,44 @@ public final class GetVclSnippetsArgs extends com.pulumi.resources.InvokeArgs {
             $ = new GetVclSnippetsArgs(Objects.requireNonNull(defaults));
         }
 
+        /**
+         * @param serviceId Alphanumeric string identifying the service.
+         * 
+         * @return builder
+         * 
+         */
         public Builder serviceId(Output<String> serviceId) {
             $.serviceId = serviceId;
             return this;
         }
 
+        /**
+         * @param serviceId Alphanumeric string identifying the service.
+         * 
+         * @return builder
+         * 
+         */
         public Builder serviceId(String serviceId) {
             return serviceId(Output.of(serviceId));
         }
 
+        /**
+         * @param serviceVersion Integer identifying a service version.
+         * 
+         * @return builder
+         * 
+         */
         public Builder serviceVersion(Output<Integer> serviceVersion) {
             $.serviceVersion = serviceVersion;
             return this;
         }
 
+        /**
+         * @param serviceVersion Integer identifying a service version.
+         * 
+         * @return builder
+         * 
+         */
         public Builder serviceVersion(Integer serviceVersion) {
             return serviceVersion(Output.of(serviceVersion));
         }

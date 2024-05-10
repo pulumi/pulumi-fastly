@@ -31,6 +31,7 @@ from .get_tls_subscription import *
 from .get_tls_subscription_ids import *
 from .get_vcl_snippets import *
 from .get_waf_rules import *
+from .integration import *
 from .kvstore import *
 from .provider import *
 from .secretstore import *
@@ -84,6 +85,14 @@ _utilities.register(
   "fqn": "pulumi_fastly",
   "classes": {
    "fastly:index/configstoreEntries:ConfigstoreEntries": "ConfigstoreEntries"
+  }
+ },
+ {
+  "pkg": "fastly",
+  "mod": "index/integration",
+  "fqn": "pulumi_fastly",
+  "classes": {
+   "fastly:index/integration:Integration": "Integration"
   }
  },
  {
