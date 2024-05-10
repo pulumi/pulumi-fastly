@@ -43,19 +43,9 @@ public class ConfigstoreEntries extends com.pulumi.resources.CustomResource {
     public Output<Map<String,Object>> entries() {
         return this.entries;
     }
-    /**
-     * Have Terraform manage the entries (default: false). If set to `true` Terraform will remove any entries that were added
-     * externally from the config seeded values.
-     * 
-     */
     @Export(name="manageEntries", refs={Boolean.class}, tree="[0]")
     private Output</* @Nullable */ Boolean> manageEntries;
 
-    /**
-     * @return Have Terraform manage the entries (default: false). If set to `true` Terraform will remove any entries that were added
-     * externally from the config seeded values.
-     * 
-     */
     public Output<Optional<Boolean>> manageEntries() {
         return Codegen.optional(this.manageEntries);
     }

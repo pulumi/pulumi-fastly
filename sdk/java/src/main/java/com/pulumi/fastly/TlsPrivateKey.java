@@ -26,7 +26,8 @@ import javax.annotation.Nullable;
  * Basic usage:
  * 
  * &lt;!--Start PulumiCodeChooser --&gt;
- * ```java
+ * <pre>
+ * {@code
  * package generated_program;
  * 
  * import com.pulumi.Context;
@@ -49,18 +50,19 @@ import javax.annotation.Nullable;
  *     }
  * 
  *     public static void stack(Context ctx) {
- *         var demo = new PrivateKey(&#34;demo&#34;, PrivateKeyArgs.builder()        
- *             .algorithm(&#34;RSA&#34;)
+ *         var demo = new PrivateKey("demo", PrivateKeyArgs.builder()        
+ *             .algorithm("RSA")
  *             .build());
  * 
- *         var demoTlsPrivateKey = new TlsPrivateKey(&#34;demoTlsPrivateKey&#34;, TlsPrivateKeyArgs.builder()        
+ *         var demoTlsPrivateKey = new TlsPrivateKey("demoTlsPrivateKey", TlsPrivateKeyArgs.builder()        
  *             .keyPem(demo.privateKeyPem())
- *             .name(&#34;tf-demo&#34;)
+ *             .name("tf-demo")
  *             .build());
  * 
  *     }
  * }
- * ```
+ * }
+ * </pre>
  * &lt;!--End PulumiCodeChooser --&gt;
  * 
  * ## Import

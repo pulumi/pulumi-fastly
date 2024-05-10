@@ -25,7 +25,8 @@ import javax.annotation.Nullable;
  * Basic usage:
  * 
  * &lt;!--Start PulumiCodeChooser --&gt;
- * ```java
+ * <pre>
+ * {@code
  * package generated_program;
  * 
  * import com.pulumi.Context;
@@ -54,27 +55,27 @@ import javax.annotation.Nullable;
  * 
  *     public static void stack(Context ctx) {
  *         // IMPORTANT: Deleting a Config Store requires first deleting its resource_link.
- *         // This requires a two-step `pulumi up` as we can&#39;t guarantee deletion order.
+ *         // This requires a two-step `pulumi up` as we can't guarantee deletion order.
  *         // e.g. resource_link deletion within fastly_service_compute might not finish first.
- *         var exampleConfigstore = new Configstore(&#34;exampleConfigstore&#34;, ConfigstoreArgs.builder()        
- *             .name(&#34;my_config_store&#34;)
+ *         var exampleConfigstore = new Configstore("exampleConfigstore", ConfigstoreArgs.builder()        
+ *             .name("my_config_store")
  *             .build());
  * 
  *         final var example = FastlyFunctions.getPackageHash(GetPackageHashArgs.builder()
- *             .filename(&#34;package.tar.gz&#34;)
+ *             .filename("package.tar.gz")
  *             .build());
  * 
- *         var exampleServiceCompute = new ServiceCompute(&#34;exampleServiceCompute&#34;, ServiceComputeArgs.builder()        
- *             .name(&#34;my_compute_service&#34;)
+ *         var exampleServiceCompute = new ServiceCompute("exampleServiceCompute", ServiceComputeArgs.builder()        
+ *             .name("my_compute_service")
  *             .domains(ServiceComputeDomainArgs.builder()
- *                 .name(&#34;demo.example.com&#34;)
+ *                 .name("demo.example.com")
  *                 .build())
  *             .package_(ServiceComputePackageArgs.builder()
- *                 .filename(&#34;package.tar.gz&#34;)
- *                 .sourceCodeHash(example.applyValue(getPackageHashResult -&gt; getPackageHashResult.hash()))
+ *                 .filename("package.tar.gz")
+ *                 .sourceCodeHash(example.applyValue(getPackageHashResult -> getPackageHashResult.hash()))
  *                 .build())
  *             .resourceLinks(ServiceComputeResourceLinkArgs.builder()
- *                 .name(&#34;my_resource_link&#34;)
+ *                 .name("my_resource_link")
  *                 .resourceId(exampleConfigstore.id())
  *                 .build())
  *             .forceDestroy(true)
@@ -82,7 +83,8 @@ import javax.annotation.Nullable;
  * 
  *     }
  * }
- * ```
+ * }
+ * </pre>
  * &lt;!--End PulumiCodeChooser --&gt;
  * 
  * ## Import

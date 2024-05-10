@@ -45,10 +45,6 @@ export class ConfigstoreEntries extends pulumi.CustomResource {
      * A map representing an entry in the Config Store, (key/value)
      */
     public readonly entries!: pulumi.Output<{[key: string]: any}>;
-    /**
-     * Have Terraform manage the entries (default: false). If set to `true` Terraform will remove any entries that were added
-     * externally from the config seeded values.
-     */
     public readonly manageEntries!: pulumi.Output<boolean | undefined>;
     /**
      * An alphanumeric string identifying the Config Store.
@@ -96,10 +92,6 @@ export interface ConfigstoreEntriesState {
      * A map representing an entry in the Config Store, (key/value)
      */
     entries?: pulumi.Input<{[key: string]: any}>;
-    /**
-     * Have Terraform manage the entries (default: false). If set to `true` Terraform will remove any entries that were added
-     * externally from the config seeded values.
-     */
     manageEntries?: pulumi.Input<boolean>;
     /**
      * An alphanumeric string identifying the Config Store.
@@ -115,10 +107,6 @@ export interface ConfigstoreEntriesArgs {
      * A map representing an entry in the Config Store, (key/value)
      */
     entries: pulumi.Input<{[key: string]: any}>;
-    /**
-     * Have Terraform manage the entries (default: false). If set to `true` Terraform will remove any entries that were added
-     * externally from the config seeded values.
-     */
     manageEntries?: pulumi.Input<boolean>;
     /**
      * An alphanumeric string identifying the Config Store.
