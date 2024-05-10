@@ -27,6 +27,11 @@ namespace Pulumi.Fastly
     ///         Name = "my_vcl_service",
     ///     });
     /// 
+    ///     var exampleIntegration = new Fastly.Integration("example", new()
+    ///     {
+    ///         Name = "my_integration",
+    ///     });
+    /// 
     ///     var exampleAlert = new Fastly.Alert("example", new()
     ///     {
     ///         Name = "my_vcl_service errors",
@@ -38,6 +43,10 @@ namespace Pulumi.Fastly
     ///             Type = "above_threshold",
     ///             Period = "5m",
     ///             Threshold = 10,
+    ///         },
+    ///         IntegrationIds = new[]
+    ///         {
+    ///             exampleIntegration.Id,
     ///         },
     ///     });
     /// 

@@ -4189,15 +4189,239 @@ public final class FastlyFunctions {
     public static CompletableFuture<GetTlsSubscriptionIdsResult> getTlsSubscriptionIdsPlain(InvokeArgs args, InvokeOptions options) {
         return Deployment.getInstance().invokeAsync("fastly:index/getTlsSubscriptionIds:getTlsSubscriptionIds", TypeShape.of(GetTlsSubscriptionIdsResult.class), args, Utilities.withVersion(options));
     }
+    /**
+     * VCL Snippets are blocks of VCL logic inserted into your service&#39;s configuration that don&#39;t require custom VCL.
+     * 
+     * Use this data source to get a list of [Fastly VCL Snippets](https://www.fastly.com/documentation/reference/api/vcl-services/snippet/) for the specified service/version.
+     * 
+     * ## Example Usage
+     * 
+     * &lt;!--Start PulumiCodeChooser --&gt;
+     * <pre>
+     * {@code
+     * package generated_program;
+     * 
+     * import com.pulumi.Context;
+     * import com.pulumi.Pulumi;
+     * import com.pulumi.core.Output;
+     * import com.pulumi.fastly.ServiceVcl;
+     * import com.pulumi.fastly.ServiceVclArgs;
+     * import com.pulumi.fastly.inputs.ServiceVclDomainArgs;
+     * import com.pulumi.fastly.FastlyFunctions;
+     * import com.pulumi.fastly.inputs.GetVclSnippetsArgs;
+     * import java.util.List;
+     * import java.util.ArrayList;
+     * import java.util.Map;
+     * import java.io.File;
+     * import java.nio.file.Files;
+     * import java.nio.file.Paths;
+     * 
+     * public class App {
+     *     public static void main(String[] args) {
+     *         Pulumi.run(App::stack);
+     *     }
+     * 
+     *     public static void stack(Context ctx) {
+     *         var exampleServiceVcl = new ServiceVcl("exampleServiceVcl", ServiceVclArgs.builder()        
+     *             .name("Example Service")
+     *             .domains(ServiceVclDomainArgs.builder()
+     *                 .name("example.com")
+     *                 .build())
+     *             .forceDestroy(true)
+     *             .build());
+     * 
+     *         final var example = FastlyFunctions.getVclSnippets(GetVclSnippetsArgs.builder()
+     *             .serviceId(exampleServiceVcl.id())
+     *             .serviceVersion(exampleServiceVcl.activeVersion())
+     *             .build());
+     * 
+     *         ctx.export("serviceVclSnippets", example.applyValue(getVclSnippetsResult -> getVclSnippetsResult));
+     *     }
+     * }
+     * }
+     * </pre>
+     * &lt;!--End PulumiCodeChooser --&gt;
+     * 
+     * [1]: https://www.fastly.com/documentation/reference/api/vcl-services/snippet/
+     * 
+     */
     public static Output<GetVclSnippetsResult> getVclSnippets(GetVclSnippetsArgs args) {
         return getVclSnippets(args, InvokeOptions.Empty);
     }
+    /**
+     * VCL Snippets are blocks of VCL logic inserted into your service&#39;s configuration that don&#39;t require custom VCL.
+     * 
+     * Use this data source to get a list of [Fastly VCL Snippets](https://www.fastly.com/documentation/reference/api/vcl-services/snippet/) for the specified service/version.
+     * 
+     * ## Example Usage
+     * 
+     * &lt;!--Start PulumiCodeChooser --&gt;
+     * <pre>
+     * {@code
+     * package generated_program;
+     * 
+     * import com.pulumi.Context;
+     * import com.pulumi.Pulumi;
+     * import com.pulumi.core.Output;
+     * import com.pulumi.fastly.ServiceVcl;
+     * import com.pulumi.fastly.ServiceVclArgs;
+     * import com.pulumi.fastly.inputs.ServiceVclDomainArgs;
+     * import com.pulumi.fastly.FastlyFunctions;
+     * import com.pulumi.fastly.inputs.GetVclSnippetsArgs;
+     * import java.util.List;
+     * import java.util.ArrayList;
+     * import java.util.Map;
+     * import java.io.File;
+     * import java.nio.file.Files;
+     * import java.nio.file.Paths;
+     * 
+     * public class App {
+     *     public static void main(String[] args) {
+     *         Pulumi.run(App::stack);
+     *     }
+     * 
+     *     public static void stack(Context ctx) {
+     *         var exampleServiceVcl = new ServiceVcl("exampleServiceVcl", ServiceVclArgs.builder()        
+     *             .name("Example Service")
+     *             .domains(ServiceVclDomainArgs.builder()
+     *                 .name("example.com")
+     *                 .build())
+     *             .forceDestroy(true)
+     *             .build());
+     * 
+     *         final var example = FastlyFunctions.getVclSnippets(GetVclSnippetsArgs.builder()
+     *             .serviceId(exampleServiceVcl.id())
+     *             .serviceVersion(exampleServiceVcl.activeVersion())
+     *             .build());
+     * 
+     *         ctx.export("serviceVclSnippets", example.applyValue(getVclSnippetsResult -> getVclSnippetsResult));
+     *     }
+     * }
+     * }
+     * </pre>
+     * &lt;!--End PulumiCodeChooser --&gt;
+     * 
+     * [1]: https://www.fastly.com/documentation/reference/api/vcl-services/snippet/
+     * 
+     */
     public static CompletableFuture<GetVclSnippetsResult> getVclSnippetsPlain(GetVclSnippetsPlainArgs args) {
         return getVclSnippetsPlain(args, InvokeOptions.Empty);
     }
+    /**
+     * VCL Snippets are blocks of VCL logic inserted into your service&#39;s configuration that don&#39;t require custom VCL.
+     * 
+     * Use this data source to get a list of [Fastly VCL Snippets](https://www.fastly.com/documentation/reference/api/vcl-services/snippet/) for the specified service/version.
+     * 
+     * ## Example Usage
+     * 
+     * &lt;!--Start PulumiCodeChooser --&gt;
+     * <pre>
+     * {@code
+     * package generated_program;
+     * 
+     * import com.pulumi.Context;
+     * import com.pulumi.Pulumi;
+     * import com.pulumi.core.Output;
+     * import com.pulumi.fastly.ServiceVcl;
+     * import com.pulumi.fastly.ServiceVclArgs;
+     * import com.pulumi.fastly.inputs.ServiceVclDomainArgs;
+     * import com.pulumi.fastly.FastlyFunctions;
+     * import com.pulumi.fastly.inputs.GetVclSnippetsArgs;
+     * import java.util.List;
+     * import java.util.ArrayList;
+     * import java.util.Map;
+     * import java.io.File;
+     * import java.nio.file.Files;
+     * import java.nio.file.Paths;
+     * 
+     * public class App {
+     *     public static void main(String[] args) {
+     *         Pulumi.run(App::stack);
+     *     }
+     * 
+     *     public static void stack(Context ctx) {
+     *         var exampleServiceVcl = new ServiceVcl("exampleServiceVcl", ServiceVclArgs.builder()        
+     *             .name("Example Service")
+     *             .domains(ServiceVclDomainArgs.builder()
+     *                 .name("example.com")
+     *                 .build())
+     *             .forceDestroy(true)
+     *             .build());
+     * 
+     *         final var example = FastlyFunctions.getVclSnippets(GetVclSnippetsArgs.builder()
+     *             .serviceId(exampleServiceVcl.id())
+     *             .serviceVersion(exampleServiceVcl.activeVersion())
+     *             .build());
+     * 
+     *         ctx.export("serviceVclSnippets", example.applyValue(getVclSnippetsResult -> getVclSnippetsResult));
+     *     }
+     * }
+     * }
+     * </pre>
+     * &lt;!--End PulumiCodeChooser --&gt;
+     * 
+     * [1]: https://www.fastly.com/documentation/reference/api/vcl-services/snippet/
+     * 
+     */
     public static Output<GetVclSnippetsResult> getVclSnippets(GetVclSnippetsArgs args, InvokeOptions options) {
         return Deployment.getInstance().invoke("fastly:index/getVclSnippets:getVclSnippets", TypeShape.of(GetVclSnippetsResult.class), args, Utilities.withVersion(options));
     }
+    /**
+     * VCL Snippets are blocks of VCL logic inserted into your service&#39;s configuration that don&#39;t require custom VCL.
+     * 
+     * Use this data source to get a list of [Fastly VCL Snippets](https://www.fastly.com/documentation/reference/api/vcl-services/snippet/) for the specified service/version.
+     * 
+     * ## Example Usage
+     * 
+     * &lt;!--Start PulumiCodeChooser --&gt;
+     * <pre>
+     * {@code
+     * package generated_program;
+     * 
+     * import com.pulumi.Context;
+     * import com.pulumi.Pulumi;
+     * import com.pulumi.core.Output;
+     * import com.pulumi.fastly.ServiceVcl;
+     * import com.pulumi.fastly.ServiceVclArgs;
+     * import com.pulumi.fastly.inputs.ServiceVclDomainArgs;
+     * import com.pulumi.fastly.FastlyFunctions;
+     * import com.pulumi.fastly.inputs.GetVclSnippetsArgs;
+     * import java.util.List;
+     * import java.util.ArrayList;
+     * import java.util.Map;
+     * import java.io.File;
+     * import java.nio.file.Files;
+     * import java.nio.file.Paths;
+     * 
+     * public class App {
+     *     public static void main(String[] args) {
+     *         Pulumi.run(App::stack);
+     *     }
+     * 
+     *     public static void stack(Context ctx) {
+     *         var exampleServiceVcl = new ServiceVcl("exampleServiceVcl", ServiceVclArgs.builder()        
+     *             .name("Example Service")
+     *             .domains(ServiceVclDomainArgs.builder()
+     *                 .name("example.com")
+     *                 .build())
+     *             .forceDestroy(true)
+     *             .build());
+     * 
+     *         final var example = FastlyFunctions.getVclSnippets(GetVclSnippetsArgs.builder()
+     *             .serviceId(exampleServiceVcl.id())
+     *             .serviceVersion(exampleServiceVcl.activeVersion())
+     *             .build());
+     * 
+     *         ctx.export("serviceVclSnippets", example.applyValue(getVclSnippetsResult -> getVclSnippetsResult));
+     *     }
+     * }
+     * }
+     * </pre>
+     * &lt;!--End PulumiCodeChooser --&gt;
+     * 
+     * [1]: https://www.fastly.com/documentation/reference/api/vcl-services/snippet/
+     * 
+     */
     public static CompletableFuture<GetVclSnippetsResult> getVclSnippetsPlain(GetVclSnippetsPlainArgs args, InvokeOptions options) {
         return Deployment.getInstance().invokeAsync("fastly:index/getVclSnippets:getVclSnippets", TypeShape.of(GetVclSnippetsResult.class), args, Utilities.withVersion(options));
     }

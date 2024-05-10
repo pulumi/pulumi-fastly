@@ -135,6 +135,11 @@ export const getWafRules: typeof import("./getWafRules").getWafRules = null as a
 export const getWafRulesOutput: typeof import("./getWafRules").getWafRulesOutput = null as any;
 utilities.lazyLoad(exports, ["getWafRules","getWafRulesOutput"], () => require("./getWafRules"));
 
+export { IntegrationArgs, IntegrationState } from "./integration";
+export type Integration = import("./integration").Integration;
+export const Integration: typeof import("./integration").Integration = null as any;
+utilities.lazyLoad(exports, ["Integration"], () => require("./integration"));
+
 export { KvstoreArgs, KvstoreState } from "./kvstore";
 export type Kvstore = import("./kvstore").Kvstore;
 export const Kvstore: typeof import("./kvstore").Kvstore = null as any;
@@ -245,6 +250,8 @@ const _module = {
                 return new Configstore(name, <any>undefined, { urn })
             case "fastly:index/configstoreEntries:ConfigstoreEntries":
                 return new ConfigstoreEntries(name, <any>undefined, { urn })
+            case "fastly:index/integration:Integration":
+                return new Integration(name, <any>undefined, { urn })
             case "fastly:index/kvstore:Kvstore":
                 return new Kvstore(name, <any>undefined, { urn })
             case "fastly:index/secretstore:Secretstore":
@@ -287,6 +294,7 @@ const _module = {
 pulumi.runtime.registerResourceModule("fastly", "index/alert", _module)
 pulumi.runtime.registerResourceModule("fastly", "index/configstore", _module)
 pulumi.runtime.registerResourceModule("fastly", "index/configstoreEntries", _module)
+pulumi.runtime.registerResourceModule("fastly", "index/integration", _module)
 pulumi.runtime.registerResourceModule("fastly", "index/kvstore", _module)
 pulumi.runtime.registerResourceModule("fastly", "index/secretstore", _module)
 pulumi.runtime.registerResourceModule("fastly", "index/serviceACLEntries", _module)

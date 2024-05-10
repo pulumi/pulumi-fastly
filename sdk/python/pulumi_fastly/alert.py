@@ -305,6 +305,7 @@ class Alert(pulumi.CustomResource):
         import pulumi_fastly as fastly
 
         example = fastly.ServiceVcl("example", name="my_vcl_service")
+        example_integration = fastly.Integration("example", name="my_integration")
         example_alert = fastly.Alert("example",
             name="my_vcl_service errors",
             service_id=example.id,
@@ -314,7 +315,8 @@ class Alert(pulumi.CustomResource):
                 type="above_threshold",
                 period="5m",
                 threshold=10,
-            ))
+            ),
+            integration_ids=[example_integration.id])
         ```
 
         ## Import
@@ -352,6 +354,7 @@ class Alert(pulumi.CustomResource):
         import pulumi_fastly as fastly
 
         example = fastly.ServiceVcl("example", name="my_vcl_service")
+        example_integration = fastly.Integration("example", name="my_integration")
         example_alert = fastly.Alert("example",
             name="my_vcl_service errors",
             service_id=example.id,
@@ -361,7 +364,8 @@ class Alert(pulumi.CustomResource):
                 type="above_threshold",
                 period="5m",
                 threshold=10,
-            ))
+            ),
+            integration_ids=[example_integration.id])
         ```
 
         ## Import

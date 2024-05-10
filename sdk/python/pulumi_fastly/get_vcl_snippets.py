@@ -47,16 +47,25 @@ class GetVclSnippetsResult:
     @property
     @pulumi.getter(name="serviceId")
     def service_id(self) -> str:
+        """
+        Alphanumeric string identifying the service.
+        """
         return pulumi.get(self, "service_id")
 
     @property
     @pulumi.getter(name="serviceVersion")
     def service_version(self) -> int:
+        """
+        Integer identifying a service version.
+        """
         return pulumi.get(self, "service_version")
 
     @property
     @pulumi.getter(name="vclSnippets")
     def vcl_snippets(self) -> Sequence['outputs.GetVclSnippetsVclSnippetResult']:
+        """
+        List of all VCL snippets for the version of the service.
+        """
         return pulumi.get(self, "vcl_snippets")
 
 
@@ -76,7 +85,32 @@ def get_vcl_snippets(service_id: Optional[str] = None,
                      service_version: Optional[int] = None,
                      opts: Optional[pulumi.InvokeOptions] = None) -> AwaitableGetVclSnippetsResult:
     """
-    Use this data source to access information about an existing resource.
+    VCL Snippets are blocks of VCL logic inserted into your service's configuration that don't require custom VCL.
+
+    Use this data source to get a list of [Fastly VCL Snippets](https://www.fastly.com/documentation/reference/api/vcl-services/snippet/) for the specified service/version.
+
+    ## Example Usage
+
+    ```python
+    import pulumi
+    import pulumi_fastly as fastly
+
+    example_service_vcl = fastly.ServiceVcl("example",
+        name="Example Service",
+        domains=[fastly.ServiceVclDomainArgs(
+            name="example.com",
+        )],
+        force_destroy=True)
+    example = fastly.get_vcl_snippets_output(service_id=example_service_vcl.id,
+        service_version=example_service_vcl.active_version)
+    pulumi.export("serviceVclSnippets", example)
+    ```
+
+    [1]: https://www.fastly.com/documentation/reference/api/vcl-services/snippet/
+
+
+    :param str service_id: Alphanumeric string identifying the service.
+    :param int service_version: Integer identifying a service version.
     """
     __args__ = dict()
     __args__['serviceId'] = service_id
@@ -96,6 +130,31 @@ def get_vcl_snippets_output(service_id: Optional[pulumi.Input[str]] = None,
                             service_version: Optional[pulumi.Input[int]] = None,
                             opts: Optional[pulumi.InvokeOptions] = None) -> pulumi.Output[GetVclSnippetsResult]:
     """
-    Use this data source to access information about an existing resource.
+    VCL Snippets are blocks of VCL logic inserted into your service's configuration that don't require custom VCL.
+
+    Use this data source to get a list of [Fastly VCL Snippets](https://www.fastly.com/documentation/reference/api/vcl-services/snippet/) for the specified service/version.
+
+    ## Example Usage
+
+    ```python
+    import pulumi
+    import pulumi_fastly as fastly
+
+    example_service_vcl = fastly.ServiceVcl("example",
+        name="Example Service",
+        domains=[fastly.ServiceVclDomainArgs(
+            name="example.com",
+        )],
+        force_destroy=True)
+    example = fastly.get_vcl_snippets_output(service_id=example_service_vcl.id,
+        service_version=example_service_vcl.active_version)
+    pulumi.export("serviceVclSnippets", example)
+    ```
+
+    [1]: https://www.fastly.com/documentation/reference/api/vcl-services/snippet/
+
+
+    :param str service_id: Alphanumeric string identifying the service.
+    :param int service_version: Integer identifying a service version.
     """
     ...

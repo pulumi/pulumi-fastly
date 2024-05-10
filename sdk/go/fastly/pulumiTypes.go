@@ -170,11 +170,13 @@ func (o AlertDimensionsPtrOutput) Origins() pulumi.StringArrayOutput {
 }
 
 type AlertEvaluationStrategy struct {
-	// The length of time to evaluate whether the conditions have been met. The data is polled every minute. One of: `5m`, `15m`, `30m`.
+	// Threshold for the denominator value used in evaluations that calculate a rate or ratio. Usually used to filter out noise.
+	IgnoreBelow *float64 `pulumi:"ignoreBelow"`
+	// The length of time to evaluate whether the conditions have been met. The data is polled every minute. One of: `2m`, `3m`, `5m`, `15m`, `30m`.
 	Period string `pulumi:"period"`
 	// Threshold used to alert.
 	Threshold float64 `pulumi:"threshold"`
-	// Type of strategy to use to evaluate. One of: `aboveThreshold`, `belowThreshold`.
+	// Type of strategy to use to evaluate. One of: `aboveThreshold`, `allAboveThreshold`, `belowThreshold`, `percentAbsolute`, `percentDecrease`, `percentIncrease`.
 	Type string `pulumi:"type"`
 }
 
@@ -190,11 +192,13 @@ type AlertEvaluationStrategyInput interface {
 }
 
 type AlertEvaluationStrategyArgs struct {
-	// The length of time to evaluate whether the conditions have been met. The data is polled every minute. One of: `5m`, `15m`, `30m`.
+	// Threshold for the denominator value used in evaluations that calculate a rate or ratio. Usually used to filter out noise.
+	IgnoreBelow pulumi.Float64PtrInput `pulumi:"ignoreBelow"`
+	// The length of time to evaluate whether the conditions have been met. The data is polled every minute. One of: `2m`, `3m`, `5m`, `15m`, `30m`.
 	Period pulumi.StringInput `pulumi:"period"`
 	// Threshold used to alert.
 	Threshold pulumi.Float64Input `pulumi:"threshold"`
-	// Type of strategy to use to evaluate. One of: `aboveThreshold`, `belowThreshold`.
+	// Type of strategy to use to evaluate. One of: `aboveThreshold`, `allAboveThreshold`, `belowThreshold`, `percentAbsolute`, `percentDecrease`, `percentIncrease`.
 	Type pulumi.StringInput `pulumi:"type"`
 }
 
@@ -275,7 +279,12 @@ func (o AlertEvaluationStrategyOutput) ToAlertEvaluationStrategyPtrOutputWithCon
 	}).(AlertEvaluationStrategyPtrOutput)
 }
 
-// The length of time to evaluate whether the conditions have been met. The data is polled every minute. One of: `5m`, `15m`, `30m`.
+// Threshold for the denominator value used in evaluations that calculate a rate or ratio. Usually used to filter out noise.
+func (o AlertEvaluationStrategyOutput) IgnoreBelow() pulumi.Float64PtrOutput {
+	return o.ApplyT(func(v AlertEvaluationStrategy) *float64 { return v.IgnoreBelow }).(pulumi.Float64PtrOutput)
+}
+
+// The length of time to evaluate whether the conditions have been met. The data is polled every minute. One of: `2m`, `3m`, `5m`, `15m`, `30m`.
 func (o AlertEvaluationStrategyOutput) Period() pulumi.StringOutput {
 	return o.ApplyT(func(v AlertEvaluationStrategy) string { return v.Period }).(pulumi.StringOutput)
 }
@@ -285,7 +294,7 @@ func (o AlertEvaluationStrategyOutput) Threshold() pulumi.Float64Output {
 	return o.ApplyT(func(v AlertEvaluationStrategy) float64 { return v.Threshold }).(pulumi.Float64Output)
 }
 
-// Type of strategy to use to evaluate. One of: `aboveThreshold`, `belowThreshold`.
+// Type of strategy to use to evaluate. One of: `aboveThreshold`, `allAboveThreshold`, `belowThreshold`, `percentAbsolute`, `percentDecrease`, `percentIncrease`.
 func (o AlertEvaluationStrategyOutput) Type() pulumi.StringOutput {
 	return o.ApplyT(func(v AlertEvaluationStrategy) string { return v.Type }).(pulumi.StringOutput)
 }
@@ -314,7 +323,17 @@ func (o AlertEvaluationStrategyPtrOutput) Elem() AlertEvaluationStrategyOutput {
 	}).(AlertEvaluationStrategyOutput)
 }
 
-// The length of time to evaluate whether the conditions have been met. The data is polled every minute. One of: `5m`, `15m`, `30m`.
+// Threshold for the denominator value used in evaluations that calculate a rate or ratio. Usually used to filter out noise.
+func (o AlertEvaluationStrategyPtrOutput) IgnoreBelow() pulumi.Float64PtrOutput {
+	return o.ApplyT(func(v *AlertEvaluationStrategy) *float64 {
+		if v == nil {
+			return nil
+		}
+		return v.IgnoreBelow
+	}).(pulumi.Float64PtrOutput)
+}
+
+// The length of time to evaluate whether the conditions have been met. The data is polled every minute. One of: `2m`, `3m`, `5m`, `15m`, `30m`.
 func (o AlertEvaluationStrategyPtrOutput) Period() pulumi.StringPtrOutput {
 	return o.ApplyT(func(v *AlertEvaluationStrategy) *string {
 		if v == nil {
@@ -334,7 +353,7 @@ func (o AlertEvaluationStrategyPtrOutput) Threshold() pulumi.Float64PtrOutput {
 	}).(pulumi.Float64PtrOutput)
 }
 
-// Type of strategy to use to evaluate. One of: `aboveThreshold`, `belowThreshold`.
+// Type of strategy to use to evaluate. One of: `aboveThreshold`, `allAboveThreshold`, `belowThreshold`, `percentAbsolute`, `percentDecrease`, `percentIncrease`.
 func (o AlertEvaluationStrategyPtrOutput) Type() pulumi.StringPtrOutput {
 	return o.ApplyT(func(v *AlertEvaluationStrategy) *string {
 		if v == nil {

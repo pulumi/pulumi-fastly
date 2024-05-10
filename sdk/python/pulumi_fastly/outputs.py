@@ -140,24 +140,45 @@ class AlertDimensions(dict):
 
 @pulumi.output_type
 class AlertEvaluationStrategy(dict):
+    @staticmethod
+    def __key_warning(key: str):
+        suggest = None
+        if key == "ignoreBelow":
+            suggest = "ignore_below"
+
+        if suggest:
+            pulumi.log.warn(f"Key '{key}' not found in AlertEvaluationStrategy. Access the value via the '{suggest}' property getter instead.")
+
+    def __getitem__(self, key: str) -> Any:
+        AlertEvaluationStrategy.__key_warning(key)
+        return super().__getitem__(key)
+
+    def get(self, key: str, default = None) -> Any:
+        AlertEvaluationStrategy.__key_warning(key)
+        return super().get(key, default)
+
     def __init__(__self__, *,
                  period: str,
                  threshold: float,
-                 type: str):
+                 type: str,
+                 ignore_below: Optional[float] = None):
         """
-        :param str period: The length of time to evaluate whether the conditions have been met. The data is polled every minute. One of: `5m`, `15m`, `30m`.
+        :param str period: The length of time to evaluate whether the conditions have been met. The data is polled every minute. One of: `2m`, `3m`, `5m`, `15m`, `30m`.
         :param float threshold: Threshold used to alert.
-        :param str type: Type of strategy to use to evaluate. One of: `above_threshold`, `below_threshold`.
+        :param str type: Type of strategy to use to evaluate. One of: `above_threshold`, `all_above_threshold`, `below_threshold`, `percent_absolute`, `percent_decrease`, `percent_increase`.
+        :param float ignore_below: Threshold for the denominator value used in evaluations that calculate a rate or ratio. Usually used to filter out noise.
         """
         pulumi.set(__self__, "period", period)
         pulumi.set(__self__, "threshold", threshold)
         pulumi.set(__self__, "type", type)
+        if ignore_below is not None:
+            pulumi.set(__self__, "ignore_below", ignore_below)
 
     @property
     @pulumi.getter
     def period(self) -> str:
         """
-        The length of time to evaluate whether the conditions have been met. The data is polled every minute. One of: `5m`, `15m`, `30m`.
+        The length of time to evaluate whether the conditions have been met. The data is polled every minute. One of: `2m`, `3m`, `5m`, `15m`, `30m`.
         """
         return pulumi.get(self, "period")
 
@@ -173,9 +194,17 @@ class AlertEvaluationStrategy(dict):
     @pulumi.getter
     def type(self) -> str:
         """
-        Type of strategy to use to evaluate. One of: `above_threshold`, `below_threshold`.
+        Type of strategy to use to evaluate. One of: `above_threshold`, `all_above_threshold`, `below_threshold`, `percent_absolute`, `percent_decrease`, `percent_increase`.
         """
         return pulumi.get(self, "type")
+
+    @property
+    @pulumi.getter(name="ignoreBelow")
+    def ignore_below(self) -> Optional[float]:
+        """
+        Threshold for the denominator value used in evaluations that calculate a rate or ratio. Usually used to filter out noise.
+        """
+        return pulumi.get(self, "ignore_below")
 
 
 @pulumi.output_type

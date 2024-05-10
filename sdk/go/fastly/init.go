@@ -27,6 +27,8 @@ func (m *module) Construct(ctx *pulumi.Context, name, typ, urn string) (r pulumi
 		r = &Configstore{}
 	case "fastly:index/configstoreEntries:ConfigstoreEntries":
 		r = &ConfigstoreEntries{}
+	case "fastly:index/integration:Integration":
+		r = &Integration{}
 	case "fastly:index/kvstore:Kvstore":
 		r = &Kvstore{}
 	case "fastly:index/secretstore:Secretstore":
@@ -105,6 +107,11 @@ func init() {
 	pulumi.RegisterResourceModule(
 		"fastly",
 		"index/configstoreEntries",
+		&module{version},
+	)
+	pulumi.RegisterResourceModule(
+		"fastly",
+		"index/integration",
 		&module{version},
 	)
 	pulumi.RegisterResourceModule(

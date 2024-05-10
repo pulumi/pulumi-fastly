@@ -18,8 +18,20 @@ public final class GetVclSnippetsResult {
      * 
      */
     private String id;
+    /**
+     * @return Alphanumeric string identifying the service.
+     * 
+     */
     private String serviceId;
+    /**
+     * @return Integer identifying a service version.
+     * 
+     */
     private Integer serviceVersion;
+    /**
+     * @return List of all VCL snippets for the version of the service.
+     * 
+     */
     private List<GetVclSnippetsVclSnippet> vclSnippets;
 
     private GetVclSnippetsResult() {}
@@ -30,12 +42,24 @@ public final class GetVclSnippetsResult {
     public String id() {
         return this.id;
     }
+    /**
+     * @return Alphanumeric string identifying the service.
+     * 
+     */
     public String serviceId() {
         return this.serviceId;
     }
+    /**
+     * @return Integer identifying a service version.
+     * 
+     */
     public Integer serviceVersion() {
         return this.serviceVersion;
     }
+    /**
+     * @return List of all VCL snippets for the version of the service.
+     * 
+     */
     public List<GetVclSnippetsVclSnippet> vclSnippets() {
         return this.vclSnippets;
     }

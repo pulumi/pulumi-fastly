@@ -11,6 +11,48 @@ import (
 	"github.com/pulumi/pulumi/sdk/v3/go/pulumi"
 )
 
+// VCL Snippets are blocks of VCL logic inserted into your service's configuration that don't require custom VCL.
+//
+// Use this data source to get a list of [Fastly VCL Snippets](https://www.fastly.com/documentation/reference/api/vcl-services/snippet/) for the specified service/version.
+//
+// ## Example Usage
+//
+// ```go
+// package main
+//
+// import (
+//
+//	"github.com/pulumi/pulumi-fastly/sdk/v8/go/fastly"
+//	"github.com/pulumi/pulumi/sdk/v3/go/pulumi"
+//
+// )
+//
+//	func main() {
+//		pulumi.Run(func(ctx *pulumi.Context) error {
+//			exampleServiceVcl, err := fastly.NewServiceVcl(ctx, "example", &fastly.ServiceVclArgs{
+//				Name: pulumi.String("Example Service"),
+//				Domains: fastly.ServiceVclDomainArray{
+//					&fastly.ServiceVclDomainArgs{
+//						Name: pulumi.String("example.com"),
+//					},
+//				},
+//				ForceDestroy: pulumi.Bool(true),
+//			})
+//			if err != nil {
+//				return err
+//			}
+//			example := fastly.GetVclSnippetsOutput(ctx, fastly.GetVclSnippetsOutputArgs{
+//				ServiceId:      exampleServiceVcl.ID(),
+//				ServiceVersion: exampleServiceVcl.ActiveVersion,
+//			}, nil)
+//			ctx.Export("serviceVclSnippets", example)
+//			return nil
+//		})
+//	}
+//
+// ```
+//
+// [1]: https://www.fastly.com/documentation/reference/api/vcl-services/snippet/
 func GetVclSnippets(ctx *pulumi.Context, args *GetVclSnippetsArgs, opts ...pulumi.InvokeOption) (*GetVclSnippetsResult, error) {
 	opts = internal.PkgInvokeDefaultOpts(opts)
 	var rv GetVclSnippetsResult
@@ -23,17 +65,22 @@ func GetVclSnippets(ctx *pulumi.Context, args *GetVclSnippetsArgs, opts ...pulum
 
 // A collection of arguments for invoking getVclSnippets.
 type GetVclSnippetsArgs struct {
-	ServiceId      string `pulumi:"serviceId"`
-	ServiceVersion int    `pulumi:"serviceVersion"`
+	// Alphanumeric string identifying the service.
+	ServiceId string `pulumi:"serviceId"`
+	// Integer identifying a service version.
+	ServiceVersion int `pulumi:"serviceVersion"`
 }
 
 // A collection of values returned by getVclSnippets.
 type GetVclSnippetsResult struct {
 	// The provider-assigned unique ID for this managed resource.
-	Id             string                     `pulumi:"id"`
-	ServiceId      string                     `pulumi:"serviceId"`
-	ServiceVersion int                        `pulumi:"serviceVersion"`
-	VclSnippets    []GetVclSnippetsVclSnippet `pulumi:"vclSnippets"`
+	Id string `pulumi:"id"`
+	// Alphanumeric string identifying the service.
+	ServiceId string `pulumi:"serviceId"`
+	// Integer identifying a service version.
+	ServiceVersion int `pulumi:"serviceVersion"`
+	// List of all VCL snippets for the version of the service.
+	VclSnippets []GetVclSnippetsVclSnippet `pulumi:"vclSnippets"`
 }
 
 func GetVclSnippetsOutput(ctx *pulumi.Context, args GetVclSnippetsOutputArgs, opts ...pulumi.InvokeOption) GetVclSnippetsResultOutput {
@@ -51,8 +98,10 @@ func GetVclSnippetsOutput(ctx *pulumi.Context, args GetVclSnippetsOutputArgs, op
 
 // A collection of arguments for invoking getVclSnippets.
 type GetVclSnippetsOutputArgs struct {
-	ServiceId      pulumi.StringInput `pulumi:"serviceId"`
-	ServiceVersion pulumi.IntInput    `pulumi:"serviceVersion"`
+	// Alphanumeric string identifying the service.
+	ServiceId pulumi.StringInput `pulumi:"serviceId"`
+	// Integer identifying a service version.
+	ServiceVersion pulumi.IntInput `pulumi:"serviceVersion"`
 }
 
 func (GetVclSnippetsOutputArgs) ElementType() reflect.Type {
@@ -79,14 +128,17 @@ func (o GetVclSnippetsResultOutput) Id() pulumi.StringOutput {
 	return o.ApplyT(func(v GetVclSnippetsResult) string { return v.Id }).(pulumi.StringOutput)
 }
 
+// Alphanumeric string identifying the service.
 func (o GetVclSnippetsResultOutput) ServiceId() pulumi.StringOutput {
 	return o.ApplyT(func(v GetVclSnippetsResult) string { return v.ServiceId }).(pulumi.StringOutput)
 }
 
+// Integer identifying a service version.
 func (o GetVclSnippetsResultOutput) ServiceVersion() pulumi.IntOutput {
 	return o.ApplyT(func(v GetVclSnippetsResult) int { return v.ServiceVersion }).(pulumi.IntOutput)
 }
 
+// List of all VCL snippets for the version of the service.
 func (o GetVclSnippetsResultOutput) VclSnippets() GetVclSnippetsVclSnippetArrayOutput {
 	return o.ApplyT(func(v GetVclSnippetsResult) []GetVclSnippetsVclSnippet { return v.VclSnippets }).(GetVclSnippetsVclSnippetArrayOutput)
 }

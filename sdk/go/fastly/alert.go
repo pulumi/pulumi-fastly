@@ -34,6 +34,12 @@ import (
 //			if err != nil {
 //				return err
 //			}
+//			exampleIntegration, err := fastly.NewIntegration(ctx, "example", &fastly.IntegrationArgs{
+//				Name: pulumi.String("my_integration"),
+//			})
+//			if err != nil {
+//				return err
+//			}
 //			_, err = fastly.NewAlert(ctx, "example", &fastly.AlertArgs{
 //				Name:      pulumi.String("my_vcl_service errors"),
 //				ServiceId: example.ID(),
@@ -43,6 +49,9 @@ import (
 //					Type:      pulumi.String("above_threshold"),
 //					Period:    pulumi.String("5m"),
 //					Threshold: pulumi.Float64(10),
+//				},
+//				IntegrationIds: pulumi.StringArray{
+//					exampleIntegration.ID(),
 //				},
 //			})
 //			if err != nil {

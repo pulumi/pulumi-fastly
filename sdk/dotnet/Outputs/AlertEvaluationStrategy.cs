@@ -14,7 +14,11 @@ namespace Pulumi.Fastly.Outputs
     public sealed class AlertEvaluationStrategy
     {
         /// <summary>
-        /// The length of time to evaluate whether the conditions have been met. The data is polled every minute. One of: `5m`, `15m`, `30m`.
+        /// Threshold for the denominator value used in evaluations that calculate a rate or ratio. Usually used to filter out noise.
+        /// </summary>
+        public readonly double? IgnoreBelow;
+        /// <summary>
+        /// The length of time to evaluate whether the conditions have been met. The data is polled every minute. One of: `2m`, `3m`, `5m`, `15m`, `30m`.
         /// </summary>
         public readonly string Period;
         /// <summary>
@@ -22,18 +26,21 @@ namespace Pulumi.Fastly.Outputs
         /// </summary>
         public readonly double Threshold;
         /// <summary>
-        /// Type of strategy to use to evaluate. One of: `above_threshold`, `below_threshold`.
+        /// Type of strategy to use to evaluate. One of: `above_threshold`, `all_above_threshold`, `below_threshold`, `percent_absolute`, `percent_decrease`, `percent_increase`.
         /// </summary>
         public readonly string Type;
 
         [OutputConstructor]
         private AlertEvaluationStrategy(
+            double? ignoreBelow,
+
             string period,
 
             double threshold,
 
             string type)
         {
+            IgnoreBelow = ignoreBelow;
             Period = period;
             Threshold = threshold;
             Type = type;
