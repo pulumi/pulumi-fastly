@@ -1,6 +1,6 @@
 {
     "name": "@pulumi/fastly",
-    "version": "${VERSION}",
+    "version": "8.0.0-alpha.0+dev",
     "description": "A Pulumi package for creating and managing fastly cloud resources.. Based on terraform-provider-fastly: version v4",
     "keywords": [
         "pulumi",
@@ -22,6 +22,7 @@
     },
     "pulumi": {
         "resource": true,
-        "name": "fastly"
+        "name": "fastly",
+        "version": "8.0.0-alpha.0+dev"
     }
 }
