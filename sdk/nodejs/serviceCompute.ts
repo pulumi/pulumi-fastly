@@ -52,7 +52,8 @@ export class ServiceCompute extends pulumi.CustomResource {
     }
 
     /**
-     * Conditionally prevents the Service from being activated. The apply step will continue to create a new draft version but will not activate it if this is set to `false`. Default `true`
+     * Conditionally prevents the Service from being activated. The apply step will continue to create a new draft version but
+     * will not activate it if this is set to `false`. Default `true`
      */
     public readonly activate!: pulumi.Output<boolean | undefined>;
     /**
@@ -71,12 +72,15 @@ export class ServiceCompute extends pulumi.CustomResource {
      */
     public readonly domains!: pulumi.Output<outputs.ServiceComputeDomain[]>;
     /**
-     * Services that are active cannot be destroyed. In order to destroy the Service, set `forceDestroy` to `true`. Default `false`
+     * Services that are active cannot be destroyed. In order to destroy the Service, set `forceDestroy` to `true`. Default
+     * `false`
      */
     public readonly forceDestroy!: pulumi.Output<boolean | undefined>;
     public /*out*/ readonly forceRefresh!: pulumi.Output<boolean>;
+    public readonly imageOptimizerDefaultSettings!: pulumi.Output<outputs.ServiceComputeImageOptimizerDefaultSettings | undefined>;
     /**
-     * Used internally by the provider to temporarily indicate if the service is being imported, and is reset to false once the import is finished
+     * Used internally by the provider to temporarily indicate if the service is being imported, and is reset to false once the
+     * import is finished
      */
     public /*out*/ readonly imported!: pulumi.Output<boolean>;
     public readonly loggingBigqueries!: pulumi.Output<outputs.ServiceComputeLoggingBigquery[] | undefined>;
@@ -110,7 +114,9 @@ export class ServiceCompute extends pulumi.CustomResource {
      */
     public readonly name!: pulumi.Output<string>;
     /**
-     * The `package` block supports uploading or modifying Wasm packages for use in a Fastly Compute service (if omitted, ensure `activate = false` is set on `fastly.ServiceCompute` to avoid service validation errors). See Fastly's documentation on [Compute](https://developer.fastly.com/learning/compute/)
+     * The `package` block supports uploading or modifying Wasm packages for use in a Fastly Compute service (if omitted,
+     * ensure `activate = false` is set on `fastly.ServiceCompute` to avoid service validation errors). See Fastly's
+     * documentation on [Compute](https://developer.fastly.com/learning/compute/)
      */
     public readonly package!: pulumi.Output<outputs.ServiceComputePackage | undefined>;
     public readonly productEnablement!: pulumi.Output<outputs.ServiceComputeProductEnablement | undefined>;
@@ -146,6 +152,7 @@ export class ServiceCompute extends pulumi.CustomResource {
             resourceInputs["domains"] = state ? state.domains : undefined;
             resourceInputs["forceDestroy"] = state ? state.forceDestroy : undefined;
             resourceInputs["forceRefresh"] = state ? state.forceRefresh : undefined;
+            resourceInputs["imageOptimizerDefaultSettings"] = state ? state.imageOptimizerDefaultSettings : undefined;
             resourceInputs["imported"] = state ? state.imported : undefined;
             resourceInputs["loggingBigqueries"] = state ? state.loggingBigqueries : undefined;
             resourceInputs["loggingBlobstorages"] = state ? state.loggingBlobstorages : undefined;
@@ -190,6 +197,7 @@ export class ServiceCompute extends pulumi.CustomResource {
             resourceInputs["dictionaries"] = args ? args.dictionaries : undefined;
             resourceInputs["domains"] = args ? args.domains : undefined;
             resourceInputs["forceDestroy"] = args ? args.forceDestroy : undefined;
+            resourceInputs["imageOptimizerDefaultSettings"] = args ? args.imageOptimizerDefaultSettings : undefined;
             resourceInputs["loggingBigqueries"] = args ? args.loggingBigqueries : undefined;
             resourceInputs["loggingBlobstorages"] = args ? args.loggingBlobstorages : undefined;
             resourceInputs["loggingCloudfiles"] = args ? args.loggingCloudfiles : undefined;
@@ -237,7 +245,8 @@ export class ServiceCompute extends pulumi.CustomResource {
  */
 export interface ServiceComputeState {
     /**
-     * Conditionally prevents the Service from being activated. The apply step will continue to create a new draft version but will not activate it if this is set to `false`. Default `true`
+     * Conditionally prevents the Service from being activated. The apply step will continue to create a new draft version but
+     * will not activate it if this is set to `false`. Default `true`
      */
     activate?: pulumi.Input<boolean>;
     /**
@@ -256,12 +265,15 @@ export interface ServiceComputeState {
      */
     domains?: pulumi.Input<pulumi.Input<inputs.ServiceComputeDomain>[]>;
     /**
-     * Services that are active cannot be destroyed. In order to destroy the Service, set `forceDestroy` to `true`. Default `false`
+     * Services that are active cannot be destroyed. In order to destroy the Service, set `forceDestroy` to `true`. Default
+     * `false`
      */
     forceDestroy?: pulumi.Input<boolean>;
     forceRefresh?: pulumi.Input<boolean>;
+    imageOptimizerDefaultSettings?: pulumi.Input<inputs.ServiceComputeImageOptimizerDefaultSettings>;
     /**
-     * Used internally by the provider to temporarily indicate if the service is being imported, and is reset to false once the import is finished
+     * Used internally by the provider to temporarily indicate if the service is being imported, and is reset to false once the
+     * import is finished
      */
     imported?: pulumi.Input<boolean>;
     loggingBigqueries?: pulumi.Input<pulumi.Input<inputs.ServiceComputeLoggingBigquery>[]>;
@@ -295,7 +307,9 @@ export interface ServiceComputeState {
      */
     name?: pulumi.Input<string>;
     /**
-     * The `package` block supports uploading or modifying Wasm packages for use in a Fastly Compute service (if omitted, ensure `activate = false` is set on `fastly.ServiceCompute` to avoid service validation errors). See Fastly's documentation on [Compute](https://developer.fastly.com/learning/compute/)
+     * The `package` block supports uploading or modifying Wasm packages for use in a Fastly Compute service (if omitted,
+     * ensure `activate = false` is set on `fastly.ServiceCompute` to avoid service validation errors). See Fastly's
+     * documentation on [Compute](https://developer.fastly.com/learning/compute/)
      */
     package?: pulumi.Input<inputs.ServiceComputePackage>;
     productEnablement?: pulumi.Input<inputs.ServiceComputeProductEnablement>;
@@ -315,7 +329,8 @@ export interface ServiceComputeState {
  */
 export interface ServiceComputeArgs {
     /**
-     * Conditionally prevents the Service from being activated. The apply step will continue to create a new draft version but will not activate it if this is set to `false`. Default `true`
+     * Conditionally prevents the Service from being activated. The apply step will continue to create a new draft version but
+     * will not activate it if this is set to `false`. Default `true`
      */
     activate?: pulumi.Input<boolean>;
     backends?: pulumi.Input<pulumi.Input<inputs.ServiceComputeBackend>[]>;
@@ -326,9 +341,11 @@ export interface ServiceComputeArgs {
      */
     domains: pulumi.Input<pulumi.Input<inputs.ServiceComputeDomain>[]>;
     /**
-     * Services that are active cannot be destroyed. In order to destroy the Service, set `forceDestroy` to `true`. Default `false`
+     * Services that are active cannot be destroyed. In order to destroy the Service, set `forceDestroy` to `true`. Default
+     * `false`
      */
     forceDestroy?: pulumi.Input<boolean>;
+    imageOptimizerDefaultSettings?: pulumi.Input<inputs.ServiceComputeImageOptimizerDefaultSettings>;
     loggingBigqueries?: pulumi.Input<pulumi.Input<inputs.ServiceComputeLoggingBigquery>[]>;
     loggingBlobstorages?: pulumi.Input<pulumi.Input<inputs.ServiceComputeLoggingBlobstorage>[]>;
     loggingCloudfiles?: pulumi.Input<pulumi.Input<inputs.ServiceComputeLoggingCloudfile>[]>;
@@ -360,7 +377,9 @@ export interface ServiceComputeArgs {
      */
     name?: pulumi.Input<string>;
     /**
-     * The `package` block supports uploading or modifying Wasm packages for use in a Fastly Compute service (if omitted, ensure `activate = false` is set on `fastly.ServiceCompute` to avoid service validation errors). See Fastly's documentation on [Compute](https://developer.fastly.com/learning/compute/)
+     * The `package` block supports uploading or modifying Wasm packages for use in a Fastly Compute service (if omitted,
+     * ensure `activate = false` is set on `fastly.ServiceCompute` to avoid service validation errors). See Fastly's
+     * documentation on [Compute](https://developer.fastly.com/learning/compute/)
      */
     package?: pulumi.Input<inputs.ServiceComputePackage>;
     productEnablement?: pulumi.Input<inputs.ServiceComputeProductEnablement>;

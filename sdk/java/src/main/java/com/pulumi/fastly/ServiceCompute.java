@@ -13,6 +13,7 @@ import com.pulumi.fastly.inputs.ServiceComputeState;
 import com.pulumi.fastly.outputs.ServiceComputeBackend;
 import com.pulumi.fastly.outputs.ServiceComputeDictionary;
 import com.pulumi.fastly.outputs.ServiceComputeDomain;
+import com.pulumi.fastly.outputs.ServiceComputeImageOptimizerDefaultSettings;
 import com.pulumi.fastly.outputs.ServiceComputeLoggingBigquery;
 import com.pulumi.fastly.outputs.ServiceComputeLoggingBlobstorage;
 import com.pulumi.fastly.outputs.ServiceComputeLoggingCloudfile;
@@ -70,14 +71,16 @@ import javax.annotation.Nullable;
 @ResourceType(type="fastly:index/serviceCompute:ServiceCompute")
 public class ServiceCompute extends com.pulumi.resources.CustomResource {
     /**
-     * Conditionally prevents the Service from being activated. The apply step will continue to create a new draft version but will not activate it if this is set to `false`. Default `true`
+     * Conditionally prevents the Service from being activated. The apply step will continue to create a new draft version but
+     * will not activate it if this is set to `false`. Default `true`
      * 
      */
     @Export(name="activate", refs={Boolean.class}, tree="[0]")
     private Output</* @Nullable */ Boolean> activate;
 
     /**
-     * @return Conditionally prevents the Service from being activated. The apply step will continue to create a new draft version but will not activate it if this is set to `false`. Default `true`
+     * @return Conditionally prevents the Service from being activated. The apply step will continue to create a new draft version but
+     * will not activate it if this is set to `false`. Default `true`
      * 
      */
     public Output<Optional<Boolean>> activate() {
@@ -144,14 +147,16 @@ public class ServiceCompute extends com.pulumi.resources.CustomResource {
         return this.domains;
     }
     /**
-     * Services that are active cannot be destroyed. In order to destroy the Service, set `force_destroy` to `true`. Default `false`
+     * Services that are active cannot be destroyed. In order to destroy the Service, set `force_destroy` to `true`. Default
+     * `false`
      * 
      */
     @Export(name="forceDestroy", refs={Boolean.class}, tree="[0]")
     private Output</* @Nullable */ Boolean> forceDestroy;
 
     /**
-     * @return Services that are active cannot be destroyed. In order to destroy the Service, set `force_destroy` to `true`. Default `false`
+     * @return Services that are active cannot be destroyed. In order to destroy the Service, set `force_destroy` to `true`. Default
+     * `false`
      * 
      */
     public Output<Optional<Boolean>> forceDestroy() {
@@ -163,15 +168,23 @@ public class ServiceCompute extends com.pulumi.resources.CustomResource {
     public Output<Boolean> forceRefresh() {
         return this.forceRefresh;
     }
+    @Export(name="imageOptimizerDefaultSettings", refs={ServiceComputeImageOptimizerDefaultSettings.class}, tree="[0]")
+    private Output</* @Nullable */ ServiceComputeImageOptimizerDefaultSettings> imageOptimizerDefaultSettings;
+
+    public Output<Optional<ServiceComputeImageOptimizerDefaultSettings>> imageOptimizerDefaultSettings() {
+        return Codegen.optional(this.imageOptimizerDefaultSettings);
+    }
     /**
-     * Used internally by the provider to temporarily indicate if the service is being imported, and is reset to false once the import is finished
+     * Used internally by the provider to temporarily indicate if the service is being imported, and is reset to false once the
+     * import is finished
      * 
      */
     @Export(name="imported", refs={Boolean.class}, tree="[0]")
     private Output<Boolean> imported;
 
     /**
-     * @return Used internally by the provider to temporarily indicate if the service is being imported, and is reset to false once the import is finished
+     * @return Used internally by the provider to temporarily indicate if the service is being imported, and is reset to false once the
+     * import is finished
      * 
      */
     public Output<Boolean> imported() {
@@ -348,14 +361,18 @@ public class ServiceCompute extends com.pulumi.resources.CustomResource {
         return this.name;
     }
     /**
-     * The `package` block supports uploading or modifying Wasm packages for use in a Fastly Compute service (if omitted, ensure `activate = false` is set on `fastly.ServiceCompute` to avoid service validation errors). See Fastly&#39;s documentation on [Compute](https://developer.fastly.com/learning/compute/)
+     * The `package` block supports uploading or modifying Wasm packages for use in a Fastly Compute service (if omitted,
+     * ensure `activate = false` is set on `fastly.ServiceCompute` to avoid service validation errors). See Fastly&#39;s
+     * documentation on [Compute](https://developer.fastly.com/learning/compute/)
      * 
      */
     @Export(name="package", refs={ServiceComputePackage.class}, tree="[0]")
     private Output</* @Nullable */ ServiceComputePackage> package_;
 
     /**
-     * @return The `package` block supports uploading or modifying Wasm packages for use in a Fastly Compute service (if omitted, ensure `activate = false` is set on `fastly.ServiceCompute` to avoid service validation errors). See Fastly&#39;s documentation on [Compute](https://developer.fastly.com/learning/compute/)
+     * @return The `package` block supports uploading or modifying Wasm packages for use in a Fastly Compute service (if omitted,
+     * ensure `activate = false` is set on `fastly.ServiceCompute` to avoid service validation errors). See Fastly&#39;s
+     * documentation on [Compute](https://developer.fastly.com/learning/compute/)
      * 
      */
     public Output<Optional<ServiceComputePackage>> package_() {

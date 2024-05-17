@@ -33,6 +33,7 @@ class ServiceVclArgs:
                  headers: Optional[pulumi.Input[Sequence[pulumi.Input['ServiceVclHeaderArgs']]]] = None,
                  healthchecks: Optional[pulumi.Input[Sequence[pulumi.Input['ServiceVclHealthcheckArgs']]]] = None,
                  http3: Optional[pulumi.Input[bool]] = None,
+                 image_optimizer_default_settings: Optional[pulumi.Input['ServiceVclImageOptimizerDefaultSettingsArgs']] = None,
                  logging_bigqueries: Optional[pulumi.Input[Sequence[pulumi.Input['ServiceVclLoggingBigqueryArgs']]]] = None,
                  logging_blobstorages: Optional[pulumi.Input[Sequence[pulumi.Input['ServiceVclLoggingBlobstorageArgs']]]] = None,
                  logging_cloudfiles: Optional[pulumi.Input[Sequence[pulumi.Input['ServiceVclLoggingCloudfileArgs']]]] = None,
@@ -75,10 +76,12 @@ class ServiceVclArgs:
         """
         The set of arguments for constructing a ServiceVcl resource.
         :param pulumi.Input[Sequence[pulumi.Input['ServiceVclDomainArgs']]] domains: A set of Domain names to serve as entry points for your Service
-        :param pulumi.Input[bool] activate: Conditionally prevents the Service from being activated. The apply step will continue to create a new draft version but will not activate it if this is set to `false`. Default `true`
+        :param pulumi.Input[bool] activate: Conditionally prevents the Service from being activated. The apply step will continue to create a new draft version but
+               will not activate it if this is set to `false`. Default `true`
         :param pulumi.Input[str] default_host: The default hostname
         :param pulumi.Input[int] default_ttl: The default Time-to-live (TTL) for requests
-        :param pulumi.Input[bool] force_destroy: Services that are active cannot be destroyed. In order to destroy the Service, set `force_destroy` to `true`. Default `false`
+        :param pulumi.Input[bool] force_destroy: Services that are active cannot be destroyed. In order to destroy the Service, set `force_destroy` to `true`. Default
+               `false`
         :param pulumi.Input[bool] http3: Enables support for the HTTP/3 (QUIC) protocol
         :param pulumi.Input[str] name: The unique name for the Service to create
         :param pulumi.Input[bool] stale_if_error: Enables serving a stale object if there is an error
@@ -118,6 +121,8 @@ class ServiceVclArgs:
             pulumi.set(__self__, "healthchecks", healthchecks)
         if http3 is not None:
             pulumi.set(__self__, "http3", http3)
+        if image_optimizer_default_settings is not None:
+            pulumi.set(__self__, "image_optimizer_default_settings", image_optimizer_default_settings)
         if logging_bigqueries is not None:
             pulumi.set(__self__, "logging_bigqueries", logging_bigqueries)
         if logging_blobstorages is not None:
@@ -222,7 +227,8 @@ class ServiceVclArgs:
     @pulumi.getter
     def activate(self) -> Optional[pulumi.Input[bool]]:
         """
-        Conditionally prevents the Service from being activated. The apply step will continue to create a new draft version but will not activate it if this is set to `false`. Default `true`
+        Conditionally prevents the Service from being activated. The apply step will continue to create a new draft version but
+        will not activate it if this is set to `false`. Default `true`
         """
         return pulumi.get(self, "activate")
 
@@ -321,7 +327,8 @@ class ServiceVclArgs:
     @pulumi.getter(name="forceDestroy")
     def force_destroy(self) -> Optional[pulumi.Input[bool]]:
         """
-        Services that are active cannot be destroyed. In order to destroy the Service, set `force_destroy` to `true`. Default `false`
+        Services that are active cannot be destroyed. In order to destroy the Service, set `force_destroy` to `true`. Default
+        `false`
         """
         return pulumi.get(self, "force_destroy")
 
@@ -367,6 +374,15 @@ class ServiceVclArgs:
     @http3.setter
     def http3(self, value: Optional[pulumi.Input[bool]]):
         pulumi.set(self, "http3", value)
+
+    @property
+    @pulumi.getter(name="imageOptimizerDefaultSettings")
+    def image_optimizer_default_settings(self) -> Optional[pulumi.Input['ServiceVclImageOptimizerDefaultSettingsArgs']]:
+        return pulumi.get(self, "image_optimizer_default_settings")
+
+    @image_optimizer_default_settings.setter
+    def image_optimizer_default_settings(self, value: Optional[pulumi.Input['ServiceVclImageOptimizerDefaultSettingsArgs']]):
+        pulumi.set(self, "image_optimizer_default_settings", value)
 
     @property
     @pulumi.getter(name="loggingBigqueries")
@@ -755,6 +771,7 @@ class _ServiceVclState:
                  headers: Optional[pulumi.Input[Sequence[pulumi.Input['ServiceVclHeaderArgs']]]] = None,
                  healthchecks: Optional[pulumi.Input[Sequence[pulumi.Input['ServiceVclHealthcheckArgs']]]] = None,
                  http3: Optional[pulumi.Input[bool]] = None,
+                 image_optimizer_default_settings: Optional[pulumi.Input['ServiceVclImageOptimizerDefaultSettingsArgs']] = None,
                  imported: Optional[pulumi.Input[bool]] = None,
                  logging_bigqueries: Optional[pulumi.Input[Sequence[pulumi.Input['ServiceVclLoggingBigqueryArgs']]]] = None,
                  logging_blobstorages: Optional[pulumi.Input[Sequence[pulumi.Input['ServiceVclLoggingBlobstorageArgs']]]] = None,
@@ -797,15 +814,18 @@ class _ServiceVclState:
                  waf: Optional[pulumi.Input['ServiceVclWafArgs']] = None):
         """
         Input properties used for looking up and filtering ServiceVcl resources.
-        :param pulumi.Input[bool] activate: Conditionally prevents the Service from being activated. The apply step will continue to create a new draft version but will not activate it if this is set to `false`. Default `true`
+        :param pulumi.Input[bool] activate: Conditionally prevents the Service from being activated. The apply step will continue to create a new draft version but
+               will not activate it if this is set to `false`. Default `true`
         :param pulumi.Input[int] active_version: The currently active version of your Fastly Service
         :param pulumi.Input[int] cloned_version: The latest cloned version by the provider
         :param pulumi.Input[str] default_host: The default hostname
         :param pulumi.Input[int] default_ttl: The default Time-to-live (TTL) for requests
         :param pulumi.Input[Sequence[pulumi.Input['ServiceVclDomainArgs']]] domains: A set of Domain names to serve as entry points for your Service
-        :param pulumi.Input[bool] force_destroy: Services that are active cannot be destroyed. In order to destroy the Service, set `force_destroy` to `true`. Default `false`
+        :param pulumi.Input[bool] force_destroy: Services that are active cannot be destroyed. In order to destroy the Service, set `force_destroy` to `true`. Default
+               `false`
         :param pulumi.Input[bool] http3: Enables support for the HTTP/3 (QUIC) protocol
-        :param pulumi.Input[bool] imported: Used internally by the provider to temporarily indicate if the service is being imported, and is reset to false once the import is finished
+        :param pulumi.Input[bool] imported: Used internally by the provider to temporarily indicate if the service is being imported, and is reset to false once the
+               import is finished
         :param pulumi.Input[str] name: The unique name for the Service to create
         :param pulumi.Input[bool] stale_if_error: Enables serving a stale object if there is an error
         :param pulumi.Input[int] stale_if_error_ttl: The default time-to-live (TTL) for serving the stale object for the version
@@ -851,6 +871,8 @@ class _ServiceVclState:
             pulumi.set(__self__, "healthchecks", healthchecks)
         if http3 is not None:
             pulumi.set(__self__, "http3", http3)
+        if image_optimizer_default_settings is not None:
+            pulumi.set(__self__, "image_optimizer_default_settings", image_optimizer_default_settings)
         if imported is not None:
             pulumi.set(__self__, "imported", imported)
         if logging_bigqueries is not None:
@@ -945,7 +967,8 @@ class _ServiceVclState:
     @pulumi.getter
     def activate(self) -> Optional[pulumi.Input[bool]]:
         """
-        Conditionally prevents the Service from being activated. The apply step will continue to create a new draft version but will not activate it if this is set to `false`. Default `true`
+        Conditionally prevents the Service from being activated. The apply step will continue to create a new draft version but
+        will not activate it if this is set to `false`. Default `true`
         """
         return pulumi.get(self, "activate")
 
@@ -1080,7 +1103,8 @@ class _ServiceVclState:
     @pulumi.getter(name="forceDestroy")
     def force_destroy(self) -> Optional[pulumi.Input[bool]]:
         """
-        Services that are active cannot be destroyed. In order to destroy the Service, set `force_destroy` to `true`. Default `false`
+        Services that are active cannot be destroyed. In order to destroy the Service, set `force_destroy` to `true`. Default
+        `false`
         """
         return pulumi.get(self, "force_destroy")
 
@@ -1137,10 +1161,20 @@ class _ServiceVclState:
         pulumi.set(self, "http3", value)
 
     @property
+    @pulumi.getter(name="imageOptimizerDefaultSettings")
+    def image_optimizer_default_settings(self) -> Optional[pulumi.Input['ServiceVclImageOptimizerDefaultSettingsArgs']]:
+        return pulumi.get(self, "image_optimizer_default_settings")
+
+    @image_optimizer_default_settings.setter
+    def image_optimizer_default_settings(self, value: Optional[pulumi.Input['ServiceVclImageOptimizerDefaultSettingsArgs']]):
+        pulumi.set(self, "image_optimizer_default_settings", value)
+
+    @property
     @pulumi.getter
     def imported(self) -> Optional[pulumi.Input[bool]]:
         """
-        Used internally by the provider to temporarily indicate if the service is being imported, and is reset to false once the import is finished
+        Used internally by the provider to temporarily indicate if the service is being imported, and is reset to false once the
+        import is finished
         """
         return pulumi.get(self, "imported")
 
@@ -1534,6 +1568,7 @@ class ServiceVcl(pulumi.CustomResource):
                  headers: Optional[pulumi.Input[Sequence[pulumi.Input[pulumi.InputType['ServiceVclHeaderArgs']]]]] = None,
                  healthchecks: Optional[pulumi.Input[Sequence[pulumi.Input[pulumi.InputType['ServiceVclHealthcheckArgs']]]]] = None,
                  http3: Optional[pulumi.Input[bool]] = None,
+                 image_optimizer_default_settings: Optional[pulumi.Input[pulumi.InputType['ServiceVclImageOptimizerDefaultSettingsArgs']]] = None,
                  logging_bigqueries: Optional[pulumi.Input[Sequence[pulumi.Input[pulumi.InputType['ServiceVclLoggingBigqueryArgs']]]]] = None,
                  logging_blobstorages: Optional[pulumi.Input[Sequence[pulumi.Input[pulumi.InputType['ServiceVclLoggingBlobstorageArgs']]]]] = None,
                  logging_cloudfiles: Optional[pulumi.Input[Sequence[pulumi.Input[pulumi.InputType['ServiceVclLoggingCloudfileArgs']]]]] = None,
@@ -1593,11 +1628,13 @@ class ServiceVcl(pulumi.CustomResource):
 
         :param str resource_name: The name of the resource.
         :param pulumi.ResourceOptions opts: Options for the resource.
-        :param pulumi.Input[bool] activate: Conditionally prevents the Service from being activated. The apply step will continue to create a new draft version but will not activate it if this is set to `false`. Default `true`
+        :param pulumi.Input[bool] activate: Conditionally prevents the Service from being activated. The apply step will continue to create a new draft version but
+               will not activate it if this is set to `false`. Default `true`
         :param pulumi.Input[str] default_host: The default hostname
         :param pulumi.Input[int] default_ttl: The default Time-to-live (TTL) for requests
         :param pulumi.Input[Sequence[pulumi.Input[pulumi.InputType['ServiceVclDomainArgs']]]] domains: A set of Domain names to serve as entry points for your Service
-        :param pulumi.Input[bool] force_destroy: Services that are active cannot be destroyed. In order to destroy the Service, set `force_destroy` to `true`. Default `false`
+        :param pulumi.Input[bool] force_destroy: Services that are active cannot be destroyed. In order to destroy the Service, set `force_destroy` to `true`. Default
+               `false`
         :param pulumi.Input[bool] http3: Enables support for the HTTP/3 (QUIC) protocol
         :param pulumi.Input[str] name: The unique name for the Service to create
         :param pulumi.Input[bool] stale_if_error: Enables serving a stale object if there is an error
@@ -1659,6 +1696,7 @@ class ServiceVcl(pulumi.CustomResource):
                  headers: Optional[pulumi.Input[Sequence[pulumi.Input[pulumi.InputType['ServiceVclHeaderArgs']]]]] = None,
                  healthchecks: Optional[pulumi.Input[Sequence[pulumi.Input[pulumi.InputType['ServiceVclHealthcheckArgs']]]]] = None,
                  http3: Optional[pulumi.Input[bool]] = None,
+                 image_optimizer_default_settings: Optional[pulumi.Input[pulumi.InputType['ServiceVclImageOptimizerDefaultSettingsArgs']]] = None,
                  logging_bigqueries: Optional[pulumi.Input[Sequence[pulumi.Input[pulumi.InputType['ServiceVclLoggingBigqueryArgs']]]]] = None,
                  logging_blobstorages: Optional[pulumi.Input[Sequence[pulumi.Input[pulumi.InputType['ServiceVclLoggingBlobstorageArgs']]]]] = None,
                  logging_cloudfiles: Optional[pulumi.Input[Sequence[pulumi.Input[pulumi.InputType['ServiceVclLoggingCloudfileArgs']]]]] = None,
@@ -1726,6 +1764,7 @@ class ServiceVcl(pulumi.CustomResource):
             __props__.__dict__["headers"] = headers
             __props__.__dict__["healthchecks"] = healthchecks
             __props__.__dict__["http3"] = http3
+            __props__.__dict__["image_optimizer_default_settings"] = image_optimizer_default_settings
             __props__.__dict__["logging_bigqueries"] = logging_bigqueries
             __props__.__dict__["logging_blobstorages"] = logging_blobstorages
             __props__.__dict__["logging_cloudfiles"] = logging_cloudfiles
@@ -1799,6 +1838,7 @@ class ServiceVcl(pulumi.CustomResource):
             headers: Optional[pulumi.Input[Sequence[pulumi.Input[pulumi.InputType['ServiceVclHeaderArgs']]]]] = None,
             healthchecks: Optional[pulumi.Input[Sequence[pulumi.Input[pulumi.InputType['ServiceVclHealthcheckArgs']]]]] = None,
             http3: Optional[pulumi.Input[bool]] = None,
+            image_optimizer_default_settings: Optional[pulumi.Input[pulumi.InputType['ServiceVclImageOptimizerDefaultSettingsArgs']]] = None,
             imported: Optional[pulumi.Input[bool]] = None,
             logging_bigqueries: Optional[pulumi.Input[Sequence[pulumi.Input[pulumi.InputType['ServiceVclLoggingBigqueryArgs']]]]] = None,
             logging_blobstorages: Optional[pulumi.Input[Sequence[pulumi.Input[pulumi.InputType['ServiceVclLoggingBlobstorageArgs']]]]] = None,
@@ -1846,15 +1886,18 @@ class ServiceVcl(pulumi.CustomResource):
         :param str resource_name: The unique name of the resulting resource.
         :param pulumi.Input[str] id: The unique provider ID of the resource to lookup.
         :param pulumi.ResourceOptions opts: Options for the resource.
-        :param pulumi.Input[bool] activate: Conditionally prevents the Service from being activated. The apply step will continue to create a new draft version but will not activate it if this is set to `false`. Default `true`
+        :param pulumi.Input[bool] activate: Conditionally prevents the Service from being activated. The apply step will continue to create a new draft version but
+               will not activate it if this is set to `false`. Default `true`
         :param pulumi.Input[int] active_version: The currently active version of your Fastly Service
         :param pulumi.Input[int] cloned_version: The latest cloned version by the provider
         :param pulumi.Input[str] default_host: The default hostname
         :param pulumi.Input[int] default_ttl: The default Time-to-live (TTL) for requests
         :param pulumi.Input[Sequence[pulumi.Input[pulumi.InputType['ServiceVclDomainArgs']]]] domains: A set of Domain names to serve as entry points for your Service
-        :param pulumi.Input[bool] force_destroy: Services that are active cannot be destroyed. In order to destroy the Service, set `force_destroy` to `true`. Default `false`
+        :param pulumi.Input[bool] force_destroy: Services that are active cannot be destroyed. In order to destroy the Service, set `force_destroy` to `true`. Default
+               `false`
         :param pulumi.Input[bool] http3: Enables support for the HTTP/3 (QUIC) protocol
-        :param pulumi.Input[bool] imported: Used internally by the provider to temporarily indicate if the service is being imported, and is reset to false once the import is finished
+        :param pulumi.Input[bool] imported: Used internally by the provider to temporarily indicate if the service is being imported, and is reset to false once the
+               import is finished
         :param pulumi.Input[str] name: The unique name for the Service to create
         :param pulumi.Input[bool] stale_if_error: Enables serving a stale object if there is an error
         :param pulumi.Input[int] stale_if_error_ttl: The default time-to-live (TTL) for serving the stale object for the version
@@ -1884,6 +1927,7 @@ class ServiceVcl(pulumi.CustomResource):
         __props__.__dict__["headers"] = headers
         __props__.__dict__["healthchecks"] = healthchecks
         __props__.__dict__["http3"] = http3
+        __props__.__dict__["image_optimizer_default_settings"] = image_optimizer_default_settings
         __props__.__dict__["imported"] = imported
         __props__.__dict__["logging_bigqueries"] = logging_bigqueries
         __props__.__dict__["logging_blobstorages"] = logging_blobstorages
@@ -1935,7 +1979,8 @@ class ServiceVcl(pulumi.CustomResource):
     @pulumi.getter
     def activate(self) -> pulumi.Output[Optional[bool]]:
         """
-        Conditionally prevents the Service from being activated. The apply step will continue to create a new draft version but will not activate it if this is set to `false`. Default `true`
+        Conditionally prevents the Service from being activated. The apply step will continue to create a new draft version but
+        will not activate it if this is set to `false`. Default `true`
         """
         return pulumi.get(self, "activate")
 
@@ -2018,7 +2063,8 @@ class ServiceVcl(pulumi.CustomResource):
     @pulumi.getter(name="forceDestroy")
     def force_destroy(self) -> pulumi.Output[Optional[bool]]:
         """
-        Services that are active cannot be destroyed. In order to destroy the Service, set `force_destroy` to `true`. Default `false`
+        Services that are active cannot be destroyed. In order to destroy the Service, set `force_destroy` to `true`. Default
+        `false`
         """
         return pulumi.get(self, "force_destroy")
 
@@ -2051,10 +2097,16 @@ class ServiceVcl(pulumi.CustomResource):
         return pulumi.get(self, "http3")
 
     @property
+    @pulumi.getter(name="imageOptimizerDefaultSettings")
+    def image_optimizer_default_settings(self) -> pulumi.Output[Optional['outputs.ServiceVclImageOptimizerDefaultSettings']]:
+        return pulumi.get(self, "image_optimizer_default_settings")
+
+    @property
     @pulumi.getter
     def imported(self) -> pulumi.Output[bool]:
         """
-        Used internally by the provider to temporarily indicate if the service is being imported, and is reset to false once the import is finished
+        Used internally by the provider to temporarily indicate if the service is being imported, and is reset to false once the
+        import is finished
         """
         return pulumi.get(self, "imported")
 

@@ -30,7 +30,8 @@ namespace Pulumi.Fastly
     public partial class ServiceCompute : global::Pulumi.CustomResource
     {
         /// <summary>
-        /// Conditionally prevents the Service from being activated. The apply step will continue to create a new draft version but will not activate it if this is set to `false`. Default `true`
+        /// Conditionally prevents the Service from being activated. The apply step will continue to create a new draft version but
+        /// will not activate it if this is set to `false`. Default `true`
         /// </summary>
         [Output("activate")]
         public Output<bool?> Activate { get; private set; } = null!;
@@ -63,7 +64,8 @@ namespace Pulumi.Fastly
         public Output<ImmutableArray<Outputs.ServiceComputeDomain>> Domains { get; private set; } = null!;
 
         /// <summary>
-        /// Services that are active cannot be destroyed. In order to destroy the Service, set `force_destroy` to `true`. Default `false`
+        /// Services that are active cannot be destroyed. In order to destroy the Service, set `force_destroy` to `true`. Default
+        /// `false`
         /// </summary>
         [Output("forceDestroy")]
         public Output<bool?> ForceDestroy { get; private set; } = null!;
@@ -71,8 +73,12 @@ namespace Pulumi.Fastly
         [Output("forceRefresh")]
         public Output<bool> ForceRefresh { get; private set; } = null!;
 
+        [Output("imageOptimizerDefaultSettings")]
+        public Output<Outputs.ServiceComputeImageOptimizerDefaultSettings?> ImageOptimizerDefaultSettings { get; private set; } = null!;
+
         /// <summary>
-        /// Used internally by the provider to temporarily indicate if the service is being imported, and is reset to false once the import is finished
+        /// Used internally by the provider to temporarily indicate if the service is being imported, and is reset to false once the
+        /// import is finished
         /// </summary>
         [Output("imported")]
         public Output<bool> Imported { get; private set; } = null!;
@@ -162,7 +168,9 @@ namespace Pulumi.Fastly
         public Output<string> Name { get; private set; } = null!;
 
         /// <summary>
-        /// The `package` block supports uploading or modifying Wasm packages for use in a Fastly Compute service (if omitted, ensure `activate = false` is set on `fastly.ServiceCompute` to avoid service validation errors). See Fastly's documentation on [Compute](https://developer.fastly.com/learning/compute/)
+        /// The `package` block supports uploading or modifying Wasm packages for use in a Fastly Compute service (if omitted,
+        /// ensure `activate = false` is set on `fastly.ServiceCompute` to avoid service validation errors). See Fastly's
+        /// documentation on [Compute](https://developer.fastly.com/learning/compute/)
         /// </summary>
         [Output("package")]
         public Output<Outputs.ServiceComputePackage?> Package { get; private set; } = null!;
@@ -232,7 +240,8 @@ namespace Pulumi.Fastly
     public sealed class ServiceComputeArgs : global::Pulumi.ResourceArgs
     {
         /// <summary>
-        /// Conditionally prevents the Service from being activated. The apply step will continue to create a new draft version but will not activate it if this is set to `false`. Default `true`
+        /// Conditionally prevents the Service from being activated. The apply step will continue to create a new draft version but
+        /// will not activate it if this is set to `false`. Default `true`
         /// </summary>
         [Input("activate")]
         public Input<bool>? Activate { get; set; }
@@ -269,10 +278,14 @@ namespace Pulumi.Fastly
         }
 
         /// <summary>
-        /// Services that are active cannot be destroyed. In order to destroy the Service, set `force_destroy` to `true`. Default `false`
+        /// Services that are active cannot be destroyed. In order to destroy the Service, set `force_destroy` to `true`. Default
+        /// `false`
         /// </summary>
         [Input("forceDestroy")]
         public Input<bool>? ForceDestroy { get; set; }
+
+        [Input("imageOptimizerDefaultSettings")]
+        public Input<Inputs.ServiceComputeImageOptimizerDefaultSettingsArgs>? ImageOptimizerDefaultSettings { get; set; }
 
         [Input("loggingBigqueries")]
         private InputList<Inputs.ServiceComputeLoggingBigqueryArgs>? _loggingBigqueries;
@@ -489,7 +502,9 @@ namespace Pulumi.Fastly
         public Input<string>? Name { get; set; }
 
         /// <summary>
-        /// The `package` block supports uploading or modifying Wasm packages for use in a Fastly Compute service (if omitted, ensure `activate = false` is set on `fastly.ServiceCompute` to avoid service validation errors). See Fastly's documentation on [Compute](https://developer.fastly.com/learning/compute/)
+        /// The `package` block supports uploading or modifying Wasm packages for use in a Fastly Compute service (if omitted,
+        /// ensure `activate = false` is set on `fastly.ServiceCompute` to avoid service validation errors). See Fastly's
+        /// documentation on [Compute](https://developer.fastly.com/learning/compute/)
         /// </summary>
         [Input("package")]
         public Input<Inputs.ServiceComputePackageArgs>? Package { get; set; }
@@ -527,7 +542,8 @@ namespace Pulumi.Fastly
     public sealed class ServiceComputeState : global::Pulumi.ResourceArgs
     {
         /// <summary>
-        /// Conditionally prevents the Service from being activated. The apply step will continue to create a new draft version but will not activate it if this is set to `false`. Default `true`
+        /// Conditionally prevents the Service from being activated. The apply step will continue to create a new draft version but
+        /// will not activate it if this is set to `false`. Default `true`
         /// </summary>
         [Input("activate")]
         public Input<bool>? Activate { get; set; }
@@ -576,7 +592,8 @@ namespace Pulumi.Fastly
         }
 
         /// <summary>
-        /// Services that are active cannot be destroyed. In order to destroy the Service, set `force_destroy` to `true`. Default `false`
+        /// Services that are active cannot be destroyed. In order to destroy the Service, set `force_destroy` to `true`. Default
+        /// `false`
         /// </summary>
         [Input("forceDestroy")]
         public Input<bool>? ForceDestroy { get; set; }
@@ -584,8 +601,12 @@ namespace Pulumi.Fastly
         [Input("forceRefresh")]
         public Input<bool>? ForceRefresh { get; set; }
 
+        [Input("imageOptimizerDefaultSettings")]
+        public Input<Inputs.ServiceComputeImageOptimizerDefaultSettingsGetArgs>? ImageOptimizerDefaultSettings { get; set; }
+
         /// <summary>
-        /// Used internally by the provider to temporarily indicate if the service is being imported, and is reset to false once the import is finished
+        /// Used internally by the provider to temporarily indicate if the service is being imported, and is reset to false once the
+        /// import is finished
         /// </summary>
         [Input("imported")]
         public Input<bool>? Imported { get; set; }
@@ -805,7 +826,9 @@ namespace Pulumi.Fastly
         public Input<string>? Name { get; set; }
 
         /// <summary>
-        /// The `package` block supports uploading or modifying Wasm packages for use in a Fastly Compute service (if omitted, ensure `activate = false` is set on `fastly.ServiceCompute` to avoid service validation errors). See Fastly's documentation on [Compute](https://developer.fastly.com/learning/compute/)
+        /// The `package` block supports uploading or modifying Wasm packages for use in a Fastly Compute service (if omitted,
+        /// ensure `activate = false` is set on `fastly.ServiceCompute` to avoid service validation errors). See Fastly's
+        /// documentation on [Compute](https://developer.fastly.com/learning/compute/)
         /// </summary>
         [Input("package")]
         public Input<Inputs.ServiceComputePackageGetArgs>? Package { get; set; }

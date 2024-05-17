@@ -17,6 +17,7 @@ import com.pulumi.fastly.inputs.ServiceVclDynamicsnippetArgs;
 import com.pulumi.fastly.inputs.ServiceVclGzipArgs;
 import com.pulumi.fastly.inputs.ServiceVclHeaderArgs;
 import com.pulumi.fastly.inputs.ServiceVclHealthcheckArgs;
+import com.pulumi.fastly.inputs.ServiceVclImageOptimizerDefaultSettingsArgs;
 import com.pulumi.fastly.inputs.ServiceVclLoggingBigqueryArgs;
 import com.pulumi.fastly.inputs.ServiceVclLoggingBlobstorageArgs;
 import com.pulumi.fastly.inputs.ServiceVclLoggingCloudfileArgs;
@@ -72,14 +73,16 @@ public final class ServiceVclArgs extends com.pulumi.resources.ResourceArgs {
     }
 
     /**
-     * Conditionally prevents the Service from being activated. The apply step will continue to create a new draft version but will not activate it if this is set to `false`. Default `true`
+     * Conditionally prevents the Service from being activated. The apply step will continue to create a new draft version but
+     * will not activate it if this is set to `false`. Default `true`
      * 
      */
     @Import(name="activate")
     private @Nullable Output<Boolean> activate;
 
     /**
-     * @return Conditionally prevents the Service from being activated. The apply step will continue to create a new draft version but will not activate it if this is set to `false`. Default `true`
+     * @return Conditionally prevents the Service from being activated. The apply step will continue to create a new draft version but
+     * will not activate it if this is set to `false`. Default `true`
      * 
      */
     public Optional<Output<Boolean>> activate() {
@@ -181,14 +184,16 @@ public final class ServiceVclArgs extends com.pulumi.resources.ResourceArgs {
     }
 
     /**
-     * Services that are active cannot be destroyed. In order to destroy the Service, set `force_destroy` to `true`. Default `false`
+     * Services that are active cannot be destroyed. In order to destroy the Service, set `force_destroy` to `true`. Default
+     * `false`
      * 
      */
     @Import(name="forceDestroy")
     private @Nullable Output<Boolean> forceDestroy;
 
     /**
-     * @return Services that are active cannot be destroyed. In order to destroy the Service, set `force_destroy` to `true`. Default `false`
+     * @return Services that are active cannot be destroyed. In order to destroy the Service, set `force_destroy` to `true`. Default
+     * `false`
      * 
      */
     public Optional<Output<Boolean>> forceDestroy() {
@@ -229,6 +234,13 @@ public final class ServiceVclArgs extends com.pulumi.resources.ResourceArgs {
      */
     public Optional<Output<Boolean>> http3() {
         return Optional.ofNullable(this.http3);
+    }
+
+    @Import(name="imageOptimizerDefaultSettings")
+    private @Nullable Output<ServiceVclImageOptimizerDefaultSettingsArgs> imageOptimizerDefaultSettings;
+
+    public Optional<Output<ServiceVclImageOptimizerDefaultSettingsArgs>> imageOptimizerDefaultSettings() {
+        return Optional.ofNullable(this.imageOptimizerDefaultSettings);
     }
 
     @Import(name="loggingBigqueries")
@@ -556,6 +568,7 @@ public final class ServiceVclArgs extends com.pulumi.resources.ResourceArgs {
         this.headers = $.headers;
         this.healthchecks = $.healthchecks;
         this.http3 = $.http3;
+        this.imageOptimizerDefaultSettings = $.imageOptimizerDefaultSettings;
         this.loggingBigqueries = $.loggingBigqueries;
         this.loggingBlobstorages = $.loggingBlobstorages;
         this.loggingCloudfiles = $.loggingCloudfiles;
@@ -629,7 +642,8 @@ public final class ServiceVclArgs extends com.pulumi.resources.ResourceArgs {
         }
 
         /**
-         * @param activate Conditionally prevents the Service from being activated. The apply step will continue to create a new draft version but will not activate it if this is set to `false`. Default `true`
+         * @param activate Conditionally prevents the Service from being activated. The apply step will continue to create a new draft version but
+         * will not activate it if this is set to `false`. Default `true`
          * 
          * @return builder
          * 
@@ -640,7 +654,8 @@ public final class ServiceVclArgs extends com.pulumi.resources.ResourceArgs {
         }
 
         /**
-         * @param activate Conditionally prevents the Service from being activated. The apply step will continue to create a new draft version but will not activate it if this is set to `false`. Default `true`
+         * @param activate Conditionally prevents the Service from being activated. The apply step will continue to create a new draft version but
+         * will not activate it if this is set to `false`. Default `true`
          * 
          * @return builder
          * 
@@ -810,7 +825,8 @@ public final class ServiceVclArgs extends com.pulumi.resources.ResourceArgs {
         }
 
         /**
-         * @param forceDestroy Services that are active cannot be destroyed. In order to destroy the Service, set `force_destroy` to `true`. Default `false`
+         * @param forceDestroy Services that are active cannot be destroyed. In order to destroy the Service, set `force_destroy` to `true`. Default
+         * `false`
          * 
          * @return builder
          * 
@@ -821,7 +837,8 @@ public final class ServiceVclArgs extends com.pulumi.resources.ResourceArgs {
         }
 
         /**
-         * @param forceDestroy Services that are active cannot be destroyed. In order to destroy the Service, set `force_destroy` to `true`. Default `false`
+         * @param forceDestroy Services that are active cannot be destroyed. In order to destroy the Service, set `force_destroy` to `true`. Default
+         * `false`
          * 
          * @return builder
          * 
@@ -888,6 +905,15 @@ public final class ServiceVclArgs extends com.pulumi.resources.ResourceArgs {
          */
         public Builder http3(Boolean http3) {
             return http3(Output.of(http3));
+        }
+
+        public Builder imageOptimizerDefaultSettings(@Nullable Output<ServiceVclImageOptimizerDefaultSettingsArgs> imageOptimizerDefaultSettings) {
+            $.imageOptimizerDefaultSettings = imageOptimizerDefaultSettings;
+            return this;
+        }
+
+        public Builder imageOptimizerDefaultSettings(ServiceVclImageOptimizerDefaultSettingsArgs imageOptimizerDefaultSettings) {
+            return imageOptimizerDefaultSettings(Output.of(imageOptimizerDefaultSettings));
         }
 
         public Builder loggingBigqueries(@Nullable Output<List<ServiceVclLoggingBigqueryArgs>> loggingBigqueries) {

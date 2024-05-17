@@ -31,7 +31,8 @@ type ServiceVcl struct {
 	pulumi.CustomResourceState
 
 	Acls ServiceVclAclArrayOutput `pulumi:"acls"`
-	// Conditionally prevents the Service from being activated. The apply step will continue to create a new draft version but will not activate it if this is set to `false`. Default `true`
+	// Conditionally prevents the Service from being activated. The apply step will continue to create a new draft version but
+	// will not activate it if this is set to `false`. Default `true`
 	Activate pulumi.BoolPtrOutput `pulumi:"activate"`
 	// The currently active version of your Fastly Service
 	ActiveVersion pulumi.IntOutput                  `pulumi:"activeVersion"`
@@ -50,15 +51,18 @@ type ServiceVcl struct {
 	// A set of Domain names to serve as entry points for your Service
 	Domains         ServiceVclDomainArrayOutput         `pulumi:"domains"`
 	Dynamicsnippets ServiceVclDynamicsnippetArrayOutput `pulumi:"dynamicsnippets"`
-	// Services that are active cannot be destroyed. In order to destroy the Service, set `forceDestroy` to `true`. Default `false`
+	// Services that are active cannot be destroyed. In order to destroy the Service, set `forceDestroy` to `true`. Default
+	// `false`
 	ForceDestroy pulumi.BoolPtrOutput             `pulumi:"forceDestroy"`
 	ForceRefresh pulumi.BoolOutput                `pulumi:"forceRefresh"`
 	Gzips        ServiceVclGzipArrayOutput        `pulumi:"gzips"`
 	Headers      ServiceVclHeaderArrayOutput      `pulumi:"headers"`
 	Healthchecks ServiceVclHealthcheckArrayOutput `pulumi:"healthchecks"`
 	// Enables support for the HTTP/3 (QUIC) protocol
-	Http3 pulumi.BoolPtrOutput `pulumi:"http3"`
-	// Used internally by the provider to temporarily indicate if the service is being imported, and is reset to false once the import is finished
+	Http3                         pulumi.BoolPtrOutput                             `pulumi:"http3"`
+	ImageOptimizerDefaultSettings ServiceVclImageOptimizerDefaultSettingsPtrOutput `pulumi:"imageOptimizerDefaultSettings"`
+	// Used internally by the provider to temporarily indicate if the service is being imported, and is reset to false once the
+	// import is finished
 	Imported               pulumi.BoolOutput                         `pulumi:"imported"`
 	LoggingBigqueries      ServiceVclLoggingBigqueryArrayOutput      `pulumi:"loggingBigqueries"`
 	LoggingBlobstorages    ServiceVclLoggingBlobstorageArrayOutput   `pulumi:"loggingBlobstorages"`
@@ -139,7 +143,8 @@ func GetServiceVcl(ctx *pulumi.Context,
 // Input properties used for looking up and filtering ServiceVcl resources.
 type serviceVclState struct {
 	Acls []ServiceVclAcl `pulumi:"acls"`
-	// Conditionally prevents the Service from being activated. The apply step will continue to create a new draft version but will not activate it if this is set to `false`. Default `true`
+	// Conditionally prevents the Service from being activated. The apply step will continue to create a new draft version but
+	// will not activate it if this is set to `false`. Default `true`
 	Activate *bool `pulumi:"activate"`
 	// The currently active version of your Fastly Service
 	ActiveVersion *int                     `pulumi:"activeVersion"`
@@ -158,15 +163,18 @@ type serviceVclState struct {
 	// A set of Domain names to serve as entry points for your Service
 	Domains         []ServiceVclDomain         `pulumi:"domains"`
 	Dynamicsnippets []ServiceVclDynamicsnippet `pulumi:"dynamicsnippets"`
-	// Services that are active cannot be destroyed. In order to destroy the Service, set `forceDestroy` to `true`. Default `false`
+	// Services that are active cannot be destroyed. In order to destroy the Service, set `forceDestroy` to `true`. Default
+	// `false`
 	ForceDestroy *bool                   `pulumi:"forceDestroy"`
 	ForceRefresh *bool                   `pulumi:"forceRefresh"`
 	Gzips        []ServiceVclGzip        `pulumi:"gzips"`
 	Headers      []ServiceVclHeader      `pulumi:"headers"`
 	Healthchecks []ServiceVclHealthcheck `pulumi:"healthchecks"`
 	// Enables support for the HTTP/3 (QUIC) protocol
-	Http3 *bool `pulumi:"http3"`
-	// Used internally by the provider to temporarily indicate if the service is being imported, and is reset to false once the import is finished
+	Http3                         *bool                                    `pulumi:"http3"`
+	ImageOptimizerDefaultSettings *ServiceVclImageOptimizerDefaultSettings `pulumi:"imageOptimizerDefaultSettings"`
+	// Used internally by the provider to temporarily indicate if the service is being imported, and is reset to false once the
+	// import is finished
 	Imported               *bool                            `pulumi:"imported"`
 	LoggingBigqueries      []ServiceVclLoggingBigquery      `pulumi:"loggingBigqueries"`
 	LoggingBlobstorages    []ServiceVclLoggingBlobstorage   `pulumi:"loggingBlobstorages"`
@@ -215,7 +223,8 @@ type serviceVclState struct {
 
 type ServiceVclState struct {
 	Acls ServiceVclAclArrayInput
-	// Conditionally prevents the Service from being activated. The apply step will continue to create a new draft version but will not activate it if this is set to `false`. Default `true`
+	// Conditionally prevents the Service from being activated. The apply step will continue to create a new draft version but
+	// will not activate it if this is set to `false`. Default `true`
 	Activate pulumi.BoolPtrInput
 	// The currently active version of your Fastly Service
 	ActiveVersion pulumi.IntPtrInput
@@ -234,15 +243,18 @@ type ServiceVclState struct {
 	// A set of Domain names to serve as entry points for your Service
 	Domains         ServiceVclDomainArrayInput
 	Dynamicsnippets ServiceVclDynamicsnippetArrayInput
-	// Services that are active cannot be destroyed. In order to destroy the Service, set `forceDestroy` to `true`. Default `false`
+	// Services that are active cannot be destroyed. In order to destroy the Service, set `forceDestroy` to `true`. Default
+	// `false`
 	ForceDestroy pulumi.BoolPtrInput
 	ForceRefresh pulumi.BoolPtrInput
 	Gzips        ServiceVclGzipArrayInput
 	Headers      ServiceVclHeaderArrayInput
 	Healthchecks ServiceVclHealthcheckArrayInput
 	// Enables support for the HTTP/3 (QUIC) protocol
-	Http3 pulumi.BoolPtrInput
-	// Used internally by the provider to temporarily indicate if the service is being imported, and is reset to false once the import is finished
+	Http3                         pulumi.BoolPtrInput
+	ImageOptimizerDefaultSettings ServiceVclImageOptimizerDefaultSettingsPtrInput
+	// Used internally by the provider to temporarily indicate if the service is being imported, and is reset to false once the
+	// import is finished
 	Imported               pulumi.BoolPtrInput
 	LoggingBigqueries      ServiceVclLoggingBigqueryArrayInput
 	LoggingBlobstorages    ServiceVclLoggingBlobstorageArrayInput
@@ -295,7 +307,8 @@ func (ServiceVclState) ElementType() reflect.Type {
 
 type serviceVclArgs struct {
 	Acls []ServiceVclAcl `pulumi:"acls"`
-	// Conditionally prevents the Service from being activated. The apply step will continue to create a new draft version but will not activate it if this is set to `false`. Default `true`
+	// Conditionally prevents the Service from being activated. The apply step will continue to create a new draft version but
+	// will not activate it if this is set to `false`. Default `true`
 	Activate      *bool                    `pulumi:"activate"`
 	Backends      []ServiceVclBackend      `pulumi:"backends"`
 	CacheSettings []ServiceVclCacheSetting `pulumi:"cacheSettings"`
@@ -310,40 +323,42 @@ type serviceVclArgs struct {
 	// A set of Domain names to serve as entry points for your Service
 	Domains         []ServiceVclDomain         `pulumi:"domains"`
 	Dynamicsnippets []ServiceVclDynamicsnippet `pulumi:"dynamicsnippets"`
-	// Services that are active cannot be destroyed. In order to destroy the Service, set `forceDestroy` to `true`. Default `false`
+	// Services that are active cannot be destroyed. In order to destroy the Service, set `forceDestroy` to `true`. Default
+	// `false`
 	ForceDestroy *bool                   `pulumi:"forceDestroy"`
 	Gzips        []ServiceVclGzip        `pulumi:"gzips"`
 	Headers      []ServiceVclHeader      `pulumi:"headers"`
 	Healthchecks []ServiceVclHealthcheck `pulumi:"healthchecks"`
 	// Enables support for the HTTP/3 (QUIC) protocol
-	Http3                  *bool                            `pulumi:"http3"`
-	LoggingBigqueries      []ServiceVclLoggingBigquery      `pulumi:"loggingBigqueries"`
-	LoggingBlobstorages    []ServiceVclLoggingBlobstorage   `pulumi:"loggingBlobstorages"`
-	LoggingCloudfiles      []ServiceVclLoggingCloudfile     `pulumi:"loggingCloudfiles"`
-	LoggingDatadogs        []ServiceVclLoggingDatadog       `pulumi:"loggingDatadogs"`
-	LoggingDigitaloceans   []ServiceVclLoggingDigitalocean  `pulumi:"loggingDigitaloceans"`
-	LoggingElasticsearches []ServiceVclLoggingElasticsearch `pulumi:"loggingElasticsearches"`
-	LoggingFtps            []ServiceVclLoggingFtp           `pulumi:"loggingFtps"`
-	LoggingGcs             []ServiceVclLoggingGc            `pulumi:"loggingGcs"`
-	LoggingGooglepubsubs   []ServiceVclLoggingGooglepubsub  `pulumi:"loggingGooglepubsubs"`
-	LoggingHerokus         []ServiceVclLoggingHerokus       `pulumi:"loggingHerokus"`
-	LoggingHoneycombs      []ServiceVclLoggingHoneycomb     `pulumi:"loggingHoneycombs"`
-	LoggingHttps           []ServiceVclLoggingHttp          `pulumi:"loggingHttps"`
-	LoggingKafkas          []ServiceVclLoggingKafka         `pulumi:"loggingKafkas"`
-	LoggingKineses         []ServiceVclLoggingKinese        `pulumi:"loggingKineses"`
-	LoggingLogentries      []ServiceVclLoggingLogentry      `pulumi:"loggingLogentries"`
-	LoggingLogglies        []ServiceVclLoggingLoggly        `pulumi:"loggingLogglies"`
-	LoggingLogshuttles     []ServiceVclLoggingLogshuttle    `pulumi:"loggingLogshuttles"`
-	LoggingNewrelicotlps   []ServiceVclLoggingNewrelicotlp  `pulumi:"loggingNewrelicotlps"`
-	LoggingNewrelics       []ServiceVclLoggingNewrelic      `pulumi:"loggingNewrelics"`
-	LoggingOpenstacks      []ServiceVclLoggingOpenstack     `pulumi:"loggingOpenstacks"`
-	LoggingPapertrails     []ServiceVclLoggingPapertrail    `pulumi:"loggingPapertrails"`
-	LoggingS3s             []ServiceVclLoggingS3            `pulumi:"loggingS3s"`
-	LoggingScalyrs         []ServiceVclLoggingScalyr        `pulumi:"loggingScalyrs"`
-	LoggingSftps           []ServiceVclLoggingSftp          `pulumi:"loggingSftps"`
-	LoggingSplunks         []ServiceVclLoggingSplunk        `pulumi:"loggingSplunks"`
-	LoggingSumologics      []ServiceVclLoggingSumologic     `pulumi:"loggingSumologics"`
-	LoggingSyslogs         []ServiceVclLoggingSyslog        `pulumi:"loggingSyslogs"`
+	Http3                         *bool                                    `pulumi:"http3"`
+	ImageOptimizerDefaultSettings *ServiceVclImageOptimizerDefaultSettings `pulumi:"imageOptimizerDefaultSettings"`
+	LoggingBigqueries             []ServiceVclLoggingBigquery              `pulumi:"loggingBigqueries"`
+	LoggingBlobstorages           []ServiceVclLoggingBlobstorage           `pulumi:"loggingBlobstorages"`
+	LoggingCloudfiles             []ServiceVclLoggingCloudfile             `pulumi:"loggingCloudfiles"`
+	LoggingDatadogs               []ServiceVclLoggingDatadog               `pulumi:"loggingDatadogs"`
+	LoggingDigitaloceans          []ServiceVclLoggingDigitalocean          `pulumi:"loggingDigitaloceans"`
+	LoggingElasticsearches        []ServiceVclLoggingElasticsearch         `pulumi:"loggingElasticsearches"`
+	LoggingFtps                   []ServiceVclLoggingFtp                   `pulumi:"loggingFtps"`
+	LoggingGcs                    []ServiceVclLoggingGc                    `pulumi:"loggingGcs"`
+	LoggingGooglepubsubs          []ServiceVclLoggingGooglepubsub          `pulumi:"loggingGooglepubsubs"`
+	LoggingHerokus                []ServiceVclLoggingHerokus               `pulumi:"loggingHerokus"`
+	LoggingHoneycombs             []ServiceVclLoggingHoneycomb             `pulumi:"loggingHoneycombs"`
+	LoggingHttps                  []ServiceVclLoggingHttp                  `pulumi:"loggingHttps"`
+	LoggingKafkas                 []ServiceVclLoggingKafka                 `pulumi:"loggingKafkas"`
+	LoggingKineses                []ServiceVclLoggingKinese                `pulumi:"loggingKineses"`
+	LoggingLogentries             []ServiceVclLoggingLogentry              `pulumi:"loggingLogentries"`
+	LoggingLogglies               []ServiceVclLoggingLoggly                `pulumi:"loggingLogglies"`
+	LoggingLogshuttles            []ServiceVclLoggingLogshuttle            `pulumi:"loggingLogshuttles"`
+	LoggingNewrelicotlps          []ServiceVclLoggingNewrelicotlp          `pulumi:"loggingNewrelicotlps"`
+	LoggingNewrelics              []ServiceVclLoggingNewrelic              `pulumi:"loggingNewrelics"`
+	LoggingOpenstacks             []ServiceVclLoggingOpenstack             `pulumi:"loggingOpenstacks"`
+	LoggingPapertrails            []ServiceVclLoggingPapertrail            `pulumi:"loggingPapertrails"`
+	LoggingS3s                    []ServiceVclLoggingS3                    `pulumi:"loggingS3s"`
+	LoggingScalyrs                []ServiceVclLoggingScalyr                `pulumi:"loggingScalyrs"`
+	LoggingSftps                  []ServiceVclLoggingSftp                  `pulumi:"loggingSftps"`
+	LoggingSplunks                []ServiceVclLoggingSplunk                `pulumi:"loggingSplunks"`
+	LoggingSumologics             []ServiceVclLoggingSumologic             `pulumi:"loggingSumologics"`
+	LoggingSyslogs                []ServiceVclLoggingSyslog                `pulumi:"loggingSyslogs"`
 	// The unique name for the Service to create
 	Name              *string                      `pulumi:"name"`
 	ProductEnablement *ServiceVclProductEnablement `pulumi:"productEnablement"`
@@ -365,7 +380,8 @@ type serviceVclArgs struct {
 // The set of arguments for constructing a ServiceVcl resource.
 type ServiceVclArgs struct {
 	Acls ServiceVclAclArrayInput
-	// Conditionally prevents the Service from being activated. The apply step will continue to create a new draft version but will not activate it if this is set to `false`. Default `true`
+	// Conditionally prevents the Service from being activated. The apply step will continue to create a new draft version but
+	// will not activate it if this is set to `false`. Default `true`
 	Activate      pulumi.BoolPtrInput
 	Backends      ServiceVclBackendArrayInput
 	CacheSettings ServiceVclCacheSettingArrayInput
@@ -380,40 +396,42 @@ type ServiceVclArgs struct {
 	// A set of Domain names to serve as entry points for your Service
 	Domains         ServiceVclDomainArrayInput
 	Dynamicsnippets ServiceVclDynamicsnippetArrayInput
-	// Services that are active cannot be destroyed. In order to destroy the Service, set `forceDestroy` to `true`. Default `false`
+	// Services that are active cannot be destroyed. In order to destroy the Service, set `forceDestroy` to `true`. Default
+	// `false`
 	ForceDestroy pulumi.BoolPtrInput
 	Gzips        ServiceVclGzipArrayInput
 	Headers      ServiceVclHeaderArrayInput
 	Healthchecks ServiceVclHealthcheckArrayInput
 	// Enables support for the HTTP/3 (QUIC) protocol
-	Http3                  pulumi.BoolPtrInput
-	LoggingBigqueries      ServiceVclLoggingBigqueryArrayInput
-	LoggingBlobstorages    ServiceVclLoggingBlobstorageArrayInput
-	LoggingCloudfiles      ServiceVclLoggingCloudfileArrayInput
-	LoggingDatadogs        ServiceVclLoggingDatadogArrayInput
-	LoggingDigitaloceans   ServiceVclLoggingDigitaloceanArrayInput
-	LoggingElasticsearches ServiceVclLoggingElasticsearchArrayInput
-	LoggingFtps            ServiceVclLoggingFtpArrayInput
-	LoggingGcs             ServiceVclLoggingGcArrayInput
-	LoggingGooglepubsubs   ServiceVclLoggingGooglepubsubArrayInput
-	LoggingHerokus         ServiceVclLoggingHerokusArrayInput
-	LoggingHoneycombs      ServiceVclLoggingHoneycombArrayInput
-	LoggingHttps           ServiceVclLoggingHttpArrayInput
-	LoggingKafkas          ServiceVclLoggingKafkaArrayInput
-	LoggingKineses         ServiceVclLoggingKineseArrayInput
-	LoggingLogentries      ServiceVclLoggingLogentryArrayInput
-	LoggingLogglies        ServiceVclLoggingLogglyArrayInput
-	LoggingLogshuttles     ServiceVclLoggingLogshuttleArrayInput
-	LoggingNewrelicotlps   ServiceVclLoggingNewrelicotlpArrayInput
-	LoggingNewrelics       ServiceVclLoggingNewrelicArrayInput
-	LoggingOpenstacks      ServiceVclLoggingOpenstackArrayInput
-	LoggingPapertrails     ServiceVclLoggingPapertrailArrayInput
-	LoggingS3s             ServiceVclLoggingS3ArrayInput
-	LoggingScalyrs         ServiceVclLoggingScalyrArrayInput
-	LoggingSftps           ServiceVclLoggingSftpArrayInput
-	LoggingSplunks         ServiceVclLoggingSplunkArrayInput
-	LoggingSumologics      ServiceVclLoggingSumologicArrayInput
-	LoggingSyslogs         ServiceVclLoggingSyslogArrayInput
+	Http3                         pulumi.BoolPtrInput
+	ImageOptimizerDefaultSettings ServiceVclImageOptimizerDefaultSettingsPtrInput
+	LoggingBigqueries             ServiceVclLoggingBigqueryArrayInput
+	LoggingBlobstorages           ServiceVclLoggingBlobstorageArrayInput
+	LoggingCloudfiles             ServiceVclLoggingCloudfileArrayInput
+	LoggingDatadogs               ServiceVclLoggingDatadogArrayInput
+	LoggingDigitaloceans          ServiceVclLoggingDigitaloceanArrayInput
+	LoggingElasticsearches        ServiceVclLoggingElasticsearchArrayInput
+	LoggingFtps                   ServiceVclLoggingFtpArrayInput
+	LoggingGcs                    ServiceVclLoggingGcArrayInput
+	LoggingGooglepubsubs          ServiceVclLoggingGooglepubsubArrayInput
+	LoggingHerokus                ServiceVclLoggingHerokusArrayInput
+	LoggingHoneycombs             ServiceVclLoggingHoneycombArrayInput
+	LoggingHttps                  ServiceVclLoggingHttpArrayInput
+	LoggingKafkas                 ServiceVclLoggingKafkaArrayInput
+	LoggingKineses                ServiceVclLoggingKineseArrayInput
+	LoggingLogentries             ServiceVclLoggingLogentryArrayInput
+	LoggingLogglies               ServiceVclLoggingLogglyArrayInput
+	LoggingLogshuttles            ServiceVclLoggingLogshuttleArrayInput
+	LoggingNewrelicotlps          ServiceVclLoggingNewrelicotlpArrayInput
+	LoggingNewrelics              ServiceVclLoggingNewrelicArrayInput
+	LoggingOpenstacks             ServiceVclLoggingOpenstackArrayInput
+	LoggingPapertrails            ServiceVclLoggingPapertrailArrayInput
+	LoggingS3s                    ServiceVclLoggingS3ArrayInput
+	LoggingScalyrs                ServiceVclLoggingScalyrArrayInput
+	LoggingSftps                  ServiceVclLoggingSftpArrayInput
+	LoggingSplunks                ServiceVclLoggingSplunkArrayInput
+	LoggingSumologics             ServiceVclLoggingSumologicArrayInput
+	LoggingSyslogs                ServiceVclLoggingSyslogArrayInput
 	// The unique name for the Service to create
 	Name              pulumi.StringPtrInput
 	ProductEnablement ServiceVclProductEnablementPtrInput
@@ -523,7 +541,8 @@ func (o ServiceVclOutput) Acls() ServiceVclAclArrayOutput {
 	return o.ApplyT(func(v *ServiceVcl) ServiceVclAclArrayOutput { return v.Acls }).(ServiceVclAclArrayOutput)
 }
 
-// Conditionally prevents the Service from being activated. The apply step will continue to create a new draft version but will not activate it if this is set to `false`. Default `true`
+// Conditionally prevents the Service from being activated. The apply step will continue to create a new draft version but
+// will not activate it if this is set to `false`. Default `true`
 func (o ServiceVclOutput) Activate() pulumi.BoolPtrOutput {
 	return o.ApplyT(func(v *ServiceVcl) pulumi.BoolPtrOutput { return v.Activate }).(pulumi.BoolPtrOutput)
 }
@@ -581,7 +600,8 @@ func (o ServiceVclOutput) Dynamicsnippets() ServiceVclDynamicsnippetArrayOutput 
 	return o.ApplyT(func(v *ServiceVcl) ServiceVclDynamicsnippetArrayOutput { return v.Dynamicsnippets }).(ServiceVclDynamicsnippetArrayOutput)
 }
 
-// Services that are active cannot be destroyed. In order to destroy the Service, set `forceDestroy` to `true`. Default `false`
+// Services that are active cannot be destroyed. In order to destroy the Service, set `forceDestroy` to `true`. Default
+// `false`
 func (o ServiceVclOutput) ForceDestroy() pulumi.BoolPtrOutput {
 	return o.ApplyT(func(v *ServiceVcl) pulumi.BoolPtrOutput { return v.ForceDestroy }).(pulumi.BoolPtrOutput)
 }
@@ -607,7 +627,14 @@ func (o ServiceVclOutput) Http3() pulumi.BoolPtrOutput {
 	return o.ApplyT(func(v *ServiceVcl) pulumi.BoolPtrOutput { return v.Http3 }).(pulumi.BoolPtrOutput)
 }
 
-// Used internally by the provider to temporarily indicate if the service is being imported, and is reset to false once the import is finished
+func (o ServiceVclOutput) ImageOptimizerDefaultSettings() ServiceVclImageOptimizerDefaultSettingsPtrOutput {
+	return o.ApplyT(func(v *ServiceVcl) ServiceVclImageOptimizerDefaultSettingsPtrOutput {
+		return v.ImageOptimizerDefaultSettings
+	}).(ServiceVclImageOptimizerDefaultSettingsPtrOutput)
+}
+
+// Used internally by the provider to temporarily indicate if the service is being imported, and is reset to false once the
+// import is finished
 func (o ServiceVclOutput) Imported() pulumi.BoolOutput {
 	return o.ApplyT(func(v *ServiceVcl) pulumi.BoolOutput { return v.Imported }).(pulumi.BoolOutput)
 }

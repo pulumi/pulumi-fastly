@@ -24,7 +24,7 @@ public final class ServiceVclLoggingS3 {
      */
     private String bucketName;
     /**
-     * @return The codec used for compression of your logs. Valid values are zstd, snappy, and gzip. If the specified codec is &#34;gzip&#34;, gzip*level will default to 3. To specify a different level, leave compression*codec blank and explicitly set the level using gzip*level. Specifying both compression*codec and gzip_level in the same API request will result in an error.
+     * @return The codec used for compression of your logs. Valid values are zstd, snappy, and gzip. If the specified codec is &#34;gzip&#34;, gzip_level will default to 3. To specify a different level, leave compression_codec blank and explicitly set the level using gzip_level. Specifying both compression_codec and gzip_level in the same API request will result in an error.
      * 
      */
     private @Nullable String compressionCodec;
@@ -114,7 +114,7 @@ public final class ServiceVclLoggingS3 {
      */
     private @Nullable String serverSideEncryption;
     /**
-     * @return Optional server-side KMS Key Id. Must be set if server*side*encryption is set to `aws:kms`
+     * @return Optional server-side KMS Key Id. Must be set if server_side_encryption is set to `aws:kms`
      * 
      */
     private @Nullable String serverSideEncryptionKmsKeyId;
@@ -140,7 +140,7 @@ public final class ServiceVclLoggingS3 {
         return this.bucketName;
     }
     /**
-     * @return The codec used for compression of your logs. Valid values are zstd, snappy, and gzip. If the specified codec is &#34;gzip&#34;, gzip*level will default to 3. To specify a different level, leave compression*codec blank and explicitly set the level using gzip*level. Specifying both compression*codec and gzip_level in the same API request will result in an error.
+     * @return The codec used for compression of your logs. Valid values are zstd, snappy, and gzip. If the specified codec is &#34;gzip&#34;, gzip_level will default to 3. To specify a different level, leave compression_codec blank and explicitly set the level using gzip_level. Specifying both compression_codec and gzip_level in the same API request will result in an error.
      * 
      */
     public Optional<String> compressionCodec() {
@@ -266,7 +266,7 @@ public final class ServiceVclLoggingS3 {
         return Optional.ofNullable(this.serverSideEncryption);
     }
     /**
-     * @return Optional server-side KMS Key Id. Must be set if server*side*encryption is set to `aws:kms`
+     * @return Optional server-side KMS Key Id. Must be set if server_side_encryption is set to `aws:kms`
      * 
      */
     public Optional<String> serverSideEncryptionKmsKeyId() {

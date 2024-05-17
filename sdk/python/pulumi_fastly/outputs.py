@@ -17,6 +17,7 @@ __all__ = [
     'ServiceComputeBackend',
     'ServiceComputeDictionary',
     'ServiceComputeDomain',
+    'ServiceComputeImageOptimizerDefaultSettings',
     'ServiceComputeLoggingBigquery',
     'ServiceComputeLoggingBlobstorage',
     'ServiceComputeLoggingCloudfile',
@@ -57,6 +58,7 @@ __all__ = [
     'ServiceVclGzip',
     'ServiceVclHeader',
     'ServiceVclHealthcheck',
+    'ServiceVclImageOptimizerDefaultSettings',
     'ServiceVclLoggingBigquery',
     'ServiceVclLoggingBlobstorage',
     'ServiceVclLoggingCloudfile',
@@ -719,6 +721,150 @@ class ServiceComputeDomain(dict):
 
 
 @pulumi.output_type
+class ServiceComputeImageOptimizerDefaultSettings(dict):
+    @staticmethod
+    def __key_warning(key: str):
+        suggest = None
+        if key == "allowVideo":
+            suggest = "allow_video"
+        elif key == "jpegQuality":
+            suggest = "jpeg_quality"
+        elif key == "jpegType":
+            suggest = "jpeg_type"
+        elif key == "resizeFilter":
+            suggest = "resize_filter"
+        elif key == "webpQuality":
+            suggest = "webp_quality"
+
+        if suggest:
+            pulumi.log.warn(f"Key '{key}' not found in ServiceComputeImageOptimizerDefaultSettings. Access the value via the '{suggest}' property getter instead.")
+
+    def __getitem__(self, key: str) -> Any:
+        ServiceComputeImageOptimizerDefaultSettings.__key_warning(key)
+        return super().__getitem__(key)
+
+    def get(self, key: str, default = None) -> Any:
+        ServiceComputeImageOptimizerDefaultSettings.__key_warning(key)
+        return super().get(key, default)
+
+    def __init__(__self__, *,
+                 allow_video: Optional[bool] = None,
+                 jpeg_quality: Optional[int] = None,
+                 jpeg_type: Optional[str] = None,
+                 name: Optional[str] = None,
+                 resize_filter: Optional[str] = None,
+                 upscale: Optional[bool] = None,
+                 webp: Optional[bool] = None,
+                 webp_quality: Optional[int] = None):
+        """
+        :param bool allow_video: Enables GIF to MP4 transformations on this service.
+        :param int jpeg_quality: The default quality to use with JPEG output. This can be overridden with the "quality" parameter on specific image optimizer requests.
+        :param str jpeg_type: The default type of JPEG output to use. This can be overridden with "format=bjpeg" and "format=pjpeg" on specific image optimizer requests. Valid values are `auto`, `baseline` and `progressive`.
+               	- auto: Match the input JPEG type, or baseline if transforming from a non-JPEG input.
+               	- baseline: Output baseline JPEG images
+               	- progressive: Output progressive JPEG images
+        :param str name: Used by the provider to identify modified settings. Changing this value will force the entire block to be deleted, then recreated.
+        :param str resize_filter: The type of filter to use while resizing an image. Valid values are `lanczos3`, `lanczos2`, `bicubic`, `bilinear` and `nearest`.
+               	- lanczos3: A Lanczos filter with a kernel size of 3. Lanczos filters can detect edges and linear features within an image, providing the best possible reconstruction.
+               	- lanczos2: A Lanczos filter with a kernel size of 2.
+               	- bicubic: A filter using an average of a 4x4 environment of pixels, weighing the innermost pixels higher.
+               	- bilinear: A filter using an average of a 2x2 environment of pixels.
+               	- nearest: A filter using the value of nearby translated pixel values. Preserves hard edges.
+        :param bool upscale: Whether or not we should allow output images to render at sizes larger than input.
+        :param bool webp: Controls whether or not to default to WebP output when the client supports it. This is equivalent to adding "auto=webp" to all image optimizer requests.
+        :param int webp_quality: The default quality to use with WebP output. This can be overridden with the second option in the "quality" URL parameter on specific image optimizer requests.
+        """
+        if allow_video is not None:
+            pulumi.set(__self__, "allow_video", allow_video)
+        if jpeg_quality is not None:
+            pulumi.set(__self__, "jpeg_quality", jpeg_quality)
+        if jpeg_type is not None:
+            pulumi.set(__self__, "jpeg_type", jpeg_type)
+        if name is not None:
+            pulumi.set(__self__, "name", name)
+        if resize_filter is not None:
+            pulumi.set(__self__, "resize_filter", resize_filter)
+        if upscale is not None:
+            pulumi.set(__self__, "upscale", upscale)
+        if webp is not None:
+            pulumi.set(__self__, "webp", webp)
+        if webp_quality is not None:
+            pulumi.set(__self__, "webp_quality", webp_quality)
+
+    @property
+    @pulumi.getter(name="allowVideo")
+    def allow_video(self) -> Optional[bool]:
+        """
+        Enables GIF to MP4 transformations on this service.
+        """
+        return pulumi.get(self, "allow_video")
+
+    @property
+    @pulumi.getter(name="jpegQuality")
+    def jpeg_quality(self) -> Optional[int]:
+        """
+        The default quality to use with JPEG output. This can be overridden with the "quality" parameter on specific image optimizer requests.
+        """
+        return pulumi.get(self, "jpeg_quality")
+
+    @property
+    @pulumi.getter(name="jpegType")
+    def jpeg_type(self) -> Optional[str]:
+        """
+        The default type of JPEG output to use. This can be overridden with "format=bjpeg" and "format=pjpeg" on specific image optimizer requests. Valid values are `auto`, `baseline` and `progressive`.
+        	- auto: Match the input JPEG type, or baseline if transforming from a non-JPEG input.
+        	- baseline: Output baseline JPEG images
+        	- progressive: Output progressive JPEG images
+        """
+        return pulumi.get(self, "jpeg_type")
+
+    @property
+    @pulumi.getter
+    def name(self) -> Optional[str]:
+        """
+        Used by the provider to identify modified settings. Changing this value will force the entire block to be deleted, then recreated.
+        """
+        return pulumi.get(self, "name")
+
+    @property
+    @pulumi.getter(name="resizeFilter")
+    def resize_filter(self) -> Optional[str]:
+        """
+        The type of filter to use while resizing an image. Valid values are `lanczos3`, `lanczos2`, `bicubic`, `bilinear` and `nearest`.
+        	- lanczos3: A Lanczos filter with a kernel size of 3. Lanczos filters can detect edges and linear features within an image, providing the best possible reconstruction.
+        	- lanczos2: A Lanczos filter with a kernel size of 2.
+        	- bicubic: A filter using an average of a 4x4 environment of pixels, weighing the innermost pixels higher.
+        	- bilinear: A filter using an average of a 2x2 environment of pixels.
+        	- nearest: A filter using the value of nearby translated pixel values. Preserves hard edges.
+        """
+        return pulumi.get(self, "resize_filter")
+
+    @property
+    @pulumi.getter
+    def upscale(self) -> Optional[bool]:
+        """
+        Whether or not we should allow output images to render at sizes larger than input.
+        """
+        return pulumi.get(self, "upscale")
+
+    @property
+    @pulumi.getter
+    def webp(self) -> Optional[bool]:
+        """
+        Controls whether or not to default to WebP output when the client supports it. This is equivalent to adding "auto=webp" to all image optimizer requests.
+        """
+        return pulumi.get(self, "webp")
+
+    @property
+    @pulumi.getter(name="webpQuality")
+    def webp_quality(self) -> Optional[int]:
+        """
+        The default quality to use with WebP output. This can be overridden with the second option in the "quality" URL parameter on specific image optimizer requests.
+        """
+        return pulumi.get(self, "webp_quality")
+
+
+@pulumi.output_type
 class ServiceComputeLoggingBigquery(dict):
     @staticmethod
     def __key_warning(key: str):
@@ -887,7 +1033,7 @@ class ServiceComputeLoggingBlobstorage(dict):
         :param str container: The name of the Azure Blob Storage container in which to store logs
         :param str name: A unique name to identify the Azure Blob Storage endpoint. It is important to note that changing this attribute will delete and recreate the resource
         :param str sas_token: The Azure shared access signature providing write access to the blob service objects. Be sure to update your token before it expires or the logging functionality will not work
-        :param str compression_codec: The codec used for compression of your logs. Valid values are zstd, snappy, and gzip. If the specified codec is "gzip", gzip*level will default to 3. To specify a different level, leave compression*codec blank and explicitly set the level using gzip*level. Specifying both compression*codec and gzip_level in the same API request will result in an error.
+        :param str compression_codec: The codec used for compression of your logs. Valid values are zstd, snappy, and gzip. If the specified codec is "gzip", gzip_level will default to 3. To specify a different level, leave compression_codec blank and explicitly set the level using gzip_level. Specifying both compression_codec and gzip_level in the same API request will result in an error.
         :param int file_max_bytes: Maximum size of an uploaded log file, if non-zero.
         :param int gzip_level: Level of Gzip compression from `0-9`. `0` means no compression. `1` is the fastest and the least compressed version, `9` is the slowest and the most compressed version. Default `0`
         :param str message_type: How the message should be formatted. Can be either `classic`, `loggly`, `logplex` or `blank`. Default is `classic`
@@ -953,7 +1099,7 @@ class ServiceComputeLoggingBlobstorage(dict):
     @pulumi.getter(name="compressionCodec")
     def compression_codec(self) -> Optional[str]:
         """
-        The codec used for compression of your logs. Valid values are zstd, snappy, and gzip. If the specified codec is "gzip", gzip*level will default to 3. To specify a different level, leave compression*codec blank and explicitly set the level using gzip*level. Specifying both compression*codec and gzip_level in the same API request will result in an error.
+        The codec used for compression of your logs. Valid values are zstd, snappy, and gzip. If the specified codec is "gzip", gzip_level will default to 3. To specify a different level, leave compression_codec blank and explicitly set the level using gzip_level. Specifying both compression_codec and gzip_level in the same API request will result in an error.
         """
         return pulumi.get(self, "compression_codec")
 
@@ -1063,7 +1209,7 @@ class ServiceComputeLoggingCloudfile(dict):
         :param str bucket_name: The name of your Cloud Files container
         :param str name: The unique name of the Rackspace Cloud Files logging endpoint. It is important to note that changing this attribute will delete and recreate the resource
         :param str user: The username for your Cloud Files account
-        :param str compression_codec: The codec used for compression of your logs. Valid values are zstd, snappy, and gzip. If the specified codec is "gzip", gzip*level will default to 3. To specify a different level, leave compression*codec blank and explicitly set the level using gzip*level. Specifying both compression*codec and gzip_level in the same API request will result in an error.
+        :param str compression_codec: The codec used for compression of your logs. Valid values are zstd, snappy, and gzip. If the specified codec is "gzip", gzip_level will default to 3. To specify a different level, leave compression_codec blank and explicitly set the level using gzip_level. Specifying both compression_codec and gzip_level in the same API request will result in an error.
         :param int gzip_level: Level of Gzip compression from `0-9`. `0` means no compression. `1` is the fastest and the least compressed version, `9` is the slowest and the most compressed version. Default `0`
         :param str message_type: How the message should be formatted. Can be either `classic`, `loggly`, `logplex` or `blank`. Default is `classic`
         :param str path: The path to upload logs to
@@ -1129,7 +1275,7 @@ class ServiceComputeLoggingCloudfile(dict):
     @pulumi.getter(name="compressionCodec")
     def compression_codec(self) -> Optional[str]:
         """
-        The codec used for compression of your logs. Valid values are zstd, snappy, and gzip. If the specified codec is "gzip", gzip*level will default to 3. To specify a different level, leave compression*codec blank and explicitly set the level using gzip*level. Specifying both compression*codec and gzip_level in the same API request will result in an error.
+        The codec used for compression of your logs. Valid values are zstd, snappy, and gzip. If the specified codec is "gzip", gzip_level will default to 3. To specify a different level, leave compression_codec blank and explicitly set the level using gzip_level. Specifying both compression_codec and gzip_level in the same API request will result in an error.
         """
         return pulumi.get(self, "compression_codec")
 
@@ -1282,7 +1428,7 @@ class ServiceComputeLoggingDigitalocean(dict):
         :param str bucket_name: The name of the DigitalOcean Space
         :param str name: The unique name of the DigitalOcean Spaces logging endpoint. It is important to note that changing this attribute will delete and recreate the resource
         :param str secret_key: Your DigitalOcean Spaces account secret key
-        :param str compression_codec: The codec used for compression of your logs. Valid values are zstd, snappy, and gzip. If the specified codec is "gzip", gzip*level will default to 3. To specify a different level, leave compression*codec blank and explicitly set the level using gzip*level. Specifying both compression*codec and gzip_level in the same API request will result in an error.
+        :param str compression_codec: The codec used for compression of your logs. Valid values are zstd, snappy, and gzip. If the specified codec is "gzip", gzip_level will default to 3. To specify a different level, leave compression_codec blank and explicitly set the level using gzip_level. Specifying both compression_codec and gzip_level in the same API request will result in an error.
         :param str domain: The domain of the DigitalOcean Spaces endpoint (default `nyc3.digitaloceanspaces.com`)
         :param int gzip_level: Level of Gzip compression from `0-9`. `0` means no compression. `1` is the fastest and the least compressed version, `9` is the slowest and the most compressed version. Default `0`
         :param str message_type: How the message should be formatted. Can be either `classic`, `loggly`, `logplex` or `blank`. Default is `classic`
@@ -1348,7 +1494,7 @@ class ServiceComputeLoggingDigitalocean(dict):
     @pulumi.getter(name="compressionCodec")
     def compression_codec(self) -> Optional[str]:
         """
-        The codec used for compression of your logs. Valid values are zstd, snappy, and gzip. If the specified codec is "gzip", gzip*level will default to 3. To specify a different level, leave compression*codec blank and explicitly set the level using gzip*level. Specifying both compression*codec and gzip_level in the same API request will result in an error.
+        The codec used for compression of your logs. Valid values are zstd, snappy, and gzip. If the specified codec is "gzip", gzip_level will default to 3. To specify a different level, leave compression_codec blank and explicitly set the level using gzip_level. Specifying both compression_codec and gzip_level in the same API request will result in an error.
         """
         return pulumi.get(self, "compression_codec")
 
@@ -1630,7 +1776,7 @@ class ServiceComputeLoggingFtp(dict):
         :param str password: The password for the server (for anonymous use an email address)
         :param str path: The path to upload log files to. If the path ends in `/` then it is treated as a directory
         :param str user: The username for the server (can be `anonymous`)
-        :param str compression_codec: The codec used for compression of your logs. Valid values are zstd, snappy, and gzip. If the specified codec is "gzip", gzip*level will default to 3. To specify a different level, leave compression*codec blank and explicitly set the level using gzip*level. Specifying both compression*codec and gzip_level in the same API request will result in an error.
+        :param str compression_codec: The codec used for compression of your logs. Valid values are zstd, snappy, and gzip. If the specified codec is "gzip", gzip_level will default to 3. To specify a different level, leave compression_codec blank and explicitly set the level using gzip_level. Specifying both compression_codec and gzip_level in the same API request will result in an error.
         :param int gzip_level: Level of Gzip compression from `0-9`. `0` means no compression. `1` is the fastest and the least compressed version, `9` is the slowest and the most compressed version. Default `0`
         :param str message_type: How the message should be formatted. Can be either `classic`, `loggly`, `logplex` or `blank`. Default is `classic`
         :param int period: How frequently the logs should be transferred, in seconds (Default `3600`)
@@ -1702,7 +1848,7 @@ class ServiceComputeLoggingFtp(dict):
     @pulumi.getter(name="compressionCodec")
     def compression_codec(self) -> Optional[str]:
         """
-        The codec used for compression of your logs. Valid values are zstd, snappy, and gzip. If the specified codec is "gzip", gzip*level will default to 3. To specify a different level, leave compression*codec blank and explicitly set the level using gzip*level. Specifying both compression*codec and gzip_level in the same API request will result in an error.
+        The codec used for compression of your logs. Valid values are zstd, snappy, and gzip. If the specified codec is "gzip", gzip_level will default to 3. To specify a different level, leave compression_codec blank and explicitly set the level using gzip_level. Specifying both compression_codec and gzip_level in the same API request will result in an error.
         """
         return pulumi.get(self, "compression_codec")
 
@@ -1805,7 +1951,7 @@ class ServiceComputeLoggingGc(dict):
         :param str bucket_name: The name of the bucket in which to store the logs
         :param str name: A unique name to identify this GCS endpoint. It is important to note that changing this attribute will delete and recreate the resource
         :param str account_name: The google account name used to obtain temporary credentials (default none). You may optionally provide this via an environment variable, `FASTLY_GCS_ACCOUNT_NAME`.
-        :param str compression_codec: The codec used for compression of your logs. Valid values are zstd, snappy, and gzip. If the specified codec is "gzip", gzip*level will default to 3. To specify a different level, leave compression*codec blank and explicitly set the level using gzip*level. Specifying both compression*codec and gzip_level in the same API request will result in an error.
+        :param str compression_codec: The codec used for compression of your logs. Valid values are zstd, snappy, and gzip. If the specified codec is "gzip", gzip_level will default to 3. To specify a different level, leave compression_codec blank and explicitly set the level using gzip_level. Specifying both compression_codec and gzip_level in the same API request will result in an error.
         :param int gzip_level: Level of Gzip compression from `0-9`. `0` means no compression. `1` is the fastest and the least compressed version, `9` is the slowest and the most compressed version. Default `0`
         :param str message_type: How the message should be formatted. Can be either `classic`, `loggly`, `logplex` or `blank`. Default is `classic`
         :param str path: Path to store the files. Must end with a trailing slash. If this field is left empty, the files will be saved in the bucket's root path
@@ -1866,7 +2012,7 @@ class ServiceComputeLoggingGc(dict):
     @pulumi.getter(name="compressionCodec")
     def compression_codec(self) -> Optional[str]:
         """
-        The codec used for compression of your logs. Valid values are zstd, snappy, and gzip. If the specified codec is "gzip", gzip*level will default to 3. To specify a different level, leave compression*codec blank and explicitly set the level using gzip*level. Specifying both compression*codec and gzip_level in the same API request will result in an error.
+        The codec used for compression of your logs. Valid values are zstd, snappy, and gzip. If the specified codec is "gzip", gzip_level will default to 3. To specify a different level, leave compression_codec blank and explicitly set the level using gzip_level. Specifying both compression_codec and gzip_level in the same API request will result in an error.
         """
         return pulumi.get(self, "compression_codec")
 
@@ -2867,7 +3013,7 @@ class ServiceComputeLoggingOpenstack(dict):
         :param str name: The unique name of the OpenStack logging endpoint. It is important to note that changing this attribute will delete and recreate the resource
         :param str url: Your OpenStack auth url
         :param str user: The username for your OpenStack account
-        :param str compression_codec: The codec used for compression of your logs. Valid values are zstd, snappy, and gzip. If the specified codec is "gzip", gzip*level will default to 3. To specify a different level, leave compression*codec blank and explicitly set the level using gzip*level. Specifying both compression*codec and gzip_level in the same API request will result in an error.
+        :param str compression_codec: The codec used for compression of your logs. Valid values are zstd, snappy, and gzip. If the specified codec is "gzip", gzip_level will default to 3. To specify a different level, leave compression_codec blank and explicitly set the level using gzip_level. Specifying both compression_codec and gzip_level in the same API request will result in an error.
         :param int gzip_level: Level of Gzip compression from `0-9`. `0` means no compression. `1` is the fastest and the least compressed version, `9` is the slowest and the most compressed version. Default `0`
         :param str message_type: How the message should be formatted. Can be either `classic`, `loggly`, `logplex` or `blank`. Default is `classic`
         :param str path: Path to store the files. Must end with a trailing slash. If this field is left empty, the files will be saved in the bucket's root path
@@ -2939,7 +3085,7 @@ class ServiceComputeLoggingOpenstack(dict):
     @pulumi.getter(name="compressionCodec")
     def compression_codec(self) -> Optional[str]:
         """
-        The codec used for compression of your logs. Valid values are zstd, snappy, and gzip. If the specified codec is "gzip", gzip*level will default to 3. To specify a different level, leave compression*codec blank and explicitly set the level using gzip*level. Specifying both compression*codec and gzip_level in the same API request will result in an error.
+        The codec used for compression of your logs. Valid values are zstd, snappy, and gzip. If the specified codec is "gzip", gzip_level will default to 3. To specify a different level, leave compression_codec blank and explicitly set the level using gzip_level. Specifying both compression_codec and gzip_level in the same API request will result in an error.
         """
         return pulumi.get(self, "compression_codec")
 
@@ -3096,7 +3242,7 @@ class ServiceComputeLoggingS3(dict):
         :param str bucket_name: The name of the bucket in which to store the logs
         :param str name: The unique name of the S3 logging endpoint. It is important to note that changing this attribute will delete and recreate the resource
         :param str acl: The AWS [Canned ACL](https://docs.aws.amazon.com/AmazonS3/latest/userguide/acl-overview.html#canned-acl) to use for objects uploaded to the S3 bucket. Options are: `private`, `public-read`, `public-read-write`, `aws-exec-read`, `authenticated-read`, `bucket-owner-read`, `bucket-owner-full-control`
-        :param str compression_codec: The codec used for compression of your logs. Valid values are zstd, snappy, and gzip. If the specified codec is "gzip", gzip*level will default to 3. To specify a different level, leave compression*codec blank and explicitly set the level using gzip*level. Specifying both compression*codec and gzip_level in the same API request will result in an error.
+        :param str compression_codec: The codec used for compression of your logs. Valid values are zstd, snappy, and gzip. If the specified codec is "gzip", gzip_level will default to 3. To specify a different level, leave compression_codec blank and explicitly set the level using gzip_level. Specifying both compression_codec and gzip_level in the same API request will result in an error.
         :param str domain: If you created the S3 bucket outside of `us-east-1`, then specify the corresponding bucket endpoint. Example: `s3-us-west-2.amazonaws.com`
         :param int file_max_bytes: Maximum size of an uploaded log file, if non-zero.
         :param int gzip_level: Level of Gzip compression from `0-9`. `0` means no compression. `1` is the fastest and the least compressed version, `9` is the slowest and the most compressed version. Default `0`
@@ -3109,7 +3255,7 @@ class ServiceComputeLoggingS3(dict):
         :param str s3_iam_role: The Amazon Resource Name (ARN) for the IAM role granting Fastly access to S3. Not required if `access_key` and `secret_key` are provided. You can provide this value via an environment variable, `FASTLY_S3_IAM_ROLE`
         :param str s3_secret_key: AWS Secret Key of an account with the required permissions to post logs. It is **strongly** recommended you create a separate IAM user with permissions to only operate on this Bucket. This secret will be not be encrypted. Not required if `iam_role` is provided. You can provide this secret via an environment variable, `FASTLY_S3_SECRET_KEY`
         :param str server_side_encryption: Specify what type of server side encryption should be used. Can be either `AES256` or `aws:kms`
-        :param str server_side_encryption_kms_key_id: Optional server-side KMS Key Id. Must be set if server*side*encryption is set to `aws:kms`
+        :param str server_side_encryption_kms_key_id: Optional server-side KMS Key Id. Must be set if server_side_encryption is set to `aws:kms`
         :param str timestamp_format: The `strftime` specified timestamp formatting (default `%Y-%m-%dT%H:%M:%S.000`)
         """
         pulumi.set(__self__, "bucket_name", bucket_name)
@@ -3175,7 +3321,7 @@ class ServiceComputeLoggingS3(dict):
     @pulumi.getter(name="compressionCodec")
     def compression_codec(self) -> Optional[str]:
         """
-        The codec used for compression of your logs. Valid values are zstd, snappy, and gzip. If the specified codec is "gzip", gzip*level will default to 3. To specify a different level, leave compression*codec blank and explicitly set the level using gzip*level. Specifying both compression*codec and gzip_level in the same API request will result in an error.
+        The codec used for compression of your logs. Valid values are zstd, snappy, and gzip. If the specified codec is "gzip", gzip_level will default to 3. To specify a different level, leave compression_codec blank and explicitly set the level using gzip_level. Specifying both compression_codec and gzip_level in the same API request will result in an error.
         """
         return pulumi.get(self, "compression_codec")
 
@@ -3279,7 +3425,7 @@ class ServiceComputeLoggingS3(dict):
     @pulumi.getter(name="serverSideEncryptionKmsKeyId")
     def server_side_encryption_kms_key_id(self) -> Optional[str]:
         """
-        Optional server-side KMS Key Id. Must be set if server*side*encryption is set to `aws:kms`
+        Optional server-side KMS Key Id. Must be set if server_side_encryption is set to `aws:kms`
         """
         return pulumi.get(self, "server_side_encryption_kms_key_id")
 
@@ -3414,7 +3560,7 @@ class ServiceComputeLoggingSftp(dict):
         :param str path: The path to upload log files to. If the path ends in `/` then it is treated as a directory
         :param str ssh_known_hosts: A list of host keys for all hosts we can connect to over SFTP
         :param str user: The username for the server
-        :param str compression_codec: The codec used for compression of your logs. Valid values are zstd, snappy, and gzip. If the specified codec is "gzip", gzip*level will default to 3. To specify a different level, leave compression*codec blank and explicitly set the level using gzip*level. Specifying both compression*codec and gzip_level in the same API request will result in an error.
+        :param str compression_codec: The codec used for compression of your logs. Valid values are zstd, snappy, and gzip. If the specified codec is "gzip", gzip_level will default to 3. To specify a different level, leave compression_codec blank and explicitly set the level using gzip_level. Specifying both compression_codec and gzip_level in the same API request will result in an error.
         :param int gzip_level: Level of Gzip compression from `0-9`. `0` means no compression. `1` is the fastest and the least compressed version, `9` is the slowest and the most compressed version. Default `0`
         :param str message_type: How the message should be formatted. Can be either `classic`, `loggly`, `logplex` or `blank`. Default is `classic`
         :param str password: The password for the server. If both `password` and `secret_key` are passed, `secret_key` will be preferred
@@ -3492,7 +3638,7 @@ class ServiceComputeLoggingSftp(dict):
     @pulumi.getter(name="compressionCodec")
     def compression_codec(self) -> Optional[str]:
         """
-        The codec used for compression of your logs. Valid values are zstd, snappy, and gzip. If the specified codec is "gzip", gzip*level will default to 3. To specify a different level, leave compression*codec blank and explicitly set the level using gzip*level. Specifying both compression*codec and gzip_level in the same API request will result in an error.
+        The codec used for compression of your logs. Valid values are zstd, snappy, and gzip. If the specified codec is "gzip", gzip_level will default to 3. To specify a different level, leave compression_codec blank and explicitly set the level using gzip_level. Specifying both compression_codec and gzip_level in the same API request will result in an error.
         """
         return pulumi.get(self, "compression_codec")
 
@@ -3922,7 +4068,7 @@ class ServiceComputePackage(dict):
         """
         :param str content: The contents of the Wasm deployment package as a base64 encoded string (e.g. could be provided using an input variable or via external data source output variable). Conflicts with `filename`. Exactly one of these two arguments must be specified
         :param str filename: The path to the Wasm deployment package within your local filesystem. Conflicts with `content`. Exactly one of these two arguments must be specified
-        :param str source_code_hash: Used to trigger updates. Must be set to a SHA512 hash of all files (in sorted order) within the package. The usual way to set this is using the fastly*package*hash data source.
+        :param str source_code_hash: Used to trigger updates. Must be set to a SHA512 hash of all files (in sorted order) within the package. The usual way to set this is using the get_package_hash data source.
         """
         if content is not None:
             pulumi.set(__self__, "content", content)
@@ -3951,7 +4097,7 @@ class ServiceComputePackage(dict):
     @pulumi.getter(name="sourceCodeHash")
     def source_code_hash(self) -> Optional[str]:
         """
-        Used to trigger updates. Must be set to a SHA512 hash of all files (in sorted order) within the package. The usual way to set this is using the fastly*package*hash data source.
+        Used to trigger updates. Must be set to a SHA512 hash of all files (in sorted order) within the package. The usual way to set this is using the get_package_hash data source.
         """
         return pulumi.get(self, "source_code_hash")
 
@@ -5314,6 +5460,150 @@ class ServiceVclHealthcheck(dict):
 
 
 @pulumi.output_type
+class ServiceVclImageOptimizerDefaultSettings(dict):
+    @staticmethod
+    def __key_warning(key: str):
+        suggest = None
+        if key == "allowVideo":
+            suggest = "allow_video"
+        elif key == "jpegQuality":
+            suggest = "jpeg_quality"
+        elif key == "jpegType":
+            suggest = "jpeg_type"
+        elif key == "resizeFilter":
+            suggest = "resize_filter"
+        elif key == "webpQuality":
+            suggest = "webp_quality"
+
+        if suggest:
+            pulumi.log.warn(f"Key '{key}' not found in ServiceVclImageOptimizerDefaultSettings. Access the value via the '{suggest}' property getter instead.")
+
+    def __getitem__(self, key: str) -> Any:
+        ServiceVclImageOptimizerDefaultSettings.__key_warning(key)
+        return super().__getitem__(key)
+
+    def get(self, key: str, default = None) -> Any:
+        ServiceVclImageOptimizerDefaultSettings.__key_warning(key)
+        return super().get(key, default)
+
+    def __init__(__self__, *,
+                 allow_video: Optional[bool] = None,
+                 jpeg_quality: Optional[int] = None,
+                 jpeg_type: Optional[str] = None,
+                 name: Optional[str] = None,
+                 resize_filter: Optional[str] = None,
+                 upscale: Optional[bool] = None,
+                 webp: Optional[bool] = None,
+                 webp_quality: Optional[int] = None):
+        """
+        :param bool allow_video: Enables GIF to MP4 transformations on this service.
+        :param int jpeg_quality: The default quality to use with JPEG output. This can be overridden with the "quality" parameter on specific image optimizer requests.
+        :param str jpeg_type: The default type of JPEG output to use. This can be overridden with "format=bjpeg" and "format=pjpeg" on specific image optimizer requests. Valid values are `auto`, `baseline` and `progressive`.
+               	- auto: Match the input JPEG type, or baseline if transforming from a non-JPEG input.
+               	- baseline: Output baseline JPEG images
+               	- progressive: Output progressive JPEG images
+        :param str name: Used by the provider to identify modified settings. Changing this value will force the entire block to be deleted, then recreated.
+        :param str resize_filter: The type of filter to use while resizing an image. Valid values are `lanczos3`, `lanczos2`, `bicubic`, `bilinear` and `nearest`.
+               	- lanczos3: A Lanczos filter with a kernel size of 3. Lanczos filters can detect edges and linear features within an image, providing the best possible reconstruction.
+               	- lanczos2: A Lanczos filter with a kernel size of 2.
+               	- bicubic: A filter using an average of a 4x4 environment of pixels, weighing the innermost pixels higher.
+               	- bilinear: A filter using an average of a 2x2 environment of pixels.
+               	- nearest: A filter using the value of nearby translated pixel values. Preserves hard edges.
+        :param bool upscale: Whether or not we should allow output images to render at sizes larger than input.
+        :param bool webp: Controls whether or not to default to WebP output when the client supports it. This is equivalent to adding "auto=webp" to all image optimizer requests.
+        :param int webp_quality: The default quality to use with WebP output. This can be overridden with the second option in the "quality" URL parameter on specific image optimizer requests.
+        """
+        if allow_video is not None:
+            pulumi.set(__self__, "allow_video", allow_video)
+        if jpeg_quality is not None:
+            pulumi.set(__self__, "jpeg_quality", jpeg_quality)
+        if jpeg_type is not None:
+            pulumi.set(__self__, "jpeg_type", jpeg_type)
+        if name is not None:
+            pulumi.set(__self__, "name", name)
+        if resize_filter is not None:
+            pulumi.set(__self__, "resize_filter", resize_filter)
+        if upscale is not None:
+            pulumi.set(__self__, "upscale", upscale)
+        if webp is not None:
+            pulumi.set(__self__, "webp", webp)
+        if webp_quality is not None:
+            pulumi.set(__self__, "webp_quality", webp_quality)
+
+    @property
+    @pulumi.getter(name="allowVideo")
+    def allow_video(self) -> Optional[bool]:
+        """
+        Enables GIF to MP4 transformations on this service.
+        """
+        return pulumi.get(self, "allow_video")
+
+    @property
+    @pulumi.getter(name="jpegQuality")
+    def jpeg_quality(self) -> Optional[int]:
+        """
+        The default quality to use with JPEG output. This can be overridden with the "quality" parameter on specific image optimizer requests.
+        """
+        return pulumi.get(self, "jpeg_quality")
+
+    @property
+    @pulumi.getter(name="jpegType")
+    def jpeg_type(self) -> Optional[str]:
+        """
+        The default type of JPEG output to use. This can be overridden with "format=bjpeg" and "format=pjpeg" on specific image optimizer requests. Valid values are `auto`, `baseline` and `progressive`.
+        	- auto: Match the input JPEG type, or baseline if transforming from a non-JPEG input.
+        	- baseline: Output baseline JPEG images
+        	- progressive: Output progressive JPEG images
+        """
+        return pulumi.get(self, "jpeg_type")
+
+    @property
+    @pulumi.getter
+    def name(self) -> Optional[str]:
+        """
+        Used by the provider to identify modified settings. Changing this value will force the entire block to be deleted, then recreated.
+        """
+        return pulumi.get(self, "name")
+
+    @property
+    @pulumi.getter(name="resizeFilter")
+    def resize_filter(self) -> Optional[str]:
+        """
+        The type of filter to use while resizing an image. Valid values are `lanczos3`, `lanczos2`, `bicubic`, `bilinear` and `nearest`.
+        	- lanczos3: A Lanczos filter with a kernel size of 3. Lanczos filters can detect edges and linear features within an image, providing the best possible reconstruction.
+        	- lanczos2: A Lanczos filter with a kernel size of 2.
+        	- bicubic: A filter using an average of a 4x4 environment of pixels, weighing the innermost pixels higher.
+        	- bilinear: A filter using an average of a 2x2 environment of pixels.
+        	- nearest: A filter using the value of nearby translated pixel values. Preserves hard edges.
+        """
+        return pulumi.get(self, "resize_filter")
+
+    @property
+    @pulumi.getter
+    def upscale(self) -> Optional[bool]:
+        """
+        Whether or not we should allow output images to render at sizes larger than input.
+        """
+        return pulumi.get(self, "upscale")
+
+    @property
+    @pulumi.getter
+    def webp(self) -> Optional[bool]:
+        """
+        Controls whether or not to default to WebP output when the client supports it. This is equivalent to adding "auto=webp" to all image optimizer requests.
+        """
+        return pulumi.get(self, "webp")
+
+    @property
+    @pulumi.getter(name="webpQuality")
+    def webp_quality(self) -> Optional[int]:
+        """
+        The default quality to use with WebP output. This can be overridden with the second option in the "quality" URL parameter on specific image optimizer requests.
+        """
+        return pulumi.get(self, "webp_quality")
+
+
+@pulumi.output_type
 class ServiceVclLoggingBigquery(dict):
     @staticmethod
     def __key_warning(key: str):
@@ -5528,7 +5818,7 @@ class ServiceVclLoggingBlobstorage(dict):
         :param str container: The name of the Azure Blob Storage container in which to store logs
         :param str name: A unique name to identify the Azure Blob Storage endpoint. It is important to note that changing this attribute will delete and recreate the resource
         :param str sas_token: The Azure shared access signature providing write access to the blob service objects. Be sure to update your token before it expires or the logging functionality will not work
-        :param str compression_codec: The codec used for compression of your logs. Valid values are zstd, snappy, and gzip. If the specified codec is "gzip", gzip*level will default to 3. To specify a different level, leave compression*codec blank and explicitly set the level using gzip*level. Specifying both compression*codec and gzip_level in the same API request will result in an error.
+        :param str compression_codec: The codec used for compression of your logs. Valid values are zstd, snappy, and gzip. If the specified codec is "gzip", gzip_level will default to 3. To specify a different level, leave compression_codec blank and explicitly set the level using gzip_level. Specifying both compression_codec and gzip_level in the same API request will result in an error.
         :param int file_max_bytes: Maximum size of an uploaded log file, if non-zero.
         :param str format: Apache-style string or VCL variables to use for log formatting (default: `%h %l %u %t "%r" %>s %b`)
         :param int format_version: The version of the custom logging format used for the configured endpoint. Can be either 1 or 2. (default: 2)
@@ -5606,7 +5896,7 @@ class ServiceVclLoggingBlobstorage(dict):
     @pulumi.getter(name="compressionCodec")
     def compression_codec(self) -> Optional[str]:
         """
-        The codec used for compression of your logs. Valid values are zstd, snappy, and gzip. If the specified codec is "gzip", gzip*level will default to 3. To specify a different level, leave compression*codec blank and explicitly set the level using gzip*level. Specifying both compression*codec and gzip_level in the same API request will result in an error.
+        The codec used for compression of your logs. Valid values are zstd, snappy, and gzip. If the specified codec is "gzip", gzip_level will default to 3. To specify a different level, leave compression_codec blank and explicitly set the level using gzip_level. Specifying both compression_codec and gzip_level in the same API request will result in an error.
         """
         return pulumi.get(self, "compression_codec")
 
@@ -5756,7 +6046,7 @@ class ServiceVclLoggingCloudfile(dict):
         :param str bucket_name: The name of your Cloud Files container
         :param str name: The unique name of the Rackspace Cloud Files logging endpoint. It is important to note that changing this attribute will delete and recreate the resource
         :param str user: The username for your Cloud Files account
-        :param str compression_codec: The codec used for compression of your logs. Valid values are zstd, snappy, and gzip. If the specified codec is "gzip", gzip*level will default to 3. To specify a different level, leave compression*codec blank and explicitly set the level using gzip*level. Specifying both compression*codec and gzip_level in the same API request will result in an error.
+        :param str compression_codec: The codec used for compression of your logs. Valid values are zstd, snappy, and gzip. If the specified codec is "gzip", gzip_level will default to 3. To specify a different level, leave compression_codec blank and explicitly set the level using gzip_level. Specifying both compression_codec and gzip_level in the same API request will result in an error.
         :param str format: Apache style log formatting.
         :param int format_version: The version of the custom logging format used for the configured endpoint. Can be either `1` or `2`. (default: `2`).
         :param int gzip_level: Level of Gzip compression from `0-9`. `0` means no compression. `1` is the fastest and the least compressed version, `9` is the slowest and the most compressed version. Default `0`
@@ -5834,7 +6124,7 @@ class ServiceVclLoggingCloudfile(dict):
     @pulumi.getter(name="compressionCodec")
     def compression_codec(self) -> Optional[str]:
         """
-        The codec used for compression of your logs. Valid values are zstd, snappy, and gzip. If the specified codec is "gzip", gzip*level will default to 3. To specify a different level, leave compression*codec blank and explicitly set the level using gzip*level. Specifying both compression*codec and gzip_level in the same API request will result in an error.
+        The codec used for compression of your logs. Valid values are zstd, snappy, and gzip. If the specified codec is "gzip", gzip_level will default to 3. To specify a different level, leave compression_codec blank and explicitly set the level using gzip_level. Specifying both compression_codec and gzip_level in the same API request will result in an error.
         """
         return pulumi.get(self, "compression_codec")
 
@@ -6094,7 +6384,7 @@ class ServiceVclLoggingDigitalocean(dict):
         :param str bucket_name: The name of the DigitalOcean Space
         :param str name: The unique name of the DigitalOcean Spaces logging endpoint. It is important to note that changing this attribute will delete and recreate the resource
         :param str secret_key: Your DigitalOcean Spaces account secret key
-        :param str compression_codec: The codec used for compression of your logs. Valid values are zstd, snappy, and gzip. If the specified codec is "gzip", gzip*level will default to 3. To specify a different level, leave compression*codec blank and explicitly set the level using gzip*level. Specifying both compression*codec and gzip_level in the same API request will result in an error.
+        :param str compression_codec: The codec used for compression of your logs. Valid values are zstd, snappy, and gzip. If the specified codec is "gzip", gzip_level will default to 3. To specify a different level, leave compression_codec blank and explicitly set the level using gzip_level. Specifying both compression_codec and gzip_level in the same API request will result in an error.
         :param str domain: The domain of the DigitalOcean Spaces endpoint (default `nyc3.digitaloceanspaces.com`)
         :param str format: Apache style log formatting.
         :param int format_version: The version of the custom logging format used for the configured endpoint. Can be either `1` or `2`. (default: `2`).
@@ -6172,7 +6462,7 @@ class ServiceVclLoggingDigitalocean(dict):
     @pulumi.getter(name="compressionCodec")
     def compression_codec(self) -> Optional[str]:
         """
-        The codec used for compression of your logs. Valid values are zstd, snappy, and gzip. If the specified codec is "gzip", gzip*level will default to 3. To specify a different level, leave compression*codec blank and explicitly set the level using gzip*level. Specifying both compression*codec and gzip_level in the same API request will result in an error.
+        The codec used for compression of your logs. Valid values are zstd, snappy, and gzip. If the specified codec is "gzip", gzip_level will default to 3. To specify a different level, leave compression_codec blank and explicitly set the level using gzip_level. Specifying both compression_codec and gzip_level in the same API request will result in an error.
         """
         return pulumi.get(self, "compression_codec")
 
@@ -6546,7 +6836,7 @@ class ServiceVclLoggingFtp(dict):
         :param str password: The password for the server (for anonymous use an email address)
         :param str path: The path to upload log files to. If the path ends in `/` then it is treated as a directory
         :param str user: The username for the server (can be `anonymous`)
-        :param str compression_codec: The codec used for compression of your logs. Valid values are zstd, snappy, and gzip. If the specified codec is "gzip", gzip*level will default to 3. To specify a different level, leave compression*codec blank and explicitly set the level using gzip*level. Specifying both compression*codec and gzip_level in the same API request will result in an error.
+        :param str compression_codec: The codec used for compression of your logs. Valid values are zstd, snappy, and gzip. If the specified codec is "gzip", gzip_level will default to 3. To specify a different level, leave compression_codec blank and explicitly set the level using gzip_level. Specifying both compression_codec and gzip_level in the same API request will result in an error.
         :param str format: Apache-style string or VCL variables to use for log formatting.
         :param int format_version: The version of the custom logging format used for the configured endpoint. Can be either 1 or 2. (default: 2).
         :param int gzip_level: Level of Gzip compression from `0-9`. `0` means no compression. `1` is the fastest and the least compressed version, `9` is the slowest and the most compressed version. Default `0`
@@ -6630,7 +6920,7 @@ class ServiceVclLoggingFtp(dict):
     @pulumi.getter(name="compressionCodec")
     def compression_codec(self) -> Optional[str]:
         """
-        The codec used for compression of your logs. Valid values are zstd, snappy, and gzip. If the specified codec is "gzip", gzip*level will default to 3. To specify a different level, leave compression*codec blank and explicitly set the level using gzip*level. Specifying both compression*codec and gzip_level in the same API request will result in an error.
+        The codec used for compression of your logs. Valid values are zstd, snappy, and gzip. If the specified codec is "gzip", gzip_level will default to 3. To specify a different level, leave compression_codec blank and explicitly set the level using gzip_level. Specifying both compression_codec and gzip_level in the same API request will result in an error.
         """
         return pulumi.get(self, "compression_codec")
 
@@ -6773,7 +7063,7 @@ class ServiceVclLoggingGc(dict):
         :param str bucket_name: The name of the bucket in which to store the logs
         :param str name: A unique name to identify this GCS endpoint. It is important to note that changing this attribute will delete and recreate the resource
         :param str account_name: The google account name used to obtain temporary credentials (default none). You may optionally provide this via an environment variable, `FASTLY_GCS_ACCOUNT_NAME`.
-        :param str compression_codec: The codec used for compression of your logs. Valid values are zstd, snappy, and gzip. If the specified codec is "gzip", gzip*level will default to 3. To specify a different level, leave compression*codec blank and explicitly set the level using gzip*level. Specifying both compression*codec and gzip_level in the same API request will result in an error.
+        :param str compression_codec: The codec used for compression of your logs. Valid values are zstd, snappy, and gzip. If the specified codec is "gzip", gzip_level will default to 3. To specify a different level, leave compression_codec blank and explicitly set the level using gzip_level. Specifying both compression_codec and gzip_level in the same API request will result in an error.
         :param str format: Apache-style string or VCL variables to use for log formatting
         :param int format_version: The version of the custom logging format used for the configured endpoint. Can be either 1 or 2. (Default: 2)
         :param int gzip_level: Level of Gzip compression from `0-9`. `0` means no compression. `1` is the fastest and the least compressed version, `9` is the slowest and the most compressed version. Default `0`
@@ -6846,7 +7136,7 @@ class ServiceVclLoggingGc(dict):
     @pulumi.getter(name="compressionCodec")
     def compression_codec(self) -> Optional[str]:
         """
-        The codec used for compression of your logs. Valid values are zstd, snappy, and gzip. If the specified codec is "gzip", gzip*level will default to 3. To specify a different level, leave compression*codec blank and explicitly set the level using gzip*level. Specifying both compression*codec and gzip_level in the same API request will result in an error.
+        The codec used for compression of your logs. Valid values are zstd, snappy, and gzip. If the specified codec is "gzip", gzip_level will default to 3. To specify a different level, leave compression_codec blank and explicitly set the level using gzip_level. Specifying both compression_codec and gzip_level in the same API request will result in an error.
         """
         return pulumi.get(self, "compression_codec")
 
@@ -8602,7 +8892,7 @@ class ServiceVclLoggingOpenstack(dict):
         :param str name: The unique name of the OpenStack logging endpoint. It is important to note that changing this attribute will delete and recreate the resource
         :param str url: Your OpenStack auth url
         :param str user: The username for your OpenStack account
-        :param str compression_codec: The codec used for compression of your logs. Valid values are zstd, snappy, and gzip. If the specified codec is "gzip", gzip*level will default to 3. To specify a different level, leave compression*codec blank and explicitly set the level using gzip*level. Specifying both compression*codec and gzip_level in the same API request will result in an error.
+        :param str compression_codec: The codec used for compression of your logs. Valid values are zstd, snappy, and gzip. If the specified codec is "gzip", gzip_level will default to 3. To specify a different level, leave compression_codec blank and explicitly set the level using gzip_level. Specifying both compression_codec and gzip_level in the same API request will result in an error.
         :param str format: Apache style log formatting.
         :param int format_version: The version of the custom logging format used for the configured endpoint. Can be either `1` or `2`. (default: `2`).
         :param int gzip_level: Level of Gzip compression from `0-9`. `0` means no compression. `1` is the fastest and the least compressed version, `9` is the slowest and the most compressed version. Default `0`
@@ -8686,7 +8976,7 @@ class ServiceVclLoggingOpenstack(dict):
     @pulumi.getter(name="compressionCodec")
     def compression_codec(self) -> Optional[str]:
         """
-        The codec used for compression of your logs. Valid values are zstd, snappy, and gzip. If the specified codec is "gzip", gzip*level will default to 3. To specify a different level, leave compression*codec blank and explicitly set the level using gzip*level. Specifying both compression*codec and gzip_level in the same API request will result in an error.
+        The codec used for compression of your logs. Valid values are zstd, snappy, and gzip. If the specified codec is "gzip", gzip_level will default to 3. To specify a different level, leave compression_codec blank and explicitly set the level using gzip_level. Specifying both compression_codec and gzip_level in the same API request will result in an error.
         """
         return pulumi.get(self, "compression_codec")
 
@@ -8950,7 +9240,7 @@ class ServiceVclLoggingS3(dict):
         :param str bucket_name: The name of the bucket in which to store the logs
         :param str name: The unique name of the S3 logging endpoint. It is important to note that changing this attribute will delete and recreate the resource
         :param str acl: The AWS [Canned ACL](https://docs.aws.amazon.com/AmazonS3/latest/userguide/acl-overview.html#canned-acl) to use for objects uploaded to the S3 bucket. Options are: `private`, `public-read`, `public-read-write`, `aws-exec-read`, `authenticated-read`, `bucket-owner-read`, `bucket-owner-full-control`
-        :param str compression_codec: The codec used for compression of your logs. Valid values are zstd, snappy, and gzip. If the specified codec is "gzip", gzip*level will default to 3. To specify a different level, leave compression*codec blank and explicitly set the level using gzip*level. Specifying both compression*codec and gzip_level in the same API request will result in an error.
+        :param str compression_codec: The codec used for compression of your logs. Valid values are zstd, snappy, and gzip. If the specified codec is "gzip", gzip_level will default to 3. To specify a different level, leave compression_codec blank and explicitly set the level using gzip_level. Specifying both compression_codec and gzip_level in the same API request will result in an error.
         :param str domain: If you created the S3 bucket outside of `us-east-1`, then specify the corresponding bucket endpoint. Example: `s3-us-west-2.amazonaws.com`
         :param int file_max_bytes: Maximum size of an uploaded log file, if non-zero.
         :param str format: Apache-style string or VCL variables to use for log formatting.
@@ -8967,7 +9257,7 @@ class ServiceVclLoggingS3(dict):
         :param str s3_iam_role: The Amazon Resource Name (ARN) for the IAM role granting Fastly access to S3. Not required if `access_key` and `secret_key` are provided. You can provide this value via an environment variable, `FASTLY_S3_IAM_ROLE`
         :param str s3_secret_key: AWS Secret Key of an account with the required permissions to post logs. It is **strongly** recommended you create a separate IAM user with permissions to only operate on this Bucket. This secret will be not be encrypted. Not required if `iam_role` is provided. You can provide this secret via an environment variable, `FASTLY_S3_SECRET_KEY`
         :param str server_side_encryption: Specify what type of server side encryption should be used. Can be either `AES256` or `aws:kms`
-        :param str server_side_encryption_kms_key_id: Optional server-side KMS Key Id. Must be set if server*side*encryption is set to `aws:kms`
+        :param str server_side_encryption_kms_key_id: Optional server-side KMS Key Id. Must be set if server_side_encryption is set to `aws:kms`
         :param str timestamp_format: The `strftime` specified timestamp formatting (default `%Y-%m-%dT%H:%M:%S.000`)
         """
         pulumi.set(__self__, "bucket_name", bucket_name)
@@ -9041,7 +9331,7 @@ class ServiceVclLoggingS3(dict):
     @pulumi.getter(name="compressionCodec")
     def compression_codec(self) -> Optional[str]:
         """
-        The codec used for compression of your logs. Valid values are zstd, snappy, and gzip. If the specified codec is "gzip", gzip*level will default to 3. To specify a different level, leave compression*codec blank and explicitly set the level using gzip*level. Specifying both compression*codec and gzip_level in the same API request will result in an error.
+        The codec used for compression of your logs. Valid values are zstd, snappy, and gzip. If the specified codec is "gzip", gzip_level will default to 3. To specify a different level, leave compression_codec blank and explicitly set the level using gzip_level. Specifying both compression_codec and gzip_level in the same API request will result in an error.
         """
         return pulumi.get(self, "compression_codec")
 
@@ -9177,7 +9467,7 @@ class ServiceVclLoggingS3(dict):
     @pulumi.getter(name="serverSideEncryptionKmsKeyId")
     def server_side_encryption_kms_key_id(self) -> Optional[str]:
         """
-        Optional server-side KMS Key Id. Must be set if server*side*encryption is set to `aws:kms`
+        Optional server-side KMS Key Id. Must be set if server_side_encryption is set to `aws:kms`
         """
         return pulumi.get(self, "server_side_encryption_kms_key_id")
 
@@ -9372,7 +9662,7 @@ class ServiceVclLoggingSftp(dict):
         :param str path: The path to upload log files to. If the path ends in `/` then it is treated as a directory
         :param str ssh_known_hosts: A list of host keys for all hosts we can connect to over SFTP
         :param str user: The username for the server
-        :param str compression_codec: The codec used for compression of your logs. Valid values are zstd, snappy, and gzip. If the specified codec is "gzip", gzip*level will default to 3. To specify a different level, leave compression*codec blank and explicitly set the level using gzip*level. Specifying both compression*codec and gzip_level in the same API request will result in an error.
+        :param str compression_codec: The codec used for compression of your logs. Valid values are zstd, snappy, and gzip. If the specified codec is "gzip", gzip_level will default to 3. To specify a different level, leave compression_codec blank and explicitly set the level using gzip_level. Specifying both compression_codec and gzip_level in the same API request will result in an error.
         :param str format: Apache-style string or VCL variables to use for log formatting.
         :param int format_version: The version of the custom logging format used for the configured endpoint. Can be either 1 or 2. (default: 2).
         :param int gzip_level: Level of Gzip compression from `0-9`. `0` means no compression. `1` is the fastest and the least compressed version, `9` is the slowest and the most compressed version. Default `0`
@@ -9462,7 +9752,7 @@ class ServiceVclLoggingSftp(dict):
     @pulumi.getter(name="compressionCodec")
     def compression_codec(self) -> Optional[str]:
         """
-        The codec used for compression of your logs. Valid values are zstd, snappy, and gzip. If the specified codec is "gzip", gzip*level will default to 3. To specify a different level, leave compression*codec blank and explicitly set the level using gzip*level. Specifying both compression*codec and gzip_level in the same API request will result in an error.
+        The codec used for compression of your logs. Valid values are zstd, snappy, and gzip. If the specified codec is "gzip", gzip_level will default to 3. To specify a different level, leave compression_codec blank and explicitly set the level using gzip_level. Specifying both compression_codec and gzip_level in the same API request will result in an error.
         """
         return pulumi.get(self, "compression_codec")
 
@@ -10208,7 +10498,7 @@ class ServiceVclRateLimiter(dict):
                  response_object_name: Optional[str] = None,
                  uri_dictionary_name: Optional[str] = None):
         """
-        :param str action: The action to take when a rate limiter violation is detected (one of: log*only, response, response*object)
+        :param str action: The action to take when a rate limiter violation is detected (one of: log_only, response, response_object)
         :param str client_key: Comma-separated list of VCL variables used to generate a counter key to identify a client
         :param str http_methods: Comma-separated list of HTTP methods to apply rate limiting to
         :param str name: A unique human readable name for the rate limiting rule
@@ -10246,7 +10536,7 @@ class ServiceVclRateLimiter(dict):
     @pulumi.getter
     def action(self) -> str:
         """
-        The action to take when a rate limiter violation is detected (one of: log*only, response, response*object)
+        The action to take when a rate limiter violation is detected (one of: log_only, response, response_object)
         """
         return pulumi.get(self, "action")
 

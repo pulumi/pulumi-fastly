@@ -21,6 +21,7 @@ import com.pulumi.fastly.outputs.ServiceVclDynamicsnippet;
 import com.pulumi.fastly.outputs.ServiceVclGzip;
 import com.pulumi.fastly.outputs.ServiceVclHeader;
 import com.pulumi.fastly.outputs.ServiceVclHealthcheck;
+import com.pulumi.fastly.outputs.ServiceVclImageOptimizerDefaultSettings;
 import com.pulumi.fastly.outputs.ServiceVclLoggingBigquery;
 import com.pulumi.fastly.outputs.ServiceVclLoggingBlobstorage;
 import com.pulumi.fastly.outputs.ServiceVclLoggingCloudfile;
@@ -89,14 +90,16 @@ public class ServiceVcl extends com.pulumi.resources.CustomResource {
         return Codegen.optional(this.acls);
     }
     /**
-     * Conditionally prevents the Service from being activated. The apply step will continue to create a new draft version but will not activate it if this is set to `false`. Default `true`
+     * Conditionally prevents the Service from being activated. The apply step will continue to create a new draft version but
+     * will not activate it if this is set to `false`. Default `true`
      * 
      */
     @Export(name="activate", refs={Boolean.class}, tree="[0]")
     private Output</* @Nullable */ Boolean> activate;
 
     /**
-     * @return Conditionally prevents the Service from being activated. The apply step will continue to create a new draft version but will not activate it if this is set to `false`. Default `true`
+     * @return Conditionally prevents the Service from being activated. The apply step will continue to create a new draft version but
+     * will not activate it if this is set to `false`. Default `true`
      * 
      */
     public Output<Optional<Boolean>> activate() {
@@ -215,14 +218,16 @@ public class ServiceVcl extends com.pulumi.resources.CustomResource {
         return Codegen.optional(this.dynamicsnippets);
     }
     /**
-     * Services that are active cannot be destroyed. In order to destroy the Service, set `force_destroy` to `true`. Default `false`
+     * Services that are active cannot be destroyed. In order to destroy the Service, set `force_destroy` to `true`. Default
+     * `false`
      * 
      */
     @Export(name="forceDestroy", refs={Boolean.class}, tree="[0]")
     private Output</* @Nullable */ Boolean> forceDestroy;
 
     /**
-     * @return Services that are active cannot be destroyed. In order to destroy the Service, set `force_destroy` to `true`. Default `false`
+     * @return Services that are active cannot be destroyed. In order to destroy the Service, set `force_destroy` to `true`. Default
+     * `false`
      * 
      */
     public Output<Optional<Boolean>> forceDestroy() {
@@ -266,15 +271,23 @@ public class ServiceVcl extends com.pulumi.resources.CustomResource {
     public Output<Optional<Boolean>> http3() {
         return Codegen.optional(this.http3);
     }
+    @Export(name="imageOptimizerDefaultSettings", refs={ServiceVclImageOptimizerDefaultSettings.class}, tree="[0]")
+    private Output</* @Nullable */ ServiceVclImageOptimizerDefaultSettings> imageOptimizerDefaultSettings;
+
+    public Output<Optional<ServiceVclImageOptimizerDefaultSettings>> imageOptimizerDefaultSettings() {
+        return Codegen.optional(this.imageOptimizerDefaultSettings);
+    }
     /**
-     * Used internally by the provider to temporarily indicate if the service is being imported, and is reset to false once the import is finished
+     * Used internally by the provider to temporarily indicate if the service is being imported, and is reset to false once the
+     * import is finished
      * 
      */
     @Export(name="imported", refs={Boolean.class}, tree="[0]")
     private Output<Boolean> imported;
 
     /**
-     * @return Used internally by the provider to temporarily indicate if the service is being imported, and is reset to false once the import is finished
+     * @return Used internally by the provider to temporarily indicate if the service is being imported, and is reset to false once the
+     * import is finished
      * 
      */
     public Output<Boolean> imported() {

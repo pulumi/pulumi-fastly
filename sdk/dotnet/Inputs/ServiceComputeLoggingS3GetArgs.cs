@@ -25,7 +25,7 @@ namespace Pulumi.Fastly.Inputs
         public Input<string> BucketName { get; set; } = null!;
 
         /// <summary>
-        /// The codec used for compression of your logs. Valid values are zstd, snappy, and gzip. If the specified codec is "gzip", gzip*level will default to 3. To specify a different level, leave compression*codec blank and explicitly set the level using gzip*level. Specifying both compression*codec and gzip_level in the same API request will result in an error.
+        /// The codec used for compression of your logs. Valid values are zstd, snappy, and gzip. If the specified codec is "gzip", gzip_level will default to 3. To specify a different level, leave compression_codec blank and explicitly set the level using gzip_level. Specifying both compression_codec and gzip_level in the same API request will result in an error.
         /// </summary>
         [Input("compressionCodec")]
         public Input<string>? CompressionCodec { get; set; }
@@ -129,7 +129,7 @@ namespace Pulumi.Fastly.Inputs
         public Input<string>? ServerSideEncryption { get; set; }
 
         /// <summary>
-        /// Optional server-side KMS Key Id. Must be set if server*side*encryption is set to `aws:kms`
+        /// Optional server-side KMS Key Id. Must be set if server_side_encryption is set to `aws:kms`
         /// </summary>
         [Input("serverSideEncryptionKmsKeyId")]
         public Input<string>? ServerSideEncryptionKmsKeyId { get; set; }
