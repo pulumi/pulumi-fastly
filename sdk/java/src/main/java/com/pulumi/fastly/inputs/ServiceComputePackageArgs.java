@@ -46,14 +46,14 @@ public final class ServiceComputePackageArgs extends com.pulumi.resources.Resour
     }
 
     /**
-     * Used to trigger updates. Must be set to a SHA512 hash of all files (in sorted order) within the package. The usual way to set this is using the fastly*package*hash data source.
+     * Used to trigger updates. Must be set to a SHA512 hash of all files (in sorted order) within the package. The usual way to set this is using the fastly.getPackageHash data source.
      * 
      */
     @Import(name="sourceCodeHash")
     private @Nullable Output<String> sourceCodeHash;
 
     /**
-     * @return Used to trigger updates. Must be set to a SHA512 hash of all files (in sorted order) within the package. The usual way to set this is using the fastly*package*hash data source.
+     * @return Used to trigger updates. Must be set to a SHA512 hash of all files (in sorted order) within the package. The usual way to set this is using the fastly.getPackageHash data source.
      * 
      */
     public Optional<Output<String>> sourceCodeHash() {
@@ -129,7 +129,7 @@ public final class ServiceComputePackageArgs extends com.pulumi.resources.Resour
         }
 
         /**
-         * @param sourceCodeHash Used to trigger updates. Must be set to a SHA512 hash of all files (in sorted order) within the package. The usual way to set this is using the fastly*package*hash data source.
+         * @param sourceCodeHash Used to trigger updates. Must be set to a SHA512 hash of all files (in sorted order) within the package. The usual way to set this is using the fastly.getPackageHash data source.
          * 
          * @return builder
          * 
@@ -140,7 +140,7 @@ public final class ServiceComputePackageArgs extends com.pulumi.resources.Resour
         }
 
         /**
-         * @param sourceCodeHash Used to trigger updates. Must be set to a SHA512 hash of all files (in sorted order) within the package. The usual way to set this is using the fastly*package*hash data source.
+         * @param sourceCodeHash Used to trigger updates. Must be set to a SHA512 hash of all files (in sorted order) within the package. The usual way to set this is using the fastly.getPackageHash data source.
          * 
          * @return builder
          * 

@@ -14,7 +14,7 @@ namespace Pulumi.Fastly.Outputs
     public sealed class ServiceVclRateLimiter
     {
         /// <summary>
-        /// The action to take when a rate limiter violation is detected (one of: log*only, response, response*object)
+        /// The action to take when a rate limiter violation is detected (one of: log_only, response, response_object)
         /// </summary>
         public readonly string Action;
         /// <summary>

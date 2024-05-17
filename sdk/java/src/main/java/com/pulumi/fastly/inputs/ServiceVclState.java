@@ -16,6 +16,7 @@ import com.pulumi.fastly.inputs.ServiceVclDynamicsnippetArgs;
 import com.pulumi.fastly.inputs.ServiceVclGzipArgs;
 import com.pulumi.fastly.inputs.ServiceVclHeaderArgs;
 import com.pulumi.fastly.inputs.ServiceVclHealthcheckArgs;
+import com.pulumi.fastly.inputs.ServiceVclImageOptimizerDefaultSettingsArgs;
 import com.pulumi.fastly.inputs.ServiceVclLoggingBigqueryArgs;
 import com.pulumi.fastly.inputs.ServiceVclLoggingBlobstorageArgs;
 import com.pulumi.fastly.inputs.ServiceVclLoggingCloudfileArgs;
@@ -71,14 +72,16 @@ public final class ServiceVclState extends com.pulumi.resources.ResourceArgs {
     }
 
     /**
-     * Conditionally prevents the Service from being activated. The apply step will continue to create a new draft version but will not activate it if this is set to `false`. Default `true`
+     * Conditionally prevents the Service from being activated. The apply step will continue to create a new draft version but
+     * will not activate it if this is set to `false`. Default `true`
      * 
      */
     @Import(name="activate")
     private @Nullable Output<Boolean> activate;
 
     /**
-     * @return Conditionally prevents the Service from being activated. The apply step will continue to create a new draft version but will not activate it if this is set to `false`. Default `true`
+     * @return Conditionally prevents the Service from being activated. The apply step will continue to create a new draft version but
+     * will not activate it if this is set to `false`. Default `true`
      * 
      */
     public Optional<Output<Boolean>> activate() {
@@ -210,14 +213,16 @@ public final class ServiceVclState extends com.pulumi.resources.ResourceArgs {
     }
 
     /**
-     * Services that are active cannot be destroyed. In order to destroy the Service, set `force_destroy` to `true`. Default `false`
+     * Services that are active cannot be destroyed. In order to destroy the Service, set `force_destroy` to `true`. Default
+     * `false`
      * 
      */
     @Import(name="forceDestroy")
     private @Nullable Output<Boolean> forceDestroy;
 
     /**
-     * @return Services that are active cannot be destroyed. In order to destroy the Service, set `force_destroy` to `true`. Default `false`
+     * @return Services that are active cannot be destroyed. In order to destroy the Service, set `force_destroy` to `true`. Default
+     * `false`
      * 
      */
     public Optional<Output<Boolean>> forceDestroy() {
@@ -267,15 +272,24 @@ public final class ServiceVclState extends com.pulumi.resources.ResourceArgs {
         return Optional.ofNullable(this.http3);
     }
 
+    @Import(name="imageOptimizerDefaultSettings")
+    private @Nullable Output<ServiceVclImageOptimizerDefaultSettingsArgs> imageOptimizerDefaultSettings;
+
+    public Optional<Output<ServiceVclImageOptimizerDefaultSettingsArgs>> imageOptimizerDefaultSettings() {
+        return Optional.ofNullable(this.imageOptimizerDefaultSettings);
+    }
+
     /**
-     * Used internally by the provider to temporarily indicate if the service is being imported, and is reset to false once the import is finished
+     * Used internally by the provider to temporarily indicate if the service is being imported, and is reset to false once the
+     * import is finished
      * 
      */
     @Import(name="imported")
     private @Nullable Output<Boolean> imported;
 
     /**
-     * @return Used internally by the provider to temporarily indicate if the service is being imported, and is reset to false once the import is finished
+     * @return Used internally by the provider to temporarily indicate if the service is being imported, and is reset to false once the
+     * import is finished
      * 
      */
     public Optional<Output<Boolean>> imported() {
@@ -610,6 +624,7 @@ public final class ServiceVclState extends com.pulumi.resources.ResourceArgs {
         this.headers = $.headers;
         this.healthchecks = $.healthchecks;
         this.http3 = $.http3;
+        this.imageOptimizerDefaultSettings = $.imageOptimizerDefaultSettings;
         this.imported = $.imported;
         this.loggingBigqueries = $.loggingBigqueries;
         this.loggingBlobstorages = $.loggingBlobstorages;
@@ -684,7 +699,8 @@ public final class ServiceVclState extends com.pulumi.resources.ResourceArgs {
         }
 
         /**
-         * @param activate Conditionally prevents the Service from being activated. The apply step will continue to create a new draft version but will not activate it if this is set to `false`. Default `true`
+         * @param activate Conditionally prevents the Service from being activated. The apply step will continue to create a new draft version but
+         * will not activate it if this is set to `false`. Default `true`
          * 
          * @return builder
          * 
@@ -695,7 +711,8 @@ public final class ServiceVclState extends com.pulumi.resources.ResourceArgs {
         }
 
         /**
-         * @param activate Conditionally prevents the Service from being activated. The apply step will continue to create a new draft version but will not activate it if this is set to `false`. Default `true`
+         * @param activate Conditionally prevents the Service from being activated. The apply step will continue to create a new draft version but
+         * will not activate it if this is set to `false`. Default `true`
          * 
          * @return builder
          * 
@@ -907,7 +924,8 @@ public final class ServiceVclState extends com.pulumi.resources.ResourceArgs {
         }
 
         /**
-         * @param forceDestroy Services that are active cannot be destroyed. In order to destroy the Service, set `force_destroy` to `true`. Default `false`
+         * @param forceDestroy Services that are active cannot be destroyed. In order to destroy the Service, set `force_destroy` to `true`. Default
+         * `false`
          * 
          * @return builder
          * 
@@ -918,7 +936,8 @@ public final class ServiceVclState extends com.pulumi.resources.ResourceArgs {
         }
 
         /**
-         * @param forceDestroy Services that are active cannot be destroyed. In order to destroy the Service, set `force_destroy` to `true`. Default `false`
+         * @param forceDestroy Services that are active cannot be destroyed. In order to destroy the Service, set `force_destroy` to `true`. Default
+         * `false`
          * 
          * @return builder
          * 
@@ -996,8 +1015,18 @@ public final class ServiceVclState extends com.pulumi.resources.ResourceArgs {
             return http3(Output.of(http3));
         }
 
+        public Builder imageOptimizerDefaultSettings(@Nullable Output<ServiceVclImageOptimizerDefaultSettingsArgs> imageOptimizerDefaultSettings) {
+            $.imageOptimizerDefaultSettings = imageOptimizerDefaultSettings;
+            return this;
+        }
+
+        public Builder imageOptimizerDefaultSettings(ServiceVclImageOptimizerDefaultSettingsArgs imageOptimizerDefaultSettings) {
+            return imageOptimizerDefaultSettings(Output.of(imageOptimizerDefaultSettings));
+        }
+
         /**
-         * @param imported Used internally by the provider to temporarily indicate if the service is being imported, and is reset to false once the import is finished
+         * @param imported Used internally by the provider to temporarily indicate if the service is being imported, and is reset to false once the
+         * import is finished
          * 
          * @return builder
          * 
@@ -1008,7 +1037,8 @@ public final class ServiceVclState extends com.pulumi.resources.ResourceArgs {
         }
 
         /**
-         * @param imported Used internally by the provider to temporarily indicate if the service is being imported, and is reset to false once the import is finished
+         * @param imported Used internally by the provider to temporarily indicate if the service is being imported, and is reset to false once the
+         * import is finished
          * 
          * @return builder
          * 

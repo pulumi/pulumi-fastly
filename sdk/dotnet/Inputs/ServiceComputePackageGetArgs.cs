@@ -25,7 +25,7 @@ namespace Pulumi.Fastly.Inputs
         public Input<string>? Filename { get; set; }
 
         /// <summary>
-        /// Used to trigger updates. Must be set to a SHA512 hash of all files (in sorted order) within the package. The usual way to set this is using the fastly*package*hash data source.
+        /// Used to trigger updates. Must be set to a SHA512 hash of all files (in sorted order) within the package. The usual way to set this is using the fastly.getPackageHash data source.
         /// </summary>
         [Input("sourceCodeHash")]
         public Input<string>? SourceCodeHash { get; set; }

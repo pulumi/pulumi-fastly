@@ -53,7 +53,8 @@ export class ServiceVcl extends pulumi.CustomResource {
 
     public readonly acls!: pulumi.Output<outputs.ServiceVclAcl[] | undefined>;
     /**
-     * Conditionally prevents the Service from being activated. The apply step will continue to create a new draft version but will not activate it if this is set to `false`. Default `true`
+     * Conditionally prevents the Service from being activated. The apply step will continue to create a new draft version but
+     * will not activate it if this is set to `false`. Default `true`
      */
     public readonly activate!: pulumi.Output<boolean | undefined>;
     /**
@@ -84,7 +85,8 @@ export class ServiceVcl extends pulumi.CustomResource {
     public readonly domains!: pulumi.Output<outputs.ServiceVclDomain[]>;
     public readonly dynamicsnippets!: pulumi.Output<outputs.ServiceVclDynamicsnippet[] | undefined>;
     /**
-     * Services that are active cannot be destroyed. In order to destroy the Service, set `forceDestroy` to `true`. Default `false`
+     * Services that are active cannot be destroyed. In order to destroy the Service, set `forceDestroy` to `true`. Default
+     * `false`
      */
     public readonly forceDestroy!: pulumi.Output<boolean | undefined>;
     public /*out*/ readonly forceRefresh!: pulumi.Output<boolean>;
@@ -95,8 +97,10 @@ export class ServiceVcl extends pulumi.CustomResource {
      * Enables support for the HTTP/3 (QUIC) protocol
      */
     public readonly http3!: pulumi.Output<boolean | undefined>;
+    public readonly imageOptimizerDefaultSettings!: pulumi.Output<outputs.ServiceVclImageOptimizerDefaultSettings | undefined>;
     /**
-     * Used internally by the provider to temporarily indicate if the service is being imported, and is reset to false once the import is finished
+     * Used internally by the provider to temporarily indicate if the service is being imported, and is reset to false once the
+     * import is finished
      */
     public /*out*/ readonly imported!: pulumi.Output<boolean>;
     public readonly loggingBigqueries!: pulumi.Output<outputs.ServiceVclLoggingBigquery[] | undefined>;
@@ -184,6 +188,7 @@ export class ServiceVcl extends pulumi.CustomResource {
             resourceInputs["headers"] = state ? state.headers : undefined;
             resourceInputs["healthchecks"] = state ? state.healthchecks : undefined;
             resourceInputs["http3"] = state ? state.http3 : undefined;
+            resourceInputs["imageOptimizerDefaultSettings"] = state ? state.imageOptimizerDefaultSettings : undefined;
             resourceInputs["imported"] = state ? state.imported : undefined;
             resourceInputs["loggingBigqueries"] = state ? state.loggingBigqueries : undefined;
             resourceInputs["loggingBlobstorages"] = state ? state.loggingBlobstorages : undefined;
@@ -246,6 +251,7 @@ export class ServiceVcl extends pulumi.CustomResource {
             resourceInputs["headers"] = args ? args.headers : undefined;
             resourceInputs["healthchecks"] = args ? args.healthchecks : undefined;
             resourceInputs["http3"] = args ? args.http3 : undefined;
+            resourceInputs["imageOptimizerDefaultSettings"] = args ? args.imageOptimizerDefaultSettings : undefined;
             resourceInputs["loggingBigqueries"] = args ? args.loggingBigqueries : undefined;
             resourceInputs["loggingBlobstorages"] = args ? args.loggingBlobstorages : undefined;
             resourceInputs["loggingCloudfiles"] = args ? args.loggingCloudfiles : undefined;
@@ -301,7 +307,8 @@ export class ServiceVcl extends pulumi.CustomResource {
 export interface ServiceVclState {
     acls?: pulumi.Input<pulumi.Input<inputs.ServiceVclAcl>[]>;
     /**
-     * Conditionally prevents the Service from being activated. The apply step will continue to create a new draft version but will not activate it if this is set to `false`. Default `true`
+     * Conditionally prevents the Service from being activated. The apply step will continue to create a new draft version but
+     * will not activate it if this is set to `false`. Default `true`
      */
     activate?: pulumi.Input<boolean>;
     /**
@@ -332,7 +339,8 @@ export interface ServiceVclState {
     domains?: pulumi.Input<pulumi.Input<inputs.ServiceVclDomain>[]>;
     dynamicsnippets?: pulumi.Input<pulumi.Input<inputs.ServiceVclDynamicsnippet>[]>;
     /**
-     * Services that are active cannot be destroyed. In order to destroy the Service, set `forceDestroy` to `true`. Default `false`
+     * Services that are active cannot be destroyed. In order to destroy the Service, set `forceDestroy` to `true`. Default
+     * `false`
      */
     forceDestroy?: pulumi.Input<boolean>;
     forceRefresh?: pulumi.Input<boolean>;
@@ -343,8 +351,10 @@ export interface ServiceVclState {
      * Enables support for the HTTP/3 (QUIC) protocol
      */
     http3?: pulumi.Input<boolean>;
+    imageOptimizerDefaultSettings?: pulumi.Input<inputs.ServiceVclImageOptimizerDefaultSettings>;
     /**
-     * Used internally by the provider to temporarily indicate if the service is being imported, and is reset to false once the import is finished
+     * Used internally by the provider to temporarily indicate if the service is being imported, and is reset to false once the
+     * import is finished
      */
     imported?: pulumi.Input<boolean>;
     loggingBigqueries?: pulumi.Input<pulumi.Input<inputs.ServiceVclLoggingBigquery>[]>;
@@ -406,7 +416,8 @@ export interface ServiceVclState {
 export interface ServiceVclArgs {
     acls?: pulumi.Input<pulumi.Input<inputs.ServiceVclAcl>[]>;
     /**
-     * Conditionally prevents the Service from being activated. The apply step will continue to create a new draft version but will not activate it if this is set to `false`. Default `true`
+     * Conditionally prevents the Service from being activated. The apply step will continue to create a new draft version but
+     * will not activate it if this is set to `false`. Default `true`
      */
     activate?: pulumi.Input<boolean>;
     backends?: pulumi.Input<pulumi.Input<inputs.ServiceVclBackend>[]>;
@@ -429,7 +440,8 @@ export interface ServiceVclArgs {
     domains: pulumi.Input<pulumi.Input<inputs.ServiceVclDomain>[]>;
     dynamicsnippets?: pulumi.Input<pulumi.Input<inputs.ServiceVclDynamicsnippet>[]>;
     /**
-     * Services that are active cannot be destroyed. In order to destroy the Service, set `forceDestroy` to `true`. Default `false`
+     * Services that are active cannot be destroyed. In order to destroy the Service, set `forceDestroy` to `true`. Default
+     * `false`
      */
     forceDestroy?: pulumi.Input<boolean>;
     gzips?: pulumi.Input<pulumi.Input<inputs.ServiceVclGzip>[]>;
@@ -439,6 +451,7 @@ export interface ServiceVclArgs {
      * Enables support for the HTTP/3 (QUIC) protocol
      */
     http3?: pulumi.Input<boolean>;
+    imageOptimizerDefaultSettings?: pulumi.Input<inputs.ServiceVclImageOptimizerDefaultSettings>;
     loggingBigqueries?: pulumi.Input<pulumi.Input<inputs.ServiceVclLoggingBigquery>[]>;
     loggingBlobstorages?: pulumi.Input<pulumi.Input<inputs.ServiceVclLoggingBlobstorage>[]>;
     loggingCloudfiles?: pulumi.Input<pulumi.Input<inputs.ServiceVclLoggingCloudfile>[]>;

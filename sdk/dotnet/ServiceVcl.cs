@@ -33,7 +33,8 @@ namespace Pulumi.Fastly
         public Output<ImmutableArray<Outputs.ServiceVclAcl>> Acls { get; private set; } = null!;
 
         /// <summary>
-        /// Conditionally prevents the Service from being activated. The apply step will continue to create a new draft version but will not activate it if this is set to `false`. Default `true`
+        /// Conditionally prevents the Service from being activated. The apply step will continue to create a new draft version but
+        /// will not activate it if this is set to `false`. Default `true`
         /// </summary>
         [Output("activate")]
         public Output<bool?> Activate { get; private set; } = null!;
@@ -90,7 +91,8 @@ namespace Pulumi.Fastly
         public Output<ImmutableArray<Outputs.ServiceVclDynamicsnippet>> Dynamicsnippets { get; private set; } = null!;
 
         /// <summary>
-        /// Services that are active cannot be destroyed. In order to destroy the Service, set `force_destroy` to `true`. Default `false`
+        /// Services that are active cannot be destroyed. In order to destroy the Service, set `force_destroy` to `true`. Default
+        /// `false`
         /// </summary>
         [Output("forceDestroy")]
         public Output<bool?> ForceDestroy { get; private set; } = null!;
@@ -113,8 +115,12 @@ namespace Pulumi.Fastly
         [Output("http3")]
         public Output<bool?> Http3 { get; private set; } = null!;
 
+        [Output("imageOptimizerDefaultSettings")]
+        public Output<Outputs.ServiceVclImageOptimizerDefaultSettings?> ImageOptimizerDefaultSettings { get; private set; } = null!;
+
         /// <summary>
-        /// Used internally by the provider to temporarily indicate if the service is being imported, and is reset to false once the import is finished
+        /// Used internally by the provider to temporarily indicate if the service is being imported, and is reset to false once the
+        /// import is finished
         /// </summary>
         [Output("imported")]
         public Output<bool> Imported { get; private set; } = null!;
@@ -303,7 +309,8 @@ namespace Pulumi.Fastly
         }
 
         /// <summary>
-        /// Conditionally prevents the Service from being activated. The apply step will continue to create a new draft version but will not activate it if this is set to `false`. Default `true`
+        /// Conditionally prevents the Service from being activated. The apply step will continue to create a new draft version but
+        /// will not activate it if this is set to `false`. Default `true`
         /// </summary>
         [Input("activate")]
         public Input<bool>? Activate { get; set; }
@@ -384,7 +391,8 @@ namespace Pulumi.Fastly
         }
 
         /// <summary>
-        /// Services that are active cannot be destroyed. In order to destroy the Service, set `force_destroy` to `true`. Default `false`
+        /// Services that are active cannot be destroyed. In order to destroy the Service, set `force_destroy` to `true`. Default
+        /// `false`
         /// </summary>
         [Input("forceDestroy")]
         public Input<bool>? ForceDestroy { get; set; }
@@ -418,6 +426,9 @@ namespace Pulumi.Fastly
         /// </summary>
         [Input("http3")]
         public Input<bool>? Http3 { get; set; }
+
+        [Input("imageOptimizerDefaultSettings")]
+        public Input<Inputs.ServiceVclImageOptimizerDefaultSettingsArgs>? ImageOptimizerDefaultSettings { get; set; }
 
         [Input("loggingBigqueries")]
         private InputList<Inputs.ServiceVclLoggingBigqueryArgs>? _loggingBigqueries;
@@ -725,7 +736,8 @@ namespace Pulumi.Fastly
         }
 
         /// <summary>
-        /// Conditionally prevents the Service from being activated. The apply step will continue to create a new draft version but will not activate it if this is set to `false`. Default `true`
+        /// Conditionally prevents the Service from being activated. The apply step will continue to create a new draft version but
+        /// will not activate it if this is set to `false`. Default `true`
         /// </summary>
         [Input("activate")]
         public Input<bool>? Activate { get; set; }
@@ -818,7 +830,8 @@ namespace Pulumi.Fastly
         }
 
         /// <summary>
-        /// Services that are active cannot be destroyed. In order to destroy the Service, set `force_destroy` to `true`. Default `false`
+        /// Services that are active cannot be destroyed. In order to destroy the Service, set `force_destroy` to `true`. Default
+        /// `false`
         /// </summary>
         [Input("forceDestroy")]
         public Input<bool>? ForceDestroy { get; set; }
@@ -856,8 +869,12 @@ namespace Pulumi.Fastly
         [Input("http3")]
         public Input<bool>? Http3 { get; set; }
 
+        [Input("imageOptimizerDefaultSettings")]
+        public Input<Inputs.ServiceVclImageOptimizerDefaultSettingsGetArgs>? ImageOptimizerDefaultSettings { get; set; }
+
         /// <summary>
-        /// Used internally by the provider to temporarily indicate if the service is being imported, and is reset to false once the import is finished
+        /// Used internally by the provider to temporarily indicate if the service is being imported, and is reset to false once the
+        /// import is finished
         /// </summary>
         [Input("imported")]
         public Input<bool>? Imported { get; set; }

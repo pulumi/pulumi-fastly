@@ -63,6 +63,9 @@
                     "domain": {
                         "maxItemsOne": false
                     },
+                    "image_optimizer_default_settings": {
+                        "maxItemsOne": true
+                    },
                     "logging_bigquery": {
                         "maxItemsOne": false
                     },
@@ -217,6 +220,9 @@
                                 }
                             }
                         }
+                    },
+                    "image_optimizer_default_settings": {
+                        "maxItemsOne": true
                     },
                     "logging_bigquery": {
                         "maxItemsOne": false

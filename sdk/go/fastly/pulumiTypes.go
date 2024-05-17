@@ -1027,6 +1027,308 @@ func (o ServiceComputeDomainArrayOutput) Index(i pulumi.IntInput) ServiceCompute
 	}).(ServiceComputeDomainOutput)
 }
 
+type ServiceComputeImageOptimizerDefaultSettings struct {
+	// Enables GIF to MP4 transformations on this service.
+	AllowVideo *bool `pulumi:"allowVideo"`
+	// The default quality to use with JPEG output. This can be overridden with the "quality" parameter on specific image optimizer requests.
+	JpegQuality *int `pulumi:"jpegQuality"`
+	// The default type of JPEG output to use. This can be overridden with "format=bjpeg" and "format=pjpeg" on specific image optimizer requests. Valid values are `auto`, `baseline` and `progressive`.
+	// 	- auto: Match the input JPEG type, or baseline if transforming from a non-JPEG input.
+	// 	- baseline: Output baseline JPEG images
+	// 	- progressive: Output progressive JPEG images
+	JpegType *string `pulumi:"jpegType"`
+	// Used by the provider to identify modified settings. Changing this value will force the entire block to be deleted, then recreated.
+	Name *string `pulumi:"name"`
+	// The type of filter to use while resizing an image. Valid values are `lanczos3`, `lanczos2`, `bicubic`, `bilinear` and `nearest`.
+	// 	- lanczos3: A Lanczos filter with a kernel size of 3. Lanczos filters can detect edges and linear features within an image, providing the best possible reconstruction.
+	// 	- lanczos2: A Lanczos filter with a kernel size of 2.
+	// 	- bicubic: A filter using an average of a 4x4 environment of pixels, weighing the innermost pixels higher.
+	// 	- bilinear: A filter using an average of a 2x2 environment of pixels.
+	// 	- nearest: A filter using the value of nearby translated pixel values. Preserves hard edges.
+	ResizeFilter *string `pulumi:"resizeFilter"`
+	// Whether or not we should allow output images to render at sizes larger than input.
+	Upscale *bool `pulumi:"upscale"`
+	// Controls whether or not to default to WebP output when the client supports it. This is equivalent to adding "auto=webp" to all image optimizer requests.
+	Webp *bool `pulumi:"webp"`
+	// The default quality to use with WebP output. This can be overridden with the second option in the "quality" URL parameter on specific image optimizer requests.
+	WebpQuality *int `pulumi:"webpQuality"`
+}
+
+// ServiceComputeImageOptimizerDefaultSettingsInput is an input type that accepts ServiceComputeImageOptimizerDefaultSettingsArgs and ServiceComputeImageOptimizerDefaultSettingsOutput values.
+// You can construct a concrete instance of `ServiceComputeImageOptimizerDefaultSettingsInput` via:
+//
+//	ServiceComputeImageOptimizerDefaultSettingsArgs{...}
+type ServiceComputeImageOptimizerDefaultSettingsInput interface {
+	pulumi.Input
+
+	ToServiceComputeImageOptimizerDefaultSettingsOutput() ServiceComputeImageOptimizerDefaultSettingsOutput
+	ToServiceComputeImageOptimizerDefaultSettingsOutputWithContext(context.Context) ServiceComputeImageOptimizerDefaultSettingsOutput
+}
+
+type ServiceComputeImageOptimizerDefaultSettingsArgs struct {
+	// Enables GIF to MP4 transformations on this service.
+	AllowVideo pulumi.BoolPtrInput `pulumi:"allowVideo"`
+	// The default quality to use with JPEG output. This can be overridden with the "quality" parameter on specific image optimizer requests.
+	JpegQuality pulumi.IntPtrInput `pulumi:"jpegQuality"`
+	// The default type of JPEG output to use. This can be overridden with "format=bjpeg" and "format=pjpeg" on specific image optimizer requests. Valid values are `auto`, `baseline` and `progressive`.
+	// 	- auto: Match the input JPEG type, or baseline if transforming from a non-JPEG input.
+	// 	- baseline: Output baseline JPEG images
+	// 	- progressive: Output progressive JPEG images
+	JpegType pulumi.StringPtrInput `pulumi:"jpegType"`
+	// Used by the provider to identify modified settings. Changing this value will force the entire block to be deleted, then recreated.
+	Name pulumi.StringPtrInput `pulumi:"name"`
+	// The type of filter to use while resizing an image. Valid values are `lanczos3`, `lanczos2`, `bicubic`, `bilinear` and `nearest`.
+	// 	- lanczos3: A Lanczos filter with a kernel size of 3. Lanczos filters can detect edges and linear features within an image, providing the best possible reconstruction.
+	// 	- lanczos2: A Lanczos filter with a kernel size of 2.
+	// 	- bicubic: A filter using an average of a 4x4 environment of pixels, weighing the innermost pixels higher.
+	// 	- bilinear: A filter using an average of a 2x2 environment of pixels.
+	// 	- nearest: A filter using the value of nearby translated pixel values. Preserves hard edges.
+	ResizeFilter pulumi.StringPtrInput `pulumi:"resizeFilter"`
+	// Whether or not we should allow output images to render at sizes larger than input.
+	Upscale pulumi.BoolPtrInput `pulumi:"upscale"`
+	// Controls whether or not to default to WebP output when the client supports it. This is equivalent to adding "auto=webp" to all image optimizer requests.
+	Webp pulumi.BoolPtrInput `pulumi:"webp"`
+	// The default quality to use with WebP output. This can be overridden with the second option in the "quality" URL parameter on specific image optimizer requests.
+	WebpQuality pulumi.IntPtrInput `pulumi:"webpQuality"`
+}
+
+func (ServiceComputeImageOptimizerDefaultSettingsArgs) ElementType() reflect.Type {
+	return reflect.TypeOf((*ServiceComputeImageOptimizerDefaultSettings)(nil)).Elem()
+}
+
+func (i ServiceComputeImageOptimizerDefaultSettingsArgs) ToServiceComputeImageOptimizerDefaultSettingsOutput() ServiceComputeImageOptimizerDefaultSettingsOutput {
+	return i.ToServiceComputeImageOptimizerDefaultSettingsOutputWithContext(context.Background())
+}
+
+func (i ServiceComputeImageOptimizerDefaultSettingsArgs) ToServiceComputeImageOptimizerDefaultSettingsOutputWithContext(ctx context.Context) ServiceComputeImageOptimizerDefaultSettingsOutput {
+	return pulumi.ToOutputWithContext(ctx, i).(ServiceComputeImageOptimizerDefaultSettingsOutput)
+}
+
+func (i ServiceComputeImageOptimizerDefaultSettingsArgs) ToServiceComputeImageOptimizerDefaultSettingsPtrOutput() ServiceComputeImageOptimizerDefaultSettingsPtrOutput {
+	return i.ToServiceComputeImageOptimizerDefaultSettingsPtrOutputWithContext(context.Background())
+}
+
+func (i ServiceComputeImageOptimizerDefaultSettingsArgs) ToServiceComputeImageOptimizerDefaultSettingsPtrOutputWithContext(ctx context.Context) ServiceComputeImageOptimizerDefaultSettingsPtrOutput {
+	return pulumi.ToOutputWithContext(ctx, i).(ServiceComputeImageOptimizerDefaultSettingsOutput).ToServiceComputeImageOptimizerDefaultSettingsPtrOutputWithContext(ctx)
+}
+
+// ServiceComputeImageOptimizerDefaultSettingsPtrInput is an input type that accepts ServiceComputeImageOptimizerDefaultSettingsArgs, ServiceComputeImageOptimizerDefaultSettingsPtr and ServiceComputeImageOptimizerDefaultSettingsPtrOutput values.
+// You can construct a concrete instance of `ServiceComputeImageOptimizerDefaultSettingsPtrInput` via:
+//
+//	        ServiceComputeImageOptimizerDefaultSettingsArgs{...}
+//
+//	or:
+//
+//	        nil
+type ServiceComputeImageOptimizerDefaultSettingsPtrInput interface {
+	pulumi.Input
+
+	ToServiceComputeImageOptimizerDefaultSettingsPtrOutput() ServiceComputeImageOptimizerDefaultSettingsPtrOutput
+	ToServiceComputeImageOptimizerDefaultSettingsPtrOutputWithContext(context.Context) ServiceComputeImageOptimizerDefaultSettingsPtrOutput
+}
+
+type serviceComputeImageOptimizerDefaultSettingsPtrType ServiceComputeImageOptimizerDefaultSettingsArgs
+
+func ServiceComputeImageOptimizerDefaultSettingsPtr(v *ServiceComputeImageOptimizerDefaultSettingsArgs) ServiceComputeImageOptimizerDefaultSettingsPtrInput {
+	return (*serviceComputeImageOptimizerDefaultSettingsPtrType)(v)
+}
+
+func (*serviceComputeImageOptimizerDefaultSettingsPtrType) ElementType() reflect.Type {
+	return reflect.TypeOf((**ServiceComputeImageOptimizerDefaultSettings)(nil)).Elem()
+}
+
+func (i *serviceComputeImageOptimizerDefaultSettingsPtrType) ToServiceComputeImageOptimizerDefaultSettingsPtrOutput() ServiceComputeImageOptimizerDefaultSettingsPtrOutput {
+	return i.ToServiceComputeImageOptimizerDefaultSettingsPtrOutputWithContext(context.Background())
+}
+
+func (i *serviceComputeImageOptimizerDefaultSettingsPtrType) ToServiceComputeImageOptimizerDefaultSettingsPtrOutputWithContext(ctx context.Context) ServiceComputeImageOptimizerDefaultSettingsPtrOutput {
+	return pulumi.ToOutputWithContext(ctx, i).(ServiceComputeImageOptimizerDefaultSettingsPtrOutput)
+}
+
+type ServiceComputeImageOptimizerDefaultSettingsOutput struct{ *pulumi.OutputState }
+
+func (ServiceComputeImageOptimizerDefaultSettingsOutput) ElementType() reflect.Type {
+	return reflect.TypeOf((*ServiceComputeImageOptimizerDefaultSettings)(nil)).Elem()
+}
+
+func (o ServiceComputeImageOptimizerDefaultSettingsOutput) ToServiceComputeImageOptimizerDefaultSettingsOutput() ServiceComputeImageOptimizerDefaultSettingsOutput {
+	return o
+}
+
+func (o ServiceComputeImageOptimizerDefaultSettingsOutput) ToServiceComputeImageOptimizerDefaultSettingsOutputWithContext(ctx context.Context) ServiceComputeImageOptimizerDefaultSettingsOutput {
+	return o
+}
+
+func (o ServiceComputeImageOptimizerDefaultSettingsOutput) ToServiceComputeImageOptimizerDefaultSettingsPtrOutput() ServiceComputeImageOptimizerDefaultSettingsPtrOutput {
+	return o.ToServiceComputeImageOptimizerDefaultSettingsPtrOutputWithContext(context.Background())
+}
+
+func (o ServiceComputeImageOptimizerDefaultSettingsOutput) ToServiceComputeImageOptimizerDefaultSettingsPtrOutputWithContext(ctx context.Context) ServiceComputeImageOptimizerDefaultSettingsPtrOutput {
+	return o.ApplyTWithContext(ctx, func(_ context.Context, v ServiceComputeImageOptimizerDefaultSettings) *ServiceComputeImageOptimizerDefaultSettings {
+		return &v
+	}).(ServiceComputeImageOptimizerDefaultSettingsPtrOutput)
+}
+
+// Enables GIF to MP4 transformations on this service.
+func (o ServiceComputeImageOptimizerDefaultSettingsOutput) AllowVideo() pulumi.BoolPtrOutput {
+	return o.ApplyT(func(v ServiceComputeImageOptimizerDefaultSettings) *bool { return v.AllowVideo }).(pulumi.BoolPtrOutput)
+}
+
+// The default quality to use with JPEG output. This can be overridden with the "quality" parameter on specific image optimizer requests.
+func (o ServiceComputeImageOptimizerDefaultSettingsOutput) JpegQuality() pulumi.IntPtrOutput {
+	return o.ApplyT(func(v ServiceComputeImageOptimizerDefaultSettings) *int { return v.JpegQuality }).(pulumi.IntPtrOutput)
+}
+
+// The default type of JPEG output to use. This can be overridden with "format=bjpeg" and "format=pjpeg" on specific image optimizer requests. Valid values are `auto`, `baseline` and `progressive`.
+//   - auto: Match the input JPEG type, or baseline if transforming from a non-JPEG input.
+//   - baseline: Output baseline JPEG images
+//   - progressive: Output progressive JPEG images
+func (o ServiceComputeImageOptimizerDefaultSettingsOutput) JpegType() pulumi.StringPtrOutput {
+	return o.ApplyT(func(v ServiceComputeImageOptimizerDefaultSettings) *string { return v.JpegType }).(pulumi.StringPtrOutput)
+}
+
+// Used by the provider to identify modified settings. Changing this value will force the entire block to be deleted, then recreated.
+func (o ServiceComputeImageOptimizerDefaultSettingsOutput) Name() pulumi.StringPtrOutput {
+	return o.ApplyT(func(v ServiceComputeImageOptimizerDefaultSettings) *string { return v.Name }).(pulumi.StringPtrOutput)
+}
+
+// The type of filter to use while resizing an image. Valid values are `lanczos3`, `lanczos2`, `bicubic`, `bilinear` and `nearest`.
+//   - lanczos3: A Lanczos filter with a kernel size of 3. Lanczos filters can detect edges and linear features within an image, providing the best possible reconstruction.
+//   - lanczos2: A Lanczos filter with a kernel size of 2.
+//   - bicubic: A filter using an average of a 4x4 environment of pixels, weighing the innermost pixels higher.
+//   - bilinear: A filter using an average of a 2x2 environment of pixels.
+//   - nearest: A filter using the value of nearby translated pixel values. Preserves hard edges.
+func (o ServiceComputeImageOptimizerDefaultSettingsOutput) ResizeFilter() pulumi.StringPtrOutput {
+	return o.ApplyT(func(v ServiceComputeImageOptimizerDefaultSettings) *string { return v.ResizeFilter }).(pulumi.StringPtrOutput)
+}
+
+// Whether or not we should allow output images to render at sizes larger than input.
+func (o ServiceComputeImageOptimizerDefaultSettingsOutput) Upscale() pulumi.BoolPtrOutput {
+	return o.ApplyT(func(v ServiceComputeImageOptimizerDefaultSettings) *bool { return v.Upscale }).(pulumi.BoolPtrOutput)
+}
+
+// Controls whether or not to default to WebP output when the client supports it. This is equivalent to adding "auto=webp" to all image optimizer requests.
+func (o ServiceComputeImageOptimizerDefaultSettingsOutput) Webp() pulumi.BoolPtrOutput {
+	return o.ApplyT(func(v ServiceComputeImageOptimizerDefaultSettings) *bool { return v.Webp }).(pulumi.BoolPtrOutput)
+}
+
+// The default quality to use with WebP output. This can be overridden with the second option in the "quality" URL parameter on specific image optimizer requests.
+func (o ServiceComputeImageOptimizerDefaultSettingsOutput) WebpQuality() pulumi.IntPtrOutput {
+	return o.ApplyT(func(v ServiceComputeImageOptimizerDefaultSettings) *int { return v.WebpQuality }).(pulumi.IntPtrOutput)
+}
+
+type ServiceComputeImageOptimizerDefaultSettingsPtrOutput struct{ *pulumi.OutputState }
+
+func (ServiceComputeImageOptimizerDefaultSettingsPtrOutput) ElementType() reflect.Type {
+	return reflect.TypeOf((**ServiceComputeImageOptimizerDefaultSettings)(nil)).Elem()
+}
+
+func (o ServiceComputeImageOptimizerDefaultSettingsPtrOutput) ToServiceComputeImageOptimizerDefaultSettingsPtrOutput() ServiceComputeImageOptimizerDefaultSettingsPtrOutput {
+	return o
+}
+
+func (o ServiceComputeImageOptimizerDefaultSettingsPtrOutput) ToServiceComputeImageOptimizerDefaultSettingsPtrOutputWithContext(ctx context.Context) ServiceComputeImageOptimizerDefaultSettingsPtrOutput {
+	return o
+}
+
+func (o ServiceComputeImageOptimizerDefaultSettingsPtrOutput) Elem() ServiceComputeImageOptimizerDefaultSettingsOutput {
+	return o.ApplyT(func(v *ServiceComputeImageOptimizerDefaultSettings) ServiceComputeImageOptimizerDefaultSettings {
+		if v != nil {
+			return *v
+		}
+		var ret ServiceComputeImageOptimizerDefaultSettings
+		return ret
+	}).(ServiceComputeImageOptimizerDefaultSettingsOutput)
+}
+
+// Enables GIF to MP4 transformations on this service.
+func (o ServiceComputeImageOptimizerDefaultSettingsPtrOutput) AllowVideo() pulumi.BoolPtrOutput {
+	return o.ApplyT(func(v *ServiceComputeImageOptimizerDefaultSettings) *bool {
+		if v == nil {
+			return nil
+		}
+		return v.AllowVideo
+	}).(pulumi.BoolPtrOutput)
+}
+
+// The default quality to use with JPEG output. This can be overridden with the "quality" parameter on specific image optimizer requests.
+func (o ServiceComputeImageOptimizerDefaultSettingsPtrOutput) JpegQuality() pulumi.IntPtrOutput {
+	return o.ApplyT(func(v *ServiceComputeImageOptimizerDefaultSettings) *int {
+		if v == nil {
+			return nil
+		}
+		return v.JpegQuality
+	}).(pulumi.IntPtrOutput)
+}
+
+// The default type of JPEG output to use. This can be overridden with "format=bjpeg" and "format=pjpeg" on specific image optimizer requests. Valid values are `auto`, `baseline` and `progressive`.
+//   - auto: Match the input JPEG type, or baseline if transforming from a non-JPEG input.
+//   - baseline: Output baseline JPEG images
+//   - progressive: Output progressive JPEG images
+func (o ServiceComputeImageOptimizerDefaultSettingsPtrOutput) JpegType() pulumi.StringPtrOutput {
+	return o.ApplyT(func(v *ServiceComputeImageOptimizerDefaultSettings) *string {
+		if v == nil {
+			return nil
+		}
+		return v.JpegType
+	}).(pulumi.StringPtrOutput)
+}
+
+// Used by the provider to identify modified settings. Changing this value will force the entire block to be deleted, then recreated.
+func (o ServiceComputeImageOptimizerDefaultSettingsPtrOutput) Name() pulumi.StringPtrOutput {
+	return o.ApplyT(func(v *ServiceComputeImageOptimizerDefaultSettings) *string {
+		if v == nil {
+			return nil
+		}
+		return v.Name
+	}).(pulumi.StringPtrOutput)
+}
+
+// The type of filter to use while resizing an image. Valid values are `lanczos3`, `lanczos2`, `bicubic`, `bilinear` and `nearest`.
+//   - lanczos3: A Lanczos filter with a kernel size of 3. Lanczos filters can detect edges and linear features within an image, providing the best possible reconstruction.
+//   - lanczos2: A Lanczos filter with a kernel size of 2.
+//   - bicubic: A filter using an average of a 4x4 environment of pixels, weighing the innermost pixels higher.
+//   - bilinear: A filter using an average of a 2x2 environment of pixels.
+//   - nearest: A filter using the value of nearby translated pixel values. Preserves hard edges.
+func (o ServiceComputeImageOptimizerDefaultSettingsPtrOutput) ResizeFilter() pulumi.StringPtrOutput {
+	return o.ApplyT(func(v *ServiceComputeImageOptimizerDefaultSettings) *string {
+		if v == nil {
+			return nil
+		}
+		return v.ResizeFilter
+	}).(pulumi.StringPtrOutput)
+}
+
+// Whether or not we should allow output images to render at sizes larger than input.
+func (o ServiceComputeImageOptimizerDefaultSettingsPtrOutput) Upscale() pulumi.BoolPtrOutput {
+	return o.ApplyT(func(v *ServiceComputeImageOptimizerDefaultSettings) *bool {
+		if v == nil {
+			return nil
+		}
+		return v.Upscale
+	}).(pulumi.BoolPtrOutput)
+}
+
+// Controls whether or not to default to WebP output when the client supports it. This is equivalent to adding "auto=webp" to all image optimizer requests.
+func (o ServiceComputeImageOptimizerDefaultSettingsPtrOutput) Webp() pulumi.BoolPtrOutput {
+	return o.ApplyT(func(v *ServiceComputeImageOptimizerDefaultSettings) *bool {
+		if v == nil {
+			return nil
+		}
+		return v.Webp
+	}).(pulumi.BoolPtrOutput)
+}
+
+// The default quality to use with WebP output. This can be overridden with the second option in the "quality" URL parameter on specific image optimizer requests.
+func (o ServiceComputeImageOptimizerDefaultSettingsPtrOutput) WebpQuality() pulumi.IntPtrOutput {
+	return o.ApplyT(func(v *ServiceComputeImageOptimizerDefaultSettings) *int {
+		if v == nil {
+			return nil
+		}
+		return v.WebpQuality
+	}).(pulumi.IntPtrOutput)
+}
+
 type ServiceComputeLoggingBigquery struct {
 	// The google account name used to obtain temporary credentials (default none). You may optionally provide this via an environment variable, `FASTLY_GCS_ACCOUNT_NAME`.
 	AccountName *string `pulumi:"accountName"`
@@ -1190,7 +1492,7 @@ func (o ServiceComputeLoggingBigqueryArrayOutput) Index(i pulumi.IntInput) Servi
 type ServiceComputeLoggingBlobstorage struct {
 	// The unique Azure Blob Storage namespace in which your data objects are stored
 	AccountName string `pulumi:"accountName"`
-	// The codec used for compression of your logs. Valid values are zstd, snappy, and gzip. If the specified codec is "gzip", gzip*level will default to 3. To specify a different level, leave compression*codec blank and explicitly set the level using gzip*level. Specifying both compression*codec and gzipLevel in the same API request will result in an error.
+	// The codec used for compression of your logs. Valid values are zstd, snappy, and gzip. If the specified codec is "gzip", gzipLevel will default to 3. To specify a different level, leave compressionCodec blank and explicitly set the level using gzip_level. Specifying both compressionCodec and gzipLevel in the same API request will result in an error.
 	CompressionCodec *string `pulumi:"compressionCodec"`
 	// The name of the Azure Blob Storage container in which to store logs
 	Container string `pulumi:"container"`
@@ -1228,7 +1530,7 @@ type ServiceComputeLoggingBlobstorageInput interface {
 type ServiceComputeLoggingBlobstorageArgs struct {
 	// The unique Azure Blob Storage namespace in which your data objects are stored
 	AccountName pulumi.StringInput `pulumi:"accountName"`
-	// The codec used for compression of your logs. Valid values are zstd, snappy, and gzip. If the specified codec is "gzip", gzip*level will default to 3. To specify a different level, leave compression*codec blank and explicitly set the level using gzip*level. Specifying both compression*codec and gzipLevel in the same API request will result in an error.
+	// The codec used for compression of your logs. Valid values are zstd, snappy, and gzip. If the specified codec is "gzip", gzipLevel will default to 3. To specify a different level, leave compressionCodec blank and explicitly set the level using gzip_level. Specifying both compressionCodec and gzipLevel in the same API request will result in an error.
 	CompressionCodec pulumi.StringPtrInput `pulumi:"compressionCodec"`
 	// The name of the Azure Blob Storage container in which to store logs
 	Container pulumi.StringInput `pulumi:"container"`
@@ -1308,7 +1610,7 @@ func (o ServiceComputeLoggingBlobstorageOutput) AccountName() pulumi.StringOutpu
 	return o.ApplyT(func(v ServiceComputeLoggingBlobstorage) string { return v.AccountName }).(pulumi.StringOutput)
 }
 
-// The codec used for compression of your logs. Valid values are zstd, snappy, and gzip. If the specified codec is "gzip", gzip*level will default to 3. To specify a different level, leave compression*codec blank and explicitly set the level using gzip*level. Specifying both compression*codec and gzipLevel in the same API request will result in an error.
+// The codec used for compression of your logs. Valid values are zstd, snappy, and gzip. If the specified codec is "gzip", gzipLevel will default to 3. To specify a different level, leave compressionCodec blank and explicitly set the level using gzip_level. Specifying both compressionCodec and gzipLevel in the same API request will result in an error.
 func (o ServiceComputeLoggingBlobstorageOutput) CompressionCodec() pulumi.StringPtrOutput {
 	return o.ApplyT(func(v ServiceComputeLoggingBlobstorage) *string { return v.CompressionCodec }).(pulumi.StringPtrOutput)
 }
@@ -1388,7 +1690,7 @@ type ServiceComputeLoggingCloudfile struct {
 	AccessKey string `pulumi:"accessKey"`
 	// The name of your Cloud Files container
 	BucketName string `pulumi:"bucketName"`
-	// The codec used for compression of your logs. Valid values are zstd, snappy, and gzip. If the specified codec is "gzip", gzip*level will default to 3. To specify a different level, leave compression*codec blank and explicitly set the level using gzip*level. Specifying both compression*codec and gzipLevel in the same API request will result in an error.
+	// The codec used for compression of your logs. Valid values are zstd, snappy, and gzip. If the specified codec is "gzip", gzipLevel will default to 3. To specify a different level, leave compressionCodec blank and explicitly set the level using gzip_level. Specifying both compressionCodec and gzipLevel in the same API request will result in an error.
 	CompressionCodec *string `pulumi:"compressionCodec"`
 	// Level of Gzip compression from `0-9`. `0` means no compression. `1` is the fastest and the least compressed version, `9` is the slowest and the most compressed version. Default `0`
 	GzipLevel *int `pulumi:"gzipLevel"`
@@ -1426,7 +1728,7 @@ type ServiceComputeLoggingCloudfileArgs struct {
 	AccessKey pulumi.StringInput `pulumi:"accessKey"`
 	// The name of your Cloud Files container
 	BucketName pulumi.StringInput `pulumi:"bucketName"`
-	// The codec used for compression of your logs. Valid values are zstd, snappy, and gzip. If the specified codec is "gzip", gzip*level will default to 3. To specify a different level, leave compression*codec blank and explicitly set the level using gzip*level. Specifying both compression*codec and gzipLevel in the same API request will result in an error.
+	// The codec used for compression of your logs. Valid values are zstd, snappy, and gzip. If the specified codec is "gzip", gzipLevel will default to 3. To specify a different level, leave compressionCodec blank and explicitly set the level using gzip_level. Specifying both compressionCodec and gzipLevel in the same API request will result in an error.
 	CompressionCodec pulumi.StringPtrInput `pulumi:"compressionCodec"`
 	// Level of Gzip compression from `0-9`. `0` means no compression. `1` is the fastest and the least compressed version, `9` is the slowest and the most compressed version. Default `0`
 	GzipLevel pulumi.IntPtrInput `pulumi:"gzipLevel"`
@@ -1509,7 +1811,7 @@ func (o ServiceComputeLoggingCloudfileOutput) BucketName() pulumi.StringOutput {
 	return o.ApplyT(func(v ServiceComputeLoggingCloudfile) string { return v.BucketName }).(pulumi.StringOutput)
 }
 
-// The codec used for compression of your logs. Valid values are zstd, snappy, and gzip. If the specified codec is "gzip", gzip*level will default to 3. To specify a different level, leave compression*codec blank and explicitly set the level using gzip*level. Specifying both compression*codec and gzipLevel in the same API request will result in an error.
+// The codec used for compression of your logs. Valid values are zstd, snappy, and gzip. If the specified codec is "gzip", gzipLevel will default to 3. To specify a different level, leave compressionCodec blank and explicitly set the level using gzip_level. Specifying both compressionCodec and gzipLevel in the same API request will result in an error.
 func (o ServiceComputeLoggingCloudfileOutput) CompressionCodec() pulumi.StringPtrOutput {
 	return o.ApplyT(func(v ServiceComputeLoggingCloudfile) *string { return v.CompressionCodec }).(pulumi.StringPtrOutput)
 }
@@ -1699,7 +2001,7 @@ type ServiceComputeLoggingDigitalocean struct {
 	AccessKey string `pulumi:"accessKey"`
 	// The name of the DigitalOcean Space
 	BucketName string `pulumi:"bucketName"`
-	// The codec used for compression of your logs. Valid values are zstd, snappy, and gzip. If the specified codec is "gzip", gzip*level will default to 3. To specify a different level, leave compression*codec blank and explicitly set the level using gzip*level. Specifying both compression*codec and gzipLevel in the same API request will result in an error.
+	// The codec used for compression of your logs. Valid values are zstd, snappy, and gzip. If the specified codec is "gzip", gzipLevel will default to 3. To specify a different level, leave compressionCodec blank and explicitly set the level using gzip_level. Specifying both compressionCodec and gzipLevel in the same API request will result in an error.
 	CompressionCodec *string `pulumi:"compressionCodec"`
 	// The domain of the DigitalOcean Spaces endpoint (default `nyc3.digitaloceanspaces.com`)
 	Domain *string `pulumi:"domain"`
@@ -1737,7 +2039,7 @@ type ServiceComputeLoggingDigitaloceanArgs struct {
 	AccessKey pulumi.StringInput `pulumi:"accessKey"`
 	// The name of the DigitalOcean Space
 	BucketName pulumi.StringInput `pulumi:"bucketName"`
-	// The codec used for compression of your logs. Valid values are zstd, snappy, and gzip. If the specified codec is "gzip", gzip*level will default to 3. To specify a different level, leave compression*codec blank and explicitly set the level using gzip*level. Specifying both compression*codec and gzipLevel in the same API request will result in an error.
+	// The codec used for compression of your logs. Valid values are zstd, snappy, and gzip. If the specified codec is "gzip", gzipLevel will default to 3. To specify a different level, leave compressionCodec blank and explicitly set the level using gzip_level. Specifying both compressionCodec and gzipLevel in the same API request will result in an error.
 	CompressionCodec pulumi.StringPtrInput `pulumi:"compressionCodec"`
 	// The domain of the DigitalOcean Spaces endpoint (default `nyc3.digitaloceanspaces.com`)
 	Domain pulumi.StringPtrInput `pulumi:"domain"`
@@ -1820,7 +2122,7 @@ func (o ServiceComputeLoggingDigitaloceanOutput) BucketName() pulumi.StringOutpu
 	return o.ApplyT(func(v ServiceComputeLoggingDigitalocean) string { return v.BucketName }).(pulumi.StringOutput)
 }
 
-// The codec used for compression of your logs. Valid values are zstd, snappy, and gzip. If the specified codec is "gzip", gzip*level will default to 3. To specify a different level, leave compression*codec blank and explicitly set the level using gzip*level. Specifying both compression*codec and gzipLevel in the same API request will result in an error.
+// The codec used for compression of your logs. Valid values are zstd, snappy, and gzip. If the specified codec is "gzip", gzipLevel will default to 3. To specify a different level, leave compressionCodec blank and explicitly set the level using gzip_level. Specifying both compressionCodec and gzipLevel in the same API request will result in an error.
 func (o ServiceComputeLoggingDigitaloceanOutput) CompressionCodec() pulumi.StringPtrOutput {
 	return o.ApplyT(func(v ServiceComputeLoggingDigitalocean) *string { return v.CompressionCodec }).(pulumi.StringPtrOutput)
 }
@@ -2089,7 +2391,7 @@ func (o ServiceComputeLoggingElasticsearchArrayOutput) Index(i pulumi.IntInput) 
 type ServiceComputeLoggingFtp struct {
 	// The FTP address to stream logs to
 	Address string `pulumi:"address"`
-	// The codec used for compression of your logs. Valid values are zstd, snappy, and gzip. If the specified codec is "gzip", gzip*level will default to 3. To specify a different level, leave compression*codec blank and explicitly set the level using gzip*level. Specifying both compression*codec and gzipLevel in the same API request will result in an error.
+	// The codec used for compression of your logs. Valid values are zstd, snappy, and gzip. If the specified codec is "gzip", gzipLevel will default to 3. To specify a different level, leave compressionCodec blank and explicitly set the level using gzip_level. Specifying both compressionCodec and gzipLevel in the same API request will result in an error.
 	CompressionCodec *string `pulumi:"compressionCodec"`
 	// Level of Gzip compression from `0-9`. `0` means no compression. `1` is the fastest and the least compressed version, `9` is the slowest and the most compressed version. Default `0`
 	GzipLevel *int `pulumi:"gzipLevel"`
@@ -2127,7 +2429,7 @@ type ServiceComputeLoggingFtpInput interface {
 type ServiceComputeLoggingFtpArgs struct {
 	// The FTP address to stream logs to
 	Address pulumi.StringInput `pulumi:"address"`
-	// The codec used for compression of your logs. Valid values are zstd, snappy, and gzip. If the specified codec is "gzip", gzip*level will default to 3. To specify a different level, leave compression*codec blank and explicitly set the level using gzip*level. Specifying both compression*codec and gzipLevel in the same API request will result in an error.
+	// The codec used for compression of your logs. Valid values are zstd, snappy, and gzip. If the specified codec is "gzip", gzipLevel will default to 3. To specify a different level, leave compressionCodec blank and explicitly set the level using gzip_level. Specifying both compressionCodec and gzipLevel in the same API request will result in an error.
 	CompressionCodec pulumi.StringPtrInput `pulumi:"compressionCodec"`
 	// Level of Gzip compression from `0-9`. `0` means no compression. `1` is the fastest and the least compressed version, `9` is the slowest and the most compressed version. Default `0`
 	GzipLevel pulumi.IntPtrInput `pulumi:"gzipLevel"`
@@ -2207,7 +2509,7 @@ func (o ServiceComputeLoggingFtpOutput) Address() pulumi.StringOutput {
 	return o.ApplyT(func(v ServiceComputeLoggingFtp) string { return v.Address }).(pulumi.StringOutput)
 }
 
-// The codec used for compression of your logs. Valid values are zstd, snappy, and gzip. If the specified codec is "gzip", gzip*level will default to 3. To specify a different level, leave compression*codec blank and explicitly set the level using gzip*level. Specifying both compression*codec and gzipLevel in the same API request will result in an error.
+// The codec used for compression of your logs. Valid values are zstd, snappy, and gzip. If the specified codec is "gzip", gzipLevel will default to 3. To specify a different level, leave compressionCodec blank and explicitly set the level using gzip_level. Specifying both compressionCodec and gzipLevel in the same API request will result in an error.
 func (o ServiceComputeLoggingFtpOutput) CompressionCodec() pulumi.StringPtrOutput {
 	return o.ApplyT(func(v ServiceComputeLoggingFtp) *string { return v.CompressionCodec }).(pulumi.StringPtrOutput)
 }
@@ -2287,7 +2589,7 @@ type ServiceComputeLoggingGc struct {
 	AccountName *string `pulumi:"accountName"`
 	// The name of the bucket in which to store the logs
 	BucketName string `pulumi:"bucketName"`
-	// The codec used for compression of your logs. Valid values are zstd, snappy, and gzip. If the specified codec is "gzip", gzip*level will default to 3. To specify a different level, leave compression*codec blank and explicitly set the level using gzip*level. Specifying both compression*codec and gzipLevel in the same API request will result in an error.
+	// The codec used for compression of your logs. Valid values are zstd, snappy, and gzip. If the specified codec is "gzip", gzipLevel will default to 3. To specify a different level, leave compressionCodec blank and explicitly set the level using gzip_level. Specifying both compressionCodec and gzipLevel in the same API request will result in an error.
 	CompressionCodec *string `pulumi:"compressionCodec"`
 	// Level of Gzip compression from `0-9`. `0` means no compression. `1` is the fastest and the least compressed version, `9` is the slowest and the most compressed version. Default `0`
 	GzipLevel *int `pulumi:"gzipLevel"`
@@ -2325,7 +2627,7 @@ type ServiceComputeLoggingGcArgs struct {
 	AccountName pulumi.StringPtrInput `pulumi:"accountName"`
 	// The name of the bucket in which to store the logs
 	BucketName pulumi.StringInput `pulumi:"bucketName"`
-	// The codec used for compression of your logs. Valid values are zstd, snappy, and gzip. If the specified codec is "gzip", gzip*level will default to 3. To specify a different level, leave compression*codec blank and explicitly set the level using gzip*level. Specifying both compression*codec and gzipLevel in the same API request will result in an error.
+	// The codec used for compression of your logs. Valid values are zstd, snappy, and gzip. If the specified codec is "gzip", gzipLevel will default to 3. To specify a different level, leave compressionCodec blank and explicitly set the level using gzip_level. Specifying both compressionCodec and gzipLevel in the same API request will result in an error.
 	CompressionCodec pulumi.StringPtrInput `pulumi:"compressionCodec"`
 	// Level of Gzip compression from `0-9`. `0` means no compression. `1` is the fastest and the least compressed version, `9` is the slowest and the most compressed version. Default `0`
 	GzipLevel pulumi.IntPtrInput `pulumi:"gzipLevel"`
@@ -2408,7 +2710,7 @@ func (o ServiceComputeLoggingGcOutput) BucketName() pulumi.StringOutput {
 	return o.ApplyT(func(v ServiceComputeLoggingGc) string { return v.BucketName }).(pulumi.StringOutput)
 }
 
-// The codec used for compression of your logs. Valid values are zstd, snappy, and gzip. If the specified codec is "gzip", gzip*level will default to 3. To specify a different level, leave compression*codec blank and explicitly set the level using gzip*level. Specifying both compression*codec and gzipLevel in the same API request will result in an error.
+// The codec used for compression of your logs. Valid values are zstd, snappy, and gzip. If the specified codec is "gzip", gzipLevel will default to 3. To specify a different level, leave compressionCodec blank and explicitly set the level using gzip_level. Specifying both compressionCodec and gzipLevel in the same API request will result in an error.
 func (o ServiceComputeLoggingGcOutput) CompressionCodec() pulumi.StringPtrOutput {
 	return o.ApplyT(func(v ServiceComputeLoggingGc) *string { return v.CompressionCodec }).(pulumi.StringPtrOutput)
 }
@@ -3894,7 +4196,7 @@ type ServiceComputeLoggingOpenstack struct {
 	AccessKey string `pulumi:"accessKey"`
 	// The name of your OpenStack container
 	BucketName string `pulumi:"bucketName"`
-	// The codec used for compression of your logs. Valid values are zstd, snappy, and gzip. If the specified codec is "gzip", gzip*level will default to 3. To specify a different level, leave compression*codec blank and explicitly set the level using gzip*level. Specifying both compression*codec and gzipLevel in the same API request will result in an error.
+	// The codec used for compression of your logs. Valid values are zstd, snappy, and gzip. If the specified codec is "gzip", gzipLevel will default to 3. To specify a different level, leave compressionCodec blank and explicitly set the level using gzip_level. Specifying both compressionCodec and gzipLevel in the same API request will result in an error.
 	CompressionCodec *string `pulumi:"compressionCodec"`
 	// Level of Gzip compression from `0-9`. `0` means no compression. `1` is the fastest and the least compressed version, `9` is the slowest and the most compressed version. Default `0`
 	GzipLevel *int `pulumi:"gzipLevel"`
@@ -3932,7 +4234,7 @@ type ServiceComputeLoggingOpenstackArgs struct {
 	AccessKey pulumi.StringInput `pulumi:"accessKey"`
 	// The name of your OpenStack container
 	BucketName pulumi.StringInput `pulumi:"bucketName"`
-	// The codec used for compression of your logs. Valid values are zstd, snappy, and gzip. If the specified codec is "gzip", gzip*level will default to 3. To specify a different level, leave compression*codec blank and explicitly set the level using gzip*level. Specifying both compression*codec and gzipLevel in the same API request will result in an error.
+	// The codec used for compression of your logs. Valid values are zstd, snappy, and gzip. If the specified codec is "gzip", gzipLevel will default to 3. To specify a different level, leave compressionCodec blank and explicitly set the level using gzip_level. Specifying both compressionCodec and gzipLevel in the same API request will result in an error.
 	CompressionCodec pulumi.StringPtrInput `pulumi:"compressionCodec"`
 	// Level of Gzip compression from `0-9`. `0` means no compression. `1` is the fastest and the least compressed version, `9` is the slowest and the most compressed version. Default `0`
 	GzipLevel pulumi.IntPtrInput `pulumi:"gzipLevel"`
@@ -4015,7 +4317,7 @@ func (o ServiceComputeLoggingOpenstackOutput) BucketName() pulumi.StringOutput {
 	return o.ApplyT(func(v ServiceComputeLoggingOpenstack) string { return v.BucketName }).(pulumi.StringOutput)
 }
 
-// The codec used for compression of your logs. Valid values are zstd, snappy, and gzip. If the specified codec is "gzip", gzip*level will default to 3. To specify a different level, leave compression*codec blank and explicitly set the level using gzip*level. Specifying both compression*codec and gzipLevel in the same API request will result in an error.
+// The codec used for compression of your logs. Valid values are zstd, snappy, and gzip. If the specified codec is "gzip", gzipLevel will default to 3. To specify a different level, leave compressionCodec blank and explicitly set the level using gzip_level. Specifying both compressionCodec and gzipLevel in the same API request will result in an error.
 func (o ServiceComputeLoggingOpenstackOutput) CompressionCodec() pulumi.StringPtrOutput {
 	return o.ApplyT(func(v ServiceComputeLoggingOpenstack) *string { return v.CompressionCodec }).(pulumi.StringPtrOutput)
 }
@@ -4205,7 +4507,7 @@ type ServiceComputeLoggingS3 struct {
 	Acl *string `pulumi:"acl"`
 	// The name of the bucket in which to store the logs
 	BucketName string `pulumi:"bucketName"`
-	// The codec used for compression of your logs. Valid values are zstd, snappy, and gzip. If the specified codec is "gzip", gzip*level will default to 3. To specify a different level, leave compression*codec blank and explicitly set the level using gzip*level. Specifying both compression*codec and gzipLevel in the same API request will result in an error.
+	// The codec used for compression of your logs. Valid values are zstd, snappy, and gzip. If the specified codec is "gzip", gzipLevel will default to 3. To specify a different level, leave compressionCodec blank and explicitly set the level using gzip_level. Specifying both compressionCodec and gzipLevel in the same API request will result in an error.
 	CompressionCodec *string `pulumi:"compressionCodec"`
 	// If you created the S3 bucket outside of `us-east-1`, then specify the corresponding bucket endpoint. Example: `s3-us-west-2.amazonaws.com`
 	Domain *string `pulumi:"domain"`
@@ -4233,7 +4535,7 @@ type ServiceComputeLoggingS3 struct {
 	S3SecretKey *string `pulumi:"s3SecretKey"`
 	// Specify what type of server side encryption should be used. Can be either `AES256` or `aws:kms`
 	ServerSideEncryption *string `pulumi:"serverSideEncryption"`
-	// Optional server-side KMS Key Id. Must be set if server*side*encryption is set to `aws:kms`
+	// Optional server-side KMS Key Id. Must be set if serverSideEncryption is set to `aws:kms`
 	ServerSideEncryptionKmsKeyId *string `pulumi:"serverSideEncryptionKmsKeyId"`
 	// The `strftime` specified timestamp formatting (default `%Y-%m-%dT%H:%M:%S.000`)
 	TimestampFormat *string `pulumi:"timestampFormat"`
@@ -4255,7 +4557,7 @@ type ServiceComputeLoggingS3Args struct {
 	Acl pulumi.StringPtrInput `pulumi:"acl"`
 	// The name of the bucket in which to store the logs
 	BucketName pulumi.StringInput `pulumi:"bucketName"`
-	// The codec used for compression of your logs. Valid values are zstd, snappy, and gzip. If the specified codec is "gzip", gzip*level will default to 3. To specify a different level, leave compression*codec blank and explicitly set the level using gzip*level. Specifying both compression*codec and gzipLevel in the same API request will result in an error.
+	// The codec used for compression of your logs. Valid values are zstd, snappy, and gzip. If the specified codec is "gzip", gzipLevel will default to 3. To specify a different level, leave compressionCodec blank and explicitly set the level using gzip_level. Specifying both compressionCodec and gzipLevel in the same API request will result in an error.
 	CompressionCodec pulumi.StringPtrInput `pulumi:"compressionCodec"`
 	// If you created the S3 bucket outside of `us-east-1`, then specify the corresponding bucket endpoint. Example: `s3-us-west-2.amazonaws.com`
 	Domain pulumi.StringPtrInput `pulumi:"domain"`
@@ -4283,7 +4585,7 @@ type ServiceComputeLoggingS3Args struct {
 	S3SecretKey pulumi.StringPtrInput `pulumi:"s3SecretKey"`
 	// Specify what type of server side encryption should be used. Can be either `AES256` or `aws:kms`
 	ServerSideEncryption pulumi.StringPtrInput `pulumi:"serverSideEncryption"`
-	// Optional server-side KMS Key Id. Must be set if server*side*encryption is set to `aws:kms`
+	// Optional server-side KMS Key Id. Must be set if serverSideEncryption is set to `aws:kms`
 	ServerSideEncryptionKmsKeyId pulumi.StringPtrInput `pulumi:"serverSideEncryptionKmsKeyId"`
 	// The `strftime` specified timestamp formatting (default `%Y-%m-%dT%H:%M:%S.000`)
 	TimestampFormat pulumi.StringPtrInput `pulumi:"timestampFormat"`
@@ -4350,7 +4652,7 @@ func (o ServiceComputeLoggingS3Output) BucketName() pulumi.StringOutput {
 	return o.ApplyT(func(v ServiceComputeLoggingS3) string { return v.BucketName }).(pulumi.StringOutput)
 }
 
-// The codec used for compression of your logs. Valid values are zstd, snappy, and gzip. If the specified codec is "gzip", gzip*level will default to 3. To specify a different level, leave compression*codec blank and explicitly set the level using gzip*level. Specifying both compression*codec and gzipLevel in the same API request will result in an error.
+// The codec used for compression of your logs. Valid values are zstd, snappy, and gzip. If the specified codec is "gzip", gzipLevel will default to 3. To specify a different level, leave compressionCodec blank and explicitly set the level using gzip_level. Specifying both compressionCodec and gzipLevel in the same API request will result in an error.
 func (o ServiceComputeLoggingS3Output) CompressionCodec() pulumi.StringPtrOutput {
 	return o.ApplyT(func(v ServiceComputeLoggingS3) *string { return v.CompressionCodec }).(pulumi.StringPtrOutput)
 }
@@ -4420,7 +4722,7 @@ func (o ServiceComputeLoggingS3Output) ServerSideEncryption() pulumi.StringPtrOu
 	return o.ApplyT(func(v ServiceComputeLoggingS3) *string { return v.ServerSideEncryption }).(pulumi.StringPtrOutput)
 }
 
-// Optional server-side KMS Key Id. Must be set if server*side*encryption is set to `aws:kms`
+// Optional server-side KMS Key Id. Must be set if serverSideEncryption is set to `aws:kms`
 func (o ServiceComputeLoggingS3Output) ServerSideEncryptionKmsKeyId() pulumi.StringPtrOutput {
 	return o.ApplyT(func(v ServiceComputeLoggingS3) *string { return v.ServerSideEncryptionKmsKeyId }).(pulumi.StringPtrOutput)
 }
@@ -4577,7 +4879,7 @@ func (o ServiceComputeLoggingScalyrArrayOutput) Index(i pulumi.IntInput) Service
 type ServiceComputeLoggingSftp struct {
 	// The SFTP address to stream logs to
 	Address string `pulumi:"address"`
-	// The codec used for compression of your logs. Valid values are zstd, snappy, and gzip. If the specified codec is "gzip", gzip*level will default to 3. To specify a different level, leave compression*codec blank and explicitly set the level using gzip*level. Specifying both compression*codec and gzipLevel in the same API request will result in an error.
+	// The codec used for compression of your logs. Valid values are zstd, snappy, and gzip. If the specified codec is "gzip", gzipLevel will default to 3. To specify a different level, leave compressionCodec blank and explicitly set the level using gzip_level. Specifying both compressionCodec and gzipLevel in the same API request will result in an error.
 	CompressionCodec *string `pulumi:"compressionCodec"`
 	// Level of Gzip compression from `0-9`. `0` means no compression. `1` is the fastest and the least compressed version, `9` is the slowest and the most compressed version. Default `0`
 	GzipLevel *int `pulumi:"gzipLevel"`
@@ -4619,7 +4921,7 @@ type ServiceComputeLoggingSftpInput interface {
 type ServiceComputeLoggingSftpArgs struct {
 	// The SFTP address to stream logs to
 	Address pulumi.StringInput `pulumi:"address"`
-	// The codec used for compression of your logs. Valid values are zstd, snappy, and gzip. If the specified codec is "gzip", gzip*level will default to 3. To specify a different level, leave compression*codec blank and explicitly set the level using gzip*level. Specifying both compression*codec and gzipLevel in the same API request will result in an error.
+	// The codec used for compression of your logs. Valid values are zstd, snappy, and gzip. If the specified codec is "gzip", gzipLevel will default to 3. To specify a different level, leave compressionCodec blank and explicitly set the level using gzip_level. Specifying both compressionCodec and gzipLevel in the same API request will result in an error.
 	CompressionCodec pulumi.StringPtrInput `pulumi:"compressionCodec"`
 	// Level of Gzip compression from `0-9`. `0` means no compression. `1` is the fastest and the least compressed version, `9` is the slowest and the most compressed version. Default `0`
 	GzipLevel pulumi.IntPtrInput `pulumi:"gzipLevel"`
@@ -4703,7 +5005,7 @@ func (o ServiceComputeLoggingSftpOutput) Address() pulumi.StringOutput {
 	return o.ApplyT(func(v ServiceComputeLoggingSftp) string { return v.Address }).(pulumi.StringOutput)
 }
 
-// The codec used for compression of your logs. Valid values are zstd, snappy, and gzip. If the specified codec is "gzip", gzip*level will default to 3. To specify a different level, leave compression*codec blank and explicitly set the level using gzip*level. Specifying both compression*codec and gzipLevel in the same API request will result in an error.
+// The codec used for compression of your logs. Valid values are zstd, snappy, and gzip. If the specified codec is "gzip", gzipLevel will default to 3. To specify a different level, leave compressionCodec blank and explicitly set the level using gzip_level. Specifying both compressionCodec and gzipLevel in the same API request will result in an error.
 func (o ServiceComputeLoggingSftpOutput) CompressionCodec() pulumi.StringPtrOutput {
 	return o.ApplyT(func(v ServiceComputeLoggingSftp) *string { return v.CompressionCodec }).(pulumi.StringPtrOutput)
 }
@@ -5246,7 +5548,7 @@ type ServiceComputePackage struct {
 	Content *string `pulumi:"content"`
 	// The path to the Wasm deployment package within your local filesystem. Conflicts with `content`. Exactly one of these two arguments must be specified
 	Filename *string `pulumi:"filename"`
-	// Used to trigger updates. Must be set to a SHA512 hash of all files (in sorted order) within the package. The usual way to set this is using the fastly*package*hash data source.
+	// Used to trigger updates. Must be set to a SHA512 hash of all files (in sorted order) within the package. The usual way to set this is using the getPackageHash data source.
 	SourceCodeHash *string `pulumi:"sourceCodeHash"`
 }
 
@@ -5266,7 +5568,7 @@ type ServiceComputePackageArgs struct {
 	Content pulumi.StringPtrInput `pulumi:"content"`
 	// The path to the Wasm deployment package within your local filesystem. Conflicts with `content`. Exactly one of these two arguments must be specified
 	Filename pulumi.StringPtrInput `pulumi:"filename"`
-	// Used to trigger updates. Must be set to a SHA512 hash of all files (in sorted order) within the package. The usual way to set this is using the fastly*package*hash data source.
+	// Used to trigger updates. Must be set to a SHA512 hash of all files (in sorted order) within the package. The usual way to set this is using the getPackageHash data source.
 	SourceCodeHash pulumi.StringPtrInput `pulumi:"sourceCodeHash"`
 }
 
@@ -5357,7 +5659,7 @@ func (o ServiceComputePackageOutput) Filename() pulumi.StringPtrOutput {
 	return o.ApplyT(func(v ServiceComputePackage) *string { return v.Filename }).(pulumi.StringPtrOutput)
 }
 
-// Used to trigger updates. Must be set to a SHA512 hash of all files (in sorted order) within the package. The usual way to set this is using the fastly*package*hash data source.
+// Used to trigger updates. Must be set to a SHA512 hash of all files (in sorted order) within the package. The usual way to set this is using the getPackageHash data source.
 func (o ServiceComputePackageOutput) SourceCodeHash() pulumi.StringPtrOutput {
 	return o.ApplyT(func(v ServiceComputePackage) *string { return v.SourceCodeHash }).(pulumi.StringPtrOutput)
 }
@@ -5406,7 +5708,7 @@ func (o ServiceComputePackagePtrOutput) Filename() pulumi.StringPtrOutput {
 	}).(pulumi.StringPtrOutput)
 }
 
-// Used to trigger updates. Must be set to a SHA512 hash of all files (in sorted order) within the package. The usual way to set this is using the fastly*package*hash data source.
+// Used to trigger updates. Must be set to a SHA512 hash of all files (in sorted order) within the package. The usual way to set this is using the getPackageHash data source.
 func (o ServiceComputePackagePtrOutput) SourceCodeHash() pulumi.StringPtrOutput {
 	return o.ApplyT(func(v *ServiceComputePackage) *string {
 		if v == nil {
@@ -7427,6 +7729,308 @@ func (o ServiceVclHealthcheckArrayOutput) Index(i pulumi.IntInput) ServiceVclHea
 	}).(ServiceVclHealthcheckOutput)
 }
 
+type ServiceVclImageOptimizerDefaultSettings struct {
+	// Enables GIF to MP4 transformations on this service.
+	AllowVideo *bool `pulumi:"allowVideo"`
+	// The default quality to use with JPEG output. This can be overridden with the "quality" parameter on specific image optimizer requests.
+	JpegQuality *int `pulumi:"jpegQuality"`
+	// The default type of JPEG output to use. This can be overridden with "format=bjpeg" and "format=pjpeg" on specific image optimizer requests. Valid values are `auto`, `baseline` and `progressive`.
+	// 	- auto: Match the input JPEG type, or baseline if transforming from a non-JPEG input.
+	// 	- baseline: Output baseline JPEG images
+	// 	- progressive: Output progressive JPEG images
+	JpegType *string `pulumi:"jpegType"`
+	// Used by the provider to identify modified settings. Changing this value will force the entire block to be deleted, then recreated.
+	Name *string `pulumi:"name"`
+	// The type of filter to use while resizing an image. Valid values are `lanczos3`, `lanczos2`, `bicubic`, `bilinear` and `nearest`.
+	// 	- lanczos3: A Lanczos filter with a kernel size of 3. Lanczos filters can detect edges and linear features within an image, providing the best possible reconstruction.
+	// 	- lanczos2: A Lanczos filter with a kernel size of 2.
+	// 	- bicubic: A filter using an average of a 4x4 environment of pixels, weighing the innermost pixels higher.
+	// 	- bilinear: A filter using an average of a 2x2 environment of pixels.
+	// 	- nearest: A filter using the value of nearby translated pixel values. Preserves hard edges.
+	ResizeFilter *string `pulumi:"resizeFilter"`
+	// Whether or not we should allow output images to render at sizes larger than input.
+	Upscale *bool `pulumi:"upscale"`
+	// Controls whether or not to default to WebP output when the client supports it. This is equivalent to adding "auto=webp" to all image optimizer requests.
+	Webp *bool `pulumi:"webp"`
+	// The default quality to use with WebP output. This can be overridden with the second option in the "quality" URL parameter on specific image optimizer requests.
+	WebpQuality *int `pulumi:"webpQuality"`
+}
+
+// ServiceVclImageOptimizerDefaultSettingsInput is an input type that accepts ServiceVclImageOptimizerDefaultSettingsArgs and ServiceVclImageOptimizerDefaultSettingsOutput values.
+// You can construct a concrete instance of `ServiceVclImageOptimizerDefaultSettingsInput` via:
+//
+//	ServiceVclImageOptimizerDefaultSettingsArgs{...}
+type ServiceVclImageOptimizerDefaultSettingsInput interface {
+	pulumi.Input
+
+	ToServiceVclImageOptimizerDefaultSettingsOutput() ServiceVclImageOptimizerDefaultSettingsOutput
+	ToServiceVclImageOptimizerDefaultSettingsOutputWithContext(context.Context) ServiceVclImageOptimizerDefaultSettingsOutput
+}
+
+type ServiceVclImageOptimizerDefaultSettingsArgs struct {
+	// Enables GIF to MP4 transformations on this service.
+	AllowVideo pulumi.BoolPtrInput `pulumi:"allowVideo"`
+	// The default quality to use with JPEG output. This can be overridden with the "quality" parameter on specific image optimizer requests.
+	JpegQuality pulumi.IntPtrInput `pulumi:"jpegQuality"`
+	// The default type of JPEG output to use. This can be overridden with "format=bjpeg" and "format=pjpeg" on specific image optimizer requests. Valid values are `auto`, `baseline` and `progressive`.
+	// 	- auto: Match the input JPEG type, or baseline if transforming from a non-JPEG input.
+	// 	- baseline: Output baseline JPEG images
+	// 	- progressive: Output progressive JPEG images
+	JpegType pulumi.StringPtrInput `pulumi:"jpegType"`
+	// Used by the provider to identify modified settings. Changing this value will force the entire block to be deleted, then recreated.
+	Name pulumi.StringPtrInput `pulumi:"name"`
+	// The type of filter to use while resizing an image. Valid values are `lanczos3`, `lanczos2`, `bicubic`, `bilinear` and `nearest`.
+	// 	- lanczos3: A Lanczos filter with a kernel size of 3. Lanczos filters can detect edges and linear features within an image, providing the best possible reconstruction.
+	// 	- lanczos2: A Lanczos filter with a kernel size of 2.
+	// 	- bicubic: A filter using an average of a 4x4 environment of pixels, weighing the innermost pixels higher.
+	// 	- bilinear: A filter using an average of a 2x2 environment of pixels.
+	// 	- nearest: A filter using the value of nearby translated pixel values. Preserves hard edges.
+	ResizeFilter pulumi.StringPtrInput `pulumi:"resizeFilter"`
+	// Whether or not we should allow output images to render at sizes larger than input.
+	Upscale pulumi.BoolPtrInput `pulumi:"upscale"`
+	// Controls whether or not to default to WebP output when the client supports it. This is equivalent to adding "auto=webp" to all image optimizer requests.
+	Webp pulumi.BoolPtrInput `pulumi:"webp"`
+	// The default quality to use with WebP output. This can be overridden with the second option in the "quality" URL parameter on specific image optimizer requests.
+	WebpQuality pulumi.IntPtrInput `pulumi:"webpQuality"`
+}
+
+func (ServiceVclImageOptimizerDefaultSettingsArgs) ElementType() reflect.Type {
+	return reflect.TypeOf((*ServiceVclImageOptimizerDefaultSettings)(nil)).Elem()
+}
+
+func (i ServiceVclImageOptimizerDefaultSettingsArgs) ToServiceVclImageOptimizerDefaultSettingsOutput() ServiceVclImageOptimizerDefaultSettingsOutput {
+	return i.ToServiceVclImageOptimizerDefaultSettingsOutputWithContext(context.Background())
+}
+
+func (i ServiceVclImageOptimizerDefaultSettingsArgs) ToServiceVclImageOptimizerDefaultSettingsOutputWithContext(ctx context.Context) ServiceVclImageOptimizerDefaultSettingsOutput {
+	return pulumi.ToOutputWithContext(ctx, i).(ServiceVclImageOptimizerDefaultSettingsOutput)
+}
+
+func (i ServiceVclImageOptimizerDefaultSettingsArgs) ToServiceVclImageOptimizerDefaultSettingsPtrOutput() ServiceVclImageOptimizerDefaultSettingsPtrOutput {
+	return i.ToServiceVclImageOptimizerDefaultSettingsPtrOutputWithContext(context.Background())
+}
+
+func (i ServiceVclImageOptimizerDefaultSettingsArgs) ToServiceVclImageOptimizerDefaultSettingsPtrOutputWithContext(ctx context.Context) ServiceVclImageOptimizerDefaultSettingsPtrOutput {
+	return pulumi.ToOutputWithContext(ctx, i).(ServiceVclImageOptimizerDefaultSettingsOutput).ToServiceVclImageOptimizerDefaultSettingsPtrOutputWithContext(ctx)
+}
+
+// ServiceVclImageOptimizerDefaultSettingsPtrInput is an input type that accepts ServiceVclImageOptimizerDefaultSettingsArgs, ServiceVclImageOptimizerDefaultSettingsPtr and ServiceVclImageOptimizerDefaultSettingsPtrOutput values.
+// You can construct a concrete instance of `ServiceVclImageOptimizerDefaultSettingsPtrInput` via:
+//
+//	        ServiceVclImageOptimizerDefaultSettingsArgs{...}
+//
+//	or:
+//
+//	        nil
+type ServiceVclImageOptimizerDefaultSettingsPtrInput interface {
+	pulumi.Input
+
+	ToServiceVclImageOptimizerDefaultSettingsPtrOutput() ServiceVclImageOptimizerDefaultSettingsPtrOutput
+	ToServiceVclImageOptimizerDefaultSettingsPtrOutputWithContext(context.Context) ServiceVclImageOptimizerDefaultSettingsPtrOutput
+}
+
+type serviceVclImageOptimizerDefaultSettingsPtrType ServiceVclImageOptimizerDefaultSettingsArgs
+
+func ServiceVclImageOptimizerDefaultSettingsPtr(v *ServiceVclImageOptimizerDefaultSettingsArgs) ServiceVclImageOptimizerDefaultSettingsPtrInput {
+	return (*serviceVclImageOptimizerDefaultSettingsPtrType)(v)
+}
+
+func (*serviceVclImageOptimizerDefaultSettingsPtrType) ElementType() reflect.Type {
+	return reflect.TypeOf((**ServiceVclImageOptimizerDefaultSettings)(nil)).Elem()
+}
+
+func (i *serviceVclImageOptimizerDefaultSettingsPtrType) ToServiceVclImageOptimizerDefaultSettingsPtrOutput() ServiceVclImageOptimizerDefaultSettingsPtrOutput {
+	return i.ToServiceVclImageOptimizerDefaultSettingsPtrOutputWithContext(context.Background())
+}
+
+func (i *serviceVclImageOptimizerDefaultSettingsPtrType) ToServiceVclImageOptimizerDefaultSettingsPtrOutputWithContext(ctx context.Context) ServiceVclImageOptimizerDefaultSettingsPtrOutput {
+	return pulumi.ToOutputWithContext(ctx, i).(ServiceVclImageOptimizerDefaultSettingsPtrOutput)
+}
+
+type ServiceVclImageOptimizerDefaultSettingsOutput struct{ *pulumi.OutputState }
+
+func (ServiceVclImageOptimizerDefaultSettingsOutput) ElementType() reflect.Type {
+	return reflect.TypeOf((*ServiceVclImageOptimizerDefaultSettings)(nil)).Elem()
+}
+
+func (o ServiceVclImageOptimizerDefaultSettingsOutput) ToServiceVclImageOptimizerDefaultSettingsOutput() ServiceVclImageOptimizerDefaultSettingsOutput {
+	return o
+}
+
+func (o ServiceVclImageOptimizerDefaultSettingsOutput) ToServiceVclImageOptimizerDefaultSettingsOutputWithContext(ctx context.Context) ServiceVclImageOptimizerDefaultSettingsOutput {
+	return o
+}
+
+func (o ServiceVclImageOptimizerDefaultSettingsOutput) ToServiceVclImageOptimizerDefaultSettingsPtrOutput() ServiceVclImageOptimizerDefaultSettingsPtrOutput {
+	return o.ToServiceVclImageOptimizerDefaultSettingsPtrOutputWithContext(context.Background())
+}
+
+func (o ServiceVclImageOptimizerDefaultSettingsOutput) ToServiceVclImageOptimizerDefaultSettingsPtrOutputWithContext(ctx context.Context) ServiceVclImageOptimizerDefaultSettingsPtrOutput {
+	return o.ApplyTWithContext(ctx, func(_ context.Context, v ServiceVclImageOptimizerDefaultSettings) *ServiceVclImageOptimizerDefaultSettings {
+		return &v
+	}).(ServiceVclImageOptimizerDefaultSettingsPtrOutput)
+}
+
+// Enables GIF to MP4 transformations on this service.
+func (o ServiceVclImageOptimizerDefaultSettingsOutput) AllowVideo() pulumi.BoolPtrOutput {
+	return o.ApplyT(func(v ServiceVclImageOptimizerDefaultSettings) *bool { return v.AllowVideo }).(pulumi.BoolPtrOutput)
+}
+
+// The default quality to use with JPEG output. This can be overridden with the "quality" parameter on specific image optimizer requests.
+func (o ServiceVclImageOptimizerDefaultSettingsOutput) JpegQuality() pulumi.IntPtrOutput {
+	return o.ApplyT(func(v ServiceVclImageOptimizerDefaultSettings) *int { return v.JpegQuality }).(pulumi.IntPtrOutput)
+}
+
+// The default type of JPEG output to use. This can be overridden with "format=bjpeg" and "format=pjpeg" on specific image optimizer requests. Valid values are `auto`, `baseline` and `progressive`.
+//   - auto: Match the input JPEG type, or baseline if transforming from a non-JPEG input.
+//   - baseline: Output baseline JPEG images
+//   - progressive: Output progressive JPEG images
+func (o ServiceVclImageOptimizerDefaultSettingsOutput) JpegType() pulumi.StringPtrOutput {
+	return o.ApplyT(func(v ServiceVclImageOptimizerDefaultSettings) *string { return v.JpegType }).(pulumi.StringPtrOutput)
+}
+
+// Used by the provider to identify modified settings. Changing this value will force the entire block to be deleted, then recreated.
+func (o ServiceVclImageOptimizerDefaultSettingsOutput) Name() pulumi.StringPtrOutput {
+	return o.ApplyT(func(v ServiceVclImageOptimizerDefaultSettings) *string { return v.Name }).(pulumi.StringPtrOutput)
+}
+
+// The type of filter to use while resizing an image. Valid values are `lanczos3`, `lanczos2`, `bicubic`, `bilinear` and `nearest`.
+//   - lanczos3: A Lanczos filter with a kernel size of 3. Lanczos filters can detect edges and linear features within an image, providing the best possible reconstruction.
+//   - lanczos2: A Lanczos filter with a kernel size of 2.
+//   - bicubic: A filter using an average of a 4x4 environment of pixels, weighing the innermost pixels higher.
+//   - bilinear: A filter using an average of a 2x2 environment of pixels.
+//   - nearest: A filter using the value of nearby translated pixel values. Preserves hard edges.
+func (o ServiceVclImageOptimizerDefaultSettingsOutput) ResizeFilter() pulumi.StringPtrOutput {
+	return o.ApplyT(func(v ServiceVclImageOptimizerDefaultSettings) *string { return v.ResizeFilter }).(pulumi.StringPtrOutput)
+}
+
+// Whether or not we should allow output images to render at sizes larger than input.
+func (o ServiceVclImageOptimizerDefaultSettingsOutput) Upscale() pulumi.BoolPtrOutput {
+	return o.ApplyT(func(v ServiceVclImageOptimizerDefaultSettings) *bool { return v.Upscale }).(pulumi.BoolPtrOutput)
+}
+
+// Controls whether or not to default to WebP output when the client supports it. This is equivalent to adding "auto=webp" to all image optimizer requests.
+func (o ServiceVclImageOptimizerDefaultSettingsOutput) Webp() pulumi.BoolPtrOutput {
+	return o.ApplyT(func(v ServiceVclImageOptimizerDefaultSettings) *bool { return v.Webp }).(pulumi.BoolPtrOutput)
+}
+
+// The default quality to use with WebP output. This can be overridden with the second option in the "quality" URL parameter on specific image optimizer requests.
+func (o ServiceVclImageOptimizerDefaultSettingsOutput) WebpQuality() pulumi.IntPtrOutput {
+	return o.ApplyT(func(v ServiceVclImageOptimizerDefaultSettings) *int { return v.WebpQuality }).(pulumi.IntPtrOutput)
+}
+
+type ServiceVclImageOptimizerDefaultSettingsPtrOutput struct{ *pulumi.OutputState }
+
+func (ServiceVclImageOptimizerDefaultSettingsPtrOutput) ElementType() reflect.Type {
+	return reflect.TypeOf((**ServiceVclImageOptimizerDefaultSettings)(nil)).Elem()
+}
+
+func (o ServiceVclImageOptimizerDefaultSettingsPtrOutput) ToServiceVclImageOptimizerDefaultSettingsPtrOutput() ServiceVclImageOptimizerDefaultSettingsPtrOutput {
+	return o
+}
+
+func (o ServiceVclImageOptimizerDefaultSettingsPtrOutput) ToServiceVclImageOptimizerDefaultSettingsPtrOutputWithContext(ctx context.Context) ServiceVclImageOptimizerDefaultSettingsPtrOutput {
+	return o
+}
+
+func (o ServiceVclImageOptimizerDefaultSettingsPtrOutput) Elem() ServiceVclImageOptimizerDefaultSettingsOutput {
+	return o.ApplyT(func(v *ServiceVclImageOptimizerDefaultSettings) ServiceVclImageOptimizerDefaultSettings {
+		if v != nil {
+			return *v
+		}
+		var ret ServiceVclImageOptimizerDefaultSettings
+		return ret
+	}).(ServiceVclImageOptimizerDefaultSettingsOutput)
+}
+
+// Enables GIF to MP4 transformations on this service.
+func (o ServiceVclImageOptimizerDefaultSettingsPtrOutput) AllowVideo() pulumi.BoolPtrOutput {
+	return o.ApplyT(func(v *ServiceVclImageOptimizerDefaultSettings) *bool {
+		if v == nil {
+			return nil
+		}
+		return v.AllowVideo
+	}).(pulumi.BoolPtrOutput)
+}
+
+// The default quality to use with JPEG output. This can be overridden with the "quality" parameter on specific image optimizer requests.
+func (o ServiceVclImageOptimizerDefaultSettingsPtrOutput) JpegQuality() pulumi.IntPtrOutput {
+	return o.ApplyT(func(v *ServiceVclImageOptimizerDefaultSettings) *int {
+		if v == nil {
+			return nil
+		}
+		return v.JpegQuality
+	}).(pulumi.IntPtrOutput)
+}
+
+// The default type of JPEG output to use. This can be overridden with "format=bjpeg" and "format=pjpeg" on specific image optimizer requests. Valid values are `auto`, `baseline` and `progressive`.
+//   - auto: Match the input JPEG type, or baseline if transforming from a non-JPEG input.
+//   - baseline: Output baseline JPEG images
+//   - progressive: Output progressive JPEG images
+func (o ServiceVclImageOptimizerDefaultSettingsPtrOutput) JpegType() pulumi.StringPtrOutput {
+	return o.ApplyT(func(v *ServiceVclImageOptimizerDefaultSettings) *string {
+		if v == nil {
+			return nil
+		}
+		return v.JpegType
+	}).(pulumi.StringPtrOutput)
+}
+
+// Used by the provider to identify modified settings. Changing this value will force the entire block to be deleted, then recreated.
+func (o ServiceVclImageOptimizerDefaultSettingsPtrOutput) Name() pulumi.StringPtrOutput {
+	return o.ApplyT(func(v *ServiceVclImageOptimizerDefaultSettings) *string {
+		if v == nil {
+			return nil
+		}
+		return v.Name
+	}).(pulumi.StringPtrOutput)
+}
+
+// The type of filter to use while resizing an image. Valid values are `lanczos3`, `lanczos2`, `bicubic`, `bilinear` and `nearest`.
+//   - lanczos3: A Lanczos filter with a kernel size of 3. Lanczos filters can detect edges and linear features within an image, providing the best possible reconstruction.
+//   - lanczos2: A Lanczos filter with a kernel size of 2.
+//   - bicubic: A filter using an average of a 4x4 environment of pixels, weighing the innermost pixels higher.
+//   - bilinear: A filter using an average of a 2x2 environment of pixels.
+//   - nearest: A filter using the value of nearby translated pixel values. Preserves hard edges.
+func (o ServiceVclImageOptimizerDefaultSettingsPtrOutput) ResizeFilter() pulumi.StringPtrOutput {
+	return o.ApplyT(func(v *ServiceVclImageOptimizerDefaultSettings) *string {
+		if v == nil {
+			return nil
+		}
+		return v.ResizeFilter
+	}).(pulumi.StringPtrOutput)
+}
+
+// Whether or not we should allow output images to render at sizes larger than input.
+func (o ServiceVclImageOptimizerDefaultSettingsPtrOutput) Upscale() pulumi.BoolPtrOutput {
+	return o.ApplyT(func(v *ServiceVclImageOptimizerDefaultSettings) *bool {
+		if v == nil {
+			return nil
+		}
+		return v.Upscale
+	}).(pulumi.BoolPtrOutput)
+}
+
+// Controls whether or not to default to WebP output when the client supports it. This is equivalent to adding "auto=webp" to all image optimizer requests.
+func (o ServiceVclImageOptimizerDefaultSettingsPtrOutput) Webp() pulumi.BoolPtrOutput {
+	return o.ApplyT(func(v *ServiceVclImageOptimizerDefaultSettings) *bool {
+		if v == nil {
+			return nil
+		}
+		return v.Webp
+	}).(pulumi.BoolPtrOutput)
+}
+
+// The default quality to use with WebP output. This can be overridden with the second option in the "quality" URL parameter on specific image optimizer requests.
+func (o ServiceVclImageOptimizerDefaultSettingsPtrOutput) WebpQuality() pulumi.IntPtrOutput {
+	return o.ApplyT(func(v *ServiceVclImageOptimizerDefaultSettings) *int {
+		if v == nil {
+			return nil
+		}
+		return v.WebpQuality
+	}).(pulumi.IntPtrOutput)
+}
+
 type ServiceVclLoggingBigquery struct {
 	// The google account name used to obtain temporary credentials (default none). You may optionally provide this via an environment variable, `FASTLY_GCS_ACCOUNT_NAME`.
 	AccountName *string `pulumi:"accountName"`
@@ -7617,7 +8221,7 @@ func (o ServiceVclLoggingBigqueryArrayOutput) Index(i pulumi.IntInput) ServiceVc
 type ServiceVclLoggingBlobstorage struct {
 	// The unique Azure Blob Storage namespace in which your data objects are stored
 	AccountName string `pulumi:"accountName"`
-	// The codec used for compression of your logs. Valid values are zstd, snappy, and gzip. If the specified codec is "gzip", gzip*level will default to 3. To specify a different level, leave compression*codec blank and explicitly set the level using gzip*level. Specifying both compression*codec and gzipLevel in the same API request will result in an error.
+	// The codec used for compression of your logs. Valid values are zstd, snappy, and gzip. If the specified codec is "gzip", gzipLevel will default to 3. To specify a different level, leave compressionCodec blank and explicitly set the level using gzip_level. Specifying both compressionCodec and gzipLevel in the same API request will result in an error.
 	CompressionCodec *string `pulumi:"compressionCodec"`
 	// The name of the Azure Blob Storage container in which to store logs
 	Container string `pulumi:"container"`
@@ -7663,7 +8267,7 @@ type ServiceVclLoggingBlobstorageInput interface {
 type ServiceVclLoggingBlobstorageArgs struct {
 	// The unique Azure Blob Storage namespace in which your data objects are stored
 	AccountName pulumi.StringInput `pulumi:"accountName"`
-	// The codec used for compression of your logs. Valid values are zstd, snappy, and gzip. If the specified codec is "gzip", gzip*level will default to 3. To specify a different level, leave compression*codec blank and explicitly set the level using gzip*level. Specifying both compression*codec and gzipLevel in the same API request will result in an error.
+	// The codec used for compression of your logs. Valid values are zstd, snappy, and gzip. If the specified codec is "gzip", gzipLevel will default to 3. To specify a different level, leave compressionCodec blank and explicitly set the level using gzip_level. Specifying both compressionCodec and gzipLevel in the same API request will result in an error.
 	CompressionCodec pulumi.StringPtrInput `pulumi:"compressionCodec"`
 	// The name of the Azure Blob Storage container in which to store logs
 	Container pulumi.StringInput `pulumi:"container"`
@@ -7751,7 +8355,7 @@ func (o ServiceVclLoggingBlobstorageOutput) AccountName() pulumi.StringOutput {
 	return o.ApplyT(func(v ServiceVclLoggingBlobstorage) string { return v.AccountName }).(pulumi.StringOutput)
 }
 
-// The codec used for compression of your logs. Valid values are zstd, snappy, and gzip. If the specified codec is "gzip", gzip*level will default to 3. To specify a different level, leave compression*codec blank and explicitly set the level using gzip*level. Specifying both compression*codec and gzipLevel in the same API request will result in an error.
+// The codec used for compression of your logs. Valid values are zstd, snappy, and gzip. If the specified codec is "gzip", gzipLevel will default to 3. To specify a different level, leave compressionCodec blank and explicitly set the level using gzip_level. Specifying both compressionCodec and gzipLevel in the same API request will result in an error.
 func (o ServiceVclLoggingBlobstorageOutput) CompressionCodec() pulumi.StringPtrOutput {
 	return o.ApplyT(func(v ServiceVclLoggingBlobstorage) *string { return v.CompressionCodec }).(pulumi.StringPtrOutput)
 }
@@ -7851,7 +8455,7 @@ type ServiceVclLoggingCloudfile struct {
 	AccessKey string `pulumi:"accessKey"`
 	// The name of your Cloud Files container
 	BucketName string `pulumi:"bucketName"`
-	// The codec used for compression of your logs. Valid values are zstd, snappy, and gzip. If the specified codec is "gzip", gzip*level will default to 3. To specify a different level, leave compression*codec blank and explicitly set the level using gzip*level. Specifying both compression*codec and gzipLevel in the same API request will result in an error.
+	// The codec used for compression of your logs. Valid values are zstd, snappy, and gzip. If the specified codec is "gzip", gzipLevel will default to 3. To specify a different level, leave compressionCodec blank and explicitly set the level using gzip_level. Specifying both compressionCodec and gzipLevel in the same API request will result in an error.
 	CompressionCodec *string `pulumi:"compressionCodec"`
 	// Apache style log formatting.
 	Format *string `pulumi:"format"`
@@ -7897,7 +8501,7 @@ type ServiceVclLoggingCloudfileArgs struct {
 	AccessKey pulumi.StringInput `pulumi:"accessKey"`
 	// The name of your Cloud Files container
 	BucketName pulumi.StringInput `pulumi:"bucketName"`
-	// The codec used for compression of your logs. Valid values are zstd, snappy, and gzip. If the specified codec is "gzip", gzip*level will default to 3. To specify a different level, leave compression*codec blank and explicitly set the level using gzip*level. Specifying both compression*codec and gzipLevel in the same API request will result in an error.
+	// The codec used for compression of your logs. Valid values are zstd, snappy, and gzip. If the specified codec is "gzip", gzipLevel will default to 3. To specify a different level, leave compressionCodec blank and explicitly set the level using gzip_level. Specifying both compressionCodec and gzipLevel in the same API request will result in an error.
 	CompressionCodec pulumi.StringPtrInput `pulumi:"compressionCodec"`
 	// Apache style log formatting.
 	Format pulumi.StringPtrInput `pulumi:"format"`
@@ -7988,7 +8592,7 @@ func (o ServiceVclLoggingCloudfileOutput) BucketName() pulumi.StringOutput {
 	return o.ApplyT(func(v ServiceVclLoggingCloudfile) string { return v.BucketName }).(pulumi.StringOutput)
 }
 
-// The codec used for compression of your logs. Valid values are zstd, snappy, and gzip. If the specified codec is "gzip", gzip*level will default to 3. To specify a different level, leave compression*codec blank and explicitly set the level using gzip*level. Specifying both compression*codec and gzipLevel in the same API request will result in an error.
+// The codec used for compression of your logs. Valid values are zstd, snappy, and gzip. If the specified codec is "gzip", gzipLevel will default to 3. To specify a different level, leave compressionCodec blank and explicitly set the level using gzip_level. Specifying both compressionCodec and gzipLevel in the same API request will result in an error.
 func (o ServiceVclLoggingCloudfileOutput) CompressionCodec() pulumi.StringPtrOutput {
 	return o.ApplyT(func(v ServiceVclLoggingCloudfile) *string { return v.CompressionCodec }).(pulumi.StringPtrOutput)
 }
@@ -8234,7 +8838,7 @@ type ServiceVclLoggingDigitalocean struct {
 	AccessKey string `pulumi:"accessKey"`
 	// The name of the DigitalOcean Space
 	BucketName string `pulumi:"bucketName"`
-	// The codec used for compression of your logs. Valid values are zstd, snappy, and gzip. If the specified codec is "gzip", gzip*level will default to 3. To specify a different level, leave compression*codec blank and explicitly set the level using gzip*level. Specifying both compression*codec and gzipLevel in the same API request will result in an error.
+	// The codec used for compression of your logs. Valid values are zstd, snappy, and gzip. If the specified codec is "gzip", gzipLevel will default to 3. To specify a different level, leave compressionCodec blank and explicitly set the level using gzip_level. Specifying both compressionCodec and gzipLevel in the same API request will result in an error.
 	CompressionCodec *string `pulumi:"compressionCodec"`
 	// The domain of the DigitalOcean Spaces endpoint (default `nyc3.digitaloceanspaces.com`)
 	Domain *string `pulumi:"domain"`
@@ -8280,7 +8884,7 @@ type ServiceVclLoggingDigitaloceanArgs struct {
 	AccessKey pulumi.StringInput `pulumi:"accessKey"`
 	// The name of the DigitalOcean Space
 	BucketName pulumi.StringInput `pulumi:"bucketName"`
-	// The codec used for compression of your logs. Valid values are zstd, snappy, and gzip. If the specified codec is "gzip", gzip*level will default to 3. To specify a different level, leave compression*codec blank and explicitly set the level using gzip*level. Specifying both compression*codec and gzipLevel in the same API request will result in an error.
+	// The codec used for compression of your logs. Valid values are zstd, snappy, and gzip. If the specified codec is "gzip", gzipLevel will default to 3. To specify a different level, leave compressionCodec blank and explicitly set the level using gzip_level. Specifying both compressionCodec and gzipLevel in the same API request will result in an error.
 	CompressionCodec pulumi.StringPtrInput `pulumi:"compressionCodec"`
 	// The domain of the DigitalOcean Spaces endpoint (default `nyc3.digitaloceanspaces.com`)
 	Domain pulumi.StringPtrInput `pulumi:"domain"`
@@ -8371,7 +8975,7 @@ func (o ServiceVclLoggingDigitaloceanOutput) BucketName() pulumi.StringOutput {
 	return o.ApplyT(func(v ServiceVclLoggingDigitalocean) string { return v.BucketName }).(pulumi.StringOutput)
 }
 
-// The codec used for compression of your logs. Valid values are zstd, snappy, and gzip. If the specified codec is "gzip", gzip*level will default to 3. To specify a different level, leave compression*codec blank and explicitly set the level using gzip*level. Specifying both compression*codec and gzipLevel in the same API request will result in an error.
+// The codec used for compression of your logs. Valid values are zstd, snappy, and gzip. If the specified codec is "gzip", gzipLevel will default to 3. To specify a different level, leave compressionCodec blank and explicitly set the level using gzip_level. Specifying both compressionCodec and gzipLevel in the same API request will result in an error.
 func (o ServiceVclLoggingDigitaloceanOutput) CompressionCodec() pulumi.StringPtrOutput {
 	return o.ApplyT(func(v ServiceVclLoggingDigitalocean) *string { return v.CompressionCodec }).(pulumi.StringPtrOutput)
 }
@@ -8696,7 +9300,7 @@ func (o ServiceVclLoggingElasticsearchArrayOutput) Index(i pulumi.IntInput) Serv
 type ServiceVclLoggingFtp struct {
 	// The FTP address to stream logs to
 	Address string `pulumi:"address"`
-	// The codec used for compression of your logs. Valid values are zstd, snappy, and gzip. If the specified codec is "gzip", gzip*level will default to 3. To specify a different level, leave compression*codec blank and explicitly set the level using gzip*level. Specifying both compression*codec and gzipLevel in the same API request will result in an error.
+	// The codec used for compression of your logs. Valid values are zstd, snappy, and gzip. If the specified codec is "gzip", gzipLevel will default to 3. To specify a different level, leave compressionCodec blank and explicitly set the level using gzip_level. Specifying both compressionCodec and gzipLevel in the same API request will result in an error.
 	CompressionCodec *string `pulumi:"compressionCodec"`
 	// Apache-style string or VCL variables to use for log formatting.
 	Format *string `pulumi:"format"`
@@ -8742,7 +9346,7 @@ type ServiceVclLoggingFtpInput interface {
 type ServiceVclLoggingFtpArgs struct {
 	// The FTP address to stream logs to
 	Address pulumi.StringInput `pulumi:"address"`
-	// The codec used for compression of your logs. Valid values are zstd, snappy, and gzip. If the specified codec is "gzip", gzip*level will default to 3. To specify a different level, leave compression*codec blank and explicitly set the level using gzip*level. Specifying both compression*codec and gzipLevel in the same API request will result in an error.
+	// The codec used for compression of your logs. Valid values are zstd, snappy, and gzip. If the specified codec is "gzip", gzipLevel will default to 3. To specify a different level, leave compressionCodec blank and explicitly set the level using gzip_level. Specifying both compressionCodec and gzipLevel in the same API request will result in an error.
 	CompressionCodec pulumi.StringPtrInput `pulumi:"compressionCodec"`
 	// Apache-style string or VCL variables to use for log formatting.
 	Format pulumi.StringPtrInput `pulumi:"format"`
@@ -8830,7 +9434,7 @@ func (o ServiceVclLoggingFtpOutput) Address() pulumi.StringOutput {
 	return o.ApplyT(func(v ServiceVclLoggingFtp) string { return v.Address }).(pulumi.StringOutput)
 }
 
-// The codec used for compression of your logs. Valid values are zstd, snappy, and gzip. If the specified codec is "gzip", gzip*level will default to 3. To specify a different level, leave compression*codec blank and explicitly set the level using gzip*level. Specifying both compression*codec and gzipLevel in the same API request will result in an error.
+// The codec used for compression of your logs. Valid values are zstd, snappy, and gzip. If the specified codec is "gzip", gzipLevel will default to 3. To specify a different level, leave compressionCodec blank and explicitly set the level using gzip_level. Specifying both compressionCodec and gzipLevel in the same API request will result in an error.
 func (o ServiceVclLoggingFtpOutput) CompressionCodec() pulumi.StringPtrOutput {
 	return o.ApplyT(func(v ServiceVclLoggingFtp) *string { return v.CompressionCodec }).(pulumi.StringPtrOutput)
 }
@@ -8930,7 +9534,7 @@ type ServiceVclLoggingGc struct {
 	AccountName *string `pulumi:"accountName"`
 	// The name of the bucket in which to store the logs
 	BucketName string `pulumi:"bucketName"`
-	// The codec used for compression of your logs. Valid values are zstd, snappy, and gzip. If the specified codec is "gzip", gzip*level will default to 3. To specify a different level, leave compression*codec blank and explicitly set the level using gzip*level. Specifying both compression*codec and gzipLevel in the same API request will result in an error.
+	// The codec used for compression of your logs. Valid values are zstd, snappy, and gzip. If the specified codec is "gzip", gzipLevel will default to 3. To specify a different level, leave compressionCodec blank and explicitly set the level using gzip_level. Specifying both compressionCodec and gzipLevel in the same API request will result in an error.
 	CompressionCodec *string `pulumi:"compressionCodec"`
 	// Apache-style string or VCL variables to use for log formatting
 	Format *string `pulumi:"format"`
@@ -8976,7 +9580,7 @@ type ServiceVclLoggingGcArgs struct {
 	AccountName pulumi.StringPtrInput `pulumi:"accountName"`
 	// The name of the bucket in which to store the logs
 	BucketName pulumi.StringInput `pulumi:"bucketName"`
-	// The codec used for compression of your logs. Valid values are zstd, snappy, and gzip. If the specified codec is "gzip", gzip*level will default to 3. To specify a different level, leave compression*codec blank and explicitly set the level using gzip*level. Specifying both compression*codec and gzipLevel in the same API request will result in an error.
+	// The codec used for compression of your logs. Valid values are zstd, snappy, and gzip. If the specified codec is "gzip", gzipLevel will default to 3. To specify a different level, leave compressionCodec blank and explicitly set the level using gzip_level. Specifying both compressionCodec and gzipLevel in the same API request will result in an error.
 	CompressionCodec pulumi.StringPtrInput `pulumi:"compressionCodec"`
 	// Apache-style string or VCL variables to use for log formatting
 	Format pulumi.StringPtrInput `pulumi:"format"`
@@ -9067,7 +9671,7 @@ func (o ServiceVclLoggingGcOutput) BucketName() pulumi.StringOutput {
 	return o.ApplyT(func(v ServiceVclLoggingGc) string { return v.BucketName }).(pulumi.StringOutput)
 }
 
-// The codec used for compression of your logs. Valid values are zstd, snappy, and gzip. If the specified codec is "gzip", gzip*level will default to 3. To specify a different level, leave compression*codec blank and explicitly set the level using gzip*level. Specifying both compression*codec and gzipLevel in the same API request will result in an error.
+// The codec used for compression of your logs. Valid values are zstd, snappy, and gzip. If the specified codec is "gzip", gzipLevel will default to 3. To specify a different level, leave compressionCodec blank and explicitly set the level using gzip_level. Specifying both compressionCodec and gzipLevel in the same API request will result in an error.
 func (o ServiceVclLoggingGcOutput) CompressionCodec() pulumi.StringPtrOutput {
 	return o.ApplyT(func(v ServiceVclLoggingGc) *string { return v.CompressionCodec }).(pulumi.StringPtrOutput)
 }
@@ -11093,7 +11697,7 @@ type ServiceVclLoggingOpenstack struct {
 	AccessKey string `pulumi:"accessKey"`
 	// The name of your OpenStack container
 	BucketName string `pulumi:"bucketName"`
-	// The codec used for compression of your logs. Valid values are zstd, snappy, and gzip. If the specified codec is "gzip", gzip*level will default to 3. To specify a different level, leave compression*codec blank and explicitly set the level using gzip*level. Specifying both compression*codec and gzipLevel in the same API request will result in an error.
+	// The codec used for compression of your logs. Valid values are zstd, snappy, and gzip. If the specified codec is "gzip", gzipLevel will default to 3. To specify a different level, leave compressionCodec blank and explicitly set the level using gzip_level. Specifying both compressionCodec and gzipLevel in the same API request will result in an error.
 	CompressionCodec *string `pulumi:"compressionCodec"`
 	// Apache style log formatting.
 	Format *string `pulumi:"format"`
@@ -11139,7 +11743,7 @@ type ServiceVclLoggingOpenstackArgs struct {
 	AccessKey pulumi.StringInput `pulumi:"accessKey"`
 	// The name of your OpenStack container
 	BucketName pulumi.StringInput `pulumi:"bucketName"`
-	// The codec used for compression of your logs. Valid values are zstd, snappy, and gzip. If the specified codec is "gzip", gzip*level will default to 3. To specify a different level, leave compression*codec blank and explicitly set the level using gzip*level. Specifying both compression*codec and gzipLevel in the same API request will result in an error.
+	// The codec used for compression of your logs. Valid values are zstd, snappy, and gzip. If the specified codec is "gzip", gzipLevel will default to 3. To specify a different level, leave compressionCodec blank and explicitly set the level using gzip_level. Specifying both compressionCodec and gzipLevel in the same API request will result in an error.
 	CompressionCodec pulumi.StringPtrInput `pulumi:"compressionCodec"`
 	// Apache style log formatting.
 	Format pulumi.StringPtrInput `pulumi:"format"`
@@ -11230,7 +11834,7 @@ func (o ServiceVclLoggingOpenstackOutput) BucketName() pulumi.StringOutput {
 	return o.ApplyT(func(v ServiceVclLoggingOpenstack) string { return v.BucketName }).(pulumi.StringOutput)
 }
 
-// The codec used for compression of your logs. Valid values are zstd, snappy, and gzip. If the specified codec is "gzip", gzip*level will default to 3. To specify a different level, leave compression*codec blank and explicitly set the level using gzip*level. Specifying both compression*codec and gzipLevel in the same API request will result in an error.
+// The codec used for compression of your logs. Valid values are zstd, snappy, and gzip. If the specified codec is "gzip", gzipLevel will default to 3. To specify a different level, leave compressionCodec blank and explicitly set the level using gzip_level. Specifying both compressionCodec and gzipLevel in the same API request will result in an error.
 func (o ServiceVclLoggingOpenstackOutput) CompressionCodec() pulumi.StringPtrOutput {
 	return o.ApplyT(func(v ServiceVclLoggingOpenstack) *string { return v.CompressionCodec }).(pulumi.StringPtrOutput)
 }
@@ -11476,7 +12080,7 @@ type ServiceVclLoggingS3 struct {
 	Acl *string `pulumi:"acl"`
 	// The name of the bucket in which to store the logs
 	BucketName string `pulumi:"bucketName"`
-	// The codec used for compression of your logs. Valid values are zstd, snappy, and gzip. If the specified codec is "gzip", gzip*level will default to 3. To specify a different level, leave compression*codec blank and explicitly set the level using gzip*level. Specifying both compression*codec and gzipLevel in the same API request will result in an error.
+	// The codec used for compression of your logs. Valid values are zstd, snappy, and gzip. If the specified codec is "gzip", gzipLevel will default to 3. To specify a different level, leave compressionCodec blank and explicitly set the level using gzip_level. Specifying both compressionCodec and gzipLevel in the same API request will result in an error.
 	CompressionCodec *string `pulumi:"compressionCodec"`
 	// If you created the S3 bucket outside of `us-east-1`, then specify the corresponding bucket endpoint. Example: `s3-us-west-2.amazonaws.com`
 	Domain *string `pulumi:"domain"`
@@ -11512,7 +12116,7 @@ type ServiceVclLoggingS3 struct {
 	S3SecretKey *string `pulumi:"s3SecretKey"`
 	// Specify what type of server side encryption should be used. Can be either `AES256` or `aws:kms`
 	ServerSideEncryption *string `pulumi:"serverSideEncryption"`
-	// Optional server-side KMS Key Id. Must be set if server*side*encryption is set to `aws:kms`
+	// Optional server-side KMS Key Id. Must be set if serverSideEncryption is set to `aws:kms`
 	ServerSideEncryptionKmsKeyId *string `pulumi:"serverSideEncryptionKmsKeyId"`
 	// The `strftime` specified timestamp formatting (default `%Y-%m-%dT%H:%M:%S.000`)
 	TimestampFormat *string `pulumi:"timestampFormat"`
@@ -11534,7 +12138,7 @@ type ServiceVclLoggingS3Args struct {
 	Acl pulumi.StringPtrInput `pulumi:"acl"`
 	// The name of the bucket in which to store the logs
 	BucketName pulumi.StringInput `pulumi:"bucketName"`
-	// The codec used for compression of your logs. Valid values are zstd, snappy, and gzip. If the specified codec is "gzip", gzip*level will default to 3. To specify a different level, leave compression*codec blank and explicitly set the level using gzip*level. Specifying both compression*codec and gzipLevel in the same API request will result in an error.
+	// The codec used for compression of your logs. Valid values are zstd, snappy, and gzip. If the specified codec is "gzip", gzipLevel will default to 3. To specify a different level, leave compressionCodec blank and explicitly set the level using gzip_level. Specifying both compressionCodec and gzipLevel in the same API request will result in an error.
 	CompressionCodec pulumi.StringPtrInput `pulumi:"compressionCodec"`
 	// If you created the S3 bucket outside of `us-east-1`, then specify the corresponding bucket endpoint. Example: `s3-us-west-2.amazonaws.com`
 	Domain pulumi.StringPtrInput `pulumi:"domain"`
@@ -11570,7 +12174,7 @@ type ServiceVclLoggingS3Args struct {
 	S3SecretKey pulumi.StringPtrInput `pulumi:"s3SecretKey"`
 	// Specify what type of server side encryption should be used. Can be either `AES256` or `aws:kms`
 	ServerSideEncryption pulumi.StringPtrInput `pulumi:"serverSideEncryption"`
-	// Optional server-side KMS Key Id. Must be set if server*side*encryption is set to `aws:kms`
+	// Optional server-side KMS Key Id. Must be set if serverSideEncryption is set to `aws:kms`
 	ServerSideEncryptionKmsKeyId pulumi.StringPtrInput `pulumi:"serverSideEncryptionKmsKeyId"`
 	// The `strftime` specified timestamp formatting (default `%Y-%m-%dT%H:%M:%S.000`)
 	TimestampFormat pulumi.StringPtrInput `pulumi:"timestampFormat"`
@@ -11637,7 +12241,7 @@ func (o ServiceVclLoggingS3Output) BucketName() pulumi.StringOutput {
 	return o.ApplyT(func(v ServiceVclLoggingS3) string { return v.BucketName }).(pulumi.StringOutput)
 }
 
-// The codec used for compression of your logs. Valid values are zstd, snappy, and gzip. If the specified codec is "gzip", gzip*level will default to 3. To specify a different level, leave compression*codec blank and explicitly set the level using gzip*level. Specifying both compression*codec and gzipLevel in the same API request will result in an error.
+// The codec used for compression of your logs. Valid values are zstd, snappy, and gzip. If the specified codec is "gzip", gzipLevel will default to 3. To specify a different level, leave compressionCodec blank and explicitly set the level using gzip_level. Specifying both compressionCodec and gzipLevel in the same API request will result in an error.
 func (o ServiceVclLoggingS3Output) CompressionCodec() pulumi.StringPtrOutput {
 	return o.ApplyT(func(v ServiceVclLoggingS3) *string { return v.CompressionCodec }).(pulumi.StringPtrOutput)
 }
@@ -11727,7 +12331,7 @@ func (o ServiceVclLoggingS3Output) ServerSideEncryption() pulumi.StringPtrOutput
 	return o.ApplyT(func(v ServiceVclLoggingS3) *string { return v.ServerSideEncryption }).(pulumi.StringPtrOutput)
 }
 
-// Optional server-side KMS Key Id. Must be set if server*side*encryption is set to `aws:kms`
+// Optional server-side KMS Key Id. Must be set if serverSideEncryption is set to `aws:kms`
 func (o ServiceVclLoggingS3Output) ServerSideEncryptionKmsKeyId() pulumi.StringPtrOutput {
 	return o.ApplyT(func(v ServiceVclLoggingS3) *string { return v.ServerSideEncryptionKmsKeyId }).(pulumi.StringPtrOutput)
 }
@@ -11920,7 +12524,7 @@ func (o ServiceVclLoggingScalyrArrayOutput) Index(i pulumi.IntInput) ServiceVclL
 type ServiceVclLoggingSftp struct {
 	// The SFTP address to stream logs to
 	Address string `pulumi:"address"`
-	// The codec used for compression of your logs. Valid values are zstd, snappy, and gzip. If the specified codec is "gzip", gzip*level will default to 3. To specify a different level, leave compression*codec blank and explicitly set the level using gzip*level. Specifying both compression*codec and gzipLevel in the same API request will result in an error.
+	// The codec used for compression of your logs. Valid values are zstd, snappy, and gzip. If the specified codec is "gzip", gzipLevel will default to 3. To specify a different level, leave compressionCodec blank and explicitly set the level using gzip_level. Specifying both compressionCodec and gzipLevel in the same API request will result in an error.
 	CompressionCodec *string `pulumi:"compressionCodec"`
 	// Apache-style string or VCL variables to use for log formatting.
 	Format *string `pulumi:"format"`
@@ -11970,7 +12574,7 @@ type ServiceVclLoggingSftpInput interface {
 type ServiceVclLoggingSftpArgs struct {
 	// The SFTP address to stream logs to
 	Address pulumi.StringInput `pulumi:"address"`
-	// The codec used for compression of your logs. Valid values are zstd, snappy, and gzip. If the specified codec is "gzip", gzip*level will default to 3. To specify a different level, leave compression*codec blank and explicitly set the level using gzip*level. Specifying both compression*codec and gzipLevel in the same API request will result in an error.
+	// The codec used for compression of your logs. Valid values are zstd, snappy, and gzip. If the specified codec is "gzip", gzipLevel will default to 3. To specify a different level, leave compressionCodec blank and explicitly set the level using gzip_level. Specifying both compressionCodec and gzipLevel in the same API request will result in an error.
 	CompressionCodec pulumi.StringPtrInput `pulumi:"compressionCodec"`
 	// Apache-style string or VCL variables to use for log formatting.
 	Format pulumi.StringPtrInput `pulumi:"format"`
@@ -12062,7 +12666,7 @@ func (o ServiceVclLoggingSftpOutput) Address() pulumi.StringOutput {
 	return o.ApplyT(func(v ServiceVclLoggingSftp) string { return v.Address }).(pulumi.StringOutput)
 }
 
-// The codec used for compression of your logs. Valid values are zstd, snappy, and gzip. If the specified codec is "gzip", gzip*level will default to 3. To specify a different level, leave compression*codec blank and explicitly set the level using gzip*level. Specifying both compression*codec and gzipLevel in the same API request will result in an error.
+// The codec used for compression of your logs. Valid values are zstd, snappy, and gzip. If the specified codec is "gzip", gzipLevel will default to 3. To specify a different level, leave compressionCodec blank and explicitly set the level using gzip_level. Specifying both compressionCodec and gzipLevel in the same API request will result in an error.
 func (o ServiceVclLoggingSftpOutput) CompressionCodec() pulumi.StringPtrOutput {
 	return o.ApplyT(func(v ServiceVclLoggingSftp) *string { return v.CompressionCodec }).(pulumi.StringPtrOutput)
 }
@@ -12961,7 +13565,7 @@ func (o ServiceVclProductEnablementPtrOutput) Websockets() pulumi.BoolPtrOutput 
 }
 
 type ServiceVclRateLimiter struct {
-	// The action to take when a rate limiter violation is detected (one of: log*only, response, response*object)
+	// The action to take when a rate limiter violation is detected (one of: log_only, response, response_object)
 	Action string `pulumi:"action"`
 	// Comma-separated list of VCL variables used to generate a counter key to identify a client
 	ClientKey string `pulumi:"clientKey"`
@@ -13001,7 +13605,7 @@ type ServiceVclRateLimiterInput interface {
 }
 
 type ServiceVclRateLimiterArgs struct {
-	// The action to take when a rate limiter violation is detected (one of: log*only, response, response*object)
+	// The action to take when a rate limiter violation is detected (one of: log_only, response, response_object)
 	Action pulumi.StringInput `pulumi:"action"`
 	// Comma-separated list of VCL variables used to generate a counter key to identify a client
 	ClientKey pulumi.StringInput `pulumi:"clientKey"`
@@ -13080,7 +13684,7 @@ func (o ServiceVclRateLimiterOutput) ToServiceVclRateLimiterOutputWithContext(ct
 	return o
 }
 
-// The action to take when a rate limiter violation is detected (one of: log*only, response, response*object)
+// The action to take when a rate limiter violation is detected (one of: log_only, response, response_object)
 func (o ServiceVclRateLimiterOutput) Action() pulumi.StringOutput {
 	return o.ApplyT(func(v ServiceVclRateLimiter) string { return v.Action }).(pulumi.StringOutput)
 }
@@ -15697,6 +16301,8 @@ func init() {
 	pulumi.RegisterInputType(reflect.TypeOf((*ServiceComputeDictionaryArrayInput)(nil)).Elem(), ServiceComputeDictionaryArray{})
 	pulumi.RegisterInputType(reflect.TypeOf((*ServiceComputeDomainInput)(nil)).Elem(), ServiceComputeDomainArgs{})
 	pulumi.RegisterInputType(reflect.TypeOf((*ServiceComputeDomainArrayInput)(nil)).Elem(), ServiceComputeDomainArray{})
+	pulumi.RegisterInputType(reflect.TypeOf((*ServiceComputeImageOptimizerDefaultSettingsInput)(nil)).Elem(), ServiceComputeImageOptimizerDefaultSettingsArgs{})
+	pulumi.RegisterInputType(reflect.TypeOf((*ServiceComputeImageOptimizerDefaultSettingsPtrInput)(nil)).Elem(), ServiceComputeImageOptimizerDefaultSettingsArgs{})
 	pulumi.RegisterInputType(reflect.TypeOf((*ServiceComputeLoggingBigqueryInput)(nil)).Elem(), ServiceComputeLoggingBigqueryArgs{})
 	pulumi.RegisterInputType(reflect.TypeOf((*ServiceComputeLoggingBigqueryArrayInput)(nil)).Elem(), ServiceComputeLoggingBigqueryArray{})
 	pulumi.RegisterInputType(reflect.TypeOf((*ServiceComputeLoggingBlobstorageInput)(nil)).Elem(), ServiceComputeLoggingBlobstorageArgs{})
@@ -15777,6 +16383,8 @@ func init() {
 	pulumi.RegisterInputType(reflect.TypeOf((*ServiceVclHeaderArrayInput)(nil)).Elem(), ServiceVclHeaderArray{})
 	pulumi.RegisterInputType(reflect.TypeOf((*ServiceVclHealthcheckInput)(nil)).Elem(), ServiceVclHealthcheckArgs{})
 	pulumi.RegisterInputType(reflect.TypeOf((*ServiceVclHealthcheckArrayInput)(nil)).Elem(), ServiceVclHealthcheckArray{})
+	pulumi.RegisterInputType(reflect.TypeOf((*ServiceVclImageOptimizerDefaultSettingsInput)(nil)).Elem(), ServiceVclImageOptimizerDefaultSettingsArgs{})
+	pulumi.RegisterInputType(reflect.TypeOf((*ServiceVclImageOptimizerDefaultSettingsPtrInput)(nil)).Elem(), ServiceVclImageOptimizerDefaultSettingsArgs{})
 	pulumi.RegisterInputType(reflect.TypeOf((*ServiceVclLoggingBigqueryInput)(nil)).Elem(), ServiceVclLoggingBigqueryArgs{})
 	pulumi.RegisterInputType(reflect.TypeOf((*ServiceVclLoggingBigqueryArrayInput)(nil)).Elem(), ServiceVclLoggingBigqueryArray{})
 	pulumi.RegisterInputType(reflect.TypeOf((*ServiceVclLoggingBlobstorageInput)(nil)).Elem(), ServiceVclLoggingBlobstorageArgs{})
@@ -15885,6 +16493,8 @@ func init() {
 	pulumi.RegisterOutputType(ServiceComputeDictionaryArrayOutput{})
 	pulumi.RegisterOutputType(ServiceComputeDomainOutput{})
 	pulumi.RegisterOutputType(ServiceComputeDomainArrayOutput{})
+	pulumi.RegisterOutputType(ServiceComputeImageOptimizerDefaultSettingsOutput{})
+	pulumi.RegisterOutputType(ServiceComputeImageOptimizerDefaultSettingsPtrOutput{})
 	pulumi.RegisterOutputType(ServiceComputeLoggingBigqueryOutput{})
 	pulumi.RegisterOutputType(ServiceComputeLoggingBigqueryArrayOutput{})
 	pulumi.RegisterOutputType(ServiceComputeLoggingBlobstorageOutput{})
@@ -15965,6 +16575,8 @@ func init() {
 	pulumi.RegisterOutputType(ServiceVclHeaderArrayOutput{})
 	pulumi.RegisterOutputType(ServiceVclHealthcheckOutput{})
 	pulumi.RegisterOutputType(ServiceVclHealthcheckArrayOutput{})
+	pulumi.RegisterOutputType(ServiceVclImageOptimizerDefaultSettingsOutput{})
+	pulumi.RegisterOutputType(ServiceVclImageOptimizerDefaultSettingsPtrOutput{})
 	pulumi.RegisterOutputType(ServiceVclLoggingBigqueryOutput{})
 	pulumi.RegisterOutputType(ServiceVclLoggingBigqueryArrayOutput{})
 	pulumi.RegisterOutputType(ServiceVclLoggingBlobstorageOutput{})

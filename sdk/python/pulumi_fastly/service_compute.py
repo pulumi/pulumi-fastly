@@ -22,6 +22,7 @@ class ServiceComputeArgs:
                  comment: Optional[pulumi.Input[str]] = None,
                  dictionaries: Optional[pulumi.Input[Sequence[pulumi.Input['ServiceComputeDictionaryArgs']]]] = None,
                  force_destroy: Optional[pulumi.Input[bool]] = None,
+                 image_optimizer_default_settings: Optional[pulumi.Input['ServiceComputeImageOptimizerDefaultSettingsArgs']] = None,
                  logging_bigqueries: Optional[pulumi.Input[Sequence[pulumi.Input['ServiceComputeLoggingBigqueryArgs']]]] = None,
                  logging_blobstorages: Optional[pulumi.Input[Sequence[pulumi.Input['ServiceComputeLoggingBlobstorageArgs']]]] = None,
                  logging_cloudfiles: Optional[pulumi.Input[Sequence[pulumi.Input['ServiceComputeLoggingCloudfileArgs']]]] = None,
@@ -57,10 +58,14 @@ class ServiceComputeArgs:
         """
         The set of arguments for constructing a ServiceCompute resource.
         :param pulumi.Input[Sequence[pulumi.Input['ServiceComputeDomainArgs']]] domains: A set of Domain names to serve as entry points for your Service
-        :param pulumi.Input[bool] activate: Conditionally prevents the Service from being activated. The apply step will continue to create a new draft version but will not activate it if this is set to `false`. Default `true`
-        :param pulumi.Input[bool] force_destroy: Services that are active cannot be destroyed. In order to destroy the Service, set `force_destroy` to `true`. Default `false`
+        :param pulumi.Input[bool] activate: Conditionally prevents the Service from being activated. The apply step will continue to create a new draft version but
+               will not activate it if this is set to `false`. Default `true`
+        :param pulumi.Input[bool] force_destroy: Services that are active cannot be destroyed. In order to destroy the Service, set `force_destroy` to `true`. Default
+               `false`
         :param pulumi.Input[str] name: The unique name for the Service to create
-        :param pulumi.Input['ServiceComputePackageArgs'] package: The `package` block supports uploading or modifying Wasm packages for use in a Fastly Compute service (if omitted, ensure `activate = false` is set on `ServiceCompute` to avoid service validation errors). See Fastly's documentation on [Compute](https://developer.fastly.com/learning/compute/)
+        :param pulumi.Input['ServiceComputePackageArgs'] package: The `package` block supports uploading or modifying Wasm packages for use in a Fastly Compute service (if omitted,
+               ensure `activate = false` is set on `ServiceCompute` to avoid service validation errors). See Fastly's documentation on
+               [Compute](https://developer.fastly.com/learning/compute/)
         :param pulumi.Input[Sequence[pulumi.Input['ServiceComputeResourceLinkArgs']]] resource_links: A resource link represents a link between a shared resource (such as an KV Store or Config Store) and a service version.
         :param pulumi.Input[str] version_comment: Description field for the version
         """
@@ -75,6 +80,8 @@ class ServiceComputeArgs:
             pulumi.set(__self__, "dictionaries", dictionaries)
         if force_destroy is not None:
             pulumi.set(__self__, "force_destroy", force_destroy)
+        if image_optimizer_default_settings is not None:
+            pulumi.set(__self__, "image_optimizer_default_settings", image_optimizer_default_settings)
         if logging_bigqueries is not None:
             pulumi.set(__self__, "logging_bigqueries", logging_bigqueries)
         if logging_blobstorages is not None:
@@ -156,7 +163,8 @@ class ServiceComputeArgs:
     @pulumi.getter
     def activate(self) -> Optional[pulumi.Input[bool]]:
         """
-        Conditionally prevents the Service from being activated. The apply step will continue to create a new draft version but will not activate it if this is set to `false`. Default `true`
+        Conditionally prevents the Service from being activated. The apply step will continue to create a new draft version but
+        will not activate it if this is set to `false`. Default `true`
         """
         return pulumi.get(self, "activate")
 
@@ -195,13 +203,23 @@ class ServiceComputeArgs:
     @pulumi.getter(name="forceDestroy")
     def force_destroy(self) -> Optional[pulumi.Input[bool]]:
         """
-        Services that are active cannot be destroyed. In order to destroy the Service, set `force_destroy` to `true`. Default `false`
+        Services that are active cannot be destroyed. In order to destroy the Service, set `force_destroy` to `true`. Default
+        `false`
         """
         return pulumi.get(self, "force_destroy")
 
     @force_destroy.setter
     def force_destroy(self, value: Optional[pulumi.Input[bool]]):
         pulumi.set(self, "force_destroy", value)
+
+    @property
+    @pulumi.getter(name="imageOptimizerDefaultSettings")
+    def image_optimizer_default_settings(self) -> Optional[pulumi.Input['ServiceComputeImageOptimizerDefaultSettingsArgs']]:
+        return pulumi.get(self, "image_optimizer_default_settings")
+
+    @image_optimizer_default_settings.setter
+    def image_optimizer_default_settings(self, value: Optional[pulumi.Input['ServiceComputeImageOptimizerDefaultSettingsArgs']]):
+        pulumi.set(self, "image_optimizer_default_settings", value)
 
     @property
     @pulumi.getter(name="loggingBigqueries")
@@ -453,7 +471,9 @@ class ServiceComputeArgs:
     @pulumi.getter
     def package(self) -> Optional[pulumi.Input['ServiceComputePackageArgs']]:
         """
-        The `package` block supports uploading or modifying Wasm packages for use in a Fastly Compute service (if omitted, ensure `activate = false` is set on `ServiceCompute` to avoid service validation errors). See Fastly's documentation on [Compute](https://developer.fastly.com/learning/compute/)
+        The `package` block supports uploading or modifying Wasm packages for use in a Fastly Compute service (if omitted,
+        ensure `activate = false` is set on `ServiceCompute` to avoid service validation errors). See Fastly's documentation on
+        [Compute](https://developer.fastly.com/learning/compute/)
         """
         return pulumi.get(self, "package")
 
@@ -516,6 +536,7 @@ class _ServiceComputeState:
                  domains: Optional[pulumi.Input[Sequence[pulumi.Input['ServiceComputeDomainArgs']]]] = None,
                  force_destroy: Optional[pulumi.Input[bool]] = None,
                  force_refresh: Optional[pulumi.Input[bool]] = None,
+                 image_optimizer_default_settings: Optional[pulumi.Input['ServiceComputeImageOptimizerDefaultSettingsArgs']] = None,
                  imported: Optional[pulumi.Input[bool]] = None,
                  logging_bigqueries: Optional[pulumi.Input[Sequence[pulumi.Input['ServiceComputeLoggingBigqueryArgs']]]] = None,
                  logging_blobstorages: Optional[pulumi.Input[Sequence[pulumi.Input['ServiceComputeLoggingBlobstorageArgs']]]] = None,
@@ -551,14 +572,19 @@ class _ServiceComputeState:
                  version_comment: Optional[pulumi.Input[str]] = None):
         """
         Input properties used for looking up and filtering ServiceCompute resources.
-        :param pulumi.Input[bool] activate: Conditionally prevents the Service from being activated. The apply step will continue to create a new draft version but will not activate it if this is set to `false`. Default `true`
+        :param pulumi.Input[bool] activate: Conditionally prevents the Service from being activated. The apply step will continue to create a new draft version but
+               will not activate it if this is set to `false`. Default `true`
         :param pulumi.Input[int] active_version: The currently active version of your Fastly Service
         :param pulumi.Input[int] cloned_version: The latest cloned version by the provider
         :param pulumi.Input[Sequence[pulumi.Input['ServiceComputeDomainArgs']]] domains: A set of Domain names to serve as entry points for your Service
-        :param pulumi.Input[bool] force_destroy: Services that are active cannot be destroyed. In order to destroy the Service, set `force_destroy` to `true`. Default `false`
-        :param pulumi.Input[bool] imported: Used internally by the provider to temporarily indicate if the service is being imported, and is reset to false once the import is finished
+        :param pulumi.Input[bool] force_destroy: Services that are active cannot be destroyed. In order to destroy the Service, set `force_destroy` to `true`. Default
+               `false`
+        :param pulumi.Input[bool] imported: Used internally by the provider to temporarily indicate if the service is being imported, and is reset to false once the
+               import is finished
         :param pulumi.Input[str] name: The unique name for the Service to create
-        :param pulumi.Input['ServiceComputePackageArgs'] package: The `package` block supports uploading or modifying Wasm packages for use in a Fastly Compute service (if omitted, ensure `activate = false` is set on `ServiceCompute` to avoid service validation errors). See Fastly's documentation on [Compute](https://developer.fastly.com/learning/compute/)
+        :param pulumi.Input['ServiceComputePackageArgs'] package: The `package` block supports uploading or modifying Wasm packages for use in a Fastly Compute service (if omitted,
+               ensure `activate = false` is set on `ServiceCompute` to avoid service validation errors). See Fastly's documentation on
+               [Compute](https://developer.fastly.com/learning/compute/)
         :param pulumi.Input[Sequence[pulumi.Input['ServiceComputeResourceLinkArgs']]] resource_links: A resource link represents a link between a shared resource (such as an KV Store or Config Store) and a service version.
         :param pulumi.Input[str] version_comment: Description field for the version
         """
@@ -580,6 +606,8 @@ class _ServiceComputeState:
             pulumi.set(__self__, "force_destroy", force_destroy)
         if force_refresh is not None:
             pulumi.set(__self__, "force_refresh", force_refresh)
+        if image_optimizer_default_settings is not None:
+            pulumi.set(__self__, "image_optimizer_default_settings", image_optimizer_default_settings)
         if imported is not None:
             pulumi.set(__self__, "imported", imported)
         if logging_bigqueries is not None:
@@ -651,7 +679,8 @@ class _ServiceComputeState:
     @pulumi.getter
     def activate(self) -> Optional[pulumi.Input[bool]]:
         """
-        Conditionally prevents the Service from being activated. The apply step will continue to create a new draft version but will not activate it if this is set to `false`. Default `true`
+        Conditionally prevents the Service from being activated. The apply step will continue to create a new draft version but
+        will not activate it if this is set to `false`. Default `true`
         """
         return pulumi.get(self, "activate")
 
@@ -726,7 +755,8 @@ class _ServiceComputeState:
     @pulumi.getter(name="forceDestroy")
     def force_destroy(self) -> Optional[pulumi.Input[bool]]:
         """
-        Services that are active cannot be destroyed. In order to destroy the Service, set `force_destroy` to `true`. Default `false`
+        Services that are active cannot be destroyed. In order to destroy the Service, set `force_destroy` to `true`. Default
+        `false`
         """
         return pulumi.get(self, "force_destroy")
 
@@ -744,10 +774,20 @@ class _ServiceComputeState:
         pulumi.set(self, "force_refresh", value)
 
     @property
+    @pulumi.getter(name="imageOptimizerDefaultSettings")
+    def image_optimizer_default_settings(self) -> Optional[pulumi.Input['ServiceComputeImageOptimizerDefaultSettingsArgs']]:
+        return pulumi.get(self, "image_optimizer_default_settings")
+
+    @image_optimizer_default_settings.setter
+    def image_optimizer_default_settings(self, value: Optional[pulumi.Input['ServiceComputeImageOptimizerDefaultSettingsArgs']]):
+        pulumi.set(self, "image_optimizer_default_settings", value)
+
+    @property
     @pulumi.getter
     def imported(self) -> Optional[pulumi.Input[bool]]:
         """
-        Used internally by the provider to temporarily indicate if the service is being imported, and is reset to false once the import is finished
+        Used internally by the provider to temporarily indicate if the service is being imported, and is reset to false once the
+        import is finished
         """
         return pulumi.get(self, "imported")
 
@@ -1005,7 +1045,9 @@ class _ServiceComputeState:
     @pulumi.getter
     def package(self) -> Optional[pulumi.Input['ServiceComputePackageArgs']]:
         """
-        The `package` block supports uploading or modifying Wasm packages for use in a Fastly Compute service (if omitted, ensure `activate = false` is set on `ServiceCompute` to avoid service validation errors). See Fastly's documentation on [Compute](https://developer.fastly.com/learning/compute/)
+        The `package` block supports uploading or modifying Wasm packages for use in a Fastly Compute service (if omitted,
+        ensure `activate = false` is set on `ServiceCompute` to avoid service validation errors). See Fastly's documentation on
+        [Compute](https://developer.fastly.com/learning/compute/)
         """
         return pulumi.get(self, "package")
 
@@ -1067,6 +1109,7 @@ class ServiceCompute(pulumi.CustomResource):
                  dictionaries: Optional[pulumi.Input[Sequence[pulumi.Input[pulumi.InputType['ServiceComputeDictionaryArgs']]]]] = None,
                  domains: Optional[pulumi.Input[Sequence[pulumi.Input[pulumi.InputType['ServiceComputeDomainArgs']]]]] = None,
                  force_destroy: Optional[pulumi.Input[bool]] = None,
+                 image_optimizer_default_settings: Optional[pulumi.Input[pulumi.InputType['ServiceComputeImageOptimizerDefaultSettingsArgs']]] = None,
                  logging_bigqueries: Optional[pulumi.Input[Sequence[pulumi.Input[pulumi.InputType['ServiceComputeLoggingBigqueryArgs']]]]] = None,
                  logging_blobstorages: Optional[pulumi.Input[Sequence[pulumi.Input[pulumi.InputType['ServiceComputeLoggingBlobstorageArgs']]]]] = None,
                  logging_cloudfiles: Optional[pulumi.Input[Sequence[pulumi.Input[pulumi.InputType['ServiceComputeLoggingCloudfileArgs']]]]] = None,
@@ -1119,11 +1162,15 @@ class ServiceCompute(pulumi.CustomResource):
 
         :param str resource_name: The name of the resource.
         :param pulumi.ResourceOptions opts: Options for the resource.
-        :param pulumi.Input[bool] activate: Conditionally prevents the Service from being activated. The apply step will continue to create a new draft version but will not activate it if this is set to `false`. Default `true`
+        :param pulumi.Input[bool] activate: Conditionally prevents the Service from being activated. The apply step will continue to create a new draft version but
+               will not activate it if this is set to `false`. Default `true`
         :param pulumi.Input[Sequence[pulumi.Input[pulumi.InputType['ServiceComputeDomainArgs']]]] domains: A set of Domain names to serve as entry points for your Service
-        :param pulumi.Input[bool] force_destroy: Services that are active cannot be destroyed. In order to destroy the Service, set `force_destroy` to `true`. Default `false`
+        :param pulumi.Input[bool] force_destroy: Services that are active cannot be destroyed. In order to destroy the Service, set `force_destroy` to `true`. Default
+               `false`
         :param pulumi.Input[str] name: The unique name for the Service to create
-        :param pulumi.Input[pulumi.InputType['ServiceComputePackageArgs']] package: The `package` block supports uploading or modifying Wasm packages for use in a Fastly Compute service (if omitted, ensure `activate = false` is set on `ServiceCompute` to avoid service validation errors). See Fastly's documentation on [Compute](https://developer.fastly.com/learning/compute/)
+        :param pulumi.Input[pulumi.InputType['ServiceComputePackageArgs']] package: The `package` block supports uploading or modifying Wasm packages for use in a Fastly Compute service (if omitted,
+               ensure `activate = false` is set on `ServiceCompute` to avoid service validation errors). See Fastly's documentation on
+               [Compute](https://developer.fastly.com/learning/compute/)
         :param pulumi.Input[Sequence[pulumi.Input[pulumi.InputType['ServiceComputeResourceLinkArgs']]]] resource_links: A resource link represents a link between a shared resource (such as an KV Store or Config Store) and a service version.
         :param pulumi.Input[str] version_comment: Description field for the version
         """
@@ -1171,6 +1218,7 @@ class ServiceCompute(pulumi.CustomResource):
                  dictionaries: Optional[pulumi.Input[Sequence[pulumi.Input[pulumi.InputType['ServiceComputeDictionaryArgs']]]]] = None,
                  domains: Optional[pulumi.Input[Sequence[pulumi.Input[pulumi.InputType['ServiceComputeDomainArgs']]]]] = None,
                  force_destroy: Optional[pulumi.Input[bool]] = None,
+                 image_optimizer_default_settings: Optional[pulumi.Input[pulumi.InputType['ServiceComputeImageOptimizerDefaultSettingsArgs']]] = None,
                  logging_bigqueries: Optional[pulumi.Input[Sequence[pulumi.Input[pulumi.InputType['ServiceComputeLoggingBigqueryArgs']]]]] = None,
                  logging_blobstorages: Optional[pulumi.Input[Sequence[pulumi.Input[pulumi.InputType['ServiceComputeLoggingBlobstorageArgs']]]]] = None,
                  logging_cloudfiles: Optional[pulumi.Input[Sequence[pulumi.Input[pulumi.InputType['ServiceComputeLoggingCloudfileArgs']]]]] = None,
@@ -1220,6 +1268,7 @@ class ServiceCompute(pulumi.CustomResource):
                 raise TypeError("Missing required property 'domains'")
             __props__.__dict__["domains"] = domains
             __props__.__dict__["force_destroy"] = force_destroy
+            __props__.__dict__["image_optimizer_default_settings"] = image_optimizer_default_settings
             __props__.__dict__["logging_bigqueries"] = logging_bigqueries
             __props__.__dict__["logging_blobstorages"] = logging_blobstorages
             __props__.__dict__["logging_cloudfiles"] = logging_cloudfiles
@@ -1275,6 +1324,7 @@ class ServiceCompute(pulumi.CustomResource):
             domains: Optional[pulumi.Input[Sequence[pulumi.Input[pulumi.InputType['ServiceComputeDomainArgs']]]]] = None,
             force_destroy: Optional[pulumi.Input[bool]] = None,
             force_refresh: Optional[pulumi.Input[bool]] = None,
+            image_optimizer_default_settings: Optional[pulumi.Input[pulumi.InputType['ServiceComputeImageOptimizerDefaultSettingsArgs']]] = None,
             imported: Optional[pulumi.Input[bool]] = None,
             logging_bigqueries: Optional[pulumi.Input[Sequence[pulumi.Input[pulumi.InputType['ServiceComputeLoggingBigqueryArgs']]]]] = None,
             logging_blobstorages: Optional[pulumi.Input[Sequence[pulumi.Input[pulumi.InputType['ServiceComputeLoggingBlobstorageArgs']]]]] = None,
@@ -1315,14 +1365,19 @@ class ServiceCompute(pulumi.CustomResource):
         :param str resource_name: The unique name of the resulting resource.
         :param pulumi.Input[str] id: The unique provider ID of the resource to lookup.
         :param pulumi.ResourceOptions opts: Options for the resource.
-        :param pulumi.Input[bool] activate: Conditionally prevents the Service from being activated. The apply step will continue to create a new draft version but will not activate it if this is set to `false`. Default `true`
+        :param pulumi.Input[bool] activate: Conditionally prevents the Service from being activated. The apply step will continue to create a new draft version but
+               will not activate it if this is set to `false`. Default `true`
         :param pulumi.Input[int] active_version: The currently active version of your Fastly Service
         :param pulumi.Input[int] cloned_version: The latest cloned version by the provider
         :param pulumi.Input[Sequence[pulumi.Input[pulumi.InputType['ServiceComputeDomainArgs']]]] domains: A set of Domain names to serve as entry points for your Service
-        :param pulumi.Input[bool] force_destroy: Services that are active cannot be destroyed. In order to destroy the Service, set `force_destroy` to `true`. Default `false`
-        :param pulumi.Input[bool] imported: Used internally by the provider to temporarily indicate if the service is being imported, and is reset to false once the import is finished
+        :param pulumi.Input[bool] force_destroy: Services that are active cannot be destroyed. In order to destroy the Service, set `force_destroy` to `true`. Default
+               `false`
+        :param pulumi.Input[bool] imported: Used internally by the provider to temporarily indicate if the service is being imported, and is reset to false once the
+               import is finished
         :param pulumi.Input[str] name: The unique name for the Service to create
-        :param pulumi.Input[pulumi.InputType['ServiceComputePackageArgs']] package: The `package` block supports uploading or modifying Wasm packages for use in a Fastly Compute service (if omitted, ensure `activate = false` is set on `ServiceCompute` to avoid service validation errors). See Fastly's documentation on [Compute](https://developer.fastly.com/learning/compute/)
+        :param pulumi.Input[pulumi.InputType['ServiceComputePackageArgs']] package: The `package` block supports uploading or modifying Wasm packages for use in a Fastly Compute service (if omitted,
+               ensure `activate = false` is set on `ServiceCompute` to avoid service validation errors). See Fastly's documentation on
+               [Compute](https://developer.fastly.com/learning/compute/)
         :param pulumi.Input[Sequence[pulumi.Input[pulumi.InputType['ServiceComputeResourceLinkArgs']]]] resource_links: A resource link represents a link between a shared resource (such as an KV Store or Config Store) and a service version.
         :param pulumi.Input[str] version_comment: Description field for the version
         """
@@ -1339,6 +1394,7 @@ class ServiceCompute(pulumi.CustomResource):
         __props__.__dict__["domains"] = domains
         __props__.__dict__["force_destroy"] = force_destroy
         __props__.__dict__["force_refresh"] = force_refresh
+        __props__.__dict__["image_optimizer_default_settings"] = image_optimizer_default_settings
         __props__.__dict__["imported"] = imported
         __props__.__dict__["logging_bigqueries"] = logging_bigqueries
         __props__.__dict__["logging_blobstorages"] = logging_blobstorages
@@ -1378,7 +1434,8 @@ class ServiceCompute(pulumi.CustomResource):
     @pulumi.getter
     def activate(self) -> pulumi.Output[Optional[bool]]:
         """
-        Conditionally prevents the Service from being activated. The apply step will continue to create a new draft version but will not activate it if this is set to `false`. Default `true`
+        Conditionally prevents the Service from being activated. The apply step will continue to create a new draft version but
+        will not activate it if this is set to `false`. Default `true`
         """
         return pulumi.get(self, "activate")
 
@@ -1425,7 +1482,8 @@ class ServiceCompute(pulumi.CustomResource):
     @pulumi.getter(name="forceDestroy")
     def force_destroy(self) -> pulumi.Output[Optional[bool]]:
         """
-        Services that are active cannot be destroyed. In order to destroy the Service, set `force_destroy` to `true`. Default `false`
+        Services that are active cannot be destroyed. In order to destroy the Service, set `force_destroy` to `true`. Default
+        `false`
         """
         return pulumi.get(self, "force_destroy")
 
@@ -1435,10 +1493,16 @@ class ServiceCompute(pulumi.CustomResource):
         return pulumi.get(self, "force_refresh")
 
     @property
+    @pulumi.getter(name="imageOptimizerDefaultSettings")
+    def image_optimizer_default_settings(self) -> pulumi.Output[Optional['outputs.ServiceComputeImageOptimizerDefaultSettings']]:
+        return pulumi.get(self, "image_optimizer_default_settings")
+
+    @property
     @pulumi.getter
     def imported(self) -> pulumi.Output[bool]:
         """
-        Used internally by the provider to temporarily indicate if the service is being imported, and is reset to false once the import is finished
+        Used internally by the provider to temporarily indicate if the service is being imported, and is reset to false once the
+        import is finished
         """
         return pulumi.get(self, "imported")
 
@@ -1584,7 +1648,9 @@ class ServiceCompute(pulumi.CustomResource):
     @pulumi.getter
     def package(self) -> pulumi.Output[Optional['outputs.ServiceComputePackage']]:
         """
-        The `package` block supports uploading or modifying Wasm packages for use in a Fastly Compute service (if omitted, ensure `activate = false` is set on `ServiceCompute` to avoid service validation errors). See Fastly's documentation on [Compute](https://developer.fastly.com/learning/compute/)
+        The `package` block supports uploading or modifying Wasm packages for use in a Fastly Compute service (if omitted,
+        ensure `activate = false` is set on `ServiceCompute` to avoid service validation errors). See Fastly's documentation on
+        [Compute](https://developer.fastly.com/learning/compute/)
         """
         return pulumi.get(self, "package")
 

@@ -15,7 +15,7 @@ import javax.annotation.Nullable;
 @CustomType
 public final class ServiceVclRateLimiter {
     /**
-     * @return The action to take when a rate limiter violation is detected (one of: log*only, response, response*object)
+     * @return The action to take when a rate limiter violation is detected (one of: log_only, response, response_object)
      * 
      */
     private String action;
@@ -82,7 +82,7 @@ public final class ServiceVclRateLimiter {
 
     private ServiceVclRateLimiter() {}
     /**
-     * @return The action to take when a rate limiter violation is detected (one of: log*only, response, response*object)
+     * @return The action to take when a rate limiter violation is detected (one of: log_only, response, response_object)
      * 
      */
     public String action() {

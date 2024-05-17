@@ -184,6 +184,49 @@ export interface ServiceComputeDomain {
     name: pulumi.Input<string>;
 }
 
+export interface ServiceComputeImageOptimizerDefaultSettings {
+    /**
+     * Enables GIF to MP4 transformations on this service.
+     */
+    allowVideo?: pulumi.Input<boolean>;
+    /**
+     * The default quality to use with JPEG output. This can be overridden with the "quality" parameter on specific image optimizer requests.
+     */
+    jpegQuality?: pulumi.Input<number>;
+    /**
+     * The default type of JPEG output to use. This can be overridden with "format=bjpeg" and "format=pjpeg" on specific image optimizer requests. Valid values are `auto`, `baseline` and `progressive`.
+     * 	- auto: Match the input JPEG type, or baseline if transforming from a non-JPEG input.
+     * 	- baseline: Output baseline JPEG images
+     * 	- progressive: Output progressive JPEG images
+     */
+    jpegType?: pulumi.Input<string>;
+    /**
+     * Used by the provider to identify modified settings. Changing this value will force the entire block to be deleted, then recreated.
+     */
+    name?: pulumi.Input<string>;
+    /**
+     * The type of filter to use while resizing an image. Valid values are `lanczos3`, `lanczos2`, `bicubic`, `bilinear` and `nearest`.
+     * 	- lanczos3: A Lanczos filter with a kernel size of 3. Lanczos filters can detect edges and linear features within an image, providing the best possible reconstruction.
+     * 	- lanczos2: A Lanczos filter with a kernel size of 2.
+     * 	- bicubic: A filter using an average of a 4x4 environment of pixels, weighing the innermost pixels higher.
+     * 	- bilinear: A filter using an average of a 2x2 environment of pixels.
+     * 	- nearest: A filter using the value of nearby translated pixel values. Preserves hard edges.
+     */
+    resizeFilter?: pulumi.Input<string>;
+    /**
+     * Whether or not we should allow output images to render at sizes larger than input.
+     */
+    upscale?: pulumi.Input<boolean>;
+    /**
+     * Controls whether or not to default to WebP output when the client supports it. This is equivalent to adding "auto=webp" to all image optimizer requests.
+     */
+    webp?: pulumi.Input<boolean>;
+    /**
+     * The default quality to use with WebP output. This can be overridden with the second option in the "quality" URL parameter on specific image optimizer requests.
+     */
+    webpQuality?: pulumi.Input<number>;
+}
+
 export interface ServiceComputeLoggingBigquery {
     /**
      * The google account name used to obtain temporary credentials (default none). You may optionally provide this via an environment variable, `FASTLY_GCS_ACCOUNT_NAME`.
@@ -225,7 +268,7 @@ export interface ServiceComputeLoggingBlobstorage {
      */
     accountName: pulumi.Input<string>;
     /**
-     * The codec used for compression of your logs. Valid values are zstd, snappy, and gzip. If the specified codec is "gzip", gzip*level will default to 3. To specify a different level, leave compression*codec blank and explicitly set the level using gzip*level. Specifying both compression*codec and gzipLevel in the same API request will result in an error.
+     * The codec used for compression of your logs. Valid values are zstd, snappy, and gzip. If the specified codec is "gzip", gzipLevel will default to 3. To specify a different level, leave compressionCodec blank and explicitly set the level using gzip_level. Specifying both compressionCodec and gzipLevel in the same API request will result in an error.
      */
     compressionCodec?: pulumi.Input<string>;
     /**
@@ -280,7 +323,7 @@ export interface ServiceComputeLoggingCloudfile {
      */
     bucketName: pulumi.Input<string>;
     /**
-     * The codec used for compression of your logs. Valid values are zstd, snappy, and gzip. If the specified codec is "gzip", gzip*level will default to 3. To specify a different level, leave compression*codec blank and explicitly set the level using gzip*level. Specifying both compression*codec and gzipLevel in the same API request will result in an error.
+     * The codec used for compression of your logs. Valid values are zstd, snappy, and gzip. If the specified codec is "gzip", gzipLevel will default to 3. To specify a different level, leave compressionCodec blank and explicitly set the level using gzip_level. Specifying both compressionCodec and gzipLevel in the same API request will result in an error.
      */
     compressionCodec?: pulumi.Input<string>;
     /**
@@ -346,7 +389,7 @@ export interface ServiceComputeLoggingDigitalocean {
      */
     bucketName: pulumi.Input<string>;
     /**
-     * The codec used for compression of your logs. Valid values are zstd, snappy, and gzip. If the specified codec is "gzip", gzip*level will default to 3. To specify a different level, leave compression*codec blank and explicitly set the level using gzip*level. Specifying both compression*codec and gzipLevel in the same API request will result in an error.
+     * The codec used for compression of your logs. Valid values are zstd, snappy, and gzip. If the specified codec is "gzip", gzipLevel will default to 3. To specify a different level, leave compressionCodec blank and explicitly set the level using gzip_level. Specifying both compressionCodec and gzipLevel in the same API request will result in an error.
      */
     compressionCodec?: pulumi.Input<string>;
     /**
@@ -444,7 +487,7 @@ export interface ServiceComputeLoggingFtp {
      */
     address: pulumi.Input<string>;
     /**
-     * The codec used for compression of your logs. Valid values are zstd, snappy, and gzip. If the specified codec is "gzip", gzip*level will default to 3. To specify a different level, leave compression*codec blank and explicitly set the level using gzip*level. Specifying both compression*codec and gzipLevel in the same API request will result in an error.
+     * The codec used for compression of your logs. Valid values are zstd, snappy, and gzip. If the specified codec is "gzip", gzipLevel will default to 3. To specify a different level, leave compressionCodec blank and explicitly set the level using gzip_level. Specifying both compressionCodec and gzipLevel in the same API request will result in an error.
      */
     compressionCodec?: pulumi.Input<string>;
     /**
@@ -499,7 +542,7 @@ export interface ServiceComputeLoggingGc {
      */
     bucketName: pulumi.Input<string>;
     /**
-     * The codec used for compression of your logs. Valid values are zstd, snappy, and gzip. If the specified codec is "gzip", gzip*level will default to 3. To specify a different level, leave compression*codec blank and explicitly set the level using gzip*level. Specifying both compression*codec and gzipLevel in the same API request will result in an error.
+     * The codec used for compression of your logs. Valid values are zstd, snappy, and gzip. If the specified codec is "gzip", gzipLevel will default to 3. To specify a different level, leave compressionCodec blank and explicitly set the level using gzip_level. Specifying both compressionCodec and gzipLevel in the same API request will result in an error.
      */
     compressionCodec?: pulumi.Input<string>;
     /**
@@ -816,7 +859,7 @@ export interface ServiceComputeLoggingOpenstack {
      */
     bucketName: pulumi.Input<string>;
     /**
-     * The codec used for compression of your logs. Valid values are zstd, snappy, and gzip. If the specified codec is "gzip", gzip*level will default to 3. To specify a different level, leave compression*codec blank and explicitly set the level using gzip*level. Specifying both compression*codec and gzipLevel in the same API request will result in an error.
+     * The codec used for compression of your logs. Valid values are zstd, snappy, and gzip. If the specified codec is "gzip", gzipLevel will default to 3. To specify a different level, leave compressionCodec blank and explicitly set the level using gzip_level. Specifying both compressionCodec and gzipLevel in the same API request will result in an error.
      */
     compressionCodec?: pulumi.Input<string>;
     /**
@@ -882,7 +925,7 @@ export interface ServiceComputeLoggingS3 {
      */
     bucketName: pulumi.Input<string>;
     /**
-     * The codec used for compression of your logs. Valid values are zstd, snappy, and gzip. If the specified codec is "gzip", gzip*level will default to 3. To specify a different level, leave compression*codec blank and explicitly set the level using gzip*level. Specifying both compression*codec and gzipLevel in the same API request will result in an error.
+     * The codec used for compression of your logs. Valid values are zstd, snappy, and gzip. If the specified codec is "gzip", gzipLevel will default to 3. To specify a different level, leave compressionCodec blank and explicitly set the level using gzip_level. Specifying both compressionCodec and gzipLevel in the same API request will result in an error.
      */
     compressionCodec?: pulumi.Input<string>;
     /**
@@ -938,7 +981,7 @@ export interface ServiceComputeLoggingS3 {
      */
     serverSideEncryption?: pulumi.Input<string>;
     /**
-     * Optional server-side KMS Key Id. Must be set if server*side*encryption is set to `aws:kms`
+     * Optional server-side KMS Key Id. Must be set if serverSideEncryption is set to `aws:kms`
      */
     serverSideEncryptionKmsKeyId?: pulumi.Input<string>;
     /**
@@ -972,7 +1015,7 @@ export interface ServiceComputeLoggingSftp {
      */
     address: pulumi.Input<string>;
     /**
-     * The codec used for compression of your logs. Valid values are zstd, snappy, and gzip. If the specified codec is "gzip", gzip*level will default to 3. To specify a different level, leave compression*codec blank and explicitly set the level using gzip*level. Specifying both compression*codec and gzipLevel in the same API request will result in an error.
+     * The codec used for compression of your logs. Valid values are zstd, snappy, and gzip. If the specified codec is "gzip", gzipLevel will default to 3. To specify a different level, leave compressionCodec blank and explicitly set the level using gzip_level. Specifying both compressionCodec and gzipLevel in the same API request will result in an error.
      */
     compressionCodec?: pulumi.Input<string>;
     /**
@@ -1128,7 +1171,7 @@ export interface ServiceComputePackage {
      */
     filename?: pulumi.Input<string>;
     /**
-     * Used to trigger updates. Must be set to a SHA512 hash of all files (in sorted order) within the package. The usual way to set this is using the fastly*package*hash data source.
+     * Used to trigger updates. Must be set to a SHA512 hash of all files (in sorted order) within the package. The usual way to set this is using the fastly.getPackageHash data source.
      */
     sourceCodeHash?: pulumi.Input<string>;
 }
@@ -1529,6 +1572,49 @@ export interface ServiceVclHealthcheck {
     window?: pulumi.Input<number>;
 }
 
+export interface ServiceVclImageOptimizerDefaultSettings {
+    /**
+     * Enables GIF to MP4 transformations on this service.
+     */
+    allowVideo?: pulumi.Input<boolean>;
+    /**
+     * The default quality to use with JPEG output. This can be overridden with the "quality" parameter on specific image optimizer requests.
+     */
+    jpegQuality?: pulumi.Input<number>;
+    /**
+     * The default type of JPEG output to use. This can be overridden with "format=bjpeg" and "format=pjpeg" on specific image optimizer requests. Valid values are `auto`, `baseline` and `progressive`.
+     * 	- auto: Match the input JPEG type, or baseline if transforming from a non-JPEG input.
+     * 	- baseline: Output baseline JPEG images
+     * 	- progressive: Output progressive JPEG images
+     */
+    jpegType?: pulumi.Input<string>;
+    /**
+     * Used by the provider to identify modified settings. Changing this value will force the entire block to be deleted, then recreated.
+     */
+    name?: pulumi.Input<string>;
+    /**
+     * The type of filter to use while resizing an image. Valid values are `lanczos3`, `lanczos2`, `bicubic`, `bilinear` and `nearest`.
+     * 	- lanczos3: A Lanczos filter with a kernel size of 3. Lanczos filters can detect edges and linear features within an image, providing the best possible reconstruction.
+     * 	- lanczos2: A Lanczos filter with a kernel size of 2.
+     * 	- bicubic: A filter using an average of a 4x4 environment of pixels, weighing the innermost pixels higher.
+     * 	- bilinear: A filter using an average of a 2x2 environment of pixels.
+     * 	- nearest: A filter using the value of nearby translated pixel values. Preserves hard edges.
+     */
+    resizeFilter?: pulumi.Input<string>;
+    /**
+     * Whether or not we should allow output images to render at sizes larger than input.
+     */
+    upscale?: pulumi.Input<boolean>;
+    /**
+     * Controls whether or not to default to WebP output when the client supports it. This is equivalent to adding "auto=webp" to all image optimizer requests.
+     */
+    webp?: pulumi.Input<boolean>;
+    /**
+     * The default quality to use with WebP output. This can be overridden with the second option in the "quality" URL parameter on specific image optimizer requests.
+     */
+    webpQuality?: pulumi.Input<number>;
+}
+
 export interface ServiceVclLoggingBigquery {
     /**
      * The google account name used to obtain temporary credentials (default none). You may optionally provide this via an environment variable, `FASTLY_GCS_ACCOUNT_NAME`.
@@ -1582,7 +1668,7 @@ export interface ServiceVclLoggingBlobstorage {
      */
     accountName: pulumi.Input<string>;
     /**
-     * The codec used for compression of your logs. Valid values are zstd, snappy, and gzip. If the specified codec is "gzip", gzip*level will default to 3. To specify a different level, leave compression*codec blank and explicitly set the level using gzip*level. Specifying both compression*codec and gzipLevel in the same API request will result in an error.
+     * The codec used for compression of your logs. Valid values are zstd, snappy, and gzip. If the specified codec is "gzip", gzipLevel will default to 3. To specify a different level, leave compressionCodec blank and explicitly set the level using gzip_level. Specifying both compressionCodec and gzipLevel in the same API request will result in an error.
      */
     compressionCodec?: pulumi.Input<string>;
     /**
@@ -1653,7 +1739,7 @@ export interface ServiceVclLoggingCloudfile {
      */
     bucketName: pulumi.Input<string>;
     /**
-     * The codec used for compression of your logs. Valid values are zstd, snappy, and gzip. If the specified codec is "gzip", gzip*level will default to 3. To specify a different level, leave compression*codec blank and explicitly set the level using gzip*level. Specifying both compression*codec and gzipLevel in the same API request will result in an error.
+     * The codec used for compression of your logs. Valid values are zstd, snappy, and gzip. If the specified codec is "gzip", gzipLevel will default to 3. To specify a different level, leave compressionCodec blank and explicitly set the level using gzip_level. Specifying both compressionCodec and gzipLevel in the same API request will result in an error.
      */
     compressionCodec?: pulumi.Input<string>;
     /**
@@ -1751,7 +1837,7 @@ export interface ServiceVclLoggingDigitalocean {
      */
     bucketName: pulumi.Input<string>;
     /**
-     * The codec used for compression of your logs. Valid values are zstd, snappy, and gzip. If the specified codec is "gzip", gzip*level will default to 3. To specify a different level, leave compression*codec blank and explicitly set the level using gzip*level. Specifying both compression*codec and gzipLevel in the same API request will result in an error.
+     * The codec used for compression of your logs. Valid values are zstd, snappy, and gzip. If the specified codec is "gzip", gzipLevel will default to 3. To specify a different level, leave compressionCodec blank and explicitly set the level using gzip_level. Specifying both compressionCodec and gzipLevel in the same API request will result in an error.
      */
     compressionCodec?: pulumi.Input<string>;
     /**
@@ -1881,7 +1967,7 @@ export interface ServiceVclLoggingFtp {
      */
     address: pulumi.Input<string>;
     /**
-     * The codec used for compression of your logs. Valid values are zstd, snappy, and gzip. If the specified codec is "gzip", gzip*level will default to 3. To specify a different level, leave compression*codec blank and explicitly set the level using gzip*level. Specifying both compression*codec and gzipLevel in the same API request will result in an error.
+     * The codec used for compression of your logs. Valid values are zstd, snappy, and gzip. If the specified codec is "gzip", gzipLevel will default to 3. To specify a different level, leave compressionCodec blank and explicitly set the level using gzip_level. Specifying both compressionCodec and gzipLevel in the same API request will result in an error.
      */
     compressionCodec?: pulumi.Input<string>;
     /**
@@ -1952,7 +2038,7 @@ export interface ServiceVclLoggingGc {
      */
     bucketName: pulumi.Input<string>;
     /**
-     * The codec used for compression of your logs. Valid values are zstd, snappy, and gzip. If the specified codec is "gzip", gzip*level will default to 3. To specify a different level, leave compression*codec blank and explicitly set the level using gzip*level. Specifying both compression*codec and gzipLevel in the same API request will result in an error.
+     * The codec used for compression of your logs. Valid values are zstd, snappy, and gzip. If the specified codec is "gzip", gzipLevel will default to 3. To specify a different level, leave compressionCodec blank and explicitly set the level using gzip_level. Specifying both compressionCodec and gzipLevel in the same API request will result in an error.
      */
     compressionCodec?: pulumi.Input<string>;
     /**
@@ -2480,7 +2566,7 @@ export interface ServiceVclLoggingOpenstack {
      */
     bucketName: pulumi.Input<string>;
     /**
-     * The codec used for compression of your logs. Valid values are zstd, snappy, and gzip. If the specified codec is "gzip", gzip*level will default to 3. To specify a different level, leave compression*codec blank and explicitly set the level using gzip*level. Specifying both compression*codec and gzipLevel in the same API request will result in an error.
+     * The codec used for compression of your logs. Valid values are zstd, snappy, and gzip. If the specified codec is "gzip", gzipLevel will default to 3. To specify a different level, leave compressionCodec blank and explicitly set the level using gzip_level. Specifying both compressionCodec and gzipLevel in the same API request will result in an error.
      */
     compressionCodec?: pulumi.Input<string>;
     /**
@@ -2578,7 +2664,7 @@ export interface ServiceVclLoggingS3 {
      */
     bucketName: pulumi.Input<string>;
     /**
-     * The codec used for compression of your logs. Valid values are zstd, snappy, and gzip. If the specified codec is "gzip", gzip*level will default to 3. To specify a different level, leave compression*codec blank and explicitly set the level using gzip*level. Specifying both compression*codec and gzipLevel in the same API request will result in an error.
+     * The codec used for compression of your logs. Valid values are zstd, snappy, and gzip. If the specified codec is "gzip", gzipLevel will default to 3. To specify a different level, leave compressionCodec blank and explicitly set the level using gzip_level. Specifying both compressionCodec and gzipLevel in the same API request will result in an error.
      */
     compressionCodec?: pulumi.Input<string>;
     /**
@@ -2650,7 +2736,7 @@ export interface ServiceVclLoggingS3 {
      */
     serverSideEncryption?: pulumi.Input<string>;
     /**
-     * Optional server-side KMS Key Id. Must be set if server*side*encryption is set to `aws:kms`
+     * Optional server-side KMS Key Id. Must be set if serverSideEncryption is set to `aws:kms`
      */
     serverSideEncryptionKmsKeyId?: pulumi.Input<string>;
     /**
@@ -2700,7 +2786,7 @@ export interface ServiceVclLoggingSftp {
      */
     address: pulumi.Input<string>;
     /**
-     * The codec used for compression of your logs. Valid values are zstd, snappy, and gzip. If the specified codec is "gzip", gzip*level will default to 3. To specify a different level, leave compression*codec blank and explicitly set the level using gzip*level. Specifying both compression*codec and gzipLevel in the same API request will result in an error.
+     * The codec used for compression of your logs. Valid values are zstd, snappy, and gzip. If the specified codec is "gzip", gzipLevel will default to 3. To specify a different level, leave compressionCodec blank and explicitly set the level using gzip_level. Specifying both compressionCodec and gzipLevel in the same API request will result in an error.
      */
     compressionCodec?: pulumi.Input<string>;
     /**
@@ -2939,7 +3025,7 @@ export interface ServiceVclProductEnablement {
 
 export interface ServiceVclRateLimiter {
     /**
-     * The action to take when a rate limiter violation is detected (one of: log*only, response, response*object)
+     * The action to take when a rate limiter violation is detected (one of: log_only, response, response_object)
      */
     action: pulumi.Input<string>;
     /**

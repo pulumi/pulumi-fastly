@@ -22,7 +22,7 @@ public final class ServiceComputePackage {
      */
     private @Nullable String filename;
     /**
-     * @return Used to trigger updates. Must be set to a SHA512 hash of all files (in sorted order) within the package. The usual way to set this is using the fastly*package*hash data source.
+     * @return Used to trigger updates. Must be set to a SHA512 hash of all files (in sorted order) within the package. The usual way to set this is using the fastly.getPackageHash data source.
      * 
      */
     private @Nullable String sourceCodeHash;
@@ -43,7 +43,7 @@ public final class ServiceComputePackage {
         return Optional.ofNullable(this.filename);
     }
     /**
-     * @return Used to trigger updates. Must be set to a SHA512 hash of all files (in sorted order) within the package. The usual way to set this is using the fastly*package*hash data source.
+     * @return Used to trigger updates. Must be set to a SHA512 hash of all files (in sorted order) within the package. The usual way to set this is using the fastly.getPackageHash data source.
      * 
      */
     public Optional<String> sourceCodeHash() {

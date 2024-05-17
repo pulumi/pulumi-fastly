@@ -19,14 +19,14 @@ public final class ServiceVclRateLimiterArgs extends com.pulumi.resources.Resour
     public static final ServiceVclRateLimiterArgs Empty = new ServiceVclRateLimiterArgs();
 
     /**
-     * The action to take when a rate limiter violation is detected (one of: log*only, response, response*object)
+     * The action to take when a rate limiter violation is detected (one of: log_only, response, response_object)
      * 
      */
     @Import(name="action", required=true)
     private Output<String> action;
 
     /**
-     * @return The action to take when a rate limiter violation is detected (one of: log*only, response, response*object)
+     * @return The action to take when a rate limiter violation is detected (one of: log_only, response, response_object)
      * 
      */
     public Output<String> action() {
@@ -250,7 +250,7 @@ public final class ServiceVclRateLimiterArgs extends com.pulumi.resources.Resour
         }
 
         /**
-         * @param action The action to take when a rate limiter violation is detected (one of: log*only, response, response*object)
+         * @param action The action to take when a rate limiter violation is detected (one of: log_only, response, response_object)
          * 
          * @return builder
          * 
@@ -261,7 +261,7 @@ public final class ServiceVclRateLimiterArgs extends com.pulumi.resources.Resour
         }
 
         /**
-         * @param action The action to take when a rate limiter violation is detected (one of: log*only, response, response*object)
+         * @param action The action to take when a rate limiter violation is detected (one of: log_only, response, response_object)
          * 
          * @return builder
          * 
