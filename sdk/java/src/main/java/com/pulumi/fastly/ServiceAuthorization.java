@@ -51,7 +51,7 @@ import javax.annotation.Nullable;
  * 
  *         var user = new User("user");
  * 
- *         var auth = new ServiceAuthorization("auth", ServiceAuthorizationArgs.builder()        
+ *         var auth = new ServiceAuthorization("auth", ServiceAuthorizationArgs.builder()
  *             .serviceId(demo.id())
  *             .userId(user.id())
  *             .permission("purge_all")

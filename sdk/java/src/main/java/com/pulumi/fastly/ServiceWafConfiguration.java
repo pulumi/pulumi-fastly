@@ -58,7 +58,7 @@ import javax.annotation.Nullable;
  *     }
  * 
  *     public static void stack(Context ctx) {
- *         var demo = new ServiceVcl("demo", ServiceVclArgs.builder()        
+ *         var demo = new ServiceVcl("demo", ServiceVclArgs.builder()
  *             .name("demofastly")
  *             .domains(ServiceVclDomainArgs.builder()
  *                 .name("example.com")
@@ -95,7 +95,7 @@ import javax.annotation.Nullable;
  *             .forceDestroy(true)
  *             .build());
  * 
- *         var waf = new ServiceWafConfiguration("waf", ServiceWafConfigurationArgs.builder()        
+ *         var waf = new ServiceWafConfiguration("waf", ServiceWafConfigurationArgs.builder()
  *             .wafId(demo.waf().applyValue(waf -> waf.wafId()))
  *             .httpViolationScoreThreshold(100)
  *             .build());
@@ -139,7 +139,7 @@ import javax.annotation.Nullable;
  *     }
  * 
  *     public static void stack(Context ctx) {
- *         var demo = new ServiceVcl("demo", ServiceVclArgs.builder()        
+ *         var demo = new ServiceVcl("demo", ServiceVclArgs.builder()
  *             .name("demofastly")
  *             .domains(ServiceVclDomainArgs.builder()
  *                 .name("example.com")
@@ -176,7 +176,7 @@ import javax.annotation.Nullable;
  *             .forceDestroy(true)
  *             .build());
  * 
- *         var waf = new ServiceWafConfiguration("waf", ServiceWafConfigurationArgs.builder()        
+ *         var waf = new ServiceWafConfiguration("waf", ServiceWafConfigurationArgs.builder()
  *             .wafId(demo.waf().applyValue(waf -> waf.wafId()))
  *             .httpViolationScoreThreshold(100)
  *             .rules(ServiceWafConfigurationRuleArgs.builder()
@@ -228,7 +228,7 @@ import javax.annotation.Nullable;
  *     }
  * 
  *     public static void stack(Context ctx) {
- *         var demo = new ServiceVcl("demo", ServiceVclArgs.builder()        
+ *         var demo = new ServiceVcl("demo", ServiceVclArgs.builder()
  *             .name("demofastly")
  *             .domains(ServiceVclDomainArgs.builder()
  *                 .name("example.com")
@@ -265,7 +265,7 @@ import javax.annotation.Nullable;
  *             .forceDestroy(true)
  *             .build());
  * 
- *         var waf = new ServiceWafConfiguration("waf", ServiceWafConfigurationArgs.builder()        
+ *         var waf = new ServiceWafConfiguration("waf", ServiceWafConfigurationArgs.builder()
  *             .wafId(demo.waf().applyValue(waf -> waf.wafId()))
  *             .httpViolationScoreThreshold(100)
  *             .rules(ServiceWafConfigurationRuleArgs.builder()
