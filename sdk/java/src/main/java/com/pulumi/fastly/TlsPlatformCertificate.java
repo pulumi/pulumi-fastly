@@ -62,15 +62,15 @@ import javax.annotation.Nullable;
  *     }
  * 
  *     public static void stack(Context ctx) {
- *         var caKey = new PrivateKey("caKey", PrivateKeyArgs.builder()        
+ *         var caKey = new PrivateKey("caKey", PrivateKeyArgs.builder()
  *             .algorithm("RSA")
  *             .build());
  * 
- *         var key = new PrivateKey("key", PrivateKeyArgs.builder()        
+ *         var key = new PrivateKey("key", PrivateKeyArgs.builder()
  *             .algorithm("RSA")
  *             .build());
  * 
- *         var ca = new SelfSignedCert("ca", SelfSignedCertArgs.builder()        
+ *         var ca = new SelfSignedCert("ca", SelfSignedCertArgs.builder()
  *             .keyAlgorithm(caKey.algorithm())
  *             .privateKeyPem(caKey.privateKeyPem())
  *             .subject(%!v(PANIC=Format method: runtime error: invalid memory address or nil pointer dereference))
@@ -81,7 +81,7 @@ import javax.annotation.Nullable;
  *                 "server_auth")
  *             .build());
  * 
- *         var example = new CertRequest("example", CertRequestArgs.builder()        
+ *         var example = new CertRequest("example", CertRequestArgs.builder()
  *             .keyAlgorithm(key.algorithm())
  *             .privateKeyPem(key.privateKeyPem())
  *             .subject(%!v(PANIC=Format method: runtime error: invalid memory address or nil pointer dereference))
@@ -90,7 +90,7 @@ import javax.annotation.Nullable;
  *                 "www.example.com")
  *             .build());
  * 
- *         var cert = new LocallySignedCert("cert", LocallySignedCertArgs.builder()        
+ *         var cert = new LocallySignedCert("cert", LocallySignedCertArgs.builder()
  *             .certRequestPem(example.certRequestPem())
  *             .caKeyAlgorithm(caKey.algorithm())
  *             .caPrivateKeyPem(caKey.privateKeyPem())
@@ -105,12 +105,12 @@ import javax.annotation.Nullable;
  *             .tlsService("PLATFORM")
  *             .build());
  * 
- *         var keyTlsPrivateKey = new TlsPrivateKey("keyTlsPrivateKey", TlsPrivateKeyArgs.builder()        
+ *         var keyTlsPrivateKey = new TlsPrivateKey("keyTlsPrivateKey", TlsPrivateKeyArgs.builder()
  *             .keyPem(key.privateKeyPem())
  *             .name("tf-demo")
  *             .build());
  * 
- *         var certTlsPlatformCertificate = new TlsPlatformCertificate("certTlsPlatformCertificate", TlsPlatformCertificateArgs.builder()        
+ *         var certTlsPlatformCertificate = new TlsPlatformCertificate("certTlsPlatformCertificate", TlsPlatformCertificateArgs.builder()
  *             .certificateBody(cert.certPem())
  *             .intermediatesBlob(ca.certPem())
  *             .configurationId(config.applyValue(getTlsConfigurationResult -> getTlsConfigurationResult.id()))

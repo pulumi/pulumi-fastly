@@ -55,11 +55,11 @@ import javax.annotation.Nullable;
  *     }
  * 
  *     public static void stack(Context ctx) {
- *         var key = new PrivateKey("key", PrivateKeyArgs.builder()        
+ *         var key = new PrivateKey("key", PrivateKeyArgs.builder()
  *             .algorithm("RSA")
  *             .build());
  * 
- *         var cert = new SelfSignedCert("cert", SelfSignedCertArgs.builder()        
+ *         var cert = new SelfSignedCert("cert", SelfSignedCertArgs.builder()
  *             .keyAlgorithm(key.algorithm())
  *             .privateKeyPem(key.privateKeyPem())
  *             .subject(%!v(PANIC=Format method: runtime error: invalid memory address or nil pointer dereference))
@@ -71,12 +71,12 @@ import javax.annotation.Nullable;
  *             .dnsNames("example.com")
  *             .build());
  * 
- *         var keyTlsPrivateKey = new TlsPrivateKey("keyTlsPrivateKey", TlsPrivateKeyArgs.builder()        
+ *         var keyTlsPrivateKey = new TlsPrivateKey("keyTlsPrivateKey", TlsPrivateKeyArgs.builder()
  *             .keyPem(key.privateKeyPem())
  *             .name("tf-demo")
  *             .build());
  * 
- *         var example = new TlsCertificate("example", TlsCertificateArgs.builder()        
+ *         var example = new TlsCertificate("example", TlsCertificateArgs.builder()
  *             .name("tf-demo")
  *             .certificateBody(cert.certPem())
  *             .build(), CustomResourceOptions.builder()

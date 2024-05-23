@@ -50,15 +50,15 @@ import javax.annotation.Nullable;
  *     }
  * 
  *     public static void stack(Context ctx) {
- *         var example = new ServiceVcl("example", ServiceVclArgs.builder()        
+ *         var example = new ServiceVcl("example", ServiceVclArgs.builder()
  *             .name("my_vcl_service")
  *             .build());
  * 
- *         var exampleIntegration = new Integration("exampleIntegration", IntegrationArgs.builder()        
+ *         var exampleIntegration = new Integration("exampleIntegration", IntegrationArgs.builder()
  *             .name("my_integration")
  *             .build());
  * 
- *         var exampleAlert = new Alert("exampleAlert", AlertArgs.builder()        
+ *         var exampleAlert = new Alert("exampleAlert", AlertArgs.builder()
  *             .name("my_vcl_service errors")
  *             .serviceId(example.id())
  *             .source("stats")

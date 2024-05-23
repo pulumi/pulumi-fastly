@@ -50,11 +50,11 @@ import javax.annotation.Nullable;
  *     }
  * 
  *     public static void stack(Context ctx) {
- *         var demo = new PrivateKey("demo", PrivateKeyArgs.builder()        
+ *         var demo = new PrivateKey("demo", PrivateKeyArgs.builder()
  *             .algorithm("RSA")
  *             .build());
  * 
- *         var demoTlsPrivateKey = new TlsPrivateKey("demoTlsPrivateKey", TlsPrivateKeyArgs.builder()        
+ *         var demoTlsPrivateKey = new TlsPrivateKey("demoTlsPrivateKey", TlsPrivateKeyArgs.builder()
  *             .keyPem(demo.privateKeyPem())
  *             .name("tf-demo")
  *             .build());
