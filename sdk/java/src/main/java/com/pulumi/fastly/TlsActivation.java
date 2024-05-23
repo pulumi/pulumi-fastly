@@ -55,7 +55,7 @@ import javax.annotation.Nullable;
  *     }
  * 
  *     public static void stack(Context ctx) {
- *         var demo = new ServiceVcl("demo", ServiceVclArgs.builder()        
+ *         var demo = new ServiceVcl("demo", ServiceVclArgs.builder()
  *             .name("my-service")
  *             .domains(ServiceVclDomainArgs.builder()
  *                 .name("example.com")
@@ -67,19 +67,19 @@ import javax.annotation.Nullable;
  *             .forceDestroy(true)
  *             .build());
  * 
- *         var demoTlsPrivateKey = new TlsPrivateKey("demoTlsPrivateKey", TlsPrivateKeyArgs.builder()        
+ *         var demoTlsPrivateKey = new TlsPrivateKey("demoTlsPrivateKey", TlsPrivateKeyArgs.builder()
  *             .keyPem("...")
  *             .name("demo-key")
  *             .build());
  * 
- *         var demoTlsCertificate = new TlsCertificate("demoTlsCertificate", TlsCertificateArgs.builder()        
+ *         var demoTlsCertificate = new TlsCertificate("demoTlsCertificate", TlsCertificateArgs.builder()
  *             .certificateBody("...")
  *             .name("demo-cert")
  *             .build(), CustomResourceOptions.builder()
  *                 .dependsOn(demoTlsPrivateKey)
  *                 .build());
  * 
- *         var test = new TlsActivation("test", TlsActivationArgs.builder()        
+ *         var test = new TlsActivation("test", TlsActivationArgs.builder()
  *             .certificateId(demoTlsCertificate.id())
  *             .domain("example.com")
  *             .build(), CustomResourceOptions.builder()

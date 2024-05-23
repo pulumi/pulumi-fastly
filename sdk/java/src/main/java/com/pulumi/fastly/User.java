@@ -46,7 +46,7 @@ import javax.annotation.Nullable;
  *     }
  * 
  *     public static void stack(Context ctx) {
- *         var demo = new User("demo", UserArgs.builder()        
+ *         var demo = new User("demo", UserArgs.builder()
  *             .login("demo{@literal @}example.com")
  *             .name("Demo User")
  *             .build());

@@ -151,7 +151,7 @@ public final class FastlyFunctions {
      *     }
      * 
      *     public static void stack(Context ctx) {
-     *         var exampleServiceVcl = new ServiceVcl("exampleServiceVcl", ServiceVclArgs.builder()        
+     *         var exampleServiceVcl = new ServiceVcl("exampleServiceVcl", ServiceVclArgs.builder()
      *             .name("Example Service")
      *             .domains(ServiceVclDomainArgs.builder()
      *                 .name("example.com")
@@ -219,7 +219,7 @@ public final class FastlyFunctions {
      *     }
      * 
      *     public static void stack(Context ctx) {
-     *         var exampleServiceVcl = new ServiceVcl("exampleServiceVcl", ServiceVclArgs.builder()        
+     *         var exampleServiceVcl = new ServiceVcl("exampleServiceVcl", ServiceVclArgs.builder()
      *             .name("Example Service")
      *             .domains(ServiceVclDomainArgs.builder()
      *                 .name("example.com")
@@ -287,7 +287,7 @@ public final class FastlyFunctions {
      *     }
      * 
      *     public static void stack(Context ctx) {
-     *         var exampleServiceVcl = new ServiceVcl("exampleServiceVcl", ServiceVclArgs.builder()        
+     *         var exampleServiceVcl = new ServiceVcl("exampleServiceVcl", ServiceVclArgs.builder()
      *             .name("Example Service")
      *             .domains(ServiceVclDomainArgs.builder()
      *                 .name("example.com")
@@ -355,7 +355,7 @@ public final class FastlyFunctions {
      *     }
      * 
      *     public static void stack(Context ctx) {
-     *         var exampleServiceVcl = new ServiceVcl("exampleServiceVcl", ServiceVclArgs.builder()        
+     *         var exampleServiceVcl = new ServiceVcl("exampleServiceVcl", ServiceVclArgs.builder()
      *             .name("Example Service")
      *             .domains(ServiceVclDomainArgs.builder()
      *                 .name("example.com")
@@ -422,7 +422,7 @@ public final class FastlyFunctions {
      *     public static void stack(Context ctx) {
      *         final var fastly = FastlyFunctions.getFastlyIpRanges();
      * 
-     *         var fromFastly = new SecurityGroup("fromFastly", SecurityGroupArgs.builder()        
+     *         var fromFastly = new SecurityGroup("fromFastly", SecurityGroupArgs.builder()
      *             .name("from_fastly")
      *             .ingress(%!v(PANIC=Format method: runtime error: invalid memory address or nil pointer dereference))
      *             .build());
@@ -470,7 +470,7 @@ public final class FastlyFunctions {
      *     public static void stack(Context ctx) {
      *         final var fastly = FastlyFunctions.getFastlyIpRanges();
      * 
-     *         var fromFastly = new SecurityGroup("fromFastly", SecurityGroupArgs.builder()        
+     *         var fromFastly = new SecurityGroup("fromFastly", SecurityGroupArgs.builder()
      *             .name("from_fastly")
      *             .ingress(%!v(PANIC=Format method: runtime error: invalid memory address or nil pointer dereference))
      *             .build());
@@ -518,7 +518,7 @@ public final class FastlyFunctions {
      *     public static void stack(Context ctx) {
      *         final var fastly = FastlyFunctions.getFastlyIpRanges();
      * 
-     *         var fromFastly = new SecurityGroup("fromFastly", SecurityGroupArgs.builder()        
+     *         var fromFastly = new SecurityGroup("fromFastly", SecurityGroupArgs.builder()
      *             .name("from_fastly")
      *             .ingress(%!v(PANIC=Format method: runtime error: invalid memory address or nil pointer dereference))
      *             .build());
@@ -566,7 +566,7 @@ public final class FastlyFunctions {
      *     public static void stack(Context ctx) {
      *         final var fastly = FastlyFunctions.getFastlyIpRanges();
      * 
-     *         var fromFastly = new SecurityGroup("fromFastly", SecurityGroupArgs.builder()        
+     *         var fromFastly = new SecurityGroup("fromFastly", SecurityGroupArgs.builder()
      *             .name("from_fastly")
      *             .ingress(%!v(PANIC=Format method: runtime error: invalid memory address or nil pointer dereference))
      *             .build());
@@ -614,7 +614,7 @@ public final class FastlyFunctions {
      *     public static void stack(Context ctx) {
      *         final var fastly = FastlyFunctions.getFastlyIpRanges();
      * 
-     *         var fromFastly = new SecurityGroup("fromFastly", SecurityGroupArgs.builder()        
+     *         var fromFastly = new SecurityGroup("fromFastly", SecurityGroupArgs.builder()
      *             .name("from_fastly")
      *             .ingress(%!v(PANIC=Format method: runtime error: invalid memory address or nil pointer dereference))
      *             .build());
@@ -662,7 +662,7 @@ public final class FastlyFunctions {
      *     public static void stack(Context ctx) {
      *         final var fastly = FastlyFunctions.getFastlyIpRanges();
      * 
-     *         var fromFastly = new SecurityGroup("fromFastly", SecurityGroupArgs.builder()        
+     *         var fromFastly = new SecurityGroup("fromFastly", SecurityGroupArgs.builder()
      *             .name("from_fastly")
      *             .ingress(%!v(PANIC=Format method: runtime error: invalid memory address or nil pointer dereference))
      *             .build());
@@ -732,7 +732,7 @@ public final class FastlyFunctions {
      *             .filename("./path/to/package.tar.gz")
      *             .build());
      * 
-     *         var exampleServiceCompute = new ServiceCompute("exampleServiceCompute", ServiceComputeArgs.builder()        
+     *         var exampleServiceCompute = new ServiceCompute("exampleServiceCompute", ServiceComputeArgs.builder()
      *             .package_(ServiceComputePackageArgs.builder()
      *                 .filename("./path/to/package.tar.gz")
      *                 .sourceCodeHash(example.applyValue(getPackageHashResult -> getPackageHashResult.hash()))
@@ -784,7 +784,7 @@ public final class FastlyFunctions {
      *             .filename("./path/to/package.tar.gz")
      *             .build());
      * 
-     *         var exampleServiceCompute = new ServiceCompute("exampleServiceCompute", ServiceComputeArgs.builder()        
+     *         var exampleServiceCompute = new ServiceCompute("exampleServiceCompute", ServiceComputeArgs.builder()
      *             .package_(ServiceComputePackageArgs.builder()
      *                 .filename("./path/to/package.tar.gz")
      *                 .sourceCodeHash(example.applyValue(getPackageHashResult -> getPackageHashResult.hash()))
@@ -836,7 +836,7 @@ public final class FastlyFunctions {
      *             .filename("./path/to/package.tar.gz")
      *             .build());
      * 
-     *         var exampleServiceCompute = new ServiceCompute("exampleServiceCompute", ServiceComputeArgs.builder()        
+     *         var exampleServiceCompute = new ServiceCompute("exampleServiceCompute", ServiceComputeArgs.builder()
      *             .package_(ServiceComputePackageArgs.builder()
      *                 .filename("./path/to/package.tar.gz")
      *                 .sourceCodeHash(example.applyValue(getPackageHashResult -> getPackageHashResult.hash()))
@@ -888,7 +888,7 @@ public final class FastlyFunctions {
      *             .filename("./path/to/package.tar.gz")
      *             .build());
      * 
-     *         var exampleServiceCompute = new ServiceCompute("exampleServiceCompute", ServiceComputeArgs.builder()        
+     *         var exampleServiceCompute = new ServiceCompute("exampleServiceCompute", ServiceComputeArgs.builder()
      *             .package_(ServiceComputePackageArgs.builder()
      *                 .filename("./path/to/package.tar.gz")
      *                 .sourceCodeHash(example.applyValue(getPackageHashResult -> getPackageHashResult.hash()))
@@ -940,7 +940,7 @@ public final class FastlyFunctions {
      *             .filename("./path/to/package.tar.gz")
      *             .build());
      * 
-     *         var exampleServiceCompute = new ServiceCompute("exampleServiceCompute", ServiceComputeArgs.builder()        
+     *         var exampleServiceCompute = new ServiceCompute("exampleServiceCompute", ServiceComputeArgs.builder()
      *             .package_(ServiceComputePackageArgs.builder()
      *                 .filename("./path/to/package.tar.gz")
      *                 .sourceCodeHash(example.applyValue(getPackageHashResult -> getPackageHashResult.hash()))
@@ -992,7 +992,7 @@ public final class FastlyFunctions {
      *             .filename("./path/to/package.tar.gz")
      *             .build());
      * 
-     *         var exampleServiceCompute = new ServiceCompute("exampleServiceCompute", ServiceComputeArgs.builder()        
+     *         var exampleServiceCompute = new ServiceCompute("exampleServiceCompute", ServiceComputeArgs.builder()
      *             .package_(ServiceComputePackageArgs.builder()
      *                 .filename("./path/to/package.tar.gz")
      *                 .sourceCodeHash(example.applyValue(getPackageHashResult -> getPackageHashResult.hash()))
@@ -1748,7 +1748,7 @@ public final class FastlyFunctions {
      *     public static void stack(Context ctx) {
      *         final var example = FastlyFunctions.getTlsCertificateIds();
      * 
-     *         var exampleTlsActivation = new TlsActivation("exampleTlsActivation", TlsActivationArgs.builder()        
+     *         var exampleTlsActivation = new TlsActivation("exampleTlsActivation", TlsActivationArgs.builder()
      *             .certificateId(example.applyValue(getTlsCertificateIdsResult -> getTlsCertificateIdsResult.ids()[0]))
      *             .build());
      * 
@@ -1793,7 +1793,7 @@ public final class FastlyFunctions {
      *     public static void stack(Context ctx) {
      *         final var example = FastlyFunctions.getTlsCertificateIds();
      * 
-     *         var exampleTlsActivation = new TlsActivation("exampleTlsActivation", TlsActivationArgs.builder()        
+     *         var exampleTlsActivation = new TlsActivation("exampleTlsActivation", TlsActivationArgs.builder()
      *             .certificateId(example.applyValue(getTlsCertificateIdsResult -> getTlsCertificateIdsResult.ids()[0]))
      *             .build());
      * 
@@ -1838,7 +1838,7 @@ public final class FastlyFunctions {
      *     public static void stack(Context ctx) {
      *         final var example = FastlyFunctions.getTlsCertificateIds();
      * 
-     *         var exampleTlsActivation = new TlsActivation("exampleTlsActivation", TlsActivationArgs.builder()        
+     *         var exampleTlsActivation = new TlsActivation("exampleTlsActivation", TlsActivationArgs.builder()
      *             .certificateId(example.applyValue(getTlsCertificateIdsResult -> getTlsCertificateIdsResult.ids()[0]))
      *             .build());
      * 
@@ -1883,7 +1883,7 @@ public final class FastlyFunctions {
      *     public static void stack(Context ctx) {
      *         final var example = FastlyFunctions.getTlsCertificateIds();
      * 
-     *         var exampleTlsActivation = new TlsActivation("exampleTlsActivation", TlsActivationArgs.builder()        
+     *         var exampleTlsActivation = new TlsActivation("exampleTlsActivation", TlsActivationArgs.builder()
      *             .certificateId(example.applyValue(getTlsCertificateIdsResult -> getTlsCertificateIdsResult.ids()[0]))
      *             .build());
      * 
@@ -1928,7 +1928,7 @@ public final class FastlyFunctions {
      *     public static void stack(Context ctx) {
      *         final var example = FastlyFunctions.getTlsCertificateIds();
      * 
-     *         var exampleTlsActivation = new TlsActivation("exampleTlsActivation", TlsActivationArgs.builder()        
+     *         var exampleTlsActivation = new TlsActivation("exampleTlsActivation", TlsActivationArgs.builder()
      *             .certificateId(example.applyValue(getTlsCertificateIdsResult -> getTlsCertificateIdsResult.ids()[0]))
      *             .build());
      * 
@@ -1973,7 +1973,7 @@ public final class FastlyFunctions {
      *     public static void stack(Context ctx) {
      *         final var example = FastlyFunctions.getTlsCertificateIds();
      * 
-     *         var exampleTlsActivation = new TlsActivation("exampleTlsActivation", TlsActivationArgs.builder()        
+     *         var exampleTlsActivation = new TlsActivation("exampleTlsActivation", TlsActivationArgs.builder()
      *             .certificateId(example.applyValue(getTlsCertificateIdsResult -> getTlsCertificateIdsResult.ids()[0]))
      *             .build());
      * 
@@ -2027,7 +2027,7 @@ public final class FastlyFunctions {
      *             .default_(true)
      *             .build());
      * 
-     *         var exampleTlsActivation = new TlsActivation("exampleTlsActivation", TlsActivationArgs.builder()        
+     *         var exampleTlsActivation = new TlsActivation("exampleTlsActivation", TlsActivationArgs.builder()
      *             .configurationId(example.applyValue(getTlsConfigurationResult -> getTlsConfigurationResult.id()))
      *             .build());
      * 
@@ -2081,7 +2081,7 @@ public final class FastlyFunctions {
      *             .default_(true)
      *             .build());
      * 
-     *         var exampleTlsActivation = new TlsActivation("exampleTlsActivation", TlsActivationArgs.builder()        
+     *         var exampleTlsActivation = new TlsActivation("exampleTlsActivation", TlsActivationArgs.builder()
      *             .configurationId(example.applyValue(getTlsConfigurationResult -> getTlsConfigurationResult.id()))
      *             .build());
      * 
@@ -2135,7 +2135,7 @@ public final class FastlyFunctions {
      *             .default_(true)
      *             .build());
      * 
-     *         var exampleTlsActivation = new TlsActivation("exampleTlsActivation", TlsActivationArgs.builder()        
+     *         var exampleTlsActivation = new TlsActivation("exampleTlsActivation", TlsActivationArgs.builder()
      *             .configurationId(example.applyValue(getTlsConfigurationResult -> getTlsConfigurationResult.id()))
      *             .build());
      * 
@@ -2189,7 +2189,7 @@ public final class FastlyFunctions {
      *             .default_(true)
      *             .build());
      * 
-     *         var exampleTlsActivation = new TlsActivation("exampleTlsActivation", TlsActivationArgs.builder()        
+     *         var exampleTlsActivation = new TlsActivation("exampleTlsActivation", TlsActivationArgs.builder()
      *             .configurationId(example.applyValue(getTlsConfigurationResult -> getTlsConfigurationResult.id()))
      *             .build());
      * 
@@ -2243,7 +2243,7 @@ public final class FastlyFunctions {
      *             .default_(true)
      *             .build());
      * 
-     *         var exampleTlsActivation = new TlsActivation("exampleTlsActivation", TlsActivationArgs.builder()        
+     *         var exampleTlsActivation = new TlsActivation("exampleTlsActivation", TlsActivationArgs.builder()
      *             .configurationId(example.applyValue(getTlsConfigurationResult -> getTlsConfigurationResult.id()))
      *             .build());
      * 
@@ -2297,7 +2297,7 @@ public final class FastlyFunctions {
      *             .default_(true)
      *             .build());
      * 
-     *         var exampleTlsActivation = new TlsActivation("exampleTlsActivation", TlsActivationArgs.builder()        
+     *         var exampleTlsActivation = new TlsActivation("exampleTlsActivation", TlsActivationArgs.builder()
      *             .configurationId(example.applyValue(getTlsConfigurationResult -> getTlsConfigurationResult.id()))
      *             .build());
      * 
@@ -2342,7 +2342,7 @@ public final class FastlyFunctions {
      *     public static void stack(Context ctx) {
      *         final var example = FastlyFunctions.getTlsConfigurationIds();
      * 
-     *         var exampleTlsActivation = new TlsActivation("exampleTlsActivation", TlsActivationArgs.builder()        
+     *         var exampleTlsActivation = new TlsActivation("exampleTlsActivation", TlsActivationArgs.builder()
      *             .configurationId(example.applyValue(getTlsConfigurationIdsResult -> getTlsConfigurationIdsResult.ids()[0]))
      *             .build());
      * 
@@ -2387,7 +2387,7 @@ public final class FastlyFunctions {
      *     public static void stack(Context ctx) {
      *         final var example = FastlyFunctions.getTlsConfigurationIds();
      * 
-     *         var exampleTlsActivation = new TlsActivation("exampleTlsActivation", TlsActivationArgs.builder()        
+     *         var exampleTlsActivation = new TlsActivation("exampleTlsActivation", TlsActivationArgs.builder()
      *             .configurationId(example.applyValue(getTlsConfigurationIdsResult -> getTlsConfigurationIdsResult.ids()[0]))
      *             .build());
      * 
@@ -2432,7 +2432,7 @@ public final class FastlyFunctions {
      *     public static void stack(Context ctx) {
      *         final var example = FastlyFunctions.getTlsConfigurationIds();
      * 
-     *         var exampleTlsActivation = new TlsActivation("exampleTlsActivation", TlsActivationArgs.builder()        
+     *         var exampleTlsActivation = new TlsActivation("exampleTlsActivation", TlsActivationArgs.builder()
      *             .configurationId(example.applyValue(getTlsConfigurationIdsResult -> getTlsConfigurationIdsResult.ids()[0]))
      *             .build());
      * 
@@ -2477,7 +2477,7 @@ public final class FastlyFunctions {
      *     public static void stack(Context ctx) {
      *         final var example = FastlyFunctions.getTlsConfigurationIds();
      * 
-     *         var exampleTlsActivation = new TlsActivation("exampleTlsActivation", TlsActivationArgs.builder()        
+     *         var exampleTlsActivation = new TlsActivation("exampleTlsActivation", TlsActivationArgs.builder()
      *             .configurationId(example.applyValue(getTlsConfigurationIdsResult -> getTlsConfigurationIdsResult.ids()[0]))
      *             .build());
      * 
@@ -2522,7 +2522,7 @@ public final class FastlyFunctions {
      *     public static void stack(Context ctx) {
      *         final var example = FastlyFunctions.getTlsConfigurationIds();
      * 
-     *         var exampleTlsActivation = new TlsActivation("exampleTlsActivation", TlsActivationArgs.builder()        
+     *         var exampleTlsActivation = new TlsActivation("exampleTlsActivation", TlsActivationArgs.builder()
      *             .configurationId(example.applyValue(getTlsConfigurationIdsResult -> getTlsConfigurationIdsResult.ids()[0]))
      *             .build());
      * 
@@ -2567,7 +2567,7 @@ public final class FastlyFunctions {
      *     public static void stack(Context ctx) {
      *         final var example = FastlyFunctions.getTlsConfigurationIds();
      * 
-     *         var exampleTlsActivation = new TlsActivation("exampleTlsActivation", TlsActivationArgs.builder()        
+     *         var exampleTlsActivation = new TlsActivation("exampleTlsActivation", TlsActivationArgs.builder()
      *             .configurationId(example.applyValue(getTlsConfigurationIdsResult -> getTlsConfigurationIdsResult.ids()[0]))
      *             .build());
      * 
@@ -4222,7 +4222,7 @@ public final class FastlyFunctions {
      *     }
      * 
      *     public static void stack(Context ctx) {
-     *         var exampleServiceVcl = new ServiceVcl("exampleServiceVcl", ServiceVclArgs.builder()        
+     *         var exampleServiceVcl = new ServiceVcl("exampleServiceVcl", ServiceVclArgs.builder()
      *             .name("Example Service")
      *             .domains(ServiceVclDomainArgs.builder()
      *                 .name("example.com")
@@ -4281,7 +4281,7 @@ public final class FastlyFunctions {
      *     }
      * 
      *     public static void stack(Context ctx) {
-     *         var exampleServiceVcl = new ServiceVcl("exampleServiceVcl", ServiceVclArgs.builder()        
+     *         var exampleServiceVcl = new ServiceVcl("exampleServiceVcl", ServiceVclArgs.builder()
      *             .name("Example Service")
      *             .domains(ServiceVclDomainArgs.builder()
      *                 .name("example.com")
@@ -4340,7 +4340,7 @@ public final class FastlyFunctions {
      *     }
      * 
      *     public static void stack(Context ctx) {
-     *         var exampleServiceVcl = new ServiceVcl("exampleServiceVcl", ServiceVclArgs.builder()        
+     *         var exampleServiceVcl = new ServiceVcl("exampleServiceVcl", ServiceVclArgs.builder()
      *             .name("Example Service")
      *             .domains(ServiceVclDomainArgs.builder()
      *                 .name("example.com")
@@ -4399,7 +4399,7 @@ public final class FastlyFunctions {
      *     }
      * 
      *     public static void stack(Context ctx) {
-     *         var exampleServiceVcl = new ServiceVcl("exampleServiceVcl", ServiceVclArgs.builder()        
+     *         var exampleServiceVcl = new ServiceVcl("exampleServiceVcl", ServiceVclArgs.builder()
      *             .name("Example Service")
      *             .domains(ServiceVclDomainArgs.builder()
      *                 .name("example.com")

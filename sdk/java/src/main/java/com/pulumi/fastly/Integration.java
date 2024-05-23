@@ -43,21 +43,21 @@ import javax.annotation.Nullable;
  *     }
  * 
  *     public static void stack(Context ctx) {
- *         var mailinglistExample = new Integration("mailinglistExample", IntegrationArgs.builder()        
+ *         var mailinglistExample = new Integration("mailinglistExample", IntegrationArgs.builder()
  *             .name("my mailing list integration")
  *             .description("example mailing list integration")
  *             .type("mailinglist")
  *             .config(Map.of("address", "incoming-hook{@literal @}my.domain.com"))
  *             .build());
  * 
- *         var microsoftteamsExample = new Integration("microsoftteamsExample", IntegrationArgs.builder()        
+ *         var microsoftteamsExample = new Integration("microsoftteamsExample", IntegrationArgs.builder()
  *             .name("my Microsoft Teams integration")
  *             .description("example Microsoft Teams integration")
  *             .type("microsoftteams")
  *             .config(Map.of("webhook", "https://m365x012345.webhook.office.com"))
  *             .build());
  * 
- *         var newrelicExample = new Integration("newrelicExample", IntegrationArgs.builder()        
+ *         var newrelicExample = new Integration("newrelicExample", IntegrationArgs.builder()
  *             .name("my New Relic integration")
  *             .description("example New Relic integration")
  *             .type("newrelic")
@@ -67,21 +67,21 @@ import javax.annotation.Nullable;
  *             ))
  *             .build());
  * 
- *         var pagerdutyExample = new Integration("pagerdutyExample", IntegrationArgs.builder()        
+ *         var pagerdutyExample = new Integration("pagerdutyExample", IntegrationArgs.builder()
  *             .name("my PagerDuty integration")
  *             .description("example PagerDuty integration")
  *             .type("pagerduty")
  *             .config(Map.of("key", "XXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXX"))
  *             .build());
  * 
- *         var slackExample = new Integration("slackExample", IntegrationArgs.builder()        
+ *         var slackExample = new Integration("slackExample", IntegrationArgs.builder()
  *             .name("my Slack integration")
  *             .description("example Slack integration")
  *             .type("slack")
  *             .config(Map.of("webhook", "https://hooks.slack.com/services/T00000000/B00000000/XXXXXXXXXXXXXXXXXXXXXXXX"))
  *             .build());
  * 
- *         var webhookExample = new Integration("webhookExample", IntegrationArgs.builder()        
+ *         var webhookExample = new Integration("webhookExample", IntegrationArgs.builder()
  *             .name("my webhook integration")
  *             .description("example webhook integration")
  *             .type("webhook")
