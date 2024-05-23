@@ -53,7 +53,7 @@ import javax.annotation.Nullable;
  *         // IMPORTANT: Deleting a KV Store requires first deleting its resource_link.
  *         // This requires a two-step `pulumi up` as we can't guarantee deletion order.
  *         // e.g. resource_link deletion within fastly_service_compute might not finish first.
- *         var exampleKvstore = new Kvstore("exampleKvstore", KvstoreArgs.builder()        
+ *         var exampleKvstore = new Kvstore("exampleKvstore", KvstoreArgs.builder()
  *             .name("my_kv_store")
  *             .build());
  * 
@@ -61,7 +61,7 @@ import javax.annotation.Nullable;
  *             .filename("package.tar.gz")
  *             .build());
  * 
- *         var exampleServiceCompute = new ServiceCompute("exampleServiceCompute", ServiceComputeArgs.builder()        
+ *         var exampleServiceCompute = new ServiceCompute("exampleServiceCompute", ServiceComputeArgs.builder()
  *             .name("my_compute_service")
  *             .domains(ServiceComputeDomainArgs.builder()
  *                 .name("demo.example.com")
