@@ -316,7 +316,7 @@ class TlsPlatformCertificate(pulumi.CustomResource):
             intermediates_blob=ca["certPem"],
             configuration_id=config.id,
             allow_untrusted_root=True,
-            opts=pulumi.ResourceOptions(depends_on=[key_tls_private_key]))
+            opts = pulumi.ResourceOptions(depends_on=[key_tls_private_key]))
         ```
 
         ## Import
@@ -398,7 +398,7 @@ class TlsPlatformCertificate(pulumi.CustomResource):
             intermediates_blob=ca["certPem"],
             configuration_id=config.id,
             allow_untrusted_root=True,
-            opts=pulumi.ResourceOptions(depends_on=[key_tls_private_key]))
+            opts = pulumi.ResourceOptions(depends_on=[key_tls_private_key]))
         ```
 
         ## Import
