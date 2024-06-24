@@ -208,11 +208,11 @@ class TlsActivation(pulumi.CustomResource):
         demo_tls_certificate = fastly.TlsCertificate("demo",
             certificate_body="...",
             name="demo-cert",
-            opts=pulumi.ResourceOptions(depends_on=[demo_tls_private_key]))
+            opts = pulumi.ResourceOptions(depends_on=[demo_tls_private_key]))
         test = fastly.TlsActivation("test",
             certificate_id=demo_tls_certificate.id,
             domain="example.com",
-            opts=pulumi.ResourceOptions(depends_on=[demo]))
+            opts = pulumi.ResourceOptions(depends_on=[demo]))
         ```
 
         > **Warning:** Updating the `TlsPrivateKey`/`TlsCertificate` resources should be done in multiple plan/apply steps to avoid potential downtime. The new certificate and associated private key must first be created so they exist alongside the currently active resources. Once the new resources have been created, then the `TlsActivation` can be updated to point to the new certificate. Finally, the original key/certificate resources can be deleted.
@@ -267,11 +267,11 @@ class TlsActivation(pulumi.CustomResource):
         demo_tls_certificate = fastly.TlsCertificate("demo",
             certificate_body="...",
             name="demo-cert",
-            opts=pulumi.ResourceOptions(depends_on=[demo_tls_private_key]))
+            opts = pulumi.ResourceOptions(depends_on=[demo_tls_private_key]))
         test = fastly.TlsActivation("test",
             certificate_id=demo_tls_certificate.id,
             domain="example.com",
-            opts=pulumi.ResourceOptions(depends_on=[demo]))
+            opts = pulumi.ResourceOptions(depends_on=[demo]))
         ```
 
         > **Warning:** Updating the `TlsPrivateKey`/`TlsCertificate` resources should be done in multiple plan/apply steps to avoid potential downtime. The new certificate and associated private key must first be created so they exist alongside the currently active resources. Once the new resources have been created, then the `TlsActivation` can be updated to point to the new certificate. Finally, the original key/certificate resources can be deleted.

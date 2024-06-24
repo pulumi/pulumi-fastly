@@ -11970,13 +11970,11 @@ class ServiceVclRequestSettingArgs:
 
     @property
     @pulumi.getter(name="geoHeaders")
+    @_utilities.deprecated("""'geo_headers' attribute has been deprecated and will be removed in the next major version release""")
     def geo_headers(self) -> Optional[pulumi.Input[bool]]:
         """
         Injects Fastly-Geo-Country, Fastly-Geo-City, and Fastly-Geo-Region into the request headers
         """
-        warnings.warn("""'geo_headers' attribute has been deprecated and will be removed in the next major version release""", DeprecationWarning)
-        pulumi.log.warn("""geo_headers is deprecated: 'geo_headers' attribute has been deprecated and will be removed in the next major version release""")
-
         return pulumi.get(self, "geo_headers")
 
     @geo_headers.setter

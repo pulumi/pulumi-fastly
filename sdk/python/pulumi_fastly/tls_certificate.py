@@ -261,7 +261,7 @@ class TlsCertificate(pulumi.CustomResource):
         example = fastly.TlsCertificate("example",
             name="tf-demo",
             certificate_body=cert["certPem"],
-            opts=pulumi.ResourceOptions(depends_on=[key_tls_private_key]))
+            opts = pulumi.ResourceOptions(depends_on=[key_tls_private_key]))
         ```
 
         ## Updating certificates
@@ -330,7 +330,7 @@ class TlsCertificate(pulumi.CustomResource):
         example = fastly.TlsCertificate("example",
             name="tf-demo",
             certificate_body=cert["certPem"],
-            opts=pulumi.ResourceOptions(depends_on=[key_tls_private_key]))
+            opts = pulumi.ResourceOptions(depends_on=[key_tls_private_key]))
         ```
 
         ## Updating certificates
