@@ -394,7 +394,7 @@ class TlsActivation(pulumi.CustomResource):
 
     @property
     @pulumi.getter(name="mutualAuthenticationId")
-    def mutual_authentication_id(self) -> pulumi.Output[Optional[str]]:
+    def mutual_authentication_id(self) -> pulumi.Output[str]:
         """
         An alphanumeric string identifying a mutual authentication.
         """

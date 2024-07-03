@@ -101,10 +101,10 @@ namespace Pulumi.Fastly
         public Output<string> Name { get; private set; } = null!;
 
         /// <summary>
-        /// The service which the alert monitors.
+        /// The service which the alert monitors. Optional when using `stats` as the `source`.
         /// </summary>
         [Output("serviceId")]
-        public Output<string> ServiceId { get; private set; } = null!;
+        public Output<string?> ServiceId { get; private set; } = null!;
 
         /// <summary>
         /// The source where the metric comes from. One of: `domains`, `origins`, `stats`.
@@ -201,10 +201,10 @@ namespace Pulumi.Fastly
         public Input<string>? Name { get; set; }
 
         /// <summary>
-        /// The service which the alert monitors.
+        /// The service which the alert monitors. Optional when using `stats` as the `source`.
         /// </summary>
-        [Input("serviceId", required: true)]
-        public Input<string> ServiceId { get; set; } = null!;
+        [Input("serviceId")]
+        public Input<string>? ServiceId { get; set; }
 
         /// <summary>
         /// The source where the metric comes from. One of: `domains`, `origins`, `stats`.
@@ -263,7 +263,7 @@ namespace Pulumi.Fastly
         public Input<string>? Name { get; set; }
 
         /// <summary>
-        /// The service which the alert monitors.
+        /// The service which the alert monitors. Optional when using `stats` as the `source`.
         /// </summary>
         [Input("serviceId")]
         public Input<string>? ServiceId { get; set; }

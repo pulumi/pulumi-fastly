@@ -18,26 +18,25 @@ class AlertArgs:
     def __init__(__self__, *,
                  evaluation_strategy: pulumi.Input['AlertEvaluationStrategyArgs'],
                  metric: pulumi.Input[str],
-                 service_id: pulumi.Input[str],
                  source: pulumi.Input[str],
                  description: Optional[pulumi.Input[str]] = None,
                  dimensions: Optional[pulumi.Input['AlertDimensionsArgs']] = None,
                  integration_ids: Optional[pulumi.Input[Sequence[pulumi.Input[str]]]] = None,
-                 name: Optional[pulumi.Input[str]] = None):
+                 name: Optional[pulumi.Input[str]] = None,
+                 service_id: Optional[pulumi.Input[str]] = None):
         """
         The set of arguments for constructing a Alert resource.
         :param pulumi.Input['AlertEvaluationStrategyArgs'] evaluation_strategy: Criteria on how to alert.
         :param pulumi.Input[str] metric: The metric name to alert on for a specific source: [domains](https://developer.fastly.com/reference/api/metrics-stats/domain-inspector/historical), [origins](https://developer.fastly.com/reference/api/metrics-stats/origin-inspector/historical), or [stats](https://developer.fastly.com/reference/api/metrics-stats/historical-stats).
-        :param pulumi.Input[str] service_id: The service which the alert monitors.
         :param pulumi.Input[str] source: The source where the metric comes from. One of: `domains`, `origins`, `stats`.
         :param pulumi.Input[str] description: Additional text that is included in the alert notification.
         :param pulumi.Input['AlertDimensionsArgs'] dimensions: More filters depending on the source type.
         :param pulumi.Input[Sequence[pulumi.Input[str]]] integration_ids: List of integrations used to notify when alert fires.
         :param pulumi.Input[str] name: The name of the alert.
+        :param pulumi.Input[str] service_id: The service which the alert monitors. Optional when using `stats` as the `source`.
         """
         pulumi.set(__self__, "evaluation_strategy", evaluation_strategy)
         pulumi.set(__self__, "metric", metric)
-        pulumi.set(__self__, "service_id", service_id)
         pulumi.set(__self__, "source", source)
         if description is not None:
             pulumi.set(__self__, "description", description)
@@ -47,6 +46,8 @@ class AlertArgs:
             pulumi.set(__self__, "integration_ids", integration_ids)
         if name is not None:
             pulumi.set(__self__, "name", name)
+        if service_id is not None:
+            pulumi.set(__self__, "service_id", service_id)
 
     @property
     @pulumi.getter(name="evaluationStrategy")
@@ -71,18 +72,6 @@ class AlertArgs:
     @metric.setter
     def metric(self, value: pulumi.Input[str]):
         pulumi.set(self, "metric", value)
-
-    @property
-    @pulumi.getter(name="serviceId")
-    def service_id(self) -> pulumi.Input[str]:
-        """
-        The service which the alert monitors.
-        """
-        return pulumi.get(self, "service_id")
-
-    @service_id.setter
-    def service_id(self, value: pulumi.Input[str]):
-        pulumi.set(self, "service_id", value)
 
     @property
     @pulumi.getter
@@ -144,6 +133,18 @@ class AlertArgs:
     def name(self, value: Optional[pulumi.Input[str]]):
         pulumi.set(self, "name", value)
 
+    @property
+    @pulumi.getter(name="serviceId")
+    def service_id(self) -> Optional[pulumi.Input[str]]:
+        """
+        The service which the alert monitors. Optional when using `stats` as the `source`.
+        """
+        return pulumi.get(self, "service_id")
+
+    @service_id.setter
+    def service_id(self, value: Optional[pulumi.Input[str]]):
+        pulumi.set(self, "service_id", value)
+
 
 @pulumi.input_type
 class _AlertState:
@@ -164,7 +165,7 @@ class _AlertState:
         :param pulumi.Input[Sequence[pulumi.Input[str]]] integration_ids: List of integrations used to notify when alert fires.
         :param pulumi.Input[str] metric: The metric name to alert on for a specific source: [domains](https://developer.fastly.com/reference/api/metrics-stats/domain-inspector/historical), [origins](https://developer.fastly.com/reference/api/metrics-stats/origin-inspector/historical), or [stats](https://developer.fastly.com/reference/api/metrics-stats/historical-stats).
         :param pulumi.Input[str] name: The name of the alert.
-        :param pulumi.Input[str] service_id: The service which the alert monitors.
+        :param pulumi.Input[str] service_id: The service which the alert monitors. Optional when using `stats` as the `source`.
         :param pulumi.Input[str] source: The source where the metric comes from. One of: `domains`, `origins`, `stats`.
         """
         if description is not None:
@@ -260,7 +261,7 @@ class _AlertState:
     @pulumi.getter(name="serviceId")
     def service_id(self) -> Optional[pulumi.Input[str]]:
         """
-        The service which the alert monitors.
+        The service which the alert monitors. Optional when using `stats` as the `source`.
         """
         return pulumi.get(self, "service_id")
 
@@ -335,7 +336,7 @@ class Alert(pulumi.CustomResource):
         :param pulumi.Input[Sequence[pulumi.Input[str]]] integration_ids: List of integrations used to notify when alert fires.
         :param pulumi.Input[str] metric: The metric name to alert on for a specific source: [domains](https://developer.fastly.com/reference/api/metrics-stats/domain-inspector/historical), [origins](https://developer.fastly.com/reference/api/metrics-stats/origin-inspector/historical), or [stats](https://developer.fastly.com/reference/api/metrics-stats/historical-stats).
         :param pulumi.Input[str] name: The name of the alert.
-        :param pulumi.Input[str] service_id: The service which the alert monitors.
+        :param pulumi.Input[str] service_id: The service which the alert monitors. Optional when using `stats` as the `source`.
         :param pulumi.Input[str] source: The source where the metric comes from. One of: `domains`, `origins`, `stats`.
         """
         ...
@@ -418,8 +419,6 @@ class Alert(pulumi.CustomResource):
                 raise TypeError("Missing required property 'metric'")
             __props__.__dict__["metric"] = metric
             __props__.__dict__["name"] = name
-            if service_id is None and not opts.urn:
-                raise TypeError("Missing required property 'service_id'")
             __props__.__dict__["service_id"] = service_id
             if source is None and not opts.urn:
                 raise TypeError("Missing required property 'source'")
@@ -455,7 +454,7 @@ class Alert(pulumi.CustomResource):
         :param pulumi.Input[Sequence[pulumi.Input[str]]] integration_ids: List of integrations used to notify when alert fires.
         :param pulumi.Input[str] metric: The metric name to alert on for a specific source: [domains](https://developer.fastly.com/reference/api/metrics-stats/domain-inspector/historical), [origins](https://developer.fastly.com/reference/api/metrics-stats/origin-inspector/historical), or [stats](https://developer.fastly.com/reference/api/metrics-stats/historical-stats).
         :param pulumi.Input[str] name: The name of the alert.
-        :param pulumi.Input[str] service_id: The service which the alert monitors.
+        :param pulumi.Input[str] service_id: The service which the alert monitors. Optional when using `stats` as the `source`.
         :param pulumi.Input[str] source: The source where the metric comes from. One of: `domains`, `origins`, `stats`.
         """
         opts = pulumi.ResourceOptions.merge(opts, pulumi.ResourceOptions(id=id))
@@ -522,9 +521,9 @@ class Alert(pulumi.CustomResource):
 
     @property
     @pulumi.getter(name="serviceId")
-    def service_id(self) -> pulumi.Output[str]:
+    def service_id(self) -> pulumi.Output[Optional[str]]:
         """
-        The service which the alert monitors.
+        The service which the alert monitors. Optional when using `stats` as the `source`.
         """
         return pulumi.get(self, "service_id")
 

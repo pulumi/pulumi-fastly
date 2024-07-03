@@ -109,14 +109,14 @@ public final class AlertState extends com.pulumi.resources.ResourceArgs {
     }
 
     /**
-     * The service which the alert monitors.
+     * The service which the alert monitors. Optional when using `stats` as the `source`.
      * 
      */
     @Import(name="serviceId")
     private @Nullable Output<String> serviceId;
 
     /**
-     * @return The service which the alert monitors.
+     * @return The service which the alert monitors. Optional when using `stats` as the `source`.
      * 
      */
     public Optional<Output<String>> serviceId() {
@@ -306,7 +306,7 @@ public final class AlertState extends com.pulumi.resources.ResourceArgs {
         }
 
         /**
-         * @param serviceId The service which the alert monitors.
+         * @param serviceId The service which the alert monitors. Optional when using `stats` as the `source`.
          * 
          * @return builder
          * 
@@ -317,7 +317,7 @@ public final class AlertState extends com.pulumi.resources.ResourceArgs {
         }
 
         /**
-         * @param serviceId The service which the alert monitors.
+         * @param serviceId The service which the alert monitors. Optional when using `stats` as the `source`.
          * 
          * @return builder
          * 

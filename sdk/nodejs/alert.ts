@@ -92,9 +92,9 @@ export class Alert extends pulumi.CustomResource {
      */
     public readonly name!: pulumi.Output<string>;
     /**
-     * The service which the alert monitors.
+     * The service which the alert monitors. Optional when using `stats` as the `source`.
      */
-    public readonly serviceId!: pulumi.Output<string>;
+    public readonly serviceId!: pulumi.Output<string | undefined>;
     /**
      * The source where the metric comes from. One of: `domains`, `origins`, `stats`.
      */
@@ -128,9 +128,6 @@ export class Alert extends pulumi.CustomResource {
             }
             if ((!args || args.metric === undefined) && !opts.urn) {
                 throw new Error("Missing required property 'metric'");
-            }
-            if ((!args || args.serviceId === undefined) && !opts.urn) {
-                throw new Error("Missing required property 'serviceId'");
             }
             if ((!args || args.source === undefined) && !opts.urn) {
                 throw new Error("Missing required property 'source'");
@@ -178,7 +175,7 @@ export interface AlertState {
      */
     name?: pulumi.Input<string>;
     /**
-     * The service which the alert monitors.
+     * The service which the alert monitors. Optional when using `stats` as the `source`.
      */
     serviceId?: pulumi.Input<string>;
     /**
@@ -216,9 +213,9 @@ export interface AlertArgs {
      */
     name?: pulumi.Input<string>;
     /**
-     * The service which the alert monitors.
+     * The service which the alert monitors. Optional when using `stats` as the `source`.
      */
-    serviceId: pulumi.Input<string>;
+    serviceId?: pulumi.Input<string>;
     /**
      * The source where the metric comes from. One of: `domains`, `origins`, `stats`.
      */

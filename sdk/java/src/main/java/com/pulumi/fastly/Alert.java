@@ -173,18 +173,18 @@ public class Alert extends com.pulumi.resources.CustomResource {
         return this.name;
     }
     /**
-     * The service which the alert monitors.
+     * The service which the alert monitors. Optional when using `stats` as the `source`.
      * 
      */
     @Export(name="serviceId", refs={String.class}, tree="[0]")
-    private Output<String> serviceId;
+    private Output</* @Nullable */ String> serviceId;
 
     /**
-     * @return The service which the alert monitors.
+     * @return The service which the alert monitors. Optional when using `stats` as the `source`.
      * 
      */
-    public Output<String> serviceId() {
-        return this.serviceId;
+    public Output<Optional<String>> serviceId() {
+        return Codegen.optional(this.serviceId);
     }
     /**
      * The source where the metric comes from. One of: `domains`, `origins`, `stats`.

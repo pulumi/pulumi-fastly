@@ -110,18 +110,18 @@ public final class AlertArgs extends com.pulumi.resources.ResourceArgs {
     }
 
     /**
-     * The service which the alert monitors.
+     * The service which the alert monitors. Optional when using `stats` as the `source`.
      * 
      */
-    @Import(name="serviceId", required=true)
-    private Output<String> serviceId;
+    @Import(name="serviceId")
+    private @Nullable Output<String> serviceId;
 
     /**
-     * @return The service which the alert monitors.
+     * @return The service which the alert monitors. Optional when using `stats` as the `source`.
      * 
      */
-    public Output<String> serviceId() {
-        return this.serviceId;
+    public Optional<Output<String>> serviceId() {
+        return Optional.ofNullable(this.serviceId);
     }
 
     /**
@@ -307,18 +307,18 @@ public final class AlertArgs extends com.pulumi.resources.ResourceArgs {
         }
 
         /**
-         * @param serviceId The service which the alert monitors.
+         * @param serviceId The service which the alert monitors. Optional when using `stats` as the `source`.
          * 
          * @return builder
          * 
          */
-        public Builder serviceId(Output<String> serviceId) {
+        public Builder serviceId(@Nullable Output<String> serviceId) {
             $.serviceId = serviceId;
             return this;
         }
 
         /**
-         * @param serviceId The service which the alert monitors.
+         * @param serviceId The service which the alert monitors. Optional when using `stats` as the `source`.
          * 
          * @return builder
          * 
@@ -354,9 +354,6 @@ public final class AlertArgs extends com.pulumi.resources.ResourceArgs {
             }
             if ($.metric == null) {
                 throw new MissingRequiredPropertyException("AlertArgs", "metric");
-            }
-            if ($.serviceId == null) {
-                throw new MissingRequiredPropertyException("AlertArgs", "serviceId");
             }
             if ($.source == null) {
                 throw new MissingRequiredPropertyException("AlertArgs", "source");

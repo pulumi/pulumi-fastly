@@ -103,7 +103,7 @@ export class TlsActivation extends pulumi.CustomResource {
     /**
      * An alphanumeric string identifying a mutual authentication.
      */
-    public readonly mutualAuthenticationId!: pulumi.Output<string | undefined>;
+    public readonly mutualAuthenticationId!: pulumi.Output<string>;
 
     /**
      * Create a TlsActivation resource with the given unique name, arguments, and options.
