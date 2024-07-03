@@ -4467,7 +4467,7 @@
                 },
                 "serviceId": {
                     "type": "string",
-                    "description": "The service which the alert monitors.\n"
+                    "description": "The service which the alert monitors. Optional when using `stats` as the `source`.\n"
                 },
                 "source": {
                     "type": "string",
@@ -4478,7 +4478,6 @@
                 "evaluationStrategy",
                 "metric",
                 "name",
-                "serviceId",
                 "source"
             ],
             "inputProperties": {
@@ -4511,7 +4510,7 @@
                 },
                 "serviceId": {
                     "type": "string",
-                    "description": "The service which the alert monitors.\n",
+                    "description": "The service which the alert monitors. Optional when using `stats` as the `source`.\n",
                     "willReplaceOnChanges": true
                 },
                 "source": {
@@ -4523,7 +4522,6 @@
             "requiredInputs": [
                 "evaluationStrategy",
                 "metric",
-                "serviceId",
                 "source"
             ],
             "stateInputs": {
@@ -4558,7 +4556,7 @@
                     },
                     "serviceId": {
                         "type": "string",
-                        "description": "The service which the alert monitors.\n",
+                        "description": "The service which the alert monitors. Optional when using `stats` as the `source`.\n",
                         "willReplaceOnChanges": true
                     },
                     "source": {
@@ -7319,7 +7317,8 @@
                 "certificateId",
                 "configurationId",
                 "createdAt",
-                "domain"
+                "domain",
+                "mutualAuthenticationId"
             ],
             "inputProperties": {
                 "certificateId": {
