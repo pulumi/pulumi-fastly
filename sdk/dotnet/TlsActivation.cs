@@ -121,7 +121,7 @@ namespace Pulumi.Fastly
         /// An alphanumeric string identifying a mutual authentication.
         /// </summary>
         [Output("mutualAuthenticationId")]
-        public Output<string?> MutualAuthenticationId { get; private set; } = null!;
+        public Output<string> MutualAuthenticationId { get; private set; } = null!;
 
 
         /// <summary>

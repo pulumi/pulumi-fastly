@@ -85,8 +85,8 @@ type Alert struct {
 	Metric pulumi.StringOutput `pulumi:"metric"`
 	// The name of the alert.
 	Name pulumi.StringOutput `pulumi:"name"`
-	// The service which the alert monitors.
-	ServiceId pulumi.StringOutput `pulumi:"serviceId"`
+	// The service which the alert monitors. Optional when using `stats` as the `source`.
+	ServiceId pulumi.StringPtrOutput `pulumi:"serviceId"`
 	// The source where the metric comes from. One of: `domains`, `origins`, `stats`.
 	Source pulumi.StringOutput `pulumi:"source"`
 }
@@ -103,9 +103,6 @@ func NewAlert(ctx *pulumi.Context,
 	}
 	if args.Metric == nil {
 		return nil, errors.New("invalid value for required argument 'Metric'")
-	}
-	if args.ServiceId == nil {
-		return nil, errors.New("invalid value for required argument 'ServiceId'")
 	}
 	if args.Source == nil {
 		return nil, errors.New("invalid value for required argument 'Source'")
@@ -145,7 +142,7 @@ type alertState struct {
 	Metric *string `pulumi:"metric"`
 	// The name of the alert.
 	Name *string `pulumi:"name"`
-	// The service which the alert monitors.
+	// The service which the alert monitors. Optional when using `stats` as the `source`.
 	ServiceId *string `pulumi:"serviceId"`
 	// The source where the metric comes from. One of: `domains`, `origins`, `stats`.
 	Source *string `pulumi:"source"`
@@ -164,7 +161,7 @@ type AlertState struct {
 	Metric pulumi.StringPtrInput
 	// The name of the alert.
 	Name pulumi.StringPtrInput
-	// The service which the alert monitors.
+	// The service which the alert monitors. Optional when using `stats` as the `source`.
 	ServiceId pulumi.StringPtrInput
 	// The source where the metric comes from. One of: `domains`, `origins`, `stats`.
 	Source pulumi.StringPtrInput
@@ -187,8 +184,8 @@ type alertArgs struct {
 	Metric string `pulumi:"metric"`
 	// The name of the alert.
 	Name *string `pulumi:"name"`
-	// The service which the alert monitors.
-	ServiceId string `pulumi:"serviceId"`
+	// The service which the alert monitors. Optional when using `stats` as the `source`.
+	ServiceId *string `pulumi:"serviceId"`
 	// The source where the metric comes from. One of: `domains`, `origins`, `stats`.
 	Source string `pulumi:"source"`
 }
@@ -207,8 +204,8 @@ type AlertArgs struct {
 	Metric pulumi.StringInput
 	// The name of the alert.
 	Name pulumi.StringPtrInput
-	// The service which the alert monitors.
-	ServiceId pulumi.StringInput
+	// The service which the alert monitors. Optional when using `stats` as the `source`.
+	ServiceId pulumi.StringPtrInput
 	// The source where the metric comes from. One of: `domains`, `origins`, `stats`.
 	Source pulumi.StringInput
 }
@@ -330,9 +327,9 @@ func (o AlertOutput) Name() pulumi.StringOutput {
 	return o.ApplyT(func(v *Alert) pulumi.StringOutput { return v.Name }).(pulumi.StringOutput)
 }
 
-// The service which the alert monitors.
-func (o AlertOutput) ServiceId() pulumi.StringOutput {
-	return o.ApplyT(func(v *Alert) pulumi.StringOutput { return v.ServiceId }).(pulumi.StringOutput)
+// The service which the alert monitors. Optional when using `stats` as the `source`.
+func (o AlertOutput) ServiceId() pulumi.StringPtrOutput {
+	return o.ApplyT(func(v *Alert) pulumi.StringPtrOutput { return v.ServiceId }).(pulumi.StringPtrOutput)
 }
 
 // The source where the metric comes from. One of: `domains`, `origins`, `stats`.

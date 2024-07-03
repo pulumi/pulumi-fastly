@@ -102,7 +102,7 @@ type TlsActivation struct {
 	// Domain to enable TLS on. Must be assigned to an existing Fastly Service.
 	Domain pulumi.StringOutput `pulumi:"domain"`
 	// An alphanumeric string identifying a mutual authentication.
-	MutualAuthenticationId pulumi.StringPtrOutput `pulumi:"mutualAuthenticationId"`
+	MutualAuthenticationId pulumi.StringOutput `pulumi:"mutualAuthenticationId"`
 }
 
 // NewTlsActivation registers a new resource with the given unique name, arguments, and options.
@@ -301,8 +301,8 @@ func (o TlsActivationOutput) Domain() pulumi.StringOutput {
 }
 
 // An alphanumeric string identifying a mutual authentication.
-func (o TlsActivationOutput) MutualAuthenticationId() pulumi.StringPtrOutput {
-	return o.ApplyT(func(v *TlsActivation) pulumi.StringPtrOutput { return v.MutualAuthenticationId }).(pulumi.StringPtrOutput)
+func (o TlsActivationOutput) MutualAuthenticationId() pulumi.StringOutput {
+	return o.ApplyT(func(v *TlsActivation) pulumi.StringOutput { return v.MutualAuthenticationId }).(pulumi.StringOutput)
 }
 
 type TlsActivationArrayOutput struct{ *pulumi.OutputState }
