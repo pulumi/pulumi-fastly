@@ -79,9 +79,9 @@ import (
 //				return err
 //			}
 //			_, err = fastly.NewServiceWafConfiguration(ctx, "waf", &fastly.ServiceWafConfigurationArgs{
-//				WafId: demo.Waf.ApplyT(func(waf fastly.ServiceVclWaf) (*string, error) {
+//				WafId: pulumi.String(demo.Waf.ApplyT(func(waf fastly.ServiceVclWaf) (*string, error) {
 //					return &waf.WafId, nil
-//				}).(pulumi.StringPtrOutput),
+//				}).(pulumi.StringPtrOutput)),
 //				HttpViolationScoreThreshold: pulumi.Int(100),
 //			})
 //			if err != nil {
@@ -154,9 +154,9 @@ import (
 //				return err
 //			}
 //			_, err = fastly.NewServiceWafConfiguration(ctx, "waf", &fastly.ServiceWafConfigurationArgs{
-//				WafId: demo.Waf.ApplyT(func(waf fastly.ServiceVclWaf) (*string, error) {
+//				WafId: pulumi.String(demo.Waf.ApplyT(func(waf fastly.ServiceVclWaf) (*string, error) {
 //					return &waf.WafId, nil
-//				}).(pulumi.StringPtrOutput),
+//				}).(pulumi.StringPtrOutput)),
 //				HttpViolationScoreThreshold: pulumi.Int(100),
 //				Rules: fastly.ServiceWafConfigurationRuleArray{
 //					&fastly.ServiceWafConfigurationRuleArgs{
@@ -238,9 +238,9 @@ import (
 //				return err
 //			}
 //			_, err = fastly.NewServiceWafConfiguration(ctx, "waf", &fastly.ServiceWafConfigurationArgs{
-//				WafId: demo.Waf.ApplyT(func(waf fastly.ServiceVclWaf) (*string, error) {
+//				WafId: pulumi.String(demo.Waf.ApplyT(func(waf fastly.ServiceVclWaf) (*string, error) {
 //					return &waf.WafId, nil
-//				}).(pulumi.StringPtrOutput),
+//				}).(pulumi.StringPtrOutput)),
 //				HttpViolationScoreThreshold: pulumi.Int(100),
 //				Rules: fastly.ServiceWafConfigurationRuleArray{
 //					&fastly.ServiceWafConfigurationRuleArgs{
