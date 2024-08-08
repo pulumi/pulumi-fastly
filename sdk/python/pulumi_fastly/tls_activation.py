@@ -194,13 +194,13 @@ class TlsActivation(pulumi.CustomResource):
 
         demo = fastly.ServiceVcl("demo",
             name="my-service",
-            domains=[fastly.ServiceVclDomainArgs(
-                name="example.com",
-            )],
-            backends=[fastly.ServiceVclBackendArgs(
-                address="127.0.0.1",
-                name="localhost",
-            )],
+            domains=[{
+                "name": "example.com",
+            }],
+            backends=[{
+                "address": "127.0.0.1",
+                "name": "localhost",
+            }],
             force_destroy=True)
         demo_tls_private_key = fastly.TlsPrivateKey("demo",
             key_pem="...",
@@ -253,13 +253,13 @@ class TlsActivation(pulumi.CustomResource):
 
         demo = fastly.ServiceVcl("demo",
             name="my-service",
-            domains=[fastly.ServiceVclDomainArgs(
-                name="example.com",
-            )],
-            backends=[fastly.ServiceVclBackendArgs(
-                address="127.0.0.1",
-                name="localhost",
-            )],
+            domains=[{
+                "name": "example.com",
+            }],
+            backends=[{
+                "address": "127.0.0.1",
+                "name": "localhost",
+            }],
             force_destroy=True)
         demo_tls_private_key = fastly.TlsPrivateKey("demo",
             key_pem="...",
