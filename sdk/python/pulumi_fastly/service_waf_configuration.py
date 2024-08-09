@@ -1113,8 +1113,8 @@ class ServiceWafConfiguration(pulumi.CustomResource):
                  restricted_extensions: Optional[pulumi.Input[str]] = None,
                  restricted_headers: Optional[pulumi.Input[str]] = None,
                  rfi_score_threshold: Optional[pulumi.Input[int]] = None,
-                 rule_exclusions: Optional[pulumi.Input[Sequence[pulumi.Input[pulumi.InputType['ServiceWafConfigurationRuleExclusionArgs']]]]] = None,
-                 rules: Optional[pulumi.Input[Sequence[pulumi.Input[pulumi.InputType['ServiceWafConfigurationRuleArgs']]]]] = None,
+                 rule_exclusions: Optional[pulumi.Input[Sequence[pulumi.Input[Union['ServiceWafConfigurationRuleExclusionArgs', 'ServiceWafConfigurationRuleExclusionArgsDict']]]]] = None,
+                 rules: Optional[pulumi.Input[Sequence[pulumi.Input[Union['ServiceWafConfigurationRuleArgs', 'ServiceWafConfigurationRuleArgsDict']]]]] = None,
                  session_fixation_score_threshold: Optional[pulumi.Input[int]] = None,
                  sql_injection_score_threshold: Optional[pulumi.Input[int]] = None,
                  total_arg_length: Optional[pulumi.Input[int]] = None,
@@ -1137,39 +1137,39 @@ class ServiceWafConfiguration(pulumi.CustomResource):
 
         demo = fastly.ServiceVcl("demo",
             name="demofastly",
-            domains=[fastly.ServiceVclDomainArgs(
-                name="example.com",
-                comment="demo",
-            )],
-            backends=[fastly.ServiceVclBackendArgs(
-                address="127.0.0.1",
-                name="origin1",
-                port=80,
-            )],
+            domains=[{
+                "name": "example.com",
+                "comment": "demo",
+            }],
+            backends=[{
+                "address": "127.0.0.1",
+                "name": "origin1",
+                "port": 80,
+            }],
             conditions=[
-                fastly.ServiceVclConditionArgs(
-                    name="WAF_Prefetch",
-                    type="PREFETCH",
-                    statement="req.backend.is_origin",
-                ),
-                fastly.ServiceVclConditionArgs(
-                    name="WAF_always_false",
-                    statement="false",
-                    type="REQUEST",
-                ),
+                {
+                    "name": "WAF_Prefetch",
+                    "type": "PREFETCH",
+                    "statement": "req.backend.is_origin",
+                },
+                {
+                    "name": "WAF_always_false",
+                    "statement": "false",
+                    "type": "REQUEST",
+                },
             ],
-            response_objects=[fastly.ServiceVclResponseObjectArgs(
-                name="WAF_Response",
-                status=403,
-                response="Forbidden",
-                content_type="text/html",
-                content="<html><body>Forbidden</body></html>",
-                request_condition="WAF_always_false",
-            )],
-            waf=fastly.ServiceVclWafArgs(
-                prefetch_condition="WAF_Prefetch",
-                response_object="WAF_Response",
-            ),
+            response_objects=[{
+                "name": "WAF_Response",
+                "status": 403,
+                "response": "Forbidden",
+                "content_type": "text/html",
+                "content": "<html><body>Forbidden</body></html>",
+                "request_condition": "WAF_always_false",
+            }],
+            waf={
+                "prefetch_condition": "WAF_Prefetch",
+                "response_object": "WAF_Response",
+            },
             force_destroy=True)
         waf = fastly.ServiceWafConfiguration("waf",
             waf_id=demo.waf.waf_id,
@@ -1184,48 +1184,48 @@ class ServiceWafConfiguration(pulumi.CustomResource):
 
         demo = fastly.ServiceVcl("demo",
             name="demofastly",
-            domains=[fastly.ServiceVclDomainArgs(
-                name="example.com",
-                comment="demo",
-            )],
-            backends=[fastly.ServiceVclBackendArgs(
-                address="127.0.0.1",
-                name="origin1",
-                port=80,
-            )],
+            domains=[{
+                "name": "example.com",
+                "comment": "demo",
+            }],
+            backends=[{
+                "address": "127.0.0.1",
+                "name": "origin1",
+                "port": 80,
+            }],
             conditions=[
-                fastly.ServiceVclConditionArgs(
-                    name="WAF_Prefetch",
-                    type="PREFETCH",
-                    statement="req.backend.is_origin",
-                ),
-                fastly.ServiceVclConditionArgs(
-                    name="WAF_always_false",
-                    statement="false",
-                    type="REQUEST",
-                ),
+                {
+                    "name": "WAF_Prefetch",
+                    "type": "PREFETCH",
+                    "statement": "req.backend.is_origin",
+                },
+                {
+                    "name": "WAF_always_false",
+                    "statement": "false",
+                    "type": "REQUEST",
+                },
             ],
-            response_objects=[fastly.ServiceVclResponseObjectArgs(
-                name="WAF_Response",
-                status=403,
-                response="Forbidden",
-                content_type="text/html",
-                content="<html><body>Forbidden</body></html>",
-                request_condition="WAF_always_false",
-            )],
-            waf=fastly.ServiceVclWafArgs(
-                prefetch_condition="WAF_Prefetch",
-                response_object="WAF_Response",
-            ),
+            response_objects=[{
+                "name": "WAF_Response",
+                "status": 403,
+                "response": "Forbidden",
+                "content_type": "text/html",
+                "content": "<html><body>Forbidden</body></html>",
+                "request_condition": "WAF_always_false",
+            }],
+            waf={
+                "prefetch_condition": "WAF_Prefetch",
+                "response_object": "WAF_Response",
+            },
             force_destroy=True)
         waf = fastly.ServiceWafConfiguration("waf",
             waf_id=demo.waf.waf_id,
             http_violation_score_threshold=100,
-            rules=[fastly.ServiceWafConfigurationRuleArgs(
-                modsec_rule_id=1010090,
-                revision=1,
-                status="log",
-            )])
+            rules=[{
+                "modsec_rule_id": 1010090,
+                "revision": 1,
+                "status": "log",
+            }])
         ```
 
         Usage with rule exclusions:
@@ -1238,54 +1238,54 @@ class ServiceWafConfiguration(pulumi.CustomResource):
 
         demo = fastly.ServiceVcl("demo",
             name="demofastly",
-            domains=[fastly.ServiceVclDomainArgs(
-                name="example.com",
-                comment="demo",
-            )],
-            backends=[fastly.ServiceVclBackendArgs(
-                address="127.0.0.1",
-                name="origin1",
-                port=80,
-            )],
+            domains=[{
+                "name": "example.com",
+                "comment": "demo",
+            }],
+            backends=[{
+                "address": "127.0.0.1",
+                "name": "origin1",
+                "port": 80,
+            }],
             conditions=[
-                fastly.ServiceVclConditionArgs(
-                    name="WAF_Prefetch",
-                    type="PREFETCH",
-                    statement="req.backend.is_origin",
-                ),
-                fastly.ServiceVclConditionArgs(
-                    name="WAF_always_false",
-                    statement="false",
-                    type="REQUEST",
-                ),
+                {
+                    "name": "WAF_Prefetch",
+                    "type": "PREFETCH",
+                    "statement": "req.backend.is_origin",
+                },
+                {
+                    "name": "WAF_always_false",
+                    "statement": "false",
+                    "type": "REQUEST",
+                },
             ],
-            response_objects=[fastly.ServiceVclResponseObjectArgs(
-                name="WAF_Response",
-                status=403,
-                response="Forbidden",
-                content_type="text/html",
-                content="<html><body>Forbidden</body></html>",
-                request_condition="WAF_always_false",
-            )],
-            waf=fastly.ServiceVclWafArgs(
-                prefetch_condition="WAF_Prefetch",
-                response_object="WAF_Response",
-            ),
+            response_objects=[{
+                "name": "WAF_Response",
+                "status": 403,
+                "response": "Forbidden",
+                "content_type": "text/html",
+                "content": "<html><body>Forbidden</body></html>",
+                "request_condition": "WAF_always_false",
+            }],
+            waf={
+                "prefetch_condition": "WAF_Prefetch",
+                "response_object": "WAF_Response",
+            },
             force_destroy=True)
         waf = fastly.ServiceWafConfiguration("waf",
             waf_id=demo.waf.waf_id,
             http_violation_score_threshold=100,
-            rules=[fastly.ServiceWafConfigurationRuleArgs(
-                modsec_rule_id=2029718,
-                revision=1,
-                status="log",
-            )],
-            rule_exclusions=[fastly.ServiceWafConfigurationRuleExclusionArgs(
-                name="index page",
-                exclusion_type="rule",
-                condition="req.url.basename == \\"index.html\\"",
-                modsec_rule_ids=[2029718],
-            )])
+            rules=[{
+                "modsec_rule_id": 2029718,
+                "revision": 1,
+                "status": "log",
+            }],
+            rule_exclusions=[{
+                "name": "index page",
+                "exclusion_type": "rule",
+                "condition": "req.url.basename == \\"index.html\\"",
+                "modsec_rule_ids": [2029718],
+            }])
         ```
 
         Usage with rules from data source:
@@ -1354,39 +1354,39 @@ class ServiceWafConfiguration(pulumi.CustomResource):
 
         demo = fastly.ServiceVcl("demo",
             name="demofastly",
-            domains=[fastly.ServiceVclDomainArgs(
-                name="example.com",
-                comment="demo",
-            )],
-            backends=[fastly.ServiceVclBackendArgs(
-                address="127.0.0.1",
-                name="origin1",
-                port=80,
-            )],
+            domains=[{
+                "name": "example.com",
+                "comment": "demo",
+            }],
+            backends=[{
+                "address": "127.0.0.1",
+                "name": "origin1",
+                "port": 80,
+            }],
             conditions=[
-                fastly.ServiceVclConditionArgs(
-                    name="WAF_Prefetch",
-                    type="PREFETCH",
-                    statement="req.backend.is_origin",
-                ),
-                fastly.ServiceVclConditionArgs(
-                    name="WAF_always_false",
-                    statement="false",
-                    type="REQUEST",
-                ),
+                {
+                    "name": "WAF_Prefetch",
+                    "type": "PREFETCH",
+                    "statement": "req.backend.is_origin",
+                },
+                {
+                    "name": "WAF_always_false",
+                    "statement": "false",
+                    "type": "REQUEST",
+                },
             ],
-            response_objects=[fastly.ServiceVclResponseObjectArgs(
-                name="WAF_Response",
-                status=403,
-                response="Forbidden",
-                content_type="text/html",
-                content="<html><body>Forbidden</body></html>",
-                request_condition="WAF_always_false",
-            )],
-            waf=fastly.ServiceVclWafArgs(
-                prefetch_condition="WAF_Prefetch",
-                response_object="WAF_Response",
-            ),
+            response_objects=[{
+                "name": "WAF_Response",
+                "status": 403,
+                "response": "Forbidden",
+                "content_type": "text/html",
+                "content": "<html><body>Forbidden</body></html>",
+                "request_condition": "WAF_always_false",
+            }],
+            waf={
+                "prefetch_condition": "WAF_Prefetch",
+                "response_object": "WAF_Response",
+            },
             force_destroy=True)
         waf = fastly.ServiceWafConfiguration("waf",
             waf_id=demo.waf.waf_id,
@@ -1401,48 +1401,48 @@ class ServiceWafConfiguration(pulumi.CustomResource):
 
         demo = fastly.ServiceVcl("demo",
             name="demofastly",
-            domains=[fastly.ServiceVclDomainArgs(
-                name="example.com",
-                comment="demo",
-            )],
-            backends=[fastly.ServiceVclBackendArgs(
-                address="127.0.0.1",
-                name="origin1",
-                port=80,
-            )],
+            domains=[{
+                "name": "example.com",
+                "comment": "demo",
+            }],
+            backends=[{
+                "address": "127.0.0.1",
+                "name": "origin1",
+                "port": 80,
+            }],
             conditions=[
-                fastly.ServiceVclConditionArgs(
-                    name="WAF_Prefetch",
-                    type="PREFETCH",
-                    statement="req.backend.is_origin",
-                ),
-                fastly.ServiceVclConditionArgs(
-                    name="WAF_always_false",
-                    statement="false",
-                    type="REQUEST",
-                ),
+                {
+                    "name": "WAF_Prefetch",
+                    "type": "PREFETCH",
+                    "statement": "req.backend.is_origin",
+                },
+                {
+                    "name": "WAF_always_false",
+                    "statement": "false",
+                    "type": "REQUEST",
+                },
             ],
-            response_objects=[fastly.ServiceVclResponseObjectArgs(
-                name="WAF_Response",
-                status=403,
-                response="Forbidden",
-                content_type="text/html",
-                content="<html><body>Forbidden</body></html>",
-                request_condition="WAF_always_false",
-            )],
-            waf=fastly.ServiceVclWafArgs(
-                prefetch_condition="WAF_Prefetch",
-                response_object="WAF_Response",
-            ),
+            response_objects=[{
+                "name": "WAF_Response",
+                "status": 403,
+                "response": "Forbidden",
+                "content_type": "text/html",
+                "content": "<html><body>Forbidden</body></html>",
+                "request_condition": "WAF_always_false",
+            }],
+            waf={
+                "prefetch_condition": "WAF_Prefetch",
+                "response_object": "WAF_Response",
+            },
             force_destroy=True)
         waf = fastly.ServiceWafConfiguration("waf",
             waf_id=demo.waf.waf_id,
             http_violation_score_threshold=100,
-            rules=[fastly.ServiceWafConfigurationRuleArgs(
-                modsec_rule_id=1010090,
-                revision=1,
-                status="log",
-            )])
+            rules=[{
+                "modsec_rule_id": 1010090,
+                "revision": 1,
+                "status": "log",
+            }])
         ```
 
         Usage with rule exclusions:
@@ -1455,54 +1455,54 @@ class ServiceWafConfiguration(pulumi.CustomResource):
 
         demo = fastly.ServiceVcl("demo",
             name="demofastly",
-            domains=[fastly.ServiceVclDomainArgs(
-                name="example.com",
-                comment="demo",
-            )],
-            backends=[fastly.ServiceVclBackendArgs(
-                address="127.0.0.1",
-                name="origin1",
-                port=80,
-            )],
+            domains=[{
+                "name": "example.com",
+                "comment": "demo",
+            }],
+            backends=[{
+                "address": "127.0.0.1",
+                "name": "origin1",
+                "port": 80,
+            }],
             conditions=[
-                fastly.ServiceVclConditionArgs(
-                    name="WAF_Prefetch",
-                    type="PREFETCH",
-                    statement="req.backend.is_origin",
-                ),
-                fastly.ServiceVclConditionArgs(
-                    name="WAF_always_false",
-                    statement="false",
-                    type="REQUEST",
-                ),
+                {
+                    "name": "WAF_Prefetch",
+                    "type": "PREFETCH",
+                    "statement": "req.backend.is_origin",
+                },
+                {
+                    "name": "WAF_always_false",
+                    "statement": "false",
+                    "type": "REQUEST",
+                },
             ],
-            response_objects=[fastly.ServiceVclResponseObjectArgs(
-                name="WAF_Response",
-                status=403,
-                response="Forbidden",
-                content_type="text/html",
-                content="<html><body>Forbidden</body></html>",
-                request_condition="WAF_always_false",
-            )],
-            waf=fastly.ServiceVclWafArgs(
-                prefetch_condition="WAF_Prefetch",
-                response_object="WAF_Response",
-            ),
+            response_objects=[{
+                "name": "WAF_Response",
+                "status": 403,
+                "response": "Forbidden",
+                "content_type": "text/html",
+                "content": "<html><body>Forbidden</body></html>",
+                "request_condition": "WAF_always_false",
+            }],
+            waf={
+                "prefetch_condition": "WAF_Prefetch",
+                "response_object": "WAF_Response",
+            },
             force_destroy=True)
         waf = fastly.ServiceWafConfiguration("waf",
             waf_id=demo.waf.waf_id,
             http_violation_score_threshold=100,
-            rules=[fastly.ServiceWafConfigurationRuleArgs(
-                modsec_rule_id=2029718,
-                revision=1,
-                status="log",
-            )],
-            rule_exclusions=[fastly.ServiceWafConfigurationRuleExclusionArgs(
-                name="index page",
-                exclusion_type="rule",
-                condition="req.url.basename == \\"index.html\\"",
-                modsec_rule_ids=[2029718],
-            )])
+            rules=[{
+                "modsec_rule_id": 2029718,
+                "revision": 1,
+                "status": "log",
+            }],
+            rule_exclusions=[{
+                "name": "index page",
+                "exclusion_type": "rule",
+                "condition": "req.url.basename == \\"index.html\\"",
+                "modsec_rule_ids": [2029718],
+            }])
         ```
 
         Usage with rules from data source:
@@ -1556,8 +1556,8 @@ class ServiceWafConfiguration(pulumi.CustomResource):
                  restricted_extensions: Optional[pulumi.Input[str]] = None,
                  restricted_headers: Optional[pulumi.Input[str]] = None,
                  rfi_score_threshold: Optional[pulumi.Input[int]] = None,
-                 rule_exclusions: Optional[pulumi.Input[Sequence[pulumi.Input[pulumi.InputType['ServiceWafConfigurationRuleExclusionArgs']]]]] = None,
-                 rules: Optional[pulumi.Input[Sequence[pulumi.Input[pulumi.InputType['ServiceWafConfigurationRuleArgs']]]]] = None,
+                 rule_exclusions: Optional[pulumi.Input[Sequence[pulumi.Input[Union['ServiceWafConfigurationRuleExclusionArgs', 'ServiceWafConfigurationRuleExclusionArgsDict']]]]] = None,
+                 rules: Optional[pulumi.Input[Sequence[pulumi.Input[Union['ServiceWafConfigurationRuleArgs', 'ServiceWafConfigurationRuleArgsDict']]]]] = None,
                  session_fixation_score_threshold: Optional[pulumi.Input[int]] = None,
                  sql_injection_score_threshold: Optional[pulumi.Input[int]] = None,
                  total_arg_length: Optional[pulumi.Input[int]] = None,
@@ -1647,8 +1647,8 @@ class ServiceWafConfiguration(pulumi.CustomResource):
             restricted_extensions: Optional[pulumi.Input[str]] = None,
             restricted_headers: Optional[pulumi.Input[str]] = None,
             rfi_score_threshold: Optional[pulumi.Input[int]] = None,
-            rule_exclusions: Optional[pulumi.Input[Sequence[pulumi.Input[pulumi.InputType['ServiceWafConfigurationRuleExclusionArgs']]]]] = None,
-            rules: Optional[pulumi.Input[Sequence[pulumi.Input[pulumi.InputType['ServiceWafConfigurationRuleArgs']]]]] = None,
+            rule_exclusions: Optional[pulumi.Input[Sequence[pulumi.Input[Union['ServiceWafConfigurationRuleExclusionArgs', 'ServiceWafConfigurationRuleExclusionArgsDict']]]]] = None,
+            rules: Optional[pulumi.Input[Sequence[pulumi.Input[Union['ServiceWafConfigurationRuleArgs', 'ServiceWafConfigurationRuleArgsDict']]]]] = None,
             session_fixation_score_threshold: Optional[pulumi.Input[int]] = None,
             sql_injection_score_threshold: Optional[pulumi.Input[int]] = None,
             total_arg_length: Optional[pulumi.Input[int]] = None,

@@ -781,7 +781,7 @@ public class ServiceWafConfiguration extends com.pulumi.resources.CustomResource
      *
      * @param name The _unique_ name of the resulting resource.
      */
-    public ServiceWafConfiguration(String name) {
+    public ServiceWafConfiguration(java.lang.String name) {
         this(name, ServiceWafConfigurationArgs.Empty);
     }
     /**
@@ -789,7 +789,7 @@ public class ServiceWafConfiguration extends com.pulumi.resources.CustomResource
      * @param name The _unique_ name of the resulting resource.
      * @param args The arguments to use to populate this resource's properties.
      */
-    public ServiceWafConfiguration(String name, ServiceWafConfigurationArgs args) {
+    public ServiceWafConfiguration(java.lang.String name, ServiceWafConfigurationArgs args) {
         this(name, args, null);
     }
     /**
@@ -798,15 +798,22 @@ public class ServiceWafConfiguration extends com.pulumi.resources.CustomResource
      * @param args The arguments to use to populate this resource's properties.
      * @param options A bag of options that control this resource's behavior.
      */
-    public ServiceWafConfiguration(String name, ServiceWafConfigurationArgs args, @Nullable com.pulumi.resources.CustomResourceOptions options) {
-        super("fastly:index/serviceWafConfiguration:ServiceWafConfiguration", name, args == null ? ServiceWafConfigurationArgs.Empty : args, makeResourceOptions(options, Codegen.empty()));
+    public ServiceWafConfiguration(java.lang.String name, ServiceWafConfigurationArgs args, @Nullable com.pulumi.resources.CustomResourceOptions options) {
+        super("fastly:index/serviceWafConfiguration:ServiceWafConfiguration", name, makeArgs(args, options), makeResourceOptions(options, Codegen.empty()), false);
     }
 
-    private ServiceWafConfiguration(String name, Output<String> id, @Nullable ServiceWafConfigurationState state, @Nullable com.pulumi.resources.CustomResourceOptions options) {
-        super("fastly:index/serviceWafConfiguration:ServiceWafConfiguration", name, state, makeResourceOptions(options, id));
+    private ServiceWafConfiguration(java.lang.String name, Output<java.lang.String> id, @Nullable ServiceWafConfigurationState state, @Nullable com.pulumi.resources.CustomResourceOptions options) {
+        super("fastly:index/serviceWafConfiguration:ServiceWafConfiguration", name, state, makeResourceOptions(options, id), false);
     }
 
-    private static com.pulumi.resources.CustomResourceOptions makeResourceOptions(@Nullable com.pulumi.resources.CustomResourceOptions options, @Nullable Output<String> id) {
+    private static ServiceWafConfigurationArgs makeArgs(ServiceWafConfigurationArgs args, @Nullable com.pulumi.resources.CustomResourceOptions options) {
+        if (options != null && options.getUrn().isPresent()) {
+            return null;
+        }
+        return args == null ? ServiceWafConfigurationArgs.Empty : args;
+    }
+
+    private static com.pulumi.resources.CustomResourceOptions makeResourceOptions(@Nullable com.pulumi.resources.CustomResourceOptions options, @Nullable Output<java.lang.String> id) {
         var defaultOptions = com.pulumi.resources.CustomResourceOptions.builder()
             .version(Utilities.getVersion())
             .build();
@@ -822,7 +829,7 @@ public class ServiceWafConfiguration extends com.pulumi.resources.CustomResource
      * @param state
      * @param options Optional settings to control the behavior of the CustomResource.
      */
-    public static ServiceWafConfiguration get(String name, Output<String> id, @Nullable ServiceWafConfigurationState state, @Nullable com.pulumi.resources.CustomResourceOptions options) {
+    public static ServiceWafConfiguration get(java.lang.String name, Output<java.lang.String> id, @Nullable ServiceWafConfigurationState state, @Nullable com.pulumi.resources.CustomResourceOptions options) {
         return new ServiceWafConfiguration(name, id, state, options);
     }
 }
