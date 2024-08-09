@@ -96,7 +96,7 @@ public class ServiceDynamicSnippetContent extends com.pulumi.resources.CustomRes
      *
      * @param name The _unique_ name of the resulting resource.
      */
-    public ServiceDynamicSnippetContent(String name) {
+    public ServiceDynamicSnippetContent(java.lang.String name) {
         this(name, ServiceDynamicSnippetContentArgs.Empty);
     }
     /**
@@ -104,7 +104,7 @@ public class ServiceDynamicSnippetContent extends com.pulumi.resources.CustomRes
      * @param name The _unique_ name of the resulting resource.
      * @param args The arguments to use to populate this resource's properties.
      */
-    public ServiceDynamicSnippetContent(String name, ServiceDynamicSnippetContentArgs args) {
+    public ServiceDynamicSnippetContent(java.lang.String name, ServiceDynamicSnippetContentArgs args) {
         this(name, args, null);
     }
     /**
@@ -113,15 +113,22 @@ public class ServiceDynamicSnippetContent extends com.pulumi.resources.CustomRes
      * @param args The arguments to use to populate this resource's properties.
      * @param options A bag of options that control this resource's behavior.
      */
-    public ServiceDynamicSnippetContent(String name, ServiceDynamicSnippetContentArgs args, @Nullable com.pulumi.resources.CustomResourceOptions options) {
-        super("fastly:index/serviceDynamicSnippetContent:ServiceDynamicSnippetContent", name, args == null ? ServiceDynamicSnippetContentArgs.Empty : args, makeResourceOptions(options, Codegen.empty()));
+    public ServiceDynamicSnippetContent(java.lang.String name, ServiceDynamicSnippetContentArgs args, @Nullable com.pulumi.resources.CustomResourceOptions options) {
+        super("fastly:index/serviceDynamicSnippetContent:ServiceDynamicSnippetContent", name, makeArgs(args, options), makeResourceOptions(options, Codegen.empty()), false);
     }
 
-    private ServiceDynamicSnippetContent(String name, Output<String> id, @Nullable ServiceDynamicSnippetContentState state, @Nullable com.pulumi.resources.CustomResourceOptions options) {
-        super("fastly:index/serviceDynamicSnippetContent:ServiceDynamicSnippetContent", name, state, makeResourceOptions(options, id));
+    private ServiceDynamicSnippetContent(java.lang.String name, Output<java.lang.String> id, @Nullable ServiceDynamicSnippetContentState state, @Nullable com.pulumi.resources.CustomResourceOptions options) {
+        super("fastly:index/serviceDynamicSnippetContent:ServiceDynamicSnippetContent", name, state, makeResourceOptions(options, id), false);
     }
 
-    private static com.pulumi.resources.CustomResourceOptions makeResourceOptions(@Nullable com.pulumi.resources.CustomResourceOptions options, @Nullable Output<String> id) {
+    private static ServiceDynamicSnippetContentArgs makeArgs(ServiceDynamicSnippetContentArgs args, @Nullable com.pulumi.resources.CustomResourceOptions options) {
+        if (options != null && options.getUrn().isPresent()) {
+            return null;
+        }
+        return args == null ? ServiceDynamicSnippetContentArgs.Empty : args;
+    }
+
+    private static com.pulumi.resources.CustomResourceOptions makeResourceOptions(@Nullable com.pulumi.resources.CustomResourceOptions options, @Nullable Output<java.lang.String> id) {
         var defaultOptions = com.pulumi.resources.CustomResourceOptions.builder()
             .version(Utilities.getVersion())
             .build();
@@ -137,7 +144,7 @@ public class ServiceDynamicSnippetContent extends com.pulumi.resources.CustomRes
      * @param state
      * @param options Optional settings to control the behavior of the CustomResource.
      */
-    public static ServiceDynamicSnippetContent get(String name, Output<String> id, @Nullable ServiceDynamicSnippetContentState state, @Nullable com.pulumi.resources.CustomResourceOptions options) {
+    public static ServiceDynamicSnippetContent get(java.lang.String name, Output<java.lang.String> id, @Nullable ServiceDynamicSnippetContentState state, @Nullable com.pulumi.resources.CustomResourceOptions options) {
         return new ServiceDynamicSnippetContent(name, id, state, options);
     }
 }

@@ -95,19 +95,19 @@ def get_dictionaries(service_id: Optional[str] = None,
 
     example_service_vcl = fastly.ServiceVcl("example",
         name="Example Service",
-        domains=[fastly.ServiceVclDomainArgs(
-            name="example.com",
-        )],
+        domains=[{
+            "name": "example.com",
+        }],
         dictionaries=[
-            fastly.ServiceVclDictionaryArgs(
-                name="example_1",
-            ),
-            fastly.ServiceVclDictionaryArgs(
-                name="example_2",
-            ),
-            fastly.ServiceVclDictionaryArgs(
-                name="example_3",
-            ),
+            {
+                "name": "example_1",
+            },
+            {
+                "name": "example_2",
+            },
+            {
+                "name": "example_3",
+            },
         ],
         force_destroy=True)
     example = fastly.get_dictionaries_output(service_id=example_service_vcl.id,
@@ -149,19 +149,19 @@ def get_dictionaries_output(service_id: Optional[pulumi.Input[str]] = None,
 
     example_service_vcl = fastly.ServiceVcl("example",
         name="Example Service",
-        domains=[fastly.ServiceVclDomainArgs(
-            name="example.com",
-        )],
+        domains=[{
+            "name": "example.com",
+        }],
         dictionaries=[
-            fastly.ServiceVclDictionaryArgs(
-                name="example_1",
-            ),
-            fastly.ServiceVclDictionaryArgs(
-                name="example_2",
-            ),
-            fastly.ServiceVclDictionaryArgs(
-                name="example_3",
-            ),
+            {
+                "name": "example_1",
+            },
+            {
+                "name": "example_2",
+            },
+            {
+                "name": "example_3",
+            },
         ],
         force_destroy=True)
     example = fastly.get_dictionaries_output(service_id=example_service_vcl.id,
