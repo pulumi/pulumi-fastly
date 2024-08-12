@@ -98,7 +98,7 @@ public class ServiceACLEntries extends com.pulumi.resources.CustomResource {
      *
      * @param name The _unique_ name of the resulting resource.
      */
-    public ServiceACLEntries(String name) {
+    public ServiceACLEntries(java.lang.String name) {
         this(name, ServiceACLEntriesArgs.Empty);
     }
     /**
@@ -106,7 +106,7 @@ public class ServiceACLEntries extends com.pulumi.resources.CustomResource {
      * @param name The _unique_ name of the resulting resource.
      * @param args The arguments to use to populate this resource's properties.
      */
-    public ServiceACLEntries(String name, ServiceACLEntriesArgs args) {
+    public ServiceACLEntries(java.lang.String name, ServiceACLEntriesArgs args) {
         this(name, args, null);
     }
     /**
@@ -115,15 +115,22 @@ public class ServiceACLEntries extends com.pulumi.resources.CustomResource {
      * @param args The arguments to use to populate this resource's properties.
      * @param options A bag of options that control this resource's behavior.
      */
-    public ServiceACLEntries(String name, ServiceACLEntriesArgs args, @Nullable com.pulumi.resources.CustomResourceOptions options) {
-        super("fastly:index/serviceACLEntries:ServiceACLEntries", name, args == null ? ServiceACLEntriesArgs.Empty : args, makeResourceOptions(options, Codegen.empty()));
+    public ServiceACLEntries(java.lang.String name, ServiceACLEntriesArgs args, @Nullable com.pulumi.resources.CustomResourceOptions options) {
+        super("fastly:index/serviceACLEntries:ServiceACLEntries", name, makeArgs(args, options), makeResourceOptions(options, Codegen.empty()), false);
     }
 
-    private ServiceACLEntries(String name, Output<String> id, @Nullable ServiceACLEntriesState state, @Nullable com.pulumi.resources.CustomResourceOptions options) {
-        super("fastly:index/serviceACLEntries:ServiceACLEntries", name, state, makeResourceOptions(options, id));
+    private ServiceACLEntries(java.lang.String name, Output<java.lang.String> id, @Nullable ServiceACLEntriesState state, @Nullable com.pulumi.resources.CustomResourceOptions options) {
+        super("fastly:index/serviceACLEntries:ServiceACLEntries", name, state, makeResourceOptions(options, id), false);
     }
 
-    private static com.pulumi.resources.CustomResourceOptions makeResourceOptions(@Nullable com.pulumi.resources.CustomResourceOptions options, @Nullable Output<String> id) {
+    private static ServiceACLEntriesArgs makeArgs(ServiceACLEntriesArgs args, @Nullable com.pulumi.resources.CustomResourceOptions options) {
+        if (options != null && options.getUrn().isPresent()) {
+            return null;
+        }
+        return args == null ? ServiceACLEntriesArgs.Empty : args;
+    }
+
+    private static com.pulumi.resources.CustomResourceOptions makeResourceOptions(@Nullable com.pulumi.resources.CustomResourceOptions options, @Nullable Output<java.lang.String> id) {
         var defaultOptions = com.pulumi.resources.CustomResourceOptions.builder()
             .version(Utilities.getVersion())
             .build();
@@ -139,7 +146,7 @@ public class ServiceACLEntries extends com.pulumi.resources.CustomResource {
      * @param state
      * @param options Optional settings to control the behavior of the CustomResource.
      */
-    public static ServiceACLEntries get(String name, Output<String> id, @Nullable ServiceACLEntriesState state, @Nullable com.pulumi.resources.CustomResourceOptions options) {
+    public static ServiceACLEntries get(java.lang.String name, Output<java.lang.String> id, @Nullable ServiceACLEntriesState state, @Nullable com.pulumi.resources.CustomResourceOptions options) {
         return new ServiceACLEntries(name, id, state, options);
     }
 }
