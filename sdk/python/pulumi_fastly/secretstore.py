@@ -82,17 +82,17 @@ class Secretstore(pulumi.CustomResource):
         example = fastly.get_package_hash(filename="package.tar.gz")
         example_service_compute = fastly.ServiceCompute("example",
             name="my_compute_service",
-            domains=[fastly.ServiceComputeDomainArgs(
-                name="demo.example.com",
-            )],
-            package=fastly.ServiceComputePackageArgs(
-                filename="package.tar.gz",
-                source_code_hash=example.hash,
-            ),
-            resource_links=[fastly.ServiceComputeResourceLinkArgs(
-                name="my_resource_link",
-                resource_id=example_secretstore.id,
-            )],
+            domains=[{
+                "name": "demo.example.com",
+            }],
+            package={
+                "filename": "package.tar.gz",
+                "source_code_hash": example.hash,
+            },
+            resource_links=[{
+                "name": "my_resource_link",
+                "resource_id": example_secretstore.id,
+            }],
             force_destroy=True)
         ```
 
@@ -130,17 +130,17 @@ class Secretstore(pulumi.CustomResource):
         example = fastly.get_package_hash(filename="package.tar.gz")
         example_service_compute = fastly.ServiceCompute("example",
             name="my_compute_service",
-            domains=[fastly.ServiceComputeDomainArgs(
-                name="demo.example.com",
-            )],
-            package=fastly.ServiceComputePackageArgs(
-                filename="package.tar.gz",
-                source_code_hash=example.hash,
-            ),
-            resource_links=[fastly.ServiceComputeResourceLinkArgs(
-                name="my_resource_link",
-                resource_id=example_secretstore.id,
-            )],
+            domains=[{
+                "name": "demo.example.com",
+            }],
+            package={
+                "filename": "package.tar.gz",
+                "source_code_hash": example.hash,
+            },
+            resource_links=[{
+                "name": "my_resource_link",
+                "resource_id": example_secretstore.id,
+            }],
             force_destroy=True)
         ```
 

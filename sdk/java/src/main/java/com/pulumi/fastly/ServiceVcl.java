@@ -564,7 +564,7 @@ public class ServiceVcl extends com.pulumi.resources.CustomResource {
      *
      * @param name The _unique_ name of the resulting resource.
      */
-    public ServiceVcl(String name) {
+    public ServiceVcl(java.lang.String name) {
         this(name, ServiceVclArgs.Empty);
     }
     /**
@@ -572,7 +572,7 @@ public class ServiceVcl extends com.pulumi.resources.CustomResource {
      * @param name The _unique_ name of the resulting resource.
      * @param args The arguments to use to populate this resource's properties.
      */
-    public ServiceVcl(String name, ServiceVclArgs args) {
+    public ServiceVcl(java.lang.String name, ServiceVclArgs args) {
         this(name, args, null);
     }
     /**
@@ -581,15 +581,22 @@ public class ServiceVcl extends com.pulumi.resources.CustomResource {
      * @param args The arguments to use to populate this resource's properties.
      * @param options A bag of options that control this resource's behavior.
      */
-    public ServiceVcl(String name, ServiceVclArgs args, @Nullable com.pulumi.resources.CustomResourceOptions options) {
-        super("fastly:index/serviceVcl:ServiceVcl", name, args == null ? ServiceVclArgs.Empty : args, makeResourceOptions(options, Codegen.empty()));
+    public ServiceVcl(java.lang.String name, ServiceVclArgs args, @Nullable com.pulumi.resources.CustomResourceOptions options) {
+        super("fastly:index/serviceVcl:ServiceVcl", name, makeArgs(args, options), makeResourceOptions(options, Codegen.empty()), false);
     }
 
-    private ServiceVcl(String name, Output<String> id, @Nullable ServiceVclState state, @Nullable com.pulumi.resources.CustomResourceOptions options) {
-        super("fastly:index/serviceVcl:ServiceVcl", name, state, makeResourceOptions(options, id));
+    private ServiceVcl(java.lang.String name, Output<java.lang.String> id, @Nullable ServiceVclState state, @Nullable com.pulumi.resources.CustomResourceOptions options) {
+        super("fastly:index/serviceVcl:ServiceVcl", name, state, makeResourceOptions(options, id), false);
     }
 
-    private static com.pulumi.resources.CustomResourceOptions makeResourceOptions(@Nullable com.pulumi.resources.CustomResourceOptions options, @Nullable Output<String> id) {
+    private static ServiceVclArgs makeArgs(ServiceVclArgs args, @Nullable com.pulumi.resources.CustomResourceOptions options) {
+        if (options != null && options.getUrn().isPresent()) {
+            return null;
+        }
+        return args == null ? ServiceVclArgs.Empty : args;
+    }
+
+    private static com.pulumi.resources.CustomResourceOptions makeResourceOptions(@Nullable com.pulumi.resources.CustomResourceOptions options, @Nullable Output<java.lang.String> id) {
         var defaultOptions = com.pulumi.resources.CustomResourceOptions.builder()
             .version(Utilities.getVersion())
             .build();
@@ -605,7 +612,7 @@ public class ServiceVcl extends com.pulumi.resources.CustomResource {
      * @param state
      * @param options Optional settings to control the behavior of the CustomResource.
      */
-    public static ServiceVcl get(String name, Output<String> id, @Nullable ServiceVclState state, @Nullable com.pulumi.resources.CustomResourceOptions options) {
+    public static ServiceVcl get(java.lang.String name, Output<java.lang.String> id, @Nullable ServiceVclState state, @Nullable com.pulumi.resources.CustomResourceOptions options) {
         return new ServiceVcl(name, id, state, options);
     }
 }
