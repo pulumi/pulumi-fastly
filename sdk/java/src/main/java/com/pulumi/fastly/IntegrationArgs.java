@@ -6,7 +6,6 @@ package com.pulumi.fastly;
 import com.pulumi.core.Output;
 import com.pulumi.core.annotations.Import;
 import com.pulumi.exceptions.MissingRequiredPropertyException;
-import java.lang.Object;
 import java.lang.String;
 import java.util.Map;
 import java.util.Objects;
@@ -23,13 +22,13 @@ public final class IntegrationArgs extends com.pulumi.resources.ResourceArgs {
      * 
      */
     @Import(name="config", required=true)
-    private Output<Map<String,Object>> config;
+    private Output<Map<String,String>> config;
 
     /**
      * @return Configuration specific to the integration `type` (see documentation examples).
      * 
      */
-    public Output<Map<String,Object>> config() {
+    public Output<Map<String,String>> config() {
         return this.config;
     }
 
@@ -111,7 +110,7 @@ public final class IntegrationArgs extends com.pulumi.resources.ResourceArgs {
          * @return builder
          * 
          */
-        public Builder config(Output<Map<String,Object>> config) {
+        public Builder config(Output<Map<String,String>> config) {
             $.config = config;
             return this;
         }
@@ -122,7 +121,7 @@ public final class IntegrationArgs extends com.pulumi.resources.ResourceArgs {
          * @return builder
          * 
          */
-        public Builder config(Map<String,Object> config) {
+        public Builder config(Map<String,String> config) {
             return config(Output.of(config));
         }
 

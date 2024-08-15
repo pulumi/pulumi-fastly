@@ -11,7 +11,6 @@ import com.pulumi.fastly.ConfigstoreEntriesArgs;
 import com.pulumi.fastly.Utilities;
 import com.pulumi.fastly.inputs.ConfigstoreEntriesState;
 import java.lang.Boolean;
-import java.lang.Object;
 import java.lang.String;
 import java.util.Map;
 import java.util.Optional;
@@ -33,14 +32,14 @@ public class ConfigstoreEntries extends com.pulumi.resources.CustomResource {
      * A map representing an entry in the Config Store, (key/value)
      * 
      */
-    @Export(name="entries", refs={Map.class,String.class,Object.class}, tree="[0,1,2]")
-    private Output<Map<String,Object>> entries;
+    @Export(name="entries", refs={Map.class,String.class}, tree="[0,1,1]")
+    private Output<Map<String,String>> entries;
 
     /**
      * @return A map representing an entry in the Config Store, (key/value)
      * 
      */
-    public Output<Map<String,Object>> entries() {
+    public Output<Map<String,String>> entries() {
         return this.entries;
     }
     @Export(name="manageEntries", refs={Boolean.class}, tree="[0]")

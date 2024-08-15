@@ -10,7 +10,6 @@ import com.pulumi.core.internal.Codegen;
 import com.pulumi.fastly.IntegrationArgs;
 import com.pulumi.fastly.Utilities;
 import com.pulumi.fastly.inputs.IntegrationState;
-import java.lang.Object;
 import java.lang.String;
 import java.util.List;
 import java.util.Map;
@@ -101,14 +100,14 @@ public class Integration extends com.pulumi.resources.CustomResource {
      * Configuration specific to the integration `type` (see documentation examples).
      * 
      */
-    @Export(name="config", refs={Map.class,String.class,Object.class}, tree="[0,1,2]")
-    private Output<Map<String,Object>> config;
+    @Export(name="config", refs={Map.class,String.class}, tree="[0,1,1]")
+    private Output<Map<String,String>> config;
 
     /**
      * @return Configuration specific to the integration `type` (see documentation examples).
      * 
      */
-    public Output<Map<String,Object>> config() {
+    public Output<Map<String,String>> config() {
         return this.config;
     }
     /**

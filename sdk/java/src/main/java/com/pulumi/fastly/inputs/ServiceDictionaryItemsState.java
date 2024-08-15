@@ -6,7 +6,6 @@ package com.pulumi.fastly.inputs;
 import com.pulumi.core.Output;
 import com.pulumi.core.annotations.Import;
 import java.lang.Boolean;
-import java.lang.Object;
 import java.lang.String;
 import java.util.Map;
 import java.util.Objects;
@@ -38,13 +37,13 @@ public final class ServiceDictionaryItemsState extends com.pulumi.resources.Reso
      * 
      */
     @Import(name="items")
-    private @Nullable Output<Map<String,Object>> items;
+    private @Nullable Output<Map<String,String>> items;
 
     /**
      * @return A map representing an entry in the dictionary, (key/value)
      * 
      */
-    public Optional<Output<Map<String,Object>>> items() {
+    public Optional<Output<Map<String,String>>> items() {
         return Optional.ofNullable(this.items);
     }
 
@@ -132,7 +131,7 @@ public final class ServiceDictionaryItemsState extends com.pulumi.resources.Reso
          * @return builder
          * 
          */
-        public Builder items(@Nullable Output<Map<String,Object>> items) {
+        public Builder items(@Nullable Output<Map<String,String>> items) {
             $.items = items;
             return this;
         }
@@ -143,7 +142,7 @@ public final class ServiceDictionaryItemsState extends com.pulumi.resources.Reso
          * @return builder
          * 
          */
-        public Builder items(Map<String,Object> items) {
+        public Builder items(Map<String,String> items) {
             return items(Output.of(items));
         }
 

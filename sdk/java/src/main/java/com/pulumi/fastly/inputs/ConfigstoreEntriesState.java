@@ -6,7 +6,6 @@ package com.pulumi.fastly.inputs;
 import com.pulumi.core.Output;
 import com.pulumi.core.annotations.Import;
 import java.lang.Boolean;
-import java.lang.Object;
 import java.lang.String;
 import java.util.Map;
 import java.util.Objects;
@@ -23,13 +22,13 @@ public final class ConfigstoreEntriesState extends com.pulumi.resources.Resource
      * 
      */
     @Import(name="entries")
-    private @Nullable Output<Map<String,Object>> entries;
+    private @Nullable Output<Map<String,String>> entries;
 
     /**
      * @return A map representing an entry in the Config Store, (key/value)
      * 
      */
-    public Optional<Output<Map<String,Object>>> entries() {
+    public Optional<Output<Map<String,String>>> entries() {
         return Optional.ofNullable(this.entries);
     }
 
@@ -87,7 +86,7 @@ public final class ConfigstoreEntriesState extends com.pulumi.resources.Resource
          * @return builder
          * 
          */
-        public Builder entries(@Nullable Output<Map<String,Object>> entries) {
+        public Builder entries(@Nullable Output<Map<String,String>> entries) {
             $.entries = entries;
             return this;
         }
@@ -98,7 +97,7 @@ public final class ConfigstoreEntriesState extends com.pulumi.resources.Resource
          * @return builder
          * 
          */
-        public Builder entries(Map<String,Object> entries) {
+        public Builder entries(Map<String,String> entries) {
             return entries(Output.of(entries));
         }
 

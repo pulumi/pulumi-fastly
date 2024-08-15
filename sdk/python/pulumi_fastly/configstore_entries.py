@@ -14,12 +14,12 @@ __all__ = ['ConfigstoreEntriesArgs', 'ConfigstoreEntries']
 @pulumi.input_type
 class ConfigstoreEntriesArgs:
     def __init__(__self__, *,
-                 entries: pulumi.Input[Mapping[str, Any]],
+                 entries: pulumi.Input[Mapping[str, pulumi.Input[str]]],
                  store_id: pulumi.Input[str],
                  manage_entries: Optional[pulumi.Input[bool]] = None):
         """
         The set of arguments for constructing a ConfigstoreEntries resource.
-        :param pulumi.Input[Mapping[str, Any]] entries: A map representing an entry in the Config Store, (key/value)
+        :param pulumi.Input[Mapping[str, pulumi.Input[str]]] entries: A map representing an entry in the Config Store, (key/value)
         :param pulumi.Input[str] store_id: An alphanumeric string identifying the Config Store.
         """
         pulumi.set(__self__, "entries", entries)
@@ -29,14 +29,14 @@ class ConfigstoreEntriesArgs:
 
     @property
     @pulumi.getter
-    def entries(self) -> pulumi.Input[Mapping[str, Any]]:
+    def entries(self) -> pulumi.Input[Mapping[str, pulumi.Input[str]]]:
         """
         A map representing an entry in the Config Store, (key/value)
         """
         return pulumi.get(self, "entries")
 
     @entries.setter
-    def entries(self, value: pulumi.Input[Mapping[str, Any]]):
+    def entries(self, value: pulumi.Input[Mapping[str, pulumi.Input[str]]]):
         pulumi.set(self, "entries", value)
 
     @property
@@ -64,12 +64,12 @@ class ConfigstoreEntriesArgs:
 @pulumi.input_type
 class _ConfigstoreEntriesState:
     def __init__(__self__, *,
-                 entries: Optional[pulumi.Input[Mapping[str, Any]]] = None,
+                 entries: Optional[pulumi.Input[Mapping[str, pulumi.Input[str]]]] = None,
                  manage_entries: Optional[pulumi.Input[bool]] = None,
                  store_id: Optional[pulumi.Input[str]] = None):
         """
         Input properties used for looking up and filtering ConfigstoreEntries resources.
-        :param pulumi.Input[Mapping[str, Any]] entries: A map representing an entry in the Config Store, (key/value)
+        :param pulumi.Input[Mapping[str, pulumi.Input[str]]] entries: A map representing an entry in the Config Store, (key/value)
         :param pulumi.Input[str] store_id: An alphanumeric string identifying the Config Store.
         """
         if entries is not None:
@@ -81,14 +81,14 @@ class _ConfigstoreEntriesState:
 
     @property
     @pulumi.getter
-    def entries(self) -> Optional[pulumi.Input[Mapping[str, Any]]]:
+    def entries(self) -> Optional[pulumi.Input[Mapping[str, pulumi.Input[str]]]]:
         """
         A map representing an entry in the Config Store, (key/value)
         """
         return pulumi.get(self, "entries")
 
     @entries.setter
-    def entries(self, value: Optional[pulumi.Input[Mapping[str, Any]]]):
+    def entries(self, value: Optional[pulumi.Input[Mapping[str, pulumi.Input[str]]]]):
         pulumi.set(self, "entries", value)
 
     @property
@@ -118,7 +118,7 @@ class ConfigstoreEntries(pulumi.CustomResource):
     def __init__(__self__,
                  resource_name: str,
                  opts: Optional[pulumi.ResourceOptions] = None,
-                 entries: Optional[pulumi.Input[Mapping[str, Any]]] = None,
+                 entries: Optional[pulumi.Input[Mapping[str, pulumi.Input[str]]]] = None,
                  manage_entries: Optional[pulumi.Input[bool]] = None,
                  store_id: Optional[pulumi.Input[str]] = None,
                  __props__=None):
@@ -133,7 +133,7 @@ class ConfigstoreEntries(pulumi.CustomResource):
 
         :param str resource_name: The name of the resource.
         :param pulumi.ResourceOptions opts: Options for the resource.
-        :param pulumi.Input[Mapping[str, Any]] entries: A map representing an entry in the Config Store, (key/value)
+        :param pulumi.Input[Mapping[str, pulumi.Input[str]]] entries: A map representing an entry in the Config Store, (key/value)
         :param pulumi.Input[str] store_id: An alphanumeric string identifying the Config Store.
         """
         ...
@@ -166,7 +166,7 @@ class ConfigstoreEntries(pulumi.CustomResource):
     def _internal_init(__self__,
                  resource_name: str,
                  opts: Optional[pulumi.ResourceOptions] = None,
-                 entries: Optional[pulumi.Input[Mapping[str, Any]]] = None,
+                 entries: Optional[pulumi.Input[Mapping[str, pulumi.Input[str]]]] = None,
                  manage_entries: Optional[pulumi.Input[bool]] = None,
                  store_id: Optional[pulumi.Input[str]] = None,
                  __props__=None):
@@ -195,7 +195,7 @@ class ConfigstoreEntries(pulumi.CustomResource):
     def get(resource_name: str,
             id: pulumi.Input[str],
             opts: Optional[pulumi.ResourceOptions] = None,
-            entries: Optional[pulumi.Input[Mapping[str, Any]]] = None,
+            entries: Optional[pulumi.Input[Mapping[str, pulumi.Input[str]]]] = None,
             manage_entries: Optional[pulumi.Input[bool]] = None,
             store_id: Optional[pulumi.Input[str]] = None) -> 'ConfigstoreEntries':
         """
@@ -205,7 +205,7 @@ class ConfigstoreEntries(pulumi.CustomResource):
         :param str resource_name: The unique name of the resulting resource.
         :param pulumi.Input[str] id: The unique provider ID of the resource to lookup.
         :param pulumi.ResourceOptions opts: Options for the resource.
-        :param pulumi.Input[Mapping[str, Any]] entries: A map representing an entry in the Config Store, (key/value)
+        :param pulumi.Input[Mapping[str, pulumi.Input[str]]] entries: A map representing an entry in the Config Store, (key/value)
         :param pulumi.Input[str] store_id: An alphanumeric string identifying the Config Store.
         """
         opts = pulumi.ResourceOptions.merge(opts, pulumi.ResourceOptions(id=id))
@@ -219,7 +219,7 @@ class ConfigstoreEntries(pulumi.CustomResource):
 
     @property
     @pulumi.getter
-    def entries(self) -> pulumi.Output[Mapping[str, Any]]:
+    def entries(self) -> pulumi.Output[Mapping[str, str]]:
         """
         A map representing an entry in the Config Store, (key/value)
         """

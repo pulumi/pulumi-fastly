@@ -97,7 +97,7 @@ namespace Pulumi.Fastly
         /// Configuration specific to the integration `type` (see documentation examples).
         /// </summary>
         [Output("config")]
-        public Output<ImmutableDictionary<string, object>> Config { get; private set; } = null!;
+        public Output<ImmutableDictionary<string, string>> Config { get; private set; } = null!;
 
         /// <summary>
         /// User submitted description of the integration.
@@ -168,17 +168,17 @@ namespace Pulumi.Fastly
     public sealed class IntegrationArgs : global::Pulumi.ResourceArgs
     {
         [Input("config", required: true)]
-        private InputMap<object>? _config;
+        private InputMap<string>? _config;
 
         /// <summary>
         /// Configuration specific to the integration `type` (see documentation examples).
         /// </summary>
-        public InputMap<object> Config
+        public InputMap<string> Config
         {
-            get => _config ?? (_config = new InputMap<object>());
+            get => _config ?? (_config = new InputMap<string>());
             set
             {
-                var emptySecret = Output.CreateSecret(ImmutableDictionary.Create<string, object>());
+                var emptySecret = Output.CreateSecret(ImmutableDictionary.Create<string, string>());
                 _config = Output.All(value, emptySecret).Apply(v => v[0]);
             }
         }
@@ -210,17 +210,17 @@ namespace Pulumi.Fastly
     public sealed class IntegrationState : global::Pulumi.ResourceArgs
     {
         [Input("config")]
-        private InputMap<object>? _config;
+        private InputMap<string>? _config;
 
         /// <summary>
         /// Configuration specific to the integration `type` (see documentation examples).
         /// </summary>
-        public InputMap<object> Config
+        public InputMap<string> Config
         {
-            get => _config ?? (_config = new InputMap<object>());
+            get => _config ?? (_config = new InputMap<string>());
             set
             {
-                var emptySecret = Output.CreateSecret(ImmutableDictionary.Create<string, object>());
+                var emptySecret = Output.CreateSecret(ImmutableDictionary.Create<string, string>());
                 _config = Output.All(value, emptySecret).Apply(v => v[0]);
             }
         }

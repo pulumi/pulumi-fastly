@@ -30,8 +30,8 @@ import (
 //				Name:        pulumi.String("my mailing list integration"),
 //				Description: pulumi.String("example mailing list integration"),
 //				Type:        pulumi.String("mailinglist"),
-//				Config: pulumi.Map{
-//					"address": pulumi.Any("incoming-hook@my.domain.com"),
+//				Config: pulumi.StringMap{
+//					"address": pulumi.String("incoming-hook@my.domain.com"),
 //				},
 //			})
 //			if err != nil {
@@ -41,8 +41,8 @@ import (
 //				Name:        pulumi.String("my Microsoft Teams integration"),
 //				Description: pulumi.String("example Microsoft Teams integration"),
 //				Type:        pulumi.String("microsoftteams"),
-//				Config: pulumi.Map{
-//					"webhook": pulumi.Any("https://m365x012345.webhook.office.com"),
+//				Config: pulumi.StringMap{
+//					"webhook": pulumi.String("https://m365x012345.webhook.office.com"),
 //				},
 //			})
 //			if err != nil {
@@ -52,9 +52,9 @@ import (
 //				Name:        pulumi.String("my New Relic integration"),
 //				Description: pulumi.String("example New Relic integration"),
 //				Type:        pulumi.String("newrelic"),
-//				Config: pulumi.Map{
-//					"account": pulumi.Any("XXXXXXX"),
-//					"key":     pulumi.Any("XXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXX"),
+//				Config: pulumi.StringMap{
+//					"account": pulumi.String("XXXXXXX"),
+//					"key":     pulumi.String("XXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXX"),
 //				},
 //			})
 //			if err != nil {
@@ -64,8 +64,8 @@ import (
 //				Name:        pulumi.String("my PagerDuty integration"),
 //				Description: pulumi.String("example PagerDuty integration"),
 //				Type:        pulumi.String("pagerduty"),
-//				Config: pulumi.Map{
-//					"key": pulumi.Any("XXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXX"),
+//				Config: pulumi.StringMap{
+//					"key": pulumi.String("XXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXX"),
 //				},
 //			})
 //			if err != nil {
@@ -75,8 +75,8 @@ import (
 //				Name:        pulumi.String("my Slack integration"),
 //				Description: pulumi.String("example Slack integration"),
 //				Type:        pulumi.String("slack"),
-//				Config: pulumi.Map{
-//					"webhook": pulumi.Any("https://hooks.slack.com/services/T00000000/B00000000/XXXXXXXXXXXXXXXXXXXXXXXX"),
+//				Config: pulumi.StringMap{
+//					"webhook": pulumi.String("https://hooks.slack.com/services/T00000000/B00000000/XXXXXXXXXXXXXXXXXXXXXXXX"),
 //				},
 //			})
 //			if err != nil {
@@ -86,8 +86,8 @@ import (
 //				Name:        pulumi.String("my webhook integration"),
 //				Description: pulumi.String("example webhook integration"),
 //				Type:        pulumi.String("webhook"),
-//				Config: pulumi.Map{
-//					"webhook": pulumi.Any("https://my.domain.com/webhook"),
+//				Config: pulumi.StringMap{
+//					"webhook": pulumi.String("https://my.domain.com/webhook"),
 //				},
 //			})
 //			if err != nil {
@@ -102,7 +102,7 @@ type Integration struct {
 	pulumi.CustomResourceState
 
 	// Configuration specific to the integration `type` (see documentation examples).
-	Config pulumi.MapOutput `pulumi:"config"`
+	Config pulumi.StringMapOutput `pulumi:"config"`
 	// User submitted description of the integration.
 	Description pulumi.StringPtrOutput `pulumi:"description"`
 	// User submitted name of the integration.
@@ -125,7 +125,7 @@ func NewIntegration(ctx *pulumi.Context,
 		return nil, errors.New("invalid value for required argument 'Type'")
 	}
 	if args.Config != nil {
-		args.Config = pulumi.ToSecret(args.Config).(pulumi.MapInput)
+		args.Config = pulumi.ToSecret(args.Config).(pulumi.StringMapInput)
 	}
 	secrets := pulumi.AdditionalSecretOutputs([]string{
 		"config",
@@ -155,7 +155,7 @@ func GetIntegration(ctx *pulumi.Context,
 // Input properties used for looking up and filtering Integration resources.
 type integrationState struct {
 	// Configuration specific to the integration `type` (see documentation examples).
-	Config map[string]interface{} `pulumi:"config"`
+	Config map[string]string `pulumi:"config"`
 	// User submitted description of the integration.
 	Description *string `pulumi:"description"`
 	// User submitted name of the integration.
@@ -166,7 +166,7 @@ type integrationState struct {
 
 type IntegrationState struct {
 	// Configuration specific to the integration `type` (see documentation examples).
-	Config pulumi.MapInput
+	Config pulumi.StringMapInput
 	// User submitted description of the integration.
 	Description pulumi.StringPtrInput
 	// User submitted name of the integration.
@@ -181,7 +181,7 @@ func (IntegrationState) ElementType() reflect.Type {
 
 type integrationArgs struct {
 	// Configuration specific to the integration `type` (see documentation examples).
-	Config map[string]interface{} `pulumi:"config"`
+	Config map[string]string `pulumi:"config"`
 	// User submitted description of the integration.
 	Description *string `pulumi:"description"`
 	// User submitted name of the integration.
@@ -193,7 +193,7 @@ type integrationArgs struct {
 // The set of arguments for constructing a Integration resource.
 type IntegrationArgs struct {
 	// Configuration specific to the integration `type` (see documentation examples).
-	Config pulumi.MapInput
+	Config pulumi.StringMapInput
 	// User submitted description of the integration.
 	Description pulumi.StringPtrInput
 	// User submitted name of the integration.
@@ -290,8 +290,8 @@ func (o IntegrationOutput) ToIntegrationOutputWithContext(ctx context.Context) I
 }
 
 // Configuration specific to the integration `type` (see documentation examples).
-func (o IntegrationOutput) Config() pulumi.MapOutput {
-	return o.ApplyT(func(v *Integration) pulumi.MapOutput { return v.Config }).(pulumi.MapOutput)
+func (o IntegrationOutput) Config() pulumi.StringMapOutput {
+	return o.ApplyT(func(v *Integration) pulumi.StringMapOutput { return v.Config }).(pulumi.StringMapOutput)
 }
 
 // User submitted description of the integration.
