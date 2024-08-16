@@ -11,7 +11,6 @@ import com.pulumi.fastly.ServiceDictionaryItemsArgs;
 import com.pulumi.fastly.Utilities;
 import com.pulumi.fastly.inputs.ServiceDictionaryItemsState;
 import java.lang.Boolean;
-import java.lang.Object;
 import java.lang.String;
 import java.util.Map;
 import java.util.Optional;
@@ -55,14 +54,14 @@ public class ServiceDictionaryItems extends com.pulumi.resources.CustomResource 
      * A map representing an entry in the dictionary, (key/value)
      * 
      */
-    @Export(name="items", refs={Map.class,String.class,Object.class}, tree="[0,1,2]")
-    private Output</* @Nullable */ Map<String,Object>> items;
+    @Export(name="items", refs={Map.class,String.class}, tree="[0,1,1]")
+    private Output</* @Nullable */ Map<String,String>> items;
 
     /**
      * @return A map representing an entry in the dictionary, (key/value)
      * 
      */
-    public Output<Optional<Map<String,Object>>> items() {
+    public Output<Optional<Map<String,String>>> items() {
         return Codegen.optional(this.items);
     }
     /**

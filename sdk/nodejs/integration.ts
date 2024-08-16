@@ -93,7 +93,7 @@ export class Integration extends pulumi.CustomResource {
     /**
      * Configuration specific to the integration `type` (see documentation examples).
      */
-    public readonly config!: pulumi.Output<{[key: string]: any}>;
+    public readonly config!: pulumi.Output<{[key: string]: string}>;
     /**
      * User submitted description of the integration.
      */
@@ -151,7 +151,7 @@ export interface IntegrationState {
     /**
      * Configuration specific to the integration `type` (see documentation examples).
      */
-    config?: pulumi.Input<{[key: string]: any}>;
+    config?: pulumi.Input<{[key: string]: pulumi.Input<string>}>;
     /**
      * User submitted description of the integration.
      */
@@ -173,7 +173,7 @@ export interface IntegrationArgs {
     /**
      * Configuration specific to the integration `type` (see documentation examples).
      */
-    config: pulumi.Input<{[key: string]: any}>;
+    config: pulumi.Input<{[key: string]: pulumi.Input<string>}>;
     /**
      * User submitted description of the integration.
      */

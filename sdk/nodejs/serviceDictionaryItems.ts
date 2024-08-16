@@ -56,7 +56,7 @@ export class ServiceDictionaryItems extends pulumi.CustomResource {
     /**
      * A map representing an entry in the dictionary, (key/value)
      */
-    public readonly items!: pulumi.Output<{[key: string]: any} | undefined>;
+    public readonly items!: pulumi.Output<{[key: string]: string} | undefined>;
     /**
      * Whether to reapply changes if the state of the items drifts, i.e. if items are managed externally
      */
@@ -112,7 +112,7 @@ export interface ServiceDictionaryItemsState {
     /**
      * A map representing an entry in the dictionary, (key/value)
      */
-    items?: pulumi.Input<{[key: string]: any}>;
+    items?: pulumi.Input<{[key: string]: pulumi.Input<string>}>;
     /**
      * Whether to reapply changes if the state of the items drifts, i.e. if items are managed externally
      */
@@ -134,7 +134,7 @@ export interface ServiceDictionaryItemsArgs {
     /**
      * A map representing an entry in the dictionary, (key/value)
      */
-    items?: pulumi.Input<{[key: string]: any}>;
+    items?: pulumi.Input<{[key: string]: pulumi.Input<string>}>;
     /**
      * Whether to reapply changes if the state of the items drifts, i.e. if items are managed externally
      */

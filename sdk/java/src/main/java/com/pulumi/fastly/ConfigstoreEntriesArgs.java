@@ -7,7 +7,6 @@ import com.pulumi.core.Output;
 import com.pulumi.core.annotations.Import;
 import com.pulumi.exceptions.MissingRequiredPropertyException;
 import java.lang.Boolean;
-import java.lang.Object;
 import java.lang.String;
 import java.util.Map;
 import java.util.Objects;
@@ -24,13 +23,13 @@ public final class ConfigstoreEntriesArgs extends com.pulumi.resources.ResourceA
      * 
      */
     @Import(name="entries", required=true)
-    private Output<Map<String,Object>> entries;
+    private Output<Map<String,String>> entries;
 
     /**
      * @return A map representing an entry in the Config Store, (key/value)
      * 
      */
-    public Output<Map<String,Object>> entries() {
+    public Output<Map<String,String>> entries() {
         return this.entries;
     }
 
@@ -88,7 +87,7 @@ public final class ConfigstoreEntriesArgs extends com.pulumi.resources.ResourceA
          * @return builder
          * 
          */
-        public Builder entries(Output<Map<String,Object>> entries) {
+        public Builder entries(Output<Map<String,String>> entries) {
             $.entries = entries;
             return this;
         }
@@ -99,7 +98,7 @@ public final class ConfigstoreEntriesArgs extends com.pulumi.resources.ResourceA
          * @return builder
          * 
          */
-        public Builder entries(Map<String,Object> entries) {
+        public Builder entries(Map<String,String> entries) {
             return entries(Output.of(entries));
         }
 

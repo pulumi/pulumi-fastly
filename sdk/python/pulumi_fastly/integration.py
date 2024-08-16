@@ -14,13 +14,13 @@ __all__ = ['IntegrationArgs', 'Integration']
 @pulumi.input_type
 class IntegrationArgs:
     def __init__(__self__, *,
-                 config: pulumi.Input[Mapping[str, Any]],
+                 config: pulumi.Input[Mapping[str, pulumi.Input[str]]],
                  type: pulumi.Input[str],
                  description: Optional[pulumi.Input[str]] = None,
                  name: Optional[pulumi.Input[str]] = None):
         """
         The set of arguments for constructing a Integration resource.
-        :param pulumi.Input[Mapping[str, Any]] config: Configuration specific to the integration `type` (see documentation examples).
+        :param pulumi.Input[Mapping[str, pulumi.Input[str]]] config: Configuration specific to the integration `type` (see documentation examples).
         :param pulumi.Input[str] type: Type of the integration. One of: `mailinglist`, `microsoftteams`, `newrelic`, `pagerduty`, `slack`, `webhook`.
         :param pulumi.Input[str] description: User submitted description of the integration.
         :param pulumi.Input[str] name: User submitted name of the integration.
@@ -34,14 +34,14 @@ class IntegrationArgs:
 
     @property
     @pulumi.getter
-    def config(self) -> pulumi.Input[Mapping[str, Any]]:
+    def config(self) -> pulumi.Input[Mapping[str, pulumi.Input[str]]]:
         """
         Configuration specific to the integration `type` (see documentation examples).
         """
         return pulumi.get(self, "config")
 
     @config.setter
-    def config(self, value: pulumi.Input[Mapping[str, Any]]):
+    def config(self, value: pulumi.Input[Mapping[str, pulumi.Input[str]]]):
         pulumi.set(self, "config", value)
 
     @property
@@ -84,13 +84,13 @@ class IntegrationArgs:
 @pulumi.input_type
 class _IntegrationState:
     def __init__(__self__, *,
-                 config: Optional[pulumi.Input[Mapping[str, Any]]] = None,
+                 config: Optional[pulumi.Input[Mapping[str, pulumi.Input[str]]]] = None,
                  description: Optional[pulumi.Input[str]] = None,
                  name: Optional[pulumi.Input[str]] = None,
                  type: Optional[pulumi.Input[str]] = None):
         """
         Input properties used for looking up and filtering Integration resources.
-        :param pulumi.Input[Mapping[str, Any]] config: Configuration specific to the integration `type` (see documentation examples).
+        :param pulumi.Input[Mapping[str, pulumi.Input[str]]] config: Configuration specific to the integration `type` (see documentation examples).
         :param pulumi.Input[str] description: User submitted description of the integration.
         :param pulumi.Input[str] name: User submitted name of the integration.
         :param pulumi.Input[str] type: Type of the integration. One of: `mailinglist`, `microsoftteams`, `newrelic`, `pagerduty`, `slack`, `webhook`.
@@ -106,14 +106,14 @@ class _IntegrationState:
 
     @property
     @pulumi.getter
-    def config(self) -> Optional[pulumi.Input[Mapping[str, Any]]]:
+    def config(self) -> Optional[pulumi.Input[Mapping[str, pulumi.Input[str]]]]:
         """
         Configuration specific to the integration `type` (see documentation examples).
         """
         return pulumi.get(self, "config")
 
     @config.setter
-    def config(self, value: Optional[pulumi.Input[Mapping[str, Any]]]):
+    def config(self, value: Optional[pulumi.Input[Mapping[str, pulumi.Input[str]]]]):
         pulumi.set(self, "config", value)
 
     @property
@@ -158,7 +158,7 @@ class Integration(pulumi.CustomResource):
     def __init__(__self__,
                  resource_name: str,
                  opts: Optional[pulumi.ResourceOptions] = None,
-                 config: Optional[pulumi.Input[Mapping[str, Any]]] = None,
+                 config: Optional[pulumi.Input[Mapping[str, pulumi.Input[str]]]] = None,
                  description: Optional[pulumi.Input[str]] = None,
                  name: Optional[pulumi.Input[str]] = None,
                  type: Optional[pulumi.Input[str]] = None,
@@ -217,7 +217,7 @@ class Integration(pulumi.CustomResource):
 
         :param str resource_name: The name of the resource.
         :param pulumi.ResourceOptions opts: Options for the resource.
-        :param pulumi.Input[Mapping[str, Any]] config: Configuration specific to the integration `type` (see documentation examples).
+        :param pulumi.Input[Mapping[str, pulumi.Input[str]]] config: Configuration specific to the integration `type` (see documentation examples).
         :param pulumi.Input[str] description: User submitted description of the integration.
         :param pulumi.Input[str] name: User submitted name of the integration.
         :param pulumi.Input[str] type: Type of the integration. One of: `mailinglist`, `microsoftteams`, `newrelic`, `pagerduty`, `slack`, `webhook`.
@@ -295,7 +295,7 @@ class Integration(pulumi.CustomResource):
     def _internal_init(__self__,
                  resource_name: str,
                  opts: Optional[pulumi.ResourceOptions] = None,
-                 config: Optional[pulumi.Input[Mapping[str, Any]]] = None,
+                 config: Optional[pulumi.Input[Mapping[str, pulumi.Input[str]]]] = None,
                  description: Optional[pulumi.Input[str]] = None,
                  name: Optional[pulumi.Input[str]] = None,
                  type: Optional[pulumi.Input[str]] = None,
@@ -328,7 +328,7 @@ class Integration(pulumi.CustomResource):
     def get(resource_name: str,
             id: pulumi.Input[str],
             opts: Optional[pulumi.ResourceOptions] = None,
-            config: Optional[pulumi.Input[Mapping[str, Any]]] = None,
+            config: Optional[pulumi.Input[Mapping[str, pulumi.Input[str]]]] = None,
             description: Optional[pulumi.Input[str]] = None,
             name: Optional[pulumi.Input[str]] = None,
             type: Optional[pulumi.Input[str]] = None) -> 'Integration':
@@ -339,7 +339,7 @@ class Integration(pulumi.CustomResource):
         :param str resource_name: The unique name of the resulting resource.
         :param pulumi.Input[str] id: The unique provider ID of the resource to lookup.
         :param pulumi.ResourceOptions opts: Options for the resource.
-        :param pulumi.Input[Mapping[str, Any]] config: Configuration specific to the integration `type` (see documentation examples).
+        :param pulumi.Input[Mapping[str, pulumi.Input[str]]] config: Configuration specific to the integration `type` (see documentation examples).
         :param pulumi.Input[str] description: User submitted description of the integration.
         :param pulumi.Input[str] name: User submitted name of the integration.
         :param pulumi.Input[str] type: Type of the integration. One of: `mailinglist`, `microsoftteams`, `newrelic`, `pagerduty`, `slack`, `webhook`.
@@ -356,7 +356,7 @@ class Integration(pulumi.CustomResource):
 
     @property
     @pulumi.getter
-    def config(self) -> pulumi.Output[Mapping[str, Any]]:
+    def config(self) -> pulumi.Output[Mapping[str, str]]:
         """
         Configuration specific to the integration `type` (see documentation examples).
         """

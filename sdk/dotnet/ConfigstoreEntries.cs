@@ -25,7 +25,7 @@ namespace Pulumi.Fastly
         /// A map representing an entry in the Config Store, (key/value)
         /// </summary>
         [Output("entries")]
-        public Output<ImmutableDictionary<string, object>> Entries { get; private set; } = null!;
+        public Output<ImmutableDictionary<string, string>> Entries { get; private set; } = null!;
 
         [Output("manageEntries")]
         public Output<bool?> ManageEntries { get; private set; } = null!;
@@ -83,14 +83,14 @@ namespace Pulumi.Fastly
     public sealed class ConfigstoreEntriesArgs : global::Pulumi.ResourceArgs
     {
         [Input("entries", required: true)]
-        private InputMap<object>? _entries;
+        private InputMap<string>? _entries;
 
         /// <summary>
         /// A map representing an entry in the Config Store, (key/value)
         /// </summary>
-        public InputMap<object> Entries
+        public InputMap<string> Entries
         {
-            get => _entries ?? (_entries = new InputMap<object>());
+            get => _entries ?? (_entries = new InputMap<string>());
             set => _entries = value;
         }
 
@@ -112,14 +112,14 @@ namespace Pulumi.Fastly
     public sealed class ConfigstoreEntriesState : global::Pulumi.ResourceArgs
     {
         [Input("entries")]
-        private InputMap<object>? _entries;
+        private InputMap<string>? _entries;
 
         /// <summary>
         /// A map representing an entry in the Config Store, (key/value)
         /// </summary>
-        public InputMap<object> Entries
+        public InputMap<string> Entries
         {
-            get => _entries ?? (_entries = new InputMap<object>());
+            get => _entries ?? (_entries = new InputMap<string>());
             set => _entries = value;
         }
 
