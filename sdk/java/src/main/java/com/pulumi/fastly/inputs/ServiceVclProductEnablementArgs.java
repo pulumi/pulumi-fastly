@@ -47,14 +47,14 @@ public final class ServiceVclProductEnablementArgs extends com.pulumi.resources.
     }
 
     /**
-     * Enable Image Optimizer support (requires at least one backend with a `shield` attribute)
+     * Enable Image Optimizer support (all backends must have a `shield` attribute)
      * 
      */
     @Import(name="imageOptimizer")
     private @Nullable Output<Boolean> imageOptimizer;
 
     /**
-     * @return Enable Image Optimizer support (requires at least one backend with a `shield` attribute)
+     * @return Enable Image Optimizer support (all backends must have a `shield` attribute)
      * 
      */
     public Optional<Output<Boolean>> imageOptimizer() {
@@ -178,7 +178,7 @@ public final class ServiceVclProductEnablementArgs extends com.pulumi.resources.
         }
 
         /**
-         * @param imageOptimizer Enable Image Optimizer support (requires at least one backend with a `shield` attribute)
+         * @param imageOptimizer Enable Image Optimizer support (all backends must have a `shield` attribute)
          * 
          * @return builder
          * 
@@ -189,7 +189,7 @@ public final class ServiceVclProductEnablementArgs extends com.pulumi.resources.
         }
 
         /**
-         * @param imageOptimizer Enable Image Optimizer support (requires at least one backend with a `shield` attribute)
+         * @param imageOptimizer Enable Image Optimizer support (all backends must have a `shield` attribute)
          * 
          * @return builder
          * 

@@ -23,7 +23,7 @@ public final class ServiceVclProductEnablement {
      */
     private @Nullable Boolean domainInspector;
     /**
-     * @return Enable Image Optimizer support (requires at least one backend with a `shield` attribute)
+     * @return Enable Image Optimizer support (all backends must have a `shield` attribute)
      * 
      */
     private @Nullable Boolean imageOptimizer;
@@ -59,7 +59,7 @@ public final class ServiceVclProductEnablement {
         return Optional.ofNullable(this.domainInspector);
     }
     /**
-     * @return Enable Image Optimizer support (requires at least one backend with a `shield` attribute)
+     * @return Enable Image Optimizer support (all backends must have a `shield` attribute)
      * 
      */
     public Optional<Boolean> imageOptimizer() {

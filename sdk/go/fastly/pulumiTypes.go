@@ -13337,7 +13337,7 @@ type ServiceVclProductEnablement struct {
 	BrotliCompression *bool `pulumi:"brotliCompression"`
 	// Enable Domain Inspector support
 	DomainInspector *bool `pulumi:"domainInspector"`
-	// Enable Image Optimizer support (requires at least one backend with a `shield` attribute)
+	// Enable Image Optimizer support (all backends must have a `shield` attribute)
 	ImageOptimizer *bool `pulumi:"imageOptimizer"`
 	// Used by the provider to identify modified settings (changing this value will force the entire block to be deleted, then recreated)
 	Name *string `pulumi:"name"`
@@ -13363,7 +13363,7 @@ type ServiceVclProductEnablementArgs struct {
 	BrotliCompression pulumi.BoolPtrInput `pulumi:"brotliCompression"`
 	// Enable Domain Inspector support
 	DomainInspector pulumi.BoolPtrInput `pulumi:"domainInspector"`
-	// Enable Image Optimizer support (requires at least one backend with a `shield` attribute)
+	// Enable Image Optimizer support (all backends must have a `shield` attribute)
 	ImageOptimizer pulumi.BoolPtrInput `pulumi:"imageOptimizer"`
 	// Used by the provider to identify modified settings (changing this value will force the entire block to be deleted, then recreated)
 	Name pulumi.StringPtrInput `pulumi:"name"`
@@ -13460,7 +13460,7 @@ func (o ServiceVclProductEnablementOutput) DomainInspector() pulumi.BoolPtrOutpu
 	return o.ApplyT(func(v ServiceVclProductEnablement) *bool { return v.DomainInspector }).(pulumi.BoolPtrOutput)
 }
 
-// Enable Image Optimizer support (requires at least one backend with a `shield` attribute)
+// Enable Image Optimizer support (all backends must have a `shield` attribute)
 func (o ServiceVclProductEnablementOutput) ImageOptimizer() pulumi.BoolPtrOutput {
 	return o.ApplyT(func(v ServiceVclProductEnablement) *bool { return v.ImageOptimizer }).(pulumi.BoolPtrOutput)
 }
@@ -13524,7 +13524,7 @@ func (o ServiceVclProductEnablementPtrOutput) DomainInspector() pulumi.BoolPtrOu
 	}).(pulumi.BoolPtrOutput)
 }
 
-// Enable Image Optimizer support (requires at least one backend with a `shield` attribute)
+// Enable Image Optimizer support (all backends must have a `shield` attribute)
 func (o ServiceVclProductEnablementPtrOutput) ImageOptimizer() pulumi.BoolPtrOutput {
 	return o.ApplyT(func(v *ServiceVclProductEnablement) *bool {
 		if v == nil {
