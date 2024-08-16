@@ -3707,7 +3707,7 @@
                 },
                 "imageOptimizer": {
                     "type": "boolean",
-                    "description": "Enable Image Optimizer support (requires at least one backend with a `shield` attribute)\n"
+                    "description": "Enable Image Optimizer support (all backends must have a `shield` attribute)\n"
                 },
                 "name": {
                     "type": "string",

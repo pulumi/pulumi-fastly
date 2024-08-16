@@ -1,14 +1,14 @@
 From 0000000000000000000000000000000000000000 Mon Sep 17 00:00:00 2001
 From: Ian Wahbe <ian@wahbe.com>
 Date: Tue, 24 Oct 2023 15:24:51 -0700
-Subject: [PATCH 2/3] Special case cloned_version
+Subject: [PATCH] Special case cloned_version
 
 
 diff --git a/fastly/base_fastly_service.go b/fastly/base_fastly_service.go
-index 3bc0208b..77b988bc 100644
+index dd555d0d..4536aba2 100644
 --- a/fastly/base_fastly_service.go
 +++ b/fastly/base_fastly_service.go
-@@ -323,11 +323,52 @@ func resourceServiceUpdate(ctx context.Context, d *schema.ResourceData, meta any
+@@ -324,11 +324,52 @@ func resourceServiceUpdate(ctx context.Context, d *schema.ResourceData, meta any
  		}
  	}
  
@@ -62,7 +62,7 @@ index 3bc0208b..77b988bc 100644
  			Comment:        gofastly.ToPointer(d.Get("version_comment").(string)),
  		}
  
-@@ -348,7 +389,7 @@ func resourceServiceUpdate(ctx context.Context, d *schema.ResourceData, meta any
+@@ -349,7 +390,7 @@ func resourceServiceUpdate(ctx context.Context, d *schema.ResourceData, meta any
  			// that is unlocked and can be updated.
  			latestVersion = 1
  		} else {
@@ -71,7 +71,7 @@ index 3bc0208b..77b988bc 100644
  			// Clone the latest version, giving us an unlocked version we can modify.
  			log.Printf("[DEBUG] Creating clone of version (%d) for updates", latestVersion)
  			newVersion, err := conn.CloneVersion(&gofastly.CloneVersionInput{
-@@ -436,10 +477,11 @@ func resourceServiceUpdate(ctx context.Context, d *schema.ResourceData, meta any
+@@ -437,10 +478,11 @@ func resourceServiceUpdate(ctx context.Context, d *schema.ResourceData, meta any
  		if err != nil {
  			return diag.FromErr(err)
  		}
