@@ -39,7 +39,7 @@ namespace Pulumi.Fastly
         /// A map representing an entry in the dictionary, (key/value)
         /// </summary>
         [Output("items")]
-        public Output<ImmutableDictionary<string, object>?> Items { get; private set; } = null!;
+        public Output<ImmutableDictionary<string, string>?> Items { get; private set; } = null!;
 
         /// <summary>
         /// Whether to reapply changes if the state of the items drifts, i.e. if items are managed externally
@@ -106,14 +106,14 @@ namespace Pulumi.Fastly
         public Input<string> DictionaryId { get; set; } = null!;
 
         [Input("items")]
-        private InputMap<object>? _items;
+        private InputMap<string>? _items;
 
         /// <summary>
         /// A map representing an entry in the dictionary, (key/value)
         /// </summary>
-        public InputMap<object> Items
+        public InputMap<string> Items
         {
-            get => _items ?? (_items = new InputMap<object>());
+            get => _items ?? (_items = new InputMap<string>());
             set => _items = value;
         }
 
@@ -144,14 +144,14 @@ namespace Pulumi.Fastly
         public Input<string>? DictionaryId { get; set; }
 
         [Input("items")]
-        private InputMap<object>? _items;
+        private InputMap<string>? _items;
 
         /// <summary>
         /// A map representing an entry in the dictionary, (key/value)
         /// </summary>
-        public InputMap<object> Items
+        public InputMap<string> Items
         {
-            get => _items ?? (_items = new InputMap<object>());
+            get => _items ?? (_items = new InputMap<string>());
             set => _items = value;
         }
 

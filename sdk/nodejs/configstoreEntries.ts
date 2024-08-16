@@ -44,7 +44,7 @@ export class ConfigstoreEntries extends pulumi.CustomResource {
     /**
      * A map representing an entry in the Config Store, (key/value)
      */
-    public readonly entries!: pulumi.Output<{[key: string]: any}>;
+    public readonly entries!: pulumi.Output<{[key: string]: string}>;
     public readonly manageEntries!: pulumi.Output<boolean | undefined>;
     /**
      * An alphanumeric string identifying the Config Store.
@@ -91,7 +91,7 @@ export interface ConfigstoreEntriesState {
     /**
      * A map representing an entry in the Config Store, (key/value)
      */
-    entries?: pulumi.Input<{[key: string]: any}>;
+    entries?: pulumi.Input<{[key: string]: pulumi.Input<string>}>;
     manageEntries?: pulumi.Input<boolean>;
     /**
      * An alphanumeric string identifying the Config Store.
@@ -106,7 +106,7 @@ export interface ConfigstoreEntriesArgs {
     /**
      * A map representing an entry in the Config Store, (key/value)
      */
-    entries: pulumi.Input<{[key: string]: any}>;
+    entries: pulumi.Input<{[key: string]: pulumi.Input<string>}>;
     manageEntries?: pulumi.Input<boolean>;
     /**
      * An alphanumeric string identifying the Config Store.

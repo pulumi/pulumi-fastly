@@ -33,7 +33,7 @@ type ServiceDictionaryItems struct {
 	// The ID of the dictionary that the items belong to
 	DictionaryId pulumi.StringOutput `pulumi:"dictionaryId"`
 	// A map representing an entry in the dictionary, (key/value)
-	Items pulumi.MapOutput `pulumi:"items"`
+	Items pulumi.StringMapOutput `pulumi:"items"`
 	// Whether to reapply changes if the state of the items drifts, i.e. if items are managed externally
 	ManageItems pulumi.BoolPtrOutput `pulumi:"manageItems"`
 	// The ID of the service that the dictionary belongs to
@@ -79,7 +79,7 @@ type serviceDictionaryItemsState struct {
 	// The ID of the dictionary that the items belong to
 	DictionaryId *string `pulumi:"dictionaryId"`
 	// A map representing an entry in the dictionary, (key/value)
-	Items map[string]interface{} `pulumi:"items"`
+	Items map[string]string `pulumi:"items"`
 	// Whether to reapply changes if the state of the items drifts, i.e. if items are managed externally
 	ManageItems *bool `pulumi:"manageItems"`
 	// The ID of the service that the dictionary belongs to
@@ -90,7 +90,7 @@ type ServiceDictionaryItemsState struct {
 	// The ID of the dictionary that the items belong to
 	DictionaryId pulumi.StringPtrInput
 	// A map representing an entry in the dictionary, (key/value)
-	Items pulumi.MapInput
+	Items pulumi.StringMapInput
 	// Whether to reapply changes if the state of the items drifts, i.e. if items are managed externally
 	ManageItems pulumi.BoolPtrInput
 	// The ID of the service that the dictionary belongs to
@@ -105,7 +105,7 @@ type serviceDictionaryItemsArgs struct {
 	// The ID of the dictionary that the items belong to
 	DictionaryId string `pulumi:"dictionaryId"`
 	// A map representing an entry in the dictionary, (key/value)
-	Items map[string]interface{} `pulumi:"items"`
+	Items map[string]string `pulumi:"items"`
 	// Whether to reapply changes if the state of the items drifts, i.e. if items are managed externally
 	ManageItems *bool `pulumi:"manageItems"`
 	// The ID of the service that the dictionary belongs to
@@ -117,7 +117,7 @@ type ServiceDictionaryItemsArgs struct {
 	// The ID of the dictionary that the items belong to
 	DictionaryId pulumi.StringInput
 	// A map representing an entry in the dictionary, (key/value)
-	Items pulumi.MapInput
+	Items pulumi.StringMapInput
 	// Whether to reapply changes if the state of the items drifts, i.e. if items are managed externally
 	ManageItems pulumi.BoolPtrInput
 	// The ID of the service that the dictionary belongs to
@@ -217,8 +217,8 @@ func (o ServiceDictionaryItemsOutput) DictionaryId() pulumi.StringOutput {
 }
 
 // A map representing an entry in the dictionary, (key/value)
-func (o ServiceDictionaryItemsOutput) Items() pulumi.MapOutput {
-	return o.ApplyT(func(v *ServiceDictionaryItems) pulumi.MapOutput { return v.Items }).(pulumi.MapOutput)
+func (o ServiceDictionaryItemsOutput) Items() pulumi.StringMapOutput {
+	return o.ApplyT(func(v *ServiceDictionaryItems) pulumi.StringMapOutput { return v.Items }).(pulumi.StringMapOutput)
 }
 
 // Whether to reapply changes if the state of the items drifts, i.e. if items are managed externally

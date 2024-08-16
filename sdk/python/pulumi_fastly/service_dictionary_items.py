@@ -16,13 +16,13 @@ class ServiceDictionaryItemsArgs:
     def __init__(__self__, *,
                  dictionary_id: pulumi.Input[str],
                  service_id: pulumi.Input[str],
-                 items: Optional[pulumi.Input[Mapping[str, Any]]] = None,
+                 items: Optional[pulumi.Input[Mapping[str, pulumi.Input[str]]]] = None,
                  manage_items: Optional[pulumi.Input[bool]] = None):
         """
         The set of arguments for constructing a ServiceDictionaryItems resource.
         :param pulumi.Input[str] dictionary_id: The ID of the dictionary that the items belong to
         :param pulumi.Input[str] service_id: The ID of the service that the dictionary belongs to
-        :param pulumi.Input[Mapping[str, Any]] items: A map representing an entry in the dictionary, (key/value)
+        :param pulumi.Input[Mapping[str, pulumi.Input[str]]] items: A map representing an entry in the dictionary, (key/value)
         :param pulumi.Input[bool] manage_items: Whether to reapply changes if the state of the items drifts, i.e. if items are managed externally
         """
         pulumi.set(__self__, "dictionary_id", dictionary_id)
@@ -58,14 +58,14 @@ class ServiceDictionaryItemsArgs:
 
     @property
     @pulumi.getter
-    def items(self) -> Optional[pulumi.Input[Mapping[str, Any]]]:
+    def items(self) -> Optional[pulumi.Input[Mapping[str, pulumi.Input[str]]]]:
         """
         A map representing an entry in the dictionary, (key/value)
         """
         return pulumi.get(self, "items")
 
     @items.setter
-    def items(self, value: Optional[pulumi.Input[Mapping[str, Any]]]):
+    def items(self, value: Optional[pulumi.Input[Mapping[str, pulumi.Input[str]]]]):
         pulumi.set(self, "items", value)
 
     @property
@@ -85,13 +85,13 @@ class ServiceDictionaryItemsArgs:
 class _ServiceDictionaryItemsState:
     def __init__(__self__, *,
                  dictionary_id: Optional[pulumi.Input[str]] = None,
-                 items: Optional[pulumi.Input[Mapping[str, Any]]] = None,
+                 items: Optional[pulumi.Input[Mapping[str, pulumi.Input[str]]]] = None,
                  manage_items: Optional[pulumi.Input[bool]] = None,
                  service_id: Optional[pulumi.Input[str]] = None):
         """
         Input properties used for looking up and filtering ServiceDictionaryItems resources.
         :param pulumi.Input[str] dictionary_id: The ID of the dictionary that the items belong to
-        :param pulumi.Input[Mapping[str, Any]] items: A map representing an entry in the dictionary, (key/value)
+        :param pulumi.Input[Mapping[str, pulumi.Input[str]]] items: A map representing an entry in the dictionary, (key/value)
         :param pulumi.Input[bool] manage_items: Whether to reapply changes if the state of the items drifts, i.e. if items are managed externally
         :param pulumi.Input[str] service_id: The ID of the service that the dictionary belongs to
         """
@@ -118,14 +118,14 @@ class _ServiceDictionaryItemsState:
 
     @property
     @pulumi.getter
-    def items(self) -> Optional[pulumi.Input[Mapping[str, Any]]]:
+    def items(self) -> Optional[pulumi.Input[Mapping[str, pulumi.Input[str]]]]:
         """
         A map representing an entry in the dictionary, (key/value)
         """
         return pulumi.get(self, "items")
 
     @items.setter
-    def items(self, value: Optional[pulumi.Input[Mapping[str, Any]]]):
+    def items(self, value: Optional[pulumi.Input[Mapping[str, pulumi.Input[str]]]]):
         pulumi.set(self, "items", value)
 
     @property
@@ -159,7 +159,7 @@ class ServiceDictionaryItems(pulumi.CustomResource):
                  resource_name: str,
                  opts: Optional[pulumi.ResourceOptions] = None,
                  dictionary_id: Optional[pulumi.Input[str]] = None,
-                 items: Optional[pulumi.Input[Mapping[str, Any]]] = None,
+                 items: Optional[pulumi.Input[Mapping[str, pulumi.Input[str]]]] = None,
                  manage_items: Optional[pulumi.Input[bool]] = None,
                  service_id: Optional[pulumi.Input[str]] = None,
                  __props__=None):
@@ -183,7 +183,7 @@ class ServiceDictionaryItems(pulumi.CustomResource):
         :param str resource_name: The name of the resource.
         :param pulumi.ResourceOptions opts: Options for the resource.
         :param pulumi.Input[str] dictionary_id: The ID of the dictionary that the items belong to
-        :param pulumi.Input[Mapping[str, Any]] items: A map representing an entry in the dictionary, (key/value)
+        :param pulumi.Input[Mapping[str, pulumi.Input[str]]] items: A map representing an entry in the dictionary, (key/value)
         :param pulumi.Input[bool] manage_items: Whether to reapply changes if the state of the items drifts, i.e. if items are managed externally
         :param pulumi.Input[str] service_id: The ID of the service that the dictionary belongs to
         """
@@ -226,7 +226,7 @@ class ServiceDictionaryItems(pulumi.CustomResource):
                  resource_name: str,
                  opts: Optional[pulumi.ResourceOptions] = None,
                  dictionary_id: Optional[pulumi.Input[str]] = None,
-                 items: Optional[pulumi.Input[Mapping[str, Any]]] = None,
+                 items: Optional[pulumi.Input[Mapping[str, pulumi.Input[str]]]] = None,
                  manage_items: Optional[pulumi.Input[bool]] = None,
                  service_id: Optional[pulumi.Input[str]] = None,
                  __props__=None):
@@ -257,7 +257,7 @@ class ServiceDictionaryItems(pulumi.CustomResource):
             id: pulumi.Input[str],
             opts: Optional[pulumi.ResourceOptions] = None,
             dictionary_id: Optional[pulumi.Input[str]] = None,
-            items: Optional[pulumi.Input[Mapping[str, Any]]] = None,
+            items: Optional[pulumi.Input[Mapping[str, pulumi.Input[str]]]] = None,
             manage_items: Optional[pulumi.Input[bool]] = None,
             service_id: Optional[pulumi.Input[str]] = None) -> 'ServiceDictionaryItems':
         """
@@ -268,7 +268,7 @@ class ServiceDictionaryItems(pulumi.CustomResource):
         :param pulumi.Input[str] id: The unique provider ID of the resource to lookup.
         :param pulumi.ResourceOptions opts: Options for the resource.
         :param pulumi.Input[str] dictionary_id: The ID of the dictionary that the items belong to
-        :param pulumi.Input[Mapping[str, Any]] items: A map representing an entry in the dictionary, (key/value)
+        :param pulumi.Input[Mapping[str, pulumi.Input[str]]] items: A map representing an entry in the dictionary, (key/value)
         :param pulumi.Input[bool] manage_items: Whether to reapply changes if the state of the items drifts, i.e. if items are managed externally
         :param pulumi.Input[str] service_id: The ID of the service that the dictionary belongs to
         """
@@ -292,7 +292,7 @@ class ServiceDictionaryItems(pulumi.CustomResource):
 
     @property
     @pulumi.getter
-    def items(self) -> pulumi.Output[Optional[Mapping[str, Any]]]:
+    def items(self) -> pulumi.Output[Optional[Mapping[str, str]]]:
         """
         A map representing an entry in the dictionary, (key/value)
         """
