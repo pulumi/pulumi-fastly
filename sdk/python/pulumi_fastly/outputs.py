@@ -10379,7 +10379,7 @@ class ServiceVclProductEnablement(dict):
         """
         :param bool brotli_compression: Enable Brotli Compression support
         :param bool domain_inspector: Enable Domain Inspector support
-        :param bool image_optimizer: Enable Image Optimizer support (requires at least one backend with a `shield` attribute)
+        :param bool image_optimizer: Enable Image Optimizer support (all backends must have a `shield` attribute)
         :param str name: Used by the provider to identify modified settings (changing this value will force the entire block to be deleted, then recreated)
         :param bool origin_inspector: Enable Origin Inspector support
         :param bool websockets: Enable WebSockets support
@@ -10417,7 +10417,7 @@ class ServiceVclProductEnablement(dict):
     @pulumi.getter(name="imageOptimizer")
     def image_optimizer(self) -> Optional[bool]:
         """
-        Enable Image Optimizer support (requires at least one backend with a `shield` attribute)
+        Enable Image Optimizer support (all backends must have a `shield` attribute)
         """
         return pulumi.get(self, "image_optimizer")
 

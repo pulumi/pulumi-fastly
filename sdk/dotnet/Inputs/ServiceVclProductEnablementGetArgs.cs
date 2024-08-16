@@ -25,7 +25,7 @@ namespace Pulumi.Fastly.Inputs
         public Input<bool>? DomainInspector { get; set; }
 
         /// <summary>
-        /// Enable Image Optimizer support (requires at least one backend with a `shield` attribute)
+        /// Enable Image Optimizer support (all backends must have a `shield` attribute)
         /// </summary>
         [Input("imageOptimizer")]
         public Input<bool>? ImageOptimizer { get; set; }
