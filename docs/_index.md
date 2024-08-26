@@ -1,6 +1,6 @@
 ---
 title: Fastly Provider
-meta_desc: Provides an overview on how to configure the Pulumi Fastly Provider provider.
+meta_desc: Provides an overview on how to configure the Pulumi Fastly provider.
 layout: package
 ---
 ## Installation
