@@ -1371,8 +1371,8 @@ github.com/envoyproxy/protoc-gen-validate v1.0.1/go.mod h1:0vj8bNkYbSTNS2PIyH87K
 github.com/envoyproxy/protoc-gen-validate v1.0.2/go.mod h1:GpiZQP3dDbg4JouG/NNS7QWXpgx6x8QiMKdmN72jogE=
 github.com/ettle/strcase v0.1.1 h1:htFueZyVeE1XNnMEfbqp5r67qAN/4r6ya1ysq8Q+Zcw=
 github.com/ettle/strcase v0.1.1/go.mod h1:hzDLsPC7/lwKyBOywSHEP89nt2pDgdy+No1NBA9o9VY=
-github.com/fastly/go-fastly/v9 v9.8.0 h1:15dtV3fmLlS/8wbdU3tBsW3Tb0Tj/gQrdS4v5mhtDDE=
-github.com/fastly/go-fastly/v9 v9.8.0/go.mod h1:5w2jgJBZqQEebOwM/rRg7wutAcpDTziiMYWb/6qdM7U=
+github.com/fastly/go-fastly/v9 v9.9.0 h1:VDCyORoWi608l/LBp+tY+qic3M5/5ZFw+rtAfV6VR9E=
+github.com/fastly/go-fastly/v9 v9.9.0/go.mod h1:5w2jgJBZqQEebOwM/rRg7wutAcpDTziiMYWb/6qdM7U=
 github.com/fatih/color v1.7.0/go.mod h1:Zm6kSWBoL9eyXnKyktHP6abPY2pDugNf5KwzbycvMj4=
 github.com/fatih/color v1.9.0/go.mod h1:eQcE1qtQxscV5RaZvpXrrb8Drkc3/DdQ+uUYCNjL+zU=
 github.com/fatih/color v1.13.0/go.mod h1:kLAiJbzzSOZDVNGyDpeOxJ47H46qBXwg5ILebYFFOfk=

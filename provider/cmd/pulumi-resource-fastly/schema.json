@@ -3697,6 +3697,10 @@
         },
         "fastly:index/ServiceVclProductEnablement:ServiceVclProductEnablement": {
             "properties": {
+                "botManagement": {
+                    "type": "boolean",
+                    "description": "Enable Bot Management support\n"
+                },
                 "brotliCompression": {
                     "type": "boolean",
                     "description": "Enable Brotli Compression support\n"
