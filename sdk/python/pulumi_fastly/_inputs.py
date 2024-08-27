@@ -11480,6 +11480,7 @@ class ServiceVclLoggingSyslogArgs:
 @pulumi.input_type
 class ServiceVclProductEnablementArgs:
     def __init__(__self__, *,
+                 bot_management: Optional[pulumi.Input[bool]] = None,
                  brotli_compression: Optional[pulumi.Input[bool]] = None,
                  domain_inspector: Optional[pulumi.Input[bool]] = None,
                  image_optimizer: Optional[pulumi.Input[bool]] = None,
@@ -11487,6 +11488,7 @@ class ServiceVclProductEnablementArgs:
                  origin_inspector: Optional[pulumi.Input[bool]] = None,
                  websockets: Optional[pulumi.Input[bool]] = None):
         """
+        :param pulumi.Input[bool] bot_management: Enable Bot Management support
         :param pulumi.Input[bool] brotli_compression: Enable Brotli Compression support
         :param pulumi.Input[bool] domain_inspector: Enable Domain Inspector support
         :param pulumi.Input[bool] image_optimizer: Enable Image Optimizer support (all backends must have a `shield` attribute)
@@ -11494,6 +11496,8 @@ class ServiceVclProductEnablementArgs:
         :param pulumi.Input[bool] origin_inspector: Enable Origin Inspector support
         :param pulumi.Input[bool] websockets: Enable WebSockets support
         """
+        if bot_management is not None:
+            pulumi.set(__self__, "bot_management", bot_management)
         if brotli_compression is not None:
             pulumi.set(__self__, "brotli_compression", brotli_compression)
         if domain_inspector is not None:
@@ -11506,6 +11510,18 @@ class ServiceVclProductEnablementArgs:
             pulumi.set(__self__, "origin_inspector", origin_inspector)
         if websockets is not None:
             pulumi.set(__self__, "websockets", websockets)
+
+    @property
+    @pulumi.getter(name="botManagement")
+    def bot_management(self) -> Optional[pulumi.Input[bool]]:
+        """
+        Enable Bot Management support
+        """
+        return pulumi.get(self, "bot_management")
+
+    @bot_management.setter
+    def bot_management(self, value: Optional[pulumi.Input[bool]]):
+        pulumi.set(self, "bot_management", value)
 
     @property
     @pulumi.getter(name="brotliCompression")

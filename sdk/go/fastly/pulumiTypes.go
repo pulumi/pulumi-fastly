@@ -13333,6 +13333,8 @@ func (o ServiceVclLoggingSyslogArrayOutput) Index(i pulumi.IntInput) ServiceVclL
 }
 
 type ServiceVclProductEnablement struct {
+	// Enable Bot Management support
+	BotManagement *bool `pulumi:"botManagement"`
 	// Enable Brotli Compression support
 	BrotliCompression *bool `pulumi:"brotliCompression"`
 	// Enable Domain Inspector support
@@ -13359,6 +13361,8 @@ type ServiceVclProductEnablementInput interface {
 }
 
 type ServiceVclProductEnablementArgs struct {
+	// Enable Bot Management support
+	BotManagement pulumi.BoolPtrInput `pulumi:"botManagement"`
 	// Enable Brotli Compression support
 	BrotliCompression pulumi.BoolPtrInput `pulumi:"brotliCompression"`
 	// Enable Domain Inspector support
@@ -13450,6 +13454,11 @@ func (o ServiceVclProductEnablementOutput) ToServiceVclProductEnablementPtrOutpu
 	}).(ServiceVclProductEnablementPtrOutput)
 }
 
+// Enable Bot Management support
+func (o ServiceVclProductEnablementOutput) BotManagement() pulumi.BoolPtrOutput {
+	return o.ApplyT(func(v ServiceVclProductEnablement) *bool { return v.BotManagement }).(pulumi.BoolPtrOutput)
+}
+
 // Enable Brotli Compression support
 func (o ServiceVclProductEnablementOutput) BrotliCompression() pulumi.BoolPtrOutput {
 	return o.ApplyT(func(v ServiceVclProductEnablement) *bool { return v.BrotliCompression }).(pulumi.BoolPtrOutput)
@@ -13502,6 +13511,16 @@ func (o ServiceVclProductEnablementPtrOutput) Elem() ServiceVclProductEnablement
 		var ret ServiceVclProductEnablement
 		return ret
 	}).(ServiceVclProductEnablementOutput)
+}
+
+// Enable Bot Management support
+func (o ServiceVclProductEnablementPtrOutput) BotManagement() pulumi.BoolPtrOutput {
+	return o.ApplyT(func(v *ServiceVclProductEnablement) *bool {
+		if v == nil {
+			return nil
+		}
+		return v.BotManagement
+	}).(pulumi.BoolPtrOutput)
 }
 
 // Enable Brotli Compression support
