@@ -14,6 +14,10 @@ namespace Pulumi.Fastly.Outputs
     public sealed class ServiceVclProductEnablement
     {
         /// <summary>
+        /// Enable Bot Management support
+        /// </summary>
+        public readonly bool? BotManagement;
+        /// <summary>
         /// Enable Brotli Compression support
         /// </summary>
         public readonly bool? BrotliCompression;
@@ -40,6 +44,8 @@ namespace Pulumi.Fastly.Outputs
 
         [OutputConstructor]
         private ServiceVclProductEnablement(
+            bool? botManagement,
+
             bool? brotliCompression,
 
             bool? domainInspector,
@@ -52,6 +58,7 @@ namespace Pulumi.Fastly.Outputs
 
             bool? websockets)
         {
+            BotManagement = botManagement;
             BrotliCompression = brotliCompression;
             DomainInspector = domainInspector;
             ImageOptimizer = imageOptimizer;

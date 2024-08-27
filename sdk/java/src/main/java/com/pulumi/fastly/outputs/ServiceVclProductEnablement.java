@@ -13,6 +13,11 @@ import javax.annotation.Nullable;
 @CustomType
 public final class ServiceVclProductEnablement {
     /**
+     * @return Enable Bot Management support
+     * 
+     */
+    private @Nullable Boolean botManagement;
+    /**
      * @return Enable Brotli Compression support
      * 
      */
@@ -44,6 +49,13 @@ public final class ServiceVclProductEnablement {
     private @Nullable Boolean websockets;
 
     private ServiceVclProductEnablement() {}
+    /**
+     * @return Enable Bot Management support
+     * 
+     */
+    public Optional<Boolean> botManagement() {
+        return Optional.ofNullable(this.botManagement);
+    }
     /**
      * @return Enable Brotli Compression support
      * 
@@ -96,6 +108,7 @@ public final class ServiceVclProductEnablement {
     }
     @CustomType.Builder
     public static final class Builder {
+        private @Nullable Boolean botManagement;
         private @Nullable Boolean brotliCompression;
         private @Nullable Boolean domainInspector;
         private @Nullable Boolean imageOptimizer;
@@ -105,6 +118,7 @@ public final class ServiceVclProductEnablement {
         public Builder() {}
         public Builder(ServiceVclProductEnablement defaults) {
     	      Objects.requireNonNull(defaults);
+    	      this.botManagement = defaults.botManagement;
     	      this.brotliCompression = defaults.brotliCompression;
     	      this.domainInspector = defaults.domainInspector;
     	      this.imageOptimizer = defaults.imageOptimizer;
@@ -113,6 +127,12 @@ public final class ServiceVclProductEnablement {
     	      this.websockets = defaults.websockets;
         }
 
+        @CustomType.Setter
+        public Builder botManagement(@Nullable Boolean botManagement) {
+
+            this.botManagement = botManagement;
+            return this;
+        }
         @CustomType.Setter
         public Builder brotliCompression(@Nullable Boolean brotliCompression) {
 
@@ -151,6 +171,7 @@ public final class ServiceVclProductEnablement {
         }
         public ServiceVclProductEnablement build() {
             final var _resultValue = new ServiceVclProductEnablement();
+            _resultValue.botManagement = botManagement;
             _resultValue.brotliCompression = brotliCompression;
             _resultValue.domainInspector = domainInspector;
             _resultValue.imageOptimizer = imageOptimizer;

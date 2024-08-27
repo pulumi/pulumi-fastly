@@ -17,6 +17,21 @@ public final class ServiceVclProductEnablementArgs extends com.pulumi.resources.
     public static final ServiceVclProductEnablementArgs Empty = new ServiceVclProductEnablementArgs();
 
     /**
+     * Enable Bot Management support
+     * 
+     */
+    @Import(name="botManagement")
+    private @Nullable Output<Boolean> botManagement;
+
+    /**
+     * @return Enable Bot Management support
+     * 
+     */
+    public Optional<Output<Boolean>> botManagement() {
+        return Optional.ofNullable(this.botManagement);
+    }
+
+    /**
      * Enable Brotli Compression support
      * 
      */
@@ -109,6 +124,7 @@ public final class ServiceVclProductEnablementArgs extends com.pulumi.resources.
     private ServiceVclProductEnablementArgs() {}
 
     private ServiceVclProductEnablementArgs(ServiceVclProductEnablementArgs $) {
+        this.botManagement = $.botManagement;
         this.brotliCompression = $.brotliCompression;
         this.domainInspector = $.domainInspector;
         this.imageOptimizer = $.imageOptimizer;
@@ -133,6 +149,27 @@ public final class ServiceVclProductEnablementArgs extends com.pulumi.resources.
 
         public Builder(ServiceVclProductEnablementArgs defaults) {
             $ = new ServiceVclProductEnablementArgs(Objects.requireNonNull(defaults));
+        }
+
+        /**
+         * @param botManagement Enable Bot Management support
+         * 
+         * @return builder
+         * 
+         */
+        public Builder botManagement(@Nullable Output<Boolean> botManagement) {
+            $.botManagement = botManagement;
+            return this;
+        }
+
+        /**
+         * @param botManagement Enable Bot Management support
+         * 
+         * @return builder
+         * 
+         */
+        public Builder botManagement(Boolean botManagement) {
+            return botManagement(Output.of(botManagement));
         }
 
         /**

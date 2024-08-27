@@ -13,6 +13,12 @@ namespace Pulumi.Fastly.Inputs
     public sealed class ServiceVclProductEnablementArgs : global::Pulumi.ResourceArgs
     {
         /// <summary>
+        /// Enable Bot Management support
+        /// </summary>
+        [Input("botManagement")]
+        public Input<bool>? BotManagement { get; set; }
+
+        /// <summary>
         /// Enable Brotli Compression support
         /// </summary>
         [Input("brotliCompression")]

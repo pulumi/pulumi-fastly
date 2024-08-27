@@ -3153,6 +3153,10 @@ export interface ServiceVclLoggingSyslog {
 
 export interface ServiceVclProductEnablement {
     /**
+     * Enable Bot Management support
+     */
+    botManagement?: boolean;
+    /**
      * Enable Brotli Compression support
      */
     brotliCompression?: boolean;

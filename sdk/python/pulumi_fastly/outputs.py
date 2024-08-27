@@ -10349,7 +10349,9 @@ class ServiceVclProductEnablement(dict):
     @staticmethod
     def __key_warning(key: str):
         suggest = None
-        if key == "brotliCompression":
+        if key == "botManagement":
+            suggest = "bot_management"
+        elif key == "brotliCompression":
             suggest = "brotli_compression"
         elif key == "domainInspector":
             suggest = "domain_inspector"
@@ -10370,6 +10372,7 @@ class ServiceVclProductEnablement(dict):
         return super().get(key, default)
 
     def __init__(__self__, *,
+                 bot_management: Optional[bool] = None,
                  brotli_compression: Optional[bool] = None,
                  domain_inspector: Optional[bool] = None,
                  image_optimizer: Optional[bool] = None,
@@ -10377,6 +10380,7 @@ class ServiceVclProductEnablement(dict):
                  origin_inspector: Optional[bool] = None,
                  websockets: Optional[bool] = None):
         """
+        :param bool bot_management: Enable Bot Management support
         :param bool brotli_compression: Enable Brotli Compression support
         :param bool domain_inspector: Enable Domain Inspector support
         :param bool image_optimizer: Enable Image Optimizer support (all backends must have a `shield` attribute)
@@ -10384,6 +10388,8 @@ class ServiceVclProductEnablement(dict):
         :param bool origin_inspector: Enable Origin Inspector support
         :param bool websockets: Enable WebSockets support
         """
+        if bot_management is not None:
+            pulumi.set(__self__, "bot_management", bot_management)
         if brotli_compression is not None:
             pulumi.set(__self__, "brotli_compression", brotli_compression)
         if domain_inspector is not None:
@@ -10396,6 +10402,14 @@ class ServiceVclProductEnablement(dict):
             pulumi.set(__self__, "origin_inspector", origin_inspector)
         if websockets is not None:
             pulumi.set(__self__, "websockets", websockets)
+
+    @property
+    @pulumi.getter(name="botManagement")
+    def bot_management(self) -> Optional[bool]:
+        """
+        Enable Bot Management support
+        """
+        return pulumi.get(self, "bot_management")
 
     @property
     @pulumi.getter(name="brotliCompression")
