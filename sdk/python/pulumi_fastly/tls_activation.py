@@ -180,9 +180,18 @@ class TlsActivation(pulumi.CustomResource):
                  mutual_authentication_id: Optional[pulumi.Input[str]] = None,
                  __props__=None):
         """
+        layout: "fastly"
+        page_title: "Fastly: tls_activation"
+        sidebar_current: "docs-fastly-resource-tls_activation"
+        description: |-
+        Enables TLS on a domain
+        <!-- yaml: line 6: could not find expected ':' -->
+
+        # TlsActivation
+
         Enables TLS on a domain using a specified custom TLS certificate.
 
-        > **Note:** The Fastly service must be provisioned _prior_ to enabling TLS on it. This can be achieved in Pulumi using `depends_on`.
+        > **Note:** The Fastly service must be provisioned *prior* to enabling TLS on it. This can be achieved in Pulumi using `depends_on`.
 
         ## Example Usage
 
@@ -239,9 +248,18 @@ class TlsActivation(pulumi.CustomResource):
                  args: TlsActivationArgs,
                  opts: Optional[pulumi.ResourceOptions] = None):
         """
+        layout: "fastly"
+        page_title: "Fastly: tls_activation"
+        sidebar_current: "docs-fastly-resource-tls_activation"
+        description: |-
+        Enables TLS on a domain
+        <!-- yaml: line 6: could not find expected ':' -->
+
+        # TlsActivation
+
         Enables TLS on a domain using a specified custom TLS certificate.
 
-        > **Note:** The Fastly service must be provisioned _prior_ to enabling TLS on it. This can be achieved in Pulumi using `depends_on`.
+        > **Note:** The Fastly service must be provisioned *prior* to enabling TLS on it. This can be achieved in Pulumi using `depends_on`.
 
         ## Example Usage
 

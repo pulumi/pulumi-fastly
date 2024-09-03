@@ -10,9 +10,18 @@ using Pulumi.Serialization;
 namespace Pulumi.Fastly
 {
     /// <summary>
+    /// layout: "fastly"
+    /// page_title: "Fastly: tls_platform_certificate"
+    /// sidebar_current: "docs-fastly-resource-tls_platform_certificate"
+    /// description: |-
+    /// Uploads a TLS certificate to the Platform TLS service
+    /// &lt;!-- yaml: line 6: could not find expected ':' --&gt;
+    /// 
+    /// # fastly.TlsPlatformCertificate
+    /// 
     /// Uploads a TLS certificate to the Fastly Platform TLS service.
     /// 
-    /// &gt; Each TLS certificate **must** have its corresponding private key uploaded _prior_ to uploading the certificate. This
+    /// &gt; Each TLS certificate **must** have its corresponding private key uploaded *prior* to uploading the certificate. This
     /// can be achieved in Pulumi using `depends_on`
     /// 
     /// ## Example Usage

@@ -12,6 +12,15 @@ namespace Pulumi.Fastly
     public static class GetTlsDomain
     {
         /// <summary>
+        /// layout: "fastly"
+        /// page_title: "Fastly: fastly.getTlsDomain"
+        /// sidebar_current: "docs-fastly-datasource-tls_domain"
+        /// description: |-
+        /// Get IDs of activations, certificates and subscriptions associated with a domain.
+        /// &lt;!-- yaml: line 6: could not find expected ':' --&gt;
+        /// 
+        /// # fastly.getTlsDomain
+        /// 
         /// Use this data source to get the IDs of activations, certificates and subscriptions associated with a domain.
         /// 
         /// ## Example Usage
@@ -36,6 +45,15 @@ namespace Pulumi.Fastly
             => global::Pulumi.Deployment.Instance.InvokeAsync<GetTlsDomainResult>("fastly:index/getTlsDomain:getTlsDomain", args ?? new GetTlsDomainArgs(), options.WithDefaults());
 
         /// <summary>
+        /// layout: "fastly"
+        /// page_title: "Fastly: fastly.getTlsDomain"
+        /// sidebar_current: "docs-fastly-datasource-tls_domain"
+        /// description: |-
+        /// Get IDs of activations, certificates and subscriptions associated with a domain.
+        /// &lt;!-- yaml: line 6: could not find expected ':' --&gt;
+        /// 
+        /// # fastly.getTlsDomain
+        /// 
         /// Use this data source to get the IDs of activations, certificates and subscriptions associated with a domain.
         /// 
         /// ## Example Usage

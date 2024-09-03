@@ -20,6 +20,15 @@ import java.util.Optional;
 import javax.annotation.Nullable;
 
 /**
+ * layout: &#34;fastly&#34;
+ * page_title: &#34;Fastly: service_waf_configuration&#34;
+ * sidebar_current: &#34;docs-fastly-resource-service-waf-configuration&#34;
+ * description: |-
+ * Provides a Web Application Firewall configuration and rules that can be applied to a service.
+ * &lt;!-- yaml: line 6: could not find expected &#39;:&#39; --&gt;
+ * 
+ * # fastly.ServiceWafConfiguration
+ * 
  * Defines a set of Web Application Firewall configuration options that can be used to populate a service WAF. This resource will configure rules, thresholds and other settings for a WAF.
  * 
  * &gt; **Warning:** This provider will take precedence over any changes you make in the UI or API. Such changes are likely to be reversed if you run the provider again.

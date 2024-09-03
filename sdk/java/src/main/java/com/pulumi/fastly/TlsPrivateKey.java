@@ -17,6 +17,15 @@ import java.util.List;
 import javax.annotation.Nullable;
 
 /**
+ * layout: &#34;fastly&#34;
+ * page_title: &#34;Fastly: tls_private_key&#34;
+ * sidebar_current: &#34;docs-fastly-resource-tls_private_key&#34;
+ * description: |-
+ * Uploads a Custom TLS Private Key
+ * &lt;!-- yaml: line 6: could not find expected &#39;:&#39; --&gt;
+ * 
+ * # fastly.TlsPrivateKey
+ * 
  * Uploads a Custom TLS Private Key to Fastly. This can be combined with a `fastly.TlsCertificate` resource to provide a TLS Certificate able to be applied to a Fastly Service.
  * 
  * The Private Key resource requires a key in PEM format, and a name to identify it.

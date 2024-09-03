@@ -26,8 +26,6 @@ import * as utilities from "./utilities";
  *     }],
  * });
  * ```
- *
- * [1]: https://docs.fastly.com/guides/securing-communications/accessing-fastlys-ip-ranges
  */
 export function getFastlyIpRanges(opts?: pulumi.InvokeOptions): Promise<GetFastlyIpRangesResult> {
 
@@ -75,8 +73,6 @@ export interface GetFastlyIpRangesResult {
  *     }],
  * });
  * ```
- *
- * [1]: https://docs.fastly.com/guides/securing-communications/accessing-fastlys-ip-ranges
  */
 export function getFastlyIpRangesOutput(opts?: pulumi.InvokeOptions): pulumi.Output<GetFastlyIpRangesResult> {
     return pulumi.output(getFastlyIpRanges(opts))

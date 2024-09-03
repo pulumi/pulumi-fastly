@@ -12,6 +12,15 @@ namespace Pulumi.Fastly
     public static class GetTlsActivationIds
     {
         /// <summary>
+        /// layout: "fastly"
+        /// page_title: "Fastly: fastly.getTlsActivationIds"
+        /// sidebar_current: "docs-fastly-datasource-tls_activation_ids"
+        /// description: |-
+        /// Get the list of TLS Activation identifiers in Fastly.
+        /// &lt;!-- yaml: line 6: could not find expected ':' --&gt;
+        /// 
+        /// # fastly.getTlsActivationIds
+        /// 
         /// Use this data source to get the list of TLS Activation identifiers in Fastly.
         /// 
         /// ## Example Usage
@@ -45,6 +54,15 @@ namespace Pulumi.Fastly
             => global::Pulumi.Deployment.Instance.InvokeAsync<GetTlsActivationIdsResult>("fastly:index/getTlsActivationIds:getTlsActivationIds", args ?? new GetTlsActivationIdsArgs(), options.WithDefaults());
 
         /// <summary>
+        /// layout: "fastly"
+        /// page_title: "Fastly: fastly.getTlsActivationIds"
+        /// sidebar_current: "docs-fastly-datasource-tls_activation_ids"
+        /// description: |-
+        /// Get the list of TLS Activation identifiers in Fastly.
+        /// &lt;!-- yaml: line 6: could not find expected ':' --&gt;
+        /// 
+        /// # fastly.getTlsActivationIds
+        /// 
         /// Use this data source to get the list of TLS Activation identifiers in Fastly.
         /// 
         /// ## Example Usage

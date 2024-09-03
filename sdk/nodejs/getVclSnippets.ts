@@ -30,8 +30,6 @@ import * as utilities from "./utilities";
  * });
  * export const serviceVclSnippets = example;
  * ```
- *
- * [1]: https://www.fastly.com/documentation/reference/api/vcl-services/snippet/
  */
 export function getVclSnippets(args: GetVclSnippetsArgs, opts?: pulumi.InvokeOptions): Promise<GetVclSnippetsResult> {
 
@@ -101,8 +99,6 @@ export interface GetVclSnippetsResult {
  * });
  * export const serviceVclSnippets = example;
  * ```
- *
- * [1]: https://www.fastly.com/documentation/reference/api/vcl-services/snippet/
  */
 export function getVclSnippetsOutput(args: GetVclSnippetsOutputArgs, opts?: pulumi.InvokeOptions): pulumi.Output<GetVclSnippetsResult> {
     return pulumi.output(args).apply((a: any) => getVclSnippets(a, opts))

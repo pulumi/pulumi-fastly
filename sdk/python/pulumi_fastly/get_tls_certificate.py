@@ -159,6 +159,15 @@ def get_tls_certificate(domains: Optional[Sequence[str]] = None,
                         name: Optional[str] = None,
                         opts: Optional[pulumi.InvokeOptions] = None) -> AwaitableGetTlsCertificateResult:
     """
+    layout: "fastly"
+    page_title: "Fastly: TlsCertificate"
+    sidebar_current: "docs-fastly-datasource-tls_certificate"
+    description: |-
+    Get information on Fastly TLS certificate.
+    <!-- yaml: line 6: could not find expected ':' -->
+
+    # TlsCertificate
+
     Use this data source to get information of a TLS certificate for use with other resources.
 
     > **Warning:** The data source's filters are applied using an **AND** boolean operator, so depending on the combination
@@ -213,6 +222,15 @@ def get_tls_certificate_output(domains: Optional[pulumi.Input[Optional[Sequence[
                                name: Optional[pulumi.Input[Optional[str]]] = None,
                                opts: Optional[pulumi.InvokeOptions] = None) -> pulumi.Output[GetTlsCertificateResult]:
     """
+    layout: "fastly"
+    page_title: "Fastly: TlsCertificate"
+    sidebar_current: "docs-fastly-datasource-tls_certificate"
+    description: |-
+    Get information on Fastly TLS certificate.
+    <!-- yaml: line 6: could not find expected ':' -->
+
+    # TlsCertificate
+
     Use this data source to get information of a TLS certificate for use with other resources.
 
     > **Warning:** The data source's filters are applied using an **AND** boolean operator, so depending on the combination

@@ -58,6 +58,15 @@ class AwaitableGetTlsCertificateIdsResult(GetTlsCertificateIdsResult):
 
 def get_tls_certificate_ids(opts: Optional[pulumi.InvokeOptions] = None) -> AwaitableGetTlsCertificateIdsResult:
     """
+    layout: "fastly"
+    page_title: "Fastly: get_tls_certificate_ids"
+    sidebar_current: "docs-fastly-datasource-tls_certificate_ids"
+    description: |-
+    Get IDs of available TLS certificates.
+    <!-- yaml: line 6: could not find expected ':' -->
+
+    # get_tls_certificate_ids
+
     Use this data source to get the IDs of available TLS certificates for use with other resources.
 
     ## Example Usage
@@ -82,6 +91,15 @@ def get_tls_certificate_ids(opts: Optional[pulumi.InvokeOptions] = None) -> Awai
 @_utilities.lift_output_func(get_tls_certificate_ids)
 def get_tls_certificate_ids_output(opts: Optional[pulumi.InvokeOptions] = None) -> pulumi.Output[GetTlsCertificateIdsResult]:
     """
+    layout: "fastly"
+    page_title: "Fastly: get_tls_certificate_ids"
+    sidebar_current: "docs-fastly-datasource-tls_certificate_ids"
+    description: |-
+    Get IDs of available TLS certificates.
+    <!-- yaml: line 6: could not find expected ':' -->
+
+    # get_tls_certificate_ids
+
     Use this data source to get the IDs of available TLS certificates for use with other resources.
 
     ## Example Usage

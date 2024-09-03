@@ -11,6 +11,15 @@ import (
 	"github.com/pulumi/pulumi/sdk/v3/go/pulumi"
 )
 
+// layout: "fastly"
+// page_title: "Fastly: getTlsConfigurationIds"
+// sidebar_current: "docs-fastly-datasource-tls_configuration_ids"
+// description: |-
+// Get IDs of available TLS Configurations.
+// <!-- yaml: line 6: could not find expected ':' -->
+//
+// # getTlsConfigurationIds
+//
 // Use this data source to get the IDs of available TLS configurations for use with other resources.
 //
 // ## Example Usage

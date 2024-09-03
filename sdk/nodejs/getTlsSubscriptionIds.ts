@@ -5,6 +5,15 @@ import * as pulumi from "@pulumi/pulumi";
 import * as utilities from "./utilities";
 
 /**
+ * layout: "fastly"
+ * page_title: "Fastly: fastly.getTlsSubscriptionIds"
+ * sidebar_current: "docs-fastly-datasource-tls_subscription_ids"
+ * description: |-
+ * Get the list of TLS Subscriptions in Fastly.
+ * <!-- yaml: line 6: could not find expected ':' -->
+ *
+ * # fastly.getTlsSubscriptionIds
+ *
  * Use this data source to get the list of IDs of TLS Subscriptions in Fastly.
  *
  * ## Example Usage
@@ -41,6 +50,15 @@ export interface GetTlsSubscriptionIdsResult {
     readonly ids: string[];
 }
 /**
+ * layout: "fastly"
+ * page_title: "Fastly: fastly.getTlsSubscriptionIds"
+ * sidebar_current: "docs-fastly-datasource-tls_subscription_ids"
+ * description: |-
+ * Get the list of TLS Subscriptions in Fastly.
+ * <!-- yaml: line 6: could not find expected ':' -->
+ *
+ * # fastly.getTlsSubscriptionIds
+ *
  * Use this data source to get the list of IDs of TLS Subscriptions in Fastly.
  *
  * ## Example Usage

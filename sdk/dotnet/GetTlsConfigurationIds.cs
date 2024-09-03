@@ -12,6 +12,15 @@ namespace Pulumi.Fastly
     public static class GetTlsConfigurationIds
     {
         /// <summary>
+        /// layout: "fastly"
+        /// page_title: "Fastly: fastly.getTlsConfigurationIds"
+        /// sidebar_current: "docs-fastly-datasource-tls_configuration_ids"
+        /// description: |-
+        /// Get IDs of available TLS Configurations.
+        /// &lt;!-- yaml: line 6: could not find expected ':' --&gt;
+        /// 
+        /// # fastly.getTlsConfigurationIds
+        /// 
         /// Use this data source to get the IDs of available TLS configurations for use with other resources.
         /// 
         /// ## Example Usage
@@ -38,6 +47,15 @@ namespace Pulumi.Fastly
             => global::Pulumi.Deployment.Instance.InvokeAsync<GetTlsConfigurationIdsResult>("fastly:index/getTlsConfigurationIds:getTlsConfigurationIds", InvokeArgs.Empty, options.WithDefaults());
 
         /// <summary>
+        /// layout: "fastly"
+        /// page_title: "Fastly: fastly.getTlsConfigurationIds"
+        /// sidebar_current: "docs-fastly-datasource-tls_configuration_ids"
+        /// description: |-
+        /// Get IDs of available TLS Configurations.
+        /// &lt;!-- yaml: line 6: could not find expected ':' --&gt;
+        /// 
+        /// # fastly.getTlsConfigurationIds
+        /// 
         /// Use this data source to get the IDs of available TLS configurations for use with other resources.
         /// 
         /// ## Example Usage

@@ -12,6 +12,15 @@ namespace Pulumi.Fastly
     public static class GetTlsPlatformCertificateIds
     {
         /// <summary>
+        /// layout: "fastly"
+        /// page_title: "Fastly: fastly.getTlsPlatformCertificateIds"
+        /// sidebar_current: "docs-fastly-datasource-tls_platform_certificate_ids"
+        /// description: |-
+        /// Get IDs of available Platform TLS certificates.
+        /// &lt;!-- yaml: line 6: could not find expected ':' --&gt;
+        /// 
+        /// # fastly.getTlsPlatformCertificateIds
+        /// 
         /// Use this data source to get the IDs of available Platform TLS Certificates for use with other resources.
         /// 
         /// ## Example Usage
@@ -38,6 +47,15 @@ namespace Pulumi.Fastly
             => global::Pulumi.Deployment.Instance.InvokeAsync<GetTlsPlatformCertificateIdsResult>("fastly:index/getTlsPlatformCertificateIds:getTlsPlatformCertificateIds", InvokeArgs.Empty, options.WithDefaults());
 
         /// <summary>
+        /// layout: "fastly"
+        /// page_title: "Fastly: fastly.getTlsPlatformCertificateIds"
+        /// sidebar_current: "docs-fastly-datasource-tls_platform_certificate_ids"
+        /// description: |-
+        /// Get IDs of available Platform TLS certificates.
+        /// &lt;!-- yaml: line 6: could not find expected ':' --&gt;
+        /// 
+        /// # fastly.getTlsPlatformCertificateIds
+        /// 
         /// Use this data source to get the IDs of available Platform TLS Certificates for use with other resources.
         /// 
         /// ## Example Usage

@@ -95,6 +95,15 @@ class AwaitableGetTlsDomainResult(GetTlsDomainResult):
 def get_tls_domain(domain: Optional[str] = None,
                    opts: Optional[pulumi.InvokeOptions] = None) -> AwaitableGetTlsDomainResult:
     """
+    layout: "fastly"
+    page_title: "Fastly: get_tls_domain"
+    sidebar_current: "docs-fastly-datasource-tls_domain"
+    description: |-
+    Get IDs of activations, certificates and subscriptions associated with a domain.
+    <!-- yaml: line 6: could not find expected ':' -->
+
+    # get_tls_domain
+
     Use this data source to get the IDs of activations, certificates and subscriptions associated with a domain.
 
     ## Example Usage
@@ -126,6 +135,15 @@ def get_tls_domain(domain: Optional[str] = None,
 def get_tls_domain_output(domain: Optional[pulumi.Input[str]] = None,
                           opts: Optional[pulumi.InvokeOptions] = None) -> pulumi.Output[GetTlsDomainResult]:
     """
+    layout: "fastly"
+    page_title: "Fastly: get_tls_domain"
+    sidebar_current: "docs-fastly-datasource-tls_domain"
+    description: |-
+    Get IDs of activations, certificates and subscriptions associated with a domain.
+    <!-- yaml: line 6: could not find expected ':' -->
+
+    # get_tls_domain
+
     Use this data source to get the IDs of activations, certificates and subscriptions associated with a domain.
 
     ## Example Usage

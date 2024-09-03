@@ -5,6 +5,15 @@ import * as pulumi from "@pulumi/pulumi";
 import * as utilities from "./utilities";
 
 /**
+ * layout: "fastly"
+ * page_title: "Fastly: fastly.getTlsConfigurationIds"
+ * sidebar_current: "docs-fastly-datasource-tls_configuration_ids"
+ * description: |-
+ * Get IDs of available TLS Configurations.
+ * <!-- yaml: line 6: could not find expected ':' -->
+ *
+ * # fastly.getTlsConfigurationIds
+ *
  * Use this data source to get the IDs of available TLS configurations for use with other resources.
  *
  * ## Example Usage
@@ -38,6 +47,15 @@ export interface GetTlsConfigurationIdsResult {
     readonly ids: string[];
 }
 /**
+ * layout: "fastly"
+ * page_title: "Fastly: fastly.getTlsConfigurationIds"
+ * sidebar_current: "docs-fastly-datasource-tls_configuration_ids"
+ * description: |-
+ * Get IDs of available TLS Configurations.
+ * <!-- yaml: line 6: could not find expected ':' -->
+ *
+ * # fastly.getTlsConfigurationIds
+ *
  * Use this data source to get the IDs of available TLS configurations for use with other resources.
  *
  * ## Example Usage

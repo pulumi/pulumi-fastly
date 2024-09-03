@@ -10,6 +10,15 @@ using Pulumi.Serialization;
 namespace Pulumi.Fastly
 {
     /// <summary>
+    /// layout: "fastly"
+    /// page_title: "Fastly: tls_private_key"
+    /// sidebar_current: "docs-fastly-resource-tls_private_key"
+    /// description: |-
+    /// Uploads a Custom TLS Private Key
+    /// &lt;!-- yaml: line 6: could not find expected ':' --&gt;
+    /// 
+    /// # fastly.TlsPrivateKey
+    /// 
     /// Uploads a Custom TLS Private Key to Fastly. This can be combined with a `fastly.TlsCertificate` resource to provide a TLS Certificate able to be applied to a Fastly Service.
     /// 
     /// The Private Key resource requires a key in PEM format, and a name to identify it.

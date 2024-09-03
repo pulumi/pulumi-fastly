@@ -12,6 +12,15 @@ import (
 	"github.com/pulumi/pulumi/sdk/v3/go/pulumi"
 )
 
+// layout: "fastly"
+// page_title: "Fastly: tlsSubscriptionValidation"
+// sidebar_current: "docs-fastly-resource-tls_subscription_validation"
+// description: |-
+// Represents a successful validation of a Fastly TLS Subscription
+// <!-- yaml: line 6: could not find expected ':' -->
+//
+// # TlsSubscriptionValidation
+//
 // This resource represents a successful validation of a Fastly TLS Subscription in concert with other resources.
 //
 // Most commonly, this resource is used together with a resource for a DNS record and `TlsSubscription` to request a DNS validated certificate, deploy the required validation records and wait for validation to complete.

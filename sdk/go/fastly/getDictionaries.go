@@ -60,8 +60,6 @@ import (
 //	}
 //
 // ```
-//
-// [1]: https://developer.fastly.com/reference/api/dictionaries/
 func GetDictionaries(ctx *pulumi.Context, args *GetDictionariesArgs, opts ...pulumi.InvokeOption) (*GetDictionariesResult, error) {
 	opts = internal.PkgInvokeDefaultOpts(opts)
 	var rv GetDictionariesResult

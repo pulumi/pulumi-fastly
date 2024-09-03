@@ -12,6 +12,15 @@ namespace Pulumi.Fastly
     public static class GetTlsSubscription
     {
         /// <summary>
+        /// layout: "fastly"
+        /// page_title: "Fastly: fastly.TlsSubscription"
+        /// sidebar_current: "docs-fastly-datasource-tls_subscription"
+        /// description: |-
+        /// Get information on Fastly TLS subscription.
+        /// &lt;!-- yaml: line 6: could not find expected ':' --&gt;
+        /// 
+        /// # fastly.TlsSubscription
+        /// 
         /// Use this data source to get information about a TLS subscription.
         /// 
         /// ## Example Usage
@@ -39,6 +48,15 @@ namespace Pulumi.Fastly
             => global::Pulumi.Deployment.Instance.InvokeAsync<GetTlsSubscriptionResult>("fastly:index/getTlsSubscription:getTlsSubscription", args ?? new GetTlsSubscriptionArgs(), options.WithDefaults());
 
         /// <summary>
+        /// layout: "fastly"
+        /// page_title: "Fastly: fastly.TlsSubscription"
+        /// sidebar_current: "docs-fastly-datasource-tls_subscription"
+        /// description: |-
+        /// Get information on Fastly TLS subscription.
+        /// &lt;!-- yaml: line 6: could not find expected ':' --&gt;
+        /// 
+        /// # fastly.TlsSubscription
+        /// 
         /// Use this data source to get information about a TLS subscription.
         /// 
         /// ## Example Usage

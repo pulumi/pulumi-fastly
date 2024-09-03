@@ -7,6 +7,15 @@ import * as outputs from "./types/output";
 import * as utilities from "./utilities";
 
 /**
+ * layout: "fastly"
+ * page_title: "Fastly: tlsSubscription"
+ * sidebar_current: "docs-fastly-resource-tls_subscription"
+ * description: |-
+ * Enables TLS on a domain using a managed certificate
+ * <!-- yaml: line 6: could not find expected ':' -->
+ *
+ * # fastly.TlsSubscription
+ *
  * Enables TLS on a domain using a certificate managed by Fastly.
  *
  * DNS records need to be modified on the domain being secured, in order to respond to the ACME domain ownership challenge.

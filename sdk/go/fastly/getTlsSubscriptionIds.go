@@ -11,6 +11,15 @@ import (
 	"github.com/pulumi/pulumi/sdk/v3/go/pulumi"
 )
 
+// layout: "fastly"
+// page_title: "Fastly: getTlsSubscriptionIds"
+// sidebar_current: "docs-fastly-datasource-tls_subscription_ids"
+// description: |-
+// Get the list of TLS Subscriptions in Fastly.
+// <!-- yaml: line 6: could not find expected ':' -->
+//
+// # getTlsSubscriptionIds
+//
 // Use this data source to get the list of IDs of TLS Subscriptions in Fastly.
 func GetTlsSubscriptionIds(ctx *pulumi.Context, opts ...pulumi.InvokeOption) (*GetTlsSubscriptionIdsResult, error) {
 	opts = internal.PkgInvokeDefaultOpts(opts)

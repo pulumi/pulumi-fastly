@@ -10,6 +10,15 @@ using Pulumi.Serialization;
 namespace Pulumi.Fastly
 {
     /// <summary>
+    /// layout: "fastly"
+    /// page_title: "Fastly: tls_subscription_validation"
+    /// sidebar_current: "docs-fastly-resource-tls_subscription_validation"
+    /// description: |-
+    /// Represents a successful validation of a Fastly TLS Subscription
+    /// &lt;!-- yaml: line 6: could not find expected ':' --&gt;
+    /// 
+    /// # fastly.TlsSubscriptionValidation
+    /// 
     /// This resource represents a successful validation of a Fastly TLS Subscription in concert with other resources.
     /// 
     /// Most commonly, this resource is used together with a resource for a DNS record and `fastly.TlsSubscription` to request a DNS validated certificate, deploy the required validation records and wait for validation to complete.

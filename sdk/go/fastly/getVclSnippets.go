@@ -51,8 +51,6 @@ import (
 //	}
 //
 // ```
-//
-// [1]: https://www.fastly.com/documentation/reference/api/vcl-services/snippet/
 func GetVclSnippets(ctx *pulumi.Context, args *GetVclSnippetsArgs, opts ...pulumi.InvokeOption) (*GetVclSnippetsResult, error) {
 	opts = internal.PkgInvokeDefaultOpts(opts)
 	var rv GetVclSnippetsResult

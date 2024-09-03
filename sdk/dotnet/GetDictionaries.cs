@@ -64,8 +64,6 @@ namespace Pulumi.Fastly
         ///     };
         /// });
         /// ```
-        /// 
-        /// [1]: https://developer.fastly.com/reference/api/dictionaries/
         /// </summary>
         public static Task<GetDictionariesResult> InvokeAsync(GetDictionariesArgs args, InvokeOptions? options = null)
             => global::Pulumi.Deployment.Instance.InvokeAsync<GetDictionariesResult>("fastly:index/getDictionaries:getDictionaries", args ?? new GetDictionariesArgs(), options.WithDefaults());
@@ -123,8 +121,6 @@ namespace Pulumi.Fastly
         ///     };
         /// });
         /// ```
-        /// 
-        /// [1]: https://developer.fastly.com/reference/api/dictionaries/
         /// </summary>
         public static Output<GetDictionariesResult> Invoke(GetDictionariesInvokeArgs args, InvokeOptions? options = null)
             => global::Pulumi.Deployment.Instance.Invoke<GetDictionariesResult>("fastly:index/getDictionaries:getDictionaries", args ?? new GetDictionariesInvokeArgs(), options.WithDefaults());

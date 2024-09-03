@@ -20,6 +20,15 @@ import java.util.Optional;
 import javax.annotation.Nullable;
 
 /**
+ * layout: &#34;fastly&#34;
+ * page_title: &#34;Fastly: tls_subscription&#34;
+ * sidebar_current: &#34;docs-fastly-resource-tls_subscription&#34;
+ * description: |-
+ * Enables TLS on a domain using a managed certificate
+ * &lt;!-- yaml: line 6: could not find expected &#39;:&#39; --&gt;
+ * 
+ * # fastly.TlsSubscription
+ * 
  * Enables TLS on a domain using a certificate managed by Fastly.
  * 
  * DNS records need to be modified on the domain being secured, in order to respond to the ACME domain ownership challenge.

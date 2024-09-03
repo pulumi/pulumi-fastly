@@ -5,9 +5,18 @@ import * as pulumi from "@pulumi/pulumi";
 import * as utilities from "./utilities";
 
 /**
+ * layout: "fastly"
+ * page_title: "Fastly: tlsActivation"
+ * sidebar_current: "docs-fastly-resource-tls_activation"
+ * description: |-
+ * Enables TLS on a domain
+ * <!-- yaml: line 6: could not find expected ':' -->
+ *
+ * # fastly.TlsActivation
+ *
  * Enables TLS on a domain using a specified custom TLS certificate.
  *
- * > **Note:** The Fastly service must be provisioned _prior_ to enabling TLS on it. This can be achieved in Pulumi using `dependsOn`.
+ * > **Note:** The Fastly service must be provisioned *prior* to enabling TLS on it. This can be achieved in Pulumi using `dependsOn`.
  *
  * ## Example Usage
  *

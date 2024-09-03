@@ -11,6 +11,15 @@ import (
 	"github.com/pulumi/pulumi/sdk/v3/go/pulumi"
 )
 
+// layout: "fastly"
+// page_title: "Fastly: TlsSubscription"
+// sidebar_current: "docs-fastly-datasource-tls_subscription"
+// description: |-
+// Get information on Fastly TLS subscription.
+// <!-- yaml: line 6: could not find expected ':' -->
+//
+// # TlsSubscription
+//
 // Use this data source to get information about a TLS subscription.
 //
 // ## Example Usage

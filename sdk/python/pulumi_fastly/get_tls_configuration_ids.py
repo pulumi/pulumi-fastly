@@ -58,6 +58,15 @@ class AwaitableGetTlsConfigurationIdsResult(GetTlsConfigurationIdsResult):
 
 def get_tls_configuration_ids(opts: Optional[pulumi.InvokeOptions] = None) -> AwaitableGetTlsConfigurationIdsResult:
     """
+    layout: "fastly"
+    page_title: "Fastly: get_tls_configuration_ids"
+    sidebar_current: "docs-fastly-datasource-tls_configuration_ids"
+    description: |-
+    Get IDs of available TLS Configurations.
+    <!-- yaml: line 6: could not find expected ':' -->
+
+    # get_tls_configuration_ids
+
     Use this data source to get the IDs of available TLS configurations for use with other resources.
 
     ## Example Usage
@@ -82,6 +91,15 @@ def get_tls_configuration_ids(opts: Optional[pulumi.InvokeOptions] = None) -> Aw
 @_utilities.lift_output_func(get_tls_configuration_ids)
 def get_tls_configuration_ids_output(opts: Optional[pulumi.InvokeOptions] = None) -> pulumi.Output[GetTlsConfigurationIdsResult]:
     """
+    layout: "fastly"
+    page_title: "Fastly: get_tls_configuration_ids"
+    sidebar_current: "docs-fastly-datasource-tls_configuration_ids"
+    description: |-
+    Get IDs of available TLS Configurations.
+    <!-- yaml: line 6: could not find expected ':' -->
+
+    # get_tls_configuration_ids
+
     Use this data source to get the IDs of available TLS configurations for use with other resources.
 
     ## Example Usage

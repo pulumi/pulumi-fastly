@@ -52,8 +52,6 @@ import (
 //	}
 //
 // ```
-//
-// [1]: https://docs.fastly.com/guides/securing-communications/accessing-fastlys-ip-ranges
 func GetFastlyIpRanges(ctx *pulumi.Context, opts ...pulumi.InvokeOption) (*GetFastlyIpRangesResult, error) {
 	opts = internal.PkgInvokeDefaultOpts(opts)
 	var rv GetFastlyIpRangesResult
