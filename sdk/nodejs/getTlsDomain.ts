@@ -5,6 +5,15 @@ import * as pulumi from "@pulumi/pulumi";
 import * as utilities from "./utilities";
 
 /**
+ * layout: "fastly"
+ * page_title: "Fastly: fastly.getTlsDomain"
+ * sidebar_current: "docs-fastly-datasource-tls_domain"
+ * description: |-
+ * Get IDs of activations, certificates and subscriptions associated with a domain.
+ * <!-- yaml: line 6: could not find expected ':' -->
+ *
+ * # fastly.getTlsDomain
+ *
  * Use this data source to get the IDs of activations, certificates and subscriptions associated with a domain.
  *
  * ## Example Usage
@@ -62,6 +71,15 @@ export interface GetTlsDomainResult {
     readonly tlsSubscriptionIds: string[];
 }
 /**
+ * layout: "fastly"
+ * page_title: "Fastly: fastly.getTlsDomain"
+ * sidebar_current: "docs-fastly-datasource-tls_domain"
+ * description: |-
+ * Get IDs of activations, certificates and subscriptions associated with a domain.
+ * <!-- yaml: line 6: could not find expected ':' -->
+ *
+ * # fastly.getTlsDomain
+ *
  * Use this data source to get the IDs of activations, certificates and subscriptions associated with a domain.
  *
  * ## Example Usage

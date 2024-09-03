@@ -12,6 +12,15 @@ namespace Pulumi.Fastly
     public static class GetTlsActivation
     {
         /// <summary>
+        /// layout: "fastly"
+        /// page_title: "Fastly: fastly.TlsActivation"
+        /// sidebar_current: "docs-fastly-datasource-tls_activation"
+        /// description: |-
+        /// Get information on Fastly TLS Activation.
+        /// &lt;!-- yaml: line 6: could not find expected ':' --&gt;
+        /// 
+        /// # fastly.TlsActivation
+        /// 
         /// Use this data source to get information on a TLS activation, including the certificate used, and the domain on which TLS was enabled.
         /// 
         /// &gt; **Warning:** The data source's filters are applied using an **AND** boolean operator, so depending on the combination
@@ -42,6 +51,15 @@ namespace Pulumi.Fastly
             => global::Pulumi.Deployment.Instance.InvokeAsync<GetTlsActivationResult>("fastly:index/getTlsActivation:getTlsActivation", args ?? new GetTlsActivationArgs(), options.WithDefaults());
 
         /// <summary>
+        /// layout: "fastly"
+        /// page_title: "Fastly: fastly.TlsActivation"
+        /// sidebar_current: "docs-fastly-datasource-tls_activation"
+        /// description: |-
+        /// Get information on Fastly TLS Activation.
+        /// &lt;!-- yaml: line 6: could not find expected ':' --&gt;
+        /// 
+        /// # fastly.TlsActivation
+        /// 
         /// Use this data source to get information on a TLS activation, including the certificate used, and the domain on which TLS was enabled.
         /// 
         /// &gt; **Warning:** The data source's filters are applied using an **AND** boolean operator, so depending on the combination

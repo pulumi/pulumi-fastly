@@ -12,6 +12,15 @@ import (
 	"github.com/pulumi/pulumi/sdk/v3/go/pulumi"
 )
 
+// layout: "fastly"
+// page_title: "Fastly: tlsPrivateKey"
+// sidebar_current: "docs-fastly-resource-tls_private_key"
+// description: |-
+// Uploads a Custom TLS Private Key
+// <!-- yaml: line 6: could not find expected ':' -->
+//
+// # TlsPrivateKey
+//
 // Uploads a Custom TLS Private Key to Fastly. This can be combined with a `TlsCertificate` resource to provide a TLS Certificate able to be applied to a Fastly Service.
 //
 // The Private Key resource requires a key in PEM format, and a name to identify it.

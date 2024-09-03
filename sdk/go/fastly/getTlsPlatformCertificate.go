@@ -11,6 +11,15 @@ import (
 	"github.com/pulumi/pulumi/sdk/v3/go/pulumi"
 )
 
+// layout: "fastly"
+// page_title: "Fastly: TlsPlatformCertificate"
+// sidebar_current: "docs-fastly-datasource-tls_platform_certificate"
+// description: |-
+// Get information on Fastly Platform TLS certificate.
+// <!-- yaml: line 6: could not find expected ':' -->
+//
+// # TlsPlatformCertificate
+//
 // Use this data source to get information of a Platform TLS certificate for use with other resources.
 //
 // > **Warning:** The data source's filters are applied using an **AND** boolean operator, so depending on the combination

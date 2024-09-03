@@ -58,6 +58,15 @@ class AwaitableGetTlsSubscriptionIdsResult(GetTlsSubscriptionIdsResult):
 
 def get_tls_subscription_ids(opts: Optional[pulumi.InvokeOptions] = None) -> AwaitableGetTlsSubscriptionIdsResult:
     """
+    layout: "fastly"
+    page_title: "Fastly: get_tls_subscription_ids"
+    sidebar_current: "docs-fastly-datasource-tls_subscription_ids"
+    description: |-
+    Get the list of TLS Subscriptions in Fastly.
+    <!-- yaml: line 6: could not find expected ':' -->
+
+    # get_tls_subscription_ids
+
     Use this data source to get the list of IDs of TLS Subscriptions in Fastly.
 
     ## Example Usage
@@ -83,6 +92,15 @@ def get_tls_subscription_ids(opts: Optional[pulumi.InvokeOptions] = None) -> Awa
 @_utilities.lift_output_func(get_tls_subscription_ids)
 def get_tls_subscription_ids_output(opts: Optional[pulumi.InvokeOptions] = None) -> pulumi.Output[GetTlsSubscriptionIdsResult]:
     """
+    layout: "fastly"
+    page_title: "Fastly: get_tls_subscription_ids"
+    sidebar_current: "docs-fastly-datasource-tls_subscription_ids"
+    description: |-
+    Get the list of TLS Subscriptions in Fastly.
+    <!-- yaml: line 6: could not find expected ':' -->
+
+    # get_tls_subscription_ids
+
     Use this data source to get the list of IDs of TLS Subscriptions in Fastly.
 
     ## Example Usage

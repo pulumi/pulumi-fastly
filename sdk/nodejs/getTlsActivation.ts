@@ -5,6 +5,15 @@ import * as pulumi from "@pulumi/pulumi";
 import * as utilities from "./utilities";
 
 /**
+ * layout: "fastly"
+ * page_title: "Fastly: fastly.TlsActivation"
+ * sidebar_current: "docs-fastly-datasource-tls_activation"
+ * description: |-
+ * Get information on Fastly TLS Activation.
+ * <!-- yaml: line 6: could not find expected ':' -->
+ *
+ * # fastly.TlsActivation
+ *
  * Use this data source to get information on a TLS activation, including the certificate used, and the domain on which TLS was enabled.
  *
  * > **Warning:** The data source's filters are applied using an **AND** boolean operator, so depending on the combination
@@ -84,6 +93,15 @@ export interface GetTlsActivationResult {
     readonly id: string;
 }
 /**
+ * layout: "fastly"
+ * page_title: "Fastly: fastly.TlsActivation"
+ * sidebar_current: "docs-fastly-datasource-tls_activation"
+ * description: |-
+ * Get information on Fastly TLS Activation.
+ * <!-- yaml: line 6: could not find expected ':' -->
+ *
+ * # fastly.TlsActivation
+ *
  * Use this data source to get information on a TLS activation, including the certificate used, and the domain on which TLS was enabled.
  *
  * > **Warning:** The data source's filters are applied using an **AND** boolean operator, so depending on the combination

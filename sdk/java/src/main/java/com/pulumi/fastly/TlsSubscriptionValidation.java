@@ -14,6 +14,15 @@ import java.lang.String;
 import javax.annotation.Nullable;
 
 /**
+ * layout: &#34;fastly&#34;
+ * page_title: &#34;Fastly: tls_subscription_validation&#34;
+ * sidebar_current: &#34;docs-fastly-resource-tls_subscription_validation&#34;
+ * description: |-
+ * Represents a successful validation of a Fastly TLS Subscription
+ * &lt;!-- yaml: line 6: could not find expected &#39;:&#39; --&gt;
+ * 
+ * # fastly.TlsSubscriptionValidation
+ * 
  * This resource represents a successful validation of a Fastly TLS Subscription in concert with other resources.
  * 
  * Most commonly, this resource is used together with a resource for a DNS record and `fastly.TlsSubscription` to request a DNS validated certificate, deploy the required validation records and wait for validation to complete.

@@ -106,8 +106,6 @@ def get_vcl_snippets(service_id: Optional[str] = None,
     pulumi.export("serviceVclSnippets", example)
     ```
 
-    [1]: https://www.fastly.com/documentation/reference/api/vcl-services/snippet/
-
 
     :param str service_id: Alphanumeric string identifying the service.
     :param int service_version: Integer identifying a service version.
@@ -150,8 +148,6 @@ def get_vcl_snippets_output(service_id: Optional[pulumi.Input[str]] = None,
         service_version=example_service_vcl.active_version)
     pulumi.export("serviceVclSnippets", example)
     ```
-
-    [1]: https://www.fastly.com/documentation/reference/api/vcl-services/snippet/
 
 
     :param str service_id: Alphanumeric string identifying the service.

@@ -356,6 +356,15 @@ class TlsSubscription(pulumi.CustomResource):
                  force_update: Optional[pulumi.Input[bool]] = None,
                  __props__=None):
         """
+        layout: "fastly"
+        page_title: "Fastly: tls_subscription"
+        sidebar_current: "docs-fastly-resource-tls_subscription"
+        description: |-
+        Enables TLS on a domain using a managed certificate
+        <!-- yaml: line 6: could not find expected ':' -->
+
+        # TlsSubscription
+
         Enables TLS on a domain using a certificate managed by Fastly.
 
         DNS records need to be modified on the domain being secured, in order to respond to the ACME domain ownership challenge.
@@ -392,6 +401,15 @@ class TlsSubscription(pulumi.CustomResource):
                  args: TlsSubscriptionArgs,
                  opts: Optional[pulumi.ResourceOptions] = None):
         """
+        layout: "fastly"
+        page_title: "Fastly: tls_subscription"
+        sidebar_current: "docs-fastly-resource-tls_subscription"
+        description: |-
+        Enables TLS on a domain using a managed certificate
+        <!-- yaml: line 6: could not find expected ':' -->
+
+        # TlsSubscription
+
         Enables TLS on a domain using a certificate managed by Fastly.
 
         DNS records need to be modified on the domain being secured, in order to respond to the ACME domain ownership challenge.

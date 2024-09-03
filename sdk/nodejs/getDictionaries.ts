@@ -39,8 +39,6 @@ import * as utilities from "./utilities";
  * });
  * export const serviceDictionaries = example;
  * ```
- *
- * [1]: https://developer.fastly.com/reference/api/dictionaries/
  */
 export function getDictionaries(args: GetDictionariesArgs, opts?: pulumi.InvokeOptions): Promise<GetDictionariesResult> {
 
@@ -119,8 +117,6 @@ export interface GetDictionariesResult {
  * });
  * export const serviceDictionaries = example;
  * ```
- *
- * [1]: https://developer.fastly.com/reference/api/dictionaries/
  */
 export function getDictionariesOutput(args: GetDictionariesOutputArgs, opts?: pulumi.InvokeOptions): pulumi.Output<GetDictionariesResult> {
     return pulumi.output(args).apply((a: any) => getDictionaries(a, opts))

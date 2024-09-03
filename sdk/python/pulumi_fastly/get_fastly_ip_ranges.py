@@ -90,8 +90,6 @@ def get_fastly_ip_ranges(opts: Optional[pulumi.InvokeOptions] = None) -> Awaitab
             ipv6CidrBlocks: fastly.ipv6_cidr_blocks,
         }])
     ```
-
-    [1]: https://docs.fastly.com/guides/securing-communications/accessing-fastlys-ip-ranges
     """
     __args__ = dict()
     opts = pulumi.InvokeOptions.merge(_utilities.get_invoke_opts_defaults(), opts)
@@ -126,7 +124,5 @@ def get_fastly_ip_ranges_output(opts: Optional[pulumi.InvokeOptions] = None) -> 
             ipv6CidrBlocks: fastly.ipv6_cidr_blocks,
         }])
     ```
-
-    [1]: https://docs.fastly.com/guides/securing-communications/accessing-fastlys-ip-ranges
     """
     ...

@@ -98,6 +98,15 @@ def get_tls_activation(certificate_id: Optional[str] = None,
                        id: Optional[str] = None,
                        opts: Optional[pulumi.InvokeOptions] = None) -> AwaitableGetTlsActivationResult:
     """
+    layout: "fastly"
+    page_title: "Fastly: TlsActivation"
+    sidebar_current: "docs-fastly-datasource-tls_activation"
+    description: |-
+    Get information on Fastly TLS Activation.
+    <!-- yaml: line 6: could not find expected ':' -->
+
+    # TlsActivation
+
     Use this data source to get information on a TLS activation, including the certificate used, and the domain on which TLS was enabled.
 
     > **Warning:** The data source's filters are applied using an **AND** boolean operator, so depending on the combination
@@ -144,6 +153,15 @@ def get_tls_activation_output(certificate_id: Optional[pulumi.Input[Optional[str
                               id: Optional[pulumi.Input[Optional[str]]] = None,
                               opts: Optional[pulumi.InvokeOptions] = None) -> pulumi.Output[GetTlsActivationResult]:
     """
+    layout: "fastly"
+    page_title: "Fastly: TlsActivation"
+    sidebar_current: "docs-fastly-datasource-tls_activation"
+    description: |-
+    Get information on Fastly TLS Activation.
+    <!-- yaml: line 6: could not find expected ':' -->
+
+    # TlsActivation
+
     Use this data source to get information on a TLS activation, including the certificate used, and the domain on which TLS was enabled.
 
     > **Warning:** The data source's filters are applied using an **AND** boolean operator, so depending on the combination

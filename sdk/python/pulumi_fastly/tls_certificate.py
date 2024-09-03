@@ -227,9 +227,18 @@ class TlsCertificate(pulumi.CustomResource):
                  name: Optional[pulumi.Input[str]] = None,
                  __props__=None):
         """
+        layout: "fastly"
+        page_title: "Fastly: tls_certificate"
+        sidebar_current: "docs-fastly-resource-tls_certificate"
+        description: |-
+        Uploads a custom TLS certificate
+        <!-- yaml: line 6: could not find expected ':' -->
+
+        # TlsCertificate
+
         Uploads a custom TLS certificate to Fastly to be used to terminate TLS traffic.
 
-        > Each TLS certificate **must** have its corresponding private key uploaded _prior_ to uploading the certificate. This
+        > Each TLS certificate **must** have its corresponding private key uploaded *prior* to uploading the certificate. This
         can be achieved in Pulumi using `depends_on`
 
         ## Example Usage
@@ -296,9 +305,18 @@ class TlsCertificate(pulumi.CustomResource):
                  args: TlsCertificateArgs,
                  opts: Optional[pulumi.ResourceOptions] = None):
         """
+        layout: "fastly"
+        page_title: "Fastly: tls_certificate"
+        sidebar_current: "docs-fastly-resource-tls_certificate"
+        description: |-
+        Uploads a custom TLS certificate
+        <!-- yaml: line 6: could not find expected ':' -->
+
+        # TlsCertificate
+
         Uploads a custom TLS certificate to Fastly to be used to terminate TLS traffic.
 
-        > Each TLS certificate **must** have its corresponding private key uploaded _prior_ to uploading the certificate. This
+        > Each TLS certificate **must** have its corresponding private key uploaded *prior* to uploading the certificate. This
         can be achieved in Pulumi using `depends_on`
 
         ## Example Usage

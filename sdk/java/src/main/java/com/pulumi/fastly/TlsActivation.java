@@ -14,9 +14,18 @@ import java.lang.String;
 import javax.annotation.Nullable;
 
 /**
+ * layout: &#34;fastly&#34;
+ * page_title: &#34;Fastly: tls_activation&#34;
+ * sidebar_current: &#34;docs-fastly-resource-tls_activation&#34;
+ * description: |-
+ * Enables TLS on a domain
+ * &lt;!-- yaml: line 6: could not find expected &#39;:&#39; --&gt;
+ * 
+ * # fastly.TlsActivation
+ * 
  * Enables TLS on a domain using a specified custom TLS certificate.
  * 
- * &gt; **Note:** The Fastly service must be provisioned _prior_ to enabling TLS on it. This can be achieved in Pulumi using `depends_on`.
+ * &gt; **Note:** The Fastly service must be provisioned *prior* to enabling TLS on it. This can be achieved in Pulumi using `depends_on`.
  * 
  * ## Example Usage
  * 

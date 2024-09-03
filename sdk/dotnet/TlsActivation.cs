@@ -10,9 +10,18 @@ using Pulumi.Serialization;
 namespace Pulumi.Fastly
 {
     /// <summary>
+    /// layout: "fastly"
+    /// page_title: "Fastly: tls_activation"
+    /// sidebar_current: "docs-fastly-resource-tls_activation"
+    /// description: |-
+    /// Enables TLS on a domain
+    /// &lt;!-- yaml: line 6: could not find expected ':' --&gt;
+    /// 
+    /// # fastly.TlsActivation
+    /// 
     /// Enables TLS on a domain using a specified custom TLS certificate.
     /// 
-    /// &gt; **Note:** The Fastly service must be provisioned _prior_ to enabling TLS on it. This can be achieved in Pulumi using `depends_on`.
+    /// &gt; **Note:** The Fastly service must be provisioned *prior* to enabling TLS on it. This can be achieved in Pulumi using `depends_on`.
     /// 
     /// ## Example Usage
     /// 

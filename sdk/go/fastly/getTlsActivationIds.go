@@ -11,6 +11,15 @@ import (
 	"github.com/pulumi/pulumi/sdk/v3/go/pulumi"
 )
 
+// layout: "fastly"
+// page_title: "Fastly: getTlsActivationIds"
+// sidebar_current: "docs-fastly-datasource-tls_activation_ids"
+// description: |-
+// Get the list of TLS Activation identifiers in Fastly.
+// <!-- yaml: line 6: could not find expected ':' -->
+//
+// # getTlsActivationIds
+//
 // Use this data source to get the list of TLS Activation identifiers in Fastly.
 func GetTlsActivationIds(ctx *pulumi.Context, args *GetTlsActivationIdsArgs, opts ...pulumi.InvokeOption) (*GetTlsActivationIdsResult, error) {
 	opts = internal.PkgInvokeDefaultOpts(opts)

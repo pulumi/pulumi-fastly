@@ -17,6 +17,15 @@ import java.util.Optional;
 import javax.annotation.Nullable;
 
 /**
+ * layout: &#34;fastly&#34;
+ * page_title: &#34;Fastly: tls_mutual_authentication&#34;
+ * sidebar_current: &#34;docs-fastly-resource-tls_mutual_authentication&#34;
+ * description: |-
+ * Allows for client-to-server authentication using client-side X.509 authentication.
+ * &lt;!-- yaml: line 6: could not find expected &#39;:&#39; --&gt;
+ * 
+ * # fastly.TlsMutualAuthentication
+ * 
  * The Mutual TLS API allows for client-to-server authentication using client-side X.509 authentication.
  * 
  * The main Mutual Authentication object represents the certificate bundle and other configurations which support Mutual TLS for your domains.

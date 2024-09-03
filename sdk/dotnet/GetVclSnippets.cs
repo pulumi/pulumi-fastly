@@ -51,8 +51,6 @@ namespace Pulumi.Fastly
         ///     };
         /// });
         /// ```
-        /// 
-        /// [1]: https://www.fastly.com/documentation/reference/api/vcl-services/snippet/
         /// </summary>
         public static Task<GetVclSnippetsResult> InvokeAsync(GetVclSnippetsArgs args, InvokeOptions? options = null)
             => global::Pulumi.Deployment.Instance.InvokeAsync<GetVclSnippetsResult>("fastly:index/getVclSnippets:getVclSnippets", args ?? new GetVclSnippetsArgs(), options.WithDefaults());
@@ -97,8 +95,6 @@ namespace Pulumi.Fastly
         ///     };
         /// });
         /// ```
-        /// 
-        /// [1]: https://www.fastly.com/documentation/reference/api/vcl-services/snippet/
         /// </summary>
         public static Output<GetVclSnippetsResult> Invoke(GetVclSnippetsInvokeArgs args, InvokeOptions? options = null)
             => global::Pulumi.Deployment.Instance.Invoke<GetVclSnippetsResult>("fastly:index/getVclSnippets:getVclSnippets", args ?? new GetVclSnippetsInvokeArgs(), options.WithDefaults());

@@ -12,6 +12,15 @@ namespace Pulumi.Fastly
     public static class GetTlsCertificate
     {
         /// <summary>
+        /// layout: "fastly"
+        /// page_title: "Fastly: fastly.TlsCertificate"
+        /// sidebar_current: "docs-fastly-datasource-tls_certificate"
+        /// description: |-
+        /// Get information on Fastly TLS certificate.
+        /// &lt;!-- yaml: line 6: could not find expected ':' --&gt;
+        /// 
+        /// # fastly.TlsCertificate
+        /// 
         /// Use this data source to get information of a TLS certificate for use with other resources.
         /// 
         /// &gt; **Warning:** The data source's filters are applied using an **AND** boolean operator, so depending on the combination
@@ -42,6 +51,15 @@ namespace Pulumi.Fastly
             => global::Pulumi.Deployment.Instance.InvokeAsync<GetTlsCertificateResult>("fastly:index/getTlsCertificate:getTlsCertificate", args ?? new GetTlsCertificateArgs(), options.WithDefaults());
 
         /// <summary>
+        /// layout: "fastly"
+        /// page_title: "Fastly: fastly.TlsCertificate"
+        /// sidebar_current: "docs-fastly-datasource-tls_certificate"
+        /// description: |-
+        /// Get information on Fastly TLS certificate.
+        /// &lt;!-- yaml: line 6: could not find expected ':' --&gt;
+        /// 
+        /// # fastly.TlsCertificate
+        /// 
         /// Use this data source to get information of a TLS certificate for use with other resources.
         /// 
         /// &gt; **Warning:** The data source's filters are applied using an **AND** boolean operator, so depending on the combination

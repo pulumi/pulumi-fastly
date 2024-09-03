@@ -16,9 +16,18 @@ import java.util.List;
 import javax.annotation.Nullable;
 
 /**
+ * layout: &#34;fastly&#34;
+ * page_title: &#34;Fastly: tls_certificate&#34;
+ * sidebar_current: &#34;docs-fastly-resource-tls_certificate&#34;
+ * description: |-
+ * Uploads a custom TLS certificate
+ * &lt;!-- yaml: line 6: could not find expected &#39;:&#39; --&gt;
+ * 
+ * # fastly.TlsCertificate
+ * 
  * Uploads a custom TLS certificate to Fastly to be used to terminate TLS traffic.
  * 
- * &gt; Each TLS certificate **must** have its corresponding private key uploaded _prior_ to uploading the certificate. This
+ * &gt; Each TLS certificate **must** have its corresponding private key uploaded *prior* to uploading the certificate. This
  * can be achieved in Pulumi using `depends_on`
  * 
  * ## Example Usage

@@ -12,9 +12,18 @@ import (
 	"github.com/pulumi/pulumi/sdk/v3/go/pulumi"
 )
 
+// layout: "fastly"
+// page_title: "Fastly: tlsCertificate"
+// sidebar_current: "docs-fastly-resource-tls_certificate"
+// description: |-
+// Uploads a custom TLS certificate
+// <!-- yaml: line 6: could not find expected ':' -->
+//
+// # TlsCertificate
+//
 // Uploads a custom TLS certificate to Fastly to be used to terminate TLS traffic.
 //
-// > Each TLS certificate **must** have its corresponding private key uploaded _prior_ to uploading the certificate. This
+// > Each TLS certificate **must** have its corresponding private key uploaded *prior* to uploading the certificate. This
 // can be achieved in Pulumi using `dependsOn`
 //
 // ## Example Usage

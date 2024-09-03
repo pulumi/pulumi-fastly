@@ -5,6 +5,15 @@ import * as pulumi from "@pulumi/pulumi";
 import * as utilities from "./utilities";
 
 /**
+ * layout: "fastly"
+ * page_title: "Fastly: fastly.getTlsCertificateIds"
+ * sidebar_current: "docs-fastly-datasource-tls_certificate_ids"
+ * description: |-
+ * Get IDs of available TLS certificates.
+ * <!-- yaml: line 6: could not find expected ':' -->
+ *
+ * # fastly.getTlsCertificateIds
+ *
  * Use this data source to get the IDs of available TLS certificates for use with other resources.
  *
  * ## Example Usage
@@ -38,6 +47,15 @@ export interface GetTlsCertificateIdsResult {
     readonly ids: string[];
 }
 /**
+ * layout: "fastly"
+ * page_title: "Fastly: fastly.getTlsCertificateIds"
+ * sidebar_current: "docs-fastly-datasource-tls_certificate_ids"
+ * description: |-
+ * Get IDs of available TLS certificates.
+ * <!-- yaml: line 6: could not find expected ':' -->
+ *
+ * # fastly.getTlsCertificateIds
+ *
  * Use this data source to get the IDs of available TLS certificates for use with other resources.
  *
  * ## Example Usage

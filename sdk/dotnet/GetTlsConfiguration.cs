@@ -12,6 +12,15 @@ namespace Pulumi.Fastly
     public static class GetTlsConfiguration
     {
         /// <summary>
+        /// layout: "fastly"
+        /// page_title: "Fastly: fastly.getTlsConfiguration"
+        /// sidebar_current: "docs-fastly-datasource-tls_configuration"
+        /// description: |-
+        /// Get information on Fastly TLS configuration.
+        /// &lt;!-- yaml: line 6: could not find expected ':' --&gt;
+        /// 
+        /// # fastly.getTlsConfiguration
+        /// 
         /// Use this data source to get the ID of a TLS configuration for use with other resources.
         /// 
         /// &gt; **Warning:** The data source's filters are applied using an **AND** boolean operator, so depending on the combination
@@ -47,6 +56,15 @@ namespace Pulumi.Fastly
             => global::Pulumi.Deployment.Instance.InvokeAsync<GetTlsConfigurationResult>("fastly:index/getTlsConfiguration:getTlsConfiguration", args ?? new GetTlsConfigurationArgs(), options.WithDefaults());
 
         /// <summary>
+        /// layout: "fastly"
+        /// page_title: "Fastly: fastly.getTlsConfiguration"
+        /// sidebar_current: "docs-fastly-datasource-tls_configuration"
+        /// description: |-
+        /// Get information on Fastly TLS configuration.
+        /// &lt;!-- yaml: line 6: could not find expected ':' --&gt;
+        /// 
+        /// # fastly.getTlsConfiguration
+        /// 
         /// Use this data source to get the ID of a TLS configuration for use with other resources.
         /// 
         /// &gt; **Warning:** The data source's filters are applied using an **AND** boolean operator, so depending on the combination

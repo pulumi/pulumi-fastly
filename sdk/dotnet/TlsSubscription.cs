@@ -10,6 +10,15 @@ using Pulumi.Serialization;
 namespace Pulumi.Fastly
 {
     /// <summary>
+    /// layout: "fastly"
+    /// page_title: "Fastly: tls_subscription"
+    /// sidebar_current: "docs-fastly-resource-tls_subscription"
+    /// description: |-
+    /// Enables TLS on a domain using a managed certificate
+    /// &lt;!-- yaml: line 6: could not find expected ':' --&gt;
+    /// 
+    /// # fastly.TlsSubscription
+    /// 
     /// Enables TLS on a domain using a certificate managed by Fastly.
     /// 
     /// DNS records need to be modified on the domain being secured, in order to respond to the ACME domain ownership challenge.

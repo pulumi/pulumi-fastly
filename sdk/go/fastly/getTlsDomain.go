@@ -11,6 +11,15 @@ import (
 	"github.com/pulumi/pulumi/sdk/v3/go/pulumi"
 )
 
+// layout: "fastly"
+// page_title: "Fastly: getTlsDomain"
+// sidebar_current: "docs-fastly-datasource-tls_domain"
+// description: |-
+// Get IDs of activations, certificates and subscriptions associated with a domain.
+// <!-- yaml: line 6: could not find expected ':' -->
+//
+// # getTlsDomain
+//
 // Use this data source to get the IDs of activations, certificates and subscriptions associated with a domain.
 //
 // ## Example Usage

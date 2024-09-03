@@ -127,11 +127,11 @@ def get_tls_private_key(created_at: Optional[str] = None,
     Use this data source to get information on a TLS Private Key uploaded to Fastly.
 
     > **Warning:** The data source's filters are applied using an **AND** boolean operator, so depending on the combination
-     of filters, they may become mutually exclusive. The exception to this is `id` which must not be specified in combination
-     with any of the others.
+    of filters, they may become mutually exclusive. The exception to this is `id` which must not be specified in combination
+    with any of the others.
 
     > **Note:** If more or less than a single match is returned by the search, this provider will fail. Ensure that your search
-     is specific enough to return a single key.
+    is specific enough to return a single key.
 
     ## Example Usage
 
@@ -183,11 +183,11 @@ def get_tls_private_key_output(created_at: Optional[pulumi.Input[Optional[str]]]
     Use this data source to get information on a TLS Private Key uploaded to Fastly.
 
     > **Warning:** The data source's filters are applied using an **AND** boolean operator, so depending on the combination
-     of filters, they may become mutually exclusive. The exception to this is `id` which must not be specified in combination
-     with any of the others.
+    of filters, they may become mutually exclusive. The exception to this is `id` which must not be specified in combination
+    with any of the others.
 
     > **Note:** If more or less than a single match is returned by the search, this provider will fail. Ensure that your search
-     is specific enough to return a single key.
+    is specific enough to return a single key.
 
     ## Example Usage
 

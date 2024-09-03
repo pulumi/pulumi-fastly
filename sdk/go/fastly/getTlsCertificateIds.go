@@ -11,6 +11,15 @@ import (
 	"github.com/pulumi/pulumi/sdk/v3/go/pulumi"
 )
 
+// layout: "fastly"
+// page_title: "Fastly: getTlsCertificateIds"
+// sidebar_current: "docs-fastly-datasource-tls_certificate_ids"
+// description: |-
+// Get IDs of available TLS certificates.
+// <!-- yaml: line 6: could not find expected ':' -->
+//
+// # getTlsCertificateIds
+//
 // Use this data source to get the IDs of available TLS certificates for use with other resources.
 //
 // ## Example Usage

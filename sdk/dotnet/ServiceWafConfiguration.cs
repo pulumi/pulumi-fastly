@@ -10,6 +10,15 @@ using Pulumi.Serialization;
 namespace Pulumi.Fastly
 {
     /// <summary>
+    /// layout: "fastly"
+    /// page_title: "Fastly: service_waf_configuration"
+    /// sidebar_current: "docs-fastly-resource-service-waf-configuration"
+    /// description: |-
+    /// Provides a Web Application Firewall configuration and rules that can be applied to a service.
+    /// &lt;!-- yaml: line 6: could not find expected ':' --&gt;
+    /// 
+    /// # fastly.ServiceWafConfiguration
+    /// 
     /// Defines a set of Web Application Firewall configuration options that can be used to populate a service WAF. This resource will configure rules, thresholds and other settings for a WAF.
     /// 
     /// &gt; **Warning:** This provider will take precedence over any changes you make in the UI or API. Such changes are likely to be reversed if you run the provider again.

@@ -12,9 +12,18 @@ import (
 	"github.com/pulumi/pulumi/sdk/v3/go/pulumi"
 )
 
+// layout: "fastly"
+// page_title: "Fastly: tlsPlatformCertificate"
+// sidebar_current: "docs-fastly-resource-tls_platform_certificate"
+// description: |-
+// Uploads a TLS certificate to the Platform TLS service
+// <!-- yaml: line 6: could not find expected ':' -->
+//
+// # TlsPlatformCertificate
+//
 // Uploads a TLS certificate to the Fastly Platform TLS service.
 //
-// > Each TLS certificate **must** have its corresponding private key uploaded _prior_ to uploading the certificate. This
+// > Each TLS certificate **must** have its corresponding private key uploaded *prior* to uploading the certificate. This
 // can be achieved in Pulumi using `dependsOn`
 //
 // ## Example Usage

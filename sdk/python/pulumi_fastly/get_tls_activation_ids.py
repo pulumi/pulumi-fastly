@@ -71,6 +71,15 @@ class AwaitableGetTlsActivationIdsResult(GetTlsActivationIdsResult):
 def get_tls_activation_ids(certificate_id: Optional[str] = None,
                            opts: Optional[pulumi.InvokeOptions] = None) -> AwaitableGetTlsActivationIdsResult:
     """
+    layout: "fastly"
+    page_title: "Fastly: get_tls_activation_ids"
+    sidebar_current: "docs-fastly-datasource-tls_activation_ids"
+    description: |-
+    Get the list of TLS Activation identifiers in Fastly.
+    <!-- yaml: line 6: could not find expected ':' -->
+
+    # get_tls_activation_ids
+
     Use this data source to get the list of TLS Activation identifiers in Fastly.
 
     ## Example Usage
@@ -102,6 +111,15 @@ def get_tls_activation_ids(certificate_id: Optional[str] = None,
 def get_tls_activation_ids_output(certificate_id: Optional[pulumi.Input[Optional[str]]] = None,
                                   opts: Optional[pulumi.InvokeOptions] = None) -> pulumi.Output[GetTlsActivationIdsResult]:
     """
+    layout: "fastly"
+    page_title: "Fastly: get_tls_activation_ids"
+    sidebar_current: "docs-fastly-datasource-tls_activation_ids"
+    description: |-
+    Get the list of TLS Activation identifiers in Fastly.
+    <!-- yaml: line 6: could not find expected ':' -->
+
+    # get_tls_activation_ids
+
     Use this data source to get the list of TLS Activation identifiers in Fastly.
 
     ## Example Usage

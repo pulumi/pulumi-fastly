@@ -181,8 +181,6 @@ public final class FastlyFunctions {
      * </pre>
      * &lt;!--End PulumiCodeChooser --&gt;
      * 
-     * [1]: https://developer.fastly.com/reference/api/dictionaries/
-     * 
      */
     public static Output<GetDictionariesResult> getDictionaries(GetDictionariesArgs args) {
         return getDictionaries(args, InvokeOptions.Empty);
@@ -248,8 +246,6 @@ public final class FastlyFunctions {
      * }
      * </pre>
      * &lt;!--End PulumiCodeChooser --&gt;
-     * 
-     * [1]: https://developer.fastly.com/reference/api/dictionaries/
      * 
      */
     public static CompletableFuture<GetDictionariesResult> getDictionariesPlain(GetDictionariesPlainArgs args) {
@@ -317,8 +313,6 @@ public final class FastlyFunctions {
      * </pre>
      * &lt;!--End PulumiCodeChooser --&gt;
      * 
-     * [1]: https://developer.fastly.com/reference/api/dictionaries/
-     * 
      */
     public static Output<GetDictionariesResult> getDictionaries(GetDictionariesArgs args, InvokeOptions options) {
         return Deployment.getInstance().invoke("fastly:index/getDictionaries:getDictionaries", TypeShape.of(GetDictionariesResult.class), args, Utilities.withVersion(options));
@@ -385,8 +379,6 @@ public final class FastlyFunctions {
      * </pre>
      * &lt;!--End PulumiCodeChooser --&gt;
      * 
-     * [1]: https://developer.fastly.com/reference/api/dictionaries/
-     * 
      */
     public static CompletableFuture<GetDictionariesResult> getDictionariesPlain(GetDictionariesPlainArgs args, InvokeOptions options) {
         return Deployment.getInstance().invokeAsync("fastly:index/getDictionaries:getDictionaries", TypeShape.of(GetDictionariesResult.class), args, Utilities.withVersion(options));
@@ -432,8 +424,6 @@ public final class FastlyFunctions {
      * }
      * </pre>
      * &lt;!--End PulumiCodeChooser --&gt;
-     * 
-     * [1]: https://docs.fastly.com/guides/securing-communications/accessing-fastlys-ip-ranges
      * 
      */
     public static Output<GetFastlyIpRangesResult> getFastlyIpRanges() {
@@ -481,8 +471,6 @@ public final class FastlyFunctions {
      * </pre>
      * &lt;!--End PulumiCodeChooser --&gt;
      * 
-     * [1]: https://docs.fastly.com/guides/securing-communications/accessing-fastlys-ip-ranges
-     * 
      */
     public static CompletableFuture<GetFastlyIpRangesResult> getFastlyIpRangesPlain() {
         return getFastlyIpRangesPlain(InvokeArgs.Empty, InvokeOptions.Empty);
@@ -528,8 +516,6 @@ public final class FastlyFunctions {
      * }
      * </pre>
      * &lt;!--End PulumiCodeChooser --&gt;
-     * 
-     * [1]: https://docs.fastly.com/guides/securing-communications/accessing-fastlys-ip-ranges
      * 
      */
     public static Output<GetFastlyIpRangesResult> getFastlyIpRanges(InvokeArgs args) {
@@ -577,8 +563,6 @@ public final class FastlyFunctions {
      * </pre>
      * &lt;!--End PulumiCodeChooser --&gt;
      * 
-     * [1]: https://docs.fastly.com/guides/securing-communications/accessing-fastlys-ip-ranges
-     * 
      */
     public static CompletableFuture<GetFastlyIpRangesResult> getFastlyIpRangesPlain(InvokeArgs args) {
         return getFastlyIpRangesPlain(args, InvokeOptions.Empty);
@@ -625,8 +609,6 @@ public final class FastlyFunctions {
      * </pre>
      * &lt;!--End PulumiCodeChooser --&gt;
      * 
-     * [1]: https://docs.fastly.com/guides/securing-communications/accessing-fastlys-ip-ranges
-     * 
      */
     public static Output<GetFastlyIpRangesResult> getFastlyIpRanges(InvokeArgs args, InvokeOptions options) {
         return Deployment.getInstance().invoke("fastly:index/getFastlyIpRanges:getFastlyIpRanges", TypeShape.of(GetFastlyIpRangesResult.class), args, Utilities.withVersion(options));
@@ -672,8 +654,6 @@ public final class FastlyFunctions {
      * }
      * </pre>
      * &lt;!--End PulumiCodeChooser --&gt;
-     * 
-     * [1]: https://docs.fastly.com/guides/securing-communications/accessing-fastlys-ip-ranges
      * 
      */
     public static CompletableFuture<GetFastlyIpRangesResult> getFastlyIpRangesPlain(InvokeArgs args, InvokeOptions options) {
@@ -1070,6 +1050,15 @@ public final class FastlyFunctions {
         return Deployment.getInstance().invokeAsync("fastly:index/getServices:getServices", TypeShape.of(GetServicesResult.class), args, Utilities.withVersion(options));
     }
     /**
+     * layout: &#34;fastly&#34;
+     * page_title: &#34;Fastly: fastly.TlsActivation&#34;
+     * sidebar_current: &#34;docs-fastly-datasource-tls_activation&#34;
+     * description: |-
+     * Get information on Fastly TLS Activation.
+     * &lt;!-- yaml: line 6: could not find expected &#39;:&#39; --&gt;
+     * 
+     * # fastly.TlsActivation
+     * 
      * Use this data source to get information on a TLS activation, including the certificate used, and the domain on which TLS was enabled.
      * 
      * &gt; **Warning:** The data source&#39;s filters are applied using an **AND** boolean operator, so depending on the combination
@@ -1118,6 +1107,15 @@ public final class FastlyFunctions {
         return getTlsActivation(GetTlsActivationArgs.Empty, InvokeOptions.Empty);
     }
     /**
+     * layout: &#34;fastly&#34;
+     * page_title: &#34;Fastly: fastly.TlsActivation&#34;
+     * sidebar_current: &#34;docs-fastly-datasource-tls_activation&#34;
+     * description: |-
+     * Get information on Fastly TLS Activation.
+     * &lt;!-- yaml: line 6: could not find expected &#39;:&#39; --&gt;
+     * 
+     * # fastly.TlsActivation
+     * 
      * Use this data source to get information on a TLS activation, including the certificate used, and the domain on which TLS was enabled.
      * 
      * &gt; **Warning:** The data source&#39;s filters are applied using an **AND** boolean operator, so depending on the combination
@@ -1166,6 +1164,15 @@ public final class FastlyFunctions {
         return getTlsActivationPlain(GetTlsActivationPlainArgs.Empty, InvokeOptions.Empty);
     }
     /**
+     * layout: &#34;fastly&#34;
+     * page_title: &#34;Fastly: fastly.TlsActivation&#34;
+     * sidebar_current: &#34;docs-fastly-datasource-tls_activation&#34;
+     * description: |-
+     * Get information on Fastly TLS Activation.
+     * &lt;!-- yaml: line 6: could not find expected &#39;:&#39; --&gt;
+     * 
+     * # fastly.TlsActivation
+     * 
      * Use this data source to get information on a TLS activation, including the certificate used, and the domain on which TLS was enabled.
      * 
      * &gt; **Warning:** The data source&#39;s filters are applied using an **AND** boolean operator, so depending on the combination
@@ -1214,6 +1221,15 @@ public final class FastlyFunctions {
         return getTlsActivation(args, InvokeOptions.Empty);
     }
     /**
+     * layout: &#34;fastly&#34;
+     * page_title: &#34;Fastly: fastly.TlsActivation&#34;
+     * sidebar_current: &#34;docs-fastly-datasource-tls_activation&#34;
+     * description: |-
+     * Get information on Fastly TLS Activation.
+     * &lt;!-- yaml: line 6: could not find expected &#39;:&#39; --&gt;
+     * 
+     * # fastly.TlsActivation
+     * 
      * Use this data source to get information on a TLS activation, including the certificate used, and the domain on which TLS was enabled.
      * 
      * &gt; **Warning:** The data source&#39;s filters are applied using an **AND** boolean operator, so depending on the combination
@@ -1262,6 +1278,15 @@ public final class FastlyFunctions {
         return getTlsActivationPlain(args, InvokeOptions.Empty);
     }
     /**
+     * layout: &#34;fastly&#34;
+     * page_title: &#34;Fastly: fastly.TlsActivation&#34;
+     * sidebar_current: &#34;docs-fastly-datasource-tls_activation&#34;
+     * description: |-
+     * Get information on Fastly TLS Activation.
+     * &lt;!-- yaml: line 6: could not find expected &#39;:&#39; --&gt;
+     * 
+     * # fastly.TlsActivation
+     * 
      * Use this data source to get information on a TLS activation, including the certificate used, and the domain on which TLS was enabled.
      * 
      * &gt; **Warning:** The data source&#39;s filters are applied using an **AND** boolean operator, so depending on the combination
@@ -1310,6 +1335,15 @@ public final class FastlyFunctions {
         return Deployment.getInstance().invoke("fastly:index/getTlsActivation:getTlsActivation", TypeShape.of(GetTlsActivationResult.class), args, Utilities.withVersion(options));
     }
     /**
+     * layout: &#34;fastly&#34;
+     * page_title: &#34;Fastly: fastly.TlsActivation&#34;
+     * sidebar_current: &#34;docs-fastly-datasource-tls_activation&#34;
+     * description: |-
+     * Get information on Fastly TLS Activation.
+     * &lt;!-- yaml: line 6: could not find expected &#39;:&#39; --&gt;
+     * 
+     * # fastly.TlsActivation
+     * 
      * Use this data source to get information on a TLS activation, including the certificate used, and the domain on which TLS was enabled.
      * 
      * &gt; **Warning:** The data source&#39;s filters are applied using an **AND** boolean operator, so depending on the combination
@@ -1358,6 +1392,15 @@ public final class FastlyFunctions {
         return Deployment.getInstance().invokeAsync("fastly:index/getTlsActivation:getTlsActivation", TypeShape.of(GetTlsActivationResult.class), args, Utilities.withVersion(options));
     }
     /**
+     * layout: &#34;fastly&#34;
+     * page_title: &#34;Fastly: fastly.getTlsActivationIds&#34;
+     * sidebar_current: &#34;docs-fastly-datasource-tls_activation_ids&#34;
+     * description: |-
+     * Get the list of TLS Activation identifiers in Fastly.
+     * &lt;!-- yaml: line 6: could not find expected &#39;:&#39; --&gt;
+     * 
+     * # fastly.getTlsActivationIds
+     * 
      * Use this data source to get the list of TLS Activation identifiers in Fastly.
      * 
      * ## Example Usage
@@ -1370,6 +1413,15 @@ public final class FastlyFunctions {
         return getTlsActivationIds(GetTlsActivationIdsArgs.Empty, InvokeOptions.Empty);
     }
     /**
+     * layout: &#34;fastly&#34;
+     * page_title: &#34;Fastly: fastly.getTlsActivationIds&#34;
+     * sidebar_current: &#34;docs-fastly-datasource-tls_activation_ids&#34;
+     * description: |-
+     * Get the list of TLS Activation identifiers in Fastly.
+     * &lt;!-- yaml: line 6: could not find expected &#39;:&#39; --&gt;
+     * 
+     * # fastly.getTlsActivationIds
+     * 
      * Use this data source to get the list of TLS Activation identifiers in Fastly.
      * 
      * ## Example Usage
@@ -1382,6 +1434,15 @@ public final class FastlyFunctions {
         return getTlsActivationIdsPlain(GetTlsActivationIdsPlainArgs.Empty, InvokeOptions.Empty);
     }
     /**
+     * layout: &#34;fastly&#34;
+     * page_title: &#34;Fastly: fastly.getTlsActivationIds&#34;
+     * sidebar_current: &#34;docs-fastly-datasource-tls_activation_ids&#34;
+     * description: |-
+     * Get the list of TLS Activation identifiers in Fastly.
+     * &lt;!-- yaml: line 6: could not find expected &#39;:&#39; --&gt;
+     * 
+     * # fastly.getTlsActivationIds
+     * 
      * Use this data source to get the list of TLS Activation identifiers in Fastly.
      * 
      * ## Example Usage
@@ -1394,6 +1455,15 @@ public final class FastlyFunctions {
         return getTlsActivationIds(args, InvokeOptions.Empty);
     }
     /**
+     * layout: &#34;fastly&#34;
+     * page_title: &#34;Fastly: fastly.getTlsActivationIds&#34;
+     * sidebar_current: &#34;docs-fastly-datasource-tls_activation_ids&#34;
+     * description: |-
+     * Get the list of TLS Activation identifiers in Fastly.
+     * &lt;!-- yaml: line 6: could not find expected &#39;:&#39; --&gt;
+     * 
+     * # fastly.getTlsActivationIds
+     * 
      * Use this data source to get the list of TLS Activation identifiers in Fastly.
      * 
      * ## Example Usage
@@ -1406,6 +1476,15 @@ public final class FastlyFunctions {
         return getTlsActivationIdsPlain(args, InvokeOptions.Empty);
     }
     /**
+     * layout: &#34;fastly&#34;
+     * page_title: &#34;Fastly: fastly.getTlsActivationIds&#34;
+     * sidebar_current: &#34;docs-fastly-datasource-tls_activation_ids&#34;
+     * description: |-
+     * Get the list of TLS Activation identifiers in Fastly.
+     * &lt;!-- yaml: line 6: could not find expected &#39;:&#39; --&gt;
+     * 
+     * # fastly.getTlsActivationIds
+     * 
      * Use this data source to get the list of TLS Activation identifiers in Fastly.
      * 
      * ## Example Usage
@@ -1418,6 +1497,15 @@ public final class FastlyFunctions {
         return Deployment.getInstance().invoke("fastly:index/getTlsActivationIds:getTlsActivationIds", TypeShape.of(GetTlsActivationIdsResult.class), args, Utilities.withVersion(options));
     }
     /**
+     * layout: &#34;fastly&#34;
+     * page_title: &#34;Fastly: fastly.getTlsActivationIds&#34;
+     * sidebar_current: &#34;docs-fastly-datasource-tls_activation_ids&#34;
+     * description: |-
+     * Get the list of TLS Activation identifiers in Fastly.
+     * &lt;!-- yaml: line 6: could not find expected &#39;:&#39; --&gt;
+     * 
+     * # fastly.getTlsActivationIds
+     * 
      * Use this data source to get the list of TLS Activation identifiers in Fastly.
      * 
      * ## Example Usage
@@ -1430,6 +1518,15 @@ public final class FastlyFunctions {
         return Deployment.getInstance().invokeAsync("fastly:index/getTlsActivationIds:getTlsActivationIds", TypeShape.of(GetTlsActivationIdsResult.class), args, Utilities.withVersion(options));
     }
     /**
+     * layout: &#34;fastly&#34;
+     * page_title: &#34;Fastly: fastly.TlsCertificate&#34;
+     * sidebar_current: &#34;docs-fastly-datasource-tls_certificate&#34;
+     * description: |-
+     * Get information on Fastly TLS certificate.
+     * &lt;!-- yaml: line 6: could not find expected &#39;:&#39; --&gt;
+     * 
+     * # fastly.TlsCertificate
+     * 
      * Use this data source to get information of a TLS certificate for use with other resources.
      * 
      * &gt; **Warning:** The data source&#39;s filters are applied using an **AND** boolean operator, so depending on the combination
@@ -1478,6 +1575,15 @@ public final class FastlyFunctions {
         return getTlsCertificate(GetTlsCertificateArgs.Empty, InvokeOptions.Empty);
     }
     /**
+     * layout: &#34;fastly&#34;
+     * page_title: &#34;Fastly: fastly.TlsCertificate&#34;
+     * sidebar_current: &#34;docs-fastly-datasource-tls_certificate&#34;
+     * description: |-
+     * Get information on Fastly TLS certificate.
+     * &lt;!-- yaml: line 6: could not find expected &#39;:&#39; --&gt;
+     * 
+     * # fastly.TlsCertificate
+     * 
      * Use this data source to get information of a TLS certificate for use with other resources.
      * 
      * &gt; **Warning:** The data source&#39;s filters are applied using an **AND** boolean operator, so depending on the combination
@@ -1526,6 +1632,15 @@ public final class FastlyFunctions {
         return getTlsCertificatePlain(GetTlsCertificatePlainArgs.Empty, InvokeOptions.Empty);
     }
     /**
+     * layout: &#34;fastly&#34;
+     * page_title: &#34;Fastly: fastly.TlsCertificate&#34;
+     * sidebar_current: &#34;docs-fastly-datasource-tls_certificate&#34;
+     * description: |-
+     * Get information on Fastly TLS certificate.
+     * &lt;!-- yaml: line 6: could not find expected &#39;:&#39; --&gt;
+     * 
+     * # fastly.TlsCertificate
+     * 
      * Use this data source to get information of a TLS certificate for use with other resources.
      * 
      * &gt; **Warning:** The data source&#39;s filters are applied using an **AND** boolean operator, so depending on the combination
@@ -1574,6 +1689,15 @@ public final class FastlyFunctions {
         return getTlsCertificate(args, InvokeOptions.Empty);
     }
     /**
+     * layout: &#34;fastly&#34;
+     * page_title: &#34;Fastly: fastly.TlsCertificate&#34;
+     * sidebar_current: &#34;docs-fastly-datasource-tls_certificate&#34;
+     * description: |-
+     * Get information on Fastly TLS certificate.
+     * &lt;!-- yaml: line 6: could not find expected &#39;:&#39; --&gt;
+     * 
+     * # fastly.TlsCertificate
+     * 
      * Use this data source to get information of a TLS certificate for use with other resources.
      * 
      * &gt; **Warning:** The data source&#39;s filters are applied using an **AND** boolean operator, so depending on the combination
@@ -1622,6 +1746,15 @@ public final class FastlyFunctions {
         return getTlsCertificatePlain(args, InvokeOptions.Empty);
     }
     /**
+     * layout: &#34;fastly&#34;
+     * page_title: &#34;Fastly: fastly.TlsCertificate&#34;
+     * sidebar_current: &#34;docs-fastly-datasource-tls_certificate&#34;
+     * description: |-
+     * Get information on Fastly TLS certificate.
+     * &lt;!-- yaml: line 6: could not find expected &#39;:&#39; --&gt;
+     * 
+     * # fastly.TlsCertificate
+     * 
      * Use this data source to get information of a TLS certificate for use with other resources.
      * 
      * &gt; **Warning:** The data source&#39;s filters are applied using an **AND** boolean operator, so depending on the combination
@@ -1670,6 +1803,15 @@ public final class FastlyFunctions {
         return Deployment.getInstance().invoke("fastly:index/getTlsCertificate:getTlsCertificate", TypeShape.of(GetTlsCertificateResult.class), args, Utilities.withVersion(options));
     }
     /**
+     * layout: &#34;fastly&#34;
+     * page_title: &#34;Fastly: fastly.TlsCertificate&#34;
+     * sidebar_current: &#34;docs-fastly-datasource-tls_certificate&#34;
+     * description: |-
+     * Get information on Fastly TLS certificate.
+     * &lt;!-- yaml: line 6: could not find expected &#39;:&#39; --&gt;
+     * 
+     * # fastly.TlsCertificate
+     * 
      * Use this data source to get information of a TLS certificate for use with other resources.
      * 
      * &gt; **Warning:** The data source&#39;s filters are applied using an **AND** boolean operator, so depending on the combination
@@ -1718,6 +1860,15 @@ public final class FastlyFunctions {
         return Deployment.getInstance().invokeAsync("fastly:index/getTlsCertificate:getTlsCertificate", TypeShape.of(GetTlsCertificateResult.class), args, Utilities.withVersion(options));
     }
     /**
+     * layout: &#34;fastly&#34;
+     * page_title: &#34;Fastly: fastly.getTlsCertificateIds&#34;
+     * sidebar_current: &#34;docs-fastly-datasource-tls_certificate_ids&#34;
+     * description: |-
+     * Get IDs of available TLS certificates.
+     * &lt;!-- yaml: line 6: could not find expected &#39;:&#39; --&gt;
+     * 
+     * # fastly.getTlsCertificateIds
+     * 
      * Use this data source to get the IDs of available TLS certificates for use with other resources.
      * 
      * ## Example Usage
@@ -1763,6 +1914,15 @@ public final class FastlyFunctions {
         return getTlsCertificateIds(InvokeArgs.Empty, InvokeOptions.Empty);
     }
     /**
+     * layout: &#34;fastly&#34;
+     * page_title: &#34;Fastly: fastly.getTlsCertificateIds&#34;
+     * sidebar_current: &#34;docs-fastly-datasource-tls_certificate_ids&#34;
+     * description: |-
+     * Get IDs of available TLS certificates.
+     * &lt;!-- yaml: line 6: could not find expected &#39;:&#39; --&gt;
+     * 
+     * # fastly.getTlsCertificateIds
+     * 
      * Use this data source to get the IDs of available TLS certificates for use with other resources.
      * 
      * ## Example Usage
@@ -1808,6 +1968,15 @@ public final class FastlyFunctions {
         return getTlsCertificateIdsPlain(InvokeArgs.Empty, InvokeOptions.Empty);
     }
     /**
+     * layout: &#34;fastly&#34;
+     * page_title: &#34;Fastly: fastly.getTlsCertificateIds&#34;
+     * sidebar_current: &#34;docs-fastly-datasource-tls_certificate_ids&#34;
+     * description: |-
+     * Get IDs of available TLS certificates.
+     * &lt;!-- yaml: line 6: could not find expected &#39;:&#39; --&gt;
+     * 
+     * # fastly.getTlsCertificateIds
+     * 
      * Use this data source to get the IDs of available TLS certificates for use with other resources.
      * 
      * ## Example Usage
@@ -1853,6 +2022,15 @@ public final class FastlyFunctions {
         return getTlsCertificateIds(args, InvokeOptions.Empty);
     }
     /**
+     * layout: &#34;fastly&#34;
+     * page_title: &#34;Fastly: fastly.getTlsCertificateIds&#34;
+     * sidebar_current: &#34;docs-fastly-datasource-tls_certificate_ids&#34;
+     * description: |-
+     * Get IDs of available TLS certificates.
+     * &lt;!-- yaml: line 6: could not find expected &#39;:&#39; --&gt;
+     * 
+     * # fastly.getTlsCertificateIds
+     * 
      * Use this data source to get the IDs of available TLS certificates for use with other resources.
      * 
      * ## Example Usage
@@ -1898,6 +2076,15 @@ public final class FastlyFunctions {
         return getTlsCertificateIdsPlain(args, InvokeOptions.Empty);
     }
     /**
+     * layout: &#34;fastly&#34;
+     * page_title: &#34;Fastly: fastly.getTlsCertificateIds&#34;
+     * sidebar_current: &#34;docs-fastly-datasource-tls_certificate_ids&#34;
+     * description: |-
+     * Get IDs of available TLS certificates.
+     * &lt;!-- yaml: line 6: could not find expected &#39;:&#39; --&gt;
+     * 
+     * # fastly.getTlsCertificateIds
+     * 
      * Use this data source to get the IDs of available TLS certificates for use with other resources.
      * 
      * ## Example Usage
@@ -1943,6 +2130,15 @@ public final class FastlyFunctions {
         return Deployment.getInstance().invoke("fastly:index/getTlsCertificateIds:getTlsCertificateIds", TypeShape.of(GetTlsCertificateIdsResult.class), args, Utilities.withVersion(options));
     }
     /**
+     * layout: &#34;fastly&#34;
+     * page_title: &#34;Fastly: fastly.getTlsCertificateIds&#34;
+     * sidebar_current: &#34;docs-fastly-datasource-tls_certificate_ids&#34;
+     * description: |-
+     * Get IDs of available TLS certificates.
+     * &lt;!-- yaml: line 6: could not find expected &#39;:&#39; --&gt;
+     * 
+     * # fastly.getTlsCertificateIds
+     * 
      * Use this data source to get the IDs of available TLS certificates for use with other resources.
      * 
      * ## Example Usage
@@ -1988,6 +2184,15 @@ public final class FastlyFunctions {
         return Deployment.getInstance().invokeAsync("fastly:index/getTlsCertificateIds:getTlsCertificateIds", TypeShape.of(GetTlsCertificateIdsResult.class), args, Utilities.withVersion(options));
     }
     /**
+     * layout: &#34;fastly&#34;
+     * page_title: &#34;Fastly: fastly.getTlsConfiguration&#34;
+     * sidebar_current: &#34;docs-fastly-datasource-tls_configuration&#34;
+     * description: |-
+     * Get information on Fastly TLS configuration.
+     * &lt;!-- yaml: line 6: could not find expected &#39;:&#39; --&gt;
+     * 
+     * # fastly.getTlsConfiguration
+     * 
      * Use this data source to get the ID of a TLS configuration for use with other resources.
      * 
      * &gt; **Warning:** The data source&#39;s filters are applied using an **AND** boolean operator, so depending on the combination
@@ -2042,6 +2247,15 @@ public final class FastlyFunctions {
         return getTlsConfiguration(GetTlsConfigurationArgs.Empty, InvokeOptions.Empty);
     }
     /**
+     * layout: &#34;fastly&#34;
+     * page_title: &#34;Fastly: fastly.getTlsConfiguration&#34;
+     * sidebar_current: &#34;docs-fastly-datasource-tls_configuration&#34;
+     * description: |-
+     * Get information on Fastly TLS configuration.
+     * &lt;!-- yaml: line 6: could not find expected &#39;:&#39; --&gt;
+     * 
+     * # fastly.getTlsConfiguration
+     * 
      * Use this data source to get the ID of a TLS configuration for use with other resources.
      * 
      * &gt; **Warning:** The data source&#39;s filters are applied using an **AND** boolean operator, so depending on the combination
@@ -2096,6 +2310,15 @@ public final class FastlyFunctions {
         return getTlsConfigurationPlain(GetTlsConfigurationPlainArgs.Empty, InvokeOptions.Empty);
     }
     /**
+     * layout: &#34;fastly&#34;
+     * page_title: &#34;Fastly: fastly.getTlsConfiguration&#34;
+     * sidebar_current: &#34;docs-fastly-datasource-tls_configuration&#34;
+     * description: |-
+     * Get information on Fastly TLS configuration.
+     * &lt;!-- yaml: line 6: could not find expected &#39;:&#39; --&gt;
+     * 
+     * # fastly.getTlsConfiguration
+     * 
      * Use this data source to get the ID of a TLS configuration for use with other resources.
      * 
      * &gt; **Warning:** The data source&#39;s filters are applied using an **AND** boolean operator, so depending on the combination
@@ -2150,6 +2373,15 @@ public final class FastlyFunctions {
         return getTlsConfiguration(args, InvokeOptions.Empty);
     }
     /**
+     * layout: &#34;fastly&#34;
+     * page_title: &#34;Fastly: fastly.getTlsConfiguration&#34;
+     * sidebar_current: &#34;docs-fastly-datasource-tls_configuration&#34;
+     * description: |-
+     * Get information on Fastly TLS configuration.
+     * &lt;!-- yaml: line 6: could not find expected &#39;:&#39; --&gt;
+     * 
+     * # fastly.getTlsConfiguration
+     * 
      * Use this data source to get the ID of a TLS configuration for use with other resources.
      * 
      * &gt; **Warning:** The data source&#39;s filters are applied using an **AND** boolean operator, so depending on the combination
@@ -2204,6 +2436,15 @@ public final class FastlyFunctions {
         return getTlsConfigurationPlain(args, InvokeOptions.Empty);
     }
     /**
+     * layout: &#34;fastly&#34;
+     * page_title: &#34;Fastly: fastly.getTlsConfiguration&#34;
+     * sidebar_current: &#34;docs-fastly-datasource-tls_configuration&#34;
+     * description: |-
+     * Get information on Fastly TLS configuration.
+     * &lt;!-- yaml: line 6: could not find expected &#39;:&#39; --&gt;
+     * 
+     * # fastly.getTlsConfiguration
+     * 
      * Use this data source to get the ID of a TLS configuration for use with other resources.
      * 
      * &gt; **Warning:** The data source&#39;s filters are applied using an **AND** boolean operator, so depending on the combination
@@ -2258,6 +2499,15 @@ public final class FastlyFunctions {
         return Deployment.getInstance().invoke("fastly:index/getTlsConfiguration:getTlsConfiguration", TypeShape.of(GetTlsConfigurationResult.class), args, Utilities.withVersion(options));
     }
     /**
+     * layout: &#34;fastly&#34;
+     * page_title: &#34;Fastly: fastly.getTlsConfiguration&#34;
+     * sidebar_current: &#34;docs-fastly-datasource-tls_configuration&#34;
+     * description: |-
+     * Get information on Fastly TLS configuration.
+     * &lt;!-- yaml: line 6: could not find expected &#39;:&#39; --&gt;
+     * 
+     * # fastly.getTlsConfiguration
+     * 
      * Use this data source to get the ID of a TLS configuration for use with other resources.
      * 
      * &gt; **Warning:** The data source&#39;s filters are applied using an **AND** boolean operator, so depending on the combination
@@ -2312,6 +2562,15 @@ public final class FastlyFunctions {
         return Deployment.getInstance().invokeAsync("fastly:index/getTlsConfiguration:getTlsConfiguration", TypeShape.of(GetTlsConfigurationResult.class), args, Utilities.withVersion(options));
     }
     /**
+     * layout: &#34;fastly&#34;
+     * page_title: &#34;Fastly: fastly.getTlsConfigurationIds&#34;
+     * sidebar_current: &#34;docs-fastly-datasource-tls_configuration_ids&#34;
+     * description: |-
+     * Get IDs of available TLS Configurations.
+     * &lt;!-- yaml: line 6: could not find expected &#39;:&#39; --&gt;
+     * 
+     * # fastly.getTlsConfigurationIds
+     * 
      * Use this data source to get the IDs of available TLS configurations for use with other resources.
      * 
      * ## Example Usage
@@ -2357,6 +2616,15 @@ public final class FastlyFunctions {
         return getTlsConfigurationIds(InvokeArgs.Empty, InvokeOptions.Empty);
     }
     /**
+     * layout: &#34;fastly&#34;
+     * page_title: &#34;Fastly: fastly.getTlsConfigurationIds&#34;
+     * sidebar_current: &#34;docs-fastly-datasource-tls_configuration_ids&#34;
+     * description: |-
+     * Get IDs of available TLS Configurations.
+     * &lt;!-- yaml: line 6: could not find expected &#39;:&#39; --&gt;
+     * 
+     * # fastly.getTlsConfigurationIds
+     * 
      * Use this data source to get the IDs of available TLS configurations for use with other resources.
      * 
      * ## Example Usage
@@ -2402,6 +2670,15 @@ public final class FastlyFunctions {
         return getTlsConfigurationIdsPlain(InvokeArgs.Empty, InvokeOptions.Empty);
     }
     /**
+     * layout: &#34;fastly&#34;
+     * page_title: &#34;Fastly: fastly.getTlsConfigurationIds&#34;
+     * sidebar_current: &#34;docs-fastly-datasource-tls_configuration_ids&#34;
+     * description: |-
+     * Get IDs of available TLS Configurations.
+     * &lt;!-- yaml: line 6: could not find expected &#39;:&#39; --&gt;
+     * 
+     * # fastly.getTlsConfigurationIds
+     * 
      * Use this data source to get the IDs of available TLS configurations for use with other resources.
      * 
      * ## Example Usage
@@ -2447,6 +2724,15 @@ public final class FastlyFunctions {
         return getTlsConfigurationIds(args, InvokeOptions.Empty);
     }
     /**
+     * layout: &#34;fastly&#34;
+     * page_title: &#34;Fastly: fastly.getTlsConfigurationIds&#34;
+     * sidebar_current: &#34;docs-fastly-datasource-tls_configuration_ids&#34;
+     * description: |-
+     * Get IDs of available TLS Configurations.
+     * &lt;!-- yaml: line 6: could not find expected &#39;:&#39; --&gt;
+     * 
+     * # fastly.getTlsConfigurationIds
+     * 
      * Use this data source to get the IDs of available TLS configurations for use with other resources.
      * 
      * ## Example Usage
@@ -2492,6 +2778,15 @@ public final class FastlyFunctions {
         return getTlsConfigurationIdsPlain(args, InvokeOptions.Empty);
     }
     /**
+     * layout: &#34;fastly&#34;
+     * page_title: &#34;Fastly: fastly.getTlsConfigurationIds&#34;
+     * sidebar_current: &#34;docs-fastly-datasource-tls_configuration_ids&#34;
+     * description: |-
+     * Get IDs of available TLS Configurations.
+     * &lt;!-- yaml: line 6: could not find expected &#39;:&#39; --&gt;
+     * 
+     * # fastly.getTlsConfigurationIds
+     * 
      * Use this data source to get the IDs of available TLS configurations for use with other resources.
      * 
      * ## Example Usage
@@ -2537,6 +2832,15 @@ public final class FastlyFunctions {
         return Deployment.getInstance().invoke("fastly:index/getTlsConfigurationIds:getTlsConfigurationIds", TypeShape.of(GetTlsConfigurationIdsResult.class), args, Utilities.withVersion(options));
     }
     /**
+     * layout: &#34;fastly&#34;
+     * page_title: &#34;Fastly: fastly.getTlsConfigurationIds&#34;
+     * sidebar_current: &#34;docs-fastly-datasource-tls_configuration_ids&#34;
+     * description: |-
+     * Get IDs of available TLS Configurations.
+     * &lt;!-- yaml: line 6: could not find expected &#39;:&#39; --&gt;
+     * 
+     * # fastly.getTlsConfigurationIds
+     * 
      * Use this data source to get the IDs of available TLS configurations for use with other resources.
      * 
      * ## Example Usage
@@ -2582,6 +2886,15 @@ public final class FastlyFunctions {
         return Deployment.getInstance().invokeAsync("fastly:index/getTlsConfigurationIds:getTlsConfigurationIds", TypeShape.of(GetTlsConfigurationIdsResult.class), args, Utilities.withVersion(options));
     }
     /**
+     * layout: &#34;fastly&#34;
+     * page_title: &#34;Fastly: fastly.getTlsDomain&#34;
+     * sidebar_current: &#34;docs-fastly-datasource-tls_domain&#34;
+     * description: |-
+     * Get IDs of activations, certificates and subscriptions associated with a domain.
+     * &lt;!-- yaml: line 6: could not find expected &#39;:&#39; --&gt;
+     * 
+     * # fastly.getTlsDomain
+     * 
      * Use this data source to get the IDs of activations, certificates and subscriptions associated with a domain.
      * 
      * ## Example Usage
@@ -2624,6 +2937,15 @@ public final class FastlyFunctions {
         return getTlsDomain(args, InvokeOptions.Empty);
     }
     /**
+     * layout: &#34;fastly&#34;
+     * page_title: &#34;Fastly: fastly.getTlsDomain&#34;
+     * sidebar_current: &#34;docs-fastly-datasource-tls_domain&#34;
+     * description: |-
+     * Get IDs of activations, certificates and subscriptions associated with a domain.
+     * &lt;!-- yaml: line 6: could not find expected &#39;:&#39; --&gt;
+     * 
+     * # fastly.getTlsDomain
+     * 
      * Use this data source to get the IDs of activations, certificates and subscriptions associated with a domain.
      * 
      * ## Example Usage
@@ -2666,6 +2988,15 @@ public final class FastlyFunctions {
         return getTlsDomainPlain(args, InvokeOptions.Empty);
     }
     /**
+     * layout: &#34;fastly&#34;
+     * page_title: &#34;Fastly: fastly.getTlsDomain&#34;
+     * sidebar_current: &#34;docs-fastly-datasource-tls_domain&#34;
+     * description: |-
+     * Get IDs of activations, certificates and subscriptions associated with a domain.
+     * &lt;!-- yaml: line 6: could not find expected &#39;:&#39; --&gt;
+     * 
+     * # fastly.getTlsDomain
+     * 
      * Use this data source to get the IDs of activations, certificates and subscriptions associated with a domain.
      * 
      * ## Example Usage
@@ -2708,6 +3039,15 @@ public final class FastlyFunctions {
         return Deployment.getInstance().invoke("fastly:index/getTlsDomain:getTlsDomain", TypeShape.of(GetTlsDomainResult.class), args, Utilities.withVersion(options));
     }
     /**
+     * layout: &#34;fastly&#34;
+     * page_title: &#34;Fastly: fastly.getTlsDomain&#34;
+     * sidebar_current: &#34;docs-fastly-datasource-tls_domain&#34;
+     * description: |-
+     * Get IDs of activations, certificates and subscriptions associated with a domain.
+     * &lt;!-- yaml: line 6: could not find expected &#39;:&#39; --&gt;
+     * 
+     * # fastly.getTlsDomain
+     * 
      * Use this data source to get the IDs of activations, certificates and subscriptions associated with a domain.
      * 
      * ## Example Usage
@@ -2750,6 +3090,15 @@ public final class FastlyFunctions {
         return Deployment.getInstance().invokeAsync("fastly:index/getTlsDomain:getTlsDomain", TypeShape.of(GetTlsDomainResult.class), args, Utilities.withVersion(options));
     }
     /**
+     * layout: &#34;fastly&#34;
+     * page_title: &#34;Fastly: fastly.TlsPlatformCertificate&#34;
+     * sidebar_current: &#34;docs-fastly-datasource-tls_platform_certificate&#34;
+     * description: |-
+     * Get information on Fastly Platform TLS certificate.
+     * &lt;!-- yaml: line 6: could not find expected &#39;:&#39; --&gt;
+     * 
+     * # fastly.TlsPlatformCertificate
+     * 
      * Use this data source to get information of a Platform TLS certificate for use with other resources.
      * 
      * &gt; **Warning:** The data source&#39;s filters are applied using an **AND** boolean operator, so depending on the combination
@@ -2798,6 +3147,15 @@ public final class FastlyFunctions {
         return getTlsPlatformCertificate(GetTlsPlatformCertificateArgs.Empty, InvokeOptions.Empty);
     }
     /**
+     * layout: &#34;fastly&#34;
+     * page_title: &#34;Fastly: fastly.TlsPlatformCertificate&#34;
+     * sidebar_current: &#34;docs-fastly-datasource-tls_platform_certificate&#34;
+     * description: |-
+     * Get information on Fastly Platform TLS certificate.
+     * &lt;!-- yaml: line 6: could not find expected &#39;:&#39; --&gt;
+     * 
+     * # fastly.TlsPlatformCertificate
+     * 
      * Use this data source to get information of a Platform TLS certificate for use with other resources.
      * 
      * &gt; **Warning:** The data source&#39;s filters are applied using an **AND** boolean operator, so depending on the combination
@@ -2846,6 +3204,15 @@ public final class FastlyFunctions {
         return getTlsPlatformCertificatePlain(GetTlsPlatformCertificatePlainArgs.Empty, InvokeOptions.Empty);
     }
     /**
+     * layout: &#34;fastly&#34;
+     * page_title: &#34;Fastly: fastly.TlsPlatformCertificate&#34;
+     * sidebar_current: &#34;docs-fastly-datasource-tls_platform_certificate&#34;
+     * description: |-
+     * Get information on Fastly Platform TLS certificate.
+     * &lt;!-- yaml: line 6: could not find expected &#39;:&#39; --&gt;
+     * 
+     * # fastly.TlsPlatformCertificate
+     * 
      * Use this data source to get information of a Platform TLS certificate for use with other resources.
      * 
      * &gt; **Warning:** The data source&#39;s filters are applied using an **AND** boolean operator, so depending on the combination
@@ -2894,6 +3261,15 @@ public final class FastlyFunctions {
         return getTlsPlatformCertificate(args, InvokeOptions.Empty);
     }
     /**
+     * layout: &#34;fastly&#34;
+     * page_title: &#34;Fastly: fastly.TlsPlatformCertificate&#34;
+     * sidebar_current: &#34;docs-fastly-datasource-tls_platform_certificate&#34;
+     * description: |-
+     * Get information on Fastly Platform TLS certificate.
+     * &lt;!-- yaml: line 6: could not find expected &#39;:&#39; --&gt;
+     * 
+     * # fastly.TlsPlatformCertificate
+     * 
      * Use this data source to get information of a Platform TLS certificate for use with other resources.
      * 
      * &gt; **Warning:** The data source&#39;s filters are applied using an **AND** boolean operator, so depending on the combination
@@ -2942,6 +3318,15 @@ public final class FastlyFunctions {
         return getTlsPlatformCertificatePlain(args, InvokeOptions.Empty);
     }
     /**
+     * layout: &#34;fastly&#34;
+     * page_title: &#34;Fastly: fastly.TlsPlatformCertificate&#34;
+     * sidebar_current: &#34;docs-fastly-datasource-tls_platform_certificate&#34;
+     * description: |-
+     * Get information on Fastly Platform TLS certificate.
+     * &lt;!-- yaml: line 6: could not find expected &#39;:&#39; --&gt;
+     * 
+     * # fastly.TlsPlatformCertificate
+     * 
      * Use this data source to get information of a Platform TLS certificate for use with other resources.
      * 
      * &gt; **Warning:** The data source&#39;s filters are applied using an **AND** boolean operator, so depending on the combination
@@ -2990,6 +3375,15 @@ public final class FastlyFunctions {
         return Deployment.getInstance().invoke("fastly:index/getTlsPlatformCertificate:getTlsPlatformCertificate", TypeShape.of(GetTlsPlatformCertificateResult.class), args, Utilities.withVersion(options));
     }
     /**
+     * layout: &#34;fastly&#34;
+     * page_title: &#34;Fastly: fastly.TlsPlatformCertificate&#34;
+     * sidebar_current: &#34;docs-fastly-datasource-tls_platform_certificate&#34;
+     * description: |-
+     * Get information on Fastly Platform TLS certificate.
+     * &lt;!-- yaml: line 6: could not find expected &#39;:&#39; --&gt;
+     * 
+     * # fastly.TlsPlatformCertificate
+     * 
      * Use this data source to get information of a Platform TLS certificate for use with other resources.
      * 
      * &gt; **Warning:** The data source&#39;s filters are applied using an **AND** boolean operator, so depending on the combination
@@ -3038,6 +3432,15 @@ public final class FastlyFunctions {
         return Deployment.getInstance().invokeAsync("fastly:index/getTlsPlatformCertificate:getTlsPlatformCertificate", TypeShape.of(GetTlsPlatformCertificateResult.class), args, Utilities.withVersion(options));
     }
     /**
+     * layout: &#34;fastly&#34;
+     * page_title: &#34;Fastly: fastly.getTlsPlatformCertificateIds&#34;
+     * sidebar_current: &#34;docs-fastly-datasource-tls_platform_certificate_ids&#34;
+     * description: |-
+     * Get IDs of available Platform TLS certificates.
+     * &lt;!-- yaml: line 6: could not find expected &#39;:&#39; --&gt;
+     * 
+     * # fastly.getTlsPlatformCertificateIds
+     * 
      * Use this data source to get the IDs of available Platform TLS Certificates for use with other resources.
      * 
      * ## Example Usage
@@ -3082,6 +3485,15 @@ public final class FastlyFunctions {
         return getTlsPlatformCertificateIds(InvokeArgs.Empty, InvokeOptions.Empty);
     }
     /**
+     * layout: &#34;fastly&#34;
+     * page_title: &#34;Fastly: fastly.getTlsPlatformCertificateIds&#34;
+     * sidebar_current: &#34;docs-fastly-datasource-tls_platform_certificate_ids&#34;
+     * description: |-
+     * Get IDs of available Platform TLS certificates.
+     * &lt;!-- yaml: line 6: could not find expected &#39;:&#39; --&gt;
+     * 
+     * # fastly.getTlsPlatformCertificateIds
+     * 
      * Use this data source to get the IDs of available Platform TLS Certificates for use with other resources.
      * 
      * ## Example Usage
@@ -3126,6 +3538,15 @@ public final class FastlyFunctions {
         return getTlsPlatformCertificateIdsPlain(InvokeArgs.Empty, InvokeOptions.Empty);
     }
     /**
+     * layout: &#34;fastly&#34;
+     * page_title: &#34;Fastly: fastly.getTlsPlatformCertificateIds&#34;
+     * sidebar_current: &#34;docs-fastly-datasource-tls_platform_certificate_ids&#34;
+     * description: |-
+     * Get IDs of available Platform TLS certificates.
+     * &lt;!-- yaml: line 6: could not find expected &#39;:&#39; --&gt;
+     * 
+     * # fastly.getTlsPlatformCertificateIds
+     * 
      * Use this data source to get the IDs of available Platform TLS Certificates for use with other resources.
      * 
      * ## Example Usage
@@ -3170,6 +3591,15 @@ public final class FastlyFunctions {
         return getTlsPlatformCertificateIds(args, InvokeOptions.Empty);
     }
     /**
+     * layout: &#34;fastly&#34;
+     * page_title: &#34;Fastly: fastly.getTlsPlatformCertificateIds&#34;
+     * sidebar_current: &#34;docs-fastly-datasource-tls_platform_certificate_ids&#34;
+     * description: |-
+     * Get IDs of available Platform TLS certificates.
+     * &lt;!-- yaml: line 6: could not find expected &#39;:&#39; --&gt;
+     * 
+     * # fastly.getTlsPlatformCertificateIds
+     * 
      * Use this data source to get the IDs of available Platform TLS Certificates for use with other resources.
      * 
      * ## Example Usage
@@ -3214,6 +3644,15 @@ public final class FastlyFunctions {
         return getTlsPlatformCertificateIdsPlain(args, InvokeOptions.Empty);
     }
     /**
+     * layout: &#34;fastly&#34;
+     * page_title: &#34;Fastly: fastly.getTlsPlatformCertificateIds&#34;
+     * sidebar_current: &#34;docs-fastly-datasource-tls_platform_certificate_ids&#34;
+     * description: |-
+     * Get IDs of available Platform TLS certificates.
+     * &lt;!-- yaml: line 6: could not find expected &#39;:&#39; --&gt;
+     * 
+     * # fastly.getTlsPlatformCertificateIds
+     * 
      * Use this data source to get the IDs of available Platform TLS Certificates for use with other resources.
      * 
      * ## Example Usage
@@ -3258,6 +3697,15 @@ public final class FastlyFunctions {
         return Deployment.getInstance().invoke("fastly:index/getTlsPlatformCertificateIds:getTlsPlatformCertificateIds", TypeShape.of(GetTlsPlatformCertificateIdsResult.class), args, Utilities.withVersion(options));
     }
     /**
+     * layout: &#34;fastly&#34;
+     * page_title: &#34;Fastly: fastly.getTlsPlatformCertificateIds&#34;
+     * sidebar_current: &#34;docs-fastly-datasource-tls_platform_certificate_ids&#34;
+     * description: |-
+     * Get IDs of available Platform TLS certificates.
+     * &lt;!-- yaml: line 6: could not find expected &#39;:&#39; --&gt;
+     * 
+     * # fastly.getTlsPlatformCertificateIds
+     * 
      * Use this data source to get the IDs of available Platform TLS Certificates for use with other resources.
      * 
      * ## Example Usage
@@ -3305,11 +3753,11 @@ public final class FastlyFunctions {
      * Use this data source to get information on a TLS Private Key uploaded to Fastly.
      * 
      * &gt; **Warning:** The data source&#39;s filters are applied using an **AND** boolean operator, so depending on the combination
-     *  of filters, they may become mutually exclusive. The exception to this is `id` which must not be specified in combination
-     *  with any of the others.
+     * of filters, they may become mutually exclusive. The exception to this is `id` which must not be specified in combination
+     * with any of the others.
      * 
      * &gt; **Note:** If more or less than a single match is returned by the search, this provider will fail. Ensure that your search
-     *  is specific enough to return a single key.
+     * is specific enough to return a single key.
      * 
      * ## Example Usage
      * 
@@ -3355,11 +3803,11 @@ public final class FastlyFunctions {
      * Use this data source to get information on a TLS Private Key uploaded to Fastly.
      * 
      * &gt; **Warning:** The data source&#39;s filters are applied using an **AND** boolean operator, so depending on the combination
-     *  of filters, they may become mutually exclusive. The exception to this is `id` which must not be specified in combination
-     *  with any of the others.
+     * of filters, they may become mutually exclusive. The exception to this is `id` which must not be specified in combination
+     * with any of the others.
      * 
      * &gt; **Note:** If more or less than a single match is returned by the search, this provider will fail. Ensure that your search
-     *  is specific enough to return a single key.
+     * is specific enough to return a single key.
      * 
      * ## Example Usage
      * 
@@ -3405,11 +3853,11 @@ public final class FastlyFunctions {
      * Use this data source to get information on a TLS Private Key uploaded to Fastly.
      * 
      * &gt; **Warning:** The data source&#39;s filters are applied using an **AND** boolean operator, so depending on the combination
-     *  of filters, they may become mutually exclusive. The exception to this is `id` which must not be specified in combination
-     *  with any of the others.
+     * of filters, they may become mutually exclusive. The exception to this is `id` which must not be specified in combination
+     * with any of the others.
      * 
      * &gt; **Note:** If more or less than a single match is returned by the search, this provider will fail. Ensure that your search
-     *  is specific enough to return a single key.
+     * is specific enough to return a single key.
      * 
      * ## Example Usage
      * 
@@ -3455,11 +3903,11 @@ public final class FastlyFunctions {
      * Use this data source to get information on a TLS Private Key uploaded to Fastly.
      * 
      * &gt; **Warning:** The data source&#39;s filters are applied using an **AND** boolean operator, so depending on the combination
-     *  of filters, they may become mutually exclusive. The exception to this is `id` which must not be specified in combination
-     *  with any of the others.
+     * of filters, they may become mutually exclusive. The exception to this is `id` which must not be specified in combination
+     * with any of the others.
      * 
      * &gt; **Note:** If more or less than a single match is returned by the search, this provider will fail. Ensure that your search
-     *  is specific enough to return a single key.
+     * is specific enough to return a single key.
      * 
      * ## Example Usage
      * 
@@ -3505,11 +3953,11 @@ public final class FastlyFunctions {
      * Use this data source to get information on a TLS Private Key uploaded to Fastly.
      * 
      * &gt; **Warning:** The data source&#39;s filters are applied using an **AND** boolean operator, so depending on the combination
-     *  of filters, they may become mutually exclusive. The exception to this is `id` which must not be specified in combination
-     *  with any of the others.
+     * of filters, they may become mutually exclusive. The exception to this is `id` which must not be specified in combination
+     * with any of the others.
      * 
      * &gt; **Note:** If more or less than a single match is returned by the search, this provider will fail. Ensure that your search
-     *  is specific enough to return a single key.
+     * is specific enough to return a single key.
      * 
      * ## Example Usage
      * 
@@ -3555,11 +4003,11 @@ public final class FastlyFunctions {
      * Use this data source to get information on a TLS Private Key uploaded to Fastly.
      * 
      * &gt; **Warning:** The data source&#39;s filters are applied using an **AND** boolean operator, so depending on the combination
-     *  of filters, they may become mutually exclusive. The exception to this is `id` which must not be specified in combination
-     *  with any of the others.
+     * of filters, they may become mutually exclusive. The exception to this is `id` which must not be specified in combination
+     * with any of the others.
      * 
      * &gt; **Note:** If more or less than a single match is returned by the search, this provider will fail. Ensure that your search
-     *  is specific enough to return a single key.
+     * is specific enough to return a single key.
      * 
      * ## Example Usage
      * 
@@ -3866,6 +4314,15 @@ public final class FastlyFunctions {
         return Deployment.getInstance().invokeAsync("fastly:index/getTlsPrivateKeyIds:getTlsPrivateKeyIds", TypeShape.of(GetTlsPrivateKeyIdsResult.class), args, Utilities.withVersion(options));
     }
     /**
+     * layout: &#34;fastly&#34;
+     * page_title: &#34;Fastly: fastly.TlsSubscription&#34;
+     * sidebar_current: &#34;docs-fastly-datasource-tls_subscription&#34;
+     * description: |-
+     * Get information on Fastly TLS subscription.
+     * &lt;!-- yaml: line 6: could not find expected &#39;:&#39; --&gt;
+     * 
+     * # fastly.TlsSubscription
+     * 
      * Use this data source to get information about a TLS subscription.
      * 
      * ## Example Usage
@@ -3908,6 +4365,15 @@ public final class FastlyFunctions {
         return getTlsSubscription(GetTlsSubscriptionArgs.Empty, InvokeOptions.Empty);
     }
     /**
+     * layout: &#34;fastly&#34;
+     * page_title: &#34;Fastly: fastly.TlsSubscription&#34;
+     * sidebar_current: &#34;docs-fastly-datasource-tls_subscription&#34;
+     * description: |-
+     * Get information on Fastly TLS subscription.
+     * &lt;!-- yaml: line 6: could not find expected &#39;:&#39; --&gt;
+     * 
+     * # fastly.TlsSubscription
+     * 
      * Use this data source to get information about a TLS subscription.
      * 
      * ## Example Usage
@@ -3950,6 +4416,15 @@ public final class FastlyFunctions {
         return getTlsSubscriptionPlain(GetTlsSubscriptionPlainArgs.Empty, InvokeOptions.Empty);
     }
     /**
+     * layout: &#34;fastly&#34;
+     * page_title: &#34;Fastly: fastly.TlsSubscription&#34;
+     * sidebar_current: &#34;docs-fastly-datasource-tls_subscription&#34;
+     * description: |-
+     * Get information on Fastly TLS subscription.
+     * &lt;!-- yaml: line 6: could not find expected &#39;:&#39; --&gt;
+     * 
+     * # fastly.TlsSubscription
+     * 
      * Use this data source to get information about a TLS subscription.
      * 
      * ## Example Usage
@@ -3992,6 +4467,15 @@ public final class FastlyFunctions {
         return getTlsSubscription(args, InvokeOptions.Empty);
     }
     /**
+     * layout: &#34;fastly&#34;
+     * page_title: &#34;Fastly: fastly.TlsSubscription&#34;
+     * sidebar_current: &#34;docs-fastly-datasource-tls_subscription&#34;
+     * description: |-
+     * Get information on Fastly TLS subscription.
+     * &lt;!-- yaml: line 6: could not find expected &#39;:&#39; --&gt;
+     * 
+     * # fastly.TlsSubscription
+     * 
      * Use this data source to get information about a TLS subscription.
      * 
      * ## Example Usage
@@ -4034,6 +4518,15 @@ public final class FastlyFunctions {
         return getTlsSubscriptionPlain(args, InvokeOptions.Empty);
     }
     /**
+     * layout: &#34;fastly&#34;
+     * page_title: &#34;Fastly: fastly.TlsSubscription&#34;
+     * sidebar_current: &#34;docs-fastly-datasource-tls_subscription&#34;
+     * description: |-
+     * Get information on Fastly TLS subscription.
+     * &lt;!-- yaml: line 6: could not find expected &#39;:&#39; --&gt;
+     * 
+     * # fastly.TlsSubscription
+     * 
      * Use this data source to get information about a TLS subscription.
      * 
      * ## Example Usage
@@ -4076,6 +4569,15 @@ public final class FastlyFunctions {
         return Deployment.getInstance().invoke("fastly:index/getTlsSubscription:getTlsSubscription", TypeShape.of(GetTlsSubscriptionResult.class), args, Utilities.withVersion(options));
     }
     /**
+     * layout: &#34;fastly&#34;
+     * page_title: &#34;Fastly: fastly.TlsSubscription&#34;
+     * sidebar_current: &#34;docs-fastly-datasource-tls_subscription&#34;
+     * description: |-
+     * Get information on Fastly TLS subscription.
+     * &lt;!-- yaml: line 6: could not find expected &#39;:&#39; --&gt;
+     * 
+     * # fastly.TlsSubscription
+     * 
      * Use this data source to get information about a TLS subscription.
      * 
      * ## Example Usage
@@ -4118,6 +4620,15 @@ public final class FastlyFunctions {
         return Deployment.getInstance().invokeAsync("fastly:index/getTlsSubscription:getTlsSubscription", TypeShape.of(GetTlsSubscriptionResult.class), args, Utilities.withVersion(options));
     }
     /**
+     * layout: &#34;fastly&#34;
+     * page_title: &#34;Fastly: fastly.getTlsSubscriptionIds&#34;
+     * sidebar_current: &#34;docs-fastly-datasource-tls_subscription_ids&#34;
+     * description: |-
+     * Get the list of TLS Subscriptions in Fastly.
+     * &lt;!-- yaml: line 6: could not find expected &#39;:&#39; --&gt;
+     * 
+     * # fastly.getTlsSubscriptionIds
+     * 
      * Use this data source to get the list of IDs of TLS Subscriptions in Fastly.
      * 
      * ## Example Usage
@@ -4130,6 +4641,15 @@ public final class FastlyFunctions {
         return getTlsSubscriptionIds(InvokeArgs.Empty, InvokeOptions.Empty);
     }
     /**
+     * layout: &#34;fastly&#34;
+     * page_title: &#34;Fastly: fastly.getTlsSubscriptionIds&#34;
+     * sidebar_current: &#34;docs-fastly-datasource-tls_subscription_ids&#34;
+     * description: |-
+     * Get the list of TLS Subscriptions in Fastly.
+     * &lt;!-- yaml: line 6: could not find expected &#39;:&#39; --&gt;
+     * 
+     * # fastly.getTlsSubscriptionIds
+     * 
      * Use this data source to get the list of IDs of TLS Subscriptions in Fastly.
      * 
      * ## Example Usage
@@ -4142,6 +4662,15 @@ public final class FastlyFunctions {
         return getTlsSubscriptionIdsPlain(InvokeArgs.Empty, InvokeOptions.Empty);
     }
     /**
+     * layout: &#34;fastly&#34;
+     * page_title: &#34;Fastly: fastly.getTlsSubscriptionIds&#34;
+     * sidebar_current: &#34;docs-fastly-datasource-tls_subscription_ids&#34;
+     * description: |-
+     * Get the list of TLS Subscriptions in Fastly.
+     * &lt;!-- yaml: line 6: could not find expected &#39;:&#39; --&gt;
+     * 
+     * # fastly.getTlsSubscriptionIds
+     * 
      * Use this data source to get the list of IDs of TLS Subscriptions in Fastly.
      * 
      * ## Example Usage
@@ -4154,6 +4683,15 @@ public final class FastlyFunctions {
         return getTlsSubscriptionIds(args, InvokeOptions.Empty);
     }
     /**
+     * layout: &#34;fastly&#34;
+     * page_title: &#34;Fastly: fastly.getTlsSubscriptionIds&#34;
+     * sidebar_current: &#34;docs-fastly-datasource-tls_subscription_ids&#34;
+     * description: |-
+     * Get the list of TLS Subscriptions in Fastly.
+     * &lt;!-- yaml: line 6: could not find expected &#39;:&#39; --&gt;
+     * 
+     * # fastly.getTlsSubscriptionIds
+     * 
      * Use this data source to get the list of IDs of TLS Subscriptions in Fastly.
      * 
      * ## Example Usage
@@ -4166,6 +4704,15 @@ public final class FastlyFunctions {
         return getTlsSubscriptionIdsPlain(args, InvokeOptions.Empty);
     }
     /**
+     * layout: &#34;fastly&#34;
+     * page_title: &#34;Fastly: fastly.getTlsSubscriptionIds&#34;
+     * sidebar_current: &#34;docs-fastly-datasource-tls_subscription_ids&#34;
+     * description: |-
+     * Get the list of TLS Subscriptions in Fastly.
+     * &lt;!-- yaml: line 6: could not find expected &#39;:&#39; --&gt;
+     * 
+     * # fastly.getTlsSubscriptionIds
+     * 
      * Use this data source to get the list of IDs of TLS Subscriptions in Fastly.
      * 
      * ## Example Usage
@@ -4178,6 +4725,15 @@ public final class FastlyFunctions {
         return Deployment.getInstance().invoke("fastly:index/getTlsSubscriptionIds:getTlsSubscriptionIds", TypeShape.of(GetTlsSubscriptionIdsResult.class), args, Utilities.withVersion(options));
     }
     /**
+     * layout: &#34;fastly&#34;
+     * page_title: &#34;Fastly: fastly.getTlsSubscriptionIds&#34;
+     * sidebar_current: &#34;docs-fastly-datasource-tls_subscription_ids&#34;
+     * description: |-
+     * Get the list of TLS Subscriptions in Fastly.
+     * &lt;!-- yaml: line 6: could not find expected &#39;:&#39; --&gt;
+     * 
+     * # fastly.getTlsSubscriptionIds
+     * 
      * Use this data source to get the list of IDs of TLS Subscriptions in Fastly.
      * 
      * ## Example Usage
@@ -4242,8 +4798,6 @@ public final class FastlyFunctions {
      * </pre>
      * &lt;!--End PulumiCodeChooser --&gt;
      * 
-     * [1]: https://www.fastly.com/documentation/reference/api/vcl-services/snippet/
-     * 
      */
     public static Output<GetVclSnippetsResult> getVclSnippets(GetVclSnippetsArgs args) {
         return getVclSnippets(args, InvokeOptions.Empty);
@@ -4300,8 +4854,6 @@ public final class FastlyFunctions {
      * }
      * </pre>
      * &lt;!--End PulumiCodeChooser --&gt;
-     * 
-     * [1]: https://www.fastly.com/documentation/reference/api/vcl-services/snippet/
      * 
      */
     public static CompletableFuture<GetVclSnippetsResult> getVclSnippetsPlain(GetVclSnippetsPlainArgs args) {
@@ -4360,8 +4912,6 @@ public final class FastlyFunctions {
      * </pre>
      * &lt;!--End PulumiCodeChooser --&gt;
      * 
-     * [1]: https://www.fastly.com/documentation/reference/api/vcl-services/snippet/
-     * 
      */
     public static Output<GetVclSnippetsResult> getVclSnippets(GetVclSnippetsArgs args, InvokeOptions options) {
         return Deployment.getInstance().invoke("fastly:index/getVclSnippets:getVclSnippets", TypeShape.of(GetVclSnippetsResult.class), args, Utilities.withVersion(options));
@@ -4418,8 +4968,6 @@ public final class FastlyFunctions {
      * }
      * </pre>
      * &lt;!--End PulumiCodeChooser --&gt;
-     * 
-     * [1]: https://www.fastly.com/documentation/reference/api/vcl-services/snippet/
      * 
      */
     public static CompletableFuture<GetVclSnippetsResult> getVclSnippetsPlain(GetVclSnippetsPlainArgs args, InvokeOptions options) {

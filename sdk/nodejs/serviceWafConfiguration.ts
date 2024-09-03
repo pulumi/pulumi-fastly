@@ -7,6 +7,15 @@ import * as outputs from "./types/output";
 import * as utilities from "./utilities";
 
 /**
+ * layout: "fastly"
+ * page_title: "Fastly: serviceWafConfiguration"
+ * sidebar_current: "docs-fastly-resource-service-waf-configuration"
+ * description: |-
+ * Provides a Web Application Firewall configuration and rules that can be applied to a service.
+ * <!-- yaml: line 6: could not find expected ':' -->
+ *
+ * # fastly.ServiceWafConfiguration
+ *
  * Defines a set of Web Application Firewall configuration options that can be used to populate a service WAF. This resource will configure rules, thresholds and other settings for a WAF.
  *
  * > **Warning:** This provider will take precedence over any changes you make in the UI or API. Such changes are likely to be reversed if you run the provider again.

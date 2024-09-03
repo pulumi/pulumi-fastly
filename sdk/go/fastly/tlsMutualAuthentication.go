@@ -12,6 +12,15 @@ import (
 	"github.com/pulumi/pulumi/sdk/v3/go/pulumi"
 )
 
+// layout: "fastly"
+// page_title: "Fastly: tlsMutualAuthentication"
+// sidebar_current: "docs-fastly-resource-tls_mutual_authentication"
+// description: |-
+// Allows for client-to-server authentication using client-side X.509 authentication.
+// <!-- yaml: line 6: could not find expected ':' -->
+//
+// # TlsMutualAuthentication
+//
 // The Mutual TLS API allows for client-to-server authentication using client-side X.509 authentication.
 //
 // The main Mutual Authentication object represents the certificate bundle and other configurations which support Mutual TLS for your domains.

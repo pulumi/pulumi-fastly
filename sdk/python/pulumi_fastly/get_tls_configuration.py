@@ -149,6 +149,15 @@ def get_tls_configuration(default: Optional[bool] = None,
                           tls_service: Optional[str] = None,
                           opts: Optional[pulumi.InvokeOptions] = None) -> AwaitableGetTlsConfigurationResult:
     """
+    layout: "fastly"
+    page_title: "Fastly: get_tls_configuration"
+    sidebar_current: "docs-fastly-datasource-tls_configuration"
+    description: |-
+    Get information on Fastly TLS configuration.
+    <!-- yaml: line 6: could not find expected ':' -->
+
+    # get_tls_configuration
+
     Use this data source to get the ID of a TLS configuration for use with other resources.
 
     > **Warning:** The data source's filters are applied using an **AND** boolean operator, so depending on the combination
@@ -206,6 +215,15 @@ def get_tls_configuration_output(default: Optional[pulumi.Input[Optional[bool]]]
                                  tls_service: Optional[pulumi.Input[Optional[str]]] = None,
                                  opts: Optional[pulumi.InvokeOptions] = None) -> pulumi.Output[GetTlsConfigurationResult]:
     """
+    layout: "fastly"
+    page_title: "Fastly: get_tls_configuration"
+    sidebar_current: "docs-fastly-datasource-tls_configuration"
+    description: |-
+    Get information on Fastly TLS configuration.
+    <!-- yaml: line 6: could not find expected ':' -->
+
+    # get_tls_configuration
+
     Use this data source to get the ID of a TLS configuration for use with other resources.
 
     > **Warning:** The data source's filters are applied using an **AND** boolean operator, so depending on the combination

@@ -5,6 +5,15 @@ import * as pulumi from "@pulumi/pulumi";
 import * as utilities from "./utilities";
 
 /**
+ * layout: "fastly"
+ * page_title: "Fastly: fastly.TlsSubscription"
+ * sidebar_current: "docs-fastly-datasource-tls_subscription"
+ * description: |-
+ * Get information on Fastly TLS subscription.
+ * <!-- yaml: line 6: could not find expected ':' -->
+ *
+ * # fastly.TlsSubscription
+ *
  * Use this data source to get information about a TLS subscription.
  *
  * ## Example Usage
@@ -94,6 +103,15 @@ export interface GetTlsSubscriptionResult {
     readonly updatedAt: string;
 }
 /**
+ * layout: "fastly"
+ * page_title: "Fastly: fastly.TlsSubscription"
+ * sidebar_current: "docs-fastly-datasource-tls_subscription"
+ * description: |-
+ * Get information on Fastly TLS subscription.
+ * <!-- yaml: line 6: could not find expected ':' -->
+ *
+ * # fastly.TlsSubscription
+ *
  * Use this data source to get information about a TLS subscription.
  *
  * ## Example Usage

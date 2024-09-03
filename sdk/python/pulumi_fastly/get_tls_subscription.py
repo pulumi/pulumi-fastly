@@ -146,6 +146,15 @@ def get_tls_subscription(certificate_authority: Optional[str] = None,
                          id: Optional[str] = None,
                          opts: Optional[pulumi.InvokeOptions] = None) -> AwaitableGetTlsSubscriptionResult:
     """
+    layout: "fastly"
+    page_title: "Fastly: TlsSubscription"
+    sidebar_current: "docs-fastly-datasource-tls_subscription"
+    description: |-
+    Get information on Fastly TLS subscription.
+    <!-- yaml: line 6: could not find expected ':' -->
+
+    # TlsSubscription
+
     Use this data source to get information about a TLS subscription.
 
     ## Example Usage
@@ -190,6 +199,15 @@ def get_tls_subscription_output(certificate_authority: Optional[pulumi.Input[Opt
                                 id: Optional[pulumi.Input[Optional[str]]] = None,
                                 opts: Optional[pulumi.InvokeOptions] = None) -> pulumi.Output[GetTlsSubscriptionResult]:
     """
+    layout: "fastly"
+    page_title: "Fastly: TlsSubscription"
+    sidebar_current: "docs-fastly-datasource-tls_subscription"
+    description: |-
+    Get information on Fastly TLS subscription.
+    <!-- yaml: line 6: could not find expected ':' -->
+
+    # TlsSubscription
+
     Use this data source to get information about a TLS subscription.
 
     ## Example Usage
