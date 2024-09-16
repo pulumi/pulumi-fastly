@@ -18,6 +18,7 @@ import (
 	"bytes"
 	"fmt"
 	"path/filepath"
+	"regexp"
 	"unicode"
 
 	// embed is used to store bridge-metadata.json in the compiled binary
@@ -27,6 +28,7 @@ import (
 
 	"github.com/pulumi/pulumi-terraform-bridge/v3/pkg/tfbridge"
 	tks "github.com/pulumi/pulumi-terraform-bridge/v3/pkg/tfbridge/tokens"
+	"github.com/pulumi/pulumi-terraform-bridge/v3/pkg/tfgen"
 	shimv2 "github.com/pulumi/pulumi-terraform-bridge/v3/pkg/tfshim/sdk-v2"
 	"github.com/pulumi/pulumi/sdk/v3/go/common/tokens"
 
@@ -161,23 +163,68 @@ func Provider() tfbridge.ProviderInfo {
 var metadata []byte
 
 func docRuleEdits(defaults []tfbridge.DocsEdit) []tfbridge.DocsEdit {
-	return append(defaults, tfbridge.DocsEdit{
-		Path: "*",
-		Edit: func(_ string, content []byte) ([]byte, error) {
-			content = bytes.ReplaceAll(content,
-				[]byte(", Terraform will fail."),
-				[]byte(", this provider will fail."))
-			content = bytes.ReplaceAll(content,
-				[]byte("achieved in Terraform using"),
-				[]byte("achieved in Pulumi using"))
-			content = bytes.ReplaceAll(content,
-				[]byte("-> **Note:** The following example is only available from "+
-					"0.20.0 of the Fastly Terraform provider.\n\n"), nil)
+	return append(
+		defaults,
+		tfbridge.DocsEdit{
+			Path: "*",
+			Edit: func(_ string, content []byte) ([]byte, error) {
+				content = bytes.ReplaceAll(content,
+					[]byte(", Terraform will fail."),
+					[]byte(", this provider will fail."))
+				content = bytes.ReplaceAll(content,
+					[]byte("achieved in Terraform using"),
+					[]byte("achieved in Pulumi using"))
+				content = bytes.ReplaceAll(content,
+					[]byte("-> **Note:** The following example is only available from "+
+						"0.20.0 of the Fastly Terraform provider.\n\n"), nil)
 
-			content = bytes.ReplaceAll(content,
-				[]byte("The first time Terraform is applied,"),
-				[]byte("The first time this provider is applied,"))
-			return content, nil
+				content = bytes.ReplaceAll(content,
+					[]byte("The first time Terraform is applied,"),
+					[]byte("The first time this provider is applied,"))
+				return content, nil
+			},
 		},
-	})
+		removeContent,
+		skipExtraConfigurationSection,
+	)
+}
+
+// This provider has both an "Argument Reference" _and_ a "Schema" section. Let's skip one of them.
+var skipExtraConfigurationSection = tfbridge.DocsEdit{
+	Path: "index.md",
+	Edit: func(_ string, content []byte) ([]byte, error) {
+		return tfgen.SkipSectionByHeaderContent(content, func(headerText string) bool {
+			return headerText == "Argument Reference"
+		})
+	},
+}
+
+var tfVersionRegexp = regexp.MustCompile(
+	`The Fastly provider prior to version [v0-9]*\.[0-9]*\.[0-9]*.*\n.*`,
+)
+var blockRegexp = regexp.MustCompile(` in the[A-Za-z0-9\s]* \x60?provider\x60? block`)
+var omitBlockRegexp = regexp.MustCompile(
+	"When using this method, you may omit the\nFastly `provider` block entirely:",
+)
+
+// Removes a version reference and block content
+var removeContent = tfbridge.DocsEdit{
+	Path: "index.md",
+	Edit: func(_ string, content []byte) ([]byte, error) {
+		removeRegexps := getRemoveRegexps()
+		for _, regex := range removeRegexps {
+			content = regex.ReplaceAllLiteral(content, nil)
+		}
+		return content, nil
+	},
+}
+
+func getRemoveRegexps() []*regexp.Regexp {
+	var regexes []*regexp.Regexp
+	regexes = append(regexes,
+		tfVersionRegexp,
+		blockRegexp,
+		omitBlockRegexp,
+	)
+	return regexes
 }
