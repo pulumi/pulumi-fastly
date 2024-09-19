@@ -7,7 +7,6 @@ import * as outputs from "./types/output";
 import * as utilities from "./utilities";
 
 export function getConfigstores(opts?: pulumi.InvokeOptions): Promise<GetConfigstoresResult> {
-
     opts = pulumi.mergeOptions(utilities.resourceOptsDefaults(), opts || {});
     return pulumi.runtime.invoke("fastly:index/getConfigstores:getConfigstores", {
     }, opts);
@@ -27,5 +26,7 @@ export interface GetConfigstoresResult {
     readonly stores: outputs.GetConfigstoresStore[];
 }
 export function getConfigstoresOutput(opts?: pulumi.InvokeOptions): pulumi.Output<GetConfigstoresResult> {
-    return pulumi.output(getConfigstores(opts))
+    opts = pulumi.mergeOptions(utilities.resourceOptsDefaults(), opts || {});
+    return pulumi.runtime.invokeOutput("fastly:index/getConfigstores:getConfigstores", {
+    }, opts);
 }

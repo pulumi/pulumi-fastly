@@ -24,7 +24,6 @@ import * as utilities from "./utilities";
  */
 export function getPackageHash(args?: GetPackageHashArgs, opts?: pulumi.InvokeOptions): Promise<GetPackageHashResult> {
     args = args || {};
-
     opts = pulumi.mergeOptions(utilities.resourceOptsDefaults(), opts || {});
     return pulumi.runtime.invoke("fastly:index/getPackageHash:getPackageHash", {
         "content": args.content,
@@ -86,7 +85,12 @@ export interface GetPackageHashResult {
  * ```
  */
 export function getPackageHashOutput(args?: GetPackageHashOutputArgs, opts?: pulumi.InvokeOptions): pulumi.Output<GetPackageHashResult> {
-    return pulumi.output(args).apply((a: any) => getPackageHash(a, opts))
+    args = args || {};
+    opts = pulumi.mergeOptions(utilities.resourceOptsDefaults(), opts || {});
+    return pulumi.runtime.invokeOutput("fastly:index/getPackageHash:getPackageHash", {
+        "content": args.content,
+        "filename": args.filename,
+    }, opts);
 }
 
 /**

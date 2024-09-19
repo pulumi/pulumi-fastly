@@ -82,14 +82,20 @@ type LookupTlsActivationResult struct {
 
 func LookupTlsActivationOutput(ctx *pulumi.Context, args LookupTlsActivationOutputArgs, opts ...pulumi.InvokeOption) LookupTlsActivationResultOutput {
 	return pulumi.ToOutputWithContext(context.Background(), args).
-		ApplyT(func(v interface{}) (LookupTlsActivationResult, error) {
+		ApplyT(func(v interface{}) (LookupTlsActivationResultOutput, error) {
 			args := v.(LookupTlsActivationArgs)
-			r, err := LookupTlsActivation(ctx, &args, opts...)
-			var s LookupTlsActivationResult
-			if r != nil {
-				s = *r
+			opts = internal.PkgInvokeDefaultOpts(opts)
+			var rv LookupTlsActivationResult
+			secret, err := ctx.InvokePackageRaw("fastly:index/getTlsActivation:getTlsActivation", args, &rv, "", opts...)
+			if err != nil {
+				return LookupTlsActivationResultOutput{}, err
 			}
-			return s, err
+
+			output := pulumi.ToOutput(rv).(LookupTlsActivationResultOutput)
+			if secret {
+				return pulumi.ToSecret(output).(LookupTlsActivationResultOutput), nil
+			}
+			return output, nil
 		}).(LookupTlsActivationResultOutput)
 }
 

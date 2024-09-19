@@ -18,7 +18,6 @@ import * as utilities from "./utilities";
  * ```
  */
 export function getTlsCertificateIds(opts?: pulumi.InvokeOptions): Promise<GetTlsCertificateIdsResult> {
-
     opts = pulumi.mergeOptions(utilities.resourceOptsDefaults(), opts || {});
     return pulumi.runtime.invoke("fastly:index/getTlsCertificateIds:getTlsCertificateIds", {
     }, opts);
@@ -51,5 +50,7 @@ export interface GetTlsCertificateIdsResult {
  * ```
  */
 export function getTlsCertificateIdsOutput(opts?: pulumi.InvokeOptions): pulumi.Output<GetTlsCertificateIdsResult> {
-    return pulumi.output(getTlsCertificateIds(opts))
+    opts = pulumi.mergeOptions(utilities.resourceOptsDefaults(), opts || {});
+    return pulumi.runtime.invokeOutput("fastly:index/getTlsCertificateIds:getTlsCertificateIds", {
+    }, opts);
 }

@@ -94,14 +94,20 @@ type LookupTlsPrivateKeyResult struct {
 
 func LookupTlsPrivateKeyOutput(ctx *pulumi.Context, args LookupTlsPrivateKeyOutputArgs, opts ...pulumi.InvokeOption) LookupTlsPrivateKeyResultOutput {
 	return pulumi.ToOutputWithContext(context.Background(), args).
-		ApplyT(func(v interface{}) (LookupTlsPrivateKeyResult, error) {
+		ApplyT(func(v interface{}) (LookupTlsPrivateKeyResultOutput, error) {
 			args := v.(LookupTlsPrivateKeyArgs)
-			r, err := LookupTlsPrivateKey(ctx, &args, opts...)
-			var s LookupTlsPrivateKeyResult
-			if r != nil {
-				s = *r
+			opts = internal.PkgInvokeDefaultOpts(opts)
+			var rv LookupTlsPrivateKeyResult
+			secret, err := ctx.InvokePackageRaw("fastly:index/getTlsPrivateKey:getTlsPrivateKey", args, &rv, "", opts...)
+			if err != nil {
+				return LookupTlsPrivateKeyResultOutput{}, err
 			}
-			return s, err
+
+			output := pulumi.ToOutput(rv).(LookupTlsPrivateKeyResultOutput)
+			if secret {
+				return pulumi.ToSecret(output).(LookupTlsPrivateKeyResultOutput), nil
+			}
+			return output, nil
 		}).(LookupTlsPrivateKeyResultOutput)
 }
 

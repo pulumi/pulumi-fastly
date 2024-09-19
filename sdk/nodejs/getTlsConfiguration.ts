@@ -29,7 +29,6 @@ import * as utilities from "./utilities";
  */
 export function getTlsConfiguration(args?: GetTlsConfigurationArgs, opts?: pulumi.InvokeOptions): Promise<GetTlsConfigurationResult> {
     args = args || {};
-
     opts = pulumi.mergeOptions(utilities.resourceOptsDefaults(), opts || {});
     return pulumi.runtime.invoke("fastly:index/getTlsConfiguration:getTlsConfiguration", {
         "default": args.default,
@@ -134,7 +133,16 @@ export interface GetTlsConfigurationResult {
  * ```
  */
 export function getTlsConfigurationOutput(args?: GetTlsConfigurationOutputArgs, opts?: pulumi.InvokeOptions): pulumi.Output<GetTlsConfigurationResult> {
-    return pulumi.output(args).apply((a: any) => getTlsConfiguration(a, opts))
+    args = args || {};
+    opts = pulumi.mergeOptions(utilities.resourceOptsDefaults(), opts || {});
+    return pulumi.runtime.invokeOutput("fastly:index/getTlsConfiguration:getTlsConfiguration", {
+        "default": args.default,
+        "httpProtocols": args.httpProtocols,
+        "id": args.id,
+        "name": args.name,
+        "tlsProtocols": args.tlsProtocols,
+        "tlsService": args.tlsService,
+    }, opts);
 }
 
 /**

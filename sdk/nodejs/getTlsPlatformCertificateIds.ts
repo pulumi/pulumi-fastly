@@ -20,7 +20,6 @@ import * as utilities from "./utilities";
  * ```
  */
 export function getTlsPlatformCertificateIds(opts?: pulumi.InvokeOptions): Promise<GetTlsPlatformCertificateIdsResult> {
-
     opts = pulumi.mergeOptions(utilities.resourceOptsDefaults(), opts || {});
     return pulumi.runtime.invoke("fastly:index/getTlsPlatformCertificateIds:getTlsPlatformCertificateIds", {
     }, opts);
@@ -55,5 +54,7 @@ export interface GetTlsPlatformCertificateIdsResult {
  * ```
  */
 export function getTlsPlatformCertificateIdsOutput(opts?: pulumi.InvokeOptions): pulumi.Output<GetTlsPlatformCertificateIdsResult> {
-    return pulumi.output(getTlsPlatformCertificateIds(opts))
+    opts = pulumi.mergeOptions(utilities.resourceOptsDefaults(), opts || {});
+    return pulumi.runtime.invokeOutput("fastly:index/getTlsPlatformCertificateIds:getTlsPlatformCertificateIds", {
+    }, opts);
 }

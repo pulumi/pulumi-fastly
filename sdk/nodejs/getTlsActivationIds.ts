@@ -24,7 +24,6 @@ import * as utilities from "./utilities";
  */
 export function getTlsActivationIds(args?: GetTlsActivationIdsArgs, opts?: pulumi.InvokeOptions): Promise<GetTlsActivationIdsResult> {
     args = args || {};
-
     opts = pulumi.mergeOptions(utilities.resourceOptsDefaults(), opts || {});
     return pulumi.runtime.invoke("fastly:index/getTlsActivationIds:getTlsActivationIds", {
         "certificateId": args.certificateId,
@@ -77,7 +76,11 @@ export interface GetTlsActivationIdsResult {
  * ```
  */
 export function getTlsActivationIdsOutput(args?: GetTlsActivationIdsOutputArgs, opts?: pulumi.InvokeOptions): pulumi.Output<GetTlsActivationIdsResult> {
-    return pulumi.output(args).apply((a: any) => getTlsActivationIds(a, opts))
+    args = args || {};
+    opts = pulumi.mergeOptions(utilities.resourceOptsDefaults(), opts || {});
+    return pulumi.runtime.invokeOutput("fastly:index/getTlsActivationIds:getTlsActivationIds", {
+        "certificateId": args.certificateId,
+    }, opts);
 }
 
 /**

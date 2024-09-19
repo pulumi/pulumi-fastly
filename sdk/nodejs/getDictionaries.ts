@@ -43,7 +43,6 @@ import * as utilities from "./utilities";
  * [1]: https://developer.fastly.com/reference/api/dictionaries/
  */
 export function getDictionaries(args: GetDictionariesArgs, opts?: pulumi.InvokeOptions): Promise<GetDictionariesResult> {
-
     opts = pulumi.mergeOptions(utilities.resourceOptsDefaults(), opts || {});
     return pulumi.runtime.invoke("fastly:index/getDictionaries:getDictionaries", {
         "serviceId": args.serviceId,
@@ -123,7 +122,11 @@ export interface GetDictionariesResult {
  * [1]: https://developer.fastly.com/reference/api/dictionaries/
  */
 export function getDictionariesOutput(args: GetDictionariesOutputArgs, opts?: pulumi.InvokeOptions): pulumi.Output<GetDictionariesResult> {
-    return pulumi.output(args).apply((a: any) => getDictionaries(a, opts))
+    opts = pulumi.mergeOptions(utilities.resourceOptsDefaults(), opts || {});
+    return pulumi.runtime.invokeOutput("fastly:index/getDictionaries:getDictionaries", {
+        "serviceId": args.serviceId,
+        "serviceVersion": args.serviceVersion,
+    }, opts);
 }
 
 /**
