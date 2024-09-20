@@ -18,7 +18,6 @@ import * as utilities from "./utilities";
  * ```
  */
 export function getTlsConfigurationIds(opts?: pulumi.InvokeOptions): Promise<GetTlsConfigurationIdsResult> {
-
     opts = pulumi.mergeOptions(utilities.resourceOptsDefaults(), opts || {});
     return pulumi.runtime.invoke("fastly:index/getTlsConfigurationIds:getTlsConfigurationIds", {
     }, opts);
@@ -51,5 +50,7 @@ export interface GetTlsConfigurationIdsResult {
  * ```
  */
 export function getTlsConfigurationIdsOutput(opts?: pulumi.InvokeOptions): pulumi.Output<GetTlsConfigurationIdsResult> {
-    return pulumi.output(getTlsConfigurationIds(opts))
+    opts = pulumi.mergeOptions(utilities.resourceOptsDefaults(), opts || {});
+    return pulumi.runtime.invokeOutput("fastly:index/getTlsConfigurationIds:getTlsConfigurationIds", {
+    }, opts);
 }

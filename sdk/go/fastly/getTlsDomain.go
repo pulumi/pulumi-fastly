@@ -70,14 +70,20 @@ type GetTlsDomainResult struct {
 
 func GetTlsDomainOutput(ctx *pulumi.Context, args GetTlsDomainOutputArgs, opts ...pulumi.InvokeOption) GetTlsDomainResultOutput {
 	return pulumi.ToOutputWithContext(context.Background(), args).
-		ApplyT(func(v interface{}) (GetTlsDomainResult, error) {
+		ApplyT(func(v interface{}) (GetTlsDomainResultOutput, error) {
 			args := v.(GetTlsDomainArgs)
-			r, err := GetTlsDomain(ctx, &args, opts...)
-			var s GetTlsDomainResult
-			if r != nil {
-				s = *r
+			opts = internal.PkgInvokeDefaultOpts(opts)
+			var rv GetTlsDomainResult
+			secret, err := ctx.InvokePackageRaw("fastly:index/getTlsDomain:getTlsDomain", args, &rv, "", opts...)
+			if err != nil {
+				return GetTlsDomainResultOutput{}, err
 			}
-			return s, err
+
+			output := pulumi.ToOutput(rv).(GetTlsDomainResultOutput)
+			if secret {
+				return pulumi.ToSecret(output).(GetTlsDomainResultOutput), nil
+			}
+			return output, nil
 		}).(GetTlsDomainResultOutput)
 }
 

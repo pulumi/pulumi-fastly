@@ -79,14 +79,20 @@ type GetPackageHashResult struct {
 
 func GetPackageHashOutput(ctx *pulumi.Context, args GetPackageHashOutputArgs, opts ...pulumi.InvokeOption) GetPackageHashResultOutput {
 	return pulumi.ToOutputWithContext(context.Background(), args).
-		ApplyT(func(v interface{}) (GetPackageHashResult, error) {
+		ApplyT(func(v interface{}) (GetPackageHashResultOutput, error) {
 			args := v.(GetPackageHashArgs)
-			r, err := GetPackageHash(ctx, &args, opts...)
-			var s GetPackageHashResult
-			if r != nil {
-				s = *r
+			opts = internal.PkgInvokeDefaultOpts(opts)
+			var rv GetPackageHashResult
+			secret, err := ctx.InvokePackageRaw("fastly:index/getPackageHash:getPackageHash", args, &rv, "", opts...)
+			if err != nil {
+				return GetPackageHashResultOutput{}, err
 			}
-			return s, err
+
+			output := pulumi.ToOutput(rv).(GetPackageHashResultOutput)
+			if secret {
+				return pulumi.ToSecret(output).(GetPackageHashResultOutput), nil
+			}
+			return output, nil
 		}).(GetPackageHashResultOutput)
 }
 

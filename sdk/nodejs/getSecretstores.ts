@@ -7,7 +7,6 @@ import * as outputs from "./types/output";
 import * as utilities from "./utilities";
 
 export function getSecretstores(opts?: pulumi.InvokeOptions): Promise<GetSecretstoresResult> {
-
     opts = pulumi.mergeOptions(utilities.resourceOptsDefaults(), opts || {});
     return pulumi.runtime.invoke("fastly:index/getSecretstores:getSecretstores", {
     }, opts);
@@ -27,5 +26,7 @@ export interface GetSecretstoresResult {
     readonly stores: outputs.GetSecretstoresStore[];
 }
 export function getSecretstoresOutput(opts?: pulumi.InvokeOptions): pulumi.Output<GetSecretstoresResult> {
-    return pulumi.output(getSecretstores(opts))
+    opts = pulumi.mergeOptions(utilities.resourceOptsDefaults(), opts || {});
+    return pulumi.runtime.invokeOutput("fastly:index/getSecretstores:getSecretstores", {
+    }, opts);
 }

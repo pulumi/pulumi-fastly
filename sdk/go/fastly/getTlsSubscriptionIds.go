@@ -31,13 +31,19 @@ type GetTlsSubscriptionIdsResult struct {
 }
 
 func GetTlsSubscriptionIdsOutput(ctx *pulumi.Context, opts ...pulumi.InvokeOption) GetTlsSubscriptionIdsResultOutput {
-	return pulumi.ToOutput(0).ApplyT(func(int) (GetTlsSubscriptionIdsResult, error) {
-		r, err := GetTlsSubscriptionIds(ctx, opts...)
-		var s GetTlsSubscriptionIdsResult
-		if r != nil {
-			s = *r
+	return pulumi.ToOutput(0).ApplyT(func(int) (GetTlsSubscriptionIdsResultOutput, error) {
+		opts = internal.PkgInvokeDefaultOpts(opts)
+		var rv GetTlsSubscriptionIdsResult
+		secret, err := ctx.InvokePackageRaw("fastly:index/getTlsSubscriptionIds:getTlsSubscriptionIds", nil, &rv, "", opts...)
+		if err != nil {
+			return GetTlsSubscriptionIdsResultOutput{}, err
 		}
-		return s, err
+
+		output := pulumi.ToOutput(rv).(GetTlsSubscriptionIdsResultOutput)
+		if secret {
+			return pulumi.ToSecret(output).(GetTlsSubscriptionIdsResultOutput), nil
+		}
+		return output, nil
 	}).(GetTlsSubscriptionIdsResultOutput)
 }
 

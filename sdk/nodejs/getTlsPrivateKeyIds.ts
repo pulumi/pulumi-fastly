@@ -20,7 +20,6 @@ import * as utilities from "./utilities";
  * ```
  */
 export function getTlsPrivateKeyIds(opts?: pulumi.InvokeOptions): Promise<GetTlsPrivateKeyIdsResult> {
-
     opts = pulumi.mergeOptions(utilities.resourceOptsDefaults(), opts || {});
     return pulumi.runtime.invoke("fastly:index/getTlsPrivateKeyIds:getTlsPrivateKeyIds", {
     }, opts);
@@ -55,5 +54,7 @@ export interface GetTlsPrivateKeyIdsResult {
  * ```
  */
 export function getTlsPrivateKeyIdsOutput(opts?: pulumi.InvokeOptions): pulumi.Output<GetTlsPrivateKeyIdsResult> {
-    return pulumi.output(getTlsPrivateKeyIds(opts))
+    opts = pulumi.mergeOptions(utilities.resourceOptsDefaults(), opts || {});
+    return pulumi.runtime.invokeOutput("fastly:index/getTlsPrivateKeyIds:getTlsPrivateKeyIds", {
+    }, opts);
 }

@@ -21,7 +21,6 @@ import * as utilities from "./utilities";
  * ```
  */
 export function getTlsSubscriptionIds(opts?: pulumi.InvokeOptions): Promise<GetTlsSubscriptionIdsResult> {
-
     opts = pulumi.mergeOptions(utilities.resourceOptsDefaults(), opts || {});
     return pulumi.runtime.invoke("fastly:index/getTlsSubscriptionIds:getTlsSubscriptionIds", {
     }, opts);
@@ -57,5 +56,7 @@ export interface GetTlsSubscriptionIdsResult {
  * ```
  */
 export function getTlsSubscriptionIdsOutput(opts?: pulumi.InvokeOptions): pulumi.Output<GetTlsSubscriptionIdsResult> {
-    return pulumi.output(getTlsSubscriptionIds(opts))
+    opts = pulumi.mergeOptions(utilities.resourceOptsDefaults(), opts || {});
+    return pulumi.runtime.invokeOutput("fastly:index/getTlsSubscriptionIds:getTlsSubscriptionIds", {
+    }, opts);
 }
