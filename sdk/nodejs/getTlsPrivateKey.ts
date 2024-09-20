@@ -28,7 +28,6 @@ import * as utilities from "./utilities";
  */
 export function getTlsPrivateKey(args?: GetTlsPrivateKeyArgs, opts?: pulumi.InvokeOptions): Promise<GetTlsPrivateKeyResult> {
     args = args || {};
-
     opts = pulumi.mergeOptions(utilities.resourceOptsDefaults(), opts || {});
     return pulumi.runtime.invoke("fastly:index/getTlsPrivateKey:getTlsPrivateKey", {
         "createdAt": args.createdAt,
@@ -126,7 +125,16 @@ export interface GetTlsPrivateKeyResult {
  * ```
  */
 export function getTlsPrivateKeyOutput(args?: GetTlsPrivateKeyOutputArgs, opts?: pulumi.InvokeOptions): pulumi.Output<GetTlsPrivateKeyResult> {
-    return pulumi.output(args).apply((a: any) => getTlsPrivateKey(a, opts))
+    args = args || {};
+    opts = pulumi.mergeOptions(utilities.resourceOptsDefaults(), opts || {});
+    return pulumi.runtime.invokeOutput("fastly:index/getTlsPrivateKey:getTlsPrivateKey", {
+        "createdAt": args.createdAt,
+        "id": args.id,
+        "keyLength": args.keyLength,
+        "keyType": args.keyType,
+        "name": args.name,
+        "publicKeySha1": args.publicKeySha1,
+    }, opts);
 }
 
 /**

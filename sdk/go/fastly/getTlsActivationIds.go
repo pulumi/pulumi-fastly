@@ -40,14 +40,20 @@ type GetTlsActivationIdsResult struct {
 
 func GetTlsActivationIdsOutput(ctx *pulumi.Context, args GetTlsActivationIdsOutputArgs, opts ...pulumi.InvokeOption) GetTlsActivationIdsResultOutput {
 	return pulumi.ToOutputWithContext(context.Background(), args).
-		ApplyT(func(v interface{}) (GetTlsActivationIdsResult, error) {
+		ApplyT(func(v interface{}) (GetTlsActivationIdsResultOutput, error) {
 			args := v.(GetTlsActivationIdsArgs)
-			r, err := GetTlsActivationIds(ctx, &args, opts...)
-			var s GetTlsActivationIdsResult
-			if r != nil {
-				s = *r
+			opts = internal.PkgInvokeDefaultOpts(opts)
+			var rv GetTlsActivationIdsResult
+			secret, err := ctx.InvokePackageRaw("fastly:index/getTlsActivationIds:getTlsActivationIds", args, &rv, "", opts...)
+			if err != nil {
+				return GetTlsActivationIdsResultOutput{}, err
 			}
-			return s, err
+
+			output := pulumi.ToOutput(rv).(GetTlsActivationIdsResultOutput)
+			if secret {
+				return pulumi.ToSecret(output).(GetTlsActivationIdsResultOutput), nil
+			}
+			return output, nil
 		}).(GetTlsActivationIdsResultOutput)
 }
 

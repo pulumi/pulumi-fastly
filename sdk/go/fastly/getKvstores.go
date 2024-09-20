@@ -30,13 +30,19 @@ type GetKvstoresResult struct {
 }
 
 func GetKvstoresOutput(ctx *pulumi.Context, opts ...pulumi.InvokeOption) GetKvstoresResultOutput {
-	return pulumi.ToOutput(0).ApplyT(func(int) (GetKvstoresResult, error) {
-		r, err := GetKvstores(ctx, opts...)
-		var s GetKvstoresResult
-		if r != nil {
-			s = *r
+	return pulumi.ToOutput(0).ApplyT(func(int) (GetKvstoresResultOutput, error) {
+		opts = internal.PkgInvokeDefaultOpts(opts)
+		var rv GetKvstoresResult
+		secret, err := ctx.InvokePackageRaw("fastly:index/getKvstores:getKvstores", nil, &rv, "", opts...)
+		if err != nil {
+			return GetKvstoresResultOutput{}, err
 		}
-		return s, err
+
+		output := pulumi.ToOutput(rv).(GetKvstoresResultOutput)
+		if secret {
+			return pulumi.ToSecret(output).(GetKvstoresResultOutput), nil
+		}
+		return output, nil
 	}).(GetKvstoresResultOutput)
 }
 

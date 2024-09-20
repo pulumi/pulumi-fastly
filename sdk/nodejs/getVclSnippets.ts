@@ -34,7 +34,6 @@ import * as utilities from "./utilities";
  * [1]: https://www.fastly.com/documentation/reference/api/vcl-services/snippet/
  */
 export function getVclSnippets(args: GetVclSnippetsArgs, opts?: pulumi.InvokeOptions): Promise<GetVclSnippetsResult> {
-
     opts = pulumi.mergeOptions(utilities.resourceOptsDefaults(), opts || {});
     return pulumi.runtime.invoke("fastly:index/getVclSnippets:getVclSnippets", {
         "serviceId": args.serviceId,
@@ -105,7 +104,11 @@ export interface GetVclSnippetsResult {
  * [1]: https://www.fastly.com/documentation/reference/api/vcl-services/snippet/
  */
 export function getVclSnippetsOutput(args: GetVclSnippetsOutputArgs, opts?: pulumi.InvokeOptions): pulumi.Output<GetVclSnippetsResult> {
-    return pulumi.output(args).apply((a: any) => getVclSnippets(a, opts))
+    opts = pulumi.mergeOptions(utilities.resourceOptsDefaults(), opts || {});
+    return pulumi.runtime.invokeOutput("fastly:index/getVclSnippets:getVclSnippets", {
+        "serviceId": args.serviceId,
+        "serviceVersion": args.serviceVersion,
+    }, opts);
 }
 
 /**

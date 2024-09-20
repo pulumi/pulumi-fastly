@@ -7,7 +7,6 @@ import * as outputs from "./types/output";
 import * as utilities from "./utilities";
 
 export function getKvstores(opts?: pulumi.InvokeOptions): Promise<GetKvstoresResult> {
-
     opts = pulumi.mergeOptions(utilities.resourceOptsDefaults(), opts || {});
     return pulumi.runtime.invoke("fastly:index/getKvstores:getKvstores", {
     }, opts);
@@ -27,5 +26,7 @@ export interface GetKvstoresResult {
     readonly stores: outputs.GetKvstoresStore[];
 }
 export function getKvstoresOutput(opts?: pulumi.InvokeOptions): pulumi.Output<GetKvstoresResult> {
-    return pulumi.output(getKvstores(opts))
+    opts = pulumi.mergeOptions(utilities.resourceOptsDefaults(), opts || {});
+    return pulumi.runtime.invokeOutput("fastly:index/getKvstores:getKvstores", {
+    }, opts);
 }
