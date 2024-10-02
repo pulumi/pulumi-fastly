@@ -109,9 +109,7 @@ func Provider() tfbridge.ProviderInfo {
 		},
 		JavaScript: &tfbridge.JavaScriptInfo{
 			// List any npm dependencies and their versions
-			Dependencies: map[string]string{
-				"@pulumi/pulumi": "^3.0.0",
-			},
+
 			DevDependencies: map[string]string{
 				"@types/node": "^10.0.0", // so we can access strongly typed node definitions.
 				"@types/mime": "^2.0.0",
@@ -121,9 +119,6 @@ func Provider() tfbridge.ProviderInfo {
 		Python: (func() *tfbridge.PythonInfo {
 			i := &tfbridge.PythonInfo{
 				RespectSchemaVersion: true,
-				Requires: map[string]string{
-					"pulumi": ">=3.0.0,<4.0.0",
-				},
 			}
 			i.PyProject.Enabled = true
 			return i
@@ -202,9 +197,12 @@ var skipExtraConfigurationSection = tfbridge.DocsEdit{
 var tfVersionRegexp = regexp.MustCompile(
 	`The Fastly provider prior to version [v0-9]*\.[0-9]*\.[0-9]*.*\n.*`,
 )
-var blockRegexp = regexp.MustCompile(` in the[A-Za-z0-9\s]* \x60?provider\x60? block`)
-var omitBlockRegexp = regexp.MustCompile(
-	"When using this method, you may omit the\nFastly `provider` block entirely:",
+
+var (
+	blockRegexp     = regexp.MustCompile(` in the[A-Za-z0-9\s]* \x60?provider\x60? block`)
+	omitBlockRegexp = regexp.MustCompile(
+		"When using this method, you may omit the\nFastly `provider` block entirely:",
+	)
 )
 
 // Removes a version reference and block content
