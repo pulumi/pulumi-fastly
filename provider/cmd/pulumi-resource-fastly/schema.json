@@ -3711,6 +3711,10 @@
                     "type": "string",
                     "description": "Used by the provider to identify modified settings (changing this value will force the entire block to be deleted, then recreated)\n"
                 },
+                "ngwaf": {
+                    "type": "boolean",
+                    "description": "Enable Next-Gen WAF support\n"
+                },
                 "originInspector": {
                     "type": "boolean",
                     "description": "Enable Origin Inspector support\n"

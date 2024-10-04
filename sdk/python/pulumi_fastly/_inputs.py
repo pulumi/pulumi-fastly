@@ -11485,6 +11485,7 @@ class ServiceVclProductEnablementArgs:
                  domain_inspector: Optional[pulumi.Input[bool]] = None,
                  image_optimizer: Optional[pulumi.Input[bool]] = None,
                  name: Optional[pulumi.Input[str]] = None,
+                 ngwaf: Optional[pulumi.Input[bool]] = None,
                  origin_inspector: Optional[pulumi.Input[bool]] = None,
                  websockets: Optional[pulumi.Input[bool]] = None):
         """
@@ -11493,6 +11494,7 @@ class ServiceVclProductEnablementArgs:
         :param pulumi.Input[bool] domain_inspector: Enable Domain Inspector support
         :param pulumi.Input[bool] image_optimizer: Enable Image Optimizer support (all backends must have a `shield` attribute)
         :param pulumi.Input[str] name: Used by the provider to identify modified settings (changing this value will force the entire block to be deleted, then recreated)
+        :param pulumi.Input[bool] ngwaf: Enable Next-Gen WAF support
         :param pulumi.Input[bool] origin_inspector: Enable Origin Inspector support
         :param pulumi.Input[bool] websockets: Enable WebSockets support
         """
@@ -11506,6 +11508,8 @@ class ServiceVclProductEnablementArgs:
             pulumi.set(__self__, "image_optimizer", image_optimizer)
         if name is not None:
             pulumi.set(__self__, "name", name)
+        if ngwaf is not None:
+            pulumi.set(__self__, "ngwaf", ngwaf)
         if origin_inspector is not None:
             pulumi.set(__self__, "origin_inspector", origin_inspector)
         if websockets is not None:
@@ -11570,6 +11574,18 @@ class ServiceVclProductEnablementArgs:
     @name.setter
     def name(self, value: Optional[pulumi.Input[str]]):
         pulumi.set(self, "name", value)
+
+    @property
+    @pulumi.getter
+    def ngwaf(self) -> Optional[pulumi.Input[bool]]:
+        """
+        Enable Next-Gen WAF support
+        """
+        return pulumi.get(self, "ngwaf")
+
+    @ngwaf.setter
+    def ngwaf(self, value: Optional[pulumi.Input[bool]]):
+        pulumi.set(self, "ngwaf", value)
 
     @property
     @pulumi.getter(name="originInspector")

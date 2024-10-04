@@ -10377,6 +10377,7 @@ class ServiceVclProductEnablement(dict):
                  domain_inspector: Optional[bool] = None,
                  image_optimizer: Optional[bool] = None,
                  name: Optional[str] = None,
+                 ngwaf: Optional[bool] = None,
                  origin_inspector: Optional[bool] = None,
                  websockets: Optional[bool] = None):
         """
@@ -10385,6 +10386,7 @@ class ServiceVclProductEnablement(dict):
         :param bool domain_inspector: Enable Domain Inspector support
         :param bool image_optimizer: Enable Image Optimizer support (all backends must have a `shield` attribute)
         :param str name: Used by the provider to identify modified settings (changing this value will force the entire block to be deleted, then recreated)
+        :param bool ngwaf: Enable Next-Gen WAF support
         :param bool origin_inspector: Enable Origin Inspector support
         :param bool websockets: Enable WebSockets support
         """
@@ -10398,6 +10400,8 @@ class ServiceVclProductEnablement(dict):
             pulumi.set(__self__, "image_optimizer", image_optimizer)
         if name is not None:
             pulumi.set(__self__, "name", name)
+        if ngwaf is not None:
+            pulumi.set(__self__, "ngwaf", ngwaf)
         if origin_inspector is not None:
             pulumi.set(__self__, "origin_inspector", origin_inspector)
         if websockets is not None:
@@ -10442,6 +10446,14 @@ class ServiceVclProductEnablement(dict):
         Used by the provider to identify modified settings (changing this value will force the entire block to be deleted, then recreated)
         """
         return pulumi.get(self, "name")
+
+    @property
+    @pulumi.getter
+    def ngwaf(self) -> Optional[bool]:
+        """
+        Enable Next-Gen WAF support
+        """
+        return pulumi.get(self, "ngwaf")
 
     @property
     @pulumi.getter(name="originInspector")

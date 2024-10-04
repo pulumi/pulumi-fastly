@@ -3173,6 +3173,10 @@ export interface ServiceVclProductEnablement {
      */
     name?: string;
     /**
+     * Enable Next-Gen WAF support
+     */
+    ngwaf?: boolean;
+    /**
      * Enable Origin Inspector support
      */
     originInspector?: boolean;

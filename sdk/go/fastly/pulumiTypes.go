@@ -13343,6 +13343,8 @@ type ServiceVclProductEnablement struct {
 	ImageOptimizer *bool `pulumi:"imageOptimizer"`
 	// Used by the provider to identify modified settings (changing this value will force the entire block to be deleted, then recreated)
 	Name *string `pulumi:"name"`
+	// Enable Next-Gen WAF support
+	Ngwaf *bool `pulumi:"ngwaf"`
 	// Enable Origin Inspector support
 	OriginInspector *bool `pulumi:"originInspector"`
 	// Enable WebSockets support
@@ -13371,6 +13373,8 @@ type ServiceVclProductEnablementArgs struct {
 	ImageOptimizer pulumi.BoolPtrInput `pulumi:"imageOptimizer"`
 	// Used by the provider to identify modified settings (changing this value will force the entire block to be deleted, then recreated)
 	Name pulumi.StringPtrInput `pulumi:"name"`
+	// Enable Next-Gen WAF support
+	Ngwaf pulumi.BoolPtrInput `pulumi:"ngwaf"`
 	// Enable Origin Inspector support
 	OriginInspector pulumi.BoolPtrInput `pulumi:"originInspector"`
 	// Enable WebSockets support
@@ -13479,6 +13483,11 @@ func (o ServiceVclProductEnablementOutput) Name() pulumi.StringPtrOutput {
 	return o.ApplyT(func(v ServiceVclProductEnablement) *string { return v.Name }).(pulumi.StringPtrOutput)
 }
 
+// Enable Next-Gen WAF support
+func (o ServiceVclProductEnablementOutput) Ngwaf() pulumi.BoolPtrOutput {
+	return o.ApplyT(func(v ServiceVclProductEnablement) *bool { return v.Ngwaf }).(pulumi.BoolPtrOutput)
+}
+
 // Enable Origin Inspector support
 func (o ServiceVclProductEnablementOutput) OriginInspector() pulumi.BoolPtrOutput {
 	return o.ApplyT(func(v ServiceVclProductEnablement) *bool { return v.OriginInspector }).(pulumi.BoolPtrOutput)
@@ -13561,6 +13570,16 @@ func (o ServiceVclProductEnablementPtrOutput) Name() pulumi.StringPtrOutput {
 		}
 		return v.Name
 	}).(pulumi.StringPtrOutput)
+}
+
+// Enable Next-Gen WAF support
+func (o ServiceVclProductEnablementPtrOutput) Ngwaf() pulumi.BoolPtrOutput {
+	return o.ApplyT(func(v *ServiceVclProductEnablement) *bool {
+		if v == nil {
+			return nil
+		}
+		return v.Ngwaf
+	}).(pulumi.BoolPtrOutput)
 }
 
 // Enable Origin Inspector support

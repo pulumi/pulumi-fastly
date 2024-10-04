@@ -3018,6 +3018,10 @@ export interface ServiceVclProductEnablement {
      */
     name?: pulumi.Input<string>;
     /**
+     * Enable Next-Gen WAF support
+     */
+    ngwaf?: pulumi.Input<boolean>;
+    /**
      * Enable Origin Inspector support
      */
     originInspector?: pulumi.Input<boolean>;
