@@ -38,6 +38,11 @@ public final class ServiceVclProductEnablement {
      */
     private @Nullable String name;
     /**
+     * @return Enable Next-Gen WAF support
+     * 
+     */
+    private @Nullable Boolean ngwaf;
+    /**
      * @return Enable Origin Inspector support
      * 
      */
@@ -85,6 +90,13 @@ public final class ServiceVclProductEnablement {
         return Optional.ofNullable(this.name);
     }
     /**
+     * @return Enable Next-Gen WAF support
+     * 
+     */
+    public Optional<Boolean> ngwaf() {
+        return Optional.ofNullable(this.ngwaf);
+    }
+    /**
      * @return Enable Origin Inspector support
      * 
      */
@@ -113,6 +125,7 @@ public final class ServiceVclProductEnablement {
         private @Nullable Boolean domainInspector;
         private @Nullable Boolean imageOptimizer;
         private @Nullable String name;
+        private @Nullable Boolean ngwaf;
         private @Nullable Boolean originInspector;
         private @Nullable Boolean websockets;
         public Builder() {}
@@ -123,6 +136,7 @@ public final class ServiceVclProductEnablement {
     	      this.domainInspector = defaults.domainInspector;
     	      this.imageOptimizer = defaults.imageOptimizer;
     	      this.name = defaults.name;
+    	      this.ngwaf = defaults.ngwaf;
     	      this.originInspector = defaults.originInspector;
     	      this.websockets = defaults.websockets;
         }
@@ -158,6 +172,12 @@ public final class ServiceVclProductEnablement {
             return this;
         }
         @CustomType.Setter
+        public Builder ngwaf(@Nullable Boolean ngwaf) {
+
+            this.ngwaf = ngwaf;
+            return this;
+        }
+        @CustomType.Setter
         public Builder originInspector(@Nullable Boolean originInspector) {
 
             this.originInspector = originInspector;
@@ -176,6 +196,7 @@ public final class ServiceVclProductEnablement {
             _resultValue.domainInspector = domainInspector;
             _resultValue.imageOptimizer = imageOptimizer;
             _resultValue.name = name;
+            _resultValue.ngwaf = ngwaf;
             _resultValue.originInspector = originInspector;
             _resultValue.websockets = websockets;
             return _resultValue;

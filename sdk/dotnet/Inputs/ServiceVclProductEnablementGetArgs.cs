@@ -43,6 +43,12 @@ namespace Pulumi.Fastly.Inputs
         public Input<string>? Name { get; set; }
 
         /// <summary>
+        /// Enable Next-Gen WAF support
+        /// </summary>
+        [Input("ngwaf")]
+        public Input<bool>? Ngwaf { get; set; }
+
+        /// <summary>
         /// Enable Origin Inspector support
         /// </summary>
         [Input("originInspector")]

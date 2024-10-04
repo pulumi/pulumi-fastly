@@ -34,6 +34,10 @@ namespace Pulumi.Fastly.Outputs
         /// </summary>
         public readonly string? Name;
         /// <summary>
+        /// Enable Next-Gen WAF support
+        /// </summary>
+        public readonly bool? Ngwaf;
+        /// <summary>
         /// Enable Origin Inspector support
         /// </summary>
         public readonly bool? OriginInspector;
@@ -54,6 +58,8 @@ namespace Pulumi.Fastly.Outputs
 
             string? name,
 
+            bool? ngwaf,
+
             bool? originInspector,
 
             bool? websockets)
@@ -63,6 +69,7 @@ namespace Pulumi.Fastly.Outputs
             DomainInspector = domainInspector;
             ImageOptimizer = imageOptimizer;
             Name = name;
+            Ngwaf = ngwaf;
             OriginInspector = originInspector;
             Websockets = websockets;
         }

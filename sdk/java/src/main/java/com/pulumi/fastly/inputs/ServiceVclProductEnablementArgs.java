@@ -92,6 +92,21 @@ public final class ServiceVclProductEnablementArgs extends com.pulumi.resources.
     }
 
     /**
+     * Enable Next-Gen WAF support
+     * 
+     */
+    @Import(name="ngwaf")
+    private @Nullable Output<Boolean> ngwaf;
+
+    /**
+     * @return Enable Next-Gen WAF support
+     * 
+     */
+    public Optional<Output<Boolean>> ngwaf() {
+        return Optional.ofNullable(this.ngwaf);
+    }
+
+    /**
      * Enable Origin Inspector support
      * 
      */
@@ -129,6 +144,7 @@ public final class ServiceVclProductEnablementArgs extends com.pulumi.resources.
         this.domainInspector = $.domainInspector;
         this.imageOptimizer = $.imageOptimizer;
         this.name = $.name;
+        this.ngwaf = $.ngwaf;
         this.originInspector = $.originInspector;
         this.websockets = $.websockets;
     }
@@ -254,6 +270,27 @@ public final class ServiceVclProductEnablementArgs extends com.pulumi.resources.
          */
         public Builder name(String name) {
             return name(Output.of(name));
+        }
+
+        /**
+         * @param ngwaf Enable Next-Gen WAF support
+         * 
+         * @return builder
+         * 
+         */
+        public Builder ngwaf(@Nullable Output<Boolean> ngwaf) {
+            $.ngwaf = ngwaf;
+            return this;
+        }
+
+        /**
+         * @param ngwaf Enable Next-Gen WAF support
+         * 
+         * @return builder
+         * 
+         */
+        public Builder ngwaf(Boolean ngwaf) {
+            return ngwaf(Output.of(ngwaf));
         }
 
         /**
