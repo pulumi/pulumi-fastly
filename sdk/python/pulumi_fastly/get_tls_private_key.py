@@ -4,9 +4,14 @@
 
 import copy
 import warnings
+import sys
 import pulumi
 import pulumi.runtime
 from typing import Any, Mapping, Optional, Sequence, Union, overload
+if sys.version_info >= (3, 11):
+    from typing import NotRequired, TypedDict, TypeAlias
+else:
+    from typing_extensions import NotRequired, TypedDict, TypeAlias
 from . import _utilities
 
 __all__ = [
@@ -169,9 +174,6 @@ def get_tls_private_key(created_at: Optional[str] = None,
         name=pulumi.get(__ret__, 'name'),
         public_key_sha1=pulumi.get(__ret__, 'public_key_sha1'),
         replace=pulumi.get(__ret__, 'replace'))
-
-
-@_utilities.lift_output_func(get_tls_private_key)
 def get_tls_private_key_output(created_at: Optional[pulumi.Input[Optional[str]]] = None,
                                id: Optional[pulumi.Input[Optional[str]]] = None,
                                key_length: Optional[pulumi.Input[Optional[int]]] = None,
@@ -207,4 +209,20 @@ def get_tls_private_key_output(created_at: Optional[pulumi.Input[Optional[str]]]
     :param str name: The human-readable name assigned to the private key when uploaded.
     :param str public_key_sha1: A hash of the associated public key, useful for safely identifying it.
     """
-    ...
+    __args__ = dict()
+    __args__['createdAt'] = created_at
+    __args__['id'] = id
+    __args__['keyLength'] = key_length
+    __args__['keyType'] = key_type
+    __args__['name'] = name
+    __args__['publicKeySha1'] = public_key_sha1
+    opts = pulumi.InvokeOptions.merge(_utilities.get_invoke_opts_defaults(), opts)
+    __ret__ = pulumi.runtime.invoke_output('fastly:index/getTlsPrivateKey:getTlsPrivateKey', __args__, opts=opts, typ=GetTlsPrivateKeyResult)
+    return __ret__.apply(lambda __response__: GetTlsPrivateKeyResult(
+        created_at=pulumi.get(__response__, 'created_at'),
+        id=pulumi.get(__response__, 'id'),
+        key_length=pulumi.get(__response__, 'key_length'),
+        key_type=pulumi.get(__response__, 'key_type'),
+        name=pulumi.get(__response__, 'name'),
+        public_key_sha1=pulumi.get(__response__, 'public_key_sha1'),
+        replace=pulumi.get(__response__, 'replace')))

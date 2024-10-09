@@ -27,7 +27,7 @@ import (
 //
 //	func main() {
 //		pulumi.Run(func(ctx *pulumi.Context) error {
-//			example, err := fastly.GetTlsConfigurationIds(ctx, nil, nil)
+//			example, err := fastly.GetTlsConfigurationIds(ctx, map[string]interface{}{}, nil)
 //			if err != nil {
 //				return err
 //			}

@@ -4,9 +4,14 @@
 
 import copy
 import warnings
+import sys
 import pulumi
 import pulumi.runtime
 from typing import Any, Mapping, Optional, Sequence, Union, overload
+if sys.version_info >= (3, 11):
+    from typing import NotRequired, TypedDict, TypeAlias
+else:
+    from typing_extensions import NotRequired, TypedDict, TypeAlias
 from . import _utilities
 
 __all__ = [
@@ -96,9 +101,6 @@ def get_tls_activation_ids(certificate_id: Optional[str] = None,
         certificate_id=pulumi.get(__ret__, 'certificate_id'),
         id=pulumi.get(__ret__, 'id'),
         ids=pulumi.get(__ret__, 'ids'))
-
-
-@_utilities.lift_output_func(get_tls_activation_ids)
 def get_tls_activation_ids_output(certificate_id: Optional[pulumi.Input[Optional[str]]] = None,
                                   opts: Optional[pulumi.InvokeOptions] = None) -> pulumi.Output[GetTlsActivationIdsResult]:
     """
@@ -118,4 +120,11 @@ def get_tls_activation_ids_output(certificate_id: Optional[pulumi.Input[Optional
 
     :param str certificate_id: ID of TLS certificate used to filter activations
     """
-    ...
+    __args__ = dict()
+    __args__['certificateId'] = certificate_id
+    opts = pulumi.InvokeOptions.merge(_utilities.get_invoke_opts_defaults(), opts)
+    __ret__ = pulumi.runtime.invoke_output('fastly:index/getTlsActivationIds:getTlsActivationIds', __args__, opts=opts, typ=GetTlsActivationIdsResult)
+    return __ret__.apply(lambda __response__: GetTlsActivationIdsResult(
+        certificate_id=pulumi.get(__response__, 'certificate_id'),
+        id=pulumi.get(__response__, 'id'),
+        ids=pulumi.get(__response__, 'ids')))

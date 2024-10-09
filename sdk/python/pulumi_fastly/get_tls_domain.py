@@ -4,9 +4,14 @@
 
 import copy
 import warnings
+import sys
 import pulumi
 import pulumi.runtime
 from typing import Any, Mapping, Optional, Sequence, Union, overload
+if sys.version_info >= (3, 11):
+    from typing import NotRequired, TypedDict, TypeAlias
+else:
+    from typing_extensions import NotRequired, TypedDict, TypeAlias
 from . import _utilities
 
 __all__ = [
@@ -120,9 +125,6 @@ def get_tls_domain(domain: Optional[str] = None,
         tls_activation_ids=pulumi.get(__ret__, 'tls_activation_ids'),
         tls_certificate_ids=pulumi.get(__ret__, 'tls_certificate_ids'),
         tls_subscription_ids=pulumi.get(__ret__, 'tls_subscription_ids'))
-
-
-@_utilities.lift_output_func(get_tls_domain)
 def get_tls_domain_output(domain: Optional[pulumi.Input[str]] = None,
                           opts: Optional[pulumi.InvokeOptions] = None) -> pulumi.Output[GetTlsDomainResult]:
     """
@@ -140,4 +142,13 @@ def get_tls_domain_output(domain: Optional[pulumi.Input[str]] = None,
 
     :param str domain: Domain name to look up activations, certificates and subscriptions for.
     """
-    ...
+    __args__ = dict()
+    __args__['domain'] = domain
+    opts = pulumi.InvokeOptions.merge(_utilities.get_invoke_opts_defaults(), opts)
+    __ret__ = pulumi.runtime.invoke_output('fastly:index/getTlsDomain:getTlsDomain', __args__, opts=opts, typ=GetTlsDomainResult)
+    return __ret__.apply(lambda __response__: GetTlsDomainResult(
+        domain=pulumi.get(__response__, 'domain'),
+        id=pulumi.get(__response__, 'id'),
+        tls_activation_ids=pulumi.get(__response__, 'tls_activation_ids'),
+        tls_certificate_ids=pulumi.get(__response__, 'tls_certificate_ids'),
+        tls_subscription_ids=pulumi.get(__response__, 'tls_subscription_ids')))
