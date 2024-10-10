@@ -4,9 +4,14 @@
 
 import copy
 import warnings
+import sys
 import pulumi
 import pulumi.runtime
 from typing import Any, Mapping, Optional, Sequence, Union, overload
+if sys.version_info >= (3, 11):
+    from typing import NotRequired, TypedDict, TypeAlias
+else:
+    from typing_extensions import NotRequired, TypedDict, TypeAlias
 from . import _utilities
 
 __all__ = [
@@ -203,9 +208,6 @@ def get_tls_certificate(domains: Optional[Sequence[str]] = None,
         serial_number=pulumi.get(__ret__, 'serial_number'),
         signature_algorithm=pulumi.get(__ret__, 'signature_algorithm'),
         updated_at=pulumi.get(__ret__, 'updated_at'))
-
-
-@_utilities.lift_output_func(get_tls_certificate)
 def get_tls_certificate_output(domains: Optional[pulumi.Input[Optional[Sequence[str]]]] = None,
                                id: Optional[pulumi.Input[Optional[str]]] = None,
                                issued_to: Optional[pulumi.Input[Optional[str]]] = None,
@@ -237,4 +239,22 @@ def get_tls_certificate_output(domains: Optional[pulumi.Input[Optional[Sequence[
     :param str issuer: The certificate authority that issued the certificate.
     :param str name: Human-readable name used to identify the certificate. Defaults to the certificate's Common Name or first Subject Alternative Name entry.
     """
-    ...
+    __args__ = dict()
+    __args__['domains'] = domains
+    __args__['id'] = id
+    __args__['issuedTo'] = issued_to
+    __args__['issuer'] = issuer
+    __args__['name'] = name
+    opts = pulumi.InvokeOptions.merge(_utilities.get_invoke_opts_defaults(), opts)
+    __ret__ = pulumi.runtime.invoke_output('fastly:index/getTlsCertificate:getTlsCertificate', __args__, opts=opts, typ=GetTlsCertificateResult)
+    return __ret__.apply(lambda __response__: GetTlsCertificateResult(
+        created_at=pulumi.get(__response__, 'created_at'),
+        domains=pulumi.get(__response__, 'domains'),
+        id=pulumi.get(__response__, 'id'),
+        issued_to=pulumi.get(__response__, 'issued_to'),
+        issuer=pulumi.get(__response__, 'issuer'),
+        name=pulumi.get(__response__, 'name'),
+        replace=pulumi.get(__response__, 'replace'),
+        serial_number=pulumi.get(__response__, 'serial_number'),
+        signature_algorithm=pulumi.get(__response__, 'signature_algorithm'),
+        updated_at=pulumi.get(__response__, 'updated_at')))

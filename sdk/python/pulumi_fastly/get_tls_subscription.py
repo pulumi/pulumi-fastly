@@ -4,9 +4,14 @@
 
 import copy
 import warnings
+import sys
 import pulumi
 import pulumi.runtime
 from typing import Any, Mapping, Optional, Sequence, Union, overload
+if sys.version_info >= (3, 11):
+    from typing import NotRequired, TypedDict, TypeAlias
+else:
+    from typing_extensions import NotRequired, TypedDict, TypeAlias
 from . import _utilities
 
 __all__ = [
@@ -181,9 +186,6 @@ def get_tls_subscription(certificate_authority: Optional[str] = None,
         id=pulumi.get(__ret__, 'id'),
         state=pulumi.get(__ret__, 'state'),
         updated_at=pulumi.get(__ret__, 'updated_at'))
-
-
-@_utilities.lift_output_func(get_tls_subscription)
 def get_tls_subscription_output(certificate_authority: Optional[pulumi.Input[Optional[str]]] = None,
                                 configuration_id: Optional[pulumi.Input[Optional[str]]] = None,
                                 domains: Optional[pulumi.Input[Optional[Sequence[str]]]] = None,
@@ -207,4 +209,20 @@ def get_tls_subscription_output(certificate_authority: Optional[pulumi.Input[Opt
     :param Sequence[str] domains: List of domains on which to enable TLS.
     :param str id: ID of TLS subscription. Conflicts with all the other filters.
     """
-    ...
+    __args__ = dict()
+    __args__['certificateAuthority'] = certificate_authority
+    __args__['configurationId'] = configuration_id
+    __args__['domains'] = domains
+    __args__['id'] = id
+    opts = pulumi.InvokeOptions.merge(_utilities.get_invoke_opts_defaults(), opts)
+    __ret__ = pulumi.runtime.invoke_output('fastly:index/getTlsSubscription:getTlsSubscription', __args__, opts=opts, typ=GetTlsSubscriptionResult)
+    return __ret__.apply(lambda __response__: GetTlsSubscriptionResult(
+        certificate_authority=pulumi.get(__response__, 'certificate_authority'),
+        certificate_ids=pulumi.get(__response__, 'certificate_ids'),
+        common_name=pulumi.get(__response__, 'common_name'),
+        configuration_id=pulumi.get(__response__, 'configuration_id'),
+        created_at=pulumi.get(__response__, 'created_at'),
+        domains=pulumi.get(__response__, 'domains'),
+        id=pulumi.get(__response__, 'id'),
+        state=pulumi.get(__response__, 'state'),
+        updated_at=pulumi.get(__response__, 'updated_at')))

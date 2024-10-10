@@ -4,9 +4,14 @@
 
 import copy
 import warnings
+import sys
 import pulumi
 import pulumi.runtime
 from typing import Any, Mapping, Optional, Sequence, Union, overload
+if sys.version_info >= (3, 11):
+    from typing import NotRequired, TypedDict, TypeAlias
+else:
+    from typing_extensions import NotRequired, TypedDict, TypeAlias
 from . import _utilities
 from . import outputs
 
@@ -195,9 +200,6 @@ def get_tls_configuration(default: Optional[bool] = None,
         tls_protocols=pulumi.get(__ret__, 'tls_protocols'),
         tls_service=pulumi.get(__ret__, 'tls_service'),
         updated_at=pulumi.get(__ret__, 'updated_at'))
-
-
-@_utilities.lift_output_func(get_tls_configuration)
 def get_tls_configuration_output(default: Optional[pulumi.Input[Optional[bool]]] = None,
                                  http_protocols: Optional[pulumi.Input[Optional[Sequence[str]]]] = None,
                                  id: Optional[pulumi.Input[Optional[str]]] = None,
@@ -232,4 +234,22 @@ def get_tls_configuration_output(default: Optional[pulumi.Input[Optional[bool]]]
     :param Sequence[str] tls_protocols: TLS protocols available on the TLS configuration.
     :param str tls_service: Whether the configuration should support the `PLATFORM` or `CUSTOM` TLS service.
     """
-    ...
+    __args__ = dict()
+    __args__['default'] = default
+    __args__['httpProtocols'] = http_protocols
+    __args__['id'] = id
+    __args__['name'] = name
+    __args__['tlsProtocols'] = tls_protocols
+    __args__['tlsService'] = tls_service
+    opts = pulumi.InvokeOptions.merge(_utilities.get_invoke_opts_defaults(), opts)
+    __ret__ = pulumi.runtime.invoke_output('fastly:index/getTlsConfiguration:getTlsConfiguration', __args__, opts=opts, typ=GetTlsConfigurationResult)
+    return __ret__.apply(lambda __response__: GetTlsConfigurationResult(
+        created_at=pulumi.get(__response__, 'created_at'),
+        default=pulumi.get(__response__, 'default'),
+        dns_records=pulumi.get(__response__, 'dns_records'),
+        http_protocols=pulumi.get(__response__, 'http_protocols'),
+        id=pulumi.get(__response__, 'id'),
+        name=pulumi.get(__response__, 'name'),
+        tls_protocols=pulumi.get(__response__, 'tls_protocols'),
+        tls_service=pulumi.get(__response__, 'tls_service'),
+        updated_at=pulumi.get(__response__, 'updated_at')))

@@ -4,9 +4,14 @@
 
 import copy
 import warnings
+import sys
 import pulumi
 import pulumi.runtime
 from typing import Any, Mapping, Optional, Sequence, Union, overload
+if sys.version_info >= (3, 11):
+    from typing import NotRequired, TypedDict, TypeAlias
+else:
+    from typing_extensions import NotRequired, TypedDict, TypeAlias
 from . import _utilities
 
 __all__ = [
@@ -114,9 +119,6 @@ def get_package_hash(content: Optional[str] = None,
         filename=pulumi.get(__ret__, 'filename'),
         hash=pulumi.get(__ret__, 'hash'),
         id=pulumi.get(__ret__, 'id'))
-
-
-@_utilities.lift_output_func(get_package_hash)
 def get_package_hash_output(content: Optional[pulumi.Input[Optional[str]]] = None,
                             filename: Optional[pulumi.Input[Optional[str]]] = None,
                             opts: Optional[pulumi.InvokeOptions] = None) -> pulumi.Output[GetPackageHashResult]:
@@ -140,4 +142,13 @@ def get_package_hash_output(content: Optional[pulumi.Input[Optional[str]]] = Non
     :param str content: The contents of the Wasm deployment package as a base64 encoded string (e.g. could be provided using an input variable or via external data source output variable). Conflicts with `filename`. Exactly one of these two arguments must be specified
     :param str filename: The path to the Wasm deployment package within your local filesystem. Conflicts with `content`. Exactly one of these two arguments must be specified
     """
-    ...
+    __args__ = dict()
+    __args__['content'] = content
+    __args__['filename'] = filename
+    opts = pulumi.InvokeOptions.merge(_utilities.get_invoke_opts_defaults(), opts)
+    __ret__ = pulumi.runtime.invoke_output('fastly:index/getPackageHash:getPackageHash', __args__, opts=opts, typ=GetPackageHashResult)
+    return __ret__.apply(lambda __response__: GetPackageHashResult(
+        content=pulumi.get(__response__, 'content'),
+        filename=pulumi.get(__response__, 'filename'),
+        hash=pulumi.get(__response__, 'hash'),
+        id=pulumi.get(__response__, 'id')))

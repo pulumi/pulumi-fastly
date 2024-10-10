@@ -4,9 +4,14 @@
 
 import copy
 import warnings
+import sys
 import pulumi
 import pulumi.runtime
 from typing import Any, Mapping, Optional, Sequence, Union, overload
+if sys.version_info >= (3, 11):
+    from typing import NotRequired, TypedDict, TypeAlias
+else:
+    from typing_extensions import NotRequired, TypedDict, TypeAlias
 from . import _utilities
 
 __all__ = [
@@ -135,9 +140,6 @@ def get_tls_activation(certificate_id: Optional[str] = None,
         created_at=pulumi.get(__ret__, 'created_at'),
         domain=pulumi.get(__ret__, 'domain'),
         id=pulumi.get(__ret__, 'id'))
-
-
-@_utilities.lift_output_func(get_tls_activation)
 def get_tls_activation_output(certificate_id: Optional[pulumi.Input[Optional[str]]] = None,
                               configuration_id: Optional[pulumi.Input[Optional[str]]] = None,
                               domain: Optional[pulumi.Input[Optional[str]]] = None,
@@ -167,4 +169,16 @@ def get_tls_activation_output(certificate_id: Optional[pulumi.Input[Optional[str
     :param str domain: Domain that TLS was enabled on.
     :param str id: Fastly Activation ID. Conflicts with all other filters.
     """
-    ...
+    __args__ = dict()
+    __args__['certificateId'] = certificate_id
+    __args__['configurationId'] = configuration_id
+    __args__['domain'] = domain
+    __args__['id'] = id
+    opts = pulumi.InvokeOptions.merge(_utilities.get_invoke_opts_defaults(), opts)
+    __ret__ = pulumi.runtime.invoke_output('fastly:index/getTlsActivation:getTlsActivation', __args__, opts=opts, typ=GetTlsActivationResult)
+    return __ret__.apply(lambda __response__: GetTlsActivationResult(
+        certificate_id=pulumi.get(__response__, 'certificate_id'),
+        configuration_id=pulumi.get(__response__, 'configuration_id'),
+        created_at=pulumi.get(__response__, 'created_at'),
+        domain=pulumi.get(__response__, 'domain'),
+        id=pulumi.get(__response__, 'id')))

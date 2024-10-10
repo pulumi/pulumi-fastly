@@ -4,9 +4,14 @@
 
 import copy
 import warnings
+import sys
 import pulumi
 import pulumi.runtime
 from typing import Any, Mapping, Optional, Sequence, Union, overload
+if sys.version_info >= (3, 11):
+    from typing import NotRequired, TypedDict, TypeAlias
+else:
+    from typing_extensions import NotRequired, TypedDict, TypeAlias
 from . import _utilities
 from . import outputs
 
@@ -68,11 +73,13 @@ def get_secretstores(opts: Optional[pulumi.InvokeOptions] = None) -> AwaitableGe
     return AwaitableGetSecretstoresResult(
         id=pulumi.get(__ret__, 'id'),
         stores=pulumi.get(__ret__, 'stores'))
-
-
-@_utilities.lift_output_func(get_secretstores)
 def get_secretstores_output(opts: Optional[pulumi.InvokeOptions] = None) -> pulumi.Output[GetSecretstoresResult]:
     """
     Use this data source to access information about an existing resource.
     """
-    ...
+    __args__ = dict()
+    opts = pulumi.InvokeOptions.merge(_utilities.get_invoke_opts_defaults(), opts)
+    __ret__ = pulumi.runtime.invoke_output('fastly:index/getSecretstores:getSecretstores', __args__, opts=opts, typ=GetSecretstoresResult)
+    return __ret__.apply(lambda __response__: GetSecretstoresResult(
+        id=pulumi.get(__response__, 'id'),
+        stores=pulumi.get(__response__, 'stores')))

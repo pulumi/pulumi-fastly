@@ -4,9 +4,14 @@
 
 import copy
 import warnings
+import sys
 import pulumi
 import pulumi.runtime
 from typing import Any, Mapping, Optional, Sequence, Union, overload
+if sys.version_info >= (3, 11):
+    from typing import NotRequired, TypedDict, TypeAlias
+else:
+    from typing_extensions import NotRequired, TypedDict, TypeAlias
 from . import _utilities
 
 __all__ = [
@@ -77,9 +82,6 @@ def get_tls_platform_certificate_ids(opts: Optional[pulumi.InvokeOptions] = None
     return AwaitableGetTlsPlatformCertificateIdsResult(
         id=pulumi.get(__ret__, 'id'),
         ids=pulumi.get(__ret__, 'ids'))
-
-
-@_utilities.lift_output_func(get_tls_platform_certificate_ids)
 def get_tls_platform_certificate_ids_output(opts: Optional[pulumi.InvokeOptions] = None) -> pulumi.Output[GetTlsPlatformCertificateIdsResult]:
     """
     Use this data source to get the IDs of available Platform TLS Certificates for use with other resources.
@@ -94,4 +96,9 @@ def get_tls_platform_certificate_ids_output(opts: Optional[pulumi.InvokeOptions]
     example_get_tls_platform_certificate = fastly.get_tls_platform_certificate(id=example.ids[0])
     ```
     """
-    ...
+    __args__ = dict()
+    opts = pulumi.InvokeOptions.merge(_utilities.get_invoke_opts_defaults(), opts)
+    __ret__ = pulumi.runtime.invoke_output('fastly:index/getTlsPlatformCertificateIds:getTlsPlatformCertificateIds', __args__, opts=opts, typ=GetTlsPlatformCertificateIdsResult)
+    return __ret__.apply(lambda __response__: GetTlsPlatformCertificateIdsResult(
+        id=pulumi.get(__response__, 'id'),
+        ids=pulumi.get(__response__, 'ids')))

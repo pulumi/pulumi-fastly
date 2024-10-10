@@ -4,9 +4,14 @@
 
 import copy
 import warnings
+import sys
 import pulumi
 import pulumi.runtime
 from typing import Any, Mapping, Optional, Sequence, Union, overload
+if sys.version_info >= (3, 11):
+    from typing import NotRequired, TypedDict, TypeAlias
+else:
+    from typing_extensions import NotRequired, TypedDict, TypeAlias
 from . import _utilities
 from . import outputs
 
@@ -132,9 +137,6 @@ def get_dictionaries(service_id: Optional[str] = None,
         id=pulumi.get(__ret__, 'id'),
         service_id=pulumi.get(__ret__, 'service_id'),
         service_version=pulumi.get(__ret__, 'service_version'))
-
-
-@_utilities.lift_output_func(get_dictionaries)
 def get_dictionaries_output(service_id: Optional[pulumi.Input[str]] = None,
                             service_version: Optional[pulumi.Input[int]] = None,
                             opts: Optional[pulumi.InvokeOptions] = None) -> pulumi.Output[GetDictionariesResult]:
@@ -175,4 +177,13 @@ def get_dictionaries_output(service_id: Optional[pulumi.Input[str]] = None,
     :param str service_id: Alphanumeric string identifying the service.
     :param int service_version: Integer identifying a service version.
     """
-    ...
+    __args__ = dict()
+    __args__['serviceId'] = service_id
+    __args__['serviceVersion'] = service_version
+    opts = pulumi.InvokeOptions.merge(_utilities.get_invoke_opts_defaults(), opts)
+    __ret__ = pulumi.runtime.invoke_output('fastly:index/getDictionaries:getDictionaries', __args__, opts=opts, typ=GetDictionariesResult)
+    return __ret__.apply(lambda __response__: GetDictionariesResult(
+        dictionaries=pulumi.get(__response__, 'dictionaries'),
+        id=pulumi.get(__response__, 'id'),
+        service_id=pulumi.get(__response__, 'service_id'),
+        service_version=pulumi.get(__response__, 'service_version')))

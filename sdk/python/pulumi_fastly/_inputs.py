@@ -4,100 +4,207 @@
 
 import copy
 import warnings
+import sys
 import pulumi
 import pulumi.runtime
 from typing import Any, Mapping, Optional, Sequence, Union, overload
+if sys.version_info >= (3, 11):
+    from typing import NotRequired, TypedDict, TypeAlias
+else:
+    from typing_extensions import NotRequired, TypedDict, TypeAlias
 from . import _utilities
 
 __all__ = [
     'AlertDimensionsArgs',
+    'AlertDimensionsArgsDict',
     'AlertEvaluationStrategyArgs',
+    'AlertEvaluationStrategyArgsDict',
     'ServiceACLEntriesEntryArgs',
+    'ServiceACLEntriesEntryArgsDict',
     'ServiceComputeBackendArgs',
+    'ServiceComputeBackendArgsDict',
     'ServiceComputeDictionaryArgs',
+    'ServiceComputeDictionaryArgsDict',
     'ServiceComputeDomainArgs',
+    'ServiceComputeDomainArgsDict',
     'ServiceComputeImageOptimizerDefaultSettingsArgs',
+    'ServiceComputeImageOptimizerDefaultSettingsArgsDict',
     'ServiceComputeLoggingBigqueryArgs',
+    'ServiceComputeLoggingBigqueryArgsDict',
     'ServiceComputeLoggingBlobstorageArgs',
+    'ServiceComputeLoggingBlobstorageArgsDict',
     'ServiceComputeLoggingCloudfileArgs',
+    'ServiceComputeLoggingCloudfileArgsDict',
     'ServiceComputeLoggingDatadogArgs',
+    'ServiceComputeLoggingDatadogArgsDict',
     'ServiceComputeLoggingDigitaloceanArgs',
+    'ServiceComputeLoggingDigitaloceanArgsDict',
     'ServiceComputeLoggingElasticsearchArgs',
+    'ServiceComputeLoggingElasticsearchArgsDict',
     'ServiceComputeLoggingFtpArgs',
+    'ServiceComputeLoggingFtpArgsDict',
     'ServiceComputeLoggingGcArgs',
+    'ServiceComputeLoggingGcArgsDict',
     'ServiceComputeLoggingGooglepubsubArgs',
+    'ServiceComputeLoggingGooglepubsubArgsDict',
     'ServiceComputeLoggingHerokuArgs',
+    'ServiceComputeLoggingHerokuArgsDict',
     'ServiceComputeLoggingHoneycombArgs',
+    'ServiceComputeLoggingHoneycombArgsDict',
     'ServiceComputeLoggingHttpArgs',
+    'ServiceComputeLoggingHttpArgsDict',
     'ServiceComputeLoggingKafkaArgs',
+    'ServiceComputeLoggingKafkaArgsDict',
     'ServiceComputeLoggingKineseArgs',
+    'ServiceComputeLoggingKineseArgsDict',
     'ServiceComputeLoggingLogentryArgs',
+    'ServiceComputeLoggingLogentryArgsDict',
     'ServiceComputeLoggingLogglyArgs',
+    'ServiceComputeLoggingLogglyArgsDict',
     'ServiceComputeLoggingLogshuttleArgs',
+    'ServiceComputeLoggingLogshuttleArgsDict',
     'ServiceComputeLoggingNewrelicArgs',
+    'ServiceComputeLoggingNewrelicArgsDict',
     'ServiceComputeLoggingOpenstackArgs',
+    'ServiceComputeLoggingOpenstackArgsDict',
     'ServiceComputeLoggingPapertrailArgs',
+    'ServiceComputeLoggingPapertrailArgsDict',
     'ServiceComputeLoggingS3Args',
+    'ServiceComputeLoggingS3ArgsDict',
     'ServiceComputeLoggingScalyrArgs',
+    'ServiceComputeLoggingScalyrArgsDict',
     'ServiceComputeLoggingSftpArgs',
+    'ServiceComputeLoggingSftpArgsDict',
     'ServiceComputeLoggingSplunkArgs',
+    'ServiceComputeLoggingSplunkArgsDict',
     'ServiceComputeLoggingSumologicArgs',
+    'ServiceComputeLoggingSumologicArgsDict',
     'ServiceComputeLoggingSyslogArgs',
+    'ServiceComputeLoggingSyslogArgsDict',
     'ServiceComputePackageArgs',
+    'ServiceComputePackageArgsDict',
     'ServiceComputeProductEnablementArgs',
+    'ServiceComputeProductEnablementArgsDict',
     'ServiceComputeResourceLinkArgs',
+    'ServiceComputeResourceLinkArgsDict',
     'ServiceVclAclArgs',
+    'ServiceVclAclArgsDict',
     'ServiceVclBackendArgs',
+    'ServiceVclBackendArgsDict',
     'ServiceVclCacheSettingArgs',
+    'ServiceVclCacheSettingArgsDict',
     'ServiceVclConditionArgs',
+    'ServiceVclConditionArgsDict',
     'ServiceVclDictionaryArgs',
+    'ServiceVclDictionaryArgsDict',
     'ServiceVclDirectorArgs',
+    'ServiceVclDirectorArgsDict',
     'ServiceVclDomainArgs',
+    'ServiceVclDomainArgsDict',
     'ServiceVclDynamicsnippetArgs',
+    'ServiceVclDynamicsnippetArgsDict',
     'ServiceVclGzipArgs',
+    'ServiceVclGzipArgsDict',
     'ServiceVclHeaderArgs',
+    'ServiceVclHeaderArgsDict',
     'ServiceVclHealthcheckArgs',
+    'ServiceVclHealthcheckArgsDict',
     'ServiceVclImageOptimizerDefaultSettingsArgs',
+    'ServiceVclImageOptimizerDefaultSettingsArgsDict',
     'ServiceVclLoggingBigqueryArgs',
+    'ServiceVclLoggingBigqueryArgsDict',
     'ServiceVclLoggingBlobstorageArgs',
+    'ServiceVclLoggingBlobstorageArgsDict',
     'ServiceVclLoggingCloudfileArgs',
+    'ServiceVclLoggingCloudfileArgsDict',
     'ServiceVclLoggingDatadogArgs',
+    'ServiceVclLoggingDatadogArgsDict',
     'ServiceVclLoggingDigitaloceanArgs',
+    'ServiceVclLoggingDigitaloceanArgsDict',
     'ServiceVclLoggingElasticsearchArgs',
+    'ServiceVclLoggingElasticsearchArgsDict',
     'ServiceVclLoggingFtpArgs',
+    'ServiceVclLoggingFtpArgsDict',
     'ServiceVclLoggingGcArgs',
+    'ServiceVclLoggingGcArgsDict',
     'ServiceVclLoggingGooglepubsubArgs',
+    'ServiceVclLoggingGooglepubsubArgsDict',
     'ServiceVclLoggingHerokusArgs',
+    'ServiceVclLoggingHerokusArgsDict',
     'ServiceVclLoggingHoneycombArgs',
+    'ServiceVclLoggingHoneycombArgsDict',
     'ServiceVclLoggingHttpArgs',
+    'ServiceVclLoggingHttpArgsDict',
     'ServiceVclLoggingKafkaArgs',
+    'ServiceVclLoggingKafkaArgsDict',
     'ServiceVclLoggingKineseArgs',
+    'ServiceVclLoggingKineseArgsDict',
     'ServiceVclLoggingLogentryArgs',
+    'ServiceVclLoggingLogentryArgsDict',
     'ServiceVclLoggingLogglyArgs',
+    'ServiceVclLoggingLogglyArgsDict',
     'ServiceVclLoggingLogshuttleArgs',
+    'ServiceVclLoggingLogshuttleArgsDict',
     'ServiceVclLoggingNewrelicArgs',
+    'ServiceVclLoggingNewrelicArgsDict',
     'ServiceVclLoggingNewrelicotlpArgs',
+    'ServiceVclLoggingNewrelicotlpArgsDict',
     'ServiceVclLoggingOpenstackArgs',
+    'ServiceVclLoggingOpenstackArgsDict',
     'ServiceVclLoggingPapertrailArgs',
+    'ServiceVclLoggingPapertrailArgsDict',
     'ServiceVclLoggingS3Args',
+    'ServiceVclLoggingS3ArgsDict',
     'ServiceVclLoggingScalyrArgs',
+    'ServiceVclLoggingScalyrArgsDict',
     'ServiceVclLoggingSftpArgs',
+    'ServiceVclLoggingSftpArgsDict',
     'ServiceVclLoggingSplunkArgs',
+    'ServiceVclLoggingSplunkArgsDict',
     'ServiceVclLoggingSumologicArgs',
+    'ServiceVclLoggingSumologicArgsDict',
     'ServiceVclLoggingSyslogArgs',
+    'ServiceVclLoggingSyslogArgsDict',
     'ServiceVclProductEnablementArgs',
+    'ServiceVclProductEnablementArgsDict',
     'ServiceVclRateLimiterArgs',
+    'ServiceVclRateLimiterArgsDict',
     'ServiceVclRateLimiterResponseArgs',
+    'ServiceVclRateLimiterResponseArgsDict',
     'ServiceVclRequestSettingArgs',
+    'ServiceVclRequestSettingArgsDict',
     'ServiceVclResponseObjectArgs',
+    'ServiceVclResponseObjectArgsDict',
     'ServiceVclSnippetArgs',
+    'ServiceVclSnippetArgsDict',
     'ServiceVclVclArgs',
+    'ServiceVclVclArgsDict',
     'ServiceVclWafArgs',
+    'ServiceVclWafArgsDict',
     'ServiceWafConfigurationRuleArgs',
+    'ServiceWafConfigurationRuleArgsDict',
     'ServiceWafConfigurationRuleExclusionArgs',
+    'ServiceWafConfigurationRuleExclusionArgsDict',
     'TlsSubscriptionManagedDnsChallengeArgs',
+    'TlsSubscriptionManagedDnsChallengeArgsDict',
     'TlsSubscriptionManagedHttpChallengeArgs',
+    'TlsSubscriptionManagedHttpChallengeArgsDict',
 ]
+
+MYPY = False
+
+if not MYPY:
+    class AlertDimensionsArgsDict(TypedDict):
+        domains: NotRequired[pulumi.Input[Sequence[pulumi.Input[str]]]]
+        """
+        Names of a subset of domains that the alert monitors.
+        """
+        origins: NotRequired[pulumi.Input[Sequence[pulumi.Input[str]]]]
+        """
+        Addresses of a subset of backends that the alert monitors.
+        """
+elif False:
+    AlertDimensionsArgsDict: TypeAlias = Mapping[str, Any]
 
 @pulumi.input_type
 class AlertDimensionsArgs:
@@ -137,6 +244,27 @@ class AlertDimensionsArgs:
     def origins(self, value: Optional[pulumi.Input[Sequence[pulumi.Input[str]]]]):
         pulumi.set(self, "origins", value)
 
+
+if not MYPY:
+    class AlertEvaluationStrategyArgsDict(TypedDict):
+        period: pulumi.Input[str]
+        """
+        The length of time to evaluate whether the conditions have been met. The data is polled every minute. One of: `2m`, `3m`, `5m`, `15m`, `30m`.
+        """
+        threshold: pulumi.Input[float]
+        """
+        Threshold used to alert.
+        """
+        type: pulumi.Input[str]
+        """
+        Type of strategy to use to evaluate. One of: `above_threshold`, `all_above_threshold`, `below_threshold`, `percent_absolute`, `percent_decrease`, `percent_increase`.
+        """
+        ignore_below: NotRequired[pulumi.Input[float]]
+        """
+        Threshold for the denominator value used in evaluations that calculate a rate or ratio. Usually used to filter out noise.
+        """
+elif False:
+    AlertEvaluationStrategyArgsDict: TypeAlias = Mapping[str, Any]
 
 @pulumi.input_type
 class AlertEvaluationStrategyArgs:
@@ -205,6 +333,31 @@ class AlertEvaluationStrategyArgs:
     def ignore_below(self, value: Optional[pulumi.Input[float]]):
         pulumi.set(self, "ignore_below", value)
 
+
+if not MYPY:
+    class ServiceACLEntriesEntryArgsDict(TypedDict):
+        ip: pulumi.Input[str]
+        """
+        An IP address that is the focus for the ACL
+        """
+        comment: NotRequired[pulumi.Input[str]]
+        """
+        A personal freeform descriptive note
+        """
+        id: NotRequired[pulumi.Input[str]]
+        """
+        The unique ID of the entry
+        """
+        negated: NotRequired[pulumi.Input[bool]]
+        """
+        A boolean that will negate the match if true
+        """
+        subnet: NotRequired[pulumi.Input[str]]
+        """
+        An optional subnet mask applied to the IP address
+        """
+elif False:
+    ServiceACLEntriesEntryArgsDict: TypeAlias = Mapping[str, Any]
 
 @pulumi.input_type
 class ServiceACLEntriesEntryArgs:
@@ -291,6 +444,107 @@ class ServiceACLEntriesEntryArgs:
     def subnet(self, value: Optional[pulumi.Input[str]]):
         pulumi.set(self, "subnet", value)
 
+
+if not MYPY:
+    class ServiceComputeBackendArgsDict(TypedDict):
+        address: pulumi.Input[str]
+        """
+        An IPv4, hostname, or IPv6 address for the Backend
+        """
+        name: pulumi.Input[str]
+        """
+        Name for this Backend. Must be unique to this Service. It is important to note that changing this attribute will delete and recreate the resource
+        """
+        between_bytes_timeout: NotRequired[pulumi.Input[int]]
+        """
+        How long to wait between bytes in milliseconds. Default `10000`
+        """
+        connect_timeout: NotRequired[pulumi.Input[int]]
+        """
+        How long to wait for a timeout in milliseconds. Default `1000`
+        """
+        error_threshold: NotRequired[pulumi.Input[int]]
+        """
+        Number of errors to allow before the Backend is marked as down. Default `0`
+        """
+        first_byte_timeout: NotRequired[pulumi.Input[int]]
+        """
+        How long to wait for the first bytes in milliseconds. Default `15000`
+        """
+        healthcheck: NotRequired[pulumi.Input[str]]
+        """
+        Name of a defined `healthcheck` to assign to this backend
+        """
+        keepalive_time: NotRequired[pulumi.Input[int]]
+        """
+        How long in seconds to keep a persistent connection to the backend between requests.
+        """
+        max_conn: NotRequired[pulumi.Input[int]]
+        """
+        Maximum number of connections for this Backend. Default `200`
+        """
+        max_tls_version: NotRequired[pulumi.Input[str]]
+        """
+        Maximum allowed TLS version on SSL connections to this backend.
+        """
+        min_tls_version: NotRequired[pulumi.Input[str]]
+        """
+        Minimum allowed TLS version on SSL connections to this backend.
+        """
+        override_host: NotRequired[pulumi.Input[str]]
+        """
+        The hostname to override the Host header
+        """
+        port: NotRequired[pulumi.Input[int]]
+        """
+        The port number on which the Backend responds. Default `80`
+        """
+        share_key: NotRequired[pulumi.Input[str]]
+        """
+        Value that when shared across backends will enable those backends to share the same health check.
+        """
+        shield: NotRequired[pulumi.Input[str]]
+        """
+        The POP of the shield designated to reduce inbound load. Valid values for `shield` are included in the `GET /datacenters` API response
+        """
+        ssl_ca_cert: NotRequired[pulumi.Input[str]]
+        """
+        CA certificate attached to origin.
+        """
+        ssl_cert_hostname: NotRequired[pulumi.Input[str]]
+        """
+        Configure certificate validation. Does not affect SNI at all
+        """
+        ssl_check_cert: NotRequired[pulumi.Input[bool]]
+        """
+        Be strict about checking SSL certs. Default `true`
+        """
+        ssl_ciphers: NotRequired[pulumi.Input[str]]
+        """
+        Cipher list consisting of one or more cipher strings separated by colons. Commas or spaces are also acceptable separators but colons are normally used.
+        """
+        ssl_client_cert: NotRequired[pulumi.Input[str]]
+        """
+        Client certificate attached to origin. Used when connecting to the backend
+        """
+        ssl_client_key: NotRequired[pulumi.Input[str]]
+        """
+        Client key attached to origin. Used when connecting to the backend
+        """
+        ssl_sni_hostname: NotRequired[pulumi.Input[str]]
+        """
+        Configure SNI in the TLS handshake. Does not affect cert validation at all
+        """
+        use_ssl: NotRequired[pulumi.Input[bool]]
+        """
+        Whether or not to use SSL to reach the Backend. Default `false`
+        """
+        weight: NotRequired[pulumi.Input[int]]
+        """
+        The [portion of traffic](https://docs.fastly.com/en/guides/load-balancing-configuration#how-weight-affects-load-balancing) to send to this Backend. Each Backend receives weight / total of the traffic. Default `100`
+        """
+elif False:
+    ServiceComputeBackendArgsDict: TypeAlias = Mapping[str, Any]
 
 @pulumi.input_type
 class ServiceComputeBackendArgs:
@@ -681,6 +935,24 @@ class ServiceComputeBackendArgs:
         pulumi.set(self, "weight", value)
 
 
+if not MYPY:
+    class ServiceComputeDictionaryArgsDict(TypedDict):
+        name: pulumi.Input[str]
+        """
+        A unique name to identify this dictionary. It is important to note that changing this attribute will delete and recreate the dictionary, and discard the current items in the dictionary
+        """
+        dictionary_id: NotRequired[pulumi.Input[str]]
+        """
+        The ID of the dictionary
+        """
+        force_destroy: NotRequired[pulumi.Input[bool]]
+        """
+        Allow the dictionary to be deleted, even if it contains entries. Defaults to false.
+        """
+        write_only: NotRequired[pulumi.Input[bool]]
+elif False:
+    ServiceComputeDictionaryArgsDict: TypeAlias = Mapping[str, Any]
+
 @pulumi.input_type
 class ServiceComputeDictionaryArgs:
     def __init__(__self__, *,
@@ -747,6 +1019,19 @@ class ServiceComputeDictionaryArgs:
         pulumi.set(self, "write_only", value)
 
 
+if not MYPY:
+    class ServiceComputeDomainArgsDict(TypedDict):
+        name: pulumi.Input[str]
+        """
+        The domain that this Service will respond to. It is important to note that changing this attribute will delete and recreate the resource.
+        """
+        comment: NotRequired[pulumi.Input[str]]
+        """
+        An optional comment about the Domain.
+        """
+elif False:
+    ServiceComputeDomainArgsDict: TypeAlias = Mapping[str, Any]
+
 @pulumi.input_type
 class ServiceComputeDomainArgs:
     def __init__(__self__, *,
@@ -784,6 +1069,51 @@ class ServiceComputeDomainArgs:
     def comment(self, value: Optional[pulumi.Input[str]]):
         pulumi.set(self, "comment", value)
 
+
+if not MYPY:
+    class ServiceComputeImageOptimizerDefaultSettingsArgsDict(TypedDict):
+        allow_video: NotRequired[pulumi.Input[bool]]
+        """
+        Enables GIF to MP4 transformations on this service.
+        """
+        jpeg_quality: NotRequired[pulumi.Input[int]]
+        """
+        The default quality to use with JPEG output. This can be overridden with the "quality" parameter on specific image optimizer requests.
+        """
+        jpeg_type: NotRequired[pulumi.Input[str]]
+        """
+        The default type of JPEG output to use. This can be overridden with "format=bjpeg" and "format=pjpeg" on specific image optimizer requests. Valid values are `auto`, `baseline` and `progressive`.
+        	- auto: Match the input JPEG type, or baseline if transforming from a non-JPEG input.
+        	- baseline: Output baseline JPEG images
+        	- progressive: Output progressive JPEG images
+        """
+        name: NotRequired[pulumi.Input[str]]
+        """
+        Used by the provider to identify modified settings. Changing this value will force the entire block to be deleted, then recreated.
+        """
+        resize_filter: NotRequired[pulumi.Input[str]]
+        """
+        The type of filter to use while resizing an image. Valid values are `lanczos3`, `lanczos2`, `bicubic`, `bilinear` and `nearest`.
+        	- lanczos3: A Lanczos filter with a kernel size of 3. Lanczos filters can detect edges and linear features within an image, providing the best possible reconstruction.
+        	- lanczos2: A Lanczos filter with a kernel size of 2.
+        	- bicubic: A filter using an average of a 4x4 environment of pixels, weighing the innermost pixels higher.
+        	- bilinear: A filter using an average of a 2x2 environment of pixels.
+        	- nearest: A filter using the value of nearby translated pixel values. Preserves hard edges.
+        """
+        upscale: NotRequired[pulumi.Input[bool]]
+        """
+        Whether or not we should allow output images to render at sizes larger than input.
+        """
+        webp: NotRequired[pulumi.Input[bool]]
+        """
+        Controls whether or not to default to WebP output when the client supports it. This is equivalent to adding "auto=webp" to all image optimizer requests.
+        """
+        webp_quality: NotRequired[pulumi.Input[int]]
+        """
+        The default quality to use with WebP output. This can be overridden with the second option in the "quality" URL parameter on specific image optimizer requests.
+        """
+elif False:
+    ServiceComputeImageOptimizerDefaultSettingsArgsDict: TypeAlias = Mapping[str, Any]
 
 @pulumi.input_type
 class ServiceComputeImageOptimizerDefaultSettingsArgs:
@@ -936,6 +1266,43 @@ class ServiceComputeImageOptimizerDefaultSettingsArgs:
         pulumi.set(self, "webp_quality", value)
 
 
+if not MYPY:
+    class ServiceComputeLoggingBigqueryArgsDict(TypedDict):
+        dataset: pulumi.Input[str]
+        """
+        The ID of your BigQuery dataset
+        """
+        email: pulumi.Input[str]
+        """
+        The email for the service account with write access to your BigQuery dataset. If not provided, this will be pulled from a `FASTLY_BQ_EMAIL` environment variable
+        """
+        name: pulumi.Input[str]
+        """
+        A unique name to identify this BigQuery logging endpoint. It is important to note that changing this attribute will delete and recreate the resource
+        """
+        project_id: pulumi.Input[str]
+        """
+        The ID of your GCP project
+        """
+        secret_key: pulumi.Input[str]
+        """
+        The secret key associated with the service account that has write access to your BigQuery table. If not provided, this will be pulled from the `FASTLY_BQ_SECRET_KEY` environment variable. Typical format for this is a private key in a string with newlines
+        """
+        table: pulumi.Input[str]
+        """
+        The ID of your BigQuery table
+        """
+        account_name: NotRequired[pulumi.Input[str]]
+        """
+        The google account name used to obtain temporary credentials (default none). You may optionally provide this via an environment variable, `FASTLY_GCS_ACCOUNT_NAME`.
+        """
+        template: NotRequired[pulumi.Input[str]]
+        """
+        BigQuery table name suffix template
+        """
+elif False:
+    ServiceComputeLoggingBigqueryArgsDict: TypeAlias = Mapping[str, Any]
+
 @pulumi.input_type
 class ServiceComputeLoggingBigqueryArgs:
     def __init__(__self__, *,
@@ -1064,6 +1431,59 @@ class ServiceComputeLoggingBigqueryArgs:
     def template(self, value: Optional[pulumi.Input[str]]):
         pulumi.set(self, "template", value)
 
+
+if not MYPY:
+    class ServiceComputeLoggingBlobstorageArgsDict(TypedDict):
+        account_name: pulumi.Input[str]
+        """
+        The unique Azure Blob Storage namespace in which your data objects are stored
+        """
+        container: pulumi.Input[str]
+        """
+        The name of the Azure Blob Storage container in which to store logs
+        """
+        name: pulumi.Input[str]
+        """
+        A unique name to identify the Azure Blob Storage endpoint. It is important to note that changing this attribute will delete and recreate the resource
+        """
+        sas_token: pulumi.Input[str]
+        """
+        The Azure shared access signature providing write access to the blob service objects. Be sure to update your token before it expires or the logging functionality will not work
+        """
+        compression_codec: NotRequired[pulumi.Input[str]]
+        """
+        The codec used for compression of your logs. Valid values are zstd, snappy, and gzip. If the specified codec is "gzip", gzip_level will default to 3. To specify a different level, leave compression_codec blank and explicitly set the level using gzip_level. Specifying both compression_codec and gzip_level in the same API request will result in an error.
+        """
+        file_max_bytes: NotRequired[pulumi.Input[int]]
+        """
+        Maximum size of an uploaded log file, if non-zero.
+        """
+        gzip_level: NotRequired[pulumi.Input[int]]
+        """
+        Level of Gzip compression from `0-9`. `0` means no compression. `1` is the fastest and the least compressed version, `9` is the slowest and the most compressed version. Default `0`
+        """
+        message_type: NotRequired[pulumi.Input[str]]
+        """
+        How the message should be formatted. Can be either `classic`, `loggly`, `logplex` or `blank`. Default is `classic`
+        """
+        path: NotRequired[pulumi.Input[str]]
+        """
+        The path to upload logs to. Must end with a trailing slash. If this field is left empty, the files will be saved in the container's root path
+        """
+        period: NotRequired[pulumi.Input[int]]
+        """
+        How frequently the logs should be transferred in seconds. Default `3600`
+        """
+        public_key: NotRequired[pulumi.Input[str]]
+        """
+        A PGP public key that Fastly will use to encrypt your log files before writing them to disk
+        """
+        timestamp_format: NotRequired[pulumi.Input[str]]
+        """
+        The `strftime` specified timestamp formatting (default `%Y-%m-%dT%H:%M:%S.000`)
+        """
+elif False:
+    ServiceComputeLoggingBlobstorageArgsDict: TypeAlias = Mapping[str, Any]
 
 @pulumi.input_type
 class ServiceComputeLoggingBlobstorageArgs:
@@ -1260,6 +1680,59 @@ class ServiceComputeLoggingBlobstorageArgs:
         pulumi.set(self, "timestamp_format", value)
 
 
+if not MYPY:
+    class ServiceComputeLoggingCloudfileArgsDict(TypedDict):
+        access_key: pulumi.Input[str]
+        """
+        Your Cloud File account access key
+        """
+        bucket_name: pulumi.Input[str]
+        """
+        The name of your Cloud Files container
+        """
+        name: pulumi.Input[str]
+        """
+        The unique name of the Rackspace Cloud Files logging endpoint. It is important to note that changing this attribute will delete and recreate the resource
+        """
+        user: pulumi.Input[str]
+        """
+        The username for your Cloud Files account
+        """
+        compression_codec: NotRequired[pulumi.Input[str]]
+        """
+        The codec used for compression of your logs. Valid values are zstd, snappy, and gzip. If the specified codec is "gzip", gzip_level will default to 3. To specify a different level, leave compression_codec blank and explicitly set the level using gzip_level. Specifying both compression_codec and gzip_level in the same API request will result in an error.
+        """
+        gzip_level: NotRequired[pulumi.Input[int]]
+        """
+        Level of Gzip compression from `0-9`. `0` means no compression. `1` is the fastest and the least compressed version, `9` is the slowest and the most compressed version. Default `0`
+        """
+        message_type: NotRequired[pulumi.Input[str]]
+        """
+        How the message should be formatted. Can be either `classic`, `loggly`, `logplex` or `blank`. Default is `classic`
+        """
+        path: NotRequired[pulumi.Input[str]]
+        """
+        The path to upload logs to
+        """
+        period: NotRequired[pulumi.Input[int]]
+        """
+        How frequently log files are finalized so they can be available for reading (in seconds, default `3600`)
+        """
+        public_key: NotRequired[pulumi.Input[str]]
+        """
+        The PGP public key that Fastly will use to encrypt your log files before writing them to disk
+        """
+        region: NotRequired[pulumi.Input[str]]
+        """
+        The region to stream logs to. One of: DFW (Dallas), ORD (Chicago), IAD (Northern Virginia), LON (London), SYD (Sydney), HKG (Hong Kong)
+        """
+        timestamp_format: NotRequired[pulumi.Input[str]]
+        """
+        The `strftime` specified timestamp formatting (default `%Y-%m-%dT%H:%M:%S.000`)
+        """
+elif False:
+    ServiceComputeLoggingCloudfileArgsDict: TypeAlias = Mapping[str, Any]
+
 @pulumi.input_type
 class ServiceComputeLoggingCloudfileArgs:
     def __init__(__self__, *,
@@ -1455,6 +1928,23 @@ class ServiceComputeLoggingCloudfileArgs:
         pulumi.set(self, "timestamp_format", value)
 
 
+if not MYPY:
+    class ServiceComputeLoggingDatadogArgsDict(TypedDict):
+        name: pulumi.Input[str]
+        """
+        The unique name of the Datadog logging endpoint. It is important to note that changing this attribute will delete and recreate the resource
+        """
+        token: pulumi.Input[str]
+        """
+        The API key from your Datadog account
+        """
+        region: NotRequired[pulumi.Input[str]]
+        """
+        The region that log data will be sent to. One of `US` or `EU`. Defaults to `US` if undefined
+        """
+elif False:
+    ServiceComputeLoggingDatadogArgsDict: TypeAlias = Mapping[str, Any]
+
 @pulumi.input_type
 class ServiceComputeLoggingDatadogArgs:
     def __init__(__self__, *,
@@ -1507,6 +1997,59 @@ class ServiceComputeLoggingDatadogArgs:
     def region(self, value: Optional[pulumi.Input[str]]):
         pulumi.set(self, "region", value)
 
+
+if not MYPY:
+    class ServiceComputeLoggingDigitaloceanArgsDict(TypedDict):
+        access_key: pulumi.Input[str]
+        """
+        Your DigitalOcean Spaces account access key
+        """
+        bucket_name: pulumi.Input[str]
+        """
+        The name of the DigitalOcean Space
+        """
+        name: pulumi.Input[str]
+        """
+        The unique name of the DigitalOcean Spaces logging endpoint. It is important to note that changing this attribute will delete and recreate the resource
+        """
+        secret_key: pulumi.Input[str]
+        """
+        Your DigitalOcean Spaces account secret key
+        """
+        compression_codec: NotRequired[pulumi.Input[str]]
+        """
+        The codec used for compression of your logs. Valid values are zstd, snappy, and gzip. If the specified codec is "gzip", gzip_level will default to 3. To specify a different level, leave compression_codec blank and explicitly set the level using gzip_level. Specifying both compression_codec and gzip_level in the same API request will result in an error.
+        """
+        domain: NotRequired[pulumi.Input[str]]
+        """
+        The domain of the DigitalOcean Spaces endpoint (default `nyc3.digitaloceanspaces.com`)
+        """
+        gzip_level: NotRequired[pulumi.Input[int]]
+        """
+        Level of Gzip compression from `0-9`. `0` means no compression. `1` is the fastest and the least compressed version, `9` is the slowest and the most compressed version. Default `0`
+        """
+        message_type: NotRequired[pulumi.Input[str]]
+        """
+        How the message should be formatted. Can be either `classic`, `loggly`, `logplex` or `blank`. Default is `classic`
+        """
+        path: NotRequired[pulumi.Input[str]]
+        """
+        The path to upload logs to
+        """
+        period: NotRequired[pulumi.Input[int]]
+        """
+        How frequently log files are finalized so they can be available for reading (in seconds, default `3600`)
+        """
+        public_key: NotRequired[pulumi.Input[str]]
+        """
+        A PGP public key that Fastly will use to encrypt your log files before writing them to disk
+        """
+        timestamp_format: NotRequired[pulumi.Input[str]]
+        """
+        The `strftime` specified timestamp formatting (default `%Y-%m-%dT%H:%M:%S.000`)
+        """
+elif False:
+    ServiceComputeLoggingDigitaloceanArgsDict: TypeAlias = Mapping[str, Any]
 
 @pulumi.input_type
 class ServiceComputeLoggingDigitaloceanArgs:
@@ -1702,6 +2245,59 @@ class ServiceComputeLoggingDigitaloceanArgs:
     def timestamp_format(self, value: Optional[pulumi.Input[str]]):
         pulumi.set(self, "timestamp_format", value)
 
+
+if not MYPY:
+    class ServiceComputeLoggingElasticsearchArgsDict(TypedDict):
+        index: pulumi.Input[str]
+        """
+        The name of the Elasticsearch index to send documents (logs) to
+        """
+        name: pulumi.Input[str]
+        """
+        The unique name of the Elasticsearch logging endpoint. It is important to note that changing this attribute will delete and recreate the resource
+        """
+        url: pulumi.Input[str]
+        """
+        The Elasticsearch URL to stream logs to
+        """
+        password: NotRequired[pulumi.Input[str]]
+        """
+        BasicAuth password for Elasticsearch
+        """
+        pipeline: NotRequired[pulumi.Input[str]]
+        """
+        The ID of the Elasticsearch ingest pipeline to apply pre-process transformations to before indexing
+        """
+        request_max_bytes: NotRequired[pulumi.Input[int]]
+        """
+        The maximum number of logs sent in one request. Defaults to `0` for unbounded
+        """
+        request_max_entries: NotRequired[pulumi.Input[int]]
+        """
+        The maximum number of bytes sent in one request. Defaults to `0` for unbounded
+        """
+        tls_ca_cert: NotRequired[pulumi.Input[str]]
+        """
+        A secure certificate to authenticate the server with. Must be in PEM format
+        """
+        tls_client_cert: NotRequired[pulumi.Input[str]]
+        """
+        The client certificate used to make authenticated requests. Must be in PEM format
+        """
+        tls_client_key: NotRequired[pulumi.Input[str]]
+        """
+        The client private key used to make authenticated requests. Must be in PEM format
+        """
+        tls_hostname: NotRequired[pulumi.Input[str]]
+        """
+        The hostname used to verify the server's certificate. It can either be the Common Name (CN) or a Subject Alternative Name (SAN)
+        """
+        user: NotRequired[pulumi.Input[str]]
+        """
+        BasicAuth username for Elasticsearch
+        """
+elif False:
+    ServiceComputeLoggingElasticsearchArgsDict: TypeAlias = Mapping[str, Any]
 
 @pulumi.input_type
 class ServiceComputeLoggingElasticsearchArgs:
@@ -1899,6 +2495,59 @@ class ServiceComputeLoggingElasticsearchArgs:
         pulumi.set(self, "user", value)
 
 
+if not MYPY:
+    class ServiceComputeLoggingFtpArgsDict(TypedDict):
+        address: pulumi.Input[str]
+        """
+        The FTP address to stream logs to
+        """
+        name: pulumi.Input[str]
+        """
+        The unique name of the FTP logging endpoint. It is important to note that changing this attribute will delete and recreate the resource
+        """
+        password: pulumi.Input[str]
+        """
+        The password for the server (for anonymous use an email address)
+        """
+        path: pulumi.Input[str]
+        """
+        The path to upload log files to. If the path ends in `/` then it is treated as a directory
+        """
+        user: pulumi.Input[str]
+        """
+        The username for the server (can be `anonymous`)
+        """
+        compression_codec: NotRequired[pulumi.Input[str]]
+        """
+        The codec used for compression of your logs. Valid values are zstd, snappy, and gzip. If the specified codec is "gzip", gzip_level will default to 3. To specify a different level, leave compression_codec blank and explicitly set the level using gzip_level. Specifying both compression_codec and gzip_level in the same API request will result in an error.
+        """
+        gzip_level: NotRequired[pulumi.Input[int]]
+        """
+        Level of Gzip compression from `0-9`. `0` means no compression. `1` is the fastest and the least compressed version, `9` is the slowest and the most compressed version. Default `0`
+        """
+        message_type: NotRequired[pulumi.Input[str]]
+        """
+        How the message should be formatted. Can be either `classic`, `loggly`, `logplex` or `blank`. Default is `classic`
+        """
+        period: NotRequired[pulumi.Input[int]]
+        """
+        How frequently the logs should be transferred, in seconds (Default `3600`)
+        """
+        port: NotRequired[pulumi.Input[int]]
+        """
+        The port number. Default: `21`
+        """
+        public_key: NotRequired[pulumi.Input[str]]
+        """
+        The PGP public key that Fastly will use to encrypt your log files before writing them to disk
+        """
+        timestamp_format: NotRequired[pulumi.Input[str]]
+        """
+        The `strftime` specified timestamp formatting (default `%Y-%m-%dT%H:%M:%S.000`)
+        """
+elif False:
+    ServiceComputeLoggingFtpArgsDict: TypeAlias = Mapping[str, Any]
+
 @pulumi.input_type
 class ServiceComputeLoggingFtpArgs:
     def __init__(__self__, *,
@@ -2092,6 +2741,59 @@ class ServiceComputeLoggingFtpArgs:
     def timestamp_format(self, value: Optional[pulumi.Input[str]]):
         pulumi.set(self, "timestamp_format", value)
 
+
+if not MYPY:
+    class ServiceComputeLoggingGcArgsDict(TypedDict):
+        bucket_name: pulumi.Input[str]
+        """
+        The name of the bucket in which to store the logs
+        """
+        name: pulumi.Input[str]
+        """
+        A unique name to identify this GCS endpoint. It is important to note that changing this attribute will delete and recreate the resource
+        """
+        account_name: NotRequired[pulumi.Input[str]]
+        """
+        The google account name used to obtain temporary credentials (default none). You may optionally provide this via an environment variable, `FASTLY_GCS_ACCOUNT_NAME`.
+        """
+        compression_codec: NotRequired[pulumi.Input[str]]
+        """
+        The codec used for compression of your logs. Valid values are zstd, snappy, and gzip. If the specified codec is "gzip", gzip_level will default to 3. To specify a different level, leave compression_codec blank and explicitly set the level using gzip_level. Specifying both compression_codec and gzip_level in the same API request will result in an error.
+        """
+        gzip_level: NotRequired[pulumi.Input[int]]
+        """
+        Level of Gzip compression from `0-9`. `0` means no compression. `1` is the fastest and the least compressed version, `9` is the slowest and the most compressed version. Default `0`
+        """
+        message_type: NotRequired[pulumi.Input[str]]
+        """
+        How the message should be formatted. Can be either `classic`, `loggly`, `logplex` or `blank`. Default is `classic`
+        """
+        path: NotRequired[pulumi.Input[str]]
+        """
+        Path to store the files. Must end with a trailing slash. If this field is left empty, the files will be saved in the bucket's root path
+        """
+        period: NotRequired[pulumi.Input[int]]
+        """
+        How frequently the logs should be transferred, in seconds (Default 3600)
+        """
+        project_id: NotRequired[pulumi.Input[str]]
+        """
+        The ID of your Google Cloud Platform project
+        """
+        secret_key: NotRequired[pulumi.Input[str]]
+        """
+        The secret key associated with the target gcs bucket on your account. You may optionally provide this secret via an environment variable, `FASTLY_GCS_SECRET_KEY`. A typical format for the key is PEM format, containing actual newline characters where required
+        """
+        timestamp_format: NotRequired[pulumi.Input[str]]
+        """
+        The `strftime` specified timestamp formatting (default `%Y-%m-%dT%H:%M:%S.000`)
+        """
+        user: NotRequired[pulumi.Input[str]]
+        """
+        Your Google Cloud Platform service account email address. The `client_email` field in your service account authentication JSON. You may optionally provide this via an environment variable, `FASTLY_GCS_EMAIL`.
+        """
+elif False:
+    ServiceComputeLoggingGcArgsDict: TypeAlias = Mapping[str, Any]
 
 @pulumi.input_type
 class ServiceComputeLoggingGcArgs:
@@ -2290,6 +2992,35 @@ class ServiceComputeLoggingGcArgs:
         pulumi.set(self, "user", value)
 
 
+if not MYPY:
+    class ServiceComputeLoggingGooglepubsubArgsDict(TypedDict):
+        name: pulumi.Input[str]
+        """
+        The unique name of the Google Cloud Pub/Sub logging endpoint. It is important to note that changing this attribute will delete and recreate the resource
+        """
+        project_id: pulumi.Input[str]
+        """
+        The ID of your Google Cloud Platform project
+        """
+        secret_key: pulumi.Input[str]
+        """
+        Your Google Cloud Platform account secret key. The `private_key` field in your service account authentication JSON. You may optionally provide this secret via an environment variable, `FASTLY_GOOGLE_PUBSUB_SECRET_KEY`.
+        """
+        topic: pulumi.Input[str]
+        """
+        The Google Cloud Pub/Sub topic to which logs will be published
+        """
+        user: pulumi.Input[str]
+        """
+        Your Google Cloud Platform service account email address. The `client_email` field in your service account authentication JSON. You may optionally provide this via an environment variable, `FASTLY_GOOGLE_PUBSUB_EMAIL`.
+        """
+        account_name: NotRequired[pulumi.Input[str]]
+        """
+        The google account name used to obtain temporary credentials (default none). You may optionally provide this via an environment variable, `FASTLY_GCS_ACCOUNT_NAME`.
+        """
+elif False:
+    ServiceComputeLoggingGooglepubsubArgsDict: TypeAlias = Mapping[str, Any]
+
 @pulumi.input_type
 class ServiceComputeLoggingGooglepubsubArgs:
     def __init__(__self__, *,
@@ -2388,6 +3119,23 @@ class ServiceComputeLoggingGooglepubsubArgs:
         pulumi.set(self, "account_name", value)
 
 
+if not MYPY:
+    class ServiceComputeLoggingHerokuArgsDict(TypedDict):
+        name: pulumi.Input[str]
+        """
+        The unique name of the Heroku logging endpoint. It is important to note that changing this attribute will delete and recreate the resource
+        """
+        token: pulumi.Input[str]
+        """
+        The token to use for authentication (https://www.heroku.com/docs/customer-token-authentication-token/)
+        """
+        url: pulumi.Input[str]
+        """
+        The URL to stream logs to
+        """
+elif False:
+    ServiceComputeLoggingHerokuArgsDict: TypeAlias = Mapping[str, Any]
+
 @pulumi.input_type
 class ServiceComputeLoggingHerokuArgs:
     def __init__(__self__, *,
@@ -2440,6 +3188,23 @@ class ServiceComputeLoggingHerokuArgs:
         pulumi.set(self, "url", value)
 
 
+if not MYPY:
+    class ServiceComputeLoggingHoneycombArgsDict(TypedDict):
+        dataset: pulumi.Input[str]
+        """
+        The Honeycomb Dataset you want to log to
+        """
+        name: pulumi.Input[str]
+        """
+        The unique name of the Honeycomb logging endpoint. It is important to note that changing this attribute will delete and recreate the resource
+        """
+        token: pulumi.Input[str]
+        """
+        The Write Key from the Account page of your Honeycomb account
+        """
+elif False:
+    ServiceComputeLoggingHoneycombArgsDict: TypeAlias = Mapping[str, Any]
+
 @pulumi.input_type
 class ServiceComputeLoggingHoneycombArgs:
     def __init__(__self__, *,
@@ -2491,6 +3256,67 @@ class ServiceComputeLoggingHoneycombArgs:
     def token(self, value: pulumi.Input[str]):
         pulumi.set(self, "token", value)
 
+
+if not MYPY:
+    class ServiceComputeLoggingHttpArgsDict(TypedDict):
+        name: pulumi.Input[str]
+        """
+        The unique name of the HTTPS logging endpoint. It is important to note that changing this attribute will delete and recreate the resource
+        """
+        url: pulumi.Input[str]
+        """
+        URL that log data will be sent to. Must use the https protocol
+        """
+        content_type: NotRequired[pulumi.Input[str]]
+        """
+        Value of the `Content-Type` header sent with the request
+        """
+        header_name: NotRequired[pulumi.Input[str]]
+        """
+        Custom header sent with the request
+        """
+        header_value: NotRequired[pulumi.Input[str]]
+        """
+        Value of the custom header sent with the request
+        """
+        json_format: NotRequired[pulumi.Input[str]]
+        """
+        Formats log entries as JSON. Can be either disabled (`0`), array of json (`1`), or newline delimited json (`2`)
+        """
+        message_type: NotRequired[pulumi.Input[str]]
+        """
+        How the message should be formatted. Can be either `classic`, `loggly`, `logplex` or `blank`. Default is `classic`
+        """
+        method: NotRequired[pulumi.Input[str]]
+        """
+        HTTP method used for request. Can be either `POST` or `PUT`. Default `POST`
+        """
+        request_max_bytes: NotRequired[pulumi.Input[int]]
+        """
+        The maximum number of bytes sent in one request
+        """
+        request_max_entries: NotRequired[pulumi.Input[int]]
+        """
+        The maximum number of logs sent in one request
+        """
+        tls_ca_cert: NotRequired[pulumi.Input[str]]
+        """
+        A secure certificate to authenticate the server with. Must be in PEM format
+        """
+        tls_client_cert: NotRequired[pulumi.Input[str]]
+        """
+        The client certificate used to make authenticated requests. Must be in PEM format
+        """
+        tls_client_key: NotRequired[pulumi.Input[str]]
+        """
+        The client private key used to make authenticated requests. Must be in PEM format
+        """
+        tls_hostname: NotRequired[pulumi.Input[str]]
+        """
+        Used during the TLS handshake to validate the certificate
+        """
+elif False:
+    ServiceComputeLoggingHttpArgsDict: TypeAlias = Mapping[str, Any]
 
 @pulumi.input_type
 class ServiceComputeLoggingHttpArgs:
@@ -2720,6 +3546,71 @@ class ServiceComputeLoggingHttpArgs:
     def tls_hostname(self, value: Optional[pulumi.Input[str]]):
         pulumi.set(self, "tls_hostname", value)
 
+
+if not MYPY:
+    class ServiceComputeLoggingKafkaArgsDict(TypedDict):
+        brokers: pulumi.Input[str]
+        """
+        A comma-separated list of IP addresses or hostnames of Kafka brokers
+        """
+        name: pulumi.Input[str]
+        """
+        The unique name of the Kafka logging endpoint. It is important to note that changing this attribute will delete and recreate the resource
+        """
+        topic: pulumi.Input[str]
+        """
+        The Kafka topic to send logs to
+        """
+        auth_method: NotRequired[pulumi.Input[str]]
+        """
+        SASL authentication method. One of: plain, scram-sha-256, scram-sha-512
+        """
+        compression_codec: NotRequired[pulumi.Input[str]]
+        """
+        The codec used for compression of your logs. One of: `gzip`, `snappy`, `lz4`
+        """
+        parse_log_keyvals: NotRequired[pulumi.Input[bool]]
+        """
+        Enables parsing of key=value tuples from the beginning of a logline, turning them into record headers
+        """
+        password: NotRequired[pulumi.Input[str]]
+        """
+        SASL Pass
+        """
+        request_max_bytes: NotRequired[pulumi.Input[int]]
+        """
+        Maximum size of log batch, if non-zero. Defaults to 0 for unbounded
+        """
+        required_acks: NotRequired[pulumi.Input[str]]
+        """
+        The Number of acknowledgements a leader must receive before a write is considered successful. One of: `1` (default) One server needs to respond. `0` No servers need to respond. `-1` Wait for all in-sync replicas to respond
+        """
+        tls_ca_cert: NotRequired[pulumi.Input[str]]
+        """
+        A secure certificate to authenticate the server with. Must be in PEM format
+        """
+        tls_client_cert: NotRequired[pulumi.Input[str]]
+        """
+        The client certificate used to make authenticated requests. Must be in PEM format
+        """
+        tls_client_key: NotRequired[pulumi.Input[str]]
+        """
+        The client private key used to make authenticated requests. Must be in PEM format
+        """
+        tls_hostname: NotRequired[pulumi.Input[str]]
+        """
+        The hostname used to verify the server's certificate. It can either be the Common Name or a Subject Alternative Name (SAN)
+        """
+        use_tls: NotRequired[pulumi.Input[bool]]
+        """
+        Whether to use TLS for secure logging. Can be either `true` or `false`
+        """
+        user: NotRequired[pulumi.Input[str]]
+        """
+        SASL User
+        """
+elif False:
+    ServiceComputeLoggingKafkaArgsDict: TypeAlias = Mapping[str, Any]
 
 @pulumi.input_type
 class ServiceComputeLoggingKafkaArgs:
@@ -2965,6 +3856,35 @@ class ServiceComputeLoggingKafkaArgs:
         pulumi.set(self, "user", value)
 
 
+if not MYPY:
+    class ServiceComputeLoggingKineseArgsDict(TypedDict):
+        name: pulumi.Input[str]
+        """
+        The unique name of the Kinesis logging endpoint. It is important to note that changing this attribute will delete and recreate the resource
+        """
+        topic: pulumi.Input[str]
+        """
+        The Kinesis stream name
+        """
+        access_key: NotRequired[pulumi.Input[str]]
+        """
+        The AWS access key to be used to write to the stream
+        """
+        iam_role: NotRequired[pulumi.Input[str]]
+        """
+        The Amazon Resource Name (ARN) for the IAM role granting Fastly access to Kinesis. Not required if `access_key` and `secret_key` are provided.
+        """
+        region: NotRequired[pulumi.Input[str]]
+        """
+        The AWS region the stream resides in. (Default: `us-east-1`)
+        """
+        secret_key: NotRequired[pulumi.Input[str]]
+        """
+        The AWS secret access key to authenticate with
+        """
+elif False:
+    ServiceComputeLoggingKineseArgsDict: TypeAlias = Mapping[str, Any]
+
 @pulumi.input_type
 class ServiceComputeLoggingKineseArgs:
     def __init__(__self__, *,
@@ -3066,6 +3986,27 @@ class ServiceComputeLoggingKineseArgs:
         pulumi.set(self, "secret_key", value)
 
 
+if not MYPY:
+    class ServiceComputeLoggingLogentryArgsDict(TypedDict):
+        name: pulumi.Input[str]
+        """
+        The unique name of the Logentries logging endpoint. It is important to note that changing this attribute will delete and recreate the resource
+        """
+        token: pulumi.Input[str]
+        """
+        Use token based authentication (https://logentries.com/doc/input-token/)
+        """
+        port: NotRequired[pulumi.Input[int]]
+        """
+        The port number configured in Logentries
+        """
+        use_tls: NotRequired[pulumi.Input[bool]]
+        """
+        Whether to use TLS for secure logging
+        """
+elif False:
+    ServiceComputeLoggingLogentryArgsDict: TypeAlias = Mapping[str, Any]
+
 @pulumi.input_type
 class ServiceComputeLoggingLogentryArgs:
     def __init__(__self__, *,
@@ -3135,6 +4076,19 @@ class ServiceComputeLoggingLogentryArgs:
         pulumi.set(self, "use_tls", value)
 
 
+if not MYPY:
+    class ServiceComputeLoggingLogglyArgsDict(TypedDict):
+        name: pulumi.Input[str]
+        """
+        The unique name of the Loggly logging endpoint. It is important to note that changing this attribute will delete and recreate the resource
+        """
+        token: pulumi.Input[str]
+        """
+        The token to use for authentication (https://www.loggly.com/docs/customer-token-authentication-token/).
+        """
+elif False:
+    ServiceComputeLoggingLogglyArgsDict: TypeAlias = Mapping[str, Any]
+
 @pulumi.input_type
 class ServiceComputeLoggingLogglyArgs:
     def __init__(__self__, *,
@@ -3171,6 +4125,23 @@ class ServiceComputeLoggingLogglyArgs:
     def token(self, value: pulumi.Input[str]):
         pulumi.set(self, "token", value)
 
+
+if not MYPY:
+    class ServiceComputeLoggingLogshuttleArgsDict(TypedDict):
+        name: pulumi.Input[str]
+        """
+        The unique name of the Log Shuttle logging endpoint. It is important to note that changing this attribute will delete and recreate the resource
+        """
+        token: pulumi.Input[str]
+        """
+        The data authentication token associated with this endpoint
+        """
+        url: pulumi.Input[str]
+        """
+        Your Log Shuttle endpoint URL
+        """
+elif False:
+    ServiceComputeLoggingLogshuttleArgsDict: TypeAlias = Mapping[str, Any]
 
 @pulumi.input_type
 class ServiceComputeLoggingLogshuttleArgs:
@@ -3224,6 +4195,23 @@ class ServiceComputeLoggingLogshuttleArgs:
         pulumi.set(self, "url", value)
 
 
+if not MYPY:
+    class ServiceComputeLoggingNewrelicArgsDict(TypedDict):
+        name: pulumi.Input[str]
+        """
+        The unique name of the New Relic logging endpoint. It is important to note that changing this attribute will delete and recreate the resource
+        """
+        token: pulumi.Input[str]
+        """
+        The Insert API key from the Account page of your New Relic account
+        """
+        region: NotRequired[pulumi.Input[str]]
+        """
+        The region that log data will be sent to. Default: `US`
+        """
+elif False:
+    ServiceComputeLoggingNewrelicArgsDict: TypeAlias = Mapping[str, Any]
+
 @pulumi.input_type
 class ServiceComputeLoggingNewrelicArgs:
     def __init__(__self__, *,
@@ -3276,6 +4264,59 @@ class ServiceComputeLoggingNewrelicArgs:
     def region(self, value: Optional[pulumi.Input[str]]):
         pulumi.set(self, "region", value)
 
+
+if not MYPY:
+    class ServiceComputeLoggingOpenstackArgsDict(TypedDict):
+        access_key: pulumi.Input[str]
+        """
+        Your OpenStack account access key
+        """
+        bucket_name: pulumi.Input[str]
+        """
+        The name of your OpenStack container
+        """
+        name: pulumi.Input[str]
+        """
+        The unique name of the OpenStack logging endpoint. It is important to note that changing this attribute will delete and recreate the resource
+        """
+        url: pulumi.Input[str]
+        """
+        Your OpenStack auth url
+        """
+        user: pulumi.Input[str]
+        """
+        The username for your OpenStack account
+        """
+        compression_codec: NotRequired[pulumi.Input[str]]
+        """
+        The codec used for compression of your logs. Valid values are zstd, snappy, and gzip. If the specified codec is "gzip", gzip_level will default to 3. To specify a different level, leave compression_codec blank and explicitly set the level using gzip_level. Specifying both compression_codec and gzip_level in the same API request will result in an error.
+        """
+        gzip_level: NotRequired[pulumi.Input[int]]
+        """
+        Level of Gzip compression from `0-9`. `0` means no compression. `1` is the fastest and the least compressed version, `9` is the slowest and the most compressed version. Default `0`
+        """
+        message_type: NotRequired[pulumi.Input[str]]
+        """
+        How the message should be formatted. Can be either `classic`, `loggly`, `logplex` or `blank`. Default is `classic`
+        """
+        path: NotRequired[pulumi.Input[str]]
+        """
+        Path to store the files. Must end with a trailing slash. If this field is left empty, the files will be saved in the bucket's root path
+        """
+        period: NotRequired[pulumi.Input[int]]
+        """
+        How frequently the logs should be transferred, in seconds. Default `3600`
+        """
+        public_key: NotRequired[pulumi.Input[str]]
+        """
+        A PGP public key that Fastly will use to encrypt your log files before writing them to disk
+        """
+        timestamp_format: NotRequired[pulumi.Input[str]]
+        """
+        The `strftime` specified timestamp formatting (default `%Y-%m-%dT%H:%M:%S.000`)
+        """
+elif False:
+    ServiceComputeLoggingOpenstackArgsDict: TypeAlias = Mapping[str, Any]
 
 @pulumi.input_type
 class ServiceComputeLoggingOpenstackArgs:
@@ -3471,6 +4512,23 @@ class ServiceComputeLoggingOpenstackArgs:
         pulumi.set(self, "timestamp_format", value)
 
 
+if not MYPY:
+    class ServiceComputeLoggingPapertrailArgsDict(TypedDict):
+        address: pulumi.Input[str]
+        """
+        The address of the Papertrail endpoint
+        """
+        name: pulumi.Input[str]
+        """
+        A unique name to identify this Papertrail endpoint. It is important to note that changing this attribute will delete and recreate the resource
+        """
+        port: pulumi.Input[int]
+        """
+        The port associated with the address where the Papertrail endpoint can be accessed
+        """
+elif False:
+    ServiceComputeLoggingPapertrailArgsDict: TypeAlias = Mapping[str, Any]
+
 @pulumi.input_type
 class ServiceComputeLoggingPapertrailArgs:
     def __init__(__self__, *,
@@ -3522,6 +4580,83 @@ class ServiceComputeLoggingPapertrailArgs:
     def port(self, value: pulumi.Input[int]):
         pulumi.set(self, "port", value)
 
+
+if not MYPY:
+    class ServiceComputeLoggingS3ArgsDict(TypedDict):
+        bucket_name: pulumi.Input[str]
+        """
+        The name of the bucket in which to store the logs
+        """
+        name: pulumi.Input[str]
+        """
+        The unique name of the S3 logging endpoint. It is important to note that changing this attribute will delete and recreate the resource
+        """
+        acl: NotRequired[pulumi.Input[str]]
+        """
+        The AWS [Canned ACL](https://docs.aws.amazon.com/AmazonS3/latest/userguide/acl-overview.html#canned-acl) to use for objects uploaded to the S3 bucket. Options are: `private`, `public-read`, `public-read-write`, `aws-exec-read`, `authenticated-read`, `bucket-owner-read`, `bucket-owner-full-control`
+        """
+        compression_codec: NotRequired[pulumi.Input[str]]
+        """
+        The codec used for compression of your logs. Valid values are zstd, snappy, and gzip. If the specified codec is "gzip", gzip_level will default to 3. To specify a different level, leave compression_codec blank and explicitly set the level using gzip_level. Specifying both compression_codec and gzip_level in the same API request will result in an error.
+        """
+        domain: NotRequired[pulumi.Input[str]]
+        """
+        If you created the S3 bucket outside of `us-east-1`, then specify the corresponding bucket endpoint. Example: `s3-us-west-2.amazonaws.com`
+        """
+        file_max_bytes: NotRequired[pulumi.Input[int]]
+        """
+        Maximum size of an uploaded log file, if non-zero.
+        """
+        gzip_level: NotRequired[pulumi.Input[int]]
+        """
+        Level of Gzip compression from `0-9`. `0` means no compression. `1` is the fastest and the least compressed version, `9` is the slowest and the most compressed version. Default `0`
+        """
+        message_type: NotRequired[pulumi.Input[str]]
+        """
+        How the message should be formatted. Can be either `classic`, `loggly`, `logplex` or `blank`. Default is `classic`
+        """
+        path: NotRequired[pulumi.Input[str]]
+        """
+        Path to store the files. Must end with a trailing slash. If this field is left empty, the files will be saved in the bucket's root path
+        """
+        period: NotRequired[pulumi.Input[int]]
+        """
+        How frequently the logs should be transferred, in seconds. Default `3600`
+        """
+        public_key: NotRequired[pulumi.Input[str]]
+        """
+        A PGP public key that Fastly will use to encrypt your log files before writing them to disk
+        """
+        redundancy: NotRequired[pulumi.Input[str]]
+        """
+        The S3 storage class (redundancy level). Should be one of: `standard`, `intelligent_tiering`, `standard_ia`, `onezone_ia`, `glacier`, `glacier_ir`, `deep_archive`, or `reduced_redundancy`
+        """
+        s3_access_key: NotRequired[pulumi.Input[str]]
+        """
+        AWS Access Key of an account with the required permissions to post logs. It is **strongly** recommended you create a separate IAM user with permissions to only operate on this Bucket. This key will be not be encrypted. Not required if `iam_role` is provided. You can provide this key via an environment variable, `FASTLY_S3_ACCESS_KEY`
+        """
+        s3_iam_role: NotRequired[pulumi.Input[str]]
+        """
+        The Amazon Resource Name (ARN) for the IAM role granting Fastly access to S3. Not required if `access_key` and `secret_key` are provided. You can provide this value via an environment variable, `FASTLY_S3_IAM_ROLE`
+        """
+        s3_secret_key: NotRequired[pulumi.Input[str]]
+        """
+        AWS Secret Key of an account with the required permissions to post logs. It is **strongly** recommended you create a separate IAM user with permissions to only operate on this Bucket. This secret will be not be encrypted. Not required if `iam_role` is provided. You can provide this secret via an environment variable, `FASTLY_S3_SECRET_KEY`
+        """
+        server_side_encryption: NotRequired[pulumi.Input[str]]
+        """
+        Specify what type of server side encryption should be used. Can be either `AES256` or `aws:kms`
+        """
+        server_side_encryption_kms_key_id: NotRequired[pulumi.Input[str]]
+        """
+        Optional server-side KMS Key Id. Must be set if server_side_encryption is set to `aws:kms`
+        """
+        timestamp_format: NotRequired[pulumi.Input[str]]
+        """
+        The `strftime` specified timestamp formatting (default `%Y-%m-%dT%H:%M:%S.000`)
+        """
+elif False:
+    ServiceComputeLoggingS3ArgsDict: TypeAlias = Mapping[str, Any]
 
 @pulumi.input_type
 class ServiceComputeLoggingS3Args:
@@ -3816,6 +4951,27 @@ class ServiceComputeLoggingS3Args:
         pulumi.set(self, "timestamp_format", value)
 
 
+if not MYPY:
+    class ServiceComputeLoggingScalyrArgsDict(TypedDict):
+        name: pulumi.Input[str]
+        """
+        The unique name of the Scalyr logging endpoint. It is important to note that changing this attribute will delete and recreate the resource
+        """
+        token: pulumi.Input[str]
+        """
+        The token to use for authentication (https://www.scalyr.com/keys)
+        """
+        project_id: NotRequired[pulumi.Input[str]]
+        """
+        The name of the logfile field sent to Scalyr
+        """
+        region: NotRequired[pulumi.Input[str]]
+        """
+        The region that log data will be sent to. One of `US` or `EU`. Defaults to `US` if undefined
+        """
+elif False:
+    ServiceComputeLoggingScalyrArgsDict: TypeAlias = Mapping[str, Any]
+
 @pulumi.input_type
 class ServiceComputeLoggingScalyrArgs:
     def __init__(__self__, *,
@@ -3884,6 +5040,67 @@ class ServiceComputeLoggingScalyrArgs:
     def region(self, value: Optional[pulumi.Input[str]]):
         pulumi.set(self, "region", value)
 
+
+if not MYPY:
+    class ServiceComputeLoggingSftpArgsDict(TypedDict):
+        address: pulumi.Input[str]
+        """
+        The SFTP address to stream logs to
+        """
+        name: pulumi.Input[str]
+        """
+        The unique name of the SFTP logging endpoint. It is important to note that changing this attribute will delete and recreate the resource
+        """
+        path: pulumi.Input[str]
+        """
+        The path to upload log files to. If the path ends in `/` then it is treated as a directory
+        """
+        ssh_known_hosts: pulumi.Input[str]
+        """
+        A list of host keys for all hosts we can connect to over SFTP
+        """
+        user: pulumi.Input[str]
+        """
+        The username for the server
+        """
+        compression_codec: NotRequired[pulumi.Input[str]]
+        """
+        The codec used for compression of your logs. Valid values are zstd, snappy, and gzip. If the specified codec is "gzip", gzip_level will default to 3. To specify a different level, leave compression_codec blank and explicitly set the level using gzip_level. Specifying both compression_codec and gzip_level in the same API request will result in an error.
+        """
+        gzip_level: NotRequired[pulumi.Input[int]]
+        """
+        Level of Gzip compression from `0-9`. `0` means no compression. `1` is the fastest and the least compressed version, `9` is the slowest and the most compressed version. Default `0`
+        """
+        message_type: NotRequired[pulumi.Input[str]]
+        """
+        How the message should be formatted. Can be either `classic`, `loggly`, `logplex` or `blank`. Default is `classic`
+        """
+        password: NotRequired[pulumi.Input[str]]
+        """
+        The password for the server. If both `password` and `secret_key` are passed, `secret_key` will be preferred
+        """
+        period: NotRequired[pulumi.Input[int]]
+        """
+        How frequently log files are finalized so they can be available for reading (in seconds, default `3600`)
+        """
+        port: NotRequired[pulumi.Input[int]]
+        """
+        The port the SFTP service listens on. (Default: `22`)
+        """
+        public_key: NotRequired[pulumi.Input[str]]
+        """
+        A PGP public key that Fastly will use to encrypt your log files before writing them to disk
+        """
+        secret_key: NotRequired[pulumi.Input[str]]
+        """
+        The SSH private key for the server. If both `password` and `secret_key` are passed, `secret_key` will be preferred
+        """
+        timestamp_format: NotRequired[pulumi.Input[str]]
+        """
+        The `strftime` specified timestamp formatting (default `%Y-%m-%dT%H:%M:%S.000`)
+        """
+elif False:
+    ServiceComputeLoggingSftpArgsDict: TypeAlias = Mapping[str, Any]
 
 @pulumi.input_type
 class ServiceComputeLoggingSftpArgs:
@@ -4111,6 +5328,43 @@ class ServiceComputeLoggingSftpArgs:
         pulumi.set(self, "timestamp_format", value)
 
 
+if not MYPY:
+    class ServiceComputeLoggingSplunkArgsDict(TypedDict):
+        name: pulumi.Input[str]
+        """
+        A unique name to identify the Splunk endpoint. It is important to note that changing this attribute will delete and recreate the resource
+        """
+        token: pulumi.Input[str]
+        """
+        The Splunk token to be used for authentication
+        """
+        url: pulumi.Input[str]
+        """
+        The Splunk URL to stream logs to
+        """
+        tls_ca_cert: NotRequired[pulumi.Input[str]]
+        """
+        A secure certificate to authenticate the server with. Must be in PEM format. You can provide this certificate via an environment variable, `FASTLY_SPLUNK_CA_CERT`
+        """
+        tls_client_cert: NotRequired[pulumi.Input[str]]
+        """
+        The client certificate used to make authenticated requests. Must be in PEM format.
+        """
+        tls_client_key: NotRequired[pulumi.Input[str]]
+        """
+        The client private key used to make authenticated requests. Must be in PEM format.
+        """
+        tls_hostname: NotRequired[pulumi.Input[str]]
+        """
+        The hostname used to verify the server's certificate. It can either be the Common Name or a Subject Alternative Name (SAN)
+        """
+        use_tls: NotRequired[pulumi.Input[bool]]
+        """
+        Whether to use TLS for secure logging. Default: `false`
+        """
+elif False:
+    ServiceComputeLoggingSplunkArgsDict: TypeAlias = Mapping[str, Any]
+
 @pulumi.input_type
 class ServiceComputeLoggingSplunkArgs:
     def __init__(__self__, *,
@@ -4243,6 +5497,23 @@ class ServiceComputeLoggingSplunkArgs:
         pulumi.set(self, "use_tls", value)
 
 
+if not MYPY:
+    class ServiceComputeLoggingSumologicArgsDict(TypedDict):
+        name: pulumi.Input[str]
+        """
+        A unique name to identify this Sumologic endpoint. It is important to note that changing this attribute will delete and recreate the resource
+        """
+        url: pulumi.Input[str]
+        """
+        The URL to Sumologic collector endpoint
+        """
+        message_type: NotRequired[pulumi.Input[str]]
+        """
+        How the message should be formatted. Can be either `classic`, `loggly`, `logplex` or `blank`. Default is `classic`
+        """
+elif False:
+    ServiceComputeLoggingSumologicArgsDict: TypeAlias = Mapping[str, Any]
+
 @pulumi.input_type
 class ServiceComputeLoggingSumologicArgs:
     def __init__(__self__, *,
@@ -4295,6 +5566,51 @@ class ServiceComputeLoggingSumologicArgs:
     def message_type(self, value: Optional[pulumi.Input[str]]):
         pulumi.set(self, "message_type", value)
 
+
+if not MYPY:
+    class ServiceComputeLoggingSyslogArgsDict(TypedDict):
+        address: pulumi.Input[str]
+        """
+        A hostname or IPv4 address of the Syslog endpoint
+        """
+        name: pulumi.Input[str]
+        """
+        A unique name to identify this Syslog endpoint. It is important to note that changing this attribute will delete and recreate the resource
+        """
+        message_type: NotRequired[pulumi.Input[str]]
+        """
+        How the message should be formatted. Can be either `classic`, `loggly`, `logplex` or `blank`. Default is `classic`
+        """
+        port: NotRequired[pulumi.Input[int]]
+        """
+        The port associated with the address where the Syslog endpoint can be accessed. Default `514`
+        """
+        tls_ca_cert: NotRequired[pulumi.Input[str]]
+        """
+        A secure certificate to authenticate the server with. Must be in PEM format. You can provide this certificate via an environment variable, `FASTLY_SYSLOG_CA_CERT`
+        """
+        tls_client_cert: NotRequired[pulumi.Input[str]]
+        """
+        The client certificate used to make authenticated requests. Must be in PEM format. You can provide this certificate via an environment variable, `FASTLY_SYSLOG_CLIENT_CERT`
+        """
+        tls_client_key: NotRequired[pulumi.Input[str]]
+        """
+        The client private key used to make authenticated requests. Must be in PEM format. You can provide this key via an environment variable, `FASTLY_SYSLOG_CLIENT_KEY`
+        """
+        tls_hostname: NotRequired[pulumi.Input[str]]
+        """
+        Used during the TLS handshake to validate the certificate
+        """
+        token: NotRequired[pulumi.Input[str]]
+        """
+        Whether to prepend each message with a specific token
+        """
+        use_tls: NotRequired[pulumi.Input[bool]]
+        """
+        Whether to use TLS for secure logging. Default `false`
+        """
+elif False:
+    ServiceComputeLoggingSyslogArgsDict: TypeAlias = Mapping[str, Any]
 
 @pulumi.input_type
 class ServiceComputeLoggingSyslogArgs:
@@ -4461,6 +5777,23 @@ class ServiceComputeLoggingSyslogArgs:
         pulumi.set(self, "use_tls", value)
 
 
+if not MYPY:
+    class ServiceComputePackageArgsDict(TypedDict):
+        content: NotRequired[pulumi.Input[str]]
+        """
+        The contents of the Wasm deployment package as a base64 encoded string (e.g. could be provided using an input variable or via external data source output variable). Conflicts with `filename`. Exactly one of these two arguments must be specified
+        """
+        filename: NotRequired[pulumi.Input[str]]
+        """
+        The path to the Wasm deployment package within your local filesystem. Conflicts with `content`. Exactly one of these two arguments must be specified
+        """
+        source_code_hash: NotRequired[pulumi.Input[str]]
+        """
+        Used to trigger updates. Must be set to a SHA512 hash of all files (in sorted order) within the package. The usual way to set this is using the get_package_hash data source.
+        """
+elif False:
+    ServiceComputePackageArgsDict: TypeAlias = Mapping[str, Any]
+
 @pulumi.input_type
 class ServiceComputePackageArgs:
     def __init__(__self__, *,
@@ -4515,6 +5848,23 @@ class ServiceComputePackageArgs:
     def source_code_hash(self, value: Optional[pulumi.Input[str]]):
         pulumi.set(self, "source_code_hash", value)
 
+
+if not MYPY:
+    class ServiceComputeProductEnablementArgsDict(TypedDict):
+        fanout: NotRequired[pulumi.Input[bool]]
+        """
+        Enable Fanout support
+        """
+        name: NotRequired[pulumi.Input[str]]
+        """
+        Used by the provider to identify modified settings (changing this value will force the entire block to be deleted, then recreated)
+        """
+        websockets: NotRequired[pulumi.Input[bool]]
+        """
+        Enable WebSockets support
+        """
+elif False:
+    ServiceComputeProductEnablementArgsDict: TypeAlias = Mapping[str, Any]
 
 @pulumi.input_type
 class ServiceComputeProductEnablementArgs:
@@ -4571,6 +5921,23 @@ class ServiceComputeProductEnablementArgs:
         pulumi.set(self, "websockets", value)
 
 
+if not MYPY:
+    class ServiceComputeResourceLinkArgsDict(TypedDict):
+        name: pulumi.Input[str]
+        """
+        The name of the resource link.
+        """
+        resource_id: pulumi.Input[str]
+        """
+        The ID of the underlying linked resource.
+        """
+        link_id: NotRequired[pulumi.Input[str]]
+        """
+        An alphanumeric string identifying the resource link.
+        """
+elif False:
+    ServiceComputeResourceLinkArgsDict: TypeAlias = Mapping[str, Any]
+
 @pulumi.input_type
 class ServiceComputeResourceLinkArgs:
     def __init__(__self__, *,
@@ -4623,6 +5990,23 @@ class ServiceComputeResourceLinkArgs:
     def link_id(self, value: Optional[pulumi.Input[str]]):
         pulumi.set(self, "link_id", value)
 
+
+if not MYPY:
+    class ServiceVclAclArgsDict(TypedDict):
+        name: pulumi.Input[str]
+        """
+        A unique name to identify this ACL. It is important to note that changing this attribute will delete and recreate the ACL, and discard the current items in the ACL
+        """
+        acl_id: NotRequired[pulumi.Input[str]]
+        """
+        The ID of the ACL
+        """
+        force_destroy: NotRequired[pulumi.Input[bool]]
+        """
+        Allow the ACL to be deleted, even if it contains entries. Defaults to false.
+        """
+elif False:
+    ServiceVclAclArgsDict: TypeAlias = Mapping[str, Any]
 
 @pulumi.input_type
 class ServiceVclAclArgs:
@@ -4677,6 +6061,115 @@ class ServiceVclAclArgs:
     def force_destroy(self, value: Optional[pulumi.Input[bool]]):
         pulumi.set(self, "force_destroy", value)
 
+
+if not MYPY:
+    class ServiceVclBackendArgsDict(TypedDict):
+        address: pulumi.Input[str]
+        """
+        An IPv4, hostname, or IPv6 address for the Backend
+        """
+        name: pulumi.Input[str]
+        """
+        Name for this Backend. Must be unique to this Service. It is important to note that changing this attribute will delete and recreate the resource
+        """
+        auto_loadbalance: NotRequired[pulumi.Input[bool]]
+        """
+        Denotes if this Backend should be included in the pool of backends that requests are load balanced against. Default `false`
+        """
+        between_bytes_timeout: NotRequired[pulumi.Input[int]]
+        """
+        How long to wait between bytes in milliseconds. Default `10000`
+        """
+        connect_timeout: NotRequired[pulumi.Input[int]]
+        """
+        How long to wait for a timeout in milliseconds. Default `1000`
+        """
+        error_threshold: NotRequired[pulumi.Input[int]]
+        """
+        Number of errors to allow before the Backend is marked as down. Default `0`
+        """
+        first_byte_timeout: NotRequired[pulumi.Input[int]]
+        """
+        How long to wait for the first bytes in milliseconds. Default `15000`
+        """
+        healthcheck: NotRequired[pulumi.Input[str]]
+        """
+        Name of a defined `healthcheck` to assign to this backend
+        """
+        keepalive_time: NotRequired[pulumi.Input[int]]
+        """
+        How long in seconds to keep a persistent connection to the backend between requests.
+        """
+        max_conn: NotRequired[pulumi.Input[int]]
+        """
+        Maximum number of connections for this Backend. Default `200`
+        """
+        max_tls_version: NotRequired[pulumi.Input[str]]
+        """
+        Maximum allowed TLS version on SSL connections to this backend.
+        """
+        min_tls_version: NotRequired[pulumi.Input[str]]
+        """
+        Minimum allowed TLS version on SSL connections to this backend.
+        """
+        override_host: NotRequired[pulumi.Input[str]]
+        """
+        The hostname to override the Host header
+        """
+        port: NotRequired[pulumi.Input[int]]
+        """
+        The port number on which the Backend responds. Default `80`
+        """
+        request_condition: NotRequired[pulumi.Input[str]]
+        """
+        Name of a condition, which if met, will select this backend during a request.
+        """
+        share_key: NotRequired[pulumi.Input[str]]
+        """
+        Value that when shared across backends will enable those backends to share the same health check.
+        """
+        shield: NotRequired[pulumi.Input[str]]
+        """
+        The POP of the shield designated to reduce inbound load. Valid values for `shield` are included in the `GET /datacenters` API response
+        """
+        ssl_ca_cert: NotRequired[pulumi.Input[str]]
+        """
+        CA certificate attached to origin.
+        """
+        ssl_cert_hostname: NotRequired[pulumi.Input[str]]
+        """
+        Configure certificate validation. Does not affect SNI at all
+        """
+        ssl_check_cert: NotRequired[pulumi.Input[bool]]
+        """
+        Be strict about checking SSL certs. Default `true`
+        """
+        ssl_ciphers: NotRequired[pulumi.Input[str]]
+        """
+        Cipher list consisting of one or more cipher strings separated by colons. Commas or spaces are also acceptable separators but colons are normally used.
+        """
+        ssl_client_cert: NotRequired[pulumi.Input[str]]
+        """
+        Client certificate attached to origin. Used when connecting to the backend
+        """
+        ssl_client_key: NotRequired[pulumi.Input[str]]
+        """
+        Client key attached to origin. Used when connecting to the backend
+        """
+        ssl_sni_hostname: NotRequired[pulumi.Input[str]]
+        """
+        Configure SNI in the TLS handshake. Does not affect cert validation at all
+        """
+        use_ssl: NotRequired[pulumi.Input[bool]]
+        """
+        Whether or not to use SSL to reach the Backend. Default `false`
+        """
+        weight: NotRequired[pulumi.Input[int]]
+        """
+        The [portion of traffic](https://docs.fastly.com/en/guides/load-balancing-configuration#how-weight-affects-load-balancing) to send to this Backend. Each Backend receives weight / total of the traffic. Default `100`
+        """
+elif False:
+    ServiceVclBackendArgsDict: TypeAlias = Mapping[str, Any]
 
 @pulumi.input_type
 class ServiceVclBackendArgs:
@@ -5099,6 +6592,31 @@ class ServiceVclBackendArgs:
         pulumi.set(self, "weight", value)
 
 
+if not MYPY:
+    class ServiceVclCacheSettingArgsDict(TypedDict):
+        name: pulumi.Input[str]
+        """
+        Unique name for this Cache Setting. It is important to note that changing this attribute will delete and recreate the resource
+        """
+        action: NotRequired[pulumi.Input[str]]
+        """
+        One of cache, pass, or restart, as defined on Fastly's documentation under "[Caching action descriptions](https://docs.fastly.com/en/guides/controlling-caching#caching-action-descriptions)"
+        """
+        cache_condition: NotRequired[pulumi.Input[str]]
+        """
+        Name of already defined `condition` used to test whether this settings object should be used. This `condition` must be of type `CACHE`
+        """
+        stale_ttl: NotRequired[pulumi.Input[int]]
+        """
+        Max "Time To Live" for stale (unreachable) objects
+        """
+        ttl: NotRequired[pulumi.Input[int]]
+        """
+        The Time-To-Live (TTL) for the object
+        """
+elif False:
+    ServiceVclCacheSettingArgsDict: TypeAlias = Mapping[str, Any]
+
 @pulumi.input_type
 class ServiceVclCacheSettingArgs:
     def __init__(__self__, *,
@@ -5185,6 +6703,27 @@ class ServiceVclCacheSettingArgs:
         pulumi.set(self, "ttl", value)
 
 
+if not MYPY:
+    class ServiceVclConditionArgsDict(TypedDict):
+        name: pulumi.Input[str]
+        """
+        The unique name for the condition. It is important to note that changing this attribute will delete and recreate the resource
+        """
+        statement: pulumi.Input[str]
+        """
+        The statement used to determine if the condition is met
+        """
+        type: pulumi.Input[str]
+        """
+        Type of condition, either `REQUEST` (req), `RESPONSE` (req, resp), or `CACHE` (req, beresp)
+        """
+        priority: NotRequired[pulumi.Input[int]]
+        """
+        A number used to determine the order in which multiple conditions execute. Lower numbers execute first. Default `10`
+        """
+elif False:
+    ServiceVclConditionArgsDict: TypeAlias = Mapping[str, Any]
+
 @pulumi.input_type
 class ServiceVclConditionArgs:
     def __init__(__self__, *,
@@ -5253,6 +6792,24 @@ class ServiceVclConditionArgs:
         pulumi.set(self, "priority", value)
 
 
+if not MYPY:
+    class ServiceVclDictionaryArgsDict(TypedDict):
+        name: pulumi.Input[str]
+        """
+        A unique name to identify this dictionary. It is important to note that changing this attribute will delete and recreate the dictionary, and discard the current items in the dictionary
+        """
+        dictionary_id: NotRequired[pulumi.Input[str]]
+        """
+        The ID of the dictionary
+        """
+        force_destroy: NotRequired[pulumi.Input[bool]]
+        """
+        Allow the dictionary to be deleted, even if it contains entries. Defaults to false.
+        """
+        write_only: NotRequired[pulumi.Input[bool]]
+elif False:
+    ServiceVclDictionaryArgsDict: TypeAlias = Mapping[str, Any]
+
 @pulumi.input_type
 class ServiceVclDictionaryArgs:
     def __init__(__self__, *,
@@ -5318,6 +6875,39 @@ class ServiceVclDictionaryArgs:
     def write_only(self, value: Optional[pulumi.Input[bool]]):
         pulumi.set(self, "write_only", value)
 
+
+if not MYPY:
+    class ServiceVclDirectorArgsDict(TypedDict):
+        backends: pulumi.Input[Sequence[pulumi.Input[str]]]
+        """
+        Names of defined backends to map the director to. Example: `[ "origin1", "origin2" ]`
+        """
+        name: pulumi.Input[str]
+        """
+        Unique name for this Director. It is important to note that changing this attribute will delete and recreate the resource
+        """
+        comment: NotRequired[pulumi.Input[str]]
+        """
+        An optional comment about the Director
+        """
+        quorum: NotRequired[pulumi.Input[int]]
+        """
+        Percentage of capacity that needs to be up for the director itself to be considered up. Default `75`
+        """
+        retries: NotRequired[pulumi.Input[int]]
+        """
+        How many backends to search if it fails. Default `5`
+        """
+        shield: NotRequired[pulumi.Input[str]]
+        """
+        Selected POP to serve as a "shield" for backends. Valid values for `shield` are included in the [`GET /datacenters`](https://developer.fastly.com/reference/api/utils/datacenter/) API response
+        """
+        type: NotRequired[pulumi.Input[int]]
+        """
+        Type of load balance group to use. Integer, 1 to 4. Values: `1` (random), `3` (hash), `4` (client). Default `1`
+        """
+elif False:
+    ServiceVclDirectorArgsDict: TypeAlias = Mapping[str, Any]
 
 @pulumi.input_type
 class ServiceVclDirectorArgs:
@@ -5436,6 +7026,19 @@ class ServiceVclDirectorArgs:
         pulumi.set(self, "type", value)
 
 
+if not MYPY:
+    class ServiceVclDomainArgsDict(TypedDict):
+        name: pulumi.Input[str]
+        """
+        The domain that this Service will respond to. It is important to note that changing this attribute will delete and recreate the resource.
+        """
+        comment: NotRequired[pulumi.Input[str]]
+        """
+        An optional comment about the Domain.
+        """
+elif False:
+    ServiceVclDomainArgsDict: TypeAlias = Mapping[str, Any]
+
 @pulumi.input_type
 class ServiceVclDomainArgs:
     def __init__(__self__, *,
@@ -5473,6 +7076,31 @@ class ServiceVclDomainArgs:
     def comment(self, value: Optional[pulumi.Input[str]]):
         pulumi.set(self, "comment", value)
 
+
+if not MYPY:
+    class ServiceVclDynamicsnippetArgsDict(TypedDict):
+        name: pulumi.Input[str]
+        """
+        A name that is unique across "regular" and "dynamic" VCL Snippet configuration blocks. It is important to note that changing this attribute will delete and recreate the resource
+        """
+        type: pulumi.Input[str]
+        """
+        The location in generated VCL where the snippet should be placed (can be one of `init`, `recv`, `hash`, `hit`, `miss`, `pass`, `fetch`, `error`, `deliver`, `log` or `none`)
+        """
+        content: NotRequired[pulumi.Input[str]]
+        """
+        The VCL code that specifies exactly what the snippet does
+        """
+        priority: NotRequired[pulumi.Input[int]]
+        """
+        Priority determines the ordering for multiple snippets. Lower numbers execute first. Defaults to `100`
+        """
+        snippet_id: NotRequired[pulumi.Input[str]]
+        """
+        The ID of the dynamic snippet
+        """
+elif False:
+    ServiceVclDynamicsnippetArgsDict: TypeAlias = Mapping[str, Any]
 
 @pulumi.input_type
 class ServiceVclDynamicsnippetArgs:
@@ -5559,6 +7187,27 @@ class ServiceVclDynamicsnippetArgs:
         pulumi.set(self, "snippet_id", value)
 
 
+if not MYPY:
+    class ServiceVclGzipArgsDict(TypedDict):
+        name: pulumi.Input[str]
+        """
+        A name to refer to this gzip condition. It is important to note that changing this attribute will delete and recreate the resource
+        """
+        cache_condition: NotRequired[pulumi.Input[str]]
+        """
+        Name of already defined `condition` controlling when this gzip configuration applies. This `condition` must be of type `CACHE`. For detailed information about Conditionals, see [Fastly's Documentation on Conditionals](https://docs.fastly.com/en/guides/using-conditions)
+        """
+        content_types: NotRequired[pulumi.Input[Sequence[pulumi.Input[str]]]]
+        """
+        The content-type for each type of content you wish to have dynamically gzip'ed. Example: `["text/html", "text/css"]`
+        """
+        extensions: NotRequired[pulumi.Input[Sequence[pulumi.Input[str]]]]
+        """
+        File extensions for each file type to dynamically gzip. Example: `["css", "js"]`
+        """
+elif False:
+    ServiceVclGzipArgsDict: TypeAlias = Mapping[str, Any]
+
 @pulumi.input_type
 class ServiceVclGzipArgs:
     def __init__(__self__, *,
@@ -5628,6 +7277,59 @@ class ServiceVclGzipArgs:
     def extensions(self, value: Optional[pulumi.Input[Sequence[pulumi.Input[str]]]]):
         pulumi.set(self, "extensions", value)
 
+
+if not MYPY:
+    class ServiceVclHeaderArgsDict(TypedDict):
+        action: pulumi.Input[str]
+        """
+        The Header manipulation action to take; must be one of `set`, `append`, `delete`, `regex`, or `regex_repeat`
+        """
+        destination: pulumi.Input[str]
+        """
+        The name of the header that is going to be affected by the Action
+        """
+        name: pulumi.Input[str]
+        """
+        Unique name for this header attribute. It is important to note that changing this attribute will delete and recreate the resource
+        """
+        type: pulumi.Input[str]
+        """
+        The Request type on which to apply the selected Action; must be one of `request`, `fetch`, `cache` or `response`
+        """
+        cache_condition: NotRequired[pulumi.Input[str]]
+        """
+        Name of already defined `condition` to apply. This `condition` must be of type `CACHE`
+        """
+        ignore_if_set: NotRequired[pulumi.Input[bool]]
+        """
+        Don't add the header if it is already. (Only applies to `set` action.). Default `false`
+        """
+        priority: NotRequired[pulumi.Input[int]]
+        """
+        Lower priorities execute first. Default: `100`
+        """
+        regex: NotRequired[pulumi.Input[str]]
+        """
+        Regular expression to use (Only applies to `regex` and `regex_repeat` actions.)
+        """
+        request_condition: NotRequired[pulumi.Input[str]]
+        """
+        Name of already defined `condition` to apply. This `condition` must be of type `REQUEST`
+        """
+        response_condition: NotRequired[pulumi.Input[str]]
+        """
+        Name of already defined `condition` to apply. This `condition` must be of type `RESPONSE`. For detailed information about Conditionals, see [Fastly's Documentation on Conditionals](https://docs.fastly.com/en/guides/using-conditions)
+        """
+        source: NotRequired[pulumi.Input[str]]
+        """
+        Variable to be used as a source for the header content (Does not apply to `delete` action.)
+        """
+        substitution: NotRequired[pulumi.Input[str]]
+        """
+        Value to substitute in place of regular expression. (Only applies to `regex` and `regex_repeat`.)
+        """
+elif False:
+    ServiceVclHeaderArgsDict: TypeAlias = Mapping[str, Any]
 
 @pulumi.input_type
 class ServiceVclHeaderArgs:
@@ -5823,6 +7525,59 @@ class ServiceVclHeaderArgs:
     def substitution(self, value: Optional[pulumi.Input[str]]):
         pulumi.set(self, "substitution", value)
 
+
+if not MYPY:
+    class ServiceVclHealthcheckArgsDict(TypedDict):
+        host: pulumi.Input[str]
+        """
+        The Host header to send for this Healthcheck
+        """
+        name: pulumi.Input[str]
+        """
+        A unique name to identify this Healthcheck. It is important to note that changing this attribute will delete and recreate the resource
+        """
+        path: pulumi.Input[str]
+        """
+        The path to check
+        """
+        check_interval: NotRequired[pulumi.Input[int]]
+        """
+        How often to run the Healthcheck in milliseconds. Default `5000`
+        """
+        expected_response: NotRequired[pulumi.Input[int]]
+        """
+        The status code expected from the host. Default `200`
+        """
+        headers: NotRequired[pulumi.Input[Sequence[pulumi.Input[str]]]]
+        """
+        Custom health check HTTP headers (e.g. if your health check requires an API key to be provided).
+        """
+        http_version: NotRequired[pulumi.Input[str]]
+        """
+        Whether to use version 1.0 or 1.1 HTTP. Default `1.1`
+        """
+        initial: NotRequired[pulumi.Input[int]]
+        """
+        When loading a config, the initial number of probes to be seen as OK. Default `3`
+        """
+        method: NotRequired[pulumi.Input[str]]
+        """
+        Which HTTP method to use. Default `HEAD`
+        """
+        threshold: NotRequired[pulumi.Input[int]]
+        """
+        How many Healthchecks must succeed to be considered healthy. Default `3`
+        """
+        timeout: NotRequired[pulumi.Input[int]]
+        """
+        Timeout in milliseconds. Default `5000`
+        """
+        window: NotRequired[pulumi.Input[int]]
+        """
+        The number of most recent Healthcheck queries to keep for this Healthcheck. Default `5`
+        """
+elif False:
+    ServiceVclHealthcheckArgsDict: TypeAlias = Mapping[str, Any]
 
 @pulumi.input_type
 class ServiceVclHealthcheckArgs:
@@ -6020,6 +7775,51 @@ class ServiceVclHealthcheckArgs:
         pulumi.set(self, "window", value)
 
 
+if not MYPY:
+    class ServiceVclImageOptimizerDefaultSettingsArgsDict(TypedDict):
+        allow_video: NotRequired[pulumi.Input[bool]]
+        """
+        Enables GIF to MP4 transformations on this service.
+        """
+        jpeg_quality: NotRequired[pulumi.Input[int]]
+        """
+        The default quality to use with JPEG output. This can be overridden with the "quality" parameter on specific image optimizer requests.
+        """
+        jpeg_type: NotRequired[pulumi.Input[str]]
+        """
+        The default type of JPEG output to use. This can be overridden with "format=bjpeg" and "format=pjpeg" on specific image optimizer requests. Valid values are `auto`, `baseline` and `progressive`.
+        	- auto: Match the input JPEG type, or baseline if transforming from a non-JPEG input.
+        	- baseline: Output baseline JPEG images
+        	- progressive: Output progressive JPEG images
+        """
+        name: NotRequired[pulumi.Input[str]]
+        """
+        Used by the provider to identify modified settings. Changing this value will force the entire block to be deleted, then recreated.
+        """
+        resize_filter: NotRequired[pulumi.Input[str]]
+        """
+        The type of filter to use while resizing an image. Valid values are `lanczos3`, `lanczos2`, `bicubic`, `bilinear` and `nearest`.
+        	- lanczos3: A Lanczos filter with a kernel size of 3. Lanczos filters can detect edges and linear features within an image, providing the best possible reconstruction.
+        	- lanczos2: A Lanczos filter with a kernel size of 2.
+        	- bicubic: A filter using an average of a 4x4 environment of pixels, weighing the innermost pixels higher.
+        	- bilinear: A filter using an average of a 2x2 environment of pixels.
+        	- nearest: A filter using the value of nearby translated pixel values. Preserves hard edges.
+        """
+        upscale: NotRequired[pulumi.Input[bool]]
+        """
+        Whether or not we should allow output images to render at sizes larger than input.
+        """
+        webp: NotRequired[pulumi.Input[bool]]
+        """
+        Controls whether or not to default to WebP output when the client supports it. This is equivalent to adding "auto=webp" to all image optimizer requests.
+        """
+        webp_quality: NotRequired[pulumi.Input[int]]
+        """
+        The default quality to use with WebP output. This can be overridden with the second option in the "quality" URL parameter on specific image optimizer requests.
+        """
+elif False:
+    ServiceVclImageOptimizerDefaultSettingsArgsDict: TypeAlias = Mapping[str, Any]
+
 @pulumi.input_type
 class ServiceVclImageOptimizerDefaultSettingsArgs:
     def __init__(__self__, *,
@@ -6170,6 +7970,55 @@ class ServiceVclImageOptimizerDefaultSettingsArgs:
     def webp_quality(self, value: Optional[pulumi.Input[int]]):
         pulumi.set(self, "webp_quality", value)
 
+
+if not MYPY:
+    class ServiceVclLoggingBigqueryArgsDict(TypedDict):
+        dataset: pulumi.Input[str]
+        """
+        The ID of your BigQuery dataset
+        """
+        email: pulumi.Input[str]
+        """
+        The email for the service account with write access to your BigQuery dataset. If not provided, this will be pulled from a `FASTLY_BQ_EMAIL` environment variable
+        """
+        name: pulumi.Input[str]
+        """
+        A unique name to identify this BigQuery logging endpoint. It is important to note that changing this attribute will delete and recreate the resource
+        """
+        project_id: pulumi.Input[str]
+        """
+        The ID of your GCP project
+        """
+        secret_key: pulumi.Input[str]
+        """
+        The secret key associated with the service account that has write access to your BigQuery table. If not provided, this will be pulled from the `FASTLY_BQ_SECRET_KEY` environment variable. Typical format for this is a private key in a string with newlines
+        """
+        table: pulumi.Input[str]
+        """
+        The ID of your BigQuery table
+        """
+        account_name: NotRequired[pulumi.Input[str]]
+        """
+        The google account name used to obtain temporary credentials (default none). You may optionally provide this via an environment variable, `FASTLY_GCS_ACCOUNT_NAME`.
+        """
+        format: NotRequired[pulumi.Input[str]]
+        """
+        The logging format desired.
+        """
+        placement: NotRequired[pulumi.Input[str]]
+        """
+        Where in the generated VCL the logging call should be placed.
+        """
+        response_condition: NotRequired[pulumi.Input[str]]
+        """
+        Name of a condition to apply this logging.
+        """
+        template: NotRequired[pulumi.Input[str]]
+        """
+        BigQuery table name suffix template
+        """
+elif False:
+    ServiceVclLoggingBigqueryArgsDict: TypeAlias = Mapping[str, Any]
 
 @pulumi.input_type
 class ServiceVclLoggingBigqueryArgs:
@@ -6347,6 +8196,75 @@ class ServiceVclLoggingBigqueryArgs:
     def template(self, value: Optional[pulumi.Input[str]]):
         pulumi.set(self, "template", value)
 
+
+if not MYPY:
+    class ServiceVclLoggingBlobstorageArgsDict(TypedDict):
+        account_name: pulumi.Input[str]
+        """
+        The unique Azure Blob Storage namespace in which your data objects are stored
+        """
+        container: pulumi.Input[str]
+        """
+        The name of the Azure Blob Storage container in which to store logs
+        """
+        name: pulumi.Input[str]
+        """
+        A unique name to identify the Azure Blob Storage endpoint. It is important to note that changing this attribute will delete and recreate the resource
+        """
+        sas_token: pulumi.Input[str]
+        """
+        The Azure shared access signature providing write access to the blob service objects. Be sure to update your token before it expires or the logging functionality will not work
+        """
+        compression_codec: NotRequired[pulumi.Input[str]]
+        """
+        The codec used for compression of your logs. Valid values are zstd, snappy, and gzip. If the specified codec is "gzip", gzip_level will default to 3. To specify a different level, leave compression_codec blank and explicitly set the level using gzip_level. Specifying both compression_codec and gzip_level in the same API request will result in an error.
+        """
+        file_max_bytes: NotRequired[pulumi.Input[int]]
+        """
+        Maximum size of an uploaded log file, if non-zero.
+        """
+        format: NotRequired[pulumi.Input[str]]
+        """
+        Apache-style string or VCL variables to use for log formatting (default: `%h %l %u %t "%r" %>s %b`)
+        """
+        format_version: NotRequired[pulumi.Input[int]]
+        """
+        The version of the custom logging format used for the configured endpoint. Can be either 1 or 2. (default: 2)
+        """
+        gzip_level: NotRequired[pulumi.Input[int]]
+        """
+        Level of Gzip compression from `0-9`. `0` means no compression. `1` is the fastest and the least compressed version, `9` is the slowest and the most compressed version. Default `0`
+        """
+        message_type: NotRequired[pulumi.Input[str]]
+        """
+        How the message should be formatted. Can be either `classic`, `loggly`, `logplex` or `blank`. Default is `classic`
+        """
+        path: NotRequired[pulumi.Input[str]]
+        """
+        The path to upload logs to. Must end with a trailing slash. If this field is left empty, the files will be saved in the container's root path
+        """
+        period: NotRequired[pulumi.Input[int]]
+        """
+        How frequently the logs should be transferred in seconds. Default `3600`
+        """
+        placement: NotRequired[pulumi.Input[str]]
+        """
+        Where in the generated VCL the logging call should be placed
+        """
+        public_key: NotRequired[pulumi.Input[str]]
+        """
+        A PGP public key that Fastly will use to encrypt your log files before writing them to disk
+        """
+        response_condition: NotRequired[pulumi.Input[str]]
+        """
+        The name of the condition to apply
+        """
+        timestamp_format: NotRequired[pulumi.Input[str]]
+        """
+        The `strftime` specified timestamp formatting (default `%Y-%m-%dT%H:%M:%S.000`)
+        """
+elif False:
+    ServiceVclLoggingBlobstorageArgsDict: TypeAlias = Mapping[str, Any]
 
 @pulumi.input_type
 class ServiceVclLoggingBlobstorageArgs:
@@ -6607,6 +8525,75 @@ class ServiceVclLoggingBlobstorageArgs:
         pulumi.set(self, "timestamp_format", value)
 
 
+if not MYPY:
+    class ServiceVclLoggingCloudfileArgsDict(TypedDict):
+        access_key: pulumi.Input[str]
+        """
+        Your Cloud File account access key
+        """
+        bucket_name: pulumi.Input[str]
+        """
+        The name of your Cloud Files container
+        """
+        name: pulumi.Input[str]
+        """
+        The unique name of the Rackspace Cloud Files logging endpoint. It is important to note that changing this attribute will delete and recreate the resource
+        """
+        user: pulumi.Input[str]
+        """
+        The username for your Cloud Files account
+        """
+        compression_codec: NotRequired[pulumi.Input[str]]
+        """
+        The codec used for compression of your logs. Valid values are zstd, snappy, and gzip. If the specified codec is "gzip", gzip_level will default to 3. To specify a different level, leave compression_codec blank and explicitly set the level using gzip_level. Specifying both compression_codec and gzip_level in the same API request will result in an error.
+        """
+        format: NotRequired[pulumi.Input[str]]
+        """
+        Apache style log formatting.
+        """
+        format_version: NotRequired[pulumi.Input[int]]
+        """
+        The version of the custom logging format used for the configured endpoint. Can be either `1` or `2`. (default: `2`).
+        """
+        gzip_level: NotRequired[pulumi.Input[int]]
+        """
+        Level of Gzip compression from `0-9`. `0` means no compression. `1` is the fastest and the least compressed version, `9` is the slowest and the most compressed version. Default `0`
+        """
+        message_type: NotRequired[pulumi.Input[str]]
+        """
+        How the message should be formatted. Can be either `classic`, `loggly`, `logplex` or `blank`. Default is `classic`
+        """
+        path: NotRequired[pulumi.Input[str]]
+        """
+        The path to upload logs to
+        """
+        period: NotRequired[pulumi.Input[int]]
+        """
+        How frequently log files are finalized so they can be available for reading (in seconds, default `3600`)
+        """
+        placement: NotRequired[pulumi.Input[str]]
+        """
+        Where in the generated VCL the logging call should be placed. Can be `none` or `waf_debug`.
+        """
+        public_key: NotRequired[pulumi.Input[str]]
+        """
+        The PGP public key that Fastly will use to encrypt your log files before writing them to disk
+        """
+        region: NotRequired[pulumi.Input[str]]
+        """
+        The region to stream logs to. One of: DFW (Dallas), ORD (Chicago), IAD (Northern Virginia), LON (London), SYD (Sydney), HKG (Hong Kong)
+        """
+        response_condition: NotRequired[pulumi.Input[str]]
+        """
+        The name of an existing condition in the configured endpoint, or leave blank to always execute.
+        """
+        timestamp_format: NotRequired[pulumi.Input[str]]
+        """
+        The `strftime` specified timestamp formatting (default `%Y-%m-%dT%H:%M:%S.000`)
+        """
+elif False:
+    ServiceVclLoggingCloudfileArgsDict: TypeAlias = Mapping[str, Any]
+
 @pulumi.input_type
 class ServiceVclLoggingCloudfileArgs:
     def __init__(__self__, *,
@@ -6866,6 +8853,39 @@ class ServiceVclLoggingCloudfileArgs:
         pulumi.set(self, "timestamp_format", value)
 
 
+if not MYPY:
+    class ServiceVclLoggingDatadogArgsDict(TypedDict):
+        name: pulumi.Input[str]
+        """
+        The unique name of the Datadog logging endpoint. It is important to note that changing this attribute will delete and recreate the resource
+        """
+        token: pulumi.Input[str]
+        """
+        The API key from your Datadog account
+        """
+        format: NotRequired[pulumi.Input[str]]
+        """
+        Apache-style string or VCL variables to use for log formatting.
+        """
+        format_version: NotRequired[pulumi.Input[int]]
+        """
+        The version of the custom logging format used for the configured endpoint. Can be either `1` or `2`. (default: `2`).
+        """
+        placement: NotRequired[pulumi.Input[str]]
+        """
+        Where in the generated VCL the logging call should be placed.
+        """
+        region: NotRequired[pulumi.Input[str]]
+        """
+        The region that log data will be sent to. One of `US` or `EU`. Defaults to `US` if undefined
+        """
+        response_condition: NotRequired[pulumi.Input[str]]
+        """
+        The name of the condition to apply.
+        """
+elif False:
+    ServiceVclLoggingDatadogArgsDict: TypeAlias = Mapping[str, Any]
+
 @pulumi.input_type
 class ServiceVclLoggingDatadogArgs:
     def __init__(__self__, *,
@@ -6982,6 +9002,75 @@ class ServiceVclLoggingDatadogArgs:
     def response_condition(self, value: Optional[pulumi.Input[str]]):
         pulumi.set(self, "response_condition", value)
 
+
+if not MYPY:
+    class ServiceVclLoggingDigitaloceanArgsDict(TypedDict):
+        access_key: pulumi.Input[str]
+        """
+        Your DigitalOcean Spaces account access key
+        """
+        bucket_name: pulumi.Input[str]
+        """
+        The name of the DigitalOcean Space
+        """
+        name: pulumi.Input[str]
+        """
+        The unique name of the DigitalOcean Spaces logging endpoint. It is important to note that changing this attribute will delete and recreate the resource
+        """
+        secret_key: pulumi.Input[str]
+        """
+        Your DigitalOcean Spaces account secret key
+        """
+        compression_codec: NotRequired[pulumi.Input[str]]
+        """
+        The codec used for compression of your logs. Valid values are zstd, snappy, and gzip. If the specified codec is "gzip", gzip_level will default to 3. To specify a different level, leave compression_codec blank and explicitly set the level using gzip_level. Specifying both compression_codec and gzip_level in the same API request will result in an error.
+        """
+        domain: NotRequired[pulumi.Input[str]]
+        """
+        The domain of the DigitalOcean Spaces endpoint (default `nyc3.digitaloceanspaces.com`)
+        """
+        format: NotRequired[pulumi.Input[str]]
+        """
+        Apache style log formatting.
+        """
+        format_version: NotRequired[pulumi.Input[int]]
+        """
+        The version of the custom logging format used for the configured endpoint. Can be either `1` or `2`. (default: `2`).
+        """
+        gzip_level: NotRequired[pulumi.Input[int]]
+        """
+        Level of Gzip compression from `0-9`. `0` means no compression. `1` is the fastest and the least compressed version, `9` is the slowest and the most compressed version. Default `0`
+        """
+        message_type: NotRequired[pulumi.Input[str]]
+        """
+        How the message should be formatted. Can be either `classic`, `loggly`, `logplex` or `blank`. Default is `classic`
+        """
+        path: NotRequired[pulumi.Input[str]]
+        """
+        The path to upload logs to
+        """
+        period: NotRequired[pulumi.Input[int]]
+        """
+        How frequently log files are finalized so they can be available for reading (in seconds, default `3600`)
+        """
+        placement: NotRequired[pulumi.Input[str]]
+        """
+        Where in the generated VCL the logging call should be placed. Can be `none` or `waf_debug`.
+        """
+        public_key: NotRequired[pulumi.Input[str]]
+        """
+        A PGP public key that Fastly will use to encrypt your log files before writing them to disk
+        """
+        response_condition: NotRequired[pulumi.Input[str]]
+        """
+        The name of an existing condition in the configured endpoint, or leave blank to always execute.
+        """
+        timestamp_format: NotRequired[pulumi.Input[str]]
+        """
+        The `strftime` specified timestamp formatting (default `%Y-%m-%dT%H:%M:%S.000`)
+        """
+elif False:
+    ServiceVclLoggingDigitaloceanArgsDict: TypeAlias = Mapping[str, Any]
 
 @pulumi.input_type
 class ServiceVclLoggingDigitaloceanArgs:
@@ -7241,6 +9330,75 @@ class ServiceVclLoggingDigitaloceanArgs:
     def timestamp_format(self, value: Optional[pulumi.Input[str]]):
         pulumi.set(self, "timestamp_format", value)
 
+
+if not MYPY:
+    class ServiceVclLoggingElasticsearchArgsDict(TypedDict):
+        index: pulumi.Input[str]
+        """
+        The name of the Elasticsearch index to send documents (logs) to
+        """
+        name: pulumi.Input[str]
+        """
+        The unique name of the Elasticsearch logging endpoint. It is important to note that changing this attribute will delete and recreate the resource
+        """
+        url: pulumi.Input[str]
+        """
+        The Elasticsearch URL to stream logs to
+        """
+        format: NotRequired[pulumi.Input[str]]
+        """
+        Apache-style string or VCL variables to use for log formatting.
+        """
+        format_version: NotRequired[pulumi.Input[int]]
+        """
+        The version of the custom logging format used for the configured endpoint. Can be either 1 or 2. (default: 2).
+        """
+        password: NotRequired[pulumi.Input[str]]
+        """
+        BasicAuth password for Elasticsearch
+        """
+        pipeline: NotRequired[pulumi.Input[str]]
+        """
+        The ID of the Elasticsearch ingest pipeline to apply pre-process transformations to before indexing
+        """
+        placement: NotRequired[pulumi.Input[str]]
+        """
+        Where in the generated VCL the logging call should be placed.
+        """
+        request_max_bytes: NotRequired[pulumi.Input[int]]
+        """
+        The maximum number of logs sent in one request. Defaults to `0` for unbounded
+        """
+        request_max_entries: NotRequired[pulumi.Input[int]]
+        """
+        The maximum number of bytes sent in one request. Defaults to `0` for unbounded
+        """
+        response_condition: NotRequired[pulumi.Input[str]]
+        """
+        The name of the condition to apply
+        """
+        tls_ca_cert: NotRequired[pulumi.Input[str]]
+        """
+        A secure certificate to authenticate the server with. Must be in PEM format
+        """
+        tls_client_cert: NotRequired[pulumi.Input[str]]
+        """
+        The client certificate used to make authenticated requests. Must be in PEM format
+        """
+        tls_client_key: NotRequired[pulumi.Input[str]]
+        """
+        The client private key used to make authenticated requests. Must be in PEM format
+        """
+        tls_hostname: NotRequired[pulumi.Input[str]]
+        """
+        The hostname used to verify the server's certificate. It can either be the Common Name (CN) or a Subject Alternative Name (SAN)
+        """
+        user: NotRequired[pulumi.Input[str]]
+        """
+        BasicAuth username for Elasticsearch
+        """
+elif False:
+    ServiceVclLoggingElasticsearchArgsDict: TypeAlias = Mapping[str, Any]
 
 @pulumi.input_type
 class ServiceVclLoggingElasticsearchArgs:
@@ -7502,6 +9660,75 @@ class ServiceVclLoggingElasticsearchArgs:
         pulumi.set(self, "user", value)
 
 
+if not MYPY:
+    class ServiceVclLoggingFtpArgsDict(TypedDict):
+        address: pulumi.Input[str]
+        """
+        The FTP address to stream logs to
+        """
+        name: pulumi.Input[str]
+        """
+        The unique name of the FTP logging endpoint. It is important to note that changing this attribute will delete and recreate the resource
+        """
+        password: pulumi.Input[str]
+        """
+        The password for the server (for anonymous use an email address)
+        """
+        path: pulumi.Input[str]
+        """
+        The path to upload log files to. If the path ends in `/` then it is treated as a directory
+        """
+        user: pulumi.Input[str]
+        """
+        The username for the server (can be `anonymous`)
+        """
+        compression_codec: NotRequired[pulumi.Input[str]]
+        """
+        The codec used for compression of your logs. Valid values are zstd, snappy, and gzip. If the specified codec is "gzip", gzip_level will default to 3. To specify a different level, leave compression_codec blank and explicitly set the level using gzip_level. Specifying both compression_codec and gzip_level in the same API request will result in an error.
+        """
+        format: NotRequired[pulumi.Input[str]]
+        """
+        Apache-style string or VCL variables to use for log formatting.
+        """
+        format_version: NotRequired[pulumi.Input[int]]
+        """
+        The version of the custom logging format used for the configured endpoint. Can be either 1 or 2. (default: 2).
+        """
+        gzip_level: NotRequired[pulumi.Input[int]]
+        """
+        Level of Gzip compression from `0-9`. `0` means no compression. `1` is the fastest and the least compressed version, `9` is the slowest and the most compressed version. Default `0`
+        """
+        message_type: NotRequired[pulumi.Input[str]]
+        """
+        How the message should be formatted. Can be either `classic`, `loggly`, `logplex` or `blank`. Default is `classic`
+        """
+        period: NotRequired[pulumi.Input[int]]
+        """
+        How frequently the logs should be transferred, in seconds (Default `3600`)
+        """
+        placement: NotRequired[pulumi.Input[str]]
+        """
+        Where in the generated VCL the logging call should be placed.
+        """
+        port: NotRequired[pulumi.Input[int]]
+        """
+        The port number. Default: `21`
+        """
+        public_key: NotRequired[pulumi.Input[str]]
+        """
+        The PGP public key that Fastly will use to encrypt your log files before writing them to disk
+        """
+        response_condition: NotRequired[pulumi.Input[str]]
+        """
+        The name of the condition to apply.
+        """
+        timestamp_format: NotRequired[pulumi.Input[str]]
+        """
+        The `strftime` specified timestamp formatting (default `%Y-%m-%dT%H:%M:%S.000`)
+        """
+elif False:
+    ServiceVclLoggingFtpArgsDict: TypeAlias = Mapping[str, Any]
+
 @pulumi.input_type
 class ServiceVclLoggingFtpArgs:
     def __init__(__self__, *,
@@ -7759,6 +9986,75 @@ class ServiceVclLoggingFtpArgs:
     def timestamp_format(self, value: Optional[pulumi.Input[str]]):
         pulumi.set(self, "timestamp_format", value)
 
+
+if not MYPY:
+    class ServiceVclLoggingGcArgsDict(TypedDict):
+        bucket_name: pulumi.Input[str]
+        """
+        The name of the bucket in which to store the logs
+        """
+        name: pulumi.Input[str]
+        """
+        A unique name to identify this GCS endpoint. It is important to note that changing this attribute will delete and recreate the resource
+        """
+        account_name: NotRequired[pulumi.Input[str]]
+        """
+        The google account name used to obtain temporary credentials (default none). You may optionally provide this via an environment variable, `FASTLY_GCS_ACCOUNT_NAME`.
+        """
+        compression_codec: NotRequired[pulumi.Input[str]]
+        """
+        The codec used for compression of your logs. Valid values are zstd, snappy, and gzip. If the specified codec is "gzip", gzip_level will default to 3. To specify a different level, leave compression_codec blank and explicitly set the level using gzip_level. Specifying both compression_codec and gzip_level in the same API request will result in an error.
+        """
+        format: NotRequired[pulumi.Input[str]]
+        """
+        Apache-style string or VCL variables to use for log formatting
+        """
+        format_version: NotRequired[pulumi.Input[int]]
+        """
+        The version of the custom logging format used for the configured endpoint. Can be either 1 or 2. (Default: 2)
+        """
+        gzip_level: NotRequired[pulumi.Input[int]]
+        """
+        Level of Gzip compression from `0-9`. `0` means no compression. `1` is the fastest and the least compressed version, `9` is the slowest and the most compressed version. Default `0`
+        """
+        message_type: NotRequired[pulumi.Input[str]]
+        """
+        How the message should be formatted. Can be either `classic`, `loggly`, `logplex` or `blank`. Default is `classic`
+        """
+        path: NotRequired[pulumi.Input[str]]
+        """
+        Path to store the files. Must end with a trailing slash. If this field is left empty, the files will be saved in the bucket's root path
+        """
+        period: NotRequired[pulumi.Input[int]]
+        """
+        How frequently the logs should be transferred, in seconds (Default 3600)
+        """
+        placement: NotRequired[pulumi.Input[str]]
+        """
+        Where in the generated VCL the logging call should be placed.
+        """
+        project_id: NotRequired[pulumi.Input[str]]
+        """
+        The ID of your Google Cloud Platform project
+        """
+        response_condition: NotRequired[pulumi.Input[str]]
+        """
+        Name of a condition to apply this logging.
+        """
+        secret_key: NotRequired[pulumi.Input[str]]
+        """
+        The secret key associated with the target gcs bucket on your account. You may optionally provide this secret via an environment variable, `FASTLY_GCS_SECRET_KEY`. A typical format for the key is PEM format, containing actual newline characters where required
+        """
+        timestamp_format: NotRequired[pulumi.Input[str]]
+        """
+        The `strftime` specified timestamp formatting (default `%Y-%m-%dT%H:%M:%S.000`)
+        """
+        user: NotRequired[pulumi.Input[str]]
+        """
+        Your Google Cloud Platform service account email address. The `client_email` field in your service account authentication JSON. You may optionally provide this via an environment variable, `FASTLY_GCS_EMAIL`.
+        """
+elif False:
+    ServiceVclLoggingGcArgsDict: TypeAlias = Mapping[str, Any]
 
 @pulumi.input_type
 class ServiceVclLoggingGcArgs:
@@ -8021,6 +10317,51 @@ class ServiceVclLoggingGcArgs:
         pulumi.set(self, "user", value)
 
 
+if not MYPY:
+    class ServiceVclLoggingGooglepubsubArgsDict(TypedDict):
+        name: pulumi.Input[str]
+        """
+        The unique name of the Google Cloud Pub/Sub logging endpoint. It is important to note that changing this attribute will delete and recreate the resource
+        """
+        project_id: pulumi.Input[str]
+        """
+        The ID of your Google Cloud Platform project
+        """
+        secret_key: pulumi.Input[str]
+        """
+        Your Google Cloud Platform account secret key. The `private_key` field in your service account authentication JSON. You may optionally provide this secret via an environment variable, `FASTLY_GOOGLE_PUBSUB_SECRET_KEY`.
+        """
+        topic: pulumi.Input[str]
+        """
+        The Google Cloud Pub/Sub topic to which logs will be published
+        """
+        user: pulumi.Input[str]
+        """
+        Your Google Cloud Platform service account email address. The `client_email` field in your service account authentication JSON. You may optionally provide this via an environment variable, `FASTLY_GOOGLE_PUBSUB_EMAIL`.
+        """
+        account_name: NotRequired[pulumi.Input[str]]
+        """
+        The google account name used to obtain temporary credentials (default none). You may optionally provide this via an environment variable, `FASTLY_GCS_ACCOUNT_NAME`.
+        """
+        format: NotRequired[pulumi.Input[str]]
+        """
+        Apache style log formatting.
+        """
+        format_version: NotRequired[pulumi.Input[int]]
+        """
+        The version of the custom logging format used for the configured endpoint. Can be either 1 or 2. (default: 2).
+        """
+        placement: NotRequired[pulumi.Input[str]]
+        """
+        Where in the generated VCL the logging call should be placed.
+        """
+        response_condition: NotRequired[pulumi.Input[str]]
+        """
+        The name of an existing condition in the configured endpoint, or leave blank to always execute.
+        """
+elif False:
+    ServiceVclLoggingGooglepubsubArgsDict: TypeAlias = Mapping[str, Any]
+
 @pulumi.input_type
 class ServiceVclLoggingGooglepubsubArgs:
     def __init__(__self__, *,
@@ -8183,6 +10524,39 @@ class ServiceVclLoggingGooglepubsubArgs:
         pulumi.set(self, "response_condition", value)
 
 
+if not MYPY:
+    class ServiceVclLoggingHerokusArgsDict(TypedDict):
+        name: pulumi.Input[str]
+        """
+        The unique name of the Heroku logging endpoint. It is important to note that changing this attribute will delete and recreate the resource
+        """
+        token: pulumi.Input[str]
+        """
+        The token to use for authentication (https://www.heroku.com/docs/customer-token-authentication-token/)
+        """
+        url: pulumi.Input[str]
+        """
+        The URL to stream logs to
+        """
+        format: NotRequired[pulumi.Input[str]]
+        """
+        Apache-style string or VCL variables to use for log formatting.
+        """
+        format_version: NotRequired[pulumi.Input[int]]
+        """
+        The version of the custom logging format used for the configured endpoint. Can be either `1` or `2`. (default: `2`).
+        """
+        placement: NotRequired[pulumi.Input[str]]
+        """
+        Where in the generated VCL the logging call should be placed. Can be `none` or `waf_debug`.
+        """
+        response_condition: NotRequired[pulumi.Input[str]]
+        """
+        The name of an existing condition in the configured endpoint, or leave blank to always execute.
+        """
+elif False:
+    ServiceVclLoggingHerokusArgsDict: TypeAlias = Mapping[str, Any]
+
 @pulumi.input_type
 class ServiceVclLoggingHerokusArgs:
     def __init__(__self__, *,
@@ -8299,6 +10673,39 @@ class ServiceVclLoggingHerokusArgs:
         pulumi.set(self, "response_condition", value)
 
 
+if not MYPY:
+    class ServiceVclLoggingHoneycombArgsDict(TypedDict):
+        dataset: pulumi.Input[str]
+        """
+        The Honeycomb Dataset you want to log to
+        """
+        name: pulumi.Input[str]
+        """
+        The unique name of the Honeycomb logging endpoint. It is important to note that changing this attribute will delete and recreate the resource
+        """
+        token: pulumi.Input[str]
+        """
+        The Write Key from the Account page of your Honeycomb account
+        """
+        format: NotRequired[pulumi.Input[str]]
+        """
+        Apache style log formatting. Your log must produce valid JSON that Honeycomb can ingest.
+        """
+        format_version: NotRequired[pulumi.Input[int]]
+        """
+        The version of the custom logging format used for the configured endpoint. Can be either `1` or `2`. (default: `2`).
+        """
+        placement: NotRequired[pulumi.Input[str]]
+        """
+        Where in the generated VCL the logging call should be placed. Can be `none` or `waf_debug`.
+        """
+        response_condition: NotRequired[pulumi.Input[str]]
+        """
+        The name of an existing condition in the configured endpoint, or leave blank to always execute.
+        """
+elif False:
+    ServiceVclLoggingHoneycombArgsDict: TypeAlias = Mapping[str, Any]
+
 @pulumi.input_type
 class ServiceVclLoggingHoneycombArgs:
     def __init__(__self__, *,
@@ -8414,6 +10821,83 @@ class ServiceVclLoggingHoneycombArgs:
     def response_condition(self, value: Optional[pulumi.Input[str]]):
         pulumi.set(self, "response_condition", value)
 
+
+if not MYPY:
+    class ServiceVclLoggingHttpArgsDict(TypedDict):
+        name: pulumi.Input[str]
+        """
+        The unique name of the HTTPS logging endpoint. It is important to note that changing this attribute will delete and recreate the resource
+        """
+        url: pulumi.Input[str]
+        """
+        URL that log data will be sent to. Must use the https protocol
+        """
+        content_type: NotRequired[pulumi.Input[str]]
+        """
+        Value of the `Content-Type` header sent with the request
+        """
+        format: NotRequired[pulumi.Input[str]]
+        """
+        Apache-style string or VCL variables to use for log formatting.
+        """
+        format_version: NotRequired[pulumi.Input[int]]
+        """
+        The version of the custom logging format used for the configured endpoint. Can be either 1 or 2. (default: 2)
+        """
+        header_name: NotRequired[pulumi.Input[str]]
+        """
+        Custom header sent with the request
+        """
+        header_value: NotRequired[pulumi.Input[str]]
+        """
+        Value of the custom header sent with the request
+        """
+        json_format: NotRequired[pulumi.Input[str]]
+        """
+        Formats log entries as JSON. Can be either disabled (`0`), array of json (`1`), or newline delimited json (`2`)
+        """
+        message_type: NotRequired[pulumi.Input[str]]
+        """
+        How the message should be formatted. Can be either `classic`, `loggly`, `logplex` or `blank`. Default is `classic`
+        """
+        method: NotRequired[pulumi.Input[str]]
+        """
+        HTTP method used for request. Can be either `POST` or `PUT`. Default `POST`
+        """
+        placement: NotRequired[pulumi.Input[str]]
+        """
+        Where in the generated VCL the logging call should be placed
+        """
+        request_max_bytes: NotRequired[pulumi.Input[int]]
+        """
+        The maximum number of bytes sent in one request
+        """
+        request_max_entries: NotRequired[pulumi.Input[int]]
+        """
+        The maximum number of logs sent in one request
+        """
+        response_condition: NotRequired[pulumi.Input[str]]
+        """
+        The name of the condition to apply
+        """
+        tls_ca_cert: NotRequired[pulumi.Input[str]]
+        """
+        A secure certificate to authenticate the server with. Must be in PEM format
+        """
+        tls_client_cert: NotRequired[pulumi.Input[str]]
+        """
+        The client certificate used to make authenticated requests. Must be in PEM format
+        """
+        tls_client_key: NotRequired[pulumi.Input[str]]
+        """
+        The client private key used to make authenticated requests. Must be in PEM format
+        """
+        tls_hostname: NotRequired[pulumi.Input[str]]
+        """
+        Used during the TLS handshake to validate the certificate
+        """
+elif False:
+    ServiceVclLoggingHttpArgsDict: TypeAlias = Mapping[str, Any]
 
 @pulumi.input_type
 class ServiceVclLoggingHttpArgs:
@@ -8707,6 +11191,87 @@ class ServiceVclLoggingHttpArgs:
     def tls_hostname(self, value: Optional[pulumi.Input[str]]):
         pulumi.set(self, "tls_hostname", value)
 
+
+if not MYPY:
+    class ServiceVclLoggingKafkaArgsDict(TypedDict):
+        brokers: pulumi.Input[str]
+        """
+        A comma-separated list of IP addresses or hostnames of Kafka brokers
+        """
+        name: pulumi.Input[str]
+        """
+        The unique name of the Kafka logging endpoint. It is important to note that changing this attribute will delete and recreate the resource
+        """
+        topic: pulumi.Input[str]
+        """
+        The Kafka topic to send logs to
+        """
+        auth_method: NotRequired[pulumi.Input[str]]
+        """
+        SASL authentication method. One of: plain, scram-sha-256, scram-sha-512
+        """
+        compression_codec: NotRequired[pulumi.Input[str]]
+        """
+        The codec used for compression of your logs. One of: `gzip`, `snappy`, `lz4`
+        """
+        format: NotRequired[pulumi.Input[str]]
+        """
+        Apache style log formatting.
+        """
+        format_version: NotRequired[pulumi.Input[int]]
+        """
+        The version of the custom logging format used for the configured endpoint. Can be either 1 or 2. (default: 2).
+        """
+        parse_log_keyvals: NotRequired[pulumi.Input[bool]]
+        """
+        Enables parsing of key=value tuples from the beginning of a logline, turning them into record headers
+        """
+        password: NotRequired[pulumi.Input[str]]
+        """
+        SASL Pass
+        """
+        placement: NotRequired[pulumi.Input[str]]
+        """
+        Where in the generated VCL the logging call should be placed.
+        """
+        request_max_bytes: NotRequired[pulumi.Input[int]]
+        """
+        Maximum size of log batch, if non-zero. Defaults to 0 for unbounded
+        """
+        required_acks: NotRequired[pulumi.Input[str]]
+        """
+        The Number of acknowledgements a leader must receive before a write is considered successful. One of: `1` (default) One server needs to respond. `0` No servers need to respond. `-1` Wait for all in-sync replicas to respond
+        """
+        response_condition: NotRequired[pulumi.Input[str]]
+        """
+        The name of an existing condition in the configured endpoint, or leave blank to always execute.
+        """
+        tls_ca_cert: NotRequired[pulumi.Input[str]]
+        """
+        A secure certificate to authenticate the server with. Must be in PEM format
+        """
+        tls_client_cert: NotRequired[pulumi.Input[str]]
+        """
+        The client certificate used to make authenticated requests. Must be in PEM format
+        """
+        tls_client_key: NotRequired[pulumi.Input[str]]
+        """
+        The client private key used to make authenticated requests. Must be in PEM format
+        """
+        tls_hostname: NotRequired[pulumi.Input[str]]
+        """
+        The hostname used to verify the server's certificate. It can either be the Common Name or a Subject Alternative Name (SAN)
+        """
+        use_tls: NotRequired[pulumi.Input[bool]]
+        """
+        Whether to use TLS for secure logging. Can be either `true` or `false`
+        """
+        user: NotRequired[pulumi.Input[str]]
+        """
+        SASL User
+        """
+elif False:
+    ServiceVclLoggingKafkaArgsDict: TypeAlias = Mapping[str, Any]
 
 @pulumi.input_type
 class ServiceVclLoggingKafkaArgs:
@@ -9016,6 +11581,51 @@ class ServiceVclLoggingKafkaArgs:
         pulumi.set(self, "user", value)
 
 
+if not MYPY:
+    class ServiceVclLoggingKineseArgsDict(TypedDict):
+        name: pulumi.Input[str]
+        """
+        The unique name of the Kinesis logging endpoint. It is important to note that changing this attribute will delete and recreate the resource
+        """
+        topic: pulumi.Input[str]
+        """
+        The Kinesis stream name
+        """
+        access_key: NotRequired[pulumi.Input[str]]
+        """
+        The AWS access key to be used to write to the stream
+        """
+        format: NotRequired[pulumi.Input[str]]
+        """
+        Apache style log formatting.
+        """
+        format_version: NotRequired[pulumi.Input[int]]
+        """
+        The version of the custom logging format used for the configured endpoint. Can be either `1` or `2`. (default: `2`).
+        """
+        iam_role: NotRequired[pulumi.Input[str]]
+        """
+        The Amazon Resource Name (ARN) for the IAM role granting Fastly access to Kinesis. Not required if `access_key` and `secret_key` are provided.
+        """
+        placement: NotRequired[pulumi.Input[str]]
+        """
+        Where in the generated VCL the logging call should be placed. Can be `none` or `waf_debug`.
+        """
+        region: NotRequired[pulumi.Input[str]]
+        """
+        The AWS region the stream resides in. (Default: `us-east-1`)
+        """
+        response_condition: NotRequired[pulumi.Input[str]]
+        """
+        The name of an existing condition in the configured endpoint, or leave blank to always execute.
+        """
+        secret_key: NotRequired[pulumi.Input[str]]
+        """
+        The AWS secret access key to authenticate with
+        """
+elif False:
+    ServiceVclLoggingKineseArgsDict: TypeAlias = Mapping[str, Any]
+
 @pulumi.input_type
 class ServiceVclLoggingKineseArgs:
     def __init__(__self__, *,
@@ -9181,6 +11791,43 @@ class ServiceVclLoggingKineseArgs:
         pulumi.set(self, "secret_key", value)
 
 
+if not MYPY:
+    class ServiceVclLoggingLogentryArgsDict(TypedDict):
+        name: pulumi.Input[str]
+        """
+        The unique name of the Logentries logging endpoint. It is important to note that changing this attribute will delete and recreate the resource
+        """
+        token: pulumi.Input[str]
+        """
+        Use token based authentication (https://logentries.com/doc/input-token/)
+        """
+        format: NotRequired[pulumi.Input[str]]
+        """
+        Apache-style string or VCL variables to use for log formatting
+        """
+        format_version: NotRequired[pulumi.Input[int]]
+        """
+        The version of the custom logging format used for the configured endpoint. Can be either 1 or 2. (Default: 2)
+        """
+        placement: NotRequired[pulumi.Input[str]]
+        """
+        Where in the generated VCL the logging call should be placed.
+        """
+        port: NotRequired[pulumi.Input[int]]
+        """
+        The port number configured in Logentries
+        """
+        response_condition: NotRequired[pulumi.Input[str]]
+        """
+        Name of blockAttributes condition to apply this logging.
+        """
+        use_tls: NotRequired[pulumi.Input[bool]]
+        """
+        Whether to use TLS for secure logging
+        """
+elif False:
+    ServiceVclLoggingLogentryArgsDict: TypeAlias = Mapping[str, Any]
+
 @pulumi.input_type
 class ServiceVclLoggingLogentryArgs:
     def __init__(__self__, *,
@@ -9314,6 +11961,35 @@ class ServiceVclLoggingLogentryArgs:
         pulumi.set(self, "use_tls", value)
 
 
+if not MYPY:
+    class ServiceVclLoggingLogglyArgsDict(TypedDict):
+        name: pulumi.Input[str]
+        """
+        The unique name of the Loggly logging endpoint. It is important to note that changing this attribute will delete and recreate the resource
+        """
+        token: pulumi.Input[str]
+        """
+        The token to use for authentication (https://www.loggly.com/docs/customer-token-authentication-token/).
+        """
+        format: NotRequired[pulumi.Input[str]]
+        """
+        Apache-style string or VCL variables to use for log formatting.
+        """
+        format_version: NotRequired[pulumi.Input[int]]
+        """
+        The version of the custom logging format used for the configured endpoint. Can be either `1` or `2`. (default: `2`).
+        """
+        placement: NotRequired[pulumi.Input[str]]
+        """
+        Where in the generated VCL the logging call should be placed. Can be `none` or `waf_debug`.
+        """
+        response_condition: NotRequired[pulumi.Input[str]]
+        """
+        The name of an existing condition in the configured endpoint, or leave blank to always execute.
+        """
+elif False:
+    ServiceVclLoggingLogglyArgsDict: TypeAlias = Mapping[str, Any]
+
 @pulumi.input_type
 class ServiceVclLoggingLogglyArgs:
     def __init__(__self__, *,
@@ -9414,6 +12090,39 @@ class ServiceVclLoggingLogglyArgs:
     def response_condition(self, value: Optional[pulumi.Input[str]]):
         pulumi.set(self, "response_condition", value)
 
+
+if not MYPY:
+    class ServiceVclLoggingLogshuttleArgsDict(TypedDict):
+        name: pulumi.Input[str]
+        """
+        The unique name of the Log Shuttle logging endpoint. It is important to note that changing this attribute will delete and recreate the resource
+        """
+        token: pulumi.Input[str]
+        """
+        The data authentication token associated with this endpoint
+        """
+        url: pulumi.Input[str]
+        """
+        Your Log Shuttle endpoint URL
+        """
+        format: NotRequired[pulumi.Input[str]]
+        """
+        Apache style log formatting.
+        """
+        format_version: NotRequired[pulumi.Input[int]]
+        """
+        The version of the custom logging format used for the configured endpoint. Can be either `1` or `2`. (default: `2`).
+        """
+        placement: NotRequired[pulumi.Input[str]]
+        """
+        Where in the generated VCL the logging call should be placed. Can be `none` or `waf_debug`.
+        """
+        response_condition: NotRequired[pulumi.Input[str]]
+        """
+        The name of an existing condition in the configured endpoint, or leave blank to always execute.
+        """
+elif False:
+    ServiceVclLoggingLogshuttleArgsDict: TypeAlias = Mapping[str, Any]
 
 @pulumi.input_type
 class ServiceVclLoggingLogshuttleArgs:
@@ -9531,6 +12240,39 @@ class ServiceVclLoggingLogshuttleArgs:
         pulumi.set(self, "response_condition", value)
 
 
+if not MYPY:
+    class ServiceVclLoggingNewrelicArgsDict(TypedDict):
+        name: pulumi.Input[str]
+        """
+        The unique name of the New Relic logging endpoint. It is important to note that changing this attribute will delete and recreate the resource
+        """
+        token: pulumi.Input[str]
+        """
+        The Insert API key from the Account page of your New Relic account
+        """
+        format: NotRequired[pulumi.Input[str]]
+        """
+        Apache style log formatting. Your log must produce valid JSON that New Relic Logs can ingest.
+        """
+        format_version: NotRequired[pulumi.Input[int]]
+        """
+        The version of the custom logging format used for the configured endpoint. Can be either `1` or `2`. (default: `2`).
+        """
+        placement: NotRequired[pulumi.Input[str]]
+        """
+        Where in the generated VCL the logging call should be placed.
+        """
+        region: NotRequired[pulumi.Input[str]]
+        """
+        The region that log data will be sent to. Default: `US`
+        """
+        response_condition: NotRequired[pulumi.Input[str]]
+        """
+        The name of the condition to apply.
+        """
+elif False:
+    ServiceVclLoggingNewrelicArgsDict: TypeAlias = Mapping[str, Any]
+
 @pulumi.input_type
 class ServiceVclLoggingNewrelicArgs:
     def __init__(__self__, *,
@@ -9647,6 +12389,43 @@ class ServiceVclLoggingNewrelicArgs:
     def response_condition(self, value: Optional[pulumi.Input[str]]):
         pulumi.set(self, "response_condition", value)
 
+
+if not MYPY:
+    class ServiceVclLoggingNewrelicotlpArgsDict(TypedDict):
+        name: pulumi.Input[str]
+        """
+        The unique name of the New Relic OTLP logging endpoint. It is important to note that changing this attribute will delete and recreate the resource
+        """
+        token: pulumi.Input[str]
+        """
+        The Insert API key from the Account page of your New Relic account
+        """
+        format: NotRequired[pulumi.Input[str]]
+        """
+        Apache style log formatting. Your log must produce valid JSON that New Relic OTLP can ingest.
+        """
+        format_version: NotRequired[pulumi.Input[int]]
+        """
+        The version of the custom logging format used for the configured endpoint. Can be either `1` or `2`. (default: `2`).
+        """
+        placement: NotRequired[pulumi.Input[str]]
+        """
+        Where in the generated VCL the logging call should be placed.
+        """
+        region: NotRequired[pulumi.Input[str]]
+        """
+        The region that log data will be sent to. Default: `US`
+        """
+        response_condition: NotRequired[pulumi.Input[str]]
+        """
+        The name of the condition to apply.
+        """
+        url: NotRequired[pulumi.Input[str]]
+        """
+        The optional New Relic Trace Observer URL to stream logs to for Infinite Tracing.
+        """
+elif False:
+    ServiceVclLoggingNewrelicotlpArgsDict: TypeAlias = Mapping[str, Any]
 
 @pulumi.input_type
 class ServiceVclLoggingNewrelicotlpArgs:
@@ -9780,6 +12559,75 @@ class ServiceVclLoggingNewrelicotlpArgs:
     def url(self, value: Optional[pulumi.Input[str]]):
         pulumi.set(self, "url", value)
 
+
+if not MYPY:
+    class ServiceVclLoggingOpenstackArgsDict(TypedDict):
+        access_key: pulumi.Input[str]
+        """
+        Your OpenStack account access key
+        """
+        bucket_name: pulumi.Input[str]
+        """
+        The name of your OpenStack container
+        """
+        name: pulumi.Input[str]
+        """
+        The unique name of the OpenStack logging endpoint. It is important to note that changing this attribute will delete and recreate the resource
+        """
+        url: pulumi.Input[str]
+        """
+        Your OpenStack auth url
+        """
+        user: pulumi.Input[str]
+        """
+        The username for your OpenStack account
+        """
+        compression_codec: NotRequired[pulumi.Input[str]]
+        """
+        The codec used for compression of your logs. Valid values are zstd, snappy, and gzip. If the specified codec is "gzip", gzip_level will default to 3. To specify a different level, leave compression_codec blank and explicitly set the level using gzip_level. Specifying both compression_codec and gzip_level in the same API request will result in an error.
+        """
+        format: NotRequired[pulumi.Input[str]]
+        """
+        Apache style log formatting.
+        """
+        format_version: NotRequired[pulumi.Input[int]]
+        """
+        The version of the custom logging format used for the configured endpoint. Can be either `1` or `2`. (default: `2`).
+        """
+        gzip_level: NotRequired[pulumi.Input[int]]
+        """
+        Level of Gzip compression from `0-9`. `0` means no compression. `1` is the fastest and the least compressed version, `9` is the slowest and the most compressed version. Default `0`
+        """
+        message_type: NotRequired[pulumi.Input[str]]
+        """
+        How the message should be formatted. Can be either `classic`, `loggly`, `logplex` or `blank`. Default is `classic`
+        """
+        path: NotRequired[pulumi.Input[str]]
+        """
+        Path to store the files. Must end with a trailing slash. If this field is left empty, the files will be saved in the bucket's root path
+        """
+        period: NotRequired[pulumi.Input[int]]
+        """
+        How frequently the logs should be transferred, in seconds. Default `3600`
+        """
+        placement: NotRequired[pulumi.Input[str]]
+        """
+        Where in the generated VCL the logging call should be placed. Can be `none` or `waf_debug`.
+        """
+        public_key: NotRequired[pulumi.Input[str]]
+        """
+        A PGP public key that Fastly will use to encrypt your log files before writing them to disk
+        """
+        response_condition: NotRequired[pulumi.Input[str]]
+        """
+        The name of an existing condition in the configured endpoint, or leave blank to always execute.
+        """
+        timestamp_format: NotRequired[pulumi.Input[str]]
+        """
+        The `strftime` specified timestamp formatting (default `%Y-%m-%dT%H:%M:%S.000`)
+        """
+elif False:
+    ServiceVclLoggingOpenstackArgsDict: TypeAlias = Mapping[str, Any]
 
 @pulumi.input_type
 class ServiceVclLoggingOpenstackArgs:
@@ -10039,6 +12887,39 @@ class ServiceVclLoggingOpenstackArgs:
         pulumi.set(self, "timestamp_format", value)
 
 
+if not MYPY:
+    class ServiceVclLoggingPapertrailArgsDict(TypedDict):
+        address: pulumi.Input[str]
+        """
+        The address of the Papertrail endpoint
+        """
+        name: pulumi.Input[str]
+        """
+        A unique name to identify this Papertrail endpoint. It is important to note that changing this attribute will delete and recreate the resource
+        """
+        port: pulumi.Input[int]
+        """
+        The port associated with the address where the Papertrail endpoint can be accessed
+        """
+        format: NotRequired[pulumi.Input[str]]
+        """
+        A Fastly [log format string](https://docs.fastly.com/en/guides/custom-log-formats)
+        """
+        format_version: NotRequired[pulumi.Input[int]]
+        """
+        The version of the custom logging format used for the configured endpoint. The logging call gets placed by default in `vcl_log` if `format_version` is set to `2` and in `vcl_deliver` if `format_version` is set to `1`
+        """
+        placement: NotRequired[pulumi.Input[str]]
+        """
+        Where in the generated VCL the logging call should be placed. If not set, endpoints with `format_version` of 2 are placed in `vcl_log` and those with `format_version` of 1 are placed in `vcl_deliver`
+        """
+        response_condition: NotRequired[pulumi.Input[str]]
+        """
+        The name of an existing condition in the configured endpoint, or leave blank to always execute
+        """
+elif False:
+    ServiceVclLoggingPapertrailArgsDict: TypeAlias = Mapping[str, Any]
+
 @pulumi.input_type
 class ServiceVclLoggingPapertrailArgs:
     def __init__(__self__, *,
@@ -10154,6 +13035,99 @@ class ServiceVclLoggingPapertrailArgs:
     def response_condition(self, value: Optional[pulumi.Input[str]]):
         pulumi.set(self, "response_condition", value)
 
+
+if not MYPY:
+    class ServiceVclLoggingS3ArgsDict(TypedDict):
+        bucket_name: pulumi.Input[str]
+        """
+        The name of the bucket in which to store the logs
+        """
+        name: pulumi.Input[str]
+        """
+        The unique name of the S3 logging endpoint. It is important to note that changing this attribute will delete and recreate the resource
+        """
+        acl: NotRequired[pulumi.Input[str]]
+        """
+        The AWS [Canned ACL](https://docs.aws.amazon.com/AmazonS3/latest/userguide/acl-overview.html#canned-acl) to use for objects uploaded to the S3 bucket. Options are: `private`, `public-read`, `public-read-write`, `aws-exec-read`, `authenticated-read`, `bucket-owner-read`, `bucket-owner-full-control`
+        """
+        compression_codec: NotRequired[pulumi.Input[str]]
+        """
+        The codec used for compression of your logs. Valid values are zstd, snappy, and gzip. If the specified codec is "gzip", gzip_level will default to 3. To specify a different level, leave compression_codec blank and explicitly set the level using gzip_level. Specifying both compression_codec and gzip_level in the same API request will result in an error.
+        """
+        domain: NotRequired[pulumi.Input[str]]
+        """
+        If you created the S3 bucket outside of `us-east-1`, then specify the corresponding bucket endpoint. Example: `s3-us-west-2.amazonaws.com`
+        """
+        file_max_bytes: NotRequired[pulumi.Input[int]]
+        """
+        Maximum size of an uploaded log file, if non-zero.
+        """
+        format: NotRequired[pulumi.Input[str]]
+        """
+        Apache-style string or VCL variables to use for log formatting.
+        """
+        format_version: NotRequired[pulumi.Input[int]]
+        """
+        The version of the custom logging format used for the configured endpoint. Can be either 1 or 2. (Default: 2).
+        """
+        gzip_level: NotRequired[pulumi.Input[int]]
+        """
+        Level of Gzip compression from `0-9`. `0` means no compression. `1` is the fastest and the least compressed version, `9` is the slowest and the most compressed version. Default `0`
+        """
+        message_type: NotRequired[pulumi.Input[str]]
+        """
+        How the message should be formatted. Can be either `classic`, `loggly`, `logplex` or `blank`. Default is `classic`
+        """
+        path: NotRequired[pulumi.Input[str]]
+        """
+        Path to store the files. Must end with a trailing slash. If this field is left empty, the files will be saved in the bucket's root path
+        """
+        period: NotRequired[pulumi.Input[int]]
+        """
+        How frequently the logs should be transferred, in seconds. Default `3600`
+        """
+        placement: NotRequired[pulumi.Input[str]]
+        """
+        Where in the generated VCL the logging call should be placed.
+        """
+        public_key: NotRequired[pulumi.Input[str]]
+        """
+        A PGP public key that Fastly will use to encrypt your log files before writing them to disk
+        """
+        redundancy: NotRequired[pulumi.Input[str]]
+        """
+        The S3 storage class (redundancy level). Should be one of: `standard`, `intelligent_tiering`, `standard_ia`, `onezone_ia`, `glacier`, `glacier_ir`, `deep_archive`, or `reduced_redundancy`
+        """
+        response_condition: NotRequired[pulumi.Input[str]]
+        """
+        Name of blockAttributes condition to apply this logging.
+        """
+        s3_access_key: NotRequired[pulumi.Input[str]]
+        """
+        AWS Access Key of an account with the required permissions to post logs. It is **strongly** recommended you create a separate IAM user with permissions to only operate on this Bucket. This key will be not be encrypted. Not required if `iam_role` is provided. You can provide this key via an environment variable, `FASTLY_S3_ACCESS_KEY`
+        """
+        s3_iam_role: NotRequired[pulumi.Input[str]]
+        """
+        The Amazon Resource Name (ARN) for the IAM role granting Fastly access to S3. Not required if `access_key` and `secret_key` are provided. You can provide this value via an environment variable, `FASTLY_S3_IAM_ROLE`
+        """
+        s3_secret_key: NotRequired[pulumi.Input[str]]
+        """
+        AWS Secret Key of an account with the required permissions to post logs. It is **strongly** recommended you create a separate IAM user with permissions to only operate on this Bucket. This secret will be not be encrypted. Not required if `iam_role` is provided. You can provide this secret via an environment variable, `FASTLY_S3_SECRET_KEY`
+        """
+        server_side_encryption: NotRequired[pulumi.Input[str]]
+        """
+        Specify what type of server side encryption should be used. Can be either `AES256` or `aws:kms`
+        """
+        server_side_encryption_kms_key_id: NotRequired[pulumi.Input[str]]
+        """
+        Optional server-side KMS Key Id. Must be set if server_side_encryption is set to `aws:kms`
+        """
+        timestamp_format: NotRequired[pulumi.Input[str]]
+        """
+        The `strftime` specified timestamp formatting (default `%Y-%m-%dT%H:%M:%S.000`)
+        """
+elif False:
+    ServiceVclLoggingS3ArgsDict: TypeAlias = Mapping[str, Any]
 
 @pulumi.input_type
 class ServiceVclLoggingS3Args:
@@ -10512,6 +13486,43 @@ class ServiceVclLoggingS3Args:
         pulumi.set(self, "timestamp_format", value)
 
 
+if not MYPY:
+    class ServiceVclLoggingScalyrArgsDict(TypedDict):
+        name: pulumi.Input[str]
+        """
+        The unique name of the Scalyr logging endpoint. It is important to note that changing this attribute will delete and recreate the resource
+        """
+        token: pulumi.Input[str]
+        """
+        The token to use for authentication (https://www.scalyr.com/keys)
+        """
+        format: NotRequired[pulumi.Input[str]]
+        """
+        Apache style log formatting.
+        """
+        format_version: NotRequired[pulumi.Input[int]]
+        """
+        The version of the custom logging format used for the configured endpoint. Can be either 1 or 2. (default: 2).
+        """
+        placement: NotRequired[pulumi.Input[str]]
+        """
+        Where in the generated VCL the logging call should be placed.
+        """
+        project_id: NotRequired[pulumi.Input[str]]
+        """
+        The name of the logfile field sent to Scalyr
+        """
+        region: NotRequired[pulumi.Input[str]]
+        """
+        The region that log data will be sent to. One of `US` or `EU`. Defaults to `US` if undefined
+        """
+        response_condition: NotRequired[pulumi.Input[str]]
+        """
+        The name of an existing condition in the configured endpoint, or leave blank to always execute.
+        """
+elif False:
+    ServiceVclLoggingScalyrArgsDict: TypeAlias = Mapping[str, Any]
+
 @pulumi.input_type
 class ServiceVclLoggingScalyrArgs:
     def __init__(__self__, *,
@@ -10644,6 +13655,83 @@ class ServiceVclLoggingScalyrArgs:
     def response_condition(self, value: Optional[pulumi.Input[str]]):
         pulumi.set(self, "response_condition", value)
 
+
+if not MYPY:
+    class ServiceVclLoggingSftpArgsDict(TypedDict):
+        address: pulumi.Input[str]
+        """
+        The SFTP address to stream logs to
+        """
+        name: pulumi.Input[str]
+        """
+        The unique name of the SFTP logging endpoint. It is important to note that changing this attribute will delete and recreate the resource
+        """
+        path: pulumi.Input[str]
+        """
+        The path to upload log files to. If the path ends in `/` then it is treated as a directory
+        """
+        ssh_known_hosts: pulumi.Input[str]
+        """
+        A list of host keys for all hosts we can connect to over SFTP
+        """
+        user: pulumi.Input[str]
+        """
+        The username for the server
+        """
+        compression_codec: NotRequired[pulumi.Input[str]]
+        """
+        The codec used for compression of your logs. Valid values are zstd, snappy, and gzip. If the specified codec is "gzip", gzip_level will default to 3. To specify a different level, leave compression_codec blank and explicitly set the level using gzip_level. Specifying both compression_codec and gzip_level in the same API request will result in an error.
+        """
+        format: NotRequired[pulumi.Input[str]]
+        """
+        Apache-style string or VCL variables to use for log formatting.
+        """
+        format_version: NotRequired[pulumi.Input[int]]
+        """
+        The version of the custom logging format used for the configured endpoint. Can be either 1 or 2. (default: 2).
+        """
+        gzip_level: NotRequired[pulumi.Input[int]]
+        """
+        Level of Gzip compression from `0-9`. `0` means no compression. `1` is the fastest and the least compressed version, `9` is the slowest and the most compressed version. Default `0`
+        """
+        message_type: NotRequired[pulumi.Input[str]]
+        """
+        How the message should be formatted. Can be either `classic`, `loggly`, `logplex` or `blank`. Default is `classic`
+        """
+        password: NotRequired[pulumi.Input[str]]
+        """
+        The password for the server. If both `password` and `secret_key` are passed, `secret_key` will be preferred
+        """
+        period: NotRequired[pulumi.Input[int]]
+        """
+        How frequently log files are finalized so they can be available for reading (in seconds, default `3600`)
+        """
+        placement: NotRequired[pulumi.Input[str]]
+        """
+        Where in the generated VCL the logging call should be placed.
+        """
+        port: NotRequired[pulumi.Input[int]]
+        """
+        The port the SFTP service listens on. (Default: `22`)
+        """
+        public_key: NotRequired[pulumi.Input[str]]
+        """
+        A PGP public key that Fastly will use to encrypt your log files before writing them to disk
+        """
+        response_condition: NotRequired[pulumi.Input[str]]
+        """
+        The name of the condition to apply.
+        """
+        secret_key: NotRequired[pulumi.Input[str]]
+        """
+        The SSH private key for the server. If both `password` and `secret_key` are passed, `secret_key` will be preferred
+        """
+        timestamp_format: NotRequired[pulumi.Input[str]]
+        """
+        The `strftime` specified timestamp formatting (default `%Y-%m-%dT%H:%M:%S.000`)
+        """
+elif False:
+    ServiceVclLoggingSftpArgsDict: TypeAlias = Mapping[str, Any]
 
 @pulumi.input_type
 class ServiceVclLoggingSftpArgs:
@@ -10935,6 +14023,59 @@ class ServiceVclLoggingSftpArgs:
         pulumi.set(self, "timestamp_format", value)
 
 
+if not MYPY:
+    class ServiceVclLoggingSplunkArgsDict(TypedDict):
+        name: pulumi.Input[str]
+        """
+        A unique name to identify the Splunk endpoint. It is important to note that changing this attribute will delete and recreate the resource
+        """
+        token: pulumi.Input[str]
+        """
+        The Splunk token to be used for authentication
+        """
+        url: pulumi.Input[str]
+        """
+        The Splunk URL to stream logs to
+        """
+        format: NotRequired[pulumi.Input[str]]
+        """
+        Apache-style string or VCL variables to use for log formatting (default: `%h %l %u %t "%r" %>s %b`)
+        """
+        format_version: NotRequired[pulumi.Input[int]]
+        """
+        The version of the custom logging format used for the configured endpoint. Can be either 1 or 2. (default: 2)
+        """
+        placement: NotRequired[pulumi.Input[str]]
+        """
+        Where in the generated VCL the logging call should be placed
+        """
+        response_condition: NotRequired[pulumi.Input[str]]
+        """
+        The name of the condition to apply
+        """
+        tls_ca_cert: NotRequired[pulumi.Input[str]]
+        """
+        A secure certificate to authenticate the server with. Must be in PEM format. You can provide this certificate via an environment variable, `FASTLY_SPLUNK_CA_CERT`
+        """
+        tls_client_cert: NotRequired[pulumi.Input[str]]
+        """
+        The client certificate used to make authenticated requests. Must be in PEM format.
+        """
+        tls_client_key: NotRequired[pulumi.Input[str]]
+        """
+        The client private key used to make authenticated requests. Must be in PEM format.
+        """
+        tls_hostname: NotRequired[pulumi.Input[str]]
+        """
+        The hostname used to verify the server's certificate. It can either be the Common Name or a Subject Alternative Name (SAN)
+        """
+        use_tls: NotRequired[pulumi.Input[bool]]
+        """
+        Whether to use TLS for secure logging. Default: `false`
+        """
+elif False:
+    ServiceVclLoggingSplunkArgsDict: TypeAlias = Mapping[str, Any]
+
 @pulumi.input_type
 class ServiceVclLoggingSplunkArgs:
     def __init__(__self__, *,
@@ -11131,6 +14272,39 @@ class ServiceVclLoggingSplunkArgs:
         pulumi.set(self, "use_tls", value)
 
 
+if not MYPY:
+    class ServiceVclLoggingSumologicArgsDict(TypedDict):
+        name: pulumi.Input[str]
+        """
+        A unique name to identify this Sumologic endpoint. It is important to note that changing this attribute will delete and recreate the resource
+        """
+        url: pulumi.Input[str]
+        """
+        The URL to Sumologic collector endpoint
+        """
+        format: NotRequired[pulumi.Input[str]]
+        """
+        Apache-style string or VCL variables to use for log formatting
+        """
+        format_version: NotRequired[pulumi.Input[int]]
+        """
+        The version of the custom logging format used for the configured endpoint. Can be either 1 or 2. (Default: 2)
+        """
+        message_type: NotRequired[pulumi.Input[str]]
+        """
+        How the message should be formatted. Can be either `classic`, `loggly`, `logplex` or `blank`. Default is `classic`
+        """
+        placement: NotRequired[pulumi.Input[str]]
+        """
+        Where in the generated VCL the logging call should be placed.
+        """
+        response_condition: NotRequired[pulumi.Input[str]]
+        """
+        Name of blockAttributes condition to apply this logging.
+        """
+elif False:
+    ServiceVclLoggingSumologicArgsDict: TypeAlias = Mapping[str, Any]
+
 @pulumi.input_type
 class ServiceVclLoggingSumologicArgs:
     def __init__(__self__, *,
@@ -11247,6 +14421,67 @@ class ServiceVclLoggingSumologicArgs:
     def response_condition(self, value: Optional[pulumi.Input[str]]):
         pulumi.set(self, "response_condition", value)
 
+
+if not MYPY:
+    class ServiceVclLoggingSyslogArgsDict(TypedDict):
+        address: pulumi.Input[str]
+        """
+        A hostname or IPv4 address of the Syslog endpoint
+        """
+        name: pulumi.Input[str]
+        """
+        A unique name to identify this Syslog endpoint. It is important to note that changing this attribute will delete and recreate the resource
+        """
+        format: NotRequired[pulumi.Input[str]]
+        """
+        Apache-style string or VCL variables to use for log formatting
+        """
+        format_version: NotRequired[pulumi.Input[int]]
+        """
+        The version of the custom logging format. Can be either 1 or 2. (Default: 2)
+        """
+        message_type: NotRequired[pulumi.Input[str]]
+        """
+        How the message should be formatted. Can be either `classic`, `loggly`, `logplex` or `blank`. Default is `classic`
+        """
+        placement: NotRequired[pulumi.Input[str]]
+        """
+        Where in the generated VCL the logging call should be placed.
+        """
+        port: NotRequired[pulumi.Input[int]]
+        """
+        The port associated with the address where the Syslog endpoint can be accessed. Default `514`
+        """
+        response_condition: NotRequired[pulumi.Input[str]]
+        """
+        Name of blockAttributes condition to apply this logging.
+        """
+        tls_ca_cert: NotRequired[pulumi.Input[str]]
+        """
+        A secure certificate to authenticate the server with. Must be in PEM format. You can provide this certificate via an environment variable, `FASTLY_SYSLOG_CA_CERT`
+        """
+        tls_client_cert: NotRequired[pulumi.Input[str]]
+        """
+        The client certificate used to make authenticated requests. Must be in PEM format. You can provide this certificate via an environment variable, `FASTLY_SYSLOG_CLIENT_CERT`
+        """
+        tls_client_key: NotRequired[pulumi.Input[str]]
+        """
+        The client private key used to make authenticated requests. Must be in PEM format. You can provide this key via an environment variable, `FASTLY_SYSLOG_CLIENT_KEY`
+        """
+        tls_hostname: NotRequired[pulumi.Input[str]]
+        """
+        Used during the TLS handshake to validate the certificate
+        """
+        token: NotRequired[pulumi.Input[str]]
+        """
+        Whether to prepend each message with a specific token
+        """
+        use_tls: NotRequired[pulumi.Input[bool]]
+        """
+        Whether to use TLS for secure logging. Default `false`
+        """
+elif False:
+    ServiceVclLoggingSyslogArgsDict: TypeAlias = Mapping[str, Any]
 
 @pulumi.input_type
 class ServiceVclLoggingSyslogArgs:
@@ -11477,6 +14712,43 @@ class ServiceVclLoggingSyslogArgs:
         pulumi.set(self, "use_tls", value)
 
 
+if not MYPY:
+    class ServiceVclProductEnablementArgsDict(TypedDict):
+        bot_management: NotRequired[pulumi.Input[bool]]
+        """
+        Enable Bot Management support
+        """
+        brotli_compression: NotRequired[pulumi.Input[bool]]
+        """
+        Enable Brotli Compression support
+        """
+        domain_inspector: NotRequired[pulumi.Input[bool]]
+        """
+        Enable Domain Inspector support
+        """
+        image_optimizer: NotRequired[pulumi.Input[bool]]
+        """
+        Enable Image Optimizer support (all backends must have a `shield` attribute)
+        """
+        name: NotRequired[pulumi.Input[str]]
+        """
+        Used by the provider to identify modified settings (changing this value will force the entire block to be deleted, then recreated)
+        """
+        ngwaf: NotRequired[pulumi.Input[bool]]
+        """
+        Enable Next-Gen WAF support
+        """
+        origin_inspector: NotRequired[pulumi.Input[bool]]
+        """
+        Enable Origin Inspector support
+        """
+        websockets: NotRequired[pulumi.Input[bool]]
+        """
+        Enable WebSockets support
+        """
+elif False:
+    ServiceVclProductEnablementArgsDict: TypeAlias = Mapping[str, Any]
+
 @pulumi.input_type
 class ServiceVclProductEnablementArgs:
     def __init__(__self__, *,
@@ -11611,6 +14883,63 @@ class ServiceVclProductEnablementArgs:
     def websockets(self, value: Optional[pulumi.Input[bool]]):
         pulumi.set(self, "websockets", value)
 
+
+if not MYPY:
+    class ServiceVclRateLimiterArgsDict(TypedDict):
+        action: pulumi.Input[str]
+        """
+        The action to take when a rate limiter violation is detected (one of: log_only, response, response_object)
+        """
+        client_key: pulumi.Input[str]
+        """
+        Comma-separated list of VCL variables used to generate a counter key to identify a client
+        """
+        http_methods: pulumi.Input[str]
+        """
+        Comma-separated list of HTTP methods to apply rate limiting to
+        """
+        name: pulumi.Input[str]
+        """
+        A unique human readable name for the rate limiting rule
+        """
+        penalty_box_duration: pulumi.Input[int]
+        """
+        Length of time in minutes that the rate limiter is in effect after the initial violation is detected
+        """
+        rps_limit: pulumi.Input[int]
+        """
+        Upper limit of requests per second allowed by the rate limiter
+        """
+        window_size: pulumi.Input[int]
+        """
+        Number of seconds during which the RPS limit must be exceeded in order to trigger a violation (one of: 1, 10, 60)
+        """
+        feature_revision: NotRequired[pulumi.Input[int]]
+        """
+        Revision number of the rate limiting feature implementation
+        """
+        logger_type: NotRequired[pulumi.Input[str]]
+        """
+        Name of the type of logging endpoint to be used when action is log_only (one of: azureblob, bigquery, cloudfiles, datadog, digitalocean, elasticsearch, ftp, gcs, googleanalytics, heroku, honeycomb, http, https, kafka, kinesis, logentries, loggly, logshuttle, newrelic, openstack, papertrail, pubsub, s3, scalyr, sftp, splunk, stackdriver, sumologic, syslog)
+        """
+        ratelimiter_id: NotRequired[pulumi.Input[str]]
+        """
+        Alphanumeric string identifying the rate limiter
+        """
+        response: NotRequired[pulumi.Input['ServiceVclRateLimiterResponseArgsDict']]
+        """
+        Custom response to be sent when the rate limit is exceeded. Required if action is response
+        """
+        response_object_name: NotRequired[pulumi.Input[str]]
+        """
+        Name of existing response object. Required if action is response_object
+        """
+        uri_dictionary_name: NotRequired[pulumi.Input[str]]
+        """
+        The name of an Edge Dictionary containing URIs as keys. If not defined or null, all origin URIs will be rate limited
+        """
+elif False:
+    ServiceVclRateLimiterArgsDict: TypeAlias = Mapping[str, Any]
 
 @pulumi.input_type
 class ServiceVclRateLimiterArgs:
@@ -11820,6 +15149,23 @@ class ServiceVclRateLimiterArgs:
         pulumi.set(self, "uri_dictionary_name", value)
 
 
+if not MYPY:
+    class ServiceVclRateLimiterResponseArgsDict(TypedDict):
+        content: pulumi.Input[str]
+        """
+        HTTP response body data
+        """
+        content_type: pulumi.Input[str]
+        """
+        HTTP Content-Type (e.g. application/json)
+        """
+        status: pulumi.Input[int]
+        """
+        HTTP response status code (e.g. 429)
+        """
+elif False:
+    ServiceVclRateLimiterResponseArgsDict: TypeAlias = Mapping[str, Any]
+
 @pulumi.input_type
 class ServiceVclRateLimiterResponseArgs:
     def __init__(__self__, *,
@@ -11871,6 +15217,59 @@ class ServiceVclRateLimiterResponseArgs:
     def status(self, value: pulumi.Input[int]):
         pulumi.set(self, "status", value)
 
+
+if not MYPY:
+    class ServiceVclRequestSettingArgsDict(TypedDict):
+        name: pulumi.Input[str]
+        """
+        Unique name to refer to this Request Setting. It is important to note that changing this attribute will delete and recreate the resource
+        """
+        action: NotRequired[pulumi.Input[str]]
+        """
+        Allows you to terminate request handling and immediately perform an action. When set it can be `lookup` or `pass` (Ignore the cache completely)
+        """
+        bypass_busy_wait: NotRequired[pulumi.Input[bool]]
+        """
+        Disable collapsed forwarding, so you don't wait for other objects to origin
+        """
+        default_host: NotRequired[pulumi.Input[str]]
+        """
+        Sets the host header
+        """
+        force_miss: NotRequired[pulumi.Input[bool]]
+        """
+        Force a cache miss for the request. If specified, can be `true` or `false`
+        """
+        force_ssl: NotRequired[pulumi.Input[bool]]
+        """
+        Forces the request to use SSL (Redirects a non-SSL request to SSL)
+        """
+        geo_headers: NotRequired[pulumi.Input[bool]]
+        """
+        Injects Fastly-Geo-Country, Fastly-Geo-City, and Fastly-Geo-Region into the request headers
+        """
+        hash_keys: NotRequired[pulumi.Input[str]]
+        """
+        Comma separated list of varnish request object fields that should be in the hash key
+        """
+        max_stale_age: NotRequired[pulumi.Input[int]]
+        """
+        How old an object is allowed to be to serve `stale-if-error` or `stale-while-revalidate`, in seconds
+        """
+        request_condition: NotRequired[pulumi.Input[str]]
+        """
+        Name of already defined `condition` to determine if this request setting should be applied (should be unique across multiple instances of `request_setting`)
+        """
+        timer_support: NotRequired[pulumi.Input[bool]]
+        """
+        Injects the X-Timer info into the request for viewing origin fetch durations
+        """
+        xff: NotRequired[pulumi.Input[str]]
+        """
+        X-Forwarded-For, should be `clear`, `leave`, `append`, `append_all`, or `overwrite`. Default `append`
+        """
+elif False:
+    ServiceVclRequestSettingArgsDict: TypeAlias = Mapping[str, Any]
 
 @pulumi.input_type
 class ServiceVclRequestSettingArgs:
@@ -12074,6 +15473,39 @@ class ServiceVclRequestSettingArgs:
         pulumi.set(self, "xff", value)
 
 
+if not MYPY:
+    class ServiceVclResponseObjectArgsDict(TypedDict):
+        name: pulumi.Input[str]
+        """
+        A unique name to identify this Response Object. It is important to note that changing this attribute will delete and recreate the resource
+        """
+        cache_condition: NotRequired[pulumi.Input[str]]
+        """
+        Name of already defined `condition` to check after we have retrieved an object. If the condition passes then deliver this Request Object instead. This `condition` must be of type `CACHE`. For detailed information about Conditionals, see [Fastly's Documentation on Conditionals](https://docs.fastly.com/en/guides/using-conditions)
+        """
+        content: NotRequired[pulumi.Input[str]]
+        """
+        The content to deliver for the response object
+        """
+        content_type: NotRequired[pulumi.Input[str]]
+        """
+        The MIME type of the content
+        """
+        request_condition: NotRequired[pulumi.Input[str]]
+        """
+        Name of already defined `condition` to be checked during the request phase. If the condition passes then this object will be delivered. This `condition` must be of type `REQUEST`
+        """
+        response: NotRequired[pulumi.Input[str]]
+        """
+        The HTTP Response. Default `OK`
+        """
+        status: NotRequired[pulumi.Input[int]]
+        """
+        The HTTP Status Code. Default `200`
+        """
+elif False:
+    ServiceVclResponseObjectArgsDict: TypeAlias = Mapping[str, Any]
+
 @pulumi.input_type
 class ServiceVclResponseObjectArgs:
     def __init__(__self__, *,
@@ -12192,6 +15624,27 @@ class ServiceVclResponseObjectArgs:
         pulumi.set(self, "status", value)
 
 
+if not MYPY:
+    class ServiceVclSnippetArgsDict(TypedDict):
+        content: pulumi.Input[str]
+        """
+        The VCL code that specifies exactly what the snippet does
+        """
+        name: pulumi.Input[str]
+        """
+        A name that is unique across "regular" and "dynamic" VCL Snippet configuration blocks. It is important to note that changing this attribute will delete and recreate the resource
+        """
+        type: pulumi.Input[str]
+        """
+        The location in generated VCL where the snippet should be placed (can be one of `init`, `recv`, `hash`, `hit`, `miss`, `pass`, `fetch`, `error`, `deliver`, `log` or `none`)
+        """
+        priority: NotRequired[pulumi.Input[int]]
+        """
+        Priority determines the ordering for multiple snippets. Lower numbers execute first. Defaults to `100`
+        """
+elif False:
+    ServiceVclSnippetArgsDict: TypeAlias = Mapping[str, Any]
+
 @pulumi.input_type
 class ServiceVclSnippetArgs:
     def __init__(__self__, *,
@@ -12260,6 +15713,23 @@ class ServiceVclSnippetArgs:
         pulumi.set(self, "priority", value)
 
 
+if not MYPY:
+    class ServiceVclVclArgsDict(TypedDict):
+        content: pulumi.Input[str]
+        """
+        The custom VCL code to upload
+        """
+        name: pulumi.Input[str]
+        """
+        A unique name for this configuration block. It is important to note that changing this attribute will delete and recreate the resource
+        """
+        main: NotRequired[pulumi.Input[bool]]
+        """
+        If `true`, use this block as the main configuration. If `false`, use this block as an includable library. Only a single VCL block can be marked as the main block. Default is `false`
+        """
+elif False:
+    ServiceVclVclArgsDict: TypeAlias = Mapping[str, Any]
+
 @pulumi.input_type
 class ServiceVclVclArgs:
     def __init__(__self__, *,
@@ -12312,6 +15782,27 @@ class ServiceVclVclArgs:
     def main(self, value: Optional[pulumi.Input[bool]]):
         pulumi.set(self, "main", value)
 
+
+if not MYPY:
+    class ServiceVclWafArgsDict(TypedDict):
+        response_object: pulumi.Input[str]
+        """
+        The name of the response object used by the Web Application Firewall
+        """
+        disabled: NotRequired[pulumi.Input[bool]]
+        """
+        A flag used to completely disable a Web Application Firewall. This is intended to only be used in an emergency
+        """
+        prefetch_condition: NotRequired[pulumi.Input[str]]
+        """
+        The `condition` to determine which requests will be run past your Fastly WAF. This `condition` must be of type `PREFETCH`. For detailed information about Conditionals, see [Fastly's Documentation on Conditionals](https://docs.fastly.com/en/guides/using-conditions)
+        """
+        waf_id: NotRequired[pulumi.Input[str]]
+        """
+        The ID of the WAF
+        """
+elif False:
+    ServiceVclWafArgsDict: TypeAlias = Mapping[str, Any]
 
 @pulumi.input_type
 class ServiceVclWafArgs:
@@ -12383,6 +15874,23 @@ class ServiceVclWafArgs:
         pulumi.set(self, "waf_id", value)
 
 
+if not MYPY:
+    class ServiceWafConfigurationRuleArgsDict(TypedDict):
+        modsec_rule_id: pulumi.Input[int]
+        """
+        The Web Application Firewall rule's modsecurity ID
+        """
+        status: pulumi.Input[str]
+        """
+        The Web Application Firewall rule's status. Allowed values are (`log`, `block` and `score`)
+        """
+        revision: NotRequired[pulumi.Input[int]]
+        """
+        The Web Application Firewall rule's revision. The latest revision will be used if this is not provided
+        """
+elif False:
+    ServiceWafConfigurationRuleArgsDict: TypeAlias = Mapping[str, Any]
+
 @pulumi.input_type
 class ServiceWafConfigurationRuleArgs:
     def __init__(__self__, *,
@@ -12435,6 +15943,31 @@ class ServiceWafConfigurationRuleArgs:
     def revision(self, value: Optional[pulumi.Input[int]]):
         pulumi.set(self, "revision", value)
 
+
+if not MYPY:
+    class ServiceWafConfigurationRuleExclusionArgsDict(TypedDict):
+        condition: pulumi.Input[str]
+        """
+        A conditional expression in VCL used to determine if the condition is met
+        """
+        exclusion_type: pulumi.Input[str]
+        """
+        The type of rule exclusion. Values are `rule` to exclude the specified rule(s), or `waf` to disable the Web Application Firewall
+        """
+        name: pulumi.Input[str]
+        """
+        The name of rule exclusion
+        """
+        modsec_rule_ids: NotRequired[pulumi.Input[Sequence[pulumi.Input[int]]]]
+        """
+        Set of modsecurity IDs to be excluded. No rules should be provided when `exclusion_type` is `waf`. The rules need to be configured on the Web Application Firewall to be excluded
+        """
+        number: NotRequired[pulumi.Input[int]]
+        """
+        The numeric ID assigned to the WAF Rule Exclusion
+        """
+elif False:
+    ServiceWafConfigurationRuleExclusionArgsDict: TypeAlias = Mapping[str, Any]
 
 @pulumi.input_type
 class ServiceWafConfigurationRuleExclusionArgs:
@@ -12520,6 +16053,23 @@ class ServiceWafConfigurationRuleExclusionArgs:
         pulumi.set(self, "number", value)
 
 
+if not MYPY:
+    class TlsSubscriptionManagedDnsChallengeArgsDict(TypedDict):
+        record_name: NotRequired[pulumi.Input[str]]
+        """
+        The name of the DNS record to add. For example `_acme-challenge.example.com`.
+        """
+        record_type: NotRequired[pulumi.Input[str]]
+        """
+        The type of DNS record to add, e.g. `A`, or `CNAME`.
+        """
+        record_value: NotRequired[pulumi.Input[str]]
+        """
+        The value to which the DNS record should point, e.g. `xxxxx.fastly-validations.com`.
+        """
+elif False:
+    TlsSubscriptionManagedDnsChallengeArgsDict: TypeAlias = Mapping[str, Any]
+
 @pulumi.input_type
 class TlsSubscriptionManagedDnsChallengeArgs:
     def __init__(__self__, *,
@@ -12574,6 +16124,23 @@ class TlsSubscriptionManagedDnsChallengeArgs:
     def record_value(self, value: Optional[pulumi.Input[str]]):
         pulumi.set(self, "record_value", value)
 
+
+if not MYPY:
+    class TlsSubscriptionManagedHttpChallengeArgsDict(TypedDict):
+        record_name: NotRequired[pulumi.Input[str]]
+        """
+        The name of the DNS record to add. For example `example.com`. Best accessed through a `for` expression to filter the relevant record.
+        """
+        record_type: NotRequired[pulumi.Input[str]]
+        """
+        The type of DNS record to add, e.g. `A`, or `CNAME`.
+        """
+        record_values: NotRequired[pulumi.Input[Sequence[pulumi.Input[str]]]]
+        """
+        A list with the value(s) to which the DNS record should point.
+        """
+elif False:
+    TlsSubscriptionManagedHttpChallengeArgsDict: TypeAlias = Mapping[str, Any]
 
 @pulumi.input_type
 class TlsSubscriptionManagedHttpChallengeArgs:
