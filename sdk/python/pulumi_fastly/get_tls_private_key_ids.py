@@ -4,9 +4,14 @@
 
 import copy
 import warnings
+import sys
 import pulumi
 import pulumi.runtime
 from typing import Any, Mapping, Optional, Sequence, Union, overload
+if sys.version_info >= (3, 11):
+    from typing import NotRequired, TypedDict, TypeAlias
+else:
+    from typing_extensions import NotRequired, TypedDict, TypeAlias
 from . import _utilities
 
 __all__ = [
@@ -77,9 +82,6 @@ def get_tls_private_key_ids(opts: Optional[pulumi.InvokeOptions] = None) -> Awai
     return AwaitableGetTlsPrivateKeyIdsResult(
         id=pulumi.get(__ret__, 'id'),
         ids=pulumi.get(__ret__, 'ids'))
-
-
-@_utilities.lift_output_func(get_tls_private_key_ids)
 def get_tls_private_key_ids_output(opts: Optional[pulumi.InvokeOptions] = None) -> pulumi.Output[GetTlsPrivateKeyIdsResult]:
     """
     Use this data source to get the list of TLS private key identifiers in Fastly.
@@ -94,4 +96,9 @@ def get_tls_private_key_ids_output(opts: Optional[pulumi.InvokeOptions] = None) 
     example = fastly.get_tls_private_key(id=demo_fastly_tls_private_key_ids["ids"])
     ```
     """
-    ...
+    __args__ = dict()
+    opts = pulumi.InvokeOptions.merge(_utilities.get_invoke_opts_defaults(), opts)
+    __ret__ = pulumi.runtime.invoke_output('fastly:index/getTlsPrivateKeyIds:getTlsPrivateKeyIds', __args__, opts=opts, typ=GetTlsPrivateKeyIdsResult)
+    return __ret__.apply(lambda __response__: GetTlsPrivateKeyIdsResult(
+        id=pulumi.get(__response__, 'id'),
+        ids=pulumi.get(__response__, 'ids')))

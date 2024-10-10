@@ -4,9 +4,14 @@
 
 import copy
 import warnings
+import sys
 import pulumi
 import pulumi.runtime
 from typing import Any, Mapping, Optional, Sequence, Union, overload
+if sys.version_info >= (3, 11):
+    from typing import NotRequired, TypedDict, TypeAlias
+else:
+    from typing_extensions import NotRequired, TypedDict, TypeAlias
 from . import _utilities
 from . import outputs
 
@@ -133,9 +138,6 @@ def get_waf_rules(exclude_modsec_rule_ids: Optional[Sequence[int]] = None,
         publishers=pulumi.get(__ret__, 'publishers'),
         rules=pulumi.get(__ret__, 'rules'),
         tags=pulumi.get(__ret__, 'tags'))
-
-
-@_utilities.lift_output_func(get_waf_rules)
 def get_waf_rules_output(exclude_modsec_rule_ids: Optional[pulumi.Input[Optional[Sequence[int]]]] = None,
                          modsec_rule_ids: Optional[pulumi.Input[Optional[Sequence[int]]]] = None,
                          publishers: Optional[pulumi.Input[Optional[Sequence[str]]]] = None,
@@ -149,4 +151,17 @@ def get_waf_rules_output(exclude_modsec_rule_ids: Optional[pulumi.Input[Optional
     :param Sequence[str] publishers: Inclusion filter by WAF rule's publishers.
     :param Sequence[str] tags: Inclusion filter by WAF rule's tags.
     """
-    ...
+    __args__ = dict()
+    __args__['excludeModsecRuleIds'] = exclude_modsec_rule_ids
+    __args__['modsecRuleIds'] = modsec_rule_ids
+    __args__['publishers'] = publishers
+    __args__['tags'] = tags
+    opts = pulumi.InvokeOptions.merge(_utilities.get_invoke_opts_defaults(), opts)
+    __ret__ = pulumi.runtime.invoke_output('fastly:index/getWafRules:getWafRules', __args__, opts=opts, typ=GetWafRulesResult)
+    return __ret__.apply(lambda __response__: GetWafRulesResult(
+        exclude_modsec_rule_ids=pulumi.get(__response__, 'exclude_modsec_rule_ids'),
+        id=pulumi.get(__response__, 'id'),
+        modsec_rule_ids=pulumi.get(__response__, 'modsec_rule_ids'),
+        publishers=pulumi.get(__response__, 'publishers'),
+        rules=pulumi.get(__response__, 'rules'),
+        tags=pulumi.get(__response__, 'tags')))

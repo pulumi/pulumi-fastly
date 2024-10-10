@@ -4,9 +4,14 @@
 
 import copy
 import warnings
+import sys
 import pulumi
 import pulumi.runtime
 from typing import Any, Mapping, Optional, Sequence, Union, overload
+if sys.version_info >= (3, 11):
+    from typing import NotRequired, TypedDict, TypeAlias
+else:
+    from typing_extensions import NotRequired, TypedDict, TypeAlias
 from . import _utilities
 
 __all__ = [
@@ -101,9 +106,6 @@ def get_fastly_ip_ranges(opts: Optional[pulumi.InvokeOptions] = None) -> Awaitab
         cidr_blocks=pulumi.get(__ret__, 'cidr_blocks'),
         id=pulumi.get(__ret__, 'id'),
         ipv6_cidr_blocks=pulumi.get(__ret__, 'ipv6_cidr_blocks'))
-
-
-@_utilities.lift_output_func(get_fastly_ip_ranges)
 def get_fastly_ip_ranges_output(opts: Optional[pulumi.InvokeOptions] = None) -> pulumi.Output[GetFastlyIpRangesResult]:
     """
     Use this data source to get the [IP ranges](https://docs.fastly.com/guides/securing-communications/accessing-fastlys-ip-ranges) of Fastly edge nodes.
@@ -129,4 +131,10 @@ def get_fastly_ip_ranges_output(opts: Optional[pulumi.InvokeOptions] = None) -> 
 
     [1]: https://docs.fastly.com/guides/securing-communications/accessing-fastlys-ip-ranges
     """
-    ...
+    __args__ = dict()
+    opts = pulumi.InvokeOptions.merge(_utilities.get_invoke_opts_defaults(), opts)
+    __ret__ = pulumi.runtime.invoke_output('fastly:index/getFastlyIpRanges:getFastlyIpRanges', __args__, opts=opts, typ=GetFastlyIpRangesResult)
+    return __ret__.apply(lambda __response__: GetFastlyIpRangesResult(
+        cidr_blocks=pulumi.get(__response__, 'cidr_blocks'),
+        id=pulumi.get(__response__, 'id'),
+        ipv6_cidr_blocks=pulumi.get(__response__, 'ipv6_cidr_blocks')))
