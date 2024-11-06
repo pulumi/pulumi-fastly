@@ -74,7 +74,7 @@ func Provider() tfbridge.ProviderInfo {
 	// Instantiate the Terraform provider
 	p := shimv2.NewProvider(fastly.Provider(),
 		shimv2.WithPlanResourceChange(func(tfResourceType string) bool {
-			return tfResourceType == "fastly_service_vcl"
+			return true
 		}))
 
 	// Create a Pulumi provider mapping
@@ -91,6 +91,8 @@ func Provider() tfbridge.ProviderInfo {
 		Config:            map[string]*tfbridge.SchemaInfo{},
 		UpstreamRepoPath:  "./upstream",
 		DocRules:          &tfbridge.DocRuleInfo{EditRules: docRuleEdits},
+
+		EnableAccurateBridgePreview: true,
 
 		Resources: map[string]*tfbridge.ResourceInfo{
 			"fastly_service_acl_entries": {Tok: makeResource(mainMod, "ServiceACLEntries")},
