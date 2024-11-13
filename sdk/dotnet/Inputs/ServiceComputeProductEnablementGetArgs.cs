@@ -19,6 +19,12 @@ namespace Pulumi.Fastly.Inputs
         public Input<bool>? Fanout { get; set; }
 
         /// <summary>
+        /// Enable Log Explorer &amp; Insights
+        /// </summary>
+        [Input("logExplorerInsights")]
+        public Input<bool>? LogExplorerInsights { get; set; }
+
+        /// <summary>
         /// Used by the provider to identify modified settings (changing this value will force the entire block to be deleted, then recreated)
         /// </summary>
         [Input("name")]

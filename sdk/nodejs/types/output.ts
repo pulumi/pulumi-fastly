@@ -765,6 +765,29 @@ export interface ServiceComputeLoggingGooglepubsub {
     user: string;
 }
 
+export interface ServiceComputeLoggingGrafanacloudlog {
+    /**
+     * The stream identifier as a JSON string
+     */
+    index: string;
+    /**
+     * The unique name of the GrafanaCloudLogs logging endpoint. It is important to note that changing this attribute will delete and recreate the resource
+     */
+    name: string;
+    /**
+     * The Access Policy Token key for your GrafanaCloudLogs account
+     */
+    token: string;
+    /**
+     * The URL to stream logs to
+     */
+    url: string;
+    /**
+     * The Grafana User ID
+     */
+    user: string;
+}
+
 export interface ServiceComputeLoggingHeroku {
     /**
      * The unique name of the Heroku logging endpoint. It is important to note that changing this attribute will delete and recreate the resource
@@ -1336,6 +1359,10 @@ export interface ServiceComputeProductEnablement {
      * Enable Fanout support
      */
     fanout?: boolean;
+    /**
+     * Enable Log Explorer & Insights
+     */
+    logExplorerInsights?: boolean;
     /**
      * Used by the provider to identify modified settings (changing this value will force the entire block to be deleted, then recreated)
      */
@@ -2293,6 +2320,45 @@ export interface ServiceVclLoggingGooglepubsub {
     user: string;
 }
 
+export interface ServiceVclLoggingGrafanacloudlog {
+    /**
+     * Apache-style string or VCL variables to use for log formatting.
+     */
+    format?: string;
+    /**
+     * The version of the custom logging format used for the configured endpoint. Can be either `1` or `2`. (default: `2`).
+     */
+    formatVersion?: number;
+    /**
+     * The stream identifier as a JSON string
+     */
+    index: string;
+    /**
+     * The unique name of the GrafanaCloudLogs logging endpoint. It is important to note that changing this attribute will delete and recreate the resource
+     */
+    name: string;
+    /**
+     * Where in the generated VCL the logging call should be placed.
+     */
+    placement?: string;
+    /**
+     * The name of the condition to apply.
+     */
+    responseCondition?: string;
+    /**
+     * The Access Policy Token key for your GrafanaCloudLogs account
+     */
+    token: string;
+    /**
+     * The URL to stream logs to
+     */
+    url: string;
+    /**
+     * The Grafana User ID
+     */
+    user: string;
+}
+
 export interface ServiceVclLoggingHerokus {
     /**
      * Apache-style string or VCL variables to use for log formatting.
@@ -3169,13 +3235,13 @@ export interface ServiceVclProductEnablement {
      */
     imageOptimizer?: boolean;
     /**
+     * Enable Log Explorer & Insights
+     */
+    logExplorerInsights?: boolean;
+    /**
      * Used by the provider to identify modified settings (changing this value will force the entire block to be deleted, then recreated)
      */
     name?: string;
-    /**
-     * Enable Next-Gen WAF support
-     */
-    ngwaf?: boolean;
     /**
      * Enable Origin Inspector support
      */

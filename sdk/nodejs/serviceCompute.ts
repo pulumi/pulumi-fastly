@@ -92,6 +92,7 @@ export class ServiceCompute extends pulumi.CustomResource {
     public readonly loggingFtps!: pulumi.Output<outputs.ServiceComputeLoggingFtp[] | undefined>;
     public readonly loggingGcs!: pulumi.Output<outputs.ServiceComputeLoggingGc[] | undefined>;
     public readonly loggingGooglepubsubs!: pulumi.Output<outputs.ServiceComputeLoggingGooglepubsub[] | undefined>;
+    public readonly loggingGrafanacloudlogs!: pulumi.Output<outputs.ServiceComputeLoggingGrafanacloudlog[] | undefined>;
     public readonly loggingHeroku!: pulumi.Output<outputs.ServiceComputeLoggingHeroku[] | undefined>;
     public readonly loggingHoneycombs!: pulumi.Output<outputs.ServiceComputeLoggingHoneycomb[] | undefined>;
     public readonly loggingHttps!: pulumi.Output<outputs.ServiceComputeLoggingHttp[] | undefined>;
@@ -163,6 +164,7 @@ export class ServiceCompute extends pulumi.CustomResource {
             resourceInputs["loggingFtps"] = state ? state.loggingFtps : undefined;
             resourceInputs["loggingGcs"] = state ? state.loggingGcs : undefined;
             resourceInputs["loggingGooglepubsubs"] = state ? state.loggingGooglepubsubs : undefined;
+            resourceInputs["loggingGrafanacloudlogs"] = state ? state.loggingGrafanacloudlogs : undefined;
             resourceInputs["loggingHeroku"] = state ? state.loggingHeroku : undefined;
             resourceInputs["loggingHoneycombs"] = state ? state.loggingHoneycombs : undefined;
             resourceInputs["loggingHttps"] = state ? state.loggingHttps : undefined;
@@ -207,6 +209,7 @@ export class ServiceCompute extends pulumi.CustomResource {
             resourceInputs["loggingFtps"] = args ? args.loggingFtps : undefined;
             resourceInputs["loggingGcs"] = args ? args.loggingGcs : undefined;
             resourceInputs["loggingGooglepubsubs"] = args ? args.loggingGooglepubsubs : undefined;
+            resourceInputs["loggingGrafanacloudlogs"] = args ? args.loggingGrafanacloudlogs : undefined;
             resourceInputs["loggingHeroku"] = args ? args.loggingHeroku : undefined;
             resourceInputs["loggingHoneycombs"] = args ? args.loggingHoneycombs : undefined;
             resourceInputs["loggingHttps"] = args ? args.loggingHttps : undefined;
@@ -285,6 +288,7 @@ export interface ServiceComputeState {
     loggingFtps?: pulumi.Input<pulumi.Input<inputs.ServiceComputeLoggingFtp>[]>;
     loggingGcs?: pulumi.Input<pulumi.Input<inputs.ServiceComputeLoggingGc>[]>;
     loggingGooglepubsubs?: pulumi.Input<pulumi.Input<inputs.ServiceComputeLoggingGooglepubsub>[]>;
+    loggingGrafanacloudlogs?: pulumi.Input<pulumi.Input<inputs.ServiceComputeLoggingGrafanacloudlog>[]>;
     loggingHeroku?: pulumi.Input<pulumi.Input<inputs.ServiceComputeLoggingHeroku>[]>;
     loggingHoneycombs?: pulumi.Input<pulumi.Input<inputs.ServiceComputeLoggingHoneycomb>[]>;
     loggingHttps?: pulumi.Input<pulumi.Input<inputs.ServiceComputeLoggingHttp>[]>;
@@ -355,6 +359,7 @@ export interface ServiceComputeArgs {
     loggingFtps?: pulumi.Input<pulumi.Input<inputs.ServiceComputeLoggingFtp>[]>;
     loggingGcs?: pulumi.Input<pulumi.Input<inputs.ServiceComputeLoggingGc>[]>;
     loggingGooglepubsubs?: pulumi.Input<pulumi.Input<inputs.ServiceComputeLoggingGooglepubsub>[]>;
+    loggingGrafanacloudlogs?: pulumi.Input<pulumi.Input<inputs.ServiceComputeLoggingGrafanacloudlog>[]>;
     loggingHeroku?: pulumi.Input<pulumi.Input<inputs.ServiceComputeLoggingHeroku>[]>;
     loggingHoneycombs?: pulumi.Input<pulumi.Input<inputs.ServiceComputeLoggingHoneycomb>[]>;
     loggingHttps?: pulumi.Input<pulumi.Input<inputs.ServiceComputeLoggingHttp>[]>;

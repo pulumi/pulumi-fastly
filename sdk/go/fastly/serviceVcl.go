@@ -63,34 +63,35 @@ type ServiceVcl struct {
 	ImageOptimizerDefaultSettings ServiceVclImageOptimizerDefaultSettingsPtrOutput `pulumi:"imageOptimizerDefaultSettings"`
 	// Used internally by the provider to temporarily indicate if the service is being imported, and is reset to false once the
 	// import is finished
-	Imported               pulumi.BoolOutput                         `pulumi:"imported"`
-	LoggingBigqueries      ServiceVclLoggingBigqueryArrayOutput      `pulumi:"loggingBigqueries"`
-	LoggingBlobstorages    ServiceVclLoggingBlobstorageArrayOutput   `pulumi:"loggingBlobstorages"`
-	LoggingCloudfiles      ServiceVclLoggingCloudfileArrayOutput     `pulumi:"loggingCloudfiles"`
-	LoggingDatadogs        ServiceVclLoggingDatadogArrayOutput       `pulumi:"loggingDatadogs"`
-	LoggingDigitaloceans   ServiceVclLoggingDigitaloceanArrayOutput  `pulumi:"loggingDigitaloceans"`
-	LoggingElasticsearches ServiceVclLoggingElasticsearchArrayOutput `pulumi:"loggingElasticsearches"`
-	LoggingFtps            ServiceVclLoggingFtpArrayOutput           `pulumi:"loggingFtps"`
-	LoggingGcs             ServiceVclLoggingGcArrayOutput            `pulumi:"loggingGcs"`
-	LoggingGooglepubsubs   ServiceVclLoggingGooglepubsubArrayOutput  `pulumi:"loggingGooglepubsubs"`
-	LoggingHerokus         ServiceVclLoggingHerokusArrayOutput       `pulumi:"loggingHerokus"`
-	LoggingHoneycombs      ServiceVclLoggingHoneycombArrayOutput     `pulumi:"loggingHoneycombs"`
-	LoggingHttps           ServiceVclLoggingHttpArrayOutput          `pulumi:"loggingHttps"`
-	LoggingKafkas          ServiceVclLoggingKafkaArrayOutput         `pulumi:"loggingKafkas"`
-	LoggingKineses         ServiceVclLoggingKineseArrayOutput        `pulumi:"loggingKineses"`
-	LoggingLogentries      ServiceVclLoggingLogentryArrayOutput      `pulumi:"loggingLogentries"`
-	LoggingLogglies        ServiceVclLoggingLogglyArrayOutput        `pulumi:"loggingLogglies"`
-	LoggingLogshuttles     ServiceVclLoggingLogshuttleArrayOutput    `pulumi:"loggingLogshuttles"`
-	LoggingNewrelicotlps   ServiceVclLoggingNewrelicotlpArrayOutput  `pulumi:"loggingNewrelicotlps"`
-	LoggingNewrelics       ServiceVclLoggingNewrelicArrayOutput      `pulumi:"loggingNewrelics"`
-	LoggingOpenstacks      ServiceVclLoggingOpenstackArrayOutput     `pulumi:"loggingOpenstacks"`
-	LoggingPapertrails     ServiceVclLoggingPapertrailArrayOutput    `pulumi:"loggingPapertrails"`
-	LoggingS3s             ServiceVclLoggingS3ArrayOutput            `pulumi:"loggingS3s"`
-	LoggingScalyrs         ServiceVclLoggingScalyrArrayOutput        `pulumi:"loggingScalyrs"`
-	LoggingSftps           ServiceVclLoggingSftpArrayOutput          `pulumi:"loggingSftps"`
-	LoggingSplunks         ServiceVclLoggingSplunkArrayOutput        `pulumi:"loggingSplunks"`
-	LoggingSumologics      ServiceVclLoggingSumologicArrayOutput     `pulumi:"loggingSumologics"`
-	LoggingSyslogs         ServiceVclLoggingSyslogArrayOutput        `pulumi:"loggingSyslogs"`
+	Imported                pulumi.BoolOutput                           `pulumi:"imported"`
+	LoggingBigqueries       ServiceVclLoggingBigqueryArrayOutput        `pulumi:"loggingBigqueries"`
+	LoggingBlobstorages     ServiceVclLoggingBlobstorageArrayOutput     `pulumi:"loggingBlobstorages"`
+	LoggingCloudfiles       ServiceVclLoggingCloudfileArrayOutput       `pulumi:"loggingCloudfiles"`
+	LoggingDatadogs         ServiceVclLoggingDatadogArrayOutput         `pulumi:"loggingDatadogs"`
+	LoggingDigitaloceans    ServiceVclLoggingDigitaloceanArrayOutput    `pulumi:"loggingDigitaloceans"`
+	LoggingElasticsearches  ServiceVclLoggingElasticsearchArrayOutput   `pulumi:"loggingElasticsearches"`
+	LoggingFtps             ServiceVclLoggingFtpArrayOutput             `pulumi:"loggingFtps"`
+	LoggingGcs              ServiceVclLoggingGcArrayOutput              `pulumi:"loggingGcs"`
+	LoggingGooglepubsubs    ServiceVclLoggingGooglepubsubArrayOutput    `pulumi:"loggingGooglepubsubs"`
+	LoggingGrafanacloudlogs ServiceVclLoggingGrafanacloudlogArrayOutput `pulumi:"loggingGrafanacloudlogs"`
+	LoggingHerokus          ServiceVclLoggingHerokusArrayOutput         `pulumi:"loggingHerokus"`
+	LoggingHoneycombs       ServiceVclLoggingHoneycombArrayOutput       `pulumi:"loggingHoneycombs"`
+	LoggingHttps            ServiceVclLoggingHttpArrayOutput            `pulumi:"loggingHttps"`
+	LoggingKafkas           ServiceVclLoggingKafkaArrayOutput           `pulumi:"loggingKafkas"`
+	LoggingKineses          ServiceVclLoggingKineseArrayOutput          `pulumi:"loggingKineses"`
+	LoggingLogentries       ServiceVclLoggingLogentryArrayOutput        `pulumi:"loggingLogentries"`
+	LoggingLogglies         ServiceVclLoggingLogglyArrayOutput          `pulumi:"loggingLogglies"`
+	LoggingLogshuttles      ServiceVclLoggingLogshuttleArrayOutput      `pulumi:"loggingLogshuttles"`
+	LoggingNewrelicotlps    ServiceVclLoggingNewrelicotlpArrayOutput    `pulumi:"loggingNewrelicotlps"`
+	LoggingNewrelics        ServiceVclLoggingNewrelicArrayOutput        `pulumi:"loggingNewrelics"`
+	LoggingOpenstacks       ServiceVclLoggingOpenstackArrayOutput       `pulumi:"loggingOpenstacks"`
+	LoggingPapertrails      ServiceVclLoggingPapertrailArrayOutput      `pulumi:"loggingPapertrails"`
+	LoggingS3s              ServiceVclLoggingS3ArrayOutput              `pulumi:"loggingS3s"`
+	LoggingScalyrs          ServiceVclLoggingScalyrArrayOutput          `pulumi:"loggingScalyrs"`
+	LoggingSftps            ServiceVclLoggingSftpArrayOutput            `pulumi:"loggingSftps"`
+	LoggingSplunks          ServiceVclLoggingSplunkArrayOutput          `pulumi:"loggingSplunks"`
+	LoggingSumologics       ServiceVclLoggingSumologicArrayOutput       `pulumi:"loggingSumologics"`
+	LoggingSyslogs          ServiceVclLoggingSyslogArrayOutput          `pulumi:"loggingSyslogs"`
 	// The unique name for the Service to create
 	Name              pulumi.StringOutput                  `pulumi:"name"`
 	ProductEnablement ServiceVclProductEnablementPtrOutput `pulumi:"productEnablement"`
@@ -175,34 +176,35 @@ type serviceVclState struct {
 	ImageOptimizerDefaultSettings *ServiceVclImageOptimizerDefaultSettings `pulumi:"imageOptimizerDefaultSettings"`
 	// Used internally by the provider to temporarily indicate if the service is being imported, and is reset to false once the
 	// import is finished
-	Imported               *bool                            `pulumi:"imported"`
-	LoggingBigqueries      []ServiceVclLoggingBigquery      `pulumi:"loggingBigqueries"`
-	LoggingBlobstorages    []ServiceVclLoggingBlobstorage   `pulumi:"loggingBlobstorages"`
-	LoggingCloudfiles      []ServiceVclLoggingCloudfile     `pulumi:"loggingCloudfiles"`
-	LoggingDatadogs        []ServiceVclLoggingDatadog       `pulumi:"loggingDatadogs"`
-	LoggingDigitaloceans   []ServiceVclLoggingDigitalocean  `pulumi:"loggingDigitaloceans"`
-	LoggingElasticsearches []ServiceVclLoggingElasticsearch `pulumi:"loggingElasticsearches"`
-	LoggingFtps            []ServiceVclLoggingFtp           `pulumi:"loggingFtps"`
-	LoggingGcs             []ServiceVclLoggingGc            `pulumi:"loggingGcs"`
-	LoggingGooglepubsubs   []ServiceVclLoggingGooglepubsub  `pulumi:"loggingGooglepubsubs"`
-	LoggingHerokus         []ServiceVclLoggingHerokus       `pulumi:"loggingHerokus"`
-	LoggingHoneycombs      []ServiceVclLoggingHoneycomb     `pulumi:"loggingHoneycombs"`
-	LoggingHttps           []ServiceVclLoggingHttp          `pulumi:"loggingHttps"`
-	LoggingKafkas          []ServiceVclLoggingKafka         `pulumi:"loggingKafkas"`
-	LoggingKineses         []ServiceVclLoggingKinese        `pulumi:"loggingKineses"`
-	LoggingLogentries      []ServiceVclLoggingLogentry      `pulumi:"loggingLogentries"`
-	LoggingLogglies        []ServiceVclLoggingLoggly        `pulumi:"loggingLogglies"`
-	LoggingLogshuttles     []ServiceVclLoggingLogshuttle    `pulumi:"loggingLogshuttles"`
-	LoggingNewrelicotlps   []ServiceVclLoggingNewrelicotlp  `pulumi:"loggingNewrelicotlps"`
-	LoggingNewrelics       []ServiceVclLoggingNewrelic      `pulumi:"loggingNewrelics"`
-	LoggingOpenstacks      []ServiceVclLoggingOpenstack     `pulumi:"loggingOpenstacks"`
-	LoggingPapertrails     []ServiceVclLoggingPapertrail    `pulumi:"loggingPapertrails"`
-	LoggingS3s             []ServiceVclLoggingS3            `pulumi:"loggingS3s"`
-	LoggingScalyrs         []ServiceVclLoggingScalyr        `pulumi:"loggingScalyrs"`
-	LoggingSftps           []ServiceVclLoggingSftp          `pulumi:"loggingSftps"`
-	LoggingSplunks         []ServiceVclLoggingSplunk        `pulumi:"loggingSplunks"`
-	LoggingSumologics      []ServiceVclLoggingSumologic     `pulumi:"loggingSumologics"`
-	LoggingSyslogs         []ServiceVclLoggingSyslog        `pulumi:"loggingSyslogs"`
+	Imported                *bool                              `pulumi:"imported"`
+	LoggingBigqueries       []ServiceVclLoggingBigquery        `pulumi:"loggingBigqueries"`
+	LoggingBlobstorages     []ServiceVclLoggingBlobstorage     `pulumi:"loggingBlobstorages"`
+	LoggingCloudfiles       []ServiceVclLoggingCloudfile       `pulumi:"loggingCloudfiles"`
+	LoggingDatadogs         []ServiceVclLoggingDatadog         `pulumi:"loggingDatadogs"`
+	LoggingDigitaloceans    []ServiceVclLoggingDigitalocean    `pulumi:"loggingDigitaloceans"`
+	LoggingElasticsearches  []ServiceVclLoggingElasticsearch   `pulumi:"loggingElasticsearches"`
+	LoggingFtps             []ServiceVclLoggingFtp             `pulumi:"loggingFtps"`
+	LoggingGcs              []ServiceVclLoggingGc              `pulumi:"loggingGcs"`
+	LoggingGooglepubsubs    []ServiceVclLoggingGooglepubsub    `pulumi:"loggingGooglepubsubs"`
+	LoggingGrafanacloudlogs []ServiceVclLoggingGrafanacloudlog `pulumi:"loggingGrafanacloudlogs"`
+	LoggingHerokus          []ServiceVclLoggingHerokus         `pulumi:"loggingHerokus"`
+	LoggingHoneycombs       []ServiceVclLoggingHoneycomb       `pulumi:"loggingHoneycombs"`
+	LoggingHttps            []ServiceVclLoggingHttp            `pulumi:"loggingHttps"`
+	LoggingKafkas           []ServiceVclLoggingKafka           `pulumi:"loggingKafkas"`
+	LoggingKineses          []ServiceVclLoggingKinese          `pulumi:"loggingKineses"`
+	LoggingLogentries       []ServiceVclLoggingLogentry        `pulumi:"loggingLogentries"`
+	LoggingLogglies         []ServiceVclLoggingLoggly          `pulumi:"loggingLogglies"`
+	LoggingLogshuttles      []ServiceVclLoggingLogshuttle      `pulumi:"loggingLogshuttles"`
+	LoggingNewrelicotlps    []ServiceVclLoggingNewrelicotlp    `pulumi:"loggingNewrelicotlps"`
+	LoggingNewrelics        []ServiceVclLoggingNewrelic        `pulumi:"loggingNewrelics"`
+	LoggingOpenstacks       []ServiceVclLoggingOpenstack       `pulumi:"loggingOpenstacks"`
+	LoggingPapertrails      []ServiceVclLoggingPapertrail      `pulumi:"loggingPapertrails"`
+	LoggingS3s              []ServiceVclLoggingS3              `pulumi:"loggingS3s"`
+	LoggingScalyrs          []ServiceVclLoggingScalyr          `pulumi:"loggingScalyrs"`
+	LoggingSftps            []ServiceVclLoggingSftp            `pulumi:"loggingSftps"`
+	LoggingSplunks          []ServiceVclLoggingSplunk          `pulumi:"loggingSplunks"`
+	LoggingSumologics       []ServiceVclLoggingSumologic       `pulumi:"loggingSumologics"`
+	LoggingSyslogs          []ServiceVclLoggingSyslog          `pulumi:"loggingSyslogs"`
 	// The unique name for the Service to create
 	Name              *string                      `pulumi:"name"`
 	ProductEnablement *ServiceVclProductEnablement `pulumi:"productEnablement"`
@@ -255,34 +257,35 @@ type ServiceVclState struct {
 	ImageOptimizerDefaultSettings ServiceVclImageOptimizerDefaultSettingsPtrInput
 	// Used internally by the provider to temporarily indicate if the service is being imported, and is reset to false once the
 	// import is finished
-	Imported               pulumi.BoolPtrInput
-	LoggingBigqueries      ServiceVclLoggingBigqueryArrayInput
-	LoggingBlobstorages    ServiceVclLoggingBlobstorageArrayInput
-	LoggingCloudfiles      ServiceVclLoggingCloudfileArrayInput
-	LoggingDatadogs        ServiceVclLoggingDatadogArrayInput
-	LoggingDigitaloceans   ServiceVclLoggingDigitaloceanArrayInput
-	LoggingElasticsearches ServiceVclLoggingElasticsearchArrayInput
-	LoggingFtps            ServiceVclLoggingFtpArrayInput
-	LoggingGcs             ServiceVclLoggingGcArrayInput
-	LoggingGooglepubsubs   ServiceVclLoggingGooglepubsubArrayInput
-	LoggingHerokus         ServiceVclLoggingHerokusArrayInput
-	LoggingHoneycombs      ServiceVclLoggingHoneycombArrayInput
-	LoggingHttps           ServiceVclLoggingHttpArrayInput
-	LoggingKafkas          ServiceVclLoggingKafkaArrayInput
-	LoggingKineses         ServiceVclLoggingKineseArrayInput
-	LoggingLogentries      ServiceVclLoggingLogentryArrayInput
-	LoggingLogglies        ServiceVclLoggingLogglyArrayInput
-	LoggingLogshuttles     ServiceVclLoggingLogshuttleArrayInput
-	LoggingNewrelicotlps   ServiceVclLoggingNewrelicotlpArrayInput
-	LoggingNewrelics       ServiceVclLoggingNewrelicArrayInput
-	LoggingOpenstacks      ServiceVclLoggingOpenstackArrayInput
-	LoggingPapertrails     ServiceVclLoggingPapertrailArrayInput
-	LoggingS3s             ServiceVclLoggingS3ArrayInput
-	LoggingScalyrs         ServiceVclLoggingScalyrArrayInput
-	LoggingSftps           ServiceVclLoggingSftpArrayInput
-	LoggingSplunks         ServiceVclLoggingSplunkArrayInput
-	LoggingSumologics      ServiceVclLoggingSumologicArrayInput
-	LoggingSyslogs         ServiceVclLoggingSyslogArrayInput
+	Imported                pulumi.BoolPtrInput
+	LoggingBigqueries       ServiceVclLoggingBigqueryArrayInput
+	LoggingBlobstorages     ServiceVclLoggingBlobstorageArrayInput
+	LoggingCloudfiles       ServiceVclLoggingCloudfileArrayInput
+	LoggingDatadogs         ServiceVclLoggingDatadogArrayInput
+	LoggingDigitaloceans    ServiceVclLoggingDigitaloceanArrayInput
+	LoggingElasticsearches  ServiceVclLoggingElasticsearchArrayInput
+	LoggingFtps             ServiceVclLoggingFtpArrayInput
+	LoggingGcs              ServiceVclLoggingGcArrayInput
+	LoggingGooglepubsubs    ServiceVclLoggingGooglepubsubArrayInput
+	LoggingGrafanacloudlogs ServiceVclLoggingGrafanacloudlogArrayInput
+	LoggingHerokus          ServiceVclLoggingHerokusArrayInput
+	LoggingHoneycombs       ServiceVclLoggingHoneycombArrayInput
+	LoggingHttps            ServiceVclLoggingHttpArrayInput
+	LoggingKafkas           ServiceVclLoggingKafkaArrayInput
+	LoggingKineses          ServiceVclLoggingKineseArrayInput
+	LoggingLogentries       ServiceVclLoggingLogentryArrayInput
+	LoggingLogglies         ServiceVclLoggingLogglyArrayInput
+	LoggingLogshuttles      ServiceVclLoggingLogshuttleArrayInput
+	LoggingNewrelicotlps    ServiceVclLoggingNewrelicotlpArrayInput
+	LoggingNewrelics        ServiceVclLoggingNewrelicArrayInput
+	LoggingOpenstacks       ServiceVclLoggingOpenstackArrayInput
+	LoggingPapertrails      ServiceVclLoggingPapertrailArrayInput
+	LoggingS3s              ServiceVclLoggingS3ArrayInput
+	LoggingScalyrs          ServiceVclLoggingScalyrArrayInput
+	LoggingSftps            ServiceVclLoggingSftpArrayInput
+	LoggingSplunks          ServiceVclLoggingSplunkArrayInput
+	LoggingSumologics       ServiceVclLoggingSumologicArrayInput
+	LoggingSyslogs          ServiceVclLoggingSyslogArrayInput
 	// The unique name for the Service to create
 	Name              pulumi.StringPtrInput
 	ProductEnablement ServiceVclProductEnablementPtrInput
@@ -341,6 +344,7 @@ type serviceVclArgs struct {
 	LoggingFtps                   []ServiceVclLoggingFtp                   `pulumi:"loggingFtps"`
 	LoggingGcs                    []ServiceVclLoggingGc                    `pulumi:"loggingGcs"`
 	LoggingGooglepubsubs          []ServiceVclLoggingGooglepubsub          `pulumi:"loggingGooglepubsubs"`
+	LoggingGrafanacloudlogs       []ServiceVclLoggingGrafanacloudlog       `pulumi:"loggingGrafanacloudlogs"`
 	LoggingHerokus                []ServiceVclLoggingHerokus               `pulumi:"loggingHerokus"`
 	LoggingHoneycombs             []ServiceVclLoggingHoneycomb             `pulumi:"loggingHoneycombs"`
 	LoggingHttps                  []ServiceVclLoggingHttp                  `pulumi:"loggingHttps"`
@@ -414,6 +418,7 @@ type ServiceVclArgs struct {
 	LoggingFtps                   ServiceVclLoggingFtpArrayInput
 	LoggingGcs                    ServiceVclLoggingGcArrayInput
 	LoggingGooglepubsubs          ServiceVclLoggingGooglepubsubArrayInput
+	LoggingGrafanacloudlogs       ServiceVclLoggingGrafanacloudlogArrayInput
 	LoggingHerokus                ServiceVclLoggingHerokusArrayInput
 	LoggingHoneycombs             ServiceVclLoggingHoneycombArrayInput
 	LoggingHttps                  ServiceVclLoggingHttpArrayInput
@@ -673,6 +678,10 @@ func (o ServiceVclOutput) LoggingGcs() ServiceVclLoggingGcArrayOutput {
 
 func (o ServiceVclOutput) LoggingGooglepubsubs() ServiceVclLoggingGooglepubsubArrayOutput {
 	return o.ApplyT(func(v *ServiceVcl) ServiceVclLoggingGooglepubsubArrayOutput { return v.LoggingGooglepubsubs }).(ServiceVclLoggingGooglepubsubArrayOutput)
+}
+
+func (o ServiceVclOutput) LoggingGrafanacloudlogs() ServiceVclLoggingGrafanacloudlogArrayOutput {
+	return o.ApplyT(func(v *ServiceVcl) ServiceVclLoggingGrafanacloudlogArrayOutput { return v.LoggingGrafanacloudlogs }).(ServiceVclLoggingGrafanacloudlogArrayOutput)
 }
 
 func (o ServiceVclOutput) LoggingHerokus() ServiceVclLoggingHerokusArrayOutput {

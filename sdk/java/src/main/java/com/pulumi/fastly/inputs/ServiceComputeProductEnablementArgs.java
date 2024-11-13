@@ -32,6 +32,21 @@ public final class ServiceComputeProductEnablementArgs extends com.pulumi.resour
     }
 
     /**
+     * Enable Log Explorer &amp; Insights
+     * 
+     */
+    @Import(name="logExplorerInsights")
+    private @Nullable Output<Boolean> logExplorerInsights;
+
+    /**
+     * @return Enable Log Explorer &amp; Insights
+     * 
+     */
+    public Optional<Output<Boolean>> logExplorerInsights() {
+        return Optional.ofNullable(this.logExplorerInsights);
+    }
+
+    /**
      * Used by the provider to identify modified settings (changing this value will force the entire block to be deleted, then recreated)
      * 
      */
@@ -65,6 +80,7 @@ public final class ServiceComputeProductEnablementArgs extends com.pulumi.resour
 
     private ServiceComputeProductEnablementArgs(ServiceComputeProductEnablementArgs $) {
         this.fanout = $.fanout;
+        this.logExplorerInsights = $.logExplorerInsights;
         this.name = $.name;
         this.websockets = $.websockets;
     }
@@ -106,6 +122,27 @@ public final class ServiceComputeProductEnablementArgs extends com.pulumi.resour
          */
         public Builder fanout(Boolean fanout) {
             return fanout(Output.of(fanout));
+        }
+
+        /**
+         * @param logExplorerInsights Enable Log Explorer &amp; Insights
+         * 
+         * @return builder
+         * 
+         */
+        public Builder logExplorerInsights(@Nullable Output<Boolean> logExplorerInsights) {
+            $.logExplorerInsights = logExplorerInsights;
+            return this;
+        }
+
+        /**
+         * @param logExplorerInsights Enable Log Explorer &amp; Insights
+         * 
+         * @return builder
+         * 
+         */
+        public Builder logExplorerInsights(Boolean logExplorerInsights) {
+            return logExplorerInsights(Output.of(logExplorerInsights));
         }
 
         /**
