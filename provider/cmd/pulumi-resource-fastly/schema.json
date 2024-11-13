@@ -808,6 +808,39 @@
                 "user"
             ]
         },
+        "fastly:index/ServiceComputeLoggingGrafanacloudlog:ServiceComputeLoggingGrafanacloudlog": {
+            "properties": {
+                "index": {
+                    "type": "string",
+                    "description": "The stream identifier as a JSON string\n"
+                },
+                "name": {
+                    "type": "string",
+                    "description": "The unique name of the GrafanaCloudLogs logging endpoint. It is important to note that changing this attribute will delete and recreate the resource\n"
+                },
+                "token": {
+                    "type": "string",
+                    "description": "The Access Policy Token key for your GrafanaCloudLogs account\n",
+                    "secret": true
+                },
+                "url": {
+                    "type": "string",
+                    "description": "The URL to stream logs to\n"
+                },
+                "user": {
+                    "type": "string",
+                    "description": "The Grafana User ID\n"
+                }
+            },
+            "type": "object",
+            "required": [
+                "index",
+                "name",
+                "token",
+                "url",
+                "user"
+            ]
+        },
         "fastly:index/ServiceComputeLoggingHeroku:ServiceComputeLoggingHeroku": {
             "properties": {
                 "name": {
@@ -1521,6 +1554,10 @@
                 "fanout": {
                     "type": "boolean",
                     "description": "Enable Fanout support\n"
+                },
+                "logExplorerInsights": {
+                    "type": "boolean",
+                    "description": "Enable Log Explorer \u0026 Insights\n"
                 },
                 "name": {
                     "type": "string",
@@ -2691,6 +2728,55 @@
                 "user"
             ]
         },
+        "fastly:index/ServiceVclLoggingGrafanacloudlog:ServiceVclLoggingGrafanacloudlog": {
+            "properties": {
+                "format": {
+                    "type": "string",
+                    "description": "Apache-style string or VCL variables to use for log formatting.\n"
+                },
+                "formatVersion": {
+                    "type": "integer",
+                    "description": "The version of the custom logging format used for the configured endpoint. Can be either `1` or `2`. (default: `2`).\n"
+                },
+                "index": {
+                    "type": "string",
+                    "description": "The stream identifier as a JSON string\n"
+                },
+                "name": {
+                    "type": "string",
+                    "description": "The unique name of the GrafanaCloudLogs logging endpoint. It is important to note that changing this attribute will delete and recreate the resource\n"
+                },
+                "placement": {
+                    "type": "string",
+                    "description": "Where in the generated VCL the logging call should be placed.\n"
+                },
+                "responseCondition": {
+                    "type": "string",
+                    "description": "The name of the condition to apply.\n"
+                },
+                "token": {
+                    "type": "string",
+                    "description": "The Access Policy Token key for your GrafanaCloudLogs account\n",
+                    "secret": true
+                },
+                "url": {
+                    "type": "string",
+                    "description": "The URL to stream logs to\n"
+                },
+                "user": {
+                    "type": "string",
+                    "description": "The Grafana User ID\n"
+                }
+            },
+            "type": "object",
+            "required": [
+                "index",
+                "name",
+                "token",
+                "url",
+                "user"
+            ]
+        },
         "fastly:index/ServiceVclLoggingHerokus:ServiceVclLoggingHerokus": {
             "properties": {
                 "format": {
@@ -3707,13 +3793,13 @@
                     "type": "boolean",
                     "description": "Enable Image Optimizer support (all backends must have a `shield` attribute)\n"
                 },
+                "logExplorerInsights": {
+                    "type": "boolean",
+                    "description": "Enable Log Explorer \u0026 Insights\n"
+                },
                 "name": {
                     "type": "string",
                     "description": "Used by the provider to identify modified settings (changing this value will force the entire block to be deleted, then recreated)\n"
-                },
-                "ngwaf": {
-                    "type": "boolean",
-                    "description": "Enable Next-Gen WAF support\n"
                 },
                 "originInspector": {
                     "type": "boolean",
@@ -5091,6 +5177,12 @@
                         "$ref": "#/types/fastly:index/ServiceComputeLoggingGooglepubsub:ServiceComputeLoggingGooglepubsub"
                     }
                 },
+                "loggingGrafanacloudlogs": {
+                    "type": "array",
+                    "items": {
+                        "$ref": "#/types/fastly:index/ServiceComputeLoggingGrafanacloudlog:ServiceComputeLoggingGrafanacloudlog"
+                    }
+                },
                 "loggingHeroku": {
                     "type": "array",
                     "items": {
@@ -5313,6 +5405,12 @@
                     "type": "array",
                     "items": {
                         "$ref": "#/types/fastly:index/ServiceComputeLoggingGooglepubsub:ServiceComputeLoggingGooglepubsub"
+                    }
+                },
+                "loggingGrafanacloudlogs": {
+                    "type": "array",
+                    "items": {
+                        "$ref": "#/types/fastly:index/ServiceComputeLoggingGrafanacloudlog:ServiceComputeLoggingGrafanacloudlog"
                     }
                 },
                 "loggingHeroku": {
@@ -5549,6 +5647,12 @@
                         "type": "array",
                         "items": {
                             "$ref": "#/types/fastly:index/ServiceComputeLoggingGooglepubsub:ServiceComputeLoggingGooglepubsub"
+                        }
+                    },
+                    "loggingGrafanacloudlogs": {
+                        "type": "array",
+                        "items": {
+                            "$ref": "#/types/fastly:index/ServiceComputeLoggingGrafanacloudlog:ServiceComputeLoggingGrafanacloudlog"
                         }
                     },
                     "loggingHeroku": {
@@ -6000,6 +6104,12 @@
                         "$ref": "#/types/fastly:index/ServiceVclLoggingGooglepubsub:ServiceVclLoggingGooglepubsub"
                     }
                 },
+                "loggingGrafanacloudlogs": {
+                    "type": "array",
+                    "items": {
+                        "$ref": "#/types/fastly:index/ServiceVclLoggingGrafanacloudlog:ServiceVclLoggingGrafanacloudlog"
+                    }
+                },
                 "loggingHerokus": {
                     "type": "array",
                     "items": {
@@ -6318,6 +6428,12 @@
                     "type": "array",
                     "items": {
                         "$ref": "#/types/fastly:index/ServiceVclLoggingGooglepubsub:ServiceVclLoggingGooglepubsub"
+                    }
+                },
+                "loggingGrafanacloudlogs": {
+                    "type": "array",
+                    "items": {
+                        "$ref": "#/types/fastly:index/ServiceVclLoggingGrafanacloudlog:ServiceVclLoggingGrafanacloudlog"
                     }
                 },
                 "loggingHerokus": {
@@ -6650,6 +6766,12 @@
                         "type": "array",
                         "items": {
                             "$ref": "#/types/fastly:index/ServiceVclLoggingGooglepubsub:ServiceVclLoggingGooglepubsub"
+                        }
+                    },
+                    "loggingGrafanacloudlogs": {
+                        "type": "array",
+                        "items": {
+                            "$ref": "#/types/fastly:index/ServiceVclLoggingGrafanacloudlog:ServiceVclLoggingGrafanacloudlog"
                         }
                     },
                     "loggingHerokus": {
