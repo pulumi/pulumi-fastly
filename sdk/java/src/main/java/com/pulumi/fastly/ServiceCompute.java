@@ -23,6 +23,7 @@ import com.pulumi.fastly.outputs.ServiceComputeLoggingElasticsearch;
 import com.pulumi.fastly.outputs.ServiceComputeLoggingFtp;
 import com.pulumi.fastly.outputs.ServiceComputeLoggingGc;
 import com.pulumi.fastly.outputs.ServiceComputeLoggingGooglepubsub;
+import com.pulumi.fastly.outputs.ServiceComputeLoggingGrafanacloudlog;
 import com.pulumi.fastly.outputs.ServiceComputeLoggingHeroku;
 import com.pulumi.fastly.outputs.ServiceComputeLoggingHoneycomb;
 import com.pulumi.fastly.outputs.ServiceComputeLoggingHttp;
@@ -243,6 +244,12 @@ public class ServiceCompute extends com.pulumi.resources.CustomResource {
 
     public Output<Optional<List<ServiceComputeLoggingGooglepubsub>>> loggingGooglepubsubs() {
         return Codegen.optional(this.loggingGooglepubsubs);
+    }
+    @Export(name="loggingGrafanacloudlogs", refs={List.class,ServiceComputeLoggingGrafanacloudlog.class}, tree="[0,1]")
+    private Output</* @Nullable */ List<ServiceComputeLoggingGrafanacloudlog>> loggingGrafanacloudlogs;
+
+    public Output<Optional<List<ServiceComputeLoggingGrafanacloudlog>>> loggingGrafanacloudlogs() {
+        return Codegen.optional(this.loggingGrafanacloudlogs);
     }
     @Export(name="loggingHeroku", refs={List.class,ServiceComputeLoggingHeroku.class}, tree="[0,1]")
     private Output</* @Nullable */ List<ServiceComputeLoggingHeroku>> loggingHeroku;

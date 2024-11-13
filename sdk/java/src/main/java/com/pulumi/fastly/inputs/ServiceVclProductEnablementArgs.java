@@ -77,6 +77,21 @@ public final class ServiceVclProductEnablementArgs extends com.pulumi.resources.
     }
 
     /**
+     * Enable Log Explorer &amp; Insights
+     * 
+     */
+    @Import(name="logExplorerInsights")
+    private @Nullable Output<Boolean> logExplorerInsights;
+
+    /**
+     * @return Enable Log Explorer &amp; Insights
+     * 
+     */
+    public Optional<Output<Boolean>> logExplorerInsights() {
+        return Optional.ofNullable(this.logExplorerInsights);
+    }
+
+    /**
      * Used by the provider to identify modified settings (changing this value will force the entire block to be deleted, then recreated)
      * 
      */
@@ -89,21 +104,6 @@ public final class ServiceVclProductEnablementArgs extends com.pulumi.resources.
      */
     public Optional<Output<String>> name() {
         return Optional.ofNullable(this.name);
-    }
-
-    /**
-     * Enable Next-Gen WAF support
-     * 
-     */
-    @Import(name="ngwaf")
-    private @Nullable Output<Boolean> ngwaf;
-
-    /**
-     * @return Enable Next-Gen WAF support
-     * 
-     */
-    public Optional<Output<Boolean>> ngwaf() {
-        return Optional.ofNullable(this.ngwaf);
     }
 
     /**
@@ -143,8 +143,8 @@ public final class ServiceVclProductEnablementArgs extends com.pulumi.resources.
         this.brotliCompression = $.brotliCompression;
         this.domainInspector = $.domainInspector;
         this.imageOptimizer = $.imageOptimizer;
+        this.logExplorerInsights = $.logExplorerInsights;
         this.name = $.name;
-        this.ngwaf = $.ngwaf;
         this.originInspector = $.originInspector;
         this.websockets = $.websockets;
     }
@@ -252,6 +252,27 @@ public final class ServiceVclProductEnablementArgs extends com.pulumi.resources.
         }
 
         /**
+         * @param logExplorerInsights Enable Log Explorer &amp; Insights
+         * 
+         * @return builder
+         * 
+         */
+        public Builder logExplorerInsights(@Nullable Output<Boolean> logExplorerInsights) {
+            $.logExplorerInsights = logExplorerInsights;
+            return this;
+        }
+
+        /**
+         * @param logExplorerInsights Enable Log Explorer &amp; Insights
+         * 
+         * @return builder
+         * 
+         */
+        public Builder logExplorerInsights(Boolean logExplorerInsights) {
+            return logExplorerInsights(Output.of(logExplorerInsights));
+        }
+
+        /**
          * @param name Used by the provider to identify modified settings (changing this value will force the entire block to be deleted, then recreated)
          * 
          * @return builder
@@ -270,27 +291,6 @@ public final class ServiceVclProductEnablementArgs extends com.pulumi.resources.
          */
         public Builder name(String name) {
             return name(Output.of(name));
-        }
-
-        /**
-         * @param ngwaf Enable Next-Gen WAF support
-         * 
-         * @return builder
-         * 
-         */
-        public Builder ngwaf(@Nullable Output<Boolean> ngwaf) {
-            $.ngwaf = ngwaf;
-            return this;
-        }
-
-        /**
-         * @param ngwaf Enable Next-Gen WAF support
-         * 
-         * @return builder
-         * 
-         */
-        public Builder ngwaf(Boolean ngwaf) {
-            return ngwaf(Output.of(ngwaf));
         }
 
         /**

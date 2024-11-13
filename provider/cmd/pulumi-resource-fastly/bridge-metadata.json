@@ -93,6 +93,9 @@
                     "logging_googlepubsub": {
                         "maxItemsOne": false
                     },
+                    "logging_grafanacloudlogs": {
+                        "maxItemsOne": false
+                    },
                     "logging_heroku": {
                         "maxItemsOne": false
                     },
@@ -249,6 +252,9 @@
                         "maxItemsOne": false
                     },
                     "logging_googlepubsub": {
+                        "maxItemsOne": false
+                    },
+                    "logging_grafanacloudlogs": {
                         "maxItemsOne": false
                     },
                     "logging_heroku": {

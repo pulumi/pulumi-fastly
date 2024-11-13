@@ -18,6 +18,10 @@ namespace Pulumi.Fastly.Outputs
         /// </summary>
         public readonly bool? Fanout;
         /// <summary>
+        /// Enable Log Explorer &amp; Insights
+        /// </summary>
+        public readonly bool? LogExplorerInsights;
+        /// <summary>
         /// Used by the provider to identify modified settings (changing this value will force the entire block to be deleted, then recreated)
         /// </summary>
         public readonly string? Name;
@@ -30,11 +34,14 @@ namespace Pulumi.Fastly.Outputs
         private ServiceComputeProductEnablement(
             bool? fanout,
 
+            bool? logExplorerInsights,
+
             string? name,
 
             bool? websockets)
         {
             Fanout = fanout;
+            LogExplorerInsights = logExplorerInsights;
             Name = name;
             Websockets = websockets;
         }

@@ -33,15 +33,15 @@ public final class ServiceVclProductEnablement {
      */
     private @Nullable Boolean imageOptimizer;
     /**
+     * @return Enable Log Explorer &amp; Insights
+     * 
+     */
+    private @Nullable Boolean logExplorerInsights;
+    /**
      * @return Used by the provider to identify modified settings (changing this value will force the entire block to be deleted, then recreated)
      * 
      */
     private @Nullable String name;
-    /**
-     * @return Enable Next-Gen WAF support
-     * 
-     */
-    private @Nullable Boolean ngwaf;
     /**
      * @return Enable Origin Inspector support
      * 
@@ -83,18 +83,18 @@ public final class ServiceVclProductEnablement {
         return Optional.ofNullable(this.imageOptimizer);
     }
     /**
+     * @return Enable Log Explorer &amp; Insights
+     * 
+     */
+    public Optional<Boolean> logExplorerInsights() {
+        return Optional.ofNullable(this.logExplorerInsights);
+    }
+    /**
      * @return Used by the provider to identify modified settings (changing this value will force the entire block to be deleted, then recreated)
      * 
      */
     public Optional<String> name() {
         return Optional.ofNullable(this.name);
-    }
-    /**
-     * @return Enable Next-Gen WAF support
-     * 
-     */
-    public Optional<Boolean> ngwaf() {
-        return Optional.ofNullable(this.ngwaf);
     }
     /**
      * @return Enable Origin Inspector support
@@ -124,8 +124,8 @@ public final class ServiceVclProductEnablement {
         private @Nullable Boolean brotliCompression;
         private @Nullable Boolean domainInspector;
         private @Nullable Boolean imageOptimizer;
+        private @Nullable Boolean logExplorerInsights;
         private @Nullable String name;
-        private @Nullable Boolean ngwaf;
         private @Nullable Boolean originInspector;
         private @Nullable Boolean websockets;
         public Builder() {}
@@ -135,8 +135,8 @@ public final class ServiceVclProductEnablement {
     	      this.brotliCompression = defaults.brotliCompression;
     	      this.domainInspector = defaults.domainInspector;
     	      this.imageOptimizer = defaults.imageOptimizer;
+    	      this.logExplorerInsights = defaults.logExplorerInsights;
     	      this.name = defaults.name;
-    	      this.ngwaf = defaults.ngwaf;
     	      this.originInspector = defaults.originInspector;
     	      this.websockets = defaults.websockets;
         }
@@ -166,15 +166,15 @@ public final class ServiceVclProductEnablement {
             return this;
         }
         @CustomType.Setter
-        public Builder name(@Nullable String name) {
+        public Builder logExplorerInsights(@Nullable Boolean logExplorerInsights) {
 
-            this.name = name;
+            this.logExplorerInsights = logExplorerInsights;
             return this;
         }
         @CustomType.Setter
-        public Builder ngwaf(@Nullable Boolean ngwaf) {
+        public Builder name(@Nullable String name) {
 
-            this.ngwaf = ngwaf;
+            this.name = name;
             return this;
         }
         @CustomType.Setter
@@ -195,8 +195,8 @@ public final class ServiceVclProductEnablement {
             _resultValue.brotliCompression = brotliCompression;
             _resultValue.domainInspector = domainInspector;
             _resultValue.imageOptimizer = imageOptimizer;
+            _resultValue.logExplorerInsights = logExplorerInsights;
             _resultValue.name = name;
-            _resultValue.ngwaf = ngwaf;
             _resultValue.originInspector = originInspector;
             _resultValue.websockets = websockets;
             return _resultValue;

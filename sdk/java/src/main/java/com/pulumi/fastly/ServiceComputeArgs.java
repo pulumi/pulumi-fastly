@@ -19,6 +19,7 @@ import com.pulumi.fastly.inputs.ServiceComputeLoggingElasticsearchArgs;
 import com.pulumi.fastly.inputs.ServiceComputeLoggingFtpArgs;
 import com.pulumi.fastly.inputs.ServiceComputeLoggingGcArgs;
 import com.pulumi.fastly.inputs.ServiceComputeLoggingGooglepubsubArgs;
+import com.pulumi.fastly.inputs.ServiceComputeLoggingGrafanacloudlogArgs;
 import com.pulumi.fastly.inputs.ServiceComputeLoggingHerokuArgs;
 import com.pulumi.fastly.inputs.ServiceComputeLoggingHoneycombArgs;
 import com.pulumi.fastly.inputs.ServiceComputeLoggingHttpArgs;
@@ -189,6 +190,13 @@ public final class ServiceComputeArgs extends com.pulumi.resources.ResourceArgs 
 
     public Optional<Output<List<ServiceComputeLoggingGooglepubsubArgs>>> loggingGooglepubsubs() {
         return Optional.ofNullable(this.loggingGooglepubsubs);
+    }
+
+    @Import(name="loggingGrafanacloudlogs")
+    private @Nullable Output<List<ServiceComputeLoggingGrafanacloudlogArgs>> loggingGrafanacloudlogs;
+
+    public Optional<Output<List<ServiceComputeLoggingGrafanacloudlogArgs>>> loggingGrafanacloudlogs() {
+        return Optional.ofNullable(this.loggingGrafanacloudlogs);
     }
 
     @Import(name="loggingHeroku")
@@ -407,6 +415,7 @@ public final class ServiceComputeArgs extends com.pulumi.resources.ResourceArgs 
         this.loggingFtps = $.loggingFtps;
         this.loggingGcs = $.loggingGcs;
         this.loggingGooglepubsubs = $.loggingGooglepubsubs;
+        this.loggingGrafanacloudlogs = $.loggingGrafanacloudlogs;
         this.loggingHeroku = $.loggingHeroku;
         this.loggingHoneycombs = $.loggingHoneycombs;
         this.loggingHttps = $.loggingHttps;
@@ -686,6 +695,19 @@ public final class ServiceComputeArgs extends com.pulumi.resources.ResourceArgs 
 
         public Builder loggingGooglepubsubs(ServiceComputeLoggingGooglepubsubArgs... loggingGooglepubsubs) {
             return loggingGooglepubsubs(List.of(loggingGooglepubsubs));
+        }
+
+        public Builder loggingGrafanacloudlogs(@Nullable Output<List<ServiceComputeLoggingGrafanacloudlogArgs>> loggingGrafanacloudlogs) {
+            $.loggingGrafanacloudlogs = loggingGrafanacloudlogs;
+            return this;
+        }
+
+        public Builder loggingGrafanacloudlogs(List<ServiceComputeLoggingGrafanacloudlogArgs> loggingGrafanacloudlogs) {
+            return loggingGrafanacloudlogs(Output.of(loggingGrafanacloudlogs));
+        }
+
+        public Builder loggingGrafanacloudlogs(ServiceComputeLoggingGrafanacloudlogArgs... loggingGrafanacloudlogs) {
+            return loggingGrafanacloudlogs(List.of(loggingGrafanacloudlogs));
         }
 
         public Builder loggingHeroku(@Nullable Output<List<ServiceComputeLoggingHerokuArgs>> loggingHeroku) {

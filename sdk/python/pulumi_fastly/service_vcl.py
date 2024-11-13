@@ -48,6 +48,7 @@ class ServiceVclArgs:
                  logging_ftps: Optional[pulumi.Input[Sequence[pulumi.Input['ServiceVclLoggingFtpArgs']]]] = None,
                  logging_gcs: Optional[pulumi.Input[Sequence[pulumi.Input['ServiceVclLoggingGcArgs']]]] = None,
                  logging_googlepubsubs: Optional[pulumi.Input[Sequence[pulumi.Input['ServiceVclLoggingGooglepubsubArgs']]]] = None,
+                 logging_grafanacloudlogs: Optional[pulumi.Input[Sequence[pulumi.Input['ServiceVclLoggingGrafanacloudlogArgs']]]] = None,
                  logging_herokus: Optional[pulumi.Input[Sequence[pulumi.Input['ServiceVclLoggingHerokusArgs']]]] = None,
                  logging_honeycombs: Optional[pulumi.Input[Sequence[pulumi.Input['ServiceVclLoggingHoneycombArgs']]]] = None,
                  logging_https: Optional[pulumi.Input[Sequence[pulumi.Input['ServiceVclLoggingHttpArgs']]]] = None,
@@ -146,6 +147,8 @@ class ServiceVclArgs:
             pulumi.set(__self__, "logging_gcs", logging_gcs)
         if logging_googlepubsubs is not None:
             pulumi.set(__self__, "logging_googlepubsubs", logging_googlepubsubs)
+        if logging_grafanacloudlogs is not None:
+            pulumi.set(__self__, "logging_grafanacloudlogs", logging_grafanacloudlogs)
         if logging_herokus is not None:
             pulumi.set(__self__, "logging_herokus", logging_herokus)
         if logging_honeycombs is not None:
@@ -471,6 +474,15 @@ class ServiceVclArgs:
         pulumi.set(self, "logging_googlepubsubs", value)
 
     @property
+    @pulumi.getter(name="loggingGrafanacloudlogs")
+    def logging_grafanacloudlogs(self) -> Optional[pulumi.Input[Sequence[pulumi.Input['ServiceVclLoggingGrafanacloudlogArgs']]]]:
+        return pulumi.get(self, "logging_grafanacloudlogs")
+
+    @logging_grafanacloudlogs.setter
+    def logging_grafanacloudlogs(self, value: Optional[pulumi.Input[Sequence[pulumi.Input['ServiceVclLoggingGrafanacloudlogArgs']]]]):
+        pulumi.set(self, "logging_grafanacloudlogs", value)
+
+    @property
     @pulumi.getter(name="loggingHerokus")
     def logging_herokus(self) -> Optional[pulumi.Input[Sequence[pulumi.Input['ServiceVclLoggingHerokusArgs']]]]:
         return pulumi.get(self, "logging_herokus")
@@ -787,6 +799,7 @@ class _ServiceVclState:
                  logging_ftps: Optional[pulumi.Input[Sequence[pulumi.Input['ServiceVclLoggingFtpArgs']]]] = None,
                  logging_gcs: Optional[pulumi.Input[Sequence[pulumi.Input['ServiceVclLoggingGcArgs']]]] = None,
                  logging_googlepubsubs: Optional[pulumi.Input[Sequence[pulumi.Input['ServiceVclLoggingGooglepubsubArgs']]]] = None,
+                 logging_grafanacloudlogs: Optional[pulumi.Input[Sequence[pulumi.Input['ServiceVclLoggingGrafanacloudlogArgs']]]] = None,
                  logging_herokus: Optional[pulumi.Input[Sequence[pulumi.Input['ServiceVclLoggingHerokusArgs']]]] = None,
                  logging_honeycombs: Optional[pulumi.Input[Sequence[pulumi.Input['ServiceVclLoggingHoneycombArgs']]]] = None,
                  logging_https: Optional[pulumi.Input[Sequence[pulumi.Input['ServiceVclLoggingHttpArgs']]]] = None,
@@ -898,6 +911,8 @@ class _ServiceVclState:
             pulumi.set(__self__, "logging_gcs", logging_gcs)
         if logging_googlepubsubs is not None:
             pulumi.set(__self__, "logging_googlepubsubs", logging_googlepubsubs)
+        if logging_grafanacloudlogs is not None:
+            pulumi.set(__self__, "logging_grafanacloudlogs", logging_grafanacloudlogs)
         if logging_herokus is not None:
             pulumi.set(__self__, "logging_herokus", logging_herokus)
         if logging_honeycombs is not None:
@@ -1269,6 +1284,15 @@ class _ServiceVclState:
         pulumi.set(self, "logging_googlepubsubs", value)
 
     @property
+    @pulumi.getter(name="loggingGrafanacloudlogs")
+    def logging_grafanacloudlogs(self) -> Optional[pulumi.Input[Sequence[pulumi.Input['ServiceVclLoggingGrafanacloudlogArgs']]]]:
+        return pulumi.get(self, "logging_grafanacloudlogs")
+
+    @logging_grafanacloudlogs.setter
+    def logging_grafanacloudlogs(self, value: Optional[pulumi.Input[Sequence[pulumi.Input['ServiceVclLoggingGrafanacloudlogArgs']]]]):
+        pulumi.set(self, "logging_grafanacloudlogs", value)
+
+    @property
     @pulumi.getter(name="loggingHerokus")
     def logging_herokus(self) -> Optional[pulumi.Input[Sequence[pulumi.Input['ServiceVclLoggingHerokusArgs']]]]:
         return pulumi.get(self, "logging_herokus")
@@ -1583,6 +1607,7 @@ class ServiceVcl(pulumi.CustomResource):
                  logging_ftps: Optional[pulumi.Input[Sequence[pulumi.Input[Union['ServiceVclLoggingFtpArgs', 'ServiceVclLoggingFtpArgsDict']]]]] = None,
                  logging_gcs: Optional[pulumi.Input[Sequence[pulumi.Input[Union['ServiceVclLoggingGcArgs', 'ServiceVclLoggingGcArgsDict']]]]] = None,
                  logging_googlepubsubs: Optional[pulumi.Input[Sequence[pulumi.Input[Union['ServiceVclLoggingGooglepubsubArgs', 'ServiceVclLoggingGooglepubsubArgsDict']]]]] = None,
+                 logging_grafanacloudlogs: Optional[pulumi.Input[Sequence[pulumi.Input[Union['ServiceVclLoggingGrafanacloudlogArgs', 'ServiceVclLoggingGrafanacloudlogArgsDict']]]]] = None,
                  logging_herokus: Optional[pulumi.Input[Sequence[pulumi.Input[Union['ServiceVclLoggingHerokusArgs', 'ServiceVclLoggingHerokusArgsDict']]]]] = None,
                  logging_honeycombs: Optional[pulumi.Input[Sequence[pulumi.Input[Union['ServiceVclLoggingHoneycombArgs', 'ServiceVclLoggingHoneycombArgsDict']]]]] = None,
                  logging_https: Optional[pulumi.Input[Sequence[pulumi.Input[Union['ServiceVclLoggingHttpArgs', 'ServiceVclLoggingHttpArgsDict']]]]] = None,
@@ -1711,6 +1736,7 @@ class ServiceVcl(pulumi.CustomResource):
                  logging_ftps: Optional[pulumi.Input[Sequence[pulumi.Input[Union['ServiceVclLoggingFtpArgs', 'ServiceVclLoggingFtpArgsDict']]]]] = None,
                  logging_gcs: Optional[pulumi.Input[Sequence[pulumi.Input[Union['ServiceVclLoggingGcArgs', 'ServiceVclLoggingGcArgsDict']]]]] = None,
                  logging_googlepubsubs: Optional[pulumi.Input[Sequence[pulumi.Input[Union['ServiceVclLoggingGooglepubsubArgs', 'ServiceVclLoggingGooglepubsubArgsDict']]]]] = None,
+                 logging_grafanacloudlogs: Optional[pulumi.Input[Sequence[pulumi.Input[Union['ServiceVclLoggingGrafanacloudlogArgs', 'ServiceVclLoggingGrafanacloudlogArgsDict']]]]] = None,
                  logging_herokus: Optional[pulumi.Input[Sequence[pulumi.Input[Union['ServiceVclLoggingHerokusArgs', 'ServiceVclLoggingHerokusArgsDict']]]]] = None,
                  logging_honeycombs: Optional[pulumi.Input[Sequence[pulumi.Input[Union['ServiceVclLoggingHoneycombArgs', 'ServiceVclLoggingHoneycombArgsDict']]]]] = None,
                  logging_https: Optional[pulumi.Input[Sequence[pulumi.Input[Union['ServiceVclLoggingHttpArgs', 'ServiceVclLoggingHttpArgsDict']]]]] = None,
@@ -1779,6 +1805,7 @@ class ServiceVcl(pulumi.CustomResource):
             __props__.__dict__["logging_ftps"] = logging_ftps
             __props__.__dict__["logging_gcs"] = logging_gcs
             __props__.__dict__["logging_googlepubsubs"] = logging_googlepubsubs
+            __props__.__dict__["logging_grafanacloudlogs"] = logging_grafanacloudlogs
             __props__.__dict__["logging_herokus"] = logging_herokus
             __props__.__dict__["logging_honeycombs"] = logging_honeycombs
             __props__.__dict__["logging_https"] = logging_https
@@ -1854,6 +1881,7 @@ class ServiceVcl(pulumi.CustomResource):
             logging_ftps: Optional[pulumi.Input[Sequence[pulumi.Input[Union['ServiceVclLoggingFtpArgs', 'ServiceVclLoggingFtpArgsDict']]]]] = None,
             logging_gcs: Optional[pulumi.Input[Sequence[pulumi.Input[Union['ServiceVclLoggingGcArgs', 'ServiceVclLoggingGcArgsDict']]]]] = None,
             logging_googlepubsubs: Optional[pulumi.Input[Sequence[pulumi.Input[Union['ServiceVclLoggingGooglepubsubArgs', 'ServiceVclLoggingGooglepubsubArgsDict']]]]] = None,
+            logging_grafanacloudlogs: Optional[pulumi.Input[Sequence[pulumi.Input[Union['ServiceVclLoggingGrafanacloudlogArgs', 'ServiceVclLoggingGrafanacloudlogArgsDict']]]]] = None,
             logging_herokus: Optional[pulumi.Input[Sequence[pulumi.Input[Union['ServiceVclLoggingHerokusArgs', 'ServiceVclLoggingHerokusArgsDict']]]]] = None,
             logging_honeycombs: Optional[pulumi.Input[Sequence[pulumi.Input[Union['ServiceVclLoggingHoneycombArgs', 'ServiceVclLoggingHoneycombArgsDict']]]]] = None,
             logging_https: Optional[pulumi.Input[Sequence[pulumi.Input[Union['ServiceVclLoggingHttpArgs', 'ServiceVclLoggingHttpArgsDict']]]]] = None,
@@ -1943,6 +1971,7 @@ class ServiceVcl(pulumi.CustomResource):
         __props__.__dict__["logging_ftps"] = logging_ftps
         __props__.__dict__["logging_gcs"] = logging_gcs
         __props__.__dict__["logging_googlepubsubs"] = logging_googlepubsubs
+        __props__.__dict__["logging_grafanacloudlogs"] = logging_grafanacloudlogs
         __props__.__dict__["logging_herokus"] = logging_herokus
         __props__.__dict__["logging_honeycombs"] = logging_honeycombs
         __props__.__dict__["logging_https"] = logging_https
@@ -2159,6 +2188,11 @@ class ServiceVcl(pulumi.CustomResource):
     @pulumi.getter(name="loggingGooglepubsubs")
     def logging_googlepubsubs(self) -> pulumi.Output[Optional[Sequence['outputs.ServiceVclLoggingGooglepubsub']]]:
         return pulumi.get(self, "logging_googlepubsubs")
+
+    @property
+    @pulumi.getter(name="loggingGrafanacloudlogs")
+    def logging_grafanacloudlogs(self) -> pulumi.Output[Optional[Sequence['outputs.ServiceVclLoggingGrafanacloudlog']]]:
+        return pulumi.get(self, "logging_grafanacloudlogs")
 
     @property
     @pulumi.getter(name="loggingHerokus")

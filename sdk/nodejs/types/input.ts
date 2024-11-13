@@ -610,6 +610,29 @@ export interface ServiceComputeLoggingGooglepubsub {
     user: pulumi.Input<string>;
 }
 
+export interface ServiceComputeLoggingGrafanacloudlog {
+    /**
+     * The stream identifier as a JSON string
+     */
+    index: pulumi.Input<string>;
+    /**
+     * The unique name of the GrafanaCloudLogs logging endpoint. It is important to note that changing this attribute will delete and recreate the resource
+     */
+    name: pulumi.Input<string>;
+    /**
+     * The Access Policy Token key for your GrafanaCloudLogs account
+     */
+    token: pulumi.Input<string>;
+    /**
+     * The URL to stream logs to
+     */
+    url: pulumi.Input<string>;
+    /**
+     * The Grafana User ID
+     */
+    user: pulumi.Input<string>;
+}
+
 export interface ServiceComputeLoggingHeroku {
     /**
      * The unique name of the Heroku logging endpoint. It is important to note that changing this attribute will delete and recreate the resource
@@ -1181,6 +1204,10 @@ export interface ServiceComputeProductEnablement {
      * Enable Fanout support
      */
     fanout?: pulumi.Input<boolean>;
+    /**
+     * Enable Log Explorer & Insights
+     */
+    logExplorerInsights?: pulumi.Input<boolean>;
     /**
      * Used by the provider to identify modified settings (changing this value will force the entire block to be deleted, then recreated)
      */
@@ -2138,6 +2165,45 @@ export interface ServiceVclLoggingGooglepubsub {
     user: pulumi.Input<string>;
 }
 
+export interface ServiceVclLoggingGrafanacloudlog {
+    /**
+     * Apache-style string or VCL variables to use for log formatting.
+     */
+    format?: pulumi.Input<string>;
+    /**
+     * The version of the custom logging format used for the configured endpoint. Can be either `1` or `2`. (default: `2`).
+     */
+    formatVersion?: pulumi.Input<number>;
+    /**
+     * The stream identifier as a JSON string
+     */
+    index: pulumi.Input<string>;
+    /**
+     * The unique name of the GrafanaCloudLogs logging endpoint. It is important to note that changing this attribute will delete and recreate the resource
+     */
+    name: pulumi.Input<string>;
+    /**
+     * Where in the generated VCL the logging call should be placed.
+     */
+    placement?: pulumi.Input<string>;
+    /**
+     * The name of the condition to apply.
+     */
+    responseCondition?: pulumi.Input<string>;
+    /**
+     * The Access Policy Token key for your GrafanaCloudLogs account
+     */
+    token: pulumi.Input<string>;
+    /**
+     * The URL to stream logs to
+     */
+    url: pulumi.Input<string>;
+    /**
+     * The Grafana User ID
+     */
+    user: pulumi.Input<string>;
+}
+
 export interface ServiceVclLoggingHerokus {
     /**
      * Apache-style string or VCL variables to use for log formatting.
@@ -3014,13 +3080,13 @@ export interface ServiceVclProductEnablement {
      */
     imageOptimizer?: pulumi.Input<boolean>;
     /**
+     * Enable Log Explorer & Insights
+     */
+    logExplorerInsights?: pulumi.Input<boolean>;
+    /**
      * Used by the provider to identify modified settings (changing this value will force the entire block to be deleted, then recreated)
      */
     name?: pulumi.Input<string>;
-    /**
-     * Enable Next-Gen WAF support
-     */
-    ngwaf?: pulumi.Input<boolean>;
     /**
      * Enable Origin Inspector support
      */

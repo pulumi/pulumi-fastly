@@ -30,13 +30,13 @@ namespace Pulumi.Fastly.Outputs
         /// </summary>
         public readonly bool? ImageOptimizer;
         /// <summary>
+        /// Enable Log Explorer &amp; Insights
+        /// </summary>
+        public readonly bool? LogExplorerInsights;
+        /// <summary>
         /// Used by the provider to identify modified settings (changing this value will force the entire block to be deleted, then recreated)
         /// </summary>
         public readonly string? Name;
-        /// <summary>
-        /// Enable Next-Gen WAF support
-        /// </summary>
-        public readonly bool? Ngwaf;
         /// <summary>
         /// Enable Origin Inspector support
         /// </summary>
@@ -56,9 +56,9 @@ namespace Pulumi.Fastly.Outputs
 
             bool? imageOptimizer,
 
-            string? name,
+            bool? logExplorerInsights,
 
-            bool? ngwaf,
+            string? name,
 
             bool? originInspector,
 
@@ -68,8 +68,8 @@ namespace Pulumi.Fastly.Outputs
             BrotliCompression = brotliCompression;
             DomainInspector = domainInspector;
             ImageOptimizer = imageOptimizer;
+            LogExplorerInsights = logExplorerInsights;
             Name = name;
-            Ngwaf = ngwaf;
             OriginInspector = originInspector;
             Websockets = websockets;
         }

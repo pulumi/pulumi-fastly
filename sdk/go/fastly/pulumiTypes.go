@@ -2922,6 +2922,139 @@ func (o ServiceComputeLoggingGooglepubsubArrayOutput) Index(i pulumi.IntInput) S
 	}).(ServiceComputeLoggingGooglepubsubOutput)
 }
 
+type ServiceComputeLoggingGrafanacloudlog struct {
+	// The stream identifier as a JSON string
+	Index string `pulumi:"index"`
+	// The unique name of the GrafanaCloudLogs logging endpoint. It is important to note that changing this attribute will delete and recreate the resource
+	Name string `pulumi:"name"`
+	// The Access Policy Token key for your GrafanaCloudLogs account
+	Token string `pulumi:"token"`
+	// The URL to stream logs to
+	Url string `pulumi:"url"`
+	// The Grafana User ID
+	User string `pulumi:"user"`
+}
+
+// ServiceComputeLoggingGrafanacloudlogInput is an input type that accepts ServiceComputeLoggingGrafanacloudlogArgs and ServiceComputeLoggingGrafanacloudlogOutput values.
+// You can construct a concrete instance of `ServiceComputeLoggingGrafanacloudlogInput` via:
+//
+//	ServiceComputeLoggingGrafanacloudlogArgs{...}
+type ServiceComputeLoggingGrafanacloudlogInput interface {
+	pulumi.Input
+
+	ToServiceComputeLoggingGrafanacloudlogOutput() ServiceComputeLoggingGrafanacloudlogOutput
+	ToServiceComputeLoggingGrafanacloudlogOutputWithContext(context.Context) ServiceComputeLoggingGrafanacloudlogOutput
+}
+
+type ServiceComputeLoggingGrafanacloudlogArgs struct {
+	// The stream identifier as a JSON string
+	Index pulumi.StringInput `pulumi:"index"`
+	// The unique name of the GrafanaCloudLogs logging endpoint. It is important to note that changing this attribute will delete and recreate the resource
+	Name pulumi.StringInput `pulumi:"name"`
+	// The Access Policy Token key for your GrafanaCloudLogs account
+	Token pulumi.StringInput `pulumi:"token"`
+	// The URL to stream logs to
+	Url pulumi.StringInput `pulumi:"url"`
+	// The Grafana User ID
+	User pulumi.StringInput `pulumi:"user"`
+}
+
+func (ServiceComputeLoggingGrafanacloudlogArgs) ElementType() reflect.Type {
+	return reflect.TypeOf((*ServiceComputeLoggingGrafanacloudlog)(nil)).Elem()
+}
+
+func (i ServiceComputeLoggingGrafanacloudlogArgs) ToServiceComputeLoggingGrafanacloudlogOutput() ServiceComputeLoggingGrafanacloudlogOutput {
+	return i.ToServiceComputeLoggingGrafanacloudlogOutputWithContext(context.Background())
+}
+
+func (i ServiceComputeLoggingGrafanacloudlogArgs) ToServiceComputeLoggingGrafanacloudlogOutputWithContext(ctx context.Context) ServiceComputeLoggingGrafanacloudlogOutput {
+	return pulumi.ToOutputWithContext(ctx, i).(ServiceComputeLoggingGrafanacloudlogOutput)
+}
+
+// ServiceComputeLoggingGrafanacloudlogArrayInput is an input type that accepts ServiceComputeLoggingGrafanacloudlogArray and ServiceComputeLoggingGrafanacloudlogArrayOutput values.
+// You can construct a concrete instance of `ServiceComputeLoggingGrafanacloudlogArrayInput` via:
+//
+//	ServiceComputeLoggingGrafanacloudlogArray{ ServiceComputeLoggingGrafanacloudlogArgs{...} }
+type ServiceComputeLoggingGrafanacloudlogArrayInput interface {
+	pulumi.Input
+
+	ToServiceComputeLoggingGrafanacloudlogArrayOutput() ServiceComputeLoggingGrafanacloudlogArrayOutput
+	ToServiceComputeLoggingGrafanacloudlogArrayOutputWithContext(context.Context) ServiceComputeLoggingGrafanacloudlogArrayOutput
+}
+
+type ServiceComputeLoggingGrafanacloudlogArray []ServiceComputeLoggingGrafanacloudlogInput
+
+func (ServiceComputeLoggingGrafanacloudlogArray) ElementType() reflect.Type {
+	return reflect.TypeOf((*[]ServiceComputeLoggingGrafanacloudlog)(nil)).Elem()
+}
+
+func (i ServiceComputeLoggingGrafanacloudlogArray) ToServiceComputeLoggingGrafanacloudlogArrayOutput() ServiceComputeLoggingGrafanacloudlogArrayOutput {
+	return i.ToServiceComputeLoggingGrafanacloudlogArrayOutputWithContext(context.Background())
+}
+
+func (i ServiceComputeLoggingGrafanacloudlogArray) ToServiceComputeLoggingGrafanacloudlogArrayOutputWithContext(ctx context.Context) ServiceComputeLoggingGrafanacloudlogArrayOutput {
+	return pulumi.ToOutputWithContext(ctx, i).(ServiceComputeLoggingGrafanacloudlogArrayOutput)
+}
+
+type ServiceComputeLoggingGrafanacloudlogOutput struct{ *pulumi.OutputState }
+
+func (ServiceComputeLoggingGrafanacloudlogOutput) ElementType() reflect.Type {
+	return reflect.TypeOf((*ServiceComputeLoggingGrafanacloudlog)(nil)).Elem()
+}
+
+func (o ServiceComputeLoggingGrafanacloudlogOutput) ToServiceComputeLoggingGrafanacloudlogOutput() ServiceComputeLoggingGrafanacloudlogOutput {
+	return o
+}
+
+func (o ServiceComputeLoggingGrafanacloudlogOutput) ToServiceComputeLoggingGrafanacloudlogOutputWithContext(ctx context.Context) ServiceComputeLoggingGrafanacloudlogOutput {
+	return o
+}
+
+// The stream identifier as a JSON string
+func (o ServiceComputeLoggingGrafanacloudlogOutput) Index() pulumi.StringOutput {
+	return o.ApplyT(func(v ServiceComputeLoggingGrafanacloudlog) string { return v.Index }).(pulumi.StringOutput)
+}
+
+// The unique name of the GrafanaCloudLogs logging endpoint. It is important to note that changing this attribute will delete and recreate the resource
+func (o ServiceComputeLoggingGrafanacloudlogOutput) Name() pulumi.StringOutput {
+	return o.ApplyT(func(v ServiceComputeLoggingGrafanacloudlog) string { return v.Name }).(pulumi.StringOutput)
+}
+
+// The Access Policy Token key for your GrafanaCloudLogs account
+func (o ServiceComputeLoggingGrafanacloudlogOutput) Token() pulumi.StringOutput {
+	return o.ApplyT(func(v ServiceComputeLoggingGrafanacloudlog) string { return v.Token }).(pulumi.StringOutput)
+}
+
+// The URL to stream logs to
+func (o ServiceComputeLoggingGrafanacloudlogOutput) Url() pulumi.StringOutput {
+	return o.ApplyT(func(v ServiceComputeLoggingGrafanacloudlog) string { return v.Url }).(pulumi.StringOutput)
+}
+
+// The Grafana User ID
+func (o ServiceComputeLoggingGrafanacloudlogOutput) User() pulumi.StringOutput {
+	return o.ApplyT(func(v ServiceComputeLoggingGrafanacloudlog) string { return v.User }).(pulumi.StringOutput)
+}
+
+type ServiceComputeLoggingGrafanacloudlogArrayOutput struct{ *pulumi.OutputState }
+
+func (ServiceComputeLoggingGrafanacloudlogArrayOutput) ElementType() reflect.Type {
+	return reflect.TypeOf((*[]ServiceComputeLoggingGrafanacloudlog)(nil)).Elem()
+}
+
+func (o ServiceComputeLoggingGrafanacloudlogArrayOutput) ToServiceComputeLoggingGrafanacloudlogArrayOutput() ServiceComputeLoggingGrafanacloudlogArrayOutput {
+	return o
+}
+
+func (o ServiceComputeLoggingGrafanacloudlogArrayOutput) ToServiceComputeLoggingGrafanacloudlogArrayOutputWithContext(ctx context.Context) ServiceComputeLoggingGrafanacloudlogArrayOutput {
+	return o
+}
+
+func (o ServiceComputeLoggingGrafanacloudlogArrayOutput) Index(i pulumi.IntInput) ServiceComputeLoggingGrafanacloudlogOutput {
+	return pulumi.All(o, i).ApplyT(func(vs []interface{}) ServiceComputeLoggingGrafanacloudlog {
+		return vs[0].([]ServiceComputeLoggingGrafanacloudlog)[vs[1].(int)]
+	}).(ServiceComputeLoggingGrafanacloudlogOutput)
+}
+
 type ServiceComputeLoggingHeroku struct {
 	// The unique name of the Heroku logging endpoint. It is important to note that changing this attribute will delete and recreate the resource
 	Name string `pulumi:"name"`
@@ -5721,6 +5854,8 @@ func (o ServiceComputePackagePtrOutput) SourceCodeHash() pulumi.StringPtrOutput 
 type ServiceComputeProductEnablement struct {
 	// Enable Fanout support
 	Fanout *bool `pulumi:"fanout"`
+	// Enable Log Explorer & Insights
+	LogExplorerInsights *bool `pulumi:"logExplorerInsights"`
 	// Used by the provider to identify modified settings (changing this value will force the entire block to be deleted, then recreated)
 	Name *string `pulumi:"name"`
 	// Enable WebSockets support
@@ -5741,6 +5876,8 @@ type ServiceComputeProductEnablementInput interface {
 type ServiceComputeProductEnablementArgs struct {
 	// Enable Fanout support
 	Fanout pulumi.BoolPtrInput `pulumi:"fanout"`
+	// Enable Log Explorer & Insights
+	LogExplorerInsights pulumi.BoolPtrInput `pulumi:"logExplorerInsights"`
 	// Used by the provider to identify modified settings (changing this value will force the entire block to be deleted, then recreated)
 	Name pulumi.StringPtrInput `pulumi:"name"`
 	// Enable WebSockets support
@@ -5829,6 +5966,11 @@ func (o ServiceComputeProductEnablementOutput) Fanout() pulumi.BoolPtrOutput {
 	return o.ApplyT(func(v ServiceComputeProductEnablement) *bool { return v.Fanout }).(pulumi.BoolPtrOutput)
 }
 
+// Enable Log Explorer & Insights
+func (o ServiceComputeProductEnablementOutput) LogExplorerInsights() pulumi.BoolPtrOutput {
+	return o.ApplyT(func(v ServiceComputeProductEnablement) *bool { return v.LogExplorerInsights }).(pulumi.BoolPtrOutput)
+}
+
 // Used by the provider to identify modified settings (changing this value will force the entire block to be deleted, then recreated)
 func (o ServiceComputeProductEnablementOutput) Name() pulumi.StringPtrOutput {
 	return o.ApplyT(func(v ServiceComputeProductEnablement) *string { return v.Name }).(pulumi.StringPtrOutput)
@@ -5870,6 +6012,16 @@ func (o ServiceComputeProductEnablementPtrOutput) Fanout() pulumi.BoolPtrOutput 
 			return nil
 		}
 		return v.Fanout
+	}).(pulumi.BoolPtrOutput)
+}
+
+// Enable Log Explorer & Insights
+func (o ServiceComputeProductEnablementPtrOutput) LogExplorerInsights() pulumi.BoolPtrOutput {
+	return o.ApplyT(func(v *ServiceComputeProductEnablement) *bool {
+		if v == nil {
+			return nil
+		}
+		return v.LogExplorerInsights
 	}).(pulumi.BoolPtrOutput)
 }
 
@@ -9939,6 +10091,175 @@ func (o ServiceVclLoggingGooglepubsubArrayOutput) Index(i pulumi.IntInput) Servi
 	}).(ServiceVclLoggingGooglepubsubOutput)
 }
 
+type ServiceVclLoggingGrafanacloudlog struct {
+	// Apache-style string or VCL variables to use for log formatting.
+	Format *string `pulumi:"format"`
+	// The version of the custom logging format used for the configured endpoint. Can be either `1` or `2`. (default: `2`).
+	FormatVersion *int `pulumi:"formatVersion"`
+	// The stream identifier as a JSON string
+	Index string `pulumi:"index"`
+	// The unique name of the GrafanaCloudLogs logging endpoint. It is important to note that changing this attribute will delete and recreate the resource
+	Name string `pulumi:"name"`
+	// Where in the generated VCL the logging call should be placed.
+	Placement *string `pulumi:"placement"`
+	// The name of the condition to apply.
+	ResponseCondition *string `pulumi:"responseCondition"`
+	// The Access Policy Token key for your GrafanaCloudLogs account
+	Token string `pulumi:"token"`
+	// The URL to stream logs to
+	Url string `pulumi:"url"`
+	// The Grafana User ID
+	User string `pulumi:"user"`
+}
+
+// ServiceVclLoggingGrafanacloudlogInput is an input type that accepts ServiceVclLoggingGrafanacloudlogArgs and ServiceVclLoggingGrafanacloudlogOutput values.
+// You can construct a concrete instance of `ServiceVclLoggingGrafanacloudlogInput` via:
+//
+//	ServiceVclLoggingGrafanacloudlogArgs{...}
+type ServiceVclLoggingGrafanacloudlogInput interface {
+	pulumi.Input
+
+	ToServiceVclLoggingGrafanacloudlogOutput() ServiceVclLoggingGrafanacloudlogOutput
+	ToServiceVclLoggingGrafanacloudlogOutputWithContext(context.Context) ServiceVclLoggingGrafanacloudlogOutput
+}
+
+type ServiceVclLoggingGrafanacloudlogArgs struct {
+	// Apache-style string or VCL variables to use for log formatting.
+	Format pulumi.StringPtrInput `pulumi:"format"`
+	// The version of the custom logging format used for the configured endpoint. Can be either `1` or `2`. (default: `2`).
+	FormatVersion pulumi.IntPtrInput `pulumi:"formatVersion"`
+	// The stream identifier as a JSON string
+	Index pulumi.StringInput `pulumi:"index"`
+	// The unique name of the GrafanaCloudLogs logging endpoint. It is important to note that changing this attribute will delete and recreate the resource
+	Name pulumi.StringInput `pulumi:"name"`
+	// Where in the generated VCL the logging call should be placed.
+	Placement pulumi.StringPtrInput `pulumi:"placement"`
+	// The name of the condition to apply.
+	ResponseCondition pulumi.StringPtrInput `pulumi:"responseCondition"`
+	// The Access Policy Token key for your GrafanaCloudLogs account
+	Token pulumi.StringInput `pulumi:"token"`
+	// The URL to stream logs to
+	Url pulumi.StringInput `pulumi:"url"`
+	// The Grafana User ID
+	User pulumi.StringInput `pulumi:"user"`
+}
+
+func (ServiceVclLoggingGrafanacloudlogArgs) ElementType() reflect.Type {
+	return reflect.TypeOf((*ServiceVclLoggingGrafanacloudlog)(nil)).Elem()
+}
+
+func (i ServiceVclLoggingGrafanacloudlogArgs) ToServiceVclLoggingGrafanacloudlogOutput() ServiceVclLoggingGrafanacloudlogOutput {
+	return i.ToServiceVclLoggingGrafanacloudlogOutputWithContext(context.Background())
+}
+
+func (i ServiceVclLoggingGrafanacloudlogArgs) ToServiceVclLoggingGrafanacloudlogOutputWithContext(ctx context.Context) ServiceVclLoggingGrafanacloudlogOutput {
+	return pulumi.ToOutputWithContext(ctx, i).(ServiceVclLoggingGrafanacloudlogOutput)
+}
+
+// ServiceVclLoggingGrafanacloudlogArrayInput is an input type that accepts ServiceVclLoggingGrafanacloudlogArray and ServiceVclLoggingGrafanacloudlogArrayOutput values.
+// You can construct a concrete instance of `ServiceVclLoggingGrafanacloudlogArrayInput` via:
+//
+//	ServiceVclLoggingGrafanacloudlogArray{ ServiceVclLoggingGrafanacloudlogArgs{...} }
+type ServiceVclLoggingGrafanacloudlogArrayInput interface {
+	pulumi.Input
+
+	ToServiceVclLoggingGrafanacloudlogArrayOutput() ServiceVclLoggingGrafanacloudlogArrayOutput
+	ToServiceVclLoggingGrafanacloudlogArrayOutputWithContext(context.Context) ServiceVclLoggingGrafanacloudlogArrayOutput
+}
+
+type ServiceVclLoggingGrafanacloudlogArray []ServiceVclLoggingGrafanacloudlogInput
+
+func (ServiceVclLoggingGrafanacloudlogArray) ElementType() reflect.Type {
+	return reflect.TypeOf((*[]ServiceVclLoggingGrafanacloudlog)(nil)).Elem()
+}
+
+func (i ServiceVclLoggingGrafanacloudlogArray) ToServiceVclLoggingGrafanacloudlogArrayOutput() ServiceVclLoggingGrafanacloudlogArrayOutput {
+	return i.ToServiceVclLoggingGrafanacloudlogArrayOutputWithContext(context.Background())
+}
+
+func (i ServiceVclLoggingGrafanacloudlogArray) ToServiceVclLoggingGrafanacloudlogArrayOutputWithContext(ctx context.Context) ServiceVclLoggingGrafanacloudlogArrayOutput {
+	return pulumi.ToOutputWithContext(ctx, i).(ServiceVclLoggingGrafanacloudlogArrayOutput)
+}
+
+type ServiceVclLoggingGrafanacloudlogOutput struct{ *pulumi.OutputState }
+
+func (ServiceVclLoggingGrafanacloudlogOutput) ElementType() reflect.Type {
+	return reflect.TypeOf((*ServiceVclLoggingGrafanacloudlog)(nil)).Elem()
+}
+
+func (o ServiceVclLoggingGrafanacloudlogOutput) ToServiceVclLoggingGrafanacloudlogOutput() ServiceVclLoggingGrafanacloudlogOutput {
+	return o
+}
+
+func (o ServiceVclLoggingGrafanacloudlogOutput) ToServiceVclLoggingGrafanacloudlogOutputWithContext(ctx context.Context) ServiceVclLoggingGrafanacloudlogOutput {
+	return o
+}
+
+// Apache-style string or VCL variables to use for log formatting.
+func (o ServiceVclLoggingGrafanacloudlogOutput) Format() pulumi.StringPtrOutput {
+	return o.ApplyT(func(v ServiceVclLoggingGrafanacloudlog) *string { return v.Format }).(pulumi.StringPtrOutput)
+}
+
+// The version of the custom logging format used for the configured endpoint. Can be either `1` or `2`. (default: `2`).
+func (o ServiceVclLoggingGrafanacloudlogOutput) FormatVersion() pulumi.IntPtrOutput {
+	return o.ApplyT(func(v ServiceVclLoggingGrafanacloudlog) *int { return v.FormatVersion }).(pulumi.IntPtrOutput)
+}
+
+// The stream identifier as a JSON string
+func (o ServiceVclLoggingGrafanacloudlogOutput) Index() pulumi.StringOutput {
+	return o.ApplyT(func(v ServiceVclLoggingGrafanacloudlog) string { return v.Index }).(pulumi.StringOutput)
+}
+
+// The unique name of the GrafanaCloudLogs logging endpoint. It is important to note that changing this attribute will delete and recreate the resource
+func (o ServiceVclLoggingGrafanacloudlogOutput) Name() pulumi.StringOutput {
+	return o.ApplyT(func(v ServiceVclLoggingGrafanacloudlog) string { return v.Name }).(pulumi.StringOutput)
+}
+
+// Where in the generated VCL the logging call should be placed.
+func (o ServiceVclLoggingGrafanacloudlogOutput) Placement() pulumi.StringPtrOutput {
+	return o.ApplyT(func(v ServiceVclLoggingGrafanacloudlog) *string { return v.Placement }).(pulumi.StringPtrOutput)
+}
+
+// The name of the condition to apply.
+func (o ServiceVclLoggingGrafanacloudlogOutput) ResponseCondition() pulumi.StringPtrOutput {
+	return o.ApplyT(func(v ServiceVclLoggingGrafanacloudlog) *string { return v.ResponseCondition }).(pulumi.StringPtrOutput)
+}
+
+// The Access Policy Token key for your GrafanaCloudLogs account
+func (o ServiceVclLoggingGrafanacloudlogOutput) Token() pulumi.StringOutput {
+	return o.ApplyT(func(v ServiceVclLoggingGrafanacloudlog) string { return v.Token }).(pulumi.StringOutput)
+}
+
+// The URL to stream logs to
+func (o ServiceVclLoggingGrafanacloudlogOutput) Url() pulumi.StringOutput {
+	return o.ApplyT(func(v ServiceVclLoggingGrafanacloudlog) string { return v.Url }).(pulumi.StringOutput)
+}
+
+// The Grafana User ID
+func (o ServiceVclLoggingGrafanacloudlogOutput) User() pulumi.StringOutput {
+	return o.ApplyT(func(v ServiceVclLoggingGrafanacloudlog) string { return v.User }).(pulumi.StringOutput)
+}
+
+type ServiceVclLoggingGrafanacloudlogArrayOutput struct{ *pulumi.OutputState }
+
+func (ServiceVclLoggingGrafanacloudlogArrayOutput) ElementType() reflect.Type {
+	return reflect.TypeOf((*[]ServiceVclLoggingGrafanacloudlog)(nil)).Elem()
+}
+
+func (o ServiceVclLoggingGrafanacloudlogArrayOutput) ToServiceVclLoggingGrafanacloudlogArrayOutput() ServiceVclLoggingGrafanacloudlogArrayOutput {
+	return o
+}
+
+func (o ServiceVclLoggingGrafanacloudlogArrayOutput) ToServiceVclLoggingGrafanacloudlogArrayOutputWithContext(ctx context.Context) ServiceVclLoggingGrafanacloudlogArrayOutput {
+	return o
+}
+
+func (o ServiceVclLoggingGrafanacloudlogArrayOutput) Index(i pulumi.IntInput) ServiceVclLoggingGrafanacloudlogOutput {
+	return pulumi.All(o, i).ApplyT(func(vs []interface{}) ServiceVclLoggingGrafanacloudlog {
+		return vs[0].([]ServiceVclLoggingGrafanacloudlog)[vs[1].(int)]
+	}).(ServiceVclLoggingGrafanacloudlogOutput)
+}
+
 type ServiceVclLoggingHerokus struct {
 	// Apache-style string or VCL variables to use for log formatting.
 	Format *string `pulumi:"format"`
@@ -13341,10 +13662,10 @@ type ServiceVclProductEnablement struct {
 	DomainInspector *bool `pulumi:"domainInspector"`
 	// Enable Image Optimizer support (all backends must have a `shield` attribute)
 	ImageOptimizer *bool `pulumi:"imageOptimizer"`
+	// Enable Log Explorer & Insights
+	LogExplorerInsights *bool `pulumi:"logExplorerInsights"`
 	// Used by the provider to identify modified settings (changing this value will force the entire block to be deleted, then recreated)
 	Name *string `pulumi:"name"`
-	// Enable Next-Gen WAF support
-	Ngwaf *bool `pulumi:"ngwaf"`
 	// Enable Origin Inspector support
 	OriginInspector *bool `pulumi:"originInspector"`
 	// Enable WebSockets support
@@ -13371,10 +13692,10 @@ type ServiceVclProductEnablementArgs struct {
 	DomainInspector pulumi.BoolPtrInput `pulumi:"domainInspector"`
 	// Enable Image Optimizer support (all backends must have a `shield` attribute)
 	ImageOptimizer pulumi.BoolPtrInput `pulumi:"imageOptimizer"`
+	// Enable Log Explorer & Insights
+	LogExplorerInsights pulumi.BoolPtrInput `pulumi:"logExplorerInsights"`
 	// Used by the provider to identify modified settings (changing this value will force the entire block to be deleted, then recreated)
 	Name pulumi.StringPtrInput `pulumi:"name"`
-	// Enable Next-Gen WAF support
-	Ngwaf pulumi.BoolPtrInput `pulumi:"ngwaf"`
 	// Enable Origin Inspector support
 	OriginInspector pulumi.BoolPtrInput `pulumi:"originInspector"`
 	// Enable WebSockets support
@@ -13478,14 +13799,14 @@ func (o ServiceVclProductEnablementOutput) ImageOptimizer() pulumi.BoolPtrOutput
 	return o.ApplyT(func(v ServiceVclProductEnablement) *bool { return v.ImageOptimizer }).(pulumi.BoolPtrOutput)
 }
 
+// Enable Log Explorer & Insights
+func (o ServiceVclProductEnablementOutput) LogExplorerInsights() pulumi.BoolPtrOutput {
+	return o.ApplyT(func(v ServiceVclProductEnablement) *bool { return v.LogExplorerInsights }).(pulumi.BoolPtrOutput)
+}
+
 // Used by the provider to identify modified settings (changing this value will force the entire block to be deleted, then recreated)
 func (o ServiceVclProductEnablementOutput) Name() pulumi.StringPtrOutput {
 	return o.ApplyT(func(v ServiceVclProductEnablement) *string { return v.Name }).(pulumi.StringPtrOutput)
-}
-
-// Enable Next-Gen WAF support
-func (o ServiceVclProductEnablementOutput) Ngwaf() pulumi.BoolPtrOutput {
-	return o.ApplyT(func(v ServiceVclProductEnablement) *bool { return v.Ngwaf }).(pulumi.BoolPtrOutput)
 }
 
 // Enable Origin Inspector support
@@ -13562,6 +13883,16 @@ func (o ServiceVclProductEnablementPtrOutput) ImageOptimizer() pulumi.BoolPtrOut
 	}).(pulumi.BoolPtrOutput)
 }
 
+// Enable Log Explorer & Insights
+func (o ServiceVclProductEnablementPtrOutput) LogExplorerInsights() pulumi.BoolPtrOutput {
+	return o.ApplyT(func(v *ServiceVclProductEnablement) *bool {
+		if v == nil {
+			return nil
+		}
+		return v.LogExplorerInsights
+	}).(pulumi.BoolPtrOutput)
+}
+
 // Used by the provider to identify modified settings (changing this value will force the entire block to be deleted, then recreated)
 func (o ServiceVclProductEnablementPtrOutput) Name() pulumi.StringPtrOutput {
 	return o.ApplyT(func(v *ServiceVclProductEnablement) *string {
@@ -13570,16 +13901,6 @@ func (o ServiceVclProductEnablementPtrOutput) Name() pulumi.StringPtrOutput {
 		}
 		return v.Name
 	}).(pulumi.StringPtrOutput)
-}
-
-// Enable Next-Gen WAF support
-func (o ServiceVclProductEnablementPtrOutput) Ngwaf() pulumi.BoolPtrOutput {
-	return o.ApplyT(func(v *ServiceVclProductEnablement) *bool {
-		if v == nil {
-			return nil
-		}
-		return v.Ngwaf
-	}).(pulumi.BoolPtrOutput)
 }
 
 // Enable Origin Inspector support
@@ -16359,6 +16680,8 @@ func init() {
 	pulumi.RegisterInputType(reflect.TypeOf((*ServiceComputeLoggingGcArrayInput)(nil)).Elem(), ServiceComputeLoggingGcArray{})
 	pulumi.RegisterInputType(reflect.TypeOf((*ServiceComputeLoggingGooglepubsubInput)(nil)).Elem(), ServiceComputeLoggingGooglepubsubArgs{})
 	pulumi.RegisterInputType(reflect.TypeOf((*ServiceComputeLoggingGooglepubsubArrayInput)(nil)).Elem(), ServiceComputeLoggingGooglepubsubArray{})
+	pulumi.RegisterInputType(reflect.TypeOf((*ServiceComputeLoggingGrafanacloudlogInput)(nil)).Elem(), ServiceComputeLoggingGrafanacloudlogArgs{})
+	pulumi.RegisterInputType(reflect.TypeOf((*ServiceComputeLoggingGrafanacloudlogArrayInput)(nil)).Elem(), ServiceComputeLoggingGrafanacloudlogArray{})
 	pulumi.RegisterInputType(reflect.TypeOf((*ServiceComputeLoggingHerokuInput)(nil)).Elem(), ServiceComputeLoggingHerokuArgs{})
 	pulumi.RegisterInputType(reflect.TypeOf((*ServiceComputeLoggingHerokuArrayInput)(nil)).Elem(), ServiceComputeLoggingHerokuArray{})
 	pulumi.RegisterInputType(reflect.TypeOf((*ServiceComputeLoggingHoneycombInput)(nil)).Elem(), ServiceComputeLoggingHoneycombArgs{})
@@ -16441,6 +16764,8 @@ func init() {
 	pulumi.RegisterInputType(reflect.TypeOf((*ServiceVclLoggingGcArrayInput)(nil)).Elem(), ServiceVclLoggingGcArray{})
 	pulumi.RegisterInputType(reflect.TypeOf((*ServiceVclLoggingGooglepubsubInput)(nil)).Elem(), ServiceVclLoggingGooglepubsubArgs{})
 	pulumi.RegisterInputType(reflect.TypeOf((*ServiceVclLoggingGooglepubsubArrayInput)(nil)).Elem(), ServiceVclLoggingGooglepubsubArray{})
+	pulumi.RegisterInputType(reflect.TypeOf((*ServiceVclLoggingGrafanacloudlogInput)(nil)).Elem(), ServiceVclLoggingGrafanacloudlogArgs{})
+	pulumi.RegisterInputType(reflect.TypeOf((*ServiceVclLoggingGrafanacloudlogArrayInput)(nil)).Elem(), ServiceVclLoggingGrafanacloudlogArray{})
 	pulumi.RegisterInputType(reflect.TypeOf((*ServiceVclLoggingHerokusInput)(nil)).Elem(), ServiceVclLoggingHerokusArgs{})
 	pulumi.RegisterInputType(reflect.TypeOf((*ServiceVclLoggingHerokusArrayInput)(nil)).Elem(), ServiceVclLoggingHerokusArray{})
 	pulumi.RegisterInputType(reflect.TypeOf((*ServiceVclLoggingHoneycombInput)(nil)).Elem(), ServiceVclLoggingHoneycombArgs{})
@@ -16551,6 +16876,8 @@ func init() {
 	pulumi.RegisterOutputType(ServiceComputeLoggingGcArrayOutput{})
 	pulumi.RegisterOutputType(ServiceComputeLoggingGooglepubsubOutput{})
 	pulumi.RegisterOutputType(ServiceComputeLoggingGooglepubsubArrayOutput{})
+	pulumi.RegisterOutputType(ServiceComputeLoggingGrafanacloudlogOutput{})
+	pulumi.RegisterOutputType(ServiceComputeLoggingGrafanacloudlogArrayOutput{})
 	pulumi.RegisterOutputType(ServiceComputeLoggingHerokuOutput{})
 	pulumi.RegisterOutputType(ServiceComputeLoggingHerokuArrayOutput{})
 	pulumi.RegisterOutputType(ServiceComputeLoggingHoneycombOutput{})
@@ -16633,6 +16960,8 @@ func init() {
 	pulumi.RegisterOutputType(ServiceVclLoggingGcArrayOutput{})
 	pulumi.RegisterOutputType(ServiceVclLoggingGooglepubsubOutput{})
 	pulumi.RegisterOutputType(ServiceVclLoggingGooglepubsubArrayOutput{})
+	pulumi.RegisterOutputType(ServiceVclLoggingGrafanacloudlogOutput{})
+	pulumi.RegisterOutputType(ServiceVclLoggingGrafanacloudlogArrayOutput{})
 	pulumi.RegisterOutputType(ServiceVclLoggingHerokusOutput{})
 	pulumi.RegisterOutputType(ServiceVclLoggingHerokusArrayOutput{})
 	pulumi.RegisterOutputType(ServiceVclLoggingHoneycombOutput{})

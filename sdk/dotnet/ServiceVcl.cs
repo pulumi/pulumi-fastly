@@ -152,6 +152,9 @@ namespace Pulumi.Fastly
         [Output("loggingGooglepubsubs")]
         public Output<ImmutableArray<Outputs.ServiceVclLoggingGooglepubsub>> LoggingGooglepubsubs { get; private set; } = null!;
 
+        [Output("loggingGrafanacloudlogs")]
+        public Output<ImmutableArray<Outputs.ServiceVclLoggingGrafanacloudlog>> LoggingGrafanacloudlogs { get; private set; } = null!;
+
         [Output("loggingHerokus")]
         public Output<ImmutableArray<Outputs.ServiceVclLoggingHerokus>> LoggingHerokus { get; private set; } = null!;
 
@@ -500,6 +503,14 @@ namespace Pulumi.Fastly
         {
             get => _loggingGooglepubsubs ?? (_loggingGooglepubsubs = new InputList<Inputs.ServiceVclLoggingGooglepubsubArgs>());
             set => _loggingGooglepubsubs = value;
+        }
+
+        [Input("loggingGrafanacloudlogs")]
+        private InputList<Inputs.ServiceVclLoggingGrafanacloudlogArgs>? _loggingGrafanacloudlogs;
+        public InputList<Inputs.ServiceVclLoggingGrafanacloudlogArgs> LoggingGrafanacloudlogs
+        {
+            get => _loggingGrafanacloudlogs ?? (_loggingGrafanacloudlogs = new InputList<Inputs.ServiceVclLoggingGrafanacloudlogArgs>());
+            set => _loggingGrafanacloudlogs = value;
         }
 
         [Input("loggingHerokus")]
@@ -949,6 +960,14 @@ namespace Pulumi.Fastly
         {
             get => _loggingGooglepubsubs ?? (_loggingGooglepubsubs = new InputList<Inputs.ServiceVclLoggingGooglepubsubGetArgs>());
             set => _loggingGooglepubsubs = value;
+        }
+
+        [Input("loggingGrafanacloudlogs")]
+        private InputList<Inputs.ServiceVclLoggingGrafanacloudlogGetArgs>? _loggingGrafanacloudlogs;
+        public InputList<Inputs.ServiceVclLoggingGrafanacloudlogGetArgs> LoggingGrafanacloudlogs
+        {
+            get => _loggingGrafanacloudlogs ?? (_loggingGrafanacloudlogs = new InputList<Inputs.ServiceVclLoggingGrafanacloudlogGetArgs>());
+            set => _loggingGrafanacloudlogs = value;
         }
 
         [Input("loggingHerokus")]

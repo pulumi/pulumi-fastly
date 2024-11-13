@@ -110,6 +110,9 @@ namespace Pulumi.Fastly
         [Output("loggingGooglepubsubs")]
         public Output<ImmutableArray<Outputs.ServiceComputeLoggingGooglepubsub>> LoggingGooglepubsubs { get; private set; } = null!;
 
+        [Output("loggingGrafanacloudlogs")]
+        public Output<ImmutableArray<Outputs.ServiceComputeLoggingGrafanacloudlog>> LoggingGrafanacloudlogs { get; private set; } = null!;
+
         [Output("loggingHeroku")]
         public Output<ImmutableArray<Outputs.ServiceComputeLoggingHeroku>> LoggingHeroku { get; private set; } = null!;
 
@@ -357,6 +360,14 @@ namespace Pulumi.Fastly
         {
             get => _loggingGooglepubsubs ?? (_loggingGooglepubsubs = new InputList<Inputs.ServiceComputeLoggingGooglepubsubArgs>());
             set => _loggingGooglepubsubs = value;
+        }
+
+        [Input("loggingGrafanacloudlogs")]
+        private InputList<Inputs.ServiceComputeLoggingGrafanacloudlogArgs>? _loggingGrafanacloudlogs;
+        public InputList<Inputs.ServiceComputeLoggingGrafanacloudlogArgs> LoggingGrafanacloudlogs
+        {
+            get => _loggingGrafanacloudlogs ?? (_loggingGrafanacloudlogs = new InputList<Inputs.ServiceComputeLoggingGrafanacloudlogArgs>());
+            set => _loggingGrafanacloudlogs = value;
         }
 
         [Input("loggingHeroku")]
@@ -681,6 +692,14 @@ namespace Pulumi.Fastly
         {
             get => _loggingGooglepubsubs ?? (_loggingGooglepubsubs = new InputList<Inputs.ServiceComputeLoggingGooglepubsubGetArgs>());
             set => _loggingGooglepubsubs = value;
+        }
+
+        [Input("loggingGrafanacloudlogs")]
+        private InputList<Inputs.ServiceComputeLoggingGrafanacloudlogGetArgs>? _loggingGrafanacloudlogs;
+        public InputList<Inputs.ServiceComputeLoggingGrafanacloudlogGetArgs> LoggingGrafanacloudlogs
+        {
+            get => _loggingGrafanacloudlogs ?? (_loggingGrafanacloudlogs = new InputList<Inputs.ServiceComputeLoggingGrafanacloudlogGetArgs>());
+            set => _loggingGrafanacloudlogs = value;
         }
 
         [Input("loggingHeroku")]

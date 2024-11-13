@@ -18,6 +18,11 @@ public final class ServiceComputeProductEnablement {
      */
     private @Nullable Boolean fanout;
     /**
+     * @return Enable Log Explorer &amp; Insights
+     * 
+     */
+    private @Nullable Boolean logExplorerInsights;
+    /**
      * @return Used by the provider to identify modified settings (changing this value will force the entire block to be deleted, then recreated)
      * 
      */
@@ -35,6 +40,13 @@ public final class ServiceComputeProductEnablement {
      */
     public Optional<Boolean> fanout() {
         return Optional.ofNullable(this.fanout);
+    }
+    /**
+     * @return Enable Log Explorer &amp; Insights
+     * 
+     */
+    public Optional<Boolean> logExplorerInsights() {
+        return Optional.ofNullable(this.logExplorerInsights);
     }
     /**
      * @return Used by the provider to identify modified settings (changing this value will force the entire block to be deleted, then recreated)
@@ -61,12 +73,14 @@ public final class ServiceComputeProductEnablement {
     @CustomType.Builder
     public static final class Builder {
         private @Nullable Boolean fanout;
+        private @Nullable Boolean logExplorerInsights;
         private @Nullable String name;
         private @Nullable Boolean websockets;
         public Builder() {}
         public Builder(ServiceComputeProductEnablement defaults) {
     	      Objects.requireNonNull(defaults);
     	      this.fanout = defaults.fanout;
+    	      this.logExplorerInsights = defaults.logExplorerInsights;
     	      this.name = defaults.name;
     	      this.websockets = defaults.websockets;
         }
@@ -75,6 +89,12 @@ public final class ServiceComputeProductEnablement {
         public Builder fanout(@Nullable Boolean fanout) {
 
             this.fanout = fanout;
+            return this;
+        }
+        @CustomType.Setter
+        public Builder logExplorerInsights(@Nullable Boolean logExplorerInsights) {
+
+            this.logExplorerInsights = logExplorerInsights;
             return this;
         }
         @CustomType.Setter
@@ -92,6 +112,7 @@ public final class ServiceComputeProductEnablement {
         public ServiceComputeProductEnablement build() {
             final var _resultValue = new ServiceComputeProductEnablement();
             _resultValue.fanout = fanout;
+            _resultValue.logExplorerInsights = logExplorerInsights;
             _resultValue.name = name;
             _resultValue.websockets = websockets;
             return _resultValue;

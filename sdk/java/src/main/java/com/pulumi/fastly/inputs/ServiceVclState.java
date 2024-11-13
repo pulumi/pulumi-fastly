@@ -26,6 +26,7 @@ import com.pulumi.fastly.inputs.ServiceVclLoggingElasticsearchArgs;
 import com.pulumi.fastly.inputs.ServiceVclLoggingFtpArgs;
 import com.pulumi.fastly.inputs.ServiceVclLoggingGcArgs;
 import com.pulumi.fastly.inputs.ServiceVclLoggingGooglepubsubArgs;
+import com.pulumi.fastly.inputs.ServiceVclLoggingGrafanacloudlogArgs;
 import com.pulumi.fastly.inputs.ServiceVclLoggingHerokusArgs;
 import com.pulumi.fastly.inputs.ServiceVclLoggingHoneycombArgs;
 import com.pulumi.fastly.inputs.ServiceVclLoggingHttpArgs;
@@ -359,6 +360,13 @@ public final class ServiceVclState extends com.pulumi.resources.ResourceArgs {
         return Optional.ofNullable(this.loggingGooglepubsubs);
     }
 
+    @Import(name="loggingGrafanacloudlogs")
+    private @Nullable Output<List<ServiceVclLoggingGrafanacloudlogArgs>> loggingGrafanacloudlogs;
+
+    public Optional<Output<List<ServiceVclLoggingGrafanacloudlogArgs>>> loggingGrafanacloudlogs() {
+        return Optional.ofNullable(this.loggingGrafanacloudlogs);
+    }
+
     @Import(name="loggingHerokus")
     private @Nullable Output<List<ServiceVclLoggingHerokusArgs>> loggingHerokus;
 
@@ -635,6 +643,7 @@ public final class ServiceVclState extends com.pulumi.resources.ResourceArgs {
         this.loggingFtps = $.loggingFtps;
         this.loggingGcs = $.loggingGcs;
         this.loggingGooglepubsubs = $.loggingGooglepubsubs;
+        this.loggingGrafanacloudlogs = $.loggingGrafanacloudlogs;
         this.loggingHerokus = $.loggingHerokus;
         this.loggingHoneycombs = $.loggingHoneycombs;
         this.loggingHttps = $.loggingHttps;
@@ -1162,6 +1171,19 @@ public final class ServiceVclState extends com.pulumi.resources.ResourceArgs {
 
         public Builder loggingGooglepubsubs(ServiceVclLoggingGooglepubsubArgs... loggingGooglepubsubs) {
             return loggingGooglepubsubs(List.of(loggingGooglepubsubs));
+        }
+
+        public Builder loggingGrafanacloudlogs(@Nullable Output<List<ServiceVclLoggingGrafanacloudlogArgs>> loggingGrafanacloudlogs) {
+            $.loggingGrafanacloudlogs = loggingGrafanacloudlogs;
+            return this;
+        }
+
+        public Builder loggingGrafanacloudlogs(List<ServiceVclLoggingGrafanacloudlogArgs> loggingGrafanacloudlogs) {
+            return loggingGrafanacloudlogs(Output.of(loggingGrafanacloudlogs));
+        }
+
+        public Builder loggingGrafanacloudlogs(ServiceVclLoggingGrafanacloudlogArgs... loggingGrafanacloudlogs) {
+            return loggingGrafanacloudlogs(List.of(loggingGrafanacloudlogs));
         }
 
         public Builder loggingHerokus(@Nullable Output<List<ServiceVclLoggingHerokusArgs>> loggingHerokus) {

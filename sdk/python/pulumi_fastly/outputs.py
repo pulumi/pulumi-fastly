@@ -32,6 +32,7 @@ __all__ = [
     'ServiceComputeLoggingFtp',
     'ServiceComputeLoggingGc',
     'ServiceComputeLoggingGooglepubsub',
+    'ServiceComputeLoggingGrafanacloudlog',
     'ServiceComputeLoggingHeroku',
     'ServiceComputeLoggingHoneycomb',
     'ServiceComputeLoggingHttp',
@@ -73,6 +74,7 @@ __all__ = [
     'ServiceVclLoggingFtp',
     'ServiceVclLoggingGc',
     'ServiceVclLoggingGooglepubsub',
+    'ServiceVclLoggingGrafanacloudlog',
     'ServiceVclLoggingHerokus',
     'ServiceVclLoggingHoneycomb',
     'ServiceVclLoggingHttp',
@@ -2182,6 +2184,68 @@ class ServiceComputeLoggingGooglepubsub(dict):
 
 
 @pulumi.output_type
+class ServiceComputeLoggingGrafanacloudlog(dict):
+    def __init__(__self__, *,
+                 index: str,
+                 name: str,
+                 token: str,
+                 url: str,
+                 user: str):
+        """
+        :param str index: The stream identifier as a JSON string
+        :param str name: The unique name of the GrafanaCloudLogs logging endpoint. It is important to note that changing this attribute will delete and recreate the resource
+        :param str token: The Access Policy Token key for your GrafanaCloudLogs account
+        :param str url: The URL to stream logs to
+        :param str user: The Grafana User ID
+        """
+        pulumi.set(__self__, "index", index)
+        pulumi.set(__self__, "name", name)
+        pulumi.set(__self__, "token", token)
+        pulumi.set(__self__, "url", url)
+        pulumi.set(__self__, "user", user)
+
+    @property
+    @pulumi.getter
+    def index(self) -> str:
+        """
+        The stream identifier as a JSON string
+        """
+        return pulumi.get(self, "index")
+
+    @property
+    @pulumi.getter
+    def name(self) -> str:
+        """
+        The unique name of the GrafanaCloudLogs logging endpoint. It is important to note that changing this attribute will delete and recreate the resource
+        """
+        return pulumi.get(self, "name")
+
+    @property
+    @pulumi.getter
+    def token(self) -> str:
+        """
+        The Access Policy Token key for your GrafanaCloudLogs account
+        """
+        return pulumi.get(self, "token")
+
+    @property
+    @pulumi.getter
+    def url(self) -> str:
+        """
+        The URL to stream logs to
+        """
+        return pulumi.get(self, "url")
+
+    @property
+    @pulumi.getter
+    def user(self) -> str:
+        """
+        The Grafana User ID
+        """
+        return pulumi.get(self, "user")
+
+
+@pulumi.output_type
 class ServiceComputeLoggingHeroku(dict):
     def __init__(__self__, *,
                  name: str,
@@ -4109,17 +4173,38 @@ class ServiceComputePackage(dict):
 
 @pulumi.output_type
 class ServiceComputeProductEnablement(dict):
+    @staticmethod
+    def __key_warning(key: str):
+        suggest = None
+        if key == "logExplorerInsights":
+            suggest = "log_explorer_insights"
+
+        if suggest:
+            pulumi.log.warn(f"Key '{key}' not found in ServiceComputeProductEnablement. Access the value via the '{suggest}' property getter instead.")
+
+    def __getitem__(self, key: str) -> Any:
+        ServiceComputeProductEnablement.__key_warning(key)
+        return super().__getitem__(key)
+
+    def get(self, key: str, default = None) -> Any:
+        ServiceComputeProductEnablement.__key_warning(key)
+        return super().get(key, default)
+
     def __init__(__self__, *,
                  fanout: Optional[bool] = None,
+                 log_explorer_insights: Optional[bool] = None,
                  name: Optional[str] = None,
                  websockets: Optional[bool] = None):
         """
         :param bool fanout: Enable Fanout support
+        :param bool log_explorer_insights: Enable Log Explorer & Insights
         :param str name: Used by the provider to identify modified settings (changing this value will force the entire block to be deleted, then recreated)
         :param bool websockets: Enable WebSockets support
         """
         if fanout is not None:
             pulumi.set(__self__, "fanout", fanout)
+        if log_explorer_insights is not None:
+            pulumi.set(__self__, "log_explorer_insights", log_explorer_insights)
         if name is not None:
             pulumi.set(__self__, "name", name)
         if websockets is not None:
@@ -4132,6 +4217,14 @@ class ServiceComputeProductEnablement(dict):
         Enable Fanout support
         """
         return pulumi.get(self, "fanout")
+
+    @property
+    @pulumi.getter(name="logExplorerInsights")
+    def log_explorer_insights(self) -> Optional[bool]:
+        """
+        Enable Log Explorer & Insights
+        """
+        return pulumi.get(self, "log_explorer_insights")
 
     @property
     @pulumi.getter
@@ -7390,6 +7483,135 @@ class ServiceVclLoggingGooglepubsub(dict):
 
 
 @pulumi.output_type
+class ServiceVclLoggingGrafanacloudlog(dict):
+    @staticmethod
+    def __key_warning(key: str):
+        suggest = None
+        if key == "formatVersion":
+            suggest = "format_version"
+        elif key == "responseCondition":
+            suggest = "response_condition"
+
+        if suggest:
+            pulumi.log.warn(f"Key '{key}' not found in ServiceVclLoggingGrafanacloudlog. Access the value via the '{suggest}' property getter instead.")
+
+    def __getitem__(self, key: str) -> Any:
+        ServiceVclLoggingGrafanacloudlog.__key_warning(key)
+        return super().__getitem__(key)
+
+    def get(self, key: str, default = None) -> Any:
+        ServiceVclLoggingGrafanacloudlog.__key_warning(key)
+        return super().get(key, default)
+
+    def __init__(__self__, *,
+                 index: str,
+                 name: str,
+                 token: str,
+                 url: str,
+                 user: str,
+                 format: Optional[str] = None,
+                 format_version: Optional[int] = None,
+                 placement: Optional[str] = None,
+                 response_condition: Optional[str] = None):
+        """
+        :param str index: The stream identifier as a JSON string
+        :param str name: The unique name of the GrafanaCloudLogs logging endpoint. It is important to note that changing this attribute will delete and recreate the resource
+        :param str token: The Access Policy Token key for your GrafanaCloudLogs account
+        :param str url: The URL to stream logs to
+        :param str user: The Grafana User ID
+        :param str format: Apache-style string or VCL variables to use for log formatting.
+        :param int format_version: The version of the custom logging format used for the configured endpoint. Can be either `1` or `2`. (default: `2`).
+        :param str placement: Where in the generated VCL the logging call should be placed.
+        :param str response_condition: The name of the condition to apply.
+        """
+        pulumi.set(__self__, "index", index)
+        pulumi.set(__self__, "name", name)
+        pulumi.set(__self__, "token", token)
+        pulumi.set(__self__, "url", url)
+        pulumi.set(__self__, "user", user)
+        if format is not None:
+            pulumi.set(__self__, "format", format)
+        if format_version is not None:
+            pulumi.set(__self__, "format_version", format_version)
+        if placement is not None:
+            pulumi.set(__self__, "placement", placement)
+        if response_condition is not None:
+            pulumi.set(__self__, "response_condition", response_condition)
+
+    @property
+    @pulumi.getter
+    def index(self) -> str:
+        """
+        The stream identifier as a JSON string
+        """
+        return pulumi.get(self, "index")
+
+    @property
+    @pulumi.getter
+    def name(self) -> str:
+        """
+        The unique name of the GrafanaCloudLogs logging endpoint. It is important to note that changing this attribute will delete and recreate the resource
+        """
+        return pulumi.get(self, "name")
+
+    @property
+    @pulumi.getter
+    def token(self) -> str:
+        """
+        The Access Policy Token key for your GrafanaCloudLogs account
+        """
+        return pulumi.get(self, "token")
+
+    @property
+    @pulumi.getter
+    def url(self) -> str:
+        """
+        The URL to stream logs to
+        """
+        return pulumi.get(self, "url")
+
+    @property
+    @pulumi.getter
+    def user(self) -> str:
+        """
+        The Grafana User ID
+        """
+        return pulumi.get(self, "user")
+
+    @property
+    @pulumi.getter
+    def format(self) -> Optional[str]:
+        """
+        Apache-style string or VCL variables to use for log formatting.
+        """
+        return pulumi.get(self, "format")
+
+    @property
+    @pulumi.getter(name="formatVersion")
+    def format_version(self) -> Optional[int]:
+        """
+        The version of the custom logging format used for the configured endpoint. Can be either `1` or `2`. (default: `2`).
+        """
+        return pulumi.get(self, "format_version")
+
+    @property
+    @pulumi.getter
+    def placement(self) -> Optional[str]:
+        """
+        Where in the generated VCL the logging call should be placed.
+        """
+        return pulumi.get(self, "placement")
+
+    @property
+    @pulumi.getter(name="responseCondition")
+    def response_condition(self) -> Optional[str]:
+        """
+        The name of the condition to apply.
+        """
+        return pulumi.get(self, "response_condition")
+
+
+@pulumi.output_type
 class ServiceVclLoggingHerokus(dict):
     @staticmethod
     def __key_warning(key: str):
@@ -10362,6 +10584,8 @@ class ServiceVclProductEnablement(dict):
             suggest = "domain_inspector"
         elif key == "imageOptimizer":
             suggest = "image_optimizer"
+        elif key == "logExplorerInsights":
+            suggest = "log_explorer_insights"
         elif key == "originInspector":
             suggest = "origin_inspector"
 
@@ -10381,8 +10605,8 @@ class ServiceVclProductEnablement(dict):
                  brotli_compression: Optional[bool] = None,
                  domain_inspector: Optional[bool] = None,
                  image_optimizer: Optional[bool] = None,
+                 log_explorer_insights: Optional[bool] = None,
                  name: Optional[str] = None,
-                 ngwaf: Optional[bool] = None,
                  origin_inspector: Optional[bool] = None,
                  websockets: Optional[bool] = None):
         """
@@ -10390,8 +10614,8 @@ class ServiceVclProductEnablement(dict):
         :param bool brotli_compression: Enable Brotli Compression support
         :param bool domain_inspector: Enable Domain Inspector support
         :param bool image_optimizer: Enable Image Optimizer support (all backends must have a `shield` attribute)
+        :param bool log_explorer_insights: Enable Log Explorer & Insights
         :param str name: Used by the provider to identify modified settings (changing this value will force the entire block to be deleted, then recreated)
-        :param bool ngwaf: Enable Next-Gen WAF support
         :param bool origin_inspector: Enable Origin Inspector support
         :param bool websockets: Enable WebSockets support
         """
@@ -10403,10 +10627,10 @@ class ServiceVclProductEnablement(dict):
             pulumi.set(__self__, "domain_inspector", domain_inspector)
         if image_optimizer is not None:
             pulumi.set(__self__, "image_optimizer", image_optimizer)
+        if log_explorer_insights is not None:
+            pulumi.set(__self__, "log_explorer_insights", log_explorer_insights)
         if name is not None:
             pulumi.set(__self__, "name", name)
-        if ngwaf is not None:
-            pulumi.set(__self__, "ngwaf", ngwaf)
         if origin_inspector is not None:
             pulumi.set(__self__, "origin_inspector", origin_inspector)
         if websockets is not None:
@@ -10445,20 +10669,20 @@ class ServiceVclProductEnablement(dict):
         return pulumi.get(self, "image_optimizer")
 
     @property
+    @pulumi.getter(name="logExplorerInsights")
+    def log_explorer_insights(self) -> Optional[bool]:
+        """
+        Enable Log Explorer & Insights
+        """
+        return pulumi.get(self, "log_explorer_insights")
+
+    @property
     @pulumi.getter
     def name(self) -> Optional[str]:
         """
         Used by the provider to identify modified settings (changing this value will force the entire block to be deleted, then recreated)
         """
         return pulumi.get(self, "name")
-
-    @property
-    @pulumi.getter
-    def ngwaf(self) -> Optional[bool]:
-        """
-        Enable Next-Gen WAF support
-        """
-        return pulumi.get(self, "ngwaf")
 
     @property
     @pulumi.getter(name="originInspector")

@@ -49,33 +49,34 @@ type ServiceCompute struct {
 	ImageOptimizerDefaultSettings ServiceComputeImageOptimizerDefaultSettingsPtrOutput `pulumi:"imageOptimizerDefaultSettings"`
 	// Used internally by the provider to temporarily indicate if the service is being imported, and is reset to false once the
 	// import is finished
-	Imported               pulumi.BoolOutput                             `pulumi:"imported"`
-	LoggingBigqueries      ServiceComputeLoggingBigqueryArrayOutput      `pulumi:"loggingBigqueries"`
-	LoggingBlobstorages    ServiceComputeLoggingBlobstorageArrayOutput   `pulumi:"loggingBlobstorages"`
-	LoggingCloudfiles      ServiceComputeLoggingCloudfileArrayOutput     `pulumi:"loggingCloudfiles"`
-	LoggingDatadogs        ServiceComputeLoggingDatadogArrayOutput       `pulumi:"loggingDatadogs"`
-	LoggingDigitaloceans   ServiceComputeLoggingDigitaloceanArrayOutput  `pulumi:"loggingDigitaloceans"`
-	LoggingElasticsearches ServiceComputeLoggingElasticsearchArrayOutput `pulumi:"loggingElasticsearches"`
-	LoggingFtps            ServiceComputeLoggingFtpArrayOutput           `pulumi:"loggingFtps"`
-	LoggingGcs             ServiceComputeLoggingGcArrayOutput            `pulumi:"loggingGcs"`
-	LoggingGooglepubsubs   ServiceComputeLoggingGooglepubsubArrayOutput  `pulumi:"loggingGooglepubsubs"`
-	LoggingHeroku          ServiceComputeLoggingHerokuArrayOutput        `pulumi:"loggingHeroku"`
-	LoggingHoneycombs      ServiceComputeLoggingHoneycombArrayOutput     `pulumi:"loggingHoneycombs"`
-	LoggingHttps           ServiceComputeLoggingHttpArrayOutput          `pulumi:"loggingHttps"`
-	LoggingKafkas          ServiceComputeLoggingKafkaArrayOutput         `pulumi:"loggingKafkas"`
-	LoggingKineses         ServiceComputeLoggingKineseArrayOutput        `pulumi:"loggingKineses"`
-	LoggingLogentries      ServiceComputeLoggingLogentryArrayOutput      `pulumi:"loggingLogentries"`
-	LoggingLogglies        ServiceComputeLoggingLogglyArrayOutput        `pulumi:"loggingLogglies"`
-	LoggingLogshuttles     ServiceComputeLoggingLogshuttleArrayOutput    `pulumi:"loggingLogshuttles"`
-	LoggingNewrelics       ServiceComputeLoggingNewrelicArrayOutput      `pulumi:"loggingNewrelics"`
-	LoggingOpenstacks      ServiceComputeLoggingOpenstackArrayOutput     `pulumi:"loggingOpenstacks"`
-	LoggingPapertrails     ServiceComputeLoggingPapertrailArrayOutput    `pulumi:"loggingPapertrails"`
-	LoggingS3s             ServiceComputeLoggingS3ArrayOutput            `pulumi:"loggingS3s"`
-	LoggingScalyrs         ServiceComputeLoggingScalyrArrayOutput        `pulumi:"loggingScalyrs"`
-	LoggingSftps           ServiceComputeLoggingSftpArrayOutput          `pulumi:"loggingSftps"`
-	LoggingSplunks         ServiceComputeLoggingSplunkArrayOutput        `pulumi:"loggingSplunks"`
-	LoggingSumologics      ServiceComputeLoggingSumologicArrayOutput     `pulumi:"loggingSumologics"`
-	LoggingSyslogs         ServiceComputeLoggingSyslogArrayOutput        `pulumi:"loggingSyslogs"`
+	Imported                pulumi.BoolOutput                               `pulumi:"imported"`
+	LoggingBigqueries       ServiceComputeLoggingBigqueryArrayOutput        `pulumi:"loggingBigqueries"`
+	LoggingBlobstorages     ServiceComputeLoggingBlobstorageArrayOutput     `pulumi:"loggingBlobstorages"`
+	LoggingCloudfiles       ServiceComputeLoggingCloudfileArrayOutput       `pulumi:"loggingCloudfiles"`
+	LoggingDatadogs         ServiceComputeLoggingDatadogArrayOutput         `pulumi:"loggingDatadogs"`
+	LoggingDigitaloceans    ServiceComputeLoggingDigitaloceanArrayOutput    `pulumi:"loggingDigitaloceans"`
+	LoggingElasticsearches  ServiceComputeLoggingElasticsearchArrayOutput   `pulumi:"loggingElasticsearches"`
+	LoggingFtps             ServiceComputeLoggingFtpArrayOutput             `pulumi:"loggingFtps"`
+	LoggingGcs              ServiceComputeLoggingGcArrayOutput              `pulumi:"loggingGcs"`
+	LoggingGooglepubsubs    ServiceComputeLoggingGooglepubsubArrayOutput    `pulumi:"loggingGooglepubsubs"`
+	LoggingGrafanacloudlogs ServiceComputeLoggingGrafanacloudlogArrayOutput `pulumi:"loggingGrafanacloudlogs"`
+	LoggingHeroku           ServiceComputeLoggingHerokuArrayOutput          `pulumi:"loggingHeroku"`
+	LoggingHoneycombs       ServiceComputeLoggingHoneycombArrayOutput       `pulumi:"loggingHoneycombs"`
+	LoggingHttps            ServiceComputeLoggingHttpArrayOutput            `pulumi:"loggingHttps"`
+	LoggingKafkas           ServiceComputeLoggingKafkaArrayOutput           `pulumi:"loggingKafkas"`
+	LoggingKineses          ServiceComputeLoggingKineseArrayOutput          `pulumi:"loggingKineses"`
+	LoggingLogentries       ServiceComputeLoggingLogentryArrayOutput        `pulumi:"loggingLogentries"`
+	LoggingLogglies         ServiceComputeLoggingLogglyArrayOutput          `pulumi:"loggingLogglies"`
+	LoggingLogshuttles      ServiceComputeLoggingLogshuttleArrayOutput      `pulumi:"loggingLogshuttles"`
+	LoggingNewrelics        ServiceComputeLoggingNewrelicArrayOutput        `pulumi:"loggingNewrelics"`
+	LoggingOpenstacks       ServiceComputeLoggingOpenstackArrayOutput       `pulumi:"loggingOpenstacks"`
+	LoggingPapertrails      ServiceComputeLoggingPapertrailArrayOutput      `pulumi:"loggingPapertrails"`
+	LoggingS3s              ServiceComputeLoggingS3ArrayOutput              `pulumi:"loggingS3s"`
+	LoggingScalyrs          ServiceComputeLoggingScalyrArrayOutput          `pulumi:"loggingScalyrs"`
+	LoggingSftps            ServiceComputeLoggingSftpArrayOutput            `pulumi:"loggingSftps"`
+	LoggingSplunks          ServiceComputeLoggingSplunkArrayOutput          `pulumi:"loggingSplunks"`
+	LoggingSumologics       ServiceComputeLoggingSumologicArrayOutput       `pulumi:"loggingSumologics"`
+	LoggingSyslogs          ServiceComputeLoggingSyslogArrayOutput          `pulumi:"loggingSyslogs"`
 	// The unique name for the Service to create
 	Name pulumi.StringOutput `pulumi:"name"`
 	// The `package` block supports uploading or modifying Wasm packages for use in a Fastly Compute service (if omitted,
@@ -142,33 +143,34 @@ type serviceComputeState struct {
 	ImageOptimizerDefaultSettings *ServiceComputeImageOptimizerDefaultSettings `pulumi:"imageOptimizerDefaultSettings"`
 	// Used internally by the provider to temporarily indicate if the service is being imported, and is reset to false once the
 	// import is finished
-	Imported               *bool                                `pulumi:"imported"`
-	LoggingBigqueries      []ServiceComputeLoggingBigquery      `pulumi:"loggingBigqueries"`
-	LoggingBlobstorages    []ServiceComputeLoggingBlobstorage   `pulumi:"loggingBlobstorages"`
-	LoggingCloudfiles      []ServiceComputeLoggingCloudfile     `pulumi:"loggingCloudfiles"`
-	LoggingDatadogs        []ServiceComputeLoggingDatadog       `pulumi:"loggingDatadogs"`
-	LoggingDigitaloceans   []ServiceComputeLoggingDigitalocean  `pulumi:"loggingDigitaloceans"`
-	LoggingElasticsearches []ServiceComputeLoggingElasticsearch `pulumi:"loggingElasticsearches"`
-	LoggingFtps            []ServiceComputeLoggingFtp           `pulumi:"loggingFtps"`
-	LoggingGcs             []ServiceComputeLoggingGc            `pulumi:"loggingGcs"`
-	LoggingGooglepubsubs   []ServiceComputeLoggingGooglepubsub  `pulumi:"loggingGooglepubsubs"`
-	LoggingHeroku          []ServiceComputeLoggingHeroku        `pulumi:"loggingHeroku"`
-	LoggingHoneycombs      []ServiceComputeLoggingHoneycomb     `pulumi:"loggingHoneycombs"`
-	LoggingHttps           []ServiceComputeLoggingHttp          `pulumi:"loggingHttps"`
-	LoggingKafkas          []ServiceComputeLoggingKafka         `pulumi:"loggingKafkas"`
-	LoggingKineses         []ServiceComputeLoggingKinese        `pulumi:"loggingKineses"`
-	LoggingLogentries      []ServiceComputeLoggingLogentry      `pulumi:"loggingLogentries"`
-	LoggingLogglies        []ServiceComputeLoggingLoggly        `pulumi:"loggingLogglies"`
-	LoggingLogshuttles     []ServiceComputeLoggingLogshuttle    `pulumi:"loggingLogshuttles"`
-	LoggingNewrelics       []ServiceComputeLoggingNewrelic      `pulumi:"loggingNewrelics"`
-	LoggingOpenstacks      []ServiceComputeLoggingOpenstack     `pulumi:"loggingOpenstacks"`
-	LoggingPapertrails     []ServiceComputeLoggingPapertrail    `pulumi:"loggingPapertrails"`
-	LoggingS3s             []ServiceComputeLoggingS3            `pulumi:"loggingS3s"`
-	LoggingScalyrs         []ServiceComputeLoggingScalyr        `pulumi:"loggingScalyrs"`
-	LoggingSftps           []ServiceComputeLoggingSftp          `pulumi:"loggingSftps"`
-	LoggingSplunks         []ServiceComputeLoggingSplunk        `pulumi:"loggingSplunks"`
-	LoggingSumologics      []ServiceComputeLoggingSumologic     `pulumi:"loggingSumologics"`
-	LoggingSyslogs         []ServiceComputeLoggingSyslog        `pulumi:"loggingSyslogs"`
+	Imported                *bool                                  `pulumi:"imported"`
+	LoggingBigqueries       []ServiceComputeLoggingBigquery        `pulumi:"loggingBigqueries"`
+	LoggingBlobstorages     []ServiceComputeLoggingBlobstorage     `pulumi:"loggingBlobstorages"`
+	LoggingCloudfiles       []ServiceComputeLoggingCloudfile       `pulumi:"loggingCloudfiles"`
+	LoggingDatadogs         []ServiceComputeLoggingDatadog         `pulumi:"loggingDatadogs"`
+	LoggingDigitaloceans    []ServiceComputeLoggingDigitalocean    `pulumi:"loggingDigitaloceans"`
+	LoggingElasticsearches  []ServiceComputeLoggingElasticsearch   `pulumi:"loggingElasticsearches"`
+	LoggingFtps             []ServiceComputeLoggingFtp             `pulumi:"loggingFtps"`
+	LoggingGcs              []ServiceComputeLoggingGc              `pulumi:"loggingGcs"`
+	LoggingGooglepubsubs    []ServiceComputeLoggingGooglepubsub    `pulumi:"loggingGooglepubsubs"`
+	LoggingGrafanacloudlogs []ServiceComputeLoggingGrafanacloudlog `pulumi:"loggingGrafanacloudlogs"`
+	LoggingHeroku           []ServiceComputeLoggingHeroku          `pulumi:"loggingHeroku"`
+	LoggingHoneycombs       []ServiceComputeLoggingHoneycomb       `pulumi:"loggingHoneycombs"`
+	LoggingHttps            []ServiceComputeLoggingHttp            `pulumi:"loggingHttps"`
+	LoggingKafkas           []ServiceComputeLoggingKafka           `pulumi:"loggingKafkas"`
+	LoggingKineses          []ServiceComputeLoggingKinese          `pulumi:"loggingKineses"`
+	LoggingLogentries       []ServiceComputeLoggingLogentry        `pulumi:"loggingLogentries"`
+	LoggingLogglies         []ServiceComputeLoggingLoggly          `pulumi:"loggingLogglies"`
+	LoggingLogshuttles      []ServiceComputeLoggingLogshuttle      `pulumi:"loggingLogshuttles"`
+	LoggingNewrelics        []ServiceComputeLoggingNewrelic        `pulumi:"loggingNewrelics"`
+	LoggingOpenstacks       []ServiceComputeLoggingOpenstack       `pulumi:"loggingOpenstacks"`
+	LoggingPapertrails      []ServiceComputeLoggingPapertrail      `pulumi:"loggingPapertrails"`
+	LoggingS3s              []ServiceComputeLoggingS3              `pulumi:"loggingS3s"`
+	LoggingScalyrs          []ServiceComputeLoggingScalyr          `pulumi:"loggingScalyrs"`
+	LoggingSftps            []ServiceComputeLoggingSftp            `pulumi:"loggingSftps"`
+	LoggingSplunks          []ServiceComputeLoggingSplunk          `pulumi:"loggingSplunks"`
+	LoggingSumologics       []ServiceComputeLoggingSumologic       `pulumi:"loggingSumologics"`
+	LoggingSyslogs          []ServiceComputeLoggingSyslog          `pulumi:"loggingSyslogs"`
 	// The unique name for the Service to create
 	Name *string `pulumi:"name"`
 	// The `package` block supports uploading or modifying Wasm packages for use in a Fastly Compute service (if omitted,
@@ -203,33 +205,34 @@ type ServiceComputeState struct {
 	ImageOptimizerDefaultSettings ServiceComputeImageOptimizerDefaultSettingsPtrInput
 	// Used internally by the provider to temporarily indicate if the service is being imported, and is reset to false once the
 	// import is finished
-	Imported               pulumi.BoolPtrInput
-	LoggingBigqueries      ServiceComputeLoggingBigqueryArrayInput
-	LoggingBlobstorages    ServiceComputeLoggingBlobstorageArrayInput
-	LoggingCloudfiles      ServiceComputeLoggingCloudfileArrayInput
-	LoggingDatadogs        ServiceComputeLoggingDatadogArrayInput
-	LoggingDigitaloceans   ServiceComputeLoggingDigitaloceanArrayInput
-	LoggingElasticsearches ServiceComputeLoggingElasticsearchArrayInput
-	LoggingFtps            ServiceComputeLoggingFtpArrayInput
-	LoggingGcs             ServiceComputeLoggingGcArrayInput
-	LoggingGooglepubsubs   ServiceComputeLoggingGooglepubsubArrayInput
-	LoggingHeroku          ServiceComputeLoggingHerokuArrayInput
-	LoggingHoneycombs      ServiceComputeLoggingHoneycombArrayInput
-	LoggingHttps           ServiceComputeLoggingHttpArrayInput
-	LoggingKafkas          ServiceComputeLoggingKafkaArrayInput
-	LoggingKineses         ServiceComputeLoggingKineseArrayInput
-	LoggingLogentries      ServiceComputeLoggingLogentryArrayInput
-	LoggingLogglies        ServiceComputeLoggingLogglyArrayInput
-	LoggingLogshuttles     ServiceComputeLoggingLogshuttleArrayInput
-	LoggingNewrelics       ServiceComputeLoggingNewrelicArrayInput
-	LoggingOpenstacks      ServiceComputeLoggingOpenstackArrayInput
-	LoggingPapertrails     ServiceComputeLoggingPapertrailArrayInput
-	LoggingS3s             ServiceComputeLoggingS3ArrayInput
-	LoggingScalyrs         ServiceComputeLoggingScalyrArrayInput
-	LoggingSftps           ServiceComputeLoggingSftpArrayInput
-	LoggingSplunks         ServiceComputeLoggingSplunkArrayInput
-	LoggingSumologics      ServiceComputeLoggingSumologicArrayInput
-	LoggingSyslogs         ServiceComputeLoggingSyslogArrayInput
+	Imported                pulumi.BoolPtrInput
+	LoggingBigqueries       ServiceComputeLoggingBigqueryArrayInput
+	LoggingBlobstorages     ServiceComputeLoggingBlobstorageArrayInput
+	LoggingCloudfiles       ServiceComputeLoggingCloudfileArrayInput
+	LoggingDatadogs         ServiceComputeLoggingDatadogArrayInput
+	LoggingDigitaloceans    ServiceComputeLoggingDigitaloceanArrayInput
+	LoggingElasticsearches  ServiceComputeLoggingElasticsearchArrayInput
+	LoggingFtps             ServiceComputeLoggingFtpArrayInput
+	LoggingGcs              ServiceComputeLoggingGcArrayInput
+	LoggingGooglepubsubs    ServiceComputeLoggingGooglepubsubArrayInput
+	LoggingGrafanacloudlogs ServiceComputeLoggingGrafanacloudlogArrayInput
+	LoggingHeroku           ServiceComputeLoggingHerokuArrayInput
+	LoggingHoneycombs       ServiceComputeLoggingHoneycombArrayInput
+	LoggingHttps            ServiceComputeLoggingHttpArrayInput
+	LoggingKafkas           ServiceComputeLoggingKafkaArrayInput
+	LoggingKineses          ServiceComputeLoggingKineseArrayInput
+	LoggingLogentries       ServiceComputeLoggingLogentryArrayInput
+	LoggingLogglies         ServiceComputeLoggingLogglyArrayInput
+	LoggingLogshuttles      ServiceComputeLoggingLogshuttleArrayInput
+	LoggingNewrelics        ServiceComputeLoggingNewrelicArrayInput
+	LoggingOpenstacks       ServiceComputeLoggingOpenstackArrayInput
+	LoggingPapertrails      ServiceComputeLoggingPapertrailArrayInput
+	LoggingS3s              ServiceComputeLoggingS3ArrayInput
+	LoggingScalyrs          ServiceComputeLoggingScalyrArrayInput
+	LoggingSftps            ServiceComputeLoggingSftpArrayInput
+	LoggingSplunks          ServiceComputeLoggingSplunkArrayInput
+	LoggingSumologics       ServiceComputeLoggingSumologicArrayInput
+	LoggingSyslogs          ServiceComputeLoggingSyslogArrayInput
 	// The unique name for the Service to create
 	Name pulumi.StringPtrInput
 	// The `package` block supports uploading or modifying Wasm packages for use in a Fastly Compute service (if omitted,
@@ -270,6 +273,7 @@ type serviceComputeArgs struct {
 	LoggingFtps                   []ServiceComputeLoggingFtp                   `pulumi:"loggingFtps"`
 	LoggingGcs                    []ServiceComputeLoggingGc                    `pulumi:"loggingGcs"`
 	LoggingGooglepubsubs          []ServiceComputeLoggingGooglepubsub          `pulumi:"loggingGooglepubsubs"`
+	LoggingGrafanacloudlogs       []ServiceComputeLoggingGrafanacloudlog       `pulumi:"loggingGrafanacloudlogs"`
 	LoggingHeroku                 []ServiceComputeLoggingHeroku                `pulumi:"loggingHeroku"`
 	LoggingHoneycombs             []ServiceComputeLoggingHoneycomb             `pulumi:"loggingHoneycombs"`
 	LoggingHttps                  []ServiceComputeLoggingHttp                  `pulumi:"loggingHttps"`
@@ -324,6 +328,7 @@ type ServiceComputeArgs struct {
 	LoggingFtps                   ServiceComputeLoggingFtpArrayInput
 	LoggingGcs                    ServiceComputeLoggingGcArrayInput
 	LoggingGooglepubsubs          ServiceComputeLoggingGooglepubsubArrayInput
+	LoggingGrafanacloudlogs       ServiceComputeLoggingGrafanacloudlogArrayInput
 	LoggingHeroku                 ServiceComputeLoggingHerokuArrayInput
 	LoggingHoneycombs             ServiceComputeLoggingHoneycombArrayInput
 	LoggingHttps                  ServiceComputeLoggingHttpArrayInput
@@ -531,6 +536,12 @@ func (o ServiceComputeOutput) LoggingGcs() ServiceComputeLoggingGcArrayOutput {
 
 func (o ServiceComputeOutput) LoggingGooglepubsubs() ServiceComputeLoggingGooglepubsubArrayOutput {
 	return o.ApplyT(func(v *ServiceCompute) ServiceComputeLoggingGooglepubsubArrayOutput { return v.LoggingGooglepubsubs }).(ServiceComputeLoggingGooglepubsubArrayOutput)
+}
+
+func (o ServiceComputeOutput) LoggingGrafanacloudlogs() ServiceComputeLoggingGrafanacloudlogArrayOutput {
+	return o.ApplyT(func(v *ServiceCompute) ServiceComputeLoggingGrafanacloudlogArrayOutput {
+		return v.LoggingGrafanacloudlogs
+	}).(ServiceComputeLoggingGrafanacloudlogArrayOutput)
 }
 
 func (o ServiceComputeOutput) LoggingHeroku() ServiceComputeLoggingHerokuArrayOutput {

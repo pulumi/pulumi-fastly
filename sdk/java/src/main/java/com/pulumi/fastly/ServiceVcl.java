@@ -31,6 +31,7 @@ import com.pulumi.fastly.outputs.ServiceVclLoggingElasticsearch;
 import com.pulumi.fastly.outputs.ServiceVclLoggingFtp;
 import com.pulumi.fastly.outputs.ServiceVclLoggingGc;
 import com.pulumi.fastly.outputs.ServiceVclLoggingGooglepubsub;
+import com.pulumi.fastly.outputs.ServiceVclLoggingGrafanacloudlog;
 import com.pulumi.fastly.outputs.ServiceVclLoggingHerokus;
 import com.pulumi.fastly.outputs.ServiceVclLoggingHoneycomb;
 import com.pulumi.fastly.outputs.ServiceVclLoggingHttp;
@@ -346,6 +347,12 @@ public class ServiceVcl extends com.pulumi.resources.CustomResource {
 
     public Output<Optional<List<ServiceVclLoggingGooglepubsub>>> loggingGooglepubsubs() {
         return Codegen.optional(this.loggingGooglepubsubs);
+    }
+    @Export(name="loggingGrafanacloudlogs", refs={List.class,ServiceVclLoggingGrafanacloudlog.class}, tree="[0,1]")
+    private Output</* @Nullable */ List<ServiceVclLoggingGrafanacloudlog>> loggingGrafanacloudlogs;
+
+    public Output<Optional<List<ServiceVclLoggingGrafanacloudlog>>> loggingGrafanacloudlogs() {
+        return Codegen.optional(this.loggingGrafanacloudlogs);
     }
     @Export(name="loggingHerokus", refs={List.class,ServiceVclLoggingHerokus.class}, tree="[0,1]")
     private Output</* @Nullable */ List<ServiceVclLoggingHerokus>> loggingHerokus;
