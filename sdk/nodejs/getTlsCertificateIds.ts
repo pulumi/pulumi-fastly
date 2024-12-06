@@ -49,7 +49,7 @@ export interface GetTlsCertificateIdsResult {
  * const exampleTlsActivation = new fastly.TlsActivation("example", {certificateId: example.then(example => example.ids?.[0])});
  * ```
  */
-export function getTlsCertificateIdsOutput(opts?: pulumi.InvokeOptions): pulumi.Output<GetTlsCertificateIdsResult> {
+export function getTlsCertificateIdsOutput(opts?: pulumi.InvokeOutputOptions): pulumi.Output<GetTlsCertificateIdsResult> {
     opts = pulumi.mergeOptions(utilities.resourceOptsDefaults(), opts || {});
     return pulumi.runtime.invokeOutput("fastly:index/getTlsCertificateIds:getTlsCertificateIds", {
     }, opts);

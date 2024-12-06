@@ -73,12 +73,12 @@ def get_datacenters(opts: Optional[pulumi.InvokeOptions] = None) -> AwaitableGet
     return AwaitableGetDatacentersResult(
         id=pulumi.get(__ret__, 'id'),
         pops=pulumi.get(__ret__, 'pops'))
-def get_datacenters_output(opts: Optional[pulumi.InvokeOptions] = None) -> pulumi.Output[GetDatacentersResult]:
+def get_datacenters_output(opts: Optional[Union[pulumi.InvokeOptions, pulumi.InvokeOutputOptions]] = None) -> pulumi.Output[GetDatacentersResult]:
     """
     Use this data source to get the list of the [Fastly datacenters](https://developer.fastly.com/reference/api/utils/pops/).
     """
     __args__ = dict()
-    opts = pulumi.InvokeOptions.merge(_utilities.get_invoke_opts_defaults(), opts)
+    opts = pulumi.InvokeOutputOptions.merge(_utilities.get_invoke_opts_defaults(), opts)
     __ret__ = pulumi.runtime.invoke_output('fastly:index/getDatacenters:getDatacenters', __args__, opts=opts, typ=GetDatacentersResult)
     return __ret__.apply(lambda __response__: GetDatacentersResult(
         id=pulumi.get(__response__, 'id'),

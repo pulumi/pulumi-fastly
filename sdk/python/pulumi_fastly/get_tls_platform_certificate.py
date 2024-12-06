@@ -175,7 +175,7 @@ def get_tls_platform_certificate(domains: Optional[Sequence[str]] = None,
         updated_at=pulumi.get(__ret__, 'updated_at'))
 def get_tls_platform_certificate_output(domains: Optional[pulumi.Input[Optional[Sequence[str]]]] = None,
                                         id: Optional[pulumi.Input[Optional[str]]] = None,
-                                        opts: Optional[pulumi.InvokeOptions] = None) -> pulumi.Output[GetTlsPlatformCertificateResult]:
+                                        opts: Optional[Union[pulumi.InvokeOptions, pulumi.InvokeOutputOptions]] = None) -> pulumi.Output[GetTlsPlatformCertificateResult]:
     """
     Use this data source to get information of a Platform TLS certificate for use with other resources.
 
@@ -201,7 +201,7 @@ def get_tls_platform_certificate_output(domains: Optional[pulumi.Input[Optional[
     __args__ = dict()
     __args__['domains'] = domains
     __args__['id'] = id
-    opts = pulumi.InvokeOptions.merge(_utilities.get_invoke_opts_defaults(), opts)
+    opts = pulumi.InvokeOutputOptions.merge(_utilities.get_invoke_opts_defaults(), opts)
     __ret__ = pulumi.runtime.invoke_output('fastly:index/getTlsPlatformCertificate:getTlsPlatformCertificate', __args__, opts=opts, typ=GetTlsPlatformCertificateResult)
     return __ret__.apply(lambda __response__: GetTlsPlatformCertificateResult(
         configuration_id=pulumi.get(__response__, 'configuration_id'),

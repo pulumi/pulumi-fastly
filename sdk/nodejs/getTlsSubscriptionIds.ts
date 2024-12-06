@@ -55,7 +55,7 @@ export interface GetTlsSubscriptionIdsResult {
  * export const subscriptionDomains = exampleGetTlsSubscription.apply(exampleGetTlsSubscription => Object.values(exampleGetTlsSubscription).map(a => (a.certificateAuthority)));
  * ```
  */
-export function getTlsSubscriptionIdsOutput(opts?: pulumi.InvokeOptions): pulumi.Output<GetTlsSubscriptionIdsResult> {
+export function getTlsSubscriptionIdsOutput(opts?: pulumi.InvokeOutputOptions): pulumi.Output<GetTlsSubscriptionIdsResult> {
     opts = pulumi.mergeOptions(utilities.resourceOptsDefaults(), opts || {});
     return pulumi.runtime.invokeOutput("fastly:index/getTlsSubscriptionIds:getTlsSubscriptionIds", {
     }, opts);

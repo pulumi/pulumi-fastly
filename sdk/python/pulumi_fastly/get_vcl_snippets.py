@@ -130,7 +130,7 @@ def get_vcl_snippets(service_id: Optional[str] = None,
         vcl_snippets=pulumi.get(__ret__, 'vcl_snippets'))
 def get_vcl_snippets_output(service_id: Optional[pulumi.Input[str]] = None,
                             service_version: Optional[pulumi.Input[int]] = None,
-                            opts: Optional[pulumi.InvokeOptions] = None) -> pulumi.Output[GetVclSnippetsResult]:
+                            opts: Optional[Union[pulumi.InvokeOptions, pulumi.InvokeOutputOptions]] = None) -> pulumi.Output[GetVclSnippetsResult]:
     """
     VCL Snippets are blocks of VCL logic inserted into your service's configuration that don't require custom VCL.
 
@@ -162,7 +162,7 @@ def get_vcl_snippets_output(service_id: Optional[pulumi.Input[str]] = None,
     __args__ = dict()
     __args__['serviceId'] = service_id
     __args__['serviceVersion'] = service_version
-    opts = pulumi.InvokeOptions.merge(_utilities.get_invoke_opts_defaults(), opts)
+    opts = pulumi.InvokeOutputOptions.merge(_utilities.get_invoke_opts_defaults(), opts)
     __ret__ = pulumi.runtime.invoke_output('fastly:index/getVclSnippets:getVclSnippets', __args__, opts=opts, typ=GetVclSnippetsResult)
     return __ret__.apply(lambda __response__: GetVclSnippetsResult(
         id=pulumi.get(__response__, 'id'),
