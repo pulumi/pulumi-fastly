@@ -102,7 +102,7 @@ def get_tls_activation_ids(certificate_id: Optional[str] = None,
         id=pulumi.get(__ret__, 'id'),
         ids=pulumi.get(__ret__, 'ids'))
 def get_tls_activation_ids_output(certificate_id: Optional[pulumi.Input[Optional[str]]] = None,
-                                  opts: Optional[pulumi.InvokeOptions] = None) -> pulumi.Output[GetTlsActivationIdsResult]:
+                                  opts: Optional[Union[pulumi.InvokeOptions, pulumi.InvokeOutputOptions]] = None) -> pulumi.Output[GetTlsActivationIdsResult]:
     """
     Use this data source to get the list of TLS Activation identifiers in Fastly.
 
@@ -122,7 +122,7 @@ def get_tls_activation_ids_output(certificate_id: Optional[pulumi.Input[Optional
     """
     __args__ = dict()
     __args__['certificateId'] = certificate_id
-    opts = pulumi.InvokeOptions.merge(_utilities.get_invoke_opts_defaults(), opts)
+    opts = pulumi.InvokeOutputOptions.merge(_utilities.get_invoke_opts_defaults(), opts)
     __ret__ = pulumi.runtime.invoke_output('fastly:index/getTlsActivationIds:getTlsActivationIds', __args__, opts=opts, typ=GetTlsActivationIdsResult)
     return __ret__.apply(lambda __response__: GetTlsActivationIdsResult(
         certificate_id=pulumi.get(__response__, 'certificate_id'),

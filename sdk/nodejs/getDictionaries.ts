@@ -121,7 +121,7 @@ export interface GetDictionariesResult {
  *
  * [1]: https://developer.fastly.com/reference/api/dictionaries/
  */
-export function getDictionariesOutput(args: GetDictionariesOutputArgs, opts?: pulumi.InvokeOptions): pulumi.Output<GetDictionariesResult> {
+export function getDictionariesOutput(args: GetDictionariesOutputArgs, opts?: pulumi.InvokeOutputOptions): pulumi.Output<GetDictionariesResult> {
     opts = pulumi.mergeOptions(utilities.resourceOptsDefaults(), opts || {});
     return pulumi.runtime.invokeOutput("fastly:index/getDictionaries:getDictionaries", {
         "serviceId": args.serviceId,

@@ -127,7 +127,7 @@ export interface GetTlsCertificateResult {
  * });
  * ```
  */
-export function getTlsCertificateOutput(args?: GetTlsCertificateOutputArgs, opts?: pulumi.InvokeOptions): pulumi.Output<GetTlsCertificateResult> {
+export function getTlsCertificateOutput(args?: GetTlsCertificateOutputArgs, opts?: pulumi.InvokeOutputOptions): pulumi.Output<GetTlsCertificateResult> {
     args = args || {};
     opts = pulumi.mergeOptions(utilities.resourceOptsDefaults(), opts || {});
     return pulumi.runtime.invokeOutput("fastly:index/getTlsCertificate:getTlsCertificate", {

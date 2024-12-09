@@ -206,7 +206,7 @@ def get_tls_configuration_output(default: Optional[pulumi.Input[Optional[bool]]]
                                  name: Optional[pulumi.Input[Optional[str]]] = None,
                                  tls_protocols: Optional[pulumi.Input[Optional[Sequence[str]]]] = None,
                                  tls_service: Optional[pulumi.Input[Optional[str]]] = None,
-                                 opts: Optional[pulumi.InvokeOptions] = None) -> pulumi.Output[GetTlsConfigurationResult]:
+                                 opts: Optional[Union[pulumi.InvokeOptions, pulumi.InvokeOutputOptions]] = None) -> pulumi.Output[GetTlsConfigurationResult]:
     """
     Use this data source to get the ID of a TLS configuration for use with other resources.
 
@@ -241,7 +241,7 @@ def get_tls_configuration_output(default: Optional[pulumi.Input[Optional[bool]]]
     __args__['name'] = name
     __args__['tlsProtocols'] = tls_protocols
     __args__['tlsService'] = tls_service
-    opts = pulumi.InvokeOptions.merge(_utilities.get_invoke_opts_defaults(), opts)
+    opts = pulumi.InvokeOutputOptions.merge(_utilities.get_invoke_opts_defaults(), opts)
     __ret__ = pulumi.runtime.invoke_output('fastly:index/getTlsConfiguration:getTlsConfiguration', __args__, opts=opts, typ=GetTlsConfigurationResult)
     return __ret__.apply(lambda __response__: GetTlsConfigurationResult(
         created_at=pulumi.get(__response__, 'created_at'),
