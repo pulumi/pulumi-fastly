@@ -82,7 +82,7 @@ def get_tls_platform_certificate_ids(opts: Optional[pulumi.InvokeOptions] = None
     return AwaitableGetTlsPlatformCertificateIdsResult(
         id=pulumi.get(__ret__, 'id'),
         ids=pulumi.get(__ret__, 'ids'))
-def get_tls_platform_certificate_ids_output(opts: Optional[pulumi.InvokeOptions] = None) -> pulumi.Output[GetTlsPlatformCertificateIdsResult]:
+def get_tls_platform_certificate_ids_output(opts: Optional[Union[pulumi.InvokeOptions, pulumi.InvokeOutputOptions]] = None) -> pulumi.Output[GetTlsPlatformCertificateIdsResult]:
     """
     Use this data source to get the IDs of available Platform TLS Certificates for use with other resources.
 
@@ -97,7 +97,7 @@ def get_tls_platform_certificate_ids_output(opts: Optional[pulumi.InvokeOptions]
     ```
     """
     __args__ = dict()
-    opts = pulumi.InvokeOptions.merge(_utilities.get_invoke_opts_defaults(), opts)
+    opts = pulumi.InvokeOutputOptions.merge(_utilities.get_invoke_opts_defaults(), opts)
     __ret__ = pulumi.runtime.invoke_output('fastly:index/getTlsPlatformCertificateIds:getTlsPlatformCertificateIds', __args__, opts=opts, typ=GetTlsPlatformCertificateIdsResult)
     return __ret__.apply(lambda __response__: GetTlsPlatformCertificateIdsResult(
         id=pulumi.get(__response__, 'id'),

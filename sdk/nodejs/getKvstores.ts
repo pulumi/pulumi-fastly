@@ -25,7 +25,7 @@ export interface GetKvstoresResult {
      */
     readonly stores: outputs.GetKvstoresStore[];
 }
-export function getKvstoresOutput(opts?: pulumi.InvokeOptions): pulumi.Output<GetKvstoresResult> {
+export function getKvstoresOutput(opts?: pulumi.InvokeOutputOptions): pulumi.Output<GetKvstoresResult> {
     opts = pulumi.mergeOptions(utilities.resourceOptsDefaults(), opts || {});
     return pulumi.runtime.invokeOutput("fastly:index/getKvstores:getKvstores", {
     }, opts);

@@ -102,7 +102,7 @@ export interface GetTlsActivationResult {
  * });
  * ```
  */
-export function getTlsActivationOutput(args?: GetTlsActivationOutputArgs, opts?: pulumi.InvokeOptions): pulumi.Output<GetTlsActivationResult> {
+export function getTlsActivationOutput(args?: GetTlsActivationOutputArgs, opts?: pulumi.InvokeOutputOptions): pulumi.Output<GetTlsActivationResult> {
     args = args || {};
     opts = pulumi.mergeOptions(utilities.resourceOptsDefaults(), opts || {});
     return pulumi.runtime.invokeOutput("fastly:index/getTlsActivation:getTlsActivation", {

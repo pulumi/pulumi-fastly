@@ -124,7 +124,7 @@ export interface GetTlsPrivateKeyResult {
  * export const privateKeyNeedsReplacing = demo.then(demo => demo.replace);
  * ```
  */
-export function getTlsPrivateKeyOutput(args?: GetTlsPrivateKeyOutputArgs, opts?: pulumi.InvokeOptions): pulumi.Output<GetTlsPrivateKeyResult> {
+export function getTlsPrivateKeyOutput(args?: GetTlsPrivateKeyOutputArgs, opts?: pulumi.InvokeOutputOptions): pulumi.Output<GetTlsPrivateKeyResult> {
     args = args || {};
     opts = pulumi.mergeOptions(utilities.resourceOptsDefaults(), opts || {});
     return pulumi.runtime.invokeOutput("fastly:index/getTlsPrivateKey:getTlsPrivateKey", {
