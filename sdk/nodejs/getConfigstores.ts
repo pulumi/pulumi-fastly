@@ -25,7 +25,7 @@ export interface GetConfigstoresResult {
      */
     readonly stores: outputs.GetConfigstoresStore[];
 }
-export function getConfigstoresOutput(opts?: pulumi.InvokeOptions): pulumi.Output<GetConfigstoresResult> {
+export function getConfigstoresOutput(opts?: pulumi.InvokeOutputOptions): pulumi.Output<GetConfigstoresResult> {
     opts = pulumi.mergeOptions(utilities.resourceOptsDefaults(), opts || {});
     return pulumi.runtime.invokeOutput("fastly:index/getConfigstores:getConfigstores", {
     }, opts);

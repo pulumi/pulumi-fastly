@@ -106,7 +106,7 @@ export interface GetTlsSubscriptionResult {
  * });
  * ```
  */
-export function getTlsSubscriptionOutput(args?: GetTlsSubscriptionOutputArgs, opts?: pulumi.InvokeOptions): pulumi.Output<GetTlsSubscriptionResult> {
+export function getTlsSubscriptionOutput(args?: GetTlsSubscriptionOutputArgs, opts?: pulumi.InvokeOutputOptions): pulumi.Output<GetTlsSubscriptionResult> {
     args = args || {};
     opts = pulumi.mergeOptions(utilities.resourceOptsDefaults(), opts || {});
     return pulumi.runtime.invokeOutput("fastly:index/getTlsSubscription:getTlsSubscription", {

@@ -74,7 +74,7 @@ export interface GetTlsDomainResult {
  * });
  * ```
  */
-export function getTlsDomainOutput(args: GetTlsDomainOutputArgs, opts?: pulumi.InvokeOptions): pulumi.Output<GetTlsDomainResult> {
+export function getTlsDomainOutput(args: GetTlsDomainOutputArgs, opts?: pulumi.InvokeOutputOptions): pulumi.Output<GetTlsDomainResult> {
     opts = pulumi.mergeOptions(utilities.resourceOptsDefaults(), opts || {});
     return pulumi.runtime.invokeOutput("fastly:index/getTlsDomain:getTlsDomain", {
         "domain": args.domain,

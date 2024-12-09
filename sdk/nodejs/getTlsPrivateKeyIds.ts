@@ -53,7 +53,7 @@ export interface GetTlsPrivateKeyIdsResult {
  * });
  * ```
  */
-export function getTlsPrivateKeyIdsOutput(opts?: pulumi.InvokeOptions): pulumi.Output<GetTlsPrivateKeyIdsResult> {
+export function getTlsPrivateKeyIdsOutput(opts?: pulumi.InvokeOutputOptions): pulumi.Output<GetTlsPrivateKeyIdsResult> {
     opts = pulumi.mergeOptions(utilities.resourceOptsDefaults(), opts || {});
     return pulumi.runtime.invokeOutput("fastly:index/getTlsPrivateKeyIds:getTlsPrivateKeyIds", {
     }, opts);

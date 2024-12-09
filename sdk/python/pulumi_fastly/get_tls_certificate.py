@@ -213,7 +213,7 @@ def get_tls_certificate_output(domains: Optional[pulumi.Input[Optional[Sequence[
                                issued_to: Optional[pulumi.Input[Optional[str]]] = None,
                                issuer: Optional[pulumi.Input[Optional[str]]] = None,
                                name: Optional[pulumi.Input[Optional[str]]] = None,
-                               opts: Optional[pulumi.InvokeOptions] = None) -> pulumi.Output[GetTlsCertificateResult]:
+                               opts: Optional[Union[pulumi.InvokeOptions, pulumi.InvokeOutputOptions]] = None) -> pulumi.Output[GetTlsCertificateResult]:
     """
     Use this data source to get information of a TLS certificate for use with other resources.
 
@@ -245,7 +245,7 @@ def get_tls_certificate_output(domains: Optional[pulumi.Input[Optional[Sequence[
     __args__['issuedTo'] = issued_to
     __args__['issuer'] = issuer
     __args__['name'] = name
-    opts = pulumi.InvokeOptions.merge(_utilities.get_invoke_opts_defaults(), opts)
+    opts = pulumi.InvokeOutputOptions.merge(_utilities.get_invoke_opts_defaults(), opts)
     __ret__ = pulumi.runtime.invoke_output('fastly:index/getTlsCertificate:getTlsCertificate', __args__, opts=opts, typ=GetTlsCertificateResult)
     return __ret__.apply(lambda __response__: GetTlsCertificateResult(
         created_at=pulumi.get(__response__, 'created_at'),

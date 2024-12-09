@@ -103,7 +103,7 @@ export interface GetVclSnippetsResult {
  *
  * [1]: https://www.fastly.com/documentation/reference/api/vcl-services/snippet/
  */
-export function getVclSnippetsOutput(args: GetVclSnippetsOutputArgs, opts?: pulumi.InvokeOptions): pulumi.Output<GetVclSnippetsResult> {
+export function getVclSnippetsOutput(args: GetVclSnippetsOutputArgs, opts?: pulumi.InvokeOutputOptions): pulumi.Output<GetVclSnippetsResult> {
     opts = pulumi.mergeOptions(utilities.resourceOptsDefaults(), opts || {});
     return pulumi.runtime.invokeOutput("fastly:index/getVclSnippets:getVclSnippets", {
         "serviceId": args.serviceId,

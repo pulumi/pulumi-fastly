@@ -49,7 +49,7 @@ export interface GetTlsConfigurationIdsResult {
  * const exampleTlsActivation = new fastly.TlsActivation("example", {configurationId: example.then(example => example.ids?.[0])});
  * ```
  */
-export function getTlsConfigurationIdsOutput(opts?: pulumi.InvokeOptions): pulumi.Output<GetTlsConfigurationIdsResult> {
+export function getTlsConfigurationIdsOutput(opts?: pulumi.InvokeOutputOptions): pulumi.Output<GetTlsConfigurationIdsResult> {
     opts = pulumi.mergeOptions(utilities.resourceOptsDefaults(), opts || {});
     return pulumi.runtime.invokeOutput("fastly:index/getTlsConfigurationIds:getTlsConfigurationIds", {
     }, opts);
