@@ -73,12 +73,12 @@ def get_kvstores(opts: Optional[pulumi.InvokeOptions] = None) -> AwaitableGetKvs
     return AwaitableGetKvstoresResult(
         id=pulumi.get(__ret__, 'id'),
         stores=pulumi.get(__ret__, 'stores'))
-def get_kvstores_output(opts: Optional[pulumi.InvokeOptions] = None) -> pulumi.Output[GetKvstoresResult]:
+def get_kvstores_output(opts: Optional[Union[pulumi.InvokeOptions, pulumi.InvokeOutputOptions]] = None) -> pulumi.Output[GetKvstoresResult]:
     """
     Use this data source to access information about an existing resource.
     """
     __args__ = dict()
-    opts = pulumi.InvokeOptions.merge(_utilities.get_invoke_opts_defaults(), opts)
+    opts = pulumi.InvokeOutputOptions.merge(_utilities.get_invoke_opts_defaults(), opts)
     __ret__ = pulumi.runtime.invoke_output('fastly:index/getKvstores:getKvstores', __args__, opts=opts, typ=GetKvstoresResult)
     return __ret__.apply(lambda __response__: GetKvstoresResult(
         id=pulumi.get(__response__, 'id'),

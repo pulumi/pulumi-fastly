@@ -73,12 +73,12 @@ def get_configstores(opts: Optional[pulumi.InvokeOptions] = None) -> AwaitableGe
     return AwaitableGetConfigstoresResult(
         id=pulumi.get(__ret__, 'id'),
         stores=pulumi.get(__ret__, 'stores'))
-def get_configstores_output(opts: Optional[pulumi.InvokeOptions] = None) -> pulumi.Output[GetConfigstoresResult]:
+def get_configstores_output(opts: Optional[Union[pulumi.InvokeOptions, pulumi.InvokeOutputOptions]] = None) -> pulumi.Output[GetConfigstoresResult]:
     """
     Use this data source to access information about an existing resource.
     """
     __args__ = dict()
-    opts = pulumi.InvokeOptions.merge(_utilities.get_invoke_opts_defaults(), opts)
+    opts = pulumi.InvokeOutputOptions.merge(_utilities.get_invoke_opts_defaults(), opts)
     __ret__ = pulumi.runtime.invoke_output('fastly:index/getConfigstores:getConfigstores', __args__, opts=opts, typ=GetConfigstoresResult)
     return __ret__.apply(lambda __response__: GetConfigstoresResult(
         id=pulumi.get(__response__, 'id'),

@@ -83,7 +83,7 @@ def get_tls_subscription_ids(opts: Optional[pulumi.InvokeOptions] = None) -> Awa
     return AwaitableGetTlsSubscriptionIdsResult(
         id=pulumi.get(__ret__, 'id'),
         ids=pulumi.get(__ret__, 'ids'))
-def get_tls_subscription_ids_output(opts: Optional[pulumi.InvokeOptions] = None) -> pulumi.Output[GetTlsSubscriptionIdsResult]:
+def get_tls_subscription_ids_output(opts: Optional[Union[pulumi.InvokeOptions, pulumi.InvokeOutputOptions]] = None) -> pulumi.Output[GetTlsSubscriptionIdsResult]:
     """
     Use this data source to get the list of IDs of TLS Subscriptions in Fastly.
 
@@ -99,7 +99,7 @@ def get_tls_subscription_ids_output(opts: Optional[pulumi.InvokeOptions] = None)
     ```
     """
     __args__ = dict()
-    opts = pulumi.InvokeOptions.merge(_utilities.get_invoke_opts_defaults(), opts)
+    opts = pulumi.InvokeOutputOptions.merge(_utilities.get_invoke_opts_defaults(), opts)
     __ret__ = pulumi.runtime.invoke_output('fastly:index/getTlsSubscriptionIds:getTlsSubscriptionIds', __args__, opts=opts, typ=GetTlsSubscriptionIdsResult)
     return __ret__.apply(lambda __response__: GetTlsSubscriptionIdsResult(
         id=pulumi.get(__response__, 'id'),

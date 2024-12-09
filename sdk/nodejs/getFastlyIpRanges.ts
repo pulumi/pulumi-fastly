@@ -77,7 +77,7 @@ export interface GetFastlyIpRangesResult {
  *
  * [1]: https://docs.fastly.com/guides/securing-communications/accessing-fastlys-ip-ranges
  */
-export function getFastlyIpRangesOutput(opts?: pulumi.InvokeOptions): pulumi.Output<GetFastlyIpRangesResult> {
+export function getFastlyIpRangesOutput(opts?: pulumi.InvokeOutputOptions): pulumi.Output<GetFastlyIpRangesResult> {
     opts = pulumi.mergeOptions(utilities.resourceOptsDefaults(), opts || {});
     return pulumi.runtime.invokeOutput("fastly:index/getFastlyIpRanges:getFastlyIpRanges", {
     }, opts);

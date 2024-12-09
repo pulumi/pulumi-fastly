@@ -144,7 +144,7 @@ def get_tls_activation_output(certificate_id: Optional[pulumi.Input[Optional[str
                               configuration_id: Optional[pulumi.Input[Optional[str]]] = None,
                               domain: Optional[pulumi.Input[Optional[str]]] = None,
                               id: Optional[pulumi.Input[Optional[str]]] = None,
-                              opts: Optional[pulumi.InvokeOptions] = None) -> pulumi.Output[GetTlsActivationResult]:
+                              opts: Optional[Union[pulumi.InvokeOptions, pulumi.InvokeOutputOptions]] = None) -> pulumi.Output[GetTlsActivationResult]:
     """
     Use this data source to get information on a TLS activation, including the certificate used, and the domain on which TLS was enabled.
 
@@ -174,7 +174,7 @@ def get_tls_activation_output(certificate_id: Optional[pulumi.Input[Optional[str
     __args__['configurationId'] = configuration_id
     __args__['domain'] = domain
     __args__['id'] = id
-    opts = pulumi.InvokeOptions.merge(_utilities.get_invoke_opts_defaults(), opts)
+    opts = pulumi.InvokeOutputOptions.merge(_utilities.get_invoke_opts_defaults(), opts)
     __ret__ = pulumi.runtime.invoke_output('fastly:index/getTlsActivation:getTlsActivation', __args__, opts=opts, typ=GetTlsActivationResult)
     return __ret__.apply(lambda __response__: GetTlsActivationResult(
         certificate_id=pulumi.get(__response__, 'certificate_id'),
