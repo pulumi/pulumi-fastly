@@ -68,7 +68,7 @@ export interface GetWafRulesResult {
      */
     readonly tags?: string[];
 }
-export function getWafRulesOutput(args?: GetWafRulesOutputArgs, opts?: pulumi.InvokeOptions): pulumi.Output<GetWafRulesResult> {
+export function getWafRulesOutput(args?: GetWafRulesOutputArgs, opts?: pulumi.InvokeOutputOptions): pulumi.Output<GetWafRulesResult> {
     args = args || {};
     opts = pulumi.mergeOptions(utilities.resourceOptsDefaults(), opts || {});
     return pulumi.runtime.invokeOutput("fastly:index/getWafRules:getWafRules", {

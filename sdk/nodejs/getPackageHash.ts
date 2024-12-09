@@ -84,7 +84,7 @@ export interface GetPackageHashResult {
  * }});
  * ```
  */
-export function getPackageHashOutput(args?: GetPackageHashOutputArgs, opts?: pulumi.InvokeOptions): pulumi.Output<GetPackageHashResult> {
+export function getPackageHashOutput(args?: GetPackageHashOutputArgs, opts?: pulumi.InvokeOutputOptions): pulumi.Output<GetPackageHashResult> {
     args = args || {};
     opts = pulumi.mergeOptions(utilities.resourceOptsDefaults(), opts || {});
     return pulumi.runtime.invokeOutput("fastly:index/getPackageHash:getPackageHash", {

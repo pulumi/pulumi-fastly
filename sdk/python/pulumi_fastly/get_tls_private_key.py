@@ -180,7 +180,7 @@ def get_tls_private_key_output(created_at: Optional[pulumi.Input[Optional[str]]]
                                key_type: Optional[pulumi.Input[Optional[str]]] = None,
                                name: Optional[pulumi.Input[Optional[str]]] = None,
                                public_key_sha1: Optional[pulumi.Input[Optional[str]]] = None,
-                               opts: Optional[pulumi.InvokeOptions] = None) -> pulumi.Output[GetTlsPrivateKeyResult]:
+                               opts: Optional[Union[pulumi.InvokeOptions, pulumi.InvokeOutputOptions]] = None) -> pulumi.Output[GetTlsPrivateKeyResult]:
     """
     Use this data source to get information on a TLS Private Key uploaded to Fastly.
 
@@ -216,7 +216,7 @@ def get_tls_private_key_output(created_at: Optional[pulumi.Input[Optional[str]]]
     __args__['keyType'] = key_type
     __args__['name'] = name
     __args__['publicKeySha1'] = public_key_sha1
-    opts = pulumi.InvokeOptions.merge(_utilities.get_invoke_opts_defaults(), opts)
+    opts = pulumi.InvokeOutputOptions.merge(_utilities.get_invoke_opts_defaults(), opts)
     __ret__ = pulumi.runtime.invoke_output('fastly:index/getTlsPrivateKey:getTlsPrivateKey', __args__, opts=opts, typ=GetTlsPrivateKeyResult)
     return __ret__.apply(lambda __response__: GetTlsPrivateKeyResult(
         created_at=pulumi.get(__response__, 'created_at'),

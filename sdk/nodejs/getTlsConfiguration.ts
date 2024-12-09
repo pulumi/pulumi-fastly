@@ -132,7 +132,7 @@ export interface GetTlsConfigurationResult {
  * const exampleTlsActivation = new fastly.TlsActivation("example", {configurationId: example.then(example => example.id)});
  * ```
  */
-export function getTlsConfigurationOutput(args?: GetTlsConfigurationOutputArgs, opts?: pulumi.InvokeOptions): pulumi.Output<GetTlsConfigurationResult> {
+export function getTlsConfigurationOutput(args?: GetTlsConfigurationOutputArgs, opts?: pulumi.InvokeOutputOptions): pulumi.Output<GetTlsConfigurationResult> {
     args = args || {};
     opts = pulumi.mergeOptions(utilities.resourceOptsDefaults(), opts || {});
     return pulumi.runtime.invokeOutput("fastly:index/getTlsConfiguration:getTlsConfiguration", {

@@ -25,7 +25,7 @@ export interface GetSecretstoresResult {
      */
     readonly stores: outputs.GetSecretstoresStore[];
 }
-export function getSecretstoresOutput(opts?: pulumi.InvokeOptions): pulumi.Output<GetSecretstoresResult> {
+export function getSecretstoresOutput(opts?: pulumi.InvokeOutputOptions): pulumi.Output<GetSecretstoresResult> {
     opts = pulumi.mergeOptions(utilities.resourceOptsDefaults(), opts || {});
     return pulumi.runtime.invokeOutput("fastly:index/getSecretstores:getSecretstores", {
     }, opts);

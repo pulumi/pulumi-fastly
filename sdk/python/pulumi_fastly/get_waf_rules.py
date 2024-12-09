@@ -142,7 +142,7 @@ def get_waf_rules_output(exclude_modsec_rule_ids: Optional[pulumi.Input[Optional
                          modsec_rule_ids: Optional[pulumi.Input[Optional[Sequence[int]]]] = None,
                          publishers: Optional[pulumi.Input[Optional[Sequence[str]]]] = None,
                          tags: Optional[pulumi.Input[Optional[Sequence[str]]]] = None,
-                         opts: Optional[pulumi.InvokeOptions] = None) -> pulumi.Output[GetWafRulesResult]:
+                         opts: Optional[Union[pulumi.InvokeOptions, pulumi.InvokeOutputOptions]] = None) -> pulumi.Output[GetWafRulesResult]:
     """
     Use this data source to access information about an existing resource.
 
@@ -156,7 +156,7 @@ def get_waf_rules_output(exclude_modsec_rule_ids: Optional[pulumi.Input[Optional
     __args__['modsecRuleIds'] = modsec_rule_ids
     __args__['publishers'] = publishers
     __args__['tags'] = tags
-    opts = pulumi.InvokeOptions.merge(_utilities.get_invoke_opts_defaults(), opts)
+    opts = pulumi.InvokeOutputOptions.merge(_utilities.get_invoke_opts_defaults(), opts)
     __ret__ = pulumi.runtime.invoke_output('fastly:index/getWafRules:getWafRules', __args__, opts=opts, typ=GetWafRulesResult)
     return __ret__.apply(lambda __response__: GetWafRulesResult(
         exclude_modsec_rule_ids=pulumi.get(__response__, 'exclude_modsec_rule_ids'),

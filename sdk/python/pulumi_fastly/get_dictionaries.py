@@ -139,7 +139,7 @@ def get_dictionaries(service_id: Optional[str] = None,
         service_version=pulumi.get(__ret__, 'service_version'))
 def get_dictionaries_output(service_id: Optional[pulumi.Input[str]] = None,
                             service_version: Optional[pulumi.Input[int]] = None,
-                            opts: Optional[pulumi.InvokeOptions] = None) -> pulumi.Output[GetDictionariesResult]:
+                            opts: Optional[Union[pulumi.InvokeOptions, pulumi.InvokeOutputOptions]] = None) -> pulumi.Output[GetDictionariesResult]:
     """
     Use this data source to get a list of [Fastly dictionaries](https://developer.fastly.com/reference/api/dictionaries/) for the specified service/version.
 
@@ -180,7 +180,7 @@ def get_dictionaries_output(service_id: Optional[pulumi.Input[str]] = None,
     __args__ = dict()
     __args__['serviceId'] = service_id
     __args__['serviceVersion'] = service_version
-    opts = pulumi.InvokeOptions.merge(_utilities.get_invoke_opts_defaults(), opts)
+    opts = pulumi.InvokeOutputOptions.merge(_utilities.get_invoke_opts_defaults(), opts)
     __ret__ = pulumi.runtime.invoke_output('fastly:index/getDictionaries:getDictionaries', __args__, opts=opts, typ=GetDictionariesResult)
     return __ret__.apply(lambda __response__: GetDictionariesResult(
         dictionaries=pulumi.get(__response__, 'dictionaries'),

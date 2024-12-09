@@ -190,7 +190,7 @@ def get_tls_subscription_output(certificate_authority: Optional[pulumi.Input[Opt
                                 configuration_id: Optional[pulumi.Input[Optional[str]]] = None,
                                 domains: Optional[pulumi.Input[Optional[Sequence[str]]]] = None,
                                 id: Optional[pulumi.Input[Optional[str]]] = None,
-                                opts: Optional[pulumi.InvokeOptions] = None) -> pulumi.Output[GetTlsSubscriptionResult]:
+                                opts: Optional[Union[pulumi.InvokeOptions, pulumi.InvokeOutputOptions]] = None) -> pulumi.Output[GetTlsSubscriptionResult]:
     """
     Use this data source to get information about a TLS subscription.
 
@@ -214,7 +214,7 @@ def get_tls_subscription_output(certificate_authority: Optional[pulumi.Input[Opt
     __args__['configurationId'] = configuration_id
     __args__['domains'] = domains
     __args__['id'] = id
-    opts = pulumi.InvokeOptions.merge(_utilities.get_invoke_opts_defaults(), opts)
+    opts = pulumi.InvokeOutputOptions.merge(_utilities.get_invoke_opts_defaults(), opts)
     __ret__ = pulumi.runtime.invoke_output('fastly:index/getTlsSubscription:getTlsSubscription', __args__, opts=opts, typ=GetTlsSubscriptionResult)
     return __ret__.apply(lambda __response__: GetTlsSubscriptionResult(
         certificate_authority=pulumi.get(__response__, 'certificate_authority'),

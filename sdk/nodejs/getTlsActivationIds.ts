@@ -75,7 +75,7 @@ export interface GetTlsActivationIdsResult {
  * export const activationDomains = exampleGetTlsActivation.apply(exampleGetTlsActivation => Object.values(exampleGetTlsActivation).map(a => (a.domain)));
  * ```
  */
-export function getTlsActivationIdsOutput(args?: GetTlsActivationIdsOutputArgs, opts?: pulumi.InvokeOptions): pulumi.Output<GetTlsActivationIdsResult> {
+export function getTlsActivationIdsOutput(args?: GetTlsActivationIdsOutputArgs, opts?: pulumi.InvokeOutputOptions): pulumi.Output<GetTlsActivationIdsResult> {
     args = args || {};
     opts = pulumi.mergeOptions(utilities.resourceOptsDefaults(), opts || {});
     return pulumi.runtime.invokeOutput("fastly:index/getTlsActivationIds:getTlsActivationIds", {
