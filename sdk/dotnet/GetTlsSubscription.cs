@@ -64,6 +64,33 @@ namespace Pulumi.Fastly
         /// </summary>
         public static Output<GetTlsSubscriptionResult> Invoke(GetTlsSubscriptionInvokeArgs? args = null, InvokeOptions? options = null)
             => global::Pulumi.Deployment.Instance.Invoke<GetTlsSubscriptionResult>("fastly:index/getTlsSubscription:getTlsSubscription", args ?? new GetTlsSubscriptionInvokeArgs(), options.WithDefaults());
+
+        /// <summary>
+        /// Use this data source to get information about a TLS subscription.
+        /// 
+        /// ## Example Usage
+        /// 
+        /// ```csharp
+        /// using System.Collections.Generic;
+        /// using System.Linq;
+        /// using Pulumi;
+        /// using Fastly = Pulumi.Fastly;
+        /// 
+        /// return await Deployment.RunAsync(() =&gt; 
+        /// {
+        ///     var example = Fastly.GetTlsSubscription.Invoke(new()
+        ///     {
+        ///         Domains = new[]
+        ///         {
+        ///             "example.com",
+        ///         },
+        ///     });
+        /// 
+        /// });
+        /// ```
+        /// </summary>
+        public static Output<GetTlsSubscriptionResult> Invoke(GetTlsSubscriptionInvokeArgs args, InvokeOutputOptions options)
+            => global::Pulumi.Deployment.Instance.Invoke<GetTlsSubscriptionResult>("fastly:index/getTlsSubscription:getTlsSubscription", args ?? new GetTlsSubscriptionInvokeArgs(), options.WithDefaults());
     }
 
 

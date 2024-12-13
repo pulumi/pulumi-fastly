@@ -76,18 +76,8 @@ type GetFastlyIpRangesResult struct {
 
 func GetFastlyIpRangesOutput(ctx *pulumi.Context, opts ...pulumi.InvokeOption) GetFastlyIpRangesResultOutput {
 	return pulumi.ToOutput(0).ApplyT(func(int) (GetFastlyIpRangesResultOutput, error) {
-		opts = internal.PkgInvokeDefaultOpts(opts)
-		var rv GetFastlyIpRangesResult
-		secret, err := ctx.InvokePackageRaw("fastly:index/getFastlyIpRanges:getFastlyIpRanges", nil, &rv, "", opts...)
-		if err != nil {
-			return GetFastlyIpRangesResultOutput{}, err
-		}
-
-		output := pulumi.ToOutput(rv).(GetFastlyIpRangesResultOutput)
-		if secret {
-			return pulumi.ToSecret(output).(GetFastlyIpRangesResultOutput), nil
-		}
-		return output, nil
+		options := pulumi.InvokeOutputOptions{InvokeOptions: internal.PkgInvokeDefaultOpts(opts)}
+		return ctx.InvokeOutput("fastly:index/getFastlyIpRanges:getFastlyIpRanges", nil, GetFastlyIpRangesResultOutput{}, options).(GetFastlyIpRangesResultOutput), nil
 	}).(GetFastlyIpRangesResultOutput)
 }
 

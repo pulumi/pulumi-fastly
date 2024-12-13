@@ -76,6 +76,39 @@ namespace Pulumi.Fastly
         /// </summary>
         public static Output<GetTlsActivationIdsResult> Invoke(GetTlsActivationIdsInvokeArgs? args = null, InvokeOptions? options = null)
             => global::Pulumi.Deployment.Instance.Invoke<GetTlsActivationIdsResult>("fastly:index/getTlsActivationIds:getTlsActivationIds", args ?? new GetTlsActivationIdsInvokeArgs(), options.WithDefaults());
+
+        /// <summary>
+        /// Use this data source to get the list of TLS Activation identifiers in Fastly.
+        /// 
+        /// ## Example Usage
+        /// 
+        /// ```csharp
+        /// using System.Collections.Generic;
+        /// using System.Linq;
+        /// using Pulumi;
+        /// using Fastly = Pulumi.Fastly;
+        /// 
+        /// return await Deployment.RunAsync(() =&gt; 
+        /// {
+        ///     var example = Fastly.GetTlsActivationIds.Invoke(new()
+        ///     {
+        ///         CertificateId = exampleFastlyTlsCertificate.Id,
+        ///     });
+        /// 
+        ///     var exampleGetTlsActivation = ;
+        /// 
+        ///     return new Dictionary&lt;string, object?&gt;
+        ///     {
+        ///         ["activationDomains"] = exampleGetTlsActivation.Apply(exampleGetTlsActivation =&gt; (exampleGetTlsActivation).Values.Select(a =&gt; 
+        ///         {
+        ///             return a.Domain;
+        ///         }).ToList()),
+        ///     };
+        /// });
+        /// ```
+        /// </summary>
+        public static Output<GetTlsActivationIdsResult> Invoke(GetTlsActivationIdsInvokeArgs args, InvokeOutputOptions options)
+            => global::Pulumi.Deployment.Instance.Invoke<GetTlsActivationIdsResult>("fastly:index/getTlsActivationIds:getTlsActivationIds", args ?? new GetTlsActivationIdsInvokeArgs(), options.WithDefaults());
     }
 
 

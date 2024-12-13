@@ -16,6 +16,9 @@ namespace Pulumi.Fastly
 
         public static Output<GetWafRulesResult> Invoke(GetWafRulesInvokeArgs? args = null, InvokeOptions? options = null)
             => global::Pulumi.Deployment.Instance.Invoke<GetWafRulesResult>("fastly:index/getWafRules:getWafRules", args ?? new GetWafRulesInvokeArgs(), options.WithDefaults());
+
+        public static Output<GetWafRulesResult> Invoke(GetWafRulesInvokeArgs args, InvokeOutputOptions options)
+            => global::Pulumi.Deployment.Instance.Invoke<GetWafRulesResult>("fastly:index/getWafRules:getWafRules", args ?? new GetWafRulesInvokeArgs(), options.WithDefaults());
     }
 
 

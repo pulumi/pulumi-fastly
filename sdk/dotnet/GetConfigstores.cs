@@ -16,6 +16,9 @@ namespace Pulumi.Fastly
 
         public static Output<GetConfigstoresResult> Invoke(InvokeOptions? options = null)
             => global::Pulumi.Deployment.Instance.Invoke<GetConfigstoresResult>("fastly:index/getConfigstores:getConfigstores", InvokeArgs.Empty, options.WithDefaults());
+
+        public static Output<GetConfigstoresResult> Invoke(InvokeOutputOptions options)
+            => global::Pulumi.Deployment.Instance.Invoke<GetConfigstoresResult>("fastly:index/getConfigstores:getConfigstores", InvokeArgs.Empty, options.WithDefaults());
     }
 
 

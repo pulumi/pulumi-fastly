@@ -31,18 +31,8 @@ type GetConfigstoresResult struct {
 
 func GetConfigstoresOutput(ctx *pulumi.Context, opts ...pulumi.InvokeOption) GetConfigstoresResultOutput {
 	return pulumi.ToOutput(0).ApplyT(func(int) (GetConfigstoresResultOutput, error) {
-		opts = internal.PkgInvokeDefaultOpts(opts)
-		var rv GetConfigstoresResult
-		secret, err := ctx.InvokePackageRaw("fastly:index/getConfigstores:getConfigstores", nil, &rv, "", opts...)
-		if err != nil {
-			return GetConfigstoresResultOutput{}, err
-		}
-
-		output := pulumi.ToOutput(rv).(GetConfigstoresResultOutput)
-		if secret {
-			return pulumi.ToSecret(output).(GetConfigstoresResultOutput), nil
-		}
-		return output, nil
+		options := pulumi.InvokeOutputOptions{InvokeOptions: internal.PkgInvokeDefaultOpts(opts)}
+		return ctx.InvokeOutput("fastly:index/getConfigstores:getConfigstores", nil, GetConfigstoresResultOutput{}, options).(GetConfigstoresResultOutput), nil
 	}).(GetConfigstoresResultOutput)
 }
 

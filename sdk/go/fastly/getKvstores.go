@@ -31,18 +31,8 @@ type GetKvstoresResult struct {
 
 func GetKvstoresOutput(ctx *pulumi.Context, opts ...pulumi.InvokeOption) GetKvstoresResultOutput {
 	return pulumi.ToOutput(0).ApplyT(func(int) (GetKvstoresResultOutput, error) {
-		opts = internal.PkgInvokeDefaultOpts(opts)
-		var rv GetKvstoresResult
-		secret, err := ctx.InvokePackageRaw("fastly:index/getKvstores:getKvstores", nil, &rv, "", opts...)
-		if err != nil {
-			return GetKvstoresResultOutput{}, err
-		}
-
-		output := pulumi.ToOutput(rv).(GetKvstoresResultOutput)
-		if secret {
-			return pulumi.ToSecret(output).(GetKvstoresResultOutput), nil
-		}
-		return output, nil
+		options := pulumi.InvokeOutputOptions{InvokeOptions: internal.PkgInvokeDefaultOpts(opts)}
+		return ctx.InvokeOutput("fastly:index/getKvstores:getKvstores", nil, GetKvstoresResultOutput{}, options).(GetKvstoresResultOutput), nil
 	}).(GetKvstoresResultOutput)
 }
 

@@ -34,18 +34,8 @@ type GetServicesResult struct {
 
 func GetServicesOutput(ctx *pulumi.Context, opts ...pulumi.InvokeOption) GetServicesResultOutput {
 	return pulumi.ToOutput(0).ApplyT(func(int) (GetServicesResultOutput, error) {
-		opts = internal.PkgInvokeDefaultOpts(opts)
-		var rv GetServicesResult
-		secret, err := ctx.InvokePackageRaw("fastly:index/getServices:getServices", nil, &rv, "", opts...)
-		if err != nil {
-			return GetServicesResultOutput{}, err
-		}
-
-		output := pulumi.ToOutput(rv).(GetServicesResultOutput)
-		if secret {
-			return pulumi.ToSecret(output).(GetServicesResultOutput), nil
-		}
-		return output, nil
+		options := pulumi.InvokeOutputOptions{InvokeOptions: internal.PkgInvokeDefaultOpts(opts)}
+		return ctx.InvokeOutput("fastly:index/getServices:getServices", nil, GetServicesResultOutput{}, options).(GetServicesResultOutput), nil
 	}).(GetServicesResultOutput)
 }
 
