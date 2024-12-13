@@ -58,6 +58,30 @@ namespace Pulumi.Fastly
         /// </summary>
         public static Output<GetTlsDomainResult> Invoke(GetTlsDomainInvokeArgs args, InvokeOptions? options = null)
             => global::Pulumi.Deployment.Instance.Invoke<GetTlsDomainResult>("fastly:index/getTlsDomain:getTlsDomain", args ?? new GetTlsDomainInvokeArgs(), options.WithDefaults());
+
+        /// <summary>
+        /// Use this data source to get the IDs of activations, certificates and subscriptions associated with a domain.
+        /// 
+        /// ## Example Usage
+        /// 
+        /// ```csharp
+        /// using System.Collections.Generic;
+        /// using System.Linq;
+        /// using Pulumi;
+        /// using Fastly = Pulumi.Fastly;
+        /// 
+        /// return await Deployment.RunAsync(() =&gt; 
+        /// {
+        ///     var domain = Fastly.GetTlsDomain.Invoke(new()
+        ///     {
+        ///         Domain = "example.com",
+        ///     });
+        /// 
+        /// });
+        /// ```
+        /// </summary>
+        public static Output<GetTlsDomainResult> Invoke(GetTlsDomainInvokeArgs args, InvokeOutputOptions options)
+            => global::Pulumi.Deployment.Instance.Invoke<GetTlsDomainResult>("fastly:index/getTlsDomain:getTlsDomain", args ?? new GetTlsDomainInvokeArgs(), options.WithDefaults());
     }
 
 

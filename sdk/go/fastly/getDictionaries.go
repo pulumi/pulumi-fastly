@@ -93,21 +93,11 @@ type GetDictionariesResult struct {
 }
 
 func GetDictionariesOutput(ctx *pulumi.Context, args GetDictionariesOutputArgs, opts ...pulumi.InvokeOption) GetDictionariesResultOutput {
-	return pulumi.ToOutputWithContext(context.Background(), args).
+	return pulumi.ToOutputWithContext(ctx.Context(), args).
 		ApplyT(func(v interface{}) (GetDictionariesResultOutput, error) {
 			args := v.(GetDictionariesArgs)
-			opts = internal.PkgInvokeDefaultOpts(opts)
-			var rv GetDictionariesResult
-			secret, err := ctx.InvokePackageRaw("fastly:index/getDictionaries:getDictionaries", args, &rv, "", opts...)
-			if err != nil {
-				return GetDictionariesResultOutput{}, err
-			}
-
-			output := pulumi.ToOutput(rv).(GetDictionariesResultOutput)
-			if secret {
-				return pulumi.ToSecret(output).(GetDictionariesResultOutput), nil
-			}
-			return output, nil
+			options := pulumi.InvokeOutputOptions{InvokeOptions: internal.PkgInvokeDefaultOpts(opts)}
+			return ctx.InvokeOutput("fastly:index/getDictionaries:getDictionaries", args, GetDictionariesResultOutput{}, options).(GetDictionariesResultOutput), nil
 		}).(GetDictionariesResultOutput)
 }
 

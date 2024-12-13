@@ -70,6 +70,36 @@ namespace Pulumi.Fastly
         /// </summary>
         public static Output<GetTlsCertificateResult> Invoke(GetTlsCertificateInvokeArgs? args = null, InvokeOptions? options = null)
             => global::Pulumi.Deployment.Instance.Invoke<GetTlsCertificateResult>("fastly:index/getTlsCertificate:getTlsCertificate", args ?? new GetTlsCertificateInvokeArgs(), options.WithDefaults());
+
+        /// <summary>
+        /// Use this data source to get information of a TLS certificate for use with other resources.
+        /// 
+        /// &gt; **Warning:** The data source's filters are applied using an **AND** boolean operator, so depending on the combination
+        /// of filters, they may become mutually exclusive. The exception to this is `id` which must not be specified in combination
+        /// with any of the others.
+        /// 
+        /// &gt; **Note:** If more or less than a single match is returned by the search, this provider will fail. Ensure that your search is specific enough to return a single key.
+        /// 
+        /// ## Example Usage
+        /// 
+        /// ```csharp
+        /// using System.Collections.Generic;
+        /// using System.Linq;
+        /// using Pulumi;
+        /// using Fastly = Pulumi.Fastly;
+        /// 
+        /// return await Deployment.RunAsync(() =&gt; 
+        /// {
+        ///     var example = Fastly.GetTlsCertificate.Invoke(new()
+        ///     {
+        ///         Name = "example.com",
+        ///     });
+        /// 
+        /// });
+        /// ```
+        /// </summary>
+        public static Output<GetTlsCertificateResult> Invoke(GetTlsCertificateInvokeArgs args, InvokeOutputOptions options)
+            => global::Pulumi.Deployment.Instance.Invoke<GetTlsCertificateResult>("fastly:index/getTlsCertificate:getTlsCertificate", args ?? new GetTlsCertificateInvokeArgs(), options.WithDefaults());
     }
 
 

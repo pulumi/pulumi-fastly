@@ -16,7 +16,7 @@ import * as utilities from "./utilities";
  * const example = fastly.getTlsActivationIds({
  *     certificateId: exampleFastlyTlsCertificate.id,
  * });
- * const exampleGetTlsActivation = example.then(example => .reduce((__obj, [, ]) => ({ ...__obj, [__key]: fastly.getTlsActivation({
+ * const exampleGetTlsActivation = example.then(example => .reduce((__obj, [__key, __value]) => ({ ...__obj, [__key]: fastly.getTlsActivation({
  *     id: __value,
  * }) })));
  * export const activationDomains = exampleGetTlsActivation.apply(exampleGetTlsActivation => Object.values(exampleGetTlsActivation).map(a => (a.domain)));
@@ -69,7 +69,7 @@ export interface GetTlsActivationIdsResult {
  * const example = fastly.getTlsActivationIds({
  *     certificateId: exampleFastlyTlsCertificate.id,
  * });
- * const exampleGetTlsActivation = example.then(example => .reduce((__obj, [, ]) => ({ ...__obj, [__key]: fastly.getTlsActivation({
+ * const exampleGetTlsActivation = example.then(example => .reduce((__obj, [__key, __value]) => ({ ...__obj, [__key]: fastly.getTlsActivation({
  *     id: __value,
  * }) })));
  * export const activationDomains = exampleGetTlsActivation.apply(exampleGetTlsActivation => Object.values(exampleGetTlsActivation).map(a => (a.domain)));

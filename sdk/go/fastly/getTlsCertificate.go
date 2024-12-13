@@ -93,21 +93,11 @@ type LookupTlsCertificateResult struct {
 }
 
 func LookupTlsCertificateOutput(ctx *pulumi.Context, args LookupTlsCertificateOutputArgs, opts ...pulumi.InvokeOption) LookupTlsCertificateResultOutput {
-	return pulumi.ToOutputWithContext(context.Background(), args).
+	return pulumi.ToOutputWithContext(ctx.Context(), args).
 		ApplyT(func(v interface{}) (LookupTlsCertificateResultOutput, error) {
 			args := v.(LookupTlsCertificateArgs)
-			opts = internal.PkgInvokeDefaultOpts(opts)
-			var rv LookupTlsCertificateResult
-			secret, err := ctx.InvokePackageRaw("fastly:index/getTlsCertificate:getTlsCertificate", args, &rv, "", opts...)
-			if err != nil {
-				return LookupTlsCertificateResultOutput{}, err
-			}
-
-			output := pulumi.ToOutput(rv).(LookupTlsCertificateResultOutput)
-			if secret {
-				return pulumi.ToSecret(output).(LookupTlsCertificateResultOutput), nil
-			}
-			return output, nil
+			options := pulumi.InvokeOutputOptions{InvokeOptions: internal.PkgInvokeDefaultOpts(opts)}
+			return ctx.InvokeOutput("fastly:index/getTlsCertificate:getTlsCertificate", args, LookupTlsCertificateResultOutput{}, options).(LookupTlsCertificateResultOutput), nil
 		}).(LookupTlsCertificateResultOutput)
 }
 

@@ -102,6 +102,52 @@ namespace Pulumi.Fastly
         /// </summary>
         public static Output<GetVclSnippetsResult> Invoke(GetVclSnippetsInvokeArgs args, InvokeOptions? options = null)
             => global::Pulumi.Deployment.Instance.Invoke<GetVclSnippetsResult>("fastly:index/getVclSnippets:getVclSnippets", args ?? new GetVclSnippetsInvokeArgs(), options.WithDefaults());
+
+        /// <summary>
+        /// VCL Snippets are blocks of VCL logic inserted into your service's configuration that don't require custom VCL.
+        /// 
+        /// Use this data source to get a list of [Fastly VCL Snippets](https://www.fastly.com/documentation/reference/api/vcl-services/snippet/) for the specified service/version.
+        /// 
+        /// ## Example Usage
+        /// 
+        /// ```csharp
+        /// using System.Collections.Generic;
+        /// using System.Linq;
+        /// using Pulumi;
+        /// using Fastly = Pulumi.Fastly;
+        /// 
+        /// return await Deployment.RunAsync(() =&gt; 
+        /// {
+        ///     var exampleServiceVcl = new Fastly.ServiceVcl("example", new()
+        ///     {
+        ///         Name = "Example Service",
+        ///         Domains = new[]
+        ///         {
+        ///             new Fastly.Inputs.ServiceVclDomainArgs
+        ///             {
+        ///                 Name = "example.com",
+        ///             },
+        ///         },
+        ///         ForceDestroy = true,
+        ///     });
+        /// 
+        ///     var example = Fastly.GetVclSnippets.Invoke(new()
+        ///     {
+        ///         ServiceId = exampleServiceVcl.Id,
+        ///         ServiceVersion = exampleServiceVcl.ActiveVersion,
+        ///     });
+        /// 
+        ///     return new Dictionary&lt;string, object?&gt;
+        ///     {
+        ///         ["serviceVclSnippets"] = example,
+        ///     };
+        /// });
+        /// ```
+        /// 
+        /// [1]: https://www.fastly.com/documentation/reference/api/vcl-services/snippet/
+        /// </summary>
+        public static Output<GetVclSnippetsResult> Invoke(GetVclSnippetsInvokeArgs args, InvokeOutputOptions options)
+            => global::Pulumi.Deployment.Instance.Invoke<GetVclSnippetsResult>("fastly:index/getVclSnippets:getVclSnippets", args ?? new GetVclSnippetsInvokeArgs(), options.WithDefaults());
     }
 
 

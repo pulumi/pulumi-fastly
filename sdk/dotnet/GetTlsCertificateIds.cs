@@ -62,6 +62,32 @@ namespace Pulumi.Fastly
         /// </summary>
         public static Output<GetTlsCertificateIdsResult> Invoke(InvokeOptions? options = null)
             => global::Pulumi.Deployment.Instance.Invoke<GetTlsCertificateIdsResult>("fastly:index/getTlsCertificateIds:getTlsCertificateIds", InvokeArgs.Empty, options.WithDefaults());
+
+        /// <summary>
+        /// Use this data source to get the IDs of available TLS certificates for use with other resources.
+        /// 
+        /// ## Example Usage
+        /// 
+        /// ```csharp
+        /// using System.Collections.Generic;
+        /// using System.Linq;
+        /// using Pulumi;
+        /// using Fastly = Pulumi.Fastly;
+        /// 
+        /// return await Deployment.RunAsync(() =&gt; 
+        /// {
+        ///     var example = Fastly.GetTlsCertificateIds.Invoke();
+        /// 
+        ///     var exampleTlsActivation = new Fastly.TlsActivation("example", new()
+        ///     {
+        ///         CertificateId = example.Apply(getTlsCertificateIdsResult =&gt; getTlsCertificateIdsResult.Ids[0]),
+        ///     });
+        /// 
+        /// });
+        /// ```
+        /// </summary>
+        public static Output<GetTlsCertificateIdsResult> Invoke(InvokeOutputOptions options)
+            => global::Pulumi.Deployment.Instance.Invoke<GetTlsCertificateIdsResult>("fastly:index/getTlsCertificateIds:getTlsCertificateIds", InvokeArgs.Empty, options.WithDefaults());
     }
 
 

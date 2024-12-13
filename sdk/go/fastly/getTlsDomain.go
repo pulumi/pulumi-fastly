@@ -69,21 +69,11 @@ type GetTlsDomainResult struct {
 }
 
 func GetTlsDomainOutput(ctx *pulumi.Context, args GetTlsDomainOutputArgs, opts ...pulumi.InvokeOption) GetTlsDomainResultOutput {
-	return pulumi.ToOutputWithContext(context.Background(), args).
+	return pulumi.ToOutputWithContext(ctx.Context(), args).
 		ApplyT(func(v interface{}) (GetTlsDomainResultOutput, error) {
 			args := v.(GetTlsDomainArgs)
-			opts = internal.PkgInvokeDefaultOpts(opts)
-			var rv GetTlsDomainResult
-			secret, err := ctx.InvokePackageRaw("fastly:index/getTlsDomain:getTlsDomain", args, &rv, "", opts...)
-			if err != nil {
-				return GetTlsDomainResultOutput{}, err
-			}
-
-			output := pulumi.ToOutput(rv).(GetTlsDomainResultOutput)
-			if secret {
-				return pulumi.ToSecret(output).(GetTlsDomainResultOutput), nil
-			}
-			return output, nil
+			options := pulumi.InvokeOutputOptions{InvokeOptions: internal.PkgInvokeDefaultOpts(opts)}
+			return ctx.InvokeOutput("fastly:index/getTlsDomain:getTlsDomain", args, GetTlsDomainResultOutput{}, options).(GetTlsDomainResultOutput), nil
 		}).(GetTlsDomainResultOutput)
 }
 

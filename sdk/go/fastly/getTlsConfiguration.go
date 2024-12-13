@@ -99,21 +99,11 @@ type GetTlsConfigurationResult struct {
 }
 
 func GetTlsConfigurationOutput(ctx *pulumi.Context, args GetTlsConfigurationOutputArgs, opts ...pulumi.InvokeOption) GetTlsConfigurationResultOutput {
-	return pulumi.ToOutputWithContext(context.Background(), args).
+	return pulumi.ToOutputWithContext(ctx.Context(), args).
 		ApplyT(func(v interface{}) (GetTlsConfigurationResultOutput, error) {
 			args := v.(GetTlsConfigurationArgs)
-			opts = internal.PkgInvokeDefaultOpts(opts)
-			var rv GetTlsConfigurationResult
-			secret, err := ctx.InvokePackageRaw("fastly:index/getTlsConfiguration:getTlsConfiguration", args, &rv, "", opts...)
-			if err != nil {
-				return GetTlsConfigurationResultOutput{}, err
-			}
-
-			output := pulumi.ToOutput(rv).(GetTlsConfigurationResultOutput)
-			if secret {
-				return pulumi.ToSecret(output).(GetTlsConfigurationResultOutput), nil
-			}
-			return output, nil
+			options := pulumi.InvokeOutputOptions{InvokeOptions: internal.PkgInvokeDefaultOpts(opts)}
+			return ctx.InvokeOutput("fastly:index/getTlsConfiguration:getTlsConfiguration", args, GetTlsConfigurationResultOutput{}, options).(GetTlsConfigurationResultOutput), nil
 		}).(GetTlsConfigurationResultOutput)
 }
 

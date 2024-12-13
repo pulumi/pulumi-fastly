@@ -62,18 +62,8 @@ type GetTlsCertificateIdsResult struct {
 
 func GetTlsCertificateIdsOutput(ctx *pulumi.Context, opts ...pulumi.InvokeOption) GetTlsCertificateIdsResultOutput {
 	return pulumi.ToOutput(0).ApplyT(func(int) (GetTlsCertificateIdsResultOutput, error) {
-		opts = internal.PkgInvokeDefaultOpts(opts)
-		var rv GetTlsCertificateIdsResult
-		secret, err := ctx.InvokePackageRaw("fastly:index/getTlsCertificateIds:getTlsCertificateIds", nil, &rv, "", opts...)
-		if err != nil {
-			return GetTlsCertificateIdsResultOutput{}, err
-		}
-
-		output := pulumi.ToOutput(rv).(GetTlsCertificateIdsResultOutput)
-		if secret {
-			return pulumi.ToSecret(output).(GetTlsCertificateIdsResultOutput), nil
-		}
-		return output, nil
+		options := pulumi.InvokeOutputOptions{InvokeOptions: internal.PkgInvokeDefaultOpts(opts)}
+		return ctx.InvokeOutput("fastly:index/getTlsCertificateIds:getTlsCertificateIds", nil, GetTlsCertificateIdsResultOutput{}, options).(GetTlsCertificateIdsResultOutput), nil
 	}).(GetTlsCertificateIdsResultOutput)
 }
 
