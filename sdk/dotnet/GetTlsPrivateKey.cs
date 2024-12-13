@@ -80,6 +80,41 @@ namespace Pulumi.Fastly
         /// </summary>
         public static Output<GetTlsPrivateKeyResult> Invoke(GetTlsPrivateKeyInvokeArgs? args = null, InvokeOptions? options = null)
             => global::Pulumi.Deployment.Instance.Invoke<GetTlsPrivateKeyResult>("fastly:index/getTlsPrivateKey:getTlsPrivateKey", args ?? new GetTlsPrivateKeyInvokeArgs(), options.WithDefaults());
+
+        /// <summary>
+        /// Use this data source to get information on a TLS Private Key uploaded to Fastly.
+        /// 
+        /// &gt; **Warning:** The data source's filters are applied using an **AND** boolean operator, so depending on the combination
+        ///  of filters, they may become mutually exclusive. The exception to this is `id` which must not be specified in combination
+        ///  with any of the others.
+        /// 
+        /// &gt; **Note:** If more or less than a single match is returned by the search, this provider will fail. Ensure that your search
+        ///  is specific enough to return a single key.
+        /// 
+        /// ## Example Usage
+        /// 
+        /// ```csharp
+        /// using System.Collections.Generic;
+        /// using System.Linq;
+        /// using Pulumi;
+        /// using Fastly = Pulumi.Fastly;
+        /// 
+        /// return await Deployment.RunAsync(() =&gt; 
+        /// {
+        ///     var demo = Fastly.GetTlsPrivateKey.Invoke(new()
+        ///     {
+        ///         Name = "demo-private-key",
+        ///     });
+        /// 
+        ///     return new Dictionary&lt;string, object?&gt;
+        ///     {
+        ///         ["privateKeyNeedsReplacing"] = demo.Apply(getTlsPrivateKeyResult =&gt; getTlsPrivateKeyResult.Replace),
+        ///     };
+        /// });
+        /// ```
+        /// </summary>
+        public static Output<GetTlsPrivateKeyResult> Invoke(GetTlsPrivateKeyInvokeArgs args, InvokeOutputOptions options)
+            => global::Pulumi.Deployment.Instance.Invoke<GetTlsPrivateKeyResult>("fastly:index/getTlsPrivateKey:getTlsPrivateKey", args ?? new GetTlsPrivateKeyInvokeArgs(), options.WithDefaults());
     }
 
 

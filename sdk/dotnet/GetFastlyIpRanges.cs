@@ -90,6 +90,46 @@ namespace Pulumi.Fastly
         /// </summary>
         public static Output<GetFastlyIpRangesResult> Invoke(InvokeOptions? options = null)
             => global::Pulumi.Deployment.Instance.Invoke<GetFastlyIpRangesResult>("fastly:index/getFastlyIpRanges:getFastlyIpRanges", InvokeArgs.Empty, options.WithDefaults());
+
+        /// <summary>
+        /// Use this data source to get the [IP ranges](https://docs.fastly.com/guides/securing-communications/accessing-fastlys-ip-ranges) of Fastly edge nodes.
+        /// 
+        /// ## Example Usage
+        /// 
+        /// ```csharp
+        /// using System.Collections.Generic;
+        /// using System.Linq;
+        /// using Pulumi;
+        /// using Aws = Pulumi.Aws;
+        /// using Fastly = Pulumi.Fastly;
+        /// 
+        /// return await Deployment.RunAsync(() =&gt; 
+        /// {
+        ///     var fastly = Fastly.GetFastlyIpRanges.Invoke();
+        /// 
+        ///     var fromFastly = new Aws.Index.SecurityGroup("from_fastly", new()
+        ///     {
+        ///         Name = "from_fastly",
+        ///         Ingress = new[]
+        ///         {
+        ///             
+        ///             {
+        ///                 { "fromPort", "443" },
+        ///                 { "toPort", "443" },
+        ///                 { "protocol", "tcp" },
+        ///                 { "cidrBlocks", fastly.Apply(getFastlyIpRangesResult =&gt; getFastlyIpRangesResult.CidrBlocks) },
+        ///                 { "ipv6CidrBlocks", fastly.Apply(getFastlyIpRangesResult =&gt; getFastlyIpRangesResult.Ipv6CidrBlocks) },
+        ///             },
+        ///         },
+        ///     });
+        /// 
+        /// });
+        /// ```
+        /// 
+        /// [1]: https://docs.fastly.com/guides/securing-communications/accessing-fastlys-ip-ranges
+        /// </summary>
+        public static Output<GetFastlyIpRangesResult> Invoke(InvokeOutputOptions options)
+            => global::Pulumi.Deployment.Instance.Invoke<GetFastlyIpRangesResult>("fastly:index/getFastlyIpRanges:getFastlyIpRanges", InvokeArgs.Empty, options.WithDefaults());
     }
 
 

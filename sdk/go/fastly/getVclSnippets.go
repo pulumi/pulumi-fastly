@@ -84,21 +84,11 @@ type GetVclSnippetsResult struct {
 }
 
 func GetVclSnippetsOutput(ctx *pulumi.Context, args GetVclSnippetsOutputArgs, opts ...pulumi.InvokeOption) GetVclSnippetsResultOutput {
-	return pulumi.ToOutputWithContext(context.Background(), args).
+	return pulumi.ToOutputWithContext(ctx.Context(), args).
 		ApplyT(func(v interface{}) (GetVclSnippetsResultOutput, error) {
 			args := v.(GetVclSnippetsArgs)
-			opts = internal.PkgInvokeDefaultOpts(opts)
-			var rv GetVclSnippetsResult
-			secret, err := ctx.InvokePackageRaw("fastly:index/getVclSnippets:getVclSnippets", args, &rv, "", opts...)
-			if err != nil {
-				return GetVclSnippetsResultOutput{}, err
-			}
-
-			output := pulumi.ToOutput(rv).(GetVclSnippetsResultOutput)
-			if secret {
-				return pulumi.ToSecret(output).(GetVclSnippetsResultOutput), nil
-			}
-			return output, nil
+			options := pulumi.InvokeOutputOptions{InvokeOptions: internal.PkgInvokeDefaultOpts(opts)}
+			return ctx.InvokeOutput("fastly:index/getVclSnippets:getVclSnippets", args, GetVclSnippetsResultOutput{}, options).(GetVclSnippetsResultOutput), nil
 		}).(GetVclSnippetsResultOutput)
 }
 

@@ -85,21 +85,11 @@ type LookupTlsSubscriptionResult struct {
 }
 
 func LookupTlsSubscriptionOutput(ctx *pulumi.Context, args LookupTlsSubscriptionOutputArgs, opts ...pulumi.InvokeOption) LookupTlsSubscriptionResultOutput {
-	return pulumi.ToOutputWithContext(context.Background(), args).
+	return pulumi.ToOutputWithContext(ctx.Context(), args).
 		ApplyT(func(v interface{}) (LookupTlsSubscriptionResultOutput, error) {
 			args := v.(LookupTlsSubscriptionArgs)
-			opts = internal.PkgInvokeDefaultOpts(opts)
-			var rv LookupTlsSubscriptionResult
-			secret, err := ctx.InvokePackageRaw("fastly:index/getTlsSubscription:getTlsSubscription", args, &rv, "", opts...)
-			if err != nil {
-				return LookupTlsSubscriptionResultOutput{}, err
-			}
-
-			output := pulumi.ToOutput(rv).(LookupTlsSubscriptionResultOutput)
-			if secret {
-				return pulumi.ToSecret(output).(LookupTlsSubscriptionResultOutput), nil
-			}
-			return output, nil
+			options := pulumi.InvokeOutputOptions{InvokeOptions: internal.PkgInvokeDefaultOpts(opts)}
+			return ctx.InvokeOutput("fastly:index/getTlsSubscription:getTlsSubscription", args, LookupTlsSubscriptionResultOutput{}, options).(LookupTlsSubscriptionResultOutput), nil
 		}).(LookupTlsSubscriptionResultOutput)
 }
 

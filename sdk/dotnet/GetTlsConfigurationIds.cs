@@ -62,6 +62,32 @@ namespace Pulumi.Fastly
         /// </summary>
         public static Output<GetTlsConfigurationIdsResult> Invoke(InvokeOptions? options = null)
             => global::Pulumi.Deployment.Instance.Invoke<GetTlsConfigurationIdsResult>("fastly:index/getTlsConfigurationIds:getTlsConfigurationIds", InvokeArgs.Empty, options.WithDefaults());
+
+        /// <summary>
+        /// Use this data source to get the IDs of available TLS configurations for use with other resources.
+        /// 
+        /// ## Example Usage
+        /// 
+        /// ```csharp
+        /// using System.Collections.Generic;
+        /// using System.Linq;
+        /// using Pulumi;
+        /// using Fastly = Pulumi.Fastly;
+        /// 
+        /// return await Deployment.RunAsync(() =&gt; 
+        /// {
+        ///     var example = Fastly.GetTlsConfigurationIds.Invoke();
+        /// 
+        ///     var exampleTlsActivation = new Fastly.TlsActivation("example", new()
+        ///     {
+        ///         ConfigurationId = example.Apply(getTlsConfigurationIdsResult =&gt; getTlsConfigurationIdsResult.Ids[0]),
+        ///     });
+        /// 
+        /// });
+        /// ```
+        /// </summary>
+        public static Output<GetTlsConfigurationIdsResult> Invoke(InvokeOutputOptions options)
+            => global::Pulumi.Deployment.Instance.Invoke<GetTlsConfigurationIdsResult>("fastly:index/getTlsConfigurationIds:getTlsConfigurationIds", InvokeArgs.Empty, options.WithDefaults());
     }
 
 

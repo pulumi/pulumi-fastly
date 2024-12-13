@@ -70,6 +70,36 @@ namespace Pulumi.Fastly
         /// </summary>
         public static Output<GetTlsSubscriptionIdsResult> Invoke(InvokeOptions? options = null)
             => global::Pulumi.Deployment.Instance.Invoke<GetTlsSubscriptionIdsResult>("fastly:index/getTlsSubscriptionIds:getTlsSubscriptionIds", InvokeArgs.Empty, options.WithDefaults());
+
+        /// <summary>
+        /// Use this data source to get the list of IDs of TLS Subscriptions in Fastly.
+        /// 
+        /// ## Example Usage
+        /// 
+        /// ```csharp
+        /// using System.Collections.Generic;
+        /// using System.Linq;
+        /// using Pulumi;
+        /// using Fastly = Pulumi.Fastly;
+        /// 
+        /// return await Deployment.RunAsync(() =&gt; 
+        /// {
+        ///     var example = Fastly.GetTlsSubscriptionIds.Invoke();
+        /// 
+        ///     var exampleGetTlsSubscription = ;
+        /// 
+        ///     return new Dictionary&lt;string, object?&gt;
+        ///     {
+        ///         ["subscriptionDomains"] = exampleGetTlsSubscription.Apply(exampleGetTlsSubscription =&gt; (exampleGetTlsSubscription).Values.Select(a =&gt; 
+        ///         {
+        ///             return a.CertificateAuthority;
+        ///         }).ToList()),
+        ///     };
+        /// });
+        /// ```
+        /// </summary>
+        public static Output<GetTlsSubscriptionIdsResult> Invoke(InvokeOutputOptions options)
+            => global::Pulumi.Deployment.Instance.Invoke<GetTlsSubscriptionIdsResult>("fastly:index/getTlsSubscriptionIds:getTlsSubscriptionIds", InvokeArgs.Empty, options.WithDefaults());
     }
 
 
