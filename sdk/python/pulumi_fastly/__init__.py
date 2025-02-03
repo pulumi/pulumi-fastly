@@ -8,6 +8,8 @@ import typing
 from .alert import *
 from .configstore import *
 from .configstore_entries import *
+from .custom_dashboard import *
+from .domain_v1 import *
 from .get_configstores import *
 from .get_datacenters import *
 from .get_dictionaries import *
@@ -85,6 +87,22 @@ _utilities.register(
   "fqn": "pulumi_fastly",
   "classes": {
    "fastly:index/configstoreEntries:ConfigstoreEntries": "ConfigstoreEntries"
+  }
+ },
+ {
+  "pkg": "fastly",
+  "mod": "index/customDashboard",
+  "fqn": "pulumi_fastly",
+  "classes": {
+   "fastly:index/customDashboard:CustomDashboard": "CustomDashboard"
+  }
+ },
+ {
+  "pkg": "fastly",
+  "mod": "index/domainV1",
+  "fqn": "pulumi_fastly",
+  "classes": {
+   "fastly:index/domainV1:DomainV1": "DomainV1"
   }
  },
  {

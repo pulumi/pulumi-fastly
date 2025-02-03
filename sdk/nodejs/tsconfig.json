@@ -18,6 +18,8 @@
         "config/vars.ts",
         "configstore.ts",
         "configstoreEntries.ts",
+        "customDashboard.ts",
+        "domainV1.ts",
         "getConfigstores.ts",
         "getDatacenters.ts",
         "getDictionaries.ts",

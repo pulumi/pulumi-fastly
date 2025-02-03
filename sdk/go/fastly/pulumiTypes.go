@@ -363,6 +363,396 @@ func (o AlertEvaluationStrategyPtrOutput) Type() pulumi.StringPtrOutput {
 	}).(pulumi.StringPtrOutput)
 }
 
+type CustomDashboardDashboardItem struct {
+	// An object which describes the data to display.
+	DataSource CustomDashboardDashboardItemDataSource `pulumi:"dataSource"`
+	// Dashboard item identifier (alphanumeric). Must be unique, relative to other items in the same dashboard.
+	Id string `pulumi:"id"`
+	// The number of columns for the dashboard item to span. Dashboards are rendered on a 12-column grid on "desktop" screen sizes.
+	Span *int `pulumi:"span"`
+	// A human-readable subtitle for the dashboard item. Often a description of the visualization.
+	Subtitle string `pulumi:"subtitle"`
+	// A human-readable title for the dashboard item.
+	Title string `pulumi:"title"`
+	// An object which describes the data visualization to display.
+	Visualization CustomDashboardDashboardItemVisualization `pulumi:"visualization"`
+}
+
+// CustomDashboardDashboardItemInput is an input type that accepts CustomDashboardDashboardItemArgs and CustomDashboardDashboardItemOutput values.
+// You can construct a concrete instance of `CustomDashboardDashboardItemInput` via:
+//
+//	CustomDashboardDashboardItemArgs{...}
+type CustomDashboardDashboardItemInput interface {
+	pulumi.Input
+
+	ToCustomDashboardDashboardItemOutput() CustomDashboardDashboardItemOutput
+	ToCustomDashboardDashboardItemOutputWithContext(context.Context) CustomDashboardDashboardItemOutput
+}
+
+type CustomDashboardDashboardItemArgs struct {
+	// An object which describes the data to display.
+	DataSource CustomDashboardDashboardItemDataSourceInput `pulumi:"dataSource"`
+	// Dashboard item identifier (alphanumeric). Must be unique, relative to other items in the same dashboard.
+	Id pulumi.StringInput `pulumi:"id"`
+	// The number of columns for the dashboard item to span. Dashboards are rendered on a 12-column grid on "desktop" screen sizes.
+	Span pulumi.IntPtrInput `pulumi:"span"`
+	// A human-readable subtitle for the dashboard item. Often a description of the visualization.
+	Subtitle pulumi.StringInput `pulumi:"subtitle"`
+	// A human-readable title for the dashboard item.
+	Title pulumi.StringInput `pulumi:"title"`
+	// An object which describes the data visualization to display.
+	Visualization CustomDashboardDashboardItemVisualizationInput `pulumi:"visualization"`
+}
+
+func (CustomDashboardDashboardItemArgs) ElementType() reflect.Type {
+	return reflect.TypeOf((*CustomDashboardDashboardItem)(nil)).Elem()
+}
+
+func (i CustomDashboardDashboardItemArgs) ToCustomDashboardDashboardItemOutput() CustomDashboardDashboardItemOutput {
+	return i.ToCustomDashboardDashboardItemOutputWithContext(context.Background())
+}
+
+func (i CustomDashboardDashboardItemArgs) ToCustomDashboardDashboardItemOutputWithContext(ctx context.Context) CustomDashboardDashboardItemOutput {
+	return pulumi.ToOutputWithContext(ctx, i).(CustomDashboardDashboardItemOutput)
+}
+
+// CustomDashboardDashboardItemArrayInput is an input type that accepts CustomDashboardDashboardItemArray and CustomDashboardDashboardItemArrayOutput values.
+// You can construct a concrete instance of `CustomDashboardDashboardItemArrayInput` via:
+//
+//	CustomDashboardDashboardItemArray{ CustomDashboardDashboardItemArgs{...} }
+type CustomDashboardDashboardItemArrayInput interface {
+	pulumi.Input
+
+	ToCustomDashboardDashboardItemArrayOutput() CustomDashboardDashboardItemArrayOutput
+	ToCustomDashboardDashboardItemArrayOutputWithContext(context.Context) CustomDashboardDashboardItemArrayOutput
+}
+
+type CustomDashboardDashboardItemArray []CustomDashboardDashboardItemInput
+
+func (CustomDashboardDashboardItemArray) ElementType() reflect.Type {
+	return reflect.TypeOf((*[]CustomDashboardDashboardItem)(nil)).Elem()
+}
+
+func (i CustomDashboardDashboardItemArray) ToCustomDashboardDashboardItemArrayOutput() CustomDashboardDashboardItemArrayOutput {
+	return i.ToCustomDashboardDashboardItemArrayOutputWithContext(context.Background())
+}
+
+func (i CustomDashboardDashboardItemArray) ToCustomDashboardDashboardItemArrayOutputWithContext(ctx context.Context) CustomDashboardDashboardItemArrayOutput {
+	return pulumi.ToOutputWithContext(ctx, i).(CustomDashboardDashboardItemArrayOutput)
+}
+
+type CustomDashboardDashboardItemOutput struct{ *pulumi.OutputState }
+
+func (CustomDashboardDashboardItemOutput) ElementType() reflect.Type {
+	return reflect.TypeOf((*CustomDashboardDashboardItem)(nil)).Elem()
+}
+
+func (o CustomDashboardDashboardItemOutput) ToCustomDashboardDashboardItemOutput() CustomDashboardDashboardItemOutput {
+	return o
+}
+
+func (o CustomDashboardDashboardItemOutput) ToCustomDashboardDashboardItemOutputWithContext(ctx context.Context) CustomDashboardDashboardItemOutput {
+	return o
+}
+
+// An object which describes the data to display.
+func (o CustomDashboardDashboardItemOutput) DataSource() CustomDashboardDashboardItemDataSourceOutput {
+	return o.ApplyT(func(v CustomDashboardDashboardItem) CustomDashboardDashboardItemDataSource { return v.DataSource }).(CustomDashboardDashboardItemDataSourceOutput)
+}
+
+// Dashboard item identifier (alphanumeric). Must be unique, relative to other items in the same dashboard.
+func (o CustomDashboardDashboardItemOutput) Id() pulumi.StringOutput {
+	return o.ApplyT(func(v CustomDashboardDashboardItem) string { return v.Id }).(pulumi.StringOutput)
+}
+
+// The number of columns for the dashboard item to span. Dashboards are rendered on a 12-column grid on "desktop" screen sizes.
+func (o CustomDashboardDashboardItemOutput) Span() pulumi.IntPtrOutput {
+	return o.ApplyT(func(v CustomDashboardDashboardItem) *int { return v.Span }).(pulumi.IntPtrOutput)
+}
+
+// A human-readable subtitle for the dashboard item. Often a description of the visualization.
+func (o CustomDashboardDashboardItemOutput) Subtitle() pulumi.StringOutput {
+	return o.ApplyT(func(v CustomDashboardDashboardItem) string { return v.Subtitle }).(pulumi.StringOutput)
+}
+
+// A human-readable title for the dashboard item.
+func (o CustomDashboardDashboardItemOutput) Title() pulumi.StringOutput {
+	return o.ApplyT(func(v CustomDashboardDashboardItem) string { return v.Title }).(pulumi.StringOutput)
+}
+
+// An object which describes the data visualization to display.
+func (o CustomDashboardDashboardItemOutput) Visualization() CustomDashboardDashboardItemVisualizationOutput {
+	return o.ApplyT(func(v CustomDashboardDashboardItem) CustomDashboardDashboardItemVisualization { return v.Visualization }).(CustomDashboardDashboardItemVisualizationOutput)
+}
+
+type CustomDashboardDashboardItemArrayOutput struct{ *pulumi.OutputState }
+
+func (CustomDashboardDashboardItemArrayOutput) ElementType() reflect.Type {
+	return reflect.TypeOf((*[]CustomDashboardDashboardItem)(nil)).Elem()
+}
+
+func (o CustomDashboardDashboardItemArrayOutput) ToCustomDashboardDashboardItemArrayOutput() CustomDashboardDashboardItemArrayOutput {
+	return o
+}
+
+func (o CustomDashboardDashboardItemArrayOutput) ToCustomDashboardDashboardItemArrayOutputWithContext(ctx context.Context) CustomDashboardDashboardItemArrayOutput {
+	return o
+}
+
+func (o CustomDashboardDashboardItemArrayOutput) Index(i pulumi.IntInput) CustomDashboardDashboardItemOutput {
+	return pulumi.All(o, i).ApplyT(func(vs []interface{}) CustomDashboardDashboardItem {
+		return vs[0].([]CustomDashboardDashboardItem)[vs[1].(int)]
+	}).(CustomDashboardDashboardItemOutput)
+}
+
+type CustomDashboardDashboardItemDataSource struct {
+	// Configuration options for the selected data source.
+	Config CustomDashboardDashboardItemDataSourceConfig `pulumi:"config"`
+	// The source of the data to display. One of: `stats.edge`, `stats.domain`, `stats.origin`.
+	Type string `pulumi:"type"`
+}
+
+// CustomDashboardDashboardItemDataSourceInput is an input type that accepts CustomDashboardDashboardItemDataSourceArgs and CustomDashboardDashboardItemDataSourceOutput values.
+// You can construct a concrete instance of `CustomDashboardDashboardItemDataSourceInput` via:
+//
+//	CustomDashboardDashboardItemDataSourceArgs{...}
+type CustomDashboardDashboardItemDataSourceInput interface {
+	pulumi.Input
+
+	ToCustomDashboardDashboardItemDataSourceOutput() CustomDashboardDashboardItemDataSourceOutput
+	ToCustomDashboardDashboardItemDataSourceOutputWithContext(context.Context) CustomDashboardDashboardItemDataSourceOutput
+}
+
+type CustomDashboardDashboardItemDataSourceArgs struct {
+	// Configuration options for the selected data source.
+	Config CustomDashboardDashboardItemDataSourceConfigInput `pulumi:"config"`
+	// The source of the data to display. One of: `stats.edge`, `stats.domain`, `stats.origin`.
+	Type pulumi.StringInput `pulumi:"type"`
+}
+
+func (CustomDashboardDashboardItemDataSourceArgs) ElementType() reflect.Type {
+	return reflect.TypeOf((*CustomDashboardDashboardItemDataSource)(nil)).Elem()
+}
+
+func (i CustomDashboardDashboardItemDataSourceArgs) ToCustomDashboardDashboardItemDataSourceOutput() CustomDashboardDashboardItemDataSourceOutput {
+	return i.ToCustomDashboardDashboardItemDataSourceOutputWithContext(context.Background())
+}
+
+func (i CustomDashboardDashboardItemDataSourceArgs) ToCustomDashboardDashboardItemDataSourceOutputWithContext(ctx context.Context) CustomDashboardDashboardItemDataSourceOutput {
+	return pulumi.ToOutputWithContext(ctx, i).(CustomDashboardDashboardItemDataSourceOutput)
+}
+
+type CustomDashboardDashboardItemDataSourceOutput struct{ *pulumi.OutputState }
+
+func (CustomDashboardDashboardItemDataSourceOutput) ElementType() reflect.Type {
+	return reflect.TypeOf((*CustomDashboardDashboardItemDataSource)(nil)).Elem()
+}
+
+func (o CustomDashboardDashboardItemDataSourceOutput) ToCustomDashboardDashboardItemDataSourceOutput() CustomDashboardDashboardItemDataSourceOutput {
+	return o
+}
+
+func (o CustomDashboardDashboardItemDataSourceOutput) ToCustomDashboardDashboardItemDataSourceOutputWithContext(ctx context.Context) CustomDashboardDashboardItemDataSourceOutput {
+	return o
+}
+
+// Configuration options for the selected data source.
+func (o CustomDashboardDashboardItemDataSourceOutput) Config() CustomDashboardDashboardItemDataSourceConfigOutput {
+	return o.ApplyT(func(v CustomDashboardDashboardItemDataSource) CustomDashboardDashboardItemDataSourceConfig {
+		return v.Config
+	}).(CustomDashboardDashboardItemDataSourceConfigOutput)
+}
+
+// The source of the data to display. One of: `stats.edge`, `stats.domain`, `stats.origin`.
+func (o CustomDashboardDashboardItemDataSourceOutput) Type() pulumi.StringOutput {
+	return o.ApplyT(func(v CustomDashboardDashboardItemDataSource) string { return v.Type }).(pulumi.StringOutput)
+}
+
+type CustomDashboardDashboardItemDataSourceConfig struct {
+	// The metrics to visualize. Valid options are defined by the selected data source: [stats.edge](https://www.fastly.com/documentation/reference/api/observability/custom-dashboards/metrics/edge/), [stats.domain](https://www.fastly.com/documentation/reference/api/observability/custom-dashboards/metrics/domain/), [stats.origin](https://www.fastly.com/documentation/reference/api/observability/custom-dashboards/metrics/origin/).
+	Metrics []string `pulumi:"metrics"`
+}
+
+// CustomDashboardDashboardItemDataSourceConfigInput is an input type that accepts CustomDashboardDashboardItemDataSourceConfigArgs and CustomDashboardDashboardItemDataSourceConfigOutput values.
+// You can construct a concrete instance of `CustomDashboardDashboardItemDataSourceConfigInput` via:
+//
+//	CustomDashboardDashboardItemDataSourceConfigArgs{...}
+type CustomDashboardDashboardItemDataSourceConfigInput interface {
+	pulumi.Input
+
+	ToCustomDashboardDashboardItemDataSourceConfigOutput() CustomDashboardDashboardItemDataSourceConfigOutput
+	ToCustomDashboardDashboardItemDataSourceConfigOutputWithContext(context.Context) CustomDashboardDashboardItemDataSourceConfigOutput
+}
+
+type CustomDashboardDashboardItemDataSourceConfigArgs struct {
+	// The metrics to visualize. Valid options are defined by the selected data source: [stats.edge](https://www.fastly.com/documentation/reference/api/observability/custom-dashboards/metrics/edge/), [stats.domain](https://www.fastly.com/documentation/reference/api/observability/custom-dashboards/metrics/domain/), [stats.origin](https://www.fastly.com/documentation/reference/api/observability/custom-dashboards/metrics/origin/).
+	Metrics pulumi.StringArrayInput `pulumi:"metrics"`
+}
+
+func (CustomDashboardDashboardItemDataSourceConfigArgs) ElementType() reflect.Type {
+	return reflect.TypeOf((*CustomDashboardDashboardItemDataSourceConfig)(nil)).Elem()
+}
+
+func (i CustomDashboardDashboardItemDataSourceConfigArgs) ToCustomDashboardDashboardItemDataSourceConfigOutput() CustomDashboardDashboardItemDataSourceConfigOutput {
+	return i.ToCustomDashboardDashboardItemDataSourceConfigOutputWithContext(context.Background())
+}
+
+func (i CustomDashboardDashboardItemDataSourceConfigArgs) ToCustomDashboardDashboardItemDataSourceConfigOutputWithContext(ctx context.Context) CustomDashboardDashboardItemDataSourceConfigOutput {
+	return pulumi.ToOutputWithContext(ctx, i).(CustomDashboardDashboardItemDataSourceConfigOutput)
+}
+
+type CustomDashboardDashboardItemDataSourceConfigOutput struct{ *pulumi.OutputState }
+
+func (CustomDashboardDashboardItemDataSourceConfigOutput) ElementType() reflect.Type {
+	return reflect.TypeOf((*CustomDashboardDashboardItemDataSourceConfig)(nil)).Elem()
+}
+
+func (o CustomDashboardDashboardItemDataSourceConfigOutput) ToCustomDashboardDashboardItemDataSourceConfigOutput() CustomDashboardDashboardItemDataSourceConfigOutput {
+	return o
+}
+
+func (o CustomDashboardDashboardItemDataSourceConfigOutput) ToCustomDashboardDashboardItemDataSourceConfigOutputWithContext(ctx context.Context) CustomDashboardDashboardItemDataSourceConfigOutput {
+	return o
+}
+
+// The metrics to visualize. Valid options are defined by the selected data source: [stats.edge](https://www.fastly.com/documentation/reference/api/observability/custom-dashboards/metrics/edge/), [stats.domain](https://www.fastly.com/documentation/reference/api/observability/custom-dashboards/metrics/domain/), [stats.origin](https://www.fastly.com/documentation/reference/api/observability/custom-dashboards/metrics/origin/).
+func (o CustomDashboardDashboardItemDataSourceConfigOutput) Metrics() pulumi.StringArrayOutput {
+	return o.ApplyT(func(v CustomDashboardDashboardItemDataSourceConfig) []string { return v.Metrics }).(pulumi.StringArrayOutput)
+}
+
+type CustomDashboardDashboardItemVisualization struct {
+	// Configuration options for the selected data source.
+	Config CustomDashboardDashboardItemVisualizationConfig `pulumi:"config"`
+	// The type of visualization to display. One of: `chart`.
+	Type string `pulumi:"type"`
+}
+
+// CustomDashboardDashboardItemVisualizationInput is an input type that accepts CustomDashboardDashboardItemVisualizationArgs and CustomDashboardDashboardItemVisualizationOutput values.
+// You can construct a concrete instance of `CustomDashboardDashboardItemVisualizationInput` via:
+//
+//	CustomDashboardDashboardItemVisualizationArgs{...}
+type CustomDashboardDashboardItemVisualizationInput interface {
+	pulumi.Input
+
+	ToCustomDashboardDashboardItemVisualizationOutput() CustomDashboardDashboardItemVisualizationOutput
+	ToCustomDashboardDashboardItemVisualizationOutputWithContext(context.Context) CustomDashboardDashboardItemVisualizationOutput
+}
+
+type CustomDashboardDashboardItemVisualizationArgs struct {
+	// Configuration options for the selected data source.
+	Config CustomDashboardDashboardItemVisualizationConfigInput `pulumi:"config"`
+	// The type of visualization to display. One of: `chart`.
+	Type pulumi.StringInput `pulumi:"type"`
+}
+
+func (CustomDashboardDashboardItemVisualizationArgs) ElementType() reflect.Type {
+	return reflect.TypeOf((*CustomDashboardDashboardItemVisualization)(nil)).Elem()
+}
+
+func (i CustomDashboardDashboardItemVisualizationArgs) ToCustomDashboardDashboardItemVisualizationOutput() CustomDashboardDashboardItemVisualizationOutput {
+	return i.ToCustomDashboardDashboardItemVisualizationOutputWithContext(context.Background())
+}
+
+func (i CustomDashboardDashboardItemVisualizationArgs) ToCustomDashboardDashboardItemVisualizationOutputWithContext(ctx context.Context) CustomDashboardDashboardItemVisualizationOutput {
+	return pulumi.ToOutputWithContext(ctx, i).(CustomDashboardDashboardItemVisualizationOutput)
+}
+
+type CustomDashboardDashboardItemVisualizationOutput struct{ *pulumi.OutputState }
+
+func (CustomDashboardDashboardItemVisualizationOutput) ElementType() reflect.Type {
+	return reflect.TypeOf((*CustomDashboardDashboardItemVisualization)(nil)).Elem()
+}
+
+func (o CustomDashboardDashboardItemVisualizationOutput) ToCustomDashboardDashboardItemVisualizationOutput() CustomDashboardDashboardItemVisualizationOutput {
+	return o
+}
+
+func (o CustomDashboardDashboardItemVisualizationOutput) ToCustomDashboardDashboardItemVisualizationOutputWithContext(ctx context.Context) CustomDashboardDashboardItemVisualizationOutput {
+	return o
+}
+
+// Configuration options for the selected data source.
+func (o CustomDashboardDashboardItemVisualizationOutput) Config() CustomDashboardDashboardItemVisualizationConfigOutput {
+	return o.ApplyT(func(v CustomDashboardDashboardItemVisualization) CustomDashboardDashboardItemVisualizationConfig {
+		return v.Config
+	}).(CustomDashboardDashboardItemVisualizationConfigOutput)
+}
+
+// The type of visualization to display. One of: `chart`.
+func (o CustomDashboardDashboardItemVisualizationOutput) Type() pulumi.StringOutput {
+	return o.ApplyT(func(v CustomDashboardDashboardItemVisualization) string { return v.Type }).(pulumi.StringOutput)
+}
+
+type CustomDashboardDashboardItemVisualizationConfig struct {
+	// The aggregation function to apply to the dataset. One of: `avg`, `sum`, `min`, `max`, `latest`, `p95`.
+	CalculationMethod *string `pulumi:"calculationMethod"`
+	// The units to use to format the data. One of: `number`, `bytes`, `percent`, `requests`, `responses`, `seconds`, `milliseconds`, `ratio`, `bitrate`.
+	Format *string `pulumi:"format"`
+	// The type of chart to display. One of: `line`, `bar`, `single-metric`, `donut`.
+	PlotType string `pulumi:"plotType"`
+}
+
+// CustomDashboardDashboardItemVisualizationConfigInput is an input type that accepts CustomDashboardDashboardItemVisualizationConfigArgs and CustomDashboardDashboardItemVisualizationConfigOutput values.
+// You can construct a concrete instance of `CustomDashboardDashboardItemVisualizationConfigInput` via:
+//
+//	CustomDashboardDashboardItemVisualizationConfigArgs{...}
+type CustomDashboardDashboardItemVisualizationConfigInput interface {
+	pulumi.Input
+
+	ToCustomDashboardDashboardItemVisualizationConfigOutput() CustomDashboardDashboardItemVisualizationConfigOutput
+	ToCustomDashboardDashboardItemVisualizationConfigOutputWithContext(context.Context) CustomDashboardDashboardItemVisualizationConfigOutput
+}
+
+type CustomDashboardDashboardItemVisualizationConfigArgs struct {
+	// The aggregation function to apply to the dataset. One of: `avg`, `sum`, `min`, `max`, `latest`, `p95`.
+	CalculationMethod pulumi.StringPtrInput `pulumi:"calculationMethod"`
+	// The units to use to format the data. One of: `number`, `bytes`, `percent`, `requests`, `responses`, `seconds`, `milliseconds`, `ratio`, `bitrate`.
+	Format pulumi.StringPtrInput `pulumi:"format"`
+	// The type of chart to display. One of: `line`, `bar`, `single-metric`, `donut`.
+	PlotType pulumi.StringInput `pulumi:"plotType"`
+}
+
+func (CustomDashboardDashboardItemVisualizationConfigArgs) ElementType() reflect.Type {
+	return reflect.TypeOf((*CustomDashboardDashboardItemVisualizationConfig)(nil)).Elem()
+}
+
+func (i CustomDashboardDashboardItemVisualizationConfigArgs) ToCustomDashboardDashboardItemVisualizationConfigOutput() CustomDashboardDashboardItemVisualizationConfigOutput {
+	return i.ToCustomDashboardDashboardItemVisualizationConfigOutputWithContext(context.Background())
+}
+
+func (i CustomDashboardDashboardItemVisualizationConfigArgs) ToCustomDashboardDashboardItemVisualizationConfigOutputWithContext(ctx context.Context) CustomDashboardDashboardItemVisualizationConfigOutput {
+	return pulumi.ToOutputWithContext(ctx, i).(CustomDashboardDashboardItemVisualizationConfigOutput)
+}
+
+type CustomDashboardDashboardItemVisualizationConfigOutput struct{ *pulumi.OutputState }
+
+func (CustomDashboardDashboardItemVisualizationConfigOutput) ElementType() reflect.Type {
+	return reflect.TypeOf((*CustomDashboardDashboardItemVisualizationConfig)(nil)).Elem()
+}
+
+func (o CustomDashboardDashboardItemVisualizationConfigOutput) ToCustomDashboardDashboardItemVisualizationConfigOutput() CustomDashboardDashboardItemVisualizationConfigOutput {
+	return o
+}
+
+func (o CustomDashboardDashboardItemVisualizationConfigOutput) ToCustomDashboardDashboardItemVisualizationConfigOutputWithContext(ctx context.Context) CustomDashboardDashboardItemVisualizationConfigOutput {
+	return o
+}
+
+// The aggregation function to apply to the dataset. One of: `avg`, `sum`, `min`, `max`, `latest`, `p95`.
+func (o CustomDashboardDashboardItemVisualizationConfigOutput) CalculationMethod() pulumi.StringPtrOutput {
+	return o.ApplyT(func(v CustomDashboardDashboardItemVisualizationConfig) *string { return v.CalculationMethod }).(pulumi.StringPtrOutput)
+}
+
+// The units to use to format the data. One of: `number`, `bytes`, `percent`, `requests`, `responses`, `seconds`, `milliseconds`, `ratio`, `bitrate`.
+func (o CustomDashboardDashboardItemVisualizationConfigOutput) Format() pulumi.StringPtrOutput {
+	return o.ApplyT(func(v CustomDashboardDashboardItemVisualizationConfig) *string { return v.Format }).(pulumi.StringPtrOutput)
+}
+
+// The type of chart to display. One of: `line`, `bar`, `single-metric`, `donut`.
+func (o CustomDashboardDashboardItemVisualizationConfigOutput) PlotType() pulumi.StringOutput {
+	return o.ApplyT(func(v CustomDashboardDashboardItemVisualizationConfig) string { return v.PlotType }).(pulumi.StringOutput)
+}
+
 type ServiceACLEntriesEntry struct {
 	// A personal freeform descriptive note
 	Comment *string `pulumi:"comment"`
@@ -16652,6 +17042,12 @@ func init() {
 	pulumi.RegisterInputType(reflect.TypeOf((*AlertDimensionsPtrInput)(nil)).Elem(), AlertDimensionsArgs{})
 	pulumi.RegisterInputType(reflect.TypeOf((*AlertEvaluationStrategyInput)(nil)).Elem(), AlertEvaluationStrategyArgs{})
 	pulumi.RegisterInputType(reflect.TypeOf((*AlertEvaluationStrategyPtrInput)(nil)).Elem(), AlertEvaluationStrategyArgs{})
+	pulumi.RegisterInputType(reflect.TypeOf((*CustomDashboardDashboardItemInput)(nil)).Elem(), CustomDashboardDashboardItemArgs{})
+	pulumi.RegisterInputType(reflect.TypeOf((*CustomDashboardDashboardItemArrayInput)(nil)).Elem(), CustomDashboardDashboardItemArray{})
+	pulumi.RegisterInputType(reflect.TypeOf((*CustomDashboardDashboardItemDataSourceInput)(nil)).Elem(), CustomDashboardDashboardItemDataSourceArgs{})
+	pulumi.RegisterInputType(reflect.TypeOf((*CustomDashboardDashboardItemDataSourceConfigInput)(nil)).Elem(), CustomDashboardDashboardItemDataSourceConfigArgs{})
+	pulumi.RegisterInputType(reflect.TypeOf((*CustomDashboardDashboardItemVisualizationInput)(nil)).Elem(), CustomDashboardDashboardItemVisualizationArgs{})
+	pulumi.RegisterInputType(reflect.TypeOf((*CustomDashboardDashboardItemVisualizationConfigInput)(nil)).Elem(), CustomDashboardDashboardItemVisualizationConfigArgs{})
 	pulumi.RegisterInputType(reflect.TypeOf((*ServiceACLEntriesEntryInput)(nil)).Elem(), ServiceACLEntriesEntryArgs{})
 	pulumi.RegisterInputType(reflect.TypeOf((*ServiceACLEntriesEntryArrayInput)(nil)).Elem(), ServiceACLEntriesEntryArray{})
 	pulumi.RegisterInputType(reflect.TypeOf((*ServiceComputeBackendInput)(nil)).Elem(), ServiceComputeBackendArgs{})
@@ -16848,6 +17244,12 @@ func init() {
 	pulumi.RegisterOutputType(AlertDimensionsPtrOutput{})
 	pulumi.RegisterOutputType(AlertEvaluationStrategyOutput{})
 	pulumi.RegisterOutputType(AlertEvaluationStrategyPtrOutput{})
+	pulumi.RegisterOutputType(CustomDashboardDashboardItemOutput{})
+	pulumi.RegisterOutputType(CustomDashboardDashboardItemArrayOutput{})
+	pulumi.RegisterOutputType(CustomDashboardDashboardItemDataSourceOutput{})
+	pulumi.RegisterOutputType(CustomDashboardDashboardItemDataSourceConfigOutput{})
+	pulumi.RegisterOutputType(CustomDashboardDashboardItemVisualizationOutput{})
+	pulumi.RegisterOutputType(CustomDashboardDashboardItemVisualizationConfigOutput{})
 	pulumi.RegisterOutputType(ServiceACLEntriesEntryOutput{})
 	pulumi.RegisterOutputType(ServiceACLEntriesEntryArrayOutput{})
 	pulumi.RegisterOutputType(ServiceComputeBackendOutput{})
