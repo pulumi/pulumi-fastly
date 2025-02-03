@@ -35,6 +35,77 @@ export interface AlertEvaluationStrategy {
     type: pulumi.Input<string>;
 }
 
+export interface CustomDashboardDashboardItem {
+    /**
+     * An object which describes the data to display.
+     */
+    dataSource: pulumi.Input<inputs.CustomDashboardDashboardItemDataSource>;
+    /**
+     * Dashboard item identifier (alphanumeric). Must be unique, relative to other items in the same dashboard.
+     */
+    id: pulumi.Input<string>;
+    /**
+     * The number of columns for the dashboard item to span. Dashboards are rendered on a 12-column grid on "desktop" screen sizes.
+     */
+    span?: pulumi.Input<number>;
+    /**
+     * A human-readable subtitle for the dashboard item. Often a description of the visualization.
+     */
+    subtitle: pulumi.Input<string>;
+    /**
+     * A human-readable title for the dashboard item.
+     */
+    title: pulumi.Input<string>;
+    /**
+     * An object which describes the data visualization to display.
+     */
+    visualization: pulumi.Input<inputs.CustomDashboardDashboardItemVisualization>;
+}
+
+export interface CustomDashboardDashboardItemDataSource {
+    /**
+     * Configuration options for the selected data source.
+     */
+    config: pulumi.Input<inputs.CustomDashboardDashboardItemDataSourceConfig>;
+    /**
+     * The source of the data to display. One of: `stats.edge`, `stats.domain`, `stats.origin`.
+     */
+    type: pulumi.Input<string>;
+}
+
+export interface CustomDashboardDashboardItemDataSourceConfig {
+    /**
+     * The metrics to visualize. Valid options are defined by the selected data source: [stats.edge](https://www.fastly.com/documentation/reference/api/observability/custom-dashboards/metrics/edge/), [stats.domain](https://www.fastly.com/documentation/reference/api/observability/custom-dashboards/metrics/domain/), [stats.origin](https://www.fastly.com/documentation/reference/api/observability/custom-dashboards/metrics/origin/).
+     */
+    metrics: pulumi.Input<pulumi.Input<string>[]>;
+}
+
+export interface CustomDashboardDashboardItemVisualization {
+    /**
+     * Configuration options for the selected data source.
+     */
+    config: pulumi.Input<inputs.CustomDashboardDashboardItemVisualizationConfig>;
+    /**
+     * The type of visualization to display. One of: `chart`.
+     */
+    type: pulumi.Input<string>;
+}
+
+export interface CustomDashboardDashboardItemVisualizationConfig {
+    /**
+     * The aggregation function to apply to the dataset. One of: `avg`, `sum`, `min`, `max`, `latest`, `p95`.
+     */
+    calculationMethod?: pulumi.Input<string>;
+    /**
+     * The units to use to format the data. One of: `number`, `bytes`, `percent`, `requests`, `responses`, `seconds`, `milliseconds`, `ratio`, `bitrate`.
+     */
+    format?: pulumi.Input<string>;
+    /**
+     * The type of chart to display. One of: `line`, `bar`, `single-metric`, `donut`.
+     */
+    plotType: pulumi.Input<string>;
+}
+
 export interface ServiceACLEntriesEntry {
     /**
      * A personal freeform descriptive note

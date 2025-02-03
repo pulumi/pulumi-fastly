@@ -19,6 +19,16 @@ __all__ = [
     'AlertDimensionsArgsDict',
     'AlertEvaluationStrategyArgs',
     'AlertEvaluationStrategyArgsDict',
+    'CustomDashboardDashboardItemArgs',
+    'CustomDashboardDashboardItemArgsDict',
+    'CustomDashboardDashboardItemDataSourceArgs',
+    'CustomDashboardDashboardItemDataSourceArgsDict',
+    'CustomDashboardDashboardItemDataSourceConfigArgs',
+    'CustomDashboardDashboardItemDataSourceConfigArgsDict',
+    'CustomDashboardDashboardItemVisualizationArgs',
+    'CustomDashboardDashboardItemVisualizationArgsDict',
+    'CustomDashboardDashboardItemVisualizationConfigArgs',
+    'CustomDashboardDashboardItemVisualizationConfigArgsDict',
     'ServiceACLEntriesEntryArgs',
     'ServiceACLEntriesEntryArgsDict',
     'ServiceComputeBackendArgs',
@@ -336,6 +346,335 @@ class AlertEvaluationStrategyArgs:
     @ignore_below.setter
     def ignore_below(self, value: Optional[pulumi.Input[float]]):
         pulumi.set(self, "ignore_below", value)
+
+
+if not MYPY:
+    class CustomDashboardDashboardItemArgsDict(TypedDict):
+        data_source: pulumi.Input['CustomDashboardDashboardItemDataSourceArgsDict']
+        """
+        An object which describes the data to display.
+        """
+        id: pulumi.Input[str]
+        """
+        Dashboard item identifier (alphanumeric). Must be unique, relative to other items in the same dashboard.
+        """
+        subtitle: pulumi.Input[str]
+        """
+        A human-readable subtitle for the dashboard item. Often a description of the visualization.
+        """
+        title: pulumi.Input[str]
+        """
+        A human-readable title for the dashboard item.
+        """
+        visualization: pulumi.Input['CustomDashboardDashboardItemVisualizationArgsDict']
+        """
+        An object which describes the data visualization to display.
+        """
+        span: NotRequired[pulumi.Input[int]]
+        """
+        The number of columns for the dashboard item to span. Dashboards are rendered on a 12-column grid on "desktop" screen sizes.
+        """
+elif False:
+    CustomDashboardDashboardItemArgsDict: TypeAlias = Mapping[str, Any]
+
+@pulumi.input_type
+class CustomDashboardDashboardItemArgs:
+    def __init__(__self__, *,
+                 data_source: pulumi.Input['CustomDashboardDashboardItemDataSourceArgs'],
+                 id: pulumi.Input[str],
+                 subtitle: pulumi.Input[str],
+                 title: pulumi.Input[str],
+                 visualization: pulumi.Input['CustomDashboardDashboardItemVisualizationArgs'],
+                 span: Optional[pulumi.Input[int]] = None):
+        """
+        :param pulumi.Input['CustomDashboardDashboardItemDataSourceArgs'] data_source: An object which describes the data to display.
+        :param pulumi.Input[str] id: Dashboard item identifier (alphanumeric). Must be unique, relative to other items in the same dashboard.
+        :param pulumi.Input[str] subtitle: A human-readable subtitle for the dashboard item. Often a description of the visualization.
+        :param pulumi.Input[str] title: A human-readable title for the dashboard item.
+        :param pulumi.Input['CustomDashboardDashboardItemVisualizationArgs'] visualization: An object which describes the data visualization to display.
+        :param pulumi.Input[int] span: The number of columns for the dashboard item to span. Dashboards are rendered on a 12-column grid on "desktop" screen sizes.
+        """
+        pulumi.set(__self__, "data_source", data_source)
+        pulumi.set(__self__, "id", id)
+        pulumi.set(__self__, "subtitle", subtitle)
+        pulumi.set(__self__, "title", title)
+        pulumi.set(__self__, "visualization", visualization)
+        if span is not None:
+            pulumi.set(__self__, "span", span)
+
+    @property
+    @pulumi.getter(name="dataSource")
+    def data_source(self) -> pulumi.Input['CustomDashboardDashboardItemDataSourceArgs']:
+        """
+        An object which describes the data to display.
+        """
+        return pulumi.get(self, "data_source")
+
+    @data_source.setter
+    def data_source(self, value: pulumi.Input['CustomDashboardDashboardItemDataSourceArgs']):
+        pulumi.set(self, "data_source", value)
+
+    @property
+    @pulumi.getter
+    def id(self) -> pulumi.Input[str]:
+        """
+        Dashboard item identifier (alphanumeric). Must be unique, relative to other items in the same dashboard.
+        """
+        return pulumi.get(self, "id")
+
+    @id.setter
+    def id(self, value: pulumi.Input[str]):
+        pulumi.set(self, "id", value)
+
+    @property
+    @pulumi.getter
+    def subtitle(self) -> pulumi.Input[str]:
+        """
+        A human-readable subtitle for the dashboard item. Often a description of the visualization.
+        """
+        return pulumi.get(self, "subtitle")
+
+    @subtitle.setter
+    def subtitle(self, value: pulumi.Input[str]):
+        pulumi.set(self, "subtitle", value)
+
+    @property
+    @pulumi.getter
+    def title(self) -> pulumi.Input[str]:
+        """
+        A human-readable title for the dashboard item.
+        """
+        return pulumi.get(self, "title")
+
+    @title.setter
+    def title(self, value: pulumi.Input[str]):
+        pulumi.set(self, "title", value)
+
+    @property
+    @pulumi.getter
+    def visualization(self) -> pulumi.Input['CustomDashboardDashboardItemVisualizationArgs']:
+        """
+        An object which describes the data visualization to display.
+        """
+        return pulumi.get(self, "visualization")
+
+    @visualization.setter
+    def visualization(self, value: pulumi.Input['CustomDashboardDashboardItemVisualizationArgs']):
+        pulumi.set(self, "visualization", value)
+
+    @property
+    @pulumi.getter
+    def span(self) -> Optional[pulumi.Input[int]]:
+        """
+        The number of columns for the dashboard item to span. Dashboards are rendered on a 12-column grid on "desktop" screen sizes.
+        """
+        return pulumi.get(self, "span")
+
+    @span.setter
+    def span(self, value: Optional[pulumi.Input[int]]):
+        pulumi.set(self, "span", value)
+
+
+if not MYPY:
+    class CustomDashboardDashboardItemDataSourceArgsDict(TypedDict):
+        config: pulumi.Input['CustomDashboardDashboardItemDataSourceConfigArgsDict']
+        """
+        Configuration options for the selected data source.
+        """
+        type: pulumi.Input[str]
+        """
+        The source of the data to display. One of: `stats.edge`, `stats.domain`, `stats.origin`.
+        """
+elif False:
+    CustomDashboardDashboardItemDataSourceArgsDict: TypeAlias = Mapping[str, Any]
+
+@pulumi.input_type
+class CustomDashboardDashboardItemDataSourceArgs:
+    def __init__(__self__, *,
+                 config: pulumi.Input['CustomDashboardDashboardItemDataSourceConfigArgs'],
+                 type: pulumi.Input[str]):
+        """
+        :param pulumi.Input['CustomDashboardDashboardItemDataSourceConfigArgs'] config: Configuration options for the selected data source.
+        :param pulumi.Input[str] type: The source of the data to display. One of: `stats.edge`, `stats.domain`, `stats.origin`.
+        """
+        pulumi.set(__self__, "config", config)
+        pulumi.set(__self__, "type", type)
+
+    @property
+    @pulumi.getter
+    def config(self) -> pulumi.Input['CustomDashboardDashboardItemDataSourceConfigArgs']:
+        """
+        Configuration options for the selected data source.
+        """
+        return pulumi.get(self, "config")
+
+    @config.setter
+    def config(self, value: pulumi.Input['CustomDashboardDashboardItemDataSourceConfigArgs']):
+        pulumi.set(self, "config", value)
+
+    @property
+    @pulumi.getter
+    def type(self) -> pulumi.Input[str]:
+        """
+        The source of the data to display. One of: `stats.edge`, `stats.domain`, `stats.origin`.
+        """
+        return pulumi.get(self, "type")
+
+    @type.setter
+    def type(self, value: pulumi.Input[str]):
+        pulumi.set(self, "type", value)
+
+
+if not MYPY:
+    class CustomDashboardDashboardItemDataSourceConfigArgsDict(TypedDict):
+        metrics: pulumi.Input[Sequence[pulumi.Input[str]]]
+        """
+        The metrics to visualize. Valid options are defined by the selected data source: [stats.edge](https://www.fastly.com/documentation/reference/api/observability/custom-dashboards/metrics/edge/), [stats.domain](https://www.fastly.com/documentation/reference/api/observability/custom-dashboards/metrics/domain/), [stats.origin](https://www.fastly.com/documentation/reference/api/observability/custom-dashboards/metrics/origin/).
+        """
+elif False:
+    CustomDashboardDashboardItemDataSourceConfigArgsDict: TypeAlias = Mapping[str, Any]
+
+@pulumi.input_type
+class CustomDashboardDashboardItemDataSourceConfigArgs:
+    def __init__(__self__, *,
+                 metrics: pulumi.Input[Sequence[pulumi.Input[str]]]):
+        """
+        :param pulumi.Input[Sequence[pulumi.Input[str]]] metrics: The metrics to visualize. Valid options are defined by the selected data source: [stats.edge](https://www.fastly.com/documentation/reference/api/observability/custom-dashboards/metrics/edge/), [stats.domain](https://www.fastly.com/documentation/reference/api/observability/custom-dashboards/metrics/domain/), [stats.origin](https://www.fastly.com/documentation/reference/api/observability/custom-dashboards/metrics/origin/).
+        """
+        pulumi.set(__self__, "metrics", metrics)
+
+    @property
+    @pulumi.getter
+    def metrics(self) -> pulumi.Input[Sequence[pulumi.Input[str]]]:
+        """
+        The metrics to visualize. Valid options are defined by the selected data source: [stats.edge](https://www.fastly.com/documentation/reference/api/observability/custom-dashboards/metrics/edge/), [stats.domain](https://www.fastly.com/documentation/reference/api/observability/custom-dashboards/metrics/domain/), [stats.origin](https://www.fastly.com/documentation/reference/api/observability/custom-dashboards/metrics/origin/).
+        """
+        return pulumi.get(self, "metrics")
+
+    @metrics.setter
+    def metrics(self, value: pulumi.Input[Sequence[pulumi.Input[str]]]):
+        pulumi.set(self, "metrics", value)
+
+
+if not MYPY:
+    class CustomDashboardDashboardItemVisualizationArgsDict(TypedDict):
+        config: pulumi.Input['CustomDashboardDashboardItemVisualizationConfigArgsDict']
+        """
+        Configuration options for the selected data source.
+        """
+        type: pulumi.Input[str]
+        """
+        The type of visualization to display. One of: `chart`.
+        """
+elif False:
+    CustomDashboardDashboardItemVisualizationArgsDict: TypeAlias = Mapping[str, Any]
+
+@pulumi.input_type
+class CustomDashboardDashboardItemVisualizationArgs:
+    def __init__(__self__, *,
+                 config: pulumi.Input['CustomDashboardDashboardItemVisualizationConfigArgs'],
+                 type: pulumi.Input[str]):
+        """
+        :param pulumi.Input['CustomDashboardDashboardItemVisualizationConfigArgs'] config: Configuration options for the selected data source.
+        :param pulumi.Input[str] type: The type of visualization to display. One of: `chart`.
+        """
+        pulumi.set(__self__, "config", config)
+        pulumi.set(__self__, "type", type)
+
+    @property
+    @pulumi.getter
+    def config(self) -> pulumi.Input['CustomDashboardDashboardItemVisualizationConfigArgs']:
+        """
+        Configuration options for the selected data source.
+        """
+        return pulumi.get(self, "config")
+
+    @config.setter
+    def config(self, value: pulumi.Input['CustomDashboardDashboardItemVisualizationConfigArgs']):
+        pulumi.set(self, "config", value)
+
+    @property
+    @pulumi.getter
+    def type(self) -> pulumi.Input[str]:
+        """
+        The type of visualization to display. One of: `chart`.
+        """
+        return pulumi.get(self, "type")
+
+    @type.setter
+    def type(self, value: pulumi.Input[str]):
+        pulumi.set(self, "type", value)
+
+
+if not MYPY:
+    class CustomDashboardDashboardItemVisualizationConfigArgsDict(TypedDict):
+        plot_type: pulumi.Input[str]
+        """
+        The type of chart to display. One of: `line`, `bar`, `single-metric`, `donut`.
+        """
+        calculation_method: NotRequired[pulumi.Input[str]]
+        """
+        The aggregation function to apply to the dataset. One of: `avg`, `sum`, `min`, `max`, `latest`, `p95`.
+        """
+        format: NotRequired[pulumi.Input[str]]
+        """
+        The units to use to format the data. One of: `number`, `bytes`, `percent`, `requests`, `responses`, `seconds`, `milliseconds`, `ratio`, `bitrate`.
+        """
+elif False:
+    CustomDashboardDashboardItemVisualizationConfigArgsDict: TypeAlias = Mapping[str, Any]
+
+@pulumi.input_type
+class CustomDashboardDashboardItemVisualizationConfigArgs:
+    def __init__(__self__, *,
+                 plot_type: pulumi.Input[str],
+                 calculation_method: Optional[pulumi.Input[str]] = None,
+                 format: Optional[pulumi.Input[str]] = None):
+        """
+        :param pulumi.Input[str] plot_type: The type of chart to display. One of: `line`, `bar`, `single-metric`, `donut`.
+        :param pulumi.Input[str] calculation_method: The aggregation function to apply to the dataset. One of: `avg`, `sum`, `min`, `max`, `latest`, `p95`.
+        :param pulumi.Input[str] format: The units to use to format the data. One of: `number`, `bytes`, `percent`, `requests`, `responses`, `seconds`, `milliseconds`, `ratio`, `bitrate`.
+        """
+        pulumi.set(__self__, "plot_type", plot_type)
+        if calculation_method is not None:
+            pulumi.set(__self__, "calculation_method", calculation_method)
+        if format is not None:
+            pulumi.set(__self__, "format", format)
+
+    @property
+    @pulumi.getter(name="plotType")
+    def plot_type(self) -> pulumi.Input[str]:
+        """
+        The type of chart to display. One of: `line`, `bar`, `single-metric`, `donut`.
+        """
+        return pulumi.get(self, "plot_type")
+
+    @plot_type.setter
+    def plot_type(self, value: pulumi.Input[str]):
+        pulumi.set(self, "plot_type", value)
+
+    @property
+    @pulumi.getter(name="calculationMethod")
+    def calculation_method(self) -> Optional[pulumi.Input[str]]:
+        """
+        The aggregation function to apply to the dataset. One of: `avg`, `sum`, `min`, `max`, `latest`, `p95`.
+        """
+        return pulumi.get(self, "calculation_method")
+
+    @calculation_method.setter
+    def calculation_method(self, value: Optional[pulumi.Input[str]]):
+        pulumi.set(self, "calculation_method", value)
+
+    @property
+    @pulumi.getter
+    def format(self) -> Optional[pulumi.Input[str]]:
+        """
+        The units to use to format the data. One of: `number`, `bytes`, `percent`, `requests`, `responses`, `seconds`, `milliseconds`, `ratio`, `bitrate`.
+        """
+        return pulumi.get(self, "format")
+
+    @format.setter
+    def format(self, value: Optional[pulumi.Input[str]]):
+        pulumi.set(self, "format", value)
 
 
 if not MYPY:

@@ -18,6 +18,11 @@ from . import outputs
 __all__ = [
     'AlertDimensions',
     'AlertEvaluationStrategy',
+    'CustomDashboardDashboardItem',
+    'CustomDashboardDashboardItemDataSource',
+    'CustomDashboardDashboardItemDataSourceConfig',
+    'CustomDashboardDashboardItemVisualization',
+    'CustomDashboardDashboardItemVisualizationConfig',
     'ServiceACLEntriesEntry',
     'ServiceComputeBackend',
     'ServiceComputeDictionary',
@@ -214,6 +219,234 @@ class AlertEvaluationStrategy(dict):
         Threshold for the denominator value used in evaluations that calculate a rate or ratio. Usually used to filter out noise.
         """
         return pulumi.get(self, "ignore_below")
+
+
+@pulumi.output_type
+class CustomDashboardDashboardItem(dict):
+    @staticmethod
+    def __key_warning(key: str):
+        suggest = None
+        if key == "dataSource":
+            suggest = "data_source"
+
+        if suggest:
+            pulumi.log.warn(f"Key '{key}' not found in CustomDashboardDashboardItem. Access the value via the '{suggest}' property getter instead.")
+
+    def __getitem__(self, key: str) -> Any:
+        CustomDashboardDashboardItem.__key_warning(key)
+        return super().__getitem__(key)
+
+    def get(self, key: str, default = None) -> Any:
+        CustomDashboardDashboardItem.__key_warning(key)
+        return super().get(key, default)
+
+    def __init__(__self__, *,
+                 data_source: 'outputs.CustomDashboardDashboardItemDataSource',
+                 id: str,
+                 subtitle: str,
+                 title: str,
+                 visualization: 'outputs.CustomDashboardDashboardItemVisualization',
+                 span: Optional[int] = None):
+        """
+        :param 'CustomDashboardDashboardItemDataSourceArgs' data_source: An object which describes the data to display.
+        :param str id: Dashboard item identifier (alphanumeric). Must be unique, relative to other items in the same dashboard.
+        :param str subtitle: A human-readable subtitle for the dashboard item. Often a description of the visualization.
+        :param str title: A human-readable title for the dashboard item.
+        :param 'CustomDashboardDashboardItemVisualizationArgs' visualization: An object which describes the data visualization to display.
+        :param int span: The number of columns for the dashboard item to span. Dashboards are rendered on a 12-column grid on "desktop" screen sizes.
+        """
+        pulumi.set(__self__, "data_source", data_source)
+        pulumi.set(__self__, "id", id)
+        pulumi.set(__self__, "subtitle", subtitle)
+        pulumi.set(__self__, "title", title)
+        pulumi.set(__self__, "visualization", visualization)
+        if span is not None:
+            pulumi.set(__self__, "span", span)
+
+    @property
+    @pulumi.getter(name="dataSource")
+    def data_source(self) -> 'outputs.CustomDashboardDashboardItemDataSource':
+        """
+        An object which describes the data to display.
+        """
+        return pulumi.get(self, "data_source")
+
+    @property
+    @pulumi.getter
+    def id(self) -> str:
+        """
+        Dashboard item identifier (alphanumeric). Must be unique, relative to other items in the same dashboard.
+        """
+        return pulumi.get(self, "id")
+
+    @property
+    @pulumi.getter
+    def subtitle(self) -> str:
+        """
+        A human-readable subtitle for the dashboard item. Often a description of the visualization.
+        """
+        return pulumi.get(self, "subtitle")
+
+    @property
+    @pulumi.getter
+    def title(self) -> str:
+        """
+        A human-readable title for the dashboard item.
+        """
+        return pulumi.get(self, "title")
+
+    @property
+    @pulumi.getter
+    def visualization(self) -> 'outputs.CustomDashboardDashboardItemVisualization':
+        """
+        An object which describes the data visualization to display.
+        """
+        return pulumi.get(self, "visualization")
+
+    @property
+    @pulumi.getter
+    def span(self) -> Optional[int]:
+        """
+        The number of columns for the dashboard item to span. Dashboards are rendered on a 12-column grid on "desktop" screen sizes.
+        """
+        return pulumi.get(self, "span")
+
+
+@pulumi.output_type
+class CustomDashboardDashboardItemDataSource(dict):
+    def __init__(__self__, *,
+                 config: 'outputs.CustomDashboardDashboardItemDataSourceConfig',
+                 type: str):
+        """
+        :param 'CustomDashboardDashboardItemDataSourceConfigArgs' config: Configuration options for the selected data source.
+        :param str type: The source of the data to display. One of: `stats.edge`, `stats.domain`, `stats.origin`.
+        """
+        pulumi.set(__self__, "config", config)
+        pulumi.set(__self__, "type", type)
+
+    @property
+    @pulumi.getter
+    def config(self) -> 'outputs.CustomDashboardDashboardItemDataSourceConfig':
+        """
+        Configuration options for the selected data source.
+        """
+        return pulumi.get(self, "config")
+
+    @property
+    @pulumi.getter
+    def type(self) -> str:
+        """
+        The source of the data to display. One of: `stats.edge`, `stats.domain`, `stats.origin`.
+        """
+        return pulumi.get(self, "type")
+
+
+@pulumi.output_type
+class CustomDashboardDashboardItemDataSourceConfig(dict):
+    def __init__(__self__, *,
+                 metrics: Sequence[str]):
+        """
+        :param Sequence[str] metrics: The metrics to visualize. Valid options are defined by the selected data source: [stats.edge](https://www.fastly.com/documentation/reference/api/observability/custom-dashboards/metrics/edge/), [stats.domain](https://www.fastly.com/documentation/reference/api/observability/custom-dashboards/metrics/domain/), [stats.origin](https://www.fastly.com/documentation/reference/api/observability/custom-dashboards/metrics/origin/).
+        """
+        pulumi.set(__self__, "metrics", metrics)
+
+    @property
+    @pulumi.getter
+    def metrics(self) -> Sequence[str]:
+        """
+        The metrics to visualize. Valid options are defined by the selected data source: [stats.edge](https://www.fastly.com/documentation/reference/api/observability/custom-dashboards/metrics/edge/), [stats.domain](https://www.fastly.com/documentation/reference/api/observability/custom-dashboards/metrics/domain/), [stats.origin](https://www.fastly.com/documentation/reference/api/observability/custom-dashboards/metrics/origin/).
+        """
+        return pulumi.get(self, "metrics")
+
+
+@pulumi.output_type
+class CustomDashboardDashboardItemVisualization(dict):
+    def __init__(__self__, *,
+                 config: 'outputs.CustomDashboardDashboardItemVisualizationConfig',
+                 type: str):
+        """
+        :param 'CustomDashboardDashboardItemVisualizationConfigArgs' config: Configuration options for the selected data source.
+        :param str type: The type of visualization to display. One of: `chart`.
+        """
+        pulumi.set(__self__, "config", config)
+        pulumi.set(__self__, "type", type)
+
+    @property
+    @pulumi.getter
+    def config(self) -> 'outputs.CustomDashboardDashboardItemVisualizationConfig':
+        """
+        Configuration options for the selected data source.
+        """
+        return pulumi.get(self, "config")
+
+    @property
+    @pulumi.getter
+    def type(self) -> str:
+        """
+        The type of visualization to display. One of: `chart`.
+        """
+        return pulumi.get(self, "type")
+
+
+@pulumi.output_type
+class CustomDashboardDashboardItemVisualizationConfig(dict):
+    @staticmethod
+    def __key_warning(key: str):
+        suggest = None
+        if key == "plotType":
+            suggest = "plot_type"
+        elif key == "calculationMethod":
+            suggest = "calculation_method"
+
+        if suggest:
+            pulumi.log.warn(f"Key '{key}' not found in CustomDashboardDashboardItemVisualizationConfig. Access the value via the '{suggest}' property getter instead.")
+
+    def __getitem__(self, key: str) -> Any:
+        CustomDashboardDashboardItemVisualizationConfig.__key_warning(key)
+        return super().__getitem__(key)
+
+    def get(self, key: str, default = None) -> Any:
+        CustomDashboardDashboardItemVisualizationConfig.__key_warning(key)
+        return super().get(key, default)
+
+    def __init__(__self__, *,
+                 plot_type: str,
+                 calculation_method: Optional[str] = None,
+                 format: Optional[str] = None):
+        """
+        :param str plot_type: The type of chart to display. One of: `line`, `bar`, `single-metric`, `donut`.
+        :param str calculation_method: The aggregation function to apply to the dataset. One of: `avg`, `sum`, `min`, `max`, `latest`, `p95`.
+        :param str format: The units to use to format the data. One of: `number`, `bytes`, `percent`, `requests`, `responses`, `seconds`, `milliseconds`, `ratio`, `bitrate`.
+        """
+        pulumi.set(__self__, "plot_type", plot_type)
+        if calculation_method is not None:
+            pulumi.set(__self__, "calculation_method", calculation_method)
+        if format is not None:
+            pulumi.set(__self__, "format", format)
+
+    @property
+    @pulumi.getter(name="plotType")
+    def plot_type(self) -> str:
+        """
+        The type of chart to display. One of: `line`, `bar`, `single-metric`, `donut`.
+        """
+        return pulumi.get(self, "plot_type")
+
+    @property
+    @pulumi.getter(name="calculationMethod")
+    def calculation_method(self) -> Optional[str]:
+        """
+        The aggregation function to apply to the dataset. One of: `avg`, `sum`, `min`, `max`, `latest`, `p95`.
+        """
+        return pulumi.get(self, "calculation_method")
+
+    @property
+    @pulumi.getter
+    def format(self) -> Optional[str]:
+        """
+        The units to use to format the data. One of: `number`, `bytes`, `percent`, `requests`, `responses`, `seconds`, `milliseconds`, `ratio`, `bitrate`.
+        """
+        return pulumi.get(self, "format")
 
 
 @pulumi.output_type

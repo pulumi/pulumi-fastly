@@ -20,6 +20,16 @@ export type ConfigstoreEntries = import("./configstoreEntries").ConfigstoreEntri
 export const ConfigstoreEntries: typeof import("./configstoreEntries").ConfigstoreEntries = null as any;
 utilities.lazyLoad(exports, ["ConfigstoreEntries"], () => require("./configstoreEntries"));
 
+export { CustomDashboardArgs, CustomDashboardState } from "./customDashboard";
+export type CustomDashboard = import("./customDashboard").CustomDashboard;
+export const CustomDashboard: typeof import("./customDashboard").CustomDashboard = null as any;
+utilities.lazyLoad(exports, ["CustomDashboard"], () => require("./customDashboard"));
+
+export { DomainV1Args, DomainV1State } from "./domainV1";
+export type DomainV1 = import("./domainV1").DomainV1;
+export const DomainV1: typeof import("./domainV1").DomainV1 = null as any;
+utilities.lazyLoad(exports, ["DomainV1"], () => require("./domainV1"));
+
 export { GetConfigstoresResult } from "./getConfigstores";
 export const getConfigstores: typeof import("./getConfigstores").getConfigstores = null as any;
 export const getConfigstoresOutput: typeof import("./getConfigstores").getConfigstoresOutput = null as any;
@@ -250,6 +260,10 @@ const _module = {
                 return new Configstore(name, <any>undefined, { urn })
             case "fastly:index/configstoreEntries:ConfigstoreEntries":
                 return new ConfigstoreEntries(name, <any>undefined, { urn })
+            case "fastly:index/customDashboard:CustomDashboard":
+                return new CustomDashboard(name, <any>undefined, { urn })
+            case "fastly:index/domainV1:DomainV1":
+                return new DomainV1(name, <any>undefined, { urn })
             case "fastly:index/integration:Integration":
                 return new Integration(name, <any>undefined, { urn })
             case "fastly:index/kvstore:Kvstore":
@@ -294,6 +308,8 @@ const _module = {
 pulumi.runtime.registerResourceModule("fastly", "index/alert", _module)
 pulumi.runtime.registerResourceModule("fastly", "index/configstore", _module)
 pulumi.runtime.registerResourceModule("fastly", "index/configstoreEntries", _module)
+pulumi.runtime.registerResourceModule("fastly", "index/customDashboard", _module)
+pulumi.runtime.registerResourceModule("fastly", "index/domainV1", _module)
 pulumi.runtime.registerResourceModule("fastly", "index/integration", _module)
 pulumi.runtime.registerResourceModule("fastly", "index/kvstore", _module)
 pulumi.runtime.registerResourceModule("fastly", "index/secretstore", _module)
