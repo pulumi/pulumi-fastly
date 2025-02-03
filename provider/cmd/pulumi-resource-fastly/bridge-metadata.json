@@ -31,6 +31,48 @@
             "fastly_configstore_entries": {
                 "current": "fastly:index/configstoreEntries:ConfigstoreEntries"
             },
+            "fastly_custom_dashboard": {
+                "current": "fastly:index/customDashboard:CustomDashboard",
+                "fields": {
+                    "dashboard_item": {
+                        "maxItemsOne": false,
+                        "elem": {
+                            "fields": {
+                                "data_source": {
+                                    "maxItemsOne": true,
+                                    "elem": {
+                                        "fields": {
+                                            "config": {
+                                                "maxItemsOne": true,
+                                                "elem": {
+                                                    "fields": {
+                                                        "metrics": {
+                                                            "maxItemsOne": false
+                                                        }
+                                                    }
+                                                }
+                                            }
+                                        }
+                                    }
+                                },
+                                "visualization": {
+                                    "maxItemsOne": true,
+                                    "elem": {
+                                        "fields": {
+                                            "config": {
+                                                "maxItemsOne": true
+                                            }
+                                        }
+                                    }
+                                }
+                            }
+                        }
+                    }
+                }
+            },
+            "fastly_domain_v1": {
+                "current": "fastly:index/domainV1:DomainV1"
+            },
             "fastly_integration": {
                 "current": "fastly:index/integration:Integration"
             },
