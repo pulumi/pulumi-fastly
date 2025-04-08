@@ -57,6 +57,8 @@ __all__ = [
     'ServiceComputeLoggingSyslog',
     'ServiceComputePackage',
     'ServiceComputeProductEnablement',
+    'ServiceComputeProductEnablementDdosProtection',
+    'ServiceComputeProductEnablementNgwaf',
     'ServiceComputeResourceLink',
     'ServiceVclAcl',
     'ServiceVclBackend',
@@ -99,15 +101,14 @@ __all__ = [
     'ServiceVclLoggingSumologic',
     'ServiceVclLoggingSyslog',
     'ServiceVclProductEnablement',
+    'ServiceVclProductEnablementDdosProtection',
+    'ServiceVclProductEnablementNgwaf',
     'ServiceVclRateLimiter',
     'ServiceVclRateLimiterResponse',
     'ServiceVclRequestSetting',
     'ServiceVclResponseObject',
     'ServiceVclSnippet',
     'ServiceVclVcl',
-    'ServiceVclWaf',
-    'ServiceWafConfigurationRule',
-    'ServiceWafConfigurationRuleExclusion',
     'TlsSubscriptionManagedDnsChallenge',
     'TlsSubscriptionManagedHttpChallenge',
     'GetConfigstoresStoreResult',
@@ -118,7 +119,6 @@ __all__ = [
     'GetServicesDetailResult',
     'GetTlsConfigurationDnsRecordResult',
     'GetVclSnippetsVclSnippetResult',
-    'GetWafRulesRuleResult',
 ]
 
 @pulumi.output_type
@@ -4409,7 +4409,9 @@ class ServiceComputeProductEnablement(dict):
     @staticmethod
     def __key_warning(key: str):
         suggest = None
-        if key == "logExplorerInsights":
+        if key == "ddosProtection":
+            suggest = "ddos_protection"
+        elif key == "logExplorerInsights":
             suggest = "log_explorer_insights"
 
         if suggest:
@@ -4424,24 +4426,40 @@ class ServiceComputeProductEnablement(dict):
         return super().get(key, default)
 
     def __init__(__self__, *,
+                 ddos_protection: Optional['outputs.ServiceComputeProductEnablementDdosProtection'] = None,
                  fanout: Optional[bool] = None,
                  log_explorer_insights: Optional[bool] = None,
                  name: Optional[str] = None,
+                 ngwaf: Optional['outputs.ServiceComputeProductEnablementNgwaf'] = None,
                  websockets: Optional[bool] = None):
         """
+        :param 'ServiceComputeProductEnablementDdosProtectionArgs' ddos_protection: DDoS Protection product
         :param bool fanout: Enable Fanout support
         :param bool log_explorer_insights: Enable Log Explorer & Insights
         :param str name: Used by the provider to identify modified settings (changing this value will force the entire block to be deleted, then recreated)
+        :param 'ServiceComputeProductEnablementNgwafArgs' ngwaf: Next-Gen WAF product
         :param bool websockets: Enable WebSockets support
         """
+        if ddos_protection is not None:
+            pulumi.set(__self__, "ddos_protection", ddos_protection)
         if fanout is not None:
             pulumi.set(__self__, "fanout", fanout)
         if log_explorer_insights is not None:
             pulumi.set(__self__, "log_explorer_insights", log_explorer_insights)
         if name is not None:
             pulumi.set(__self__, "name", name)
+        if ngwaf is not None:
+            pulumi.set(__self__, "ngwaf", ngwaf)
         if websockets is not None:
             pulumi.set(__self__, "websockets", websockets)
+
+    @property
+    @pulumi.getter(name="ddosProtection")
+    def ddos_protection(self) -> Optional['outputs.ServiceComputeProductEnablementDdosProtection']:
+        """
+        DDoS Protection product
+        """
+        return pulumi.get(self, "ddos_protection")
 
     @property
     @pulumi.getter
@@ -4469,11 +4487,108 @@ class ServiceComputeProductEnablement(dict):
 
     @property
     @pulumi.getter
+    def ngwaf(self) -> Optional['outputs.ServiceComputeProductEnablementNgwaf']:
+        """
+        Next-Gen WAF product
+        """
+        return pulumi.get(self, "ngwaf")
+
+    @property
+    @pulumi.getter
     def websockets(self) -> Optional[bool]:
         """
         Enable WebSockets support
         """
         return pulumi.get(self, "websockets")
+
+
+@pulumi.output_type
+class ServiceComputeProductEnablementDdosProtection(dict):
+    def __init__(__self__, *,
+                 enabled: bool,
+                 mode: str):
+        """
+        :param bool enabled: Enable DDoS Protection support
+        :param str mode: Operation mode
+        """
+        pulumi.set(__self__, "enabled", enabled)
+        pulumi.set(__self__, "mode", mode)
+
+    @property
+    @pulumi.getter
+    def enabled(self) -> bool:
+        """
+        Enable DDoS Protection support
+        """
+        return pulumi.get(self, "enabled")
+
+    @property
+    @pulumi.getter
+    def mode(self) -> str:
+        """
+        Operation mode
+        """
+        return pulumi.get(self, "mode")
+
+
+@pulumi.output_type
+class ServiceComputeProductEnablementNgwaf(dict):
+    @staticmethod
+    def __key_warning(key: str):
+        suggest = None
+        if key == "workspaceId":
+            suggest = "workspace_id"
+        elif key == "trafficRamp":
+            suggest = "traffic_ramp"
+
+        if suggest:
+            pulumi.log.warn(f"Key '{key}' not found in ServiceComputeProductEnablementNgwaf. Access the value via the '{suggest}' property getter instead.")
+
+    def __getitem__(self, key: str) -> Any:
+        ServiceComputeProductEnablementNgwaf.__key_warning(key)
+        return super().__getitem__(key)
+
+    def get(self, key: str, default = None) -> Any:
+        ServiceComputeProductEnablementNgwaf.__key_warning(key)
+        return super().get(key, default)
+
+    def __init__(__self__, *,
+                 enabled: bool,
+                 workspace_id: str,
+                 traffic_ramp: Optional[int] = None):
+        """
+        :param bool enabled: Enable Next-Gen WAF support
+        :param str workspace_id: The workspace to link
+        :param int traffic_ramp: The percentage of traffic to inspect
+        """
+        pulumi.set(__self__, "enabled", enabled)
+        pulumi.set(__self__, "workspace_id", workspace_id)
+        if traffic_ramp is not None:
+            pulumi.set(__self__, "traffic_ramp", traffic_ramp)
+
+    @property
+    @pulumi.getter
+    def enabled(self) -> bool:
+        """
+        Enable Next-Gen WAF support
+        """
+        return pulumi.get(self, "enabled")
+
+    @property
+    @pulumi.getter(name="workspaceId")
+    def workspace_id(self) -> str:
+        """
+        The workspace to link
+        """
+        return pulumi.get(self, "workspace_id")
+
+    @property
+    @pulumi.getter(name="trafficRamp")
+    def traffic_ramp(self) -> Optional[int]:
+        """
+        The percentage of traffic to inspect
+        """
+        return pulumi.get(self, "traffic_ramp")
 
 
 @pulumi.output_type
@@ -5980,7 +6095,7 @@ class ServiceVclLoggingBigquery(dict):
         :param str table: The ID of your BigQuery table
         :param str account_name: The google account name used to obtain temporary credentials (default none). You may optionally provide this via an environment variable, `FASTLY_GCS_ACCOUNT_NAME`.
         :param str format: The logging format desired.
-        :param str placement: Where in the generated VCL the logging call should be placed.
+        :param str placement: Where in the generated VCL the logging call should be placed (ignored).
         :param str response_condition: Name of a condition to apply this logging.
         :param str template: BigQuery table name suffix template
         """
@@ -6069,7 +6184,7 @@ class ServiceVclLoggingBigquery(dict):
     @pulumi.getter
     def placement(self) -> Optional[str]:
         """
-        Where in the generated VCL the logging call should be placed.
+        Where in the generated VCL the logging call should be placed (ignored).
         """
         return pulumi.get(self, "placement")
 
@@ -6157,7 +6272,7 @@ class ServiceVclLoggingBlobstorage(dict):
         :param str message_type: How the message should be formatted. Can be either `classic`, `loggly`, `logplex` or `blank`. Default is `classic`
         :param str path: The path to upload logs to. Must end with a trailing slash. If this field is left empty, the files will be saved in the container's root path
         :param int period: How frequently the logs should be transferred in seconds. Default `3600`
-        :param str placement: Where in the generated VCL the logging call should be placed
+        :param str placement: Where in the generated VCL the logging call should be placed (ignored).
         :param str public_key: A PGP public key that Fastly will use to encrypt your log files before writing them to disk
         :param str response_condition: The name of the condition to apply
         :param str timestamp_format: The `strftime` specified timestamp formatting (default `%Y-%m-%dT%H:%M:%S.000`)
@@ -6291,7 +6406,7 @@ class ServiceVclLoggingBlobstorage(dict):
     @pulumi.getter
     def placement(self) -> Optional[str]:
         """
-        Where in the generated VCL the logging call should be placed
+        Where in the generated VCL the logging call should be placed (ignored).
         """
         return pulumi.get(self, "placement")
 
@@ -6384,7 +6499,7 @@ class ServiceVclLoggingCloudfile(dict):
         :param str message_type: How the message should be formatted. Can be either `classic`, `loggly`, `logplex` or `blank`. Default is `classic`
         :param str path: The path to upload logs to
         :param int period: How frequently log files are finalized so they can be available for reading (in seconds, default `3600`)
-        :param str placement: Where in the generated VCL the logging call should be placed. Can be `none` or `waf_debug`.
+        :param str placement: Where in the generated VCL the logging call should be placed (ignored).
         :param str public_key: The PGP public key that Fastly will use to encrypt your log files before writing them to disk
         :param str region: The region to stream logs to. One of: DFW (Dallas), ORD (Chicago), IAD (Northern Virginia), LON (London), SYD (Sydney), HKG (Hong Kong)
         :param str response_condition: The name of an existing condition in the configured endpoint, or leave blank to always execute.
@@ -6511,7 +6626,7 @@ class ServiceVclLoggingCloudfile(dict):
     @pulumi.getter
     def placement(self) -> Optional[str]:
         """
-        Where in the generated VCL the logging call should be placed. Can be `none` or `waf_debug`.
+        Where in the generated VCL the logging call should be placed (ignored).
         """
         return pulumi.get(self, "placement")
 
@@ -6582,7 +6697,7 @@ class ServiceVclLoggingDatadog(dict):
         :param str token: The API key from your Datadog account
         :param str format: Apache-style string or VCL variables to use for log formatting.
         :param int format_version: The version of the custom logging format used for the configured endpoint. Can be either `1` or `2`. (default: `2`).
-        :param str placement: Where in the generated VCL the logging call should be placed.
+        :param str placement: Where in the generated VCL the logging call should be placed (ignored).
         :param str region: The region that log data will be sent to. One of `US` or `EU`. Defaults to `US` if undefined
         :param str response_condition: The name of the condition to apply.
         """
@@ -6635,7 +6750,7 @@ class ServiceVclLoggingDatadog(dict):
     @pulumi.getter
     def placement(self) -> Optional[str]:
         """
-        Where in the generated VCL the logging call should be placed.
+        Where in the generated VCL the logging call should be placed (ignored).
         """
         return pulumi.get(self, "placement")
 
@@ -6723,7 +6838,7 @@ class ServiceVclLoggingDigitalocean(dict):
         :param str message_type: How the message should be formatted. Can be either `classic`, `loggly`, `logplex` or `blank`. Default is `classic`
         :param str path: The path to upload logs to
         :param int period: How frequently log files are finalized so they can be available for reading (in seconds, default `3600`)
-        :param str placement: Where in the generated VCL the logging call should be placed. Can be `none` or `waf_debug`.
+        :param str placement: Where in the generated VCL the logging call should be placed (ignored).
         :param str public_key: A PGP public key that Fastly will use to encrypt your log files before writing them to disk
         :param str response_condition: The name of an existing condition in the configured endpoint, or leave blank to always execute.
         :param str timestamp_format: The `strftime` specified timestamp formatting (default `%Y-%m-%dT%H:%M:%S.000`)
@@ -6857,7 +6972,7 @@ class ServiceVclLoggingDigitalocean(dict):
     @pulumi.getter
     def placement(self) -> Optional[str]:
         """
-        Where in the generated VCL the logging call should be placed. Can be `none` or `waf_debug`.
+        Where in the generated VCL the logging call should be placed (ignored).
         """
         return pulumi.get(self, "placement")
 
@@ -6944,7 +7059,7 @@ class ServiceVclLoggingElasticsearch(dict):
         :param int format_version: The version of the custom logging format used for the configured endpoint. Can be either 1 or 2. (default: 2).
         :param str password: BasicAuth password for Elasticsearch
         :param str pipeline: The ID of the Elasticsearch ingest pipeline to apply pre-process transformations to before indexing
-        :param str placement: Where in the generated VCL the logging call should be placed.
+        :param str placement: Where in the generated VCL the logging call should be placed (ignored).
         :param int request_max_bytes: The maximum number of logs sent in one request. Defaults to `0` for unbounded
         :param int request_max_entries: The maximum number of bytes sent in one request. Defaults to `0` for unbounded
         :param str response_condition: The name of the condition to apply
@@ -7044,7 +7159,7 @@ class ServiceVclLoggingElasticsearch(dict):
     @pulumi.getter
     def placement(self) -> Optional[str]:
         """
-        Where in the generated VCL the logging call should be placed.
+        Where in the generated VCL the logging call should be placed (ignored).
         """
         return pulumi.get(self, "placement")
 
@@ -7173,7 +7288,7 @@ class ServiceVclLoggingFtp(dict):
         :param int gzip_level: Level of Gzip compression from `0-9`. `0` means no compression. `1` is the fastest and the least compressed version, `9` is the slowest and the most compressed version. Default `0`
         :param str message_type: How the message should be formatted. Can be either `classic`, `loggly`, `logplex` or `blank`. Default is `classic`
         :param int period: How frequently the logs should be transferred, in seconds (Default `3600`)
-        :param str placement: Where in the generated VCL the logging call should be placed.
+        :param str placement: Where in the generated VCL the logging call should be placed (ignored).
         :param int port: The port number. Default: `21`
         :param str public_key: The PGP public key that Fastly will use to encrypt your log files before writing them to disk
         :param str response_condition: The name of the condition to apply.
@@ -7299,7 +7414,7 @@ class ServiceVclLoggingFtp(dict):
     @pulumi.getter
     def placement(self) -> Optional[str]:
         """
-        Where in the generated VCL the logging call should be placed.
+        Where in the generated VCL the logging call should be placed (ignored).
         """
         return pulumi.get(self, "placement")
 
@@ -7401,7 +7516,7 @@ class ServiceVclLoggingGc(dict):
         :param str message_type: How the message should be formatted. Can be either `classic`, `loggly`, `logplex` or `blank`. Default is `classic`
         :param str path: Path to store the files. Must end with a trailing slash. If this field is left empty, the files will be saved in the bucket's root path
         :param int period: How frequently the logs should be transferred, in seconds (Default 3600)
-        :param str placement: Where in the generated VCL the logging call should be placed.
+        :param str placement: Where in the generated VCL the logging call should be placed (ignored).
         :param str project_id: The ID of your Google Cloud Platform project
         :param str response_condition: Name of a condition to apply this logging.
         :param str secret_key: The secret key associated with the target gcs bucket on your account. You may optionally provide this secret via an environment variable, `FASTLY_GCS_SECRET_KEY`. A typical format for the key is PEM format, containing actual newline characters where required
@@ -7523,7 +7638,7 @@ class ServiceVclLoggingGc(dict):
     @pulumi.getter
     def placement(self) -> Optional[str]:
         """
-        Where in the generated VCL the logging call should be placed.
+        Where in the generated VCL the logging call should be placed (ignored).
         """
         return pulumi.get(self, "placement")
 
@@ -7615,7 +7730,7 @@ class ServiceVclLoggingGooglepubsub(dict):
         :param str account_name: The google account name used to obtain temporary credentials (default none). You may optionally provide this via an environment variable, `FASTLY_GCS_ACCOUNT_NAME`.
         :param str format: Apache style log formatting.
         :param int format_version: The version of the custom logging format used for the configured endpoint. Can be either 1 or 2. (default: 2).
-        :param str placement: Where in the generated VCL the logging call should be placed.
+        :param str placement: Where in the generated VCL the logging call should be placed (ignored).
         :param str response_condition: The name of an existing condition in the configured endpoint, or leave blank to always execute.
         """
         pulumi.set(__self__, "name", name)
@@ -7702,7 +7817,7 @@ class ServiceVclLoggingGooglepubsub(dict):
     @pulumi.getter
     def placement(self) -> Optional[str]:
         """
-        Where in the generated VCL the logging call should be placed.
+        Where in the generated VCL the logging call should be placed (ignored).
         """
         return pulumi.get(self, "placement")
 
@@ -7754,7 +7869,7 @@ class ServiceVclLoggingGrafanacloudlog(dict):
         :param str user: The Grafana User ID
         :param str format: Apache-style string or VCL variables to use for log formatting.
         :param int format_version: The version of the custom logging format used for the configured endpoint. Can be either `1` or `2`. (default: `2`).
-        :param str placement: Where in the generated VCL the logging call should be placed.
+        :param str placement: Where in the generated VCL the logging call should be placed (ignored).
         :param str response_condition: The name of the condition to apply.
         """
         pulumi.set(__self__, "index", index)
@@ -7831,7 +7946,7 @@ class ServiceVclLoggingGrafanacloudlog(dict):
     @pulumi.getter
     def placement(self) -> Optional[str]:
         """
-        Where in the generated VCL the logging call should be placed.
+        Where in the generated VCL the logging call should be placed (ignored).
         """
         return pulumi.get(self, "placement")
 
@@ -7879,7 +7994,7 @@ class ServiceVclLoggingHerokus(dict):
         :param str url: The URL to stream logs to
         :param str format: Apache-style string or VCL variables to use for log formatting.
         :param int format_version: The version of the custom logging format used for the configured endpoint. Can be either `1` or `2`. (default: `2`).
-        :param str placement: Where in the generated VCL the logging call should be placed. Can be `none` or `waf_debug`.
+        :param str placement: Where in the generated VCL the logging call should be placed (ignored).
         :param str response_condition: The name of an existing condition in the configured endpoint, or leave blank to always execute.
         """
         pulumi.set(__self__, "name", name)
@@ -7938,7 +8053,7 @@ class ServiceVclLoggingHerokus(dict):
     @pulumi.getter
     def placement(self) -> Optional[str]:
         """
-        Where in the generated VCL the logging call should be placed. Can be `none` or `waf_debug`.
+        Where in the generated VCL the logging call should be placed (ignored).
         """
         return pulumi.get(self, "placement")
 
@@ -7986,7 +8101,7 @@ class ServiceVclLoggingHoneycomb(dict):
         :param str token: The Write Key from the Account page of your Honeycomb account
         :param str format: Apache style log formatting. Your log must produce valid JSON that Honeycomb can ingest.
         :param int format_version: The version of the custom logging format used for the configured endpoint. Can be either `1` or `2`. (default: `2`).
-        :param str placement: Where in the generated VCL the logging call should be placed. Can be `none` or `waf_debug`.
+        :param str placement: Where in the generated VCL the logging call should be placed (ignored).
         :param str response_condition: The name of an existing condition in the configured endpoint, or leave blank to always execute.
         """
         pulumi.set(__self__, "dataset", dataset)
@@ -8045,7 +8160,7 @@ class ServiceVclLoggingHoneycomb(dict):
     @pulumi.getter
     def placement(self) -> Optional[str]:
         """
-        Where in the generated VCL the logging call should be placed. Can be `none` or `waf_debug`.
+        Where in the generated VCL the logging call should be placed (ignored).
         """
         return pulumi.get(self, "placement")
 
@@ -8131,7 +8246,7 @@ class ServiceVclLoggingHttp(dict):
         :param str json_format: Formats log entries as JSON. Can be either disabled (`0`), array of json (`1`), or newline delimited json (`2`)
         :param str message_type: How the message should be formatted. Can be either `classic`, `loggly`, `logplex` or `blank`. Default is `classic`
         :param str method: HTTP method used for request. Can be either `POST` or `PUT`. Default `POST`
-        :param str placement: Where in the generated VCL the logging call should be placed
+        :param str placement: Where in the generated VCL the logging call should be placed (ignored).
         :param int request_max_bytes: The maximum number of bytes sent in one request
         :param int request_max_entries: The maximum number of logs sent in one request
         :param str response_condition: The name of the condition to apply
@@ -8259,7 +8374,7 @@ class ServiceVclLoggingHttp(dict):
     @pulumi.getter
     def placement(self) -> Optional[str]:
         """
-        Where in the generated VCL the logging call should be placed
+        Where in the generated VCL the logging call should be placed (ignored).
         """
         return pulumi.get(self, "placement")
 
@@ -8391,7 +8506,7 @@ class ServiceVclLoggingKafka(dict):
         :param int format_version: The version of the custom logging format used for the configured endpoint. Can be either 1 or 2. (default: 2).
         :param bool parse_log_keyvals: Enables parsing of key=value tuples from the beginning of a logline, turning them into record headers
         :param str password: SASL Pass
-        :param str placement: Where in the generated VCL the logging call should be placed.
+        :param str placement: Where in the generated VCL the logging call should be placed (ignored).
         :param int request_max_bytes: Maximum size of log batch, if non-zero. Defaults to 0 for unbounded
         :param str required_acks: The Number of acknowledgements a leader must receive before a write is considered successful. One of: `1` (default) One server needs to respond. `0` No servers need to respond. `-1` Wait for all in-sync replicas to respond
         :param str response_condition: The name of an existing condition in the configured endpoint, or leave blank to always execute.
@@ -8514,7 +8629,7 @@ class ServiceVclLoggingKafka(dict):
     @pulumi.getter
     def placement(self) -> Optional[str]:
         """
-        Where in the generated VCL the logging call should be placed.
+        Where in the generated VCL the logging call should be placed (ignored).
         """
         return pulumi.get(self, "placement")
 
@@ -8636,7 +8751,7 @@ class ServiceVclLoggingKinese(dict):
         :param str format: Apache style log formatting.
         :param int format_version: The version of the custom logging format used for the configured endpoint. Can be either `1` or `2`. (default: `2`).
         :param str iam_role: The Amazon Resource Name (ARN) for the IAM role granting Fastly access to Kinesis. Not required if `access_key` and `secret_key` are provided.
-        :param str placement: Where in the generated VCL the logging call should be placed. Can be `none` or `waf_debug`.
+        :param str placement: Where in the generated VCL the logging call should be placed (ignored).
         :param str region: The AWS region the stream resides in. (Default: `us-east-1`)
         :param str response_condition: The name of an existing condition in the configured endpoint, or leave blank to always execute.
         :param str secret_key: The AWS secret access key to authenticate with
@@ -8712,7 +8827,7 @@ class ServiceVclLoggingKinese(dict):
     @pulumi.getter
     def placement(self) -> Optional[str]:
         """
-        Where in the generated VCL the logging call should be placed. Can be `none` or `waf_debug`.
+        Where in the generated VCL the logging call should be placed (ignored).
         """
         return pulumi.get(self, "placement")
 
@@ -8778,7 +8893,7 @@ class ServiceVclLoggingLogentry(dict):
         :param str token: Use token based authentication (https://logentries.com/doc/input-token/)
         :param str format: Apache-style string or VCL variables to use for log formatting
         :param int format_version: The version of the custom logging format used for the configured endpoint. Can be either 1 or 2. (Default: 2)
-        :param str placement: Where in the generated VCL the logging call should be placed.
+        :param str placement: Where in the generated VCL the logging call should be placed (ignored).
         :param int port: The port number configured in Logentries
         :param str response_condition: Name of blockAttributes condition to apply this logging.
         :param bool use_tls: Whether to use TLS for secure logging
@@ -8834,7 +8949,7 @@ class ServiceVclLoggingLogentry(dict):
     @pulumi.getter
     def placement(self) -> Optional[str]:
         """
-        Where in the generated VCL the logging call should be placed.
+        Where in the generated VCL the logging call should be placed (ignored).
         """
         return pulumi.get(self, "placement")
 
@@ -8896,7 +9011,7 @@ class ServiceVclLoggingLoggly(dict):
         :param str token: The token to use for authentication (https://www.loggly.com/docs/customer-token-authentication-token/).
         :param str format: Apache-style string or VCL variables to use for log formatting.
         :param int format_version: The version of the custom logging format used for the configured endpoint. Can be either `1` or `2`. (default: `2`).
-        :param str placement: Where in the generated VCL the logging call should be placed. Can be `none` or `waf_debug`.
+        :param str placement: Where in the generated VCL the logging call should be placed (ignored).
         :param str response_condition: The name of an existing condition in the configured endpoint, or leave blank to always execute.
         """
         pulumi.set(__self__, "name", name)
@@ -8946,7 +9061,7 @@ class ServiceVclLoggingLoggly(dict):
     @pulumi.getter
     def placement(self) -> Optional[str]:
         """
-        Where in the generated VCL the logging call should be placed. Can be `none` or `waf_debug`.
+        Where in the generated VCL the logging call should be placed (ignored).
         """
         return pulumi.get(self, "placement")
 
@@ -8994,7 +9109,7 @@ class ServiceVclLoggingLogshuttle(dict):
         :param str url: Your Log Shuttle endpoint URL
         :param str format: Apache style log formatting.
         :param int format_version: The version of the custom logging format used for the configured endpoint. Can be either `1` or `2`. (default: `2`).
-        :param str placement: Where in the generated VCL the logging call should be placed. Can be `none` or `waf_debug`.
+        :param str placement: Where in the generated VCL the logging call should be placed (ignored).
         :param str response_condition: The name of an existing condition in the configured endpoint, or leave blank to always execute.
         """
         pulumi.set(__self__, "name", name)
@@ -9053,7 +9168,7 @@ class ServiceVclLoggingLogshuttle(dict):
     @pulumi.getter
     def placement(self) -> Optional[str]:
         """
-        Where in the generated VCL the logging call should be placed. Can be `none` or `waf_debug`.
+        Where in the generated VCL the logging call should be placed (ignored).
         """
         return pulumi.get(self, "placement")
 
@@ -9100,7 +9215,7 @@ class ServiceVclLoggingNewrelic(dict):
         :param str token: The Insert API key from the Account page of your New Relic account
         :param str format: Apache style log formatting. Your log must produce valid JSON that New Relic Logs can ingest.
         :param int format_version: The version of the custom logging format used for the configured endpoint. Can be either `1` or `2`. (default: `2`).
-        :param str placement: Where in the generated VCL the logging call should be placed.
+        :param str placement: Where in the generated VCL the logging call should be placed (ignored).
         :param str region: The region that log data will be sent to. Default: `US`
         :param str response_condition: The name of the condition to apply.
         """
@@ -9153,7 +9268,7 @@ class ServiceVclLoggingNewrelic(dict):
     @pulumi.getter
     def placement(self) -> Optional[str]:
         """
-        Where in the generated VCL the logging call should be placed.
+        Where in the generated VCL the logging call should be placed (ignored).
         """
         return pulumi.get(self, "placement")
 
@@ -9209,7 +9324,7 @@ class ServiceVclLoggingNewrelicotlp(dict):
         :param str token: The Insert API key from the Account page of your New Relic account
         :param str format: Apache style log formatting. Your log must produce valid JSON that New Relic OTLP can ingest.
         :param int format_version: The version of the custom logging format used for the configured endpoint. Can be either `1` or `2`. (default: `2`).
-        :param str placement: Where in the generated VCL the logging call should be placed.
+        :param str placement: Where in the generated VCL the logging call should be placed (ignored).
         :param str region: The region that log data will be sent to. Default: `US`
         :param str response_condition: The name of the condition to apply.
         :param str url: The optional New Relic Trace Observer URL to stream logs to for Infinite Tracing.
@@ -9265,7 +9380,7 @@ class ServiceVclLoggingNewrelicotlp(dict):
     @pulumi.getter
     def placement(self) -> Optional[str]:
         """
-        Where in the generated VCL the logging call should be placed.
+        Where in the generated VCL the logging call should be placed (ignored).
         """
         return pulumi.get(self, "placement")
 
@@ -9359,7 +9474,7 @@ class ServiceVclLoggingOpenstack(dict):
         :param str message_type: How the message should be formatted. Can be either `classic`, `loggly`, `logplex` or `blank`. Default is `classic`
         :param str path: Path to store the files. Must end with a trailing slash. If this field is left empty, the files will be saved in the bucket's root path
         :param int period: How frequently the logs should be transferred, in seconds. Default `3600`
-        :param str placement: Where in the generated VCL the logging call should be placed. Can be `none` or `waf_debug`.
+        :param str placement: Where in the generated VCL the logging call should be placed (ignored).
         :param str public_key: A PGP public key that Fastly will use to encrypt your log files before writing them to disk
         :param str response_condition: The name of an existing condition in the configured endpoint, or leave blank to always execute.
         :param str timestamp_format: The `strftime` specified timestamp formatting (default `%Y-%m-%dT%H:%M:%S.000`)
@@ -9492,7 +9607,7 @@ class ServiceVclLoggingOpenstack(dict):
     @pulumi.getter
     def placement(self) -> Optional[str]:
         """
-        Where in the generated VCL the logging call should be placed. Can be `none` or `waf_debug`.
+        Where in the generated VCL the logging call should be placed (ignored).
         """
         return pulumi.get(self, "placement")
 
@@ -9556,7 +9671,7 @@ class ServiceVclLoggingPapertrail(dict):
         :param int port: The port associated with the address where the Papertrail endpoint can be accessed
         :param str format: A Fastly [log format string](https://docs.fastly.com/en/guides/custom-log-formats)
         :param int format_version: The version of the custom logging format used for the configured endpoint. The logging call gets placed by default in `vcl_log` if `format_version` is set to `2` and in `vcl_deliver` if `format_version` is set to `1`
-        :param str placement: Where in the generated VCL the logging call should be placed. If not set, endpoints with `format_version` of 2 are placed in `vcl_log` and those with `format_version` of 1 are placed in `vcl_deliver`
+        :param str placement: Where in the generated VCL the logging call should be placed. Ignored, but endpoints with `format_version` of 2 are placed in `vcl_log` and those with `format_version` of 1 are placed in `vcl_deliver`
         :param str response_condition: The name of an existing condition in the configured endpoint, or leave blank to always execute
         """
         pulumi.set(__self__, "address", address)
@@ -9615,7 +9730,7 @@ class ServiceVclLoggingPapertrail(dict):
     @pulumi.getter
     def placement(self) -> Optional[str]:
         """
-        Where in the generated VCL the logging call should be placed. If not set, endpoints with `format_version` of 2 are placed in `vcl_log` and those with `format_version` of 1 are placed in `vcl_deliver`
+        Where in the generated VCL the logging call should be placed. Ignored, but endpoints with `format_version` of 2 are placed in `vcl_log` and those with `format_version` of 1 are placed in `vcl_deliver`
         """
         return pulumi.get(self, "placement")
 
@@ -9709,7 +9824,7 @@ class ServiceVclLoggingS3(dict):
         :param str message_type: How the message should be formatted. Can be either `classic`, `loggly`, `logplex` or `blank`. Default is `classic`
         :param str path: Path to store the files. Must end with a trailing slash. If this field is left empty, the files will be saved in the bucket's root path
         :param int period: How frequently the logs should be transferred, in seconds. Default `3600`
-        :param str placement: Where in the generated VCL the logging call should be placed.
+        :param str placement: Where in the generated VCL the logging call should be placed (ignored).
         :param str public_key: A PGP public key that Fastly will use to encrypt your log files before writing them to disk
         :param str redundancy: The S3 storage class (redundancy level). Should be one of: `standard`, `intelligent_tiering`, `standard_ia`, `onezone_ia`, `glacier`, `glacier_ir`, `deep_archive`, or `reduced_redundancy`
         :param str response_condition: Name of blockAttributes condition to apply this logging.
@@ -9863,7 +9978,7 @@ class ServiceVclLoggingS3(dict):
     @pulumi.getter
     def placement(self) -> Optional[str]:
         """
-        Where in the generated VCL the logging call should be placed.
+        Where in the generated VCL the logging call should be placed (ignored).
         """
         return pulumi.get(self, "placement")
 
@@ -9977,7 +10092,7 @@ class ServiceVclLoggingScalyr(dict):
         :param str token: The token to use for authentication (https://www.scalyr.com/keys)
         :param str format: Apache style log formatting.
         :param int format_version: The version of the custom logging format used for the configured endpoint. Can be either 1 or 2. (default: 2).
-        :param str placement: Where in the generated VCL the logging call should be placed.
+        :param str placement: Where in the generated VCL the logging call should be placed (ignored).
         :param str project_id: The name of the logfile field sent to Scalyr
         :param str region: The region that log data will be sent to. One of `US` or `EU`. Defaults to `US` if undefined
         :param str response_condition: The name of an existing condition in the configured endpoint, or leave blank to always execute.
@@ -10033,7 +10148,7 @@ class ServiceVclLoggingScalyr(dict):
     @pulumi.getter
     def placement(self) -> Optional[str]:
         """
-        Where in the generated VCL the logging call should be placed.
+        Where in the generated VCL the logging call should be placed (ignored).
         """
         return pulumi.get(self, "placement")
 
@@ -10129,7 +10244,7 @@ class ServiceVclLoggingSftp(dict):
         :param str message_type: How the message should be formatted. Can be either `classic`, `loggly`, `logplex` or `blank`. Default is `classic`
         :param str password: The password for the server. If both `password` and `secret_key` are passed, `secret_key` will be preferred
         :param int period: How frequently log files are finalized so they can be available for reading (in seconds, default `3600`)
-        :param str placement: Where in the generated VCL the logging call should be placed.
+        :param str placement: Where in the generated VCL the logging call should be placed (ignored).
         :param int port: The port the SFTP service listens on. (Default: `22`)
         :param str public_key: A PGP public key that Fastly will use to encrypt your log files before writing them to disk
         :param str response_condition: The name of the condition to apply.
@@ -10268,7 +10383,7 @@ class ServiceVclLoggingSftp(dict):
     @pulumi.getter
     def placement(self) -> Optional[str]:
         """
-        Where in the generated VCL the logging call should be placed.
+        Where in the generated VCL the logging call should be placed (ignored).
         """
         return pulumi.get(self, "placement")
 
@@ -10363,7 +10478,7 @@ class ServiceVclLoggingSplunk(dict):
         :param str url: The Splunk URL to stream logs to
         :param str format: Apache-style string or VCL variables to use for log formatting (default: `%h %l %u %t "%r" %>s %b`)
         :param int format_version: The version of the custom logging format used for the configured endpoint. Can be either 1 or 2. (default: 2)
-        :param str placement: Where in the generated VCL the logging call should be placed
+        :param str placement: Where in the generated VCL the logging call should be placed (ignored).
         :param str response_condition: The name of the condition to apply
         :param str tls_ca_cert: A secure certificate to authenticate the server with. Must be in PEM format. You can provide this certificate via an environment variable, `FASTLY_SPLUNK_CA_CERT`
         :param str tls_client_cert: The client certificate used to make authenticated requests. Must be in PEM format.
@@ -10437,7 +10552,7 @@ class ServiceVclLoggingSplunk(dict):
     @pulumi.getter
     def placement(self) -> Optional[str]:
         """
-        Where in the generated VCL the logging call should be placed
+        Where in the generated VCL the logging call should be placed (ignored).
         """
         return pulumi.get(self, "placement")
 
@@ -10527,7 +10642,7 @@ class ServiceVclLoggingSumologic(dict):
         :param str format: Apache-style string or VCL variables to use for log formatting
         :param int format_version: The version of the custom logging format used for the configured endpoint. Can be either 1 or 2. (Default: 2)
         :param str message_type: How the message should be formatted. Can be either `classic`, `loggly`, `logplex` or `blank`. Default is `classic`
-        :param str placement: Where in the generated VCL the logging call should be placed.
+        :param str placement: Where in the generated VCL the logging call should be placed (ignored).
         :param str response_condition: Name of blockAttributes condition to apply this logging.
         """
         pulumi.set(__self__, "name", name)
@@ -10587,7 +10702,7 @@ class ServiceVclLoggingSumologic(dict):
     @pulumi.getter
     def placement(self) -> Optional[str]:
         """
-        Where in the generated VCL the logging call should be placed.
+        Where in the generated VCL the logging call should be placed (ignored).
         """
         return pulumi.get(self, "placement")
 
@@ -10654,7 +10769,7 @@ class ServiceVclLoggingSyslog(dict):
         :param str format: Apache-style string or VCL variables to use for log formatting
         :param int format_version: The version of the custom logging format. Can be either 1 or 2. (Default: 2)
         :param str message_type: How the message should be formatted. Can be either `classic`, `loggly`, `logplex` or `blank`. Default is `classic`
-        :param str placement: Where in the generated VCL the logging call should be placed.
+        :param str placement: Where in the generated VCL the logging call should be placed (ignored).
         :param int port: The port associated with the address where the Syslog endpoint can be accessed. Default `514`
         :param str response_condition: Name of blockAttributes condition to apply this logging.
         :param str tls_ca_cert: A secure certificate to authenticate the server with. Must be in PEM format. You can provide this certificate via an environment variable, `FASTLY_SYSLOG_CA_CERT`
@@ -10735,7 +10850,7 @@ class ServiceVclLoggingSyslog(dict):
     @pulumi.getter
     def placement(self) -> Optional[str]:
         """
-        Where in the generated VCL the logging call should be placed.
+        Where in the generated VCL the logging call should be placed (ignored).
         """
         return pulumi.get(self, "placement")
 
@@ -10813,6 +10928,8 @@ class ServiceVclProductEnablement(dict):
             suggest = "bot_management"
         elif key == "brotliCompression":
             suggest = "brotli_compression"
+        elif key == "ddosProtection":
+            suggest = "ddos_protection"
         elif key == "domainInspector":
             suggest = "domain_inspector"
         elif key == "imageOptimizer":
@@ -10836,19 +10953,23 @@ class ServiceVclProductEnablement(dict):
     def __init__(__self__, *,
                  bot_management: Optional[bool] = None,
                  brotli_compression: Optional[bool] = None,
+                 ddos_protection: Optional['outputs.ServiceVclProductEnablementDdosProtection'] = None,
                  domain_inspector: Optional[bool] = None,
                  image_optimizer: Optional[bool] = None,
                  log_explorer_insights: Optional[bool] = None,
                  name: Optional[str] = None,
+                 ngwaf: Optional['outputs.ServiceVclProductEnablementNgwaf'] = None,
                  origin_inspector: Optional[bool] = None,
                  websockets: Optional[bool] = None):
         """
         :param bool bot_management: Enable Bot Management support
         :param bool brotli_compression: Enable Brotli Compression support
+        :param 'ServiceVclProductEnablementDdosProtectionArgs' ddos_protection: DDoS Protection product
         :param bool domain_inspector: Enable Domain Inspector support
         :param bool image_optimizer: Enable Image Optimizer support (all backends must have a `shield` attribute)
         :param bool log_explorer_insights: Enable Log Explorer & Insights
         :param str name: Used by the provider to identify modified settings (changing this value will force the entire block to be deleted, then recreated)
+        :param 'ServiceVclProductEnablementNgwafArgs' ngwaf: Next-Gen WAF product
         :param bool origin_inspector: Enable Origin Inspector support
         :param bool websockets: Enable WebSockets support
         """
@@ -10856,6 +10977,8 @@ class ServiceVclProductEnablement(dict):
             pulumi.set(__self__, "bot_management", bot_management)
         if brotli_compression is not None:
             pulumi.set(__self__, "brotli_compression", brotli_compression)
+        if ddos_protection is not None:
+            pulumi.set(__self__, "ddos_protection", ddos_protection)
         if domain_inspector is not None:
             pulumi.set(__self__, "domain_inspector", domain_inspector)
         if image_optimizer is not None:
@@ -10864,6 +10987,8 @@ class ServiceVclProductEnablement(dict):
             pulumi.set(__self__, "log_explorer_insights", log_explorer_insights)
         if name is not None:
             pulumi.set(__self__, "name", name)
+        if ngwaf is not None:
+            pulumi.set(__self__, "ngwaf", ngwaf)
         if origin_inspector is not None:
             pulumi.set(__self__, "origin_inspector", origin_inspector)
         if websockets is not None:
@@ -10884,6 +11009,14 @@ class ServiceVclProductEnablement(dict):
         Enable Brotli Compression support
         """
         return pulumi.get(self, "brotli_compression")
+
+    @property
+    @pulumi.getter(name="ddosProtection")
+    def ddos_protection(self) -> Optional['outputs.ServiceVclProductEnablementDdosProtection']:
+        """
+        DDoS Protection product
+        """
+        return pulumi.get(self, "ddos_protection")
 
     @property
     @pulumi.getter(name="domainInspector")
@@ -10918,6 +11051,14 @@ class ServiceVclProductEnablement(dict):
         return pulumi.get(self, "name")
 
     @property
+    @pulumi.getter
+    def ngwaf(self) -> Optional['outputs.ServiceVclProductEnablementNgwaf']:
+        """
+        Next-Gen WAF product
+        """
+        return pulumi.get(self, "ngwaf")
+
+    @property
     @pulumi.getter(name="originInspector")
     def origin_inspector(self) -> Optional[bool]:
         """
@@ -10932,6 +11073,95 @@ class ServiceVclProductEnablement(dict):
         Enable WebSockets support
         """
         return pulumi.get(self, "websockets")
+
+
+@pulumi.output_type
+class ServiceVclProductEnablementDdosProtection(dict):
+    def __init__(__self__, *,
+                 enabled: bool,
+                 mode: str):
+        """
+        :param bool enabled: Enable DDoS Protection support
+        :param str mode: Operation mode
+        """
+        pulumi.set(__self__, "enabled", enabled)
+        pulumi.set(__self__, "mode", mode)
+
+    @property
+    @pulumi.getter
+    def enabled(self) -> bool:
+        """
+        Enable DDoS Protection support
+        """
+        return pulumi.get(self, "enabled")
+
+    @property
+    @pulumi.getter
+    def mode(self) -> str:
+        """
+        Operation mode
+        """
+        return pulumi.get(self, "mode")
+
+
+@pulumi.output_type
+class ServiceVclProductEnablementNgwaf(dict):
+    @staticmethod
+    def __key_warning(key: str):
+        suggest = None
+        if key == "workspaceId":
+            suggest = "workspace_id"
+        elif key == "trafficRamp":
+            suggest = "traffic_ramp"
+
+        if suggest:
+            pulumi.log.warn(f"Key '{key}' not found in ServiceVclProductEnablementNgwaf. Access the value via the '{suggest}' property getter instead.")
+
+    def __getitem__(self, key: str) -> Any:
+        ServiceVclProductEnablementNgwaf.__key_warning(key)
+        return super().__getitem__(key)
+
+    def get(self, key: str, default = None) -> Any:
+        ServiceVclProductEnablementNgwaf.__key_warning(key)
+        return super().get(key, default)
+
+    def __init__(__self__, *,
+                 enabled: bool,
+                 workspace_id: str,
+                 traffic_ramp: Optional[int] = None):
+        """
+        :param bool enabled: Enable Next-Gen WAF support
+        :param str workspace_id: The workspace to link
+        :param int traffic_ramp: The percentage of traffic to inspect
+        """
+        pulumi.set(__self__, "enabled", enabled)
+        pulumi.set(__self__, "workspace_id", workspace_id)
+        if traffic_ramp is not None:
+            pulumi.set(__self__, "traffic_ramp", traffic_ramp)
+
+    @property
+    @pulumi.getter
+    def enabled(self) -> bool:
+        """
+        Enable Next-Gen WAF support
+        """
+        return pulumi.get(self, "enabled")
+
+    @property
+    @pulumi.getter(name="workspaceId")
+    def workspace_id(self) -> str:
+        """
+        The workspace to link
+        """
+        return pulumi.get(self, "workspace_id")
+
+    @property
+    @pulumi.getter(name="trafficRamp")
+    def traffic_ramp(self) -> Optional[int]:
+        """
+        The percentage of traffic to inspect
+        """
+        return pulumi.get(self, "traffic_ramp")
 
 
 @pulumi.output_type
@@ -11571,222 +11801,6 @@ class ServiceVclVcl(dict):
 
 
 @pulumi.output_type
-class ServiceVclWaf(dict):
-    @staticmethod
-    def __key_warning(key: str):
-        suggest = None
-        if key == "responseObject":
-            suggest = "response_object"
-        elif key == "prefetchCondition":
-            suggest = "prefetch_condition"
-        elif key == "wafId":
-            suggest = "waf_id"
-
-        if suggest:
-            pulumi.log.warn(f"Key '{key}' not found in ServiceVclWaf. Access the value via the '{suggest}' property getter instead.")
-
-    def __getitem__(self, key: str) -> Any:
-        ServiceVclWaf.__key_warning(key)
-        return super().__getitem__(key)
-
-    def get(self, key: str, default = None) -> Any:
-        ServiceVclWaf.__key_warning(key)
-        return super().get(key, default)
-
-    def __init__(__self__, *,
-                 response_object: str,
-                 disabled: Optional[bool] = None,
-                 prefetch_condition: Optional[str] = None,
-                 waf_id: Optional[str] = None):
-        """
-        :param str response_object: The name of the response object used by the Web Application Firewall
-        :param bool disabled: A flag used to completely disable a Web Application Firewall. This is intended to only be used in an emergency
-        :param str prefetch_condition: The `condition` to determine which requests will be run past your Fastly WAF. This `condition` must be of type `PREFETCH`. For detailed information about Conditionals, see [Fastly's Documentation on Conditionals](https://docs.fastly.com/en/guides/using-conditions)
-        :param str waf_id: The ID of the WAF
-        """
-        pulumi.set(__self__, "response_object", response_object)
-        if disabled is not None:
-            pulumi.set(__self__, "disabled", disabled)
-        if prefetch_condition is not None:
-            pulumi.set(__self__, "prefetch_condition", prefetch_condition)
-        if waf_id is not None:
-            pulumi.set(__self__, "waf_id", waf_id)
-
-    @property
-    @pulumi.getter(name="responseObject")
-    def response_object(self) -> str:
-        """
-        The name of the response object used by the Web Application Firewall
-        """
-        return pulumi.get(self, "response_object")
-
-    @property
-    @pulumi.getter
-    def disabled(self) -> Optional[bool]:
-        """
-        A flag used to completely disable a Web Application Firewall. This is intended to only be used in an emergency
-        """
-        return pulumi.get(self, "disabled")
-
-    @property
-    @pulumi.getter(name="prefetchCondition")
-    def prefetch_condition(self) -> Optional[str]:
-        """
-        The `condition` to determine which requests will be run past your Fastly WAF. This `condition` must be of type `PREFETCH`. For detailed information about Conditionals, see [Fastly's Documentation on Conditionals](https://docs.fastly.com/en/guides/using-conditions)
-        """
-        return pulumi.get(self, "prefetch_condition")
-
-    @property
-    @pulumi.getter(name="wafId")
-    def waf_id(self) -> Optional[str]:
-        """
-        The ID of the WAF
-        """
-        return pulumi.get(self, "waf_id")
-
-
-@pulumi.output_type
-class ServiceWafConfigurationRule(dict):
-    @staticmethod
-    def __key_warning(key: str):
-        suggest = None
-        if key == "modsecRuleId":
-            suggest = "modsec_rule_id"
-
-        if suggest:
-            pulumi.log.warn(f"Key '{key}' not found in ServiceWafConfigurationRule. Access the value via the '{suggest}' property getter instead.")
-
-    def __getitem__(self, key: str) -> Any:
-        ServiceWafConfigurationRule.__key_warning(key)
-        return super().__getitem__(key)
-
-    def get(self, key: str, default = None) -> Any:
-        ServiceWafConfigurationRule.__key_warning(key)
-        return super().get(key, default)
-
-    def __init__(__self__, *,
-                 modsec_rule_id: int,
-                 status: str,
-                 revision: Optional[int] = None):
-        """
-        :param int modsec_rule_id: The Web Application Firewall rule's modsecurity ID
-        :param str status: The Web Application Firewall rule's status. Allowed values are (`log`, `block` and `score`)
-        :param int revision: The Web Application Firewall rule's revision. The latest revision will be used if this is not provided
-        """
-        pulumi.set(__self__, "modsec_rule_id", modsec_rule_id)
-        pulumi.set(__self__, "status", status)
-        if revision is not None:
-            pulumi.set(__self__, "revision", revision)
-
-    @property
-    @pulumi.getter(name="modsecRuleId")
-    def modsec_rule_id(self) -> int:
-        """
-        The Web Application Firewall rule's modsecurity ID
-        """
-        return pulumi.get(self, "modsec_rule_id")
-
-    @property
-    @pulumi.getter
-    def status(self) -> str:
-        """
-        The Web Application Firewall rule's status. Allowed values are (`log`, `block` and `score`)
-        """
-        return pulumi.get(self, "status")
-
-    @property
-    @pulumi.getter
-    def revision(self) -> Optional[int]:
-        """
-        The Web Application Firewall rule's revision. The latest revision will be used if this is not provided
-        """
-        return pulumi.get(self, "revision")
-
-
-@pulumi.output_type
-class ServiceWafConfigurationRuleExclusion(dict):
-    @staticmethod
-    def __key_warning(key: str):
-        suggest = None
-        if key == "exclusionType":
-            suggest = "exclusion_type"
-        elif key == "modsecRuleIds":
-            suggest = "modsec_rule_ids"
-
-        if suggest:
-            pulumi.log.warn(f"Key '{key}' not found in ServiceWafConfigurationRuleExclusion. Access the value via the '{suggest}' property getter instead.")
-
-    def __getitem__(self, key: str) -> Any:
-        ServiceWafConfigurationRuleExclusion.__key_warning(key)
-        return super().__getitem__(key)
-
-    def get(self, key: str, default = None) -> Any:
-        ServiceWafConfigurationRuleExclusion.__key_warning(key)
-        return super().get(key, default)
-
-    def __init__(__self__, *,
-                 condition: str,
-                 exclusion_type: str,
-                 name: str,
-                 modsec_rule_ids: Optional[Sequence[int]] = None,
-                 number: Optional[int] = None):
-        """
-        :param str condition: A conditional expression in VCL used to determine if the condition is met
-        :param str exclusion_type: The type of rule exclusion. Values are `rule` to exclude the specified rule(s), or `waf` to disable the Web Application Firewall
-        :param str name: The name of rule exclusion
-        :param Sequence[int] modsec_rule_ids: Set of modsecurity IDs to be excluded. No rules should be provided when `exclusion_type` is `waf`. The rules need to be configured on the Web Application Firewall to be excluded
-        :param int number: The numeric ID assigned to the WAF Rule Exclusion
-        """
-        pulumi.set(__self__, "condition", condition)
-        pulumi.set(__self__, "exclusion_type", exclusion_type)
-        pulumi.set(__self__, "name", name)
-        if modsec_rule_ids is not None:
-            pulumi.set(__self__, "modsec_rule_ids", modsec_rule_ids)
-        if number is not None:
-            pulumi.set(__self__, "number", number)
-
-    @property
-    @pulumi.getter
-    def condition(self) -> str:
-        """
-        A conditional expression in VCL used to determine if the condition is met
-        """
-        return pulumi.get(self, "condition")
-
-    @property
-    @pulumi.getter(name="exclusionType")
-    def exclusion_type(self) -> str:
-        """
-        The type of rule exclusion. Values are `rule` to exclude the specified rule(s), or `waf` to disable the Web Application Firewall
-        """
-        return pulumi.get(self, "exclusion_type")
-
-    @property
-    @pulumi.getter
-    def name(self) -> str:
-        """
-        The name of rule exclusion
-        """
-        return pulumi.get(self, "name")
-
-    @property
-    @pulumi.getter(name="modsecRuleIds")
-    def modsec_rule_ids(self) -> Optional[Sequence[int]]:
-        """
-        Set of modsecurity IDs to be excluded. No rules should be provided when `exclusion_type` is `waf`. The rules need to be configured on the Web Application Firewall to be excluded
-        """
-        return pulumi.get(self, "modsec_rule_ids")
-
-    @property
-    @pulumi.getter
-    def number(self) -> Optional[int]:
-        """
-        The numeric ID assigned to the WAF Rule Exclusion
-        """
-        return pulumi.get(self, "number")
-
-
-@pulumi.output_type
 class TlsSubscriptionManagedDnsChallenge(dict):
     @staticmethod
     def __key_warning(key: str):
@@ -12285,46 +12299,6 @@ class GetVclSnippetsVclSnippetResult(dict):
     def type(self) -> str:
         """
         The location in generated VCL where the snippet should be placed.
-        """
-        return pulumi.get(self, "type")
-
-
-@pulumi.output_type
-class GetWafRulesRuleResult(dict):
-    def __init__(__self__, *,
-                 latest_revision_number: int,
-                 modsec_rule_id: int,
-                 type: str):
-        """
-        :param int latest_revision_number: The modsecurity rule's latest revision.
-        :param int modsec_rule_id: The modsecurity rule ID.
-        :param str type: The modsecurity rule's type.
-        """
-        pulumi.set(__self__, "latest_revision_number", latest_revision_number)
-        pulumi.set(__self__, "modsec_rule_id", modsec_rule_id)
-        pulumi.set(__self__, "type", type)
-
-    @property
-    @pulumi.getter(name="latestRevisionNumber")
-    def latest_revision_number(self) -> int:
-        """
-        The modsecurity rule's latest revision.
-        """
-        return pulumi.get(self, "latest_revision_number")
-
-    @property
-    @pulumi.getter(name="modsecRuleId")
-    def modsec_rule_id(self) -> int:
-        """
-        The modsecurity rule ID.
-        """
-        return pulumi.get(self, "modsec_rule_id")
-
-    @property
-    @pulumi.getter
-    def type(self) -> str:
-        """
-        The modsecurity rule's type.
         """
         return pulumi.get(self, "type")
 

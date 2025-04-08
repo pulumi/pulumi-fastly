@@ -5,6 +5,8 @@ package com.pulumi.fastly.inputs;
 
 import com.pulumi.core.Output;
 import com.pulumi.core.annotations.Import;
+import com.pulumi.fastly.inputs.ServiceVclProductEnablementDdosProtectionArgs;
+import com.pulumi.fastly.inputs.ServiceVclProductEnablementNgwafArgs;
 import java.lang.Boolean;
 import java.lang.String;
 import java.util.Objects;
@@ -44,6 +46,21 @@ public final class ServiceVclProductEnablementArgs extends com.pulumi.resources.
      */
     public Optional<Output<Boolean>> brotliCompression() {
         return Optional.ofNullable(this.brotliCompression);
+    }
+
+    /**
+     * DDoS Protection product
+     * 
+     */
+    @Import(name="ddosProtection")
+    private @Nullable Output<ServiceVclProductEnablementDdosProtectionArgs> ddosProtection;
+
+    /**
+     * @return DDoS Protection product
+     * 
+     */
+    public Optional<Output<ServiceVclProductEnablementDdosProtectionArgs>> ddosProtection() {
+        return Optional.ofNullable(this.ddosProtection);
     }
 
     /**
@@ -107,6 +124,21 @@ public final class ServiceVclProductEnablementArgs extends com.pulumi.resources.
     }
 
     /**
+     * Next-Gen WAF product
+     * 
+     */
+    @Import(name="ngwaf")
+    private @Nullable Output<ServiceVclProductEnablementNgwafArgs> ngwaf;
+
+    /**
+     * @return Next-Gen WAF product
+     * 
+     */
+    public Optional<Output<ServiceVclProductEnablementNgwafArgs>> ngwaf() {
+        return Optional.ofNullable(this.ngwaf);
+    }
+
+    /**
      * Enable Origin Inspector support
      * 
      */
@@ -141,10 +173,12 @@ public final class ServiceVclProductEnablementArgs extends com.pulumi.resources.
     private ServiceVclProductEnablementArgs(ServiceVclProductEnablementArgs $) {
         this.botManagement = $.botManagement;
         this.brotliCompression = $.brotliCompression;
+        this.ddosProtection = $.ddosProtection;
         this.domainInspector = $.domainInspector;
         this.imageOptimizer = $.imageOptimizer;
         this.logExplorerInsights = $.logExplorerInsights;
         this.name = $.name;
+        this.ngwaf = $.ngwaf;
         this.originInspector = $.originInspector;
         this.websockets = $.websockets;
     }
@@ -207,6 +241,27 @@ public final class ServiceVclProductEnablementArgs extends com.pulumi.resources.
          */
         public Builder brotliCompression(Boolean brotliCompression) {
             return brotliCompression(Output.of(brotliCompression));
+        }
+
+        /**
+         * @param ddosProtection DDoS Protection product
+         * 
+         * @return builder
+         * 
+         */
+        public Builder ddosProtection(@Nullable Output<ServiceVclProductEnablementDdosProtectionArgs> ddosProtection) {
+            $.ddosProtection = ddosProtection;
+            return this;
+        }
+
+        /**
+         * @param ddosProtection DDoS Protection product
+         * 
+         * @return builder
+         * 
+         */
+        public Builder ddosProtection(ServiceVclProductEnablementDdosProtectionArgs ddosProtection) {
+            return ddosProtection(Output.of(ddosProtection));
         }
 
         /**
@@ -291,6 +346,27 @@ public final class ServiceVclProductEnablementArgs extends com.pulumi.resources.
          */
         public Builder name(String name) {
             return name(Output.of(name));
+        }
+
+        /**
+         * @param ngwaf Next-Gen WAF product
+         * 
+         * @return builder
+         * 
+         */
+        public Builder ngwaf(@Nullable Output<ServiceVclProductEnablementNgwafArgs> ngwaf) {
+            $.ngwaf = ngwaf;
+            return this;
+        }
+
+        /**
+         * @param ngwaf Next-Gen WAF product
+         * 
+         * @return builder
+         * 
+         */
+        public Builder ngwaf(ServiceVclProductEnablementNgwafArgs ngwaf) {
+            return ngwaf(Output.of(ngwaf));
         }
 
         /**

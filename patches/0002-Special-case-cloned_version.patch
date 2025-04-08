@@ -5,10 +5,10 @@ Subject: [PATCH] Special case cloned_version
 
 
 diff --git a/fastly/base_fastly_service.go b/fastly/base_fastly_service.go
-index dd555d0d..4536aba2 100644
+index 5b7c33fe..18f85ede 100644
 --- a/fastly/base_fastly_service.go
 +++ b/fastly/base_fastly_service.go
-@@ -324,11 +324,52 @@ func resourceServiceUpdate(ctx context.Context, d *schema.ResourceData, meta any
+@@ -345,11 +345,52 @@ func resourceServiceUpdate(ctx context.Context, d *schema.ResourceData, meta any
  		}
  	}
  
@@ -62,18 +62,18 @@ index dd555d0d..4536aba2 100644
  			Comment:        gofastly.ToPointer(d.Get("version_comment").(string)),
  		}
  
-@@ -349,7 +390,7 @@ func resourceServiceUpdate(ctx context.Context, d *schema.ResourceData, meta any
+@@ -372,7 +413,7 @@ func resourceServiceUpdate(ctx context.Context, d *schema.ResourceData, meta any
  			// that is unlocked and can be updated.
  			latestVersion = 1
  		} else {
 -			latestVersion = d.Get("cloned_version").(int)
 +			latestVersion = clonedVersion
- 			// Clone the latest version, giving us an unlocked version we can modify.
- 			log.Printf("[DEBUG] Creating clone of version (%d) for updates", latestVersion)
- 			newVersion, err := conn.CloneVersion(&gofastly.CloneVersionInput{
-@@ -437,10 +478,11 @@ func resourceServiceUpdate(ctx context.Context, d *schema.ResourceData, meta any
- 		if err != nil {
- 			return diag.FromErr(err)
+ 
+ 			log.Printf("[DEBUG] Getting current state of version (%d)", latestVersion)
+ 			existingVersion, err := conn.GetVersion(&gofastly.GetVersionInput{
+@@ -507,10 +548,11 @@ func resourceServiceUpdate(ctx context.Context, d *schema.ResourceData, meta any
+ 				return diag.FromErr(err)
+ 			}
  		}
 +		clonedVersion = latestVersion
  	}

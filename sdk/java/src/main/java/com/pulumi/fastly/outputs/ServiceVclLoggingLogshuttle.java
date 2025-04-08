@@ -29,7 +29,7 @@ public final class ServiceVclLoggingLogshuttle {
      */
     private String name;
     /**
-     * @return Where in the generated VCL the logging call should be placed. Can be `none` or `waf_debug`.
+     * @return Where in the generated VCL the logging call should be placed (ignored).
      * 
      */
     private @Nullable String placement;
@@ -72,7 +72,7 @@ public final class ServiceVclLoggingLogshuttle {
         return this.name;
     }
     /**
-     * @return Where in the generated VCL the logging call should be placed. Can be `none` or `waf_debug`.
+     * @return Where in the generated VCL the logging call should be placed (ignored).
      * 
      */
     public Optional<String> placement() {

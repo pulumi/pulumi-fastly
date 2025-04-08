@@ -53,7 +53,7 @@ public final class ServiceComputeState extends com.pulumi.resources.ResourceArgs
     public static final ServiceComputeState Empty = new ServiceComputeState();
 
     /**
-     * Conditionally prevents the Service from being activated. The apply step will continue to create a new draft version but
+     * Conditionally prevents new service versions from being activated. The apply step will create a new draft version but
      * will not activate it if this is set to `false`. Default `true`
      * 
      */
@@ -61,7 +61,7 @@ public final class ServiceComputeState extends com.pulumi.resources.ResourceArgs
     private @Nullable Output<Boolean> activate;
 
     /**
-     * @return Conditionally prevents the Service from being activated. The apply step will continue to create a new draft version but
+     * @return Conditionally prevents new service versions from being activated. The apply step will create a new draft version but
      * will not activate it if this is set to `false`. Default `true`
      * 
      */
@@ -436,6 +436,38 @@ public final class ServiceComputeState extends com.pulumi.resources.ResourceArgs
     }
 
     /**
+     * Conditionally enables new service versions to be staged. If `set` to true, all changes made by an `apply` step will be
+     * staged, even if `apply` did not create a new draft version. Default `false`
+     * 
+     */
+    @Import(name="stage")
+    private @Nullable Output<Boolean> stage;
+
+    /**
+     * @return Conditionally enables new service versions to be staged. If `set` to true, all changes made by an `apply` step will be
+     * staged, even if `apply` did not create a new draft version. Default `false`
+     * 
+     */
+    public Optional<Output<Boolean>> stage() {
+        return Optional.ofNullable(this.stage);
+    }
+
+    /**
+     * The currently staged version of your Fastly Service
+     * 
+     */
+    @Import(name="stagedVersion")
+    private @Nullable Output<Integer> stagedVersion;
+
+    /**
+     * @return The currently staged version of your Fastly Service
+     * 
+     */
+    public Optional<Output<Integer>> stagedVersion() {
+        return Optional.ofNullable(this.stagedVersion);
+    }
+
+    /**
      * Description field for the version
      * 
      */
@@ -496,6 +528,8 @@ public final class ServiceComputeState extends com.pulumi.resources.ResourceArgs
         this.productEnablement = $.productEnablement;
         this.resourceLinks = $.resourceLinks;
         this.reuse = $.reuse;
+        this.stage = $.stage;
+        this.stagedVersion = $.stagedVersion;
         this.versionComment = $.versionComment;
     }
 
@@ -518,7 +552,7 @@ public final class ServiceComputeState extends com.pulumi.resources.ResourceArgs
         }
 
         /**
-         * @param activate Conditionally prevents the Service from being activated. The apply step will continue to create a new draft version but
+         * @param activate Conditionally prevents new service versions from being activated. The apply step will create a new draft version but
          * will not activate it if this is set to `false`. Default `true`
          * 
          * @return builder
@@ -530,7 +564,7 @@ public final class ServiceComputeState extends com.pulumi.resources.ResourceArgs
         }
 
         /**
-         * @param activate Conditionally prevents the Service from being activated. The apply step will continue to create a new draft version but
+         * @param activate Conditionally prevents new service versions from being activated. The apply step will create a new draft version but
          * will not activate it if this is set to `false`. Default `true`
          * 
          * @return builder
@@ -1156,6 +1190,50 @@ public final class ServiceComputeState extends com.pulumi.resources.ResourceArgs
 
         public Builder reuse(Boolean reuse) {
             return reuse(Output.of(reuse));
+        }
+
+        /**
+         * @param stage Conditionally enables new service versions to be staged. If `set` to true, all changes made by an `apply` step will be
+         * staged, even if `apply` did not create a new draft version. Default `false`
+         * 
+         * @return builder
+         * 
+         */
+        public Builder stage(@Nullable Output<Boolean> stage) {
+            $.stage = stage;
+            return this;
+        }
+
+        /**
+         * @param stage Conditionally enables new service versions to be staged. If `set` to true, all changes made by an `apply` step will be
+         * staged, even if `apply` did not create a new draft version. Default `false`
+         * 
+         * @return builder
+         * 
+         */
+        public Builder stage(Boolean stage) {
+            return stage(Output.of(stage));
+        }
+
+        /**
+         * @param stagedVersion The currently staged version of your Fastly Service
+         * 
+         * @return builder
+         * 
+         */
+        public Builder stagedVersion(@Nullable Output<Integer> stagedVersion) {
+            $.stagedVersion = stagedVersion;
+            return this;
+        }
+
+        /**
+         * @param stagedVersion The currently staged version of your Fastly Service
+         * 
+         * @return builder
+         * 
+         */
+        public Builder stagedVersion(Integer stagedVersion) {
+            return stagedVersion(Output.of(stagedVersion));
         }
 
         /**

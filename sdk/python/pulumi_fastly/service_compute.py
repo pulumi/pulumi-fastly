@@ -60,11 +60,12 @@ class ServiceComputeArgs:
                  product_enablement: Optional[pulumi.Input['ServiceComputeProductEnablementArgs']] = None,
                  resource_links: Optional[pulumi.Input[Sequence[pulumi.Input['ServiceComputeResourceLinkArgs']]]] = None,
                  reuse: Optional[pulumi.Input[bool]] = None,
+                 stage: Optional[pulumi.Input[bool]] = None,
                  version_comment: Optional[pulumi.Input[str]] = None):
         """
         The set of arguments for constructing a ServiceCompute resource.
         :param pulumi.Input[Sequence[pulumi.Input['ServiceComputeDomainArgs']]] domains: A set of Domain names to serve as entry points for your Service
-        :param pulumi.Input[bool] activate: Conditionally prevents the Service from being activated. The apply step will continue to create a new draft version but
+        :param pulumi.Input[bool] activate: Conditionally prevents new service versions from being activated. The apply step will create a new draft version but
                will not activate it if this is set to `false`. Default `true`
         :param pulumi.Input[bool] force_destroy: Services that are active cannot be destroyed. In order to destroy the Service, set `force_destroy` to `true`. Default
                `false`
@@ -73,6 +74,8 @@ class ServiceComputeArgs:
                ensure `activate = false` is set on `ServiceCompute` to avoid service validation errors). See Fastly's documentation on
                [Compute](https://developer.fastly.com/learning/compute/)
         :param pulumi.Input[Sequence[pulumi.Input['ServiceComputeResourceLinkArgs']]] resource_links: A resource link represents a link between a shared resource (such as an KV Store or Config Store) and a service version.
+        :param pulumi.Input[bool] stage: Conditionally enables new service versions to be staged. If `set` to true, all changes made by an `apply` step will be
+               staged, even if `apply` did not create a new draft version. Default `false`
         :param pulumi.Input[str] version_comment: Description field for the version
         """
         pulumi.set(__self__, "domains", domains)
@@ -152,6 +155,8 @@ class ServiceComputeArgs:
             pulumi.set(__self__, "resource_links", resource_links)
         if reuse is not None:
             pulumi.set(__self__, "reuse", reuse)
+        if stage is not None:
+            pulumi.set(__self__, "stage", stage)
         if version_comment is not None:
             pulumi.set(__self__, "version_comment", version_comment)
 
@@ -171,7 +176,7 @@ class ServiceComputeArgs:
     @pulumi.getter
     def activate(self) -> Optional[pulumi.Input[bool]]:
         """
-        Conditionally prevents the Service from being activated. The apply step will continue to create a new draft version but
+        Conditionally prevents new service versions from being activated. The apply step will create a new draft version but
         will not activate it if this is set to `false`. Default `true`
         """
         return pulumi.get(self, "activate")
@@ -529,6 +534,19 @@ class ServiceComputeArgs:
         pulumi.set(self, "reuse", value)
 
     @property
+    @pulumi.getter
+    def stage(self) -> Optional[pulumi.Input[bool]]:
+        """
+        Conditionally enables new service versions to be staged. If `set` to true, all changes made by an `apply` step will be
+        staged, even if `apply` did not create a new draft version. Default `false`
+        """
+        return pulumi.get(self, "stage")
+
+    @stage.setter
+    def stage(self, value: Optional[pulumi.Input[bool]]):
+        pulumi.set(self, "stage", value)
+
+    @property
     @pulumi.getter(name="versionComment")
     def version_comment(self) -> Optional[pulumi.Input[str]]:
         """
@@ -587,10 +605,12 @@ class _ServiceComputeState:
                  product_enablement: Optional[pulumi.Input['ServiceComputeProductEnablementArgs']] = None,
                  resource_links: Optional[pulumi.Input[Sequence[pulumi.Input['ServiceComputeResourceLinkArgs']]]] = None,
                  reuse: Optional[pulumi.Input[bool]] = None,
+                 stage: Optional[pulumi.Input[bool]] = None,
+                 staged_version: Optional[pulumi.Input[int]] = None,
                  version_comment: Optional[pulumi.Input[str]] = None):
         """
         Input properties used for looking up and filtering ServiceCompute resources.
-        :param pulumi.Input[bool] activate: Conditionally prevents the Service from being activated. The apply step will continue to create a new draft version but
+        :param pulumi.Input[bool] activate: Conditionally prevents new service versions from being activated. The apply step will create a new draft version but
                will not activate it if this is set to `false`. Default `true`
         :param pulumi.Input[int] active_version: The currently active version of your Fastly Service
         :param pulumi.Input[int] cloned_version: The latest cloned version by the provider
@@ -604,6 +624,9 @@ class _ServiceComputeState:
                ensure `activate = false` is set on `ServiceCompute` to avoid service validation errors). See Fastly's documentation on
                [Compute](https://developer.fastly.com/learning/compute/)
         :param pulumi.Input[Sequence[pulumi.Input['ServiceComputeResourceLinkArgs']]] resource_links: A resource link represents a link between a shared resource (such as an KV Store or Config Store) and a service version.
+        :param pulumi.Input[bool] stage: Conditionally enables new service versions to be staged. If `set` to true, all changes made by an `apply` step will be
+               staged, even if `apply` did not create a new draft version. Default `false`
+        :param pulumi.Input[int] staged_version: The currently staged version of your Fastly Service
         :param pulumi.Input[str] version_comment: Description field for the version
         """
         if activate is not None:
@@ -692,6 +715,10 @@ class _ServiceComputeState:
             pulumi.set(__self__, "resource_links", resource_links)
         if reuse is not None:
             pulumi.set(__self__, "reuse", reuse)
+        if stage is not None:
+            pulumi.set(__self__, "stage", stage)
+        if staged_version is not None:
+            pulumi.set(__self__, "staged_version", staged_version)
         if version_comment is not None:
             pulumi.set(__self__, "version_comment", version_comment)
 
@@ -699,7 +726,7 @@ class _ServiceComputeState:
     @pulumi.getter
     def activate(self) -> Optional[pulumi.Input[bool]]:
         """
-        Conditionally prevents the Service from being activated. The apply step will continue to create a new draft version but
+        Conditionally prevents new service versions from being activated. The apply step will create a new draft version but
         will not activate it if this is set to `false`. Default `true`
         """
         return pulumi.get(self, "activate")
@@ -1115,6 +1142,31 @@ class _ServiceComputeState:
         pulumi.set(self, "reuse", value)
 
     @property
+    @pulumi.getter
+    def stage(self) -> Optional[pulumi.Input[bool]]:
+        """
+        Conditionally enables new service versions to be staged. If `set` to true, all changes made by an `apply` step will be
+        staged, even if `apply` did not create a new draft version. Default `false`
+        """
+        return pulumi.get(self, "stage")
+
+    @stage.setter
+    def stage(self, value: Optional[pulumi.Input[bool]]):
+        pulumi.set(self, "stage", value)
+
+    @property
+    @pulumi.getter(name="stagedVersion")
+    def staged_version(self) -> Optional[pulumi.Input[int]]:
+        """
+        The currently staged version of your Fastly Service
+        """
+        return pulumi.get(self, "staged_version")
+
+    @staged_version.setter
+    def staged_version(self, value: Optional[pulumi.Input[int]]):
+        pulumi.set(self, "staged_version", value)
+
+    @property
     @pulumi.getter(name="versionComment")
     def version_comment(self) -> Optional[pulumi.Input[str]]:
         """
@@ -1171,6 +1223,7 @@ class ServiceCompute(pulumi.CustomResource):
                  product_enablement: Optional[pulumi.Input[Union['ServiceComputeProductEnablementArgs', 'ServiceComputeProductEnablementArgsDict']]] = None,
                  resource_links: Optional[pulumi.Input[Sequence[pulumi.Input[Union['ServiceComputeResourceLinkArgs', 'ServiceComputeResourceLinkArgsDict']]]]] = None,
                  reuse: Optional[pulumi.Input[bool]] = None,
+                 stage: Optional[pulumi.Input[bool]] = None,
                  version_comment: Optional[pulumi.Input[str]] = None,
                  __props__=None):
         """
@@ -1192,7 +1245,7 @@ class ServiceCompute(pulumi.CustomResource):
 
         :param str resource_name: The name of the resource.
         :param pulumi.ResourceOptions opts: Options for the resource.
-        :param pulumi.Input[bool] activate: Conditionally prevents the Service from being activated. The apply step will continue to create a new draft version but
+        :param pulumi.Input[bool] activate: Conditionally prevents new service versions from being activated. The apply step will create a new draft version but
                will not activate it if this is set to `false`. Default `true`
         :param pulumi.Input[Sequence[pulumi.Input[Union['ServiceComputeDomainArgs', 'ServiceComputeDomainArgsDict']]]] domains: A set of Domain names to serve as entry points for your Service
         :param pulumi.Input[bool] force_destroy: Services that are active cannot be destroyed. In order to destroy the Service, set `force_destroy` to `true`. Default
@@ -1202,6 +1255,8 @@ class ServiceCompute(pulumi.CustomResource):
                ensure `activate = false` is set on `ServiceCompute` to avoid service validation errors). See Fastly's documentation on
                [Compute](https://developer.fastly.com/learning/compute/)
         :param pulumi.Input[Sequence[pulumi.Input[Union['ServiceComputeResourceLinkArgs', 'ServiceComputeResourceLinkArgsDict']]]] resource_links: A resource link represents a link between a shared resource (such as an KV Store or Config Store) and a service version.
+        :param pulumi.Input[bool] stage: Conditionally enables new service versions to be staged. If `set` to true, all changes made by an `apply` step will be
+               staged, even if `apply` did not create a new draft version. Default `false`
         :param pulumi.Input[str] version_comment: Description field for the version
         """
         ...
@@ -1281,6 +1336,7 @@ class ServiceCompute(pulumi.CustomResource):
                  product_enablement: Optional[pulumi.Input[Union['ServiceComputeProductEnablementArgs', 'ServiceComputeProductEnablementArgsDict']]] = None,
                  resource_links: Optional[pulumi.Input[Sequence[pulumi.Input[Union['ServiceComputeResourceLinkArgs', 'ServiceComputeResourceLinkArgsDict']]]]] = None,
                  reuse: Optional[pulumi.Input[bool]] = None,
+                 stage: Optional[pulumi.Input[bool]] = None,
                  version_comment: Optional[pulumi.Input[str]] = None,
                  __props__=None):
         opts = pulumi.ResourceOptions.merge(_utilities.get_resource_opts_defaults(), opts)
@@ -1332,11 +1388,13 @@ class ServiceCompute(pulumi.CustomResource):
             __props__.__dict__["product_enablement"] = product_enablement
             __props__.__dict__["resource_links"] = resource_links
             __props__.__dict__["reuse"] = reuse
+            __props__.__dict__["stage"] = stage
             __props__.__dict__["version_comment"] = version_comment
             __props__.__dict__["active_version"] = None
             __props__.__dict__["cloned_version"] = None
             __props__.__dict__["force_refresh"] = None
             __props__.__dict__["imported"] = None
+            __props__.__dict__["staged_version"] = None
         super(ServiceCompute, __self__).__init__(
             'fastly:index/serviceCompute:ServiceCompute',
             resource_name,
@@ -1390,6 +1448,8 @@ class ServiceCompute(pulumi.CustomResource):
             product_enablement: Optional[pulumi.Input[Union['ServiceComputeProductEnablementArgs', 'ServiceComputeProductEnablementArgsDict']]] = None,
             resource_links: Optional[pulumi.Input[Sequence[pulumi.Input[Union['ServiceComputeResourceLinkArgs', 'ServiceComputeResourceLinkArgsDict']]]]] = None,
             reuse: Optional[pulumi.Input[bool]] = None,
+            stage: Optional[pulumi.Input[bool]] = None,
+            staged_version: Optional[pulumi.Input[int]] = None,
             version_comment: Optional[pulumi.Input[str]] = None) -> 'ServiceCompute':
         """
         Get an existing ServiceCompute resource's state with the given name, id, and optional extra
@@ -1398,7 +1458,7 @@ class ServiceCompute(pulumi.CustomResource):
         :param str resource_name: The unique name of the resulting resource.
         :param pulumi.Input[str] id: The unique provider ID of the resource to lookup.
         :param pulumi.ResourceOptions opts: Options for the resource.
-        :param pulumi.Input[bool] activate: Conditionally prevents the Service from being activated. The apply step will continue to create a new draft version but
+        :param pulumi.Input[bool] activate: Conditionally prevents new service versions from being activated. The apply step will create a new draft version but
                will not activate it if this is set to `false`. Default `true`
         :param pulumi.Input[int] active_version: The currently active version of your Fastly Service
         :param pulumi.Input[int] cloned_version: The latest cloned version by the provider
@@ -1412,6 +1472,9 @@ class ServiceCompute(pulumi.CustomResource):
                ensure `activate = false` is set on `ServiceCompute` to avoid service validation errors). See Fastly's documentation on
                [Compute](https://developer.fastly.com/learning/compute/)
         :param pulumi.Input[Sequence[pulumi.Input[Union['ServiceComputeResourceLinkArgs', 'ServiceComputeResourceLinkArgsDict']]]] resource_links: A resource link represents a link between a shared resource (such as an KV Store or Config Store) and a service version.
+        :param pulumi.Input[bool] stage: Conditionally enables new service versions to be staged. If `set` to true, all changes made by an `apply` step will be
+               staged, even if `apply` did not create a new draft version. Default `false`
+        :param pulumi.Input[int] staged_version: The currently staged version of your Fastly Service
         :param pulumi.Input[str] version_comment: Description field for the version
         """
         opts = pulumi.ResourceOptions.merge(opts, pulumi.ResourceOptions(id=id))
@@ -1461,6 +1524,8 @@ class ServiceCompute(pulumi.CustomResource):
         __props__.__dict__["product_enablement"] = product_enablement
         __props__.__dict__["resource_links"] = resource_links
         __props__.__dict__["reuse"] = reuse
+        __props__.__dict__["stage"] = stage
+        __props__.__dict__["staged_version"] = staged_version
         __props__.__dict__["version_comment"] = version_comment
         return ServiceCompute(resource_name, opts=opts, __props__=__props__)
 
@@ -1468,7 +1533,7 @@ class ServiceCompute(pulumi.CustomResource):
     @pulumi.getter
     def activate(self) -> pulumi.Output[Optional[bool]]:
         """
-        Conditionally prevents the Service from being activated. The apply step will continue to create a new draft version but
+        Conditionally prevents new service versions from being activated. The apply step will create a new draft version but
         will not activate it if this is set to `false`. Default `true`
         """
         return pulumi.get(self, "activate")
@@ -1710,6 +1775,23 @@ class ServiceCompute(pulumi.CustomResource):
     @pulumi.getter
     def reuse(self) -> pulumi.Output[Optional[bool]]:
         return pulumi.get(self, "reuse")
+
+    @property
+    @pulumi.getter
+    def stage(self) -> pulumi.Output[Optional[bool]]:
+        """
+        Conditionally enables new service versions to be staged. If `set` to true, all changes made by an `apply` step will be
+        staged, even if `apply` did not create a new draft version. Default `false`
+        """
+        return pulumi.get(self, "stage")
+
+    @property
+    @pulumi.getter(name="stagedVersion")
+    def staged_version(self) -> pulumi.Output[int]:
+        """
+        The currently staged version of your Fastly Service
+        """
+        return pulumi.get(self, "staged_version")
 
     @property
     @pulumi.getter(name="versionComment")

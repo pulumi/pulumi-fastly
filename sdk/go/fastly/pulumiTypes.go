@@ -7,7 +7,7 @@ import (
 	"context"
 	"reflect"
 
-	"github.com/pulumi/pulumi-fastly/sdk/v8/go/fastly/internal"
+	"github.com/pulumi/pulumi-fastly/sdk/v9/go/fastly/internal"
 	"github.com/pulumi/pulumi/sdk/v3/go/pulumi"
 )
 
@@ -6242,12 +6242,16 @@ func (o ServiceComputePackagePtrOutput) SourceCodeHash() pulumi.StringPtrOutput 
 }
 
 type ServiceComputeProductEnablement struct {
+	// DDoS Protection product
+	DdosProtection *ServiceComputeProductEnablementDdosProtection `pulumi:"ddosProtection"`
 	// Enable Fanout support
 	Fanout *bool `pulumi:"fanout"`
 	// Enable Log Explorer & Insights
 	LogExplorerInsights *bool `pulumi:"logExplorerInsights"`
 	// Used by the provider to identify modified settings (changing this value will force the entire block to be deleted, then recreated)
 	Name *string `pulumi:"name"`
+	// Next-Gen WAF product
+	Ngwaf *ServiceComputeProductEnablementNgwaf `pulumi:"ngwaf"`
 	// Enable WebSockets support
 	Websockets *bool `pulumi:"websockets"`
 }
@@ -6264,12 +6268,16 @@ type ServiceComputeProductEnablementInput interface {
 }
 
 type ServiceComputeProductEnablementArgs struct {
+	// DDoS Protection product
+	DdosProtection ServiceComputeProductEnablementDdosProtectionPtrInput `pulumi:"ddosProtection"`
 	// Enable Fanout support
 	Fanout pulumi.BoolPtrInput `pulumi:"fanout"`
 	// Enable Log Explorer & Insights
 	LogExplorerInsights pulumi.BoolPtrInput `pulumi:"logExplorerInsights"`
 	// Used by the provider to identify modified settings (changing this value will force the entire block to be deleted, then recreated)
 	Name pulumi.StringPtrInput `pulumi:"name"`
+	// Next-Gen WAF product
+	Ngwaf ServiceComputeProductEnablementNgwafPtrInput `pulumi:"ngwaf"`
 	// Enable WebSockets support
 	Websockets pulumi.BoolPtrInput `pulumi:"websockets"`
 }
@@ -6351,6 +6359,13 @@ func (o ServiceComputeProductEnablementOutput) ToServiceComputeProductEnablement
 	}).(ServiceComputeProductEnablementPtrOutput)
 }
 
+// DDoS Protection product
+func (o ServiceComputeProductEnablementOutput) DdosProtection() ServiceComputeProductEnablementDdosProtectionPtrOutput {
+	return o.ApplyT(func(v ServiceComputeProductEnablement) *ServiceComputeProductEnablementDdosProtection {
+		return v.DdosProtection
+	}).(ServiceComputeProductEnablementDdosProtectionPtrOutput)
+}
+
 // Enable Fanout support
 func (o ServiceComputeProductEnablementOutput) Fanout() pulumi.BoolPtrOutput {
 	return o.ApplyT(func(v ServiceComputeProductEnablement) *bool { return v.Fanout }).(pulumi.BoolPtrOutput)
@@ -6364,6 +6379,11 @@ func (o ServiceComputeProductEnablementOutput) LogExplorerInsights() pulumi.Bool
 // Used by the provider to identify modified settings (changing this value will force the entire block to be deleted, then recreated)
 func (o ServiceComputeProductEnablementOutput) Name() pulumi.StringPtrOutput {
 	return o.ApplyT(func(v ServiceComputeProductEnablement) *string { return v.Name }).(pulumi.StringPtrOutput)
+}
+
+// Next-Gen WAF product
+func (o ServiceComputeProductEnablementOutput) Ngwaf() ServiceComputeProductEnablementNgwafPtrOutput {
+	return o.ApplyT(func(v ServiceComputeProductEnablement) *ServiceComputeProductEnablementNgwaf { return v.Ngwaf }).(ServiceComputeProductEnablementNgwafPtrOutput)
 }
 
 // Enable WebSockets support
@@ -6393,6 +6413,16 @@ func (o ServiceComputeProductEnablementPtrOutput) Elem() ServiceComputeProductEn
 		var ret ServiceComputeProductEnablement
 		return ret
 	}).(ServiceComputeProductEnablementOutput)
+}
+
+// DDoS Protection product
+func (o ServiceComputeProductEnablementPtrOutput) DdosProtection() ServiceComputeProductEnablementDdosProtectionPtrOutput {
+	return o.ApplyT(func(v *ServiceComputeProductEnablement) *ServiceComputeProductEnablementDdosProtection {
+		if v == nil {
+			return nil
+		}
+		return v.DdosProtection
+	}).(ServiceComputeProductEnablementDdosProtectionPtrOutput)
 }
 
 // Enable Fanout support
@@ -6425,6 +6455,16 @@ func (o ServiceComputeProductEnablementPtrOutput) Name() pulumi.StringPtrOutput 
 	}).(pulumi.StringPtrOutput)
 }
 
+// Next-Gen WAF product
+func (o ServiceComputeProductEnablementPtrOutput) Ngwaf() ServiceComputeProductEnablementNgwafPtrOutput {
+	return o.ApplyT(func(v *ServiceComputeProductEnablement) *ServiceComputeProductEnablementNgwaf {
+		if v == nil {
+			return nil
+		}
+		return v.Ngwaf
+	}).(ServiceComputeProductEnablementNgwafPtrOutput)
+}
+
 // Enable WebSockets support
 func (o ServiceComputeProductEnablementPtrOutput) Websockets() pulumi.BoolPtrOutput {
 	return o.ApplyT(func(v *ServiceComputeProductEnablement) *bool {
@@ -6433,6 +6473,337 @@ func (o ServiceComputeProductEnablementPtrOutput) Websockets() pulumi.BoolPtrOut
 		}
 		return v.Websockets
 	}).(pulumi.BoolPtrOutput)
+}
+
+type ServiceComputeProductEnablementDdosProtection struct {
+	// Enable DDoS Protection support
+	Enabled bool `pulumi:"enabled"`
+	// Operation mode
+	Mode string `pulumi:"mode"`
+}
+
+// ServiceComputeProductEnablementDdosProtectionInput is an input type that accepts ServiceComputeProductEnablementDdosProtectionArgs and ServiceComputeProductEnablementDdosProtectionOutput values.
+// You can construct a concrete instance of `ServiceComputeProductEnablementDdosProtectionInput` via:
+//
+//	ServiceComputeProductEnablementDdosProtectionArgs{...}
+type ServiceComputeProductEnablementDdosProtectionInput interface {
+	pulumi.Input
+
+	ToServiceComputeProductEnablementDdosProtectionOutput() ServiceComputeProductEnablementDdosProtectionOutput
+	ToServiceComputeProductEnablementDdosProtectionOutputWithContext(context.Context) ServiceComputeProductEnablementDdosProtectionOutput
+}
+
+type ServiceComputeProductEnablementDdosProtectionArgs struct {
+	// Enable DDoS Protection support
+	Enabled pulumi.BoolInput `pulumi:"enabled"`
+	// Operation mode
+	Mode pulumi.StringInput `pulumi:"mode"`
+}
+
+func (ServiceComputeProductEnablementDdosProtectionArgs) ElementType() reflect.Type {
+	return reflect.TypeOf((*ServiceComputeProductEnablementDdosProtection)(nil)).Elem()
+}
+
+func (i ServiceComputeProductEnablementDdosProtectionArgs) ToServiceComputeProductEnablementDdosProtectionOutput() ServiceComputeProductEnablementDdosProtectionOutput {
+	return i.ToServiceComputeProductEnablementDdosProtectionOutputWithContext(context.Background())
+}
+
+func (i ServiceComputeProductEnablementDdosProtectionArgs) ToServiceComputeProductEnablementDdosProtectionOutputWithContext(ctx context.Context) ServiceComputeProductEnablementDdosProtectionOutput {
+	return pulumi.ToOutputWithContext(ctx, i).(ServiceComputeProductEnablementDdosProtectionOutput)
+}
+
+func (i ServiceComputeProductEnablementDdosProtectionArgs) ToServiceComputeProductEnablementDdosProtectionPtrOutput() ServiceComputeProductEnablementDdosProtectionPtrOutput {
+	return i.ToServiceComputeProductEnablementDdosProtectionPtrOutputWithContext(context.Background())
+}
+
+func (i ServiceComputeProductEnablementDdosProtectionArgs) ToServiceComputeProductEnablementDdosProtectionPtrOutputWithContext(ctx context.Context) ServiceComputeProductEnablementDdosProtectionPtrOutput {
+	return pulumi.ToOutputWithContext(ctx, i).(ServiceComputeProductEnablementDdosProtectionOutput).ToServiceComputeProductEnablementDdosProtectionPtrOutputWithContext(ctx)
+}
+
+// ServiceComputeProductEnablementDdosProtectionPtrInput is an input type that accepts ServiceComputeProductEnablementDdosProtectionArgs, ServiceComputeProductEnablementDdosProtectionPtr and ServiceComputeProductEnablementDdosProtectionPtrOutput values.
+// You can construct a concrete instance of `ServiceComputeProductEnablementDdosProtectionPtrInput` via:
+//
+//	        ServiceComputeProductEnablementDdosProtectionArgs{...}
+//
+//	or:
+//
+//	        nil
+type ServiceComputeProductEnablementDdosProtectionPtrInput interface {
+	pulumi.Input
+
+	ToServiceComputeProductEnablementDdosProtectionPtrOutput() ServiceComputeProductEnablementDdosProtectionPtrOutput
+	ToServiceComputeProductEnablementDdosProtectionPtrOutputWithContext(context.Context) ServiceComputeProductEnablementDdosProtectionPtrOutput
+}
+
+type serviceComputeProductEnablementDdosProtectionPtrType ServiceComputeProductEnablementDdosProtectionArgs
+
+func ServiceComputeProductEnablementDdosProtectionPtr(v *ServiceComputeProductEnablementDdosProtectionArgs) ServiceComputeProductEnablementDdosProtectionPtrInput {
+	return (*serviceComputeProductEnablementDdosProtectionPtrType)(v)
+}
+
+func (*serviceComputeProductEnablementDdosProtectionPtrType) ElementType() reflect.Type {
+	return reflect.TypeOf((**ServiceComputeProductEnablementDdosProtection)(nil)).Elem()
+}
+
+func (i *serviceComputeProductEnablementDdosProtectionPtrType) ToServiceComputeProductEnablementDdosProtectionPtrOutput() ServiceComputeProductEnablementDdosProtectionPtrOutput {
+	return i.ToServiceComputeProductEnablementDdosProtectionPtrOutputWithContext(context.Background())
+}
+
+func (i *serviceComputeProductEnablementDdosProtectionPtrType) ToServiceComputeProductEnablementDdosProtectionPtrOutputWithContext(ctx context.Context) ServiceComputeProductEnablementDdosProtectionPtrOutput {
+	return pulumi.ToOutputWithContext(ctx, i).(ServiceComputeProductEnablementDdosProtectionPtrOutput)
+}
+
+type ServiceComputeProductEnablementDdosProtectionOutput struct{ *pulumi.OutputState }
+
+func (ServiceComputeProductEnablementDdosProtectionOutput) ElementType() reflect.Type {
+	return reflect.TypeOf((*ServiceComputeProductEnablementDdosProtection)(nil)).Elem()
+}
+
+func (o ServiceComputeProductEnablementDdosProtectionOutput) ToServiceComputeProductEnablementDdosProtectionOutput() ServiceComputeProductEnablementDdosProtectionOutput {
+	return o
+}
+
+func (o ServiceComputeProductEnablementDdosProtectionOutput) ToServiceComputeProductEnablementDdosProtectionOutputWithContext(ctx context.Context) ServiceComputeProductEnablementDdosProtectionOutput {
+	return o
+}
+
+func (o ServiceComputeProductEnablementDdosProtectionOutput) ToServiceComputeProductEnablementDdosProtectionPtrOutput() ServiceComputeProductEnablementDdosProtectionPtrOutput {
+	return o.ToServiceComputeProductEnablementDdosProtectionPtrOutputWithContext(context.Background())
+}
+
+func (o ServiceComputeProductEnablementDdosProtectionOutput) ToServiceComputeProductEnablementDdosProtectionPtrOutputWithContext(ctx context.Context) ServiceComputeProductEnablementDdosProtectionPtrOutput {
+	return o.ApplyTWithContext(ctx, func(_ context.Context, v ServiceComputeProductEnablementDdosProtection) *ServiceComputeProductEnablementDdosProtection {
+		return &v
+	}).(ServiceComputeProductEnablementDdosProtectionPtrOutput)
+}
+
+// Enable DDoS Protection support
+func (o ServiceComputeProductEnablementDdosProtectionOutput) Enabled() pulumi.BoolOutput {
+	return o.ApplyT(func(v ServiceComputeProductEnablementDdosProtection) bool { return v.Enabled }).(pulumi.BoolOutput)
+}
+
+// Operation mode
+func (o ServiceComputeProductEnablementDdosProtectionOutput) Mode() pulumi.StringOutput {
+	return o.ApplyT(func(v ServiceComputeProductEnablementDdosProtection) string { return v.Mode }).(pulumi.StringOutput)
+}
+
+type ServiceComputeProductEnablementDdosProtectionPtrOutput struct{ *pulumi.OutputState }
+
+func (ServiceComputeProductEnablementDdosProtectionPtrOutput) ElementType() reflect.Type {
+	return reflect.TypeOf((**ServiceComputeProductEnablementDdosProtection)(nil)).Elem()
+}
+
+func (o ServiceComputeProductEnablementDdosProtectionPtrOutput) ToServiceComputeProductEnablementDdosProtectionPtrOutput() ServiceComputeProductEnablementDdosProtectionPtrOutput {
+	return o
+}
+
+func (o ServiceComputeProductEnablementDdosProtectionPtrOutput) ToServiceComputeProductEnablementDdosProtectionPtrOutputWithContext(ctx context.Context) ServiceComputeProductEnablementDdosProtectionPtrOutput {
+	return o
+}
+
+func (o ServiceComputeProductEnablementDdosProtectionPtrOutput) Elem() ServiceComputeProductEnablementDdosProtectionOutput {
+	return o.ApplyT(func(v *ServiceComputeProductEnablementDdosProtection) ServiceComputeProductEnablementDdosProtection {
+		if v != nil {
+			return *v
+		}
+		var ret ServiceComputeProductEnablementDdosProtection
+		return ret
+	}).(ServiceComputeProductEnablementDdosProtectionOutput)
+}
+
+// Enable DDoS Protection support
+func (o ServiceComputeProductEnablementDdosProtectionPtrOutput) Enabled() pulumi.BoolPtrOutput {
+	return o.ApplyT(func(v *ServiceComputeProductEnablementDdosProtection) *bool {
+		if v == nil {
+			return nil
+		}
+		return &v.Enabled
+	}).(pulumi.BoolPtrOutput)
+}
+
+// Operation mode
+func (o ServiceComputeProductEnablementDdosProtectionPtrOutput) Mode() pulumi.StringPtrOutput {
+	return o.ApplyT(func(v *ServiceComputeProductEnablementDdosProtection) *string {
+		if v == nil {
+			return nil
+		}
+		return &v.Mode
+	}).(pulumi.StringPtrOutput)
+}
+
+type ServiceComputeProductEnablementNgwaf struct {
+	// Enable Next-Gen WAF support
+	Enabled bool `pulumi:"enabled"`
+	// The percentage of traffic to inspect
+	TrafficRamp *int `pulumi:"trafficRamp"`
+	// The workspace to link
+	WorkspaceId string `pulumi:"workspaceId"`
+}
+
+// ServiceComputeProductEnablementNgwafInput is an input type that accepts ServiceComputeProductEnablementNgwafArgs and ServiceComputeProductEnablementNgwafOutput values.
+// You can construct a concrete instance of `ServiceComputeProductEnablementNgwafInput` via:
+//
+//	ServiceComputeProductEnablementNgwafArgs{...}
+type ServiceComputeProductEnablementNgwafInput interface {
+	pulumi.Input
+
+	ToServiceComputeProductEnablementNgwafOutput() ServiceComputeProductEnablementNgwafOutput
+	ToServiceComputeProductEnablementNgwafOutputWithContext(context.Context) ServiceComputeProductEnablementNgwafOutput
+}
+
+type ServiceComputeProductEnablementNgwafArgs struct {
+	// Enable Next-Gen WAF support
+	Enabled pulumi.BoolInput `pulumi:"enabled"`
+	// The percentage of traffic to inspect
+	TrafficRamp pulumi.IntPtrInput `pulumi:"trafficRamp"`
+	// The workspace to link
+	WorkspaceId pulumi.StringInput `pulumi:"workspaceId"`
+}
+
+func (ServiceComputeProductEnablementNgwafArgs) ElementType() reflect.Type {
+	return reflect.TypeOf((*ServiceComputeProductEnablementNgwaf)(nil)).Elem()
+}
+
+func (i ServiceComputeProductEnablementNgwafArgs) ToServiceComputeProductEnablementNgwafOutput() ServiceComputeProductEnablementNgwafOutput {
+	return i.ToServiceComputeProductEnablementNgwafOutputWithContext(context.Background())
+}
+
+func (i ServiceComputeProductEnablementNgwafArgs) ToServiceComputeProductEnablementNgwafOutputWithContext(ctx context.Context) ServiceComputeProductEnablementNgwafOutput {
+	return pulumi.ToOutputWithContext(ctx, i).(ServiceComputeProductEnablementNgwafOutput)
+}
+
+func (i ServiceComputeProductEnablementNgwafArgs) ToServiceComputeProductEnablementNgwafPtrOutput() ServiceComputeProductEnablementNgwafPtrOutput {
+	return i.ToServiceComputeProductEnablementNgwafPtrOutputWithContext(context.Background())
+}
+
+func (i ServiceComputeProductEnablementNgwafArgs) ToServiceComputeProductEnablementNgwafPtrOutputWithContext(ctx context.Context) ServiceComputeProductEnablementNgwafPtrOutput {
+	return pulumi.ToOutputWithContext(ctx, i).(ServiceComputeProductEnablementNgwafOutput).ToServiceComputeProductEnablementNgwafPtrOutputWithContext(ctx)
+}
+
+// ServiceComputeProductEnablementNgwafPtrInput is an input type that accepts ServiceComputeProductEnablementNgwafArgs, ServiceComputeProductEnablementNgwafPtr and ServiceComputeProductEnablementNgwafPtrOutput values.
+// You can construct a concrete instance of `ServiceComputeProductEnablementNgwafPtrInput` via:
+//
+//	        ServiceComputeProductEnablementNgwafArgs{...}
+//
+//	or:
+//
+//	        nil
+type ServiceComputeProductEnablementNgwafPtrInput interface {
+	pulumi.Input
+
+	ToServiceComputeProductEnablementNgwafPtrOutput() ServiceComputeProductEnablementNgwafPtrOutput
+	ToServiceComputeProductEnablementNgwafPtrOutputWithContext(context.Context) ServiceComputeProductEnablementNgwafPtrOutput
+}
+
+type serviceComputeProductEnablementNgwafPtrType ServiceComputeProductEnablementNgwafArgs
+
+func ServiceComputeProductEnablementNgwafPtr(v *ServiceComputeProductEnablementNgwafArgs) ServiceComputeProductEnablementNgwafPtrInput {
+	return (*serviceComputeProductEnablementNgwafPtrType)(v)
+}
+
+func (*serviceComputeProductEnablementNgwafPtrType) ElementType() reflect.Type {
+	return reflect.TypeOf((**ServiceComputeProductEnablementNgwaf)(nil)).Elem()
+}
+
+func (i *serviceComputeProductEnablementNgwafPtrType) ToServiceComputeProductEnablementNgwafPtrOutput() ServiceComputeProductEnablementNgwafPtrOutput {
+	return i.ToServiceComputeProductEnablementNgwafPtrOutputWithContext(context.Background())
+}
+
+func (i *serviceComputeProductEnablementNgwafPtrType) ToServiceComputeProductEnablementNgwafPtrOutputWithContext(ctx context.Context) ServiceComputeProductEnablementNgwafPtrOutput {
+	return pulumi.ToOutputWithContext(ctx, i).(ServiceComputeProductEnablementNgwafPtrOutput)
+}
+
+type ServiceComputeProductEnablementNgwafOutput struct{ *pulumi.OutputState }
+
+func (ServiceComputeProductEnablementNgwafOutput) ElementType() reflect.Type {
+	return reflect.TypeOf((*ServiceComputeProductEnablementNgwaf)(nil)).Elem()
+}
+
+func (o ServiceComputeProductEnablementNgwafOutput) ToServiceComputeProductEnablementNgwafOutput() ServiceComputeProductEnablementNgwafOutput {
+	return o
+}
+
+func (o ServiceComputeProductEnablementNgwafOutput) ToServiceComputeProductEnablementNgwafOutputWithContext(ctx context.Context) ServiceComputeProductEnablementNgwafOutput {
+	return o
+}
+
+func (o ServiceComputeProductEnablementNgwafOutput) ToServiceComputeProductEnablementNgwafPtrOutput() ServiceComputeProductEnablementNgwafPtrOutput {
+	return o.ToServiceComputeProductEnablementNgwafPtrOutputWithContext(context.Background())
+}
+
+func (o ServiceComputeProductEnablementNgwafOutput) ToServiceComputeProductEnablementNgwafPtrOutputWithContext(ctx context.Context) ServiceComputeProductEnablementNgwafPtrOutput {
+	return o.ApplyTWithContext(ctx, func(_ context.Context, v ServiceComputeProductEnablementNgwaf) *ServiceComputeProductEnablementNgwaf {
+		return &v
+	}).(ServiceComputeProductEnablementNgwafPtrOutput)
+}
+
+// Enable Next-Gen WAF support
+func (o ServiceComputeProductEnablementNgwafOutput) Enabled() pulumi.BoolOutput {
+	return o.ApplyT(func(v ServiceComputeProductEnablementNgwaf) bool { return v.Enabled }).(pulumi.BoolOutput)
+}
+
+// The percentage of traffic to inspect
+func (o ServiceComputeProductEnablementNgwafOutput) TrafficRamp() pulumi.IntPtrOutput {
+	return o.ApplyT(func(v ServiceComputeProductEnablementNgwaf) *int { return v.TrafficRamp }).(pulumi.IntPtrOutput)
+}
+
+// The workspace to link
+func (o ServiceComputeProductEnablementNgwafOutput) WorkspaceId() pulumi.StringOutput {
+	return o.ApplyT(func(v ServiceComputeProductEnablementNgwaf) string { return v.WorkspaceId }).(pulumi.StringOutput)
+}
+
+type ServiceComputeProductEnablementNgwafPtrOutput struct{ *pulumi.OutputState }
+
+func (ServiceComputeProductEnablementNgwafPtrOutput) ElementType() reflect.Type {
+	return reflect.TypeOf((**ServiceComputeProductEnablementNgwaf)(nil)).Elem()
+}
+
+func (o ServiceComputeProductEnablementNgwafPtrOutput) ToServiceComputeProductEnablementNgwafPtrOutput() ServiceComputeProductEnablementNgwafPtrOutput {
+	return o
+}
+
+func (o ServiceComputeProductEnablementNgwafPtrOutput) ToServiceComputeProductEnablementNgwafPtrOutputWithContext(ctx context.Context) ServiceComputeProductEnablementNgwafPtrOutput {
+	return o
+}
+
+func (o ServiceComputeProductEnablementNgwafPtrOutput) Elem() ServiceComputeProductEnablementNgwafOutput {
+	return o.ApplyT(func(v *ServiceComputeProductEnablementNgwaf) ServiceComputeProductEnablementNgwaf {
+		if v != nil {
+			return *v
+		}
+		var ret ServiceComputeProductEnablementNgwaf
+		return ret
+	}).(ServiceComputeProductEnablementNgwafOutput)
+}
+
+// Enable Next-Gen WAF support
+func (o ServiceComputeProductEnablementNgwafPtrOutput) Enabled() pulumi.BoolPtrOutput {
+	return o.ApplyT(func(v *ServiceComputeProductEnablementNgwaf) *bool {
+		if v == nil {
+			return nil
+		}
+		return &v.Enabled
+	}).(pulumi.BoolPtrOutput)
+}
+
+// The percentage of traffic to inspect
+func (o ServiceComputeProductEnablementNgwafPtrOutput) TrafficRamp() pulumi.IntPtrOutput {
+	return o.ApplyT(func(v *ServiceComputeProductEnablementNgwaf) *int {
+		if v == nil {
+			return nil
+		}
+		return v.TrafficRamp
+	}).(pulumi.IntPtrOutput)
+}
+
+// The workspace to link
+func (o ServiceComputeProductEnablementNgwafPtrOutput) WorkspaceId() pulumi.StringPtrOutput {
+	return o.ApplyT(func(v *ServiceComputeProductEnablementNgwaf) *string {
+		if v == nil {
+			return nil
+		}
+		return &v.WorkspaceId
+	}).(pulumi.StringPtrOutput)
 }
 
 type ServiceComputeResourceLink struct {
@@ -8584,7 +8955,7 @@ type ServiceVclLoggingBigquery struct {
 	Format *string `pulumi:"format"`
 	// A unique name to identify this BigQuery logging endpoint. It is important to note that changing this attribute will delete and recreate the resource
 	Name string `pulumi:"name"`
-	// Where in the generated VCL the logging call should be placed.
+	// Where in the generated VCL the logging call should be placed (ignored).
 	Placement *string `pulumi:"placement"`
 	// The ID of your GCP project
 	ProjectId string `pulumi:"projectId"`
@@ -8620,7 +8991,7 @@ type ServiceVclLoggingBigqueryArgs struct {
 	Format pulumi.StringPtrInput `pulumi:"format"`
 	// A unique name to identify this BigQuery logging endpoint. It is important to note that changing this attribute will delete and recreate the resource
 	Name pulumi.StringInput `pulumi:"name"`
-	// Where in the generated VCL the logging call should be placed.
+	// Where in the generated VCL the logging call should be placed (ignored).
 	Placement pulumi.StringPtrInput `pulumi:"placement"`
 	// The ID of your GCP project
 	ProjectId pulumi.StringInput `pulumi:"projectId"`
@@ -8710,7 +9081,7 @@ func (o ServiceVclLoggingBigqueryOutput) Name() pulumi.StringOutput {
 	return o.ApplyT(func(v ServiceVclLoggingBigquery) string { return v.Name }).(pulumi.StringOutput)
 }
 
-// Where in the generated VCL the logging call should be placed.
+// Where in the generated VCL the logging call should be placed (ignored).
 func (o ServiceVclLoggingBigqueryOutput) Placement() pulumi.StringPtrOutput {
 	return o.ApplyT(func(v ServiceVclLoggingBigquery) *string { return v.Placement }).(pulumi.StringPtrOutput)
 }
@@ -8783,7 +9154,7 @@ type ServiceVclLoggingBlobstorage struct {
 	Path *string `pulumi:"path"`
 	// How frequently the logs should be transferred in seconds. Default `3600`
 	Period *int `pulumi:"period"`
-	// Where in the generated VCL the logging call should be placed
+	// Where in the generated VCL the logging call should be placed (ignored).
 	Placement *string `pulumi:"placement"`
 	// A PGP public key that Fastly will use to encrypt your log files before writing them to disk
 	PublicKey *string `pulumi:"publicKey"`
@@ -8829,7 +9200,7 @@ type ServiceVclLoggingBlobstorageArgs struct {
 	Path pulumi.StringPtrInput `pulumi:"path"`
 	// How frequently the logs should be transferred in seconds. Default `3600`
 	Period pulumi.IntPtrInput `pulumi:"period"`
-	// Where in the generated VCL the logging call should be placed
+	// Where in the generated VCL the logging call should be placed (ignored).
 	Placement pulumi.StringPtrInput `pulumi:"placement"`
 	// A PGP public key that Fastly will use to encrypt your log files before writing them to disk
 	PublicKey pulumi.StringPtrInput `pulumi:"publicKey"`
@@ -8947,7 +9318,7 @@ func (o ServiceVclLoggingBlobstorageOutput) Period() pulumi.IntPtrOutput {
 	return o.ApplyT(func(v ServiceVclLoggingBlobstorage) *int { return v.Period }).(pulumi.IntPtrOutput)
 }
 
-// Where in the generated VCL the logging call should be placed
+// Where in the generated VCL the logging call should be placed (ignored).
 func (o ServiceVclLoggingBlobstorageOutput) Placement() pulumi.StringPtrOutput {
 	return o.ApplyT(func(v ServiceVclLoggingBlobstorage) *string { return v.Placement }).(pulumi.StringPtrOutput)
 }
@@ -9013,7 +9384,7 @@ type ServiceVclLoggingCloudfile struct {
 	Path *string `pulumi:"path"`
 	// How frequently log files are finalized so they can be available for reading (in seconds, default `3600`)
 	Period *int `pulumi:"period"`
-	// Where in the generated VCL the logging call should be placed. Can be `none` or `wafDebug`.
+	// Where in the generated VCL the logging call should be placed (ignored).
 	Placement *string `pulumi:"placement"`
 	// The PGP public key that Fastly will use to encrypt your log files before writing them to disk
 	PublicKey *string `pulumi:"publicKey"`
@@ -9059,7 +9430,7 @@ type ServiceVclLoggingCloudfileArgs struct {
 	Path pulumi.StringPtrInput `pulumi:"path"`
 	// How frequently log files are finalized so they can be available for reading (in seconds, default `3600`)
 	Period pulumi.IntPtrInput `pulumi:"period"`
-	// Where in the generated VCL the logging call should be placed. Can be `none` or `wafDebug`.
+	// Where in the generated VCL the logging call should be placed (ignored).
 	Placement pulumi.StringPtrInput `pulumi:"placement"`
 	// The PGP public key that Fastly will use to encrypt your log files before writing them to disk
 	PublicKey pulumi.StringPtrInput `pulumi:"publicKey"`
@@ -9174,7 +9545,7 @@ func (o ServiceVclLoggingCloudfileOutput) Period() pulumi.IntPtrOutput {
 	return o.ApplyT(func(v ServiceVclLoggingCloudfile) *int { return v.Period }).(pulumi.IntPtrOutput)
 }
 
-// Where in the generated VCL the logging call should be placed. Can be `none` or `wafDebug`.
+// Where in the generated VCL the logging call should be placed (ignored).
 func (o ServiceVclLoggingCloudfileOutput) Placement() pulumi.StringPtrOutput {
 	return o.ApplyT(func(v ServiceVclLoggingCloudfile) *string { return v.Placement }).(pulumi.StringPtrOutput)
 }
@@ -9231,7 +9602,7 @@ type ServiceVclLoggingDatadog struct {
 	FormatVersion *int `pulumi:"formatVersion"`
 	// The unique name of the Datadog logging endpoint. It is important to note that changing this attribute will delete and recreate the resource
 	Name string `pulumi:"name"`
-	// Where in the generated VCL the logging call should be placed.
+	// Where in the generated VCL the logging call should be placed (ignored).
 	Placement *string `pulumi:"placement"`
 	// The region that log data will be sent to. One of `US` or `EU`. Defaults to `US` if undefined
 	Region *string `pulumi:"region"`
@@ -9259,7 +9630,7 @@ type ServiceVclLoggingDatadogArgs struct {
 	FormatVersion pulumi.IntPtrInput `pulumi:"formatVersion"`
 	// The unique name of the Datadog logging endpoint. It is important to note that changing this attribute will delete and recreate the resource
 	Name pulumi.StringInput `pulumi:"name"`
-	// Where in the generated VCL the logging call should be placed.
+	// Where in the generated VCL the logging call should be placed (ignored).
 	Placement pulumi.StringPtrInput `pulumi:"placement"`
 	// The region that log data will be sent to. One of `US` or `EU`. Defaults to `US` if undefined
 	Region pulumi.StringPtrInput `pulumi:"region"`
@@ -9335,7 +9706,7 @@ func (o ServiceVclLoggingDatadogOutput) Name() pulumi.StringOutput {
 	return o.ApplyT(func(v ServiceVclLoggingDatadog) string { return v.Name }).(pulumi.StringOutput)
 }
 
-// Where in the generated VCL the logging call should be placed.
+// Where in the generated VCL the logging call should be placed (ignored).
 func (o ServiceVclLoggingDatadogOutput) Placement() pulumi.StringPtrOutput {
 	return o.ApplyT(func(v ServiceVclLoggingDatadog) *string { return v.Placement }).(pulumi.StringPtrOutput)
 }
@@ -9398,7 +9769,7 @@ type ServiceVclLoggingDigitalocean struct {
 	Path *string `pulumi:"path"`
 	// How frequently log files are finalized so they can be available for reading (in seconds, default `3600`)
 	Period *int `pulumi:"period"`
-	// Where in the generated VCL the logging call should be placed. Can be `none` or `wafDebug`.
+	// Where in the generated VCL the logging call should be placed (ignored).
 	Placement *string `pulumi:"placement"`
 	// A PGP public key that Fastly will use to encrypt your log files before writing them to disk
 	PublicKey *string `pulumi:"publicKey"`
@@ -9444,7 +9815,7 @@ type ServiceVclLoggingDigitaloceanArgs struct {
 	Path pulumi.StringPtrInput `pulumi:"path"`
 	// How frequently log files are finalized so they can be available for reading (in seconds, default `3600`)
 	Period pulumi.IntPtrInput `pulumi:"period"`
-	// Where in the generated VCL the logging call should be placed. Can be `none` or `wafDebug`.
+	// Where in the generated VCL the logging call should be placed (ignored).
 	Placement pulumi.StringPtrInput `pulumi:"placement"`
 	// A PGP public key that Fastly will use to encrypt your log files before writing them to disk
 	PublicKey pulumi.StringPtrInput `pulumi:"publicKey"`
@@ -9562,7 +9933,7 @@ func (o ServiceVclLoggingDigitaloceanOutput) Period() pulumi.IntPtrOutput {
 	return o.ApplyT(func(v ServiceVclLoggingDigitalocean) *int { return v.Period }).(pulumi.IntPtrOutput)
 }
 
-// Where in the generated VCL the logging call should be placed. Can be `none` or `wafDebug`.
+// Where in the generated VCL the logging call should be placed (ignored).
 func (o ServiceVclLoggingDigitaloceanOutput) Placement() pulumi.StringPtrOutput {
 	return o.ApplyT(func(v ServiceVclLoggingDigitalocean) *string { return v.Placement }).(pulumi.StringPtrOutput)
 }
@@ -9620,7 +9991,7 @@ type ServiceVclLoggingElasticsearch struct {
 	Password *string `pulumi:"password"`
 	// The ID of the Elasticsearch ingest pipeline to apply pre-process transformations to before indexing
 	Pipeline *string `pulumi:"pipeline"`
-	// Where in the generated VCL the logging call should be placed.
+	// Where in the generated VCL the logging call should be placed (ignored).
 	Placement *string `pulumi:"placement"`
 	// The maximum number of logs sent in one request. Defaults to `0` for unbounded
 	RequestMaxBytes *int `pulumi:"requestMaxBytes"`
@@ -9666,7 +10037,7 @@ type ServiceVclLoggingElasticsearchArgs struct {
 	Password pulumi.StringPtrInput `pulumi:"password"`
 	// The ID of the Elasticsearch ingest pipeline to apply pre-process transformations to before indexing
 	Pipeline pulumi.StringPtrInput `pulumi:"pipeline"`
-	// Where in the generated VCL the logging call should be placed.
+	// Where in the generated VCL the logging call should be placed (ignored).
 	Placement pulumi.StringPtrInput `pulumi:"placement"`
 	// The maximum number of logs sent in one request. Defaults to `0` for unbounded
 	RequestMaxBytes pulumi.IntPtrInput `pulumi:"requestMaxBytes"`
@@ -9769,7 +10140,7 @@ func (o ServiceVclLoggingElasticsearchOutput) Pipeline() pulumi.StringPtrOutput 
 	return o.ApplyT(func(v ServiceVclLoggingElasticsearch) *string { return v.Pipeline }).(pulumi.StringPtrOutput)
 }
 
-// Where in the generated VCL the logging call should be placed.
+// Where in the generated VCL the logging call should be placed (ignored).
 func (o ServiceVclLoggingElasticsearchOutput) Placement() pulumi.StringPtrOutput {
 	return o.ApplyT(func(v ServiceVclLoggingElasticsearch) *string { return v.Placement }).(pulumi.StringPtrOutput)
 }
@@ -9860,7 +10231,7 @@ type ServiceVclLoggingFtp struct {
 	Path string `pulumi:"path"`
 	// How frequently the logs should be transferred, in seconds (Default `3600`)
 	Period *int `pulumi:"period"`
-	// Where in the generated VCL the logging call should be placed.
+	// Where in the generated VCL the logging call should be placed (ignored).
 	Placement *string `pulumi:"placement"`
 	// The port number. Default: `21`
 	Port *int `pulumi:"port"`
@@ -9906,7 +10277,7 @@ type ServiceVclLoggingFtpArgs struct {
 	Path pulumi.StringInput `pulumi:"path"`
 	// How frequently the logs should be transferred, in seconds (Default `3600`)
 	Period pulumi.IntPtrInput `pulumi:"period"`
-	// Where in the generated VCL the logging call should be placed.
+	// Where in the generated VCL the logging call should be placed (ignored).
 	Placement pulumi.StringPtrInput `pulumi:"placement"`
 	// The port number. Default: `21`
 	Port pulumi.IntPtrInput `pulumi:"port"`
@@ -10021,7 +10392,7 @@ func (o ServiceVclLoggingFtpOutput) Period() pulumi.IntPtrOutput {
 	return o.ApplyT(func(v ServiceVclLoggingFtp) *int { return v.Period }).(pulumi.IntPtrOutput)
 }
 
-// Where in the generated VCL the logging call should be placed.
+// Where in the generated VCL the logging call should be placed (ignored).
 func (o ServiceVclLoggingFtpOutput) Placement() pulumi.StringPtrOutput {
 	return o.ApplyT(func(v ServiceVclLoggingFtp) *string { return v.Placement }).(pulumi.StringPtrOutput)
 }
@@ -10092,7 +10463,7 @@ type ServiceVclLoggingGc struct {
 	Path *string `pulumi:"path"`
 	// How frequently the logs should be transferred, in seconds (Default 3600)
 	Period *int `pulumi:"period"`
-	// Where in the generated VCL the logging call should be placed.
+	// Where in the generated VCL the logging call should be placed (ignored).
 	Placement *string `pulumi:"placement"`
 	// The ID of your Google Cloud Platform project
 	ProjectId *string `pulumi:"projectId"`
@@ -10138,7 +10509,7 @@ type ServiceVclLoggingGcArgs struct {
 	Path pulumi.StringPtrInput `pulumi:"path"`
 	// How frequently the logs should be transferred, in seconds (Default 3600)
 	Period pulumi.IntPtrInput `pulumi:"period"`
-	// Where in the generated VCL the logging call should be placed.
+	// Where in the generated VCL the logging call should be placed (ignored).
 	Placement pulumi.StringPtrInput `pulumi:"placement"`
 	// The ID of your Google Cloud Platform project
 	ProjectId pulumi.StringPtrInput `pulumi:"projectId"`
@@ -10253,7 +10624,7 @@ func (o ServiceVclLoggingGcOutput) Period() pulumi.IntPtrOutput {
 	return o.ApplyT(func(v ServiceVclLoggingGc) *int { return v.Period }).(pulumi.IntPtrOutput)
 }
 
-// Where in the generated VCL the logging call should be placed.
+// Where in the generated VCL the logging call should be placed (ignored).
 func (o ServiceVclLoggingGcOutput) Placement() pulumi.StringPtrOutput {
 	return o.ApplyT(func(v ServiceVclLoggingGc) *string { return v.Placement }).(pulumi.StringPtrOutput)
 }
@@ -10312,7 +10683,7 @@ type ServiceVclLoggingGooglepubsub struct {
 	FormatVersion *int `pulumi:"formatVersion"`
 	// The unique name of the Google Cloud Pub/Sub logging endpoint. It is important to note that changing this attribute will delete and recreate the resource
 	Name string `pulumi:"name"`
-	// Where in the generated VCL the logging call should be placed.
+	// Where in the generated VCL the logging call should be placed (ignored).
 	Placement *string `pulumi:"placement"`
 	// The ID of your Google Cloud Platform project
 	ProjectId string `pulumi:"projectId"`
@@ -10346,7 +10717,7 @@ type ServiceVclLoggingGooglepubsubArgs struct {
 	FormatVersion pulumi.IntPtrInput `pulumi:"formatVersion"`
 	// The unique name of the Google Cloud Pub/Sub logging endpoint. It is important to note that changing this attribute will delete and recreate the resource
 	Name pulumi.StringInput `pulumi:"name"`
-	// Where in the generated VCL the logging call should be placed.
+	// Where in the generated VCL the logging call should be placed (ignored).
 	Placement pulumi.StringPtrInput `pulumi:"placement"`
 	// The ID of your Google Cloud Platform project
 	ProjectId pulumi.StringInput `pulumi:"projectId"`
@@ -10431,7 +10802,7 @@ func (o ServiceVclLoggingGooglepubsubOutput) Name() pulumi.StringOutput {
 	return o.ApplyT(func(v ServiceVclLoggingGooglepubsub) string { return v.Name }).(pulumi.StringOutput)
 }
 
-// Where in the generated VCL the logging call should be placed.
+// Where in the generated VCL the logging call should be placed (ignored).
 func (o ServiceVclLoggingGooglepubsubOutput) Placement() pulumi.StringPtrOutput {
 	return o.ApplyT(func(v ServiceVclLoggingGooglepubsub) *string { return v.Placement }).(pulumi.StringPtrOutput)
 }
@@ -10490,7 +10861,7 @@ type ServiceVclLoggingGrafanacloudlog struct {
 	Index string `pulumi:"index"`
 	// The unique name of the GrafanaCloudLogs logging endpoint. It is important to note that changing this attribute will delete and recreate the resource
 	Name string `pulumi:"name"`
-	// Where in the generated VCL the logging call should be placed.
+	// Where in the generated VCL the logging call should be placed (ignored).
 	Placement *string `pulumi:"placement"`
 	// The name of the condition to apply.
 	ResponseCondition *string `pulumi:"responseCondition"`
@@ -10522,7 +10893,7 @@ type ServiceVclLoggingGrafanacloudlogArgs struct {
 	Index pulumi.StringInput `pulumi:"index"`
 	// The unique name of the GrafanaCloudLogs logging endpoint. It is important to note that changing this attribute will delete and recreate the resource
 	Name pulumi.StringInput `pulumi:"name"`
-	// Where in the generated VCL the logging call should be placed.
+	// Where in the generated VCL the logging call should be placed (ignored).
 	Placement pulumi.StringPtrInput `pulumi:"placement"`
 	// The name of the condition to apply.
 	ResponseCondition pulumi.StringPtrInput `pulumi:"responseCondition"`
@@ -10605,7 +10976,7 @@ func (o ServiceVclLoggingGrafanacloudlogOutput) Name() pulumi.StringOutput {
 	return o.ApplyT(func(v ServiceVclLoggingGrafanacloudlog) string { return v.Name }).(pulumi.StringOutput)
 }
 
-// Where in the generated VCL the logging call should be placed.
+// Where in the generated VCL the logging call should be placed (ignored).
 func (o ServiceVclLoggingGrafanacloudlogOutput) Placement() pulumi.StringPtrOutput {
 	return o.ApplyT(func(v ServiceVclLoggingGrafanacloudlog) *string { return v.Placement }).(pulumi.StringPtrOutput)
 }
@@ -10657,7 +11028,7 @@ type ServiceVclLoggingHerokus struct {
 	FormatVersion *int `pulumi:"formatVersion"`
 	// The unique name of the Heroku logging endpoint. It is important to note that changing this attribute will delete and recreate the resource
 	Name string `pulumi:"name"`
-	// Where in the generated VCL the logging call should be placed. Can be `none` or `wafDebug`.
+	// Where in the generated VCL the logging call should be placed (ignored).
 	Placement *string `pulumi:"placement"`
 	// The name of an existing condition in the configured endpoint, or leave blank to always execute.
 	ResponseCondition *string `pulumi:"responseCondition"`
@@ -10685,7 +11056,7 @@ type ServiceVclLoggingHerokusArgs struct {
 	FormatVersion pulumi.IntPtrInput `pulumi:"formatVersion"`
 	// The unique name of the Heroku logging endpoint. It is important to note that changing this attribute will delete and recreate the resource
 	Name pulumi.StringInput `pulumi:"name"`
-	// Where in the generated VCL the logging call should be placed. Can be `none` or `wafDebug`.
+	// Where in the generated VCL the logging call should be placed (ignored).
 	Placement pulumi.StringPtrInput `pulumi:"placement"`
 	// The name of an existing condition in the configured endpoint, or leave blank to always execute.
 	ResponseCondition pulumi.StringPtrInput `pulumi:"responseCondition"`
@@ -10761,7 +11132,7 @@ func (o ServiceVclLoggingHerokusOutput) Name() pulumi.StringOutput {
 	return o.ApplyT(func(v ServiceVclLoggingHerokus) string { return v.Name }).(pulumi.StringOutput)
 }
 
-// Where in the generated VCL the logging call should be placed. Can be `none` or `wafDebug`.
+// Where in the generated VCL the logging call should be placed (ignored).
 func (o ServiceVclLoggingHerokusOutput) Placement() pulumi.StringPtrOutput {
 	return o.ApplyT(func(v ServiceVclLoggingHerokus) *string { return v.Placement }).(pulumi.StringPtrOutput)
 }
@@ -10810,7 +11181,7 @@ type ServiceVclLoggingHoneycomb struct {
 	FormatVersion *int `pulumi:"formatVersion"`
 	// The unique name of the Honeycomb logging endpoint. It is important to note that changing this attribute will delete and recreate the resource
 	Name string `pulumi:"name"`
-	// Where in the generated VCL the logging call should be placed. Can be `none` or `wafDebug`.
+	// Where in the generated VCL the logging call should be placed (ignored).
 	Placement *string `pulumi:"placement"`
 	// The name of an existing condition in the configured endpoint, or leave blank to always execute.
 	ResponseCondition *string `pulumi:"responseCondition"`
@@ -10838,7 +11209,7 @@ type ServiceVclLoggingHoneycombArgs struct {
 	FormatVersion pulumi.IntPtrInput `pulumi:"formatVersion"`
 	// The unique name of the Honeycomb logging endpoint. It is important to note that changing this attribute will delete and recreate the resource
 	Name pulumi.StringInput `pulumi:"name"`
-	// Where in the generated VCL the logging call should be placed. Can be `none` or `wafDebug`.
+	// Where in the generated VCL the logging call should be placed (ignored).
 	Placement pulumi.StringPtrInput `pulumi:"placement"`
 	// The name of an existing condition in the configured endpoint, or leave blank to always execute.
 	ResponseCondition pulumi.StringPtrInput `pulumi:"responseCondition"`
@@ -10917,7 +11288,7 @@ func (o ServiceVclLoggingHoneycombOutput) Name() pulumi.StringOutput {
 	return o.ApplyT(func(v ServiceVclLoggingHoneycomb) string { return v.Name }).(pulumi.StringOutput)
 }
 
-// Where in the generated VCL the logging call should be placed. Can be `none` or `wafDebug`.
+// Where in the generated VCL the logging call should be placed (ignored).
 func (o ServiceVclLoggingHoneycombOutput) Placement() pulumi.StringPtrOutput {
 	return o.ApplyT(func(v ServiceVclLoggingHoneycomb) *string { return v.Placement }).(pulumi.StringPtrOutput)
 }
@@ -10971,7 +11342,7 @@ type ServiceVclLoggingHttp struct {
 	Method *string `pulumi:"method"`
 	// The unique name of the HTTPS logging endpoint. It is important to note that changing this attribute will delete and recreate the resource
 	Name string `pulumi:"name"`
-	// Where in the generated VCL the logging call should be placed
+	// Where in the generated VCL the logging call should be placed (ignored).
 	Placement *string `pulumi:"placement"`
 	// The maximum number of bytes sent in one request
 	RequestMaxBytes *int `pulumi:"requestMaxBytes"`
@@ -11021,7 +11392,7 @@ type ServiceVclLoggingHttpArgs struct {
 	Method pulumi.StringPtrInput `pulumi:"method"`
 	// The unique name of the HTTPS logging endpoint. It is important to note that changing this attribute will delete and recreate the resource
 	Name pulumi.StringInput `pulumi:"name"`
-	// Where in the generated VCL the logging call should be placed
+	// Where in the generated VCL the logging call should be placed (ignored).
 	Placement pulumi.StringPtrInput `pulumi:"placement"`
 	// The maximum number of bytes sent in one request
 	RequestMaxBytes pulumi.IntPtrInput `pulumi:"requestMaxBytes"`
@@ -11137,7 +11508,7 @@ func (o ServiceVclLoggingHttpOutput) Name() pulumi.StringOutput {
 	return o.ApplyT(func(v ServiceVclLoggingHttp) string { return v.Name }).(pulumi.StringOutput)
 }
 
-// Where in the generated VCL the logging call should be placed
+// Where in the generated VCL the logging call should be placed (ignored).
 func (o ServiceVclLoggingHttpOutput) Placement() pulumi.StringPtrOutput {
 	return o.ApplyT(func(v ServiceVclLoggingHttp) *string { return v.Placement }).(pulumi.StringPtrOutput)
 }
@@ -11219,7 +11590,7 @@ type ServiceVclLoggingKafka struct {
 	ParseLogKeyvals *bool `pulumi:"parseLogKeyvals"`
 	// SASL Pass
 	Password *string `pulumi:"password"`
-	// Where in the generated VCL the logging call should be placed.
+	// Where in the generated VCL the logging call should be placed (ignored).
 	Placement *string `pulumi:"placement"`
 	// Maximum size of log batch, if non-zero. Defaults to 0 for unbounded
 	RequestMaxBytes *int `pulumi:"requestMaxBytes"`
@@ -11271,7 +11642,7 @@ type ServiceVclLoggingKafkaArgs struct {
 	ParseLogKeyvals pulumi.BoolPtrInput `pulumi:"parseLogKeyvals"`
 	// SASL Pass
 	Password pulumi.StringPtrInput `pulumi:"password"`
-	// Where in the generated VCL the logging call should be placed.
+	// Where in the generated VCL the logging call should be placed (ignored).
 	Placement pulumi.StringPtrInput `pulumi:"placement"`
 	// Maximum size of log batch, if non-zero. Defaults to 0 for unbounded
 	RequestMaxBytes pulumi.IntPtrInput `pulumi:"requestMaxBytes"`
@@ -11386,7 +11757,7 @@ func (o ServiceVclLoggingKafkaOutput) Password() pulumi.StringPtrOutput {
 	return o.ApplyT(func(v ServiceVclLoggingKafka) *string { return v.Password }).(pulumi.StringPtrOutput)
 }
 
-// Where in the generated VCL the logging call should be placed.
+// Where in the generated VCL the logging call should be placed (ignored).
 func (o ServiceVclLoggingKafkaOutput) Placement() pulumi.StringPtrOutput {
 	return o.ApplyT(func(v ServiceVclLoggingKafka) *string { return v.Placement }).(pulumi.StringPtrOutput)
 }
@@ -11472,7 +11843,7 @@ type ServiceVclLoggingKinese struct {
 	IamRole *string `pulumi:"iamRole"`
 	// The unique name of the Kinesis logging endpoint. It is important to note that changing this attribute will delete and recreate the resource
 	Name string `pulumi:"name"`
-	// Where in the generated VCL the logging call should be placed. Can be `none` or `wafDebug`.
+	// Where in the generated VCL the logging call should be placed (ignored).
 	Placement *string `pulumi:"placement"`
 	// The AWS region the stream resides in. (Default: `us-east-1`)
 	Region *string `pulumi:"region"`
@@ -11506,7 +11877,7 @@ type ServiceVclLoggingKineseArgs struct {
 	IamRole pulumi.StringPtrInput `pulumi:"iamRole"`
 	// The unique name of the Kinesis logging endpoint. It is important to note that changing this attribute will delete and recreate the resource
 	Name pulumi.StringInput `pulumi:"name"`
-	// Where in the generated VCL the logging call should be placed. Can be `none` or `wafDebug`.
+	// Where in the generated VCL the logging call should be placed (ignored).
 	Placement pulumi.StringPtrInput `pulumi:"placement"`
 	// The AWS region the stream resides in. (Default: `us-east-1`)
 	Region pulumi.StringPtrInput `pulumi:"region"`
@@ -11594,7 +11965,7 @@ func (o ServiceVclLoggingKineseOutput) Name() pulumi.StringOutput {
 	return o.ApplyT(func(v ServiceVclLoggingKinese) string { return v.Name }).(pulumi.StringOutput)
 }
 
-// Where in the generated VCL the logging call should be placed. Can be `none` or `wafDebug`.
+// Where in the generated VCL the logging call should be placed (ignored).
 func (o ServiceVclLoggingKineseOutput) Placement() pulumi.StringPtrOutput {
 	return o.ApplyT(func(v ServiceVclLoggingKinese) *string { return v.Placement }).(pulumi.StringPtrOutput)
 }
@@ -11646,7 +12017,7 @@ type ServiceVclLoggingLogentry struct {
 	FormatVersion *int `pulumi:"formatVersion"`
 	// The unique name of the Logentries logging endpoint. It is important to note that changing this attribute will delete and recreate the resource
 	Name string `pulumi:"name"`
-	// Where in the generated VCL the logging call should be placed.
+	// Where in the generated VCL the logging call should be placed (ignored).
 	Placement *string `pulumi:"placement"`
 	// The port number configured in Logentries
 	Port *int `pulumi:"port"`
@@ -11676,7 +12047,7 @@ type ServiceVclLoggingLogentryArgs struct {
 	FormatVersion pulumi.IntPtrInput `pulumi:"formatVersion"`
 	// The unique name of the Logentries logging endpoint. It is important to note that changing this attribute will delete and recreate the resource
 	Name pulumi.StringInput `pulumi:"name"`
-	// Where in the generated VCL the logging call should be placed.
+	// Where in the generated VCL the logging call should be placed (ignored).
 	Placement pulumi.StringPtrInput `pulumi:"placement"`
 	// The port number configured in Logentries
 	Port pulumi.IntPtrInput `pulumi:"port"`
@@ -11754,7 +12125,7 @@ func (o ServiceVclLoggingLogentryOutput) Name() pulumi.StringOutput {
 	return o.ApplyT(func(v ServiceVclLoggingLogentry) string { return v.Name }).(pulumi.StringOutput)
 }
 
-// Where in the generated VCL the logging call should be placed.
+// Where in the generated VCL the logging call should be placed (ignored).
 func (o ServiceVclLoggingLogentryOutput) Placement() pulumi.StringPtrOutput {
 	return o.ApplyT(func(v ServiceVclLoggingLogentry) *string { return v.Placement }).(pulumi.StringPtrOutput)
 }
@@ -11806,7 +12177,7 @@ type ServiceVclLoggingLoggly struct {
 	FormatVersion *int `pulumi:"formatVersion"`
 	// The unique name of the Loggly logging endpoint. It is important to note that changing this attribute will delete and recreate the resource
 	Name string `pulumi:"name"`
-	// Where in the generated VCL the logging call should be placed. Can be `none` or `wafDebug`.
+	// Where in the generated VCL the logging call should be placed (ignored).
 	Placement *string `pulumi:"placement"`
 	// The name of an existing condition in the configured endpoint, or leave blank to always execute.
 	ResponseCondition *string `pulumi:"responseCondition"`
@@ -11832,7 +12203,7 @@ type ServiceVclLoggingLogglyArgs struct {
 	FormatVersion pulumi.IntPtrInput `pulumi:"formatVersion"`
 	// The unique name of the Loggly logging endpoint. It is important to note that changing this attribute will delete and recreate the resource
 	Name pulumi.StringInput `pulumi:"name"`
-	// Where in the generated VCL the logging call should be placed. Can be `none` or `wafDebug`.
+	// Where in the generated VCL the logging call should be placed (ignored).
 	Placement pulumi.StringPtrInput `pulumi:"placement"`
 	// The name of an existing condition in the configured endpoint, or leave blank to always execute.
 	ResponseCondition pulumi.StringPtrInput `pulumi:"responseCondition"`
@@ -11906,7 +12277,7 @@ func (o ServiceVclLoggingLogglyOutput) Name() pulumi.StringOutput {
 	return o.ApplyT(func(v ServiceVclLoggingLoggly) string { return v.Name }).(pulumi.StringOutput)
 }
 
-// Where in the generated VCL the logging call should be placed. Can be `none` or `wafDebug`.
+// Where in the generated VCL the logging call should be placed (ignored).
 func (o ServiceVclLoggingLogglyOutput) Placement() pulumi.StringPtrOutput {
 	return o.ApplyT(func(v ServiceVclLoggingLoggly) *string { return v.Placement }).(pulumi.StringPtrOutput)
 }
@@ -11948,7 +12319,7 @@ type ServiceVclLoggingLogshuttle struct {
 	FormatVersion *int `pulumi:"formatVersion"`
 	// The unique name of the Log Shuttle logging endpoint. It is important to note that changing this attribute will delete and recreate the resource
 	Name string `pulumi:"name"`
-	// Where in the generated VCL the logging call should be placed. Can be `none` or `wafDebug`.
+	// Where in the generated VCL the logging call should be placed (ignored).
 	Placement *string `pulumi:"placement"`
 	// The name of an existing condition in the configured endpoint, or leave blank to always execute.
 	ResponseCondition *string `pulumi:"responseCondition"`
@@ -11976,7 +12347,7 @@ type ServiceVclLoggingLogshuttleArgs struct {
 	FormatVersion pulumi.IntPtrInput `pulumi:"formatVersion"`
 	// The unique name of the Log Shuttle logging endpoint. It is important to note that changing this attribute will delete and recreate the resource
 	Name pulumi.StringInput `pulumi:"name"`
-	// Where in the generated VCL the logging call should be placed. Can be `none` or `wafDebug`.
+	// Where in the generated VCL the logging call should be placed (ignored).
 	Placement pulumi.StringPtrInput `pulumi:"placement"`
 	// The name of an existing condition in the configured endpoint, or leave blank to always execute.
 	ResponseCondition pulumi.StringPtrInput `pulumi:"responseCondition"`
@@ -12052,7 +12423,7 @@ func (o ServiceVclLoggingLogshuttleOutput) Name() pulumi.StringOutput {
 	return o.ApplyT(func(v ServiceVclLoggingLogshuttle) string { return v.Name }).(pulumi.StringOutput)
 }
 
-// Where in the generated VCL the logging call should be placed. Can be `none` or `wafDebug`.
+// Where in the generated VCL the logging call should be placed (ignored).
 func (o ServiceVclLoggingLogshuttleOutput) Placement() pulumi.StringPtrOutput {
 	return o.ApplyT(func(v ServiceVclLoggingLogshuttle) *string { return v.Placement }).(pulumi.StringPtrOutput)
 }
@@ -12099,7 +12470,7 @@ type ServiceVclLoggingNewrelic struct {
 	FormatVersion *int `pulumi:"formatVersion"`
 	// The unique name of the New Relic logging endpoint. It is important to note that changing this attribute will delete and recreate the resource
 	Name string `pulumi:"name"`
-	// Where in the generated VCL the logging call should be placed.
+	// Where in the generated VCL the logging call should be placed (ignored).
 	Placement *string `pulumi:"placement"`
 	// The region that log data will be sent to. Default: `US`
 	Region *string `pulumi:"region"`
@@ -12127,7 +12498,7 @@ type ServiceVclLoggingNewrelicArgs struct {
 	FormatVersion pulumi.IntPtrInput `pulumi:"formatVersion"`
 	// The unique name of the New Relic logging endpoint. It is important to note that changing this attribute will delete and recreate the resource
 	Name pulumi.StringInput `pulumi:"name"`
-	// Where in the generated VCL the logging call should be placed.
+	// Where in the generated VCL the logging call should be placed (ignored).
 	Placement pulumi.StringPtrInput `pulumi:"placement"`
 	// The region that log data will be sent to. Default: `US`
 	Region pulumi.StringPtrInput `pulumi:"region"`
@@ -12203,7 +12574,7 @@ func (o ServiceVclLoggingNewrelicOutput) Name() pulumi.StringOutput {
 	return o.ApplyT(func(v ServiceVclLoggingNewrelic) string { return v.Name }).(pulumi.StringOutput)
 }
 
-// Where in the generated VCL the logging call should be placed.
+// Where in the generated VCL the logging call should be placed (ignored).
 func (o ServiceVclLoggingNewrelicOutput) Placement() pulumi.StringPtrOutput {
 	return o.ApplyT(func(v ServiceVclLoggingNewrelic) *string { return v.Placement }).(pulumi.StringPtrOutput)
 }
@@ -12250,7 +12621,7 @@ type ServiceVclLoggingNewrelicotlp struct {
 	FormatVersion *int `pulumi:"formatVersion"`
 	// The unique name of the New Relic OTLP logging endpoint. It is important to note that changing this attribute will delete and recreate the resource
 	Name string `pulumi:"name"`
-	// Where in the generated VCL the logging call should be placed.
+	// Where in the generated VCL the logging call should be placed (ignored).
 	Placement *string `pulumi:"placement"`
 	// The region that log data will be sent to. Default: `US`
 	Region *string `pulumi:"region"`
@@ -12280,7 +12651,7 @@ type ServiceVclLoggingNewrelicotlpArgs struct {
 	FormatVersion pulumi.IntPtrInput `pulumi:"formatVersion"`
 	// The unique name of the New Relic OTLP logging endpoint. It is important to note that changing this attribute will delete and recreate the resource
 	Name pulumi.StringInput `pulumi:"name"`
-	// Where in the generated VCL the logging call should be placed.
+	// Where in the generated VCL the logging call should be placed (ignored).
 	Placement pulumi.StringPtrInput `pulumi:"placement"`
 	// The region that log data will be sent to. Default: `US`
 	Region pulumi.StringPtrInput `pulumi:"region"`
@@ -12358,7 +12729,7 @@ func (o ServiceVclLoggingNewrelicotlpOutput) Name() pulumi.StringOutput {
 	return o.ApplyT(func(v ServiceVclLoggingNewrelicotlp) string { return v.Name }).(pulumi.StringOutput)
 }
 
-// Where in the generated VCL the logging call should be placed.
+// Where in the generated VCL the logging call should be placed (ignored).
 func (o ServiceVclLoggingNewrelicotlpOutput) Placement() pulumi.StringPtrOutput {
 	return o.ApplyT(func(v ServiceVclLoggingNewrelicotlp) *string { return v.Placement }).(pulumi.StringPtrOutput)
 }
@@ -12424,7 +12795,7 @@ type ServiceVclLoggingOpenstack struct {
 	Path *string `pulumi:"path"`
 	// How frequently the logs should be transferred, in seconds. Default `3600`
 	Period *int `pulumi:"period"`
-	// Where in the generated VCL the logging call should be placed. Can be `none` or `wafDebug`.
+	// Where in the generated VCL the logging call should be placed (ignored).
 	Placement *string `pulumi:"placement"`
 	// A PGP public key that Fastly will use to encrypt your log files before writing them to disk
 	PublicKey *string `pulumi:"publicKey"`
@@ -12470,7 +12841,7 @@ type ServiceVclLoggingOpenstackArgs struct {
 	Path pulumi.StringPtrInput `pulumi:"path"`
 	// How frequently the logs should be transferred, in seconds. Default `3600`
 	Period pulumi.IntPtrInput `pulumi:"period"`
-	// Where in the generated VCL the logging call should be placed. Can be `none` or `wafDebug`.
+	// Where in the generated VCL the logging call should be placed (ignored).
 	Placement pulumi.StringPtrInput `pulumi:"placement"`
 	// A PGP public key that Fastly will use to encrypt your log files before writing them to disk
 	PublicKey pulumi.StringPtrInput `pulumi:"publicKey"`
@@ -12585,7 +12956,7 @@ func (o ServiceVclLoggingOpenstackOutput) Period() pulumi.IntPtrOutput {
 	return o.ApplyT(func(v ServiceVclLoggingOpenstack) *int { return v.Period }).(pulumi.IntPtrOutput)
 }
 
-// Where in the generated VCL the logging call should be placed. Can be `none` or `wafDebug`.
+// Where in the generated VCL the logging call should be placed (ignored).
 func (o ServiceVclLoggingOpenstackOutput) Placement() pulumi.StringPtrOutput {
 	return o.ApplyT(func(v ServiceVclLoggingOpenstack) *string { return v.Placement }).(pulumi.StringPtrOutput)
 }
@@ -12644,7 +13015,7 @@ type ServiceVclLoggingPapertrail struct {
 	FormatVersion *int `pulumi:"formatVersion"`
 	// A unique name to identify this Papertrail endpoint. It is important to note that changing this attribute will delete and recreate the resource
 	Name string `pulumi:"name"`
-	// Where in the generated VCL the logging call should be placed. If not set, endpoints with `formatVersion` of 2 are placed in `vclLog` and those with `formatVersion` of 1 are placed in `vclDeliver`
+	// Where in the generated VCL the logging call should be placed. Ignored, but endpoints with `formatVersion` of 2 are placed in `vclLog` and those with `formatVersion` of 1 are placed in `vclDeliver`
 	Placement *string `pulumi:"placement"`
 	// The port associated with the address where the Papertrail endpoint can be accessed
 	Port int `pulumi:"port"`
@@ -12672,7 +13043,7 @@ type ServiceVclLoggingPapertrailArgs struct {
 	FormatVersion pulumi.IntPtrInput `pulumi:"formatVersion"`
 	// A unique name to identify this Papertrail endpoint. It is important to note that changing this attribute will delete and recreate the resource
 	Name pulumi.StringInput `pulumi:"name"`
-	// Where in the generated VCL the logging call should be placed. If not set, endpoints with `formatVersion` of 2 are placed in `vclLog` and those with `formatVersion` of 1 are placed in `vclDeliver`
+	// Where in the generated VCL the logging call should be placed. Ignored, but endpoints with `formatVersion` of 2 are placed in `vclLog` and those with `formatVersion` of 1 are placed in `vclDeliver`
 	Placement pulumi.StringPtrInput `pulumi:"placement"`
 	// The port associated with the address where the Papertrail endpoint can be accessed
 	Port pulumi.IntInput `pulumi:"port"`
@@ -12751,7 +13122,7 @@ func (o ServiceVclLoggingPapertrailOutput) Name() pulumi.StringOutput {
 	return o.ApplyT(func(v ServiceVclLoggingPapertrail) string { return v.Name }).(pulumi.StringOutput)
 }
 
-// Where in the generated VCL the logging call should be placed. If not set, endpoints with `formatVersion` of 2 are placed in `vclLog` and those with `formatVersion` of 1 are placed in `vclDeliver`
+// Where in the generated VCL the logging call should be placed. Ignored, but endpoints with `formatVersion` of 2 are placed in `vclLog` and those with `formatVersion` of 1 are placed in `vclDeliver`
 func (o ServiceVclLoggingPapertrailOutput) Placement() pulumi.StringPtrOutput {
 	return o.ApplyT(func(v ServiceVclLoggingPapertrail) *string { return v.Placement }).(pulumi.StringPtrOutput)
 }
@@ -12811,7 +13182,7 @@ type ServiceVclLoggingS3 struct {
 	Path *string `pulumi:"path"`
 	// How frequently the logs should be transferred, in seconds. Default `3600`
 	Period *int `pulumi:"period"`
-	// Where in the generated VCL the logging call should be placed.
+	// Where in the generated VCL the logging call should be placed (ignored).
 	Placement *string `pulumi:"placement"`
 	// A PGP public key that Fastly will use to encrypt your log files before writing them to disk
 	PublicKey *string `pulumi:"publicKey"`
@@ -12869,7 +13240,7 @@ type ServiceVclLoggingS3Args struct {
 	Path pulumi.StringPtrInput `pulumi:"path"`
 	// How frequently the logs should be transferred, in seconds. Default `3600`
 	Period pulumi.IntPtrInput `pulumi:"period"`
-	// Where in the generated VCL the logging call should be placed.
+	// Where in the generated VCL the logging call should be placed (ignored).
 	Placement pulumi.StringPtrInput `pulumi:"placement"`
 	// A PGP public key that Fastly will use to encrypt your log files before writing them to disk
 	PublicKey pulumi.StringPtrInput `pulumi:"publicKey"`
@@ -13002,7 +13373,7 @@ func (o ServiceVclLoggingS3Output) Period() pulumi.IntPtrOutput {
 	return o.ApplyT(func(v ServiceVclLoggingS3) *int { return v.Period }).(pulumi.IntPtrOutput)
 }
 
-// Where in the generated VCL the logging call should be placed.
+// Where in the generated VCL the logging call should be placed (ignored).
 func (o ServiceVclLoggingS3Output) Placement() pulumi.StringPtrOutput {
 	return o.ApplyT(func(v ServiceVclLoggingS3) *string { return v.Placement }).(pulumi.StringPtrOutput)
 }
@@ -13079,7 +13450,7 @@ type ServiceVclLoggingScalyr struct {
 	FormatVersion *int `pulumi:"formatVersion"`
 	// The unique name of the Scalyr logging endpoint. It is important to note that changing this attribute will delete and recreate the resource
 	Name string `pulumi:"name"`
-	// Where in the generated VCL the logging call should be placed.
+	// Where in the generated VCL the logging call should be placed (ignored).
 	Placement *string `pulumi:"placement"`
 	// The name of the logfile field sent to Scalyr
 	ProjectId *string `pulumi:"projectId"`
@@ -13109,7 +13480,7 @@ type ServiceVclLoggingScalyrArgs struct {
 	FormatVersion pulumi.IntPtrInput `pulumi:"formatVersion"`
 	// The unique name of the Scalyr logging endpoint. It is important to note that changing this attribute will delete and recreate the resource
 	Name pulumi.StringInput `pulumi:"name"`
-	// Where in the generated VCL the logging call should be placed.
+	// Where in the generated VCL the logging call should be placed (ignored).
 	Placement pulumi.StringPtrInput `pulumi:"placement"`
 	// The name of the logfile field sent to Scalyr
 	ProjectId pulumi.StringPtrInput `pulumi:"projectId"`
@@ -13187,7 +13558,7 @@ func (o ServiceVclLoggingScalyrOutput) Name() pulumi.StringOutput {
 	return o.ApplyT(func(v ServiceVclLoggingScalyr) string { return v.Name }).(pulumi.StringOutput)
 }
 
-// Where in the generated VCL the logging call should be placed.
+// Where in the generated VCL the logging call should be placed (ignored).
 func (o ServiceVclLoggingScalyrOutput) Placement() pulumi.StringPtrOutput {
 	return o.ApplyT(func(v ServiceVclLoggingScalyr) *string { return v.Placement }).(pulumi.StringPtrOutput)
 }
@@ -13253,7 +13624,7 @@ type ServiceVclLoggingSftp struct {
 	Path string `pulumi:"path"`
 	// How frequently log files are finalized so they can be available for reading (in seconds, default `3600`)
 	Period *int `pulumi:"period"`
-	// Where in the generated VCL the logging call should be placed.
+	// Where in the generated VCL the logging call should be placed (ignored).
 	Placement *string `pulumi:"placement"`
 	// The port the SFTP service listens on. (Default: `22`)
 	Port *int `pulumi:"port"`
@@ -13303,7 +13674,7 @@ type ServiceVclLoggingSftpArgs struct {
 	Path pulumi.StringInput `pulumi:"path"`
 	// How frequently log files are finalized so they can be available for reading (in seconds, default `3600`)
 	Period pulumi.IntPtrInput `pulumi:"period"`
-	// Where in the generated VCL the logging call should be placed.
+	// Where in the generated VCL the logging call should be placed (ignored).
 	Placement pulumi.StringPtrInput `pulumi:"placement"`
 	// The port the SFTP service listens on. (Default: `22`)
 	Port pulumi.IntPtrInput `pulumi:"port"`
@@ -13422,7 +13793,7 @@ func (o ServiceVclLoggingSftpOutput) Period() pulumi.IntPtrOutput {
 	return o.ApplyT(func(v ServiceVclLoggingSftp) *int { return v.Period }).(pulumi.IntPtrOutput)
 }
 
-// Where in the generated VCL the logging call should be placed.
+// Where in the generated VCL the logging call should be placed (ignored).
 func (o ServiceVclLoggingSftpOutput) Placement() pulumi.StringPtrOutput {
 	return o.ApplyT(func(v ServiceVclLoggingSftp) *string { return v.Placement }).(pulumi.StringPtrOutput)
 }
@@ -13489,7 +13860,7 @@ type ServiceVclLoggingSplunk struct {
 	FormatVersion *int `pulumi:"formatVersion"`
 	// A unique name to identify the Splunk endpoint. It is important to note that changing this attribute will delete and recreate the resource
 	Name string `pulumi:"name"`
-	// Where in the generated VCL the logging call should be placed
+	// Where in the generated VCL the logging call should be placed (ignored).
 	Placement *string `pulumi:"placement"`
 	// The name of the condition to apply
 	ResponseCondition *string `pulumi:"responseCondition"`
@@ -13527,7 +13898,7 @@ type ServiceVclLoggingSplunkArgs struct {
 	FormatVersion pulumi.IntPtrInput `pulumi:"formatVersion"`
 	// A unique name to identify the Splunk endpoint. It is important to note that changing this attribute will delete and recreate the resource
 	Name pulumi.StringInput `pulumi:"name"`
-	// Where in the generated VCL the logging call should be placed
+	// Where in the generated VCL the logging call should be placed (ignored).
 	Placement pulumi.StringPtrInput `pulumi:"placement"`
 	// The name of the condition to apply
 	ResponseCondition pulumi.StringPtrInput `pulumi:"responseCondition"`
@@ -13613,7 +13984,7 @@ func (o ServiceVclLoggingSplunkOutput) Name() pulumi.StringOutput {
 	return o.ApplyT(func(v ServiceVclLoggingSplunk) string { return v.Name }).(pulumi.StringOutput)
 }
 
-// Where in the generated VCL the logging call should be placed
+// Where in the generated VCL the logging call should be placed (ignored).
 func (o ServiceVclLoggingSplunkOutput) Placement() pulumi.StringPtrOutput {
 	return o.ApplyT(func(v ServiceVclLoggingSplunk) *string { return v.Placement }).(pulumi.StringPtrOutput)
 }
@@ -13687,7 +14058,7 @@ type ServiceVclLoggingSumologic struct {
 	MessageType *string `pulumi:"messageType"`
 	// A unique name to identify this Sumologic endpoint. It is important to note that changing this attribute will delete and recreate the resource
 	Name string `pulumi:"name"`
-	// Where in the generated VCL the logging call should be placed.
+	// Where in the generated VCL the logging call should be placed (ignored).
 	Placement *string `pulumi:"placement"`
 	// Name of blockAttributes condition to apply this logging.
 	ResponseCondition *string `pulumi:"responseCondition"`
@@ -13715,7 +14086,7 @@ type ServiceVclLoggingSumologicArgs struct {
 	MessageType pulumi.StringPtrInput `pulumi:"messageType"`
 	// A unique name to identify this Sumologic endpoint. It is important to note that changing this attribute will delete and recreate the resource
 	Name pulumi.StringInput `pulumi:"name"`
-	// Where in the generated VCL the logging call should be placed.
+	// Where in the generated VCL the logging call should be placed (ignored).
 	Placement pulumi.StringPtrInput `pulumi:"placement"`
 	// Name of blockAttributes condition to apply this logging.
 	ResponseCondition pulumi.StringPtrInput `pulumi:"responseCondition"`
@@ -13794,7 +14165,7 @@ func (o ServiceVclLoggingSumologicOutput) Name() pulumi.StringOutput {
 	return o.ApplyT(func(v ServiceVclLoggingSumologic) string { return v.Name }).(pulumi.StringOutput)
 }
 
-// Where in the generated VCL the logging call should be placed.
+// Where in the generated VCL the logging call should be placed (ignored).
 func (o ServiceVclLoggingSumologicOutput) Placement() pulumi.StringPtrOutput {
 	return o.ApplyT(func(v ServiceVclLoggingSumologic) *string { return v.Placement }).(pulumi.StringPtrOutput)
 }
@@ -13840,7 +14211,7 @@ type ServiceVclLoggingSyslog struct {
 	MessageType *string `pulumi:"messageType"`
 	// A unique name to identify this Syslog endpoint. It is important to note that changing this attribute will delete and recreate the resource
 	Name string `pulumi:"name"`
-	// Where in the generated VCL the logging call should be placed.
+	// Where in the generated VCL the logging call should be placed (ignored).
 	Placement *string `pulumi:"placement"`
 	// The port associated with the address where the Syslog endpoint can be accessed. Default `514`
 	Port *int `pulumi:"port"`
@@ -13882,7 +14253,7 @@ type ServiceVclLoggingSyslogArgs struct {
 	MessageType pulumi.StringPtrInput `pulumi:"messageType"`
 	// A unique name to identify this Syslog endpoint. It is important to note that changing this attribute will delete and recreate the resource
 	Name pulumi.StringInput `pulumi:"name"`
-	// Where in the generated VCL the logging call should be placed.
+	// Where in the generated VCL the logging call should be placed (ignored).
 	Placement pulumi.StringPtrInput `pulumi:"placement"`
 	// The port associated with the address where the Syslog endpoint can be accessed. Default `514`
 	Port pulumi.IntPtrInput `pulumi:"port"`
@@ -13978,7 +14349,7 @@ func (o ServiceVclLoggingSyslogOutput) Name() pulumi.StringOutput {
 	return o.ApplyT(func(v ServiceVclLoggingSyslog) string { return v.Name }).(pulumi.StringOutput)
 }
 
-// Where in the generated VCL the logging call should be placed.
+// Where in the generated VCL the logging call should be placed (ignored).
 func (o ServiceVclLoggingSyslogOutput) Placement() pulumi.StringPtrOutput {
 	return o.ApplyT(func(v ServiceVclLoggingSyslog) *string { return v.Placement }).(pulumi.StringPtrOutput)
 }
@@ -14048,6 +14419,8 @@ type ServiceVclProductEnablement struct {
 	BotManagement *bool `pulumi:"botManagement"`
 	// Enable Brotli Compression support
 	BrotliCompression *bool `pulumi:"brotliCompression"`
+	// DDoS Protection product
+	DdosProtection *ServiceVclProductEnablementDdosProtection `pulumi:"ddosProtection"`
 	// Enable Domain Inspector support
 	DomainInspector *bool `pulumi:"domainInspector"`
 	// Enable Image Optimizer support (all backends must have a `shield` attribute)
@@ -14056,6 +14429,8 @@ type ServiceVclProductEnablement struct {
 	LogExplorerInsights *bool `pulumi:"logExplorerInsights"`
 	// Used by the provider to identify modified settings (changing this value will force the entire block to be deleted, then recreated)
 	Name *string `pulumi:"name"`
+	// Next-Gen WAF product
+	Ngwaf *ServiceVclProductEnablementNgwaf `pulumi:"ngwaf"`
 	// Enable Origin Inspector support
 	OriginInspector *bool `pulumi:"originInspector"`
 	// Enable WebSockets support
@@ -14078,6 +14453,8 @@ type ServiceVclProductEnablementArgs struct {
 	BotManagement pulumi.BoolPtrInput `pulumi:"botManagement"`
 	// Enable Brotli Compression support
 	BrotliCompression pulumi.BoolPtrInput `pulumi:"brotliCompression"`
+	// DDoS Protection product
+	DdosProtection ServiceVclProductEnablementDdosProtectionPtrInput `pulumi:"ddosProtection"`
 	// Enable Domain Inspector support
 	DomainInspector pulumi.BoolPtrInput `pulumi:"domainInspector"`
 	// Enable Image Optimizer support (all backends must have a `shield` attribute)
@@ -14086,6 +14463,8 @@ type ServiceVclProductEnablementArgs struct {
 	LogExplorerInsights pulumi.BoolPtrInput `pulumi:"logExplorerInsights"`
 	// Used by the provider to identify modified settings (changing this value will force the entire block to be deleted, then recreated)
 	Name pulumi.StringPtrInput `pulumi:"name"`
+	// Next-Gen WAF product
+	Ngwaf ServiceVclProductEnablementNgwafPtrInput `pulumi:"ngwaf"`
 	// Enable Origin Inspector support
 	OriginInspector pulumi.BoolPtrInput `pulumi:"originInspector"`
 	// Enable WebSockets support
@@ -14179,6 +14558,13 @@ func (o ServiceVclProductEnablementOutput) BrotliCompression() pulumi.BoolPtrOut
 	return o.ApplyT(func(v ServiceVclProductEnablement) *bool { return v.BrotliCompression }).(pulumi.BoolPtrOutput)
 }
 
+// DDoS Protection product
+func (o ServiceVclProductEnablementOutput) DdosProtection() ServiceVclProductEnablementDdosProtectionPtrOutput {
+	return o.ApplyT(func(v ServiceVclProductEnablement) *ServiceVclProductEnablementDdosProtection {
+		return v.DdosProtection
+	}).(ServiceVclProductEnablementDdosProtectionPtrOutput)
+}
+
 // Enable Domain Inspector support
 func (o ServiceVclProductEnablementOutput) DomainInspector() pulumi.BoolPtrOutput {
 	return o.ApplyT(func(v ServiceVclProductEnablement) *bool { return v.DomainInspector }).(pulumi.BoolPtrOutput)
@@ -14197,6 +14583,11 @@ func (o ServiceVclProductEnablementOutput) LogExplorerInsights() pulumi.BoolPtrO
 // Used by the provider to identify modified settings (changing this value will force the entire block to be deleted, then recreated)
 func (o ServiceVclProductEnablementOutput) Name() pulumi.StringPtrOutput {
 	return o.ApplyT(func(v ServiceVclProductEnablement) *string { return v.Name }).(pulumi.StringPtrOutput)
+}
+
+// Next-Gen WAF product
+func (o ServiceVclProductEnablementOutput) Ngwaf() ServiceVclProductEnablementNgwafPtrOutput {
+	return o.ApplyT(func(v ServiceVclProductEnablement) *ServiceVclProductEnablementNgwaf { return v.Ngwaf }).(ServiceVclProductEnablementNgwafPtrOutput)
 }
 
 // Enable Origin Inspector support
@@ -14253,6 +14644,16 @@ func (o ServiceVclProductEnablementPtrOutput) BrotliCompression() pulumi.BoolPtr
 	}).(pulumi.BoolPtrOutput)
 }
 
+// DDoS Protection product
+func (o ServiceVclProductEnablementPtrOutput) DdosProtection() ServiceVclProductEnablementDdosProtectionPtrOutput {
+	return o.ApplyT(func(v *ServiceVclProductEnablement) *ServiceVclProductEnablementDdosProtection {
+		if v == nil {
+			return nil
+		}
+		return v.DdosProtection
+	}).(ServiceVclProductEnablementDdosProtectionPtrOutput)
+}
+
 // Enable Domain Inspector support
 func (o ServiceVclProductEnablementPtrOutput) DomainInspector() pulumi.BoolPtrOutput {
 	return o.ApplyT(func(v *ServiceVclProductEnablement) *bool {
@@ -14293,6 +14694,16 @@ func (o ServiceVclProductEnablementPtrOutput) Name() pulumi.StringPtrOutput {
 	}).(pulumi.StringPtrOutput)
 }
 
+// Next-Gen WAF product
+func (o ServiceVclProductEnablementPtrOutput) Ngwaf() ServiceVclProductEnablementNgwafPtrOutput {
+	return o.ApplyT(func(v *ServiceVclProductEnablement) *ServiceVclProductEnablementNgwaf {
+		if v == nil {
+			return nil
+		}
+		return v.Ngwaf
+	}).(ServiceVclProductEnablementNgwafPtrOutput)
+}
+
 // Enable Origin Inspector support
 func (o ServiceVclProductEnablementPtrOutput) OriginInspector() pulumi.BoolPtrOutput {
 	return o.ApplyT(func(v *ServiceVclProductEnablement) *bool {
@@ -14311,6 +14722,337 @@ func (o ServiceVclProductEnablementPtrOutput) Websockets() pulumi.BoolPtrOutput 
 		}
 		return v.Websockets
 	}).(pulumi.BoolPtrOutput)
+}
+
+type ServiceVclProductEnablementDdosProtection struct {
+	// Enable DDoS Protection support
+	Enabled bool `pulumi:"enabled"`
+	// Operation mode
+	Mode string `pulumi:"mode"`
+}
+
+// ServiceVclProductEnablementDdosProtectionInput is an input type that accepts ServiceVclProductEnablementDdosProtectionArgs and ServiceVclProductEnablementDdosProtectionOutput values.
+// You can construct a concrete instance of `ServiceVclProductEnablementDdosProtectionInput` via:
+//
+//	ServiceVclProductEnablementDdosProtectionArgs{...}
+type ServiceVclProductEnablementDdosProtectionInput interface {
+	pulumi.Input
+
+	ToServiceVclProductEnablementDdosProtectionOutput() ServiceVclProductEnablementDdosProtectionOutput
+	ToServiceVclProductEnablementDdosProtectionOutputWithContext(context.Context) ServiceVclProductEnablementDdosProtectionOutput
+}
+
+type ServiceVclProductEnablementDdosProtectionArgs struct {
+	// Enable DDoS Protection support
+	Enabled pulumi.BoolInput `pulumi:"enabled"`
+	// Operation mode
+	Mode pulumi.StringInput `pulumi:"mode"`
+}
+
+func (ServiceVclProductEnablementDdosProtectionArgs) ElementType() reflect.Type {
+	return reflect.TypeOf((*ServiceVclProductEnablementDdosProtection)(nil)).Elem()
+}
+
+func (i ServiceVclProductEnablementDdosProtectionArgs) ToServiceVclProductEnablementDdosProtectionOutput() ServiceVclProductEnablementDdosProtectionOutput {
+	return i.ToServiceVclProductEnablementDdosProtectionOutputWithContext(context.Background())
+}
+
+func (i ServiceVclProductEnablementDdosProtectionArgs) ToServiceVclProductEnablementDdosProtectionOutputWithContext(ctx context.Context) ServiceVclProductEnablementDdosProtectionOutput {
+	return pulumi.ToOutputWithContext(ctx, i).(ServiceVclProductEnablementDdosProtectionOutput)
+}
+
+func (i ServiceVclProductEnablementDdosProtectionArgs) ToServiceVclProductEnablementDdosProtectionPtrOutput() ServiceVclProductEnablementDdosProtectionPtrOutput {
+	return i.ToServiceVclProductEnablementDdosProtectionPtrOutputWithContext(context.Background())
+}
+
+func (i ServiceVclProductEnablementDdosProtectionArgs) ToServiceVclProductEnablementDdosProtectionPtrOutputWithContext(ctx context.Context) ServiceVclProductEnablementDdosProtectionPtrOutput {
+	return pulumi.ToOutputWithContext(ctx, i).(ServiceVclProductEnablementDdosProtectionOutput).ToServiceVclProductEnablementDdosProtectionPtrOutputWithContext(ctx)
+}
+
+// ServiceVclProductEnablementDdosProtectionPtrInput is an input type that accepts ServiceVclProductEnablementDdosProtectionArgs, ServiceVclProductEnablementDdosProtectionPtr and ServiceVclProductEnablementDdosProtectionPtrOutput values.
+// You can construct a concrete instance of `ServiceVclProductEnablementDdosProtectionPtrInput` via:
+//
+//	        ServiceVclProductEnablementDdosProtectionArgs{...}
+//
+//	or:
+//
+//	        nil
+type ServiceVclProductEnablementDdosProtectionPtrInput interface {
+	pulumi.Input
+
+	ToServiceVclProductEnablementDdosProtectionPtrOutput() ServiceVclProductEnablementDdosProtectionPtrOutput
+	ToServiceVclProductEnablementDdosProtectionPtrOutputWithContext(context.Context) ServiceVclProductEnablementDdosProtectionPtrOutput
+}
+
+type serviceVclProductEnablementDdosProtectionPtrType ServiceVclProductEnablementDdosProtectionArgs
+
+func ServiceVclProductEnablementDdosProtectionPtr(v *ServiceVclProductEnablementDdosProtectionArgs) ServiceVclProductEnablementDdosProtectionPtrInput {
+	return (*serviceVclProductEnablementDdosProtectionPtrType)(v)
+}
+
+func (*serviceVclProductEnablementDdosProtectionPtrType) ElementType() reflect.Type {
+	return reflect.TypeOf((**ServiceVclProductEnablementDdosProtection)(nil)).Elem()
+}
+
+func (i *serviceVclProductEnablementDdosProtectionPtrType) ToServiceVclProductEnablementDdosProtectionPtrOutput() ServiceVclProductEnablementDdosProtectionPtrOutput {
+	return i.ToServiceVclProductEnablementDdosProtectionPtrOutputWithContext(context.Background())
+}
+
+func (i *serviceVclProductEnablementDdosProtectionPtrType) ToServiceVclProductEnablementDdosProtectionPtrOutputWithContext(ctx context.Context) ServiceVclProductEnablementDdosProtectionPtrOutput {
+	return pulumi.ToOutputWithContext(ctx, i).(ServiceVclProductEnablementDdosProtectionPtrOutput)
+}
+
+type ServiceVclProductEnablementDdosProtectionOutput struct{ *pulumi.OutputState }
+
+func (ServiceVclProductEnablementDdosProtectionOutput) ElementType() reflect.Type {
+	return reflect.TypeOf((*ServiceVclProductEnablementDdosProtection)(nil)).Elem()
+}
+
+func (o ServiceVclProductEnablementDdosProtectionOutput) ToServiceVclProductEnablementDdosProtectionOutput() ServiceVclProductEnablementDdosProtectionOutput {
+	return o
+}
+
+func (o ServiceVclProductEnablementDdosProtectionOutput) ToServiceVclProductEnablementDdosProtectionOutputWithContext(ctx context.Context) ServiceVclProductEnablementDdosProtectionOutput {
+	return o
+}
+
+func (o ServiceVclProductEnablementDdosProtectionOutput) ToServiceVclProductEnablementDdosProtectionPtrOutput() ServiceVclProductEnablementDdosProtectionPtrOutput {
+	return o.ToServiceVclProductEnablementDdosProtectionPtrOutputWithContext(context.Background())
+}
+
+func (o ServiceVclProductEnablementDdosProtectionOutput) ToServiceVclProductEnablementDdosProtectionPtrOutputWithContext(ctx context.Context) ServiceVclProductEnablementDdosProtectionPtrOutput {
+	return o.ApplyTWithContext(ctx, func(_ context.Context, v ServiceVclProductEnablementDdosProtection) *ServiceVclProductEnablementDdosProtection {
+		return &v
+	}).(ServiceVclProductEnablementDdosProtectionPtrOutput)
+}
+
+// Enable DDoS Protection support
+func (o ServiceVclProductEnablementDdosProtectionOutput) Enabled() pulumi.BoolOutput {
+	return o.ApplyT(func(v ServiceVclProductEnablementDdosProtection) bool { return v.Enabled }).(pulumi.BoolOutput)
+}
+
+// Operation mode
+func (o ServiceVclProductEnablementDdosProtectionOutput) Mode() pulumi.StringOutput {
+	return o.ApplyT(func(v ServiceVclProductEnablementDdosProtection) string { return v.Mode }).(pulumi.StringOutput)
+}
+
+type ServiceVclProductEnablementDdosProtectionPtrOutput struct{ *pulumi.OutputState }
+
+func (ServiceVclProductEnablementDdosProtectionPtrOutput) ElementType() reflect.Type {
+	return reflect.TypeOf((**ServiceVclProductEnablementDdosProtection)(nil)).Elem()
+}
+
+func (o ServiceVclProductEnablementDdosProtectionPtrOutput) ToServiceVclProductEnablementDdosProtectionPtrOutput() ServiceVclProductEnablementDdosProtectionPtrOutput {
+	return o
+}
+
+func (o ServiceVclProductEnablementDdosProtectionPtrOutput) ToServiceVclProductEnablementDdosProtectionPtrOutputWithContext(ctx context.Context) ServiceVclProductEnablementDdosProtectionPtrOutput {
+	return o
+}
+
+func (o ServiceVclProductEnablementDdosProtectionPtrOutput) Elem() ServiceVclProductEnablementDdosProtectionOutput {
+	return o.ApplyT(func(v *ServiceVclProductEnablementDdosProtection) ServiceVclProductEnablementDdosProtection {
+		if v != nil {
+			return *v
+		}
+		var ret ServiceVclProductEnablementDdosProtection
+		return ret
+	}).(ServiceVclProductEnablementDdosProtectionOutput)
+}
+
+// Enable DDoS Protection support
+func (o ServiceVclProductEnablementDdosProtectionPtrOutput) Enabled() pulumi.BoolPtrOutput {
+	return o.ApplyT(func(v *ServiceVclProductEnablementDdosProtection) *bool {
+		if v == nil {
+			return nil
+		}
+		return &v.Enabled
+	}).(pulumi.BoolPtrOutput)
+}
+
+// Operation mode
+func (o ServiceVclProductEnablementDdosProtectionPtrOutput) Mode() pulumi.StringPtrOutput {
+	return o.ApplyT(func(v *ServiceVclProductEnablementDdosProtection) *string {
+		if v == nil {
+			return nil
+		}
+		return &v.Mode
+	}).(pulumi.StringPtrOutput)
+}
+
+type ServiceVclProductEnablementNgwaf struct {
+	// Enable Next-Gen WAF support
+	Enabled bool `pulumi:"enabled"`
+	// The percentage of traffic to inspect
+	TrafficRamp *int `pulumi:"trafficRamp"`
+	// The workspace to link
+	WorkspaceId string `pulumi:"workspaceId"`
+}
+
+// ServiceVclProductEnablementNgwafInput is an input type that accepts ServiceVclProductEnablementNgwafArgs and ServiceVclProductEnablementNgwafOutput values.
+// You can construct a concrete instance of `ServiceVclProductEnablementNgwafInput` via:
+//
+//	ServiceVclProductEnablementNgwafArgs{...}
+type ServiceVclProductEnablementNgwafInput interface {
+	pulumi.Input
+
+	ToServiceVclProductEnablementNgwafOutput() ServiceVclProductEnablementNgwafOutput
+	ToServiceVclProductEnablementNgwafOutputWithContext(context.Context) ServiceVclProductEnablementNgwafOutput
+}
+
+type ServiceVclProductEnablementNgwafArgs struct {
+	// Enable Next-Gen WAF support
+	Enabled pulumi.BoolInput `pulumi:"enabled"`
+	// The percentage of traffic to inspect
+	TrafficRamp pulumi.IntPtrInput `pulumi:"trafficRamp"`
+	// The workspace to link
+	WorkspaceId pulumi.StringInput `pulumi:"workspaceId"`
+}
+
+func (ServiceVclProductEnablementNgwafArgs) ElementType() reflect.Type {
+	return reflect.TypeOf((*ServiceVclProductEnablementNgwaf)(nil)).Elem()
+}
+
+func (i ServiceVclProductEnablementNgwafArgs) ToServiceVclProductEnablementNgwafOutput() ServiceVclProductEnablementNgwafOutput {
+	return i.ToServiceVclProductEnablementNgwafOutputWithContext(context.Background())
+}
+
+func (i ServiceVclProductEnablementNgwafArgs) ToServiceVclProductEnablementNgwafOutputWithContext(ctx context.Context) ServiceVclProductEnablementNgwafOutput {
+	return pulumi.ToOutputWithContext(ctx, i).(ServiceVclProductEnablementNgwafOutput)
+}
+
+func (i ServiceVclProductEnablementNgwafArgs) ToServiceVclProductEnablementNgwafPtrOutput() ServiceVclProductEnablementNgwafPtrOutput {
+	return i.ToServiceVclProductEnablementNgwafPtrOutputWithContext(context.Background())
+}
+
+func (i ServiceVclProductEnablementNgwafArgs) ToServiceVclProductEnablementNgwafPtrOutputWithContext(ctx context.Context) ServiceVclProductEnablementNgwafPtrOutput {
+	return pulumi.ToOutputWithContext(ctx, i).(ServiceVclProductEnablementNgwafOutput).ToServiceVclProductEnablementNgwafPtrOutputWithContext(ctx)
+}
+
+// ServiceVclProductEnablementNgwafPtrInput is an input type that accepts ServiceVclProductEnablementNgwafArgs, ServiceVclProductEnablementNgwafPtr and ServiceVclProductEnablementNgwafPtrOutput values.
+// You can construct a concrete instance of `ServiceVclProductEnablementNgwafPtrInput` via:
+//
+//	        ServiceVclProductEnablementNgwafArgs{...}
+//
+//	or:
+//
+//	        nil
+type ServiceVclProductEnablementNgwafPtrInput interface {
+	pulumi.Input
+
+	ToServiceVclProductEnablementNgwafPtrOutput() ServiceVclProductEnablementNgwafPtrOutput
+	ToServiceVclProductEnablementNgwafPtrOutputWithContext(context.Context) ServiceVclProductEnablementNgwafPtrOutput
+}
+
+type serviceVclProductEnablementNgwafPtrType ServiceVclProductEnablementNgwafArgs
+
+func ServiceVclProductEnablementNgwafPtr(v *ServiceVclProductEnablementNgwafArgs) ServiceVclProductEnablementNgwafPtrInput {
+	return (*serviceVclProductEnablementNgwafPtrType)(v)
+}
+
+func (*serviceVclProductEnablementNgwafPtrType) ElementType() reflect.Type {
+	return reflect.TypeOf((**ServiceVclProductEnablementNgwaf)(nil)).Elem()
+}
+
+func (i *serviceVclProductEnablementNgwafPtrType) ToServiceVclProductEnablementNgwafPtrOutput() ServiceVclProductEnablementNgwafPtrOutput {
+	return i.ToServiceVclProductEnablementNgwafPtrOutputWithContext(context.Background())
+}
+
+func (i *serviceVclProductEnablementNgwafPtrType) ToServiceVclProductEnablementNgwafPtrOutputWithContext(ctx context.Context) ServiceVclProductEnablementNgwafPtrOutput {
+	return pulumi.ToOutputWithContext(ctx, i).(ServiceVclProductEnablementNgwafPtrOutput)
+}
+
+type ServiceVclProductEnablementNgwafOutput struct{ *pulumi.OutputState }
+
+func (ServiceVclProductEnablementNgwafOutput) ElementType() reflect.Type {
+	return reflect.TypeOf((*ServiceVclProductEnablementNgwaf)(nil)).Elem()
+}
+
+func (o ServiceVclProductEnablementNgwafOutput) ToServiceVclProductEnablementNgwafOutput() ServiceVclProductEnablementNgwafOutput {
+	return o
+}
+
+func (o ServiceVclProductEnablementNgwafOutput) ToServiceVclProductEnablementNgwafOutputWithContext(ctx context.Context) ServiceVclProductEnablementNgwafOutput {
+	return o
+}
+
+func (o ServiceVclProductEnablementNgwafOutput) ToServiceVclProductEnablementNgwafPtrOutput() ServiceVclProductEnablementNgwafPtrOutput {
+	return o.ToServiceVclProductEnablementNgwafPtrOutputWithContext(context.Background())
+}
+
+func (o ServiceVclProductEnablementNgwafOutput) ToServiceVclProductEnablementNgwafPtrOutputWithContext(ctx context.Context) ServiceVclProductEnablementNgwafPtrOutput {
+	return o.ApplyTWithContext(ctx, func(_ context.Context, v ServiceVclProductEnablementNgwaf) *ServiceVclProductEnablementNgwaf {
+		return &v
+	}).(ServiceVclProductEnablementNgwafPtrOutput)
+}
+
+// Enable Next-Gen WAF support
+func (o ServiceVclProductEnablementNgwafOutput) Enabled() pulumi.BoolOutput {
+	return o.ApplyT(func(v ServiceVclProductEnablementNgwaf) bool { return v.Enabled }).(pulumi.BoolOutput)
+}
+
+// The percentage of traffic to inspect
+func (o ServiceVclProductEnablementNgwafOutput) TrafficRamp() pulumi.IntPtrOutput {
+	return o.ApplyT(func(v ServiceVclProductEnablementNgwaf) *int { return v.TrafficRamp }).(pulumi.IntPtrOutput)
+}
+
+// The workspace to link
+func (o ServiceVclProductEnablementNgwafOutput) WorkspaceId() pulumi.StringOutput {
+	return o.ApplyT(func(v ServiceVclProductEnablementNgwaf) string { return v.WorkspaceId }).(pulumi.StringOutput)
+}
+
+type ServiceVclProductEnablementNgwafPtrOutput struct{ *pulumi.OutputState }
+
+func (ServiceVclProductEnablementNgwafPtrOutput) ElementType() reflect.Type {
+	return reflect.TypeOf((**ServiceVclProductEnablementNgwaf)(nil)).Elem()
+}
+
+func (o ServiceVclProductEnablementNgwafPtrOutput) ToServiceVclProductEnablementNgwafPtrOutput() ServiceVclProductEnablementNgwafPtrOutput {
+	return o
+}
+
+func (o ServiceVclProductEnablementNgwafPtrOutput) ToServiceVclProductEnablementNgwafPtrOutputWithContext(ctx context.Context) ServiceVclProductEnablementNgwafPtrOutput {
+	return o
+}
+
+func (o ServiceVclProductEnablementNgwafPtrOutput) Elem() ServiceVclProductEnablementNgwafOutput {
+	return o.ApplyT(func(v *ServiceVclProductEnablementNgwaf) ServiceVclProductEnablementNgwaf {
+		if v != nil {
+			return *v
+		}
+		var ret ServiceVclProductEnablementNgwaf
+		return ret
+	}).(ServiceVclProductEnablementNgwafOutput)
+}
+
+// Enable Next-Gen WAF support
+func (o ServiceVclProductEnablementNgwafPtrOutput) Enabled() pulumi.BoolPtrOutput {
+	return o.ApplyT(func(v *ServiceVclProductEnablementNgwaf) *bool {
+		if v == nil {
+			return nil
+		}
+		return &v.Enabled
+	}).(pulumi.BoolPtrOutput)
+}
+
+// The percentage of traffic to inspect
+func (o ServiceVclProductEnablementNgwafPtrOutput) TrafficRamp() pulumi.IntPtrOutput {
+	return o.ApplyT(func(v *ServiceVclProductEnablementNgwaf) *int {
+		if v == nil {
+			return nil
+		}
+		return v.TrafficRamp
+	}).(pulumi.IntPtrOutput)
+}
+
+// The workspace to link
+func (o ServiceVclProductEnablementNgwafPtrOutput) WorkspaceId() pulumi.StringPtrOutput {
+	return o.ApplyT(func(v *ServiceVclProductEnablementNgwaf) *string {
+		if v == nil {
+			return nil
+		}
+		return &v.WorkspaceId
+	}).(pulumi.StringPtrOutput)
 }
 
 type ServiceVclRateLimiter struct {
@@ -15283,448 +16025,6 @@ func (o ServiceVclVclArrayOutput) Index(i pulumi.IntInput) ServiceVclVclOutput {
 	return pulumi.All(o, i).ApplyT(func(vs []interface{}) ServiceVclVcl {
 		return vs[0].([]ServiceVclVcl)[vs[1].(int)]
 	}).(ServiceVclVclOutput)
-}
-
-type ServiceVclWaf struct {
-	// A flag used to completely disable a Web Application Firewall. This is intended to only be used in an emergency
-	Disabled *bool `pulumi:"disabled"`
-	// The `condition` to determine which requests will be run past your Fastly WAF. This `condition` must be of type `PREFETCH`. For detailed information about Conditionals, see [Fastly's Documentation on Conditionals](https://docs.fastly.com/en/guides/using-conditions)
-	PrefetchCondition *string `pulumi:"prefetchCondition"`
-	// The name of the response object used by the Web Application Firewall
-	ResponseObject string `pulumi:"responseObject"`
-	// The ID of the WAF
-	WafId *string `pulumi:"wafId"`
-}
-
-// ServiceVclWafInput is an input type that accepts ServiceVclWafArgs and ServiceVclWafOutput values.
-// You can construct a concrete instance of `ServiceVclWafInput` via:
-//
-//	ServiceVclWafArgs{...}
-type ServiceVclWafInput interface {
-	pulumi.Input
-
-	ToServiceVclWafOutput() ServiceVclWafOutput
-	ToServiceVclWafOutputWithContext(context.Context) ServiceVclWafOutput
-}
-
-type ServiceVclWafArgs struct {
-	// A flag used to completely disable a Web Application Firewall. This is intended to only be used in an emergency
-	Disabled pulumi.BoolPtrInput `pulumi:"disabled"`
-	// The `condition` to determine which requests will be run past your Fastly WAF. This `condition` must be of type `PREFETCH`. For detailed information about Conditionals, see [Fastly's Documentation on Conditionals](https://docs.fastly.com/en/guides/using-conditions)
-	PrefetchCondition pulumi.StringPtrInput `pulumi:"prefetchCondition"`
-	// The name of the response object used by the Web Application Firewall
-	ResponseObject pulumi.StringInput `pulumi:"responseObject"`
-	// The ID of the WAF
-	WafId pulumi.StringPtrInput `pulumi:"wafId"`
-}
-
-func (ServiceVclWafArgs) ElementType() reflect.Type {
-	return reflect.TypeOf((*ServiceVclWaf)(nil)).Elem()
-}
-
-func (i ServiceVclWafArgs) ToServiceVclWafOutput() ServiceVclWafOutput {
-	return i.ToServiceVclWafOutputWithContext(context.Background())
-}
-
-func (i ServiceVclWafArgs) ToServiceVclWafOutputWithContext(ctx context.Context) ServiceVclWafOutput {
-	return pulumi.ToOutputWithContext(ctx, i).(ServiceVclWafOutput)
-}
-
-func (i ServiceVclWafArgs) ToServiceVclWafPtrOutput() ServiceVclWafPtrOutput {
-	return i.ToServiceVclWafPtrOutputWithContext(context.Background())
-}
-
-func (i ServiceVclWafArgs) ToServiceVclWafPtrOutputWithContext(ctx context.Context) ServiceVclWafPtrOutput {
-	return pulumi.ToOutputWithContext(ctx, i).(ServiceVclWafOutput).ToServiceVclWafPtrOutputWithContext(ctx)
-}
-
-// ServiceVclWafPtrInput is an input type that accepts ServiceVclWafArgs, ServiceVclWafPtr and ServiceVclWafPtrOutput values.
-// You can construct a concrete instance of `ServiceVclWafPtrInput` via:
-//
-//	        ServiceVclWafArgs{...}
-//
-//	or:
-//
-//	        nil
-type ServiceVclWafPtrInput interface {
-	pulumi.Input
-
-	ToServiceVclWafPtrOutput() ServiceVclWafPtrOutput
-	ToServiceVclWafPtrOutputWithContext(context.Context) ServiceVclWafPtrOutput
-}
-
-type serviceVclWafPtrType ServiceVclWafArgs
-
-func ServiceVclWafPtr(v *ServiceVclWafArgs) ServiceVclWafPtrInput {
-	return (*serviceVclWafPtrType)(v)
-}
-
-func (*serviceVclWafPtrType) ElementType() reflect.Type {
-	return reflect.TypeOf((**ServiceVclWaf)(nil)).Elem()
-}
-
-func (i *serviceVclWafPtrType) ToServiceVclWafPtrOutput() ServiceVclWafPtrOutput {
-	return i.ToServiceVclWafPtrOutputWithContext(context.Background())
-}
-
-func (i *serviceVclWafPtrType) ToServiceVclWafPtrOutputWithContext(ctx context.Context) ServiceVclWafPtrOutput {
-	return pulumi.ToOutputWithContext(ctx, i).(ServiceVclWafPtrOutput)
-}
-
-type ServiceVclWafOutput struct{ *pulumi.OutputState }
-
-func (ServiceVclWafOutput) ElementType() reflect.Type {
-	return reflect.TypeOf((*ServiceVclWaf)(nil)).Elem()
-}
-
-func (o ServiceVclWafOutput) ToServiceVclWafOutput() ServiceVclWafOutput {
-	return o
-}
-
-func (o ServiceVclWafOutput) ToServiceVclWafOutputWithContext(ctx context.Context) ServiceVclWafOutput {
-	return o
-}
-
-func (o ServiceVclWafOutput) ToServiceVclWafPtrOutput() ServiceVclWafPtrOutput {
-	return o.ToServiceVclWafPtrOutputWithContext(context.Background())
-}
-
-func (o ServiceVclWafOutput) ToServiceVclWafPtrOutputWithContext(ctx context.Context) ServiceVclWafPtrOutput {
-	return o.ApplyTWithContext(ctx, func(_ context.Context, v ServiceVclWaf) *ServiceVclWaf {
-		return &v
-	}).(ServiceVclWafPtrOutput)
-}
-
-// A flag used to completely disable a Web Application Firewall. This is intended to only be used in an emergency
-func (o ServiceVclWafOutput) Disabled() pulumi.BoolPtrOutput {
-	return o.ApplyT(func(v ServiceVclWaf) *bool { return v.Disabled }).(pulumi.BoolPtrOutput)
-}
-
-// The `condition` to determine which requests will be run past your Fastly WAF. This `condition` must be of type `PREFETCH`. For detailed information about Conditionals, see [Fastly's Documentation on Conditionals](https://docs.fastly.com/en/guides/using-conditions)
-func (o ServiceVclWafOutput) PrefetchCondition() pulumi.StringPtrOutput {
-	return o.ApplyT(func(v ServiceVclWaf) *string { return v.PrefetchCondition }).(pulumi.StringPtrOutput)
-}
-
-// The name of the response object used by the Web Application Firewall
-func (o ServiceVclWafOutput) ResponseObject() pulumi.StringOutput {
-	return o.ApplyT(func(v ServiceVclWaf) string { return v.ResponseObject }).(pulumi.StringOutput)
-}
-
-// The ID of the WAF
-func (o ServiceVclWafOutput) WafId() pulumi.StringPtrOutput {
-	return o.ApplyT(func(v ServiceVclWaf) *string { return v.WafId }).(pulumi.StringPtrOutput)
-}
-
-type ServiceVclWafPtrOutput struct{ *pulumi.OutputState }
-
-func (ServiceVclWafPtrOutput) ElementType() reflect.Type {
-	return reflect.TypeOf((**ServiceVclWaf)(nil)).Elem()
-}
-
-func (o ServiceVclWafPtrOutput) ToServiceVclWafPtrOutput() ServiceVclWafPtrOutput {
-	return o
-}
-
-func (o ServiceVclWafPtrOutput) ToServiceVclWafPtrOutputWithContext(ctx context.Context) ServiceVclWafPtrOutput {
-	return o
-}
-
-func (o ServiceVclWafPtrOutput) Elem() ServiceVclWafOutput {
-	return o.ApplyT(func(v *ServiceVclWaf) ServiceVclWaf {
-		if v != nil {
-			return *v
-		}
-		var ret ServiceVclWaf
-		return ret
-	}).(ServiceVclWafOutput)
-}
-
-// A flag used to completely disable a Web Application Firewall. This is intended to only be used in an emergency
-func (o ServiceVclWafPtrOutput) Disabled() pulumi.BoolPtrOutput {
-	return o.ApplyT(func(v *ServiceVclWaf) *bool {
-		if v == nil {
-			return nil
-		}
-		return v.Disabled
-	}).(pulumi.BoolPtrOutput)
-}
-
-// The `condition` to determine which requests will be run past your Fastly WAF. This `condition` must be of type `PREFETCH`. For detailed information about Conditionals, see [Fastly's Documentation on Conditionals](https://docs.fastly.com/en/guides/using-conditions)
-func (o ServiceVclWafPtrOutput) PrefetchCondition() pulumi.StringPtrOutput {
-	return o.ApplyT(func(v *ServiceVclWaf) *string {
-		if v == nil {
-			return nil
-		}
-		return v.PrefetchCondition
-	}).(pulumi.StringPtrOutput)
-}
-
-// The name of the response object used by the Web Application Firewall
-func (o ServiceVclWafPtrOutput) ResponseObject() pulumi.StringPtrOutput {
-	return o.ApplyT(func(v *ServiceVclWaf) *string {
-		if v == nil {
-			return nil
-		}
-		return &v.ResponseObject
-	}).(pulumi.StringPtrOutput)
-}
-
-// The ID of the WAF
-func (o ServiceVclWafPtrOutput) WafId() pulumi.StringPtrOutput {
-	return o.ApplyT(func(v *ServiceVclWaf) *string {
-		if v == nil {
-			return nil
-		}
-		return v.WafId
-	}).(pulumi.StringPtrOutput)
-}
-
-type ServiceWafConfigurationRule struct {
-	// The Web Application Firewall rule's modsecurity ID
-	ModsecRuleId int `pulumi:"modsecRuleId"`
-	// The Web Application Firewall rule's revision. The latest revision will be used if this is not provided
-	Revision *int `pulumi:"revision"`
-	// The Web Application Firewall rule's status. Allowed values are (`log`, `block` and `score`)
-	Status string `pulumi:"status"`
-}
-
-// ServiceWafConfigurationRuleInput is an input type that accepts ServiceWafConfigurationRuleArgs and ServiceWafConfigurationRuleOutput values.
-// You can construct a concrete instance of `ServiceWafConfigurationRuleInput` via:
-//
-//	ServiceWafConfigurationRuleArgs{...}
-type ServiceWafConfigurationRuleInput interface {
-	pulumi.Input
-
-	ToServiceWafConfigurationRuleOutput() ServiceWafConfigurationRuleOutput
-	ToServiceWafConfigurationRuleOutputWithContext(context.Context) ServiceWafConfigurationRuleOutput
-}
-
-type ServiceWafConfigurationRuleArgs struct {
-	// The Web Application Firewall rule's modsecurity ID
-	ModsecRuleId pulumi.IntInput `pulumi:"modsecRuleId"`
-	// The Web Application Firewall rule's revision. The latest revision will be used if this is not provided
-	Revision pulumi.IntPtrInput `pulumi:"revision"`
-	// The Web Application Firewall rule's status. Allowed values are (`log`, `block` and `score`)
-	Status pulumi.StringInput `pulumi:"status"`
-}
-
-func (ServiceWafConfigurationRuleArgs) ElementType() reflect.Type {
-	return reflect.TypeOf((*ServiceWafConfigurationRule)(nil)).Elem()
-}
-
-func (i ServiceWafConfigurationRuleArgs) ToServiceWafConfigurationRuleOutput() ServiceWafConfigurationRuleOutput {
-	return i.ToServiceWafConfigurationRuleOutputWithContext(context.Background())
-}
-
-func (i ServiceWafConfigurationRuleArgs) ToServiceWafConfigurationRuleOutputWithContext(ctx context.Context) ServiceWafConfigurationRuleOutput {
-	return pulumi.ToOutputWithContext(ctx, i).(ServiceWafConfigurationRuleOutput)
-}
-
-// ServiceWafConfigurationRuleArrayInput is an input type that accepts ServiceWafConfigurationRuleArray and ServiceWafConfigurationRuleArrayOutput values.
-// You can construct a concrete instance of `ServiceWafConfigurationRuleArrayInput` via:
-//
-//	ServiceWafConfigurationRuleArray{ ServiceWafConfigurationRuleArgs{...} }
-type ServiceWafConfigurationRuleArrayInput interface {
-	pulumi.Input
-
-	ToServiceWafConfigurationRuleArrayOutput() ServiceWafConfigurationRuleArrayOutput
-	ToServiceWafConfigurationRuleArrayOutputWithContext(context.Context) ServiceWafConfigurationRuleArrayOutput
-}
-
-type ServiceWafConfigurationRuleArray []ServiceWafConfigurationRuleInput
-
-func (ServiceWafConfigurationRuleArray) ElementType() reflect.Type {
-	return reflect.TypeOf((*[]ServiceWafConfigurationRule)(nil)).Elem()
-}
-
-func (i ServiceWafConfigurationRuleArray) ToServiceWafConfigurationRuleArrayOutput() ServiceWafConfigurationRuleArrayOutput {
-	return i.ToServiceWafConfigurationRuleArrayOutputWithContext(context.Background())
-}
-
-func (i ServiceWafConfigurationRuleArray) ToServiceWafConfigurationRuleArrayOutputWithContext(ctx context.Context) ServiceWafConfigurationRuleArrayOutput {
-	return pulumi.ToOutputWithContext(ctx, i).(ServiceWafConfigurationRuleArrayOutput)
-}
-
-type ServiceWafConfigurationRuleOutput struct{ *pulumi.OutputState }
-
-func (ServiceWafConfigurationRuleOutput) ElementType() reflect.Type {
-	return reflect.TypeOf((*ServiceWafConfigurationRule)(nil)).Elem()
-}
-
-func (o ServiceWafConfigurationRuleOutput) ToServiceWafConfigurationRuleOutput() ServiceWafConfigurationRuleOutput {
-	return o
-}
-
-func (o ServiceWafConfigurationRuleOutput) ToServiceWafConfigurationRuleOutputWithContext(ctx context.Context) ServiceWafConfigurationRuleOutput {
-	return o
-}
-
-// The Web Application Firewall rule's modsecurity ID
-func (o ServiceWafConfigurationRuleOutput) ModsecRuleId() pulumi.IntOutput {
-	return o.ApplyT(func(v ServiceWafConfigurationRule) int { return v.ModsecRuleId }).(pulumi.IntOutput)
-}
-
-// The Web Application Firewall rule's revision. The latest revision will be used if this is not provided
-func (o ServiceWafConfigurationRuleOutput) Revision() pulumi.IntPtrOutput {
-	return o.ApplyT(func(v ServiceWafConfigurationRule) *int { return v.Revision }).(pulumi.IntPtrOutput)
-}
-
-// The Web Application Firewall rule's status. Allowed values are (`log`, `block` and `score`)
-func (o ServiceWafConfigurationRuleOutput) Status() pulumi.StringOutput {
-	return o.ApplyT(func(v ServiceWafConfigurationRule) string { return v.Status }).(pulumi.StringOutput)
-}
-
-type ServiceWafConfigurationRuleArrayOutput struct{ *pulumi.OutputState }
-
-func (ServiceWafConfigurationRuleArrayOutput) ElementType() reflect.Type {
-	return reflect.TypeOf((*[]ServiceWafConfigurationRule)(nil)).Elem()
-}
-
-func (o ServiceWafConfigurationRuleArrayOutput) ToServiceWafConfigurationRuleArrayOutput() ServiceWafConfigurationRuleArrayOutput {
-	return o
-}
-
-func (o ServiceWafConfigurationRuleArrayOutput) ToServiceWafConfigurationRuleArrayOutputWithContext(ctx context.Context) ServiceWafConfigurationRuleArrayOutput {
-	return o
-}
-
-func (o ServiceWafConfigurationRuleArrayOutput) Index(i pulumi.IntInput) ServiceWafConfigurationRuleOutput {
-	return pulumi.All(o, i).ApplyT(func(vs []interface{}) ServiceWafConfigurationRule {
-		return vs[0].([]ServiceWafConfigurationRule)[vs[1].(int)]
-	}).(ServiceWafConfigurationRuleOutput)
-}
-
-type ServiceWafConfigurationRuleExclusion struct {
-	// A conditional expression in VCL used to determine if the condition is met
-	Condition string `pulumi:"condition"`
-	// The type of rule exclusion. Values are `rule` to exclude the specified rule(s), or `waf` to disable the Web Application Firewall
-	ExclusionType string `pulumi:"exclusionType"`
-	// Set of modsecurity IDs to be excluded. No rules should be provided when `exclusionType` is `waf`. The rules need to be configured on the Web Application Firewall to be excluded
-	ModsecRuleIds []int `pulumi:"modsecRuleIds"`
-	// The name of rule exclusion
-	Name string `pulumi:"name"`
-	// The numeric ID assigned to the WAF Rule Exclusion
-	Number *int `pulumi:"number"`
-}
-
-// ServiceWafConfigurationRuleExclusionInput is an input type that accepts ServiceWafConfigurationRuleExclusionArgs and ServiceWafConfigurationRuleExclusionOutput values.
-// You can construct a concrete instance of `ServiceWafConfigurationRuleExclusionInput` via:
-//
-//	ServiceWafConfigurationRuleExclusionArgs{...}
-type ServiceWafConfigurationRuleExclusionInput interface {
-	pulumi.Input
-
-	ToServiceWafConfigurationRuleExclusionOutput() ServiceWafConfigurationRuleExclusionOutput
-	ToServiceWafConfigurationRuleExclusionOutputWithContext(context.Context) ServiceWafConfigurationRuleExclusionOutput
-}
-
-type ServiceWafConfigurationRuleExclusionArgs struct {
-	// A conditional expression in VCL used to determine if the condition is met
-	Condition pulumi.StringInput `pulumi:"condition"`
-	// The type of rule exclusion. Values are `rule` to exclude the specified rule(s), or `waf` to disable the Web Application Firewall
-	ExclusionType pulumi.StringInput `pulumi:"exclusionType"`
-	// Set of modsecurity IDs to be excluded. No rules should be provided when `exclusionType` is `waf`. The rules need to be configured on the Web Application Firewall to be excluded
-	ModsecRuleIds pulumi.IntArrayInput `pulumi:"modsecRuleIds"`
-	// The name of rule exclusion
-	Name pulumi.StringInput `pulumi:"name"`
-	// The numeric ID assigned to the WAF Rule Exclusion
-	Number pulumi.IntPtrInput `pulumi:"number"`
-}
-
-func (ServiceWafConfigurationRuleExclusionArgs) ElementType() reflect.Type {
-	return reflect.TypeOf((*ServiceWafConfigurationRuleExclusion)(nil)).Elem()
-}
-
-func (i ServiceWafConfigurationRuleExclusionArgs) ToServiceWafConfigurationRuleExclusionOutput() ServiceWafConfigurationRuleExclusionOutput {
-	return i.ToServiceWafConfigurationRuleExclusionOutputWithContext(context.Background())
-}
-
-func (i ServiceWafConfigurationRuleExclusionArgs) ToServiceWafConfigurationRuleExclusionOutputWithContext(ctx context.Context) ServiceWafConfigurationRuleExclusionOutput {
-	return pulumi.ToOutputWithContext(ctx, i).(ServiceWafConfigurationRuleExclusionOutput)
-}
-
-// ServiceWafConfigurationRuleExclusionArrayInput is an input type that accepts ServiceWafConfigurationRuleExclusionArray and ServiceWafConfigurationRuleExclusionArrayOutput values.
-// You can construct a concrete instance of `ServiceWafConfigurationRuleExclusionArrayInput` via:
-//
-//	ServiceWafConfigurationRuleExclusionArray{ ServiceWafConfigurationRuleExclusionArgs{...} }
-type ServiceWafConfigurationRuleExclusionArrayInput interface {
-	pulumi.Input
-
-	ToServiceWafConfigurationRuleExclusionArrayOutput() ServiceWafConfigurationRuleExclusionArrayOutput
-	ToServiceWafConfigurationRuleExclusionArrayOutputWithContext(context.Context) ServiceWafConfigurationRuleExclusionArrayOutput
-}
-
-type ServiceWafConfigurationRuleExclusionArray []ServiceWafConfigurationRuleExclusionInput
-
-func (ServiceWafConfigurationRuleExclusionArray) ElementType() reflect.Type {
-	return reflect.TypeOf((*[]ServiceWafConfigurationRuleExclusion)(nil)).Elem()
-}
-
-func (i ServiceWafConfigurationRuleExclusionArray) ToServiceWafConfigurationRuleExclusionArrayOutput() ServiceWafConfigurationRuleExclusionArrayOutput {
-	return i.ToServiceWafConfigurationRuleExclusionArrayOutputWithContext(context.Background())
-}
-
-func (i ServiceWafConfigurationRuleExclusionArray) ToServiceWafConfigurationRuleExclusionArrayOutputWithContext(ctx context.Context) ServiceWafConfigurationRuleExclusionArrayOutput {
-	return pulumi.ToOutputWithContext(ctx, i).(ServiceWafConfigurationRuleExclusionArrayOutput)
-}
-
-type ServiceWafConfigurationRuleExclusionOutput struct{ *pulumi.OutputState }
-
-func (ServiceWafConfigurationRuleExclusionOutput) ElementType() reflect.Type {
-	return reflect.TypeOf((*ServiceWafConfigurationRuleExclusion)(nil)).Elem()
-}
-
-func (o ServiceWafConfigurationRuleExclusionOutput) ToServiceWafConfigurationRuleExclusionOutput() ServiceWafConfigurationRuleExclusionOutput {
-	return o
-}
-
-func (o ServiceWafConfigurationRuleExclusionOutput) ToServiceWafConfigurationRuleExclusionOutputWithContext(ctx context.Context) ServiceWafConfigurationRuleExclusionOutput {
-	return o
-}
-
-// A conditional expression in VCL used to determine if the condition is met
-func (o ServiceWafConfigurationRuleExclusionOutput) Condition() pulumi.StringOutput {
-	return o.ApplyT(func(v ServiceWafConfigurationRuleExclusion) string { return v.Condition }).(pulumi.StringOutput)
-}
-
-// The type of rule exclusion. Values are `rule` to exclude the specified rule(s), or `waf` to disable the Web Application Firewall
-func (o ServiceWafConfigurationRuleExclusionOutput) ExclusionType() pulumi.StringOutput {
-	return o.ApplyT(func(v ServiceWafConfigurationRuleExclusion) string { return v.ExclusionType }).(pulumi.StringOutput)
-}
-
-// Set of modsecurity IDs to be excluded. No rules should be provided when `exclusionType` is `waf`. The rules need to be configured on the Web Application Firewall to be excluded
-func (o ServiceWafConfigurationRuleExclusionOutput) ModsecRuleIds() pulumi.IntArrayOutput {
-	return o.ApplyT(func(v ServiceWafConfigurationRuleExclusion) []int { return v.ModsecRuleIds }).(pulumi.IntArrayOutput)
-}
-
-// The name of rule exclusion
-func (o ServiceWafConfigurationRuleExclusionOutput) Name() pulumi.StringOutput {
-	return o.ApplyT(func(v ServiceWafConfigurationRuleExclusion) string { return v.Name }).(pulumi.StringOutput)
-}
-
-// The numeric ID assigned to the WAF Rule Exclusion
-func (o ServiceWafConfigurationRuleExclusionOutput) Number() pulumi.IntPtrOutput {
-	return o.ApplyT(func(v ServiceWafConfigurationRuleExclusion) *int { return v.Number }).(pulumi.IntPtrOutput)
-}
-
-type ServiceWafConfigurationRuleExclusionArrayOutput struct{ *pulumi.OutputState }
-
-func (ServiceWafConfigurationRuleExclusionArrayOutput) ElementType() reflect.Type {
-	return reflect.TypeOf((*[]ServiceWafConfigurationRuleExclusion)(nil)).Elem()
-}
-
-func (o ServiceWafConfigurationRuleExclusionArrayOutput) ToServiceWafConfigurationRuleExclusionArrayOutput() ServiceWafConfigurationRuleExclusionArrayOutput {
-	return o
-}
-
-func (o ServiceWafConfigurationRuleExclusionArrayOutput) ToServiceWafConfigurationRuleExclusionArrayOutputWithContext(ctx context.Context) ServiceWafConfigurationRuleExclusionArrayOutput {
-	return o
-}
-
-func (o ServiceWafConfigurationRuleExclusionArrayOutput) Index(i pulumi.IntInput) ServiceWafConfigurationRuleExclusionOutput {
-	return pulumi.All(o, i).ApplyT(func(vs []interface{}) ServiceWafConfigurationRuleExclusion {
-		return vs[0].([]ServiceWafConfigurationRuleExclusion)[vs[1].(int)]
-	}).(ServiceWafConfigurationRuleExclusionOutput)
 }
 
 type TlsSubscriptionManagedDnsChallenge struct {
@@ -16922,121 +17222,6 @@ func (o GetVclSnippetsVclSnippetArrayOutput) Index(i pulumi.IntInput) GetVclSnip
 	}).(GetVclSnippetsVclSnippetOutput)
 }
 
-type GetWafRulesRule struct {
-	// The modsecurity rule's latest revision.
-	LatestRevisionNumber int `pulumi:"latestRevisionNumber"`
-	// The modsecurity rule ID.
-	ModsecRuleId int `pulumi:"modsecRuleId"`
-	// The modsecurity rule's type.
-	Type string `pulumi:"type"`
-}
-
-// GetWafRulesRuleInput is an input type that accepts GetWafRulesRuleArgs and GetWafRulesRuleOutput values.
-// You can construct a concrete instance of `GetWafRulesRuleInput` via:
-//
-//	GetWafRulesRuleArgs{...}
-type GetWafRulesRuleInput interface {
-	pulumi.Input
-
-	ToGetWafRulesRuleOutput() GetWafRulesRuleOutput
-	ToGetWafRulesRuleOutputWithContext(context.Context) GetWafRulesRuleOutput
-}
-
-type GetWafRulesRuleArgs struct {
-	// The modsecurity rule's latest revision.
-	LatestRevisionNumber pulumi.IntInput `pulumi:"latestRevisionNumber"`
-	// The modsecurity rule ID.
-	ModsecRuleId pulumi.IntInput `pulumi:"modsecRuleId"`
-	// The modsecurity rule's type.
-	Type pulumi.StringInput `pulumi:"type"`
-}
-
-func (GetWafRulesRuleArgs) ElementType() reflect.Type {
-	return reflect.TypeOf((*GetWafRulesRule)(nil)).Elem()
-}
-
-func (i GetWafRulesRuleArgs) ToGetWafRulesRuleOutput() GetWafRulesRuleOutput {
-	return i.ToGetWafRulesRuleOutputWithContext(context.Background())
-}
-
-func (i GetWafRulesRuleArgs) ToGetWafRulesRuleOutputWithContext(ctx context.Context) GetWafRulesRuleOutput {
-	return pulumi.ToOutputWithContext(ctx, i).(GetWafRulesRuleOutput)
-}
-
-// GetWafRulesRuleArrayInput is an input type that accepts GetWafRulesRuleArray and GetWafRulesRuleArrayOutput values.
-// You can construct a concrete instance of `GetWafRulesRuleArrayInput` via:
-//
-//	GetWafRulesRuleArray{ GetWafRulesRuleArgs{...} }
-type GetWafRulesRuleArrayInput interface {
-	pulumi.Input
-
-	ToGetWafRulesRuleArrayOutput() GetWafRulesRuleArrayOutput
-	ToGetWafRulesRuleArrayOutputWithContext(context.Context) GetWafRulesRuleArrayOutput
-}
-
-type GetWafRulesRuleArray []GetWafRulesRuleInput
-
-func (GetWafRulesRuleArray) ElementType() reflect.Type {
-	return reflect.TypeOf((*[]GetWafRulesRule)(nil)).Elem()
-}
-
-func (i GetWafRulesRuleArray) ToGetWafRulesRuleArrayOutput() GetWafRulesRuleArrayOutput {
-	return i.ToGetWafRulesRuleArrayOutputWithContext(context.Background())
-}
-
-func (i GetWafRulesRuleArray) ToGetWafRulesRuleArrayOutputWithContext(ctx context.Context) GetWafRulesRuleArrayOutput {
-	return pulumi.ToOutputWithContext(ctx, i).(GetWafRulesRuleArrayOutput)
-}
-
-type GetWafRulesRuleOutput struct{ *pulumi.OutputState }
-
-func (GetWafRulesRuleOutput) ElementType() reflect.Type {
-	return reflect.TypeOf((*GetWafRulesRule)(nil)).Elem()
-}
-
-func (o GetWafRulesRuleOutput) ToGetWafRulesRuleOutput() GetWafRulesRuleOutput {
-	return o
-}
-
-func (o GetWafRulesRuleOutput) ToGetWafRulesRuleOutputWithContext(ctx context.Context) GetWafRulesRuleOutput {
-	return o
-}
-
-// The modsecurity rule's latest revision.
-func (o GetWafRulesRuleOutput) LatestRevisionNumber() pulumi.IntOutput {
-	return o.ApplyT(func(v GetWafRulesRule) int { return v.LatestRevisionNumber }).(pulumi.IntOutput)
-}
-
-// The modsecurity rule ID.
-func (o GetWafRulesRuleOutput) ModsecRuleId() pulumi.IntOutput {
-	return o.ApplyT(func(v GetWafRulesRule) int { return v.ModsecRuleId }).(pulumi.IntOutput)
-}
-
-// The modsecurity rule's type.
-func (o GetWafRulesRuleOutput) Type() pulumi.StringOutput {
-	return o.ApplyT(func(v GetWafRulesRule) string { return v.Type }).(pulumi.StringOutput)
-}
-
-type GetWafRulesRuleArrayOutput struct{ *pulumi.OutputState }
-
-func (GetWafRulesRuleArrayOutput) ElementType() reflect.Type {
-	return reflect.TypeOf((*[]GetWafRulesRule)(nil)).Elem()
-}
-
-func (o GetWafRulesRuleArrayOutput) ToGetWafRulesRuleArrayOutput() GetWafRulesRuleArrayOutput {
-	return o
-}
-
-func (o GetWafRulesRuleArrayOutput) ToGetWafRulesRuleArrayOutputWithContext(ctx context.Context) GetWafRulesRuleArrayOutput {
-	return o
-}
-
-func (o GetWafRulesRuleArrayOutput) Index(i pulumi.IntInput) GetWafRulesRuleOutput {
-	return pulumi.All(o, i).ApplyT(func(vs []interface{}) GetWafRulesRule {
-		return vs[0].([]GetWafRulesRule)[vs[1].(int)]
-	}).(GetWafRulesRuleOutput)
-}
-
 func init() {
 	pulumi.RegisterInputType(reflect.TypeOf((*AlertDimensionsInput)(nil)).Elem(), AlertDimensionsArgs{})
 	pulumi.RegisterInputType(reflect.TypeOf((*AlertDimensionsPtrInput)(nil)).Elem(), AlertDimensionsArgs{})
@@ -17116,6 +17301,10 @@ func init() {
 	pulumi.RegisterInputType(reflect.TypeOf((*ServiceComputePackagePtrInput)(nil)).Elem(), ServiceComputePackageArgs{})
 	pulumi.RegisterInputType(reflect.TypeOf((*ServiceComputeProductEnablementInput)(nil)).Elem(), ServiceComputeProductEnablementArgs{})
 	pulumi.RegisterInputType(reflect.TypeOf((*ServiceComputeProductEnablementPtrInput)(nil)).Elem(), ServiceComputeProductEnablementArgs{})
+	pulumi.RegisterInputType(reflect.TypeOf((*ServiceComputeProductEnablementDdosProtectionInput)(nil)).Elem(), ServiceComputeProductEnablementDdosProtectionArgs{})
+	pulumi.RegisterInputType(reflect.TypeOf((*ServiceComputeProductEnablementDdosProtectionPtrInput)(nil)).Elem(), ServiceComputeProductEnablementDdosProtectionArgs{})
+	pulumi.RegisterInputType(reflect.TypeOf((*ServiceComputeProductEnablementNgwafInput)(nil)).Elem(), ServiceComputeProductEnablementNgwafArgs{})
+	pulumi.RegisterInputType(reflect.TypeOf((*ServiceComputeProductEnablementNgwafPtrInput)(nil)).Elem(), ServiceComputeProductEnablementNgwafArgs{})
 	pulumi.RegisterInputType(reflect.TypeOf((*ServiceComputeResourceLinkInput)(nil)).Elem(), ServiceComputeResourceLinkArgs{})
 	pulumi.RegisterInputType(reflect.TypeOf((*ServiceComputeResourceLinkArrayInput)(nil)).Elem(), ServiceComputeResourceLinkArray{})
 	pulumi.RegisterInputType(reflect.TypeOf((*ServiceVclAclInput)(nil)).Elem(), ServiceVclAclArgs{})
@@ -17200,6 +17389,10 @@ func init() {
 	pulumi.RegisterInputType(reflect.TypeOf((*ServiceVclLoggingSyslogArrayInput)(nil)).Elem(), ServiceVclLoggingSyslogArray{})
 	pulumi.RegisterInputType(reflect.TypeOf((*ServiceVclProductEnablementInput)(nil)).Elem(), ServiceVclProductEnablementArgs{})
 	pulumi.RegisterInputType(reflect.TypeOf((*ServiceVclProductEnablementPtrInput)(nil)).Elem(), ServiceVclProductEnablementArgs{})
+	pulumi.RegisterInputType(reflect.TypeOf((*ServiceVclProductEnablementDdosProtectionInput)(nil)).Elem(), ServiceVclProductEnablementDdosProtectionArgs{})
+	pulumi.RegisterInputType(reflect.TypeOf((*ServiceVclProductEnablementDdosProtectionPtrInput)(nil)).Elem(), ServiceVclProductEnablementDdosProtectionArgs{})
+	pulumi.RegisterInputType(reflect.TypeOf((*ServiceVclProductEnablementNgwafInput)(nil)).Elem(), ServiceVclProductEnablementNgwafArgs{})
+	pulumi.RegisterInputType(reflect.TypeOf((*ServiceVclProductEnablementNgwafPtrInput)(nil)).Elem(), ServiceVclProductEnablementNgwafArgs{})
 	pulumi.RegisterInputType(reflect.TypeOf((*ServiceVclRateLimiterInput)(nil)).Elem(), ServiceVclRateLimiterArgs{})
 	pulumi.RegisterInputType(reflect.TypeOf((*ServiceVclRateLimiterArrayInput)(nil)).Elem(), ServiceVclRateLimiterArray{})
 	pulumi.RegisterInputType(reflect.TypeOf((*ServiceVclRateLimiterResponseInput)(nil)).Elem(), ServiceVclRateLimiterResponseArgs{})
@@ -17212,12 +17405,6 @@ func init() {
 	pulumi.RegisterInputType(reflect.TypeOf((*ServiceVclSnippetArrayInput)(nil)).Elem(), ServiceVclSnippetArray{})
 	pulumi.RegisterInputType(reflect.TypeOf((*ServiceVclVclInput)(nil)).Elem(), ServiceVclVclArgs{})
 	pulumi.RegisterInputType(reflect.TypeOf((*ServiceVclVclArrayInput)(nil)).Elem(), ServiceVclVclArray{})
-	pulumi.RegisterInputType(reflect.TypeOf((*ServiceVclWafInput)(nil)).Elem(), ServiceVclWafArgs{})
-	pulumi.RegisterInputType(reflect.TypeOf((*ServiceVclWafPtrInput)(nil)).Elem(), ServiceVclWafArgs{})
-	pulumi.RegisterInputType(reflect.TypeOf((*ServiceWafConfigurationRuleInput)(nil)).Elem(), ServiceWafConfigurationRuleArgs{})
-	pulumi.RegisterInputType(reflect.TypeOf((*ServiceWafConfigurationRuleArrayInput)(nil)).Elem(), ServiceWafConfigurationRuleArray{})
-	pulumi.RegisterInputType(reflect.TypeOf((*ServiceWafConfigurationRuleExclusionInput)(nil)).Elem(), ServiceWafConfigurationRuleExclusionArgs{})
-	pulumi.RegisterInputType(reflect.TypeOf((*ServiceWafConfigurationRuleExclusionArrayInput)(nil)).Elem(), ServiceWafConfigurationRuleExclusionArray{})
 	pulumi.RegisterInputType(reflect.TypeOf((*TlsSubscriptionManagedDnsChallengeInput)(nil)).Elem(), TlsSubscriptionManagedDnsChallengeArgs{})
 	pulumi.RegisterInputType(reflect.TypeOf((*TlsSubscriptionManagedDnsChallengeArrayInput)(nil)).Elem(), TlsSubscriptionManagedDnsChallengeArray{})
 	pulumi.RegisterInputType(reflect.TypeOf((*TlsSubscriptionManagedHttpChallengeInput)(nil)).Elem(), TlsSubscriptionManagedHttpChallengeArgs{})
@@ -17238,8 +17425,6 @@ func init() {
 	pulumi.RegisterInputType(reflect.TypeOf((*GetTlsConfigurationDnsRecordArrayInput)(nil)).Elem(), GetTlsConfigurationDnsRecordArray{})
 	pulumi.RegisterInputType(reflect.TypeOf((*GetVclSnippetsVclSnippetInput)(nil)).Elem(), GetVclSnippetsVclSnippetArgs{})
 	pulumi.RegisterInputType(reflect.TypeOf((*GetVclSnippetsVclSnippetArrayInput)(nil)).Elem(), GetVclSnippetsVclSnippetArray{})
-	pulumi.RegisterInputType(reflect.TypeOf((*GetWafRulesRuleInput)(nil)).Elem(), GetWafRulesRuleArgs{})
-	pulumi.RegisterInputType(reflect.TypeOf((*GetWafRulesRuleArrayInput)(nil)).Elem(), GetWafRulesRuleArray{})
 	pulumi.RegisterOutputType(AlertDimensionsOutput{})
 	pulumi.RegisterOutputType(AlertDimensionsPtrOutput{})
 	pulumi.RegisterOutputType(AlertEvaluationStrategyOutput{})
@@ -17318,6 +17503,10 @@ func init() {
 	pulumi.RegisterOutputType(ServiceComputePackagePtrOutput{})
 	pulumi.RegisterOutputType(ServiceComputeProductEnablementOutput{})
 	pulumi.RegisterOutputType(ServiceComputeProductEnablementPtrOutput{})
+	pulumi.RegisterOutputType(ServiceComputeProductEnablementDdosProtectionOutput{})
+	pulumi.RegisterOutputType(ServiceComputeProductEnablementDdosProtectionPtrOutput{})
+	pulumi.RegisterOutputType(ServiceComputeProductEnablementNgwafOutput{})
+	pulumi.RegisterOutputType(ServiceComputeProductEnablementNgwafPtrOutput{})
 	pulumi.RegisterOutputType(ServiceComputeResourceLinkOutput{})
 	pulumi.RegisterOutputType(ServiceComputeResourceLinkArrayOutput{})
 	pulumi.RegisterOutputType(ServiceVclAclOutput{})
@@ -17402,6 +17591,10 @@ func init() {
 	pulumi.RegisterOutputType(ServiceVclLoggingSyslogArrayOutput{})
 	pulumi.RegisterOutputType(ServiceVclProductEnablementOutput{})
 	pulumi.RegisterOutputType(ServiceVclProductEnablementPtrOutput{})
+	pulumi.RegisterOutputType(ServiceVclProductEnablementDdosProtectionOutput{})
+	pulumi.RegisterOutputType(ServiceVclProductEnablementDdosProtectionPtrOutput{})
+	pulumi.RegisterOutputType(ServiceVclProductEnablementNgwafOutput{})
+	pulumi.RegisterOutputType(ServiceVclProductEnablementNgwafPtrOutput{})
 	pulumi.RegisterOutputType(ServiceVclRateLimiterOutput{})
 	pulumi.RegisterOutputType(ServiceVclRateLimiterArrayOutput{})
 	pulumi.RegisterOutputType(ServiceVclRateLimiterResponseOutput{})
@@ -17414,12 +17607,6 @@ func init() {
 	pulumi.RegisterOutputType(ServiceVclSnippetArrayOutput{})
 	pulumi.RegisterOutputType(ServiceVclVclOutput{})
 	pulumi.RegisterOutputType(ServiceVclVclArrayOutput{})
-	pulumi.RegisterOutputType(ServiceVclWafOutput{})
-	pulumi.RegisterOutputType(ServiceVclWafPtrOutput{})
-	pulumi.RegisterOutputType(ServiceWafConfigurationRuleOutput{})
-	pulumi.RegisterOutputType(ServiceWafConfigurationRuleArrayOutput{})
-	pulumi.RegisterOutputType(ServiceWafConfigurationRuleExclusionOutput{})
-	pulumi.RegisterOutputType(ServiceWafConfigurationRuleExclusionArrayOutput{})
 	pulumi.RegisterOutputType(TlsSubscriptionManagedDnsChallengeOutput{})
 	pulumi.RegisterOutputType(TlsSubscriptionManagedDnsChallengeArrayOutput{})
 	pulumi.RegisterOutputType(TlsSubscriptionManagedHttpChallengeOutput{})
@@ -17440,6 +17627,4 @@ func init() {
 	pulumi.RegisterOutputType(GetTlsConfigurationDnsRecordArrayOutput{})
 	pulumi.RegisterOutputType(GetVclSnippetsVclSnippetOutput{})
 	pulumi.RegisterOutputType(GetVclSnippetsVclSnippetArrayOutput{})
-	pulumi.RegisterOutputType(GetWafRulesRuleOutput{})
-	pulumi.RegisterOutputType(GetWafRulesRuleArrayOutput{})
 }

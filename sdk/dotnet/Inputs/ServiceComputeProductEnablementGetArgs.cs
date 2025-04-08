@@ -13,6 +13,12 @@ namespace Pulumi.Fastly.Inputs
     public sealed class ServiceComputeProductEnablementGetArgs : global::Pulumi.ResourceArgs
     {
         /// <summary>
+        /// DDoS Protection product
+        /// </summary>
+        [Input("ddosProtection")]
+        public Input<Inputs.ServiceComputeProductEnablementDdosProtectionGetArgs>? DdosProtection { get; set; }
+
+        /// <summary>
         /// Enable Fanout support
         /// </summary>
         [Input("fanout")]
@@ -29,6 +35,12 @@ namespace Pulumi.Fastly.Inputs
         /// </summary>
         [Input("name")]
         public Input<string>? Name { get; set; }
+
+        /// <summary>
+        /// Next-Gen WAF product
+        /// </summary>
+        [Input("ngwaf")]
+        public Input<Inputs.ServiceComputeProductEnablementNgwafGetArgs>? Ngwaf { get; set; }
 
         /// <summary>
         /// Enable WebSockets support

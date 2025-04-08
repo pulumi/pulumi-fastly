@@ -72,7 +72,7 @@ import javax.annotation.Nullable;
 @ResourceType(type="fastly:index/serviceCompute:ServiceCompute")
 public class ServiceCompute extends com.pulumi.resources.CustomResource {
     /**
-     * Conditionally prevents the Service from being activated. The apply step will continue to create a new draft version but
+     * Conditionally prevents new service versions from being activated. The apply step will create a new draft version but
      * will not activate it if this is set to `false`. Default `true`
      * 
      */
@@ -80,7 +80,7 @@ public class ServiceCompute extends com.pulumi.resources.CustomResource {
     private Output</* @Nullable */ Boolean> activate;
 
     /**
-     * @return Conditionally prevents the Service from being activated. The apply step will continue to create a new draft version but
+     * @return Conditionally prevents new service versions from being activated. The apply step will create a new draft version but
      * will not activate it if this is set to `false`. Default `true`
      * 
      */
@@ -410,6 +410,36 @@ public class ServiceCompute extends com.pulumi.resources.CustomResource {
 
     public Output<Optional<Boolean>> reuse() {
         return Codegen.optional(this.reuse);
+    }
+    /**
+     * Conditionally enables new service versions to be staged. If `set` to true, all changes made by an `apply` step will be
+     * staged, even if `apply` did not create a new draft version. Default `false`
+     * 
+     */
+    @Export(name="stage", refs={Boolean.class}, tree="[0]")
+    private Output</* @Nullable */ Boolean> stage;
+
+    /**
+     * @return Conditionally enables new service versions to be staged. If `set` to true, all changes made by an `apply` step will be
+     * staged, even if `apply` did not create a new draft version. Default `false`
+     * 
+     */
+    public Output<Optional<Boolean>> stage() {
+        return Codegen.optional(this.stage);
+    }
+    /**
+     * The currently staged version of your Fastly Service
+     * 
+     */
+    @Export(name="stagedVersion", refs={Integer.class}, tree="[0]")
+    private Output<Integer> stagedVersion;
+
+    /**
+     * @return The currently staged version of your Fastly Service
+     * 
+     */
+    public Output<Integer> stagedVersion() {
+        return this.stagedVersion;
     }
     /**
      * Description field for the version

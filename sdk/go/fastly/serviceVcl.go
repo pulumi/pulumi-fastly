@@ -8,7 +8,7 @@ import (
 	"reflect"
 
 	"errors"
-	"github.com/pulumi/pulumi-fastly/sdk/v8/go/fastly/internal"
+	"github.com/pulumi/pulumi-fastly/sdk/v9/go/fastly/internal"
 	"github.com/pulumi/pulumi/sdk/v3/go/pulumi"
 )
 
@@ -31,7 +31,7 @@ type ServiceVcl struct {
 	pulumi.CustomResourceState
 
 	Acls ServiceVclAclArrayOutput `pulumi:"acls"`
-	// Conditionally prevents the Service from being activated. The apply step will continue to create a new draft version but
+	// Conditionally prevents new service versions from being activated. The apply step will create a new draft version but
 	// will not activate it if this is set to `false`. Default `true`
 	Activate pulumi.BoolPtrOutput `pulumi:"activate"`
 	// The currently active version of your Fastly Service
@@ -100,6 +100,11 @@ type ServiceVcl struct {
 	ResponseObjects   ServiceVclResponseObjectArrayOutput  `pulumi:"responseObjects"`
 	Reuse             pulumi.BoolPtrOutput                 `pulumi:"reuse"`
 	Snippets          ServiceVclSnippetArrayOutput         `pulumi:"snippets"`
+	// Conditionally enables new service versions to be staged. If `set` to true, all changes made by an `apply` step will be
+	// staged, even if `apply` did not create a new draft version. Default `false`
+	Stage pulumi.BoolPtrOutput `pulumi:"stage"`
+	// The currently staged version of your Fastly Service
+	StagedVersion pulumi.IntOutput `pulumi:"stagedVersion"`
 	// Enables serving a stale object if there is an error
 	StaleIfError pulumi.BoolPtrOutput `pulumi:"staleIfError"`
 	// The default time-to-live (TTL) for serving the stale object for the version
@@ -107,7 +112,6 @@ type ServiceVcl struct {
 	Vcls            ServiceVclVclArrayOutput `pulumi:"vcls"`
 	// Description field for the version
 	VersionComment pulumi.StringPtrOutput `pulumi:"versionComment"`
-	Waf            ServiceVclWafPtrOutput `pulumi:"waf"`
 }
 
 // NewServiceVcl registers a new resource with the given unique name, arguments, and options.
@@ -144,7 +148,7 @@ func GetServiceVcl(ctx *pulumi.Context,
 // Input properties used for looking up and filtering ServiceVcl resources.
 type serviceVclState struct {
 	Acls []ServiceVclAcl `pulumi:"acls"`
-	// Conditionally prevents the Service from being activated. The apply step will continue to create a new draft version but
+	// Conditionally prevents new service versions from being activated. The apply step will create a new draft version but
 	// will not activate it if this is set to `false`. Default `true`
 	Activate *bool `pulumi:"activate"`
 	// The currently active version of your Fastly Service
@@ -213,19 +217,23 @@ type serviceVclState struct {
 	ResponseObjects   []ServiceVclResponseObject   `pulumi:"responseObjects"`
 	Reuse             *bool                        `pulumi:"reuse"`
 	Snippets          []ServiceVclSnippet          `pulumi:"snippets"`
+	// Conditionally enables new service versions to be staged. If `set` to true, all changes made by an `apply` step will be
+	// staged, even if `apply` did not create a new draft version. Default `false`
+	Stage *bool `pulumi:"stage"`
+	// The currently staged version of your Fastly Service
+	StagedVersion *int `pulumi:"stagedVersion"`
 	// Enables serving a stale object if there is an error
 	StaleIfError *bool `pulumi:"staleIfError"`
 	// The default time-to-live (TTL) for serving the stale object for the version
 	StaleIfErrorTtl *int            `pulumi:"staleIfErrorTtl"`
 	Vcls            []ServiceVclVcl `pulumi:"vcls"`
 	// Description field for the version
-	VersionComment *string        `pulumi:"versionComment"`
-	Waf            *ServiceVclWaf `pulumi:"waf"`
+	VersionComment *string `pulumi:"versionComment"`
 }
 
 type ServiceVclState struct {
 	Acls ServiceVclAclArrayInput
-	// Conditionally prevents the Service from being activated. The apply step will continue to create a new draft version but
+	// Conditionally prevents new service versions from being activated. The apply step will create a new draft version but
 	// will not activate it if this is set to `false`. Default `true`
 	Activate pulumi.BoolPtrInput
 	// The currently active version of your Fastly Service
@@ -294,6 +302,11 @@ type ServiceVclState struct {
 	ResponseObjects   ServiceVclResponseObjectArrayInput
 	Reuse             pulumi.BoolPtrInput
 	Snippets          ServiceVclSnippetArrayInput
+	// Conditionally enables new service versions to be staged. If `set` to true, all changes made by an `apply` step will be
+	// staged, even if `apply` did not create a new draft version. Default `false`
+	Stage pulumi.BoolPtrInput
+	// The currently staged version of your Fastly Service
+	StagedVersion pulumi.IntPtrInput
 	// Enables serving a stale object if there is an error
 	StaleIfError pulumi.BoolPtrInput
 	// The default time-to-live (TTL) for serving the stale object for the version
@@ -301,7 +314,6 @@ type ServiceVclState struct {
 	Vcls            ServiceVclVclArrayInput
 	// Description field for the version
 	VersionComment pulumi.StringPtrInput
-	Waf            ServiceVclWafPtrInput
 }
 
 func (ServiceVclState) ElementType() reflect.Type {
@@ -310,7 +322,7 @@ func (ServiceVclState) ElementType() reflect.Type {
 
 type serviceVclArgs struct {
 	Acls []ServiceVclAcl `pulumi:"acls"`
-	// Conditionally prevents the Service from being activated. The apply step will continue to create a new draft version but
+	// Conditionally prevents new service versions from being activated. The apply step will create a new draft version but
 	// will not activate it if this is set to `false`. Default `true`
 	Activate      *bool                    `pulumi:"activate"`
 	Backends      []ServiceVclBackend      `pulumi:"backends"`
@@ -371,20 +383,22 @@ type serviceVclArgs struct {
 	ResponseObjects   []ServiceVclResponseObject   `pulumi:"responseObjects"`
 	Reuse             *bool                        `pulumi:"reuse"`
 	Snippets          []ServiceVclSnippet          `pulumi:"snippets"`
+	// Conditionally enables new service versions to be staged. If `set` to true, all changes made by an `apply` step will be
+	// staged, even if `apply` did not create a new draft version. Default `false`
+	Stage *bool `pulumi:"stage"`
 	// Enables serving a stale object if there is an error
 	StaleIfError *bool `pulumi:"staleIfError"`
 	// The default time-to-live (TTL) for serving the stale object for the version
 	StaleIfErrorTtl *int            `pulumi:"staleIfErrorTtl"`
 	Vcls            []ServiceVclVcl `pulumi:"vcls"`
 	// Description field for the version
-	VersionComment *string        `pulumi:"versionComment"`
-	Waf            *ServiceVclWaf `pulumi:"waf"`
+	VersionComment *string `pulumi:"versionComment"`
 }
 
 // The set of arguments for constructing a ServiceVcl resource.
 type ServiceVclArgs struct {
 	Acls ServiceVclAclArrayInput
-	// Conditionally prevents the Service from being activated. The apply step will continue to create a new draft version but
+	// Conditionally prevents new service versions from being activated. The apply step will create a new draft version but
 	// will not activate it if this is set to `false`. Default `true`
 	Activate      pulumi.BoolPtrInput
 	Backends      ServiceVclBackendArrayInput
@@ -445,6 +459,9 @@ type ServiceVclArgs struct {
 	ResponseObjects   ServiceVclResponseObjectArrayInput
 	Reuse             pulumi.BoolPtrInput
 	Snippets          ServiceVclSnippetArrayInput
+	// Conditionally enables new service versions to be staged. If `set` to true, all changes made by an `apply` step will be
+	// staged, even if `apply` did not create a new draft version. Default `false`
+	Stage pulumi.BoolPtrInput
 	// Enables serving a stale object if there is an error
 	StaleIfError pulumi.BoolPtrInput
 	// The default time-to-live (TTL) for serving the stale object for the version
@@ -452,7 +469,6 @@ type ServiceVclArgs struct {
 	Vcls            ServiceVclVclArrayInput
 	// Description field for the version
 	VersionComment pulumi.StringPtrInput
-	Waf            ServiceVclWafPtrInput
 }
 
 func (ServiceVclArgs) ElementType() reflect.Type {
@@ -546,7 +562,7 @@ func (o ServiceVclOutput) Acls() ServiceVclAclArrayOutput {
 	return o.ApplyT(func(v *ServiceVcl) ServiceVclAclArrayOutput { return v.Acls }).(ServiceVclAclArrayOutput)
 }
 
-// Conditionally prevents the Service from being activated. The apply step will continue to create a new draft version but
+// Conditionally prevents new service versions from being activated. The apply step will create a new draft version but
 // will not activate it if this is set to `false`. Default `true`
 func (o ServiceVclOutput) Activate() pulumi.BoolPtrOutput {
 	return o.ApplyT(func(v *ServiceVcl) pulumi.BoolPtrOutput { return v.Activate }).(pulumi.BoolPtrOutput)
@@ -785,6 +801,17 @@ func (o ServiceVclOutput) Snippets() ServiceVclSnippetArrayOutput {
 	return o.ApplyT(func(v *ServiceVcl) ServiceVclSnippetArrayOutput { return v.Snippets }).(ServiceVclSnippetArrayOutput)
 }
 
+// Conditionally enables new service versions to be staged. If `set` to true, all changes made by an `apply` step will be
+// staged, even if `apply` did not create a new draft version. Default `false`
+func (o ServiceVclOutput) Stage() pulumi.BoolPtrOutput {
+	return o.ApplyT(func(v *ServiceVcl) pulumi.BoolPtrOutput { return v.Stage }).(pulumi.BoolPtrOutput)
+}
+
+// The currently staged version of your Fastly Service
+func (o ServiceVclOutput) StagedVersion() pulumi.IntOutput {
+	return o.ApplyT(func(v *ServiceVcl) pulumi.IntOutput { return v.StagedVersion }).(pulumi.IntOutput)
+}
+
 // Enables serving a stale object if there is an error
 func (o ServiceVclOutput) StaleIfError() pulumi.BoolPtrOutput {
 	return o.ApplyT(func(v *ServiceVcl) pulumi.BoolPtrOutput { return v.StaleIfError }).(pulumi.BoolPtrOutput)
@@ -802,10 +829,6 @@ func (o ServiceVclOutput) Vcls() ServiceVclVclArrayOutput {
 // Description field for the version
 func (o ServiceVclOutput) VersionComment() pulumi.StringPtrOutput {
 	return o.ApplyT(func(v *ServiceVcl) pulumi.StringPtrOutput { return v.VersionComment }).(pulumi.StringPtrOutput)
-}
-
-func (o ServiceVclOutput) Waf() ServiceVclWafPtrOutput {
-	return o.ApplyT(func(v *ServiceVcl) ServiceVclWafPtrOutput { return v.Waf }).(ServiceVclWafPtrOutput)
 }
 
 type ServiceVclArrayOutput struct{ *pulumi.OutputState }

@@ -52,7 +52,7 @@ export class ServiceCompute extends pulumi.CustomResource {
     }
 
     /**
-     * Conditionally prevents the Service from being activated. The apply step will continue to create a new draft version but
+     * Conditionally prevents new service versions from being activated. The apply step will create a new draft version but
      * will not activate it if this is set to `false`. Default `true`
      */
     public readonly activate!: pulumi.Output<boolean | undefined>;
@@ -127,6 +127,15 @@ export class ServiceCompute extends pulumi.CustomResource {
     public readonly resourceLinks!: pulumi.Output<outputs.ServiceComputeResourceLink[] | undefined>;
     public readonly reuse!: pulumi.Output<boolean | undefined>;
     /**
+     * Conditionally enables new service versions to be staged. If `set` to true, all changes made by an `apply` step will be
+     * staged, even if `apply` did not create a new draft version. Default `false`
+     */
+    public readonly stage!: pulumi.Output<boolean | undefined>;
+    /**
+     * The currently staged version of your Fastly Service
+     */
+    public /*out*/ readonly stagedVersion!: pulumi.Output<number>;
+    /**
      * Description field for the version
      */
     public readonly versionComment!: pulumi.Output<string | undefined>;
@@ -187,6 +196,8 @@ export class ServiceCompute extends pulumi.CustomResource {
             resourceInputs["productEnablement"] = state ? state.productEnablement : undefined;
             resourceInputs["resourceLinks"] = state ? state.resourceLinks : undefined;
             resourceInputs["reuse"] = state ? state.reuse : undefined;
+            resourceInputs["stage"] = state ? state.stage : undefined;
+            resourceInputs["stagedVersion"] = state ? state.stagedVersion : undefined;
             resourceInputs["versionComment"] = state ? state.versionComment : undefined;
         } else {
             const args = argsOrState as ServiceComputeArgs | undefined;
@@ -232,11 +243,13 @@ export class ServiceCompute extends pulumi.CustomResource {
             resourceInputs["productEnablement"] = args ? args.productEnablement : undefined;
             resourceInputs["resourceLinks"] = args ? args.resourceLinks : undefined;
             resourceInputs["reuse"] = args ? args.reuse : undefined;
+            resourceInputs["stage"] = args ? args.stage : undefined;
             resourceInputs["versionComment"] = args ? args.versionComment : undefined;
             resourceInputs["activeVersion"] = undefined /*out*/;
             resourceInputs["clonedVersion"] = undefined /*out*/;
             resourceInputs["forceRefresh"] = undefined /*out*/;
             resourceInputs["imported"] = undefined /*out*/;
+            resourceInputs["stagedVersion"] = undefined /*out*/;
         }
         opts = pulumi.mergeOptions(utilities.resourceOptsDefaults(), opts);
         super(ServiceCompute.__pulumiType, name, resourceInputs, opts);
@@ -248,7 +261,7 @@ export class ServiceCompute extends pulumi.CustomResource {
  */
 export interface ServiceComputeState {
     /**
-     * Conditionally prevents the Service from being activated. The apply step will continue to create a new draft version but
+     * Conditionally prevents new service versions from being activated. The apply step will create a new draft version but
      * will not activate it if this is set to `false`. Default `true`
      */
     activate?: pulumi.Input<boolean>;
@@ -323,6 +336,15 @@ export interface ServiceComputeState {
     resourceLinks?: pulumi.Input<pulumi.Input<inputs.ServiceComputeResourceLink>[]>;
     reuse?: pulumi.Input<boolean>;
     /**
+     * Conditionally enables new service versions to be staged. If `set` to true, all changes made by an `apply` step will be
+     * staged, even if `apply` did not create a new draft version. Default `false`
+     */
+    stage?: pulumi.Input<boolean>;
+    /**
+     * The currently staged version of your Fastly Service
+     */
+    stagedVersion?: pulumi.Input<number>;
+    /**
      * Description field for the version
      */
     versionComment?: pulumi.Input<string>;
@@ -333,7 +355,7 @@ export interface ServiceComputeState {
  */
 export interface ServiceComputeArgs {
     /**
-     * Conditionally prevents the Service from being activated. The apply step will continue to create a new draft version but
+     * Conditionally prevents new service versions from being activated. The apply step will create a new draft version but
      * will not activate it if this is set to `false`. Default `true`
      */
     activate?: pulumi.Input<boolean>;
@@ -393,6 +415,11 @@ export interface ServiceComputeArgs {
      */
     resourceLinks?: pulumi.Input<pulumi.Input<inputs.ServiceComputeResourceLink>[]>;
     reuse?: pulumi.Input<boolean>;
+    /**
+     * Conditionally enables new service versions to be staged. If `set` to true, all changes made by an `apply` step will be
+     * staged, even if `apply` did not create a new draft version. Default `false`
+     */
+    stage?: pulumi.Input<boolean>;
     /**
      * Description field for the version
      */

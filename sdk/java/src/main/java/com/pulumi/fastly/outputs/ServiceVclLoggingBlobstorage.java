@@ -69,7 +69,7 @@ public final class ServiceVclLoggingBlobstorage {
      */
     private @Nullable Integer period;
     /**
-     * @return Where in the generated VCL the logging call should be placed
+     * @return Where in the generated VCL the logging call should be placed (ignored).
      * 
      */
     private @Nullable String placement;
@@ -173,7 +173,7 @@ public final class ServiceVclLoggingBlobstorage {
         return Optional.ofNullable(this.period);
     }
     /**
-     * @return Where in the generated VCL the logging call should be placed
+     * @return Where in the generated VCL the logging call should be placed (ignored).
      * 
      */
     public Optional<String> placement() {

@@ -4,6 +4,8 @@
 package com.pulumi.fastly.outputs;
 
 import com.pulumi.core.annotations.CustomType;
+import com.pulumi.fastly.outputs.ServiceVclProductEnablementDdosProtection;
+import com.pulumi.fastly.outputs.ServiceVclProductEnablementNgwaf;
 import java.lang.Boolean;
 import java.lang.String;
 import java.util.Objects;
@@ -22,6 +24,11 @@ public final class ServiceVclProductEnablement {
      * 
      */
     private @Nullable Boolean brotliCompression;
+    /**
+     * @return DDoS Protection product
+     * 
+     */
+    private @Nullable ServiceVclProductEnablementDdosProtection ddosProtection;
     /**
      * @return Enable Domain Inspector support
      * 
@@ -42,6 +49,11 @@ public final class ServiceVclProductEnablement {
      * 
      */
     private @Nullable String name;
+    /**
+     * @return Next-Gen WAF product
+     * 
+     */
+    private @Nullable ServiceVclProductEnablementNgwaf ngwaf;
     /**
      * @return Enable Origin Inspector support
      * 
@@ -67,6 +79,13 @@ public final class ServiceVclProductEnablement {
      */
     public Optional<Boolean> brotliCompression() {
         return Optional.ofNullable(this.brotliCompression);
+    }
+    /**
+     * @return DDoS Protection product
+     * 
+     */
+    public Optional<ServiceVclProductEnablementDdosProtection> ddosProtection() {
+        return Optional.ofNullable(this.ddosProtection);
     }
     /**
      * @return Enable Domain Inspector support
@@ -97,6 +116,13 @@ public final class ServiceVclProductEnablement {
         return Optional.ofNullable(this.name);
     }
     /**
+     * @return Next-Gen WAF product
+     * 
+     */
+    public Optional<ServiceVclProductEnablementNgwaf> ngwaf() {
+        return Optional.ofNullable(this.ngwaf);
+    }
+    /**
      * @return Enable Origin Inspector support
      * 
      */
@@ -122,10 +148,12 @@ public final class ServiceVclProductEnablement {
     public static final class Builder {
         private @Nullable Boolean botManagement;
         private @Nullable Boolean brotliCompression;
+        private @Nullable ServiceVclProductEnablementDdosProtection ddosProtection;
         private @Nullable Boolean domainInspector;
         private @Nullable Boolean imageOptimizer;
         private @Nullable Boolean logExplorerInsights;
         private @Nullable String name;
+        private @Nullable ServiceVclProductEnablementNgwaf ngwaf;
         private @Nullable Boolean originInspector;
         private @Nullable Boolean websockets;
         public Builder() {}
@@ -133,10 +161,12 @@ public final class ServiceVclProductEnablement {
     	      Objects.requireNonNull(defaults);
     	      this.botManagement = defaults.botManagement;
     	      this.brotliCompression = defaults.brotliCompression;
+    	      this.ddosProtection = defaults.ddosProtection;
     	      this.domainInspector = defaults.domainInspector;
     	      this.imageOptimizer = defaults.imageOptimizer;
     	      this.logExplorerInsights = defaults.logExplorerInsights;
     	      this.name = defaults.name;
+    	      this.ngwaf = defaults.ngwaf;
     	      this.originInspector = defaults.originInspector;
     	      this.websockets = defaults.websockets;
         }
@@ -151,6 +181,12 @@ public final class ServiceVclProductEnablement {
         public Builder brotliCompression(@Nullable Boolean brotliCompression) {
 
             this.brotliCompression = brotliCompression;
+            return this;
+        }
+        @CustomType.Setter
+        public Builder ddosProtection(@Nullable ServiceVclProductEnablementDdosProtection ddosProtection) {
+
+            this.ddosProtection = ddosProtection;
             return this;
         }
         @CustomType.Setter
@@ -178,6 +214,12 @@ public final class ServiceVclProductEnablement {
             return this;
         }
         @CustomType.Setter
+        public Builder ngwaf(@Nullable ServiceVclProductEnablementNgwaf ngwaf) {
+
+            this.ngwaf = ngwaf;
+            return this;
+        }
+        @CustomType.Setter
         public Builder originInspector(@Nullable Boolean originInspector) {
 
             this.originInspector = originInspector;
@@ -193,10 +235,12 @@ public final class ServiceVclProductEnablement {
             final var _resultValue = new ServiceVclProductEnablement();
             _resultValue.botManagement = botManagement;
             _resultValue.brotliCompression = brotliCompression;
+            _resultValue.ddosProtection = ddosProtection;
             _resultValue.domainInspector = domainInspector;
             _resultValue.imageOptimizer = imageOptimizer;
             _resultValue.logExplorerInsights = logExplorerInsights;
             _resultValue.name = name;
+            _resultValue.ngwaf = ngwaf;
             _resultValue.originInspector = originInspector;
             _resultValue.websockets = websockets;
             return _resultValue;

@@ -1272,6 +1272,10 @@ export interface ServiceComputePackage {
 
 export interface ServiceComputeProductEnablement {
     /**
+     * DDoS Protection product
+     */
+    ddosProtection?: pulumi.Input<inputs.ServiceComputeProductEnablementDdosProtection>;
+    /**
      * Enable Fanout support
      */
     fanout?: pulumi.Input<boolean>;
@@ -1284,9 +1288,39 @@ export interface ServiceComputeProductEnablement {
      */
     name?: pulumi.Input<string>;
     /**
+     * Next-Gen WAF product
+     */
+    ngwaf?: pulumi.Input<inputs.ServiceComputeProductEnablementNgwaf>;
+    /**
      * Enable WebSockets support
      */
     websockets?: pulumi.Input<boolean>;
+}
+
+export interface ServiceComputeProductEnablementDdosProtection {
+    /**
+     * Enable DDoS Protection support
+     */
+    enabled: pulumi.Input<boolean>;
+    /**
+     * Operation mode
+     */
+    mode: pulumi.Input<string>;
+}
+
+export interface ServiceComputeProductEnablementNgwaf {
+    /**
+     * Enable Next-Gen WAF support
+     */
+    enabled: pulumi.Input<boolean>;
+    /**
+     * The percentage of traffic to inspect
+     */
+    trafficRamp?: pulumi.Input<number>;
+    /**
+     * The workspace to link
+     */
+    workspaceId: pulumi.Input<string>;
 }
 
 export interface ServiceComputeResourceLink {
@@ -1735,7 +1769,7 @@ export interface ServiceVclLoggingBigquery {
      */
     name: pulumi.Input<string>;
     /**
-     * Where in the generated VCL the logging call should be placed.
+     * Where in the generated VCL the logging call should be placed (ignored).
      */
     placement?: pulumi.Input<string>;
     /**
@@ -1806,7 +1840,7 @@ export interface ServiceVclLoggingBlobstorage {
      */
     period?: pulumi.Input<number>;
     /**
-     * Where in the generated VCL the logging call should be placed
+     * Where in the generated VCL the logging call should be placed (ignored).
      */
     placement?: pulumi.Input<string>;
     /**
@@ -1869,7 +1903,7 @@ export interface ServiceVclLoggingCloudfile {
      */
     period?: pulumi.Input<number>;
     /**
-     * Where in the generated VCL the logging call should be placed. Can be `none` or `wafDebug`.
+     * Where in the generated VCL the logging call should be placed (ignored).
      */
     placement?: pulumi.Input<string>;
     /**
@@ -1908,7 +1942,7 @@ export interface ServiceVclLoggingDatadog {
      */
     name: pulumi.Input<string>;
     /**
-     * Where in the generated VCL the logging call should be placed.
+     * Where in the generated VCL the logging call should be placed (ignored).
      */
     placement?: pulumi.Input<string>;
     /**
@@ -1971,7 +2005,7 @@ export interface ServiceVclLoggingDigitalocean {
      */
     period?: pulumi.Input<number>;
     /**
-     * Where in the generated VCL the logging call should be placed. Can be `none` or `wafDebug`.
+     * Where in the generated VCL the logging call should be placed (ignored).
      */
     placement?: pulumi.Input<string>;
     /**
@@ -2018,7 +2052,7 @@ export interface ServiceVclLoggingElasticsearch {
      */
     pipeline?: pulumi.Input<string>;
     /**
-     * Where in the generated VCL the logging call should be placed.
+     * Where in the generated VCL the logging call should be placed (ignored).
      */
     placement?: pulumi.Input<string>;
     /**
@@ -2101,7 +2135,7 @@ export interface ServiceVclLoggingFtp {
      */
     period?: pulumi.Input<number>;
     /**
-     * Where in the generated VCL the logging call should be placed.
+     * Where in the generated VCL the logging call should be placed (ignored).
      */
     placement?: pulumi.Input<string>;
     /**
@@ -2168,7 +2202,7 @@ export interface ServiceVclLoggingGc {
      */
     period?: pulumi.Input<number>;
     /**
-     * Where in the generated VCL the logging call should be placed.
+     * Where in the generated VCL the logging call should be placed (ignored).
      */
     placement?: pulumi.Input<string>;
     /**
@@ -2211,7 +2245,7 @@ export interface ServiceVclLoggingGooglepubsub {
      */
     name: pulumi.Input<string>;
     /**
-     * Where in the generated VCL the logging call should be placed.
+     * Where in the generated VCL the logging call should be placed (ignored).
      */
     placement?: pulumi.Input<string>;
     /**
@@ -2254,7 +2288,7 @@ export interface ServiceVclLoggingGrafanacloudlog {
      */
     name: pulumi.Input<string>;
     /**
-     * Where in the generated VCL the logging call should be placed.
+     * Where in the generated VCL the logging call should be placed (ignored).
      */
     placement?: pulumi.Input<string>;
     /**
@@ -2289,7 +2323,7 @@ export interface ServiceVclLoggingHerokus {
      */
     name: pulumi.Input<string>;
     /**
-     * Where in the generated VCL the logging call should be placed. Can be `none` or `wafDebug`.
+     * Where in the generated VCL the logging call should be placed (ignored).
      */
     placement?: pulumi.Input<string>;
     /**
@@ -2324,7 +2358,7 @@ export interface ServiceVclLoggingHoneycomb {
      */
     name: pulumi.Input<string>;
     /**
-     * Where in the generated VCL the logging call should be placed. Can be `none` or `wafDebug`.
+     * Where in the generated VCL the logging call should be placed (ignored).
      */
     placement?: pulumi.Input<string>;
     /**
@@ -2375,7 +2409,7 @@ export interface ServiceVclLoggingHttp {
      */
     name: pulumi.Input<string>;
     /**
-     * Where in the generated VCL the logging call should be placed
+     * Where in the generated VCL the logging call should be placed (ignored).
      */
     placement?: pulumi.Input<string>;
     /**
@@ -2446,7 +2480,7 @@ export interface ServiceVclLoggingKafka {
      */
     password?: pulumi.Input<string>;
     /**
-     * Where in the generated VCL the logging call should be placed.
+     * Where in the generated VCL the logging call should be placed (ignored).
      */
     placement?: pulumi.Input<string>;
     /**
@@ -2513,7 +2547,7 @@ export interface ServiceVclLoggingKinese {
      */
     name: pulumi.Input<string>;
     /**
-     * Where in the generated VCL the logging call should be placed. Can be `none` or `wafDebug`.
+     * Where in the generated VCL the logging call should be placed (ignored).
      */
     placement?: pulumi.Input<string>;
     /**
@@ -2548,7 +2582,7 @@ export interface ServiceVclLoggingLogentry {
      */
     name: pulumi.Input<string>;
     /**
-     * Where in the generated VCL the logging call should be placed.
+     * Where in the generated VCL the logging call should be placed (ignored).
      */
     placement?: pulumi.Input<string>;
     /**
@@ -2583,7 +2617,7 @@ export interface ServiceVclLoggingLoggly {
      */
     name: pulumi.Input<string>;
     /**
-     * Where in the generated VCL the logging call should be placed. Can be `none` or `wafDebug`.
+     * Where in the generated VCL the logging call should be placed (ignored).
      */
     placement?: pulumi.Input<string>;
     /**
@@ -2610,7 +2644,7 @@ export interface ServiceVclLoggingLogshuttle {
      */
     name: pulumi.Input<string>;
     /**
-     * Where in the generated VCL the logging call should be placed. Can be `none` or `wafDebug`.
+     * Where in the generated VCL the logging call should be placed (ignored).
      */
     placement?: pulumi.Input<string>;
     /**
@@ -2641,7 +2675,7 @@ export interface ServiceVclLoggingNewrelic {
      */
     name: pulumi.Input<string>;
     /**
-     * Where in the generated VCL the logging call should be placed.
+     * Where in the generated VCL the logging call should be placed (ignored).
      */
     placement?: pulumi.Input<string>;
     /**
@@ -2672,7 +2706,7 @@ export interface ServiceVclLoggingNewrelicotlp {
      */
     name: pulumi.Input<string>;
     /**
-     * Where in the generated VCL the logging call should be placed.
+     * Where in the generated VCL the logging call should be placed (ignored).
      */
     placement?: pulumi.Input<string>;
     /**
@@ -2735,7 +2769,7 @@ export interface ServiceVclLoggingOpenstack {
      */
     period?: pulumi.Input<number>;
     /**
-     * Where in the generated VCL the logging call should be placed. Can be `none` or `wafDebug`.
+     * Where in the generated VCL the logging call should be placed (ignored).
      */
     placement?: pulumi.Input<string>;
     /**
@@ -2778,7 +2812,7 @@ export interface ServiceVclLoggingPapertrail {
      */
     name: pulumi.Input<string>;
     /**
-     * Where in the generated VCL the logging call should be placed. If not set, endpoints with `formatVersion` of 2 are placed in `vclLog` and those with `formatVersion` of 1 are placed in `vclDeliver`
+     * Where in the generated VCL the logging call should be placed. Ignored, but endpoints with `formatVersion` of 2 are placed in `vclLog` and those with `formatVersion` of 1 are placed in `vclDeliver`
      */
     placement?: pulumi.Input<string>;
     /**
@@ -2841,7 +2875,7 @@ export interface ServiceVclLoggingS3 {
      */
     period?: pulumi.Input<number>;
     /**
-     * Where in the generated VCL the logging call should be placed.
+     * Where in the generated VCL the logging call should be placed (ignored).
      */
     placement?: pulumi.Input<string>;
     /**
@@ -2896,7 +2930,7 @@ export interface ServiceVclLoggingScalyr {
      */
     name: pulumi.Input<string>;
     /**
-     * Where in the generated VCL the logging call should be placed.
+     * Where in the generated VCL the logging call should be placed (ignored).
      */
     placement?: pulumi.Input<string>;
     /**
@@ -2959,7 +2993,7 @@ export interface ServiceVclLoggingSftp {
      */
     period?: pulumi.Input<number>;
     /**
-     * Where in the generated VCL the logging call should be placed.
+     * Where in the generated VCL the logging call should be placed (ignored).
      */
     placement?: pulumi.Input<string>;
     /**
@@ -3006,7 +3040,7 @@ export interface ServiceVclLoggingSplunk {
      */
     name: pulumi.Input<string>;
     /**
-     * Where in the generated VCL the logging call should be placed
+     * Where in the generated VCL the logging call should be placed (ignored).
      */
     placement?: pulumi.Input<string>;
     /**
@@ -3061,7 +3095,7 @@ export interface ServiceVclLoggingSumologic {
      */
     name: pulumi.Input<string>;
     /**
-     * Where in the generated VCL the logging call should be placed.
+     * Where in the generated VCL the logging call should be placed (ignored).
      */
     placement?: pulumi.Input<string>;
     /**
@@ -3096,7 +3130,7 @@ export interface ServiceVclLoggingSyslog {
      */
     name: pulumi.Input<string>;
     /**
-     * Where in the generated VCL the logging call should be placed.
+     * Where in the generated VCL the logging call should be placed (ignored).
      */
     placement?: pulumi.Input<string>;
     /**
@@ -3143,6 +3177,10 @@ export interface ServiceVclProductEnablement {
      */
     brotliCompression?: pulumi.Input<boolean>;
     /**
+     * DDoS Protection product
+     */
+    ddosProtection?: pulumi.Input<inputs.ServiceVclProductEnablementDdosProtection>;
+    /**
      * Enable Domain Inspector support
      */
     domainInspector?: pulumi.Input<boolean>;
@@ -3159,6 +3197,10 @@ export interface ServiceVclProductEnablement {
      */
     name?: pulumi.Input<string>;
     /**
+     * Next-Gen WAF product
+     */
+    ngwaf?: pulumi.Input<inputs.ServiceVclProductEnablementNgwaf>;
+    /**
      * Enable Origin Inspector support
      */
     originInspector?: pulumi.Input<boolean>;
@@ -3166,6 +3208,32 @@ export interface ServiceVclProductEnablement {
      * Enable WebSockets support
      */
     websockets?: pulumi.Input<boolean>;
+}
+
+export interface ServiceVclProductEnablementDdosProtection {
+    /**
+     * Enable DDoS Protection support
+     */
+    enabled: pulumi.Input<boolean>;
+    /**
+     * Operation mode
+     */
+    mode: pulumi.Input<string>;
+}
+
+export interface ServiceVclProductEnablementNgwaf {
+    /**
+     * Enable Next-Gen WAF support
+     */
+    enabled: pulumi.Input<boolean>;
+    /**
+     * The percentage of traffic to inspect
+     */
+    trafficRamp?: pulumi.Input<number>;
+    /**
+     * The workspace to link
+     */
+    workspaceId: pulumi.Input<string>;
 }
 
 export interface ServiceVclRateLimiter {
@@ -3354,63 +3422,6 @@ export interface ServiceVclVcl {
      * A unique name for this configuration block. It is important to note that changing this attribute will delete and recreate the resource
      */
     name: pulumi.Input<string>;
-}
-
-export interface ServiceVclWaf {
-    /**
-     * A flag used to completely disable a Web Application Firewall. This is intended to only be used in an emergency
-     */
-    disabled?: pulumi.Input<boolean>;
-    /**
-     * The `condition` to determine which requests will be run past your Fastly WAF. This `condition` must be of type `PREFETCH`. For detailed information about Conditionals, see [Fastly's Documentation on Conditionals](https://docs.fastly.com/en/guides/using-conditions)
-     */
-    prefetchCondition?: pulumi.Input<string>;
-    /**
-     * The name of the response object used by the Web Application Firewall
-     */
-    responseObject: pulumi.Input<string>;
-    /**
-     * The ID of the WAF
-     */
-    wafId?: pulumi.Input<string>;
-}
-
-export interface ServiceWafConfigurationRule {
-    /**
-     * The Web Application Firewall rule's modsecurity ID
-     */
-    modsecRuleId: pulumi.Input<number>;
-    /**
-     * The Web Application Firewall rule's revision. The latest revision will be used if this is not provided
-     */
-    revision?: pulumi.Input<number>;
-    /**
-     * The Web Application Firewall rule's status. Allowed values are (`log`, `block` and `score`)
-     */
-    status: pulumi.Input<string>;
-}
-
-export interface ServiceWafConfigurationRuleExclusion {
-    /**
-     * A conditional expression in VCL used to determine if the condition is met
-     */
-    condition: pulumi.Input<string>;
-    /**
-     * The type of rule exclusion. Values are `rule` to exclude the specified rule(s), or `waf` to disable the Web Application Firewall
-     */
-    exclusionType: pulumi.Input<string>;
-    /**
-     * Set of modsecurity IDs to be excluded. No rules should be provided when `exclusionType` is `waf`. The rules need to be configured on the Web Application Firewall to be excluded
-     */
-    modsecRuleIds?: pulumi.Input<pulumi.Input<number>[]>;
-    /**
-     * The name of rule exclusion
-     */
-    name: pulumi.Input<string>;
-    /**
-     * The numeric ID assigned to the WAF Rule Exclusion
-     */
-    number?: pulumi.Input<number>;
 }
 
 export interface TlsSubscriptionManagedDnsChallenge {

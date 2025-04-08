@@ -40,7 +40,7 @@ public final class ServiceVclLoggingSyslog {
      */
     private String name;
     /**
-     * @return Where in the generated VCL the logging call should be placed.
+     * @return Where in the generated VCL the logging call should be placed (ignored).
      * 
      */
     private @Nullable String placement;
@@ -122,7 +122,7 @@ public final class ServiceVclLoggingSyslog {
         return this.name;
     }
     /**
-     * @return Where in the generated VCL the logging call should be placed.
+     * @return Where in the generated VCL the logging call should be placed (ignored).
      * 
      */
     public Optional<String> placement() {

@@ -140,11 +140,6 @@ export const getVclSnippets: typeof import("./getVclSnippets").getVclSnippets = 
 export const getVclSnippetsOutput: typeof import("./getVclSnippets").getVclSnippetsOutput = null as any;
 utilities.lazyLoad(exports, ["getVclSnippets","getVclSnippetsOutput"], () => require("./getVclSnippets"));
 
-export { GetWafRulesArgs, GetWafRulesResult, GetWafRulesOutputArgs } from "./getWafRules";
-export const getWafRules: typeof import("./getWafRules").getWafRules = null as any;
-export const getWafRulesOutput: typeof import("./getWafRules").getWafRulesOutput = null as any;
-utilities.lazyLoad(exports, ["getWafRules","getWafRulesOutput"], () => require("./getWafRules"));
-
 export { IntegrationArgs, IntegrationState } from "./integration";
 export type Integration = import("./integration").Integration;
 export const Integration: typeof import("./integration").Integration = null as any;
@@ -154,6 +149,11 @@ export { KvstoreArgs, KvstoreState } from "./kvstore";
 export type Kvstore = import("./kvstore").Kvstore;
 export const Kvstore: typeof import("./kvstore").Kvstore = null as any;
 utilities.lazyLoad(exports, ["Kvstore"], () => require("./kvstore"));
+
+export { ObjectStorageAccessKeysArgs, ObjectStorageAccessKeysState } from "./objectStorageAccessKeys";
+export type ObjectStorageAccessKeys = import("./objectStorageAccessKeys").ObjectStorageAccessKeys;
+export const ObjectStorageAccessKeys: typeof import("./objectStorageAccessKeys").ObjectStorageAccessKeys = null as any;
+utilities.lazyLoad(exports, ["ObjectStorageAccessKeys"], () => require("./objectStorageAccessKeys"));
 
 export { ProviderArgs } from "./provider";
 export type Provider = import("./provider").Provider;
@@ -194,11 +194,6 @@ export { ServiceVclArgs, ServiceVclState } from "./serviceVcl";
 export type ServiceVcl = import("./serviceVcl").ServiceVcl;
 export const ServiceVcl: typeof import("./serviceVcl").ServiceVcl = null as any;
 utilities.lazyLoad(exports, ["ServiceVcl"], () => require("./serviceVcl"));
-
-export { ServiceWafConfigurationArgs, ServiceWafConfigurationState } from "./serviceWafConfiguration";
-export type ServiceWafConfiguration = import("./serviceWafConfiguration").ServiceWafConfiguration;
-export const ServiceWafConfiguration: typeof import("./serviceWafConfiguration").ServiceWafConfiguration = null as any;
-utilities.lazyLoad(exports, ["ServiceWafConfiguration"], () => require("./serviceWafConfiguration"));
 
 export { TlsActivationArgs, TlsActivationState } from "./tlsActivation";
 export type TlsActivation = import("./tlsActivation").TlsActivation;
@@ -268,6 +263,8 @@ const _module = {
                 return new Integration(name, <any>undefined, { urn })
             case "fastly:index/kvstore:Kvstore":
                 return new Kvstore(name, <any>undefined, { urn })
+            case "fastly:index/objectStorageAccessKeys:ObjectStorageAccessKeys":
+                return new ObjectStorageAccessKeys(name, <any>undefined, { urn })
             case "fastly:index/secretstore:Secretstore":
                 return new Secretstore(name, <any>undefined, { urn })
             case "fastly:index/serviceACLEntries:ServiceACLEntries":
@@ -282,8 +279,6 @@ const _module = {
                 return new ServiceDynamicSnippetContent(name, <any>undefined, { urn })
             case "fastly:index/serviceVcl:ServiceVcl":
                 return new ServiceVcl(name, <any>undefined, { urn })
-            case "fastly:index/serviceWafConfiguration:ServiceWafConfiguration":
-                return new ServiceWafConfiguration(name, <any>undefined, { urn })
             case "fastly:index/tlsActivation:TlsActivation":
                 return new TlsActivation(name, <any>undefined, { urn })
             case "fastly:index/tlsCertificate:TlsCertificate":
@@ -312,6 +307,7 @@ pulumi.runtime.registerResourceModule("fastly", "index/customDashboard", _module
 pulumi.runtime.registerResourceModule("fastly", "index/domainV1", _module)
 pulumi.runtime.registerResourceModule("fastly", "index/integration", _module)
 pulumi.runtime.registerResourceModule("fastly", "index/kvstore", _module)
+pulumi.runtime.registerResourceModule("fastly", "index/objectStorageAccessKeys", _module)
 pulumi.runtime.registerResourceModule("fastly", "index/secretstore", _module)
 pulumi.runtime.registerResourceModule("fastly", "index/serviceACLEntries", _module)
 pulumi.runtime.registerResourceModule("fastly", "index/serviceAuthorization", _module)
@@ -319,7 +315,6 @@ pulumi.runtime.registerResourceModule("fastly", "index/serviceCompute", _module)
 pulumi.runtime.registerResourceModule("fastly", "index/serviceDictionaryItems", _module)
 pulumi.runtime.registerResourceModule("fastly", "index/serviceDynamicSnippetContent", _module)
 pulumi.runtime.registerResourceModule("fastly", "index/serviceVcl", _module)
-pulumi.runtime.registerResourceModule("fastly", "index/serviceWafConfiguration", _module)
 pulumi.runtime.registerResourceModule("fastly", "index/tlsActivation", _module)
 pulumi.runtime.registerResourceModule("fastly", "index/tlsCertificate", _module)
 pulumi.runtime.registerResourceModule("fastly", "index/tlsMutualAuthentication", _module)

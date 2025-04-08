@@ -246,21 +246,6 @@ export interface GetVclSnippetsVclSnippet {
     type: string;
 }
 
-export interface GetWafRulesRule {
-    /**
-     * The modsecurity rule's latest revision.
-     */
-    latestRevisionNumber: number;
-    /**
-     * The modsecurity rule ID.
-     */
-    modsecRuleId: number;
-    /**
-     * The modsecurity rule's type.
-     */
-    type: string;
-}
-
 export interface ServiceACLEntriesEntry {
     /**
      * A personal freeform descriptive note
@@ -1427,6 +1412,10 @@ export interface ServiceComputePackage {
 
 export interface ServiceComputeProductEnablement {
     /**
+     * DDoS Protection product
+     */
+    ddosProtection?: outputs.ServiceComputeProductEnablementDdosProtection;
+    /**
      * Enable Fanout support
      */
     fanout?: boolean;
@@ -1439,9 +1428,39 @@ export interface ServiceComputeProductEnablement {
      */
     name?: string;
     /**
+     * Next-Gen WAF product
+     */
+    ngwaf?: outputs.ServiceComputeProductEnablementNgwaf;
+    /**
      * Enable WebSockets support
      */
     websockets?: boolean;
+}
+
+export interface ServiceComputeProductEnablementDdosProtection {
+    /**
+     * Enable DDoS Protection support
+     */
+    enabled: boolean;
+    /**
+     * Operation mode
+     */
+    mode: string;
+}
+
+export interface ServiceComputeProductEnablementNgwaf {
+    /**
+     * Enable Next-Gen WAF support
+     */
+    enabled: boolean;
+    /**
+     * The percentage of traffic to inspect
+     */
+    trafficRamp?: number;
+    /**
+     * The workspace to link
+     */
+    workspaceId: string;
 }
 
 export interface ServiceComputeResourceLink {
@@ -1890,7 +1909,7 @@ export interface ServiceVclLoggingBigquery {
      */
     name: string;
     /**
-     * Where in the generated VCL the logging call should be placed.
+     * Where in the generated VCL the logging call should be placed (ignored).
      */
     placement?: string;
     /**
@@ -1961,7 +1980,7 @@ export interface ServiceVclLoggingBlobstorage {
      */
     period?: number;
     /**
-     * Where in the generated VCL the logging call should be placed
+     * Where in the generated VCL the logging call should be placed (ignored).
      */
     placement?: string;
     /**
@@ -2024,7 +2043,7 @@ export interface ServiceVclLoggingCloudfile {
      */
     period?: number;
     /**
-     * Where in the generated VCL the logging call should be placed. Can be `none` or `wafDebug`.
+     * Where in the generated VCL the logging call should be placed (ignored).
      */
     placement?: string;
     /**
@@ -2063,7 +2082,7 @@ export interface ServiceVclLoggingDatadog {
      */
     name: string;
     /**
-     * Where in the generated VCL the logging call should be placed.
+     * Where in the generated VCL the logging call should be placed (ignored).
      */
     placement?: string;
     /**
@@ -2126,7 +2145,7 @@ export interface ServiceVclLoggingDigitalocean {
      */
     period?: number;
     /**
-     * Where in the generated VCL the logging call should be placed. Can be `none` or `wafDebug`.
+     * Where in the generated VCL the logging call should be placed (ignored).
      */
     placement?: string;
     /**
@@ -2173,7 +2192,7 @@ export interface ServiceVclLoggingElasticsearch {
      */
     pipeline?: string;
     /**
-     * Where in the generated VCL the logging call should be placed.
+     * Where in the generated VCL the logging call should be placed (ignored).
      */
     placement?: string;
     /**
@@ -2256,7 +2275,7 @@ export interface ServiceVclLoggingFtp {
      */
     period?: number;
     /**
-     * Where in the generated VCL the logging call should be placed.
+     * Where in the generated VCL the logging call should be placed (ignored).
      */
     placement?: string;
     /**
@@ -2323,7 +2342,7 @@ export interface ServiceVclLoggingGc {
      */
     period?: number;
     /**
-     * Where in the generated VCL the logging call should be placed.
+     * Where in the generated VCL the logging call should be placed (ignored).
      */
     placement?: string;
     /**
@@ -2366,7 +2385,7 @@ export interface ServiceVclLoggingGooglepubsub {
      */
     name: string;
     /**
-     * Where in the generated VCL the logging call should be placed.
+     * Where in the generated VCL the logging call should be placed (ignored).
      */
     placement?: string;
     /**
@@ -2409,7 +2428,7 @@ export interface ServiceVclLoggingGrafanacloudlog {
      */
     name: string;
     /**
-     * Where in the generated VCL the logging call should be placed.
+     * Where in the generated VCL the logging call should be placed (ignored).
      */
     placement?: string;
     /**
@@ -2444,7 +2463,7 @@ export interface ServiceVclLoggingHerokus {
      */
     name: string;
     /**
-     * Where in the generated VCL the logging call should be placed. Can be `none` or `wafDebug`.
+     * Where in the generated VCL the logging call should be placed (ignored).
      */
     placement?: string;
     /**
@@ -2479,7 +2498,7 @@ export interface ServiceVclLoggingHoneycomb {
      */
     name: string;
     /**
-     * Where in the generated VCL the logging call should be placed. Can be `none` or `wafDebug`.
+     * Where in the generated VCL the logging call should be placed (ignored).
      */
     placement?: string;
     /**
@@ -2530,7 +2549,7 @@ export interface ServiceVclLoggingHttp {
      */
     name: string;
     /**
-     * Where in the generated VCL the logging call should be placed
+     * Where in the generated VCL the logging call should be placed (ignored).
      */
     placement?: string;
     /**
@@ -2601,7 +2620,7 @@ export interface ServiceVclLoggingKafka {
      */
     password?: string;
     /**
-     * Where in the generated VCL the logging call should be placed.
+     * Where in the generated VCL the logging call should be placed (ignored).
      */
     placement?: string;
     /**
@@ -2668,7 +2687,7 @@ export interface ServiceVclLoggingKinese {
      */
     name: string;
     /**
-     * Where in the generated VCL the logging call should be placed. Can be `none` or `wafDebug`.
+     * Where in the generated VCL the logging call should be placed (ignored).
      */
     placement?: string;
     /**
@@ -2703,7 +2722,7 @@ export interface ServiceVclLoggingLogentry {
      */
     name: string;
     /**
-     * Where in the generated VCL the logging call should be placed.
+     * Where in the generated VCL the logging call should be placed (ignored).
      */
     placement?: string;
     /**
@@ -2738,7 +2757,7 @@ export interface ServiceVclLoggingLoggly {
      */
     name: string;
     /**
-     * Where in the generated VCL the logging call should be placed. Can be `none` or `wafDebug`.
+     * Where in the generated VCL the logging call should be placed (ignored).
      */
     placement?: string;
     /**
@@ -2765,7 +2784,7 @@ export interface ServiceVclLoggingLogshuttle {
      */
     name: string;
     /**
-     * Where in the generated VCL the logging call should be placed. Can be `none` or `wafDebug`.
+     * Where in the generated VCL the logging call should be placed (ignored).
      */
     placement?: string;
     /**
@@ -2796,7 +2815,7 @@ export interface ServiceVclLoggingNewrelic {
      */
     name: string;
     /**
-     * Where in the generated VCL the logging call should be placed.
+     * Where in the generated VCL the logging call should be placed (ignored).
      */
     placement?: string;
     /**
@@ -2827,7 +2846,7 @@ export interface ServiceVclLoggingNewrelicotlp {
      */
     name: string;
     /**
-     * Where in the generated VCL the logging call should be placed.
+     * Where in the generated VCL the logging call should be placed (ignored).
      */
     placement?: string;
     /**
@@ -2890,7 +2909,7 @@ export interface ServiceVclLoggingOpenstack {
      */
     period?: number;
     /**
-     * Where in the generated VCL the logging call should be placed. Can be `none` or `wafDebug`.
+     * Where in the generated VCL the logging call should be placed (ignored).
      */
     placement?: string;
     /**
@@ -2933,7 +2952,7 @@ export interface ServiceVclLoggingPapertrail {
      */
     name: string;
     /**
-     * Where in the generated VCL the logging call should be placed. If not set, endpoints with `formatVersion` of 2 are placed in `vclLog` and those with `formatVersion` of 1 are placed in `vclDeliver`
+     * Where in the generated VCL the logging call should be placed. Ignored, but endpoints with `formatVersion` of 2 are placed in `vclLog` and those with `formatVersion` of 1 are placed in `vclDeliver`
      */
     placement?: string;
     /**
@@ -2996,7 +3015,7 @@ export interface ServiceVclLoggingS3 {
      */
     period?: number;
     /**
-     * Where in the generated VCL the logging call should be placed.
+     * Where in the generated VCL the logging call should be placed (ignored).
      */
     placement?: string;
     /**
@@ -3051,7 +3070,7 @@ export interface ServiceVclLoggingScalyr {
      */
     name: string;
     /**
-     * Where in the generated VCL the logging call should be placed.
+     * Where in the generated VCL the logging call should be placed (ignored).
      */
     placement?: string;
     /**
@@ -3114,7 +3133,7 @@ export interface ServiceVclLoggingSftp {
      */
     period?: number;
     /**
-     * Where in the generated VCL the logging call should be placed.
+     * Where in the generated VCL the logging call should be placed (ignored).
      */
     placement?: string;
     /**
@@ -3161,7 +3180,7 @@ export interface ServiceVclLoggingSplunk {
      */
     name: string;
     /**
-     * Where in the generated VCL the logging call should be placed
+     * Where in the generated VCL the logging call should be placed (ignored).
      */
     placement?: string;
     /**
@@ -3216,7 +3235,7 @@ export interface ServiceVclLoggingSumologic {
      */
     name: string;
     /**
-     * Where in the generated VCL the logging call should be placed.
+     * Where in the generated VCL the logging call should be placed (ignored).
      */
     placement?: string;
     /**
@@ -3251,7 +3270,7 @@ export interface ServiceVclLoggingSyslog {
      */
     name: string;
     /**
-     * Where in the generated VCL the logging call should be placed.
+     * Where in the generated VCL the logging call should be placed (ignored).
      */
     placement?: string;
     /**
@@ -3298,6 +3317,10 @@ export interface ServiceVclProductEnablement {
      */
     brotliCompression?: boolean;
     /**
+     * DDoS Protection product
+     */
+    ddosProtection?: outputs.ServiceVclProductEnablementDdosProtection;
+    /**
      * Enable Domain Inspector support
      */
     domainInspector?: boolean;
@@ -3314,6 +3337,10 @@ export interface ServiceVclProductEnablement {
      */
     name?: string;
     /**
+     * Next-Gen WAF product
+     */
+    ngwaf?: outputs.ServiceVclProductEnablementNgwaf;
+    /**
      * Enable Origin Inspector support
      */
     originInspector?: boolean;
@@ -3321,6 +3348,32 @@ export interface ServiceVclProductEnablement {
      * Enable WebSockets support
      */
     websockets?: boolean;
+}
+
+export interface ServiceVclProductEnablementDdosProtection {
+    /**
+     * Enable DDoS Protection support
+     */
+    enabled: boolean;
+    /**
+     * Operation mode
+     */
+    mode: string;
+}
+
+export interface ServiceVclProductEnablementNgwaf {
+    /**
+     * Enable Next-Gen WAF support
+     */
+    enabled: boolean;
+    /**
+     * The percentage of traffic to inspect
+     */
+    trafficRamp?: number;
+    /**
+     * The workspace to link
+     */
+    workspaceId: string;
 }
 
 export interface ServiceVclRateLimiter {
@@ -3509,63 +3562,6 @@ export interface ServiceVclVcl {
      * A unique name for this configuration block. It is important to note that changing this attribute will delete and recreate the resource
      */
     name: string;
-}
-
-export interface ServiceVclWaf {
-    /**
-     * A flag used to completely disable a Web Application Firewall. This is intended to only be used in an emergency
-     */
-    disabled?: boolean;
-    /**
-     * The `condition` to determine which requests will be run past your Fastly WAF. This `condition` must be of type `PREFETCH`. For detailed information about Conditionals, see [Fastly's Documentation on Conditionals](https://docs.fastly.com/en/guides/using-conditions)
-     */
-    prefetchCondition?: string;
-    /**
-     * The name of the response object used by the Web Application Firewall
-     */
-    responseObject: string;
-    /**
-     * The ID of the WAF
-     */
-    wafId: string;
-}
-
-export interface ServiceWafConfigurationRule {
-    /**
-     * The Web Application Firewall rule's modsecurity ID
-     */
-    modsecRuleId: number;
-    /**
-     * The Web Application Firewall rule's revision. The latest revision will be used if this is not provided
-     */
-    revision: number;
-    /**
-     * The Web Application Firewall rule's status. Allowed values are (`log`, `block` and `score`)
-     */
-    status: string;
-}
-
-export interface ServiceWafConfigurationRuleExclusion {
-    /**
-     * A conditional expression in VCL used to determine if the condition is met
-     */
-    condition: string;
-    /**
-     * The type of rule exclusion. Values are `rule` to exclude the specified rule(s), or `waf` to disable the Web Application Firewall
-     */
-    exclusionType: string;
-    /**
-     * Set of modsecurity IDs to be excluded. No rules should be provided when `exclusionType` is `waf`. The rules need to be configured on the Web Application Firewall to be excluded
-     */
-    modsecRuleIds?: number[];
-    /**
-     * The name of rule exclusion
-     */
-    name: string;
-    /**
-     * The numeric ID assigned to the WAF Rule Exclusion
-     */
-    number: number;
 }
 
 export interface TlsSubscriptionManagedDnsChallenge {

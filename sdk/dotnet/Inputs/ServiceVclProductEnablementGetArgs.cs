@@ -25,6 +25,12 @@ namespace Pulumi.Fastly.Inputs
         public Input<bool>? BrotliCompression { get; set; }
 
         /// <summary>
+        /// DDoS Protection product
+        /// </summary>
+        [Input("ddosProtection")]
+        public Input<Inputs.ServiceVclProductEnablementDdosProtectionGetArgs>? DdosProtection { get; set; }
+
+        /// <summary>
         /// Enable Domain Inspector support
         /// </summary>
         [Input("domainInspector")]
@@ -47,6 +53,12 @@ namespace Pulumi.Fastly.Inputs
         /// </summary>
         [Input("name")]
         public Input<string>? Name { get; set; }
+
+        /// <summary>
+        /// Next-Gen WAF product
+        /// </summary>
+        [Input("ngwaf")]
+        public Input<Inputs.ServiceVclProductEnablementNgwafGetArgs>? Ngwaf { get; set; }
 
         /// <summary>
         /// Enable Origin Inspector support

@@ -44,7 +44,7 @@ public final class ServiceVclLoggingElasticsearch {
      */
     private @Nullable String pipeline;
     /**
-     * @return Where in the generated VCL the logging call should be placed.
+     * @return Where in the generated VCL the logging call should be placed (ignored).
      * 
      */
     private @Nullable String placement;
@@ -138,7 +138,7 @@ public final class ServiceVclLoggingElasticsearch {
         return Optional.ofNullable(this.pipeline);
     }
     /**
-     * @return Where in the generated VCL the logging call should be placed.
+     * @return Where in the generated VCL the logging call should be placed (ignored).
      * 
      */
     public Optional<String> placement() {

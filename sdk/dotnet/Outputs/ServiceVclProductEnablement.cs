@@ -22,6 +22,10 @@ namespace Pulumi.Fastly.Outputs
         /// </summary>
         public readonly bool? BrotliCompression;
         /// <summary>
+        /// DDoS Protection product
+        /// </summary>
+        public readonly Outputs.ServiceVclProductEnablementDdosProtection? DdosProtection;
+        /// <summary>
         /// Enable Domain Inspector support
         /// </summary>
         public readonly bool? DomainInspector;
@@ -38,6 +42,10 @@ namespace Pulumi.Fastly.Outputs
         /// </summary>
         public readonly string? Name;
         /// <summary>
+        /// Next-Gen WAF product
+        /// </summary>
+        public readonly Outputs.ServiceVclProductEnablementNgwaf? Ngwaf;
+        /// <summary>
         /// Enable Origin Inspector support
         /// </summary>
         public readonly bool? OriginInspector;
@@ -52,6 +60,8 @@ namespace Pulumi.Fastly.Outputs
 
             bool? brotliCompression,
 
+            Outputs.ServiceVclProductEnablementDdosProtection? ddosProtection,
+
             bool? domainInspector,
 
             bool? imageOptimizer,
@@ -60,16 +70,20 @@ namespace Pulumi.Fastly.Outputs
 
             string? name,
 
+            Outputs.ServiceVclProductEnablementNgwaf? ngwaf,
+
             bool? originInspector,
 
             bool? websockets)
         {
             BotManagement = botManagement;
             BrotliCompression = brotliCompression;
+            DdosProtection = ddosProtection;
             DomainInspector = domainInspector;
             ImageOptimizer = imageOptimizer;
             LogExplorerInsights = logExplorerInsights;
             Name = name;
+            Ngwaf = ngwaf;
             OriginInspector = originInspector;
             Websockets = websockets;
         }

@@ -97,6 +97,10 @@ __all__ = [
     'ServiceComputePackageArgsDict',
     'ServiceComputeProductEnablementArgs',
     'ServiceComputeProductEnablementArgsDict',
+    'ServiceComputeProductEnablementDdosProtectionArgs',
+    'ServiceComputeProductEnablementDdosProtectionArgsDict',
+    'ServiceComputeProductEnablementNgwafArgs',
+    'ServiceComputeProductEnablementNgwafArgsDict',
     'ServiceComputeResourceLinkArgs',
     'ServiceComputeResourceLinkArgsDict',
     'ServiceVclAclArgs',
@@ -181,6 +185,10 @@ __all__ = [
     'ServiceVclLoggingSyslogArgsDict',
     'ServiceVclProductEnablementArgs',
     'ServiceVclProductEnablementArgsDict',
+    'ServiceVclProductEnablementDdosProtectionArgs',
+    'ServiceVclProductEnablementDdosProtectionArgsDict',
+    'ServiceVclProductEnablementNgwafArgs',
+    'ServiceVclProductEnablementNgwafArgsDict',
     'ServiceVclRateLimiterArgs',
     'ServiceVclRateLimiterArgsDict',
     'ServiceVclRateLimiterResponseArgs',
@@ -193,12 +201,6 @@ __all__ = [
     'ServiceVclSnippetArgsDict',
     'ServiceVclVclArgs',
     'ServiceVclVclArgsDict',
-    'ServiceVclWafArgs',
-    'ServiceVclWafArgsDict',
-    'ServiceWafConfigurationRuleArgs',
-    'ServiceWafConfigurationRuleArgsDict',
-    'ServiceWafConfigurationRuleExclusionArgs',
-    'ServiceWafConfigurationRuleExclusionArgsDict',
     'TlsSubscriptionManagedDnsChallengeArgs',
     'TlsSubscriptionManagedDnsChallengeArgsDict',
     'TlsSubscriptionManagedHttpChallengeArgs',
@@ -6301,6 +6303,10 @@ class ServiceComputePackageArgs:
 
 if not MYPY:
     class ServiceComputeProductEnablementArgsDict(TypedDict):
+        ddos_protection: NotRequired[pulumi.Input['ServiceComputeProductEnablementDdosProtectionArgsDict']]
+        """
+        DDoS Protection product
+        """
         fanout: NotRequired[pulumi.Input[bool]]
         """
         Enable Fanout support
@@ -6313,6 +6319,10 @@ if not MYPY:
         """
         Used by the provider to identify modified settings (changing this value will force the entire block to be deleted, then recreated)
         """
+        ngwaf: NotRequired[pulumi.Input['ServiceComputeProductEnablementNgwafArgsDict']]
+        """
+        Next-Gen WAF product
+        """
         websockets: NotRequired[pulumi.Input[bool]]
         """
         Enable WebSockets support
@@ -6323,24 +6333,44 @@ elif False:
 @pulumi.input_type
 class ServiceComputeProductEnablementArgs:
     def __init__(__self__, *,
+                 ddos_protection: Optional[pulumi.Input['ServiceComputeProductEnablementDdosProtectionArgs']] = None,
                  fanout: Optional[pulumi.Input[bool]] = None,
                  log_explorer_insights: Optional[pulumi.Input[bool]] = None,
                  name: Optional[pulumi.Input[str]] = None,
+                 ngwaf: Optional[pulumi.Input['ServiceComputeProductEnablementNgwafArgs']] = None,
                  websockets: Optional[pulumi.Input[bool]] = None):
         """
+        :param pulumi.Input['ServiceComputeProductEnablementDdosProtectionArgs'] ddos_protection: DDoS Protection product
         :param pulumi.Input[bool] fanout: Enable Fanout support
         :param pulumi.Input[bool] log_explorer_insights: Enable Log Explorer & Insights
         :param pulumi.Input[str] name: Used by the provider to identify modified settings (changing this value will force the entire block to be deleted, then recreated)
+        :param pulumi.Input['ServiceComputeProductEnablementNgwafArgs'] ngwaf: Next-Gen WAF product
         :param pulumi.Input[bool] websockets: Enable WebSockets support
         """
+        if ddos_protection is not None:
+            pulumi.set(__self__, "ddos_protection", ddos_protection)
         if fanout is not None:
             pulumi.set(__self__, "fanout", fanout)
         if log_explorer_insights is not None:
             pulumi.set(__self__, "log_explorer_insights", log_explorer_insights)
         if name is not None:
             pulumi.set(__self__, "name", name)
+        if ngwaf is not None:
+            pulumi.set(__self__, "ngwaf", ngwaf)
         if websockets is not None:
             pulumi.set(__self__, "websockets", websockets)
+
+    @property
+    @pulumi.getter(name="ddosProtection")
+    def ddos_protection(self) -> Optional[pulumi.Input['ServiceComputeProductEnablementDdosProtectionArgs']]:
+        """
+        DDoS Protection product
+        """
+        return pulumi.get(self, "ddos_protection")
+
+    @ddos_protection.setter
+    def ddos_protection(self, value: Optional[pulumi.Input['ServiceComputeProductEnablementDdosProtectionArgs']]):
+        pulumi.set(self, "ddos_protection", value)
 
     @property
     @pulumi.getter
@@ -6380,6 +6410,18 @@ class ServiceComputeProductEnablementArgs:
 
     @property
     @pulumi.getter
+    def ngwaf(self) -> Optional[pulumi.Input['ServiceComputeProductEnablementNgwafArgs']]:
+        """
+        Next-Gen WAF product
+        """
+        return pulumi.get(self, "ngwaf")
+
+    @ngwaf.setter
+    def ngwaf(self, value: Optional[pulumi.Input['ServiceComputeProductEnablementNgwafArgs']]):
+        pulumi.set(self, "ngwaf", value)
+
+    @property
+    @pulumi.getter
     def websockets(self) -> Optional[pulumi.Input[bool]]:
         """
         Enable WebSockets support
@@ -6389,6 +6431,126 @@ class ServiceComputeProductEnablementArgs:
     @websockets.setter
     def websockets(self, value: Optional[pulumi.Input[bool]]):
         pulumi.set(self, "websockets", value)
+
+
+if not MYPY:
+    class ServiceComputeProductEnablementDdosProtectionArgsDict(TypedDict):
+        enabled: pulumi.Input[bool]
+        """
+        Enable DDoS Protection support
+        """
+        mode: pulumi.Input[str]
+        """
+        Operation mode
+        """
+elif False:
+    ServiceComputeProductEnablementDdosProtectionArgsDict: TypeAlias = Mapping[str, Any]
+
+@pulumi.input_type
+class ServiceComputeProductEnablementDdosProtectionArgs:
+    def __init__(__self__, *,
+                 enabled: pulumi.Input[bool],
+                 mode: pulumi.Input[str]):
+        """
+        :param pulumi.Input[bool] enabled: Enable DDoS Protection support
+        :param pulumi.Input[str] mode: Operation mode
+        """
+        pulumi.set(__self__, "enabled", enabled)
+        pulumi.set(__self__, "mode", mode)
+
+    @property
+    @pulumi.getter
+    def enabled(self) -> pulumi.Input[bool]:
+        """
+        Enable DDoS Protection support
+        """
+        return pulumi.get(self, "enabled")
+
+    @enabled.setter
+    def enabled(self, value: pulumi.Input[bool]):
+        pulumi.set(self, "enabled", value)
+
+    @property
+    @pulumi.getter
+    def mode(self) -> pulumi.Input[str]:
+        """
+        Operation mode
+        """
+        return pulumi.get(self, "mode")
+
+    @mode.setter
+    def mode(self, value: pulumi.Input[str]):
+        pulumi.set(self, "mode", value)
+
+
+if not MYPY:
+    class ServiceComputeProductEnablementNgwafArgsDict(TypedDict):
+        enabled: pulumi.Input[bool]
+        """
+        Enable Next-Gen WAF support
+        """
+        workspace_id: pulumi.Input[str]
+        """
+        The workspace to link
+        """
+        traffic_ramp: NotRequired[pulumi.Input[int]]
+        """
+        The percentage of traffic to inspect
+        """
+elif False:
+    ServiceComputeProductEnablementNgwafArgsDict: TypeAlias = Mapping[str, Any]
+
+@pulumi.input_type
+class ServiceComputeProductEnablementNgwafArgs:
+    def __init__(__self__, *,
+                 enabled: pulumi.Input[bool],
+                 workspace_id: pulumi.Input[str],
+                 traffic_ramp: Optional[pulumi.Input[int]] = None):
+        """
+        :param pulumi.Input[bool] enabled: Enable Next-Gen WAF support
+        :param pulumi.Input[str] workspace_id: The workspace to link
+        :param pulumi.Input[int] traffic_ramp: The percentage of traffic to inspect
+        """
+        pulumi.set(__self__, "enabled", enabled)
+        pulumi.set(__self__, "workspace_id", workspace_id)
+        if traffic_ramp is not None:
+            pulumi.set(__self__, "traffic_ramp", traffic_ramp)
+
+    @property
+    @pulumi.getter
+    def enabled(self) -> pulumi.Input[bool]:
+        """
+        Enable Next-Gen WAF support
+        """
+        return pulumi.get(self, "enabled")
+
+    @enabled.setter
+    def enabled(self, value: pulumi.Input[bool]):
+        pulumi.set(self, "enabled", value)
+
+    @property
+    @pulumi.getter(name="workspaceId")
+    def workspace_id(self) -> pulumi.Input[str]:
+        """
+        The workspace to link
+        """
+        return pulumi.get(self, "workspace_id")
+
+    @workspace_id.setter
+    def workspace_id(self, value: pulumi.Input[str]):
+        pulumi.set(self, "workspace_id", value)
+
+    @property
+    @pulumi.getter(name="trafficRamp")
+    def traffic_ramp(self) -> Optional[pulumi.Input[int]]:
+        """
+        The percentage of traffic to inspect
+        """
+        return pulumi.get(self, "traffic_ramp")
+
+    @traffic_ramp.setter
+    def traffic_ramp(self, value: Optional[pulumi.Input[int]]):
+        pulumi.set(self, "traffic_ramp", value)
 
 
 if not MYPY:
@@ -8477,7 +8639,7 @@ if not MYPY:
         """
         placement: NotRequired[pulumi.Input[str]]
         """
-        Where in the generated VCL the logging call should be placed.
+        Where in the generated VCL the logging call should be placed (ignored).
         """
         response_condition: NotRequired[pulumi.Input[str]]
         """
@@ -8513,7 +8675,7 @@ class ServiceVclLoggingBigqueryArgs:
         :param pulumi.Input[str] table: The ID of your BigQuery table
         :param pulumi.Input[str] account_name: The google account name used to obtain temporary credentials (default none). You may optionally provide this via an environment variable, `FASTLY_GCS_ACCOUNT_NAME`.
         :param pulumi.Input[str] format: The logging format desired.
-        :param pulumi.Input[str] placement: Where in the generated VCL the logging call should be placed.
+        :param pulumi.Input[str] placement: Where in the generated VCL the logging call should be placed (ignored).
         :param pulumi.Input[str] response_condition: Name of a condition to apply this logging.
         :param pulumi.Input[str] template: BigQuery table name suffix template
         """
@@ -8634,7 +8796,7 @@ class ServiceVclLoggingBigqueryArgs:
     @pulumi.getter
     def placement(self) -> Optional[pulumi.Input[str]]:
         """
-        Where in the generated VCL the logging call should be placed.
+        Where in the generated VCL the logging call should be placed (ignored).
         """
         return pulumi.get(self, "placement")
 
@@ -8719,7 +8881,7 @@ if not MYPY:
         """
         placement: NotRequired[pulumi.Input[str]]
         """
-        Where in the generated VCL the logging call should be placed
+        Where in the generated VCL the logging call should be placed (ignored).
         """
         public_key: NotRequired[pulumi.Input[str]]
         """
@@ -8768,7 +8930,7 @@ class ServiceVclLoggingBlobstorageArgs:
         :param pulumi.Input[str] message_type: How the message should be formatted. Can be either `classic`, `loggly`, `logplex` or `blank`. Default is `classic`
         :param pulumi.Input[str] path: The path to upload logs to. Must end with a trailing slash. If this field is left empty, the files will be saved in the container's root path
         :param pulumi.Input[int] period: How frequently the logs should be transferred in seconds. Default `3600`
-        :param pulumi.Input[str] placement: Where in the generated VCL the logging call should be placed
+        :param pulumi.Input[str] placement: Where in the generated VCL the logging call should be placed (ignored).
         :param pulumi.Input[str] public_key: A PGP public key that Fastly will use to encrypt your log files before writing them to disk
         :param pulumi.Input[str] response_condition: The name of the condition to apply
         :param pulumi.Input[str] timestamp_format: The `strftime` specified timestamp formatting (default `%Y-%m-%dT%H:%M:%S.000`)
@@ -8950,7 +9112,7 @@ class ServiceVclLoggingBlobstorageArgs:
     @pulumi.getter
     def placement(self) -> Optional[pulumi.Input[str]]:
         """
-        Where in the generated VCL the logging call should be placed
+        Where in the generated VCL the logging call should be placed (ignored).
         """
         return pulumi.get(self, "placement")
 
@@ -9043,7 +9205,7 @@ if not MYPY:
         """
         placement: NotRequired[pulumi.Input[str]]
         """
-        Where in the generated VCL the logging call should be placed. Can be `none` or `waf_debug`.
+        Where in the generated VCL the logging call should be placed (ignored).
         """
         public_key: NotRequired[pulumi.Input[str]]
         """
@@ -9095,7 +9257,7 @@ class ServiceVclLoggingCloudfileArgs:
         :param pulumi.Input[str] message_type: How the message should be formatted. Can be either `classic`, `loggly`, `logplex` or `blank`. Default is `classic`
         :param pulumi.Input[str] path: The path to upload logs to
         :param pulumi.Input[int] period: How frequently log files are finalized so they can be available for reading (in seconds, default `3600`)
-        :param pulumi.Input[str] placement: Where in the generated VCL the logging call should be placed. Can be `none` or `waf_debug`.
+        :param pulumi.Input[str] placement: Where in the generated VCL the logging call should be placed (ignored).
         :param pulumi.Input[str] public_key: The PGP public key that Fastly will use to encrypt your log files before writing them to disk
         :param pulumi.Input[str] region: The region to stream logs to. One of: DFW (Dallas), ORD (Chicago), IAD (Northern Virginia), LON (London), SYD (Sydney), HKG (Hong Kong)
         :param pulumi.Input[str] response_condition: The name of an existing condition in the configured endpoint, or leave blank to always execute.
@@ -9266,7 +9428,7 @@ class ServiceVclLoggingCloudfileArgs:
     @pulumi.getter
     def placement(self) -> Optional[pulumi.Input[str]]:
         """
-        Where in the generated VCL the logging call should be placed. Can be `none` or `waf_debug`.
+        Where in the generated VCL the logging call should be placed (ignored).
         """
         return pulumi.get(self, "placement")
 
@@ -9343,7 +9505,7 @@ if not MYPY:
         """
         placement: NotRequired[pulumi.Input[str]]
         """
-        Where in the generated VCL the logging call should be placed.
+        Where in the generated VCL the logging call should be placed (ignored).
         """
         region: NotRequired[pulumi.Input[str]]
         """
@@ -9371,7 +9533,7 @@ class ServiceVclLoggingDatadogArgs:
         :param pulumi.Input[str] token: The API key from your Datadog account
         :param pulumi.Input[str] format: Apache-style string or VCL variables to use for log formatting.
         :param pulumi.Input[int] format_version: The version of the custom logging format used for the configured endpoint. Can be either `1` or `2`. (default: `2`).
-        :param pulumi.Input[str] placement: Where in the generated VCL the logging call should be placed.
+        :param pulumi.Input[str] placement: Where in the generated VCL the logging call should be placed (ignored).
         :param pulumi.Input[str] region: The region that log data will be sent to. One of `US` or `EU`. Defaults to `US` if undefined
         :param pulumi.Input[str] response_condition: The name of the condition to apply.
         """
@@ -9440,7 +9602,7 @@ class ServiceVclLoggingDatadogArgs:
     @pulumi.getter
     def placement(self) -> Optional[pulumi.Input[str]]:
         """
-        Where in the generated VCL the logging call should be placed.
+        Where in the generated VCL the logging call should be placed (ignored).
         """
         return pulumi.get(self, "placement")
 
@@ -9525,7 +9687,7 @@ if not MYPY:
         """
         placement: NotRequired[pulumi.Input[str]]
         """
-        Where in the generated VCL the logging call should be placed. Can be `none` or `waf_debug`.
+        Where in the generated VCL the logging call should be placed (ignored).
         """
         public_key: NotRequired[pulumi.Input[str]]
         """
@@ -9574,7 +9736,7 @@ class ServiceVclLoggingDigitaloceanArgs:
         :param pulumi.Input[str] message_type: How the message should be formatted. Can be either `classic`, `loggly`, `logplex` or `blank`. Default is `classic`
         :param pulumi.Input[str] path: The path to upload logs to
         :param pulumi.Input[int] period: How frequently log files are finalized so they can be available for reading (in seconds, default `3600`)
-        :param pulumi.Input[str] placement: Where in the generated VCL the logging call should be placed. Can be `none` or `waf_debug`.
+        :param pulumi.Input[str] placement: Where in the generated VCL the logging call should be placed (ignored).
         :param pulumi.Input[str] public_key: A PGP public key that Fastly will use to encrypt your log files before writing them to disk
         :param pulumi.Input[str] response_condition: The name of an existing condition in the configured endpoint, or leave blank to always execute.
         :param pulumi.Input[str] timestamp_format: The `strftime` specified timestamp formatting (default `%Y-%m-%dT%H:%M:%S.000`)
@@ -9756,7 +9918,7 @@ class ServiceVclLoggingDigitaloceanArgs:
     @pulumi.getter
     def placement(self) -> Optional[pulumi.Input[str]]:
         """
-        Where in the generated VCL the logging call should be placed. Can be `none` or `waf_debug`.
+        Where in the generated VCL the logging call should be placed (ignored).
         """
         return pulumi.get(self, "placement")
 
@@ -9833,7 +9995,7 @@ if not MYPY:
         """
         placement: NotRequired[pulumi.Input[str]]
         """
-        Where in the generated VCL the logging call should be placed.
+        Where in the generated VCL the logging call should be placed (ignored).
         """
         request_max_bytes: NotRequired[pulumi.Input[int]]
         """
@@ -9897,7 +10059,7 @@ class ServiceVclLoggingElasticsearchArgs:
         :param pulumi.Input[int] format_version: The version of the custom logging format used for the configured endpoint. Can be either 1 or 2. (default: 2).
         :param pulumi.Input[str] password: BasicAuth password for Elasticsearch
         :param pulumi.Input[str] pipeline: The ID of the Elasticsearch ingest pipeline to apply pre-process transformations to before indexing
-        :param pulumi.Input[str] placement: Where in the generated VCL the logging call should be placed.
+        :param pulumi.Input[str] placement: Where in the generated VCL the logging call should be placed (ignored).
         :param pulumi.Input[int] request_max_bytes: The maximum number of logs sent in one request. Defaults to `0` for unbounded
         :param pulumi.Input[int] request_max_entries: The maximum number of bytes sent in one request. Defaults to `0` for unbounded
         :param pulumi.Input[str] response_condition: The name of the condition to apply
@@ -10025,7 +10187,7 @@ class ServiceVclLoggingElasticsearchArgs:
     @pulumi.getter
     def placement(self) -> Optional[pulumi.Input[str]]:
         """
-        Where in the generated VCL the logging call should be placed.
+        Where in the generated VCL the logging call should be placed (ignored).
         """
         return pulumi.get(self, "placement")
 
@@ -10178,7 +10340,7 @@ if not MYPY:
         """
         placement: NotRequired[pulumi.Input[str]]
         """
-        Where in the generated VCL the logging call should be placed.
+        Where in the generated VCL the logging call should be placed (ignored).
         """
         port: NotRequired[pulumi.Input[int]]
         """
@@ -10230,7 +10392,7 @@ class ServiceVclLoggingFtpArgs:
         :param pulumi.Input[int] gzip_level: Level of Gzip compression from `0-9`. `0` means no compression. `1` is the fastest and the least compressed version, `9` is the slowest and the most compressed version. Default `0`
         :param pulumi.Input[str] message_type: How the message should be formatted. Can be either `classic`, `loggly`, `logplex` or `blank`. Default is `classic`
         :param pulumi.Input[int] period: How frequently the logs should be transferred, in seconds (Default `3600`)
-        :param pulumi.Input[str] placement: Where in the generated VCL the logging call should be placed.
+        :param pulumi.Input[str] placement: Where in the generated VCL the logging call should be placed (ignored).
         :param pulumi.Input[int] port: The port number. Default: `21`
         :param pulumi.Input[str] public_key: The PGP public key that Fastly will use to encrypt your log files before writing them to disk
         :param pulumi.Input[str] response_condition: The name of the condition to apply.
@@ -10400,7 +10562,7 @@ class ServiceVclLoggingFtpArgs:
     @pulumi.getter
     def placement(self) -> Optional[pulumi.Input[str]]:
         """
-        Where in the generated VCL the logging call should be placed.
+        Where in the generated VCL the logging call should be placed (ignored).
         """
         return pulumi.get(self, "placement")
 
@@ -10501,7 +10663,7 @@ if not MYPY:
         """
         placement: NotRequired[pulumi.Input[str]]
         """
-        Where in the generated VCL the logging call should be placed.
+        Where in the generated VCL the logging call should be placed (ignored).
         """
         project_id: NotRequired[pulumi.Input[str]]
         """
@@ -10556,7 +10718,7 @@ class ServiceVclLoggingGcArgs:
         :param pulumi.Input[str] message_type: How the message should be formatted. Can be either `classic`, `loggly`, `logplex` or `blank`. Default is `classic`
         :param pulumi.Input[str] path: Path to store the files. Must end with a trailing slash. If this field is left empty, the files will be saved in the bucket's root path
         :param pulumi.Input[int] period: How frequently the logs should be transferred, in seconds (Default 3600)
-        :param pulumi.Input[str] placement: Where in the generated VCL the logging call should be placed.
+        :param pulumi.Input[str] placement: Where in the generated VCL the logging call should be placed (ignored).
         :param pulumi.Input[str] project_id: The ID of your Google Cloud Platform project
         :param pulumi.Input[str] response_condition: Name of a condition to apply this logging.
         :param pulumi.Input[str] secret_key: The secret key associated with the target gcs bucket on your account. You may optionally provide this secret via an environment variable, `FASTLY_GCS_SECRET_KEY`. A typical format for the key is PEM format, containing actual newline characters where required
@@ -10718,7 +10880,7 @@ class ServiceVclLoggingGcArgs:
     @pulumi.getter
     def placement(self) -> Optional[pulumi.Input[str]]:
         """
-        Where in the generated VCL the logging call should be placed.
+        Where in the generated VCL the logging call should be placed (ignored).
         """
         return pulumi.get(self, "placement")
 
@@ -10823,7 +10985,7 @@ if not MYPY:
         """
         placement: NotRequired[pulumi.Input[str]]
         """
-        Where in the generated VCL the logging call should be placed.
+        Where in the generated VCL the logging call should be placed (ignored).
         """
         response_condition: NotRequired[pulumi.Input[str]]
         """
@@ -10854,7 +11016,7 @@ class ServiceVclLoggingGooglepubsubArgs:
         :param pulumi.Input[str] account_name: The google account name used to obtain temporary credentials (default none). You may optionally provide this via an environment variable, `FASTLY_GCS_ACCOUNT_NAME`.
         :param pulumi.Input[str] format: Apache style log formatting.
         :param pulumi.Input[int] format_version: The version of the custom logging format used for the configured endpoint. Can be either 1 or 2. (default: 2).
-        :param pulumi.Input[str] placement: Where in the generated VCL the logging call should be placed.
+        :param pulumi.Input[str] placement: Where in the generated VCL the logging call should be placed (ignored).
         :param pulumi.Input[str] response_condition: The name of an existing condition in the configured endpoint, or leave blank to always execute.
         """
         pulumi.set(__self__, "name", name)
@@ -10973,7 +11135,7 @@ class ServiceVclLoggingGooglepubsubArgs:
     @pulumi.getter
     def placement(self) -> Optional[pulumi.Input[str]]:
         """
-        Where in the generated VCL the logging call should be placed.
+        Where in the generated VCL the logging call should be placed (ignored).
         """
         return pulumi.get(self, "placement")
 
@@ -11026,7 +11188,7 @@ if not MYPY:
         """
         placement: NotRequired[pulumi.Input[str]]
         """
-        Where in the generated VCL the logging call should be placed.
+        Where in the generated VCL the logging call should be placed (ignored).
         """
         response_condition: NotRequired[pulumi.Input[str]]
         """
@@ -11055,7 +11217,7 @@ class ServiceVclLoggingGrafanacloudlogArgs:
         :param pulumi.Input[str] user: The Grafana User ID
         :param pulumi.Input[str] format: Apache-style string or VCL variables to use for log formatting.
         :param pulumi.Input[int] format_version: The version of the custom logging format used for the configured endpoint. Can be either `1` or `2`. (default: `2`).
-        :param pulumi.Input[str] placement: Where in the generated VCL the logging call should be placed.
+        :param pulumi.Input[str] placement: Where in the generated VCL the logging call should be placed (ignored).
         :param pulumi.Input[str] response_condition: The name of the condition to apply.
         """
         pulumi.set(__self__, "index", index)
@@ -11160,7 +11322,7 @@ class ServiceVclLoggingGrafanacloudlogArgs:
     @pulumi.getter
     def placement(self) -> Optional[pulumi.Input[str]]:
         """
-        Where in the generated VCL the logging call should be placed.
+        Where in the generated VCL the logging call should be placed (ignored).
         """
         return pulumi.get(self, "placement")
 
@@ -11205,7 +11367,7 @@ if not MYPY:
         """
         placement: NotRequired[pulumi.Input[str]]
         """
-        Where in the generated VCL the logging call should be placed. Can be `none` or `waf_debug`.
+        Where in the generated VCL the logging call should be placed (ignored).
         """
         response_condition: NotRequired[pulumi.Input[str]]
         """
@@ -11230,7 +11392,7 @@ class ServiceVclLoggingHerokusArgs:
         :param pulumi.Input[str] url: The URL to stream logs to
         :param pulumi.Input[str] format: Apache-style string or VCL variables to use for log formatting.
         :param pulumi.Input[int] format_version: The version of the custom logging format used for the configured endpoint. Can be either `1` or `2`. (default: `2`).
-        :param pulumi.Input[str] placement: Where in the generated VCL the logging call should be placed. Can be `none` or `waf_debug`.
+        :param pulumi.Input[str] placement: Where in the generated VCL the logging call should be placed (ignored).
         :param pulumi.Input[str] response_condition: The name of an existing condition in the configured endpoint, or leave blank to always execute.
         """
         pulumi.set(__self__, "name", name)
@@ -11309,7 +11471,7 @@ class ServiceVclLoggingHerokusArgs:
     @pulumi.getter
     def placement(self) -> Optional[pulumi.Input[str]]:
         """
-        Where in the generated VCL the logging call should be placed. Can be `none` or `waf_debug`.
+        Where in the generated VCL the logging call should be placed (ignored).
         """
         return pulumi.get(self, "placement")
 
@@ -11354,7 +11516,7 @@ if not MYPY:
         """
         placement: NotRequired[pulumi.Input[str]]
         """
-        Where in the generated VCL the logging call should be placed. Can be `none` or `waf_debug`.
+        Where in the generated VCL the logging call should be placed (ignored).
         """
         response_condition: NotRequired[pulumi.Input[str]]
         """
@@ -11379,7 +11541,7 @@ class ServiceVclLoggingHoneycombArgs:
         :param pulumi.Input[str] token: The Write Key from the Account page of your Honeycomb account
         :param pulumi.Input[str] format: Apache style log formatting. Your log must produce valid JSON that Honeycomb can ingest.
         :param pulumi.Input[int] format_version: The version of the custom logging format used for the configured endpoint. Can be either `1` or `2`. (default: `2`).
-        :param pulumi.Input[str] placement: Where in the generated VCL the logging call should be placed. Can be `none` or `waf_debug`.
+        :param pulumi.Input[str] placement: Where in the generated VCL the logging call should be placed (ignored).
         :param pulumi.Input[str] response_condition: The name of an existing condition in the configured endpoint, or leave blank to always execute.
         """
         pulumi.set(__self__, "dataset", dataset)
@@ -11458,7 +11620,7 @@ class ServiceVclLoggingHoneycombArgs:
     @pulumi.getter
     def placement(self) -> Optional[pulumi.Input[str]]:
         """
-        Where in the generated VCL the logging call should be placed. Can be `none` or `waf_debug`.
+        Where in the generated VCL the logging call should be placed (ignored).
         """
         return pulumi.get(self, "placement")
 
@@ -11523,7 +11685,7 @@ if not MYPY:
         """
         placement: NotRequired[pulumi.Input[str]]
         """
-        Where in the generated VCL the logging call should be placed
+        Where in the generated VCL the logging call should be placed (ignored).
         """
         request_max_bytes: NotRequired[pulumi.Input[int]]
         """
@@ -11588,7 +11750,7 @@ class ServiceVclLoggingHttpArgs:
         :param pulumi.Input[str] json_format: Formats log entries as JSON. Can be either disabled (`0`), array of json (`1`), or newline delimited json (`2`)
         :param pulumi.Input[str] message_type: How the message should be formatted. Can be either `classic`, `loggly`, `logplex` or `blank`. Default is `classic`
         :param pulumi.Input[str] method: HTTP method used for request. Can be either `POST` or `PUT`. Default `POST`
-        :param pulumi.Input[str] placement: Where in the generated VCL the logging call should be placed
+        :param pulumi.Input[str] placement: Where in the generated VCL the logging call should be placed (ignored).
         :param pulumi.Input[int] request_max_bytes: The maximum number of bytes sent in one request
         :param pulumi.Input[int] request_max_entries: The maximum number of logs sent in one request
         :param pulumi.Input[str] response_condition: The name of the condition to apply
@@ -11756,7 +11918,7 @@ class ServiceVclLoggingHttpArgs:
     @pulumi.getter
     def placement(self) -> Optional[pulumi.Input[str]]:
         """
-        Where in the generated VCL the logging call should be placed
+        Where in the generated VCL the logging call should be placed (ignored).
         """
         return pulumi.get(self, "placement")
 
@@ -11889,7 +12051,7 @@ if not MYPY:
         """
         placement: NotRequired[pulumi.Input[str]]
         """
-        Where in the generated VCL the logging call should be placed.
+        Where in the generated VCL the logging call should be placed (ignored).
         """
         request_max_bytes: NotRequired[pulumi.Input[int]]
         """
@@ -11962,7 +12124,7 @@ class ServiceVclLoggingKafkaArgs:
         :param pulumi.Input[int] format_version: The version of the custom logging format used for the configured endpoint. Can be either 1 or 2. (default: 2).
         :param pulumi.Input[bool] parse_log_keyvals: Enables parsing of key=value tuples from the beginning of a logline, turning them into record headers
         :param pulumi.Input[str] password: SASL Pass
-        :param pulumi.Input[str] placement: Where in the generated VCL the logging call should be placed.
+        :param pulumi.Input[str] placement: Where in the generated VCL the logging call should be placed (ignored).
         :param pulumi.Input[int] request_max_bytes: Maximum size of log batch, if non-zero. Defaults to 0 for unbounded
         :param pulumi.Input[str] required_acks: The Number of acknowledgements a leader must receive before a write is considered successful. One of: `1` (default) One server needs to respond. `0` No servers need to respond. `-1` Wait for all in-sync replicas to respond
         :param pulumi.Input[str] response_condition: The name of an existing condition in the configured endpoint, or leave blank to always execute.
@@ -12121,7 +12283,7 @@ class ServiceVclLoggingKafkaArgs:
     @pulumi.getter
     def placement(self) -> Optional[pulumi.Input[str]]:
         """
-        Where in the generated VCL the logging call should be placed.
+        Where in the generated VCL the logging call should be placed (ignored).
         """
         return pulumi.get(self, "placement")
 
@@ -12266,7 +12428,7 @@ if not MYPY:
         """
         placement: NotRequired[pulumi.Input[str]]
         """
-        Where in the generated VCL the logging call should be placed. Can be `none` or `waf_debug`.
+        Where in the generated VCL the logging call should be placed (ignored).
         """
         region: NotRequired[pulumi.Input[str]]
         """
@@ -12303,7 +12465,7 @@ class ServiceVclLoggingKineseArgs:
         :param pulumi.Input[str] format: Apache style log formatting.
         :param pulumi.Input[int] format_version: The version of the custom logging format used for the configured endpoint. Can be either `1` or `2`. (default: `2`).
         :param pulumi.Input[str] iam_role: The Amazon Resource Name (ARN) for the IAM role granting Fastly access to Kinesis. Not required if `access_key` and `secret_key` are provided.
-        :param pulumi.Input[str] placement: Where in the generated VCL the logging call should be placed. Can be `none` or `waf_debug`.
+        :param pulumi.Input[str] placement: Where in the generated VCL the logging call should be placed (ignored).
         :param pulumi.Input[str] region: The AWS region the stream resides in. (Default: `us-east-1`)
         :param pulumi.Input[str] response_condition: The name of an existing condition in the configured endpoint, or leave blank to always execute.
         :param pulumi.Input[str] secret_key: The AWS secret access key to authenticate with
@@ -12403,7 +12565,7 @@ class ServiceVclLoggingKineseArgs:
     @pulumi.getter
     def placement(self) -> Optional[pulumi.Input[str]]:
         """
-        Where in the generated VCL the logging call should be placed. Can be `none` or `waf_debug`.
+        Where in the generated VCL the logging call should be placed (ignored).
         """
         return pulumi.get(self, "placement")
 
@@ -12468,7 +12630,7 @@ if not MYPY:
         """
         placement: NotRequired[pulumi.Input[str]]
         """
-        Where in the generated VCL the logging call should be placed.
+        Where in the generated VCL the logging call should be placed (ignored).
         """
         port: NotRequired[pulumi.Input[int]]
         """
@@ -12501,7 +12663,7 @@ class ServiceVclLoggingLogentryArgs:
         :param pulumi.Input[str] token: Use token based authentication (https://logentries.com/doc/input-token/)
         :param pulumi.Input[str] format: Apache-style string or VCL variables to use for log formatting
         :param pulumi.Input[int] format_version: The version of the custom logging format used for the configured endpoint. Can be either 1 or 2. (Default: 2)
-        :param pulumi.Input[str] placement: Where in the generated VCL the logging call should be placed.
+        :param pulumi.Input[str] placement: Where in the generated VCL the logging call should be placed (ignored).
         :param pulumi.Input[int] port: The port number configured in Logentries
         :param pulumi.Input[str] response_condition: Name of blockAttributes condition to apply this logging.
         :param pulumi.Input[bool] use_tls: Whether to use TLS for secure logging
@@ -12573,7 +12735,7 @@ class ServiceVclLoggingLogentryArgs:
     @pulumi.getter
     def placement(self) -> Optional[pulumi.Input[str]]:
         """
-        Where in the generated VCL the logging call should be placed.
+        Where in the generated VCL the logging call should be placed (ignored).
         """
         return pulumi.get(self, "placement")
 
@@ -12638,7 +12800,7 @@ if not MYPY:
         """
         placement: NotRequired[pulumi.Input[str]]
         """
-        Where in the generated VCL the logging call should be placed. Can be `none` or `waf_debug`.
+        Where in the generated VCL the logging call should be placed (ignored).
         """
         response_condition: NotRequired[pulumi.Input[str]]
         """
@@ -12661,7 +12823,7 @@ class ServiceVclLoggingLogglyArgs:
         :param pulumi.Input[str] token: The token to use for authentication (https://www.loggly.com/docs/customer-token-authentication-token/).
         :param pulumi.Input[str] format: Apache-style string or VCL variables to use for log formatting.
         :param pulumi.Input[int] format_version: The version of the custom logging format used for the configured endpoint. Can be either `1` or `2`. (default: `2`).
-        :param pulumi.Input[str] placement: Where in the generated VCL the logging call should be placed. Can be `none` or `waf_debug`.
+        :param pulumi.Input[str] placement: Where in the generated VCL the logging call should be placed (ignored).
         :param pulumi.Input[str] response_condition: The name of an existing condition in the configured endpoint, or leave blank to always execute.
         """
         pulumi.set(__self__, "name", name)
@@ -12727,7 +12889,7 @@ class ServiceVclLoggingLogglyArgs:
     @pulumi.getter
     def placement(self) -> Optional[pulumi.Input[str]]:
         """
-        Where in the generated VCL the logging call should be placed. Can be `none` or `waf_debug`.
+        Where in the generated VCL the logging call should be placed (ignored).
         """
         return pulumi.get(self, "placement")
 
@@ -12772,7 +12934,7 @@ if not MYPY:
         """
         placement: NotRequired[pulumi.Input[str]]
         """
-        Where in the generated VCL the logging call should be placed. Can be `none` or `waf_debug`.
+        Where in the generated VCL the logging call should be placed (ignored).
         """
         response_condition: NotRequired[pulumi.Input[str]]
         """
@@ -12797,7 +12959,7 @@ class ServiceVclLoggingLogshuttleArgs:
         :param pulumi.Input[str] url: Your Log Shuttle endpoint URL
         :param pulumi.Input[str] format: Apache style log formatting.
         :param pulumi.Input[int] format_version: The version of the custom logging format used for the configured endpoint. Can be either `1` or `2`. (default: `2`).
-        :param pulumi.Input[str] placement: Where in the generated VCL the logging call should be placed. Can be `none` or `waf_debug`.
+        :param pulumi.Input[str] placement: Where in the generated VCL the logging call should be placed (ignored).
         :param pulumi.Input[str] response_condition: The name of an existing condition in the configured endpoint, or leave blank to always execute.
         """
         pulumi.set(__self__, "name", name)
@@ -12876,7 +13038,7 @@ class ServiceVclLoggingLogshuttleArgs:
     @pulumi.getter
     def placement(self) -> Optional[pulumi.Input[str]]:
         """
-        Where in the generated VCL the logging call should be placed. Can be `none` or `waf_debug`.
+        Where in the generated VCL the logging call should be placed (ignored).
         """
         return pulumi.get(self, "placement")
 
@@ -12917,7 +13079,7 @@ if not MYPY:
         """
         placement: NotRequired[pulumi.Input[str]]
         """
-        Where in the generated VCL the logging call should be placed.
+        Where in the generated VCL the logging call should be placed (ignored).
         """
         region: NotRequired[pulumi.Input[str]]
         """
@@ -12945,7 +13107,7 @@ class ServiceVclLoggingNewrelicArgs:
         :param pulumi.Input[str] token: The Insert API key from the Account page of your New Relic account
         :param pulumi.Input[str] format: Apache style log formatting. Your log must produce valid JSON that New Relic Logs can ingest.
         :param pulumi.Input[int] format_version: The version of the custom logging format used for the configured endpoint. Can be either `1` or `2`. (default: `2`).
-        :param pulumi.Input[str] placement: Where in the generated VCL the logging call should be placed.
+        :param pulumi.Input[str] placement: Where in the generated VCL the logging call should be placed (ignored).
         :param pulumi.Input[str] region: The region that log data will be sent to. Default: `US`
         :param pulumi.Input[str] response_condition: The name of the condition to apply.
         """
@@ -13014,7 +13176,7 @@ class ServiceVclLoggingNewrelicArgs:
     @pulumi.getter
     def placement(self) -> Optional[pulumi.Input[str]]:
         """
-        Where in the generated VCL the logging call should be placed.
+        Where in the generated VCL the logging call should be placed (ignored).
         """
         return pulumi.get(self, "placement")
 
@@ -13067,7 +13229,7 @@ if not MYPY:
         """
         placement: NotRequired[pulumi.Input[str]]
         """
-        Where in the generated VCL the logging call should be placed.
+        Where in the generated VCL the logging call should be placed (ignored).
         """
         region: NotRequired[pulumi.Input[str]]
         """
@@ -13100,7 +13262,7 @@ class ServiceVclLoggingNewrelicotlpArgs:
         :param pulumi.Input[str] token: The Insert API key from the Account page of your New Relic account
         :param pulumi.Input[str] format: Apache style log formatting. Your log must produce valid JSON that New Relic OTLP can ingest.
         :param pulumi.Input[int] format_version: The version of the custom logging format used for the configured endpoint. Can be either `1` or `2`. (default: `2`).
-        :param pulumi.Input[str] placement: Where in the generated VCL the logging call should be placed.
+        :param pulumi.Input[str] placement: Where in the generated VCL the logging call should be placed (ignored).
         :param pulumi.Input[str] region: The region that log data will be sent to. Default: `US`
         :param pulumi.Input[str] response_condition: The name of the condition to apply.
         :param pulumi.Input[str] url: The optional New Relic Trace Observer URL to stream logs to for Infinite Tracing.
@@ -13172,7 +13334,7 @@ class ServiceVclLoggingNewrelicotlpArgs:
     @pulumi.getter
     def placement(self) -> Optional[pulumi.Input[str]]:
         """
-        Where in the generated VCL the logging call should be placed.
+        Where in the generated VCL the logging call should be placed (ignored).
         """
         return pulumi.get(self, "placement")
 
@@ -13269,7 +13431,7 @@ if not MYPY:
         """
         placement: NotRequired[pulumi.Input[str]]
         """
-        Where in the generated VCL the logging call should be placed. Can be `none` or `waf_debug`.
+        Where in the generated VCL the logging call should be placed (ignored).
         """
         public_key: NotRequired[pulumi.Input[str]]
         """
@@ -13318,7 +13480,7 @@ class ServiceVclLoggingOpenstackArgs:
         :param pulumi.Input[str] message_type: How the message should be formatted. Can be either `classic`, `loggly`, `logplex` or `blank`. Default is `classic`
         :param pulumi.Input[str] path: Path to store the files. Must end with a trailing slash. If this field is left empty, the files will be saved in the bucket's root path
         :param pulumi.Input[int] period: How frequently the logs should be transferred, in seconds. Default `3600`
-        :param pulumi.Input[str] placement: Where in the generated VCL the logging call should be placed. Can be `none` or `waf_debug`.
+        :param pulumi.Input[str] placement: Where in the generated VCL the logging call should be placed (ignored).
         :param pulumi.Input[str] public_key: A PGP public key that Fastly will use to encrypt your log files before writing them to disk
         :param pulumi.Input[str] response_condition: The name of an existing condition in the configured endpoint, or leave blank to always execute.
         :param pulumi.Input[str] timestamp_format: The `strftime` specified timestamp formatting (default `%Y-%m-%dT%H:%M:%S.000`)
@@ -13499,7 +13661,7 @@ class ServiceVclLoggingOpenstackArgs:
     @pulumi.getter
     def placement(self) -> Optional[pulumi.Input[str]]:
         """
-        Where in the generated VCL the logging call should be placed. Can be `none` or `waf_debug`.
+        Where in the generated VCL the logging call should be placed (ignored).
         """
         return pulumi.get(self, "placement")
 
@@ -13568,7 +13730,7 @@ if not MYPY:
         """
         placement: NotRequired[pulumi.Input[str]]
         """
-        Where in the generated VCL the logging call should be placed. If not set, endpoints with `format_version` of 2 are placed in `vcl_log` and those with `format_version` of 1 are placed in `vcl_deliver`
+        Where in the generated VCL the logging call should be placed. Ignored, but endpoints with `format_version` of 2 are placed in `vcl_log` and those with `format_version` of 1 are placed in `vcl_deliver`
         """
         response_condition: NotRequired[pulumi.Input[str]]
         """
@@ -13593,7 +13755,7 @@ class ServiceVclLoggingPapertrailArgs:
         :param pulumi.Input[int] port: The port associated with the address where the Papertrail endpoint can be accessed
         :param pulumi.Input[str] format: A Fastly [log format string](https://docs.fastly.com/en/guides/custom-log-formats)
         :param pulumi.Input[int] format_version: The version of the custom logging format used for the configured endpoint. The logging call gets placed by default in `vcl_log` if `format_version` is set to `2` and in `vcl_deliver` if `format_version` is set to `1`
-        :param pulumi.Input[str] placement: Where in the generated VCL the logging call should be placed. If not set, endpoints with `format_version` of 2 are placed in `vcl_log` and those with `format_version` of 1 are placed in `vcl_deliver`
+        :param pulumi.Input[str] placement: Where in the generated VCL the logging call should be placed. Ignored, but endpoints with `format_version` of 2 are placed in `vcl_log` and those with `format_version` of 1 are placed in `vcl_deliver`
         :param pulumi.Input[str] response_condition: The name of an existing condition in the configured endpoint, or leave blank to always execute
         """
         pulumi.set(__self__, "address", address)
@@ -13672,7 +13834,7 @@ class ServiceVclLoggingPapertrailArgs:
     @pulumi.getter
     def placement(self) -> Optional[pulumi.Input[str]]:
         """
-        Where in the generated VCL the logging call should be placed. If not set, endpoints with `format_version` of 2 are placed in `vcl_log` and those with `format_version` of 1 are placed in `vcl_deliver`
+        Where in the generated VCL the logging call should be placed. Ignored, but endpoints with `format_version` of 2 are placed in `vcl_log` and those with `format_version` of 1 are placed in `vcl_deliver`
         """
         return pulumi.get(self, "placement")
 
@@ -13745,7 +13907,7 @@ if not MYPY:
         """
         placement: NotRequired[pulumi.Input[str]]
         """
-        Where in the generated VCL the logging call should be placed.
+        Where in the generated VCL the logging call should be placed (ignored).
         """
         public_key: NotRequired[pulumi.Input[str]]
         """
@@ -13824,7 +13986,7 @@ class ServiceVclLoggingS3Args:
         :param pulumi.Input[str] message_type: How the message should be formatted. Can be either `classic`, `loggly`, `logplex` or `blank`. Default is `classic`
         :param pulumi.Input[str] path: Path to store the files. Must end with a trailing slash. If this field is left empty, the files will be saved in the bucket's root path
         :param pulumi.Input[int] period: How frequently the logs should be transferred, in seconds. Default `3600`
-        :param pulumi.Input[str] placement: Where in the generated VCL the logging call should be placed.
+        :param pulumi.Input[str] placement: Where in the generated VCL the logging call should be placed (ignored).
         :param pulumi.Input[str] public_key: A PGP public key that Fastly will use to encrypt your log files before writing them to disk
         :param pulumi.Input[str] redundancy: The S3 storage class (redundancy level). Should be one of: `standard`, `intelligent_tiering`, `standard_ia`, `onezone_ia`, `glacier`, `glacier_ir`, `deep_archive`, or `reduced_redundancy`
         :param pulumi.Input[str] response_condition: Name of blockAttributes condition to apply this logging.
@@ -14026,7 +14188,7 @@ class ServiceVclLoggingS3Args:
     @pulumi.getter
     def placement(self) -> Optional[pulumi.Input[str]]:
         """
-        Where in the generated VCL the logging call should be placed.
+        Where in the generated VCL the logging call should be placed (ignored).
         """
         return pulumi.get(self, "placement")
 
@@ -14163,7 +14325,7 @@ if not MYPY:
         """
         placement: NotRequired[pulumi.Input[str]]
         """
-        Where in the generated VCL the logging call should be placed.
+        Where in the generated VCL the logging call should be placed (ignored).
         """
         project_id: NotRequired[pulumi.Input[str]]
         """
@@ -14196,7 +14358,7 @@ class ServiceVclLoggingScalyrArgs:
         :param pulumi.Input[str] token: The token to use for authentication (https://www.scalyr.com/keys)
         :param pulumi.Input[str] format: Apache style log formatting.
         :param pulumi.Input[int] format_version: The version of the custom logging format used for the configured endpoint. Can be either 1 or 2. (default: 2).
-        :param pulumi.Input[str] placement: Where in the generated VCL the logging call should be placed.
+        :param pulumi.Input[str] placement: Where in the generated VCL the logging call should be placed (ignored).
         :param pulumi.Input[str] project_id: The name of the logfile field sent to Scalyr
         :param pulumi.Input[str] region: The region that log data will be sent to. One of `US` or `EU`. Defaults to `US` if undefined
         :param pulumi.Input[str] response_condition: The name of an existing condition in the configured endpoint, or leave blank to always execute.
@@ -14268,7 +14430,7 @@ class ServiceVclLoggingScalyrArgs:
     @pulumi.getter
     def placement(self) -> Optional[pulumi.Input[str]]:
         """
-        Where in the generated VCL the logging call should be placed.
+        Where in the generated VCL the logging call should be placed (ignored).
         """
         return pulumi.get(self, "placement")
 
@@ -14365,7 +14527,7 @@ if not MYPY:
         """
         placement: NotRequired[pulumi.Input[str]]
         """
-        Where in the generated VCL the logging call should be placed.
+        Where in the generated VCL the logging call should be placed (ignored).
         """
         port: NotRequired[pulumi.Input[int]]
         """
@@ -14424,7 +14586,7 @@ class ServiceVclLoggingSftpArgs:
         :param pulumi.Input[str] message_type: How the message should be formatted. Can be either `classic`, `loggly`, `logplex` or `blank`. Default is `classic`
         :param pulumi.Input[str] password: The password for the server. If both `password` and `secret_key` are passed, `secret_key` will be preferred
         :param pulumi.Input[int] period: How frequently log files are finalized so they can be available for reading (in seconds, default `3600`)
-        :param pulumi.Input[str] placement: Where in the generated VCL the logging call should be placed.
+        :param pulumi.Input[str] placement: Where in the generated VCL the logging call should be placed (ignored).
         :param pulumi.Input[int] port: The port the SFTP service listens on. (Default: `22`)
         :param pulumi.Input[str] public_key: A PGP public key that Fastly will use to encrypt your log files before writing them to disk
         :param pulumi.Input[str] response_condition: The name of the condition to apply.
@@ -14611,7 +14773,7 @@ class ServiceVclLoggingSftpArgs:
     @pulumi.getter
     def placement(self) -> Optional[pulumi.Input[str]]:
         """
-        Where in the generated VCL the logging call should be placed.
+        Where in the generated VCL the logging call should be placed (ignored).
         """
         return pulumi.get(self, "placement")
 
@@ -14704,7 +14866,7 @@ if not MYPY:
         """
         placement: NotRequired[pulumi.Input[str]]
         """
-        Where in the generated VCL the logging call should be placed
+        Where in the generated VCL the logging call should be placed (ignored).
         """
         response_condition: NotRequired[pulumi.Input[str]]
         """
@@ -14754,7 +14916,7 @@ class ServiceVclLoggingSplunkArgs:
         :param pulumi.Input[str] url: The Splunk URL to stream logs to
         :param pulumi.Input[str] format: Apache-style string or VCL variables to use for log formatting (default: `%h %l %u %t "%r" %>s %b`)
         :param pulumi.Input[int] format_version: The version of the custom logging format used for the configured endpoint. Can be either 1 or 2. (default: 2)
-        :param pulumi.Input[str] placement: Where in the generated VCL the logging call should be placed
+        :param pulumi.Input[str] placement: Where in the generated VCL the logging call should be placed (ignored).
         :param pulumi.Input[str] response_condition: The name of the condition to apply
         :param pulumi.Input[str] tls_ca_cert: A secure certificate to authenticate the server with. Must be in PEM format. You can provide this certificate via an environment variable, `FASTLY_SPLUNK_CA_CERT`
         :param pulumi.Input[str] tls_client_cert: The client certificate used to make authenticated requests. Must be in PEM format.
@@ -14848,7 +15010,7 @@ class ServiceVclLoggingSplunkArgs:
     @pulumi.getter
     def placement(self) -> Optional[pulumi.Input[str]]:
         """
-        Where in the generated VCL the logging call should be placed
+        Where in the generated VCL the logging call should be placed (ignored).
         """
         return pulumi.get(self, "placement")
 
@@ -14953,7 +15115,7 @@ if not MYPY:
         """
         placement: NotRequired[pulumi.Input[str]]
         """
-        Where in the generated VCL the logging call should be placed.
+        Where in the generated VCL the logging call should be placed (ignored).
         """
         response_condition: NotRequired[pulumi.Input[str]]
         """
@@ -14978,7 +15140,7 @@ class ServiceVclLoggingSumologicArgs:
         :param pulumi.Input[str] format: Apache-style string or VCL variables to use for log formatting
         :param pulumi.Input[int] format_version: The version of the custom logging format used for the configured endpoint. Can be either 1 or 2. (Default: 2)
         :param pulumi.Input[str] message_type: How the message should be formatted. Can be either `classic`, `loggly`, `logplex` or `blank`. Default is `classic`
-        :param pulumi.Input[str] placement: Where in the generated VCL the logging call should be placed.
+        :param pulumi.Input[str] placement: Where in the generated VCL the logging call should be placed (ignored).
         :param pulumi.Input[str] response_condition: Name of blockAttributes condition to apply this logging.
         """
         pulumi.set(__self__, "name", name)
@@ -15058,7 +15220,7 @@ class ServiceVclLoggingSumologicArgs:
     @pulumi.getter
     def placement(self) -> Optional[pulumi.Input[str]]:
         """
-        Where in the generated VCL the logging call should be placed.
+        Where in the generated VCL the logging call should be placed (ignored).
         """
         return pulumi.get(self, "placement")
 
@@ -15103,7 +15265,7 @@ if not MYPY:
         """
         placement: NotRequired[pulumi.Input[str]]
         """
-        Where in the generated VCL the logging call should be placed.
+        Where in the generated VCL the logging call should be placed (ignored).
         """
         port: NotRequired[pulumi.Input[int]]
         """
@@ -15163,7 +15325,7 @@ class ServiceVclLoggingSyslogArgs:
         :param pulumi.Input[str] format: Apache-style string or VCL variables to use for log formatting
         :param pulumi.Input[int] format_version: The version of the custom logging format. Can be either 1 or 2. (Default: 2)
         :param pulumi.Input[str] message_type: How the message should be formatted. Can be either `classic`, `loggly`, `logplex` or `blank`. Default is `classic`
-        :param pulumi.Input[str] placement: Where in the generated VCL the logging call should be placed.
+        :param pulumi.Input[str] placement: Where in the generated VCL the logging call should be placed (ignored).
         :param pulumi.Input[int] port: The port associated with the address where the Syslog endpoint can be accessed. Default `514`
         :param pulumi.Input[str] response_condition: Name of blockAttributes condition to apply this logging.
         :param pulumi.Input[str] tls_ca_cert: A secure certificate to authenticate the server with. Must be in PEM format. You can provide this certificate via an environment variable, `FASTLY_SYSLOG_CA_CERT`
@@ -15264,7 +15426,7 @@ class ServiceVclLoggingSyslogArgs:
     @pulumi.getter
     def placement(self) -> Optional[pulumi.Input[str]]:
         """
-        Where in the generated VCL the logging call should be placed.
+        Where in the generated VCL the logging call should be placed (ignored).
         """
         return pulumi.get(self, "placement")
 
@@ -15379,6 +15541,10 @@ if not MYPY:
         """
         Enable Brotli Compression support
         """
+        ddos_protection: NotRequired[pulumi.Input['ServiceVclProductEnablementDdosProtectionArgsDict']]
+        """
+        DDoS Protection product
+        """
         domain_inspector: NotRequired[pulumi.Input[bool]]
         """
         Enable Domain Inspector support
@@ -15394,6 +15560,10 @@ if not MYPY:
         name: NotRequired[pulumi.Input[str]]
         """
         Used by the provider to identify modified settings (changing this value will force the entire block to be deleted, then recreated)
+        """
+        ngwaf: NotRequired[pulumi.Input['ServiceVclProductEnablementNgwafArgsDict']]
+        """
+        Next-Gen WAF product
         """
         origin_inspector: NotRequired[pulumi.Input[bool]]
         """
@@ -15411,19 +15581,23 @@ class ServiceVclProductEnablementArgs:
     def __init__(__self__, *,
                  bot_management: Optional[pulumi.Input[bool]] = None,
                  brotli_compression: Optional[pulumi.Input[bool]] = None,
+                 ddos_protection: Optional[pulumi.Input['ServiceVclProductEnablementDdosProtectionArgs']] = None,
                  domain_inspector: Optional[pulumi.Input[bool]] = None,
                  image_optimizer: Optional[pulumi.Input[bool]] = None,
                  log_explorer_insights: Optional[pulumi.Input[bool]] = None,
                  name: Optional[pulumi.Input[str]] = None,
+                 ngwaf: Optional[pulumi.Input['ServiceVclProductEnablementNgwafArgs']] = None,
                  origin_inspector: Optional[pulumi.Input[bool]] = None,
                  websockets: Optional[pulumi.Input[bool]] = None):
         """
         :param pulumi.Input[bool] bot_management: Enable Bot Management support
         :param pulumi.Input[bool] brotli_compression: Enable Brotli Compression support
+        :param pulumi.Input['ServiceVclProductEnablementDdosProtectionArgs'] ddos_protection: DDoS Protection product
         :param pulumi.Input[bool] domain_inspector: Enable Domain Inspector support
         :param pulumi.Input[bool] image_optimizer: Enable Image Optimizer support (all backends must have a `shield` attribute)
         :param pulumi.Input[bool] log_explorer_insights: Enable Log Explorer & Insights
         :param pulumi.Input[str] name: Used by the provider to identify modified settings (changing this value will force the entire block to be deleted, then recreated)
+        :param pulumi.Input['ServiceVclProductEnablementNgwafArgs'] ngwaf: Next-Gen WAF product
         :param pulumi.Input[bool] origin_inspector: Enable Origin Inspector support
         :param pulumi.Input[bool] websockets: Enable WebSockets support
         """
@@ -15431,6 +15605,8 @@ class ServiceVclProductEnablementArgs:
             pulumi.set(__self__, "bot_management", bot_management)
         if brotli_compression is not None:
             pulumi.set(__self__, "brotli_compression", brotli_compression)
+        if ddos_protection is not None:
+            pulumi.set(__self__, "ddos_protection", ddos_protection)
         if domain_inspector is not None:
             pulumi.set(__self__, "domain_inspector", domain_inspector)
         if image_optimizer is not None:
@@ -15439,6 +15615,8 @@ class ServiceVclProductEnablementArgs:
             pulumi.set(__self__, "log_explorer_insights", log_explorer_insights)
         if name is not None:
             pulumi.set(__self__, "name", name)
+        if ngwaf is not None:
+            pulumi.set(__self__, "ngwaf", ngwaf)
         if origin_inspector is not None:
             pulumi.set(__self__, "origin_inspector", origin_inspector)
         if websockets is not None:
@@ -15467,6 +15645,18 @@ class ServiceVclProductEnablementArgs:
     @brotli_compression.setter
     def brotli_compression(self, value: Optional[pulumi.Input[bool]]):
         pulumi.set(self, "brotli_compression", value)
+
+    @property
+    @pulumi.getter(name="ddosProtection")
+    def ddos_protection(self) -> Optional[pulumi.Input['ServiceVclProductEnablementDdosProtectionArgs']]:
+        """
+        DDoS Protection product
+        """
+        return pulumi.get(self, "ddos_protection")
+
+    @ddos_protection.setter
+    def ddos_protection(self, value: Optional[pulumi.Input['ServiceVclProductEnablementDdosProtectionArgs']]):
+        pulumi.set(self, "ddos_protection", value)
 
     @property
     @pulumi.getter(name="domainInspector")
@@ -15517,6 +15707,18 @@ class ServiceVclProductEnablementArgs:
         pulumi.set(self, "name", value)
 
     @property
+    @pulumi.getter
+    def ngwaf(self) -> Optional[pulumi.Input['ServiceVclProductEnablementNgwafArgs']]:
+        """
+        Next-Gen WAF product
+        """
+        return pulumi.get(self, "ngwaf")
+
+    @ngwaf.setter
+    def ngwaf(self, value: Optional[pulumi.Input['ServiceVclProductEnablementNgwafArgs']]):
+        pulumi.set(self, "ngwaf", value)
+
+    @property
     @pulumi.getter(name="originInspector")
     def origin_inspector(self) -> Optional[pulumi.Input[bool]]:
         """
@@ -15539,6 +15741,126 @@ class ServiceVclProductEnablementArgs:
     @websockets.setter
     def websockets(self, value: Optional[pulumi.Input[bool]]):
         pulumi.set(self, "websockets", value)
+
+
+if not MYPY:
+    class ServiceVclProductEnablementDdosProtectionArgsDict(TypedDict):
+        enabled: pulumi.Input[bool]
+        """
+        Enable DDoS Protection support
+        """
+        mode: pulumi.Input[str]
+        """
+        Operation mode
+        """
+elif False:
+    ServiceVclProductEnablementDdosProtectionArgsDict: TypeAlias = Mapping[str, Any]
+
+@pulumi.input_type
+class ServiceVclProductEnablementDdosProtectionArgs:
+    def __init__(__self__, *,
+                 enabled: pulumi.Input[bool],
+                 mode: pulumi.Input[str]):
+        """
+        :param pulumi.Input[bool] enabled: Enable DDoS Protection support
+        :param pulumi.Input[str] mode: Operation mode
+        """
+        pulumi.set(__self__, "enabled", enabled)
+        pulumi.set(__self__, "mode", mode)
+
+    @property
+    @pulumi.getter
+    def enabled(self) -> pulumi.Input[bool]:
+        """
+        Enable DDoS Protection support
+        """
+        return pulumi.get(self, "enabled")
+
+    @enabled.setter
+    def enabled(self, value: pulumi.Input[bool]):
+        pulumi.set(self, "enabled", value)
+
+    @property
+    @pulumi.getter
+    def mode(self) -> pulumi.Input[str]:
+        """
+        Operation mode
+        """
+        return pulumi.get(self, "mode")
+
+    @mode.setter
+    def mode(self, value: pulumi.Input[str]):
+        pulumi.set(self, "mode", value)
+
+
+if not MYPY:
+    class ServiceVclProductEnablementNgwafArgsDict(TypedDict):
+        enabled: pulumi.Input[bool]
+        """
+        Enable Next-Gen WAF support
+        """
+        workspace_id: pulumi.Input[str]
+        """
+        The workspace to link
+        """
+        traffic_ramp: NotRequired[pulumi.Input[int]]
+        """
+        The percentage of traffic to inspect
+        """
+elif False:
+    ServiceVclProductEnablementNgwafArgsDict: TypeAlias = Mapping[str, Any]
+
+@pulumi.input_type
+class ServiceVclProductEnablementNgwafArgs:
+    def __init__(__self__, *,
+                 enabled: pulumi.Input[bool],
+                 workspace_id: pulumi.Input[str],
+                 traffic_ramp: Optional[pulumi.Input[int]] = None):
+        """
+        :param pulumi.Input[bool] enabled: Enable Next-Gen WAF support
+        :param pulumi.Input[str] workspace_id: The workspace to link
+        :param pulumi.Input[int] traffic_ramp: The percentage of traffic to inspect
+        """
+        pulumi.set(__self__, "enabled", enabled)
+        pulumi.set(__self__, "workspace_id", workspace_id)
+        if traffic_ramp is not None:
+            pulumi.set(__self__, "traffic_ramp", traffic_ramp)
+
+    @property
+    @pulumi.getter
+    def enabled(self) -> pulumi.Input[bool]:
+        """
+        Enable Next-Gen WAF support
+        """
+        return pulumi.get(self, "enabled")
+
+    @enabled.setter
+    def enabled(self, value: pulumi.Input[bool]):
+        pulumi.set(self, "enabled", value)
+
+    @property
+    @pulumi.getter(name="workspaceId")
+    def workspace_id(self) -> pulumi.Input[str]:
+        """
+        The workspace to link
+        """
+        return pulumi.get(self, "workspace_id")
+
+    @workspace_id.setter
+    def workspace_id(self, value: pulumi.Input[str]):
+        pulumi.set(self, "workspace_id", value)
+
+    @property
+    @pulumi.getter(name="trafficRamp")
+    def traffic_ramp(self) -> Optional[pulumi.Input[int]]:
+        """
+        The percentage of traffic to inspect
+        """
+        return pulumi.get(self, "traffic_ramp")
+
+    @traffic_ramp.setter
+    def traffic_ramp(self, value: Optional[pulumi.Input[int]]):
+        pulumi.set(self, "traffic_ramp", value)
 
 
 if not MYPY:
@@ -16438,276 +16760,6 @@ class ServiceVclVclArgs:
     @main.setter
     def main(self, value: Optional[pulumi.Input[bool]]):
         pulumi.set(self, "main", value)
-
-
-if not MYPY:
-    class ServiceVclWafArgsDict(TypedDict):
-        response_object: pulumi.Input[str]
-        """
-        The name of the response object used by the Web Application Firewall
-        """
-        disabled: NotRequired[pulumi.Input[bool]]
-        """
-        A flag used to completely disable a Web Application Firewall. This is intended to only be used in an emergency
-        """
-        prefetch_condition: NotRequired[pulumi.Input[str]]
-        """
-        The `condition` to determine which requests will be run past your Fastly WAF. This `condition` must be of type `PREFETCH`. For detailed information about Conditionals, see [Fastly's Documentation on Conditionals](https://docs.fastly.com/en/guides/using-conditions)
-        """
-        waf_id: NotRequired[pulumi.Input[str]]
-        """
-        The ID of the WAF
-        """
-elif False:
-    ServiceVclWafArgsDict: TypeAlias = Mapping[str, Any]
-
-@pulumi.input_type
-class ServiceVclWafArgs:
-    def __init__(__self__, *,
-                 response_object: pulumi.Input[str],
-                 disabled: Optional[pulumi.Input[bool]] = None,
-                 prefetch_condition: Optional[pulumi.Input[str]] = None,
-                 waf_id: Optional[pulumi.Input[str]] = None):
-        """
-        :param pulumi.Input[str] response_object: The name of the response object used by the Web Application Firewall
-        :param pulumi.Input[bool] disabled: A flag used to completely disable a Web Application Firewall. This is intended to only be used in an emergency
-        :param pulumi.Input[str] prefetch_condition: The `condition` to determine which requests will be run past your Fastly WAF. This `condition` must be of type `PREFETCH`. For detailed information about Conditionals, see [Fastly's Documentation on Conditionals](https://docs.fastly.com/en/guides/using-conditions)
-        :param pulumi.Input[str] waf_id: The ID of the WAF
-        """
-        pulumi.set(__self__, "response_object", response_object)
-        if disabled is not None:
-            pulumi.set(__self__, "disabled", disabled)
-        if prefetch_condition is not None:
-            pulumi.set(__self__, "prefetch_condition", prefetch_condition)
-        if waf_id is not None:
-            pulumi.set(__self__, "waf_id", waf_id)
-
-    @property
-    @pulumi.getter(name="responseObject")
-    def response_object(self) -> pulumi.Input[str]:
-        """
-        The name of the response object used by the Web Application Firewall
-        """
-        return pulumi.get(self, "response_object")
-
-    @response_object.setter
-    def response_object(self, value: pulumi.Input[str]):
-        pulumi.set(self, "response_object", value)
-
-    @property
-    @pulumi.getter
-    def disabled(self) -> Optional[pulumi.Input[bool]]:
-        """
-        A flag used to completely disable a Web Application Firewall. This is intended to only be used in an emergency
-        """
-        return pulumi.get(self, "disabled")
-
-    @disabled.setter
-    def disabled(self, value: Optional[pulumi.Input[bool]]):
-        pulumi.set(self, "disabled", value)
-
-    @property
-    @pulumi.getter(name="prefetchCondition")
-    def prefetch_condition(self) -> Optional[pulumi.Input[str]]:
-        """
-        The `condition` to determine which requests will be run past your Fastly WAF. This `condition` must be of type `PREFETCH`. For detailed information about Conditionals, see [Fastly's Documentation on Conditionals](https://docs.fastly.com/en/guides/using-conditions)
-        """
-        return pulumi.get(self, "prefetch_condition")
-
-    @prefetch_condition.setter
-    def prefetch_condition(self, value: Optional[pulumi.Input[str]]):
-        pulumi.set(self, "prefetch_condition", value)
-
-    @property
-    @pulumi.getter(name="wafId")
-    def waf_id(self) -> Optional[pulumi.Input[str]]:
-        """
-        The ID of the WAF
-        """
-        return pulumi.get(self, "waf_id")
-
-    @waf_id.setter
-    def waf_id(self, value: Optional[pulumi.Input[str]]):
-        pulumi.set(self, "waf_id", value)
-
-
-if not MYPY:
-    class ServiceWafConfigurationRuleArgsDict(TypedDict):
-        modsec_rule_id: pulumi.Input[int]
-        """
-        The Web Application Firewall rule's modsecurity ID
-        """
-        status: pulumi.Input[str]
-        """
-        The Web Application Firewall rule's status. Allowed values are (`log`, `block` and `score`)
-        """
-        revision: NotRequired[pulumi.Input[int]]
-        """
-        The Web Application Firewall rule's revision. The latest revision will be used if this is not provided
-        """
-elif False:
-    ServiceWafConfigurationRuleArgsDict: TypeAlias = Mapping[str, Any]
-
-@pulumi.input_type
-class ServiceWafConfigurationRuleArgs:
-    def __init__(__self__, *,
-                 modsec_rule_id: pulumi.Input[int],
-                 status: pulumi.Input[str],
-                 revision: Optional[pulumi.Input[int]] = None):
-        """
-        :param pulumi.Input[int] modsec_rule_id: The Web Application Firewall rule's modsecurity ID
-        :param pulumi.Input[str] status: The Web Application Firewall rule's status. Allowed values are (`log`, `block` and `score`)
-        :param pulumi.Input[int] revision: The Web Application Firewall rule's revision. The latest revision will be used if this is not provided
-        """
-        pulumi.set(__self__, "modsec_rule_id", modsec_rule_id)
-        pulumi.set(__self__, "status", status)
-        if revision is not None:
-            pulumi.set(__self__, "revision", revision)
-
-    @property
-    @pulumi.getter(name="modsecRuleId")
-    def modsec_rule_id(self) -> pulumi.Input[int]:
-        """
-        The Web Application Firewall rule's modsecurity ID
-        """
-        return pulumi.get(self, "modsec_rule_id")
-
-    @modsec_rule_id.setter
-    def modsec_rule_id(self, value: pulumi.Input[int]):
-        pulumi.set(self, "modsec_rule_id", value)
-
-    @property
-    @pulumi.getter
-    def status(self) -> pulumi.Input[str]:
-        """
-        The Web Application Firewall rule's status. Allowed values are (`log`, `block` and `score`)
-        """
-        return pulumi.get(self, "status")
-
-    @status.setter
-    def status(self, value: pulumi.Input[str]):
-        pulumi.set(self, "status", value)
-
-    @property
-    @pulumi.getter
-    def revision(self) -> Optional[pulumi.Input[int]]:
-        """
-        The Web Application Firewall rule's revision. The latest revision will be used if this is not provided
-        """
-        return pulumi.get(self, "revision")
-
-    @revision.setter
-    def revision(self, value: Optional[pulumi.Input[int]]):
-        pulumi.set(self, "revision", value)
-
-
-if not MYPY:
-    class ServiceWafConfigurationRuleExclusionArgsDict(TypedDict):
-        condition: pulumi.Input[str]
-        """
-        A conditional expression in VCL used to determine if the condition is met
-        """
-        exclusion_type: pulumi.Input[str]
-        """
-        The type of rule exclusion. Values are `rule` to exclude the specified rule(s), or `waf` to disable the Web Application Firewall
-        """
-        name: pulumi.Input[str]
-        """
-        The name of rule exclusion
-        """
-        modsec_rule_ids: NotRequired[pulumi.Input[Sequence[pulumi.Input[int]]]]
-        """
-        Set of modsecurity IDs to be excluded. No rules should be provided when `exclusion_type` is `waf`. The rules need to be configured on the Web Application Firewall to be excluded
-        """
-        number: NotRequired[pulumi.Input[int]]
-        """
-        The numeric ID assigned to the WAF Rule Exclusion
-        """
-elif False:
-    ServiceWafConfigurationRuleExclusionArgsDict: TypeAlias = Mapping[str, Any]
-
-@pulumi.input_type
-class ServiceWafConfigurationRuleExclusionArgs:
-    def __init__(__self__, *,
-                 condition: pulumi.Input[str],
-                 exclusion_type: pulumi.Input[str],
-                 name: pulumi.Input[str],
-                 modsec_rule_ids: Optional[pulumi.Input[Sequence[pulumi.Input[int]]]] = None,
-                 number: Optional[pulumi.Input[int]] = None):
-        """
-        :param pulumi.Input[str] condition: A conditional expression in VCL used to determine if the condition is met
-        :param pulumi.Input[str] exclusion_type: The type of rule exclusion. Values are `rule` to exclude the specified rule(s), or `waf` to disable the Web Application Firewall
-        :param pulumi.Input[str] name: The name of rule exclusion
-        :param pulumi.Input[Sequence[pulumi.Input[int]]] modsec_rule_ids: Set of modsecurity IDs to be excluded. No rules should be provided when `exclusion_type` is `waf`. The rules need to be configured on the Web Application Firewall to be excluded
-        :param pulumi.Input[int] number: The numeric ID assigned to the WAF Rule Exclusion
-        """
-        pulumi.set(__self__, "condition", condition)
-        pulumi.set(__self__, "exclusion_type", exclusion_type)
-        pulumi.set(__self__, "name", name)
-        if modsec_rule_ids is not None:
-            pulumi.set(__self__, "modsec_rule_ids", modsec_rule_ids)
-        if number is not None:
-            pulumi.set(__self__, "number", number)
-
-    @property
-    @pulumi.getter
-    def condition(self) -> pulumi.Input[str]:
-        """
-        A conditional expression in VCL used to determine if the condition is met
-        """
-        return pulumi.get(self, "condition")
-
-    @condition.setter
-    def condition(self, value: pulumi.Input[str]):
-        pulumi.set(self, "condition", value)
-
-    @property
-    @pulumi.getter(name="exclusionType")
-    def exclusion_type(self) -> pulumi.Input[str]:
-        """
-        The type of rule exclusion. Values are `rule` to exclude the specified rule(s), or `waf` to disable the Web Application Firewall
-        """
-        return pulumi.get(self, "exclusion_type")
-
-    @exclusion_type.setter
-    def exclusion_type(self, value: pulumi.Input[str]):
-        pulumi.set(self, "exclusion_type", value)
-
-    @property
-    @pulumi.getter
-    def name(self) -> pulumi.Input[str]:
-        """
-        The name of rule exclusion
-        """
-        return pulumi.get(self, "name")
-
-    @name.setter
-    def name(self, value: pulumi.Input[str]):
-        pulumi.set(self, "name", value)
-
-    @property
-    @pulumi.getter(name="modsecRuleIds")
-    def modsec_rule_ids(self) -> Optional[pulumi.Input[Sequence[pulumi.Input[int]]]]:
-        """
-        Set of modsecurity IDs to be excluded. No rules should be provided when `exclusion_type` is `waf`. The rules need to be configured on the Web Application Firewall to be excluded
-        """
-        return pulumi.get(self, "modsec_rule_ids")
-
-    @modsec_rule_ids.setter
-    def modsec_rule_ids(self, value: Optional[pulumi.Input[Sequence[pulumi.Input[int]]]]):
-        pulumi.set(self, "modsec_rule_ids", value)
-
-    @property
-    @pulumi.getter
-    def number(self) -> Optional[pulumi.Input[int]]:
-        """
-        The numeric ID assigned to the WAF Rule Exclusion
-        """
-        return pulumi.get(self, "number")
-
-    @number.setter
-    def number(self, value: Optional[pulumi.Input[int]]):
-        pulumi.set(self, "number", value)
 
 
 if not MYPY:

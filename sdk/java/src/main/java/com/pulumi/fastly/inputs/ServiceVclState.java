@@ -51,7 +51,6 @@ import com.pulumi.fastly.inputs.ServiceVclRequestSettingArgs;
 import com.pulumi.fastly.inputs.ServiceVclResponseObjectArgs;
 import com.pulumi.fastly.inputs.ServiceVclSnippetArgs;
 import com.pulumi.fastly.inputs.ServiceVclVclArgs;
-import com.pulumi.fastly.inputs.ServiceVclWafArgs;
 import java.lang.Boolean;
 import java.lang.Integer;
 import java.lang.String;
@@ -73,7 +72,7 @@ public final class ServiceVclState extends com.pulumi.resources.ResourceArgs {
     }
 
     /**
-     * Conditionally prevents the Service from being activated. The apply step will continue to create a new draft version but
+     * Conditionally prevents new service versions from being activated. The apply step will create a new draft version but
      * will not activate it if this is set to `false`. Default `true`
      * 
      */
@@ -81,7 +80,7 @@ public final class ServiceVclState extends com.pulumi.resources.ResourceArgs {
     private @Nullable Output<Boolean> activate;
 
     /**
-     * @return Conditionally prevents the Service from being activated. The apply step will continue to create a new draft version but
+     * @return Conditionally prevents new service versions from being activated. The apply step will create a new draft version but
      * will not activate it if this is set to `false`. Default `true`
      * 
      */
@@ -551,6 +550,38 @@ public final class ServiceVclState extends com.pulumi.resources.ResourceArgs {
     }
 
     /**
+     * Conditionally enables new service versions to be staged. If `set` to true, all changes made by an `apply` step will be
+     * staged, even if `apply` did not create a new draft version. Default `false`
+     * 
+     */
+    @Import(name="stage")
+    private @Nullable Output<Boolean> stage;
+
+    /**
+     * @return Conditionally enables new service versions to be staged. If `set` to true, all changes made by an `apply` step will be
+     * staged, even if `apply` did not create a new draft version. Default `false`
+     * 
+     */
+    public Optional<Output<Boolean>> stage() {
+        return Optional.ofNullable(this.stage);
+    }
+
+    /**
+     * The currently staged version of your Fastly Service
+     * 
+     */
+    @Import(name="stagedVersion")
+    private @Nullable Output<Integer> stagedVersion;
+
+    /**
+     * @return The currently staged version of your Fastly Service
+     * 
+     */
+    public Optional<Output<Integer>> stagedVersion() {
+        return Optional.ofNullable(this.stagedVersion);
+    }
+
+    /**
      * Enables serving a stale object if there is an error
      * 
      */
@@ -600,13 +631,6 @@ public final class ServiceVclState extends com.pulumi.resources.ResourceArgs {
      */
     public Optional<Output<String>> versionComment() {
         return Optional.ofNullable(this.versionComment);
-    }
-
-    @Import(name="waf")
-    private @Nullable Output<ServiceVclWafArgs> waf;
-
-    public Optional<Output<ServiceVclWafArgs>> waf() {
-        return Optional.ofNullable(this.waf);
     }
 
     private ServiceVclState() {}
@@ -669,11 +693,12 @@ public final class ServiceVclState extends com.pulumi.resources.ResourceArgs {
         this.responseObjects = $.responseObjects;
         this.reuse = $.reuse;
         this.snippets = $.snippets;
+        this.stage = $.stage;
+        this.stagedVersion = $.stagedVersion;
         this.staleIfError = $.staleIfError;
         this.staleIfErrorTtl = $.staleIfErrorTtl;
         this.vcls = $.vcls;
         this.versionComment = $.versionComment;
-        this.waf = $.waf;
     }
 
     public static Builder builder() {
@@ -708,7 +733,7 @@ public final class ServiceVclState extends com.pulumi.resources.ResourceArgs {
         }
 
         /**
-         * @param activate Conditionally prevents the Service from being activated. The apply step will continue to create a new draft version but
+         * @param activate Conditionally prevents new service versions from being activated. The apply step will create a new draft version but
          * will not activate it if this is set to `false`. Default `true`
          * 
          * @return builder
@@ -720,7 +745,7 @@ public final class ServiceVclState extends com.pulumi.resources.ResourceArgs {
         }
 
         /**
-         * @param activate Conditionally prevents the Service from being activated. The apply step will continue to create a new draft version but
+         * @param activate Conditionally prevents new service versions from being activated. The apply step will create a new draft version but
          * will not activate it if this is set to `false`. Default `true`
          * 
          * @return builder
@@ -1512,6 +1537,50 @@ public final class ServiceVclState extends com.pulumi.resources.ResourceArgs {
         }
 
         /**
+         * @param stage Conditionally enables new service versions to be staged. If `set` to true, all changes made by an `apply` step will be
+         * staged, even if `apply` did not create a new draft version. Default `false`
+         * 
+         * @return builder
+         * 
+         */
+        public Builder stage(@Nullable Output<Boolean> stage) {
+            $.stage = stage;
+            return this;
+        }
+
+        /**
+         * @param stage Conditionally enables new service versions to be staged. If `set` to true, all changes made by an `apply` step will be
+         * staged, even if `apply` did not create a new draft version. Default `false`
+         * 
+         * @return builder
+         * 
+         */
+        public Builder stage(Boolean stage) {
+            return stage(Output.of(stage));
+        }
+
+        /**
+         * @param stagedVersion The currently staged version of your Fastly Service
+         * 
+         * @return builder
+         * 
+         */
+        public Builder stagedVersion(@Nullable Output<Integer> stagedVersion) {
+            $.stagedVersion = stagedVersion;
+            return this;
+        }
+
+        /**
+         * @param stagedVersion The currently staged version of your Fastly Service
+         * 
+         * @return builder
+         * 
+         */
+        public Builder stagedVersion(Integer stagedVersion) {
+            return stagedVersion(Output.of(stagedVersion));
+        }
+
+        /**
          * @param staleIfError Enables serving a stale object if there is an error
          * 
          * @return builder
@@ -1585,15 +1654,6 @@ public final class ServiceVclState extends com.pulumi.resources.ResourceArgs {
          */
         public Builder versionComment(String versionComment) {
             return versionComment(Output.of(versionComment));
-        }
-
-        public Builder waf(@Nullable Output<ServiceVclWafArgs> waf) {
-            $.waf = waf;
-            return this;
-        }
-
-        public Builder waf(ServiceVclWafArgs waf) {
-            return waf(Output.of(waf));
         }
 
         public ServiceVclState build() {

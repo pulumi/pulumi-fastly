@@ -31,8 +31,6 @@ import com.pulumi.fastly.inputs.GetTlsSubscriptionArgs;
 import com.pulumi.fastly.inputs.GetTlsSubscriptionPlainArgs;
 import com.pulumi.fastly.inputs.GetVclSnippetsArgs;
 import com.pulumi.fastly.inputs.GetVclSnippetsPlainArgs;
-import com.pulumi.fastly.inputs.GetWafRulesArgs;
-import com.pulumi.fastly.inputs.GetWafRulesPlainArgs;
 import com.pulumi.fastly.outputs.GetConfigstoresResult;
 import com.pulumi.fastly.outputs.GetDatacentersResult;
 import com.pulumi.fastly.outputs.GetDictionariesResult;
@@ -55,7 +53,6 @@ import com.pulumi.fastly.outputs.GetTlsPrivateKeyResult;
 import com.pulumi.fastly.outputs.GetTlsSubscriptionIdsResult;
 import com.pulumi.fastly.outputs.GetTlsSubscriptionResult;
 import com.pulumi.fastly.outputs.GetVclSnippetsResult;
-import com.pulumi.fastly.outputs.GetWafRulesResult;
 import com.pulumi.resources.InvokeArgs;
 import java.util.concurrent.CompletableFuture;
 
@@ -5209,26 +5206,5 @@ public final class FastlyFunctions {
      */
     public static CompletableFuture<GetVclSnippetsResult> getVclSnippetsPlain(GetVclSnippetsPlainArgs args, InvokeOptions options) {
         return Deployment.getInstance().invokeAsync("fastly:index/getVclSnippets:getVclSnippets", TypeShape.of(GetVclSnippetsResult.class), args, Utilities.withVersion(options));
-    }
-    public static Output<GetWafRulesResult> getWafRules() {
-        return getWafRules(GetWafRulesArgs.Empty, InvokeOptions.Empty);
-    }
-    public static CompletableFuture<GetWafRulesResult> getWafRulesPlain() {
-        return getWafRulesPlain(GetWafRulesPlainArgs.Empty, InvokeOptions.Empty);
-    }
-    public static Output<GetWafRulesResult> getWafRules(GetWafRulesArgs args) {
-        return getWafRules(args, InvokeOptions.Empty);
-    }
-    public static CompletableFuture<GetWafRulesResult> getWafRulesPlain(GetWafRulesPlainArgs args) {
-        return getWafRulesPlain(args, InvokeOptions.Empty);
-    }
-    public static Output<GetWafRulesResult> getWafRules(GetWafRulesArgs args, InvokeOptions options) {
-        return Deployment.getInstance().invoke("fastly:index/getWafRules:getWafRules", TypeShape.of(GetWafRulesResult.class), args, Utilities.withVersion(options));
-    }
-    public static Output<GetWafRulesResult> getWafRules(GetWafRulesArgs args, InvokeOutputOptions options) {
-        return Deployment.getInstance().invoke("fastly:index/getWafRules:getWafRules", TypeShape.of(GetWafRulesResult.class), args, Utilities.withVersion(options));
-    }
-    public static CompletableFuture<GetWafRulesResult> getWafRulesPlain(GetWafRulesPlainArgs args, InvokeOptions options) {
-        return Deployment.getInstance().invokeAsync("fastly:index/getWafRules:getWafRules", TypeShape.of(GetWafRulesResult.class), args, Utilities.withVersion(options));
     }
 }

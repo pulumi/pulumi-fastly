@@ -33,7 +33,7 @@ namespace Pulumi.Fastly
         public Output<ImmutableArray<Outputs.ServiceVclAcl>> Acls { get; private set; } = null!;
 
         /// <summary>
-        /// Conditionally prevents the Service from being activated. The apply step will continue to create a new draft version but
+        /// Conditionally prevents new service versions from being activated. The apply step will create a new draft version but
         /// will not activate it if this is set to `false`. Default `true`
         /// </summary>
         [Output("activate")]
@@ -234,6 +234,19 @@ namespace Pulumi.Fastly
         public Output<ImmutableArray<Outputs.ServiceVclSnippet>> Snippets { get; private set; } = null!;
 
         /// <summary>
+        /// Conditionally enables new service versions to be staged. If `set` to true, all changes made by an `apply` step will be
+        /// staged, even if `apply` did not create a new draft version. Default `false`
+        /// </summary>
+        [Output("stage")]
+        public Output<bool?> Stage { get; private set; } = null!;
+
+        /// <summary>
+        /// The currently staged version of your Fastly Service
+        /// </summary>
+        [Output("stagedVersion")]
+        public Output<int> StagedVersion { get; private set; } = null!;
+
+        /// <summary>
         /// Enables serving a stale object if there is an error
         /// </summary>
         [Output("staleIfError")]
@@ -253,9 +266,6 @@ namespace Pulumi.Fastly
         /// </summary>
         [Output("versionComment")]
         public Output<string?> VersionComment { get; private set; } = null!;
-
-        [Output("waf")]
-        public Output<Outputs.ServiceVclWaf?> Waf { get; private set; } = null!;
 
 
         /// <summary>
@@ -312,7 +322,7 @@ namespace Pulumi.Fastly
         }
 
         /// <summary>
-        /// Conditionally prevents the Service from being activated. The apply step will continue to create a new draft version but
+        /// Conditionally prevents new service versions from being activated. The apply step will create a new draft version but
         /// will not activate it if this is set to `false`. Default `true`
         /// </summary>
         [Input("activate")]
@@ -702,6 +712,13 @@ namespace Pulumi.Fastly
         }
 
         /// <summary>
+        /// Conditionally enables new service versions to be staged. If `set` to true, all changes made by an `apply` step will be
+        /// staged, even if `apply` did not create a new draft version. Default `false`
+        /// </summary>
+        [Input("stage")]
+        public Input<bool>? Stage { get; set; }
+
+        /// <summary>
         /// Enables serving a stale object if there is an error
         /// </summary>
         [Input("staleIfError")]
@@ -727,9 +744,6 @@ namespace Pulumi.Fastly
         [Input("versionComment")]
         public Input<string>? VersionComment { get; set; }
 
-        [Input("waf")]
-        public Input<Inputs.ServiceVclWafArgs>? Waf { get; set; }
-
         public ServiceVclArgs()
         {
         }
@@ -747,7 +761,7 @@ namespace Pulumi.Fastly
         }
 
         /// <summary>
-        /// Conditionally prevents the Service from being activated. The apply step will continue to create a new draft version but
+        /// Conditionally prevents new service versions from being activated. The apply step will create a new draft version but
         /// will not activate it if this is set to `false`. Default `true`
         /// </summary>
         [Input("activate")]
@@ -1159,6 +1173,19 @@ namespace Pulumi.Fastly
         }
 
         /// <summary>
+        /// Conditionally enables new service versions to be staged. If `set` to true, all changes made by an `apply` step will be
+        /// staged, even if `apply` did not create a new draft version. Default `false`
+        /// </summary>
+        [Input("stage")]
+        public Input<bool>? Stage { get; set; }
+
+        /// <summary>
+        /// The currently staged version of your Fastly Service
+        /// </summary>
+        [Input("stagedVersion")]
+        public Input<int>? StagedVersion { get; set; }
+
+        /// <summary>
         /// Enables serving a stale object if there is an error
         /// </summary>
         [Input("staleIfError")]
@@ -1183,9 +1210,6 @@ namespace Pulumi.Fastly
         /// </summary>
         [Input("versionComment")]
         public Input<string>? VersionComment { get; set; }
-
-        [Input("waf")]
-        public Input<Inputs.ServiceVclWafGetArgs>? Waf { get; set; }
 
         public ServiceVclState()
         {

@@ -79,6 +79,14 @@
             "fastly_kvstore": {
                 "current": "fastly:index/kvstore:Kvstore"
             },
+            "fastly_object_storage_access_keys": {
+                "current": "fastly:index/objectStorageAccessKeys:ObjectStorageAccessKeys",
+                "fields": {
+                    "buckets": {
+                        "maxItemsOne": false
+                    }
+                }
+            },
             "fastly_secretstore": {
                 "current": "fastly:index/secretstore:Secretstore"
             },
@@ -193,7 +201,17 @@
                         "maxItemsOne": true
                     },
                     "product_enablement": {
-                        "maxItemsOne": true
+                        "maxItemsOne": true,
+                        "elem": {
+                            "fields": {
+                                "ddos_protection": {
+                                    "maxItemsOne": true
+                                },
+                                "ngwaf": {
+                                    "maxItemsOne": true
+                                }
+                            }
+                        }
                     },
                     "resource_link": {
                         "maxItemsOne": false
@@ -354,7 +372,17 @@
                         "maxItemsOne": false
                     },
                     "product_enablement": {
-                        "maxItemsOne": true
+                        "maxItemsOne": true,
+                        "elem": {
+                            "fields": {
+                                "ddos_protection": {
+                                    "maxItemsOne": true
+                                },
+                                "ngwaf": {
+                                    "maxItemsOne": true
+                                }
+                            }
+                        }
                     },
                     "rate_limiter": {
                         "maxItemsOne": false,
@@ -377,27 +405,6 @@
                     },
                     "vcl": {
                         "maxItemsOne": false
-                    },
-                    "waf": {
-                        "maxItemsOne": true
-                    }
-                }
-            },
-            "fastly_service_waf_configuration": {
-                "current": "fastly:index/serviceWafConfiguration:ServiceWafConfiguration",
-                "fields": {
-                    "rule": {
-                        "maxItemsOne": false
-                    },
-                    "rule_exclusion": {
-                        "maxItemsOne": false,
-                        "elem": {
-                            "fields": {
-                                "modsec_rule_ids": {
-                                    "maxItemsOne": false
-                                }
-                            }
-                        }
                     }
                 }
             },
@@ -641,26 +648,6 @@
                 "current": "fastly:index/getVclSnippets:getVclSnippets",
                 "fields": {
                     "vcl_snippets": {
-                        "maxItemsOne": false
-                    }
-                }
-            },
-            "fastly_waf_rules": {
-                "current": "fastly:index/getWafRules:getWafRules",
-                "fields": {
-                    "exclude_modsec_rule_ids": {
-                        "maxItemsOne": false
-                    },
-                    "modsec_rule_ids": {
-                        "maxItemsOne": false
-                    },
-                    "publishers": {
-                        "maxItemsOne": false
-                    },
-                    "rules": {
-                        "maxItemsOne": false
-                    },
-                    "tags": {
                         "maxItemsOne": false
                     }
                 }
