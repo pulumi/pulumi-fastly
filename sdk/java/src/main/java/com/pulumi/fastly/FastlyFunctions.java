@@ -182,7 +182,7 @@ public final class FastlyFunctions {
      *             .serviceVersion(exampleServiceVcl.activeVersion())
      *             .build());
      * 
-     *         ctx.export("serviceDictionaries", example.applyValue(getDictionariesResult -> getDictionariesResult));
+     *         ctx.export("serviceDictionaries", example);
      *     }
      * }
      * }
@@ -250,7 +250,7 @@ public final class FastlyFunctions {
      *             .serviceVersion(exampleServiceVcl.activeVersion())
      *             .build());
      * 
-     *         ctx.export("serviceDictionaries", example.applyValue(getDictionariesResult -> getDictionariesResult));
+     *         ctx.export("serviceDictionaries", example);
      *     }
      * }
      * }
@@ -318,7 +318,7 @@ public final class FastlyFunctions {
      *             .serviceVersion(exampleServiceVcl.activeVersion())
      *             .build());
      * 
-     *         ctx.export("serviceDictionaries", example.applyValue(getDictionariesResult -> getDictionariesResult));
+     *         ctx.export("serviceDictionaries", example);
      *     }
      * }
      * }
@@ -386,7 +386,7 @@ public final class FastlyFunctions {
      *             .serviceVersion(exampleServiceVcl.activeVersion())
      *             .build());
      * 
-     *         ctx.export("serviceDictionaries", example.applyValue(getDictionariesResult -> getDictionariesResult));
+     *         ctx.export("serviceDictionaries", example);
      *     }
      * }
      * }
@@ -454,7 +454,7 @@ public final class FastlyFunctions {
      *             .serviceVersion(exampleServiceVcl.activeVersion())
      *             .build());
      * 
-     *         ctx.export("serviceDictionaries", example.applyValue(getDictionariesResult -> getDictionariesResult));
+     *         ctx.export("serviceDictionaries", example);
      *     }
      * }
      * }
@@ -482,7 +482,7 @@ public final class FastlyFunctions {
      * import com.pulumi.core.Output;
      * import com.pulumi.fastly.FastlyFunctions;
      * import com.pulumi.aws.securityGroup;
-     * import com.pulumi.aws.SecurityGroupArgs;
+     * import com.pulumi.aws.securityGroupArgs;
      * import java.util.List;
      * import java.util.ArrayList;
      * import java.util.Map;
@@ -496,11 +496,17 @@ public final class FastlyFunctions {
      *     }
      * 
      *     public static void stack(Context ctx) {
-     *         final var fastly = FastlyFunctions.getFastlyIpRanges();
+     *         final var fastly = FastlyFunctions.getFastlyIpRanges(%!v(PANIC=Format method: runtime error: invalid memory address or nil pointer dereference);
      * 
      *         var fromFastly = new SecurityGroup("fromFastly", SecurityGroupArgs.builder()
      *             .name("from_fastly")
-     *             .ingress(%!v(PANIC=Format method: runtime error: invalid memory address or nil pointer dereference))
+     *             .ingress(List.of(Map.ofEntries(
+     *                 Map.entry("fromPort", "443"),
+     *                 Map.entry("toPort", "443"),
+     *                 Map.entry("protocol", "tcp"),
+     *                 Map.entry("cidrBlocks", fastly.cidrBlocks()),
+     *                 Map.entry("ipv6CidrBlocks", fastly.ipv6CidrBlocks())
+     *             )))
      *             .build());
      * 
      *     }
@@ -530,7 +536,7 @@ public final class FastlyFunctions {
      * import com.pulumi.core.Output;
      * import com.pulumi.fastly.FastlyFunctions;
      * import com.pulumi.aws.securityGroup;
-     * import com.pulumi.aws.SecurityGroupArgs;
+     * import com.pulumi.aws.securityGroupArgs;
      * import java.util.List;
      * import java.util.ArrayList;
      * import java.util.Map;
@@ -544,11 +550,17 @@ public final class FastlyFunctions {
      *     }
      * 
      *     public static void stack(Context ctx) {
-     *         final var fastly = FastlyFunctions.getFastlyIpRanges();
+     *         final var fastly = FastlyFunctions.getFastlyIpRanges(%!v(PANIC=Format method: runtime error: invalid memory address or nil pointer dereference);
      * 
      *         var fromFastly = new SecurityGroup("fromFastly", SecurityGroupArgs.builder()
      *             .name("from_fastly")
-     *             .ingress(%!v(PANIC=Format method: runtime error: invalid memory address or nil pointer dereference))
+     *             .ingress(List.of(Map.ofEntries(
+     *                 Map.entry("fromPort", "443"),
+     *                 Map.entry("toPort", "443"),
+     *                 Map.entry("protocol", "tcp"),
+     *                 Map.entry("cidrBlocks", fastly.cidrBlocks()),
+     *                 Map.entry("ipv6CidrBlocks", fastly.ipv6CidrBlocks())
+     *             )))
      *             .build());
      * 
      *     }
@@ -578,7 +590,7 @@ public final class FastlyFunctions {
      * import com.pulumi.core.Output;
      * import com.pulumi.fastly.FastlyFunctions;
      * import com.pulumi.aws.securityGroup;
-     * import com.pulumi.aws.SecurityGroupArgs;
+     * import com.pulumi.aws.securityGroupArgs;
      * import java.util.List;
      * import java.util.ArrayList;
      * import java.util.Map;
@@ -592,11 +604,17 @@ public final class FastlyFunctions {
      *     }
      * 
      *     public static void stack(Context ctx) {
-     *         final var fastly = FastlyFunctions.getFastlyIpRanges();
+     *         final var fastly = FastlyFunctions.getFastlyIpRanges(%!v(PANIC=Format method: runtime error: invalid memory address or nil pointer dereference);
      * 
      *         var fromFastly = new SecurityGroup("fromFastly", SecurityGroupArgs.builder()
      *             .name("from_fastly")
-     *             .ingress(%!v(PANIC=Format method: runtime error: invalid memory address or nil pointer dereference))
+     *             .ingress(List.of(Map.ofEntries(
+     *                 Map.entry("fromPort", "443"),
+     *                 Map.entry("toPort", "443"),
+     *                 Map.entry("protocol", "tcp"),
+     *                 Map.entry("cidrBlocks", fastly.cidrBlocks()),
+     *                 Map.entry("ipv6CidrBlocks", fastly.ipv6CidrBlocks())
+     *             )))
      *             .build());
      * 
      *     }
@@ -626,7 +644,7 @@ public final class FastlyFunctions {
      * import com.pulumi.core.Output;
      * import com.pulumi.fastly.FastlyFunctions;
      * import com.pulumi.aws.securityGroup;
-     * import com.pulumi.aws.SecurityGroupArgs;
+     * import com.pulumi.aws.securityGroupArgs;
      * import java.util.List;
      * import java.util.ArrayList;
      * import java.util.Map;
@@ -640,11 +658,17 @@ public final class FastlyFunctions {
      *     }
      * 
      *     public static void stack(Context ctx) {
-     *         final var fastly = FastlyFunctions.getFastlyIpRanges();
+     *         final var fastly = FastlyFunctions.getFastlyIpRanges(%!v(PANIC=Format method: runtime error: invalid memory address or nil pointer dereference);
      * 
      *         var fromFastly = new SecurityGroup("fromFastly", SecurityGroupArgs.builder()
      *             .name("from_fastly")
-     *             .ingress(%!v(PANIC=Format method: runtime error: invalid memory address or nil pointer dereference))
+     *             .ingress(List.of(Map.ofEntries(
+     *                 Map.entry("fromPort", "443"),
+     *                 Map.entry("toPort", "443"),
+     *                 Map.entry("protocol", "tcp"),
+     *                 Map.entry("cidrBlocks", fastly.cidrBlocks()),
+     *                 Map.entry("ipv6CidrBlocks", fastly.ipv6CidrBlocks())
+     *             )))
      *             .build());
      * 
      *     }
@@ -674,7 +698,7 @@ public final class FastlyFunctions {
      * import com.pulumi.core.Output;
      * import com.pulumi.fastly.FastlyFunctions;
      * import com.pulumi.aws.securityGroup;
-     * import com.pulumi.aws.SecurityGroupArgs;
+     * import com.pulumi.aws.securityGroupArgs;
      * import java.util.List;
      * import java.util.ArrayList;
      * import java.util.Map;
@@ -688,11 +712,17 @@ public final class FastlyFunctions {
      *     }
      * 
      *     public static void stack(Context ctx) {
-     *         final var fastly = FastlyFunctions.getFastlyIpRanges();
+     *         final var fastly = FastlyFunctions.getFastlyIpRanges(%!v(PANIC=Format method: runtime error: invalid memory address or nil pointer dereference);
      * 
      *         var fromFastly = new SecurityGroup("fromFastly", SecurityGroupArgs.builder()
      *             .name("from_fastly")
-     *             .ingress(%!v(PANIC=Format method: runtime error: invalid memory address or nil pointer dereference))
+     *             .ingress(List.of(Map.ofEntries(
+     *                 Map.entry("fromPort", "443"),
+     *                 Map.entry("toPort", "443"),
+     *                 Map.entry("protocol", "tcp"),
+     *                 Map.entry("cidrBlocks", fastly.cidrBlocks()),
+     *                 Map.entry("ipv6CidrBlocks", fastly.ipv6CidrBlocks())
+     *             )))
      *             .build());
      * 
      *     }
@@ -722,7 +752,7 @@ public final class FastlyFunctions {
      * import com.pulumi.core.Output;
      * import com.pulumi.fastly.FastlyFunctions;
      * import com.pulumi.aws.securityGroup;
-     * import com.pulumi.aws.SecurityGroupArgs;
+     * import com.pulumi.aws.securityGroupArgs;
      * import java.util.List;
      * import java.util.ArrayList;
      * import java.util.Map;
@@ -736,11 +766,17 @@ public final class FastlyFunctions {
      *     }
      * 
      *     public static void stack(Context ctx) {
-     *         final var fastly = FastlyFunctions.getFastlyIpRanges();
+     *         final var fastly = FastlyFunctions.getFastlyIpRanges(%!v(PANIC=Format method: runtime error: invalid memory address or nil pointer dereference);
      * 
      *         var fromFastly = new SecurityGroup("fromFastly", SecurityGroupArgs.builder()
      *             .name("from_fastly")
-     *             .ingress(%!v(PANIC=Format method: runtime error: invalid memory address or nil pointer dereference))
+     *             .ingress(List.of(Map.ofEntries(
+     *                 Map.entry("fromPort", "443"),
+     *                 Map.entry("toPort", "443"),
+     *                 Map.entry("protocol", "tcp"),
+     *                 Map.entry("cidrBlocks", fastly.cidrBlocks()),
+     *                 Map.entry("ipv6CidrBlocks", fastly.ipv6CidrBlocks())
+     *             )))
      *             .build());
      * 
      *     }
@@ -770,7 +806,7 @@ public final class FastlyFunctions {
      * import com.pulumi.core.Output;
      * import com.pulumi.fastly.FastlyFunctions;
      * import com.pulumi.aws.securityGroup;
-     * import com.pulumi.aws.SecurityGroupArgs;
+     * import com.pulumi.aws.securityGroupArgs;
      * import java.util.List;
      * import java.util.ArrayList;
      * import java.util.Map;
@@ -784,11 +820,17 @@ public final class FastlyFunctions {
      *     }
      * 
      *     public static void stack(Context ctx) {
-     *         final var fastly = FastlyFunctions.getFastlyIpRanges();
+     *         final var fastly = FastlyFunctions.getFastlyIpRanges(%!v(PANIC=Format method: runtime error: invalid memory address or nil pointer dereference);
      * 
      *         var fromFastly = new SecurityGroup("fromFastly", SecurityGroupArgs.builder()
      *             .name("from_fastly")
-     *             .ingress(%!v(PANIC=Format method: runtime error: invalid memory address or nil pointer dereference))
+     *             .ingress(List.of(Map.ofEntries(
+     *                 Map.entry("fromPort", "443"),
+     *                 Map.entry("toPort", "443"),
+     *                 Map.entry("protocol", "tcp"),
+     *                 Map.entry("cidrBlocks", fastly.cidrBlocks()),
+     *                 Map.entry("ipv6CidrBlocks", fastly.ipv6CidrBlocks())
+     *             )))
      *             .build());
      * 
      *     }
@@ -862,7 +904,7 @@ public final class FastlyFunctions {
      *         var exampleServiceCompute = new ServiceCompute("exampleServiceCompute", ServiceComputeArgs.builder()
      *             .package_(ServiceComputePackageArgs.builder()
      *                 .filename("./path/to/package.tar.gz")
-     *                 .sourceCodeHash(example.applyValue(getPackageHashResult -> getPackageHashResult.hash()))
+     *                 .sourceCodeHash(example.hash())
      *                 .build())
      *             .build());
      * 
@@ -914,7 +956,7 @@ public final class FastlyFunctions {
      *         var exampleServiceCompute = new ServiceCompute("exampleServiceCompute", ServiceComputeArgs.builder()
      *             .package_(ServiceComputePackageArgs.builder()
      *                 .filename("./path/to/package.tar.gz")
-     *                 .sourceCodeHash(example.applyValue(getPackageHashResult -> getPackageHashResult.hash()))
+     *                 .sourceCodeHash(example.hash())
      *                 .build())
      *             .build());
      * 
@@ -966,7 +1008,7 @@ public final class FastlyFunctions {
      *         var exampleServiceCompute = new ServiceCompute("exampleServiceCompute", ServiceComputeArgs.builder()
      *             .package_(ServiceComputePackageArgs.builder()
      *                 .filename("./path/to/package.tar.gz")
-     *                 .sourceCodeHash(example.applyValue(getPackageHashResult -> getPackageHashResult.hash()))
+     *                 .sourceCodeHash(example.hash())
      *                 .build())
      *             .build());
      * 
@@ -1018,7 +1060,7 @@ public final class FastlyFunctions {
      *         var exampleServiceCompute = new ServiceCompute("exampleServiceCompute", ServiceComputeArgs.builder()
      *             .package_(ServiceComputePackageArgs.builder()
      *                 .filename("./path/to/package.tar.gz")
-     *                 .sourceCodeHash(example.applyValue(getPackageHashResult -> getPackageHashResult.hash()))
+     *                 .sourceCodeHash(example.hash())
      *                 .build())
      *             .build());
      * 
@@ -1070,7 +1112,7 @@ public final class FastlyFunctions {
      *         var exampleServiceCompute = new ServiceCompute("exampleServiceCompute", ServiceComputeArgs.builder()
      *             .package_(ServiceComputePackageArgs.builder()
      *                 .filename("./path/to/package.tar.gz")
-     *                 .sourceCodeHash(example.applyValue(getPackageHashResult -> getPackageHashResult.hash()))
+     *                 .sourceCodeHash(example.hash())
      *                 .build())
      *             .build());
      * 
@@ -1122,7 +1164,7 @@ public final class FastlyFunctions {
      *         var exampleServiceCompute = new ServiceCompute("exampleServiceCompute", ServiceComputeArgs.builder()
      *             .package_(ServiceComputePackageArgs.builder()
      *                 .filename("./path/to/package.tar.gz")
-     *                 .sourceCodeHash(example.applyValue(getPackageHashResult -> getPackageHashResult.hash()))
+     *                 .sourceCodeHash(example.hash())
      *                 .build())
      *             .build());
      * 
@@ -1174,7 +1216,7 @@ public final class FastlyFunctions {
      *         var exampleServiceCompute = new ServiceCompute("exampleServiceCompute", ServiceComputeArgs.builder()
      *             .package_(ServiceComputePackageArgs.builder()
      *                 .filename("./path/to/package.tar.gz")
-     *                 .sourceCodeHash(example.applyValue(getPackageHashResult -> getPackageHashResult.hash()))
+     *                 .sourceCodeHash(example.hash())
      *                 .build())
      *             .build());
      * 
@@ -2043,10 +2085,10 @@ public final class FastlyFunctions {
      *     }
      * 
      *     public static void stack(Context ctx) {
-     *         final var example = FastlyFunctions.getTlsCertificateIds();
+     *         final var example = FastlyFunctions.getTlsCertificateIds(%!v(PANIC=Format method: runtime error: invalid memory address or nil pointer dereference);
      * 
      *         var exampleTlsActivation = new TlsActivation("exampleTlsActivation", TlsActivationArgs.builder()
-     *             .certificateId(example.applyValue(getTlsCertificateIdsResult -> getTlsCertificateIdsResult.ids()[0]))
+     *             .certificateId(example.ids()[0])
      *             .build());
      * 
      *     }
@@ -2088,10 +2130,10 @@ public final class FastlyFunctions {
      *     }
      * 
      *     public static void stack(Context ctx) {
-     *         final var example = FastlyFunctions.getTlsCertificateIds();
+     *         final var example = FastlyFunctions.getTlsCertificateIds(%!v(PANIC=Format method: runtime error: invalid memory address or nil pointer dereference);
      * 
      *         var exampleTlsActivation = new TlsActivation("exampleTlsActivation", TlsActivationArgs.builder()
-     *             .certificateId(example.applyValue(getTlsCertificateIdsResult -> getTlsCertificateIdsResult.ids()[0]))
+     *             .certificateId(example.ids()[0])
      *             .build());
      * 
      *     }
@@ -2133,10 +2175,10 @@ public final class FastlyFunctions {
      *     }
      * 
      *     public static void stack(Context ctx) {
-     *         final var example = FastlyFunctions.getTlsCertificateIds();
+     *         final var example = FastlyFunctions.getTlsCertificateIds(%!v(PANIC=Format method: runtime error: invalid memory address or nil pointer dereference);
      * 
      *         var exampleTlsActivation = new TlsActivation("exampleTlsActivation", TlsActivationArgs.builder()
-     *             .certificateId(example.applyValue(getTlsCertificateIdsResult -> getTlsCertificateIdsResult.ids()[0]))
+     *             .certificateId(example.ids()[0])
      *             .build());
      * 
      *     }
@@ -2178,10 +2220,10 @@ public final class FastlyFunctions {
      *     }
      * 
      *     public static void stack(Context ctx) {
-     *         final var example = FastlyFunctions.getTlsCertificateIds();
+     *         final var example = FastlyFunctions.getTlsCertificateIds(%!v(PANIC=Format method: runtime error: invalid memory address or nil pointer dereference);
      * 
      *         var exampleTlsActivation = new TlsActivation("exampleTlsActivation", TlsActivationArgs.builder()
-     *             .certificateId(example.applyValue(getTlsCertificateIdsResult -> getTlsCertificateIdsResult.ids()[0]))
+     *             .certificateId(example.ids()[0])
      *             .build());
      * 
      *     }
@@ -2223,10 +2265,10 @@ public final class FastlyFunctions {
      *     }
      * 
      *     public static void stack(Context ctx) {
-     *         final var example = FastlyFunctions.getTlsCertificateIds();
+     *         final var example = FastlyFunctions.getTlsCertificateIds(%!v(PANIC=Format method: runtime error: invalid memory address or nil pointer dereference);
      * 
      *         var exampleTlsActivation = new TlsActivation("exampleTlsActivation", TlsActivationArgs.builder()
-     *             .certificateId(example.applyValue(getTlsCertificateIdsResult -> getTlsCertificateIdsResult.ids()[0]))
+     *             .certificateId(example.ids()[0])
      *             .build());
      * 
      *     }
@@ -2268,10 +2310,10 @@ public final class FastlyFunctions {
      *     }
      * 
      *     public static void stack(Context ctx) {
-     *         final var example = FastlyFunctions.getTlsCertificateIds();
+     *         final var example = FastlyFunctions.getTlsCertificateIds(%!v(PANIC=Format method: runtime error: invalid memory address or nil pointer dereference);
      * 
      *         var exampleTlsActivation = new TlsActivation("exampleTlsActivation", TlsActivationArgs.builder()
-     *             .certificateId(example.applyValue(getTlsCertificateIdsResult -> getTlsCertificateIdsResult.ids()[0]))
+     *             .certificateId(example.ids()[0])
      *             .build());
      * 
      *     }
@@ -2313,10 +2355,10 @@ public final class FastlyFunctions {
      *     }
      * 
      *     public static void stack(Context ctx) {
-     *         final var example = FastlyFunctions.getTlsCertificateIds();
+     *         final var example = FastlyFunctions.getTlsCertificateIds(%!v(PANIC=Format method: runtime error: invalid memory address or nil pointer dereference);
      * 
      *         var exampleTlsActivation = new TlsActivation("exampleTlsActivation", TlsActivationArgs.builder()
-     *             .certificateId(example.applyValue(getTlsCertificateIdsResult -> getTlsCertificateIdsResult.ids()[0]))
+     *             .certificateId(example.ids()[0])
      *             .build());
      * 
      *     }
@@ -2370,7 +2412,7 @@ public final class FastlyFunctions {
      *             .build());
      * 
      *         var exampleTlsActivation = new TlsActivation("exampleTlsActivation", TlsActivationArgs.builder()
-     *             .configurationId(example.applyValue(getTlsConfigurationResult -> getTlsConfigurationResult.id()))
+     *             .configurationId(example.id())
      *             .build());
      * 
      *     }
@@ -2424,7 +2466,7 @@ public final class FastlyFunctions {
      *             .build());
      * 
      *         var exampleTlsActivation = new TlsActivation("exampleTlsActivation", TlsActivationArgs.builder()
-     *             .configurationId(example.applyValue(getTlsConfigurationResult -> getTlsConfigurationResult.id()))
+     *             .configurationId(example.id())
      *             .build());
      * 
      *     }
@@ -2478,7 +2520,7 @@ public final class FastlyFunctions {
      *             .build());
      * 
      *         var exampleTlsActivation = new TlsActivation("exampleTlsActivation", TlsActivationArgs.builder()
-     *             .configurationId(example.applyValue(getTlsConfigurationResult -> getTlsConfigurationResult.id()))
+     *             .configurationId(example.id())
      *             .build());
      * 
      *     }
@@ -2532,7 +2574,7 @@ public final class FastlyFunctions {
      *             .build());
      * 
      *         var exampleTlsActivation = new TlsActivation("exampleTlsActivation", TlsActivationArgs.builder()
-     *             .configurationId(example.applyValue(getTlsConfigurationResult -> getTlsConfigurationResult.id()))
+     *             .configurationId(example.id())
      *             .build());
      * 
      *     }
@@ -2586,7 +2628,7 @@ public final class FastlyFunctions {
      *             .build());
      * 
      *         var exampleTlsActivation = new TlsActivation("exampleTlsActivation", TlsActivationArgs.builder()
-     *             .configurationId(example.applyValue(getTlsConfigurationResult -> getTlsConfigurationResult.id()))
+     *             .configurationId(example.id())
      *             .build());
      * 
      *     }
@@ -2640,7 +2682,7 @@ public final class FastlyFunctions {
      *             .build());
      * 
      *         var exampleTlsActivation = new TlsActivation("exampleTlsActivation", TlsActivationArgs.builder()
-     *             .configurationId(example.applyValue(getTlsConfigurationResult -> getTlsConfigurationResult.id()))
+     *             .configurationId(example.id())
      *             .build());
      * 
      *     }
@@ -2694,7 +2736,7 @@ public final class FastlyFunctions {
      *             .build());
      * 
      *         var exampleTlsActivation = new TlsActivation("exampleTlsActivation", TlsActivationArgs.builder()
-     *             .configurationId(example.applyValue(getTlsConfigurationResult -> getTlsConfigurationResult.id()))
+     *             .configurationId(example.id())
      *             .build());
      * 
      *     }
@@ -2736,10 +2778,10 @@ public final class FastlyFunctions {
      *     }
      * 
      *     public static void stack(Context ctx) {
-     *         final var example = FastlyFunctions.getTlsConfigurationIds();
+     *         final var example = FastlyFunctions.getTlsConfigurationIds(%!v(PANIC=Format method: runtime error: invalid memory address or nil pointer dereference);
      * 
      *         var exampleTlsActivation = new TlsActivation("exampleTlsActivation", TlsActivationArgs.builder()
-     *             .configurationId(example.applyValue(getTlsConfigurationIdsResult -> getTlsConfigurationIdsResult.ids()[0]))
+     *             .configurationId(example.ids()[0])
      *             .build());
      * 
      *     }
@@ -2781,10 +2823,10 @@ public final class FastlyFunctions {
      *     }
      * 
      *     public static void stack(Context ctx) {
-     *         final var example = FastlyFunctions.getTlsConfigurationIds();
+     *         final var example = FastlyFunctions.getTlsConfigurationIds(%!v(PANIC=Format method: runtime error: invalid memory address or nil pointer dereference);
      * 
      *         var exampleTlsActivation = new TlsActivation("exampleTlsActivation", TlsActivationArgs.builder()
-     *             .configurationId(example.applyValue(getTlsConfigurationIdsResult -> getTlsConfigurationIdsResult.ids()[0]))
+     *             .configurationId(example.ids()[0])
      *             .build());
      * 
      *     }
@@ -2826,10 +2868,10 @@ public final class FastlyFunctions {
      *     }
      * 
      *     public static void stack(Context ctx) {
-     *         final var example = FastlyFunctions.getTlsConfigurationIds();
+     *         final var example = FastlyFunctions.getTlsConfigurationIds(%!v(PANIC=Format method: runtime error: invalid memory address or nil pointer dereference);
      * 
      *         var exampleTlsActivation = new TlsActivation("exampleTlsActivation", TlsActivationArgs.builder()
-     *             .configurationId(example.applyValue(getTlsConfigurationIdsResult -> getTlsConfigurationIdsResult.ids()[0]))
+     *             .configurationId(example.ids()[0])
      *             .build());
      * 
      *     }
@@ -2871,10 +2913,10 @@ public final class FastlyFunctions {
      *     }
      * 
      *     public static void stack(Context ctx) {
-     *         final var example = FastlyFunctions.getTlsConfigurationIds();
+     *         final var example = FastlyFunctions.getTlsConfigurationIds(%!v(PANIC=Format method: runtime error: invalid memory address or nil pointer dereference);
      * 
      *         var exampleTlsActivation = new TlsActivation("exampleTlsActivation", TlsActivationArgs.builder()
-     *             .configurationId(example.applyValue(getTlsConfigurationIdsResult -> getTlsConfigurationIdsResult.ids()[0]))
+     *             .configurationId(example.ids()[0])
      *             .build());
      * 
      *     }
@@ -2916,10 +2958,10 @@ public final class FastlyFunctions {
      *     }
      * 
      *     public static void stack(Context ctx) {
-     *         final var example = FastlyFunctions.getTlsConfigurationIds();
+     *         final var example = FastlyFunctions.getTlsConfigurationIds(%!v(PANIC=Format method: runtime error: invalid memory address or nil pointer dereference);
      * 
      *         var exampleTlsActivation = new TlsActivation("exampleTlsActivation", TlsActivationArgs.builder()
-     *             .configurationId(example.applyValue(getTlsConfigurationIdsResult -> getTlsConfigurationIdsResult.ids()[0]))
+     *             .configurationId(example.ids()[0])
      *             .build());
      * 
      *     }
@@ -2961,10 +3003,10 @@ public final class FastlyFunctions {
      *     }
      * 
      *     public static void stack(Context ctx) {
-     *         final var example = FastlyFunctions.getTlsConfigurationIds();
+     *         final var example = FastlyFunctions.getTlsConfigurationIds(%!v(PANIC=Format method: runtime error: invalid memory address or nil pointer dereference);
      * 
      *         var exampleTlsActivation = new TlsActivation("exampleTlsActivation", TlsActivationArgs.builder()
-     *             .configurationId(example.applyValue(getTlsConfigurationIdsResult -> getTlsConfigurationIdsResult.ids()[0]))
+     *             .configurationId(example.ids()[0])
      *             .build());
      * 
      *     }
@@ -3006,10 +3048,10 @@ public final class FastlyFunctions {
      *     }
      * 
      *     public static void stack(Context ctx) {
-     *         final var example = FastlyFunctions.getTlsConfigurationIds();
+     *         final var example = FastlyFunctions.getTlsConfigurationIds(%!v(PANIC=Format method: runtime error: invalid memory address or nil pointer dereference);
      * 
      *         var exampleTlsActivation = new TlsActivation("exampleTlsActivation", TlsActivationArgs.builder()
-     *             .configurationId(example.applyValue(getTlsConfigurationIdsResult -> getTlsConfigurationIdsResult.ids()[0]))
+     *             .configurationId(example.ids()[0])
      *             .build());
      * 
      *     }
@@ -3596,10 +3638,10 @@ public final class FastlyFunctions {
      *     }
      * 
      *     public static void stack(Context ctx) {
-     *         final var example = FastlyFunctions.getTlsPlatformCertificateIds();
+     *         final var example = FastlyFunctions.getTlsPlatformCertificateIds(%!v(PANIC=Format method: runtime error: invalid memory address or nil pointer dereference);
      * 
      *         final var exampleGetTlsPlatformCertificate = FastlyFunctions.getTlsPlatformCertificate(GetTlsPlatformCertificateArgs.builder()
-     *             .id(example.applyValue(getTlsPlatformCertificateIdsResult -> getTlsPlatformCertificateIdsResult.ids()[0]))
+     *             .id(example.ids()[0])
      *             .build());
      * 
      *     }
@@ -3640,10 +3682,10 @@ public final class FastlyFunctions {
      *     }
      * 
      *     public static void stack(Context ctx) {
-     *         final var example = FastlyFunctions.getTlsPlatformCertificateIds();
+     *         final var example = FastlyFunctions.getTlsPlatformCertificateIds(%!v(PANIC=Format method: runtime error: invalid memory address or nil pointer dereference);
      * 
      *         final var exampleGetTlsPlatformCertificate = FastlyFunctions.getTlsPlatformCertificate(GetTlsPlatformCertificateArgs.builder()
-     *             .id(example.applyValue(getTlsPlatformCertificateIdsResult -> getTlsPlatformCertificateIdsResult.ids()[0]))
+     *             .id(example.ids()[0])
      *             .build());
      * 
      *     }
@@ -3684,10 +3726,10 @@ public final class FastlyFunctions {
      *     }
      * 
      *     public static void stack(Context ctx) {
-     *         final var example = FastlyFunctions.getTlsPlatformCertificateIds();
+     *         final var example = FastlyFunctions.getTlsPlatformCertificateIds(%!v(PANIC=Format method: runtime error: invalid memory address or nil pointer dereference);
      * 
      *         final var exampleGetTlsPlatformCertificate = FastlyFunctions.getTlsPlatformCertificate(GetTlsPlatformCertificateArgs.builder()
-     *             .id(example.applyValue(getTlsPlatformCertificateIdsResult -> getTlsPlatformCertificateIdsResult.ids()[0]))
+     *             .id(example.ids()[0])
      *             .build());
      * 
      *     }
@@ -3728,10 +3770,10 @@ public final class FastlyFunctions {
      *     }
      * 
      *     public static void stack(Context ctx) {
-     *         final var example = FastlyFunctions.getTlsPlatformCertificateIds();
+     *         final var example = FastlyFunctions.getTlsPlatformCertificateIds(%!v(PANIC=Format method: runtime error: invalid memory address or nil pointer dereference);
      * 
      *         final var exampleGetTlsPlatformCertificate = FastlyFunctions.getTlsPlatformCertificate(GetTlsPlatformCertificateArgs.builder()
-     *             .id(example.applyValue(getTlsPlatformCertificateIdsResult -> getTlsPlatformCertificateIdsResult.ids()[0]))
+     *             .id(example.ids()[0])
      *             .build());
      * 
      *     }
@@ -3772,10 +3814,10 @@ public final class FastlyFunctions {
      *     }
      * 
      *     public static void stack(Context ctx) {
-     *         final var example = FastlyFunctions.getTlsPlatformCertificateIds();
+     *         final var example = FastlyFunctions.getTlsPlatformCertificateIds(%!v(PANIC=Format method: runtime error: invalid memory address or nil pointer dereference);
      * 
      *         final var exampleGetTlsPlatformCertificate = FastlyFunctions.getTlsPlatformCertificate(GetTlsPlatformCertificateArgs.builder()
-     *             .id(example.applyValue(getTlsPlatformCertificateIdsResult -> getTlsPlatformCertificateIdsResult.ids()[0]))
+     *             .id(example.ids()[0])
      *             .build());
      * 
      *     }
@@ -3816,10 +3858,10 @@ public final class FastlyFunctions {
      *     }
      * 
      *     public static void stack(Context ctx) {
-     *         final var example = FastlyFunctions.getTlsPlatformCertificateIds();
+     *         final var example = FastlyFunctions.getTlsPlatformCertificateIds(%!v(PANIC=Format method: runtime error: invalid memory address or nil pointer dereference);
      * 
      *         final var exampleGetTlsPlatformCertificate = FastlyFunctions.getTlsPlatformCertificate(GetTlsPlatformCertificateArgs.builder()
-     *             .id(example.applyValue(getTlsPlatformCertificateIdsResult -> getTlsPlatformCertificateIdsResult.ids()[0]))
+     *             .id(example.ids()[0])
      *             .build());
      * 
      *     }
@@ -3860,10 +3902,10 @@ public final class FastlyFunctions {
      *     }
      * 
      *     public static void stack(Context ctx) {
-     *         final var example = FastlyFunctions.getTlsPlatformCertificateIds();
+     *         final var example = FastlyFunctions.getTlsPlatformCertificateIds(%!v(PANIC=Format method: runtime error: invalid memory address or nil pointer dereference);
      * 
      *         final var exampleGetTlsPlatformCertificate = FastlyFunctions.getTlsPlatformCertificate(GetTlsPlatformCertificateArgs.builder()
-     *             .id(example.applyValue(getTlsPlatformCertificateIdsResult -> getTlsPlatformCertificateIdsResult.ids()[0]))
+     *             .id(example.ids()[0])
      *             .build());
      * 
      *     }
@@ -3915,7 +3957,7 @@ public final class FastlyFunctions {
      *             .name("demo-private-key")
      *             .build());
      * 
-     *         ctx.export("privateKeyNeedsReplacing", demo.applyValue(getTlsPrivateKeyResult -> getTlsPrivateKeyResult.replace()));
+     *         ctx.export("privateKeyNeedsReplacing", demo.replace());
      *     }
      * }
      * }
@@ -3965,7 +4007,7 @@ public final class FastlyFunctions {
      *             .name("demo-private-key")
      *             .build());
      * 
-     *         ctx.export("privateKeyNeedsReplacing", demo.applyValue(getTlsPrivateKeyResult -> getTlsPrivateKeyResult.replace()));
+     *         ctx.export("privateKeyNeedsReplacing", demo.replace());
      *     }
      * }
      * }
@@ -4015,7 +4057,7 @@ public final class FastlyFunctions {
      *             .name("demo-private-key")
      *             .build());
      * 
-     *         ctx.export("privateKeyNeedsReplacing", demo.applyValue(getTlsPrivateKeyResult -> getTlsPrivateKeyResult.replace()));
+     *         ctx.export("privateKeyNeedsReplacing", demo.replace());
      *     }
      * }
      * }
@@ -4065,7 +4107,7 @@ public final class FastlyFunctions {
      *             .name("demo-private-key")
      *             .build());
      * 
-     *         ctx.export("privateKeyNeedsReplacing", demo.applyValue(getTlsPrivateKeyResult -> getTlsPrivateKeyResult.replace()));
+     *         ctx.export("privateKeyNeedsReplacing", demo.replace());
      *     }
      * }
      * }
@@ -4115,7 +4157,7 @@ public final class FastlyFunctions {
      *             .name("demo-private-key")
      *             .build());
      * 
-     *         ctx.export("privateKeyNeedsReplacing", demo.applyValue(getTlsPrivateKeyResult -> getTlsPrivateKeyResult.replace()));
+     *         ctx.export("privateKeyNeedsReplacing", demo.replace());
      *     }
      * }
      * }
@@ -4165,7 +4207,7 @@ public final class FastlyFunctions {
      *             .name("demo-private-key")
      *             .build());
      * 
-     *         ctx.export("privateKeyNeedsReplacing", demo.applyValue(getTlsPrivateKeyResult -> getTlsPrivateKeyResult.replace()));
+     *         ctx.export("privateKeyNeedsReplacing", demo.replace());
      *     }
      * }
      * }
@@ -4215,7 +4257,7 @@ public final class FastlyFunctions {
      *             .name("demo-private-key")
      *             .build());
      * 
-     *         ctx.export("privateKeyNeedsReplacing", demo.applyValue(getTlsPrivateKeyResult -> getTlsPrivateKeyResult.replace()));
+     *         ctx.export("privateKeyNeedsReplacing", demo.replace());
      *     }
      * }
      * }
@@ -4254,7 +4296,7 @@ public final class FastlyFunctions {
      *     }
      * 
      *     public static void stack(Context ctx) {
-     *         final var demo = FastlyFunctions.getTlsPrivateKeyIds();
+     *         final var demo = FastlyFunctions.getTlsPrivateKeyIds(%!v(PANIC=Format method: runtime error: invalid memory address or nil pointer dereference);
      * 
      *         final var example = FastlyFunctions.getTlsPrivateKey(GetTlsPrivateKeyArgs.builder()
      *             .id(demoFastlyTlsPrivateKeyIds.ids()[0])
@@ -4298,7 +4340,7 @@ public final class FastlyFunctions {
      *     }
      * 
      *     public static void stack(Context ctx) {
-     *         final var demo = FastlyFunctions.getTlsPrivateKeyIds();
+     *         final var demo = FastlyFunctions.getTlsPrivateKeyIds(%!v(PANIC=Format method: runtime error: invalid memory address or nil pointer dereference);
      * 
      *         final var example = FastlyFunctions.getTlsPrivateKey(GetTlsPrivateKeyArgs.builder()
      *             .id(demoFastlyTlsPrivateKeyIds.ids()[0])
@@ -4342,7 +4384,7 @@ public final class FastlyFunctions {
      *     }
      * 
      *     public static void stack(Context ctx) {
-     *         final var demo = FastlyFunctions.getTlsPrivateKeyIds();
+     *         final var demo = FastlyFunctions.getTlsPrivateKeyIds(%!v(PANIC=Format method: runtime error: invalid memory address or nil pointer dereference);
      * 
      *         final var example = FastlyFunctions.getTlsPrivateKey(GetTlsPrivateKeyArgs.builder()
      *             .id(demoFastlyTlsPrivateKeyIds.ids()[0])
@@ -4386,7 +4428,7 @@ public final class FastlyFunctions {
      *     }
      * 
      *     public static void stack(Context ctx) {
-     *         final var demo = FastlyFunctions.getTlsPrivateKeyIds();
+     *         final var demo = FastlyFunctions.getTlsPrivateKeyIds(%!v(PANIC=Format method: runtime error: invalid memory address or nil pointer dereference);
      * 
      *         final var example = FastlyFunctions.getTlsPrivateKey(GetTlsPrivateKeyArgs.builder()
      *             .id(demoFastlyTlsPrivateKeyIds.ids()[0])
@@ -4430,7 +4472,7 @@ public final class FastlyFunctions {
      *     }
      * 
      *     public static void stack(Context ctx) {
-     *         final var demo = FastlyFunctions.getTlsPrivateKeyIds();
+     *         final var demo = FastlyFunctions.getTlsPrivateKeyIds(%!v(PANIC=Format method: runtime error: invalid memory address or nil pointer dereference);
      * 
      *         final var example = FastlyFunctions.getTlsPrivateKey(GetTlsPrivateKeyArgs.builder()
      *             .id(demoFastlyTlsPrivateKeyIds.ids()[0])
@@ -4474,7 +4516,7 @@ public final class FastlyFunctions {
      *     }
      * 
      *     public static void stack(Context ctx) {
-     *         final var demo = FastlyFunctions.getTlsPrivateKeyIds();
+     *         final var demo = FastlyFunctions.getTlsPrivateKeyIds(%!v(PANIC=Format method: runtime error: invalid memory address or nil pointer dereference);
      * 
      *         final var example = FastlyFunctions.getTlsPrivateKey(GetTlsPrivateKeyArgs.builder()
      *             .id(demoFastlyTlsPrivateKeyIds.ids()[0])
@@ -4518,7 +4560,7 @@ public final class FastlyFunctions {
      *     }
      * 
      *     public static void stack(Context ctx) {
-     *         final var demo = FastlyFunctions.getTlsPrivateKeyIds();
+     *         final var demo = FastlyFunctions.getTlsPrivateKeyIds(%!v(PANIC=Format method: runtime error: invalid memory address or nil pointer dereference);
      * 
      *         final var example = FastlyFunctions.getTlsPrivateKey(GetTlsPrivateKeyArgs.builder()
      *             .id(demoFastlyTlsPrivateKeyIds.ids()[0])
@@ -4958,7 +5000,7 @@ public final class FastlyFunctions {
      *             .serviceVersion(exampleServiceVcl.activeVersion())
      *             .build());
      * 
-     *         ctx.export("serviceVclSnippets", example.applyValue(getVclSnippetsResult -> getVclSnippetsResult));
+     *         ctx.export("serviceVclSnippets", example);
      *     }
      * }
      * }
@@ -5017,7 +5059,7 @@ public final class FastlyFunctions {
      *             .serviceVersion(exampleServiceVcl.activeVersion())
      *             .build());
      * 
-     *         ctx.export("serviceVclSnippets", example.applyValue(getVclSnippetsResult -> getVclSnippetsResult));
+     *         ctx.export("serviceVclSnippets", example);
      *     }
      * }
      * }
@@ -5076,7 +5118,7 @@ public final class FastlyFunctions {
      *             .serviceVersion(exampleServiceVcl.activeVersion())
      *             .build());
      * 
-     *         ctx.export("serviceVclSnippets", example.applyValue(getVclSnippetsResult -> getVclSnippetsResult));
+     *         ctx.export("serviceVclSnippets", example);
      *     }
      * }
      * }
@@ -5135,7 +5177,7 @@ public final class FastlyFunctions {
      *             .serviceVersion(exampleServiceVcl.activeVersion())
      *             .build());
      * 
-     *         ctx.export("serviceVclSnippets", example.applyValue(getVclSnippetsResult -> getVclSnippetsResult));
+     *         ctx.export("serviceVclSnippets", example);
      *     }
      * }
      * }
@@ -5194,7 +5236,7 @@ public final class FastlyFunctions {
      *             .serviceVersion(exampleServiceVcl.activeVersion())
      *             .build());
      * 
-     *         ctx.export("serviceVclSnippets", example.applyValue(getVclSnippetsResult -> getVclSnippetsResult));
+     *         ctx.export("serviceVclSnippets", example);
      *     }
      * }
      * }
