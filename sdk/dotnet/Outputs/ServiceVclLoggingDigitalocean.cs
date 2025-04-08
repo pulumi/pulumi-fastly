@@ -58,7 +58,7 @@ namespace Pulumi.Fastly.Outputs
         /// </summary>
         public readonly int? Period;
         /// <summary>
-        /// Where in the generated VCL the logging call should be placed. Can be `none` or `waf_debug`.
+        /// Where in the generated VCL the logging call should be placed (ignored).
         /// </summary>
         public readonly string? Placement;
         /// <summary>

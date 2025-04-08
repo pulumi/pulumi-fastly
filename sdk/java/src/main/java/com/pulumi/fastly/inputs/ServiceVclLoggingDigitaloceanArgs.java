@@ -183,14 +183,14 @@ public final class ServiceVclLoggingDigitaloceanArgs extends com.pulumi.resource
     }
 
     /**
-     * Where in the generated VCL the logging call should be placed. Can be `none` or `waf_debug`.
+     * Where in the generated VCL the logging call should be placed (ignored).
      * 
      */
     @Import(name="placement")
     private @Nullable Output<String> placement;
 
     /**
-     * @return Where in the generated VCL the logging call should be placed. Can be `none` or `waf_debug`.
+     * @return Where in the generated VCL the logging call should be placed (ignored).
      * 
      */
     public Optional<Output<String>> placement() {
@@ -528,7 +528,7 @@ public final class ServiceVclLoggingDigitaloceanArgs extends com.pulumi.resource
         }
 
         /**
-         * @param placement Where in the generated VCL the logging call should be placed. Can be `none` or `waf_debug`.
+         * @param placement Where in the generated VCL the logging call should be placed (ignored).
          * 
          * @return builder
          * 
@@ -539,7 +539,7 @@ public final class ServiceVclLoggingDigitaloceanArgs extends com.pulumi.resource
         }
 
         /**
-         * @param placement Where in the generated VCL the logging call should be placed. Can be `none` or `waf_debug`.
+         * @param placement Where in the generated VCL the logging call should be placed (ignored).
          * 
          * @return builder
          * 

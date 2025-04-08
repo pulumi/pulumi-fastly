@@ -30,7 +30,7 @@ namespace Pulumi.Fastly
     public partial class ServiceCompute : global::Pulumi.CustomResource
     {
         /// <summary>
-        /// Conditionally prevents the Service from being activated. The apply step will continue to create a new draft version but
+        /// Conditionally prevents new service versions from being activated. The apply step will create a new draft version but
         /// will not activate it if this is set to `false`. Default `true`
         /// </summary>
         [Output("activate")]
@@ -191,6 +191,19 @@ namespace Pulumi.Fastly
         public Output<bool?> Reuse { get; private set; } = null!;
 
         /// <summary>
+        /// Conditionally enables new service versions to be staged. If `set` to true, all changes made by an `apply` step will be
+        /// staged, even if `apply` did not create a new draft version. Default `false`
+        /// </summary>
+        [Output("stage")]
+        public Output<bool?> Stage { get; private set; } = null!;
+
+        /// <summary>
+        /// The currently staged version of your Fastly Service
+        /// </summary>
+        [Output("stagedVersion")]
+        public Output<int> StagedVersion { get; private set; } = null!;
+
+        /// <summary>
         /// Description field for the version
         /// </summary>
         [Output("versionComment")]
@@ -243,7 +256,7 @@ namespace Pulumi.Fastly
     public sealed class ServiceComputeArgs : global::Pulumi.ResourceArgs
     {
         /// <summary>
-        /// Conditionally prevents the Service from being activated. The apply step will continue to create a new draft version but
+        /// Conditionally prevents new service versions from being activated. The apply step will create a new draft version but
         /// will not activate it if this is set to `false`. Default `true`
         /// </summary>
         [Input("activate")]
@@ -539,6 +552,13 @@ namespace Pulumi.Fastly
         public Input<bool>? Reuse { get; set; }
 
         /// <summary>
+        /// Conditionally enables new service versions to be staged. If `set` to true, all changes made by an `apply` step will be
+        /// staged, even if `apply` did not create a new draft version. Default `false`
+        /// </summary>
+        [Input("stage")]
+        public Input<bool>? Stage { get; set; }
+
+        /// <summary>
         /// Description field for the version
         /// </summary>
         [Input("versionComment")]
@@ -553,7 +573,7 @@ namespace Pulumi.Fastly
     public sealed class ServiceComputeState : global::Pulumi.ResourceArgs
     {
         /// <summary>
-        /// Conditionally prevents the Service from being activated. The apply step will continue to create a new draft version but
+        /// Conditionally prevents new service versions from being activated. The apply step will create a new draft version but
         /// will not activate it if this is set to `false`. Default `true`
         /// </summary>
         [Input("activate")]
@@ -869,6 +889,19 @@ namespace Pulumi.Fastly
 
         [Input("reuse")]
         public Input<bool>? Reuse { get; set; }
+
+        /// <summary>
+        /// Conditionally enables new service versions to be staged. If `set` to true, all changes made by an `apply` step will be
+        /// staged, even if `apply` did not create a new draft version. Default `false`
+        /// </summary>
+        [Input("stage")]
+        public Input<bool>? Stage { get; set; }
+
+        /// <summary>
+        /// The currently staged version of your Fastly Service
+        /// </summary>
+        [Input("stagedVersion")]
+        public Input<int>? StagedVersion { get; set; }
 
         /// <summary>
         /// Description field for the version

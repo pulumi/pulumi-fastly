@@ -74,15 +74,15 @@ class ServiceVclArgs:
                  response_objects: Optional[pulumi.Input[Sequence[pulumi.Input['ServiceVclResponseObjectArgs']]]] = None,
                  reuse: Optional[pulumi.Input[bool]] = None,
                  snippets: Optional[pulumi.Input[Sequence[pulumi.Input['ServiceVclSnippetArgs']]]] = None,
+                 stage: Optional[pulumi.Input[bool]] = None,
                  stale_if_error: Optional[pulumi.Input[bool]] = None,
                  stale_if_error_ttl: Optional[pulumi.Input[int]] = None,
                  vcls: Optional[pulumi.Input[Sequence[pulumi.Input['ServiceVclVclArgs']]]] = None,
-                 version_comment: Optional[pulumi.Input[str]] = None,
-                 waf: Optional[pulumi.Input['ServiceVclWafArgs']] = None):
+                 version_comment: Optional[pulumi.Input[str]] = None):
         """
         The set of arguments for constructing a ServiceVcl resource.
         :param pulumi.Input[Sequence[pulumi.Input['ServiceVclDomainArgs']]] domains: A set of Domain names to serve as entry points for your Service
-        :param pulumi.Input[bool] activate: Conditionally prevents the Service from being activated. The apply step will continue to create a new draft version but
+        :param pulumi.Input[bool] activate: Conditionally prevents new service versions from being activated. The apply step will create a new draft version but
                will not activate it if this is set to `false`. Default `true`
         :param pulumi.Input[str] default_host: The default hostname
         :param pulumi.Input[int] default_ttl: The default Time-to-live (TTL) for requests
@@ -90,6 +90,8 @@ class ServiceVclArgs:
                `false`
         :param pulumi.Input[bool] http3: Enables support for the HTTP/3 (QUIC) protocol
         :param pulumi.Input[str] name: The unique name for the Service to create
+        :param pulumi.Input[bool] stage: Conditionally enables new service versions to be staged. If `set` to true, all changes made by an `apply` step will be
+               staged, even if `apply` did not create a new draft version. Default `false`
         :param pulumi.Input[bool] stale_if_error: Enables serving a stale object if there is an error
         :param pulumi.Input[int] stale_if_error_ttl: The default time-to-live (TTL) for serving the stale object for the version
         :param pulumi.Input[str] version_comment: Description field for the version
@@ -199,6 +201,8 @@ class ServiceVclArgs:
             pulumi.set(__self__, "reuse", reuse)
         if snippets is not None:
             pulumi.set(__self__, "snippets", snippets)
+        if stage is not None:
+            pulumi.set(__self__, "stage", stage)
         if stale_if_error is not None:
             pulumi.set(__self__, "stale_if_error", stale_if_error)
         if stale_if_error_ttl is not None:
@@ -207,8 +211,6 @@ class ServiceVclArgs:
             pulumi.set(__self__, "vcls", vcls)
         if version_comment is not None:
             pulumi.set(__self__, "version_comment", version_comment)
-        if waf is not None:
-            pulumi.set(__self__, "waf", waf)
 
     @property
     @pulumi.getter
@@ -235,7 +237,7 @@ class ServiceVclArgs:
     @pulumi.getter
     def activate(self) -> Optional[pulumi.Input[bool]]:
         """
-        Conditionally prevents the Service from being activated. The apply step will continue to create a new draft version but
+        Conditionally prevents new service versions from being activated. The apply step will create a new draft version but
         will not activate it if this is set to `false`. Default `true`
         """
         return pulumi.get(self, "activate")
@@ -711,6 +713,19 @@ class ServiceVclArgs:
         pulumi.set(self, "snippets", value)
 
     @property
+    @pulumi.getter
+    def stage(self) -> Optional[pulumi.Input[bool]]:
+        """
+        Conditionally enables new service versions to be staged. If `set` to true, all changes made by an `apply` step will be
+        staged, even if `apply` did not create a new draft version. Default `false`
+        """
+        return pulumi.get(self, "stage")
+
+    @stage.setter
+    def stage(self, value: Optional[pulumi.Input[bool]]):
+        pulumi.set(self, "stage", value)
+
+    @property
     @pulumi.getter(name="staleIfError")
     def stale_if_error(self) -> Optional[pulumi.Input[bool]]:
         """
@@ -754,15 +769,6 @@ class ServiceVclArgs:
     @version_comment.setter
     def version_comment(self, value: Optional[pulumi.Input[str]]):
         pulumi.set(self, "version_comment", value)
-
-    @property
-    @pulumi.getter
-    def waf(self) -> Optional[pulumi.Input['ServiceVclWafArgs']]:
-        return pulumi.get(self, "waf")
-
-    @waf.setter
-    def waf(self, value: Optional[pulumi.Input['ServiceVclWafArgs']]):
-        pulumi.set(self, "waf", value)
 
 
 @pulumi.input_type
@@ -825,14 +831,15 @@ class _ServiceVclState:
                  response_objects: Optional[pulumi.Input[Sequence[pulumi.Input['ServiceVclResponseObjectArgs']]]] = None,
                  reuse: Optional[pulumi.Input[bool]] = None,
                  snippets: Optional[pulumi.Input[Sequence[pulumi.Input['ServiceVclSnippetArgs']]]] = None,
+                 stage: Optional[pulumi.Input[bool]] = None,
+                 staged_version: Optional[pulumi.Input[int]] = None,
                  stale_if_error: Optional[pulumi.Input[bool]] = None,
                  stale_if_error_ttl: Optional[pulumi.Input[int]] = None,
                  vcls: Optional[pulumi.Input[Sequence[pulumi.Input['ServiceVclVclArgs']]]] = None,
-                 version_comment: Optional[pulumi.Input[str]] = None,
-                 waf: Optional[pulumi.Input['ServiceVclWafArgs']] = None):
+                 version_comment: Optional[pulumi.Input[str]] = None):
         """
         Input properties used for looking up and filtering ServiceVcl resources.
-        :param pulumi.Input[bool] activate: Conditionally prevents the Service from being activated. The apply step will continue to create a new draft version but
+        :param pulumi.Input[bool] activate: Conditionally prevents new service versions from being activated. The apply step will create a new draft version but
                will not activate it if this is set to `false`. Default `true`
         :param pulumi.Input[int] active_version: The currently active version of your Fastly Service
         :param pulumi.Input[int] cloned_version: The latest cloned version by the provider
@@ -845,6 +852,9 @@ class _ServiceVclState:
         :param pulumi.Input[bool] imported: Used internally by the provider to temporarily indicate if the service is being imported, and is reset to false once the
                import is finished
         :param pulumi.Input[str] name: The unique name for the Service to create
+        :param pulumi.Input[bool] stage: Conditionally enables new service versions to be staged. If `set` to true, all changes made by an `apply` step will be
+               staged, even if `apply` did not create a new draft version. Default `false`
+        :param pulumi.Input[int] staged_version: The currently staged version of your Fastly Service
         :param pulumi.Input[bool] stale_if_error: Enables serving a stale object if there is an error
         :param pulumi.Input[int] stale_if_error_ttl: The default time-to-live (TTL) for serving the stale object for the version
         :param pulumi.Input[str] version_comment: Description field for the version
@@ -963,6 +973,10 @@ class _ServiceVclState:
             pulumi.set(__self__, "reuse", reuse)
         if snippets is not None:
             pulumi.set(__self__, "snippets", snippets)
+        if stage is not None:
+            pulumi.set(__self__, "stage", stage)
+        if staged_version is not None:
+            pulumi.set(__self__, "staged_version", staged_version)
         if stale_if_error is not None:
             pulumi.set(__self__, "stale_if_error", stale_if_error)
         if stale_if_error_ttl is not None:
@@ -971,8 +985,6 @@ class _ServiceVclState:
             pulumi.set(__self__, "vcls", vcls)
         if version_comment is not None:
             pulumi.set(__self__, "version_comment", version_comment)
-        if waf is not None:
-            pulumi.set(__self__, "waf", waf)
 
     @property
     @pulumi.getter
@@ -987,7 +999,7 @@ class _ServiceVclState:
     @pulumi.getter
     def activate(self) -> Optional[pulumi.Input[bool]]:
         """
-        Conditionally prevents the Service from being activated. The apply step will continue to create a new draft version but
+        Conditionally prevents new service versions from being activated. The apply step will create a new draft version but
         will not activate it if this is set to `false`. Default `true`
         """
         return pulumi.get(self, "activate")
@@ -1521,6 +1533,31 @@ class _ServiceVclState:
         pulumi.set(self, "snippets", value)
 
     @property
+    @pulumi.getter
+    def stage(self) -> Optional[pulumi.Input[bool]]:
+        """
+        Conditionally enables new service versions to be staged. If `set` to true, all changes made by an `apply` step will be
+        staged, even if `apply` did not create a new draft version. Default `false`
+        """
+        return pulumi.get(self, "stage")
+
+    @stage.setter
+    def stage(self, value: Optional[pulumi.Input[bool]]):
+        pulumi.set(self, "stage", value)
+
+    @property
+    @pulumi.getter(name="stagedVersion")
+    def staged_version(self) -> Optional[pulumi.Input[int]]:
+        """
+        The currently staged version of your Fastly Service
+        """
+        return pulumi.get(self, "staged_version")
+
+    @staged_version.setter
+    def staged_version(self, value: Optional[pulumi.Input[int]]):
+        pulumi.set(self, "staged_version", value)
+
+    @property
     @pulumi.getter(name="staleIfError")
     def stale_if_error(self) -> Optional[pulumi.Input[bool]]:
         """
@@ -1564,15 +1601,6 @@ class _ServiceVclState:
     @version_comment.setter
     def version_comment(self, value: Optional[pulumi.Input[str]]):
         pulumi.set(self, "version_comment", value)
-
-    @property
-    @pulumi.getter
-    def waf(self) -> Optional[pulumi.Input['ServiceVclWafArgs']]:
-        return pulumi.get(self, "waf")
-
-    @waf.setter
-    def waf(self, value: Optional[pulumi.Input['ServiceVclWafArgs']]):
-        pulumi.set(self, "waf", value)
 
 
 class ServiceVcl(pulumi.CustomResource):
@@ -1633,11 +1661,11 @@ class ServiceVcl(pulumi.CustomResource):
                  response_objects: Optional[pulumi.Input[Sequence[pulumi.Input[Union['ServiceVclResponseObjectArgs', 'ServiceVclResponseObjectArgsDict']]]]] = None,
                  reuse: Optional[pulumi.Input[bool]] = None,
                  snippets: Optional[pulumi.Input[Sequence[pulumi.Input[Union['ServiceVclSnippetArgs', 'ServiceVclSnippetArgsDict']]]]] = None,
+                 stage: Optional[pulumi.Input[bool]] = None,
                  stale_if_error: Optional[pulumi.Input[bool]] = None,
                  stale_if_error_ttl: Optional[pulumi.Input[int]] = None,
                  vcls: Optional[pulumi.Input[Sequence[pulumi.Input[Union['ServiceVclVclArgs', 'ServiceVclVclArgsDict']]]]] = None,
                  version_comment: Optional[pulumi.Input[str]] = None,
-                 waf: Optional[pulumi.Input[Union['ServiceVclWafArgs', 'ServiceVclWafArgsDict']]] = None,
                  __props__=None):
         """
         ## Import
@@ -1658,7 +1686,7 @@ class ServiceVcl(pulumi.CustomResource):
 
         :param str resource_name: The name of the resource.
         :param pulumi.ResourceOptions opts: Options for the resource.
-        :param pulumi.Input[bool] activate: Conditionally prevents the Service from being activated. The apply step will continue to create a new draft version but
+        :param pulumi.Input[bool] activate: Conditionally prevents new service versions from being activated. The apply step will create a new draft version but
                will not activate it if this is set to `false`. Default `true`
         :param pulumi.Input[str] default_host: The default hostname
         :param pulumi.Input[int] default_ttl: The default Time-to-live (TTL) for requests
@@ -1667,6 +1695,8 @@ class ServiceVcl(pulumi.CustomResource):
                `false`
         :param pulumi.Input[bool] http3: Enables support for the HTTP/3 (QUIC) protocol
         :param pulumi.Input[str] name: The unique name for the Service to create
+        :param pulumi.Input[bool] stage: Conditionally enables new service versions to be staged. If `set` to true, all changes made by an `apply` step will be
+               staged, even if `apply` did not create a new draft version. Default `false`
         :param pulumi.Input[bool] stale_if_error: Enables serving a stale object if there is an error
         :param pulumi.Input[int] stale_if_error_ttl: The default time-to-live (TTL) for serving the stale object for the version
         :param pulumi.Input[str] version_comment: Description field for the version
@@ -1762,11 +1792,11 @@ class ServiceVcl(pulumi.CustomResource):
                  response_objects: Optional[pulumi.Input[Sequence[pulumi.Input[Union['ServiceVclResponseObjectArgs', 'ServiceVclResponseObjectArgsDict']]]]] = None,
                  reuse: Optional[pulumi.Input[bool]] = None,
                  snippets: Optional[pulumi.Input[Sequence[pulumi.Input[Union['ServiceVclSnippetArgs', 'ServiceVclSnippetArgsDict']]]]] = None,
+                 stage: Optional[pulumi.Input[bool]] = None,
                  stale_if_error: Optional[pulumi.Input[bool]] = None,
                  stale_if_error_ttl: Optional[pulumi.Input[int]] = None,
                  vcls: Optional[pulumi.Input[Sequence[pulumi.Input[Union['ServiceVclVclArgs', 'ServiceVclVclArgsDict']]]]] = None,
                  version_comment: Optional[pulumi.Input[str]] = None,
-                 waf: Optional[pulumi.Input[Union['ServiceVclWafArgs', 'ServiceVclWafArgsDict']]] = None,
                  __props__=None):
         opts = pulumi.ResourceOptions.merge(_utilities.get_resource_opts_defaults(), opts)
         if not isinstance(opts, pulumi.ResourceOptions):
@@ -1831,15 +1861,16 @@ class ServiceVcl(pulumi.CustomResource):
             __props__.__dict__["response_objects"] = response_objects
             __props__.__dict__["reuse"] = reuse
             __props__.__dict__["snippets"] = snippets
+            __props__.__dict__["stage"] = stage
             __props__.__dict__["stale_if_error"] = stale_if_error
             __props__.__dict__["stale_if_error_ttl"] = stale_if_error_ttl
             __props__.__dict__["vcls"] = vcls
             __props__.__dict__["version_comment"] = version_comment
-            __props__.__dict__["waf"] = waf
             __props__.__dict__["active_version"] = None
             __props__.__dict__["cloned_version"] = None
             __props__.__dict__["force_refresh"] = None
             __props__.__dict__["imported"] = None
+            __props__.__dict__["staged_version"] = None
         super(ServiceVcl, __self__).__init__(
             'fastly:index/serviceVcl:ServiceVcl',
             resource_name,
@@ -1907,11 +1938,12 @@ class ServiceVcl(pulumi.CustomResource):
             response_objects: Optional[pulumi.Input[Sequence[pulumi.Input[Union['ServiceVclResponseObjectArgs', 'ServiceVclResponseObjectArgsDict']]]]] = None,
             reuse: Optional[pulumi.Input[bool]] = None,
             snippets: Optional[pulumi.Input[Sequence[pulumi.Input[Union['ServiceVclSnippetArgs', 'ServiceVclSnippetArgsDict']]]]] = None,
+            stage: Optional[pulumi.Input[bool]] = None,
+            staged_version: Optional[pulumi.Input[int]] = None,
             stale_if_error: Optional[pulumi.Input[bool]] = None,
             stale_if_error_ttl: Optional[pulumi.Input[int]] = None,
             vcls: Optional[pulumi.Input[Sequence[pulumi.Input[Union['ServiceVclVclArgs', 'ServiceVclVclArgsDict']]]]] = None,
-            version_comment: Optional[pulumi.Input[str]] = None,
-            waf: Optional[pulumi.Input[Union['ServiceVclWafArgs', 'ServiceVclWafArgsDict']]] = None) -> 'ServiceVcl':
+            version_comment: Optional[pulumi.Input[str]] = None) -> 'ServiceVcl':
         """
         Get an existing ServiceVcl resource's state with the given name, id, and optional extra
         properties used to qualify the lookup.
@@ -1919,7 +1951,7 @@ class ServiceVcl(pulumi.CustomResource):
         :param str resource_name: The unique name of the resulting resource.
         :param pulumi.Input[str] id: The unique provider ID of the resource to lookup.
         :param pulumi.ResourceOptions opts: Options for the resource.
-        :param pulumi.Input[bool] activate: Conditionally prevents the Service from being activated. The apply step will continue to create a new draft version but
+        :param pulumi.Input[bool] activate: Conditionally prevents new service versions from being activated. The apply step will create a new draft version but
                will not activate it if this is set to `false`. Default `true`
         :param pulumi.Input[int] active_version: The currently active version of your Fastly Service
         :param pulumi.Input[int] cloned_version: The latest cloned version by the provider
@@ -1932,6 +1964,9 @@ class ServiceVcl(pulumi.CustomResource):
         :param pulumi.Input[bool] imported: Used internally by the provider to temporarily indicate if the service is being imported, and is reset to false once the
                import is finished
         :param pulumi.Input[str] name: The unique name for the Service to create
+        :param pulumi.Input[bool] stage: Conditionally enables new service versions to be staged. If `set` to true, all changes made by an `apply` step will be
+               staged, even if `apply` did not create a new draft version. Default `false`
+        :param pulumi.Input[int] staged_version: The currently staged version of your Fastly Service
         :param pulumi.Input[bool] stale_if_error: Enables serving a stale object if there is an error
         :param pulumi.Input[int] stale_if_error_ttl: The default time-to-live (TTL) for serving the stale object for the version
         :param pulumi.Input[str] version_comment: Description field for the version
@@ -1997,11 +2032,12 @@ class ServiceVcl(pulumi.CustomResource):
         __props__.__dict__["response_objects"] = response_objects
         __props__.__dict__["reuse"] = reuse
         __props__.__dict__["snippets"] = snippets
+        __props__.__dict__["stage"] = stage
+        __props__.__dict__["staged_version"] = staged_version
         __props__.__dict__["stale_if_error"] = stale_if_error
         __props__.__dict__["stale_if_error_ttl"] = stale_if_error_ttl
         __props__.__dict__["vcls"] = vcls
         __props__.__dict__["version_comment"] = version_comment
-        __props__.__dict__["waf"] = waf
         return ServiceVcl(resource_name, opts=opts, __props__=__props__)
 
     @property
@@ -2013,7 +2049,7 @@ class ServiceVcl(pulumi.CustomResource):
     @pulumi.getter
     def activate(self) -> pulumi.Output[Optional[bool]]:
         """
-        Conditionally prevents the Service from being activated. The apply step will continue to create a new draft version but
+        Conditionally prevents new service versions from being activated. The apply step will create a new draft version but
         will not activate it if this is set to `false`. Default `true`
         """
         return pulumi.get(self, "activate")
@@ -2323,6 +2359,23 @@ class ServiceVcl(pulumi.CustomResource):
         return pulumi.get(self, "snippets")
 
     @property
+    @pulumi.getter
+    def stage(self) -> pulumi.Output[Optional[bool]]:
+        """
+        Conditionally enables new service versions to be staged. If `set` to true, all changes made by an `apply` step will be
+        staged, even if `apply` did not create a new draft version. Default `false`
+        """
+        return pulumi.get(self, "stage")
+
+    @property
+    @pulumi.getter(name="stagedVersion")
+    def staged_version(self) -> pulumi.Output[int]:
+        """
+        The currently staged version of your Fastly Service
+        """
+        return pulumi.get(self, "staged_version")
+
+    @property
     @pulumi.getter(name="staleIfError")
     def stale_if_error(self) -> pulumi.Output[Optional[bool]]:
         """
@@ -2350,9 +2403,4 @@ class ServiceVcl(pulumi.CustomResource):
         Description field for the version
         """
         return pulumi.get(self, "version_comment")
-
-    @property
-    @pulumi.getter
-    def waf(self) -> pulumi.Output[Optional['outputs.ServiceVclWaf']]:
-        return pulumi.get(self, "waf")
 

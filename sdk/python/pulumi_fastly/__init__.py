@@ -32,9 +32,9 @@ from .get_tls_private_key_ids import *
 from .get_tls_subscription import *
 from .get_tls_subscription_ids import *
 from .get_vcl_snippets import *
-from .get_waf_rules import *
 from .integration import *
 from .kvstore import *
+from .object_storage_access_keys import *
 from .provider import *
 from .secretstore import *
 from .service_acl_entries import *
@@ -43,7 +43,6 @@ from .service_compute import *
 from .service_dictionary_items import *
 from .service_dynamic_snippet_content import *
 from .service_vcl import *
-from .service_waf_configuration import *
 from .tls_activation import *
 from .tls_certificate import *
 from .tls_mutual_authentication import *
@@ -123,6 +122,14 @@ _utilities.register(
  },
  {
   "pkg": "fastly",
+  "mod": "index/objectStorageAccessKeys",
+  "fqn": "pulumi_fastly",
+  "classes": {
+   "fastly:index/objectStorageAccessKeys:ObjectStorageAccessKeys": "ObjectStorageAccessKeys"
+  }
+ },
+ {
+  "pkg": "fastly",
   "mod": "index/secretstore",
   "fqn": "pulumi_fastly",
   "classes": {
@@ -175,14 +182,6 @@ _utilities.register(
   "fqn": "pulumi_fastly",
   "classes": {
    "fastly:index/serviceVcl:ServiceVcl": "ServiceVcl"
-  }
- },
- {
-  "pkg": "fastly",
-  "mod": "index/serviceWafConfiguration",
-  "fqn": "pulumi_fastly",
-  "classes": {
-   "fastly:index/serviceWafConfiguration:ServiceWafConfiguration": "ServiceWafConfiguration"
   }
  },
  {

@@ -72,7 +72,7 @@ import javax.annotation.Nullable;
 @ResourceType(type="fastly:index/serviceCompute:ServiceCompute")
 public class ServiceCompute extends com.pulumi.resources.CustomResource {
     /**
-     * Conditionally prevents the Service from being activated. The apply step will continue to create a new draft version but
+     * Conditionally prevents new service versions from being activated. The apply step will create a new draft version but
      * will not activate it if this is set to `false`. Default `true`
      * 
      */
@@ -80,7 +80,7 @@ public class ServiceCompute extends com.pulumi.resources.CustomResource {
     private Output</* @Nullable */ Boolean> activate;
 
     /**
-     * @return Conditionally prevents the Service from being activated. The apply step will continue to create a new draft version but
+     * @return Conditionally prevents new service versions from being activated. The apply step will create a new draft version but
      * will not activate it if this is set to `false`. Default `true`
      * 
      */
@@ -412,6 +412,36 @@ public class ServiceCompute extends com.pulumi.resources.CustomResource {
         return Codegen.optional(this.reuse);
     }
     /**
+     * Conditionally enables new service versions to be staged. If `set` to true, all changes made by an `apply` step will be
+     * staged, even if `apply` did not create a new draft version. Default `false`
+     * 
+     */
+    @Export(name="stage", refs={Boolean.class}, tree="[0]")
+    private Output</* @Nullable */ Boolean> stage;
+
+    /**
+     * @return Conditionally enables new service versions to be staged. If `set` to true, all changes made by an `apply` step will be
+     * staged, even if `apply` did not create a new draft version. Default `false`
+     * 
+     */
+    public Output<Optional<Boolean>> stage() {
+        return Codegen.optional(this.stage);
+    }
+    /**
+     * The currently staged version of your Fastly Service
+     * 
+     */
+    @Export(name="stagedVersion", refs={Integer.class}, tree="[0]")
+    private Output<Integer> stagedVersion;
+
+    /**
+     * @return The currently staged version of your Fastly Service
+     * 
+     */
+    public Output<Integer> stagedVersion() {
+        return this.stagedVersion;
+    }
+    /**
      * Description field for the version
      * 
      */
@@ -430,7 +460,7 @@ public class ServiceCompute extends com.pulumi.resources.CustomResource {
      *
      * @param name The _unique_ name of the resulting resource.
      */
-    public ServiceCompute(java.lang.String name) {
+    public ServiceCompute(String name) {
         this(name, ServiceComputeArgs.Empty);
     }
     /**
@@ -438,7 +468,7 @@ public class ServiceCompute extends com.pulumi.resources.CustomResource {
      * @param name The _unique_ name of the resulting resource.
      * @param args The arguments to use to populate this resource's properties.
      */
-    public ServiceCompute(java.lang.String name, ServiceComputeArgs args) {
+    public ServiceCompute(String name, ServiceComputeArgs args) {
         this(name, args, null);
     }
     /**
@@ -447,22 +477,15 @@ public class ServiceCompute extends com.pulumi.resources.CustomResource {
      * @param args The arguments to use to populate this resource's properties.
      * @param options A bag of options that control this resource's behavior.
      */
-    public ServiceCompute(java.lang.String name, ServiceComputeArgs args, @Nullable com.pulumi.resources.CustomResourceOptions options) {
-        super("fastly:index/serviceCompute:ServiceCompute", name, makeArgs(args, options), makeResourceOptions(options, Codegen.empty()), false);
+    public ServiceCompute(String name, ServiceComputeArgs args, @Nullable com.pulumi.resources.CustomResourceOptions options) {
+        super("fastly:index/serviceCompute:ServiceCompute", name, args == null ? ServiceComputeArgs.Empty : args, makeResourceOptions(options, Codegen.empty()));
     }
 
-    private ServiceCompute(java.lang.String name, Output<java.lang.String> id, @Nullable ServiceComputeState state, @Nullable com.pulumi.resources.CustomResourceOptions options) {
-        super("fastly:index/serviceCompute:ServiceCompute", name, state, makeResourceOptions(options, id), false);
+    private ServiceCompute(String name, Output<String> id, @Nullable ServiceComputeState state, @Nullable com.pulumi.resources.CustomResourceOptions options) {
+        super("fastly:index/serviceCompute:ServiceCompute", name, state, makeResourceOptions(options, id));
     }
 
-    private static ServiceComputeArgs makeArgs(ServiceComputeArgs args, @Nullable com.pulumi.resources.CustomResourceOptions options) {
-        if (options != null && options.getUrn().isPresent()) {
-            return null;
-        }
-        return args == null ? ServiceComputeArgs.Empty : args;
-    }
-
-    private static com.pulumi.resources.CustomResourceOptions makeResourceOptions(@Nullable com.pulumi.resources.CustomResourceOptions options, @Nullable Output<java.lang.String> id) {
+    private static com.pulumi.resources.CustomResourceOptions makeResourceOptions(@Nullable com.pulumi.resources.CustomResourceOptions options, @Nullable Output<String> id) {
         var defaultOptions = com.pulumi.resources.CustomResourceOptions.builder()
             .version(Utilities.getVersion())
             .build();
@@ -478,7 +501,7 @@ public class ServiceCompute extends com.pulumi.resources.CustomResource {
      * @param state
      * @param options Optional settings to control the behavior of the CustomResource.
      */
-    public static ServiceCompute get(java.lang.String name, Output<java.lang.String> id, @Nullable ServiceComputeState state, @Nullable com.pulumi.resources.CustomResourceOptions options) {
+    public static ServiceCompute get(String name, Output<String> id, @Nullable ServiceComputeState state, @Nullable com.pulumi.resources.CustomResourceOptions options) {
         return new ServiceCompute(name, id, state, options);
     }
 }

@@ -257,7 +257,7 @@ public class TlsCertificate extends com.pulumi.resources.CustomResource {
      *
      * @param name The _unique_ name of the resulting resource.
      */
-    public TlsCertificate(java.lang.String name) {
+    public TlsCertificate(String name) {
         this(name, TlsCertificateArgs.Empty);
     }
     /**
@@ -265,7 +265,7 @@ public class TlsCertificate extends com.pulumi.resources.CustomResource {
      * @param name The _unique_ name of the resulting resource.
      * @param args The arguments to use to populate this resource's properties.
      */
-    public TlsCertificate(java.lang.String name, TlsCertificateArgs args) {
+    public TlsCertificate(String name, TlsCertificateArgs args) {
         this(name, args, null);
     }
     /**
@@ -274,22 +274,15 @@ public class TlsCertificate extends com.pulumi.resources.CustomResource {
      * @param args The arguments to use to populate this resource's properties.
      * @param options A bag of options that control this resource's behavior.
      */
-    public TlsCertificate(java.lang.String name, TlsCertificateArgs args, @Nullable com.pulumi.resources.CustomResourceOptions options) {
-        super("fastly:index/tlsCertificate:TlsCertificate", name, makeArgs(args, options), makeResourceOptions(options, Codegen.empty()), false);
+    public TlsCertificate(String name, TlsCertificateArgs args, @Nullable com.pulumi.resources.CustomResourceOptions options) {
+        super("fastly:index/tlsCertificate:TlsCertificate", name, args == null ? TlsCertificateArgs.Empty : args, makeResourceOptions(options, Codegen.empty()));
     }
 
-    private TlsCertificate(java.lang.String name, Output<java.lang.String> id, @Nullable TlsCertificateState state, @Nullable com.pulumi.resources.CustomResourceOptions options) {
-        super("fastly:index/tlsCertificate:TlsCertificate", name, state, makeResourceOptions(options, id), false);
+    private TlsCertificate(String name, Output<String> id, @Nullable TlsCertificateState state, @Nullable com.pulumi.resources.CustomResourceOptions options) {
+        super("fastly:index/tlsCertificate:TlsCertificate", name, state, makeResourceOptions(options, id));
     }
 
-    private static TlsCertificateArgs makeArgs(TlsCertificateArgs args, @Nullable com.pulumi.resources.CustomResourceOptions options) {
-        if (options != null && options.getUrn().isPresent()) {
-            return null;
-        }
-        return args == null ? TlsCertificateArgs.Empty : args;
-    }
-
-    private static com.pulumi.resources.CustomResourceOptions makeResourceOptions(@Nullable com.pulumi.resources.CustomResourceOptions options, @Nullable Output<java.lang.String> id) {
+    private static com.pulumi.resources.CustomResourceOptions makeResourceOptions(@Nullable com.pulumi.resources.CustomResourceOptions options, @Nullable Output<String> id) {
         var defaultOptions = com.pulumi.resources.CustomResourceOptions.builder()
             .version(Utilities.getVersion())
             .build();
@@ -305,7 +298,7 @@ public class TlsCertificate extends com.pulumi.resources.CustomResource {
      * @param state
      * @param options Optional settings to control the behavior of the CustomResource.
      */
-    public static TlsCertificate get(java.lang.String name, Output<java.lang.String> id, @Nullable TlsCertificateState state, @Nullable com.pulumi.resources.CustomResourceOptions options) {
+    public static TlsCertificate get(String name, Output<String> id, @Nullable TlsCertificateState state, @Nullable com.pulumi.resources.CustomResourceOptions options) {
         return new TlsCertificate(name, id, state, options);
     }
 }

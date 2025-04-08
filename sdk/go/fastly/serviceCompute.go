@@ -8,7 +8,7 @@ import (
 	"reflect"
 
 	"errors"
-	"github.com/pulumi/pulumi-fastly/sdk/v8/go/fastly/internal"
+	"github.com/pulumi/pulumi-fastly/sdk/v9/go/fastly/internal"
 	"github.com/pulumi/pulumi/sdk/v3/go/pulumi"
 )
 
@@ -30,7 +30,7 @@ import (
 type ServiceCompute struct {
 	pulumi.CustomResourceState
 
-	// Conditionally prevents the Service from being activated. The apply step will continue to create a new draft version but
+	// Conditionally prevents new service versions from being activated. The apply step will create a new draft version but
 	// will not activate it if this is set to `false`. Default `true`
 	Activate pulumi.BoolPtrOutput `pulumi:"activate"`
 	// The currently active version of your Fastly Service
@@ -87,6 +87,11 @@ type ServiceCompute struct {
 	// A resource link represents a link between a shared resource (such as an KV Store or Config Store) and a service version.
 	ResourceLinks ServiceComputeResourceLinkArrayOutput `pulumi:"resourceLinks"`
 	Reuse         pulumi.BoolPtrOutput                  `pulumi:"reuse"`
+	// Conditionally enables new service versions to be staged. If `set` to true, all changes made by an `apply` step will be
+	// staged, even if `apply` did not create a new draft version. Default `false`
+	Stage pulumi.BoolPtrOutput `pulumi:"stage"`
+	// The currently staged version of your Fastly Service
+	StagedVersion pulumi.IntOutput `pulumi:"stagedVersion"`
 	// Description field for the version
 	VersionComment pulumi.StringPtrOutput `pulumi:"versionComment"`
 }
@@ -124,7 +129,7 @@ func GetServiceCompute(ctx *pulumi.Context,
 
 // Input properties used for looking up and filtering ServiceCompute resources.
 type serviceComputeState struct {
-	// Conditionally prevents the Service from being activated. The apply step will continue to create a new draft version but
+	// Conditionally prevents new service versions from being activated. The apply step will create a new draft version but
 	// will not activate it if this is set to `false`. Default `true`
 	Activate *bool `pulumi:"activate"`
 	// The currently active version of your Fastly Service
@@ -181,12 +186,17 @@ type serviceComputeState struct {
 	// A resource link represents a link between a shared resource (such as an KV Store or Config Store) and a service version.
 	ResourceLinks []ServiceComputeResourceLink `pulumi:"resourceLinks"`
 	Reuse         *bool                        `pulumi:"reuse"`
+	// Conditionally enables new service versions to be staged. If `set` to true, all changes made by an `apply` step will be
+	// staged, even if `apply` did not create a new draft version. Default `false`
+	Stage *bool `pulumi:"stage"`
+	// The currently staged version of your Fastly Service
+	StagedVersion *int `pulumi:"stagedVersion"`
 	// Description field for the version
 	VersionComment *string `pulumi:"versionComment"`
 }
 
 type ServiceComputeState struct {
-	// Conditionally prevents the Service from being activated. The apply step will continue to create a new draft version but
+	// Conditionally prevents new service versions from being activated. The apply step will create a new draft version but
 	// will not activate it if this is set to `false`. Default `true`
 	Activate pulumi.BoolPtrInput
 	// The currently active version of your Fastly Service
@@ -243,6 +253,11 @@ type ServiceComputeState struct {
 	// A resource link represents a link between a shared resource (such as an KV Store or Config Store) and a service version.
 	ResourceLinks ServiceComputeResourceLinkArrayInput
 	Reuse         pulumi.BoolPtrInput
+	// Conditionally enables new service versions to be staged. If `set` to true, all changes made by an `apply` step will be
+	// staged, even if `apply` did not create a new draft version. Default `false`
+	Stage pulumi.BoolPtrInput
+	// The currently staged version of your Fastly Service
+	StagedVersion pulumi.IntPtrInput
 	// Description field for the version
 	VersionComment pulumi.StringPtrInput
 }
@@ -252,7 +267,7 @@ func (ServiceComputeState) ElementType() reflect.Type {
 }
 
 type serviceComputeArgs struct {
-	// Conditionally prevents the Service from being activated. The apply step will continue to create a new draft version but
+	// Conditionally prevents new service versions from being activated. The apply step will create a new draft version but
 	// will not activate it if this is set to `false`. Default `true`
 	Activate     *bool                      `pulumi:"activate"`
 	Backends     []ServiceComputeBackend    `pulumi:"backends"`
@@ -301,13 +316,16 @@ type serviceComputeArgs struct {
 	// A resource link represents a link between a shared resource (such as an KV Store or Config Store) and a service version.
 	ResourceLinks []ServiceComputeResourceLink `pulumi:"resourceLinks"`
 	Reuse         *bool                        `pulumi:"reuse"`
+	// Conditionally enables new service versions to be staged. If `set` to true, all changes made by an `apply` step will be
+	// staged, even if `apply` did not create a new draft version. Default `false`
+	Stage *bool `pulumi:"stage"`
 	// Description field for the version
 	VersionComment *string `pulumi:"versionComment"`
 }
 
 // The set of arguments for constructing a ServiceCompute resource.
 type ServiceComputeArgs struct {
-	// Conditionally prevents the Service from being activated. The apply step will continue to create a new draft version but
+	// Conditionally prevents new service versions from being activated. The apply step will create a new draft version but
 	// will not activate it if this is set to `false`. Default `true`
 	Activate     pulumi.BoolPtrInput
 	Backends     ServiceComputeBackendArrayInput
@@ -356,6 +374,9 @@ type ServiceComputeArgs struct {
 	// A resource link represents a link between a shared resource (such as an KV Store or Config Store) and a service version.
 	ResourceLinks ServiceComputeResourceLinkArrayInput
 	Reuse         pulumi.BoolPtrInput
+	// Conditionally enables new service versions to be staged. If `set` to true, all changes made by an `apply` step will be
+	// staged, even if `apply` did not create a new draft version. Default `false`
+	Stage pulumi.BoolPtrInput
 	// Description field for the version
 	VersionComment pulumi.StringPtrInput
 }
@@ -447,7 +468,7 @@ func (o ServiceComputeOutput) ToServiceComputeOutputWithContext(ctx context.Cont
 	return o
 }
 
-// Conditionally prevents the Service from being activated. The apply step will continue to create a new draft version but
+// Conditionally prevents new service versions from being activated. The apply step will create a new draft version but
 // will not activate it if this is set to `false`. Default `true`
 func (o ServiceComputeOutput) Activate() pulumi.BoolPtrOutput {
 	return o.ApplyT(func(v *ServiceCompute) pulumi.BoolPtrOutput { return v.Activate }).(pulumi.BoolPtrOutput)
@@ -635,6 +656,17 @@ func (o ServiceComputeOutput) ResourceLinks() ServiceComputeResourceLinkArrayOut
 
 func (o ServiceComputeOutput) Reuse() pulumi.BoolPtrOutput {
 	return o.ApplyT(func(v *ServiceCompute) pulumi.BoolPtrOutput { return v.Reuse }).(pulumi.BoolPtrOutput)
+}
+
+// Conditionally enables new service versions to be staged. If `set` to true, all changes made by an `apply` step will be
+// staged, even if `apply` did not create a new draft version. Default `false`
+func (o ServiceComputeOutput) Stage() pulumi.BoolPtrOutput {
+	return o.ApplyT(func(v *ServiceCompute) pulumi.BoolPtrOutput { return v.Stage }).(pulumi.BoolPtrOutput)
+}
+
+// The currently staged version of your Fastly Service
+func (o ServiceComputeOutput) StagedVersion() pulumi.IntOutput {
+	return o.ApplyT(func(v *ServiceCompute) pulumi.IntOutput { return v.StagedVersion }).(pulumi.IntOutput)
 }
 
 // Description field for the version

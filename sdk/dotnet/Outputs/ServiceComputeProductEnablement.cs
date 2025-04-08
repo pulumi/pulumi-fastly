@@ -14,6 +14,10 @@ namespace Pulumi.Fastly.Outputs
     public sealed class ServiceComputeProductEnablement
     {
         /// <summary>
+        /// DDoS Protection product
+        /// </summary>
+        public readonly Outputs.ServiceComputeProductEnablementDdosProtection? DdosProtection;
+        /// <summary>
         /// Enable Fanout support
         /// </summary>
         public readonly bool? Fanout;
@@ -26,23 +30,33 @@ namespace Pulumi.Fastly.Outputs
         /// </summary>
         public readonly string? Name;
         /// <summary>
+        /// Next-Gen WAF product
+        /// </summary>
+        public readonly Outputs.ServiceComputeProductEnablementNgwaf? Ngwaf;
+        /// <summary>
         /// Enable WebSockets support
         /// </summary>
         public readonly bool? Websockets;
 
         [OutputConstructor]
         private ServiceComputeProductEnablement(
+            Outputs.ServiceComputeProductEnablementDdosProtection? ddosProtection,
+
             bool? fanout,
 
             bool? logExplorerInsights,
 
             string? name,
 
+            Outputs.ServiceComputeProductEnablementNgwaf? ngwaf,
+
             bool? websockets)
         {
+            DdosProtection = ddosProtection;
             Fanout = fanout;
             LogExplorerInsights = logExplorerInsights;
             Name = name;
+            Ngwaf = ngwaf;
             Websockets = websockets;
         }
     }

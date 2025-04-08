@@ -5,6 +5,8 @@ package com.pulumi.fastly.inputs;
 
 import com.pulumi.core.Output;
 import com.pulumi.core.annotations.Import;
+import com.pulumi.fastly.inputs.ServiceComputeProductEnablementDdosProtectionArgs;
+import com.pulumi.fastly.inputs.ServiceComputeProductEnablementNgwafArgs;
 import java.lang.Boolean;
 import java.lang.String;
 import java.util.Objects;
@@ -15,6 +17,21 @@ import javax.annotation.Nullable;
 public final class ServiceComputeProductEnablementArgs extends com.pulumi.resources.ResourceArgs {
 
     public static final ServiceComputeProductEnablementArgs Empty = new ServiceComputeProductEnablementArgs();
+
+    /**
+     * DDoS Protection product
+     * 
+     */
+    @Import(name="ddosProtection")
+    private @Nullable Output<ServiceComputeProductEnablementDdosProtectionArgs> ddosProtection;
+
+    /**
+     * @return DDoS Protection product
+     * 
+     */
+    public Optional<Output<ServiceComputeProductEnablementDdosProtectionArgs>> ddosProtection() {
+        return Optional.ofNullable(this.ddosProtection);
+    }
 
     /**
      * Enable Fanout support
@@ -62,6 +79,21 @@ public final class ServiceComputeProductEnablementArgs extends com.pulumi.resour
     }
 
     /**
+     * Next-Gen WAF product
+     * 
+     */
+    @Import(name="ngwaf")
+    private @Nullable Output<ServiceComputeProductEnablementNgwafArgs> ngwaf;
+
+    /**
+     * @return Next-Gen WAF product
+     * 
+     */
+    public Optional<Output<ServiceComputeProductEnablementNgwafArgs>> ngwaf() {
+        return Optional.ofNullable(this.ngwaf);
+    }
+
+    /**
      * Enable WebSockets support
      * 
      */
@@ -79,9 +111,11 @@ public final class ServiceComputeProductEnablementArgs extends com.pulumi.resour
     private ServiceComputeProductEnablementArgs() {}
 
     private ServiceComputeProductEnablementArgs(ServiceComputeProductEnablementArgs $) {
+        this.ddosProtection = $.ddosProtection;
         this.fanout = $.fanout;
         this.logExplorerInsights = $.logExplorerInsights;
         this.name = $.name;
+        this.ngwaf = $.ngwaf;
         this.websockets = $.websockets;
     }
 
@@ -101,6 +135,27 @@ public final class ServiceComputeProductEnablementArgs extends com.pulumi.resour
 
         public Builder(ServiceComputeProductEnablementArgs defaults) {
             $ = new ServiceComputeProductEnablementArgs(Objects.requireNonNull(defaults));
+        }
+
+        /**
+         * @param ddosProtection DDoS Protection product
+         * 
+         * @return builder
+         * 
+         */
+        public Builder ddosProtection(@Nullable Output<ServiceComputeProductEnablementDdosProtectionArgs> ddosProtection) {
+            $.ddosProtection = ddosProtection;
+            return this;
+        }
+
+        /**
+         * @param ddosProtection DDoS Protection product
+         * 
+         * @return builder
+         * 
+         */
+        public Builder ddosProtection(ServiceComputeProductEnablementDdosProtectionArgs ddosProtection) {
+            return ddosProtection(Output.of(ddosProtection));
         }
 
         /**
@@ -164,6 +219,27 @@ public final class ServiceComputeProductEnablementArgs extends com.pulumi.resour
          */
         public Builder name(String name) {
             return name(Output.of(name));
+        }
+
+        /**
+         * @param ngwaf Next-Gen WAF product
+         * 
+         * @return builder
+         * 
+         */
+        public Builder ngwaf(@Nullable Output<ServiceComputeProductEnablementNgwafArgs> ngwaf) {
+            $.ngwaf = ngwaf;
+            return this;
+        }
+
+        /**
+         * @param ngwaf Next-Gen WAF product
+         * 
+         * @return builder
+         * 
+         */
+        public Builder ngwaf(ServiceComputeProductEnablementNgwafArgs ngwaf) {
+            return ngwaf(Output.of(ngwaf));
         }
 
         /**

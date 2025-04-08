@@ -7,7 +7,7 @@ import (
 	"fmt"
 
 	"github.com/blang/semver"
-	"github.com/pulumi/pulumi-fastly/sdk/v8/go/fastly/internal"
+	"github.com/pulumi/pulumi-fastly/sdk/v9/go/fastly/internal"
 	"github.com/pulumi/pulumi/sdk/v3/go/pulumi"
 )
 
@@ -35,6 +35,8 @@ func (m *module) Construct(ctx *pulumi.Context, name, typ, urn string) (r pulumi
 		r = &Integration{}
 	case "fastly:index/kvstore:Kvstore":
 		r = &Kvstore{}
+	case "fastly:index/objectStorageAccessKeys:ObjectStorageAccessKeys":
+		r = &ObjectStorageAccessKeys{}
 	case "fastly:index/secretstore:Secretstore":
 		r = &Secretstore{}
 	case "fastly:index/serviceACLEntries:ServiceACLEntries":
@@ -49,8 +51,6 @@ func (m *module) Construct(ctx *pulumi.Context, name, typ, urn string) (r pulumi
 		r = &ServiceDynamicSnippetContent{}
 	case "fastly:index/serviceVcl:ServiceVcl":
 		r = &ServiceVcl{}
-	case "fastly:index/serviceWafConfiguration:ServiceWafConfiguration":
-		r = &ServiceWafConfiguration{}
 	case "fastly:index/tlsActivation:TlsActivation":
 		r = &TlsActivation{}
 	case "fastly:index/tlsCertificate:TlsCertificate":
@@ -135,6 +135,11 @@ func init() {
 	)
 	pulumi.RegisterResourceModule(
 		"fastly",
+		"index/objectStorageAccessKeys",
+		&module{version},
+	)
+	pulumi.RegisterResourceModule(
+		"fastly",
 		"index/secretstore",
 		&module{version},
 	)
@@ -166,11 +171,6 @@ func init() {
 	pulumi.RegisterResourceModule(
 		"fastly",
 		"index/serviceVcl",
-		&module{version},
-	)
-	pulumi.RegisterResourceModule(
-		"fastly",
-		"index/serviceWafConfiguration",
 		&module{version},
 	)
 	pulumi.RegisterResourceModule(

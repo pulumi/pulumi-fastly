@@ -85,7 +85,7 @@ namespace Pulumi.Fastly.Inputs
         public Input<int>? Period { get; set; }
 
         /// <summary>
-        /// Where in the generated VCL the logging call should be placed.
+        /// Where in the generated VCL the logging call should be placed (ignored).
         /// </summary>
         [Input("placement")]
         public Input<string>? Placement { get; set; }

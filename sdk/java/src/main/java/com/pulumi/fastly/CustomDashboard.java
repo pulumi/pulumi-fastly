@@ -77,7 +77,7 @@ public class CustomDashboard extends com.pulumi.resources.CustomResource {
      *
      * @param name The _unique_ name of the resulting resource.
      */
-    public CustomDashboard(java.lang.String name) {
+    public CustomDashboard(String name) {
         this(name, CustomDashboardArgs.Empty);
     }
     /**
@@ -85,7 +85,7 @@ public class CustomDashboard extends com.pulumi.resources.CustomResource {
      * @param name The _unique_ name of the resulting resource.
      * @param args The arguments to use to populate this resource's properties.
      */
-    public CustomDashboard(java.lang.String name, @Nullable CustomDashboardArgs args) {
+    public CustomDashboard(String name, @Nullable CustomDashboardArgs args) {
         this(name, args, null);
     }
     /**
@@ -94,22 +94,15 @@ public class CustomDashboard extends com.pulumi.resources.CustomResource {
      * @param args The arguments to use to populate this resource's properties.
      * @param options A bag of options that control this resource's behavior.
      */
-    public CustomDashboard(java.lang.String name, @Nullable CustomDashboardArgs args, @Nullable com.pulumi.resources.CustomResourceOptions options) {
-        super("fastly:index/customDashboard:CustomDashboard", name, makeArgs(args, options), makeResourceOptions(options, Codegen.empty()), false);
+    public CustomDashboard(String name, @Nullable CustomDashboardArgs args, @Nullable com.pulumi.resources.CustomResourceOptions options) {
+        super("fastly:index/customDashboard:CustomDashboard", name, args == null ? CustomDashboardArgs.Empty : args, makeResourceOptions(options, Codegen.empty()));
     }
 
-    private CustomDashboard(java.lang.String name, Output<java.lang.String> id, @Nullable CustomDashboardState state, @Nullable com.pulumi.resources.CustomResourceOptions options) {
-        super("fastly:index/customDashboard:CustomDashboard", name, state, makeResourceOptions(options, id), false);
+    private CustomDashboard(String name, Output<String> id, @Nullable CustomDashboardState state, @Nullable com.pulumi.resources.CustomResourceOptions options) {
+        super("fastly:index/customDashboard:CustomDashboard", name, state, makeResourceOptions(options, id));
     }
 
-    private static CustomDashboardArgs makeArgs(@Nullable CustomDashboardArgs args, @Nullable com.pulumi.resources.CustomResourceOptions options) {
-        if (options != null && options.getUrn().isPresent()) {
-            return null;
-        }
-        return args == null ? CustomDashboardArgs.Empty : args;
-    }
-
-    private static com.pulumi.resources.CustomResourceOptions makeResourceOptions(@Nullable com.pulumi.resources.CustomResourceOptions options, @Nullable Output<java.lang.String> id) {
+    private static com.pulumi.resources.CustomResourceOptions makeResourceOptions(@Nullable com.pulumi.resources.CustomResourceOptions options, @Nullable Output<String> id) {
         var defaultOptions = com.pulumi.resources.CustomResourceOptions.builder()
             .version(Utilities.getVersion())
             .build();
@@ -125,7 +118,7 @@ public class CustomDashboard extends com.pulumi.resources.CustomResource {
      * @param state
      * @param options Optional settings to control the behavior of the CustomResource.
      */
-    public static CustomDashboard get(java.lang.String name, Output<java.lang.String> id, @Nullable CustomDashboardState state, @Nullable com.pulumi.resources.CustomResourceOptions options) {
+    public static CustomDashboard get(String name, Output<String> id, @Nullable CustomDashboardState state, @Nullable com.pulumi.resources.CustomResourceOptions options) {
         return new CustomDashboard(name, id, state, options);
     }
 }

@@ -56,7 +56,6 @@ import com.pulumi.fastly.outputs.ServiceVclRequestSetting;
 import com.pulumi.fastly.outputs.ServiceVclResponseObject;
 import com.pulumi.fastly.outputs.ServiceVclSnippet;
 import com.pulumi.fastly.outputs.ServiceVclVcl;
-import com.pulumi.fastly.outputs.ServiceVclWaf;
 import java.lang.Boolean;
 import java.lang.Integer;
 import java.lang.String;
@@ -91,7 +90,7 @@ public class ServiceVcl extends com.pulumi.resources.CustomResource {
         return Codegen.optional(this.acls);
     }
     /**
-     * Conditionally prevents the Service from being activated. The apply step will continue to create a new draft version but
+     * Conditionally prevents new service versions from being activated. The apply step will create a new draft version but
      * will not activate it if this is set to `false`. Default `true`
      * 
      */
@@ -99,7 +98,7 @@ public class ServiceVcl extends com.pulumi.resources.CustomResource {
     private Output</* @Nullable */ Boolean> activate;
 
     /**
-     * @return Conditionally prevents the Service from being activated. The apply step will continue to create a new draft version but
+     * @return Conditionally prevents new service versions from being activated. The apply step will create a new draft version but
      * will not activate it if this is set to `false`. Default `true`
      * 
      */
@@ -513,6 +512,36 @@ public class ServiceVcl extends com.pulumi.resources.CustomResource {
         return Codegen.optional(this.snippets);
     }
     /**
+     * Conditionally enables new service versions to be staged. If `set` to true, all changes made by an `apply` step will be
+     * staged, even if `apply` did not create a new draft version. Default `false`
+     * 
+     */
+    @Export(name="stage", refs={Boolean.class}, tree="[0]")
+    private Output</* @Nullable */ Boolean> stage;
+
+    /**
+     * @return Conditionally enables new service versions to be staged. If `set` to true, all changes made by an `apply` step will be
+     * staged, even if `apply` did not create a new draft version. Default `false`
+     * 
+     */
+    public Output<Optional<Boolean>> stage() {
+        return Codegen.optional(this.stage);
+    }
+    /**
+     * The currently staged version of your Fastly Service
+     * 
+     */
+    @Export(name="stagedVersion", refs={Integer.class}, tree="[0]")
+    private Output<Integer> stagedVersion;
+
+    /**
+     * @return The currently staged version of your Fastly Service
+     * 
+     */
+    public Output<Integer> stagedVersion() {
+        return this.stagedVersion;
+    }
+    /**
      * Enables serving a stale object if there is an error
      * 
      */
@@ -560,18 +589,12 @@ public class ServiceVcl extends com.pulumi.resources.CustomResource {
     public Output<Optional<String>> versionComment() {
         return Codegen.optional(this.versionComment);
     }
-    @Export(name="waf", refs={ServiceVclWaf.class}, tree="[0]")
-    private Output</* @Nullable */ ServiceVclWaf> waf;
-
-    public Output<Optional<ServiceVclWaf>> waf() {
-        return Codegen.optional(this.waf);
-    }
 
     /**
      *
      * @param name The _unique_ name of the resulting resource.
      */
-    public ServiceVcl(java.lang.String name) {
+    public ServiceVcl(String name) {
         this(name, ServiceVclArgs.Empty);
     }
     /**
@@ -579,7 +602,7 @@ public class ServiceVcl extends com.pulumi.resources.CustomResource {
      * @param name The _unique_ name of the resulting resource.
      * @param args The arguments to use to populate this resource's properties.
      */
-    public ServiceVcl(java.lang.String name, ServiceVclArgs args) {
+    public ServiceVcl(String name, ServiceVclArgs args) {
         this(name, args, null);
     }
     /**
@@ -588,22 +611,15 @@ public class ServiceVcl extends com.pulumi.resources.CustomResource {
      * @param args The arguments to use to populate this resource's properties.
      * @param options A bag of options that control this resource's behavior.
      */
-    public ServiceVcl(java.lang.String name, ServiceVclArgs args, @Nullable com.pulumi.resources.CustomResourceOptions options) {
-        super("fastly:index/serviceVcl:ServiceVcl", name, makeArgs(args, options), makeResourceOptions(options, Codegen.empty()), false);
+    public ServiceVcl(String name, ServiceVclArgs args, @Nullable com.pulumi.resources.CustomResourceOptions options) {
+        super("fastly:index/serviceVcl:ServiceVcl", name, args == null ? ServiceVclArgs.Empty : args, makeResourceOptions(options, Codegen.empty()));
     }
 
-    private ServiceVcl(java.lang.String name, Output<java.lang.String> id, @Nullable ServiceVclState state, @Nullable com.pulumi.resources.CustomResourceOptions options) {
-        super("fastly:index/serviceVcl:ServiceVcl", name, state, makeResourceOptions(options, id), false);
+    private ServiceVcl(String name, Output<String> id, @Nullable ServiceVclState state, @Nullable com.pulumi.resources.CustomResourceOptions options) {
+        super("fastly:index/serviceVcl:ServiceVcl", name, state, makeResourceOptions(options, id));
     }
 
-    private static ServiceVclArgs makeArgs(ServiceVclArgs args, @Nullable com.pulumi.resources.CustomResourceOptions options) {
-        if (options != null && options.getUrn().isPresent()) {
-            return null;
-        }
-        return args == null ? ServiceVclArgs.Empty : args;
-    }
-
-    private static com.pulumi.resources.CustomResourceOptions makeResourceOptions(@Nullable com.pulumi.resources.CustomResourceOptions options, @Nullable Output<java.lang.String> id) {
+    private static com.pulumi.resources.CustomResourceOptions makeResourceOptions(@Nullable com.pulumi.resources.CustomResourceOptions options, @Nullable Output<String> id) {
         var defaultOptions = com.pulumi.resources.CustomResourceOptions.builder()
             .version(Utilities.getVersion())
             .build();
@@ -619,7 +635,7 @@ public class ServiceVcl extends com.pulumi.resources.CustomResource {
      * @param state
      * @param options Optional settings to control the behavior of the CustomResource.
      */
-    public static ServiceVcl get(java.lang.String name, Output<java.lang.String> id, @Nullable ServiceVclState state, @Nullable com.pulumi.resources.CustomResourceOptions options) {
+    public static ServiceVcl get(String name, Output<String> id, @Nullable ServiceVclState state, @Nullable com.pulumi.resources.CustomResourceOptions options) {
         return new ServiceVcl(name, id, state, options);
     }
 }

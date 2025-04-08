@@ -7,7 +7,6 @@ import com.pulumi.core.Output;
 import com.pulumi.core.TypeShape;
 import com.pulumi.deployment.Deployment;
 import com.pulumi.deployment.InvokeOptions;
-import com.pulumi.deployment.InvokeOutputOptions;
 import com.pulumi.fastly.Utilities;
 import com.pulumi.fastly.inputs.GetDictionariesArgs;
 import com.pulumi.fastly.inputs.GetDictionariesPlainArgs;
@@ -31,8 +30,6 @@ import com.pulumi.fastly.inputs.GetTlsSubscriptionArgs;
 import com.pulumi.fastly.inputs.GetTlsSubscriptionPlainArgs;
 import com.pulumi.fastly.inputs.GetVclSnippetsArgs;
 import com.pulumi.fastly.inputs.GetVclSnippetsPlainArgs;
-import com.pulumi.fastly.inputs.GetWafRulesArgs;
-import com.pulumi.fastly.inputs.GetWafRulesPlainArgs;
 import com.pulumi.fastly.outputs.GetConfigstoresResult;
 import com.pulumi.fastly.outputs.GetDatacentersResult;
 import com.pulumi.fastly.outputs.GetDictionariesResult;
@@ -55,7 +52,6 @@ import com.pulumi.fastly.outputs.GetTlsPrivateKeyResult;
 import com.pulumi.fastly.outputs.GetTlsSubscriptionIdsResult;
 import com.pulumi.fastly.outputs.GetTlsSubscriptionResult;
 import com.pulumi.fastly.outputs.GetVclSnippetsResult;
-import com.pulumi.fastly.outputs.GetWafRulesResult;
 import com.pulumi.resources.InvokeArgs;
 import java.util.concurrent.CompletableFuture;
 
@@ -73,9 +69,6 @@ public final class FastlyFunctions {
         return getConfigstoresPlain(args, InvokeOptions.Empty);
     }
     public static Output<GetConfigstoresResult> getConfigstores(InvokeArgs args, InvokeOptions options) {
-        return Deployment.getInstance().invoke("fastly:index/getConfigstores:getConfigstores", TypeShape.of(GetConfigstoresResult.class), args, Utilities.withVersion(options));
-    }
-    public static Output<GetConfigstoresResult> getConfigstores(InvokeArgs args, InvokeOutputOptions options) {
         return Deployment.getInstance().invoke("fastly:index/getConfigstores:getConfigstores", TypeShape.of(GetConfigstoresResult.class), args, Utilities.withVersion(options));
     }
     public static CompletableFuture<GetConfigstoresResult> getConfigstoresPlain(InvokeArgs args, InvokeOptions options) {
@@ -114,13 +107,6 @@ public final class FastlyFunctions {
      * 
      */
     public static Output<GetDatacentersResult> getDatacenters(InvokeArgs args, InvokeOptions options) {
-        return Deployment.getInstance().invoke("fastly:index/getDatacenters:getDatacenters", TypeShape.of(GetDatacentersResult.class), args, Utilities.withVersion(options));
-    }
-    /**
-     * Use this data source to get the list of the [Fastly datacenters](https://developer.fastly.com/reference/api/utils/pops/).
-     * 
-     */
-    public static Output<GetDatacentersResult> getDatacenters(InvokeArgs args, InvokeOutputOptions options) {
         return Deployment.getInstance().invoke("fastly:index/getDatacenters:getDatacenters", TypeShape.of(GetDatacentersResult.class), args, Utilities.withVersion(options));
     }
     /**
@@ -332,74 +318,6 @@ public final class FastlyFunctions {
      * 
      */
     public static Output<GetDictionariesResult> getDictionaries(GetDictionariesArgs args, InvokeOptions options) {
-        return Deployment.getInstance().invoke("fastly:index/getDictionaries:getDictionaries", TypeShape.of(GetDictionariesResult.class), args, Utilities.withVersion(options));
-    }
-    /**
-     * Use this data source to get a list of [Fastly dictionaries](https://developer.fastly.com/reference/api/dictionaries/) for the specified service/version.
-     * 
-     * ## Example Usage
-     * 
-     * &lt;!--Start PulumiCodeChooser --&gt;
-     * <pre>
-     * {@code
-     * package generated_program;
-     * 
-     * import com.pulumi.Context;
-     * import com.pulumi.Pulumi;
-     * import com.pulumi.core.Output;
-     * import com.pulumi.fastly.ServiceVcl;
-     * import com.pulumi.fastly.ServiceVclArgs;
-     * import com.pulumi.fastly.inputs.ServiceVclDomainArgs;
-     * import com.pulumi.fastly.inputs.ServiceVclDictionaryArgs;
-     * import com.pulumi.fastly.FastlyFunctions;
-     * import com.pulumi.fastly.inputs.GetDictionariesArgs;
-     * import java.util.List;
-     * import java.util.ArrayList;
-     * import java.util.Map;
-     * import java.io.File;
-     * import java.nio.file.Files;
-     * import java.nio.file.Paths;
-     * 
-     * public class App {
-     *     public static void main(String[] args) {
-     *         Pulumi.run(App::stack);
-     *     }
-     * 
-     *     public static void stack(Context ctx) {
-     *         var exampleServiceVcl = new ServiceVcl("exampleServiceVcl", ServiceVclArgs.builder()
-     *             .name("Example Service")
-     *             .domains(ServiceVclDomainArgs.builder()
-     *                 .name("example.com")
-     *                 .build())
-     *             .dictionaries(            
-     *                 ServiceVclDictionaryArgs.builder()
-     *                     .name("example_1")
-     *                     .build(),
-     *                 ServiceVclDictionaryArgs.builder()
-     *                     .name("example_2")
-     *                     .build(),
-     *                 ServiceVclDictionaryArgs.builder()
-     *                     .name("example_3")
-     *                     .build())
-     *             .forceDestroy(true)
-     *             .build());
-     * 
-     *         final var example = FastlyFunctions.getDictionaries(GetDictionariesArgs.builder()
-     *             .serviceId(exampleServiceVcl.id())
-     *             .serviceVersion(exampleServiceVcl.activeVersion())
-     *             .build());
-     * 
-     *         ctx.export("serviceDictionaries", example.applyValue(getDictionariesResult -> getDictionariesResult));
-     *     }
-     * }
-     * }
-     * </pre>
-     * &lt;!--End PulumiCodeChooser --&gt;
-     * 
-     * [1]: https://developer.fastly.com/reference/api/dictionaries/
-     * 
-     */
-    public static Output<GetDictionariesResult> getDictionaries(GetDictionariesArgs args, InvokeOutputOptions options) {
         return Deployment.getInstance().invoke("fastly:index/getDictionaries:getDictionaries", TypeShape.of(GetDictionariesResult.class), args, Utilities.withVersion(options));
     }
     /**
@@ -755,54 +673,6 @@ public final class FastlyFunctions {
      * [1]: https://docs.fastly.com/guides/securing-communications/accessing-fastlys-ip-ranges
      * 
      */
-    public static Output<GetFastlyIpRangesResult> getFastlyIpRanges(InvokeArgs args, InvokeOutputOptions options) {
-        return Deployment.getInstance().invoke("fastly:index/getFastlyIpRanges:getFastlyIpRanges", TypeShape.of(GetFastlyIpRangesResult.class), args, Utilities.withVersion(options));
-    }
-    /**
-     * Use this data source to get the [IP ranges](https://docs.fastly.com/guides/securing-communications/accessing-fastlys-ip-ranges) of Fastly edge nodes.
-     * 
-     * ## Example Usage
-     * 
-     * &lt;!--Start PulumiCodeChooser --&gt;
-     * <pre>
-     * {@code
-     * package generated_program;
-     * 
-     * import com.pulumi.Context;
-     * import com.pulumi.Pulumi;
-     * import com.pulumi.core.Output;
-     * import com.pulumi.fastly.FastlyFunctions;
-     * import com.pulumi.aws.securityGroup;
-     * import com.pulumi.aws.SecurityGroupArgs;
-     * import java.util.List;
-     * import java.util.ArrayList;
-     * import java.util.Map;
-     * import java.io.File;
-     * import java.nio.file.Files;
-     * import java.nio.file.Paths;
-     * 
-     * public class App {
-     *     public static void main(String[] args) {
-     *         Pulumi.run(App::stack);
-     *     }
-     * 
-     *     public static void stack(Context ctx) {
-     *         final var fastly = FastlyFunctions.getFastlyIpRanges();
-     * 
-     *         var fromFastly = new SecurityGroup("fromFastly", SecurityGroupArgs.builder()
-     *             .name("from_fastly")
-     *             .ingress(%!v(PANIC=Format method: runtime error: invalid memory address or nil pointer dereference))
-     *             .build());
-     * 
-     *     }
-     * }
-     * }
-     * </pre>
-     * &lt;!--End PulumiCodeChooser --&gt;
-     * 
-     * [1]: https://docs.fastly.com/guides/securing-communications/accessing-fastlys-ip-ranges
-     * 
-     */
     public static CompletableFuture<GetFastlyIpRangesResult> getFastlyIpRangesPlain(InvokeArgs args, InvokeOptions options) {
         return Deployment.getInstance().invokeAsync("fastly:index/getFastlyIpRanges:getFastlyIpRanges", TypeShape.of(GetFastlyIpRangesResult.class), args, Utilities.withVersion(options));
     }
@@ -819,9 +689,6 @@ public final class FastlyFunctions {
         return getKvstoresPlain(args, InvokeOptions.Empty);
     }
     public static Output<GetKvstoresResult> getKvstores(InvokeArgs args, InvokeOptions options) {
-        return Deployment.getInstance().invoke("fastly:index/getKvstores:getKvstores", TypeShape.of(GetKvstoresResult.class), args, Utilities.withVersion(options));
-    }
-    public static Output<GetKvstoresResult> getKvstores(InvokeArgs args, InvokeOutputOptions options) {
         return Deployment.getInstance().invoke("fastly:index/getKvstores:getKvstores", TypeShape.of(GetKvstoresResult.class), args, Utilities.withVersion(options));
     }
     public static CompletableFuture<GetKvstoresResult> getKvstoresPlain(InvokeArgs args, InvokeOptions options) {
@@ -1136,58 +1003,6 @@ public final class FastlyFunctions {
      * &lt;!--End PulumiCodeChooser --&gt;
      * 
      */
-    public static Output<GetPackageHashResult> getPackageHash(GetPackageHashArgs args, InvokeOutputOptions options) {
-        return Deployment.getInstance().invoke("fastly:index/getPackageHash:getPackageHash", TypeShape.of(GetPackageHashResult.class), args, Utilities.withVersion(options));
-    }
-    /**
-     * Use this data source to generate a SHA512 hash of all files (in sorted order) within the package.
-     * 
-     * ## Example Usage
-     * 
-     * &lt;!--Start PulumiCodeChooser --&gt;
-     * <pre>
-     * {@code
-     * package generated_program;
-     * 
-     * import com.pulumi.Context;
-     * import com.pulumi.Pulumi;
-     * import com.pulumi.core.Output;
-     * import com.pulumi.fastly.FastlyFunctions;
-     * import com.pulumi.fastly.inputs.GetPackageHashArgs;
-     * import com.pulumi.fastly.ServiceCompute;
-     * import com.pulumi.fastly.ServiceComputeArgs;
-     * import com.pulumi.fastly.inputs.ServiceComputePackageArgs;
-     * import java.util.List;
-     * import java.util.ArrayList;
-     * import java.util.Map;
-     * import java.io.File;
-     * import java.nio.file.Files;
-     * import java.nio.file.Paths;
-     * 
-     * public class App {
-     *     public static void main(String[] args) {
-     *         Pulumi.run(App::stack);
-     *     }
-     * 
-     *     public static void stack(Context ctx) {
-     *         final var example = FastlyFunctions.getPackageHash(GetPackageHashArgs.builder()
-     *             .filename("./path/to/package.tar.gz")
-     *             .build());
-     * 
-     *         var exampleServiceCompute = new ServiceCompute("exampleServiceCompute", ServiceComputeArgs.builder()
-     *             .package_(ServiceComputePackageArgs.builder()
-     *                 .filename("./path/to/package.tar.gz")
-     *                 .sourceCodeHash(example.applyValue(getPackageHashResult -> getPackageHashResult.hash()))
-     *                 .build())
-     *             .build());
-     * 
-     *     }
-     * }
-     * }
-     * </pre>
-     * &lt;!--End PulumiCodeChooser --&gt;
-     * 
-     */
     public static CompletableFuture<GetPackageHashResult> getPackageHashPlain(GetPackageHashPlainArgs args, InvokeOptions options) {
         return Deployment.getInstance().invokeAsync("fastly:index/getPackageHash:getPackageHash", TypeShape.of(GetPackageHashResult.class), args, Utilities.withVersion(options));
     }
@@ -1204,9 +1019,6 @@ public final class FastlyFunctions {
         return getSecretstoresPlain(args, InvokeOptions.Empty);
     }
     public static Output<GetSecretstoresResult> getSecretstores(InvokeArgs args, InvokeOptions options) {
-        return Deployment.getInstance().invoke("fastly:index/getSecretstores:getSecretstores", TypeShape.of(GetSecretstoresResult.class), args, Utilities.withVersion(options));
-    }
-    public static Output<GetSecretstoresResult> getSecretstores(InvokeArgs args, InvokeOutputOptions options) {
         return Deployment.getInstance().invoke("fastly:index/getSecretstores:getSecretstores", TypeShape.of(GetSecretstoresResult.class), args, Utilities.withVersion(options));
     }
     public static CompletableFuture<GetSecretstoresResult> getSecretstoresPlain(InvokeArgs args, InvokeOptions options) {
@@ -1245,13 +1057,6 @@ public final class FastlyFunctions {
      * 
      */
     public static Output<GetServicesResult> getServices(InvokeArgs args, InvokeOptions options) {
-        return Deployment.getInstance().invoke("fastly:index/getServices:getServices", TypeShape.of(GetServicesResult.class), args, Utilities.withVersion(options));
-    }
-    /**
-     * Use this data source to get the list of the [Fastly services](https://developer.fastly.com/reference/api/services/service/).
-     * 
-     */
-    public static Output<GetServicesResult> getServices(InvokeArgs args, InvokeOutputOptions options) {
         return Deployment.getInstance().invoke("fastly:index/getServices:getServices", TypeShape.of(GetServicesResult.class), args, Utilities.withVersion(options));
     }
     /**
@@ -1546,54 +1351,6 @@ public final class FastlyFunctions {
      * &lt;!--End PulumiCodeChooser --&gt;
      * 
      */
-    public static Output<GetTlsActivationResult> getTlsActivation(GetTlsActivationArgs args, InvokeOutputOptions options) {
-        return Deployment.getInstance().invoke("fastly:index/getTlsActivation:getTlsActivation", TypeShape.of(GetTlsActivationResult.class), args, Utilities.withVersion(options));
-    }
-    /**
-     * Use this data source to get information on a TLS activation, including the certificate used, and the domain on which TLS was enabled.
-     * 
-     * &gt; **Warning:** The data source&#39;s filters are applied using an **AND** boolean operator, so depending on the combination
-     * of filters, they may become mutually exclusive. The exception to this is `id` which must not be specified in combination
-     * with any of the others.
-     * 
-     * &gt; **Note:** If more or less than a single match is returned by the search, this provider will fail. Ensure that your search is specific enough to return a single key.
-     * 
-     * ## Example Usage
-     * 
-     * &lt;!--Start PulumiCodeChooser --&gt;
-     * <pre>
-     * {@code
-     * package generated_program;
-     * 
-     * import com.pulumi.Context;
-     * import com.pulumi.Pulumi;
-     * import com.pulumi.core.Output;
-     * import com.pulumi.fastly.FastlyFunctions;
-     * import com.pulumi.fastly.inputs.GetTlsActivationArgs;
-     * import java.util.List;
-     * import java.util.ArrayList;
-     * import java.util.Map;
-     * import java.io.File;
-     * import java.nio.file.Files;
-     * import java.nio.file.Paths;
-     * 
-     * public class App {
-     *     public static void main(String[] args) {
-     *         Pulumi.run(App::stack);
-     *     }
-     * 
-     *     public static void stack(Context ctx) {
-     *         final var example = FastlyFunctions.getTlsActivation(GetTlsActivationArgs.builder()
-     *             .domain("example.com")
-     *             .build());
-     * 
-     *     }
-     * }
-     * }
-     * </pre>
-     * &lt;!--End PulumiCodeChooser --&gt;
-     * 
-     */
     public static CompletableFuture<GetTlsActivationResult> getTlsActivationPlain(GetTlsActivationPlainArgs args, InvokeOptions options) {
         return Deployment.getInstance().invokeAsync("fastly:index/getTlsActivation:getTlsActivation", TypeShape.of(GetTlsActivationResult.class), args, Utilities.withVersion(options));
     }
@@ -1655,18 +1412,6 @@ public final class FastlyFunctions {
      * 
      */
     public static Output<GetTlsActivationIdsResult> getTlsActivationIds(GetTlsActivationIdsArgs args, InvokeOptions options) {
-        return Deployment.getInstance().invoke("fastly:index/getTlsActivationIds:getTlsActivationIds", TypeShape.of(GetTlsActivationIdsResult.class), args, Utilities.withVersion(options));
-    }
-    /**
-     * Use this data source to get the list of TLS Activation identifiers in Fastly.
-     * 
-     * ## Example Usage
-     * 
-     * &lt;!--Start PulumiCodeChooser --&gt;
-     * &lt;!--End PulumiCodeChooser --&gt;
-     * 
-     */
-    public static Output<GetTlsActivationIdsResult> getTlsActivationIds(GetTlsActivationIdsArgs args, InvokeOutputOptions options) {
         return Deployment.getInstance().invoke("fastly:index/getTlsActivationIds:getTlsActivationIds", TypeShape.of(GetTlsActivationIdsResult.class), args, Utilities.withVersion(options));
     }
     /**
@@ -1966,54 +1711,6 @@ public final class FastlyFunctions {
      * &lt;!--End PulumiCodeChooser --&gt;
      * 
      */
-    public static Output<GetTlsCertificateResult> getTlsCertificate(GetTlsCertificateArgs args, InvokeOutputOptions options) {
-        return Deployment.getInstance().invoke("fastly:index/getTlsCertificate:getTlsCertificate", TypeShape.of(GetTlsCertificateResult.class), args, Utilities.withVersion(options));
-    }
-    /**
-     * Use this data source to get information of a TLS certificate for use with other resources.
-     * 
-     * &gt; **Warning:** The data source&#39;s filters are applied using an **AND** boolean operator, so depending on the combination
-     * of filters, they may become mutually exclusive. The exception to this is `id` which must not be specified in combination
-     * with any of the others.
-     * 
-     * &gt; **Note:** If more or less than a single match is returned by the search, this provider will fail. Ensure that your search is specific enough to return a single key.
-     * 
-     * ## Example Usage
-     * 
-     * &lt;!--Start PulumiCodeChooser --&gt;
-     * <pre>
-     * {@code
-     * package generated_program;
-     * 
-     * import com.pulumi.Context;
-     * import com.pulumi.Pulumi;
-     * import com.pulumi.core.Output;
-     * import com.pulumi.fastly.FastlyFunctions;
-     * import com.pulumi.fastly.inputs.GetTlsCertificateArgs;
-     * import java.util.List;
-     * import java.util.ArrayList;
-     * import java.util.Map;
-     * import java.io.File;
-     * import java.nio.file.Files;
-     * import java.nio.file.Paths;
-     * 
-     * public class App {
-     *     public static void main(String[] args) {
-     *         Pulumi.run(App::stack);
-     *     }
-     * 
-     *     public static void stack(Context ctx) {
-     *         final var example = FastlyFunctions.getTlsCertificate(GetTlsCertificateArgs.builder()
-     *             .name("example.com")
-     *             .build());
-     * 
-     *     }
-     * }
-     * }
-     * </pre>
-     * &lt;!--End PulumiCodeChooser --&gt;
-     * 
-     */
     public static CompletableFuture<GetTlsCertificateResult> getTlsCertificatePlain(GetTlsCertificatePlainArgs args, InvokeOptions options) {
         return Deployment.getInstance().invokeAsync("fastly:index/getTlsCertificate:getTlsCertificate", TypeShape.of(GetTlsCertificateResult.class), args, Utilities.withVersion(options));
     }
@@ -2240,51 +1937,6 @@ public final class FastlyFunctions {
      * 
      */
     public static Output<GetTlsCertificateIdsResult> getTlsCertificateIds(InvokeArgs args, InvokeOptions options) {
-        return Deployment.getInstance().invoke("fastly:index/getTlsCertificateIds:getTlsCertificateIds", TypeShape.of(GetTlsCertificateIdsResult.class), args, Utilities.withVersion(options));
-    }
-    /**
-     * Use this data source to get the IDs of available TLS certificates for use with other resources.
-     * 
-     * ## Example Usage
-     * 
-     * &lt;!--Start PulumiCodeChooser --&gt;
-     * <pre>
-     * {@code
-     * package generated_program;
-     * 
-     * import com.pulumi.Context;
-     * import com.pulumi.Pulumi;
-     * import com.pulumi.core.Output;
-     * import com.pulumi.fastly.FastlyFunctions;
-     * import com.pulumi.fastly.TlsActivation;
-     * import com.pulumi.fastly.TlsActivationArgs;
-     * import java.util.List;
-     * import java.util.ArrayList;
-     * import java.util.Map;
-     * import java.io.File;
-     * import java.nio.file.Files;
-     * import java.nio.file.Paths;
-     * 
-     * public class App {
-     *     public static void main(String[] args) {
-     *         Pulumi.run(App::stack);
-     *     }
-     * 
-     *     public static void stack(Context ctx) {
-     *         final var example = FastlyFunctions.getTlsCertificateIds();
-     * 
-     *         var exampleTlsActivation = new TlsActivation("exampleTlsActivation", TlsActivationArgs.builder()
-     *             .certificateId(example.applyValue(getTlsCertificateIdsResult -> getTlsCertificateIdsResult.ids()[0]))
-     *             .build());
-     * 
-     *     }
-     * }
-     * }
-     * </pre>
-     * &lt;!--End PulumiCodeChooser --&gt;
-     * 
-     */
-    public static Output<GetTlsCertificateIdsResult> getTlsCertificateIds(InvokeArgs args, InvokeOutputOptions options) {
         return Deployment.getInstance().invoke("fastly:index/getTlsCertificateIds:getTlsCertificateIds", TypeShape.of(GetTlsCertificateIdsResult.class), args, Utilities.withVersion(options));
     }
     /**
@@ -2653,60 +2305,6 @@ public final class FastlyFunctions {
      * &lt;!--End PulumiCodeChooser --&gt;
      * 
      */
-    public static Output<GetTlsConfigurationResult> getTlsConfiguration(GetTlsConfigurationArgs args, InvokeOutputOptions options) {
-        return Deployment.getInstance().invoke("fastly:index/getTlsConfiguration:getTlsConfiguration", TypeShape.of(GetTlsConfigurationResult.class), args, Utilities.withVersion(options));
-    }
-    /**
-     * Use this data source to get the ID of a TLS configuration for use with other resources.
-     * 
-     * &gt; **Warning:** The data source&#39;s filters are applied using an **AND** boolean operator, so depending on the combination
-     * of filters, they may become mutually exclusive. The exception to this is `id` which must not be specified in combination
-     * with any of the others.
-     * 
-     * &gt; **Note:** If more or less than a single match is returned by the search, this provider will fail. Ensure that your search is specific enough to return a single key.
-     * 
-     * ## Example Usage
-     * 
-     * &lt;!--Start PulumiCodeChooser --&gt;
-     * <pre>
-     * {@code
-     * package generated_program;
-     * 
-     * import com.pulumi.Context;
-     * import com.pulumi.Pulumi;
-     * import com.pulumi.core.Output;
-     * import com.pulumi.fastly.FastlyFunctions;
-     * import com.pulumi.fastly.inputs.GetTlsConfigurationArgs;
-     * import com.pulumi.fastly.TlsActivation;
-     * import com.pulumi.fastly.TlsActivationArgs;
-     * import java.util.List;
-     * import java.util.ArrayList;
-     * import java.util.Map;
-     * import java.io.File;
-     * import java.nio.file.Files;
-     * import java.nio.file.Paths;
-     * 
-     * public class App {
-     *     public static void main(String[] args) {
-     *         Pulumi.run(App::stack);
-     *     }
-     * 
-     *     public static void stack(Context ctx) {
-     *         final var example = FastlyFunctions.getTlsConfiguration(GetTlsConfigurationArgs.builder()
-     *             .default_(true)
-     *             .build());
-     * 
-     *         var exampleTlsActivation = new TlsActivation("exampleTlsActivation", TlsActivationArgs.builder()
-     *             .configurationId(example.applyValue(getTlsConfigurationResult -> getTlsConfigurationResult.id()))
-     *             .build());
-     * 
-     *     }
-     * }
-     * }
-     * </pre>
-     * &lt;!--End PulumiCodeChooser --&gt;
-     * 
-     */
     public static CompletableFuture<GetTlsConfigurationResult> getTlsConfigurationPlain(GetTlsConfigurationPlainArgs args, InvokeOptions options) {
         return Deployment.getInstance().invokeAsync("fastly:index/getTlsConfiguration:getTlsConfiguration", TypeShape.of(GetTlsConfigurationResult.class), args, Utilities.withVersion(options));
     }
@@ -2977,51 +2575,6 @@ public final class FastlyFunctions {
      * &lt;!--End PulumiCodeChooser --&gt;
      * 
      */
-    public static Output<GetTlsConfigurationIdsResult> getTlsConfigurationIds(InvokeArgs args, InvokeOutputOptions options) {
-        return Deployment.getInstance().invoke("fastly:index/getTlsConfigurationIds:getTlsConfigurationIds", TypeShape.of(GetTlsConfigurationIdsResult.class), args, Utilities.withVersion(options));
-    }
-    /**
-     * Use this data source to get the IDs of available TLS configurations for use with other resources.
-     * 
-     * ## Example Usage
-     * 
-     * &lt;!--Start PulumiCodeChooser --&gt;
-     * <pre>
-     * {@code
-     * package generated_program;
-     * 
-     * import com.pulumi.Context;
-     * import com.pulumi.Pulumi;
-     * import com.pulumi.core.Output;
-     * import com.pulumi.fastly.FastlyFunctions;
-     * import com.pulumi.fastly.TlsActivation;
-     * import com.pulumi.fastly.TlsActivationArgs;
-     * import java.util.List;
-     * import java.util.ArrayList;
-     * import java.util.Map;
-     * import java.io.File;
-     * import java.nio.file.Files;
-     * import java.nio.file.Paths;
-     * 
-     * public class App {
-     *     public static void main(String[] args) {
-     *         Pulumi.run(App::stack);
-     *     }
-     * 
-     *     public static void stack(Context ctx) {
-     *         final var example = FastlyFunctions.getTlsConfigurationIds();
-     * 
-     *         var exampleTlsActivation = new TlsActivation("exampleTlsActivation", TlsActivationArgs.builder()
-     *             .configurationId(example.applyValue(getTlsConfigurationIdsResult -> getTlsConfigurationIdsResult.ids()[0]))
-     *             .build());
-     * 
-     *     }
-     * }
-     * }
-     * </pre>
-     * &lt;!--End PulumiCodeChooser --&gt;
-     * 
-     */
     public static CompletableFuture<GetTlsConfigurationIdsResult> getTlsConfigurationIdsPlain(InvokeArgs args, InvokeOptions options) {
         return Deployment.getInstance().invokeAsync("fastly:index/getTlsConfigurationIds:getTlsConfigurationIds", TypeShape.of(GetTlsConfigurationIdsResult.class), args, Utilities.withVersion(options));
     }
@@ -3149,48 +2702,6 @@ public final class FastlyFunctions {
      * 
      */
     public static Output<GetTlsDomainResult> getTlsDomain(GetTlsDomainArgs args, InvokeOptions options) {
-        return Deployment.getInstance().invoke("fastly:index/getTlsDomain:getTlsDomain", TypeShape.of(GetTlsDomainResult.class), args, Utilities.withVersion(options));
-    }
-    /**
-     * Use this data source to get the IDs of activations, certificates and subscriptions associated with a domain.
-     * 
-     * ## Example Usage
-     * 
-     * &lt;!--Start PulumiCodeChooser --&gt;
-     * <pre>
-     * {@code
-     * package generated_program;
-     * 
-     * import com.pulumi.Context;
-     * import com.pulumi.Pulumi;
-     * import com.pulumi.core.Output;
-     * import com.pulumi.fastly.FastlyFunctions;
-     * import com.pulumi.fastly.inputs.GetTlsDomainArgs;
-     * import java.util.List;
-     * import java.util.ArrayList;
-     * import java.util.Map;
-     * import java.io.File;
-     * import java.nio.file.Files;
-     * import java.nio.file.Paths;
-     * 
-     * public class App {
-     *     public static void main(String[] args) {
-     *         Pulumi.run(App::stack);
-     *     }
-     * 
-     *     public static void stack(Context ctx) {
-     *         final var domain = FastlyFunctions.getTlsDomain(GetTlsDomainArgs.builder()
-     *             .domain("example.com")
-     *             .build());
-     * 
-     *     }
-     * }
-     * }
-     * </pre>
-     * &lt;!--End PulumiCodeChooser --&gt;
-     * 
-     */
-    public static Output<GetTlsDomainResult> getTlsDomain(GetTlsDomainArgs args, InvokeOutputOptions options) {
         return Deployment.getInstance().invoke("fastly:index/getTlsDomain:getTlsDomain", TypeShape.of(GetTlsDomainResult.class), args, Utilities.withVersion(options));
     }
     /**
@@ -3520,54 +3031,6 @@ public final class FastlyFunctions {
      * &lt;!--End PulumiCodeChooser --&gt;
      * 
      */
-    public static Output<GetTlsPlatformCertificateResult> getTlsPlatformCertificate(GetTlsPlatformCertificateArgs args, InvokeOutputOptions options) {
-        return Deployment.getInstance().invoke("fastly:index/getTlsPlatformCertificate:getTlsPlatformCertificate", TypeShape.of(GetTlsPlatformCertificateResult.class), args, Utilities.withVersion(options));
-    }
-    /**
-     * Use this data source to get information of a Platform TLS certificate for use with other resources.
-     * 
-     * &gt; **Warning:** The data source&#39;s filters are applied using an **AND** boolean operator, so depending on the combination
-     * of filters, they may become mutually exclusive. The exception to this is `id` which must not be specified in combination
-     * with any of the others.
-     * 
-     * &gt; **Note:** If more or less than a single match is returned by the search, this provider will fail. Ensure that your search is specific enough to return a single key.
-     * 
-     * ## Example Usage
-     * 
-     * &lt;!--Start PulumiCodeChooser --&gt;
-     * <pre>
-     * {@code
-     * package generated_program;
-     * 
-     * import com.pulumi.Context;
-     * import com.pulumi.Pulumi;
-     * import com.pulumi.core.Output;
-     * import com.pulumi.fastly.FastlyFunctions;
-     * import com.pulumi.fastly.inputs.GetTlsPlatformCertificateArgs;
-     * import java.util.List;
-     * import java.util.ArrayList;
-     * import java.util.Map;
-     * import java.io.File;
-     * import java.nio.file.Files;
-     * import java.nio.file.Paths;
-     * 
-     * public class App {
-     *     public static void main(String[] args) {
-     *         Pulumi.run(App::stack);
-     *     }
-     * 
-     *     public static void stack(Context ctx) {
-     *         final var example = FastlyFunctions.getTlsPlatformCertificate(GetTlsPlatformCertificateArgs.builder()
-     *             .domains("example.com")
-     *             .build());
-     * 
-     *     }
-     * }
-     * }
-     * </pre>
-     * &lt;!--End PulumiCodeChooser --&gt;
-     * 
-     */
     public static CompletableFuture<GetTlsPlatformCertificateResult> getTlsPlatformCertificatePlain(GetTlsPlatformCertificatePlainArgs args, InvokeOptions options) {
         return Deployment.getInstance().invokeAsync("fastly:index/getTlsPlatformCertificate:getTlsPlatformCertificate", TypeShape.of(GetTlsPlatformCertificateResult.class), args, Utilities.withVersion(options));
     }
@@ -3789,50 +3252,6 @@ public final class FastlyFunctions {
      * 
      */
     public static Output<GetTlsPlatformCertificateIdsResult> getTlsPlatformCertificateIds(InvokeArgs args, InvokeOptions options) {
-        return Deployment.getInstance().invoke("fastly:index/getTlsPlatformCertificateIds:getTlsPlatformCertificateIds", TypeShape.of(GetTlsPlatformCertificateIdsResult.class), args, Utilities.withVersion(options));
-    }
-    /**
-     * Use this data source to get the IDs of available Platform TLS Certificates for use with other resources.
-     * 
-     * ## Example Usage
-     * 
-     * &lt;!--Start PulumiCodeChooser --&gt;
-     * <pre>
-     * {@code
-     * package generated_program;
-     * 
-     * import com.pulumi.Context;
-     * import com.pulumi.Pulumi;
-     * import com.pulumi.core.Output;
-     * import com.pulumi.fastly.FastlyFunctions;
-     * import com.pulumi.fastly.inputs.GetTlsPlatformCertificateArgs;
-     * import java.util.List;
-     * import java.util.ArrayList;
-     * import java.util.Map;
-     * import java.io.File;
-     * import java.nio.file.Files;
-     * import java.nio.file.Paths;
-     * 
-     * public class App {
-     *     public static void main(String[] args) {
-     *         Pulumi.run(App::stack);
-     *     }
-     * 
-     *     public static void stack(Context ctx) {
-     *         final var example = FastlyFunctions.getTlsPlatformCertificateIds();
-     * 
-     *         final var exampleGetTlsPlatformCertificate = FastlyFunctions.getTlsPlatformCertificate(GetTlsPlatformCertificateArgs.builder()
-     *             .id(example.applyValue(getTlsPlatformCertificateIdsResult -> getTlsPlatformCertificateIdsResult.ids()[0]))
-     *             .build());
-     * 
-     *     }
-     * }
-     * }
-     * </pre>
-     * &lt;!--End PulumiCodeChooser --&gt;
-     * 
-     */
-    public static Output<GetTlsPlatformCertificateIdsResult> getTlsPlatformCertificateIds(InvokeArgs args, InvokeOutputOptions options) {
         return Deployment.getInstance().invoke("fastly:index/getTlsPlatformCertificateIds:getTlsPlatformCertificateIds", TypeShape.of(GetTlsPlatformCertificateIdsResult.class), args, Utilities.withVersion(options));
     }
     /**
@@ -4176,56 +3595,6 @@ public final class FastlyFunctions {
      * &lt;!--End PulumiCodeChooser --&gt;
      * 
      */
-    public static Output<GetTlsPrivateKeyResult> getTlsPrivateKey(GetTlsPrivateKeyArgs args, InvokeOutputOptions options) {
-        return Deployment.getInstance().invoke("fastly:index/getTlsPrivateKey:getTlsPrivateKey", TypeShape.of(GetTlsPrivateKeyResult.class), args, Utilities.withVersion(options));
-    }
-    /**
-     * Use this data source to get information on a TLS Private Key uploaded to Fastly.
-     * 
-     * &gt; **Warning:** The data source&#39;s filters are applied using an **AND** boolean operator, so depending on the combination
-     *  of filters, they may become mutually exclusive. The exception to this is `id` which must not be specified in combination
-     *  with any of the others.
-     * 
-     * &gt; **Note:** If more or less than a single match is returned by the search, this provider will fail. Ensure that your search
-     *  is specific enough to return a single key.
-     * 
-     * ## Example Usage
-     * 
-     * &lt;!--Start PulumiCodeChooser --&gt;
-     * <pre>
-     * {@code
-     * package generated_program;
-     * 
-     * import com.pulumi.Context;
-     * import com.pulumi.Pulumi;
-     * import com.pulumi.core.Output;
-     * import com.pulumi.fastly.FastlyFunctions;
-     * import com.pulumi.fastly.inputs.GetTlsPrivateKeyArgs;
-     * import java.util.List;
-     * import java.util.ArrayList;
-     * import java.util.Map;
-     * import java.io.File;
-     * import java.nio.file.Files;
-     * import java.nio.file.Paths;
-     * 
-     * public class App {
-     *     public static void main(String[] args) {
-     *         Pulumi.run(App::stack);
-     *     }
-     * 
-     *     public static void stack(Context ctx) {
-     *         final var demo = FastlyFunctions.getTlsPrivateKey(GetTlsPrivateKeyArgs.builder()
-     *             .name("demo-private-key")
-     *             .build());
-     * 
-     *         ctx.export("privateKeyNeedsReplacing", demo.applyValue(getTlsPrivateKeyResult -> getTlsPrivateKeyResult.replace()));
-     *     }
-     * }
-     * }
-     * </pre>
-     * &lt;!--End PulumiCodeChooser --&gt;
-     * 
-     */
     public static CompletableFuture<GetTlsPrivateKeyResult> getTlsPrivateKeyPlain(GetTlsPrivateKeyPlainArgs args, InvokeOptions options) {
         return Deployment.getInstance().invokeAsync("fastly:index/getTlsPrivateKey:getTlsPrivateKey", TypeShape.of(GetTlsPrivateKeyResult.class), args, Utilities.withVersion(options));
     }
@@ -4447,50 +3816,6 @@ public final class FastlyFunctions {
      * 
      */
     public static Output<GetTlsPrivateKeyIdsResult> getTlsPrivateKeyIds(InvokeArgs args, InvokeOptions options) {
-        return Deployment.getInstance().invoke("fastly:index/getTlsPrivateKeyIds:getTlsPrivateKeyIds", TypeShape.of(GetTlsPrivateKeyIdsResult.class), args, Utilities.withVersion(options));
-    }
-    /**
-     * Use this data source to get the list of TLS private key identifiers in Fastly.
-     * 
-     * ## Example Usage
-     * 
-     * &lt;!--Start PulumiCodeChooser --&gt;
-     * <pre>
-     * {@code
-     * package generated_program;
-     * 
-     * import com.pulumi.Context;
-     * import com.pulumi.Pulumi;
-     * import com.pulumi.core.Output;
-     * import com.pulumi.fastly.FastlyFunctions;
-     * import com.pulumi.fastly.inputs.GetTlsPrivateKeyArgs;
-     * import java.util.List;
-     * import java.util.ArrayList;
-     * import java.util.Map;
-     * import java.io.File;
-     * import java.nio.file.Files;
-     * import java.nio.file.Paths;
-     * 
-     * public class App {
-     *     public static void main(String[] args) {
-     *         Pulumi.run(App::stack);
-     *     }
-     * 
-     *     public static void stack(Context ctx) {
-     *         final var demo = FastlyFunctions.getTlsPrivateKeyIds();
-     * 
-     *         final var example = FastlyFunctions.getTlsPrivateKey(GetTlsPrivateKeyArgs.builder()
-     *             .id(demoFastlyTlsPrivateKeyIds.ids()[0])
-     *             .build());
-     * 
-     *     }
-     * }
-     * }
-     * </pre>
-     * &lt;!--End PulumiCodeChooser --&gt;
-     * 
-     */
-    public static Output<GetTlsPrivateKeyIdsResult> getTlsPrivateKeyIds(InvokeArgs args, InvokeOutputOptions options) {
         return Deployment.getInstance().invoke("fastly:index/getTlsPrivateKeyIds:getTlsPrivateKeyIds", TypeShape.of(GetTlsPrivateKeyIdsResult.class), args, Utilities.withVersion(options));
     }
     /**
@@ -4786,48 +4111,6 @@ public final class FastlyFunctions {
      * &lt;!--End PulumiCodeChooser --&gt;
      * 
      */
-    public static Output<GetTlsSubscriptionResult> getTlsSubscription(GetTlsSubscriptionArgs args, InvokeOutputOptions options) {
-        return Deployment.getInstance().invoke("fastly:index/getTlsSubscription:getTlsSubscription", TypeShape.of(GetTlsSubscriptionResult.class), args, Utilities.withVersion(options));
-    }
-    /**
-     * Use this data source to get information about a TLS subscription.
-     * 
-     * ## Example Usage
-     * 
-     * &lt;!--Start PulumiCodeChooser --&gt;
-     * <pre>
-     * {@code
-     * package generated_program;
-     * 
-     * import com.pulumi.Context;
-     * import com.pulumi.Pulumi;
-     * import com.pulumi.core.Output;
-     * import com.pulumi.fastly.FastlyFunctions;
-     * import com.pulumi.fastly.inputs.GetTlsSubscriptionArgs;
-     * import java.util.List;
-     * import java.util.ArrayList;
-     * import java.util.Map;
-     * import java.io.File;
-     * import java.nio.file.Files;
-     * import java.nio.file.Paths;
-     * 
-     * public class App {
-     *     public static void main(String[] args) {
-     *         Pulumi.run(App::stack);
-     *     }
-     * 
-     *     public static void stack(Context ctx) {
-     *         final var example = FastlyFunctions.getTlsSubscription(GetTlsSubscriptionArgs.builder()
-     *             .domains("example.com")
-     *             .build());
-     * 
-     *     }
-     * }
-     * }
-     * </pre>
-     * &lt;!--End PulumiCodeChooser --&gt;
-     * 
-     */
     public static CompletableFuture<GetTlsSubscriptionResult> getTlsSubscriptionPlain(GetTlsSubscriptionPlainArgs args, InvokeOptions options) {
         return Deployment.getInstance().invokeAsync("fastly:index/getTlsSubscription:getTlsSubscription", TypeShape.of(GetTlsSubscriptionResult.class), args, Utilities.withVersion(options));
     }
@@ -4889,18 +4172,6 @@ public final class FastlyFunctions {
      * 
      */
     public static Output<GetTlsSubscriptionIdsResult> getTlsSubscriptionIds(InvokeArgs args, InvokeOptions options) {
-        return Deployment.getInstance().invoke("fastly:index/getTlsSubscriptionIds:getTlsSubscriptionIds", TypeShape.of(GetTlsSubscriptionIdsResult.class), args, Utilities.withVersion(options));
-    }
-    /**
-     * Use this data source to get the list of IDs of TLS Subscriptions in Fastly.
-     * 
-     * ## Example Usage
-     * 
-     * &lt;!--Start PulumiCodeChooser --&gt;
-     * &lt;!--End PulumiCodeChooser --&gt;
-     * 
-     */
-    public static Output<GetTlsSubscriptionIdsResult> getTlsSubscriptionIds(InvokeArgs args, InvokeOutputOptions options) {
         return Deployment.getInstance().invoke("fastly:index/getTlsSubscriptionIds:getTlsSubscriptionIds", TypeShape.of(GetTlsSubscriptionIdsResult.class), args, Utilities.withVersion(options));
     }
     /**
@@ -5148,87 +4419,7 @@ public final class FastlyFunctions {
      * [1]: https://www.fastly.com/documentation/reference/api/vcl-services/snippet/
      * 
      */
-    public static Output<GetVclSnippetsResult> getVclSnippets(GetVclSnippetsArgs args, InvokeOutputOptions options) {
-        return Deployment.getInstance().invoke("fastly:index/getVclSnippets:getVclSnippets", TypeShape.of(GetVclSnippetsResult.class), args, Utilities.withVersion(options));
-    }
-    /**
-     * VCL Snippets are blocks of VCL logic inserted into your service&#39;s configuration that don&#39;t require custom VCL.
-     * 
-     * Use this data source to get a list of [Fastly VCL Snippets](https://www.fastly.com/documentation/reference/api/vcl-services/snippet/) for the specified service/version.
-     * 
-     * ## Example Usage
-     * 
-     * &lt;!--Start PulumiCodeChooser --&gt;
-     * <pre>
-     * {@code
-     * package generated_program;
-     * 
-     * import com.pulumi.Context;
-     * import com.pulumi.Pulumi;
-     * import com.pulumi.core.Output;
-     * import com.pulumi.fastly.ServiceVcl;
-     * import com.pulumi.fastly.ServiceVclArgs;
-     * import com.pulumi.fastly.inputs.ServiceVclDomainArgs;
-     * import com.pulumi.fastly.FastlyFunctions;
-     * import com.pulumi.fastly.inputs.GetVclSnippetsArgs;
-     * import java.util.List;
-     * import java.util.ArrayList;
-     * import java.util.Map;
-     * import java.io.File;
-     * import java.nio.file.Files;
-     * import java.nio.file.Paths;
-     * 
-     * public class App {
-     *     public static void main(String[] args) {
-     *         Pulumi.run(App::stack);
-     *     }
-     * 
-     *     public static void stack(Context ctx) {
-     *         var exampleServiceVcl = new ServiceVcl("exampleServiceVcl", ServiceVclArgs.builder()
-     *             .name("Example Service")
-     *             .domains(ServiceVclDomainArgs.builder()
-     *                 .name("example.com")
-     *                 .build())
-     *             .forceDestroy(true)
-     *             .build());
-     * 
-     *         final var example = FastlyFunctions.getVclSnippets(GetVclSnippetsArgs.builder()
-     *             .serviceId(exampleServiceVcl.id())
-     *             .serviceVersion(exampleServiceVcl.activeVersion())
-     *             .build());
-     * 
-     *         ctx.export("serviceVclSnippets", example.applyValue(getVclSnippetsResult -> getVclSnippetsResult));
-     *     }
-     * }
-     * }
-     * </pre>
-     * &lt;!--End PulumiCodeChooser --&gt;
-     * 
-     * [1]: https://www.fastly.com/documentation/reference/api/vcl-services/snippet/
-     * 
-     */
     public static CompletableFuture<GetVclSnippetsResult> getVclSnippetsPlain(GetVclSnippetsPlainArgs args, InvokeOptions options) {
         return Deployment.getInstance().invokeAsync("fastly:index/getVclSnippets:getVclSnippets", TypeShape.of(GetVclSnippetsResult.class), args, Utilities.withVersion(options));
-    }
-    public static Output<GetWafRulesResult> getWafRules() {
-        return getWafRules(GetWafRulesArgs.Empty, InvokeOptions.Empty);
-    }
-    public static CompletableFuture<GetWafRulesResult> getWafRulesPlain() {
-        return getWafRulesPlain(GetWafRulesPlainArgs.Empty, InvokeOptions.Empty);
-    }
-    public static Output<GetWafRulesResult> getWafRules(GetWafRulesArgs args) {
-        return getWafRules(args, InvokeOptions.Empty);
-    }
-    public static CompletableFuture<GetWafRulesResult> getWafRulesPlain(GetWafRulesPlainArgs args) {
-        return getWafRulesPlain(args, InvokeOptions.Empty);
-    }
-    public static Output<GetWafRulesResult> getWafRules(GetWafRulesArgs args, InvokeOptions options) {
-        return Deployment.getInstance().invoke("fastly:index/getWafRules:getWafRules", TypeShape.of(GetWafRulesResult.class), args, Utilities.withVersion(options));
-    }
-    public static Output<GetWafRulesResult> getWafRules(GetWafRulesArgs args, InvokeOutputOptions options) {
-        return Deployment.getInstance().invoke("fastly:index/getWafRules:getWafRules", TypeShape.of(GetWafRulesResult.class), args, Utilities.withVersion(options));
-    }
-    public static CompletableFuture<GetWafRulesResult> getWafRulesPlain(GetWafRulesPlainArgs args, InvokeOptions options) {
-        return Deployment.getInstance().invokeAsync("fastly:index/getWafRules:getWafRules", TypeShape.of(GetWafRulesResult.class), args, Utilities.withVersion(options));
     }
 }

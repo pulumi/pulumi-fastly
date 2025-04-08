@@ -53,7 +53,7 @@ export class ServiceVcl extends pulumi.CustomResource {
 
     public readonly acls!: pulumi.Output<outputs.ServiceVclAcl[] | undefined>;
     /**
-     * Conditionally prevents the Service from being activated. The apply step will continue to create a new draft version but
+     * Conditionally prevents new service versions from being activated. The apply step will create a new draft version but
      * will not activate it if this is set to `false`. Default `true`
      */
     public readonly activate!: pulumi.Output<boolean | undefined>;
@@ -142,6 +142,15 @@ export class ServiceVcl extends pulumi.CustomResource {
     public readonly reuse!: pulumi.Output<boolean | undefined>;
     public readonly snippets!: pulumi.Output<outputs.ServiceVclSnippet[] | undefined>;
     /**
+     * Conditionally enables new service versions to be staged. If `set` to true, all changes made by an `apply` step will be
+     * staged, even if `apply` did not create a new draft version. Default `false`
+     */
+    public readonly stage!: pulumi.Output<boolean | undefined>;
+    /**
+     * The currently staged version of your Fastly Service
+     */
+    public /*out*/ readonly stagedVersion!: pulumi.Output<number>;
+    /**
      * Enables serving a stale object if there is an error
      */
     public readonly staleIfError!: pulumi.Output<boolean | undefined>;
@@ -154,7 +163,6 @@ export class ServiceVcl extends pulumi.CustomResource {
      * Description field for the version
      */
     public readonly versionComment!: pulumi.Output<string | undefined>;
-    public readonly waf!: pulumi.Output<outputs.ServiceVclWaf | undefined>;
 
     /**
      * Create a ServiceVcl resource with the given unique name, arguments, and options.
@@ -226,11 +234,12 @@ export class ServiceVcl extends pulumi.CustomResource {
             resourceInputs["responseObjects"] = state ? state.responseObjects : undefined;
             resourceInputs["reuse"] = state ? state.reuse : undefined;
             resourceInputs["snippets"] = state ? state.snippets : undefined;
+            resourceInputs["stage"] = state ? state.stage : undefined;
+            resourceInputs["stagedVersion"] = state ? state.stagedVersion : undefined;
             resourceInputs["staleIfError"] = state ? state.staleIfError : undefined;
             resourceInputs["staleIfErrorTtl"] = state ? state.staleIfErrorTtl : undefined;
             resourceInputs["vcls"] = state ? state.vcls : undefined;
             resourceInputs["versionComment"] = state ? state.versionComment : undefined;
-            resourceInputs["waf"] = state ? state.waf : undefined;
         } else {
             const args = argsOrState as ServiceVclArgs | undefined;
             if ((!args || args.domains === undefined) && !opts.urn) {
@@ -289,15 +298,16 @@ export class ServiceVcl extends pulumi.CustomResource {
             resourceInputs["responseObjects"] = args ? args.responseObjects : undefined;
             resourceInputs["reuse"] = args ? args.reuse : undefined;
             resourceInputs["snippets"] = args ? args.snippets : undefined;
+            resourceInputs["stage"] = args ? args.stage : undefined;
             resourceInputs["staleIfError"] = args ? args.staleIfError : undefined;
             resourceInputs["staleIfErrorTtl"] = args ? args.staleIfErrorTtl : undefined;
             resourceInputs["vcls"] = args ? args.vcls : undefined;
             resourceInputs["versionComment"] = args ? args.versionComment : undefined;
-            resourceInputs["waf"] = args ? args.waf : undefined;
             resourceInputs["activeVersion"] = undefined /*out*/;
             resourceInputs["clonedVersion"] = undefined /*out*/;
             resourceInputs["forceRefresh"] = undefined /*out*/;
             resourceInputs["imported"] = undefined /*out*/;
+            resourceInputs["stagedVersion"] = undefined /*out*/;
         }
         opts = pulumi.mergeOptions(utilities.resourceOptsDefaults(), opts);
         super(ServiceVcl.__pulumiType, name, resourceInputs, opts);
@@ -310,7 +320,7 @@ export class ServiceVcl extends pulumi.CustomResource {
 export interface ServiceVclState {
     acls?: pulumi.Input<pulumi.Input<inputs.ServiceVclAcl>[]>;
     /**
-     * Conditionally prevents the Service from being activated. The apply step will continue to create a new draft version but
+     * Conditionally prevents new service versions from being activated. The apply step will create a new draft version but
      * will not activate it if this is set to `false`. Default `true`
      */
     activate?: pulumi.Input<boolean>;
@@ -399,6 +409,15 @@ export interface ServiceVclState {
     reuse?: pulumi.Input<boolean>;
     snippets?: pulumi.Input<pulumi.Input<inputs.ServiceVclSnippet>[]>;
     /**
+     * Conditionally enables new service versions to be staged. If `set` to true, all changes made by an `apply` step will be
+     * staged, even if `apply` did not create a new draft version. Default `false`
+     */
+    stage?: pulumi.Input<boolean>;
+    /**
+     * The currently staged version of your Fastly Service
+     */
+    stagedVersion?: pulumi.Input<number>;
+    /**
      * Enables serving a stale object if there is an error
      */
     staleIfError?: pulumi.Input<boolean>;
@@ -411,7 +430,6 @@ export interface ServiceVclState {
      * Description field for the version
      */
     versionComment?: pulumi.Input<string>;
-    waf?: pulumi.Input<inputs.ServiceVclWaf>;
 }
 
 /**
@@ -420,7 +438,7 @@ export interface ServiceVclState {
 export interface ServiceVclArgs {
     acls?: pulumi.Input<pulumi.Input<inputs.ServiceVclAcl>[]>;
     /**
-     * Conditionally prevents the Service from being activated. The apply step will continue to create a new draft version but
+     * Conditionally prevents new service versions from being activated. The apply step will create a new draft version but
      * will not activate it if this is set to `false`. Default `true`
      */
     activate?: pulumi.Input<boolean>;
@@ -495,6 +513,11 @@ export interface ServiceVclArgs {
     reuse?: pulumi.Input<boolean>;
     snippets?: pulumi.Input<pulumi.Input<inputs.ServiceVclSnippet>[]>;
     /**
+     * Conditionally enables new service versions to be staged. If `set` to true, all changes made by an `apply` step will be
+     * staged, even if `apply` did not create a new draft version. Default `false`
+     */
+    stage?: pulumi.Input<boolean>;
+    /**
      * Enables serving a stale object if there is an error
      */
     staleIfError?: pulumi.Input<boolean>;
@@ -507,5 +530,4 @@ export interface ServiceVclArgs {
      * Description field for the version
      */
     versionComment?: pulumi.Input<string>;
-    waf?: pulumi.Input<inputs.ServiceVclWaf>;
 }

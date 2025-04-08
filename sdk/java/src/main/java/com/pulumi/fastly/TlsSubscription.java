@@ -236,7 +236,7 @@ public class TlsSubscription extends com.pulumi.resources.CustomResource {
      *
      * @param name The _unique_ name of the resulting resource.
      */
-    public TlsSubscription(java.lang.String name) {
+    public TlsSubscription(String name) {
         this(name, TlsSubscriptionArgs.Empty);
     }
     /**
@@ -244,7 +244,7 @@ public class TlsSubscription extends com.pulumi.resources.CustomResource {
      * @param name The _unique_ name of the resulting resource.
      * @param args The arguments to use to populate this resource's properties.
      */
-    public TlsSubscription(java.lang.String name, TlsSubscriptionArgs args) {
+    public TlsSubscription(String name, TlsSubscriptionArgs args) {
         this(name, args, null);
     }
     /**
@@ -253,22 +253,15 @@ public class TlsSubscription extends com.pulumi.resources.CustomResource {
      * @param args The arguments to use to populate this resource's properties.
      * @param options A bag of options that control this resource's behavior.
      */
-    public TlsSubscription(java.lang.String name, TlsSubscriptionArgs args, @Nullable com.pulumi.resources.CustomResourceOptions options) {
-        super("fastly:index/tlsSubscription:TlsSubscription", name, makeArgs(args, options), makeResourceOptions(options, Codegen.empty()), false);
+    public TlsSubscription(String name, TlsSubscriptionArgs args, @Nullable com.pulumi.resources.CustomResourceOptions options) {
+        super("fastly:index/tlsSubscription:TlsSubscription", name, args == null ? TlsSubscriptionArgs.Empty : args, makeResourceOptions(options, Codegen.empty()));
     }
 
-    private TlsSubscription(java.lang.String name, Output<java.lang.String> id, @Nullable TlsSubscriptionState state, @Nullable com.pulumi.resources.CustomResourceOptions options) {
-        super("fastly:index/tlsSubscription:TlsSubscription", name, state, makeResourceOptions(options, id), false);
+    private TlsSubscription(String name, Output<String> id, @Nullable TlsSubscriptionState state, @Nullable com.pulumi.resources.CustomResourceOptions options) {
+        super("fastly:index/tlsSubscription:TlsSubscription", name, state, makeResourceOptions(options, id));
     }
 
-    private static TlsSubscriptionArgs makeArgs(TlsSubscriptionArgs args, @Nullable com.pulumi.resources.CustomResourceOptions options) {
-        if (options != null && options.getUrn().isPresent()) {
-            return null;
-        }
-        return args == null ? TlsSubscriptionArgs.Empty : args;
-    }
-
-    private static com.pulumi.resources.CustomResourceOptions makeResourceOptions(@Nullable com.pulumi.resources.CustomResourceOptions options, @Nullable Output<java.lang.String> id) {
+    private static com.pulumi.resources.CustomResourceOptions makeResourceOptions(@Nullable com.pulumi.resources.CustomResourceOptions options, @Nullable Output<String> id) {
         var defaultOptions = com.pulumi.resources.CustomResourceOptions.builder()
             .version(Utilities.getVersion())
             .build();
@@ -284,7 +277,7 @@ public class TlsSubscription extends com.pulumi.resources.CustomResource {
      * @param state
      * @param options Optional settings to control the behavior of the CustomResource.
      */
-    public static TlsSubscription get(java.lang.String name, Output<java.lang.String> id, @Nullable TlsSubscriptionState state, @Nullable com.pulumi.resources.CustomResourceOptions options) {
+    public static TlsSubscription get(String name, Output<String> id, @Nullable TlsSubscriptionState state, @Nullable com.pulumi.resources.CustomResourceOptions options) {
         return new TlsSubscription(name, id, state, options);
     }
 }

@@ -179,7 +179,7 @@ public class TlsActivation extends com.pulumi.resources.CustomResource {
      *
      * @param name The _unique_ name of the resulting resource.
      */
-    public TlsActivation(java.lang.String name) {
+    public TlsActivation(String name) {
         this(name, TlsActivationArgs.Empty);
     }
     /**
@@ -187,7 +187,7 @@ public class TlsActivation extends com.pulumi.resources.CustomResource {
      * @param name The _unique_ name of the resulting resource.
      * @param args The arguments to use to populate this resource's properties.
      */
-    public TlsActivation(java.lang.String name, TlsActivationArgs args) {
+    public TlsActivation(String name, TlsActivationArgs args) {
         this(name, args, null);
     }
     /**
@@ -196,22 +196,15 @@ public class TlsActivation extends com.pulumi.resources.CustomResource {
      * @param args The arguments to use to populate this resource's properties.
      * @param options A bag of options that control this resource's behavior.
      */
-    public TlsActivation(java.lang.String name, TlsActivationArgs args, @Nullable com.pulumi.resources.CustomResourceOptions options) {
-        super("fastly:index/tlsActivation:TlsActivation", name, makeArgs(args, options), makeResourceOptions(options, Codegen.empty()), false);
+    public TlsActivation(String name, TlsActivationArgs args, @Nullable com.pulumi.resources.CustomResourceOptions options) {
+        super("fastly:index/tlsActivation:TlsActivation", name, args == null ? TlsActivationArgs.Empty : args, makeResourceOptions(options, Codegen.empty()));
     }
 
-    private TlsActivation(java.lang.String name, Output<java.lang.String> id, @Nullable TlsActivationState state, @Nullable com.pulumi.resources.CustomResourceOptions options) {
-        super("fastly:index/tlsActivation:TlsActivation", name, state, makeResourceOptions(options, id), false);
+    private TlsActivation(String name, Output<String> id, @Nullable TlsActivationState state, @Nullable com.pulumi.resources.CustomResourceOptions options) {
+        super("fastly:index/tlsActivation:TlsActivation", name, state, makeResourceOptions(options, id));
     }
 
-    private static TlsActivationArgs makeArgs(TlsActivationArgs args, @Nullable com.pulumi.resources.CustomResourceOptions options) {
-        if (options != null && options.getUrn().isPresent()) {
-            return null;
-        }
-        return args == null ? TlsActivationArgs.Empty : args;
-    }
-
-    private static com.pulumi.resources.CustomResourceOptions makeResourceOptions(@Nullable com.pulumi.resources.CustomResourceOptions options, @Nullable Output<java.lang.String> id) {
+    private static com.pulumi.resources.CustomResourceOptions makeResourceOptions(@Nullable com.pulumi.resources.CustomResourceOptions options, @Nullable Output<String> id) {
         var defaultOptions = com.pulumi.resources.CustomResourceOptions.builder()
             .version(Utilities.getVersion())
             .build();
@@ -227,7 +220,7 @@ public class TlsActivation extends com.pulumi.resources.CustomResource {
      * @param state
      * @param options Optional settings to control the behavior of the CustomResource.
      */
-    public static TlsActivation get(java.lang.String name, Output<java.lang.String> id, @Nullable TlsActivationState state, @Nullable com.pulumi.resources.CustomResourceOptions options) {
+    public static TlsActivation get(String name, Output<String> id, @Nullable TlsActivationState state, @Nullable com.pulumi.resources.CustomResourceOptions options) {
         return new TlsActivation(name, id, state, options);
     }
 }

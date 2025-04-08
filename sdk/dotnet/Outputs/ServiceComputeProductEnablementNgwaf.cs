@@ -11,32 +11,32 @@ namespace Pulumi.Fastly.Outputs
 {
 
     [OutputType]
-    public sealed class GetWafRulesRuleResult
+    public sealed class ServiceComputeProductEnablementNgwaf
     {
         /// <summary>
-        /// The modsecurity rule's latest revision.
+        /// Enable Next-Gen WAF support
         /// </summary>
-        public readonly int LatestRevisionNumber;
+        public readonly bool Enabled;
         /// <summary>
-        /// The modsecurity rule ID.
+        /// The percentage of traffic to inspect
         /// </summary>
-        public readonly int ModsecRuleId;
+        public readonly int? TrafficRamp;
         /// <summary>
-        /// The modsecurity rule's type.
+        /// The workspace to link
         /// </summary>
-        public readonly string Type;
+        public readonly string WorkspaceId;
 
         [OutputConstructor]
-        private GetWafRulesRuleResult(
-            int latestRevisionNumber,
+        private ServiceComputeProductEnablementNgwaf(
+            bool enabled,
 
-            int modsecRuleId,
+            int? trafficRamp,
 
-            string type)
+            string workspaceId)
         {
-            LatestRevisionNumber = latestRevisionNumber;
-            ModsecRuleId = modsecRuleId;
-            Type = type;
+            Enabled = enabled;
+            TrafficRamp = trafficRamp;
+            WorkspaceId = workspaceId;
         }
     }
 }
