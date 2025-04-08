@@ -1,4 +1,4 @@
-module github.com/pulumi/pulumi-fastly/sdk/v8
+module github.com/pulumi/pulumi-fastly/sdk/v9
 
 go 1.22
 
@@ -6,6 +6,7 @@ toolchain go1.22.11
 
 require (
 	github.com/blang/semver v3.5.1+incompatible
+	github.com/pulumi/pulumi-fastly/sdk/v8 v8.14.0
 	github.com/pulumi/pulumi/sdk/v3 v3.156.0
 )
 
@@ -69,7 +70,6 @@ require (
 	github.com/spf13/cast v1.4.1 // indirect
 	github.com/spf13/cobra v1.7.0 // indirect
 	github.com/spf13/pflag v1.0.5 // indirect
-	github.com/stretchr/objx v0.5.0 // indirect
 	github.com/texttheater/golang-levenshtein v1.0.1 // indirect
 	github.com/uber/jaeger-client-go v2.30.0+incompatible // indirect
 	github.com/uber/jaeger-lib v2.4.1+incompatible // indirect
