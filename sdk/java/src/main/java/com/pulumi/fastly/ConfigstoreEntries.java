@@ -67,7 +67,7 @@ public class ConfigstoreEntries extends com.pulumi.resources.CustomResource {
      *
      * @param name The _unique_ name of the resulting resource.
      */
-    public ConfigstoreEntries(String name) {
+    public ConfigstoreEntries(java.lang.String name) {
         this(name, ConfigstoreEntriesArgs.Empty);
     }
     /**
@@ -75,7 +75,7 @@ public class ConfigstoreEntries extends com.pulumi.resources.CustomResource {
      * @param name The _unique_ name of the resulting resource.
      * @param args The arguments to use to populate this resource's properties.
      */
-    public ConfigstoreEntries(String name, ConfigstoreEntriesArgs args) {
+    public ConfigstoreEntries(java.lang.String name, ConfigstoreEntriesArgs args) {
         this(name, args, null);
     }
     /**
@@ -84,15 +84,22 @@ public class ConfigstoreEntries extends com.pulumi.resources.CustomResource {
      * @param args The arguments to use to populate this resource's properties.
      * @param options A bag of options that control this resource's behavior.
      */
-    public ConfigstoreEntries(String name, ConfigstoreEntriesArgs args, @Nullable com.pulumi.resources.CustomResourceOptions options) {
-        super("fastly:index/configstoreEntries:ConfigstoreEntries", name, args == null ? ConfigstoreEntriesArgs.Empty : args, makeResourceOptions(options, Codegen.empty()));
+    public ConfigstoreEntries(java.lang.String name, ConfigstoreEntriesArgs args, @Nullable com.pulumi.resources.CustomResourceOptions options) {
+        super("fastly:index/configstoreEntries:ConfigstoreEntries", name, makeArgs(args, options), makeResourceOptions(options, Codegen.empty()), false);
     }
 
-    private ConfigstoreEntries(String name, Output<String> id, @Nullable ConfigstoreEntriesState state, @Nullable com.pulumi.resources.CustomResourceOptions options) {
-        super("fastly:index/configstoreEntries:ConfigstoreEntries", name, state, makeResourceOptions(options, id));
+    private ConfigstoreEntries(java.lang.String name, Output<java.lang.String> id, @Nullable ConfigstoreEntriesState state, @Nullable com.pulumi.resources.CustomResourceOptions options) {
+        super("fastly:index/configstoreEntries:ConfigstoreEntries", name, state, makeResourceOptions(options, id), false);
     }
 
-    private static com.pulumi.resources.CustomResourceOptions makeResourceOptions(@Nullable com.pulumi.resources.CustomResourceOptions options, @Nullable Output<String> id) {
+    private static ConfigstoreEntriesArgs makeArgs(ConfigstoreEntriesArgs args, @Nullable com.pulumi.resources.CustomResourceOptions options) {
+        if (options != null && options.getUrn().isPresent()) {
+            return null;
+        }
+        return args == null ? ConfigstoreEntriesArgs.Empty : args;
+    }
+
+    private static com.pulumi.resources.CustomResourceOptions makeResourceOptions(@Nullable com.pulumi.resources.CustomResourceOptions options, @Nullable Output<java.lang.String> id) {
         var defaultOptions = com.pulumi.resources.CustomResourceOptions.builder()
             .version(Utilities.getVersion())
             .build();
@@ -108,7 +115,7 @@ public class ConfigstoreEntries extends com.pulumi.resources.CustomResource {
      * @param state
      * @param options Optional settings to control the behavior of the CustomResource.
      */
-    public static ConfigstoreEntries get(String name, Output<String> id, @Nullable ConfigstoreEntriesState state, @Nullable com.pulumi.resources.CustomResourceOptions options) {
+    public static ConfigstoreEntries get(java.lang.String name, Output<java.lang.String> id, @Nullable ConfigstoreEntriesState state, @Nullable com.pulumi.resources.CustomResourceOptions options) {
         return new ConfigstoreEntries(name, id, state, options);
     }
 }

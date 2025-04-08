@@ -140,7 +140,7 @@ public class ObjectStorageAccessKeys extends com.pulumi.resources.CustomResource
      *
      * @param name The _unique_ name of the resulting resource.
      */
-    public ObjectStorageAccessKeys(String name) {
+    public ObjectStorageAccessKeys(java.lang.String name) {
         this(name, ObjectStorageAccessKeysArgs.Empty);
     }
     /**
@@ -148,7 +148,7 @@ public class ObjectStorageAccessKeys extends com.pulumi.resources.CustomResource
      * @param name The _unique_ name of the resulting resource.
      * @param args The arguments to use to populate this resource's properties.
      */
-    public ObjectStorageAccessKeys(String name, ObjectStorageAccessKeysArgs args) {
+    public ObjectStorageAccessKeys(java.lang.String name, ObjectStorageAccessKeysArgs args) {
         this(name, args, null);
     }
     /**
@@ -157,15 +157,22 @@ public class ObjectStorageAccessKeys extends com.pulumi.resources.CustomResource
      * @param args The arguments to use to populate this resource's properties.
      * @param options A bag of options that control this resource's behavior.
      */
-    public ObjectStorageAccessKeys(String name, ObjectStorageAccessKeysArgs args, @Nullable com.pulumi.resources.CustomResourceOptions options) {
-        super("fastly:index/objectStorageAccessKeys:ObjectStorageAccessKeys", name, args == null ? ObjectStorageAccessKeysArgs.Empty : args, makeResourceOptions(options, Codegen.empty()));
+    public ObjectStorageAccessKeys(java.lang.String name, ObjectStorageAccessKeysArgs args, @Nullable com.pulumi.resources.CustomResourceOptions options) {
+        super("fastly:index/objectStorageAccessKeys:ObjectStorageAccessKeys", name, makeArgs(args, options), makeResourceOptions(options, Codegen.empty()), false);
     }
 
-    private ObjectStorageAccessKeys(String name, Output<String> id, @Nullable ObjectStorageAccessKeysState state, @Nullable com.pulumi.resources.CustomResourceOptions options) {
-        super("fastly:index/objectStorageAccessKeys:ObjectStorageAccessKeys", name, state, makeResourceOptions(options, id));
+    private ObjectStorageAccessKeys(java.lang.String name, Output<java.lang.String> id, @Nullable ObjectStorageAccessKeysState state, @Nullable com.pulumi.resources.CustomResourceOptions options) {
+        super("fastly:index/objectStorageAccessKeys:ObjectStorageAccessKeys", name, state, makeResourceOptions(options, id), false);
     }
 
-    private static com.pulumi.resources.CustomResourceOptions makeResourceOptions(@Nullable com.pulumi.resources.CustomResourceOptions options, @Nullable Output<String> id) {
+    private static ObjectStorageAccessKeysArgs makeArgs(ObjectStorageAccessKeysArgs args, @Nullable com.pulumi.resources.CustomResourceOptions options) {
+        if (options != null && options.getUrn().isPresent()) {
+            return null;
+        }
+        return args == null ? ObjectStorageAccessKeysArgs.Empty : args;
+    }
+
+    private static com.pulumi.resources.CustomResourceOptions makeResourceOptions(@Nullable com.pulumi.resources.CustomResourceOptions options, @Nullable Output<java.lang.String> id) {
         var defaultOptions = com.pulumi.resources.CustomResourceOptions.builder()
             .version(Utilities.getVersion())
             .additionalSecretOutputs(List.of(
@@ -184,7 +191,7 @@ public class ObjectStorageAccessKeys extends com.pulumi.resources.CustomResource
      * @param state
      * @param options Optional settings to control the behavior of the CustomResource.
      */
-    public static ObjectStorageAccessKeys get(String name, Output<String> id, @Nullable ObjectStorageAccessKeysState state, @Nullable com.pulumi.resources.CustomResourceOptions options) {
+    public static ObjectStorageAccessKeys get(java.lang.String name, Output<java.lang.String> id, @Nullable ObjectStorageAccessKeysState state, @Nullable com.pulumi.resources.CustomResourceOptions options) {
         return new ObjectStorageAccessKeys(name, id, state, options);
     }
 }
