@@ -35,13 +35,13 @@ import javax.annotation.Nullable;
  * import com.pulumi.Pulumi;
  * import com.pulumi.core.Output;
  * import com.pulumi.tls.privateKey;
- * import com.pulumi.tls.PrivateKeyArgs;
+ * import com.pulumi.tls.privateKeyArgs;
  * import com.pulumi.tls.selfSignedCert;
- * import com.pulumi.tls.SelfSignedCertArgs;
+ * import com.pulumi.tls.selfSignedCertArgs;
  * import com.pulumi.tls.certRequest;
- * import com.pulumi.tls.CertRequestArgs;
+ * import com.pulumi.tls.certRequestArgs;
  * import com.pulumi.tls.locallySignedCert;
- * import com.pulumi.tls.LocallySignedCertArgs;
+ * import com.pulumi.tls.locallySignedCertArgs;
  * import com.pulumi.fastly.FastlyFunctions;
  * import com.pulumi.fastly.inputs.GetTlsConfigurationArgs;
  * import com.pulumi.fastly.TlsPrivateKey;
@@ -73,21 +73,21 @@ import javax.annotation.Nullable;
  *         var ca = new SelfSignedCert("ca", SelfSignedCertArgs.builder()
  *             .keyAlgorithm(caKey.algorithm())
  *             .privateKeyPem(caKey.privateKeyPem())
- *             .subject(%!v(PANIC=Format method: runtime error: invalid memory address or nil pointer dereference))
+ *             .subject(List.of(Map.of("commonName", "Example CA")))
  *             .isCaCertificate(true)
  *             .validityPeriodHours(360)
- *             .allowedUses(            
+ *             .allowedUses(List.of(            
  *                 "cert_signing",
- *                 "server_auth")
+ *                 "server_auth"))
  *             .build());
  * 
  *         var example = new CertRequest("example", CertRequestArgs.builder()
  *             .keyAlgorithm(key.algorithm())
  *             .privateKeyPem(key.privateKeyPem())
- *             .subject(%!v(PANIC=Format method: runtime error: invalid memory address or nil pointer dereference))
- *             .dnsNames(            
+ *             .subject(List.of(Map.of("commonName", "example.com")))
+ *             .dnsNames(List.of(            
  *                 "example.com",
- *                 "www.example.com")
+ *                 "www.example.com"))
  *             .build());
  * 
  *         var cert = new LocallySignedCert("cert", LocallySignedCertArgs.builder()
@@ -96,9 +96,9 @@ import javax.annotation.Nullable;
  *             .caPrivateKeyPem(caKey.privateKeyPem())
  *             .caCertPem(ca.certPem())
  *             .validityPeriodHours(360)
- *             .allowedUses(            
+ *             .allowedUses(List.of(            
  *                 "cert_signing",
- *                 "server_auth")
+ *                 "server_auth"))
  *             .build());
  * 
  *         final var config = FastlyFunctions.getTlsConfiguration(GetTlsConfigurationArgs.builder()
@@ -113,7 +113,7 @@ import javax.annotation.Nullable;
  *         var certTlsPlatformCertificate = new TlsPlatformCertificate("certTlsPlatformCertificate", TlsPlatformCertificateArgs.builder()
  *             .certificateBody(cert.certPem())
  *             .intermediatesBlob(ca.certPem())
- *             .configurationId(config.applyValue(getTlsConfigurationResult -> getTlsConfigurationResult.id()))
+ *             .configurationId(config.id())
  *             .allowUntrustedRoot(true)
  *             .build(), CustomResourceOptions.builder()
  *                 .dependsOn(keyTlsPrivateKey)

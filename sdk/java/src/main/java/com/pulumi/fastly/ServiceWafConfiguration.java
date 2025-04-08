@@ -82,7 +82,7 @@ import javax.annotation.Nullable;
  *                     .build())
  *             .responseObjects(ServiceVclResponseObjectArgs.builder()
  *                 .name("WAF_Response")
- *                 .status("403")
+ *                 .status(403)
  *                 .response("Forbidden")
  *                 .contentType("text/html")
  *                 .content("<html><body>Forbidden</body></html>")
@@ -96,7 +96,7 @@ import javax.annotation.Nullable;
  *             .build());
  * 
  *         var waf = new ServiceWafConfiguration("waf", ServiceWafConfigurationArgs.builder()
- *             .wafId(demo.waf().applyValue(waf -> waf.wafId()))
+ *             .wafId(demo.waf().applyValue(_waf -> _waf.wafId()))
  *             .httpViolationScoreThreshold(100)
  *             .build());
  * 
@@ -163,7 +163,7 @@ import javax.annotation.Nullable;
  *                     .build())
  *             .responseObjects(ServiceVclResponseObjectArgs.builder()
  *                 .name("WAF_Response")
- *                 .status("403")
+ *                 .status(403)
  *                 .response("Forbidden")
  *                 .contentType("text/html")
  *                 .content("<html><body>Forbidden</body></html>")
@@ -177,7 +177,7 @@ import javax.annotation.Nullable;
  *             .build());
  * 
  *         var waf = new ServiceWafConfiguration("waf", ServiceWafConfigurationArgs.builder()
- *             .wafId(demo.waf().applyValue(waf -> waf.wafId()))
+ *             .wafId(demo.waf().applyValue(_waf -> _waf.wafId()))
  *             .httpViolationScoreThreshold(100)
  *             .rules(ServiceWafConfigurationRuleArgs.builder()
  *                 .modsecRuleId(1010090)
@@ -252,7 +252,7 @@ import javax.annotation.Nullable;
  *                     .build())
  *             .responseObjects(ServiceVclResponseObjectArgs.builder()
  *                 .name("WAF_Response")
- *                 .status("403")
+ *                 .status(403)
  *                 .response("Forbidden")
  *                 .contentType("text/html")
  *                 .content("<html><body>Forbidden</body></html>")
@@ -266,7 +266,7 @@ import javax.annotation.Nullable;
  *             .build());
  * 
  *         var waf = new ServiceWafConfiguration("waf", ServiceWafConfigurationArgs.builder()
- *             .wafId(demo.waf().applyValue(waf -> waf.wafId()))
+ *             .wafId(demo.waf().applyValue(_waf -> _waf.wafId()))
  *             .httpViolationScoreThreshold(100)
  *             .rules(ServiceWafConfigurationRuleArgs.builder()
  *                 .modsecRuleId(2029718)
