@@ -66,7 +66,7 @@ import javax.annotation.Nullable;
  *                 .build())
  *             .package_(ServiceComputePackageArgs.builder()
  *                 .filename("package.tar.gz")
- *                 .sourceCodeHash(example.applyValue(getPackageHashResult -> getPackageHashResult.hash()))
+ *                 .sourceCodeHash(example.hash())
  *                 .build())
  *             .resourceLinks(ServiceComputeResourceLinkArgs.builder()
  *                 .name("my_resource_link")
