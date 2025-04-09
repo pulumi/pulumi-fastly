@@ -34,9 +34,9 @@ import javax.annotation.Nullable;
  * import com.pulumi.Pulumi;
  * import com.pulumi.core.Output;
  * import com.pulumi.tls.privateKey;
- * import com.pulumi.tls.PrivateKeyArgs;
+ * import com.pulumi.tls.privateKeyArgs;
  * import com.pulumi.tls.selfSignedCert;
- * import com.pulumi.tls.SelfSignedCertArgs;
+ * import com.pulumi.tls.selfSignedCertArgs;
  * import com.pulumi.fastly.TlsPrivateKey;
  * import com.pulumi.fastly.TlsPrivateKeyArgs;
  * import com.pulumi.fastly.TlsCertificate;
@@ -62,13 +62,13 @@ import javax.annotation.Nullable;
  *         var cert = new SelfSignedCert("cert", SelfSignedCertArgs.builder()
  *             .keyAlgorithm(key.algorithm())
  *             .privateKeyPem(key.privateKeyPem())
- *             .subject(%!v(PANIC=Format method: runtime error: invalid memory address or nil pointer dereference))
+ *             .subject(List.of(Map.of("commonName", "example.com")))
  *             .isCaCertificate(true)
  *             .validityPeriodHours(360)
- *             .allowedUses(            
+ *             .allowedUses(List.of(            
  *                 "cert_signing",
- *                 "server_auth")
- *             .dnsNames("example.com")
+ *                 "server_auth"))
+ *             .dnsNames(List.of("example.com"))
  *             .build());
  * 
  *         var keyTlsPrivateKey = new TlsPrivateKey("keyTlsPrivateKey", TlsPrivateKeyArgs.builder()

@@ -66,7 +66,7 @@ import javax.annotation.Nullable;
  *             .evaluationStrategy(AlertEvaluationStrategyArgs.builder()
  *                 .type("above_threshold")
  *                 .period("5m")
- *                 .threshold(10)
+ *                 .threshold(10.0)
  *                 .build())
  *             .integrationIds(exampleIntegration.id())
  *             .build());

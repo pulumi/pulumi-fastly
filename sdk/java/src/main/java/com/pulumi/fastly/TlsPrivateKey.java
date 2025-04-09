@@ -34,7 +34,7 @@ import javax.annotation.Nullable;
  * import com.pulumi.Pulumi;
  * import com.pulumi.core.Output;
  * import com.pulumi.tls.privateKey;
- * import com.pulumi.tls.PrivateKeyArgs;
+ * import com.pulumi.tls.privateKeyArgs;
  * import com.pulumi.fastly.TlsPrivateKey;
  * import com.pulumi.fastly.TlsPrivateKeyArgs;
  * import java.util.List;
