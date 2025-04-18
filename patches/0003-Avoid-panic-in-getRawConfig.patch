@@ -5,7 +5,7 @@ Subject: [PATCH] Avoid panic in getRawConfig
 
 
 diff --git a/fastly/base_fastly_service.go b/fastly/base_fastly_service.go
-index 18f85ede..e6af2e81 100644
+index d3d90bef..4210d1b8 100644
 --- a/fastly/base_fastly_service.go
 +++ b/fastly/base_fastly_service.go
 @@ -187,7 +187,11 @@ func validateUniqueNames(block string) func(_ context.Context, rd *schema.Resour
