@@ -2299,7 +2299,7 @@
                 },
                 "placement": {
                     "type": "string",
-                    "description": "Where in the generated VCL the logging call should be placed (ignored).\n"
+                    "description": "Where in the generated VCL the logging call should be placed.\n"
                 },
                 "projectId": {
                     "type": "string",
@@ -2381,7 +2381,7 @@
                 },
                 "placement": {
                     "type": "string",
-                    "description": "Where in the generated VCL the logging call should be placed (ignored).\n"
+                    "description": "Where in the generated VCL the logging call should be placed\n"
                 },
                 "publicKey": {
                     "type": "string",
@@ -2454,7 +2454,7 @@
                 },
                 "placement": {
                     "type": "string",
-                    "description": "Where in the generated VCL the logging call should be placed (ignored).\n"
+                    "description": "Where in the generated VCL the logging call should be placed. Can be `none` or `none`.\n"
                 },
                 "publicKey": {
                     "type": "string",
@@ -2501,7 +2501,7 @@
                 },
                 "placement": {
                     "type": "string",
-                    "description": "Where in the generated VCL the logging call should be placed (ignored).\n"
+                    "description": "Where in the generated VCL the logging call should be placed.\n"
                 },
                 "region": {
                     "type": "string",
@@ -2572,7 +2572,7 @@
                 },
                 "placement": {
                     "type": "string",
-                    "description": "Where in the generated VCL the logging call should be placed (ignored).\n"
+                    "description": "Where in the generated VCL the logging call should be placed. Can be `none` or `none`.\n"
                 },
                 "publicKey": {
                     "type": "string",
@@ -2629,7 +2629,7 @@
                 },
                 "placement": {
                     "type": "string",
-                    "description": "Where in the generated VCL the logging call should be placed (ignored).\n"
+                    "description": "Where in the generated VCL the logging call should be placed.\n"
                 },
                 "requestMaxBytes": {
                     "type": "integer",
@@ -2721,7 +2721,7 @@
                 },
                 "placement": {
                     "type": "string",
-                    "description": "Where in the generated VCL the logging call should be placed (ignored).\n"
+                    "description": "Where in the generated VCL the logging call should be placed.\n"
                 },
                 "port": {
                     "type": "integer",
@@ -2797,7 +2797,7 @@
                 },
                 "placement": {
                     "type": "string",
-                    "description": "Where in the generated VCL the logging call should be placed (ignored).\n"
+                    "description": "Where in the generated VCL the logging call should be placed.\n"
                 },
                 "projectId": {
                     "type": "string",
@@ -2847,7 +2847,7 @@
                 },
                 "placement": {
                     "type": "string",
-                    "description": "Where in the generated VCL the logging call should be placed (ignored).\n"
+                    "description": "Where in the generated VCL the logging call should be placed.\n"
                 },
                 "projectId": {
                     "type": "string",
@@ -2900,7 +2900,7 @@
                 },
                 "placement": {
                     "type": "string",
-                    "description": "Where in the generated VCL the logging call should be placed (ignored).\n"
+                    "description": "Where in the generated VCL the logging call should be placed.\n"
                 },
                 "responseCondition": {
                     "type": "string",
@@ -2945,7 +2945,7 @@
                 },
                 "placement": {
                     "type": "string",
-                    "description": "Where in the generated VCL the logging call should be placed (ignored).\n"
+                    "description": "Where in the generated VCL the logging call should be placed. Can be `none` or `none`.\n"
                 },
                 "responseCondition": {
                     "type": "string",
@@ -2988,7 +2988,7 @@
                 },
                 "placement": {
                     "type": "string",
-                    "description": "Where in the generated VCL the logging call should be placed (ignored).\n"
+                    "description": "Where in the generated VCL the logging call should be placed. Can be `none` or `none`.\n"
                 },
                 "responseCondition": {
                     "type": "string",
@@ -3047,7 +3047,7 @@
                 },
                 "placement": {
                     "type": "string",
-                    "description": "Where in the generated VCL the logging call should be placed (ignored).\n"
+                    "description": "Where in the generated VCL the logging call should be placed\n"
                 },
                 "requestMaxBytes": {
                     "type": "integer",
@@ -3126,7 +3126,7 @@
                 },
                 "placement": {
                     "type": "string",
-                    "description": "Where in the generated VCL the logging call should be placed (ignored).\n"
+                    "description": "Where in the generated VCL the logging call should be placed.\n"
                 },
                 "requestMaxBytes": {
                     "type": "integer",
@@ -3202,7 +3202,7 @@
                 },
                 "placement": {
                     "type": "string",
-                    "description": "Where in the generated VCL the logging call should be placed (ignored).\n"
+                    "description": "Where in the generated VCL the logging call should be placed. Can be `none` or `none`.\n"
                 },
                 "region": {
                     "type": "string",
@@ -3244,7 +3244,7 @@
                 },
                 "placement": {
                     "type": "string",
-                    "description": "Where in the generated VCL the logging call should be placed (ignored).\n"
+                    "description": "Where in the generated VCL the logging call should be placed.\n"
                 },
                 "port": {
                     "type": "integer",
@@ -3285,7 +3285,7 @@
                 },
                 "placement": {
                     "type": "string",
-                    "description": "Where in the generated VCL the logging call should be placed (ignored).\n"
+                    "description": "Where in the generated VCL the logging call should be placed. Can be `none` or `none`.\n"
                 },
                 "responseCondition": {
                     "type": "string",
@@ -3319,7 +3319,7 @@
                 },
                 "placement": {
                     "type": "string",
-                    "description": "Where in the generated VCL the logging call should be placed (ignored).\n"
+                    "description": "Where in the generated VCL the logging call should be placed. Can be `none` or `none`.\n"
                 },
                 "responseCondition": {
                     "type": "string",
@@ -3358,7 +3358,7 @@
                 },
                 "placement": {
                     "type": "string",
-                    "description": "Where in the generated VCL the logging call should be placed (ignored).\n"
+                    "description": "Where in the generated VCL the logging call should be placed.\n"
                 },
                 "region": {
                     "type": "string",
@@ -3396,7 +3396,7 @@
                 },
                 "placement": {
                     "type": "string",
-                    "description": "Where in the generated VCL the logging call should be placed (ignored).\n"
+                    "description": "Where in the generated VCL the logging call should be placed.\n"
                 },
                 "region": {
                     "type": "string",
@@ -3467,7 +3467,7 @@
                 },
                 "placement": {
                     "type": "string",
-                    "description": "Where in the generated VCL the logging call should be placed (ignored).\n"
+                    "description": "Where in the generated VCL the logging call should be placed. Can be `none` or `none`.\n"
                 },
                 "publicKey": {
                     "type": "string",
@@ -3519,7 +3519,7 @@
                 },
                 "placement": {
                     "type": "string",
-                    "description": "Where in the generated VCL the logging call should be placed. Ignored, but endpoints with `format_version` of 2 are placed in `vcl_log` and those with `format_version` of 1 are placed in `vcl_deliver`\n"
+                    "description": "Where in the generated VCL the logging call should be placed. If not set, endpoints with `format_version` of 2 are placed in `vcl_log` and those with `format_version` of 1 are placed in `vcl_deliver`\n"
                 },
                 "port": {
                     "type": "integer",
@@ -3589,7 +3589,7 @@
                 },
                 "placement": {
                     "type": "string",
-                    "description": "Where in the generated VCL the logging call should be placed (ignored).\n"
+                    "description": "Where in the generated VCL the logging call should be placed.\n"
                 },
                 "publicKey": {
                     "type": "string",
@@ -3652,7 +3652,7 @@
                 },
                 "placement": {
                     "type": "string",
-                    "description": "Where in the generated VCL the logging call should be placed (ignored).\n"
+                    "description": "Where in the generated VCL the logging call should be placed.\n"
                 },
                 "projectId": {
                     "type": "string",
@@ -3723,7 +3723,7 @@
                 },
                 "placement": {
                     "type": "string",
-                    "description": "Where in the generated VCL the logging call should be placed (ignored).\n"
+                    "description": "Where in the generated VCL the logging call should be placed.\n"
                 },
                 "port": {
                     "type": "integer",
@@ -3780,7 +3780,7 @@
                 },
                 "placement": {
                     "type": "string",
-                    "description": "Where in the generated VCL the logging call should be placed (ignored).\n"
+                    "description": "Where in the generated VCL the logging call should be placed\n"
                 },
                 "responseCondition": {
                     "type": "string",
@@ -3844,7 +3844,7 @@
                 },
                 "placement": {
                     "type": "string",
-                    "description": "Where in the generated VCL the logging call should be placed (ignored).\n"
+                    "description": "Where in the generated VCL the logging call should be placed.\n"
                 },
                 "responseCondition": {
                     "type": "string",
@@ -3885,7 +3885,7 @@
                 },
                 "placement": {
                     "type": "string",
-                    "description": "Where in the generated VCL the logging call should be placed (ignored).\n"
+                    "description": "Where in the generated VCL the logging call should be placed.\n"
                 },
                 "port": {
                     "type": "integer",

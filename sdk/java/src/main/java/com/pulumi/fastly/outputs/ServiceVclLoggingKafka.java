@@ -55,7 +55,7 @@ public final class ServiceVclLoggingKafka {
      */
     private @Nullable String password;
     /**
-     * @return Where in the generated VCL the logging call should be placed (ignored).
+     * @return Where in the generated VCL the logging call should be placed.
      * 
      */
     private @Nullable String placement;
@@ -168,7 +168,7 @@ public final class ServiceVclLoggingKafka {
         return Optional.ofNullable(this.password);
     }
     /**
-     * @return Where in the generated VCL the logging call should be placed (ignored).
+     * @return Where in the generated VCL the logging call should be placed.
      * 
      */
     public Optional<String> placement() {

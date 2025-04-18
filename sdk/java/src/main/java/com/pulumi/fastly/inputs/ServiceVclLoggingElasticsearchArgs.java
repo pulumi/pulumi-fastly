@@ -108,14 +108,14 @@ public final class ServiceVclLoggingElasticsearchArgs extends com.pulumi.resourc
     }
 
     /**
-     * Where in the generated VCL the logging call should be placed (ignored).
+     * Where in the generated VCL the logging call should be placed.
      * 
      */
     @Import(name="placement")
     private @Nullable Output<String> placement;
 
     /**
-     * @return Where in the generated VCL the logging call should be placed (ignored).
+     * @return Where in the generated VCL the logging call should be placed.
      * 
      */
     public Optional<Output<String>> placement() {
@@ -423,7 +423,7 @@ public final class ServiceVclLoggingElasticsearchArgs extends com.pulumi.resourc
         }
 
         /**
-         * @param placement Where in the generated VCL the logging call should be placed (ignored).
+         * @param placement Where in the generated VCL the logging call should be placed.
          * 
          * @return builder
          * 
@@ -434,7 +434,7 @@ public final class ServiceVclLoggingElasticsearchArgs extends com.pulumi.resourc
         }
 
         /**
-         * @param placement Where in the generated VCL the logging call should be placed (ignored).
+         * @param placement Where in the generated VCL the logging call should be placed.
          * 
          * @return builder
          * 

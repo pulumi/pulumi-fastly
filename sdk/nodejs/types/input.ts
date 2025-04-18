@@ -1769,7 +1769,7 @@ export interface ServiceVclLoggingBigquery {
      */
     name: pulumi.Input<string>;
     /**
-     * Where in the generated VCL the logging call should be placed (ignored).
+     * Where in the generated VCL the logging call should be placed.
      */
     placement?: pulumi.Input<string>;
     /**
@@ -1840,7 +1840,7 @@ export interface ServiceVclLoggingBlobstorage {
      */
     period?: pulumi.Input<number>;
     /**
-     * Where in the generated VCL the logging call should be placed (ignored).
+     * Where in the generated VCL the logging call should be placed
      */
     placement?: pulumi.Input<string>;
     /**
@@ -1903,7 +1903,7 @@ export interface ServiceVclLoggingCloudfile {
      */
     period?: pulumi.Input<number>;
     /**
-     * Where in the generated VCL the logging call should be placed (ignored).
+     * Where in the generated VCL the logging call should be placed. Can be `none` or `none`.
      */
     placement?: pulumi.Input<string>;
     /**
@@ -1942,7 +1942,7 @@ export interface ServiceVclLoggingDatadog {
      */
     name: pulumi.Input<string>;
     /**
-     * Where in the generated VCL the logging call should be placed (ignored).
+     * Where in the generated VCL the logging call should be placed.
      */
     placement?: pulumi.Input<string>;
     /**
@@ -2005,7 +2005,7 @@ export interface ServiceVclLoggingDigitalocean {
      */
     period?: pulumi.Input<number>;
     /**
-     * Where in the generated VCL the logging call should be placed (ignored).
+     * Where in the generated VCL the logging call should be placed. Can be `none` or `none`.
      */
     placement?: pulumi.Input<string>;
     /**
@@ -2052,7 +2052,7 @@ export interface ServiceVclLoggingElasticsearch {
      */
     pipeline?: pulumi.Input<string>;
     /**
-     * Where in the generated VCL the logging call should be placed (ignored).
+     * Where in the generated VCL the logging call should be placed.
      */
     placement?: pulumi.Input<string>;
     /**
@@ -2135,7 +2135,7 @@ export interface ServiceVclLoggingFtp {
      */
     period?: pulumi.Input<number>;
     /**
-     * Where in the generated VCL the logging call should be placed (ignored).
+     * Where in the generated VCL the logging call should be placed.
      */
     placement?: pulumi.Input<string>;
     /**
@@ -2202,7 +2202,7 @@ export interface ServiceVclLoggingGc {
      */
     period?: pulumi.Input<number>;
     /**
-     * Where in the generated VCL the logging call should be placed (ignored).
+     * Where in the generated VCL the logging call should be placed.
      */
     placement?: pulumi.Input<string>;
     /**
@@ -2245,7 +2245,7 @@ export interface ServiceVclLoggingGooglepubsub {
      */
     name: pulumi.Input<string>;
     /**
-     * Where in the generated VCL the logging call should be placed (ignored).
+     * Where in the generated VCL the logging call should be placed.
      */
     placement?: pulumi.Input<string>;
     /**
@@ -2288,7 +2288,7 @@ export interface ServiceVclLoggingGrafanacloudlog {
      */
     name: pulumi.Input<string>;
     /**
-     * Where in the generated VCL the logging call should be placed (ignored).
+     * Where in the generated VCL the logging call should be placed.
      */
     placement?: pulumi.Input<string>;
     /**
@@ -2323,7 +2323,7 @@ export interface ServiceVclLoggingHerokus {
      */
     name: pulumi.Input<string>;
     /**
-     * Where in the generated VCL the logging call should be placed (ignored).
+     * Where in the generated VCL the logging call should be placed. Can be `none` or `none`.
      */
     placement?: pulumi.Input<string>;
     /**
@@ -2358,7 +2358,7 @@ export interface ServiceVclLoggingHoneycomb {
      */
     name: pulumi.Input<string>;
     /**
-     * Where in the generated VCL the logging call should be placed (ignored).
+     * Where in the generated VCL the logging call should be placed. Can be `none` or `none`.
      */
     placement?: pulumi.Input<string>;
     /**
@@ -2409,7 +2409,7 @@ export interface ServiceVclLoggingHttp {
      */
     name: pulumi.Input<string>;
     /**
-     * Where in the generated VCL the logging call should be placed (ignored).
+     * Where in the generated VCL the logging call should be placed
      */
     placement?: pulumi.Input<string>;
     /**
@@ -2480,7 +2480,7 @@ export interface ServiceVclLoggingKafka {
      */
     password?: pulumi.Input<string>;
     /**
-     * Where in the generated VCL the logging call should be placed (ignored).
+     * Where in the generated VCL the logging call should be placed.
      */
     placement?: pulumi.Input<string>;
     /**
@@ -2547,7 +2547,7 @@ export interface ServiceVclLoggingKinese {
      */
     name: pulumi.Input<string>;
     /**
-     * Where in the generated VCL the logging call should be placed (ignored).
+     * Where in the generated VCL the logging call should be placed. Can be `none` or `none`.
      */
     placement?: pulumi.Input<string>;
     /**
@@ -2582,7 +2582,7 @@ export interface ServiceVclLoggingLogentry {
      */
     name: pulumi.Input<string>;
     /**
-     * Where in the generated VCL the logging call should be placed (ignored).
+     * Where in the generated VCL the logging call should be placed.
      */
     placement?: pulumi.Input<string>;
     /**
@@ -2617,7 +2617,7 @@ export interface ServiceVclLoggingLoggly {
      */
     name: pulumi.Input<string>;
     /**
-     * Where in the generated VCL the logging call should be placed (ignored).
+     * Where in the generated VCL the logging call should be placed. Can be `none` or `none`.
      */
     placement?: pulumi.Input<string>;
     /**
@@ -2644,7 +2644,7 @@ export interface ServiceVclLoggingLogshuttle {
      */
     name: pulumi.Input<string>;
     /**
-     * Where in the generated VCL the logging call should be placed (ignored).
+     * Where in the generated VCL the logging call should be placed. Can be `none` or `none`.
      */
     placement?: pulumi.Input<string>;
     /**
@@ -2675,7 +2675,7 @@ export interface ServiceVclLoggingNewrelic {
      */
     name: pulumi.Input<string>;
     /**
-     * Where in the generated VCL the logging call should be placed (ignored).
+     * Where in the generated VCL the logging call should be placed.
      */
     placement?: pulumi.Input<string>;
     /**
@@ -2706,7 +2706,7 @@ export interface ServiceVclLoggingNewrelicotlp {
      */
     name: pulumi.Input<string>;
     /**
-     * Where in the generated VCL the logging call should be placed (ignored).
+     * Where in the generated VCL the logging call should be placed.
      */
     placement?: pulumi.Input<string>;
     /**
@@ -2769,7 +2769,7 @@ export interface ServiceVclLoggingOpenstack {
      */
     period?: pulumi.Input<number>;
     /**
-     * Where in the generated VCL the logging call should be placed (ignored).
+     * Where in the generated VCL the logging call should be placed. Can be `none` or `none`.
      */
     placement?: pulumi.Input<string>;
     /**
@@ -2812,7 +2812,7 @@ export interface ServiceVclLoggingPapertrail {
      */
     name: pulumi.Input<string>;
     /**
-     * Where in the generated VCL the logging call should be placed. Ignored, but endpoints with `formatVersion` of 2 are placed in `vclLog` and those with `formatVersion` of 1 are placed in `vclDeliver`
+     * Where in the generated VCL the logging call should be placed. If not set, endpoints with `formatVersion` of 2 are placed in `vclLog` and those with `formatVersion` of 1 are placed in `vclDeliver`
      */
     placement?: pulumi.Input<string>;
     /**
@@ -2875,7 +2875,7 @@ export interface ServiceVclLoggingS3 {
      */
     period?: pulumi.Input<number>;
     /**
-     * Where in the generated VCL the logging call should be placed (ignored).
+     * Where in the generated VCL the logging call should be placed.
      */
     placement?: pulumi.Input<string>;
     /**
@@ -2930,7 +2930,7 @@ export interface ServiceVclLoggingScalyr {
      */
     name: pulumi.Input<string>;
     /**
-     * Where in the generated VCL the logging call should be placed (ignored).
+     * Where in the generated VCL the logging call should be placed.
      */
     placement?: pulumi.Input<string>;
     /**
@@ -2993,7 +2993,7 @@ export interface ServiceVclLoggingSftp {
      */
     period?: pulumi.Input<number>;
     /**
-     * Where in the generated VCL the logging call should be placed (ignored).
+     * Where in the generated VCL the logging call should be placed.
      */
     placement?: pulumi.Input<string>;
     /**
@@ -3040,7 +3040,7 @@ export interface ServiceVclLoggingSplunk {
      */
     name: pulumi.Input<string>;
     /**
-     * Where in the generated VCL the logging call should be placed (ignored).
+     * Where in the generated VCL the logging call should be placed
      */
     placement?: pulumi.Input<string>;
     /**
@@ -3095,7 +3095,7 @@ export interface ServiceVclLoggingSumologic {
      */
     name: pulumi.Input<string>;
     /**
-     * Where in the generated VCL the logging call should be placed (ignored).
+     * Where in the generated VCL the logging call should be placed.
      */
     placement?: pulumi.Input<string>;
     /**
@@ -3130,7 +3130,7 @@ export interface ServiceVclLoggingSyslog {
      */
     name: pulumi.Input<string>;
     /**
-     * Where in the generated VCL the logging call should be placed (ignored).
+     * Where in the generated VCL the logging call should be placed.
      */
     placement?: pulumi.Input<string>;
     /**

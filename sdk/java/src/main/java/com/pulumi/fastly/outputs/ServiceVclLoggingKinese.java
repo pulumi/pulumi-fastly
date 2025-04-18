@@ -39,7 +39,7 @@ public final class ServiceVclLoggingKinese {
      */
     private String name;
     /**
-     * @return Where in the generated VCL the logging call should be placed (ignored).
+     * @return Where in the generated VCL the logging call should be placed. Can be `none` or `none`.
      * 
      */
     private @Nullable String placement;
@@ -101,7 +101,7 @@ public final class ServiceVclLoggingKinese {
         return this.name;
     }
     /**
-     * @return Where in the generated VCL the logging call should be placed (ignored).
+     * @return Where in the generated VCL the logging call should be placed. Can be `none` or `none`.
      * 
      */
     public Optional<String> placement() {

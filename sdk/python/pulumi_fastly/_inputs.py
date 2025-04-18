@@ -8640,7 +8640,7 @@ if not MYPY:
         """
         placement: NotRequired[pulumi.Input[builtins.str]]
         """
-        Where in the generated VCL the logging call should be placed (ignored).
+        Where in the generated VCL the logging call should be placed.
         """
         response_condition: NotRequired[pulumi.Input[builtins.str]]
         """
@@ -8676,7 +8676,7 @@ class ServiceVclLoggingBigqueryArgs:
         :param pulumi.Input[builtins.str] table: The ID of your BigQuery table
         :param pulumi.Input[builtins.str] account_name: The google account name used to obtain temporary credentials (default none). You may optionally provide this via an environment variable, `FASTLY_GCS_ACCOUNT_NAME`.
         :param pulumi.Input[builtins.str] format: The logging format desired.
-        :param pulumi.Input[builtins.str] placement: Where in the generated VCL the logging call should be placed (ignored).
+        :param pulumi.Input[builtins.str] placement: Where in the generated VCL the logging call should be placed.
         :param pulumi.Input[builtins.str] response_condition: Name of a condition to apply this logging.
         :param pulumi.Input[builtins.str] template: BigQuery table name suffix template
         """
@@ -8797,7 +8797,7 @@ class ServiceVclLoggingBigqueryArgs:
     @pulumi.getter
     def placement(self) -> Optional[pulumi.Input[builtins.str]]:
         """
-        Where in the generated VCL the logging call should be placed (ignored).
+        Where in the generated VCL the logging call should be placed.
         """
         return pulumi.get(self, "placement")
 
@@ -8882,7 +8882,7 @@ if not MYPY:
         """
         placement: NotRequired[pulumi.Input[builtins.str]]
         """
-        Where in the generated VCL the logging call should be placed (ignored).
+        Where in the generated VCL the logging call should be placed
         """
         public_key: NotRequired[pulumi.Input[builtins.str]]
         """
@@ -8931,7 +8931,7 @@ class ServiceVclLoggingBlobstorageArgs:
         :param pulumi.Input[builtins.str] message_type: How the message should be formatted. Can be either `classic`, `loggly`, `logplex` or `blank`. Default is `classic`
         :param pulumi.Input[builtins.str] path: The path to upload logs to. Must end with a trailing slash. If this field is left empty, the files will be saved in the container's root path
         :param pulumi.Input[builtins.int] period: How frequently the logs should be transferred in seconds. Default `3600`
-        :param pulumi.Input[builtins.str] placement: Where in the generated VCL the logging call should be placed (ignored).
+        :param pulumi.Input[builtins.str] placement: Where in the generated VCL the logging call should be placed
         :param pulumi.Input[builtins.str] public_key: A PGP public key that Fastly will use to encrypt your log files before writing them to disk
         :param pulumi.Input[builtins.str] response_condition: The name of the condition to apply
         :param pulumi.Input[builtins.str] timestamp_format: The `strftime` specified timestamp formatting (default `%Y-%m-%dT%H:%M:%S.000`)
@@ -9113,7 +9113,7 @@ class ServiceVclLoggingBlobstorageArgs:
     @pulumi.getter
     def placement(self) -> Optional[pulumi.Input[builtins.str]]:
         """
-        Where in the generated VCL the logging call should be placed (ignored).
+        Where in the generated VCL the logging call should be placed
         """
         return pulumi.get(self, "placement")
 
@@ -9206,7 +9206,7 @@ if not MYPY:
         """
         placement: NotRequired[pulumi.Input[builtins.str]]
         """
-        Where in the generated VCL the logging call should be placed (ignored).
+        Where in the generated VCL the logging call should be placed. Can be `none` or `none`.
         """
         public_key: NotRequired[pulumi.Input[builtins.str]]
         """
@@ -9258,7 +9258,7 @@ class ServiceVclLoggingCloudfileArgs:
         :param pulumi.Input[builtins.str] message_type: How the message should be formatted. Can be either `classic`, `loggly`, `logplex` or `blank`. Default is `classic`
         :param pulumi.Input[builtins.str] path: The path to upload logs to
         :param pulumi.Input[builtins.int] period: How frequently log files are finalized so they can be available for reading (in seconds, default `3600`)
-        :param pulumi.Input[builtins.str] placement: Where in the generated VCL the logging call should be placed (ignored).
+        :param pulumi.Input[builtins.str] placement: Where in the generated VCL the logging call should be placed. Can be `none` or `none`.
         :param pulumi.Input[builtins.str] public_key: The PGP public key that Fastly will use to encrypt your log files before writing them to disk
         :param pulumi.Input[builtins.str] region: The region to stream logs to. One of: DFW (Dallas), ORD (Chicago), IAD (Northern Virginia), LON (London), SYD (Sydney), HKG (Hong Kong)
         :param pulumi.Input[builtins.str] response_condition: The name of an existing condition in the configured endpoint, or leave blank to always execute.
@@ -9429,7 +9429,7 @@ class ServiceVclLoggingCloudfileArgs:
     @pulumi.getter
     def placement(self) -> Optional[pulumi.Input[builtins.str]]:
         """
-        Where in the generated VCL the logging call should be placed (ignored).
+        Where in the generated VCL the logging call should be placed. Can be `none` or `none`.
         """
         return pulumi.get(self, "placement")
 
@@ -9506,7 +9506,7 @@ if not MYPY:
         """
         placement: NotRequired[pulumi.Input[builtins.str]]
         """
-        Where in the generated VCL the logging call should be placed (ignored).
+        Where in the generated VCL the logging call should be placed.
         """
         region: NotRequired[pulumi.Input[builtins.str]]
         """
@@ -9534,7 +9534,7 @@ class ServiceVclLoggingDatadogArgs:
         :param pulumi.Input[builtins.str] token: The API key from your Datadog account
         :param pulumi.Input[builtins.str] format: Apache-style string or VCL variables to use for log formatting.
         :param pulumi.Input[builtins.int] format_version: The version of the custom logging format used for the configured endpoint. Can be either `1` or `2`. (default: `2`).
-        :param pulumi.Input[builtins.str] placement: Where in the generated VCL the logging call should be placed (ignored).
+        :param pulumi.Input[builtins.str] placement: Where in the generated VCL the logging call should be placed.
         :param pulumi.Input[builtins.str] region: The region that log data will be sent to. One of `US` or `EU`. Defaults to `US` if undefined
         :param pulumi.Input[builtins.str] response_condition: The name of the condition to apply.
         """
@@ -9603,7 +9603,7 @@ class ServiceVclLoggingDatadogArgs:
     @pulumi.getter
     def placement(self) -> Optional[pulumi.Input[builtins.str]]:
         """
-        Where in the generated VCL the logging call should be placed (ignored).
+        Where in the generated VCL the logging call should be placed.
         """
         return pulumi.get(self, "placement")
 
@@ -9688,7 +9688,7 @@ if not MYPY:
         """
         placement: NotRequired[pulumi.Input[builtins.str]]
         """
-        Where in the generated VCL the logging call should be placed (ignored).
+        Where in the generated VCL the logging call should be placed. Can be `none` or `none`.
         """
         public_key: NotRequired[pulumi.Input[builtins.str]]
         """
@@ -9737,7 +9737,7 @@ class ServiceVclLoggingDigitaloceanArgs:
         :param pulumi.Input[builtins.str] message_type: How the message should be formatted. Can be either `classic`, `loggly`, `logplex` or `blank`. Default is `classic`
         :param pulumi.Input[builtins.str] path: The path to upload logs to
         :param pulumi.Input[builtins.int] period: How frequently log files are finalized so they can be available for reading (in seconds, default `3600`)
-        :param pulumi.Input[builtins.str] placement: Where in the generated VCL the logging call should be placed (ignored).
+        :param pulumi.Input[builtins.str] placement: Where in the generated VCL the logging call should be placed. Can be `none` or `none`.
         :param pulumi.Input[builtins.str] public_key: A PGP public key that Fastly will use to encrypt your log files before writing them to disk
         :param pulumi.Input[builtins.str] response_condition: The name of an existing condition in the configured endpoint, or leave blank to always execute.
         :param pulumi.Input[builtins.str] timestamp_format: The `strftime` specified timestamp formatting (default `%Y-%m-%dT%H:%M:%S.000`)
@@ -9919,7 +9919,7 @@ class ServiceVclLoggingDigitaloceanArgs:
     @pulumi.getter
     def placement(self) -> Optional[pulumi.Input[builtins.str]]:
         """
-        Where in the generated VCL the logging call should be placed (ignored).
+        Where in the generated VCL the logging call should be placed. Can be `none` or `none`.
         """
         return pulumi.get(self, "placement")
 
@@ -9996,7 +9996,7 @@ if not MYPY:
         """
         placement: NotRequired[pulumi.Input[builtins.str]]
         """
-        Where in the generated VCL the logging call should be placed (ignored).
+        Where in the generated VCL the logging call should be placed.
         """
         request_max_bytes: NotRequired[pulumi.Input[builtins.int]]
         """
@@ -10060,7 +10060,7 @@ class ServiceVclLoggingElasticsearchArgs:
         :param pulumi.Input[builtins.int] format_version: The version of the custom logging format used for the configured endpoint. Can be either 1 or 2. (default: 2).
         :param pulumi.Input[builtins.str] password: BasicAuth password for Elasticsearch
         :param pulumi.Input[builtins.str] pipeline: The ID of the Elasticsearch ingest pipeline to apply pre-process transformations to before indexing
-        :param pulumi.Input[builtins.str] placement: Where in the generated VCL the logging call should be placed (ignored).
+        :param pulumi.Input[builtins.str] placement: Where in the generated VCL the logging call should be placed.
         :param pulumi.Input[builtins.int] request_max_bytes: The maximum number of logs sent in one request. Defaults to `0` for unbounded
         :param pulumi.Input[builtins.int] request_max_entries: The maximum number of bytes sent in one request. Defaults to `0` for unbounded
         :param pulumi.Input[builtins.str] response_condition: The name of the condition to apply
@@ -10188,7 +10188,7 @@ class ServiceVclLoggingElasticsearchArgs:
     @pulumi.getter
     def placement(self) -> Optional[pulumi.Input[builtins.str]]:
         """
-        Where in the generated VCL the logging call should be placed (ignored).
+        Where in the generated VCL the logging call should be placed.
         """
         return pulumi.get(self, "placement")
 
@@ -10341,7 +10341,7 @@ if not MYPY:
         """
         placement: NotRequired[pulumi.Input[builtins.str]]
         """
-        Where in the generated VCL the logging call should be placed (ignored).
+        Where in the generated VCL the logging call should be placed.
         """
         port: NotRequired[pulumi.Input[builtins.int]]
         """
@@ -10393,7 +10393,7 @@ class ServiceVclLoggingFtpArgs:
         :param pulumi.Input[builtins.int] gzip_level: Level of Gzip compression from `0-9`. `0` means no compression. `1` is the fastest and the least compressed version, `9` is the slowest and the most compressed version. Default `0`
         :param pulumi.Input[builtins.str] message_type: How the message should be formatted. Can be either `classic`, `loggly`, `logplex` or `blank`. Default is `classic`
         :param pulumi.Input[builtins.int] period: How frequently the logs should be transferred, in seconds (Default `3600`)
-        :param pulumi.Input[builtins.str] placement: Where in the generated VCL the logging call should be placed (ignored).
+        :param pulumi.Input[builtins.str] placement: Where in the generated VCL the logging call should be placed.
         :param pulumi.Input[builtins.int] port: The port number. Default: `21`
         :param pulumi.Input[builtins.str] public_key: The PGP public key that Fastly will use to encrypt your log files before writing them to disk
         :param pulumi.Input[builtins.str] response_condition: The name of the condition to apply.
@@ -10563,7 +10563,7 @@ class ServiceVclLoggingFtpArgs:
     @pulumi.getter
     def placement(self) -> Optional[pulumi.Input[builtins.str]]:
         """
-        Where in the generated VCL the logging call should be placed (ignored).
+        Where in the generated VCL the logging call should be placed.
         """
         return pulumi.get(self, "placement")
 
@@ -10664,7 +10664,7 @@ if not MYPY:
         """
         placement: NotRequired[pulumi.Input[builtins.str]]
         """
-        Where in the generated VCL the logging call should be placed (ignored).
+        Where in the generated VCL the logging call should be placed.
         """
         project_id: NotRequired[pulumi.Input[builtins.str]]
         """
@@ -10719,7 +10719,7 @@ class ServiceVclLoggingGcArgs:
         :param pulumi.Input[builtins.str] message_type: How the message should be formatted. Can be either `classic`, `loggly`, `logplex` or `blank`. Default is `classic`
         :param pulumi.Input[builtins.str] path: Path to store the files. Must end with a trailing slash. If this field is left empty, the files will be saved in the bucket's root path
         :param pulumi.Input[builtins.int] period: How frequently the logs should be transferred, in seconds (Default 3600)
-        :param pulumi.Input[builtins.str] placement: Where in the generated VCL the logging call should be placed (ignored).
+        :param pulumi.Input[builtins.str] placement: Where in the generated VCL the logging call should be placed.
         :param pulumi.Input[builtins.str] project_id: The ID of your Google Cloud Platform project
         :param pulumi.Input[builtins.str] response_condition: Name of a condition to apply this logging.
         :param pulumi.Input[builtins.str] secret_key: The secret key associated with the target gcs bucket on your account. You may optionally provide this secret via an environment variable, `FASTLY_GCS_SECRET_KEY`. A typical format for the key is PEM format, containing actual newline characters where required
@@ -10881,7 +10881,7 @@ class ServiceVclLoggingGcArgs:
     @pulumi.getter
     def placement(self) -> Optional[pulumi.Input[builtins.str]]:
         """
-        Where in the generated VCL the logging call should be placed (ignored).
+        Where in the generated VCL the logging call should be placed.
         """
         return pulumi.get(self, "placement")
 
@@ -10986,7 +10986,7 @@ if not MYPY:
         """
         placement: NotRequired[pulumi.Input[builtins.str]]
         """
-        Where in the generated VCL the logging call should be placed (ignored).
+        Where in the generated VCL the logging call should be placed.
         """
         response_condition: NotRequired[pulumi.Input[builtins.str]]
         """
@@ -11017,7 +11017,7 @@ class ServiceVclLoggingGooglepubsubArgs:
         :param pulumi.Input[builtins.str] account_name: The google account name used to obtain temporary credentials (default none). You may optionally provide this via an environment variable, `FASTLY_GCS_ACCOUNT_NAME`.
         :param pulumi.Input[builtins.str] format: Apache style log formatting.
         :param pulumi.Input[builtins.int] format_version: The version of the custom logging format used for the configured endpoint. Can be either 1 or 2. (default: 2).
-        :param pulumi.Input[builtins.str] placement: Where in the generated VCL the logging call should be placed (ignored).
+        :param pulumi.Input[builtins.str] placement: Where in the generated VCL the logging call should be placed.
         :param pulumi.Input[builtins.str] response_condition: The name of an existing condition in the configured endpoint, or leave blank to always execute.
         """
         pulumi.set(__self__, "name", name)
@@ -11136,7 +11136,7 @@ class ServiceVclLoggingGooglepubsubArgs:
     @pulumi.getter
     def placement(self) -> Optional[pulumi.Input[builtins.str]]:
         """
-        Where in the generated VCL the logging call should be placed (ignored).
+        Where in the generated VCL the logging call should be placed.
         """
         return pulumi.get(self, "placement")
 
@@ -11189,7 +11189,7 @@ if not MYPY:
         """
         placement: NotRequired[pulumi.Input[builtins.str]]
         """
-        Where in the generated VCL the logging call should be placed (ignored).
+        Where in the generated VCL the logging call should be placed.
         """
         response_condition: NotRequired[pulumi.Input[builtins.str]]
         """
@@ -11218,7 +11218,7 @@ class ServiceVclLoggingGrafanacloudlogArgs:
         :param pulumi.Input[builtins.str] user: The Grafana User ID
         :param pulumi.Input[builtins.str] format: Apache-style string or VCL variables to use for log formatting.
         :param pulumi.Input[builtins.int] format_version: The version of the custom logging format used for the configured endpoint. Can be either `1` or `2`. (default: `2`).
-        :param pulumi.Input[builtins.str] placement: Where in the generated VCL the logging call should be placed (ignored).
+        :param pulumi.Input[builtins.str] placement: Where in the generated VCL the logging call should be placed.
         :param pulumi.Input[builtins.str] response_condition: The name of the condition to apply.
         """
         pulumi.set(__self__, "index", index)
@@ -11323,7 +11323,7 @@ class ServiceVclLoggingGrafanacloudlogArgs:
     @pulumi.getter
     def placement(self) -> Optional[pulumi.Input[builtins.str]]:
         """
-        Where in the generated VCL the logging call should be placed (ignored).
+        Where in the generated VCL the logging call should be placed.
         """
         return pulumi.get(self, "placement")
 
@@ -11368,7 +11368,7 @@ if not MYPY:
         """
         placement: NotRequired[pulumi.Input[builtins.str]]
         """
-        Where in the generated VCL the logging call should be placed (ignored).
+        Where in the generated VCL the logging call should be placed. Can be `none` or `none`.
         """
         response_condition: NotRequired[pulumi.Input[builtins.str]]
         """
@@ -11393,7 +11393,7 @@ class ServiceVclLoggingHerokusArgs:
         :param pulumi.Input[builtins.str] url: The URL to stream logs to
         :param pulumi.Input[builtins.str] format: Apache-style string or VCL variables to use for log formatting.
         :param pulumi.Input[builtins.int] format_version: The version of the custom logging format used for the configured endpoint. Can be either `1` or `2`. (default: `2`).
-        :param pulumi.Input[builtins.str] placement: Where in the generated VCL the logging call should be placed (ignored).
+        :param pulumi.Input[builtins.str] placement: Where in the generated VCL the logging call should be placed. Can be `none` or `none`.
         :param pulumi.Input[builtins.str] response_condition: The name of an existing condition in the configured endpoint, or leave blank to always execute.
         """
         pulumi.set(__self__, "name", name)
@@ -11472,7 +11472,7 @@ class ServiceVclLoggingHerokusArgs:
     @pulumi.getter
     def placement(self) -> Optional[pulumi.Input[builtins.str]]:
         """
-        Where in the generated VCL the logging call should be placed (ignored).
+        Where in the generated VCL the logging call should be placed. Can be `none` or `none`.
         """
         return pulumi.get(self, "placement")
 
@@ -11517,7 +11517,7 @@ if not MYPY:
         """
         placement: NotRequired[pulumi.Input[builtins.str]]
         """
-        Where in the generated VCL the logging call should be placed (ignored).
+        Where in the generated VCL the logging call should be placed. Can be `none` or `none`.
         """
         response_condition: NotRequired[pulumi.Input[builtins.str]]
         """
@@ -11542,7 +11542,7 @@ class ServiceVclLoggingHoneycombArgs:
         :param pulumi.Input[builtins.str] token: The Write Key from the Account page of your Honeycomb account
         :param pulumi.Input[builtins.str] format: Apache style log formatting. Your log must produce valid JSON that Honeycomb can ingest.
         :param pulumi.Input[builtins.int] format_version: The version of the custom logging format used for the configured endpoint. Can be either `1` or `2`. (default: `2`).
-        :param pulumi.Input[builtins.str] placement: Where in the generated VCL the logging call should be placed (ignored).
+        :param pulumi.Input[builtins.str] placement: Where in the generated VCL the logging call should be placed. Can be `none` or `none`.
         :param pulumi.Input[builtins.str] response_condition: The name of an existing condition in the configured endpoint, or leave blank to always execute.
         """
         pulumi.set(__self__, "dataset", dataset)
@@ -11621,7 +11621,7 @@ class ServiceVclLoggingHoneycombArgs:
     @pulumi.getter
     def placement(self) -> Optional[pulumi.Input[builtins.str]]:
         """
-        Where in the generated VCL the logging call should be placed (ignored).
+        Where in the generated VCL the logging call should be placed. Can be `none` or `none`.
         """
         return pulumi.get(self, "placement")
 
@@ -11686,7 +11686,7 @@ if not MYPY:
         """
         placement: NotRequired[pulumi.Input[builtins.str]]
         """
-        Where in the generated VCL the logging call should be placed (ignored).
+        Where in the generated VCL the logging call should be placed
         """
         request_max_bytes: NotRequired[pulumi.Input[builtins.int]]
         """
@@ -11751,7 +11751,7 @@ class ServiceVclLoggingHttpArgs:
         :param pulumi.Input[builtins.str] json_format: Formats log entries as JSON. Can be either disabled (`0`), array of json (`1`), or newline delimited json (`2`)
         :param pulumi.Input[builtins.str] message_type: How the message should be formatted. Can be either `classic`, `loggly`, `logplex` or `blank`. Default is `classic`
         :param pulumi.Input[builtins.str] method: HTTP method used for request. Can be either `POST` or `PUT`. Default `POST`
-        :param pulumi.Input[builtins.str] placement: Where in the generated VCL the logging call should be placed (ignored).
+        :param pulumi.Input[builtins.str] placement: Where in the generated VCL the logging call should be placed
         :param pulumi.Input[builtins.int] request_max_bytes: The maximum number of bytes sent in one request
         :param pulumi.Input[builtins.int] request_max_entries: The maximum number of logs sent in one request
         :param pulumi.Input[builtins.str] response_condition: The name of the condition to apply
@@ -11919,7 +11919,7 @@ class ServiceVclLoggingHttpArgs:
     @pulumi.getter
     def placement(self) -> Optional[pulumi.Input[builtins.str]]:
         """
-        Where in the generated VCL the logging call should be placed (ignored).
+        Where in the generated VCL the logging call should be placed
         """
         return pulumi.get(self, "placement")
 
@@ -12052,7 +12052,7 @@ if not MYPY:
         """
         placement: NotRequired[pulumi.Input[builtins.str]]
         """
-        Where in the generated VCL the logging call should be placed (ignored).
+        Where in the generated VCL the logging call should be placed.
         """
         request_max_bytes: NotRequired[pulumi.Input[builtins.int]]
         """
@@ -12125,7 +12125,7 @@ class ServiceVclLoggingKafkaArgs:
         :param pulumi.Input[builtins.int] format_version: The version of the custom logging format used for the configured endpoint. Can be either 1 or 2. (default: 2).
         :param pulumi.Input[builtins.bool] parse_log_keyvals: Enables parsing of key=value tuples from the beginning of a logline, turning them into record headers
         :param pulumi.Input[builtins.str] password: SASL Pass
-        :param pulumi.Input[builtins.str] placement: Where in the generated VCL the logging call should be placed (ignored).
+        :param pulumi.Input[builtins.str] placement: Where in the generated VCL the logging call should be placed.
         :param pulumi.Input[builtins.int] request_max_bytes: Maximum size of log batch, if non-zero. Defaults to 0 for unbounded
         :param pulumi.Input[builtins.str] required_acks: The Number of acknowledgements a leader must receive before a write is considered successful. One of: `1` (default) One server needs to respond. `0` No servers need to respond. `-1` Wait for all in-sync replicas to respond
         :param pulumi.Input[builtins.str] response_condition: The name of an existing condition in the configured endpoint, or leave blank to always execute.
@@ -12284,7 +12284,7 @@ class ServiceVclLoggingKafkaArgs:
     @pulumi.getter
     def placement(self) -> Optional[pulumi.Input[builtins.str]]:
         """
-        Where in the generated VCL the logging call should be placed (ignored).
+        Where in the generated VCL the logging call should be placed.
         """
         return pulumi.get(self, "placement")
 
@@ -12429,7 +12429,7 @@ if not MYPY:
         """
         placement: NotRequired[pulumi.Input[builtins.str]]
         """
-        Where in the generated VCL the logging call should be placed (ignored).
+        Where in the generated VCL the logging call should be placed. Can be `none` or `none`.
         """
         region: NotRequired[pulumi.Input[builtins.str]]
         """
@@ -12466,7 +12466,7 @@ class ServiceVclLoggingKineseArgs:
         :param pulumi.Input[builtins.str] format: Apache style log formatting.
         :param pulumi.Input[builtins.int] format_version: The version of the custom logging format used for the configured endpoint. Can be either `1` or `2`. (default: `2`).
         :param pulumi.Input[builtins.str] iam_role: The Amazon Resource Name (ARN) for the IAM role granting Fastly access to Kinesis. Not required if `access_key` and `secret_key` are provided.
-        :param pulumi.Input[builtins.str] placement: Where in the generated VCL the logging call should be placed (ignored).
+        :param pulumi.Input[builtins.str] placement: Where in the generated VCL the logging call should be placed. Can be `none` or `none`.
         :param pulumi.Input[builtins.str] region: The AWS region the stream resides in. (Default: `us-east-1`)
         :param pulumi.Input[builtins.str] response_condition: The name of an existing condition in the configured endpoint, or leave blank to always execute.
         :param pulumi.Input[builtins.str] secret_key: The AWS secret access key to authenticate with
@@ -12566,7 +12566,7 @@ class ServiceVclLoggingKineseArgs:
     @pulumi.getter
     def placement(self) -> Optional[pulumi.Input[builtins.str]]:
         """
-        Where in the generated VCL the logging call should be placed (ignored).
+        Where in the generated VCL the logging call should be placed. Can be `none` or `none`.
         """
         return pulumi.get(self, "placement")
 
@@ -12631,7 +12631,7 @@ if not MYPY:
         """
         placement: NotRequired[pulumi.Input[builtins.str]]
         """
-        Where in the generated VCL the logging call should be placed (ignored).
+        Where in the generated VCL the logging call should be placed.
         """
         port: NotRequired[pulumi.Input[builtins.int]]
         """
@@ -12664,7 +12664,7 @@ class ServiceVclLoggingLogentryArgs:
         :param pulumi.Input[builtins.str] token: Use token based authentication (https://logentries.com/doc/input-token/)
         :param pulumi.Input[builtins.str] format: Apache-style string or VCL variables to use for log formatting
         :param pulumi.Input[builtins.int] format_version: The version of the custom logging format used for the configured endpoint. Can be either 1 or 2. (Default: 2)
-        :param pulumi.Input[builtins.str] placement: Where in the generated VCL the logging call should be placed (ignored).
+        :param pulumi.Input[builtins.str] placement: Where in the generated VCL the logging call should be placed.
         :param pulumi.Input[builtins.int] port: The port number configured in Logentries
         :param pulumi.Input[builtins.str] response_condition: Name of blockAttributes condition to apply this logging.
         :param pulumi.Input[builtins.bool] use_tls: Whether to use TLS for secure logging
@@ -12736,7 +12736,7 @@ class ServiceVclLoggingLogentryArgs:
     @pulumi.getter
     def placement(self) -> Optional[pulumi.Input[builtins.str]]:
         """
-        Where in the generated VCL the logging call should be placed (ignored).
+        Where in the generated VCL the logging call should be placed.
         """
         return pulumi.get(self, "placement")
 
@@ -12801,7 +12801,7 @@ if not MYPY:
         """
         placement: NotRequired[pulumi.Input[builtins.str]]
         """
-        Where in the generated VCL the logging call should be placed (ignored).
+        Where in the generated VCL the logging call should be placed. Can be `none` or `none`.
         """
         response_condition: NotRequired[pulumi.Input[builtins.str]]
         """
@@ -12824,7 +12824,7 @@ class ServiceVclLoggingLogglyArgs:
         :param pulumi.Input[builtins.str] token: The token to use for authentication (https://www.loggly.com/docs/customer-token-authentication-token/).
         :param pulumi.Input[builtins.str] format: Apache-style string or VCL variables to use for log formatting.
         :param pulumi.Input[builtins.int] format_version: The version of the custom logging format used for the configured endpoint. Can be either `1` or `2`. (default: `2`).
-        :param pulumi.Input[builtins.str] placement: Where in the generated VCL the logging call should be placed (ignored).
+        :param pulumi.Input[builtins.str] placement: Where in the generated VCL the logging call should be placed. Can be `none` or `none`.
         :param pulumi.Input[builtins.str] response_condition: The name of an existing condition in the configured endpoint, or leave blank to always execute.
         """
         pulumi.set(__self__, "name", name)
@@ -12890,7 +12890,7 @@ class ServiceVclLoggingLogglyArgs:
     @pulumi.getter
     def placement(self) -> Optional[pulumi.Input[builtins.str]]:
         """
-        Where in the generated VCL the logging call should be placed (ignored).
+        Where in the generated VCL the logging call should be placed. Can be `none` or `none`.
         """
         return pulumi.get(self, "placement")
 
@@ -12935,7 +12935,7 @@ if not MYPY:
         """
         placement: NotRequired[pulumi.Input[builtins.str]]
         """
-        Where in the generated VCL the logging call should be placed (ignored).
+        Where in the generated VCL the logging call should be placed. Can be `none` or `none`.
         """
         response_condition: NotRequired[pulumi.Input[builtins.str]]
         """
@@ -12960,7 +12960,7 @@ class ServiceVclLoggingLogshuttleArgs:
         :param pulumi.Input[builtins.str] url: Your Log Shuttle endpoint URL
         :param pulumi.Input[builtins.str] format: Apache style log formatting.
         :param pulumi.Input[builtins.int] format_version: The version of the custom logging format used for the configured endpoint. Can be either `1` or `2`. (default: `2`).
-        :param pulumi.Input[builtins.str] placement: Where in the generated VCL the logging call should be placed (ignored).
+        :param pulumi.Input[builtins.str] placement: Where in the generated VCL the logging call should be placed. Can be `none` or `none`.
         :param pulumi.Input[builtins.str] response_condition: The name of an existing condition in the configured endpoint, or leave blank to always execute.
         """
         pulumi.set(__self__, "name", name)
@@ -13039,7 +13039,7 @@ class ServiceVclLoggingLogshuttleArgs:
     @pulumi.getter
     def placement(self) -> Optional[pulumi.Input[builtins.str]]:
         """
-        Where in the generated VCL the logging call should be placed (ignored).
+        Where in the generated VCL the logging call should be placed. Can be `none` or `none`.
         """
         return pulumi.get(self, "placement")
 
@@ -13080,7 +13080,7 @@ if not MYPY:
         """
         placement: NotRequired[pulumi.Input[builtins.str]]
         """
-        Where in the generated VCL the logging call should be placed (ignored).
+        Where in the generated VCL the logging call should be placed.
         """
         region: NotRequired[pulumi.Input[builtins.str]]
         """
@@ -13108,7 +13108,7 @@ class ServiceVclLoggingNewrelicArgs:
         :param pulumi.Input[builtins.str] token: The Insert API key from the Account page of your New Relic account
         :param pulumi.Input[builtins.str] format: Apache style log formatting. Your log must produce valid JSON that New Relic Logs can ingest.
         :param pulumi.Input[builtins.int] format_version: The version of the custom logging format used for the configured endpoint. Can be either `1` or `2`. (default: `2`).
-        :param pulumi.Input[builtins.str] placement: Where in the generated VCL the logging call should be placed (ignored).
+        :param pulumi.Input[builtins.str] placement: Where in the generated VCL the logging call should be placed.
         :param pulumi.Input[builtins.str] region: The region that log data will be sent to. Default: `US`
         :param pulumi.Input[builtins.str] response_condition: The name of the condition to apply.
         """
@@ -13177,7 +13177,7 @@ class ServiceVclLoggingNewrelicArgs:
     @pulumi.getter
     def placement(self) -> Optional[pulumi.Input[builtins.str]]:
         """
-        Where in the generated VCL the logging call should be placed (ignored).
+        Where in the generated VCL the logging call should be placed.
         """
         return pulumi.get(self, "placement")
 
@@ -13230,7 +13230,7 @@ if not MYPY:
         """
         placement: NotRequired[pulumi.Input[builtins.str]]
         """
-        Where in the generated VCL the logging call should be placed (ignored).
+        Where in the generated VCL the logging call should be placed.
         """
         region: NotRequired[pulumi.Input[builtins.str]]
         """
@@ -13263,7 +13263,7 @@ class ServiceVclLoggingNewrelicotlpArgs:
         :param pulumi.Input[builtins.str] token: The Insert API key from the Account page of your New Relic account
         :param pulumi.Input[builtins.str] format: Apache style log formatting. Your log must produce valid JSON that New Relic OTLP can ingest.
         :param pulumi.Input[builtins.int] format_version: The version of the custom logging format used for the configured endpoint. Can be either `1` or `2`. (default: `2`).
-        :param pulumi.Input[builtins.str] placement: Where in the generated VCL the logging call should be placed (ignored).
+        :param pulumi.Input[builtins.str] placement: Where in the generated VCL the logging call should be placed.
         :param pulumi.Input[builtins.str] region: The region that log data will be sent to. Default: `US`
         :param pulumi.Input[builtins.str] response_condition: The name of the condition to apply.
         :param pulumi.Input[builtins.str] url: The optional New Relic Trace Observer URL to stream logs to for Infinite Tracing.
@@ -13335,7 +13335,7 @@ class ServiceVclLoggingNewrelicotlpArgs:
     @pulumi.getter
     def placement(self) -> Optional[pulumi.Input[builtins.str]]:
         """
-        Where in the generated VCL the logging call should be placed (ignored).
+        Where in the generated VCL the logging call should be placed.
         """
         return pulumi.get(self, "placement")
 
@@ -13432,7 +13432,7 @@ if not MYPY:
         """
         placement: NotRequired[pulumi.Input[builtins.str]]
         """
-        Where in the generated VCL the logging call should be placed (ignored).
+        Where in the generated VCL the logging call should be placed. Can be `none` or `none`.
         """
         public_key: NotRequired[pulumi.Input[builtins.str]]
         """
@@ -13481,7 +13481,7 @@ class ServiceVclLoggingOpenstackArgs:
         :param pulumi.Input[builtins.str] message_type: How the message should be formatted. Can be either `classic`, `loggly`, `logplex` or `blank`. Default is `classic`
         :param pulumi.Input[builtins.str] path: Path to store the files. Must end with a trailing slash. If this field is left empty, the files will be saved in the bucket's root path
         :param pulumi.Input[builtins.int] period: How frequently the logs should be transferred, in seconds. Default `3600`
-        :param pulumi.Input[builtins.str] placement: Where in the generated VCL the logging call should be placed (ignored).
+        :param pulumi.Input[builtins.str] placement: Where in the generated VCL the logging call should be placed. Can be `none` or `none`.
         :param pulumi.Input[builtins.str] public_key: A PGP public key that Fastly will use to encrypt your log files before writing them to disk
         :param pulumi.Input[builtins.str] response_condition: The name of an existing condition in the configured endpoint, or leave blank to always execute.
         :param pulumi.Input[builtins.str] timestamp_format: The `strftime` specified timestamp formatting (default `%Y-%m-%dT%H:%M:%S.000`)
@@ -13662,7 +13662,7 @@ class ServiceVclLoggingOpenstackArgs:
     @pulumi.getter
     def placement(self) -> Optional[pulumi.Input[builtins.str]]:
         """
-        Where in the generated VCL the logging call should be placed (ignored).
+        Where in the generated VCL the logging call should be placed. Can be `none` or `none`.
         """
         return pulumi.get(self, "placement")
 
@@ -13731,7 +13731,7 @@ if not MYPY:
         """
         placement: NotRequired[pulumi.Input[builtins.str]]
         """
-        Where in the generated VCL the logging call should be placed. Ignored, but endpoints with `format_version` of 2 are placed in `vcl_log` and those with `format_version` of 1 are placed in `vcl_deliver`
+        Where in the generated VCL the logging call should be placed. If not set, endpoints with `format_version` of 2 are placed in `vcl_log` and those with `format_version` of 1 are placed in `vcl_deliver`
         """
         response_condition: NotRequired[pulumi.Input[builtins.str]]
         """
@@ -13756,7 +13756,7 @@ class ServiceVclLoggingPapertrailArgs:
         :param pulumi.Input[builtins.int] port: The port associated with the address where the Papertrail endpoint can be accessed
         :param pulumi.Input[builtins.str] format: A Fastly [log format string](https://docs.fastly.com/en/guides/custom-log-formats)
         :param pulumi.Input[builtins.int] format_version: The version of the custom logging format used for the configured endpoint. The logging call gets placed by default in `vcl_log` if `format_version` is set to `2` and in `vcl_deliver` if `format_version` is set to `1`
-        :param pulumi.Input[builtins.str] placement: Where in the generated VCL the logging call should be placed. Ignored, but endpoints with `format_version` of 2 are placed in `vcl_log` and those with `format_version` of 1 are placed in `vcl_deliver`
+        :param pulumi.Input[builtins.str] placement: Where in the generated VCL the logging call should be placed. If not set, endpoints with `format_version` of 2 are placed in `vcl_log` and those with `format_version` of 1 are placed in `vcl_deliver`
         :param pulumi.Input[builtins.str] response_condition: The name of an existing condition in the configured endpoint, or leave blank to always execute
         """
         pulumi.set(__self__, "address", address)
@@ -13835,7 +13835,7 @@ class ServiceVclLoggingPapertrailArgs:
     @pulumi.getter
     def placement(self) -> Optional[pulumi.Input[builtins.str]]:
         """
-        Where in the generated VCL the logging call should be placed. Ignored, but endpoints with `format_version` of 2 are placed in `vcl_log` and those with `format_version` of 1 are placed in `vcl_deliver`
+        Where in the generated VCL the logging call should be placed. If not set, endpoints with `format_version` of 2 are placed in `vcl_log` and those with `format_version` of 1 are placed in `vcl_deliver`
         """
         return pulumi.get(self, "placement")
 
@@ -13908,7 +13908,7 @@ if not MYPY:
         """
         placement: NotRequired[pulumi.Input[builtins.str]]
         """
-        Where in the generated VCL the logging call should be placed (ignored).
+        Where in the generated VCL the logging call should be placed.
         """
         public_key: NotRequired[pulumi.Input[builtins.str]]
         """
@@ -13987,7 +13987,7 @@ class ServiceVclLoggingS3Args:
         :param pulumi.Input[builtins.str] message_type: How the message should be formatted. Can be either `classic`, `loggly`, `logplex` or `blank`. Default is `classic`
         :param pulumi.Input[builtins.str] path: Path to store the files. Must end with a trailing slash. If this field is left empty, the files will be saved in the bucket's root path
         :param pulumi.Input[builtins.int] period: How frequently the logs should be transferred, in seconds. Default `3600`
-        :param pulumi.Input[builtins.str] placement: Where in the generated VCL the logging call should be placed (ignored).
+        :param pulumi.Input[builtins.str] placement: Where in the generated VCL the logging call should be placed.
         :param pulumi.Input[builtins.str] public_key: A PGP public key that Fastly will use to encrypt your log files before writing them to disk
         :param pulumi.Input[builtins.str] redundancy: The S3 storage class (redundancy level). Should be one of: `standard`, `intelligent_tiering`, `standard_ia`, `onezone_ia`, `glacier`, `glacier_ir`, `deep_archive`, or `reduced_redundancy`
         :param pulumi.Input[builtins.str] response_condition: Name of blockAttributes condition to apply this logging.
@@ -14189,7 +14189,7 @@ class ServiceVclLoggingS3Args:
     @pulumi.getter
     def placement(self) -> Optional[pulumi.Input[builtins.str]]:
         """
-        Where in the generated VCL the logging call should be placed (ignored).
+        Where in the generated VCL the logging call should be placed.
         """
         return pulumi.get(self, "placement")
 
@@ -14326,7 +14326,7 @@ if not MYPY:
         """
         placement: NotRequired[pulumi.Input[builtins.str]]
         """
-        Where in the generated VCL the logging call should be placed (ignored).
+        Where in the generated VCL the logging call should be placed.
         """
         project_id: NotRequired[pulumi.Input[builtins.str]]
         """
@@ -14359,7 +14359,7 @@ class ServiceVclLoggingScalyrArgs:
         :param pulumi.Input[builtins.str] token: The token to use for authentication (https://www.scalyr.com/keys)
         :param pulumi.Input[builtins.str] format: Apache style log formatting.
         :param pulumi.Input[builtins.int] format_version: The version of the custom logging format used for the configured endpoint. Can be either 1 or 2. (default: 2).
-        :param pulumi.Input[builtins.str] placement: Where in the generated VCL the logging call should be placed (ignored).
+        :param pulumi.Input[builtins.str] placement: Where in the generated VCL the logging call should be placed.
         :param pulumi.Input[builtins.str] project_id: The name of the logfile field sent to Scalyr
         :param pulumi.Input[builtins.str] region: The region that log data will be sent to. One of `US` or `EU`. Defaults to `US` if undefined
         :param pulumi.Input[builtins.str] response_condition: The name of an existing condition in the configured endpoint, or leave blank to always execute.
@@ -14431,7 +14431,7 @@ class ServiceVclLoggingScalyrArgs:
     @pulumi.getter
     def placement(self) -> Optional[pulumi.Input[builtins.str]]:
         """
-        Where in the generated VCL the logging call should be placed (ignored).
+        Where in the generated VCL the logging call should be placed.
         """
         return pulumi.get(self, "placement")
 
@@ -14528,7 +14528,7 @@ if not MYPY:
         """
         placement: NotRequired[pulumi.Input[builtins.str]]
         """
-        Where in the generated VCL the logging call should be placed (ignored).
+        Where in the generated VCL the logging call should be placed.
         """
         port: NotRequired[pulumi.Input[builtins.int]]
         """
@@ -14587,7 +14587,7 @@ class ServiceVclLoggingSftpArgs:
         :param pulumi.Input[builtins.str] message_type: How the message should be formatted. Can be either `classic`, `loggly`, `logplex` or `blank`. Default is `classic`
         :param pulumi.Input[builtins.str] password: The password for the server. If both `password` and `secret_key` are passed, `secret_key` will be preferred
         :param pulumi.Input[builtins.int] period: How frequently log files are finalized so they can be available for reading (in seconds, default `3600`)
-        :param pulumi.Input[builtins.str] placement: Where in the generated VCL the logging call should be placed (ignored).
+        :param pulumi.Input[builtins.str] placement: Where in the generated VCL the logging call should be placed.
         :param pulumi.Input[builtins.int] port: The port the SFTP service listens on. (Default: `22`)
         :param pulumi.Input[builtins.str] public_key: A PGP public key that Fastly will use to encrypt your log files before writing them to disk
         :param pulumi.Input[builtins.str] response_condition: The name of the condition to apply.
@@ -14774,7 +14774,7 @@ class ServiceVclLoggingSftpArgs:
     @pulumi.getter
     def placement(self) -> Optional[pulumi.Input[builtins.str]]:
         """
-        Where in the generated VCL the logging call should be placed (ignored).
+        Where in the generated VCL the logging call should be placed.
         """
         return pulumi.get(self, "placement")
 
@@ -14867,7 +14867,7 @@ if not MYPY:
         """
         placement: NotRequired[pulumi.Input[builtins.str]]
         """
-        Where in the generated VCL the logging call should be placed (ignored).
+        Where in the generated VCL the logging call should be placed
         """
         response_condition: NotRequired[pulumi.Input[builtins.str]]
         """
@@ -14917,7 +14917,7 @@ class ServiceVclLoggingSplunkArgs:
         :param pulumi.Input[builtins.str] url: The Splunk URL to stream logs to
         :param pulumi.Input[builtins.str] format: Apache-style string or VCL variables to use for log formatting (default: `%h %l %u %t "%r" %>s %b`)
         :param pulumi.Input[builtins.int] format_version: The version of the custom logging format used for the configured endpoint. Can be either 1 or 2. (default: 2)
-        :param pulumi.Input[builtins.str] placement: Where in the generated VCL the logging call should be placed (ignored).
+        :param pulumi.Input[builtins.str] placement: Where in the generated VCL the logging call should be placed
         :param pulumi.Input[builtins.str] response_condition: The name of the condition to apply
         :param pulumi.Input[builtins.str] tls_ca_cert: A secure certificate to authenticate the server with. Must be in PEM format. You can provide this certificate via an environment variable, `FASTLY_SPLUNK_CA_CERT`
         :param pulumi.Input[builtins.str] tls_client_cert: The client certificate used to make authenticated requests. Must be in PEM format.
@@ -15011,7 +15011,7 @@ class ServiceVclLoggingSplunkArgs:
     @pulumi.getter
     def placement(self) -> Optional[pulumi.Input[builtins.str]]:
         """
-        Where in the generated VCL the logging call should be placed (ignored).
+        Where in the generated VCL the logging call should be placed
         """
         return pulumi.get(self, "placement")
 
@@ -15116,7 +15116,7 @@ if not MYPY:
         """
         placement: NotRequired[pulumi.Input[builtins.str]]
         """
-        Where in the generated VCL the logging call should be placed (ignored).
+        Where in the generated VCL the logging call should be placed.
         """
         response_condition: NotRequired[pulumi.Input[builtins.str]]
         """
@@ -15141,7 +15141,7 @@ class ServiceVclLoggingSumologicArgs:
         :param pulumi.Input[builtins.str] format: Apache-style string or VCL variables to use for log formatting
         :param pulumi.Input[builtins.int] format_version: The version of the custom logging format used for the configured endpoint. Can be either 1 or 2. (Default: 2)
         :param pulumi.Input[builtins.str] message_type: How the message should be formatted. Can be either `classic`, `loggly`, `logplex` or `blank`. Default is `classic`
-        :param pulumi.Input[builtins.str] placement: Where in the generated VCL the logging call should be placed (ignored).
+        :param pulumi.Input[builtins.str] placement: Where in the generated VCL the logging call should be placed.
         :param pulumi.Input[builtins.str] response_condition: Name of blockAttributes condition to apply this logging.
         """
         pulumi.set(__self__, "name", name)
@@ -15221,7 +15221,7 @@ class ServiceVclLoggingSumologicArgs:
     @pulumi.getter
     def placement(self) -> Optional[pulumi.Input[builtins.str]]:
         """
-        Where in the generated VCL the logging call should be placed (ignored).
+        Where in the generated VCL the logging call should be placed.
         """
         return pulumi.get(self, "placement")
 
@@ -15266,7 +15266,7 @@ if not MYPY:
         """
         placement: NotRequired[pulumi.Input[builtins.str]]
         """
-        Where in the generated VCL the logging call should be placed (ignored).
+        Where in the generated VCL the logging call should be placed.
         """
         port: NotRequired[pulumi.Input[builtins.int]]
         """
@@ -15326,7 +15326,7 @@ class ServiceVclLoggingSyslogArgs:
         :param pulumi.Input[builtins.str] format: Apache-style string or VCL variables to use for log formatting
         :param pulumi.Input[builtins.int] format_version: The version of the custom logging format. Can be either 1 or 2. (Default: 2)
         :param pulumi.Input[builtins.str] message_type: How the message should be formatted. Can be either `classic`, `loggly`, `logplex` or `blank`. Default is `classic`
-        :param pulumi.Input[builtins.str] placement: Where in the generated VCL the logging call should be placed (ignored).
+        :param pulumi.Input[builtins.str] placement: Where in the generated VCL the logging call should be placed.
         :param pulumi.Input[builtins.int] port: The port associated with the address where the Syslog endpoint can be accessed. Default `514`
         :param pulumi.Input[builtins.str] response_condition: Name of blockAttributes condition to apply this logging.
         :param pulumi.Input[builtins.str] tls_ca_cert: A secure certificate to authenticate the server with. Must be in PEM format. You can provide this certificate via an environment variable, `FASTLY_SYSLOG_CA_CERT`
@@ -15427,7 +15427,7 @@ class ServiceVclLoggingSyslogArgs:
     @pulumi.getter
     def placement(self) -> Optional[pulumi.Input[builtins.str]]:
         """
-        Where in the generated VCL the logging call should be placed (ignored).
+        Where in the generated VCL the logging call should be placed.
         """
         return pulumi.get(self, "placement")
 
