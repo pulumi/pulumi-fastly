@@ -94,14 +94,14 @@ public final class ServiceVclLoggingSyslogArgs extends com.pulumi.resources.Reso
     }
 
     /**
-     * Where in the generated VCL the logging call should be placed (ignored).
+     * Where in the generated VCL the logging call should be placed.
      * 
      */
     @Import(name="placement")
     private @Nullable Output<String> placement;
 
     /**
-     * @return Where in the generated VCL the logging call should be placed (ignored).
+     * @return Where in the generated VCL the logging call should be placed.
      * 
      */
     public Optional<Output<String>> placement() {
@@ -371,7 +371,7 @@ public final class ServiceVclLoggingSyslogArgs extends com.pulumi.resources.Reso
         }
 
         /**
-         * @param placement Where in the generated VCL the logging call should be placed (ignored).
+         * @param placement Where in the generated VCL the logging call should be placed.
          * 
          * @return builder
          * 
@@ -382,7 +382,7 @@ public final class ServiceVclLoggingSyslogArgs extends com.pulumi.resources.Reso
         }
 
         /**
-         * @param placement Where in the generated VCL the logging call should be placed (ignored).
+         * @param placement Where in the generated VCL the logging call should be placed.
          * 
          * @return builder
          * 

@@ -8955,7 +8955,7 @@ type ServiceVclLoggingBigquery struct {
 	Format *string `pulumi:"format"`
 	// A unique name to identify this BigQuery logging endpoint. It is important to note that changing this attribute will delete and recreate the resource
 	Name string `pulumi:"name"`
-	// Where in the generated VCL the logging call should be placed (ignored).
+	// Where in the generated VCL the logging call should be placed.
 	Placement *string `pulumi:"placement"`
 	// The ID of your GCP project
 	ProjectId string `pulumi:"projectId"`
@@ -8991,7 +8991,7 @@ type ServiceVclLoggingBigqueryArgs struct {
 	Format pulumi.StringPtrInput `pulumi:"format"`
 	// A unique name to identify this BigQuery logging endpoint. It is important to note that changing this attribute will delete and recreate the resource
 	Name pulumi.StringInput `pulumi:"name"`
-	// Where in the generated VCL the logging call should be placed (ignored).
+	// Where in the generated VCL the logging call should be placed.
 	Placement pulumi.StringPtrInput `pulumi:"placement"`
 	// The ID of your GCP project
 	ProjectId pulumi.StringInput `pulumi:"projectId"`
@@ -9081,7 +9081,7 @@ func (o ServiceVclLoggingBigqueryOutput) Name() pulumi.StringOutput {
 	return o.ApplyT(func(v ServiceVclLoggingBigquery) string { return v.Name }).(pulumi.StringOutput)
 }
 
-// Where in the generated VCL the logging call should be placed (ignored).
+// Where in the generated VCL the logging call should be placed.
 func (o ServiceVclLoggingBigqueryOutput) Placement() pulumi.StringPtrOutput {
 	return o.ApplyT(func(v ServiceVclLoggingBigquery) *string { return v.Placement }).(pulumi.StringPtrOutput)
 }
@@ -9154,7 +9154,7 @@ type ServiceVclLoggingBlobstorage struct {
 	Path *string `pulumi:"path"`
 	// How frequently the logs should be transferred in seconds. Default `3600`
 	Period *int `pulumi:"period"`
-	// Where in the generated VCL the logging call should be placed (ignored).
+	// Where in the generated VCL the logging call should be placed
 	Placement *string `pulumi:"placement"`
 	// A PGP public key that Fastly will use to encrypt your log files before writing them to disk
 	PublicKey *string `pulumi:"publicKey"`
@@ -9200,7 +9200,7 @@ type ServiceVclLoggingBlobstorageArgs struct {
 	Path pulumi.StringPtrInput `pulumi:"path"`
 	// How frequently the logs should be transferred in seconds. Default `3600`
 	Period pulumi.IntPtrInput `pulumi:"period"`
-	// Where in the generated VCL the logging call should be placed (ignored).
+	// Where in the generated VCL the logging call should be placed
 	Placement pulumi.StringPtrInput `pulumi:"placement"`
 	// A PGP public key that Fastly will use to encrypt your log files before writing them to disk
 	PublicKey pulumi.StringPtrInput `pulumi:"publicKey"`
@@ -9318,7 +9318,7 @@ func (o ServiceVclLoggingBlobstorageOutput) Period() pulumi.IntPtrOutput {
 	return o.ApplyT(func(v ServiceVclLoggingBlobstorage) *int { return v.Period }).(pulumi.IntPtrOutput)
 }
 
-// Where in the generated VCL the logging call should be placed (ignored).
+// Where in the generated VCL the logging call should be placed
 func (o ServiceVclLoggingBlobstorageOutput) Placement() pulumi.StringPtrOutput {
 	return o.ApplyT(func(v ServiceVclLoggingBlobstorage) *string { return v.Placement }).(pulumi.StringPtrOutput)
 }
@@ -9384,7 +9384,7 @@ type ServiceVclLoggingCloudfile struct {
 	Path *string `pulumi:"path"`
 	// How frequently log files are finalized so they can be available for reading (in seconds, default `3600`)
 	Period *int `pulumi:"period"`
-	// Where in the generated VCL the logging call should be placed (ignored).
+	// Where in the generated VCL the logging call should be placed. Can be `none` or `none`.
 	Placement *string `pulumi:"placement"`
 	// The PGP public key that Fastly will use to encrypt your log files before writing them to disk
 	PublicKey *string `pulumi:"publicKey"`
@@ -9430,7 +9430,7 @@ type ServiceVclLoggingCloudfileArgs struct {
 	Path pulumi.StringPtrInput `pulumi:"path"`
 	// How frequently log files are finalized so they can be available for reading (in seconds, default `3600`)
 	Period pulumi.IntPtrInput `pulumi:"period"`
-	// Where in the generated VCL the logging call should be placed (ignored).
+	// Where in the generated VCL the logging call should be placed. Can be `none` or `none`.
 	Placement pulumi.StringPtrInput `pulumi:"placement"`
 	// The PGP public key that Fastly will use to encrypt your log files before writing them to disk
 	PublicKey pulumi.StringPtrInput `pulumi:"publicKey"`
@@ -9545,7 +9545,7 @@ func (o ServiceVclLoggingCloudfileOutput) Period() pulumi.IntPtrOutput {
 	return o.ApplyT(func(v ServiceVclLoggingCloudfile) *int { return v.Period }).(pulumi.IntPtrOutput)
 }
 
-// Where in the generated VCL the logging call should be placed (ignored).
+// Where in the generated VCL the logging call should be placed. Can be `none` or `none`.
 func (o ServiceVclLoggingCloudfileOutput) Placement() pulumi.StringPtrOutput {
 	return o.ApplyT(func(v ServiceVclLoggingCloudfile) *string { return v.Placement }).(pulumi.StringPtrOutput)
 }
@@ -9602,7 +9602,7 @@ type ServiceVclLoggingDatadog struct {
 	FormatVersion *int `pulumi:"formatVersion"`
 	// The unique name of the Datadog logging endpoint. It is important to note that changing this attribute will delete and recreate the resource
 	Name string `pulumi:"name"`
-	// Where in the generated VCL the logging call should be placed (ignored).
+	// Where in the generated VCL the logging call should be placed.
 	Placement *string `pulumi:"placement"`
 	// The region that log data will be sent to. One of `US` or `EU`. Defaults to `US` if undefined
 	Region *string `pulumi:"region"`
@@ -9630,7 +9630,7 @@ type ServiceVclLoggingDatadogArgs struct {
 	FormatVersion pulumi.IntPtrInput `pulumi:"formatVersion"`
 	// The unique name of the Datadog logging endpoint. It is important to note that changing this attribute will delete and recreate the resource
 	Name pulumi.StringInput `pulumi:"name"`
-	// Where in the generated VCL the logging call should be placed (ignored).
+	// Where in the generated VCL the logging call should be placed.
 	Placement pulumi.StringPtrInput `pulumi:"placement"`
 	// The region that log data will be sent to. One of `US` or `EU`. Defaults to `US` if undefined
 	Region pulumi.StringPtrInput `pulumi:"region"`
@@ -9706,7 +9706,7 @@ func (o ServiceVclLoggingDatadogOutput) Name() pulumi.StringOutput {
 	return o.ApplyT(func(v ServiceVclLoggingDatadog) string { return v.Name }).(pulumi.StringOutput)
 }
 
-// Where in the generated VCL the logging call should be placed (ignored).
+// Where in the generated VCL the logging call should be placed.
 func (o ServiceVclLoggingDatadogOutput) Placement() pulumi.StringPtrOutput {
 	return o.ApplyT(func(v ServiceVclLoggingDatadog) *string { return v.Placement }).(pulumi.StringPtrOutput)
 }
@@ -9769,7 +9769,7 @@ type ServiceVclLoggingDigitalocean struct {
 	Path *string `pulumi:"path"`
 	// How frequently log files are finalized so they can be available for reading (in seconds, default `3600`)
 	Period *int `pulumi:"period"`
-	// Where in the generated VCL the logging call should be placed (ignored).
+	// Where in the generated VCL the logging call should be placed. Can be `none` or `none`.
 	Placement *string `pulumi:"placement"`
 	// A PGP public key that Fastly will use to encrypt your log files before writing them to disk
 	PublicKey *string `pulumi:"publicKey"`
@@ -9815,7 +9815,7 @@ type ServiceVclLoggingDigitaloceanArgs struct {
 	Path pulumi.StringPtrInput `pulumi:"path"`
 	// How frequently log files are finalized so they can be available for reading (in seconds, default `3600`)
 	Period pulumi.IntPtrInput `pulumi:"period"`
-	// Where in the generated VCL the logging call should be placed (ignored).
+	// Where in the generated VCL the logging call should be placed. Can be `none` or `none`.
 	Placement pulumi.StringPtrInput `pulumi:"placement"`
 	// A PGP public key that Fastly will use to encrypt your log files before writing them to disk
 	PublicKey pulumi.StringPtrInput `pulumi:"publicKey"`
@@ -9933,7 +9933,7 @@ func (o ServiceVclLoggingDigitaloceanOutput) Period() pulumi.IntPtrOutput {
 	return o.ApplyT(func(v ServiceVclLoggingDigitalocean) *int { return v.Period }).(pulumi.IntPtrOutput)
 }
 
-// Where in the generated VCL the logging call should be placed (ignored).
+// Where in the generated VCL the logging call should be placed. Can be `none` or `none`.
 func (o ServiceVclLoggingDigitaloceanOutput) Placement() pulumi.StringPtrOutput {
 	return o.ApplyT(func(v ServiceVclLoggingDigitalocean) *string { return v.Placement }).(pulumi.StringPtrOutput)
 }
@@ -9991,7 +9991,7 @@ type ServiceVclLoggingElasticsearch struct {
 	Password *string `pulumi:"password"`
 	// The ID of the Elasticsearch ingest pipeline to apply pre-process transformations to before indexing
 	Pipeline *string `pulumi:"pipeline"`
-	// Where in the generated VCL the logging call should be placed (ignored).
+	// Where in the generated VCL the logging call should be placed.
 	Placement *string `pulumi:"placement"`
 	// The maximum number of logs sent in one request. Defaults to `0` for unbounded
 	RequestMaxBytes *int `pulumi:"requestMaxBytes"`
@@ -10037,7 +10037,7 @@ type ServiceVclLoggingElasticsearchArgs struct {
 	Password pulumi.StringPtrInput `pulumi:"password"`
 	// The ID of the Elasticsearch ingest pipeline to apply pre-process transformations to before indexing
 	Pipeline pulumi.StringPtrInput `pulumi:"pipeline"`
-	// Where in the generated VCL the logging call should be placed (ignored).
+	// Where in the generated VCL the logging call should be placed.
 	Placement pulumi.StringPtrInput `pulumi:"placement"`
 	// The maximum number of logs sent in one request. Defaults to `0` for unbounded
 	RequestMaxBytes pulumi.IntPtrInput `pulumi:"requestMaxBytes"`
@@ -10140,7 +10140,7 @@ func (o ServiceVclLoggingElasticsearchOutput) Pipeline() pulumi.StringPtrOutput 
 	return o.ApplyT(func(v ServiceVclLoggingElasticsearch) *string { return v.Pipeline }).(pulumi.StringPtrOutput)
 }
 
-// Where in the generated VCL the logging call should be placed (ignored).
+// Where in the generated VCL the logging call should be placed.
 func (o ServiceVclLoggingElasticsearchOutput) Placement() pulumi.StringPtrOutput {
 	return o.ApplyT(func(v ServiceVclLoggingElasticsearch) *string { return v.Placement }).(pulumi.StringPtrOutput)
 }
@@ -10231,7 +10231,7 @@ type ServiceVclLoggingFtp struct {
 	Path string `pulumi:"path"`
 	// How frequently the logs should be transferred, in seconds (Default `3600`)
 	Period *int `pulumi:"period"`
-	// Where in the generated VCL the logging call should be placed (ignored).
+	// Where in the generated VCL the logging call should be placed.
 	Placement *string `pulumi:"placement"`
 	// The port number. Default: `21`
 	Port *int `pulumi:"port"`
@@ -10277,7 +10277,7 @@ type ServiceVclLoggingFtpArgs struct {
 	Path pulumi.StringInput `pulumi:"path"`
 	// How frequently the logs should be transferred, in seconds (Default `3600`)
 	Period pulumi.IntPtrInput `pulumi:"period"`
-	// Where in the generated VCL the logging call should be placed (ignored).
+	// Where in the generated VCL the logging call should be placed.
 	Placement pulumi.StringPtrInput `pulumi:"placement"`
 	// The port number. Default: `21`
 	Port pulumi.IntPtrInput `pulumi:"port"`
@@ -10392,7 +10392,7 @@ func (o ServiceVclLoggingFtpOutput) Period() pulumi.IntPtrOutput {
 	return o.ApplyT(func(v ServiceVclLoggingFtp) *int { return v.Period }).(pulumi.IntPtrOutput)
 }
 
-// Where in the generated VCL the logging call should be placed (ignored).
+// Where in the generated VCL the logging call should be placed.
 func (o ServiceVclLoggingFtpOutput) Placement() pulumi.StringPtrOutput {
 	return o.ApplyT(func(v ServiceVclLoggingFtp) *string { return v.Placement }).(pulumi.StringPtrOutput)
 }
@@ -10463,7 +10463,7 @@ type ServiceVclLoggingGc struct {
 	Path *string `pulumi:"path"`
 	// How frequently the logs should be transferred, in seconds (Default 3600)
 	Period *int `pulumi:"period"`
-	// Where in the generated VCL the logging call should be placed (ignored).
+	// Where in the generated VCL the logging call should be placed.
 	Placement *string `pulumi:"placement"`
 	// The ID of your Google Cloud Platform project
 	ProjectId *string `pulumi:"projectId"`
@@ -10509,7 +10509,7 @@ type ServiceVclLoggingGcArgs struct {
 	Path pulumi.StringPtrInput `pulumi:"path"`
 	// How frequently the logs should be transferred, in seconds (Default 3600)
 	Period pulumi.IntPtrInput `pulumi:"period"`
-	// Where in the generated VCL the logging call should be placed (ignored).
+	// Where in the generated VCL the logging call should be placed.
 	Placement pulumi.StringPtrInput `pulumi:"placement"`
 	// The ID of your Google Cloud Platform project
 	ProjectId pulumi.StringPtrInput `pulumi:"projectId"`
@@ -10624,7 +10624,7 @@ func (o ServiceVclLoggingGcOutput) Period() pulumi.IntPtrOutput {
 	return o.ApplyT(func(v ServiceVclLoggingGc) *int { return v.Period }).(pulumi.IntPtrOutput)
 }
 
-// Where in the generated VCL the logging call should be placed (ignored).
+// Where in the generated VCL the logging call should be placed.
 func (o ServiceVclLoggingGcOutput) Placement() pulumi.StringPtrOutput {
 	return o.ApplyT(func(v ServiceVclLoggingGc) *string { return v.Placement }).(pulumi.StringPtrOutput)
 }
@@ -10683,7 +10683,7 @@ type ServiceVclLoggingGooglepubsub struct {
 	FormatVersion *int `pulumi:"formatVersion"`
 	// The unique name of the Google Cloud Pub/Sub logging endpoint. It is important to note that changing this attribute will delete and recreate the resource
 	Name string `pulumi:"name"`
-	// Where in the generated VCL the logging call should be placed (ignored).
+	// Where in the generated VCL the logging call should be placed.
 	Placement *string `pulumi:"placement"`
 	// The ID of your Google Cloud Platform project
 	ProjectId string `pulumi:"projectId"`
@@ -10717,7 +10717,7 @@ type ServiceVclLoggingGooglepubsubArgs struct {
 	FormatVersion pulumi.IntPtrInput `pulumi:"formatVersion"`
 	// The unique name of the Google Cloud Pub/Sub logging endpoint. It is important to note that changing this attribute will delete and recreate the resource
 	Name pulumi.StringInput `pulumi:"name"`
-	// Where in the generated VCL the logging call should be placed (ignored).
+	// Where in the generated VCL the logging call should be placed.
 	Placement pulumi.StringPtrInput `pulumi:"placement"`
 	// The ID of your Google Cloud Platform project
 	ProjectId pulumi.StringInput `pulumi:"projectId"`
@@ -10802,7 +10802,7 @@ func (o ServiceVclLoggingGooglepubsubOutput) Name() pulumi.StringOutput {
 	return o.ApplyT(func(v ServiceVclLoggingGooglepubsub) string { return v.Name }).(pulumi.StringOutput)
 }
 
-// Where in the generated VCL the logging call should be placed (ignored).
+// Where in the generated VCL the logging call should be placed.
 func (o ServiceVclLoggingGooglepubsubOutput) Placement() pulumi.StringPtrOutput {
 	return o.ApplyT(func(v ServiceVclLoggingGooglepubsub) *string { return v.Placement }).(pulumi.StringPtrOutput)
 }
@@ -10861,7 +10861,7 @@ type ServiceVclLoggingGrafanacloudlog struct {
 	Index string `pulumi:"index"`
 	// The unique name of the GrafanaCloudLogs logging endpoint. It is important to note that changing this attribute will delete and recreate the resource
 	Name string `pulumi:"name"`
-	// Where in the generated VCL the logging call should be placed (ignored).
+	// Where in the generated VCL the logging call should be placed.
 	Placement *string `pulumi:"placement"`
 	// The name of the condition to apply.
 	ResponseCondition *string `pulumi:"responseCondition"`
@@ -10893,7 +10893,7 @@ type ServiceVclLoggingGrafanacloudlogArgs struct {
 	Index pulumi.StringInput `pulumi:"index"`
 	// The unique name of the GrafanaCloudLogs logging endpoint. It is important to note that changing this attribute will delete and recreate the resource
 	Name pulumi.StringInput `pulumi:"name"`
-	// Where in the generated VCL the logging call should be placed (ignored).
+	// Where in the generated VCL the logging call should be placed.
 	Placement pulumi.StringPtrInput `pulumi:"placement"`
 	// The name of the condition to apply.
 	ResponseCondition pulumi.StringPtrInput `pulumi:"responseCondition"`
@@ -10976,7 +10976,7 @@ func (o ServiceVclLoggingGrafanacloudlogOutput) Name() pulumi.StringOutput {
 	return o.ApplyT(func(v ServiceVclLoggingGrafanacloudlog) string { return v.Name }).(pulumi.StringOutput)
 }
 
-// Where in the generated VCL the logging call should be placed (ignored).
+// Where in the generated VCL the logging call should be placed.
 func (o ServiceVclLoggingGrafanacloudlogOutput) Placement() pulumi.StringPtrOutput {
 	return o.ApplyT(func(v ServiceVclLoggingGrafanacloudlog) *string { return v.Placement }).(pulumi.StringPtrOutput)
 }
@@ -11028,7 +11028,7 @@ type ServiceVclLoggingHerokus struct {
 	FormatVersion *int `pulumi:"formatVersion"`
 	// The unique name of the Heroku logging endpoint. It is important to note that changing this attribute will delete and recreate the resource
 	Name string `pulumi:"name"`
-	// Where in the generated VCL the logging call should be placed (ignored).
+	// Where in the generated VCL the logging call should be placed. Can be `none` or `none`.
 	Placement *string `pulumi:"placement"`
 	// The name of an existing condition in the configured endpoint, or leave blank to always execute.
 	ResponseCondition *string `pulumi:"responseCondition"`
@@ -11056,7 +11056,7 @@ type ServiceVclLoggingHerokusArgs struct {
 	FormatVersion pulumi.IntPtrInput `pulumi:"formatVersion"`
 	// The unique name of the Heroku logging endpoint. It is important to note that changing this attribute will delete and recreate the resource
 	Name pulumi.StringInput `pulumi:"name"`
-	// Where in the generated VCL the logging call should be placed (ignored).
+	// Where in the generated VCL the logging call should be placed. Can be `none` or `none`.
 	Placement pulumi.StringPtrInput `pulumi:"placement"`
 	// The name of an existing condition in the configured endpoint, or leave blank to always execute.
 	ResponseCondition pulumi.StringPtrInput `pulumi:"responseCondition"`
@@ -11132,7 +11132,7 @@ func (o ServiceVclLoggingHerokusOutput) Name() pulumi.StringOutput {
 	return o.ApplyT(func(v ServiceVclLoggingHerokus) string { return v.Name }).(pulumi.StringOutput)
 }
 
-// Where in the generated VCL the logging call should be placed (ignored).
+// Where in the generated VCL the logging call should be placed. Can be `none` or `none`.
 func (o ServiceVclLoggingHerokusOutput) Placement() pulumi.StringPtrOutput {
 	return o.ApplyT(func(v ServiceVclLoggingHerokus) *string { return v.Placement }).(pulumi.StringPtrOutput)
 }
@@ -11181,7 +11181,7 @@ type ServiceVclLoggingHoneycomb struct {
 	FormatVersion *int `pulumi:"formatVersion"`
 	// The unique name of the Honeycomb logging endpoint. It is important to note that changing this attribute will delete and recreate the resource
 	Name string `pulumi:"name"`
-	// Where in the generated VCL the logging call should be placed (ignored).
+	// Where in the generated VCL the logging call should be placed. Can be `none` or `none`.
 	Placement *string `pulumi:"placement"`
 	// The name of an existing condition in the configured endpoint, or leave blank to always execute.
 	ResponseCondition *string `pulumi:"responseCondition"`
@@ -11209,7 +11209,7 @@ type ServiceVclLoggingHoneycombArgs struct {
 	FormatVersion pulumi.IntPtrInput `pulumi:"formatVersion"`
 	// The unique name of the Honeycomb logging endpoint. It is important to note that changing this attribute will delete and recreate the resource
 	Name pulumi.StringInput `pulumi:"name"`
-	// Where in the generated VCL the logging call should be placed (ignored).
+	// Where in the generated VCL the logging call should be placed. Can be `none` or `none`.
 	Placement pulumi.StringPtrInput `pulumi:"placement"`
 	// The name of an existing condition in the configured endpoint, or leave blank to always execute.
 	ResponseCondition pulumi.StringPtrInput `pulumi:"responseCondition"`
@@ -11288,7 +11288,7 @@ func (o ServiceVclLoggingHoneycombOutput) Name() pulumi.StringOutput {
 	return o.ApplyT(func(v ServiceVclLoggingHoneycomb) string { return v.Name }).(pulumi.StringOutput)
 }
 
-// Where in the generated VCL the logging call should be placed (ignored).
+// Where in the generated VCL the logging call should be placed. Can be `none` or `none`.
 func (o ServiceVclLoggingHoneycombOutput) Placement() pulumi.StringPtrOutput {
 	return o.ApplyT(func(v ServiceVclLoggingHoneycomb) *string { return v.Placement }).(pulumi.StringPtrOutput)
 }
@@ -11342,7 +11342,7 @@ type ServiceVclLoggingHttp struct {
 	Method *string `pulumi:"method"`
 	// The unique name of the HTTPS logging endpoint. It is important to note that changing this attribute will delete and recreate the resource
 	Name string `pulumi:"name"`
-	// Where in the generated VCL the logging call should be placed (ignored).
+	// Where in the generated VCL the logging call should be placed
 	Placement *string `pulumi:"placement"`
 	// The maximum number of bytes sent in one request
 	RequestMaxBytes *int `pulumi:"requestMaxBytes"`
@@ -11392,7 +11392,7 @@ type ServiceVclLoggingHttpArgs struct {
 	Method pulumi.StringPtrInput `pulumi:"method"`
 	// The unique name of the HTTPS logging endpoint. It is important to note that changing this attribute will delete and recreate the resource
 	Name pulumi.StringInput `pulumi:"name"`
-	// Where in the generated VCL the logging call should be placed (ignored).
+	// Where in the generated VCL the logging call should be placed
 	Placement pulumi.StringPtrInput `pulumi:"placement"`
 	// The maximum number of bytes sent in one request
 	RequestMaxBytes pulumi.IntPtrInput `pulumi:"requestMaxBytes"`
@@ -11508,7 +11508,7 @@ func (o ServiceVclLoggingHttpOutput) Name() pulumi.StringOutput {
 	return o.ApplyT(func(v ServiceVclLoggingHttp) string { return v.Name }).(pulumi.StringOutput)
 }
 
-// Where in the generated VCL the logging call should be placed (ignored).
+// Where in the generated VCL the logging call should be placed
 func (o ServiceVclLoggingHttpOutput) Placement() pulumi.StringPtrOutput {
 	return o.ApplyT(func(v ServiceVclLoggingHttp) *string { return v.Placement }).(pulumi.StringPtrOutput)
 }
@@ -11590,7 +11590,7 @@ type ServiceVclLoggingKafka struct {
 	ParseLogKeyvals *bool `pulumi:"parseLogKeyvals"`
 	// SASL Pass
 	Password *string `pulumi:"password"`
-	// Where in the generated VCL the logging call should be placed (ignored).
+	// Where in the generated VCL the logging call should be placed.
 	Placement *string `pulumi:"placement"`
 	// Maximum size of log batch, if non-zero. Defaults to 0 for unbounded
 	RequestMaxBytes *int `pulumi:"requestMaxBytes"`
@@ -11642,7 +11642,7 @@ type ServiceVclLoggingKafkaArgs struct {
 	ParseLogKeyvals pulumi.BoolPtrInput `pulumi:"parseLogKeyvals"`
 	// SASL Pass
 	Password pulumi.StringPtrInput `pulumi:"password"`
-	// Where in the generated VCL the logging call should be placed (ignored).
+	// Where in the generated VCL the logging call should be placed.
 	Placement pulumi.StringPtrInput `pulumi:"placement"`
 	// Maximum size of log batch, if non-zero. Defaults to 0 for unbounded
 	RequestMaxBytes pulumi.IntPtrInput `pulumi:"requestMaxBytes"`
@@ -11757,7 +11757,7 @@ func (o ServiceVclLoggingKafkaOutput) Password() pulumi.StringPtrOutput {
 	return o.ApplyT(func(v ServiceVclLoggingKafka) *string { return v.Password }).(pulumi.StringPtrOutput)
 }
 
-// Where in the generated VCL the logging call should be placed (ignored).
+// Where in the generated VCL the logging call should be placed.
 func (o ServiceVclLoggingKafkaOutput) Placement() pulumi.StringPtrOutput {
 	return o.ApplyT(func(v ServiceVclLoggingKafka) *string { return v.Placement }).(pulumi.StringPtrOutput)
 }
@@ -11843,7 +11843,7 @@ type ServiceVclLoggingKinese struct {
 	IamRole *string `pulumi:"iamRole"`
 	// The unique name of the Kinesis logging endpoint. It is important to note that changing this attribute will delete and recreate the resource
 	Name string `pulumi:"name"`
-	// Where in the generated VCL the logging call should be placed (ignored).
+	// Where in the generated VCL the logging call should be placed. Can be `none` or `none`.
 	Placement *string `pulumi:"placement"`
 	// The AWS region the stream resides in. (Default: `us-east-1`)
 	Region *string `pulumi:"region"`
@@ -11877,7 +11877,7 @@ type ServiceVclLoggingKineseArgs struct {
 	IamRole pulumi.StringPtrInput `pulumi:"iamRole"`
 	// The unique name of the Kinesis logging endpoint. It is important to note that changing this attribute will delete and recreate the resource
 	Name pulumi.StringInput `pulumi:"name"`
-	// Where in the generated VCL the logging call should be placed (ignored).
+	// Where in the generated VCL the logging call should be placed. Can be `none` or `none`.
 	Placement pulumi.StringPtrInput `pulumi:"placement"`
 	// The AWS region the stream resides in. (Default: `us-east-1`)
 	Region pulumi.StringPtrInput `pulumi:"region"`
@@ -11965,7 +11965,7 @@ func (o ServiceVclLoggingKineseOutput) Name() pulumi.StringOutput {
 	return o.ApplyT(func(v ServiceVclLoggingKinese) string { return v.Name }).(pulumi.StringOutput)
 }
 
-// Where in the generated VCL the logging call should be placed (ignored).
+// Where in the generated VCL the logging call should be placed. Can be `none` or `none`.
 func (o ServiceVclLoggingKineseOutput) Placement() pulumi.StringPtrOutput {
 	return o.ApplyT(func(v ServiceVclLoggingKinese) *string { return v.Placement }).(pulumi.StringPtrOutput)
 }
@@ -12017,7 +12017,7 @@ type ServiceVclLoggingLogentry struct {
 	FormatVersion *int `pulumi:"formatVersion"`
 	// The unique name of the Logentries logging endpoint. It is important to note that changing this attribute will delete and recreate the resource
 	Name string `pulumi:"name"`
-	// Where in the generated VCL the logging call should be placed (ignored).
+	// Where in the generated VCL the logging call should be placed.
 	Placement *string `pulumi:"placement"`
 	// The port number configured in Logentries
 	Port *int `pulumi:"port"`
@@ -12047,7 +12047,7 @@ type ServiceVclLoggingLogentryArgs struct {
 	FormatVersion pulumi.IntPtrInput `pulumi:"formatVersion"`
 	// The unique name of the Logentries logging endpoint. It is important to note that changing this attribute will delete and recreate the resource
 	Name pulumi.StringInput `pulumi:"name"`
-	// Where in the generated VCL the logging call should be placed (ignored).
+	// Where in the generated VCL the logging call should be placed.
 	Placement pulumi.StringPtrInput `pulumi:"placement"`
 	// The port number configured in Logentries
 	Port pulumi.IntPtrInput `pulumi:"port"`
@@ -12125,7 +12125,7 @@ func (o ServiceVclLoggingLogentryOutput) Name() pulumi.StringOutput {
 	return o.ApplyT(func(v ServiceVclLoggingLogentry) string { return v.Name }).(pulumi.StringOutput)
 }
 
-// Where in the generated VCL the logging call should be placed (ignored).
+// Where in the generated VCL the logging call should be placed.
 func (o ServiceVclLoggingLogentryOutput) Placement() pulumi.StringPtrOutput {
 	return o.ApplyT(func(v ServiceVclLoggingLogentry) *string { return v.Placement }).(pulumi.StringPtrOutput)
 }
@@ -12177,7 +12177,7 @@ type ServiceVclLoggingLoggly struct {
 	FormatVersion *int `pulumi:"formatVersion"`
 	// The unique name of the Loggly logging endpoint. It is important to note that changing this attribute will delete and recreate the resource
 	Name string `pulumi:"name"`
-	// Where in the generated VCL the logging call should be placed (ignored).
+	// Where in the generated VCL the logging call should be placed. Can be `none` or `none`.
 	Placement *string `pulumi:"placement"`
 	// The name of an existing condition in the configured endpoint, or leave blank to always execute.
 	ResponseCondition *string `pulumi:"responseCondition"`
@@ -12203,7 +12203,7 @@ type ServiceVclLoggingLogglyArgs struct {
 	FormatVersion pulumi.IntPtrInput `pulumi:"formatVersion"`
 	// The unique name of the Loggly logging endpoint. It is important to note that changing this attribute will delete and recreate the resource
 	Name pulumi.StringInput `pulumi:"name"`
-	// Where in the generated VCL the logging call should be placed (ignored).
+	// Where in the generated VCL the logging call should be placed. Can be `none` or `none`.
 	Placement pulumi.StringPtrInput `pulumi:"placement"`
 	// The name of an existing condition in the configured endpoint, or leave blank to always execute.
 	ResponseCondition pulumi.StringPtrInput `pulumi:"responseCondition"`
@@ -12277,7 +12277,7 @@ func (o ServiceVclLoggingLogglyOutput) Name() pulumi.StringOutput {
 	return o.ApplyT(func(v ServiceVclLoggingLoggly) string { return v.Name }).(pulumi.StringOutput)
 }
 
-// Where in the generated VCL the logging call should be placed (ignored).
+// Where in the generated VCL the logging call should be placed. Can be `none` or `none`.
 func (o ServiceVclLoggingLogglyOutput) Placement() pulumi.StringPtrOutput {
 	return o.ApplyT(func(v ServiceVclLoggingLoggly) *string { return v.Placement }).(pulumi.StringPtrOutput)
 }
@@ -12319,7 +12319,7 @@ type ServiceVclLoggingLogshuttle struct {
 	FormatVersion *int `pulumi:"formatVersion"`
 	// The unique name of the Log Shuttle logging endpoint. It is important to note that changing this attribute will delete and recreate the resource
 	Name string `pulumi:"name"`
-	// Where in the generated VCL the logging call should be placed (ignored).
+	// Where in the generated VCL the logging call should be placed. Can be `none` or `none`.
 	Placement *string `pulumi:"placement"`
 	// The name of an existing condition in the configured endpoint, or leave blank to always execute.
 	ResponseCondition *string `pulumi:"responseCondition"`
@@ -12347,7 +12347,7 @@ type ServiceVclLoggingLogshuttleArgs struct {
 	FormatVersion pulumi.IntPtrInput `pulumi:"formatVersion"`
 	// The unique name of the Log Shuttle logging endpoint. It is important to note that changing this attribute will delete and recreate the resource
 	Name pulumi.StringInput `pulumi:"name"`
-	// Where in the generated VCL the logging call should be placed (ignored).
+	// Where in the generated VCL the logging call should be placed. Can be `none` or `none`.
 	Placement pulumi.StringPtrInput `pulumi:"placement"`
 	// The name of an existing condition in the configured endpoint, or leave blank to always execute.
 	ResponseCondition pulumi.StringPtrInput `pulumi:"responseCondition"`
@@ -12423,7 +12423,7 @@ func (o ServiceVclLoggingLogshuttleOutput) Name() pulumi.StringOutput {
 	return o.ApplyT(func(v ServiceVclLoggingLogshuttle) string { return v.Name }).(pulumi.StringOutput)
 }
 
-// Where in the generated VCL the logging call should be placed (ignored).
+// Where in the generated VCL the logging call should be placed. Can be `none` or `none`.
 func (o ServiceVclLoggingLogshuttleOutput) Placement() pulumi.StringPtrOutput {
 	return o.ApplyT(func(v ServiceVclLoggingLogshuttle) *string { return v.Placement }).(pulumi.StringPtrOutput)
 }
@@ -12470,7 +12470,7 @@ type ServiceVclLoggingNewrelic struct {
 	FormatVersion *int `pulumi:"formatVersion"`
 	// The unique name of the New Relic logging endpoint. It is important to note that changing this attribute will delete and recreate the resource
 	Name string `pulumi:"name"`
-	// Where in the generated VCL the logging call should be placed (ignored).
+	// Where in the generated VCL the logging call should be placed.
 	Placement *string `pulumi:"placement"`
 	// The region that log data will be sent to. Default: `US`
 	Region *string `pulumi:"region"`
@@ -12498,7 +12498,7 @@ type ServiceVclLoggingNewrelicArgs struct {
 	FormatVersion pulumi.IntPtrInput `pulumi:"formatVersion"`
 	// The unique name of the New Relic logging endpoint. It is important to note that changing this attribute will delete and recreate the resource
 	Name pulumi.StringInput `pulumi:"name"`
-	// Where in the generated VCL the logging call should be placed (ignored).
+	// Where in the generated VCL the logging call should be placed.
 	Placement pulumi.StringPtrInput `pulumi:"placement"`
 	// The region that log data will be sent to. Default: `US`
 	Region pulumi.StringPtrInput `pulumi:"region"`
@@ -12574,7 +12574,7 @@ func (o ServiceVclLoggingNewrelicOutput) Name() pulumi.StringOutput {
 	return o.ApplyT(func(v ServiceVclLoggingNewrelic) string { return v.Name }).(pulumi.StringOutput)
 }
 
-// Where in the generated VCL the logging call should be placed (ignored).
+// Where in the generated VCL the logging call should be placed.
 func (o ServiceVclLoggingNewrelicOutput) Placement() pulumi.StringPtrOutput {
 	return o.ApplyT(func(v ServiceVclLoggingNewrelic) *string { return v.Placement }).(pulumi.StringPtrOutput)
 }
@@ -12621,7 +12621,7 @@ type ServiceVclLoggingNewrelicotlp struct {
 	FormatVersion *int `pulumi:"formatVersion"`
 	// The unique name of the New Relic OTLP logging endpoint. It is important to note that changing this attribute will delete and recreate the resource
 	Name string `pulumi:"name"`
-	// Where in the generated VCL the logging call should be placed (ignored).
+	// Where in the generated VCL the logging call should be placed.
 	Placement *string `pulumi:"placement"`
 	// The region that log data will be sent to. Default: `US`
 	Region *string `pulumi:"region"`
@@ -12651,7 +12651,7 @@ type ServiceVclLoggingNewrelicotlpArgs struct {
 	FormatVersion pulumi.IntPtrInput `pulumi:"formatVersion"`
 	// The unique name of the New Relic OTLP logging endpoint. It is important to note that changing this attribute will delete and recreate the resource
 	Name pulumi.StringInput `pulumi:"name"`
-	// Where in the generated VCL the logging call should be placed (ignored).
+	// Where in the generated VCL the logging call should be placed.
 	Placement pulumi.StringPtrInput `pulumi:"placement"`
 	// The region that log data will be sent to. Default: `US`
 	Region pulumi.StringPtrInput `pulumi:"region"`
@@ -12729,7 +12729,7 @@ func (o ServiceVclLoggingNewrelicotlpOutput) Name() pulumi.StringOutput {
 	return o.ApplyT(func(v ServiceVclLoggingNewrelicotlp) string { return v.Name }).(pulumi.StringOutput)
 }
 
-// Where in the generated VCL the logging call should be placed (ignored).
+// Where in the generated VCL the logging call should be placed.
 func (o ServiceVclLoggingNewrelicotlpOutput) Placement() pulumi.StringPtrOutput {
 	return o.ApplyT(func(v ServiceVclLoggingNewrelicotlp) *string { return v.Placement }).(pulumi.StringPtrOutput)
 }
@@ -12795,7 +12795,7 @@ type ServiceVclLoggingOpenstack struct {
 	Path *string `pulumi:"path"`
 	// How frequently the logs should be transferred, in seconds. Default `3600`
 	Period *int `pulumi:"period"`
-	// Where in the generated VCL the logging call should be placed (ignored).
+	// Where in the generated VCL the logging call should be placed. Can be `none` or `none`.
 	Placement *string `pulumi:"placement"`
 	// A PGP public key that Fastly will use to encrypt your log files before writing them to disk
 	PublicKey *string `pulumi:"publicKey"`
@@ -12841,7 +12841,7 @@ type ServiceVclLoggingOpenstackArgs struct {
 	Path pulumi.StringPtrInput `pulumi:"path"`
 	// How frequently the logs should be transferred, in seconds. Default `3600`
 	Period pulumi.IntPtrInput `pulumi:"period"`
-	// Where in the generated VCL the logging call should be placed (ignored).
+	// Where in the generated VCL the logging call should be placed. Can be `none` or `none`.
 	Placement pulumi.StringPtrInput `pulumi:"placement"`
 	// A PGP public key that Fastly will use to encrypt your log files before writing them to disk
 	PublicKey pulumi.StringPtrInput `pulumi:"publicKey"`
@@ -12956,7 +12956,7 @@ func (o ServiceVclLoggingOpenstackOutput) Period() pulumi.IntPtrOutput {
 	return o.ApplyT(func(v ServiceVclLoggingOpenstack) *int { return v.Period }).(pulumi.IntPtrOutput)
 }
 
-// Where in the generated VCL the logging call should be placed (ignored).
+// Where in the generated VCL the logging call should be placed. Can be `none` or `none`.
 func (o ServiceVclLoggingOpenstackOutput) Placement() pulumi.StringPtrOutput {
 	return o.ApplyT(func(v ServiceVclLoggingOpenstack) *string { return v.Placement }).(pulumi.StringPtrOutput)
 }
@@ -13015,7 +13015,7 @@ type ServiceVclLoggingPapertrail struct {
 	FormatVersion *int `pulumi:"formatVersion"`
 	// A unique name to identify this Papertrail endpoint. It is important to note that changing this attribute will delete and recreate the resource
 	Name string `pulumi:"name"`
-	// Where in the generated VCL the logging call should be placed. Ignored, but endpoints with `formatVersion` of 2 are placed in `vclLog` and those with `formatVersion` of 1 are placed in `vclDeliver`
+	// Where in the generated VCL the logging call should be placed. If not set, endpoints with `formatVersion` of 2 are placed in `vclLog` and those with `formatVersion` of 1 are placed in `vclDeliver`
 	Placement *string `pulumi:"placement"`
 	// The port associated with the address where the Papertrail endpoint can be accessed
 	Port int `pulumi:"port"`
@@ -13043,7 +13043,7 @@ type ServiceVclLoggingPapertrailArgs struct {
 	FormatVersion pulumi.IntPtrInput `pulumi:"formatVersion"`
 	// A unique name to identify this Papertrail endpoint. It is important to note that changing this attribute will delete and recreate the resource
 	Name pulumi.StringInput `pulumi:"name"`
-	// Where in the generated VCL the logging call should be placed. Ignored, but endpoints with `formatVersion` of 2 are placed in `vclLog` and those with `formatVersion` of 1 are placed in `vclDeliver`
+	// Where in the generated VCL the logging call should be placed. If not set, endpoints with `formatVersion` of 2 are placed in `vclLog` and those with `formatVersion` of 1 are placed in `vclDeliver`
 	Placement pulumi.StringPtrInput `pulumi:"placement"`
 	// The port associated with the address where the Papertrail endpoint can be accessed
 	Port pulumi.IntInput `pulumi:"port"`
@@ -13122,7 +13122,7 @@ func (o ServiceVclLoggingPapertrailOutput) Name() pulumi.StringOutput {
 	return o.ApplyT(func(v ServiceVclLoggingPapertrail) string { return v.Name }).(pulumi.StringOutput)
 }
 
-// Where in the generated VCL the logging call should be placed. Ignored, but endpoints with `formatVersion` of 2 are placed in `vclLog` and those with `formatVersion` of 1 are placed in `vclDeliver`
+// Where in the generated VCL the logging call should be placed. If not set, endpoints with `formatVersion` of 2 are placed in `vclLog` and those with `formatVersion` of 1 are placed in `vclDeliver`
 func (o ServiceVclLoggingPapertrailOutput) Placement() pulumi.StringPtrOutput {
 	return o.ApplyT(func(v ServiceVclLoggingPapertrail) *string { return v.Placement }).(pulumi.StringPtrOutput)
 }
@@ -13182,7 +13182,7 @@ type ServiceVclLoggingS3 struct {
 	Path *string `pulumi:"path"`
 	// How frequently the logs should be transferred, in seconds. Default `3600`
 	Period *int `pulumi:"period"`
-	// Where in the generated VCL the logging call should be placed (ignored).
+	// Where in the generated VCL the logging call should be placed.
 	Placement *string `pulumi:"placement"`
 	// A PGP public key that Fastly will use to encrypt your log files before writing them to disk
 	PublicKey *string `pulumi:"publicKey"`
@@ -13240,7 +13240,7 @@ type ServiceVclLoggingS3Args struct {
 	Path pulumi.StringPtrInput `pulumi:"path"`
 	// How frequently the logs should be transferred, in seconds. Default `3600`
 	Period pulumi.IntPtrInput `pulumi:"period"`
-	// Where in the generated VCL the logging call should be placed (ignored).
+	// Where in the generated VCL the logging call should be placed.
 	Placement pulumi.StringPtrInput `pulumi:"placement"`
 	// A PGP public key that Fastly will use to encrypt your log files before writing them to disk
 	PublicKey pulumi.StringPtrInput `pulumi:"publicKey"`
@@ -13373,7 +13373,7 @@ func (o ServiceVclLoggingS3Output) Period() pulumi.IntPtrOutput {
 	return o.ApplyT(func(v ServiceVclLoggingS3) *int { return v.Period }).(pulumi.IntPtrOutput)
 }
 
-// Where in the generated VCL the logging call should be placed (ignored).
+// Where in the generated VCL the logging call should be placed.
 func (o ServiceVclLoggingS3Output) Placement() pulumi.StringPtrOutput {
 	return o.ApplyT(func(v ServiceVclLoggingS3) *string { return v.Placement }).(pulumi.StringPtrOutput)
 }
@@ -13450,7 +13450,7 @@ type ServiceVclLoggingScalyr struct {
 	FormatVersion *int `pulumi:"formatVersion"`
 	// The unique name of the Scalyr logging endpoint. It is important to note that changing this attribute will delete and recreate the resource
 	Name string `pulumi:"name"`
-	// Where in the generated VCL the logging call should be placed (ignored).
+	// Where in the generated VCL the logging call should be placed.
 	Placement *string `pulumi:"placement"`
 	// The name of the logfile field sent to Scalyr
 	ProjectId *string `pulumi:"projectId"`
@@ -13480,7 +13480,7 @@ type ServiceVclLoggingScalyrArgs struct {
 	FormatVersion pulumi.IntPtrInput `pulumi:"formatVersion"`
 	// The unique name of the Scalyr logging endpoint. It is important to note that changing this attribute will delete and recreate the resource
 	Name pulumi.StringInput `pulumi:"name"`
-	// Where in the generated VCL the logging call should be placed (ignored).
+	// Where in the generated VCL the logging call should be placed.
 	Placement pulumi.StringPtrInput `pulumi:"placement"`
 	// The name of the logfile field sent to Scalyr
 	ProjectId pulumi.StringPtrInput `pulumi:"projectId"`
@@ -13558,7 +13558,7 @@ func (o ServiceVclLoggingScalyrOutput) Name() pulumi.StringOutput {
 	return o.ApplyT(func(v ServiceVclLoggingScalyr) string { return v.Name }).(pulumi.StringOutput)
 }
 
-// Where in the generated VCL the logging call should be placed (ignored).
+// Where in the generated VCL the logging call should be placed.
 func (o ServiceVclLoggingScalyrOutput) Placement() pulumi.StringPtrOutput {
 	return o.ApplyT(func(v ServiceVclLoggingScalyr) *string { return v.Placement }).(pulumi.StringPtrOutput)
 }
@@ -13624,7 +13624,7 @@ type ServiceVclLoggingSftp struct {
 	Path string `pulumi:"path"`
 	// How frequently log files are finalized so they can be available for reading (in seconds, default `3600`)
 	Period *int `pulumi:"period"`
-	// Where in the generated VCL the logging call should be placed (ignored).
+	// Where in the generated VCL the logging call should be placed.
 	Placement *string `pulumi:"placement"`
 	// The port the SFTP service listens on. (Default: `22`)
 	Port *int `pulumi:"port"`
@@ -13674,7 +13674,7 @@ type ServiceVclLoggingSftpArgs struct {
 	Path pulumi.StringInput `pulumi:"path"`
 	// How frequently log files are finalized so they can be available for reading (in seconds, default `3600`)
 	Period pulumi.IntPtrInput `pulumi:"period"`
-	// Where in the generated VCL the logging call should be placed (ignored).
+	// Where in the generated VCL the logging call should be placed.
 	Placement pulumi.StringPtrInput `pulumi:"placement"`
 	// The port the SFTP service listens on. (Default: `22`)
 	Port pulumi.IntPtrInput `pulumi:"port"`
@@ -13793,7 +13793,7 @@ func (o ServiceVclLoggingSftpOutput) Period() pulumi.IntPtrOutput {
 	return o.ApplyT(func(v ServiceVclLoggingSftp) *int { return v.Period }).(pulumi.IntPtrOutput)
 }
 
-// Where in the generated VCL the logging call should be placed (ignored).
+// Where in the generated VCL the logging call should be placed.
 func (o ServiceVclLoggingSftpOutput) Placement() pulumi.StringPtrOutput {
 	return o.ApplyT(func(v ServiceVclLoggingSftp) *string { return v.Placement }).(pulumi.StringPtrOutput)
 }
@@ -13860,7 +13860,7 @@ type ServiceVclLoggingSplunk struct {
 	FormatVersion *int `pulumi:"formatVersion"`
 	// A unique name to identify the Splunk endpoint. It is important to note that changing this attribute will delete and recreate the resource
 	Name string `pulumi:"name"`
-	// Where in the generated VCL the logging call should be placed (ignored).
+	// Where in the generated VCL the logging call should be placed
 	Placement *string `pulumi:"placement"`
 	// The name of the condition to apply
 	ResponseCondition *string `pulumi:"responseCondition"`
@@ -13898,7 +13898,7 @@ type ServiceVclLoggingSplunkArgs struct {
 	FormatVersion pulumi.IntPtrInput `pulumi:"formatVersion"`
 	// A unique name to identify the Splunk endpoint. It is important to note that changing this attribute will delete and recreate the resource
 	Name pulumi.StringInput `pulumi:"name"`
-	// Where in the generated VCL the logging call should be placed (ignored).
+	// Where in the generated VCL the logging call should be placed
 	Placement pulumi.StringPtrInput `pulumi:"placement"`
 	// The name of the condition to apply
 	ResponseCondition pulumi.StringPtrInput `pulumi:"responseCondition"`
@@ -13984,7 +13984,7 @@ func (o ServiceVclLoggingSplunkOutput) Name() pulumi.StringOutput {
 	return o.ApplyT(func(v ServiceVclLoggingSplunk) string { return v.Name }).(pulumi.StringOutput)
 }
 
-// Where in the generated VCL the logging call should be placed (ignored).
+// Where in the generated VCL the logging call should be placed
 func (o ServiceVclLoggingSplunkOutput) Placement() pulumi.StringPtrOutput {
 	return o.ApplyT(func(v ServiceVclLoggingSplunk) *string { return v.Placement }).(pulumi.StringPtrOutput)
 }
@@ -14058,7 +14058,7 @@ type ServiceVclLoggingSumologic struct {
 	MessageType *string `pulumi:"messageType"`
 	// A unique name to identify this Sumologic endpoint. It is important to note that changing this attribute will delete and recreate the resource
 	Name string `pulumi:"name"`
-	// Where in the generated VCL the logging call should be placed (ignored).
+	// Where in the generated VCL the logging call should be placed.
 	Placement *string `pulumi:"placement"`
 	// Name of blockAttributes condition to apply this logging.
 	ResponseCondition *string `pulumi:"responseCondition"`
@@ -14086,7 +14086,7 @@ type ServiceVclLoggingSumologicArgs struct {
 	MessageType pulumi.StringPtrInput `pulumi:"messageType"`
 	// A unique name to identify this Sumologic endpoint. It is important to note that changing this attribute will delete and recreate the resource
 	Name pulumi.StringInput `pulumi:"name"`
-	// Where in the generated VCL the logging call should be placed (ignored).
+	// Where in the generated VCL the logging call should be placed.
 	Placement pulumi.StringPtrInput `pulumi:"placement"`
 	// Name of blockAttributes condition to apply this logging.
 	ResponseCondition pulumi.StringPtrInput `pulumi:"responseCondition"`
@@ -14165,7 +14165,7 @@ func (o ServiceVclLoggingSumologicOutput) Name() pulumi.StringOutput {
 	return o.ApplyT(func(v ServiceVclLoggingSumologic) string { return v.Name }).(pulumi.StringOutput)
 }
 
-// Where in the generated VCL the logging call should be placed (ignored).
+// Where in the generated VCL the logging call should be placed.
 func (o ServiceVclLoggingSumologicOutput) Placement() pulumi.StringPtrOutput {
 	return o.ApplyT(func(v ServiceVclLoggingSumologic) *string { return v.Placement }).(pulumi.StringPtrOutput)
 }
@@ -14211,7 +14211,7 @@ type ServiceVclLoggingSyslog struct {
 	MessageType *string `pulumi:"messageType"`
 	// A unique name to identify this Syslog endpoint. It is important to note that changing this attribute will delete and recreate the resource
 	Name string `pulumi:"name"`
-	// Where in the generated VCL the logging call should be placed (ignored).
+	// Where in the generated VCL the logging call should be placed.
 	Placement *string `pulumi:"placement"`
 	// The port associated with the address where the Syslog endpoint can be accessed. Default `514`
 	Port *int `pulumi:"port"`
@@ -14253,7 +14253,7 @@ type ServiceVclLoggingSyslogArgs struct {
 	MessageType pulumi.StringPtrInput `pulumi:"messageType"`
 	// A unique name to identify this Syslog endpoint. It is important to note that changing this attribute will delete and recreate the resource
 	Name pulumi.StringInput `pulumi:"name"`
-	// Where in the generated VCL the logging call should be placed (ignored).
+	// Where in the generated VCL the logging call should be placed.
 	Placement pulumi.StringPtrInput `pulumi:"placement"`
 	// The port associated with the address where the Syslog endpoint can be accessed. Default `514`
 	Port pulumi.IntPtrInput `pulumi:"port"`
@@ -14349,7 +14349,7 @@ func (o ServiceVclLoggingSyslogOutput) Name() pulumi.StringOutput {
 	return o.ApplyT(func(v ServiceVclLoggingSyslog) string { return v.Name }).(pulumi.StringOutput)
 }
 
-// Where in the generated VCL the logging call should be placed (ignored).
+// Where in the generated VCL the logging call should be placed.
 func (o ServiceVclLoggingSyslogOutput) Placement() pulumi.StringPtrOutput {
 	return o.ApplyT(func(v ServiceVclLoggingSyslog) *string { return v.Placement }).(pulumi.StringPtrOutput)
 }

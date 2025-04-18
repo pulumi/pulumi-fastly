@@ -78,14 +78,14 @@ public final class ServiceVclLoggingPapertrailArgs extends com.pulumi.resources.
     }
 
     /**
-     * Where in the generated VCL the logging call should be placed. Ignored, but endpoints with `format_version` of 2 are placed in `vcl_log` and those with `format_version` of 1 are placed in `vcl_deliver`
+     * Where in the generated VCL the logging call should be placed. If not set, endpoints with `format_version` of 2 are placed in `vcl_log` and those with `format_version` of 1 are placed in `vcl_deliver`
      * 
      */
     @Import(name="placement")
     private @Nullable Output<String> placement;
 
     /**
-     * @return Where in the generated VCL the logging call should be placed. Ignored, but endpoints with `format_version` of 2 are placed in `vcl_log` and those with `format_version` of 1 are placed in `vcl_deliver`
+     * @return Where in the generated VCL the logging call should be placed. If not set, endpoints with `format_version` of 2 are placed in `vcl_log` and those with `format_version` of 1 are placed in `vcl_deliver`
      * 
      */
     public Optional<Output<String>> placement() {
@@ -237,7 +237,7 @@ public final class ServiceVclLoggingPapertrailArgs extends com.pulumi.resources.
         }
 
         /**
-         * @param placement Where in the generated VCL the logging call should be placed. Ignored, but endpoints with `format_version` of 2 are placed in `vcl_log` and those with `format_version` of 1 are placed in `vcl_deliver`
+         * @param placement Where in the generated VCL the logging call should be placed. If not set, endpoints with `format_version` of 2 are placed in `vcl_log` and those with `format_version` of 1 are placed in `vcl_deliver`
          * 
          * @return builder
          * 
@@ -248,7 +248,7 @@ public final class ServiceVclLoggingPapertrailArgs extends com.pulumi.resources.
         }
 
         /**
-         * @param placement Where in the generated VCL the logging call should be placed. Ignored, but endpoints with `format_version` of 2 are placed in `vcl_log` and those with `format_version` of 1 are placed in `vcl_deliver`
+         * @param placement Where in the generated VCL the logging call should be placed. If not set, endpoints with `format_version` of 2 are placed in `vcl_log` and those with `format_version` of 1 are placed in `vcl_deliver`
          * 
          * @return builder
          * 

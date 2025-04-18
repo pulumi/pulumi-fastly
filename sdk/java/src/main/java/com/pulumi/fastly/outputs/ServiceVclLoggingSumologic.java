@@ -34,7 +34,7 @@ public final class ServiceVclLoggingSumologic {
      */
     private String name;
     /**
-     * @return Where in the generated VCL the logging call should be placed (ignored).
+     * @return Where in the generated VCL the logging call should be placed.
      * 
      */
     private @Nullable String placement;
@@ -79,7 +79,7 @@ public final class ServiceVclLoggingSumologic {
         return this.name;
     }
     /**
-     * @return Where in the generated VCL the logging call should be placed (ignored).
+     * @return Where in the generated VCL the logging call should be placed.
      * 
      */
     public Optional<String> placement() {

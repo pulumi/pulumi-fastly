@@ -29,7 +29,7 @@ public final class ServiceVclLoggingHerokus {
      */
     private String name;
     /**
-     * @return Where in the generated VCL the logging call should be placed (ignored).
+     * @return Where in the generated VCL the logging call should be placed. Can be `none` or `none`.
      * 
      */
     private @Nullable String placement;
@@ -72,7 +72,7 @@ public final class ServiceVclLoggingHerokus {
         return this.name;
     }
     /**
-     * @return Where in the generated VCL the logging call should be placed (ignored).
+     * @return Where in the generated VCL the logging call should be placed. Can be `none` or `none`.
      * 
      */
     public Optional<String> placement() {

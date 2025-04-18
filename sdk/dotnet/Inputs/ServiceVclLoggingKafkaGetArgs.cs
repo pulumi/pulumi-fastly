@@ -71,7 +71,7 @@ namespace Pulumi.Fastly.Inputs
         }
 
         /// <summary>
-        /// Where in the generated VCL the logging call should be placed (ignored).
+        /// Where in the generated VCL the logging call should be placed.
         /// </summary>
         [Input("placement")]
         public Input<string>? Placement { get; set; }

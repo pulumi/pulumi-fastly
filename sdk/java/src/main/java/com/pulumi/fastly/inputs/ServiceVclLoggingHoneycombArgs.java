@@ -78,14 +78,14 @@ public final class ServiceVclLoggingHoneycombArgs extends com.pulumi.resources.R
     }
 
     /**
-     * Where in the generated VCL the logging call should be placed (ignored).
+     * Where in the generated VCL the logging call should be placed. Can be `none` or `none`.
      * 
      */
     @Import(name="placement")
     private @Nullable Output<String> placement;
 
     /**
-     * @return Where in the generated VCL the logging call should be placed (ignored).
+     * @return Where in the generated VCL the logging call should be placed. Can be `none` or `none`.
      * 
      */
     public Optional<Output<String>> placement() {
@@ -237,7 +237,7 @@ public final class ServiceVclLoggingHoneycombArgs extends com.pulumi.resources.R
         }
 
         /**
-         * @param placement Where in the generated VCL the logging call should be placed (ignored).
+         * @param placement Where in the generated VCL the logging call should be placed. Can be `none` or `none`.
          * 
          * @return builder
          * 
@@ -248,7 +248,7 @@ public final class ServiceVclLoggingHoneycombArgs extends com.pulumi.resources.R
         }
 
         /**
-         * @param placement Where in the generated VCL the logging call should be placed (ignored).
+         * @param placement Where in the generated VCL the logging call should be placed. Can be `none` or `none`.
          * 
          * @return builder
          * 

@@ -1909,7 +1909,7 @@ export interface ServiceVclLoggingBigquery {
      */
     name: string;
     /**
-     * Where in the generated VCL the logging call should be placed (ignored).
+     * Where in the generated VCL the logging call should be placed.
      */
     placement?: string;
     /**
@@ -1980,7 +1980,7 @@ export interface ServiceVclLoggingBlobstorage {
      */
     period?: number;
     /**
-     * Where in the generated VCL the logging call should be placed (ignored).
+     * Where in the generated VCL the logging call should be placed
      */
     placement?: string;
     /**
@@ -2043,7 +2043,7 @@ export interface ServiceVclLoggingCloudfile {
      */
     period?: number;
     /**
-     * Where in the generated VCL the logging call should be placed (ignored).
+     * Where in the generated VCL the logging call should be placed. Can be `none` or `none`.
      */
     placement?: string;
     /**
@@ -2082,7 +2082,7 @@ export interface ServiceVclLoggingDatadog {
      */
     name: string;
     /**
-     * Where in the generated VCL the logging call should be placed (ignored).
+     * Where in the generated VCL the logging call should be placed.
      */
     placement?: string;
     /**
@@ -2145,7 +2145,7 @@ export interface ServiceVclLoggingDigitalocean {
      */
     period?: number;
     /**
-     * Where in the generated VCL the logging call should be placed (ignored).
+     * Where in the generated VCL the logging call should be placed. Can be `none` or `none`.
      */
     placement?: string;
     /**
@@ -2192,7 +2192,7 @@ export interface ServiceVclLoggingElasticsearch {
      */
     pipeline?: string;
     /**
-     * Where in the generated VCL the logging call should be placed (ignored).
+     * Where in the generated VCL the logging call should be placed.
      */
     placement?: string;
     /**
@@ -2275,7 +2275,7 @@ export interface ServiceVclLoggingFtp {
      */
     period?: number;
     /**
-     * Where in the generated VCL the logging call should be placed (ignored).
+     * Where in the generated VCL the logging call should be placed.
      */
     placement?: string;
     /**
@@ -2342,7 +2342,7 @@ export interface ServiceVclLoggingGc {
      */
     period?: number;
     /**
-     * Where in the generated VCL the logging call should be placed (ignored).
+     * Where in the generated VCL the logging call should be placed.
      */
     placement?: string;
     /**
@@ -2385,7 +2385,7 @@ export interface ServiceVclLoggingGooglepubsub {
      */
     name: string;
     /**
-     * Where in the generated VCL the logging call should be placed (ignored).
+     * Where in the generated VCL the logging call should be placed.
      */
     placement?: string;
     /**
@@ -2428,7 +2428,7 @@ export interface ServiceVclLoggingGrafanacloudlog {
      */
     name: string;
     /**
-     * Where in the generated VCL the logging call should be placed (ignored).
+     * Where in the generated VCL the logging call should be placed.
      */
     placement?: string;
     /**
@@ -2463,7 +2463,7 @@ export interface ServiceVclLoggingHerokus {
      */
     name: string;
     /**
-     * Where in the generated VCL the logging call should be placed (ignored).
+     * Where in the generated VCL the logging call should be placed. Can be `none` or `none`.
      */
     placement?: string;
     /**
@@ -2498,7 +2498,7 @@ export interface ServiceVclLoggingHoneycomb {
      */
     name: string;
     /**
-     * Where in the generated VCL the logging call should be placed (ignored).
+     * Where in the generated VCL the logging call should be placed. Can be `none` or `none`.
      */
     placement?: string;
     /**
@@ -2549,7 +2549,7 @@ export interface ServiceVclLoggingHttp {
      */
     name: string;
     /**
-     * Where in the generated VCL the logging call should be placed (ignored).
+     * Where in the generated VCL the logging call should be placed
      */
     placement?: string;
     /**
@@ -2620,7 +2620,7 @@ export interface ServiceVclLoggingKafka {
      */
     password?: string;
     /**
-     * Where in the generated VCL the logging call should be placed (ignored).
+     * Where in the generated VCL the logging call should be placed.
      */
     placement?: string;
     /**
@@ -2687,7 +2687,7 @@ export interface ServiceVclLoggingKinese {
      */
     name: string;
     /**
-     * Where in the generated VCL the logging call should be placed (ignored).
+     * Where in the generated VCL the logging call should be placed. Can be `none` or `none`.
      */
     placement?: string;
     /**
@@ -2722,7 +2722,7 @@ export interface ServiceVclLoggingLogentry {
      */
     name: string;
     /**
-     * Where in the generated VCL the logging call should be placed (ignored).
+     * Where in the generated VCL the logging call should be placed.
      */
     placement?: string;
     /**
@@ -2757,7 +2757,7 @@ export interface ServiceVclLoggingLoggly {
      */
     name: string;
     /**
-     * Where in the generated VCL the logging call should be placed (ignored).
+     * Where in the generated VCL the logging call should be placed. Can be `none` or `none`.
      */
     placement?: string;
     /**
@@ -2784,7 +2784,7 @@ export interface ServiceVclLoggingLogshuttle {
      */
     name: string;
     /**
-     * Where in the generated VCL the logging call should be placed (ignored).
+     * Where in the generated VCL the logging call should be placed. Can be `none` or `none`.
      */
     placement?: string;
     /**
@@ -2815,7 +2815,7 @@ export interface ServiceVclLoggingNewrelic {
      */
     name: string;
     /**
-     * Where in the generated VCL the logging call should be placed (ignored).
+     * Where in the generated VCL the logging call should be placed.
      */
     placement?: string;
     /**
@@ -2846,7 +2846,7 @@ export interface ServiceVclLoggingNewrelicotlp {
      */
     name: string;
     /**
-     * Where in the generated VCL the logging call should be placed (ignored).
+     * Where in the generated VCL the logging call should be placed.
      */
     placement?: string;
     /**
@@ -2909,7 +2909,7 @@ export interface ServiceVclLoggingOpenstack {
      */
     period?: number;
     /**
-     * Where in the generated VCL the logging call should be placed (ignored).
+     * Where in the generated VCL the logging call should be placed. Can be `none` or `none`.
      */
     placement?: string;
     /**
@@ -2952,7 +2952,7 @@ export interface ServiceVclLoggingPapertrail {
      */
     name: string;
     /**
-     * Where in the generated VCL the logging call should be placed. Ignored, but endpoints with `formatVersion` of 2 are placed in `vclLog` and those with `formatVersion` of 1 are placed in `vclDeliver`
+     * Where in the generated VCL the logging call should be placed. If not set, endpoints with `formatVersion` of 2 are placed in `vclLog` and those with `formatVersion` of 1 are placed in `vclDeliver`
      */
     placement?: string;
     /**
@@ -3015,7 +3015,7 @@ export interface ServiceVclLoggingS3 {
      */
     period?: number;
     /**
-     * Where in the generated VCL the logging call should be placed (ignored).
+     * Where in the generated VCL the logging call should be placed.
      */
     placement?: string;
     /**
@@ -3070,7 +3070,7 @@ export interface ServiceVclLoggingScalyr {
      */
     name: string;
     /**
-     * Where in the generated VCL the logging call should be placed (ignored).
+     * Where in the generated VCL the logging call should be placed.
      */
     placement?: string;
     /**
@@ -3133,7 +3133,7 @@ export interface ServiceVclLoggingSftp {
      */
     period?: number;
     /**
-     * Where in the generated VCL the logging call should be placed (ignored).
+     * Where in the generated VCL the logging call should be placed.
      */
     placement?: string;
     /**
@@ -3180,7 +3180,7 @@ export interface ServiceVclLoggingSplunk {
      */
     name: string;
     /**
-     * Where in the generated VCL the logging call should be placed (ignored).
+     * Where in the generated VCL the logging call should be placed
      */
     placement?: string;
     /**
@@ -3235,7 +3235,7 @@ export interface ServiceVclLoggingSumologic {
      */
     name: string;
     /**
-     * Where in the generated VCL the logging call should be placed (ignored).
+     * Where in the generated VCL the logging call should be placed.
      */
     placement?: string;
     /**
@@ -3270,7 +3270,7 @@ export interface ServiceVclLoggingSyslog {
      */
     name: string;
     /**
-     * Where in the generated VCL the logging call should be placed (ignored).
+     * Where in the generated VCL the logging call should be placed.
      */
     placement?: string;
     /**

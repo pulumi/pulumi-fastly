@@ -34,7 +34,7 @@ public final class ServiceVclLoggingPapertrail {
      */
     private String name;
     /**
-     * @return Where in the generated VCL the logging call should be placed. Ignored, but endpoints with `format_version` of 2 are placed in `vcl_log` and those with `format_version` of 1 are placed in `vcl_deliver`
+     * @return Where in the generated VCL the logging call should be placed. If not set, endpoints with `format_version` of 2 are placed in `vcl_log` and those with `format_version` of 1 are placed in `vcl_deliver`
      * 
      */
     private @Nullable String placement;
@@ -79,7 +79,7 @@ public final class ServiceVclLoggingPapertrail {
         return this.name;
     }
     /**
-     * @return Where in the generated VCL the logging call should be placed. Ignored, but endpoints with `format_version` of 2 are placed in `vcl_log` and those with `format_version` of 1 are placed in `vcl_deliver`
+     * @return Where in the generated VCL the logging call should be placed. If not set, endpoints with `format_version` of 2 are placed in `vcl_log` and those with `format_version` of 1 are placed in `vcl_deliver`
      * 
      */
     public Optional<String> placement() {
