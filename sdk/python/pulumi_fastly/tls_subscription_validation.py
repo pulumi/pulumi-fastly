@@ -65,6 +65,9 @@ class _TlsSubscriptionValidationState:
 
 
 class TlsSubscriptionValidation(pulumi.CustomResource):
+
+    pulumi_type = "fastly:index/tlsSubscriptionValidation:TlsSubscriptionValidation"
+
     @overload
     def __init__(__self__,
                  resource_name: str,
