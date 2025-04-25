@@ -113,6 +113,9 @@ class _DomainV1State:
 
 
 class DomainV1(pulumi.CustomResource):
+
+    pulumi_type = "fastly:index/domainV1:DomainV1"
+
     @overload
     def __init__(__self__,
                  resource_name: str,

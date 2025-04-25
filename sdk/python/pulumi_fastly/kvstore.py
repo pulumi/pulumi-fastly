@@ -130,6 +130,9 @@ class _KvstoreState:
 
 
 class Kvstore(pulumi.CustomResource):
+
+    pulumi_type = "fastly:index/kvstore:Kvstore"
+
     @overload
     def __init__(__self__,
                  resource_name: str,

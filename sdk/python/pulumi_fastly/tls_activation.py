@@ -176,6 +176,9 @@ class _TlsActivationState:
 
 
 class TlsActivation(pulumi.CustomResource):
+
+    pulumi_type = "fastly:index/tlsActivation:TlsActivation"
+
     @overload
     def __init__(__self__,
                  resource_name: str,
