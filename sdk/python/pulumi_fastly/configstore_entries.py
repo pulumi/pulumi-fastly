@@ -120,6 +120,9 @@ class _ConfigstoreEntriesState:
 
 
 class ConfigstoreEntries(pulumi.CustomResource):
+
+    pulumi_type = "fastly:index/configstoreEntries:ConfigstoreEntries"
+
     @overload
     def __init__(__self__,
                  resource_name: str,

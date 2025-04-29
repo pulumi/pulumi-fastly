@@ -162,6 +162,9 @@ class _ServiceACLEntriesState:
 
 
 class ServiceACLEntries(pulumi.CustomResource):
+
+    pulumi_type = "fastly:index/serviceACLEntries:ServiceACLEntries"
+
     @overload
     def __init__(__self__,
                  resource_name: str,

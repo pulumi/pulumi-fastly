@@ -127,6 +127,9 @@ class _ServiceAuthorizationState:
 
 
 class ServiceAuthorization(pulumi.CustomResource):
+
+    pulumi_type = "fastly:index/serviceAuthorization:ServiceAuthorization"
+
     @overload
     def __init__(__self__,
                  resource_name: str,

@@ -350,6 +350,9 @@ class _TlsSubscriptionState:
 
 
 class TlsSubscription(pulumi.CustomResource):
+
+    pulumi_type = "fastly:index/tlsSubscription:TlsSubscription"
+
     @overload
     def __init__(__self__,
                  resource_name: str,

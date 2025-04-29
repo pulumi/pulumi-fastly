@@ -160,6 +160,9 @@ class _ObjectStorageAccessKeysState:
 
 
 class ObjectStorageAccessKeys(pulumi.CustomResource):
+
+    pulumi_type = "fastly:index/objectStorageAccessKeys:ObjectStorageAccessKeys"
+
     @overload
     def __init__(__self__,
                  resource_name: str,

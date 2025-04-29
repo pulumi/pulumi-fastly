@@ -225,6 +225,9 @@ class _TlsCertificateState:
 
 
 class TlsCertificate(pulumi.CustomResource):
+
+    pulumi_type = "fastly:index/tlsCertificate:TlsCertificate"
+
     @overload
     def __init__(__self__,
                  resource_name: str,

@@ -159,6 +159,9 @@ class _ServiceDynamicSnippetContentState:
 
 
 class ServiceDynamicSnippetContent(pulumi.CustomResource):
+
+    pulumi_type = "fastly:index/serviceDynamicSnippetContent:ServiceDynamicSnippetContent"
+
     @overload
     def __init__(__self__,
                  resource_name: str,
