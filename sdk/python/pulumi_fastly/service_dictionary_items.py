@@ -160,6 +160,9 @@ class _ServiceDictionaryItemsState:
 
 
 class ServiceDictionaryItems(pulumi.CustomResource):
+
+    pulumi_type = "fastly:index/serviceDictionaryItems:ServiceDictionaryItems"
+
     @overload
     def __init__(__self__,
                  resource_name: str,

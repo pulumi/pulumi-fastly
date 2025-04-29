@@ -1181,6 +1181,9 @@ class _ServiceComputeState:
 
 
 class ServiceCompute(pulumi.CustomResource):
+
+    pulumi_type = "fastly:index/serviceCompute:ServiceCompute"
+
     @overload
     def __init__(__self__,
                  resource_name: str,
