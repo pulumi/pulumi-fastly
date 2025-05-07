@@ -131,10 +131,8 @@ class _CustomDashboardState:
         pulumi.set(self, "name", value)
 
 
+@pulumi.type_token("fastly:index/customDashboard:CustomDashboard")
 class CustomDashboard(pulumi.CustomResource):
-
-    pulumi_type = "fastly:index/customDashboard:CustomDashboard"
-
     @overload
     def __init__(__self__,
                  resource_name: str,

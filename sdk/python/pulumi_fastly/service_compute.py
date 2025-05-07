@@ -1180,10 +1180,8 @@ class _ServiceComputeState:
         pulumi.set(self, "version_comment", value)
 
 
+@pulumi.type_token("fastly:index/serviceCompute:ServiceCompute")
 class ServiceCompute(pulumi.CustomResource):
-
-    pulumi_type = "fastly:index/serviceCompute:ServiceCompute"
-
     @overload
     def __init__(__self__,
                  resource_name: str,

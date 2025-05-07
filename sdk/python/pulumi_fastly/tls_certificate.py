@@ -224,10 +224,8 @@ class _TlsCertificateState:
         pulumi.set(self, "updated_at", value)
 
 
+@pulumi.type_token("fastly:index/tlsCertificate:TlsCertificate")
 class TlsCertificate(pulumi.CustomResource):
-
-    pulumi_type = "fastly:index/tlsCertificate:TlsCertificate"
-
     @overload
     def __init__(__self__,
                  resource_name: str,

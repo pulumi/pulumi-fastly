@@ -1604,10 +1604,8 @@ class _ServiceVclState:
         pulumi.set(self, "version_comment", value)
 
 
+@pulumi.type_token("fastly:index/serviceVcl:ServiceVcl")
 class ServiceVcl(pulumi.CustomResource):
-
-    pulumi_type = "fastly:index/serviceVcl:ServiceVcl"
-
     @overload
     def __init__(__self__,
                  resource_name: str,

@@ -126,10 +126,8 @@ class _ServiceAuthorizationState:
         pulumi.set(self, "user_id", value)
 
 
+@pulumi.type_token("fastly:index/serviceAuthorization:ServiceAuthorization")
 class ServiceAuthorization(pulumi.CustomResource):
-
-    pulumi_type = "fastly:index/serviceAuthorization:ServiceAuthorization"
-
     @overload
     def __init__(__self__,
                  resource_name: str,
