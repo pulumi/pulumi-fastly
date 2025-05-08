@@ -4586,6 +4586,9 @@
                 "type": "boolean",
                 "description": "Set to `true` if your configuration only consumes data sources that do not require authentication, such as\n`fastly.getFastlyIpRanges`\n"
             }
+        },
+        "methods": {
+            "terraformConfig": "pulumi:providers:fastly/terraformConfig"
         }
     },
     "resources": {
@@ -9085,6 +9088,35 @@
                     "serviceVersion",
                     "vclSnippets",
                     "id"
+                ],
+                "type": "object"
+            }
+        },
+        "pulumi:providers:fastly/terraformConfig": {
+            "description": "This function returns a Terraform config object with terraform-namecased keys,to be used with the Terraform Module Provider.",
+            "inputs": {
+                "properties": {
+                    "__self__": {
+                        "type": "ref",
+                        "$ref": "#/resources/pulumi:providers:fastly"
+                    }
+                },
+                "type": "pulumi:providers:fastly/terraformConfig",
+                "required": [
+                    "__self__"
+                ]
+            },
+            "outputs": {
+                "properties": {
+                    "result": {
+                        "additionalProperties": {
+                            "$ref": "pulumi.json#/Any"
+                        },
+                        "type": "object"
+                    }
+                },
+                "required": [
+                    "result"
                 ],
                 "type": "object"
             }
