@@ -161,10 +161,8 @@ class _ServiceACLEntriesState:
         pulumi.set(self, "service_id", value)
 
 
+@pulumi.type_token("fastly:index/serviceACLEntries:ServiceACLEntries")
 class ServiceACLEntries(pulumi.CustomResource):
-
-    pulumi_type = "fastly:index/serviceACLEntries:ServiceACLEntries"
-
     @overload
     def __init__(__self__,
                  resource_name: str,

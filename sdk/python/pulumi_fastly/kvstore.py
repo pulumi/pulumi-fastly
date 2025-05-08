@@ -129,10 +129,8 @@ class _KvstoreState:
         pulumi.set(self, "name", value)
 
 
+@pulumi.type_token("fastly:index/kvstore:Kvstore")
 class Kvstore(pulumi.CustomResource):
-
-    pulumi_type = "fastly:index/kvstore:Kvstore"
-
     @overload
     def __init__(__self__,
                  resource_name: str,

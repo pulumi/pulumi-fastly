@@ -349,10 +349,8 @@ class _TlsSubscriptionState:
         pulumi.set(self, "updated_at", value)
 
 
+@pulumi.type_token("fastly:index/tlsSubscription:TlsSubscription")
 class TlsSubscription(pulumi.CustomResource):
-
-    pulumi_type = "fastly:index/tlsSubscription:TlsSubscription"
-
     @overload
     def __init__(__self__,
                  resource_name: str,

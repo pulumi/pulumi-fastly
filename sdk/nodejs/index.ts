@@ -155,10 +155,8 @@ export type ObjectStorageAccessKeys = import("./objectStorageAccessKeys").Object
 export const ObjectStorageAccessKeys: typeof import("./objectStorageAccessKeys").ObjectStorageAccessKeys = null as any;
 utilities.lazyLoad(exports, ["ObjectStorageAccessKeys"], () => require("./objectStorageAccessKeys"));
 
-export { ProviderArgs } from "./provider";
-export type Provider = import("./provider").Provider;
-export const Provider: typeof import("./provider").Provider = null as any;
-utilities.lazyLoad(exports, ["Provider"], () => require("./provider"));
+export * from "./provider";
+import { Provider } from "./provider";
 
 export { SecretstoreArgs, SecretstoreState } from "./secretstore";
 export type Secretstore = import("./secretstore").Secretstore;

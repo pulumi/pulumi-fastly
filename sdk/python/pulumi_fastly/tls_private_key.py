@@ -176,10 +176,8 @@ class _TlsPrivateKeyState:
         pulumi.set(self, "replace", value)
 
 
+@pulumi.type_token("fastly:index/tlsPrivateKey:TlsPrivateKey")
 class TlsPrivateKey(pulumi.CustomResource):
-
-    pulumi_type = "fastly:index/tlsPrivateKey:TlsPrivateKey"
-
     @overload
     def __init__(__self__,
                  resource_name: str,

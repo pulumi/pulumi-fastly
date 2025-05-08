@@ -65,10 +65,8 @@ class _SecretstoreState:
         pulumi.set(self, "name", value)
 
 
+@pulumi.type_token("fastly:index/secretstore:Secretstore")
 class Secretstore(pulumi.CustomResource):
-
-    pulumi_type = "fastly:index/secretstore:Secretstore"
-
     @overload
     def __init__(__self__,
                  resource_name: str,

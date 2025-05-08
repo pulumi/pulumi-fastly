@@ -128,10 +128,8 @@ class _UserState:
         pulumi.set(self, "role", value)
 
 
+@pulumi.type_token("fastly:index/user:User")
 class User(pulumi.CustomResource):
-
-    pulumi_type = "fastly:index/user:User"
-
     @overload
     def __init__(__self__,
                  resource_name: str,
