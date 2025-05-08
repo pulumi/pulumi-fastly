@@ -159,10 +159,8 @@ class _ServiceDictionaryItemsState:
         pulumi.set(self, "service_id", value)
 
 
+@pulumi.type_token("fastly:index/serviceDictionaryItems:ServiceDictionaryItems")
 class ServiceDictionaryItems(pulumi.CustomResource):
-
-    pulumi_type = "fastly:index/serviceDictionaryItems:ServiceDictionaryItems"
-
     @overload
     def __init__(__self__,
                  resource_name: str,

@@ -175,10 +175,8 @@ class _TlsActivationState:
         pulumi.set(self, "mutual_authentication_id", value)
 
 
+@pulumi.type_token("fastly:index/tlsActivation:TlsActivation")
 class TlsActivation(pulumi.CustomResource):
-
-    pulumi_type = "fastly:index/tlsActivation:TlsActivation"
-
     @overload
     def __init__(__self__,
                  resource_name: str,

@@ -288,10 +288,8 @@ class _AlertState:
         pulumi.set(self, "source", value)
 
 
+@pulumi.type_token("fastly:index/alert:Alert")
 class Alert(pulumi.CustomResource):
-
-    pulumi_type = "fastly:index/alert:Alert"
-
     @overload
     def __init__(__self__,
                  resource_name: str,

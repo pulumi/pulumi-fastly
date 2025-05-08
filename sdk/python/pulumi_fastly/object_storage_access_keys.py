@@ -159,10 +159,8 @@ class _ObjectStorageAccessKeysState:
         pulumi.set(self, "secret_key", value)
 
 
+@pulumi.type_token("fastly:index/objectStorageAccessKeys:ObjectStorageAccessKeys")
 class ObjectStorageAccessKeys(pulumi.CustomResource):
-
-    pulumi_type = "fastly:index/objectStorageAccessKeys:ObjectStorageAccessKeys"
-
     @overload
     def __init__(__self__,
                  resource_name: str,

@@ -159,10 +159,8 @@ class _IntegrationState:
         pulumi.set(self, "type", value)
 
 
+@pulumi.type_token("fastly:index/integration:Integration")
 class Integration(pulumi.CustomResource):
-
-    pulumi_type = "fastly:index/integration:Integration"
-
     @overload
     def __init__(__self__,
                  resource_name: str,
