@@ -40,15 +40,6 @@ public final class ServiceVclRequestSetting {
      */
     private @Nullable Boolean forceSsl;
     /**
-     * @return Injects Fastly-Geo-Country, Fastly-Geo-City, and Fastly-Geo-Region into the request headers
-     * 
-     * @deprecated
-     * &#39;geo_headers&#39; attribute has been deprecated and will be removed in the next major version release
-     * 
-     */
-    @Deprecated /* 'geo_headers' attribute has been deprecated and will be removed in the next major version release */
-    private @Nullable Boolean geoHeaders;
-    /**
      * @return Comma separated list of varnish request object fields that should be in the hash key
      * 
      */
@@ -116,17 +107,6 @@ public final class ServiceVclRequestSetting {
         return Optional.ofNullable(this.forceSsl);
     }
     /**
-     * @return Injects Fastly-Geo-Country, Fastly-Geo-City, and Fastly-Geo-Region into the request headers
-     * 
-     * @deprecated
-     * &#39;geo_headers&#39; attribute has been deprecated and will be removed in the next major version release
-     * 
-     */
-    @Deprecated /* 'geo_headers' attribute has been deprecated and will be removed in the next major version release */
-    public Optional<Boolean> geoHeaders() {
-        return Optional.ofNullable(this.geoHeaders);
-    }
-    /**
      * @return Comma separated list of varnish request object fields that should be in the hash key
      * 
      */
@@ -183,7 +163,6 @@ public final class ServiceVclRequestSetting {
         private @Nullable String defaultHost;
         private @Nullable Boolean forceMiss;
         private @Nullable Boolean forceSsl;
-        private @Nullable Boolean geoHeaders;
         private @Nullable String hashKeys;
         private @Nullable Integer maxStaleAge;
         private String name;
@@ -198,7 +177,6 @@ public final class ServiceVclRequestSetting {
     	      this.defaultHost = defaults.defaultHost;
     	      this.forceMiss = defaults.forceMiss;
     	      this.forceSsl = defaults.forceSsl;
-    	      this.geoHeaders = defaults.geoHeaders;
     	      this.hashKeys = defaults.hashKeys;
     	      this.maxStaleAge = defaults.maxStaleAge;
     	      this.name = defaults.name;
@@ -235,12 +213,6 @@ public final class ServiceVclRequestSetting {
         public Builder forceSsl(@Nullable Boolean forceSsl) {
 
             this.forceSsl = forceSsl;
-            return this;
-        }
-        @CustomType.Setter
-        public Builder geoHeaders(@Nullable Boolean geoHeaders) {
-
-            this.geoHeaders = geoHeaders;
             return this;
         }
         @CustomType.Setter
@@ -288,7 +260,6 @@ public final class ServiceVclRequestSetting {
             _resultValue.defaultHost = defaultHost;
             _resultValue.forceMiss = forceMiss;
             _resultValue.forceSsl = forceSsl;
-            _resultValue.geoHeaders = geoHeaders;
             _resultValue.hashKeys = hashKeys;
             _resultValue.maxStaleAge = maxStaleAge;
             _resultValue.name = name;

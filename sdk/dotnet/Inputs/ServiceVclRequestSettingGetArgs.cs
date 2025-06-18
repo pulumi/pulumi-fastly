@@ -43,12 +43,6 @@ namespace Pulumi.Fastly.Inputs
         public Input<bool>? ForceSsl { get; set; }
 
         /// <summary>
-        /// Injects Fastly-Geo-Country, Fastly-Geo-City, and Fastly-Geo-Region into the request headers
-        /// </summary>
-        [Input("geoHeaders")]
-        public Input<bool>? GeoHeaders { get; set; }
-
-        /// <summary>
         /// Comma separated list of varnish request object fields that should be in the hash key
         /// </summary>
         [Input("hashKeys")]
