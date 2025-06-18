@@ -94,29 +94,6 @@ public final class ServiceVclRequestSettingArgs extends com.pulumi.resources.Res
     }
 
     /**
-     * Injects Fastly-Geo-Country, Fastly-Geo-City, and Fastly-Geo-Region into the request headers
-     * 
-     * @deprecated
-     * &#39;geo_headers&#39; attribute has been deprecated and will be removed in the next major version release
-     * 
-     */
-    @Deprecated /* 'geo_headers' attribute has been deprecated and will be removed in the next major version release */
-    @Import(name="geoHeaders")
-    private @Nullable Output<Boolean> geoHeaders;
-
-    /**
-     * @return Injects Fastly-Geo-Country, Fastly-Geo-City, and Fastly-Geo-Region into the request headers
-     * 
-     * @deprecated
-     * &#39;geo_headers&#39; attribute has been deprecated and will be removed in the next major version release
-     * 
-     */
-    @Deprecated /* 'geo_headers' attribute has been deprecated and will be removed in the next major version release */
-    public Optional<Output<Boolean>> geoHeaders() {
-        return Optional.ofNullable(this.geoHeaders);
-    }
-
-    /**
      * Comma separated list of varnish request object fields that should be in the hash key
      * 
      */
@@ -214,7 +191,6 @@ public final class ServiceVclRequestSettingArgs extends com.pulumi.resources.Res
         this.defaultHost = $.defaultHost;
         this.forceMiss = $.forceMiss;
         this.forceSsl = $.forceSsl;
-        this.geoHeaders = $.geoHeaders;
         this.hashKeys = $.hashKeys;
         this.maxStaleAge = $.maxStaleAge;
         this.name = $.name;
@@ -344,35 +320,6 @@ public final class ServiceVclRequestSettingArgs extends com.pulumi.resources.Res
          */
         public Builder forceSsl(Boolean forceSsl) {
             return forceSsl(Output.of(forceSsl));
-        }
-
-        /**
-         * @param geoHeaders Injects Fastly-Geo-Country, Fastly-Geo-City, and Fastly-Geo-Region into the request headers
-         * 
-         * @return builder
-         * 
-         * @deprecated
-         * &#39;geo_headers&#39; attribute has been deprecated and will be removed in the next major version release
-         * 
-         */
-        @Deprecated /* 'geo_headers' attribute has been deprecated and will be removed in the next major version release */
-        public Builder geoHeaders(@Nullable Output<Boolean> geoHeaders) {
-            $.geoHeaders = geoHeaders;
-            return this;
-        }
-
-        /**
-         * @param geoHeaders Injects Fastly-Geo-Country, Fastly-Geo-City, and Fastly-Geo-Region into the request headers
-         * 
-         * @return builder
-         * 
-         * @deprecated
-         * &#39;geo_headers&#39; attribute has been deprecated and will be removed in the next major version release
-         * 
-         */
-        @Deprecated /* 'geo_headers' attribute has been deprecated and will be removed in the next major version release */
-        public Builder geoHeaders(Boolean geoHeaders) {
-            return geoHeaders(Output.of(geoHeaders));
         }
 
         /**

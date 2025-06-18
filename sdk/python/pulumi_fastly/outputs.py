@@ -11426,8 +11426,6 @@ class ServiceVclRequestSetting(dict):
             suggest = "force_miss"
         elif key == "forceSsl":
             suggest = "force_ssl"
-        elif key == "geoHeaders":
-            suggest = "geo_headers"
         elif key == "hashKeys":
             suggest = "hash_keys"
         elif key == "maxStaleAge":
@@ -11455,7 +11453,6 @@ class ServiceVclRequestSetting(dict):
                  default_host: Optional[builtins.str] = None,
                  force_miss: Optional[builtins.bool] = None,
                  force_ssl: Optional[builtins.bool] = None,
-                 geo_headers: Optional[builtins.bool] = None,
                  hash_keys: Optional[builtins.str] = None,
                  max_stale_age: Optional[builtins.int] = None,
                  request_condition: Optional[builtins.str] = None,
@@ -11468,7 +11465,6 @@ class ServiceVclRequestSetting(dict):
         :param builtins.str default_host: Sets the host header
         :param builtins.bool force_miss: Force a cache miss for the request. If specified, can be `true` or `false`
         :param builtins.bool force_ssl: Forces the request to use SSL (Redirects a non-SSL request to SSL)
-        :param builtins.bool geo_headers: Injects Fastly-Geo-Country, Fastly-Geo-City, and Fastly-Geo-Region into the request headers
         :param builtins.str hash_keys: Comma separated list of varnish request object fields that should be in the hash key
         :param builtins.int max_stale_age: How old an object is allowed to be to serve `stale-if-error` or `stale-while-revalidate`, in seconds
         :param builtins.str request_condition: Name of already defined `condition` to determine if this request setting should be applied (should be unique across multiple instances of `request_setting`)
@@ -11486,8 +11482,6 @@ class ServiceVclRequestSetting(dict):
             pulumi.set(__self__, "force_miss", force_miss)
         if force_ssl is not None:
             pulumi.set(__self__, "force_ssl", force_ssl)
-        if geo_headers is not None:
-            pulumi.set(__self__, "geo_headers", geo_headers)
         if hash_keys is not None:
             pulumi.set(__self__, "hash_keys", hash_keys)
         if max_stale_age is not None:
@@ -11546,15 +11540,6 @@ class ServiceVclRequestSetting(dict):
         Forces the request to use SSL (Redirects a non-SSL request to SSL)
         """
         return pulumi.get(self, "force_ssl")
-
-    @property
-    @pulumi.getter(name="geoHeaders")
-    @_utilities.deprecated("""'geo_headers' attribute has been deprecated and will be removed in the next major version release""")
-    def geo_headers(self) -> Optional[builtins.bool]:
-        """
-        Injects Fastly-Geo-Country, Fastly-Geo-City, and Fastly-Geo-Region into the request headers
-        """
-        return pulumi.get(self, "geo_headers")
 
     @property
     @pulumi.getter(name="hashKeys")

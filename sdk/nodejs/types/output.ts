@@ -3468,12 +3468,6 @@ export interface ServiceVclRequestSetting {
      */
     forceSsl?: boolean;
     /**
-     * Injects Fastly-Geo-Country, Fastly-Geo-City, and Fastly-Geo-Region into the request headers
-     *
-     * @deprecated 'geo_headers' attribute has been deprecated and will be removed in the next major version release
-     */
-    geoHeaders?: boolean;
-    /**
      * Comma separated list of varnish request object fields that should be in the hash key
      */
     hashKeys?: string;

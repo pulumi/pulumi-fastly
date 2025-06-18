@@ -3328,12 +3328,6 @@ export interface ServiceVclRequestSetting {
      */
     forceSsl?: pulumi.Input<boolean>;
     /**
-     * Injects Fastly-Geo-Country, Fastly-Geo-City, and Fastly-Geo-Region into the request headers
-     *
-     * @deprecated 'geo_headers' attribute has been deprecated and will be removed in the next major version release
-     */
-    geoHeaders?: pulumi.Input<boolean>;
-    /**
      * Comma separated list of varnish request object fields that should be in the hash key
      */
     hashKeys?: pulumi.Input<string>;

@@ -34,10 +34,6 @@ namespace Pulumi.Fastly.Outputs
         /// </summary>
         public readonly bool? ForceSsl;
         /// <summary>
-        /// Injects Fastly-Geo-Country, Fastly-Geo-City, and Fastly-Geo-Region into the request headers
-        /// </summary>
-        public readonly bool? GeoHeaders;
-        /// <summary>
         /// Comma separated list of varnish request object fields that should be in the hash key
         /// </summary>
         public readonly string? HashKeys;
@@ -74,8 +70,6 @@ namespace Pulumi.Fastly.Outputs
 
             bool? forceSsl,
 
-            bool? geoHeaders,
-
             string? hashKeys,
 
             int? maxStaleAge,
@@ -93,7 +87,6 @@ namespace Pulumi.Fastly.Outputs
             DefaultHost = defaultHost;
             ForceMiss = forceMiss;
             ForceSsl = forceSsl;
-            GeoHeaders = geoHeaders;
             HashKeys = hashKeys;
             MaxStaleAge = maxStaleAge;
             Name = name;

@@ -7,7 +7,7 @@ import (
 	"context"
 	"reflect"
 
-	"github.com/pulumi/pulumi-fastly/sdk/v9/go/fastly/internal"
+	"github.com/pulumi/pulumi-fastly/sdk/v10/go/fastly/internal"
 	"github.com/pulumi/pulumi/sdk/v3/go/pulumi"
 )
 
@@ -15446,10 +15446,6 @@ type ServiceVclRequestSetting struct {
 	ForceMiss *bool `pulumi:"forceMiss"`
 	// Forces the request to use SSL (Redirects a non-SSL request to SSL)
 	ForceSsl *bool `pulumi:"forceSsl"`
-	// Injects Fastly-Geo-Country, Fastly-Geo-City, and Fastly-Geo-Region into the request headers
-	//
-	// Deprecated: 'geo_headers' attribute has been deprecated and will be removed in the next major version release
-	GeoHeaders *bool `pulumi:"geoHeaders"`
 	// Comma separated list of varnish request object fields that should be in the hash key
 	HashKeys *string `pulumi:"hashKeys"`
 	// How old an object is allowed to be to serve `stale-if-error` or `stale-while-revalidate`, in seconds
@@ -15486,10 +15482,6 @@ type ServiceVclRequestSettingArgs struct {
 	ForceMiss pulumi.BoolPtrInput `pulumi:"forceMiss"`
 	// Forces the request to use SSL (Redirects a non-SSL request to SSL)
 	ForceSsl pulumi.BoolPtrInput `pulumi:"forceSsl"`
-	// Injects Fastly-Geo-Country, Fastly-Geo-City, and Fastly-Geo-Region into the request headers
-	//
-	// Deprecated: 'geo_headers' attribute has been deprecated and will be removed in the next major version release
-	GeoHeaders pulumi.BoolPtrInput `pulumi:"geoHeaders"`
 	// Comma separated list of varnish request object fields that should be in the hash key
 	HashKeys pulumi.StringPtrInput `pulumi:"hashKeys"`
 	// How old an object is allowed to be to serve `stale-if-error` or `stale-while-revalidate`, in seconds
@@ -15578,13 +15570,6 @@ func (o ServiceVclRequestSettingOutput) ForceMiss() pulumi.BoolPtrOutput {
 // Forces the request to use SSL (Redirects a non-SSL request to SSL)
 func (o ServiceVclRequestSettingOutput) ForceSsl() pulumi.BoolPtrOutput {
 	return o.ApplyT(func(v ServiceVclRequestSetting) *bool { return v.ForceSsl }).(pulumi.BoolPtrOutput)
-}
-
-// Injects Fastly-Geo-Country, Fastly-Geo-City, and Fastly-Geo-Region into the request headers
-//
-// Deprecated: 'geo_headers' attribute has been deprecated and will be removed in the next major version release
-func (o ServiceVclRequestSettingOutput) GeoHeaders() pulumi.BoolPtrOutput {
-	return o.ApplyT(func(v ServiceVclRequestSetting) *bool { return v.GeoHeaders }).(pulumi.BoolPtrOutput)
 }
 
 // Comma separated list of varnish request object fields that should be in the hash key
