@@ -18,6 +18,10 @@ namespace Pulumi.Fastly.Outputs
         /// </summary>
         public readonly string Name;
         /// <summary>
+        /// Region where logs will be processed before streaming to BigQuery. Valid values are 'none', 'us' and 'eu'.
+        /// </summary>
+        public readonly string? ProcessingRegion;
+        /// <summary>
         /// The region that log data will be sent to. Default: `US`
         /// </summary>
         public readonly string? Region;
@@ -30,11 +34,14 @@ namespace Pulumi.Fastly.Outputs
         private ServiceComputeLoggingNewrelic(
             string name,
 
+            string? processingRegion,
+
             string? region,
 
             string token)
         {
             Name = name;
+            ProcessingRegion = processingRegion;
             Region = region;
             Token = token;
         }

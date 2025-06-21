@@ -13,6 +13,12 @@ namespace Pulumi.Fastly
     public partial class DomainV1 : global::Pulumi.CustomResource
     {
         /// <summary>
+        /// The description for your domain.
+        /// </summary>
+        [Output("description")]
+        public Output<string?> Description { get; private set; } = null!;
+
+        /// <summary>
         /// The Domain Identifier (UUID).
         /// </summary>
         [Output("domainId")]
@@ -77,6 +83,12 @@ namespace Pulumi.Fastly
     public sealed class DomainV1Args : global::Pulumi.ResourceArgs
     {
         /// <summary>
+        /// The description for your domain.
+        /// </summary>
+        [Input("description")]
+        public Input<string>? Description { get; set; }
+
+        /// <summary>
         /// The fully-qualified domain name for your domain (e.g. `www.example.com`, no trailing dot). Can be created, but not updated.
         /// </summary>
         [Input("fqdn", required: true)]
@@ -96,6 +108,12 @@ namespace Pulumi.Fastly
 
     public sealed class DomainV1State : global::Pulumi.ResourceArgs
     {
+        /// <summary>
+        /// The description for your domain.
+        /// </summary>
+        [Input("description")]
+        public Input<string>? Description { get; set; }
+
         /// <summary>
         /// The Domain Identifier (UUID).
         /// </summary>

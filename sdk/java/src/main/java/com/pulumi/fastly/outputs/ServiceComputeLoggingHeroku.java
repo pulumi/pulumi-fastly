@@ -7,6 +7,8 @@ import com.pulumi.core.annotations.CustomType;
 import com.pulumi.exceptions.MissingRequiredPropertyException;
 import java.lang.String;
 import java.util.Objects;
+import java.util.Optional;
+import javax.annotation.Nullable;
 
 @CustomType
 public final class ServiceComputeLoggingHeroku {
@@ -15,6 +17,11 @@ public final class ServiceComputeLoggingHeroku {
      * 
      */
     private String name;
+    /**
+     * @return Region where logs will be processed before streaming to BigQuery. Valid values are &#39;none&#39;, &#39;us&#39; and &#39;eu&#39;.
+     * 
+     */
+    private @Nullable String processingRegion;
     /**
      * @return The token to use for authentication (https://www.heroku.com/docs/customer-token-authentication-token/)
      * 
@@ -33,6 +40,13 @@ public final class ServiceComputeLoggingHeroku {
      */
     public String name() {
         return this.name;
+    }
+    /**
+     * @return Region where logs will be processed before streaming to BigQuery. Valid values are &#39;none&#39;, &#39;us&#39; and &#39;eu&#39;.
+     * 
+     */
+    public Optional<String> processingRegion() {
+        return Optional.ofNullable(this.processingRegion);
     }
     /**
      * @return The token to use for authentication (https://www.heroku.com/docs/customer-token-authentication-token/)
@@ -59,12 +73,14 @@ public final class ServiceComputeLoggingHeroku {
     @CustomType.Builder
     public static final class Builder {
         private String name;
+        private @Nullable String processingRegion;
         private String token;
         private String url;
         public Builder() {}
         public Builder(ServiceComputeLoggingHeroku defaults) {
     	      Objects.requireNonNull(defaults);
     	      this.name = defaults.name;
+    	      this.processingRegion = defaults.processingRegion;
     	      this.token = defaults.token;
     	      this.url = defaults.url;
         }
@@ -75,6 +91,12 @@ public final class ServiceComputeLoggingHeroku {
               throw new MissingRequiredPropertyException("ServiceComputeLoggingHeroku", "name");
             }
             this.name = name;
+            return this;
+        }
+        @CustomType.Setter
+        public Builder processingRegion(@Nullable String processingRegion) {
+
+            this.processingRegion = processingRegion;
             return this;
         }
         @CustomType.Setter
@@ -96,6 +118,7 @@ public final class ServiceComputeLoggingHeroku {
         public ServiceComputeLoggingHeroku build() {
             final var _resultValue = new ServiceComputeLoggingHeroku();
             _resultValue.name = name;
+            _resultValue.processingRegion = processingRegion;
             _resultValue.token = token;
             _resultValue.url = url;
             return _resultValue;

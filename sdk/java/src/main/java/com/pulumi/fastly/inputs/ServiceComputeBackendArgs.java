@@ -214,6 +214,21 @@ public final class ServiceComputeBackendArgs extends com.pulumi.resources.Resour
     }
 
     /**
+     * Prefer IPv6 connections to origins for hostname backends. Default `true`
+     * 
+     */
+    @Import(name="preferIpv6")
+    private @Nullable Output<Boolean> preferIpv6;
+
+    /**
+     * @return Prefer IPv6 connections to origins for hostname backends. Default `true`
+     * 
+     */
+    public Optional<Output<Boolean>> preferIpv6() {
+        return Optional.ofNullable(this.preferIpv6);
+    }
+
+    /**
      * Value that when shared across backends will enable those backends to share the same health check.
      * 
      */
@@ -394,6 +409,7 @@ public final class ServiceComputeBackendArgs extends com.pulumi.resources.Resour
         this.name = $.name;
         this.overrideHost = $.overrideHost;
         this.port = $.port;
+        this.preferIpv6 = $.preferIpv6;
         this.shareKey = $.shareKey;
         this.shield = $.shield;
         this.sslCaCert = $.sslCaCert;
@@ -696,6 +712,27 @@ public final class ServiceComputeBackendArgs extends com.pulumi.resources.Resour
          */
         public Builder port(Integer port) {
             return port(Output.of(port));
+        }
+
+        /**
+         * @param preferIpv6 Prefer IPv6 connections to origins for hostname backends. Default `true`
+         * 
+         * @return builder
+         * 
+         */
+        public Builder preferIpv6(@Nullable Output<Boolean> preferIpv6) {
+            $.preferIpv6 = preferIpv6;
+            return this;
+        }
+
+        /**
+         * @param preferIpv6 Prefer IPv6 connections to origins for hostname backends. Default `true`
+         * 
+         * @return builder
+         * 
+         */
+        public Builder preferIpv6(Boolean preferIpv6) {
+            return preferIpv6(Output.of(preferIpv6));
         }
 
         /**

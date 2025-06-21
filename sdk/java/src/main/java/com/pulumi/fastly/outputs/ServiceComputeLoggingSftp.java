@@ -59,6 +59,11 @@ public final class ServiceComputeLoggingSftp {
      */
     private @Nullable Integer port;
     /**
+     * @return Region where logs will be processed before streaming to BigQuery. Valid values are &#39;none&#39;, &#39;us&#39; and &#39;eu&#39;.
+     * 
+     */
+    private @Nullable String processingRegion;
+    /**
      * @return A PGP public key that Fastly will use to encrypt your log files before writing them to disk
      * 
      */
@@ -149,6 +154,13 @@ public final class ServiceComputeLoggingSftp {
         return Optional.ofNullable(this.port);
     }
     /**
+     * @return Region where logs will be processed before streaming to BigQuery. Valid values are &#39;none&#39;, &#39;us&#39; and &#39;eu&#39;.
+     * 
+     */
+    public Optional<String> processingRegion() {
+        return Optional.ofNullable(this.processingRegion);
+    }
+    /**
      * @return A PGP public key that Fastly will use to encrypt your log files before writing them to disk
      * 
      */
@@ -202,6 +214,7 @@ public final class ServiceComputeLoggingSftp {
         private String path;
         private @Nullable Integer period;
         private @Nullable Integer port;
+        private @Nullable String processingRegion;
         private @Nullable String publicKey;
         private @Nullable String secretKey;
         private String sshKnownHosts;
@@ -219,6 +232,7 @@ public final class ServiceComputeLoggingSftp {
     	      this.path = defaults.path;
     	      this.period = defaults.period;
     	      this.port = defaults.port;
+    	      this.processingRegion = defaults.processingRegion;
     	      this.publicKey = defaults.publicKey;
     	      this.secretKey = defaults.secretKey;
     	      this.sshKnownHosts = defaults.sshKnownHosts;
@@ -287,6 +301,12 @@ public final class ServiceComputeLoggingSftp {
             return this;
         }
         @CustomType.Setter
+        public Builder processingRegion(@Nullable String processingRegion) {
+
+            this.processingRegion = processingRegion;
+            return this;
+        }
+        @CustomType.Setter
         public Builder publicKey(@Nullable String publicKey) {
 
             this.publicKey = publicKey;
@@ -331,6 +351,7 @@ public final class ServiceComputeLoggingSftp {
             _resultValue.path = path;
             _resultValue.period = period;
             _resultValue.port = port;
+            _resultValue.processingRegion = processingRegion;
             _resultValue.publicKey = publicKey;
             _resultValue.secretKey = secretKey;
             _resultValue.sshKnownHosts = sshKnownHosts;

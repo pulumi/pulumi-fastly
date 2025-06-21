@@ -26,6 +26,10 @@ namespace Pulumi.Fastly.Outputs
         /// </summary>
         public readonly string Name;
         /// <summary>
+        /// Region where logs will be processed before streaming to BigQuery. Valid values are 'none', 'us' and 'eu'.
+        /// </summary>
+        public readonly string? ProcessingRegion;
+        /// <summary>
         /// The AWS region the stream resides in. (Default: `us-east-1`)
         /// </summary>
         public readonly string? Region;
@@ -46,6 +50,8 @@ namespace Pulumi.Fastly.Outputs
 
             string name,
 
+            string? processingRegion,
+
             string? region,
 
             string? secretKey,
@@ -55,6 +61,7 @@ namespace Pulumi.Fastly.Outputs
             AccessKey = accessKey;
             IamRole = iamRole;
             Name = name;
+            ProcessingRegion = processingRegion;
             Region = region;
             SecretKey = secretKey;
             Topic = topic;

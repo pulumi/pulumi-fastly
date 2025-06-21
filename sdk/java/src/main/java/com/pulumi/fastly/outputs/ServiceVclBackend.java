@@ -85,6 +85,11 @@ public final class ServiceVclBackend {
      */
     private @Nullable Integer port;
     /**
+     * @return Prefer IPv6 connections to origins for hostname backends. Default `false`
+     * 
+     */
+    private @Nullable Boolean preferIpv6;
+    /**
      * @return Name of a condition, which if met, will select this backend during a request.
      * 
      */
@@ -245,6 +250,13 @@ public final class ServiceVclBackend {
         return Optional.ofNullable(this.port);
     }
     /**
+     * @return Prefer IPv6 connections to origins for hostname backends. Default `false`
+     * 
+     */
+    public Optional<Boolean> preferIpv6() {
+        return Optional.ofNullable(this.preferIpv6);
+    }
+    /**
      * @return Name of a condition, which if met, will select this backend during a request.
      * 
      */
@@ -352,6 +364,7 @@ public final class ServiceVclBackend {
         private String name;
         private @Nullable String overrideHost;
         private @Nullable Integer port;
+        private @Nullable Boolean preferIpv6;
         private @Nullable String requestCondition;
         private @Nullable String shareKey;
         private @Nullable String shield;
@@ -381,6 +394,7 @@ public final class ServiceVclBackend {
     	      this.name = defaults.name;
     	      this.overrideHost = defaults.overrideHost;
     	      this.port = defaults.port;
+    	      this.preferIpv6 = defaults.preferIpv6;
     	      this.requestCondition = defaults.requestCondition;
     	      this.shareKey = defaults.shareKey;
     	      this.shield = defaults.shield;
@@ -484,6 +498,12 @@ public final class ServiceVclBackend {
             return this;
         }
         @CustomType.Setter
+        public Builder preferIpv6(@Nullable Boolean preferIpv6) {
+
+            this.preferIpv6 = preferIpv6;
+            return this;
+        }
+        @CustomType.Setter
         public Builder requestCondition(@Nullable String requestCondition) {
 
             this.requestCondition = requestCondition;
@@ -571,6 +591,7 @@ public final class ServiceVclBackend {
             _resultValue.name = name;
             _resultValue.overrideHost = overrideHost;
             _resultValue.port = port;
+            _resultValue.preferIpv6 = preferIpv6;
             _resultValue.requestCondition = requestCondition;
             _resultValue.shareKey = shareKey;
             _resultValue.shield = shield;

@@ -21,13 +21,17 @@ __all__ = ['DomainV1Args', 'DomainV1']
 class DomainV1Args:
     def __init__(__self__, *,
                  fqdn: pulumi.Input[builtins.str],
+                 description: Optional[pulumi.Input[builtins.str]] = None,
                  service_id: Optional[pulumi.Input[builtins.str]] = None):
         """
         The set of arguments for constructing a DomainV1 resource.
         :param pulumi.Input[builtins.str] fqdn: The fully-qualified domain name for your domain (e.g. `www.example.com`, no trailing dot). Can be created, but not updated.
+        :param pulumi.Input[builtins.str] description: The description for your domain.
         :param pulumi.Input[builtins.str] service_id: The service_id associated with your domain or null if there is no association.
         """
         pulumi.set(__self__, "fqdn", fqdn)
+        if description is not None:
+            pulumi.set(__self__, "description", description)
         if service_id is not None:
             pulumi.set(__self__, "service_id", service_id)
 
@@ -42,6 +46,18 @@ class DomainV1Args:
     @fqdn.setter
     def fqdn(self, value: pulumi.Input[builtins.str]):
         pulumi.set(self, "fqdn", value)
+
+    @property
+    @pulumi.getter
+    def description(self) -> Optional[pulumi.Input[builtins.str]]:
+        """
+        The description for your domain.
+        """
+        return pulumi.get(self, "description")
+
+    @description.setter
+    def description(self, value: Optional[pulumi.Input[builtins.str]]):
+        pulumi.set(self, "description", value)
 
     @property
     @pulumi.getter(name="serviceId")
@@ -59,21 +75,37 @@ class DomainV1Args:
 @pulumi.input_type
 class _DomainV1State:
     def __init__(__self__, *,
+                 description: Optional[pulumi.Input[builtins.str]] = None,
                  domain_id: Optional[pulumi.Input[builtins.str]] = None,
                  fqdn: Optional[pulumi.Input[builtins.str]] = None,
                  service_id: Optional[pulumi.Input[builtins.str]] = None):
         """
         Input properties used for looking up and filtering DomainV1 resources.
+        :param pulumi.Input[builtins.str] description: The description for your domain.
         :param pulumi.Input[builtins.str] domain_id: The Domain Identifier (UUID).
         :param pulumi.Input[builtins.str] fqdn: The fully-qualified domain name for your domain (e.g. `www.example.com`, no trailing dot). Can be created, but not updated.
         :param pulumi.Input[builtins.str] service_id: The service_id associated with your domain or null if there is no association.
         """
+        if description is not None:
+            pulumi.set(__self__, "description", description)
         if domain_id is not None:
             pulumi.set(__self__, "domain_id", domain_id)
         if fqdn is not None:
             pulumi.set(__self__, "fqdn", fqdn)
         if service_id is not None:
             pulumi.set(__self__, "service_id", service_id)
+
+    @property
+    @pulumi.getter
+    def description(self) -> Optional[pulumi.Input[builtins.str]]:
+        """
+        The description for your domain.
+        """
+        return pulumi.get(self, "description")
+
+    @description.setter
+    def description(self, value: Optional[pulumi.Input[builtins.str]]):
+        pulumi.set(self, "description", value)
 
     @property
     @pulumi.getter(name="domainId")
@@ -118,6 +150,7 @@ class DomainV1(pulumi.CustomResource):
     def __init__(__self__,
                  resource_name: str,
                  opts: Optional[pulumi.ResourceOptions] = None,
+                 description: Optional[pulumi.Input[builtins.str]] = None,
                  fqdn: Optional[pulumi.Input[builtins.str]] = None,
                  service_id: Optional[pulumi.Input[builtins.str]] = None,
                  __props__=None):
@@ -125,6 +158,7 @@ class DomainV1(pulumi.CustomResource):
         Create a DomainV1 resource with the given unique name, props, and options.
         :param str resource_name: The name of the resource.
         :param pulumi.ResourceOptions opts: Options for the resource.
+        :param pulumi.Input[builtins.str] description: The description for your domain.
         :param pulumi.Input[builtins.str] fqdn: The fully-qualified domain name for your domain (e.g. `www.example.com`, no trailing dot). Can be created, but not updated.
         :param pulumi.Input[builtins.str] service_id: The service_id associated with your domain or null if there is no association.
         """
@@ -151,6 +185,7 @@ class DomainV1(pulumi.CustomResource):
     def _internal_init(__self__,
                  resource_name: str,
                  opts: Optional[pulumi.ResourceOptions] = None,
+                 description: Optional[pulumi.Input[builtins.str]] = None,
                  fqdn: Optional[pulumi.Input[builtins.str]] = None,
                  service_id: Optional[pulumi.Input[builtins.str]] = None,
                  __props__=None):
@@ -162,6 +197,7 @@ class DomainV1(pulumi.CustomResource):
                 raise TypeError('__props__ is only valid when passed in combination with a valid opts.id to get an existing resource')
             __props__ = DomainV1Args.__new__(DomainV1Args)
 
+            __props__.__dict__["description"] = description
             if fqdn is None and not opts.urn:
                 raise TypeError("Missing required property 'fqdn'")
             __props__.__dict__["fqdn"] = fqdn
@@ -177,6 +213,7 @@ class DomainV1(pulumi.CustomResource):
     def get(resource_name: str,
             id: pulumi.Input[str],
             opts: Optional[pulumi.ResourceOptions] = None,
+            description: Optional[pulumi.Input[builtins.str]] = None,
             domain_id: Optional[pulumi.Input[builtins.str]] = None,
             fqdn: Optional[pulumi.Input[builtins.str]] = None,
             service_id: Optional[pulumi.Input[builtins.str]] = None) -> 'DomainV1':
@@ -187,6 +224,7 @@ class DomainV1(pulumi.CustomResource):
         :param str resource_name: The unique name of the resulting resource.
         :param pulumi.Input[str] id: The unique provider ID of the resource to lookup.
         :param pulumi.ResourceOptions opts: Options for the resource.
+        :param pulumi.Input[builtins.str] description: The description for your domain.
         :param pulumi.Input[builtins.str] domain_id: The Domain Identifier (UUID).
         :param pulumi.Input[builtins.str] fqdn: The fully-qualified domain name for your domain (e.g. `www.example.com`, no trailing dot). Can be created, but not updated.
         :param pulumi.Input[builtins.str] service_id: The service_id associated with your domain or null if there is no association.
@@ -195,10 +233,19 @@ class DomainV1(pulumi.CustomResource):
 
         __props__ = _DomainV1State.__new__(_DomainV1State)
 
+        __props__.__dict__["description"] = description
         __props__.__dict__["domain_id"] = domain_id
         __props__.__dict__["fqdn"] = fqdn
         __props__.__dict__["service_id"] = service_id
         return DomainV1(resource_name, opts=opts, __props__=__props__)
+
+    @property
+    @pulumi.getter
+    def description(self) -> pulumi.Output[Optional[builtins.str]]:
+        """
+        The description for your domain.
+        """
+        return pulumi.get(self, "description")
 
     @property
     @pulumi.getter(name="domainId")

@@ -23,6 +23,11 @@ public final class ServiceComputeLoggingSumologic {
      */
     private String name;
     /**
+     * @return Region where logs will be processed before streaming to BigQuery. Valid values are &#39;none&#39;, &#39;us&#39; and &#39;eu&#39;.
+     * 
+     */
+    private @Nullable String processingRegion;
+    /**
      * @return The URL to Sumologic collector endpoint
      * 
      */
@@ -44,6 +49,13 @@ public final class ServiceComputeLoggingSumologic {
         return this.name;
     }
     /**
+     * @return Region where logs will be processed before streaming to BigQuery. Valid values are &#39;none&#39;, &#39;us&#39; and &#39;eu&#39;.
+     * 
+     */
+    public Optional<String> processingRegion() {
+        return Optional.ofNullable(this.processingRegion);
+    }
+    /**
      * @return The URL to Sumologic collector endpoint
      * 
      */
@@ -62,12 +74,14 @@ public final class ServiceComputeLoggingSumologic {
     public static final class Builder {
         private @Nullable String messageType;
         private String name;
+        private @Nullable String processingRegion;
         private String url;
         public Builder() {}
         public Builder(ServiceComputeLoggingSumologic defaults) {
     	      Objects.requireNonNull(defaults);
     	      this.messageType = defaults.messageType;
     	      this.name = defaults.name;
+    	      this.processingRegion = defaults.processingRegion;
     	      this.url = defaults.url;
         }
 
@@ -86,6 +100,12 @@ public final class ServiceComputeLoggingSumologic {
             return this;
         }
         @CustomType.Setter
+        public Builder processingRegion(@Nullable String processingRegion) {
+
+            this.processingRegion = processingRegion;
+            return this;
+        }
+        @CustomType.Setter
         public Builder url(String url) {
             if (url == null) {
               throw new MissingRequiredPropertyException("ServiceComputeLoggingSumologic", "url");
@@ -97,6 +117,7 @@ public final class ServiceComputeLoggingSumologic {
             final var _resultValue = new ServiceComputeLoggingSumologic();
             _resultValue.messageType = messageType;
             _resultValue.name = name;
+            _resultValue.processingRegion = processingRegion;
             _resultValue.url = url;
             return _resultValue;
         }

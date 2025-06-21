@@ -60,6 +60,11 @@ public final class ServiceVclLoggingKafka {
      */
     private @Nullable String placement;
     /**
+     * @return Region where logs will be processed before streaming to BigQuery. Valid values are &#39;none&#39;, &#39;us&#39; and &#39;eu&#39;.
+     * 
+     */
+    private @Nullable String processingRegion;
+    /**
      * @return Maximum size of log batch, if non-zero. Defaults to 0 for unbounded
      * 
      */
@@ -175,6 +180,13 @@ public final class ServiceVclLoggingKafka {
         return Optional.ofNullable(this.placement);
     }
     /**
+     * @return Region where logs will be processed before streaming to BigQuery. Valid values are &#39;none&#39;, &#39;us&#39; and &#39;eu&#39;.
+     * 
+     */
+    public Optional<String> processingRegion() {
+        return Optional.ofNullable(this.processingRegion);
+    }
+    /**
      * @return Maximum size of log batch, if non-zero. Defaults to 0 for unbounded
      * 
      */
@@ -263,6 +275,7 @@ public final class ServiceVclLoggingKafka {
         private @Nullable Boolean parseLogKeyvals;
         private @Nullable String password;
         private @Nullable String placement;
+        private @Nullable String processingRegion;
         private @Nullable Integer requestMaxBytes;
         private @Nullable String requiredAcks;
         private @Nullable String responseCondition;
@@ -285,6 +298,7 @@ public final class ServiceVclLoggingKafka {
     	      this.parseLogKeyvals = defaults.parseLogKeyvals;
     	      this.password = defaults.password;
     	      this.placement = defaults.placement;
+    	      this.processingRegion = defaults.processingRegion;
     	      this.requestMaxBytes = defaults.requestMaxBytes;
     	      this.requiredAcks = defaults.requiredAcks;
     	      this.responseCondition = defaults.responseCondition;
@@ -353,6 +367,12 @@ public final class ServiceVclLoggingKafka {
         public Builder placement(@Nullable String placement) {
 
             this.placement = placement;
+            return this;
+        }
+        @CustomType.Setter
+        public Builder processingRegion(@Nullable String processingRegion) {
+
+            this.processingRegion = processingRegion;
             return this;
         }
         @CustomType.Setter
@@ -428,6 +448,7 @@ public final class ServiceVclLoggingKafka {
             _resultValue.parseLogKeyvals = parseLogKeyvals;
             _resultValue.password = password;
             _resultValue.placement = placement;
+            _resultValue.processingRegion = processingRegion;
             _resultValue.requestMaxBytes = requestMaxBytes;
             _resultValue.requiredAcks = requiredAcks;
             _resultValue.responseCondition = responseCondition;

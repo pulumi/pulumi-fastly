@@ -42,14 +42,14 @@ import javax.annotation.Nullable;
 @ResourceType(type="fastly:index/tlsSubscription:TlsSubscription")
 public class TlsSubscription extends com.pulumi.resources.CustomResource {
     /**
-     * The entity that issues and certifies the TLS certificates for your subscription. Valid values are `lets-encrypt` or `globalsign`.
+     * The entity that issues and certifies the TLS certificates for your subscription. Valid values are `lets-encrypt`, `globalsign` or `certainly`.
      * 
      */
     @Export(name="certificateAuthority", refs={String.class}, tree="[0]")
     private Output<String> certificateAuthority;
 
     /**
-     * @return The entity that issues and certifies the TLS certificates for your subscription. Valid values are `lets-encrypt` or `globalsign`.
+     * @return The entity that issues and certifies the TLS certificates for your subscription. Valid values are `lets-encrypt`, `globalsign` or `certainly`.
      * 
      */
     public Output<String> certificateAuthority() {
@@ -126,32 +126,28 @@ public class TlsSubscription extends com.pulumi.resources.CustomResource {
         return this.domains;
     }
     /**
-     * Always delete subscription, even when active domains are present. Defaults to false.
-     * 
-     * !&gt; **Warning:** by default, the Fastly API protects you from disabling production traffic by preventing updating or deleting subscriptions with active domains. The use of `force_update` and `force_destroy` will override these protections. Take extra care using these options if you are handling production traffic.
+     * Force delete the subscription even if it has active domains. Warning: this can disable production traffic if used incorrectly. Defaults to false.
      * 
      */
     @Export(name="forceDestroy", refs={Boolean.class}, tree="[0]")
     private Output</* @Nullable */ Boolean> forceDestroy;
 
     /**
-     * @return Always delete subscription, even when active domains are present. Defaults to false.
-     * 
-     * !&gt; **Warning:** by default, the Fastly API protects you from disabling production traffic by preventing updating or deleting subscriptions with active domains. The use of `force_update` and `force_destroy` will override these protections. Take extra care using these options if you are handling production traffic.
+     * @return Force delete the subscription even if it has active domains. Warning: this can disable production traffic if used incorrectly. Defaults to false.
      * 
      */
     public Output<Optional<Boolean>> forceDestroy() {
         return Codegen.optional(this.forceDestroy);
     }
     /**
-     * Always update subscription, even when active domains are present. Defaults to false.
+     * Force update the subscription even if it has active domains. Warning: this can disable production traffic if used incorrectly.
      * 
      */
     @Export(name="forceUpdate", refs={Boolean.class}, tree="[0]")
     private Output</* @Nullable */ Boolean> forceUpdate;
 
     /**
-     * @return Always update subscription, even when active domains are present. Defaults to false.
+     * @return Force update the subscription even if it has active domains. Warning: this can disable production traffic if used incorrectly.
      * 
      */
     public Output<Optional<Boolean>> forceUpdate() {

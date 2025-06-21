@@ -15,6 +15,8 @@ import (
 type DomainV1 struct {
 	pulumi.CustomResourceState
 
+	// The description for your domain.
+	Description pulumi.StringPtrOutput `pulumi:"description"`
 	// The Domain Identifier (UUID).
 	DomainId pulumi.StringOutput `pulumi:"domainId"`
 	// The fully-qualified domain name for your domain (e.g. `www.example.com`, no trailing dot). Can be created, but not updated.
@@ -56,6 +58,8 @@ func GetDomainV1(ctx *pulumi.Context,
 
 // Input properties used for looking up and filtering DomainV1 resources.
 type domainV1State struct {
+	// The description for your domain.
+	Description *string `pulumi:"description"`
 	// The Domain Identifier (UUID).
 	DomainId *string `pulumi:"domainId"`
 	// The fully-qualified domain name for your domain (e.g. `www.example.com`, no trailing dot). Can be created, but not updated.
@@ -65,6 +69,8 @@ type domainV1State struct {
 }
 
 type DomainV1State struct {
+	// The description for your domain.
+	Description pulumi.StringPtrInput
 	// The Domain Identifier (UUID).
 	DomainId pulumi.StringPtrInput
 	// The fully-qualified domain name for your domain (e.g. `www.example.com`, no trailing dot). Can be created, but not updated.
@@ -78,6 +84,8 @@ func (DomainV1State) ElementType() reflect.Type {
 }
 
 type domainV1Args struct {
+	// The description for your domain.
+	Description *string `pulumi:"description"`
 	// The fully-qualified domain name for your domain (e.g. `www.example.com`, no trailing dot). Can be created, but not updated.
 	Fqdn string `pulumi:"fqdn"`
 	// The serviceId associated with your domain or null if there is no association.
@@ -86,6 +94,8 @@ type domainV1Args struct {
 
 // The set of arguments for constructing a DomainV1 resource.
 type DomainV1Args struct {
+	// The description for your domain.
+	Description pulumi.StringPtrInput
 	// The fully-qualified domain name for your domain (e.g. `www.example.com`, no trailing dot). Can be created, but not updated.
 	Fqdn pulumi.StringInput
 	// The serviceId associated with your domain or null if there is no association.
@@ -177,6 +187,11 @@ func (o DomainV1Output) ToDomainV1Output() DomainV1Output {
 
 func (o DomainV1Output) ToDomainV1OutputWithContext(ctx context.Context) DomainV1Output {
 	return o
+}
+
+// The description for your domain.
+func (o DomainV1Output) Description() pulumi.StringPtrOutput {
+	return o.ApplyT(func(v *DomainV1) pulumi.StringPtrOutput { return v.Description }).(pulumi.StringPtrOutput)
 }
 
 // The Domain Identifier (UUID).

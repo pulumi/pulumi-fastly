@@ -97,6 +97,12 @@ namespace Pulumi.Fastly.Inputs
         public Input<int>? Port { get; set; }
 
         /// <summary>
+        /// Prefer IPv6 connections to origins for hostname backends. Default `false`
+        /// </summary>
+        [Input("preferIpv6")]
+        public Input<bool>? PreferIpv6 { get; set; }
+
+        /// <summary>
         /// Name of a condition, which if met, will select this backend during a request.
         /// </summary>
         [Input("requestCondition")]

@@ -62,6 +62,10 @@ namespace Pulumi.Fastly.Outputs
         /// </summary>
         public readonly int? Port;
         /// <summary>
+        /// Region where logs will be processed before streaming to BigQuery. Valid values are 'none', 'us' and 'eu'.
+        /// </summary>
+        public readonly string? ProcessingRegion;
+        /// <summary>
         /// The PGP public key that Fastly will use to encrypt your log files before writing them to disk
         /// </summary>
         public readonly string? PublicKey;
@@ -104,6 +108,8 @@ namespace Pulumi.Fastly.Outputs
 
             int? port,
 
+            string? processingRegion,
+
             string? publicKey,
 
             string? responseCondition,
@@ -124,6 +130,7 @@ namespace Pulumi.Fastly.Outputs
             Period = period;
             Placement = placement;
             Port = port;
+            ProcessingRegion = processingRegion;
             PublicKey = publicKey;
             ResponseCondition = responseCondition;
             TimestampFormat = timestampFormat;

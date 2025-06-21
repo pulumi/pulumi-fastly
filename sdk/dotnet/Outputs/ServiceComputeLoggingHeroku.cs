@@ -18,6 +18,10 @@ namespace Pulumi.Fastly.Outputs
         /// </summary>
         public readonly string Name;
         /// <summary>
+        /// Region where logs will be processed before streaming to BigQuery. Valid values are 'none', 'us' and 'eu'.
+        /// </summary>
+        public readonly string? ProcessingRegion;
+        /// <summary>
         /// The token to use for authentication (https://www.heroku.com/docs/customer-token-authentication-token/)
         /// </summary>
         public readonly string Token;
@@ -30,11 +34,14 @@ namespace Pulumi.Fastly.Outputs
         private ServiceComputeLoggingHeroku(
             string name,
 
+            string? processingRegion,
+
             string token,
 
             string url)
         {
             Name = name;
+            ProcessingRegion = processingRegion;
             Token = token;
             Url = url;
         }

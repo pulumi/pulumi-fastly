@@ -30,6 +30,10 @@ namespace Pulumi.Fastly.Outputs
         /// </summary>
         public readonly string? Placement;
         /// <summary>
+        /// Region where logs will be processed before streaming to BigQuery. Valid values are 'none', 'us' and 'eu'.
+        /// </summary>
+        public readonly string? ProcessingRegion;
+        /// <summary>
         /// The name of an existing condition in the configured endpoint, or leave blank to always execute.
         /// </summary>
         public readonly string? ResponseCondition;
@@ -48,6 +52,8 @@ namespace Pulumi.Fastly.Outputs
 
             string? placement,
 
+            string? processingRegion,
+
             string? responseCondition,
 
             string token)
@@ -56,6 +62,7 @@ namespace Pulumi.Fastly.Outputs
             FormatVersion = formatVersion;
             Name = name;
             Placement = placement;
+            ProcessingRegion = processingRegion;
             ResponseCondition = responseCondition;
             Token = token;
         }

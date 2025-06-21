@@ -59,6 +59,11 @@ public final class ServiceComputeLoggingFtp {
      */
     private @Nullable Integer port;
     /**
+     * @return Region where logs will be processed before streaming to BigQuery. Valid values are &#39;none&#39;, &#39;us&#39; and &#39;eu&#39;.
+     * 
+     */
+    private @Nullable String processingRegion;
+    /**
      * @return The PGP public key that Fastly will use to encrypt your log files before writing them to disk
      * 
      */
@@ -139,6 +144,13 @@ public final class ServiceComputeLoggingFtp {
         return Optional.ofNullable(this.port);
     }
     /**
+     * @return Region where logs will be processed before streaming to BigQuery. Valid values are &#39;none&#39;, &#39;us&#39; and &#39;eu&#39;.
+     * 
+     */
+    public Optional<String> processingRegion() {
+        return Optional.ofNullable(this.processingRegion);
+    }
+    /**
      * @return The PGP public key that Fastly will use to encrypt your log files before writing them to disk
      * 
      */
@@ -178,6 +190,7 @@ public final class ServiceComputeLoggingFtp {
         private String path;
         private @Nullable Integer period;
         private @Nullable Integer port;
+        private @Nullable String processingRegion;
         private @Nullable String publicKey;
         private @Nullable String timestampFormat;
         private String user;
@@ -193,6 +206,7 @@ public final class ServiceComputeLoggingFtp {
     	      this.path = defaults.path;
     	      this.period = defaults.period;
     	      this.port = defaults.port;
+    	      this.processingRegion = defaults.processingRegion;
     	      this.publicKey = defaults.publicKey;
     	      this.timestampFormat = defaults.timestampFormat;
     	      this.user = defaults.user;
@@ -261,6 +275,12 @@ public final class ServiceComputeLoggingFtp {
             return this;
         }
         @CustomType.Setter
+        public Builder processingRegion(@Nullable String processingRegion) {
+
+            this.processingRegion = processingRegion;
+            return this;
+        }
+        @CustomType.Setter
         public Builder publicKey(@Nullable String publicKey) {
 
             this.publicKey = publicKey;
@@ -291,6 +311,7 @@ public final class ServiceComputeLoggingFtp {
             _resultValue.path = path;
             _resultValue.period = period;
             _resultValue.port = port;
+            _resultValue.processingRegion = processingRegion;
             _resultValue.publicKey = publicKey;
             _resultValue.timestampFormat = timestampFormat;
             _resultValue.user = user;

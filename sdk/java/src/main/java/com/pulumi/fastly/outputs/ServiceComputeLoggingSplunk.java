@@ -19,6 +19,11 @@ public final class ServiceComputeLoggingSplunk {
      */
     private String name;
     /**
+     * @return Region where logs will be processed before streaming to BigQuery. Valid values are &#39;none&#39;, &#39;us&#39; and &#39;eu&#39;.
+     * 
+     */
+    private @Nullable String processingRegion;
+    /**
      * @return A secure certificate to authenticate the server with. Must be in PEM format. You can provide this certificate via an environment variable, `FASTLY_SPLUNK_CA_CERT`
      * 
      */
@@ -61,6 +66,13 @@ public final class ServiceComputeLoggingSplunk {
      */
     public String name() {
         return this.name;
+    }
+    /**
+     * @return Region where logs will be processed before streaming to BigQuery. Valid values are &#39;none&#39;, &#39;us&#39; and &#39;eu&#39;.
+     * 
+     */
+    public Optional<String> processingRegion() {
+        return Optional.ofNullable(this.processingRegion);
     }
     /**
      * @return A secure certificate to authenticate the server with. Must be in PEM format. You can provide this certificate via an environment variable, `FASTLY_SPLUNK_CA_CERT`
@@ -122,6 +134,7 @@ public final class ServiceComputeLoggingSplunk {
     @CustomType.Builder
     public static final class Builder {
         private String name;
+        private @Nullable String processingRegion;
         private @Nullable String tlsCaCert;
         private @Nullable String tlsClientCert;
         private @Nullable String tlsClientKey;
@@ -133,6 +146,7 @@ public final class ServiceComputeLoggingSplunk {
         public Builder(ServiceComputeLoggingSplunk defaults) {
     	      Objects.requireNonNull(defaults);
     	      this.name = defaults.name;
+    	      this.processingRegion = defaults.processingRegion;
     	      this.tlsCaCert = defaults.tlsCaCert;
     	      this.tlsClientCert = defaults.tlsClientCert;
     	      this.tlsClientKey = defaults.tlsClientKey;
@@ -148,6 +162,12 @@ public final class ServiceComputeLoggingSplunk {
               throw new MissingRequiredPropertyException("ServiceComputeLoggingSplunk", "name");
             }
             this.name = name;
+            return this;
+        }
+        @CustomType.Setter
+        public Builder processingRegion(@Nullable String processingRegion) {
+
+            this.processingRegion = processingRegion;
             return this;
         }
         @CustomType.Setter
@@ -199,6 +219,7 @@ public final class ServiceComputeLoggingSplunk {
         public ServiceComputeLoggingSplunk build() {
             final var _resultValue = new ServiceComputeLoggingSplunk();
             _resultValue.name = name;
+            _resultValue.processingRegion = processingRegion;
             _resultValue.tlsCaCert = tlsCaCert;
             _resultValue.tlsClientCert = tlsClientCert;
             _resultValue.tlsClientKey = tlsClientKey;

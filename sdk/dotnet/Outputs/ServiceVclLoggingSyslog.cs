@@ -42,6 +42,10 @@ namespace Pulumi.Fastly.Outputs
         /// </summary>
         public readonly int? Port;
         /// <summary>
+        /// Region where logs will be processed before streaming to BigQuery. Valid values are 'none', 'us' and 'eu'.
+        /// </summary>
+        public readonly string? ProcessingRegion;
+        /// <summary>
         /// Name of blockAttributes condition to apply this logging.
         /// </summary>
         public readonly string? ResponseCondition;
@@ -86,6 +90,8 @@ namespace Pulumi.Fastly.Outputs
 
             int? port,
 
+            string? processingRegion,
+
             string? responseCondition,
 
             string? tlsCaCert,
@@ -107,6 +113,7 @@ namespace Pulumi.Fastly.Outputs
             Name = name;
             Placement = placement;
             Port = port;
+            ProcessingRegion = processingRegion;
             ResponseCondition = responseCondition;
             TlsCaCert = tlsCaCert;
             TlsClientCert = tlsClientCert;

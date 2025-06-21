@@ -32,7 +32,7 @@ namespace Pulumi.Fastly
     public partial class TlsSubscription : global::Pulumi.CustomResource
     {
         /// <summary>
-        /// The entity that issues and certifies the TLS certificates for your subscription. Valid values are `lets-encrypt` or `globalsign`.
+        /// The entity that issues and certifies the TLS certificates for your subscription. Valid values are `lets-encrypt`, `globalsign` or `certainly`.
         /// </summary>
         [Output("certificateAuthority")]
         public Output<string> CertificateAuthority { get; private set; } = null!;
@@ -68,15 +68,13 @@ namespace Pulumi.Fastly
         public Output<ImmutableArray<string>> Domains { get; private set; } = null!;
 
         /// <summary>
-        /// Always delete subscription, even when active domains are present. Defaults to false.
-        /// 
-        /// !&gt; **Warning:** by default, the Fastly API protects you from disabling production traffic by preventing updating or deleting subscriptions with active domains. The use of `force_update` and `force_destroy` will override these protections. Take extra care using these options if you are handling production traffic.
+        /// Force delete the subscription even if it has active domains. Warning: this can disable production traffic if used incorrectly. Defaults to false.
         /// </summary>
         [Output("forceDestroy")]
         public Output<bool?> ForceDestroy { get; private set; } = null!;
 
         /// <summary>
-        /// Always update subscription, even when active domains are present. Defaults to false.
+        /// Force update the subscription even if it has active domains. Warning: this can disable production traffic if used incorrectly.
         /// </summary>
         [Output("forceUpdate")]
         public Output<bool?> ForceUpdate { get; private set; } = null!;
@@ -158,7 +156,7 @@ namespace Pulumi.Fastly
     public sealed class TlsSubscriptionArgs : global::Pulumi.ResourceArgs
     {
         /// <summary>
-        /// The entity that issues and certifies the TLS certificates for your subscription. Valid values are `lets-encrypt` or `globalsign`.
+        /// The entity that issues and certifies the TLS certificates for your subscription. Valid values are `lets-encrypt`, `globalsign` or `certainly`.
         /// </summary>
         [Input("certificateAuthority", required: true)]
         public Input<string> CertificateAuthority { get; set; } = null!;
@@ -188,15 +186,13 @@ namespace Pulumi.Fastly
         }
 
         /// <summary>
-        /// Always delete subscription, even when active domains are present. Defaults to false.
-        /// 
-        /// !&gt; **Warning:** by default, the Fastly API protects you from disabling production traffic by preventing updating or deleting subscriptions with active domains. The use of `force_update` and `force_destroy` will override these protections. Take extra care using these options if you are handling production traffic.
+        /// Force delete the subscription even if it has active domains. Warning: this can disable production traffic if used incorrectly. Defaults to false.
         /// </summary>
         [Input("forceDestroy")]
         public Input<bool>? ForceDestroy { get; set; }
 
         /// <summary>
-        /// Always update subscription, even when active domains are present. Defaults to false.
+        /// Force update the subscription even if it has active domains. Warning: this can disable production traffic if used incorrectly.
         /// </summary>
         [Input("forceUpdate")]
         public Input<bool>? ForceUpdate { get; set; }
@@ -210,7 +206,7 @@ namespace Pulumi.Fastly
     public sealed class TlsSubscriptionState : global::Pulumi.ResourceArgs
     {
         /// <summary>
-        /// The entity that issues and certifies the TLS certificates for your subscription. Valid values are `lets-encrypt` or `globalsign`.
+        /// The entity that issues and certifies the TLS certificates for your subscription. Valid values are `lets-encrypt`, `globalsign` or `certainly`.
         /// </summary>
         [Input("certificateAuthority")]
         public Input<string>? CertificateAuthority { get; set; }
@@ -252,15 +248,13 @@ namespace Pulumi.Fastly
         }
 
         /// <summary>
-        /// Always delete subscription, even when active domains are present. Defaults to false.
-        /// 
-        /// !&gt; **Warning:** by default, the Fastly API protects you from disabling production traffic by preventing updating or deleting subscriptions with active domains. The use of `force_update` and `force_destroy` will override these protections. Take extra care using these options if you are handling production traffic.
+        /// Force delete the subscription even if it has active domains. Warning: this can disable production traffic if used incorrectly. Defaults to false.
         /// </summary>
         [Input("forceDestroy")]
         public Input<bool>? ForceDestroy { get; set; }
 
         /// <summary>
-        /// Always update subscription, even when active domains are present. Defaults to false.
+        /// Force update the subscription even if it has active domains. Warning: this can disable production traffic if used incorrectly.
         /// </summary>
         [Input("forceUpdate")]
         public Input<bool>? ForceUpdate { get; set; }

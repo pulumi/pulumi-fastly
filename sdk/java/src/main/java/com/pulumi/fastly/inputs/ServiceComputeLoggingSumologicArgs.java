@@ -47,6 +47,21 @@ public final class ServiceComputeLoggingSumologicArgs extends com.pulumi.resourc
     }
 
     /**
+     * Region where logs will be processed before streaming to BigQuery. Valid values are &#39;none&#39;, &#39;us&#39; and &#39;eu&#39;.
+     * 
+     */
+    @Import(name="processingRegion")
+    private @Nullable Output<String> processingRegion;
+
+    /**
+     * @return Region where logs will be processed before streaming to BigQuery. Valid values are &#39;none&#39;, &#39;us&#39; and &#39;eu&#39;.
+     * 
+     */
+    public Optional<Output<String>> processingRegion() {
+        return Optional.ofNullable(this.processingRegion);
+    }
+
+    /**
      * The URL to Sumologic collector endpoint
      * 
      */
@@ -66,6 +81,7 @@ public final class ServiceComputeLoggingSumologicArgs extends com.pulumi.resourc
     private ServiceComputeLoggingSumologicArgs(ServiceComputeLoggingSumologicArgs $) {
         this.messageType = $.messageType;
         this.name = $.name;
+        this.processingRegion = $.processingRegion;
         this.url = $.url;
     }
 
@@ -127,6 +143,27 @@ public final class ServiceComputeLoggingSumologicArgs extends com.pulumi.resourc
          */
         public Builder name(String name) {
             return name(Output.of(name));
+        }
+
+        /**
+         * @param processingRegion Region where logs will be processed before streaming to BigQuery. Valid values are &#39;none&#39;, &#39;us&#39; and &#39;eu&#39;.
+         * 
+         * @return builder
+         * 
+         */
+        public Builder processingRegion(@Nullable Output<String> processingRegion) {
+            $.processingRegion = processingRegion;
+            return this;
+        }
+
+        /**
+         * @param processingRegion Region where logs will be processed before streaming to BigQuery. Valid values are &#39;none&#39;, &#39;us&#39; and &#39;eu&#39;.
+         * 
+         * @return builder
+         * 
+         */
+        public Builder processingRegion(String processingRegion) {
+            return processingRegion(Output.of(processingRegion));
         }
 
         /**

@@ -43,6 +43,11 @@ public final class ServiceVclLoggingBigquery {
      */
     private @Nullable String placement;
     /**
+     * @return Region where logs will be processed before streaming to BigQuery. Valid values are &#39;none&#39;, &#39;us&#39; and &#39;eu&#39;.
+     * 
+     */
+    private @Nullable String processingRegion;
+    /**
      * @return The ID of your GCP project
      * 
      */
@@ -112,6 +117,13 @@ public final class ServiceVclLoggingBigquery {
         return Optional.ofNullable(this.placement);
     }
     /**
+     * @return Region where logs will be processed before streaming to BigQuery. Valid values are &#39;none&#39;, &#39;us&#39; and &#39;eu&#39;.
+     * 
+     */
+    public Optional<String> processingRegion() {
+        return Optional.ofNullable(this.processingRegion);
+    }
+    /**
      * @return The ID of your GCP project
      * 
      */
@@ -162,6 +174,7 @@ public final class ServiceVclLoggingBigquery {
         private @Nullable String format;
         private String name;
         private @Nullable String placement;
+        private @Nullable String processingRegion;
         private String projectId;
         private @Nullable String responseCondition;
         private String secretKey;
@@ -176,6 +189,7 @@ public final class ServiceVclLoggingBigquery {
     	      this.format = defaults.format;
     	      this.name = defaults.name;
     	      this.placement = defaults.placement;
+    	      this.processingRegion = defaults.processingRegion;
     	      this.projectId = defaults.projectId;
     	      this.responseCondition = defaults.responseCondition;
     	      this.secretKey = defaults.secretKey;
@@ -226,6 +240,12 @@ public final class ServiceVclLoggingBigquery {
             return this;
         }
         @CustomType.Setter
+        public Builder processingRegion(@Nullable String processingRegion) {
+
+            this.processingRegion = processingRegion;
+            return this;
+        }
+        @CustomType.Setter
         public Builder projectId(String projectId) {
             if (projectId == null) {
               throw new MissingRequiredPropertyException("ServiceVclLoggingBigquery", "projectId");
@@ -269,6 +289,7 @@ public final class ServiceVclLoggingBigquery {
             _resultValue.format = format;
             _resultValue.name = name;
             _resultValue.placement = placement;
+            _resultValue.processingRegion = processingRegion;
             _resultValue.projectId = projectId;
             _resultValue.responseCondition = responseCondition;
             _resultValue.secretKey = secretKey;

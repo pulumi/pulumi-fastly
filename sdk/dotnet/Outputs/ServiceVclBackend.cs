@@ -70,6 +70,10 @@ namespace Pulumi.Fastly.Outputs
         /// </summary>
         public readonly int? Port;
         /// <summary>
+        /// Prefer IPv6 connections to origins for hostname backends. Default `false`
+        /// </summary>
+        public readonly bool? PreferIpv6;
+        /// <summary>
         /// Name of a condition, which if met, will select this backend during a request.
         /// </summary>
         public readonly string? RequestCondition;
@@ -148,6 +152,8 @@ namespace Pulumi.Fastly.Outputs
 
             int? port,
 
+            bool? preferIpv6,
+
             string? requestCondition,
 
             string? shareKey,
@@ -186,6 +192,7 @@ namespace Pulumi.Fastly.Outputs
             Name = name;
             OverrideHost = overrideHost;
             Port = port;
+            PreferIpv6 = preferIpv6;
             RequestCondition = requestCondition;
             ShareKey = shareKey;
             Shield = shield;

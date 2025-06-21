@@ -74,6 +74,11 @@ public final class ServiceVclLoggingBlobstorage {
      */
     private @Nullable String placement;
     /**
+     * @return Region where logs will be processed before streaming to BigQuery. Valid values are &#39;none&#39;, &#39;us&#39; and &#39;eu&#39;.
+     * 
+     */
+    private @Nullable String processingRegion;
+    /**
      * @return A PGP public key that Fastly will use to encrypt your log files before writing them to disk
      * 
      */
@@ -180,6 +185,13 @@ public final class ServiceVclLoggingBlobstorage {
         return Optional.ofNullable(this.placement);
     }
     /**
+     * @return Region where logs will be processed before streaming to BigQuery. Valid values are &#39;none&#39;, &#39;us&#39; and &#39;eu&#39;.
+     * 
+     */
+    public Optional<String> processingRegion() {
+        return Optional.ofNullable(this.processingRegion);
+    }
+    /**
      * @return A PGP public key that Fastly will use to encrypt your log files before writing them to disk
      * 
      */
@@ -229,6 +241,7 @@ public final class ServiceVclLoggingBlobstorage {
         private @Nullable String path;
         private @Nullable Integer period;
         private @Nullable String placement;
+        private @Nullable String processingRegion;
         private @Nullable String publicKey;
         private @Nullable String responseCondition;
         private String sasToken;
@@ -248,6 +261,7 @@ public final class ServiceVclLoggingBlobstorage {
     	      this.path = defaults.path;
     	      this.period = defaults.period;
     	      this.placement = defaults.placement;
+    	      this.processingRegion = defaults.processingRegion;
     	      this.publicKey = defaults.publicKey;
     	      this.responseCondition = defaults.responseCondition;
     	      this.sasToken = defaults.sasToken;
@@ -333,6 +347,12 @@ public final class ServiceVclLoggingBlobstorage {
             return this;
         }
         @CustomType.Setter
+        public Builder processingRegion(@Nullable String processingRegion) {
+
+            this.processingRegion = processingRegion;
+            return this;
+        }
+        @CustomType.Setter
         public Builder publicKey(@Nullable String publicKey) {
 
             this.publicKey = publicKey;
@@ -372,6 +392,7 @@ public final class ServiceVclLoggingBlobstorage {
             _resultValue.path = path;
             _resultValue.period = period;
             _resultValue.placement = placement;
+            _resultValue.processingRegion = processingRegion;
             _resultValue.publicKey = publicKey;
             _resultValue.responseCondition = responseCondition;
             _resultValue.sasToken = sasToken;

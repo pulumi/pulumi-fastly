@@ -25,6 +25,11 @@ public final class ServiceComputeLoggingLogentry {
      */
     private @Nullable Integer port;
     /**
+     * @return Region where logs will be processed before streaming to BigQuery. Valid values are &#39;none&#39;, &#39;us&#39; and &#39;eu&#39;.
+     * 
+     */
+    private @Nullable String processingRegion;
+    /**
      * @return Use token based authentication (https://logentries.com/doc/input-token/)
      * 
      */
@@ -49,6 +54,13 @@ public final class ServiceComputeLoggingLogentry {
      */
     public Optional<Integer> port() {
         return Optional.ofNullable(this.port);
+    }
+    /**
+     * @return Region where logs will be processed before streaming to BigQuery. Valid values are &#39;none&#39;, &#39;us&#39; and &#39;eu&#39;.
+     * 
+     */
+    public Optional<String> processingRegion() {
+        return Optional.ofNullable(this.processingRegion);
     }
     /**
      * @return Use token based authentication (https://logentries.com/doc/input-token/)
@@ -76,6 +88,7 @@ public final class ServiceComputeLoggingLogentry {
     public static final class Builder {
         private String name;
         private @Nullable Integer port;
+        private @Nullable String processingRegion;
         private String token;
         private @Nullable Boolean useTls;
         public Builder() {}
@@ -83,6 +96,7 @@ public final class ServiceComputeLoggingLogentry {
     	      Objects.requireNonNull(defaults);
     	      this.name = defaults.name;
     	      this.port = defaults.port;
+    	      this.processingRegion = defaults.processingRegion;
     	      this.token = defaults.token;
     	      this.useTls = defaults.useTls;
         }
@@ -99,6 +113,12 @@ public final class ServiceComputeLoggingLogentry {
         public Builder port(@Nullable Integer port) {
 
             this.port = port;
+            return this;
+        }
+        @CustomType.Setter
+        public Builder processingRegion(@Nullable String processingRegion) {
+
+            this.processingRegion = processingRegion;
             return this;
         }
         @CustomType.Setter
@@ -119,6 +139,7 @@ public final class ServiceComputeLoggingLogentry {
             final var _resultValue = new ServiceComputeLoggingLogentry();
             _resultValue.name = name;
             _resultValue.port = port;
+            _resultValue.processingRegion = processingRegion;
             _resultValue.token = token;
             _resultValue.useTls = useTls;
             return _resultValue;

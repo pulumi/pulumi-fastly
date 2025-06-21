@@ -80,6 +80,11 @@ public final class ServiceComputeBackend {
      */
     private @Nullable Integer port;
     /**
+     * @return Prefer IPv6 connections to origins for hostname backends. Default `true`
+     * 
+     */
+    private @Nullable Boolean preferIpv6;
+    /**
      * @return Value that when shared across backends will enable those backends to share the same health check.
      * 
      */
@@ -228,6 +233,13 @@ public final class ServiceComputeBackend {
         return Optional.ofNullable(this.port);
     }
     /**
+     * @return Prefer IPv6 connections to origins for hostname backends. Default `true`
+     * 
+     */
+    public Optional<Boolean> preferIpv6() {
+        return Optional.ofNullable(this.preferIpv6);
+    }
+    /**
      * @return Value that when shared across backends will enable those backends to share the same health check.
      * 
      */
@@ -327,6 +339,7 @@ public final class ServiceComputeBackend {
         private String name;
         private @Nullable String overrideHost;
         private @Nullable Integer port;
+        private @Nullable Boolean preferIpv6;
         private @Nullable String shareKey;
         private @Nullable String shield;
         private @Nullable String sslCaCert;
@@ -354,6 +367,7 @@ public final class ServiceComputeBackend {
     	      this.name = defaults.name;
     	      this.overrideHost = defaults.overrideHost;
     	      this.port = defaults.port;
+    	      this.preferIpv6 = defaults.preferIpv6;
     	      this.shareKey = defaults.shareKey;
     	      this.shield = defaults.shield;
     	      this.sslCaCert = defaults.sslCaCert;
@@ -450,6 +464,12 @@ public final class ServiceComputeBackend {
             return this;
         }
         @CustomType.Setter
+        public Builder preferIpv6(@Nullable Boolean preferIpv6) {
+
+            this.preferIpv6 = preferIpv6;
+            return this;
+        }
+        @CustomType.Setter
         public Builder shareKey(@Nullable String shareKey) {
 
             this.shareKey = shareKey;
@@ -530,6 +550,7 @@ public final class ServiceComputeBackend {
             _resultValue.name = name;
             _resultValue.overrideHost = overrideHost;
             _resultValue.port = port;
+            _resultValue.preferIpv6 = preferIpv6;
             _resultValue.shareKey = shareKey;
             _resultValue.shield = shield;
             _resultValue.sslCaCert = sslCaCert;

@@ -34,6 +34,11 @@ public final class ServiceVclLoggingLoggly {
      */
     private @Nullable String placement;
     /**
+     * @return Region where logs will be processed before streaming to BigQuery. Valid values are &#39;none&#39;, &#39;us&#39; and &#39;eu&#39;.
+     * 
+     */
+    private @Nullable String processingRegion;
+    /**
      * @return The name of an existing condition in the configured endpoint, or leave blank to always execute.
      * 
      */
@@ -74,6 +79,13 @@ public final class ServiceVclLoggingLoggly {
         return Optional.ofNullable(this.placement);
     }
     /**
+     * @return Region where logs will be processed before streaming to BigQuery. Valid values are &#39;none&#39;, &#39;us&#39; and &#39;eu&#39;.
+     * 
+     */
+    public Optional<String> processingRegion() {
+        return Optional.ofNullable(this.processingRegion);
+    }
+    /**
      * @return The name of an existing condition in the configured endpoint, or leave blank to always execute.
      * 
      */
@@ -101,6 +113,7 @@ public final class ServiceVclLoggingLoggly {
         private @Nullable Integer formatVersion;
         private String name;
         private @Nullable String placement;
+        private @Nullable String processingRegion;
         private @Nullable String responseCondition;
         private String token;
         public Builder() {}
@@ -110,6 +123,7 @@ public final class ServiceVclLoggingLoggly {
     	      this.formatVersion = defaults.formatVersion;
     	      this.name = defaults.name;
     	      this.placement = defaults.placement;
+    	      this.processingRegion = defaults.processingRegion;
     	      this.responseCondition = defaults.responseCondition;
     	      this.token = defaults.token;
         }
@@ -141,6 +155,12 @@ public final class ServiceVclLoggingLoggly {
             return this;
         }
         @CustomType.Setter
+        public Builder processingRegion(@Nullable String processingRegion) {
+
+            this.processingRegion = processingRegion;
+            return this;
+        }
+        @CustomType.Setter
         public Builder responseCondition(@Nullable String responseCondition) {
 
             this.responseCondition = responseCondition;
@@ -160,6 +180,7 @@ public final class ServiceVclLoggingLoggly {
             _resultValue.formatVersion = formatVersion;
             _resultValue.name = name;
             _resultValue.placement = placement;
+            _resultValue.processingRegion = processingRegion;
             _resultValue.responseCondition = responseCondition;
             _resultValue.token = token;
             return _resultValue;

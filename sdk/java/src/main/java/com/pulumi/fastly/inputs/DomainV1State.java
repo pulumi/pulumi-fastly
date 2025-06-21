@@ -16,6 +16,21 @@ public final class DomainV1State extends com.pulumi.resources.ResourceArgs {
     public static final DomainV1State Empty = new DomainV1State();
 
     /**
+     * The description for your domain.
+     * 
+     */
+    @Import(name="description")
+    private @Nullable Output<String> description;
+
+    /**
+     * @return The description for your domain.
+     * 
+     */
+    public Optional<Output<String>> description() {
+        return Optional.ofNullable(this.description);
+    }
+
+    /**
      * The Domain Identifier (UUID).
      * 
      */
@@ -63,6 +78,7 @@ public final class DomainV1State extends com.pulumi.resources.ResourceArgs {
     private DomainV1State() {}
 
     private DomainV1State(DomainV1State $) {
+        this.description = $.description;
         this.domainId = $.domainId;
         this.fqdn = $.fqdn;
         this.serviceId = $.serviceId;
@@ -84,6 +100,27 @@ public final class DomainV1State extends com.pulumi.resources.ResourceArgs {
 
         public Builder(DomainV1State defaults) {
             $ = new DomainV1State(Objects.requireNonNull(defaults));
+        }
+
+        /**
+         * @param description The description for your domain.
+         * 
+         * @return builder
+         * 
+         */
+        public Builder description(@Nullable Output<String> description) {
+            $.description = description;
+            return this;
+        }
+
+        /**
+         * @param description The description for your domain.
+         * 
+         * @return builder
+         * 
+         */
+        public Builder description(String description) {
+            return description(Output.of(description));
         }
 
         /**

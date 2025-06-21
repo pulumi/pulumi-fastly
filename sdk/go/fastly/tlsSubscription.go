@@ -32,7 +32,7 @@ import (
 type TlsSubscription struct {
 	pulumi.CustomResourceState
 
-	// The entity that issues and certifies the TLS certificates for your subscription. Valid values are `lets-encrypt` or `globalsign`.
+	// The entity that issues and certifies the TLS certificates for your subscription. Valid values are `lets-encrypt`, `globalsign` or `certainly`.
 	CertificateAuthority pulumi.StringOutput `pulumi:"certificateAuthority"`
 	// The certificate ID associated with the subscription.
 	CertificateId pulumi.StringOutput `pulumi:"certificateId"`
@@ -44,11 +44,9 @@ type TlsSubscription struct {
 	CreatedAt pulumi.StringOutput `pulumi:"createdAt"`
 	// List of domains on which to enable TLS.
 	Domains pulumi.StringArrayOutput `pulumi:"domains"`
-	// Always delete subscription, even when active domains are present. Defaults to false.
-	//
-	// !> **Warning:** by default, the Fastly API protects you from disabling production traffic by preventing updating or deleting subscriptions with active domains. The use of `forceUpdate` and `forceDestroy` will override these protections. Take extra care using these options if you are handling production traffic.
+	// Force delete the subscription even if it has active domains. Warning: this can disable production traffic if used incorrectly. Defaults to false.
 	ForceDestroy pulumi.BoolPtrOutput `pulumi:"forceDestroy"`
-	// Always update subscription, even when active domains are present. Defaults to false.
+	// Force update the subscription even if it has active domains. Warning: this can disable production traffic if used incorrectly.
 	ForceUpdate pulumi.BoolPtrOutput `pulumi:"forceUpdate"`
 	// The details required to configure DNS to respond to ACME DNS challenge in order to verify domain ownership.
 	//
@@ -100,7 +98,7 @@ func GetTlsSubscription(ctx *pulumi.Context,
 
 // Input properties used for looking up and filtering TlsSubscription resources.
 type tlsSubscriptionState struct {
-	// The entity that issues and certifies the TLS certificates for your subscription. Valid values are `lets-encrypt` or `globalsign`.
+	// The entity that issues and certifies the TLS certificates for your subscription. Valid values are `lets-encrypt`, `globalsign` or `certainly`.
 	CertificateAuthority *string `pulumi:"certificateAuthority"`
 	// The certificate ID associated with the subscription.
 	CertificateId *string `pulumi:"certificateId"`
@@ -112,11 +110,9 @@ type tlsSubscriptionState struct {
 	CreatedAt *string `pulumi:"createdAt"`
 	// List of domains on which to enable TLS.
 	Domains []string `pulumi:"domains"`
-	// Always delete subscription, even when active domains are present. Defaults to false.
-	//
-	// !> **Warning:** by default, the Fastly API protects you from disabling production traffic by preventing updating or deleting subscriptions with active domains. The use of `forceUpdate` and `forceDestroy` will override these protections. Take extra care using these options if you are handling production traffic.
+	// Force delete the subscription even if it has active domains. Warning: this can disable production traffic if used incorrectly. Defaults to false.
 	ForceDestroy *bool `pulumi:"forceDestroy"`
-	// Always update subscription, even when active domains are present. Defaults to false.
+	// Force update the subscription even if it has active domains. Warning: this can disable production traffic if used incorrectly.
 	ForceUpdate *bool `pulumi:"forceUpdate"`
 	// The details required to configure DNS to respond to ACME DNS challenge in order to verify domain ownership.
 	//
@@ -133,7 +129,7 @@ type tlsSubscriptionState struct {
 }
 
 type TlsSubscriptionState struct {
-	// The entity that issues and certifies the TLS certificates for your subscription. Valid values are `lets-encrypt` or `globalsign`.
+	// The entity that issues and certifies the TLS certificates for your subscription. Valid values are `lets-encrypt`, `globalsign` or `certainly`.
 	CertificateAuthority pulumi.StringPtrInput
 	// The certificate ID associated with the subscription.
 	CertificateId pulumi.StringPtrInput
@@ -145,11 +141,9 @@ type TlsSubscriptionState struct {
 	CreatedAt pulumi.StringPtrInput
 	// List of domains on which to enable TLS.
 	Domains pulumi.StringArrayInput
-	// Always delete subscription, even when active domains are present. Defaults to false.
-	//
-	// !> **Warning:** by default, the Fastly API protects you from disabling production traffic by preventing updating or deleting subscriptions with active domains. The use of `forceUpdate` and `forceDestroy` will override these protections. Take extra care using these options if you are handling production traffic.
+	// Force delete the subscription even if it has active domains. Warning: this can disable production traffic if used incorrectly. Defaults to false.
 	ForceDestroy pulumi.BoolPtrInput
-	// Always update subscription, even when active domains are present. Defaults to false.
+	// Force update the subscription even if it has active domains. Warning: this can disable production traffic if used incorrectly.
 	ForceUpdate pulumi.BoolPtrInput
 	// The details required to configure DNS to respond to ACME DNS challenge in order to verify domain ownership.
 	//
@@ -170,7 +164,7 @@ func (TlsSubscriptionState) ElementType() reflect.Type {
 }
 
 type tlsSubscriptionArgs struct {
-	// The entity that issues and certifies the TLS certificates for your subscription. Valid values are `lets-encrypt` or `globalsign`.
+	// The entity that issues and certifies the TLS certificates for your subscription. Valid values are `lets-encrypt`, `globalsign` or `certainly`.
 	CertificateAuthority string `pulumi:"certificateAuthority"`
 	// The common name associated with the subscription generated by Fastly TLS. If you do not pass a common name on create, we will default to the first TLS domain included. If provided, the domain chosen as the common name must be included in TLS domains.
 	CommonName *string `pulumi:"commonName"`
@@ -178,17 +172,15 @@ type tlsSubscriptionArgs struct {
 	ConfigurationId *string `pulumi:"configurationId"`
 	// List of domains on which to enable TLS.
 	Domains []string `pulumi:"domains"`
-	// Always delete subscription, even when active domains are present. Defaults to false.
-	//
-	// !> **Warning:** by default, the Fastly API protects you from disabling production traffic by preventing updating or deleting subscriptions with active domains. The use of `forceUpdate` and `forceDestroy` will override these protections. Take extra care using these options if you are handling production traffic.
+	// Force delete the subscription even if it has active domains. Warning: this can disable production traffic if used incorrectly. Defaults to false.
 	ForceDestroy *bool `pulumi:"forceDestroy"`
-	// Always update subscription, even when active domains are present. Defaults to false.
+	// Force update the subscription even if it has active domains. Warning: this can disable production traffic if used incorrectly.
 	ForceUpdate *bool `pulumi:"forceUpdate"`
 }
 
 // The set of arguments for constructing a TlsSubscription resource.
 type TlsSubscriptionArgs struct {
-	// The entity that issues and certifies the TLS certificates for your subscription. Valid values are `lets-encrypt` or `globalsign`.
+	// The entity that issues and certifies the TLS certificates for your subscription. Valid values are `lets-encrypt`, `globalsign` or `certainly`.
 	CertificateAuthority pulumi.StringInput
 	// The common name associated with the subscription generated by Fastly TLS. If you do not pass a common name on create, we will default to the first TLS domain included. If provided, the domain chosen as the common name must be included in TLS domains.
 	CommonName pulumi.StringPtrInput
@@ -196,11 +188,9 @@ type TlsSubscriptionArgs struct {
 	ConfigurationId pulumi.StringPtrInput
 	// List of domains on which to enable TLS.
 	Domains pulumi.StringArrayInput
-	// Always delete subscription, even when active domains are present. Defaults to false.
-	//
-	// !> **Warning:** by default, the Fastly API protects you from disabling production traffic by preventing updating or deleting subscriptions with active domains. The use of `forceUpdate` and `forceDestroy` will override these protections. Take extra care using these options if you are handling production traffic.
+	// Force delete the subscription even if it has active domains. Warning: this can disable production traffic if used incorrectly. Defaults to false.
 	ForceDestroy pulumi.BoolPtrInput
-	// Always update subscription, even when active domains are present. Defaults to false.
+	// Force update the subscription even if it has active domains. Warning: this can disable production traffic if used incorrectly.
 	ForceUpdate pulumi.BoolPtrInput
 }
 
@@ -291,7 +281,7 @@ func (o TlsSubscriptionOutput) ToTlsSubscriptionOutputWithContext(ctx context.Co
 	return o
 }
 
-// The entity that issues and certifies the TLS certificates for your subscription. Valid values are `lets-encrypt` or `globalsign`.
+// The entity that issues and certifies the TLS certificates for your subscription. Valid values are `lets-encrypt`, `globalsign` or `certainly`.
 func (o TlsSubscriptionOutput) CertificateAuthority() pulumi.StringOutput {
 	return o.ApplyT(func(v *TlsSubscription) pulumi.StringOutput { return v.CertificateAuthority }).(pulumi.StringOutput)
 }
@@ -321,14 +311,12 @@ func (o TlsSubscriptionOutput) Domains() pulumi.StringArrayOutput {
 	return o.ApplyT(func(v *TlsSubscription) pulumi.StringArrayOutput { return v.Domains }).(pulumi.StringArrayOutput)
 }
 
-// Always delete subscription, even when active domains are present. Defaults to false.
-//
-// !> **Warning:** by default, the Fastly API protects you from disabling production traffic by preventing updating or deleting subscriptions with active domains. The use of `forceUpdate` and `forceDestroy` will override these protections. Take extra care using these options if you are handling production traffic.
+// Force delete the subscription even if it has active domains. Warning: this can disable production traffic if used incorrectly. Defaults to false.
 func (o TlsSubscriptionOutput) ForceDestroy() pulumi.BoolPtrOutput {
 	return o.ApplyT(func(v *TlsSubscription) pulumi.BoolPtrOutput { return v.ForceDestroy }).(pulumi.BoolPtrOutput)
 }
 
-// Always update subscription, even when active domains are present. Defaults to false.
+// Force update the subscription even if it has active domains. Warning: this can disable production traffic if used incorrectly.
 func (o TlsSubscriptionOutput) ForceUpdate() pulumi.BoolPtrOutput {
 	return o.ApplyT(func(v *TlsSubscription) pulumi.BoolPtrOutput { return v.ForceUpdate }).(pulumi.BoolPtrOutput)
 }

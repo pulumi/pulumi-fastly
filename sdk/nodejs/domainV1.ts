@@ -33,6 +33,10 @@ export class DomainV1 extends pulumi.CustomResource {
     }
 
     /**
+     * The description for your domain.
+     */
+    public readonly description!: pulumi.Output<string | undefined>;
+    /**
      * The Domain Identifier (UUID).
      */
     public /*out*/ readonly domainId!: pulumi.Output<string>;
@@ -58,6 +62,7 @@ export class DomainV1 extends pulumi.CustomResource {
         opts = opts || {};
         if (opts.id) {
             const state = argsOrState as DomainV1State | undefined;
+            resourceInputs["description"] = state ? state.description : undefined;
             resourceInputs["domainId"] = state ? state.domainId : undefined;
             resourceInputs["fqdn"] = state ? state.fqdn : undefined;
             resourceInputs["serviceId"] = state ? state.serviceId : undefined;
@@ -66,6 +71,7 @@ export class DomainV1 extends pulumi.CustomResource {
             if ((!args || args.fqdn === undefined) && !opts.urn) {
                 throw new Error("Missing required property 'fqdn'");
             }
+            resourceInputs["description"] = args ? args.description : undefined;
             resourceInputs["fqdn"] = args ? args.fqdn : undefined;
             resourceInputs["serviceId"] = args ? args.serviceId : undefined;
             resourceInputs["domainId"] = undefined /*out*/;
@@ -79,6 +85,10 @@ export class DomainV1 extends pulumi.CustomResource {
  * Input properties used for looking up and filtering DomainV1 resources.
  */
 export interface DomainV1State {
+    /**
+     * The description for your domain.
+     */
+    description?: pulumi.Input<string>;
     /**
      * The Domain Identifier (UUID).
      */
@@ -97,6 +107,10 @@ export interface DomainV1State {
  * The set of arguments for constructing a DomainV1 resource.
  */
 export interface DomainV1Args {
+    /**
+     * The description for your domain.
+     */
+    description?: pulumi.Input<string>;
     /**
      * The fully-qualified domain name for your domain (e.g. `www.example.com`, no trailing dot). Can be created, but not updated.
      */

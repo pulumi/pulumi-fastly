@@ -28,6 +28,11 @@ public final class ServiceComputeLoggingKinese {
      */
     private String name;
     /**
+     * @return Region where logs will be processed before streaming to BigQuery. Valid values are &#39;none&#39;, &#39;us&#39; and &#39;eu&#39;.
+     * 
+     */
+    private @Nullable String processingRegion;
+    /**
      * @return The AWS region the stream resides in. (Default: `us-east-1`)
      * 
      */
@@ -66,6 +71,13 @@ public final class ServiceComputeLoggingKinese {
         return this.name;
     }
     /**
+     * @return Region where logs will be processed before streaming to BigQuery. Valid values are &#39;none&#39;, &#39;us&#39; and &#39;eu&#39;.
+     * 
+     */
+    public Optional<String> processingRegion() {
+        return Optional.ofNullable(this.processingRegion);
+    }
+    /**
      * @return The AWS region the stream resides in. (Default: `us-east-1`)
      * 
      */
@@ -99,6 +111,7 @@ public final class ServiceComputeLoggingKinese {
         private @Nullable String accessKey;
         private @Nullable String iamRole;
         private String name;
+        private @Nullable String processingRegion;
         private @Nullable String region;
         private @Nullable String secretKey;
         private String topic;
@@ -108,6 +121,7 @@ public final class ServiceComputeLoggingKinese {
     	      this.accessKey = defaults.accessKey;
     	      this.iamRole = defaults.iamRole;
     	      this.name = defaults.name;
+    	      this.processingRegion = defaults.processingRegion;
     	      this.region = defaults.region;
     	      this.secretKey = defaults.secretKey;
     	      this.topic = defaults.topic;
@@ -131,6 +145,12 @@ public final class ServiceComputeLoggingKinese {
               throw new MissingRequiredPropertyException("ServiceComputeLoggingKinese", "name");
             }
             this.name = name;
+            return this;
+        }
+        @CustomType.Setter
+        public Builder processingRegion(@Nullable String processingRegion) {
+
+            this.processingRegion = processingRegion;
             return this;
         }
         @CustomType.Setter
@@ -158,6 +178,7 @@ public final class ServiceComputeLoggingKinese {
             _resultValue.accessKey = accessKey;
             _resultValue.iamRole = iamRole;
             _resultValue.name = name;
+            _resultValue.processingRegion = processingRegion;
             _resultValue.region = region;
             _resultValue.secretKey = secretKey;
             _resultValue.topic = topic;

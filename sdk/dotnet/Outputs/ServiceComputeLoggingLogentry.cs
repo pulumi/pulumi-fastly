@@ -22,6 +22,10 @@ namespace Pulumi.Fastly.Outputs
         /// </summary>
         public readonly int? Port;
         /// <summary>
+        /// Region where logs will be processed before streaming to BigQuery. Valid values are 'none', 'us' and 'eu'.
+        /// </summary>
+        public readonly string? ProcessingRegion;
+        /// <summary>
         /// Use token based authentication (https://logentries.com/doc/input-token/)
         /// </summary>
         public readonly string Token;
@@ -36,12 +40,15 @@ namespace Pulumi.Fastly.Outputs
 
             int? port,
 
+            string? processingRegion,
+
             string token,
 
             bool? useTls)
         {
             Name = name;
             Port = port;
+            ProcessingRegion = processingRegion;
             Token = token;
             UseTls = useTls;
         }

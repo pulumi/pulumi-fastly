@@ -54,6 +54,11 @@ public final class ServiceComputeLoggingOpenstack {
      */
     private @Nullable Integer period;
     /**
+     * @return Region where logs will be processed before streaming to BigQuery. Valid values are &#39;none&#39;, &#39;us&#39; and &#39;eu&#39;.
+     * 
+     */
+    private @Nullable String processingRegion;
+    /**
      * @return A PGP public key that Fastly will use to encrypt your log files before writing them to disk
      * 
      */
@@ -132,6 +137,13 @@ public final class ServiceComputeLoggingOpenstack {
         return Optional.ofNullable(this.period);
     }
     /**
+     * @return Region where logs will be processed before streaming to BigQuery. Valid values are &#39;none&#39;, &#39;us&#39; and &#39;eu&#39;.
+     * 
+     */
+    public Optional<String> processingRegion() {
+        return Optional.ofNullable(this.processingRegion);
+    }
+    /**
      * @return A PGP public key that Fastly will use to encrypt your log files before writing them to disk
      * 
      */
@@ -177,6 +189,7 @@ public final class ServiceComputeLoggingOpenstack {
         private String name;
         private @Nullable String path;
         private @Nullable Integer period;
+        private @Nullable String processingRegion;
         private @Nullable String publicKey;
         private @Nullable String timestampFormat;
         private String url;
@@ -192,6 +205,7 @@ public final class ServiceComputeLoggingOpenstack {
     	      this.name = defaults.name;
     	      this.path = defaults.path;
     	      this.period = defaults.period;
+    	      this.processingRegion = defaults.processingRegion;
     	      this.publicKey = defaults.publicKey;
     	      this.timestampFormat = defaults.timestampFormat;
     	      this.url = defaults.url;
@@ -253,6 +267,12 @@ public final class ServiceComputeLoggingOpenstack {
             return this;
         }
         @CustomType.Setter
+        public Builder processingRegion(@Nullable String processingRegion) {
+
+            this.processingRegion = processingRegion;
+            return this;
+        }
+        @CustomType.Setter
         public Builder publicKey(@Nullable String publicKey) {
 
             this.publicKey = publicKey;
@@ -290,6 +310,7 @@ public final class ServiceComputeLoggingOpenstack {
             _resultValue.name = name;
             _resultValue.path = path;
             _resultValue.period = period;
+            _resultValue.processingRegion = processingRegion;
             _resultValue.publicKey = publicKey;
             _resultValue.timestampFormat = timestampFormat;
             _resultValue.url = url;
