@@ -311,6 +311,10 @@
                     "type": "integer",
                     "description": "The port number on which the Backend responds. Default `80`\n"
                 },
+                "preferIpv6": {
+                    "type": "boolean",
+                    "description": "Prefer IPv6 connections to origins for hostname backends. Default `true`\n"
+                },
                 "shareKey": {
                     "type": "string",
                     "description": "Value that when shared across backends will enable those backends to share the same health check.\n"
@@ -467,6 +471,10 @@
                     "type": "string",
                     "description": "A unique name to identify this BigQuery logging endpoint. It is important to note that changing this attribute will delete and recreate the resource\n"
                 },
+                "processingRegion": {
+                    "type": "string",
+                    "description": "Region where logs will be processed before streaming to BigQuery. Valid values are 'none', 'us' and 'eu'.\n"
+                },
                 "projectId": {
                     "type": "string",
                     "description": "The ID of your GCP project\n"
@@ -533,6 +541,10 @@
                     "type": "integer",
                     "description": "How frequently the logs should be transferred in seconds. Default `3600`\n"
                 },
+                "processingRegion": {
+                    "type": "string",
+                    "description": "Region where logs will be processed before streaming to BigQuery. Valid values are 'none', 'us' and 'eu'.\n"
+                },
                 "publicKey": {
                     "type": "string",
                     "description": "A PGP public key that Fastly will use to encrypt your log files before writing them to disk\n"
@@ -590,6 +602,10 @@
                     "type": "integer",
                     "description": "How frequently log files are finalized so they can be available for reading (in seconds, default `3600`)\n"
                 },
+                "processingRegion": {
+                    "type": "string",
+                    "description": "Region where logs will be processed before streaming to BigQuery. Valid values are 'none', 'us' and 'eu'.\n"
+                },
                 "publicKey": {
                     "type": "string",
                     "description": "The PGP public key that Fastly will use to encrypt your log files before writing them to disk\n"
@@ -620,6 +636,10 @@
                 "name": {
                     "type": "string",
                     "description": "The unique name of the Datadog logging endpoint. It is important to note that changing this attribute will delete and recreate the resource\n"
+                },
+                "processingRegion": {
+                    "type": "string",
+                    "description": "Region where logs will be processed before streaming to BigQuery. Valid values are 'none', 'us' and 'eu'.\n"
                 },
                 "region": {
                     "type": "string",
@@ -676,6 +696,10 @@
                     "type": "integer",
                     "description": "How frequently log files are finalized so they can be available for reading (in seconds, default `3600`)\n"
                 },
+                "processingRegion": {
+                    "type": "string",
+                    "description": "Region where logs will be processed before streaming to BigQuery. Valid values are 'none', 'us' and 'eu'.\n"
+                },
                 "publicKey": {
                     "type": "string",
                     "description": "A PGP public key that Fastly will use to encrypt your log files before writing them to disk\n"
@@ -716,6 +740,10 @@
                 "pipeline": {
                     "type": "string",
                     "description": "The ID of the Elasticsearch ingest pipeline to apply pre-process transformations to before indexing\n"
+                },
+                "processingRegion": {
+                    "type": "string",
+                    "description": "Region where logs will be processed before streaming to BigQuery. Valid values are 'none', 'us' and 'eu'.\n"
                 },
                 "requestMaxBytes": {
                     "type": "integer",
@@ -797,6 +825,10 @@
                     "type": "integer",
                     "description": "The port number. Default: `21`\n"
                 },
+                "processingRegion": {
+                    "type": "string",
+                    "description": "Region where logs will be processed before streaming to BigQuery. Valid values are 'none', 'us' and 'eu'.\n"
+                },
                 "publicKey": {
                     "type": "string",
                     "description": "The PGP public key that Fastly will use to encrypt your log files before writing them to disk\n"
@@ -853,6 +885,10 @@
                     "type": "integer",
                     "description": "How frequently the logs should be transferred, in seconds (Default 3600)\n"
                 },
+                "processingRegion": {
+                    "type": "string",
+                    "description": "Region where logs will be processed before streaming to BigQuery. Valid values are 'none', 'us' and 'eu'.\n"
+                },
                 "projectId": {
                     "type": "string",
                     "description": "The ID of your Google Cloud Platform project\n"
@@ -886,6 +922,10 @@
                 "name": {
                     "type": "string",
                     "description": "The unique name of the Google Cloud Pub/Sub logging endpoint. It is important to note that changing this attribute will delete and recreate the resource\n"
+                },
+                "processingRegion": {
+                    "type": "string",
+                    "description": "Region where logs will be processed before streaming to BigQuery. Valid values are 'none', 'us' and 'eu'.\n"
                 },
                 "projectId": {
                     "type": "string",
@@ -924,6 +964,10 @@
                     "type": "string",
                     "description": "The unique name of the GrafanaCloudLogs logging endpoint. It is important to note that changing this attribute will delete and recreate the resource\n"
                 },
+                "processingRegion": {
+                    "type": "string",
+                    "description": "Region where logs will be processed before streaming to BigQuery. Valid values are 'none', 'us' and 'eu'.\n"
+                },
                 "token": {
                     "type": "string",
                     "description": "The Access Policy Token key for your GrafanaCloudLogs account\n",
@@ -953,6 +997,10 @@
                     "type": "string",
                     "description": "The unique name of the Heroku logging endpoint. It is important to note that changing this attribute will delete and recreate the resource\n"
                 },
+                "processingRegion": {
+                    "type": "string",
+                    "description": "Region where logs will be processed before streaming to BigQuery. Valid values are 'none', 'us' and 'eu'.\n"
+                },
                 "token": {
                     "type": "string",
                     "description": "The token to use for authentication (https://www.heroku.com/docs/customer-token-authentication-token/)\n",
@@ -979,6 +1027,10 @@
                 "name": {
                     "type": "string",
                     "description": "The unique name of the Honeycomb logging endpoint. It is important to note that changing this attribute will delete and recreate the resource\n"
+                },
+                "processingRegion": {
+                    "type": "string",
+                    "description": "Region where logs will be processed before streaming to BigQuery. Valid values are 'none', 'us' and 'eu'.\n"
                 },
                 "token": {
                     "type": "string",
@@ -1022,6 +1074,10 @@
                 "name": {
                     "type": "string",
                     "description": "The unique name of the HTTPS logging endpoint. It is important to note that changing this attribute will delete and recreate the resource\n"
+                },
+                "processingRegion": {
+                    "type": "string",
+                    "description": "Region where logs will be processed before streaming to BigQuery. Valid values are 'none', 'us' and 'eu'.\n"
                 },
                 "requestMaxBytes": {
                     "type": "integer",
@@ -1086,6 +1142,10 @@
                     "description": "SASL Pass\n",
                     "secret": true
                 },
+                "processingRegion": {
+                    "type": "string",
+                    "description": "Region where logs will be processed before streaming to BigQuery. Valid values are 'none', 'us' and 'eu'.\n"
+                },
                 "requestMaxBytes": {
                     "type": "integer",
                     "description": "Maximum size of log batch, if non-zero. Defaults to 0 for unbounded\n"
@@ -1146,6 +1206,10 @@
                     "type": "string",
                     "description": "The unique name of the Kinesis logging endpoint. It is important to note that changing this attribute will delete and recreate the resource\n"
                 },
+                "processingRegion": {
+                    "type": "string",
+                    "description": "Region where logs will be processed before streaming to BigQuery. Valid values are 'none', 'us' and 'eu'.\n"
+                },
                 "region": {
                     "type": "string",
                     "description": "The AWS region the stream resides in. (Default: `us-east-1`)\n"
@@ -1176,6 +1240,10 @@
                     "type": "integer",
                     "description": "The port number configured in Logentries\n"
                 },
+                "processingRegion": {
+                    "type": "string",
+                    "description": "Region where logs will be processed before streaming to BigQuery. Valid values are 'none', 'us' and 'eu'.\n"
+                },
                 "token": {
                     "type": "string",
                     "description": "Use token based authentication (https://logentries.com/doc/input-token/)\n"
@@ -1197,6 +1265,10 @@
                     "type": "string",
                     "description": "The unique name of the Loggly logging endpoint. It is important to note that changing this attribute will delete and recreate the resource\n"
                 },
+                "processingRegion": {
+                    "type": "string",
+                    "description": "Region where logs will be processed before streaming to BigQuery. Valid values are 'none', 'us' and 'eu'.\n"
+                },
                 "token": {
                     "type": "string",
                     "description": "The token to use for authentication (https://www.loggly.com/docs/customer-token-authentication-token/).\n",
@@ -1214,6 +1286,10 @@
                 "name": {
                     "type": "string",
                     "description": "The unique name of the Log Shuttle logging endpoint. It is important to note that changing this attribute will delete and recreate the resource\n"
+                },
+                "processingRegion": {
+                    "type": "string",
+                    "description": "Region where logs will be processed before streaming to BigQuery. Valid values are 'none', 'us' and 'eu'.\n"
                 },
                 "token": {
                     "type": "string",
@@ -1237,6 +1313,10 @@
                 "name": {
                     "type": "string",
                     "description": "The unique name of the New Relic logging endpoint. It is important to note that changing this attribute will delete and recreate the resource\n"
+                },
+                "processingRegion": {
+                    "type": "string",
+                    "description": "Region where logs will be processed before streaming to BigQuery. Valid values are 'none', 'us' and 'eu'.\n"
                 },
                 "region": {
                     "type": "string",
@@ -1289,6 +1369,10 @@
                     "type": "integer",
                     "description": "How frequently the logs should be transferred, in seconds. Default `3600`\n"
                 },
+                "processingRegion": {
+                    "type": "string",
+                    "description": "Region where logs will be processed before streaming to BigQuery. Valid values are 'none', 'us' and 'eu'.\n"
+                },
                 "publicKey": {
                     "type": "string",
                     "description": "A PGP public key that Fastly will use to encrypt your log files before writing them to disk\n"
@@ -1328,6 +1412,10 @@
                 "port": {
                     "type": "integer",
                     "description": "The port associated with the address where the Papertrail endpoint can be accessed\n"
+                },
+                "processingRegion": {
+                    "type": "string",
+                    "description": "Region where logs will be processed before streaming to BigQuery. Valid values are 'none', 'us' and 'eu'.\n"
                 }
             },
             "type": "object",
@@ -1379,6 +1467,10 @@
                     "type": "integer",
                     "description": "How frequently the logs should be transferred, in seconds. Default `3600`\n"
                 },
+                "processingRegion": {
+                    "type": "string",
+                    "description": "Region where logs will be processed before streaming to BigQuery. Valid values are 'none', 'us' and 'eu'.\n"
+                },
                 "publicKey": {
                     "type": "string",
                     "description": "A PGP public key that Fastly will use to encrypt your log files before writing them to disk\n"
@@ -1425,6 +1517,10 @@
                 "name": {
                     "type": "string",
                     "description": "The unique name of the Scalyr logging endpoint. It is important to note that changing this attribute will delete and recreate the resource\n"
+                },
+                "processingRegion": {
+                    "type": "string",
+                    "description": "Region where logs will be processed before streaming to BigQuery. Valid values are 'none', 'us' and 'eu'.\n"
                 },
                 "projectId": {
                     "type": "string",
@@ -1485,6 +1581,10 @@
                     "type": "integer",
                     "description": "The port the SFTP service listens on. (Default: `22`)\n"
                 },
+                "processingRegion": {
+                    "type": "string",
+                    "description": "Region where logs will be processed before streaming to BigQuery. Valid values are 'none', 'us' and 'eu'.\n"
+                },
                 "publicKey": {
                     "type": "string",
                     "description": "A PGP public key that Fastly will use to encrypt your log files before writing them to disk\n"
@@ -1521,6 +1621,10 @@
                 "name": {
                     "type": "string",
                     "description": "A unique name to identify the Splunk endpoint. It is important to note that changing this attribute will delete and recreate the resource\n"
+                },
+                "processingRegion": {
+                    "type": "string",
+                    "description": "Region where logs will be processed before streaming to BigQuery. Valid values are 'none', 'us' and 'eu'.\n"
                 },
                 "tlsCaCert": {
                     "type": "string",
@@ -1570,6 +1674,10 @@
                     "type": "string",
                     "description": "A unique name to identify this Sumologic endpoint. It is important to note that changing this attribute will delete and recreate the resource\n"
                 },
+                "processingRegion": {
+                    "type": "string",
+                    "description": "Region where logs will be processed before streaming to BigQuery. Valid values are 'none', 'us' and 'eu'.\n"
+                },
                 "url": {
                     "type": "string",
                     "description": "The URL to Sumologic collector endpoint\n"
@@ -1598,6 +1706,10 @@
                 "port": {
                     "type": "integer",
                     "description": "The port associated with the address where the Syslog endpoint can be accessed. Default `514`\n"
+                },
+                "processingRegion": {
+                    "type": "string",
+                    "description": "Region where logs will be processed before streaming to BigQuery. Valid values are 'none', 'us' and 'eu'.\n"
                 },
                 "tlsCaCert": {
                     "type": "string",
@@ -1837,6 +1949,10 @@
                 "port": {
                     "type": "integer",
                     "description": "The port number on which the Backend responds. Default `80`\n"
+                },
+                "preferIpv6": {
+                    "type": "boolean",
+                    "description": "Prefer IPv6 connections to origins for hostname backends. Default `false`\n"
                 },
                 "requestCondition": {
                     "type": "string",
@@ -2301,6 +2417,10 @@
                     "type": "string",
                     "description": "Where in the generated VCL the logging call should be placed.\n"
                 },
+                "processingRegion": {
+                    "type": "string",
+                    "description": "Region where logs will be processed before streaming to BigQuery. Valid values are 'none', 'us' and 'eu'.\n"
+                },
                 "projectId": {
                     "type": "string",
                     "description": "The ID of your GCP project\n"
@@ -2383,6 +2503,10 @@
                     "type": "string",
                     "description": "Where in the generated VCL the logging call should be placed\n"
                 },
+                "processingRegion": {
+                    "type": "string",
+                    "description": "Region where logs will be processed before streaming to BigQuery. Valid values are 'none', 'us' and 'eu'.\n"
+                },
                 "publicKey": {
                     "type": "string",
                     "description": "A PGP public key that Fastly will use to encrypt your log files before writing them to disk\n"
@@ -2456,6 +2580,10 @@
                     "type": "string",
                     "description": "Where in the generated VCL the logging call should be placed. Can be `none` or `none`.\n"
                 },
+                "processingRegion": {
+                    "type": "string",
+                    "description": "Region where logs will be processed before streaming to BigQuery. Valid values are 'none', 'us' and 'eu'.\n"
+                },
                 "publicKey": {
                     "type": "string",
                     "description": "The PGP public key that Fastly will use to encrypt your log files before writing them to disk\n"
@@ -2502,6 +2630,10 @@
                 "placement": {
                     "type": "string",
                     "description": "Where in the generated VCL the logging call should be placed.\n"
+                },
+                "processingRegion": {
+                    "type": "string",
+                    "description": "Region where logs will be processed before streaming to BigQuery. Valid values are 'none', 'us' and 'eu'.\n"
                 },
                 "region": {
                     "type": "string",
@@ -2574,6 +2706,10 @@
                     "type": "string",
                     "description": "Where in the generated VCL the logging call should be placed. Can be `none` or `none`.\n"
                 },
+                "processingRegion": {
+                    "type": "string",
+                    "description": "Region where logs will be processed before streaming to BigQuery. Valid values are 'none', 'us' and 'eu'.\n"
+                },
                 "publicKey": {
                     "type": "string",
                     "description": "A PGP public key that Fastly will use to encrypt your log files before writing them to disk\n"
@@ -2630,6 +2766,10 @@
                 "placement": {
                     "type": "string",
                     "description": "Where in the generated VCL the logging call should be placed.\n"
+                },
+                "processingRegion": {
+                    "type": "string",
+                    "description": "Region where logs will be processed before streaming to BigQuery. Valid values are 'none', 'us' and 'eu'.\n"
                 },
                 "requestMaxBytes": {
                     "type": "integer",
@@ -2727,6 +2867,10 @@
                     "type": "integer",
                     "description": "The port number. Default: `21`\n"
                 },
+                "processingRegion": {
+                    "type": "string",
+                    "description": "Region where logs will be processed before streaming to BigQuery. Valid values are 'none', 'us' and 'eu'.\n"
+                },
                 "publicKey": {
                     "type": "string",
                     "description": "The PGP public key that Fastly will use to encrypt your log files before writing them to disk\n"
@@ -2799,6 +2943,10 @@
                     "type": "string",
                     "description": "Where in the generated VCL the logging call should be placed.\n"
                 },
+                "processingRegion": {
+                    "type": "string",
+                    "description": "Region where logs will be processed before streaming to BigQuery. Valid values are 'none', 'us' and 'eu'.\n"
+                },
                 "projectId": {
                     "type": "string",
                     "description": "The ID of your Google Cloud Platform project\n"
@@ -2848,6 +2996,10 @@
                 "placement": {
                     "type": "string",
                     "description": "Where in the generated VCL the logging call should be placed.\n"
+                },
+                "processingRegion": {
+                    "type": "string",
+                    "description": "Region where logs will be processed before streaming to BigQuery. Valid values are 'none', 'us' and 'eu'.\n"
                 },
                 "projectId": {
                     "type": "string",
@@ -2902,6 +3054,10 @@
                     "type": "string",
                     "description": "Where in the generated VCL the logging call should be placed.\n"
                 },
+                "processingRegion": {
+                    "type": "string",
+                    "description": "Region where logs will be processed before streaming to BigQuery. Valid values are 'none', 'us' and 'eu'.\n"
+                },
                 "responseCondition": {
                     "type": "string",
                     "description": "The name of the condition to apply.\n"
@@ -2947,6 +3103,10 @@
                     "type": "string",
                     "description": "Where in the generated VCL the logging call should be placed. Can be `none` or `none`.\n"
                 },
+                "processingRegion": {
+                    "type": "string",
+                    "description": "Region where logs will be processed before streaming to BigQuery. Valid values are 'none', 'us' and 'eu'.\n"
+                },
                 "responseCondition": {
                     "type": "string",
                     "description": "The name of an existing condition in the configured endpoint, or leave blank to always execute.\n"
@@ -2989,6 +3149,10 @@
                 "placement": {
                     "type": "string",
                     "description": "Where in the generated VCL the logging call should be placed. Can be `none` or `none`.\n"
+                },
+                "processingRegion": {
+                    "type": "string",
+                    "description": "Region where logs will be processed before streaming to BigQuery. Valid values are 'none', 'us' and 'eu'.\n"
                 },
                 "responseCondition": {
                     "type": "string",
@@ -3048,6 +3212,10 @@
                 "placement": {
                     "type": "string",
                     "description": "Where in the generated VCL the logging call should be placed\n"
+                },
+                "processingRegion": {
+                    "type": "string",
+                    "description": "Region where logs will be processed before streaming to BigQuery. Valid values are 'none', 'us' and 'eu'.\n"
                 },
                 "requestMaxBytes": {
                     "type": "integer",
@@ -3128,6 +3296,10 @@
                     "type": "string",
                     "description": "Where in the generated VCL the logging call should be placed.\n"
                 },
+                "processingRegion": {
+                    "type": "string",
+                    "description": "Region where logs will be processed before streaming to BigQuery. Valid values are 'none', 'us' and 'eu'.\n"
+                },
                 "requestMaxBytes": {
                     "type": "integer",
                     "description": "Maximum size of log batch, if non-zero. Defaults to 0 for unbounded\n"
@@ -3204,6 +3376,10 @@
                     "type": "string",
                     "description": "Where in the generated VCL the logging call should be placed. Can be `none` or `none`.\n"
                 },
+                "processingRegion": {
+                    "type": "string",
+                    "description": "Region where logs will be processed before streaming to BigQuery. Valid values are 'none', 'us' and 'eu'.\n"
+                },
                 "region": {
                     "type": "string",
                     "description": "The AWS region the stream resides in. (Default: `us-east-1`)\n"
@@ -3250,6 +3426,10 @@
                     "type": "integer",
                     "description": "The port number configured in Logentries\n"
                 },
+                "processingRegion": {
+                    "type": "string",
+                    "description": "Region where logs will be processed before streaming to BigQuery. Valid values are 'none', 'us' and 'eu'.\n"
+                },
                 "responseCondition": {
                     "type": "string",
                     "description": "Name of blockAttributes condition to apply this logging.\n"
@@ -3287,6 +3467,10 @@
                     "type": "string",
                     "description": "Where in the generated VCL the logging call should be placed. Can be `none` or `none`.\n"
                 },
+                "processingRegion": {
+                    "type": "string",
+                    "description": "Region where logs will be processed before streaming to BigQuery. Valid values are 'none', 'us' and 'eu'.\n"
+                },
                 "responseCondition": {
                     "type": "string",
                     "description": "The name of an existing condition in the configured endpoint, or leave blank to always execute.\n"
@@ -3320,6 +3504,10 @@
                 "placement": {
                     "type": "string",
                     "description": "Where in the generated VCL the logging call should be placed. Can be `none` or `none`.\n"
+                },
+                "processingRegion": {
+                    "type": "string",
+                    "description": "Region where logs will be processed before streaming to BigQuery. Valid values are 'none', 'us' and 'eu'.\n"
                 },
                 "responseCondition": {
                     "type": "string",
@@ -3360,6 +3548,10 @@
                     "type": "string",
                     "description": "Where in the generated VCL the logging call should be placed.\n"
                 },
+                "processingRegion": {
+                    "type": "string",
+                    "description": "Region where logs will be processed before streaming to BigQuery. Valid values are 'none', 'us' and 'eu'.\n"
+                },
                 "region": {
                     "type": "string",
                     "description": "The region that log data will be sent to. Default: `US`\n"
@@ -3397,6 +3589,10 @@
                 "placement": {
                     "type": "string",
                     "description": "Where in the generated VCL the logging call should be placed.\n"
+                },
+                "processingRegion": {
+                    "type": "string",
+                    "description": "Region where logs will be processed before streaming to BigQuery. Valid values are 'none', 'us' and 'eu'.\n"
                 },
                 "region": {
                     "type": "string",
@@ -3469,6 +3665,10 @@
                     "type": "string",
                     "description": "Where in the generated VCL the logging call should be placed. Can be `none` or `none`.\n"
                 },
+                "processingRegion": {
+                    "type": "string",
+                    "description": "Region where logs will be processed before streaming to BigQuery. Valid values are 'none', 'us' and 'eu'.\n"
+                },
                 "publicKey": {
                     "type": "string",
                     "description": "A PGP public key that Fastly will use to encrypt your log files before writing them to disk\n"
@@ -3524,6 +3724,10 @@
                 "port": {
                     "type": "integer",
                     "description": "The port associated with the address where the Papertrail endpoint can be accessed\n"
+                },
+                "processingRegion": {
+                    "type": "string",
+                    "description": "Region where logs will be processed before streaming to BigQuery. Valid values are 'none', 'us' and 'eu'.\n"
                 },
                 "responseCondition": {
                     "type": "string",
@@ -3591,6 +3795,10 @@
                     "type": "string",
                     "description": "Where in the generated VCL the logging call should be placed.\n"
                 },
+                "processingRegion": {
+                    "type": "string",
+                    "description": "Region where logs will be processed before streaming to BigQuery. Valid values are 'none', 'us' and 'eu'.\n"
+                },
                 "publicKey": {
                     "type": "string",
                     "description": "A PGP public key that Fastly will use to encrypt your log files before writing them to disk\n"
@@ -3653,6 +3861,10 @@
                 "placement": {
                     "type": "string",
                     "description": "Where in the generated VCL the logging call should be placed.\n"
+                },
+                "processingRegion": {
+                    "type": "string",
+                    "description": "Region where logs will be processed before streaming to BigQuery. Valid values are 'none', 'us' and 'eu'.\n"
                 },
                 "projectId": {
                     "type": "string",
@@ -3729,6 +3941,10 @@
                     "type": "integer",
                     "description": "The port the SFTP service listens on. (Default: `22`)\n"
                 },
+                "processingRegion": {
+                    "type": "string",
+                    "description": "Region where logs will be processed before streaming to BigQuery. Valid values are 'none', 'us' and 'eu'.\n"
+                },
                 "publicKey": {
                     "type": "string",
                     "description": "A PGP public key that Fastly will use to encrypt your log files before writing them to disk\n"
@@ -3781,6 +3997,10 @@
                 "placement": {
                     "type": "string",
                     "description": "Where in the generated VCL the logging call should be placed\n"
+                },
+                "processingRegion": {
+                    "type": "string",
+                    "description": "Region where logs will be processed before streaming to BigQuery. Valid values are 'none', 'us' and 'eu'.\n"
                 },
                 "responseCondition": {
                     "type": "string",
@@ -3846,6 +4066,10 @@
                     "type": "string",
                     "description": "Where in the generated VCL the logging call should be placed.\n"
                 },
+                "processingRegion": {
+                    "type": "string",
+                    "description": "Region where logs will be processed before streaming to BigQuery. Valid values are 'none', 'us' and 'eu'.\n"
+                },
                 "responseCondition": {
                     "type": "string",
                     "description": "Name of blockAttributes condition to apply this logging.\n"
@@ -3890,6 +4114,10 @@
                 "port": {
                     "type": "integer",
                     "description": "The port associated with the address where the Syslog endpoint can be accessed. Default `514`\n"
+                },
+                "processingRegion": {
+                    "type": "string",
+                    "description": "Region where logs will be processed before streaming to BigQuery. Valid values are 'none', 'us' and 'eu'.\n"
                 },
                 "responseCondition": {
                     "type": "string",
@@ -4888,6 +5116,10 @@
         },
         "fastly:index/domainV1:DomainV1": {
             "properties": {
+                "description": {
+                    "type": "string",
+                    "description": "The description for your domain.\n"
+                },
                 "domainId": {
                     "type": "string",
                     "description": "The Domain Identifier (UUID).\n"
@@ -4906,6 +5138,10 @@
                 "fqdn"
             ],
             "inputProperties": {
+                "description": {
+                    "type": "string",
+                    "description": "The description for your domain.\n"
+                },
                 "fqdn": {
                     "type": "string",
                     "description": "The fully-qualified domain name for your domain (e.g. `www.example.com`, no trailing dot). Can be created, but not updated.\n",
@@ -4922,6 +5158,10 @@
             "stateInputs": {
                 "description": "Input properties used for looking up and filtering DomainV1 resources.\n",
                 "properties": {
+                    "description": {
+                        "type": "string",
+                        "description": "The description for your domain.\n"
+                    },
                     "domainId": {
                         "type": "string",
                         "description": "The Domain Identifier (UUID).\n"
@@ -7804,7 +8044,7 @@
             "properties": {
                 "certificateAuthority": {
                     "type": "string",
-                    "description": "The entity that issues and certifies the TLS certificates for your subscription. Valid values are `lets-encrypt` or `globalsign`.\n"
+                    "description": "The entity that issues and certifies the TLS certificates for your subscription. Valid values are `lets-encrypt`, `globalsign` or `certainly`.\n"
                 },
                 "certificateId": {
                     "type": "string",
@@ -7831,11 +8071,11 @@
                 },
                 "forceDestroy": {
                     "type": "boolean",
-                    "description": "Always delete subscription, even when active domains are present. Defaults to false.\n\n!\u003e **Warning:** by default, the Fastly API protects you from disabling production traffic by preventing updating or deleting subscriptions with active domains. The use of `force_update` and `force_destroy` will override these protections. Take extra care using these options if you are handling production traffic.\n"
+                    "description": "Force delete the subscription even if it has active domains. Warning: this can disable production traffic if used incorrectly. Defaults to false.\n"
                 },
                 "forceUpdate": {
                     "type": "boolean",
-                    "description": "Always update subscription, even when active domains are present. Defaults to false.\n"
+                    "description": "Force update the subscription even if it has active domains. Warning: this can disable production traffic if used incorrectly.\n"
                 },
                 "managedDnsChallenge": {
                     "type": "object",
@@ -7884,7 +8124,7 @@
             "inputProperties": {
                 "certificateAuthority": {
                     "type": "string",
-                    "description": "The entity that issues and certifies the TLS certificates for your subscription. Valid values are `lets-encrypt` or `globalsign`.\n",
+                    "description": "The entity that issues and certifies the TLS certificates for your subscription. Valid values are `lets-encrypt`, `globalsign` or `certainly`.\n",
                     "willReplaceOnChanges": true
                 },
                 "commonName": {
@@ -7904,11 +8144,11 @@
                 },
                 "forceDestroy": {
                     "type": "boolean",
-                    "description": "Always delete subscription, even when active domains are present. Defaults to false.\n\n!\u003e **Warning:** by default, the Fastly API protects you from disabling production traffic by preventing updating or deleting subscriptions with active domains. The use of `force_update` and `force_destroy` will override these protections. Take extra care using these options if you are handling production traffic.\n"
+                    "description": "Force delete the subscription even if it has active domains. Warning: this can disable production traffic if used incorrectly. Defaults to false.\n"
                 },
                 "forceUpdate": {
                     "type": "boolean",
-                    "description": "Always update subscription, even when active domains are present. Defaults to false.\n"
+                    "description": "Force update the subscription even if it has active domains. Warning: this can disable production traffic if used incorrectly.\n"
                 }
             },
             "requiredInputs": [
@@ -7920,7 +8160,7 @@
                 "properties": {
                     "certificateAuthority": {
                         "type": "string",
-                        "description": "The entity that issues and certifies the TLS certificates for your subscription. Valid values are `lets-encrypt` or `globalsign`.\n",
+                        "description": "The entity that issues and certifies the TLS certificates for your subscription. Valid values are `lets-encrypt`, `globalsign` or `certainly`.\n",
                         "willReplaceOnChanges": true
                     },
                     "certificateId": {
@@ -7948,11 +8188,11 @@
                     },
                     "forceDestroy": {
                         "type": "boolean",
-                        "description": "Always delete subscription, even when active domains are present. Defaults to false.\n\n!\u003e **Warning:** by default, the Fastly API protects you from disabling production traffic by preventing updating or deleting subscriptions with active domains. The use of `force_update` and `force_destroy` will override these protections. Take extra care using these options if you are handling production traffic.\n"
+                        "description": "Force delete the subscription even if it has active domains. Warning: this can disable production traffic if used incorrectly. Defaults to false.\n"
                     },
                     "forceUpdate": {
                         "type": "boolean",
-                        "description": "Always update subscription, even when active domains are present. Defaults to false.\n"
+                        "description": "Force update the subscription even if it has active domains. Warning: this can disable production traffic if used incorrectly.\n"
                     },
                     "managedDnsChallenge": {
                         "type": "object",
