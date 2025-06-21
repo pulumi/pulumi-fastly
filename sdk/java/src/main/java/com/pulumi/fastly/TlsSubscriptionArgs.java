@@ -19,14 +19,14 @@ public final class TlsSubscriptionArgs extends com.pulumi.resources.ResourceArgs
     public static final TlsSubscriptionArgs Empty = new TlsSubscriptionArgs();
 
     /**
-     * The entity that issues and certifies the TLS certificates for your subscription. Valid values are `lets-encrypt` or `globalsign`.
+     * The entity that issues and certifies the TLS certificates for your subscription. Valid values are `lets-encrypt`, `globalsign` or `certainly`.
      * 
      */
     @Import(name="certificateAuthority", required=true)
     private Output<String> certificateAuthority;
 
     /**
-     * @return The entity that issues and certifies the TLS certificates for your subscription. Valid values are `lets-encrypt` or `globalsign`.
+     * @return The entity that issues and certifies the TLS certificates for your subscription. Valid values are `lets-encrypt`, `globalsign` or `certainly`.
      * 
      */
     public Output<String> certificateAuthority() {
@@ -79,18 +79,14 @@ public final class TlsSubscriptionArgs extends com.pulumi.resources.ResourceArgs
     }
 
     /**
-     * Always delete subscription, even when active domains are present. Defaults to false.
-     * 
-     * !&gt; **Warning:** by default, the Fastly API protects you from disabling production traffic by preventing updating or deleting subscriptions with active domains. The use of `force_update` and `force_destroy` will override these protections. Take extra care using these options if you are handling production traffic.
+     * Force delete the subscription even if it has active domains. Warning: this can disable production traffic if used incorrectly. Defaults to false.
      * 
      */
     @Import(name="forceDestroy")
     private @Nullable Output<Boolean> forceDestroy;
 
     /**
-     * @return Always delete subscription, even when active domains are present. Defaults to false.
-     * 
-     * !&gt; **Warning:** by default, the Fastly API protects you from disabling production traffic by preventing updating or deleting subscriptions with active domains. The use of `force_update` and `force_destroy` will override these protections. Take extra care using these options if you are handling production traffic.
+     * @return Force delete the subscription even if it has active domains. Warning: this can disable production traffic if used incorrectly. Defaults to false.
      * 
      */
     public Optional<Output<Boolean>> forceDestroy() {
@@ -98,14 +94,14 @@ public final class TlsSubscriptionArgs extends com.pulumi.resources.ResourceArgs
     }
 
     /**
-     * Always update subscription, even when active domains are present. Defaults to false.
+     * Force update the subscription even if it has active domains. Warning: this can disable production traffic if used incorrectly.
      * 
      */
     @Import(name="forceUpdate")
     private @Nullable Output<Boolean> forceUpdate;
 
     /**
-     * @return Always update subscription, even when active domains are present. Defaults to false.
+     * @return Force update the subscription even if it has active domains. Warning: this can disable production traffic if used incorrectly.
      * 
      */
     public Optional<Output<Boolean>> forceUpdate() {
@@ -142,7 +138,7 @@ public final class TlsSubscriptionArgs extends com.pulumi.resources.ResourceArgs
         }
 
         /**
-         * @param certificateAuthority The entity that issues and certifies the TLS certificates for your subscription. Valid values are `lets-encrypt` or `globalsign`.
+         * @param certificateAuthority The entity that issues and certifies the TLS certificates for your subscription. Valid values are `lets-encrypt`, `globalsign` or `certainly`.
          * 
          * @return builder
          * 
@@ -153,7 +149,7 @@ public final class TlsSubscriptionArgs extends com.pulumi.resources.ResourceArgs
         }
 
         /**
-         * @param certificateAuthority The entity that issues and certifies the TLS certificates for your subscription. Valid values are `lets-encrypt` or `globalsign`.
+         * @param certificateAuthority The entity that issues and certifies the TLS certificates for your subscription. Valid values are `lets-encrypt`, `globalsign` or `certainly`.
          * 
          * @return builder
          * 
@@ -236,9 +232,7 @@ public final class TlsSubscriptionArgs extends com.pulumi.resources.ResourceArgs
         }
 
         /**
-         * @param forceDestroy Always delete subscription, even when active domains are present. Defaults to false.
-         * 
-         * !&gt; **Warning:** by default, the Fastly API protects you from disabling production traffic by preventing updating or deleting subscriptions with active domains. The use of `force_update` and `force_destroy` will override these protections. Take extra care using these options if you are handling production traffic.
+         * @param forceDestroy Force delete the subscription even if it has active domains. Warning: this can disable production traffic if used incorrectly. Defaults to false.
          * 
          * @return builder
          * 
@@ -249,9 +243,7 @@ public final class TlsSubscriptionArgs extends com.pulumi.resources.ResourceArgs
         }
 
         /**
-         * @param forceDestroy Always delete subscription, even when active domains are present. Defaults to false.
-         * 
-         * !&gt; **Warning:** by default, the Fastly API protects you from disabling production traffic by preventing updating or deleting subscriptions with active domains. The use of `force_update` and `force_destroy` will override these protections. Take extra care using these options if you are handling production traffic.
+         * @param forceDestroy Force delete the subscription even if it has active domains. Warning: this can disable production traffic if used incorrectly. Defaults to false.
          * 
          * @return builder
          * 
@@ -261,7 +253,7 @@ public final class TlsSubscriptionArgs extends com.pulumi.resources.ResourceArgs
         }
 
         /**
-         * @param forceUpdate Always update subscription, even when active domains are present. Defaults to false.
+         * @param forceUpdate Force update the subscription even if it has active domains. Warning: this can disable production traffic if used incorrectly.
          * 
          * @return builder
          * 
@@ -272,7 +264,7 @@ public final class TlsSubscriptionArgs extends com.pulumi.resources.ResourceArgs
         }
 
         /**
-         * @param forceUpdate Always update subscription, even when active domains are present. Defaults to false.
+         * @param forceUpdate Force update the subscription even if it has active domains. Warning: this can disable production traffic if used incorrectly.
          * 
          * @return builder
          * 

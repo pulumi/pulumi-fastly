@@ -34,6 +34,11 @@ public final class ServiceComputeLoggingElasticsearch {
      */
     private @Nullable String pipeline;
     /**
+     * @return Region where logs will be processed before streaming to BigQuery. Valid values are &#39;none&#39;, &#39;us&#39; and &#39;eu&#39;.
+     * 
+     */
+    private @Nullable String processingRegion;
+    /**
      * @return The maximum number of logs sent in one request. Defaults to `0` for unbounded
      * 
      */
@@ -102,6 +107,13 @@ public final class ServiceComputeLoggingElasticsearch {
      */
     public Optional<String> pipeline() {
         return Optional.ofNullable(this.pipeline);
+    }
+    /**
+     * @return Region where logs will be processed before streaming to BigQuery. Valid values are &#39;none&#39;, &#39;us&#39; and &#39;eu&#39;.
+     * 
+     */
+    public Optional<String> processingRegion() {
+        return Optional.ofNullable(this.processingRegion);
     }
     /**
      * @return The maximum number of logs sent in one request. Defaults to `0` for unbounded
@@ -173,6 +185,7 @@ public final class ServiceComputeLoggingElasticsearch {
         private String name;
         private @Nullable String password;
         private @Nullable String pipeline;
+        private @Nullable String processingRegion;
         private @Nullable Integer requestMaxBytes;
         private @Nullable Integer requestMaxEntries;
         private @Nullable String tlsCaCert;
@@ -188,6 +201,7 @@ public final class ServiceComputeLoggingElasticsearch {
     	      this.name = defaults.name;
     	      this.password = defaults.password;
     	      this.pipeline = defaults.pipeline;
+    	      this.processingRegion = defaults.processingRegion;
     	      this.requestMaxBytes = defaults.requestMaxBytes;
     	      this.requestMaxEntries = defaults.requestMaxEntries;
     	      this.tlsCaCert = defaults.tlsCaCert;
@@ -224,6 +238,12 @@ public final class ServiceComputeLoggingElasticsearch {
         public Builder pipeline(@Nullable String pipeline) {
 
             this.pipeline = pipeline;
+            return this;
+        }
+        @CustomType.Setter
+        public Builder processingRegion(@Nullable String processingRegion) {
+
+            this.processingRegion = processingRegion;
             return this;
         }
         @CustomType.Setter
@@ -282,6 +302,7 @@ public final class ServiceComputeLoggingElasticsearch {
             _resultValue.name = name;
             _resultValue.password = password;
             _resultValue.pipeline = pipeline;
+            _resultValue.processingRegion = processingRegion;
             _resultValue.requestMaxBytes = requestMaxBytes;
             _resultValue.requestMaxEntries = requestMaxEntries;
             _resultValue.tlsCaCert = tlsCaCert;

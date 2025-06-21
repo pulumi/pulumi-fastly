@@ -229,6 +229,21 @@ public final class ServiceVclBackendArgs extends com.pulumi.resources.ResourceAr
     }
 
     /**
+     * Prefer IPv6 connections to origins for hostname backends. Default `false`
+     * 
+     */
+    @Import(name="preferIpv6")
+    private @Nullable Output<Boolean> preferIpv6;
+
+    /**
+     * @return Prefer IPv6 connections to origins for hostname backends. Default `false`
+     * 
+     */
+    public Optional<Output<Boolean>> preferIpv6() {
+        return Optional.ofNullable(this.preferIpv6);
+    }
+
+    /**
      * Name of a condition, which if met, will select this backend during a request.
      * 
      */
@@ -425,6 +440,7 @@ public final class ServiceVclBackendArgs extends com.pulumi.resources.ResourceAr
         this.name = $.name;
         this.overrideHost = $.overrideHost;
         this.port = $.port;
+        this.preferIpv6 = $.preferIpv6;
         this.requestCondition = $.requestCondition;
         this.shareKey = $.shareKey;
         this.shield = $.shield;
@@ -749,6 +765,27 @@ public final class ServiceVclBackendArgs extends com.pulumi.resources.ResourceAr
          */
         public Builder port(Integer port) {
             return port(Output.of(port));
+        }
+
+        /**
+         * @param preferIpv6 Prefer IPv6 connections to origins for hostname backends. Default `false`
+         * 
+         * @return builder
+         * 
+         */
+        public Builder preferIpv6(@Nullable Output<Boolean> preferIpv6) {
+            $.preferIpv6 = preferIpv6;
+            return this;
+        }
+
+        /**
+         * @param preferIpv6 Prefer IPv6 connections to origins for hostname backends. Default `false`
+         * 
+         * @return builder
+         * 
+         */
+        public Builder preferIpv6(Boolean preferIpv6) {
+            return preferIpv6(Output.of(preferIpv6));
         }
 
         /**

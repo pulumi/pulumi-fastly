@@ -35,6 +35,11 @@ public final class ServiceComputeLoggingSyslog {
      */
     private @Nullable Integer port;
     /**
+     * @return Region where logs will be processed before streaming to BigQuery. Valid values are &#39;none&#39;, &#39;us&#39; and &#39;eu&#39;.
+     * 
+     */
+    private @Nullable String processingRegion;
+    /**
      * @return A secure certificate to authenticate the server with. Must be in PEM format. You can provide this certificate via an environment variable, `FASTLY_SYSLOG_CA_CERT`
      * 
      */
@@ -95,6 +100,13 @@ public final class ServiceComputeLoggingSyslog {
         return Optional.ofNullable(this.port);
     }
     /**
+     * @return Region where logs will be processed before streaming to BigQuery. Valid values are &#39;none&#39;, &#39;us&#39; and &#39;eu&#39;.
+     * 
+     */
+    public Optional<String> processingRegion() {
+        return Optional.ofNullable(this.processingRegion);
+    }
+    /**
      * @return A secure certificate to authenticate the server with. Must be in PEM format. You can provide this certificate via an environment variable, `FASTLY_SYSLOG_CA_CERT`
      * 
      */
@@ -150,6 +162,7 @@ public final class ServiceComputeLoggingSyslog {
         private @Nullable String messageType;
         private String name;
         private @Nullable Integer port;
+        private @Nullable String processingRegion;
         private @Nullable String tlsCaCert;
         private @Nullable String tlsClientCert;
         private @Nullable String tlsClientKey;
@@ -163,6 +176,7 @@ public final class ServiceComputeLoggingSyslog {
     	      this.messageType = defaults.messageType;
     	      this.name = defaults.name;
     	      this.port = defaults.port;
+    	      this.processingRegion = defaults.processingRegion;
     	      this.tlsCaCert = defaults.tlsCaCert;
     	      this.tlsClientCert = defaults.tlsClientCert;
     	      this.tlsClientKey = defaults.tlsClientKey;
@@ -197,6 +211,12 @@ public final class ServiceComputeLoggingSyslog {
         public Builder port(@Nullable Integer port) {
 
             this.port = port;
+            return this;
+        }
+        @CustomType.Setter
+        public Builder processingRegion(@Nullable String processingRegion) {
+
+            this.processingRegion = processingRegion;
             return this;
         }
         @CustomType.Setter
@@ -241,6 +261,7 @@ public final class ServiceComputeLoggingSyslog {
             _resultValue.messageType = messageType;
             _resultValue.name = name;
             _resultValue.port = port;
+            _resultValue.processingRegion = processingRegion;
             _resultValue.tlsCaCert = tlsCaCert;
             _resultValue.tlsClientCert = tlsClientCert;
             _resultValue.tlsClientKey = tlsClientKey;

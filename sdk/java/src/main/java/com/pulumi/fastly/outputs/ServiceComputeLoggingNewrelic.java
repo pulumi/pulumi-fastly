@@ -18,6 +18,11 @@ public final class ServiceComputeLoggingNewrelic {
      */
     private String name;
     /**
+     * @return Region where logs will be processed before streaming to BigQuery. Valid values are &#39;none&#39;, &#39;us&#39; and &#39;eu&#39;.
+     * 
+     */
+    private @Nullable String processingRegion;
+    /**
      * @return The region that log data will be sent to. Default: `US`
      * 
      */
@@ -35,6 +40,13 @@ public final class ServiceComputeLoggingNewrelic {
      */
     public String name() {
         return this.name;
+    }
+    /**
+     * @return Region where logs will be processed before streaming to BigQuery. Valid values are &#39;none&#39;, &#39;us&#39; and &#39;eu&#39;.
+     * 
+     */
+    public Optional<String> processingRegion() {
+        return Optional.ofNullable(this.processingRegion);
     }
     /**
      * @return The region that log data will be sent to. Default: `US`
@@ -61,12 +73,14 @@ public final class ServiceComputeLoggingNewrelic {
     @CustomType.Builder
     public static final class Builder {
         private String name;
+        private @Nullable String processingRegion;
         private @Nullable String region;
         private String token;
         public Builder() {}
         public Builder(ServiceComputeLoggingNewrelic defaults) {
     	      Objects.requireNonNull(defaults);
     	      this.name = defaults.name;
+    	      this.processingRegion = defaults.processingRegion;
     	      this.region = defaults.region;
     	      this.token = defaults.token;
         }
@@ -77,6 +91,12 @@ public final class ServiceComputeLoggingNewrelic {
               throw new MissingRequiredPropertyException("ServiceComputeLoggingNewrelic", "name");
             }
             this.name = name;
+            return this;
+        }
+        @CustomType.Setter
+        public Builder processingRegion(@Nullable String processingRegion) {
+
+            this.processingRegion = processingRegion;
             return this;
         }
         @CustomType.Setter
@@ -96,6 +116,7 @@ public final class ServiceComputeLoggingNewrelic {
         public ServiceComputeLoggingNewrelic build() {
             final var _resultValue = new ServiceComputeLoggingNewrelic();
             _resultValue.name = name;
+            _resultValue.processingRegion = processingRegion;
             _resultValue.region = region;
             _resultValue.token = token;
             return _resultValue;

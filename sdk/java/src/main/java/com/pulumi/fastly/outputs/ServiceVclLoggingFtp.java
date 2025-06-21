@@ -74,6 +74,11 @@ public final class ServiceVclLoggingFtp {
      */
     private @Nullable Integer port;
     /**
+     * @return Region where logs will be processed before streaming to BigQuery. Valid values are &#39;none&#39;, &#39;us&#39; and &#39;eu&#39;.
+     * 
+     */
+    private @Nullable String processingRegion;
+    /**
      * @return The PGP public key that Fastly will use to encrypt your log files before writing them to disk
      * 
      */
@@ -180,6 +185,13 @@ public final class ServiceVclLoggingFtp {
         return Optional.ofNullable(this.port);
     }
     /**
+     * @return Region where logs will be processed before streaming to BigQuery. Valid values are &#39;none&#39;, &#39;us&#39; and &#39;eu&#39;.
+     * 
+     */
+    public Optional<String> processingRegion() {
+        return Optional.ofNullable(this.processingRegion);
+    }
+    /**
      * @return The PGP public key that Fastly will use to encrypt your log files before writing them to disk
      * 
      */
@@ -229,6 +241,7 @@ public final class ServiceVclLoggingFtp {
         private @Nullable Integer period;
         private @Nullable String placement;
         private @Nullable Integer port;
+        private @Nullable String processingRegion;
         private @Nullable String publicKey;
         private @Nullable String responseCondition;
         private @Nullable String timestampFormat;
@@ -248,6 +261,7 @@ public final class ServiceVclLoggingFtp {
     	      this.period = defaults.period;
     	      this.placement = defaults.placement;
     	      this.port = defaults.port;
+    	      this.processingRegion = defaults.processingRegion;
     	      this.publicKey = defaults.publicKey;
     	      this.responseCondition = defaults.responseCondition;
     	      this.timestampFormat = defaults.timestampFormat;
@@ -335,6 +349,12 @@ public final class ServiceVclLoggingFtp {
             return this;
         }
         @CustomType.Setter
+        public Builder processingRegion(@Nullable String processingRegion) {
+
+            this.processingRegion = processingRegion;
+            return this;
+        }
+        @CustomType.Setter
         public Builder publicKey(@Nullable String publicKey) {
 
             this.publicKey = publicKey;
@@ -374,6 +394,7 @@ public final class ServiceVclLoggingFtp {
             _resultValue.period = period;
             _resultValue.placement = placement;
             _resultValue.port = port;
+            _resultValue.processingRegion = processingRegion;
             _resultValue.publicKey = publicKey;
             _resultValue.responseCondition = responseCondition;
             _resultValue.timestampFormat = timestampFormat;

@@ -61,6 +61,12 @@ namespace Pulumi.Fastly.Inputs
         public Input<int>? Period { get; set; }
 
         /// <summary>
+        /// Region where logs will be processed before streaming to BigQuery. Valid values are 'none', 'us' and 'eu'.
+        /// </summary>
+        [Input("processingRegion")]
+        public Input<string>? ProcessingRegion { get; set; }
+
+        /// <summary>
         /// The ID of your Google Cloud Platform project
         /// </summary>
         [Input("projectId")]

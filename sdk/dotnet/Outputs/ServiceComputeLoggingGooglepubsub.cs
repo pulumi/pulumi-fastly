@@ -22,6 +22,10 @@ namespace Pulumi.Fastly.Outputs
         /// </summary>
         public readonly string Name;
         /// <summary>
+        /// Region where logs will be processed before streaming to BigQuery. Valid values are 'none', 'us' and 'eu'.
+        /// </summary>
+        public readonly string? ProcessingRegion;
+        /// <summary>
         /// The ID of your Google Cloud Platform project
         /// </summary>
         public readonly string ProjectId;
@@ -44,6 +48,8 @@ namespace Pulumi.Fastly.Outputs
 
             string name,
 
+            string? processingRegion,
+
             string projectId,
 
             string secretKey,
@@ -54,6 +60,7 @@ namespace Pulumi.Fastly.Outputs
         {
             AccountName = accountName;
             Name = name;
+            ProcessingRegion = processingRegion;
             ProjectId = projectId;
             SecretKey = secretKey;
             Topic = topic;

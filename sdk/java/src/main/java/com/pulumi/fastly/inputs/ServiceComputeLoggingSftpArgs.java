@@ -153,6 +153,21 @@ public final class ServiceComputeLoggingSftpArgs extends com.pulumi.resources.Re
     }
 
     /**
+     * Region where logs will be processed before streaming to BigQuery. Valid values are &#39;none&#39;, &#39;us&#39; and &#39;eu&#39;.
+     * 
+     */
+    @Import(name="processingRegion")
+    private @Nullable Output<String> processingRegion;
+
+    /**
+     * @return Region where logs will be processed before streaming to BigQuery. Valid values are &#39;none&#39;, &#39;us&#39; and &#39;eu&#39;.
+     * 
+     */
+    public Optional<Output<String>> processingRegion() {
+        return Optional.ofNullable(this.processingRegion);
+    }
+
+    /**
      * A PGP public key that Fastly will use to encrypt your log files before writing them to disk
      * 
      */
@@ -239,6 +254,7 @@ public final class ServiceComputeLoggingSftpArgs extends com.pulumi.resources.Re
         this.path = $.path;
         this.period = $.period;
         this.port = $.port;
+        this.processingRegion = $.processingRegion;
         this.publicKey = $.publicKey;
         this.secretKey = $.secretKey;
         this.sshKnownHosts = $.sshKnownHosts;
@@ -451,6 +467,27 @@ public final class ServiceComputeLoggingSftpArgs extends com.pulumi.resources.Re
          */
         public Builder port(Integer port) {
             return port(Output.of(port));
+        }
+
+        /**
+         * @param processingRegion Region where logs will be processed before streaming to BigQuery. Valid values are &#39;none&#39;, &#39;us&#39; and &#39;eu&#39;.
+         * 
+         * @return builder
+         * 
+         */
+        public Builder processingRegion(@Nullable Output<String> processingRegion) {
+            $.processingRegion = processingRegion;
+            return this;
+        }
+
+        /**
+         * @param processingRegion Region where logs will be processed before streaming to BigQuery. Valid values are &#39;none&#39;, &#39;us&#39; and &#39;eu&#39;.
+         * 
+         * @return builder
+         * 
+         */
+        public Builder processingRegion(String processingRegion) {
+            return processingRegion(Output.of(processingRegion));
         }
 
         /**

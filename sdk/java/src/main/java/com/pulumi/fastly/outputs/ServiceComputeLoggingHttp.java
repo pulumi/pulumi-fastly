@@ -49,6 +49,11 @@ public final class ServiceComputeLoggingHttp {
      */
     private String name;
     /**
+     * @return Region where logs will be processed before streaming to BigQuery. Valid values are &#39;none&#39;, &#39;us&#39; and &#39;eu&#39;.
+     * 
+     */
+    private @Nullable String processingRegion;
+    /**
      * @return The maximum number of bytes sent in one request
      * 
      */
@@ -135,6 +140,13 @@ public final class ServiceComputeLoggingHttp {
         return this.name;
     }
     /**
+     * @return Region where logs will be processed before streaming to BigQuery. Valid values are &#39;none&#39;, &#39;us&#39; and &#39;eu&#39;.
+     * 
+     */
+    public Optional<String> processingRegion() {
+        return Optional.ofNullable(this.processingRegion);
+    }
+    /**
      * @return The maximum number of bytes sent in one request
      * 
      */
@@ -200,6 +212,7 @@ public final class ServiceComputeLoggingHttp {
         private @Nullable String messageType;
         private @Nullable String method;
         private String name;
+        private @Nullable String processingRegion;
         private @Nullable Integer requestMaxBytes;
         private @Nullable Integer requestMaxEntries;
         private @Nullable String tlsCaCert;
@@ -217,6 +230,7 @@ public final class ServiceComputeLoggingHttp {
     	      this.messageType = defaults.messageType;
     	      this.method = defaults.method;
     	      this.name = defaults.name;
+    	      this.processingRegion = defaults.processingRegion;
     	      this.requestMaxBytes = defaults.requestMaxBytes;
     	      this.requestMaxEntries = defaults.requestMaxEntries;
     	      this.tlsCaCert = defaults.tlsCaCert;
@@ -268,6 +282,12 @@ public final class ServiceComputeLoggingHttp {
               throw new MissingRequiredPropertyException("ServiceComputeLoggingHttp", "name");
             }
             this.name = name;
+            return this;
+        }
+        @CustomType.Setter
+        public Builder processingRegion(@Nullable String processingRegion) {
+
+            this.processingRegion = processingRegion;
             return this;
         }
         @CustomType.Setter
@@ -323,6 +343,7 @@ public final class ServiceComputeLoggingHttp {
             _resultValue.messageType = messageType;
             _resultValue.method = method;
             _resultValue.name = name;
+            _resultValue.processingRegion = processingRegion;
             _resultValue.requestMaxBytes = requestMaxBytes;
             _resultValue.requestMaxEntries = requestMaxEntries;
             _resultValue.tlsCaCert = tlsCaCert;

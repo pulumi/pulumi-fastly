@@ -7,6 +7,8 @@ import com.pulumi.core.annotations.CustomType;
 import com.pulumi.exceptions.MissingRequiredPropertyException;
 import java.lang.String;
 import java.util.Objects;
+import java.util.Optional;
+import javax.annotation.Nullable;
 
 @CustomType
 public final class ServiceComputeLoggingGrafanacloudlog {
@@ -20,6 +22,11 @@ public final class ServiceComputeLoggingGrafanacloudlog {
      * 
      */
     private String name;
+    /**
+     * @return Region where logs will be processed before streaming to BigQuery. Valid values are &#39;none&#39;, &#39;us&#39; and &#39;eu&#39;.
+     * 
+     */
+    private @Nullable String processingRegion;
     /**
      * @return The Access Policy Token key for your GrafanaCloudLogs account
      * 
@@ -50,6 +57,13 @@ public final class ServiceComputeLoggingGrafanacloudlog {
      */
     public String name() {
         return this.name;
+    }
+    /**
+     * @return Region where logs will be processed before streaming to BigQuery. Valid values are &#39;none&#39;, &#39;us&#39; and &#39;eu&#39;.
+     * 
+     */
+    public Optional<String> processingRegion() {
+        return Optional.ofNullable(this.processingRegion);
     }
     /**
      * @return The Access Policy Token key for your GrafanaCloudLogs account
@@ -84,6 +98,7 @@ public final class ServiceComputeLoggingGrafanacloudlog {
     public static final class Builder {
         private String index;
         private String name;
+        private @Nullable String processingRegion;
         private String token;
         private String url;
         private String user;
@@ -92,6 +107,7 @@ public final class ServiceComputeLoggingGrafanacloudlog {
     	      Objects.requireNonNull(defaults);
     	      this.index = defaults.index;
     	      this.name = defaults.name;
+    	      this.processingRegion = defaults.processingRegion;
     	      this.token = defaults.token;
     	      this.url = defaults.url;
     	      this.user = defaults.user;
@@ -111,6 +127,12 @@ public final class ServiceComputeLoggingGrafanacloudlog {
               throw new MissingRequiredPropertyException("ServiceComputeLoggingGrafanacloudlog", "name");
             }
             this.name = name;
+            return this;
+        }
+        @CustomType.Setter
+        public Builder processingRegion(@Nullable String processingRegion) {
+
+            this.processingRegion = processingRegion;
             return this;
         }
         @CustomType.Setter
@@ -141,6 +163,7 @@ public final class ServiceComputeLoggingGrafanacloudlog {
             final var _resultValue = new ServiceComputeLoggingGrafanacloudlog();
             _resultValue.index = index;
             _resultValue.name = name;
+            _resultValue.processingRegion = processingRegion;
             _resultValue.token = token;
             _resultValue.url = url;
             _resultValue.user = user;

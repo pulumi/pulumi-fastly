@@ -44,6 +44,11 @@ public final class ServiceVclLoggingPapertrail {
      */
     private Integer port;
     /**
+     * @return Region where logs will be processed before streaming to BigQuery. Valid values are &#39;none&#39;, &#39;us&#39; and &#39;eu&#39;.
+     * 
+     */
+    private @Nullable String processingRegion;
+    /**
      * @return The name of an existing condition in the configured endpoint, or leave blank to always execute
      * 
      */
@@ -93,6 +98,13 @@ public final class ServiceVclLoggingPapertrail {
         return this.port;
     }
     /**
+     * @return Region where logs will be processed before streaming to BigQuery. Valid values are &#39;none&#39;, &#39;us&#39; and &#39;eu&#39;.
+     * 
+     */
+    public Optional<String> processingRegion() {
+        return Optional.ofNullable(this.processingRegion);
+    }
+    /**
      * @return The name of an existing condition in the configured endpoint, or leave blank to always execute
      * 
      */
@@ -115,6 +127,7 @@ public final class ServiceVclLoggingPapertrail {
         private String name;
         private @Nullable String placement;
         private Integer port;
+        private @Nullable String processingRegion;
         private @Nullable String responseCondition;
         public Builder() {}
         public Builder(ServiceVclLoggingPapertrail defaults) {
@@ -125,6 +138,7 @@ public final class ServiceVclLoggingPapertrail {
     	      this.name = defaults.name;
     	      this.placement = defaults.placement;
     	      this.port = defaults.port;
+    	      this.processingRegion = defaults.processingRegion;
     	      this.responseCondition = defaults.responseCondition;
         }
 
@@ -171,6 +185,12 @@ public final class ServiceVclLoggingPapertrail {
             return this;
         }
         @CustomType.Setter
+        public Builder processingRegion(@Nullable String processingRegion) {
+
+            this.processingRegion = processingRegion;
+            return this;
+        }
+        @CustomType.Setter
         public Builder responseCondition(@Nullable String responseCondition) {
 
             this.responseCondition = responseCondition;
@@ -184,6 +204,7 @@ public final class ServiceVclLoggingPapertrail {
             _resultValue.name = name;
             _resultValue.placement = placement;
             _resultValue.port = port;
+            _resultValue.processingRegion = processingRegion;
             _resultValue.responseCondition = responseCondition;
             return _resultValue;
         }

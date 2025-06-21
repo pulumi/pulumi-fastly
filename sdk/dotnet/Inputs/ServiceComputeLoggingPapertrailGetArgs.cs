@@ -30,6 +30,12 @@ namespace Pulumi.Fastly.Inputs
         [Input("port", required: true)]
         public Input<int> Port { get; set; } = null!;
 
+        /// <summary>
+        /// Region where logs will be processed before streaming to BigQuery. Valid values are 'none', 'us' and 'eu'.
+        /// </summary>
+        [Input("processingRegion")]
+        public Input<string>? ProcessingRegion { get; set; }
+
         public ServiceComputeLoggingPapertrailGetArgs()
         {
         }

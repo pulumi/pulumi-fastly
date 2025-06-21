@@ -25,6 +25,10 @@ namespace Pulumi.Fastly.Outputs
         /// The port associated with the address where the Papertrail endpoint can be accessed
         /// </summary>
         public readonly int Port;
+        /// <summary>
+        /// Region where logs will be processed before streaming to BigQuery. Valid values are 'none', 'us' and 'eu'.
+        /// </summary>
+        public readonly string? ProcessingRegion;
 
         [OutputConstructor]
         private ServiceComputeLoggingPapertrail(
@@ -32,11 +36,14 @@ namespace Pulumi.Fastly.Outputs
 
             string name,
 
-            int port)
+            int port,
+
+            string? processingRegion)
         {
             Address = address;
             Name = name;
             Port = port;
+            ProcessingRegion = processingRegion;
         }
     }
 }

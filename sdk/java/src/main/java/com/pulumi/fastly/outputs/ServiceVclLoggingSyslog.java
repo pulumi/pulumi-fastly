@@ -50,6 +50,11 @@ public final class ServiceVclLoggingSyslog {
      */
     private @Nullable Integer port;
     /**
+     * @return Region where logs will be processed before streaming to BigQuery. Valid values are &#39;none&#39;, &#39;us&#39; and &#39;eu&#39;.
+     * 
+     */
+    private @Nullable String processingRegion;
+    /**
      * @return Name of blockAttributes condition to apply this logging.
      * 
      */
@@ -136,6 +141,13 @@ public final class ServiceVclLoggingSyslog {
         return Optional.ofNullable(this.port);
     }
     /**
+     * @return Region where logs will be processed before streaming to BigQuery. Valid values are &#39;none&#39;, &#39;us&#39; and &#39;eu&#39;.
+     * 
+     */
+    public Optional<String> processingRegion() {
+        return Optional.ofNullable(this.processingRegion);
+    }
+    /**
      * @return Name of blockAttributes condition to apply this logging.
      * 
      */
@@ -201,6 +213,7 @@ public final class ServiceVclLoggingSyslog {
         private String name;
         private @Nullable String placement;
         private @Nullable Integer port;
+        private @Nullable String processingRegion;
         private @Nullable String responseCondition;
         private @Nullable String tlsCaCert;
         private @Nullable String tlsClientCert;
@@ -218,6 +231,7 @@ public final class ServiceVclLoggingSyslog {
     	      this.name = defaults.name;
     	      this.placement = defaults.placement;
     	      this.port = defaults.port;
+    	      this.processingRegion = defaults.processingRegion;
     	      this.responseCondition = defaults.responseCondition;
     	      this.tlsCaCert = defaults.tlsCaCert;
     	      this.tlsClientCert = defaults.tlsClientCert;
@@ -274,6 +288,12 @@ public final class ServiceVclLoggingSyslog {
             return this;
         }
         @CustomType.Setter
+        public Builder processingRegion(@Nullable String processingRegion) {
+
+            this.processingRegion = processingRegion;
+            return this;
+        }
+        @CustomType.Setter
         public Builder responseCondition(@Nullable String responseCondition) {
 
             this.responseCondition = responseCondition;
@@ -324,6 +344,7 @@ public final class ServiceVclLoggingSyslog {
             _resultValue.name = name;
             _resultValue.placement = placement;
             _resultValue.port = port;
+            _resultValue.processingRegion = processingRegion;
             _resultValue.responseCondition = responseCondition;
             _resultValue.tlsCaCert = tlsCaCert;
             _resultValue.tlsClientCert = tlsClientCert;

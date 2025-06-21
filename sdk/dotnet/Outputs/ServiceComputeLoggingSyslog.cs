@@ -30,6 +30,10 @@ namespace Pulumi.Fastly.Outputs
         /// </summary>
         public readonly int? Port;
         /// <summary>
+        /// Region where logs will be processed before streaming to BigQuery. Valid values are 'none', 'us' and 'eu'.
+        /// </summary>
+        public readonly string? ProcessingRegion;
+        /// <summary>
         /// A secure certificate to authenticate the server with. Must be in PEM format. You can provide this certificate via an environment variable, `FASTLY_SYSLOG_CA_CERT`
         /// </summary>
         public readonly string? TlsCaCert;
@@ -64,6 +68,8 @@ namespace Pulumi.Fastly.Outputs
 
             int? port,
 
+            string? processingRegion,
+
             string? tlsCaCert,
 
             string? tlsClientCert,
@@ -80,6 +86,7 @@ namespace Pulumi.Fastly.Outputs
             MessageType = messageType;
             Name = name;
             Port = port;
+            ProcessingRegion = processingRegion;
             TlsCaCert = tlsCaCert;
             TlsClientCert = tlsClientCert;
             TlsClientKey = tlsClientKey;

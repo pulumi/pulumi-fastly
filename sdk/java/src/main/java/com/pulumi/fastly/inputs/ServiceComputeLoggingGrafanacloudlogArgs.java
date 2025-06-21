@@ -8,6 +8,8 @@ import com.pulumi.core.annotations.Import;
 import com.pulumi.exceptions.MissingRequiredPropertyException;
 import java.lang.String;
 import java.util.Objects;
+import java.util.Optional;
+import javax.annotation.Nullable;
 
 
 public final class ServiceComputeLoggingGrafanacloudlogArgs extends com.pulumi.resources.ResourceArgs {
@@ -42,6 +44,21 @@ public final class ServiceComputeLoggingGrafanacloudlogArgs extends com.pulumi.r
      */
     public Output<String> name() {
         return this.name;
+    }
+
+    /**
+     * Region where logs will be processed before streaming to BigQuery. Valid values are &#39;none&#39;, &#39;us&#39; and &#39;eu&#39;.
+     * 
+     */
+    @Import(name="processingRegion")
+    private @Nullable Output<String> processingRegion;
+
+    /**
+     * @return Region where logs will be processed before streaming to BigQuery. Valid values are &#39;none&#39;, &#39;us&#39; and &#39;eu&#39;.
+     * 
+     */
+    public Optional<Output<String>> processingRegion() {
+        return Optional.ofNullable(this.processingRegion);
     }
 
     /**
@@ -94,6 +111,7 @@ public final class ServiceComputeLoggingGrafanacloudlogArgs extends com.pulumi.r
     private ServiceComputeLoggingGrafanacloudlogArgs(ServiceComputeLoggingGrafanacloudlogArgs $) {
         this.index = $.index;
         this.name = $.name;
+        this.processingRegion = $.processingRegion;
         this.token = $.token;
         this.url = $.url;
         this.user = $.user;
@@ -157,6 +175,27 @@ public final class ServiceComputeLoggingGrafanacloudlogArgs extends com.pulumi.r
          */
         public Builder name(String name) {
             return name(Output.of(name));
+        }
+
+        /**
+         * @param processingRegion Region where logs will be processed before streaming to BigQuery. Valid values are &#39;none&#39;, &#39;us&#39; and &#39;eu&#39;.
+         * 
+         * @return builder
+         * 
+         */
+        public Builder processingRegion(@Nullable Output<String> processingRegion) {
+            $.processingRegion = processingRegion;
+            return this;
+        }
+
+        /**
+         * @param processingRegion Region where logs will be processed before streaming to BigQuery. Valid values are &#39;none&#39;, &#39;us&#39; and &#39;eu&#39;.
+         * 
+         * @return builder
+         * 
+         */
+        public Builder processingRegion(String processingRegion) {
+            return processingRegion(Output.of(processingRegion));
         }
 
         /**

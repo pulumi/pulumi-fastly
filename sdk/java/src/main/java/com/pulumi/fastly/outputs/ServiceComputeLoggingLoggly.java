@@ -7,6 +7,8 @@ import com.pulumi.core.annotations.CustomType;
 import com.pulumi.exceptions.MissingRequiredPropertyException;
 import java.lang.String;
 import java.util.Objects;
+import java.util.Optional;
+import javax.annotation.Nullable;
 
 @CustomType
 public final class ServiceComputeLoggingLoggly {
@@ -15,6 +17,11 @@ public final class ServiceComputeLoggingLoggly {
      * 
      */
     private String name;
+    /**
+     * @return Region where logs will be processed before streaming to BigQuery. Valid values are &#39;none&#39;, &#39;us&#39; and &#39;eu&#39;.
+     * 
+     */
+    private @Nullable String processingRegion;
     /**
      * @return The token to use for authentication (https://www.loggly.com/docs/customer-token-authentication-token/).
      * 
@@ -28,6 +35,13 @@ public final class ServiceComputeLoggingLoggly {
      */
     public String name() {
         return this.name;
+    }
+    /**
+     * @return Region where logs will be processed before streaming to BigQuery. Valid values are &#39;none&#39;, &#39;us&#39; and &#39;eu&#39;.
+     * 
+     */
+    public Optional<String> processingRegion() {
+        return Optional.ofNullable(this.processingRegion);
     }
     /**
      * @return The token to use for authentication (https://www.loggly.com/docs/customer-token-authentication-token/).
@@ -47,11 +61,13 @@ public final class ServiceComputeLoggingLoggly {
     @CustomType.Builder
     public static final class Builder {
         private String name;
+        private @Nullable String processingRegion;
         private String token;
         public Builder() {}
         public Builder(ServiceComputeLoggingLoggly defaults) {
     	      Objects.requireNonNull(defaults);
     	      this.name = defaults.name;
+    	      this.processingRegion = defaults.processingRegion;
     	      this.token = defaults.token;
         }
 
@@ -61,6 +77,12 @@ public final class ServiceComputeLoggingLoggly {
               throw new MissingRequiredPropertyException("ServiceComputeLoggingLoggly", "name");
             }
             this.name = name;
+            return this;
+        }
+        @CustomType.Setter
+        public Builder processingRegion(@Nullable String processingRegion) {
+
+            this.processingRegion = processingRegion;
             return this;
         }
         @CustomType.Setter
@@ -74,6 +96,7 @@ public final class ServiceComputeLoggingLoggly {
         public ServiceComputeLoggingLoggly build() {
             final var _resultValue = new ServiceComputeLoggingLoggly();
             _resultValue.name = name;
+            _resultValue.processingRegion = processingRegion;
             _resultValue.token = token;
             return _resultValue;
         }

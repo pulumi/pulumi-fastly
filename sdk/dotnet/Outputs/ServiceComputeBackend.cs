@@ -66,6 +66,10 @@ namespace Pulumi.Fastly.Outputs
         /// </summary>
         public readonly int? Port;
         /// <summary>
+        /// Prefer IPv6 connections to origins for hostname backends. Default `true`
+        /// </summary>
+        public readonly bool? PreferIpv6;
+        /// <summary>
         /// Value that when shared across backends will enable those backends to share the same health check.
         /// </summary>
         public readonly string? ShareKey;
@@ -138,6 +142,8 @@ namespace Pulumi.Fastly.Outputs
 
             int? port,
 
+            bool? preferIpv6,
+
             string? shareKey,
 
             string? shield,
@@ -173,6 +179,7 @@ namespace Pulumi.Fastly.Outputs
             Name = name;
             OverrideHost = overrideHost;
             Port = port;
+            PreferIpv6 = preferIpv6;
             ShareKey = shareKey;
             Shield = shield;
             SslCaCert = sslCaCert;

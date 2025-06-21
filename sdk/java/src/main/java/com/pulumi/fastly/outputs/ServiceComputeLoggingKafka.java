@@ -45,6 +45,11 @@ public final class ServiceComputeLoggingKafka {
      */
     private @Nullable String password;
     /**
+     * @return Region where logs will be processed before streaming to BigQuery. Valid values are &#39;none&#39;, &#39;us&#39; and &#39;eu&#39;.
+     * 
+     */
+    private @Nullable String processingRegion;
+    /**
      * @return Maximum size of log batch, if non-zero. Defaults to 0 for unbounded
      * 
      */
@@ -134,6 +139,13 @@ public final class ServiceComputeLoggingKafka {
         return Optional.ofNullable(this.password);
     }
     /**
+     * @return Region where logs will be processed before streaming to BigQuery. Valid values are &#39;none&#39;, &#39;us&#39; and &#39;eu&#39;.
+     * 
+     */
+    public Optional<String> processingRegion() {
+        return Optional.ofNullable(this.processingRegion);
+    }
+    /**
      * @return Maximum size of log batch, if non-zero. Defaults to 0 for unbounded
      * 
      */
@@ -212,6 +224,7 @@ public final class ServiceComputeLoggingKafka {
         private String name;
         private @Nullable Boolean parseLogKeyvals;
         private @Nullable String password;
+        private @Nullable String processingRegion;
         private @Nullable Integer requestMaxBytes;
         private @Nullable String requiredAcks;
         private @Nullable String tlsCaCert;
@@ -230,6 +243,7 @@ public final class ServiceComputeLoggingKafka {
     	      this.name = defaults.name;
     	      this.parseLogKeyvals = defaults.parseLogKeyvals;
     	      this.password = defaults.password;
+    	      this.processingRegion = defaults.processingRegion;
     	      this.requestMaxBytes = defaults.requestMaxBytes;
     	      this.requiredAcks = defaults.requiredAcks;
     	      this.tlsCaCert = defaults.tlsCaCert;
@@ -279,6 +293,12 @@ public final class ServiceComputeLoggingKafka {
         public Builder password(@Nullable String password) {
 
             this.password = password;
+            return this;
+        }
+        @CustomType.Setter
+        public Builder processingRegion(@Nullable String processingRegion) {
+
+            this.processingRegion = processingRegion;
             return this;
         }
         @CustomType.Setter
@@ -345,6 +365,7 @@ public final class ServiceComputeLoggingKafka {
             _resultValue.name = name;
             _resultValue.parseLogKeyvals = parseLogKeyvals;
             _resultValue.password = password;
+            _resultValue.processingRegion = processingRegion;
             _resultValue.requestMaxBytes = requestMaxBytes;
             _resultValue.requiredAcks = requiredAcks;
             _resultValue.tlsCaCert = tlsCaCert;

@@ -91,6 +91,12 @@ namespace Pulumi.Fastly.Inputs
         public Input<int>? Port { get; set; }
 
         /// <summary>
+        /// Prefer IPv6 connections to origins for hostname backends. Default `true`
+        /// </summary>
+        [Input("preferIpv6")]
+        public Input<bool>? PreferIpv6 { get; set; }
+
+        /// <summary>
         /// Value that when shared across backends will enable those backends to share the same health check.
         /// </summary>
         [Input("shareKey")]

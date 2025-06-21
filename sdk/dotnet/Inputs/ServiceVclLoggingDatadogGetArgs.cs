@@ -37,6 +37,12 @@ namespace Pulumi.Fastly.Inputs
         public Input<string>? Placement { get; set; }
 
         /// <summary>
+        /// Region where logs will be processed before streaming to BigQuery. Valid values are 'none', 'us' and 'eu'.
+        /// </summary>
+        [Input("processingRegion")]
+        public Input<string>? ProcessingRegion { get; set; }
+
+        /// <summary>
         /// The region that log data will be sent to. One of `US` or `EU`. Defaults to `US` if undefined
         /// </summary>
         [Input("region")]

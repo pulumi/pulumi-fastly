@@ -38,6 +38,10 @@ namespace Pulumi.Fastly.Outputs
         /// </summary>
         public readonly string? Password;
         /// <summary>
+        /// Region where logs will be processed before streaming to BigQuery. Valid values are 'none', 'us' and 'eu'.
+        /// </summary>
+        public readonly string? ProcessingRegion;
+        /// <summary>
         /// Maximum size of log batch, if non-zero. Defaults to 0 for unbounded
         /// </summary>
         public readonly int? RequestMaxBytes;
@@ -88,6 +92,8 @@ namespace Pulumi.Fastly.Outputs
 
             string? password,
 
+            string? processingRegion,
+
             int? requestMaxBytes,
 
             string? requiredAcks,
@@ -112,6 +118,7 @@ namespace Pulumi.Fastly.Outputs
             Name = name;
             ParseLogKeyvals = parseLogKeyvals;
             Password = password;
+            ProcessingRegion = processingRegion;
             RequestMaxBytes = requestMaxBytes;
             RequiredAcks = requiredAcks;
             TlsCaCert = tlsCaCert;

@@ -183,6 +183,10 @@ export interface ServiceComputeBackend {
      */
     port?: pulumi.Input<number>;
     /**
+     * Prefer IPv6 connections to origins for hostname backends. Default `true`
+     */
+    preferIpv6?: pulumi.Input<boolean>;
+    /**
      * Value that when shared across backends will enable those backends to share the same health check.
      */
     shareKey?: pulumi.Input<string>;
@@ -316,6 +320,10 @@ export interface ServiceComputeLoggingBigquery {
      */
     name: pulumi.Input<string>;
     /**
+     * Region where logs will be processed before streaming to BigQuery. Valid values are 'none', 'us' and 'eu'.
+     */
+    processingRegion?: pulumi.Input<string>;
+    /**
      * The ID of your GCP project
      */
     projectId: pulumi.Input<string>;
@@ -371,6 +379,10 @@ export interface ServiceComputeLoggingBlobstorage {
      */
     period?: pulumi.Input<number>;
     /**
+     * Region where logs will be processed before streaming to BigQuery. Valid values are 'none', 'us' and 'eu'.
+     */
+    processingRegion?: pulumi.Input<string>;
+    /**
      * A PGP public key that Fastly will use to encrypt your log files before writing them to disk
      */
     publicKey?: pulumi.Input<string>;
@@ -418,6 +430,10 @@ export interface ServiceComputeLoggingCloudfile {
      */
     period?: pulumi.Input<number>;
     /**
+     * Region where logs will be processed before streaming to BigQuery. Valid values are 'none', 'us' and 'eu'.
+     */
+    processingRegion?: pulumi.Input<string>;
+    /**
      * The PGP public key that Fastly will use to encrypt your log files before writing them to disk
      */
     publicKey?: pulumi.Input<string>;
@@ -440,6 +456,10 @@ export interface ServiceComputeLoggingDatadog {
      * The unique name of the Datadog logging endpoint. It is important to note that changing this attribute will delete and recreate the resource
      */
     name: pulumi.Input<string>;
+    /**
+     * Region where logs will be processed before streaming to BigQuery. Valid values are 'none', 'us' and 'eu'.
+     */
+    processingRegion?: pulumi.Input<string>;
     /**
      * The region that log data will be sent to. One of `US` or `EU`. Defaults to `US` if undefined
      */
@@ -488,6 +508,10 @@ export interface ServiceComputeLoggingDigitalocean {
      */
     period?: pulumi.Input<number>;
     /**
+     * Region where logs will be processed before streaming to BigQuery. Valid values are 'none', 'us' and 'eu'.
+     */
+    processingRegion?: pulumi.Input<string>;
+    /**
      * A PGP public key that Fastly will use to encrypt your log files before writing them to disk
      */
     publicKey?: pulumi.Input<string>;
@@ -518,6 +542,10 @@ export interface ServiceComputeLoggingElasticsearch {
      * The ID of the Elasticsearch ingest pipeline to apply pre-process transformations to before indexing
      */
     pipeline?: pulumi.Input<string>;
+    /**
+     * Region where logs will be processed before streaming to BigQuery. Valid values are 'none', 'us' and 'eu'.
+     */
+    processingRegion?: pulumi.Input<string>;
     /**
      * The maximum number of logs sent in one request. Defaults to `0` for unbounded
      */
@@ -590,6 +618,10 @@ export interface ServiceComputeLoggingFtp {
      */
     port?: pulumi.Input<number>;
     /**
+     * Region where logs will be processed before streaming to BigQuery. Valid values are 'none', 'us' and 'eu'.
+     */
+    processingRegion?: pulumi.Input<string>;
+    /**
      * The PGP public key that Fastly will use to encrypt your log files before writing them to disk
      */
     publicKey?: pulumi.Input<string>;
@@ -637,6 +669,10 @@ export interface ServiceComputeLoggingGc {
      */
     period?: pulumi.Input<number>;
     /**
+     * Region where logs will be processed before streaming to BigQuery. Valid values are 'none', 'us' and 'eu'.
+     */
+    processingRegion?: pulumi.Input<string>;
+    /**
      * The ID of your Google Cloud Platform project
      */
     projectId?: pulumi.Input<string>;
@@ -663,6 +699,10 @@ export interface ServiceComputeLoggingGooglepubsub {
      * The unique name of the Google Cloud Pub/Sub logging endpoint. It is important to note that changing this attribute will delete and recreate the resource
      */
     name: pulumi.Input<string>;
+    /**
+     * Region where logs will be processed before streaming to BigQuery. Valid values are 'none', 'us' and 'eu'.
+     */
+    processingRegion?: pulumi.Input<string>;
     /**
      * The ID of your Google Cloud Platform project
      */
@@ -691,6 +731,10 @@ export interface ServiceComputeLoggingGrafanacloudlog {
      */
     name: pulumi.Input<string>;
     /**
+     * Region where logs will be processed before streaming to BigQuery. Valid values are 'none', 'us' and 'eu'.
+     */
+    processingRegion?: pulumi.Input<string>;
+    /**
      * The Access Policy Token key for your GrafanaCloudLogs account
      */
     token: pulumi.Input<string>;
@@ -710,6 +754,10 @@ export interface ServiceComputeLoggingHeroku {
      */
     name: pulumi.Input<string>;
     /**
+     * Region where logs will be processed before streaming to BigQuery. Valid values are 'none', 'us' and 'eu'.
+     */
+    processingRegion?: pulumi.Input<string>;
+    /**
      * The token to use for authentication (https://www.heroku.com/docs/customer-token-authentication-token/)
      */
     token: pulumi.Input<string>;
@@ -728,6 +776,10 @@ export interface ServiceComputeLoggingHoneycomb {
      * The unique name of the Honeycomb logging endpoint. It is important to note that changing this attribute will delete and recreate the resource
      */
     name: pulumi.Input<string>;
+    /**
+     * Region where logs will be processed before streaming to BigQuery. Valid values are 'none', 'us' and 'eu'.
+     */
+    processingRegion?: pulumi.Input<string>;
     /**
      * The Write Key from the Account page of your Honeycomb account
      */
@@ -763,6 +815,10 @@ export interface ServiceComputeLoggingHttp {
      * The unique name of the HTTPS logging endpoint. It is important to note that changing this attribute will delete and recreate the resource
      */
     name: pulumi.Input<string>;
+    /**
+     * Region where logs will be processed before streaming to BigQuery. Valid values are 'none', 'us' and 'eu'.
+     */
+    processingRegion?: pulumi.Input<string>;
     /**
      * The maximum number of bytes sent in one request
      */
@@ -819,6 +875,10 @@ export interface ServiceComputeLoggingKafka {
      */
     password?: pulumi.Input<string>;
     /**
+     * Region where logs will be processed before streaming to BigQuery. Valid values are 'none', 'us' and 'eu'.
+     */
+    processingRegion?: pulumi.Input<string>;
+    /**
      * Maximum size of log batch, if non-zero. Defaults to 0 for unbounded
      */
     requestMaxBytes?: pulumi.Input<number>;
@@ -870,6 +930,10 @@ export interface ServiceComputeLoggingKinese {
      */
     name: pulumi.Input<string>;
     /**
+     * Region where logs will be processed before streaming to BigQuery. Valid values are 'none', 'us' and 'eu'.
+     */
+    processingRegion?: pulumi.Input<string>;
+    /**
      * The AWS region the stream resides in. (Default: `us-east-1`)
      */
     region?: pulumi.Input<string>;
@@ -893,6 +957,10 @@ export interface ServiceComputeLoggingLogentry {
      */
     port?: pulumi.Input<number>;
     /**
+     * Region where logs will be processed before streaming to BigQuery. Valid values are 'none', 'us' and 'eu'.
+     */
+    processingRegion?: pulumi.Input<string>;
+    /**
      * Use token based authentication (https://logentries.com/doc/input-token/)
      */
     token: pulumi.Input<string>;
@@ -908,6 +976,10 @@ export interface ServiceComputeLoggingLoggly {
      */
     name: pulumi.Input<string>;
     /**
+     * Region where logs will be processed before streaming to BigQuery. Valid values are 'none', 'us' and 'eu'.
+     */
+    processingRegion?: pulumi.Input<string>;
+    /**
      * The token to use for authentication (https://www.loggly.com/docs/customer-token-authentication-token/).
      */
     token: pulumi.Input<string>;
@@ -918,6 +990,10 @@ export interface ServiceComputeLoggingLogshuttle {
      * The unique name of the Log Shuttle logging endpoint. It is important to note that changing this attribute will delete and recreate the resource
      */
     name: pulumi.Input<string>;
+    /**
+     * Region where logs will be processed before streaming to BigQuery. Valid values are 'none', 'us' and 'eu'.
+     */
+    processingRegion?: pulumi.Input<string>;
     /**
      * The data authentication token associated with this endpoint
      */
@@ -933,6 +1009,10 @@ export interface ServiceComputeLoggingNewrelic {
      * The unique name of the New Relic logging endpoint. It is important to note that changing this attribute will delete and recreate the resource
      */
     name: pulumi.Input<string>;
+    /**
+     * Region where logs will be processed before streaming to BigQuery. Valid values are 'none', 'us' and 'eu'.
+     */
+    processingRegion?: pulumi.Input<string>;
     /**
      * The region that log data will be sent to. Default: `US`
      */
@@ -977,6 +1057,10 @@ export interface ServiceComputeLoggingOpenstack {
      */
     period?: pulumi.Input<number>;
     /**
+     * Region where logs will be processed before streaming to BigQuery. Valid values are 'none', 'us' and 'eu'.
+     */
+    processingRegion?: pulumi.Input<string>;
+    /**
      * A PGP public key that Fastly will use to encrypt your log files before writing them to disk
      */
     publicKey?: pulumi.Input<string>;
@@ -1007,6 +1091,10 @@ export interface ServiceComputeLoggingPapertrail {
      * The port associated with the address where the Papertrail endpoint can be accessed
      */
     port: pulumi.Input<number>;
+    /**
+     * Region where logs will be processed before streaming to BigQuery. Valid values are 'none', 'us' and 'eu'.
+     */
+    processingRegion?: pulumi.Input<string>;
 }
 
 export interface ServiceComputeLoggingS3 {
@@ -1051,6 +1139,10 @@ export interface ServiceComputeLoggingS3 {
      */
     period?: pulumi.Input<number>;
     /**
+     * Region where logs will be processed before streaming to BigQuery. Valid values are 'none', 'us' and 'eu'.
+     */
+    processingRegion?: pulumi.Input<string>;
+    /**
      * A PGP public key that Fastly will use to encrypt your log files before writing them to disk
      */
     publicKey?: pulumi.Input<string>;
@@ -1089,6 +1181,10 @@ export interface ServiceComputeLoggingScalyr {
      * The unique name of the Scalyr logging endpoint. It is important to note that changing this attribute will delete and recreate the resource
      */
     name: pulumi.Input<string>;
+    /**
+     * Region where logs will be processed before streaming to BigQuery. Valid values are 'none', 'us' and 'eu'.
+     */
+    processingRegion?: pulumi.Input<string>;
     /**
      * The name of the logfile field sent to Scalyr
      */
@@ -1141,6 +1237,10 @@ export interface ServiceComputeLoggingSftp {
      */
     port?: pulumi.Input<number>;
     /**
+     * Region where logs will be processed before streaming to BigQuery. Valid values are 'none', 'us' and 'eu'.
+     */
+    processingRegion?: pulumi.Input<string>;
+    /**
      * A PGP public key that Fastly will use to encrypt your log files before writing them to disk
      */
     publicKey?: pulumi.Input<string>;
@@ -1167,6 +1267,10 @@ export interface ServiceComputeLoggingSplunk {
      * A unique name to identify the Splunk endpoint. It is important to note that changing this attribute will delete and recreate the resource
      */
     name: pulumi.Input<string>;
+    /**
+     * Region where logs will be processed before streaming to BigQuery. Valid values are 'none', 'us' and 'eu'.
+     */
+    processingRegion?: pulumi.Input<string>;
     /**
      * A secure certificate to authenticate the server with. Must be in PEM format. You can provide this certificate via an environment variable, `FASTLY_SPLUNK_CA_CERT`
      */
@@ -1207,6 +1311,10 @@ export interface ServiceComputeLoggingSumologic {
      */
     name: pulumi.Input<string>;
     /**
+     * Region where logs will be processed before streaming to BigQuery. Valid values are 'none', 'us' and 'eu'.
+     */
+    processingRegion?: pulumi.Input<string>;
+    /**
      * The URL to Sumologic collector endpoint
      */
     url: pulumi.Input<string>;
@@ -1229,6 +1337,10 @@ export interface ServiceComputeLoggingSyslog {
      * The port associated with the address where the Syslog endpoint can be accessed. Default `514`
      */
     port?: pulumi.Input<number>;
+    /**
+     * Region where logs will be processed before streaming to BigQuery. Valid values are 'none', 'us' and 'eu'.
+     */
+    processingRegion?: pulumi.Input<string>;
     /**
      * A secure certificate to authenticate the server with. Must be in PEM format. You can provide this certificate via an environment variable, `FASTLY_SYSLOG_CA_CERT`
      */
@@ -1410,6 +1522,10 @@ export interface ServiceVclBackend {
      * The port number on which the Backend responds. Default `80`
      */
     port?: pulumi.Input<number>;
+    /**
+     * Prefer IPv6 connections to origins for hostname backends. Default `false`
+     */
+    preferIpv6?: pulumi.Input<boolean>;
     /**
      * Name of a condition, which if met, will select this backend during a request.
      */
@@ -1773,6 +1889,10 @@ export interface ServiceVclLoggingBigquery {
      */
     placement?: pulumi.Input<string>;
     /**
+     * Region where logs will be processed before streaming to BigQuery. Valid values are 'none', 'us' and 'eu'.
+     */
+    processingRegion?: pulumi.Input<string>;
+    /**
      * The ID of your GCP project
      */
     projectId: pulumi.Input<string>;
@@ -1844,6 +1964,10 @@ export interface ServiceVclLoggingBlobstorage {
      */
     placement?: pulumi.Input<string>;
     /**
+     * Region where logs will be processed before streaming to BigQuery. Valid values are 'none', 'us' and 'eu'.
+     */
+    processingRegion?: pulumi.Input<string>;
+    /**
      * A PGP public key that Fastly will use to encrypt your log files before writing them to disk
      */
     publicKey?: pulumi.Input<string>;
@@ -1907,6 +2031,10 @@ export interface ServiceVclLoggingCloudfile {
      */
     placement?: pulumi.Input<string>;
     /**
+     * Region where logs will be processed before streaming to BigQuery. Valid values are 'none', 'us' and 'eu'.
+     */
+    processingRegion?: pulumi.Input<string>;
+    /**
      * The PGP public key that Fastly will use to encrypt your log files before writing them to disk
      */
     publicKey?: pulumi.Input<string>;
@@ -1945,6 +2073,10 @@ export interface ServiceVclLoggingDatadog {
      * Where in the generated VCL the logging call should be placed.
      */
     placement?: pulumi.Input<string>;
+    /**
+     * Region where logs will be processed before streaming to BigQuery. Valid values are 'none', 'us' and 'eu'.
+     */
+    processingRegion?: pulumi.Input<string>;
     /**
      * The region that log data will be sent to. One of `US` or `EU`. Defaults to `US` if undefined
      */
@@ -2009,6 +2141,10 @@ export interface ServiceVclLoggingDigitalocean {
      */
     placement?: pulumi.Input<string>;
     /**
+     * Region where logs will be processed before streaming to BigQuery. Valid values are 'none', 'us' and 'eu'.
+     */
+    processingRegion?: pulumi.Input<string>;
+    /**
      * A PGP public key that Fastly will use to encrypt your log files before writing them to disk
      */
     publicKey?: pulumi.Input<string>;
@@ -2055,6 +2191,10 @@ export interface ServiceVclLoggingElasticsearch {
      * Where in the generated VCL the logging call should be placed.
      */
     placement?: pulumi.Input<string>;
+    /**
+     * Region where logs will be processed before streaming to BigQuery. Valid values are 'none', 'us' and 'eu'.
+     */
+    processingRegion?: pulumi.Input<string>;
     /**
      * The maximum number of logs sent in one request. Defaults to `0` for unbounded
      */
@@ -2143,6 +2283,10 @@ export interface ServiceVclLoggingFtp {
      */
     port?: pulumi.Input<number>;
     /**
+     * Region where logs will be processed before streaming to BigQuery. Valid values are 'none', 'us' and 'eu'.
+     */
+    processingRegion?: pulumi.Input<string>;
+    /**
      * The PGP public key that Fastly will use to encrypt your log files before writing them to disk
      */
     publicKey?: pulumi.Input<string>;
@@ -2206,6 +2350,10 @@ export interface ServiceVclLoggingGc {
      */
     placement?: pulumi.Input<string>;
     /**
+     * Region where logs will be processed before streaming to BigQuery. Valid values are 'none', 'us' and 'eu'.
+     */
+    processingRegion?: pulumi.Input<string>;
+    /**
      * The ID of your Google Cloud Platform project
      */
     projectId?: pulumi.Input<string>;
@@ -2248,6 +2396,10 @@ export interface ServiceVclLoggingGooglepubsub {
      * Where in the generated VCL the logging call should be placed.
      */
     placement?: pulumi.Input<string>;
+    /**
+     * Region where logs will be processed before streaming to BigQuery. Valid values are 'none', 'us' and 'eu'.
+     */
+    processingRegion?: pulumi.Input<string>;
     /**
      * The ID of your Google Cloud Platform project
      */
@@ -2292,6 +2444,10 @@ export interface ServiceVclLoggingGrafanacloudlog {
      */
     placement?: pulumi.Input<string>;
     /**
+     * Region where logs will be processed before streaming to BigQuery. Valid values are 'none', 'us' and 'eu'.
+     */
+    processingRegion?: pulumi.Input<string>;
+    /**
      * The name of the condition to apply.
      */
     responseCondition?: pulumi.Input<string>;
@@ -2327,6 +2483,10 @@ export interface ServiceVclLoggingHerokus {
      */
     placement?: pulumi.Input<string>;
     /**
+     * Region where logs will be processed before streaming to BigQuery. Valid values are 'none', 'us' and 'eu'.
+     */
+    processingRegion?: pulumi.Input<string>;
+    /**
      * The name of an existing condition in the configured endpoint, or leave blank to always execute.
      */
     responseCondition?: pulumi.Input<string>;
@@ -2361,6 +2521,10 @@ export interface ServiceVclLoggingHoneycomb {
      * Where in the generated VCL the logging call should be placed. Can be `none` or `none`.
      */
     placement?: pulumi.Input<string>;
+    /**
+     * Region where logs will be processed before streaming to BigQuery. Valid values are 'none', 'us' and 'eu'.
+     */
+    processingRegion?: pulumi.Input<string>;
     /**
      * The name of an existing condition in the configured endpoint, or leave blank to always execute.
      */
@@ -2412,6 +2576,10 @@ export interface ServiceVclLoggingHttp {
      * Where in the generated VCL the logging call should be placed
      */
     placement?: pulumi.Input<string>;
+    /**
+     * Region where logs will be processed before streaming to BigQuery. Valid values are 'none', 'us' and 'eu'.
+     */
+    processingRegion?: pulumi.Input<string>;
     /**
      * The maximum number of bytes sent in one request
      */
@@ -2484,6 +2652,10 @@ export interface ServiceVclLoggingKafka {
      */
     placement?: pulumi.Input<string>;
     /**
+     * Region where logs will be processed before streaming to BigQuery. Valid values are 'none', 'us' and 'eu'.
+     */
+    processingRegion?: pulumi.Input<string>;
+    /**
      * Maximum size of log batch, if non-zero. Defaults to 0 for unbounded
      */
     requestMaxBytes?: pulumi.Input<number>;
@@ -2551,6 +2723,10 @@ export interface ServiceVclLoggingKinese {
      */
     placement?: pulumi.Input<string>;
     /**
+     * Region where logs will be processed before streaming to BigQuery. Valid values are 'none', 'us' and 'eu'.
+     */
+    processingRegion?: pulumi.Input<string>;
+    /**
      * The AWS region the stream resides in. (Default: `us-east-1`)
      */
     region?: pulumi.Input<string>;
@@ -2590,6 +2766,10 @@ export interface ServiceVclLoggingLogentry {
      */
     port?: pulumi.Input<number>;
     /**
+     * Region where logs will be processed before streaming to BigQuery. Valid values are 'none', 'us' and 'eu'.
+     */
+    processingRegion?: pulumi.Input<string>;
+    /**
      * Name of blockAttributes condition to apply this logging.
      */
     responseCondition?: pulumi.Input<string>;
@@ -2621,6 +2801,10 @@ export interface ServiceVclLoggingLoggly {
      */
     placement?: pulumi.Input<string>;
     /**
+     * Region where logs will be processed before streaming to BigQuery. Valid values are 'none', 'us' and 'eu'.
+     */
+    processingRegion?: pulumi.Input<string>;
+    /**
      * The name of an existing condition in the configured endpoint, or leave blank to always execute.
      */
     responseCondition?: pulumi.Input<string>;
@@ -2647,6 +2831,10 @@ export interface ServiceVclLoggingLogshuttle {
      * Where in the generated VCL the logging call should be placed. Can be `none` or `none`.
      */
     placement?: pulumi.Input<string>;
+    /**
+     * Region where logs will be processed before streaming to BigQuery. Valid values are 'none', 'us' and 'eu'.
+     */
+    processingRegion?: pulumi.Input<string>;
     /**
      * The name of an existing condition in the configured endpoint, or leave blank to always execute.
      */
@@ -2679,6 +2867,10 @@ export interface ServiceVclLoggingNewrelic {
      */
     placement?: pulumi.Input<string>;
     /**
+     * Region where logs will be processed before streaming to BigQuery. Valid values are 'none', 'us' and 'eu'.
+     */
+    processingRegion?: pulumi.Input<string>;
+    /**
      * The region that log data will be sent to. Default: `US`
      */
     region?: pulumi.Input<string>;
@@ -2709,6 +2901,10 @@ export interface ServiceVclLoggingNewrelicotlp {
      * Where in the generated VCL the logging call should be placed.
      */
     placement?: pulumi.Input<string>;
+    /**
+     * Region where logs will be processed before streaming to BigQuery. Valid values are 'none', 'us' and 'eu'.
+     */
+    processingRegion?: pulumi.Input<string>;
     /**
      * The region that log data will be sent to. Default: `US`
      */
@@ -2773,6 +2969,10 @@ export interface ServiceVclLoggingOpenstack {
      */
     placement?: pulumi.Input<string>;
     /**
+     * Region where logs will be processed before streaming to BigQuery. Valid values are 'none', 'us' and 'eu'.
+     */
+    processingRegion?: pulumi.Input<string>;
+    /**
      * A PGP public key that Fastly will use to encrypt your log files before writing them to disk
      */
     publicKey?: pulumi.Input<string>;
@@ -2819,6 +3019,10 @@ export interface ServiceVclLoggingPapertrail {
      * The port associated with the address where the Papertrail endpoint can be accessed
      */
     port: pulumi.Input<number>;
+    /**
+     * Region where logs will be processed before streaming to BigQuery. Valid values are 'none', 'us' and 'eu'.
+     */
+    processingRegion?: pulumi.Input<string>;
     /**
      * The name of an existing condition in the configured endpoint, or leave blank to always execute
      */
@@ -2879,6 +3083,10 @@ export interface ServiceVclLoggingS3 {
      */
     placement?: pulumi.Input<string>;
     /**
+     * Region where logs will be processed before streaming to BigQuery. Valid values are 'none', 'us' and 'eu'.
+     */
+    processingRegion?: pulumi.Input<string>;
+    /**
      * A PGP public key that Fastly will use to encrypt your log files before writing them to disk
      */
     publicKey?: pulumi.Input<string>;
@@ -2933,6 +3141,10 @@ export interface ServiceVclLoggingScalyr {
      * Where in the generated VCL the logging call should be placed.
      */
     placement?: pulumi.Input<string>;
+    /**
+     * Region where logs will be processed before streaming to BigQuery. Valid values are 'none', 'us' and 'eu'.
+     */
+    processingRegion?: pulumi.Input<string>;
     /**
      * The name of the logfile field sent to Scalyr
      */
@@ -3001,6 +3213,10 @@ export interface ServiceVclLoggingSftp {
      */
     port?: pulumi.Input<number>;
     /**
+     * Region where logs will be processed before streaming to BigQuery. Valid values are 'none', 'us' and 'eu'.
+     */
+    processingRegion?: pulumi.Input<string>;
+    /**
      * A PGP public key that Fastly will use to encrypt your log files before writing them to disk
      */
     publicKey?: pulumi.Input<string>;
@@ -3043,6 +3259,10 @@ export interface ServiceVclLoggingSplunk {
      * Where in the generated VCL the logging call should be placed
      */
     placement?: pulumi.Input<string>;
+    /**
+     * Region where logs will be processed before streaming to BigQuery. Valid values are 'none', 'us' and 'eu'.
+     */
+    processingRegion?: pulumi.Input<string>;
     /**
      * The name of the condition to apply
      */
@@ -3099,6 +3319,10 @@ export interface ServiceVclLoggingSumologic {
      */
     placement?: pulumi.Input<string>;
     /**
+     * Region where logs will be processed before streaming to BigQuery. Valid values are 'none', 'us' and 'eu'.
+     */
+    processingRegion?: pulumi.Input<string>;
+    /**
      * Name of blockAttributes condition to apply this logging.
      */
     responseCondition?: pulumi.Input<string>;
@@ -3137,6 +3361,10 @@ export interface ServiceVclLoggingSyslog {
      * The port associated with the address where the Syslog endpoint can be accessed. Default `514`
      */
     port?: pulumi.Input<number>;
+    /**
+     * Region where logs will be processed before streaming to BigQuery. Valid values are 'none', 'us' and 'eu'.
+     */
+    processingRegion?: pulumi.Input<string>;
     /**
      * Name of blockAttributes condition to apply this logging.
      */

@@ -109,6 +109,21 @@ public final class ServiceComputeLoggingKafkaArgs extends com.pulumi.resources.R
     }
 
     /**
+     * Region where logs will be processed before streaming to BigQuery. Valid values are &#39;none&#39;, &#39;us&#39; and &#39;eu&#39;.
+     * 
+     */
+    @Import(name="processingRegion")
+    private @Nullable Output<String> processingRegion;
+
+    /**
+     * @return Region where logs will be processed before streaming to BigQuery. Valid values are &#39;none&#39;, &#39;us&#39; and &#39;eu&#39;.
+     * 
+     */
+    public Optional<Output<String>> processingRegion() {
+        return Optional.ofNullable(this.processingRegion);
+    }
+
+    /**
      * Maximum size of log batch, if non-zero. Defaults to 0 for unbounded
      * 
      */
@@ -252,6 +267,7 @@ public final class ServiceComputeLoggingKafkaArgs extends com.pulumi.resources.R
         this.name = $.name;
         this.parseLogKeyvals = $.parseLogKeyvals;
         this.password = $.password;
+        this.processingRegion = $.processingRegion;
         this.requestMaxBytes = $.requestMaxBytes;
         this.requiredAcks = $.requiredAcks;
         this.tlsCaCert = $.tlsCaCert;
@@ -405,6 +421,27 @@ public final class ServiceComputeLoggingKafkaArgs extends com.pulumi.resources.R
          */
         public Builder password(String password) {
             return password(Output.of(password));
+        }
+
+        /**
+         * @param processingRegion Region where logs will be processed before streaming to BigQuery. Valid values are &#39;none&#39;, &#39;us&#39; and &#39;eu&#39;.
+         * 
+         * @return builder
+         * 
+         */
+        public Builder processingRegion(@Nullable Output<String> processingRegion) {
+            $.processingRegion = processingRegion;
+            return this;
+        }
+
+        /**
+         * @param processingRegion Region where logs will be processed before streaming to BigQuery. Valid values are &#39;none&#39;, &#39;us&#39; and &#39;eu&#39;.
+         * 
+         * @return builder
+         * 
+         */
+        public Builder processingRegion(String processingRegion) {
+            return processingRegion(Output.of(processingRegion));
         }
 
         /**

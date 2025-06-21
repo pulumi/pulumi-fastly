@@ -913,6 +913,8 @@ type ServiceComputeBackend struct {
 	OverrideHost *string `pulumi:"overrideHost"`
 	// The port number on which the Backend responds. Default `80`
 	Port *int `pulumi:"port"`
+	// Prefer IPv6 connections to origins for hostname backends. Default `true`
+	PreferIpv6 *bool `pulumi:"preferIpv6"`
 	// Value that when shared across backends will enable those backends to share the same health check.
 	ShareKey *string `pulumi:"shareKey"`
 	// The POP of the shield designated to reduce inbound load. Valid values for `shield` are included in the `GET /datacenters` API response
@@ -975,6 +977,8 @@ type ServiceComputeBackendArgs struct {
 	OverrideHost pulumi.StringPtrInput `pulumi:"overrideHost"`
 	// The port number on which the Backend responds. Default `80`
 	Port pulumi.IntPtrInput `pulumi:"port"`
+	// Prefer IPv6 connections to origins for hostname backends. Default `true`
+	PreferIpv6 pulumi.BoolPtrInput `pulumi:"preferIpv6"`
 	// Value that when shared across backends will enable those backends to share the same health check.
 	ShareKey pulumi.StringPtrInput `pulumi:"shareKey"`
 	// The POP of the shield designated to reduce inbound load. Valid values for `shield` are included in the `GET /datacenters` API response
@@ -1113,6 +1117,11 @@ func (o ServiceComputeBackendOutput) OverrideHost() pulumi.StringPtrOutput {
 // The port number on which the Backend responds. Default `80`
 func (o ServiceComputeBackendOutput) Port() pulumi.IntPtrOutput {
 	return o.ApplyT(func(v ServiceComputeBackend) *int { return v.Port }).(pulumi.IntPtrOutput)
+}
+
+// Prefer IPv6 connections to origins for hostname backends. Default `true`
+func (o ServiceComputeBackendOutput) PreferIpv6() pulumi.BoolPtrOutput {
+	return o.ApplyT(func(v ServiceComputeBackend) *bool { return v.PreferIpv6 }).(pulumi.BoolPtrOutput)
 }
 
 // Value that when shared across backends will enable those backends to share the same health check.
@@ -1728,6 +1737,8 @@ type ServiceComputeLoggingBigquery struct {
 	Email string `pulumi:"email"`
 	// A unique name to identify this BigQuery logging endpoint. It is important to note that changing this attribute will delete and recreate the resource
 	Name string `pulumi:"name"`
+	// Region where logs will be processed before streaming to BigQuery. Valid values are 'none', 'us' and 'eu'.
+	ProcessingRegion *string `pulumi:"processingRegion"`
 	// The ID of your GCP project
 	ProjectId string `pulumi:"projectId"`
 	// The secret key associated with the service account that has write access to your BigQuery table. If not provided, this will be pulled from the `FASTLY_BQ_SECRET_KEY` environment variable. Typical format for this is a private key in a string with newlines
@@ -1758,6 +1769,8 @@ type ServiceComputeLoggingBigqueryArgs struct {
 	Email pulumi.StringInput `pulumi:"email"`
 	// A unique name to identify this BigQuery logging endpoint. It is important to note that changing this attribute will delete and recreate the resource
 	Name pulumi.StringInput `pulumi:"name"`
+	// Region where logs will be processed before streaming to BigQuery. Valid values are 'none', 'us' and 'eu'.
+	ProcessingRegion pulumi.StringPtrInput `pulumi:"processingRegion"`
 	// The ID of your GCP project
 	ProjectId pulumi.StringInput `pulumi:"projectId"`
 	// The secret key associated with the service account that has write access to your BigQuery table. If not provided, this will be pulled from the `FASTLY_BQ_SECRET_KEY` environment variable. Typical format for this is a private key in a string with newlines
@@ -1839,6 +1852,11 @@ func (o ServiceComputeLoggingBigqueryOutput) Name() pulumi.StringOutput {
 	return o.ApplyT(func(v ServiceComputeLoggingBigquery) string { return v.Name }).(pulumi.StringOutput)
 }
 
+// Region where logs will be processed before streaming to BigQuery. Valid values are 'none', 'us' and 'eu'.
+func (o ServiceComputeLoggingBigqueryOutput) ProcessingRegion() pulumi.StringPtrOutput {
+	return o.ApplyT(func(v ServiceComputeLoggingBigquery) *string { return v.ProcessingRegion }).(pulumi.StringPtrOutput)
+}
+
 // The ID of your GCP project
 func (o ServiceComputeLoggingBigqueryOutput) ProjectId() pulumi.StringOutput {
 	return o.ApplyT(func(v ServiceComputeLoggingBigquery) string { return v.ProjectId }).(pulumi.StringOutput)
@@ -1898,6 +1916,8 @@ type ServiceComputeLoggingBlobstorage struct {
 	Path *string `pulumi:"path"`
 	// How frequently the logs should be transferred in seconds. Default `3600`
 	Period *int `pulumi:"period"`
+	// Region where logs will be processed before streaming to BigQuery. Valid values are 'none', 'us' and 'eu'.
+	ProcessingRegion *string `pulumi:"processingRegion"`
 	// A PGP public key that Fastly will use to encrypt your log files before writing them to disk
 	PublicKey *string `pulumi:"publicKey"`
 	// The Azure shared access signature providing write access to the blob service objects. Be sure to update your token before it expires or the logging functionality will not work
@@ -1936,6 +1956,8 @@ type ServiceComputeLoggingBlobstorageArgs struct {
 	Path pulumi.StringPtrInput `pulumi:"path"`
 	// How frequently the logs should be transferred in seconds. Default `3600`
 	Period pulumi.IntPtrInput `pulumi:"period"`
+	// Region where logs will be processed before streaming to BigQuery. Valid values are 'none', 'us' and 'eu'.
+	ProcessingRegion pulumi.StringPtrInput `pulumi:"processingRegion"`
 	// A PGP public key that Fastly will use to encrypt your log files before writing them to disk
 	PublicKey pulumi.StringPtrInput `pulumi:"publicKey"`
 	// The Azure shared access signature providing write access to the blob service objects. Be sure to update your token before it expires or the logging functionality will not work
@@ -2040,6 +2062,11 @@ func (o ServiceComputeLoggingBlobstorageOutput) Period() pulumi.IntPtrOutput {
 	return o.ApplyT(func(v ServiceComputeLoggingBlobstorage) *int { return v.Period }).(pulumi.IntPtrOutput)
 }
 
+// Region where logs will be processed before streaming to BigQuery. Valid values are 'none', 'us' and 'eu'.
+func (o ServiceComputeLoggingBlobstorageOutput) ProcessingRegion() pulumi.StringPtrOutput {
+	return o.ApplyT(func(v ServiceComputeLoggingBlobstorage) *string { return v.ProcessingRegion }).(pulumi.StringPtrOutput)
+}
+
 // A PGP public key that Fastly will use to encrypt your log files before writing them to disk
 func (o ServiceComputeLoggingBlobstorageOutput) PublicKey() pulumi.StringPtrOutput {
 	return o.ApplyT(func(v ServiceComputeLoggingBlobstorage) *string { return v.PublicKey }).(pulumi.StringPtrOutput)
@@ -2092,6 +2119,8 @@ type ServiceComputeLoggingCloudfile struct {
 	Path *string `pulumi:"path"`
 	// How frequently log files are finalized so they can be available for reading (in seconds, default `3600`)
 	Period *int `pulumi:"period"`
+	// Region where logs will be processed before streaming to BigQuery. Valid values are 'none', 'us' and 'eu'.
+	ProcessingRegion *string `pulumi:"processingRegion"`
 	// The PGP public key that Fastly will use to encrypt your log files before writing them to disk
 	PublicKey *string `pulumi:"publicKey"`
 	// The region to stream logs to. One of: DFW (Dallas), ORD (Chicago), IAD (Northern Virginia), LON (London), SYD (Sydney), HKG (Hong Kong)
@@ -2130,6 +2159,8 @@ type ServiceComputeLoggingCloudfileArgs struct {
 	Path pulumi.StringPtrInput `pulumi:"path"`
 	// How frequently log files are finalized so they can be available for reading (in seconds, default `3600`)
 	Period pulumi.IntPtrInput `pulumi:"period"`
+	// Region where logs will be processed before streaming to BigQuery. Valid values are 'none', 'us' and 'eu'.
+	ProcessingRegion pulumi.StringPtrInput `pulumi:"processingRegion"`
 	// The PGP public key that Fastly will use to encrypt your log files before writing them to disk
 	PublicKey pulumi.StringPtrInput `pulumi:"publicKey"`
 	// The region to stream logs to. One of: DFW (Dallas), ORD (Chicago), IAD (Northern Virginia), LON (London), SYD (Sydney), HKG (Hong Kong)
@@ -2231,6 +2262,11 @@ func (o ServiceComputeLoggingCloudfileOutput) Period() pulumi.IntPtrOutput {
 	return o.ApplyT(func(v ServiceComputeLoggingCloudfile) *int { return v.Period }).(pulumi.IntPtrOutput)
 }
 
+// Region where logs will be processed before streaming to BigQuery. Valid values are 'none', 'us' and 'eu'.
+func (o ServiceComputeLoggingCloudfileOutput) ProcessingRegion() pulumi.StringPtrOutput {
+	return o.ApplyT(func(v ServiceComputeLoggingCloudfile) *string { return v.ProcessingRegion }).(pulumi.StringPtrOutput)
+}
+
 // The PGP public key that Fastly will use to encrypt your log files before writing them to disk
 func (o ServiceComputeLoggingCloudfileOutput) PublicKey() pulumi.StringPtrOutput {
 	return o.ApplyT(func(v ServiceComputeLoggingCloudfile) *string { return v.PublicKey }).(pulumi.StringPtrOutput)
@@ -2274,6 +2310,8 @@ func (o ServiceComputeLoggingCloudfileArrayOutput) Index(i pulumi.IntInput) Serv
 type ServiceComputeLoggingDatadog struct {
 	// The unique name of the Datadog logging endpoint. It is important to note that changing this attribute will delete and recreate the resource
 	Name string `pulumi:"name"`
+	// Region where logs will be processed before streaming to BigQuery. Valid values are 'none', 'us' and 'eu'.
+	ProcessingRegion *string `pulumi:"processingRegion"`
 	// The region that log data will be sent to. One of `US` or `EU`. Defaults to `US` if undefined
 	Region *string `pulumi:"region"`
 	// The API key from your Datadog account
@@ -2294,6 +2332,8 @@ type ServiceComputeLoggingDatadogInput interface {
 type ServiceComputeLoggingDatadogArgs struct {
 	// The unique name of the Datadog logging endpoint. It is important to note that changing this attribute will delete and recreate the resource
 	Name pulumi.StringInput `pulumi:"name"`
+	// Region where logs will be processed before streaming to BigQuery. Valid values are 'none', 'us' and 'eu'.
+	ProcessingRegion pulumi.StringPtrInput `pulumi:"processingRegion"`
 	// The region that log data will be sent to. One of `US` or `EU`. Defaults to `US` if undefined
 	Region pulumi.StringPtrInput `pulumi:"region"`
 	// The API key from your Datadog account
@@ -2356,6 +2396,11 @@ func (o ServiceComputeLoggingDatadogOutput) Name() pulumi.StringOutput {
 	return o.ApplyT(func(v ServiceComputeLoggingDatadog) string { return v.Name }).(pulumi.StringOutput)
 }
 
+// Region where logs will be processed before streaming to BigQuery. Valid values are 'none', 'us' and 'eu'.
+func (o ServiceComputeLoggingDatadogOutput) ProcessingRegion() pulumi.StringPtrOutput {
+	return o.ApplyT(func(v ServiceComputeLoggingDatadog) *string { return v.ProcessingRegion }).(pulumi.StringPtrOutput)
+}
+
 // The region that log data will be sent to. One of `US` or `EU`. Defaults to `US` if undefined
 func (o ServiceComputeLoggingDatadogOutput) Region() pulumi.StringPtrOutput {
 	return o.ApplyT(func(v ServiceComputeLoggingDatadog) *string { return v.Region }).(pulumi.StringPtrOutput)
@@ -2405,6 +2450,8 @@ type ServiceComputeLoggingDigitalocean struct {
 	Path *string `pulumi:"path"`
 	// How frequently log files are finalized so they can be available for reading (in seconds, default `3600`)
 	Period *int `pulumi:"period"`
+	// Region where logs will be processed before streaming to BigQuery. Valid values are 'none', 'us' and 'eu'.
+	ProcessingRegion *string `pulumi:"processingRegion"`
 	// A PGP public key that Fastly will use to encrypt your log files before writing them to disk
 	PublicKey *string `pulumi:"publicKey"`
 	// Your DigitalOcean Spaces account secret key
@@ -2443,6 +2490,8 @@ type ServiceComputeLoggingDigitaloceanArgs struct {
 	Path pulumi.StringPtrInput `pulumi:"path"`
 	// How frequently log files are finalized so they can be available for reading (in seconds, default `3600`)
 	Period pulumi.IntPtrInput `pulumi:"period"`
+	// Region where logs will be processed before streaming to BigQuery. Valid values are 'none', 'us' and 'eu'.
+	ProcessingRegion pulumi.StringPtrInput `pulumi:"processingRegion"`
 	// A PGP public key that Fastly will use to encrypt your log files before writing them to disk
 	PublicKey pulumi.StringPtrInput `pulumi:"publicKey"`
 	// Your DigitalOcean Spaces account secret key
@@ -2547,6 +2596,11 @@ func (o ServiceComputeLoggingDigitaloceanOutput) Period() pulumi.IntPtrOutput {
 	return o.ApplyT(func(v ServiceComputeLoggingDigitalocean) *int { return v.Period }).(pulumi.IntPtrOutput)
 }
 
+// Region where logs will be processed before streaming to BigQuery. Valid values are 'none', 'us' and 'eu'.
+func (o ServiceComputeLoggingDigitaloceanOutput) ProcessingRegion() pulumi.StringPtrOutput {
+	return o.ApplyT(func(v ServiceComputeLoggingDigitalocean) *string { return v.ProcessingRegion }).(pulumi.StringPtrOutput)
+}
+
 // A PGP public key that Fastly will use to encrypt your log files before writing them to disk
 func (o ServiceComputeLoggingDigitaloceanOutput) PublicKey() pulumi.StringPtrOutput {
 	return o.ApplyT(func(v ServiceComputeLoggingDigitalocean) *string { return v.PublicKey }).(pulumi.StringPtrOutput)
@@ -2591,6 +2645,8 @@ type ServiceComputeLoggingElasticsearch struct {
 	Password *string `pulumi:"password"`
 	// The ID of the Elasticsearch ingest pipeline to apply pre-process transformations to before indexing
 	Pipeline *string `pulumi:"pipeline"`
+	// Region where logs will be processed before streaming to BigQuery. Valid values are 'none', 'us' and 'eu'.
+	ProcessingRegion *string `pulumi:"processingRegion"`
 	// The maximum number of logs sent in one request. Defaults to `0` for unbounded
 	RequestMaxBytes *int `pulumi:"requestMaxBytes"`
 	// The maximum number of bytes sent in one request. Defaults to `0` for unbounded
@@ -2629,6 +2685,8 @@ type ServiceComputeLoggingElasticsearchArgs struct {
 	Password pulumi.StringPtrInput `pulumi:"password"`
 	// The ID of the Elasticsearch ingest pipeline to apply pre-process transformations to before indexing
 	Pipeline pulumi.StringPtrInput `pulumi:"pipeline"`
+	// Region where logs will be processed before streaming to BigQuery. Valid values are 'none', 'us' and 'eu'.
+	ProcessingRegion pulumi.StringPtrInput `pulumi:"processingRegion"`
 	// The maximum number of logs sent in one request. Defaults to `0` for unbounded
 	RequestMaxBytes pulumi.IntPtrInput `pulumi:"requestMaxBytes"`
 	// The maximum number of bytes sent in one request. Defaults to `0` for unbounded
@@ -2718,6 +2776,11 @@ func (o ServiceComputeLoggingElasticsearchOutput) Pipeline() pulumi.StringPtrOut
 	return o.ApplyT(func(v ServiceComputeLoggingElasticsearch) *string { return v.Pipeline }).(pulumi.StringPtrOutput)
 }
 
+// Region where logs will be processed before streaming to BigQuery. Valid values are 'none', 'us' and 'eu'.
+func (o ServiceComputeLoggingElasticsearchOutput) ProcessingRegion() pulumi.StringPtrOutput {
+	return o.ApplyT(func(v ServiceComputeLoggingElasticsearch) *string { return v.ProcessingRegion }).(pulumi.StringPtrOutput)
+}
+
 // The maximum number of logs sent in one request. Defaults to `0` for unbounded
 func (o ServiceComputeLoggingElasticsearchOutput) RequestMaxBytes() pulumi.IntPtrOutput {
 	return o.ApplyT(func(v ServiceComputeLoggingElasticsearch) *int { return v.RequestMaxBytes }).(pulumi.IntPtrOutput)
@@ -2797,6 +2860,8 @@ type ServiceComputeLoggingFtp struct {
 	Period *int `pulumi:"period"`
 	// The port number. Default: `21`
 	Port *int `pulumi:"port"`
+	// Region where logs will be processed before streaming to BigQuery. Valid values are 'none', 'us' and 'eu'.
+	ProcessingRegion *string `pulumi:"processingRegion"`
 	// The PGP public key that Fastly will use to encrypt your log files before writing them to disk
 	PublicKey *string `pulumi:"publicKey"`
 	// The `strftime` specified timestamp formatting (default `%Y-%m-%dT%H:%M:%S.000`)
@@ -2835,6 +2900,8 @@ type ServiceComputeLoggingFtpArgs struct {
 	Period pulumi.IntPtrInput `pulumi:"period"`
 	// The port number. Default: `21`
 	Port pulumi.IntPtrInput `pulumi:"port"`
+	// Region where logs will be processed before streaming to BigQuery. Valid values are 'none', 'us' and 'eu'.
+	ProcessingRegion pulumi.StringPtrInput `pulumi:"processingRegion"`
 	// The PGP public key that Fastly will use to encrypt your log files before writing them to disk
 	PublicKey pulumi.StringPtrInput `pulumi:"publicKey"`
 	// The `strftime` specified timestamp formatting (default `%Y-%m-%dT%H:%M:%S.000`)
@@ -2939,6 +3006,11 @@ func (o ServiceComputeLoggingFtpOutput) Port() pulumi.IntPtrOutput {
 	return o.ApplyT(func(v ServiceComputeLoggingFtp) *int { return v.Port }).(pulumi.IntPtrOutput)
 }
 
+// Region where logs will be processed before streaming to BigQuery. Valid values are 'none', 'us' and 'eu'.
+func (o ServiceComputeLoggingFtpOutput) ProcessingRegion() pulumi.StringPtrOutput {
+	return o.ApplyT(func(v ServiceComputeLoggingFtp) *string { return v.ProcessingRegion }).(pulumi.StringPtrOutput)
+}
+
 // The PGP public key that Fastly will use to encrypt your log files before writing them to disk
 func (o ServiceComputeLoggingFtpOutput) PublicKey() pulumi.StringPtrOutput {
 	return o.ApplyT(func(v ServiceComputeLoggingFtp) *string { return v.PublicKey }).(pulumi.StringPtrOutput)
@@ -2991,6 +3063,8 @@ type ServiceComputeLoggingGc struct {
 	Path *string `pulumi:"path"`
 	// How frequently the logs should be transferred, in seconds (Default 3600)
 	Period *int `pulumi:"period"`
+	// Region where logs will be processed before streaming to BigQuery. Valid values are 'none', 'us' and 'eu'.
+	ProcessingRegion *string `pulumi:"processingRegion"`
 	// The ID of your Google Cloud Platform project
 	ProjectId *string `pulumi:"projectId"`
 	// The secret key associated with the target gcs bucket on your account. You may optionally provide this secret via an environment variable, `FASTLY_GCS_SECRET_KEY`. A typical format for the key is PEM format, containing actual newline characters where required
@@ -3029,6 +3103,8 @@ type ServiceComputeLoggingGcArgs struct {
 	Path pulumi.StringPtrInput `pulumi:"path"`
 	// How frequently the logs should be transferred, in seconds (Default 3600)
 	Period pulumi.IntPtrInput `pulumi:"period"`
+	// Region where logs will be processed before streaming to BigQuery. Valid values are 'none', 'us' and 'eu'.
+	ProcessingRegion pulumi.StringPtrInput `pulumi:"processingRegion"`
 	// The ID of your Google Cloud Platform project
 	ProjectId pulumi.StringPtrInput `pulumi:"projectId"`
 	// The secret key associated with the target gcs bucket on your account. You may optionally provide this secret via an environment variable, `FASTLY_GCS_SECRET_KEY`. A typical format for the key is PEM format, containing actual newline characters where required
@@ -3130,6 +3206,11 @@ func (o ServiceComputeLoggingGcOutput) Period() pulumi.IntPtrOutput {
 	return o.ApplyT(func(v ServiceComputeLoggingGc) *int { return v.Period }).(pulumi.IntPtrOutput)
 }
 
+// Region where logs will be processed before streaming to BigQuery. Valid values are 'none', 'us' and 'eu'.
+func (o ServiceComputeLoggingGcOutput) ProcessingRegion() pulumi.StringPtrOutput {
+	return o.ApplyT(func(v ServiceComputeLoggingGc) *string { return v.ProcessingRegion }).(pulumi.StringPtrOutput)
+}
+
 // The ID of your Google Cloud Platform project
 func (o ServiceComputeLoggingGcOutput) ProjectId() pulumi.StringPtrOutput {
 	return o.ApplyT(func(v ServiceComputeLoggingGc) *string { return v.ProjectId }).(pulumi.StringPtrOutput)
@@ -3175,6 +3256,8 @@ type ServiceComputeLoggingGooglepubsub struct {
 	AccountName *string `pulumi:"accountName"`
 	// The unique name of the Google Cloud Pub/Sub logging endpoint. It is important to note that changing this attribute will delete and recreate the resource
 	Name string `pulumi:"name"`
+	// Region where logs will be processed before streaming to BigQuery. Valid values are 'none', 'us' and 'eu'.
+	ProcessingRegion *string `pulumi:"processingRegion"`
 	// The ID of your Google Cloud Platform project
 	ProjectId string `pulumi:"projectId"`
 	// Your Google Cloud Platform account secret key. The `privateKey` field in your service account authentication JSON. You may optionally provide this secret via an environment variable, `FASTLY_GOOGLE_PUBSUB_SECRET_KEY`.
@@ -3201,6 +3284,8 @@ type ServiceComputeLoggingGooglepubsubArgs struct {
 	AccountName pulumi.StringPtrInput `pulumi:"accountName"`
 	// The unique name of the Google Cloud Pub/Sub logging endpoint. It is important to note that changing this attribute will delete and recreate the resource
 	Name pulumi.StringInput `pulumi:"name"`
+	// Region where logs will be processed before streaming to BigQuery. Valid values are 'none', 'us' and 'eu'.
+	ProcessingRegion pulumi.StringPtrInput `pulumi:"processingRegion"`
 	// The ID of your Google Cloud Platform project
 	ProjectId pulumi.StringInput `pulumi:"projectId"`
 	// Your Google Cloud Platform account secret key. The `privateKey` field in your service account authentication JSON. You may optionally provide this secret via an environment variable, `FASTLY_GOOGLE_PUBSUB_SECRET_KEY`.
@@ -3272,6 +3357,11 @@ func (o ServiceComputeLoggingGooglepubsubOutput) Name() pulumi.StringOutput {
 	return o.ApplyT(func(v ServiceComputeLoggingGooglepubsub) string { return v.Name }).(pulumi.StringOutput)
 }
 
+// Region where logs will be processed before streaming to BigQuery. Valid values are 'none', 'us' and 'eu'.
+func (o ServiceComputeLoggingGooglepubsubOutput) ProcessingRegion() pulumi.StringPtrOutput {
+	return o.ApplyT(func(v ServiceComputeLoggingGooglepubsub) *string { return v.ProcessingRegion }).(pulumi.StringPtrOutput)
+}
+
 // The ID of your Google Cloud Platform project
 func (o ServiceComputeLoggingGooglepubsubOutput) ProjectId() pulumi.StringOutput {
 	return o.ApplyT(func(v ServiceComputeLoggingGooglepubsub) string { return v.ProjectId }).(pulumi.StringOutput)
@@ -3317,6 +3407,8 @@ type ServiceComputeLoggingGrafanacloudlog struct {
 	Index string `pulumi:"index"`
 	// The unique name of the GrafanaCloudLogs logging endpoint. It is important to note that changing this attribute will delete and recreate the resource
 	Name string `pulumi:"name"`
+	// Region where logs will be processed before streaming to BigQuery. Valid values are 'none', 'us' and 'eu'.
+	ProcessingRegion *string `pulumi:"processingRegion"`
 	// The Access Policy Token key for your GrafanaCloudLogs account
 	Token string `pulumi:"token"`
 	// The URL to stream logs to
@@ -3341,6 +3433,8 @@ type ServiceComputeLoggingGrafanacloudlogArgs struct {
 	Index pulumi.StringInput `pulumi:"index"`
 	// The unique name of the GrafanaCloudLogs logging endpoint. It is important to note that changing this attribute will delete and recreate the resource
 	Name pulumi.StringInput `pulumi:"name"`
+	// Region where logs will be processed before streaming to BigQuery. Valid values are 'none', 'us' and 'eu'.
+	ProcessingRegion pulumi.StringPtrInput `pulumi:"processingRegion"`
 	// The Access Policy Token key for your GrafanaCloudLogs account
 	Token pulumi.StringInput `pulumi:"token"`
 	// The URL to stream logs to
@@ -3410,6 +3504,11 @@ func (o ServiceComputeLoggingGrafanacloudlogOutput) Name() pulumi.StringOutput {
 	return o.ApplyT(func(v ServiceComputeLoggingGrafanacloudlog) string { return v.Name }).(pulumi.StringOutput)
 }
 
+// Region where logs will be processed before streaming to BigQuery. Valid values are 'none', 'us' and 'eu'.
+func (o ServiceComputeLoggingGrafanacloudlogOutput) ProcessingRegion() pulumi.StringPtrOutput {
+	return o.ApplyT(func(v ServiceComputeLoggingGrafanacloudlog) *string { return v.ProcessingRegion }).(pulumi.StringPtrOutput)
+}
+
 // The Access Policy Token key for your GrafanaCloudLogs account
 func (o ServiceComputeLoggingGrafanacloudlogOutput) Token() pulumi.StringOutput {
 	return o.ApplyT(func(v ServiceComputeLoggingGrafanacloudlog) string { return v.Token }).(pulumi.StringOutput)
@@ -3448,6 +3547,8 @@ func (o ServiceComputeLoggingGrafanacloudlogArrayOutput) Index(i pulumi.IntInput
 type ServiceComputeLoggingHeroku struct {
 	// The unique name of the Heroku logging endpoint. It is important to note that changing this attribute will delete and recreate the resource
 	Name string `pulumi:"name"`
+	// Region where logs will be processed before streaming to BigQuery. Valid values are 'none', 'us' and 'eu'.
+	ProcessingRegion *string `pulumi:"processingRegion"`
 	// The token to use for authentication (https://www.heroku.com/docs/customer-token-authentication-token/)
 	Token string `pulumi:"token"`
 	// The URL to stream logs to
@@ -3468,6 +3569,8 @@ type ServiceComputeLoggingHerokuInput interface {
 type ServiceComputeLoggingHerokuArgs struct {
 	// The unique name of the Heroku logging endpoint. It is important to note that changing this attribute will delete and recreate the resource
 	Name pulumi.StringInput `pulumi:"name"`
+	// Region where logs will be processed before streaming to BigQuery. Valid values are 'none', 'us' and 'eu'.
+	ProcessingRegion pulumi.StringPtrInput `pulumi:"processingRegion"`
 	// The token to use for authentication (https://www.heroku.com/docs/customer-token-authentication-token/)
 	Token pulumi.StringInput `pulumi:"token"`
 	// The URL to stream logs to
@@ -3530,6 +3633,11 @@ func (o ServiceComputeLoggingHerokuOutput) Name() pulumi.StringOutput {
 	return o.ApplyT(func(v ServiceComputeLoggingHeroku) string { return v.Name }).(pulumi.StringOutput)
 }
 
+// Region where logs will be processed before streaming to BigQuery. Valid values are 'none', 'us' and 'eu'.
+func (o ServiceComputeLoggingHerokuOutput) ProcessingRegion() pulumi.StringPtrOutput {
+	return o.ApplyT(func(v ServiceComputeLoggingHeroku) *string { return v.ProcessingRegion }).(pulumi.StringPtrOutput)
+}
+
 // The token to use for authentication (https://www.heroku.com/docs/customer-token-authentication-token/)
 func (o ServiceComputeLoggingHerokuOutput) Token() pulumi.StringOutput {
 	return o.ApplyT(func(v ServiceComputeLoggingHeroku) string { return v.Token }).(pulumi.StringOutput)
@@ -3565,6 +3673,8 @@ type ServiceComputeLoggingHoneycomb struct {
 	Dataset string `pulumi:"dataset"`
 	// The unique name of the Honeycomb logging endpoint. It is important to note that changing this attribute will delete and recreate the resource
 	Name string `pulumi:"name"`
+	// Region where logs will be processed before streaming to BigQuery. Valid values are 'none', 'us' and 'eu'.
+	ProcessingRegion *string `pulumi:"processingRegion"`
 	// The Write Key from the Account page of your Honeycomb account
 	Token string `pulumi:"token"`
 }
@@ -3585,6 +3695,8 @@ type ServiceComputeLoggingHoneycombArgs struct {
 	Dataset pulumi.StringInput `pulumi:"dataset"`
 	// The unique name of the Honeycomb logging endpoint. It is important to note that changing this attribute will delete and recreate the resource
 	Name pulumi.StringInput `pulumi:"name"`
+	// Region where logs will be processed before streaming to BigQuery. Valid values are 'none', 'us' and 'eu'.
+	ProcessingRegion pulumi.StringPtrInput `pulumi:"processingRegion"`
 	// The Write Key from the Account page of your Honeycomb account
 	Token pulumi.StringInput `pulumi:"token"`
 }
@@ -3650,6 +3762,11 @@ func (o ServiceComputeLoggingHoneycombOutput) Name() pulumi.StringOutput {
 	return o.ApplyT(func(v ServiceComputeLoggingHoneycomb) string { return v.Name }).(pulumi.StringOutput)
 }
 
+// Region where logs will be processed before streaming to BigQuery. Valid values are 'none', 'us' and 'eu'.
+func (o ServiceComputeLoggingHoneycombOutput) ProcessingRegion() pulumi.StringPtrOutput {
+	return o.ApplyT(func(v ServiceComputeLoggingHoneycomb) *string { return v.ProcessingRegion }).(pulumi.StringPtrOutput)
+}
+
 // The Write Key from the Account page of your Honeycomb account
 func (o ServiceComputeLoggingHoneycombOutput) Token() pulumi.StringOutput {
 	return o.ApplyT(func(v ServiceComputeLoggingHoneycomb) string { return v.Token }).(pulumi.StringOutput)
@@ -3690,6 +3807,8 @@ type ServiceComputeLoggingHttp struct {
 	Method *string `pulumi:"method"`
 	// The unique name of the HTTPS logging endpoint. It is important to note that changing this attribute will delete and recreate the resource
 	Name string `pulumi:"name"`
+	// Region where logs will be processed before streaming to BigQuery. Valid values are 'none', 'us' and 'eu'.
+	ProcessingRegion *string `pulumi:"processingRegion"`
 	// The maximum number of bytes sent in one request
 	RequestMaxBytes *int `pulumi:"requestMaxBytes"`
 	// The maximum number of logs sent in one request
@@ -3732,6 +3851,8 @@ type ServiceComputeLoggingHttpArgs struct {
 	Method pulumi.StringPtrInput `pulumi:"method"`
 	// The unique name of the HTTPS logging endpoint. It is important to note that changing this attribute will delete and recreate the resource
 	Name pulumi.StringInput `pulumi:"name"`
+	// Region where logs will be processed before streaming to BigQuery. Valid values are 'none', 'us' and 'eu'.
+	ProcessingRegion pulumi.StringPtrInput `pulumi:"processingRegion"`
 	// The maximum number of bytes sent in one request
 	RequestMaxBytes pulumi.IntPtrInput `pulumi:"requestMaxBytes"`
 	// The maximum number of logs sent in one request
@@ -3834,6 +3955,11 @@ func (o ServiceComputeLoggingHttpOutput) Name() pulumi.StringOutput {
 	return o.ApplyT(func(v ServiceComputeLoggingHttp) string { return v.Name }).(pulumi.StringOutput)
 }
 
+// Region where logs will be processed before streaming to BigQuery. Valid values are 'none', 'us' and 'eu'.
+func (o ServiceComputeLoggingHttpOutput) ProcessingRegion() pulumi.StringPtrOutput {
+	return o.ApplyT(func(v ServiceComputeLoggingHttp) *string { return v.ProcessingRegion }).(pulumi.StringPtrOutput)
+}
+
 // The maximum number of bytes sent in one request
 func (o ServiceComputeLoggingHttpOutput) RequestMaxBytes() pulumi.IntPtrOutput {
 	return o.ApplyT(func(v ServiceComputeLoggingHttp) *int { return v.RequestMaxBytes }).(pulumi.IntPtrOutput)
@@ -3902,6 +4028,8 @@ type ServiceComputeLoggingKafka struct {
 	ParseLogKeyvals *bool `pulumi:"parseLogKeyvals"`
 	// SASL Pass
 	Password *string `pulumi:"password"`
+	// Region where logs will be processed before streaming to BigQuery. Valid values are 'none', 'us' and 'eu'.
+	ProcessingRegion *string `pulumi:"processingRegion"`
 	// Maximum size of log batch, if non-zero. Defaults to 0 for unbounded
 	RequestMaxBytes *int `pulumi:"requestMaxBytes"`
 	// The Number of acknowledgements a leader must receive before a write is considered successful. One of: `1` (default) One server needs to respond. `0` No servers need to respond. `-1` Wait for all in-sync replicas to respond
@@ -3946,6 +4074,8 @@ type ServiceComputeLoggingKafkaArgs struct {
 	ParseLogKeyvals pulumi.BoolPtrInput `pulumi:"parseLogKeyvals"`
 	// SASL Pass
 	Password pulumi.StringPtrInput `pulumi:"password"`
+	// Region where logs will be processed before streaming to BigQuery. Valid values are 'none', 'us' and 'eu'.
+	ProcessingRegion pulumi.StringPtrInput `pulumi:"processingRegion"`
 	// Maximum size of log batch, if non-zero. Defaults to 0 for unbounded
 	RequestMaxBytes pulumi.IntPtrInput `pulumi:"requestMaxBytes"`
 	// The Number of acknowledgements a leader must receive before a write is considered successful. One of: `1` (default) One server needs to respond. `0` No servers need to respond. `-1` Wait for all in-sync replicas to respond
@@ -4047,6 +4177,11 @@ func (o ServiceComputeLoggingKafkaOutput) Password() pulumi.StringPtrOutput {
 	return o.ApplyT(func(v ServiceComputeLoggingKafka) *string { return v.Password }).(pulumi.StringPtrOutput)
 }
 
+// Region where logs will be processed before streaming to BigQuery. Valid values are 'none', 'us' and 'eu'.
+func (o ServiceComputeLoggingKafkaOutput) ProcessingRegion() pulumi.StringPtrOutput {
+	return o.ApplyT(func(v ServiceComputeLoggingKafka) *string { return v.ProcessingRegion }).(pulumi.StringPtrOutput)
+}
+
 // Maximum size of log batch, if non-zero. Defaults to 0 for unbounded
 func (o ServiceComputeLoggingKafkaOutput) RequestMaxBytes() pulumi.IntPtrOutput {
 	return o.ApplyT(func(v ServiceComputeLoggingKafka) *int { return v.RequestMaxBytes }).(pulumi.IntPtrOutput)
@@ -4119,6 +4254,8 @@ type ServiceComputeLoggingKinese struct {
 	IamRole *string `pulumi:"iamRole"`
 	// The unique name of the Kinesis logging endpoint. It is important to note that changing this attribute will delete and recreate the resource
 	Name string `pulumi:"name"`
+	// Region where logs will be processed before streaming to BigQuery. Valid values are 'none', 'us' and 'eu'.
+	ProcessingRegion *string `pulumi:"processingRegion"`
 	// The AWS region the stream resides in. (Default: `us-east-1`)
 	Region *string `pulumi:"region"`
 	// The AWS secret access key to authenticate with
@@ -4145,6 +4282,8 @@ type ServiceComputeLoggingKineseArgs struct {
 	IamRole pulumi.StringPtrInput `pulumi:"iamRole"`
 	// The unique name of the Kinesis logging endpoint. It is important to note that changing this attribute will delete and recreate the resource
 	Name pulumi.StringInput `pulumi:"name"`
+	// Region where logs will be processed before streaming to BigQuery. Valid values are 'none', 'us' and 'eu'.
+	ProcessingRegion pulumi.StringPtrInput `pulumi:"processingRegion"`
 	// The AWS region the stream resides in. (Default: `us-east-1`)
 	Region pulumi.StringPtrInput `pulumi:"region"`
 	// The AWS secret access key to authenticate with
@@ -4219,6 +4358,11 @@ func (o ServiceComputeLoggingKineseOutput) Name() pulumi.StringOutput {
 	return o.ApplyT(func(v ServiceComputeLoggingKinese) string { return v.Name }).(pulumi.StringOutput)
 }
 
+// Region where logs will be processed before streaming to BigQuery. Valid values are 'none', 'us' and 'eu'.
+func (o ServiceComputeLoggingKineseOutput) ProcessingRegion() pulumi.StringPtrOutput {
+	return o.ApplyT(func(v ServiceComputeLoggingKinese) *string { return v.ProcessingRegion }).(pulumi.StringPtrOutput)
+}
+
 // The AWS region the stream resides in. (Default: `us-east-1`)
 func (o ServiceComputeLoggingKineseOutput) Region() pulumi.StringPtrOutput {
 	return o.ApplyT(func(v ServiceComputeLoggingKinese) *string { return v.Region }).(pulumi.StringPtrOutput)
@@ -4259,6 +4403,8 @@ type ServiceComputeLoggingLogentry struct {
 	Name string `pulumi:"name"`
 	// The port number configured in Logentries
 	Port *int `pulumi:"port"`
+	// Region where logs will be processed before streaming to BigQuery. Valid values are 'none', 'us' and 'eu'.
+	ProcessingRegion *string `pulumi:"processingRegion"`
 	// Use token based authentication (https://logentries.com/doc/input-token/)
 	Token string `pulumi:"token"`
 	// Whether to use TLS for secure logging
@@ -4281,6 +4427,8 @@ type ServiceComputeLoggingLogentryArgs struct {
 	Name pulumi.StringInput `pulumi:"name"`
 	// The port number configured in Logentries
 	Port pulumi.IntPtrInput `pulumi:"port"`
+	// Region where logs will be processed before streaming to BigQuery. Valid values are 'none', 'us' and 'eu'.
+	ProcessingRegion pulumi.StringPtrInput `pulumi:"processingRegion"`
 	// Use token based authentication (https://logentries.com/doc/input-token/)
 	Token pulumi.StringInput `pulumi:"token"`
 	// Whether to use TLS for secure logging
@@ -4348,6 +4496,11 @@ func (o ServiceComputeLoggingLogentryOutput) Port() pulumi.IntPtrOutput {
 	return o.ApplyT(func(v ServiceComputeLoggingLogentry) *int { return v.Port }).(pulumi.IntPtrOutput)
 }
 
+// Region where logs will be processed before streaming to BigQuery. Valid values are 'none', 'us' and 'eu'.
+func (o ServiceComputeLoggingLogentryOutput) ProcessingRegion() pulumi.StringPtrOutput {
+	return o.ApplyT(func(v ServiceComputeLoggingLogentry) *string { return v.ProcessingRegion }).(pulumi.StringPtrOutput)
+}
+
 // Use token based authentication (https://logentries.com/doc/input-token/)
 func (o ServiceComputeLoggingLogentryOutput) Token() pulumi.StringOutput {
 	return o.ApplyT(func(v ServiceComputeLoggingLogentry) string { return v.Token }).(pulumi.StringOutput)
@@ -4381,6 +4534,8 @@ func (o ServiceComputeLoggingLogentryArrayOutput) Index(i pulumi.IntInput) Servi
 type ServiceComputeLoggingLoggly struct {
 	// The unique name of the Loggly logging endpoint. It is important to note that changing this attribute will delete and recreate the resource
 	Name string `pulumi:"name"`
+	// Region where logs will be processed before streaming to BigQuery. Valid values are 'none', 'us' and 'eu'.
+	ProcessingRegion *string `pulumi:"processingRegion"`
 	// The token to use for authentication (https://www.loggly.com/docs/customer-token-authentication-token/).
 	Token string `pulumi:"token"`
 }
@@ -4399,6 +4554,8 @@ type ServiceComputeLoggingLogglyInput interface {
 type ServiceComputeLoggingLogglyArgs struct {
 	// The unique name of the Loggly logging endpoint. It is important to note that changing this attribute will delete and recreate the resource
 	Name pulumi.StringInput `pulumi:"name"`
+	// Region where logs will be processed before streaming to BigQuery. Valid values are 'none', 'us' and 'eu'.
+	ProcessingRegion pulumi.StringPtrInput `pulumi:"processingRegion"`
 	// The token to use for authentication (https://www.loggly.com/docs/customer-token-authentication-token/).
 	Token pulumi.StringInput `pulumi:"token"`
 }
@@ -4459,6 +4616,11 @@ func (o ServiceComputeLoggingLogglyOutput) Name() pulumi.StringOutput {
 	return o.ApplyT(func(v ServiceComputeLoggingLoggly) string { return v.Name }).(pulumi.StringOutput)
 }
 
+// Region where logs will be processed before streaming to BigQuery. Valid values are 'none', 'us' and 'eu'.
+func (o ServiceComputeLoggingLogglyOutput) ProcessingRegion() pulumi.StringPtrOutput {
+	return o.ApplyT(func(v ServiceComputeLoggingLoggly) *string { return v.ProcessingRegion }).(pulumi.StringPtrOutput)
+}
+
 // The token to use for authentication (https://www.loggly.com/docs/customer-token-authentication-token/).
 func (o ServiceComputeLoggingLogglyOutput) Token() pulumi.StringOutput {
 	return o.ApplyT(func(v ServiceComputeLoggingLoggly) string { return v.Token }).(pulumi.StringOutput)
@@ -4487,6 +4649,8 @@ func (o ServiceComputeLoggingLogglyArrayOutput) Index(i pulumi.IntInput) Service
 type ServiceComputeLoggingLogshuttle struct {
 	// The unique name of the Log Shuttle logging endpoint. It is important to note that changing this attribute will delete and recreate the resource
 	Name string `pulumi:"name"`
+	// Region where logs will be processed before streaming to BigQuery. Valid values are 'none', 'us' and 'eu'.
+	ProcessingRegion *string `pulumi:"processingRegion"`
 	// The data authentication token associated with this endpoint
 	Token string `pulumi:"token"`
 	// Your Log Shuttle endpoint URL
@@ -4507,6 +4671,8 @@ type ServiceComputeLoggingLogshuttleInput interface {
 type ServiceComputeLoggingLogshuttleArgs struct {
 	// The unique name of the Log Shuttle logging endpoint. It is important to note that changing this attribute will delete and recreate the resource
 	Name pulumi.StringInput `pulumi:"name"`
+	// Region where logs will be processed before streaming to BigQuery. Valid values are 'none', 'us' and 'eu'.
+	ProcessingRegion pulumi.StringPtrInput `pulumi:"processingRegion"`
 	// The data authentication token associated with this endpoint
 	Token pulumi.StringInput `pulumi:"token"`
 	// Your Log Shuttle endpoint URL
@@ -4569,6 +4735,11 @@ func (o ServiceComputeLoggingLogshuttleOutput) Name() pulumi.StringOutput {
 	return o.ApplyT(func(v ServiceComputeLoggingLogshuttle) string { return v.Name }).(pulumi.StringOutput)
 }
 
+// Region where logs will be processed before streaming to BigQuery. Valid values are 'none', 'us' and 'eu'.
+func (o ServiceComputeLoggingLogshuttleOutput) ProcessingRegion() pulumi.StringPtrOutput {
+	return o.ApplyT(func(v ServiceComputeLoggingLogshuttle) *string { return v.ProcessingRegion }).(pulumi.StringPtrOutput)
+}
+
 // The data authentication token associated with this endpoint
 func (o ServiceComputeLoggingLogshuttleOutput) Token() pulumi.StringOutput {
 	return o.ApplyT(func(v ServiceComputeLoggingLogshuttle) string { return v.Token }).(pulumi.StringOutput)
@@ -4602,6 +4773,8 @@ func (o ServiceComputeLoggingLogshuttleArrayOutput) Index(i pulumi.IntInput) Ser
 type ServiceComputeLoggingNewrelic struct {
 	// The unique name of the New Relic logging endpoint. It is important to note that changing this attribute will delete and recreate the resource
 	Name string `pulumi:"name"`
+	// Region where logs will be processed before streaming to BigQuery. Valid values are 'none', 'us' and 'eu'.
+	ProcessingRegion *string `pulumi:"processingRegion"`
 	// The region that log data will be sent to. Default: `US`
 	Region *string `pulumi:"region"`
 	// The Insert API key from the Account page of your New Relic account
@@ -4622,6 +4795,8 @@ type ServiceComputeLoggingNewrelicInput interface {
 type ServiceComputeLoggingNewrelicArgs struct {
 	// The unique name of the New Relic logging endpoint. It is important to note that changing this attribute will delete and recreate the resource
 	Name pulumi.StringInput `pulumi:"name"`
+	// Region where logs will be processed before streaming to BigQuery. Valid values are 'none', 'us' and 'eu'.
+	ProcessingRegion pulumi.StringPtrInput `pulumi:"processingRegion"`
 	// The region that log data will be sent to. Default: `US`
 	Region pulumi.StringPtrInput `pulumi:"region"`
 	// The Insert API key from the Account page of your New Relic account
@@ -4684,6 +4859,11 @@ func (o ServiceComputeLoggingNewrelicOutput) Name() pulumi.StringOutput {
 	return o.ApplyT(func(v ServiceComputeLoggingNewrelic) string { return v.Name }).(pulumi.StringOutput)
 }
 
+// Region where logs will be processed before streaming to BigQuery. Valid values are 'none', 'us' and 'eu'.
+func (o ServiceComputeLoggingNewrelicOutput) ProcessingRegion() pulumi.StringPtrOutput {
+	return o.ApplyT(func(v ServiceComputeLoggingNewrelic) *string { return v.ProcessingRegion }).(pulumi.StringPtrOutput)
+}
+
 // The region that log data will be sent to. Default: `US`
 func (o ServiceComputeLoggingNewrelicOutput) Region() pulumi.StringPtrOutput {
 	return o.ApplyT(func(v ServiceComputeLoggingNewrelic) *string { return v.Region }).(pulumi.StringPtrOutput)
@@ -4731,6 +4911,8 @@ type ServiceComputeLoggingOpenstack struct {
 	Path *string `pulumi:"path"`
 	// How frequently the logs should be transferred, in seconds. Default `3600`
 	Period *int `pulumi:"period"`
+	// Region where logs will be processed before streaming to BigQuery. Valid values are 'none', 'us' and 'eu'.
+	ProcessingRegion *string `pulumi:"processingRegion"`
 	// A PGP public key that Fastly will use to encrypt your log files before writing them to disk
 	PublicKey *string `pulumi:"publicKey"`
 	// The `strftime` specified timestamp formatting (default `%Y-%m-%dT%H:%M:%S.000`)
@@ -4769,6 +4951,8 @@ type ServiceComputeLoggingOpenstackArgs struct {
 	Path pulumi.StringPtrInput `pulumi:"path"`
 	// How frequently the logs should be transferred, in seconds. Default `3600`
 	Period pulumi.IntPtrInput `pulumi:"period"`
+	// Region where logs will be processed before streaming to BigQuery. Valid values are 'none', 'us' and 'eu'.
+	ProcessingRegion pulumi.StringPtrInput `pulumi:"processingRegion"`
 	// A PGP public key that Fastly will use to encrypt your log files before writing them to disk
 	PublicKey pulumi.StringPtrInput `pulumi:"publicKey"`
 	// The `strftime` specified timestamp formatting (default `%Y-%m-%dT%H:%M:%S.000`)
@@ -4870,6 +5054,11 @@ func (o ServiceComputeLoggingOpenstackOutput) Period() pulumi.IntPtrOutput {
 	return o.ApplyT(func(v ServiceComputeLoggingOpenstack) *int { return v.Period }).(pulumi.IntPtrOutput)
 }
 
+// Region where logs will be processed before streaming to BigQuery. Valid values are 'none', 'us' and 'eu'.
+func (o ServiceComputeLoggingOpenstackOutput) ProcessingRegion() pulumi.StringPtrOutput {
+	return o.ApplyT(func(v ServiceComputeLoggingOpenstack) *string { return v.ProcessingRegion }).(pulumi.StringPtrOutput)
+}
+
 // A PGP public key that Fastly will use to encrypt your log files before writing them to disk
 func (o ServiceComputeLoggingOpenstackOutput) PublicKey() pulumi.StringPtrOutput {
 	return o.ApplyT(func(v ServiceComputeLoggingOpenstack) *string { return v.PublicKey }).(pulumi.StringPtrOutput)
@@ -4917,6 +5106,8 @@ type ServiceComputeLoggingPapertrail struct {
 	Name string `pulumi:"name"`
 	// The port associated with the address where the Papertrail endpoint can be accessed
 	Port int `pulumi:"port"`
+	// Region where logs will be processed before streaming to BigQuery. Valid values are 'none', 'us' and 'eu'.
+	ProcessingRegion *string `pulumi:"processingRegion"`
 }
 
 // ServiceComputeLoggingPapertrailInput is an input type that accepts ServiceComputeLoggingPapertrailArgs and ServiceComputeLoggingPapertrailOutput values.
@@ -4937,6 +5128,8 @@ type ServiceComputeLoggingPapertrailArgs struct {
 	Name pulumi.StringInput `pulumi:"name"`
 	// The port associated with the address where the Papertrail endpoint can be accessed
 	Port pulumi.IntInput `pulumi:"port"`
+	// Region where logs will be processed before streaming to BigQuery. Valid values are 'none', 'us' and 'eu'.
+	ProcessingRegion pulumi.StringPtrInput `pulumi:"processingRegion"`
 }
 
 func (ServiceComputeLoggingPapertrailArgs) ElementType() reflect.Type {
@@ -5005,6 +5198,11 @@ func (o ServiceComputeLoggingPapertrailOutput) Port() pulumi.IntOutput {
 	return o.ApplyT(func(v ServiceComputeLoggingPapertrail) int { return v.Port }).(pulumi.IntOutput)
 }
 
+// Region where logs will be processed before streaming to BigQuery. Valid values are 'none', 'us' and 'eu'.
+func (o ServiceComputeLoggingPapertrailOutput) ProcessingRegion() pulumi.StringPtrOutput {
+	return o.ApplyT(func(v ServiceComputeLoggingPapertrail) *string { return v.ProcessingRegion }).(pulumi.StringPtrOutput)
+}
+
 type ServiceComputeLoggingPapertrailArrayOutput struct{ *pulumi.OutputState }
 
 func (ServiceComputeLoggingPapertrailArrayOutput) ElementType() reflect.Type {
@@ -5046,6 +5244,8 @@ type ServiceComputeLoggingS3 struct {
 	Path *string `pulumi:"path"`
 	// How frequently the logs should be transferred, in seconds. Default `3600`
 	Period *int `pulumi:"period"`
+	// Region where logs will be processed before streaming to BigQuery. Valid values are 'none', 'us' and 'eu'.
+	ProcessingRegion *string `pulumi:"processingRegion"`
 	// A PGP public key that Fastly will use to encrypt your log files before writing them to disk
 	PublicKey *string `pulumi:"publicKey"`
 	// The S3 storage class (redundancy level). Should be one of: `standard`, `intelligentTiering`, `standardIa`, `onezoneIa`, `glacier`, `glacierIr`, `deepArchive`, or `reducedRedundancy`
@@ -5096,6 +5296,8 @@ type ServiceComputeLoggingS3Args struct {
 	Path pulumi.StringPtrInput `pulumi:"path"`
 	// How frequently the logs should be transferred, in seconds. Default `3600`
 	Period pulumi.IntPtrInput `pulumi:"period"`
+	// Region where logs will be processed before streaming to BigQuery. Valid values are 'none', 'us' and 'eu'.
+	ProcessingRegion pulumi.StringPtrInput `pulumi:"processingRegion"`
 	// A PGP public key that Fastly will use to encrypt your log files before writing them to disk
 	PublicKey pulumi.StringPtrInput `pulumi:"publicKey"`
 	// The S3 storage class (redundancy level). Should be one of: `standard`, `intelligentTiering`, `standardIa`, `onezoneIa`, `glacier`, `glacierIr`, `deepArchive`, or `reducedRedundancy`
@@ -5215,6 +5417,11 @@ func (o ServiceComputeLoggingS3Output) Period() pulumi.IntPtrOutput {
 	return o.ApplyT(func(v ServiceComputeLoggingS3) *int { return v.Period }).(pulumi.IntPtrOutput)
 }
 
+// Region where logs will be processed before streaming to BigQuery. Valid values are 'none', 'us' and 'eu'.
+func (o ServiceComputeLoggingS3Output) ProcessingRegion() pulumi.StringPtrOutput {
+	return o.ApplyT(func(v ServiceComputeLoggingS3) *string { return v.ProcessingRegion }).(pulumi.StringPtrOutput)
+}
+
 // A PGP public key that Fastly will use to encrypt your log files before writing them to disk
 func (o ServiceComputeLoggingS3Output) PublicKey() pulumi.StringPtrOutput {
 	return o.ApplyT(func(v ServiceComputeLoggingS3) *string { return v.PublicKey }).(pulumi.StringPtrOutput)
@@ -5278,6 +5485,8 @@ func (o ServiceComputeLoggingS3ArrayOutput) Index(i pulumi.IntInput) ServiceComp
 type ServiceComputeLoggingScalyr struct {
 	// The unique name of the Scalyr logging endpoint. It is important to note that changing this attribute will delete and recreate the resource
 	Name string `pulumi:"name"`
+	// Region where logs will be processed before streaming to BigQuery. Valid values are 'none', 'us' and 'eu'.
+	ProcessingRegion *string `pulumi:"processingRegion"`
 	// The name of the logfile field sent to Scalyr
 	ProjectId *string `pulumi:"projectId"`
 	// The region that log data will be sent to. One of `US` or `EU`. Defaults to `US` if undefined
@@ -5300,6 +5509,8 @@ type ServiceComputeLoggingScalyrInput interface {
 type ServiceComputeLoggingScalyrArgs struct {
 	// The unique name of the Scalyr logging endpoint. It is important to note that changing this attribute will delete and recreate the resource
 	Name pulumi.StringInput `pulumi:"name"`
+	// Region where logs will be processed before streaming to BigQuery. Valid values are 'none', 'us' and 'eu'.
+	ProcessingRegion pulumi.StringPtrInput `pulumi:"processingRegion"`
 	// The name of the logfile field sent to Scalyr
 	ProjectId pulumi.StringPtrInput `pulumi:"projectId"`
 	// The region that log data will be sent to. One of `US` or `EU`. Defaults to `US` if undefined
@@ -5364,6 +5575,11 @@ func (o ServiceComputeLoggingScalyrOutput) Name() pulumi.StringOutput {
 	return o.ApplyT(func(v ServiceComputeLoggingScalyr) string { return v.Name }).(pulumi.StringOutput)
 }
 
+// Region where logs will be processed before streaming to BigQuery. Valid values are 'none', 'us' and 'eu'.
+func (o ServiceComputeLoggingScalyrOutput) ProcessingRegion() pulumi.StringPtrOutput {
+	return o.ApplyT(func(v ServiceComputeLoggingScalyr) *string { return v.ProcessingRegion }).(pulumi.StringPtrOutput)
+}
+
 // The name of the logfile field sent to Scalyr
 func (o ServiceComputeLoggingScalyrOutput) ProjectId() pulumi.StringPtrOutput {
 	return o.ApplyT(func(v ServiceComputeLoggingScalyr) *string { return v.ProjectId }).(pulumi.StringPtrOutput)
@@ -5418,6 +5634,8 @@ type ServiceComputeLoggingSftp struct {
 	Period *int `pulumi:"period"`
 	// The port the SFTP service listens on. (Default: `22`)
 	Port *int `pulumi:"port"`
+	// Region where logs will be processed before streaming to BigQuery. Valid values are 'none', 'us' and 'eu'.
+	ProcessingRegion *string `pulumi:"processingRegion"`
 	// A PGP public key that Fastly will use to encrypt your log files before writing them to disk
 	PublicKey *string `pulumi:"publicKey"`
 	// The SSH private key for the server. If both `password` and `secretKey` are passed, `secretKey` will be preferred
@@ -5460,6 +5678,8 @@ type ServiceComputeLoggingSftpArgs struct {
 	Period pulumi.IntPtrInput `pulumi:"period"`
 	// The port the SFTP service listens on. (Default: `22`)
 	Port pulumi.IntPtrInput `pulumi:"port"`
+	// Region where logs will be processed before streaming to BigQuery. Valid values are 'none', 'us' and 'eu'.
+	ProcessingRegion pulumi.StringPtrInput `pulumi:"processingRegion"`
 	// A PGP public key that Fastly will use to encrypt your log files before writing them to disk
 	PublicKey pulumi.StringPtrInput `pulumi:"publicKey"`
 	// The SSH private key for the server. If both `password` and `secretKey` are passed, `secretKey` will be preferred
@@ -5568,6 +5788,11 @@ func (o ServiceComputeLoggingSftpOutput) Port() pulumi.IntPtrOutput {
 	return o.ApplyT(func(v ServiceComputeLoggingSftp) *int { return v.Port }).(pulumi.IntPtrOutput)
 }
 
+// Region where logs will be processed before streaming to BigQuery. Valid values are 'none', 'us' and 'eu'.
+func (o ServiceComputeLoggingSftpOutput) ProcessingRegion() pulumi.StringPtrOutput {
+	return o.ApplyT(func(v ServiceComputeLoggingSftp) *string { return v.ProcessingRegion }).(pulumi.StringPtrOutput)
+}
+
 // A PGP public key that Fastly will use to encrypt your log files before writing them to disk
 func (o ServiceComputeLoggingSftpOutput) PublicKey() pulumi.StringPtrOutput {
 	return o.ApplyT(func(v ServiceComputeLoggingSftp) *string { return v.PublicKey }).(pulumi.StringPtrOutput)
@@ -5616,6 +5841,8 @@ func (o ServiceComputeLoggingSftpArrayOutput) Index(i pulumi.IntInput) ServiceCo
 type ServiceComputeLoggingSplunk struct {
 	// A unique name to identify the Splunk endpoint. It is important to note that changing this attribute will delete and recreate the resource
 	Name string `pulumi:"name"`
+	// Region where logs will be processed before streaming to BigQuery. Valid values are 'none', 'us' and 'eu'.
+	ProcessingRegion *string `pulumi:"processingRegion"`
 	// A secure certificate to authenticate the server with. Must be in PEM format. You can provide this certificate via an environment variable, `FASTLY_SPLUNK_CA_CERT`
 	TlsCaCert *string `pulumi:"tlsCaCert"`
 	// The client certificate used to make authenticated requests. Must be in PEM format.
@@ -5646,6 +5873,8 @@ type ServiceComputeLoggingSplunkInput interface {
 type ServiceComputeLoggingSplunkArgs struct {
 	// A unique name to identify the Splunk endpoint. It is important to note that changing this attribute will delete and recreate the resource
 	Name pulumi.StringInput `pulumi:"name"`
+	// Region where logs will be processed before streaming to BigQuery. Valid values are 'none', 'us' and 'eu'.
+	ProcessingRegion pulumi.StringPtrInput `pulumi:"processingRegion"`
 	// A secure certificate to authenticate the server with. Must be in PEM format. You can provide this certificate via an environment variable, `FASTLY_SPLUNK_CA_CERT`
 	TlsCaCert pulumi.StringPtrInput `pulumi:"tlsCaCert"`
 	// The client certificate used to make authenticated requests. Must be in PEM format.
@@ -5718,6 +5947,11 @@ func (o ServiceComputeLoggingSplunkOutput) Name() pulumi.StringOutput {
 	return o.ApplyT(func(v ServiceComputeLoggingSplunk) string { return v.Name }).(pulumi.StringOutput)
 }
 
+// Region where logs will be processed before streaming to BigQuery. Valid values are 'none', 'us' and 'eu'.
+func (o ServiceComputeLoggingSplunkOutput) ProcessingRegion() pulumi.StringPtrOutput {
+	return o.ApplyT(func(v ServiceComputeLoggingSplunk) *string { return v.ProcessingRegion }).(pulumi.StringPtrOutput)
+}
+
 // A secure certificate to authenticate the server with. Must be in PEM format. You can provide this certificate via an environment variable, `FASTLY_SPLUNK_CA_CERT`
 func (o ServiceComputeLoggingSplunkOutput) TlsCaCert() pulumi.StringPtrOutput {
 	return o.ApplyT(func(v ServiceComputeLoggingSplunk) *string { return v.TlsCaCert }).(pulumi.StringPtrOutput)
@@ -5778,6 +6012,8 @@ type ServiceComputeLoggingSumologic struct {
 	MessageType *string `pulumi:"messageType"`
 	// A unique name to identify this Sumologic endpoint. It is important to note that changing this attribute will delete and recreate the resource
 	Name string `pulumi:"name"`
+	// Region where logs will be processed before streaming to BigQuery. Valid values are 'none', 'us' and 'eu'.
+	ProcessingRegion *string `pulumi:"processingRegion"`
 	// The URL to Sumologic collector endpoint
 	Url string `pulumi:"url"`
 }
@@ -5798,6 +6034,8 @@ type ServiceComputeLoggingSumologicArgs struct {
 	MessageType pulumi.StringPtrInput `pulumi:"messageType"`
 	// A unique name to identify this Sumologic endpoint. It is important to note that changing this attribute will delete and recreate the resource
 	Name pulumi.StringInput `pulumi:"name"`
+	// Region where logs will be processed before streaming to BigQuery. Valid values are 'none', 'us' and 'eu'.
+	ProcessingRegion pulumi.StringPtrInput `pulumi:"processingRegion"`
 	// The URL to Sumologic collector endpoint
 	Url pulumi.StringInput `pulumi:"url"`
 }
@@ -5863,6 +6101,11 @@ func (o ServiceComputeLoggingSumologicOutput) Name() pulumi.StringOutput {
 	return o.ApplyT(func(v ServiceComputeLoggingSumologic) string { return v.Name }).(pulumi.StringOutput)
 }
 
+// Region where logs will be processed before streaming to BigQuery. Valid values are 'none', 'us' and 'eu'.
+func (o ServiceComputeLoggingSumologicOutput) ProcessingRegion() pulumi.StringPtrOutput {
+	return o.ApplyT(func(v ServiceComputeLoggingSumologic) *string { return v.ProcessingRegion }).(pulumi.StringPtrOutput)
+}
+
 // The URL to Sumologic collector endpoint
 func (o ServiceComputeLoggingSumologicOutput) Url() pulumi.StringOutput {
 	return o.ApplyT(func(v ServiceComputeLoggingSumologic) string { return v.Url }).(pulumi.StringOutput)
@@ -5897,6 +6140,8 @@ type ServiceComputeLoggingSyslog struct {
 	Name string `pulumi:"name"`
 	// The port associated with the address where the Syslog endpoint can be accessed. Default `514`
 	Port *int `pulumi:"port"`
+	// Region where logs will be processed before streaming to BigQuery. Valid values are 'none', 'us' and 'eu'.
+	ProcessingRegion *string `pulumi:"processingRegion"`
 	// A secure certificate to authenticate the server with. Must be in PEM format. You can provide this certificate via an environment variable, `FASTLY_SYSLOG_CA_CERT`
 	TlsCaCert *string `pulumi:"tlsCaCert"`
 	// The client certificate used to make authenticated requests. Must be in PEM format. You can provide this certificate via an environment variable, `FASTLY_SYSLOG_CLIENT_CERT`
@@ -5931,6 +6176,8 @@ type ServiceComputeLoggingSyslogArgs struct {
 	Name pulumi.StringInput `pulumi:"name"`
 	// The port associated with the address where the Syslog endpoint can be accessed. Default `514`
 	Port pulumi.IntPtrInput `pulumi:"port"`
+	// Region where logs will be processed before streaming to BigQuery. Valid values are 'none', 'us' and 'eu'.
+	ProcessingRegion pulumi.StringPtrInput `pulumi:"processingRegion"`
 	// A secure certificate to authenticate the server with. Must be in PEM format. You can provide this certificate via an environment variable, `FASTLY_SYSLOG_CA_CERT`
 	TlsCaCert pulumi.StringPtrInput `pulumi:"tlsCaCert"`
 	// The client certificate used to make authenticated requests. Must be in PEM format. You can provide this certificate via an environment variable, `FASTLY_SYSLOG_CLIENT_CERT`
@@ -6014,6 +6261,11 @@ func (o ServiceComputeLoggingSyslogOutput) Name() pulumi.StringOutput {
 // The port associated with the address where the Syslog endpoint can be accessed. Default `514`
 func (o ServiceComputeLoggingSyslogOutput) Port() pulumi.IntPtrOutput {
 	return o.ApplyT(func(v ServiceComputeLoggingSyslog) *int { return v.Port }).(pulumi.IntPtrOutput)
+}
+
+// Region where logs will be processed before streaming to BigQuery. Valid values are 'none', 'us' and 'eu'.
+func (o ServiceComputeLoggingSyslogOutput) ProcessingRegion() pulumi.StringPtrOutput {
+	return o.ApplyT(func(v ServiceComputeLoggingSyslog) *string { return v.ProcessingRegion }).(pulumi.StringPtrOutput)
 }
 
 // A secure certificate to authenticate the server with. Must be in PEM format. You can provide this certificate via an environment variable, `FASTLY_SYSLOG_CA_CERT`
@@ -7065,6 +7317,8 @@ type ServiceVclBackend struct {
 	OverrideHost *string `pulumi:"overrideHost"`
 	// The port number on which the Backend responds. Default `80`
 	Port *int `pulumi:"port"`
+	// Prefer IPv6 connections to origins for hostname backends. Default `false`
+	PreferIpv6 *bool `pulumi:"preferIpv6"`
 	// Name of a condition, which if met, will select this backend during a request.
 	RequestCondition *string `pulumi:"requestCondition"`
 	// Value that when shared across backends will enable those backends to share the same health check.
@@ -7131,6 +7385,8 @@ type ServiceVclBackendArgs struct {
 	OverrideHost pulumi.StringPtrInput `pulumi:"overrideHost"`
 	// The port number on which the Backend responds. Default `80`
 	Port pulumi.IntPtrInput `pulumi:"port"`
+	// Prefer IPv6 connections to origins for hostname backends. Default `false`
+	PreferIpv6 pulumi.BoolPtrInput `pulumi:"preferIpv6"`
 	// Name of a condition, which if met, will select this backend during a request.
 	RequestCondition pulumi.StringPtrInput `pulumi:"requestCondition"`
 	// Value that when shared across backends will enable those backends to share the same health check.
@@ -7276,6 +7532,11 @@ func (o ServiceVclBackendOutput) OverrideHost() pulumi.StringPtrOutput {
 // The port number on which the Backend responds. Default `80`
 func (o ServiceVclBackendOutput) Port() pulumi.IntPtrOutput {
 	return o.ApplyT(func(v ServiceVclBackend) *int { return v.Port }).(pulumi.IntPtrOutput)
+}
+
+// Prefer IPv6 connections to origins for hostname backends. Default `false`
+func (o ServiceVclBackendOutput) PreferIpv6() pulumi.BoolPtrOutput {
+	return o.ApplyT(func(v ServiceVclBackend) *bool { return v.PreferIpv6 }).(pulumi.BoolPtrOutput)
 }
 
 // Name of a condition, which if met, will select this backend during a request.
@@ -8957,6 +9218,8 @@ type ServiceVclLoggingBigquery struct {
 	Name string `pulumi:"name"`
 	// Where in the generated VCL the logging call should be placed.
 	Placement *string `pulumi:"placement"`
+	// Region where logs will be processed before streaming to BigQuery. Valid values are 'none', 'us' and 'eu'.
+	ProcessingRegion *string `pulumi:"processingRegion"`
 	// The ID of your GCP project
 	ProjectId string `pulumi:"projectId"`
 	// Name of a condition to apply this logging.
@@ -8993,6 +9256,8 @@ type ServiceVclLoggingBigqueryArgs struct {
 	Name pulumi.StringInput `pulumi:"name"`
 	// Where in the generated VCL the logging call should be placed.
 	Placement pulumi.StringPtrInput `pulumi:"placement"`
+	// Region where logs will be processed before streaming to BigQuery. Valid values are 'none', 'us' and 'eu'.
+	ProcessingRegion pulumi.StringPtrInput `pulumi:"processingRegion"`
 	// The ID of your GCP project
 	ProjectId pulumi.StringInput `pulumi:"projectId"`
 	// Name of a condition to apply this logging.
@@ -9086,6 +9351,11 @@ func (o ServiceVclLoggingBigqueryOutput) Placement() pulumi.StringPtrOutput {
 	return o.ApplyT(func(v ServiceVclLoggingBigquery) *string { return v.Placement }).(pulumi.StringPtrOutput)
 }
 
+// Region where logs will be processed before streaming to BigQuery. Valid values are 'none', 'us' and 'eu'.
+func (o ServiceVclLoggingBigqueryOutput) ProcessingRegion() pulumi.StringPtrOutput {
+	return o.ApplyT(func(v ServiceVclLoggingBigquery) *string { return v.ProcessingRegion }).(pulumi.StringPtrOutput)
+}
+
 // The ID of your GCP project
 func (o ServiceVclLoggingBigqueryOutput) ProjectId() pulumi.StringOutput {
 	return o.ApplyT(func(v ServiceVclLoggingBigquery) string { return v.ProjectId }).(pulumi.StringOutput)
@@ -9156,6 +9426,8 @@ type ServiceVclLoggingBlobstorage struct {
 	Period *int `pulumi:"period"`
 	// Where in the generated VCL the logging call should be placed
 	Placement *string `pulumi:"placement"`
+	// Region where logs will be processed before streaming to BigQuery. Valid values are 'none', 'us' and 'eu'.
+	ProcessingRegion *string `pulumi:"processingRegion"`
 	// A PGP public key that Fastly will use to encrypt your log files before writing them to disk
 	PublicKey *string `pulumi:"publicKey"`
 	// The name of the condition to apply
@@ -9202,6 +9474,8 @@ type ServiceVclLoggingBlobstorageArgs struct {
 	Period pulumi.IntPtrInput `pulumi:"period"`
 	// Where in the generated VCL the logging call should be placed
 	Placement pulumi.StringPtrInput `pulumi:"placement"`
+	// Region where logs will be processed before streaming to BigQuery. Valid values are 'none', 'us' and 'eu'.
+	ProcessingRegion pulumi.StringPtrInput `pulumi:"processingRegion"`
 	// A PGP public key that Fastly will use to encrypt your log files before writing them to disk
 	PublicKey pulumi.StringPtrInput `pulumi:"publicKey"`
 	// The name of the condition to apply
@@ -9323,6 +9597,11 @@ func (o ServiceVclLoggingBlobstorageOutput) Placement() pulumi.StringPtrOutput {
 	return o.ApplyT(func(v ServiceVclLoggingBlobstorage) *string { return v.Placement }).(pulumi.StringPtrOutput)
 }
 
+// Region where logs will be processed before streaming to BigQuery. Valid values are 'none', 'us' and 'eu'.
+func (o ServiceVclLoggingBlobstorageOutput) ProcessingRegion() pulumi.StringPtrOutput {
+	return o.ApplyT(func(v ServiceVclLoggingBlobstorage) *string { return v.ProcessingRegion }).(pulumi.StringPtrOutput)
+}
+
 // A PGP public key that Fastly will use to encrypt your log files before writing them to disk
 func (o ServiceVclLoggingBlobstorageOutput) PublicKey() pulumi.StringPtrOutput {
 	return o.ApplyT(func(v ServiceVclLoggingBlobstorage) *string { return v.PublicKey }).(pulumi.StringPtrOutput)
@@ -9386,6 +9665,8 @@ type ServiceVclLoggingCloudfile struct {
 	Period *int `pulumi:"period"`
 	// Where in the generated VCL the logging call should be placed. Can be `none` or `none`.
 	Placement *string `pulumi:"placement"`
+	// Region where logs will be processed before streaming to BigQuery. Valid values are 'none', 'us' and 'eu'.
+	ProcessingRegion *string `pulumi:"processingRegion"`
 	// The PGP public key that Fastly will use to encrypt your log files before writing them to disk
 	PublicKey *string `pulumi:"publicKey"`
 	// The region to stream logs to. One of: DFW (Dallas), ORD (Chicago), IAD (Northern Virginia), LON (London), SYD (Sydney), HKG (Hong Kong)
@@ -9432,6 +9713,8 @@ type ServiceVclLoggingCloudfileArgs struct {
 	Period pulumi.IntPtrInput `pulumi:"period"`
 	// Where in the generated VCL the logging call should be placed. Can be `none` or `none`.
 	Placement pulumi.StringPtrInput `pulumi:"placement"`
+	// Region where logs will be processed before streaming to BigQuery. Valid values are 'none', 'us' and 'eu'.
+	ProcessingRegion pulumi.StringPtrInput `pulumi:"processingRegion"`
 	// The PGP public key that Fastly will use to encrypt your log files before writing them to disk
 	PublicKey pulumi.StringPtrInput `pulumi:"publicKey"`
 	// The region to stream logs to. One of: DFW (Dallas), ORD (Chicago), IAD (Northern Virginia), LON (London), SYD (Sydney), HKG (Hong Kong)
@@ -9550,6 +9833,11 @@ func (o ServiceVclLoggingCloudfileOutput) Placement() pulumi.StringPtrOutput {
 	return o.ApplyT(func(v ServiceVclLoggingCloudfile) *string { return v.Placement }).(pulumi.StringPtrOutput)
 }
 
+// Region where logs will be processed before streaming to BigQuery. Valid values are 'none', 'us' and 'eu'.
+func (o ServiceVclLoggingCloudfileOutput) ProcessingRegion() pulumi.StringPtrOutput {
+	return o.ApplyT(func(v ServiceVclLoggingCloudfile) *string { return v.ProcessingRegion }).(pulumi.StringPtrOutput)
+}
+
 // The PGP public key that Fastly will use to encrypt your log files before writing them to disk
 func (o ServiceVclLoggingCloudfileOutput) PublicKey() pulumi.StringPtrOutput {
 	return o.ApplyT(func(v ServiceVclLoggingCloudfile) *string { return v.PublicKey }).(pulumi.StringPtrOutput)
@@ -9604,6 +9892,8 @@ type ServiceVclLoggingDatadog struct {
 	Name string `pulumi:"name"`
 	// Where in the generated VCL the logging call should be placed.
 	Placement *string `pulumi:"placement"`
+	// Region where logs will be processed before streaming to BigQuery. Valid values are 'none', 'us' and 'eu'.
+	ProcessingRegion *string `pulumi:"processingRegion"`
 	// The region that log data will be sent to. One of `US` or `EU`. Defaults to `US` if undefined
 	Region *string `pulumi:"region"`
 	// The name of the condition to apply.
@@ -9632,6 +9922,8 @@ type ServiceVclLoggingDatadogArgs struct {
 	Name pulumi.StringInput `pulumi:"name"`
 	// Where in the generated VCL the logging call should be placed.
 	Placement pulumi.StringPtrInput `pulumi:"placement"`
+	// Region where logs will be processed before streaming to BigQuery. Valid values are 'none', 'us' and 'eu'.
+	ProcessingRegion pulumi.StringPtrInput `pulumi:"processingRegion"`
 	// The region that log data will be sent to. One of `US` or `EU`. Defaults to `US` if undefined
 	Region pulumi.StringPtrInput `pulumi:"region"`
 	// The name of the condition to apply.
@@ -9711,6 +10003,11 @@ func (o ServiceVclLoggingDatadogOutput) Placement() pulumi.StringPtrOutput {
 	return o.ApplyT(func(v ServiceVclLoggingDatadog) *string { return v.Placement }).(pulumi.StringPtrOutput)
 }
 
+// Region where logs will be processed before streaming to BigQuery. Valid values are 'none', 'us' and 'eu'.
+func (o ServiceVclLoggingDatadogOutput) ProcessingRegion() pulumi.StringPtrOutput {
+	return o.ApplyT(func(v ServiceVclLoggingDatadog) *string { return v.ProcessingRegion }).(pulumi.StringPtrOutput)
+}
+
 // The region that log data will be sent to. One of `US` or `EU`. Defaults to `US` if undefined
 func (o ServiceVclLoggingDatadogOutput) Region() pulumi.StringPtrOutput {
 	return o.ApplyT(func(v ServiceVclLoggingDatadog) *string { return v.Region }).(pulumi.StringPtrOutput)
@@ -9771,6 +10068,8 @@ type ServiceVclLoggingDigitalocean struct {
 	Period *int `pulumi:"period"`
 	// Where in the generated VCL the logging call should be placed. Can be `none` or `none`.
 	Placement *string `pulumi:"placement"`
+	// Region where logs will be processed before streaming to BigQuery. Valid values are 'none', 'us' and 'eu'.
+	ProcessingRegion *string `pulumi:"processingRegion"`
 	// A PGP public key that Fastly will use to encrypt your log files before writing them to disk
 	PublicKey *string `pulumi:"publicKey"`
 	// The name of an existing condition in the configured endpoint, or leave blank to always execute.
@@ -9817,6 +10116,8 @@ type ServiceVclLoggingDigitaloceanArgs struct {
 	Period pulumi.IntPtrInput `pulumi:"period"`
 	// Where in the generated VCL the logging call should be placed. Can be `none` or `none`.
 	Placement pulumi.StringPtrInput `pulumi:"placement"`
+	// Region where logs will be processed before streaming to BigQuery. Valid values are 'none', 'us' and 'eu'.
+	ProcessingRegion pulumi.StringPtrInput `pulumi:"processingRegion"`
 	// A PGP public key that Fastly will use to encrypt your log files before writing them to disk
 	PublicKey pulumi.StringPtrInput `pulumi:"publicKey"`
 	// The name of an existing condition in the configured endpoint, or leave blank to always execute.
@@ -9938,6 +10239,11 @@ func (o ServiceVclLoggingDigitaloceanOutput) Placement() pulumi.StringPtrOutput 
 	return o.ApplyT(func(v ServiceVclLoggingDigitalocean) *string { return v.Placement }).(pulumi.StringPtrOutput)
 }
 
+// Region where logs will be processed before streaming to BigQuery. Valid values are 'none', 'us' and 'eu'.
+func (o ServiceVclLoggingDigitaloceanOutput) ProcessingRegion() pulumi.StringPtrOutput {
+	return o.ApplyT(func(v ServiceVclLoggingDigitalocean) *string { return v.ProcessingRegion }).(pulumi.StringPtrOutput)
+}
+
 // A PGP public key that Fastly will use to encrypt your log files before writing them to disk
 func (o ServiceVclLoggingDigitaloceanOutput) PublicKey() pulumi.StringPtrOutput {
 	return o.ApplyT(func(v ServiceVclLoggingDigitalocean) *string { return v.PublicKey }).(pulumi.StringPtrOutput)
@@ -9993,6 +10299,8 @@ type ServiceVclLoggingElasticsearch struct {
 	Pipeline *string `pulumi:"pipeline"`
 	// Where in the generated VCL the logging call should be placed.
 	Placement *string `pulumi:"placement"`
+	// Region where logs will be processed before streaming to BigQuery. Valid values are 'none', 'us' and 'eu'.
+	ProcessingRegion *string `pulumi:"processingRegion"`
 	// The maximum number of logs sent in one request. Defaults to `0` for unbounded
 	RequestMaxBytes *int `pulumi:"requestMaxBytes"`
 	// The maximum number of bytes sent in one request. Defaults to `0` for unbounded
@@ -10039,6 +10347,8 @@ type ServiceVclLoggingElasticsearchArgs struct {
 	Pipeline pulumi.StringPtrInput `pulumi:"pipeline"`
 	// Where in the generated VCL the logging call should be placed.
 	Placement pulumi.StringPtrInput `pulumi:"placement"`
+	// Region where logs will be processed before streaming to BigQuery. Valid values are 'none', 'us' and 'eu'.
+	ProcessingRegion pulumi.StringPtrInput `pulumi:"processingRegion"`
 	// The maximum number of logs sent in one request. Defaults to `0` for unbounded
 	RequestMaxBytes pulumi.IntPtrInput `pulumi:"requestMaxBytes"`
 	// The maximum number of bytes sent in one request. Defaults to `0` for unbounded
@@ -10145,6 +10455,11 @@ func (o ServiceVclLoggingElasticsearchOutput) Placement() pulumi.StringPtrOutput
 	return o.ApplyT(func(v ServiceVclLoggingElasticsearch) *string { return v.Placement }).(pulumi.StringPtrOutput)
 }
 
+// Region where logs will be processed before streaming to BigQuery. Valid values are 'none', 'us' and 'eu'.
+func (o ServiceVclLoggingElasticsearchOutput) ProcessingRegion() pulumi.StringPtrOutput {
+	return o.ApplyT(func(v ServiceVclLoggingElasticsearch) *string { return v.ProcessingRegion }).(pulumi.StringPtrOutput)
+}
+
 // The maximum number of logs sent in one request. Defaults to `0` for unbounded
 func (o ServiceVclLoggingElasticsearchOutput) RequestMaxBytes() pulumi.IntPtrOutput {
 	return o.ApplyT(func(v ServiceVclLoggingElasticsearch) *int { return v.RequestMaxBytes }).(pulumi.IntPtrOutput)
@@ -10235,6 +10550,8 @@ type ServiceVclLoggingFtp struct {
 	Placement *string `pulumi:"placement"`
 	// The port number. Default: `21`
 	Port *int `pulumi:"port"`
+	// Region where logs will be processed before streaming to BigQuery. Valid values are 'none', 'us' and 'eu'.
+	ProcessingRegion *string `pulumi:"processingRegion"`
 	// The PGP public key that Fastly will use to encrypt your log files before writing them to disk
 	PublicKey *string `pulumi:"publicKey"`
 	// The name of the condition to apply.
@@ -10281,6 +10598,8 @@ type ServiceVclLoggingFtpArgs struct {
 	Placement pulumi.StringPtrInput `pulumi:"placement"`
 	// The port number. Default: `21`
 	Port pulumi.IntPtrInput `pulumi:"port"`
+	// Region where logs will be processed before streaming to BigQuery. Valid values are 'none', 'us' and 'eu'.
+	ProcessingRegion pulumi.StringPtrInput `pulumi:"processingRegion"`
 	// The PGP public key that Fastly will use to encrypt your log files before writing them to disk
 	PublicKey pulumi.StringPtrInput `pulumi:"publicKey"`
 	// The name of the condition to apply.
@@ -10402,6 +10721,11 @@ func (o ServiceVclLoggingFtpOutput) Port() pulumi.IntPtrOutput {
 	return o.ApplyT(func(v ServiceVclLoggingFtp) *int { return v.Port }).(pulumi.IntPtrOutput)
 }
 
+// Region where logs will be processed before streaming to BigQuery. Valid values are 'none', 'us' and 'eu'.
+func (o ServiceVclLoggingFtpOutput) ProcessingRegion() pulumi.StringPtrOutput {
+	return o.ApplyT(func(v ServiceVclLoggingFtp) *string { return v.ProcessingRegion }).(pulumi.StringPtrOutput)
+}
+
 // The PGP public key that Fastly will use to encrypt your log files before writing them to disk
 func (o ServiceVclLoggingFtpOutput) PublicKey() pulumi.StringPtrOutput {
 	return o.ApplyT(func(v ServiceVclLoggingFtp) *string { return v.PublicKey }).(pulumi.StringPtrOutput)
@@ -10465,6 +10789,8 @@ type ServiceVclLoggingGc struct {
 	Period *int `pulumi:"period"`
 	// Where in the generated VCL the logging call should be placed.
 	Placement *string `pulumi:"placement"`
+	// Region where logs will be processed before streaming to BigQuery. Valid values are 'none', 'us' and 'eu'.
+	ProcessingRegion *string `pulumi:"processingRegion"`
 	// The ID of your Google Cloud Platform project
 	ProjectId *string `pulumi:"projectId"`
 	// Name of a condition to apply this logging.
@@ -10511,6 +10837,8 @@ type ServiceVclLoggingGcArgs struct {
 	Period pulumi.IntPtrInput `pulumi:"period"`
 	// Where in the generated VCL the logging call should be placed.
 	Placement pulumi.StringPtrInput `pulumi:"placement"`
+	// Region where logs will be processed before streaming to BigQuery. Valid values are 'none', 'us' and 'eu'.
+	ProcessingRegion pulumi.StringPtrInput `pulumi:"processingRegion"`
 	// The ID of your Google Cloud Platform project
 	ProjectId pulumi.StringPtrInput `pulumi:"projectId"`
 	// Name of a condition to apply this logging.
@@ -10629,6 +10957,11 @@ func (o ServiceVclLoggingGcOutput) Placement() pulumi.StringPtrOutput {
 	return o.ApplyT(func(v ServiceVclLoggingGc) *string { return v.Placement }).(pulumi.StringPtrOutput)
 }
 
+// Region where logs will be processed before streaming to BigQuery. Valid values are 'none', 'us' and 'eu'.
+func (o ServiceVclLoggingGcOutput) ProcessingRegion() pulumi.StringPtrOutput {
+	return o.ApplyT(func(v ServiceVclLoggingGc) *string { return v.ProcessingRegion }).(pulumi.StringPtrOutput)
+}
+
 // The ID of your Google Cloud Platform project
 func (o ServiceVclLoggingGcOutput) ProjectId() pulumi.StringPtrOutput {
 	return o.ApplyT(func(v ServiceVclLoggingGc) *string { return v.ProjectId }).(pulumi.StringPtrOutput)
@@ -10685,6 +11018,8 @@ type ServiceVclLoggingGooglepubsub struct {
 	Name string `pulumi:"name"`
 	// Where in the generated VCL the logging call should be placed.
 	Placement *string `pulumi:"placement"`
+	// Region where logs will be processed before streaming to BigQuery. Valid values are 'none', 'us' and 'eu'.
+	ProcessingRegion *string `pulumi:"processingRegion"`
 	// The ID of your Google Cloud Platform project
 	ProjectId string `pulumi:"projectId"`
 	// The name of an existing condition in the configured endpoint, or leave blank to always execute.
@@ -10719,6 +11054,8 @@ type ServiceVclLoggingGooglepubsubArgs struct {
 	Name pulumi.StringInput `pulumi:"name"`
 	// Where in the generated VCL the logging call should be placed.
 	Placement pulumi.StringPtrInput `pulumi:"placement"`
+	// Region where logs will be processed before streaming to BigQuery. Valid values are 'none', 'us' and 'eu'.
+	ProcessingRegion pulumi.StringPtrInput `pulumi:"processingRegion"`
 	// The ID of your Google Cloud Platform project
 	ProjectId pulumi.StringInput `pulumi:"projectId"`
 	// The name of an existing condition in the configured endpoint, or leave blank to always execute.
@@ -10807,6 +11144,11 @@ func (o ServiceVclLoggingGooglepubsubOutput) Placement() pulumi.StringPtrOutput 
 	return o.ApplyT(func(v ServiceVclLoggingGooglepubsub) *string { return v.Placement }).(pulumi.StringPtrOutput)
 }
 
+// Region where logs will be processed before streaming to BigQuery. Valid values are 'none', 'us' and 'eu'.
+func (o ServiceVclLoggingGooglepubsubOutput) ProcessingRegion() pulumi.StringPtrOutput {
+	return o.ApplyT(func(v ServiceVclLoggingGooglepubsub) *string { return v.ProcessingRegion }).(pulumi.StringPtrOutput)
+}
+
 // The ID of your Google Cloud Platform project
 func (o ServiceVclLoggingGooglepubsubOutput) ProjectId() pulumi.StringOutput {
 	return o.ApplyT(func(v ServiceVclLoggingGooglepubsub) string { return v.ProjectId }).(pulumi.StringOutput)
@@ -10863,6 +11205,8 @@ type ServiceVclLoggingGrafanacloudlog struct {
 	Name string `pulumi:"name"`
 	// Where in the generated VCL the logging call should be placed.
 	Placement *string `pulumi:"placement"`
+	// Region where logs will be processed before streaming to BigQuery. Valid values are 'none', 'us' and 'eu'.
+	ProcessingRegion *string `pulumi:"processingRegion"`
 	// The name of the condition to apply.
 	ResponseCondition *string `pulumi:"responseCondition"`
 	// The Access Policy Token key for your GrafanaCloudLogs account
@@ -10895,6 +11239,8 @@ type ServiceVclLoggingGrafanacloudlogArgs struct {
 	Name pulumi.StringInput `pulumi:"name"`
 	// Where in the generated VCL the logging call should be placed.
 	Placement pulumi.StringPtrInput `pulumi:"placement"`
+	// Region where logs will be processed before streaming to BigQuery. Valid values are 'none', 'us' and 'eu'.
+	ProcessingRegion pulumi.StringPtrInput `pulumi:"processingRegion"`
 	// The name of the condition to apply.
 	ResponseCondition pulumi.StringPtrInput `pulumi:"responseCondition"`
 	// The Access Policy Token key for your GrafanaCloudLogs account
@@ -10981,6 +11327,11 @@ func (o ServiceVclLoggingGrafanacloudlogOutput) Placement() pulumi.StringPtrOutp
 	return o.ApplyT(func(v ServiceVclLoggingGrafanacloudlog) *string { return v.Placement }).(pulumi.StringPtrOutput)
 }
 
+// Region where logs will be processed before streaming to BigQuery. Valid values are 'none', 'us' and 'eu'.
+func (o ServiceVclLoggingGrafanacloudlogOutput) ProcessingRegion() pulumi.StringPtrOutput {
+	return o.ApplyT(func(v ServiceVclLoggingGrafanacloudlog) *string { return v.ProcessingRegion }).(pulumi.StringPtrOutput)
+}
+
 // The name of the condition to apply.
 func (o ServiceVclLoggingGrafanacloudlogOutput) ResponseCondition() pulumi.StringPtrOutput {
 	return o.ApplyT(func(v ServiceVclLoggingGrafanacloudlog) *string { return v.ResponseCondition }).(pulumi.StringPtrOutput)
@@ -11030,6 +11381,8 @@ type ServiceVclLoggingHerokus struct {
 	Name string `pulumi:"name"`
 	// Where in the generated VCL the logging call should be placed. Can be `none` or `none`.
 	Placement *string `pulumi:"placement"`
+	// Region where logs will be processed before streaming to BigQuery. Valid values are 'none', 'us' and 'eu'.
+	ProcessingRegion *string `pulumi:"processingRegion"`
 	// The name of an existing condition in the configured endpoint, or leave blank to always execute.
 	ResponseCondition *string `pulumi:"responseCondition"`
 	// The token to use for authentication (https://www.heroku.com/docs/customer-token-authentication-token/)
@@ -11058,6 +11411,8 @@ type ServiceVclLoggingHerokusArgs struct {
 	Name pulumi.StringInput `pulumi:"name"`
 	// Where in the generated VCL the logging call should be placed. Can be `none` or `none`.
 	Placement pulumi.StringPtrInput `pulumi:"placement"`
+	// Region where logs will be processed before streaming to BigQuery. Valid values are 'none', 'us' and 'eu'.
+	ProcessingRegion pulumi.StringPtrInput `pulumi:"processingRegion"`
 	// The name of an existing condition in the configured endpoint, or leave blank to always execute.
 	ResponseCondition pulumi.StringPtrInput `pulumi:"responseCondition"`
 	// The token to use for authentication (https://www.heroku.com/docs/customer-token-authentication-token/)
@@ -11137,6 +11492,11 @@ func (o ServiceVclLoggingHerokusOutput) Placement() pulumi.StringPtrOutput {
 	return o.ApplyT(func(v ServiceVclLoggingHerokus) *string { return v.Placement }).(pulumi.StringPtrOutput)
 }
 
+// Region where logs will be processed before streaming to BigQuery. Valid values are 'none', 'us' and 'eu'.
+func (o ServiceVclLoggingHerokusOutput) ProcessingRegion() pulumi.StringPtrOutput {
+	return o.ApplyT(func(v ServiceVclLoggingHerokus) *string { return v.ProcessingRegion }).(pulumi.StringPtrOutput)
+}
+
 // The name of an existing condition in the configured endpoint, or leave blank to always execute.
 func (o ServiceVclLoggingHerokusOutput) ResponseCondition() pulumi.StringPtrOutput {
 	return o.ApplyT(func(v ServiceVclLoggingHerokus) *string { return v.ResponseCondition }).(pulumi.StringPtrOutput)
@@ -11183,6 +11543,8 @@ type ServiceVclLoggingHoneycomb struct {
 	Name string `pulumi:"name"`
 	// Where in the generated VCL the logging call should be placed. Can be `none` or `none`.
 	Placement *string `pulumi:"placement"`
+	// Region where logs will be processed before streaming to BigQuery. Valid values are 'none', 'us' and 'eu'.
+	ProcessingRegion *string `pulumi:"processingRegion"`
 	// The name of an existing condition in the configured endpoint, or leave blank to always execute.
 	ResponseCondition *string `pulumi:"responseCondition"`
 	// The Write Key from the Account page of your Honeycomb account
@@ -11211,6 +11573,8 @@ type ServiceVclLoggingHoneycombArgs struct {
 	Name pulumi.StringInput `pulumi:"name"`
 	// Where in the generated VCL the logging call should be placed. Can be `none` or `none`.
 	Placement pulumi.StringPtrInput `pulumi:"placement"`
+	// Region where logs will be processed before streaming to BigQuery. Valid values are 'none', 'us' and 'eu'.
+	ProcessingRegion pulumi.StringPtrInput `pulumi:"processingRegion"`
 	// The name of an existing condition in the configured endpoint, or leave blank to always execute.
 	ResponseCondition pulumi.StringPtrInput `pulumi:"responseCondition"`
 	// The Write Key from the Account page of your Honeycomb account
@@ -11293,6 +11657,11 @@ func (o ServiceVclLoggingHoneycombOutput) Placement() pulumi.StringPtrOutput {
 	return o.ApplyT(func(v ServiceVclLoggingHoneycomb) *string { return v.Placement }).(pulumi.StringPtrOutput)
 }
 
+// Region where logs will be processed before streaming to BigQuery. Valid values are 'none', 'us' and 'eu'.
+func (o ServiceVclLoggingHoneycombOutput) ProcessingRegion() pulumi.StringPtrOutput {
+	return o.ApplyT(func(v ServiceVclLoggingHoneycomb) *string { return v.ProcessingRegion }).(pulumi.StringPtrOutput)
+}
+
 // The name of an existing condition in the configured endpoint, or leave blank to always execute.
 func (o ServiceVclLoggingHoneycombOutput) ResponseCondition() pulumi.StringPtrOutput {
 	return o.ApplyT(func(v ServiceVclLoggingHoneycomb) *string { return v.ResponseCondition }).(pulumi.StringPtrOutput)
@@ -11344,6 +11713,8 @@ type ServiceVclLoggingHttp struct {
 	Name string `pulumi:"name"`
 	// Where in the generated VCL the logging call should be placed
 	Placement *string `pulumi:"placement"`
+	// Region where logs will be processed before streaming to BigQuery. Valid values are 'none', 'us' and 'eu'.
+	ProcessingRegion *string `pulumi:"processingRegion"`
 	// The maximum number of bytes sent in one request
 	RequestMaxBytes *int `pulumi:"requestMaxBytes"`
 	// The maximum number of logs sent in one request
@@ -11394,6 +11765,8 @@ type ServiceVclLoggingHttpArgs struct {
 	Name pulumi.StringInput `pulumi:"name"`
 	// Where in the generated VCL the logging call should be placed
 	Placement pulumi.StringPtrInput `pulumi:"placement"`
+	// Region where logs will be processed before streaming to BigQuery. Valid values are 'none', 'us' and 'eu'.
+	ProcessingRegion pulumi.StringPtrInput `pulumi:"processingRegion"`
 	// The maximum number of bytes sent in one request
 	RequestMaxBytes pulumi.IntPtrInput `pulumi:"requestMaxBytes"`
 	// The maximum number of logs sent in one request
@@ -11513,6 +11886,11 @@ func (o ServiceVclLoggingHttpOutput) Placement() pulumi.StringPtrOutput {
 	return o.ApplyT(func(v ServiceVclLoggingHttp) *string { return v.Placement }).(pulumi.StringPtrOutput)
 }
 
+// Region where logs will be processed before streaming to BigQuery. Valid values are 'none', 'us' and 'eu'.
+func (o ServiceVclLoggingHttpOutput) ProcessingRegion() pulumi.StringPtrOutput {
+	return o.ApplyT(func(v ServiceVclLoggingHttp) *string { return v.ProcessingRegion }).(pulumi.StringPtrOutput)
+}
+
 // The maximum number of bytes sent in one request
 func (o ServiceVclLoggingHttpOutput) RequestMaxBytes() pulumi.IntPtrOutput {
 	return o.ApplyT(func(v ServiceVclLoggingHttp) *int { return v.RequestMaxBytes }).(pulumi.IntPtrOutput)
@@ -11592,6 +11970,8 @@ type ServiceVclLoggingKafka struct {
 	Password *string `pulumi:"password"`
 	// Where in the generated VCL the logging call should be placed.
 	Placement *string `pulumi:"placement"`
+	// Region where logs will be processed before streaming to BigQuery. Valid values are 'none', 'us' and 'eu'.
+	ProcessingRegion *string `pulumi:"processingRegion"`
 	// Maximum size of log batch, if non-zero. Defaults to 0 for unbounded
 	RequestMaxBytes *int `pulumi:"requestMaxBytes"`
 	// The Number of acknowledgements a leader must receive before a write is considered successful. One of: `1` (default) One server needs to respond. `0` No servers need to respond. `-1` Wait for all in-sync replicas to respond
@@ -11644,6 +12024,8 @@ type ServiceVclLoggingKafkaArgs struct {
 	Password pulumi.StringPtrInput `pulumi:"password"`
 	// Where in the generated VCL the logging call should be placed.
 	Placement pulumi.StringPtrInput `pulumi:"placement"`
+	// Region where logs will be processed before streaming to BigQuery. Valid values are 'none', 'us' and 'eu'.
+	ProcessingRegion pulumi.StringPtrInput `pulumi:"processingRegion"`
 	// Maximum size of log batch, if non-zero. Defaults to 0 for unbounded
 	RequestMaxBytes pulumi.IntPtrInput `pulumi:"requestMaxBytes"`
 	// The Number of acknowledgements a leader must receive before a write is considered successful. One of: `1` (default) One server needs to respond. `0` No servers need to respond. `-1` Wait for all in-sync replicas to respond
@@ -11762,6 +12144,11 @@ func (o ServiceVclLoggingKafkaOutput) Placement() pulumi.StringPtrOutput {
 	return o.ApplyT(func(v ServiceVclLoggingKafka) *string { return v.Placement }).(pulumi.StringPtrOutput)
 }
 
+// Region where logs will be processed before streaming to BigQuery. Valid values are 'none', 'us' and 'eu'.
+func (o ServiceVclLoggingKafkaOutput) ProcessingRegion() pulumi.StringPtrOutput {
+	return o.ApplyT(func(v ServiceVclLoggingKafka) *string { return v.ProcessingRegion }).(pulumi.StringPtrOutput)
+}
+
 // Maximum size of log batch, if non-zero. Defaults to 0 for unbounded
 func (o ServiceVclLoggingKafkaOutput) RequestMaxBytes() pulumi.IntPtrOutput {
 	return o.ApplyT(func(v ServiceVclLoggingKafka) *int { return v.RequestMaxBytes }).(pulumi.IntPtrOutput)
@@ -11845,6 +12232,8 @@ type ServiceVclLoggingKinese struct {
 	Name string `pulumi:"name"`
 	// Where in the generated VCL the logging call should be placed. Can be `none` or `none`.
 	Placement *string `pulumi:"placement"`
+	// Region where logs will be processed before streaming to BigQuery. Valid values are 'none', 'us' and 'eu'.
+	ProcessingRegion *string `pulumi:"processingRegion"`
 	// The AWS region the stream resides in. (Default: `us-east-1`)
 	Region *string `pulumi:"region"`
 	// The name of an existing condition in the configured endpoint, or leave blank to always execute.
@@ -11879,6 +12268,8 @@ type ServiceVclLoggingKineseArgs struct {
 	Name pulumi.StringInput `pulumi:"name"`
 	// Where in the generated VCL the logging call should be placed. Can be `none` or `none`.
 	Placement pulumi.StringPtrInput `pulumi:"placement"`
+	// Region where logs will be processed before streaming to BigQuery. Valid values are 'none', 'us' and 'eu'.
+	ProcessingRegion pulumi.StringPtrInput `pulumi:"processingRegion"`
 	// The AWS region the stream resides in. (Default: `us-east-1`)
 	Region pulumi.StringPtrInput `pulumi:"region"`
 	// The name of an existing condition in the configured endpoint, or leave blank to always execute.
@@ -11970,6 +12361,11 @@ func (o ServiceVclLoggingKineseOutput) Placement() pulumi.StringPtrOutput {
 	return o.ApplyT(func(v ServiceVclLoggingKinese) *string { return v.Placement }).(pulumi.StringPtrOutput)
 }
 
+// Region where logs will be processed before streaming to BigQuery. Valid values are 'none', 'us' and 'eu'.
+func (o ServiceVclLoggingKineseOutput) ProcessingRegion() pulumi.StringPtrOutput {
+	return o.ApplyT(func(v ServiceVclLoggingKinese) *string { return v.ProcessingRegion }).(pulumi.StringPtrOutput)
+}
+
 // The AWS region the stream resides in. (Default: `us-east-1`)
 func (o ServiceVclLoggingKineseOutput) Region() pulumi.StringPtrOutput {
 	return o.ApplyT(func(v ServiceVclLoggingKinese) *string { return v.Region }).(pulumi.StringPtrOutput)
@@ -12021,6 +12417,8 @@ type ServiceVclLoggingLogentry struct {
 	Placement *string `pulumi:"placement"`
 	// The port number configured in Logentries
 	Port *int `pulumi:"port"`
+	// Region where logs will be processed before streaming to BigQuery. Valid values are 'none', 'us' and 'eu'.
+	ProcessingRegion *string `pulumi:"processingRegion"`
 	// Name of blockAttributes condition to apply this logging.
 	ResponseCondition *string `pulumi:"responseCondition"`
 	// Use token based authentication (https://logentries.com/doc/input-token/)
@@ -12051,6 +12449,8 @@ type ServiceVclLoggingLogentryArgs struct {
 	Placement pulumi.StringPtrInput `pulumi:"placement"`
 	// The port number configured in Logentries
 	Port pulumi.IntPtrInput `pulumi:"port"`
+	// Region where logs will be processed before streaming to BigQuery. Valid values are 'none', 'us' and 'eu'.
+	ProcessingRegion pulumi.StringPtrInput `pulumi:"processingRegion"`
 	// Name of blockAttributes condition to apply this logging.
 	ResponseCondition pulumi.StringPtrInput `pulumi:"responseCondition"`
 	// Use token based authentication (https://logentries.com/doc/input-token/)
@@ -12135,6 +12535,11 @@ func (o ServiceVclLoggingLogentryOutput) Port() pulumi.IntPtrOutput {
 	return o.ApplyT(func(v ServiceVclLoggingLogentry) *int { return v.Port }).(pulumi.IntPtrOutput)
 }
 
+// Region where logs will be processed before streaming to BigQuery. Valid values are 'none', 'us' and 'eu'.
+func (o ServiceVclLoggingLogentryOutput) ProcessingRegion() pulumi.StringPtrOutput {
+	return o.ApplyT(func(v ServiceVclLoggingLogentry) *string { return v.ProcessingRegion }).(pulumi.StringPtrOutput)
+}
+
 // Name of blockAttributes condition to apply this logging.
 func (o ServiceVclLoggingLogentryOutput) ResponseCondition() pulumi.StringPtrOutput {
 	return o.ApplyT(func(v ServiceVclLoggingLogentry) *string { return v.ResponseCondition }).(pulumi.StringPtrOutput)
@@ -12179,6 +12584,8 @@ type ServiceVclLoggingLoggly struct {
 	Name string `pulumi:"name"`
 	// Where in the generated VCL the logging call should be placed. Can be `none` or `none`.
 	Placement *string `pulumi:"placement"`
+	// Region where logs will be processed before streaming to BigQuery. Valid values are 'none', 'us' and 'eu'.
+	ProcessingRegion *string `pulumi:"processingRegion"`
 	// The name of an existing condition in the configured endpoint, or leave blank to always execute.
 	ResponseCondition *string `pulumi:"responseCondition"`
 	// The token to use for authentication (https://www.loggly.com/docs/customer-token-authentication-token/).
@@ -12205,6 +12612,8 @@ type ServiceVclLoggingLogglyArgs struct {
 	Name pulumi.StringInput `pulumi:"name"`
 	// Where in the generated VCL the logging call should be placed. Can be `none` or `none`.
 	Placement pulumi.StringPtrInput `pulumi:"placement"`
+	// Region where logs will be processed before streaming to BigQuery. Valid values are 'none', 'us' and 'eu'.
+	ProcessingRegion pulumi.StringPtrInput `pulumi:"processingRegion"`
 	// The name of an existing condition in the configured endpoint, or leave blank to always execute.
 	ResponseCondition pulumi.StringPtrInput `pulumi:"responseCondition"`
 	// The token to use for authentication (https://www.loggly.com/docs/customer-token-authentication-token/).
@@ -12282,6 +12691,11 @@ func (o ServiceVclLoggingLogglyOutput) Placement() pulumi.StringPtrOutput {
 	return o.ApplyT(func(v ServiceVclLoggingLoggly) *string { return v.Placement }).(pulumi.StringPtrOutput)
 }
 
+// Region where logs will be processed before streaming to BigQuery. Valid values are 'none', 'us' and 'eu'.
+func (o ServiceVclLoggingLogglyOutput) ProcessingRegion() pulumi.StringPtrOutput {
+	return o.ApplyT(func(v ServiceVclLoggingLoggly) *string { return v.ProcessingRegion }).(pulumi.StringPtrOutput)
+}
+
 // The name of an existing condition in the configured endpoint, or leave blank to always execute.
 func (o ServiceVclLoggingLogglyOutput) ResponseCondition() pulumi.StringPtrOutput {
 	return o.ApplyT(func(v ServiceVclLoggingLoggly) *string { return v.ResponseCondition }).(pulumi.StringPtrOutput)
@@ -12321,6 +12735,8 @@ type ServiceVclLoggingLogshuttle struct {
 	Name string `pulumi:"name"`
 	// Where in the generated VCL the logging call should be placed. Can be `none` or `none`.
 	Placement *string `pulumi:"placement"`
+	// Region where logs will be processed before streaming to BigQuery. Valid values are 'none', 'us' and 'eu'.
+	ProcessingRegion *string `pulumi:"processingRegion"`
 	// The name of an existing condition in the configured endpoint, or leave blank to always execute.
 	ResponseCondition *string `pulumi:"responseCondition"`
 	// The data authentication token associated with this endpoint
@@ -12349,6 +12765,8 @@ type ServiceVclLoggingLogshuttleArgs struct {
 	Name pulumi.StringInput `pulumi:"name"`
 	// Where in the generated VCL the logging call should be placed. Can be `none` or `none`.
 	Placement pulumi.StringPtrInput `pulumi:"placement"`
+	// Region where logs will be processed before streaming to BigQuery. Valid values are 'none', 'us' and 'eu'.
+	ProcessingRegion pulumi.StringPtrInput `pulumi:"processingRegion"`
 	// The name of an existing condition in the configured endpoint, or leave blank to always execute.
 	ResponseCondition pulumi.StringPtrInput `pulumi:"responseCondition"`
 	// The data authentication token associated with this endpoint
@@ -12428,6 +12846,11 @@ func (o ServiceVclLoggingLogshuttleOutput) Placement() pulumi.StringPtrOutput {
 	return o.ApplyT(func(v ServiceVclLoggingLogshuttle) *string { return v.Placement }).(pulumi.StringPtrOutput)
 }
 
+// Region where logs will be processed before streaming to BigQuery. Valid values are 'none', 'us' and 'eu'.
+func (o ServiceVclLoggingLogshuttleOutput) ProcessingRegion() pulumi.StringPtrOutput {
+	return o.ApplyT(func(v ServiceVclLoggingLogshuttle) *string { return v.ProcessingRegion }).(pulumi.StringPtrOutput)
+}
+
 // The name of an existing condition in the configured endpoint, or leave blank to always execute.
 func (o ServiceVclLoggingLogshuttleOutput) ResponseCondition() pulumi.StringPtrOutput {
 	return o.ApplyT(func(v ServiceVclLoggingLogshuttle) *string { return v.ResponseCondition }).(pulumi.StringPtrOutput)
@@ -12472,6 +12895,8 @@ type ServiceVclLoggingNewrelic struct {
 	Name string `pulumi:"name"`
 	// Where in the generated VCL the logging call should be placed.
 	Placement *string `pulumi:"placement"`
+	// Region where logs will be processed before streaming to BigQuery. Valid values are 'none', 'us' and 'eu'.
+	ProcessingRegion *string `pulumi:"processingRegion"`
 	// The region that log data will be sent to. Default: `US`
 	Region *string `pulumi:"region"`
 	// The name of the condition to apply.
@@ -12500,6 +12925,8 @@ type ServiceVclLoggingNewrelicArgs struct {
 	Name pulumi.StringInput `pulumi:"name"`
 	// Where in the generated VCL the logging call should be placed.
 	Placement pulumi.StringPtrInput `pulumi:"placement"`
+	// Region where logs will be processed before streaming to BigQuery. Valid values are 'none', 'us' and 'eu'.
+	ProcessingRegion pulumi.StringPtrInput `pulumi:"processingRegion"`
 	// The region that log data will be sent to. Default: `US`
 	Region pulumi.StringPtrInput `pulumi:"region"`
 	// The name of the condition to apply.
@@ -12579,6 +13006,11 @@ func (o ServiceVclLoggingNewrelicOutput) Placement() pulumi.StringPtrOutput {
 	return o.ApplyT(func(v ServiceVclLoggingNewrelic) *string { return v.Placement }).(pulumi.StringPtrOutput)
 }
 
+// Region where logs will be processed before streaming to BigQuery. Valid values are 'none', 'us' and 'eu'.
+func (o ServiceVclLoggingNewrelicOutput) ProcessingRegion() pulumi.StringPtrOutput {
+	return o.ApplyT(func(v ServiceVclLoggingNewrelic) *string { return v.ProcessingRegion }).(pulumi.StringPtrOutput)
+}
+
 // The region that log data will be sent to. Default: `US`
 func (o ServiceVclLoggingNewrelicOutput) Region() pulumi.StringPtrOutput {
 	return o.ApplyT(func(v ServiceVclLoggingNewrelic) *string { return v.Region }).(pulumi.StringPtrOutput)
@@ -12623,6 +13055,8 @@ type ServiceVclLoggingNewrelicotlp struct {
 	Name string `pulumi:"name"`
 	// Where in the generated VCL the logging call should be placed.
 	Placement *string `pulumi:"placement"`
+	// Region where logs will be processed before streaming to BigQuery. Valid values are 'none', 'us' and 'eu'.
+	ProcessingRegion *string `pulumi:"processingRegion"`
 	// The region that log data will be sent to. Default: `US`
 	Region *string `pulumi:"region"`
 	// The name of the condition to apply.
@@ -12653,6 +13087,8 @@ type ServiceVclLoggingNewrelicotlpArgs struct {
 	Name pulumi.StringInput `pulumi:"name"`
 	// Where in the generated VCL the logging call should be placed.
 	Placement pulumi.StringPtrInput `pulumi:"placement"`
+	// Region where logs will be processed before streaming to BigQuery. Valid values are 'none', 'us' and 'eu'.
+	ProcessingRegion pulumi.StringPtrInput `pulumi:"processingRegion"`
 	// The region that log data will be sent to. Default: `US`
 	Region pulumi.StringPtrInput `pulumi:"region"`
 	// The name of the condition to apply.
@@ -12734,6 +13170,11 @@ func (o ServiceVclLoggingNewrelicotlpOutput) Placement() pulumi.StringPtrOutput 
 	return o.ApplyT(func(v ServiceVclLoggingNewrelicotlp) *string { return v.Placement }).(pulumi.StringPtrOutput)
 }
 
+// Region where logs will be processed before streaming to BigQuery. Valid values are 'none', 'us' and 'eu'.
+func (o ServiceVclLoggingNewrelicotlpOutput) ProcessingRegion() pulumi.StringPtrOutput {
+	return o.ApplyT(func(v ServiceVclLoggingNewrelicotlp) *string { return v.ProcessingRegion }).(pulumi.StringPtrOutput)
+}
+
 // The region that log data will be sent to. Default: `US`
 func (o ServiceVclLoggingNewrelicotlpOutput) Region() pulumi.StringPtrOutput {
 	return o.ApplyT(func(v ServiceVclLoggingNewrelicotlp) *string { return v.Region }).(pulumi.StringPtrOutput)
@@ -12797,6 +13238,8 @@ type ServiceVclLoggingOpenstack struct {
 	Period *int `pulumi:"period"`
 	// Where in the generated VCL the logging call should be placed. Can be `none` or `none`.
 	Placement *string `pulumi:"placement"`
+	// Region where logs will be processed before streaming to BigQuery. Valid values are 'none', 'us' and 'eu'.
+	ProcessingRegion *string `pulumi:"processingRegion"`
 	// A PGP public key that Fastly will use to encrypt your log files before writing them to disk
 	PublicKey *string `pulumi:"publicKey"`
 	// The name of an existing condition in the configured endpoint, or leave blank to always execute.
@@ -12843,6 +13286,8 @@ type ServiceVclLoggingOpenstackArgs struct {
 	Period pulumi.IntPtrInput `pulumi:"period"`
 	// Where in the generated VCL the logging call should be placed. Can be `none` or `none`.
 	Placement pulumi.StringPtrInput `pulumi:"placement"`
+	// Region where logs will be processed before streaming to BigQuery. Valid values are 'none', 'us' and 'eu'.
+	ProcessingRegion pulumi.StringPtrInput `pulumi:"processingRegion"`
 	// A PGP public key that Fastly will use to encrypt your log files before writing them to disk
 	PublicKey pulumi.StringPtrInput `pulumi:"publicKey"`
 	// The name of an existing condition in the configured endpoint, or leave blank to always execute.
@@ -12961,6 +13406,11 @@ func (o ServiceVclLoggingOpenstackOutput) Placement() pulumi.StringPtrOutput {
 	return o.ApplyT(func(v ServiceVclLoggingOpenstack) *string { return v.Placement }).(pulumi.StringPtrOutput)
 }
 
+// Region where logs will be processed before streaming to BigQuery. Valid values are 'none', 'us' and 'eu'.
+func (o ServiceVclLoggingOpenstackOutput) ProcessingRegion() pulumi.StringPtrOutput {
+	return o.ApplyT(func(v ServiceVclLoggingOpenstack) *string { return v.ProcessingRegion }).(pulumi.StringPtrOutput)
+}
+
 // A PGP public key that Fastly will use to encrypt your log files before writing them to disk
 func (o ServiceVclLoggingOpenstackOutput) PublicKey() pulumi.StringPtrOutput {
 	return o.ApplyT(func(v ServiceVclLoggingOpenstack) *string { return v.PublicKey }).(pulumi.StringPtrOutput)
@@ -13019,6 +13469,8 @@ type ServiceVclLoggingPapertrail struct {
 	Placement *string `pulumi:"placement"`
 	// The port associated with the address where the Papertrail endpoint can be accessed
 	Port int `pulumi:"port"`
+	// Region where logs will be processed before streaming to BigQuery. Valid values are 'none', 'us' and 'eu'.
+	ProcessingRegion *string `pulumi:"processingRegion"`
 	// The name of an existing condition in the configured endpoint, or leave blank to always execute
 	ResponseCondition *string `pulumi:"responseCondition"`
 }
@@ -13047,6 +13499,8 @@ type ServiceVclLoggingPapertrailArgs struct {
 	Placement pulumi.StringPtrInput `pulumi:"placement"`
 	// The port associated with the address where the Papertrail endpoint can be accessed
 	Port pulumi.IntInput `pulumi:"port"`
+	// Region where logs will be processed before streaming to BigQuery. Valid values are 'none', 'us' and 'eu'.
+	ProcessingRegion pulumi.StringPtrInput `pulumi:"processingRegion"`
 	// The name of an existing condition in the configured endpoint, or leave blank to always execute
 	ResponseCondition pulumi.StringPtrInput `pulumi:"responseCondition"`
 }
@@ -13132,6 +13586,11 @@ func (o ServiceVclLoggingPapertrailOutput) Port() pulumi.IntOutput {
 	return o.ApplyT(func(v ServiceVclLoggingPapertrail) int { return v.Port }).(pulumi.IntOutput)
 }
 
+// Region where logs will be processed before streaming to BigQuery. Valid values are 'none', 'us' and 'eu'.
+func (o ServiceVclLoggingPapertrailOutput) ProcessingRegion() pulumi.StringPtrOutput {
+	return o.ApplyT(func(v ServiceVclLoggingPapertrail) *string { return v.ProcessingRegion }).(pulumi.StringPtrOutput)
+}
+
 // The name of an existing condition in the configured endpoint, or leave blank to always execute
 func (o ServiceVclLoggingPapertrailOutput) ResponseCondition() pulumi.StringPtrOutput {
 	return o.ApplyT(func(v ServiceVclLoggingPapertrail) *string { return v.ResponseCondition }).(pulumi.StringPtrOutput)
@@ -13184,6 +13643,8 @@ type ServiceVclLoggingS3 struct {
 	Period *int `pulumi:"period"`
 	// Where in the generated VCL the logging call should be placed.
 	Placement *string `pulumi:"placement"`
+	// Region where logs will be processed before streaming to BigQuery. Valid values are 'none', 'us' and 'eu'.
+	ProcessingRegion *string `pulumi:"processingRegion"`
 	// A PGP public key that Fastly will use to encrypt your log files before writing them to disk
 	PublicKey *string `pulumi:"publicKey"`
 	// The S3 storage class (redundancy level). Should be one of: `standard`, `intelligentTiering`, `standardIa`, `onezoneIa`, `glacier`, `glacierIr`, `deepArchive`, or `reducedRedundancy`
@@ -13242,6 +13703,8 @@ type ServiceVclLoggingS3Args struct {
 	Period pulumi.IntPtrInput `pulumi:"period"`
 	// Where in the generated VCL the logging call should be placed.
 	Placement pulumi.StringPtrInput `pulumi:"placement"`
+	// Region where logs will be processed before streaming to BigQuery. Valid values are 'none', 'us' and 'eu'.
+	ProcessingRegion pulumi.StringPtrInput `pulumi:"processingRegion"`
 	// A PGP public key that Fastly will use to encrypt your log files before writing them to disk
 	PublicKey pulumi.StringPtrInput `pulumi:"publicKey"`
 	// The S3 storage class (redundancy level). Should be one of: `standard`, `intelligentTiering`, `standardIa`, `onezoneIa`, `glacier`, `glacierIr`, `deepArchive`, or `reducedRedundancy`
@@ -13378,6 +13841,11 @@ func (o ServiceVclLoggingS3Output) Placement() pulumi.StringPtrOutput {
 	return o.ApplyT(func(v ServiceVclLoggingS3) *string { return v.Placement }).(pulumi.StringPtrOutput)
 }
 
+// Region where logs will be processed before streaming to BigQuery. Valid values are 'none', 'us' and 'eu'.
+func (o ServiceVclLoggingS3Output) ProcessingRegion() pulumi.StringPtrOutput {
+	return o.ApplyT(func(v ServiceVclLoggingS3) *string { return v.ProcessingRegion }).(pulumi.StringPtrOutput)
+}
+
 // A PGP public key that Fastly will use to encrypt your log files before writing them to disk
 func (o ServiceVclLoggingS3Output) PublicKey() pulumi.StringPtrOutput {
 	return o.ApplyT(func(v ServiceVclLoggingS3) *string { return v.PublicKey }).(pulumi.StringPtrOutput)
@@ -13452,6 +13920,8 @@ type ServiceVclLoggingScalyr struct {
 	Name string `pulumi:"name"`
 	// Where in the generated VCL the logging call should be placed.
 	Placement *string `pulumi:"placement"`
+	// Region where logs will be processed before streaming to BigQuery. Valid values are 'none', 'us' and 'eu'.
+	ProcessingRegion *string `pulumi:"processingRegion"`
 	// The name of the logfile field sent to Scalyr
 	ProjectId *string `pulumi:"projectId"`
 	// The region that log data will be sent to. One of `US` or `EU`. Defaults to `US` if undefined
@@ -13482,6 +13952,8 @@ type ServiceVclLoggingScalyrArgs struct {
 	Name pulumi.StringInput `pulumi:"name"`
 	// Where in the generated VCL the logging call should be placed.
 	Placement pulumi.StringPtrInput `pulumi:"placement"`
+	// Region where logs will be processed before streaming to BigQuery. Valid values are 'none', 'us' and 'eu'.
+	ProcessingRegion pulumi.StringPtrInput `pulumi:"processingRegion"`
 	// The name of the logfile field sent to Scalyr
 	ProjectId pulumi.StringPtrInput `pulumi:"projectId"`
 	// The region that log data will be sent to. One of `US` or `EU`. Defaults to `US` if undefined
@@ -13563,6 +14035,11 @@ func (o ServiceVclLoggingScalyrOutput) Placement() pulumi.StringPtrOutput {
 	return o.ApplyT(func(v ServiceVclLoggingScalyr) *string { return v.Placement }).(pulumi.StringPtrOutput)
 }
 
+// Region where logs will be processed before streaming to BigQuery. Valid values are 'none', 'us' and 'eu'.
+func (o ServiceVclLoggingScalyrOutput) ProcessingRegion() pulumi.StringPtrOutput {
+	return o.ApplyT(func(v ServiceVclLoggingScalyr) *string { return v.ProcessingRegion }).(pulumi.StringPtrOutput)
+}
+
 // The name of the logfile field sent to Scalyr
 func (o ServiceVclLoggingScalyrOutput) ProjectId() pulumi.StringPtrOutput {
 	return o.ApplyT(func(v ServiceVclLoggingScalyr) *string { return v.ProjectId }).(pulumi.StringPtrOutput)
@@ -13628,6 +14105,8 @@ type ServiceVclLoggingSftp struct {
 	Placement *string `pulumi:"placement"`
 	// The port the SFTP service listens on. (Default: `22`)
 	Port *int `pulumi:"port"`
+	// Region where logs will be processed before streaming to BigQuery. Valid values are 'none', 'us' and 'eu'.
+	ProcessingRegion *string `pulumi:"processingRegion"`
 	// A PGP public key that Fastly will use to encrypt your log files before writing them to disk
 	PublicKey *string `pulumi:"publicKey"`
 	// The name of the condition to apply.
@@ -13678,6 +14157,8 @@ type ServiceVclLoggingSftpArgs struct {
 	Placement pulumi.StringPtrInput `pulumi:"placement"`
 	// The port the SFTP service listens on. (Default: `22`)
 	Port pulumi.IntPtrInput `pulumi:"port"`
+	// Region where logs will be processed before streaming to BigQuery. Valid values are 'none', 'us' and 'eu'.
+	ProcessingRegion pulumi.StringPtrInput `pulumi:"processingRegion"`
 	// A PGP public key that Fastly will use to encrypt your log files before writing them to disk
 	PublicKey pulumi.StringPtrInput `pulumi:"publicKey"`
 	// The name of the condition to apply.
@@ -13803,6 +14284,11 @@ func (o ServiceVclLoggingSftpOutput) Port() pulumi.IntPtrOutput {
 	return o.ApplyT(func(v ServiceVclLoggingSftp) *int { return v.Port }).(pulumi.IntPtrOutput)
 }
 
+// Region where logs will be processed before streaming to BigQuery. Valid values are 'none', 'us' and 'eu'.
+func (o ServiceVclLoggingSftpOutput) ProcessingRegion() pulumi.StringPtrOutput {
+	return o.ApplyT(func(v ServiceVclLoggingSftp) *string { return v.ProcessingRegion }).(pulumi.StringPtrOutput)
+}
+
 // A PGP public key that Fastly will use to encrypt your log files before writing them to disk
 func (o ServiceVclLoggingSftpOutput) PublicKey() pulumi.StringPtrOutput {
 	return o.ApplyT(func(v ServiceVclLoggingSftp) *string { return v.PublicKey }).(pulumi.StringPtrOutput)
@@ -13862,6 +14348,8 @@ type ServiceVclLoggingSplunk struct {
 	Name string `pulumi:"name"`
 	// Where in the generated VCL the logging call should be placed
 	Placement *string `pulumi:"placement"`
+	// Region where logs will be processed before streaming to BigQuery. Valid values are 'none', 'us' and 'eu'.
+	ProcessingRegion *string `pulumi:"processingRegion"`
 	// The name of the condition to apply
 	ResponseCondition *string `pulumi:"responseCondition"`
 	// A secure certificate to authenticate the server with. Must be in PEM format. You can provide this certificate via an environment variable, `FASTLY_SPLUNK_CA_CERT`
@@ -13900,6 +14388,8 @@ type ServiceVclLoggingSplunkArgs struct {
 	Name pulumi.StringInput `pulumi:"name"`
 	// Where in the generated VCL the logging call should be placed
 	Placement pulumi.StringPtrInput `pulumi:"placement"`
+	// Region where logs will be processed before streaming to BigQuery. Valid values are 'none', 'us' and 'eu'.
+	ProcessingRegion pulumi.StringPtrInput `pulumi:"processingRegion"`
 	// The name of the condition to apply
 	ResponseCondition pulumi.StringPtrInput `pulumi:"responseCondition"`
 	// A secure certificate to authenticate the server with. Must be in PEM format. You can provide this certificate via an environment variable, `FASTLY_SPLUNK_CA_CERT`
@@ -13989,6 +14479,11 @@ func (o ServiceVclLoggingSplunkOutput) Placement() pulumi.StringPtrOutput {
 	return o.ApplyT(func(v ServiceVclLoggingSplunk) *string { return v.Placement }).(pulumi.StringPtrOutput)
 }
 
+// Region where logs will be processed before streaming to BigQuery. Valid values are 'none', 'us' and 'eu'.
+func (o ServiceVclLoggingSplunkOutput) ProcessingRegion() pulumi.StringPtrOutput {
+	return o.ApplyT(func(v ServiceVclLoggingSplunk) *string { return v.ProcessingRegion }).(pulumi.StringPtrOutput)
+}
+
 // The name of the condition to apply
 func (o ServiceVclLoggingSplunkOutput) ResponseCondition() pulumi.StringPtrOutput {
 	return o.ApplyT(func(v ServiceVclLoggingSplunk) *string { return v.ResponseCondition }).(pulumi.StringPtrOutput)
@@ -14060,6 +14555,8 @@ type ServiceVclLoggingSumologic struct {
 	Name string `pulumi:"name"`
 	// Where in the generated VCL the logging call should be placed.
 	Placement *string `pulumi:"placement"`
+	// Region where logs will be processed before streaming to BigQuery. Valid values are 'none', 'us' and 'eu'.
+	ProcessingRegion *string `pulumi:"processingRegion"`
 	// Name of blockAttributes condition to apply this logging.
 	ResponseCondition *string `pulumi:"responseCondition"`
 	// The URL to Sumologic collector endpoint
@@ -14088,6 +14585,8 @@ type ServiceVclLoggingSumologicArgs struct {
 	Name pulumi.StringInput `pulumi:"name"`
 	// Where in the generated VCL the logging call should be placed.
 	Placement pulumi.StringPtrInput `pulumi:"placement"`
+	// Region where logs will be processed before streaming to BigQuery. Valid values are 'none', 'us' and 'eu'.
+	ProcessingRegion pulumi.StringPtrInput `pulumi:"processingRegion"`
 	// Name of blockAttributes condition to apply this logging.
 	ResponseCondition pulumi.StringPtrInput `pulumi:"responseCondition"`
 	// The URL to Sumologic collector endpoint
@@ -14170,6 +14669,11 @@ func (o ServiceVclLoggingSumologicOutput) Placement() pulumi.StringPtrOutput {
 	return o.ApplyT(func(v ServiceVclLoggingSumologic) *string { return v.Placement }).(pulumi.StringPtrOutput)
 }
 
+// Region where logs will be processed before streaming to BigQuery. Valid values are 'none', 'us' and 'eu'.
+func (o ServiceVclLoggingSumologicOutput) ProcessingRegion() pulumi.StringPtrOutput {
+	return o.ApplyT(func(v ServiceVclLoggingSumologic) *string { return v.ProcessingRegion }).(pulumi.StringPtrOutput)
+}
+
 // Name of blockAttributes condition to apply this logging.
 func (o ServiceVclLoggingSumologicOutput) ResponseCondition() pulumi.StringPtrOutput {
 	return o.ApplyT(func(v ServiceVclLoggingSumologic) *string { return v.ResponseCondition }).(pulumi.StringPtrOutput)
@@ -14215,6 +14719,8 @@ type ServiceVclLoggingSyslog struct {
 	Placement *string `pulumi:"placement"`
 	// The port associated with the address where the Syslog endpoint can be accessed. Default `514`
 	Port *int `pulumi:"port"`
+	// Region where logs will be processed before streaming to BigQuery. Valid values are 'none', 'us' and 'eu'.
+	ProcessingRegion *string `pulumi:"processingRegion"`
 	// Name of blockAttributes condition to apply this logging.
 	ResponseCondition *string `pulumi:"responseCondition"`
 	// A secure certificate to authenticate the server with. Must be in PEM format. You can provide this certificate via an environment variable, `FASTLY_SYSLOG_CA_CERT`
@@ -14257,6 +14763,8 @@ type ServiceVclLoggingSyslogArgs struct {
 	Placement pulumi.StringPtrInput `pulumi:"placement"`
 	// The port associated with the address where the Syslog endpoint can be accessed. Default `514`
 	Port pulumi.IntPtrInput `pulumi:"port"`
+	// Region where logs will be processed before streaming to BigQuery. Valid values are 'none', 'us' and 'eu'.
+	ProcessingRegion pulumi.StringPtrInput `pulumi:"processingRegion"`
 	// Name of blockAttributes condition to apply this logging.
 	ResponseCondition pulumi.StringPtrInput `pulumi:"responseCondition"`
 	// A secure certificate to authenticate the server with. Must be in PEM format. You can provide this certificate via an environment variable, `FASTLY_SYSLOG_CA_CERT`
@@ -14357,6 +14865,11 @@ func (o ServiceVclLoggingSyslogOutput) Placement() pulumi.StringPtrOutput {
 // The port associated with the address where the Syslog endpoint can be accessed. Default `514`
 func (o ServiceVclLoggingSyslogOutput) Port() pulumi.IntPtrOutput {
 	return o.ApplyT(func(v ServiceVclLoggingSyslog) *int { return v.Port }).(pulumi.IntPtrOutput)
+}
+
+// Region where logs will be processed before streaming to BigQuery. Valid values are 'none', 'us' and 'eu'.
+func (o ServiceVclLoggingSyslogOutput) ProcessingRegion() pulumi.StringPtrOutput {
+	return o.ApplyT(func(v ServiceVclLoggingSyslog) *string { return v.ProcessingRegion }).(pulumi.StringPtrOutput)
 }
 
 // Name of blockAttributes condition to apply this logging.

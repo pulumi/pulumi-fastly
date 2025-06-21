@@ -23,6 +23,11 @@ public final class ServiceComputeLoggingGooglepubsub {
      */
     private String name;
     /**
+     * @return Region where logs will be processed before streaming to BigQuery. Valid values are &#39;none&#39;, &#39;us&#39; and &#39;eu&#39;.
+     * 
+     */
+    private @Nullable String processingRegion;
+    /**
      * @return The ID of your Google Cloud Platform project
      * 
      */
@@ -57,6 +62,13 @@ public final class ServiceComputeLoggingGooglepubsub {
      */
     public String name() {
         return this.name;
+    }
+    /**
+     * @return Region where logs will be processed before streaming to BigQuery. Valid values are &#39;none&#39;, &#39;us&#39; and &#39;eu&#39;.
+     * 
+     */
+    public Optional<String> processingRegion() {
+        return Optional.ofNullable(this.processingRegion);
     }
     /**
      * @return The ID of your Google Cloud Platform project
@@ -98,6 +110,7 @@ public final class ServiceComputeLoggingGooglepubsub {
     public static final class Builder {
         private @Nullable String accountName;
         private String name;
+        private @Nullable String processingRegion;
         private String projectId;
         private String secretKey;
         private String topic;
@@ -107,6 +120,7 @@ public final class ServiceComputeLoggingGooglepubsub {
     	      Objects.requireNonNull(defaults);
     	      this.accountName = defaults.accountName;
     	      this.name = defaults.name;
+    	      this.processingRegion = defaults.processingRegion;
     	      this.projectId = defaults.projectId;
     	      this.secretKey = defaults.secretKey;
     	      this.topic = defaults.topic;
@@ -125,6 +139,12 @@ public final class ServiceComputeLoggingGooglepubsub {
               throw new MissingRequiredPropertyException("ServiceComputeLoggingGooglepubsub", "name");
             }
             this.name = name;
+            return this;
+        }
+        @CustomType.Setter
+        public Builder processingRegion(@Nullable String processingRegion) {
+
+            this.processingRegion = processingRegion;
             return this;
         }
         @CustomType.Setter
@@ -163,6 +183,7 @@ public final class ServiceComputeLoggingGooglepubsub {
             final var _resultValue = new ServiceComputeLoggingGooglepubsub();
             _resultValue.accountName = accountName;
             _resultValue.name = name;
+            _resultValue.processingRegion = processingRegion;
             _resultValue.projectId = projectId;
             _resultValue.secretKey = secretKey;
             _resultValue.topic = topic;

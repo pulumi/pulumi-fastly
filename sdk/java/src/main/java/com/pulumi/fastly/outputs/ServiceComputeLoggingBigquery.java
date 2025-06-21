@@ -33,6 +33,11 @@ public final class ServiceComputeLoggingBigquery {
      */
     private String name;
     /**
+     * @return Region where logs will be processed before streaming to BigQuery. Valid values are &#39;none&#39;, &#39;us&#39; and &#39;eu&#39;.
+     * 
+     */
+    private @Nullable String processingRegion;
+    /**
      * @return The ID of your GCP project
      * 
      */
@@ -83,6 +88,13 @@ public final class ServiceComputeLoggingBigquery {
         return this.name;
     }
     /**
+     * @return Region where logs will be processed before streaming to BigQuery. Valid values are &#39;none&#39;, &#39;us&#39; and &#39;eu&#39;.
+     * 
+     */
+    public Optional<String> processingRegion() {
+        return Optional.ofNullable(this.processingRegion);
+    }
+    /**
      * @return The ID of your GCP project
      * 
      */
@@ -124,6 +136,7 @@ public final class ServiceComputeLoggingBigquery {
         private String dataset;
         private String email;
         private String name;
+        private @Nullable String processingRegion;
         private String projectId;
         private String secretKey;
         private String table;
@@ -135,6 +148,7 @@ public final class ServiceComputeLoggingBigquery {
     	      this.dataset = defaults.dataset;
     	      this.email = defaults.email;
     	      this.name = defaults.name;
+    	      this.processingRegion = defaults.processingRegion;
     	      this.projectId = defaults.projectId;
     	      this.secretKey = defaults.secretKey;
     	      this.table = defaults.table;
@@ -169,6 +183,12 @@ public final class ServiceComputeLoggingBigquery {
               throw new MissingRequiredPropertyException("ServiceComputeLoggingBigquery", "name");
             }
             this.name = name;
+            return this;
+        }
+        @CustomType.Setter
+        public Builder processingRegion(@Nullable String processingRegion) {
+
+            this.processingRegion = processingRegion;
             return this;
         }
         @CustomType.Setter
@@ -207,6 +227,7 @@ public final class ServiceComputeLoggingBigquery {
             _resultValue.dataset = dataset;
             _resultValue.email = email;
             _resultValue.name = name;
+            _resultValue.processingRegion = processingRegion;
             _resultValue.projectId = projectId;
             _resultValue.secretKey = secretKey;
             _resultValue.table = table;

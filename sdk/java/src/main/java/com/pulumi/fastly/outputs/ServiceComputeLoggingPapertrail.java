@@ -8,6 +8,8 @@ import com.pulumi.exceptions.MissingRequiredPropertyException;
 import java.lang.Integer;
 import java.lang.String;
 import java.util.Objects;
+import java.util.Optional;
+import javax.annotation.Nullable;
 
 @CustomType
 public final class ServiceComputeLoggingPapertrail {
@@ -26,6 +28,11 @@ public final class ServiceComputeLoggingPapertrail {
      * 
      */
     private Integer port;
+    /**
+     * @return Region where logs will be processed before streaming to BigQuery. Valid values are &#39;none&#39;, &#39;us&#39; and &#39;eu&#39;.
+     * 
+     */
+    private @Nullable String processingRegion;
 
     private ServiceComputeLoggingPapertrail() {}
     /**
@@ -49,6 +56,13 @@ public final class ServiceComputeLoggingPapertrail {
     public Integer port() {
         return this.port;
     }
+    /**
+     * @return Region where logs will be processed before streaming to BigQuery. Valid values are &#39;none&#39;, &#39;us&#39; and &#39;eu&#39;.
+     * 
+     */
+    public Optional<String> processingRegion() {
+        return Optional.ofNullable(this.processingRegion);
+    }
 
     public static Builder builder() {
         return new Builder();
@@ -62,12 +76,14 @@ public final class ServiceComputeLoggingPapertrail {
         private String address;
         private String name;
         private Integer port;
+        private @Nullable String processingRegion;
         public Builder() {}
         public Builder(ServiceComputeLoggingPapertrail defaults) {
     	      Objects.requireNonNull(defaults);
     	      this.address = defaults.address;
     	      this.name = defaults.name;
     	      this.port = defaults.port;
+    	      this.processingRegion = defaults.processingRegion;
         }
 
         @CustomType.Setter
@@ -94,11 +110,18 @@ public final class ServiceComputeLoggingPapertrail {
             this.port = port;
             return this;
         }
+        @CustomType.Setter
+        public Builder processingRegion(@Nullable String processingRegion) {
+
+            this.processingRegion = processingRegion;
+            return this;
+        }
         public ServiceComputeLoggingPapertrail build() {
             final var _resultValue = new ServiceComputeLoggingPapertrail();
             _resultValue.address = address;
             _resultValue.name = name;
             _resultValue.port = port;
+            _resultValue.processingRegion = processingRegion;
             return _resultValue;
         }
     }

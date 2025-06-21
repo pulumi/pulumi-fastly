@@ -17,6 +17,20 @@ import javax.annotation.Nullable;
 @ResourceType(type="fastly:index/domainV1:DomainV1")
 public class DomainV1 extends com.pulumi.resources.CustomResource {
     /**
+     * The description for your domain.
+     * 
+     */
+    @Export(name="description", refs={String.class}, tree="[0]")
+    private Output</* @Nullable */ String> description;
+
+    /**
+     * @return The description for your domain.
+     * 
+     */
+    public Output<Optional<String>> description() {
+        return Codegen.optional(this.description);
+    }
+    /**
      * The Domain Identifier (UUID).
      * 
      */

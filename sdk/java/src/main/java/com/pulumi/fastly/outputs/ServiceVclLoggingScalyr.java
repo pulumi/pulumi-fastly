@@ -34,6 +34,11 @@ public final class ServiceVclLoggingScalyr {
      */
     private @Nullable String placement;
     /**
+     * @return Region where logs will be processed before streaming to BigQuery. Valid values are &#39;none&#39;, &#39;us&#39; and &#39;eu&#39;.
+     * 
+     */
+    private @Nullable String processingRegion;
+    /**
      * @return The name of the logfile field sent to Scalyr
      * 
      */
@@ -84,6 +89,13 @@ public final class ServiceVclLoggingScalyr {
         return Optional.ofNullable(this.placement);
     }
     /**
+     * @return Region where logs will be processed before streaming to BigQuery. Valid values are &#39;none&#39;, &#39;us&#39; and &#39;eu&#39;.
+     * 
+     */
+    public Optional<String> processingRegion() {
+        return Optional.ofNullable(this.processingRegion);
+    }
+    /**
      * @return The name of the logfile field sent to Scalyr
      * 
      */
@@ -125,6 +137,7 @@ public final class ServiceVclLoggingScalyr {
         private @Nullable Integer formatVersion;
         private String name;
         private @Nullable String placement;
+        private @Nullable String processingRegion;
         private @Nullable String projectId;
         private @Nullable String region;
         private @Nullable String responseCondition;
@@ -136,6 +149,7 @@ public final class ServiceVclLoggingScalyr {
     	      this.formatVersion = defaults.formatVersion;
     	      this.name = defaults.name;
     	      this.placement = defaults.placement;
+    	      this.processingRegion = defaults.processingRegion;
     	      this.projectId = defaults.projectId;
     	      this.region = defaults.region;
     	      this.responseCondition = defaults.responseCondition;
@@ -166,6 +180,12 @@ public final class ServiceVclLoggingScalyr {
         public Builder placement(@Nullable String placement) {
 
             this.placement = placement;
+            return this;
+        }
+        @CustomType.Setter
+        public Builder processingRegion(@Nullable String processingRegion) {
+
+            this.processingRegion = processingRegion;
             return this;
         }
         @CustomType.Setter
@@ -200,6 +220,7 @@ public final class ServiceVclLoggingScalyr {
             _resultValue.formatVersion = formatVersion;
             _resultValue.name = name;
             _resultValue.placement = placement;
+            _resultValue.processingRegion = processingRegion;
             _resultValue.projectId = projectId;
             _resultValue.region = region;
             _resultValue.responseCondition = responseCondition;

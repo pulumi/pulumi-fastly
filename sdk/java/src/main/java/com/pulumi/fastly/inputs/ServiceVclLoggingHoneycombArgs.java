@@ -93,6 +93,21 @@ public final class ServiceVclLoggingHoneycombArgs extends com.pulumi.resources.R
     }
 
     /**
+     * Region where logs will be processed before streaming to BigQuery. Valid values are &#39;none&#39;, &#39;us&#39; and &#39;eu&#39;.
+     * 
+     */
+    @Import(name="processingRegion")
+    private @Nullable Output<String> processingRegion;
+
+    /**
+     * @return Region where logs will be processed before streaming to BigQuery. Valid values are &#39;none&#39;, &#39;us&#39; and &#39;eu&#39;.
+     * 
+     */
+    public Optional<Output<String>> processingRegion() {
+        return Optional.ofNullable(this.processingRegion);
+    }
+
+    /**
      * The name of an existing condition in the configured endpoint, or leave blank to always execute.
      * 
      */
@@ -130,6 +145,7 @@ public final class ServiceVclLoggingHoneycombArgs extends com.pulumi.resources.R
         this.formatVersion = $.formatVersion;
         this.name = $.name;
         this.placement = $.placement;
+        this.processingRegion = $.processingRegion;
         this.responseCondition = $.responseCondition;
         this.token = $.token;
     }
@@ -255,6 +271,27 @@ public final class ServiceVclLoggingHoneycombArgs extends com.pulumi.resources.R
          */
         public Builder placement(String placement) {
             return placement(Output.of(placement));
+        }
+
+        /**
+         * @param processingRegion Region where logs will be processed before streaming to BigQuery. Valid values are &#39;none&#39;, &#39;us&#39; and &#39;eu&#39;.
+         * 
+         * @return builder
+         * 
+         */
+        public Builder processingRegion(@Nullable Output<String> processingRegion) {
+            $.processingRegion = processingRegion;
+            return this;
+        }
+
+        /**
+         * @param processingRegion Region where logs will be processed before streaming to BigQuery. Valid values are &#39;none&#39;, &#39;us&#39; and &#39;eu&#39;.
+         * 
+         * @return builder
+         * 
+         */
+        public Builder processingRegion(String processingRegion) {
+            return processingRegion(Output.of(processingRegion));
         }
 
         /**

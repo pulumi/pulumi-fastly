@@ -123,6 +123,21 @@ public final class ServiceComputeLoggingHttpArgs extends com.pulumi.resources.Re
     }
 
     /**
+     * Region where logs will be processed before streaming to BigQuery. Valid values are &#39;none&#39;, &#39;us&#39; and &#39;eu&#39;.
+     * 
+     */
+    @Import(name="processingRegion")
+    private @Nullable Output<String> processingRegion;
+
+    /**
+     * @return Region where logs will be processed before streaming to BigQuery. Valid values are &#39;none&#39;, &#39;us&#39; and &#39;eu&#39;.
+     * 
+     */
+    public Optional<Output<String>> processingRegion() {
+        return Optional.ofNullable(this.processingRegion);
+    }
+
+    /**
      * The maximum number of bytes sent in one request
      * 
      */
@@ -237,6 +252,7 @@ public final class ServiceComputeLoggingHttpArgs extends com.pulumi.resources.Re
         this.messageType = $.messageType;
         this.method = $.method;
         this.name = $.name;
+        this.processingRegion = $.processingRegion;
         this.requestMaxBytes = $.requestMaxBytes;
         this.requestMaxEntries = $.requestMaxEntries;
         this.tlsCaCert = $.tlsCaCert;
@@ -409,6 +425,27 @@ public final class ServiceComputeLoggingHttpArgs extends com.pulumi.resources.Re
          */
         public Builder name(String name) {
             return name(Output.of(name));
+        }
+
+        /**
+         * @param processingRegion Region where logs will be processed before streaming to BigQuery. Valid values are &#39;none&#39;, &#39;us&#39; and &#39;eu&#39;.
+         * 
+         * @return builder
+         * 
+         */
+        public Builder processingRegion(@Nullable Output<String> processingRegion) {
+            $.processingRegion = processingRegion;
+            return this;
+        }
+
+        /**
+         * @param processingRegion Region where logs will be processed before streaming to BigQuery. Valid values are &#39;none&#39;, &#39;us&#39; and &#39;eu&#39;.
+         * 
+         * @return builder
+         * 
+         */
+        public Builder processingRegion(String processingRegion) {
+            return processingRegion(Output.of(processingRegion));
         }
 
         /**

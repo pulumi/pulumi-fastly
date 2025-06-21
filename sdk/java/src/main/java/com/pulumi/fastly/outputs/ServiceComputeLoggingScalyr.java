@@ -18,6 +18,11 @@ public final class ServiceComputeLoggingScalyr {
      */
     private String name;
     /**
+     * @return Region where logs will be processed before streaming to BigQuery. Valid values are &#39;none&#39;, &#39;us&#39; and &#39;eu&#39;.
+     * 
+     */
+    private @Nullable String processingRegion;
+    /**
      * @return The name of the logfile field sent to Scalyr
      * 
      */
@@ -40,6 +45,13 @@ public final class ServiceComputeLoggingScalyr {
      */
     public String name() {
         return this.name;
+    }
+    /**
+     * @return Region where logs will be processed before streaming to BigQuery. Valid values are &#39;none&#39;, &#39;us&#39; and &#39;eu&#39;.
+     * 
+     */
+    public Optional<String> processingRegion() {
+        return Optional.ofNullable(this.processingRegion);
     }
     /**
      * @return The name of the logfile field sent to Scalyr
@@ -73,6 +85,7 @@ public final class ServiceComputeLoggingScalyr {
     @CustomType.Builder
     public static final class Builder {
         private String name;
+        private @Nullable String processingRegion;
         private @Nullable String projectId;
         private @Nullable String region;
         private String token;
@@ -80,6 +93,7 @@ public final class ServiceComputeLoggingScalyr {
         public Builder(ServiceComputeLoggingScalyr defaults) {
     	      Objects.requireNonNull(defaults);
     	      this.name = defaults.name;
+    	      this.processingRegion = defaults.processingRegion;
     	      this.projectId = defaults.projectId;
     	      this.region = defaults.region;
     	      this.token = defaults.token;
@@ -91,6 +105,12 @@ public final class ServiceComputeLoggingScalyr {
               throw new MissingRequiredPropertyException("ServiceComputeLoggingScalyr", "name");
             }
             this.name = name;
+            return this;
+        }
+        @CustomType.Setter
+        public Builder processingRegion(@Nullable String processingRegion) {
+
+            this.processingRegion = processingRegion;
             return this;
         }
         @CustomType.Setter
@@ -116,6 +136,7 @@ public final class ServiceComputeLoggingScalyr {
         public ServiceComputeLoggingScalyr build() {
             final var _resultValue = new ServiceComputeLoggingScalyr();
             _resultValue.name = name;
+            _resultValue.processingRegion = processingRegion;
             _resultValue.projectId = projectId;
             _resultValue.region = region;
             _resultValue.token = token;

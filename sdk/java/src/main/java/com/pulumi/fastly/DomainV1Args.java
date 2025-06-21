@@ -17,6 +17,21 @@ public final class DomainV1Args extends com.pulumi.resources.ResourceArgs {
     public static final DomainV1Args Empty = new DomainV1Args();
 
     /**
+     * The description for your domain.
+     * 
+     */
+    @Import(name="description")
+    private @Nullable Output<String> description;
+
+    /**
+     * @return The description for your domain.
+     * 
+     */
+    public Optional<Output<String>> description() {
+        return Optional.ofNullable(this.description);
+    }
+
+    /**
      * The fully-qualified domain name for your domain (e.g. `www.example.com`, no trailing dot). Can be created, but not updated.
      * 
      */
@@ -49,6 +64,7 @@ public final class DomainV1Args extends com.pulumi.resources.ResourceArgs {
     private DomainV1Args() {}
 
     private DomainV1Args(DomainV1Args $) {
+        this.description = $.description;
         this.fqdn = $.fqdn;
         this.serviceId = $.serviceId;
     }
@@ -69,6 +85,27 @@ public final class DomainV1Args extends com.pulumi.resources.ResourceArgs {
 
         public Builder(DomainV1Args defaults) {
             $ = new DomainV1Args(Objects.requireNonNull(defaults));
+        }
+
+        /**
+         * @param description The description for your domain.
+         * 
+         * @return builder
+         * 
+         */
+        public Builder description(@Nullable Output<String> description) {
+            $.description = description;
+            return this;
+        }
+
+        /**
+         * @param description The description for your domain.
+         * 
+         * @return builder
+         * 
+         */
+        public Builder description(String description) {
+            return description(Output.of(description));
         }
 
         /**

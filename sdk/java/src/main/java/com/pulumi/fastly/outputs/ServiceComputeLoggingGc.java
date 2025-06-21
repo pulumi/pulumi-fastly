@@ -54,6 +54,11 @@ public final class ServiceComputeLoggingGc {
      */
     private @Nullable Integer period;
     /**
+     * @return Region where logs will be processed before streaming to BigQuery. Valid values are &#39;none&#39;, &#39;us&#39; and &#39;eu&#39;.
+     * 
+     */
+    private @Nullable String processingRegion;
+    /**
      * @return The ID of your Google Cloud Platform project
      * 
      */
@@ -132,6 +137,13 @@ public final class ServiceComputeLoggingGc {
         return Optional.ofNullable(this.period);
     }
     /**
+     * @return Region where logs will be processed before streaming to BigQuery. Valid values are &#39;none&#39;, &#39;us&#39; and &#39;eu&#39;.
+     * 
+     */
+    public Optional<String> processingRegion() {
+        return Optional.ofNullable(this.processingRegion);
+    }
+    /**
      * @return The ID of your Google Cloud Platform project
      * 
      */
@@ -177,6 +189,7 @@ public final class ServiceComputeLoggingGc {
         private String name;
         private @Nullable String path;
         private @Nullable Integer period;
+        private @Nullable String processingRegion;
         private @Nullable String projectId;
         private @Nullable String secretKey;
         private @Nullable String timestampFormat;
@@ -192,6 +205,7 @@ public final class ServiceComputeLoggingGc {
     	      this.name = defaults.name;
     	      this.path = defaults.path;
     	      this.period = defaults.period;
+    	      this.processingRegion = defaults.processingRegion;
     	      this.projectId = defaults.projectId;
     	      this.secretKey = defaults.secretKey;
     	      this.timestampFormat = defaults.timestampFormat;
@@ -251,6 +265,12 @@ public final class ServiceComputeLoggingGc {
             return this;
         }
         @CustomType.Setter
+        public Builder processingRegion(@Nullable String processingRegion) {
+
+            this.processingRegion = processingRegion;
+            return this;
+        }
+        @CustomType.Setter
         public Builder projectId(@Nullable String projectId) {
 
             this.projectId = projectId;
@@ -284,6 +304,7 @@ public final class ServiceComputeLoggingGc {
             _resultValue.name = name;
             _resultValue.path = path;
             _resultValue.period = period;
+            _resultValue.processingRegion = processingRegion;
             _resultValue.projectId = projectId;
             _resultValue.secretKey = secretKey;
             _resultValue.timestampFormat = timestampFormat;

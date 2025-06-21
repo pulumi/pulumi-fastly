@@ -49,6 +49,11 @@ public final class ServiceVclLoggingElasticsearch {
      */
     private @Nullable String placement;
     /**
+     * @return Region where logs will be processed before streaming to BigQuery. Valid values are &#39;none&#39;, &#39;us&#39; and &#39;eu&#39;.
+     * 
+     */
+    private @Nullable String processingRegion;
+    /**
      * @return The maximum number of logs sent in one request. Defaults to `0` for unbounded
      * 
      */
@@ -145,6 +150,13 @@ public final class ServiceVclLoggingElasticsearch {
         return Optional.ofNullable(this.placement);
     }
     /**
+     * @return Region where logs will be processed before streaming to BigQuery. Valid values are &#39;none&#39;, &#39;us&#39; and &#39;eu&#39;.
+     * 
+     */
+    public Optional<String> processingRegion() {
+        return Optional.ofNullable(this.processingRegion);
+    }
+    /**
      * @return The maximum number of logs sent in one request. Defaults to `0` for unbounded
      * 
      */
@@ -224,6 +236,7 @@ public final class ServiceVclLoggingElasticsearch {
         private @Nullable String password;
         private @Nullable String pipeline;
         private @Nullable String placement;
+        private @Nullable String processingRegion;
         private @Nullable Integer requestMaxBytes;
         private @Nullable Integer requestMaxEntries;
         private @Nullable String responseCondition;
@@ -243,6 +256,7 @@ public final class ServiceVclLoggingElasticsearch {
     	      this.password = defaults.password;
     	      this.pipeline = defaults.pipeline;
     	      this.placement = defaults.placement;
+    	      this.processingRegion = defaults.processingRegion;
     	      this.requestMaxBytes = defaults.requestMaxBytes;
     	      this.requestMaxEntries = defaults.requestMaxEntries;
     	      this.responseCondition = defaults.responseCondition;
@@ -298,6 +312,12 @@ public final class ServiceVclLoggingElasticsearch {
         public Builder placement(@Nullable String placement) {
 
             this.placement = placement;
+            return this;
+        }
+        @CustomType.Setter
+        public Builder processingRegion(@Nullable String processingRegion) {
+
+            this.processingRegion = processingRegion;
             return this;
         }
         @CustomType.Setter
@@ -365,6 +385,7 @@ public final class ServiceVclLoggingElasticsearch {
             _resultValue.password = password;
             _resultValue.pipeline = pipeline;
             _resultValue.placement = placement;
+            _resultValue.processingRegion = processingRegion;
             _resultValue.requestMaxBytes = requestMaxBytes;
             _resultValue.requestMaxEntries = requestMaxEntries;
             _resultValue.responseCondition = responseCondition;

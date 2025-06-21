@@ -539,6 +539,8 @@ class ServiceComputeBackend(dict):
             suggest = "min_tls_version"
         elif key == "overrideHost":
             suggest = "override_host"
+        elif key == "preferIpv6":
+            suggest = "prefer_ipv6"
         elif key == "shareKey":
             suggest = "share_key"
         elif key == "sslCaCert":
@@ -583,6 +585,7 @@ class ServiceComputeBackend(dict):
                  min_tls_version: Optional[builtins.str] = None,
                  override_host: Optional[builtins.str] = None,
                  port: Optional[builtins.int] = None,
+                 prefer_ipv6: Optional[builtins.bool] = None,
                  share_key: Optional[builtins.str] = None,
                  shield: Optional[builtins.str] = None,
                  ssl_ca_cert: Optional[builtins.str] = None,
@@ -608,6 +611,7 @@ class ServiceComputeBackend(dict):
         :param builtins.str min_tls_version: Minimum allowed TLS version on SSL connections to this backend.
         :param builtins.str override_host: The hostname to override the Host header
         :param builtins.int port: The port number on which the Backend responds. Default `80`
+        :param builtins.bool prefer_ipv6: Prefer IPv6 connections to origins for hostname backends. Default `true`
         :param builtins.str share_key: Value that when shared across backends will enable those backends to share the same health check.
         :param builtins.str shield: The POP of the shield designated to reduce inbound load. Valid values for `shield` are included in the `GET /datacenters` API response
         :param builtins.str ssl_ca_cert: CA certificate attached to origin.
@@ -644,6 +648,8 @@ class ServiceComputeBackend(dict):
             pulumi.set(__self__, "override_host", override_host)
         if port is not None:
             pulumi.set(__self__, "port", port)
+        if prefer_ipv6 is not None:
+            pulumi.set(__self__, "prefer_ipv6", prefer_ipv6)
         if share_key is not None:
             pulumi.set(__self__, "share_key", share_key)
         if shield is not None:
@@ -770,6 +776,14 @@ class ServiceComputeBackend(dict):
         The port number on which the Backend responds. Default `80`
         """
         return pulumi.get(self, "port")
+
+    @property
+    @pulumi.getter(name="preferIpv6")
+    def prefer_ipv6(self) -> Optional[builtins.bool]:
+        """
+        Prefer IPv6 connections to origins for hostname backends. Default `true`
+        """
+        return pulumi.get(self, "prefer_ipv6")
 
     @property
     @pulumi.getter(name="shareKey")
@@ -1116,6 +1130,8 @@ class ServiceComputeLoggingBigquery(dict):
             suggest = "secret_key"
         elif key == "accountName":
             suggest = "account_name"
+        elif key == "processingRegion":
+            suggest = "processing_region"
 
         if suggest:
             pulumi.log.warn(f"Key '{key}' not found in ServiceComputeLoggingBigquery. Access the value via the '{suggest}' property getter instead.")
@@ -1136,6 +1152,7 @@ class ServiceComputeLoggingBigquery(dict):
                  secret_key: builtins.str,
                  table: builtins.str,
                  account_name: Optional[builtins.str] = None,
+                 processing_region: Optional[builtins.str] = None,
                  template: Optional[builtins.str] = None):
         """
         :param builtins.str dataset: The ID of your BigQuery dataset
@@ -1145,6 +1162,7 @@ class ServiceComputeLoggingBigquery(dict):
         :param builtins.str secret_key: The secret key associated with the service account that has write access to your BigQuery table. If not provided, this will be pulled from the `FASTLY_BQ_SECRET_KEY` environment variable. Typical format for this is a private key in a string with newlines
         :param builtins.str table: The ID of your BigQuery table
         :param builtins.str account_name: The google account name used to obtain temporary credentials (default none). You may optionally provide this via an environment variable, `FASTLY_GCS_ACCOUNT_NAME`.
+        :param builtins.str processing_region: Region where logs will be processed before streaming to BigQuery. Valid values are 'none', 'us' and 'eu'.
         :param builtins.str template: BigQuery table name suffix template
         """
         pulumi.set(__self__, "dataset", dataset)
@@ -1155,6 +1173,8 @@ class ServiceComputeLoggingBigquery(dict):
         pulumi.set(__self__, "table", table)
         if account_name is not None:
             pulumi.set(__self__, "account_name", account_name)
+        if processing_region is not None:
+            pulumi.set(__self__, "processing_region", processing_region)
         if template is not None:
             pulumi.set(__self__, "template", template)
 
@@ -1215,6 +1235,14 @@ class ServiceComputeLoggingBigquery(dict):
         return pulumi.get(self, "account_name")
 
     @property
+    @pulumi.getter(name="processingRegion")
+    def processing_region(self) -> Optional[builtins.str]:
+        """
+        Region where logs will be processed before streaming to BigQuery. Valid values are 'none', 'us' and 'eu'.
+        """
+        return pulumi.get(self, "processing_region")
+
+    @property
     @pulumi.getter
     def template(self) -> Optional[builtins.str]:
         """
@@ -1240,6 +1268,8 @@ class ServiceComputeLoggingBlobstorage(dict):
             suggest = "gzip_level"
         elif key == "messageType":
             suggest = "message_type"
+        elif key == "processingRegion":
+            suggest = "processing_region"
         elif key == "publicKey":
             suggest = "public_key"
         elif key == "timestampFormat":
@@ -1267,6 +1297,7 @@ class ServiceComputeLoggingBlobstorage(dict):
                  message_type: Optional[builtins.str] = None,
                  path: Optional[builtins.str] = None,
                  period: Optional[builtins.int] = None,
+                 processing_region: Optional[builtins.str] = None,
                  public_key: Optional[builtins.str] = None,
                  timestamp_format: Optional[builtins.str] = None):
         """
@@ -1280,6 +1311,7 @@ class ServiceComputeLoggingBlobstorage(dict):
         :param builtins.str message_type: How the message should be formatted. Can be either `classic`, `loggly`, `logplex` or `blank`. Default is `classic`
         :param builtins.str path: The path to upload logs to. Must end with a trailing slash. If this field is left empty, the files will be saved in the container's root path
         :param builtins.int period: How frequently the logs should be transferred in seconds. Default `3600`
+        :param builtins.str processing_region: Region where logs will be processed before streaming to BigQuery. Valid values are 'none', 'us' and 'eu'.
         :param builtins.str public_key: A PGP public key that Fastly will use to encrypt your log files before writing them to disk
         :param builtins.str timestamp_format: The `strftime` specified timestamp formatting (default `%Y-%m-%dT%H:%M:%S.000`)
         """
@@ -1299,6 +1331,8 @@ class ServiceComputeLoggingBlobstorage(dict):
             pulumi.set(__self__, "path", path)
         if period is not None:
             pulumi.set(__self__, "period", period)
+        if processing_region is not None:
+            pulumi.set(__self__, "processing_region", processing_region)
         if public_key is not None:
             pulumi.set(__self__, "public_key", public_key)
         if timestamp_format is not None:
@@ -1385,6 +1419,14 @@ class ServiceComputeLoggingBlobstorage(dict):
         return pulumi.get(self, "period")
 
     @property
+    @pulumi.getter(name="processingRegion")
+    def processing_region(self) -> Optional[builtins.str]:
+        """
+        Region where logs will be processed before streaming to BigQuery. Valid values are 'none', 'us' and 'eu'.
+        """
+        return pulumi.get(self, "processing_region")
+
+    @property
     @pulumi.getter(name="publicKey")
     def public_key(self) -> Optional[builtins.str]:
         """
@@ -1416,6 +1458,8 @@ class ServiceComputeLoggingCloudfile(dict):
             suggest = "gzip_level"
         elif key == "messageType":
             suggest = "message_type"
+        elif key == "processingRegion":
+            suggest = "processing_region"
         elif key == "publicKey":
             suggest = "public_key"
         elif key == "timestampFormat":
@@ -1442,6 +1486,7 @@ class ServiceComputeLoggingCloudfile(dict):
                  message_type: Optional[builtins.str] = None,
                  path: Optional[builtins.str] = None,
                  period: Optional[builtins.int] = None,
+                 processing_region: Optional[builtins.str] = None,
                  public_key: Optional[builtins.str] = None,
                  region: Optional[builtins.str] = None,
                  timestamp_format: Optional[builtins.str] = None):
@@ -1455,6 +1500,7 @@ class ServiceComputeLoggingCloudfile(dict):
         :param builtins.str message_type: How the message should be formatted. Can be either `classic`, `loggly`, `logplex` or `blank`. Default is `classic`
         :param builtins.str path: The path to upload logs to
         :param builtins.int period: How frequently log files are finalized so they can be available for reading (in seconds, default `3600`)
+        :param builtins.str processing_region: Region where logs will be processed before streaming to BigQuery. Valid values are 'none', 'us' and 'eu'.
         :param builtins.str public_key: The PGP public key that Fastly will use to encrypt your log files before writing them to disk
         :param builtins.str region: The region to stream logs to. One of: DFW (Dallas), ORD (Chicago), IAD (Northern Virginia), LON (London), SYD (Sydney), HKG (Hong Kong)
         :param builtins.str timestamp_format: The `strftime` specified timestamp formatting (default `%Y-%m-%dT%H:%M:%S.000`)
@@ -1473,6 +1519,8 @@ class ServiceComputeLoggingCloudfile(dict):
             pulumi.set(__self__, "path", path)
         if period is not None:
             pulumi.set(__self__, "period", period)
+        if processing_region is not None:
+            pulumi.set(__self__, "processing_region", processing_region)
         if public_key is not None:
             pulumi.set(__self__, "public_key", public_key)
         if region is not None:
@@ -1553,6 +1601,14 @@ class ServiceComputeLoggingCloudfile(dict):
         return pulumi.get(self, "period")
 
     @property
+    @pulumi.getter(name="processingRegion")
+    def processing_region(self) -> Optional[builtins.str]:
+        """
+        Region where logs will be processed before streaming to BigQuery. Valid values are 'none', 'us' and 'eu'.
+        """
+        return pulumi.get(self, "processing_region")
+
+    @property
     @pulumi.getter(name="publicKey")
     def public_key(self) -> Optional[builtins.str]:
         """
@@ -1579,17 +1635,38 @@ class ServiceComputeLoggingCloudfile(dict):
 
 @pulumi.output_type
 class ServiceComputeLoggingDatadog(dict):
+    @staticmethod
+    def __key_warning(key: str):
+        suggest = None
+        if key == "processingRegion":
+            suggest = "processing_region"
+
+        if suggest:
+            pulumi.log.warn(f"Key '{key}' not found in ServiceComputeLoggingDatadog. Access the value via the '{suggest}' property getter instead.")
+
+    def __getitem__(self, key: str) -> Any:
+        ServiceComputeLoggingDatadog.__key_warning(key)
+        return super().__getitem__(key)
+
+    def get(self, key: str, default = None) -> Any:
+        ServiceComputeLoggingDatadog.__key_warning(key)
+        return super().get(key, default)
+
     def __init__(__self__, *,
                  name: builtins.str,
                  token: builtins.str,
+                 processing_region: Optional[builtins.str] = None,
                  region: Optional[builtins.str] = None):
         """
         :param builtins.str name: The unique name of the Datadog logging endpoint. It is important to note that changing this attribute will delete and recreate the resource
         :param builtins.str token: The API key from your Datadog account
+        :param builtins.str processing_region: Region where logs will be processed before streaming to BigQuery. Valid values are 'none', 'us' and 'eu'.
         :param builtins.str region: The region that log data will be sent to. One of `US` or `EU`. Defaults to `US` if undefined
         """
         pulumi.set(__self__, "name", name)
         pulumi.set(__self__, "token", token)
+        if processing_region is not None:
+            pulumi.set(__self__, "processing_region", processing_region)
         if region is not None:
             pulumi.set(__self__, "region", region)
 
@@ -1608,6 +1685,14 @@ class ServiceComputeLoggingDatadog(dict):
         The API key from your Datadog account
         """
         return pulumi.get(self, "token")
+
+    @property
+    @pulumi.getter(name="processingRegion")
+    def processing_region(self) -> Optional[builtins.str]:
+        """
+        Region where logs will be processed before streaming to BigQuery. Valid values are 'none', 'us' and 'eu'.
+        """
+        return pulumi.get(self, "processing_region")
 
     @property
     @pulumi.getter
@@ -1635,6 +1720,8 @@ class ServiceComputeLoggingDigitalocean(dict):
             suggest = "gzip_level"
         elif key == "messageType":
             suggest = "message_type"
+        elif key == "processingRegion":
+            suggest = "processing_region"
         elif key == "publicKey":
             suggest = "public_key"
         elif key == "timestampFormat":
@@ -1662,6 +1749,7 @@ class ServiceComputeLoggingDigitalocean(dict):
                  message_type: Optional[builtins.str] = None,
                  path: Optional[builtins.str] = None,
                  period: Optional[builtins.int] = None,
+                 processing_region: Optional[builtins.str] = None,
                  public_key: Optional[builtins.str] = None,
                  timestamp_format: Optional[builtins.str] = None):
         """
@@ -1675,6 +1763,7 @@ class ServiceComputeLoggingDigitalocean(dict):
         :param builtins.str message_type: How the message should be formatted. Can be either `classic`, `loggly`, `logplex` or `blank`. Default is `classic`
         :param builtins.str path: The path to upload logs to
         :param builtins.int period: How frequently log files are finalized so they can be available for reading (in seconds, default `3600`)
+        :param builtins.str processing_region: Region where logs will be processed before streaming to BigQuery. Valid values are 'none', 'us' and 'eu'.
         :param builtins.str public_key: A PGP public key that Fastly will use to encrypt your log files before writing them to disk
         :param builtins.str timestamp_format: The `strftime` specified timestamp formatting (default `%Y-%m-%dT%H:%M:%S.000`)
         """
@@ -1694,6 +1783,8 @@ class ServiceComputeLoggingDigitalocean(dict):
             pulumi.set(__self__, "path", path)
         if period is not None:
             pulumi.set(__self__, "period", period)
+        if processing_region is not None:
+            pulumi.set(__self__, "processing_region", processing_region)
         if public_key is not None:
             pulumi.set(__self__, "public_key", public_key)
         if timestamp_format is not None:
@@ -1780,6 +1871,14 @@ class ServiceComputeLoggingDigitalocean(dict):
         return pulumi.get(self, "period")
 
     @property
+    @pulumi.getter(name="processingRegion")
+    def processing_region(self) -> Optional[builtins.str]:
+        """
+        Region where logs will be processed before streaming to BigQuery. Valid values are 'none', 'us' and 'eu'.
+        """
+        return pulumi.get(self, "processing_region")
+
+    @property
     @pulumi.getter(name="publicKey")
     def public_key(self) -> Optional[builtins.str]:
         """
@@ -1801,7 +1900,9 @@ class ServiceComputeLoggingElasticsearch(dict):
     @staticmethod
     def __key_warning(key: str):
         suggest = None
-        if key == "requestMaxBytes":
+        if key == "processingRegion":
+            suggest = "processing_region"
+        elif key == "requestMaxBytes":
             suggest = "request_max_bytes"
         elif key == "requestMaxEntries":
             suggest = "request_max_entries"
@@ -1831,6 +1932,7 @@ class ServiceComputeLoggingElasticsearch(dict):
                  url: builtins.str,
                  password: Optional[builtins.str] = None,
                  pipeline: Optional[builtins.str] = None,
+                 processing_region: Optional[builtins.str] = None,
                  request_max_bytes: Optional[builtins.int] = None,
                  request_max_entries: Optional[builtins.int] = None,
                  tls_ca_cert: Optional[builtins.str] = None,
@@ -1844,6 +1946,7 @@ class ServiceComputeLoggingElasticsearch(dict):
         :param builtins.str url: The Elasticsearch URL to stream logs to
         :param builtins.str password: BasicAuth password for Elasticsearch
         :param builtins.str pipeline: The ID of the Elasticsearch ingest pipeline to apply pre-process transformations to before indexing
+        :param builtins.str processing_region: Region where logs will be processed before streaming to BigQuery. Valid values are 'none', 'us' and 'eu'.
         :param builtins.int request_max_bytes: The maximum number of logs sent in one request. Defaults to `0` for unbounded
         :param builtins.int request_max_entries: The maximum number of bytes sent in one request. Defaults to `0` for unbounded
         :param builtins.str tls_ca_cert: A secure certificate to authenticate the server with. Must be in PEM format
@@ -1859,6 +1962,8 @@ class ServiceComputeLoggingElasticsearch(dict):
             pulumi.set(__self__, "password", password)
         if pipeline is not None:
             pulumi.set(__self__, "pipeline", pipeline)
+        if processing_region is not None:
+            pulumi.set(__self__, "processing_region", processing_region)
         if request_max_bytes is not None:
             pulumi.set(__self__, "request_max_bytes", request_max_bytes)
         if request_max_entries is not None:
@@ -1913,6 +2018,14 @@ class ServiceComputeLoggingElasticsearch(dict):
         The ID of the Elasticsearch ingest pipeline to apply pre-process transformations to before indexing
         """
         return pulumi.get(self, "pipeline")
+
+    @property
+    @pulumi.getter(name="processingRegion")
+    def processing_region(self) -> Optional[builtins.str]:
+        """
+        Region where logs will be processed before streaming to BigQuery. Valid values are 'none', 'us' and 'eu'.
+        """
+        return pulumi.get(self, "processing_region")
 
     @property
     @pulumi.getter(name="requestMaxBytes")
@@ -1982,6 +2095,8 @@ class ServiceComputeLoggingFtp(dict):
             suggest = "gzip_level"
         elif key == "messageType":
             suggest = "message_type"
+        elif key == "processingRegion":
+            suggest = "processing_region"
         elif key == "publicKey":
             suggest = "public_key"
         elif key == "timestampFormat":
@@ -2009,6 +2124,7 @@ class ServiceComputeLoggingFtp(dict):
                  message_type: Optional[builtins.str] = None,
                  period: Optional[builtins.int] = None,
                  port: Optional[builtins.int] = None,
+                 processing_region: Optional[builtins.str] = None,
                  public_key: Optional[builtins.str] = None,
                  timestamp_format: Optional[builtins.str] = None):
         """
@@ -2022,6 +2138,7 @@ class ServiceComputeLoggingFtp(dict):
         :param builtins.str message_type: How the message should be formatted. Can be either `classic`, `loggly`, `logplex` or `blank`. Default is `classic`
         :param builtins.int period: How frequently the logs should be transferred, in seconds (Default `3600`)
         :param builtins.int port: The port number. Default: `21`
+        :param builtins.str processing_region: Region where logs will be processed before streaming to BigQuery. Valid values are 'none', 'us' and 'eu'.
         :param builtins.str public_key: The PGP public key that Fastly will use to encrypt your log files before writing them to disk
         :param builtins.str timestamp_format: The `strftime` specified timestamp formatting (default `%Y-%m-%dT%H:%M:%S.000`)
         """
@@ -2040,6 +2157,8 @@ class ServiceComputeLoggingFtp(dict):
             pulumi.set(__self__, "period", period)
         if port is not None:
             pulumi.set(__self__, "port", port)
+        if processing_region is not None:
+            pulumi.set(__self__, "processing_region", processing_region)
         if public_key is not None:
             pulumi.set(__self__, "public_key", public_key)
         if timestamp_format is not None:
@@ -2126,6 +2245,14 @@ class ServiceComputeLoggingFtp(dict):
         return pulumi.get(self, "port")
 
     @property
+    @pulumi.getter(name="processingRegion")
+    def processing_region(self) -> Optional[builtins.str]:
+        """
+        Region where logs will be processed before streaming to BigQuery. Valid values are 'none', 'us' and 'eu'.
+        """
+        return pulumi.get(self, "processing_region")
+
+    @property
     @pulumi.getter(name="publicKey")
     def public_key(self) -> Optional[builtins.str]:
         """
@@ -2157,6 +2284,8 @@ class ServiceComputeLoggingGc(dict):
             suggest = "gzip_level"
         elif key == "messageType":
             suggest = "message_type"
+        elif key == "processingRegion":
+            suggest = "processing_region"
         elif key == "projectId":
             suggest = "project_id"
         elif key == "secretKey":
@@ -2184,6 +2313,7 @@ class ServiceComputeLoggingGc(dict):
                  message_type: Optional[builtins.str] = None,
                  path: Optional[builtins.str] = None,
                  period: Optional[builtins.int] = None,
+                 processing_region: Optional[builtins.str] = None,
                  project_id: Optional[builtins.str] = None,
                  secret_key: Optional[builtins.str] = None,
                  timestamp_format: Optional[builtins.str] = None,
@@ -2197,6 +2327,7 @@ class ServiceComputeLoggingGc(dict):
         :param builtins.str message_type: How the message should be formatted. Can be either `classic`, `loggly`, `logplex` or `blank`. Default is `classic`
         :param builtins.str path: Path to store the files. Must end with a trailing slash. If this field is left empty, the files will be saved in the bucket's root path
         :param builtins.int period: How frequently the logs should be transferred, in seconds (Default 3600)
+        :param builtins.str processing_region: Region where logs will be processed before streaming to BigQuery. Valid values are 'none', 'us' and 'eu'.
         :param builtins.str project_id: The ID of your Google Cloud Platform project
         :param builtins.str secret_key: The secret key associated with the target gcs bucket on your account. You may optionally provide this secret via an environment variable, `FASTLY_GCS_SECRET_KEY`. A typical format for the key is PEM format, containing actual newline characters where required
         :param builtins.str timestamp_format: The `strftime` specified timestamp formatting (default `%Y-%m-%dT%H:%M:%S.000`)
@@ -2216,6 +2347,8 @@ class ServiceComputeLoggingGc(dict):
             pulumi.set(__self__, "path", path)
         if period is not None:
             pulumi.set(__self__, "period", period)
+        if processing_region is not None:
+            pulumi.set(__self__, "processing_region", processing_region)
         if project_id is not None:
             pulumi.set(__self__, "project_id", project_id)
         if secret_key is not None:
@@ -2290,6 +2423,14 @@ class ServiceComputeLoggingGc(dict):
         return pulumi.get(self, "period")
 
     @property
+    @pulumi.getter(name="processingRegion")
+    def processing_region(self) -> Optional[builtins.str]:
+        """
+        Region where logs will be processed before streaming to BigQuery. Valid values are 'none', 'us' and 'eu'.
+        """
+        return pulumi.get(self, "processing_region")
+
+    @property
     @pulumi.getter(name="projectId")
     def project_id(self) -> Optional[builtins.str]:
         """
@@ -2333,6 +2474,8 @@ class ServiceComputeLoggingGooglepubsub(dict):
             suggest = "secret_key"
         elif key == "accountName":
             suggest = "account_name"
+        elif key == "processingRegion":
+            suggest = "processing_region"
 
         if suggest:
             pulumi.log.warn(f"Key '{key}' not found in ServiceComputeLoggingGooglepubsub. Access the value via the '{suggest}' property getter instead.")
@@ -2351,7 +2494,8 @@ class ServiceComputeLoggingGooglepubsub(dict):
                  secret_key: builtins.str,
                  topic: builtins.str,
                  user: builtins.str,
-                 account_name: Optional[builtins.str] = None):
+                 account_name: Optional[builtins.str] = None,
+                 processing_region: Optional[builtins.str] = None):
         """
         :param builtins.str name: The unique name of the Google Cloud Pub/Sub logging endpoint. It is important to note that changing this attribute will delete and recreate the resource
         :param builtins.str project_id: The ID of your Google Cloud Platform project
@@ -2359,6 +2503,7 @@ class ServiceComputeLoggingGooglepubsub(dict):
         :param builtins.str topic: The Google Cloud Pub/Sub topic to which logs will be published
         :param builtins.str user: Your Google Cloud Platform service account email address. The `client_email` field in your service account authentication JSON. You may optionally provide this via an environment variable, `FASTLY_GOOGLE_PUBSUB_EMAIL`.
         :param builtins.str account_name: The google account name used to obtain temporary credentials (default none). You may optionally provide this via an environment variable, `FASTLY_GCS_ACCOUNT_NAME`.
+        :param builtins.str processing_region: Region where logs will be processed before streaming to BigQuery. Valid values are 'none', 'us' and 'eu'.
         """
         pulumi.set(__self__, "name", name)
         pulumi.set(__self__, "project_id", project_id)
@@ -2367,6 +2512,8 @@ class ServiceComputeLoggingGooglepubsub(dict):
         pulumi.set(__self__, "user", user)
         if account_name is not None:
             pulumi.set(__self__, "account_name", account_name)
+        if processing_region is not None:
+            pulumi.set(__self__, "processing_region", processing_region)
 
     @property
     @pulumi.getter
@@ -2416,27 +2563,56 @@ class ServiceComputeLoggingGooglepubsub(dict):
         """
         return pulumi.get(self, "account_name")
 
+    @property
+    @pulumi.getter(name="processingRegion")
+    def processing_region(self) -> Optional[builtins.str]:
+        """
+        Region where logs will be processed before streaming to BigQuery. Valid values are 'none', 'us' and 'eu'.
+        """
+        return pulumi.get(self, "processing_region")
+
 
 @pulumi.output_type
 class ServiceComputeLoggingGrafanacloudlog(dict):
+    @staticmethod
+    def __key_warning(key: str):
+        suggest = None
+        if key == "processingRegion":
+            suggest = "processing_region"
+
+        if suggest:
+            pulumi.log.warn(f"Key '{key}' not found in ServiceComputeLoggingGrafanacloudlog. Access the value via the '{suggest}' property getter instead.")
+
+    def __getitem__(self, key: str) -> Any:
+        ServiceComputeLoggingGrafanacloudlog.__key_warning(key)
+        return super().__getitem__(key)
+
+    def get(self, key: str, default = None) -> Any:
+        ServiceComputeLoggingGrafanacloudlog.__key_warning(key)
+        return super().get(key, default)
+
     def __init__(__self__, *,
                  index: builtins.str,
                  name: builtins.str,
                  token: builtins.str,
                  url: builtins.str,
-                 user: builtins.str):
+                 user: builtins.str,
+                 processing_region: Optional[builtins.str] = None):
         """
         :param builtins.str index: The stream identifier as a JSON string
         :param builtins.str name: The unique name of the GrafanaCloudLogs logging endpoint. It is important to note that changing this attribute will delete and recreate the resource
         :param builtins.str token: The Access Policy Token key for your GrafanaCloudLogs account
         :param builtins.str url: The URL to stream logs to
         :param builtins.str user: The Grafana User ID
+        :param builtins.str processing_region: Region where logs will be processed before streaming to BigQuery. Valid values are 'none', 'us' and 'eu'.
         """
         pulumi.set(__self__, "index", index)
         pulumi.set(__self__, "name", name)
         pulumi.set(__self__, "token", token)
         pulumi.set(__self__, "url", url)
         pulumi.set(__self__, "user", user)
+        if processing_region is not None:
+            pulumi.set(__self__, "processing_region", processing_region)
 
     @property
     @pulumi.getter
@@ -2478,21 +2654,50 @@ class ServiceComputeLoggingGrafanacloudlog(dict):
         """
         return pulumi.get(self, "user")
 
+    @property
+    @pulumi.getter(name="processingRegion")
+    def processing_region(self) -> Optional[builtins.str]:
+        """
+        Region where logs will be processed before streaming to BigQuery. Valid values are 'none', 'us' and 'eu'.
+        """
+        return pulumi.get(self, "processing_region")
+
 
 @pulumi.output_type
 class ServiceComputeLoggingHeroku(dict):
+    @staticmethod
+    def __key_warning(key: str):
+        suggest = None
+        if key == "processingRegion":
+            suggest = "processing_region"
+
+        if suggest:
+            pulumi.log.warn(f"Key '{key}' not found in ServiceComputeLoggingHeroku. Access the value via the '{suggest}' property getter instead.")
+
+    def __getitem__(self, key: str) -> Any:
+        ServiceComputeLoggingHeroku.__key_warning(key)
+        return super().__getitem__(key)
+
+    def get(self, key: str, default = None) -> Any:
+        ServiceComputeLoggingHeroku.__key_warning(key)
+        return super().get(key, default)
+
     def __init__(__self__, *,
                  name: builtins.str,
                  token: builtins.str,
-                 url: builtins.str):
+                 url: builtins.str,
+                 processing_region: Optional[builtins.str] = None):
         """
         :param builtins.str name: The unique name of the Heroku logging endpoint. It is important to note that changing this attribute will delete and recreate the resource
         :param builtins.str token: The token to use for authentication (https://www.heroku.com/docs/customer-token-authentication-token/)
         :param builtins.str url: The URL to stream logs to
+        :param builtins.str processing_region: Region where logs will be processed before streaming to BigQuery. Valid values are 'none', 'us' and 'eu'.
         """
         pulumi.set(__self__, "name", name)
         pulumi.set(__self__, "token", token)
         pulumi.set(__self__, "url", url)
+        if processing_region is not None:
+            pulumi.set(__self__, "processing_region", processing_region)
 
     @property
     @pulumi.getter
@@ -2518,21 +2723,50 @@ class ServiceComputeLoggingHeroku(dict):
         """
         return pulumi.get(self, "url")
 
+    @property
+    @pulumi.getter(name="processingRegion")
+    def processing_region(self) -> Optional[builtins.str]:
+        """
+        Region where logs will be processed before streaming to BigQuery. Valid values are 'none', 'us' and 'eu'.
+        """
+        return pulumi.get(self, "processing_region")
+
 
 @pulumi.output_type
 class ServiceComputeLoggingHoneycomb(dict):
+    @staticmethod
+    def __key_warning(key: str):
+        suggest = None
+        if key == "processingRegion":
+            suggest = "processing_region"
+
+        if suggest:
+            pulumi.log.warn(f"Key '{key}' not found in ServiceComputeLoggingHoneycomb. Access the value via the '{suggest}' property getter instead.")
+
+    def __getitem__(self, key: str) -> Any:
+        ServiceComputeLoggingHoneycomb.__key_warning(key)
+        return super().__getitem__(key)
+
+    def get(self, key: str, default = None) -> Any:
+        ServiceComputeLoggingHoneycomb.__key_warning(key)
+        return super().get(key, default)
+
     def __init__(__self__, *,
                  dataset: builtins.str,
                  name: builtins.str,
-                 token: builtins.str):
+                 token: builtins.str,
+                 processing_region: Optional[builtins.str] = None):
         """
         :param builtins.str dataset: The Honeycomb Dataset you want to log to
         :param builtins.str name: The unique name of the Honeycomb logging endpoint. It is important to note that changing this attribute will delete and recreate the resource
         :param builtins.str token: The Write Key from the Account page of your Honeycomb account
+        :param builtins.str processing_region: Region where logs will be processed before streaming to BigQuery. Valid values are 'none', 'us' and 'eu'.
         """
         pulumi.set(__self__, "dataset", dataset)
         pulumi.set(__self__, "name", name)
         pulumi.set(__self__, "token", token)
+        if processing_region is not None:
+            pulumi.set(__self__, "processing_region", processing_region)
 
     @property
     @pulumi.getter
@@ -2558,6 +2792,14 @@ class ServiceComputeLoggingHoneycomb(dict):
         """
         return pulumi.get(self, "token")
 
+    @property
+    @pulumi.getter(name="processingRegion")
+    def processing_region(self) -> Optional[builtins.str]:
+        """
+        Region where logs will be processed before streaming to BigQuery. Valid values are 'none', 'us' and 'eu'.
+        """
+        return pulumi.get(self, "processing_region")
+
 
 @pulumi.output_type
 class ServiceComputeLoggingHttp(dict):
@@ -2574,6 +2816,8 @@ class ServiceComputeLoggingHttp(dict):
             suggest = "json_format"
         elif key == "messageType":
             suggest = "message_type"
+        elif key == "processingRegion":
+            suggest = "processing_region"
         elif key == "requestMaxBytes":
             suggest = "request_max_bytes"
         elif key == "requestMaxEntries":
@@ -2607,6 +2851,7 @@ class ServiceComputeLoggingHttp(dict):
                  json_format: Optional[builtins.str] = None,
                  message_type: Optional[builtins.str] = None,
                  method: Optional[builtins.str] = None,
+                 processing_region: Optional[builtins.str] = None,
                  request_max_bytes: Optional[builtins.int] = None,
                  request_max_entries: Optional[builtins.int] = None,
                  tls_ca_cert: Optional[builtins.str] = None,
@@ -2622,6 +2867,7 @@ class ServiceComputeLoggingHttp(dict):
         :param builtins.str json_format: Formats log entries as JSON. Can be either disabled (`0`), array of json (`1`), or newline delimited json (`2`)
         :param builtins.str message_type: How the message should be formatted. Can be either `classic`, `loggly`, `logplex` or `blank`. Default is `classic`
         :param builtins.str method: HTTP method used for request. Can be either `POST` or `PUT`. Default `POST`
+        :param builtins.str processing_region: Region where logs will be processed before streaming to BigQuery. Valid values are 'none', 'us' and 'eu'.
         :param builtins.int request_max_bytes: The maximum number of bytes sent in one request
         :param builtins.int request_max_entries: The maximum number of logs sent in one request
         :param builtins.str tls_ca_cert: A secure certificate to authenticate the server with. Must be in PEM format
@@ -2643,6 +2889,8 @@ class ServiceComputeLoggingHttp(dict):
             pulumi.set(__self__, "message_type", message_type)
         if method is not None:
             pulumi.set(__self__, "method", method)
+        if processing_region is not None:
+            pulumi.set(__self__, "processing_region", processing_region)
         if request_max_bytes is not None:
             pulumi.set(__self__, "request_max_bytes", request_max_bytes)
         if request_max_entries is not None:
@@ -2721,6 +2969,14 @@ class ServiceComputeLoggingHttp(dict):
         return pulumi.get(self, "method")
 
     @property
+    @pulumi.getter(name="processingRegion")
+    def processing_region(self) -> Optional[builtins.str]:
+        """
+        Region where logs will be processed before streaming to BigQuery. Valid values are 'none', 'us' and 'eu'.
+        """
+        return pulumi.get(self, "processing_region")
+
+    @property
     @pulumi.getter(name="requestMaxBytes")
     def request_max_bytes(self) -> Optional[builtins.int]:
         """
@@ -2780,6 +3036,8 @@ class ServiceComputeLoggingKafka(dict):
             suggest = "compression_codec"
         elif key == "parseLogKeyvals":
             suggest = "parse_log_keyvals"
+        elif key == "processingRegion":
+            suggest = "processing_region"
         elif key == "requestMaxBytes":
             suggest = "request_max_bytes"
         elif key == "requiredAcks":
@@ -2814,6 +3072,7 @@ class ServiceComputeLoggingKafka(dict):
                  compression_codec: Optional[builtins.str] = None,
                  parse_log_keyvals: Optional[builtins.bool] = None,
                  password: Optional[builtins.str] = None,
+                 processing_region: Optional[builtins.str] = None,
                  request_max_bytes: Optional[builtins.int] = None,
                  required_acks: Optional[builtins.str] = None,
                  tls_ca_cert: Optional[builtins.str] = None,
@@ -2830,6 +3089,7 @@ class ServiceComputeLoggingKafka(dict):
         :param builtins.str compression_codec: The codec used for compression of your logs. One of: `gzip`, `snappy`, `lz4`
         :param builtins.bool parse_log_keyvals: Enables parsing of key=value tuples from the beginning of a logline, turning them into record headers
         :param builtins.str password: SASL Pass
+        :param builtins.str processing_region: Region where logs will be processed before streaming to BigQuery. Valid values are 'none', 'us' and 'eu'.
         :param builtins.int request_max_bytes: Maximum size of log batch, if non-zero. Defaults to 0 for unbounded
         :param builtins.str required_acks: The Number of acknowledgements a leader must receive before a write is considered successful. One of: `1` (default) One server needs to respond. `0` No servers need to respond. `-1` Wait for all in-sync replicas to respond
         :param builtins.str tls_ca_cert: A secure certificate to authenticate the server with. Must be in PEM format
@@ -2850,6 +3110,8 @@ class ServiceComputeLoggingKafka(dict):
             pulumi.set(__self__, "parse_log_keyvals", parse_log_keyvals)
         if password is not None:
             pulumi.set(__self__, "password", password)
+        if processing_region is not None:
+            pulumi.set(__self__, "processing_region", processing_region)
         if request_max_bytes is not None:
             pulumi.set(__self__, "request_max_bytes", request_max_bytes)
         if required_acks is not None:
@@ -2922,6 +3184,14 @@ class ServiceComputeLoggingKafka(dict):
         SASL Pass
         """
         return pulumi.get(self, "password")
+
+    @property
+    @pulumi.getter(name="processingRegion")
+    def processing_region(self) -> Optional[builtins.str]:
+        """
+        Region where logs will be processed before streaming to BigQuery. Valid values are 'none', 'us' and 'eu'.
+        """
+        return pulumi.get(self, "processing_region")
 
     @property
     @pulumi.getter(name="requestMaxBytes")
@@ -2997,6 +3267,8 @@ class ServiceComputeLoggingKinese(dict):
             suggest = "access_key"
         elif key == "iamRole":
             suggest = "iam_role"
+        elif key == "processingRegion":
+            suggest = "processing_region"
         elif key == "secretKey":
             suggest = "secret_key"
 
@@ -3016,6 +3288,7 @@ class ServiceComputeLoggingKinese(dict):
                  topic: builtins.str,
                  access_key: Optional[builtins.str] = None,
                  iam_role: Optional[builtins.str] = None,
+                 processing_region: Optional[builtins.str] = None,
                  region: Optional[builtins.str] = None,
                  secret_key: Optional[builtins.str] = None):
         """
@@ -3023,6 +3296,7 @@ class ServiceComputeLoggingKinese(dict):
         :param builtins.str topic: The Kinesis stream name
         :param builtins.str access_key: The AWS access key to be used to write to the stream
         :param builtins.str iam_role: The Amazon Resource Name (ARN) for the IAM role granting Fastly access to Kinesis. Not required if `access_key` and `secret_key` are provided.
+        :param builtins.str processing_region: Region where logs will be processed before streaming to BigQuery. Valid values are 'none', 'us' and 'eu'.
         :param builtins.str region: The AWS region the stream resides in. (Default: `us-east-1`)
         :param builtins.str secret_key: The AWS secret access key to authenticate with
         """
@@ -3032,6 +3306,8 @@ class ServiceComputeLoggingKinese(dict):
             pulumi.set(__self__, "access_key", access_key)
         if iam_role is not None:
             pulumi.set(__self__, "iam_role", iam_role)
+        if processing_region is not None:
+            pulumi.set(__self__, "processing_region", processing_region)
         if region is not None:
             pulumi.set(__self__, "region", region)
         if secret_key is not None:
@@ -3070,6 +3346,14 @@ class ServiceComputeLoggingKinese(dict):
         return pulumi.get(self, "iam_role")
 
     @property
+    @pulumi.getter(name="processingRegion")
+    def processing_region(self) -> Optional[builtins.str]:
+        """
+        Region where logs will be processed before streaming to BigQuery. Valid values are 'none', 'us' and 'eu'.
+        """
+        return pulumi.get(self, "processing_region")
+
+    @property
     @pulumi.getter
     def region(self) -> Optional[builtins.str]:
         """
@@ -3091,7 +3375,9 @@ class ServiceComputeLoggingLogentry(dict):
     @staticmethod
     def __key_warning(key: str):
         suggest = None
-        if key == "useTls":
+        if key == "processingRegion":
+            suggest = "processing_region"
+        elif key == "useTls":
             suggest = "use_tls"
 
         if suggest:
@@ -3109,17 +3395,21 @@ class ServiceComputeLoggingLogentry(dict):
                  name: builtins.str,
                  token: builtins.str,
                  port: Optional[builtins.int] = None,
+                 processing_region: Optional[builtins.str] = None,
                  use_tls: Optional[builtins.bool] = None):
         """
         :param builtins.str name: The unique name of the Logentries logging endpoint. It is important to note that changing this attribute will delete and recreate the resource
         :param builtins.str token: Use token based authentication (https://logentries.com/doc/input-token/)
         :param builtins.int port: The port number configured in Logentries
+        :param builtins.str processing_region: Region where logs will be processed before streaming to BigQuery. Valid values are 'none', 'us' and 'eu'.
         :param builtins.bool use_tls: Whether to use TLS for secure logging
         """
         pulumi.set(__self__, "name", name)
         pulumi.set(__self__, "token", token)
         if port is not None:
             pulumi.set(__self__, "port", port)
+        if processing_region is not None:
+            pulumi.set(__self__, "processing_region", processing_region)
         if use_tls is not None:
             pulumi.set(__self__, "use_tls", use_tls)
 
@@ -3148,6 +3438,14 @@ class ServiceComputeLoggingLogentry(dict):
         return pulumi.get(self, "port")
 
     @property
+    @pulumi.getter(name="processingRegion")
+    def processing_region(self) -> Optional[builtins.str]:
+        """
+        Region where logs will be processed before streaming to BigQuery. Valid values are 'none', 'us' and 'eu'.
+        """
+        return pulumi.get(self, "processing_region")
+
+    @property
     @pulumi.getter(name="useTls")
     def use_tls(self) -> Optional[builtins.bool]:
         """
@@ -3158,15 +3456,36 @@ class ServiceComputeLoggingLogentry(dict):
 
 @pulumi.output_type
 class ServiceComputeLoggingLoggly(dict):
+    @staticmethod
+    def __key_warning(key: str):
+        suggest = None
+        if key == "processingRegion":
+            suggest = "processing_region"
+
+        if suggest:
+            pulumi.log.warn(f"Key '{key}' not found in ServiceComputeLoggingLoggly. Access the value via the '{suggest}' property getter instead.")
+
+    def __getitem__(self, key: str) -> Any:
+        ServiceComputeLoggingLoggly.__key_warning(key)
+        return super().__getitem__(key)
+
+    def get(self, key: str, default = None) -> Any:
+        ServiceComputeLoggingLoggly.__key_warning(key)
+        return super().get(key, default)
+
     def __init__(__self__, *,
                  name: builtins.str,
-                 token: builtins.str):
+                 token: builtins.str,
+                 processing_region: Optional[builtins.str] = None):
         """
         :param builtins.str name: The unique name of the Loggly logging endpoint. It is important to note that changing this attribute will delete and recreate the resource
         :param builtins.str token: The token to use for authentication (https://www.loggly.com/docs/customer-token-authentication-token/).
+        :param builtins.str processing_region: Region where logs will be processed before streaming to BigQuery. Valid values are 'none', 'us' and 'eu'.
         """
         pulumi.set(__self__, "name", name)
         pulumi.set(__self__, "token", token)
+        if processing_region is not None:
+            pulumi.set(__self__, "processing_region", processing_region)
 
     @property
     @pulumi.getter
@@ -3184,21 +3503,50 @@ class ServiceComputeLoggingLoggly(dict):
         """
         return pulumi.get(self, "token")
 
+    @property
+    @pulumi.getter(name="processingRegion")
+    def processing_region(self) -> Optional[builtins.str]:
+        """
+        Region where logs will be processed before streaming to BigQuery. Valid values are 'none', 'us' and 'eu'.
+        """
+        return pulumi.get(self, "processing_region")
+
 
 @pulumi.output_type
 class ServiceComputeLoggingLogshuttle(dict):
+    @staticmethod
+    def __key_warning(key: str):
+        suggest = None
+        if key == "processingRegion":
+            suggest = "processing_region"
+
+        if suggest:
+            pulumi.log.warn(f"Key '{key}' not found in ServiceComputeLoggingLogshuttle. Access the value via the '{suggest}' property getter instead.")
+
+    def __getitem__(self, key: str) -> Any:
+        ServiceComputeLoggingLogshuttle.__key_warning(key)
+        return super().__getitem__(key)
+
+    def get(self, key: str, default = None) -> Any:
+        ServiceComputeLoggingLogshuttle.__key_warning(key)
+        return super().get(key, default)
+
     def __init__(__self__, *,
                  name: builtins.str,
                  token: builtins.str,
-                 url: builtins.str):
+                 url: builtins.str,
+                 processing_region: Optional[builtins.str] = None):
         """
         :param builtins.str name: The unique name of the Log Shuttle logging endpoint. It is important to note that changing this attribute will delete and recreate the resource
         :param builtins.str token: The data authentication token associated with this endpoint
         :param builtins.str url: Your Log Shuttle endpoint URL
+        :param builtins.str processing_region: Region where logs will be processed before streaming to BigQuery. Valid values are 'none', 'us' and 'eu'.
         """
         pulumi.set(__self__, "name", name)
         pulumi.set(__self__, "token", token)
         pulumi.set(__self__, "url", url)
+        if processing_region is not None:
+            pulumi.set(__self__, "processing_region", processing_region)
 
     @property
     @pulumi.getter
@@ -3224,20 +3572,49 @@ class ServiceComputeLoggingLogshuttle(dict):
         """
         return pulumi.get(self, "url")
 
+    @property
+    @pulumi.getter(name="processingRegion")
+    def processing_region(self) -> Optional[builtins.str]:
+        """
+        Region where logs will be processed before streaming to BigQuery. Valid values are 'none', 'us' and 'eu'.
+        """
+        return pulumi.get(self, "processing_region")
+
 
 @pulumi.output_type
 class ServiceComputeLoggingNewrelic(dict):
+    @staticmethod
+    def __key_warning(key: str):
+        suggest = None
+        if key == "processingRegion":
+            suggest = "processing_region"
+
+        if suggest:
+            pulumi.log.warn(f"Key '{key}' not found in ServiceComputeLoggingNewrelic. Access the value via the '{suggest}' property getter instead.")
+
+    def __getitem__(self, key: str) -> Any:
+        ServiceComputeLoggingNewrelic.__key_warning(key)
+        return super().__getitem__(key)
+
+    def get(self, key: str, default = None) -> Any:
+        ServiceComputeLoggingNewrelic.__key_warning(key)
+        return super().get(key, default)
+
     def __init__(__self__, *,
                  name: builtins.str,
                  token: builtins.str,
+                 processing_region: Optional[builtins.str] = None,
                  region: Optional[builtins.str] = None):
         """
         :param builtins.str name: The unique name of the New Relic logging endpoint. It is important to note that changing this attribute will delete and recreate the resource
         :param builtins.str token: The Insert API key from the Account page of your New Relic account
+        :param builtins.str processing_region: Region where logs will be processed before streaming to BigQuery. Valid values are 'none', 'us' and 'eu'.
         :param builtins.str region: The region that log data will be sent to. Default: `US`
         """
         pulumi.set(__self__, "name", name)
         pulumi.set(__self__, "token", token)
+        if processing_region is not None:
+            pulumi.set(__self__, "processing_region", processing_region)
         if region is not None:
             pulumi.set(__self__, "region", region)
 
@@ -3256,6 +3633,14 @@ class ServiceComputeLoggingNewrelic(dict):
         The Insert API key from the Account page of your New Relic account
         """
         return pulumi.get(self, "token")
+
+    @property
+    @pulumi.getter(name="processingRegion")
+    def processing_region(self) -> Optional[builtins.str]:
+        """
+        Region where logs will be processed before streaming to BigQuery. Valid values are 'none', 'us' and 'eu'.
+        """
+        return pulumi.get(self, "processing_region")
 
     @property
     @pulumi.getter
@@ -3281,6 +3666,8 @@ class ServiceComputeLoggingOpenstack(dict):
             suggest = "gzip_level"
         elif key == "messageType":
             suggest = "message_type"
+        elif key == "processingRegion":
+            suggest = "processing_region"
         elif key == "publicKey":
             suggest = "public_key"
         elif key == "timestampFormat":
@@ -3308,6 +3695,7 @@ class ServiceComputeLoggingOpenstack(dict):
                  message_type: Optional[builtins.str] = None,
                  path: Optional[builtins.str] = None,
                  period: Optional[builtins.int] = None,
+                 processing_region: Optional[builtins.str] = None,
                  public_key: Optional[builtins.str] = None,
                  timestamp_format: Optional[builtins.str] = None):
         """
@@ -3321,6 +3709,7 @@ class ServiceComputeLoggingOpenstack(dict):
         :param builtins.str message_type: How the message should be formatted. Can be either `classic`, `loggly`, `logplex` or `blank`. Default is `classic`
         :param builtins.str path: Path to store the files. Must end with a trailing slash. If this field is left empty, the files will be saved in the bucket's root path
         :param builtins.int period: How frequently the logs should be transferred, in seconds. Default `3600`
+        :param builtins.str processing_region: Region where logs will be processed before streaming to BigQuery. Valid values are 'none', 'us' and 'eu'.
         :param builtins.str public_key: A PGP public key that Fastly will use to encrypt your log files before writing them to disk
         :param builtins.str timestamp_format: The `strftime` specified timestamp formatting (default `%Y-%m-%dT%H:%M:%S.000`)
         """
@@ -3339,6 +3728,8 @@ class ServiceComputeLoggingOpenstack(dict):
             pulumi.set(__self__, "path", path)
         if period is not None:
             pulumi.set(__self__, "period", period)
+        if processing_region is not None:
+            pulumi.set(__self__, "processing_region", processing_region)
         if public_key is not None:
             pulumi.set(__self__, "public_key", public_key)
         if timestamp_format is not None:
@@ -3425,6 +3816,14 @@ class ServiceComputeLoggingOpenstack(dict):
         return pulumi.get(self, "period")
 
     @property
+    @pulumi.getter(name="processingRegion")
+    def processing_region(self) -> Optional[builtins.str]:
+        """
+        Region where logs will be processed before streaming to BigQuery. Valid values are 'none', 'us' and 'eu'.
+        """
+        return pulumi.get(self, "processing_region")
+
+    @property
     @pulumi.getter(name="publicKey")
     def public_key(self) -> Optional[builtins.str]:
         """
@@ -3443,18 +3842,39 @@ class ServiceComputeLoggingOpenstack(dict):
 
 @pulumi.output_type
 class ServiceComputeLoggingPapertrail(dict):
+    @staticmethod
+    def __key_warning(key: str):
+        suggest = None
+        if key == "processingRegion":
+            suggest = "processing_region"
+
+        if suggest:
+            pulumi.log.warn(f"Key '{key}' not found in ServiceComputeLoggingPapertrail. Access the value via the '{suggest}' property getter instead.")
+
+    def __getitem__(self, key: str) -> Any:
+        ServiceComputeLoggingPapertrail.__key_warning(key)
+        return super().__getitem__(key)
+
+    def get(self, key: str, default = None) -> Any:
+        ServiceComputeLoggingPapertrail.__key_warning(key)
+        return super().get(key, default)
+
     def __init__(__self__, *,
                  address: builtins.str,
                  name: builtins.str,
-                 port: builtins.int):
+                 port: builtins.int,
+                 processing_region: Optional[builtins.str] = None):
         """
         :param builtins.str address: The address of the Papertrail endpoint
         :param builtins.str name: A unique name to identify this Papertrail endpoint. It is important to note that changing this attribute will delete and recreate the resource
         :param builtins.int port: The port associated with the address where the Papertrail endpoint can be accessed
+        :param builtins.str processing_region: Region where logs will be processed before streaming to BigQuery. Valid values are 'none', 'us' and 'eu'.
         """
         pulumi.set(__self__, "address", address)
         pulumi.set(__self__, "name", name)
         pulumi.set(__self__, "port", port)
+        if processing_region is not None:
+            pulumi.set(__self__, "processing_region", processing_region)
 
     @property
     @pulumi.getter
@@ -3480,6 +3900,14 @@ class ServiceComputeLoggingPapertrail(dict):
         """
         return pulumi.get(self, "port")
 
+    @property
+    @pulumi.getter(name="processingRegion")
+    def processing_region(self) -> Optional[builtins.str]:
+        """
+        Region where logs will be processed before streaming to BigQuery. Valid values are 'none', 'us' and 'eu'.
+        """
+        return pulumi.get(self, "processing_region")
+
 
 @pulumi.output_type
 class ServiceComputeLoggingS3(dict):
@@ -3496,6 +3924,8 @@ class ServiceComputeLoggingS3(dict):
             suggest = "gzip_level"
         elif key == "messageType":
             suggest = "message_type"
+        elif key == "processingRegion":
+            suggest = "processing_region"
         elif key == "publicKey":
             suggest = "public_key"
         elif key == "s3AccessKey":
@@ -3533,6 +3963,7 @@ class ServiceComputeLoggingS3(dict):
                  message_type: Optional[builtins.str] = None,
                  path: Optional[builtins.str] = None,
                  period: Optional[builtins.int] = None,
+                 processing_region: Optional[builtins.str] = None,
                  public_key: Optional[builtins.str] = None,
                  redundancy: Optional[builtins.str] = None,
                  s3_access_key: Optional[builtins.str] = None,
@@ -3552,6 +3983,7 @@ class ServiceComputeLoggingS3(dict):
         :param builtins.str message_type: How the message should be formatted. Can be either `classic`, `loggly`, `logplex` or `blank`. Default is `classic`
         :param builtins.str path: Path to store the files. Must end with a trailing slash. If this field is left empty, the files will be saved in the bucket's root path
         :param builtins.int period: How frequently the logs should be transferred, in seconds. Default `3600`
+        :param builtins.str processing_region: Region where logs will be processed before streaming to BigQuery. Valid values are 'none', 'us' and 'eu'.
         :param builtins.str public_key: A PGP public key that Fastly will use to encrypt your log files before writing them to disk
         :param builtins.str redundancy: The S3 storage class (redundancy level). Should be one of: `standard`, `intelligent_tiering`, `standard_ia`, `onezone_ia`, `glacier`, `glacier_ir`, `deep_archive`, or `reduced_redundancy`
         :param builtins.str s3_access_key: AWS Access Key of an account with the required permissions to post logs. It is **strongly** recommended you create a separate IAM user with permissions to only operate on this Bucket. This key will be not be encrypted. Not required if `iam_role` is provided. You can provide this key via an environment variable, `FASTLY_S3_ACCESS_KEY`
@@ -3579,6 +4011,8 @@ class ServiceComputeLoggingS3(dict):
             pulumi.set(__self__, "path", path)
         if period is not None:
             pulumi.set(__self__, "period", period)
+        if processing_region is not None:
+            pulumi.set(__self__, "processing_region", processing_region)
         if public_key is not None:
             pulumi.set(__self__, "public_key", public_key)
         if redundancy is not None:
@@ -3677,6 +4111,14 @@ class ServiceComputeLoggingS3(dict):
         return pulumi.get(self, "period")
 
     @property
+    @pulumi.getter(name="processingRegion")
+    def processing_region(self) -> Optional[builtins.str]:
+        """
+        Region where logs will be processed before streaming to BigQuery. Valid values are 'none', 'us' and 'eu'.
+        """
+        return pulumi.get(self, "processing_region")
+
+    @property
     @pulumi.getter(name="publicKey")
     def public_key(self) -> Optional[builtins.str]:
         """
@@ -3746,7 +4188,9 @@ class ServiceComputeLoggingScalyr(dict):
     @staticmethod
     def __key_warning(key: str):
         suggest = None
-        if key == "projectId":
+        if key == "processingRegion":
+            suggest = "processing_region"
+        elif key == "projectId":
             suggest = "project_id"
 
         if suggest:
@@ -3763,16 +4207,20 @@ class ServiceComputeLoggingScalyr(dict):
     def __init__(__self__, *,
                  name: builtins.str,
                  token: builtins.str,
+                 processing_region: Optional[builtins.str] = None,
                  project_id: Optional[builtins.str] = None,
                  region: Optional[builtins.str] = None):
         """
         :param builtins.str name: The unique name of the Scalyr logging endpoint. It is important to note that changing this attribute will delete and recreate the resource
         :param builtins.str token: The token to use for authentication (https://www.scalyr.com/keys)
+        :param builtins.str processing_region: Region where logs will be processed before streaming to BigQuery. Valid values are 'none', 'us' and 'eu'.
         :param builtins.str project_id: The name of the logfile field sent to Scalyr
         :param builtins.str region: The region that log data will be sent to. One of `US` or `EU`. Defaults to `US` if undefined
         """
         pulumi.set(__self__, "name", name)
         pulumi.set(__self__, "token", token)
+        if processing_region is not None:
+            pulumi.set(__self__, "processing_region", processing_region)
         if project_id is not None:
             pulumi.set(__self__, "project_id", project_id)
         if region is not None:
@@ -3793,6 +4241,14 @@ class ServiceComputeLoggingScalyr(dict):
         The token to use for authentication (https://www.scalyr.com/keys)
         """
         return pulumi.get(self, "token")
+
+    @property
+    @pulumi.getter(name="processingRegion")
+    def processing_region(self) -> Optional[builtins.str]:
+        """
+        Region where logs will be processed before streaming to BigQuery. Valid values are 'none', 'us' and 'eu'.
+        """
+        return pulumi.get(self, "processing_region")
 
     @property
     @pulumi.getter(name="projectId")
@@ -3824,6 +4280,8 @@ class ServiceComputeLoggingSftp(dict):
             suggest = "gzip_level"
         elif key == "messageType":
             suggest = "message_type"
+        elif key == "processingRegion":
+            suggest = "processing_region"
         elif key == "publicKey":
             suggest = "public_key"
         elif key == "secretKey":
@@ -3854,6 +4312,7 @@ class ServiceComputeLoggingSftp(dict):
                  password: Optional[builtins.str] = None,
                  period: Optional[builtins.int] = None,
                  port: Optional[builtins.int] = None,
+                 processing_region: Optional[builtins.str] = None,
                  public_key: Optional[builtins.str] = None,
                  secret_key: Optional[builtins.str] = None,
                  timestamp_format: Optional[builtins.str] = None):
@@ -3869,6 +4328,7 @@ class ServiceComputeLoggingSftp(dict):
         :param builtins.str password: The password for the server. If both `password` and `secret_key` are passed, `secret_key` will be preferred
         :param builtins.int period: How frequently log files are finalized so they can be available for reading (in seconds, default `3600`)
         :param builtins.int port: The port the SFTP service listens on. (Default: `22`)
+        :param builtins.str processing_region: Region where logs will be processed before streaming to BigQuery. Valid values are 'none', 'us' and 'eu'.
         :param builtins.str public_key: A PGP public key that Fastly will use to encrypt your log files before writing them to disk
         :param builtins.str secret_key: The SSH private key for the server. If both `password` and `secret_key` are passed, `secret_key` will be preferred
         :param builtins.str timestamp_format: The `strftime` specified timestamp formatting (default `%Y-%m-%dT%H:%M:%S.000`)
@@ -3890,6 +4350,8 @@ class ServiceComputeLoggingSftp(dict):
             pulumi.set(__self__, "period", period)
         if port is not None:
             pulumi.set(__self__, "port", port)
+        if processing_region is not None:
+            pulumi.set(__self__, "processing_region", processing_region)
         if public_key is not None:
             pulumi.set(__self__, "public_key", public_key)
         if secret_key is not None:
@@ -3986,6 +4448,14 @@ class ServiceComputeLoggingSftp(dict):
         return pulumi.get(self, "port")
 
     @property
+    @pulumi.getter(name="processingRegion")
+    def processing_region(self) -> Optional[builtins.str]:
+        """
+        Region where logs will be processed before streaming to BigQuery. Valid values are 'none', 'us' and 'eu'.
+        """
+        return pulumi.get(self, "processing_region")
+
+    @property
     @pulumi.getter(name="publicKey")
     def public_key(self) -> Optional[builtins.str]:
         """
@@ -4015,7 +4485,9 @@ class ServiceComputeLoggingSplunk(dict):
     @staticmethod
     def __key_warning(key: str):
         suggest = None
-        if key == "tlsCaCert":
+        if key == "processingRegion":
+            suggest = "processing_region"
+        elif key == "tlsCaCert":
             suggest = "tls_ca_cert"
         elif key == "tlsClientCert":
             suggest = "tls_client_cert"
@@ -4041,6 +4513,7 @@ class ServiceComputeLoggingSplunk(dict):
                  name: builtins.str,
                  token: builtins.str,
                  url: builtins.str,
+                 processing_region: Optional[builtins.str] = None,
                  tls_ca_cert: Optional[builtins.str] = None,
                  tls_client_cert: Optional[builtins.str] = None,
                  tls_client_key: Optional[builtins.str] = None,
@@ -4050,6 +4523,7 @@ class ServiceComputeLoggingSplunk(dict):
         :param builtins.str name: A unique name to identify the Splunk endpoint. It is important to note that changing this attribute will delete and recreate the resource
         :param builtins.str token: The Splunk token to be used for authentication
         :param builtins.str url: The Splunk URL to stream logs to
+        :param builtins.str processing_region: Region where logs will be processed before streaming to BigQuery. Valid values are 'none', 'us' and 'eu'.
         :param builtins.str tls_ca_cert: A secure certificate to authenticate the server with. Must be in PEM format. You can provide this certificate via an environment variable, `FASTLY_SPLUNK_CA_CERT`
         :param builtins.str tls_client_cert: The client certificate used to make authenticated requests. Must be in PEM format.
         :param builtins.str tls_client_key: The client private key used to make authenticated requests. Must be in PEM format.
@@ -4059,6 +4533,8 @@ class ServiceComputeLoggingSplunk(dict):
         pulumi.set(__self__, "name", name)
         pulumi.set(__self__, "token", token)
         pulumi.set(__self__, "url", url)
+        if processing_region is not None:
+            pulumi.set(__self__, "processing_region", processing_region)
         if tls_ca_cert is not None:
             pulumi.set(__self__, "tls_ca_cert", tls_ca_cert)
         if tls_client_cert is not None:
@@ -4093,6 +4569,14 @@ class ServiceComputeLoggingSplunk(dict):
         The Splunk URL to stream logs to
         """
         return pulumi.get(self, "url")
+
+    @property
+    @pulumi.getter(name="processingRegion")
+    def processing_region(self) -> Optional[builtins.str]:
+        """
+        Region where logs will be processed before streaming to BigQuery. Valid values are 'none', 'us' and 'eu'.
+        """
+        return pulumi.get(self, "processing_region")
 
     @property
     @pulumi.getter(name="tlsCaCert")
@@ -4142,6 +4626,8 @@ class ServiceComputeLoggingSumologic(dict):
         suggest = None
         if key == "messageType":
             suggest = "message_type"
+        elif key == "processingRegion":
+            suggest = "processing_region"
 
         if suggest:
             pulumi.log.warn(f"Key '{key}' not found in ServiceComputeLoggingSumologic. Access the value via the '{suggest}' property getter instead.")
@@ -4157,16 +4643,20 @@ class ServiceComputeLoggingSumologic(dict):
     def __init__(__self__, *,
                  name: builtins.str,
                  url: builtins.str,
-                 message_type: Optional[builtins.str] = None):
+                 message_type: Optional[builtins.str] = None,
+                 processing_region: Optional[builtins.str] = None):
         """
         :param builtins.str name: A unique name to identify this Sumologic endpoint. It is important to note that changing this attribute will delete and recreate the resource
         :param builtins.str url: The URL to Sumologic collector endpoint
         :param builtins.str message_type: How the message should be formatted. Can be either `classic`, `loggly`, `logplex` or `blank`. Default is `classic`
+        :param builtins.str processing_region: Region where logs will be processed before streaming to BigQuery. Valid values are 'none', 'us' and 'eu'.
         """
         pulumi.set(__self__, "name", name)
         pulumi.set(__self__, "url", url)
         if message_type is not None:
             pulumi.set(__self__, "message_type", message_type)
+        if processing_region is not None:
+            pulumi.set(__self__, "processing_region", processing_region)
 
     @property
     @pulumi.getter
@@ -4192,6 +4682,14 @@ class ServiceComputeLoggingSumologic(dict):
         """
         return pulumi.get(self, "message_type")
 
+    @property
+    @pulumi.getter(name="processingRegion")
+    def processing_region(self) -> Optional[builtins.str]:
+        """
+        Region where logs will be processed before streaming to BigQuery. Valid values are 'none', 'us' and 'eu'.
+        """
+        return pulumi.get(self, "processing_region")
+
 
 @pulumi.output_type
 class ServiceComputeLoggingSyslog(dict):
@@ -4200,6 +4698,8 @@ class ServiceComputeLoggingSyslog(dict):
         suggest = None
         if key == "messageType":
             suggest = "message_type"
+        elif key == "processingRegion":
+            suggest = "processing_region"
         elif key == "tlsCaCert":
             suggest = "tls_ca_cert"
         elif key == "tlsClientCert":
@@ -4227,6 +4727,7 @@ class ServiceComputeLoggingSyslog(dict):
                  name: builtins.str,
                  message_type: Optional[builtins.str] = None,
                  port: Optional[builtins.int] = None,
+                 processing_region: Optional[builtins.str] = None,
                  tls_ca_cert: Optional[builtins.str] = None,
                  tls_client_cert: Optional[builtins.str] = None,
                  tls_client_key: Optional[builtins.str] = None,
@@ -4238,6 +4739,7 @@ class ServiceComputeLoggingSyslog(dict):
         :param builtins.str name: A unique name to identify this Syslog endpoint. It is important to note that changing this attribute will delete and recreate the resource
         :param builtins.str message_type: How the message should be formatted. Can be either `classic`, `loggly`, `logplex` or `blank`. Default is `classic`
         :param builtins.int port: The port associated with the address where the Syslog endpoint can be accessed. Default `514`
+        :param builtins.str processing_region: Region where logs will be processed before streaming to BigQuery. Valid values are 'none', 'us' and 'eu'.
         :param builtins.str tls_ca_cert: A secure certificate to authenticate the server with. Must be in PEM format. You can provide this certificate via an environment variable, `FASTLY_SYSLOG_CA_CERT`
         :param builtins.str tls_client_cert: The client certificate used to make authenticated requests. Must be in PEM format. You can provide this certificate via an environment variable, `FASTLY_SYSLOG_CLIENT_CERT`
         :param builtins.str tls_client_key: The client private key used to make authenticated requests. Must be in PEM format. You can provide this key via an environment variable, `FASTLY_SYSLOG_CLIENT_KEY`
@@ -4251,6 +4753,8 @@ class ServiceComputeLoggingSyslog(dict):
             pulumi.set(__self__, "message_type", message_type)
         if port is not None:
             pulumi.set(__self__, "port", port)
+        if processing_region is not None:
+            pulumi.set(__self__, "processing_region", processing_region)
         if tls_ca_cert is not None:
             pulumi.set(__self__, "tls_ca_cert", tls_ca_cert)
         if tls_client_cert is not None:
@@ -4295,6 +4799,14 @@ class ServiceComputeLoggingSyslog(dict):
         The port associated with the address where the Syslog endpoint can be accessed. Default `514`
         """
         return pulumi.get(self, "port")
+
+    @property
+    @pulumi.getter(name="processingRegion")
+    def processing_region(self) -> Optional[builtins.str]:
+        """
+        Region where logs will be processed before streaming to BigQuery. Valid values are 'none', 'us' and 'eu'.
+        """
+        return pulumi.get(self, "processing_region")
 
     @property
     @pulumi.getter(name="tlsCaCert")
@@ -4738,6 +5250,8 @@ class ServiceVclBackend(dict):
             suggest = "min_tls_version"
         elif key == "overrideHost":
             suggest = "override_host"
+        elif key == "preferIpv6":
+            suggest = "prefer_ipv6"
         elif key == "requestCondition":
             suggest = "request_condition"
         elif key == "shareKey":
@@ -4785,6 +5299,7 @@ class ServiceVclBackend(dict):
                  min_tls_version: Optional[builtins.str] = None,
                  override_host: Optional[builtins.str] = None,
                  port: Optional[builtins.int] = None,
+                 prefer_ipv6: Optional[builtins.bool] = None,
                  request_condition: Optional[builtins.str] = None,
                  share_key: Optional[builtins.str] = None,
                  shield: Optional[builtins.str] = None,
@@ -4812,6 +5327,7 @@ class ServiceVclBackend(dict):
         :param builtins.str min_tls_version: Minimum allowed TLS version on SSL connections to this backend.
         :param builtins.str override_host: The hostname to override the Host header
         :param builtins.int port: The port number on which the Backend responds. Default `80`
+        :param builtins.bool prefer_ipv6: Prefer IPv6 connections to origins for hostname backends. Default `false`
         :param builtins.str request_condition: Name of a condition, which if met, will select this backend during a request.
         :param builtins.str share_key: Value that when shared across backends will enable those backends to share the same health check.
         :param builtins.str shield: The POP of the shield designated to reduce inbound load. Valid values for `shield` are included in the `GET /datacenters` API response
@@ -4851,6 +5367,8 @@ class ServiceVclBackend(dict):
             pulumi.set(__self__, "override_host", override_host)
         if port is not None:
             pulumi.set(__self__, "port", port)
+        if prefer_ipv6 is not None:
+            pulumi.set(__self__, "prefer_ipv6", prefer_ipv6)
         if request_condition is not None:
             pulumi.set(__self__, "request_condition", request_condition)
         if share_key is not None:
@@ -4987,6 +5505,14 @@ class ServiceVclBackend(dict):
         The port number on which the Backend responds. Default `80`
         """
         return pulumi.get(self, "port")
+
+    @property
+    @pulumi.getter(name="preferIpv6")
+    def prefer_ipv6(self) -> Optional[builtins.bool]:
+        """
+        Prefer IPv6 connections to origins for hostname backends. Default `false`
+        """
+        return pulumi.get(self, "prefer_ipv6")
 
     @property
     @pulumi.getter(name="requestCondition")
@@ -6061,6 +6587,8 @@ class ServiceVclLoggingBigquery(dict):
             suggest = "secret_key"
         elif key == "accountName":
             suggest = "account_name"
+        elif key == "processingRegion":
+            suggest = "processing_region"
         elif key == "responseCondition":
             suggest = "response_condition"
 
@@ -6085,6 +6613,7 @@ class ServiceVclLoggingBigquery(dict):
                  account_name: Optional[builtins.str] = None,
                  format: Optional[builtins.str] = None,
                  placement: Optional[builtins.str] = None,
+                 processing_region: Optional[builtins.str] = None,
                  response_condition: Optional[builtins.str] = None,
                  template: Optional[builtins.str] = None):
         """
@@ -6097,6 +6626,7 @@ class ServiceVclLoggingBigquery(dict):
         :param builtins.str account_name: The google account name used to obtain temporary credentials (default none). You may optionally provide this via an environment variable, `FASTLY_GCS_ACCOUNT_NAME`.
         :param builtins.str format: The logging format desired.
         :param builtins.str placement: Where in the generated VCL the logging call should be placed.
+        :param builtins.str processing_region: Region where logs will be processed before streaming to BigQuery. Valid values are 'none', 'us' and 'eu'.
         :param builtins.str response_condition: Name of a condition to apply this logging.
         :param builtins.str template: BigQuery table name suffix template
         """
@@ -6112,6 +6642,8 @@ class ServiceVclLoggingBigquery(dict):
             pulumi.set(__self__, "format", format)
         if placement is not None:
             pulumi.set(__self__, "placement", placement)
+        if processing_region is not None:
+            pulumi.set(__self__, "processing_region", processing_region)
         if response_condition is not None:
             pulumi.set(__self__, "response_condition", response_condition)
         if template is not None:
@@ -6190,6 +6722,14 @@ class ServiceVclLoggingBigquery(dict):
         return pulumi.get(self, "placement")
 
     @property
+    @pulumi.getter(name="processingRegion")
+    def processing_region(self) -> Optional[builtins.str]:
+        """
+        Region where logs will be processed before streaming to BigQuery. Valid values are 'none', 'us' and 'eu'.
+        """
+        return pulumi.get(self, "processing_region")
+
+    @property
     @pulumi.getter(name="responseCondition")
     def response_condition(self) -> Optional[builtins.str]:
         """
@@ -6225,6 +6765,8 @@ class ServiceVclLoggingBlobstorage(dict):
             suggest = "gzip_level"
         elif key == "messageType":
             suggest = "message_type"
+        elif key == "processingRegion":
+            suggest = "processing_region"
         elif key == "publicKey":
             suggest = "public_key"
         elif key == "responseCondition":
@@ -6257,6 +6799,7 @@ class ServiceVclLoggingBlobstorage(dict):
                  path: Optional[builtins.str] = None,
                  period: Optional[builtins.int] = None,
                  placement: Optional[builtins.str] = None,
+                 processing_region: Optional[builtins.str] = None,
                  public_key: Optional[builtins.str] = None,
                  response_condition: Optional[builtins.str] = None,
                  timestamp_format: Optional[builtins.str] = None):
@@ -6274,6 +6817,7 @@ class ServiceVclLoggingBlobstorage(dict):
         :param builtins.str path: The path to upload logs to. Must end with a trailing slash. If this field is left empty, the files will be saved in the container's root path
         :param builtins.int period: How frequently the logs should be transferred in seconds. Default `3600`
         :param builtins.str placement: Where in the generated VCL the logging call should be placed
+        :param builtins.str processing_region: Region where logs will be processed before streaming to BigQuery. Valid values are 'none', 'us' and 'eu'.
         :param builtins.str public_key: A PGP public key that Fastly will use to encrypt your log files before writing them to disk
         :param builtins.str response_condition: The name of the condition to apply
         :param builtins.str timestamp_format: The `strftime` specified timestamp formatting (default `%Y-%m-%dT%H:%M:%S.000`)
@@ -6300,6 +6844,8 @@ class ServiceVclLoggingBlobstorage(dict):
             pulumi.set(__self__, "period", period)
         if placement is not None:
             pulumi.set(__self__, "placement", placement)
+        if processing_region is not None:
+            pulumi.set(__self__, "processing_region", processing_region)
         if public_key is not None:
             pulumi.set(__self__, "public_key", public_key)
         if response_condition is not None:
@@ -6412,6 +6958,14 @@ class ServiceVclLoggingBlobstorage(dict):
         return pulumi.get(self, "placement")
 
     @property
+    @pulumi.getter(name="processingRegion")
+    def processing_region(self) -> Optional[builtins.str]:
+        """
+        Region where logs will be processed before streaming to BigQuery. Valid values are 'none', 'us' and 'eu'.
+        """
+        return pulumi.get(self, "processing_region")
+
+    @property
     @pulumi.getter(name="publicKey")
     def public_key(self) -> Optional[builtins.str]:
         """
@@ -6453,6 +7007,8 @@ class ServiceVclLoggingCloudfile(dict):
             suggest = "gzip_level"
         elif key == "messageType":
             suggest = "message_type"
+        elif key == "processingRegion":
+            suggest = "processing_region"
         elif key == "publicKey":
             suggest = "public_key"
         elif key == "responseCondition":
@@ -6484,6 +7040,7 @@ class ServiceVclLoggingCloudfile(dict):
                  path: Optional[builtins.str] = None,
                  period: Optional[builtins.int] = None,
                  placement: Optional[builtins.str] = None,
+                 processing_region: Optional[builtins.str] = None,
                  public_key: Optional[builtins.str] = None,
                  region: Optional[builtins.str] = None,
                  response_condition: Optional[builtins.str] = None,
@@ -6501,6 +7058,7 @@ class ServiceVclLoggingCloudfile(dict):
         :param builtins.str path: The path to upload logs to
         :param builtins.int period: How frequently log files are finalized so they can be available for reading (in seconds, default `3600`)
         :param builtins.str placement: Where in the generated VCL the logging call should be placed. Can be `none` or `none`.
+        :param builtins.str processing_region: Region where logs will be processed before streaming to BigQuery. Valid values are 'none', 'us' and 'eu'.
         :param builtins.str public_key: The PGP public key that Fastly will use to encrypt your log files before writing them to disk
         :param builtins.str region: The region to stream logs to. One of: DFW (Dallas), ORD (Chicago), IAD (Northern Virginia), LON (London), SYD (Sydney), HKG (Hong Kong)
         :param builtins.str response_condition: The name of an existing condition in the configured endpoint, or leave blank to always execute.
@@ -6526,6 +7084,8 @@ class ServiceVclLoggingCloudfile(dict):
             pulumi.set(__self__, "period", period)
         if placement is not None:
             pulumi.set(__self__, "placement", placement)
+        if processing_region is not None:
+            pulumi.set(__self__, "processing_region", processing_region)
         if public_key is not None:
             pulumi.set(__self__, "public_key", public_key)
         if region is not None:
@@ -6632,6 +7192,14 @@ class ServiceVclLoggingCloudfile(dict):
         return pulumi.get(self, "placement")
 
     @property
+    @pulumi.getter(name="processingRegion")
+    def processing_region(self) -> Optional[builtins.str]:
+        """
+        Region where logs will be processed before streaming to BigQuery. Valid values are 'none', 'us' and 'eu'.
+        """
+        return pulumi.get(self, "processing_region")
+
+    @property
     @pulumi.getter(name="publicKey")
     def public_key(self) -> Optional[builtins.str]:
         """
@@ -6671,6 +7239,8 @@ class ServiceVclLoggingDatadog(dict):
         suggest = None
         if key == "formatVersion":
             suggest = "format_version"
+        elif key == "processingRegion":
+            suggest = "processing_region"
         elif key == "responseCondition":
             suggest = "response_condition"
 
@@ -6691,6 +7261,7 @@ class ServiceVclLoggingDatadog(dict):
                  format: Optional[builtins.str] = None,
                  format_version: Optional[builtins.int] = None,
                  placement: Optional[builtins.str] = None,
+                 processing_region: Optional[builtins.str] = None,
                  region: Optional[builtins.str] = None,
                  response_condition: Optional[builtins.str] = None):
         """
@@ -6699,6 +7270,7 @@ class ServiceVclLoggingDatadog(dict):
         :param builtins.str format: Apache-style string or VCL variables to use for log formatting.
         :param builtins.int format_version: The version of the custom logging format used for the configured endpoint. Can be either `1` or `2`. (default: `2`).
         :param builtins.str placement: Where in the generated VCL the logging call should be placed.
+        :param builtins.str processing_region: Region where logs will be processed before streaming to BigQuery. Valid values are 'none', 'us' and 'eu'.
         :param builtins.str region: The region that log data will be sent to. One of `US` or `EU`. Defaults to `US` if undefined
         :param builtins.str response_condition: The name of the condition to apply.
         """
@@ -6710,6 +7282,8 @@ class ServiceVclLoggingDatadog(dict):
             pulumi.set(__self__, "format_version", format_version)
         if placement is not None:
             pulumi.set(__self__, "placement", placement)
+        if processing_region is not None:
+            pulumi.set(__self__, "processing_region", processing_region)
         if region is not None:
             pulumi.set(__self__, "region", region)
         if response_condition is not None:
@@ -6756,6 +7330,14 @@ class ServiceVclLoggingDatadog(dict):
         return pulumi.get(self, "placement")
 
     @property
+    @pulumi.getter(name="processingRegion")
+    def processing_region(self) -> Optional[builtins.str]:
+        """
+        Region where logs will be processed before streaming to BigQuery. Valid values are 'none', 'us' and 'eu'.
+        """
+        return pulumi.get(self, "processing_region")
+
+    @property
     @pulumi.getter
     def region(self) -> Optional[builtins.str]:
         """
@@ -6791,6 +7373,8 @@ class ServiceVclLoggingDigitalocean(dict):
             suggest = "gzip_level"
         elif key == "messageType":
             suggest = "message_type"
+        elif key == "processingRegion":
+            suggest = "processing_region"
         elif key == "publicKey":
             suggest = "public_key"
         elif key == "responseCondition":
@@ -6823,6 +7407,7 @@ class ServiceVclLoggingDigitalocean(dict):
                  path: Optional[builtins.str] = None,
                  period: Optional[builtins.int] = None,
                  placement: Optional[builtins.str] = None,
+                 processing_region: Optional[builtins.str] = None,
                  public_key: Optional[builtins.str] = None,
                  response_condition: Optional[builtins.str] = None,
                  timestamp_format: Optional[builtins.str] = None):
@@ -6840,6 +7425,7 @@ class ServiceVclLoggingDigitalocean(dict):
         :param builtins.str path: The path to upload logs to
         :param builtins.int period: How frequently log files are finalized so they can be available for reading (in seconds, default `3600`)
         :param builtins.str placement: Where in the generated VCL the logging call should be placed. Can be `none` or `none`.
+        :param builtins.str processing_region: Region where logs will be processed before streaming to BigQuery. Valid values are 'none', 'us' and 'eu'.
         :param builtins.str public_key: A PGP public key that Fastly will use to encrypt your log files before writing them to disk
         :param builtins.str response_condition: The name of an existing condition in the configured endpoint, or leave blank to always execute.
         :param builtins.str timestamp_format: The `strftime` specified timestamp formatting (default `%Y-%m-%dT%H:%M:%S.000`)
@@ -6866,6 +7452,8 @@ class ServiceVclLoggingDigitalocean(dict):
             pulumi.set(__self__, "period", period)
         if placement is not None:
             pulumi.set(__self__, "placement", placement)
+        if processing_region is not None:
+            pulumi.set(__self__, "processing_region", processing_region)
         if public_key is not None:
             pulumi.set(__self__, "public_key", public_key)
         if response_condition is not None:
@@ -6978,6 +7566,14 @@ class ServiceVclLoggingDigitalocean(dict):
         return pulumi.get(self, "placement")
 
     @property
+    @pulumi.getter(name="processingRegion")
+    def processing_region(self) -> Optional[builtins.str]:
+        """
+        Region where logs will be processed before streaming to BigQuery. Valid values are 'none', 'us' and 'eu'.
+        """
+        return pulumi.get(self, "processing_region")
+
+    @property
     @pulumi.getter(name="publicKey")
     def public_key(self) -> Optional[builtins.str]:
         """
@@ -7009,6 +7605,8 @@ class ServiceVclLoggingElasticsearch(dict):
         suggest = None
         if key == "formatVersion":
             suggest = "format_version"
+        elif key == "processingRegion":
+            suggest = "processing_region"
         elif key == "requestMaxBytes":
             suggest = "request_max_bytes"
         elif key == "requestMaxEntries":
@@ -7044,6 +7642,7 @@ class ServiceVclLoggingElasticsearch(dict):
                  password: Optional[builtins.str] = None,
                  pipeline: Optional[builtins.str] = None,
                  placement: Optional[builtins.str] = None,
+                 processing_region: Optional[builtins.str] = None,
                  request_max_bytes: Optional[builtins.int] = None,
                  request_max_entries: Optional[builtins.int] = None,
                  response_condition: Optional[builtins.str] = None,
@@ -7061,6 +7660,7 @@ class ServiceVclLoggingElasticsearch(dict):
         :param builtins.str password: BasicAuth password for Elasticsearch
         :param builtins.str pipeline: The ID of the Elasticsearch ingest pipeline to apply pre-process transformations to before indexing
         :param builtins.str placement: Where in the generated VCL the logging call should be placed.
+        :param builtins.str processing_region: Region where logs will be processed before streaming to BigQuery. Valid values are 'none', 'us' and 'eu'.
         :param builtins.int request_max_bytes: The maximum number of logs sent in one request. Defaults to `0` for unbounded
         :param builtins.int request_max_entries: The maximum number of bytes sent in one request. Defaults to `0` for unbounded
         :param builtins.str response_condition: The name of the condition to apply
@@ -7083,6 +7683,8 @@ class ServiceVclLoggingElasticsearch(dict):
             pulumi.set(__self__, "pipeline", pipeline)
         if placement is not None:
             pulumi.set(__self__, "placement", placement)
+        if processing_region is not None:
+            pulumi.set(__self__, "processing_region", processing_region)
         if request_max_bytes is not None:
             pulumi.set(__self__, "request_max_bytes", request_max_bytes)
         if request_max_entries is not None:
@@ -7165,6 +7767,14 @@ class ServiceVclLoggingElasticsearch(dict):
         return pulumi.get(self, "placement")
 
     @property
+    @pulumi.getter(name="processingRegion")
+    def processing_region(self) -> Optional[builtins.str]:
+        """
+        Region where logs will be processed before streaming to BigQuery. Valid values are 'none', 'us' and 'eu'.
+        """
+        return pulumi.get(self, "processing_region")
+
+    @property
     @pulumi.getter(name="requestMaxBytes")
     def request_max_bytes(self) -> Optional[builtins.int]:
         """
@@ -7242,6 +7852,8 @@ class ServiceVclLoggingFtp(dict):
             suggest = "gzip_level"
         elif key == "messageType":
             suggest = "message_type"
+        elif key == "processingRegion":
+            suggest = "processing_region"
         elif key == "publicKey":
             suggest = "public_key"
         elif key == "responseCondition":
@@ -7274,6 +7886,7 @@ class ServiceVclLoggingFtp(dict):
                  period: Optional[builtins.int] = None,
                  placement: Optional[builtins.str] = None,
                  port: Optional[builtins.int] = None,
+                 processing_region: Optional[builtins.str] = None,
                  public_key: Optional[builtins.str] = None,
                  response_condition: Optional[builtins.str] = None,
                  timestamp_format: Optional[builtins.str] = None):
@@ -7291,6 +7904,7 @@ class ServiceVclLoggingFtp(dict):
         :param builtins.int period: How frequently the logs should be transferred, in seconds (Default `3600`)
         :param builtins.str placement: Where in the generated VCL the logging call should be placed.
         :param builtins.int port: The port number. Default: `21`
+        :param builtins.str processing_region: Region where logs will be processed before streaming to BigQuery. Valid values are 'none', 'us' and 'eu'.
         :param builtins.str public_key: The PGP public key that Fastly will use to encrypt your log files before writing them to disk
         :param builtins.str response_condition: The name of the condition to apply.
         :param builtins.str timestamp_format: The `strftime` specified timestamp formatting (default `%Y-%m-%dT%H:%M:%S.000`)
@@ -7316,6 +7930,8 @@ class ServiceVclLoggingFtp(dict):
             pulumi.set(__self__, "placement", placement)
         if port is not None:
             pulumi.set(__self__, "port", port)
+        if processing_region is not None:
+            pulumi.set(__self__, "processing_region", processing_region)
         if public_key is not None:
             pulumi.set(__self__, "public_key", public_key)
         if response_condition is not None:
@@ -7428,6 +8044,14 @@ class ServiceVclLoggingFtp(dict):
         return pulumi.get(self, "port")
 
     @property
+    @pulumi.getter(name="processingRegion")
+    def processing_region(self) -> Optional[builtins.str]:
+        """
+        Region where logs will be processed before streaming to BigQuery. Valid values are 'none', 'us' and 'eu'.
+        """
+        return pulumi.get(self, "processing_region")
+
+    @property
     @pulumi.getter(name="publicKey")
     def public_key(self) -> Optional[builtins.str]:
         """
@@ -7469,6 +8093,8 @@ class ServiceVclLoggingGc(dict):
             suggest = "gzip_level"
         elif key == "messageType":
             suggest = "message_type"
+        elif key == "processingRegion":
+            suggest = "processing_region"
         elif key == "projectId":
             suggest = "project_id"
         elif key == "responseCondition":
@@ -7501,6 +8127,7 @@ class ServiceVclLoggingGc(dict):
                  path: Optional[builtins.str] = None,
                  period: Optional[builtins.int] = None,
                  placement: Optional[builtins.str] = None,
+                 processing_region: Optional[builtins.str] = None,
                  project_id: Optional[builtins.str] = None,
                  response_condition: Optional[builtins.str] = None,
                  secret_key: Optional[builtins.str] = None,
@@ -7518,6 +8145,7 @@ class ServiceVclLoggingGc(dict):
         :param builtins.str path: Path to store the files. Must end with a trailing slash. If this field is left empty, the files will be saved in the bucket's root path
         :param builtins.int period: How frequently the logs should be transferred, in seconds (Default 3600)
         :param builtins.str placement: Where in the generated VCL the logging call should be placed.
+        :param builtins.str processing_region: Region where logs will be processed before streaming to BigQuery. Valid values are 'none', 'us' and 'eu'.
         :param builtins.str project_id: The ID of your Google Cloud Platform project
         :param builtins.str response_condition: Name of a condition to apply this logging.
         :param builtins.str secret_key: The secret key associated with the target gcs bucket on your account. You may optionally provide this secret via an environment variable, `FASTLY_GCS_SECRET_KEY`. A typical format for the key is PEM format, containing actual newline characters where required
@@ -7544,6 +8172,8 @@ class ServiceVclLoggingGc(dict):
             pulumi.set(__self__, "period", period)
         if placement is not None:
             pulumi.set(__self__, "placement", placement)
+        if processing_region is not None:
+            pulumi.set(__self__, "processing_region", processing_region)
         if project_id is not None:
             pulumi.set(__self__, "project_id", project_id)
         if response_condition is not None:
@@ -7644,6 +8274,14 @@ class ServiceVclLoggingGc(dict):
         return pulumi.get(self, "placement")
 
     @property
+    @pulumi.getter(name="processingRegion")
+    def processing_region(self) -> Optional[builtins.str]:
+        """
+        Region where logs will be processed before streaming to BigQuery. Valid values are 'none', 'us' and 'eu'.
+        """
+        return pulumi.get(self, "processing_region")
+
+    @property
     @pulumi.getter(name="projectId")
     def project_id(self) -> Optional[builtins.str]:
         """
@@ -7697,6 +8335,8 @@ class ServiceVclLoggingGooglepubsub(dict):
             suggest = "account_name"
         elif key == "formatVersion":
             suggest = "format_version"
+        elif key == "processingRegion":
+            suggest = "processing_region"
         elif key == "responseCondition":
             suggest = "response_condition"
 
@@ -7721,6 +8361,7 @@ class ServiceVclLoggingGooglepubsub(dict):
                  format: Optional[builtins.str] = None,
                  format_version: Optional[builtins.int] = None,
                  placement: Optional[builtins.str] = None,
+                 processing_region: Optional[builtins.str] = None,
                  response_condition: Optional[builtins.str] = None):
         """
         :param builtins.str name: The unique name of the Google Cloud Pub/Sub logging endpoint. It is important to note that changing this attribute will delete and recreate the resource
@@ -7732,6 +8373,7 @@ class ServiceVclLoggingGooglepubsub(dict):
         :param builtins.str format: Apache style log formatting.
         :param builtins.int format_version: The version of the custom logging format used for the configured endpoint. Can be either 1 or 2. (default: 2).
         :param builtins.str placement: Where in the generated VCL the logging call should be placed.
+        :param builtins.str processing_region: Region where logs will be processed before streaming to BigQuery. Valid values are 'none', 'us' and 'eu'.
         :param builtins.str response_condition: The name of an existing condition in the configured endpoint, or leave blank to always execute.
         """
         pulumi.set(__self__, "name", name)
@@ -7747,6 +8389,8 @@ class ServiceVclLoggingGooglepubsub(dict):
             pulumi.set(__self__, "format_version", format_version)
         if placement is not None:
             pulumi.set(__self__, "placement", placement)
+        if processing_region is not None:
+            pulumi.set(__self__, "processing_region", processing_region)
         if response_condition is not None:
             pulumi.set(__self__, "response_condition", response_condition)
 
@@ -7823,6 +8467,14 @@ class ServiceVclLoggingGooglepubsub(dict):
         return pulumi.get(self, "placement")
 
     @property
+    @pulumi.getter(name="processingRegion")
+    def processing_region(self) -> Optional[builtins.str]:
+        """
+        Region where logs will be processed before streaming to BigQuery. Valid values are 'none', 'us' and 'eu'.
+        """
+        return pulumi.get(self, "processing_region")
+
+    @property
     @pulumi.getter(name="responseCondition")
     def response_condition(self) -> Optional[builtins.str]:
         """
@@ -7838,6 +8490,8 @@ class ServiceVclLoggingGrafanacloudlog(dict):
         suggest = None
         if key == "formatVersion":
             suggest = "format_version"
+        elif key == "processingRegion":
+            suggest = "processing_region"
         elif key == "responseCondition":
             suggest = "response_condition"
 
@@ -7861,6 +8515,7 @@ class ServiceVclLoggingGrafanacloudlog(dict):
                  format: Optional[builtins.str] = None,
                  format_version: Optional[builtins.int] = None,
                  placement: Optional[builtins.str] = None,
+                 processing_region: Optional[builtins.str] = None,
                  response_condition: Optional[builtins.str] = None):
         """
         :param builtins.str index: The stream identifier as a JSON string
@@ -7871,6 +8526,7 @@ class ServiceVclLoggingGrafanacloudlog(dict):
         :param builtins.str format: Apache-style string or VCL variables to use for log formatting.
         :param builtins.int format_version: The version of the custom logging format used for the configured endpoint. Can be either `1` or `2`. (default: `2`).
         :param builtins.str placement: Where in the generated VCL the logging call should be placed.
+        :param builtins.str processing_region: Region where logs will be processed before streaming to BigQuery. Valid values are 'none', 'us' and 'eu'.
         :param builtins.str response_condition: The name of the condition to apply.
         """
         pulumi.set(__self__, "index", index)
@@ -7884,6 +8540,8 @@ class ServiceVclLoggingGrafanacloudlog(dict):
             pulumi.set(__self__, "format_version", format_version)
         if placement is not None:
             pulumi.set(__self__, "placement", placement)
+        if processing_region is not None:
+            pulumi.set(__self__, "processing_region", processing_region)
         if response_condition is not None:
             pulumi.set(__self__, "response_condition", response_condition)
 
@@ -7952,6 +8610,14 @@ class ServiceVclLoggingGrafanacloudlog(dict):
         return pulumi.get(self, "placement")
 
     @property
+    @pulumi.getter(name="processingRegion")
+    def processing_region(self) -> Optional[builtins.str]:
+        """
+        Region where logs will be processed before streaming to BigQuery. Valid values are 'none', 'us' and 'eu'.
+        """
+        return pulumi.get(self, "processing_region")
+
+    @property
     @pulumi.getter(name="responseCondition")
     def response_condition(self) -> Optional[builtins.str]:
         """
@@ -7967,6 +8633,8 @@ class ServiceVclLoggingHerokus(dict):
         suggest = None
         if key == "formatVersion":
             suggest = "format_version"
+        elif key == "processingRegion":
+            suggest = "processing_region"
         elif key == "responseCondition":
             suggest = "response_condition"
 
@@ -7988,6 +8656,7 @@ class ServiceVclLoggingHerokus(dict):
                  format: Optional[builtins.str] = None,
                  format_version: Optional[builtins.int] = None,
                  placement: Optional[builtins.str] = None,
+                 processing_region: Optional[builtins.str] = None,
                  response_condition: Optional[builtins.str] = None):
         """
         :param builtins.str name: The unique name of the Heroku logging endpoint. It is important to note that changing this attribute will delete and recreate the resource
@@ -7996,6 +8665,7 @@ class ServiceVclLoggingHerokus(dict):
         :param builtins.str format: Apache-style string or VCL variables to use for log formatting.
         :param builtins.int format_version: The version of the custom logging format used for the configured endpoint. Can be either `1` or `2`. (default: `2`).
         :param builtins.str placement: Where in the generated VCL the logging call should be placed. Can be `none` or `none`.
+        :param builtins.str processing_region: Region where logs will be processed before streaming to BigQuery. Valid values are 'none', 'us' and 'eu'.
         :param builtins.str response_condition: The name of an existing condition in the configured endpoint, or leave blank to always execute.
         """
         pulumi.set(__self__, "name", name)
@@ -8007,6 +8677,8 @@ class ServiceVclLoggingHerokus(dict):
             pulumi.set(__self__, "format_version", format_version)
         if placement is not None:
             pulumi.set(__self__, "placement", placement)
+        if processing_region is not None:
+            pulumi.set(__self__, "processing_region", processing_region)
         if response_condition is not None:
             pulumi.set(__self__, "response_condition", response_condition)
 
@@ -8059,6 +8731,14 @@ class ServiceVclLoggingHerokus(dict):
         return pulumi.get(self, "placement")
 
     @property
+    @pulumi.getter(name="processingRegion")
+    def processing_region(self) -> Optional[builtins.str]:
+        """
+        Region where logs will be processed before streaming to BigQuery. Valid values are 'none', 'us' and 'eu'.
+        """
+        return pulumi.get(self, "processing_region")
+
+    @property
     @pulumi.getter(name="responseCondition")
     def response_condition(self) -> Optional[builtins.str]:
         """
@@ -8074,6 +8754,8 @@ class ServiceVclLoggingHoneycomb(dict):
         suggest = None
         if key == "formatVersion":
             suggest = "format_version"
+        elif key == "processingRegion":
+            suggest = "processing_region"
         elif key == "responseCondition":
             suggest = "response_condition"
 
@@ -8095,6 +8777,7 @@ class ServiceVclLoggingHoneycomb(dict):
                  format: Optional[builtins.str] = None,
                  format_version: Optional[builtins.int] = None,
                  placement: Optional[builtins.str] = None,
+                 processing_region: Optional[builtins.str] = None,
                  response_condition: Optional[builtins.str] = None):
         """
         :param builtins.str dataset: The Honeycomb Dataset you want to log to
@@ -8103,6 +8786,7 @@ class ServiceVclLoggingHoneycomb(dict):
         :param builtins.str format: Apache style log formatting. Your log must produce valid JSON that Honeycomb can ingest.
         :param builtins.int format_version: The version of the custom logging format used for the configured endpoint. Can be either `1` or `2`. (default: `2`).
         :param builtins.str placement: Where in the generated VCL the logging call should be placed. Can be `none` or `none`.
+        :param builtins.str processing_region: Region where logs will be processed before streaming to BigQuery. Valid values are 'none', 'us' and 'eu'.
         :param builtins.str response_condition: The name of an existing condition in the configured endpoint, or leave blank to always execute.
         """
         pulumi.set(__self__, "dataset", dataset)
@@ -8114,6 +8798,8 @@ class ServiceVclLoggingHoneycomb(dict):
             pulumi.set(__self__, "format_version", format_version)
         if placement is not None:
             pulumi.set(__self__, "placement", placement)
+        if processing_region is not None:
+            pulumi.set(__self__, "processing_region", processing_region)
         if response_condition is not None:
             pulumi.set(__self__, "response_condition", response_condition)
 
@@ -8166,6 +8852,14 @@ class ServiceVclLoggingHoneycomb(dict):
         return pulumi.get(self, "placement")
 
     @property
+    @pulumi.getter(name="processingRegion")
+    def processing_region(self) -> Optional[builtins.str]:
+        """
+        Region where logs will be processed before streaming to BigQuery. Valid values are 'none', 'us' and 'eu'.
+        """
+        return pulumi.get(self, "processing_region")
+
+    @property
     @pulumi.getter(name="responseCondition")
     def response_condition(self) -> Optional[builtins.str]:
         """
@@ -8191,6 +8885,8 @@ class ServiceVclLoggingHttp(dict):
             suggest = "json_format"
         elif key == "messageType":
             suggest = "message_type"
+        elif key == "processingRegion":
+            suggest = "processing_region"
         elif key == "requestMaxBytes":
             suggest = "request_max_bytes"
         elif key == "requestMaxEntries":
@@ -8229,6 +8925,7 @@ class ServiceVclLoggingHttp(dict):
                  message_type: Optional[builtins.str] = None,
                  method: Optional[builtins.str] = None,
                  placement: Optional[builtins.str] = None,
+                 processing_region: Optional[builtins.str] = None,
                  request_max_bytes: Optional[builtins.int] = None,
                  request_max_entries: Optional[builtins.int] = None,
                  response_condition: Optional[builtins.str] = None,
@@ -8248,6 +8945,7 @@ class ServiceVclLoggingHttp(dict):
         :param builtins.str message_type: How the message should be formatted. Can be either `classic`, `loggly`, `logplex` or `blank`. Default is `classic`
         :param builtins.str method: HTTP method used for request. Can be either `POST` or `PUT`. Default `POST`
         :param builtins.str placement: Where in the generated VCL the logging call should be placed
+        :param builtins.str processing_region: Region where logs will be processed before streaming to BigQuery. Valid values are 'none', 'us' and 'eu'.
         :param builtins.int request_max_bytes: The maximum number of bytes sent in one request
         :param builtins.int request_max_entries: The maximum number of logs sent in one request
         :param builtins.str response_condition: The name of the condition to apply
@@ -8276,6 +8974,8 @@ class ServiceVclLoggingHttp(dict):
             pulumi.set(__self__, "method", method)
         if placement is not None:
             pulumi.set(__self__, "placement", placement)
+        if processing_region is not None:
+            pulumi.set(__self__, "processing_region", processing_region)
         if request_max_bytes is not None:
             pulumi.set(__self__, "request_max_bytes", request_max_bytes)
         if request_max_entries is not None:
@@ -8380,6 +9080,14 @@ class ServiceVclLoggingHttp(dict):
         return pulumi.get(self, "placement")
 
     @property
+    @pulumi.getter(name="processingRegion")
+    def processing_region(self) -> Optional[builtins.str]:
+        """
+        Region where logs will be processed before streaming to BigQuery. Valid values are 'none', 'us' and 'eu'.
+        """
+        return pulumi.get(self, "processing_region")
+
+    @property
     @pulumi.getter(name="requestMaxBytes")
     def request_max_bytes(self) -> Optional[builtins.int]:
         """
@@ -8449,6 +9157,8 @@ class ServiceVclLoggingKafka(dict):
             suggest = "format_version"
         elif key == "parseLogKeyvals":
             suggest = "parse_log_keyvals"
+        elif key == "processingRegion":
+            suggest = "processing_region"
         elif key == "requestMaxBytes":
             suggest = "request_max_bytes"
         elif key == "requiredAcks":
@@ -8488,6 +9198,7 @@ class ServiceVclLoggingKafka(dict):
                  parse_log_keyvals: Optional[builtins.bool] = None,
                  password: Optional[builtins.str] = None,
                  placement: Optional[builtins.str] = None,
+                 processing_region: Optional[builtins.str] = None,
                  request_max_bytes: Optional[builtins.int] = None,
                  required_acks: Optional[builtins.str] = None,
                  response_condition: Optional[builtins.str] = None,
@@ -8508,6 +9219,7 @@ class ServiceVclLoggingKafka(dict):
         :param builtins.bool parse_log_keyvals: Enables parsing of key=value tuples from the beginning of a logline, turning them into record headers
         :param builtins.str password: SASL Pass
         :param builtins.str placement: Where in the generated VCL the logging call should be placed.
+        :param builtins.str processing_region: Region where logs will be processed before streaming to BigQuery. Valid values are 'none', 'us' and 'eu'.
         :param builtins.int request_max_bytes: Maximum size of log batch, if non-zero. Defaults to 0 for unbounded
         :param builtins.str required_acks: The Number of acknowledgements a leader must receive before a write is considered successful. One of: `1` (default) One server needs to respond. `0` No servers need to respond. `-1` Wait for all in-sync replicas to respond
         :param builtins.str response_condition: The name of an existing condition in the configured endpoint, or leave blank to always execute.
@@ -8535,6 +9247,8 @@ class ServiceVclLoggingKafka(dict):
             pulumi.set(__self__, "password", password)
         if placement is not None:
             pulumi.set(__self__, "placement", placement)
+        if processing_region is not None:
+            pulumi.set(__self__, "processing_region", processing_region)
         if request_max_bytes is not None:
             pulumi.set(__self__, "request_max_bytes", request_max_bytes)
         if required_acks is not None:
@@ -8635,6 +9349,14 @@ class ServiceVclLoggingKafka(dict):
         return pulumi.get(self, "placement")
 
     @property
+    @pulumi.getter(name="processingRegion")
+    def processing_region(self) -> Optional[builtins.str]:
+        """
+        Region where logs will be processed before streaming to BigQuery. Valid values are 'none', 'us' and 'eu'.
+        """
+        return pulumi.get(self, "processing_region")
+
+    @property
     @pulumi.getter(name="requestMaxBytes")
     def request_max_bytes(self) -> Optional[builtins.int]:
         """
@@ -8718,6 +9440,8 @@ class ServiceVclLoggingKinese(dict):
             suggest = "format_version"
         elif key == "iamRole":
             suggest = "iam_role"
+        elif key == "processingRegion":
+            suggest = "processing_region"
         elif key == "responseCondition":
             suggest = "response_condition"
         elif key == "secretKey":
@@ -8742,6 +9466,7 @@ class ServiceVclLoggingKinese(dict):
                  format_version: Optional[builtins.int] = None,
                  iam_role: Optional[builtins.str] = None,
                  placement: Optional[builtins.str] = None,
+                 processing_region: Optional[builtins.str] = None,
                  region: Optional[builtins.str] = None,
                  response_condition: Optional[builtins.str] = None,
                  secret_key: Optional[builtins.str] = None):
@@ -8753,6 +9478,7 @@ class ServiceVclLoggingKinese(dict):
         :param builtins.int format_version: The version of the custom logging format used for the configured endpoint. Can be either `1` or `2`. (default: `2`).
         :param builtins.str iam_role: The Amazon Resource Name (ARN) for the IAM role granting Fastly access to Kinesis. Not required if `access_key` and `secret_key` are provided.
         :param builtins.str placement: Where in the generated VCL the logging call should be placed. Can be `none` or `none`.
+        :param builtins.str processing_region: Region where logs will be processed before streaming to BigQuery. Valid values are 'none', 'us' and 'eu'.
         :param builtins.str region: The AWS region the stream resides in. (Default: `us-east-1`)
         :param builtins.str response_condition: The name of an existing condition in the configured endpoint, or leave blank to always execute.
         :param builtins.str secret_key: The AWS secret access key to authenticate with
@@ -8769,6 +9495,8 @@ class ServiceVclLoggingKinese(dict):
             pulumi.set(__self__, "iam_role", iam_role)
         if placement is not None:
             pulumi.set(__self__, "placement", placement)
+        if processing_region is not None:
+            pulumi.set(__self__, "processing_region", processing_region)
         if region is not None:
             pulumi.set(__self__, "region", region)
         if response_condition is not None:
@@ -8833,6 +9561,14 @@ class ServiceVclLoggingKinese(dict):
         return pulumi.get(self, "placement")
 
     @property
+    @pulumi.getter(name="processingRegion")
+    def processing_region(self) -> Optional[builtins.str]:
+        """
+        Region where logs will be processed before streaming to BigQuery. Valid values are 'none', 'us' and 'eu'.
+        """
+        return pulumi.get(self, "processing_region")
+
+    @property
     @pulumi.getter
     def region(self) -> Optional[builtins.str]:
         """
@@ -8864,6 +9600,8 @@ class ServiceVclLoggingLogentry(dict):
         suggest = None
         if key == "formatVersion":
             suggest = "format_version"
+        elif key == "processingRegion":
+            suggest = "processing_region"
         elif key == "responseCondition":
             suggest = "response_condition"
         elif key == "useTls":
@@ -8887,6 +9625,7 @@ class ServiceVclLoggingLogentry(dict):
                  format_version: Optional[builtins.int] = None,
                  placement: Optional[builtins.str] = None,
                  port: Optional[builtins.int] = None,
+                 processing_region: Optional[builtins.str] = None,
                  response_condition: Optional[builtins.str] = None,
                  use_tls: Optional[builtins.bool] = None):
         """
@@ -8896,6 +9635,7 @@ class ServiceVclLoggingLogentry(dict):
         :param builtins.int format_version: The version of the custom logging format used for the configured endpoint. Can be either 1 or 2. (Default: 2)
         :param builtins.str placement: Where in the generated VCL the logging call should be placed.
         :param builtins.int port: The port number configured in Logentries
+        :param builtins.str processing_region: Region where logs will be processed before streaming to BigQuery. Valid values are 'none', 'us' and 'eu'.
         :param builtins.str response_condition: Name of blockAttributes condition to apply this logging.
         :param builtins.bool use_tls: Whether to use TLS for secure logging
         """
@@ -8909,6 +9649,8 @@ class ServiceVclLoggingLogentry(dict):
             pulumi.set(__self__, "placement", placement)
         if port is not None:
             pulumi.set(__self__, "port", port)
+        if processing_region is not None:
+            pulumi.set(__self__, "processing_region", processing_region)
         if response_condition is not None:
             pulumi.set(__self__, "response_condition", response_condition)
         if use_tls is not None:
@@ -8963,6 +9705,14 @@ class ServiceVclLoggingLogentry(dict):
         return pulumi.get(self, "port")
 
     @property
+    @pulumi.getter(name="processingRegion")
+    def processing_region(self) -> Optional[builtins.str]:
+        """
+        Region where logs will be processed before streaming to BigQuery. Valid values are 'none', 'us' and 'eu'.
+        """
+        return pulumi.get(self, "processing_region")
+
+    @property
     @pulumi.getter(name="responseCondition")
     def response_condition(self) -> Optional[builtins.str]:
         """
@@ -8986,6 +9736,8 @@ class ServiceVclLoggingLoggly(dict):
         suggest = None
         if key == "formatVersion":
             suggest = "format_version"
+        elif key == "processingRegion":
+            suggest = "processing_region"
         elif key == "responseCondition":
             suggest = "response_condition"
 
@@ -9006,6 +9758,7 @@ class ServiceVclLoggingLoggly(dict):
                  format: Optional[builtins.str] = None,
                  format_version: Optional[builtins.int] = None,
                  placement: Optional[builtins.str] = None,
+                 processing_region: Optional[builtins.str] = None,
                  response_condition: Optional[builtins.str] = None):
         """
         :param builtins.str name: The unique name of the Loggly logging endpoint. It is important to note that changing this attribute will delete and recreate the resource
@@ -9013,6 +9766,7 @@ class ServiceVclLoggingLoggly(dict):
         :param builtins.str format: Apache-style string or VCL variables to use for log formatting.
         :param builtins.int format_version: The version of the custom logging format used for the configured endpoint. Can be either `1` or `2`. (default: `2`).
         :param builtins.str placement: Where in the generated VCL the logging call should be placed. Can be `none` or `none`.
+        :param builtins.str processing_region: Region where logs will be processed before streaming to BigQuery. Valid values are 'none', 'us' and 'eu'.
         :param builtins.str response_condition: The name of an existing condition in the configured endpoint, or leave blank to always execute.
         """
         pulumi.set(__self__, "name", name)
@@ -9023,6 +9777,8 @@ class ServiceVclLoggingLoggly(dict):
             pulumi.set(__self__, "format_version", format_version)
         if placement is not None:
             pulumi.set(__self__, "placement", placement)
+        if processing_region is not None:
+            pulumi.set(__self__, "processing_region", processing_region)
         if response_condition is not None:
             pulumi.set(__self__, "response_condition", response_condition)
 
@@ -9067,6 +9823,14 @@ class ServiceVclLoggingLoggly(dict):
         return pulumi.get(self, "placement")
 
     @property
+    @pulumi.getter(name="processingRegion")
+    def processing_region(self) -> Optional[builtins.str]:
+        """
+        Region where logs will be processed before streaming to BigQuery. Valid values are 'none', 'us' and 'eu'.
+        """
+        return pulumi.get(self, "processing_region")
+
+    @property
     @pulumi.getter(name="responseCondition")
     def response_condition(self) -> Optional[builtins.str]:
         """
@@ -9082,6 +9846,8 @@ class ServiceVclLoggingLogshuttle(dict):
         suggest = None
         if key == "formatVersion":
             suggest = "format_version"
+        elif key == "processingRegion":
+            suggest = "processing_region"
         elif key == "responseCondition":
             suggest = "response_condition"
 
@@ -9103,6 +9869,7 @@ class ServiceVclLoggingLogshuttle(dict):
                  format: Optional[builtins.str] = None,
                  format_version: Optional[builtins.int] = None,
                  placement: Optional[builtins.str] = None,
+                 processing_region: Optional[builtins.str] = None,
                  response_condition: Optional[builtins.str] = None):
         """
         :param builtins.str name: The unique name of the Log Shuttle logging endpoint. It is important to note that changing this attribute will delete and recreate the resource
@@ -9111,6 +9878,7 @@ class ServiceVclLoggingLogshuttle(dict):
         :param builtins.str format: Apache style log formatting.
         :param builtins.int format_version: The version of the custom logging format used for the configured endpoint. Can be either `1` or `2`. (default: `2`).
         :param builtins.str placement: Where in the generated VCL the logging call should be placed. Can be `none` or `none`.
+        :param builtins.str processing_region: Region where logs will be processed before streaming to BigQuery. Valid values are 'none', 'us' and 'eu'.
         :param builtins.str response_condition: The name of an existing condition in the configured endpoint, or leave blank to always execute.
         """
         pulumi.set(__self__, "name", name)
@@ -9122,6 +9890,8 @@ class ServiceVclLoggingLogshuttle(dict):
             pulumi.set(__self__, "format_version", format_version)
         if placement is not None:
             pulumi.set(__self__, "placement", placement)
+        if processing_region is not None:
+            pulumi.set(__self__, "processing_region", processing_region)
         if response_condition is not None:
             pulumi.set(__self__, "response_condition", response_condition)
 
@@ -9174,6 +9944,14 @@ class ServiceVclLoggingLogshuttle(dict):
         return pulumi.get(self, "placement")
 
     @property
+    @pulumi.getter(name="processingRegion")
+    def processing_region(self) -> Optional[builtins.str]:
+        """
+        Region where logs will be processed before streaming to BigQuery. Valid values are 'none', 'us' and 'eu'.
+        """
+        return pulumi.get(self, "processing_region")
+
+    @property
     @pulumi.getter(name="responseCondition")
     def response_condition(self) -> Optional[builtins.str]:
         """
@@ -9189,6 +9967,8 @@ class ServiceVclLoggingNewrelic(dict):
         suggest = None
         if key == "formatVersion":
             suggest = "format_version"
+        elif key == "processingRegion":
+            suggest = "processing_region"
         elif key == "responseCondition":
             suggest = "response_condition"
 
@@ -9209,6 +9989,7 @@ class ServiceVclLoggingNewrelic(dict):
                  format: Optional[builtins.str] = None,
                  format_version: Optional[builtins.int] = None,
                  placement: Optional[builtins.str] = None,
+                 processing_region: Optional[builtins.str] = None,
                  region: Optional[builtins.str] = None,
                  response_condition: Optional[builtins.str] = None):
         """
@@ -9217,6 +9998,7 @@ class ServiceVclLoggingNewrelic(dict):
         :param builtins.str format: Apache style log formatting. Your log must produce valid JSON that New Relic Logs can ingest.
         :param builtins.int format_version: The version of the custom logging format used for the configured endpoint. Can be either `1` or `2`. (default: `2`).
         :param builtins.str placement: Where in the generated VCL the logging call should be placed.
+        :param builtins.str processing_region: Region where logs will be processed before streaming to BigQuery. Valid values are 'none', 'us' and 'eu'.
         :param builtins.str region: The region that log data will be sent to. Default: `US`
         :param builtins.str response_condition: The name of the condition to apply.
         """
@@ -9228,6 +10010,8 @@ class ServiceVclLoggingNewrelic(dict):
             pulumi.set(__self__, "format_version", format_version)
         if placement is not None:
             pulumi.set(__self__, "placement", placement)
+        if processing_region is not None:
+            pulumi.set(__self__, "processing_region", processing_region)
         if region is not None:
             pulumi.set(__self__, "region", region)
         if response_condition is not None:
@@ -9274,6 +10058,14 @@ class ServiceVclLoggingNewrelic(dict):
         return pulumi.get(self, "placement")
 
     @property
+    @pulumi.getter(name="processingRegion")
+    def processing_region(self) -> Optional[builtins.str]:
+        """
+        Region where logs will be processed before streaming to BigQuery. Valid values are 'none', 'us' and 'eu'.
+        """
+        return pulumi.get(self, "processing_region")
+
+    @property
     @pulumi.getter
     def region(self) -> Optional[builtins.str]:
         """
@@ -9297,6 +10089,8 @@ class ServiceVclLoggingNewrelicotlp(dict):
         suggest = None
         if key == "formatVersion":
             suggest = "format_version"
+        elif key == "processingRegion":
+            suggest = "processing_region"
         elif key == "responseCondition":
             suggest = "response_condition"
 
@@ -9317,6 +10111,7 @@ class ServiceVclLoggingNewrelicotlp(dict):
                  format: Optional[builtins.str] = None,
                  format_version: Optional[builtins.int] = None,
                  placement: Optional[builtins.str] = None,
+                 processing_region: Optional[builtins.str] = None,
                  region: Optional[builtins.str] = None,
                  response_condition: Optional[builtins.str] = None,
                  url: Optional[builtins.str] = None):
@@ -9326,6 +10121,7 @@ class ServiceVclLoggingNewrelicotlp(dict):
         :param builtins.str format: Apache style log formatting. Your log must produce valid JSON that New Relic OTLP can ingest.
         :param builtins.int format_version: The version of the custom logging format used for the configured endpoint. Can be either `1` or `2`. (default: `2`).
         :param builtins.str placement: Where in the generated VCL the logging call should be placed.
+        :param builtins.str processing_region: Region where logs will be processed before streaming to BigQuery. Valid values are 'none', 'us' and 'eu'.
         :param builtins.str region: The region that log data will be sent to. Default: `US`
         :param builtins.str response_condition: The name of the condition to apply.
         :param builtins.str url: The optional New Relic Trace Observer URL to stream logs to for Infinite Tracing.
@@ -9338,6 +10134,8 @@ class ServiceVclLoggingNewrelicotlp(dict):
             pulumi.set(__self__, "format_version", format_version)
         if placement is not None:
             pulumi.set(__self__, "placement", placement)
+        if processing_region is not None:
+            pulumi.set(__self__, "processing_region", processing_region)
         if region is not None:
             pulumi.set(__self__, "region", region)
         if response_condition is not None:
@@ -9386,6 +10184,14 @@ class ServiceVclLoggingNewrelicotlp(dict):
         return pulumi.get(self, "placement")
 
     @property
+    @pulumi.getter(name="processingRegion")
+    def processing_region(self) -> Optional[builtins.str]:
+        """
+        Region where logs will be processed before streaming to BigQuery. Valid values are 'none', 'us' and 'eu'.
+        """
+        return pulumi.get(self, "processing_region")
+
+    @property
     @pulumi.getter
     def region(self) -> Optional[builtins.str]:
         """
@@ -9427,6 +10233,8 @@ class ServiceVclLoggingOpenstack(dict):
             suggest = "gzip_level"
         elif key == "messageType":
             suggest = "message_type"
+        elif key == "processingRegion":
+            suggest = "processing_region"
         elif key == "publicKey":
             suggest = "public_key"
         elif key == "responseCondition":
@@ -9459,6 +10267,7 @@ class ServiceVclLoggingOpenstack(dict):
                  path: Optional[builtins.str] = None,
                  period: Optional[builtins.int] = None,
                  placement: Optional[builtins.str] = None,
+                 processing_region: Optional[builtins.str] = None,
                  public_key: Optional[builtins.str] = None,
                  response_condition: Optional[builtins.str] = None,
                  timestamp_format: Optional[builtins.str] = None):
@@ -9476,6 +10285,7 @@ class ServiceVclLoggingOpenstack(dict):
         :param builtins.str path: Path to store the files. Must end with a trailing slash. If this field is left empty, the files will be saved in the bucket's root path
         :param builtins.int period: How frequently the logs should be transferred, in seconds. Default `3600`
         :param builtins.str placement: Where in the generated VCL the logging call should be placed. Can be `none` or `none`.
+        :param builtins.str processing_region: Region where logs will be processed before streaming to BigQuery. Valid values are 'none', 'us' and 'eu'.
         :param builtins.str public_key: A PGP public key that Fastly will use to encrypt your log files before writing them to disk
         :param builtins.str response_condition: The name of an existing condition in the configured endpoint, or leave blank to always execute.
         :param builtins.str timestamp_format: The `strftime` specified timestamp formatting (default `%Y-%m-%dT%H:%M:%S.000`)
@@ -9501,6 +10311,8 @@ class ServiceVclLoggingOpenstack(dict):
             pulumi.set(__self__, "period", period)
         if placement is not None:
             pulumi.set(__self__, "placement", placement)
+        if processing_region is not None:
+            pulumi.set(__self__, "processing_region", processing_region)
         if public_key is not None:
             pulumi.set(__self__, "public_key", public_key)
         if response_condition is not None:
@@ -9613,6 +10425,14 @@ class ServiceVclLoggingOpenstack(dict):
         return pulumi.get(self, "placement")
 
     @property
+    @pulumi.getter(name="processingRegion")
+    def processing_region(self) -> Optional[builtins.str]:
+        """
+        Region where logs will be processed before streaming to BigQuery. Valid values are 'none', 'us' and 'eu'.
+        """
+        return pulumi.get(self, "processing_region")
+
+    @property
     @pulumi.getter(name="publicKey")
     def public_key(self) -> Optional[builtins.str]:
         """
@@ -9644,6 +10464,8 @@ class ServiceVclLoggingPapertrail(dict):
         suggest = None
         if key == "formatVersion":
             suggest = "format_version"
+        elif key == "processingRegion":
+            suggest = "processing_region"
         elif key == "responseCondition":
             suggest = "response_condition"
 
@@ -9665,6 +10487,7 @@ class ServiceVclLoggingPapertrail(dict):
                  format: Optional[builtins.str] = None,
                  format_version: Optional[builtins.int] = None,
                  placement: Optional[builtins.str] = None,
+                 processing_region: Optional[builtins.str] = None,
                  response_condition: Optional[builtins.str] = None):
         """
         :param builtins.str address: The address of the Papertrail endpoint
@@ -9673,6 +10496,7 @@ class ServiceVclLoggingPapertrail(dict):
         :param builtins.str format: A Fastly [log format string](https://docs.fastly.com/en/guides/custom-log-formats)
         :param builtins.int format_version: The version of the custom logging format used for the configured endpoint. The logging call gets placed by default in `vcl_log` if `format_version` is set to `2` and in `vcl_deliver` if `format_version` is set to `1`
         :param builtins.str placement: Where in the generated VCL the logging call should be placed. If not set, endpoints with `format_version` of 2 are placed in `vcl_log` and those with `format_version` of 1 are placed in `vcl_deliver`
+        :param builtins.str processing_region: Region where logs will be processed before streaming to BigQuery. Valid values are 'none', 'us' and 'eu'.
         :param builtins.str response_condition: The name of an existing condition in the configured endpoint, or leave blank to always execute
         """
         pulumi.set(__self__, "address", address)
@@ -9684,6 +10508,8 @@ class ServiceVclLoggingPapertrail(dict):
             pulumi.set(__self__, "format_version", format_version)
         if placement is not None:
             pulumi.set(__self__, "placement", placement)
+        if processing_region is not None:
+            pulumi.set(__self__, "processing_region", processing_region)
         if response_condition is not None:
             pulumi.set(__self__, "response_condition", response_condition)
 
@@ -9736,6 +10562,14 @@ class ServiceVclLoggingPapertrail(dict):
         return pulumi.get(self, "placement")
 
     @property
+    @pulumi.getter(name="processingRegion")
+    def processing_region(self) -> Optional[builtins.str]:
+        """
+        Region where logs will be processed before streaming to BigQuery. Valid values are 'none', 'us' and 'eu'.
+        """
+        return pulumi.get(self, "processing_region")
+
+    @property
     @pulumi.getter(name="responseCondition")
     def response_condition(self) -> Optional[builtins.str]:
         """
@@ -9761,6 +10595,8 @@ class ServiceVclLoggingS3(dict):
             suggest = "gzip_level"
         elif key == "messageType":
             suggest = "message_type"
+        elif key == "processingRegion":
+            suggest = "processing_region"
         elif key == "publicKey":
             suggest = "public_key"
         elif key == "responseCondition":
@@ -9803,6 +10639,7 @@ class ServiceVclLoggingS3(dict):
                  path: Optional[builtins.str] = None,
                  period: Optional[builtins.int] = None,
                  placement: Optional[builtins.str] = None,
+                 processing_region: Optional[builtins.str] = None,
                  public_key: Optional[builtins.str] = None,
                  redundancy: Optional[builtins.str] = None,
                  response_condition: Optional[builtins.str] = None,
@@ -9826,6 +10663,7 @@ class ServiceVclLoggingS3(dict):
         :param builtins.str path: Path to store the files. Must end with a trailing slash. If this field is left empty, the files will be saved in the bucket's root path
         :param builtins.int period: How frequently the logs should be transferred, in seconds. Default `3600`
         :param builtins.str placement: Where in the generated VCL the logging call should be placed.
+        :param builtins.str processing_region: Region where logs will be processed before streaming to BigQuery. Valid values are 'none', 'us' and 'eu'.
         :param builtins.str public_key: A PGP public key that Fastly will use to encrypt your log files before writing them to disk
         :param builtins.str redundancy: The S3 storage class (redundancy level). Should be one of: `standard`, `intelligent_tiering`, `standard_ia`, `onezone_ia`, `glacier`, `glacier_ir`, `deep_archive`, or `reduced_redundancy`
         :param builtins.str response_condition: Name of blockAttributes condition to apply this logging.
@@ -9860,6 +10698,8 @@ class ServiceVclLoggingS3(dict):
             pulumi.set(__self__, "period", period)
         if placement is not None:
             pulumi.set(__self__, "placement", placement)
+        if processing_region is not None:
+            pulumi.set(__self__, "processing_region", processing_region)
         if public_key is not None:
             pulumi.set(__self__, "public_key", public_key)
         if redundancy is not None:
@@ -9984,6 +10824,14 @@ class ServiceVclLoggingS3(dict):
         return pulumi.get(self, "placement")
 
     @property
+    @pulumi.getter(name="processingRegion")
+    def processing_region(self) -> Optional[builtins.str]:
+        """
+        Region where logs will be processed before streaming to BigQuery. Valid values are 'none', 'us' and 'eu'.
+        """
+        return pulumi.get(self, "processing_region")
+
+    @property
     @pulumi.getter(name="publicKey")
     def public_key(self) -> Optional[builtins.str]:
         """
@@ -10063,6 +10911,8 @@ class ServiceVclLoggingScalyr(dict):
         suggest = None
         if key == "formatVersion":
             suggest = "format_version"
+        elif key == "processingRegion":
+            suggest = "processing_region"
         elif key == "projectId":
             suggest = "project_id"
         elif key == "responseCondition":
@@ -10085,6 +10935,7 @@ class ServiceVclLoggingScalyr(dict):
                  format: Optional[builtins.str] = None,
                  format_version: Optional[builtins.int] = None,
                  placement: Optional[builtins.str] = None,
+                 processing_region: Optional[builtins.str] = None,
                  project_id: Optional[builtins.str] = None,
                  region: Optional[builtins.str] = None,
                  response_condition: Optional[builtins.str] = None):
@@ -10094,6 +10945,7 @@ class ServiceVclLoggingScalyr(dict):
         :param builtins.str format: Apache style log formatting.
         :param builtins.int format_version: The version of the custom logging format used for the configured endpoint. Can be either 1 or 2. (default: 2).
         :param builtins.str placement: Where in the generated VCL the logging call should be placed.
+        :param builtins.str processing_region: Region where logs will be processed before streaming to BigQuery. Valid values are 'none', 'us' and 'eu'.
         :param builtins.str project_id: The name of the logfile field sent to Scalyr
         :param builtins.str region: The region that log data will be sent to. One of `US` or `EU`. Defaults to `US` if undefined
         :param builtins.str response_condition: The name of an existing condition in the configured endpoint, or leave blank to always execute.
@@ -10106,6 +10958,8 @@ class ServiceVclLoggingScalyr(dict):
             pulumi.set(__self__, "format_version", format_version)
         if placement is not None:
             pulumi.set(__self__, "placement", placement)
+        if processing_region is not None:
+            pulumi.set(__self__, "processing_region", processing_region)
         if project_id is not None:
             pulumi.set(__self__, "project_id", project_id)
         if region is not None:
@@ -10154,6 +11008,14 @@ class ServiceVclLoggingScalyr(dict):
         return pulumi.get(self, "placement")
 
     @property
+    @pulumi.getter(name="processingRegion")
+    def processing_region(self) -> Optional[builtins.str]:
+        """
+        Region where logs will be processed before streaming to BigQuery. Valid values are 'none', 'us' and 'eu'.
+        """
+        return pulumi.get(self, "processing_region")
+
+    @property
     @pulumi.getter(name="projectId")
     def project_id(self) -> Optional[builtins.str]:
         """
@@ -10193,6 +11055,8 @@ class ServiceVclLoggingSftp(dict):
             suggest = "gzip_level"
         elif key == "messageType":
             suggest = "message_type"
+        elif key == "processingRegion":
+            suggest = "processing_region"
         elif key == "publicKey":
             suggest = "public_key"
         elif key == "responseCondition":
@@ -10228,6 +11092,7 @@ class ServiceVclLoggingSftp(dict):
                  period: Optional[builtins.int] = None,
                  placement: Optional[builtins.str] = None,
                  port: Optional[builtins.int] = None,
+                 processing_region: Optional[builtins.str] = None,
                  public_key: Optional[builtins.str] = None,
                  response_condition: Optional[builtins.str] = None,
                  secret_key: Optional[builtins.str] = None,
@@ -10247,6 +11112,7 @@ class ServiceVclLoggingSftp(dict):
         :param builtins.int period: How frequently log files are finalized so they can be available for reading (in seconds, default `3600`)
         :param builtins.str placement: Where in the generated VCL the logging call should be placed.
         :param builtins.int port: The port the SFTP service listens on. (Default: `22`)
+        :param builtins.str processing_region: Region where logs will be processed before streaming to BigQuery. Valid values are 'none', 'us' and 'eu'.
         :param builtins.str public_key: A PGP public key that Fastly will use to encrypt your log files before writing them to disk
         :param builtins.str response_condition: The name of the condition to apply.
         :param builtins.str secret_key: The SSH private key for the server. If both `password` and `secret_key` are passed, `secret_key` will be preferred
@@ -10275,6 +11141,8 @@ class ServiceVclLoggingSftp(dict):
             pulumi.set(__self__, "placement", placement)
         if port is not None:
             pulumi.set(__self__, "port", port)
+        if processing_region is not None:
+            pulumi.set(__self__, "processing_region", processing_region)
         if public_key is not None:
             pulumi.set(__self__, "public_key", public_key)
         if response_condition is not None:
@@ -10397,6 +11265,14 @@ class ServiceVclLoggingSftp(dict):
         return pulumi.get(self, "port")
 
     @property
+    @pulumi.getter(name="processingRegion")
+    def processing_region(self) -> Optional[builtins.str]:
+        """
+        Region where logs will be processed before streaming to BigQuery. Valid values are 'none', 'us' and 'eu'.
+        """
+        return pulumi.get(self, "processing_region")
+
+    @property
     @pulumi.getter(name="publicKey")
     def public_key(self) -> Optional[builtins.str]:
         """
@@ -10436,6 +11312,8 @@ class ServiceVclLoggingSplunk(dict):
         suggest = None
         if key == "formatVersion":
             suggest = "format_version"
+        elif key == "processingRegion":
+            suggest = "processing_region"
         elif key == "responseCondition":
             suggest = "response_condition"
         elif key == "tlsCaCert":
@@ -10467,6 +11345,7 @@ class ServiceVclLoggingSplunk(dict):
                  format: Optional[builtins.str] = None,
                  format_version: Optional[builtins.int] = None,
                  placement: Optional[builtins.str] = None,
+                 processing_region: Optional[builtins.str] = None,
                  response_condition: Optional[builtins.str] = None,
                  tls_ca_cert: Optional[builtins.str] = None,
                  tls_client_cert: Optional[builtins.str] = None,
@@ -10480,6 +11359,7 @@ class ServiceVclLoggingSplunk(dict):
         :param builtins.str format: Apache-style string or VCL variables to use for log formatting (default: `%h %l %u %t "%r" %>s %b`)
         :param builtins.int format_version: The version of the custom logging format used for the configured endpoint. Can be either 1 or 2. (default: 2)
         :param builtins.str placement: Where in the generated VCL the logging call should be placed
+        :param builtins.str processing_region: Region where logs will be processed before streaming to BigQuery. Valid values are 'none', 'us' and 'eu'.
         :param builtins.str response_condition: The name of the condition to apply
         :param builtins.str tls_ca_cert: A secure certificate to authenticate the server with. Must be in PEM format. You can provide this certificate via an environment variable, `FASTLY_SPLUNK_CA_CERT`
         :param builtins.str tls_client_cert: The client certificate used to make authenticated requests. Must be in PEM format.
@@ -10496,6 +11376,8 @@ class ServiceVclLoggingSplunk(dict):
             pulumi.set(__self__, "format_version", format_version)
         if placement is not None:
             pulumi.set(__self__, "placement", placement)
+        if processing_region is not None:
+            pulumi.set(__self__, "processing_region", processing_region)
         if response_condition is not None:
             pulumi.set(__self__, "response_condition", response_condition)
         if tls_ca_cert is not None:
@@ -10558,6 +11440,14 @@ class ServiceVclLoggingSplunk(dict):
         return pulumi.get(self, "placement")
 
     @property
+    @pulumi.getter(name="processingRegion")
+    def processing_region(self) -> Optional[builtins.str]:
+        """
+        Region where logs will be processed before streaming to BigQuery. Valid values are 'none', 'us' and 'eu'.
+        """
+        return pulumi.get(self, "processing_region")
+
+    @property
     @pulumi.getter(name="responseCondition")
     def response_condition(self) -> Optional[builtins.str]:
         """
@@ -10615,6 +11505,8 @@ class ServiceVclLoggingSumologic(dict):
             suggest = "format_version"
         elif key == "messageType":
             suggest = "message_type"
+        elif key == "processingRegion":
+            suggest = "processing_region"
         elif key == "responseCondition":
             suggest = "response_condition"
 
@@ -10636,6 +11528,7 @@ class ServiceVclLoggingSumologic(dict):
                  format_version: Optional[builtins.int] = None,
                  message_type: Optional[builtins.str] = None,
                  placement: Optional[builtins.str] = None,
+                 processing_region: Optional[builtins.str] = None,
                  response_condition: Optional[builtins.str] = None):
         """
         :param builtins.str name: A unique name to identify this Sumologic endpoint. It is important to note that changing this attribute will delete and recreate the resource
@@ -10644,6 +11537,7 @@ class ServiceVclLoggingSumologic(dict):
         :param builtins.int format_version: The version of the custom logging format used for the configured endpoint. Can be either 1 or 2. (Default: 2)
         :param builtins.str message_type: How the message should be formatted. Can be either `classic`, `loggly`, `logplex` or `blank`. Default is `classic`
         :param builtins.str placement: Where in the generated VCL the logging call should be placed.
+        :param builtins.str processing_region: Region where logs will be processed before streaming to BigQuery. Valid values are 'none', 'us' and 'eu'.
         :param builtins.str response_condition: Name of blockAttributes condition to apply this logging.
         """
         pulumi.set(__self__, "name", name)
@@ -10656,6 +11550,8 @@ class ServiceVclLoggingSumologic(dict):
             pulumi.set(__self__, "message_type", message_type)
         if placement is not None:
             pulumi.set(__self__, "placement", placement)
+        if processing_region is not None:
+            pulumi.set(__self__, "processing_region", processing_region)
         if response_condition is not None:
             pulumi.set(__self__, "response_condition", response_condition)
 
@@ -10708,6 +11604,14 @@ class ServiceVclLoggingSumologic(dict):
         return pulumi.get(self, "placement")
 
     @property
+    @pulumi.getter(name="processingRegion")
+    def processing_region(self) -> Optional[builtins.str]:
+        """
+        Region where logs will be processed before streaming to BigQuery. Valid values are 'none', 'us' and 'eu'.
+        """
+        return pulumi.get(self, "processing_region")
+
+    @property
     @pulumi.getter(name="responseCondition")
     def response_condition(self) -> Optional[builtins.str]:
         """
@@ -10725,6 +11629,8 @@ class ServiceVclLoggingSyslog(dict):
             suggest = "format_version"
         elif key == "messageType":
             suggest = "message_type"
+        elif key == "processingRegion":
+            suggest = "processing_region"
         elif key == "responseCondition":
             suggest = "response_condition"
         elif key == "tlsCaCert":
@@ -10757,6 +11663,7 @@ class ServiceVclLoggingSyslog(dict):
                  message_type: Optional[builtins.str] = None,
                  placement: Optional[builtins.str] = None,
                  port: Optional[builtins.int] = None,
+                 processing_region: Optional[builtins.str] = None,
                  response_condition: Optional[builtins.str] = None,
                  tls_ca_cert: Optional[builtins.str] = None,
                  tls_client_cert: Optional[builtins.str] = None,
@@ -10772,6 +11679,7 @@ class ServiceVclLoggingSyslog(dict):
         :param builtins.str message_type: How the message should be formatted. Can be either `classic`, `loggly`, `logplex` or `blank`. Default is `classic`
         :param builtins.str placement: Where in the generated VCL the logging call should be placed.
         :param builtins.int port: The port associated with the address where the Syslog endpoint can be accessed. Default `514`
+        :param builtins.str processing_region: Region where logs will be processed before streaming to BigQuery. Valid values are 'none', 'us' and 'eu'.
         :param builtins.str response_condition: Name of blockAttributes condition to apply this logging.
         :param builtins.str tls_ca_cert: A secure certificate to authenticate the server with. Must be in PEM format. You can provide this certificate via an environment variable, `FASTLY_SYSLOG_CA_CERT`
         :param builtins.str tls_client_cert: The client certificate used to make authenticated requests. Must be in PEM format. You can provide this certificate via an environment variable, `FASTLY_SYSLOG_CLIENT_CERT`
@@ -10792,6 +11700,8 @@ class ServiceVclLoggingSyslog(dict):
             pulumi.set(__self__, "placement", placement)
         if port is not None:
             pulumi.set(__self__, "port", port)
+        if processing_region is not None:
+            pulumi.set(__self__, "processing_region", processing_region)
         if response_condition is not None:
             pulumi.set(__self__, "response_condition", response_condition)
         if tls_ca_cert is not None:
@@ -10862,6 +11772,14 @@ class ServiceVclLoggingSyslog(dict):
         The port associated with the address where the Syslog endpoint can be accessed. Default `514`
         """
         return pulumi.get(self, "port")
+
+    @property
+    @pulumi.getter(name="processingRegion")
+    def processing_region(self) -> Optional[builtins.str]:
+        """
+        Region where logs will be processed before streaming to BigQuery. Valid values are 'none', 'us' and 'eu'.
+        """
+        return pulumi.get(self, "processing_region")
 
     @property
     @pulumi.getter(name="responseCondition")

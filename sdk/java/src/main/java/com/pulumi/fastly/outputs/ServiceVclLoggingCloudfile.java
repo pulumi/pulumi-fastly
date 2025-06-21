@@ -69,6 +69,11 @@ public final class ServiceVclLoggingCloudfile {
      */
     private @Nullable String placement;
     /**
+     * @return Region where logs will be processed before streaming to BigQuery. Valid values are &#39;none&#39;, &#39;us&#39; and &#39;eu&#39;.
+     * 
+     */
+    private @Nullable String processingRegion;
+    /**
      * @return The PGP public key that Fastly will use to encrypt your log files before writing them to disk
      * 
      */
@@ -173,6 +178,13 @@ public final class ServiceVclLoggingCloudfile {
         return Optional.ofNullable(this.placement);
     }
     /**
+     * @return Region where logs will be processed before streaming to BigQuery. Valid values are &#39;none&#39;, &#39;us&#39; and &#39;eu&#39;.
+     * 
+     */
+    public Optional<String> processingRegion() {
+        return Optional.ofNullable(this.processingRegion);
+    }
+    /**
      * @return The PGP public key that Fastly will use to encrypt your log files before writing them to disk
      * 
      */
@@ -228,6 +240,7 @@ public final class ServiceVclLoggingCloudfile {
         private @Nullable String path;
         private @Nullable Integer period;
         private @Nullable String placement;
+        private @Nullable String processingRegion;
         private @Nullable String publicKey;
         private @Nullable String region;
         private @Nullable String responseCondition;
@@ -247,6 +260,7 @@ public final class ServiceVclLoggingCloudfile {
     	      this.path = defaults.path;
     	      this.period = defaults.period;
     	      this.placement = defaults.placement;
+    	      this.processingRegion = defaults.processingRegion;
     	      this.publicKey = defaults.publicKey;
     	      this.region = defaults.region;
     	      this.responseCondition = defaults.responseCondition;
@@ -327,6 +341,12 @@ public final class ServiceVclLoggingCloudfile {
             return this;
         }
         @CustomType.Setter
+        public Builder processingRegion(@Nullable String processingRegion) {
+
+            this.processingRegion = processingRegion;
+            return this;
+        }
+        @CustomType.Setter
         public Builder publicKey(@Nullable String publicKey) {
 
             this.publicKey = publicKey;
@@ -371,6 +391,7 @@ public final class ServiceVclLoggingCloudfile {
             _resultValue.path = path;
             _resultValue.period = period;
             _resultValue.placement = placement;
+            _resultValue.processingRegion = processingRegion;
             _resultValue.publicKey = publicKey;
             _resultValue.region = region;
             _resultValue.responseCondition = responseCondition;
