@@ -6,7 +6,7 @@ toolchain go1.24.4
 
 require (
 	github.com/fastly/terraform-provider-fastly v0.0.0
-	github.com/pulumi/pulumi-terraform-bridge/v3 v3.111.0
+	github.com/pulumi/pulumi-terraform-bridge/v3 v3.112.0
 	github.com/pulumi/pulumi/sdk/v3 v3.185.0
 )
 
