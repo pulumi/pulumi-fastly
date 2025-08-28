@@ -53,16 +53,14 @@ public final class ServiceComputeState extends com.pulumi.resources.ResourceArgs
     public static final ServiceComputeState Empty = new ServiceComputeState();
 
     /**
-     * Conditionally prevents new service versions from being activated. The apply step will create a new draft version but
-     * will not activate it if this is set to `false`. Default `true`
+     * Conditionally prevents new service versions from being activated. The apply step will create a new draft version but will not activate it if this is set to `false`. Default `true`
      * 
      */
     @Import(name="activate")
     private @Nullable Output<Boolean> activate;
 
     /**
-     * @return Conditionally prevents new service versions from being activated. The apply step will create a new draft version but
-     * will not activate it if this is set to `false`. Default `true`
+     * @return Conditionally prevents new service versions from being activated. The apply step will create a new draft version but will not activate it if this is set to `false`. Default `true`
      * 
      */
     public Optional<Output<Boolean>> activate() {
@@ -136,16 +134,14 @@ public final class ServiceComputeState extends com.pulumi.resources.ResourceArgs
     }
 
     /**
-     * Services that are active cannot be destroyed. In order to destroy the Service, set `force_destroy` to `true`. Default
-     * `false`
+     * Services that are active cannot be destroyed. In order to destroy the Service, set `force_destroy` to `true`. Default `false`
      * 
      */
     @Import(name="forceDestroy")
     private @Nullable Output<Boolean> forceDestroy;
 
     /**
-     * @return Services that are active cannot be destroyed. In order to destroy the Service, set `force_destroy` to `true`. Default
-     * `false`
+     * @return Services that are active cannot be destroyed. In order to destroy the Service, set `force_destroy` to `true`. Default `false`
      * 
      */
     public Optional<Output<Boolean>> forceDestroy() {
@@ -167,16 +163,14 @@ public final class ServiceComputeState extends com.pulumi.resources.ResourceArgs
     }
 
     /**
-     * Used internally by the provider to temporarily indicate if the service is being imported, and is reset to false once the
-     * import is finished
+     * Used internally by the provider to temporarily indicate if the service is being imported, and is reset to false once the import is finished
      * 
      */
     @Import(name="imported")
     private @Nullable Output<Boolean> imported;
 
     /**
-     * @return Used internally by the provider to temporarily indicate if the service is being imported, and is reset to false once the
-     * import is finished
+     * @return Used internally by the provider to temporarily indicate if the service is being imported, and is reset to false once the import is finished
      * 
      */
     public Optional<Output<Boolean>> imported() {
@@ -388,18 +382,14 @@ public final class ServiceComputeState extends com.pulumi.resources.ResourceArgs
     }
 
     /**
-     * The `package` block supports uploading or modifying Wasm packages for use in a Fastly Compute service (if omitted,
-     * ensure `activate = false` is set on `fastly.ServiceCompute` to avoid service validation errors). See Fastly&#39;s
-     * documentation on [Compute](https://developer.fastly.com/learning/compute/)
+     * The `package` block supports uploading or modifying Wasm packages for use in a Fastly Compute service (if omitted, ensure `activate = false` is set on `fastly.ServiceCompute` to avoid service validation errors). See Fastly&#39;s documentation on [Compute](https://developer.fastly.com/learning/compute/)
      * 
      */
     @Import(name="package")
     private @Nullable Output<ServiceComputePackageArgs> package_;
 
     /**
-     * @return The `package` block supports uploading or modifying Wasm packages for use in a Fastly Compute service (if omitted,
-     * ensure `activate = false` is set on `fastly.ServiceCompute` to avoid service validation errors). See Fastly&#39;s
-     * documentation on [Compute](https://developer.fastly.com/learning/compute/)
+     * @return The `package` block supports uploading or modifying Wasm packages for use in a Fastly Compute service (if omitted, ensure `activate = false` is set on `fastly.ServiceCompute` to avoid service validation errors). See Fastly&#39;s documentation on [Compute](https://developer.fastly.com/learning/compute/)
      * 
      */
     public Optional<Output<ServiceComputePackageArgs>> package_() {
@@ -436,16 +426,14 @@ public final class ServiceComputeState extends com.pulumi.resources.ResourceArgs
     }
 
     /**
-     * Conditionally enables new service versions to be staged. If `set` to true, all changes made by an `apply` step will be
-     * staged, even if `apply` did not create a new draft version. Default `false`
+     * Conditionally enables new service versions to be staged. If `set` to true, all changes made by an `apply` step will be staged, even if `apply` did not create a new draft version. Default `false`
      * 
      */
     @Import(name="stage")
     private @Nullable Output<Boolean> stage;
 
     /**
-     * @return Conditionally enables new service versions to be staged. If `set` to true, all changes made by an `apply` step will be
-     * staged, even if `apply` did not create a new draft version. Default `false`
+     * @return Conditionally enables new service versions to be staged. If `set` to true, all changes made by an `apply` step will be staged, even if `apply` did not create a new draft version. Default `false`
      * 
      */
     public Optional<Output<Boolean>> stage() {
@@ -552,8 +540,7 @@ public final class ServiceComputeState extends com.pulumi.resources.ResourceArgs
         }
 
         /**
-         * @param activate Conditionally prevents new service versions from being activated. The apply step will create a new draft version but
-         * will not activate it if this is set to `false`. Default `true`
+         * @param activate Conditionally prevents new service versions from being activated. The apply step will create a new draft version but will not activate it if this is set to `false`. Default `true`
          * 
          * @return builder
          * 
@@ -564,8 +551,7 @@ public final class ServiceComputeState extends com.pulumi.resources.ResourceArgs
         }
 
         /**
-         * @param activate Conditionally prevents new service versions from being activated. The apply step will create a new draft version but
-         * will not activate it if this is set to `false`. Default `true`
+         * @param activate Conditionally prevents new service versions from being activated. The apply step will create a new draft version but will not activate it if this is set to `false`. Default `true`
          * 
          * @return builder
          * 
@@ -683,8 +669,7 @@ public final class ServiceComputeState extends com.pulumi.resources.ResourceArgs
         }
 
         /**
-         * @param forceDestroy Services that are active cannot be destroyed. In order to destroy the Service, set `force_destroy` to `true`. Default
-         * `false`
+         * @param forceDestroy Services that are active cannot be destroyed. In order to destroy the Service, set `force_destroy` to `true`. Default `false`
          * 
          * @return builder
          * 
@@ -695,8 +680,7 @@ public final class ServiceComputeState extends com.pulumi.resources.ResourceArgs
         }
 
         /**
-         * @param forceDestroy Services that are active cannot be destroyed. In order to destroy the Service, set `force_destroy` to `true`. Default
-         * `false`
+         * @param forceDestroy Services that are active cannot be destroyed. In order to destroy the Service, set `force_destroy` to `true`. Default `false`
          * 
          * @return builder
          * 
@@ -724,8 +708,7 @@ public final class ServiceComputeState extends com.pulumi.resources.ResourceArgs
         }
 
         /**
-         * @param imported Used internally by the provider to temporarily indicate if the service is being imported, and is reset to false once the
-         * import is finished
+         * @param imported Used internally by the provider to temporarily indicate if the service is being imported, and is reset to false once the import is finished
          * 
          * @return builder
          * 
@@ -736,8 +719,7 @@ public final class ServiceComputeState extends com.pulumi.resources.ResourceArgs
         }
 
         /**
-         * @param imported Used internally by the provider to temporarily indicate if the service is being imported, and is reset to false once the
-         * import is finished
+         * @param imported Used internally by the provider to temporarily indicate if the service is being imported, and is reset to false once the import is finished
          * 
          * @return builder
          * 
@@ -1119,9 +1101,7 @@ public final class ServiceComputeState extends com.pulumi.resources.ResourceArgs
         }
 
         /**
-         * @param package_ The `package` block supports uploading or modifying Wasm packages for use in a Fastly Compute service (if omitted,
-         * ensure `activate = false` is set on `fastly.ServiceCompute` to avoid service validation errors). See Fastly&#39;s
-         * documentation on [Compute](https://developer.fastly.com/learning/compute/)
+         * @param package_ The `package` block supports uploading or modifying Wasm packages for use in a Fastly Compute service (if omitted, ensure `activate = false` is set on `fastly.ServiceCompute` to avoid service validation errors). See Fastly&#39;s documentation on [Compute](https://developer.fastly.com/learning/compute/)
          * 
          * @return builder
          * 
@@ -1132,9 +1112,7 @@ public final class ServiceComputeState extends com.pulumi.resources.ResourceArgs
         }
 
         /**
-         * @param package_ The `package` block supports uploading or modifying Wasm packages for use in a Fastly Compute service (if omitted,
-         * ensure `activate = false` is set on `fastly.ServiceCompute` to avoid service validation errors). See Fastly&#39;s
-         * documentation on [Compute](https://developer.fastly.com/learning/compute/)
+         * @param package_ The `package` block supports uploading or modifying Wasm packages for use in a Fastly Compute service (if omitted, ensure `activate = false` is set on `fastly.ServiceCompute` to avoid service validation errors). See Fastly&#39;s documentation on [Compute](https://developer.fastly.com/learning/compute/)
          * 
          * @return builder
          * 
@@ -1193,8 +1171,7 @@ public final class ServiceComputeState extends com.pulumi.resources.ResourceArgs
         }
 
         /**
-         * @param stage Conditionally enables new service versions to be staged. If `set` to true, all changes made by an `apply` step will be
-         * staged, even if `apply` did not create a new draft version. Default `false`
+         * @param stage Conditionally enables new service versions to be staged. If `set` to true, all changes made by an `apply` step will be staged, even if `apply` did not create a new draft version. Default `false`
          * 
          * @return builder
          * 
@@ -1205,8 +1182,7 @@ public final class ServiceComputeState extends com.pulumi.resources.ResourceArgs
         }
 
         /**
-         * @param stage Conditionally enables new service versions to be staged. If `set` to true, all changes made by an `apply` step will be
-         * staged, even if `apply` did not create a new draft version. Default `false`
+         * @param stage Conditionally enables new service versions to be staged. If `set` to true, all changes made by an `apply` step will be staged, even if `apply` did not create a new draft version. Default `false`
          * 
          * @return builder
          * 

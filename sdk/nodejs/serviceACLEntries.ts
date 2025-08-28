@@ -54,19 +54,19 @@ export class ServiceACLEntries extends pulumi.CustomResource {
     /**
      * The ID of the ACL that the items belong to
      */
-    public readonly aclId!: pulumi.Output<string>;
+    declare public readonly aclId: pulumi.Output<string>;
     /**
      * ACL Entries
      */
-    public readonly entries!: pulumi.Output<outputs.ServiceACLEntriesEntry[] | undefined>;
+    declare public readonly entries: pulumi.Output<outputs.ServiceACLEntriesEntry[] | undefined>;
     /**
      * Whether to reapply changes if the state of the entries drifts, i.e. if entries are managed externally
      */
-    public readonly manageEntries!: pulumi.Output<boolean | undefined>;
+    declare public readonly manageEntries: pulumi.Output<boolean | undefined>;
     /**
      * The ID of the Service that the ACL belongs to
      */
-    public readonly serviceId!: pulumi.Output<string>;
+    declare public readonly serviceId: pulumi.Output<string>;
 
     /**
      * Create a ServiceACLEntries resource with the given unique name, arguments, and options.
@@ -81,22 +81,22 @@ export class ServiceACLEntries extends pulumi.CustomResource {
         opts = opts || {};
         if (opts.id) {
             const state = argsOrState as ServiceACLEntriesState | undefined;
-            resourceInputs["aclId"] = state ? state.aclId : undefined;
-            resourceInputs["entries"] = state ? state.entries : undefined;
-            resourceInputs["manageEntries"] = state ? state.manageEntries : undefined;
-            resourceInputs["serviceId"] = state ? state.serviceId : undefined;
+            resourceInputs["aclId"] = state?.aclId;
+            resourceInputs["entries"] = state?.entries;
+            resourceInputs["manageEntries"] = state?.manageEntries;
+            resourceInputs["serviceId"] = state?.serviceId;
         } else {
             const args = argsOrState as ServiceACLEntriesArgs | undefined;
-            if ((!args || args.aclId === undefined) && !opts.urn) {
+            if (args?.aclId === undefined && !opts.urn) {
                 throw new Error("Missing required property 'aclId'");
             }
-            if ((!args || args.serviceId === undefined) && !opts.urn) {
+            if (args?.serviceId === undefined && !opts.urn) {
                 throw new Error("Missing required property 'serviceId'");
             }
-            resourceInputs["aclId"] = args ? args.aclId : undefined;
-            resourceInputs["entries"] = args ? args.entries : undefined;
-            resourceInputs["manageEntries"] = args ? args.manageEntries : undefined;
-            resourceInputs["serviceId"] = args ? args.serviceId : undefined;
+            resourceInputs["aclId"] = args?.aclId;
+            resourceInputs["entries"] = args?.entries;
+            resourceInputs["manageEntries"] = args?.manageEntries;
+            resourceInputs["serviceId"] = args?.serviceId;
         }
         opts = pulumi.mergeOptions(utilities.resourceOptsDefaults(), opts);
         super(ServiceACLEntries.__pulumiType, name, resourceInputs, opts);

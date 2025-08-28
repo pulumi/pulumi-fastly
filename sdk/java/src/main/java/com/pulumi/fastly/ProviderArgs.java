@@ -47,18 +47,14 @@ public final class ProviderArgs extends com.pulumi.resources.ResourceArgs {
     }
 
     /**
-     * Set this to `true` to disable HTTP/1.x fallback mechanism that the underlying Go library will attempt upon connection to
-     * `api.fastly.com:443` by default. This may slightly improve the provider&#39;s performance and reduce unnecessary TLS
-     * handshakes. Default: `false`
+     * Set this to `true` to disable HTTP/1.x fallback mechanism that the underlying Go library will attempt upon connection to `api.fastly.com:443` by default. This may slightly improve the provider&#39;s performance and reduce unnecessary TLS handshakes. Default: `false`
      * 
      */
     @Import(name="forceHttp2", json=true)
     private @Nullable Output<Boolean> forceHttp2;
 
     /**
-     * @return Set this to `true` to disable HTTP/1.x fallback mechanism that the underlying Go library will attempt upon connection to
-     * `api.fastly.com:443` by default. This may slightly improve the provider&#39;s performance and reduce unnecessary TLS
-     * handshakes. Default: `false`
+     * @return Set this to `true` to disable HTTP/1.x fallback mechanism that the underlying Go library will attempt upon connection to `api.fastly.com:443` by default. This may slightly improve the provider&#39;s performance and reduce unnecessary TLS handshakes. Default: `false`
      * 
      */
     public Optional<Output<Boolean>> forceHttp2() {
@@ -66,16 +62,14 @@ public final class ProviderArgs extends com.pulumi.resources.ResourceArgs {
     }
 
     /**
-     * Set to `true` if your configuration only consumes data sources that do not require authentication, such as
-     * `fastly.getFastlyIpRanges`
+     * Set to `true` if your configuration only consumes data sources that do not require authentication, such as `fastly.getFastlyIpRanges`
      * 
      */
     @Import(name="noAuth", json=true)
     private @Nullable Output<Boolean> noAuth;
 
     /**
-     * @return Set to `true` if your configuration only consumes data sources that do not require authentication, such as
-     * `fastly.getFastlyIpRanges`
+     * @return Set to `true` if your configuration only consumes data sources that do not require authentication, such as `fastly.getFastlyIpRanges`
      * 
      */
     public Optional<Output<Boolean>> noAuth() {
@@ -152,9 +146,7 @@ public final class ProviderArgs extends com.pulumi.resources.ResourceArgs {
         }
 
         /**
-         * @param forceHttp2 Set this to `true` to disable HTTP/1.x fallback mechanism that the underlying Go library will attempt upon connection to
-         * `api.fastly.com:443` by default. This may slightly improve the provider&#39;s performance and reduce unnecessary TLS
-         * handshakes. Default: `false`
+         * @param forceHttp2 Set this to `true` to disable HTTP/1.x fallback mechanism that the underlying Go library will attempt upon connection to `api.fastly.com:443` by default. This may slightly improve the provider&#39;s performance and reduce unnecessary TLS handshakes. Default: `false`
          * 
          * @return builder
          * 
@@ -165,9 +157,7 @@ public final class ProviderArgs extends com.pulumi.resources.ResourceArgs {
         }
 
         /**
-         * @param forceHttp2 Set this to `true` to disable HTTP/1.x fallback mechanism that the underlying Go library will attempt upon connection to
-         * `api.fastly.com:443` by default. This may slightly improve the provider&#39;s performance and reduce unnecessary TLS
-         * handshakes. Default: `false`
+         * @param forceHttp2 Set this to `true` to disable HTTP/1.x fallback mechanism that the underlying Go library will attempt upon connection to `api.fastly.com:443` by default. This may slightly improve the provider&#39;s performance and reduce unnecessary TLS handshakes. Default: `false`
          * 
          * @return builder
          * 
@@ -177,8 +167,7 @@ public final class ProviderArgs extends com.pulumi.resources.ResourceArgs {
         }
 
         /**
-         * @param noAuth Set to `true` if your configuration only consumes data sources that do not require authentication, such as
-         * `fastly.getFastlyIpRanges`
+         * @param noAuth Set to `true` if your configuration only consumes data sources that do not require authentication, such as `fastly.getFastlyIpRanges`
          * 
          * @return builder
          * 
@@ -189,8 +178,7 @@ public final class ProviderArgs extends com.pulumi.resources.ResourceArgs {
         }
 
         /**
-         * @param noAuth Set to `true` if your configuration only consumes data sources that do not require authentication, such as
-         * `fastly.getFastlyIpRanges`
+         * @param noAuth Set to `true` if your configuration only consumes data sources that do not require authentication, such as `fastly.getFastlyIpRanges`
          * 
          * @return builder
          * 

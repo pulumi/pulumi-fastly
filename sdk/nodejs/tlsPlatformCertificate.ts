@@ -112,43 +112,43 @@ export class TlsPlatformCertificate extends pulumi.CustomResource {
     /**
      * Disable checking whether the root of the certificate chain is trusted. Useful for development purposes to allow use of self-signed CAs. Defaults to false. Write-only on create.
      */
-    public readonly allowUntrustedRoot!: pulumi.Output<boolean | undefined>;
+    declare public readonly allowUntrustedRoot: pulumi.Output<boolean | undefined>;
     /**
      * PEM-formatted certificate.
      */
-    public readonly certificateBody!: pulumi.Output<string>;
+    declare public readonly certificateBody: pulumi.Output<string>;
     /**
      * ID of TLS configuration to be used to terminate TLS traffic.
      */
-    public readonly configurationId!: pulumi.Output<string>;
+    declare public readonly configurationId: pulumi.Output<string>;
     /**
      * Timestamp (GMT) when the certificate was created.
      */
-    public /*out*/ readonly createdAt!: pulumi.Output<string>;
+    declare public /*out*/ readonly createdAt: pulumi.Output<string>;
     /**
      * All the domains (including wildcard domains) that are listed in any certificate's Subject Alternative Names (SAN) list.
      */
-    public /*out*/ readonly domains!: pulumi.Output<string[]>;
+    declare public /*out*/ readonly domains: pulumi.Output<string[]>;
     /**
      * PEM-formatted certificate chain from the `certificateBody` to its root.
      */
-    public readonly intermediatesBlob!: pulumi.Output<string>;
+    declare public readonly intermediatesBlob: pulumi.Output<string>;
     /**
      * Timestamp (GMT) when the certificate will expire.
      */
-    public /*out*/ readonly notAfter!: pulumi.Output<string>;
+    declare public /*out*/ readonly notAfter: pulumi.Output<string>;
     /**
      * Timestamp (GMT) when the certificate will become valid.
      */
-    public /*out*/ readonly notBefore!: pulumi.Output<string>;
+    declare public /*out*/ readonly notBefore: pulumi.Output<string>;
     /**
      * A recommendation from Fastly indicating the key associated with this certificate is in need of rotation.
      */
-    public /*out*/ readonly replace!: pulumi.Output<boolean>;
+    declare public /*out*/ readonly replace: pulumi.Output<boolean>;
     /**
      * Timestamp (GMT) when the certificate was last updated.
      */
-    public /*out*/ readonly updatedAt!: pulumi.Output<string>;
+    declare public /*out*/ readonly updatedAt: pulumi.Output<string>;
 
     /**
      * Create a TlsPlatformCertificate resource with the given unique name, arguments, and options.
@@ -163,31 +163,31 @@ export class TlsPlatformCertificate extends pulumi.CustomResource {
         opts = opts || {};
         if (opts.id) {
             const state = argsOrState as TlsPlatformCertificateState | undefined;
-            resourceInputs["allowUntrustedRoot"] = state ? state.allowUntrustedRoot : undefined;
-            resourceInputs["certificateBody"] = state ? state.certificateBody : undefined;
-            resourceInputs["configurationId"] = state ? state.configurationId : undefined;
-            resourceInputs["createdAt"] = state ? state.createdAt : undefined;
-            resourceInputs["domains"] = state ? state.domains : undefined;
-            resourceInputs["intermediatesBlob"] = state ? state.intermediatesBlob : undefined;
-            resourceInputs["notAfter"] = state ? state.notAfter : undefined;
-            resourceInputs["notBefore"] = state ? state.notBefore : undefined;
-            resourceInputs["replace"] = state ? state.replace : undefined;
-            resourceInputs["updatedAt"] = state ? state.updatedAt : undefined;
+            resourceInputs["allowUntrustedRoot"] = state?.allowUntrustedRoot;
+            resourceInputs["certificateBody"] = state?.certificateBody;
+            resourceInputs["configurationId"] = state?.configurationId;
+            resourceInputs["createdAt"] = state?.createdAt;
+            resourceInputs["domains"] = state?.domains;
+            resourceInputs["intermediatesBlob"] = state?.intermediatesBlob;
+            resourceInputs["notAfter"] = state?.notAfter;
+            resourceInputs["notBefore"] = state?.notBefore;
+            resourceInputs["replace"] = state?.replace;
+            resourceInputs["updatedAt"] = state?.updatedAt;
         } else {
             const args = argsOrState as TlsPlatformCertificateArgs | undefined;
-            if ((!args || args.certificateBody === undefined) && !opts.urn) {
+            if (args?.certificateBody === undefined && !opts.urn) {
                 throw new Error("Missing required property 'certificateBody'");
             }
-            if ((!args || args.configurationId === undefined) && !opts.urn) {
+            if (args?.configurationId === undefined && !opts.urn) {
                 throw new Error("Missing required property 'configurationId'");
             }
-            if ((!args || args.intermediatesBlob === undefined) && !opts.urn) {
+            if (args?.intermediatesBlob === undefined && !opts.urn) {
                 throw new Error("Missing required property 'intermediatesBlob'");
             }
-            resourceInputs["allowUntrustedRoot"] = args ? args.allowUntrustedRoot : undefined;
-            resourceInputs["certificateBody"] = args ? args.certificateBody : undefined;
-            resourceInputs["configurationId"] = args ? args.configurationId : undefined;
-            resourceInputs["intermediatesBlob"] = args ? args.intermediatesBlob : undefined;
+            resourceInputs["allowUntrustedRoot"] = args?.allowUntrustedRoot;
+            resourceInputs["certificateBody"] = args?.certificateBody;
+            resourceInputs["configurationId"] = args?.configurationId;
+            resourceInputs["intermediatesBlob"] = args?.intermediatesBlob;
             resourceInputs["createdAt"] = undefined /*out*/;
             resourceInputs["domains"] = undefined /*out*/;
             resourceInputs["notAfter"] = undefined /*out*/;

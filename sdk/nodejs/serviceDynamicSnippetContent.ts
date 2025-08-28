@@ -52,19 +52,19 @@ export class ServiceDynamicSnippetContent extends pulumi.CustomResource {
     /**
      * The VCL code that specifies exactly what the snippet does
      */
-    public readonly content!: pulumi.Output<string>;
+    declare public readonly content: pulumi.Output<string>;
     /**
      * Whether to reapply changes if the state of the snippets drifts, i.e. if snippets are managed externally
      */
-    public readonly manageSnippets!: pulumi.Output<boolean | undefined>;
+    declare public readonly manageSnippets: pulumi.Output<boolean | undefined>;
     /**
      * The ID of the service that the dynamic snippet belongs to
      */
-    public readonly serviceId!: pulumi.Output<string>;
+    declare public readonly serviceId: pulumi.Output<string>;
     /**
      * The ID of the dynamic snippet that the content belong to
      */
-    public readonly snippetId!: pulumi.Output<string>;
+    declare public readonly snippetId: pulumi.Output<string>;
 
     /**
      * Create a ServiceDynamicSnippetContent resource with the given unique name, arguments, and options.
@@ -79,25 +79,25 @@ export class ServiceDynamicSnippetContent extends pulumi.CustomResource {
         opts = opts || {};
         if (opts.id) {
             const state = argsOrState as ServiceDynamicSnippetContentState | undefined;
-            resourceInputs["content"] = state ? state.content : undefined;
-            resourceInputs["manageSnippets"] = state ? state.manageSnippets : undefined;
-            resourceInputs["serviceId"] = state ? state.serviceId : undefined;
-            resourceInputs["snippetId"] = state ? state.snippetId : undefined;
+            resourceInputs["content"] = state?.content;
+            resourceInputs["manageSnippets"] = state?.manageSnippets;
+            resourceInputs["serviceId"] = state?.serviceId;
+            resourceInputs["snippetId"] = state?.snippetId;
         } else {
             const args = argsOrState as ServiceDynamicSnippetContentArgs | undefined;
-            if ((!args || args.content === undefined) && !opts.urn) {
+            if (args?.content === undefined && !opts.urn) {
                 throw new Error("Missing required property 'content'");
             }
-            if ((!args || args.serviceId === undefined) && !opts.urn) {
+            if (args?.serviceId === undefined && !opts.urn) {
                 throw new Error("Missing required property 'serviceId'");
             }
-            if ((!args || args.snippetId === undefined) && !opts.urn) {
+            if (args?.snippetId === undefined && !opts.urn) {
                 throw new Error("Missing required property 'snippetId'");
             }
-            resourceInputs["content"] = args ? args.content : undefined;
-            resourceInputs["manageSnippets"] = args ? args.manageSnippets : undefined;
-            resourceInputs["serviceId"] = args ? args.serviceId : undefined;
-            resourceInputs["snippetId"] = args ? args.snippetId : undefined;
+            resourceInputs["content"] = args?.content;
+            resourceInputs["manageSnippets"] = args?.manageSnippets;
+            resourceInputs["serviceId"] = args?.serviceId;
+            resourceInputs["snippetId"] = args?.snippetId;
         }
         opts = pulumi.mergeOptions(utilities.resourceOptsDefaults(), opts);
         super(ServiceDynamicSnippetContent.__pulumiType, name, resourceInputs, opts);

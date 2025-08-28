@@ -72,16 +72,14 @@ import javax.annotation.Nullable;
 @ResourceType(type="fastly:index/serviceCompute:ServiceCompute")
 public class ServiceCompute extends com.pulumi.resources.CustomResource {
     /**
-     * Conditionally prevents new service versions from being activated. The apply step will create a new draft version but
-     * will not activate it if this is set to `false`. Default `true`
+     * Conditionally prevents new service versions from being activated. The apply step will create a new draft version but will not activate it if this is set to `false`. Default `true`
      * 
      */
     @Export(name="activate", refs={Boolean.class}, tree="[0]")
     private Output</* @Nullable */ Boolean> activate;
 
     /**
-     * @return Conditionally prevents new service versions from being activated. The apply step will create a new draft version but
-     * will not activate it if this is set to `false`. Default `true`
+     * @return Conditionally prevents new service versions from being activated. The apply step will create a new draft version but will not activate it if this is set to `false`. Default `true`
      * 
      */
     public Output<Optional<Boolean>> activate() {
@@ -148,16 +146,14 @@ public class ServiceCompute extends com.pulumi.resources.CustomResource {
         return this.domains;
     }
     /**
-     * Services that are active cannot be destroyed. In order to destroy the Service, set `force_destroy` to `true`. Default
-     * `false`
+     * Services that are active cannot be destroyed. In order to destroy the Service, set `force_destroy` to `true`. Default `false`
      * 
      */
     @Export(name="forceDestroy", refs={Boolean.class}, tree="[0]")
     private Output</* @Nullable */ Boolean> forceDestroy;
 
     /**
-     * @return Services that are active cannot be destroyed. In order to destroy the Service, set `force_destroy` to `true`. Default
-     * `false`
+     * @return Services that are active cannot be destroyed. In order to destroy the Service, set `force_destroy` to `true`. Default `false`
      * 
      */
     public Output<Optional<Boolean>> forceDestroy() {
@@ -176,16 +172,14 @@ public class ServiceCompute extends com.pulumi.resources.CustomResource {
         return Codegen.optional(this.imageOptimizerDefaultSettings);
     }
     /**
-     * Used internally by the provider to temporarily indicate if the service is being imported, and is reset to false once the
-     * import is finished
+     * Used internally by the provider to temporarily indicate if the service is being imported, and is reset to false once the import is finished
      * 
      */
     @Export(name="imported", refs={Boolean.class}, tree="[0]")
     private Output<Boolean> imported;
 
     /**
-     * @return Used internally by the provider to temporarily indicate if the service is being imported, and is reset to false once the
-     * import is finished
+     * @return Used internally by the provider to temporarily indicate if the service is being imported, and is reset to false once the import is finished
      * 
      */
     public Output<Boolean> imported() {
@@ -368,18 +362,14 @@ public class ServiceCompute extends com.pulumi.resources.CustomResource {
         return this.name;
     }
     /**
-     * The `package` block supports uploading or modifying Wasm packages for use in a Fastly Compute service (if omitted,
-     * ensure `activate = false` is set on `fastly.ServiceCompute` to avoid service validation errors). See Fastly&#39;s
-     * documentation on [Compute](https://developer.fastly.com/learning/compute/)
+     * The `package` block supports uploading or modifying Wasm packages for use in a Fastly Compute service (if omitted, ensure `activate = false` is set on `fastly.ServiceCompute` to avoid service validation errors). See Fastly&#39;s documentation on [Compute](https://developer.fastly.com/learning/compute/)
      * 
      */
     @Export(name="package", refs={ServiceComputePackage.class}, tree="[0]")
     private Output</* @Nullable */ ServiceComputePackage> package_;
 
     /**
-     * @return The `package` block supports uploading or modifying Wasm packages for use in a Fastly Compute service (if omitted,
-     * ensure `activate = false` is set on `fastly.ServiceCompute` to avoid service validation errors). See Fastly&#39;s
-     * documentation on [Compute](https://developer.fastly.com/learning/compute/)
+     * @return The `package` block supports uploading or modifying Wasm packages for use in a Fastly Compute service (if omitted, ensure `activate = false` is set on `fastly.ServiceCompute` to avoid service validation errors). See Fastly&#39;s documentation on [Compute](https://developer.fastly.com/learning/compute/)
      * 
      */
     public Output<Optional<ServiceComputePackage>> package_() {
@@ -412,16 +402,14 @@ public class ServiceCompute extends com.pulumi.resources.CustomResource {
         return Codegen.optional(this.reuse);
     }
     /**
-     * Conditionally enables new service versions to be staged. If `set` to true, all changes made by an `apply` step will be
-     * staged, even if `apply` did not create a new draft version. Default `false`
+     * Conditionally enables new service versions to be staged. If `set` to true, all changes made by an `apply` step will be staged, even if `apply` did not create a new draft version. Default `false`
      * 
      */
     @Export(name="stage", refs={Boolean.class}, tree="[0]")
     private Output</* @Nullable */ Boolean> stage;
 
     /**
-     * @return Conditionally enables new service versions to be staged. If `set` to true, all changes made by an `apply` step will be
-     * staged, even if `apply` did not create a new draft version. Default `false`
+     * @return Conditionally enables new service versions to be staged. If `set` to true, all changes made by an `apply` step will be staged, even if `apply` did not create a new draft version. Default `false`
      * 
      */
     public Output<Optional<Boolean>> stage() {

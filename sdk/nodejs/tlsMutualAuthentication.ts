@@ -44,32 +44,32 @@ export class TlsMutualAuthentication extends pulumi.CustomResource {
     /**
      * List of TLS Activation IDs
      */
-    public readonly activationIds!: pulumi.Output<string[] | undefined>;
+    declare public readonly activationIds: pulumi.Output<string[] | undefined>;
     /**
      * One or more certificates. Enter each individual certificate blob on a new line. Must be PEM-formatted.
      */
-    public readonly certBundle!: pulumi.Output<string>;
+    declare public readonly certBundle: pulumi.Output<string>;
     /**
      * Date and time in ISO 8601 format.
      */
-    public /*out*/ readonly createdAt!: pulumi.Output<string>;
+    declare public /*out*/ readonly createdAt: pulumi.Output<string>;
     /**
      * Determines whether Mutual TLS will fail closed (enforced) or fail open. A true value will require a successful Mutual TLS handshake for the connection to continue and will fail closed if unsuccessful. A false value will fail open and allow the connection to proceed (if this attribute is not set we default to `false`).
      */
-    public readonly enforced!: pulumi.Output<boolean>;
-    public readonly include!: pulumi.Output<string | undefined>;
+    declare public readonly enforced: pulumi.Output<boolean>;
+    declare public readonly include: pulumi.Output<string | undefined>;
     /**
      * A custom name for your mutual authentication. If name is not supplied we will auto-generate one.
      */
-    public readonly name!: pulumi.Output<string>;
+    declare public readonly name: pulumi.Output<string>;
     /**
      * List of alphanumeric strings identifying TLS activations.
      */
-    public /*out*/ readonly tlsActivations!: pulumi.Output<string[]>;
+    declare public /*out*/ readonly tlsActivations: pulumi.Output<string[]>;
     /**
      * Date and time in ISO 8601 format.
      */
-    public /*out*/ readonly updatedAt!: pulumi.Output<string>;
+    declare public /*out*/ readonly updatedAt: pulumi.Output<string>;
 
     /**
      * Create a TlsMutualAuthentication resource with the given unique name, arguments, and options.
@@ -84,24 +84,24 @@ export class TlsMutualAuthentication extends pulumi.CustomResource {
         opts = opts || {};
         if (opts.id) {
             const state = argsOrState as TlsMutualAuthenticationState | undefined;
-            resourceInputs["activationIds"] = state ? state.activationIds : undefined;
-            resourceInputs["certBundle"] = state ? state.certBundle : undefined;
-            resourceInputs["createdAt"] = state ? state.createdAt : undefined;
-            resourceInputs["enforced"] = state ? state.enforced : undefined;
-            resourceInputs["include"] = state ? state.include : undefined;
-            resourceInputs["name"] = state ? state.name : undefined;
-            resourceInputs["tlsActivations"] = state ? state.tlsActivations : undefined;
-            resourceInputs["updatedAt"] = state ? state.updatedAt : undefined;
+            resourceInputs["activationIds"] = state?.activationIds;
+            resourceInputs["certBundle"] = state?.certBundle;
+            resourceInputs["createdAt"] = state?.createdAt;
+            resourceInputs["enforced"] = state?.enforced;
+            resourceInputs["include"] = state?.include;
+            resourceInputs["name"] = state?.name;
+            resourceInputs["tlsActivations"] = state?.tlsActivations;
+            resourceInputs["updatedAt"] = state?.updatedAt;
         } else {
             const args = argsOrState as TlsMutualAuthenticationArgs | undefined;
-            if ((!args || args.certBundle === undefined) && !opts.urn) {
+            if (args?.certBundle === undefined && !opts.urn) {
                 throw new Error("Missing required property 'certBundle'");
             }
-            resourceInputs["activationIds"] = args ? args.activationIds : undefined;
-            resourceInputs["certBundle"] = args ? args.certBundle : undefined;
-            resourceInputs["enforced"] = args ? args.enforced : undefined;
-            resourceInputs["include"] = args ? args.include : undefined;
-            resourceInputs["name"] = args ? args.name : undefined;
+            resourceInputs["activationIds"] = args?.activationIds;
+            resourceInputs["certBundle"] = args?.certBundle;
+            resourceInputs["enforced"] = args?.enforced;
+            resourceInputs["include"] = args?.include;
+            resourceInputs["name"] = args?.name;
             resourceInputs["createdAt"] = undefined /*out*/;
             resourceInputs["tlsActivations"] = undefined /*out*/;
             resourceInputs["updatedAt"] = undefined /*out*/;

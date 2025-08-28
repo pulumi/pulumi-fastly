@@ -30,8 +30,7 @@ import (
 type ServiceCompute struct {
 	pulumi.CustomResourceState
 
-	// Conditionally prevents new service versions from being activated. The apply step will create a new draft version but
-	// will not activate it if this is set to `false`. Default `true`
+	// Conditionally prevents new service versions from being activated. The apply step will create a new draft version but will not activate it if this is set to `false`. Default `true`
 	Activate pulumi.BoolPtrOutput `pulumi:"activate"`
 	// The currently active version of your Fastly Service
 	ActiveVersion pulumi.IntOutput                 `pulumi:"activeVersion"`
@@ -42,13 +41,11 @@ type ServiceCompute struct {
 	Dictionaries  ServiceComputeDictionaryArrayOutput `pulumi:"dictionaries"`
 	// A set of Domain names to serve as entry points for your Service
 	Domains ServiceComputeDomainArrayOutput `pulumi:"domains"`
-	// Services that are active cannot be destroyed. In order to destroy the Service, set `forceDestroy` to `true`. Default
-	// `false`
+	// Services that are active cannot be destroyed. In order to destroy the Service, set `forceDestroy` to `true`. Default `false`
 	ForceDestroy                  pulumi.BoolPtrOutput                                 `pulumi:"forceDestroy"`
 	ForceRefresh                  pulumi.BoolOutput                                    `pulumi:"forceRefresh"`
 	ImageOptimizerDefaultSettings ServiceComputeImageOptimizerDefaultSettingsPtrOutput `pulumi:"imageOptimizerDefaultSettings"`
-	// Used internally by the provider to temporarily indicate if the service is being imported, and is reset to false once the
-	// import is finished
+	// Used internally by the provider to temporarily indicate if the service is being imported, and is reset to false once the import is finished
 	Imported                pulumi.BoolOutput                               `pulumi:"imported"`
 	LoggingBigqueries       ServiceComputeLoggingBigqueryArrayOutput        `pulumi:"loggingBigqueries"`
 	LoggingBlobstorages     ServiceComputeLoggingBlobstorageArrayOutput     `pulumi:"loggingBlobstorages"`
@@ -79,16 +76,13 @@ type ServiceCompute struct {
 	LoggingSyslogs          ServiceComputeLoggingSyslogArrayOutput          `pulumi:"loggingSyslogs"`
 	// The unique name for the Service to create
 	Name pulumi.StringOutput `pulumi:"name"`
-	// The `package` block supports uploading or modifying Wasm packages for use in a Fastly Compute service (if omitted,
-	// ensure `activate = false` is set on `ServiceCompute` to avoid service validation errors). See Fastly's documentation on
-	// [Compute](https://developer.fastly.com/learning/compute/)
+	// The `package` block supports uploading or modifying Wasm packages for use in a Fastly Compute service (if omitted, ensure `activate = false` is set on `ServiceCompute` to avoid service validation errors). See Fastly's documentation on [Compute](https://developer.fastly.com/learning/compute/)
 	Package           ServiceComputePackagePtrOutput           `pulumi:"package"`
 	ProductEnablement ServiceComputeProductEnablementPtrOutput `pulumi:"productEnablement"`
 	// A resource link represents a link between a shared resource (such as an KV Store or Config Store) and a service version.
 	ResourceLinks ServiceComputeResourceLinkArrayOutput `pulumi:"resourceLinks"`
 	Reuse         pulumi.BoolPtrOutput                  `pulumi:"reuse"`
-	// Conditionally enables new service versions to be staged. If `set` to true, all changes made by an `apply` step will be
-	// staged, even if `apply` did not create a new draft version. Default `false`
+	// Conditionally enables new service versions to be staged. If `set` to true, all changes made by an `apply` step will be staged, even if `apply` did not create a new draft version. Default `false`
 	Stage pulumi.BoolPtrOutput `pulumi:"stage"`
 	// The currently staged version of your Fastly Service
 	StagedVersion pulumi.IntOutput `pulumi:"stagedVersion"`
@@ -129,8 +123,7 @@ func GetServiceCompute(ctx *pulumi.Context,
 
 // Input properties used for looking up and filtering ServiceCompute resources.
 type serviceComputeState struct {
-	// Conditionally prevents new service versions from being activated. The apply step will create a new draft version but
-	// will not activate it if this is set to `false`. Default `true`
+	// Conditionally prevents new service versions from being activated. The apply step will create a new draft version but will not activate it if this is set to `false`. Default `true`
 	Activate *bool `pulumi:"activate"`
 	// The currently active version of your Fastly Service
 	ActiveVersion *int                    `pulumi:"activeVersion"`
@@ -141,13 +134,11 @@ type serviceComputeState struct {
 	Dictionaries  []ServiceComputeDictionary `pulumi:"dictionaries"`
 	// A set of Domain names to serve as entry points for your Service
 	Domains []ServiceComputeDomain `pulumi:"domains"`
-	// Services that are active cannot be destroyed. In order to destroy the Service, set `forceDestroy` to `true`. Default
-	// `false`
+	// Services that are active cannot be destroyed. In order to destroy the Service, set `forceDestroy` to `true`. Default `false`
 	ForceDestroy                  *bool                                        `pulumi:"forceDestroy"`
 	ForceRefresh                  *bool                                        `pulumi:"forceRefresh"`
 	ImageOptimizerDefaultSettings *ServiceComputeImageOptimizerDefaultSettings `pulumi:"imageOptimizerDefaultSettings"`
-	// Used internally by the provider to temporarily indicate if the service is being imported, and is reset to false once the
-	// import is finished
+	// Used internally by the provider to temporarily indicate if the service is being imported, and is reset to false once the import is finished
 	Imported                *bool                                  `pulumi:"imported"`
 	LoggingBigqueries       []ServiceComputeLoggingBigquery        `pulumi:"loggingBigqueries"`
 	LoggingBlobstorages     []ServiceComputeLoggingBlobstorage     `pulumi:"loggingBlobstorages"`
@@ -178,16 +169,13 @@ type serviceComputeState struct {
 	LoggingSyslogs          []ServiceComputeLoggingSyslog          `pulumi:"loggingSyslogs"`
 	// The unique name for the Service to create
 	Name *string `pulumi:"name"`
-	// The `package` block supports uploading or modifying Wasm packages for use in a Fastly Compute service (if omitted,
-	// ensure `activate = false` is set on `ServiceCompute` to avoid service validation errors). See Fastly's documentation on
-	// [Compute](https://developer.fastly.com/learning/compute/)
+	// The `package` block supports uploading or modifying Wasm packages for use in a Fastly Compute service (if omitted, ensure `activate = false` is set on `ServiceCompute` to avoid service validation errors). See Fastly's documentation on [Compute](https://developer.fastly.com/learning/compute/)
 	Package           *ServiceComputePackage           `pulumi:"package"`
 	ProductEnablement *ServiceComputeProductEnablement `pulumi:"productEnablement"`
 	// A resource link represents a link between a shared resource (such as an KV Store or Config Store) and a service version.
 	ResourceLinks []ServiceComputeResourceLink `pulumi:"resourceLinks"`
 	Reuse         *bool                        `pulumi:"reuse"`
-	// Conditionally enables new service versions to be staged. If `set` to true, all changes made by an `apply` step will be
-	// staged, even if `apply` did not create a new draft version. Default `false`
+	// Conditionally enables new service versions to be staged. If `set` to true, all changes made by an `apply` step will be staged, even if `apply` did not create a new draft version. Default `false`
 	Stage *bool `pulumi:"stage"`
 	// The currently staged version of your Fastly Service
 	StagedVersion *int `pulumi:"stagedVersion"`
@@ -196,8 +184,7 @@ type serviceComputeState struct {
 }
 
 type ServiceComputeState struct {
-	// Conditionally prevents new service versions from being activated. The apply step will create a new draft version but
-	// will not activate it if this is set to `false`. Default `true`
+	// Conditionally prevents new service versions from being activated. The apply step will create a new draft version but will not activate it if this is set to `false`. Default `true`
 	Activate pulumi.BoolPtrInput
 	// The currently active version of your Fastly Service
 	ActiveVersion pulumi.IntPtrInput
@@ -208,13 +195,11 @@ type ServiceComputeState struct {
 	Dictionaries  ServiceComputeDictionaryArrayInput
 	// A set of Domain names to serve as entry points for your Service
 	Domains ServiceComputeDomainArrayInput
-	// Services that are active cannot be destroyed. In order to destroy the Service, set `forceDestroy` to `true`. Default
-	// `false`
+	// Services that are active cannot be destroyed. In order to destroy the Service, set `forceDestroy` to `true`. Default `false`
 	ForceDestroy                  pulumi.BoolPtrInput
 	ForceRefresh                  pulumi.BoolPtrInput
 	ImageOptimizerDefaultSettings ServiceComputeImageOptimizerDefaultSettingsPtrInput
-	// Used internally by the provider to temporarily indicate if the service is being imported, and is reset to false once the
-	// import is finished
+	// Used internally by the provider to temporarily indicate if the service is being imported, and is reset to false once the import is finished
 	Imported                pulumi.BoolPtrInput
 	LoggingBigqueries       ServiceComputeLoggingBigqueryArrayInput
 	LoggingBlobstorages     ServiceComputeLoggingBlobstorageArrayInput
@@ -245,16 +230,13 @@ type ServiceComputeState struct {
 	LoggingSyslogs          ServiceComputeLoggingSyslogArrayInput
 	// The unique name for the Service to create
 	Name pulumi.StringPtrInput
-	// The `package` block supports uploading or modifying Wasm packages for use in a Fastly Compute service (if omitted,
-	// ensure `activate = false` is set on `ServiceCompute` to avoid service validation errors). See Fastly's documentation on
-	// [Compute](https://developer.fastly.com/learning/compute/)
+	// The `package` block supports uploading or modifying Wasm packages for use in a Fastly Compute service (if omitted, ensure `activate = false` is set on `ServiceCompute` to avoid service validation errors). See Fastly's documentation on [Compute](https://developer.fastly.com/learning/compute/)
 	Package           ServiceComputePackagePtrInput
 	ProductEnablement ServiceComputeProductEnablementPtrInput
 	// A resource link represents a link between a shared resource (such as an KV Store or Config Store) and a service version.
 	ResourceLinks ServiceComputeResourceLinkArrayInput
 	Reuse         pulumi.BoolPtrInput
-	// Conditionally enables new service versions to be staged. If `set` to true, all changes made by an `apply` step will be
-	// staged, even if `apply` did not create a new draft version. Default `false`
+	// Conditionally enables new service versions to be staged. If `set` to true, all changes made by an `apply` step will be staged, even if `apply` did not create a new draft version. Default `false`
 	Stage pulumi.BoolPtrInput
 	// The currently staged version of your Fastly Service
 	StagedVersion pulumi.IntPtrInput
@@ -267,16 +249,14 @@ func (ServiceComputeState) ElementType() reflect.Type {
 }
 
 type serviceComputeArgs struct {
-	// Conditionally prevents new service versions from being activated. The apply step will create a new draft version but
-	// will not activate it if this is set to `false`. Default `true`
+	// Conditionally prevents new service versions from being activated. The apply step will create a new draft version but will not activate it if this is set to `false`. Default `true`
 	Activate     *bool                      `pulumi:"activate"`
 	Backends     []ServiceComputeBackend    `pulumi:"backends"`
 	Comment      *string                    `pulumi:"comment"`
 	Dictionaries []ServiceComputeDictionary `pulumi:"dictionaries"`
 	// A set of Domain names to serve as entry points for your Service
 	Domains []ServiceComputeDomain `pulumi:"domains"`
-	// Services that are active cannot be destroyed. In order to destroy the Service, set `forceDestroy` to `true`. Default
-	// `false`
+	// Services that are active cannot be destroyed. In order to destroy the Service, set `forceDestroy` to `true`. Default `false`
 	ForceDestroy                  *bool                                        `pulumi:"forceDestroy"`
 	ImageOptimizerDefaultSettings *ServiceComputeImageOptimizerDefaultSettings `pulumi:"imageOptimizerDefaultSettings"`
 	LoggingBigqueries             []ServiceComputeLoggingBigquery              `pulumi:"loggingBigqueries"`
@@ -308,16 +288,13 @@ type serviceComputeArgs struct {
 	LoggingSyslogs                []ServiceComputeLoggingSyslog                `pulumi:"loggingSyslogs"`
 	// The unique name for the Service to create
 	Name *string `pulumi:"name"`
-	// The `package` block supports uploading or modifying Wasm packages for use in a Fastly Compute service (if omitted,
-	// ensure `activate = false` is set on `ServiceCompute` to avoid service validation errors). See Fastly's documentation on
-	// [Compute](https://developer.fastly.com/learning/compute/)
+	// The `package` block supports uploading or modifying Wasm packages for use in a Fastly Compute service (if omitted, ensure `activate = false` is set on `ServiceCompute` to avoid service validation errors). See Fastly's documentation on [Compute](https://developer.fastly.com/learning/compute/)
 	Package           *ServiceComputePackage           `pulumi:"package"`
 	ProductEnablement *ServiceComputeProductEnablement `pulumi:"productEnablement"`
 	// A resource link represents a link between a shared resource (such as an KV Store or Config Store) and a service version.
 	ResourceLinks []ServiceComputeResourceLink `pulumi:"resourceLinks"`
 	Reuse         *bool                        `pulumi:"reuse"`
-	// Conditionally enables new service versions to be staged. If `set` to true, all changes made by an `apply` step will be
-	// staged, even if `apply` did not create a new draft version. Default `false`
+	// Conditionally enables new service versions to be staged. If `set` to true, all changes made by an `apply` step will be staged, even if `apply` did not create a new draft version. Default `false`
 	Stage *bool `pulumi:"stage"`
 	// Description field for the version
 	VersionComment *string `pulumi:"versionComment"`
@@ -325,16 +302,14 @@ type serviceComputeArgs struct {
 
 // The set of arguments for constructing a ServiceCompute resource.
 type ServiceComputeArgs struct {
-	// Conditionally prevents new service versions from being activated. The apply step will create a new draft version but
-	// will not activate it if this is set to `false`. Default `true`
+	// Conditionally prevents new service versions from being activated. The apply step will create a new draft version but will not activate it if this is set to `false`. Default `true`
 	Activate     pulumi.BoolPtrInput
 	Backends     ServiceComputeBackendArrayInput
 	Comment      pulumi.StringPtrInput
 	Dictionaries ServiceComputeDictionaryArrayInput
 	// A set of Domain names to serve as entry points for your Service
 	Domains ServiceComputeDomainArrayInput
-	// Services that are active cannot be destroyed. In order to destroy the Service, set `forceDestroy` to `true`. Default
-	// `false`
+	// Services that are active cannot be destroyed. In order to destroy the Service, set `forceDestroy` to `true`. Default `false`
 	ForceDestroy                  pulumi.BoolPtrInput
 	ImageOptimizerDefaultSettings ServiceComputeImageOptimizerDefaultSettingsPtrInput
 	LoggingBigqueries             ServiceComputeLoggingBigqueryArrayInput
@@ -366,16 +341,13 @@ type ServiceComputeArgs struct {
 	LoggingSyslogs                ServiceComputeLoggingSyslogArrayInput
 	// The unique name for the Service to create
 	Name pulumi.StringPtrInput
-	// The `package` block supports uploading or modifying Wasm packages for use in a Fastly Compute service (if omitted,
-	// ensure `activate = false` is set on `ServiceCompute` to avoid service validation errors). See Fastly's documentation on
-	// [Compute](https://developer.fastly.com/learning/compute/)
+	// The `package` block supports uploading or modifying Wasm packages for use in a Fastly Compute service (if omitted, ensure `activate = false` is set on `ServiceCompute` to avoid service validation errors). See Fastly's documentation on [Compute](https://developer.fastly.com/learning/compute/)
 	Package           ServiceComputePackagePtrInput
 	ProductEnablement ServiceComputeProductEnablementPtrInput
 	// A resource link represents a link between a shared resource (such as an KV Store or Config Store) and a service version.
 	ResourceLinks ServiceComputeResourceLinkArrayInput
 	Reuse         pulumi.BoolPtrInput
-	// Conditionally enables new service versions to be staged. If `set` to true, all changes made by an `apply` step will be
-	// staged, even if `apply` did not create a new draft version. Default `false`
+	// Conditionally enables new service versions to be staged. If `set` to true, all changes made by an `apply` step will be staged, even if `apply` did not create a new draft version. Default `false`
 	Stage pulumi.BoolPtrInput
 	// Description field for the version
 	VersionComment pulumi.StringPtrInput
@@ -468,8 +440,7 @@ func (o ServiceComputeOutput) ToServiceComputeOutputWithContext(ctx context.Cont
 	return o
 }
 
-// Conditionally prevents new service versions from being activated. The apply step will create a new draft version but
-// will not activate it if this is set to `false`. Default `true`
+// Conditionally prevents new service versions from being activated. The apply step will create a new draft version but will not activate it if this is set to `false`. Default `true`
 func (o ServiceComputeOutput) Activate() pulumi.BoolPtrOutput {
 	return o.ApplyT(func(v *ServiceCompute) pulumi.BoolPtrOutput { return v.Activate }).(pulumi.BoolPtrOutput)
 }
@@ -501,8 +472,7 @@ func (o ServiceComputeOutput) Domains() ServiceComputeDomainArrayOutput {
 	return o.ApplyT(func(v *ServiceCompute) ServiceComputeDomainArrayOutput { return v.Domains }).(ServiceComputeDomainArrayOutput)
 }
 
-// Services that are active cannot be destroyed. In order to destroy the Service, set `forceDestroy` to `true`. Default
-// `false`
+// Services that are active cannot be destroyed. In order to destroy the Service, set `forceDestroy` to `true`. Default `false`
 func (o ServiceComputeOutput) ForceDestroy() pulumi.BoolPtrOutput {
 	return o.ApplyT(func(v *ServiceCompute) pulumi.BoolPtrOutput { return v.ForceDestroy }).(pulumi.BoolPtrOutput)
 }
@@ -517,8 +487,7 @@ func (o ServiceComputeOutput) ImageOptimizerDefaultSettings() ServiceComputeImag
 	}).(ServiceComputeImageOptimizerDefaultSettingsPtrOutput)
 }
 
-// Used internally by the provider to temporarily indicate if the service is being imported, and is reset to false once the
-// import is finished
+// Used internally by the provider to temporarily indicate if the service is being imported, and is reset to false once the import is finished
 func (o ServiceComputeOutput) Imported() pulumi.BoolOutput {
 	return o.ApplyT(func(v *ServiceCompute) pulumi.BoolOutput { return v.Imported }).(pulumi.BoolOutput)
 }
@@ -638,9 +607,7 @@ func (o ServiceComputeOutput) Name() pulumi.StringOutput {
 	return o.ApplyT(func(v *ServiceCompute) pulumi.StringOutput { return v.Name }).(pulumi.StringOutput)
 }
 
-// The `package` block supports uploading or modifying Wasm packages for use in a Fastly Compute service (if omitted,
-// ensure `activate = false` is set on `ServiceCompute` to avoid service validation errors). See Fastly's documentation on
-// [Compute](https://developer.fastly.com/learning/compute/)
+// The `package` block supports uploading or modifying Wasm packages for use in a Fastly Compute service (if omitted, ensure `activate = false` is set on `ServiceCompute` to avoid service validation errors). See Fastly's documentation on [Compute](https://developer.fastly.com/learning/compute/)
 func (o ServiceComputeOutput) Package() ServiceComputePackagePtrOutput {
 	return o.ApplyT(func(v *ServiceCompute) ServiceComputePackagePtrOutput { return v.Package }).(ServiceComputePackagePtrOutput)
 }
@@ -658,8 +625,7 @@ func (o ServiceComputeOutput) Reuse() pulumi.BoolPtrOutput {
 	return o.ApplyT(func(v *ServiceCompute) pulumi.BoolPtrOutput { return v.Reuse }).(pulumi.BoolPtrOutput)
 }
 
-// Conditionally enables new service versions to be staged. If `set` to true, all changes made by an `apply` step will be
-// staged, even if `apply` did not create a new draft version. Default `false`
+// Conditionally enables new service versions to be staged. If `set` to true, all changes made by an `apply` step will be staged, even if `apply` did not create a new draft version. Default `false`
 func (o ServiceComputeOutput) Stage() pulumi.BoolPtrOutput {
 	return o.ApplyT(func(v *ServiceCompute) pulumi.BoolPtrOutput { return v.Stage }).(pulumi.BoolPtrOutput)
 }

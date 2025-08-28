@@ -59,23 +59,23 @@ export class ObjectStorageAccessKeys extends pulumi.CustomResource {
     /**
      * ID for the object storage access token
      */
-    public /*out*/ readonly accessKeyId!: pulumi.Output<string>;
+    declare public /*out*/ readonly accessKeyId: pulumi.Output<string>;
     /**
      * Optional list of buckets the access key will be associated with.  Example: `["bucket1", "bucket2"]`
      */
-    public readonly buckets!: pulumi.Output<string[] | undefined>;
+    declare public readonly buckets: pulumi.Output<string[] | undefined>;
     /**
      * The description of the access key
      */
-    public readonly description!: pulumi.Output<string>;
+    declare public readonly description: pulumi.Output<string>;
     /**
      * The permissions of the access key
      */
-    public readonly permission!: pulumi.Output<string>;
+    declare public readonly permission: pulumi.Output<string>;
     /**
      * Secret key for the object storage access token
      */
-    public /*out*/ readonly secretKey!: pulumi.Output<string>;
+    declare public /*out*/ readonly secretKey: pulumi.Output<string>;
 
     /**
      * Create a ObjectStorageAccessKeys resource with the given unique name, arguments, and options.
@@ -90,22 +90,22 @@ export class ObjectStorageAccessKeys extends pulumi.CustomResource {
         opts = opts || {};
         if (opts.id) {
             const state = argsOrState as ObjectStorageAccessKeysState | undefined;
-            resourceInputs["accessKeyId"] = state ? state.accessKeyId : undefined;
-            resourceInputs["buckets"] = state ? state.buckets : undefined;
-            resourceInputs["description"] = state ? state.description : undefined;
-            resourceInputs["permission"] = state ? state.permission : undefined;
-            resourceInputs["secretKey"] = state ? state.secretKey : undefined;
+            resourceInputs["accessKeyId"] = state?.accessKeyId;
+            resourceInputs["buckets"] = state?.buckets;
+            resourceInputs["description"] = state?.description;
+            resourceInputs["permission"] = state?.permission;
+            resourceInputs["secretKey"] = state?.secretKey;
         } else {
             const args = argsOrState as ObjectStorageAccessKeysArgs | undefined;
-            if ((!args || args.description === undefined) && !opts.urn) {
+            if (args?.description === undefined && !opts.urn) {
                 throw new Error("Missing required property 'description'");
             }
-            if ((!args || args.permission === undefined) && !opts.urn) {
+            if (args?.permission === undefined && !opts.urn) {
                 throw new Error("Missing required property 'permission'");
             }
-            resourceInputs["buckets"] = args ? args.buckets : undefined;
-            resourceInputs["description"] = args ? args.description : undefined;
-            resourceInputs["permission"] = args ? args.permission : undefined;
+            resourceInputs["buckets"] = args?.buckets;
+            resourceInputs["description"] = args?.description;
+            resourceInputs["permission"] = args?.permission;
             resourceInputs["accessKeyId"] = undefined /*out*/;
             resourceInputs["secretKey"] = undefined /*out*/;
         }

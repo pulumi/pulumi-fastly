@@ -65,15 +65,15 @@ export class ServiceAuthorization extends pulumi.CustomResource {
     /**
      * The permissions to grant the user. Can be `full`, `readOnly`, `purgeSelect` or `purgeAll`.
      */
-    public readonly permission!: pulumi.Output<string>;
+    declare public readonly permission: pulumi.Output<string>;
     /**
      * The ID of the service to grant permissions for.
      */
-    public readonly serviceId!: pulumi.Output<string>;
+    declare public readonly serviceId: pulumi.Output<string>;
     /**
      * The ID of the user which will receive the granted permissions.
      */
-    public readonly userId!: pulumi.Output<string>;
+    declare public readonly userId: pulumi.Output<string>;
 
     /**
      * Create a ServiceAuthorization resource with the given unique name, arguments, and options.
@@ -88,23 +88,23 @@ export class ServiceAuthorization extends pulumi.CustomResource {
         opts = opts || {};
         if (opts.id) {
             const state = argsOrState as ServiceAuthorizationState | undefined;
-            resourceInputs["permission"] = state ? state.permission : undefined;
-            resourceInputs["serviceId"] = state ? state.serviceId : undefined;
-            resourceInputs["userId"] = state ? state.userId : undefined;
+            resourceInputs["permission"] = state?.permission;
+            resourceInputs["serviceId"] = state?.serviceId;
+            resourceInputs["userId"] = state?.userId;
         } else {
             const args = argsOrState as ServiceAuthorizationArgs | undefined;
-            if ((!args || args.permission === undefined) && !opts.urn) {
+            if (args?.permission === undefined && !opts.urn) {
                 throw new Error("Missing required property 'permission'");
             }
-            if ((!args || args.serviceId === undefined) && !opts.urn) {
+            if (args?.serviceId === undefined && !opts.urn) {
                 throw new Error("Missing required property 'serviceId'");
             }
-            if ((!args || args.userId === undefined) && !opts.urn) {
+            if (args?.userId === undefined && !opts.urn) {
                 throw new Error("Missing required property 'userId'");
             }
-            resourceInputs["permission"] = args ? args.permission : undefined;
-            resourceInputs["serviceId"] = args ? args.serviceId : undefined;
-            resourceInputs["userId"] = args ? args.userId : undefined;
+            resourceInputs["permission"] = args?.permission;
+            resourceInputs["serviceId"] = args?.serviceId;
+            resourceInputs["userId"] = args?.userId;
         }
         opts = pulumi.mergeOptions(utilities.resourceOptsDefaults(), opts);
         super(ServiceAuthorization.__pulumiType, name, resourceInputs, opts);

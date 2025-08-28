@@ -52,19 +52,19 @@ export class ServiceDictionaryItems extends pulumi.CustomResource {
     /**
      * The ID of the dictionary that the items belong to
      */
-    public readonly dictionaryId!: pulumi.Output<string>;
+    declare public readonly dictionaryId: pulumi.Output<string>;
     /**
      * A map representing an entry in the dictionary, (key/value)
      */
-    public readonly items!: pulumi.Output<{[key: string]: string} | undefined>;
+    declare public readonly items: pulumi.Output<{[key: string]: string} | undefined>;
     /**
      * Whether to reapply changes if the state of the items drifts, i.e. if items are managed externally
      */
-    public readonly manageItems!: pulumi.Output<boolean | undefined>;
+    declare public readonly manageItems: pulumi.Output<boolean | undefined>;
     /**
      * The ID of the service that the dictionary belongs to
      */
-    public readonly serviceId!: pulumi.Output<string>;
+    declare public readonly serviceId: pulumi.Output<string>;
 
     /**
      * Create a ServiceDictionaryItems resource with the given unique name, arguments, and options.
@@ -79,22 +79,22 @@ export class ServiceDictionaryItems extends pulumi.CustomResource {
         opts = opts || {};
         if (opts.id) {
             const state = argsOrState as ServiceDictionaryItemsState | undefined;
-            resourceInputs["dictionaryId"] = state ? state.dictionaryId : undefined;
-            resourceInputs["items"] = state ? state.items : undefined;
-            resourceInputs["manageItems"] = state ? state.manageItems : undefined;
-            resourceInputs["serviceId"] = state ? state.serviceId : undefined;
+            resourceInputs["dictionaryId"] = state?.dictionaryId;
+            resourceInputs["items"] = state?.items;
+            resourceInputs["manageItems"] = state?.manageItems;
+            resourceInputs["serviceId"] = state?.serviceId;
         } else {
             const args = argsOrState as ServiceDictionaryItemsArgs | undefined;
-            if ((!args || args.dictionaryId === undefined) && !opts.urn) {
+            if (args?.dictionaryId === undefined && !opts.urn) {
                 throw new Error("Missing required property 'dictionaryId'");
             }
-            if ((!args || args.serviceId === undefined) && !opts.urn) {
+            if (args?.serviceId === undefined && !opts.urn) {
                 throw new Error("Missing required property 'serviceId'");
             }
-            resourceInputs["dictionaryId"] = args ? args.dictionaryId : undefined;
-            resourceInputs["items"] = args ? args.items : undefined;
-            resourceInputs["manageItems"] = args ? args.manageItems : undefined;
-            resourceInputs["serviceId"] = args ? args.serviceId : undefined;
+            resourceInputs["dictionaryId"] = args?.dictionaryId;
+            resourceInputs["items"] = args?.items;
+            resourceInputs["manageItems"] = args?.manageItems;
+            resourceInputs["serviceId"] = args?.serviceId;
         }
         opts = pulumi.mergeOptions(utilities.resourceOptsDefaults(), opts);
         super(ServiceDictionaryItems.__pulumiType, name, resourceInputs, opts);

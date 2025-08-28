@@ -42,7 +42,7 @@ export class TlsSubscriptionValidation extends pulumi.CustomResource {
     /**
      * The ID of the TLS Subscription that should be validated.
      */
-    public readonly subscriptionId!: pulumi.Output<string>;
+    declare public readonly subscriptionId: pulumi.Output<string>;
 
     /**
      * Create a TlsSubscriptionValidation resource with the given unique name, arguments, and options.
@@ -57,13 +57,13 @@ export class TlsSubscriptionValidation extends pulumi.CustomResource {
         opts = opts || {};
         if (opts.id) {
             const state = argsOrState as TlsSubscriptionValidationState | undefined;
-            resourceInputs["subscriptionId"] = state ? state.subscriptionId : undefined;
+            resourceInputs["subscriptionId"] = state?.subscriptionId;
         } else {
             const args = argsOrState as TlsSubscriptionValidationArgs | undefined;
-            if ((!args || args.subscriptionId === undefined) && !opts.urn) {
+            if (args?.subscriptionId === undefined && !opts.urn) {
                 throw new Error("Missing required property 'subscriptionId'");
             }
-            resourceInputs["subscriptionId"] = args ? args.subscriptionId : undefined;
+            resourceInputs["subscriptionId"] = args?.subscriptionId;
         }
         opts = pulumi.mergeOptions(utilities.resourceOptsDefaults(), opts);
         super(TlsSubscriptionValidation.__pulumiType, name, resourceInputs, opts);

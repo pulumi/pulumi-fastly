@@ -82,16 +82,13 @@ class ServiceVclArgs:
         """
         The set of arguments for constructing a ServiceVcl resource.
         :param pulumi.Input[Sequence[pulumi.Input['ServiceVclDomainArgs']]] domains: A set of Domain names to serve as entry points for your Service
-        :param pulumi.Input[_builtins.bool] activate: Conditionally prevents new service versions from being activated. The apply step will create a new draft version but
-               will not activate it if this is set to `false`. Default `true`
+        :param pulumi.Input[_builtins.bool] activate: Conditionally prevents new service versions from being activated. The apply step will create a new draft version but will not activate it if this is set to `false`. Default `true`
         :param pulumi.Input[_builtins.str] default_host: The default hostname
         :param pulumi.Input[_builtins.int] default_ttl: The default Time-to-live (TTL) for requests
-        :param pulumi.Input[_builtins.bool] force_destroy: Services that are active cannot be destroyed. In order to destroy the Service, set `force_destroy` to `true`. Default
-               `false`
+        :param pulumi.Input[_builtins.bool] force_destroy: Services that are active cannot be destroyed. In order to destroy the Service, set `force_destroy` to `true`. Default `false`
         :param pulumi.Input[_builtins.bool] http3: Enables support for the HTTP/3 (QUIC) protocol
         :param pulumi.Input[_builtins.str] name: The unique name for the Service to create
-        :param pulumi.Input[_builtins.bool] stage: Conditionally enables new service versions to be staged. If `set` to true, all changes made by an `apply` step will be
-               staged, even if `apply` did not create a new draft version. Default `false`
+        :param pulumi.Input[_builtins.bool] stage: Conditionally enables new service versions to be staged. If `set` to true, all changes made by an `apply` step will be staged, even if `apply` did not create a new draft version. Default `false`
         :param pulumi.Input[_builtins.bool] stale_if_error: Enables serving a stale object if there is an error
         :param pulumi.Input[_builtins.int] stale_if_error_ttl: The default time-to-live (TTL) for serving the stale object for the version
         :param pulumi.Input[_builtins.str] version_comment: Description field for the version
@@ -237,8 +234,7 @@ class ServiceVclArgs:
     @pulumi.getter
     def activate(self) -> Optional[pulumi.Input[_builtins.bool]]:
         """
-        Conditionally prevents new service versions from being activated. The apply step will create a new draft version but
-        will not activate it if this is set to `false`. Default `true`
+        Conditionally prevents new service versions from being activated. The apply step will create a new draft version but will not activate it if this is set to `false`. Default `true`
         """
         return pulumi.get(self, "activate")
 
@@ -337,8 +333,7 @@ class ServiceVclArgs:
     @pulumi.getter(name="forceDestroy")
     def force_destroy(self) -> Optional[pulumi.Input[_builtins.bool]]:
         """
-        Services that are active cannot be destroyed. In order to destroy the Service, set `force_destroy` to `true`. Default
-        `false`
+        Services that are active cannot be destroyed. In order to destroy the Service, set `force_destroy` to `true`. Default `false`
         """
         return pulumi.get(self, "force_destroy")
 
@@ -716,8 +711,7 @@ class ServiceVclArgs:
     @pulumi.getter
     def stage(self) -> Optional[pulumi.Input[_builtins.bool]]:
         """
-        Conditionally enables new service versions to be staged. If `set` to true, all changes made by an `apply` step will be
-        staged, even if `apply` did not create a new draft version. Default `false`
+        Conditionally enables new service versions to be staged. If `set` to true, all changes made by an `apply` step will be staged, even if `apply` did not create a new draft version. Default `false`
         """
         return pulumi.get(self, "stage")
 
@@ -839,21 +833,17 @@ class _ServiceVclState:
                  version_comment: Optional[pulumi.Input[_builtins.str]] = None):
         """
         Input properties used for looking up and filtering ServiceVcl resources.
-        :param pulumi.Input[_builtins.bool] activate: Conditionally prevents new service versions from being activated. The apply step will create a new draft version but
-               will not activate it if this is set to `false`. Default `true`
+        :param pulumi.Input[_builtins.bool] activate: Conditionally prevents new service versions from being activated. The apply step will create a new draft version but will not activate it if this is set to `false`. Default `true`
         :param pulumi.Input[_builtins.int] active_version: The currently active version of your Fastly Service
         :param pulumi.Input[_builtins.int] cloned_version: The latest cloned version by the provider
         :param pulumi.Input[_builtins.str] default_host: The default hostname
         :param pulumi.Input[_builtins.int] default_ttl: The default Time-to-live (TTL) for requests
         :param pulumi.Input[Sequence[pulumi.Input['ServiceVclDomainArgs']]] domains: A set of Domain names to serve as entry points for your Service
-        :param pulumi.Input[_builtins.bool] force_destroy: Services that are active cannot be destroyed. In order to destroy the Service, set `force_destroy` to `true`. Default
-               `false`
+        :param pulumi.Input[_builtins.bool] force_destroy: Services that are active cannot be destroyed. In order to destroy the Service, set `force_destroy` to `true`. Default `false`
         :param pulumi.Input[_builtins.bool] http3: Enables support for the HTTP/3 (QUIC) protocol
-        :param pulumi.Input[_builtins.bool] imported: Used internally by the provider to temporarily indicate if the service is being imported, and is reset to false once the
-               import is finished
+        :param pulumi.Input[_builtins.bool] imported: Used internally by the provider to temporarily indicate if the service is being imported, and is reset to false once the import is finished
         :param pulumi.Input[_builtins.str] name: The unique name for the Service to create
-        :param pulumi.Input[_builtins.bool] stage: Conditionally enables new service versions to be staged. If `set` to true, all changes made by an `apply` step will be
-               staged, even if `apply` did not create a new draft version. Default `false`
+        :param pulumi.Input[_builtins.bool] stage: Conditionally enables new service versions to be staged. If `set` to true, all changes made by an `apply` step will be staged, even if `apply` did not create a new draft version. Default `false`
         :param pulumi.Input[_builtins.int] staged_version: The currently staged version of your Fastly Service
         :param pulumi.Input[_builtins.bool] stale_if_error: Enables serving a stale object if there is an error
         :param pulumi.Input[_builtins.int] stale_if_error_ttl: The default time-to-live (TTL) for serving the stale object for the version
@@ -999,8 +989,7 @@ class _ServiceVclState:
     @pulumi.getter
     def activate(self) -> Optional[pulumi.Input[_builtins.bool]]:
         """
-        Conditionally prevents new service versions from being activated. The apply step will create a new draft version but
-        will not activate it if this is set to `false`. Default `true`
+        Conditionally prevents new service versions from being activated. The apply step will create a new draft version but will not activate it if this is set to `false`. Default `true`
         """
         return pulumi.get(self, "activate")
 
@@ -1135,8 +1124,7 @@ class _ServiceVclState:
     @pulumi.getter(name="forceDestroy")
     def force_destroy(self) -> Optional[pulumi.Input[_builtins.bool]]:
         """
-        Services that are active cannot be destroyed. In order to destroy the Service, set `force_destroy` to `true`. Default
-        `false`
+        Services that are active cannot be destroyed. In order to destroy the Service, set `force_destroy` to `true`. Default `false`
         """
         return pulumi.get(self, "force_destroy")
 
@@ -1205,8 +1193,7 @@ class _ServiceVclState:
     @pulumi.getter
     def imported(self) -> Optional[pulumi.Input[_builtins.bool]]:
         """
-        Used internally by the provider to temporarily indicate if the service is being imported, and is reset to false once the
-        import is finished
+        Used internally by the provider to temporarily indicate if the service is being imported, and is reset to false once the import is finished
         """
         return pulumi.get(self, "imported")
 
@@ -1536,8 +1523,7 @@ class _ServiceVclState:
     @pulumi.getter
     def stage(self) -> Optional[pulumi.Input[_builtins.bool]]:
         """
-        Conditionally enables new service versions to be staged. If `set` to true, all changes made by an `apply` step will be
-        staged, even if `apply` did not create a new draft version. Default `false`
+        Conditionally enables new service versions to be staged. If `set` to true, all changes made by an `apply` step will be staged, even if `apply` did not create a new draft version. Default `false`
         """
         return pulumi.get(self, "stage")
 
@@ -1687,17 +1673,14 @@ class ServiceVcl(pulumi.CustomResource):
 
         :param str resource_name: The name of the resource.
         :param pulumi.ResourceOptions opts: Options for the resource.
-        :param pulumi.Input[_builtins.bool] activate: Conditionally prevents new service versions from being activated. The apply step will create a new draft version but
-               will not activate it if this is set to `false`. Default `true`
+        :param pulumi.Input[_builtins.bool] activate: Conditionally prevents new service versions from being activated. The apply step will create a new draft version but will not activate it if this is set to `false`. Default `true`
         :param pulumi.Input[_builtins.str] default_host: The default hostname
         :param pulumi.Input[_builtins.int] default_ttl: The default Time-to-live (TTL) for requests
         :param pulumi.Input[Sequence[pulumi.Input[Union['ServiceVclDomainArgs', 'ServiceVclDomainArgsDict']]]] domains: A set of Domain names to serve as entry points for your Service
-        :param pulumi.Input[_builtins.bool] force_destroy: Services that are active cannot be destroyed. In order to destroy the Service, set `force_destroy` to `true`. Default
-               `false`
+        :param pulumi.Input[_builtins.bool] force_destroy: Services that are active cannot be destroyed. In order to destroy the Service, set `force_destroy` to `true`. Default `false`
         :param pulumi.Input[_builtins.bool] http3: Enables support for the HTTP/3 (QUIC) protocol
         :param pulumi.Input[_builtins.str] name: The unique name for the Service to create
-        :param pulumi.Input[_builtins.bool] stage: Conditionally enables new service versions to be staged. If `set` to true, all changes made by an `apply` step will be
-               staged, even if `apply` did not create a new draft version. Default `false`
+        :param pulumi.Input[_builtins.bool] stage: Conditionally enables new service versions to be staged. If `set` to true, all changes made by an `apply` step will be staged, even if `apply` did not create a new draft version. Default `false`
         :param pulumi.Input[_builtins.bool] stale_if_error: Enables serving a stale object if there is an error
         :param pulumi.Input[_builtins.int] stale_if_error_ttl: The default time-to-live (TTL) for serving the stale object for the version
         :param pulumi.Input[_builtins.str] version_comment: Description field for the version
@@ -1952,21 +1935,17 @@ class ServiceVcl(pulumi.CustomResource):
         :param str resource_name: The unique name of the resulting resource.
         :param pulumi.Input[str] id: The unique provider ID of the resource to lookup.
         :param pulumi.ResourceOptions opts: Options for the resource.
-        :param pulumi.Input[_builtins.bool] activate: Conditionally prevents new service versions from being activated. The apply step will create a new draft version but
-               will not activate it if this is set to `false`. Default `true`
+        :param pulumi.Input[_builtins.bool] activate: Conditionally prevents new service versions from being activated. The apply step will create a new draft version but will not activate it if this is set to `false`. Default `true`
         :param pulumi.Input[_builtins.int] active_version: The currently active version of your Fastly Service
         :param pulumi.Input[_builtins.int] cloned_version: The latest cloned version by the provider
         :param pulumi.Input[_builtins.str] default_host: The default hostname
         :param pulumi.Input[_builtins.int] default_ttl: The default Time-to-live (TTL) for requests
         :param pulumi.Input[Sequence[pulumi.Input[Union['ServiceVclDomainArgs', 'ServiceVclDomainArgsDict']]]] domains: A set of Domain names to serve as entry points for your Service
-        :param pulumi.Input[_builtins.bool] force_destroy: Services that are active cannot be destroyed. In order to destroy the Service, set `force_destroy` to `true`. Default
-               `false`
+        :param pulumi.Input[_builtins.bool] force_destroy: Services that are active cannot be destroyed. In order to destroy the Service, set `force_destroy` to `true`. Default `false`
         :param pulumi.Input[_builtins.bool] http3: Enables support for the HTTP/3 (QUIC) protocol
-        :param pulumi.Input[_builtins.bool] imported: Used internally by the provider to temporarily indicate if the service is being imported, and is reset to false once the
-               import is finished
+        :param pulumi.Input[_builtins.bool] imported: Used internally by the provider to temporarily indicate if the service is being imported, and is reset to false once the import is finished
         :param pulumi.Input[_builtins.str] name: The unique name for the Service to create
-        :param pulumi.Input[_builtins.bool] stage: Conditionally enables new service versions to be staged. If `set` to true, all changes made by an `apply` step will be
-               staged, even if `apply` did not create a new draft version. Default `false`
+        :param pulumi.Input[_builtins.bool] stage: Conditionally enables new service versions to be staged. If `set` to true, all changes made by an `apply` step will be staged, even if `apply` did not create a new draft version. Default `false`
         :param pulumi.Input[_builtins.int] staged_version: The currently staged version of your Fastly Service
         :param pulumi.Input[_builtins.bool] stale_if_error: Enables serving a stale object if there is an error
         :param pulumi.Input[_builtins.int] stale_if_error_ttl: The default time-to-live (TTL) for serving the stale object for the version
@@ -2050,8 +2029,7 @@ class ServiceVcl(pulumi.CustomResource):
     @pulumi.getter
     def activate(self) -> pulumi.Output[Optional[_builtins.bool]]:
         """
-        Conditionally prevents new service versions from being activated. The apply step will create a new draft version but
-        will not activate it if this is set to `false`. Default `true`
+        Conditionally prevents new service versions from being activated. The apply step will create a new draft version but will not activate it if this is set to `false`. Default `true`
         """
         return pulumi.get(self, "activate")
 
@@ -2134,8 +2112,7 @@ class ServiceVcl(pulumi.CustomResource):
     @pulumi.getter(name="forceDestroy")
     def force_destroy(self) -> pulumi.Output[Optional[_builtins.bool]]:
         """
-        Services that are active cannot be destroyed. In order to destroy the Service, set `force_destroy` to `true`. Default
-        `false`
+        Services that are active cannot be destroyed. In order to destroy the Service, set `force_destroy` to `true`. Default `false`
         """
         return pulumi.get(self, "force_destroy")
 
@@ -2176,8 +2153,7 @@ class ServiceVcl(pulumi.CustomResource):
     @pulumi.getter
     def imported(self) -> pulumi.Output[_builtins.bool]:
         """
-        Used internally by the provider to temporarily indicate if the service is being imported, and is reset to false once the
-        import is finished
+        Used internally by the provider to temporarily indicate if the service is being imported, and is reset to false once the import is finished
         """
         return pulumi.get(self, "imported")
 
@@ -2363,8 +2339,7 @@ class ServiceVcl(pulumi.CustomResource):
     @pulumi.getter
     def stage(self) -> pulumi.Output[Optional[_builtins.bool]]:
         """
-        Conditionally enables new service versions to be staged. If `set` to true, all changes made by an `apply` step will be
-        staged, even if `apply` did not create a new draft version. Default `false`
+        Conditionally enables new service versions to be staged. If `set` to true, all changes made by an `apply` step will be staged, even if `apply` did not create a new draft version. Default `false`
         """
         return pulumi.get(self, "stage")
 
