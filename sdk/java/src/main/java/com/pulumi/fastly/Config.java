@@ -26,17 +26,14 @@ public final class Config {
         return Codegen.stringProp("baseUrl").config(config).get();
     }
 /**
- * Set this to `true` to disable HTTP/1.x fallback mechanism that the underlying Go library will attempt upon connection to
- * `api.fastly.com:443` by default. This may slightly improve the provider&#39;s performance and reduce unnecessary TLS
- * handshakes. Default: `false`
+ * Set this to `true` to disable HTTP/1.x fallback mechanism that the underlying Go library will attempt upon connection to `api.fastly.com:443` by default. This may slightly improve the provider&#39;s performance and reduce unnecessary TLS handshakes. Default: `false`
  * 
  */
     public Optional<Boolean> forceHttp2() {
         return Codegen.booleanProp("forceHttp2").config(config).get();
     }
 /**
- * Set to `true` if your configuration only consumes data sources that do not require authentication, such as
- * `fastly.getFastlyIpRanges`
+ * Set to `true` if your configuration only consumes data sources that do not require authentication, such as `fastly.getFastlyIpRanges`
  * 
  */
     public Optional<Boolean> noAuth() {

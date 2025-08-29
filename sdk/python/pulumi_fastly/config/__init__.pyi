@@ -26,14 +26,11 @@ Fastly API URL
 
 forceHttp2: Optional[bool]
 """
-Set this to `true` to disable HTTP/1.x fallback mechanism that the underlying Go library will attempt upon connection to
-`api.fastly.com:443` by default. This may slightly improve the provider's performance and reduce unnecessary TLS
-handshakes. Default: `false`
+Set this to `true` to disable HTTP/1.x fallback mechanism that the underlying Go library will attempt upon connection to `api.fastly.com:443` by default. This may slightly improve the provider's performance and reduce unnecessary TLS handshakes. Default: `false`
 """
 
 noAuth: Optional[bool]
 """
-Set to `true` if your configuration only consumes data sources that do not require authentication, such as
-`get_fastly_ip_ranges`
+Set to `true` if your configuration only consumes data sources that do not require authentication, such as `get_fastly_ip_ranges`
 """
 

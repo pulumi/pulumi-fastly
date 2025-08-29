@@ -76,15 +76,15 @@ export class Kvstore extends pulumi.CustomResource {
     /**
      * Allow the KV Store to be deleted, even if it contains entries. Defaults to false.
      */
-    public readonly forceDestroy!: pulumi.Output<boolean | undefined>;
+    declare public readonly forceDestroy: pulumi.Output<boolean | undefined>;
     /**
      * The regional location of the KV Store. Valid values are `US`, `EU`, `ASIA`, and `AUS`.
      */
-    public readonly location!: pulumi.Output<string | undefined>;
+    declare public readonly location: pulumi.Output<string | undefined>;
     /**
      * A unique name to identify the KV Store. It is important to note that changing this attribute will delete and recreate the KV Store, and discard the current entries. You MUST first delete the associated resourceLink block from your service before modifying this field.
      */
-    public readonly name!: pulumi.Output<string>;
+    declare public readonly name: pulumi.Output<string>;
 
     /**
      * Create a Kvstore resource with the given unique name, arguments, and options.
@@ -99,14 +99,14 @@ export class Kvstore extends pulumi.CustomResource {
         opts = opts || {};
         if (opts.id) {
             const state = argsOrState as KvstoreState | undefined;
-            resourceInputs["forceDestroy"] = state ? state.forceDestroy : undefined;
-            resourceInputs["location"] = state ? state.location : undefined;
-            resourceInputs["name"] = state ? state.name : undefined;
+            resourceInputs["forceDestroy"] = state?.forceDestroy;
+            resourceInputs["location"] = state?.location;
+            resourceInputs["name"] = state?.name;
         } else {
             const args = argsOrState as KvstoreArgs | undefined;
-            resourceInputs["forceDestroy"] = args ? args.forceDestroy : undefined;
-            resourceInputs["location"] = args ? args.location : undefined;
-            resourceInputs["name"] = args ? args.name : undefined;
+            resourceInputs["forceDestroy"] = args?.forceDestroy;
+            resourceInputs["location"] = args?.location;
+            resourceInputs["name"] = args?.name;
         }
         opts = pulumi.mergeOptions(utilities.resourceOptsDefaults(), opts);
         super(Kvstore.__pulumiType, name, resourceInputs, opts);

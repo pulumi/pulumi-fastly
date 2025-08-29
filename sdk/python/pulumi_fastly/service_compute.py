@@ -65,17 +65,12 @@ class ServiceComputeArgs:
         """
         The set of arguments for constructing a ServiceCompute resource.
         :param pulumi.Input[Sequence[pulumi.Input['ServiceComputeDomainArgs']]] domains: A set of Domain names to serve as entry points for your Service
-        :param pulumi.Input[_builtins.bool] activate: Conditionally prevents new service versions from being activated. The apply step will create a new draft version but
-               will not activate it if this is set to `false`. Default `true`
-        :param pulumi.Input[_builtins.bool] force_destroy: Services that are active cannot be destroyed. In order to destroy the Service, set `force_destroy` to `true`. Default
-               `false`
+        :param pulumi.Input[_builtins.bool] activate: Conditionally prevents new service versions from being activated. The apply step will create a new draft version but will not activate it if this is set to `false`. Default `true`
+        :param pulumi.Input[_builtins.bool] force_destroy: Services that are active cannot be destroyed. In order to destroy the Service, set `force_destroy` to `true`. Default `false`
         :param pulumi.Input[_builtins.str] name: The unique name for the Service to create
-        :param pulumi.Input['ServiceComputePackageArgs'] package: The `package` block supports uploading or modifying Wasm packages for use in a Fastly Compute service (if omitted,
-               ensure `activate = false` is set on `ServiceCompute` to avoid service validation errors). See Fastly's documentation on
-               [Compute](https://developer.fastly.com/learning/compute/)
+        :param pulumi.Input['ServiceComputePackageArgs'] package: The `package` block supports uploading or modifying Wasm packages for use in a Fastly Compute service (if omitted, ensure `activate = false` is set on `ServiceCompute` to avoid service validation errors). See Fastly's documentation on [Compute](https://developer.fastly.com/learning/compute/)
         :param pulumi.Input[Sequence[pulumi.Input['ServiceComputeResourceLinkArgs']]] resource_links: A resource link represents a link between a shared resource (such as an KV Store or Config Store) and a service version.
-        :param pulumi.Input[_builtins.bool] stage: Conditionally enables new service versions to be staged. If `set` to true, all changes made by an `apply` step will be
-               staged, even if `apply` did not create a new draft version. Default `false`
+        :param pulumi.Input[_builtins.bool] stage: Conditionally enables new service versions to be staged. If `set` to true, all changes made by an `apply` step will be staged, even if `apply` did not create a new draft version. Default `false`
         :param pulumi.Input[_builtins.str] version_comment: Description field for the version
         """
         pulumi.set(__self__, "domains", domains)
@@ -176,8 +171,7 @@ class ServiceComputeArgs:
     @pulumi.getter
     def activate(self) -> Optional[pulumi.Input[_builtins.bool]]:
         """
-        Conditionally prevents new service versions from being activated. The apply step will create a new draft version but
-        will not activate it if this is set to `false`. Default `true`
+        Conditionally prevents new service versions from being activated. The apply step will create a new draft version but will not activate it if this is set to `false`. Default `true`
         """
         return pulumi.get(self, "activate")
 
@@ -216,8 +210,7 @@ class ServiceComputeArgs:
     @pulumi.getter(name="forceDestroy")
     def force_destroy(self) -> Optional[pulumi.Input[_builtins.bool]]:
         """
-        Services that are active cannot be destroyed. In order to destroy the Service, set `force_destroy` to `true`. Default
-        `false`
+        Services that are active cannot be destroyed. In order to destroy the Service, set `force_destroy` to `true`. Default `false`
         """
         return pulumi.get(self, "force_destroy")
 
@@ -493,9 +486,7 @@ class ServiceComputeArgs:
     @pulumi.getter
     def package(self) -> Optional[pulumi.Input['ServiceComputePackageArgs']]:
         """
-        The `package` block supports uploading or modifying Wasm packages for use in a Fastly Compute service (if omitted,
-        ensure `activate = false` is set on `ServiceCompute` to avoid service validation errors). See Fastly's documentation on
-        [Compute](https://developer.fastly.com/learning/compute/)
+        The `package` block supports uploading or modifying Wasm packages for use in a Fastly Compute service (if omitted, ensure `activate = false` is set on `ServiceCompute` to avoid service validation errors). See Fastly's documentation on [Compute](https://developer.fastly.com/learning/compute/)
         """
         return pulumi.get(self, "package")
 
@@ -537,8 +528,7 @@ class ServiceComputeArgs:
     @pulumi.getter
     def stage(self) -> Optional[pulumi.Input[_builtins.bool]]:
         """
-        Conditionally enables new service versions to be staged. If `set` to true, all changes made by an `apply` step will be
-        staged, even if `apply` did not create a new draft version. Default `false`
+        Conditionally enables new service versions to be staged. If `set` to true, all changes made by an `apply` step will be staged, even if `apply` did not create a new draft version. Default `false`
         """
         return pulumi.get(self, "stage")
 
@@ -610,22 +600,16 @@ class _ServiceComputeState:
                  version_comment: Optional[pulumi.Input[_builtins.str]] = None):
         """
         Input properties used for looking up and filtering ServiceCompute resources.
-        :param pulumi.Input[_builtins.bool] activate: Conditionally prevents new service versions from being activated. The apply step will create a new draft version but
-               will not activate it if this is set to `false`. Default `true`
+        :param pulumi.Input[_builtins.bool] activate: Conditionally prevents new service versions from being activated. The apply step will create a new draft version but will not activate it if this is set to `false`. Default `true`
         :param pulumi.Input[_builtins.int] active_version: The currently active version of your Fastly Service
         :param pulumi.Input[_builtins.int] cloned_version: The latest cloned version by the provider
         :param pulumi.Input[Sequence[pulumi.Input['ServiceComputeDomainArgs']]] domains: A set of Domain names to serve as entry points for your Service
-        :param pulumi.Input[_builtins.bool] force_destroy: Services that are active cannot be destroyed. In order to destroy the Service, set `force_destroy` to `true`. Default
-               `false`
-        :param pulumi.Input[_builtins.bool] imported: Used internally by the provider to temporarily indicate if the service is being imported, and is reset to false once the
-               import is finished
+        :param pulumi.Input[_builtins.bool] force_destroy: Services that are active cannot be destroyed. In order to destroy the Service, set `force_destroy` to `true`. Default `false`
+        :param pulumi.Input[_builtins.bool] imported: Used internally by the provider to temporarily indicate if the service is being imported, and is reset to false once the import is finished
         :param pulumi.Input[_builtins.str] name: The unique name for the Service to create
-        :param pulumi.Input['ServiceComputePackageArgs'] package: The `package` block supports uploading or modifying Wasm packages for use in a Fastly Compute service (if omitted,
-               ensure `activate = false` is set on `ServiceCompute` to avoid service validation errors). See Fastly's documentation on
-               [Compute](https://developer.fastly.com/learning/compute/)
+        :param pulumi.Input['ServiceComputePackageArgs'] package: The `package` block supports uploading or modifying Wasm packages for use in a Fastly Compute service (if omitted, ensure `activate = false` is set on `ServiceCompute` to avoid service validation errors). See Fastly's documentation on [Compute](https://developer.fastly.com/learning/compute/)
         :param pulumi.Input[Sequence[pulumi.Input['ServiceComputeResourceLinkArgs']]] resource_links: A resource link represents a link between a shared resource (such as an KV Store or Config Store) and a service version.
-        :param pulumi.Input[_builtins.bool] stage: Conditionally enables new service versions to be staged. If `set` to true, all changes made by an `apply` step will be
-               staged, even if `apply` did not create a new draft version. Default `false`
+        :param pulumi.Input[_builtins.bool] stage: Conditionally enables new service versions to be staged. If `set` to true, all changes made by an `apply` step will be staged, even if `apply` did not create a new draft version. Default `false`
         :param pulumi.Input[_builtins.int] staged_version: The currently staged version of your Fastly Service
         :param pulumi.Input[_builtins.str] version_comment: Description field for the version
         """
@@ -726,8 +710,7 @@ class _ServiceComputeState:
     @pulumi.getter
     def activate(self) -> Optional[pulumi.Input[_builtins.bool]]:
         """
-        Conditionally prevents new service versions from being activated. The apply step will create a new draft version but
-        will not activate it if this is set to `false`. Default `true`
+        Conditionally prevents new service versions from being activated. The apply step will create a new draft version but will not activate it if this is set to `false`. Default `true`
         """
         return pulumi.get(self, "activate")
 
@@ -802,8 +785,7 @@ class _ServiceComputeState:
     @pulumi.getter(name="forceDestroy")
     def force_destroy(self) -> Optional[pulumi.Input[_builtins.bool]]:
         """
-        Services that are active cannot be destroyed. In order to destroy the Service, set `force_destroy` to `true`. Default
-        `false`
+        Services that are active cannot be destroyed. In order to destroy the Service, set `force_destroy` to `true`. Default `false`
         """
         return pulumi.get(self, "force_destroy")
 
@@ -833,8 +815,7 @@ class _ServiceComputeState:
     @pulumi.getter
     def imported(self) -> Optional[pulumi.Input[_builtins.bool]]:
         """
-        Used internally by the provider to temporarily indicate if the service is being imported, and is reset to false once the
-        import is finished
+        Used internally by the provider to temporarily indicate if the service is being imported, and is reset to false once the import is finished
         """
         return pulumi.get(self, "imported")
 
@@ -1101,9 +1082,7 @@ class _ServiceComputeState:
     @pulumi.getter
     def package(self) -> Optional[pulumi.Input['ServiceComputePackageArgs']]:
         """
-        The `package` block supports uploading or modifying Wasm packages for use in a Fastly Compute service (if omitted,
-        ensure `activate = false` is set on `ServiceCompute` to avoid service validation errors). See Fastly's documentation on
-        [Compute](https://developer.fastly.com/learning/compute/)
+        The `package` block supports uploading or modifying Wasm packages for use in a Fastly Compute service (if omitted, ensure `activate = false` is set on `ServiceCompute` to avoid service validation errors). See Fastly's documentation on [Compute](https://developer.fastly.com/learning/compute/)
         """
         return pulumi.get(self, "package")
 
@@ -1145,8 +1124,7 @@ class _ServiceComputeState:
     @pulumi.getter
     def stage(self) -> Optional[pulumi.Input[_builtins.bool]]:
         """
-        Conditionally enables new service versions to be staged. If `set` to true, all changes made by an `apply` step will be
-        staged, even if `apply` did not create a new draft version. Default `false`
+        Conditionally enables new service versions to be staged. If `set` to true, all changes made by an `apply` step will be staged, even if `apply` did not create a new draft version. Default `false`
         """
         return pulumi.get(self, "stage")
 
@@ -1246,18 +1224,13 @@ class ServiceCompute(pulumi.CustomResource):
 
         :param str resource_name: The name of the resource.
         :param pulumi.ResourceOptions opts: Options for the resource.
-        :param pulumi.Input[_builtins.bool] activate: Conditionally prevents new service versions from being activated. The apply step will create a new draft version but
-               will not activate it if this is set to `false`. Default `true`
+        :param pulumi.Input[_builtins.bool] activate: Conditionally prevents new service versions from being activated. The apply step will create a new draft version but will not activate it if this is set to `false`. Default `true`
         :param pulumi.Input[Sequence[pulumi.Input[Union['ServiceComputeDomainArgs', 'ServiceComputeDomainArgsDict']]]] domains: A set of Domain names to serve as entry points for your Service
-        :param pulumi.Input[_builtins.bool] force_destroy: Services that are active cannot be destroyed. In order to destroy the Service, set `force_destroy` to `true`. Default
-               `false`
+        :param pulumi.Input[_builtins.bool] force_destroy: Services that are active cannot be destroyed. In order to destroy the Service, set `force_destroy` to `true`. Default `false`
         :param pulumi.Input[_builtins.str] name: The unique name for the Service to create
-        :param pulumi.Input[Union['ServiceComputePackageArgs', 'ServiceComputePackageArgsDict']] package: The `package` block supports uploading or modifying Wasm packages for use in a Fastly Compute service (if omitted,
-               ensure `activate = false` is set on `ServiceCompute` to avoid service validation errors). See Fastly's documentation on
-               [Compute](https://developer.fastly.com/learning/compute/)
+        :param pulumi.Input[Union['ServiceComputePackageArgs', 'ServiceComputePackageArgsDict']] package: The `package` block supports uploading or modifying Wasm packages for use in a Fastly Compute service (if omitted, ensure `activate = false` is set on `ServiceCompute` to avoid service validation errors). See Fastly's documentation on [Compute](https://developer.fastly.com/learning/compute/)
         :param pulumi.Input[Sequence[pulumi.Input[Union['ServiceComputeResourceLinkArgs', 'ServiceComputeResourceLinkArgsDict']]]] resource_links: A resource link represents a link between a shared resource (such as an KV Store or Config Store) and a service version.
-        :param pulumi.Input[_builtins.bool] stage: Conditionally enables new service versions to be staged. If `set` to true, all changes made by an `apply` step will be
-               staged, even if `apply` did not create a new draft version. Default `false`
+        :param pulumi.Input[_builtins.bool] stage: Conditionally enables new service versions to be staged. If `set` to true, all changes made by an `apply` step will be staged, even if `apply` did not create a new draft version. Default `false`
         :param pulumi.Input[_builtins.str] version_comment: Description field for the version
         """
         ...
@@ -1459,22 +1432,16 @@ class ServiceCompute(pulumi.CustomResource):
         :param str resource_name: The unique name of the resulting resource.
         :param pulumi.Input[str] id: The unique provider ID of the resource to lookup.
         :param pulumi.ResourceOptions opts: Options for the resource.
-        :param pulumi.Input[_builtins.bool] activate: Conditionally prevents new service versions from being activated. The apply step will create a new draft version but
-               will not activate it if this is set to `false`. Default `true`
+        :param pulumi.Input[_builtins.bool] activate: Conditionally prevents new service versions from being activated. The apply step will create a new draft version but will not activate it if this is set to `false`. Default `true`
         :param pulumi.Input[_builtins.int] active_version: The currently active version of your Fastly Service
         :param pulumi.Input[_builtins.int] cloned_version: The latest cloned version by the provider
         :param pulumi.Input[Sequence[pulumi.Input[Union['ServiceComputeDomainArgs', 'ServiceComputeDomainArgsDict']]]] domains: A set of Domain names to serve as entry points for your Service
-        :param pulumi.Input[_builtins.bool] force_destroy: Services that are active cannot be destroyed. In order to destroy the Service, set `force_destroy` to `true`. Default
-               `false`
-        :param pulumi.Input[_builtins.bool] imported: Used internally by the provider to temporarily indicate if the service is being imported, and is reset to false once the
-               import is finished
+        :param pulumi.Input[_builtins.bool] force_destroy: Services that are active cannot be destroyed. In order to destroy the Service, set `force_destroy` to `true`. Default `false`
+        :param pulumi.Input[_builtins.bool] imported: Used internally by the provider to temporarily indicate if the service is being imported, and is reset to false once the import is finished
         :param pulumi.Input[_builtins.str] name: The unique name for the Service to create
-        :param pulumi.Input[Union['ServiceComputePackageArgs', 'ServiceComputePackageArgsDict']] package: The `package` block supports uploading or modifying Wasm packages for use in a Fastly Compute service (if omitted,
-               ensure `activate = false` is set on `ServiceCompute` to avoid service validation errors). See Fastly's documentation on
-               [Compute](https://developer.fastly.com/learning/compute/)
+        :param pulumi.Input[Union['ServiceComputePackageArgs', 'ServiceComputePackageArgsDict']] package: The `package` block supports uploading or modifying Wasm packages for use in a Fastly Compute service (if omitted, ensure `activate = false` is set on `ServiceCompute` to avoid service validation errors). See Fastly's documentation on [Compute](https://developer.fastly.com/learning/compute/)
         :param pulumi.Input[Sequence[pulumi.Input[Union['ServiceComputeResourceLinkArgs', 'ServiceComputeResourceLinkArgsDict']]]] resource_links: A resource link represents a link between a shared resource (such as an KV Store or Config Store) and a service version.
-        :param pulumi.Input[_builtins.bool] stage: Conditionally enables new service versions to be staged. If `set` to true, all changes made by an `apply` step will be
-               staged, even if `apply` did not create a new draft version. Default `false`
+        :param pulumi.Input[_builtins.bool] stage: Conditionally enables new service versions to be staged. If `set` to true, all changes made by an `apply` step will be staged, even if `apply` did not create a new draft version. Default `false`
         :param pulumi.Input[_builtins.int] staged_version: The currently staged version of your Fastly Service
         :param pulumi.Input[_builtins.str] version_comment: Description field for the version
         """
@@ -1534,8 +1501,7 @@ class ServiceCompute(pulumi.CustomResource):
     @pulumi.getter
     def activate(self) -> pulumi.Output[Optional[_builtins.bool]]:
         """
-        Conditionally prevents new service versions from being activated. The apply step will create a new draft version but
-        will not activate it if this is set to `false`. Default `true`
+        Conditionally prevents new service versions from being activated. The apply step will create a new draft version but will not activate it if this is set to `false`. Default `true`
         """
         return pulumi.get(self, "activate")
 
@@ -1582,8 +1548,7 @@ class ServiceCompute(pulumi.CustomResource):
     @pulumi.getter(name="forceDestroy")
     def force_destroy(self) -> pulumi.Output[Optional[_builtins.bool]]:
         """
-        Services that are active cannot be destroyed. In order to destroy the Service, set `force_destroy` to `true`. Default
-        `false`
+        Services that are active cannot be destroyed. In order to destroy the Service, set `force_destroy` to `true`. Default `false`
         """
         return pulumi.get(self, "force_destroy")
 
@@ -1601,8 +1566,7 @@ class ServiceCompute(pulumi.CustomResource):
     @pulumi.getter
     def imported(self) -> pulumi.Output[_builtins.bool]:
         """
-        Used internally by the provider to temporarily indicate if the service is being imported, and is reset to false once the
-        import is finished
+        Used internally by the provider to temporarily indicate if the service is being imported, and is reset to false once the import is finished
         """
         return pulumi.get(self, "imported")
 
@@ -1753,9 +1717,7 @@ class ServiceCompute(pulumi.CustomResource):
     @pulumi.getter
     def package(self) -> pulumi.Output[Optional['outputs.ServiceComputePackage']]:
         """
-        The `package` block supports uploading or modifying Wasm packages for use in a Fastly Compute service (if omitted,
-        ensure `activate = false` is set on `ServiceCompute` to avoid service validation errors). See Fastly's documentation on
-        [Compute](https://developer.fastly.com/learning/compute/)
+        The `package` block supports uploading or modifying Wasm packages for use in a Fastly Compute service (if omitted, ensure `activate = false` is set on `ServiceCompute` to avoid service validation errors). See Fastly's documentation on [Compute](https://developer.fastly.com/learning/compute/)
         """
         return pulumi.get(self, "package")
 
@@ -1781,8 +1743,7 @@ class ServiceCompute(pulumi.CustomResource):
     @pulumi.getter
     def stage(self) -> pulumi.Output[Optional[_builtins.bool]]:
         """
-        Conditionally enables new service versions to be staged. If `set` to true, all changes made by an `apply` step will be
-        staged, even if `apply` did not create a new draft version. Default `false`
+        Conditionally enables new service versions to be staged. If `set` to true, all changes made by an `apply` step will be staged, even if `apply` did not create a new draft version. Default `false`
         """
         return pulumi.get(self, "stage")
 

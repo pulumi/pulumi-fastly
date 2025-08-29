@@ -52,93 +52,87 @@ export class ServiceCompute extends pulumi.CustomResource {
     }
 
     /**
-     * Conditionally prevents new service versions from being activated. The apply step will create a new draft version but
-     * will not activate it if this is set to `false`. Default `true`
+     * Conditionally prevents new service versions from being activated. The apply step will create a new draft version but will not activate it if this is set to `false`. Default `true`
      */
-    public readonly activate!: pulumi.Output<boolean | undefined>;
+    declare public readonly activate: pulumi.Output<boolean | undefined>;
     /**
      * The currently active version of your Fastly Service
      */
-    public /*out*/ readonly activeVersion!: pulumi.Output<number>;
-    public readonly backends!: pulumi.Output<outputs.ServiceComputeBackend[] | undefined>;
+    declare public /*out*/ readonly activeVersion: pulumi.Output<number>;
+    declare public readonly backends: pulumi.Output<outputs.ServiceComputeBackend[] | undefined>;
     /**
      * The latest cloned version by the provider
      */
-    public /*out*/ readonly clonedVersion!: pulumi.Output<number>;
-    public readonly comment!: pulumi.Output<string | undefined>;
-    public readonly dictionaries!: pulumi.Output<outputs.ServiceComputeDictionary[] | undefined>;
+    declare public /*out*/ readonly clonedVersion: pulumi.Output<number>;
+    declare public readonly comment: pulumi.Output<string | undefined>;
+    declare public readonly dictionaries: pulumi.Output<outputs.ServiceComputeDictionary[] | undefined>;
     /**
      * A set of Domain names to serve as entry points for your Service
      */
-    public readonly domains!: pulumi.Output<outputs.ServiceComputeDomain[]>;
+    declare public readonly domains: pulumi.Output<outputs.ServiceComputeDomain[]>;
     /**
-     * Services that are active cannot be destroyed. In order to destroy the Service, set `forceDestroy` to `true`. Default
-     * `false`
+     * Services that are active cannot be destroyed. In order to destroy the Service, set `forceDestroy` to `true`. Default `false`
      */
-    public readonly forceDestroy!: pulumi.Output<boolean | undefined>;
-    public /*out*/ readonly forceRefresh!: pulumi.Output<boolean>;
-    public readonly imageOptimizerDefaultSettings!: pulumi.Output<outputs.ServiceComputeImageOptimizerDefaultSettings | undefined>;
+    declare public readonly forceDestroy: pulumi.Output<boolean | undefined>;
+    declare public /*out*/ readonly forceRefresh: pulumi.Output<boolean>;
+    declare public readonly imageOptimizerDefaultSettings: pulumi.Output<outputs.ServiceComputeImageOptimizerDefaultSettings | undefined>;
     /**
-     * Used internally by the provider to temporarily indicate if the service is being imported, and is reset to false once the
-     * import is finished
+     * Used internally by the provider to temporarily indicate if the service is being imported, and is reset to false once the import is finished
      */
-    public /*out*/ readonly imported!: pulumi.Output<boolean>;
-    public readonly loggingBigqueries!: pulumi.Output<outputs.ServiceComputeLoggingBigquery[] | undefined>;
-    public readonly loggingBlobstorages!: pulumi.Output<outputs.ServiceComputeLoggingBlobstorage[] | undefined>;
-    public readonly loggingCloudfiles!: pulumi.Output<outputs.ServiceComputeLoggingCloudfile[] | undefined>;
-    public readonly loggingDatadogs!: pulumi.Output<outputs.ServiceComputeLoggingDatadog[] | undefined>;
-    public readonly loggingDigitaloceans!: pulumi.Output<outputs.ServiceComputeLoggingDigitalocean[] | undefined>;
-    public readonly loggingElasticsearches!: pulumi.Output<outputs.ServiceComputeLoggingElasticsearch[] | undefined>;
-    public readonly loggingFtps!: pulumi.Output<outputs.ServiceComputeLoggingFtp[] | undefined>;
-    public readonly loggingGcs!: pulumi.Output<outputs.ServiceComputeLoggingGc[] | undefined>;
-    public readonly loggingGooglepubsubs!: pulumi.Output<outputs.ServiceComputeLoggingGooglepubsub[] | undefined>;
-    public readonly loggingGrafanacloudlogs!: pulumi.Output<outputs.ServiceComputeLoggingGrafanacloudlog[] | undefined>;
-    public readonly loggingHeroku!: pulumi.Output<outputs.ServiceComputeLoggingHeroku[] | undefined>;
-    public readonly loggingHoneycombs!: pulumi.Output<outputs.ServiceComputeLoggingHoneycomb[] | undefined>;
-    public readonly loggingHttps!: pulumi.Output<outputs.ServiceComputeLoggingHttp[] | undefined>;
-    public readonly loggingKafkas!: pulumi.Output<outputs.ServiceComputeLoggingKafka[] | undefined>;
-    public readonly loggingKineses!: pulumi.Output<outputs.ServiceComputeLoggingKinese[] | undefined>;
-    public readonly loggingLogentries!: pulumi.Output<outputs.ServiceComputeLoggingLogentry[] | undefined>;
-    public readonly loggingLogglies!: pulumi.Output<outputs.ServiceComputeLoggingLoggly[] | undefined>;
-    public readonly loggingLogshuttles!: pulumi.Output<outputs.ServiceComputeLoggingLogshuttle[] | undefined>;
-    public readonly loggingNewrelics!: pulumi.Output<outputs.ServiceComputeLoggingNewrelic[] | undefined>;
-    public readonly loggingOpenstacks!: pulumi.Output<outputs.ServiceComputeLoggingOpenstack[] | undefined>;
-    public readonly loggingPapertrails!: pulumi.Output<outputs.ServiceComputeLoggingPapertrail[] | undefined>;
-    public readonly loggingS3s!: pulumi.Output<outputs.ServiceComputeLoggingS3[] | undefined>;
-    public readonly loggingScalyrs!: pulumi.Output<outputs.ServiceComputeLoggingScalyr[] | undefined>;
-    public readonly loggingSftps!: pulumi.Output<outputs.ServiceComputeLoggingSftp[] | undefined>;
-    public readonly loggingSplunks!: pulumi.Output<outputs.ServiceComputeLoggingSplunk[] | undefined>;
-    public readonly loggingSumologics!: pulumi.Output<outputs.ServiceComputeLoggingSumologic[] | undefined>;
-    public readonly loggingSyslogs!: pulumi.Output<outputs.ServiceComputeLoggingSyslog[] | undefined>;
+    declare public /*out*/ readonly imported: pulumi.Output<boolean>;
+    declare public readonly loggingBigqueries: pulumi.Output<outputs.ServiceComputeLoggingBigquery[] | undefined>;
+    declare public readonly loggingBlobstorages: pulumi.Output<outputs.ServiceComputeLoggingBlobstorage[] | undefined>;
+    declare public readonly loggingCloudfiles: pulumi.Output<outputs.ServiceComputeLoggingCloudfile[] | undefined>;
+    declare public readonly loggingDatadogs: pulumi.Output<outputs.ServiceComputeLoggingDatadog[] | undefined>;
+    declare public readonly loggingDigitaloceans: pulumi.Output<outputs.ServiceComputeLoggingDigitalocean[] | undefined>;
+    declare public readonly loggingElasticsearches: pulumi.Output<outputs.ServiceComputeLoggingElasticsearch[] | undefined>;
+    declare public readonly loggingFtps: pulumi.Output<outputs.ServiceComputeLoggingFtp[] | undefined>;
+    declare public readonly loggingGcs: pulumi.Output<outputs.ServiceComputeLoggingGc[] | undefined>;
+    declare public readonly loggingGooglepubsubs: pulumi.Output<outputs.ServiceComputeLoggingGooglepubsub[] | undefined>;
+    declare public readonly loggingGrafanacloudlogs: pulumi.Output<outputs.ServiceComputeLoggingGrafanacloudlog[] | undefined>;
+    declare public readonly loggingHeroku: pulumi.Output<outputs.ServiceComputeLoggingHeroku[] | undefined>;
+    declare public readonly loggingHoneycombs: pulumi.Output<outputs.ServiceComputeLoggingHoneycomb[] | undefined>;
+    declare public readonly loggingHttps: pulumi.Output<outputs.ServiceComputeLoggingHttp[] | undefined>;
+    declare public readonly loggingKafkas: pulumi.Output<outputs.ServiceComputeLoggingKafka[] | undefined>;
+    declare public readonly loggingKineses: pulumi.Output<outputs.ServiceComputeLoggingKinese[] | undefined>;
+    declare public readonly loggingLogentries: pulumi.Output<outputs.ServiceComputeLoggingLogentry[] | undefined>;
+    declare public readonly loggingLogglies: pulumi.Output<outputs.ServiceComputeLoggingLoggly[] | undefined>;
+    declare public readonly loggingLogshuttles: pulumi.Output<outputs.ServiceComputeLoggingLogshuttle[] | undefined>;
+    declare public readonly loggingNewrelics: pulumi.Output<outputs.ServiceComputeLoggingNewrelic[] | undefined>;
+    declare public readonly loggingOpenstacks: pulumi.Output<outputs.ServiceComputeLoggingOpenstack[] | undefined>;
+    declare public readonly loggingPapertrails: pulumi.Output<outputs.ServiceComputeLoggingPapertrail[] | undefined>;
+    declare public readonly loggingS3s: pulumi.Output<outputs.ServiceComputeLoggingS3[] | undefined>;
+    declare public readonly loggingScalyrs: pulumi.Output<outputs.ServiceComputeLoggingScalyr[] | undefined>;
+    declare public readonly loggingSftps: pulumi.Output<outputs.ServiceComputeLoggingSftp[] | undefined>;
+    declare public readonly loggingSplunks: pulumi.Output<outputs.ServiceComputeLoggingSplunk[] | undefined>;
+    declare public readonly loggingSumologics: pulumi.Output<outputs.ServiceComputeLoggingSumologic[] | undefined>;
+    declare public readonly loggingSyslogs: pulumi.Output<outputs.ServiceComputeLoggingSyslog[] | undefined>;
     /**
      * The unique name for the Service to create
      */
-    public readonly name!: pulumi.Output<string>;
+    declare public readonly name: pulumi.Output<string>;
     /**
-     * The `package` block supports uploading or modifying Wasm packages for use in a Fastly Compute service (if omitted,
-     * ensure `activate = false` is set on `fastly.ServiceCompute` to avoid service validation errors). See Fastly's
-     * documentation on [Compute](https://developer.fastly.com/learning/compute/)
+     * The `package` block supports uploading or modifying Wasm packages for use in a Fastly Compute service (if omitted, ensure `activate = false` is set on `fastly.ServiceCompute` to avoid service validation errors). See Fastly's documentation on [Compute](https://developer.fastly.com/learning/compute/)
      */
-    public readonly package!: pulumi.Output<outputs.ServiceComputePackage | undefined>;
-    public readonly productEnablement!: pulumi.Output<outputs.ServiceComputeProductEnablement | undefined>;
+    declare public readonly package: pulumi.Output<outputs.ServiceComputePackage | undefined>;
+    declare public readonly productEnablement: pulumi.Output<outputs.ServiceComputeProductEnablement | undefined>;
     /**
      * A resource link represents a link between a shared resource (such as an KV Store or Config Store) and a service version.
      */
-    public readonly resourceLinks!: pulumi.Output<outputs.ServiceComputeResourceLink[] | undefined>;
-    public readonly reuse!: pulumi.Output<boolean | undefined>;
+    declare public readonly resourceLinks: pulumi.Output<outputs.ServiceComputeResourceLink[] | undefined>;
+    declare public readonly reuse: pulumi.Output<boolean | undefined>;
     /**
-     * Conditionally enables new service versions to be staged. If `set` to true, all changes made by an `apply` step will be
-     * staged, even if `apply` did not create a new draft version. Default `false`
+     * Conditionally enables new service versions to be staged. If `set` to true, all changes made by an `apply` step will be staged, even if `apply` did not create a new draft version. Default `false`
      */
-    public readonly stage!: pulumi.Output<boolean | undefined>;
+    declare public readonly stage: pulumi.Output<boolean | undefined>;
     /**
      * The currently staged version of your Fastly Service
      */
-    public /*out*/ readonly stagedVersion!: pulumi.Output<number>;
+    declare public /*out*/ readonly stagedVersion: pulumi.Output<number>;
     /**
      * Description field for the version
      */
-    public readonly versionComment!: pulumi.Output<string | undefined>;
+    declare public readonly versionComment: pulumi.Output<string | undefined>;
 
     /**
      * Create a ServiceCompute resource with the given unique name, arguments, and options.
@@ -153,98 +147,98 @@ export class ServiceCompute extends pulumi.CustomResource {
         opts = opts || {};
         if (opts.id) {
             const state = argsOrState as ServiceComputeState | undefined;
-            resourceInputs["activate"] = state ? state.activate : undefined;
-            resourceInputs["activeVersion"] = state ? state.activeVersion : undefined;
-            resourceInputs["backends"] = state ? state.backends : undefined;
-            resourceInputs["clonedVersion"] = state ? state.clonedVersion : undefined;
-            resourceInputs["comment"] = state ? state.comment : undefined;
-            resourceInputs["dictionaries"] = state ? state.dictionaries : undefined;
-            resourceInputs["domains"] = state ? state.domains : undefined;
-            resourceInputs["forceDestroy"] = state ? state.forceDestroy : undefined;
-            resourceInputs["forceRefresh"] = state ? state.forceRefresh : undefined;
-            resourceInputs["imageOptimizerDefaultSettings"] = state ? state.imageOptimizerDefaultSettings : undefined;
-            resourceInputs["imported"] = state ? state.imported : undefined;
-            resourceInputs["loggingBigqueries"] = state ? state.loggingBigqueries : undefined;
-            resourceInputs["loggingBlobstorages"] = state ? state.loggingBlobstorages : undefined;
-            resourceInputs["loggingCloudfiles"] = state ? state.loggingCloudfiles : undefined;
-            resourceInputs["loggingDatadogs"] = state ? state.loggingDatadogs : undefined;
-            resourceInputs["loggingDigitaloceans"] = state ? state.loggingDigitaloceans : undefined;
-            resourceInputs["loggingElasticsearches"] = state ? state.loggingElasticsearches : undefined;
-            resourceInputs["loggingFtps"] = state ? state.loggingFtps : undefined;
-            resourceInputs["loggingGcs"] = state ? state.loggingGcs : undefined;
-            resourceInputs["loggingGooglepubsubs"] = state ? state.loggingGooglepubsubs : undefined;
-            resourceInputs["loggingGrafanacloudlogs"] = state ? state.loggingGrafanacloudlogs : undefined;
-            resourceInputs["loggingHeroku"] = state ? state.loggingHeroku : undefined;
-            resourceInputs["loggingHoneycombs"] = state ? state.loggingHoneycombs : undefined;
-            resourceInputs["loggingHttps"] = state ? state.loggingHttps : undefined;
-            resourceInputs["loggingKafkas"] = state ? state.loggingKafkas : undefined;
-            resourceInputs["loggingKineses"] = state ? state.loggingKineses : undefined;
-            resourceInputs["loggingLogentries"] = state ? state.loggingLogentries : undefined;
-            resourceInputs["loggingLogglies"] = state ? state.loggingLogglies : undefined;
-            resourceInputs["loggingLogshuttles"] = state ? state.loggingLogshuttles : undefined;
-            resourceInputs["loggingNewrelics"] = state ? state.loggingNewrelics : undefined;
-            resourceInputs["loggingOpenstacks"] = state ? state.loggingOpenstacks : undefined;
-            resourceInputs["loggingPapertrails"] = state ? state.loggingPapertrails : undefined;
-            resourceInputs["loggingS3s"] = state ? state.loggingS3s : undefined;
-            resourceInputs["loggingScalyrs"] = state ? state.loggingScalyrs : undefined;
-            resourceInputs["loggingSftps"] = state ? state.loggingSftps : undefined;
-            resourceInputs["loggingSplunks"] = state ? state.loggingSplunks : undefined;
-            resourceInputs["loggingSumologics"] = state ? state.loggingSumologics : undefined;
-            resourceInputs["loggingSyslogs"] = state ? state.loggingSyslogs : undefined;
-            resourceInputs["name"] = state ? state.name : undefined;
-            resourceInputs["package"] = state ? state.package : undefined;
-            resourceInputs["productEnablement"] = state ? state.productEnablement : undefined;
-            resourceInputs["resourceLinks"] = state ? state.resourceLinks : undefined;
-            resourceInputs["reuse"] = state ? state.reuse : undefined;
-            resourceInputs["stage"] = state ? state.stage : undefined;
-            resourceInputs["stagedVersion"] = state ? state.stagedVersion : undefined;
-            resourceInputs["versionComment"] = state ? state.versionComment : undefined;
+            resourceInputs["activate"] = state?.activate;
+            resourceInputs["activeVersion"] = state?.activeVersion;
+            resourceInputs["backends"] = state?.backends;
+            resourceInputs["clonedVersion"] = state?.clonedVersion;
+            resourceInputs["comment"] = state?.comment;
+            resourceInputs["dictionaries"] = state?.dictionaries;
+            resourceInputs["domains"] = state?.domains;
+            resourceInputs["forceDestroy"] = state?.forceDestroy;
+            resourceInputs["forceRefresh"] = state?.forceRefresh;
+            resourceInputs["imageOptimizerDefaultSettings"] = state?.imageOptimizerDefaultSettings;
+            resourceInputs["imported"] = state?.imported;
+            resourceInputs["loggingBigqueries"] = state?.loggingBigqueries;
+            resourceInputs["loggingBlobstorages"] = state?.loggingBlobstorages;
+            resourceInputs["loggingCloudfiles"] = state?.loggingCloudfiles;
+            resourceInputs["loggingDatadogs"] = state?.loggingDatadogs;
+            resourceInputs["loggingDigitaloceans"] = state?.loggingDigitaloceans;
+            resourceInputs["loggingElasticsearches"] = state?.loggingElasticsearches;
+            resourceInputs["loggingFtps"] = state?.loggingFtps;
+            resourceInputs["loggingGcs"] = state?.loggingGcs;
+            resourceInputs["loggingGooglepubsubs"] = state?.loggingGooglepubsubs;
+            resourceInputs["loggingGrafanacloudlogs"] = state?.loggingGrafanacloudlogs;
+            resourceInputs["loggingHeroku"] = state?.loggingHeroku;
+            resourceInputs["loggingHoneycombs"] = state?.loggingHoneycombs;
+            resourceInputs["loggingHttps"] = state?.loggingHttps;
+            resourceInputs["loggingKafkas"] = state?.loggingKafkas;
+            resourceInputs["loggingKineses"] = state?.loggingKineses;
+            resourceInputs["loggingLogentries"] = state?.loggingLogentries;
+            resourceInputs["loggingLogglies"] = state?.loggingLogglies;
+            resourceInputs["loggingLogshuttles"] = state?.loggingLogshuttles;
+            resourceInputs["loggingNewrelics"] = state?.loggingNewrelics;
+            resourceInputs["loggingOpenstacks"] = state?.loggingOpenstacks;
+            resourceInputs["loggingPapertrails"] = state?.loggingPapertrails;
+            resourceInputs["loggingS3s"] = state?.loggingS3s;
+            resourceInputs["loggingScalyrs"] = state?.loggingScalyrs;
+            resourceInputs["loggingSftps"] = state?.loggingSftps;
+            resourceInputs["loggingSplunks"] = state?.loggingSplunks;
+            resourceInputs["loggingSumologics"] = state?.loggingSumologics;
+            resourceInputs["loggingSyslogs"] = state?.loggingSyslogs;
+            resourceInputs["name"] = state?.name;
+            resourceInputs["package"] = state?.package;
+            resourceInputs["productEnablement"] = state?.productEnablement;
+            resourceInputs["resourceLinks"] = state?.resourceLinks;
+            resourceInputs["reuse"] = state?.reuse;
+            resourceInputs["stage"] = state?.stage;
+            resourceInputs["stagedVersion"] = state?.stagedVersion;
+            resourceInputs["versionComment"] = state?.versionComment;
         } else {
             const args = argsOrState as ServiceComputeArgs | undefined;
-            if ((!args || args.domains === undefined) && !opts.urn) {
+            if (args?.domains === undefined && !opts.urn) {
                 throw new Error("Missing required property 'domains'");
             }
-            resourceInputs["activate"] = args ? args.activate : undefined;
-            resourceInputs["backends"] = args ? args.backends : undefined;
-            resourceInputs["comment"] = args ? args.comment : undefined;
-            resourceInputs["dictionaries"] = args ? args.dictionaries : undefined;
-            resourceInputs["domains"] = args ? args.domains : undefined;
-            resourceInputs["forceDestroy"] = args ? args.forceDestroy : undefined;
-            resourceInputs["imageOptimizerDefaultSettings"] = args ? args.imageOptimizerDefaultSettings : undefined;
-            resourceInputs["loggingBigqueries"] = args ? args.loggingBigqueries : undefined;
-            resourceInputs["loggingBlobstorages"] = args ? args.loggingBlobstorages : undefined;
-            resourceInputs["loggingCloudfiles"] = args ? args.loggingCloudfiles : undefined;
-            resourceInputs["loggingDatadogs"] = args ? args.loggingDatadogs : undefined;
-            resourceInputs["loggingDigitaloceans"] = args ? args.loggingDigitaloceans : undefined;
-            resourceInputs["loggingElasticsearches"] = args ? args.loggingElasticsearches : undefined;
-            resourceInputs["loggingFtps"] = args ? args.loggingFtps : undefined;
-            resourceInputs["loggingGcs"] = args ? args.loggingGcs : undefined;
-            resourceInputs["loggingGooglepubsubs"] = args ? args.loggingGooglepubsubs : undefined;
-            resourceInputs["loggingGrafanacloudlogs"] = args ? args.loggingGrafanacloudlogs : undefined;
-            resourceInputs["loggingHeroku"] = args ? args.loggingHeroku : undefined;
-            resourceInputs["loggingHoneycombs"] = args ? args.loggingHoneycombs : undefined;
-            resourceInputs["loggingHttps"] = args ? args.loggingHttps : undefined;
-            resourceInputs["loggingKafkas"] = args ? args.loggingKafkas : undefined;
-            resourceInputs["loggingKineses"] = args ? args.loggingKineses : undefined;
-            resourceInputs["loggingLogentries"] = args ? args.loggingLogentries : undefined;
-            resourceInputs["loggingLogglies"] = args ? args.loggingLogglies : undefined;
-            resourceInputs["loggingLogshuttles"] = args ? args.loggingLogshuttles : undefined;
-            resourceInputs["loggingNewrelics"] = args ? args.loggingNewrelics : undefined;
-            resourceInputs["loggingOpenstacks"] = args ? args.loggingOpenstacks : undefined;
-            resourceInputs["loggingPapertrails"] = args ? args.loggingPapertrails : undefined;
-            resourceInputs["loggingS3s"] = args ? args.loggingS3s : undefined;
-            resourceInputs["loggingScalyrs"] = args ? args.loggingScalyrs : undefined;
-            resourceInputs["loggingSftps"] = args ? args.loggingSftps : undefined;
-            resourceInputs["loggingSplunks"] = args ? args.loggingSplunks : undefined;
-            resourceInputs["loggingSumologics"] = args ? args.loggingSumologics : undefined;
-            resourceInputs["loggingSyslogs"] = args ? args.loggingSyslogs : undefined;
-            resourceInputs["name"] = args ? args.name : undefined;
-            resourceInputs["package"] = args ? args.package : undefined;
-            resourceInputs["productEnablement"] = args ? args.productEnablement : undefined;
-            resourceInputs["resourceLinks"] = args ? args.resourceLinks : undefined;
-            resourceInputs["reuse"] = args ? args.reuse : undefined;
-            resourceInputs["stage"] = args ? args.stage : undefined;
-            resourceInputs["versionComment"] = args ? args.versionComment : undefined;
+            resourceInputs["activate"] = args?.activate;
+            resourceInputs["backends"] = args?.backends;
+            resourceInputs["comment"] = args?.comment;
+            resourceInputs["dictionaries"] = args?.dictionaries;
+            resourceInputs["domains"] = args?.domains;
+            resourceInputs["forceDestroy"] = args?.forceDestroy;
+            resourceInputs["imageOptimizerDefaultSettings"] = args?.imageOptimizerDefaultSettings;
+            resourceInputs["loggingBigqueries"] = args?.loggingBigqueries;
+            resourceInputs["loggingBlobstorages"] = args?.loggingBlobstorages;
+            resourceInputs["loggingCloudfiles"] = args?.loggingCloudfiles;
+            resourceInputs["loggingDatadogs"] = args?.loggingDatadogs;
+            resourceInputs["loggingDigitaloceans"] = args?.loggingDigitaloceans;
+            resourceInputs["loggingElasticsearches"] = args?.loggingElasticsearches;
+            resourceInputs["loggingFtps"] = args?.loggingFtps;
+            resourceInputs["loggingGcs"] = args?.loggingGcs;
+            resourceInputs["loggingGooglepubsubs"] = args?.loggingGooglepubsubs;
+            resourceInputs["loggingGrafanacloudlogs"] = args?.loggingGrafanacloudlogs;
+            resourceInputs["loggingHeroku"] = args?.loggingHeroku;
+            resourceInputs["loggingHoneycombs"] = args?.loggingHoneycombs;
+            resourceInputs["loggingHttps"] = args?.loggingHttps;
+            resourceInputs["loggingKafkas"] = args?.loggingKafkas;
+            resourceInputs["loggingKineses"] = args?.loggingKineses;
+            resourceInputs["loggingLogentries"] = args?.loggingLogentries;
+            resourceInputs["loggingLogglies"] = args?.loggingLogglies;
+            resourceInputs["loggingLogshuttles"] = args?.loggingLogshuttles;
+            resourceInputs["loggingNewrelics"] = args?.loggingNewrelics;
+            resourceInputs["loggingOpenstacks"] = args?.loggingOpenstacks;
+            resourceInputs["loggingPapertrails"] = args?.loggingPapertrails;
+            resourceInputs["loggingS3s"] = args?.loggingS3s;
+            resourceInputs["loggingScalyrs"] = args?.loggingScalyrs;
+            resourceInputs["loggingSftps"] = args?.loggingSftps;
+            resourceInputs["loggingSplunks"] = args?.loggingSplunks;
+            resourceInputs["loggingSumologics"] = args?.loggingSumologics;
+            resourceInputs["loggingSyslogs"] = args?.loggingSyslogs;
+            resourceInputs["name"] = args?.name;
+            resourceInputs["package"] = args?.package;
+            resourceInputs["productEnablement"] = args?.productEnablement;
+            resourceInputs["resourceLinks"] = args?.resourceLinks;
+            resourceInputs["reuse"] = args?.reuse;
+            resourceInputs["stage"] = args?.stage;
+            resourceInputs["versionComment"] = args?.versionComment;
             resourceInputs["activeVersion"] = undefined /*out*/;
             resourceInputs["clonedVersion"] = undefined /*out*/;
             resourceInputs["forceRefresh"] = undefined /*out*/;
@@ -261,8 +255,7 @@ export class ServiceCompute extends pulumi.CustomResource {
  */
 export interface ServiceComputeState {
     /**
-     * Conditionally prevents new service versions from being activated. The apply step will create a new draft version but
-     * will not activate it if this is set to `false`. Default `true`
+     * Conditionally prevents new service versions from being activated. The apply step will create a new draft version but will not activate it if this is set to `false`. Default `true`
      */
     activate?: pulumi.Input<boolean>;
     /**
@@ -281,15 +274,13 @@ export interface ServiceComputeState {
      */
     domains?: pulumi.Input<pulumi.Input<inputs.ServiceComputeDomain>[]>;
     /**
-     * Services that are active cannot be destroyed. In order to destroy the Service, set `forceDestroy` to `true`. Default
-     * `false`
+     * Services that are active cannot be destroyed. In order to destroy the Service, set `forceDestroy` to `true`. Default `false`
      */
     forceDestroy?: pulumi.Input<boolean>;
     forceRefresh?: pulumi.Input<boolean>;
     imageOptimizerDefaultSettings?: pulumi.Input<inputs.ServiceComputeImageOptimizerDefaultSettings>;
     /**
-     * Used internally by the provider to temporarily indicate if the service is being imported, and is reset to false once the
-     * import is finished
+     * Used internally by the provider to temporarily indicate if the service is being imported, and is reset to false once the import is finished
      */
     imported?: pulumi.Input<boolean>;
     loggingBigqueries?: pulumi.Input<pulumi.Input<inputs.ServiceComputeLoggingBigquery>[]>;
@@ -324,9 +315,7 @@ export interface ServiceComputeState {
      */
     name?: pulumi.Input<string>;
     /**
-     * The `package` block supports uploading or modifying Wasm packages for use in a Fastly Compute service (if omitted,
-     * ensure `activate = false` is set on `fastly.ServiceCompute` to avoid service validation errors). See Fastly's
-     * documentation on [Compute](https://developer.fastly.com/learning/compute/)
+     * The `package` block supports uploading or modifying Wasm packages for use in a Fastly Compute service (if omitted, ensure `activate = false` is set on `fastly.ServiceCompute` to avoid service validation errors). See Fastly's documentation on [Compute](https://developer.fastly.com/learning/compute/)
      */
     package?: pulumi.Input<inputs.ServiceComputePackage>;
     productEnablement?: pulumi.Input<inputs.ServiceComputeProductEnablement>;
@@ -336,8 +325,7 @@ export interface ServiceComputeState {
     resourceLinks?: pulumi.Input<pulumi.Input<inputs.ServiceComputeResourceLink>[]>;
     reuse?: pulumi.Input<boolean>;
     /**
-     * Conditionally enables new service versions to be staged. If `set` to true, all changes made by an `apply` step will be
-     * staged, even if `apply` did not create a new draft version. Default `false`
+     * Conditionally enables new service versions to be staged. If `set` to true, all changes made by an `apply` step will be staged, even if `apply` did not create a new draft version. Default `false`
      */
     stage?: pulumi.Input<boolean>;
     /**
@@ -355,8 +343,7 @@ export interface ServiceComputeState {
  */
 export interface ServiceComputeArgs {
     /**
-     * Conditionally prevents new service versions from being activated. The apply step will create a new draft version but
-     * will not activate it if this is set to `false`. Default `true`
+     * Conditionally prevents new service versions from being activated. The apply step will create a new draft version but will not activate it if this is set to `false`. Default `true`
      */
     activate?: pulumi.Input<boolean>;
     backends?: pulumi.Input<pulumi.Input<inputs.ServiceComputeBackend>[]>;
@@ -367,8 +354,7 @@ export interface ServiceComputeArgs {
      */
     domains: pulumi.Input<pulumi.Input<inputs.ServiceComputeDomain>[]>;
     /**
-     * Services that are active cannot be destroyed. In order to destroy the Service, set `forceDestroy` to `true`. Default
-     * `false`
+     * Services that are active cannot be destroyed. In order to destroy the Service, set `forceDestroy` to `true`. Default `false`
      */
     forceDestroy?: pulumi.Input<boolean>;
     imageOptimizerDefaultSettings?: pulumi.Input<inputs.ServiceComputeImageOptimizerDefaultSettings>;
@@ -404,9 +390,7 @@ export interface ServiceComputeArgs {
      */
     name?: pulumi.Input<string>;
     /**
-     * The `package` block supports uploading or modifying Wasm packages for use in a Fastly Compute service (if omitted,
-     * ensure `activate = false` is set on `fastly.ServiceCompute` to avoid service validation errors). See Fastly's
-     * documentation on [Compute](https://developer.fastly.com/learning/compute/)
+     * The `package` block supports uploading or modifying Wasm packages for use in a Fastly Compute service (if omitted, ensure `activate = false` is set on `fastly.ServiceCompute` to avoid service validation errors). See Fastly's documentation on [Compute](https://developer.fastly.com/learning/compute/)
      */
     package?: pulumi.Input<inputs.ServiceComputePackage>;
     productEnablement?: pulumi.Input<inputs.ServiceComputeProductEnablement>;
@@ -416,8 +400,7 @@ export interface ServiceComputeArgs {
     resourceLinks?: pulumi.Input<pulumi.Input<inputs.ServiceComputeResourceLink>[]>;
     reuse?: pulumi.Input<boolean>;
     /**
-     * Conditionally enables new service versions to be staged. If `set` to true, all changes made by an `apply` step will be
-     * staged, even if `apply` did not create a new draft version. Default `false`
+     * Conditionally enables new service versions to be staged. If `set` to true, all changes made by an `apply` step will be staged, even if `apply` did not create a new draft version. Default `false`
      */
     stage?: pulumi.Input<boolean>;
     /**

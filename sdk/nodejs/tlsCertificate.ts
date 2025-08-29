@@ -97,43 +97,43 @@ export class TlsCertificate extends pulumi.CustomResource {
     /**
      * PEM-formatted certificate, optionally including any intermediary certificates.
      */
-    public readonly certificateBody!: pulumi.Output<string>;
+    declare public readonly certificateBody: pulumi.Output<string>;
     /**
      * Timestamp (GMT) when the certificate was created.
      */
-    public /*out*/ readonly createdAt!: pulumi.Output<string>;
+    declare public /*out*/ readonly createdAt: pulumi.Output<string>;
     /**
      * All the domains (including wildcard domains) that are listed in the certificate's Subject Alternative Names (SAN) list.
      */
-    public /*out*/ readonly domains!: pulumi.Output<string[]>;
+    declare public /*out*/ readonly domains: pulumi.Output<string[]>;
     /**
      * The hostname for which a certificate was issued.
      */
-    public /*out*/ readonly issuedTo!: pulumi.Output<string>;
+    declare public /*out*/ readonly issuedTo: pulumi.Output<string>;
     /**
      * The certificate authority that issued the certificate.
      */
-    public /*out*/ readonly issuer!: pulumi.Output<string>;
+    declare public /*out*/ readonly issuer: pulumi.Output<string>;
     /**
      * Human-readable name used to identify the certificate. Defaults to the certificate's Common Name or first Subject Alternative Name entry.
      */
-    public readonly name!: pulumi.Output<string>;
+    declare public readonly name: pulumi.Output<string>;
     /**
      * A recommendation from Fastly indicating the key associated with this certificate is in need of rotation.
      */
-    public /*out*/ readonly replace!: pulumi.Output<boolean>;
+    declare public /*out*/ readonly replace: pulumi.Output<boolean>;
     /**
      * A value assigned by the issuer that is unique to a certificate.
      */
-    public /*out*/ readonly serialNumber!: pulumi.Output<string>;
+    declare public /*out*/ readonly serialNumber: pulumi.Output<string>;
     /**
      * The algorithm used to sign the certificate.
      */
-    public /*out*/ readonly signatureAlgorithm!: pulumi.Output<string>;
+    declare public /*out*/ readonly signatureAlgorithm: pulumi.Output<string>;
     /**
      * Timestamp (GMT) when the certificate was last updated.
      */
-    public /*out*/ readonly updatedAt!: pulumi.Output<string>;
+    declare public /*out*/ readonly updatedAt: pulumi.Output<string>;
 
     /**
      * Create a TlsCertificate resource with the given unique name, arguments, and options.
@@ -148,23 +148,23 @@ export class TlsCertificate extends pulumi.CustomResource {
         opts = opts || {};
         if (opts.id) {
             const state = argsOrState as TlsCertificateState | undefined;
-            resourceInputs["certificateBody"] = state ? state.certificateBody : undefined;
-            resourceInputs["createdAt"] = state ? state.createdAt : undefined;
-            resourceInputs["domains"] = state ? state.domains : undefined;
-            resourceInputs["issuedTo"] = state ? state.issuedTo : undefined;
-            resourceInputs["issuer"] = state ? state.issuer : undefined;
-            resourceInputs["name"] = state ? state.name : undefined;
-            resourceInputs["replace"] = state ? state.replace : undefined;
-            resourceInputs["serialNumber"] = state ? state.serialNumber : undefined;
-            resourceInputs["signatureAlgorithm"] = state ? state.signatureAlgorithm : undefined;
-            resourceInputs["updatedAt"] = state ? state.updatedAt : undefined;
+            resourceInputs["certificateBody"] = state?.certificateBody;
+            resourceInputs["createdAt"] = state?.createdAt;
+            resourceInputs["domains"] = state?.domains;
+            resourceInputs["issuedTo"] = state?.issuedTo;
+            resourceInputs["issuer"] = state?.issuer;
+            resourceInputs["name"] = state?.name;
+            resourceInputs["replace"] = state?.replace;
+            resourceInputs["serialNumber"] = state?.serialNumber;
+            resourceInputs["signatureAlgorithm"] = state?.signatureAlgorithm;
+            resourceInputs["updatedAt"] = state?.updatedAt;
         } else {
             const args = argsOrState as TlsCertificateArgs | undefined;
-            if ((!args || args.certificateBody === undefined) && !opts.urn) {
+            if (args?.certificateBody === undefined && !opts.urn) {
                 throw new Error("Missing required property 'certificateBody'");
             }
-            resourceInputs["certificateBody"] = args ? args.certificateBody : undefined;
-            resourceInputs["name"] = args ? args.name : undefined;
+            resourceInputs["certificateBody"] = args?.certificateBody;
+            resourceInputs["name"] = args?.name;
             resourceInputs["createdAt"] = undefined /*out*/;
             resourceInputs["domains"] = undefined /*out*/;
             resourceInputs["issuedTo"] = undefined /*out*/;

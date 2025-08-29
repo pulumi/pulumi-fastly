@@ -27,11 +27,8 @@ class ProviderArgs:
         The set of arguments for constructing a Provider resource.
         :param pulumi.Input[_builtins.str] api_key: Fastly API Key from https://app.fastly.com/#account
         :param pulumi.Input[_builtins.str] base_url: Fastly API URL
-        :param pulumi.Input[_builtins.bool] force_http2: Set this to `true` to disable HTTP/1.x fallback mechanism that the underlying Go library will attempt upon connection to
-               `api.fastly.com:443` by default. This may slightly improve the provider's performance and reduce unnecessary TLS
-               handshakes. Default: `false`
-        :param pulumi.Input[_builtins.bool] no_auth: Set to `true` if your configuration only consumes data sources that do not require authentication, such as
-               `get_fastly_ip_ranges`
+        :param pulumi.Input[_builtins.bool] force_http2: Set this to `true` to disable HTTP/1.x fallback mechanism that the underlying Go library will attempt upon connection to `api.fastly.com:443` by default. This may slightly improve the provider's performance and reduce unnecessary TLS handshakes. Default: `false`
+        :param pulumi.Input[_builtins.bool] no_auth: Set to `true` if your configuration only consumes data sources that do not require authentication, such as `get_fastly_ip_ranges`
         """
         if api_key is not None:
             pulumi.set(__self__, "api_key", api_key)
@@ -70,9 +67,7 @@ class ProviderArgs:
     @pulumi.getter(name="forceHttp2")
     def force_http2(self) -> Optional[pulumi.Input[_builtins.bool]]:
         """
-        Set this to `true` to disable HTTP/1.x fallback mechanism that the underlying Go library will attempt upon connection to
-        `api.fastly.com:443` by default. This may slightly improve the provider's performance and reduce unnecessary TLS
-        handshakes. Default: `false`
+        Set this to `true` to disable HTTP/1.x fallback mechanism that the underlying Go library will attempt upon connection to `api.fastly.com:443` by default. This may slightly improve the provider's performance and reduce unnecessary TLS handshakes. Default: `false`
         """
         return pulumi.get(self, "force_http2")
 
@@ -84,8 +79,7 @@ class ProviderArgs:
     @pulumi.getter(name="noAuth")
     def no_auth(self) -> Optional[pulumi.Input[_builtins.bool]]:
         """
-        Set to `true` if your configuration only consumes data sources that do not require authentication, such as
-        `get_fastly_ip_ranges`
+        Set to `true` if your configuration only consumes data sources that do not require authentication, such as `get_fastly_ip_ranges`
         """
         return pulumi.get(self, "no_auth")
 
@@ -115,11 +109,8 @@ class Provider(pulumi.ProviderResource):
         :param pulumi.ResourceOptions opts: Options for the resource.
         :param pulumi.Input[_builtins.str] api_key: Fastly API Key from https://app.fastly.com/#account
         :param pulumi.Input[_builtins.str] base_url: Fastly API URL
-        :param pulumi.Input[_builtins.bool] force_http2: Set this to `true` to disable HTTP/1.x fallback mechanism that the underlying Go library will attempt upon connection to
-               `api.fastly.com:443` by default. This may slightly improve the provider's performance and reduce unnecessary TLS
-               handshakes. Default: `false`
-        :param pulumi.Input[_builtins.bool] no_auth: Set to `true` if your configuration only consumes data sources that do not require authentication, such as
-               `get_fastly_ip_ranges`
+        :param pulumi.Input[_builtins.bool] force_http2: Set this to `true` to disable HTTP/1.x fallback mechanism that the underlying Go library will attempt upon connection to `api.fastly.com:443` by default. This may slightly improve the provider's performance and reduce unnecessary TLS handshakes. Default: `false`
+        :param pulumi.Input[_builtins.bool] no_auth: Set to `true` if your configuration only consumes data sources that do not require authentication, such as `get_fastly_ip_ranges`
         """
         ...
     @overload

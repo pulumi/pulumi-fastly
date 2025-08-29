@@ -35,19 +35,19 @@ export class DomainV1 extends pulumi.CustomResource {
     /**
      * The description for your domain.
      */
-    public readonly description!: pulumi.Output<string | undefined>;
+    declare public readonly description: pulumi.Output<string | undefined>;
     /**
      * The Domain Identifier (UUID).
      */
-    public /*out*/ readonly domainId!: pulumi.Output<string>;
+    declare public /*out*/ readonly domainId: pulumi.Output<string>;
     /**
      * The fully-qualified domain name for your domain (e.g. `www.example.com`, no trailing dot). Can be created, but not updated.
      */
-    public readonly fqdn!: pulumi.Output<string>;
+    declare public readonly fqdn: pulumi.Output<string>;
     /**
      * The serviceId associated with your domain or null if there is no association.
      */
-    public readonly serviceId!: pulumi.Output<string | undefined>;
+    declare public readonly serviceId: pulumi.Output<string | undefined>;
 
     /**
      * Create a DomainV1 resource with the given unique name, arguments, and options.
@@ -62,18 +62,18 @@ export class DomainV1 extends pulumi.CustomResource {
         opts = opts || {};
         if (opts.id) {
             const state = argsOrState as DomainV1State | undefined;
-            resourceInputs["description"] = state ? state.description : undefined;
-            resourceInputs["domainId"] = state ? state.domainId : undefined;
-            resourceInputs["fqdn"] = state ? state.fqdn : undefined;
-            resourceInputs["serviceId"] = state ? state.serviceId : undefined;
+            resourceInputs["description"] = state?.description;
+            resourceInputs["domainId"] = state?.domainId;
+            resourceInputs["fqdn"] = state?.fqdn;
+            resourceInputs["serviceId"] = state?.serviceId;
         } else {
             const args = argsOrState as DomainV1Args | undefined;
-            if ((!args || args.fqdn === undefined) && !opts.urn) {
+            if (args?.fqdn === undefined && !opts.urn) {
                 throw new Error("Missing required property 'fqdn'");
             }
-            resourceInputs["description"] = args ? args.description : undefined;
-            resourceInputs["fqdn"] = args ? args.fqdn : undefined;
-            resourceInputs["serviceId"] = args ? args.serviceId : undefined;
+            resourceInputs["description"] = args?.description;
+            resourceInputs["fqdn"] = args?.fqdn;
+            resourceInputs["serviceId"] = args?.serviceId;
             resourceInputs["domainId"] = undefined /*out*/;
         }
         opts = pulumi.mergeOptions(utilities.resourceOptsDefaults(), opts);

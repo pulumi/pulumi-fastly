@@ -76,7 +76,7 @@ export class Secretstore extends pulumi.CustomResource {
     /**
      * A human-readable name for the Secret Store. The value must contain only letters, numbers, dashes (-), underscores (*), or periods (.). It is important to note that changing this attribute will delete and recreate the Secret Store, and discard the current entries. You MUST first delete the associated resource*link block from your service before modifying this field.
      */
-    public readonly name!: pulumi.Output<string>;
+    declare public readonly name: pulumi.Output<string>;
 
     /**
      * Create a Secretstore resource with the given unique name, arguments, and options.
@@ -91,10 +91,10 @@ export class Secretstore extends pulumi.CustomResource {
         opts = opts || {};
         if (opts.id) {
             const state = argsOrState as SecretstoreState | undefined;
-            resourceInputs["name"] = state ? state.name : undefined;
+            resourceInputs["name"] = state?.name;
         } else {
             const args = argsOrState as SecretstoreArgs | undefined;
-            resourceInputs["name"] = args ? args.name : undefined;
+            resourceInputs["name"] = args?.name;
         }
         opts = pulumi.mergeOptions(utilities.resourceOptsDefaults(), opts);
         super(Secretstore.__pulumiType, name, resourceInputs, opts);

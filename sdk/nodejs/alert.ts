@@ -70,35 +70,35 @@ export class Alert extends pulumi.CustomResource {
     /**
      * Additional text that is included in the alert notification.
      */
-    public readonly description!: pulumi.Output<string | undefined>;
+    declare public readonly description: pulumi.Output<string | undefined>;
     /**
      * More filters depending on the source type.
      */
-    public readonly dimensions!: pulumi.Output<outputs.AlertDimensions | undefined>;
+    declare public readonly dimensions: pulumi.Output<outputs.AlertDimensions | undefined>;
     /**
      * Criteria on how to alert.
      */
-    public readonly evaluationStrategy!: pulumi.Output<outputs.AlertEvaluationStrategy>;
+    declare public readonly evaluationStrategy: pulumi.Output<outputs.AlertEvaluationStrategy>;
     /**
      * List of integrations used to notify when alert fires.
      */
-    public readonly integrationIds!: pulumi.Output<string[] | undefined>;
+    declare public readonly integrationIds: pulumi.Output<string[] | undefined>;
     /**
      * The metric name to alert on for a specific source: [domains](https://developer.fastly.com/reference/api/metrics-stats/domain-inspector/historical), [origins](https://developer.fastly.com/reference/api/metrics-stats/origin-inspector/historical), or [stats](https://developer.fastly.com/reference/api/metrics-stats/historical-stats).
      */
-    public readonly metric!: pulumi.Output<string>;
+    declare public readonly metric: pulumi.Output<string>;
     /**
      * The name of the alert.
      */
-    public readonly name!: pulumi.Output<string>;
+    declare public readonly name: pulumi.Output<string>;
     /**
      * The service which the alert monitors. Optional when using `stats` as the `source`.
      */
-    public readonly serviceId!: pulumi.Output<string | undefined>;
+    declare public readonly serviceId: pulumi.Output<string | undefined>;
     /**
      * The source where the metric comes from. One of: `domains`, `origins`, `stats`.
      */
-    public readonly source!: pulumi.Output<string>;
+    declare public readonly source: pulumi.Output<string>;
 
     /**
      * Create a Alert resource with the given unique name, arguments, and options.
@@ -113,33 +113,33 @@ export class Alert extends pulumi.CustomResource {
         opts = opts || {};
         if (opts.id) {
             const state = argsOrState as AlertState | undefined;
-            resourceInputs["description"] = state ? state.description : undefined;
-            resourceInputs["dimensions"] = state ? state.dimensions : undefined;
-            resourceInputs["evaluationStrategy"] = state ? state.evaluationStrategy : undefined;
-            resourceInputs["integrationIds"] = state ? state.integrationIds : undefined;
-            resourceInputs["metric"] = state ? state.metric : undefined;
-            resourceInputs["name"] = state ? state.name : undefined;
-            resourceInputs["serviceId"] = state ? state.serviceId : undefined;
-            resourceInputs["source"] = state ? state.source : undefined;
+            resourceInputs["description"] = state?.description;
+            resourceInputs["dimensions"] = state?.dimensions;
+            resourceInputs["evaluationStrategy"] = state?.evaluationStrategy;
+            resourceInputs["integrationIds"] = state?.integrationIds;
+            resourceInputs["metric"] = state?.metric;
+            resourceInputs["name"] = state?.name;
+            resourceInputs["serviceId"] = state?.serviceId;
+            resourceInputs["source"] = state?.source;
         } else {
             const args = argsOrState as AlertArgs | undefined;
-            if ((!args || args.evaluationStrategy === undefined) && !opts.urn) {
+            if (args?.evaluationStrategy === undefined && !opts.urn) {
                 throw new Error("Missing required property 'evaluationStrategy'");
             }
-            if ((!args || args.metric === undefined) && !opts.urn) {
+            if (args?.metric === undefined && !opts.urn) {
                 throw new Error("Missing required property 'metric'");
             }
-            if ((!args || args.source === undefined) && !opts.urn) {
+            if (args?.source === undefined && !opts.urn) {
                 throw new Error("Missing required property 'source'");
             }
-            resourceInputs["description"] = args ? args.description : undefined;
-            resourceInputs["dimensions"] = args ? args.dimensions : undefined;
-            resourceInputs["evaluationStrategy"] = args ? args.evaluationStrategy : undefined;
-            resourceInputs["integrationIds"] = args ? args.integrationIds : undefined;
-            resourceInputs["metric"] = args ? args.metric : undefined;
-            resourceInputs["name"] = args ? args.name : undefined;
-            resourceInputs["serviceId"] = args ? args.serviceId : undefined;
-            resourceInputs["source"] = args ? args.source : undefined;
+            resourceInputs["description"] = args?.description;
+            resourceInputs["dimensions"] = args?.dimensions;
+            resourceInputs["evaluationStrategy"] = args?.evaluationStrategy;
+            resourceInputs["integrationIds"] = args?.integrationIds;
+            resourceInputs["metric"] = args?.metric;
+            resourceInputs["name"] = args?.name;
+            resourceInputs["serviceId"] = args?.serviceId;
+            resourceInputs["source"] = args?.source;
         }
         opts = pulumi.mergeOptions(utilities.resourceOptsDefaults(), opts);
         super(Alert.__pulumiType, name, resourceInputs, opts);
