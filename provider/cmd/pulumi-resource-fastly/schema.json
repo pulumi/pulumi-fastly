@@ -54,19 +54,19 @@
         "variables": {
             "apiKey": {
                 "type": "string",
-                "description": "Fastly API Key from https://app.fastly.com/#account\n"
+                "description": "Fastly API Key from https://app.fastly.com/#account"
             },
             "baseUrl": {
                 "type": "string",
-                "description": "Fastly API URL\n"
+                "description": "Fastly API URL"
             },
             "forceHttp2": {
                 "type": "boolean",
-                "description": "Set this to `true` to disable HTTP/1.x fallback mechanism that the underlying Go library will attempt upon connection to\n`api.fastly.com:443` by default. This may slightly improve the provider's performance and reduce unnecessary TLS\nhandshakes. Default: `false`\n"
+                "description": "Set this to `true` to disable HTTP/1.x fallback mechanism that the underlying Go library will attempt upon connection to `api.fastly.com:443` by default. This may slightly improve the provider's performance and reduce unnecessary TLS handshakes. Default: `false`"
             },
             "noAuth": {
                 "type": "boolean",
-                "description": "Set to `true` if your configuration only consumes data sources that do not require authentication, such as\n`fastly.getFastlyIpRanges`\n"
+                "description": "Set to `true` if your configuration only consumes data sources that do not require authentication, such as `fastly.getFastlyIpRanges`"
             }
         }
     },
@@ -4777,37 +4777,37 @@
         "properties": {
             "apiKey": {
                 "type": "string",
-                "description": "Fastly API Key from https://app.fastly.com/#account\n"
+                "description": "Fastly API Key from https://app.fastly.com/#account"
             },
             "baseUrl": {
                 "type": "string",
-                "description": "Fastly API URL\n"
+                "description": "Fastly API URL"
             },
             "forceHttp2": {
                 "type": "boolean",
-                "description": "Set this to `true` to disable HTTP/1.x fallback mechanism that the underlying Go library will attempt upon connection to\n`api.fastly.com:443` by default. This may slightly improve the provider's performance and reduce unnecessary TLS\nhandshakes. Default: `false`\n"
+                "description": "Set this to `true` to disable HTTP/1.x fallback mechanism that the underlying Go library will attempt upon connection to `api.fastly.com:443` by default. This may slightly improve the provider's performance and reduce unnecessary TLS handshakes. Default: `false`"
             },
             "noAuth": {
                 "type": "boolean",
-                "description": "Set to `true` if your configuration only consumes data sources that do not require authentication, such as\n`fastly.getFastlyIpRanges`\n"
+                "description": "Set to `true` if your configuration only consumes data sources that do not require authentication, such as `fastly.getFastlyIpRanges`"
             }
         },
         "inputProperties": {
             "apiKey": {
                 "type": "string",
-                "description": "Fastly API Key from https://app.fastly.com/#account\n"
+                "description": "Fastly API Key from https://app.fastly.com/#account"
             },
             "baseUrl": {
                 "type": "string",
-                "description": "Fastly API URL\n"
+                "description": "Fastly API URL"
             },
             "forceHttp2": {
                 "type": "boolean",
-                "description": "Set this to `true` to disable HTTP/1.x fallback mechanism that the underlying Go library will attempt upon connection to\n`api.fastly.com:443` by default. This may slightly improve the provider's performance and reduce unnecessary TLS\nhandshakes. Default: `false`\n"
+                "description": "Set this to `true` to disable HTTP/1.x fallback mechanism that the underlying Go library will attempt upon connection to `api.fastly.com:443` by default. This may slightly improve the provider's performance and reduce unnecessary TLS handshakes. Default: `false`"
             },
             "noAuth": {
                 "type": "boolean",
-                "description": "Set to `true` if your configuration only consumes data sources that do not require authentication, such as\n`fastly.getFastlyIpRanges`\n"
+                "description": "Set to `true` if your configuration only consumes data sources that do not require authentication, such as `fastly.getFastlyIpRanges`"
             }
         },
         "methods": {
@@ -5587,11 +5587,11 @@
             "properties": {
                 "activate": {
                     "type": "boolean",
-                    "description": "Conditionally prevents new service versions from being activated. The apply step will create a new draft version but\nwill not activate it if this is set to `false`. Default `true`\n"
+                    "description": "Conditionally prevents new service versions from being activated. The apply step will create a new draft version but will not activate it if this is set to `false`. Default `true`"
                 },
                 "activeVersion": {
                     "type": "integer",
-                    "description": "The currently active version of your Fastly Service\n"
+                    "description": "The currently active version of your Fastly Service"
                 },
                 "backends": {
                     "type": "array",
@@ -5601,7 +5601,7 @@
                 },
                 "clonedVersion": {
                     "type": "integer",
-                    "description": "The latest cloned version by the provider\n"
+                    "description": "The latest cloned version by the provider"
                 },
                 "comment": {
                     "type": "string"
@@ -5617,11 +5617,11 @@
                     "items": {
                         "$ref": "#/types/fastly:index/ServiceComputeDomain:ServiceComputeDomain"
                     },
-                    "description": "A set of Domain names to serve as entry points for your Service\n"
+                    "description": "A set of Domain names to serve as entry points for your Service"
                 },
                 "forceDestroy": {
                     "type": "boolean",
-                    "description": "Services that are active cannot be destroyed. In order to destroy the Service, set `force_destroy` to `true`. Default\n`false`\n"
+                    "description": "Services that are active cannot be destroyed. In order to destroy the Service, set `force_destroy` to `true`. Default `false`"
                 },
                 "forceRefresh": {
                     "type": "boolean"
@@ -5631,7 +5631,7 @@
                 },
                 "imported": {
                     "type": "boolean",
-                    "description": "Used internally by the provider to temporarily indicate if the service is being imported, and is reset to false once the\nimport is finished\n"
+                    "description": "Used internally by the provider to temporarily indicate if the service is being imported, and is reset to false once the import is finished"
                 },
                 "loggingBigqueries": {
                     "type": "array",
@@ -5797,11 +5797,11 @@
                 },
                 "name": {
                     "type": "string",
-                    "description": "The unique name for the Service to create\n"
+                    "description": "The unique name for the Service to create"
                 },
                 "package": {
                     "$ref": "#/types/fastly:index/ServiceComputePackage:ServiceComputePackage",
-                    "description": "The `package` block supports uploading or modifying Wasm packages for use in a Fastly Compute service (if omitted,\nensure `activate = false` is set on `fastly.ServiceCompute` to avoid service validation errors). See Fastly's\ndocumentation on [Compute](https://developer.fastly.com/learning/compute/)\n"
+                    "description": "The `package` block supports uploading or modifying Wasm packages for use in a Fastly Compute service (if omitted, ensure `activate = false` is set on `fastly.ServiceCompute` to avoid service validation errors). See Fastly's documentation on [Compute](https://developer.fastly.com/learning/compute/)"
                 },
                 "productEnablement": {
                     "$ref": "#/types/fastly:index/ServiceComputeProductEnablement:ServiceComputeProductEnablement"
@@ -5811,22 +5811,22 @@
                     "items": {
                         "$ref": "#/types/fastly:index/ServiceComputeResourceLink:ServiceComputeResourceLink"
                     },
-                    "description": "A resource link represents a link between a shared resource (such as an KV Store or Config Store) and a service version.\n"
+                    "description": "A resource link represents a link between a shared resource (such as an KV Store or Config Store) and a service version."
                 },
                 "reuse": {
                     "type": "boolean"
                 },
                 "stage": {
                     "type": "boolean",
-                    "description": "Conditionally enables new service versions to be staged. If `set` to true, all changes made by an `apply` step will be\nstaged, even if `apply` did not create a new draft version. Default `false`\n"
+                    "description": "Conditionally enables new service versions to be staged. If `set` to true, all changes made by an `apply` step will be staged, even if `apply` did not create a new draft version. Default `false`"
                 },
                 "stagedVersion": {
                     "type": "integer",
-                    "description": "The currently staged version of your Fastly Service\n"
+                    "description": "The currently staged version of your Fastly Service"
                 },
                 "versionComment": {
                     "type": "string",
-                    "description": "Description field for the version\n"
+                    "description": "Description field for the version"
                 }
             },
             "required": [
@@ -5841,7 +5841,7 @@
             "inputProperties": {
                 "activate": {
                     "type": "boolean",
-                    "description": "Conditionally prevents new service versions from being activated. The apply step will create a new draft version but\nwill not activate it if this is set to `false`. Default `true`\n"
+                    "description": "Conditionally prevents new service versions from being activated. The apply step will create a new draft version but will not activate it if this is set to `false`. Default `true`"
                 },
                 "backends": {
                     "type": "array",
@@ -5863,11 +5863,11 @@
                     "items": {
                         "$ref": "#/types/fastly:index/ServiceComputeDomain:ServiceComputeDomain"
                     },
-                    "description": "A set of Domain names to serve as entry points for your Service\n"
+                    "description": "A set of Domain names to serve as entry points for your Service"
                 },
                 "forceDestroy": {
                     "type": "boolean",
-                    "description": "Services that are active cannot be destroyed. In order to destroy the Service, set `force_destroy` to `true`. Default\n`false`\n"
+                    "description": "Services that are active cannot be destroyed. In order to destroy the Service, set `force_destroy` to `true`. Default `false`"
                 },
                 "imageOptimizerDefaultSettings": {
                     "$ref": "#/types/fastly:index/ServiceComputeImageOptimizerDefaultSettings:ServiceComputeImageOptimizerDefaultSettings"
@@ -6036,11 +6036,11 @@
                 },
                 "name": {
                     "type": "string",
-                    "description": "The unique name for the Service to create\n"
+                    "description": "The unique name for the Service to create"
                 },
                 "package": {
                     "$ref": "#/types/fastly:index/ServiceComputePackage:ServiceComputePackage",
-                    "description": "The `package` block supports uploading or modifying Wasm packages for use in a Fastly Compute service (if omitted,\nensure `activate = false` is set on `fastly.ServiceCompute` to avoid service validation errors). See Fastly's\ndocumentation on [Compute](https://developer.fastly.com/learning/compute/)\n"
+                    "description": "The `package` block supports uploading or modifying Wasm packages for use in a Fastly Compute service (if omitted, ensure `activate = false` is set on `fastly.ServiceCompute` to avoid service validation errors). See Fastly's documentation on [Compute](https://developer.fastly.com/learning/compute/)"
                 },
                 "productEnablement": {
                     "$ref": "#/types/fastly:index/ServiceComputeProductEnablement:ServiceComputeProductEnablement"
@@ -6050,18 +6050,18 @@
                     "items": {
                         "$ref": "#/types/fastly:index/ServiceComputeResourceLink:ServiceComputeResourceLink"
                     },
-                    "description": "A resource link represents a link between a shared resource (such as an KV Store or Config Store) and a service version.\n"
+                    "description": "A resource link represents a link between a shared resource (such as an KV Store or Config Store) and a service version."
                 },
                 "reuse": {
                     "type": "boolean"
                 },
                 "stage": {
                     "type": "boolean",
-                    "description": "Conditionally enables new service versions to be staged. If `set` to true, all changes made by an `apply` step will be\nstaged, even if `apply` did not create a new draft version. Default `false`\n"
+                    "description": "Conditionally enables new service versions to be staged. If `set` to true, all changes made by an `apply` step will be staged, even if `apply` did not create a new draft version. Default `false`"
                 },
                 "versionComment": {
                     "type": "string",
-                    "description": "Description field for the version\n"
+                    "description": "Description field for the version"
                 }
             },
             "requiredInputs": [
@@ -6072,11 +6072,11 @@
                 "properties": {
                     "activate": {
                         "type": "boolean",
-                        "description": "Conditionally prevents new service versions from being activated. The apply step will create a new draft version but\nwill not activate it if this is set to `false`. Default `true`\n"
+                        "description": "Conditionally prevents new service versions from being activated. The apply step will create a new draft version but will not activate it if this is set to `false`. Default `true`"
                     },
                     "activeVersion": {
                         "type": "integer",
-                        "description": "The currently active version of your Fastly Service\n"
+                        "description": "The currently active version of your Fastly Service"
                     },
                     "backends": {
                         "type": "array",
@@ -6086,7 +6086,7 @@
                     },
                     "clonedVersion": {
                         "type": "integer",
-                        "description": "The latest cloned version by the provider\n"
+                        "description": "The latest cloned version by the provider"
                     },
                     "comment": {
                         "type": "string"
@@ -6102,11 +6102,11 @@
                         "items": {
                             "$ref": "#/types/fastly:index/ServiceComputeDomain:ServiceComputeDomain"
                         },
-                        "description": "A set of Domain names to serve as entry points for your Service\n"
+                        "description": "A set of Domain names to serve as entry points for your Service"
                     },
                     "forceDestroy": {
                         "type": "boolean",
-                        "description": "Services that are active cannot be destroyed. In order to destroy the Service, set `force_destroy` to `true`. Default\n`false`\n"
+                        "description": "Services that are active cannot be destroyed. In order to destroy the Service, set `force_destroy` to `true`. Default `false`"
                     },
                     "forceRefresh": {
                         "type": "boolean"
@@ -6116,7 +6116,7 @@
                     },
                     "imported": {
                         "type": "boolean",
-                        "description": "Used internally by the provider to temporarily indicate if the service is being imported, and is reset to false once the\nimport is finished\n"
+                        "description": "Used internally by the provider to temporarily indicate if the service is being imported, and is reset to false once the import is finished"
                     },
                     "loggingBigqueries": {
                         "type": "array",
@@ -6282,11 +6282,11 @@
                     },
                     "name": {
                         "type": "string",
-                        "description": "The unique name for the Service to create\n"
+                        "description": "The unique name for the Service to create"
                     },
                     "package": {
                         "$ref": "#/types/fastly:index/ServiceComputePackage:ServiceComputePackage",
-                        "description": "The `package` block supports uploading or modifying Wasm packages for use in a Fastly Compute service (if omitted,\nensure `activate = false` is set on `fastly.ServiceCompute` to avoid service validation errors). See Fastly's\ndocumentation on [Compute](https://developer.fastly.com/learning/compute/)\n"
+                        "description": "The `package` block supports uploading or modifying Wasm packages for use in a Fastly Compute service (if omitted, ensure `activate = false` is set on `fastly.ServiceCompute` to avoid service validation errors). See Fastly's documentation on [Compute](https://developer.fastly.com/learning/compute/)"
                     },
                     "productEnablement": {
                         "$ref": "#/types/fastly:index/ServiceComputeProductEnablement:ServiceComputeProductEnablement"
@@ -6296,22 +6296,22 @@
                         "items": {
                             "$ref": "#/types/fastly:index/ServiceComputeResourceLink:ServiceComputeResourceLink"
                         },
-                        "description": "A resource link represents a link between a shared resource (such as an KV Store or Config Store) and a service version.\n"
+                        "description": "A resource link represents a link between a shared resource (such as an KV Store or Config Store) and a service version."
                     },
                     "reuse": {
                         "type": "boolean"
                     },
                     "stage": {
                         "type": "boolean",
-                        "description": "Conditionally enables new service versions to be staged. If `set` to true, all changes made by an `apply` step will be\nstaged, even if `apply` did not create a new draft version. Default `false`\n"
+                        "description": "Conditionally enables new service versions to be staged. If `set` to true, all changes made by an `apply` step will be staged, even if `apply` did not create a new draft version. Default `false`"
                     },
                     "stagedVersion": {
                         "type": "integer",
-                        "description": "The currently staged version of your Fastly Service\n"
+                        "description": "The currently staged version of your Fastly Service"
                     },
                     "versionComment": {
                         "type": "string",
-                        "description": "Description field for the version\n"
+                        "description": "Description field for the version"
                     }
                 },
                 "type": "object"
@@ -6481,11 +6481,11 @@
                 },
                 "activate": {
                     "type": "boolean",
-                    "description": "Conditionally prevents new service versions from being activated. The apply step will create a new draft version but\nwill not activate it if this is set to `false`. Default `true`\n"
+                    "description": "Conditionally prevents new service versions from being activated. The apply step will create a new draft version but will not activate it if this is set to `false`. Default `true`"
                 },
                 "activeVersion": {
                     "type": "integer",
-                    "description": "The currently active version of your Fastly Service\n"
+                    "description": "The currently active version of your Fastly Service"
                 },
                 "backends": {
                     "type": "array",
@@ -6501,7 +6501,7 @@
                 },
                 "clonedVersion": {
                     "type": "integer",
-                    "description": "The latest cloned version by the provider\n"
+                    "description": "The latest cloned version by the provider"
                 },
                 "comment": {
                     "type": "string"
@@ -6514,11 +6514,11 @@
                 },
                 "defaultHost": {
                     "type": "string",
-                    "description": "The default hostname\n"
+                    "description": "The default hostname"
                 },
                 "defaultTtl": {
                     "type": "integer",
-                    "description": "The default Time-to-live (TTL) for requests\n"
+                    "description": "The default Time-to-live (TTL) for requests"
                 },
                 "dictionaries": {
                     "type": "array",
@@ -6537,7 +6537,7 @@
                     "items": {
                         "$ref": "#/types/fastly:index/ServiceVclDomain:ServiceVclDomain"
                     },
-                    "description": "A set of Domain names to serve as entry points for your Service\n"
+                    "description": "A set of Domain names to serve as entry points for your Service"
                 },
                 "dynamicsnippets": {
                     "type": "array",
@@ -6547,7 +6547,7 @@
                 },
                 "forceDestroy": {
                     "type": "boolean",
-                    "description": "Services that are active cannot be destroyed. In order to destroy the Service, set `force_destroy` to `true`. Default\n`false`\n"
+                    "description": "Services that are active cannot be destroyed. In order to destroy the Service, set `force_destroy` to `true`. Default `false`"
                 },
                 "forceRefresh": {
                     "type": "boolean"
@@ -6572,14 +6572,14 @@
                 },
                 "http3": {
                     "type": "boolean",
-                    "description": "Enables support for the HTTP/3 (QUIC) protocol\n"
+                    "description": "Enables support for the HTTP/3 (QUIC) protocol"
                 },
                 "imageOptimizerDefaultSettings": {
                     "$ref": "#/types/fastly:index/ServiceVclImageOptimizerDefaultSettings:ServiceVclImageOptimizerDefaultSettings"
                 },
                 "imported": {
                     "type": "boolean",
-                    "description": "Used internally by the provider to temporarily indicate if the service is being imported, and is reset to false once the\nimport is finished\n"
+                    "description": "Used internally by the provider to temporarily indicate if the service is being imported, and is reset to false once the import is finished"
                 },
                 "loggingBigqueries": {
                     "type": "array",
@@ -6751,7 +6751,7 @@
                 },
                 "name": {
                     "type": "string",
-                    "description": "The unique name for the Service to create\n"
+                    "description": "The unique name for the Service to create"
                 },
                 "productEnablement": {
                     "$ref": "#/types/fastly:index/ServiceVclProductEnablement:ServiceVclProductEnablement"
@@ -6785,19 +6785,19 @@
                 },
                 "stage": {
                     "type": "boolean",
-                    "description": "Conditionally enables new service versions to be staged. If `set` to true, all changes made by an `apply` step will be\nstaged, even if `apply` did not create a new draft version. Default `false`\n"
+                    "description": "Conditionally enables new service versions to be staged. If `set` to true, all changes made by an `apply` step will be staged, even if `apply` did not create a new draft version. Default `false`"
                 },
                 "stagedVersion": {
                     "type": "integer",
-                    "description": "The currently staged version of your Fastly Service\n"
+                    "description": "The currently staged version of your Fastly Service"
                 },
                 "staleIfError": {
                     "type": "boolean",
-                    "description": "Enables serving a stale object if there is an error\n"
+                    "description": "Enables serving a stale object if there is an error"
                 },
                 "staleIfErrorTtl": {
                     "type": "integer",
-                    "description": "The default time-to-live (TTL) for serving the stale object for the version\n"
+                    "description": "The default time-to-live (TTL) for serving the stale object for the version"
                 },
                 "vcls": {
                     "type": "array",
@@ -6807,7 +6807,7 @@
                 },
                 "versionComment": {
                     "type": "string",
-                    "description": "Description field for the version\n"
+                    "description": "Description field for the version"
                 }
             },
             "required": [
@@ -6828,7 +6828,7 @@
                 },
                 "activate": {
                     "type": "boolean",
-                    "description": "Conditionally prevents new service versions from being activated. The apply step will create a new draft version but\nwill not activate it if this is set to `false`. Default `true`\n"
+                    "description": "Conditionally prevents new service versions from being activated. The apply step will create a new draft version but will not activate it if this is set to `false`. Default `true`"
                 },
                 "backends": {
                     "type": "array",
@@ -6853,11 +6853,11 @@
                 },
                 "defaultHost": {
                     "type": "string",
-                    "description": "The default hostname\n"
+                    "description": "The default hostname"
                 },
                 "defaultTtl": {
                     "type": "integer",
-                    "description": "The default Time-to-live (TTL) for requests\n"
+                    "description": "The default Time-to-live (TTL) for requests"
                 },
                 "dictionaries": {
                     "type": "array",
@@ -6876,7 +6876,7 @@
                     "items": {
                         "$ref": "#/types/fastly:index/ServiceVclDomain:ServiceVclDomain"
                     },
-                    "description": "A set of Domain names to serve as entry points for your Service\n"
+                    "description": "A set of Domain names to serve as entry points for your Service"
                 },
                 "dynamicsnippets": {
                     "type": "array",
@@ -6886,7 +6886,7 @@
                 },
                 "forceDestroy": {
                     "type": "boolean",
-                    "description": "Services that are active cannot be destroyed. In order to destroy the Service, set `force_destroy` to `true`. Default\n`false`\n"
+                    "description": "Services that are active cannot be destroyed. In order to destroy the Service, set `force_destroy` to `true`. Default `false`"
                 },
                 "gzips": {
                     "type": "array",
@@ -6908,7 +6908,7 @@
                 },
                 "http3": {
                     "type": "boolean",
-                    "description": "Enables support for the HTTP/3 (QUIC) protocol\n"
+                    "description": "Enables support for the HTTP/3 (QUIC) protocol"
                 },
                 "imageOptimizerDefaultSettings": {
                     "$ref": "#/types/fastly:index/ServiceVclImageOptimizerDefaultSettings:ServiceVclImageOptimizerDefaultSettings"
@@ -7083,7 +7083,7 @@
                 },
                 "name": {
                     "type": "string",
-                    "description": "The unique name for the Service to create\n"
+                    "description": "The unique name for the Service to create"
                 },
                 "productEnablement": {
                     "$ref": "#/types/fastly:index/ServiceVclProductEnablement:ServiceVclProductEnablement"
@@ -7117,15 +7117,15 @@
                 },
                 "stage": {
                     "type": "boolean",
-                    "description": "Conditionally enables new service versions to be staged. If `set` to true, all changes made by an `apply` step will be\nstaged, even if `apply` did not create a new draft version. Default `false`\n"
+                    "description": "Conditionally enables new service versions to be staged. If `set` to true, all changes made by an `apply` step will be staged, even if `apply` did not create a new draft version. Default `false`"
                 },
                 "staleIfError": {
                     "type": "boolean",
-                    "description": "Enables serving a stale object if there is an error\n"
+                    "description": "Enables serving a stale object if there is an error"
                 },
                 "staleIfErrorTtl": {
                     "type": "integer",
-                    "description": "The default time-to-live (TTL) for serving the stale object for the version\n"
+                    "description": "The default time-to-live (TTL) for serving the stale object for the version"
                 },
                 "vcls": {
                     "type": "array",
@@ -7135,7 +7135,7 @@
                 },
                 "versionComment": {
                     "type": "string",
-                    "description": "Description field for the version\n"
+                    "description": "Description field for the version"
                 }
             },
             "requiredInputs": [
@@ -7152,11 +7152,11 @@
                     },
                     "activate": {
                         "type": "boolean",
-                        "description": "Conditionally prevents new service versions from being activated. The apply step will create a new draft version but\nwill not activate it if this is set to `false`. Default `true`\n"
+                        "description": "Conditionally prevents new service versions from being activated. The apply step will create a new draft version but will not activate it if this is set to `false`. Default `true`"
                     },
                     "activeVersion": {
                         "type": "integer",
-                        "description": "The currently active version of your Fastly Service\n"
+                        "description": "The currently active version of your Fastly Service"
                     },
                     "backends": {
                         "type": "array",
@@ -7172,7 +7172,7 @@
                     },
                     "clonedVersion": {
                         "type": "integer",
-                        "description": "The latest cloned version by the provider\n"
+                        "description": "The latest cloned version by the provider"
                     },
                     "comment": {
                         "type": "string"
@@ -7185,11 +7185,11 @@
                     },
                     "defaultHost": {
                         "type": "string",
-                        "description": "The default hostname\n"
+                        "description": "The default hostname"
                     },
                     "defaultTtl": {
                         "type": "integer",
-                        "description": "The default Time-to-live (TTL) for requests\n"
+                        "description": "The default Time-to-live (TTL) for requests"
                     },
                     "dictionaries": {
                         "type": "array",
@@ -7208,7 +7208,7 @@
                         "items": {
                             "$ref": "#/types/fastly:index/ServiceVclDomain:ServiceVclDomain"
                         },
-                        "description": "A set of Domain names to serve as entry points for your Service\n"
+                        "description": "A set of Domain names to serve as entry points for your Service"
                     },
                     "dynamicsnippets": {
                         "type": "array",
@@ -7218,7 +7218,7 @@
                     },
                     "forceDestroy": {
                         "type": "boolean",
-                        "description": "Services that are active cannot be destroyed. In order to destroy the Service, set `force_destroy` to `true`. Default\n`false`\n"
+                        "description": "Services that are active cannot be destroyed. In order to destroy the Service, set `force_destroy` to `true`. Default `false`"
                     },
                     "forceRefresh": {
                         "type": "boolean"
@@ -7243,14 +7243,14 @@
                     },
                     "http3": {
                         "type": "boolean",
-                        "description": "Enables support for the HTTP/3 (QUIC) protocol\n"
+                        "description": "Enables support for the HTTP/3 (QUIC) protocol"
                     },
                     "imageOptimizerDefaultSettings": {
                         "$ref": "#/types/fastly:index/ServiceVclImageOptimizerDefaultSettings:ServiceVclImageOptimizerDefaultSettings"
                     },
                     "imported": {
                         "type": "boolean",
-                        "description": "Used internally by the provider to temporarily indicate if the service is being imported, and is reset to false once the\nimport is finished\n"
+                        "description": "Used internally by the provider to temporarily indicate if the service is being imported, and is reset to false once the import is finished"
                     },
                     "loggingBigqueries": {
                         "type": "array",
@@ -7422,7 +7422,7 @@
                     },
                     "name": {
                         "type": "string",
-                        "description": "The unique name for the Service to create\n"
+                        "description": "The unique name for the Service to create"
                     },
                     "productEnablement": {
                         "$ref": "#/types/fastly:index/ServiceVclProductEnablement:ServiceVclProductEnablement"
@@ -7456,19 +7456,19 @@
                     },
                     "stage": {
                         "type": "boolean",
-                        "description": "Conditionally enables new service versions to be staged. If `set` to true, all changes made by an `apply` step will be\nstaged, even if `apply` did not create a new draft version. Default `false`\n"
+                        "description": "Conditionally enables new service versions to be staged. If `set` to true, all changes made by an `apply` step will be staged, even if `apply` did not create a new draft version. Default `false`"
                     },
                     "stagedVersion": {
                         "type": "integer",
-                        "description": "The currently staged version of your Fastly Service\n"
+                        "description": "The currently staged version of your Fastly Service"
                     },
                     "staleIfError": {
                         "type": "boolean",
-                        "description": "Enables serving a stale object if there is an error\n"
+                        "description": "Enables serving a stale object if there is an error"
                     },
                     "staleIfErrorTtl": {
                         "type": "integer",
-                        "description": "The default time-to-live (TTL) for serving the stale object for the version\n"
+                        "description": "The default time-to-live (TTL) for serving the stale object for the version"
                     },
                     "vcls": {
                         "type": "array",
@@ -7478,7 +7478,7 @@
                     },
                     "versionComment": {
                         "type": "string",
-                        "description": "Description field for the version\n"
+                        "description": "Description field for the version"
                     }
                 },
                 "type": "object"
@@ -8326,7 +8326,7 @@
                 "description": "A collection of values returned by getConfigstores.\n",
                 "properties": {
                     "id": {
-                        "description": "The provider-assigned unique ID for this managed resource.\n",
+                        "description": "The provider-assigned unique ID for this managed resource.",
                         "type": "string"
                     },
                     "stores": {
@@ -8350,7 +8350,7 @@
                 "description": "A collection of values returned by getDatacenters.\n",
                 "properties": {
                     "id": {
-                        "description": "The provider-assigned unique ID for this managed resource.\n",
+                        "description": "The provider-assigned unique ID for this managed resource.",
                         "type": "string"
                     },
                     "pops": {
@@ -8399,7 +8399,7 @@
                         "type": "array"
                     },
                     "id": {
-                        "description": "The provider-assigned unique ID for this managed resource.\n",
+                        "description": "The provider-assigned unique ID for this managed resource.",
                         "type": "string"
                     },
                     "serviceId": {
@@ -8433,7 +8433,7 @@
                         "type": "array"
                     },
                     "id": {
-                        "description": "The provider-assigned unique ID for this managed resource.\n",
+                        "description": "The provider-assigned unique ID for this managed resource.",
                         "type": "string"
                     },
                     "ipv6CidrBlocks": {
@@ -8457,7 +8457,7 @@
                 "description": "A collection of values returned by getKvstores.\n",
                 "properties": {
                     "id": {
-                        "description": "The provider-assigned unique ID for this managed resource.\n",
+                        "description": "The provider-assigned unique ID for this managed resource.",
                         "type": "string"
                     },
                     "stores": {
@@ -8507,7 +8507,7 @@
                         "type": "string"
                     },
                     "id": {
-                        "description": "The provider-assigned unique ID for this managed resource.\n",
+                        "description": "The provider-assigned unique ID for this managed resource.",
                         "type": "string"
                     }
                 },
@@ -8523,7 +8523,7 @@
                 "description": "A collection of values returned by getSecretstores.\n",
                 "properties": {
                     "id": {
-                        "description": "The provider-assigned unique ID for this managed resource.\n",
+                        "description": "The provider-assigned unique ID for this managed resource.",
                         "type": "string"
                     },
                     "stores": {
@@ -8554,7 +8554,7 @@
                         "type": "array"
                     },
                     "id": {
-                        "description": "The provider-assigned unique ID for this managed resource.\n",
+                        "description": "The provider-assigned unique ID for this managed resource.",
                         "type": "string"
                     },
                     "ids": {
@@ -8651,7 +8651,7 @@
                         "type": "string"
                     },
                     "id": {
-                        "description": "The provider-assigned unique ID for this managed resource.\n",
+                        "description": "The provider-assigned unique ID for this managed resource.",
                         "type": "string"
                     },
                     "ids": {
@@ -8768,7 +8768,7 @@
                 "description": "A collection of values returned by getTlsCertificateIds.\n",
                 "properties": {
                     "id": {
-                        "description": "The provider-assigned unique ID for this managed resource.\n",
+                        "description": "The provider-assigned unique ID for this managed resource.",
                         "type": "string"
                     },
                     "ids": {
@@ -8893,7 +8893,7 @@
                 "description": "A collection of values returned by getTlsConfigurationIds.\n",
                 "properties": {
                     "id": {
-                        "description": "The provider-assigned unique ID for this managed resource.\n",
+                        "description": "The provider-assigned unique ID for this managed resource.",
                         "type": "string"
                     },
                     "ids": {
@@ -8934,7 +8934,7 @@
                         "type": "string"
                     },
                     "id": {
-                        "description": "The provider-assigned unique ID for this managed resource.\n",
+                        "description": "The provider-assigned unique ID for this managed resource.",
                         "type": "string"
                     },
                     "tlsActivationIds": {
@@ -9046,7 +9046,7 @@
                 "description": "A collection of values returned by getTlsPlatformCertificateIds.\n",
                 "properties": {
                     "id": {
-                        "description": "The provider-assigned unique ID for this managed resource.\n",
+                        "description": "The provider-assigned unique ID for this managed resource.",
                         "type": "string"
                     },
                     "ids": {
@@ -9146,7 +9146,7 @@
                 "description": "A collection of values returned by getTlsPrivateKeyIds.\n",
                 "properties": {
                     "id": {
-                        "description": "The provider-assigned unique ID for this managed resource.\n",
+                        "description": "The provider-assigned unique ID for this managed resource.",
                         "type": "string"
                     },
                     "ids": {
@@ -9257,7 +9257,7 @@
                 "description": "A collection of values returned by getTlsSubscriptionIds.\n",
                 "properties": {
                     "id": {
-                        "description": "The provider-assigned unique ID for this managed resource.\n",
+                        "description": "The provider-assigned unique ID for this managed resource.",
                         "type": "string"
                     },
                     "ids": {
@@ -9299,7 +9299,7 @@
                 "description": "A collection of values returned by getVclSnippets.\n",
                 "properties": {
                     "id": {
-                        "description": "The provider-assigned unique ID for this managed resource.\n",
+                        "description": "The provider-assigned unique ID for this managed resource.",
                         "type": "string"
                     },
                     "serviceId": {
