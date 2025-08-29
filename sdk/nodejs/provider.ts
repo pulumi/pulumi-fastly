@@ -28,11 +28,11 @@ export class Provider extends pulumi.ProviderResource {
     /**
      * Fastly API Key from https://app.fastly.com/#account
      */
-    public readonly apiKey!: pulumi.Output<string | undefined>;
+    declare public readonly apiKey: pulumi.Output<string | undefined>;
     /**
      * Fastly API URL
      */
-    public readonly baseUrl!: pulumi.Output<string | undefined>;
+    declare public readonly baseUrl: pulumi.Output<string | undefined>;
 
     /**
      * Create a Provider resource with the given unique name, arguments, and options.
@@ -45,10 +45,10 @@ export class Provider extends pulumi.ProviderResource {
         let resourceInputs: pulumi.Inputs = {};
         opts = opts || {};
         {
-            resourceInputs["apiKey"] = args ? args.apiKey : undefined;
-            resourceInputs["baseUrl"] = args ? args.baseUrl : undefined;
-            resourceInputs["forceHttp2"] = pulumi.output(args ? args.forceHttp2 : undefined).apply(JSON.stringify);
-            resourceInputs["noAuth"] = pulumi.output(args ? args.noAuth : undefined).apply(JSON.stringify);
+            resourceInputs["apiKey"] = args?.apiKey;
+            resourceInputs["baseUrl"] = args?.baseUrl;
+            resourceInputs["forceHttp2"] = pulumi.output(args?.forceHttp2).apply(JSON.stringify);
+            resourceInputs["noAuth"] = pulumi.output(args?.noAuth).apply(JSON.stringify);
         }
         opts = pulumi.mergeOptions(utilities.resourceOptsDefaults(), opts);
         super(Provider.__pulumiType, name, resourceInputs, opts);
@@ -77,14 +77,11 @@ export interface ProviderArgs {
      */
     baseUrl?: pulumi.Input<string>;
     /**
-     * Set this to `true` to disable HTTP/1.x fallback mechanism that the underlying Go library will attempt upon connection to
-     * `api.fastly.com:443` by default. This may slightly improve the provider's performance and reduce unnecessary TLS
-     * handshakes. Default: `false`
+     * Set this to `true` to disable HTTP/1.x fallback mechanism that the underlying Go library will attempt upon connection to `api.fastly.com:443` by default. This may slightly improve the provider's performance and reduce unnecessary TLS handshakes. Default: `false`
      */
     forceHttp2?: pulumi.Input<boolean>;
     /**
-     * Set to `true` if your configuration only consumes data sources that do not require authentication, such as
-     * `fastly.getFastlyIpRanges`
+     * Set to `true` if your configuration only consumes data sources that do not require authentication, such as `fastly.getFastlyIpRanges`
      */
     noAuth?: pulumi.Input<boolean>;
 }

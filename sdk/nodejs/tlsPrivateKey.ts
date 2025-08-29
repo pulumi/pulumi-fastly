@@ -64,31 +64,31 @@ export class TlsPrivateKey extends pulumi.CustomResource {
     /**
      * Time-stamp (GMT) when the private key was created.
      */
-    public /*out*/ readonly createdAt!: pulumi.Output<string>;
+    declare public /*out*/ readonly createdAt: pulumi.Output<string>;
     /**
      * The key length used to generate the private key.
      */
-    public /*out*/ readonly keyLength!: pulumi.Output<number>;
+    declare public /*out*/ readonly keyLength: pulumi.Output<number>;
     /**
      * Private key in PEM format.
      */
-    public readonly keyPem!: pulumi.Output<string>;
+    declare public readonly keyPem: pulumi.Output<string>;
     /**
      * The algorithm used to generate the private key. Must be RSA.
      */
-    public /*out*/ readonly keyType!: pulumi.Output<string>;
+    declare public /*out*/ readonly keyType: pulumi.Output<string>;
     /**
      * Customisable name of the private key.
      */
-    public readonly name!: pulumi.Output<string>;
+    declare public readonly name: pulumi.Output<string>;
     /**
      * Useful for safely identifying the key.
      */
-    public /*out*/ readonly publicKeySha1!: pulumi.Output<string>;
+    declare public /*out*/ readonly publicKeySha1: pulumi.Output<string>;
     /**
      * Whether Fastly recommends replacing this private key.
      */
-    public /*out*/ readonly replace!: pulumi.Output<boolean>;
+    declare public /*out*/ readonly replace: pulumi.Output<boolean>;
 
     /**
      * Create a TlsPrivateKey resource with the given unique name, arguments, and options.
@@ -103,20 +103,20 @@ export class TlsPrivateKey extends pulumi.CustomResource {
         opts = opts || {};
         if (opts.id) {
             const state = argsOrState as TlsPrivateKeyState | undefined;
-            resourceInputs["createdAt"] = state ? state.createdAt : undefined;
-            resourceInputs["keyLength"] = state ? state.keyLength : undefined;
-            resourceInputs["keyPem"] = state ? state.keyPem : undefined;
-            resourceInputs["keyType"] = state ? state.keyType : undefined;
-            resourceInputs["name"] = state ? state.name : undefined;
-            resourceInputs["publicKeySha1"] = state ? state.publicKeySha1 : undefined;
-            resourceInputs["replace"] = state ? state.replace : undefined;
+            resourceInputs["createdAt"] = state?.createdAt;
+            resourceInputs["keyLength"] = state?.keyLength;
+            resourceInputs["keyPem"] = state?.keyPem;
+            resourceInputs["keyType"] = state?.keyType;
+            resourceInputs["name"] = state?.name;
+            resourceInputs["publicKeySha1"] = state?.publicKeySha1;
+            resourceInputs["replace"] = state?.replace;
         } else {
             const args = argsOrState as TlsPrivateKeyArgs | undefined;
-            if ((!args || args.keyPem === undefined) && !opts.urn) {
+            if (args?.keyPem === undefined && !opts.urn) {
                 throw new Error("Missing required property 'keyPem'");
             }
             resourceInputs["keyPem"] = args?.keyPem ? pulumi.secret(args.keyPem) : undefined;
-            resourceInputs["name"] = args ? args.name : undefined;
+            resourceInputs["name"] = args?.name;
             resourceInputs["createdAt"] = undefined /*out*/;
             resourceInputs["keyLength"] = undefined /*out*/;
             resourceInputs["keyType"] = undefined /*out*/;

@@ -48,15 +48,15 @@ export class CustomDashboard extends pulumi.CustomResource {
     /**
      * A list of dashboard items.
      */
-    public readonly dashboardItems!: pulumi.Output<outputs.CustomDashboardDashboardItem[] | undefined>;
+    declare public readonly dashboardItems: pulumi.Output<outputs.CustomDashboardDashboardItem[] | undefined>;
     /**
      * A short description of the dashboard.
      */
-    public readonly description!: pulumi.Output<string | undefined>;
+    declare public readonly description: pulumi.Output<string | undefined>;
     /**
      * A human-readable name.
      */
-    public readonly name!: pulumi.Output<string>;
+    declare public readonly name: pulumi.Output<string>;
 
     /**
      * Create a CustomDashboard resource with the given unique name, arguments, and options.
@@ -71,14 +71,14 @@ export class CustomDashboard extends pulumi.CustomResource {
         opts = opts || {};
         if (opts.id) {
             const state = argsOrState as CustomDashboardState | undefined;
-            resourceInputs["dashboardItems"] = state ? state.dashboardItems : undefined;
-            resourceInputs["description"] = state ? state.description : undefined;
-            resourceInputs["name"] = state ? state.name : undefined;
+            resourceInputs["dashboardItems"] = state?.dashboardItems;
+            resourceInputs["description"] = state?.description;
+            resourceInputs["name"] = state?.name;
         } else {
             const args = argsOrState as CustomDashboardArgs | undefined;
-            resourceInputs["dashboardItems"] = args ? args.dashboardItems : undefined;
-            resourceInputs["description"] = args ? args.description : undefined;
-            resourceInputs["name"] = args ? args.name : undefined;
+            resourceInputs["dashboardItems"] = args?.dashboardItems;
+            resourceInputs["description"] = args?.description;
+            resourceInputs["name"] = args?.name;
         }
         opts = pulumi.mergeOptions(utilities.resourceOptsDefaults(), opts);
         super(CustomDashboard.__pulumiType, name, resourceInputs, opts);

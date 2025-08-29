@@ -31,8 +31,7 @@ type ServiceVcl struct {
 	pulumi.CustomResourceState
 
 	Acls ServiceVclAclArrayOutput `pulumi:"acls"`
-	// Conditionally prevents new service versions from being activated. The apply step will create a new draft version but
-	// will not activate it if this is set to `false`. Default `true`
+	// Conditionally prevents new service versions from being activated. The apply step will create a new draft version but will not activate it if this is set to `false`. Default `true`
 	Activate pulumi.BoolPtrOutput `pulumi:"activate"`
 	// The currently active version of your Fastly Service
 	ActiveVersion pulumi.IntOutput                  `pulumi:"activeVersion"`
@@ -51,8 +50,7 @@ type ServiceVcl struct {
 	// A set of Domain names to serve as entry points for your Service
 	Domains         ServiceVclDomainArrayOutput         `pulumi:"domains"`
 	Dynamicsnippets ServiceVclDynamicsnippetArrayOutput `pulumi:"dynamicsnippets"`
-	// Services that are active cannot be destroyed. In order to destroy the Service, set `forceDestroy` to `true`. Default
-	// `false`
+	// Services that are active cannot be destroyed. In order to destroy the Service, set `forceDestroy` to `true`. Default `false`
 	ForceDestroy pulumi.BoolPtrOutput             `pulumi:"forceDestroy"`
 	ForceRefresh pulumi.BoolOutput                `pulumi:"forceRefresh"`
 	Gzips        ServiceVclGzipArrayOutput        `pulumi:"gzips"`
@@ -61,8 +59,7 @@ type ServiceVcl struct {
 	// Enables support for the HTTP/3 (QUIC) protocol
 	Http3                         pulumi.BoolPtrOutput                             `pulumi:"http3"`
 	ImageOptimizerDefaultSettings ServiceVclImageOptimizerDefaultSettingsPtrOutput `pulumi:"imageOptimizerDefaultSettings"`
-	// Used internally by the provider to temporarily indicate if the service is being imported, and is reset to false once the
-	// import is finished
+	// Used internally by the provider to temporarily indicate if the service is being imported, and is reset to false once the import is finished
 	Imported                pulumi.BoolOutput                           `pulumi:"imported"`
 	LoggingBigqueries       ServiceVclLoggingBigqueryArrayOutput        `pulumi:"loggingBigqueries"`
 	LoggingBlobstorages     ServiceVclLoggingBlobstorageArrayOutput     `pulumi:"loggingBlobstorages"`
@@ -100,8 +97,7 @@ type ServiceVcl struct {
 	ResponseObjects   ServiceVclResponseObjectArrayOutput  `pulumi:"responseObjects"`
 	Reuse             pulumi.BoolPtrOutput                 `pulumi:"reuse"`
 	Snippets          ServiceVclSnippetArrayOutput         `pulumi:"snippets"`
-	// Conditionally enables new service versions to be staged. If `set` to true, all changes made by an `apply` step will be
-	// staged, even if `apply` did not create a new draft version. Default `false`
+	// Conditionally enables new service versions to be staged. If `set` to true, all changes made by an `apply` step will be staged, even if `apply` did not create a new draft version. Default `false`
 	Stage pulumi.BoolPtrOutput `pulumi:"stage"`
 	// The currently staged version of your Fastly Service
 	StagedVersion pulumi.IntOutput `pulumi:"stagedVersion"`
@@ -148,8 +144,7 @@ func GetServiceVcl(ctx *pulumi.Context,
 // Input properties used for looking up and filtering ServiceVcl resources.
 type serviceVclState struct {
 	Acls []ServiceVclAcl `pulumi:"acls"`
-	// Conditionally prevents new service versions from being activated. The apply step will create a new draft version but
-	// will not activate it if this is set to `false`. Default `true`
+	// Conditionally prevents new service versions from being activated. The apply step will create a new draft version but will not activate it if this is set to `false`. Default `true`
 	Activate *bool `pulumi:"activate"`
 	// The currently active version of your Fastly Service
 	ActiveVersion *int                     `pulumi:"activeVersion"`
@@ -168,8 +163,7 @@ type serviceVclState struct {
 	// A set of Domain names to serve as entry points for your Service
 	Domains         []ServiceVclDomain         `pulumi:"domains"`
 	Dynamicsnippets []ServiceVclDynamicsnippet `pulumi:"dynamicsnippets"`
-	// Services that are active cannot be destroyed. In order to destroy the Service, set `forceDestroy` to `true`. Default
-	// `false`
+	// Services that are active cannot be destroyed. In order to destroy the Service, set `forceDestroy` to `true`. Default `false`
 	ForceDestroy *bool                   `pulumi:"forceDestroy"`
 	ForceRefresh *bool                   `pulumi:"forceRefresh"`
 	Gzips        []ServiceVclGzip        `pulumi:"gzips"`
@@ -178,8 +172,7 @@ type serviceVclState struct {
 	// Enables support for the HTTP/3 (QUIC) protocol
 	Http3                         *bool                                    `pulumi:"http3"`
 	ImageOptimizerDefaultSettings *ServiceVclImageOptimizerDefaultSettings `pulumi:"imageOptimizerDefaultSettings"`
-	// Used internally by the provider to temporarily indicate if the service is being imported, and is reset to false once the
-	// import is finished
+	// Used internally by the provider to temporarily indicate if the service is being imported, and is reset to false once the import is finished
 	Imported                *bool                              `pulumi:"imported"`
 	LoggingBigqueries       []ServiceVclLoggingBigquery        `pulumi:"loggingBigqueries"`
 	LoggingBlobstorages     []ServiceVclLoggingBlobstorage     `pulumi:"loggingBlobstorages"`
@@ -217,8 +210,7 @@ type serviceVclState struct {
 	ResponseObjects   []ServiceVclResponseObject   `pulumi:"responseObjects"`
 	Reuse             *bool                        `pulumi:"reuse"`
 	Snippets          []ServiceVclSnippet          `pulumi:"snippets"`
-	// Conditionally enables new service versions to be staged. If `set` to true, all changes made by an `apply` step will be
-	// staged, even if `apply` did not create a new draft version. Default `false`
+	// Conditionally enables new service versions to be staged. If `set` to true, all changes made by an `apply` step will be staged, even if `apply` did not create a new draft version. Default `false`
 	Stage *bool `pulumi:"stage"`
 	// The currently staged version of your Fastly Service
 	StagedVersion *int `pulumi:"stagedVersion"`
@@ -233,8 +225,7 @@ type serviceVclState struct {
 
 type ServiceVclState struct {
 	Acls ServiceVclAclArrayInput
-	// Conditionally prevents new service versions from being activated. The apply step will create a new draft version but
-	// will not activate it if this is set to `false`. Default `true`
+	// Conditionally prevents new service versions from being activated. The apply step will create a new draft version but will not activate it if this is set to `false`. Default `true`
 	Activate pulumi.BoolPtrInput
 	// The currently active version of your Fastly Service
 	ActiveVersion pulumi.IntPtrInput
@@ -253,8 +244,7 @@ type ServiceVclState struct {
 	// A set of Domain names to serve as entry points for your Service
 	Domains         ServiceVclDomainArrayInput
 	Dynamicsnippets ServiceVclDynamicsnippetArrayInput
-	// Services that are active cannot be destroyed. In order to destroy the Service, set `forceDestroy` to `true`. Default
-	// `false`
+	// Services that are active cannot be destroyed. In order to destroy the Service, set `forceDestroy` to `true`. Default `false`
 	ForceDestroy pulumi.BoolPtrInput
 	ForceRefresh pulumi.BoolPtrInput
 	Gzips        ServiceVclGzipArrayInput
@@ -263,8 +253,7 @@ type ServiceVclState struct {
 	// Enables support for the HTTP/3 (QUIC) protocol
 	Http3                         pulumi.BoolPtrInput
 	ImageOptimizerDefaultSettings ServiceVclImageOptimizerDefaultSettingsPtrInput
-	// Used internally by the provider to temporarily indicate if the service is being imported, and is reset to false once the
-	// import is finished
+	// Used internally by the provider to temporarily indicate if the service is being imported, and is reset to false once the import is finished
 	Imported                pulumi.BoolPtrInput
 	LoggingBigqueries       ServiceVclLoggingBigqueryArrayInput
 	LoggingBlobstorages     ServiceVclLoggingBlobstorageArrayInput
@@ -302,8 +291,7 @@ type ServiceVclState struct {
 	ResponseObjects   ServiceVclResponseObjectArrayInput
 	Reuse             pulumi.BoolPtrInput
 	Snippets          ServiceVclSnippetArrayInput
-	// Conditionally enables new service versions to be staged. If `set` to true, all changes made by an `apply` step will be
-	// staged, even if `apply` did not create a new draft version. Default `false`
+	// Conditionally enables new service versions to be staged. If `set` to true, all changes made by an `apply` step will be staged, even if `apply` did not create a new draft version. Default `false`
 	Stage pulumi.BoolPtrInput
 	// The currently staged version of your Fastly Service
 	StagedVersion pulumi.IntPtrInput
@@ -322,8 +310,7 @@ func (ServiceVclState) ElementType() reflect.Type {
 
 type serviceVclArgs struct {
 	Acls []ServiceVclAcl `pulumi:"acls"`
-	// Conditionally prevents new service versions from being activated. The apply step will create a new draft version but
-	// will not activate it if this is set to `false`. Default `true`
+	// Conditionally prevents new service versions from being activated. The apply step will create a new draft version but will not activate it if this is set to `false`. Default `true`
 	Activate      *bool                    `pulumi:"activate"`
 	Backends      []ServiceVclBackend      `pulumi:"backends"`
 	CacheSettings []ServiceVclCacheSetting `pulumi:"cacheSettings"`
@@ -338,8 +325,7 @@ type serviceVclArgs struct {
 	// A set of Domain names to serve as entry points for your Service
 	Domains         []ServiceVclDomain         `pulumi:"domains"`
 	Dynamicsnippets []ServiceVclDynamicsnippet `pulumi:"dynamicsnippets"`
-	// Services that are active cannot be destroyed. In order to destroy the Service, set `forceDestroy` to `true`. Default
-	// `false`
+	// Services that are active cannot be destroyed. In order to destroy the Service, set `forceDestroy` to `true`. Default `false`
 	ForceDestroy *bool                   `pulumi:"forceDestroy"`
 	Gzips        []ServiceVclGzip        `pulumi:"gzips"`
 	Headers      []ServiceVclHeader      `pulumi:"headers"`
@@ -383,8 +369,7 @@ type serviceVclArgs struct {
 	ResponseObjects   []ServiceVclResponseObject   `pulumi:"responseObjects"`
 	Reuse             *bool                        `pulumi:"reuse"`
 	Snippets          []ServiceVclSnippet          `pulumi:"snippets"`
-	// Conditionally enables new service versions to be staged. If `set` to true, all changes made by an `apply` step will be
-	// staged, even if `apply` did not create a new draft version. Default `false`
+	// Conditionally enables new service versions to be staged. If `set` to true, all changes made by an `apply` step will be staged, even if `apply` did not create a new draft version. Default `false`
 	Stage *bool `pulumi:"stage"`
 	// Enables serving a stale object if there is an error
 	StaleIfError *bool `pulumi:"staleIfError"`
@@ -398,8 +383,7 @@ type serviceVclArgs struct {
 // The set of arguments for constructing a ServiceVcl resource.
 type ServiceVclArgs struct {
 	Acls ServiceVclAclArrayInput
-	// Conditionally prevents new service versions from being activated. The apply step will create a new draft version but
-	// will not activate it if this is set to `false`. Default `true`
+	// Conditionally prevents new service versions from being activated. The apply step will create a new draft version but will not activate it if this is set to `false`. Default `true`
 	Activate      pulumi.BoolPtrInput
 	Backends      ServiceVclBackendArrayInput
 	CacheSettings ServiceVclCacheSettingArrayInput
@@ -414,8 +398,7 @@ type ServiceVclArgs struct {
 	// A set of Domain names to serve as entry points for your Service
 	Domains         ServiceVclDomainArrayInput
 	Dynamicsnippets ServiceVclDynamicsnippetArrayInput
-	// Services that are active cannot be destroyed. In order to destroy the Service, set `forceDestroy` to `true`. Default
-	// `false`
+	// Services that are active cannot be destroyed. In order to destroy the Service, set `forceDestroy` to `true`. Default `false`
 	ForceDestroy pulumi.BoolPtrInput
 	Gzips        ServiceVclGzipArrayInput
 	Headers      ServiceVclHeaderArrayInput
@@ -459,8 +442,7 @@ type ServiceVclArgs struct {
 	ResponseObjects   ServiceVclResponseObjectArrayInput
 	Reuse             pulumi.BoolPtrInput
 	Snippets          ServiceVclSnippetArrayInput
-	// Conditionally enables new service versions to be staged. If `set` to true, all changes made by an `apply` step will be
-	// staged, even if `apply` did not create a new draft version. Default `false`
+	// Conditionally enables new service versions to be staged. If `set` to true, all changes made by an `apply` step will be staged, even if `apply` did not create a new draft version. Default `false`
 	Stage pulumi.BoolPtrInput
 	// Enables serving a stale object if there is an error
 	StaleIfError pulumi.BoolPtrInput
@@ -562,8 +544,7 @@ func (o ServiceVclOutput) Acls() ServiceVclAclArrayOutput {
 	return o.ApplyT(func(v *ServiceVcl) ServiceVclAclArrayOutput { return v.Acls }).(ServiceVclAclArrayOutput)
 }
 
-// Conditionally prevents new service versions from being activated. The apply step will create a new draft version but
-// will not activate it if this is set to `false`. Default `true`
+// Conditionally prevents new service versions from being activated. The apply step will create a new draft version but will not activate it if this is set to `false`. Default `true`
 func (o ServiceVclOutput) Activate() pulumi.BoolPtrOutput {
 	return o.ApplyT(func(v *ServiceVcl) pulumi.BoolPtrOutput { return v.Activate }).(pulumi.BoolPtrOutput)
 }
@@ -621,8 +602,7 @@ func (o ServiceVclOutput) Dynamicsnippets() ServiceVclDynamicsnippetArrayOutput 
 	return o.ApplyT(func(v *ServiceVcl) ServiceVclDynamicsnippetArrayOutput { return v.Dynamicsnippets }).(ServiceVclDynamicsnippetArrayOutput)
 }
 
-// Services that are active cannot be destroyed. In order to destroy the Service, set `forceDestroy` to `true`. Default
-// `false`
+// Services that are active cannot be destroyed. In order to destroy the Service, set `forceDestroy` to `true`. Default `false`
 func (o ServiceVclOutput) ForceDestroy() pulumi.BoolPtrOutput {
 	return o.ApplyT(func(v *ServiceVcl) pulumi.BoolPtrOutput { return v.ForceDestroy }).(pulumi.BoolPtrOutput)
 }
@@ -654,8 +634,7 @@ func (o ServiceVclOutput) ImageOptimizerDefaultSettings() ServiceVclImageOptimiz
 	}).(ServiceVclImageOptimizerDefaultSettingsPtrOutput)
 }
 
-// Used internally by the provider to temporarily indicate if the service is being imported, and is reset to false once the
-// import is finished
+// Used internally by the provider to temporarily indicate if the service is being imported, and is reset to false once the import is finished
 func (o ServiceVclOutput) Imported() pulumi.BoolOutput {
 	return o.ApplyT(func(v *ServiceVcl) pulumi.BoolOutput { return v.Imported }).(pulumi.BoolOutput)
 }
@@ -801,8 +780,7 @@ func (o ServiceVclOutput) Snippets() ServiceVclSnippetArrayOutput {
 	return o.ApplyT(func(v *ServiceVcl) ServiceVclSnippetArrayOutput { return v.Snippets }).(ServiceVclSnippetArrayOutput)
 }
 
-// Conditionally enables new service versions to be staged. If `set` to true, all changes made by an `apply` step will be
-// staged, even if `apply` did not create a new draft version. Default `false`
+// Conditionally enables new service versions to be staged. If `set` to true, all changes made by an `apply` step will be staged, even if `apply` did not create a new draft version. Default `false`
 func (o ServiceVclOutput) Stage() pulumi.BoolPtrOutput {
 	return o.ApplyT(func(v *ServiceVcl) pulumi.BoolPtrOutput { return v.Stage }).(pulumi.BoolPtrOutput)
 }

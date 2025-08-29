@@ -44,12 +44,12 @@ export class ConfigstoreEntries extends pulumi.CustomResource {
     /**
      * A map representing an entry in the Config Store, (key/value)
      */
-    public readonly entries!: pulumi.Output<{[key: string]: string}>;
-    public readonly manageEntries!: pulumi.Output<boolean | undefined>;
+    declare public readonly entries: pulumi.Output<{[key: string]: string}>;
+    declare public readonly manageEntries: pulumi.Output<boolean | undefined>;
     /**
      * An alphanumeric string identifying the Config Store.
      */
-    public readonly storeId!: pulumi.Output<string>;
+    declare public readonly storeId: pulumi.Output<string>;
 
     /**
      * Create a ConfigstoreEntries resource with the given unique name, arguments, and options.
@@ -64,20 +64,20 @@ export class ConfigstoreEntries extends pulumi.CustomResource {
         opts = opts || {};
         if (opts.id) {
             const state = argsOrState as ConfigstoreEntriesState | undefined;
-            resourceInputs["entries"] = state ? state.entries : undefined;
-            resourceInputs["manageEntries"] = state ? state.manageEntries : undefined;
-            resourceInputs["storeId"] = state ? state.storeId : undefined;
+            resourceInputs["entries"] = state?.entries;
+            resourceInputs["manageEntries"] = state?.manageEntries;
+            resourceInputs["storeId"] = state?.storeId;
         } else {
             const args = argsOrState as ConfigstoreEntriesArgs | undefined;
-            if ((!args || args.entries === undefined) && !opts.urn) {
+            if (args?.entries === undefined && !opts.urn) {
                 throw new Error("Missing required property 'entries'");
             }
-            if ((!args || args.storeId === undefined) && !opts.urn) {
+            if (args?.storeId === undefined && !opts.urn) {
                 throw new Error("Missing required property 'storeId'");
             }
-            resourceInputs["entries"] = args ? args.entries : undefined;
-            resourceInputs["manageEntries"] = args ? args.manageEntries : undefined;
-            resourceInputs["storeId"] = args ? args.storeId : undefined;
+            resourceInputs["entries"] = args?.entries;
+            resourceInputs["manageEntries"] = args?.manageEntries;
+            resourceInputs["storeId"] = args?.storeId;
         }
         opts = pulumi.mergeOptions(utilities.resourceOptsDefaults(), opts);
         super(ConfigstoreEntries.__pulumiType, name, resourceInputs, opts);

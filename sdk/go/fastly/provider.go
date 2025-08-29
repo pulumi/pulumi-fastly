@@ -45,12 +45,9 @@ type providerArgs struct {
 	ApiKey *string `pulumi:"apiKey"`
 	// Fastly API URL
 	BaseUrl *string `pulumi:"baseUrl"`
-	// Set this to `true` to disable HTTP/1.x fallback mechanism that the underlying Go library will attempt upon connection to
-	// `api.fastly.com:443` by default. This may slightly improve the provider's performance and reduce unnecessary TLS
-	// handshakes. Default: `false`
+	// Set this to `true` to disable HTTP/1.x fallback mechanism that the underlying Go library will attempt upon connection to `api.fastly.com:443` by default. This may slightly improve the provider's performance and reduce unnecessary TLS handshakes. Default: `false`
 	ForceHttp2 *bool `pulumi:"forceHttp2"`
-	// Set to `true` if your configuration only consumes data sources that do not require authentication, such as
-	// `getFastlyIpRanges`
+	// Set to `true` if your configuration only consumes data sources that do not require authentication, such as `getFastlyIpRanges`
 	NoAuth *bool `pulumi:"noAuth"`
 }
 
@@ -60,12 +57,9 @@ type ProviderArgs struct {
 	ApiKey pulumi.StringPtrInput
 	// Fastly API URL
 	BaseUrl pulumi.StringPtrInput
-	// Set this to `true` to disable HTTP/1.x fallback mechanism that the underlying Go library will attempt upon connection to
-	// `api.fastly.com:443` by default. This may slightly improve the provider's performance and reduce unnecessary TLS
-	// handshakes. Default: `false`
+	// Set this to `true` to disable HTTP/1.x fallback mechanism that the underlying Go library will attempt upon connection to `api.fastly.com:443` by default. This may slightly improve the provider's performance and reduce unnecessary TLS handshakes. Default: `false`
 	ForceHttp2 pulumi.BoolPtrInput
-	// Set to `true` if your configuration only consumes data sources that do not require authentication, such as
-	// `getFastlyIpRanges`
+	// Set to `true` if your configuration only consumes data sources that do not require authentication, such as `getFastlyIpRanges`
 	NoAuth pulumi.BoolPtrInput
 }
 

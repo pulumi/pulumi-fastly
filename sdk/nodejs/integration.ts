@@ -93,19 +93,19 @@ export class Integration extends pulumi.CustomResource {
     /**
      * Configuration specific to the integration `type` (see documentation examples).
      */
-    public readonly config!: pulumi.Output<{[key: string]: string}>;
+    declare public readonly config: pulumi.Output<{[key: string]: string}>;
     /**
      * User submitted description of the integration.
      */
-    public readonly description!: pulumi.Output<string | undefined>;
+    declare public readonly description: pulumi.Output<string | undefined>;
     /**
      * User submitted name of the integration.
      */
-    public readonly name!: pulumi.Output<string>;
+    declare public readonly name: pulumi.Output<string>;
     /**
      * Type of the integration. One of: `mailinglist`, `microsoftteams`, `newrelic`, `pagerduty`, `slack`, `webhook`.
      */
-    public readonly type!: pulumi.Output<string>;
+    declare public readonly type: pulumi.Output<string>;
 
     /**
      * Create a Integration resource with the given unique name, arguments, and options.
@@ -120,22 +120,22 @@ export class Integration extends pulumi.CustomResource {
         opts = opts || {};
         if (opts.id) {
             const state = argsOrState as IntegrationState | undefined;
-            resourceInputs["config"] = state ? state.config : undefined;
-            resourceInputs["description"] = state ? state.description : undefined;
-            resourceInputs["name"] = state ? state.name : undefined;
-            resourceInputs["type"] = state ? state.type : undefined;
+            resourceInputs["config"] = state?.config;
+            resourceInputs["description"] = state?.description;
+            resourceInputs["name"] = state?.name;
+            resourceInputs["type"] = state?.type;
         } else {
             const args = argsOrState as IntegrationArgs | undefined;
-            if ((!args || args.config === undefined) && !opts.urn) {
+            if (args?.config === undefined && !opts.urn) {
                 throw new Error("Missing required property 'config'");
             }
-            if ((!args || args.type === undefined) && !opts.urn) {
+            if (args?.type === undefined && !opts.urn) {
                 throw new Error("Missing required property 'type'");
             }
             resourceInputs["config"] = args?.config ? pulumi.secret(args.config) : undefined;
-            resourceInputs["description"] = args ? args.description : undefined;
-            resourceInputs["name"] = args ? args.name : undefined;
-            resourceInputs["type"] = args ? args.type : undefined;
+            resourceInputs["description"] = args?.description;
+            resourceInputs["name"] = args?.name;
+            resourceInputs["type"] = args?.type;
         }
         opts = pulumi.mergeOptions(utilities.resourceOptsDefaults(), opts);
         const secretOpts = { additionalSecretOutputs: ["config"] };

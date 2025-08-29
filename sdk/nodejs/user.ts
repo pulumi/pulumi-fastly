@@ -62,15 +62,15 @@ export class User extends pulumi.CustomResource {
     /**
      * The email address, which is the login name, of the User
      */
-    public readonly login!: pulumi.Output<string>;
+    declare public readonly login: pulumi.Output<string>;
     /**
      * The real life name of the user
      */
-    public readonly name!: pulumi.Output<string>;
+    declare public readonly name: pulumi.Output<string>;
     /**
      * The role of this user. Can be `user` (the default), `billing`, `engineer`, or `superuser`. For detailed information on the abilities granted to each role, see [Fastly's Documentation on User roles](https://docs.fastly.com/en/guides/configuring-user-roles-and-permissions#user-roles-and-what-they-can-do)
      */
-    public readonly role!: pulumi.Output<string | undefined>;
+    declare public readonly role: pulumi.Output<string | undefined>;
 
     /**
      * Create a User resource with the given unique name, arguments, and options.
@@ -85,17 +85,17 @@ export class User extends pulumi.CustomResource {
         opts = opts || {};
         if (opts.id) {
             const state = argsOrState as UserState | undefined;
-            resourceInputs["login"] = state ? state.login : undefined;
-            resourceInputs["name"] = state ? state.name : undefined;
-            resourceInputs["role"] = state ? state.role : undefined;
+            resourceInputs["login"] = state?.login;
+            resourceInputs["name"] = state?.name;
+            resourceInputs["role"] = state?.role;
         } else {
             const args = argsOrState as UserArgs | undefined;
-            if ((!args || args.login === undefined) && !opts.urn) {
+            if (args?.login === undefined && !opts.urn) {
                 throw new Error("Missing required property 'login'");
             }
-            resourceInputs["login"] = args ? args.login : undefined;
-            resourceInputs["name"] = args ? args.name : undefined;
-            resourceInputs["role"] = args ? args.role : undefined;
+            resourceInputs["login"] = args?.login;
+            resourceInputs["name"] = args?.name;
+            resourceInputs["role"] = args?.role;
         }
         opts = pulumi.mergeOptions(utilities.resourceOptsDefaults(), opts);
         super(User.__pulumiType, name, resourceInputs, opts);

@@ -87,23 +87,23 @@ export class TlsActivation extends pulumi.CustomResource {
     /**
      * ID of certificate to use. Must have the `domain` specified in the certificate's Subject Alternative Names.
      */
-    public readonly certificateId!: pulumi.Output<string>;
+    declare public readonly certificateId: pulumi.Output<string>;
     /**
      * ID of TLS configuration to be used to terminate TLS traffic, or use the default one if missing.
      */
-    public readonly configurationId!: pulumi.Output<string>;
+    declare public readonly configurationId: pulumi.Output<string>;
     /**
      * Time-stamp (GMT) when TLS was enabled.
      */
-    public /*out*/ readonly createdAt!: pulumi.Output<string>;
+    declare public /*out*/ readonly createdAt: pulumi.Output<string>;
     /**
      * Domain to enable TLS on. Must be assigned to an existing Fastly Service.
      */
-    public readonly domain!: pulumi.Output<string>;
+    declare public readonly domain: pulumi.Output<string>;
     /**
      * An alphanumeric string identifying a mutual authentication.
      */
-    public readonly mutualAuthenticationId!: pulumi.Output<string>;
+    declare public readonly mutualAuthenticationId: pulumi.Output<string>;
 
     /**
      * Create a TlsActivation resource with the given unique name, arguments, and options.
@@ -118,23 +118,23 @@ export class TlsActivation extends pulumi.CustomResource {
         opts = opts || {};
         if (opts.id) {
             const state = argsOrState as TlsActivationState | undefined;
-            resourceInputs["certificateId"] = state ? state.certificateId : undefined;
-            resourceInputs["configurationId"] = state ? state.configurationId : undefined;
-            resourceInputs["createdAt"] = state ? state.createdAt : undefined;
-            resourceInputs["domain"] = state ? state.domain : undefined;
-            resourceInputs["mutualAuthenticationId"] = state ? state.mutualAuthenticationId : undefined;
+            resourceInputs["certificateId"] = state?.certificateId;
+            resourceInputs["configurationId"] = state?.configurationId;
+            resourceInputs["createdAt"] = state?.createdAt;
+            resourceInputs["domain"] = state?.domain;
+            resourceInputs["mutualAuthenticationId"] = state?.mutualAuthenticationId;
         } else {
             const args = argsOrState as TlsActivationArgs | undefined;
-            if ((!args || args.certificateId === undefined) && !opts.urn) {
+            if (args?.certificateId === undefined && !opts.urn) {
                 throw new Error("Missing required property 'certificateId'");
             }
-            if ((!args || args.domain === undefined) && !opts.urn) {
+            if (args?.domain === undefined && !opts.urn) {
                 throw new Error("Missing required property 'domain'");
             }
-            resourceInputs["certificateId"] = args ? args.certificateId : undefined;
-            resourceInputs["configurationId"] = args ? args.configurationId : undefined;
-            resourceInputs["domain"] = args ? args.domain : undefined;
-            resourceInputs["mutualAuthenticationId"] = args ? args.mutualAuthenticationId : undefined;
+            resourceInputs["certificateId"] = args?.certificateId;
+            resourceInputs["configurationId"] = args?.configurationId;
+            resourceInputs["domain"] = args?.domain;
+            resourceInputs["mutualAuthenticationId"] = args?.mutualAuthenticationId;
             resourceInputs["createdAt"] = undefined /*out*/;
         }
         opts = pulumi.mergeOptions(utilities.resourceOptsDefaults(), opts);
