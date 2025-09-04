@@ -70,7 +70,7 @@ class ServiceComputeArgs:
         :param pulumi.Input[_builtins.str] name: The unique name for the Service to create
         :param pulumi.Input['ServiceComputePackageArgs'] package: The `package` block supports uploading or modifying Wasm packages for use in a Fastly Compute service (if omitted, ensure `activate = false` is set on `ServiceCompute` to avoid service validation errors). See Fastly's documentation on [Compute](https://developer.fastly.com/learning/compute/)
         :param pulumi.Input[Sequence[pulumi.Input['ServiceComputeResourceLinkArgs']]] resource_links: A resource link represents a link between a shared resource (such as an KV Store or Config Store) and a service version.
-        :param pulumi.Input[_builtins.bool] stage: Conditionally enables new service versions to be staged. If `set` to true, all changes made by an `apply` step will be staged, even if `apply` did not create a new draft version. Default `false`
+        :param pulumi.Input[_builtins.bool] stage: Conditionally enables new service versions to be staged. If set to `true`, all changes made by an `apply` step will be staged, even if `apply` did not create a new draft version. Default `false`
         :param pulumi.Input[_builtins.str] version_comment: Description field for the version
         """
         pulumi.set(__self__, "domains", domains)
@@ -528,7 +528,7 @@ class ServiceComputeArgs:
     @pulumi.getter
     def stage(self) -> Optional[pulumi.Input[_builtins.bool]]:
         """
-        Conditionally enables new service versions to be staged. If `set` to true, all changes made by an `apply` step will be staged, even if `apply` did not create a new draft version. Default `false`
+        Conditionally enables new service versions to be staged. If set to `true`, all changes made by an `apply` step will be staged, even if `apply` did not create a new draft version. Default `false`
         """
         return pulumi.get(self, "stage")
 
@@ -609,7 +609,7 @@ class _ServiceComputeState:
         :param pulumi.Input[_builtins.str] name: The unique name for the Service to create
         :param pulumi.Input['ServiceComputePackageArgs'] package: The `package` block supports uploading or modifying Wasm packages for use in a Fastly Compute service (if omitted, ensure `activate = false` is set on `ServiceCompute` to avoid service validation errors). See Fastly's documentation on [Compute](https://developer.fastly.com/learning/compute/)
         :param pulumi.Input[Sequence[pulumi.Input['ServiceComputeResourceLinkArgs']]] resource_links: A resource link represents a link between a shared resource (such as an KV Store or Config Store) and a service version.
-        :param pulumi.Input[_builtins.bool] stage: Conditionally enables new service versions to be staged. If `set` to true, all changes made by an `apply` step will be staged, even if `apply` did not create a new draft version. Default `false`
+        :param pulumi.Input[_builtins.bool] stage: Conditionally enables new service versions to be staged. If set to `true`, all changes made by an `apply` step will be staged, even if `apply` did not create a new draft version. Default `false`
         :param pulumi.Input[_builtins.int] staged_version: The currently staged version of your Fastly Service
         :param pulumi.Input[_builtins.str] version_comment: Description field for the version
         """
@@ -1124,7 +1124,7 @@ class _ServiceComputeState:
     @pulumi.getter
     def stage(self) -> Optional[pulumi.Input[_builtins.bool]]:
         """
-        Conditionally enables new service versions to be staged. If `set` to true, all changes made by an `apply` step will be staged, even if `apply` did not create a new draft version. Default `false`
+        Conditionally enables new service versions to be staged. If set to `true`, all changes made by an `apply` step will be staged, even if `apply` did not create a new draft version. Default `false`
         """
         return pulumi.get(self, "stage")
 
@@ -1230,7 +1230,7 @@ class ServiceCompute(pulumi.CustomResource):
         :param pulumi.Input[_builtins.str] name: The unique name for the Service to create
         :param pulumi.Input[Union['ServiceComputePackageArgs', 'ServiceComputePackageArgsDict']] package: The `package` block supports uploading or modifying Wasm packages for use in a Fastly Compute service (if omitted, ensure `activate = false` is set on `ServiceCompute` to avoid service validation errors). See Fastly's documentation on [Compute](https://developer.fastly.com/learning/compute/)
         :param pulumi.Input[Sequence[pulumi.Input[Union['ServiceComputeResourceLinkArgs', 'ServiceComputeResourceLinkArgsDict']]]] resource_links: A resource link represents a link between a shared resource (such as an KV Store or Config Store) and a service version.
-        :param pulumi.Input[_builtins.bool] stage: Conditionally enables new service versions to be staged. If `set` to true, all changes made by an `apply` step will be staged, even if `apply` did not create a new draft version. Default `false`
+        :param pulumi.Input[_builtins.bool] stage: Conditionally enables new service versions to be staged. If set to `true`, all changes made by an `apply` step will be staged, even if `apply` did not create a new draft version. Default `false`
         :param pulumi.Input[_builtins.str] version_comment: Description field for the version
         """
         ...
@@ -1441,7 +1441,7 @@ class ServiceCompute(pulumi.CustomResource):
         :param pulumi.Input[_builtins.str] name: The unique name for the Service to create
         :param pulumi.Input[Union['ServiceComputePackageArgs', 'ServiceComputePackageArgsDict']] package: The `package` block supports uploading or modifying Wasm packages for use in a Fastly Compute service (if omitted, ensure `activate = false` is set on `ServiceCompute` to avoid service validation errors). See Fastly's documentation on [Compute](https://developer.fastly.com/learning/compute/)
         :param pulumi.Input[Sequence[pulumi.Input[Union['ServiceComputeResourceLinkArgs', 'ServiceComputeResourceLinkArgsDict']]]] resource_links: A resource link represents a link between a shared resource (such as an KV Store or Config Store) and a service version.
-        :param pulumi.Input[_builtins.bool] stage: Conditionally enables new service versions to be staged. If `set` to true, all changes made by an `apply` step will be staged, even if `apply` did not create a new draft version. Default `false`
+        :param pulumi.Input[_builtins.bool] stage: Conditionally enables new service versions to be staged. If set to `true`, all changes made by an `apply` step will be staged, even if `apply` did not create a new draft version. Default `false`
         :param pulumi.Input[_builtins.int] staged_version: The currently staged version of your Fastly Service
         :param pulumi.Input[_builtins.str] version_comment: Description field for the version
         """
@@ -1743,7 +1743,7 @@ class ServiceCompute(pulumi.CustomResource):
     @pulumi.getter
     def stage(self) -> pulumi.Output[Optional[_builtins.bool]]:
         """
-        Conditionally enables new service versions to be staged. If `set` to true, all changes made by an `apply` step will be staged, even if `apply` did not create a new draft version. Default `false`
+        Conditionally enables new service versions to be staged. If set to `true`, all changes made by an `apply` step will be staged, even if `apply` did not create a new draft version. Default `false`
         """
         return pulumi.get(self, "stage")
 

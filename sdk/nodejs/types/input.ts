@@ -106,6 +106,213 @@ export interface CustomDashboardDashboardItemVisualizationConfig {
     plotType: pulumi.Input<string>;
 }
 
+export interface NgwafAccountRuleAction {
+    /**
+     * Signal name to exclude (used when `type = excludeSignal`).
+     */
+    signal?: pulumi.Input<string>;
+    /**
+     * The action type, e.g. `block`, `redirect`, `excludeSignal`.
+     */
+    type: pulumi.Input<string>;
+}
+
+export interface NgwafAccountRuleCondition {
+    /**
+     * Field to inspect (e.g., `ip`, `path`).
+     */
+    field: pulumi.Input<string>;
+    /**
+     * Operator to apply (e.g., `equals`, `contains`).
+     */
+    operator: pulumi.Input<string>;
+    /**
+     * The value to test the field against.
+     */
+    value: pulumi.Input<string>;
+}
+
+export interface NgwafAccountRuleGroupCondition {
+    /**
+     * A list of nested conditions in this group.
+     */
+    conditions: pulumi.Input<pulumi.Input<inputs.NgwafAccountRuleGroupConditionCondition>[]>;
+    /**
+     * Logical operator for the group. Accepted values are `any` and `all`.
+     */
+    groupOperator: pulumi.Input<string>;
+}
+
+export interface NgwafAccountRuleGroupConditionCondition {
+    /**
+     * Field to inspect (e.g., `ip`, `path`).
+     */
+    field: pulumi.Input<string>;
+    /**
+     * Operator to apply (e.g., `equals`, `contains`).
+     */
+    operator: pulumi.Input<string>;
+    /**
+     * The value to test the field against.
+     */
+    value: pulumi.Input<string>;
+}
+
+export interface NgwafAccountRuleRateLimit {
+    /**
+     * List of client identifiers used for rate limiting. Can only be length 1 or 2.
+     */
+    clientIdentifiers: pulumi.Input<pulumi.Input<inputs.NgwafAccountRuleRateLimitClientIdentifier>[]>;
+    /**
+     * Duration in seconds for the rate limit.
+     */
+    duration: pulumi.Input<number>;
+    /**
+     * Time interval for the rate limit in seconds. Accepted values are 60, 600, and 3600.
+     */
+    interval: pulumi.Input<number>;
+    /**
+     * Reference ID of the custom signal this rule uses to count requests.
+     */
+    signal: pulumi.Input<string>;
+    /**
+     * Rate limit threshold. Minimum 1 and maximum 10,000.
+     */
+    threshold: pulumi.Input<number>;
+}
+
+export interface NgwafAccountRuleRateLimitClientIdentifier {
+    /**
+     * Key for the Client Identifier.
+     */
+    key?: pulumi.Input<string>;
+    /**
+     * Name for the Client Identifier.
+     */
+    name?: pulumi.Input<string>;
+    /**
+     * Type of the Client Identifier.
+     */
+    type: pulumi.Input<string>;
+}
+
+export interface NgwafWorkspaceAttackSignalThresholds {
+    /**
+     * Ignore thresholds and block immediately when at least one attack signal is detected. Default value `false`.
+     */
+    immediate?: pulumi.Input<boolean>;
+    /**
+     * The one-hour interval threshold. Minimum 1 and maximum 10,000. Default value 100.
+     */
+    oneHour?: pulumi.Input<number>;
+    /**
+     * The one-minute interval threshold. Minimum 1 and maximum 10,000. Default value 1.
+     */
+    oneMinute?: pulumi.Input<number>;
+    /**
+     * The ten-minute interval threshold. Minimum 1 and maximum 10,000. Default value 60.
+     */
+    tenMinutes?: pulumi.Input<number>;
+}
+
+export interface NgwafWorkspaceRuleAction {
+    /**
+     * Redirect target (used when `type = redirect`).
+     */
+    redirectUrl?: pulumi.Input<string>;
+    /**
+     * Response code used with redirect.
+     */
+    responseCode?: pulumi.Input<number>;
+    /**
+     * Signal name to exclude (used when `type = excludeSignal`).
+     */
+    signal?: pulumi.Input<string>;
+    /**
+     * The action type, e.g. `block`, `redirect`, `excludeSignal`.
+     */
+    type: pulumi.Input<string>;
+}
+
+export interface NgwafWorkspaceRuleCondition {
+    /**
+     * Field to inspect (e.g., `ip`, `path`).
+     */
+    field: pulumi.Input<string>;
+    /**
+     * Operator to apply (e.g., `equals`, `contains`).
+     */
+    operator: pulumi.Input<string>;
+    /**
+     * The value to test the field against.
+     */
+    value: pulumi.Input<string>;
+}
+
+export interface NgwafWorkspaceRuleGroupCondition {
+    /**
+     * A list of nested conditions in this group.
+     */
+    conditions: pulumi.Input<pulumi.Input<inputs.NgwafWorkspaceRuleGroupConditionCondition>[]>;
+    /**
+     * Logical operator for the group. Accepted values are `any` and `all`.
+     */
+    groupOperator: pulumi.Input<string>;
+}
+
+export interface NgwafWorkspaceRuleGroupConditionCondition {
+    /**
+     * Field to inspect (e.g., `ip`, `path`).
+     */
+    field: pulumi.Input<string>;
+    /**
+     * Operator to apply (e.g., `equals`, `contains`).
+     */
+    operator: pulumi.Input<string>;
+    /**
+     * The value to test the field against.
+     */
+    value: pulumi.Input<string>;
+}
+
+export interface NgwafWorkspaceRuleRateLimit {
+    /**
+     * List of client identifiers used for rate limiting. Can only be length 1 or 2.
+     */
+    clientIdentifiers: pulumi.Input<pulumi.Input<inputs.NgwafWorkspaceRuleRateLimitClientIdentifier>[]>;
+    /**
+     * Duration in seconds for the rate limit.
+     */
+    duration: pulumi.Input<number>;
+    /**
+     * Time interval for the rate limit in seconds. Accepted values are 60, 600, and 3600.
+     */
+    interval: pulumi.Input<number>;
+    /**
+     * Reference ID of the custom signal this rule uses to count requests.
+     */
+    signal: pulumi.Input<string>;
+    /**
+     * Rate limit threshold. Minimum 1 and maximum 10,000.
+     */
+    threshold: pulumi.Input<number>;
+}
+
+export interface NgwafWorkspaceRuleRateLimitClientIdentifier {
+    /**
+     * Key for the Client Identifier.
+     */
+    key?: pulumi.Input<string>;
+    /**
+     * Name for the Client Identifier.
+     */
+    name?: pulumi.Input<string>;
+    /**
+     * Type of the Client Identifier.
+     */
+    type: pulumi.Input<string>;
+}
+
 export interface ServiceACLEntriesEntry {
     /**
      * A personal freeform descriptive note
@@ -1415,7 +1622,7 @@ export interface ServiceComputeProductEnablementDdosProtection {
      */
     enabled: pulumi.Input<boolean>;
     /**
-     * Operation mode
+     * Operation mode. Can be either `off`, `log`, or `block`.
      */
     mode: pulumi.Input<string>;
 }
@@ -3444,7 +3651,7 @@ export interface ServiceVclProductEnablementDdosProtection {
      */
     enabled: pulumi.Input<boolean>;
     /**
-     * Operation mode
+     * Operation mode. Can be either `off`, `log`, or `block`.
      */
     mode: pulumi.Input<string>;
 }

@@ -506,14 +506,14 @@ public class ServiceVcl extends com.pulumi.resources.CustomResource {
         return Codegen.optional(this.snippets);
     }
     /**
-     * Conditionally enables new service versions to be staged. If `set` to true, all changes made by an `apply` step will be staged, even if `apply` did not create a new draft version. Default `false`
+     * Conditionally enables new service versions to be staged. If set to `true`, all changes made by an `apply` step will be staged, even if `apply` did not create a new draft version. Default `false`
      * 
      */
     @Export(name="stage", refs={Boolean.class}, tree="[0]")
     private Output</* @Nullable */ Boolean> stage;
 
     /**
-     * @return Conditionally enables new service versions to be staged. If `set` to true, all changes made by an `apply` step will be staged, even if `apply` did not create a new draft version. Default `false`
+     * @return Conditionally enables new service versions to be staged. If set to `true`, all changes made by an `apply` step will be staged, even if `apply` did not create a new draft version. Default `false`
      * 
      */
     public Output<Optional<Boolean>> stage() {

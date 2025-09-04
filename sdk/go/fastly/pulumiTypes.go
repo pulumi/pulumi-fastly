@@ -7,7 +7,7 @@ import (
 	"context"
 	"reflect"
 
-	"github.com/pulumi/pulumi-fastly/sdk/v10/go/fastly/internal"
+	"github.com/pulumi/pulumi-fastly/sdk/v11/go/fastly/internal"
 	"github.com/pulumi/pulumi/sdk/v3/go/pulumi"
 )
 
@@ -751,6 +751,1764 @@ func (o CustomDashboardDashboardItemVisualizationConfigOutput) Format() pulumi.S
 // The type of chart to display. One of: `line`, `bar`, `single-metric`, `donut`.
 func (o CustomDashboardDashboardItemVisualizationConfigOutput) PlotType() pulumi.StringOutput {
 	return o.ApplyT(func(v CustomDashboardDashboardItemVisualizationConfig) string { return v.PlotType }).(pulumi.StringOutput)
+}
+
+type NgwafAccountRuleAction struct {
+	// Signal name to exclude (used when `type = excludeSignal`).
+	Signal *string `pulumi:"signal"`
+	// The action type, e.g. `block`, `redirect`, `excludeSignal`.
+	Type string `pulumi:"type"`
+}
+
+// NgwafAccountRuleActionInput is an input type that accepts NgwafAccountRuleActionArgs and NgwafAccountRuleActionOutput values.
+// You can construct a concrete instance of `NgwafAccountRuleActionInput` via:
+//
+//	NgwafAccountRuleActionArgs{...}
+type NgwafAccountRuleActionInput interface {
+	pulumi.Input
+
+	ToNgwafAccountRuleActionOutput() NgwafAccountRuleActionOutput
+	ToNgwafAccountRuleActionOutputWithContext(context.Context) NgwafAccountRuleActionOutput
+}
+
+type NgwafAccountRuleActionArgs struct {
+	// Signal name to exclude (used when `type = excludeSignal`).
+	Signal pulumi.StringPtrInput `pulumi:"signal"`
+	// The action type, e.g. `block`, `redirect`, `excludeSignal`.
+	Type pulumi.StringInput `pulumi:"type"`
+}
+
+func (NgwafAccountRuleActionArgs) ElementType() reflect.Type {
+	return reflect.TypeOf((*NgwafAccountRuleAction)(nil)).Elem()
+}
+
+func (i NgwafAccountRuleActionArgs) ToNgwafAccountRuleActionOutput() NgwafAccountRuleActionOutput {
+	return i.ToNgwafAccountRuleActionOutputWithContext(context.Background())
+}
+
+func (i NgwafAccountRuleActionArgs) ToNgwafAccountRuleActionOutputWithContext(ctx context.Context) NgwafAccountRuleActionOutput {
+	return pulumi.ToOutputWithContext(ctx, i).(NgwafAccountRuleActionOutput)
+}
+
+// NgwafAccountRuleActionArrayInput is an input type that accepts NgwafAccountRuleActionArray and NgwafAccountRuleActionArrayOutput values.
+// You can construct a concrete instance of `NgwafAccountRuleActionArrayInput` via:
+//
+//	NgwafAccountRuleActionArray{ NgwafAccountRuleActionArgs{...} }
+type NgwafAccountRuleActionArrayInput interface {
+	pulumi.Input
+
+	ToNgwafAccountRuleActionArrayOutput() NgwafAccountRuleActionArrayOutput
+	ToNgwafAccountRuleActionArrayOutputWithContext(context.Context) NgwafAccountRuleActionArrayOutput
+}
+
+type NgwafAccountRuleActionArray []NgwafAccountRuleActionInput
+
+func (NgwafAccountRuleActionArray) ElementType() reflect.Type {
+	return reflect.TypeOf((*[]NgwafAccountRuleAction)(nil)).Elem()
+}
+
+func (i NgwafAccountRuleActionArray) ToNgwafAccountRuleActionArrayOutput() NgwafAccountRuleActionArrayOutput {
+	return i.ToNgwafAccountRuleActionArrayOutputWithContext(context.Background())
+}
+
+func (i NgwafAccountRuleActionArray) ToNgwafAccountRuleActionArrayOutputWithContext(ctx context.Context) NgwafAccountRuleActionArrayOutput {
+	return pulumi.ToOutputWithContext(ctx, i).(NgwafAccountRuleActionArrayOutput)
+}
+
+type NgwafAccountRuleActionOutput struct{ *pulumi.OutputState }
+
+func (NgwafAccountRuleActionOutput) ElementType() reflect.Type {
+	return reflect.TypeOf((*NgwafAccountRuleAction)(nil)).Elem()
+}
+
+func (o NgwafAccountRuleActionOutput) ToNgwafAccountRuleActionOutput() NgwafAccountRuleActionOutput {
+	return o
+}
+
+func (o NgwafAccountRuleActionOutput) ToNgwafAccountRuleActionOutputWithContext(ctx context.Context) NgwafAccountRuleActionOutput {
+	return o
+}
+
+// Signal name to exclude (used when `type = excludeSignal`).
+func (o NgwafAccountRuleActionOutput) Signal() pulumi.StringPtrOutput {
+	return o.ApplyT(func(v NgwafAccountRuleAction) *string { return v.Signal }).(pulumi.StringPtrOutput)
+}
+
+// The action type, e.g. `block`, `redirect`, `excludeSignal`.
+func (o NgwafAccountRuleActionOutput) Type() pulumi.StringOutput {
+	return o.ApplyT(func(v NgwafAccountRuleAction) string { return v.Type }).(pulumi.StringOutput)
+}
+
+type NgwafAccountRuleActionArrayOutput struct{ *pulumi.OutputState }
+
+func (NgwafAccountRuleActionArrayOutput) ElementType() reflect.Type {
+	return reflect.TypeOf((*[]NgwafAccountRuleAction)(nil)).Elem()
+}
+
+func (o NgwafAccountRuleActionArrayOutput) ToNgwafAccountRuleActionArrayOutput() NgwafAccountRuleActionArrayOutput {
+	return o
+}
+
+func (o NgwafAccountRuleActionArrayOutput) ToNgwafAccountRuleActionArrayOutputWithContext(ctx context.Context) NgwafAccountRuleActionArrayOutput {
+	return o
+}
+
+func (o NgwafAccountRuleActionArrayOutput) Index(i pulumi.IntInput) NgwafAccountRuleActionOutput {
+	return pulumi.All(o, i).ApplyT(func(vs []interface{}) NgwafAccountRuleAction {
+		return vs[0].([]NgwafAccountRuleAction)[vs[1].(int)]
+	}).(NgwafAccountRuleActionOutput)
+}
+
+type NgwafAccountRuleCondition struct {
+	// Field to inspect (e.g., `ip`, `path`).
+	Field string `pulumi:"field"`
+	// Operator to apply (e.g., `equals`, `contains`).
+	Operator string `pulumi:"operator"`
+	// The value to test the field against.
+	Value string `pulumi:"value"`
+}
+
+// NgwafAccountRuleConditionInput is an input type that accepts NgwafAccountRuleConditionArgs and NgwafAccountRuleConditionOutput values.
+// You can construct a concrete instance of `NgwafAccountRuleConditionInput` via:
+//
+//	NgwafAccountRuleConditionArgs{...}
+type NgwafAccountRuleConditionInput interface {
+	pulumi.Input
+
+	ToNgwafAccountRuleConditionOutput() NgwafAccountRuleConditionOutput
+	ToNgwafAccountRuleConditionOutputWithContext(context.Context) NgwafAccountRuleConditionOutput
+}
+
+type NgwafAccountRuleConditionArgs struct {
+	// Field to inspect (e.g., `ip`, `path`).
+	Field pulumi.StringInput `pulumi:"field"`
+	// Operator to apply (e.g., `equals`, `contains`).
+	Operator pulumi.StringInput `pulumi:"operator"`
+	// The value to test the field against.
+	Value pulumi.StringInput `pulumi:"value"`
+}
+
+func (NgwafAccountRuleConditionArgs) ElementType() reflect.Type {
+	return reflect.TypeOf((*NgwafAccountRuleCondition)(nil)).Elem()
+}
+
+func (i NgwafAccountRuleConditionArgs) ToNgwafAccountRuleConditionOutput() NgwafAccountRuleConditionOutput {
+	return i.ToNgwafAccountRuleConditionOutputWithContext(context.Background())
+}
+
+func (i NgwafAccountRuleConditionArgs) ToNgwafAccountRuleConditionOutputWithContext(ctx context.Context) NgwafAccountRuleConditionOutput {
+	return pulumi.ToOutputWithContext(ctx, i).(NgwafAccountRuleConditionOutput)
+}
+
+// NgwafAccountRuleConditionArrayInput is an input type that accepts NgwafAccountRuleConditionArray and NgwafAccountRuleConditionArrayOutput values.
+// You can construct a concrete instance of `NgwafAccountRuleConditionArrayInput` via:
+//
+//	NgwafAccountRuleConditionArray{ NgwafAccountRuleConditionArgs{...} }
+type NgwafAccountRuleConditionArrayInput interface {
+	pulumi.Input
+
+	ToNgwafAccountRuleConditionArrayOutput() NgwafAccountRuleConditionArrayOutput
+	ToNgwafAccountRuleConditionArrayOutputWithContext(context.Context) NgwafAccountRuleConditionArrayOutput
+}
+
+type NgwafAccountRuleConditionArray []NgwafAccountRuleConditionInput
+
+func (NgwafAccountRuleConditionArray) ElementType() reflect.Type {
+	return reflect.TypeOf((*[]NgwafAccountRuleCondition)(nil)).Elem()
+}
+
+func (i NgwafAccountRuleConditionArray) ToNgwafAccountRuleConditionArrayOutput() NgwafAccountRuleConditionArrayOutput {
+	return i.ToNgwafAccountRuleConditionArrayOutputWithContext(context.Background())
+}
+
+func (i NgwafAccountRuleConditionArray) ToNgwafAccountRuleConditionArrayOutputWithContext(ctx context.Context) NgwafAccountRuleConditionArrayOutput {
+	return pulumi.ToOutputWithContext(ctx, i).(NgwafAccountRuleConditionArrayOutput)
+}
+
+type NgwafAccountRuleConditionOutput struct{ *pulumi.OutputState }
+
+func (NgwafAccountRuleConditionOutput) ElementType() reflect.Type {
+	return reflect.TypeOf((*NgwafAccountRuleCondition)(nil)).Elem()
+}
+
+func (o NgwafAccountRuleConditionOutput) ToNgwafAccountRuleConditionOutput() NgwafAccountRuleConditionOutput {
+	return o
+}
+
+func (o NgwafAccountRuleConditionOutput) ToNgwafAccountRuleConditionOutputWithContext(ctx context.Context) NgwafAccountRuleConditionOutput {
+	return o
+}
+
+// Field to inspect (e.g., `ip`, `path`).
+func (o NgwafAccountRuleConditionOutput) Field() pulumi.StringOutput {
+	return o.ApplyT(func(v NgwafAccountRuleCondition) string { return v.Field }).(pulumi.StringOutput)
+}
+
+// Operator to apply (e.g., `equals`, `contains`).
+func (o NgwafAccountRuleConditionOutput) Operator() pulumi.StringOutput {
+	return o.ApplyT(func(v NgwafAccountRuleCondition) string { return v.Operator }).(pulumi.StringOutput)
+}
+
+// The value to test the field against.
+func (o NgwafAccountRuleConditionOutput) Value() pulumi.StringOutput {
+	return o.ApplyT(func(v NgwafAccountRuleCondition) string { return v.Value }).(pulumi.StringOutput)
+}
+
+type NgwafAccountRuleConditionArrayOutput struct{ *pulumi.OutputState }
+
+func (NgwafAccountRuleConditionArrayOutput) ElementType() reflect.Type {
+	return reflect.TypeOf((*[]NgwafAccountRuleCondition)(nil)).Elem()
+}
+
+func (o NgwafAccountRuleConditionArrayOutput) ToNgwafAccountRuleConditionArrayOutput() NgwafAccountRuleConditionArrayOutput {
+	return o
+}
+
+func (o NgwafAccountRuleConditionArrayOutput) ToNgwafAccountRuleConditionArrayOutputWithContext(ctx context.Context) NgwafAccountRuleConditionArrayOutput {
+	return o
+}
+
+func (o NgwafAccountRuleConditionArrayOutput) Index(i pulumi.IntInput) NgwafAccountRuleConditionOutput {
+	return pulumi.All(o, i).ApplyT(func(vs []interface{}) NgwafAccountRuleCondition {
+		return vs[0].([]NgwafAccountRuleCondition)[vs[1].(int)]
+	}).(NgwafAccountRuleConditionOutput)
+}
+
+type NgwafAccountRuleGroupCondition struct {
+	// A list of nested conditions in this group.
+	Conditions []NgwafAccountRuleGroupConditionCondition `pulumi:"conditions"`
+	// Logical operator for the group. Accepted values are `any` and `all`.
+	GroupOperator string `pulumi:"groupOperator"`
+}
+
+// NgwafAccountRuleGroupConditionInput is an input type that accepts NgwafAccountRuleGroupConditionArgs and NgwafAccountRuleGroupConditionOutput values.
+// You can construct a concrete instance of `NgwafAccountRuleGroupConditionInput` via:
+//
+//	NgwafAccountRuleGroupConditionArgs{...}
+type NgwafAccountRuleGroupConditionInput interface {
+	pulumi.Input
+
+	ToNgwafAccountRuleGroupConditionOutput() NgwafAccountRuleGroupConditionOutput
+	ToNgwafAccountRuleGroupConditionOutputWithContext(context.Context) NgwafAccountRuleGroupConditionOutput
+}
+
+type NgwafAccountRuleGroupConditionArgs struct {
+	// A list of nested conditions in this group.
+	Conditions NgwafAccountRuleGroupConditionConditionArrayInput `pulumi:"conditions"`
+	// Logical operator for the group. Accepted values are `any` and `all`.
+	GroupOperator pulumi.StringInput `pulumi:"groupOperator"`
+}
+
+func (NgwafAccountRuleGroupConditionArgs) ElementType() reflect.Type {
+	return reflect.TypeOf((*NgwafAccountRuleGroupCondition)(nil)).Elem()
+}
+
+func (i NgwafAccountRuleGroupConditionArgs) ToNgwafAccountRuleGroupConditionOutput() NgwafAccountRuleGroupConditionOutput {
+	return i.ToNgwafAccountRuleGroupConditionOutputWithContext(context.Background())
+}
+
+func (i NgwafAccountRuleGroupConditionArgs) ToNgwafAccountRuleGroupConditionOutputWithContext(ctx context.Context) NgwafAccountRuleGroupConditionOutput {
+	return pulumi.ToOutputWithContext(ctx, i).(NgwafAccountRuleGroupConditionOutput)
+}
+
+// NgwafAccountRuleGroupConditionArrayInput is an input type that accepts NgwafAccountRuleGroupConditionArray and NgwafAccountRuleGroupConditionArrayOutput values.
+// You can construct a concrete instance of `NgwafAccountRuleGroupConditionArrayInput` via:
+//
+//	NgwafAccountRuleGroupConditionArray{ NgwafAccountRuleGroupConditionArgs{...} }
+type NgwafAccountRuleGroupConditionArrayInput interface {
+	pulumi.Input
+
+	ToNgwafAccountRuleGroupConditionArrayOutput() NgwafAccountRuleGroupConditionArrayOutput
+	ToNgwafAccountRuleGroupConditionArrayOutputWithContext(context.Context) NgwafAccountRuleGroupConditionArrayOutput
+}
+
+type NgwafAccountRuleGroupConditionArray []NgwafAccountRuleGroupConditionInput
+
+func (NgwafAccountRuleGroupConditionArray) ElementType() reflect.Type {
+	return reflect.TypeOf((*[]NgwafAccountRuleGroupCondition)(nil)).Elem()
+}
+
+func (i NgwafAccountRuleGroupConditionArray) ToNgwafAccountRuleGroupConditionArrayOutput() NgwafAccountRuleGroupConditionArrayOutput {
+	return i.ToNgwafAccountRuleGroupConditionArrayOutputWithContext(context.Background())
+}
+
+func (i NgwafAccountRuleGroupConditionArray) ToNgwafAccountRuleGroupConditionArrayOutputWithContext(ctx context.Context) NgwafAccountRuleGroupConditionArrayOutput {
+	return pulumi.ToOutputWithContext(ctx, i).(NgwafAccountRuleGroupConditionArrayOutput)
+}
+
+type NgwafAccountRuleGroupConditionOutput struct{ *pulumi.OutputState }
+
+func (NgwafAccountRuleGroupConditionOutput) ElementType() reflect.Type {
+	return reflect.TypeOf((*NgwafAccountRuleGroupCondition)(nil)).Elem()
+}
+
+func (o NgwafAccountRuleGroupConditionOutput) ToNgwafAccountRuleGroupConditionOutput() NgwafAccountRuleGroupConditionOutput {
+	return o
+}
+
+func (o NgwafAccountRuleGroupConditionOutput) ToNgwafAccountRuleGroupConditionOutputWithContext(ctx context.Context) NgwafAccountRuleGroupConditionOutput {
+	return o
+}
+
+// A list of nested conditions in this group.
+func (o NgwafAccountRuleGroupConditionOutput) Conditions() NgwafAccountRuleGroupConditionConditionArrayOutput {
+	return o.ApplyT(func(v NgwafAccountRuleGroupCondition) []NgwafAccountRuleGroupConditionCondition { return v.Conditions }).(NgwafAccountRuleGroupConditionConditionArrayOutput)
+}
+
+// Logical operator for the group. Accepted values are `any` and `all`.
+func (o NgwafAccountRuleGroupConditionOutput) GroupOperator() pulumi.StringOutput {
+	return o.ApplyT(func(v NgwafAccountRuleGroupCondition) string { return v.GroupOperator }).(pulumi.StringOutput)
+}
+
+type NgwafAccountRuleGroupConditionArrayOutput struct{ *pulumi.OutputState }
+
+func (NgwafAccountRuleGroupConditionArrayOutput) ElementType() reflect.Type {
+	return reflect.TypeOf((*[]NgwafAccountRuleGroupCondition)(nil)).Elem()
+}
+
+func (o NgwafAccountRuleGroupConditionArrayOutput) ToNgwafAccountRuleGroupConditionArrayOutput() NgwafAccountRuleGroupConditionArrayOutput {
+	return o
+}
+
+func (o NgwafAccountRuleGroupConditionArrayOutput) ToNgwafAccountRuleGroupConditionArrayOutputWithContext(ctx context.Context) NgwafAccountRuleGroupConditionArrayOutput {
+	return o
+}
+
+func (o NgwafAccountRuleGroupConditionArrayOutput) Index(i pulumi.IntInput) NgwafAccountRuleGroupConditionOutput {
+	return pulumi.All(o, i).ApplyT(func(vs []interface{}) NgwafAccountRuleGroupCondition {
+		return vs[0].([]NgwafAccountRuleGroupCondition)[vs[1].(int)]
+	}).(NgwafAccountRuleGroupConditionOutput)
+}
+
+type NgwafAccountRuleGroupConditionCondition struct {
+	// Field to inspect (e.g., `ip`, `path`).
+	Field string `pulumi:"field"`
+	// Operator to apply (e.g., `equals`, `contains`).
+	Operator string `pulumi:"operator"`
+	// The value to test the field against.
+	Value string `pulumi:"value"`
+}
+
+// NgwafAccountRuleGroupConditionConditionInput is an input type that accepts NgwafAccountRuleGroupConditionConditionArgs and NgwafAccountRuleGroupConditionConditionOutput values.
+// You can construct a concrete instance of `NgwafAccountRuleGroupConditionConditionInput` via:
+//
+//	NgwafAccountRuleGroupConditionConditionArgs{...}
+type NgwafAccountRuleGroupConditionConditionInput interface {
+	pulumi.Input
+
+	ToNgwafAccountRuleGroupConditionConditionOutput() NgwafAccountRuleGroupConditionConditionOutput
+	ToNgwafAccountRuleGroupConditionConditionOutputWithContext(context.Context) NgwafAccountRuleGroupConditionConditionOutput
+}
+
+type NgwafAccountRuleGroupConditionConditionArgs struct {
+	// Field to inspect (e.g., `ip`, `path`).
+	Field pulumi.StringInput `pulumi:"field"`
+	// Operator to apply (e.g., `equals`, `contains`).
+	Operator pulumi.StringInput `pulumi:"operator"`
+	// The value to test the field against.
+	Value pulumi.StringInput `pulumi:"value"`
+}
+
+func (NgwafAccountRuleGroupConditionConditionArgs) ElementType() reflect.Type {
+	return reflect.TypeOf((*NgwafAccountRuleGroupConditionCondition)(nil)).Elem()
+}
+
+func (i NgwafAccountRuleGroupConditionConditionArgs) ToNgwafAccountRuleGroupConditionConditionOutput() NgwafAccountRuleGroupConditionConditionOutput {
+	return i.ToNgwafAccountRuleGroupConditionConditionOutputWithContext(context.Background())
+}
+
+func (i NgwafAccountRuleGroupConditionConditionArgs) ToNgwafAccountRuleGroupConditionConditionOutputWithContext(ctx context.Context) NgwafAccountRuleGroupConditionConditionOutput {
+	return pulumi.ToOutputWithContext(ctx, i).(NgwafAccountRuleGroupConditionConditionOutput)
+}
+
+// NgwafAccountRuleGroupConditionConditionArrayInput is an input type that accepts NgwafAccountRuleGroupConditionConditionArray and NgwafAccountRuleGroupConditionConditionArrayOutput values.
+// You can construct a concrete instance of `NgwafAccountRuleGroupConditionConditionArrayInput` via:
+//
+//	NgwafAccountRuleGroupConditionConditionArray{ NgwafAccountRuleGroupConditionConditionArgs{...} }
+type NgwafAccountRuleGroupConditionConditionArrayInput interface {
+	pulumi.Input
+
+	ToNgwafAccountRuleGroupConditionConditionArrayOutput() NgwafAccountRuleGroupConditionConditionArrayOutput
+	ToNgwafAccountRuleGroupConditionConditionArrayOutputWithContext(context.Context) NgwafAccountRuleGroupConditionConditionArrayOutput
+}
+
+type NgwafAccountRuleGroupConditionConditionArray []NgwafAccountRuleGroupConditionConditionInput
+
+func (NgwafAccountRuleGroupConditionConditionArray) ElementType() reflect.Type {
+	return reflect.TypeOf((*[]NgwafAccountRuleGroupConditionCondition)(nil)).Elem()
+}
+
+func (i NgwafAccountRuleGroupConditionConditionArray) ToNgwafAccountRuleGroupConditionConditionArrayOutput() NgwafAccountRuleGroupConditionConditionArrayOutput {
+	return i.ToNgwafAccountRuleGroupConditionConditionArrayOutputWithContext(context.Background())
+}
+
+func (i NgwafAccountRuleGroupConditionConditionArray) ToNgwafAccountRuleGroupConditionConditionArrayOutputWithContext(ctx context.Context) NgwafAccountRuleGroupConditionConditionArrayOutput {
+	return pulumi.ToOutputWithContext(ctx, i).(NgwafAccountRuleGroupConditionConditionArrayOutput)
+}
+
+type NgwafAccountRuleGroupConditionConditionOutput struct{ *pulumi.OutputState }
+
+func (NgwafAccountRuleGroupConditionConditionOutput) ElementType() reflect.Type {
+	return reflect.TypeOf((*NgwafAccountRuleGroupConditionCondition)(nil)).Elem()
+}
+
+func (o NgwafAccountRuleGroupConditionConditionOutput) ToNgwafAccountRuleGroupConditionConditionOutput() NgwafAccountRuleGroupConditionConditionOutput {
+	return o
+}
+
+func (o NgwafAccountRuleGroupConditionConditionOutput) ToNgwafAccountRuleGroupConditionConditionOutputWithContext(ctx context.Context) NgwafAccountRuleGroupConditionConditionOutput {
+	return o
+}
+
+// Field to inspect (e.g., `ip`, `path`).
+func (o NgwafAccountRuleGroupConditionConditionOutput) Field() pulumi.StringOutput {
+	return o.ApplyT(func(v NgwafAccountRuleGroupConditionCondition) string { return v.Field }).(pulumi.StringOutput)
+}
+
+// Operator to apply (e.g., `equals`, `contains`).
+func (o NgwafAccountRuleGroupConditionConditionOutput) Operator() pulumi.StringOutput {
+	return o.ApplyT(func(v NgwafAccountRuleGroupConditionCondition) string { return v.Operator }).(pulumi.StringOutput)
+}
+
+// The value to test the field against.
+func (o NgwafAccountRuleGroupConditionConditionOutput) Value() pulumi.StringOutput {
+	return o.ApplyT(func(v NgwafAccountRuleGroupConditionCondition) string { return v.Value }).(pulumi.StringOutput)
+}
+
+type NgwafAccountRuleGroupConditionConditionArrayOutput struct{ *pulumi.OutputState }
+
+func (NgwafAccountRuleGroupConditionConditionArrayOutput) ElementType() reflect.Type {
+	return reflect.TypeOf((*[]NgwafAccountRuleGroupConditionCondition)(nil)).Elem()
+}
+
+func (o NgwafAccountRuleGroupConditionConditionArrayOutput) ToNgwafAccountRuleGroupConditionConditionArrayOutput() NgwafAccountRuleGroupConditionConditionArrayOutput {
+	return o
+}
+
+func (o NgwafAccountRuleGroupConditionConditionArrayOutput) ToNgwafAccountRuleGroupConditionConditionArrayOutputWithContext(ctx context.Context) NgwafAccountRuleGroupConditionConditionArrayOutput {
+	return o
+}
+
+func (o NgwafAccountRuleGroupConditionConditionArrayOutput) Index(i pulumi.IntInput) NgwafAccountRuleGroupConditionConditionOutput {
+	return pulumi.All(o, i).ApplyT(func(vs []interface{}) NgwafAccountRuleGroupConditionCondition {
+		return vs[0].([]NgwafAccountRuleGroupConditionCondition)[vs[1].(int)]
+	}).(NgwafAccountRuleGroupConditionConditionOutput)
+}
+
+type NgwafAccountRuleRateLimit struct {
+	// List of client identifiers used for rate limiting. Can only be length 1 or 2.
+	ClientIdentifiers []NgwafAccountRuleRateLimitClientIdentifier `pulumi:"clientIdentifiers"`
+	// Duration in seconds for the rate limit.
+	Duration int `pulumi:"duration"`
+	// Time interval for the rate limit in seconds. Accepted values are 60, 600, and 3600.
+	Interval int `pulumi:"interval"`
+	// Reference ID of the custom signal this rule uses to count requests.
+	Signal string `pulumi:"signal"`
+	// Rate limit threshold. Minimum 1 and maximum 10,000.
+	Threshold int `pulumi:"threshold"`
+}
+
+// NgwafAccountRuleRateLimitInput is an input type that accepts NgwafAccountRuleRateLimitArgs and NgwafAccountRuleRateLimitOutput values.
+// You can construct a concrete instance of `NgwafAccountRuleRateLimitInput` via:
+//
+//	NgwafAccountRuleRateLimitArgs{...}
+type NgwafAccountRuleRateLimitInput interface {
+	pulumi.Input
+
+	ToNgwafAccountRuleRateLimitOutput() NgwafAccountRuleRateLimitOutput
+	ToNgwafAccountRuleRateLimitOutputWithContext(context.Context) NgwafAccountRuleRateLimitOutput
+}
+
+type NgwafAccountRuleRateLimitArgs struct {
+	// List of client identifiers used for rate limiting. Can only be length 1 or 2.
+	ClientIdentifiers NgwafAccountRuleRateLimitClientIdentifierArrayInput `pulumi:"clientIdentifiers"`
+	// Duration in seconds for the rate limit.
+	Duration pulumi.IntInput `pulumi:"duration"`
+	// Time interval for the rate limit in seconds. Accepted values are 60, 600, and 3600.
+	Interval pulumi.IntInput `pulumi:"interval"`
+	// Reference ID of the custom signal this rule uses to count requests.
+	Signal pulumi.StringInput `pulumi:"signal"`
+	// Rate limit threshold. Minimum 1 and maximum 10,000.
+	Threshold pulumi.IntInput `pulumi:"threshold"`
+}
+
+func (NgwafAccountRuleRateLimitArgs) ElementType() reflect.Type {
+	return reflect.TypeOf((*NgwafAccountRuleRateLimit)(nil)).Elem()
+}
+
+func (i NgwafAccountRuleRateLimitArgs) ToNgwafAccountRuleRateLimitOutput() NgwafAccountRuleRateLimitOutput {
+	return i.ToNgwafAccountRuleRateLimitOutputWithContext(context.Background())
+}
+
+func (i NgwafAccountRuleRateLimitArgs) ToNgwafAccountRuleRateLimitOutputWithContext(ctx context.Context) NgwafAccountRuleRateLimitOutput {
+	return pulumi.ToOutputWithContext(ctx, i).(NgwafAccountRuleRateLimitOutput)
+}
+
+func (i NgwafAccountRuleRateLimitArgs) ToNgwafAccountRuleRateLimitPtrOutput() NgwafAccountRuleRateLimitPtrOutput {
+	return i.ToNgwafAccountRuleRateLimitPtrOutputWithContext(context.Background())
+}
+
+func (i NgwafAccountRuleRateLimitArgs) ToNgwafAccountRuleRateLimitPtrOutputWithContext(ctx context.Context) NgwafAccountRuleRateLimitPtrOutput {
+	return pulumi.ToOutputWithContext(ctx, i).(NgwafAccountRuleRateLimitOutput).ToNgwafAccountRuleRateLimitPtrOutputWithContext(ctx)
+}
+
+// NgwafAccountRuleRateLimitPtrInput is an input type that accepts NgwafAccountRuleRateLimitArgs, NgwafAccountRuleRateLimitPtr and NgwafAccountRuleRateLimitPtrOutput values.
+// You can construct a concrete instance of `NgwafAccountRuleRateLimitPtrInput` via:
+//
+//	        NgwafAccountRuleRateLimitArgs{...}
+//
+//	or:
+//
+//	        nil
+type NgwafAccountRuleRateLimitPtrInput interface {
+	pulumi.Input
+
+	ToNgwafAccountRuleRateLimitPtrOutput() NgwafAccountRuleRateLimitPtrOutput
+	ToNgwafAccountRuleRateLimitPtrOutputWithContext(context.Context) NgwafAccountRuleRateLimitPtrOutput
+}
+
+type ngwafAccountRuleRateLimitPtrType NgwafAccountRuleRateLimitArgs
+
+func NgwafAccountRuleRateLimitPtr(v *NgwafAccountRuleRateLimitArgs) NgwafAccountRuleRateLimitPtrInput {
+	return (*ngwafAccountRuleRateLimitPtrType)(v)
+}
+
+func (*ngwafAccountRuleRateLimitPtrType) ElementType() reflect.Type {
+	return reflect.TypeOf((**NgwafAccountRuleRateLimit)(nil)).Elem()
+}
+
+func (i *ngwafAccountRuleRateLimitPtrType) ToNgwafAccountRuleRateLimitPtrOutput() NgwafAccountRuleRateLimitPtrOutput {
+	return i.ToNgwafAccountRuleRateLimitPtrOutputWithContext(context.Background())
+}
+
+func (i *ngwafAccountRuleRateLimitPtrType) ToNgwafAccountRuleRateLimitPtrOutputWithContext(ctx context.Context) NgwafAccountRuleRateLimitPtrOutput {
+	return pulumi.ToOutputWithContext(ctx, i).(NgwafAccountRuleRateLimitPtrOutput)
+}
+
+type NgwafAccountRuleRateLimitOutput struct{ *pulumi.OutputState }
+
+func (NgwafAccountRuleRateLimitOutput) ElementType() reflect.Type {
+	return reflect.TypeOf((*NgwafAccountRuleRateLimit)(nil)).Elem()
+}
+
+func (o NgwafAccountRuleRateLimitOutput) ToNgwafAccountRuleRateLimitOutput() NgwafAccountRuleRateLimitOutput {
+	return o
+}
+
+func (o NgwafAccountRuleRateLimitOutput) ToNgwafAccountRuleRateLimitOutputWithContext(ctx context.Context) NgwafAccountRuleRateLimitOutput {
+	return o
+}
+
+func (o NgwafAccountRuleRateLimitOutput) ToNgwafAccountRuleRateLimitPtrOutput() NgwafAccountRuleRateLimitPtrOutput {
+	return o.ToNgwafAccountRuleRateLimitPtrOutputWithContext(context.Background())
+}
+
+func (o NgwafAccountRuleRateLimitOutput) ToNgwafAccountRuleRateLimitPtrOutputWithContext(ctx context.Context) NgwafAccountRuleRateLimitPtrOutput {
+	return o.ApplyTWithContext(ctx, func(_ context.Context, v NgwafAccountRuleRateLimit) *NgwafAccountRuleRateLimit {
+		return &v
+	}).(NgwafAccountRuleRateLimitPtrOutput)
+}
+
+// List of client identifiers used for rate limiting. Can only be length 1 or 2.
+func (o NgwafAccountRuleRateLimitOutput) ClientIdentifiers() NgwafAccountRuleRateLimitClientIdentifierArrayOutput {
+	return o.ApplyT(func(v NgwafAccountRuleRateLimit) []NgwafAccountRuleRateLimitClientIdentifier {
+		return v.ClientIdentifiers
+	}).(NgwafAccountRuleRateLimitClientIdentifierArrayOutput)
+}
+
+// Duration in seconds for the rate limit.
+func (o NgwafAccountRuleRateLimitOutput) Duration() pulumi.IntOutput {
+	return o.ApplyT(func(v NgwafAccountRuleRateLimit) int { return v.Duration }).(pulumi.IntOutput)
+}
+
+// Time interval for the rate limit in seconds. Accepted values are 60, 600, and 3600.
+func (o NgwafAccountRuleRateLimitOutput) Interval() pulumi.IntOutput {
+	return o.ApplyT(func(v NgwafAccountRuleRateLimit) int { return v.Interval }).(pulumi.IntOutput)
+}
+
+// Reference ID of the custom signal this rule uses to count requests.
+func (o NgwafAccountRuleRateLimitOutput) Signal() pulumi.StringOutput {
+	return o.ApplyT(func(v NgwafAccountRuleRateLimit) string { return v.Signal }).(pulumi.StringOutput)
+}
+
+// Rate limit threshold. Minimum 1 and maximum 10,000.
+func (o NgwafAccountRuleRateLimitOutput) Threshold() pulumi.IntOutput {
+	return o.ApplyT(func(v NgwafAccountRuleRateLimit) int { return v.Threshold }).(pulumi.IntOutput)
+}
+
+type NgwafAccountRuleRateLimitPtrOutput struct{ *pulumi.OutputState }
+
+func (NgwafAccountRuleRateLimitPtrOutput) ElementType() reflect.Type {
+	return reflect.TypeOf((**NgwafAccountRuleRateLimit)(nil)).Elem()
+}
+
+func (o NgwafAccountRuleRateLimitPtrOutput) ToNgwafAccountRuleRateLimitPtrOutput() NgwafAccountRuleRateLimitPtrOutput {
+	return o
+}
+
+func (o NgwafAccountRuleRateLimitPtrOutput) ToNgwafAccountRuleRateLimitPtrOutputWithContext(ctx context.Context) NgwafAccountRuleRateLimitPtrOutput {
+	return o
+}
+
+func (o NgwafAccountRuleRateLimitPtrOutput) Elem() NgwafAccountRuleRateLimitOutput {
+	return o.ApplyT(func(v *NgwafAccountRuleRateLimit) NgwafAccountRuleRateLimit {
+		if v != nil {
+			return *v
+		}
+		var ret NgwafAccountRuleRateLimit
+		return ret
+	}).(NgwafAccountRuleRateLimitOutput)
+}
+
+// List of client identifiers used for rate limiting. Can only be length 1 or 2.
+func (o NgwafAccountRuleRateLimitPtrOutput) ClientIdentifiers() NgwafAccountRuleRateLimitClientIdentifierArrayOutput {
+	return o.ApplyT(func(v *NgwafAccountRuleRateLimit) []NgwafAccountRuleRateLimitClientIdentifier {
+		if v == nil {
+			return nil
+		}
+		return v.ClientIdentifiers
+	}).(NgwafAccountRuleRateLimitClientIdentifierArrayOutput)
+}
+
+// Duration in seconds for the rate limit.
+func (o NgwafAccountRuleRateLimitPtrOutput) Duration() pulumi.IntPtrOutput {
+	return o.ApplyT(func(v *NgwafAccountRuleRateLimit) *int {
+		if v == nil {
+			return nil
+		}
+		return &v.Duration
+	}).(pulumi.IntPtrOutput)
+}
+
+// Time interval for the rate limit in seconds. Accepted values are 60, 600, and 3600.
+func (o NgwafAccountRuleRateLimitPtrOutput) Interval() pulumi.IntPtrOutput {
+	return o.ApplyT(func(v *NgwafAccountRuleRateLimit) *int {
+		if v == nil {
+			return nil
+		}
+		return &v.Interval
+	}).(pulumi.IntPtrOutput)
+}
+
+// Reference ID of the custom signal this rule uses to count requests.
+func (o NgwafAccountRuleRateLimitPtrOutput) Signal() pulumi.StringPtrOutput {
+	return o.ApplyT(func(v *NgwafAccountRuleRateLimit) *string {
+		if v == nil {
+			return nil
+		}
+		return &v.Signal
+	}).(pulumi.StringPtrOutput)
+}
+
+// Rate limit threshold. Minimum 1 and maximum 10,000.
+func (o NgwafAccountRuleRateLimitPtrOutput) Threshold() pulumi.IntPtrOutput {
+	return o.ApplyT(func(v *NgwafAccountRuleRateLimit) *int {
+		if v == nil {
+			return nil
+		}
+		return &v.Threshold
+	}).(pulumi.IntPtrOutput)
+}
+
+type NgwafAccountRuleRateLimitClientIdentifier struct {
+	// Key for the Client Identifier.
+	Key *string `pulumi:"key"`
+	// Name for the Client Identifier.
+	Name *string `pulumi:"name"`
+	// Type of the Client Identifier.
+	Type string `pulumi:"type"`
+}
+
+// NgwafAccountRuleRateLimitClientIdentifierInput is an input type that accepts NgwafAccountRuleRateLimitClientIdentifierArgs and NgwafAccountRuleRateLimitClientIdentifierOutput values.
+// You can construct a concrete instance of `NgwafAccountRuleRateLimitClientIdentifierInput` via:
+//
+//	NgwafAccountRuleRateLimitClientIdentifierArgs{...}
+type NgwafAccountRuleRateLimitClientIdentifierInput interface {
+	pulumi.Input
+
+	ToNgwafAccountRuleRateLimitClientIdentifierOutput() NgwafAccountRuleRateLimitClientIdentifierOutput
+	ToNgwafAccountRuleRateLimitClientIdentifierOutputWithContext(context.Context) NgwafAccountRuleRateLimitClientIdentifierOutput
+}
+
+type NgwafAccountRuleRateLimitClientIdentifierArgs struct {
+	// Key for the Client Identifier.
+	Key pulumi.StringPtrInput `pulumi:"key"`
+	// Name for the Client Identifier.
+	Name pulumi.StringPtrInput `pulumi:"name"`
+	// Type of the Client Identifier.
+	Type pulumi.StringInput `pulumi:"type"`
+}
+
+func (NgwafAccountRuleRateLimitClientIdentifierArgs) ElementType() reflect.Type {
+	return reflect.TypeOf((*NgwafAccountRuleRateLimitClientIdentifier)(nil)).Elem()
+}
+
+func (i NgwafAccountRuleRateLimitClientIdentifierArgs) ToNgwafAccountRuleRateLimitClientIdentifierOutput() NgwafAccountRuleRateLimitClientIdentifierOutput {
+	return i.ToNgwafAccountRuleRateLimitClientIdentifierOutputWithContext(context.Background())
+}
+
+func (i NgwafAccountRuleRateLimitClientIdentifierArgs) ToNgwafAccountRuleRateLimitClientIdentifierOutputWithContext(ctx context.Context) NgwafAccountRuleRateLimitClientIdentifierOutput {
+	return pulumi.ToOutputWithContext(ctx, i).(NgwafAccountRuleRateLimitClientIdentifierOutput)
+}
+
+// NgwafAccountRuleRateLimitClientIdentifierArrayInput is an input type that accepts NgwafAccountRuleRateLimitClientIdentifierArray and NgwafAccountRuleRateLimitClientIdentifierArrayOutput values.
+// You can construct a concrete instance of `NgwafAccountRuleRateLimitClientIdentifierArrayInput` via:
+//
+//	NgwafAccountRuleRateLimitClientIdentifierArray{ NgwafAccountRuleRateLimitClientIdentifierArgs{...} }
+type NgwafAccountRuleRateLimitClientIdentifierArrayInput interface {
+	pulumi.Input
+
+	ToNgwafAccountRuleRateLimitClientIdentifierArrayOutput() NgwafAccountRuleRateLimitClientIdentifierArrayOutput
+	ToNgwafAccountRuleRateLimitClientIdentifierArrayOutputWithContext(context.Context) NgwafAccountRuleRateLimitClientIdentifierArrayOutput
+}
+
+type NgwafAccountRuleRateLimitClientIdentifierArray []NgwafAccountRuleRateLimitClientIdentifierInput
+
+func (NgwafAccountRuleRateLimitClientIdentifierArray) ElementType() reflect.Type {
+	return reflect.TypeOf((*[]NgwafAccountRuleRateLimitClientIdentifier)(nil)).Elem()
+}
+
+func (i NgwafAccountRuleRateLimitClientIdentifierArray) ToNgwafAccountRuleRateLimitClientIdentifierArrayOutput() NgwafAccountRuleRateLimitClientIdentifierArrayOutput {
+	return i.ToNgwafAccountRuleRateLimitClientIdentifierArrayOutputWithContext(context.Background())
+}
+
+func (i NgwafAccountRuleRateLimitClientIdentifierArray) ToNgwafAccountRuleRateLimitClientIdentifierArrayOutputWithContext(ctx context.Context) NgwafAccountRuleRateLimitClientIdentifierArrayOutput {
+	return pulumi.ToOutputWithContext(ctx, i).(NgwafAccountRuleRateLimitClientIdentifierArrayOutput)
+}
+
+type NgwafAccountRuleRateLimitClientIdentifierOutput struct{ *pulumi.OutputState }
+
+func (NgwafAccountRuleRateLimitClientIdentifierOutput) ElementType() reflect.Type {
+	return reflect.TypeOf((*NgwafAccountRuleRateLimitClientIdentifier)(nil)).Elem()
+}
+
+func (o NgwafAccountRuleRateLimitClientIdentifierOutput) ToNgwafAccountRuleRateLimitClientIdentifierOutput() NgwafAccountRuleRateLimitClientIdentifierOutput {
+	return o
+}
+
+func (o NgwafAccountRuleRateLimitClientIdentifierOutput) ToNgwafAccountRuleRateLimitClientIdentifierOutputWithContext(ctx context.Context) NgwafAccountRuleRateLimitClientIdentifierOutput {
+	return o
+}
+
+// Key for the Client Identifier.
+func (o NgwafAccountRuleRateLimitClientIdentifierOutput) Key() pulumi.StringPtrOutput {
+	return o.ApplyT(func(v NgwafAccountRuleRateLimitClientIdentifier) *string { return v.Key }).(pulumi.StringPtrOutput)
+}
+
+// Name for the Client Identifier.
+func (o NgwafAccountRuleRateLimitClientIdentifierOutput) Name() pulumi.StringPtrOutput {
+	return o.ApplyT(func(v NgwafAccountRuleRateLimitClientIdentifier) *string { return v.Name }).(pulumi.StringPtrOutput)
+}
+
+// Type of the Client Identifier.
+func (o NgwafAccountRuleRateLimitClientIdentifierOutput) Type() pulumi.StringOutput {
+	return o.ApplyT(func(v NgwafAccountRuleRateLimitClientIdentifier) string { return v.Type }).(pulumi.StringOutput)
+}
+
+type NgwafAccountRuleRateLimitClientIdentifierArrayOutput struct{ *pulumi.OutputState }
+
+func (NgwafAccountRuleRateLimitClientIdentifierArrayOutput) ElementType() reflect.Type {
+	return reflect.TypeOf((*[]NgwafAccountRuleRateLimitClientIdentifier)(nil)).Elem()
+}
+
+func (o NgwafAccountRuleRateLimitClientIdentifierArrayOutput) ToNgwafAccountRuleRateLimitClientIdentifierArrayOutput() NgwafAccountRuleRateLimitClientIdentifierArrayOutput {
+	return o
+}
+
+func (o NgwafAccountRuleRateLimitClientIdentifierArrayOutput) ToNgwafAccountRuleRateLimitClientIdentifierArrayOutputWithContext(ctx context.Context) NgwafAccountRuleRateLimitClientIdentifierArrayOutput {
+	return o
+}
+
+func (o NgwafAccountRuleRateLimitClientIdentifierArrayOutput) Index(i pulumi.IntInput) NgwafAccountRuleRateLimitClientIdentifierOutput {
+	return pulumi.All(o, i).ApplyT(func(vs []interface{}) NgwafAccountRuleRateLimitClientIdentifier {
+		return vs[0].([]NgwafAccountRuleRateLimitClientIdentifier)[vs[1].(int)]
+	}).(NgwafAccountRuleRateLimitClientIdentifierOutput)
+}
+
+type NgwafWorkspaceAttackSignalThresholds struct {
+	// Ignore thresholds and block immediately when at least one attack signal is detected. Default value `false`.
+	Immediate *bool `pulumi:"immediate"`
+	// The one-hour interval threshold. Minimum 1 and maximum 10,000. Default value 100.
+	OneHour *int `pulumi:"oneHour"`
+	// The one-minute interval threshold. Minimum 1 and maximum 10,000. Default value 1.
+	OneMinute *int `pulumi:"oneMinute"`
+	// The ten-minute interval threshold. Minimum 1 and maximum 10,000. Default value 60.
+	TenMinutes *int `pulumi:"tenMinutes"`
+}
+
+// NgwafWorkspaceAttackSignalThresholdsInput is an input type that accepts NgwafWorkspaceAttackSignalThresholdsArgs and NgwafWorkspaceAttackSignalThresholdsOutput values.
+// You can construct a concrete instance of `NgwafWorkspaceAttackSignalThresholdsInput` via:
+//
+//	NgwafWorkspaceAttackSignalThresholdsArgs{...}
+type NgwafWorkspaceAttackSignalThresholdsInput interface {
+	pulumi.Input
+
+	ToNgwafWorkspaceAttackSignalThresholdsOutput() NgwafWorkspaceAttackSignalThresholdsOutput
+	ToNgwafWorkspaceAttackSignalThresholdsOutputWithContext(context.Context) NgwafWorkspaceAttackSignalThresholdsOutput
+}
+
+type NgwafWorkspaceAttackSignalThresholdsArgs struct {
+	// Ignore thresholds and block immediately when at least one attack signal is detected. Default value `false`.
+	Immediate pulumi.BoolPtrInput `pulumi:"immediate"`
+	// The one-hour interval threshold. Minimum 1 and maximum 10,000. Default value 100.
+	OneHour pulumi.IntPtrInput `pulumi:"oneHour"`
+	// The one-minute interval threshold. Minimum 1 and maximum 10,000. Default value 1.
+	OneMinute pulumi.IntPtrInput `pulumi:"oneMinute"`
+	// The ten-minute interval threshold. Minimum 1 and maximum 10,000. Default value 60.
+	TenMinutes pulumi.IntPtrInput `pulumi:"tenMinutes"`
+}
+
+func (NgwafWorkspaceAttackSignalThresholdsArgs) ElementType() reflect.Type {
+	return reflect.TypeOf((*NgwafWorkspaceAttackSignalThresholds)(nil)).Elem()
+}
+
+func (i NgwafWorkspaceAttackSignalThresholdsArgs) ToNgwafWorkspaceAttackSignalThresholdsOutput() NgwafWorkspaceAttackSignalThresholdsOutput {
+	return i.ToNgwafWorkspaceAttackSignalThresholdsOutputWithContext(context.Background())
+}
+
+func (i NgwafWorkspaceAttackSignalThresholdsArgs) ToNgwafWorkspaceAttackSignalThresholdsOutputWithContext(ctx context.Context) NgwafWorkspaceAttackSignalThresholdsOutput {
+	return pulumi.ToOutputWithContext(ctx, i).(NgwafWorkspaceAttackSignalThresholdsOutput)
+}
+
+func (i NgwafWorkspaceAttackSignalThresholdsArgs) ToNgwafWorkspaceAttackSignalThresholdsPtrOutput() NgwafWorkspaceAttackSignalThresholdsPtrOutput {
+	return i.ToNgwafWorkspaceAttackSignalThresholdsPtrOutputWithContext(context.Background())
+}
+
+func (i NgwafWorkspaceAttackSignalThresholdsArgs) ToNgwafWorkspaceAttackSignalThresholdsPtrOutputWithContext(ctx context.Context) NgwafWorkspaceAttackSignalThresholdsPtrOutput {
+	return pulumi.ToOutputWithContext(ctx, i).(NgwafWorkspaceAttackSignalThresholdsOutput).ToNgwafWorkspaceAttackSignalThresholdsPtrOutputWithContext(ctx)
+}
+
+// NgwafWorkspaceAttackSignalThresholdsPtrInput is an input type that accepts NgwafWorkspaceAttackSignalThresholdsArgs, NgwafWorkspaceAttackSignalThresholdsPtr and NgwafWorkspaceAttackSignalThresholdsPtrOutput values.
+// You can construct a concrete instance of `NgwafWorkspaceAttackSignalThresholdsPtrInput` via:
+//
+//	        NgwafWorkspaceAttackSignalThresholdsArgs{...}
+//
+//	or:
+//
+//	        nil
+type NgwafWorkspaceAttackSignalThresholdsPtrInput interface {
+	pulumi.Input
+
+	ToNgwafWorkspaceAttackSignalThresholdsPtrOutput() NgwafWorkspaceAttackSignalThresholdsPtrOutput
+	ToNgwafWorkspaceAttackSignalThresholdsPtrOutputWithContext(context.Context) NgwafWorkspaceAttackSignalThresholdsPtrOutput
+}
+
+type ngwafWorkspaceAttackSignalThresholdsPtrType NgwafWorkspaceAttackSignalThresholdsArgs
+
+func NgwafWorkspaceAttackSignalThresholdsPtr(v *NgwafWorkspaceAttackSignalThresholdsArgs) NgwafWorkspaceAttackSignalThresholdsPtrInput {
+	return (*ngwafWorkspaceAttackSignalThresholdsPtrType)(v)
+}
+
+func (*ngwafWorkspaceAttackSignalThresholdsPtrType) ElementType() reflect.Type {
+	return reflect.TypeOf((**NgwafWorkspaceAttackSignalThresholds)(nil)).Elem()
+}
+
+func (i *ngwafWorkspaceAttackSignalThresholdsPtrType) ToNgwafWorkspaceAttackSignalThresholdsPtrOutput() NgwafWorkspaceAttackSignalThresholdsPtrOutput {
+	return i.ToNgwafWorkspaceAttackSignalThresholdsPtrOutputWithContext(context.Background())
+}
+
+func (i *ngwafWorkspaceAttackSignalThresholdsPtrType) ToNgwafWorkspaceAttackSignalThresholdsPtrOutputWithContext(ctx context.Context) NgwafWorkspaceAttackSignalThresholdsPtrOutput {
+	return pulumi.ToOutputWithContext(ctx, i).(NgwafWorkspaceAttackSignalThresholdsPtrOutput)
+}
+
+type NgwafWorkspaceAttackSignalThresholdsOutput struct{ *pulumi.OutputState }
+
+func (NgwafWorkspaceAttackSignalThresholdsOutput) ElementType() reflect.Type {
+	return reflect.TypeOf((*NgwafWorkspaceAttackSignalThresholds)(nil)).Elem()
+}
+
+func (o NgwafWorkspaceAttackSignalThresholdsOutput) ToNgwafWorkspaceAttackSignalThresholdsOutput() NgwafWorkspaceAttackSignalThresholdsOutput {
+	return o
+}
+
+func (o NgwafWorkspaceAttackSignalThresholdsOutput) ToNgwafWorkspaceAttackSignalThresholdsOutputWithContext(ctx context.Context) NgwafWorkspaceAttackSignalThresholdsOutput {
+	return o
+}
+
+func (o NgwafWorkspaceAttackSignalThresholdsOutput) ToNgwafWorkspaceAttackSignalThresholdsPtrOutput() NgwafWorkspaceAttackSignalThresholdsPtrOutput {
+	return o.ToNgwafWorkspaceAttackSignalThresholdsPtrOutputWithContext(context.Background())
+}
+
+func (o NgwafWorkspaceAttackSignalThresholdsOutput) ToNgwafWorkspaceAttackSignalThresholdsPtrOutputWithContext(ctx context.Context) NgwafWorkspaceAttackSignalThresholdsPtrOutput {
+	return o.ApplyTWithContext(ctx, func(_ context.Context, v NgwafWorkspaceAttackSignalThresholds) *NgwafWorkspaceAttackSignalThresholds {
+		return &v
+	}).(NgwafWorkspaceAttackSignalThresholdsPtrOutput)
+}
+
+// Ignore thresholds and block immediately when at least one attack signal is detected. Default value `false`.
+func (o NgwafWorkspaceAttackSignalThresholdsOutput) Immediate() pulumi.BoolPtrOutput {
+	return o.ApplyT(func(v NgwafWorkspaceAttackSignalThresholds) *bool { return v.Immediate }).(pulumi.BoolPtrOutput)
+}
+
+// The one-hour interval threshold. Minimum 1 and maximum 10,000. Default value 100.
+func (o NgwafWorkspaceAttackSignalThresholdsOutput) OneHour() pulumi.IntPtrOutput {
+	return o.ApplyT(func(v NgwafWorkspaceAttackSignalThresholds) *int { return v.OneHour }).(pulumi.IntPtrOutput)
+}
+
+// The one-minute interval threshold. Minimum 1 and maximum 10,000. Default value 1.
+func (o NgwafWorkspaceAttackSignalThresholdsOutput) OneMinute() pulumi.IntPtrOutput {
+	return o.ApplyT(func(v NgwafWorkspaceAttackSignalThresholds) *int { return v.OneMinute }).(pulumi.IntPtrOutput)
+}
+
+// The ten-minute interval threshold. Minimum 1 and maximum 10,000. Default value 60.
+func (o NgwafWorkspaceAttackSignalThresholdsOutput) TenMinutes() pulumi.IntPtrOutput {
+	return o.ApplyT(func(v NgwafWorkspaceAttackSignalThresholds) *int { return v.TenMinutes }).(pulumi.IntPtrOutput)
+}
+
+type NgwafWorkspaceAttackSignalThresholdsPtrOutput struct{ *pulumi.OutputState }
+
+func (NgwafWorkspaceAttackSignalThresholdsPtrOutput) ElementType() reflect.Type {
+	return reflect.TypeOf((**NgwafWorkspaceAttackSignalThresholds)(nil)).Elem()
+}
+
+func (o NgwafWorkspaceAttackSignalThresholdsPtrOutput) ToNgwafWorkspaceAttackSignalThresholdsPtrOutput() NgwafWorkspaceAttackSignalThresholdsPtrOutput {
+	return o
+}
+
+func (o NgwafWorkspaceAttackSignalThresholdsPtrOutput) ToNgwafWorkspaceAttackSignalThresholdsPtrOutputWithContext(ctx context.Context) NgwafWorkspaceAttackSignalThresholdsPtrOutput {
+	return o
+}
+
+func (o NgwafWorkspaceAttackSignalThresholdsPtrOutput) Elem() NgwafWorkspaceAttackSignalThresholdsOutput {
+	return o.ApplyT(func(v *NgwafWorkspaceAttackSignalThresholds) NgwafWorkspaceAttackSignalThresholds {
+		if v != nil {
+			return *v
+		}
+		var ret NgwafWorkspaceAttackSignalThresholds
+		return ret
+	}).(NgwafWorkspaceAttackSignalThresholdsOutput)
+}
+
+// Ignore thresholds and block immediately when at least one attack signal is detected. Default value `false`.
+func (o NgwafWorkspaceAttackSignalThresholdsPtrOutput) Immediate() pulumi.BoolPtrOutput {
+	return o.ApplyT(func(v *NgwafWorkspaceAttackSignalThresholds) *bool {
+		if v == nil {
+			return nil
+		}
+		return v.Immediate
+	}).(pulumi.BoolPtrOutput)
+}
+
+// The one-hour interval threshold. Minimum 1 and maximum 10,000. Default value 100.
+func (o NgwafWorkspaceAttackSignalThresholdsPtrOutput) OneHour() pulumi.IntPtrOutput {
+	return o.ApplyT(func(v *NgwafWorkspaceAttackSignalThresholds) *int {
+		if v == nil {
+			return nil
+		}
+		return v.OneHour
+	}).(pulumi.IntPtrOutput)
+}
+
+// The one-minute interval threshold. Minimum 1 and maximum 10,000. Default value 1.
+func (o NgwafWorkspaceAttackSignalThresholdsPtrOutput) OneMinute() pulumi.IntPtrOutput {
+	return o.ApplyT(func(v *NgwafWorkspaceAttackSignalThresholds) *int {
+		if v == nil {
+			return nil
+		}
+		return v.OneMinute
+	}).(pulumi.IntPtrOutput)
+}
+
+// The ten-minute interval threshold. Minimum 1 and maximum 10,000. Default value 60.
+func (o NgwafWorkspaceAttackSignalThresholdsPtrOutput) TenMinutes() pulumi.IntPtrOutput {
+	return o.ApplyT(func(v *NgwafWorkspaceAttackSignalThresholds) *int {
+		if v == nil {
+			return nil
+		}
+		return v.TenMinutes
+	}).(pulumi.IntPtrOutput)
+}
+
+type NgwafWorkspaceRuleAction struct {
+	// Redirect target (used when `type = redirect`).
+	RedirectUrl *string `pulumi:"redirectUrl"`
+	// Response code used with redirect.
+	ResponseCode *int `pulumi:"responseCode"`
+	// Signal name to exclude (used when `type = excludeSignal`).
+	Signal *string `pulumi:"signal"`
+	// The action type, e.g. `block`, `redirect`, `excludeSignal`.
+	Type string `pulumi:"type"`
+}
+
+// NgwafWorkspaceRuleActionInput is an input type that accepts NgwafWorkspaceRuleActionArgs and NgwafWorkspaceRuleActionOutput values.
+// You can construct a concrete instance of `NgwafWorkspaceRuleActionInput` via:
+//
+//	NgwafWorkspaceRuleActionArgs{...}
+type NgwafWorkspaceRuleActionInput interface {
+	pulumi.Input
+
+	ToNgwafWorkspaceRuleActionOutput() NgwafWorkspaceRuleActionOutput
+	ToNgwafWorkspaceRuleActionOutputWithContext(context.Context) NgwafWorkspaceRuleActionOutput
+}
+
+type NgwafWorkspaceRuleActionArgs struct {
+	// Redirect target (used when `type = redirect`).
+	RedirectUrl pulumi.StringPtrInput `pulumi:"redirectUrl"`
+	// Response code used with redirect.
+	ResponseCode pulumi.IntPtrInput `pulumi:"responseCode"`
+	// Signal name to exclude (used when `type = excludeSignal`).
+	Signal pulumi.StringPtrInput `pulumi:"signal"`
+	// The action type, e.g. `block`, `redirect`, `excludeSignal`.
+	Type pulumi.StringInput `pulumi:"type"`
+}
+
+func (NgwafWorkspaceRuleActionArgs) ElementType() reflect.Type {
+	return reflect.TypeOf((*NgwafWorkspaceRuleAction)(nil)).Elem()
+}
+
+func (i NgwafWorkspaceRuleActionArgs) ToNgwafWorkspaceRuleActionOutput() NgwafWorkspaceRuleActionOutput {
+	return i.ToNgwafWorkspaceRuleActionOutputWithContext(context.Background())
+}
+
+func (i NgwafWorkspaceRuleActionArgs) ToNgwafWorkspaceRuleActionOutputWithContext(ctx context.Context) NgwafWorkspaceRuleActionOutput {
+	return pulumi.ToOutputWithContext(ctx, i).(NgwafWorkspaceRuleActionOutput)
+}
+
+// NgwafWorkspaceRuleActionArrayInput is an input type that accepts NgwafWorkspaceRuleActionArray and NgwafWorkspaceRuleActionArrayOutput values.
+// You can construct a concrete instance of `NgwafWorkspaceRuleActionArrayInput` via:
+//
+//	NgwafWorkspaceRuleActionArray{ NgwafWorkspaceRuleActionArgs{...} }
+type NgwafWorkspaceRuleActionArrayInput interface {
+	pulumi.Input
+
+	ToNgwafWorkspaceRuleActionArrayOutput() NgwafWorkspaceRuleActionArrayOutput
+	ToNgwafWorkspaceRuleActionArrayOutputWithContext(context.Context) NgwafWorkspaceRuleActionArrayOutput
+}
+
+type NgwafWorkspaceRuleActionArray []NgwafWorkspaceRuleActionInput
+
+func (NgwafWorkspaceRuleActionArray) ElementType() reflect.Type {
+	return reflect.TypeOf((*[]NgwafWorkspaceRuleAction)(nil)).Elem()
+}
+
+func (i NgwafWorkspaceRuleActionArray) ToNgwafWorkspaceRuleActionArrayOutput() NgwafWorkspaceRuleActionArrayOutput {
+	return i.ToNgwafWorkspaceRuleActionArrayOutputWithContext(context.Background())
+}
+
+func (i NgwafWorkspaceRuleActionArray) ToNgwafWorkspaceRuleActionArrayOutputWithContext(ctx context.Context) NgwafWorkspaceRuleActionArrayOutput {
+	return pulumi.ToOutputWithContext(ctx, i).(NgwafWorkspaceRuleActionArrayOutput)
+}
+
+type NgwafWorkspaceRuleActionOutput struct{ *pulumi.OutputState }
+
+func (NgwafWorkspaceRuleActionOutput) ElementType() reflect.Type {
+	return reflect.TypeOf((*NgwafWorkspaceRuleAction)(nil)).Elem()
+}
+
+func (o NgwafWorkspaceRuleActionOutput) ToNgwafWorkspaceRuleActionOutput() NgwafWorkspaceRuleActionOutput {
+	return o
+}
+
+func (o NgwafWorkspaceRuleActionOutput) ToNgwafWorkspaceRuleActionOutputWithContext(ctx context.Context) NgwafWorkspaceRuleActionOutput {
+	return o
+}
+
+// Redirect target (used when `type = redirect`).
+func (o NgwafWorkspaceRuleActionOutput) RedirectUrl() pulumi.StringPtrOutput {
+	return o.ApplyT(func(v NgwafWorkspaceRuleAction) *string { return v.RedirectUrl }).(pulumi.StringPtrOutput)
+}
+
+// Response code used with redirect.
+func (o NgwafWorkspaceRuleActionOutput) ResponseCode() pulumi.IntPtrOutput {
+	return o.ApplyT(func(v NgwafWorkspaceRuleAction) *int { return v.ResponseCode }).(pulumi.IntPtrOutput)
+}
+
+// Signal name to exclude (used when `type = excludeSignal`).
+func (o NgwafWorkspaceRuleActionOutput) Signal() pulumi.StringPtrOutput {
+	return o.ApplyT(func(v NgwafWorkspaceRuleAction) *string { return v.Signal }).(pulumi.StringPtrOutput)
+}
+
+// The action type, e.g. `block`, `redirect`, `excludeSignal`.
+func (o NgwafWorkspaceRuleActionOutput) Type() pulumi.StringOutput {
+	return o.ApplyT(func(v NgwafWorkspaceRuleAction) string { return v.Type }).(pulumi.StringOutput)
+}
+
+type NgwafWorkspaceRuleActionArrayOutput struct{ *pulumi.OutputState }
+
+func (NgwafWorkspaceRuleActionArrayOutput) ElementType() reflect.Type {
+	return reflect.TypeOf((*[]NgwafWorkspaceRuleAction)(nil)).Elem()
+}
+
+func (o NgwafWorkspaceRuleActionArrayOutput) ToNgwafWorkspaceRuleActionArrayOutput() NgwafWorkspaceRuleActionArrayOutput {
+	return o
+}
+
+func (o NgwafWorkspaceRuleActionArrayOutput) ToNgwafWorkspaceRuleActionArrayOutputWithContext(ctx context.Context) NgwafWorkspaceRuleActionArrayOutput {
+	return o
+}
+
+func (o NgwafWorkspaceRuleActionArrayOutput) Index(i pulumi.IntInput) NgwafWorkspaceRuleActionOutput {
+	return pulumi.All(o, i).ApplyT(func(vs []interface{}) NgwafWorkspaceRuleAction {
+		return vs[0].([]NgwafWorkspaceRuleAction)[vs[1].(int)]
+	}).(NgwafWorkspaceRuleActionOutput)
+}
+
+type NgwafWorkspaceRuleCondition struct {
+	// Field to inspect (e.g., `ip`, `path`).
+	Field string `pulumi:"field"`
+	// Operator to apply (e.g., `equals`, `contains`).
+	Operator string `pulumi:"operator"`
+	// The value to test the field against.
+	Value string `pulumi:"value"`
+}
+
+// NgwafWorkspaceRuleConditionInput is an input type that accepts NgwafWorkspaceRuleConditionArgs and NgwafWorkspaceRuleConditionOutput values.
+// You can construct a concrete instance of `NgwafWorkspaceRuleConditionInput` via:
+//
+//	NgwafWorkspaceRuleConditionArgs{...}
+type NgwafWorkspaceRuleConditionInput interface {
+	pulumi.Input
+
+	ToNgwafWorkspaceRuleConditionOutput() NgwafWorkspaceRuleConditionOutput
+	ToNgwafWorkspaceRuleConditionOutputWithContext(context.Context) NgwafWorkspaceRuleConditionOutput
+}
+
+type NgwafWorkspaceRuleConditionArgs struct {
+	// Field to inspect (e.g., `ip`, `path`).
+	Field pulumi.StringInput `pulumi:"field"`
+	// Operator to apply (e.g., `equals`, `contains`).
+	Operator pulumi.StringInput `pulumi:"operator"`
+	// The value to test the field against.
+	Value pulumi.StringInput `pulumi:"value"`
+}
+
+func (NgwafWorkspaceRuleConditionArgs) ElementType() reflect.Type {
+	return reflect.TypeOf((*NgwafWorkspaceRuleCondition)(nil)).Elem()
+}
+
+func (i NgwafWorkspaceRuleConditionArgs) ToNgwafWorkspaceRuleConditionOutput() NgwafWorkspaceRuleConditionOutput {
+	return i.ToNgwafWorkspaceRuleConditionOutputWithContext(context.Background())
+}
+
+func (i NgwafWorkspaceRuleConditionArgs) ToNgwafWorkspaceRuleConditionOutputWithContext(ctx context.Context) NgwafWorkspaceRuleConditionOutput {
+	return pulumi.ToOutputWithContext(ctx, i).(NgwafWorkspaceRuleConditionOutput)
+}
+
+// NgwafWorkspaceRuleConditionArrayInput is an input type that accepts NgwafWorkspaceRuleConditionArray and NgwafWorkspaceRuleConditionArrayOutput values.
+// You can construct a concrete instance of `NgwafWorkspaceRuleConditionArrayInput` via:
+//
+//	NgwafWorkspaceRuleConditionArray{ NgwafWorkspaceRuleConditionArgs{...} }
+type NgwafWorkspaceRuleConditionArrayInput interface {
+	pulumi.Input
+
+	ToNgwafWorkspaceRuleConditionArrayOutput() NgwafWorkspaceRuleConditionArrayOutput
+	ToNgwafWorkspaceRuleConditionArrayOutputWithContext(context.Context) NgwafWorkspaceRuleConditionArrayOutput
+}
+
+type NgwafWorkspaceRuleConditionArray []NgwafWorkspaceRuleConditionInput
+
+func (NgwafWorkspaceRuleConditionArray) ElementType() reflect.Type {
+	return reflect.TypeOf((*[]NgwafWorkspaceRuleCondition)(nil)).Elem()
+}
+
+func (i NgwafWorkspaceRuleConditionArray) ToNgwafWorkspaceRuleConditionArrayOutput() NgwafWorkspaceRuleConditionArrayOutput {
+	return i.ToNgwafWorkspaceRuleConditionArrayOutputWithContext(context.Background())
+}
+
+func (i NgwafWorkspaceRuleConditionArray) ToNgwafWorkspaceRuleConditionArrayOutputWithContext(ctx context.Context) NgwafWorkspaceRuleConditionArrayOutput {
+	return pulumi.ToOutputWithContext(ctx, i).(NgwafWorkspaceRuleConditionArrayOutput)
+}
+
+type NgwafWorkspaceRuleConditionOutput struct{ *pulumi.OutputState }
+
+func (NgwafWorkspaceRuleConditionOutput) ElementType() reflect.Type {
+	return reflect.TypeOf((*NgwafWorkspaceRuleCondition)(nil)).Elem()
+}
+
+func (o NgwafWorkspaceRuleConditionOutput) ToNgwafWorkspaceRuleConditionOutput() NgwafWorkspaceRuleConditionOutput {
+	return o
+}
+
+func (o NgwafWorkspaceRuleConditionOutput) ToNgwafWorkspaceRuleConditionOutputWithContext(ctx context.Context) NgwafWorkspaceRuleConditionOutput {
+	return o
+}
+
+// Field to inspect (e.g., `ip`, `path`).
+func (o NgwafWorkspaceRuleConditionOutput) Field() pulumi.StringOutput {
+	return o.ApplyT(func(v NgwafWorkspaceRuleCondition) string { return v.Field }).(pulumi.StringOutput)
+}
+
+// Operator to apply (e.g., `equals`, `contains`).
+func (o NgwafWorkspaceRuleConditionOutput) Operator() pulumi.StringOutput {
+	return o.ApplyT(func(v NgwafWorkspaceRuleCondition) string { return v.Operator }).(pulumi.StringOutput)
+}
+
+// The value to test the field against.
+func (o NgwafWorkspaceRuleConditionOutput) Value() pulumi.StringOutput {
+	return o.ApplyT(func(v NgwafWorkspaceRuleCondition) string { return v.Value }).(pulumi.StringOutput)
+}
+
+type NgwafWorkspaceRuleConditionArrayOutput struct{ *pulumi.OutputState }
+
+func (NgwafWorkspaceRuleConditionArrayOutput) ElementType() reflect.Type {
+	return reflect.TypeOf((*[]NgwafWorkspaceRuleCondition)(nil)).Elem()
+}
+
+func (o NgwafWorkspaceRuleConditionArrayOutput) ToNgwafWorkspaceRuleConditionArrayOutput() NgwafWorkspaceRuleConditionArrayOutput {
+	return o
+}
+
+func (o NgwafWorkspaceRuleConditionArrayOutput) ToNgwafWorkspaceRuleConditionArrayOutputWithContext(ctx context.Context) NgwafWorkspaceRuleConditionArrayOutput {
+	return o
+}
+
+func (o NgwafWorkspaceRuleConditionArrayOutput) Index(i pulumi.IntInput) NgwafWorkspaceRuleConditionOutput {
+	return pulumi.All(o, i).ApplyT(func(vs []interface{}) NgwafWorkspaceRuleCondition {
+		return vs[0].([]NgwafWorkspaceRuleCondition)[vs[1].(int)]
+	}).(NgwafWorkspaceRuleConditionOutput)
+}
+
+type NgwafWorkspaceRuleGroupCondition struct {
+	// A list of nested conditions in this group.
+	Conditions []NgwafWorkspaceRuleGroupConditionCondition `pulumi:"conditions"`
+	// Logical operator for the group. Accepted values are `any` and `all`.
+	GroupOperator string `pulumi:"groupOperator"`
+}
+
+// NgwafWorkspaceRuleGroupConditionInput is an input type that accepts NgwafWorkspaceRuleGroupConditionArgs and NgwafWorkspaceRuleGroupConditionOutput values.
+// You can construct a concrete instance of `NgwafWorkspaceRuleGroupConditionInput` via:
+//
+//	NgwafWorkspaceRuleGroupConditionArgs{...}
+type NgwafWorkspaceRuleGroupConditionInput interface {
+	pulumi.Input
+
+	ToNgwafWorkspaceRuleGroupConditionOutput() NgwafWorkspaceRuleGroupConditionOutput
+	ToNgwafWorkspaceRuleGroupConditionOutputWithContext(context.Context) NgwafWorkspaceRuleGroupConditionOutput
+}
+
+type NgwafWorkspaceRuleGroupConditionArgs struct {
+	// A list of nested conditions in this group.
+	Conditions NgwafWorkspaceRuleGroupConditionConditionArrayInput `pulumi:"conditions"`
+	// Logical operator for the group. Accepted values are `any` and `all`.
+	GroupOperator pulumi.StringInput `pulumi:"groupOperator"`
+}
+
+func (NgwafWorkspaceRuleGroupConditionArgs) ElementType() reflect.Type {
+	return reflect.TypeOf((*NgwafWorkspaceRuleGroupCondition)(nil)).Elem()
+}
+
+func (i NgwafWorkspaceRuleGroupConditionArgs) ToNgwafWorkspaceRuleGroupConditionOutput() NgwafWorkspaceRuleGroupConditionOutput {
+	return i.ToNgwafWorkspaceRuleGroupConditionOutputWithContext(context.Background())
+}
+
+func (i NgwafWorkspaceRuleGroupConditionArgs) ToNgwafWorkspaceRuleGroupConditionOutputWithContext(ctx context.Context) NgwafWorkspaceRuleGroupConditionOutput {
+	return pulumi.ToOutputWithContext(ctx, i).(NgwafWorkspaceRuleGroupConditionOutput)
+}
+
+// NgwafWorkspaceRuleGroupConditionArrayInput is an input type that accepts NgwafWorkspaceRuleGroupConditionArray and NgwafWorkspaceRuleGroupConditionArrayOutput values.
+// You can construct a concrete instance of `NgwafWorkspaceRuleGroupConditionArrayInput` via:
+//
+//	NgwafWorkspaceRuleGroupConditionArray{ NgwafWorkspaceRuleGroupConditionArgs{...} }
+type NgwafWorkspaceRuleGroupConditionArrayInput interface {
+	pulumi.Input
+
+	ToNgwafWorkspaceRuleGroupConditionArrayOutput() NgwafWorkspaceRuleGroupConditionArrayOutput
+	ToNgwafWorkspaceRuleGroupConditionArrayOutputWithContext(context.Context) NgwafWorkspaceRuleGroupConditionArrayOutput
+}
+
+type NgwafWorkspaceRuleGroupConditionArray []NgwafWorkspaceRuleGroupConditionInput
+
+func (NgwafWorkspaceRuleGroupConditionArray) ElementType() reflect.Type {
+	return reflect.TypeOf((*[]NgwafWorkspaceRuleGroupCondition)(nil)).Elem()
+}
+
+func (i NgwafWorkspaceRuleGroupConditionArray) ToNgwafWorkspaceRuleGroupConditionArrayOutput() NgwafWorkspaceRuleGroupConditionArrayOutput {
+	return i.ToNgwafWorkspaceRuleGroupConditionArrayOutputWithContext(context.Background())
+}
+
+func (i NgwafWorkspaceRuleGroupConditionArray) ToNgwafWorkspaceRuleGroupConditionArrayOutputWithContext(ctx context.Context) NgwafWorkspaceRuleGroupConditionArrayOutput {
+	return pulumi.ToOutputWithContext(ctx, i).(NgwafWorkspaceRuleGroupConditionArrayOutput)
+}
+
+type NgwafWorkspaceRuleGroupConditionOutput struct{ *pulumi.OutputState }
+
+func (NgwafWorkspaceRuleGroupConditionOutput) ElementType() reflect.Type {
+	return reflect.TypeOf((*NgwafWorkspaceRuleGroupCondition)(nil)).Elem()
+}
+
+func (o NgwafWorkspaceRuleGroupConditionOutput) ToNgwafWorkspaceRuleGroupConditionOutput() NgwafWorkspaceRuleGroupConditionOutput {
+	return o
+}
+
+func (o NgwafWorkspaceRuleGroupConditionOutput) ToNgwafWorkspaceRuleGroupConditionOutputWithContext(ctx context.Context) NgwafWorkspaceRuleGroupConditionOutput {
+	return o
+}
+
+// A list of nested conditions in this group.
+func (o NgwafWorkspaceRuleGroupConditionOutput) Conditions() NgwafWorkspaceRuleGroupConditionConditionArrayOutput {
+	return o.ApplyT(func(v NgwafWorkspaceRuleGroupCondition) []NgwafWorkspaceRuleGroupConditionCondition {
+		return v.Conditions
+	}).(NgwafWorkspaceRuleGroupConditionConditionArrayOutput)
+}
+
+// Logical operator for the group. Accepted values are `any` and `all`.
+func (o NgwafWorkspaceRuleGroupConditionOutput) GroupOperator() pulumi.StringOutput {
+	return o.ApplyT(func(v NgwafWorkspaceRuleGroupCondition) string { return v.GroupOperator }).(pulumi.StringOutput)
+}
+
+type NgwafWorkspaceRuleGroupConditionArrayOutput struct{ *pulumi.OutputState }
+
+func (NgwafWorkspaceRuleGroupConditionArrayOutput) ElementType() reflect.Type {
+	return reflect.TypeOf((*[]NgwafWorkspaceRuleGroupCondition)(nil)).Elem()
+}
+
+func (o NgwafWorkspaceRuleGroupConditionArrayOutput) ToNgwafWorkspaceRuleGroupConditionArrayOutput() NgwafWorkspaceRuleGroupConditionArrayOutput {
+	return o
+}
+
+func (o NgwafWorkspaceRuleGroupConditionArrayOutput) ToNgwafWorkspaceRuleGroupConditionArrayOutputWithContext(ctx context.Context) NgwafWorkspaceRuleGroupConditionArrayOutput {
+	return o
+}
+
+func (o NgwafWorkspaceRuleGroupConditionArrayOutput) Index(i pulumi.IntInput) NgwafWorkspaceRuleGroupConditionOutput {
+	return pulumi.All(o, i).ApplyT(func(vs []interface{}) NgwafWorkspaceRuleGroupCondition {
+		return vs[0].([]NgwafWorkspaceRuleGroupCondition)[vs[1].(int)]
+	}).(NgwafWorkspaceRuleGroupConditionOutput)
+}
+
+type NgwafWorkspaceRuleGroupConditionCondition struct {
+	// Field to inspect (e.g., `ip`, `path`).
+	Field string `pulumi:"field"`
+	// Operator to apply (e.g., `equals`, `contains`).
+	Operator string `pulumi:"operator"`
+	// The value to test the field against.
+	Value string `pulumi:"value"`
+}
+
+// NgwafWorkspaceRuleGroupConditionConditionInput is an input type that accepts NgwafWorkspaceRuleGroupConditionConditionArgs and NgwafWorkspaceRuleGroupConditionConditionOutput values.
+// You can construct a concrete instance of `NgwafWorkspaceRuleGroupConditionConditionInput` via:
+//
+//	NgwafWorkspaceRuleGroupConditionConditionArgs{...}
+type NgwafWorkspaceRuleGroupConditionConditionInput interface {
+	pulumi.Input
+
+	ToNgwafWorkspaceRuleGroupConditionConditionOutput() NgwafWorkspaceRuleGroupConditionConditionOutput
+	ToNgwafWorkspaceRuleGroupConditionConditionOutputWithContext(context.Context) NgwafWorkspaceRuleGroupConditionConditionOutput
+}
+
+type NgwafWorkspaceRuleGroupConditionConditionArgs struct {
+	// Field to inspect (e.g., `ip`, `path`).
+	Field pulumi.StringInput `pulumi:"field"`
+	// Operator to apply (e.g., `equals`, `contains`).
+	Operator pulumi.StringInput `pulumi:"operator"`
+	// The value to test the field against.
+	Value pulumi.StringInput `pulumi:"value"`
+}
+
+func (NgwafWorkspaceRuleGroupConditionConditionArgs) ElementType() reflect.Type {
+	return reflect.TypeOf((*NgwafWorkspaceRuleGroupConditionCondition)(nil)).Elem()
+}
+
+func (i NgwafWorkspaceRuleGroupConditionConditionArgs) ToNgwafWorkspaceRuleGroupConditionConditionOutput() NgwafWorkspaceRuleGroupConditionConditionOutput {
+	return i.ToNgwafWorkspaceRuleGroupConditionConditionOutputWithContext(context.Background())
+}
+
+func (i NgwafWorkspaceRuleGroupConditionConditionArgs) ToNgwafWorkspaceRuleGroupConditionConditionOutputWithContext(ctx context.Context) NgwafWorkspaceRuleGroupConditionConditionOutput {
+	return pulumi.ToOutputWithContext(ctx, i).(NgwafWorkspaceRuleGroupConditionConditionOutput)
+}
+
+// NgwafWorkspaceRuleGroupConditionConditionArrayInput is an input type that accepts NgwafWorkspaceRuleGroupConditionConditionArray and NgwafWorkspaceRuleGroupConditionConditionArrayOutput values.
+// You can construct a concrete instance of `NgwafWorkspaceRuleGroupConditionConditionArrayInput` via:
+//
+//	NgwafWorkspaceRuleGroupConditionConditionArray{ NgwafWorkspaceRuleGroupConditionConditionArgs{...} }
+type NgwafWorkspaceRuleGroupConditionConditionArrayInput interface {
+	pulumi.Input
+
+	ToNgwafWorkspaceRuleGroupConditionConditionArrayOutput() NgwafWorkspaceRuleGroupConditionConditionArrayOutput
+	ToNgwafWorkspaceRuleGroupConditionConditionArrayOutputWithContext(context.Context) NgwafWorkspaceRuleGroupConditionConditionArrayOutput
+}
+
+type NgwafWorkspaceRuleGroupConditionConditionArray []NgwafWorkspaceRuleGroupConditionConditionInput
+
+func (NgwafWorkspaceRuleGroupConditionConditionArray) ElementType() reflect.Type {
+	return reflect.TypeOf((*[]NgwafWorkspaceRuleGroupConditionCondition)(nil)).Elem()
+}
+
+func (i NgwafWorkspaceRuleGroupConditionConditionArray) ToNgwafWorkspaceRuleGroupConditionConditionArrayOutput() NgwafWorkspaceRuleGroupConditionConditionArrayOutput {
+	return i.ToNgwafWorkspaceRuleGroupConditionConditionArrayOutputWithContext(context.Background())
+}
+
+func (i NgwafWorkspaceRuleGroupConditionConditionArray) ToNgwafWorkspaceRuleGroupConditionConditionArrayOutputWithContext(ctx context.Context) NgwafWorkspaceRuleGroupConditionConditionArrayOutput {
+	return pulumi.ToOutputWithContext(ctx, i).(NgwafWorkspaceRuleGroupConditionConditionArrayOutput)
+}
+
+type NgwafWorkspaceRuleGroupConditionConditionOutput struct{ *pulumi.OutputState }
+
+func (NgwafWorkspaceRuleGroupConditionConditionOutput) ElementType() reflect.Type {
+	return reflect.TypeOf((*NgwafWorkspaceRuleGroupConditionCondition)(nil)).Elem()
+}
+
+func (o NgwafWorkspaceRuleGroupConditionConditionOutput) ToNgwafWorkspaceRuleGroupConditionConditionOutput() NgwafWorkspaceRuleGroupConditionConditionOutput {
+	return o
+}
+
+func (o NgwafWorkspaceRuleGroupConditionConditionOutput) ToNgwafWorkspaceRuleGroupConditionConditionOutputWithContext(ctx context.Context) NgwafWorkspaceRuleGroupConditionConditionOutput {
+	return o
+}
+
+// Field to inspect (e.g., `ip`, `path`).
+func (o NgwafWorkspaceRuleGroupConditionConditionOutput) Field() pulumi.StringOutput {
+	return o.ApplyT(func(v NgwafWorkspaceRuleGroupConditionCondition) string { return v.Field }).(pulumi.StringOutput)
+}
+
+// Operator to apply (e.g., `equals`, `contains`).
+func (o NgwafWorkspaceRuleGroupConditionConditionOutput) Operator() pulumi.StringOutput {
+	return o.ApplyT(func(v NgwafWorkspaceRuleGroupConditionCondition) string { return v.Operator }).(pulumi.StringOutput)
+}
+
+// The value to test the field against.
+func (o NgwafWorkspaceRuleGroupConditionConditionOutput) Value() pulumi.StringOutput {
+	return o.ApplyT(func(v NgwafWorkspaceRuleGroupConditionCondition) string { return v.Value }).(pulumi.StringOutput)
+}
+
+type NgwafWorkspaceRuleGroupConditionConditionArrayOutput struct{ *pulumi.OutputState }
+
+func (NgwafWorkspaceRuleGroupConditionConditionArrayOutput) ElementType() reflect.Type {
+	return reflect.TypeOf((*[]NgwafWorkspaceRuleGroupConditionCondition)(nil)).Elem()
+}
+
+func (o NgwafWorkspaceRuleGroupConditionConditionArrayOutput) ToNgwafWorkspaceRuleGroupConditionConditionArrayOutput() NgwafWorkspaceRuleGroupConditionConditionArrayOutput {
+	return o
+}
+
+func (o NgwafWorkspaceRuleGroupConditionConditionArrayOutput) ToNgwafWorkspaceRuleGroupConditionConditionArrayOutputWithContext(ctx context.Context) NgwafWorkspaceRuleGroupConditionConditionArrayOutput {
+	return o
+}
+
+func (o NgwafWorkspaceRuleGroupConditionConditionArrayOutput) Index(i pulumi.IntInput) NgwafWorkspaceRuleGroupConditionConditionOutput {
+	return pulumi.All(o, i).ApplyT(func(vs []interface{}) NgwafWorkspaceRuleGroupConditionCondition {
+		return vs[0].([]NgwafWorkspaceRuleGroupConditionCondition)[vs[1].(int)]
+	}).(NgwafWorkspaceRuleGroupConditionConditionOutput)
+}
+
+type NgwafWorkspaceRuleRateLimit struct {
+	// List of client identifiers used for rate limiting. Can only be length 1 or 2.
+	ClientIdentifiers []NgwafWorkspaceRuleRateLimitClientIdentifier `pulumi:"clientIdentifiers"`
+	// Duration in seconds for the rate limit.
+	Duration int `pulumi:"duration"`
+	// Time interval for the rate limit in seconds. Accepted values are 60, 600, and 3600.
+	Interval int `pulumi:"interval"`
+	// Reference ID of the custom signal this rule uses to count requests.
+	Signal string `pulumi:"signal"`
+	// Rate limit threshold. Minimum 1 and maximum 10,000.
+	Threshold int `pulumi:"threshold"`
+}
+
+// NgwafWorkspaceRuleRateLimitInput is an input type that accepts NgwafWorkspaceRuleRateLimitArgs and NgwafWorkspaceRuleRateLimitOutput values.
+// You can construct a concrete instance of `NgwafWorkspaceRuleRateLimitInput` via:
+//
+//	NgwafWorkspaceRuleRateLimitArgs{...}
+type NgwafWorkspaceRuleRateLimitInput interface {
+	pulumi.Input
+
+	ToNgwafWorkspaceRuleRateLimitOutput() NgwafWorkspaceRuleRateLimitOutput
+	ToNgwafWorkspaceRuleRateLimitOutputWithContext(context.Context) NgwafWorkspaceRuleRateLimitOutput
+}
+
+type NgwafWorkspaceRuleRateLimitArgs struct {
+	// List of client identifiers used for rate limiting. Can only be length 1 or 2.
+	ClientIdentifiers NgwafWorkspaceRuleRateLimitClientIdentifierArrayInput `pulumi:"clientIdentifiers"`
+	// Duration in seconds for the rate limit.
+	Duration pulumi.IntInput `pulumi:"duration"`
+	// Time interval for the rate limit in seconds. Accepted values are 60, 600, and 3600.
+	Interval pulumi.IntInput `pulumi:"interval"`
+	// Reference ID of the custom signal this rule uses to count requests.
+	Signal pulumi.StringInput `pulumi:"signal"`
+	// Rate limit threshold. Minimum 1 and maximum 10,000.
+	Threshold pulumi.IntInput `pulumi:"threshold"`
+}
+
+func (NgwafWorkspaceRuleRateLimitArgs) ElementType() reflect.Type {
+	return reflect.TypeOf((*NgwafWorkspaceRuleRateLimit)(nil)).Elem()
+}
+
+func (i NgwafWorkspaceRuleRateLimitArgs) ToNgwafWorkspaceRuleRateLimitOutput() NgwafWorkspaceRuleRateLimitOutput {
+	return i.ToNgwafWorkspaceRuleRateLimitOutputWithContext(context.Background())
+}
+
+func (i NgwafWorkspaceRuleRateLimitArgs) ToNgwafWorkspaceRuleRateLimitOutputWithContext(ctx context.Context) NgwafWorkspaceRuleRateLimitOutput {
+	return pulumi.ToOutputWithContext(ctx, i).(NgwafWorkspaceRuleRateLimitOutput)
+}
+
+func (i NgwafWorkspaceRuleRateLimitArgs) ToNgwafWorkspaceRuleRateLimitPtrOutput() NgwafWorkspaceRuleRateLimitPtrOutput {
+	return i.ToNgwafWorkspaceRuleRateLimitPtrOutputWithContext(context.Background())
+}
+
+func (i NgwafWorkspaceRuleRateLimitArgs) ToNgwafWorkspaceRuleRateLimitPtrOutputWithContext(ctx context.Context) NgwafWorkspaceRuleRateLimitPtrOutput {
+	return pulumi.ToOutputWithContext(ctx, i).(NgwafWorkspaceRuleRateLimitOutput).ToNgwafWorkspaceRuleRateLimitPtrOutputWithContext(ctx)
+}
+
+// NgwafWorkspaceRuleRateLimitPtrInput is an input type that accepts NgwafWorkspaceRuleRateLimitArgs, NgwafWorkspaceRuleRateLimitPtr and NgwafWorkspaceRuleRateLimitPtrOutput values.
+// You can construct a concrete instance of `NgwafWorkspaceRuleRateLimitPtrInput` via:
+//
+//	        NgwafWorkspaceRuleRateLimitArgs{...}
+//
+//	or:
+//
+//	        nil
+type NgwafWorkspaceRuleRateLimitPtrInput interface {
+	pulumi.Input
+
+	ToNgwafWorkspaceRuleRateLimitPtrOutput() NgwafWorkspaceRuleRateLimitPtrOutput
+	ToNgwafWorkspaceRuleRateLimitPtrOutputWithContext(context.Context) NgwafWorkspaceRuleRateLimitPtrOutput
+}
+
+type ngwafWorkspaceRuleRateLimitPtrType NgwafWorkspaceRuleRateLimitArgs
+
+func NgwafWorkspaceRuleRateLimitPtr(v *NgwafWorkspaceRuleRateLimitArgs) NgwafWorkspaceRuleRateLimitPtrInput {
+	return (*ngwafWorkspaceRuleRateLimitPtrType)(v)
+}
+
+func (*ngwafWorkspaceRuleRateLimitPtrType) ElementType() reflect.Type {
+	return reflect.TypeOf((**NgwafWorkspaceRuleRateLimit)(nil)).Elem()
+}
+
+func (i *ngwafWorkspaceRuleRateLimitPtrType) ToNgwafWorkspaceRuleRateLimitPtrOutput() NgwafWorkspaceRuleRateLimitPtrOutput {
+	return i.ToNgwafWorkspaceRuleRateLimitPtrOutputWithContext(context.Background())
+}
+
+func (i *ngwafWorkspaceRuleRateLimitPtrType) ToNgwafWorkspaceRuleRateLimitPtrOutputWithContext(ctx context.Context) NgwafWorkspaceRuleRateLimitPtrOutput {
+	return pulumi.ToOutputWithContext(ctx, i).(NgwafWorkspaceRuleRateLimitPtrOutput)
+}
+
+type NgwafWorkspaceRuleRateLimitOutput struct{ *pulumi.OutputState }
+
+func (NgwafWorkspaceRuleRateLimitOutput) ElementType() reflect.Type {
+	return reflect.TypeOf((*NgwafWorkspaceRuleRateLimit)(nil)).Elem()
+}
+
+func (o NgwafWorkspaceRuleRateLimitOutput) ToNgwafWorkspaceRuleRateLimitOutput() NgwafWorkspaceRuleRateLimitOutput {
+	return o
+}
+
+func (o NgwafWorkspaceRuleRateLimitOutput) ToNgwafWorkspaceRuleRateLimitOutputWithContext(ctx context.Context) NgwafWorkspaceRuleRateLimitOutput {
+	return o
+}
+
+func (o NgwafWorkspaceRuleRateLimitOutput) ToNgwafWorkspaceRuleRateLimitPtrOutput() NgwafWorkspaceRuleRateLimitPtrOutput {
+	return o.ToNgwafWorkspaceRuleRateLimitPtrOutputWithContext(context.Background())
+}
+
+func (o NgwafWorkspaceRuleRateLimitOutput) ToNgwafWorkspaceRuleRateLimitPtrOutputWithContext(ctx context.Context) NgwafWorkspaceRuleRateLimitPtrOutput {
+	return o.ApplyTWithContext(ctx, func(_ context.Context, v NgwafWorkspaceRuleRateLimit) *NgwafWorkspaceRuleRateLimit {
+		return &v
+	}).(NgwafWorkspaceRuleRateLimitPtrOutput)
+}
+
+// List of client identifiers used for rate limiting. Can only be length 1 or 2.
+func (o NgwafWorkspaceRuleRateLimitOutput) ClientIdentifiers() NgwafWorkspaceRuleRateLimitClientIdentifierArrayOutput {
+	return o.ApplyT(func(v NgwafWorkspaceRuleRateLimit) []NgwafWorkspaceRuleRateLimitClientIdentifier {
+		return v.ClientIdentifiers
+	}).(NgwafWorkspaceRuleRateLimitClientIdentifierArrayOutput)
+}
+
+// Duration in seconds for the rate limit.
+func (o NgwafWorkspaceRuleRateLimitOutput) Duration() pulumi.IntOutput {
+	return o.ApplyT(func(v NgwafWorkspaceRuleRateLimit) int { return v.Duration }).(pulumi.IntOutput)
+}
+
+// Time interval for the rate limit in seconds. Accepted values are 60, 600, and 3600.
+func (o NgwafWorkspaceRuleRateLimitOutput) Interval() pulumi.IntOutput {
+	return o.ApplyT(func(v NgwafWorkspaceRuleRateLimit) int { return v.Interval }).(pulumi.IntOutput)
+}
+
+// Reference ID of the custom signal this rule uses to count requests.
+func (o NgwafWorkspaceRuleRateLimitOutput) Signal() pulumi.StringOutput {
+	return o.ApplyT(func(v NgwafWorkspaceRuleRateLimit) string { return v.Signal }).(pulumi.StringOutput)
+}
+
+// Rate limit threshold. Minimum 1 and maximum 10,000.
+func (o NgwafWorkspaceRuleRateLimitOutput) Threshold() pulumi.IntOutput {
+	return o.ApplyT(func(v NgwafWorkspaceRuleRateLimit) int { return v.Threshold }).(pulumi.IntOutput)
+}
+
+type NgwafWorkspaceRuleRateLimitPtrOutput struct{ *pulumi.OutputState }
+
+func (NgwafWorkspaceRuleRateLimitPtrOutput) ElementType() reflect.Type {
+	return reflect.TypeOf((**NgwafWorkspaceRuleRateLimit)(nil)).Elem()
+}
+
+func (o NgwafWorkspaceRuleRateLimitPtrOutput) ToNgwafWorkspaceRuleRateLimitPtrOutput() NgwafWorkspaceRuleRateLimitPtrOutput {
+	return o
+}
+
+func (o NgwafWorkspaceRuleRateLimitPtrOutput) ToNgwafWorkspaceRuleRateLimitPtrOutputWithContext(ctx context.Context) NgwafWorkspaceRuleRateLimitPtrOutput {
+	return o
+}
+
+func (o NgwafWorkspaceRuleRateLimitPtrOutput) Elem() NgwafWorkspaceRuleRateLimitOutput {
+	return o.ApplyT(func(v *NgwafWorkspaceRuleRateLimit) NgwafWorkspaceRuleRateLimit {
+		if v != nil {
+			return *v
+		}
+		var ret NgwafWorkspaceRuleRateLimit
+		return ret
+	}).(NgwafWorkspaceRuleRateLimitOutput)
+}
+
+// List of client identifiers used for rate limiting. Can only be length 1 or 2.
+func (o NgwafWorkspaceRuleRateLimitPtrOutput) ClientIdentifiers() NgwafWorkspaceRuleRateLimitClientIdentifierArrayOutput {
+	return o.ApplyT(func(v *NgwafWorkspaceRuleRateLimit) []NgwafWorkspaceRuleRateLimitClientIdentifier {
+		if v == nil {
+			return nil
+		}
+		return v.ClientIdentifiers
+	}).(NgwafWorkspaceRuleRateLimitClientIdentifierArrayOutput)
+}
+
+// Duration in seconds for the rate limit.
+func (o NgwafWorkspaceRuleRateLimitPtrOutput) Duration() pulumi.IntPtrOutput {
+	return o.ApplyT(func(v *NgwafWorkspaceRuleRateLimit) *int {
+		if v == nil {
+			return nil
+		}
+		return &v.Duration
+	}).(pulumi.IntPtrOutput)
+}
+
+// Time interval for the rate limit in seconds. Accepted values are 60, 600, and 3600.
+func (o NgwafWorkspaceRuleRateLimitPtrOutput) Interval() pulumi.IntPtrOutput {
+	return o.ApplyT(func(v *NgwafWorkspaceRuleRateLimit) *int {
+		if v == nil {
+			return nil
+		}
+		return &v.Interval
+	}).(pulumi.IntPtrOutput)
+}
+
+// Reference ID of the custom signal this rule uses to count requests.
+func (o NgwafWorkspaceRuleRateLimitPtrOutput) Signal() pulumi.StringPtrOutput {
+	return o.ApplyT(func(v *NgwafWorkspaceRuleRateLimit) *string {
+		if v == nil {
+			return nil
+		}
+		return &v.Signal
+	}).(pulumi.StringPtrOutput)
+}
+
+// Rate limit threshold. Minimum 1 and maximum 10,000.
+func (o NgwafWorkspaceRuleRateLimitPtrOutput) Threshold() pulumi.IntPtrOutput {
+	return o.ApplyT(func(v *NgwafWorkspaceRuleRateLimit) *int {
+		if v == nil {
+			return nil
+		}
+		return &v.Threshold
+	}).(pulumi.IntPtrOutput)
+}
+
+type NgwafWorkspaceRuleRateLimitClientIdentifier struct {
+	// Key for the Client Identifier.
+	Key *string `pulumi:"key"`
+	// Name for the Client Identifier.
+	Name *string `pulumi:"name"`
+	// Type of the Client Identifier.
+	Type string `pulumi:"type"`
+}
+
+// NgwafWorkspaceRuleRateLimitClientIdentifierInput is an input type that accepts NgwafWorkspaceRuleRateLimitClientIdentifierArgs and NgwafWorkspaceRuleRateLimitClientIdentifierOutput values.
+// You can construct a concrete instance of `NgwafWorkspaceRuleRateLimitClientIdentifierInput` via:
+//
+//	NgwafWorkspaceRuleRateLimitClientIdentifierArgs{...}
+type NgwafWorkspaceRuleRateLimitClientIdentifierInput interface {
+	pulumi.Input
+
+	ToNgwafWorkspaceRuleRateLimitClientIdentifierOutput() NgwafWorkspaceRuleRateLimitClientIdentifierOutput
+	ToNgwafWorkspaceRuleRateLimitClientIdentifierOutputWithContext(context.Context) NgwafWorkspaceRuleRateLimitClientIdentifierOutput
+}
+
+type NgwafWorkspaceRuleRateLimitClientIdentifierArgs struct {
+	// Key for the Client Identifier.
+	Key pulumi.StringPtrInput `pulumi:"key"`
+	// Name for the Client Identifier.
+	Name pulumi.StringPtrInput `pulumi:"name"`
+	// Type of the Client Identifier.
+	Type pulumi.StringInput `pulumi:"type"`
+}
+
+func (NgwafWorkspaceRuleRateLimitClientIdentifierArgs) ElementType() reflect.Type {
+	return reflect.TypeOf((*NgwafWorkspaceRuleRateLimitClientIdentifier)(nil)).Elem()
+}
+
+func (i NgwafWorkspaceRuleRateLimitClientIdentifierArgs) ToNgwafWorkspaceRuleRateLimitClientIdentifierOutput() NgwafWorkspaceRuleRateLimitClientIdentifierOutput {
+	return i.ToNgwafWorkspaceRuleRateLimitClientIdentifierOutputWithContext(context.Background())
+}
+
+func (i NgwafWorkspaceRuleRateLimitClientIdentifierArgs) ToNgwafWorkspaceRuleRateLimitClientIdentifierOutputWithContext(ctx context.Context) NgwafWorkspaceRuleRateLimitClientIdentifierOutput {
+	return pulumi.ToOutputWithContext(ctx, i).(NgwafWorkspaceRuleRateLimitClientIdentifierOutput)
+}
+
+// NgwafWorkspaceRuleRateLimitClientIdentifierArrayInput is an input type that accepts NgwafWorkspaceRuleRateLimitClientIdentifierArray and NgwafWorkspaceRuleRateLimitClientIdentifierArrayOutput values.
+// You can construct a concrete instance of `NgwafWorkspaceRuleRateLimitClientIdentifierArrayInput` via:
+//
+//	NgwafWorkspaceRuleRateLimitClientIdentifierArray{ NgwafWorkspaceRuleRateLimitClientIdentifierArgs{...} }
+type NgwafWorkspaceRuleRateLimitClientIdentifierArrayInput interface {
+	pulumi.Input
+
+	ToNgwafWorkspaceRuleRateLimitClientIdentifierArrayOutput() NgwafWorkspaceRuleRateLimitClientIdentifierArrayOutput
+	ToNgwafWorkspaceRuleRateLimitClientIdentifierArrayOutputWithContext(context.Context) NgwafWorkspaceRuleRateLimitClientIdentifierArrayOutput
+}
+
+type NgwafWorkspaceRuleRateLimitClientIdentifierArray []NgwafWorkspaceRuleRateLimitClientIdentifierInput
+
+func (NgwafWorkspaceRuleRateLimitClientIdentifierArray) ElementType() reflect.Type {
+	return reflect.TypeOf((*[]NgwafWorkspaceRuleRateLimitClientIdentifier)(nil)).Elem()
+}
+
+func (i NgwafWorkspaceRuleRateLimitClientIdentifierArray) ToNgwafWorkspaceRuleRateLimitClientIdentifierArrayOutput() NgwafWorkspaceRuleRateLimitClientIdentifierArrayOutput {
+	return i.ToNgwafWorkspaceRuleRateLimitClientIdentifierArrayOutputWithContext(context.Background())
+}
+
+func (i NgwafWorkspaceRuleRateLimitClientIdentifierArray) ToNgwafWorkspaceRuleRateLimitClientIdentifierArrayOutputWithContext(ctx context.Context) NgwafWorkspaceRuleRateLimitClientIdentifierArrayOutput {
+	return pulumi.ToOutputWithContext(ctx, i).(NgwafWorkspaceRuleRateLimitClientIdentifierArrayOutput)
+}
+
+type NgwafWorkspaceRuleRateLimitClientIdentifierOutput struct{ *pulumi.OutputState }
+
+func (NgwafWorkspaceRuleRateLimitClientIdentifierOutput) ElementType() reflect.Type {
+	return reflect.TypeOf((*NgwafWorkspaceRuleRateLimitClientIdentifier)(nil)).Elem()
+}
+
+func (o NgwafWorkspaceRuleRateLimitClientIdentifierOutput) ToNgwafWorkspaceRuleRateLimitClientIdentifierOutput() NgwafWorkspaceRuleRateLimitClientIdentifierOutput {
+	return o
+}
+
+func (o NgwafWorkspaceRuleRateLimitClientIdentifierOutput) ToNgwafWorkspaceRuleRateLimitClientIdentifierOutputWithContext(ctx context.Context) NgwafWorkspaceRuleRateLimitClientIdentifierOutput {
+	return o
+}
+
+// Key for the Client Identifier.
+func (o NgwafWorkspaceRuleRateLimitClientIdentifierOutput) Key() pulumi.StringPtrOutput {
+	return o.ApplyT(func(v NgwafWorkspaceRuleRateLimitClientIdentifier) *string { return v.Key }).(pulumi.StringPtrOutput)
+}
+
+// Name for the Client Identifier.
+func (o NgwafWorkspaceRuleRateLimitClientIdentifierOutput) Name() pulumi.StringPtrOutput {
+	return o.ApplyT(func(v NgwafWorkspaceRuleRateLimitClientIdentifier) *string { return v.Name }).(pulumi.StringPtrOutput)
+}
+
+// Type of the Client Identifier.
+func (o NgwafWorkspaceRuleRateLimitClientIdentifierOutput) Type() pulumi.StringOutput {
+	return o.ApplyT(func(v NgwafWorkspaceRuleRateLimitClientIdentifier) string { return v.Type }).(pulumi.StringOutput)
+}
+
+type NgwafWorkspaceRuleRateLimitClientIdentifierArrayOutput struct{ *pulumi.OutputState }
+
+func (NgwafWorkspaceRuleRateLimitClientIdentifierArrayOutput) ElementType() reflect.Type {
+	return reflect.TypeOf((*[]NgwafWorkspaceRuleRateLimitClientIdentifier)(nil)).Elem()
+}
+
+func (o NgwafWorkspaceRuleRateLimitClientIdentifierArrayOutput) ToNgwafWorkspaceRuleRateLimitClientIdentifierArrayOutput() NgwafWorkspaceRuleRateLimitClientIdentifierArrayOutput {
+	return o
+}
+
+func (o NgwafWorkspaceRuleRateLimitClientIdentifierArrayOutput) ToNgwafWorkspaceRuleRateLimitClientIdentifierArrayOutputWithContext(ctx context.Context) NgwafWorkspaceRuleRateLimitClientIdentifierArrayOutput {
+	return o
+}
+
+func (o NgwafWorkspaceRuleRateLimitClientIdentifierArrayOutput) Index(i pulumi.IntInput) NgwafWorkspaceRuleRateLimitClientIdentifierOutput {
+	return pulumi.All(o, i).ApplyT(func(vs []interface{}) NgwafWorkspaceRuleRateLimitClientIdentifier {
+		return vs[0].([]NgwafWorkspaceRuleRateLimitClientIdentifier)[vs[1].(int)]
+	}).(NgwafWorkspaceRuleRateLimitClientIdentifierOutput)
 }
 
 type ServiceACLEntriesEntry struct {
@@ -6730,7 +8488,7 @@ func (o ServiceComputeProductEnablementPtrOutput) Websockets() pulumi.BoolPtrOut
 type ServiceComputeProductEnablementDdosProtection struct {
 	// Enable DDoS Protection support
 	Enabled bool `pulumi:"enabled"`
-	// Operation mode
+	// Operation mode. Can be either `off`, `log`, or `block`.
 	Mode string `pulumi:"mode"`
 }
 
@@ -6748,7 +8506,7 @@ type ServiceComputeProductEnablementDdosProtectionInput interface {
 type ServiceComputeProductEnablementDdosProtectionArgs struct {
 	// Enable DDoS Protection support
 	Enabled pulumi.BoolInput `pulumi:"enabled"`
-	// Operation mode
+	// Operation mode. Can be either `off`, `log`, or `block`.
 	Mode pulumi.StringInput `pulumi:"mode"`
 }
 
@@ -6834,7 +8592,7 @@ func (o ServiceComputeProductEnablementDdosProtectionOutput) Enabled() pulumi.Bo
 	return o.ApplyT(func(v ServiceComputeProductEnablementDdosProtection) bool { return v.Enabled }).(pulumi.BoolOutput)
 }
 
-// Operation mode
+// Operation mode. Can be either `off`, `log`, or `block`.
 func (o ServiceComputeProductEnablementDdosProtectionOutput) Mode() pulumi.StringOutput {
 	return o.ApplyT(func(v ServiceComputeProductEnablementDdosProtection) string { return v.Mode }).(pulumi.StringOutput)
 }
@@ -6873,7 +8631,7 @@ func (o ServiceComputeProductEnablementDdosProtectionPtrOutput) Enabled() pulumi
 	}).(pulumi.BoolPtrOutput)
 }
 
-// Operation mode
+// Operation mode. Can be either `off`, `log`, or `block`.
 func (o ServiceComputeProductEnablementDdosProtectionPtrOutput) Mode() pulumi.StringPtrOutput {
 	return o.ApplyT(func(v *ServiceComputeProductEnablementDdosProtection) *string {
 		if v == nil {
@@ -15240,7 +16998,7 @@ func (o ServiceVclProductEnablementPtrOutput) Websockets() pulumi.BoolPtrOutput 
 type ServiceVclProductEnablementDdosProtection struct {
 	// Enable DDoS Protection support
 	Enabled bool `pulumi:"enabled"`
-	// Operation mode
+	// Operation mode. Can be either `off`, `log`, or `block`.
 	Mode string `pulumi:"mode"`
 }
 
@@ -15258,7 +17016,7 @@ type ServiceVclProductEnablementDdosProtectionInput interface {
 type ServiceVclProductEnablementDdosProtectionArgs struct {
 	// Enable DDoS Protection support
 	Enabled pulumi.BoolInput `pulumi:"enabled"`
-	// Operation mode
+	// Operation mode. Can be either `off`, `log`, or `block`.
 	Mode pulumi.StringInput `pulumi:"mode"`
 }
 
@@ -15344,7 +17102,7 @@ func (o ServiceVclProductEnablementDdosProtectionOutput) Enabled() pulumi.BoolOu
 	return o.ApplyT(func(v ServiceVclProductEnablementDdosProtection) bool { return v.Enabled }).(pulumi.BoolOutput)
 }
 
-// Operation mode
+// Operation mode. Can be either `off`, `log`, or `block`.
 func (o ServiceVclProductEnablementDdosProtectionOutput) Mode() pulumi.StringOutput {
 	return o.ApplyT(func(v ServiceVclProductEnablementDdosProtection) string { return v.Mode }).(pulumi.StringOutput)
 }
@@ -15383,7 +17141,7 @@ func (o ServiceVclProductEnablementDdosProtectionPtrOutput) Enabled() pulumi.Boo
 	}).(pulumi.BoolPtrOutput)
 }
 
-// Operation mode
+// Operation mode. Can be either `off`, `log`, or `block`.
 func (o ServiceVclProductEnablementDdosProtectionPtrOutput) Mode() pulumi.StringPtrOutput {
 	return o.ApplyT(func(v *ServiceVclProductEnablementDdosProtection) *string {
 		if v == nil {
@@ -17206,6 +18964,1215 @@ func (o GetKvstoresStoreArrayOutput) Index(i pulumi.IntInput) GetKvstoresStoreOu
 	}).(GetKvstoresStoreOutput)
 }
 
+type GetNgwafAlertDatadogIntegrationDatadogAlert struct {
+	// The ID of the workspace alert.
+	Id string `pulumi:"id"`
+}
+
+// GetNgwafAlertDatadogIntegrationDatadogAlertInput is an input type that accepts GetNgwafAlertDatadogIntegrationDatadogAlertArgs and GetNgwafAlertDatadogIntegrationDatadogAlertOutput values.
+// You can construct a concrete instance of `GetNgwafAlertDatadogIntegrationDatadogAlertInput` via:
+//
+//	GetNgwafAlertDatadogIntegrationDatadogAlertArgs{...}
+type GetNgwafAlertDatadogIntegrationDatadogAlertInput interface {
+	pulumi.Input
+
+	ToGetNgwafAlertDatadogIntegrationDatadogAlertOutput() GetNgwafAlertDatadogIntegrationDatadogAlertOutput
+	ToGetNgwafAlertDatadogIntegrationDatadogAlertOutputWithContext(context.Context) GetNgwafAlertDatadogIntegrationDatadogAlertOutput
+}
+
+type GetNgwafAlertDatadogIntegrationDatadogAlertArgs struct {
+	// The ID of the workspace alert.
+	Id pulumi.StringInput `pulumi:"id"`
+}
+
+func (GetNgwafAlertDatadogIntegrationDatadogAlertArgs) ElementType() reflect.Type {
+	return reflect.TypeOf((*GetNgwafAlertDatadogIntegrationDatadogAlert)(nil)).Elem()
+}
+
+func (i GetNgwafAlertDatadogIntegrationDatadogAlertArgs) ToGetNgwafAlertDatadogIntegrationDatadogAlertOutput() GetNgwafAlertDatadogIntegrationDatadogAlertOutput {
+	return i.ToGetNgwafAlertDatadogIntegrationDatadogAlertOutputWithContext(context.Background())
+}
+
+func (i GetNgwafAlertDatadogIntegrationDatadogAlertArgs) ToGetNgwafAlertDatadogIntegrationDatadogAlertOutputWithContext(ctx context.Context) GetNgwafAlertDatadogIntegrationDatadogAlertOutput {
+	return pulumi.ToOutputWithContext(ctx, i).(GetNgwafAlertDatadogIntegrationDatadogAlertOutput)
+}
+
+// GetNgwafAlertDatadogIntegrationDatadogAlertArrayInput is an input type that accepts GetNgwafAlertDatadogIntegrationDatadogAlertArray and GetNgwafAlertDatadogIntegrationDatadogAlertArrayOutput values.
+// You can construct a concrete instance of `GetNgwafAlertDatadogIntegrationDatadogAlertArrayInput` via:
+//
+//	GetNgwafAlertDatadogIntegrationDatadogAlertArray{ GetNgwafAlertDatadogIntegrationDatadogAlertArgs{...} }
+type GetNgwafAlertDatadogIntegrationDatadogAlertArrayInput interface {
+	pulumi.Input
+
+	ToGetNgwafAlertDatadogIntegrationDatadogAlertArrayOutput() GetNgwafAlertDatadogIntegrationDatadogAlertArrayOutput
+	ToGetNgwafAlertDatadogIntegrationDatadogAlertArrayOutputWithContext(context.Context) GetNgwafAlertDatadogIntegrationDatadogAlertArrayOutput
+}
+
+type GetNgwafAlertDatadogIntegrationDatadogAlertArray []GetNgwafAlertDatadogIntegrationDatadogAlertInput
+
+func (GetNgwafAlertDatadogIntegrationDatadogAlertArray) ElementType() reflect.Type {
+	return reflect.TypeOf((*[]GetNgwafAlertDatadogIntegrationDatadogAlert)(nil)).Elem()
+}
+
+func (i GetNgwafAlertDatadogIntegrationDatadogAlertArray) ToGetNgwafAlertDatadogIntegrationDatadogAlertArrayOutput() GetNgwafAlertDatadogIntegrationDatadogAlertArrayOutput {
+	return i.ToGetNgwafAlertDatadogIntegrationDatadogAlertArrayOutputWithContext(context.Background())
+}
+
+func (i GetNgwafAlertDatadogIntegrationDatadogAlertArray) ToGetNgwafAlertDatadogIntegrationDatadogAlertArrayOutputWithContext(ctx context.Context) GetNgwafAlertDatadogIntegrationDatadogAlertArrayOutput {
+	return pulumi.ToOutputWithContext(ctx, i).(GetNgwafAlertDatadogIntegrationDatadogAlertArrayOutput)
+}
+
+type GetNgwafAlertDatadogIntegrationDatadogAlertOutput struct{ *pulumi.OutputState }
+
+func (GetNgwafAlertDatadogIntegrationDatadogAlertOutput) ElementType() reflect.Type {
+	return reflect.TypeOf((*GetNgwafAlertDatadogIntegrationDatadogAlert)(nil)).Elem()
+}
+
+func (o GetNgwafAlertDatadogIntegrationDatadogAlertOutput) ToGetNgwafAlertDatadogIntegrationDatadogAlertOutput() GetNgwafAlertDatadogIntegrationDatadogAlertOutput {
+	return o
+}
+
+func (o GetNgwafAlertDatadogIntegrationDatadogAlertOutput) ToGetNgwafAlertDatadogIntegrationDatadogAlertOutputWithContext(ctx context.Context) GetNgwafAlertDatadogIntegrationDatadogAlertOutput {
+	return o
+}
+
+// The ID of the workspace alert.
+func (o GetNgwafAlertDatadogIntegrationDatadogAlertOutput) Id() pulumi.StringOutput {
+	return o.ApplyT(func(v GetNgwafAlertDatadogIntegrationDatadogAlert) string { return v.Id }).(pulumi.StringOutput)
+}
+
+type GetNgwafAlertDatadogIntegrationDatadogAlertArrayOutput struct{ *pulumi.OutputState }
+
+func (GetNgwafAlertDatadogIntegrationDatadogAlertArrayOutput) ElementType() reflect.Type {
+	return reflect.TypeOf((*[]GetNgwafAlertDatadogIntegrationDatadogAlert)(nil)).Elem()
+}
+
+func (o GetNgwafAlertDatadogIntegrationDatadogAlertArrayOutput) ToGetNgwafAlertDatadogIntegrationDatadogAlertArrayOutput() GetNgwafAlertDatadogIntegrationDatadogAlertArrayOutput {
+	return o
+}
+
+func (o GetNgwafAlertDatadogIntegrationDatadogAlertArrayOutput) ToGetNgwafAlertDatadogIntegrationDatadogAlertArrayOutputWithContext(ctx context.Context) GetNgwafAlertDatadogIntegrationDatadogAlertArrayOutput {
+	return o
+}
+
+func (o GetNgwafAlertDatadogIntegrationDatadogAlertArrayOutput) Index(i pulumi.IntInput) GetNgwafAlertDatadogIntegrationDatadogAlertOutput {
+	return pulumi.All(o, i).ApplyT(func(vs []interface{}) GetNgwafAlertDatadogIntegrationDatadogAlert {
+		return vs[0].([]GetNgwafAlertDatadogIntegrationDatadogAlert)[vs[1].(int)]
+	}).(GetNgwafAlertDatadogIntegrationDatadogAlertOutput)
+}
+
+type GetNgwafAlertJiraIntegrationJiraAlert struct {
+	// The ID of the workspace alert.
+	Id string `pulumi:"id"`
+}
+
+// GetNgwafAlertJiraIntegrationJiraAlertInput is an input type that accepts GetNgwafAlertJiraIntegrationJiraAlertArgs and GetNgwafAlertJiraIntegrationJiraAlertOutput values.
+// You can construct a concrete instance of `GetNgwafAlertJiraIntegrationJiraAlertInput` via:
+//
+//	GetNgwafAlertJiraIntegrationJiraAlertArgs{...}
+type GetNgwafAlertJiraIntegrationJiraAlertInput interface {
+	pulumi.Input
+
+	ToGetNgwafAlertJiraIntegrationJiraAlertOutput() GetNgwafAlertJiraIntegrationJiraAlertOutput
+	ToGetNgwafAlertJiraIntegrationJiraAlertOutputWithContext(context.Context) GetNgwafAlertJiraIntegrationJiraAlertOutput
+}
+
+type GetNgwafAlertJiraIntegrationJiraAlertArgs struct {
+	// The ID of the workspace alert.
+	Id pulumi.StringInput `pulumi:"id"`
+}
+
+func (GetNgwafAlertJiraIntegrationJiraAlertArgs) ElementType() reflect.Type {
+	return reflect.TypeOf((*GetNgwafAlertJiraIntegrationJiraAlert)(nil)).Elem()
+}
+
+func (i GetNgwafAlertJiraIntegrationJiraAlertArgs) ToGetNgwafAlertJiraIntegrationJiraAlertOutput() GetNgwafAlertJiraIntegrationJiraAlertOutput {
+	return i.ToGetNgwafAlertJiraIntegrationJiraAlertOutputWithContext(context.Background())
+}
+
+func (i GetNgwafAlertJiraIntegrationJiraAlertArgs) ToGetNgwafAlertJiraIntegrationJiraAlertOutputWithContext(ctx context.Context) GetNgwafAlertJiraIntegrationJiraAlertOutput {
+	return pulumi.ToOutputWithContext(ctx, i).(GetNgwafAlertJiraIntegrationJiraAlertOutput)
+}
+
+// GetNgwafAlertJiraIntegrationJiraAlertArrayInput is an input type that accepts GetNgwafAlertJiraIntegrationJiraAlertArray and GetNgwafAlertJiraIntegrationJiraAlertArrayOutput values.
+// You can construct a concrete instance of `GetNgwafAlertJiraIntegrationJiraAlertArrayInput` via:
+//
+//	GetNgwafAlertJiraIntegrationJiraAlertArray{ GetNgwafAlertJiraIntegrationJiraAlertArgs{...} }
+type GetNgwafAlertJiraIntegrationJiraAlertArrayInput interface {
+	pulumi.Input
+
+	ToGetNgwafAlertJiraIntegrationJiraAlertArrayOutput() GetNgwafAlertJiraIntegrationJiraAlertArrayOutput
+	ToGetNgwafAlertJiraIntegrationJiraAlertArrayOutputWithContext(context.Context) GetNgwafAlertJiraIntegrationJiraAlertArrayOutput
+}
+
+type GetNgwafAlertJiraIntegrationJiraAlertArray []GetNgwafAlertJiraIntegrationJiraAlertInput
+
+func (GetNgwafAlertJiraIntegrationJiraAlertArray) ElementType() reflect.Type {
+	return reflect.TypeOf((*[]GetNgwafAlertJiraIntegrationJiraAlert)(nil)).Elem()
+}
+
+func (i GetNgwafAlertJiraIntegrationJiraAlertArray) ToGetNgwafAlertJiraIntegrationJiraAlertArrayOutput() GetNgwafAlertJiraIntegrationJiraAlertArrayOutput {
+	return i.ToGetNgwafAlertJiraIntegrationJiraAlertArrayOutputWithContext(context.Background())
+}
+
+func (i GetNgwafAlertJiraIntegrationJiraAlertArray) ToGetNgwafAlertJiraIntegrationJiraAlertArrayOutputWithContext(ctx context.Context) GetNgwafAlertJiraIntegrationJiraAlertArrayOutput {
+	return pulumi.ToOutputWithContext(ctx, i).(GetNgwafAlertJiraIntegrationJiraAlertArrayOutput)
+}
+
+type GetNgwafAlertJiraIntegrationJiraAlertOutput struct{ *pulumi.OutputState }
+
+func (GetNgwafAlertJiraIntegrationJiraAlertOutput) ElementType() reflect.Type {
+	return reflect.TypeOf((*GetNgwafAlertJiraIntegrationJiraAlert)(nil)).Elem()
+}
+
+func (o GetNgwafAlertJiraIntegrationJiraAlertOutput) ToGetNgwafAlertJiraIntegrationJiraAlertOutput() GetNgwafAlertJiraIntegrationJiraAlertOutput {
+	return o
+}
+
+func (o GetNgwafAlertJiraIntegrationJiraAlertOutput) ToGetNgwafAlertJiraIntegrationJiraAlertOutputWithContext(ctx context.Context) GetNgwafAlertJiraIntegrationJiraAlertOutput {
+	return o
+}
+
+// The ID of the workspace alert.
+func (o GetNgwafAlertJiraIntegrationJiraAlertOutput) Id() pulumi.StringOutput {
+	return o.ApplyT(func(v GetNgwafAlertJiraIntegrationJiraAlert) string { return v.Id }).(pulumi.StringOutput)
+}
+
+type GetNgwafAlertJiraIntegrationJiraAlertArrayOutput struct{ *pulumi.OutputState }
+
+func (GetNgwafAlertJiraIntegrationJiraAlertArrayOutput) ElementType() reflect.Type {
+	return reflect.TypeOf((*[]GetNgwafAlertJiraIntegrationJiraAlert)(nil)).Elem()
+}
+
+func (o GetNgwafAlertJiraIntegrationJiraAlertArrayOutput) ToGetNgwafAlertJiraIntegrationJiraAlertArrayOutput() GetNgwafAlertJiraIntegrationJiraAlertArrayOutput {
+	return o
+}
+
+func (o GetNgwafAlertJiraIntegrationJiraAlertArrayOutput) ToGetNgwafAlertJiraIntegrationJiraAlertArrayOutputWithContext(ctx context.Context) GetNgwafAlertJiraIntegrationJiraAlertArrayOutput {
+	return o
+}
+
+func (o GetNgwafAlertJiraIntegrationJiraAlertArrayOutput) Index(i pulumi.IntInput) GetNgwafAlertJiraIntegrationJiraAlertOutput {
+	return pulumi.All(o, i).ApplyT(func(vs []interface{}) GetNgwafAlertJiraIntegrationJiraAlert {
+		return vs[0].([]GetNgwafAlertJiraIntegrationJiraAlert)[vs[1].(int)]
+	}).(GetNgwafAlertJiraIntegrationJiraAlertOutput)
+}
+
+type GetNgwafAlertMailingListIntegrationMailingListAlert struct {
+	// The ID of the workspace alert.
+	Id string `pulumi:"id"`
+}
+
+// GetNgwafAlertMailingListIntegrationMailingListAlertInput is an input type that accepts GetNgwafAlertMailingListIntegrationMailingListAlertArgs and GetNgwafAlertMailingListIntegrationMailingListAlertOutput values.
+// You can construct a concrete instance of `GetNgwafAlertMailingListIntegrationMailingListAlertInput` via:
+//
+//	GetNgwafAlertMailingListIntegrationMailingListAlertArgs{...}
+type GetNgwafAlertMailingListIntegrationMailingListAlertInput interface {
+	pulumi.Input
+
+	ToGetNgwafAlertMailingListIntegrationMailingListAlertOutput() GetNgwafAlertMailingListIntegrationMailingListAlertOutput
+	ToGetNgwafAlertMailingListIntegrationMailingListAlertOutputWithContext(context.Context) GetNgwafAlertMailingListIntegrationMailingListAlertOutput
+}
+
+type GetNgwafAlertMailingListIntegrationMailingListAlertArgs struct {
+	// The ID of the workspace alert.
+	Id pulumi.StringInput `pulumi:"id"`
+}
+
+func (GetNgwafAlertMailingListIntegrationMailingListAlertArgs) ElementType() reflect.Type {
+	return reflect.TypeOf((*GetNgwafAlertMailingListIntegrationMailingListAlert)(nil)).Elem()
+}
+
+func (i GetNgwafAlertMailingListIntegrationMailingListAlertArgs) ToGetNgwafAlertMailingListIntegrationMailingListAlertOutput() GetNgwafAlertMailingListIntegrationMailingListAlertOutput {
+	return i.ToGetNgwafAlertMailingListIntegrationMailingListAlertOutputWithContext(context.Background())
+}
+
+func (i GetNgwafAlertMailingListIntegrationMailingListAlertArgs) ToGetNgwafAlertMailingListIntegrationMailingListAlertOutputWithContext(ctx context.Context) GetNgwafAlertMailingListIntegrationMailingListAlertOutput {
+	return pulumi.ToOutputWithContext(ctx, i).(GetNgwafAlertMailingListIntegrationMailingListAlertOutput)
+}
+
+// GetNgwafAlertMailingListIntegrationMailingListAlertArrayInput is an input type that accepts GetNgwafAlertMailingListIntegrationMailingListAlertArray and GetNgwafAlertMailingListIntegrationMailingListAlertArrayOutput values.
+// You can construct a concrete instance of `GetNgwafAlertMailingListIntegrationMailingListAlertArrayInput` via:
+//
+//	GetNgwafAlertMailingListIntegrationMailingListAlertArray{ GetNgwafAlertMailingListIntegrationMailingListAlertArgs{...} }
+type GetNgwafAlertMailingListIntegrationMailingListAlertArrayInput interface {
+	pulumi.Input
+
+	ToGetNgwafAlertMailingListIntegrationMailingListAlertArrayOutput() GetNgwafAlertMailingListIntegrationMailingListAlertArrayOutput
+	ToGetNgwafAlertMailingListIntegrationMailingListAlertArrayOutputWithContext(context.Context) GetNgwafAlertMailingListIntegrationMailingListAlertArrayOutput
+}
+
+type GetNgwafAlertMailingListIntegrationMailingListAlertArray []GetNgwafAlertMailingListIntegrationMailingListAlertInput
+
+func (GetNgwafAlertMailingListIntegrationMailingListAlertArray) ElementType() reflect.Type {
+	return reflect.TypeOf((*[]GetNgwafAlertMailingListIntegrationMailingListAlert)(nil)).Elem()
+}
+
+func (i GetNgwafAlertMailingListIntegrationMailingListAlertArray) ToGetNgwafAlertMailingListIntegrationMailingListAlertArrayOutput() GetNgwafAlertMailingListIntegrationMailingListAlertArrayOutput {
+	return i.ToGetNgwafAlertMailingListIntegrationMailingListAlertArrayOutputWithContext(context.Background())
+}
+
+func (i GetNgwafAlertMailingListIntegrationMailingListAlertArray) ToGetNgwafAlertMailingListIntegrationMailingListAlertArrayOutputWithContext(ctx context.Context) GetNgwafAlertMailingListIntegrationMailingListAlertArrayOutput {
+	return pulumi.ToOutputWithContext(ctx, i).(GetNgwafAlertMailingListIntegrationMailingListAlertArrayOutput)
+}
+
+type GetNgwafAlertMailingListIntegrationMailingListAlertOutput struct{ *pulumi.OutputState }
+
+func (GetNgwafAlertMailingListIntegrationMailingListAlertOutput) ElementType() reflect.Type {
+	return reflect.TypeOf((*GetNgwafAlertMailingListIntegrationMailingListAlert)(nil)).Elem()
+}
+
+func (o GetNgwafAlertMailingListIntegrationMailingListAlertOutput) ToGetNgwafAlertMailingListIntegrationMailingListAlertOutput() GetNgwafAlertMailingListIntegrationMailingListAlertOutput {
+	return o
+}
+
+func (o GetNgwafAlertMailingListIntegrationMailingListAlertOutput) ToGetNgwafAlertMailingListIntegrationMailingListAlertOutputWithContext(ctx context.Context) GetNgwafAlertMailingListIntegrationMailingListAlertOutput {
+	return o
+}
+
+// The ID of the workspace alert.
+func (o GetNgwafAlertMailingListIntegrationMailingListAlertOutput) Id() pulumi.StringOutput {
+	return o.ApplyT(func(v GetNgwafAlertMailingListIntegrationMailingListAlert) string { return v.Id }).(pulumi.StringOutput)
+}
+
+type GetNgwafAlertMailingListIntegrationMailingListAlertArrayOutput struct{ *pulumi.OutputState }
+
+func (GetNgwafAlertMailingListIntegrationMailingListAlertArrayOutput) ElementType() reflect.Type {
+	return reflect.TypeOf((*[]GetNgwafAlertMailingListIntegrationMailingListAlert)(nil)).Elem()
+}
+
+func (o GetNgwafAlertMailingListIntegrationMailingListAlertArrayOutput) ToGetNgwafAlertMailingListIntegrationMailingListAlertArrayOutput() GetNgwafAlertMailingListIntegrationMailingListAlertArrayOutput {
+	return o
+}
+
+func (o GetNgwafAlertMailingListIntegrationMailingListAlertArrayOutput) ToGetNgwafAlertMailingListIntegrationMailingListAlertArrayOutputWithContext(ctx context.Context) GetNgwafAlertMailingListIntegrationMailingListAlertArrayOutput {
+	return o
+}
+
+func (o GetNgwafAlertMailingListIntegrationMailingListAlertArrayOutput) Index(i pulumi.IntInput) GetNgwafAlertMailingListIntegrationMailingListAlertOutput {
+	return pulumi.All(o, i).ApplyT(func(vs []interface{}) GetNgwafAlertMailingListIntegrationMailingListAlert {
+		return vs[0].([]GetNgwafAlertMailingListIntegrationMailingListAlert)[vs[1].(int)]
+	}).(GetNgwafAlertMailingListIntegrationMailingListAlertOutput)
+}
+
+type GetNgwafAlertMicrosoftTeamsIntegrationMicrosoftTeamsAlert struct {
+	// The ID of the workspace alert.
+	Id string `pulumi:"id"`
+}
+
+// GetNgwafAlertMicrosoftTeamsIntegrationMicrosoftTeamsAlertInput is an input type that accepts GetNgwafAlertMicrosoftTeamsIntegrationMicrosoftTeamsAlertArgs and GetNgwafAlertMicrosoftTeamsIntegrationMicrosoftTeamsAlertOutput values.
+// You can construct a concrete instance of `GetNgwafAlertMicrosoftTeamsIntegrationMicrosoftTeamsAlertInput` via:
+//
+//	GetNgwafAlertMicrosoftTeamsIntegrationMicrosoftTeamsAlertArgs{...}
+type GetNgwafAlertMicrosoftTeamsIntegrationMicrosoftTeamsAlertInput interface {
+	pulumi.Input
+
+	ToGetNgwafAlertMicrosoftTeamsIntegrationMicrosoftTeamsAlertOutput() GetNgwafAlertMicrosoftTeamsIntegrationMicrosoftTeamsAlertOutput
+	ToGetNgwafAlertMicrosoftTeamsIntegrationMicrosoftTeamsAlertOutputWithContext(context.Context) GetNgwafAlertMicrosoftTeamsIntegrationMicrosoftTeamsAlertOutput
+}
+
+type GetNgwafAlertMicrosoftTeamsIntegrationMicrosoftTeamsAlertArgs struct {
+	// The ID of the workspace alert.
+	Id pulumi.StringInput `pulumi:"id"`
+}
+
+func (GetNgwafAlertMicrosoftTeamsIntegrationMicrosoftTeamsAlertArgs) ElementType() reflect.Type {
+	return reflect.TypeOf((*GetNgwafAlertMicrosoftTeamsIntegrationMicrosoftTeamsAlert)(nil)).Elem()
+}
+
+func (i GetNgwafAlertMicrosoftTeamsIntegrationMicrosoftTeamsAlertArgs) ToGetNgwafAlertMicrosoftTeamsIntegrationMicrosoftTeamsAlertOutput() GetNgwafAlertMicrosoftTeamsIntegrationMicrosoftTeamsAlertOutput {
+	return i.ToGetNgwafAlertMicrosoftTeamsIntegrationMicrosoftTeamsAlertOutputWithContext(context.Background())
+}
+
+func (i GetNgwafAlertMicrosoftTeamsIntegrationMicrosoftTeamsAlertArgs) ToGetNgwafAlertMicrosoftTeamsIntegrationMicrosoftTeamsAlertOutputWithContext(ctx context.Context) GetNgwafAlertMicrosoftTeamsIntegrationMicrosoftTeamsAlertOutput {
+	return pulumi.ToOutputWithContext(ctx, i).(GetNgwafAlertMicrosoftTeamsIntegrationMicrosoftTeamsAlertOutput)
+}
+
+// GetNgwafAlertMicrosoftTeamsIntegrationMicrosoftTeamsAlertArrayInput is an input type that accepts GetNgwafAlertMicrosoftTeamsIntegrationMicrosoftTeamsAlertArray and GetNgwafAlertMicrosoftTeamsIntegrationMicrosoftTeamsAlertArrayOutput values.
+// You can construct a concrete instance of `GetNgwafAlertMicrosoftTeamsIntegrationMicrosoftTeamsAlertArrayInput` via:
+//
+//	GetNgwafAlertMicrosoftTeamsIntegrationMicrosoftTeamsAlertArray{ GetNgwafAlertMicrosoftTeamsIntegrationMicrosoftTeamsAlertArgs{...} }
+type GetNgwafAlertMicrosoftTeamsIntegrationMicrosoftTeamsAlertArrayInput interface {
+	pulumi.Input
+
+	ToGetNgwafAlertMicrosoftTeamsIntegrationMicrosoftTeamsAlertArrayOutput() GetNgwafAlertMicrosoftTeamsIntegrationMicrosoftTeamsAlertArrayOutput
+	ToGetNgwafAlertMicrosoftTeamsIntegrationMicrosoftTeamsAlertArrayOutputWithContext(context.Context) GetNgwafAlertMicrosoftTeamsIntegrationMicrosoftTeamsAlertArrayOutput
+}
+
+type GetNgwafAlertMicrosoftTeamsIntegrationMicrosoftTeamsAlertArray []GetNgwafAlertMicrosoftTeamsIntegrationMicrosoftTeamsAlertInput
+
+func (GetNgwafAlertMicrosoftTeamsIntegrationMicrosoftTeamsAlertArray) ElementType() reflect.Type {
+	return reflect.TypeOf((*[]GetNgwafAlertMicrosoftTeamsIntegrationMicrosoftTeamsAlert)(nil)).Elem()
+}
+
+func (i GetNgwafAlertMicrosoftTeamsIntegrationMicrosoftTeamsAlertArray) ToGetNgwafAlertMicrosoftTeamsIntegrationMicrosoftTeamsAlertArrayOutput() GetNgwafAlertMicrosoftTeamsIntegrationMicrosoftTeamsAlertArrayOutput {
+	return i.ToGetNgwafAlertMicrosoftTeamsIntegrationMicrosoftTeamsAlertArrayOutputWithContext(context.Background())
+}
+
+func (i GetNgwafAlertMicrosoftTeamsIntegrationMicrosoftTeamsAlertArray) ToGetNgwafAlertMicrosoftTeamsIntegrationMicrosoftTeamsAlertArrayOutputWithContext(ctx context.Context) GetNgwafAlertMicrosoftTeamsIntegrationMicrosoftTeamsAlertArrayOutput {
+	return pulumi.ToOutputWithContext(ctx, i).(GetNgwafAlertMicrosoftTeamsIntegrationMicrosoftTeamsAlertArrayOutput)
+}
+
+type GetNgwafAlertMicrosoftTeamsIntegrationMicrosoftTeamsAlertOutput struct{ *pulumi.OutputState }
+
+func (GetNgwafAlertMicrosoftTeamsIntegrationMicrosoftTeamsAlertOutput) ElementType() reflect.Type {
+	return reflect.TypeOf((*GetNgwafAlertMicrosoftTeamsIntegrationMicrosoftTeamsAlert)(nil)).Elem()
+}
+
+func (o GetNgwafAlertMicrosoftTeamsIntegrationMicrosoftTeamsAlertOutput) ToGetNgwafAlertMicrosoftTeamsIntegrationMicrosoftTeamsAlertOutput() GetNgwafAlertMicrosoftTeamsIntegrationMicrosoftTeamsAlertOutput {
+	return o
+}
+
+func (o GetNgwafAlertMicrosoftTeamsIntegrationMicrosoftTeamsAlertOutput) ToGetNgwafAlertMicrosoftTeamsIntegrationMicrosoftTeamsAlertOutputWithContext(ctx context.Context) GetNgwafAlertMicrosoftTeamsIntegrationMicrosoftTeamsAlertOutput {
+	return o
+}
+
+// The ID of the workspace alert.
+func (o GetNgwafAlertMicrosoftTeamsIntegrationMicrosoftTeamsAlertOutput) Id() pulumi.StringOutput {
+	return o.ApplyT(func(v GetNgwafAlertMicrosoftTeamsIntegrationMicrosoftTeamsAlert) string { return v.Id }).(pulumi.StringOutput)
+}
+
+type GetNgwafAlertMicrosoftTeamsIntegrationMicrosoftTeamsAlertArrayOutput struct{ *pulumi.OutputState }
+
+func (GetNgwafAlertMicrosoftTeamsIntegrationMicrosoftTeamsAlertArrayOutput) ElementType() reflect.Type {
+	return reflect.TypeOf((*[]GetNgwafAlertMicrosoftTeamsIntegrationMicrosoftTeamsAlert)(nil)).Elem()
+}
+
+func (o GetNgwafAlertMicrosoftTeamsIntegrationMicrosoftTeamsAlertArrayOutput) ToGetNgwafAlertMicrosoftTeamsIntegrationMicrosoftTeamsAlertArrayOutput() GetNgwafAlertMicrosoftTeamsIntegrationMicrosoftTeamsAlertArrayOutput {
+	return o
+}
+
+func (o GetNgwafAlertMicrosoftTeamsIntegrationMicrosoftTeamsAlertArrayOutput) ToGetNgwafAlertMicrosoftTeamsIntegrationMicrosoftTeamsAlertArrayOutputWithContext(ctx context.Context) GetNgwafAlertMicrosoftTeamsIntegrationMicrosoftTeamsAlertArrayOutput {
+	return o
+}
+
+func (o GetNgwafAlertMicrosoftTeamsIntegrationMicrosoftTeamsAlertArrayOutput) Index(i pulumi.IntInput) GetNgwafAlertMicrosoftTeamsIntegrationMicrosoftTeamsAlertOutput {
+	return pulumi.All(o, i).ApplyT(func(vs []interface{}) GetNgwafAlertMicrosoftTeamsIntegrationMicrosoftTeamsAlert {
+		return vs[0].([]GetNgwafAlertMicrosoftTeamsIntegrationMicrosoftTeamsAlert)[vs[1].(int)]
+	}).(GetNgwafAlertMicrosoftTeamsIntegrationMicrosoftTeamsAlertOutput)
+}
+
+type GetNgwafAlertOpsgenieIntegrationOpsgenieAlert struct {
+	// The ID of the workspace alert.
+	Id string `pulumi:"id"`
+}
+
+// GetNgwafAlertOpsgenieIntegrationOpsgenieAlertInput is an input type that accepts GetNgwafAlertOpsgenieIntegrationOpsgenieAlertArgs and GetNgwafAlertOpsgenieIntegrationOpsgenieAlertOutput values.
+// You can construct a concrete instance of `GetNgwafAlertOpsgenieIntegrationOpsgenieAlertInput` via:
+//
+//	GetNgwafAlertOpsgenieIntegrationOpsgenieAlertArgs{...}
+type GetNgwafAlertOpsgenieIntegrationOpsgenieAlertInput interface {
+	pulumi.Input
+
+	ToGetNgwafAlertOpsgenieIntegrationOpsgenieAlertOutput() GetNgwafAlertOpsgenieIntegrationOpsgenieAlertOutput
+	ToGetNgwafAlertOpsgenieIntegrationOpsgenieAlertOutputWithContext(context.Context) GetNgwafAlertOpsgenieIntegrationOpsgenieAlertOutput
+}
+
+type GetNgwafAlertOpsgenieIntegrationOpsgenieAlertArgs struct {
+	// The ID of the workspace alert.
+	Id pulumi.StringInput `pulumi:"id"`
+}
+
+func (GetNgwafAlertOpsgenieIntegrationOpsgenieAlertArgs) ElementType() reflect.Type {
+	return reflect.TypeOf((*GetNgwafAlertOpsgenieIntegrationOpsgenieAlert)(nil)).Elem()
+}
+
+func (i GetNgwafAlertOpsgenieIntegrationOpsgenieAlertArgs) ToGetNgwafAlertOpsgenieIntegrationOpsgenieAlertOutput() GetNgwafAlertOpsgenieIntegrationOpsgenieAlertOutput {
+	return i.ToGetNgwafAlertOpsgenieIntegrationOpsgenieAlertOutputWithContext(context.Background())
+}
+
+func (i GetNgwafAlertOpsgenieIntegrationOpsgenieAlertArgs) ToGetNgwafAlertOpsgenieIntegrationOpsgenieAlertOutputWithContext(ctx context.Context) GetNgwafAlertOpsgenieIntegrationOpsgenieAlertOutput {
+	return pulumi.ToOutputWithContext(ctx, i).(GetNgwafAlertOpsgenieIntegrationOpsgenieAlertOutput)
+}
+
+// GetNgwafAlertOpsgenieIntegrationOpsgenieAlertArrayInput is an input type that accepts GetNgwafAlertOpsgenieIntegrationOpsgenieAlertArray and GetNgwafAlertOpsgenieIntegrationOpsgenieAlertArrayOutput values.
+// You can construct a concrete instance of `GetNgwafAlertOpsgenieIntegrationOpsgenieAlertArrayInput` via:
+//
+//	GetNgwafAlertOpsgenieIntegrationOpsgenieAlertArray{ GetNgwafAlertOpsgenieIntegrationOpsgenieAlertArgs{...} }
+type GetNgwafAlertOpsgenieIntegrationOpsgenieAlertArrayInput interface {
+	pulumi.Input
+
+	ToGetNgwafAlertOpsgenieIntegrationOpsgenieAlertArrayOutput() GetNgwafAlertOpsgenieIntegrationOpsgenieAlertArrayOutput
+	ToGetNgwafAlertOpsgenieIntegrationOpsgenieAlertArrayOutputWithContext(context.Context) GetNgwafAlertOpsgenieIntegrationOpsgenieAlertArrayOutput
+}
+
+type GetNgwafAlertOpsgenieIntegrationOpsgenieAlertArray []GetNgwafAlertOpsgenieIntegrationOpsgenieAlertInput
+
+func (GetNgwafAlertOpsgenieIntegrationOpsgenieAlertArray) ElementType() reflect.Type {
+	return reflect.TypeOf((*[]GetNgwafAlertOpsgenieIntegrationOpsgenieAlert)(nil)).Elem()
+}
+
+func (i GetNgwafAlertOpsgenieIntegrationOpsgenieAlertArray) ToGetNgwafAlertOpsgenieIntegrationOpsgenieAlertArrayOutput() GetNgwafAlertOpsgenieIntegrationOpsgenieAlertArrayOutput {
+	return i.ToGetNgwafAlertOpsgenieIntegrationOpsgenieAlertArrayOutputWithContext(context.Background())
+}
+
+func (i GetNgwafAlertOpsgenieIntegrationOpsgenieAlertArray) ToGetNgwafAlertOpsgenieIntegrationOpsgenieAlertArrayOutputWithContext(ctx context.Context) GetNgwafAlertOpsgenieIntegrationOpsgenieAlertArrayOutput {
+	return pulumi.ToOutputWithContext(ctx, i).(GetNgwafAlertOpsgenieIntegrationOpsgenieAlertArrayOutput)
+}
+
+type GetNgwafAlertOpsgenieIntegrationOpsgenieAlertOutput struct{ *pulumi.OutputState }
+
+func (GetNgwafAlertOpsgenieIntegrationOpsgenieAlertOutput) ElementType() reflect.Type {
+	return reflect.TypeOf((*GetNgwafAlertOpsgenieIntegrationOpsgenieAlert)(nil)).Elem()
+}
+
+func (o GetNgwafAlertOpsgenieIntegrationOpsgenieAlertOutput) ToGetNgwafAlertOpsgenieIntegrationOpsgenieAlertOutput() GetNgwafAlertOpsgenieIntegrationOpsgenieAlertOutput {
+	return o
+}
+
+func (o GetNgwafAlertOpsgenieIntegrationOpsgenieAlertOutput) ToGetNgwafAlertOpsgenieIntegrationOpsgenieAlertOutputWithContext(ctx context.Context) GetNgwafAlertOpsgenieIntegrationOpsgenieAlertOutput {
+	return o
+}
+
+// The ID of the workspace alert.
+func (o GetNgwafAlertOpsgenieIntegrationOpsgenieAlertOutput) Id() pulumi.StringOutput {
+	return o.ApplyT(func(v GetNgwafAlertOpsgenieIntegrationOpsgenieAlert) string { return v.Id }).(pulumi.StringOutput)
+}
+
+type GetNgwafAlertOpsgenieIntegrationOpsgenieAlertArrayOutput struct{ *pulumi.OutputState }
+
+func (GetNgwafAlertOpsgenieIntegrationOpsgenieAlertArrayOutput) ElementType() reflect.Type {
+	return reflect.TypeOf((*[]GetNgwafAlertOpsgenieIntegrationOpsgenieAlert)(nil)).Elem()
+}
+
+func (o GetNgwafAlertOpsgenieIntegrationOpsgenieAlertArrayOutput) ToGetNgwafAlertOpsgenieIntegrationOpsgenieAlertArrayOutput() GetNgwafAlertOpsgenieIntegrationOpsgenieAlertArrayOutput {
+	return o
+}
+
+func (o GetNgwafAlertOpsgenieIntegrationOpsgenieAlertArrayOutput) ToGetNgwafAlertOpsgenieIntegrationOpsgenieAlertArrayOutputWithContext(ctx context.Context) GetNgwafAlertOpsgenieIntegrationOpsgenieAlertArrayOutput {
+	return o
+}
+
+func (o GetNgwafAlertOpsgenieIntegrationOpsgenieAlertArrayOutput) Index(i pulumi.IntInput) GetNgwafAlertOpsgenieIntegrationOpsgenieAlertOutput {
+	return pulumi.All(o, i).ApplyT(func(vs []interface{}) GetNgwafAlertOpsgenieIntegrationOpsgenieAlert {
+		return vs[0].([]GetNgwafAlertOpsgenieIntegrationOpsgenieAlert)[vs[1].(int)]
+	}).(GetNgwafAlertOpsgenieIntegrationOpsgenieAlertOutput)
+}
+
+type GetNgwafAlertPagerdutyIntegrationPagerdutyAlert struct {
+	// The ID of the workspace alert.
+	Id string `pulumi:"id"`
+}
+
+// GetNgwafAlertPagerdutyIntegrationPagerdutyAlertInput is an input type that accepts GetNgwafAlertPagerdutyIntegrationPagerdutyAlertArgs and GetNgwafAlertPagerdutyIntegrationPagerdutyAlertOutput values.
+// You can construct a concrete instance of `GetNgwafAlertPagerdutyIntegrationPagerdutyAlertInput` via:
+//
+//	GetNgwafAlertPagerdutyIntegrationPagerdutyAlertArgs{...}
+type GetNgwafAlertPagerdutyIntegrationPagerdutyAlertInput interface {
+	pulumi.Input
+
+	ToGetNgwafAlertPagerdutyIntegrationPagerdutyAlertOutput() GetNgwafAlertPagerdutyIntegrationPagerdutyAlertOutput
+	ToGetNgwafAlertPagerdutyIntegrationPagerdutyAlertOutputWithContext(context.Context) GetNgwafAlertPagerdutyIntegrationPagerdutyAlertOutput
+}
+
+type GetNgwafAlertPagerdutyIntegrationPagerdutyAlertArgs struct {
+	// The ID of the workspace alert.
+	Id pulumi.StringInput `pulumi:"id"`
+}
+
+func (GetNgwafAlertPagerdutyIntegrationPagerdutyAlertArgs) ElementType() reflect.Type {
+	return reflect.TypeOf((*GetNgwafAlertPagerdutyIntegrationPagerdutyAlert)(nil)).Elem()
+}
+
+func (i GetNgwafAlertPagerdutyIntegrationPagerdutyAlertArgs) ToGetNgwafAlertPagerdutyIntegrationPagerdutyAlertOutput() GetNgwafAlertPagerdutyIntegrationPagerdutyAlertOutput {
+	return i.ToGetNgwafAlertPagerdutyIntegrationPagerdutyAlertOutputWithContext(context.Background())
+}
+
+func (i GetNgwafAlertPagerdutyIntegrationPagerdutyAlertArgs) ToGetNgwafAlertPagerdutyIntegrationPagerdutyAlertOutputWithContext(ctx context.Context) GetNgwafAlertPagerdutyIntegrationPagerdutyAlertOutput {
+	return pulumi.ToOutputWithContext(ctx, i).(GetNgwafAlertPagerdutyIntegrationPagerdutyAlertOutput)
+}
+
+// GetNgwafAlertPagerdutyIntegrationPagerdutyAlertArrayInput is an input type that accepts GetNgwafAlertPagerdutyIntegrationPagerdutyAlertArray and GetNgwafAlertPagerdutyIntegrationPagerdutyAlertArrayOutput values.
+// You can construct a concrete instance of `GetNgwafAlertPagerdutyIntegrationPagerdutyAlertArrayInput` via:
+//
+//	GetNgwafAlertPagerdutyIntegrationPagerdutyAlertArray{ GetNgwafAlertPagerdutyIntegrationPagerdutyAlertArgs{...} }
+type GetNgwafAlertPagerdutyIntegrationPagerdutyAlertArrayInput interface {
+	pulumi.Input
+
+	ToGetNgwafAlertPagerdutyIntegrationPagerdutyAlertArrayOutput() GetNgwafAlertPagerdutyIntegrationPagerdutyAlertArrayOutput
+	ToGetNgwafAlertPagerdutyIntegrationPagerdutyAlertArrayOutputWithContext(context.Context) GetNgwafAlertPagerdutyIntegrationPagerdutyAlertArrayOutput
+}
+
+type GetNgwafAlertPagerdutyIntegrationPagerdutyAlertArray []GetNgwafAlertPagerdutyIntegrationPagerdutyAlertInput
+
+func (GetNgwafAlertPagerdutyIntegrationPagerdutyAlertArray) ElementType() reflect.Type {
+	return reflect.TypeOf((*[]GetNgwafAlertPagerdutyIntegrationPagerdutyAlert)(nil)).Elem()
+}
+
+func (i GetNgwafAlertPagerdutyIntegrationPagerdutyAlertArray) ToGetNgwafAlertPagerdutyIntegrationPagerdutyAlertArrayOutput() GetNgwafAlertPagerdutyIntegrationPagerdutyAlertArrayOutput {
+	return i.ToGetNgwafAlertPagerdutyIntegrationPagerdutyAlertArrayOutputWithContext(context.Background())
+}
+
+func (i GetNgwafAlertPagerdutyIntegrationPagerdutyAlertArray) ToGetNgwafAlertPagerdutyIntegrationPagerdutyAlertArrayOutputWithContext(ctx context.Context) GetNgwafAlertPagerdutyIntegrationPagerdutyAlertArrayOutput {
+	return pulumi.ToOutputWithContext(ctx, i).(GetNgwafAlertPagerdutyIntegrationPagerdutyAlertArrayOutput)
+}
+
+type GetNgwafAlertPagerdutyIntegrationPagerdutyAlertOutput struct{ *pulumi.OutputState }
+
+func (GetNgwafAlertPagerdutyIntegrationPagerdutyAlertOutput) ElementType() reflect.Type {
+	return reflect.TypeOf((*GetNgwafAlertPagerdutyIntegrationPagerdutyAlert)(nil)).Elem()
+}
+
+func (o GetNgwafAlertPagerdutyIntegrationPagerdutyAlertOutput) ToGetNgwafAlertPagerdutyIntegrationPagerdutyAlertOutput() GetNgwafAlertPagerdutyIntegrationPagerdutyAlertOutput {
+	return o
+}
+
+func (o GetNgwafAlertPagerdutyIntegrationPagerdutyAlertOutput) ToGetNgwafAlertPagerdutyIntegrationPagerdutyAlertOutputWithContext(ctx context.Context) GetNgwafAlertPagerdutyIntegrationPagerdutyAlertOutput {
+	return o
+}
+
+// The ID of the workspace alert.
+func (o GetNgwafAlertPagerdutyIntegrationPagerdutyAlertOutput) Id() pulumi.StringOutput {
+	return o.ApplyT(func(v GetNgwafAlertPagerdutyIntegrationPagerdutyAlert) string { return v.Id }).(pulumi.StringOutput)
+}
+
+type GetNgwafAlertPagerdutyIntegrationPagerdutyAlertArrayOutput struct{ *pulumi.OutputState }
+
+func (GetNgwafAlertPagerdutyIntegrationPagerdutyAlertArrayOutput) ElementType() reflect.Type {
+	return reflect.TypeOf((*[]GetNgwafAlertPagerdutyIntegrationPagerdutyAlert)(nil)).Elem()
+}
+
+func (o GetNgwafAlertPagerdutyIntegrationPagerdutyAlertArrayOutput) ToGetNgwafAlertPagerdutyIntegrationPagerdutyAlertArrayOutput() GetNgwafAlertPagerdutyIntegrationPagerdutyAlertArrayOutput {
+	return o
+}
+
+func (o GetNgwafAlertPagerdutyIntegrationPagerdutyAlertArrayOutput) ToGetNgwafAlertPagerdutyIntegrationPagerdutyAlertArrayOutputWithContext(ctx context.Context) GetNgwafAlertPagerdutyIntegrationPagerdutyAlertArrayOutput {
+	return o
+}
+
+func (o GetNgwafAlertPagerdutyIntegrationPagerdutyAlertArrayOutput) Index(i pulumi.IntInput) GetNgwafAlertPagerdutyIntegrationPagerdutyAlertOutput {
+	return pulumi.All(o, i).ApplyT(func(vs []interface{}) GetNgwafAlertPagerdutyIntegrationPagerdutyAlert {
+		return vs[0].([]GetNgwafAlertPagerdutyIntegrationPagerdutyAlert)[vs[1].(int)]
+	}).(GetNgwafAlertPagerdutyIntegrationPagerdutyAlertOutput)
+}
+
+type GetNgwafAlertSlackIntegrationSlackAlert struct {
+	// The ID of the workspace alert.
+	Id string `pulumi:"id"`
+}
+
+// GetNgwafAlertSlackIntegrationSlackAlertInput is an input type that accepts GetNgwafAlertSlackIntegrationSlackAlertArgs and GetNgwafAlertSlackIntegrationSlackAlertOutput values.
+// You can construct a concrete instance of `GetNgwafAlertSlackIntegrationSlackAlertInput` via:
+//
+//	GetNgwafAlertSlackIntegrationSlackAlertArgs{...}
+type GetNgwafAlertSlackIntegrationSlackAlertInput interface {
+	pulumi.Input
+
+	ToGetNgwafAlertSlackIntegrationSlackAlertOutput() GetNgwafAlertSlackIntegrationSlackAlertOutput
+	ToGetNgwafAlertSlackIntegrationSlackAlertOutputWithContext(context.Context) GetNgwafAlertSlackIntegrationSlackAlertOutput
+}
+
+type GetNgwafAlertSlackIntegrationSlackAlertArgs struct {
+	// The ID of the workspace alert.
+	Id pulumi.StringInput `pulumi:"id"`
+}
+
+func (GetNgwafAlertSlackIntegrationSlackAlertArgs) ElementType() reflect.Type {
+	return reflect.TypeOf((*GetNgwafAlertSlackIntegrationSlackAlert)(nil)).Elem()
+}
+
+func (i GetNgwafAlertSlackIntegrationSlackAlertArgs) ToGetNgwafAlertSlackIntegrationSlackAlertOutput() GetNgwafAlertSlackIntegrationSlackAlertOutput {
+	return i.ToGetNgwafAlertSlackIntegrationSlackAlertOutputWithContext(context.Background())
+}
+
+func (i GetNgwafAlertSlackIntegrationSlackAlertArgs) ToGetNgwafAlertSlackIntegrationSlackAlertOutputWithContext(ctx context.Context) GetNgwafAlertSlackIntegrationSlackAlertOutput {
+	return pulumi.ToOutputWithContext(ctx, i).(GetNgwafAlertSlackIntegrationSlackAlertOutput)
+}
+
+// GetNgwafAlertSlackIntegrationSlackAlertArrayInput is an input type that accepts GetNgwafAlertSlackIntegrationSlackAlertArray and GetNgwafAlertSlackIntegrationSlackAlertArrayOutput values.
+// You can construct a concrete instance of `GetNgwafAlertSlackIntegrationSlackAlertArrayInput` via:
+//
+//	GetNgwafAlertSlackIntegrationSlackAlertArray{ GetNgwafAlertSlackIntegrationSlackAlertArgs{...} }
+type GetNgwafAlertSlackIntegrationSlackAlertArrayInput interface {
+	pulumi.Input
+
+	ToGetNgwafAlertSlackIntegrationSlackAlertArrayOutput() GetNgwafAlertSlackIntegrationSlackAlertArrayOutput
+	ToGetNgwafAlertSlackIntegrationSlackAlertArrayOutputWithContext(context.Context) GetNgwafAlertSlackIntegrationSlackAlertArrayOutput
+}
+
+type GetNgwafAlertSlackIntegrationSlackAlertArray []GetNgwafAlertSlackIntegrationSlackAlertInput
+
+func (GetNgwafAlertSlackIntegrationSlackAlertArray) ElementType() reflect.Type {
+	return reflect.TypeOf((*[]GetNgwafAlertSlackIntegrationSlackAlert)(nil)).Elem()
+}
+
+func (i GetNgwafAlertSlackIntegrationSlackAlertArray) ToGetNgwafAlertSlackIntegrationSlackAlertArrayOutput() GetNgwafAlertSlackIntegrationSlackAlertArrayOutput {
+	return i.ToGetNgwafAlertSlackIntegrationSlackAlertArrayOutputWithContext(context.Background())
+}
+
+func (i GetNgwafAlertSlackIntegrationSlackAlertArray) ToGetNgwafAlertSlackIntegrationSlackAlertArrayOutputWithContext(ctx context.Context) GetNgwafAlertSlackIntegrationSlackAlertArrayOutput {
+	return pulumi.ToOutputWithContext(ctx, i).(GetNgwafAlertSlackIntegrationSlackAlertArrayOutput)
+}
+
+type GetNgwafAlertSlackIntegrationSlackAlertOutput struct{ *pulumi.OutputState }
+
+func (GetNgwafAlertSlackIntegrationSlackAlertOutput) ElementType() reflect.Type {
+	return reflect.TypeOf((*GetNgwafAlertSlackIntegrationSlackAlert)(nil)).Elem()
+}
+
+func (o GetNgwafAlertSlackIntegrationSlackAlertOutput) ToGetNgwafAlertSlackIntegrationSlackAlertOutput() GetNgwafAlertSlackIntegrationSlackAlertOutput {
+	return o
+}
+
+func (o GetNgwafAlertSlackIntegrationSlackAlertOutput) ToGetNgwafAlertSlackIntegrationSlackAlertOutputWithContext(ctx context.Context) GetNgwafAlertSlackIntegrationSlackAlertOutput {
+	return o
+}
+
+// The ID of the workspace alert.
+func (o GetNgwafAlertSlackIntegrationSlackAlertOutput) Id() pulumi.StringOutput {
+	return o.ApplyT(func(v GetNgwafAlertSlackIntegrationSlackAlert) string { return v.Id }).(pulumi.StringOutput)
+}
+
+type GetNgwafAlertSlackIntegrationSlackAlertArrayOutput struct{ *pulumi.OutputState }
+
+func (GetNgwafAlertSlackIntegrationSlackAlertArrayOutput) ElementType() reflect.Type {
+	return reflect.TypeOf((*[]GetNgwafAlertSlackIntegrationSlackAlert)(nil)).Elem()
+}
+
+func (o GetNgwafAlertSlackIntegrationSlackAlertArrayOutput) ToGetNgwafAlertSlackIntegrationSlackAlertArrayOutput() GetNgwafAlertSlackIntegrationSlackAlertArrayOutput {
+	return o
+}
+
+func (o GetNgwafAlertSlackIntegrationSlackAlertArrayOutput) ToGetNgwafAlertSlackIntegrationSlackAlertArrayOutputWithContext(ctx context.Context) GetNgwafAlertSlackIntegrationSlackAlertArrayOutput {
+	return o
+}
+
+func (o GetNgwafAlertSlackIntegrationSlackAlertArrayOutput) Index(i pulumi.IntInput) GetNgwafAlertSlackIntegrationSlackAlertOutput {
+	return pulumi.All(o, i).ApplyT(func(vs []interface{}) GetNgwafAlertSlackIntegrationSlackAlert {
+		return vs[0].([]GetNgwafAlertSlackIntegrationSlackAlert)[vs[1].(int)]
+	}).(GetNgwafAlertSlackIntegrationSlackAlertOutput)
+}
+
+type GetNgwafAlertWebhookIntegrationWebhookAlert struct {
+	// The ID of the workspace alert.
+	Id string `pulumi:"id"`
+}
+
+// GetNgwafAlertWebhookIntegrationWebhookAlertInput is an input type that accepts GetNgwafAlertWebhookIntegrationWebhookAlertArgs and GetNgwafAlertWebhookIntegrationWebhookAlertOutput values.
+// You can construct a concrete instance of `GetNgwafAlertWebhookIntegrationWebhookAlertInput` via:
+//
+//	GetNgwafAlertWebhookIntegrationWebhookAlertArgs{...}
+type GetNgwafAlertWebhookIntegrationWebhookAlertInput interface {
+	pulumi.Input
+
+	ToGetNgwafAlertWebhookIntegrationWebhookAlertOutput() GetNgwafAlertWebhookIntegrationWebhookAlertOutput
+	ToGetNgwafAlertWebhookIntegrationWebhookAlertOutputWithContext(context.Context) GetNgwafAlertWebhookIntegrationWebhookAlertOutput
+}
+
+type GetNgwafAlertWebhookIntegrationWebhookAlertArgs struct {
+	// The ID of the workspace alert.
+	Id pulumi.StringInput `pulumi:"id"`
+}
+
+func (GetNgwafAlertWebhookIntegrationWebhookAlertArgs) ElementType() reflect.Type {
+	return reflect.TypeOf((*GetNgwafAlertWebhookIntegrationWebhookAlert)(nil)).Elem()
+}
+
+func (i GetNgwafAlertWebhookIntegrationWebhookAlertArgs) ToGetNgwafAlertWebhookIntegrationWebhookAlertOutput() GetNgwafAlertWebhookIntegrationWebhookAlertOutput {
+	return i.ToGetNgwafAlertWebhookIntegrationWebhookAlertOutputWithContext(context.Background())
+}
+
+func (i GetNgwafAlertWebhookIntegrationWebhookAlertArgs) ToGetNgwafAlertWebhookIntegrationWebhookAlertOutputWithContext(ctx context.Context) GetNgwafAlertWebhookIntegrationWebhookAlertOutput {
+	return pulumi.ToOutputWithContext(ctx, i).(GetNgwafAlertWebhookIntegrationWebhookAlertOutput)
+}
+
+// GetNgwafAlertWebhookIntegrationWebhookAlertArrayInput is an input type that accepts GetNgwafAlertWebhookIntegrationWebhookAlertArray and GetNgwafAlertWebhookIntegrationWebhookAlertArrayOutput values.
+// You can construct a concrete instance of `GetNgwafAlertWebhookIntegrationWebhookAlertArrayInput` via:
+//
+//	GetNgwafAlertWebhookIntegrationWebhookAlertArray{ GetNgwafAlertWebhookIntegrationWebhookAlertArgs{...} }
+type GetNgwafAlertWebhookIntegrationWebhookAlertArrayInput interface {
+	pulumi.Input
+
+	ToGetNgwafAlertWebhookIntegrationWebhookAlertArrayOutput() GetNgwafAlertWebhookIntegrationWebhookAlertArrayOutput
+	ToGetNgwafAlertWebhookIntegrationWebhookAlertArrayOutputWithContext(context.Context) GetNgwafAlertWebhookIntegrationWebhookAlertArrayOutput
+}
+
+type GetNgwafAlertWebhookIntegrationWebhookAlertArray []GetNgwafAlertWebhookIntegrationWebhookAlertInput
+
+func (GetNgwafAlertWebhookIntegrationWebhookAlertArray) ElementType() reflect.Type {
+	return reflect.TypeOf((*[]GetNgwafAlertWebhookIntegrationWebhookAlert)(nil)).Elem()
+}
+
+func (i GetNgwafAlertWebhookIntegrationWebhookAlertArray) ToGetNgwafAlertWebhookIntegrationWebhookAlertArrayOutput() GetNgwafAlertWebhookIntegrationWebhookAlertArrayOutput {
+	return i.ToGetNgwafAlertWebhookIntegrationWebhookAlertArrayOutputWithContext(context.Background())
+}
+
+func (i GetNgwafAlertWebhookIntegrationWebhookAlertArray) ToGetNgwafAlertWebhookIntegrationWebhookAlertArrayOutputWithContext(ctx context.Context) GetNgwafAlertWebhookIntegrationWebhookAlertArrayOutput {
+	return pulumi.ToOutputWithContext(ctx, i).(GetNgwafAlertWebhookIntegrationWebhookAlertArrayOutput)
+}
+
+type GetNgwafAlertWebhookIntegrationWebhookAlertOutput struct{ *pulumi.OutputState }
+
+func (GetNgwafAlertWebhookIntegrationWebhookAlertOutput) ElementType() reflect.Type {
+	return reflect.TypeOf((*GetNgwafAlertWebhookIntegrationWebhookAlert)(nil)).Elem()
+}
+
+func (o GetNgwafAlertWebhookIntegrationWebhookAlertOutput) ToGetNgwafAlertWebhookIntegrationWebhookAlertOutput() GetNgwafAlertWebhookIntegrationWebhookAlertOutput {
+	return o
+}
+
+func (o GetNgwafAlertWebhookIntegrationWebhookAlertOutput) ToGetNgwafAlertWebhookIntegrationWebhookAlertOutputWithContext(ctx context.Context) GetNgwafAlertWebhookIntegrationWebhookAlertOutput {
+	return o
+}
+
+// The ID of the workspace alert.
+func (o GetNgwafAlertWebhookIntegrationWebhookAlertOutput) Id() pulumi.StringOutput {
+	return o.ApplyT(func(v GetNgwafAlertWebhookIntegrationWebhookAlert) string { return v.Id }).(pulumi.StringOutput)
+}
+
+type GetNgwafAlertWebhookIntegrationWebhookAlertArrayOutput struct{ *pulumi.OutputState }
+
+func (GetNgwafAlertWebhookIntegrationWebhookAlertArrayOutput) ElementType() reflect.Type {
+	return reflect.TypeOf((*[]GetNgwafAlertWebhookIntegrationWebhookAlert)(nil)).Elem()
+}
+
+func (o GetNgwafAlertWebhookIntegrationWebhookAlertArrayOutput) ToGetNgwafAlertWebhookIntegrationWebhookAlertArrayOutput() GetNgwafAlertWebhookIntegrationWebhookAlertArrayOutput {
+	return o
+}
+
+func (o GetNgwafAlertWebhookIntegrationWebhookAlertArrayOutput) ToGetNgwafAlertWebhookIntegrationWebhookAlertArrayOutputWithContext(ctx context.Context) GetNgwafAlertWebhookIntegrationWebhookAlertArrayOutput {
+	return o
+}
+
+func (o GetNgwafAlertWebhookIntegrationWebhookAlertArrayOutput) Index(i pulumi.IntInput) GetNgwafAlertWebhookIntegrationWebhookAlertOutput {
+	return pulumi.All(o, i).ApplyT(func(vs []interface{}) GetNgwafAlertWebhookIntegrationWebhookAlert {
+		return vs[0].([]GetNgwafAlertWebhookIntegrationWebhookAlert)[vs[1].(int)]
+	}).(GetNgwafAlertWebhookIntegrationWebhookAlertOutput)
+}
+
+type GetNgwafRedactionsRedaction struct {
+	// The name of the field that is being redacted.
+	Field string `pulumi:"field"`
+	// The ID of the redaction.
+	Id string `pulumi:"id"`
+	// The type of field being redacted. One of `requestParameter`, `requestHeader`, or `responseHeader`.
+	Type string `pulumi:"type"`
+}
+
+// GetNgwafRedactionsRedactionInput is an input type that accepts GetNgwafRedactionsRedactionArgs and GetNgwafRedactionsRedactionOutput values.
+// You can construct a concrete instance of `GetNgwafRedactionsRedactionInput` via:
+//
+//	GetNgwafRedactionsRedactionArgs{...}
+type GetNgwafRedactionsRedactionInput interface {
+	pulumi.Input
+
+	ToGetNgwafRedactionsRedactionOutput() GetNgwafRedactionsRedactionOutput
+	ToGetNgwafRedactionsRedactionOutputWithContext(context.Context) GetNgwafRedactionsRedactionOutput
+}
+
+type GetNgwafRedactionsRedactionArgs struct {
+	// The name of the field that is being redacted.
+	Field pulumi.StringInput `pulumi:"field"`
+	// The ID of the redaction.
+	Id pulumi.StringInput `pulumi:"id"`
+	// The type of field being redacted. One of `requestParameter`, `requestHeader`, or `responseHeader`.
+	Type pulumi.StringInput `pulumi:"type"`
+}
+
+func (GetNgwafRedactionsRedactionArgs) ElementType() reflect.Type {
+	return reflect.TypeOf((*GetNgwafRedactionsRedaction)(nil)).Elem()
+}
+
+func (i GetNgwafRedactionsRedactionArgs) ToGetNgwafRedactionsRedactionOutput() GetNgwafRedactionsRedactionOutput {
+	return i.ToGetNgwafRedactionsRedactionOutputWithContext(context.Background())
+}
+
+func (i GetNgwafRedactionsRedactionArgs) ToGetNgwafRedactionsRedactionOutputWithContext(ctx context.Context) GetNgwafRedactionsRedactionOutput {
+	return pulumi.ToOutputWithContext(ctx, i).(GetNgwafRedactionsRedactionOutput)
+}
+
+// GetNgwafRedactionsRedactionArrayInput is an input type that accepts GetNgwafRedactionsRedactionArray and GetNgwafRedactionsRedactionArrayOutput values.
+// You can construct a concrete instance of `GetNgwafRedactionsRedactionArrayInput` via:
+//
+//	GetNgwafRedactionsRedactionArray{ GetNgwafRedactionsRedactionArgs{...} }
+type GetNgwafRedactionsRedactionArrayInput interface {
+	pulumi.Input
+
+	ToGetNgwafRedactionsRedactionArrayOutput() GetNgwafRedactionsRedactionArrayOutput
+	ToGetNgwafRedactionsRedactionArrayOutputWithContext(context.Context) GetNgwafRedactionsRedactionArrayOutput
+}
+
+type GetNgwafRedactionsRedactionArray []GetNgwafRedactionsRedactionInput
+
+func (GetNgwafRedactionsRedactionArray) ElementType() reflect.Type {
+	return reflect.TypeOf((*[]GetNgwafRedactionsRedaction)(nil)).Elem()
+}
+
+func (i GetNgwafRedactionsRedactionArray) ToGetNgwafRedactionsRedactionArrayOutput() GetNgwafRedactionsRedactionArrayOutput {
+	return i.ToGetNgwafRedactionsRedactionArrayOutputWithContext(context.Background())
+}
+
+func (i GetNgwafRedactionsRedactionArray) ToGetNgwafRedactionsRedactionArrayOutputWithContext(ctx context.Context) GetNgwafRedactionsRedactionArrayOutput {
+	return pulumi.ToOutputWithContext(ctx, i).(GetNgwafRedactionsRedactionArrayOutput)
+}
+
+type GetNgwafRedactionsRedactionOutput struct{ *pulumi.OutputState }
+
+func (GetNgwafRedactionsRedactionOutput) ElementType() reflect.Type {
+	return reflect.TypeOf((*GetNgwafRedactionsRedaction)(nil)).Elem()
+}
+
+func (o GetNgwafRedactionsRedactionOutput) ToGetNgwafRedactionsRedactionOutput() GetNgwafRedactionsRedactionOutput {
+	return o
+}
+
+func (o GetNgwafRedactionsRedactionOutput) ToGetNgwafRedactionsRedactionOutputWithContext(ctx context.Context) GetNgwafRedactionsRedactionOutput {
+	return o
+}
+
+// The name of the field that is being redacted.
+func (o GetNgwafRedactionsRedactionOutput) Field() pulumi.StringOutput {
+	return o.ApplyT(func(v GetNgwafRedactionsRedaction) string { return v.Field }).(pulumi.StringOutput)
+}
+
+// The ID of the redaction.
+func (o GetNgwafRedactionsRedactionOutput) Id() pulumi.StringOutput {
+	return o.ApplyT(func(v GetNgwafRedactionsRedaction) string { return v.Id }).(pulumi.StringOutput)
+}
+
+// The type of field being redacted. One of `requestParameter`, `requestHeader`, or `responseHeader`.
+func (o GetNgwafRedactionsRedactionOutput) Type() pulumi.StringOutput {
+	return o.ApplyT(func(v GetNgwafRedactionsRedaction) string { return v.Type }).(pulumi.StringOutput)
+}
+
+type GetNgwafRedactionsRedactionArrayOutput struct{ *pulumi.OutputState }
+
+func (GetNgwafRedactionsRedactionArrayOutput) ElementType() reflect.Type {
+	return reflect.TypeOf((*[]GetNgwafRedactionsRedaction)(nil)).Elem()
+}
+
+func (o GetNgwafRedactionsRedactionArrayOutput) ToGetNgwafRedactionsRedactionArrayOutput() GetNgwafRedactionsRedactionArrayOutput {
+	return o
+}
+
+func (o GetNgwafRedactionsRedactionArrayOutput) ToGetNgwafRedactionsRedactionArrayOutputWithContext(ctx context.Context) GetNgwafRedactionsRedactionArrayOutput {
+	return o
+}
+
+func (o GetNgwafRedactionsRedactionArrayOutput) Index(i pulumi.IntInput) GetNgwafRedactionsRedactionOutput {
+	return pulumi.All(o, i).ApplyT(func(vs []interface{}) GetNgwafRedactionsRedaction {
+		return vs[0].([]GetNgwafRedactionsRedaction)[vs[1].(int)]
+	}).(GetNgwafRedactionsRedactionOutput)
+}
+
+type GetNgwafThresholdsThreshold struct {
+	// The ID of the threshold.
+	Id string `pulumi:"id"`
+}
+
+// GetNgwafThresholdsThresholdInput is an input type that accepts GetNgwafThresholdsThresholdArgs and GetNgwafThresholdsThresholdOutput values.
+// You can construct a concrete instance of `GetNgwafThresholdsThresholdInput` via:
+//
+//	GetNgwafThresholdsThresholdArgs{...}
+type GetNgwafThresholdsThresholdInput interface {
+	pulumi.Input
+
+	ToGetNgwafThresholdsThresholdOutput() GetNgwafThresholdsThresholdOutput
+	ToGetNgwafThresholdsThresholdOutputWithContext(context.Context) GetNgwafThresholdsThresholdOutput
+}
+
+type GetNgwafThresholdsThresholdArgs struct {
+	// The ID of the threshold.
+	Id pulumi.StringInput `pulumi:"id"`
+}
+
+func (GetNgwafThresholdsThresholdArgs) ElementType() reflect.Type {
+	return reflect.TypeOf((*GetNgwafThresholdsThreshold)(nil)).Elem()
+}
+
+func (i GetNgwafThresholdsThresholdArgs) ToGetNgwafThresholdsThresholdOutput() GetNgwafThresholdsThresholdOutput {
+	return i.ToGetNgwafThresholdsThresholdOutputWithContext(context.Background())
+}
+
+func (i GetNgwafThresholdsThresholdArgs) ToGetNgwafThresholdsThresholdOutputWithContext(ctx context.Context) GetNgwafThresholdsThresholdOutput {
+	return pulumi.ToOutputWithContext(ctx, i).(GetNgwafThresholdsThresholdOutput)
+}
+
+// GetNgwafThresholdsThresholdArrayInput is an input type that accepts GetNgwafThresholdsThresholdArray and GetNgwafThresholdsThresholdArrayOutput values.
+// You can construct a concrete instance of `GetNgwafThresholdsThresholdArrayInput` via:
+//
+//	GetNgwafThresholdsThresholdArray{ GetNgwafThresholdsThresholdArgs{...} }
+type GetNgwafThresholdsThresholdArrayInput interface {
+	pulumi.Input
+
+	ToGetNgwafThresholdsThresholdArrayOutput() GetNgwafThresholdsThresholdArrayOutput
+	ToGetNgwafThresholdsThresholdArrayOutputWithContext(context.Context) GetNgwafThresholdsThresholdArrayOutput
+}
+
+type GetNgwafThresholdsThresholdArray []GetNgwafThresholdsThresholdInput
+
+func (GetNgwafThresholdsThresholdArray) ElementType() reflect.Type {
+	return reflect.TypeOf((*[]GetNgwafThresholdsThreshold)(nil)).Elem()
+}
+
+func (i GetNgwafThresholdsThresholdArray) ToGetNgwafThresholdsThresholdArrayOutput() GetNgwafThresholdsThresholdArrayOutput {
+	return i.ToGetNgwafThresholdsThresholdArrayOutputWithContext(context.Background())
+}
+
+func (i GetNgwafThresholdsThresholdArray) ToGetNgwafThresholdsThresholdArrayOutputWithContext(ctx context.Context) GetNgwafThresholdsThresholdArrayOutput {
+	return pulumi.ToOutputWithContext(ctx, i).(GetNgwafThresholdsThresholdArrayOutput)
+}
+
+type GetNgwafThresholdsThresholdOutput struct{ *pulumi.OutputState }
+
+func (GetNgwafThresholdsThresholdOutput) ElementType() reflect.Type {
+	return reflect.TypeOf((*GetNgwafThresholdsThreshold)(nil)).Elem()
+}
+
+func (o GetNgwafThresholdsThresholdOutput) ToGetNgwafThresholdsThresholdOutput() GetNgwafThresholdsThresholdOutput {
+	return o
+}
+
+func (o GetNgwafThresholdsThresholdOutput) ToGetNgwafThresholdsThresholdOutputWithContext(ctx context.Context) GetNgwafThresholdsThresholdOutput {
+	return o
+}
+
+// The ID of the threshold.
+func (o GetNgwafThresholdsThresholdOutput) Id() pulumi.StringOutput {
+	return o.ApplyT(func(v GetNgwafThresholdsThreshold) string { return v.Id }).(pulumi.StringOutput)
+}
+
+type GetNgwafThresholdsThresholdArrayOutput struct{ *pulumi.OutputState }
+
+func (GetNgwafThresholdsThresholdArrayOutput) ElementType() reflect.Type {
+	return reflect.TypeOf((*[]GetNgwafThresholdsThreshold)(nil)).Elem()
+}
+
+func (o GetNgwafThresholdsThresholdArrayOutput) ToGetNgwafThresholdsThresholdArrayOutput() GetNgwafThresholdsThresholdArrayOutput {
+	return o
+}
+
+func (o GetNgwafThresholdsThresholdArrayOutput) ToGetNgwafThresholdsThresholdArrayOutputWithContext(ctx context.Context) GetNgwafThresholdsThresholdArrayOutput {
+	return o
+}
+
+func (o GetNgwafThresholdsThresholdArrayOutput) Index(i pulumi.IntInput) GetNgwafThresholdsThresholdOutput {
+	return pulumi.All(o, i).ApplyT(func(vs []interface{}) GetNgwafThresholdsThreshold {
+		return vs[0].([]GetNgwafThresholdsThreshold)[vs[1].(int)]
+	}).(GetNgwafThresholdsThresholdOutput)
+}
+
+type GetNgwafVirtualPatchesVirtualPatch struct {
+	// Whether the virtual patch is enabled or disabled.
+	Enabled bool `pulumi:"enabled"`
+	// The ID of the virtual patch.
+	Id string `pulumi:"id"`
+	// Action to take when a signal for the virtual patch is detected. One of `log` or `block`.
+	Mode string `pulumi:"mode"`
+}
+
+// GetNgwafVirtualPatchesVirtualPatchInput is an input type that accepts GetNgwafVirtualPatchesVirtualPatchArgs and GetNgwafVirtualPatchesVirtualPatchOutput values.
+// You can construct a concrete instance of `GetNgwafVirtualPatchesVirtualPatchInput` via:
+//
+//	GetNgwafVirtualPatchesVirtualPatchArgs{...}
+type GetNgwafVirtualPatchesVirtualPatchInput interface {
+	pulumi.Input
+
+	ToGetNgwafVirtualPatchesVirtualPatchOutput() GetNgwafVirtualPatchesVirtualPatchOutput
+	ToGetNgwafVirtualPatchesVirtualPatchOutputWithContext(context.Context) GetNgwafVirtualPatchesVirtualPatchOutput
+}
+
+type GetNgwafVirtualPatchesVirtualPatchArgs struct {
+	// Whether the virtual patch is enabled or disabled.
+	Enabled pulumi.BoolInput `pulumi:"enabled"`
+	// The ID of the virtual patch.
+	Id pulumi.StringInput `pulumi:"id"`
+	// Action to take when a signal for the virtual patch is detected. One of `log` or `block`.
+	Mode pulumi.StringInput `pulumi:"mode"`
+}
+
+func (GetNgwafVirtualPatchesVirtualPatchArgs) ElementType() reflect.Type {
+	return reflect.TypeOf((*GetNgwafVirtualPatchesVirtualPatch)(nil)).Elem()
+}
+
+func (i GetNgwafVirtualPatchesVirtualPatchArgs) ToGetNgwafVirtualPatchesVirtualPatchOutput() GetNgwafVirtualPatchesVirtualPatchOutput {
+	return i.ToGetNgwafVirtualPatchesVirtualPatchOutputWithContext(context.Background())
+}
+
+func (i GetNgwafVirtualPatchesVirtualPatchArgs) ToGetNgwafVirtualPatchesVirtualPatchOutputWithContext(ctx context.Context) GetNgwafVirtualPatchesVirtualPatchOutput {
+	return pulumi.ToOutputWithContext(ctx, i).(GetNgwafVirtualPatchesVirtualPatchOutput)
+}
+
+// GetNgwafVirtualPatchesVirtualPatchArrayInput is an input type that accepts GetNgwafVirtualPatchesVirtualPatchArray and GetNgwafVirtualPatchesVirtualPatchArrayOutput values.
+// You can construct a concrete instance of `GetNgwafVirtualPatchesVirtualPatchArrayInput` via:
+//
+//	GetNgwafVirtualPatchesVirtualPatchArray{ GetNgwafVirtualPatchesVirtualPatchArgs{...} }
+type GetNgwafVirtualPatchesVirtualPatchArrayInput interface {
+	pulumi.Input
+
+	ToGetNgwafVirtualPatchesVirtualPatchArrayOutput() GetNgwafVirtualPatchesVirtualPatchArrayOutput
+	ToGetNgwafVirtualPatchesVirtualPatchArrayOutputWithContext(context.Context) GetNgwafVirtualPatchesVirtualPatchArrayOutput
+}
+
+type GetNgwafVirtualPatchesVirtualPatchArray []GetNgwafVirtualPatchesVirtualPatchInput
+
+func (GetNgwafVirtualPatchesVirtualPatchArray) ElementType() reflect.Type {
+	return reflect.TypeOf((*[]GetNgwafVirtualPatchesVirtualPatch)(nil)).Elem()
+}
+
+func (i GetNgwafVirtualPatchesVirtualPatchArray) ToGetNgwafVirtualPatchesVirtualPatchArrayOutput() GetNgwafVirtualPatchesVirtualPatchArrayOutput {
+	return i.ToGetNgwafVirtualPatchesVirtualPatchArrayOutputWithContext(context.Background())
+}
+
+func (i GetNgwafVirtualPatchesVirtualPatchArray) ToGetNgwafVirtualPatchesVirtualPatchArrayOutputWithContext(ctx context.Context) GetNgwafVirtualPatchesVirtualPatchArrayOutput {
+	return pulumi.ToOutputWithContext(ctx, i).(GetNgwafVirtualPatchesVirtualPatchArrayOutput)
+}
+
+type GetNgwafVirtualPatchesVirtualPatchOutput struct{ *pulumi.OutputState }
+
+func (GetNgwafVirtualPatchesVirtualPatchOutput) ElementType() reflect.Type {
+	return reflect.TypeOf((*GetNgwafVirtualPatchesVirtualPatch)(nil)).Elem()
+}
+
+func (o GetNgwafVirtualPatchesVirtualPatchOutput) ToGetNgwafVirtualPatchesVirtualPatchOutput() GetNgwafVirtualPatchesVirtualPatchOutput {
+	return o
+}
+
+func (o GetNgwafVirtualPatchesVirtualPatchOutput) ToGetNgwafVirtualPatchesVirtualPatchOutputWithContext(ctx context.Context) GetNgwafVirtualPatchesVirtualPatchOutput {
+	return o
+}
+
+// Whether the virtual patch is enabled or disabled.
+func (o GetNgwafVirtualPatchesVirtualPatchOutput) Enabled() pulumi.BoolOutput {
+	return o.ApplyT(func(v GetNgwafVirtualPatchesVirtualPatch) bool { return v.Enabled }).(pulumi.BoolOutput)
+}
+
+// The ID of the virtual patch.
+func (o GetNgwafVirtualPatchesVirtualPatchOutput) Id() pulumi.StringOutput {
+	return o.ApplyT(func(v GetNgwafVirtualPatchesVirtualPatch) string { return v.Id }).(pulumi.StringOutput)
+}
+
+// Action to take when a signal for the virtual patch is detected. One of `log` or `block`.
+func (o GetNgwafVirtualPatchesVirtualPatchOutput) Mode() pulumi.StringOutput {
+	return o.ApplyT(func(v GetNgwafVirtualPatchesVirtualPatch) string { return v.Mode }).(pulumi.StringOutput)
+}
+
+type GetNgwafVirtualPatchesVirtualPatchArrayOutput struct{ *pulumi.OutputState }
+
+func (GetNgwafVirtualPatchesVirtualPatchArrayOutput) ElementType() reflect.Type {
+	return reflect.TypeOf((*[]GetNgwafVirtualPatchesVirtualPatch)(nil)).Elem()
+}
+
+func (o GetNgwafVirtualPatchesVirtualPatchArrayOutput) ToGetNgwafVirtualPatchesVirtualPatchArrayOutput() GetNgwafVirtualPatchesVirtualPatchArrayOutput {
+	return o
+}
+
+func (o GetNgwafVirtualPatchesVirtualPatchArrayOutput) ToGetNgwafVirtualPatchesVirtualPatchArrayOutputWithContext(ctx context.Context) GetNgwafVirtualPatchesVirtualPatchArrayOutput {
+	return o
+}
+
+func (o GetNgwafVirtualPatchesVirtualPatchArrayOutput) Index(i pulumi.IntInput) GetNgwafVirtualPatchesVirtualPatchOutput {
+	return pulumi.All(o, i).ApplyT(func(vs []interface{}) GetNgwafVirtualPatchesVirtualPatch {
+		return vs[0].([]GetNgwafVirtualPatchesVirtualPatch)[vs[1].(int)]
+	}).(GetNgwafVirtualPatchesVirtualPatchOutput)
+}
+
+type GetNgwafWorkspacesWorkspace struct {
+	// The ID of the workspace.
+	Id string `pulumi:"id"`
+	// The name of the workspace.
+	Name string `pulumi:"name"`
+}
+
+// GetNgwafWorkspacesWorkspaceInput is an input type that accepts GetNgwafWorkspacesWorkspaceArgs and GetNgwafWorkspacesWorkspaceOutput values.
+// You can construct a concrete instance of `GetNgwafWorkspacesWorkspaceInput` via:
+//
+//	GetNgwafWorkspacesWorkspaceArgs{...}
+type GetNgwafWorkspacesWorkspaceInput interface {
+	pulumi.Input
+
+	ToGetNgwafWorkspacesWorkspaceOutput() GetNgwafWorkspacesWorkspaceOutput
+	ToGetNgwafWorkspacesWorkspaceOutputWithContext(context.Context) GetNgwafWorkspacesWorkspaceOutput
+}
+
+type GetNgwafWorkspacesWorkspaceArgs struct {
+	// The ID of the workspace.
+	Id pulumi.StringInput `pulumi:"id"`
+	// The name of the workspace.
+	Name pulumi.StringInput `pulumi:"name"`
+}
+
+func (GetNgwafWorkspacesWorkspaceArgs) ElementType() reflect.Type {
+	return reflect.TypeOf((*GetNgwafWorkspacesWorkspace)(nil)).Elem()
+}
+
+func (i GetNgwafWorkspacesWorkspaceArgs) ToGetNgwafWorkspacesWorkspaceOutput() GetNgwafWorkspacesWorkspaceOutput {
+	return i.ToGetNgwafWorkspacesWorkspaceOutputWithContext(context.Background())
+}
+
+func (i GetNgwafWorkspacesWorkspaceArgs) ToGetNgwafWorkspacesWorkspaceOutputWithContext(ctx context.Context) GetNgwafWorkspacesWorkspaceOutput {
+	return pulumi.ToOutputWithContext(ctx, i).(GetNgwafWorkspacesWorkspaceOutput)
+}
+
+// GetNgwafWorkspacesWorkspaceArrayInput is an input type that accepts GetNgwafWorkspacesWorkspaceArray and GetNgwafWorkspacesWorkspaceArrayOutput values.
+// You can construct a concrete instance of `GetNgwafWorkspacesWorkspaceArrayInput` via:
+//
+//	GetNgwafWorkspacesWorkspaceArray{ GetNgwafWorkspacesWorkspaceArgs{...} }
+type GetNgwafWorkspacesWorkspaceArrayInput interface {
+	pulumi.Input
+
+	ToGetNgwafWorkspacesWorkspaceArrayOutput() GetNgwafWorkspacesWorkspaceArrayOutput
+	ToGetNgwafWorkspacesWorkspaceArrayOutputWithContext(context.Context) GetNgwafWorkspacesWorkspaceArrayOutput
+}
+
+type GetNgwafWorkspacesWorkspaceArray []GetNgwafWorkspacesWorkspaceInput
+
+func (GetNgwafWorkspacesWorkspaceArray) ElementType() reflect.Type {
+	return reflect.TypeOf((*[]GetNgwafWorkspacesWorkspace)(nil)).Elem()
+}
+
+func (i GetNgwafWorkspacesWorkspaceArray) ToGetNgwafWorkspacesWorkspaceArrayOutput() GetNgwafWorkspacesWorkspaceArrayOutput {
+	return i.ToGetNgwafWorkspacesWorkspaceArrayOutputWithContext(context.Background())
+}
+
+func (i GetNgwafWorkspacesWorkspaceArray) ToGetNgwafWorkspacesWorkspaceArrayOutputWithContext(ctx context.Context) GetNgwafWorkspacesWorkspaceArrayOutput {
+	return pulumi.ToOutputWithContext(ctx, i).(GetNgwafWorkspacesWorkspaceArrayOutput)
+}
+
+type GetNgwafWorkspacesWorkspaceOutput struct{ *pulumi.OutputState }
+
+func (GetNgwafWorkspacesWorkspaceOutput) ElementType() reflect.Type {
+	return reflect.TypeOf((*GetNgwafWorkspacesWorkspace)(nil)).Elem()
+}
+
+func (o GetNgwafWorkspacesWorkspaceOutput) ToGetNgwafWorkspacesWorkspaceOutput() GetNgwafWorkspacesWorkspaceOutput {
+	return o
+}
+
+func (o GetNgwafWorkspacesWorkspaceOutput) ToGetNgwafWorkspacesWorkspaceOutputWithContext(ctx context.Context) GetNgwafWorkspacesWorkspaceOutput {
+	return o
+}
+
+// The ID of the workspace.
+func (o GetNgwafWorkspacesWorkspaceOutput) Id() pulumi.StringOutput {
+	return o.ApplyT(func(v GetNgwafWorkspacesWorkspace) string { return v.Id }).(pulumi.StringOutput)
+}
+
+// The name of the workspace.
+func (o GetNgwafWorkspacesWorkspaceOutput) Name() pulumi.StringOutput {
+	return o.ApplyT(func(v GetNgwafWorkspacesWorkspace) string { return v.Name }).(pulumi.StringOutput)
+}
+
+type GetNgwafWorkspacesWorkspaceArrayOutput struct{ *pulumi.OutputState }
+
+func (GetNgwafWorkspacesWorkspaceArrayOutput) ElementType() reflect.Type {
+	return reflect.TypeOf((*[]GetNgwafWorkspacesWorkspace)(nil)).Elem()
+}
+
+func (o GetNgwafWorkspacesWorkspaceArrayOutput) ToGetNgwafWorkspacesWorkspaceArrayOutput() GetNgwafWorkspacesWorkspaceArrayOutput {
+	return o
+}
+
+func (o GetNgwafWorkspacesWorkspaceArrayOutput) ToGetNgwafWorkspacesWorkspaceArrayOutputWithContext(ctx context.Context) GetNgwafWorkspacesWorkspaceArrayOutput {
+	return o
+}
+
+func (o GetNgwafWorkspacesWorkspaceArrayOutput) Index(i pulumi.IntInput) GetNgwafWorkspacesWorkspaceOutput {
+	return pulumi.All(o, i).ApplyT(func(vs []interface{}) GetNgwafWorkspacesWorkspace {
+		return vs[0].([]GetNgwafWorkspacesWorkspace)[vs[1].(int)]
+	}).(GetNgwafWorkspacesWorkspaceOutput)
+}
+
 type GetSecretstoresStore struct {
 	// Alphanumeric string identifying the Secrets Store.
 	Id string `pulumi:"id"`
@@ -17731,6 +20698,32 @@ func init() {
 	pulumi.RegisterInputType(reflect.TypeOf((*CustomDashboardDashboardItemDataSourceConfigInput)(nil)).Elem(), CustomDashboardDashboardItemDataSourceConfigArgs{})
 	pulumi.RegisterInputType(reflect.TypeOf((*CustomDashboardDashboardItemVisualizationInput)(nil)).Elem(), CustomDashboardDashboardItemVisualizationArgs{})
 	pulumi.RegisterInputType(reflect.TypeOf((*CustomDashboardDashboardItemVisualizationConfigInput)(nil)).Elem(), CustomDashboardDashboardItemVisualizationConfigArgs{})
+	pulumi.RegisterInputType(reflect.TypeOf((*NgwafAccountRuleActionInput)(nil)).Elem(), NgwafAccountRuleActionArgs{})
+	pulumi.RegisterInputType(reflect.TypeOf((*NgwafAccountRuleActionArrayInput)(nil)).Elem(), NgwafAccountRuleActionArray{})
+	pulumi.RegisterInputType(reflect.TypeOf((*NgwafAccountRuleConditionInput)(nil)).Elem(), NgwafAccountRuleConditionArgs{})
+	pulumi.RegisterInputType(reflect.TypeOf((*NgwafAccountRuleConditionArrayInput)(nil)).Elem(), NgwafAccountRuleConditionArray{})
+	pulumi.RegisterInputType(reflect.TypeOf((*NgwafAccountRuleGroupConditionInput)(nil)).Elem(), NgwafAccountRuleGroupConditionArgs{})
+	pulumi.RegisterInputType(reflect.TypeOf((*NgwafAccountRuleGroupConditionArrayInput)(nil)).Elem(), NgwafAccountRuleGroupConditionArray{})
+	pulumi.RegisterInputType(reflect.TypeOf((*NgwafAccountRuleGroupConditionConditionInput)(nil)).Elem(), NgwafAccountRuleGroupConditionConditionArgs{})
+	pulumi.RegisterInputType(reflect.TypeOf((*NgwafAccountRuleGroupConditionConditionArrayInput)(nil)).Elem(), NgwafAccountRuleGroupConditionConditionArray{})
+	pulumi.RegisterInputType(reflect.TypeOf((*NgwafAccountRuleRateLimitInput)(nil)).Elem(), NgwafAccountRuleRateLimitArgs{})
+	pulumi.RegisterInputType(reflect.TypeOf((*NgwafAccountRuleRateLimitPtrInput)(nil)).Elem(), NgwafAccountRuleRateLimitArgs{})
+	pulumi.RegisterInputType(reflect.TypeOf((*NgwafAccountRuleRateLimitClientIdentifierInput)(nil)).Elem(), NgwafAccountRuleRateLimitClientIdentifierArgs{})
+	pulumi.RegisterInputType(reflect.TypeOf((*NgwafAccountRuleRateLimitClientIdentifierArrayInput)(nil)).Elem(), NgwafAccountRuleRateLimitClientIdentifierArray{})
+	pulumi.RegisterInputType(reflect.TypeOf((*NgwafWorkspaceAttackSignalThresholdsInput)(nil)).Elem(), NgwafWorkspaceAttackSignalThresholdsArgs{})
+	pulumi.RegisterInputType(reflect.TypeOf((*NgwafWorkspaceAttackSignalThresholdsPtrInput)(nil)).Elem(), NgwafWorkspaceAttackSignalThresholdsArgs{})
+	pulumi.RegisterInputType(reflect.TypeOf((*NgwafWorkspaceRuleActionInput)(nil)).Elem(), NgwafWorkspaceRuleActionArgs{})
+	pulumi.RegisterInputType(reflect.TypeOf((*NgwafWorkspaceRuleActionArrayInput)(nil)).Elem(), NgwafWorkspaceRuleActionArray{})
+	pulumi.RegisterInputType(reflect.TypeOf((*NgwafWorkspaceRuleConditionInput)(nil)).Elem(), NgwafWorkspaceRuleConditionArgs{})
+	pulumi.RegisterInputType(reflect.TypeOf((*NgwafWorkspaceRuleConditionArrayInput)(nil)).Elem(), NgwafWorkspaceRuleConditionArray{})
+	pulumi.RegisterInputType(reflect.TypeOf((*NgwafWorkspaceRuleGroupConditionInput)(nil)).Elem(), NgwafWorkspaceRuleGroupConditionArgs{})
+	pulumi.RegisterInputType(reflect.TypeOf((*NgwafWorkspaceRuleGroupConditionArrayInput)(nil)).Elem(), NgwafWorkspaceRuleGroupConditionArray{})
+	pulumi.RegisterInputType(reflect.TypeOf((*NgwafWorkspaceRuleGroupConditionConditionInput)(nil)).Elem(), NgwafWorkspaceRuleGroupConditionConditionArgs{})
+	pulumi.RegisterInputType(reflect.TypeOf((*NgwafWorkspaceRuleGroupConditionConditionArrayInput)(nil)).Elem(), NgwafWorkspaceRuleGroupConditionConditionArray{})
+	pulumi.RegisterInputType(reflect.TypeOf((*NgwafWorkspaceRuleRateLimitInput)(nil)).Elem(), NgwafWorkspaceRuleRateLimitArgs{})
+	pulumi.RegisterInputType(reflect.TypeOf((*NgwafWorkspaceRuleRateLimitPtrInput)(nil)).Elem(), NgwafWorkspaceRuleRateLimitArgs{})
+	pulumi.RegisterInputType(reflect.TypeOf((*NgwafWorkspaceRuleRateLimitClientIdentifierInput)(nil)).Elem(), NgwafWorkspaceRuleRateLimitClientIdentifierArgs{})
+	pulumi.RegisterInputType(reflect.TypeOf((*NgwafWorkspaceRuleRateLimitClientIdentifierArrayInput)(nil)).Elem(), NgwafWorkspaceRuleRateLimitClientIdentifierArray{})
 	pulumi.RegisterInputType(reflect.TypeOf((*ServiceACLEntriesEntryInput)(nil)).Elem(), ServiceACLEntriesEntryArgs{})
 	pulumi.RegisterInputType(reflect.TypeOf((*ServiceACLEntriesEntryArrayInput)(nil)).Elem(), ServiceACLEntriesEntryArray{})
 	pulumi.RegisterInputType(reflect.TypeOf((*ServiceComputeBackendInput)(nil)).Elem(), ServiceComputeBackendArgs{})
@@ -17915,6 +20908,30 @@ func init() {
 	pulumi.RegisterInputType(reflect.TypeOf((*GetDictionariesDictionaryArrayInput)(nil)).Elem(), GetDictionariesDictionaryArray{})
 	pulumi.RegisterInputType(reflect.TypeOf((*GetKvstoresStoreInput)(nil)).Elem(), GetKvstoresStoreArgs{})
 	pulumi.RegisterInputType(reflect.TypeOf((*GetKvstoresStoreArrayInput)(nil)).Elem(), GetKvstoresStoreArray{})
+	pulumi.RegisterInputType(reflect.TypeOf((*GetNgwafAlertDatadogIntegrationDatadogAlertInput)(nil)).Elem(), GetNgwafAlertDatadogIntegrationDatadogAlertArgs{})
+	pulumi.RegisterInputType(reflect.TypeOf((*GetNgwafAlertDatadogIntegrationDatadogAlertArrayInput)(nil)).Elem(), GetNgwafAlertDatadogIntegrationDatadogAlertArray{})
+	pulumi.RegisterInputType(reflect.TypeOf((*GetNgwafAlertJiraIntegrationJiraAlertInput)(nil)).Elem(), GetNgwafAlertJiraIntegrationJiraAlertArgs{})
+	pulumi.RegisterInputType(reflect.TypeOf((*GetNgwafAlertJiraIntegrationJiraAlertArrayInput)(nil)).Elem(), GetNgwafAlertJiraIntegrationJiraAlertArray{})
+	pulumi.RegisterInputType(reflect.TypeOf((*GetNgwafAlertMailingListIntegrationMailingListAlertInput)(nil)).Elem(), GetNgwafAlertMailingListIntegrationMailingListAlertArgs{})
+	pulumi.RegisterInputType(reflect.TypeOf((*GetNgwafAlertMailingListIntegrationMailingListAlertArrayInput)(nil)).Elem(), GetNgwafAlertMailingListIntegrationMailingListAlertArray{})
+	pulumi.RegisterInputType(reflect.TypeOf((*GetNgwafAlertMicrosoftTeamsIntegrationMicrosoftTeamsAlertInput)(nil)).Elem(), GetNgwafAlertMicrosoftTeamsIntegrationMicrosoftTeamsAlertArgs{})
+	pulumi.RegisterInputType(reflect.TypeOf((*GetNgwafAlertMicrosoftTeamsIntegrationMicrosoftTeamsAlertArrayInput)(nil)).Elem(), GetNgwafAlertMicrosoftTeamsIntegrationMicrosoftTeamsAlertArray{})
+	pulumi.RegisterInputType(reflect.TypeOf((*GetNgwafAlertOpsgenieIntegrationOpsgenieAlertInput)(nil)).Elem(), GetNgwafAlertOpsgenieIntegrationOpsgenieAlertArgs{})
+	pulumi.RegisterInputType(reflect.TypeOf((*GetNgwafAlertOpsgenieIntegrationOpsgenieAlertArrayInput)(nil)).Elem(), GetNgwafAlertOpsgenieIntegrationOpsgenieAlertArray{})
+	pulumi.RegisterInputType(reflect.TypeOf((*GetNgwafAlertPagerdutyIntegrationPagerdutyAlertInput)(nil)).Elem(), GetNgwafAlertPagerdutyIntegrationPagerdutyAlertArgs{})
+	pulumi.RegisterInputType(reflect.TypeOf((*GetNgwafAlertPagerdutyIntegrationPagerdutyAlertArrayInput)(nil)).Elem(), GetNgwafAlertPagerdutyIntegrationPagerdutyAlertArray{})
+	pulumi.RegisterInputType(reflect.TypeOf((*GetNgwafAlertSlackIntegrationSlackAlertInput)(nil)).Elem(), GetNgwafAlertSlackIntegrationSlackAlertArgs{})
+	pulumi.RegisterInputType(reflect.TypeOf((*GetNgwafAlertSlackIntegrationSlackAlertArrayInput)(nil)).Elem(), GetNgwafAlertSlackIntegrationSlackAlertArray{})
+	pulumi.RegisterInputType(reflect.TypeOf((*GetNgwafAlertWebhookIntegrationWebhookAlertInput)(nil)).Elem(), GetNgwafAlertWebhookIntegrationWebhookAlertArgs{})
+	pulumi.RegisterInputType(reflect.TypeOf((*GetNgwafAlertWebhookIntegrationWebhookAlertArrayInput)(nil)).Elem(), GetNgwafAlertWebhookIntegrationWebhookAlertArray{})
+	pulumi.RegisterInputType(reflect.TypeOf((*GetNgwafRedactionsRedactionInput)(nil)).Elem(), GetNgwafRedactionsRedactionArgs{})
+	pulumi.RegisterInputType(reflect.TypeOf((*GetNgwafRedactionsRedactionArrayInput)(nil)).Elem(), GetNgwafRedactionsRedactionArray{})
+	pulumi.RegisterInputType(reflect.TypeOf((*GetNgwafThresholdsThresholdInput)(nil)).Elem(), GetNgwafThresholdsThresholdArgs{})
+	pulumi.RegisterInputType(reflect.TypeOf((*GetNgwafThresholdsThresholdArrayInput)(nil)).Elem(), GetNgwafThresholdsThresholdArray{})
+	pulumi.RegisterInputType(reflect.TypeOf((*GetNgwafVirtualPatchesVirtualPatchInput)(nil)).Elem(), GetNgwafVirtualPatchesVirtualPatchArgs{})
+	pulumi.RegisterInputType(reflect.TypeOf((*GetNgwafVirtualPatchesVirtualPatchArrayInput)(nil)).Elem(), GetNgwafVirtualPatchesVirtualPatchArray{})
+	pulumi.RegisterInputType(reflect.TypeOf((*GetNgwafWorkspacesWorkspaceInput)(nil)).Elem(), GetNgwafWorkspacesWorkspaceArgs{})
+	pulumi.RegisterInputType(reflect.TypeOf((*GetNgwafWorkspacesWorkspaceArrayInput)(nil)).Elem(), GetNgwafWorkspacesWorkspaceArray{})
 	pulumi.RegisterInputType(reflect.TypeOf((*GetSecretstoresStoreInput)(nil)).Elem(), GetSecretstoresStoreArgs{})
 	pulumi.RegisterInputType(reflect.TypeOf((*GetSecretstoresStoreArrayInput)(nil)).Elem(), GetSecretstoresStoreArray{})
 	pulumi.RegisterInputType(reflect.TypeOf((*GetServicesDetailInput)(nil)).Elem(), GetServicesDetailArgs{})
@@ -17933,6 +20950,32 @@ func init() {
 	pulumi.RegisterOutputType(CustomDashboardDashboardItemDataSourceConfigOutput{})
 	pulumi.RegisterOutputType(CustomDashboardDashboardItemVisualizationOutput{})
 	pulumi.RegisterOutputType(CustomDashboardDashboardItemVisualizationConfigOutput{})
+	pulumi.RegisterOutputType(NgwafAccountRuleActionOutput{})
+	pulumi.RegisterOutputType(NgwafAccountRuleActionArrayOutput{})
+	pulumi.RegisterOutputType(NgwafAccountRuleConditionOutput{})
+	pulumi.RegisterOutputType(NgwafAccountRuleConditionArrayOutput{})
+	pulumi.RegisterOutputType(NgwafAccountRuleGroupConditionOutput{})
+	pulumi.RegisterOutputType(NgwafAccountRuleGroupConditionArrayOutput{})
+	pulumi.RegisterOutputType(NgwafAccountRuleGroupConditionConditionOutput{})
+	pulumi.RegisterOutputType(NgwafAccountRuleGroupConditionConditionArrayOutput{})
+	pulumi.RegisterOutputType(NgwafAccountRuleRateLimitOutput{})
+	pulumi.RegisterOutputType(NgwafAccountRuleRateLimitPtrOutput{})
+	pulumi.RegisterOutputType(NgwafAccountRuleRateLimitClientIdentifierOutput{})
+	pulumi.RegisterOutputType(NgwafAccountRuleRateLimitClientIdentifierArrayOutput{})
+	pulumi.RegisterOutputType(NgwafWorkspaceAttackSignalThresholdsOutput{})
+	pulumi.RegisterOutputType(NgwafWorkspaceAttackSignalThresholdsPtrOutput{})
+	pulumi.RegisterOutputType(NgwafWorkspaceRuleActionOutput{})
+	pulumi.RegisterOutputType(NgwafWorkspaceRuleActionArrayOutput{})
+	pulumi.RegisterOutputType(NgwafWorkspaceRuleConditionOutput{})
+	pulumi.RegisterOutputType(NgwafWorkspaceRuleConditionArrayOutput{})
+	pulumi.RegisterOutputType(NgwafWorkspaceRuleGroupConditionOutput{})
+	pulumi.RegisterOutputType(NgwafWorkspaceRuleGroupConditionArrayOutput{})
+	pulumi.RegisterOutputType(NgwafWorkspaceRuleGroupConditionConditionOutput{})
+	pulumi.RegisterOutputType(NgwafWorkspaceRuleGroupConditionConditionArrayOutput{})
+	pulumi.RegisterOutputType(NgwafWorkspaceRuleRateLimitOutput{})
+	pulumi.RegisterOutputType(NgwafWorkspaceRuleRateLimitPtrOutput{})
+	pulumi.RegisterOutputType(NgwafWorkspaceRuleRateLimitClientIdentifierOutput{})
+	pulumi.RegisterOutputType(NgwafWorkspaceRuleRateLimitClientIdentifierArrayOutput{})
 	pulumi.RegisterOutputType(ServiceACLEntriesEntryOutput{})
 	pulumi.RegisterOutputType(ServiceACLEntriesEntryArrayOutput{})
 	pulumi.RegisterOutputType(ServiceComputeBackendOutput{})
@@ -18117,6 +21160,30 @@ func init() {
 	pulumi.RegisterOutputType(GetDictionariesDictionaryArrayOutput{})
 	pulumi.RegisterOutputType(GetKvstoresStoreOutput{})
 	pulumi.RegisterOutputType(GetKvstoresStoreArrayOutput{})
+	pulumi.RegisterOutputType(GetNgwafAlertDatadogIntegrationDatadogAlertOutput{})
+	pulumi.RegisterOutputType(GetNgwafAlertDatadogIntegrationDatadogAlertArrayOutput{})
+	pulumi.RegisterOutputType(GetNgwafAlertJiraIntegrationJiraAlertOutput{})
+	pulumi.RegisterOutputType(GetNgwafAlertJiraIntegrationJiraAlertArrayOutput{})
+	pulumi.RegisterOutputType(GetNgwafAlertMailingListIntegrationMailingListAlertOutput{})
+	pulumi.RegisterOutputType(GetNgwafAlertMailingListIntegrationMailingListAlertArrayOutput{})
+	pulumi.RegisterOutputType(GetNgwafAlertMicrosoftTeamsIntegrationMicrosoftTeamsAlertOutput{})
+	pulumi.RegisterOutputType(GetNgwafAlertMicrosoftTeamsIntegrationMicrosoftTeamsAlertArrayOutput{})
+	pulumi.RegisterOutputType(GetNgwafAlertOpsgenieIntegrationOpsgenieAlertOutput{})
+	pulumi.RegisterOutputType(GetNgwafAlertOpsgenieIntegrationOpsgenieAlertArrayOutput{})
+	pulumi.RegisterOutputType(GetNgwafAlertPagerdutyIntegrationPagerdutyAlertOutput{})
+	pulumi.RegisterOutputType(GetNgwafAlertPagerdutyIntegrationPagerdutyAlertArrayOutput{})
+	pulumi.RegisterOutputType(GetNgwafAlertSlackIntegrationSlackAlertOutput{})
+	pulumi.RegisterOutputType(GetNgwafAlertSlackIntegrationSlackAlertArrayOutput{})
+	pulumi.RegisterOutputType(GetNgwafAlertWebhookIntegrationWebhookAlertOutput{})
+	pulumi.RegisterOutputType(GetNgwafAlertWebhookIntegrationWebhookAlertArrayOutput{})
+	pulumi.RegisterOutputType(GetNgwafRedactionsRedactionOutput{})
+	pulumi.RegisterOutputType(GetNgwafRedactionsRedactionArrayOutput{})
+	pulumi.RegisterOutputType(GetNgwafThresholdsThresholdOutput{})
+	pulumi.RegisterOutputType(GetNgwafThresholdsThresholdArrayOutput{})
+	pulumi.RegisterOutputType(GetNgwafVirtualPatchesVirtualPatchOutput{})
+	pulumi.RegisterOutputType(GetNgwafVirtualPatchesVirtualPatchArrayOutput{})
+	pulumi.RegisterOutputType(GetNgwafWorkspacesWorkspaceOutput{})
+	pulumi.RegisterOutputType(GetNgwafWorkspacesWorkspaceArrayOutput{})
 	pulumi.RegisterOutputType(GetSecretstoresStoreOutput{})
 	pulumi.RegisterOutputType(GetSecretstoresStoreArrayOutput{})
 	pulumi.RegisterOutputType(GetServicesDetailOutput{})

@@ -8,7 +8,7 @@ import (
 	"reflect"
 
 	"errors"
-	"github.com/pulumi/pulumi-fastly/sdk/v10/go/fastly/internal"
+	"github.com/pulumi/pulumi-fastly/sdk/v11/go/fastly/internal"
 	"github.com/pulumi/pulumi/sdk/v3/go/pulumi"
 )
 
@@ -97,7 +97,7 @@ type ServiceVcl struct {
 	ResponseObjects   ServiceVclResponseObjectArrayOutput  `pulumi:"responseObjects"`
 	Reuse             pulumi.BoolPtrOutput                 `pulumi:"reuse"`
 	Snippets          ServiceVclSnippetArrayOutput         `pulumi:"snippets"`
-	// Conditionally enables new service versions to be staged. If `set` to true, all changes made by an `apply` step will be staged, even if `apply` did not create a new draft version. Default `false`
+	// Conditionally enables new service versions to be staged. If set to `true`, all changes made by an `apply` step will be staged, even if `apply` did not create a new draft version. Default `false`
 	Stage pulumi.BoolPtrOutput `pulumi:"stage"`
 	// The currently staged version of your Fastly Service
 	StagedVersion pulumi.IntOutput `pulumi:"stagedVersion"`
@@ -210,7 +210,7 @@ type serviceVclState struct {
 	ResponseObjects   []ServiceVclResponseObject   `pulumi:"responseObjects"`
 	Reuse             *bool                        `pulumi:"reuse"`
 	Snippets          []ServiceVclSnippet          `pulumi:"snippets"`
-	// Conditionally enables new service versions to be staged. If `set` to true, all changes made by an `apply` step will be staged, even if `apply` did not create a new draft version. Default `false`
+	// Conditionally enables new service versions to be staged. If set to `true`, all changes made by an `apply` step will be staged, even if `apply` did not create a new draft version. Default `false`
 	Stage *bool `pulumi:"stage"`
 	// The currently staged version of your Fastly Service
 	StagedVersion *int `pulumi:"stagedVersion"`
@@ -291,7 +291,7 @@ type ServiceVclState struct {
 	ResponseObjects   ServiceVclResponseObjectArrayInput
 	Reuse             pulumi.BoolPtrInput
 	Snippets          ServiceVclSnippetArrayInput
-	// Conditionally enables new service versions to be staged. If `set` to true, all changes made by an `apply` step will be staged, even if `apply` did not create a new draft version. Default `false`
+	// Conditionally enables new service versions to be staged. If set to `true`, all changes made by an `apply` step will be staged, even if `apply` did not create a new draft version. Default `false`
 	Stage pulumi.BoolPtrInput
 	// The currently staged version of your Fastly Service
 	StagedVersion pulumi.IntPtrInput
@@ -369,7 +369,7 @@ type serviceVclArgs struct {
 	ResponseObjects   []ServiceVclResponseObject   `pulumi:"responseObjects"`
 	Reuse             *bool                        `pulumi:"reuse"`
 	Snippets          []ServiceVclSnippet          `pulumi:"snippets"`
-	// Conditionally enables new service versions to be staged. If `set` to true, all changes made by an `apply` step will be staged, even if `apply` did not create a new draft version. Default `false`
+	// Conditionally enables new service versions to be staged. If set to `true`, all changes made by an `apply` step will be staged, even if `apply` did not create a new draft version. Default `false`
 	Stage *bool `pulumi:"stage"`
 	// Enables serving a stale object if there is an error
 	StaleIfError *bool `pulumi:"staleIfError"`
@@ -442,7 +442,7 @@ type ServiceVclArgs struct {
 	ResponseObjects   ServiceVclResponseObjectArrayInput
 	Reuse             pulumi.BoolPtrInput
 	Snippets          ServiceVclSnippetArrayInput
-	// Conditionally enables new service versions to be staged. If `set` to true, all changes made by an `apply` step will be staged, even if `apply` did not create a new draft version. Default `false`
+	// Conditionally enables new service versions to be staged. If set to `true`, all changes made by an `apply` step will be staged, even if `apply` did not create a new draft version. Default `false`
 	Stage pulumi.BoolPtrInput
 	// Enables serving a stale object if there is an error
 	StaleIfError pulumi.BoolPtrInput
@@ -780,7 +780,7 @@ func (o ServiceVclOutput) Snippets() ServiceVclSnippetArrayOutput {
 	return o.ApplyT(func(v *ServiceVcl) ServiceVclSnippetArrayOutput { return v.Snippets }).(ServiceVclSnippetArrayOutput)
 }
 
-// Conditionally enables new service versions to be staged. If `set` to true, all changes made by an `apply` step will be staged, even if `apply` did not create a new draft version. Default `false`
+// Conditionally enables new service versions to be staged. If set to `true`, all changes made by an `apply` step will be staged, even if `apply` did not create a new draft version. Default `false`
 func (o ServiceVclOutput) Stage() pulumi.BoolPtrOutput {
 	return o.ApplyT(func(v *ServiceVcl) pulumi.BoolPtrOutput { return v.Stage }).(pulumi.BoolPtrOutput)
 }

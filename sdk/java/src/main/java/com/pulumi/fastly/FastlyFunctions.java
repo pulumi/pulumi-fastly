@@ -11,6 +11,28 @@ import com.pulumi.deployment.InvokeOutputOptions;
 import com.pulumi.fastly.Utilities;
 import com.pulumi.fastly.inputs.GetDictionariesArgs;
 import com.pulumi.fastly.inputs.GetDictionariesPlainArgs;
+import com.pulumi.fastly.inputs.GetNgwafAlertDatadogIntegrationArgs;
+import com.pulumi.fastly.inputs.GetNgwafAlertDatadogIntegrationPlainArgs;
+import com.pulumi.fastly.inputs.GetNgwafAlertJiraIntegrationArgs;
+import com.pulumi.fastly.inputs.GetNgwafAlertJiraIntegrationPlainArgs;
+import com.pulumi.fastly.inputs.GetNgwafAlertMailingListIntegrationArgs;
+import com.pulumi.fastly.inputs.GetNgwafAlertMailingListIntegrationPlainArgs;
+import com.pulumi.fastly.inputs.GetNgwafAlertMicrosoftTeamsIntegrationArgs;
+import com.pulumi.fastly.inputs.GetNgwafAlertMicrosoftTeamsIntegrationPlainArgs;
+import com.pulumi.fastly.inputs.GetNgwafAlertOpsgenieIntegrationArgs;
+import com.pulumi.fastly.inputs.GetNgwafAlertOpsgenieIntegrationPlainArgs;
+import com.pulumi.fastly.inputs.GetNgwafAlertPagerdutyIntegrationArgs;
+import com.pulumi.fastly.inputs.GetNgwafAlertPagerdutyIntegrationPlainArgs;
+import com.pulumi.fastly.inputs.GetNgwafAlertSlackIntegrationArgs;
+import com.pulumi.fastly.inputs.GetNgwafAlertSlackIntegrationPlainArgs;
+import com.pulumi.fastly.inputs.GetNgwafAlertWebhookIntegrationArgs;
+import com.pulumi.fastly.inputs.GetNgwafAlertWebhookIntegrationPlainArgs;
+import com.pulumi.fastly.inputs.GetNgwafRedactionsArgs;
+import com.pulumi.fastly.inputs.GetNgwafRedactionsPlainArgs;
+import com.pulumi.fastly.inputs.GetNgwafThresholdsArgs;
+import com.pulumi.fastly.inputs.GetNgwafThresholdsPlainArgs;
+import com.pulumi.fastly.inputs.GetNgwafVirtualPatchesArgs;
+import com.pulumi.fastly.inputs.GetNgwafVirtualPatchesPlainArgs;
 import com.pulumi.fastly.inputs.GetPackageHashArgs;
 import com.pulumi.fastly.inputs.GetPackageHashPlainArgs;
 import com.pulumi.fastly.inputs.GetTlsActivationArgs;
@@ -36,6 +58,18 @@ import com.pulumi.fastly.outputs.GetDatacentersResult;
 import com.pulumi.fastly.outputs.GetDictionariesResult;
 import com.pulumi.fastly.outputs.GetFastlyIpRangesResult;
 import com.pulumi.fastly.outputs.GetKvstoresResult;
+import com.pulumi.fastly.outputs.GetNgwafAlertDatadogIntegrationResult;
+import com.pulumi.fastly.outputs.GetNgwafAlertJiraIntegrationResult;
+import com.pulumi.fastly.outputs.GetNgwafAlertMailingListIntegrationResult;
+import com.pulumi.fastly.outputs.GetNgwafAlertMicrosoftTeamsIntegrationResult;
+import com.pulumi.fastly.outputs.GetNgwafAlertOpsgenieIntegrationResult;
+import com.pulumi.fastly.outputs.GetNgwafAlertPagerdutyIntegrationResult;
+import com.pulumi.fastly.outputs.GetNgwafAlertSlackIntegrationResult;
+import com.pulumi.fastly.outputs.GetNgwafAlertWebhookIntegrationResult;
+import com.pulumi.fastly.outputs.GetNgwafRedactionsResult;
+import com.pulumi.fastly.outputs.GetNgwafThresholdsResult;
+import com.pulumi.fastly.outputs.GetNgwafVirtualPatchesResult;
+import com.pulumi.fastly.outputs.GetNgwafWorkspacesResult;
 import com.pulumi.fastly.outputs.GetPackageHashResult;
 import com.pulumi.fastly.outputs.GetSecretstoresResult;
 import com.pulumi.fastly.outputs.GetServicesResult;
@@ -865,6 +899,2240 @@ public final class FastlyFunctions {
     }
     public static CompletableFuture<GetKvstoresResult> getKvstoresPlain(InvokeArgs args, InvokeOptions options) {
         return Deployment.getInstance().invokeAsync("fastly:index/getKvstores:getKvstores", TypeShape.of(GetKvstoresResult.class), args, Utilities.withVersion(options));
+    }
+    /**
+     * Use this data source to get a Fastly Next-Gen WAF Alert Datadog integration.
+     * 
+     * ## Example Usage
+     * 
+     * &lt;!--Start PulumiCodeChooser --&gt;
+     * <pre>
+     * {@code
+     * package generated_program;
+     * 
+     * import com.pulumi.Context;
+     * import com.pulumi.Pulumi;
+     * import com.pulumi.core.Output;
+     * import com.pulumi.fastly.FastlyFunctions;
+     * import com.pulumi.fastly.inputs.GetNgwafAlertDatadogIntegrationArgs;
+     * import java.util.List;
+     * import java.util.ArrayList;
+     * import java.util.Map;
+     * import java.io.File;
+     * import java.nio.file.Files;
+     * import java.nio.file.Paths;
+     * 
+     * public class App {
+     *     public static void main(String[] args) {
+     *         Pulumi.run(App::stack);
+     *     }
+     * 
+     *     public static void stack(Context ctx) {
+     *         final var ngwafDatadogAlerts = FastlyFunctions.getNgwafAlertDatadogIntegration(GetNgwafAlertDatadogIntegrationArgs.builder()
+     *             .workspaceId(testRedactionsWorkspace.id())
+     *             .build());
+     * 
+     *         ctx.export("ngwafDatadogAlertsAll", datadogAlerts);
+     *     }
+     * }
+     * }
+     * </pre>
+     * &lt;!--End PulumiCodeChooser --&gt;
+     * 
+     */
+    public static Output<GetNgwafAlertDatadogIntegrationResult> getNgwafAlertDatadogIntegration(GetNgwafAlertDatadogIntegrationArgs args) {
+        return getNgwafAlertDatadogIntegration(args, InvokeOptions.Empty);
+    }
+    /**
+     * Use this data source to get a Fastly Next-Gen WAF Alert Datadog integration.
+     * 
+     * ## Example Usage
+     * 
+     * &lt;!--Start PulumiCodeChooser --&gt;
+     * <pre>
+     * {@code
+     * package generated_program;
+     * 
+     * import com.pulumi.Context;
+     * import com.pulumi.Pulumi;
+     * import com.pulumi.core.Output;
+     * import com.pulumi.fastly.FastlyFunctions;
+     * import com.pulumi.fastly.inputs.GetNgwafAlertDatadogIntegrationArgs;
+     * import java.util.List;
+     * import java.util.ArrayList;
+     * import java.util.Map;
+     * import java.io.File;
+     * import java.nio.file.Files;
+     * import java.nio.file.Paths;
+     * 
+     * public class App {
+     *     public static void main(String[] args) {
+     *         Pulumi.run(App::stack);
+     *     }
+     * 
+     *     public static void stack(Context ctx) {
+     *         final var ngwafDatadogAlerts = FastlyFunctions.getNgwafAlertDatadogIntegration(GetNgwafAlertDatadogIntegrationArgs.builder()
+     *             .workspaceId(testRedactionsWorkspace.id())
+     *             .build());
+     * 
+     *         ctx.export("ngwafDatadogAlertsAll", datadogAlerts);
+     *     }
+     * }
+     * }
+     * </pre>
+     * &lt;!--End PulumiCodeChooser --&gt;
+     * 
+     */
+    public static CompletableFuture<GetNgwafAlertDatadogIntegrationResult> getNgwafAlertDatadogIntegrationPlain(GetNgwafAlertDatadogIntegrationPlainArgs args) {
+        return getNgwafAlertDatadogIntegrationPlain(args, InvokeOptions.Empty);
+    }
+    /**
+     * Use this data source to get a Fastly Next-Gen WAF Alert Datadog integration.
+     * 
+     * ## Example Usage
+     * 
+     * &lt;!--Start PulumiCodeChooser --&gt;
+     * <pre>
+     * {@code
+     * package generated_program;
+     * 
+     * import com.pulumi.Context;
+     * import com.pulumi.Pulumi;
+     * import com.pulumi.core.Output;
+     * import com.pulumi.fastly.FastlyFunctions;
+     * import com.pulumi.fastly.inputs.GetNgwafAlertDatadogIntegrationArgs;
+     * import java.util.List;
+     * import java.util.ArrayList;
+     * import java.util.Map;
+     * import java.io.File;
+     * import java.nio.file.Files;
+     * import java.nio.file.Paths;
+     * 
+     * public class App {
+     *     public static void main(String[] args) {
+     *         Pulumi.run(App::stack);
+     *     }
+     * 
+     *     public static void stack(Context ctx) {
+     *         final var ngwafDatadogAlerts = FastlyFunctions.getNgwafAlertDatadogIntegration(GetNgwafAlertDatadogIntegrationArgs.builder()
+     *             .workspaceId(testRedactionsWorkspace.id())
+     *             .build());
+     * 
+     *         ctx.export("ngwafDatadogAlertsAll", datadogAlerts);
+     *     }
+     * }
+     * }
+     * </pre>
+     * &lt;!--End PulumiCodeChooser --&gt;
+     * 
+     */
+    public static Output<GetNgwafAlertDatadogIntegrationResult> getNgwafAlertDatadogIntegration(GetNgwafAlertDatadogIntegrationArgs args, InvokeOptions options) {
+        return Deployment.getInstance().invoke("fastly:index/getNgwafAlertDatadogIntegration:getNgwafAlertDatadogIntegration", TypeShape.of(GetNgwafAlertDatadogIntegrationResult.class), args, Utilities.withVersion(options));
+    }
+    /**
+     * Use this data source to get a Fastly Next-Gen WAF Alert Datadog integration.
+     * 
+     * ## Example Usage
+     * 
+     * &lt;!--Start PulumiCodeChooser --&gt;
+     * <pre>
+     * {@code
+     * package generated_program;
+     * 
+     * import com.pulumi.Context;
+     * import com.pulumi.Pulumi;
+     * import com.pulumi.core.Output;
+     * import com.pulumi.fastly.FastlyFunctions;
+     * import com.pulumi.fastly.inputs.GetNgwafAlertDatadogIntegrationArgs;
+     * import java.util.List;
+     * import java.util.ArrayList;
+     * import java.util.Map;
+     * import java.io.File;
+     * import java.nio.file.Files;
+     * import java.nio.file.Paths;
+     * 
+     * public class App {
+     *     public static void main(String[] args) {
+     *         Pulumi.run(App::stack);
+     *     }
+     * 
+     *     public static void stack(Context ctx) {
+     *         final var ngwafDatadogAlerts = FastlyFunctions.getNgwafAlertDatadogIntegration(GetNgwafAlertDatadogIntegrationArgs.builder()
+     *             .workspaceId(testRedactionsWorkspace.id())
+     *             .build());
+     * 
+     *         ctx.export("ngwafDatadogAlertsAll", datadogAlerts);
+     *     }
+     * }
+     * }
+     * </pre>
+     * &lt;!--End PulumiCodeChooser --&gt;
+     * 
+     */
+    public static Output<GetNgwafAlertDatadogIntegrationResult> getNgwafAlertDatadogIntegration(GetNgwafAlertDatadogIntegrationArgs args, InvokeOutputOptions options) {
+        return Deployment.getInstance().invoke("fastly:index/getNgwafAlertDatadogIntegration:getNgwafAlertDatadogIntegration", TypeShape.of(GetNgwafAlertDatadogIntegrationResult.class), args, Utilities.withVersion(options));
+    }
+    /**
+     * Use this data source to get a Fastly Next-Gen WAF Alert Datadog integration.
+     * 
+     * ## Example Usage
+     * 
+     * &lt;!--Start PulumiCodeChooser --&gt;
+     * <pre>
+     * {@code
+     * package generated_program;
+     * 
+     * import com.pulumi.Context;
+     * import com.pulumi.Pulumi;
+     * import com.pulumi.core.Output;
+     * import com.pulumi.fastly.FastlyFunctions;
+     * import com.pulumi.fastly.inputs.GetNgwafAlertDatadogIntegrationArgs;
+     * import java.util.List;
+     * import java.util.ArrayList;
+     * import java.util.Map;
+     * import java.io.File;
+     * import java.nio.file.Files;
+     * import java.nio.file.Paths;
+     * 
+     * public class App {
+     *     public static void main(String[] args) {
+     *         Pulumi.run(App::stack);
+     *     }
+     * 
+     *     public static void stack(Context ctx) {
+     *         final var ngwafDatadogAlerts = FastlyFunctions.getNgwafAlertDatadogIntegration(GetNgwafAlertDatadogIntegrationArgs.builder()
+     *             .workspaceId(testRedactionsWorkspace.id())
+     *             .build());
+     * 
+     *         ctx.export("ngwafDatadogAlertsAll", datadogAlerts);
+     *     }
+     * }
+     * }
+     * </pre>
+     * &lt;!--End PulumiCodeChooser --&gt;
+     * 
+     */
+    public static CompletableFuture<GetNgwafAlertDatadogIntegrationResult> getNgwafAlertDatadogIntegrationPlain(GetNgwafAlertDatadogIntegrationPlainArgs args, InvokeOptions options) {
+        return Deployment.getInstance().invokeAsync("fastly:index/getNgwafAlertDatadogIntegration:getNgwafAlertDatadogIntegration", TypeShape.of(GetNgwafAlertDatadogIntegrationResult.class), args, Utilities.withVersion(options));
+    }
+    /**
+     * Use this data source to get a Fastly Next-Gen WAF Alert Jira integration.
+     * 
+     * ## Example Usage
+     * 
+     * &lt;!--Start PulumiCodeChooser --&gt;
+     * <pre>
+     * {@code
+     * package generated_program;
+     * 
+     * import com.pulumi.Context;
+     * import com.pulumi.Pulumi;
+     * import com.pulumi.core.Output;
+     * import com.pulumi.fastly.FastlyFunctions;
+     * import com.pulumi.fastly.inputs.GetNgwafAlertJiraIntegrationArgs;
+     * import java.util.List;
+     * import java.util.ArrayList;
+     * import java.util.Map;
+     * import java.io.File;
+     * import java.nio.file.Files;
+     * import java.nio.file.Paths;
+     * 
+     * public class App {
+     *     public static void main(String[] args) {
+     *         Pulumi.run(App::stack);
+     *     }
+     * 
+     *     public static void stack(Context ctx) {
+     *         final var ngwafJiraAlerts = FastlyFunctions.getNgwafAlertJiraIntegration(GetNgwafAlertJiraIntegrationArgs.builder()
+     *             .workspaceId(testRedactionsWorkspace.id())
+     *             .build());
+     * 
+     *         ctx.export("ngwafJiraAlertsAll", jiraAlerts);
+     *     }
+     * }
+     * }
+     * </pre>
+     * &lt;!--End PulumiCodeChooser --&gt;
+     * 
+     */
+    public static Output<GetNgwafAlertJiraIntegrationResult> getNgwafAlertJiraIntegration(GetNgwafAlertJiraIntegrationArgs args) {
+        return getNgwafAlertJiraIntegration(args, InvokeOptions.Empty);
+    }
+    /**
+     * Use this data source to get a Fastly Next-Gen WAF Alert Jira integration.
+     * 
+     * ## Example Usage
+     * 
+     * &lt;!--Start PulumiCodeChooser --&gt;
+     * <pre>
+     * {@code
+     * package generated_program;
+     * 
+     * import com.pulumi.Context;
+     * import com.pulumi.Pulumi;
+     * import com.pulumi.core.Output;
+     * import com.pulumi.fastly.FastlyFunctions;
+     * import com.pulumi.fastly.inputs.GetNgwafAlertJiraIntegrationArgs;
+     * import java.util.List;
+     * import java.util.ArrayList;
+     * import java.util.Map;
+     * import java.io.File;
+     * import java.nio.file.Files;
+     * import java.nio.file.Paths;
+     * 
+     * public class App {
+     *     public static void main(String[] args) {
+     *         Pulumi.run(App::stack);
+     *     }
+     * 
+     *     public static void stack(Context ctx) {
+     *         final var ngwafJiraAlerts = FastlyFunctions.getNgwafAlertJiraIntegration(GetNgwafAlertJiraIntegrationArgs.builder()
+     *             .workspaceId(testRedactionsWorkspace.id())
+     *             .build());
+     * 
+     *         ctx.export("ngwafJiraAlertsAll", jiraAlerts);
+     *     }
+     * }
+     * }
+     * </pre>
+     * &lt;!--End PulumiCodeChooser --&gt;
+     * 
+     */
+    public static CompletableFuture<GetNgwafAlertJiraIntegrationResult> getNgwafAlertJiraIntegrationPlain(GetNgwafAlertJiraIntegrationPlainArgs args) {
+        return getNgwafAlertJiraIntegrationPlain(args, InvokeOptions.Empty);
+    }
+    /**
+     * Use this data source to get a Fastly Next-Gen WAF Alert Jira integration.
+     * 
+     * ## Example Usage
+     * 
+     * &lt;!--Start PulumiCodeChooser --&gt;
+     * <pre>
+     * {@code
+     * package generated_program;
+     * 
+     * import com.pulumi.Context;
+     * import com.pulumi.Pulumi;
+     * import com.pulumi.core.Output;
+     * import com.pulumi.fastly.FastlyFunctions;
+     * import com.pulumi.fastly.inputs.GetNgwafAlertJiraIntegrationArgs;
+     * import java.util.List;
+     * import java.util.ArrayList;
+     * import java.util.Map;
+     * import java.io.File;
+     * import java.nio.file.Files;
+     * import java.nio.file.Paths;
+     * 
+     * public class App {
+     *     public static void main(String[] args) {
+     *         Pulumi.run(App::stack);
+     *     }
+     * 
+     *     public static void stack(Context ctx) {
+     *         final var ngwafJiraAlerts = FastlyFunctions.getNgwafAlertJiraIntegration(GetNgwafAlertJiraIntegrationArgs.builder()
+     *             .workspaceId(testRedactionsWorkspace.id())
+     *             .build());
+     * 
+     *         ctx.export("ngwafJiraAlertsAll", jiraAlerts);
+     *     }
+     * }
+     * }
+     * </pre>
+     * &lt;!--End PulumiCodeChooser --&gt;
+     * 
+     */
+    public static Output<GetNgwafAlertJiraIntegrationResult> getNgwafAlertJiraIntegration(GetNgwafAlertJiraIntegrationArgs args, InvokeOptions options) {
+        return Deployment.getInstance().invoke("fastly:index/getNgwafAlertJiraIntegration:getNgwafAlertJiraIntegration", TypeShape.of(GetNgwafAlertJiraIntegrationResult.class), args, Utilities.withVersion(options));
+    }
+    /**
+     * Use this data source to get a Fastly Next-Gen WAF Alert Jira integration.
+     * 
+     * ## Example Usage
+     * 
+     * &lt;!--Start PulumiCodeChooser --&gt;
+     * <pre>
+     * {@code
+     * package generated_program;
+     * 
+     * import com.pulumi.Context;
+     * import com.pulumi.Pulumi;
+     * import com.pulumi.core.Output;
+     * import com.pulumi.fastly.FastlyFunctions;
+     * import com.pulumi.fastly.inputs.GetNgwafAlertJiraIntegrationArgs;
+     * import java.util.List;
+     * import java.util.ArrayList;
+     * import java.util.Map;
+     * import java.io.File;
+     * import java.nio.file.Files;
+     * import java.nio.file.Paths;
+     * 
+     * public class App {
+     *     public static void main(String[] args) {
+     *         Pulumi.run(App::stack);
+     *     }
+     * 
+     *     public static void stack(Context ctx) {
+     *         final var ngwafJiraAlerts = FastlyFunctions.getNgwafAlertJiraIntegration(GetNgwafAlertJiraIntegrationArgs.builder()
+     *             .workspaceId(testRedactionsWorkspace.id())
+     *             .build());
+     * 
+     *         ctx.export("ngwafJiraAlertsAll", jiraAlerts);
+     *     }
+     * }
+     * }
+     * </pre>
+     * &lt;!--End PulumiCodeChooser --&gt;
+     * 
+     */
+    public static Output<GetNgwafAlertJiraIntegrationResult> getNgwafAlertJiraIntegration(GetNgwafAlertJiraIntegrationArgs args, InvokeOutputOptions options) {
+        return Deployment.getInstance().invoke("fastly:index/getNgwafAlertJiraIntegration:getNgwafAlertJiraIntegration", TypeShape.of(GetNgwafAlertJiraIntegrationResult.class), args, Utilities.withVersion(options));
+    }
+    /**
+     * Use this data source to get a Fastly Next-Gen WAF Alert Jira integration.
+     * 
+     * ## Example Usage
+     * 
+     * &lt;!--Start PulumiCodeChooser --&gt;
+     * <pre>
+     * {@code
+     * package generated_program;
+     * 
+     * import com.pulumi.Context;
+     * import com.pulumi.Pulumi;
+     * import com.pulumi.core.Output;
+     * import com.pulumi.fastly.FastlyFunctions;
+     * import com.pulumi.fastly.inputs.GetNgwafAlertJiraIntegrationArgs;
+     * import java.util.List;
+     * import java.util.ArrayList;
+     * import java.util.Map;
+     * import java.io.File;
+     * import java.nio.file.Files;
+     * import java.nio.file.Paths;
+     * 
+     * public class App {
+     *     public static void main(String[] args) {
+     *         Pulumi.run(App::stack);
+     *     }
+     * 
+     *     public static void stack(Context ctx) {
+     *         final var ngwafJiraAlerts = FastlyFunctions.getNgwafAlertJiraIntegration(GetNgwafAlertJiraIntegrationArgs.builder()
+     *             .workspaceId(testRedactionsWorkspace.id())
+     *             .build());
+     * 
+     *         ctx.export("ngwafJiraAlertsAll", jiraAlerts);
+     *     }
+     * }
+     * }
+     * </pre>
+     * &lt;!--End PulumiCodeChooser --&gt;
+     * 
+     */
+    public static CompletableFuture<GetNgwafAlertJiraIntegrationResult> getNgwafAlertJiraIntegrationPlain(GetNgwafAlertJiraIntegrationPlainArgs args, InvokeOptions options) {
+        return Deployment.getInstance().invokeAsync("fastly:index/getNgwafAlertJiraIntegration:getNgwafAlertJiraIntegration", TypeShape.of(GetNgwafAlertJiraIntegrationResult.class), args, Utilities.withVersion(options));
+    }
+    /**
+     * Use this data source to get a Fastly Next-Gen WAF Alert Mailing List integration.
+     * 
+     * ## Example Usage
+     * 
+     * &lt;!--Start PulumiCodeChooser --&gt;
+     * <pre>
+     * {@code
+     * package generated_program;
+     * 
+     * import com.pulumi.Context;
+     * import com.pulumi.Pulumi;
+     * import com.pulumi.core.Output;
+     * import com.pulumi.fastly.FastlyFunctions;
+     * import com.pulumi.fastly.inputs.GetNgwafAlertJiraIntegrationArgs;
+     * import java.util.List;
+     * import java.util.ArrayList;
+     * import java.util.Map;
+     * import java.io.File;
+     * import java.nio.file.Files;
+     * import java.nio.file.Paths;
+     * 
+     * public class App {
+     *     public static void main(String[] args) {
+     *         Pulumi.run(App::stack);
+     *     }
+     * 
+     *     public static void stack(Context ctx) {
+     *         final var ngwafJiraAlerts = FastlyFunctions.getNgwafAlertJiraIntegration(GetNgwafAlertJiraIntegrationArgs.builder()
+     *             .workspaceId(testRedactionsWorkspace.id())
+     *             .build());
+     * 
+     *         ctx.export("ngwafJiraAlertsAll", jiraAlerts);
+     *     }
+     * }
+     * }
+     * </pre>
+     * &lt;!--End PulumiCodeChooser --&gt;
+     * 
+     */
+    public static Output<GetNgwafAlertMailingListIntegrationResult> getNgwafAlertMailingListIntegration(GetNgwafAlertMailingListIntegrationArgs args) {
+        return getNgwafAlertMailingListIntegration(args, InvokeOptions.Empty);
+    }
+    /**
+     * Use this data source to get a Fastly Next-Gen WAF Alert Mailing List integration.
+     * 
+     * ## Example Usage
+     * 
+     * &lt;!--Start PulumiCodeChooser --&gt;
+     * <pre>
+     * {@code
+     * package generated_program;
+     * 
+     * import com.pulumi.Context;
+     * import com.pulumi.Pulumi;
+     * import com.pulumi.core.Output;
+     * import com.pulumi.fastly.FastlyFunctions;
+     * import com.pulumi.fastly.inputs.GetNgwafAlertJiraIntegrationArgs;
+     * import java.util.List;
+     * import java.util.ArrayList;
+     * import java.util.Map;
+     * import java.io.File;
+     * import java.nio.file.Files;
+     * import java.nio.file.Paths;
+     * 
+     * public class App {
+     *     public static void main(String[] args) {
+     *         Pulumi.run(App::stack);
+     *     }
+     * 
+     *     public static void stack(Context ctx) {
+     *         final var ngwafJiraAlerts = FastlyFunctions.getNgwafAlertJiraIntegration(GetNgwafAlertJiraIntegrationArgs.builder()
+     *             .workspaceId(testRedactionsWorkspace.id())
+     *             .build());
+     * 
+     *         ctx.export("ngwafJiraAlertsAll", jiraAlerts);
+     *     }
+     * }
+     * }
+     * </pre>
+     * &lt;!--End PulumiCodeChooser --&gt;
+     * 
+     */
+    public static CompletableFuture<GetNgwafAlertMailingListIntegrationResult> getNgwafAlertMailingListIntegrationPlain(GetNgwafAlertMailingListIntegrationPlainArgs args) {
+        return getNgwafAlertMailingListIntegrationPlain(args, InvokeOptions.Empty);
+    }
+    /**
+     * Use this data source to get a Fastly Next-Gen WAF Alert Mailing List integration.
+     * 
+     * ## Example Usage
+     * 
+     * &lt;!--Start PulumiCodeChooser --&gt;
+     * <pre>
+     * {@code
+     * package generated_program;
+     * 
+     * import com.pulumi.Context;
+     * import com.pulumi.Pulumi;
+     * import com.pulumi.core.Output;
+     * import com.pulumi.fastly.FastlyFunctions;
+     * import com.pulumi.fastly.inputs.GetNgwafAlertJiraIntegrationArgs;
+     * import java.util.List;
+     * import java.util.ArrayList;
+     * import java.util.Map;
+     * import java.io.File;
+     * import java.nio.file.Files;
+     * import java.nio.file.Paths;
+     * 
+     * public class App {
+     *     public static void main(String[] args) {
+     *         Pulumi.run(App::stack);
+     *     }
+     * 
+     *     public static void stack(Context ctx) {
+     *         final var ngwafJiraAlerts = FastlyFunctions.getNgwafAlertJiraIntegration(GetNgwafAlertJiraIntegrationArgs.builder()
+     *             .workspaceId(testRedactionsWorkspace.id())
+     *             .build());
+     * 
+     *         ctx.export("ngwafJiraAlertsAll", jiraAlerts);
+     *     }
+     * }
+     * }
+     * </pre>
+     * &lt;!--End PulumiCodeChooser --&gt;
+     * 
+     */
+    public static Output<GetNgwafAlertMailingListIntegrationResult> getNgwafAlertMailingListIntegration(GetNgwafAlertMailingListIntegrationArgs args, InvokeOptions options) {
+        return Deployment.getInstance().invoke("fastly:index/getNgwafAlertMailingListIntegration:getNgwafAlertMailingListIntegration", TypeShape.of(GetNgwafAlertMailingListIntegrationResult.class), args, Utilities.withVersion(options));
+    }
+    /**
+     * Use this data source to get a Fastly Next-Gen WAF Alert Mailing List integration.
+     * 
+     * ## Example Usage
+     * 
+     * &lt;!--Start PulumiCodeChooser --&gt;
+     * <pre>
+     * {@code
+     * package generated_program;
+     * 
+     * import com.pulumi.Context;
+     * import com.pulumi.Pulumi;
+     * import com.pulumi.core.Output;
+     * import com.pulumi.fastly.FastlyFunctions;
+     * import com.pulumi.fastly.inputs.GetNgwafAlertJiraIntegrationArgs;
+     * import java.util.List;
+     * import java.util.ArrayList;
+     * import java.util.Map;
+     * import java.io.File;
+     * import java.nio.file.Files;
+     * import java.nio.file.Paths;
+     * 
+     * public class App {
+     *     public static void main(String[] args) {
+     *         Pulumi.run(App::stack);
+     *     }
+     * 
+     *     public static void stack(Context ctx) {
+     *         final var ngwafJiraAlerts = FastlyFunctions.getNgwafAlertJiraIntegration(GetNgwafAlertJiraIntegrationArgs.builder()
+     *             .workspaceId(testRedactionsWorkspace.id())
+     *             .build());
+     * 
+     *         ctx.export("ngwafJiraAlertsAll", jiraAlerts);
+     *     }
+     * }
+     * }
+     * </pre>
+     * &lt;!--End PulumiCodeChooser --&gt;
+     * 
+     */
+    public static Output<GetNgwafAlertMailingListIntegrationResult> getNgwafAlertMailingListIntegration(GetNgwafAlertMailingListIntegrationArgs args, InvokeOutputOptions options) {
+        return Deployment.getInstance().invoke("fastly:index/getNgwafAlertMailingListIntegration:getNgwafAlertMailingListIntegration", TypeShape.of(GetNgwafAlertMailingListIntegrationResult.class), args, Utilities.withVersion(options));
+    }
+    /**
+     * Use this data source to get a Fastly Next-Gen WAF Alert Mailing List integration.
+     * 
+     * ## Example Usage
+     * 
+     * &lt;!--Start PulumiCodeChooser --&gt;
+     * <pre>
+     * {@code
+     * package generated_program;
+     * 
+     * import com.pulumi.Context;
+     * import com.pulumi.Pulumi;
+     * import com.pulumi.core.Output;
+     * import com.pulumi.fastly.FastlyFunctions;
+     * import com.pulumi.fastly.inputs.GetNgwafAlertJiraIntegrationArgs;
+     * import java.util.List;
+     * import java.util.ArrayList;
+     * import java.util.Map;
+     * import java.io.File;
+     * import java.nio.file.Files;
+     * import java.nio.file.Paths;
+     * 
+     * public class App {
+     *     public static void main(String[] args) {
+     *         Pulumi.run(App::stack);
+     *     }
+     * 
+     *     public static void stack(Context ctx) {
+     *         final var ngwafJiraAlerts = FastlyFunctions.getNgwafAlertJiraIntegration(GetNgwafAlertJiraIntegrationArgs.builder()
+     *             .workspaceId(testRedactionsWorkspace.id())
+     *             .build());
+     * 
+     *         ctx.export("ngwafJiraAlertsAll", jiraAlerts);
+     *     }
+     * }
+     * }
+     * </pre>
+     * &lt;!--End PulumiCodeChooser --&gt;
+     * 
+     */
+    public static CompletableFuture<GetNgwafAlertMailingListIntegrationResult> getNgwafAlertMailingListIntegrationPlain(GetNgwafAlertMailingListIntegrationPlainArgs args, InvokeOptions options) {
+        return Deployment.getInstance().invokeAsync("fastly:index/getNgwafAlertMailingListIntegration:getNgwafAlertMailingListIntegration", TypeShape.of(GetNgwafAlertMailingListIntegrationResult.class), args, Utilities.withVersion(options));
+    }
+    /**
+     * Use this data source to get a Fastly Next-Gen WAF Alert Microsoft Teams integration.
+     * 
+     * ## Example Usage
+     * 
+     * &lt;!--Start PulumiCodeChooser --&gt;
+     * <pre>
+     * {@code
+     * package generated_program;
+     * 
+     * import com.pulumi.Context;
+     * import com.pulumi.Pulumi;
+     * import com.pulumi.core.Output;
+     * import com.pulumi.fastly.FastlyFunctions;
+     * import com.pulumi.fastly.inputs.GetNgwafAlertJiraIntegrationArgs;
+     * import java.util.List;
+     * import java.util.ArrayList;
+     * import java.util.Map;
+     * import java.io.File;
+     * import java.nio.file.Files;
+     * import java.nio.file.Paths;
+     * 
+     * public class App {
+     *     public static void main(String[] args) {
+     *         Pulumi.run(App::stack);
+     *     }
+     * 
+     *     public static void stack(Context ctx) {
+     *         final var ngwafJiraAlerts = FastlyFunctions.getNgwafAlertJiraIntegration(GetNgwafAlertJiraIntegrationArgs.builder()
+     *             .workspaceId(testRedactionsWorkspace.id())
+     *             .build());
+     * 
+     *         ctx.export("ngwafJiraAlertsAll", jiraAlerts);
+     *     }
+     * }
+     * }
+     * </pre>
+     * &lt;!--End PulumiCodeChooser --&gt;
+     * 
+     */
+    public static Output<GetNgwafAlertMicrosoftTeamsIntegrationResult> getNgwafAlertMicrosoftTeamsIntegration(GetNgwafAlertMicrosoftTeamsIntegrationArgs args) {
+        return getNgwafAlertMicrosoftTeamsIntegration(args, InvokeOptions.Empty);
+    }
+    /**
+     * Use this data source to get a Fastly Next-Gen WAF Alert Microsoft Teams integration.
+     * 
+     * ## Example Usage
+     * 
+     * &lt;!--Start PulumiCodeChooser --&gt;
+     * <pre>
+     * {@code
+     * package generated_program;
+     * 
+     * import com.pulumi.Context;
+     * import com.pulumi.Pulumi;
+     * import com.pulumi.core.Output;
+     * import com.pulumi.fastly.FastlyFunctions;
+     * import com.pulumi.fastly.inputs.GetNgwafAlertJiraIntegrationArgs;
+     * import java.util.List;
+     * import java.util.ArrayList;
+     * import java.util.Map;
+     * import java.io.File;
+     * import java.nio.file.Files;
+     * import java.nio.file.Paths;
+     * 
+     * public class App {
+     *     public static void main(String[] args) {
+     *         Pulumi.run(App::stack);
+     *     }
+     * 
+     *     public static void stack(Context ctx) {
+     *         final var ngwafJiraAlerts = FastlyFunctions.getNgwafAlertJiraIntegration(GetNgwafAlertJiraIntegrationArgs.builder()
+     *             .workspaceId(testRedactionsWorkspace.id())
+     *             .build());
+     * 
+     *         ctx.export("ngwafJiraAlertsAll", jiraAlerts);
+     *     }
+     * }
+     * }
+     * </pre>
+     * &lt;!--End PulumiCodeChooser --&gt;
+     * 
+     */
+    public static CompletableFuture<GetNgwafAlertMicrosoftTeamsIntegrationResult> getNgwafAlertMicrosoftTeamsIntegrationPlain(GetNgwafAlertMicrosoftTeamsIntegrationPlainArgs args) {
+        return getNgwafAlertMicrosoftTeamsIntegrationPlain(args, InvokeOptions.Empty);
+    }
+    /**
+     * Use this data source to get a Fastly Next-Gen WAF Alert Microsoft Teams integration.
+     * 
+     * ## Example Usage
+     * 
+     * &lt;!--Start PulumiCodeChooser --&gt;
+     * <pre>
+     * {@code
+     * package generated_program;
+     * 
+     * import com.pulumi.Context;
+     * import com.pulumi.Pulumi;
+     * import com.pulumi.core.Output;
+     * import com.pulumi.fastly.FastlyFunctions;
+     * import com.pulumi.fastly.inputs.GetNgwafAlertJiraIntegrationArgs;
+     * import java.util.List;
+     * import java.util.ArrayList;
+     * import java.util.Map;
+     * import java.io.File;
+     * import java.nio.file.Files;
+     * import java.nio.file.Paths;
+     * 
+     * public class App {
+     *     public static void main(String[] args) {
+     *         Pulumi.run(App::stack);
+     *     }
+     * 
+     *     public static void stack(Context ctx) {
+     *         final var ngwafJiraAlerts = FastlyFunctions.getNgwafAlertJiraIntegration(GetNgwafAlertJiraIntegrationArgs.builder()
+     *             .workspaceId(testRedactionsWorkspace.id())
+     *             .build());
+     * 
+     *         ctx.export("ngwafJiraAlertsAll", jiraAlerts);
+     *     }
+     * }
+     * }
+     * </pre>
+     * &lt;!--End PulumiCodeChooser --&gt;
+     * 
+     */
+    public static Output<GetNgwafAlertMicrosoftTeamsIntegrationResult> getNgwafAlertMicrosoftTeamsIntegration(GetNgwafAlertMicrosoftTeamsIntegrationArgs args, InvokeOptions options) {
+        return Deployment.getInstance().invoke("fastly:index/getNgwafAlertMicrosoftTeamsIntegration:getNgwafAlertMicrosoftTeamsIntegration", TypeShape.of(GetNgwafAlertMicrosoftTeamsIntegrationResult.class), args, Utilities.withVersion(options));
+    }
+    /**
+     * Use this data source to get a Fastly Next-Gen WAF Alert Microsoft Teams integration.
+     * 
+     * ## Example Usage
+     * 
+     * &lt;!--Start PulumiCodeChooser --&gt;
+     * <pre>
+     * {@code
+     * package generated_program;
+     * 
+     * import com.pulumi.Context;
+     * import com.pulumi.Pulumi;
+     * import com.pulumi.core.Output;
+     * import com.pulumi.fastly.FastlyFunctions;
+     * import com.pulumi.fastly.inputs.GetNgwafAlertJiraIntegrationArgs;
+     * import java.util.List;
+     * import java.util.ArrayList;
+     * import java.util.Map;
+     * import java.io.File;
+     * import java.nio.file.Files;
+     * import java.nio.file.Paths;
+     * 
+     * public class App {
+     *     public static void main(String[] args) {
+     *         Pulumi.run(App::stack);
+     *     }
+     * 
+     *     public static void stack(Context ctx) {
+     *         final var ngwafJiraAlerts = FastlyFunctions.getNgwafAlertJiraIntegration(GetNgwafAlertJiraIntegrationArgs.builder()
+     *             .workspaceId(testRedactionsWorkspace.id())
+     *             .build());
+     * 
+     *         ctx.export("ngwafJiraAlertsAll", jiraAlerts);
+     *     }
+     * }
+     * }
+     * </pre>
+     * &lt;!--End PulumiCodeChooser --&gt;
+     * 
+     */
+    public static Output<GetNgwafAlertMicrosoftTeamsIntegrationResult> getNgwafAlertMicrosoftTeamsIntegration(GetNgwafAlertMicrosoftTeamsIntegrationArgs args, InvokeOutputOptions options) {
+        return Deployment.getInstance().invoke("fastly:index/getNgwafAlertMicrosoftTeamsIntegration:getNgwafAlertMicrosoftTeamsIntegration", TypeShape.of(GetNgwafAlertMicrosoftTeamsIntegrationResult.class), args, Utilities.withVersion(options));
+    }
+    /**
+     * Use this data source to get a Fastly Next-Gen WAF Alert Microsoft Teams integration.
+     * 
+     * ## Example Usage
+     * 
+     * &lt;!--Start PulumiCodeChooser --&gt;
+     * <pre>
+     * {@code
+     * package generated_program;
+     * 
+     * import com.pulumi.Context;
+     * import com.pulumi.Pulumi;
+     * import com.pulumi.core.Output;
+     * import com.pulumi.fastly.FastlyFunctions;
+     * import com.pulumi.fastly.inputs.GetNgwafAlertJiraIntegrationArgs;
+     * import java.util.List;
+     * import java.util.ArrayList;
+     * import java.util.Map;
+     * import java.io.File;
+     * import java.nio.file.Files;
+     * import java.nio.file.Paths;
+     * 
+     * public class App {
+     *     public static void main(String[] args) {
+     *         Pulumi.run(App::stack);
+     *     }
+     * 
+     *     public static void stack(Context ctx) {
+     *         final var ngwafJiraAlerts = FastlyFunctions.getNgwafAlertJiraIntegration(GetNgwafAlertJiraIntegrationArgs.builder()
+     *             .workspaceId(testRedactionsWorkspace.id())
+     *             .build());
+     * 
+     *         ctx.export("ngwafJiraAlertsAll", jiraAlerts);
+     *     }
+     * }
+     * }
+     * </pre>
+     * &lt;!--End PulumiCodeChooser --&gt;
+     * 
+     */
+    public static CompletableFuture<GetNgwafAlertMicrosoftTeamsIntegrationResult> getNgwafAlertMicrosoftTeamsIntegrationPlain(GetNgwafAlertMicrosoftTeamsIntegrationPlainArgs args, InvokeOptions options) {
+        return Deployment.getInstance().invokeAsync("fastly:index/getNgwafAlertMicrosoftTeamsIntegration:getNgwafAlertMicrosoftTeamsIntegration", TypeShape.of(GetNgwafAlertMicrosoftTeamsIntegrationResult.class), args, Utilities.withVersion(options));
+    }
+    /**
+     * Use this data source to get a Fastly Next-Gen WAF Alert Opsgenie integration.
+     * 
+     * ## Example Usage
+     * 
+     * &lt;!--Start PulumiCodeChooser --&gt;
+     * <pre>
+     * {@code
+     * package generated_program;
+     * 
+     * import com.pulumi.Context;
+     * import com.pulumi.Pulumi;
+     * import com.pulumi.core.Output;
+     * import com.pulumi.fastly.FastlyFunctions;
+     * import com.pulumi.fastly.inputs.GetNgwafAlertOpsgenieIntegrationArgs;
+     * import java.util.List;
+     * import java.util.ArrayList;
+     * import java.util.Map;
+     * import java.io.File;
+     * import java.nio.file.Files;
+     * import java.nio.file.Paths;
+     * 
+     * public class App {
+     *     public static void main(String[] args) {
+     *         Pulumi.run(App::stack);
+     *     }
+     * 
+     *     public static void stack(Context ctx) {
+     *         final var ngwafOpsgenieAlerts = FastlyFunctions.getNgwafAlertOpsgenieIntegration(GetNgwafAlertOpsgenieIntegrationArgs.builder()
+     *             .workspaceId(testRedactionsWorkspace.id())
+     *             .build());
+     * 
+     *         ctx.export("ngwafOpsgenieAlertsAll", opsgenieAlerts);
+     *     }
+     * }
+     * }
+     * </pre>
+     * &lt;!--End PulumiCodeChooser --&gt;
+     * 
+     */
+    public static Output<GetNgwafAlertOpsgenieIntegrationResult> getNgwafAlertOpsgenieIntegration(GetNgwafAlertOpsgenieIntegrationArgs args) {
+        return getNgwafAlertOpsgenieIntegration(args, InvokeOptions.Empty);
+    }
+    /**
+     * Use this data source to get a Fastly Next-Gen WAF Alert Opsgenie integration.
+     * 
+     * ## Example Usage
+     * 
+     * &lt;!--Start PulumiCodeChooser --&gt;
+     * <pre>
+     * {@code
+     * package generated_program;
+     * 
+     * import com.pulumi.Context;
+     * import com.pulumi.Pulumi;
+     * import com.pulumi.core.Output;
+     * import com.pulumi.fastly.FastlyFunctions;
+     * import com.pulumi.fastly.inputs.GetNgwafAlertOpsgenieIntegrationArgs;
+     * import java.util.List;
+     * import java.util.ArrayList;
+     * import java.util.Map;
+     * import java.io.File;
+     * import java.nio.file.Files;
+     * import java.nio.file.Paths;
+     * 
+     * public class App {
+     *     public static void main(String[] args) {
+     *         Pulumi.run(App::stack);
+     *     }
+     * 
+     *     public static void stack(Context ctx) {
+     *         final var ngwafOpsgenieAlerts = FastlyFunctions.getNgwafAlertOpsgenieIntegration(GetNgwafAlertOpsgenieIntegrationArgs.builder()
+     *             .workspaceId(testRedactionsWorkspace.id())
+     *             .build());
+     * 
+     *         ctx.export("ngwafOpsgenieAlertsAll", opsgenieAlerts);
+     *     }
+     * }
+     * }
+     * </pre>
+     * &lt;!--End PulumiCodeChooser --&gt;
+     * 
+     */
+    public static CompletableFuture<GetNgwafAlertOpsgenieIntegrationResult> getNgwafAlertOpsgenieIntegrationPlain(GetNgwafAlertOpsgenieIntegrationPlainArgs args) {
+        return getNgwafAlertOpsgenieIntegrationPlain(args, InvokeOptions.Empty);
+    }
+    /**
+     * Use this data source to get a Fastly Next-Gen WAF Alert Opsgenie integration.
+     * 
+     * ## Example Usage
+     * 
+     * &lt;!--Start PulumiCodeChooser --&gt;
+     * <pre>
+     * {@code
+     * package generated_program;
+     * 
+     * import com.pulumi.Context;
+     * import com.pulumi.Pulumi;
+     * import com.pulumi.core.Output;
+     * import com.pulumi.fastly.FastlyFunctions;
+     * import com.pulumi.fastly.inputs.GetNgwafAlertOpsgenieIntegrationArgs;
+     * import java.util.List;
+     * import java.util.ArrayList;
+     * import java.util.Map;
+     * import java.io.File;
+     * import java.nio.file.Files;
+     * import java.nio.file.Paths;
+     * 
+     * public class App {
+     *     public static void main(String[] args) {
+     *         Pulumi.run(App::stack);
+     *     }
+     * 
+     *     public static void stack(Context ctx) {
+     *         final var ngwafOpsgenieAlerts = FastlyFunctions.getNgwafAlertOpsgenieIntegration(GetNgwafAlertOpsgenieIntegrationArgs.builder()
+     *             .workspaceId(testRedactionsWorkspace.id())
+     *             .build());
+     * 
+     *         ctx.export("ngwafOpsgenieAlertsAll", opsgenieAlerts);
+     *     }
+     * }
+     * }
+     * </pre>
+     * &lt;!--End PulumiCodeChooser --&gt;
+     * 
+     */
+    public static Output<GetNgwafAlertOpsgenieIntegrationResult> getNgwafAlertOpsgenieIntegration(GetNgwafAlertOpsgenieIntegrationArgs args, InvokeOptions options) {
+        return Deployment.getInstance().invoke("fastly:index/getNgwafAlertOpsgenieIntegration:getNgwafAlertOpsgenieIntegration", TypeShape.of(GetNgwafAlertOpsgenieIntegrationResult.class), args, Utilities.withVersion(options));
+    }
+    /**
+     * Use this data source to get a Fastly Next-Gen WAF Alert Opsgenie integration.
+     * 
+     * ## Example Usage
+     * 
+     * &lt;!--Start PulumiCodeChooser --&gt;
+     * <pre>
+     * {@code
+     * package generated_program;
+     * 
+     * import com.pulumi.Context;
+     * import com.pulumi.Pulumi;
+     * import com.pulumi.core.Output;
+     * import com.pulumi.fastly.FastlyFunctions;
+     * import com.pulumi.fastly.inputs.GetNgwafAlertOpsgenieIntegrationArgs;
+     * import java.util.List;
+     * import java.util.ArrayList;
+     * import java.util.Map;
+     * import java.io.File;
+     * import java.nio.file.Files;
+     * import java.nio.file.Paths;
+     * 
+     * public class App {
+     *     public static void main(String[] args) {
+     *         Pulumi.run(App::stack);
+     *     }
+     * 
+     *     public static void stack(Context ctx) {
+     *         final var ngwafOpsgenieAlerts = FastlyFunctions.getNgwafAlertOpsgenieIntegration(GetNgwafAlertOpsgenieIntegrationArgs.builder()
+     *             .workspaceId(testRedactionsWorkspace.id())
+     *             .build());
+     * 
+     *         ctx.export("ngwafOpsgenieAlertsAll", opsgenieAlerts);
+     *     }
+     * }
+     * }
+     * </pre>
+     * &lt;!--End PulumiCodeChooser --&gt;
+     * 
+     */
+    public static Output<GetNgwafAlertOpsgenieIntegrationResult> getNgwafAlertOpsgenieIntegration(GetNgwafAlertOpsgenieIntegrationArgs args, InvokeOutputOptions options) {
+        return Deployment.getInstance().invoke("fastly:index/getNgwafAlertOpsgenieIntegration:getNgwafAlertOpsgenieIntegration", TypeShape.of(GetNgwafAlertOpsgenieIntegrationResult.class), args, Utilities.withVersion(options));
+    }
+    /**
+     * Use this data source to get a Fastly Next-Gen WAF Alert Opsgenie integration.
+     * 
+     * ## Example Usage
+     * 
+     * &lt;!--Start PulumiCodeChooser --&gt;
+     * <pre>
+     * {@code
+     * package generated_program;
+     * 
+     * import com.pulumi.Context;
+     * import com.pulumi.Pulumi;
+     * import com.pulumi.core.Output;
+     * import com.pulumi.fastly.FastlyFunctions;
+     * import com.pulumi.fastly.inputs.GetNgwafAlertOpsgenieIntegrationArgs;
+     * import java.util.List;
+     * import java.util.ArrayList;
+     * import java.util.Map;
+     * import java.io.File;
+     * import java.nio.file.Files;
+     * import java.nio.file.Paths;
+     * 
+     * public class App {
+     *     public static void main(String[] args) {
+     *         Pulumi.run(App::stack);
+     *     }
+     * 
+     *     public static void stack(Context ctx) {
+     *         final var ngwafOpsgenieAlerts = FastlyFunctions.getNgwafAlertOpsgenieIntegration(GetNgwafAlertOpsgenieIntegrationArgs.builder()
+     *             .workspaceId(testRedactionsWorkspace.id())
+     *             .build());
+     * 
+     *         ctx.export("ngwafOpsgenieAlertsAll", opsgenieAlerts);
+     *     }
+     * }
+     * }
+     * </pre>
+     * &lt;!--End PulumiCodeChooser --&gt;
+     * 
+     */
+    public static CompletableFuture<GetNgwafAlertOpsgenieIntegrationResult> getNgwafAlertOpsgenieIntegrationPlain(GetNgwafAlertOpsgenieIntegrationPlainArgs args, InvokeOptions options) {
+        return Deployment.getInstance().invokeAsync("fastly:index/getNgwafAlertOpsgenieIntegration:getNgwafAlertOpsgenieIntegration", TypeShape.of(GetNgwafAlertOpsgenieIntegrationResult.class), args, Utilities.withVersion(options));
+    }
+    /**
+     * Use this data source to get a Fastly Next-Gen WAF Alert PagerDuty integration.
+     * 
+     * ## Example Usage
+     * 
+     * &lt;!--Start PulumiCodeChooser --&gt;
+     * <pre>
+     * {@code
+     * package generated_program;
+     * 
+     * import com.pulumi.Context;
+     * import com.pulumi.Pulumi;
+     * import com.pulumi.core.Output;
+     * import com.pulumi.fastly.FastlyFunctions;
+     * import com.pulumi.fastly.inputs.GetNgwafAlertPagerdutyIntegrationArgs;
+     * import java.util.List;
+     * import java.util.ArrayList;
+     * import java.util.Map;
+     * import java.io.File;
+     * import java.nio.file.Files;
+     * import java.nio.file.Paths;
+     * 
+     * public class App {
+     *     public static void main(String[] args) {
+     *         Pulumi.run(App::stack);
+     *     }
+     * 
+     *     public static void stack(Context ctx) {
+     *         final var ngwafPagerdutyAlerts = FastlyFunctions.getNgwafAlertPagerdutyIntegration(GetNgwafAlertPagerdutyIntegrationArgs.builder()
+     *             .workspaceId(example.id())
+     *             .build());
+     * 
+     *         ctx.export("ngwafPagerdutyAlertsAll", ngwafPagerdutyAlerts);
+     *     }
+     * }
+     * }
+     * </pre>
+     * &lt;!--End PulumiCodeChooser --&gt;
+     * 
+     */
+    public static Output<GetNgwafAlertPagerdutyIntegrationResult> getNgwafAlertPagerdutyIntegration(GetNgwafAlertPagerdutyIntegrationArgs args) {
+        return getNgwafAlertPagerdutyIntegration(args, InvokeOptions.Empty);
+    }
+    /**
+     * Use this data source to get a Fastly Next-Gen WAF Alert PagerDuty integration.
+     * 
+     * ## Example Usage
+     * 
+     * &lt;!--Start PulumiCodeChooser --&gt;
+     * <pre>
+     * {@code
+     * package generated_program;
+     * 
+     * import com.pulumi.Context;
+     * import com.pulumi.Pulumi;
+     * import com.pulumi.core.Output;
+     * import com.pulumi.fastly.FastlyFunctions;
+     * import com.pulumi.fastly.inputs.GetNgwafAlertPagerdutyIntegrationArgs;
+     * import java.util.List;
+     * import java.util.ArrayList;
+     * import java.util.Map;
+     * import java.io.File;
+     * import java.nio.file.Files;
+     * import java.nio.file.Paths;
+     * 
+     * public class App {
+     *     public static void main(String[] args) {
+     *         Pulumi.run(App::stack);
+     *     }
+     * 
+     *     public static void stack(Context ctx) {
+     *         final var ngwafPagerdutyAlerts = FastlyFunctions.getNgwafAlertPagerdutyIntegration(GetNgwafAlertPagerdutyIntegrationArgs.builder()
+     *             .workspaceId(example.id())
+     *             .build());
+     * 
+     *         ctx.export("ngwafPagerdutyAlertsAll", ngwafPagerdutyAlerts);
+     *     }
+     * }
+     * }
+     * </pre>
+     * &lt;!--End PulumiCodeChooser --&gt;
+     * 
+     */
+    public static CompletableFuture<GetNgwafAlertPagerdutyIntegrationResult> getNgwafAlertPagerdutyIntegrationPlain(GetNgwafAlertPagerdutyIntegrationPlainArgs args) {
+        return getNgwafAlertPagerdutyIntegrationPlain(args, InvokeOptions.Empty);
+    }
+    /**
+     * Use this data source to get a Fastly Next-Gen WAF Alert PagerDuty integration.
+     * 
+     * ## Example Usage
+     * 
+     * &lt;!--Start PulumiCodeChooser --&gt;
+     * <pre>
+     * {@code
+     * package generated_program;
+     * 
+     * import com.pulumi.Context;
+     * import com.pulumi.Pulumi;
+     * import com.pulumi.core.Output;
+     * import com.pulumi.fastly.FastlyFunctions;
+     * import com.pulumi.fastly.inputs.GetNgwafAlertPagerdutyIntegrationArgs;
+     * import java.util.List;
+     * import java.util.ArrayList;
+     * import java.util.Map;
+     * import java.io.File;
+     * import java.nio.file.Files;
+     * import java.nio.file.Paths;
+     * 
+     * public class App {
+     *     public static void main(String[] args) {
+     *         Pulumi.run(App::stack);
+     *     }
+     * 
+     *     public static void stack(Context ctx) {
+     *         final var ngwafPagerdutyAlerts = FastlyFunctions.getNgwafAlertPagerdutyIntegration(GetNgwafAlertPagerdutyIntegrationArgs.builder()
+     *             .workspaceId(example.id())
+     *             .build());
+     * 
+     *         ctx.export("ngwafPagerdutyAlertsAll", ngwafPagerdutyAlerts);
+     *     }
+     * }
+     * }
+     * </pre>
+     * &lt;!--End PulumiCodeChooser --&gt;
+     * 
+     */
+    public static Output<GetNgwafAlertPagerdutyIntegrationResult> getNgwafAlertPagerdutyIntegration(GetNgwafAlertPagerdutyIntegrationArgs args, InvokeOptions options) {
+        return Deployment.getInstance().invoke("fastly:index/getNgwafAlertPagerdutyIntegration:getNgwafAlertPagerdutyIntegration", TypeShape.of(GetNgwafAlertPagerdutyIntegrationResult.class), args, Utilities.withVersion(options));
+    }
+    /**
+     * Use this data source to get a Fastly Next-Gen WAF Alert PagerDuty integration.
+     * 
+     * ## Example Usage
+     * 
+     * &lt;!--Start PulumiCodeChooser --&gt;
+     * <pre>
+     * {@code
+     * package generated_program;
+     * 
+     * import com.pulumi.Context;
+     * import com.pulumi.Pulumi;
+     * import com.pulumi.core.Output;
+     * import com.pulumi.fastly.FastlyFunctions;
+     * import com.pulumi.fastly.inputs.GetNgwafAlertPagerdutyIntegrationArgs;
+     * import java.util.List;
+     * import java.util.ArrayList;
+     * import java.util.Map;
+     * import java.io.File;
+     * import java.nio.file.Files;
+     * import java.nio.file.Paths;
+     * 
+     * public class App {
+     *     public static void main(String[] args) {
+     *         Pulumi.run(App::stack);
+     *     }
+     * 
+     *     public static void stack(Context ctx) {
+     *         final var ngwafPagerdutyAlerts = FastlyFunctions.getNgwafAlertPagerdutyIntegration(GetNgwafAlertPagerdutyIntegrationArgs.builder()
+     *             .workspaceId(example.id())
+     *             .build());
+     * 
+     *         ctx.export("ngwafPagerdutyAlertsAll", ngwafPagerdutyAlerts);
+     *     }
+     * }
+     * }
+     * </pre>
+     * &lt;!--End PulumiCodeChooser --&gt;
+     * 
+     */
+    public static Output<GetNgwafAlertPagerdutyIntegrationResult> getNgwafAlertPagerdutyIntegration(GetNgwafAlertPagerdutyIntegrationArgs args, InvokeOutputOptions options) {
+        return Deployment.getInstance().invoke("fastly:index/getNgwafAlertPagerdutyIntegration:getNgwafAlertPagerdutyIntegration", TypeShape.of(GetNgwafAlertPagerdutyIntegrationResult.class), args, Utilities.withVersion(options));
+    }
+    /**
+     * Use this data source to get a Fastly Next-Gen WAF Alert PagerDuty integration.
+     * 
+     * ## Example Usage
+     * 
+     * &lt;!--Start PulumiCodeChooser --&gt;
+     * <pre>
+     * {@code
+     * package generated_program;
+     * 
+     * import com.pulumi.Context;
+     * import com.pulumi.Pulumi;
+     * import com.pulumi.core.Output;
+     * import com.pulumi.fastly.FastlyFunctions;
+     * import com.pulumi.fastly.inputs.GetNgwafAlertPagerdutyIntegrationArgs;
+     * import java.util.List;
+     * import java.util.ArrayList;
+     * import java.util.Map;
+     * import java.io.File;
+     * import java.nio.file.Files;
+     * import java.nio.file.Paths;
+     * 
+     * public class App {
+     *     public static void main(String[] args) {
+     *         Pulumi.run(App::stack);
+     *     }
+     * 
+     *     public static void stack(Context ctx) {
+     *         final var ngwafPagerdutyAlerts = FastlyFunctions.getNgwafAlertPagerdutyIntegration(GetNgwafAlertPagerdutyIntegrationArgs.builder()
+     *             .workspaceId(example.id())
+     *             .build());
+     * 
+     *         ctx.export("ngwafPagerdutyAlertsAll", ngwafPagerdutyAlerts);
+     *     }
+     * }
+     * }
+     * </pre>
+     * &lt;!--End PulumiCodeChooser --&gt;
+     * 
+     */
+    public static CompletableFuture<GetNgwafAlertPagerdutyIntegrationResult> getNgwafAlertPagerdutyIntegrationPlain(GetNgwafAlertPagerdutyIntegrationPlainArgs args, InvokeOptions options) {
+        return Deployment.getInstance().invokeAsync("fastly:index/getNgwafAlertPagerdutyIntegration:getNgwafAlertPagerdutyIntegration", TypeShape.of(GetNgwafAlertPagerdutyIntegrationResult.class), args, Utilities.withVersion(options));
+    }
+    /**
+     * Use this data source to get a Fastly Next-Gen WAF Alert Slack integration.
+     * 
+     * ## Example Usage
+     * 
+     * &lt;!--Start PulumiCodeChooser --&gt;
+     * <pre>
+     * {@code
+     * package generated_program;
+     * 
+     * import com.pulumi.Context;
+     * import com.pulumi.Pulumi;
+     * import com.pulumi.core.Output;
+     * import com.pulumi.fastly.FastlyFunctions;
+     * import com.pulumi.fastly.inputs.GetNgwafAlertSlackIntegrationArgs;
+     * import java.util.List;
+     * import java.util.ArrayList;
+     * import java.util.Map;
+     * import java.io.File;
+     * import java.nio.file.Files;
+     * import java.nio.file.Paths;
+     * 
+     * public class App {
+     *     public static void main(String[] args) {
+     *         Pulumi.run(App::stack);
+     *     }
+     * 
+     *     public static void stack(Context ctx) {
+     *         final var ngwafSlackAlerts = FastlyFunctions.getNgwafAlertSlackIntegration(GetNgwafAlertSlackIntegrationArgs.builder()
+     *             .workspaceId(example.id())
+     *             .build());
+     * 
+     *         ctx.export("ngwafSlackAlertsAll", ngwafSlackAlerts);
+     *     }
+     * }
+     * }
+     * </pre>
+     * &lt;!--End PulumiCodeChooser --&gt;
+     * 
+     */
+    public static Output<GetNgwafAlertSlackIntegrationResult> getNgwafAlertSlackIntegration(GetNgwafAlertSlackIntegrationArgs args) {
+        return getNgwafAlertSlackIntegration(args, InvokeOptions.Empty);
+    }
+    /**
+     * Use this data source to get a Fastly Next-Gen WAF Alert Slack integration.
+     * 
+     * ## Example Usage
+     * 
+     * &lt;!--Start PulumiCodeChooser --&gt;
+     * <pre>
+     * {@code
+     * package generated_program;
+     * 
+     * import com.pulumi.Context;
+     * import com.pulumi.Pulumi;
+     * import com.pulumi.core.Output;
+     * import com.pulumi.fastly.FastlyFunctions;
+     * import com.pulumi.fastly.inputs.GetNgwafAlertSlackIntegrationArgs;
+     * import java.util.List;
+     * import java.util.ArrayList;
+     * import java.util.Map;
+     * import java.io.File;
+     * import java.nio.file.Files;
+     * import java.nio.file.Paths;
+     * 
+     * public class App {
+     *     public static void main(String[] args) {
+     *         Pulumi.run(App::stack);
+     *     }
+     * 
+     *     public static void stack(Context ctx) {
+     *         final var ngwafSlackAlerts = FastlyFunctions.getNgwafAlertSlackIntegration(GetNgwafAlertSlackIntegrationArgs.builder()
+     *             .workspaceId(example.id())
+     *             .build());
+     * 
+     *         ctx.export("ngwafSlackAlertsAll", ngwafSlackAlerts);
+     *     }
+     * }
+     * }
+     * </pre>
+     * &lt;!--End PulumiCodeChooser --&gt;
+     * 
+     */
+    public static CompletableFuture<GetNgwafAlertSlackIntegrationResult> getNgwafAlertSlackIntegrationPlain(GetNgwafAlertSlackIntegrationPlainArgs args) {
+        return getNgwafAlertSlackIntegrationPlain(args, InvokeOptions.Empty);
+    }
+    /**
+     * Use this data source to get a Fastly Next-Gen WAF Alert Slack integration.
+     * 
+     * ## Example Usage
+     * 
+     * &lt;!--Start PulumiCodeChooser --&gt;
+     * <pre>
+     * {@code
+     * package generated_program;
+     * 
+     * import com.pulumi.Context;
+     * import com.pulumi.Pulumi;
+     * import com.pulumi.core.Output;
+     * import com.pulumi.fastly.FastlyFunctions;
+     * import com.pulumi.fastly.inputs.GetNgwafAlertSlackIntegrationArgs;
+     * import java.util.List;
+     * import java.util.ArrayList;
+     * import java.util.Map;
+     * import java.io.File;
+     * import java.nio.file.Files;
+     * import java.nio.file.Paths;
+     * 
+     * public class App {
+     *     public static void main(String[] args) {
+     *         Pulumi.run(App::stack);
+     *     }
+     * 
+     *     public static void stack(Context ctx) {
+     *         final var ngwafSlackAlerts = FastlyFunctions.getNgwafAlertSlackIntegration(GetNgwafAlertSlackIntegrationArgs.builder()
+     *             .workspaceId(example.id())
+     *             .build());
+     * 
+     *         ctx.export("ngwafSlackAlertsAll", ngwafSlackAlerts);
+     *     }
+     * }
+     * }
+     * </pre>
+     * &lt;!--End PulumiCodeChooser --&gt;
+     * 
+     */
+    public static Output<GetNgwafAlertSlackIntegrationResult> getNgwafAlertSlackIntegration(GetNgwafAlertSlackIntegrationArgs args, InvokeOptions options) {
+        return Deployment.getInstance().invoke("fastly:index/getNgwafAlertSlackIntegration:getNgwafAlertSlackIntegration", TypeShape.of(GetNgwafAlertSlackIntegrationResult.class), args, Utilities.withVersion(options));
+    }
+    /**
+     * Use this data source to get a Fastly Next-Gen WAF Alert Slack integration.
+     * 
+     * ## Example Usage
+     * 
+     * &lt;!--Start PulumiCodeChooser --&gt;
+     * <pre>
+     * {@code
+     * package generated_program;
+     * 
+     * import com.pulumi.Context;
+     * import com.pulumi.Pulumi;
+     * import com.pulumi.core.Output;
+     * import com.pulumi.fastly.FastlyFunctions;
+     * import com.pulumi.fastly.inputs.GetNgwafAlertSlackIntegrationArgs;
+     * import java.util.List;
+     * import java.util.ArrayList;
+     * import java.util.Map;
+     * import java.io.File;
+     * import java.nio.file.Files;
+     * import java.nio.file.Paths;
+     * 
+     * public class App {
+     *     public static void main(String[] args) {
+     *         Pulumi.run(App::stack);
+     *     }
+     * 
+     *     public static void stack(Context ctx) {
+     *         final var ngwafSlackAlerts = FastlyFunctions.getNgwafAlertSlackIntegration(GetNgwafAlertSlackIntegrationArgs.builder()
+     *             .workspaceId(example.id())
+     *             .build());
+     * 
+     *         ctx.export("ngwafSlackAlertsAll", ngwafSlackAlerts);
+     *     }
+     * }
+     * }
+     * </pre>
+     * &lt;!--End PulumiCodeChooser --&gt;
+     * 
+     */
+    public static Output<GetNgwafAlertSlackIntegrationResult> getNgwafAlertSlackIntegration(GetNgwafAlertSlackIntegrationArgs args, InvokeOutputOptions options) {
+        return Deployment.getInstance().invoke("fastly:index/getNgwafAlertSlackIntegration:getNgwafAlertSlackIntegration", TypeShape.of(GetNgwafAlertSlackIntegrationResult.class), args, Utilities.withVersion(options));
+    }
+    /**
+     * Use this data source to get a Fastly Next-Gen WAF Alert Slack integration.
+     * 
+     * ## Example Usage
+     * 
+     * &lt;!--Start PulumiCodeChooser --&gt;
+     * <pre>
+     * {@code
+     * package generated_program;
+     * 
+     * import com.pulumi.Context;
+     * import com.pulumi.Pulumi;
+     * import com.pulumi.core.Output;
+     * import com.pulumi.fastly.FastlyFunctions;
+     * import com.pulumi.fastly.inputs.GetNgwafAlertSlackIntegrationArgs;
+     * import java.util.List;
+     * import java.util.ArrayList;
+     * import java.util.Map;
+     * import java.io.File;
+     * import java.nio.file.Files;
+     * import java.nio.file.Paths;
+     * 
+     * public class App {
+     *     public static void main(String[] args) {
+     *         Pulumi.run(App::stack);
+     *     }
+     * 
+     *     public static void stack(Context ctx) {
+     *         final var ngwafSlackAlerts = FastlyFunctions.getNgwafAlertSlackIntegration(GetNgwafAlertSlackIntegrationArgs.builder()
+     *             .workspaceId(example.id())
+     *             .build());
+     * 
+     *         ctx.export("ngwafSlackAlertsAll", ngwafSlackAlerts);
+     *     }
+     * }
+     * }
+     * </pre>
+     * &lt;!--End PulumiCodeChooser --&gt;
+     * 
+     */
+    public static CompletableFuture<GetNgwafAlertSlackIntegrationResult> getNgwafAlertSlackIntegrationPlain(GetNgwafAlertSlackIntegrationPlainArgs args, InvokeOptions options) {
+        return Deployment.getInstance().invokeAsync("fastly:index/getNgwafAlertSlackIntegration:getNgwafAlertSlackIntegration", TypeShape.of(GetNgwafAlertSlackIntegrationResult.class), args, Utilities.withVersion(options));
+    }
+    /**
+     * Use this data source to get a Fastly Next-Gen WAF Alert Webhook integration.
+     * 
+     * ## Example Usage
+     * 
+     * &lt;!--Start PulumiCodeChooser --&gt;
+     * <pre>
+     * {@code
+     * package generated_program;
+     * 
+     * import com.pulumi.Context;
+     * import com.pulumi.Pulumi;
+     * import com.pulumi.core.Output;
+     * import com.pulumi.fastly.FastlyFunctions;
+     * import com.pulumi.fastly.inputs.GetNgwafAlertWebhookIntegrationArgs;
+     * import java.util.List;
+     * import java.util.ArrayList;
+     * import java.util.Map;
+     * import java.io.File;
+     * import java.nio.file.Files;
+     * import java.nio.file.Paths;
+     * 
+     * public class App {
+     *     public static void main(String[] args) {
+     *         Pulumi.run(App::stack);
+     *     }
+     * 
+     *     public static void stack(Context ctx) {
+     *         final var ngwafWebhookAlerts = FastlyFunctions.getNgwafAlertWebhookIntegration(GetNgwafAlertWebhookIntegrationArgs.builder()
+     *             .workspaceId(example.id())
+     *             .build());
+     * 
+     *         ctx.export("ngwafWebhookAlertsAll", ngwafWebhookAlerts);
+     *     }
+     * }
+     * }
+     * </pre>
+     * &lt;!--End PulumiCodeChooser --&gt;
+     * 
+     */
+    public static Output<GetNgwafAlertWebhookIntegrationResult> getNgwafAlertWebhookIntegration(GetNgwafAlertWebhookIntegrationArgs args) {
+        return getNgwafAlertWebhookIntegration(args, InvokeOptions.Empty);
+    }
+    /**
+     * Use this data source to get a Fastly Next-Gen WAF Alert Webhook integration.
+     * 
+     * ## Example Usage
+     * 
+     * &lt;!--Start PulumiCodeChooser --&gt;
+     * <pre>
+     * {@code
+     * package generated_program;
+     * 
+     * import com.pulumi.Context;
+     * import com.pulumi.Pulumi;
+     * import com.pulumi.core.Output;
+     * import com.pulumi.fastly.FastlyFunctions;
+     * import com.pulumi.fastly.inputs.GetNgwafAlertWebhookIntegrationArgs;
+     * import java.util.List;
+     * import java.util.ArrayList;
+     * import java.util.Map;
+     * import java.io.File;
+     * import java.nio.file.Files;
+     * import java.nio.file.Paths;
+     * 
+     * public class App {
+     *     public static void main(String[] args) {
+     *         Pulumi.run(App::stack);
+     *     }
+     * 
+     *     public static void stack(Context ctx) {
+     *         final var ngwafWebhookAlerts = FastlyFunctions.getNgwafAlertWebhookIntegration(GetNgwafAlertWebhookIntegrationArgs.builder()
+     *             .workspaceId(example.id())
+     *             .build());
+     * 
+     *         ctx.export("ngwafWebhookAlertsAll", ngwafWebhookAlerts);
+     *     }
+     * }
+     * }
+     * </pre>
+     * &lt;!--End PulumiCodeChooser --&gt;
+     * 
+     */
+    public static CompletableFuture<GetNgwafAlertWebhookIntegrationResult> getNgwafAlertWebhookIntegrationPlain(GetNgwafAlertWebhookIntegrationPlainArgs args) {
+        return getNgwafAlertWebhookIntegrationPlain(args, InvokeOptions.Empty);
+    }
+    /**
+     * Use this data source to get a Fastly Next-Gen WAF Alert Webhook integration.
+     * 
+     * ## Example Usage
+     * 
+     * &lt;!--Start PulumiCodeChooser --&gt;
+     * <pre>
+     * {@code
+     * package generated_program;
+     * 
+     * import com.pulumi.Context;
+     * import com.pulumi.Pulumi;
+     * import com.pulumi.core.Output;
+     * import com.pulumi.fastly.FastlyFunctions;
+     * import com.pulumi.fastly.inputs.GetNgwafAlertWebhookIntegrationArgs;
+     * import java.util.List;
+     * import java.util.ArrayList;
+     * import java.util.Map;
+     * import java.io.File;
+     * import java.nio.file.Files;
+     * import java.nio.file.Paths;
+     * 
+     * public class App {
+     *     public static void main(String[] args) {
+     *         Pulumi.run(App::stack);
+     *     }
+     * 
+     *     public static void stack(Context ctx) {
+     *         final var ngwafWebhookAlerts = FastlyFunctions.getNgwafAlertWebhookIntegration(GetNgwafAlertWebhookIntegrationArgs.builder()
+     *             .workspaceId(example.id())
+     *             .build());
+     * 
+     *         ctx.export("ngwafWebhookAlertsAll", ngwafWebhookAlerts);
+     *     }
+     * }
+     * }
+     * </pre>
+     * &lt;!--End PulumiCodeChooser --&gt;
+     * 
+     */
+    public static Output<GetNgwafAlertWebhookIntegrationResult> getNgwafAlertWebhookIntegration(GetNgwafAlertWebhookIntegrationArgs args, InvokeOptions options) {
+        return Deployment.getInstance().invoke("fastly:index/getNgwafAlertWebhookIntegration:getNgwafAlertWebhookIntegration", TypeShape.of(GetNgwafAlertWebhookIntegrationResult.class), args, Utilities.withVersion(options));
+    }
+    /**
+     * Use this data source to get a Fastly Next-Gen WAF Alert Webhook integration.
+     * 
+     * ## Example Usage
+     * 
+     * &lt;!--Start PulumiCodeChooser --&gt;
+     * <pre>
+     * {@code
+     * package generated_program;
+     * 
+     * import com.pulumi.Context;
+     * import com.pulumi.Pulumi;
+     * import com.pulumi.core.Output;
+     * import com.pulumi.fastly.FastlyFunctions;
+     * import com.pulumi.fastly.inputs.GetNgwafAlertWebhookIntegrationArgs;
+     * import java.util.List;
+     * import java.util.ArrayList;
+     * import java.util.Map;
+     * import java.io.File;
+     * import java.nio.file.Files;
+     * import java.nio.file.Paths;
+     * 
+     * public class App {
+     *     public static void main(String[] args) {
+     *         Pulumi.run(App::stack);
+     *     }
+     * 
+     *     public static void stack(Context ctx) {
+     *         final var ngwafWebhookAlerts = FastlyFunctions.getNgwafAlertWebhookIntegration(GetNgwafAlertWebhookIntegrationArgs.builder()
+     *             .workspaceId(example.id())
+     *             .build());
+     * 
+     *         ctx.export("ngwafWebhookAlertsAll", ngwafWebhookAlerts);
+     *     }
+     * }
+     * }
+     * </pre>
+     * &lt;!--End PulumiCodeChooser --&gt;
+     * 
+     */
+    public static Output<GetNgwafAlertWebhookIntegrationResult> getNgwafAlertWebhookIntegration(GetNgwafAlertWebhookIntegrationArgs args, InvokeOutputOptions options) {
+        return Deployment.getInstance().invoke("fastly:index/getNgwafAlertWebhookIntegration:getNgwafAlertWebhookIntegration", TypeShape.of(GetNgwafAlertWebhookIntegrationResult.class), args, Utilities.withVersion(options));
+    }
+    /**
+     * Use this data source to get a Fastly Next-Gen WAF Alert Webhook integration.
+     * 
+     * ## Example Usage
+     * 
+     * &lt;!--Start PulumiCodeChooser --&gt;
+     * <pre>
+     * {@code
+     * package generated_program;
+     * 
+     * import com.pulumi.Context;
+     * import com.pulumi.Pulumi;
+     * import com.pulumi.core.Output;
+     * import com.pulumi.fastly.FastlyFunctions;
+     * import com.pulumi.fastly.inputs.GetNgwafAlertWebhookIntegrationArgs;
+     * import java.util.List;
+     * import java.util.ArrayList;
+     * import java.util.Map;
+     * import java.io.File;
+     * import java.nio.file.Files;
+     * import java.nio.file.Paths;
+     * 
+     * public class App {
+     *     public static void main(String[] args) {
+     *         Pulumi.run(App::stack);
+     *     }
+     * 
+     *     public static void stack(Context ctx) {
+     *         final var ngwafWebhookAlerts = FastlyFunctions.getNgwafAlertWebhookIntegration(GetNgwafAlertWebhookIntegrationArgs.builder()
+     *             .workspaceId(example.id())
+     *             .build());
+     * 
+     *         ctx.export("ngwafWebhookAlertsAll", ngwafWebhookAlerts);
+     *     }
+     * }
+     * }
+     * </pre>
+     * &lt;!--End PulumiCodeChooser --&gt;
+     * 
+     */
+    public static CompletableFuture<GetNgwafAlertWebhookIntegrationResult> getNgwafAlertWebhookIntegrationPlain(GetNgwafAlertWebhookIntegrationPlainArgs args, InvokeOptions options) {
+        return Deployment.getInstance().invokeAsync("fastly:index/getNgwafAlertWebhookIntegration:getNgwafAlertWebhookIntegration", TypeShape.of(GetNgwafAlertWebhookIntegrationResult.class), args, Utilities.withVersion(options));
+    }
+    /**
+     * Use this data source to get a list of [Fastly Next-Gen WAF Redactions][1].
+     * 
+     * ## Example Usage
+     * 
+     * &lt;!--Start PulumiCodeChooser --&gt;
+     * <pre>
+     * {@code
+     * package generated_program;
+     * 
+     * import com.pulumi.Context;
+     * import com.pulumi.Pulumi;
+     * import com.pulumi.core.Output;
+     * import com.pulumi.fastly.FastlyFunctions;
+     * import com.pulumi.fastly.inputs.GetNgwafRedactionsArgs;
+     * import java.util.List;
+     * import java.util.ArrayList;
+     * import java.util.Map;
+     * import java.io.File;
+     * import java.nio.file.Files;
+     * import java.nio.file.Paths;
+     * 
+     * public class App {
+     *     public static void main(String[] args) {
+     *         Pulumi.run(App::stack);
+     *     }
+     * 
+     *     public static void stack(Context ctx) {
+     *         final var ngwafRedactions = FastlyFunctions.getNgwafRedactions(GetNgwafRedactionsArgs.builder()
+     *             .workspaceId(testRedactionsWorkspace.id())
+     *             .build());
+     * 
+     *         ctx.export("fastlyNgwafRedactionsAll", redactions);
+     *     }
+     * }
+     * }
+     * </pre>
+     * &lt;!--End PulumiCodeChooser --&gt;
+     * 
+     * [1]: https://www.fastly.com/documentation/reference/api/ngwaf/redactions/
+     * 
+     */
+    public static Output<GetNgwafRedactionsResult> getNgwafRedactions(GetNgwafRedactionsArgs args) {
+        return getNgwafRedactions(args, InvokeOptions.Empty);
+    }
+    /**
+     * Use this data source to get a list of [Fastly Next-Gen WAF Redactions][1].
+     * 
+     * ## Example Usage
+     * 
+     * &lt;!--Start PulumiCodeChooser --&gt;
+     * <pre>
+     * {@code
+     * package generated_program;
+     * 
+     * import com.pulumi.Context;
+     * import com.pulumi.Pulumi;
+     * import com.pulumi.core.Output;
+     * import com.pulumi.fastly.FastlyFunctions;
+     * import com.pulumi.fastly.inputs.GetNgwafRedactionsArgs;
+     * import java.util.List;
+     * import java.util.ArrayList;
+     * import java.util.Map;
+     * import java.io.File;
+     * import java.nio.file.Files;
+     * import java.nio.file.Paths;
+     * 
+     * public class App {
+     *     public static void main(String[] args) {
+     *         Pulumi.run(App::stack);
+     *     }
+     * 
+     *     public static void stack(Context ctx) {
+     *         final var ngwafRedactions = FastlyFunctions.getNgwafRedactions(GetNgwafRedactionsArgs.builder()
+     *             .workspaceId(testRedactionsWorkspace.id())
+     *             .build());
+     * 
+     *         ctx.export("fastlyNgwafRedactionsAll", redactions);
+     *     }
+     * }
+     * }
+     * </pre>
+     * &lt;!--End PulumiCodeChooser --&gt;
+     * 
+     * [1]: https://www.fastly.com/documentation/reference/api/ngwaf/redactions/
+     * 
+     */
+    public static CompletableFuture<GetNgwafRedactionsResult> getNgwafRedactionsPlain(GetNgwafRedactionsPlainArgs args) {
+        return getNgwafRedactionsPlain(args, InvokeOptions.Empty);
+    }
+    /**
+     * Use this data source to get a list of [Fastly Next-Gen WAF Redactions][1].
+     * 
+     * ## Example Usage
+     * 
+     * &lt;!--Start PulumiCodeChooser --&gt;
+     * <pre>
+     * {@code
+     * package generated_program;
+     * 
+     * import com.pulumi.Context;
+     * import com.pulumi.Pulumi;
+     * import com.pulumi.core.Output;
+     * import com.pulumi.fastly.FastlyFunctions;
+     * import com.pulumi.fastly.inputs.GetNgwafRedactionsArgs;
+     * import java.util.List;
+     * import java.util.ArrayList;
+     * import java.util.Map;
+     * import java.io.File;
+     * import java.nio.file.Files;
+     * import java.nio.file.Paths;
+     * 
+     * public class App {
+     *     public static void main(String[] args) {
+     *         Pulumi.run(App::stack);
+     *     }
+     * 
+     *     public static void stack(Context ctx) {
+     *         final var ngwafRedactions = FastlyFunctions.getNgwafRedactions(GetNgwafRedactionsArgs.builder()
+     *             .workspaceId(testRedactionsWorkspace.id())
+     *             .build());
+     * 
+     *         ctx.export("fastlyNgwafRedactionsAll", redactions);
+     *     }
+     * }
+     * }
+     * </pre>
+     * &lt;!--End PulumiCodeChooser --&gt;
+     * 
+     * [1]: https://www.fastly.com/documentation/reference/api/ngwaf/redactions/
+     * 
+     */
+    public static Output<GetNgwafRedactionsResult> getNgwafRedactions(GetNgwafRedactionsArgs args, InvokeOptions options) {
+        return Deployment.getInstance().invoke("fastly:index/getNgwafRedactions:getNgwafRedactions", TypeShape.of(GetNgwafRedactionsResult.class), args, Utilities.withVersion(options));
+    }
+    /**
+     * Use this data source to get a list of [Fastly Next-Gen WAF Redactions][1].
+     * 
+     * ## Example Usage
+     * 
+     * &lt;!--Start PulumiCodeChooser --&gt;
+     * <pre>
+     * {@code
+     * package generated_program;
+     * 
+     * import com.pulumi.Context;
+     * import com.pulumi.Pulumi;
+     * import com.pulumi.core.Output;
+     * import com.pulumi.fastly.FastlyFunctions;
+     * import com.pulumi.fastly.inputs.GetNgwafRedactionsArgs;
+     * import java.util.List;
+     * import java.util.ArrayList;
+     * import java.util.Map;
+     * import java.io.File;
+     * import java.nio.file.Files;
+     * import java.nio.file.Paths;
+     * 
+     * public class App {
+     *     public static void main(String[] args) {
+     *         Pulumi.run(App::stack);
+     *     }
+     * 
+     *     public static void stack(Context ctx) {
+     *         final var ngwafRedactions = FastlyFunctions.getNgwafRedactions(GetNgwafRedactionsArgs.builder()
+     *             .workspaceId(testRedactionsWorkspace.id())
+     *             .build());
+     * 
+     *         ctx.export("fastlyNgwafRedactionsAll", redactions);
+     *     }
+     * }
+     * }
+     * </pre>
+     * &lt;!--End PulumiCodeChooser --&gt;
+     * 
+     * [1]: https://www.fastly.com/documentation/reference/api/ngwaf/redactions/
+     * 
+     */
+    public static Output<GetNgwafRedactionsResult> getNgwafRedactions(GetNgwafRedactionsArgs args, InvokeOutputOptions options) {
+        return Deployment.getInstance().invoke("fastly:index/getNgwafRedactions:getNgwafRedactions", TypeShape.of(GetNgwafRedactionsResult.class), args, Utilities.withVersion(options));
+    }
+    /**
+     * Use this data source to get a list of [Fastly Next-Gen WAF Redactions][1].
+     * 
+     * ## Example Usage
+     * 
+     * &lt;!--Start PulumiCodeChooser --&gt;
+     * <pre>
+     * {@code
+     * package generated_program;
+     * 
+     * import com.pulumi.Context;
+     * import com.pulumi.Pulumi;
+     * import com.pulumi.core.Output;
+     * import com.pulumi.fastly.FastlyFunctions;
+     * import com.pulumi.fastly.inputs.GetNgwafRedactionsArgs;
+     * import java.util.List;
+     * import java.util.ArrayList;
+     * import java.util.Map;
+     * import java.io.File;
+     * import java.nio.file.Files;
+     * import java.nio.file.Paths;
+     * 
+     * public class App {
+     *     public static void main(String[] args) {
+     *         Pulumi.run(App::stack);
+     *     }
+     * 
+     *     public static void stack(Context ctx) {
+     *         final var ngwafRedactions = FastlyFunctions.getNgwafRedactions(GetNgwafRedactionsArgs.builder()
+     *             .workspaceId(testRedactionsWorkspace.id())
+     *             .build());
+     * 
+     *         ctx.export("fastlyNgwafRedactionsAll", redactions);
+     *     }
+     * }
+     * }
+     * </pre>
+     * &lt;!--End PulumiCodeChooser --&gt;
+     * 
+     * [1]: https://www.fastly.com/documentation/reference/api/ngwaf/redactions/
+     * 
+     */
+    public static CompletableFuture<GetNgwafRedactionsResult> getNgwafRedactionsPlain(GetNgwafRedactionsPlainArgs args, InvokeOptions options) {
+        return Deployment.getInstance().invokeAsync("fastly:index/getNgwafRedactions:getNgwafRedactions", TypeShape.of(GetNgwafRedactionsResult.class), args, Utilities.withVersion(options));
+    }
+    public static Output<GetNgwafThresholdsResult> getNgwafThresholds(GetNgwafThresholdsArgs args) {
+        return getNgwafThresholds(args, InvokeOptions.Empty);
+    }
+    public static CompletableFuture<GetNgwafThresholdsResult> getNgwafThresholdsPlain(GetNgwafThresholdsPlainArgs args) {
+        return getNgwafThresholdsPlain(args, InvokeOptions.Empty);
+    }
+    public static Output<GetNgwafThresholdsResult> getNgwafThresholds(GetNgwafThresholdsArgs args, InvokeOptions options) {
+        return Deployment.getInstance().invoke("fastly:index/getNgwafThresholds:getNgwafThresholds", TypeShape.of(GetNgwafThresholdsResult.class), args, Utilities.withVersion(options));
+    }
+    public static Output<GetNgwafThresholdsResult> getNgwafThresholds(GetNgwafThresholdsArgs args, InvokeOutputOptions options) {
+        return Deployment.getInstance().invoke("fastly:index/getNgwafThresholds:getNgwafThresholds", TypeShape.of(GetNgwafThresholdsResult.class), args, Utilities.withVersion(options));
+    }
+    public static CompletableFuture<GetNgwafThresholdsResult> getNgwafThresholdsPlain(GetNgwafThresholdsPlainArgs args, InvokeOptions options) {
+        return Deployment.getInstance().invokeAsync("fastly:index/getNgwafThresholds:getNgwafThresholds", TypeShape.of(GetNgwafThresholdsResult.class), args, Utilities.withVersion(options));
+    }
+    /**
+     * Use this data source to get a list of [Fastly Next-Gen WAF Virtual Patches][1] for a given workspace.
+     * 
+     * ## Example Usage
+     * 
+     * &lt;!--Start PulumiCodeChooser --&gt;
+     * <pre>
+     * {@code
+     * package generated_program;
+     * 
+     * import com.pulumi.Context;
+     * import com.pulumi.Pulumi;
+     * import com.pulumi.core.Output;
+     * import com.pulumi.fastly.FastlyFunctions;
+     * import com.pulumi.fastly.inputs.GetNgwafVirtualPatchesArgs;
+     * import java.util.List;
+     * import java.util.ArrayList;
+     * import java.util.Map;
+     * import java.io.File;
+     * import java.nio.file.Files;
+     * import java.nio.file.Paths;
+     * 
+     * public class App {
+     *     public static void main(String[] args) {
+     *         Pulumi.run(App::stack);
+     *     }
+     * 
+     *     public static void stack(Context ctx) {
+     *         final var listPatches = FastlyFunctions.getNgwafVirtualPatches(GetNgwafVirtualPatchesArgs.builder()
+     *             .workspaceId(testVirtualPatchesWorkspace.id())
+     *             .build());
+     * 
+     *         ctx.export("fastlyNgwafVirtualPatchesAll", listPatches);
+     *     }
+     * }
+     * }
+     * </pre>
+     * &lt;!--End PulumiCodeChooser --&gt;
+     * 
+     * [1]: https://www.fastly.com/documentation/reference/api/ngwaf/virtual-patches/
+     * 
+     */
+    public static Output<GetNgwafVirtualPatchesResult> getNgwafVirtualPatches(GetNgwafVirtualPatchesArgs args) {
+        return getNgwafVirtualPatches(args, InvokeOptions.Empty);
+    }
+    /**
+     * Use this data source to get a list of [Fastly Next-Gen WAF Virtual Patches][1] for a given workspace.
+     * 
+     * ## Example Usage
+     * 
+     * &lt;!--Start PulumiCodeChooser --&gt;
+     * <pre>
+     * {@code
+     * package generated_program;
+     * 
+     * import com.pulumi.Context;
+     * import com.pulumi.Pulumi;
+     * import com.pulumi.core.Output;
+     * import com.pulumi.fastly.FastlyFunctions;
+     * import com.pulumi.fastly.inputs.GetNgwafVirtualPatchesArgs;
+     * import java.util.List;
+     * import java.util.ArrayList;
+     * import java.util.Map;
+     * import java.io.File;
+     * import java.nio.file.Files;
+     * import java.nio.file.Paths;
+     * 
+     * public class App {
+     *     public static void main(String[] args) {
+     *         Pulumi.run(App::stack);
+     *     }
+     * 
+     *     public static void stack(Context ctx) {
+     *         final var listPatches = FastlyFunctions.getNgwafVirtualPatches(GetNgwafVirtualPatchesArgs.builder()
+     *             .workspaceId(testVirtualPatchesWorkspace.id())
+     *             .build());
+     * 
+     *         ctx.export("fastlyNgwafVirtualPatchesAll", listPatches);
+     *     }
+     * }
+     * }
+     * </pre>
+     * &lt;!--End PulumiCodeChooser --&gt;
+     * 
+     * [1]: https://www.fastly.com/documentation/reference/api/ngwaf/virtual-patches/
+     * 
+     */
+    public static CompletableFuture<GetNgwafVirtualPatchesResult> getNgwafVirtualPatchesPlain(GetNgwafVirtualPatchesPlainArgs args) {
+        return getNgwafVirtualPatchesPlain(args, InvokeOptions.Empty);
+    }
+    /**
+     * Use this data source to get a list of [Fastly Next-Gen WAF Virtual Patches][1] for a given workspace.
+     * 
+     * ## Example Usage
+     * 
+     * &lt;!--Start PulumiCodeChooser --&gt;
+     * <pre>
+     * {@code
+     * package generated_program;
+     * 
+     * import com.pulumi.Context;
+     * import com.pulumi.Pulumi;
+     * import com.pulumi.core.Output;
+     * import com.pulumi.fastly.FastlyFunctions;
+     * import com.pulumi.fastly.inputs.GetNgwafVirtualPatchesArgs;
+     * import java.util.List;
+     * import java.util.ArrayList;
+     * import java.util.Map;
+     * import java.io.File;
+     * import java.nio.file.Files;
+     * import java.nio.file.Paths;
+     * 
+     * public class App {
+     *     public static void main(String[] args) {
+     *         Pulumi.run(App::stack);
+     *     }
+     * 
+     *     public static void stack(Context ctx) {
+     *         final var listPatches = FastlyFunctions.getNgwafVirtualPatches(GetNgwafVirtualPatchesArgs.builder()
+     *             .workspaceId(testVirtualPatchesWorkspace.id())
+     *             .build());
+     * 
+     *         ctx.export("fastlyNgwafVirtualPatchesAll", listPatches);
+     *     }
+     * }
+     * }
+     * </pre>
+     * &lt;!--End PulumiCodeChooser --&gt;
+     * 
+     * [1]: https://www.fastly.com/documentation/reference/api/ngwaf/virtual-patches/
+     * 
+     */
+    public static Output<GetNgwafVirtualPatchesResult> getNgwafVirtualPatches(GetNgwafVirtualPatchesArgs args, InvokeOptions options) {
+        return Deployment.getInstance().invoke("fastly:index/getNgwafVirtualPatches:getNgwafVirtualPatches", TypeShape.of(GetNgwafVirtualPatchesResult.class), args, Utilities.withVersion(options));
+    }
+    /**
+     * Use this data source to get a list of [Fastly Next-Gen WAF Virtual Patches][1] for a given workspace.
+     * 
+     * ## Example Usage
+     * 
+     * &lt;!--Start PulumiCodeChooser --&gt;
+     * <pre>
+     * {@code
+     * package generated_program;
+     * 
+     * import com.pulumi.Context;
+     * import com.pulumi.Pulumi;
+     * import com.pulumi.core.Output;
+     * import com.pulumi.fastly.FastlyFunctions;
+     * import com.pulumi.fastly.inputs.GetNgwafVirtualPatchesArgs;
+     * import java.util.List;
+     * import java.util.ArrayList;
+     * import java.util.Map;
+     * import java.io.File;
+     * import java.nio.file.Files;
+     * import java.nio.file.Paths;
+     * 
+     * public class App {
+     *     public static void main(String[] args) {
+     *         Pulumi.run(App::stack);
+     *     }
+     * 
+     *     public static void stack(Context ctx) {
+     *         final var listPatches = FastlyFunctions.getNgwafVirtualPatches(GetNgwafVirtualPatchesArgs.builder()
+     *             .workspaceId(testVirtualPatchesWorkspace.id())
+     *             .build());
+     * 
+     *         ctx.export("fastlyNgwafVirtualPatchesAll", listPatches);
+     *     }
+     * }
+     * }
+     * </pre>
+     * &lt;!--End PulumiCodeChooser --&gt;
+     * 
+     * [1]: https://www.fastly.com/documentation/reference/api/ngwaf/virtual-patches/
+     * 
+     */
+    public static Output<GetNgwafVirtualPatchesResult> getNgwafVirtualPatches(GetNgwafVirtualPatchesArgs args, InvokeOutputOptions options) {
+        return Deployment.getInstance().invoke("fastly:index/getNgwafVirtualPatches:getNgwafVirtualPatches", TypeShape.of(GetNgwafVirtualPatchesResult.class), args, Utilities.withVersion(options));
+    }
+    /**
+     * Use this data source to get a list of [Fastly Next-Gen WAF Virtual Patches][1] for a given workspace.
+     * 
+     * ## Example Usage
+     * 
+     * &lt;!--Start PulumiCodeChooser --&gt;
+     * <pre>
+     * {@code
+     * package generated_program;
+     * 
+     * import com.pulumi.Context;
+     * import com.pulumi.Pulumi;
+     * import com.pulumi.core.Output;
+     * import com.pulumi.fastly.FastlyFunctions;
+     * import com.pulumi.fastly.inputs.GetNgwafVirtualPatchesArgs;
+     * import java.util.List;
+     * import java.util.ArrayList;
+     * import java.util.Map;
+     * import java.io.File;
+     * import java.nio.file.Files;
+     * import java.nio.file.Paths;
+     * 
+     * public class App {
+     *     public static void main(String[] args) {
+     *         Pulumi.run(App::stack);
+     *     }
+     * 
+     *     public static void stack(Context ctx) {
+     *         final var listPatches = FastlyFunctions.getNgwafVirtualPatches(GetNgwafVirtualPatchesArgs.builder()
+     *             .workspaceId(testVirtualPatchesWorkspace.id())
+     *             .build());
+     * 
+     *         ctx.export("fastlyNgwafVirtualPatchesAll", listPatches);
+     *     }
+     * }
+     * }
+     * </pre>
+     * &lt;!--End PulumiCodeChooser --&gt;
+     * 
+     * [1]: https://www.fastly.com/documentation/reference/api/ngwaf/virtual-patches/
+     * 
+     */
+    public static CompletableFuture<GetNgwafVirtualPatchesResult> getNgwafVirtualPatchesPlain(GetNgwafVirtualPatchesPlainArgs args, InvokeOptions options) {
+        return Deployment.getInstance().invokeAsync("fastly:index/getNgwafVirtualPatches:getNgwafVirtualPatches", TypeShape.of(GetNgwafVirtualPatchesResult.class), args, Utilities.withVersion(options));
+    }
+    /**
+     * Use this data source to get a list of [Fastly Next-Gen WAF Workspaces][1].
+     * 
+     */
+    public static Output<GetNgwafWorkspacesResult> getNgwafWorkspaces() {
+        return getNgwafWorkspaces(InvokeArgs.Empty, InvokeOptions.Empty);
+    }
+    /**
+     * Use this data source to get a list of [Fastly Next-Gen WAF Workspaces][1].
+     * 
+     */
+    public static CompletableFuture<GetNgwafWorkspacesResult> getNgwafWorkspacesPlain() {
+        return getNgwafWorkspacesPlain(InvokeArgs.Empty, InvokeOptions.Empty);
+    }
+    /**
+     * Use this data source to get a list of [Fastly Next-Gen WAF Workspaces][1].
+     * 
+     */
+    public static Output<GetNgwafWorkspacesResult> getNgwafWorkspaces(InvokeArgs args) {
+        return getNgwafWorkspaces(args, InvokeOptions.Empty);
+    }
+    /**
+     * Use this data source to get a list of [Fastly Next-Gen WAF Workspaces][1].
+     * 
+     */
+    public static CompletableFuture<GetNgwafWorkspacesResult> getNgwafWorkspacesPlain(InvokeArgs args) {
+        return getNgwafWorkspacesPlain(args, InvokeOptions.Empty);
+    }
+    /**
+     * Use this data source to get a list of [Fastly Next-Gen WAF Workspaces][1].
+     * 
+     */
+    public static Output<GetNgwafWorkspacesResult> getNgwafWorkspaces(InvokeArgs args, InvokeOptions options) {
+        return Deployment.getInstance().invoke("fastly:index/getNgwafWorkspaces:getNgwafWorkspaces", TypeShape.of(GetNgwafWorkspacesResult.class), args, Utilities.withVersion(options));
+    }
+    /**
+     * Use this data source to get a list of [Fastly Next-Gen WAF Workspaces][1].
+     * 
+     */
+    public static Output<GetNgwafWorkspacesResult> getNgwafWorkspaces(InvokeArgs args, InvokeOutputOptions options) {
+        return Deployment.getInstance().invoke("fastly:index/getNgwafWorkspaces:getNgwafWorkspaces", TypeShape.of(GetNgwafWorkspacesResult.class), args, Utilities.withVersion(options));
+    }
+    /**
+     * Use this data source to get a list of [Fastly Next-Gen WAF Workspaces][1].
+     * 
+     */
+    public static CompletableFuture<GetNgwafWorkspacesResult> getNgwafWorkspacesPlain(InvokeArgs args, InvokeOptions options) {
+        return Deployment.getInstance().invokeAsync("fastly:index/getNgwafWorkspaces:getNgwafWorkspaces", TypeShape.of(GetNgwafWorkspacesResult.class), args, Utilities.withVersion(options));
     }
     /**
      * Use this data source to generate a SHA512 hash of all files (in sorted order) within the package.

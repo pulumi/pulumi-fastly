@@ -139,7 +139,7 @@ export class ServiceVcl extends pulumi.CustomResource {
     declare public readonly reuse: pulumi.Output<boolean | undefined>;
     declare public readonly snippets: pulumi.Output<outputs.ServiceVclSnippet[] | undefined>;
     /**
-     * Conditionally enables new service versions to be staged. If `set` to true, all changes made by an `apply` step will be staged, even if `apply` did not create a new draft version. Default `false`
+     * Conditionally enables new service versions to be staged. If set to `true`, all changes made by an `apply` step will be staged, even if `apply` did not create a new draft version. Default `false`
      */
     declare public readonly stage: pulumi.Output<boolean | undefined>;
     /**
@@ -402,7 +402,7 @@ export interface ServiceVclState {
     reuse?: pulumi.Input<boolean>;
     snippets?: pulumi.Input<pulumi.Input<inputs.ServiceVclSnippet>[]>;
     /**
-     * Conditionally enables new service versions to be staged. If `set` to true, all changes made by an `apply` step will be staged, even if `apply` did not create a new draft version. Default `false`
+     * Conditionally enables new service versions to be staged. If set to `true`, all changes made by an `apply` step will be staged, even if `apply` did not create a new draft version. Default `false`
      */
     stage?: pulumi.Input<boolean>;
     /**
@@ -503,7 +503,7 @@ export interface ServiceVclArgs {
     reuse?: pulumi.Input<boolean>;
     snippets?: pulumi.Input<pulumi.Input<inputs.ServiceVclSnippet>[]>;
     /**
-     * Conditionally enables new service versions to be staged. If `set` to true, all changes made by an `apply` step will be staged, even if `apply` did not create a new draft version. Default `false`
+     * Conditionally enables new service versions to be staged. If set to `true`, all changes made by an `apply` step will be staged, even if `apply` did not create a new draft version. Default `false`
      */
     stage?: pulumi.Input<boolean>;
     /**

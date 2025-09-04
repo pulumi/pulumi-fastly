@@ -23,6 +23,19 @@ __all__ = [
     'CustomDashboardDashboardItemDataSourceConfig',
     'CustomDashboardDashboardItemVisualization',
     'CustomDashboardDashboardItemVisualizationConfig',
+    'NgwafAccountRuleAction',
+    'NgwafAccountRuleCondition',
+    'NgwafAccountRuleGroupCondition',
+    'NgwafAccountRuleGroupConditionCondition',
+    'NgwafAccountRuleRateLimit',
+    'NgwafAccountRuleRateLimitClientIdentifier',
+    'NgwafWorkspaceAttackSignalThresholds',
+    'NgwafWorkspaceRuleAction',
+    'NgwafWorkspaceRuleCondition',
+    'NgwafWorkspaceRuleGroupCondition',
+    'NgwafWorkspaceRuleGroupConditionCondition',
+    'NgwafWorkspaceRuleRateLimit',
+    'NgwafWorkspaceRuleRateLimitClientIdentifier',
     'ServiceACLEntriesEntry',
     'ServiceComputeBackend',
     'ServiceComputeDictionary',
@@ -115,6 +128,18 @@ __all__ = [
     'GetDatacentersPopResult',
     'GetDictionariesDictionaryResult',
     'GetKvstoresStoreResult',
+    'GetNgwafAlertDatadogIntegrationDatadogAlertResult',
+    'GetNgwafAlertJiraIntegrationJiraAlertResult',
+    'GetNgwafAlertMailingListIntegrationMailingListAlertResult',
+    'GetNgwafAlertMicrosoftTeamsIntegrationMicrosoftTeamsAlertResult',
+    'GetNgwafAlertOpsgenieIntegrationOpsgenieAlertResult',
+    'GetNgwafAlertPagerdutyIntegrationPagerdutyAlertResult',
+    'GetNgwafAlertSlackIntegrationSlackAlertResult',
+    'GetNgwafAlertWebhookIntegrationWebhookAlertResult',
+    'GetNgwafRedactionsRedactionResult',
+    'GetNgwafThresholdsThresholdResult',
+    'GetNgwafVirtualPatchesVirtualPatchResult',
+    'GetNgwafWorkspacesWorkspaceResult',
     'GetSecretstoresStoreResult',
     'GetServicesDetailResult',
     'GetTlsConfigurationDnsRecordResult',
@@ -447,6 +472,679 @@ class CustomDashboardDashboardItemVisualizationConfig(dict):
         The units to use to format the data. One of: `number`, `bytes`, `percent`, `requests`, `responses`, `seconds`, `milliseconds`, `ratio`, `bitrate`.
         """
         return pulumi.get(self, "format")
+
+
+@pulumi.output_type
+class NgwafAccountRuleAction(dict):
+    def __init__(__self__, *,
+                 type: _builtins.str,
+                 signal: Optional[_builtins.str] = None):
+        """
+        :param _builtins.str type: The action type, e.g. `block`, `redirect`, `exclude_signal`.
+        :param _builtins.str signal: Signal name to exclude (used when `type = exclude_signal`).
+        """
+        pulumi.set(__self__, "type", type)
+        if signal is not None:
+            pulumi.set(__self__, "signal", signal)
+
+    @_builtins.property
+    @pulumi.getter
+    def type(self) -> _builtins.str:
+        """
+        The action type, e.g. `block`, `redirect`, `exclude_signal`.
+        """
+        return pulumi.get(self, "type")
+
+    @_builtins.property
+    @pulumi.getter
+    def signal(self) -> Optional[_builtins.str]:
+        """
+        Signal name to exclude (used when `type = exclude_signal`).
+        """
+        return pulumi.get(self, "signal")
+
+
+@pulumi.output_type
+class NgwafAccountRuleCondition(dict):
+    def __init__(__self__, *,
+                 field: _builtins.str,
+                 operator: _builtins.str,
+                 value: _builtins.str):
+        """
+        :param _builtins.str field: Field to inspect (e.g., `ip`, `path`).
+        :param _builtins.str operator: Operator to apply (e.g., `equals`, `contains`).
+        :param _builtins.str value: The value to test the field against.
+        """
+        pulumi.set(__self__, "field", field)
+        pulumi.set(__self__, "operator", operator)
+        pulumi.set(__self__, "value", value)
+
+    @_builtins.property
+    @pulumi.getter
+    def field(self) -> _builtins.str:
+        """
+        Field to inspect (e.g., `ip`, `path`).
+        """
+        return pulumi.get(self, "field")
+
+    @_builtins.property
+    @pulumi.getter
+    def operator(self) -> _builtins.str:
+        """
+        Operator to apply (e.g., `equals`, `contains`).
+        """
+        return pulumi.get(self, "operator")
+
+    @_builtins.property
+    @pulumi.getter
+    def value(self) -> _builtins.str:
+        """
+        The value to test the field against.
+        """
+        return pulumi.get(self, "value")
+
+
+@pulumi.output_type
+class NgwafAccountRuleGroupCondition(dict):
+    @staticmethod
+    def __key_warning(key: str):
+        suggest = None
+        if key == "groupOperator":
+            suggest = "group_operator"
+
+        if suggest:
+            pulumi.log.warn(f"Key '{key}' not found in NgwafAccountRuleGroupCondition. Access the value via the '{suggest}' property getter instead.")
+
+    def __getitem__(self, key: str) -> Any:
+        NgwafAccountRuleGroupCondition.__key_warning(key)
+        return super().__getitem__(key)
+
+    def get(self, key: str, default = None) -> Any:
+        NgwafAccountRuleGroupCondition.__key_warning(key)
+        return super().get(key, default)
+
+    def __init__(__self__, *,
+                 conditions: Sequence['outputs.NgwafAccountRuleGroupConditionCondition'],
+                 group_operator: _builtins.str):
+        """
+        :param Sequence['NgwafAccountRuleGroupConditionConditionArgs'] conditions: A list of nested conditions in this group.
+        :param _builtins.str group_operator: Logical operator for the group. Accepted values are `any` and `all`.
+        """
+        pulumi.set(__self__, "conditions", conditions)
+        pulumi.set(__self__, "group_operator", group_operator)
+
+    @_builtins.property
+    @pulumi.getter
+    def conditions(self) -> Sequence['outputs.NgwafAccountRuleGroupConditionCondition']:
+        """
+        A list of nested conditions in this group.
+        """
+        return pulumi.get(self, "conditions")
+
+    @_builtins.property
+    @pulumi.getter(name="groupOperator")
+    def group_operator(self) -> _builtins.str:
+        """
+        Logical operator for the group. Accepted values are `any` and `all`.
+        """
+        return pulumi.get(self, "group_operator")
+
+
+@pulumi.output_type
+class NgwafAccountRuleGroupConditionCondition(dict):
+    def __init__(__self__, *,
+                 field: _builtins.str,
+                 operator: _builtins.str,
+                 value: _builtins.str):
+        """
+        :param _builtins.str field: Field to inspect (e.g., `ip`, `path`).
+        :param _builtins.str operator: Operator to apply (e.g., `equals`, `contains`).
+        :param _builtins.str value: The value to test the field against.
+        """
+        pulumi.set(__self__, "field", field)
+        pulumi.set(__self__, "operator", operator)
+        pulumi.set(__self__, "value", value)
+
+    @_builtins.property
+    @pulumi.getter
+    def field(self) -> _builtins.str:
+        """
+        Field to inspect (e.g., `ip`, `path`).
+        """
+        return pulumi.get(self, "field")
+
+    @_builtins.property
+    @pulumi.getter
+    def operator(self) -> _builtins.str:
+        """
+        Operator to apply (e.g., `equals`, `contains`).
+        """
+        return pulumi.get(self, "operator")
+
+    @_builtins.property
+    @pulumi.getter
+    def value(self) -> _builtins.str:
+        """
+        The value to test the field against.
+        """
+        return pulumi.get(self, "value")
+
+
+@pulumi.output_type
+class NgwafAccountRuleRateLimit(dict):
+    @staticmethod
+    def __key_warning(key: str):
+        suggest = None
+        if key == "clientIdentifiers":
+            suggest = "client_identifiers"
+
+        if suggest:
+            pulumi.log.warn(f"Key '{key}' not found in NgwafAccountRuleRateLimit. Access the value via the '{suggest}' property getter instead.")
+
+    def __getitem__(self, key: str) -> Any:
+        NgwafAccountRuleRateLimit.__key_warning(key)
+        return super().__getitem__(key)
+
+    def get(self, key: str, default = None) -> Any:
+        NgwafAccountRuleRateLimit.__key_warning(key)
+        return super().get(key, default)
+
+    def __init__(__self__, *,
+                 client_identifiers: Sequence['outputs.NgwafAccountRuleRateLimitClientIdentifier'],
+                 duration: _builtins.int,
+                 interval: _builtins.int,
+                 signal: _builtins.str,
+                 threshold: _builtins.int):
+        """
+        :param Sequence['NgwafAccountRuleRateLimitClientIdentifierArgs'] client_identifiers: List of client identifiers used for rate limiting. Can only be length 1 or 2.
+        :param _builtins.int duration: Duration in seconds for the rate limit.
+        :param _builtins.int interval: Time interval for the rate limit in seconds. Accepted values are 60, 600, and 3600.
+        :param _builtins.str signal: Reference ID of the custom signal this rule uses to count requests.
+        :param _builtins.int threshold: Rate limit threshold. Minimum 1 and maximum 10,000.
+        """
+        pulumi.set(__self__, "client_identifiers", client_identifiers)
+        pulumi.set(__self__, "duration", duration)
+        pulumi.set(__self__, "interval", interval)
+        pulumi.set(__self__, "signal", signal)
+        pulumi.set(__self__, "threshold", threshold)
+
+    @_builtins.property
+    @pulumi.getter(name="clientIdentifiers")
+    def client_identifiers(self) -> Sequence['outputs.NgwafAccountRuleRateLimitClientIdentifier']:
+        """
+        List of client identifiers used for rate limiting. Can only be length 1 or 2.
+        """
+        return pulumi.get(self, "client_identifiers")
+
+    @_builtins.property
+    @pulumi.getter
+    def duration(self) -> _builtins.int:
+        """
+        Duration in seconds for the rate limit.
+        """
+        return pulumi.get(self, "duration")
+
+    @_builtins.property
+    @pulumi.getter
+    def interval(self) -> _builtins.int:
+        """
+        Time interval for the rate limit in seconds. Accepted values are 60, 600, and 3600.
+        """
+        return pulumi.get(self, "interval")
+
+    @_builtins.property
+    @pulumi.getter
+    def signal(self) -> _builtins.str:
+        """
+        Reference ID of the custom signal this rule uses to count requests.
+        """
+        return pulumi.get(self, "signal")
+
+    @_builtins.property
+    @pulumi.getter
+    def threshold(self) -> _builtins.int:
+        """
+        Rate limit threshold. Minimum 1 and maximum 10,000.
+        """
+        return pulumi.get(self, "threshold")
+
+
+@pulumi.output_type
+class NgwafAccountRuleRateLimitClientIdentifier(dict):
+    def __init__(__self__, *,
+                 type: _builtins.str,
+                 key: Optional[_builtins.str] = None,
+                 name: Optional[_builtins.str] = None):
+        """
+        :param _builtins.str type: Type of the Client Identifier.
+        :param _builtins.str key: Key for the Client Identifier.
+        :param _builtins.str name: Name for the Client Identifier.
+        """
+        pulumi.set(__self__, "type", type)
+        if key is not None:
+            pulumi.set(__self__, "key", key)
+        if name is not None:
+            pulumi.set(__self__, "name", name)
+
+    @_builtins.property
+    @pulumi.getter
+    def type(self) -> _builtins.str:
+        """
+        Type of the Client Identifier.
+        """
+        return pulumi.get(self, "type")
+
+    @_builtins.property
+    @pulumi.getter
+    def key(self) -> Optional[_builtins.str]:
+        """
+        Key for the Client Identifier.
+        """
+        return pulumi.get(self, "key")
+
+    @_builtins.property
+    @pulumi.getter
+    def name(self) -> Optional[_builtins.str]:
+        """
+        Name for the Client Identifier.
+        """
+        return pulumi.get(self, "name")
+
+
+@pulumi.output_type
+class NgwafWorkspaceAttackSignalThresholds(dict):
+    @staticmethod
+    def __key_warning(key: str):
+        suggest = None
+        if key == "oneHour":
+            suggest = "one_hour"
+        elif key == "oneMinute":
+            suggest = "one_minute"
+        elif key == "tenMinutes":
+            suggest = "ten_minutes"
+
+        if suggest:
+            pulumi.log.warn(f"Key '{key}' not found in NgwafWorkspaceAttackSignalThresholds. Access the value via the '{suggest}' property getter instead.")
+
+    def __getitem__(self, key: str) -> Any:
+        NgwafWorkspaceAttackSignalThresholds.__key_warning(key)
+        return super().__getitem__(key)
+
+    def get(self, key: str, default = None) -> Any:
+        NgwafWorkspaceAttackSignalThresholds.__key_warning(key)
+        return super().get(key, default)
+
+    def __init__(__self__, *,
+                 immediate: Optional[_builtins.bool] = None,
+                 one_hour: Optional[_builtins.int] = None,
+                 one_minute: Optional[_builtins.int] = None,
+                 ten_minutes: Optional[_builtins.int] = None):
+        """
+        :param _builtins.bool immediate: Ignore thresholds and block immediately when at least one attack signal is detected. Default value `false`.
+        :param _builtins.int one_hour: The one-hour interval threshold. Minimum 1 and maximum 10,000. Default value 100.
+        :param _builtins.int one_minute: The one-minute interval threshold. Minimum 1 and maximum 10,000. Default value 1.
+        :param _builtins.int ten_minutes: The ten-minute interval threshold. Minimum 1 and maximum 10,000. Default value 60.
+        """
+        if immediate is not None:
+            pulumi.set(__self__, "immediate", immediate)
+        if one_hour is not None:
+            pulumi.set(__self__, "one_hour", one_hour)
+        if one_minute is not None:
+            pulumi.set(__self__, "one_minute", one_minute)
+        if ten_minutes is not None:
+            pulumi.set(__self__, "ten_minutes", ten_minutes)
+
+    @_builtins.property
+    @pulumi.getter
+    def immediate(self) -> Optional[_builtins.bool]:
+        """
+        Ignore thresholds and block immediately when at least one attack signal is detected. Default value `false`.
+        """
+        return pulumi.get(self, "immediate")
+
+    @_builtins.property
+    @pulumi.getter(name="oneHour")
+    def one_hour(self) -> Optional[_builtins.int]:
+        """
+        The one-hour interval threshold. Minimum 1 and maximum 10,000. Default value 100.
+        """
+        return pulumi.get(self, "one_hour")
+
+    @_builtins.property
+    @pulumi.getter(name="oneMinute")
+    def one_minute(self) -> Optional[_builtins.int]:
+        """
+        The one-minute interval threshold. Minimum 1 and maximum 10,000. Default value 1.
+        """
+        return pulumi.get(self, "one_minute")
+
+    @_builtins.property
+    @pulumi.getter(name="tenMinutes")
+    def ten_minutes(self) -> Optional[_builtins.int]:
+        """
+        The ten-minute interval threshold. Minimum 1 and maximum 10,000. Default value 60.
+        """
+        return pulumi.get(self, "ten_minutes")
+
+
+@pulumi.output_type
+class NgwafWorkspaceRuleAction(dict):
+    @staticmethod
+    def __key_warning(key: str):
+        suggest = None
+        if key == "redirectUrl":
+            suggest = "redirect_url"
+        elif key == "responseCode":
+            suggest = "response_code"
+
+        if suggest:
+            pulumi.log.warn(f"Key '{key}' not found in NgwafWorkspaceRuleAction. Access the value via the '{suggest}' property getter instead.")
+
+    def __getitem__(self, key: str) -> Any:
+        NgwafWorkspaceRuleAction.__key_warning(key)
+        return super().__getitem__(key)
+
+    def get(self, key: str, default = None) -> Any:
+        NgwafWorkspaceRuleAction.__key_warning(key)
+        return super().get(key, default)
+
+    def __init__(__self__, *,
+                 type: _builtins.str,
+                 redirect_url: Optional[_builtins.str] = None,
+                 response_code: Optional[_builtins.int] = None,
+                 signal: Optional[_builtins.str] = None):
+        """
+        :param _builtins.str type: The action type, e.g. `block`, `redirect`, `exclude_signal`.
+        :param _builtins.str redirect_url: Redirect target (used when `type = redirect`).
+        :param _builtins.int response_code: Response code used with redirect.
+        :param _builtins.str signal: Signal name to exclude (used when `type = exclude_signal`).
+        """
+        pulumi.set(__self__, "type", type)
+        if redirect_url is not None:
+            pulumi.set(__self__, "redirect_url", redirect_url)
+        if response_code is not None:
+            pulumi.set(__self__, "response_code", response_code)
+        if signal is not None:
+            pulumi.set(__self__, "signal", signal)
+
+    @_builtins.property
+    @pulumi.getter
+    def type(self) -> _builtins.str:
+        """
+        The action type, e.g. `block`, `redirect`, `exclude_signal`.
+        """
+        return pulumi.get(self, "type")
+
+    @_builtins.property
+    @pulumi.getter(name="redirectUrl")
+    def redirect_url(self) -> Optional[_builtins.str]:
+        """
+        Redirect target (used when `type = redirect`).
+        """
+        return pulumi.get(self, "redirect_url")
+
+    @_builtins.property
+    @pulumi.getter(name="responseCode")
+    def response_code(self) -> Optional[_builtins.int]:
+        """
+        Response code used with redirect.
+        """
+        return pulumi.get(self, "response_code")
+
+    @_builtins.property
+    @pulumi.getter
+    def signal(self) -> Optional[_builtins.str]:
+        """
+        Signal name to exclude (used when `type = exclude_signal`).
+        """
+        return pulumi.get(self, "signal")
+
+
+@pulumi.output_type
+class NgwafWorkspaceRuleCondition(dict):
+    def __init__(__self__, *,
+                 field: _builtins.str,
+                 operator: _builtins.str,
+                 value: _builtins.str):
+        """
+        :param _builtins.str field: Field to inspect (e.g., `ip`, `path`).
+        :param _builtins.str operator: Operator to apply (e.g., `equals`, `contains`).
+        :param _builtins.str value: The value to test the field against.
+        """
+        pulumi.set(__self__, "field", field)
+        pulumi.set(__self__, "operator", operator)
+        pulumi.set(__self__, "value", value)
+
+    @_builtins.property
+    @pulumi.getter
+    def field(self) -> _builtins.str:
+        """
+        Field to inspect (e.g., `ip`, `path`).
+        """
+        return pulumi.get(self, "field")
+
+    @_builtins.property
+    @pulumi.getter
+    def operator(self) -> _builtins.str:
+        """
+        Operator to apply (e.g., `equals`, `contains`).
+        """
+        return pulumi.get(self, "operator")
+
+    @_builtins.property
+    @pulumi.getter
+    def value(self) -> _builtins.str:
+        """
+        The value to test the field against.
+        """
+        return pulumi.get(self, "value")
+
+
+@pulumi.output_type
+class NgwafWorkspaceRuleGroupCondition(dict):
+    @staticmethod
+    def __key_warning(key: str):
+        suggest = None
+        if key == "groupOperator":
+            suggest = "group_operator"
+
+        if suggest:
+            pulumi.log.warn(f"Key '{key}' not found in NgwafWorkspaceRuleGroupCondition. Access the value via the '{suggest}' property getter instead.")
+
+    def __getitem__(self, key: str) -> Any:
+        NgwafWorkspaceRuleGroupCondition.__key_warning(key)
+        return super().__getitem__(key)
+
+    def get(self, key: str, default = None) -> Any:
+        NgwafWorkspaceRuleGroupCondition.__key_warning(key)
+        return super().get(key, default)
+
+    def __init__(__self__, *,
+                 conditions: Sequence['outputs.NgwafWorkspaceRuleGroupConditionCondition'],
+                 group_operator: _builtins.str):
+        """
+        :param Sequence['NgwafWorkspaceRuleGroupConditionConditionArgs'] conditions: A list of nested conditions in this group.
+        :param _builtins.str group_operator: Logical operator for the group. Accepted values are `any` and `all`.
+        """
+        pulumi.set(__self__, "conditions", conditions)
+        pulumi.set(__self__, "group_operator", group_operator)
+
+    @_builtins.property
+    @pulumi.getter
+    def conditions(self) -> Sequence['outputs.NgwafWorkspaceRuleGroupConditionCondition']:
+        """
+        A list of nested conditions in this group.
+        """
+        return pulumi.get(self, "conditions")
+
+    @_builtins.property
+    @pulumi.getter(name="groupOperator")
+    def group_operator(self) -> _builtins.str:
+        """
+        Logical operator for the group. Accepted values are `any` and `all`.
+        """
+        return pulumi.get(self, "group_operator")
+
+
+@pulumi.output_type
+class NgwafWorkspaceRuleGroupConditionCondition(dict):
+    def __init__(__self__, *,
+                 field: _builtins.str,
+                 operator: _builtins.str,
+                 value: _builtins.str):
+        """
+        :param _builtins.str field: Field to inspect (e.g., `ip`, `path`).
+        :param _builtins.str operator: Operator to apply (e.g., `equals`, `contains`).
+        :param _builtins.str value: The value to test the field against.
+        """
+        pulumi.set(__self__, "field", field)
+        pulumi.set(__self__, "operator", operator)
+        pulumi.set(__self__, "value", value)
+
+    @_builtins.property
+    @pulumi.getter
+    def field(self) -> _builtins.str:
+        """
+        Field to inspect (e.g., `ip`, `path`).
+        """
+        return pulumi.get(self, "field")
+
+    @_builtins.property
+    @pulumi.getter
+    def operator(self) -> _builtins.str:
+        """
+        Operator to apply (e.g., `equals`, `contains`).
+        """
+        return pulumi.get(self, "operator")
+
+    @_builtins.property
+    @pulumi.getter
+    def value(self) -> _builtins.str:
+        """
+        The value to test the field against.
+        """
+        return pulumi.get(self, "value")
+
+
+@pulumi.output_type
+class NgwafWorkspaceRuleRateLimit(dict):
+    @staticmethod
+    def __key_warning(key: str):
+        suggest = None
+        if key == "clientIdentifiers":
+            suggest = "client_identifiers"
+
+        if suggest:
+            pulumi.log.warn(f"Key '{key}' not found in NgwafWorkspaceRuleRateLimit. Access the value via the '{suggest}' property getter instead.")
+
+    def __getitem__(self, key: str) -> Any:
+        NgwafWorkspaceRuleRateLimit.__key_warning(key)
+        return super().__getitem__(key)
+
+    def get(self, key: str, default = None) -> Any:
+        NgwafWorkspaceRuleRateLimit.__key_warning(key)
+        return super().get(key, default)
+
+    def __init__(__self__, *,
+                 client_identifiers: Sequence['outputs.NgwafWorkspaceRuleRateLimitClientIdentifier'],
+                 duration: _builtins.int,
+                 interval: _builtins.int,
+                 signal: _builtins.str,
+                 threshold: _builtins.int):
+        """
+        :param Sequence['NgwafWorkspaceRuleRateLimitClientIdentifierArgs'] client_identifiers: List of client identifiers used for rate limiting. Can only be length 1 or 2.
+        :param _builtins.int duration: Duration in seconds for the rate limit.
+        :param _builtins.int interval: Time interval for the rate limit in seconds. Accepted values are 60, 600, and 3600.
+        :param _builtins.str signal: Reference ID of the custom signal this rule uses to count requests.
+        :param _builtins.int threshold: Rate limit threshold. Minimum 1 and maximum 10,000.
+        """
+        pulumi.set(__self__, "client_identifiers", client_identifiers)
+        pulumi.set(__self__, "duration", duration)
+        pulumi.set(__self__, "interval", interval)
+        pulumi.set(__self__, "signal", signal)
+        pulumi.set(__self__, "threshold", threshold)
+
+    @_builtins.property
+    @pulumi.getter(name="clientIdentifiers")
+    def client_identifiers(self) -> Sequence['outputs.NgwafWorkspaceRuleRateLimitClientIdentifier']:
+        """
+        List of client identifiers used for rate limiting. Can only be length 1 or 2.
+        """
+        return pulumi.get(self, "client_identifiers")
+
+    @_builtins.property
+    @pulumi.getter
+    def duration(self) -> _builtins.int:
+        """
+        Duration in seconds for the rate limit.
+        """
+        return pulumi.get(self, "duration")
+
+    @_builtins.property
+    @pulumi.getter
+    def interval(self) -> _builtins.int:
+        """
+        Time interval for the rate limit in seconds. Accepted values are 60, 600, and 3600.
+        """
+        return pulumi.get(self, "interval")
+
+    @_builtins.property
+    @pulumi.getter
+    def signal(self) -> _builtins.str:
+        """
+        Reference ID of the custom signal this rule uses to count requests.
+        """
+        return pulumi.get(self, "signal")
+
+    @_builtins.property
+    @pulumi.getter
+    def threshold(self) -> _builtins.int:
+        """
+        Rate limit threshold. Minimum 1 and maximum 10,000.
+        """
+        return pulumi.get(self, "threshold")
+
+
+@pulumi.output_type
+class NgwafWorkspaceRuleRateLimitClientIdentifier(dict):
+    def __init__(__self__, *,
+                 type: _builtins.str,
+                 key: Optional[_builtins.str] = None,
+                 name: Optional[_builtins.str] = None):
+        """
+        :param _builtins.str type: Type of the Client Identifier.
+        :param _builtins.str key: Key for the Client Identifier.
+        :param _builtins.str name: Name for the Client Identifier.
+        """
+        pulumi.set(__self__, "type", type)
+        if key is not None:
+            pulumi.set(__self__, "key", key)
+        if name is not None:
+            pulumi.set(__self__, "name", name)
+
+    @_builtins.property
+    @pulumi.getter
+    def type(self) -> _builtins.str:
+        """
+        Type of the Client Identifier.
+        """
+        return pulumi.get(self, "type")
+
+    @_builtins.property
+    @pulumi.getter
+    def key(self) -> Optional[_builtins.str]:
+        """
+        Key for the Client Identifier.
+        """
+        return pulumi.get(self, "key")
+
+    @_builtins.property
+    @pulumi.getter
+    def name(self) -> Optional[_builtins.str]:
+        """
+        Name for the Client Identifier.
+        """
+        return pulumi.get(self, "name")
 
 
 @pulumi.output_type
@@ -5021,7 +5719,7 @@ class ServiceComputeProductEnablementDdosProtection(dict):
                  mode: _builtins.str):
         """
         :param _builtins.bool enabled: Enable DDoS Protection support
-        :param _builtins.str mode: Operation mode
+        :param _builtins.str mode: Operation mode. Can be either `off`, `log`, or `block`.
         """
         pulumi.set(__self__, "enabled", enabled)
         pulumi.set(__self__, "mode", mode)
@@ -5038,7 +5736,7 @@ class ServiceComputeProductEnablementDdosProtection(dict):
     @pulumi.getter
     def mode(self) -> _builtins.str:
         """
-        Operation mode
+        Operation mode. Can be either `off`, `log`, or `block`.
         """
         return pulumi.get(self, "mode")
 
@@ -12000,7 +12698,7 @@ class ServiceVclProductEnablementDdosProtection(dict):
                  mode: _builtins.str):
         """
         :param _builtins.bool enabled: Enable DDoS Protection support
-        :param _builtins.str mode: Operation mode
+        :param _builtins.str mode: Operation mode. Can be either `off`, `log`, or `block`.
         """
         pulumi.set(__self__, "enabled", enabled)
         pulumi.set(__self__, "mode", mode)
@@ -12017,7 +12715,7 @@ class ServiceVclProductEnablementDdosProtection(dict):
     @pulumi.getter
     def mode(self) -> _builtins.str:
         """
-        Operation mode
+        Operation mode. Can be either `off`, `log`, or `block`.
         """
         return pulumi.get(self, "mode")
 
@@ -12976,6 +13674,277 @@ class GetKvstoresStoreResult(dict):
     def name(self) -> _builtins.str:
         """
         Name for the KV Store.
+        """
+        return pulumi.get(self, "name")
+
+
+@pulumi.output_type
+class GetNgwafAlertDatadogIntegrationDatadogAlertResult(dict):
+    def __init__(__self__, *,
+                 id: _builtins.str):
+        """
+        :param _builtins.str id: The ID of the workspace alert.
+        """
+        pulumi.set(__self__, "id", id)
+
+    @_builtins.property
+    @pulumi.getter
+    def id(self) -> _builtins.str:
+        """
+        The ID of the workspace alert.
+        """
+        return pulumi.get(self, "id")
+
+
+@pulumi.output_type
+class GetNgwafAlertJiraIntegrationJiraAlertResult(dict):
+    def __init__(__self__, *,
+                 id: _builtins.str):
+        """
+        :param _builtins.str id: The ID of the workspace alert.
+        """
+        pulumi.set(__self__, "id", id)
+
+    @_builtins.property
+    @pulumi.getter
+    def id(self) -> _builtins.str:
+        """
+        The ID of the workspace alert.
+        """
+        return pulumi.get(self, "id")
+
+
+@pulumi.output_type
+class GetNgwafAlertMailingListIntegrationMailingListAlertResult(dict):
+    def __init__(__self__, *,
+                 id: _builtins.str):
+        """
+        :param _builtins.str id: The ID of the workspace alert.
+        """
+        pulumi.set(__self__, "id", id)
+
+    @_builtins.property
+    @pulumi.getter
+    def id(self) -> _builtins.str:
+        """
+        The ID of the workspace alert.
+        """
+        return pulumi.get(self, "id")
+
+
+@pulumi.output_type
+class GetNgwafAlertMicrosoftTeamsIntegrationMicrosoftTeamsAlertResult(dict):
+    def __init__(__self__, *,
+                 id: _builtins.str):
+        """
+        :param _builtins.str id: The ID of the workspace alert.
+        """
+        pulumi.set(__self__, "id", id)
+
+    @_builtins.property
+    @pulumi.getter
+    def id(self) -> _builtins.str:
+        """
+        The ID of the workspace alert.
+        """
+        return pulumi.get(self, "id")
+
+
+@pulumi.output_type
+class GetNgwafAlertOpsgenieIntegrationOpsgenieAlertResult(dict):
+    def __init__(__self__, *,
+                 id: _builtins.str):
+        """
+        :param _builtins.str id: The ID of the workspace alert.
+        """
+        pulumi.set(__self__, "id", id)
+
+    @_builtins.property
+    @pulumi.getter
+    def id(self) -> _builtins.str:
+        """
+        The ID of the workspace alert.
+        """
+        return pulumi.get(self, "id")
+
+
+@pulumi.output_type
+class GetNgwafAlertPagerdutyIntegrationPagerdutyAlertResult(dict):
+    def __init__(__self__, *,
+                 id: _builtins.str):
+        """
+        :param _builtins.str id: The ID of the workspace alert.
+        """
+        pulumi.set(__self__, "id", id)
+
+    @_builtins.property
+    @pulumi.getter
+    def id(self) -> _builtins.str:
+        """
+        The ID of the workspace alert.
+        """
+        return pulumi.get(self, "id")
+
+
+@pulumi.output_type
+class GetNgwafAlertSlackIntegrationSlackAlertResult(dict):
+    def __init__(__self__, *,
+                 id: _builtins.str):
+        """
+        :param _builtins.str id: The ID of the workspace alert.
+        """
+        pulumi.set(__self__, "id", id)
+
+    @_builtins.property
+    @pulumi.getter
+    def id(self) -> _builtins.str:
+        """
+        The ID of the workspace alert.
+        """
+        return pulumi.get(self, "id")
+
+
+@pulumi.output_type
+class GetNgwafAlertWebhookIntegrationWebhookAlertResult(dict):
+    def __init__(__self__, *,
+                 id: _builtins.str):
+        """
+        :param _builtins.str id: The ID of the workspace alert.
+        """
+        pulumi.set(__self__, "id", id)
+
+    @_builtins.property
+    @pulumi.getter
+    def id(self) -> _builtins.str:
+        """
+        The ID of the workspace alert.
+        """
+        return pulumi.get(self, "id")
+
+
+@pulumi.output_type
+class GetNgwafRedactionsRedactionResult(dict):
+    def __init__(__self__, *,
+                 field: _builtins.str,
+                 id: _builtins.str,
+                 type: _builtins.str):
+        """
+        :param _builtins.str field: The name of the field that is being redacted.
+        :param _builtins.str id: The ID of the redaction.
+        :param _builtins.str type: The type of field being redacted. One of `request_parameter`, `request_header`, or `response_header`.
+        """
+        pulumi.set(__self__, "field", field)
+        pulumi.set(__self__, "id", id)
+        pulumi.set(__self__, "type", type)
+
+    @_builtins.property
+    @pulumi.getter
+    def field(self) -> _builtins.str:
+        """
+        The name of the field that is being redacted.
+        """
+        return pulumi.get(self, "field")
+
+    @_builtins.property
+    @pulumi.getter
+    def id(self) -> _builtins.str:
+        """
+        The ID of the redaction.
+        """
+        return pulumi.get(self, "id")
+
+    @_builtins.property
+    @pulumi.getter
+    def type(self) -> _builtins.str:
+        """
+        The type of field being redacted. One of `request_parameter`, `request_header`, or `response_header`.
+        """
+        return pulumi.get(self, "type")
+
+
+@pulumi.output_type
+class GetNgwafThresholdsThresholdResult(dict):
+    def __init__(__self__, *,
+                 id: _builtins.str):
+        """
+        :param _builtins.str id: The ID of the threshold.
+        """
+        pulumi.set(__self__, "id", id)
+
+    @_builtins.property
+    @pulumi.getter
+    def id(self) -> _builtins.str:
+        """
+        The ID of the threshold.
+        """
+        return pulumi.get(self, "id")
+
+
+@pulumi.output_type
+class GetNgwafVirtualPatchesVirtualPatchResult(dict):
+    def __init__(__self__, *,
+                 enabled: _builtins.bool,
+                 id: _builtins.str,
+                 mode: _builtins.str):
+        """
+        :param _builtins.bool enabled: Whether the virtual patch is enabled or disabled.
+        :param _builtins.str id: The ID of the virtual patch.
+        :param _builtins.str mode: Action to take when a signal for the virtual patch is detected. One of `log` or `block`.
+        """
+        pulumi.set(__self__, "enabled", enabled)
+        pulumi.set(__self__, "id", id)
+        pulumi.set(__self__, "mode", mode)
+
+    @_builtins.property
+    @pulumi.getter
+    def enabled(self) -> _builtins.bool:
+        """
+        Whether the virtual patch is enabled or disabled.
+        """
+        return pulumi.get(self, "enabled")
+
+    @_builtins.property
+    @pulumi.getter
+    def id(self) -> _builtins.str:
+        """
+        The ID of the virtual patch.
+        """
+        return pulumi.get(self, "id")
+
+    @_builtins.property
+    @pulumi.getter
+    def mode(self) -> _builtins.str:
+        """
+        Action to take when a signal for the virtual patch is detected. One of `log` or `block`.
+        """
+        return pulumi.get(self, "mode")
+
+
+@pulumi.output_type
+class GetNgwafWorkspacesWorkspaceResult(dict):
+    def __init__(__self__, *,
+                 id: _builtins.str,
+                 name: _builtins.str):
+        """
+        :param _builtins.str id: The ID of the workspace.
+        :param _builtins.str name: The name of the workspace.
+        """
+        pulumi.set(__self__, "id", id)
+        pulumi.set(__self__, "name", name)
+
+    @_builtins.property
+    @pulumi.getter
+    def id(self) -> _builtins.str:
+        """
+        The ID of the workspace.
+        """
+        return pulumi.get(self, "id")
+
+    @_builtins.property
+    @pulumi.getter
+    def name(self) -> _builtins.str:
+        """
+        The name of the workspace.
         """
         return pulumi.get(self, "name")
 
