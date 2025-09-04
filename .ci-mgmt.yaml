@@ -1,5 +1,5 @@
 provider: fastly
-major-version: 10
+major-version: 11
 env:
   FASTLY_API_KEY: ${{ secrets.FASTLY_API_KEY }}
 makeTemplate: bridged

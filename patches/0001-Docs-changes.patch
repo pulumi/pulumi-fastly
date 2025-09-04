@@ -5,7 +5,7 @@ Subject: [PATCH] Docs changes
 
 
 diff --git a/docs/resources/service_acl_entries.md b/docs/resources/service_acl_entries.md
-index 6a7ec82b..e02ba1ee 100644
+index e9a41674..80f57b8f 100644
 --- a/docs/resources/service_acl_entries.md
 +++ b/docs/resources/service_acl_entries.md
 @@ -10,12 +10,14 @@ description: |-
@@ -35,7 +35,7 @@ index 6a7ec82b..e02ba1ee 100644
  The following example demonstrates the use of dynamic nested blocks to create ACL entries.
  
 diff --git a/docs/resources/service_dictionary_items.md b/docs/resources/service_dictionary_items.md
-index 7108ea59..ddf45bc1 100644
+index 3dc0ed41..9821a0a1 100644
 --- a/docs/resources/service_dictionary_items.md
 +++ b/docs/resources/service_dictionary_items.md
 @@ -10,6 +10,8 @@ description: |-
@@ -78,7 +78,7 @@ index 7108ea59..ddf45bc1 100644
  ```terraform
  // Local variables used when formatting values for the "My Project Dictionary" example
 diff --git a/docs/resources/service_dynamic_snippet_content.md b/docs/resources/service_dynamic_snippet_content.md
-index 05199568..9f82f636 100644
+index c62a1e56..0fc35c36 100644
 --- a/docs/resources/service_dynamic_snippet_content.md
 +++ b/docs/resources/service_dynamic_snippet_content.md
 @@ -13,10 +13,12 @@ Defines content that represents blocks of VCL logic that is inserted into your s

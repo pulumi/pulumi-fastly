@@ -79,6 +79,145 @@
             "fastly_kvstore": {
                 "current": "fastly:index/kvstore:Kvstore"
             },
+            "fastly_ngwaf_account_list": {
+                "current": "fastly:index/ngwafAccountList:NgwafAccountList",
+                "fields": {
+                    "applies_to": {
+                        "maxItemsOne": false
+                    },
+                    "entries": {
+                        "maxItemsOne": false
+                    }
+                }
+            },
+            "fastly_ngwaf_account_rule": {
+                "current": "fastly:index/ngwafAccountRule:NgwafAccountRule",
+                "fields": {
+                    "action": {
+                        "maxItemsOne": false
+                    },
+                    "applies_to": {
+                        "maxItemsOne": false
+                    },
+                    "condition": {
+                        "maxItemsOne": false
+                    },
+                    "group_condition": {
+                        "maxItemsOne": false,
+                        "elem": {
+                            "fields": {
+                                "condition": {
+                                    "maxItemsOne": false
+                                }
+                            }
+                        }
+                    },
+                    "rate_limit": {
+                        "maxItemsOne": true,
+                        "elem": {
+                            "fields": {
+                                "client_identifiers": {
+                                    "maxItemsOne": false
+                                }
+                            }
+                        }
+                    }
+                }
+            },
+            "fastly_ngwaf_account_signal": {
+                "current": "fastly:index/ngwafAccountSignal:NgwafAccountSignal",
+                "fields": {
+                    "applies_to": {
+                        "maxItemsOne": false
+                    }
+                }
+            },
+            "fastly_ngwaf_alert_datadog_integration": {
+                "current": "fastly:index/ngwafAlertDatadogIntegration:NgwafAlertDatadogIntegration"
+            },
+            "fastly_ngwaf_alert_jira_integration": {
+                "current": "fastly:index/ngwafAlertJiraIntegration:NgwafAlertJiraIntegration"
+            },
+            "fastly_ngwaf_alert_mailing_list_integration": {
+                "current": "fastly:index/ngwafAlertMailingListIntegration:NgwafAlertMailingListIntegration"
+            },
+            "fastly_ngwaf_alert_microsoft_teams_integration": {
+                "current": "fastly:index/ngwafAlertMicrosoftTeamsIntegration:NgwafAlertMicrosoftTeamsIntegration"
+            },
+            "fastly_ngwaf_alert_opsgenie_integration": {
+                "current": "fastly:index/ngwafAlertOpsgenieIntegration:NgwafAlertOpsgenieIntegration"
+            },
+            "fastly_ngwaf_alert_pagerduty_integration": {
+                "current": "fastly:index/ngwafAlertPagerdutyIntegration:NgwafAlertPagerdutyIntegration"
+            },
+            "fastly_ngwaf_alert_slack_integration": {
+                "current": "fastly:index/ngwafAlertSlackIntegration:NgwafAlertSlackIntegration"
+            },
+            "fastly_ngwaf_alert_webhook_integration": {
+                "current": "fastly:index/ngwafAlertWebhookIntegration:NgwafAlertWebhookIntegration"
+            },
+            "fastly_ngwaf_redaction": {
+                "current": "fastly:index/ngwafRedaction:NgwafRedaction"
+            },
+            "fastly_ngwaf_thresholds": {
+                "current": "fastly:index/ngwafThresholds:NgwafThresholds"
+            },
+            "fastly_ngwaf_virtual_patches": {
+                "current": "fastly:index/ngwafVirtualPatches:NgwafVirtualPatches"
+            },
+            "fastly_ngwaf_workspace": {
+                "current": "fastly:index/ngwafWorkspace:NgwafWorkspace",
+                "fields": {
+                    "attack_signal_thresholds": {
+                        "maxItemsOne": true
+                    },
+                    "client_ip_headers": {
+                        "maxItemsOne": false
+                    }
+                }
+            },
+            "fastly_ngwaf_workspace_list": {
+                "current": "fastly:index/ngwafWorkspaceList:NgwafWorkspaceList",
+                "fields": {
+                    "entries": {
+                        "maxItemsOne": false
+                    }
+                }
+            },
+            "fastly_ngwaf_workspace_rule": {
+                "current": "fastly:index/ngwafWorkspaceRule:NgwafWorkspaceRule",
+                "fields": {
+                    "action": {
+                        "maxItemsOne": false
+                    },
+                    "condition": {
+                        "maxItemsOne": false
+                    },
+                    "group_condition": {
+                        "maxItemsOne": false,
+                        "elem": {
+                            "fields": {
+                                "condition": {
+                                    "maxItemsOne": false
+                                }
+                            }
+                        }
+                    },
+                    "rate_limit": {
+                        "maxItemsOne": true,
+                        "elem": {
+                            "fields": {
+                                "client_identifiers": {
+                                    "maxItemsOne": false
+                                }
+                            }
+                        }
+                    }
+                }
+            },
+            "fastly_ngwaf_workspace_signal": {
+                "current": "fastly:index/ngwafWorkspaceSignal:NgwafWorkspaceSignal"
+            },
             "fastly_object_storage_access_keys": {
                 "current": "fastly:index/objectStorageAccessKeys:ObjectStorageAccessKeys",
                 "fields": {
@@ -509,6 +648,102 @@
                 "current": "fastly:index/getKvstores:getKvstores",
                 "fields": {
                     "stores": {
+                        "maxItemsOne": false
+                    }
+                }
+            },
+            "fastly_ngwaf_alert_datadog_integration": {
+                "current": "fastly:index/getNgwafAlertDatadogIntegration:getNgwafAlertDatadogIntegration",
+                "fields": {
+                    "datadog_alerts": {
+                        "maxItemsOne": false
+                    }
+                }
+            },
+            "fastly_ngwaf_alert_jira_integration": {
+                "current": "fastly:index/getNgwafAlertJiraIntegration:getNgwafAlertJiraIntegration",
+                "fields": {
+                    "jira_alerts": {
+                        "maxItemsOne": false
+                    }
+                }
+            },
+            "fastly_ngwaf_alert_mailing_list_integration": {
+                "current": "fastly:index/getNgwafAlertMailingListIntegration:getNgwafAlertMailingListIntegration",
+                "fields": {
+                    "mailing_list_alerts": {
+                        "maxItemsOne": false
+                    }
+                }
+            },
+            "fastly_ngwaf_alert_microsoft_teams_integration": {
+                "current": "fastly:index/getNgwafAlertMicrosoftTeamsIntegration:getNgwafAlertMicrosoftTeamsIntegration",
+                "fields": {
+                    "microsoft_teams_alerts": {
+                        "maxItemsOne": false
+                    }
+                }
+            },
+            "fastly_ngwaf_alert_opsgenie_integration": {
+                "current": "fastly:index/getNgwafAlertOpsgenieIntegration:getNgwafAlertOpsgenieIntegration",
+                "fields": {
+                    "opsgenie_alerts": {
+                        "maxItemsOne": false
+                    }
+                }
+            },
+            "fastly_ngwaf_alert_pagerduty_integration": {
+                "current": "fastly:index/getNgwafAlertPagerdutyIntegration:getNgwafAlertPagerdutyIntegration",
+                "fields": {
+                    "pagerduty_alerts": {
+                        "maxItemsOne": false
+                    }
+                }
+            },
+            "fastly_ngwaf_alert_slack_integration": {
+                "current": "fastly:index/getNgwafAlertSlackIntegration:getNgwafAlertSlackIntegration",
+                "fields": {
+                    "slack_alerts": {
+                        "maxItemsOne": false
+                    }
+                }
+            },
+            "fastly_ngwaf_alert_webhook_integration": {
+                "current": "fastly:index/getNgwafAlertWebhookIntegration:getNgwafAlertWebhookIntegration",
+                "fields": {
+                    "webhook_alerts": {
+                        "maxItemsOne": false
+                    }
+                }
+            },
+            "fastly_ngwaf_redactions": {
+                "current": "fastly:index/getNgwafRedactions:getNgwafRedactions",
+                "fields": {
+                    "redactions": {
+                        "maxItemsOne": false
+                    }
+                }
+            },
+            "fastly_ngwaf_thresholds": {
+                "current": "fastly:index/getNgwafThresholds:getNgwafThresholds",
+                "fields": {
+                    "thresholds": {
+                        "maxItemsOne": false
+                    }
+                }
+            },
+            "fastly_ngwaf_virtual_patches": {
+                "current": "fastly:index/getNgwafVirtualPatches:getNgwafVirtualPatches",
+                "fields": {
+                    "virtual_patches": {
+                        "maxItemsOne": false
+                    }
+                }
+            },
+            "fastly_ngwaf_workspaces": {
+                "current": "fastly:index/getNgwafWorkspaces:getNgwafWorkspaces",
+                "fields": {
+                    "workspaces": {
                         "maxItemsOne": false
                     }
                 }

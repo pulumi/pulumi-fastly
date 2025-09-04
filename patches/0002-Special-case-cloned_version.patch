@@ -5,7 +5,7 @@ Subject: [PATCH] Special case cloned_version
 
 
 diff --git a/fastly/base_fastly_service.go b/fastly/base_fastly_service.go
-index 31978a02..dd5bd859 100644
+index c4e69600..19aec43a 100644
 --- a/fastly/base_fastly_service.go
 +++ b/fastly/base_fastly_service.go
 @@ -346,11 +346,52 @@ func resourceServiceUpdate(ctx context.Context, d *schema.ResourceData, meta any
@@ -70,7 +70,7 @@ index 31978a02..dd5bd859 100644
 +			latestVersion = clonedVersion
  
  			log.Printf("[DEBUG] Getting current state of version (%d)", latestVersion)
- 			existingVersion, err := conn.GetVersion(&gofastly.GetVersionInput{
+ 			existingVersion, err := conn.GetVersion(gofastly.NewContextForResourceID(ctx, d.Id()), &gofastly.GetVersionInput{
 @@ -508,10 +549,11 @@ func resourceServiceUpdate(ctx context.Context, d *schema.ResourceData, meta any
  				return diag.FromErr(err)
  			}
@@ -84,4 +84,4 @@ index 31978a02..dd5bd859 100644
 +	latestVersion := clonedVersion
  	if shouldActivate && versionNotYetActivated {
  		log.Printf("[DEBUG] Activating Fastly Service (%s), Version (%v)", d.Id(), latestVersion)
- 		_, err := conn.ActivateVersion(&gofastly.ActivateVersionInput{
+ 		_, err := conn.ActivateVersion(gofastly.NewContextForResourceID(ctx, d.Id()), &gofastly.ActivateVersionInput{
