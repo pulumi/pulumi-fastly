@@ -162,6 +162,110 @@ export interface GetKvstoresStore {
     name: string;
 }
 
+export interface GetNgwafAlertDatadogIntegrationDatadogAlert {
+    /**
+     * The ID of the workspace alert.
+     */
+    id: string;
+}
+
+export interface GetNgwafAlertJiraIntegrationJiraAlert {
+    /**
+     * The ID of the workspace alert.
+     */
+    id: string;
+}
+
+export interface GetNgwafAlertMailingListIntegrationMailingListAlert {
+    /**
+     * The ID of the workspace alert.
+     */
+    id: string;
+}
+
+export interface GetNgwafAlertMicrosoftTeamsIntegrationMicrosoftTeamsAlert {
+    /**
+     * The ID of the workspace alert.
+     */
+    id: string;
+}
+
+export interface GetNgwafAlertOpsgenieIntegrationOpsgenieAlert {
+    /**
+     * The ID of the workspace alert.
+     */
+    id: string;
+}
+
+export interface GetNgwafAlertPagerdutyIntegrationPagerdutyAlert {
+    /**
+     * The ID of the workspace alert.
+     */
+    id: string;
+}
+
+export interface GetNgwafAlertSlackIntegrationSlackAlert {
+    /**
+     * The ID of the workspace alert.
+     */
+    id: string;
+}
+
+export interface GetNgwafAlertWebhookIntegrationWebhookAlert {
+    /**
+     * The ID of the workspace alert.
+     */
+    id: string;
+}
+
+export interface GetNgwafRedactionsRedaction {
+    /**
+     * The name of the field that is being redacted.
+     */
+    field: string;
+    /**
+     * The ID of the redaction.
+     */
+    id: string;
+    /**
+     * The type of field being redacted. One of `requestParameter`, `requestHeader`, or `responseHeader`.
+     */
+    type: string;
+}
+
+export interface GetNgwafThresholdsThreshold {
+    /**
+     * The ID of the threshold.
+     */
+    id: string;
+}
+
+export interface GetNgwafVirtualPatchesVirtualPatch {
+    /**
+     * Whether the virtual patch is enabled or disabled.
+     */
+    enabled: boolean;
+    /**
+     * The ID of the virtual patch.
+     */
+    id: string;
+    /**
+     * Action to take when a signal for the virtual patch is detected. One of `log` or `block`.
+     */
+    mode: string;
+}
+
+export interface GetNgwafWorkspacesWorkspace {
+    /**
+     * The ID of the workspace.
+     */
+    id: string;
+    /**
+     * The name of the workspace.
+     */
+    name: string;
+}
+
 export interface GetSecretstoresStore {
     /**
      * Alphanumeric string identifying the Secrets Store.
@@ -242,6 +346,213 @@ export interface GetVclSnippetsVclSnippet {
     priority: number;
     /**
      * The location in generated VCL where the snippet should be placed.
+     */
+    type: string;
+}
+
+export interface NgwafAccountRuleAction {
+    /**
+     * Signal name to exclude (used when `type = excludeSignal`).
+     */
+    signal?: string;
+    /**
+     * The action type, e.g. `block`, `redirect`, `excludeSignal`.
+     */
+    type: string;
+}
+
+export interface NgwafAccountRuleCondition {
+    /**
+     * Field to inspect (e.g., `ip`, `path`).
+     */
+    field: string;
+    /**
+     * Operator to apply (e.g., `equals`, `contains`).
+     */
+    operator: string;
+    /**
+     * The value to test the field against.
+     */
+    value: string;
+}
+
+export interface NgwafAccountRuleGroupCondition {
+    /**
+     * A list of nested conditions in this group.
+     */
+    conditions: outputs.NgwafAccountRuleGroupConditionCondition[];
+    /**
+     * Logical operator for the group. Accepted values are `any` and `all`.
+     */
+    groupOperator: string;
+}
+
+export interface NgwafAccountRuleGroupConditionCondition {
+    /**
+     * Field to inspect (e.g., `ip`, `path`).
+     */
+    field: string;
+    /**
+     * Operator to apply (e.g., `equals`, `contains`).
+     */
+    operator: string;
+    /**
+     * The value to test the field against.
+     */
+    value: string;
+}
+
+export interface NgwafAccountRuleRateLimit {
+    /**
+     * List of client identifiers used for rate limiting. Can only be length 1 or 2.
+     */
+    clientIdentifiers: outputs.NgwafAccountRuleRateLimitClientIdentifier[];
+    /**
+     * Duration in seconds for the rate limit.
+     */
+    duration: number;
+    /**
+     * Time interval for the rate limit in seconds. Accepted values are 60, 600, and 3600.
+     */
+    interval: number;
+    /**
+     * Reference ID of the custom signal this rule uses to count requests.
+     */
+    signal: string;
+    /**
+     * Rate limit threshold. Minimum 1 and maximum 10,000.
+     */
+    threshold: number;
+}
+
+export interface NgwafAccountRuleRateLimitClientIdentifier {
+    /**
+     * Key for the Client Identifier.
+     */
+    key?: string;
+    /**
+     * Name for the Client Identifier.
+     */
+    name?: string;
+    /**
+     * Type of the Client Identifier.
+     */
+    type: string;
+}
+
+export interface NgwafWorkspaceAttackSignalThresholds {
+    /**
+     * Ignore thresholds and block immediately when at least one attack signal is detected. Default value `false`.
+     */
+    immediate?: boolean;
+    /**
+     * The one-hour interval threshold. Minimum 1 and maximum 10,000. Default value 100.
+     */
+    oneHour?: number;
+    /**
+     * The one-minute interval threshold. Minimum 1 and maximum 10,000. Default value 1.
+     */
+    oneMinute?: number;
+    /**
+     * The ten-minute interval threshold. Minimum 1 and maximum 10,000. Default value 60.
+     */
+    tenMinutes?: number;
+}
+
+export interface NgwafWorkspaceRuleAction {
+    /**
+     * Redirect target (used when `type = redirect`).
+     */
+    redirectUrl?: string;
+    /**
+     * Response code used with redirect.
+     */
+    responseCode?: number;
+    /**
+     * Signal name to exclude (used when `type = excludeSignal`).
+     */
+    signal?: string;
+    /**
+     * The action type, e.g. `block`, `redirect`, `excludeSignal`.
+     */
+    type: string;
+}
+
+export interface NgwafWorkspaceRuleCondition {
+    /**
+     * Field to inspect (e.g., `ip`, `path`).
+     */
+    field: string;
+    /**
+     * Operator to apply (e.g., `equals`, `contains`).
+     */
+    operator: string;
+    /**
+     * The value to test the field against.
+     */
+    value: string;
+}
+
+export interface NgwafWorkspaceRuleGroupCondition {
+    /**
+     * A list of nested conditions in this group.
+     */
+    conditions: outputs.NgwafWorkspaceRuleGroupConditionCondition[];
+    /**
+     * Logical operator for the group. Accepted values are `any` and `all`.
+     */
+    groupOperator: string;
+}
+
+export interface NgwafWorkspaceRuleGroupConditionCondition {
+    /**
+     * Field to inspect (e.g., `ip`, `path`).
+     */
+    field: string;
+    /**
+     * Operator to apply (e.g., `equals`, `contains`).
+     */
+    operator: string;
+    /**
+     * The value to test the field against.
+     */
+    value: string;
+}
+
+export interface NgwafWorkspaceRuleRateLimit {
+    /**
+     * List of client identifiers used for rate limiting. Can only be length 1 or 2.
+     */
+    clientIdentifiers: outputs.NgwafWorkspaceRuleRateLimitClientIdentifier[];
+    /**
+     * Duration in seconds for the rate limit.
+     */
+    duration: number;
+    /**
+     * Time interval for the rate limit in seconds. Accepted values are 60, 600, and 3600.
+     */
+    interval: number;
+    /**
+     * Reference ID of the custom signal this rule uses to count requests.
+     */
+    signal: string;
+    /**
+     * Rate limit threshold. Minimum 1 and maximum 10,000.
+     */
+    threshold: number;
+}
+
+export interface NgwafWorkspaceRuleRateLimitClientIdentifier {
+    /**
+     * Key for the Client Identifier.
+     */
+    key?: string;
+    /**
+     * Name for the Client Identifier.
+     */
+    name?: string;
+    /**
+     * Type of the Client Identifier.
      */
     type: string;
 }
@@ -1555,7 +1866,7 @@ export interface ServiceComputeProductEnablementDdosProtection {
      */
     enabled: boolean;
     /**
-     * Operation mode
+     * Operation mode. Can be either `off`, `log`, or `block`.
      */
     mode: string;
 }
@@ -3584,7 +3895,7 @@ export interface ServiceVclProductEnablementDdosProtection {
      */
     enabled: boolean;
     /**
-     * Operation mode
+     * Operation mode. Can be either `off`, `log`, or `block`.
      */
     mode: string;
 }

@@ -29,6 +29,32 @@ __all__ = [
     'CustomDashboardDashboardItemVisualizationArgsDict',
     'CustomDashboardDashboardItemVisualizationConfigArgs',
     'CustomDashboardDashboardItemVisualizationConfigArgsDict',
+    'NgwafAccountRuleActionArgs',
+    'NgwafAccountRuleActionArgsDict',
+    'NgwafAccountRuleConditionArgs',
+    'NgwafAccountRuleConditionArgsDict',
+    'NgwafAccountRuleGroupConditionArgs',
+    'NgwafAccountRuleGroupConditionArgsDict',
+    'NgwafAccountRuleGroupConditionConditionArgs',
+    'NgwafAccountRuleGroupConditionConditionArgsDict',
+    'NgwafAccountRuleRateLimitArgs',
+    'NgwafAccountRuleRateLimitArgsDict',
+    'NgwafAccountRuleRateLimitClientIdentifierArgs',
+    'NgwafAccountRuleRateLimitClientIdentifierArgsDict',
+    'NgwafWorkspaceAttackSignalThresholdsArgs',
+    'NgwafWorkspaceAttackSignalThresholdsArgsDict',
+    'NgwafWorkspaceRuleActionArgs',
+    'NgwafWorkspaceRuleActionArgsDict',
+    'NgwafWorkspaceRuleConditionArgs',
+    'NgwafWorkspaceRuleConditionArgsDict',
+    'NgwafWorkspaceRuleGroupConditionArgs',
+    'NgwafWorkspaceRuleGroupConditionArgsDict',
+    'NgwafWorkspaceRuleGroupConditionConditionArgs',
+    'NgwafWorkspaceRuleGroupConditionConditionArgsDict',
+    'NgwafWorkspaceRuleRateLimitArgs',
+    'NgwafWorkspaceRuleRateLimitArgsDict',
+    'NgwafWorkspaceRuleRateLimitClientIdentifierArgs',
+    'NgwafWorkspaceRuleRateLimitClientIdentifierArgsDict',
     'ServiceACLEntriesEntryArgs',
     'ServiceACLEntriesEntryArgsDict',
     'ServiceComputeBackendArgs',
@@ -677,6 +703,972 @@ class CustomDashboardDashboardItemVisualizationConfigArgs:
     @format.setter
     def format(self, value: Optional[pulumi.Input[_builtins.str]]):
         pulumi.set(self, "format", value)
+
+
+if not MYPY:
+    class NgwafAccountRuleActionArgsDict(TypedDict):
+        type: pulumi.Input[_builtins.str]
+        """
+        The action type, e.g. `block`, `redirect`, `exclude_signal`.
+        """
+        signal: NotRequired[pulumi.Input[_builtins.str]]
+        """
+        Signal name to exclude (used when `type = exclude_signal`).
+        """
+elif False:
+    NgwafAccountRuleActionArgsDict: TypeAlias = Mapping[str, Any]
+
+@pulumi.input_type
+class NgwafAccountRuleActionArgs:
+    def __init__(__self__, *,
+                 type: pulumi.Input[_builtins.str],
+                 signal: Optional[pulumi.Input[_builtins.str]] = None):
+        """
+        :param pulumi.Input[_builtins.str] type: The action type, e.g. `block`, `redirect`, `exclude_signal`.
+        :param pulumi.Input[_builtins.str] signal: Signal name to exclude (used when `type = exclude_signal`).
+        """
+        pulumi.set(__self__, "type", type)
+        if signal is not None:
+            pulumi.set(__self__, "signal", signal)
+
+    @_builtins.property
+    @pulumi.getter
+    def type(self) -> pulumi.Input[_builtins.str]:
+        """
+        The action type, e.g. `block`, `redirect`, `exclude_signal`.
+        """
+        return pulumi.get(self, "type")
+
+    @type.setter
+    def type(self, value: pulumi.Input[_builtins.str]):
+        pulumi.set(self, "type", value)
+
+    @_builtins.property
+    @pulumi.getter
+    def signal(self) -> Optional[pulumi.Input[_builtins.str]]:
+        """
+        Signal name to exclude (used when `type = exclude_signal`).
+        """
+        return pulumi.get(self, "signal")
+
+    @signal.setter
+    def signal(self, value: Optional[pulumi.Input[_builtins.str]]):
+        pulumi.set(self, "signal", value)
+
+
+if not MYPY:
+    class NgwafAccountRuleConditionArgsDict(TypedDict):
+        field: pulumi.Input[_builtins.str]
+        """
+        Field to inspect (e.g., `ip`, `path`).
+        """
+        operator: pulumi.Input[_builtins.str]
+        """
+        Operator to apply (e.g., `equals`, `contains`).
+        """
+        value: pulumi.Input[_builtins.str]
+        """
+        The value to test the field against.
+        """
+elif False:
+    NgwafAccountRuleConditionArgsDict: TypeAlias = Mapping[str, Any]
+
+@pulumi.input_type
+class NgwafAccountRuleConditionArgs:
+    def __init__(__self__, *,
+                 field: pulumi.Input[_builtins.str],
+                 operator: pulumi.Input[_builtins.str],
+                 value: pulumi.Input[_builtins.str]):
+        """
+        :param pulumi.Input[_builtins.str] field: Field to inspect (e.g., `ip`, `path`).
+        :param pulumi.Input[_builtins.str] operator: Operator to apply (e.g., `equals`, `contains`).
+        :param pulumi.Input[_builtins.str] value: The value to test the field against.
+        """
+        pulumi.set(__self__, "field", field)
+        pulumi.set(__self__, "operator", operator)
+        pulumi.set(__self__, "value", value)
+
+    @_builtins.property
+    @pulumi.getter
+    def field(self) -> pulumi.Input[_builtins.str]:
+        """
+        Field to inspect (e.g., `ip`, `path`).
+        """
+        return pulumi.get(self, "field")
+
+    @field.setter
+    def field(self, value: pulumi.Input[_builtins.str]):
+        pulumi.set(self, "field", value)
+
+    @_builtins.property
+    @pulumi.getter
+    def operator(self) -> pulumi.Input[_builtins.str]:
+        """
+        Operator to apply (e.g., `equals`, `contains`).
+        """
+        return pulumi.get(self, "operator")
+
+    @operator.setter
+    def operator(self, value: pulumi.Input[_builtins.str]):
+        pulumi.set(self, "operator", value)
+
+    @_builtins.property
+    @pulumi.getter
+    def value(self) -> pulumi.Input[_builtins.str]:
+        """
+        The value to test the field against.
+        """
+        return pulumi.get(self, "value")
+
+    @value.setter
+    def value(self, value: pulumi.Input[_builtins.str]):
+        pulumi.set(self, "value", value)
+
+
+if not MYPY:
+    class NgwafAccountRuleGroupConditionArgsDict(TypedDict):
+        conditions: pulumi.Input[Sequence[pulumi.Input['NgwafAccountRuleGroupConditionConditionArgsDict']]]
+        """
+        A list of nested conditions in this group.
+        """
+        group_operator: pulumi.Input[_builtins.str]
+        """
+        Logical operator for the group. Accepted values are `any` and `all`.
+        """
+elif False:
+    NgwafAccountRuleGroupConditionArgsDict: TypeAlias = Mapping[str, Any]
+
+@pulumi.input_type
+class NgwafAccountRuleGroupConditionArgs:
+    def __init__(__self__, *,
+                 conditions: pulumi.Input[Sequence[pulumi.Input['NgwafAccountRuleGroupConditionConditionArgs']]],
+                 group_operator: pulumi.Input[_builtins.str]):
+        """
+        :param pulumi.Input[Sequence[pulumi.Input['NgwafAccountRuleGroupConditionConditionArgs']]] conditions: A list of nested conditions in this group.
+        :param pulumi.Input[_builtins.str] group_operator: Logical operator for the group. Accepted values are `any` and `all`.
+        """
+        pulumi.set(__self__, "conditions", conditions)
+        pulumi.set(__self__, "group_operator", group_operator)
+
+    @_builtins.property
+    @pulumi.getter
+    def conditions(self) -> pulumi.Input[Sequence[pulumi.Input['NgwafAccountRuleGroupConditionConditionArgs']]]:
+        """
+        A list of nested conditions in this group.
+        """
+        return pulumi.get(self, "conditions")
+
+    @conditions.setter
+    def conditions(self, value: pulumi.Input[Sequence[pulumi.Input['NgwafAccountRuleGroupConditionConditionArgs']]]):
+        pulumi.set(self, "conditions", value)
+
+    @_builtins.property
+    @pulumi.getter(name="groupOperator")
+    def group_operator(self) -> pulumi.Input[_builtins.str]:
+        """
+        Logical operator for the group. Accepted values are `any` and `all`.
+        """
+        return pulumi.get(self, "group_operator")
+
+    @group_operator.setter
+    def group_operator(self, value: pulumi.Input[_builtins.str]):
+        pulumi.set(self, "group_operator", value)
+
+
+if not MYPY:
+    class NgwafAccountRuleGroupConditionConditionArgsDict(TypedDict):
+        field: pulumi.Input[_builtins.str]
+        """
+        Field to inspect (e.g., `ip`, `path`).
+        """
+        operator: pulumi.Input[_builtins.str]
+        """
+        Operator to apply (e.g., `equals`, `contains`).
+        """
+        value: pulumi.Input[_builtins.str]
+        """
+        The value to test the field against.
+        """
+elif False:
+    NgwafAccountRuleGroupConditionConditionArgsDict: TypeAlias = Mapping[str, Any]
+
+@pulumi.input_type
+class NgwafAccountRuleGroupConditionConditionArgs:
+    def __init__(__self__, *,
+                 field: pulumi.Input[_builtins.str],
+                 operator: pulumi.Input[_builtins.str],
+                 value: pulumi.Input[_builtins.str]):
+        """
+        :param pulumi.Input[_builtins.str] field: Field to inspect (e.g., `ip`, `path`).
+        :param pulumi.Input[_builtins.str] operator: Operator to apply (e.g., `equals`, `contains`).
+        :param pulumi.Input[_builtins.str] value: The value to test the field against.
+        """
+        pulumi.set(__self__, "field", field)
+        pulumi.set(__self__, "operator", operator)
+        pulumi.set(__self__, "value", value)
+
+    @_builtins.property
+    @pulumi.getter
+    def field(self) -> pulumi.Input[_builtins.str]:
+        """
+        Field to inspect (e.g., `ip`, `path`).
+        """
+        return pulumi.get(self, "field")
+
+    @field.setter
+    def field(self, value: pulumi.Input[_builtins.str]):
+        pulumi.set(self, "field", value)
+
+    @_builtins.property
+    @pulumi.getter
+    def operator(self) -> pulumi.Input[_builtins.str]:
+        """
+        Operator to apply (e.g., `equals`, `contains`).
+        """
+        return pulumi.get(self, "operator")
+
+    @operator.setter
+    def operator(self, value: pulumi.Input[_builtins.str]):
+        pulumi.set(self, "operator", value)
+
+    @_builtins.property
+    @pulumi.getter
+    def value(self) -> pulumi.Input[_builtins.str]:
+        """
+        The value to test the field against.
+        """
+        return pulumi.get(self, "value")
+
+    @value.setter
+    def value(self, value: pulumi.Input[_builtins.str]):
+        pulumi.set(self, "value", value)
+
+
+if not MYPY:
+    class NgwafAccountRuleRateLimitArgsDict(TypedDict):
+        client_identifiers: pulumi.Input[Sequence[pulumi.Input['NgwafAccountRuleRateLimitClientIdentifierArgsDict']]]
+        """
+        List of client identifiers used for rate limiting. Can only be length 1 or 2.
+        """
+        duration: pulumi.Input[_builtins.int]
+        """
+        Duration in seconds for the rate limit.
+        """
+        interval: pulumi.Input[_builtins.int]
+        """
+        Time interval for the rate limit in seconds. Accepted values are 60, 600, and 3600.
+        """
+        signal: pulumi.Input[_builtins.str]
+        """
+        Reference ID of the custom signal this rule uses to count requests.
+        """
+        threshold: pulumi.Input[_builtins.int]
+        """
+        Rate limit threshold. Minimum 1 and maximum 10,000.
+        """
+elif False:
+    NgwafAccountRuleRateLimitArgsDict: TypeAlias = Mapping[str, Any]
+
+@pulumi.input_type
+class NgwafAccountRuleRateLimitArgs:
+    def __init__(__self__, *,
+                 client_identifiers: pulumi.Input[Sequence[pulumi.Input['NgwafAccountRuleRateLimitClientIdentifierArgs']]],
+                 duration: pulumi.Input[_builtins.int],
+                 interval: pulumi.Input[_builtins.int],
+                 signal: pulumi.Input[_builtins.str],
+                 threshold: pulumi.Input[_builtins.int]):
+        """
+        :param pulumi.Input[Sequence[pulumi.Input['NgwafAccountRuleRateLimitClientIdentifierArgs']]] client_identifiers: List of client identifiers used for rate limiting. Can only be length 1 or 2.
+        :param pulumi.Input[_builtins.int] duration: Duration in seconds for the rate limit.
+        :param pulumi.Input[_builtins.int] interval: Time interval for the rate limit in seconds. Accepted values are 60, 600, and 3600.
+        :param pulumi.Input[_builtins.str] signal: Reference ID of the custom signal this rule uses to count requests.
+        :param pulumi.Input[_builtins.int] threshold: Rate limit threshold. Minimum 1 and maximum 10,000.
+        """
+        pulumi.set(__self__, "client_identifiers", client_identifiers)
+        pulumi.set(__self__, "duration", duration)
+        pulumi.set(__self__, "interval", interval)
+        pulumi.set(__self__, "signal", signal)
+        pulumi.set(__self__, "threshold", threshold)
+
+    @_builtins.property
+    @pulumi.getter(name="clientIdentifiers")
+    def client_identifiers(self) -> pulumi.Input[Sequence[pulumi.Input['NgwafAccountRuleRateLimitClientIdentifierArgs']]]:
+        """
+        List of client identifiers used for rate limiting. Can only be length 1 or 2.
+        """
+        return pulumi.get(self, "client_identifiers")
+
+    @client_identifiers.setter
+    def client_identifiers(self, value: pulumi.Input[Sequence[pulumi.Input['NgwafAccountRuleRateLimitClientIdentifierArgs']]]):
+        pulumi.set(self, "client_identifiers", value)
+
+    @_builtins.property
+    @pulumi.getter
+    def duration(self) -> pulumi.Input[_builtins.int]:
+        """
+        Duration in seconds for the rate limit.
+        """
+        return pulumi.get(self, "duration")
+
+    @duration.setter
+    def duration(self, value: pulumi.Input[_builtins.int]):
+        pulumi.set(self, "duration", value)
+
+    @_builtins.property
+    @pulumi.getter
+    def interval(self) -> pulumi.Input[_builtins.int]:
+        """
+        Time interval for the rate limit in seconds. Accepted values are 60, 600, and 3600.
+        """
+        return pulumi.get(self, "interval")
+
+    @interval.setter
+    def interval(self, value: pulumi.Input[_builtins.int]):
+        pulumi.set(self, "interval", value)
+
+    @_builtins.property
+    @pulumi.getter
+    def signal(self) -> pulumi.Input[_builtins.str]:
+        """
+        Reference ID of the custom signal this rule uses to count requests.
+        """
+        return pulumi.get(self, "signal")
+
+    @signal.setter
+    def signal(self, value: pulumi.Input[_builtins.str]):
+        pulumi.set(self, "signal", value)
+
+    @_builtins.property
+    @pulumi.getter
+    def threshold(self) -> pulumi.Input[_builtins.int]:
+        """
+        Rate limit threshold. Minimum 1 and maximum 10,000.
+        """
+        return pulumi.get(self, "threshold")
+
+    @threshold.setter
+    def threshold(self, value: pulumi.Input[_builtins.int]):
+        pulumi.set(self, "threshold", value)
+
+
+if not MYPY:
+    class NgwafAccountRuleRateLimitClientIdentifierArgsDict(TypedDict):
+        type: pulumi.Input[_builtins.str]
+        """
+        Type of the Client Identifier.
+        """
+        key: NotRequired[pulumi.Input[_builtins.str]]
+        """
+        Key for the Client Identifier.
+        """
+        name: NotRequired[pulumi.Input[_builtins.str]]
+        """
+        Name for the Client Identifier.
+        """
+elif False:
+    NgwafAccountRuleRateLimitClientIdentifierArgsDict: TypeAlias = Mapping[str, Any]
+
+@pulumi.input_type
+class NgwafAccountRuleRateLimitClientIdentifierArgs:
+    def __init__(__self__, *,
+                 type: pulumi.Input[_builtins.str],
+                 key: Optional[pulumi.Input[_builtins.str]] = None,
+                 name: Optional[pulumi.Input[_builtins.str]] = None):
+        """
+        :param pulumi.Input[_builtins.str] type: Type of the Client Identifier.
+        :param pulumi.Input[_builtins.str] key: Key for the Client Identifier.
+        :param pulumi.Input[_builtins.str] name: Name for the Client Identifier.
+        """
+        pulumi.set(__self__, "type", type)
+        if key is not None:
+            pulumi.set(__self__, "key", key)
+        if name is not None:
+            pulumi.set(__self__, "name", name)
+
+    @_builtins.property
+    @pulumi.getter
+    def type(self) -> pulumi.Input[_builtins.str]:
+        """
+        Type of the Client Identifier.
+        """
+        return pulumi.get(self, "type")
+
+    @type.setter
+    def type(self, value: pulumi.Input[_builtins.str]):
+        pulumi.set(self, "type", value)
+
+    @_builtins.property
+    @pulumi.getter
+    def key(self) -> Optional[pulumi.Input[_builtins.str]]:
+        """
+        Key for the Client Identifier.
+        """
+        return pulumi.get(self, "key")
+
+    @key.setter
+    def key(self, value: Optional[pulumi.Input[_builtins.str]]):
+        pulumi.set(self, "key", value)
+
+    @_builtins.property
+    @pulumi.getter
+    def name(self) -> Optional[pulumi.Input[_builtins.str]]:
+        """
+        Name for the Client Identifier.
+        """
+        return pulumi.get(self, "name")
+
+    @name.setter
+    def name(self, value: Optional[pulumi.Input[_builtins.str]]):
+        pulumi.set(self, "name", value)
+
+
+if not MYPY:
+    class NgwafWorkspaceAttackSignalThresholdsArgsDict(TypedDict):
+        immediate: NotRequired[pulumi.Input[_builtins.bool]]
+        """
+        Ignore thresholds and block immediately when at least one attack signal is detected. Default value `false`.
+        """
+        one_hour: NotRequired[pulumi.Input[_builtins.int]]
+        """
+        The one-hour interval threshold. Minimum 1 and maximum 10,000. Default value 100.
+        """
+        one_minute: NotRequired[pulumi.Input[_builtins.int]]
+        """
+        The one-minute interval threshold. Minimum 1 and maximum 10,000. Default value 1.
+        """
+        ten_minutes: NotRequired[pulumi.Input[_builtins.int]]
+        """
+        The ten-minute interval threshold. Minimum 1 and maximum 10,000. Default value 60.
+        """
+elif False:
+    NgwafWorkspaceAttackSignalThresholdsArgsDict: TypeAlias = Mapping[str, Any]
+
+@pulumi.input_type
+class NgwafWorkspaceAttackSignalThresholdsArgs:
+    def __init__(__self__, *,
+                 immediate: Optional[pulumi.Input[_builtins.bool]] = None,
+                 one_hour: Optional[pulumi.Input[_builtins.int]] = None,
+                 one_minute: Optional[pulumi.Input[_builtins.int]] = None,
+                 ten_minutes: Optional[pulumi.Input[_builtins.int]] = None):
+        """
+        :param pulumi.Input[_builtins.bool] immediate: Ignore thresholds and block immediately when at least one attack signal is detected. Default value `false`.
+        :param pulumi.Input[_builtins.int] one_hour: The one-hour interval threshold. Minimum 1 and maximum 10,000. Default value 100.
+        :param pulumi.Input[_builtins.int] one_minute: The one-minute interval threshold. Minimum 1 and maximum 10,000. Default value 1.
+        :param pulumi.Input[_builtins.int] ten_minutes: The ten-minute interval threshold. Minimum 1 and maximum 10,000. Default value 60.
+        """
+        if immediate is not None:
+            pulumi.set(__self__, "immediate", immediate)
+        if one_hour is not None:
+            pulumi.set(__self__, "one_hour", one_hour)
+        if one_minute is not None:
+            pulumi.set(__self__, "one_minute", one_minute)
+        if ten_minutes is not None:
+            pulumi.set(__self__, "ten_minutes", ten_minutes)
+
+    @_builtins.property
+    @pulumi.getter
+    def immediate(self) -> Optional[pulumi.Input[_builtins.bool]]:
+        """
+        Ignore thresholds and block immediately when at least one attack signal is detected. Default value `false`.
+        """
+        return pulumi.get(self, "immediate")
+
+    @immediate.setter
+    def immediate(self, value: Optional[pulumi.Input[_builtins.bool]]):
+        pulumi.set(self, "immediate", value)
+
+    @_builtins.property
+    @pulumi.getter(name="oneHour")
+    def one_hour(self) -> Optional[pulumi.Input[_builtins.int]]:
+        """
+        The one-hour interval threshold. Minimum 1 and maximum 10,000. Default value 100.
+        """
+        return pulumi.get(self, "one_hour")
+
+    @one_hour.setter
+    def one_hour(self, value: Optional[pulumi.Input[_builtins.int]]):
+        pulumi.set(self, "one_hour", value)
+
+    @_builtins.property
+    @pulumi.getter(name="oneMinute")
+    def one_minute(self) -> Optional[pulumi.Input[_builtins.int]]:
+        """
+        The one-minute interval threshold. Minimum 1 and maximum 10,000. Default value 1.
+        """
+        return pulumi.get(self, "one_minute")
+
+    @one_minute.setter
+    def one_minute(self, value: Optional[pulumi.Input[_builtins.int]]):
+        pulumi.set(self, "one_minute", value)
+
+    @_builtins.property
+    @pulumi.getter(name="tenMinutes")
+    def ten_minutes(self) -> Optional[pulumi.Input[_builtins.int]]:
+        """
+        The ten-minute interval threshold. Minimum 1 and maximum 10,000. Default value 60.
+        """
+        return pulumi.get(self, "ten_minutes")
+
+    @ten_minutes.setter
+    def ten_minutes(self, value: Optional[pulumi.Input[_builtins.int]]):
+        pulumi.set(self, "ten_minutes", value)
+
+
+if not MYPY:
+    class NgwafWorkspaceRuleActionArgsDict(TypedDict):
+        type: pulumi.Input[_builtins.str]
+        """
+        The action type, e.g. `block`, `redirect`, `exclude_signal`.
+        """
+        redirect_url: NotRequired[pulumi.Input[_builtins.str]]
+        """
+        Redirect target (used when `type = redirect`).
+        """
+        response_code: NotRequired[pulumi.Input[_builtins.int]]
+        """
+        Response code used with redirect.
+        """
+        signal: NotRequired[pulumi.Input[_builtins.str]]
+        """
+        Signal name to exclude (used when `type = exclude_signal`).
+        """
+elif False:
+    NgwafWorkspaceRuleActionArgsDict: TypeAlias = Mapping[str, Any]
+
+@pulumi.input_type
+class NgwafWorkspaceRuleActionArgs:
+    def __init__(__self__, *,
+                 type: pulumi.Input[_builtins.str],
+                 redirect_url: Optional[pulumi.Input[_builtins.str]] = None,
+                 response_code: Optional[pulumi.Input[_builtins.int]] = None,
+                 signal: Optional[pulumi.Input[_builtins.str]] = None):
+        """
+        :param pulumi.Input[_builtins.str] type: The action type, e.g. `block`, `redirect`, `exclude_signal`.
+        :param pulumi.Input[_builtins.str] redirect_url: Redirect target (used when `type = redirect`).
+        :param pulumi.Input[_builtins.int] response_code: Response code used with redirect.
+        :param pulumi.Input[_builtins.str] signal: Signal name to exclude (used when `type = exclude_signal`).
+        """
+        pulumi.set(__self__, "type", type)
+        if redirect_url is not None:
+            pulumi.set(__self__, "redirect_url", redirect_url)
+        if response_code is not None:
+            pulumi.set(__self__, "response_code", response_code)
+        if signal is not None:
+            pulumi.set(__self__, "signal", signal)
+
+    @_builtins.property
+    @pulumi.getter
+    def type(self) -> pulumi.Input[_builtins.str]:
+        """
+        The action type, e.g. `block`, `redirect`, `exclude_signal`.
+        """
+        return pulumi.get(self, "type")
+
+    @type.setter
+    def type(self, value: pulumi.Input[_builtins.str]):
+        pulumi.set(self, "type", value)
+
+    @_builtins.property
+    @pulumi.getter(name="redirectUrl")
+    def redirect_url(self) -> Optional[pulumi.Input[_builtins.str]]:
+        """
+        Redirect target (used when `type = redirect`).
+        """
+        return pulumi.get(self, "redirect_url")
+
+    @redirect_url.setter
+    def redirect_url(self, value: Optional[pulumi.Input[_builtins.str]]):
+        pulumi.set(self, "redirect_url", value)
+
+    @_builtins.property
+    @pulumi.getter(name="responseCode")
+    def response_code(self) -> Optional[pulumi.Input[_builtins.int]]:
+        """
+        Response code used with redirect.
+        """
+        return pulumi.get(self, "response_code")
+
+    @response_code.setter
+    def response_code(self, value: Optional[pulumi.Input[_builtins.int]]):
+        pulumi.set(self, "response_code", value)
+
+    @_builtins.property
+    @pulumi.getter
+    def signal(self) -> Optional[pulumi.Input[_builtins.str]]:
+        """
+        Signal name to exclude (used when `type = exclude_signal`).
+        """
+        return pulumi.get(self, "signal")
+
+    @signal.setter
+    def signal(self, value: Optional[pulumi.Input[_builtins.str]]):
+        pulumi.set(self, "signal", value)
+
+
+if not MYPY:
+    class NgwafWorkspaceRuleConditionArgsDict(TypedDict):
+        field: pulumi.Input[_builtins.str]
+        """
+        Field to inspect (e.g., `ip`, `path`).
+        """
+        operator: pulumi.Input[_builtins.str]
+        """
+        Operator to apply (e.g., `equals`, `contains`).
+        """
+        value: pulumi.Input[_builtins.str]
+        """
+        The value to test the field against.
+        """
+elif False:
+    NgwafWorkspaceRuleConditionArgsDict: TypeAlias = Mapping[str, Any]
+
+@pulumi.input_type
+class NgwafWorkspaceRuleConditionArgs:
+    def __init__(__self__, *,
+                 field: pulumi.Input[_builtins.str],
+                 operator: pulumi.Input[_builtins.str],
+                 value: pulumi.Input[_builtins.str]):
+        """
+        :param pulumi.Input[_builtins.str] field: Field to inspect (e.g., `ip`, `path`).
+        :param pulumi.Input[_builtins.str] operator: Operator to apply (e.g., `equals`, `contains`).
+        :param pulumi.Input[_builtins.str] value: The value to test the field against.
+        """
+        pulumi.set(__self__, "field", field)
+        pulumi.set(__self__, "operator", operator)
+        pulumi.set(__self__, "value", value)
+
+    @_builtins.property
+    @pulumi.getter
+    def field(self) -> pulumi.Input[_builtins.str]:
+        """
+        Field to inspect (e.g., `ip`, `path`).
+        """
+        return pulumi.get(self, "field")
+
+    @field.setter
+    def field(self, value: pulumi.Input[_builtins.str]):
+        pulumi.set(self, "field", value)
+
+    @_builtins.property
+    @pulumi.getter
+    def operator(self) -> pulumi.Input[_builtins.str]:
+        """
+        Operator to apply (e.g., `equals`, `contains`).
+        """
+        return pulumi.get(self, "operator")
+
+    @operator.setter
+    def operator(self, value: pulumi.Input[_builtins.str]):
+        pulumi.set(self, "operator", value)
+
+    @_builtins.property
+    @pulumi.getter
+    def value(self) -> pulumi.Input[_builtins.str]:
+        """
+        The value to test the field against.
+        """
+        return pulumi.get(self, "value")
+
+    @value.setter
+    def value(self, value: pulumi.Input[_builtins.str]):
+        pulumi.set(self, "value", value)
+
+
+if not MYPY:
+    class NgwafWorkspaceRuleGroupConditionArgsDict(TypedDict):
+        conditions: pulumi.Input[Sequence[pulumi.Input['NgwafWorkspaceRuleGroupConditionConditionArgsDict']]]
+        """
+        A list of nested conditions in this group.
+        """
+        group_operator: pulumi.Input[_builtins.str]
+        """
+        Logical operator for the group. Accepted values are `any` and `all`.
+        """
+elif False:
+    NgwafWorkspaceRuleGroupConditionArgsDict: TypeAlias = Mapping[str, Any]
+
+@pulumi.input_type
+class NgwafWorkspaceRuleGroupConditionArgs:
+    def __init__(__self__, *,
+                 conditions: pulumi.Input[Sequence[pulumi.Input['NgwafWorkspaceRuleGroupConditionConditionArgs']]],
+                 group_operator: pulumi.Input[_builtins.str]):
+        """
+        :param pulumi.Input[Sequence[pulumi.Input['NgwafWorkspaceRuleGroupConditionConditionArgs']]] conditions: A list of nested conditions in this group.
+        :param pulumi.Input[_builtins.str] group_operator: Logical operator for the group. Accepted values are `any` and `all`.
+        """
+        pulumi.set(__self__, "conditions", conditions)
+        pulumi.set(__self__, "group_operator", group_operator)
+
+    @_builtins.property
+    @pulumi.getter
+    def conditions(self) -> pulumi.Input[Sequence[pulumi.Input['NgwafWorkspaceRuleGroupConditionConditionArgs']]]:
+        """
+        A list of nested conditions in this group.
+        """
+        return pulumi.get(self, "conditions")
+
+    @conditions.setter
+    def conditions(self, value: pulumi.Input[Sequence[pulumi.Input['NgwafWorkspaceRuleGroupConditionConditionArgs']]]):
+        pulumi.set(self, "conditions", value)
+
+    @_builtins.property
+    @pulumi.getter(name="groupOperator")
+    def group_operator(self) -> pulumi.Input[_builtins.str]:
+        """
+        Logical operator for the group. Accepted values are `any` and `all`.
+        """
+        return pulumi.get(self, "group_operator")
+
+    @group_operator.setter
+    def group_operator(self, value: pulumi.Input[_builtins.str]):
+        pulumi.set(self, "group_operator", value)
+
+
+if not MYPY:
+    class NgwafWorkspaceRuleGroupConditionConditionArgsDict(TypedDict):
+        field: pulumi.Input[_builtins.str]
+        """
+        Field to inspect (e.g., `ip`, `path`).
+        """
+        operator: pulumi.Input[_builtins.str]
+        """
+        Operator to apply (e.g., `equals`, `contains`).
+        """
+        value: pulumi.Input[_builtins.str]
+        """
+        The value to test the field against.
+        """
+elif False:
+    NgwafWorkspaceRuleGroupConditionConditionArgsDict: TypeAlias = Mapping[str, Any]
+
+@pulumi.input_type
+class NgwafWorkspaceRuleGroupConditionConditionArgs:
+    def __init__(__self__, *,
+                 field: pulumi.Input[_builtins.str],
+                 operator: pulumi.Input[_builtins.str],
+                 value: pulumi.Input[_builtins.str]):
+        """
+        :param pulumi.Input[_builtins.str] field: Field to inspect (e.g., `ip`, `path`).
+        :param pulumi.Input[_builtins.str] operator: Operator to apply (e.g., `equals`, `contains`).
+        :param pulumi.Input[_builtins.str] value: The value to test the field against.
+        """
+        pulumi.set(__self__, "field", field)
+        pulumi.set(__self__, "operator", operator)
+        pulumi.set(__self__, "value", value)
+
+    @_builtins.property
+    @pulumi.getter
+    def field(self) -> pulumi.Input[_builtins.str]:
+        """
+        Field to inspect (e.g., `ip`, `path`).
+        """
+        return pulumi.get(self, "field")
+
+    @field.setter
+    def field(self, value: pulumi.Input[_builtins.str]):
+        pulumi.set(self, "field", value)
+
+    @_builtins.property
+    @pulumi.getter
+    def operator(self) -> pulumi.Input[_builtins.str]:
+        """
+        Operator to apply (e.g., `equals`, `contains`).
+        """
+        return pulumi.get(self, "operator")
+
+    @operator.setter
+    def operator(self, value: pulumi.Input[_builtins.str]):
+        pulumi.set(self, "operator", value)
+
+    @_builtins.property
+    @pulumi.getter
+    def value(self) -> pulumi.Input[_builtins.str]:
+        """
+        The value to test the field against.
+        """
+        return pulumi.get(self, "value")
+
+    @value.setter
+    def value(self, value: pulumi.Input[_builtins.str]):
+        pulumi.set(self, "value", value)
+
+
+if not MYPY:
+    class NgwafWorkspaceRuleRateLimitArgsDict(TypedDict):
+        client_identifiers: pulumi.Input[Sequence[pulumi.Input['NgwafWorkspaceRuleRateLimitClientIdentifierArgsDict']]]
+        """
+        List of client identifiers used for rate limiting. Can only be length 1 or 2.
+        """
+        duration: pulumi.Input[_builtins.int]
+        """
+        Duration in seconds for the rate limit.
+        """
+        interval: pulumi.Input[_builtins.int]
+        """
+        Time interval for the rate limit in seconds. Accepted values are 60, 600, and 3600.
+        """
+        signal: pulumi.Input[_builtins.str]
+        """
+        Reference ID of the custom signal this rule uses to count requests.
+        """
+        threshold: pulumi.Input[_builtins.int]
+        """
+        Rate limit threshold. Minimum 1 and maximum 10,000.
+        """
+elif False:
+    NgwafWorkspaceRuleRateLimitArgsDict: TypeAlias = Mapping[str, Any]
+
+@pulumi.input_type
+class NgwafWorkspaceRuleRateLimitArgs:
+    def __init__(__self__, *,
+                 client_identifiers: pulumi.Input[Sequence[pulumi.Input['NgwafWorkspaceRuleRateLimitClientIdentifierArgs']]],
+                 duration: pulumi.Input[_builtins.int],
+                 interval: pulumi.Input[_builtins.int],
+                 signal: pulumi.Input[_builtins.str],
+                 threshold: pulumi.Input[_builtins.int]):
+        """
+        :param pulumi.Input[Sequence[pulumi.Input['NgwafWorkspaceRuleRateLimitClientIdentifierArgs']]] client_identifiers: List of client identifiers used for rate limiting. Can only be length 1 or 2.
+        :param pulumi.Input[_builtins.int] duration: Duration in seconds for the rate limit.
+        :param pulumi.Input[_builtins.int] interval: Time interval for the rate limit in seconds. Accepted values are 60, 600, and 3600.
+        :param pulumi.Input[_builtins.str] signal: Reference ID of the custom signal this rule uses to count requests.
+        :param pulumi.Input[_builtins.int] threshold: Rate limit threshold. Minimum 1 and maximum 10,000.
+        """
+        pulumi.set(__self__, "client_identifiers", client_identifiers)
+        pulumi.set(__self__, "duration", duration)
+        pulumi.set(__self__, "interval", interval)
+        pulumi.set(__self__, "signal", signal)
+        pulumi.set(__self__, "threshold", threshold)
+
+    @_builtins.property
+    @pulumi.getter(name="clientIdentifiers")
+    def client_identifiers(self) -> pulumi.Input[Sequence[pulumi.Input['NgwafWorkspaceRuleRateLimitClientIdentifierArgs']]]:
+        """
+        List of client identifiers used for rate limiting. Can only be length 1 or 2.
+        """
+        return pulumi.get(self, "client_identifiers")
+
+    @client_identifiers.setter
+    def client_identifiers(self, value: pulumi.Input[Sequence[pulumi.Input['NgwafWorkspaceRuleRateLimitClientIdentifierArgs']]]):
+        pulumi.set(self, "client_identifiers", value)
+
+    @_builtins.property
+    @pulumi.getter
+    def duration(self) -> pulumi.Input[_builtins.int]:
+        """
+        Duration in seconds for the rate limit.
+        """
+        return pulumi.get(self, "duration")
+
+    @duration.setter
+    def duration(self, value: pulumi.Input[_builtins.int]):
+        pulumi.set(self, "duration", value)
+
+    @_builtins.property
+    @pulumi.getter
+    def interval(self) -> pulumi.Input[_builtins.int]:
+        """
+        Time interval for the rate limit in seconds. Accepted values are 60, 600, and 3600.
+        """
+        return pulumi.get(self, "interval")
+
+    @interval.setter
+    def interval(self, value: pulumi.Input[_builtins.int]):
+        pulumi.set(self, "interval", value)
+
+    @_builtins.property
+    @pulumi.getter
+    def signal(self) -> pulumi.Input[_builtins.str]:
+        """
+        Reference ID of the custom signal this rule uses to count requests.
+        """
+        return pulumi.get(self, "signal")
+
+    @signal.setter
+    def signal(self, value: pulumi.Input[_builtins.str]):
+        pulumi.set(self, "signal", value)
+
+    @_builtins.property
+    @pulumi.getter
+    def threshold(self) -> pulumi.Input[_builtins.int]:
+        """
+        Rate limit threshold. Minimum 1 and maximum 10,000.
+        """
+        return pulumi.get(self, "threshold")
+
+    @threshold.setter
+    def threshold(self, value: pulumi.Input[_builtins.int]):
+        pulumi.set(self, "threshold", value)
+
+
+if not MYPY:
+    class NgwafWorkspaceRuleRateLimitClientIdentifierArgsDict(TypedDict):
+        type: pulumi.Input[_builtins.str]
+        """
+        Type of the Client Identifier.
+        """
+        key: NotRequired[pulumi.Input[_builtins.str]]
+        """
+        Key for the Client Identifier.
+        """
+        name: NotRequired[pulumi.Input[_builtins.str]]
+        """
+        Name for the Client Identifier.
+        """
+elif False:
+    NgwafWorkspaceRuleRateLimitClientIdentifierArgsDict: TypeAlias = Mapping[str, Any]
+
+@pulumi.input_type
+class NgwafWorkspaceRuleRateLimitClientIdentifierArgs:
+    def __init__(__self__, *,
+                 type: pulumi.Input[_builtins.str],
+                 key: Optional[pulumi.Input[_builtins.str]] = None,
+                 name: Optional[pulumi.Input[_builtins.str]] = None):
+        """
+        :param pulumi.Input[_builtins.str] type: Type of the Client Identifier.
+        :param pulumi.Input[_builtins.str] key: Key for the Client Identifier.
+        :param pulumi.Input[_builtins.str] name: Name for the Client Identifier.
+        """
+        pulumi.set(__self__, "type", type)
+        if key is not None:
+            pulumi.set(__self__, "key", key)
+        if name is not None:
+            pulumi.set(__self__, "name", name)
+
+    @_builtins.property
+    @pulumi.getter
+    def type(self) -> pulumi.Input[_builtins.str]:
+        """
+        Type of the Client Identifier.
+        """
+        return pulumi.get(self, "type")
+
+    @type.setter
+    def type(self, value: pulumi.Input[_builtins.str]):
+        pulumi.set(self, "type", value)
+
+    @_builtins.property
+    @pulumi.getter
+    def key(self) -> Optional[pulumi.Input[_builtins.str]]:
+        """
+        Key for the Client Identifier.
+        """
+        return pulumi.get(self, "key")
+
+    @key.setter
+    def key(self, value: Optional[pulumi.Input[_builtins.str]]):
+        pulumi.set(self, "key", value)
+
+    @_builtins.property
+    @pulumi.getter
+    def name(self) -> Optional[pulumi.Input[_builtins.str]]:
+        """
+        Name for the Client Identifier.
+        """
+        return pulumi.get(self, "name")
+
+    @name.setter
+    def name(self, value: Optional[pulumi.Input[_builtins.str]]):
+        pulumi.set(self, "name", value)
 
 
 if not MYPY:
@@ -7001,7 +7993,7 @@ if not MYPY:
         """
         mode: pulumi.Input[_builtins.str]
         """
-        Operation mode
+        Operation mode. Can be either `off`, `log`, or `block`.
         """
 elif False:
     ServiceComputeProductEnablementDdosProtectionArgsDict: TypeAlias = Mapping[str, Any]
@@ -7013,7 +8005,7 @@ class ServiceComputeProductEnablementDdosProtectionArgs:
                  mode: pulumi.Input[_builtins.str]):
         """
         :param pulumi.Input[_builtins.bool] enabled: Enable DDoS Protection support
-        :param pulumi.Input[_builtins.str] mode: Operation mode
+        :param pulumi.Input[_builtins.str] mode: Operation mode. Can be either `off`, `log`, or `block`.
         """
         pulumi.set(__self__, "enabled", enabled)
         pulumi.set(__self__, "mode", mode)
@@ -7034,7 +8026,7 @@ class ServiceComputeProductEnablementDdosProtectionArgs:
     @pulumi.getter
     def mode(self) -> pulumi.Input[_builtins.str]:
         """
-        Operation mode
+        Operation mode. Can be either `off`, `log`, or `block`.
         """
         return pulumi.get(self, "mode")
 
@@ -16891,7 +17883,7 @@ if not MYPY:
         """
         mode: pulumi.Input[_builtins.str]
         """
-        Operation mode
+        Operation mode. Can be either `off`, `log`, or `block`.
         """
 elif False:
     ServiceVclProductEnablementDdosProtectionArgsDict: TypeAlias = Mapping[str, Any]
@@ -16903,7 +17895,7 @@ class ServiceVclProductEnablementDdosProtectionArgs:
                  mode: pulumi.Input[_builtins.str]):
         """
         :param pulumi.Input[_builtins.bool] enabled: Enable DDoS Protection support
-        :param pulumi.Input[_builtins.str] mode: Operation mode
+        :param pulumi.Input[_builtins.str] mode: Operation mode. Can be either `off`, `log`, or `block`.
         """
         pulumi.set(__self__, "enabled", enabled)
         pulumi.set(__self__, "mode", mode)
@@ -16924,7 +17916,7 @@ class ServiceVclProductEnablementDdosProtectionArgs:
     @pulumi.getter
     def mode(self) -> pulumi.Input[_builtins.str]:
         """
-        Operation mode
+        Operation mode. Can be either `off`, `log`, or `block`.
         """
         return pulumi.get(self, "mode")
 

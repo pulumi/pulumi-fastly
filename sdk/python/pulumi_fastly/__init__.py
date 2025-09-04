@@ -16,6 +16,18 @@ from .get_datacenters import *
 from .get_dictionaries import *
 from .get_fastly_ip_ranges import *
 from .get_kvstores import *
+from .get_ngwaf_alert_datadog_integration import *
+from .get_ngwaf_alert_jira_integration import *
+from .get_ngwaf_alert_mailing_list_integration import *
+from .get_ngwaf_alert_microsoft_teams_integration import *
+from .get_ngwaf_alert_opsgenie_integration import *
+from .get_ngwaf_alert_pagerduty_integration import *
+from .get_ngwaf_alert_slack_integration import *
+from .get_ngwaf_alert_webhook_integration import *
+from .get_ngwaf_redactions import *
+from .get_ngwaf_thresholds import *
+from .get_ngwaf_virtual_patches import *
+from .get_ngwaf_workspaces import *
 from .get_package_hash import *
 from .get_secretstores import *
 from .get_services import *
@@ -35,6 +47,24 @@ from .get_tls_subscription_ids import *
 from .get_vcl_snippets import *
 from .integration import *
 from .kvstore import *
+from .ngwaf_account_list import *
+from .ngwaf_account_rule import *
+from .ngwaf_account_signal import *
+from .ngwaf_alert_datadog_integration import *
+from .ngwaf_alert_jira_integration import *
+from .ngwaf_alert_mailing_list_integration import *
+from .ngwaf_alert_microsoft_teams_integration import *
+from .ngwaf_alert_opsgenie_integration import *
+from .ngwaf_alert_pagerduty_integration import *
+from .ngwaf_alert_slack_integration import *
+from .ngwaf_alert_webhook_integration import *
+from .ngwaf_redaction import *
+from .ngwaf_thresholds import *
+from .ngwaf_virtual_patches import *
+from .ngwaf_workspace import *
+from .ngwaf_workspace_list import *
+from .ngwaf_workspace_rule import *
+from .ngwaf_workspace_signal import *
 from .object_storage_access_keys import *
 from .provider import *
 from .secretstore import *
@@ -119,6 +149,150 @@ _utilities.register(
   "fqn": "pulumi_fastly",
   "classes": {
    "fastly:index/kvstore:Kvstore": "Kvstore"
+  }
+ },
+ {
+  "pkg": "fastly",
+  "mod": "index/ngwafAccountList",
+  "fqn": "pulumi_fastly",
+  "classes": {
+   "fastly:index/ngwafAccountList:NgwafAccountList": "NgwafAccountList"
+  }
+ },
+ {
+  "pkg": "fastly",
+  "mod": "index/ngwafAccountRule",
+  "fqn": "pulumi_fastly",
+  "classes": {
+   "fastly:index/ngwafAccountRule:NgwafAccountRule": "NgwafAccountRule"
+  }
+ },
+ {
+  "pkg": "fastly",
+  "mod": "index/ngwafAccountSignal",
+  "fqn": "pulumi_fastly",
+  "classes": {
+   "fastly:index/ngwafAccountSignal:NgwafAccountSignal": "NgwafAccountSignal"
+  }
+ },
+ {
+  "pkg": "fastly",
+  "mod": "index/ngwafAlertDatadogIntegration",
+  "fqn": "pulumi_fastly",
+  "classes": {
+   "fastly:index/ngwafAlertDatadogIntegration:NgwafAlertDatadogIntegration": "NgwafAlertDatadogIntegration"
+  }
+ },
+ {
+  "pkg": "fastly",
+  "mod": "index/ngwafAlertJiraIntegration",
+  "fqn": "pulumi_fastly",
+  "classes": {
+   "fastly:index/ngwafAlertJiraIntegration:NgwafAlertJiraIntegration": "NgwafAlertJiraIntegration"
+  }
+ },
+ {
+  "pkg": "fastly",
+  "mod": "index/ngwafAlertMailingListIntegration",
+  "fqn": "pulumi_fastly",
+  "classes": {
+   "fastly:index/ngwafAlertMailingListIntegration:NgwafAlertMailingListIntegration": "NgwafAlertMailingListIntegration"
+  }
+ },
+ {
+  "pkg": "fastly",
+  "mod": "index/ngwafAlertMicrosoftTeamsIntegration",
+  "fqn": "pulumi_fastly",
+  "classes": {
+   "fastly:index/ngwafAlertMicrosoftTeamsIntegration:NgwafAlertMicrosoftTeamsIntegration": "NgwafAlertMicrosoftTeamsIntegration"
+  }
+ },
+ {
+  "pkg": "fastly",
+  "mod": "index/ngwafAlertOpsgenieIntegration",
+  "fqn": "pulumi_fastly",
+  "classes": {
+   "fastly:index/ngwafAlertOpsgenieIntegration:NgwafAlertOpsgenieIntegration": "NgwafAlertOpsgenieIntegration"
+  }
+ },
+ {
+  "pkg": "fastly",
+  "mod": "index/ngwafAlertPagerdutyIntegration",
+  "fqn": "pulumi_fastly",
+  "classes": {
+   "fastly:index/ngwafAlertPagerdutyIntegration:NgwafAlertPagerdutyIntegration": "NgwafAlertPagerdutyIntegration"
+  }
+ },
+ {
+  "pkg": "fastly",
+  "mod": "index/ngwafAlertSlackIntegration",
+  "fqn": "pulumi_fastly",
+  "classes": {
+   "fastly:index/ngwafAlertSlackIntegration:NgwafAlertSlackIntegration": "NgwafAlertSlackIntegration"
+  }
+ },
+ {
+  "pkg": "fastly",
+  "mod": "index/ngwafAlertWebhookIntegration",
+  "fqn": "pulumi_fastly",
+  "classes": {
+   "fastly:index/ngwafAlertWebhookIntegration:NgwafAlertWebhookIntegration": "NgwafAlertWebhookIntegration"
+  }
+ },
+ {
+  "pkg": "fastly",
+  "mod": "index/ngwafRedaction",
+  "fqn": "pulumi_fastly",
+  "classes": {
+   "fastly:index/ngwafRedaction:NgwafRedaction": "NgwafRedaction"
+  }
+ },
+ {
+  "pkg": "fastly",
+  "mod": "index/ngwafThresholds",
+  "fqn": "pulumi_fastly",
+  "classes": {
+   "fastly:index/ngwafThresholds:NgwafThresholds": "NgwafThresholds"
+  }
+ },
+ {
+  "pkg": "fastly",
+  "mod": "index/ngwafVirtualPatches",
+  "fqn": "pulumi_fastly",
+  "classes": {
+   "fastly:index/ngwafVirtualPatches:NgwafVirtualPatches": "NgwafVirtualPatches"
+  }
+ },
+ {
+  "pkg": "fastly",
+  "mod": "index/ngwafWorkspace",
+  "fqn": "pulumi_fastly",
+  "classes": {
+   "fastly:index/ngwafWorkspace:NgwafWorkspace": "NgwafWorkspace"
+  }
+ },
+ {
+  "pkg": "fastly",
+  "mod": "index/ngwafWorkspaceList",
+  "fqn": "pulumi_fastly",
+  "classes": {
+   "fastly:index/ngwafWorkspaceList:NgwafWorkspaceList": "NgwafWorkspaceList"
+  }
+ },
+ {
+  "pkg": "fastly",
+  "mod": "index/ngwafWorkspaceRule",
+  "fqn": "pulumi_fastly",
+  "classes": {
+   "fastly:index/ngwafWorkspaceRule:NgwafWorkspaceRule": "NgwafWorkspaceRule"
+  }
+ },
+ {
+  "pkg": "fastly",
+  "mod": "index/ngwafWorkspaceSignal",
+  "fqn": "pulumi_fastly",
+  "classes": {
+   "fastly:index/ngwafWorkspaceSignal:NgwafWorkspaceSignal": "NgwafWorkspaceSignal"
   }
  },
  {

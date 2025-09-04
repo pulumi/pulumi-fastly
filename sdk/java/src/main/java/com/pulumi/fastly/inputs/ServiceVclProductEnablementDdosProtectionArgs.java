@@ -31,14 +31,14 @@ public final class ServiceVclProductEnablementDdosProtectionArgs extends com.pul
     }
 
     /**
-     * Operation mode
+     * Operation mode. Can be either `off`, `log`, or `block`.
      * 
      */
     @Import(name="mode", required=true)
     private Output<String> mode;
 
     /**
-     * @return Operation mode
+     * @return Operation mode. Can be either `off`, `log`, or `block`.
      * 
      */
     public Output<String> mode() {
@@ -92,7 +92,7 @@ public final class ServiceVclProductEnablementDdosProtectionArgs extends com.pul
         }
 
         /**
-         * @param mode Operation mode
+         * @param mode Operation mode. Can be either `off`, `log`, or `block`.
          * 
          * @return builder
          * 
@@ -103,7 +103,7 @@ public final class ServiceVclProductEnablementDdosProtectionArgs extends com.pul
         }
 
         /**
-         * @param mode Operation mode
+         * @param mode Operation mode. Can be either `off`, `log`, or `block`.
          * 
          * @return builder
          * 

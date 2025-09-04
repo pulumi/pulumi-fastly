@@ -122,7 +122,7 @@ export class ServiceCompute extends pulumi.CustomResource {
     declare public readonly resourceLinks: pulumi.Output<outputs.ServiceComputeResourceLink[] | undefined>;
     declare public readonly reuse: pulumi.Output<boolean | undefined>;
     /**
-     * Conditionally enables new service versions to be staged. If `set` to true, all changes made by an `apply` step will be staged, even if `apply` did not create a new draft version. Default `false`
+     * Conditionally enables new service versions to be staged. If set to `true`, all changes made by an `apply` step will be staged, even if `apply` did not create a new draft version. Default `false`
      */
     declare public readonly stage: pulumi.Output<boolean | undefined>;
     /**
@@ -325,7 +325,7 @@ export interface ServiceComputeState {
     resourceLinks?: pulumi.Input<pulumi.Input<inputs.ServiceComputeResourceLink>[]>;
     reuse?: pulumi.Input<boolean>;
     /**
-     * Conditionally enables new service versions to be staged. If `set` to true, all changes made by an `apply` step will be staged, even if `apply` did not create a new draft version. Default `false`
+     * Conditionally enables new service versions to be staged. If set to `true`, all changes made by an `apply` step will be staged, even if `apply` did not create a new draft version. Default `false`
      */
     stage?: pulumi.Input<boolean>;
     /**
@@ -400,7 +400,7 @@ export interface ServiceComputeArgs {
     resourceLinks?: pulumi.Input<pulumi.Input<inputs.ServiceComputeResourceLink>[]>;
     reuse?: pulumi.Input<boolean>;
     /**
-     * Conditionally enables new service versions to be staged. If `set` to true, all changes made by an `apply` step will be staged, even if `apply` did not create a new draft version. Default `false`
+     * Conditionally enables new service versions to be staged. If set to `true`, all changes made by an `apply` step will be staged, even if `apply` did not create a new draft version. Default `false`
      */
     stage?: pulumi.Input<boolean>;
     /**

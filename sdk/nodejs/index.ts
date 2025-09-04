@@ -55,6 +55,66 @@ export const getKvstores: typeof import("./getKvstores").getKvstores = null as a
 export const getKvstoresOutput: typeof import("./getKvstores").getKvstoresOutput = null as any;
 utilities.lazyLoad(exports, ["getKvstores","getKvstoresOutput"], () => require("./getKvstores"));
 
+export { GetNgwafAlertDatadogIntegrationArgs, GetNgwafAlertDatadogIntegrationResult, GetNgwafAlertDatadogIntegrationOutputArgs } from "./getNgwafAlertDatadogIntegration";
+export const getNgwafAlertDatadogIntegration: typeof import("./getNgwafAlertDatadogIntegration").getNgwafAlertDatadogIntegration = null as any;
+export const getNgwafAlertDatadogIntegrationOutput: typeof import("./getNgwafAlertDatadogIntegration").getNgwafAlertDatadogIntegrationOutput = null as any;
+utilities.lazyLoad(exports, ["getNgwafAlertDatadogIntegration","getNgwafAlertDatadogIntegrationOutput"], () => require("./getNgwafAlertDatadogIntegration"));
+
+export { GetNgwafAlertJiraIntegrationArgs, GetNgwafAlertJiraIntegrationResult, GetNgwafAlertJiraIntegrationOutputArgs } from "./getNgwafAlertJiraIntegration";
+export const getNgwafAlertJiraIntegration: typeof import("./getNgwafAlertJiraIntegration").getNgwafAlertJiraIntegration = null as any;
+export const getNgwafAlertJiraIntegrationOutput: typeof import("./getNgwafAlertJiraIntegration").getNgwafAlertJiraIntegrationOutput = null as any;
+utilities.lazyLoad(exports, ["getNgwafAlertJiraIntegration","getNgwafAlertJiraIntegrationOutput"], () => require("./getNgwafAlertJiraIntegration"));
+
+export { GetNgwafAlertMailingListIntegrationArgs, GetNgwafAlertMailingListIntegrationResult, GetNgwafAlertMailingListIntegrationOutputArgs } from "./getNgwafAlertMailingListIntegration";
+export const getNgwafAlertMailingListIntegration: typeof import("./getNgwafAlertMailingListIntegration").getNgwafAlertMailingListIntegration = null as any;
+export const getNgwafAlertMailingListIntegrationOutput: typeof import("./getNgwafAlertMailingListIntegration").getNgwafAlertMailingListIntegrationOutput = null as any;
+utilities.lazyLoad(exports, ["getNgwafAlertMailingListIntegration","getNgwafAlertMailingListIntegrationOutput"], () => require("./getNgwafAlertMailingListIntegration"));
+
+export { GetNgwafAlertMicrosoftTeamsIntegrationArgs, GetNgwafAlertMicrosoftTeamsIntegrationResult, GetNgwafAlertMicrosoftTeamsIntegrationOutputArgs } from "./getNgwafAlertMicrosoftTeamsIntegration";
+export const getNgwafAlertMicrosoftTeamsIntegration: typeof import("./getNgwafAlertMicrosoftTeamsIntegration").getNgwafAlertMicrosoftTeamsIntegration = null as any;
+export const getNgwafAlertMicrosoftTeamsIntegrationOutput: typeof import("./getNgwafAlertMicrosoftTeamsIntegration").getNgwafAlertMicrosoftTeamsIntegrationOutput = null as any;
+utilities.lazyLoad(exports, ["getNgwafAlertMicrosoftTeamsIntegration","getNgwafAlertMicrosoftTeamsIntegrationOutput"], () => require("./getNgwafAlertMicrosoftTeamsIntegration"));
+
+export { GetNgwafAlertOpsgenieIntegrationArgs, GetNgwafAlertOpsgenieIntegrationResult, GetNgwafAlertOpsgenieIntegrationOutputArgs } from "./getNgwafAlertOpsgenieIntegration";
+export const getNgwafAlertOpsgenieIntegration: typeof import("./getNgwafAlertOpsgenieIntegration").getNgwafAlertOpsgenieIntegration = null as any;
+export const getNgwafAlertOpsgenieIntegrationOutput: typeof import("./getNgwafAlertOpsgenieIntegration").getNgwafAlertOpsgenieIntegrationOutput = null as any;
+utilities.lazyLoad(exports, ["getNgwafAlertOpsgenieIntegration","getNgwafAlertOpsgenieIntegrationOutput"], () => require("./getNgwafAlertOpsgenieIntegration"));
+
+export { GetNgwafAlertPagerdutyIntegrationArgs, GetNgwafAlertPagerdutyIntegrationResult, GetNgwafAlertPagerdutyIntegrationOutputArgs } from "./getNgwafAlertPagerdutyIntegration";
+export const getNgwafAlertPagerdutyIntegration: typeof import("./getNgwafAlertPagerdutyIntegration").getNgwafAlertPagerdutyIntegration = null as any;
+export const getNgwafAlertPagerdutyIntegrationOutput: typeof import("./getNgwafAlertPagerdutyIntegration").getNgwafAlertPagerdutyIntegrationOutput = null as any;
+utilities.lazyLoad(exports, ["getNgwafAlertPagerdutyIntegration","getNgwafAlertPagerdutyIntegrationOutput"], () => require("./getNgwafAlertPagerdutyIntegration"));
+
+export { GetNgwafAlertSlackIntegrationArgs, GetNgwafAlertSlackIntegrationResult, GetNgwafAlertSlackIntegrationOutputArgs } from "./getNgwafAlertSlackIntegration";
+export const getNgwafAlertSlackIntegration: typeof import("./getNgwafAlertSlackIntegration").getNgwafAlertSlackIntegration = null as any;
+export const getNgwafAlertSlackIntegrationOutput: typeof import("./getNgwafAlertSlackIntegration").getNgwafAlertSlackIntegrationOutput = null as any;
+utilities.lazyLoad(exports, ["getNgwafAlertSlackIntegration","getNgwafAlertSlackIntegrationOutput"], () => require("./getNgwafAlertSlackIntegration"));
+
+export { GetNgwafAlertWebhookIntegrationArgs, GetNgwafAlertWebhookIntegrationResult, GetNgwafAlertWebhookIntegrationOutputArgs } from "./getNgwafAlertWebhookIntegration";
+export const getNgwafAlertWebhookIntegration: typeof import("./getNgwafAlertWebhookIntegration").getNgwafAlertWebhookIntegration = null as any;
+export const getNgwafAlertWebhookIntegrationOutput: typeof import("./getNgwafAlertWebhookIntegration").getNgwafAlertWebhookIntegrationOutput = null as any;
+utilities.lazyLoad(exports, ["getNgwafAlertWebhookIntegration","getNgwafAlertWebhookIntegrationOutput"], () => require("./getNgwafAlertWebhookIntegration"));
+
+export { GetNgwafRedactionsArgs, GetNgwafRedactionsResult, GetNgwafRedactionsOutputArgs } from "./getNgwafRedactions";
+export const getNgwafRedactions: typeof import("./getNgwafRedactions").getNgwafRedactions = null as any;
+export const getNgwafRedactionsOutput: typeof import("./getNgwafRedactions").getNgwafRedactionsOutput = null as any;
+utilities.lazyLoad(exports, ["getNgwafRedactions","getNgwafRedactionsOutput"], () => require("./getNgwafRedactions"));
+
+export { GetNgwafThresholdsArgs, GetNgwafThresholdsResult, GetNgwafThresholdsOutputArgs } from "./getNgwafThresholds";
+export const getNgwafThresholds: typeof import("./getNgwafThresholds").getNgwafThresholds = null as any;
+export const getNgwafThresholdsOutput: typeof import("./getNgwafThresholds").getNgwafThresholdsOutput = null as any;
+utilities.lazyLoad(exports, ["getNgwafThresholds","getNgwafThresholdsOutput"], () => require("./getNgwafThresholds"));
+
+export { GetNgwafVirtualPatchesArgs, GetNgwafVirtualPatchesResult, GetNgwafVirtualPatchesOutputArgs } from "./getNgwafVirtualPatches";
+export const getNgwafVirtualPatches: typeof import("./getNgwafVirtualPatches").getNgwafVirtualPatches = null as any;
+export const getNgwafVirtualPatchesOutput: typeof import("./getNgwafVirtualPatches").getNgwafVirtualPatchesOutput = null as any;
+utilities.lazyLoad(exports, ["getNgwafVirtualPatches","getNgwafVirtualPatchesOutput"], () => require("./getNgwafVirtualPatches"));
+
+export { GetNgwafWorkspacesResult } from "./getNgwafWorkspaces";
+export const getNgwafWorkspaces: typeof import("./getNgwafWorkspaces").getNgwafWorkspaces = null as any;
+export const getNgwafWorkspacesOutput: typeof import("./getNgwafWorkspaces").getNgwafWorkspacesOutput = null as any;
+utilities.lazyLoad(exports, ["getNgwafWorkspaces","getNgwafWorkspacesOutput"], () => require("./getNgwafWorkspaces"));
+
 export { GetPackageHashArgs, GetPackageHashResult, GetPackageHashOutputArgs } from "./getPackageHash";
 export const getPackageHash: typeof import("./getPackageHash").getPackageHash = null as any;
 export const getPackageHashOutput: typeof import("./getPackageHash").getPackageHashOutput = null as any;
@@ -149,6 +209,96 @@ export { KvstoreArgs, KvstoreState } from "./kvstore";
 export type Kvstore = import("./kvstore").Kvstore;
 export const Kvstore: typeof import("./kvstore").Kvstore = null as any;
 utilities.lazyLoad(exports, ["Kvstore"], () => require("./kvstore"));
+
+export { NgwafAccountListArgs, NgwafAccountListState } from "./ngwafAccountList";
+export type NgwafAccountList = import("./ngwafAccountList").NgwafAccountList;
+export const NgwafAccountList: typeof import("./ngwafAccountList").NgwafAccountList = null as any;
+utilities.lazyLoad(exports, ["NgwafAccountList"], () => require("./ngwafAccountList"));
+
+export { NgwafAccountRuleArgs, NgwafAccountRuleState } from "./ngwafAccountRule";
+export type NgwafAccountRule = import("./ngwafAccountRule").NgwafAccountRule;
+export const NgwafAccountRule: typeof import("./ngwafAccountRule").NgwafAccountRule = null as any;
+utilities.lazyLoad(exports, ["NgwafAccountRule"], () => require("./ngwafAccountRule"));
+
+export { NgwafAccountSignalArgs, NgwafAccountSignalState } from "./ngwafAccountSignal";
+export type NgwafAccountSignal = import("./ngwafAccountSignal").NgwafAccountSignal;
+export const NgwafAccountSignal: typeof import("./ngwafAccountSignal").NgwafAccountSignal = null as any;
+utilities.lazyLoad(exports, ["NgwafAccountSignal"], () => require("./ngwafAccountSignal"));
+
+export { NgwafAlertDatadogIntegrationArgs, NgwafAlertDatadogIntegrationState } from "./ngwafAlertDatadogIntegration";
+export type NgwafAlertDatadogIntegration = import("./ngwafAlertDatadogIntegration").NgwafAlertDatadogIntegration;
+export const NgwafAlertDatadogIntegration: typeof import("./ngwafAlertDatadogIntegration").NgwafAlertDatadogIntegration = null as any;
+utilities.lazyLoad(exports, ["NgwafAlertDatadogIntegration"], () => require("./ngwafAlertDatadogIntegration"));
+
+export { NgwafAlertJiraIntegrationArgs, NgwafAlertJiraIntegrationState } from "./ngwafAlertJiraIntegration";
+export type NgwafAlertJiraIntegration = import("./ngwafAlertJiraIntegration").NgwafAlertJiraIntegration;
+export const NgwafAlertJiraIntegration: typeof import("./ngwafAlertJiraIntegration").NgwafAlertJiraIntegration = null as any;
+utilities.lazyLoad(exports, ["NgwafAlertJiraIntegration"], () => require("./ngwafAlertJiraIntegration"));
+
+export { NgwafAlertMailingListIntegrationArgs, NgwafAlertMailingListIntegrationState } from "./ngwafAlertMailingListIntegration";
+export type NgwafAlertMailingListIntegration = import("./ngwafAlertMailingListIntegration").NgwafAlertMailingListIntegration;
+export const NgwafAlertMailingListIntegration: typeof import("./ngwafAlertMailingListIntegration").NgwafAlertMailingListIntegration = null as any;
+utilities.lazyLoad(exports, ["NgwafAlertMailingListIntegration"], () => require("./ngwafAlertMailingListIntegration"));
+
+export { NgwafAlertMicrosoftTeamsIntegrationArgs, NgwafAlertMicrosoftTeamsIntegrationState } from "./ngwafAlertMicrosoftTeamsIntegration";
+export type NgwafAlertMicrosoftTeamsIntegration = import("./ngwafAlertMicrosoftTeamsIntegration").NgwafAlertMicrosoftTeamsIntegration;
+export const NgwafAlertMicrosoftTeamsIntegration: typeof import("./ngwafAlertMicrosoftTeamsIntegration").NgwafAlertMicrosoftTeamsIntegration = null as any;
+utilities.lazyLoad(exports, ["NgwafAlertMicrosoftTeamsIntegration"], () => require("./ngwafAlertMicrosoftTeamsIntegration"));
+
+export { NgwafAlertOpsgenieIntegrationArgs, NgwafAlertOpsgenieIntegrationState } from "./ngwafAlertOpsgenieIntegration";
+export type NgwafAlertOpsgenieIntegration = import("./ngwafAlertOpsgenieIntegration").NgwafAlertOpsgenieIntegration;
+export const NgwafAlertOpsgenieIntegration: typeof import("./ngwafAlertOpsgenieIntegration").NgwafAlertOpsgenieIntegration = null as any;
+utilities.lazyLoad(exports, ["NgwafAlertOpsgenieIntegration"], () => require("./ngwafAlertOpsgenieIntegration"));
+
+export { NgwafAlertPagerdutyIntegrationArgs, NgwafAlertPagerdutyIntegrationState } from "./ngwafAlertPagerdutyIntegration";
+export type NgwafAlertPagerdutyIntegration = import("./ngwafAlertPagerdutyIntegration").NgwafAlertPagerdutyIntegration;
+export const NgwafAlertPagerdutyIntegration: typeof import("./ngwafAlertPagerdutyIntegration").NgwafAlertPagerdutyIntegration = null as any;
+utilities.lazyLoad(exports, ["NgwafAlertPagerdutyIntegration"], () => require("./ngwafAlertPagerdutyIntegration"));
+
+export { NgwafAlertSlackIntegrationArgs, NgwafAlertSlackIntegrationState } from "./ngwafAlertSlackIntegration";
+export type NgwafAlertSlackIntegration = import("./ngwafAlertSlackIntegration").NgwafAlertSlackIntegration;
+export const NgwafAlertSlackIntegration: typeof import("./ngwafAlertSlackIntegration").NgwafAlertSlackIntegration = null as any;
+utilities.lazyLoad(exports, ["NgwafAlertSlackIntegration"], () => require("./ngwafAlertSlackIntegration"));
+
+export { NgwafAlertWebhookIntegrationArgs, NgwafAlertWebhookIntegrationState } from "./ngwafAlertWebhookIntegration";
+export type NgwafAlertWebhookIntegration = import("./ngwafAlertWebhookIntegration").NgwafAlertWebhookIntegration;
+export const NgwafAlertWebhookIntegration: typeof import("./ngwafAlertWebhookIntegration").NgwafAlertWebhookIntegration = null as any;
+utilities.lazyLoad(exports, ["NgwafAlertWebhookIntegration"], () => require("./ngwafAlertWebhookIntegration"));
+
+export { NgwafRedactionArgs, NgwafRedactionState } from "./ngwafRedaction";
+export type NgwafRedaction = import("./ngwafRedaction").NgwafRedaction;
+export const NgwafRedaction: typeof import("./ngwafRedaction").NgwafRedaction = null as any;
+utilities.lazyLoad(exports, ["NgwafRedaction"], () => require("./ngwafRedaction"));
+
+export { NgwafThresholdsArgs, NgwafThresholdsState } from "./ngwafThresholds";
+export type NgwafThresholds = import("./ngwafThresholds").NgwafThresholds;
+export const NgwafThresholds: typeof import("./ngwafThresholds").NgwafThresholds = null as any;
+utilities.lazyLoad(exports, ["NgwafThresholds"], () => require("./ngwafThresholds"));
+
+export { NgwafVirtualPatchesArgs, NgwafVirtualPatchesState } from "./ngwafVirtualPatches";
+export type NgwafVirtualPatches = import("./ngwafVirtualPatches").NgwafVirtualPatches;
+export const NgwafVirtualPatches: typeof import("./ngwafVirtualPatches").NgwafVirtualPatches = null as any;
+utilities.lazyLoad(exports, ["NgwafVirtualPatches"], () => require("./ngwafVirtualPatches"));
+
+export { NgwafWorkspaceArgs, NgwafWorkspaceState } from "./ngwafWorkspace";
+export type NgwafWorkspace = import("./ngwafWorkspace").NgwafWorkspace;
+export const NgwafWorkspace: typeof import("./ngwafWorkspace").NgwafWorkspace = null as any;
+utilities.lazyLoad(exports, ["NgwafWorkspace"], () => require("./ngwafWorkspace"));
+
+export { NgwafWorkspaceListArgs, NgwafWorkspaceListState } from "./ngwafWorkspaceList";
+export type NgwafWorkspaceList = import("./ngwafWorkspaceList").NgwafWorkspaceList;
+export const NgwafWorkspaceList: typeof import("./ngwafWorkspaceList").NgwafWorkspaceList = null as any;
+utilities.lazyLoad(exports, ["NgwafWorkspaceList"], () => require("./ngwafWorkspaceList"));
+
+export { NgwafWorkspaceRuleArgs, NgwafWorkspaceRuleState } from "./ngwafWorkspaceRule";
+export type NgwafWorkspaceRule = import("./ngwafWorkspaceRule").NgwafWorkspaceRule;
+export const NgwafWorkspaceRule: typeof import("./ngwafWorkspaceRule").NgwafWorkspaceRule = null as any;
+utilities.lazyLoad(exports, ["NgwafWorkspaceRule"], () => require("./ngwafWorkspaceRule"));
+
+export { NgwafWorkspaceSignalArgs, NgwafWorkspaceSignalState } from "./ngwafWorkspaceSignal";
+export type NgwafWorkspaceSignal = import("./ngwafWorkspaceSignal").NgwafWorkspaceSignal;
+export const NgwafWorkspaceSignal: typeof import("./ngwafWorkspaceSignal").NgwafWorkspaceSignal = null as any;
+utilities.lazyLoad(exports, ["NgwafWorkspaceSignal"], () => require("./ngwafWorkspaceSignal"));
 
 export { ObjectStorageAccessKeysArgs, ObjectStorageAccessKeysState } from "./objectStorageAccessKeys";
 export type ObjectStorageAccessKeys = import("./objectStorageAccessKeys").ObjectStorageAccessKeys;
@@ -261,6 +411,42 @@ const _module = {
                 return new Integration(name, <any>undefined, { urn })
             case "fastly:index/kvstore:Kvstore":
                 return new Kvstore(name, <any>undefined, { urn })
+            case "fastly:index/ngwafAccountList:NgwafAccountList":
+                return new NgwafAccountList(name, <any>undefined, { urn })
+            case "fastly:index/ngwafAccountRule:NgwafAccountRule":
+                return new NgwafAccountRule(name, <any>undefined, { urn })
+            case "fastly:index/ngwafAccountSignal:NgwafAccountSignal":
+                return new NgwafAccountSignal(name, <any>undefined, { urn })
+            case "fastly:index/ngwafAlertDatadogIntegration:NgwafAlertDatadogIntegration":
+                return new NgwafAlertDatadogIntegration(name, <any>undefined, { urn })
+            case "fastly:index/ngwafAlertJiraIntegration:NgwafAlertJiraIntegration":
+                return new NgwafAlertJiraIntegration(name, <any>undefined, { urn })
+            case "fastly:index/ngwafAlertMailingListIntegration:NgwafAlertMailingListIntegration":
+                return new NgwafAlertMailingListIntegration(name, <any>undefined, { urn })
+            case "fastly:index/ngwafAlertMicrosoftTeamsIntegration:NgwafAlertMicrosoftTeamsIntegration":
+                return new NgwafAlertMicrosoftTeamsIntegration(name, <any>undefined, { urn })
+            case "fastly:index/ngwafAlertOpsgenieIntegration:NgwafAlertOpsgenieIntegration":
+                return new NgwafAlertOpsgenieIntegration(name, <any>undefined, { urn })
+            case "fastly:index/ngwafAlertPagerdutyIntegration:NgwafAlertPagerdutyIntegration":
+                return new NgwafAlertPagerdutyIntegration(name, <any>undefined, { urn })
+            case "fastly:index/ngwafAlertSlackIntegration:NgwafAlertSlackIntegration":
+                return new NgwafAlertSlackIntegration(name, <any>undefined, { urn })
+            case "fastly:index/ngwafAlertWebhookIntegration:NgwafAlertWebhookIntegration":
+                return new NgwafAlertWebhookIntegration(name, <any>undefined, { urn })
+            case "fastly:index/ngwafRedaction:NgwafRedaction":
+                return new NgwafRedaction(name, <any>undefined, { urn })
+            case "fastly:index/ngwafThresholds:NgwafThresholds":
+                return new NgwafThresholds(name, <any>undefined, { urn })
+            case "fastly:index/ngwafVirtualPatches:NgwafVirtualPatches":
+                return new NgwafVirtualPatches(name, <any>undefined, { urn })
+            case "fastly:index/ngwafWorkspace:NgwafWorkspace":
+                return new NgwafWorkspace(name, <any>undefined, { urn })
+            case "fastly:index/ngwafWorkspaceList:NgwafWorkspaceList":
+                return new NgwafWorkspaceList(name, <any>undefined, { urn })
+            case "fastly:index/ngwafWorkspaceRule:NgwafWorkspaceRule":
+                return new NgwafWorkspaceRule(name, <any>undefined, { urn })
+            case "fastly:index/ngwafWorkspaceSignal:NgwafWorkspaceSignal":
+                return new NgwafWorkspaceSignal(name, <any>undefined, { urn })
             case "fastly:index/objectStorageAccessKeys:ObjectStorageAccessKeys":
                 return new ObjectStorageAccessKeys(name, <any>undefined, { urn })
             case "fastly:index/secretstore:Secretstore":
@@ -305,6 +491,24 @@ pulumi.runtime.registerResourceModule("fastly", "index/customDashboard", _module
 pulumi.runtime.registerResourceModule("fastly", "index/domainV1", _module)
 pulumi.runtime.registerResourceModule("fastly", "index/integration", _module)
 pulumi.runtime.registerResourceModule("fastly", "index/kvstore", _module)
+pulumi.runtime.registerResourceModule("fastly", "index/ngwafAccountList", _module)
+pulumi.runtime.registerResourceModule("fastly", "index/ngwafAccountRule", _module)
+pulumi.runtime.registerResourceModule("fastly", "index/ngwafAccountSignal", _module)
+pulumi.runtime.registerResourceModule("fastly", "index/ngwafAlertDatadogIntegration", _module)
+pulumi.runtime.registerResourceModule("fastly", "index/ngwafAlertJiraIntegration", _module)
+pulumi.runtime.registerResourceModule("fastly", "index/ngwafAlertMailingListIntegration", _module)
+pulumi.runtime.registerResourceModule("fastly", "index/ngwafAlertMicrosoftTeamsIntegration", _module)
+pulumi.runtime.registerResourceModule("fastly", "index/ngwafAlertOpsgenieIntegration", _module)
+pulumi.runtime.registerResourceModule("fastly", "index/ngwafAlertPagerdutyIntegration", _module)
+pulumi.runtime.registerResourceModule("fastly", "index/ngwafAlertSlackIntegration", _module)
+pulumi.runtime.registerResourceModule("fastly", "index/ngwafAlertWebhookIntegration", _module)
+pulumi.runtime.registerResourceModule("fastly", "index/ngwafRedaction", _module)
+pulumi.runtime.registerResourceModule("fastly", "index/ngwafThresholds", _module)
+pulumi.runtime.registerResourceModule("fastly", "index/ngwafVirtualPatches", _module)
+pulumi.runtime.registerResourceModule("fastly", "index/ngwafWorkspace", _module)
+pulumi.runtime.registerResourceModule("fastly", "index/ngwafWorkspaceList", _module)
+pulumi.runtime.registerResourceModule("fastly", "index/ngwafWorkspaceRule", _module)
+pulumi.runtime.registerResourceModule("fastly", "index/ngwafWorkspaceSignal", _module)
 pulumi.runtime.registerResourceModule("fastly", "index/objectStorageAccessKeys", _module)
 pulumi.runtime.registerResourceModule("fastly", "index/secretstore", _module)
 pulumi.runtime.registerResourceModule("fastly", "index/serviceACLEntries", _module)

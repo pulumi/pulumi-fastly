@@ -7,7 +7,7 @@ import (
 	"fmt"
 
 	"github.com/blang/semver"
-	"github.com/pulumi/pulumi-fastly/sdk/v10/go/fastly/internal"
+	"github.com/pulumi/pulumi-fastly/sdk/v11/go/fastly/internal"
 	"github.com/pulumi/pulumi/sdk/v3/go/pulumi"
 )
 
@@ -35,6 +35,42 @@ func (m *module) Construct(ctx *pulumi.Context, name, typ, urn string) (r pulumi
 		r = &Integration{}
 	case "fastly:index/kvstore:Kvstore":
 		r = &Kvstore{}
+	case "fastly:index/ngwafAccountList:NgwafAccountList":
+		r = &NgwafAccountList{}
+	case "fastly:index/ngwafAccountRule:NgwafAccountRule":
+		r = &NgwafAccountRule{}
+	case "fastly:index/ngwafAccountSignal:NgwafAccountSignal":
+		r = &NgwafAccountSignal{}
+	case "fastly:index/ngwafAlertDatadogIntegration:NgwafAlertDatadogIntegration":
+		r = &NgwafAlertDatadogIntegration{}
+	case "fastly:index/ngwafAlertJiraIntegration:NgwafAlertJiraIntegration":
+		r = &NgwafAlertJiraIntegration{}
+	case "fastly:index/ngwafAlertMailingListIntegration:NgwafAlertMailingListIntegration":
+		r = &NgwafAlertMailingListIntegration{}
+	case "fastly:index/ngwafAlertMicrosoftTeamsIntegration:NgwafAlertMicrosoftTeamsIntegration":
+		r = &NgwafAlertMicrosoftTeamsIntegration{}
+	case "fastly:index/ngwafAlertOpsgenieIntegration:NgwafAlertOpsgenieIntegration":
+		r = &NgwafAlertOpsgenieIntegration{}
+	case "fastly:index/ngwafAlertPagerdutyIntegration:NgwafAlertPagerdutyIntegration":
+		r = &NgwafAlertPagerdutyIntegration{}
+	case "fastly:index/ngwafAlertSlackIntegration:NgwafAlertSlackIntegration":
+		r = &NgwafAlertSlackIntegration{}
+	case "fastly:index/ngwafAlertWebhookIntegration:NgwafAlertWebhookIntegration":
+		r = &NgwafAlertWebhookIntegration{}
+	case "fastly:index/ngwafRedaction:NgwafRedaction":
+		r = &NgwafRedaction{}
+	case "fastly:index/ngwafThresholds:NgwafThresholds":
+		r = &NgwafThresholds{}
+	case "fastly:index/ngwafVirtualPatches:NgwafVirtualPatches":
+		r = &NgwafVirtualPatches{}
+	case "fastly:index/ngwafWorkspace:NgwafWorkspace":
+		r = &NgwafWorkspace{}
+	case "fastly:index/ngwafWorkspaceList:NgwafWorkspaceList":
+		r = &NgwafWorkspaceList{}
+	case "fastly:index/ngwafWorkspaceRule:NgwafWorkspaceRule":
+		r = &NgwafWorkspaceRule{}
+	case "fastly:index/ngwafWorkspaceSignal:NgwafWorkspaceSignal":
+		r = &NgwafWorkspaceSignal{}
 	case "fastly:index/objectStorageAccessKeys:ObjectStorageAccessKeys":
 		r = &ObjectStorageAccessKeys{}
 	case "fastly:index/secretstore:Secretstore":
@@ -131,6 +167,96 @@ func init() {
 	pulumi.RegisterResourceModule(
 		"fastly",
 		"index/kvstore",
+		&module{version},
+	)
+	pulumi.RegisterResourceModule(
+		"fastly",
+		"index/ngwafAccountList",
+		&module{version},
+	)
+	pulumi.RegisterResourceModule(
+		"fastly",
+		"index/ngwafAccountRule",
+		&module{version},
+	)
+	pulumi.RegisterResourceModule(
+		"fastly",
+		"index/ngwafAccountSignal",
+		&module{version},
+	)
+	pulumi.RegisterResourceModule(
+		"fastly",
+		"index/ngwafAlertDatadogIntegration",
+		&module{version},
+	)
+	pulumi.RegisterResourceModule(
+		"fastly",
+		"index/ngwafAlertJiraIntegration",
+		&module{version},
+	)
+	pulumi.RegisterResourceModule(
+		"fastly",
+		"index/ngwafAlertMailingListIntegration",
+		&module{version},
+	)
+	pulumi.RegisterResourceModule(
+		"fastly",
+		"index/ngwafAlertMicrosoftTeamsIntegration",
+		&module{version},
+	)
+	pulumi.RegisterResourceModule(
+		"fastly",
+		"index/ngwafAlertOpsgenieIntegration",
+		&module{version},
+	)
+	pulumi.RegisterResourceModule(
+		"fastly",
+		"index/ngwafAlertPagerdutyIntegration",
+		&module{version},
+	)
+	pulumi.RegisterResourceModule(
+		"fastly",
+		"index/ngwafAlertSlackIntegration",
+		&module{version},
+	)
+	pulumi.RegisterResourceModule(
+		"fastly",
+		"index/ngwafAlertWebhookIntegration",
+		&module{version},
+	)
+	pulumi.RegisterResourceModule(
+		"fastly",
+		"index/ngwafRedaction",
+		&module{version},
+	)
+	pulumi.RegisterResourceModule(
+		"fastly",
+		"index/ngwafThresholds",
+		&module{version},
+	)
+	pulumi.RegisterResourceModule(
+		"fastly",
+		"index/ngwafVirtualPatches",
+		&module{version},
+	)
+	pulumi.RegisterResourceModule(
+		"fastly",
+		"index/ngwafWorkspace",
+		&module{version},
+	)
+	pulumi.RegisterResourceModule(
+		"fastly",
+		"index/ngwafWorkspaceList",
+		&module{version},
+	)
+	pulumi.RegisterResourceModule(
+		"fastly",
+		"index/ngwafWorkspaceRule",
+		&module{version},
+	)
+	pulumi.RegisterResourceModule(
+		"fastly",
+		"index/ngwafWorkspaceSignal",
 		&module{version},
 	)
 	pulumi.RegisterResourceModule(

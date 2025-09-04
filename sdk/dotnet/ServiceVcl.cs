@@ -231,7 +231,7 @@ namespace Pulumi.Fastly
         public Output<ImmutableArray<Outputs.ServiceVclSnippet>> Snippets { get; private set; } = null!;
 
         /// <summary>
-        /// Conditionally enables new service versions to be staged. If `set` to true, all changes made by an `apply` step will be staged, even if `apply` did not create a new draft version. Default `false`
+        /// Conditionally enables new service versions to be staged. If set to `true`, all changes made by an `apply` step will be staged, even if `apply` did not create a new draft version. Default `false`
         /// </summary>
         [Output("stage")]
         public Output<bool?> Stage { get; private set; } = null!;
@@ -706,7 +706,7 @@ namespace Pulumi.Fastly
         }
 
         /// <summary>
-        /// Conditionally enables new service versions to be staged. If `set` to true, all changes made by an `apply` step will be staged, even if `apply` did not create a new draft version. Default `false`
+        /// Conditionally enables new service versions to be staged. If set to `true`, all changes made by an `apply` step will be staged, even if `apply` did not create a new draft version. Default `false`
         /// </summary>
         [Input("stage")]
         public Input<bool>? Stage { get; set; }
@@ -1163,7 +1163,7 @@ namespace Pulumi.Fastly
         }
 
         /// <summary>
-        /// Conditionally enables new service versions to be staged. If `set` to true, all changes made by an `apply` step will be staged, even if `apply` did not create a new draft version. Default `false`
+        /// Conditionally enables new service versions to be staged. If set to `true`, all changes made by an `apply` step will be staged, even if `apply` did not create a new draft version. Default `false`
         /// </summary>
         [Input("stage")]
         public Input<bool>? Stage { get; set; }

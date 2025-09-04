@@ -8,7 +8,7 @@ import (
 	"reflect"
 
 	"errors"
-	"github.com/pulumi/pulumi-fastly/sdk/v10/go/fastly/internal"
+	"github.com/pulumi/pulumi-fastly/sdk/v11/go/fastly/internal"
 	"github.com/pulumi/pulumi/sdk/v3/go/pulumi"
 )
 
@@ -82,7 +82,7 @@ type ServiceCompute struct {
 	// A resource link represents a link between a shared resource (such as an KV Store or Config Store) and a service version.
 	ResourceLinks ServiceComputeResourceLinkArrayOutput `pulumi:"resourceLinks"`
 	Reuse         pulumi.BoolPtrOutput                  `pulumi:"reuse"`
-	// Conditionally enables new service versions to be staged. If `set` to true, all changes made by an `apply` step will be staged, even if `apply` did not create a new draft version. Default `false`
+	// Conditionally enables new service versions to be staged. If set to `true`, all changes made by an `apply` step will be staged, even if `apply` did not create a new draft version. Default `false`
 	Stage pulumi.BoolPtrOutput `pulumi:"stage"`
 	// The currently staged version of your Fastly Service
 	StagedVersion pulumi.IntOutput `pulumi:"stagedVersion"`
@@ -175,7 +175,7 @@ type serviceComputeState struct {
 	// A resource link represents a link between a shared resource (such as an KV Store or Config Store) and a service version.
 	ResourceLinks []ServiceComputeResourceLink `pulumi:"resourceLinks"`
 	Reuse         *bool                        `pulumi:"reuse"`
-	// Conditionally enables new service versions to be staged. If `set` to true, all changes made by an `apply` step will be staged, even if `apply` did not create a new draft version. Default `false`
+	// Conditionally enables new service versions to be staged. If set to `true`, all changes made by an `apply` step will be staged, even if `apply` did not create a new draft version. Default `false`
 	Stage *bool `pulumi:"stage"`
 	// The currently staged version of your Fastly Service
 	StagedVersion *int `pulumi:"stagedVersion"`
@@ -236,7 +236,7 @@ type ServiceComputeState struct {
 	// A resource link represents a link between a shared resource (such as an KV Store or Config Store) and a service version.
 	ResourceLinks ServiceComputeResourceLinkArrayInput
 	Reuse         pulumi.BoolPtrInput
-	// Conditionally enables new service versions to be staged. If `set` to true, all changes made by an `apply` step will be staged, even if `apply` did not create a new draft version. Default `false`
+	// Conditionally enables new service versions to be staged. If set to `true`, all changes made by an `apply` step will be staged, even if `apply` did not create a new draft version. Default `false`
 	Stage pulumi.BoolPtrInput
 	// The currently staged version of your Fastly Service
 	StagedVersion pulumi.IntPtrInput
@@ -294,7 +294,7 @@ type serviceComputeArgs struct {
 	// A resource link represents a link between a shared resource (such as an KV Store or Config Store) and a service version.
 	ResourceLinks []ServiceComputeResourceLink `pulumi:"resourceLinks"`
 	Reuse         *bool                        `pulumi:"reuse"`
-	// Conditionally enables new service versions to be staged. If `set` to true, all changes made by an `apply` step will be staged, even if `apply` did not create a new draft version. Default `false`
+	// Conditionally enables new service versions to be staged. If set to `true`, all changes made by an `apply` step will be staged, even if `apply` did not create a new draft version. Default `false`
 	Stage *bool `pulumi:"stage"`
 	// Description field for the version
 	VersionComment *string `pulumi:"versionComment"`
@@ -347,7 +347,7 @@ type ServiceComputeArgs struct {
 	// A resource link represents a link between a shared resource (such as an KV Store or Config Store) and a service version.
 	ResourceLinks ServiceComputeResourceLinkArrayInput
 	Reuse         pulumi.BoolPtrInput
-	// Conditionally enables new service versions to be staged. If `set` to true, all changes made by an `apply` step will be staged, even if `apply` did not create a new draft version. Default `false`
+	// Conditionally enables new service versions to be staged. If set to `true`, all changes made by an `apply` step will be staged, even if `apply` did not create a new draft version. Default `false`
 	Stage pulumi.BoolPtrInput
 	// Description field for the version
 	VersionComment pulumi.StringPtrInput
@@ -625,7 +625,7 @@ func (o ServiceComputeOutput) Reuse() pulumi.BoolPtrOutput {
 	return o.ApplyT(func(v *ServiceCompute) pulumi.BoolPtrOutput { return v.Reuse }).(pulumi.BoolPtrOutput)
 }
 
-// Conditionally enables new service versions to be staged. If `set` to true, all changes made by an `apply` step will be staged, even if `apply` did not create a new draft version. Default `false`
+// Conditionally enables new service versions to be staged. If set to `true`, all changes made by an `apply` step will be staged, even if `apply` did not create a new draft version. Default `false`
 func (o ServiceComputeOutput) Stage() pulumi.BoolPtrOutput {
 	return o.ApplyT(func(v *ServiceCompute) pulumi.BoolPtrOutput { return v.Stage }).(pulumi.BoolPtrOutput)
 }

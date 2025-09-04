@@ -11,7 +11,7 @@ The Fastly provider is available as a package in all Pulumi languages:
 
 * JavaScript/TypeScript: [`@pulumi/fastly`](https://www.npmjs.com/package/@pulumi/fastly)
 * Python: [`pulumi-fastly`](https://pypi.org/project/pulumi-fastly/)
-* Go: [`github.com/pulumi/pulumi-fastly/sdk/v10/go/fastly`](https://github.com/pulumi/pulumi-fastly)
+* Go: [`github.com/pulumi/pulumi-fastly/sdk/v11/go/fastly`](https://github.com/pulumi/pulumi-fastly)
 * .NET: [`Pulumi.Fastly`](https://www.nuget.org/packages/Pulumi.Fastly)
 * Java: [`com.pulumi/fastly`](https://central.sonatype.com/artifact/com.pulumi/fastly)
 
@@ -105,7 +105,7 @@ config:
 package main
 
 import (
-	"github.com/pulumi/pulumi-fastly/sdk/v10/go/fastly"
+	"github.com/pulumi/pulumi-fastly/sdk/v11/go/fastly"
 	"github.com/pulumi/pulumi/sdk/v3/go/pulumi"
 )
 
@@ -273,7 +273,7 @@ config:
 package main
 
 import (
-	"github.com/pulumi/pulumi-fastly/sdk/v10/go/fastly"
+	"github.com/pulumi/pulumi-fastly/sdk/v11/go/fastly"
 	"github.com/pulumi/pulumi/sdk/v3/go/pulumi"
 )
 
@@ -385,7 +385,7 @@ return await Deployment.RunAsync(() =>
 package main
 
 import (
-	"github.com/pulumi/pulumi-fastly/sdk/v10/go/fastly"
+	"github.com/pulumi/pulumi-fastly/sdk/v11/go/fastly"
 	"github.com/pulumi/pulumi/sdk/v3/go/pulumi"
 )
 
