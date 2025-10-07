@@ -22,7 +22,7 @@ namespace Pulumi.Fastly.Outputs
         /// </summary>
         public readonly int? FormatVersion;
         /// <summary>
-        /// How the message should be formatted. Can be either `classic`, `loggly`, `logplex` or `blank`. Default is `classic`
+        /// How the message should be formatted. Can be either `Classic`, `Loggly`, `Logplex` or `Blank`. Default is `Classic`
         /// </summary>
         public readonly string? MessageType;
         /// <summary>

@@ -73,14 +73,14 @@ import javax.annotation.Nullable;
 @ResourceType(type="fastly:index/serviceAuthorization:ServiceAuthorization")
 public class ServiceAuthorization extends com.pulumi.resources.CustomResource {
     /**
-     * The permissions to grant the user. Can be `full`, `read_only`, `purge_select` or `purge_all`.
+     * The permissions to grant the user. Can be `full`, `readOnly`, `purgeSelect` or `purgeAll`.
      * 
      */
     @Export(name="permission", refs={String.class}, tree="[0]")
     private Output<String> permission;
 
     /**
-     * @return The permissions to grant the user. Can be `full`, `read_only`, `purge_select` or `purge_all`.
+     * @return The permissions to grant the user. Can be `full`, `readOnly`, `purgeSelect` or `purgeAll`.
      * 
      */
     public Output<String> permission() {

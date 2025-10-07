@@ -31,7 +31,7 @@ namespace Pulumi.Fastly.Inputs
         public Input<double> Threshold { get; set; } = null!;
 
         /// <summary>
-        /// Type of strategy to use to evaluate. One of: `above_threshold`, `all_above_threshold`, `below_threshold`, `percent_absolute`, `percent_decrease`, `percent_increase`.
+        /// Type of strategy to use to evaluate. One of: `AboveThreshold`, `AllAboveThreshold`, `BelowThreshold`, `PercentAbsolute`, `PercentDecrease`, `PercentIncrease`.
         /// </summary>
         [Input("type", required: true)]
         public Input<string> Type { get; set; } = null!;

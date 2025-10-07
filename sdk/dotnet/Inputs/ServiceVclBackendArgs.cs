@@ -19,7 +19,7 @@ namespace Pulumi.Fastly.Inputs
         public Input<string> Address { get; set; } = null!;
 
         /// <summary>
-        /// Denotes if this Backend should be included in the pool of backends that requests are load balanced against. Default `false`
+        /// Denotes if this Backend should be included in the pool of backends that requests are load balanced against. Default `False`
         /// </summary>
         [Input("autoLoadbalance")]
         public Input<bool>? AutoLoadbalance { get; set; }
@@ -49,7 +49,7 @@ namespace Pulumi.Fastly.Inputs
         public Input<int>? FirstByteTimeout { get; set; }
 
         /// <summary>
-        /// Name of a defined `healthcheck` to assign to this backend
+        /// Name of a defined `Healthcheck` to assign to this backend
         /// </summary>
         [Input("healthcheck")]
         public Input<string>? Healthcheck { get; set; }
@@ -97,7 +97,7 @@ namespace Pulumi.Fastly.Inputs
         public Input<int>? Port { get; set; }
 
         /// <summary>
-        /// Prefer IPv6 connections to origins for hostname backends. Default `false`
+        /// Prefer IPv6 connections to origins for hostname backends. Default `False`
         /// </summary>
         [Input("preferIpv6")]
         public Input<bool>? PreferIpv6 { get; set; }
@@ -115,7 +115,7 @@ namespace Pulumi.Fastly.Inputs
         public Input<string>? ShareKey { get; set; }
 
         /// <summary>
-        /// The POP of the shield designated to reduce inbound load. Valid values for `shield` are included in the `GET /datacenters` API response
+        /// The POP of the shield designated to reduce inbound load. Valid values for `Shield` are included in the `GET /datacenters` API response
         /// </summary>
         [Input("shield")]
         public Input<string>? Shield { get; set; }
@@ -133,7 +133,7 @@ namespace Pulumi.Fastly.Inputs
         public Input<string>? SslCertHostname { get; set; }
 
         /// <summary>
-        /// Be strict about checking SSL certs. Default `true`
+        /// Be strict about checking SSL certs. Default `True`
         /// </summary>
         [Input("sslCheckCert")]
         public Input<bool>? SslCheckCert { get; set; }
@@ -183,7 +183,7 @@ namespace Pulumi.Fastly.Inputs
         public Input<string>? SslSniHostname { get; set; }
 
         /// <summary>
-        /// Whether or not to use SSL to reach the Backend. Default `false`
+        /// Whether or not to use SSL to reach the Backend. Default `False`
         /// </summary>
         [Input("useSsl")]
         public Input<bool>? UseSsl { get; set; }

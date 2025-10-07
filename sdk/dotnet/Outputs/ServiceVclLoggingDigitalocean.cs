@@ -22,7 +22,7 @@ namespace Pulumi.Fastly.Outputs
         /// </summary>
         public readonly string BucketName;
         /// <summary>
-        /// The codec used for compression of your logs. Valid values are zstd, snappy, and gzip. If the specified codec is "gzip", gzip_level will default to 3. To specify a different level, leave compression_codec blank and explicitly set the level using gzip_level. Specifying both compression_codec and gzip_level in the same API request will result in an error.
+        /// The codec used for compression of your logs. Valid values are zstd, snappy, and gzip. If the specified codec is "gzip", GzipLevel will default to 3. To specify a different level, leave CompressionCodec blank and explicitly set the level using gzip_level. Specifying both CompressionCodec and GzipLevel in the same API request will result in an error.
         /// </summary>
         public readonly string? CompressionCodec;
         /// <summary>
@@ -42,7 +42,7 @@ namespace Pulumi.Fastly.Outputs
         /// </summary>
         public readonly int? GzipLevel;
         /// <summary>
-        /// How the message should be formatted. Can be either `classic`, `loggly`, `logplex` or `blank`. Default is `classic`
+        /// How the message should be formatted. Can be either `Classic`, `Loggly`, `Logplex` or `Blank`. Default is `Classic`
         /// </summary>
         public readonly string? MessageType;
         /// <summary>
@@ -58,7 +58,7 @@ namespace Pulumi.Fastly.Outputs
         /// </summary>
         public readonly int? Period;
         /// <summary>
-        /// Where in the generated VCL the logging call should be placed. Can be `none` or `none`.
+        /// Where in the generated VCL the logging call should be placed. Can be `None` or `None`.
         /// </summary>
         public readonly string? Placement;
         /// <summary>
@@ -78,7 +78,7 @@ namespace Pulumi.Fastly.Outputs
         /// </summary>
         public readonly string SecretKey;
         /// <summary>
-        /// The `strftime` specified timestamp formatting (default `%Y-%m-%dT%H:%M:%S.000`)
+        /// The `Strftime` specified timestamp formatting (default `%Y-%m-%dT%H:%M:%S.000`)
         /// </summary>
         public readonly string? TimestampFormat;
 

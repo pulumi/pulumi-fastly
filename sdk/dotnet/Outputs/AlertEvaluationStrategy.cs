@@ -26,7 +26,7 @@ namespace Pulumi.Fastly.Outputs
         /// </summary>
         public readonly double Threshold;
         /// <summary>
-        /// Type of strategy to use to evaluate. One of: `above_threshold`, `all_above_threshold`, `below_threshold`, `percent_absolute`, `percent_decrease`, `percent_increase`.
+        /// Type of strategy to use to evaluate. One of: `AboveThreshold`, `AllAboveThreshold`, `BelowThreshold`, `PercentAbsolute`, `PercentDecrease`, `PercentIncrease`.
         /// </summary>
         public readonly string Type;
 

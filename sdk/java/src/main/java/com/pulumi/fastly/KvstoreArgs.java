@@ -47,14 +47,14 @@ public final class KvstoreArgs extends com.pulumi.resources.ResourceArgs {
     }
 
     /**
-     * A unique name to identify the KV Store. It is important to note that changing this attribute will delete and recreate the KV Store, and discard the current entries. You MUST first delete the associated resource_link block from your service before modifying this field.
+     * A unique name to identify the KV Store. It is important to note that changing this attribute will delete and recreate the KV Store, and discard the current entries. You MUST first delete the associated resourceLink block from your service before modifying this field.
      * 
      */
     @Import(name="name")
     private @Nullable Output<String> name;
 
     /**
-     * @return A unique name to identify the KV Store. It is important to note that changing this attribute will delete and recreate the KV Store, and discard the current entries. You MUST first delete the associated resource_link block from your service before modifying this field.
+     * @return A unique name to identify the KV Store. It is important to note that changing this attribute will delete and recreate the KV Store, and discard the current entries. You MUST first delete the associated resourceLink block from your service before modifying this field.
      * 
      */
     public Optional<Output<String>> name() {
@@ -130,7 +130,7 @@ public final class KvstoreArgs extends com.pulumi.resources.ResourceArgs {
         }
 
         /**
-         * @param name A unique name to identify the KV Store. It is important to note that changing this attribute will delete and recreate the KV Store, and discard the current entries. You MUST first delete the associated resource_link block from your service before modifying this field.
+         * @param name A unique name to identify the KV Store. It is important to note that changing this attribute will delete and recreate the KV Store, and discard the current entries. You MUST first delete the associated resourceLink block from your service before modifying this field.
          * 
          * @return builder
          * 
@@ -141,7 +141,7 @@ public final class KvstoreArgs extends com.pulumi.resources.ResourceArgs {
         }
 
         /**
-         * @param name A unique name to identify the KV Store. It is important to note that changing this attribute will delete and recreate the KV Store, and discard the current entries. You MUST first delete the associated resource_link block from your service before modifying this field.
+         * @param name A unique name to identify the KV Store. It is important to note that changing this attribute will delete and recreate the KV Store, and discard the current entries. You MUST first delete the associated resourceLink block from your service before modifying this field.
          * 
          * @return builder
          * 

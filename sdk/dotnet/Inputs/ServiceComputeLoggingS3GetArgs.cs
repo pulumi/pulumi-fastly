@@ -13,7 +13,7 @@ namespace Pulumi.Fastly.Inputs
     public sealed class ServiceComputeLoggingS3GetArgs : global::Pulumi.ResourceArgs
     {
         /// <summary>
-        /// The AWS [Canned ACL](https://docs.aws.amazon.com/AmazonS3/latest/userguide/acl-overview.html#canned-acl) to use for objects uploaded to the S3 bucket. Options are: `private`, `public-read`, `public-read-write`, `aws-exec-read`, `authenticated-read`, `bucket-owner-read`, `bucket-owner-full-control`
+        /// The AWS [Canned ACL](https://docs.aws.amazon.com/AmazonS3/latest/userguide/acl-overview.html#canned-acl) to use for objects uploaded to the S3 bucket. Options are: `Private`, `public-read`, `public-read-write`, `aws-exec-read`, `authenticated-read`, `bucket-owner-read`, `bucket-owner-full-control`
         /// </summary>
         [Input("acl")]
         public Input<string>? Acl { get; set; }
@@ -25,7 +25,7 @@ namespace Pulumi.Fastly.Inputs
         public Input<string> BucketName { get; set; } = null!;
 
         /// <summary>
-        /// The codec used for compression of your logs. Valid values are zstd, snappy, and gzip. If the specified codec is "gzip", gzip_level will default to 3. To specify a different level, leave compression_codec blank and explicitly set the level using gzip_level. Specifying both compression_codec and gzip_level in the same API request will result in an error.
+        /// The codec used for compression of your logs. Valid values are zstd, snappy, and gzip. If the specified codec is "gzip", GzipLevel will default to 3. To specify a different level, leave CompressionCodec blank and explicitly set the level using gzip_level. Specifying both CompressionCodec and GzipLevel in the same API request will result in an error.
         /// </summary>
         [Input("compressionCodec")]
         public Input<string>? CompressionCodec { get; set; }
@@ -49,7 +49,7 @@ namespace Pulumi.Fastly.Inputs
         public Input<int>? GzipLevel { get; set; }
 
         /// <summary>
-        /// How the message should be formatted. Can be either `classic`, `loggly`, `logplex` or `blank`. Default is `classic`
+        /// How the message should be formatted. Can be either `Classic`, `Loggly`, `Logplex` or `Blank`. Default is `Classic`
         /// </summary>
         [Input("messageType")]
         public Input<string>? MessageType { get; set; }
@@ -85,7 +85,7 @@ namespace Pulumi.Fastly.Inputs
         public Input<string>? PublicKey { get; set; }
 
         /// <summary>
-        /// The S3 storage class (redundancy level). Should be one of: `standard`, `intelligent_tiering`, `standard_ia`, `onezone_ia`, `glacier`, `glacier_ir`, `deep_archive`, or `reduced_redundancy`
+        /// The S3 storage class (redundancy level). Should be one of: `Standard`, `IntelligentTiering`, `StandardIa`, `OnezoneIa`, `Glacier`, `GlacierIr`, `DeepArchive`, or `ReducedRedundancy`
         /// </summary>
         [Input("redundancy")]
         public Input<string>? Redundancy { get; set; }
@@ -94,7 +94,7 @@ namespace Pulumi.Fastly.Inputs
         private Input<string>? _s3AccessKey;
 
         /// <summary>
-        /// AWS Access Key of an account with the required permissions to post logs. It is **strongly** recommended you create a separate IAM user with permissions to only operate on this Bucket. This key will be not be encrypted. Not required if `iam_role` is provided. You can provide this key via an environment variable, `FASTLY_S3_ACCESS_KEY`
+        /// AWS Access Key of an account with the required permissions to post logs. It is **strongly** recommended you create a separate IAM user with permissions to only operate on this Bucket. This key will be not be encrypted. Not required if `IamRole` is provided. You can provide this key via an environment variable, `FASTLY_S3_ACCESS_KEY`
         /// </summary>
         public Input<string>? S3AccessKey
         {
@@ -107,7 +107,7 @@ namespace Pulumi.Fastly.Inputs
         }
 
         /// <summary>
-        /// The Amazon Resource Name (ARN) for the IAM role granting Fastly access to S3. Not required if `access_key` and `secret_key` are provided. You can provide this value via an environment variable, `FASTLY_S3_IAM_ROLE`
+        /// The Amazon Resource Name (ARN) for the IAM role granting Fastly access to S3. Not required if `AccessKey` and `SecretKey` are provided. You can provide this value via an environment variable, `FASTLY_S3_IAM_ROLE`
         /// </summary>
         [Input("s3IamRole")]
         public Input<string>? S3IamRole { get; set; }
@@ -116,7 +116,7 @@ namespace Pulumi.Fastly.Inputs
         private Input<string>? _s3SecretKey;
 
         /// <summary>
-        /// AWS Secret Key of an account with the required permissions to post logs. It is **strongly** recommended you create a separate IAM user with permissions to only operate on this Bucket. This secret will be not be encrypted. Not required if `iam_role` is provided. You can provide this secret via an environment variable, `FASTLY_S3_SECRET_KEY`
+        /// AWS Secret Key of an account with the required permissions to post logs. It is **strongly** recommended you create a separate IAM user with permissions to only operate on this Bucket. This secret will be not be encrypted. Not required if `IamRole` is provided. You can provide this secret via an environment variable, `FASTLY_S3_SECRET_KEY`
         /// </summary>
         public Input<string>? S3SecretKey
         {
@@ -135,13 +135,13 @@ namespace Pulumi.Fastly.Inputs
         public Input<string>? ServerSideEncryption { get; set; }
 
         /// <summary>
-        /// Optional server-side KMS Key Id. Must be set if server_side_encryption is set to `aws:kms`
+        /// Optional server-side KMS Key Id. Must be set if ServerSideEncryption is set to `aws:kms`
         /// </summary>
         [Input("serverSideEncryptionKmsKeyId")]
         public Input<string>? ServerSideEncryptionKmsKeyId { get; set; }
 
         /// <summary>
-        /// The `strftime` specified timestamp formatting (default `%Y-%m-%dT%H:%M:%S.000`)
+        /// The `Strftime` specified timestamp formatting (default `%Y-%m-%dT%H:%M:%S.000`)
         /// </summary>
         [Input("timestampFormat")]
         public Input<string>? TimestampFormat { get; set; }

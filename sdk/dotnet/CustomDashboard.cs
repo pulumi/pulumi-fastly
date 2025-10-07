@@ -12,6 +12,330 @@ namespace Pulumi.Fastly
     /// <summary>
     /// Provides a Custom Dashboard which can be viewed in the Fastly Control Panel.
     /// 
+    /// ## Example Usage
+    /// 
+    /// ```csharp
+    /// using System.Collections.Generic;
+    /// using System.Linq;
+    /// using Pulumi;
+    /// using Fastly = Pulumi.Fastly;
+    /// 
+    /// return await Deployment.RunAsync(() =&gt; 
+    /// {
+    ///     var example = new Fastly.CustomDashboard("example", new()
+    ///     {
+    ///         Name = "Example Custom Dashboard",
+    ///         Description = "This is an example custom dashboard. A few dashboard items are provided to help you get started.",
+    ///         DashboardItems = new[]
+    ///         {
+    ///             new Fastly.Inputs.CustomDashboardDashboardItemArgs
+    ///             {
+    ///                 Id = "example1",
+    ///                 Title = "Total Requests",
+    ///                 Subtitle = "Number of requests processed.",
+    ///                 DataSource = new Fastly.Inputs.CustomDashboardDashboardItemDataSourceArgs
+    ///                 {
+    ///                     Type = "stats.edge",
+    ///                     Config = 
+    ///                     {
+    ///                         { "metrics", new[]
+    ///                         {
+    ///                             "requests",
+    ///                         } },
+    ///                     }[0],
+    ///                 },
+    ///                 Visualization = new Fastly.Inputs.CustomDashboardDashboardItemVisualizationArgs
+    ///                 {
+    ///                     Type = "chart",
+    ///                     Config = new Fastly.Inputs.CustomDashboardDashboardItemVisualizationConfigArgs
+    ///                     {
+    ///                         Format = "requests",
+    ///                         PlotType = "line",
+    ///                     },
+    ///                 },
+    ///             },
+    ///             new Fastly.Inputs.CustomDashboardDashboardItemArgs
+    ///             {
+    ///                 Id = "example2",
+    ///                 Title = "Hit Ratio",
+    ///                 Subtitle = "Ratio of requests served from Fastly.",
+    ///                 DataSource = new Fastly.Inputs.CustomDashboardDashboardItemDataSourceArgs
+    ///                 {
+    ///                     Type = "stats.edge",
+    ///                     Config = new Fastly.Inputs.CustomDashboardDashboardItemDataSourceConfigArgs
+    ///                     {
+    ///                         Metrics = new[]
+    ///                         {
+    ///                             "hit_ratio",
+    ///                         },
+    ///                     },
+    ///                 },
+    ///                 Visualization = new Fastly.Inputs.CustomDashboardDashboardItemVisualizationArgs
+    ///                 {
+    ///                     Type = "chart",
+    ///                     Config = new Fastly.Inputs.CustomDashboardDashboardItemVisualizationConfigArgs
+    ///                     {
+    ///                         Format = "percent",
+    ///                         PlotType = "donut",
+    ///                         CalculationMethod = "latest",
+    ///                     },
+    ///                 },
+    ///             },
+    ///             new Fastly.Inputs.CustomDashboardDashboardItemArgs
+    ///             {
+    ///                 Id = "example3",
+    ///                 Title = "Client &amp; Server Errors",
+    ///                 Subtitle = "Total errors served from the client or server.",
+    ///                 DataSource = new Fastly.Inputs.CustomDashboardDashboardItemDataSourceArgs
+    ///                 {
+    ///                     Type = "stats.edge",
+    ///                     Config = new Fastly.Inputs.CustomDashboardDashboardItemDataSourceConfigArgs
+    ///                     {
+    ///                         Metrics = new[]
+    ///                         {
+    ///                             "status_4xx",
+    ///                             "status_5xx",
+    ///                         },
+    ///                     },
+    ///                 },
+    ///                 Visualization = new Fastly.Inputs.CustomDashboardDashboardItemVisualizationArgs
+    ///                 {
+    ///                     Type = "chart",
+    ///                     Config = new Fastly.Inputs.CustomDashboardDashboardItemVisualizationConfigArgs
+    ///                     {
+    ///                         Format = "requests",
+    ///                         PlotType = "bar",
+    ///                     },
+    ///                 },
+    ///             },
+    ///             new Fastly.Inputs.CustomDashboardDashboardItemArgs
+    ///             {
+    ///                 Id = "example4",
+    ///                 Title = "Domain Requests",
+    ///                 Subtitle = "Requests by Domain.",
+    ///                 Span = 6,
+    ///                 DataSource = new Fastly.Inputs.CustomDashboardDashboardItemDataSourceArgs
+    ///                 {
+    ///                     Type = "stats.domain",
+    ///                     Config = new Fastly.Inputs.CustomDashboardDashboardItemDataSourceConfigArgs
+    ///                     {
+    ///                         Metrics = new[]
+    ///                         {
+    ///                             "requests",
+    ///                         },
+    ///                     },
+    ///                 },
+    ///                 Visualization = new Fastly.Inputs.CustomDashboardDashboardItemVisualizationArgs
+    ///                 {
+    ///                     Type = "chart",
+    ///                     Config = new Fastly.Inputs.CustomDashboardDashboardItemVisualizationConfigArgs
+    ///                     {
+    ///                         Format = "requests",
+    ///                         PlotType = "line",
+    ///                     },
+    ///                 },
+    ///             },
+    ///             new Fastly.Inputs.CustomDashboardDashboardItemArgs
+    ///             {
+    ///                 Id = "example5",
+    ///                 Title = "Origin Responses",
+    ///                 Subtitle = "Responses by Origin.",
+    ///                 Span = 6,
+    ///                 DataSource = new Fastly.Inputs.CustomDashboardDashboardItemDataSourceArgs
+    ///                 {
+    ///                     Type = "stats.origin",
+    ///                     Config = new Fastly.Inputs.CustomDashboardDashboardItemDataSourceConfigArgs
+    ///                     {
+    ///                         Metrics = new[]
+    ///                         {
+    ///                             "all_responses",
+    ///                         },
+    ///                     },
+    ///                 },
+    ///                 Visualization = new Fastly.Inputs.CustomDashboardDashboardItemVisualizationArgs
+    ///                 {
+    ///                     Type = "chart",
+    ///                     Config = new Fastly.Inputs.CustomDashboardDashboardItemVisualizationConfigArgs
+    ///                     {
+    ///                         PlotType = "line",
+    ///                     },
+    ///                 },
+    ///             },
+    ///             new Fastly.Inputs.CustomDashboardDashboardItemArgs
+    ///             {
+    ///                 Id = "example6",
+    ///                 Title = "Total Bandwidth",
+    ///                 Subtitle = "Total bandwidth served.",
+    ///                 Span = 12,
+    ///                 DataSource = new Fastly.Inputs.CustomDashboardDashboardItemDataSourceArgs
+    ///                 {
+    ///                     Type = "stats.edge",
+    ///                     Config = new Fastly.Inputs.CustomDashboardDashboardItemDataSourceConfigArgs
+    ///                     {
+    ///                         Metrics = new[]
+    ///                         {
+    ///                             "bandwidth",
+    ///                         },
+    ///                     },
+    ///                 },
+    ///                 Visualization = new Fastly.Inputs.CustomDashboardDashboardItemVisualizationArgs
+    ///                 {
+    ///                     Type = "chart",
+    ///                     Config = new Fastly.Inputs.CustomDashboardDashboardItemVisualizationConfigArgs
+    ///                     {
+    ///                         Format = "bytes",
+    ///                         PlotType = "bar",
+    ///                     },
+    ///                 },
+    ///             },
+    ///             new Fastly.Inputs.CustomDashboardDashboardItemArgs
+    ///             {
+    ///                 Id = "example7",
+    ///                 Title = "Products - Image Optimizer &amp; Real-Time Log Streaming",
+    ///                 Subtitle = "Total IO images served and log statements sent.",
+    ///                 Span = 8,
+    ///                 DataSource = new Fastly.Inputs.CustomDashboardDashboardItemDataSourceArgs
+    ///                 {
+    ///                     Type = "stats.edge",
+    ///                     Config = new Fastly.Inputs.CustomDashboardDashboardItemDataSourceConfigArgs
+    ///                     {
+    ///                         Metrics = new[]
+    ///                         {
+    ///                             "imgopto",
+    ///                             "log",
+    ///                         },
+    ///                     },
+    ///                 },
+    ///                 Visualization = new Fastly.Inputs.CustomDashboardDashboardItemVisualizationArgs
+    ///                 {
+    ///                     Type = "chart",
+    ///                     Config = new Fastly.Inputs.CustomDashboardDashboardItemVisualizationConfigArgs
+    ///                     {
+    ///                         PlotType = "line",
+    ///                     },
+    ///                 },
+    ///             },
+    ///             new Fastly.Inputs.CustomDashboardDashboardItemArgs
+    ///             {
+    ///                 Id = "example8",
+    ///                 Title = "Transport Protocols &amp; Security",
+    ///                 Subtitle = "HTTP Protocols &amp; TLS.",
+    ///                 DataSource = new Fastly.Inputs.CustomDashboardDashboardItemDataSourceArgs
+    ///                 {
+    ///                     Type = "stats.edge",
+    ///                     Config = new Fastly.Inputs.CustomDashboardDashboardItemDataSourceConfigArgs
+    ///                     {
+    ///                         Metrics = new[]
+    ///                         {
+    ///                             "http1",
+    ///                             "http2",
+    ///                             "http3",
+    ///                             "tls_v10",
+    ///                             "tls_v11",
+    ///                             "tls_v12",
+    ///                             "tls_v13",
+    ///                         },
+    ///                     },
+    ///                 },
+    ///                 Visualization = new Fastly.Inputs.CustomDashboardDashboardItemVisualizationArgs
+    ///                 {
+    ///                     Type = "chart",
+    ///                     Config = new Fastly.Inputs.CustomDashboardDashboardItemVisualizationConfigArgs
+    ///                     {
+    ///                         Format = "requests",
+    ///                         PlotType = "line",
+    ///                     },
+    ///                 },
+    ///             },
+    ///             new Fastly.Inputs.CustomDashboardDashboardItemArgs
+    ///             {
+    ///                 Id = "example9",
+    ///                 Title = "Origin Miss Latency",
+    ///                 Subtitle = "Miss latency times for your origins.",
+    ///                 Span = 12,
+    ///                 DataSource = new Fastly.Inputs.CustomDashboardDashboardItemDataSourceArgs
+    ///                 {
+    ///                     Type = "stats.edge",
+    ///                     Config = new Fastly.Inputs.CustomDashboardDashboardItemDataSourceConfigArgs
+    ///                     {
+    ///                         Metrics = new[]
+    ///                         {
+    ///                             "origin_latency",
+    ///                         },
+    ///                     },
+    ///                 },
+    ///                 Visualization = new Fastly.Inputs.CustomDashboardDashboardItemVisualizationArgs
+    ///                 {
+    ///                     Type = "chart",
+    ///                     Config = new Fastly.Inputs.CustomDashboardDashboardItemVisualizationConfigArgs
+    ///                     {
+    ///                         Format = "milliseconds",
+    ///                         PlotType = "line",
+    ///                     },
+    ///                 },
+    ///             },
+    ///             new Fastly.Inputs.CustomDashboardDashboardItemArgs
+    ///             {
+    ///                 Id = "example10",
+    ///                 Title = "DDoS - Request Flood Attempts",
+    ///                 Subtitle = "Number of connections the limit-streams action was applied.",
+    ///                 Span = 6,
+    ///                 DataSource = new Fastly.Inputs.CustomDashboardDashboardItemDataSourceArgs
+    ///                 {
+    ///                     Type = "stats.edge",
+    ///                     Config = new Fastly.Inputs.CustomDashboardDashboardItemDataSourceConfigArgs
+    ///                     {
+    ///                         Metrics = new[]
+    ///                         {
+    ///                             "ddos_action_limit_streams_connections",
+    ///                             "ddos_action_limit_streams_requests",
+    ///                         },
+    ///                     },
+    ///                 },
+    ///                 Visualization = new Fastly.Inputs.CustomDashboardDashboardItemVisualizationArgs
+    ///                 {
+    ///                     Type = "chart",
+    ///                     Config = new Fastly.Inputs.CustomDashboardDashboardItemVisualizationConfigArgs
+    ///                     {
+    ///                         Format = "requests",
+    ///                         PlotType = "line",
+    ///                     },
+    ///                 },
+    ///             },
+    ///             new Fastly.Inputs.CustomDashboardDashboardItemArgs
+    ///             {
+    ///                 Id = "example11",
+    ///                 Title = "DDoS - Malicious Bot Attack",
+    ///                 Subtitle = "Number of times the blackhole action was taken.",
+    ///                 Span = 6,
+    ///                 DataSource = new Fastly.Inputs.CustomDashboardDashboardItemDataSourceArgs
+    ///                 {
+    ///                     Type = "stats.edge",
+    ///                     Config = new Fastly.Inputs.CustomDashboardDashboardItemDataSourceConfigArgs
+    ///                     {
+    ///                         Metrics = new[]
+    ///                         {
+    ///                             "ddos_action_close",
+    ///                             "ddos_action_blackhole",
+    ///                         },
+    ///                     },
+    ///                 },
+    ///                 Visualization = new Fastly.Inputs.CustomDashboardDashboardItemVisualizationArgs
+    ///                 {
+    ///                     Type = "chart",
+    ///                     Config = new Fastly.Inputs.CustomDashboardDashboardItemVisualizationConfigArgs
+    ///                     {
+    ///                         Format = "number",
+    ///                         PlotType = "line",
+    ///                     },
+    ///                 },
+    ///             },
+    ///         },
+    ///     });
+    /// 
+    /// });
+    /// ```
+    /// 
     /// ## Import
     /// 
     /// Fastly Custom Dashboards can be imported using their ID, e.g.

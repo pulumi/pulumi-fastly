@@ -19,7 +19,7 @@ namespace Pulumi.Fastly.Inputs
         public Input<Inputs.CustomDashboardDashboardItemVisualizationConfigArgs> Config { get; set; } = null!;
 
         /// <summary>
-        /// The type of visualization to display. One of: `chart`.
+        /// The type of visualization to display. One of: `Chart`.
         /// </summary>
         [Input("type", required: true)]
         public Input<string> Type { get; set; } = null!;

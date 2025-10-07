@@ -16,6 +16,35 @@ import (
 // rules, signals, and various other resources that are offered by the
 // Next-Gen WAF product.
 //
+// ## Example Usage
+//
+// Basic usage:
+//
+// ```go
+// package main
+//
+// import (
+//
+//	"github.com/pulumi/pulumi-fastly/sdk/v11/go/fastly"
+//	"github.com/pulumi/pulumi/sdk/v3/go/pulumi"
+//
+// )
+//
+//	func main() {
+//		pulumi.Run(func(ctx *pulumi.Context) error {
+//			_, err := fastly.NewNgwafWorkspace(ctx, "demo", &fastly.NgwafWorkspaceArgs{
+//				Name:         pulumi.String("demofastly"),
+//				ForceDestroy: true,
+//			})
+//			if err != nil {
+//				return err
+//			}
+//			return nil
+//		})
+//	}
+//
+// ```
+//
 // ## Import
 //
 // Fastly Next-Gen WAF Workspaces can be imported using their workspace ID, e.g.

@@ -14,11 +14,11 @@ namespace Pulumi.Fastly.Outputs
     public sealed class NgwafWorkspaceRuleGroupConditionCondition
     {
         /// <summary>
-        /// Field to inspect (e.g., `ip`, `path`).
+        /// Field to inspect (e.g., `Ip`, `Path`).
         /// </summary>
         public readonly string Field;
         /// <summary>
-        /// Operator to apply (e.g., `equals`, `contains`).
+        /// Operator to apply (e.g., `Equals`, `Contains`).
         /// </summary>
         public readonly string Operator;
         /// <summary>

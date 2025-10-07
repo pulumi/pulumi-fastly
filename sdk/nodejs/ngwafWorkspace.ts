@@ -11,6 +11,20 @@ import * as utilities from "./utilities";
  * rules, signals, and various other resources that are offered by the
  * Next-Gen WAF product.
  *
+ * ## Example Usage
+ *
+ * Basic usage:
+ *
+ * ```typescript
+ * import * as pulumi from "@pulumi/pulumi";
+ * import * as fastly from "@pulumi/fastly";
+ *
+ * const demo = new fastly.NgwafWorkspace("demo", {
+ *     name: "demofastly",
+ *     forceDestroy: true,
+ * });
+ * ```
+ *
  * ## Import
  *
  * Fastly Next-Gen WAF Workspaces can be imported using their workspace ID, e.g.
