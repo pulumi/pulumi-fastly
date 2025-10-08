@@ -203,7 +203,7 @@ namespace Pulumi.Fastly
         /// </summary>
         public readonly string Id;
         /// <summary>
-        /// The current state of the subscription. The list of possible states are: `pending`, `processing`, `issued`, and `renewing`.
+        /// The current state of the subscription. The list of possible states are: `Pending`, `Processing`, `Issued`, and `Renewing`.
         /// </summary>
         public readonly string State;
         /// <summary>

@@ -48,14 +48,14 @@ public final class ServiceComputeLoggingS3Args extends com.pulumi.resources.Reso
     }
 
     /**
-     * The codec used for compression of your logs. Valid values are zstd, snappy, and gzip. If the specified codec is &#34;gzip&#34;, gzip_level will default to 3. To specify a different level, leave compression_codec blank and explicitly set the level using gzip_level. Specifying both compression_codec and gzip_level in the same API request will result in an error.
+     * The codec used for compression of your logs. Valid values are zstd, snappy, and gzip. If the specified codec is &#34;gzip&#34;, gzipLevel will default to 3. To specify a different level, leave compressionCodec blank and explicitly set the level using gzip_level. Specifying both compressionCodec and gzipLevel in the same API request will result in an error.
      * 
      */
     @Import(name="compressionCodec")
     private @Nullable Output<String> compressionCodec;
 
     /**
-     * @return The codec used for compression of your logs. Valid values are zstd, snappy, and gzip. If the specified codec is &#34;gzip&#34;, gzip_level will default to 3. To specify a different level, leave compression_codec blank and explicitly set the level using gzip_level. Specifying both compression_codec and gzip_level in the same API request will result in an error.
+     * @return The codec used for compression of your logs. Valid values are zstd, snappy, and gzip. If the specified codec is &#34;gzip&#34;, gzipLevel will default to 3. To specify a different level, leave compressionCodec blank and explicitly set the level using gzip_level. Specifying both compressionCodec and gzipLevel in the same API request will result in an error.
      * 
      */
     public Optional<Output<String>> compressionCodec() {
@@ -198,14 +198,14 @@ public final class ServiceComputeLoggingS3Args extends com.pulumi.resources.Reso
     }
 
     /**
-     * The S3 storage class (redundancy level). Should be one of: `standard`, `intelligent_tiering`, `standard_ia`, `onezone_ia`, `glacier`, `glacier_ir`, `deep_archive`, or `reduced_redundancy`
+     * The S3 storage class (redundancy level). Should be one of: `standard`, `intelligentTiering`, `standardIa`, `onezoneIa`, `glacier`, `glacierIr`, `deepArchive`, or `reducedRedundancy`
      * 
      */
     @Import(name="redundancy")
     private @Nullable Output<String> redundancy;
 
     /**
-     * @return The S3 storage class (redundancy level). Should be one of: `standard`, `intelligent_tiering`, `standard_ia`, `onezone_ia`, `glacier`, `glacier_ir`, `deep_archive`, or `reduced_redundancy`
+     * @return The S3 storage class (redundancy level). Should be one of: `standard`, `intelligentTiering`, `standardIa`, `onezoneIa`, `glacier`, `glacierIr`, `deepArchive`, or `reducedRedundancy`
      * 
      */
     public Optional<Output<String>> redundancy() {
@@ -213,14 +213,14 @@ public final class ServiceComputeLoggingS3Args extends com.pulumi.resources.Reso
     }
 
     /**
-     * AWS Access Key of an account with the required permissions to post logs. It is **strongly** recommended you create a separate IAM user with permissions to only operate on this Bucket. This key will be not be encrypted. Not required if `iam_role` is provided. You can provide this key via an environment variable, `FASTLY_S3_ACCESS_KEY`
+     * AWS Access Key of an account with the required permissions to post logs. It is **strongly** recommended you create a separate IAM user with permissions to only operate on this Bucket. This key will be not be encrypted. Not required if `iamRole` is provided. You can provide this key via an environment variable, `FASTLY_S3_ACCESS_KEY`
      * 
      */
     @Import(name="s3AccessKey")
     private @Nullable Output<String> s3AccessKey;
 
     /**
-     * @return AWS Access Key of an account with the required permissions to post logs. It is **strongly** recommended you create a separate IAM user with permissions to only operate on this Bucket. This key will be not be encrypted. Not required if `iam_role` is provided. You can provide this key via an environment variable, `FASTLY_S3_ACCESS_KEY`
+     * @return AWS Access Key of an account with the required permissions to post logs. It is **strongly** recommended you create a separate IAM user with permissions to only operate on this Bucket. This key will be not be encrypted. Not required if `iamRole` is provided. You can provide this key via an environment variable, `FASTLY_S3_ACCESS_KEY`
      * 
      */
     public Optional<Output<String>> s3AccessKey() {
@@ -228,14 +228,14 @@ public final class ServiceComputeLoggingS3Args extends com.pulumi.resources.Reso
     }
 
     /**
-     * The Amazon Resource Name (ARN) for the IAM role granting Fastly access to S3. Not required if `access_key` and `secret_key` are provided. You can provide this value via an environment variable, `FASTLY_S3_IAM_ROLE`
+     * The Amazon Resource Name (ARN) for the IAM role granting Fastly access to S3. Not required if `accessKey` and `secretKey` are provided. You can provide this value via an environment variable, `FASTLY_S3_IAM_ROLE`
      * 
      */
     @Import(name="s3IamRole")
     private @Nullable Output<String> s3IamRole;
 
     /**
-     * @return The Amazon Resource Name (ARN) for the IAM role granting Fastly access to S3. Not required if `access_key` and `secret_key` are provided. You can provide this value via an environment variable, `FASTLY_S3_IAM_ROLE`
+     * @return The Amazon Resource Name (ARN) for the IAM role granting Fastly access to S3. Not required if `accessKey` and `secretKey` are provided. You can provide this value via an environment variable, `FASTLY_S3_IAM_ROLE`
      * 
      */
     public Optional<Output<String>> s3IamRole() {
@@ -243,14 +243,14 @@ public final class ServiceComputeLoggingS3Args extends com.pulumi.resources.Reso
     }
 
     /**
-     * AWS Secret Key of an account with the required permissions to post logs. It is **strongly** recommended you create a separate IAM user with permissions to only operate on this Bucket. This secret will be not be encrypted. Not required if `iam_role` is provided. You can provide this secret via an environment variable, `FASTLY_S3_SECRET_KEY`
+     * AWS Secret Key of an account with the required permissions to post logs. It is **strongly** recommended you create a separate IAM user with permissions to only operate on this Bucket. This secret will be not be encrypted. Not required if `iamRole` is provided. You can provide this secret via an environment variable, `FASTLY_S3_SECRET_KEY`
      * 
      */
     @Import(name="s3SecretKey")
     private @Nullable Output<String> s3SecretKey;
 
     /**
-     * @return AWS Secret Key of an account with the required permissions to post logs. It is **strongly** recommended you create a separate IAM user with permissions to only operate on this Bucket. This secret will be not be encrypted. Not required if `iam_role` is provided. You can provide this secret via an environment variable, `FASTLY_S3_SECRET_KEY`
+     * @return AWS Secret Key of an account with the required permissions to post logs. It is **strongly** recommended you create a separate IAM user with permissions to only operate on this Bucket. This secret will be not be encrypted. Not required if `iamRole` is provided. You can provide this secret via an environment variable, `FASTLY_S3_SECRET_KEY`
      * 
      */
     public Optional<Output<String>> s3SecretKey() {
@@ -273,14 +273,14 @@ public final class ServiceComputeLoggingS3Args extends com.pulumi.resources.Reso
     }
 
     /**
-     * Optional server-side KMS Key Id. Must be set if server_side_encryption is set to `aws:kms`
+     * Optional server-side KMS Key Id. Must be set if serverSideEncryption is set to `aws:kms`
      * 
      */
     @Import(name="serverSideEncryptionKmsKeyId")
     private @Nullable Output<String> serverSideEncryptionKmsKeyId;
 
     /**
-     * @return Optional server-side KMS Key Id. Must be set if server_side_encryption is set to `aws:kms`
+     * @return Optional server-side KMS Key Id. Must be set if serverSideEncryption is set to `aws:kms`
      * 
      */
     public Optional<Output<String>> serverSideEncryptionKmsKeyId() {
@@ -387,7 +387,7 @@ public final class ServiceComputeLoggingS3Args extends com.pulumi.resources.Reso
         }
 
         /**
-         * @param compressionCodec The codec used for compression of your logs. Valid values are zstd, snappy, and gzip. If the specified codec is &#34;gzip&#34;, gzip_level will default to 3. To specify a different level, leave compression_codec blank and explicitly set the level using gzip_level. Specifying both compression_codec and gzip_level in the same API request will result in an error.
+         * @param compressionCodec The codec used for compression of your logs. Valid values are zstd, snappy, and gzip. If the specified codec is &#34;gzip&#34;, gzipLevel will default to 3. To specify a different level, leave compressionCodec blank and explicitly set the level using gzip_level. Specifying both compressionCodec and gzipLevel in the same API request will result in an error.
          * 
          * @return builder
          * 
@@ -398,7 +398,7 @@ public final class ServiceComputeLoggingS3Args extends com.pulumi.resources.Reso
         }
 
         /**
-         * @param compressionCodec The codec used for compression of your logs. Valid values are zstd, snappy, and gzip. If the specified codec is &#34;gzip&#34;, gzip_level will default to 3. To specify a different level, leave compression_codec blank and explicitly set the level using gzip_level. Specifying both compression_codec and gzip_level in the same API request will result in an error.
+         * @param compressionCodec The codec used for compression of your logs. Valid values are zstd, snappy, and gzip. If the specified codec is &#34;gzip&#34;, gzipLevel will default to 3. To specify a different level, leave compressionCodec blank and explicitly set the level using gzip_level. Specifying both compressionCodec and gzipLevel in the same API request will result in an error.
          * 
          * @return builder
          * 
@@ -597,7 +597,7 @@ public final class ServiceComputeLoggingS3Args extends com.pulumi.resources.Reso
         }
 
         /**
-         * @param redundancy The S3 storage class (redundancy level). Should be one of: `standard`, `intelligent_tiering`, `standard_ia`, `onezone_ia`, `glacier`, `glacier_ir`, `deep_archive`, or `reduced_redundancy`
+         * @param redundancy The S3 storage class (redundancy level). Should be one of: `standard`, `intelligentTiering`, `standardIa`, `onezoneIa`, `glacier`, `glacierIr`, `deepArchive`, or `reducedRedundancy`
          * 
          * @return builder
          * 
@@ -608,7 +608,7 @@ public final class ServiceComputeLoggingS3Args extends com.pulumi.resources.Reso
         }
 
         /**
-         * @param redundancy The S3 storage class (redundancy level). Should be one of: `standard`, `intelligent_tiering`, `standard_ia`, `onezone_ia`, `glacier`, `glacier_ir`, `deep_archive`, or `reduced_redundancy`
+         * @param redundancy The S3 storage class (redundancy level). Should be one of: `standard`, `intelligentTiering`, `standardIa`, `onezoneIa`, `glacier`, `glacierIr`, `deepArchive`, or `reducedRedundancy`
          * 
          * @return builder
          * 
@@ -618,7 +618,7 @@ public final class ServiceComputeLoggingS3Args extends com.pulumi.resources.Reso
         }
 
         /**
-         * @param s3AccessKey AWS Access Key of an account with the required permissions to post logs. It is **strongly** recommended you create a separate IAM user with permissions to only operate on this Bucket. This key will be not be encrypted. Not required if `iam_role` is provided. You can provide this key via an environment variable, `FASTLY_S3_ACCESS_KEY`
+         * @param s3AccessKey AWS Access Key of an account with the required permissions to post logs. It is **strongly** recommended you create a separate IAM user with permissions to only operate on this Bucket. This key will be not be encrypted. Not required if `iamRole` is provided. You can provide this key via an environment variable, `FASTLY_S3_ACCESS_KEY`
          * 
          * @return builder
          * 
@@ -629,7 +629,7 @@ public final class ServiceComputeLoggingS3Args extends com.pulumi.resources.Reso
         }
 
         /**
-         * @param s3AccessKey AWS Access Key of an account with the required permissions to post logs. It is **strongly** recommended you create a separate IAM user with permissions to only operate on this Bucket. This key will be not be encrypted. Not required if `iam_role` is provided. You can provide this key via an environment variable, `FASTLY_S3_ACCESS_KEY`
+         * @param s3AccessKey AWS Access Key of an account with the required permissions to post logs. It is **strongly** recommended you create a separate IAM user with permissions to only operate on this Bucket. This key will be not be encrypted. Not required if `iamRole` is provided. You can provide this key via an environment variable, `FASTLY_S3_ACCESS_KEY`
          * 
          * @return builder
          * 
@@ -639,7 +639,7 @@ public final class ServiceComputeLoggingS3Args extends com.pulumi.resources.Reso
         }
 
         /**
-         * @param s3IamRole The Amazon Resource Name (ARN) for the IAM role granting Fastly access to S3. Not required if `access_key` and `secret_key` are provided. You can provide this value via an environment variable, `FASTLY_S3_IAM_ROLE`
+         * @param s3IamRole The Amazon Resource Name (ARN) for the IAM role granting Fastly access to S3. Not required if `accessKey` and `secretKey` are provided. You can provide this value via an environment variable, `FASTLY_S3_IAM_ROLE`
          * 
          * @return builder
          * 
@@ -650,7 +650,7 @@ public final class ServiceComputeLoggingS3Args extends com.pulumi.resources.Reso
         }
 
         /**
-         * @param s3IamRole The Amazon Resource Name (ARN) for the IAM role granting Fastly access to S3. Not required if `access_key` and `secret_key` are provided. You can provide this value via an environment variable, `FASTLY_S3_IAM_ROLE`
+         * @param s3IamRole The Amazon Resource Name (ARN) for the IAM role granting Fastly access to S3. Not required if `accessKey` and `secretKey` are provided. You can provide this value via an environment variable, `FASTLY_S3_IAM_ROLE`
          * 
          * @return builder
          * 
@@ -660,7 +660,7 @@ public final class ServiceComputeLoggingS3Args extends com.pulumi.resources.Reso
         }
 
         /**
-         * @param s3SecretKey AWS Secret Key of an account with the required permissions to post logs. It is **strongly** recommended you create a separate IAM user with permissions to only operate on this Bucket. This secret will be not be encrypted. Not required if `iam_role` is provided. You can provide this secret via an environment variable, `FASTLY_S3_SECRET_KEY`
+         * @param s3SecretKey AWS Secret Key of an account with the required permissions to post logs. It is **strongly** recommended you create a separate IAM user with permissions to only operate on this Bucket. This secret will be not be encrypted. Not required if `iamRole` is provided. You can provide this secret via an environment variable, `FASTLY_S3_SECRET_KEY`
          * 
          * @return builder
          * 
@@ -671,7 +671,7 @@ public final class ServiceComputeLoggingS3Args extends com.pulumi.resources.Reso
         }
 
         /**
-         * @param s3SecretKey AWS Secret Key of an account with the required permissions to post logs. It is **strongly** recommended you create a separate IAM user with permissions to only operate on this Bucket. This secret will be not be encrypted. Not required if `iam_role` is provided. You can provide this secret via an environment variable, `FASTLY_S3_SECRET_KEY`
+         * @param s3SecretKey AWS Secret Key of an account with the required permissions to post logs. It is **strongly** recommended you create a separate IAM user with permissions to only operate on this Bucket. This secret will be not be encrypted. Not required if `iamRole` is provided. You can provide this secret via an environment variable, `FASTLY_S3_SECRET_KEY`
          * 
          * @return builder
          * 
@@ -702,7 +702,7 @@ public final class ServiceComputeLoggingS3Args extends com.pulumi.resources.Reso
         }
 
         /**
-         * @param serverSideEncryptionKmsKeyId Optional server-side KMS Key Id. Must be set if server_side_encryption is set to `aws:kms`
+         * @param serverSideEncryptionKmsKeyId Optional server-side KMS Key Id. Must be set if serverSideEncryption is set to `aws:kms`
          * 
          * @return builder
          * 
@@ -713,7 +713,7 @@ public final class ServiceComputeLoggingS3Args extends com.pulumi.resources.Reso
         }
 
         /**
-         * @param serverSideEncryptionKmsKeyId Optional server-side KMS Key Id. Must be set if server_side_encryption is set to `aws:kms`
+         * @param serverSideEncryptionKmsKeyId Optional server-side KMS Key Id. Must be set if serverSideEncryption is set to `aws:kms`
          * 
          * @return builder
          * 

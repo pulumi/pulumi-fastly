@@ -13,7 +13,7 @@ namespace Pulumi.Fastly.Inputs
     public sealed class ServiceVclResponseObjectGetArgs : global::Pulumi.ResourceArgs
     {
         /// <summary>
-        /// Name of already defined `condition` to check after we have retrieved an object. If the condition passes then deliver this Request Object instead. This `condition` must be of type `CACHE`. For detailed information about Conditionals, see [Fastly's Documentation on Conditionals](https://docs.fastly.com/en/guides/using-conditions)
+        /// Name of already defined `Condition` to check after we have retrieved an object. If the condition passes then deliver this Request Object instead. This `Condition` must be of type `CACHE`. For detailed information about Conditionals, see [Fastly's Documentation on Conditionals](https://docs.fastly.com/en/guides/using-conditions)
         /// </summary>
         [Input("cacheCondition")]
         public Input<string>? CacheCondition { get; set; }
@@ -37,7 +37,7 @@ namespace Pulumi.Fastly.Inputs
         public Input<string> Name { get; set; } = null!;
 
         /// <summary>
-        /// Name of already defined `condition` to be checked during the request phase. If the condition passes then this object will be delivered. This `condition` must be of type `REQUEST`
+        /// Name of already defined `Condition` to be checked during the request phase. If the condition passes then this object will be delivered. This `Condition` must be of type `REQUEST`
         /// </summary>
         [Input("requestCondition")]
         public Input<string>? RequestCondition { get; set; }

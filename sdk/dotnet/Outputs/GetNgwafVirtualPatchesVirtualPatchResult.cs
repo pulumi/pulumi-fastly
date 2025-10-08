@@ -22,7 +22,7 @@ namespace Pulumi.Fastly.Outputs
         /// </summary>
         public readonly string Id;
         /// <summary>
-        /// Action to take when a signal for the virtual patch is detected. One of `log` or `block`.
+        /// Action to take when a signal for the virtual patch is detected. One of `Log` or `Block`.
         /// </summary>
         public readonly string Mode;
 

@@ -64,7 +64,7 @@ namespace Pulumi.Fastly.Inputs
         private Input<string>? _secretKey;
 
         /// <summary>
-        /// Your Google Cloud Platform account secret key. The `private_key` field in your service account authentication JSON. You may optionally provide this secret via an environment variable, `FASTLY_GOOGLE_PUBSUB_SECRET_KEY`.
+        /// Your Google Cloud Platform account secret key. The `PrivateKey` field in your service account authentication JSON. You may optionally provide this secret via an environment variable, `FASTLY_GOOGLE_PUBSUB_SECRET_KEY`.
         /// </summary>
         public Input<string>? SecretKey
         {
@@ -83,7 +83,7 @@ namespace Pulumi.Fastly.Inputs
         public Input<string> Topic { get; set; } = null!;
 
         /// <summary>
-        /// Your Google Cloud Platform service account email address. The `client_email` field in your service account authentication JSON. You may optionally provide this via an environment variable, `FASTLY_GOOGLE_PUBSUB_EMAIL`.
+        /// Your Google Cloud Platform service account email address. The `ClientEmail` field in your service account authentication JSON. You may optionally provide this via an environment variable, `FASTLY_GOOGLE_PUBSUB_EMAIL`.
         /// </summary>
         [Input("user", required: true)]
         public Input<string> User { get; set; } = null!;

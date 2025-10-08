@@ -9,6 +9,244 @@ import * as utilities from "./utilities";
 /**
  * Provides a Custom Dashboard which can be viewed in the Fastly Control Panel.
  *
+ * ## Example Usage
+ *
+ * ```typescript
+ * import * as pulumi from "@pulumi/pulumi";
+ * import * as fastly from "@pulumi/fastly";
+ *
+ * const example = new fastly.CustomDashboard("example", {
+ *     name: "Example Custom Dashboard",
+ *     description: "This is an example custom dashboard. A few dashboard items are provided to help you get started.",
+ *     dashboardItems: [
+ *         {
+ *             id: "example1",
+ *             title: "Total Requests",
+ *             subtitle: "Number of requests processed.",
+ *             dataSource: {
+ *                 type: "stats.edge",
+ *                 config: {
+ *                     metrics: ["requests"],
+ *                 }[0],
+ *             },
+ *             visualization: {
+ *                 type: "chart",
+ *                 config: {
+ *                     format: "requests",
+ *                     plotType: "line",
+ *                 },
+ *             },
+ *         },
+ *         {
+ *             id: "example2",
+ *             title: "Hit Ratio",
+ *             subtitle: "Ratio of requests served from Fastly.",
+ *             dataSource: {
+ *                 type: "stats.edge",
+ *                 config: {
+ *                     metrics: ["hit_ratio"],
+ *                 },
+ *             },
+ *             visualization: {
+ *                 type: "chart",
+ *                 config: {
+ *                     format: "percent",
+ *                     plotType: "donut",
+ *                     calculationMethod: "latest",
+ *                 },
+ *             },
+ *         },
+ *         {
+ *             id: "example3",
+ *             title: "Client & Server Errors",
+ *             subtitle: "Total errors served from the client or server.",
+ *             dataSource: {
+ *                 type: "stats.edge",
+ *                 config: {
+ *                     metrics: [
+ *                         "status_4xx",
+ *                         "status_5xx",
+ *                     ],
+ *                 },
+ *             },
+ *             visualization: {
+ *                 type: "chart",
+ *                 config: {
+ *                     format: "requests",
+ *                     plotType: "bar",
+ *                 },
+ *             },
+ *         },
+ *         {
+ *             id: "example4",
+ *             title: "Domain Requests",
+ *             subtitle: "Requests by Domain.",
+ *             span: 6,
+ *             dataSource: {
+ *                 type: "stats.domain",
+ *                 config: {
+ *                     metrics: ["requests"],
+ *                 },
+ *             },
+ *             visualization: {
+ *                 type: "chart",
+ *                 config: {
+ *                     format: "requests",
+ *                     plotType: "line",
+ *                 },
+ *             },
+ *         },
+ *         {
+ *             id: "example5",
+ *             title: "Origin Responses",
+ *             subtitle: "Responses by Origin.",
+ *             span: 6,
+ *             dataSource: {
+ *                 type: "stats.origin",
+ *                 config: {
+ *                     metrics: ["all_responses"],
+ *                 },
+ *             },
+ *             visualization: {
+ *                 type: "chart",
+ *                 config: {
+ *                     plotType: "line",
+ *                 },
+ *             },
+ *         },
+ *         {
+ *             id: "example6",
+ *             title: "Total Bandwidth",
+ *             subtitle: "Total bandwidth served.",
+ *             span: 12,
+ *             dataSource: {
+ *                 type: "stats.edge",
+ *                 config: {
+ *                     metrics: ["bandwidth"],
+ *                 },
+ *             },
+ *             visualization: {
+ *                 type: "chart",
+ *                 config: {
+ *                     format: "bytes",
+ *                     plotType: "bar",
+ *                 },
+ *             },
+ *         },
+ *         {
+ *             id: "example7",
+ *             title: "Products - Image Optimizer & Real-Time Log Streaming",
+ *             subtitle: "Total IO images served and log statements sent.",
+ *             span: 8,
+ *             dataSource: {
+ *                 type: "stats.edge",
+ *                 config: {
+ *                     metrics: [
+ *                         "imgopto",
+ *                         "log",
+ *                     ],
+ *                 },
+ *             },
+ *             visualization: {
+ *                 type: "chart",
+ *                 config: {
+ *                     plotType: "line",
+ *                 },
+ *             },
+ *         },
+ *         {
+ *             id: "example8",
+ *             title: "Transport Protocols & Security",
+ *             subtitle: "HTTP Protocols & TLS.",
+ *             dataSource: {
+ *                 type: "stats.edge",
+ *                 config: {
+ *                     metrics: [
+ *                         "http1",
+ *                         "http2",
+ *                         "http3",
+ *                         "tls_v10",
+ *                         "tls_v11",
+ *                         "tls_v12",
+ *                         "tls_v13",
+ *                     ],
+ *                 },
+ *             },
+ *             visualization: {
+ *                 type: "chart",
+ *                 config: {
+ *                     format: "requests",
+ *                     plotType: "line",
+ *                 },
+ *             },
+ *         },
+ *         {
+ *             id: "example9",
+ *             title: "Origin Miss Latency",
+ *             subtitle: "Miss latency times for your origins.",
+ *             span: 12,
+ *             dataSource: {
+ *                 type: "stats.edge",
+ *                 config: {
+ *                     metrics: ["origin_latency"],
+ *                 },
+ *             },
+ *             visualization: {
+ *                 type: "chart",
+ *                 config: {
+ *                     format: "milliseconds",
+ *                     plotType: "line",
+ *                 },
+ *             },
+ *         },
+ *         {
+ *             id: "example10",
+ *             title: "DDoS - Request Flood Attempts",
+ *             subtitle: "Number of connections the limit-streams action was applied.",
+ *             span: 6,
+ *             dataSource: {
+ *                 type: "stats.edge",
+ *                 config: {
+ *                     metrics: [
+ *                         "ddos_action_limit_streams_connections",
+ *                         "ddos_action_limit_streams_requests",
+ *                     ],
+ *                 },
+ *             },
+ *             visualization: {
+ *                 type: "chart",
+ *                 config: {
+ *                     format: "requests",
+ *                     plotType: "line",
+ *                 },
+ *             },
+ *         },
+ *         {
+ *             id: "example11",
+ *             title: "DDoS - Malicious Bot Attack",
+ *             subtitle: "Number of times the blackhole action was taken.",
+ *             span: 6,
+ *             dataSource: {
+ *                 type: "stats.edge",
+ *                 config: {
+ *                     metrics: [
+ *                         "ddos_action_close",
+ *                         "ddos_action_blackhole",
+ *                     ],
+ *                 },
+ *             },
+ *             visualization: {
+ *                 type: "chart",
+ *                 config: {
+ *                     format: "number",
+ *                     plotType: "line",
+ *                 },
+ *             },
+ *         },
+ *     ],
+ * });
+ * ```
+ *
  * ## Import
  *
  * Fastly Custom Dashboards can be imported using their ID, e.g.

@@ -139,14 +139,14 @@ public final class ServiceVclRequestSettingArgs extends com.pulumi.resources.Res
     }
 
     /**
-     * Name of already defined `condition` to determine if this request setting should be applied (should be unique across multiple instances of `request_setting`)
+     * Name of already defined `condition` to determine if this request setting should be applied (should be unique across multiple instances of `requestSetting`)
      * 
      */
     @Import(name="requestCondition")
     private @Nullable Output<String> requestCondition;
 
     /**
-     * @return Name of already defined `condition` to determine if this request setting should be applied (should be unique across multiple instances of `request_setting`)
+     * @return Name of already defined `condition` to determine if this request setting should be applied (should be unique across multiple instances of `requestSetting`)
      * 
      */
     public Optional<Output<String>> requestCondition() {
@@ -169,14 +169,14 @@ public final class ServiceVclRequestSettingArgs extends com.pulumi.resources.Res
     }
 
     /**
-     * X-Forwarded-For, should be `clear`, `leave`, `append`, `append_all`, or `overwrite`. Default `append`
+     * X-Forwarded-For, should be `clear`, `leave`, `append`, `appendAll`, or `overwrite`. Default `append`
      * 
      */
     @Import(name="xff")
     private @Nullable Output<String> xff;
 
     /**
-     * @return X-Forwarded-For, should be `clear`, `leave`, `append`, `append_all`, or `overwrite`. Default `append`
+     * @return X-Forwarded-For, should be `clear`, `leave`, `append`, `appendAll`, or `overwrite`. Default `append`
      * 
      */
     public Optional<Output<String>> xff() {
@@ -386,7 +386,7 @@ public final class ServiceVclRequestSettingArgs extends com.pulumi.resources.Res
         }
 
         /**
-         * @param requestCondition Name of already defined `condition` to determine if this request setting should be applied (should be unique across multiple instances of `request_setting`)
+         * @param requestCondition Name of already defined `condition` to determine if this request setting should be applied (should be unique across multiple instances of `requestSetting`)
          * 
          * @return builder
          * 
@@ -397,7 +397,7 @@ public final class ServiceVclRequestSettingArgs extends com.pulumi.resources.Res
         }
 
         /**
-         * @param requestCondition Name of already defined `condition` to determine if this request setting should be applied (should be unique across multiple instances of `request_setting`)
+         * @param requestCondition Name of already defined `condition` to determine if this request setting should be applied (should be unique across multiple instances of `requestSetting`)
          * 
          * @return builder
          * 
@@ -428,7 +428,7 @@ public final class ServiceVclRequestSettingArgs extends com.pulumi.resources.Res
         }
 
         /**
-         * @param xff X-Forwarded-For, should be `clear`, `leave`, `append`, `append_all`, or `overwrite`. Default `append`
+         * @param xff X-Forwarded-For, should be `clear`, `leave`, `append`, `appendAll`, or `overwrite`. Default `append`
          * 
          * @return builder
          * 
@@ -439,7 +439,7 @@ public final class ServiceVclRequestSettingArgs extends com.pulumi.resources.Res
         }
 
         /**
-         * @param xff X-Forwarded-For, should be `clear`, `leave`, `append`, `append_all`, or `overwrite`. Default `append`
+         * @param xff X-Forwarded-For, should be `clear`, `leave`, `append`, `appendAll`, or `overwrite`. Default `append`
          * 
          * @return builder
          * 

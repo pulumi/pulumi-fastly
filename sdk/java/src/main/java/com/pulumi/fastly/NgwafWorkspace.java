@@ -22,6 +22,42 @@ import javax.annotation.Nullable;
  * rules, signals, and various other resources that are offered by the
  * Next-Gen WAF product.
  * 
+ * ## Example Usage
+ * 
+ * Basic usage:
+ * 
+ * <pre>
+ * {@code
+ * package generated_program;
+ * 
+ * import com.pulumi.Context;
+ * import com.pulumi.Pulumi;
+ * import com.pulumi.core.Output;
+ * import com.pulumi.fastly.NgwafWorkspace;
+ * import com.pulumi.fastly.NgwafWorkspaceArgs;
+ * import java.util.List;
+ * import java.util.ArrayList;
+ * import java.util.Map;
+ * import java.io.File;
+ * import java.nio.file.Files;
+ * import java.nio.file.Paths;
+ * 
+ * public class App {
+ *     public static void main(String[] args) {
+ *         Pulumi.run(App::stack);
+ *     }
+ * 
+ *     public static void stack(Context ctx) {
+ *         var demo = new NgwafWorkspace("demo", NgwafWorkspaceArgs.builder()
+ *             .name("demofastly")
+ *             .forceDestroy(true)
+ *             .build());
+ * 
+ *     }
+ * }
+ * }
+ * </pre>
+ * 
  * ## Import
  * 
  * Fastly Next-Gen WAF Workspaces can be imported using their workspace ID, e.g.
