@@ -34,7 +34,7 @@ namespace Pulumi.Fastly.Outputs
         /// </summary>
         public readonly string Name;
         /// <summary>
-        /// The type of this service. One of `vcl`, `wasm`.
+        /// The type of this service. One of `Vcl`, `Wasm`.
         /// </summary>
         public readonly string Type;
         /// <summary>

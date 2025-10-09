@@ -22,7 +22,7 @@ namespace Pulumi.Fastly.Outputs
         /// </summary>
         public readonly string Brokers;
         /// <summary>
-        /// The codec used for compression of your logs. One of: `gzip`, `snappy`, `lz4`
+        /// The codec used for compression of your logs. One of: `Gzip`, `Snappy`, `Lz4`
         /// </summary>
         public readonly string? CompressionCodec;
         /// <summary>
@@ -86,7 +86,7 @@ namespace Pulumi.Fastly.Outputs
         /// </summary>
         public readonly string Topic;
         /// <summary>
-        /// Whether to use TLS for secure logging. Can be either `true` or `false`
+        /// Whether to use TLS for secure logging. Can be either `True` or `False`
         /// </summary>
         public readonly bool? UseTls;
         /// <summary>

@@ -211,14 +211,14 @@ public final class ServiceVclState extends com.pulumi.resources.ResourceArgs {
     }
 
     /**
-     * Services that are active cannot be destroyed. In order to destroy the Service, set `force_destroy` to `true`. Default `false`
+     * Services that are active cannot be destroyed. In order to destroy the Service, set `forceDestroy` to `true`. Default `false`
      * 
      */
     @Import(name="forceDestroy")
     private @Nullable Output<Boolean> forceDestroy;
 
     /**
-     * @return Services that are active cannot be destroyed. In order to destroy the Service, set `force_destroy` to `true`. Default `false`
+     * @return Services that are active cannot be destroyed. In order to destroy the Service, set `forceDestroy` to `true`. Default `false`
      * 
      */
     public Optional<Output<Boolean>> forceDestroy() {
@@ -948,7 +948,7 @@ public final class ServiceVclState extends com.pulumi.resources.ResourceArgs {
         }
 
         /**
-         * @param forceDestroy Services that are active cannot be destroyed. In order to destroy the Service, set `force_destroy` to `true`. Default `false`
+         * @param forceDestroy Services that are active cannot be destroyed. In order to destroy the Service, set `forceDestroy` to `true`. Default `false`
          * 
          * @return builder
          * 
@@ -959,7 +959,7 @@ public final class ServiceVclState extends com.pulumi.resources.ResourceArgs {
         }
 
         /**
-         * @param forceDestroy Services that are active cannot be destroyed. In order to destroy the Service, set `force_destroy` to `true`. Default `false`
+         * @param forceDestroy Services that are active cannot be destroyed. In order to destroy the Service, set `forceDestroy` to `true`. Default `false`
          * 
          * @return builder
          * 

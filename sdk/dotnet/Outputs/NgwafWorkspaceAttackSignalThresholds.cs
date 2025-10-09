@@ -14,7 +14,7 @@ namespace Pulumi.Fastly.Outputs
     public sealed class NgwafWorkspaceAttackSignalThresholds
     {
         /// <summary>
-        /// Ignore thresholds and block immediately when at least one attack signal is detected. Default value `false`.
+        /// Ignore thresholds and block immediately when at least one attack signal is detected. Default value `False`.
         /// </summary>
         public readonly bool? Immediate;
         /// <summary>

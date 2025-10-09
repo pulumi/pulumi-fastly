@@ -22,11 +22,11 @@ namespace Pulumi.Fastly.Outputs
         /// </summary>
         public readonly int? ResponseCode;
         /// <summary>
-        /// Signal name to exclude (used when `type = exclude_signal`).
+        /// Signal name to exclude (used when `type = ExcludeSignal`).
         /// </summary>
         public readonly string? Signal;
         /// <summary>
-        /// The action type, e.g. `block`, `redirect`, `exclude_signal`.
+        /// The action type, e.g. `Block`, `Redirect`, `ExcludeSignal`.
         /// </summary>
         public readonly string Type;
 

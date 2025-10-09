@@ -47,14 +47,14 @@ public final class DomainV1Args extends com.pulumi.resources.ResourceArgs {
     }
 
     /**
-     * The service_id associated with your domain or null if there is no association.
+     * The serviceId associated with your domain or null if there is no association.
      * 
      */
     @Import(name="serviceId")
     private @Nullable Output<String> serviceId;
 
     /**
-     * @return The service_id associated with your domain or null if there is no association.
+     * @return The serviceId associated with your domain or null if there is no association.
      * 
      */
     public Optional<Output<String>> serviceId() {
@@ -130,7 +130,7 @@ public final class DomainV1Args extends com.pulumi.resources.ResourceArgs {
         }
 
         /**
-         * @param serviceId The service_id associated with your domain or null if there is no association.
+         * @param serviceId The serviceId associated with your domain or null if there is no association.
          * 
          * @return builder
          * 
@@ -141,7 +141,7 @@ public final class DomainV1Args extends com.pulumi.resources.ResourceArgs {
         }
 
         /**
-         * @param serviceId The service_id associated with your domain or null if there is no association.
+         * @param serviceId The serviceId associated with your domain or null if there is no association.
          * 
          * @return builder
          * 

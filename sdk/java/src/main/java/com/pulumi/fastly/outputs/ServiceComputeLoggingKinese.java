@@ -18,7 +18,7 @@ public final class ServiceComputeLoggingKinese {
      */
     private @Nullable String accessKey;
     /**
-     * @return The Amazon Resource Name (ARN) for the IAM role granting Fastly access to Kinesis. Not required if `access_key` and `secret_key` are provided.
+     * @return The Amazon Resource Name (ARN) for the IAM role granting Fastly access to Kinesis. Not required if `accessKey` and `secretKey` are provided.
      * 
      */
     private @Nullable String iamRole;
@@ -57,7 +57,7 @@ public final class ServiceComputeLoggingKinese {
         return Optional.ofNullable(this.accessKey);
     }
     /**
-     * @return The Amazon Resource Name (ARN) for the IAM role granting Fastly access to Kinesis. Not required if `access_key` and `secret_key` are provided.
+     * @return The Amazon Resource Name (ARN) for the IAM role granting Fastly access to Kinesis. Not required if `accessKey` and `secretKey` are provided.
      * 
      */
     public Optional<String> iamRole() {

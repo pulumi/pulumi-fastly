@@ -81,7 +81,7 @@ namespace Pulumi.Fastly.Inputs
         public Input<string> Url { get; set; } = null!;
 
         /// <summary>
-        /// Whether to use TLS for secure logging. Default: `false`
+        /// Whether to use TLS for secure logging. Default: `False`
         /// </summary>
         [Input("useTls")]
         public Input<bool>? UseTls { get; set; }
