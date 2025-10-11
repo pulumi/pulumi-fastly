@@ -16,14 +16,14 @@ public final class ServiceAuthorizationState extends com.pulumi.resources.Resour
     public static final ServiceAuthorizationState Empty = new ServiceAuthorizationState();
 
     /**
-     * The permissions to grant the user. Can be `full`, `read_only`, `purge_select` or `purge_all`.
+     * The permissions to grant the user. Can be `full`, `readOnly`, `purgeSelect` or `purgeAll`.
      * 
      */
     @Import(name="permission")
     private @Nullable Output<String> permission;
 
     /**
-     * @return The permissions to grant the user. Can be `full`, `read_only`, `purge_select` or `purge_all`.
+     * @return The permissions to grant the user. Can be `full`, `readOnly`, `purgeSelect` or `purgeAll`.
      * 
      */
     public Optional<Output<String>> permission() {
@@ -87,7 +87,7 @@ public final class ServiceAuthorizationState extends com.pulumi.resources.Resour
         }
 
         /**
-         * @param permission The permissions to grant the user. Can be `full`, `read_only`, `purge_select` or `purge_all`.
+         * @param permission The permissions to grant the user. Can be `full`, `readOnly`, `purgeSelect` or `purgeAll`.
          * 
          * @return builder
          * 
@@ -98,7 +98,7 @@ public final class ServiceAuthorizationState extends com.pulumi.resources.Resour
         }
 
         /**
-         * @param permission The permissions to grant the user. Can be `full`, `read_only`, `purge_select` or `purge_all`.
+         * @param permission The permissions to grant the user. Can be `full`, `readOnly`, `purgeSelect` or `purgeAll`.
          * 
          * @return builder
          * 

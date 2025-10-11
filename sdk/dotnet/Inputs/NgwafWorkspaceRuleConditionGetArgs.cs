@@ -13,13 +13,13 @@ namespace Pulumi.Fastly.Inputs
     public sealed class NgwafWorkspaceRuleConditionGetArgs : global::Pulumi.ResourceArgs
     {
         /// <summary>
-        /// Field to inspect (e.g., `ip`, `path`).
+        /// Field to inspect (e.g., `Ip`, `Path`).
         /// </summary>
         [Input("field", required: true)]
         public Input<string> Field { get; set; } = null!;
 
         /// <summary>
-        /// Operator to apply (e.g., `equals`, `contains`).
+        /// Operator to apply (e.g., `Equals`, `Contains`).
         /// </summary>
         [Input("operator", required: true)]
         public Input<string> Operator { get; set; } = null!;

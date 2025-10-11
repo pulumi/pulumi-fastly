@@ -97,7 +97,7 @@ namespace Pulumi.Fastly
         public Output<ImmutableArray<string>> AppliesTos { get; private set; } = null!;
 
         /// <summary>
-        /// Flat list of individual conditions. Each must include `field`, `operator`, and `value`.
+        /// Flat list of individual conditions. Each must include `Field`, `Operator`, and `Value`.
         /// </summary>
         [Output("conditions")]
         public Output<ImmutableArray<Outputs.NgwafAccountRuleCondition>> Conditions { get; private set; } = null!;
@@ -115,13 +115,13 @@ namespace Pulumi.Fastly
         public Output<bool> Enabled { get; private set; } = null!;
 
         /// <summary>
-        /// List of grouped conditions with nested logic. Each group must define a `group_operator` and at least one condition.
+        /// List of grouped conditions with nested logic. Each group must define a `GroupOperator` and at least one condition.
         /// </summary>
         [Output("groupConditions")]
         public Output<ImmutableArray<Outputs.NgwafAccountRuleGroupCondition>> GroupConditions { get; private set; } = null!;
 
         /// <summary>
-        /// Logical operator to apply to group conditions. Accepted values are `any` and `all`.
+        /// Logical operator to apply to group conditions. Accepted values are `Any` and `All`.
         /// </summary>
         [Output("groupOperator")]
         public Output<string?> GroupOperator { get; private set; } = null!;
@@ -133,13 +133,13 @@ namespace Pulumi.Fastly
         public Output<Outputs.NgwafAccountRuleRateLimit?> RateLimit { get; private set; } = null!;
 
         /// <summary>
-        /// Logging behavior for matching requests. Accepted values are `sampled` and `none`.
+        /// Logging behavior for matching requests. Accepted values are `Sampled` and `None`.
         /// </summary>
         [Output("requestLogging")]
         public Output<string?> RequestLogging { get; private set; } = null!;
 
         /// <summary>
-        /// The type of the rule. Accepted values are `request` and `signal`.
+        /// The type of the rule. Accepted values are `Request` and `Signal`.
         /// </summary>
         [Output("type")]
         public Output<string> Type { get; private set; } = null!;
@@ -218,7 +218,7 @@ namespace Pulumi.Fastly
         private InputList<Inputs.NgwafAccountRuleConditionArgs>? _conditions;
 
         /// <summary>
-        /// Flat list of individual conditions. Each must include `field`, `operator`, and `value`.
+        /// Flat list of individual conditions. Each must include `Field`, `Operator`, and `Value`.
         /// </summary>
         public InputList<Inputs.NgwafAccountRuleConditionArgs> Conditions
         {
@@ -242,7 +242,7 @@ namespace Pulumi.Fastly
         private InputList<Inputs.NgwafAccountRuleGroupConditionArgs>? _groupConditions;
 
         /// <summary>
-        /// List of grouped conditions with nested logic. Each group must define a `group_operator` and at least one condition.
+        /// List of grouped conditions with nested logic. Each group must define a `GroupOperator` and at least one condition.
         /// </summary>
         public InputList<Inputs.NgwafAccountRuleGroupConditionArgs> GroupConditions
         {
@@ -251,7 +251,7 @@ namespace Pulumi.Fastly
         }
 
         /// <summary>
-        /// Logical operator to apply to group conditions. Accepted values are `any` and `all`.
+        /// Logical operator to apply to group conditions. Accepted values are `Any` and `All`.
         /// </summary>
         [Input("groupOperator")]
         public Input<string>? GroupOperator { get; set; }
@@ -263,13 +263,13 @@ namespace Pulumi.Fastly
         public Input<Inputs.NgwafAccountRuleRateLimitArgs>? RateLimit { get; set; }
 
         /// <summary>
-        /// Logging behavior for matching requests. Accepted values are `sampled` and `none`.
+        /// Logging behavior for matching requests. Accepted values are `Sampled` and `None`.
         /// </summary>
         [Input("requestLogging")]
         public Input<string>? RequestLogging { get; set; }
 
         /// <summary>
-        /// The type of the rule. Accepted values are `request` and `signal`.
+        /// The type of the rule. Accepted values are `Request` and `Signal`.
         /// </summary>
         [Input("type", required: true)]
         public Input<string> Type { get; set; } = null!;
@@ -310,7 +310,7 @@ namespace Pulumi.Fastly
         private InputList<Inputs.NgwafAccountRuleConditionGetArgs>? _conditions;
 
         /// <summary>
-        /// Flat list of individual conditions. Each must include `field`, `operator`, and `value`.
+        /// Flat list of individual conditions. Each must include `Field`, `Operator`, and `Value`.
         /// </summary>
         public InputList<Inputs.NgwafAccountRuleConditionGetArgs> Conditions
         {
@@ -334,7 +334,7 @@ namespace Pulumi.Fastly
         private InputList<Inputs.NgwafAccountRuleGroupConditionGetArgs>? _groupConditions;
 
         /// <summary>
-        /// List of grouped conditions with nested logic. Each group must define a `group_operator` and at least one condition.
+        /// List of grouped conditions with nested logic. Each group must define a `GroupOperator` and at least one condition.
         /// </summary>
         public InputList<Inputs.NgwafAccountRuleGroupConditionGetArgs> GroupConditions
         {
@@ -343,7 +343,7 @@ namespace Pulumi.Fastly
         }
 
         /// <summary>
-        /// Logical operator to apply to group conditions. Accepted values are `any` and `all`.
+        /// Logical operator to apply to group conditions. Accepted values are `Any` and `All`.
         /// </summary>
         [Input("groupOperator")]
         public Input<string>? GroupOperator { get; set; }
@@ -355,13 +355,13 @@ namespace Pulumi.Fastly
         public Input<Inputs.NgwafAccountRuleRateLimitGetArgs>? RateLimit { get; set; }
 
         /// <summary>
-        /// Logging behavior for matching requests. Accepted values are `sampled` and `none`.
+        /// Logging behavior for matching requests. Accepted values are `Sampled` and `None`.
         /// </summary>
         [Input("requestLogging")]
         public Input<string>? RequestLogging { get; set; }
 
         /// <summary>
-        /// The type of the rule. Accepted values are `request` and `signal`.
+        /// The type of the rule. Accepted values are `Request` and `Signal`.
         /// </summary>
         [Input("type")]
         public Input<string>? Type { get; set; }

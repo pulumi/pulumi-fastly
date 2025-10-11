@@ -55,7 +55,7 @@ public final class ServiceVclRequestSetting {
      */
     private String name;
     /**
-     * @return Name of already defined `condition` to determine if this request setting should be applied (should be unique across multiple instances of `request_setting`)
+     * @return Name of already defined `condition` to determine if this request setting should be applied (should be unique across multiple instances of `requestSetting`)
      * 
      */
     private @Nullable String requestCondition;
@@ -65,7 +65,7 @@ public final class ServiceVclRequestSetting {
      */
     private @Nullable Boolean timerSupport;
     /**
-     * @return X-Forwarded-For, should be `clear`, `leave`, `append`, `append_all`, or `overwrite`. Default `append`
+     * @return X-Forwarded-For, should be `clear`, `leave`, `append`, `appendAll`, or `overwrite`. Default `append`
      * 
      */
     private @Nullable String xff;
@@ -128,7 +128,7 @@ public final class ServiceVclRequestSetting {
         return this.name;
     }
     /**
-     * @return Name of already defined `condition` to determine if this request setting should be applied (should be unique across multiple instances of `request_setting`)
+     * @return Name of already defined `condition` to determine if this request setting should be applied (should be unique across multiple instances of `requestSetting`)
      * 
      */
     public Optional<String> requestCondition() {
@@ -142,7 +142,7 @@ public final class ServiceVclRequestSetting {
         return Optional.ofNullable(this.timerSupport);
     }
     /**
-     * @return X-Forwarded-For, should be `clear`, `leave`, `append`, `append_all`, or `overwrite`. Default `append`
+     * @return X-Forwarded-For, should be `clear`, `leave`, `append`, `appendAll`, or `overwrite`. Default `append`
      * 
      */
     public Optional<String> xff() {

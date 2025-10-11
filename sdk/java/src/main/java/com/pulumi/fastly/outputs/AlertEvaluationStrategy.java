@@ -29,7 +29,7 @@ public final class AlertEvaluationStrategy {
      */
     private Double threshold;
     /**
-     * @return Type of strategy to use to evaluate. One of: `above_threshold`, `all_above_threshold`, `below_threshold`, `percent_absolute`, `percent_decrease`, `percent_increase`.
+     * @return Type of strategy to use to evaluate. One of: `aboveThreshold`, `allAboveThreshold`, `belowThreshold`, `percentAbsolute`, `percentDecrease`, `percentIncrease`.
      * 
      */
     private String type;
@@ -57,7 +57,7 @@ public final class AlertEvaluationStrategy {
         return this.threshold;
     }
     /**
-     * @return Type of strategy to use to evaluate. One of: `above_threshold`, `all_above_threshold`, `below_threshold`, `percent_absolute`, `percent_decrease`, `percent_increase`.
+     * @return Type of strategy to use to evaluate. One of: `aboveThreshold`, `allAboveThreshold`, `belowThreshold`, `percentAbsolute`, `percentDecrease`, `percentIncrease`.
      * 
      */
     public String type() {

@@ -18,7 +18,7 @@ namespace Pulumi.Fastly.Outputs
         /// </summary>
         public readonly Outputs.CustomDashboardDashboardItemVisualizationConfig Config;
         /// <summary>
-        /// The type of visualization to display. One of: `chart`.
+        /// The type of visualization to display. One of: `Chart`.
         /// </summary>
         public readonly string Type;
 

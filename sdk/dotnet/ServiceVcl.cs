@@ -33,7 +33,7 @@ namespace Pulumi.Fastly
         public Output<ImmutableArray<Outputs.ServiceVclAcl>> Acls { get; private set; } = null!;
 
         /// <summary>
-        /// Conditionally prevents new service versions from being activated. The apply step will create a new draft version but will not activate it if this is set to `false`. Default `true`
+        /// Conditionally prevents new service versions from being activated. The apply step will create a new draft version but will not activate it if this is set to `False`. Default `True`
         /// </summary>
         [Output("activate")]
         public Output<bool?> Activate { get; private set; } = null!;
@@ -90,7 +90,7 @@ namespace Pulumi.Fastly
         public Output<ImmutableArray<Outputs.ServiceVclDynamicsnippet>> Dynamicsnippets { get; private set; } = null!;
 
         /// <summary>
-        /// Services that are active cannot be destroyed. In order to destroy the Service, set `force_destroy` to `true`. Default `false`
+        /// Services that are active cannot be destroyed. In order to destroy the Service, set `ForceDestroy` to `True`. Default `False`
         /// </summary>
         [Output("forceDestroy")]
         public Output<bool?> ForceDestroy { get; private set; } = null!;
@@ -231,7 +231,7 @@ namespace Pulumi.Fastly
         public Output<ImmutableArray<Outputs.ServiceVclSnippet>> Snippets { get; private set; } = null!;
 
         /// <summary>
-        /// Conditionally enables new service versions to be staged. If set to `true`, all changes made by an `apply` step will be staged, even if `apply` did not create a new draft version. Default `false`
+        /// Conditionally enables new service versions to be staged. If set to `True`, all changes made by an `Apply` step will be staged, even if `Apply` did not create a new draft version. Default `False`
         /// </summary>
         [Output("stage")]
         public Output<bool?> Stage { get; private set; } = null!;
@@ -318,7 +318,7 @@ namespace Pulumi.Fastly
         }
 
         /// <summary>
-        /// Conditionally prevents new service versions from being activated. The apply step will create a new draft version but will not activate it if this is set to `false`. Default `true`
+        /// Conditionally prevents new service versions from being activated. The apply step will create a new draft version but will not activate it if this is set to `False`. Default `True`
         /// </summary>
         [Input("activate")]
         public Input<bool>? Activate { get; set; }
@@ -399,7 +399,7 @@ namespace Pulumi.Fastly
         }
 
         /// <summary>
-        /// Services that are active cannot be destroyed. In order to destroy the Service, set `force_destroy` to `true`. Default `false`
+        /// Services that are active cannot be destroyed. In order to destroy the Service, set `ForceDestroy` to `True`. Default `False`
         /// </summary>
         [Input("forceDestroy")]
         public Input<bool>? ForceDestroy { get; set; }
@@ -706,7 +706,7 @@ namespace Pulumi.Fastly
         }
 
         /// <summary>
-        /// Conditionally enables new service versions to be staged. If set to `true`, all changes made by an `apply` step will be staged, even if `apply` did not create a new draft version. Default `false`
+        /// Conditionally enables new service versions to be staged. If set to `True`, all changes made by an `Apply` step will be staged, even if `Apply` did not create a new draft version. Default `False`
         /// </summary>
         [Input("stage")]
         public Input<bool>? Stage { get; set; }
@@ -754,7 +754,7 @@ namespace Pulumi.Fastly
         }
 
         /// <summary>
-        /// Conditionally prevents new service versions from being activated. The apply step will create a new draft version but will not activate it if this is set to `false`. Default `true`
+        /// Conditionally prevents new service versions from being activated. The apply step will create a new draft version but will not activate it if this is set to `False`. Default `True`
         /// </summary>
         [Input("activate")]
         public Input<bool>? Activate { get; set; }
@@ -847,7 +847,7 @@ namespace Pulumi.Fastly
         }
 
         /// <summary>
-        /// Services that are active cannot be destroyed. In order to destroy the Service, set `force_destroy` to `true`. Default `false`
+        /// Services that are active cannot be destroyed. In order to destroy the Service, set `ForceDestroy` to `True`. Default `False`
         /// </summary>
         [Input("forceDestroy")]
         public Input<bool>? ForceDestroy { get; set; }
@@ -1163,7 +1163,7 @@ namespace Pulumi.Fastly
         }
 
         /// <summary>
-        /// Conditionally enables new service versions to be staged. If set to `true`, all changes made by an `apply` step will be staged, even if `apply` did not create a new draft version. Default `false`
+        /// Conditionally enables new service versions to be staged. If set to `True`, all changes made by an `Apply` step will be staged, even if `Apply` did not create a new draft version. Default `False`
         /// </summary>
         [Input("stage")]
         public Input<bool>? Stage { get; set; }

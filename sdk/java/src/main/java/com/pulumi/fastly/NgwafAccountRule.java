@@ -165,14 +165,14 @@ public class NgwafAccountRule extends com.pulumi.resources.CustomResource {
         return this.enabled;
     }
     /**
-     * List of grouped conditions with nested logic. Each group must define a `group_operator` and at least one condition.
+     * List of grouped conditions with nested logic. Each group must define a `groupOperator` and at least one condition.
      * 
      */
     @Export(name="groupConditions", refs={List.class,NgwafAccountRuleGroupCondition.class}, tree="[0,1]")
     private Output</* @Nullable */ List<NgwafAccountRuleGroupCondition>> groupConditions;
 
     /**
-     * @return List of grouped conditions with nested logic. Each group must define a `group_operator` and at least one condition.
+     * @return List of grouped conditions with nested logic. Each group must define a `groupOperator` and at least one condition.
      * 
      */
     public Output<Optional<List<NgwafAccountRuleGroupCondition>>> groupConditions() {

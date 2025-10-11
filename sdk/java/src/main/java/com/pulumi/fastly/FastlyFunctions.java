@@ -3755,12 +3755,16 @@ public final class FastlyFunctions {
     /**
      * Use this data source to get the list of TLS Activation identifiers in Fastly.
      * 
+     * ## Example Usage
+     * 
      */
     public static Output<GetTlsActivationIdsResult> getTlsActivationIds() {
         return getTlsActivationIds(GetTlsActivationIdsArgs.Empty, InvokeOptions.Empty);
     }
     /**
      * Use this data source to get the list of TLS Activation identifiers in Fastly.
+     * 
+     * ## Example Usage
      * 
      */
     public static CompletableFuture<GetTlsActivationIdsResult> getTlsActivationIdsPlain() {
@@ -3769,12 +3773,16 @@ public final class FastlyFunctions {
     /**
      * Use this data source to get the list of TLS Activation identifiers in Fastly.
      * 
+     * ## Example Usage
+     * 
      */
     public static Output<GetTlsActivationIdsResult> getTlsActivationIds(GetTlsActivationIdsArgs args) {
         return getTlsActivationIds(args, InvokeOptions.Empty);
     }
     /**
      * Use this data source to get the list of TLS Activation identifiers in Fastly.
+     * 
+     * ## Example Usage
      * 
      */
     public static CompletableFuture<GetTlsActivationIdsResult> getTlsActivationIdsPlain(GetTlsActivationIdsPlainArgs args) {
@@ -3783,6 +3791,8 @@ public final class FastlyFunctions {
     /**
      * Use this data source to get the list of TLS Activation identifiers in Fastly.
      * 
+     * ## Example Usage
+     * 
      */
     public static Output<GetTlsActivationIdsResult> getTlsActivationIds(GetTlsActivationIdsArgs args, InvokeOptions options) {
         return Deployment.getInstance().invoke("fastly:index/getTlsActivationIds:getTlsActivationIds", TypeShape.of(GetTlsActivationIdsResult.class), args, Utilities.withVersion(options));
@@ -3790,12 +3800,16 @@ public final class FastlyFunctions {
     /**
      * Use this data source to get the list of TLS Activation identifiers in Fastly.
      * 
+     * ## Example Usage
+     * 
      */
     public static Output<GetTlsActivationIdsResult> getTlsActivationIds(GetTlsActivationIdsArgs args, InvokeOutputOptions options) {
         return Deployment.getInstance().invoke("fastly:index/getTlsActivationIds:getTlsActivationIds", TypeShape.of(GetTlsActivationIdsResult.class), args, Utilities.withVersion(options));
     }
     /**
      * Use this data source to get the list of TLS Activation identifiers in Fastly.
+     * 
+     * ## Example Usage
      * 
      */
     public static CompletableFuture<GetTlsActivationIdsResult> getTlsActivationIdsPlain(GetTlsActivationIdsPlainArgs args, InvokeOptions options) {
@@ -6818,12 +6832,16 @@ public final class FastlyFunctions {
     /**
      * Use this data source to get the list of IDs of TLS Subscriptions in Fastly.
      * 
+     * ## Example Usage
+     * 
      */
     public static Output<GetTlsSubscriptionIdsResult> getTlsSubscriptionIds() {
         return getTlsSubscriptionIds(InvokeArgs.Empty, InvokeOptions.Empty);
     }
     /**
      * Use this data source to get the list of IDs of TLS Subscriptions in Fastly.
+     * 
+     * ## Example Usage
      * 
      */
     public static CompletableFuture<GetTlsSubscriptionIdsResult> getTlsSubscriptionIdsPlain() {
@@ -6832,12 +6850,16 @@ public final class FastlyFunctions {
     /**
      * Use this data source to get the list of IDs of TLS Subscriptions in Fastly.
      * 
+     * ## Example Usage
+     * 
      */
     public static Output<GetTlsSubscriptionIdsResult> getTlsSubscriptionIds(InvokeArgs args) {
         return getTlsSubscriptionIds(args, InvokeOptions.Empty);
     }
     /**
      * Use this data source to get the list of IDs of TLS Subscriptions in Fastly.
+     * 
+     * ## Example Usage
      * 
      */
     public static CompletableFuture<GetTlsSubscriptionIdsResult> getTlsSubscriptionIdsPlain(InvokeArgs args) {
@@ -6846,6 +6868,8 @@ public final class FastlyFunctions {
     /**
      * Use this data source to get the list of IDs of TLS Subscriptions in Fastly.
      * 
+     * ## Example Usage
+     * 
      */
     public static Output<GetTlsSubscriptionIdsResult> getTlsSubscriptionIds(InvokeArgs args, InvokeOptions options) {
         return Deployment.getInstance().invoke("fastly:index/getTlsSubscriptionIds:getTlsSubscriptionIds", TypeShape.of(GetTlsSubscriptionIdsResult.class), args, Utilities.withVersion(options));
@@ -6853,12 +6877,16 @@ public final class FastlyFunctions {
     /**
      * Use this data source to get the list of IDs of TLS Subscriptions in Fastly.
      * 
+     * ## Example Usage
+     * 
      */
     public static Output<GetTlsSubscriptionIdsResult> getTlsSubscriptionIds(InvokeArgs args, InvokeOutputOptions options) {
         return Deployment.getInstance().invoke("fastly:index/getTlsSubscriptionIds:getTlsSubscriptionIds", TypeShape.of(GetTlsSubscriptionIdsResult.class), args, Utilities.withVersion(options));
     }
     /**
      * Use this data source to get the list of IDs of TLS Subscriptions in Fastly.
+     * 
+     * ## Example Usage
      * 
      */
     public static CompletableFuture<GetTlsSubscriptionIdsResult> getTlsSubscriptionIdsPlain(InvokeArgs args, InvokeOptions options) {

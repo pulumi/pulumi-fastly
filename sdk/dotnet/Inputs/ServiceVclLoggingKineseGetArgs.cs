@@ -41,7 +41,7 @@ namespace Pulumi.Fastly.Inputs
         public Input<int>? FormatVersion { get; set; }
 
         /// <summary>
-        /// The Amazon Resource Name (ARN) for the IAM role granting Fastly access to Kinesis. Not required if `access_key` and `secret_key` are provided.
+        /// The Amazon Resource Name (ARN) for the IAM role granting Fastly access to Kinesis. Not required if `AccessKey` and `SecretKey` are provided.
         /// </summary>
         [Input("iamRole")]
         public Input<string>? IamRole { get; set; }
@@ -53,7 +53,7 @@ namespace Pulumi.Fastly.Inputs
         public Input<string> Name { get; set; } = null!;
 
         /// <summary>
-        /// Where in the generated VCL the logging call should be placed. Can be `none` or `none`.
+        /// Where in the generated VCL the logging call should be placed. Can be `None` or `None`.
         /// </summary>
         [Input("placement")]
         public Input<string>? Placement { get; set; }

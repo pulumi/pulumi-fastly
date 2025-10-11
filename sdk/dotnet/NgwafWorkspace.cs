@@ -14,6 +14,10 @@ namespace Pulumi.Fastly
     /// rules, signals, and various other resources that are offered by the
     /// Next-Gen WAF product.
     /// 
+    /// ## Example Usage
+    /// 
+    /// Basic usage:
+    /// 
     /// ## Import
     /// 
     /// Fastly Next-Gen WAF Workspaces can be imported using their workspace ID, e.g.
@@ -50,13 +54,13 @@ namespace Pulumi.Fastly
         public Output<string> Description { get; private set; } = null!;
 
         /// <summary>
-        /// Agents will anonymize IP addresses according to the option selected. Accepted value is `hashed`.
+        /// Agents will anonymize IP addresses according to the option selected. Accepted value is `Hashed`.
         /// </summary>
         [Output("ipAnonymization")]
         public Output<string?> IpAnonymization { get; private set; } = null!;
 
         /// <summary>
-        /// The operation mode of the workspace. Accepted values are `off`, `block`, and `log`.
+        /// The operation mode of the workspace. Accepted values are `Off`, `Block`, and `Log`.
         /// </summary>
         [Output("mode")]
         public Output<string> Mode { get; private set; } = null!;
@@ -144,13 +148,13 @@ namespace Pulumi.Fastly
         public Input<string> Description { get; set; } = null!;
 
         /// <summary>
-        /// Agents will anonymize IP addresses according to the option selected. Accepted value is `hashed`.
+        /// Agents will anonymize IP addresses according to the option selected. Accepted value is `Hashed`.
         /// </summary>
         [Input("ipAnonymization")]
         public Input<string>? IpAnonymization { get; set; }
 
         /// <summary>
-        /// The operation mode of the workspace. Accepted values are `off`, `block`, and `log`.
+        /// The operation mode of the workspace. Accepted values are `Off`, `Block`, and `Log`.
         /// </summary>
         [Input("mode", required: true)]
         public Input<string> Mode { get; set; } = null!;
@@ -200,13 +204,13 @@ namespace Pulumi.Fastly
         public Input<string>? Description { get; set; }
 
         /// <summary>
-        /// Agents will anonymize IP addresses according to the option selected. Accepted value is `hashed`.
+        /// Agents will anonymize IP addresses according to the option selected. Accepted value is `Hashed`.
         /// </summary>
         [Input("ipAnonymization")]
         public Input<string>? IpAnonymization { get; set; }
 
         /// <summary>
-        /// The operation mode of the workspace. Accepted values are `off`, `block`, and `log`.
+        /// The operation mode of the workspace. Accepted values are `Off`, `Block`, and `Log`.
         /// </summary>
         [Input("mode")]
         public Input<string>? Mode { get; set; }

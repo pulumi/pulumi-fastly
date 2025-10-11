@@ -40,7 +40,7 @@ namespace Pulumi.Fastly
         public Output<string> CreatedAt { get; private set; } = null!;
 
         /// <summary>
-        /// Determines whether Mutual TLS will fail closed (enforced) or fail open. A true value will require a successful Mutual TLS handshake for the connection to continue and will fail closed if unsuccessful. A false value will fail open and allow the connection to proceed (if this attribute is not set we default to `false`).
+        /// Determines whether Mutual TLS will fail closed (enforced) or fail open. A true value will require a successful Mutual TLS handshake for the connection to continue and will fail closed if unsuccessful. A false value will fail open and allow the connection to proceed (if this attribute is not set we default to `False`).
         /// </summary>
         [Output("enforced")]
         public Output<bool> Enforced { get; private set; } = null!;
@@ -131,7 +131,7 @@ namespace Pulumi.Fastly
         public Input<string> CertBundle { get; set; } = null!;
 
         /// <summary>
-        /// Determines whether Mutual TLS will fail closed (enforced) or fail open. A true value will require a successful Mutual TLS handshake for the connection to continue and will fail closed if unsuccessful. A false value will fail open and allow the connection to proceed (if this attribute is not set we default to `false`).
+        /// Determines whether Mutual TLS will fail closed (enforced) or fail open. A true value will require a successful Mutual TLS handshake for the connection to continue and will fail closed if unsuccessful. A false value will fail open and allow the connection to proceed (if this attribute is not set we default to `False`).
         /// </summary>
         [Input("enforced")]
         public Input<bool>? Enforced { get; set; }
@@ -178,7 +178,7 @@ namespace Pulumi.Fastly
         public Input<string>? CreatedAt { get; set; }
 
         /// <summary>
-        /// Determines whether Mutual TLS will fail closed (enforced) or fail open. A true value will require a successful Mutual TLS handshake for the connection to continue and will fail closed if unsuccessful. A false value will fail open and allow the connection to proceed (if this attribute is not set we default to `false`).
+        /// Determines whether Mutual TLS will fail closed (enforced) or fail open. A true value will require a successful Mutual TLS handshake for the connection to continue and will fail closed if unsuccessful. A false value will fail open and allow the connection to proceed (if this attribute is not set we default to `False`).
         /// </summary>
         [Input("enforced")]
         public Input<bool>? Enforced { get; set; }

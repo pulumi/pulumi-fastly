@@ -13,26 +13,26 @@ import javax.annotation.Nullable;
 @CustomType
 public final class NgwafAccountRuleAction {
     /**
-     * @return Signal name to exclude (used when `type = exclude_signal`).
+     * @return Signal name to exclude (used when `type = excludeSignal`).
      * 
      */
     private @Nullable String signal;
     /**
-     * @return The action type, e.g. `block`, `redirect`, `exclude_signal`.
+     * @return The action type, e.g. `block`, `redirect`, `excludeSignal`.
      * 
      */
     private String type;
 
     private NgwafAccountRuleAction() {}
     /**
-     * @return Signal name to exclude (used when `type = exclude_signal`).
+     * @return Signal name to exclude (used when `type = excludeSignal`).
      * 
      */
     public Optional<String> signal() {
         return Optional.ofNullable(this.signal);
     }
     /**
-     * @return The action type, e.g. `block`, `redirect`, `exclude_signal`.
+     * @return The action type, e.g. `block`, `redirect`, `excludeSignal`.
      * 
      */
     public String type() {

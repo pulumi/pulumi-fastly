@@ -19,7 +19,7 @@ import javax.annotation.Nullable;
  * Uploads a custom TLS certificate to Fastly to be used to terminate TLS traffic.
  * 
  * &gt; Each TLS certificate **must** have its corresponding private key uploaded _prior_ to uploading the certificate. This
- * can be achieved in Pulumi using `depends_on`
+ * can be achieved in Pulumi using `dependsOn`
  * 
  * ## Example Usage
  * 
@@ -95,7 +95,7 @@ import javax.annotation.Nullable;
  * 2. The certificate is about to expire but the private key is changing.
  * 3. The domains on the certificate are changing.
  * 
- * In the first scenario you only need to update the `certificate_body` attribute of the `fastly.TlsCertificate` resource, while the other scenarios require a new private key (`fastly.TlsPrivateKey`) and certificate (`fastly.TlsCertificate`) to be generated.
+ * In the first scenario you only need to update the `certificateBody` attribute of the `fastly.TlsCertificate` resource, while the other scenarios require a new private key (`fastly.TlsPrivateKey`) and certificate (`fastly.TlsCertificate`) to be generated.
  * 
  * When updating both the `fastly.TlsPrivateKey` and `fastly.TlsCertificate` resources, they should be done in multiple plan/apply steps to avoid potential downtime. The new certificate and associated private key must first be created so they exist alongside the currently active resources. Once the new resources have been created, then the `fastly.TlsActivation` can be updated to point to the new certificate. Finally, the original key/certificate resources can be deleted.
  * 

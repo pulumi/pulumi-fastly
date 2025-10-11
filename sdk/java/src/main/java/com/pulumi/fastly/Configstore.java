@@ -18,7 +18,7 @@ import javax.annotation.Nullable;
 /**
  * Provides a container that lets you store data in key-value pairs that are accessible to Compute services during request processing.
  * 
- * In order for a Config Store (`fastly.Configstore`) to be accessible to a [Compute](https://developer.fastly.com/learning/compute/) service you&#39;ll first need to define a Compute service (`fastly.ServiceCompute`) in your configuration, and then create a link to the Config Store from within the service using the `resource_link` block (shown in the below examples).
+ * In order for a Config Store (`fastly.Configstore`) to be accessible to a [Compute](https://developer.fastly.com/learning/compute/) service you&#39;ll first need to define a Compute service (`fastly.ServiceCompute`) in your configuration, and then create a link to the Config Store from within the service using the `resourceLink` block (shown in the below examples).
  * 
  * ## Example Usage
  * 
@@ -111,14 +111,14 @@ public class Configstore extends com.pulumi.resources.CustomResource {
         return Codegen.optional(this.forceDestroy);
     }
     /**
-     * A unique name to identify the Config Store. It is important to note that changing this attribute will delete and recreate the Config Store, and discard the current entries. You MUST first delete the associated resource_link block from your service before modifying this field.
+     * A unique name to identify the Config Store. It is important to note that changing this attribute will delete and recreate the Config Store, and discard the current entries. You MUST first delete the associated resourceLink block from your service before modifying this field.
      * 
      */
     @Export(name="name", refs={String.class}, tree="[0]")
     private Output<String> name;
 
     /**
-     * @return A unique name to identify the Config Store. It is important to note that changing this attribute will delete and recreate the Config Store, and discard the current entries. You MUST first delete the associated resource_link block from your service before modifying this field.
+     * @return A unique name to identify the Config Store. It is important to note that changing this attribute will delete and recreate the Config Store, and discard the current entries. You MUST first delete the associated resourceLink block from your service before modifying this field.
      * 
      */
     public Output<String> name() {

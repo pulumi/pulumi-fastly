@@ -62,7 +62,7 @@ namespace Pulumi.Fastly.Outputs
         /// </summary>
         public readonly string Url;
         /// <summary>
-        /// Whether to use TLS for secure logging. Default: `false`
+        /// Whether to use TLS for secure logging. Default: `False`
         /// </summary>
         public readonly bool? UseTls;
 

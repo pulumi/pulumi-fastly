@@ -29,7 +29,7 @@ public final class ServiceVclLoggingKinese {
      */
     private @Nullable Integer formatVersion;
     /**
-     * @return The Amazon Resource Name (ARN) for the IAM role granting Fastly access to Kinesis. Not required if `access_key` and `secret_key` are provided.
+     * @return The Amazon Resource Name (ARN) for the IAM role granting Fastly access to Kinesis. Not required if `accessKey` and `secretKey` are provided.
      * 
      */
     private @Nullable String iamRole;
@@ -92,7 +92,7 @@ public final class ServiceVclLoggingKinese {
         return Optional.ofNullable(this.formatVersion);
     }
     /**
-     * @return The Amazon Resource Name (ARN) for the IAM role granting Fastly access to Kinesis. Not required if `access_key` and `secret_key` are provided.
+     * @return The Amazon Resource Name (ARN) for the IAM role granting Fastly access to Kinesis. Not required if `accessKey` and `secretKey` are provided.
      * 
      */
     public Optional<String> iamRole() {

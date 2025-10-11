@@ -14,11 +14,11 @@ namespace Pulumi.Fastly.Outputs
     public sealed class ServiceVclHeader
     {
         /// <summary>
-        /// The Header manipulation action to take; must be one of `set`, `append`, `delete`, `regex`, or `regex_repeat`
+        /// The Header manipulation action to take; must be one of `Set`, `Append`, `Delete`, `Regex`, or `RegexRepeat`
         /// </summary>
         public readonly string Action;
         /// <summary>
-        /// Name of already defined `condition` to apply. This `condition` must be of type `CACHE`
+        /// Name of already defined `Condition` to apply. This `Condition` must be of type `CACHE`
         /// </summary>
         public readonly string? CacheCondition;
         /// <summary>
@@ -26,7 +26,7 @@ namespace Pulumi.Fastly.Outputs
         /// </summary>
         public readonly string Destination;
         /// <summary>
-        /// Don't add the header if it is already. (Only applies to `set` action.). Default `false`
+        /// Don't add the header if it is already. (Only applies to `Set` action.). Default `False`
         /// </summary>
         public readonly bool? IgnoreIfSet;
         /// <summary>
@@ -38,27 +38,27 @@ namespace Pulumi.Fastly.Outputs
         /// </summary>
         public readonly int? Priority;
         /// <summary>
-        /// Regular expression to use (Only applies to `regex` and `regex_repeat` actions.)
+        /// Regular expression to use (Only applies to `Regex` and `RegexRepeat` actions.)
         /// </summary>
         public readonly string? Regex;
         /// <summary>
-        /// Name of already defined `condition` to apply. This `condition` must be of type `REQUEST`
+        /// Name of already defined `Condition` to apply. This `Condition` must be of type `REQUEST`
         /// </summary>
         public readonly string? RequestCondition;
         /// <summary>
-        /// Name of already defined `condition` to apply. This `condition` must be of type `RESPONSE`. For detailed information about Conditionals, see [Fastly's Documentation on Conditionals](https://docs.fastly.com/en/guides/using-conditions)
+        /// Name of already defined `Condition` to apply. This `Condition` must be of type `RESPONSE`. For detailed information about Conditionals, see [Fastly's Documentation on Conditionals](https://docs.fastly.com/en/guides/using-conditions)
         /// </summary>
         public readonly string? ResponseCondition;
         /// <summary>
-        /// Variable to be used as a source for the header content (Does not apply to `delete` action.)
+        /// Variable to be used as a source for the header content (Does not apply to `Delete` action.)
         /// </summary>
         public readonly string? Source;
         /// <summary>
-        /// Value to substitute in place of regular expression. (Only applies to `regex` and `regex_repeat`.)
+        /// Value to substitute in place of regular expression. (Only applies to `Regex` and `RegexRepeat`.)
         /// </summary>
         public readonly string? Substitution;
         /// <summary>
-        /// The Request type on which to apply the selected Action; must be one of `request`, `fetch`, `cache` or `response`
+        /// The Request type on which to apply the selected Action; must be one of `Request`, `Fetch`, `Cache` or `Response`
         /// </summary>
         public readonly string Type;
 

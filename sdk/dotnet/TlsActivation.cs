@@ -12,7 +12,7 @@ namespace Pulumi.Fastly
     /// <summary>
     /// Enables TLS on a domain using a specified custom TLS certificate.
     /// 
-    /// &gt; **Note:** The Fastly service must be provisioned _prior_ to enabling TLS on it. This can be achieved in Pulumi using `depends_on`.
+    /// &gt; **Note:** The Fastly service must be provisioned _prior_ to enabling TLS on it. This can be achieved in Pulumi using `DependsOn`.
     /// 
     /// ## Example Usage
     /// 
@@ -94,7 +94,7 @@ namespace Pulumi.Fastly
     public partial class TlsActivation : global::Pulumi.CustomResource
     {
         /// <summary>
-        /// ID of certificate to use. Must have the `domain` specified in the certificate's Subject Alternative Names.
+        /// ID of certificate to use. Must have the `Domain` specified in the certificate's Subject Alternative Names.
         /// </summary>
         [Output("certificateId")]
         public Output<string> CertificateId { get; private set; } = null!;
@@ -170,7 +170,7 @@ namespace Pulumi.Fastly
     public sealed class TlsActivationArgs : global::Pulumi.ResourceArgs
     {
         /// <summary>
-        /// ID of certificate to use. Must have the `domain` specified in the certificate's Subject Alternative Names.
+        /// ID of certificate to use. Must have the `Domain` specified in the certificate's Subject Alternative Names.
         /// </summary>
         [Input("certificateId", required: true)]
         public Input<string> CertificateId { get; set; } = null!;
@@ -202,7 +202,7 @@ namespace Pulumi.Fastly
     public sealed class TlsActivationState : global::Pulumi.ResourceArgs
     {
         /// <summary>
-        /// ID of certificate to use. Must have the `domain` specified in the certificate's Subject Alternative Names.
+        /// ID of certificate to use. Must have the `Domain` specified in the certificate's Subject Alternative Names.
         /// </summary>
         [Input("certificateId")]
         public Input<string>? CertificateId { get; set; }

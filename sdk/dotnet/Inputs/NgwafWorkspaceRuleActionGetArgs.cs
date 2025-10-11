@@ -25,13 +25,13 @@ namespace Pulumi.Fastly.Inputs
         public Input<int>? ResponseCode { get; set; }
 
         /// <summary>
-        /// Signal name to exclude (used when `type = exclude_signal`).
+        /// Signal name to exclude (used when `type = ExcludeSignal`).
         /// </summary>
         [Input("signal")]
         public Input<string>? Signal { get; set; }
 
         /// <summary>
-        /// The action type, e.g. `block`, `redirect`, `exclude_signal`.
+        /// The action type, e.g. `Block`, `Redirect`, `ExcludeSignal`.
         /// </summary>
         [Input("type", required: true)]
         public Input<string> Type { get; set; } = null!;

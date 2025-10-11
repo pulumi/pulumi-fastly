@@ -18,7 +18,7 @@ namespace Pulumi.Fastly.Outputs
         /// </summary>
         public readonly string Address;
         /// <summary>
-        /// Denotes if this Backend should be included in the pool of backends that requests are load balanced against. Default `false`
+        /// Denotes if this Backend should be included in the pool of backends that requests are load balanced against. Default `False`
         /// </summary>
         public readonly bool? AutoLoadbalance;
         /// <summary>
@@ -38,7 +38,7 @@ namespace Pulumi.Fastly.Outputs
         /// </summary>
         public readonly int? FirstByteTimeout;
         /// <summary>
-        /// Name of a defined `healthcheck` to assign to this backend
+        /// Name of a defined `Healthcheck` to assign to this backend
         /// </summary>
         public readonly string? Healthcheck;
         /// <summary>
@@ -70,7 +70,7 @@ namespace Pulumi.Fastly.Outputs
         /// </summary>
         public readonly int? Port;
         /// <summary>
-        /// Prefer IPv6 connections to origins for hostname backends. Default `false`
+        /// Prefer IPv6 connections to origins for hostname backends. Default `False`
         /// </summary>
         public readonly bool? PreferIpv6;
         /// <summary>
@@ -82,7 +82,7 @@ namespace Pulumi.Fastly.Outputs
         /// </summary>
         public readonly string? ShareKey;
         /// <summary>
-        /// The POP of the shield designated to reduce inbound load. Valid values for `shield` are included in the `GET /datacenters` API response
+        /// The POP of the shield designated to reduce inbound load. Valid values for `Shield` are included in the `GET /datacenters` API response
         /// </summary>
         public readonly string? Shield;
         /// <summary>
@@ -94,7 +94,7 @@ namespace Pulumi.Fastly.Outputs
         /// </summary>
         public readonly string? SslCertHostname;
         /// <summary>
-        /// Be strict about checking SSL certs. Default `true`
+        /// Be strict about checking SSL certs. Default `True`
         /// </summary>
         public readonly bool? SslCheckCert;
         /// <summary>
@@ -114,7 +114,7 @@ namespace Pulumi.Fastly.Outputs
         /// </summary>
         public readonly string? SslSniHostname;
         /// <summary>
-        /// Whether or not to use SSL to reach the Backend. Default `false`
+        /// Whether or not to use SSL to reach the Backend. Default `False`
         /// </summary>
         public readonly bool? UseSsl;
         /// <summary>

@@ -52,7 +52,7 @@ namespace Pulumi.Fastly
     public partial class ServiceAuthorization : global::Pulumi.CustomResource
     {
         /// <summary>
-        /// The permissions to grant the user. Can be `full`, `read_only`, `purge_select` or `purge_all`.
+        /// The permissions to grant the user. Can be `Full`, `ReadOnly`, `PurgeSelect` or `PurgeAll`.
         /// </summary>
         [Output("permission")]
         public Output<string> Permission { get; private set; } = null!;
@@ -116,7 +116,7 @@ namespace Pulumi.Fastly
     public sealed class ServiceAuthorizationArgs : global::Pulumi.ResourceArgs
     {
         /// <summary>
-        /// The permissions to grant the user. Can be `full`, `read_only`, `purge_select` or `purge_all`.
+        /// The permissions to grant the user. Can be `Full`, `ReadOnly`, `PurgeSelect` or `PurgeAll`.
         /// </summary>
         [Input("permission", required: true)]
         public Input<string> Permission { get; set; } = null!;
@@ -142,7 +142,7 @@ namespace Pulumi.Fastly
     public sealed class ServiceAuthorizationState : global::Pulumi.ResourceArgs
     {
         /// <summary>
-        /// The permissions to grant the user. Can be `full`, `read_only`, `purge_select` or `purge_all`.
+        /// The permissions to grant the user. Can be `Full`, `ReadOnly`, `PurgeSelect` or `PurgeAll`.
         /// </summary>
         [Input("permission")]
         public Input<string>? Permission { get; set; }

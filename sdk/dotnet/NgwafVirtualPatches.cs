@@ -48,7 +48,7 @@ namespace Pulumi.Fastly
     public partial class NgwafVirtualPatches : global::Pulumi.CustomResource
     {
         /// <summary>
-        /// Action to take when a signal for virtual patch is detected. Accepted values are `log` and `block`.
+        /// Action to take when a signal for virtual patch is detected. Accepted values are `Log` and `Block`.
         /// </summary>
         [Output("action")]
         public Output<string> Action { get; private set; } = null!;
@@ -118,7 +118,7 @@ namespace Pulumi.Fastly
     public sealed class NgwafVirtualPatchesArgs : global::Pulumi.ResourceArgs
     {
         /// <summary>
-        /// Action to take when a signal for virtual patch is detected. Accepted values are `log` and `block`.
+        /// Action to take when a signal for virtual patch is detected. Accepted values are `Log` and `Block`.
         /// </summary>
         [Input("action", required: true)]
         public Input<string> Action { get; set; } = null!;
@@ -150,7 +150,7 @@ namespace Pulumi.Fastly
     public sealed class NgwafVirtualPatchesState : global::Pulumi.ResourceArgs
     {
         /// <summary>
-        /// Action to take when a signal for virtual patch is detected. Accepted values are `log` and `block`.
+        /// Action to take when a signal for virtual patch is detected. Accepted values are `Log` and `Block`.
         /// </summary>
         [Input("action")]
         public Input<string>? Action { get; set; }

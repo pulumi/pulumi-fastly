@@ -15,7 +15,7 @@ namespace Pulumi.Fastly
         /// Use this data source to get the ID of a TLS configuration for use with other resources.
         /// 
         /// &gt; **Warning:** The data source's filters are applied using an **AND** boolean operator, so depending on the combination
-        /// of filters, they may become mutually exclusive. The exception to this is `id` which must not be specified in combination
+        /// of filters, they may become mutually exclusive. The exception to this is `Id` which must not be specified in combination
         /// with any of the others.
         /// 
         /// &gt; **Note:** If more or less than a single match is returned by the search, this provider will fail. Ensure that your search is specific enough to return a single key.
@@ -50,7 +50,7 @@ namespace Pulumi.Fastly
         /// Use this data source to get the ID of a TLS configuration for use with other resources.
         /// 
         /// &gt; **Warning:** The data source's filters are applied using an **AND** boolean operator, so depending on the combination
-        /// of filters, they may become mutually exclusive. The exception to this is `id` which must not be specified in combination
+        /// of filters, they may become mutually exclusive. The exception to this is `Id` which must not be specified in combination
         /// with any of the others.
         /// 
         /// &gt; **Note:** If more or less than a single match is returned by the search, this provider will fail. Ensure that your search is specific enough to return a single key.
@@ -85,7 +85,7 @@ namespace Pulumi.Fastly
         /// Use this data source to get the ID of a TLS configuration for use with other resources.
         /// 
         /// &gt; **Warning:** The data source's filters are applied using an **AND** boolean operator, so depending on the combination
-        /// of filters, they may become mutually exclusive. The exception to this is `id` which must not be specified in combination
+        /// of filters, they may become mutually exclusive. The exception to this is `Id` which must not be specified in combination
         /// with any of the others.
         /// 
         /// &gt; **Note:** If more or less than a single match is returned by the search, this provider will fail. Ensure that your search is specific enough to return a single key.

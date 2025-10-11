@@ -14,7 +14,7 @@ namespace Pulumi.Fastly.Outputs
     public sealed class TlsSubscriptionManagedHttpChallenge
     {
         /// <summary>
-        /// The name of the DNS record to add. For example `example.com`. Best accessed through a `for` expression to filter the relevant record.
+        /// The name of the DNS record to add. For example `example.com`. Best accessed through a `For` expression to filter the relevant record.
         /// </summary>
         public readonly string? RecordName;
         /// <summary>

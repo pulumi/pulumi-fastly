@@ -79,14 +79,14 @@ public class NgwafRedaction extends com.pulumi.resources.CustomResource {
         return this.field;
     }
     /**
-     * The type of field that is being redacted. Accepted values are `request_parameter`, `request_header`, and `response_header`.
+     * The type of field that is being redacted. Accepted values are `requestParameter`, `requestHeader`, and `responseHeader`.
      * 
      */
     @Export(name="type", refs={String.class}, tree="[0]")
     private Output<String> type;
 
     /**
-     * @return The type of field that is being redacted. Accepted values are `request_parameter`, `request_header`, and `response_header`.
+     * @return The type of field that is being redacted. Accepted values are `requestParameter`, `requestHeader`, and `responseHeader`.
      * 
      */
     public Output<String> type() {

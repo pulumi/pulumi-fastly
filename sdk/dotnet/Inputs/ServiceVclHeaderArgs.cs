@@ -13,13 +13,13 @@ namespace Pulumi.Fastly.Inputs
     public sealed class ServiceVclHeaderArgs : global::Pulumi.ResourceArgs
     {
         /// <summary>
-        /// The Header manipulation action to take; must be one of `set`, `append`, `delete`, `regex`, or `regex_repeat`
+        /// The Header manipulation action to take; must be one of `Set`, `Append`, `Delete`, `Regex`, or `RegexRepeat`
         /// </summary>
         [Input("action", required: true)]
         public Input<string> Action { get; set; } = null!;
 
         /// <summary>
-        /// Name of already defined `condition` to apply. This `condition` must be of type `CACHE`
+        /// Name of already defined `Condition` to apply. This `Condition` must be of type `CACHE`
         /// </summary>
         [Input("cacheCondition")]
         public Input<string>? CacheCondition { get; set; }
@@ -31,7 +31,7 @@ namespace Pulumi.Fastly.Inputs
         public Input<string> Destination { get; set; } = null!;
 
         /// <summary>
-        /// Don't add the header if it is already. (Only applies to `set` action.). Default `false`
+        /// Don't add the header if it is already. (Only applies to `Set` action.). Default `False`
         /// </summary>
         [Input("ignoreIfSet")]
         public Input<bool>? IgnoreIfSet { get; set; }
@@ -49,37 +49,37 @@ namespace Pulumi.Fastly.Inputs
         public Input<int>? Priority { get; set; }
 
         /// <summary>
-        /// Regular expression to use (Only applies to `regex` and `regex_repeat` actions.)
+        /// Regular expression to use (Only applies to `Regex` and `RegexRepeat` actions.)
         /// </summary>
         [Input("regex")]
         public Input<string>? Regex { get; set; }
 
         /// <summary>
-        /// Name of already defined `condition` to apply. This `condition` must be of type `REQUEST`
+        /// Name of already defined `Condition` to apply. This `Condition` must be of type `REQUEST`
         /// </summary>
         [Input("requestCondition")]
         public Input<string>? RequestCondition { get; set; }
 
         /// <summary>
-        /// Name of already defined `condition` to apply. This `condition` must be of type `RESPONSE`. For detailed information about Conditionals, see [Fastly's Documentation on Conditionals](https://docs.fastly.com/en/guides/using-conditions)
+        /// Name of already defined `Condition` to apply. This `Condition` must be of type `RESPONSE`. For detailed information about Conditionals, see [Fastly's Documentation on Conditionals](https://docs.fastly.com/en/guides/using-conditions)
         /// </summary>
         [Input("responseCondition")]
         public Input<string>? ResponseCondition { get; set; }
 
         /// <summary>
-        /// Variable to be used as a source for the header content (Does not apply to `delete` action.)
+        /// Variable to be used as a source for the header content (Does not apply to `Delete` action.)
         /// </summary>
         [Input("source")]
         public Input<string>? Source { get; set; }
 
         /// <summary>
-        /// Value to substitute in place of regular expression. (Only applies to `regex` and `regex_repeat`.)
+        /// Value to substitute in place of regular expression. (Only applies to `Regex` and `RegexRepeat`.)
         /// </summary>
         [Input("substitution")]
         public Input<string>? Substitution { get; set; }
 
         /// <summary>
-        /// The Request type on which to apply the selected Action; must be one of `request`, `fetch`, `cache` or `response`
+        /// The Request type on which to apply the selected Action; must be one of `Request`, `Fetch`, `Cache` or `Response`
         /// </summary>
         [Input("type", required: true)]
         public Input<string> Type { get; set; } = null!;

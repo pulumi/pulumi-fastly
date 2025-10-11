@@ -26,7 +26,7 @@ namespace Pulumi.Fastly.Outputs
         /// </summary>
         public readonly int? FormatVersion;
         /// <summary>
-        /// The Amazon Resource Name (ARN) for the IAM role granting Fastly access to Kinesis. Not required if `access_key` and `secret_key` are provided.
+        /// The Amazon Resource Name (ARN) for the IAM role granting Fastly access to Kinesis. Not required if `AccessKey` and `SecretKey` are provided.
         /// </summary>
         public readonly string? IamRole;
         /// <summary>
@@ -34,7 +34,7 @@ namespace Pulumi.Fastly.Outputs
         /// </summary>
         public readonly string Name;
         /// <summary>
-        /// Where in the generated VCL the logging call should be placed. Can be `none` or `none`.
+        /// Where in the generated VCL the logging call should be placed. Can be `None` or `None`.
         /// </summary>
         public readonly string? Placement;
         /// <summary>

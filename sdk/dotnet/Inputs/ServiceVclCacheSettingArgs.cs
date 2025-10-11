@@ -19,7 +19,7 @@ namespace Pulumi.Fastly.Inputs
         public Input<string>? Action { get; set; }
 
         /// <summary>
-        /// Name of already defined `condition` used to test whether this settings object should be used. This `condition` must be of type `CACHE`
+        /// Name of already defined `Condition` used to test whether this settings object should be used. This `Condition` must be of type `CACHE`
         /// </summary>
         [Input("cacheCondition")]
         public Input<string>? CacheCondition { get; set; }

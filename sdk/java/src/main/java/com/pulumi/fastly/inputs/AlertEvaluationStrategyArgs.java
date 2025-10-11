@@ -63,14 +63,14 @@ public final class AlertEvaluationStrategyArgs extends com.pulumi.resources.Reso
     }
 
     /**
-     * Type of strategy to use to evaluate. One of: `above_threshold`, `all_above_threshold`, `below_threshold`, `percent_absolute`, `percent_decrease`, `percent_increase`.
+     * Type of strategy to use to evaluate. One of: `aboveThreshold`, `allAboveThreshold`, `belowThreshold`, `percentAbsolute`, `percentDecrease`, `percentIncrease`.
      * 
      */
     @Import(name="type", required=true)
     private Output<String> type;
 
     /**
-     * @return Type of strategy to use to evaluate. One of: `above_threshold`, `all_above_threshold`, `below_threshold`, `percent_absolute`, `percent_decrease`, `percent_increase`.
+     * @return Type of strategy to use to evaluate. One of: `aboveThreshold`, `allAboveThreshold`, `belowThreshold`, `percentAbsolute`, `percentDecrease`, `percentIncrease`.
      * 
      */
     public Output<String> type() {
@@ -168,7 +168,7 @@ public final class AlertEvaluationStrategyArgs extends com.pulumi.resources.Reso
         }
 
         /**
-         * @param type Type of strategy to use to evaluate. One of: `above_threshold`, `all_above_threshold`, `below_threshold`, `percent_absolute`, `percent_decrease`, `percent_increase`.
+         * @param type Type of strategy to use to evaluate. One of: `aboveThreshold`, `allAboveThreshold`, `belowThreshold`, `percentAbsolute`, `percentDecrease`, `percentIncrease`.
          * 
          * @return builder
          * 
@@ -179,7 +179,7 @@ public final class AlertEvaluationStrategyArgs extends com.pulumi.resources.Reso
         }
 
         /**
-         * @param type Type of strategy to use to evaluate. One of: `above_threshold`, `all_above_threshold`, `below_threshold`, `percent_absolute`, `percent_decrease`, `percent_increase`.
+         * @param type Type of strategy to use to evaluate. One of: `aboveThreshold`, `allAboveThreshold`, `belowThreshold`, `percentAbsolute`, `percentDecrease`, `percentIncrease`.
          * 
          * @return builder
          * 

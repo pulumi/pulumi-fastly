@@ -17,14 +17,14 @@ public final class NgwafAccountRuleActionArgs extends com.pulumi.resources.Resou
     public static final NgwafAccountRuleActionArgs Empty = new NgwafAccountRuleActionArgs();
 
     /**
-     * Signal name to exclude (used when `type = exclude_signal`).
+     * Signal name to exclude (used when `type = excludeSignal`).
      * 
      */
     @Import(name="signal")
     private @Nullable Output<String> signal;
 
     /**
-     * @return Signal name to exclude (used when `type = exclude_signal`).
+     * @return Signal name to exclude (used when `type = excludeSignal`).
      * 
      */
     public Optional<Output<String>> signal() {
@@ -32,14 +32,14 @@ public final class NgwafAccountRuleActionArgs extends com.pulumi.resources.Resou
     }
 
     /**
-     * The action type, e.g. `block`, `redirect`, `exclude_signal`.
+     * The action type, e.g. `block`, `redirect`, `excludeSignal`.
      * 
      */
     @Import(name="type", required=true)
     private Output<String> type;
 
     /**
-     * @return The action type, e.g. `block`, `redirect`, `exclude_signal`.
+     * @return The action type, e.g. `block`, `redirect`, `excludeSignal`.
      * 
      */
     public Output<String> type() {
@@ -72,7 +72,7 @@ public final class NgwafAccountRuleActionArgs extends com.pulumi.resources.Resou
         }
 
         /**
-         * @param signal Signal name to exclude (used when `type = exclude_signal`).
+         * @param signal Signal name to exclude (used when `type = excludeSignal`).
          * 
          * @return builder
          * 
@@ -83,7 +83,7 @@ public final class NgwafAccountRuleActionArgs extends com.pulumi.resources.Resou
         }
 
         /**
-         * @param signal Signal name to exclude (used when `type = exclude_signal`).
+         * @param signal Signal name to exclude (used when `type = excludeSignal`).
          * 
          * @return builder
          * 
@@ -93,7 +93,7 @@ public final class NgwafAccountRuleActionArgs extends com.pulumi.resources.Resou
         }
 
         /**
-         * @param type The action type, e.g. `block`, `redirect`, `exclude_signal`.
+         * @param type The action type, e.g. `block`, `redirect`, `excludeSignal`.
          * 
          * @return builder
          * 
@@ -104,7 +104,7 @@ public final class NgwafAccountRuleActionArgs extends com.pulumi.resources.Resou
         }
 
         /**
-         * @param type The action type, e.g. `block`, `redirect`, `exclude_signal`.
+         * @param type The action type, e.g. `block`, `redirect`, `excludeSignal`.
          * 
          * @return builder
          * 

@@ -274,6 +274,10 @@ class NgwafWorkspace(pulumi.CustomResource):
         rules, signals, and various other resources that are offered by the
         Next-Gen WAF product.
 
+        ## Example Usage
+
+        Basic usage:
+
         ## Import
 
         Fastly Next-Gen WAF Workspaces can be imported using their workspace ID, e.g.
@@ -302,6 +306,10 @@ class NgwafWorkspace(pulumi.CustomResource):
         Provides a Fastly Next-Gen WAF Workspace, representing a container for
         rules, signals, and various other resources that are offered by the
         Next-Gen WAF product.
+
+        ## Example Usage
+
+        Basic usage:
 
         ## Import
 

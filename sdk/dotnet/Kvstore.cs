@@ -88,7 +88,7 @@ namespace Pulumi.Fastly
         public Output<string?> Location { get; private set; } = null!;
 
         /// <summary>
-        /// A unique name to identify the KV Store. It is important to note that changing this attribute will delete and recreate the KV Store, and discard the current entries. You MUST first delete the associated resource_link block from your service before modifying this field.
+        /// A unique name to identify the KV Store. It is important to note that changing this attribute will delete and recreate the KV Store, and discard the current entries. You MUST first delete the associated ResourceLink block from your service before modifying this field.
         /// </summary>
         [Output("name")]
         public Output<string> Name { get; private set; } = null!;
@@ -152,7 +152,7 @@ namespace Pulumi.Fastly
         public Input<string>? Location { get; set; }
 
         /// <summary>
-        /// A unique name to identify the KV Store. It is important to note that changing this attribute will delete and recreate the KV Store, and discard the current entries. You MUST first delete the associated resource_link block from your service before modifying this field.
+        /// A unique name to identify the KV Store. It is important to note that changing this attribute will delete and recreate the KV Store, and discard the current entries. You MUST first delete the associated ResourceLink block from your service before modifying this field.
         /// </summary>
         [Input("name")]
         public Input<string>? Name { get; set; }
@@ -178,7 +178,7 @@ namespace Pulumi.Fastly
         public Input<string>? Location { get; set; }
 
         /// <summary>
-        /// A unique name to identify the KV Store. It is important to note that changing this attribute will delete and recreate the KV Store, and discard the current entries. You MUST first delete the associated resource_link block from your service before modifying this field.
+        /// A unique name to identify the KV Store. It is important to note that changing this attribute will delete and recreate the KV Store, and discard the current entries. You MUST first delete the associated ResourceLink block from your service before modifying this field.
         /// </summary>
         [Input("name")]
         public Input<string>? Name { get; set; }

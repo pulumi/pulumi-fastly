@@ -18,7 +18,7 @@ namespace Pulumi.Fastly.Outputs
         /// </summary>
         public readonly string? Action;
         /// <summary>
-        /// Name of already defined `condition` used to test whether this settings object should be used. This `condition` must be of type `CACHE`
+        /// Name of already defined `Condition` used to test whether this settings object should be used. This `Condition` must be of type `CACHE`
         /// </summary>
         public readonly string? CacheCondition;
         /// <summary>

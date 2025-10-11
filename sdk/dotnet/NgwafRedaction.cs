@@ -52,7 +52,7 @@ namespace Pulumi.Fastly
         public Output<string> Field { get; private set; } = null!;
 
         /// <summary>
-        /// The type of field that is being redacted. Accepted values are `request_parameter`, `request_header`, and `response_header`.
+        /// The type of field that is being redacted. Accepted values are `RequestParameter`, `RequestHeader`, and `ResponseHeader`.
         /// </summary>
         [Output("type")]
         public Output<string> Type { get; private set; } = null!;
@@ -116,7 +116,7 @@ namespace Pulumi.Fastly
         public Input<string> Field { get; set; } = null!;
 
         /// <summary>
-        /// The type of field that is being redacted. Accepted values are `request_parameter`, `request_header`, and `response_header`.
+        /// The type of field that is being redacted. Accepted values are `RequestParameter`, `RequestHeader`, and `ResponseHeader`.
         /// </summary>
         [Input("type", required: true)]
         public Input<string> Type { get; set; } = null!;
@@ -142,7 +142,7 @@ namespace Pulumi.Fastly
         public Input<string>? Field { get; set; }
 
         /// <summary>
-        /// The type of field that is being redacted. Accepted values are `request_parameter`, `request_header`, and `response_header`.
+        /// The type of field that is being redacted. Accepted values are `RequestParameter`, `RequestHeader`, and `ResponseHeader`.
         /// </summary>
         [Input("type")]
         public Input<string>? Type { get; set; }

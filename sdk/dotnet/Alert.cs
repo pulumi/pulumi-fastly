@@ -101,13 +101,13 @@ namespace Pulumi.Fastly
         public Output<string> Name { get; private set; } = null!;
 
         /// <summary>
-        /// The service which the alert monitors. Optional when using `stats` as the `source`.
+        /// The service which the alert monitors. Optional when using `Stats` as the `Source`.
         /// </summary>
         [Output("serviceId")]
         public Output<string?> ServiceId { get; private set; } = null!;
 
         /// <summary>
-        /// The source where the metric comes from. One of: `domains`, `origins`, `stats`.
+        /// The source where the metric comes from. One of: `Domains`, `Origins`, `Stats`.
         /// </summary>
         [Output("source")]
         public Output<string> Source { get; private set; } = null!;
@@ -201,13 +201,13 @@ namespace Pulumi.Fastly
         public Input<string>? Name { get; set; }
 
         /// <summary>
-        /// The service which the alert monitors. Optional when using `stats` as the `source`.
+        /// The service which the alert monitors. Optional when using `Stats` as the `Source`.
         /// </summary>
         [Input("serviceId")]
         public Input<string>? ServiceId { get; set; }
 
         /// <summary>
-        /// The source where the metric comes from. One of: `domains`, `origins`, `stats`.
+        /// The source where the metric comes from. One of: `Domains`, `Origins`, `Stats`.
         /// </summary>
         [Input("source", required: true)]
         public Input<string> Source { get; set; } = null!;
@@ -263,13 +263,13 @@ namespace Pulumi.Fastly
         public Input<string>? Name { get; set; }
 
         /// <summary>
-        /// The service which the alert monitors. Optional when using `stats` as the `source`.
+        /// The service which the alert monitors. Optional when using `Stats` as the `Source`.
         /// </summary>
         [Input("serviceId")]
         public Input<string>? ServiceId { get; set; }
 
         /// <summary>
-        /// The source where the metric comes from. One of: `domains`, `origins`, `stats`.
+        /// The source where the metric comes from. One of: `Domains`, `Origins`, `Stats`.
         /// </summary>
         [Input("source")]
         public Input<string>? Source { get; set; }

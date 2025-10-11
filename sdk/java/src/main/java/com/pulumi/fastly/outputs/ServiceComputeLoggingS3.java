@@ -24,7 +24,7 @@ public final class ServiceComputeLoggingS3 {
      */
     private String bucketName;
     /**
-     * @return The codec used for compression of your logs. Valid values are zstd, snappy, and gzip. If the specified codec is &#34;gzip&#34;, gzip_level will default to 3. To specify a different level, leave compression_codec blank and explicitly set the level using gzip_level. Specifying both compression_codec and gzip_level in the same API request will result in an error.
+     * @return The codec used for compression of your logs. Valid values are zstd, snappy, and gzip. If the specified codec is &#34;gzip&#34;, gzipLevel will default to 3. To specify a different level, leave compressionCodec blank and explicitly set the level using gzip_level. Specifying both compressionCodec and gzipLevel in the same API request will result in an error.
      * 
      */
     private @Nullable String compressionCodec;
@@ -74,22 +74,22 @@ public final class ServiceComputeLoggingS3 {
      */
     private @Nullable String publicKey;
     /**
-     * @return The S3 storage class (redundancy level). Should be one of: `standard`, `intelligent_tiering`, `standard_ia`, `onezone_ia`, `glacier`, `glacier_ir`, `deep_archive`, or `reduced_redundancy`
+     * @return The S3 storage class (redundancy level). Should be one of: `standard`, `intelligentTiering`, `standardIa`, `onezoneIa`, `glacier`, `glacierIr`, `deepArchive`, or `reducedRedundancy`
      * 
      */
     private @Nullable String redundancy;
     /**
-     * @return AWS Access Key of an account with the required permissions to post logs. It is **strongly** recommended you create a separate IAM user with permissions to only operate on this Bucket. This key will be not be encrypted. Not required if `iam_role` is provided. You can provide this key via an environment variable, `FASTLY_S3_ACCESS_KEY`
+     * @return AWS Access Key of an account with the required permissions to post logs. It is **strongly** recommended you create a separate IAM user with permissions to only operate on this Bucket. This key will be not be encrypted. Not required if `iamRole` is provided. You can provide this key via an environment variable, `FASTLY_S3_ACCESS_KEY`
      * 
      */
     private @Nullable String s3AccessKey;
     /**
-     * @return The Amazon Resource Name (ARN) for the IAM role granting Fastly access to S3. Not required if `access_key` and `secret_key` are provided. You can provide this value via an environment variable, `FASTLY_S3_IAM_ROLE`
+     * @return The Amazon Resource Name (ARN) for the IAM role granting Fastly access to S3. Not required if `accessKey` and `secretKey` are provided. You can provide this value via an environment variable, `FASTLY_S3_IAM_ROLE`
      * 
      */
     private @Nullable String s3IamRole;
     /**
-     * @return AWS Secret Key of an account with the required permissions to post logs. It is **strongly** recommended you create a separate IAM user with permissions to only operate on this Bucket. This secret will be not be encrypted. Not required if `iam_role` is provided. You can provide this secret via an environment variable, `FASTLY_S3_SECRET_KEY`
+     * @return AWS Secret Key of an account with the required permissions to post logs. It is **strongly** recommended you create a separate IAM user with permissions to only operate on this Bucket. This secret will be not be encrypted. Not required if `iamRole` is provided. You can provide this secret via an environment variable, `FASTLY_S3_SECRET_KEY`
      * 
      */
     private @Nullable String s3SecretKey;
@@ -99,7 +99,7 @@ public final class ServiceComputeLoggingS3 {
      */
     private @Nullable String serverSideEncryption;
     /**
-     * @return Optional server-side KMS Key Id. Must be set if server_side_encryption is set to `aws:kms`
+     * @return Optional server-side KMS Key Id. Must be set if serverSideEncryption is set to `aws:kms`
      * 
      */
     private @Nullable String serverSideEncryptionKmsKeyId;
@@ -125,7 +125,7 @@ public final class ServiceComputeLoggingS3 {
         return this.bucketName;
     }
     /**
-     * @return The codec used for compression of your logs. Valid values are zstd, snappy, and gzip. If the specified codec is &#34;gzip&#34;, gzip_level will default to 3. To specify a different level, leave compression_codec blank and explicitly set the level using gzip_level. Specifying both compression_codec and gzip_level in the same API request will result in an error.
+     * @return The codec used for compression of your logs. Valid values are zstd, snappy, and gzip. If the specified codec is &#34;gzip&#34;, gzipLevel will default to 3. To specify a different level, leave compressionCodec blank and explicitly set the level using gzip_level. Specifying both compressionCodec and gzipLevel in the same API request will result in an error.
      * 
      */
     public Optional<String> compressionCodec() {
@@ -195,28 +195,28 @@ public final class ServiceComputeLoggingS3 {
         return Optional.ofNullable(this.publicKey);
     }
     /**
-     * @return The S3 storage class (redundancy level). Should be one of: `standard`, `intelligent_tiering`, `standard_ia`, `onezone_ia`, `glacier`, `glacier_ir`, `deep_archive`, or `reduced_redundancy`
+     * @return The S3 storage class (redundancy level). Should be one of: `standard`, `intelligentTiering`, `standardIa`, `onezoneIa`, `glacier`, `glacierIr`, `deepArchive`, or `reducedRedundancy`
      * 
      */
     public Optional<String> redundancy() {
         return Optional.ofNullable(this.redundancy);
     }
     /**
-     * @return AWS Access Key of an account with the required permissions to post logs. It is **strongly** recommended you create a separate IAM user with permissions to only operate on this Bucket. This key will be not be encrypted. Not required if `iam_role` is provided. You can provide this key via an environment variable, `FASTLY_S3_ACCESS_KEY`
+     * @return AWS Access Key of an account with the required permissions to post logs. It is **strongly** recommended you create a separate IAM user with permissions to only operate on this Bucket. This key will be not be encrypted. Not required if `iamRole` is provided. You can provide this key via an environment variable, `FASTLY_S3_ACCESS_KEY`
      * 
      */
     public Optional<String> s3AccessKey() {
         return Optional.ofNullable(this.s3AccessKey);
     }
     /**
-     * @return The Amazon Resource Name (ARN) for the IAM role granting Fastly access to S3. Not required if `access_key` and `secret_key` are provided. You can provide this value via an environment variable, `FASTLY_S3_IAM_ROLE`
+     * @return The Amazon Resource Name (ARN) for the IAM role granting Fastly access to S3. Not required if `accessKey` and `secretKey` are provided. You can provide this value via an environment variable, `FASTLY_S3_IAM_ROLE`
      * 
      */
     public Optional<String> s3IamRole() {
         return Optional.ofNullable(this.s3IamRole);
     }
     /**
-     * @return AWS Secret Key of an account with the required permissions to post logs. It is **strongly** recommended you create a separate IAM user with permissions to only operate on this Bucket. This secret will be not be encrypted. Not required if `iam_role` is provided. You can provide this secret via an environment variable, `FASTLY_S3_SECRET_KEY`
+     * @return AWS Secret Key of an account with the required permissions to post logs. It is **strongly** recommended you create a separate IAM user with permissions to only operate on this Bucket. This secret will be not be encrypted. Not required if `iamRole` is provided. You can provide this secret via an environment variable, `FASTLY_S3_SECRET_KEY`
      * 
      */
     public Optional<String> s3SecretKey() {
@@ -230,7 +230,7 @@ public final class ServiceComputeLoggingS3 {
         return Optional.ofNullable(this.serverSideEncryption);
     }
     /**
-     * @return Optional server-side KMS Key Id. Must be set if server_side_encryption is set to `aws:kms`
+     * @return Optional server-side KMS Key Id. Must be set if serverSideEncryption is set to `aws:kms`
      * 
      */
     public Optional<String> serverSideEncryptionKmsKeyId() {

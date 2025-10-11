@@ -24,7 +24,7 @@ import javax.annotation.Nullable;
  * 
  * DNS records need to be modified on the domain being secured, in order to respond to the ACME domain ownership challenge.
  * 
- * There are two options for doing this: the `managed_dns_challenges`, which is the default method; and the `managed_http_challenges`, which points production traffic to Fastly.
+ * There are two options for doing this: the `managedDnsChallenges`, which is the default method; and the `managedHttpChallenges`, which points production traffic to Fastly.
  * 
  * &gt; See the [Fastly documentation](https://docs.fastly.com/en/guides/serving-https-traffic-using-fastly-managed-certificates#verifying-domain-ownership) for more information on verifying domain ownership.
  * 

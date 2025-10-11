@@ -13,7 +13,7 @@ namespace Pulumi.Fastly
     /// Uploads a TLS certificate to the Fastly Platform TLS service.
     /// 
     /// &gt; Each TLS certificate **must** have its corresponding private key uploaded _prior_ to uploading the certificate. This
-    /// can be achieved in Pulumi using `depends_on`
+    /// can be achieved in Pulumi using `DependsOn`
     /// 
     /// ## Example Usage
     /// 
@@ -160,7 +160,7 @@ namespace Pulumi.Fastly
         public Output<ImmutableArray<string>> Domains { get; private set; } = null!;
 
         /// <summary>
-        /// PEM-formatted certificate chain from the `certificate_body` to its root.
+        /// PEM-formatted certificate chain from the `CertificateBody` to its root.
         /// </summary>
         [Output("intermediatesBlob")]
         public Output<string> IntermediatesBlob { get; private set; } = null!;
@@ -254,7 +254,7 @@ namespace Pulumi.Fastly
         public Input<string> ConfigurationId { get; set; } = null!;
 
         /// <summary>
-        /// PEM-formatted certificate chain from the `certificate_body` to its root.
+        /// PEM-formatted certificate chain from the `CertificateBody` to its root.
         /// </summary>
         [Input("intermediatesBlob", required: true)]
         public Input<string> IntermediatesBlob { get; set; } = null!;
@@ -304,7 +304,7 @@ namespace Pulumi.Fastly
         }
 
         /// <summary>
-        /// PEM-formatted certificate chain from the `certificate_body` to its root.
+        /// PEM-formatted certificate chain from the `CertificateBody` to its root.
         /// </summary>
         [Input("intermediatesBlob")]
         public Input<string>? IntermediatesBlob { get; set; }

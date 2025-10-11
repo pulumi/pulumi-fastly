@@ -94,7 +94,7 @@ namespace Pulumi.Fastly
     public partial class Integration : global::Pulumi.CustomResource
     {
         /// <summary>
-        /// Configuration specific to the integration `type` (see documentation examples).
+        /// Configuration specific to the integration `Type` (see documentation examples).
         /// </summary>
         [Output("config")]
         public Output<ImmutableDictionary<string, string>> Config { get; private set; } = null!;
@@ -112,7 +112,7 @@ namespace Pulumi.Fastly
         public Output<string> Name { get; private set; } = null!;
 
         /// <summary>
-        /// Type of the integration. One of: `mailinglist`, `microsoftteams`, `newrelic`, `pagerduty`, `slack`, `webhook`.
+        /// Type of the integration. One of: `Mailinglist`, `Microsoftteams`, `Newrelic`, `Pagerduty`, `Slack`, `Webhook`.
         /// </summary>
         [Output("type")]
         public Output<string> Type { get; private set; } = null!;
@@ -171,7 +171,7 @@ namespace Pulumi.Fastly
         private InputMap<string>? _config;
 
         /// <summary>
-        /// Configuration specific to the integration `type` (see documentation examples).
+        /// Configuration specific to the integration `Type` (see documentation examples).
         /// </summary>
         public InputMap<string> Config
         {
@@ -196,7 +196,7 @@ namespace Pulumi.Fastly
         public Input<string>? Name { get; set; }
 
         /// <summary>
-        /// Type of the integration. One of: `mailinglist`, `microsoftteams`, `newrelic`, `pagerduty`, `slack`, `webhook`.
+        /// Type of the integration. One of: `Mailinglist`, `Microsoftteams`, `Newrelic`, `Pagerduty`, `Slack`, `Webhook`.
         /// </summary>
         [Input("type", required: true)]
         public Input<string> Type { get; set; } = null!;
@@ -213,7 +213,7 @@ namespace Pulumi.Fastly
         private InputMap<string>? _config;
 
         /// <summary>
-        /// Configuration specific to the integration `type` (see documentation examples).
+        /// Configuration specific to the integration `Type` (see documentation examples).
         /// </summary>
         public InputMap<string> Config
         {
@@ -238,7 +238,7 @@ namespace Pulumi.Fastly
         public Input<string>? Name { get; set; }
 
         /// <summary>
-        /// Type of the integration. One of: `mailinglist`, `microsoftteams`, `newrelic`, `pagerduty`, `slack`, `webhook`.
+        /// Type of the integration. One of: `Mailinglist`, `Microsoftteams`, `Newrelic`, `Pagerduty`, `Slack`, `Webhook`.
         /// </summary>
         [Input("type")]
         public Input<string>? Type { get; set; }

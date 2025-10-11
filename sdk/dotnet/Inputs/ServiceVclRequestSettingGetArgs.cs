@@ -13,7 +13,7 @@ namespace Pulumi.Fastly.Inputs
     public sealed class ServiceVclRequestSettingGetArgs : global::Pulumi.ResourceArgs
     {
         /// <summary>
-        /// Allows you to terminate request handling and immediately perform an action. When set it can be `lookup` or `pass` (Ignore the cache completely)
+        /// Allows you to terminate request handling and immediately perform an action. When set it can be `Lookup` or `Pass` (Ignore the cache completely)
         /// </summary>
         [Input("action")]
         public Input<string>? Action { get; set; }
@@ -31,7 +31,7 @@ namespace Pulumi.Fastly.Inputs
         public Input<string>? DefaultHost { get; set; }
 
         /// <summary>
-        /// Force a cache miss for the request. If specified, can be `true` or `false`
+        /// Force a cache miss for the request. If specified, can be `True` or `False`
         /// </summary>
         [Input("forceMiss")]
         public Input<bool>? ForceMiss { get; set; }
@@ -61,7 +61,7 @@ namespace Pulumi.Fastly.Inputs
         public Input<string> Name { get; set; } = null!;
 
         /// <summary>
-        /// Name of already defined `condition` to determine if this request setting should be applied (should be unique across multiple instances of `request_setting`)
+        /// Name of already defined `Condition` to determine if this request setting should be applied (should be unique across multiple instances of `RequestSetting`)
         /// </summary>
         [Input("requestCondition")]
         public Input<string>? RequestCondition { get; set; }
@@ -73,7 +73,7 @@ namespace Pulumi.Fastly.Inputs
         public Input<bool>? TimerSupport { get; set; }
 
         /// <summary>
-        /// X-Forwarded-For, should be `clear`, `leave`, `append`, `append_all`, or `overwrite`. Default `append`
+        /// X-Forwarded-For, should be `Clear`, `Leave`, `Append`, `AppendAll`, or `Overwrite`. Default `Append`
         /// </summary>
         [Input("xff")]
         public Input<string>? Xff { get; set; }

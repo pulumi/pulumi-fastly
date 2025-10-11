@@ -31,7 +31,7 @@ namespace Pulumi.Fastly.Inputs
         public Input<int>? FormatVersion { get; set; }
 
         /// <summary>
-        /// How the message should be formatted. Can be either `classic`, `loggly`, `logplex` or `blank`. Default is `classic`
+        /// How the message should be formatted. Can be either `Classic`, `Loggly`, `Logplex` or `Blank`. Default is `Classic`
         /// </summary>
         [Input("messageType")]
         public Input<string>? MessageType { get; set; }
@@ -107,7 +107,7 @@ namespace Pulumi.Fastly.Inputs
         public Input<string>? Token { get; set; }
 
         /// <summary>
-        /// Whether to use TLS for secure logging. Default `false`
+        /// Whether to use TLS for secure logging. Default `False`
         /// </summary>
         [Input("useTls")]
         public Input<bool>? UseTls { get; set; }

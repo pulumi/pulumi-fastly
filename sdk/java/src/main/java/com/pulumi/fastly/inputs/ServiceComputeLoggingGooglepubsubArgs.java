@@ -77,14 +77,14 @@ public final class ServiceComputeLoggingGooglepubsubArgs extends com.pulumi.reso
     }
 
     /**
-     * Your Google Cloud Platform account secret key. The `private_key` field in your service account authentication JSON. You may optionally provide this secret via an environment variable, `FASTLY_GOOGLE_PUBSUB_SECRET_KEY`.
+     * Your Google Cloud Platform account secret key. The `privateKey` field in your service account authentication JSON. You may optionally provide this secret via an environment variable, `FASTLY_GOOGLE_PUBSUB_SECRET_KEY`.
      * 
      */
     @Import(name="secretKey", required=true)
     private Output<String> secretKey;
 
     /**
-     * @return Your Google Cloud Platform account secret key. The `private_key` field in your service account authentication JSON. You may optionally provide this secret via an environment variable, `FASTLY_GOOGLE_PUBSUB_SECRET_KEY`.
+     * @return Your Google Cloud Platform account secret key. The `privateKey` field in your service account authentication JSON. You may optionally provide this secret via an environment variable, `FASTLY_GOOGLE_PUBSUB_SECRET_KEY`.
      * 
      */
     public Output<String> secretKey() {
@@ -107,14 +107,14 @@ public final class ServiceComputeLoggingGooglepubsubArgs extends com.pulumi.reso
     }
 
     /**
-     * Your Google Cloud Platform service account email address. The `client_email` field in your service account authentication JSON. You may optionally provide this via an environment variable, `FASTLY_GOOGLE_PUBSUB_EMAIL`.
+     * Your Google Cloud Platform service account email address. The `clientEmail` field in your service account authentication JSON. You may optionally provide this via an environment variable, `FASTLY_GOOGLE_PUBSUB_EMAIL`.
      * 
      */
     @Import(name="user", required=true)
     private Output<String> user;
 
     /**
-     * @return Your Google Cloud Platform service account email address. The `client_email` field in your service account authentication JSON. You may optionally provide this via an environment variable, `FASTLY_GOOGLE_PUBSUB_EMAIL`.
+     * @return Your Google Cloud Platform service account email address. The `clientEmail` field in your service account authentication JSON. You may optionally provide this via an environment variable, `FASTLY_GOOGLE_PUBSUB_EMAIL`.
      * 
      */
     public Output<String> user() {
@@ -236,7 +236,7 @@ public final class ServiceComputeLoggingGooglepubsubArgs extends com.pulumi.reso
         }
 
         /**
-         * @param secretKey Your Google Cloud Platform account secret key. The `private_key` field in your service account authentication JSON. You may optionally provide this secret via an environment variable, `FASTLY_GOOGLE_PUBSUB_SECRET_KEY`.
+         * @param secretKey Your Google Cloud Platform account secret key. The `privateKey` field in your service account authentication JSON. You may optionally provide this secret via an environment variable, `FASTLY_GOOGLE_PUBSUB_SECRET_KEY`.
          * 
          * @return builder
          * 
@@ -247,7 +247,7 @@ public final class ServiceComputeLoggingGooglepubsubArgs extends com.pulumi.reso
         }
 
         /**
-         * @param secretKey Your Google Cloud Platform account secret key. The `private_key` field in your service account authentication JSON. You may optionally provide this secret via an environment variable, `FASTLY_GOOGLE_PUBSUB_SECRET_KEY`.
+         * @param secretKey Your Google Cloud Platform account secret key. The `privateKey` field in your service account authentication JSON. You may optionally provide this secret via an environment variable, `FASTLY_GOOGLE_PUBSUB_SECRET_KEY`.
          * 
          * @return builder
          * 
@@ -278,7 +278,7 @@ public final class ServiceComputeLoggingGooglepubsubArgs extends com.pulumi.reso
         }
 
         /**
-         * @param user Your Google Cloud Platform service account email address. The `client_email` field in your service account authentication JSON. You may optionally provide this via an environment variable, `FASTLY_GOOGLE_PUBSUB_EMAIL`.
+         * @param user Your Google Cloud Platform service account email address. The `clientEmail` field in your service account authentication JSON. You may optionally provide this via an environment variable, `FASTLY_GOOGLE_PUBSUB_EMAIL`.
          * 
          * @return builder
          * 
@@ -289,7 +289,7 @@ public final class ServiceComputeLoggingGooglepubsubArgs extends com.pulumi.reso
         }
 
         /**
-         * @param user Your Google Cloud Platform service account email address. The `client_email` field in your service account authentication JSON. You may optionally provide this via an environment variable, `FASTLY_GOOGLE_PUBSUB_EMAIL`.
+         * @param user Your Google Cloud Platform service account email address. The `clientEmail` field in your service account authentication JSON. You may optionally provide this via an environment variable, `FASTLY_GOOGLE_PUBSUB_EMAIL`.
          * 
          * @return builder
          * 

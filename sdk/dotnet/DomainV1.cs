@@ -31,7 +31,7 @@ namespace Pulumi.Fastly
         public Output<string> Fqdn { get; private set; } = null!;
 
         /// <summary>
-        /// The service_id associated with your domain or null if there is no association.
+        /// The ServiceId associated with your domain or null if there is no association.
         /// </summary>
         [Output("serviceId")]
         public Output<string?> ServiceId { get; private set; } = null!;
@@ -95,7 +95,7 @@ namespace Pulumi.Fastly
         public Input<string> Fqdn { get; set; } = null!;
 
         /// <summary>
-        /// The service_id associated with your domain or null if there is no association.
+        /// The ServiceId associated with your domain or null if there is no association.
         /// </summary>
         [Input("serviceId")]
         public Input<string>? ServiceId { get; set; }
@@ -127,7 +127,7 @@ namespace Pulumi.Fastly
         public Input<string>? Fqdn { get; set; }
 
         /// <summary>
-        /// The service_id associated with your domain or null if there is no association.
+        /// The ServiceId associated with your domain or null if there is no association.
         /// </summary>
         [Input("serviceId")]
         public Input<string>? ServiceId { get; set; }

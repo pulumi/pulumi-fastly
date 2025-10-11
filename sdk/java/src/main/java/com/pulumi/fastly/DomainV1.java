@@ -59,14 +59,14 @@ public class DomainV1 extends com.pulumi.resources.CustomResource {
         return this.fqdn;
     }
     /**
-     * The service_id associated with your domain or null if there is no association.
+     * The serviceId associated with your domain or null if there is no association.
      * 
      */
     @Export(name="serviceId", refs={String.class}, tree="[0]")
     private Output</* @Nullable */ String> serviceId;
 
     /**
-     * @return The service_id associated with your domain or null if there is no association.
+     * @return The serviceId associated with your domain or null if there is no association.
      * 
      */
     public Output<Optional<String>> serviceId() {

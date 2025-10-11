@@ -22,7 +22,7 @@ namespace Pulumi.Fastly.Outputs
         /// </summary>
         public readonly int? JpegQuality;
         /// <summary>
-        /// The default type of JPEG output to use. This can be overridden with "format=bjpeg" and "format=pjpeg" on specific image optimizer requests. Valid values are `auto`, `baseline` and `progressive`.
+        /// The default type of JPEG output to use. This can be overridden with "format=bjpeg" and "format=pjpeg" on specific image optimizer requests. Valid values are `Auto`, `Baseline` and `Progressive`.
         /// 	- auto: Match the input JPEG type, or baseline if transforming from a non-JPEG input.
         /// 	- baseline: Output baseline JPEG images
         /// 	- progressive: Output progressive JPEG images
@@ -33,7 +33,7 @@ namespace Pulumi.Fastly.Outputs
         /// </summary>
         public readonly string? Name;
         /// <summary>
-        /// The type of filter to use while resizing an image. Valid values are `lanczos3`, `lanczos2`, `bicubic`, `bilinear` and `nearest`.
+        /// The type of filter to use while resizing an image. Valid values are `Lanczos3`, `Lanczos2`, `Bicubic`, `Bilinear` and `Nearest`.
         /// 	- lanczos3: A Lanczos filter with a kernel size of 3. Lanczos filters can detect edges and linear features within an image, providing the best possible reconstruction.
         /// 	- lanczos2: A Lanczos filter with a kernel size of 2.
         /// 	- bicubic: A filter using an average of a 4x4 environment of pixels, weighing the innermost pixels higher.

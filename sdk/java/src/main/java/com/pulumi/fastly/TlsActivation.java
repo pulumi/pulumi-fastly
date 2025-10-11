@@ -16,7 +16,7 @@ import javax.annotation.Nullable;
 /**
  * Enables TLS on a domain using a specified custom TLS certificate.
  * 
- * &gt; **Note:** The Fastly service must be provisioned _prior_ to enabling TLS on it. This can be achieved in Pulumi using `depends_on`.
+ * &gt; **Note:** The Fastly service must be provisioned _prior_ to enabling TLS on it. This can be achieved in Pulumi using `dependsOn`.
  * 
  * ## Example Usage
  * 

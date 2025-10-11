@@ -19,7 +19,7 @@ public final class ServiceComputeLoggingSftp {
      */
     private String address;
     /**
-     * @return The codec used for compression of your logs. Valid values are zstd, snappy, and gzip. If the specified codec is &#34;gzip&#34;, gzip_level will default to 3. To specify a different level, leave compression_codec blank and explicitly set the level using gzip_level. Specifying both compression_codec and gzip_level in the same API request will result in an error.
+     * @return The codec used for compression of your logs. Valid values are zstd, snappy, and gzip. If the specified codec is &#34;gzip&#34;, gzipLevel will default to 3. To specify a different level, leave compressionCodec blank and explicitly set the level using gzip_level. Specifying both compressionCodec and gzipLevel in the same API request will result in an error.
      * 
      */
     private @Nullable String compressionCodec;
@@ -39,7 +39,7 @@ public final class ServiceComputeLoggingSftp {
      */
     private String name;
     /**
-     * @return The password for the server. If both `password` and `secret_key` are passed, `secret_key` will be preferred
+     * @return The password for the server. If both `password` and `secretKey` are passed, `secretKey` will be preferred
      * 
      */
     private @Nullable String password;
@@ -69,7 +69,7 @@ public final class ServiceComputeLoggingSftp {
      */
     private @Nullable String publicKey;
     /**
-     * @return The SSH private key for the server. If both `password` and `secret_key` are passed, `secret_key` will be preferred
+     * @return The SSH private key for the server. If both `password` and `secretKey` are passed, `secretKey` will be preferred
      * 
      */
     private @Nullable String secretKey;
@@ -98,7 +98,7 @@ public final class ServiceComputeLoggingSftp {
         return this.address;
     }
     /**
-     * @return The codec used for compression of your logs. Valid values are zstd, snappy, and gzip. If the specified codec is &#34;gzip&#34;, gzip_level will default to 3. To specify a different level, leave compression_codec blank and explicitly set the level using gzip_level. Specifying both compression_codec and gzip_level in the same API request will result in an error.
+     * @return The codec used for compression of your logs. Valid values are zstd, snappy, and gzip. If the specified codec is &#34;gzip&#34;, gzipLevel will default to 3. To specify a different level, leave compressionCodec blank and explicitly set the level using gzip_level. Specifying both compressionCodec and gzipLevel in the same API request will result in an error.
      * 
      */
     public Optional<String> compressionCodec() {
@@ -126,7 +126,7 @@ public final class ServiceComputeLoggingSftp {
         return this.name;
     }
     /**
-     * @return The password for the server. If both `password` and `secret_key` are passed, `secret_key` will be preferred
+     * @return The password for the server. If both `password` and `secretKey` are passed, `secretKey` will be preferred
      * 
      */
     public Optional<String> password() {
@@ -168,7 +168,7 @@ public final class ServiceComputeLoggingSftp {
         return Optional.ofNullable(this.publicKey);
     }
     /**
-     * @return The SSH private key for the server. If both `password` and `secret_key` are passed, `secret_key` will be preferred
+     * @return The SSH private key for the server. If both `password` and `secretKey` are passed, `secretKey` will be preferred
      * 
      */
     public Optional<String> secretKey() {

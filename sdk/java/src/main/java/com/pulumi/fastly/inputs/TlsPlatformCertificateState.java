@@ -93,14 +93,14 @@ public final class TlsPlatformCertificateState extends com.pulumi.resources.Reso
     }
 
     /**
-     * PEM-formatted certificate chain from the `certificate_body` to its root.
+     * PEM-formatted certificate chain from the `certificateBody` to its root.
      * 
      */
     @Import(name="intermediatesBlob")
     private @Nullable Output<String> intermediatesBlob;
 
     /**
-     * @return PEM-formatted certificate chain from the `certificate_body` to its root.
+     * @return PEM-formatted certificate chain from the `certificateBody` to its root.
      * 
      */
     public Optional<Output<String>> intermediatesBlob() {
@@ -316,7 +316,7 @@ public final class TlsPlatformCertificateState extends com.pulumi.resources.Reso
         }
 
         /**
-         * @param intermediatesBlob PEM-formatted certificate chain from the `certificate_body` to its root.
+         * @param intermediatesBlob PEM-formatted certificate chain from the `certificateBody` to its root.
          * 
          * @return builder
          * 
@@ -327,7 +327,7 @@ public final class TlsPlatformCertificateState extends com.pulumi.resources.Reso
         }
 
         /**
-         * @param intermediatesBlob PEM-formatted certificate chain from the `certificate_body` to its root.
+         * @param intermediatesBlob PEM-formatted certificate chain from the `certificateBody` to its root.
          * 
          * @return builder
          * 

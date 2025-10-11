@@ -21,7 +21,7 @@ public final class GetNgwafRedactionsRedaction {
      */
     private String id;
     /**
-     * @return The type of field being redacted. One of `request_parameter`, `request_header`, or `response_header`.
+     * @return The type of field being redacted. One of `requestParameter`, `requestHeader`, or `responseHeader`.
      * 
      */
     private String type;
@@ -42,7 +42,7 @@ public final class GetNgwafRedactionsRedaction {
         return this.id;
     }
     /**
-     * @return The type of field being redacted. One of `request_parameter`, `request_header`, or `response_header`.
+     * @return The type of field being redacted. One of `requestParameter`, `requestHeader`, or `responseHeader`.
      * 
      */
     public String type() {

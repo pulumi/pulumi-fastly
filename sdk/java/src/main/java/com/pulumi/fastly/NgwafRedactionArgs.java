@@ -30,14 +30,14 @@ public final class NgwafRedactionArgs extends com.pulumi.resources.ResourceArgs 
     }
 
     /**
-     * The type of field that is being redacted. Accepted values are `request_parameter`, `request_header`, and `response_header`.
+     * The type of field that is being redacted. Accepted values are `requestParameter`, `requestHeader`, and `responseHeader`.
      * 
      */
     @Import(name="type", required=true)
     private Output<String> type;
 
     /**
-     * @return The type of field that is being redacted. Accepted values are `request_parameter`, `request_header`, and `response_header`.
+     * @return The type of field that is being redacted. Accepted values are `requestParameter`, `requestHeader`, and `responseHeader`.
      * 
      */
     public Output<String> type() {
@@ -107,7 +107,7 @@ public final class NgwafRedactionArgs extends com.pulumi.resources.ResourceArgs 
         }
 
         /**
-         * @param type The type of field that is being redacted. Accepted values are `request_parameter`, `request_header`, and `response_header`.
+         * @param type The type of field that is being redacted. Accepted values are `requestParameter`, `requestHeader`, and `responseHeader`.
          * 
          * @return builder
          * 
@@ -118,7 +118,7 @@ public final class NgwafRedactionArgs extends com.pulumi.resources.ResourceArgs 
         }
 
         /**
-         * @param type The type of field that is being redacted. Accepted values are `request_parameter`, `request_header`, and `response_header`.
+         * @param type The type of field that is being redacted. Accepted values are `requestParameter`, `requestHeader`, and `responseHeader`.
          * 
          * @return builder
          * 

@@ -37,7 +37,7 @@ namespace Pulumi.Fastly.Inputs
         public Input<string> HttpMethods { get; set; } = null!;
 
         /// <summary>
-        /// Name of the type of logging endpoint to be used when action is log_only (one of: azureblob, bigquery, cloudfiles, datadog, digitalocean, elasticsearch, ftp, gcs, googleanalytics, heroku, honeycomb, http, https, kafka, kinesis, logentries, loggly, logshuttle, newrelic, openstack, papertrail, pubsub, s3, scalyr, sftp, splunk, stackdriver, sumologic, syslog)
+        /// Name of the type of logging endpoint to be used when action is LogOnly (one of: azureblob, bigquery, cloudfiles, datadog, digitalocean, elasticsearch, ftp, gcs, googleanalytics, heroku, honeycomb, http, https, kafka, kinesis, logentries, loggly, logshuttle, newrelic, openstack, papertrail, pubsub, s3, scalyr, sftp, splunk, stackdriver, sumologic, syslog)
         /// </summary>
         [Input("loggerType")]
         public Input<string>? LoggerType { get; set; }

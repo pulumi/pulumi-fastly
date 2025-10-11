@@ -13,7 +13,7 @@ namespace Pulumi.Fastly.Inputs
     public sealed class NgwafWorkspaceAttackSignalThresholdsGetArgs : global::Pulumi.ResourceArgs
     {
         /// <summary>
-        /// Ignore thresholds and block immediately when at least one attack signal is detected. Default value `false`.
+        /// Ignore thresholds and block immediately when at least one attack signal is detected. Default value `False`.
         /// </summary>
         [Input("immediate")]
         public Input<bool>? Immediate { get; set; }

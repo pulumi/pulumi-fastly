@@ -20,7 +20,7 @@ import javax.annotation.Nullable;
  * Uploads a TLS certificate to the Fastly Platform TLS service.
  * 
  * &gt; Each TLS certificate **must** have its corresponding private key uploaded _prior_ to uploading the certificate. This
- * can be achieved in Pulumi using `depends_on`
+ * can be achieved in Pulumi using `dependsOn`
  * 
  * ## Example Usage
  * 
@@ -205,14 +205,14 @@ public class TlsPlatformCertificate extends com.pulumi.resources.CustomResource 
         return this.domains;
     }
     /**
-     * PEM-formatted certificate chain from the `certificate_body` to its root.
+     * PEM-formatted certificate chain from the `certificateBody` to its root.
      * 
      */
     @Export(name="intermediatesBlob", refs={String.class}, tree="[0]")
     private Output<String> intermediatesBlob;
 
     /**
-     * @return PEM-formatted certificate chain from the `certificate_body` to its root.
+     * @return PEM-formatted certificate chain from the `certificateBody` to its root.
      * 
      */
     public Output<String> intermediatesBlob() {
