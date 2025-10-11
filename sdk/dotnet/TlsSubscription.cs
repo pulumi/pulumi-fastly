@@ -14,7 +14,7 @@ namespace Pulumi.Fastly
     /// 
     /// DNS records need to be modified on the domain being secured, in order to respond to the ACME domain ownership challenge.
     /// 
-    /// There are two options for doing this: the `managed_dns_challenges`, which is the default method; and the `managed_http_challenges`, which points production traffic to Fastly.
+    /// There are two options for doing this: the `ManagedDnsChallenges`, which is the default method; and the `ManagedHttpChallenges`, which points production traffic to Fastly.
     /// 
     /// &gt; See the [Fastly documentation](https://docs.fastly.com/en/guides/serving-https-traffic-using-fastly-managed-certificates#verifying-domain-ownership) for more information on verifying domain ownership.
     /// 
@@ -32,7 +32,7 @@ namespace Pulumi.Fastly
     public partial class TlsSubscription : global::Pulumi.CustomResource
     {
         /// <summary>
-        /// The entity that issues and certifies the TLS certificates for your subscription. Valid values are `lets-encrypt`, `globalsign` or `certainly`.
+        /// The entity that issues and certifies the TLS certificates for your subscription. Valid values are `lets-encrypt`, `Globalsign` or `Certainly`.
         /// </summary>
         [Output("certificateAuthority")]
         public Output<string> CertificateAuthority { get; private set; } = null!;
@@ -92,13 +92,13 @@ namespace Pulumi.Fastly
         public Output<ImmutableArray<Outputs.TlsSubscriptionManagedDnsChallenge>> ManagedDnsChallenges { get; private set; } = null!;
 
         /// <summary>
-        /// A list of options for configuring DNS to respond to ACME HTTP challenge in order to verify domain ownership. Best accessed through a `for` expression to filter the relevant record.
+        /// A list of options for configuring DNS to respond to ACME HTTP challenge in order to verify domain ownership. Best accessed through a `For` expression to filter the relevant record.
         /// </summary>
         [Output("managedHttpChallenges")]
         public Output<ImmutableArray<Outputs.TlsSubscriptionManagedHttpChallenge>> ManagedHttpChallenges { get; private set; } = null!;
 
         /// <summary>
-        /// The current state of the subscription. The list of possible states are: `pending`, `processing`, `issued`, and `renewing`.
+        /// The current state of the subscription. The list of possible states are: `Pending`, `Processing`, `Issued`, and `Renewing`.
         /// </summary>
         [Output("state")]
         public Output<string> State { get; private set; } = null!;
@@ -156,7 +156,7 @@ namespace Pulumi.Fastly
     public sealed class TlsSubscriptionArgs : global::Pulumi.ResourceArgs
     {
         /// <summary>
-        /// The entity that issues and certifies the TLS certificates for your subscription. Valid values are `lets-encrypt`, `globalsign` or `certainly`.
+        /// The entity that issues and certifies the TLS certificates for your subscription. Valid values are `lets-encrypt`, `Globalsign` or `Certainly`.
         /// </summary>
         [Input("certificateAuthority", required: true)]
         public Input<string> CertificateAuthority { get; set; } = null!;
@@ -206,7 +206,7 @@ namespace Pulumi.Fastly
     public sealed class TlsSubscriptionState : global::Pulumi.ResourceArgs
     {
         /// <summary>
-        /// The entity that issues and certifies the TLS certificates for your subscription. Valid values are `lets-encrypt`, `globalsign` or `certainly`.
+        /// The entity that issues and certifies the TLS certificates for your subscription. Valid values are `lets-encrypt`, `Globalsign` or `Certainly`.
         /// </summary>
         [Input("certificateAuthority")]
         public Input<string>? CertificateAuthority { get; set; }
@@ -288,7 +288,7 @@ namespace Pulumi.Fastly
         private InputList<Inputs.TlsSubscriptionManagedHttpChallengeGetArgs>? _managedHttpChallenges;
 
         /// <summary>
-        /// A list of options for configuring DNS to respond to ACME HTTP challenge in order to verify domain ownership. Best accessed through a `for` expression to filter the relevant record.
+        /// A list of options for configuring DNS to respond to ACME HTTP challenge in order to verify domain ownership. Best accessed through a `For` expression to filter the relevant record.
         /// </summary>
         public InputList<Inputs.TlsSubscriptionManagedHttpChallengeGetArgs> ManagedHttpChallenges
         {
@@ -297,7 +297,7 @@ namespace Pulumi.Fastly
         }
 
         /// <summary>
-        /// The current state of the subscription. The list of possible states are: `pending`, `processing`, `issued`, and `renewing`.
+        /// The current state of the subscription. The list of possible states are: `Pending`, `Processing`, `Issued`, and `Renewing`.
         /// </summary>
         [Input("state")]
         public Input<string>? State { get; set; }

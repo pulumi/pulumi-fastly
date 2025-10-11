@@ -204,14 +204,14 @@ public class NgwafWorkspaceRule extends com.pulumi.resources.CustomResource {
         return this.enabled;
     }
     /**
-     * List of grouped conditions with nested logic. Each group must define a `group_operator` and at least one condition.
+     * List of grouped conditions with nested logic. Each group must define a `groupOperator` and at least one condition.
      * 
      */
     @Export(name="groupConditions", refs={List.class,NgwafWorkspaceRuleGroupCondition.class}, tree="[0,1]")
     private Output</* @Nullable */ List<NgwafWorkspaceRuleGroupCondition>> groupConditions;
 
     /**
-     * @return List of grouped conditions with nested logic. Each group must define a `group_operator` and at least one condition.
+     * @return List of grouped conditions with nested logic. Each group must define a `groupOperator` and at least one condition.
      * 
      */
     public Output<Optional<List<NgwafWorkspaceRuleGroupCondition>>> groupConditions() {
@@ -260,14 +260,14 @@ public class NgwafWorkspaceRule extends com.pulumi.resources.CustomResource {
         return Codegen.optional(this.requestLogging);
     }
     /**
-     * The type of the rule. Accepted values are `request`, `signal`, `rate_limit`, and `templated_signal`.
+     * The type of the rule. Accepted values are `request`, `signal`, `rateLimit`, and `templatedSignal`.
      * 
      */
     @Export(name="type", refs={String.class}, tree="[0]")
     private Output<String> type;
 
     /**
-     * @return The type of the rule. Accepted values are `request`, `signal`, `rate_limit`, and `templated_signal`.
+     * @return The type of the rule. Accepted values are `request`, `signal`, `rateLimit`, and `templatedSignal`.
      * 
      */
     public Output<String> type() {

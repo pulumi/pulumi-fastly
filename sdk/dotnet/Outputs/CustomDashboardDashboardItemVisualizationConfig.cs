@@ -14,15 +14,15 @@ namespace Pulumi.Fastly.Outputs
     public sealed class CustomDashboardDashboardItemVisualizationConfig
     {
         /// <summary>
-        /// The aggregation function to apply to the dataset. One of: `avg`, `sum`, `min`, `max`, `latest`, `p95`.
+        /// The aggregation function to apply to the dataset. One of: `Avg`, `Sum`, `Min`, `Max`, `Latest`, `P95`.
         /// </summary>
         public readonly string? CalculationMethod;
         /// <summary>
-        /// The units to use to format the data. One of: `number`, `bytes`, `percent`, `requests`, `responses`, `seconds`, `milliseconds`, `ratio`, `bitrate`.
+        /// The units to use to format the data. One of: `Number`, `Bytes`, `Percent`, `Requests`, `Responses`, `Seconds`, `Milliseconds`, `Ratio`, `Bitrate`.
         /// </summary>
         public readonly string? Format;
         /// <summary>
-        /// The type of chart to display. One of: `line`, `bar`, `single-metric`, `donut`.
+        /// The type of chart to display. One of: `Line`, `Bar`, `single-metric`, `Donut`.
         /// </summary>
         public readonly string PlotType;
 

@@ -82,14 +82,14 @@ public final class NgwafWorkspaceRuleState extends com.pulumi.resources.Resource
     }
 
     /**
-     * List of grouped conditions with nested logic. Each group must define a `group_operator` and at least one condition.
+     * List of grouped conditions with nested logic. Each group must define a `groupOperator` and at least one condition.
      * 
      */
     @Import(name="groupConditions")
     private @Nullable Output<List<NgwafWorkspaceRuleGroupConditionArgs>> groupConditions;
 
     /**
-     * @return List of grouped conditions with nested logic. Each group must define a `group_operator` and at least one condition.
+     * @return List of grouped conditions with nested logic. Each group must define a `groupOperator` and at least one condition.
      * 
      */
     public Optional<Output<List<NgwafWorkspaceRuleGroupConditionArgs>>> groupConditions() {
@@ -142,14 +142,14 @@ public final class NgwafWorkspaceRuleState extends com.pulumi.resources.Resource
     }
 
     /**
-     * The type of the rule. Accepted values are `request`, `signal`, `rate_limit`, and `templated_signal`.
+     * The type of the rule. Accepted values are `request`, `signal`, `rateLimit`, and `templatedSignal`.
      * 
      */
     @Import(name="type")
     private @Nullable Output<String> type;
 
     /**
-     * @return The type of the rule. Accepted values are `request`, `signal`, `rate_limit`, and `templated_signal`.
+     * @return The type of the rule. Accepted values are `request`, `signal`, `rateLimit`, and `templatedSignal`.
      * 
      */
     public Optional<Output<String>> type() {
@@ -309,7 +309,7 @@ public final class NgwafWorkspaceRuleState extends com.pulumi.resources.Resource
         }
 
         /**
-         * @param groupConditions List of grouped conditions with nested logic. Each group must define a `group_operator` and at least one condition.
+         * @param groupConditions List of grouped conditions with nested logic. Each group must define a `groupOperator` and at least one condition.
          * 
          * @return builder
          * 
@@ -320,7 +320,7 @@ public final class NgwafWorkspaceRuleState extends com.pulumi.resources.Resource
         }
 
         /**
-         * @param groupConditions List of grouped conditions with nested logic. Each group must define a `group_operator` and at least one condition.
+         * @param groupConditions List of grouped conditions with nested logic. Each group must define a `groupOperator` and at least one condition.
          * 
          * @return builder
          * 
@@ -330,7 +330,7 @@ public final class NgwafWorkspaceRuleState extends com.pulumi.resources.Resource
         }
 
         /**
-         * @param groupConditions List of grouped conditions with nested logic. Each group must define a `group_operator` and at least one condition.
+         * @param groupConditions List of grouped conditions with nested logic. Each group must define a `groupOperator` and at least one condition.
          * 
          * @return builder
          * 
@@ -403,7 +403,7 @@ public final class NgwafWorkspaceRuleState extends com.pulumi.resources.Resource
         }
 
         /**
-         * @param type The type of the rule. Accepted values are `request`, `signal`, `rate_limit`, and `templated_signal`.
+         * @param type The type of the rule. Accepted values are `request`, `signal`, `rateLimit`, and `templatedSignal`.
          * 
          * @return builder
          * 
@@ -414,7 +414,7 @@ public final class NgwafWorkspaceRuleState extends com.pulumi.resources.Resource
         }
 
         /**
-         * @param type The type of the rule. Accepted values are `request`, `signal`, `rate_limit`, and `templated_signal`.
+         * @param type The type of the rule. Accepted values are `request`, `signal`, `rateLimit`, and `templatedSignal`.
          * 
          * @return builder
          * 

@@ -12,7 +12,7 @@ namespace Pulumi.Fastly
     /// <summary>
     /// Provides a container that lets you store data in key-value pairs that are accessible to Compute services during request processing.
     /// 
-    /// In order for a Config Store (`fastly.Configstore`) to be accessible to a [Compute](https://developer.fastly.com/learning/compute/) service you'll first need to define a Compute service (`fastly.ServiceCompute`) in your configuration, and then create a link to the Config Store from within the service using the `resource_link` block (shown in the below examples).
+    /// In order for a Config Store (`fastly.Configstore`) to be accessible to a [Compute](https://developer.fastly.com/learning/compute/) service you'll first need to define a Compute service (`fastly.ServiceCompute`) in your configuration, and then create a link to the Config Store from within the service using the `ResourceLink` block (shown in the below examples).
     /// 
     /// ## Example Usage
     /// 
@@ -86,7 +86,7 @@ namespace Pulumi.Fastly
         public Output<bool?> ForceDestroy { get; private set; } = null!;
 
         /// <summary>
-        /// A unique name to identify the Config Store. It is important to note that changing this attribute will delete and recreate the Config Store, and discard the current entries. You MUST first delete the associated resource_link block from your service before modifying this field.
+        /// A unique name to identify the Config Store. It is important to note that changing this attribute will delete and recreate the Config Store, and discard the current entries. You MUST first delete the associated ResourceLink block from your service before modifying this field.
         /// </summary>
         [Output("name")]
         public Output<string> Name { get; private set; } = null!;
@@ -144,7 +144,7 @@ namespace Pulumi.Fastly
         public Input<bool>? ForceDestroy { get; set; }
 
         /// <summary>
-        /// A unique name to identify the Config Store. It is important to note that changing this attribute will delete and recreate the Config Store, and discard the current entries. You MUST first delete the associated resource_link block from your service before modifying this field.
+        /// A unique name to identify the Config Store. It is important to note that changing this attribute will delete and recreate the Config Store, and discard the current entries. You MUST first delete the associated ResourceLink block from your service before modifying this field.
         /// </summary>
         [Input("name")]
         public Input<string>? Name { get; set; }
@@ -164,7 +164,7 @@ namespace Pulumi.Fastly
         public Input<bool>? ForceDestroy { get; set; }
 
         /// <summary>
-        /// A unique name to identify the Config Store. It is important to note that changing this attribute will delete and recreate the Config Store, and discard the current entries. You MUST first delete the associated resource_link block from your service before modifying this field.
+        /// A unique name to identify the Config Store. It is important to note that changing this attribute will delete and recreate the Config Store, and discard the current entries. You MUST first delete the associated ResourceLink block from your service before modifying this field.
         /// </summary>
         [Input("name")]
         public Input<string>? Name { get; set; }

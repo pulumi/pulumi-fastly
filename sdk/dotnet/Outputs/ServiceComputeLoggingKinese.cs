@@ -18,7 +18,7 @@ namespace Pulumi.Fastly.Outputs
         /// </summary>
         public readonly string? AccessKey;
         /// <summary>
-        /// The Amazon Resource Name (ARN) for the IAM role granting Fastly access to Kinesis. Not required if `access_key` and `secret_key` are provided.
+        /// The Amazon Resource Name (ARN) for the IAM role granting Fastly access to Kinesis. Not required if `AccessKey` and `SecretKey` are provided.
         /// </summary>
         public readonly string? IamRole;
         /// <summary>

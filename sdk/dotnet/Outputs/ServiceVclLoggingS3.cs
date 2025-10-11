@@ -14,7 +14,7 @@ namespace Pulumi.Fastly.Outputs
     public sealed class ServiceVclLoggingS3
     {
         /// <summary>
-        /// The AWS [Canned ACL](https://docs.aws.amazon.com/AmazonS3/latest/userguide/acl-overview.html#canned-acl) to use for objects uploaded to the S3 bucket. Options are: `private`, `public-read`, `public-read-write`, `aws-exec-read`, `authenticated-read`, `bucket-owner-read`, `bucket-owner-full-control`
+        /// The AWS [Canned ACL](https://docs.aws.amazon.com/AmazonS3/latest/userguide/acl-overview.html#canned-acl) to use for objects uploaded to the S3 bucket. Options are: `Private`, `public-read`, `public-read-write`, `aws-exec-read`, `authenticated-read`, `bucket-owner-read`, `bucket-owner-full-control`
         /// </summary>
         public readonly string? Acl;
         /// <summary>
@@ -22,7 +22,7 @@ namespace Pulumi.Fastly.Outputs
         /// </summary>
         public readonly string BucketName;
         /// <summary>
-        /// The codec used for compression of your logs. Valid values are zstd, snappy, and gzip. If the specified codec is "gzip", gzip_level will default to 3. To specify a different level, leave compression_codec blank and explicitly set the level using gzip_level. Specifying both compression_codec and gzip_level in the same API request will result in an error.
+        /// The codec used for compression of your logs. Valid values are zstd, snappy, and gzip. If the specified codec is "gzip", GzipLevel will default to 3. To specify a different level, leave CompressionCodec blank and explicitly set the level using gzip_level. Specifying both CompressionCodec and GzipLevel in the same API request will result in an error.
         /// </summary>
         public readonly string? CompressionCodec;
         /// <summary>
@@ -46,7 +46,7 @@ namespace Pulumi.Fastly.Outputs
         /// </summary>
         public readonly int? GzipLevel;
         /// <summary>
-        /// How the message should be formatted. Can be either `classic`, `loggly`, `logplex` or `blank`. Default is `classic`
+        /// How the message should be formatted. Can be either `Classic`, `Loggly`, `Logplex` or `Blank`. Default is `Classic`
         /// </summary>
         public readonly string? MessageType;
         /// <summary>
@@ -74,7 +74,7 @@ namespace Pulumi.Fastly.Outputs
         /// </summary>
         public readonly string? PublicKey;
         /// <summary>
-        /// The S3 storage class (redundancy level). Should be one of: `standard`, `intelligent_tiering`, `standard_ia`, `onezone_ia`, `glacier`, `glacier_ir`, `deep_archive`, or `reduced_redundancy`
+        /// The S3 storage class (redundancy level). Should be one of: `Standard`, `IntelligentTiering`, `StandardIa`, `OnezoneIa`, `Glacier`, `GlacierIr`, `DeepArchive`, or `ReducedRedundancy`
         /// </summary>
         public readonly string? Redundancy;
         /// <summary>
@@ -82,15 +82,15 @@ namespace Pulumi.Fastly.Outputs
         /// </summary>
         public readonly string? ResponseCondition;
         /// <summary>
-        /// AWS Access Key of an account with the required permissions to post logs. It is **strongly** recommended you create a separate IAM user with permissions to only operate on this Bucket. This key will be not be encrypted. Not required if `iam_role` is provided. You can provide this key via an environment variable, `FASTLY_S3_ACCESS_KEY`
+        /// AWS Access Key of an account with the required permissions to post logs. It is **strongly** recommended you create a separate IAM user with permissions to only operate on this Bucket. This key will be not be encrypted. Not required if `IamRole` is provided. You can provide this key via an environment variable, `FASTLY_S3_ACCESS_KEY`
         /// </summary>
         public readonly string? S3AccessKey;
         /// <summary>
-        /// The Amazon Resource Name (ARN) for the IAM role granting Fastly access to S3. Not required if `access_key` and `secret_key` are provided. You can provide this value via an environment variable, `FASTLY_S3_IAM_ROLE`
+        /// The Amazon Resource Name (ARN) for the IAM role granting Fastly access to S3. Not required if `AccessKey` and `SecretKey` are provided. You can provide this value via an environment variable, `FASTLY_S3_IAM_ROLE`
         /// </summary>
         public readonly string? S3IamRole;
         /// <summary>
-        /// AWS Secret Key of an account with the required permissions to post logs. It is **strongly** recommended you create a separate IAM user with permissions to only operate on this Bucket. This secret will be not be encrypted. Not required if `iam_role` is provided. You can provide this secret via an environment variable, `FASTLY_S3_SECRET_KEY`
+        /// AWS Secret Key of an account with the required permissions to post logs. It is **strongly** recommended you create a separate IAM user with permissions to only operate on this Bucket. This secret will be not be encrypted. Not required if `IamRole` is provided. You can provide this secret via an environment variable, `FASTLY_S3_SECRET_KEY`
         /// </summary>
         public readonly string? S3SecretKey;
         /// <summary>
@@ -98,11 +98,11 @@ namespace Pulumi.Fastly.Outputs
         /// </summary>
         public readonly string? ServerSideEncryption;
         /// <summary>
-        /// Optional server-side KMS Key Id. Must be set if server_side_encryption is set to `aws:kms`
+        /// Optional server-side KMS Key Id. Must be set if ServerSideEncryption is set to `aws:kms`
         /// </summary>
         public readonly string? ServerSideEncryptionKmsKeyId;
         /// <summary>
-        /// The `strftime` specified timestamp formatting (default `%Y-%m-%dT%H:%M:%S.000`)
+        /// The `Strftime` specified timestamp formatting (default `%Y-%m-%dT%H:%M:%S.000`)
         /// </summary>
         public readonly string? TimestampFormat;
 

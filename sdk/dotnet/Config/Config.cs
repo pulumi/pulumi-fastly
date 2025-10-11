@@ -54,7 +54,7 @@ namespace Pulumi.Fastly
 
         private static readonly __Value<bool?> _forceHttp2 = new __Value<bool?>(() => __config.GetBoolean("forceHttp2"));
         /// <summary>
-        /// Set this to `true` to disable HTTP/1.x fallback mechanism that the underlying Go library will attempt upon connection to `api.fastly.com:443` by default. This may slightly improve the provider's performance and reduce unnecessary TLS handshakes. Default: `false`
+        /// Set this to `True` to disable HTTP/1.x fallback mechanism that the underlying Go library will attempt upon connection to `api.fastly.com:443` by default. This may slightly improve the provider's performance and reduce unnecessary TLS handshakes. Default: `False`
         /// </summary>
         public static bool? ForceHttp2
         {
@@ -64,7 +64,7 @@ namespace Pulumi.Fastly
 
         private static readonly __Value<bool?> _noAuth = new __Value<bool?>(() => __config.GetBoolean("noAuth"));
         /// <summary>
-        /// Set to `true` if your configuration only consumes data sources that do not require authentication, such as `fastly.getFastlyIpRanges`
+        /// Set to `True` if your configuration only consumes data sources that do not require authentication, such as `fastly.getFastlyIpRanges`
         /// </summary>
         public static bool? NoAuth
         {

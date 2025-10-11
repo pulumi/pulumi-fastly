@@ -63,14 +63,14 @@ public final class ServiceVclLoggingKineseArgs extends com.pulumi.resources.Reso
     }
 
     /**
-     * The Amazon Resource Name (ARN) for the IAM role granting Fastly access to Kinesis. Not required if `access_key` and `secret_key` are provided.
+     * The Amazon Resource Name (ARN) for the IAM role granting Fastly access to Kinesis. Not required if `accessKey` and `secretKey` are provided.
      * 
      */
     @Import(name="iamRole")
     private @Nullable Output<String> iamRole;
 
     /**
-     * @return The Amazon Resource Name (ARN) for the IAM role granting Fastly access to Kinesis. Not required if `access_key` and `secret_key` are provided.
+     * @return The Amazon Resource Name (ARN) for the IAM role granting Fastly access to Kinesis. Not required if `accessKey` and `secretKey` are provided.
      * 
      */
     public Optional<Output<String>> iamRole() {
@@ -280,7 +280,7 @@ public final class ServiceVclLoggingKineseArgs extends com.pulumi.resources.Reso
         }
 
         /**
-         * @param iamRole The Amazon Resource Name (ARN) for the IAM role granting Fastly access to Kinesis. Not required if `access_key` and `secret_key` are provided.
+         * @param iamRole The Amazon Resource Name (ARN) for the IAM role granting Fastly access to Kinesis. Not required if `accessKey` and `secretKey` are provided.
          * 
          * @return builder
          * 
@@ -291,7 +291,7 @@ public final class ServiceVclLoggingKineseArgs extends com.pulumi.resources.Reso
         }
 
         /**
-         * @param iamRole The Amazon Resource Name (ARN) for the IAM role granting Fastly access to Kinesis. Not required if `access_key` and `secret_key` are provided.
+         * @param iamRole The Amazon Resource Name (ARN) for the IAM role granting Fastly access to Kinesis. Not required if `accessKey` and `secretKey` are provided.
          * 
          * @return builder
          * 

@@ -29,7 +29,7 @@ namespace Pulumi.Fastly.Inputs
         }
 
         /// <summary>
-        /// The Amazon Resource Name (ARN) for the IAM role granting Fastly access to Kinesis. Not required if `access_key` and `secret_key` are provided.
+        /// The Amazon Resource Name (ARN) for the IAM role granting Fastly access to Kinesis. Not required if `AccessKey` and `SecretKey` are provided.
         /// </summary>
         [Input("iamRole")]
         public Input<string>? IamRole { get; set; }

@@ -25,7 +25,7 @@ namespace Pulumi.Fastly.Inputs
         public Input<string> Brokers { get; set; } = null!;
 
         /// <summary>
-        /// The codec used for compression of your logs. One of: `gzip`, `snappy`, `lz4`
+        /// The codec used for compression of your logs. One of: `Gzip`, `Snappy`, `Lz4`
         /// </summary>
         [Input("compressionCodec")]
         public Input<string>? CompressionCodec { get; set; }
@@ -117,7 +117,7 @@ namespace Pulumi.Fastly.Inputs
         public Input<string> Topic { get; set; } = null!;
 
         /// <summary>
-        /// Whether to use TLS for secure logging. Can be either `true` or `false`
+        /// Whether to use TLS for secure logging. Can be either `True` or `False`
         /// </summary>
         [Input("useTls")]
         public Input<bool>? UseTls { get; set; }
