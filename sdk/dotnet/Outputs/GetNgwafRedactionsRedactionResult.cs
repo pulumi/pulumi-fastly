@@ -22,7 +22,7 @@ namespace Pulumi.Fastly.Outputs
         /// </summary>
         public readonly string Id;
         /// <summary>
-        /// The type of field being redacted. One of `request_parameter`, `request_header`, or `response_header`.
+        /// The type of field being redacted. One of `RequestParameter`, `RequestHeader`, or `ResponseHeader`.
         /// </summary>
         public readonly string Type;
 

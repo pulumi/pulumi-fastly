@@ -19,14 +19,14 @@ public final class ServiceVclHeaderArgs extends com.pulumi.resources.ResourceArg
     public static final ServiceVclHeaderArgs Empty = new ServiceVclHeaderArgs();
 
     /**
-     * The Header manipulation action to take; must be one of `set`, `append`, `delete`, `regex`, or `regex_repeat`
+     * The Header manipulation action to take; must be one of `set`, `append`, `delete`, `regex`, or `regexRepeat`
      * 
      */
     @Import(name="action", required=true)
     private Output<String> action;
 
     /**
-     * @return The Header manipulation action to take; must be one of `set`, `append`, `delete`, `regex`, or `regex_repeat`
+     * @return The Header manipulation action to take; must be one of `set`, `append`, `delete`, `regex`, or `regexRepeat`
      * 
      */
     public Output<String> action() {
@@ -109,14 +109,14 @@ public final class ServiceVclHeaderArgs extends com.pulumi.resources.ResourceArg
     }
 
     /**
-     * Regular expression to use (Only applies to `regex` and `regex_repeat` actions.)
+     * Regular expression to use (Only applies to `regex` and `regexRepeat` actions.)
      * 
      */
     @Import(name="regex")
     private @Nullable Output<String> regex;
 
     /**
-     * @return Regular expression to use (Only applies to `regex` and `regex_repeat` actions.)
+     * @return Regular expression to use (Only applies to `regex` and `regexRepeat` actions.)
      * 
      */
     public Optional<Output<String>> regex() {
@@ -169,14 +169,14 @@ public final class ServiceVclHeaderArgs extends com.pulumi.resources.ResourceArg
     }
 
     /**
-     * Value to substitute in place of regular expression. (Only applies to `regex` and `regex_repeat`.)
+     * Value to substitute in place of regular expression. (Only applies to `regex` and `regexRepeat`.)
      * 
      */
     @Import(name="substitution")
     private @Nullable Output<String> substitution;
 
     /**
-     * @return Value to substitute in place of regular expression. (Only applies to `regex` and `regex_repeat`.)
+     * @return Value to substitute in place of regular expression. (Only applies to `regex` and `regexRepeat`.)
      * 
      */
     public Optional<Output<String>> substitution() {
@@ -234,7 +234,7 @@ public final class ServiceVclHeaderArgs extends com.pulumi.resources.ResourceArg
         }
 
         /**
-         * @param action The Header manipulation action to take; must be one of `set`, `append`, `delete`, `regex`, or `regex_repeat`
+         * @param action The Header manipulation action to take; must be one of `set`, `append`, `delete`, `regex`, or `regexRepeat`
          * 
          * @return builder
          * 
@@ -245,7 +245,7 @@ public final class ServiceVclHeaderArgs extends com.pulumi.resources.ResourceArg
         }
 
         /**
-         * @param action The Header manipulation action to take; must be one of `set`, `append`, `delete`, `regex`, or `regex_repeat`
+         * @param action The Header manipulation action to take; must be one of `set`, `append`, `delete`, `regex`, or `regexRepeat`
          * 
          * @return builder
          * 
@@ -360,7 +360,7 @@ public final class ServiceVclHeaderArgs extends com.pulumi.resources.ResourceArg
         }
 
         /**
-         * @param regex Regular expression to use (Only applies to `regex` and `regex_repeat` actions.)
+         * @param regex Regular expression to use (Only applies to `regex` and `regexRepeat` actions.)
          * 
          * @return builder
          * 
@@ -371,7 +371,7 @@ public final class ServiceVclHeaderArgs extends com.pulumi.resources.ResourceArg
         }
 
         /**
-         * @param regex Regular expression to use (Only applies to `regex` and `regex_repeat` actions.)
+         * @param regex Regular expression to use (Only applies to `regex` and `regexRepeat` actions.)
          * 
          * @return builder
          * 
@@ -444,7 +444,7 @@ public final class ServiceVclHeaderArgs extends com.pulumi.resources.ResourceArg
         }
 
         /**
-         * @param substitution Value to substitute in place of regular expression. (Only applies to `regex` and `regex_repeat`.)
+         * @param substitution Value to substitute in place of regular expression. (Only applies to `regex` and `regexRepeat`.)
          * 
          * @return builder
          * 
@@ -455,7 +455,7 @@ public final class ServiceVclHeaderArgs extends com.pulumi.resources.ResourceArg
         }
 
         /**
-         * @param substitution Value to substitute in place of regular expression. (Only applies to `regex` and `regex_repeat`.)
+         * @param substitution Value to substitute in place of regular expression. (Only applies to `regex` and `regexRepeat`.)
          * 
          * @return builder
          * 

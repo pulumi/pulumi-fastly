@@ -12,6 +12,8 @@ import (
 )
 
 // Use this data source to get the list of TLS Activation identifiers in Fastly.
+//
+// ## Example Usage
 func GetTlsActivationIds(ctx *pulumi.Context, args *GetTlsActivationIdsArgs, opts ...pulumi.InvokeOption) (*GetTlsActivationIdsResult, error) {
 	opts = internal.PkgInvokeDefaultOpts(opts)
 	var rv GetTlsActivationIdsResult

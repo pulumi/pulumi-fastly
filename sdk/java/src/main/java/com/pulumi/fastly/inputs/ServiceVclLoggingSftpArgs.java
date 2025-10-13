@@ -33,14 +33,14 @@ public final class ServiceVclLoggingSftpArgs extends com.pulumi.resources.Resour
     }
 
     /**
-     * The codec used for compression of your logs. Valid values are zstd, snappy, and gzip. If the specified codec is &#34;gzip&#34;, gzip_level will default to 3. To specify a different level, leave compression_codec blank and explicitly set the level using gzip_level. Specifying both compression_codec and gzip_level in the same API request will result in an error.
+     * The codec used for compression of your logs. Valid values are zstd, snappy, and gzip. If the specified codec is &#34;gzip&#34;, gzipLevel will default to 3. To specify a different level, leave compressionCodec blank and explicitly set the level using gzip_level. Specifying both compressionCodec and gzipLevel in the same API request will result in an error.
      * 
      */
     @Import(name="compressionCodec")
     private @Nullable Output<String> compressionCodec;
 
     /**
-     * @return The codec used for compression of your logs. Valid values are zstd, snappy, and gzip. If the specified codec is &#34;gzip&#34;, gzip_level will default to 3. To specify a different level, leave compression_codec blank and explicitly set the level using gzip_level. Specifying both compression_codec and gzip_level in the same API request will result in an error.
+     * @return The codec used for compression of your logs. Valid values are zstd, snappy, and gzip. If the specified codec is &#34;gzip&#34;, gzipLevel will default to 3. To specify a different level, leave compressionCodec blank and explicitly set the level using gzip_level. Specifying both compressionCodec and gzipLevel in the same API request will result in an error.
      * 
      */
     public Optional<Output<String>> compressionCodec() {
@@ -123,14 +123,14 @@ public final class ServiceVclLoggingSftpArgs extends com.pulumi.resources.Resour
     }
 
     /**
-     * The password for the server. If both `password` and `secret_key` are passed, `secret_key` will be preferred
+     * The password for the server. If both `password` and `secretKey` are passed, `secretKey` will be preferred
      * 
      */
     @Import(name="password")
     private @Nullable Output<String> password;
 
     /**
-     * @return The password for the server. If both `password` and `secret_key` are passed, `secret_key` will be preferred
+     * @return The password for the server. If both `password` and `secretKey` are passed, `secretKey` will be preferred
      * 
      */
     public Optional<Output<String>> password() {
@@ -243,14 +243,14 @@ public final class ServiceVclLoggingSftpArgs extends com.pulumi.resources.Resour
     }
 
     /**
-     * The SSH private key for the server. If both `password` and `secret_key` are passed, `secret_key` will be preferred
+     * The SSH private key for the server. If both `password` and `secretKey` are passed, `secretKey` will be preferred
      * 
      */
     @Import(name="secretKey")
     private @Nullable Output<String> secretKey;
 
     /**
-     * @return The SSH private key for the server. If both `password` and `secret_key` are passed, `secret_key` will be preferred
+     * @return The SSH private key for the server. If both `password` and `secretKey` are passed, `secretKey` will be preferred
      * 
      */
     public Optional<Output<String>> secretKey() {
@@ -366,7 +366,7 @@ public final class ServiceVclLoggingSftpArgs extends com.pulumi.resources.Resour
         }
 
         /**
-         * @param compressionCodec The codec used for compression of your logs. Valid values are zstd, snappy, and gzip. If the specified codec is &#34;gzip&#34;, gzip_level will default to 3. To specify a different level, leave compression_codec blank and explicitly set the level using gzip_level. Specifying both compression_codec and gzip_level in the same API request will result in an error.
+         * @param compressionCodec The codec used for compression of your logs. Valid values are zstd, snappy, and gzip. If the specified codec is &#34;gzip&#34;, gzipLevel will default to 3. To specify a different level, leave compressionCodec blank and explicitly set the level using gzip_level. Specifying both compressionCodec and gzipLevel in the same API request will result in an error.
          * 
          * @return builder
          * 
@@ -377,7 +377,7 @@ public final class ServiceVclLoggingSftpArgs extends com.pulumi.resources.Resour
         }
 
         /**
-         * @param compressionCodec The codec used for compression of your logs. Valid values are zstd, snappy, and gzip. If the specified codec is &#34;gzip&#34;, gzip_level will default to 3. To specify a different level, leave compression_codec blank and explicitly set the level using gzip_level. Specifying both compression_codec and gzip_level in the same API request will result in an error.
+         * @param compressionCodec The codec used for compression of your logs. Valid values are zstd, snappy, and gzip. If the specified codec is &#34;gzip&#34;, gzipLevel will default to 3. To specify a different level, leave compressionCodec blank and explicitly set the level using gzip_level. Specifying both compressionCodec and gzipLevel in the same API request will result in an error.
          * 
          * @return builder
          * 
@@ -492,7 +492,7 @@ public final class ServiceVclLoggingSftpArgs extends com.pulumi.resources.Resour
         }
 
         /**
-         * @param password The password for the server. If both `password` and `secret_key` are passed, `secret_key` will be preferred
+         * @param password The password for the server. If both `password` and `secretKey` are passed, `secretKey` will be preferred
          * 
          * @return builder
          * 
@@ -503,7 +503,7 @@ public final class ServiceVclLoggingSftpArgs extends com.pulumi.resources.Resour
         }
 
         /**
-         * @param password The password for the server. If both `password` and `secret_key` are passed, `secret_key` will be preferred
+         * @param password The password for the server. If both `password` and `secretKey` are passed, `secretKey` will be preferred
          * 
          * @return builder
          * 
@@ -660,7 +660,7 @@ public final class ServiceVclLoggingSftpArgs extends com.pulumi.resources.Resour
         }
 
         /**
-         * @param secretKey The SSH private key for the server. If both `password` and `secret_key` are passed, `secret_key` will be preferred
+         * @param secretKey The SSH private key for the server. If both `password` and `secretKey` are passed, `secretKey` will be preferred
          * 
          * @return builder
          * 
@@ -671,7 +671,7 @@ public final class ServiceVclLoggingSftpArgs extends com.pulumi.resources.Resour
         }
 
         /**
-         * @param secretKey The SSH private key for the server. If both `password` and `secret_key` are passed, `secret_key` will be preferred
+         * @param secretKey The SSH private key for the server. If both `password` and `secretKey` are passed, `secretKey` will be preferred
          * 
          * @return builder
          * 

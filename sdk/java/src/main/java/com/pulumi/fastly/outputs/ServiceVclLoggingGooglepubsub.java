@@ -54,7 +54,7 @@ public final class ServiceVclLoggingGooglepubsub {
      */
     private @Nullable String responseCondition;
     /**
-     * @return Your Google Cloud Platform account secret key. The `private_key` field in your service account authentication JSON. You may optionally provide this secret via an environment variable, `FASTLY_GOOGLE_PUBSUB_SECRET_KEY`.
+     * @return Your Google Cloud Platform account secret key. The `privateKey` field in your service account authentication JSON. You may optionally provide this secret via an environment variable, `FASTLY_GOOGLE_PUBSUB_SECRET_KEY`.
      * 
      */
     private String secretKey;
@@ -64,7 +64,7 @@ public final class ServiceVclLoggingGooglepubsub {
      */
     private String topic;
     /**
-     * @return Your Google Cloud Platform service account email address. The `client_email` field in your service account authentication JSON. You may optionally provide this via an environment variable, `FASTLY_GOOGLE_PUBSUB_EMAIL`.
+     * @return Your Google Cloud Platform service account email address. The `clientEmail` field in your service account authentication JSON. You may optionally provide this via an environment variable, `FASTLY_GOOGLE_PUBSUB_EMAIL`.
      * 
      */
     private String user;
@@ -127,7 +127,7 @@ public final class ServiceVclLoggingGooglepubsub {
         return Optional.ofNullable(this.responseCondition);
     }
     /**
-     * @return Your Google Cloud Platform account secret key. The `private_key` field in your service account authentication JSON. You may optionally provide this secret via an environment variable, `FASTLY_GOOGLE_PUBSUB_SECRET_KEY`.
+     * @return Your Google Cloud Platform account secret key. The `privateKey` field in your service account authentication JSON. You may optionally provide this secret via an environment variable, `FASTLY_GOOGLE_PUBSUB_SECRET_KEY`.
      * 
      */
     public String secretKey() {
@@ -141,7 +141,7 @@ public final class ServiceVclLoggingGooglepubsub {
         return this.topic;
     }
     /**
-     * @return Your Google Cloud Platform service account email address. The `client_email` field in your service account authentication JSON. You may optionally provide this via an environment variable, `FASTLY_GOOGLE_PUBSUB_EMAIL`.
+     * @return Your Google Cloud Platform service account email address. The `clientEmail` field in your service account authentication JSON. You may optionally provide this via an environment variable, `FASTLY_GOOGLE_PUBSUB_EMAIL`.
      * 
      */
     public String user() {

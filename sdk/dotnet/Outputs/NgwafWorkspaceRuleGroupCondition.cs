@@ -18,7 +18,7 @@ namespace Pulumi.Fastly.Outputs
         /// </summary>
         public readonly ImmutableArray<Outputs.NgwafWorkspaceRuleGroupConditionCondition> Conditions;
         /// <summary>
-        /// Logical operator for the group. Accepted values are `any` and `all`.
+        /// Logical operator for the group. Accepted values are `Any` and `All`.
         /// </summary>
         public readonly string GroupOperator;
 

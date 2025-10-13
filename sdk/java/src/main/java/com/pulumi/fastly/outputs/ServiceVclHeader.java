@@ -15,7 +15,7 @@ import javax.annotation.Nullable;
 @CustomType
 public final class ServiceVclHeader {
     /**
-     * @return The Header manipulation action to take; must be one of `set`, `append`, `delete`, `regex`, or `regex_repeat`
+     * @return The Header manipulation action to take; must be one of `set`, `append`, `delete`, `regex`, or `regexRepeat`
      * 
      */
     private String action;
@@ -45,7 +45,7 @@ public final class ServiceVclHeader {
      */
     private @Nullable Integer priority;
     /**
-     * @return Regular expression to use (Only applies to `regex` and `regex_repeat` actions.)
+     * @return Regular expression to use (Only applies to `regex` and `regexRepeat` actions.)
      * 
      */
     private @Nullable String regex;
@@ -65,7 +65,7 @@ public final class ServiceVclHeader {
      */
     private @Nullable String source;
     /**
-     * @return Value to substitute in place of regular expression. (Only applies to `regex` and `regex_repeat`.)
+     * @return Value to substitute in place of regular expression. (Only applies to `regex` and `regexRepeat`.)
      * 
      */
     private @Nullable String substitution;
@@ -77,7 +77,7 @@ public final class ServiceVclHeader {
 
     private ServiceVclHeader() {}
     /**
-     * @return The Header manipulation action to take; must be one of `set`, `append`, `delete`, `regex`, or `regex_repeat`
+     * @return The Header manipulation action to take; must be one of `set`, `append`, `delete`, `regex`, or `regexRepeat`
      * 
      */
     public String action() {
@@ -119,7 +119,7 @@ public final class ServiceVclHeader {
         return Optional.ofNullable(this.priority);
     }
     /**
-     * @return Regular expression to use (Only applies to `regex` and `regex_repeat` actions.)
+     * @return Regular expression to use (Only applies to `regex` and `regexRepeat` actions.)
      * 
      */
     public Optional<String> regex() {
@@ -147,7 +147,7 @@ public final class ServiceVclHeader {
         return Optional.ofNullable(this.source);
     }
     /**
-     * @return Value to substitute in place of regular expression. (Only applies to `regex` and `regex_repeat`.)
+     * @return Value to substitute in place of regular expression. (Only applies to `regex` and `regexRepeat`.)
      * 
      */
     public Optional<String> substitution() {

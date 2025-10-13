@@ -78,7 +78,7 @@ namespace Pulumi.Fastly
         public Output<string> Name { get; private set; } = null!;
 
         /// <summary>
-        /// The type of list. Accepted values are `string`, `wildcard`, `ip`, `country`, and `signal`.
+        /// The type of list. Accepted values are `String`, `Wildcard`, `Ip`, `Country`, and `Signal`.
         /// </summary>
         [Output("type")]
         public Output<string> Type { get; private set; } = null!;
@@ -158,7 +158,7 @@ namespace Pulumi.Fastly
         public Input<string>? Name { get; set; }
 
         /// <summary>
-        /// The type of list. Accepted values are `string`, `wildcard`, `ip`, `country`, and `signal`.
+        /// The type of list. Accepted values are `String`, `Wildcard`, `Ip`, `Country`, and `Signal`.
         /// </summary>
         [Input("type", required: true)]
         public Input<string> Type { get; set; } = null!;
@@ -212,7 +212,7 @@ namespace Pulumi.Fastly
         public Input<string>? Name { get; set; }
 
         /// <summary>
-        /// The type of list. Accepted values are `string`, `wildcard`, `ip`, `country`, and `signal`.
+        /// The type of list. Accepted values are `String`, `Wildcard`, `Ip`, `Country`, and `Signal`.
         /// </summary>
         [Input("type")]
         public Input<string>? Type { get; set; }
