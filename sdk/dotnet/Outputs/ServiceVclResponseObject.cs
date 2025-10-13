@@ -14,7 +14,7 @@ namespace Pulumi.Fastly.Outputs
     public sealed class ServiceVclResponseObject
     {
         /// <summary>
-        /// Name of already defined `condition` to check after we have retrieved an object. If the condition passes then deliver this Request Object instead. This `condition` must be of type `CACHE`. For detailed information about Conditionals, see [Fastly's Documentation on Conditionals](https://docs.fastly.com/en/guides/using-conditions)
+        /// Name of already defined `Condition` to check after we have retrieved an object. If the condition passes then deliver this Request Object instead. This `Condition` must be of type `CACHE`. For detailed information about Conditionals, see [Fastly's Documentation on Conditionals](https://docs.fastly.com/en/guides/using-conditions)
         /// </summary>
         public readonly string? CacheCondition;
         /// <summary>
@@ -30,7 +30,7 @@ namespace Pulumi.Fastly.Outputs
         /// </summary>
         public readonly string Name;
         /// <summary>
-        /// Name of already defined `condition` to be checked during the request phase. If the condition passes then this object will be delivered. This `condition` must be of type `REQUEST`
+        /// Name of already defined `Condition` to be checked during the request phase. If the condition passes then this object will be delivered. This `Condition` must be of type `REQUEST`
         /// </summary>
         public readonly string? RequestCondition;
         /// <summary>

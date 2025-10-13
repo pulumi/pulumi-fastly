@@ -30,7 +30,7 @@ namespace Pulumi.Fastly.Outputs
         /// </summary>
         public readonly bool? DomainInspector;
         /// <summary>
-        /// Enable Image Optimizer support (all backends must have a `shield` attribute)
+        /// Enable Image Optimizer support (all backends must have a `Shield` attribute)
         /// </summary>
         public readonly bool? ImageOptimizer;
         /// <summary>

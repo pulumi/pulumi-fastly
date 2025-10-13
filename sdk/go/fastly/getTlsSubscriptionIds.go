@@ -12,6 +12,8 @@ import (
 )
 
 // Use this data source to get the list of IDs of TLS Subscriptions in Fastly.
+//
+// ## Example Usage
 func GetTlsSubscriptionIds(ctx *pulumi.Context, opts ...pulumi.InvokeOption) (*GetTlsSubscriptionIdsResult, error) {
 	opts = internal.PkgInvokeDefaultOpts(opts)
 	var rv GetTlsSubscriptionIdsResult

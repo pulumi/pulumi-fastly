@@ -18,7 +18,7 @@ namespace Pulumi.Fastly.Outputs
         /// </summary>
         public readonly string Content;
         /// <summary>
-        /// If `true`, use this block as the main configuration. If `false`, use this block as an includable library. Only a single VCL block can be marked as the main block. Default is `false`
+        /// If `True`, use this block as the main configuration. If `False`, use this block as an includable library. Only a single VCL block can be marked as the main block. Default is `False`
         /// </summary>
         public readonly bool? Main;
         /// <summary>

@@ -25,7 +25,7 @@ namespace Pulumi.Fastly.Inputs
         public Input<string>? Format { get; set; }
 
         /// <summary>
-        /// The version of the custom logging format used for the configured endpoint. The logging call gets placed by default in `vcl_log` if `format_version` is set to `2` and in `vcl_deliver` if `format_version` is set to `1`
+        /// The version of the custom logging format used for the configured endpoint. The logging call gets placed by default in `VclLog` if `FormatVersion` is set to `2` and in `VclDeliver` if `FormatVersion` is set to `1`
         /// </summary>
         [Input("formatVersion")]
         public Input<int>? FormatVersion { get; set; }
@@ -37,7 +37,7 @@ namespace Pulumi.Fastly.Inputs
         public Input<string> Name { get; set; } = null!;
 
         /// <summary>
-        /// Where in the generated VCL the logging call should be placed. If not set, endpoints with `format_version` of 2 are placed in `vcl_log` and those with `format_version` of 1 are placed in `vcl_deliver`
+        /// Where in the generated VCL the logging call should be placed. If not set, endpoints with `FormatVersion` of 2 are placed in `VclLog` and those with `FormatVersion` of 1 are placed in `VclDeliver`
         /// </summary>
         [Input("placement")]
         public Input<string>? Placement { get; set; }

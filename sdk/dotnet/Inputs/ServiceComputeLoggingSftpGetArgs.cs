@@ -19,7 +19,7 @@ namespace Pulumi.Fastly.Inputs
         public Input<string> Address { get; set; } = null!;
 
         /// <summary>
-        /// The codec used for compression of your logs. Valid values are zstd, snappy, and gzip. If the specified codec is "gzip", gzip_level will default to 3. To specify a different level, leave compression_codec blank and explicitly set the level using gzip_level. Specifying both compression_codec and gzip_level in the same API request will result in an error.
+        /// The codec used for compression of your logs. Valid values are zstd, snappy, and gzip. If the specified codec is "gzip", GzipLevel will default to 3. To specify a different level, leave CompressionCodec blank and explicitly set the level using gzip_level. Specifying both CompressionCodec and GzipLevel in the same API request will result in an error.
         /// </summary>
         [Input("compressionCodec")]
         public Input<string>? CompressionCodec { get; set; }
@@ -31,7 +31,7 @@ namespace Pulumi.Fastly.Inputs
         public Input<int>? GzipLevel { get; set; }
 
         /// <summary>
-        /// How the message should be formatted. Can be either `classic`, `loggly`, `logplex` or `blank`. Default is `classic`
+        /// How the message should be formatted. Can be either `Classic`, `Loggly`, `Logplex` or `Blank`. Default is `Classic`
         /// </summary>
         [Input("messageType")]
         public Input<string>? MessageType { get; set; }
@@ -46,7 +46,7 @@ namespace Pulumi.Fastly.Inputs
         private Input<string>? _password;
 
         /// <summary>
-        /// The password for the server. If both `password` and `secret_key` are passed, `secret_key` will be preferred
+        /// The password for the server. If both `Password` and `SecretKey` are passed, `SecretKey` will be preferred
         /// </summary>
         public Input<string>? Password
         {
@@ -92,7 +92,7 @@ namespace Pulumi.Fastly.Inputs
         private Input<string>? _secretKey;
 
         /// <summary>
-        /// The SSH private key for the server. If both `password` and `secret_key` are passed, `secret_key` will be preferred
+        /// The SSH private key for the server. If both `Password` and `SecretKey` are passed, `SecretKey` will be preferred
         /// </summary>
         public Input<string>? SecretKey
         {
@@ -111,7 +111,7 @@ namespace Pulumi.Fastly.Inputs
         public Input<string> SshKnownHosts { get; set; } = null!;
 
         /// <summary>
-        /// The `strftime` specified timestamp formatting (default `%Y-%m-%dT%H:%M:%S.000`)
+        /// The `Strftime` specified timestamp formatting (default `%Y-%m-%dT%H:%M:%S.000`)
         /// </summary>
         [Input("timestampFormat")]
         public Input<string>? TimestampFormat { get; set; }

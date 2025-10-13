@@ -30,7 +30,7 @@ namespace Pulumi.Fastly.Outputs
         /// </summary>
         public readonly string? SnippetId;
         /// <summary>
-        /// The location in generated VCL where the snippet should be placed (can be one of `init`, `recv`, `hash`, `hit`, `miss`, `pass`, `fetch`, `error`, `deliver`, `log` or `none`)
+        /// The location in generated VCL where the snippet should be placed (can be one of `Init`, `Recv`, `Hash`, `Hit`, `Miss`, `Pass`, `Fetch`, `Error`, `Deliver`, `Log` or `None`)
         /// </summary>
         public readonly string Type;
 

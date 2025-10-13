@@ -18,7 +18,7 @@ namespace Pulumi.Fastly.Outputs
         /// </summary>
         public readonly string Address;
         /// <summary>
-        /// How the message should be formatted. Can be either `classic`, `loggly`, `logplex` or `blank`. Default is `classic`
+        /// How the message should be formatted. Can be either `Classic`, `Loggly`, `Logplex` or `Blank`. Default is `Classic`
         /// </summary>
         public readonly string? MessageType;
         /// <summary>
@@ -54,7 +54,7 @@ namespace Pulumi.Fastly.Outputs
         /// </summary>
         public readonly string? Token;
         /// <summary>
-        /// Whether to use TLS for secure logging. Default `false`
+        /// Whether to use TLS for secure logging. Default `False`
         /// </summary>
         public readonly bool? UseTls;
 

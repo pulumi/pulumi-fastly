@@ -25,7 +25,7 @@ namespace Pulumi.Fastly.Inputs
         }
 
         /// <summary>
-        /// Logical operator for the group. Accepted values are `any` and `all`.
+        /// Logical operator for the group. Accepted values are `Any` and `All`.
         /// </summary>
         [Input("groupOperator", required: true)]
         public Input<string> GroupOperator { get; set; } = null!;
