@@ -144,8 +144,8 @@ func Provider() tfbridge.ProviderInfo {
 	}
 
 	prov.MustComputeTokens(tks.SingleModule("fastly_", mainMod,
-		tks.MakeStandard(mainPkg)).
-		Ignore("_acl_")) // acl is capitalized to ACL
+		tks.MakeStandard(mainPkg))) //.
+	// Ignore("_acl_")) // acl is capitalized to ACL
 	prov.MustApplyAutoAliases()
 	prov.SetAutonaming(255, "-")
 

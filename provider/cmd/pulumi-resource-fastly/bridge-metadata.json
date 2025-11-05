@@ -25,6 +25,12 @@
                     }
                 }
             },
+            "fastly_compute_acl": {
+                "current": "fastly:index/computeAcl:ComputeAcl"
+            },
+            "fastly_compute_acl_entries": {
+                "current": "fastly:index/computeAclEntries:ComputeAclEntries"
+            },
             "fastly_configstore": {
                 "current": "fastly:index/configstore:Configstore"
             },
@@ -73,6 +79,9 @@
             "fastly_domain_v1": {
                 "current": "fastly:index/domainV1:DomainV1"
             },
+            "fastly_domain_v1_service_link": {
+                "current": "fastly:index/domainV1ServiceLink:DomainV1ServiceLink"
+            },
             "fastly_integration": {
                 "current": "fastly:index/integration:Integration"
             },
@@ -112,11 +121,11 @@
                             }
                         }
                     },
-                    "rate_limit": {
-                        "maxItemsOne": true,
+                    "multival_condition": {
+                        "maxItemsOne": false,
                         "elem": {
                             "fields": {
-                                "client_identifiers": {
+                                "condition": {
                                     "maxItemsOne": false
                                 }
                             }
@@ -203,6 +212,16 @@
                             }
                         }
                     },
+                    "multival_condition": {
+                        "maxItemsOne": false,
+                        "elem": {
+                            "fields": {
+                                "condition": {
+                                    "maxItemsOne": false
+                                }
+                            }
+                        }
+                    },
                     "rate_limit": {
                         "maxItemsOne": true,
                         "elem": {
@@ -251,6 +270,16 @@
                     },
                     "domain": {
                         "maxItemsOne": false
+                    },
+                    "healthcheck": {
+                        "maxItemsOne": false,
+                        "elem": {
+                            "fields": {
+                                "headers": {
+                                    "maxItemsOne": false
+                                }
+                            }
+                        }
                     },
                     "image_optimizer_default_settings": {
                         "maxItemsOne": true
@@ -310,6 +339,9 @@
                         "maxItemsOne": false
                     },
                     "logging_newrelic": {
+                        "maxItemsOne": false
+                    },
+                    "logging_newrelicotlp": {
                         "maxItemsOne": false
                     },
                     "logging_openstack": {
@@ -609,6 +641,14 @@
             }
         },
         "datasources": {
+            "fastly_compute_acls": {
+                "current": "fastly:index/getComputeAcls:getComputeAcls",
+                "fields": {
+                    "acls": {
+                        "maxItemsOne": false
+                    }
+                }
+            },
             "fastly_configstores": {
                 "current": "fastly:index/getConfigstores:getConfigstores",
                 "fields": {
@@ -633,6 +673,14 @@
                     }
                 }
             },
+            "fastly_domains_v1": {
+                "current": "fastly:index/getDomainsV1:getDomainsV1",
+                "fields": {
+                    "domains": {
+                        "maxItemsOne": false
+                    }
+                }
+            },
             "fastly_ip_ranges": {
                 "current": "fastly:index/getFastlyIpRanges:getFastlyIpRanges",
                 "fields": {
@@ -648,6 +696,30 @@
                 "current": "fastly:index/getKvstores:getKvstores",
                 "fields": {
                     "stores": {
+                        "maxItemsOne": false
+                    }
+                }
+            },
+            "fastly_ngwaf_account_lists": {
+                "current": "fastly:index/getNgwafAccountLists:getNgwafAccountLists",
+                "fields": {
+                    "lists": {
+                        "maxItemsOne": false
+                    }
+                }
+            },
+            "fastly_ngwaf_account_rules": {
+                "current": "fastly:index/getNgwafAccountRules:getNgwafAccountRules",
+                "fields": {
+                    "rules": {
+                        "maxItemsOne": false
+                    }
+                }
+            },
+            "fastly_ngwaf_account_signals": {
+                "current": "fastly:index/getNgwafAccountSignals:getNgwafAccountSignals",
+                "fields": {
+                    "signals": {
                         "maxItemsOne": false
                     }
                 }
@@ -736,6 +808,30 @@
                 "current": "fastly:index/getNgwafVirtualPatches:getNgwafVirtualPatches",
                 "fields": {
                     "virtual_patches": {
+                        "maxItemsOne": false
+                    }
+                }
+            },
+            "fastly_ngwaf_workspace_lists": {
+                "current": "fastly:index/getNgwafWorkspaceLists:getNgwafWorkspaceLists",
+                "fields": {
+                    "lists": {
+                        "maxItemsOne": false
+                    }
+                }
+            },
+            "fastly_ngwaf_workspace_rules": {
+                "current": "fastly:index/getNgwafWorkspaceRules:getNgwafWorkspaceRules",
+                "fields": {
+                    "rules": {
+                        "maxItemsOne": false
+                    }
+                }
+            },
+            "fastly_ngwaf_workspace_signals": {
+                "current": "fastly:index/getNgwafWorkspaceSignals:getNgwafWorkspaceSignals",
+                "fields": {
+                    "signals": {
                         "maxItemsOne": false
                     }
                 }

@@ -5,7 +5,7 @@ Subject: [PATCH] Special case cloned_version
 
 
 diff --git a/fastly/base_fastly_service.go b/fastly/base_fastly_service.go
-index c4e69600..19aec43a 100644
+index 947c3e59..48a1fb6b 100644
 --- a/fastly/base_fastly_service.go
 +++ b/fastly/base_fastly_service.go
 @@ -346,11 +346,52 @@ func resourceServiceUpdate(ctx context.Context, d *schema.ResourceData, meta any
