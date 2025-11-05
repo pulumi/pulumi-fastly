@@ -26,6 +26,46 @@ import javax.annotation.Nullable;
  * 
  * Basic usage:
  * 
+ * <pre>
+ * {@code
+ * package generated_program;
+ * 
+ * import com.pulumi.Context;
+ * import com.pulumi.Pulumi;
+ * import com.pulumi.core.Output;
+ * import com.pulumi.fastly.NgwafWorkspace;
+ * import com.pulumi.fastly.NgwafWorkspaceArgs;
+ * import com.pulumi.fastly.inputs.NgwafWorkspaceAttackSignalThresholdsArgs;
+ * import java.util.List;
+ * import java.util.ArrayList;
+ * import java.util.Map;
+ * import java.io.File;
+ * import java.nio.file.Files;
+ * import java.nio.file.Paths;
+ * 
+ * public class App {
+ *     public static void main(String[] args) {
+ *         Pulumi.run(App::stack);
+ *     }
+ * 
+ *     public static void stack(Context ctx) {
+ *         var demo = new NgwafWorkspace("demo", NgwafWorkspaceArgs.builder()
+ *             .name("Demo")
+ *             .description("Testing")
+ *             .mode("block")
+ *             .attackSignalThresholds(NgwafWorkspaceAttackSignalThresholdsArgs.builder()
+ *                 .oneMinute(100)
+ *                 .tenMinutes(500)
+ *                 .oneHour(1000)
+ *                 .immediate(true)
+ *                 .build())
+ *             .build());
+ * 
+ *     }
+ * }
+ * }
+ * </pre>
+ * 
  * ## Import
  * 
  * Fastly Next-Gen WAF Workspaces can be imported using their workspace ID, e.g.
@@ -78,6 +118,20 @@ public class NgwafWorkspace extends com.pulumi.resources.CustomResource {
      */
     public Output<Optional<Integer>> defaultBlockingResponseCode() {
         return Codegen.optional(this.defaultBlockingResponseCode);
+    }
+    /**
+     * The redirect URL used if default*blocking*response_code is `301` or `302`.
+     * 
+     */
+    @Export(name="defaultRedirectUrl", refs={String.class}, tree="[0]")
+    private Output</* @Nullable */ String> defaultRedirectUrl;
+
+    /**
+     * @return The redirect URL used if default*blocking*response_code is `301` or `302`.
+     * 
+     */
+    public Output<Optional<String>> defaultRedirectUrl() {
+        return Codegen.optional(this.defaultRedirectUrl);
     }
     /**
      * The description of the workspace

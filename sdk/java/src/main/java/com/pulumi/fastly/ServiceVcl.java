@@ -200,14 +200,14 @@ public class ServiceVcl extends com.pulumi.resources.CustomResource {
      * 
      */
     @Export(name="domains", refs={List.class,ServiceVclDomain.class}, tree="[0,1]")
-    private Output<List<ServiceVclDomain>> domains;
+    private Output</* @Nullable */ List<ServiceVclDomain>> domains;
 
     /**
      * @return A set of Domain names to serve as entry points for your Service
      * 
      */
-    public Output<List<ServiceVclDomain>> domains() {
-        return this.domains;
+    public Output<Optional<List<ServiceVclDomain>>> domains() {
+        return Codegen.optional(this.domains);
     }
     @Export(name="dynamicsnippets", refs={List.class,ServiceVclDynamicsnippet.class}, tree="[0,1]")
     private Output</* @Nullable */ List<ServiceVclDynamicsnippet>> dynamicsnippets;
@@ -594,7 +594,7 @@ public class ServiceVcl extends com.pulumi.resources.CustomResource {
      * @param name The _unique_ name of the resulting resource.
      * @param args The arguments to use to populate this resource's properties.
      */
-    public ServiceVcl(java.lang.String name, ServiceVclArgs args) {
+    public ServiceVcl(java.lang.String name, @Nullable ServiceVclArgs args) {
         this(name, args, null);
     }
     /**
@@ -603,7 +603,7 @@ public class ServiceVcl extends com.pulumi.resources.CustomResource {
      * @param args The arguments to use to populate this resource's properties.
      * @param options A bag of options that control this resource's behavior.
      */
-    public ServiceVcl(java.lang.String name, ServiceVclArgs args, @Nullable com.pulumi.resources.CustomResourceOptions options) {
+    public ServiceVcl(java.lang.String name, @Nullable ServiceVclArgs args, @Nullable com.pulumi.resources.CustomResourceOptions options) {
         super("fastly:index/serviceVcl:ServiceVcl", name, makeArgs(args, options), makeResourceOptions(options, Codegen.empty()), false);
     }
 
@@ -611,7 +611,7 @@ public class ServiceVcl extends com.pulumi.resources.CustomResource {
         super("fastly:index/serviceVcl:ServiceVcl", name, state, makeResourceOptions(options, id), false);
     }
 
-    private static ServiceVclArgs makeArgs(ServiceVclArgs args, @Nullable com.pulumi.resources.CustomResourceOptions options) {
+    private static ServiceVclArgs makeArgs(@Nullable ServiceVclArgs args, @Nullable com.pulumi.resources.CustomResourceOptions options) {
         if (options != null && options.getUrn().isPresent()) {
             return null;
         }

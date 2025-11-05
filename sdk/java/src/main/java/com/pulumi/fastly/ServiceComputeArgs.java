@@ -5,10 +5,10 @@ package com.pulumi.fastly;
 
 import com.pulumi.core.Output;
 import com.pulumi.core.annotations.Import;
-import com.pulumi.exceptions.MissingRequiredPropertyException;
 import com.pulumi.fastly.inputs.ServiceComputeBackendArgs;
 import com.pulumi.fastly.inputs.ServiceComputeDictionaryArgs;
 import com.pulumi.fastly.inputs.ServiceComputeDomainArgs;
+import com.pulumi.fastly.inputs.ServiceComputeHealthcheckArgs;
 import com.pulumi.fastly.inputs.ServiceComputeImageOptimizerDefaultSettingsArgs;
 import com.pulumi.fastly.inputs.ServiceComputeLoggingBigqueryArgs;
 import com.pulumi.fastly.inputs.ServiceComputeLoggingBlobstorageArgs;
@@ -29,6 +29,7 @@ import com.pulumi.fastly.inputs.ServiceComputeLoggingLogentryArgs;
 import com.pulumi.fastly.inputs.ServiceComputeLoggingLogglyArgs;
 import com.pulumi.fastly.inputs.ServiceComputeLoggingLogshuttleArgs;
 import com.pulumi.fastly.inputs.ServiceComputeLoggingNewrelicArgs;
+import com.pulumi.fastly.inputs.ServiceComputeLoggingNewrelicotlpArgs;
 import com.pulumi.fastly.inputs.ServiceComputeLoggingOpenstackArgs;
 import com.pulumi.fastly.inputs.ServiceComputeLoggingPapertrailArgs;
 import com.pulumi.fastly.inputs.ServiceComputeLoggingS3Args;
@@ -92,15 +93,15 @@ public final class ServiceComputeArgs extends com.pulumi.resources.ResourceArgs 
      * A set of Domain names to serve as entry points for your Service
      * 
      */
-    @Import(name="domains", required=true)
-    private Output<List<ServiceComputeDomainArgs>> domains;
+    @Import(name="domains")
+    private @Nullable Output<List<ServiceComputeDomainArgs>> domains;
 
     /**
      * @return A set of Domain names to serve as entry points for your Service
      * 
      */
-    public Output<List<ServiceComputeDomainArgs>> domains() {
-        return this.domains;
+    public Optional<Output<List<ServiceComputeDomainArgs>>> domains() {
+        return Optional.ofNullable(this.domains);
     }
 
     /**
@@ -116,6 +117,13 @@ public final class ServiceComputeArgs extends com.pulumi.resources.ResourceArgs 
      */
     public Optional<Output<Boolean>> forceDestroy() {
         return Optional.ofNullable(this.forceDestroy);
+    }
+
+    @Import(name="healthchecks")
+    private @Nullable Output<List<ServiceComputeHealthcheckArgs>> healthchecks;
+
+    public Optional<Output<List<ServiceComputeHealthcheckArgs>>> healthchecks() {
+        return Optional.ofNullable(this.healthchecks);
     }
 
     @Import(name="imageOptimizerDefaultSettings")
@@ -249,6 +257,13 @@ public final class ServiceComputeArgs extends com.pulumi.resources.ResourceArgs 
 
     public Optional<Output<List<ServiceComputeLoggingLogshuttleArgs>>> loggingLogshuttles() {
         return Optional.ofNullable(this.loggingLogshuttles);
+    }
+
+    @Import(name="loggingNewrelicotlps")
+    private @Nullable Output<List<ServiceComputeLoggingNewrelicotlpArgs>> loggingNewrelicotlps;
+
+    public Optional<Output<List<ServiceComputeLoggingNewrelicotlpArgs>>> loggingNewrelicotlps() {
+        return Optional.ofNullable(this.loggingNewrelicotlps);
     }
 
     @Import(name="loggingNewrelics")
@@ -412,6 +427,7 @@ public final class ServiceComputeArgs extends com.pulumi.resources.ResourceArgs 
         this.dictionaries = $.dictionaries;
         this.domains = $.domains;
         this.forceDestroy = $.forceDestroy;
+        this.healthchecks = $.healthchecks;
         this.imageOptimizerDefaultSettings = $.imageOptimizerDefaultSettings;
         this.loggingBigqueries = $.loggingBigqueries;
         this.loggingBlobstorages = $.loggingBlobstorages;
@@ -431,6 +447,7 @@ public final class ServiceComputeArgs extends com.pulumi.resources.ResourceArgs 
         this.loggingLogentries = $.loggingLogentries;
         this.loggingLogglies = $.loggingLogglies;
         this.loggingLogshuttles = $.loggingLogshuttles;
+        this.loggingNewrelicotlps = $.loggingNewrelicotlps;
         this.loggingNewrelics = $.loggingNewrelics;
         this.loggingOpenstacks = $.loggingOpenstacks;
         this.loggingPapertrails = $.loggingPapertrails;
@@ -529,7 +546,7 @@ public final class ServiceComputeArgs extends com.pulumi.resources.ResourceArgs 
          * @return builder
          * 
          */
-        public Builder domains(Output<List<ServiceComputeDomainArgs>> domains) {
+        public Builder domains(@Nullable Output<List<ServiceComputeDomainArgs>> domains) {
             $.domains = domains;
             return this;
         }
@@ -573,6 +590,19 @@ public final class ServiceComputeArgs extends com.pulumi.resources.ResourceArgs 
          */
         public Builder forceDestroy(Boolean forceDestroy) {
             return forceDestroy(Output.of(forceDestroy));
+        }
+
+        public Builder healthchecks(@Nullable Output<List<ServiceComputeHealthcheckArgs>> healthchecks) {
+            $.healthchecks = healthchecks;
+            return this;
+        }
+
+        public Builder healthchecks(List<ServiceComputeHealthcheckArgs> healthchecks) {
+            return healthchecks(Output.of(healthchecks));
+        }
+
+        public Builder healthchecks(ServiceComputeHealthcheckArgs... healthchecks) {
+            return healthchecks(List.of(healthchecks));
         }
 
         public Builder imageOptimizerDefaultSettings(@Nullable Output<ServiceComputeImageOptimizerDefaultSettingsArgs> imageOptimizerDefaultSettings) {
@@ -816,6 +846,19 @@ public final class ServiceComputeArgs extends com.pulumi.resources.ResourceArgs 
 
         public Builder loggingLogshuttles(ServiceComputeLoggingLogshuttleArgs... loggingLogshuttles) {
             return loggingLogshuttles(List.of(loggingLogshuttles));
+        }
+
+        public Builder loggingNewrelicotlps(@Nullable Output<List<ServiceComputeLoggingNewrelicotlpArgs>> loggingNewrelicotlps) {
+            $.loggingNewrelicotlps = loggingNewrelicotlps;
+            return this;
+        }
+
+        public Builder loggingNewrelicotlps(List<ServiceComputeLoggingNewrelicotlpArgs> loggingNewrelicotlps) {
+            return loggingNewrelicotlps(Output.of(loggingNewrelicotlps));
+        }
+
+        public Builder loggingNewrelicotlps(ServiceComputeLoggingNewrelicotlpArgs... loggingNewrelicotlps) {
+            return loggingNewrelicotlps(List.of(loggingNewrelicotlps));
         }
 
         public Builder loggingNewrelics(@Nullable Output<List<ServiceComputeLoggingNewrelicArgs>> loggingNewrelics) {
@@ -1069,9 +1112,6 @@ public final class ServiceComputeArgs extends com.pulumi.resources.ResourceArgs 
         }
 
         public ServiceComputeArgs build() {
-            if ($.domains == null) {
-                throw new MissingRequiredPropertyException("ServiceComputeArgs", "domains");
-            }
             return $;
         }
     }

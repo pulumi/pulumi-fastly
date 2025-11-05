@@ -73,7 +73,7 @@ namespace Pulumi.Fastly.Inputs
         public Input<bool>? TimerSupport { get; set; }
 
         /// <summary>
-        /// X-Forwarded-For, should be `Clear`, `Leave`, `Append`, `AppendAll`, or `Overwrite`. Default `Append`
+        /// X-Forwarded-For, should be `Clear`, `Leave`, `Append`, `AppendAll`, or `Overwrite`
         /// </summary>
         [Input("xff")]
         public Input<string>? Xff { get; set; }

@@ -7,7 +7,6 @@ import (
 	"context"
 	"reflect"
 
-	"errors"
 	"github.com/pulumi/pulumi-fastly/sdk/v11/go/fastly/internal"
 	"github.com/pulumi/pulumi/sdk/v3/go/pulumi"
 )
@@ -44,6 +43,7 @@ type ServiceCompute struct {
 	// Services that are active cannot be destroyed. In order to destroy the Service, set `forceDestroy` to `true`. Default `false`
 	ForceDestroy                  pulumi.BoolPtrOutput                                 `pulumi:"forceDestroy"`
 	ForceRefresh                  pulumi.BoolOutput                                    `pulumi:"forceRefresh"`
+	Healthchecks                  ServiceComputeHealthcheckArrayOutput                 `pulumi:"healthchecks"`
 	ImageOptimizerDefaultSettings ServiceComputeImageOptimizerDefaultSettingsPtrOutput `pulumi:"imageOptimizerDefaultSettings"`
 	// Used internally by the provider to temporarily indicate if the service is being imported, and is reset to false once the import is finished
 	Imported                pulumi.BoolOutput                               `pulumi:"imported"`
@@ -65,6 +65,7 @@ type ServiceCompute struct {
 	LoggingLogentries       ServiceComputeLoggingLogentryArrayOutput        `pulumi:"loggingLogentries"`
 	LoggingLogglies         ServiceComputeLoggingLogglyArrayOutput          `pulumi:"loggingLogglies"`
 	LoggingLogshuttles      ServiceComputeLoggingLogshuttleArrayOutput      `pulumi:"loggingLogshuttles"`
+	LoggingNewrelicotlps    ServiceComputeLoggingNewrelicotlpArrayOutput    `pulumi:"loggingNewrelicotlps"`
 	LoggingNewrelics        ServiceComputeLoggingNewrelicArrayOutput        `pulumi:"loggingNewrelics"`
 	LoggingOpenstacks       ServiceComputeLoggingOpenstackArrayOutput       `pulumi:"loggingOpenstacks"`
 	LoggingPapertrails      ServiceComputeLoggingPapertrailArrayOutput      `pulumi:"loggingPapertrails"`
@@ -94,12 +95,9 @@ type ServiceCompute struct {
 func NewServiceCompute(ctx *pulumi.Context,
 	name string, args *ServiceComputeArgs, opts ...pulumi.ResourceOption) (*ServiceCompute, error) {
 	if args == nil {
-		return nil, errors.New("missing one or more required arguments")
+		args = &ServiceComputeArgs{}
 	}
 
-	if args.Domains == nil {
-		return nil, errors.New("invalid value for required argument 'Domains'")
-	}
 	opts = internal.PkgResourceDefaultOpts(opts)
 	var resource ServiceCompute
 	err := ctx.RegisterResource("fastly:index/serviceCompute:ServiceCompute", name, args, &resource, opts...)
@@ -137,6 +135,7 @@ type serviceComputeState struct {
 	// Services that are active cannot be destroyed. In order to destroy the Service, set `forceDestroy` to `true`. Default `false`
 	ForceDestroy                  *bool                                        `pulumi:"forceDestroy"`
 	ForceRefresh                  *bool                                        `pulumi:"forceRefresh"`
+	Healthchecks                  []ServiceComputeHealthcheck                  `pulumi:"healthchecks"`
 	ImageOptimizerDefaultSettings *ServiceComputeImageOptimizerDefaultSettings `pulumi:"imageOptimizerDefaultSettings"`
 	// Used internally by the provider to temporarily indicate if the service is being imported, and is reset to false once the import is finished
 	Imported                *bool                                  `pulumi:"imported"`
@@ -158,6 +157,7 @@ type serviceComputeState struct {
 	LoggingLogentries       []ServiceComputeLoggingLogentry        `pulumi:"loggingLogentries"`
 	LoggingLogglies         []ServiceComputeLoggingLoggly          `pulumi:"loggingLogglies"`
 	LoggingLogshuttles      []ServiceComputeLoggingLogshuttle      `pulumi:"loggingLogshuttles"`
+	LoggingNewrelicotlps    []ServiceComputeLoggingNewrelicotlp    `pulumi:"loggingNewrelicotlps"`
 	LoggingNewrelics        []ServiceComputeLoggingNewrelic        `pulumi:"loggingNewrelics"`
 	LoggingOpenstacks       []ServiceComputeLoggingOpenstack       `pulumi:"loggingOpenstacks"`
 	LoggingPapertrails      []ServiceComputeLoggingPapertrail      `pulumi:"loggingPapertrails"`
@@ -198,6 +198,7 @@ type ServiceComputeState struct {
 	// Services that are active cannot be destroyed. In order to destroy the Service, set `forceDestroy` to `true`. Default `false`
 	ForceDestroy                  pulumi.BoolPtrInput
 	ForceRefresh                  pulumi.BoolPtrInput
+	Healthchecks                  ServiceComputeHealthcheckArrayInput
 	ImageOptimizerDefaultSettings ServiceComputeImageOptimizerDefaultSettingsPtrInput
 	// Used internally by the provider to temporarily indicate if the service is being imported, and is reset to false once the import is finished
 	Imported                pulumi.BoolPtrInput
@@ -219,6 +220,7 @@ type ServiceComputeState struct {
 	LoggingLogentries       ServiceComputeLoggingLogentryArrayInput
 	LoggingLogglies         ServiceComputeLoggingLogglyArrayInput
 	LoggingLogshuttles      ServiceComputeLoggingLogshuttleArrayInput
+	LoggingNewrelicotlps    ServiceComputeLoggingNewrelicotlpArrayInput
 	LoggingNewrelics        ServiceComputeLoggingNewrelicArrayInput
 	LoggingOpenstacks       ServiceComputeLoggingOpenstackArrayInput
 	LoggingPapertrails      ServiceComputeLoggingPapertrailArrayInput
@@ -258,6 +260,7 @@ type serviceComputeArgs struct {
 	Domains []ServiceComputeDomain `pulumi:"domains"`
 	// Services that are active cannot be destroyed. In order to destroy the Service, set `forceDestroy` to `true`. Default `false`
 	ForceDestroy                  *bool                                        `pulumi:"forceDestroy"`
+	Healthchecks                  []ServiceComputeHealthcheck                  `pulumi:"healthchecks"`
 	ImageOptimizerDefaultSettings *ServiceComputeImageOptimizerDefaultSettings `pulumi:"imageOptimizerDefaultSettings"`
 	LoggingBigqueries             []ServiceComputeLoggingBigquery              `pulumi:"loggingBigqueries"`
 	LoggingBlobstorages           []ServiceComputeLoggingBlobstorage           `pulumi:"loggingBlobstorages"`
@@ -277,6 +280,7 @@ type serviceComputeArgs struct {
 	LoggingLogentries             []ServiceComputeLoggingLogentry              `pulumi:"loggingLogentries"`
 	LoggingLogglies               []ServiceComputeLoggingLoggly                `pulumi:"loggingLogglies"`
 	LoggingLogshuttles            []ServiceComputeLoggingLogshuttle            `pulumi:"loggingLogshuttles"`
+	LoggingNewrelicotlps          []ServiceComputeLoggingNewrelicotlp          `pulumi:"loggingNewrelicotlps"`
 	LoggingNewrelics              []ServiceComputeLoggingNewrelic              `pulumi:"loggingNewrelics"`
 	LoggingOpenstacks             []ServiceComputeLoggingOpenstack             `pulumi:"loggingOpenstacks"`
 	LoggingPapertrails            []ServiceComputeLoggingPapertrail            `pulumi:"loggingPapertrails"`
@@ -311,6 +315,7 @@ type ServiceComputeArgs struct {
 	Domains ServiceComputeDomainArrayInput
 	// Services that are active cannot be destroyed. In order to destroy the Service, set `forceDestroy` to `true`. Default `false`
 	ForceDestroy                  pulumi.BoolPtrInput
+	Healthchecks                  ServiceComputeHealthcheckArrayInput
 	ImageOptimizerDefaultSettings ServiceComputeImageOptimizerDefaultSettingsPtrInput
 	LoggingBigqueries             ServiceComputeLoggingBigqueryArrayInput
 	LoggingBlobstorages           ServiceComputeLoggingBlobstorageArrayInput
@@ -330,6 +335,7 @@ type ServiceComputeArgs struct {
 	LoggingLogentries             ServiceComputeLoggingLogentryArrayInput
 	LoggingLogglies               ServiceComputeLoggingLogglyArrayInput
 	LoggingLogshuttles            ServiceComputeLoggingLogshuttleArrayInput
+	LoggingNewrelicotlps          ServiceComputeLoggingNewrelicotlpArrayInput
 	LoggingNewrelics              ServiceComputeLoggingNewrelicArrayInput
 	LoggingOpenstacks             ServiceComputeLoggingOpenstackArrayInput
 	LoggingPapertrails            ServiceComputeLoggingPapertrailArrayInput
@@ -481,6 +487,10 @@ func (o ServiceComputeOutput) ForceRefresh() pulumi.BoolOutput {
 	return o.ApplyT(func(v *ServiceCompute) pulumi.BoolOutput { return v.ForceRefresh }).(pulumi.BoolOutput)
 }
 
+func (o ServiceComputeOutput) Healthchecks() ServiceComputeHealthcheckArrayOutput {
+	return o.ApplyT(func(v *ServiceCompute) ServiceComputeHealthcheckArrayOutput { return v.Healthchecks }).(ServiceComputeHealthcheckArrayOutput)
+}
+
 func (o ServiceComputeOutput) ImageOptimizerDefaultSettings() ServiceComputeImageOptimizerDefaultSettingsPtrOutput {
 	return o.ApplyT(func(v *ServiceCompute) ServiceComputeImageOptimizerDefaultSettingsPtrOutput {
 		return v.ImageOptimizerDefaultSettings
@@ -564,6 +574,10 @@ func (o ServiceComputeOutput) LoggingLogglies() ServiceComputeLoggingLogglyArray
 
 func (o ServiceComputeOutput) LoggingLogshuttles() ServiceComputeLoggingLogshuttleArrayOutput {
 	return o.ApplyT(func(v *ServiceCompute) ServiceComputeLoggingLogshuttleArrayOutput { return v.LoggingLogshuttles }).(ServiceComputeLoggingLogshuttleArrayOutput)
+}
+
+func (o ServiceComputeOutput) LoggingNewrelicotlps() ServiceComputeLoggingNewrelicotlpArrayOutput {
+	return o.ApplyT(func(v *ServiceCompute) ServiceComputeLoggingNewrelicotlpArrayOutput { return v.LoggingNewrelicotlps }).(ServiceComputeLoggingNewrelicotlpArrayOutput)
 }
 
 func (o ServiceComputeOutput) LoggingNewrelics() ServiceComputeLoggingNewrelicArrayOutput {

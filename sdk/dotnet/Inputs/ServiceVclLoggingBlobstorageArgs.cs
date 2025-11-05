@@ -37,7 +37,7 @@ namespace Pulumi.Fastly.Inputs
         public Input<int>? FileMaxBytes { get; set; }
 
         /// <summary>
-        /// Apache-style string or VCL variables to use for log formatting (default: `%h %l %u %t "%r" %&gt;s %b`)
+        /// Apache-style string or VCL variables to use for log formatting.
         /// </summary>
         [Input("format")]
         public Input<string>? Format { get; set; }

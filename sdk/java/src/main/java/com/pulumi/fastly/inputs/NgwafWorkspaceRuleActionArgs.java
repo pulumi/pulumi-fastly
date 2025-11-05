@@ -6,6 +6,7 @@ package com.pulumi.fastly.inputs;
 import com.pulumi.core.Output;
 import com.pulumi.core.annotations.Import;
 import com.pulumi.exceptions.MissingRequiredPropertyException;
+import java.lang.Boolean;
 import java.lang.Integer;
 import java.lang.String;
 import java.util.Objects;
@@ -16,6 +17,36 @@ import javax.annotation.Nullable;
 public final class NgwafWorkspaceRuleActionArgs extends com.pulumi.resources.ResourceArgs {
 
     public static final NgwafWorkspaceRuleActionArgs Empty = new NgwafWorkspaceRuleActionArgs();
+
+    /**
+     * Specifies if interaction is allowed (used when `type = browserChallenge`).
+     * 
+     */
+    @Import(name="allowInteractive")
+    private @Nullable Output<Boolean> allowInteractive;
+
+    /**
+     * @return Specifies if interaction is allowed (used when `type = browserChallenge`).
+     * 
+     */
+    public Optional<Output<Boolean>> allowInteractive() {
+        return Optional.ofNullable(this.allowInteractive);
+    }
+
+    /**
+     * specifies the type of deception (used when `type = deception`).
+     * 
+     */
+    @Import(name="deceptionType")
+    private @Nullable Output<String> deceptionType;
+
+    /**
+     * @return specifies the type of deception (used when `type = deception`).
+     * 
+     */
+    public Optional<Output<String>> deceptionType() {
+        return Optional.ofNullable(this.deceptionType);
+    }
 
     /**
      * Redirect target (used when `type = redirect`).
@@ -63,14 +94,14 @@ public final class NgwafWorkspaceRuleActionArgs extends com.pulumi.resources.Res
     }
 
     /**
-     * The action type, e.g. `block`, `redirect`, `excludeSignal`.
+     * The action type. One of: `addSignal`, `allow`, `block`, `browserChallenge`, `dynamicChallenge`, `excludeSignal`, `verifyToken` or for rate limit rule valid values: `logRequest`, `blockSignal`, `browserChallenge`, `verifyToken`
      * 
      */
     @Import(name="type", required=true)
     private Output<String> type;
 
     /**
-     * @return The action type, e.g. `block`, `redirect`, `excludeSignal`.
+     * @return The action type. One of: `addSignal`, `allow`, `block`, `browserChallenge`, `dynamicChallenge`, `excludeSignal`, `verifyToken` or for rate limit rule valid values: `logRequest`, `blockSignal`, `browserChallenge`, `verifyToken`
      * 
      */
     public Output<String> type() {
@@ -80,6 +111,8 @@ public final class NgwafWorkspaceRuleActionArgs extends com.pulumi.resources.Res
     private NgwafWorkspaceRuleActionArgs() {}
 
     private NgwafWorkspaceRuleActionArgs(NgwafWorkspaceRuleActionArgs $) {
+        this.allowInteractive = $.allowInteractive;
+        this.deceptionType = $.deceptionType;
         this.redirectUrl = $.redirectUrl;
         this.responseCode = $.responseCode;
         this.signal = $.signal;
@@ -102,6 +135,48 @@ public final class NgwafWorkspaceRuleActionArgs extends com.pulumi.resources.Res
 
         public Builder(NgwafWorkspaceRuleActionArgs defaults) {
             $ = new NgwafWorkspaceRuleActionArgs(Objects.requireNonNull(defaults));
+        }
+
+        /**
+         * @param allowInteractive Specifies if interaction is allowed (used when `type = browserChallenge`).
+         * 
+         * @return builder
+         * 
+         */
+        public Builder allowInteractive(@Nullable Output<Boolean> allowInteractive) {
+            $.allowInteractive = allowInteractive;
+            return this;
+        }
+
+        /**
+         * @param allowInteractive Specifies if interaction is allowed (used when `type = browserChallenge`).
+         * 
+         * @return builder
+         * 
+         */
+        public Builder allowInteractive(Boolean allowInteractive) {
+            return allowInteractive(Output.of(allowInteractive));
+        }
+
+        /**
+         * @param deceptionType specifies the type of deception (used when `type = deception`).
+         * 
+         * @return builder
+         * 
+         */
+        public Builder deceptionType(@Nullable Output<String> deceptionType) {
+            $.deceptionType = deceptionType;
+            return this;
+        }
+
+        /**
+         * @param deceptionType specifies the type of deception (used when `type = deception`).
+         * 
+         * @return builder
+         * 
+         */
+        public Builder deceptionType(String deceptionType) {
+            return deceptionType(Output.of(deceptionType));
         }
 
         /**
@@ -168,7 +243,7 @@ public final class NgwafWorkspaceRuleActionArgs extends com.pulumi.resources.Res
         }
 
         /**
-         * @param type The action type, e.g. `block`, `redirect`, `excludeSignal`.
+         * @param type The action type. One of: `addSignal`, `allow`, `block`, `browserChallenge`, `dynamicChallenge`, `excludeSignal`, `verifyToken` or for rate limit rule valid values: `logRequest`, `blockSignal`, `browserChallenge`, `verifyToken`
          * 
          * @return builder
          * 
@@ -179,7 +254,7 @@ public final class NgwafWorkspaceRuleActionArgs extends com.pulumi.resources.Res
         }
 
         /**
-         * @param type The action type, e.g. `block`, `redirect`, `excludeSignal`.
+         * @param type The action type. One of: `addSignal`, `allow`, `block`, `browserChallenge`, `dynamicChallenge`, `excludeSignal`, `verifyToken` or for rate limit rule valid values: `logRequest`, `blockSignal`, `browserChallenge`, `verifyToken`
          * 
          * @return builder
          * 

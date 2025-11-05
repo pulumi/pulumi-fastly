@@ -31,6 +31,7 @@ import javax.annotation.Nullable;
  * import com.pulumi.core.Output;
  * import com.pulumi.fastly.ServiceVcl;
  * import com.pulumi.fastly.ServiceVclArgs;
+ * import com.pulumi.fastly.inputs.ServiceVclDomainArgs;
  * import com.pulumi.fastly.Integration;
  * import com.pulumi.fastly.IntegrationArgs;
  * import com.pulumi.fastly.Alert;
@@ -51,10 +52,16 @@ import javax.annotation.Nullable;
  *     public static void stack(Context ctx) {
  *         var example = new ServiceVcl("example", ServiceVclArgs.builder()
  *             .name("my_vcl_service")
+ *             .domains(ServiceVclDomainArgs.builder()
+ *                 .name("demo.notexample.com")
+ *                 .comment("demo")
+ *                 .build())
  *             .build());
  * 
  *         var exampleIntegration = new Integration("exampleIntegration", IntegrationArgs.builder()
  *             .name("my_integration")
+ *             .type("a_valid_type")
+ *             .config(Map.of("webhook", "some_webhook"))
  *             .build());
  * 
  *         var exampleAlert = new Alert("exampleAlert", AlertArgs.builder()

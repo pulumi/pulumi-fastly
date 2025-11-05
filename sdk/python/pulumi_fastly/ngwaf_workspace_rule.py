@@ -29,6 +29,7 @@ class NgwafWorkspaceRuleArgs:
                  conditions: Optional[pulumi.Input[Sequence[pulumi.Input['NgwafWorkspaceRuleConditionArgs']]]] = None,
                  group_conditions: Optional[pulumi.Input[Sequence[pulumi.Input['NgwafWorkspaceRuleGroupConditionArgs']]]] = None,
                  group_operator: Optional[pulumi.Input[_builtins.str]] = None,
+                 multival_conditions: Optional[pulumi.Input[Sequence[pulumi.Input['NgwafWorkspaceRuleMultivalConditionArgs']]]] = None,
                  rate_limit: Optional[pulumi.Input['NgwafWorkspaceRuleRateLimitArgs']] = None,
                  request_logging: Optional[pulumi.Input[_builtins.str]] = None):
         """
@@ -41,6 +42,7 @@ class NgwafWorkspaceRuleArgs:
         :param pulumi.Input[Sequence[pulumi.Input['NgwafWorkspaceRuleConditionArgs']]] conditions: Flat list of individual conditions. Each must include `field`, `operator`, and `value`.
         :param pulumi.Input[Sequence[pulumi.Input['NgwafWorkspaceRuleGroupConditionArgs']]] group_conditions: List of grouped conditions with nested logic. Each group must define a `group_operator` and at least one condition.
         :param pulumi.Input[_builtins.str] group_operator: Logical operator to apply to group conditions. Accepted values are `any` and `all`.
+        :param pulumi.Input[Sequence[pulumi.Input['NgwafWorkspaceRuleMultivalConditionArgs']]] multival_conditions: List of multival conditions with nested logic. Each multival list must define a `field, operator, group_operator` and at least one condition.
         :param pulumi.Input['NgwafWorkspaceRuleRateLimitArgs'] rate_limit: Block specifically for rate*limit rules.
         :param pulumi.Input[_builtins.str] request_logging: Logging behavior for matching requests. Accepted values are `sampled` and `none`.
         """
@@ -55,6 +57,8 @@ class NgwafWorkspaceRuleArgs:
             pulumi.set(__self__, "group_conditions", group_conditions)
         if group_operator is not None:
             pulumi.set(__self__, "group_operator", group_operator)
+        if multival_conditions is not None:
+            pulumi.set(__self__, "multival_conditions", multival_conditions)
         if rate_limit is not None:
             pulumi.set(__self__, "rate_limit", rate_limit)
         if request_logging is not None:
@@ -157,6 +161,18 @@ class NgwafWorkspaceRuleArgs:
         pulumi.set(self, "group_operator", value)
 
     @_builtins.property
+    @pulumi.getter(name="multivalConditions")
+    def multival_conditions(self) -> Optional[pulumi.Input[Sequence[pulumi.Input['NgwafWorkspaceRuleMultivalConditionArgs']]]]:
+        """
+        List of multival conditions with nested logic. Each multival list must define a `field, operator, group_operator` and at least one condition.
+        """
+        return pulumi.get(self, "multival_conditions")
+
+    @multival_conditions.setter
+    def multival_conditions(self, value: Optional[pulumi.Input[Sequence[pulumi.Input['NgwafWorkspaceRuleMultivalConditionArgs']]]]):
+        pulumi.set(self, "multival_conditions", value)
+
+    @_builtins.property
     @pulumi.getter(name="rateLimit")
     def rate_limit(self) -> Optional[pulumi.Input['NgwafWorkspaceRuleRateLimitArgs']]:
         """
@@ -190,6 +206,7 @@ class _NgwafWorkspaceRuleState:
                  enabled: Optional[pulumi.Input[_builtins.bool]] = None,
                  group_conditions: Optional[pulumi.Input[Sequence[pulumi.Input['NgwafWorkspaceRuleGroupConditionArgs']]]] = None,
                  group_operator: Optional[pulumi.Input[_builtins.str]] = None,
+                 multival_conditions: Optional[pulumi.Input[Sequence[pulumi.Input['NgwafWorkspaceRuleMultivalConditionArgs']]]] = None,
                  rate_limit: Optional[pulumi.Input['NgwafWorkspaceRuleRateLimitArgs']] = None,
                  request_logging: Optional[pulumi.Input[_builtins.str]] = None,
                  type: Optional[pulumi.Input[_builtins.str]] = None,
@@ -202,6 +219,7 @@ class _NgwafWorkspaceRuleState:
         :param pulumi.Input[_builtins.bool] enabled: Whether the rule is currently enabled.
         :param pulumi.Input[Sequence[pulumi.Input['NgwafWorkspaceRuleGroupConditionArgs']]] group_conditions: List of grouped conditions with nested logic. Each group must define a `group_operator` and at least one condition.
         :param pulumi.Input[_builtins.str] group_operator: Logical operator to apply to group conditions. Accepted values are `any` and `all`.
+        :param pulumi.Input[Sequence[pulumi.Input['NgwafWorkspaceRuleMultivalConditionArgs']]] multival_conditions: List of multival conditions with nested logic. Each multival list must define a `field, operator, group_operator` and at least one condition.
         :param pulumi.Input['NgwafWorkspaceRuleRateLimitArgs'] rate_limit: Block specifically for rate*limit rules.
         :param pulumi.Input[_builtins.str] request_logging: Logging behavior for matching requests. Accepted values are `sampled` and `none`.
         :param pulumi.Input[_builtins.str] type: The type of the rule. Accepted values are `request`, `signal`, `rate_limit`, and `templated_signal`.
@@ -219,6 +237,8 @@ class _NgwafWorkspaceRuleState:
             pulumi.set(__self__, "group_conditions", group_conditions)
         if group_operator is not None:
             pulumi.set(__self__, "group_operator", group_operator)
+        if multival_conditions is not None:
+            pulumi.set(__self__, "multival_conditions", multival_conditions)
         if rate_limit is not None:
             pulumi.set(__self__, "rate_limit", rate_limit)
         if request_logging is not None:
@@ -301,6 +321,18 @@ class _NgwafWorkspaceRuleState:
         pulumi.set(self, "group_operator", value)
 
     @_builtins.property
+    @pulumi.getter(name="multivalConditions")
+    def multival_conditions(self) -> Optional[pulumi.Input[Sequence[pulumi.Input['NgwafWorkspaceRuleMultivalConditionArgs']]]]:
+        """
+        List of multival conditions with nested logic. Each multival list must define a `field, operator, group_operator` and at least one condition.
+        """
+        return pulumi.get(self, "multival_conditions")
+
+    @multival_conditions.setter
+    def multival_conditions(self, value: Optional[pulumi.Input[Sequence[pulumi.Input['NgwafWorkspaceRuleMultivalConditionArgs']]]]):
+        pulumi.set(self, "multival_conditions", value)
+
+    @_builtins.property
     @pulumi.getter(name="rateLimit")
     def rate_limit(self) -> Optional[pulumi.Input['NgwafWorkspaceRuleRateLimitArgs']]:
         """
@@ -361,6 +393,7 @@ class NgwafWorkspaceRule(pulumi.CustomResource):
                  enabled: Optional[pulumi.Input[_builtins.bool]] = None,
                  group_conditions: Optional[pulumi.Input[Sequence[pulumi.Input[Union['NgwafWorkspaceRuleGroupConditionArgs', 'NgwafWorkspaceRuleGroupConditionArgsDict']]]]] = None,
                  group_operator: Optional[pulumi.Input[_builtins.str]] = None,
+                 multival_conditions: Optional[pulumi.Input[Sequence[pulumi.Input[Union['NgwafWorkspaceRuleMultivalConditionArgs', 'NgwafWorkspaceRuleMultivalConditionArgsDict']]]]] = None,
                  rate_limit: Optional[pulumi.Input[Union['NgwafWorkspaceRuleRateLimitArgs', 'NgwafWorkspaceRuleRateLimitArgsDict']]] = None,
                  request_logging: Optional[pulumi.Input[_builtins.str]] = None,
                  type: Optional[pulumi.Input[_builtins.str]] = None,
@@ -392,7 +425,7 @@ class NgwafWorkspaceRule(pulumi.CustomResource):
         example_ngwaf_workspace_rule = fastly.NgwafWorkspaceRule("example",
             workspace_id=example.id,
             type="request",
-            description="example",
+            description="Block requests from specific IP to login path",
             enabled=True,
             request_logging="sampled",
             group_operator="all",
@@ -403,35 +436,85 @@ class NgwafWorkspaceRule(pulumi.CustomResource):
                 {
                     "field": "ip",
                     "operator": "equals",
-                    "value": "127.0.0.1",
+                    "value": "192.0.2.1",
                 },
                 {
                     "field": "path",
                     "operator": "equals",
                     "value": "/login",
                 },
+            ])
+        ```
+
+        Using templated signals:
+
+        ```python
+        import pulumi
+        import pulumi_fastly as fastly
+
+        example = fastly.NgwafWorkspace("example",
+            name="example",
+            description="Test NGWAF Workspace",
+            mode="block",
+            ip_anonymization="hashed",
+            client_ip_headers=[
+                "X-Forwarded-For",
+                "X-Real-IP",
+            ],
+            default_blocking_response_code=429,
+            attack_signal_thresholds={})
+        example_ngwaf_workspace_rule = fastly.NgwafWorkspaceRule("example",
+            workspace_id=example.id,
+            type="request",
+            description="",
+            enabled=True,
+            group_operator="all",
+            conditions=[
                 {
-                    "field": "agent_name",
+                    "field": "method",
                     "operator": "equals",
-                    "value": "host-001",
+                    "value": "POST",
+                },
+                {
+                    "field": "path",
+                    "operator": "equals",
+                    "value": "/login",
                 },
             ],
+            actions=[{
+                "type": "templated_signal",
+                "signal": "LOGINATTEMPT",
+            }])
+        ```
+
+        Using group conditions:
+
+        ```python
+        import pulumi
+        import pulumi_fastly as fastly
+
+        example = fastly.NgwafWorkspace("example",
+            name="example",
+            description="Test NGWAF Workspace",
+            mode="block",
+            ip_anonymization="hashed",
+            client_ip_headers=[
+                "X-Forwarded-For",
+                "X-Real-IP",
+            ],
+            default_blocking_response_code=429,
+            attack_signal_thresholds={})
+        example_ngwaf_workspace_rule = fastly.NgwafWorkspaceRule("example",
+            workspace_id=example.id,
+            type="request",
+            description="Block requests with grouped conditions",
+            enabled=True,
+            request_logging="sampled",
+            group_operator="all",
+            actions=[{
+                "type": "block",
+            }],
             group_conditions=[
-                {
-                    "group_operator": "all",
-                    "conditions": [
-                        {
-                            "field": "country",
-                            "operator": "equals",
-                            "value": "AD",
-                        },
-                        {
-                            "field": "method",
-                            "operator": "equals",
-                            "value": "POST",
-                        },
-                    ],
-                },
                 {
                     "group_operator": "any",
                     "conditions": [
@@ -452,7 +535,119 @@ class NgwafWorkspaceRule(pulumi.CustomResource):
                         },
                     ],
                 },
+                {
+                    "group_operator": "all",
+                    "conditions": [
+                        {
+                            "field": "country",
+                            "operator": "equals",
+                            "value": "AD",
+                        },
+                        {
+                            "field": "method",
+                            "operator": "equals",
+                            "value": "POST",
+                        },
+                    ],
+                },
             ])
+        ```
+
+        Using multival conditions:
+
+        ```python
+        import pulumi
+        import pulumi_fastly as fastly
+
+        example = fastly.NgwafWorkspace("example",
+            name="example",
+            description="Test NGWAF Workspace",
+            mode="block",
+            ip_anonymization="hashed",
+            client_ip_headers=[
+                "X-Forwarded-For",
+                "X-Real-IP",
+            ],
+            default_blocking_response_code=429,
+            attack_signal_thresholds={})
+        example_ngwaf_workspace_rule = fastly.NgwafWorkspaceRule("example",
+            workspace_id=example.id,
+            type="request",
+            description="Block requests with specific header patterns",
+            enabled=True,
+            request_logging="sampled",
+            group_operator="all",
+            actions=[{
+                "type": "block",
+            }],
+            multival_conditions=[{
+                "field": "request_header",
+                "operator": "exists",
+                "group_operator": "any",
+                "conditions": [
+                    {
+                        "field": "name",
+                        "operator": "does_not_equal",
+                        "value": "Header-Sample",
+                    },
+                    {
+                        "field": "name",
+                        "operator": "contains",
+                        "value": "X-API-Key",
+                    },
+                    {
+                        "field": "value_string",
+                        "operator": "equals",
+                        "value": "application/json",
+                    },
+                ],
+            }])
+        ```
+
+        Using rate limits:
+
+        ```python
+        import pulumi
+        import pulumi_fastly as fastly
+
+        example = fastly.NgwafWorkspace("example",
+            name="example",
+            description="Test NGWAF Workspace",
+            mode="block",
+            ip_anonymization="hashed",
+            client_ip_headers=[
+                "X-Forwarded-For",
+                "X-Real-IP",
+            ],
+            default_blocking_response_code=429,
+            attack_signal_thresholds={})
+        demo_signal = fastly.NgwafWorkspaceSignal("demo_signal",
+            workspace_id=example.id,
+            name="demo",
+            description="A description of my signal.")
+        ip_limit = fastly.NgwafWorkspaceRule("ip_limit",
+            workspace_id=example.id,
+            type="rate_limit",
+            description="Rate limit demo rule-updated",
+            enabled=True,
+            conditions=[{
+                "field": "ip",
+                "operator": "equals",
+                "value": "1.2.3.4",
+            }],
+            rate_limit={
+                "signal": "site.demo",
+                "threshold": 100,
+                "interval": 60,
+                "duration": 300,
+                "client_identifiers": [{
+                    "type": "ip",
+                }],
+            },
+            actions=[{
+                "signal": "SUSPECTED-BOT",
+                "type": "block_signal",
+            }])
         ```
 
         ## Import
@@ -471,6 +666,7 @@ class NgwafWorkspaceRule(pulumi.CustomResource):
         :param pulumi.Input[_builtins.bool] enabled: Whether the rule is currently enabled.
         :param pulumi.Input[Sequence[pulumi.Input[Union['NgwafWorkspaceRuleGroupConditionArgs', 'NgwafWorkspaceRuleGroupConditionArgsDict']]]] group_conditions: List of grouped conditions with nested logic. Each group must define a `group_operator` and at least one condition.
         :param pulumi.Input[_builtins.str] group_operator: Logical operator to apply to group conditions. Accepted values are `any` and `all`.
+        :param pulumi.Input[Sequence[pulumi.Input[Union['NgwafWorkspaceRuleMultivalConditionArgs', 'NgwafWorkspaceRuleMultivalConditionArgsDict']]]] multival_conditions: List of multival conditions with nested logic. Each multival list must define a `field, operator, group_operator` and at least one condition.
         :param pulumi.Input[Union['NgwafWorkspaceRuleRateLimitArgs', 'NgwafWorkspaceRuleRateLimitArgsDict']] rate_limit: Block specifically for rate*limit rules.
         :param pulumi.Input[_builtins.str] request_logging: Logging behavior for matching requests. Accepted values are `sampled` and `none`.
         :param pulumi.Input[_builtins.str] type: The type of the rule. Accepted values are `request`, `signal`, `rate_limit`, and `templated_signal`.
@@ -508,7 +704,7 @@ class NgwafWorkspaceRule(pulumi.CustomResource):
         example_ngwaf_workspace_rule = fastly.NgwafWorkspaceRule("example",
             workspace_id=example.id,
             type="request",
-            description="example",
+            description="Block requests from specific IP to login path",
             enabled=True,
             request_logging="sampled",
             group_operator="all",
@@ -519,35 +715,85 @@ class NgwafWorkspaceRule(pulumi.CustomResource):
                 {
                     "field": "ip",
                     "operator": "equals",
-                    "value": "127.0.0.1",
+                    "value": "192.0.2.1",
                 },
                 {
                     "field": "path",
                     "operator": "equals",
                     "value": "/login",
                 },
+            ])
+        ```
+
+        Using templated signals:
+
+        ```python
+        import pulumi
+        import pulumi_fastly as fastly
+
+        example = fastly.NgwafWorkspace("example",
+            name="example",
+            description="Test NGWAF Workspace",
+            mode="block",
+            ip_anonymization="hashed",
+            client_ip_headers=[
+                "X-Forwarded-For",
+                "X-Real-IP",
+            ],
+            default_blocking_response_code=429,
+            attack_signal_thresholds={})
+        example_ngwaf_workspace_rule = fastly.NgwafWorkspaceRule("example",
+            workspace_id=example.id,
+            type="request",
+            description="",
+            enabled=True,
+            group_operator="all",
+            conditions=[
                 {
-                    "field": "agent_name",
+                    "field": "method",
                     "operator": "equals",
-                    "value": "host-001",
+                    "value": "POST",
+                },
+                {
+                    "field": "path",
+                    "operator": "equals",
+                    "value": "/login",
                 },
             ],
+            actions=[{
+                "type": "templated_signal",
+                "signal": "LOGINATTEMPT",
+            }])
+        ```
+
+        Using group conditions:
+
+        ```python
+        import pulumi
+        import pulumi_fastly as fastly
+
+        example = fastly.NgwafWorkspace("example",
+            name="example",
+            description="Test NGWAF Workspace",
+            mode="block",
+            ip_anonymization="hashed",
+            client_ip_headers=[
+                "X-Forwarded-For",
+                "X-Real-IP",
+            ],
+            default_blocking_response_code=429,
+            attack_signal_thresholds={})
+        example_ngwaf_workspace_rule = fastly.NgwafWorkspaceRule("example",
+            workspace_id=example.id,
+            type="request",
+            description="Block requests with grouped conditions",
+            enabled=True,
+            request_logging="sampled",
+            group_operator="all",
+            actions=[{
+                "type": "block",
+            }],
             group_conditions=[
-                {
-                    "group_operator": "all",
-                    "conditions": [
-                        {
-                            "field": "country",
-                            "operator": "equals",
-                            "value": "AD",
-                        },
-                        {
-                            "field": "method",
-                            "operator": "equals",
-                            "value": "POST",
-                        },
-                    ],
-                },
                 {
                     "group_operator": "any",
                     "conditions": [
@@ -568,7 +814,119 @@ class NgwafWorkspaceRule(pulumi.CustomResource):
                         },
                     ],
                 },
+                {
+                    "group_operator": "all",
+                    "conditions": [
+                        {
+                            "field": "country",
+                            "operator": "equals",
+                            "value": "AD",
+                        },
+                        {
+                            "field": "method",
+                            "operator": "equals",
+                            "value": "POST",
+                        },
+                    ],
+                },
             ])
+        ```
+
+        Using multival conditions:
+
+        ```python
+        import pulumi
+        import pulumi_fastly as fastly
+
+        example = fastly.NgwafWorkspace("example",
+            name="example",
+            description="Test NGWAF Workspace",
+            mode="block",
+            ip_anonymization="hashed",
+            client_ip_headers=[
+                "X-Forwarded-For",
+                "X-Real-IP",
+            ],
+            default_blocking_response_code=429,
+            attack_signal_thresholds={})
+        example_ngwaf_workspace_rule = fastly.NgwafWorkspaceRule("example",
+            workspace_id=example.id,
+            type="request",
+            description="Block requests with specific header patterns",
+            enabled=True,
+            request_logging="sampled",
+            group_operator="all",
+            actions=[{
+                "type": "block",
+            }],
+            multival_conditions=[{
+                "field": "request_header",
+                "operator": "exists",
+                "group_operator": "any",
+                "conditions": [
+                    {
+                        "field": "name",
+                        "operator": "does_not_equal",
+                        "value": "Header-Sample",
+                    },
+                    {
+                        "field": "name",
+                        "operator": "contains",
+                        "value": "X-API-Key",
+                    },
+                    {
+                        "field": "value_string",
+                        "operator": "equals",
+                        "value": "application/json",
+                    },
+                ],
+            }])
+        ```
+
+        Using rate limits:
+
+        ```python
+        import pulumi
+        import pulumi_fastly as fastly
+
+        example = fastly.NgwafWorkspace("example",
+            name="example",
+            description="Test NGWAF Workspace",
+            mode="block",
+            ip_anonymization="hashed",
+            client_ip_headers=[
+                "X-Forwarded-For",
+                "X-Real-IP",
+            ],
+            default_blocking_response_code=429,
+            attack_signal_thresholds={})
+        demo_signal = fastly.NgwafWorkspaceSignal("demo_signal",
+            workspace_id=example.id,
+            name="demo",
+            description="A description of my signal.")
+        ip_limit = fastly.NgwafWorkspaceRule("ip_limit",
+            workspace_id=example.id,
+            type="rate_limit",
+            description="Rate limit demo rule-updated",
+            enabled=True,
+            conditions=[{
+                "field": "ip",
+                "operator": "equals",
+                "value": "1.2.3.4",
+            }],
+            rate_limit={
+                "signal": "site.demo",
+                "threshold": 100,
+                "interval": 60,
+                "duration": 300,
+                "client_identifiers": [{
+                    "type": "ip",
+                }],
+            },
+            actions=[{
+                "signal": "SUSPECTED-BOT",
+                "type": "block_signal",
+            }])
         ```
 
         ## Import
@@ -600,6 +958,7 @@ class NgwafWorkspaceRule(pulumi.CustomResource):
                  enabled: Optional[pulumi.Input[_builtins.bool]] = None,
                  group_conditions: Optional[pulumi.Input[Sequence[pulumi.Input[Union['NgwafWorkspaceRuleGroupConditionArgs', 'NgwafWorkspaceRuleGroupConditionArgsDict']]]]] = None,
                  group_operator: Optional[pulumi.Input[_builtins.str]] = None,
+                 multival_conditions: Optional[pulumi.Input[Sequence[pulumi.Input[Union['NgwafWorkspaceRuleMultivalConditionArgs', 'NgwafWorkspaceRuleMultivalConditionArgsDict']]]]] = None,
                  rate_limit: Optional[pulumi.Input[Union['NgwafWorkspaceRuleRateLimitArgs', 'NgwafWorkspaceRuleRateLimitArgsDict']]] = None,
                  request_logging: Optional[pulumi.Input[_builtins.str]] = None,
                  type: Optional[pulumi.Input[_builtins.str]] = None,
@@ -625,6 +984,7 @@ class NgwafWorkspaceRule(pulumi.CustomResource):
             __props__.__dict__["enabled"] = enabled
             __props__.__dict__["group_conditions"] = group_conditions
             __props__.__dict__["group_operator"] = group_operator
+            __props__.__dict__["multival_conditions"] = multival_conditions
             __props__.__dict__["rate_limit"] = rate_limit
             __props__.__dict__["request_logging"] = request_logging
             if type is None and not opts.urn:
@@ -649,6 +1009,7 @@ class NgwafWorkspaceRule(pulumi.CustomResource):
             enabled: Optional[pulumi.Input[_builtins.bool]] = None,
             group_conditions: Optional[pulumi.Input[Sequence[pulumi.Input[Union['NgwafWorkspaceRuleGroupConditionArgs', 'NgwafWorkspaceRuleGroupConditionArgsDict']]]]] = None,
             group_operator: Optional[pulumi.Input[_builtins.str]] = None,
+            multival_conditions: Optional[pulumi.Input[Sequence[pulumi.Input[Union['NgwafWorkspaceRuleMultivalConditionArgs', 'NgwafWorkspaceRuleMultivalConditionArgsDict']]]]] = None,
             rate_limit: Optional[pulumi.Input[Union['NgwafWorkspaceRuleRateLimitArgs', 'NgwafWorkspaceRuleRateLimitArgsDict']]] = None,
             request_logging: Optional[pulumi.Input[_builtins.str]] = None,
             type: Optional[pulumi.Input[_builtins.str]] = None,
@@ -666,6 +1027,7 @@ class NgwafWorkspaceRule(pulumi.CustomResource):
         :param pulumi.Input[_builtins.bool] enabled: Whether the rule is currently enabled.
         :param pulumi.Input[Sequence[pulumi.Input[Union['NgwafWorkspaceRuleGroupConditionArgs', 'NgwafWorkspaceRuleGroupConditionArgsDict']]]] group_conditions: List of grouped conditions with nested logic. Each group must define a `group_operator` and at least one condition.
         :param pulumi.Input[_builtins.str] group_operator: Logical operator to apply to group conditions. Accepted values are `any` and `all`.
+        :param pulumi.Input[Sequence[pulumi.Input[Union['NgwafWorkspaceRuleMultivalConditionArgs', 'NgwafWorkspaceRuleMultivalConditionArgsDict']]]] multival_conditions: List of multival conditions with nested logic. Each multival list must define a `field, operator, group_operator` and at least one condition.
         :param pulumi.Input[Union['NgwafWorkspaceRuleRateLimitArgs', 'NgwafWorkspaceRuleRateLimitArgsDict']] rate_limit: Block specifically for rate*limit rules.
         :param pulumi.Input[_builtins.str] request_logging: Logging behavior for matching requests. Accepted values are `sampled` and `none`.
         :param pulumi.Input[_builtins.str] type: The type of the rule. Accepted values are `request`, `signal`, `rate_limit`, and `templated_signal`.
@@ -681,6 +1043,7 @@ class NgwafWorkspaceRule(pulumi.CustomResource):
         __props__.__dict__["enabled"] = enabled
         __props__.__dict__["group_conditions"] = group_conditions
         __props__.__dict__["group_operator"] = group_operator
+        __props__.__dict__["multival_conditions"] = multival_conditions
         __props__.__dict__["rate_limit"] = rate_limit
         __props__.__dict__["request_logging"] = request_logging
         __props__.__dict__["type"] = type
@@ -734,6 +1097,14 @@ class NgwafWorkspaceRule(pulumi.CustomResource):
         Logical operator to apply to group conditions. Accepted values are `any` and `all`.
         """
         return pulumi.get(self, "group_operator")
+
+    @_builtins.property
+    @pulumi.getter(name="multivalConditions")
+    def multival_conditions(self) -> pulumi.Output[Optional[Sequence['outputs.NgwafWorkspaceRuleMultivalCondition']]]:
+        """
+        List of multival conditions with nested logic. Each multival list must define a `field, operator, group_operator` and at least one condition.
+        """
+        return pulumi.get(self, "multival_conditions")
 
     @_builtins.property
     @pulumi.getter(name="rateLimit")

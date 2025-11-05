@@ -25,11 +25,24 @@ namespace Pulumi.Fastly
     ///     var example = new Fastly.ServiceVcl("example", new()
     ///     {
     ///         Name = "my_vcl_service",
+    ///         Domains = new[]
+    ///         {
+    ///             new Fastly.Inputs.ServiceVclDomainArgs
+    ///             {
+    ///                 Name = "demo.notexample.com",
+    ///                 Comment = "demo",
+    ///             },
+    ///         },
     ///     });
     /// 
     ///     var exampleIntegration = new Fastly.Integration("example", new()
     ///     {
     ///         Name = "my_integration",
+    ///         Type = "a_valid_type",
+    ///         Config = 
+    ///         {
+    ///             { "webhook", "some_webhook" },
+    ///         },
     ///     });
     /// 
     ///     var exampleAlert = new Fastly.Alert("example", new()

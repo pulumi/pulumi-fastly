@@ -19,6 +19,265 @@ import javax.annotation.Nullable;
 /**
  * Provides a Custom Dashboard which can be viewed in the Fastly Control Panel.
  * 
+ * ## Example Usage
+ * 
+ * <pre>
+ * {@code
+ * package generated_program;
+ * 
+ * import com.pulumi.Context;
+ * import com.pulumi.Pulumi;
+ * import com.pulumi.core.Output;
+ * import com.pulumi.fastly.CustomDashboard;
+ * import com.pulumi.fastly.CustomDashboardArgs;
+ * import com.pulumi.fastly.inputs.CustomDashboardDashboardItemArgs;
+ * import com.pulumi.fastly.inputs.CustomDashboardDashboardItemDataSourceArgs;
+ * import com.pulumi.fastly.inputs.CustomDashboardDashboardItemDataSourceConfigArgs;
+ * import com.pulumi.fastly.inputs.CustomDashboardDashboardItemVisualizationArgs;
+ * import com.pulumi.fastly.inputs.CustomDashboardDashboardItemVisualizationConfigArgs;
+ * import java.util.List;
+ * import java.util.ArrayList;
+ * import java.util.Map;
+ * import java.io.File;
+ * import java.nio.file.Files;
+ * import java.nio.file.Paths;
+ * 
+ * public class App {
+ *     public static void main(String[] args) {
+ *         Pulumi.run(App::stack);
+ *     }
+ * 
+ *     public static void stack(Context ctx) {
+ *         var example = new CustomDashboard("example", CustomDashboardArgs.builder()
+ *             .name("Example Custom Dashboard")
+ *             .description("This is an example custom dashboard. A few dashboard items are provided to help you get started.")
+ *             .dashboardItems(            
+ *                 CustomDashboardDashboardItemArgs.builder()
+ *                     .id("example1")
+ *                     .title("Total Requests")
+ *                     .subtitle("Number of requests processed.")
+ *                     .dataSource(CustomDashboardDashboardItemDataSourceArgs.builder()
+ *                         .type("stats.edge")
+ *                         .config(CustomDashboardDashboardItemDataSourceConfigArgs.builder()
+ *                             .metrics("requests")
+ *                             .build())
+ *                         .build())
+ *                     .visualization(CustomDashboardDashboardItemVisualizationArgs.builder()
+ *                         .type("chart")
+ *                         .config(CustomDashboardDashboardItemVisualizationConfigArgs.builder()
+ *                             .format("requests")
+ *                             .plotType("line")
+ *                             .build())
+ *                         .build())
+ *                     .build(),
+ *                 CustomDashboardDashboardItemArgs.builder()
+ *                     .id("example2")
+ *                     .title("Hit Ratio")
+ *                     .subtitle("Ratio of requests served from Fastly.")
+ *                     .dataSource(CustomDashboardDashboardItemDataSourceArgs.builder()
+ *                         .type("stats.edge")
+ *                         .config(CustomDashboardDashboardItemDataSourceConfigArgs.builder()
+ *                             .metrics("hit_ratio")
+ *                             .build())
+ *                         .build())
+ *                     .visualization(CustomDashboardDashboardItemVisualizationArgs.builder()
+ *                         .type("chart")
+ *                         .config(CustomDashboardDashboardItemVisualizationConfigArgs.builder()
+ *                             .format("percent")
+ *                             .plotType("donut")
+ *                             .calculationMethod("latest")
+ *                             .build())
+ *                         .build())
+ *                     .build(),
+ *                 CustomDashboardDashboardItemArgs.builder()
+ *                     .id("example3")
+ *                     .title("Client & Server Errors")
+ *                     .subtitle("Total errors served from the client or server.")
+ *                     .dataSource(CustomDashboardDashboardItemDataSourceArgs.builder()
+ *                         .type("stats.edge")
+ *                         .config(CustomDashboardDashboardItemDataSourceConfigArgs.builder()
+ *                             .metrics(                            
+ *                                 "status_4xx",
+ *                                 "status_5xx")
+ *                             .build())
+ *                         .build())
+ *                     .visualization(CustomDashboardDashboardItemVisualizationArgs.builder()
+ *                         .type("chart")
+ *                         .config(CustomDashboardDashboardItemVisualizationConfigArgs.builder()
+ *                             .format("requests")
+ *                             .plotType("bar")
+ *                             .build())
+ *                         .build())
+ *                     .build(),
+ *                 CustomDashboardDashboardItemArgs.builder()
+ *                     .id("example4")
+ *                     .title("Domain Requests")
+ *                     .subtitle("Requests by Domain.")
+ *                     .span(6)
+ *                     .dataSource(CustomDashboardDashboardItemDataSourceArgs.builder()
+ *                         .type("stats.domain")
+ *                         .config(CustomDashboardDashboardItemDataSourceConfigArgs.builder()
+ *                             .metrics("requests")
+ *                             .build())
+ *                         .build())
+ *                     .visualization(CustomDashboardDashboardItemVisualizationArgs.builder()
+ *                         .type("chart")
+ *                         .config(CustomDashboardDashboardItemVisualizationConfigArgs.builder()
+ *                             .format("requests")
+ *                             .plotType("line")
+ *                             .build())
+ *                         .build())
+ *                     .build(),
+ *                 CustomDashboardDashboardItemArgs.builder()
+ *                     .id("example5")
+ *                     .title("Origin Responses")
+ *                     .subtitle("Responses by Origin.")
+ *                     .span(6)
+ *                     .dataSource(CustomDashboardDashboardItemDataSourceArgs.builder()
+ *                         .type("stats.origin")
+ *                         .config(CustomDashboardDashboardItemDataSourceConfigArgs.builder()
+ *                             .metrics("all_responses")
+ *                             .build())
+ *                         .build())
+ *                     .visualization(CustomDashboardDashboardItemVisualizationArgs.builder()
+ *                         .type("chart")
+ *                         .config(CustomDashboardDashboardItemVisualizationConfigArgs.builder()
+ *                             .plotType("line")
+ *                             .build())
+ *                         .build())
+ *                     .build(),
+ *                 CustomDashboardDashboardItemArgs.builder()
+ *                     .id("example6")
+ *                     .title("Total Bandwidth")
+ *                     .subtitle("Total bandwidth served.")
+ *                     .span(12)
+ *                     .dataSource(CustomDashboardDashboardItemDataSourceArgs.builder()
+ *                         .type("stats.edge")
+ *                         .config(CustomDashboardDashboardItemDataSourceConfigArgs.builder()
+ *                             .metrics("bandwidth")
+ *                             .build())
+ *                         .build())
+ *                     .visualization(CustomDashboardDashboardItemVisualizationArgs.builder()
+ *                         .type("chart")
+ *                         .config(CustomDashboardDashboardItemVisualizationConfigArgs.builder()
+ *                             .format("bytes")
+ *                             .plotType("bar")
+ *                             .build())
+ *                         .build())
+ *                     .build(),
+ *                 CustomDashboardDashboardItemArgs.builder()
+ *                     .id("example7")
+ *                     .title("Products - Image Optimizer & Real-Time Log Streaming")
+ *                     .subtitle("Total IO images served and log statements sent.")
+ *                     .span(8)
+ *                     .dataSource(CustomDashboardDashboardItemDataSourceArgs.builder()
+ *                         .type("stats.edge")
+ *                         .config(CustomDashboardDashboardItemDataSourceConfigArgs.builder()
+ *                             .metrics(                            
+ *                                 "imgopto",
+ *                                 "log")
+ *                             .build())
+ *                         .build())
+ *                     .visualization(CustomDashboardDashboardItemVisualizationArgs.builder()
+ *                         .type("chart")
+ *                         .config(CustomDashboardDashboardItemVisualizationConfigArgs.builder()
+ *                             .plotType("line")
+ *                             .build())
+ *                         .build())
+ *                     .build(),
+ *                 CustomDashboardDashboardItemArgs.builder()
+ *                     .id("example8")
+ *                     .title("Transport Protocols & Security")
+ *                     .subtitle("HTTP Protocols & TLS.")
+ *                     .dataSource(CustomDashboardDashboardItemDataSourceArgs.builder()
+ *                         .type("stats.edge")
+ *                         .config(CustomDashboardDashboardItemDataSourceConfigArgs.builder()
+ *                             .metrics(                            
+ *                                 "http1",
+ *                                 "http2",
+ *                                 "http3",
+ *                                 "tls_v10",
+ *                                 "tls_v11",
+ *                                 "tls_v12",
+ *                                 "tls_v13")
+ *                             .build())
+ *                         .build())
+ *                     .visualization(CustomDashboardDashboardItemVisualizationArgs.builder()
+ *                         .type("chart")
+ *                         .config(CustomDashboardDashboardItemVisualizationConfigArgs.builder()
+ *                             .format("requests")
+ *                             .plotType("line")
+ *                             .build())
+ *                         .build())
+ *                     .build(),
+ *                 CustomDashboardDashboardItemArgs.builder()
+ *                     .id("example9")
+ *                     .title("Origin Miss Latency")
+ *                     .subtitle("Miss latency times for your origins.")
+ *                     .span(12)
+ *                     .dataSource(CustomDashboardDashboardItemDataSourceArgs.builder()
+ *                         .type("stats.edge")
+ *                         .config(CustomDashboardDashboardItemDataSourceConfigArgs.builder()
+ *                             .metrics("origin_latency")
+ *                             .build())
+ *                         .build())
+ *                     .visualization(CustomDashboardDashboardItemVisualizationArgs.builder()
+ *                         .type("chart")
+ *                         .config(CustomDashboardDashboardItemVisualizationConfigArgs.builder()
+ *                             .format("milliseconds")
+ *                             .plotType("line")
+ *                             .build())
+ *                         .build())
+ *                     .build(),
+ *                 CustomDashboardDashboardItemArgs.builder()
+ *                     .id("example10")
+ *                     .title("DDoS - Request Flood Attempts")
+ *                     .subtitle("Number of connections the limit-streams action was applied.")
+ *                     .span(6)
+ *                     .dataSource(CustomDashboardDashboardItemDataSourceArgs.builder()
+ *                         .type("stats.edge")
+ *                         .config(CustomDashboardDashboardItemDataSourceConfigArgs.builder()
+ *                             .metrics(                            
+ *                                 "ddos_action_limit_streams_connections",
+ *                                 "ddos_action_limit_streams_requests")
+ *                             .build())
+ *                         .build())
+ *                     .visualization(CustomDashboardDashboardItemVisualizationArgs.builder()
+ *                         .type("chart")
+ *                         .config(CustomDashboardDashboardItemVisualizationConfigArgs.builder()
+ *                             .format("requests")
+ *                             .plotType("line")
+ *                             .build())
+ *                         .build())
+ *                     .build(),
+ *                 CustomDashboardDashboardItemArgs.builder()
+ *                     .id("example11")
+ *                     .title("DDoS - Malicious Bot Attack")
+ *                     .subtitle("Number of times the blackhole action was taken.")
+ *                     .span(6)
+ *                     .dataSource(CustomDashboardDashboardItemDataSourceArgs.builder()
+ *                         .type("stats.edge")
+ *                         .config(CustomDashboardDashboardItemDataSourceConfigArgs.builder()
+ *                             .metrics(                            
+ *                                 "ddos_action_close",
+ *                                 "ddos_action_blackhole")
+ *                             .build())
+ *                         .build())
+ *                     .visualization(CustomDashboardDashboardItemVisualizationArgs.builder()
+ *                         .type("chart")
+ *                         .config(CustomDashboardDashboardItemVisualizationConfigArgs.builder()
+ *                             .format("number")
+ *                             .plotType("line")
+ *                             .build())
+ *                         .build())
+ *                     .build())
+ *             .build());
+ * 
+ *     }
+ * }
+ * }
+ * </pre>
+ * 
  * ## Import
  * 
  * Fastly Custom Dashboards can be imported using their ID, e.g.

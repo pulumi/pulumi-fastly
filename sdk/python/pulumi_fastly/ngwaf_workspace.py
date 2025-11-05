@@ -26,6 +26,7 @@ class NgwafWorkspaceArgs:
                  mode: pulumi.Input[_builtins.str],
                  client_ip_headers: Optional[pulumi.Input[Sequence[pulumi.Input[_builtins.str]]]] = None,
                  default_blocking_response_code: Optional[pulumi.Input[_builtins.int]] = None,
+                 default_redirect_url: Optional[pulumi.Input[_builtins.str]] = None,
                  ip_anonymization: Optional[pulumi.Input[_builtins.str]] = None,
                  name: Optional[pulumi.Input[_builtins.str]] = None):
         """
@@ -35,6 +36,7 @@ class NgwafWorkspaceArgs:
         :param pulumi.Input[_builtins.str] mode: The operation mode of the workspace. Accepted values are `off`, `block`, and `log`.
         :param pulumi.Input[Sequence[pulumi.Input[_builtins.str]]] client_ip_headers: Specifies the request headers containing the client IP address. Maximum of 10 header names.
         :param pulumi.Input[_builtins.int] default_blocking_response_code: The status code returned when a request is blocked. This configuration is applied at the workspace but can be overwritten in rules. Accepted values are [`301`, `302`, `400..599`]. Default value `406`.
+        :param pulumi.Input[_builtins.str] default_redirect_url: The redirect URL used if default*blocking*response_code is `301` or `302`.
         :param pulumi.Input[_builtins.str] ip_anonymization: Agents will anonymize IP addresses according to the option selected. Accepted value is `hashed`.
         :param pulumi.Input[_builtins.str] name: The display name of the workspace.
         """
@@ -45,6 +47,8 @@ class NgwafWorkspaceArgs:
             pulumi.set(__self__, "client_ip_headers", client_ip_headers)
         if default_blocking_response_code is not None:
             pulumi.set(__self__, "default_blocking_response_code", default_blocking_response_code)
+        if default_redirect_url is not None:
+            pulumi.set(__self__, "default_redirect_url", default_redirect_url)
         if ip_anonymization is not None:
             pulumi.set(__self__, "ip_anonymization", ip_anonymization)
         if name is not None:
@@ -111,6 +115,18 @@ class NgwafWorkspaceArgs:
         pulumi.set(self, "default_blocking_response_code", value)
 
     @_builtins.property
+    @pulumi.getter(name="defaultRedirectUrl")
+    def default_redirect_url(self) -> Optional[pulumi.Input[_builtins.str]]:
+        """
+        The redirect URL used if default*blocking*response_code is `301` or `302`.
+        """
+        return pulumi.get(self, "default_redirect_url")
+
+    @default_redirect_url.setter
+    def default_redirect_url(self, value: Optional[pulumi.Input[_builtins.str]]):
+        pulumi.set(self, "default_redirect_url", value)
+
+    @_builtins.property
     @pulumi.getter(name="ipAnonymization")
     def ip_anonymization(self) -> Optional[pulumi.Input[_builtins.str]]:
         """
@@ -141,6 +157,7 @@ class _NgwafWorkspaceState:
                  attack_signal_thresholds: Optional[pulumi.Input['NgwafWorkspaceAttackSignalThresholdsArgs']] = None,
                  client_ip_headers: Optional[pulumi.Input[Sequence[pulumi.Input[_builtins.str]]]] = None,
                  default_blocking_response_code: Optional[pulumi.Input[_builtins.int]] = None,
+                 default_redirect_url: Optional[pulumi.Input[_builtins.str]] = None,
                  description: Optional[pulumi.Input[_builtins.str]] = None,
                  ip_anonymization: Optional[pulumi.Input[_builtins.str]] = None,
                  mode: Optional[pulumi.Input[_builtins.str]] = None,
@@ -150,6 +167,7 @@ class _NgwafWorkspaceState:
         :param pulumi.Input['NgwafWorkspaceAttackSignalThresholdsArgs'] attack_signal_thresholds: Attack threshold parameters for system site alerts. Each threshold value is the number of attack signals per IP address that must be detected during the interval before the related IP address is flagged. If no values are set then the default value for each field will be applied
         :param pulumi.Input[Sequence[pulumi.Input[_builtins.str]]] client_ip_headers: Specifies the request headers containing the client IP address. Maximum of 10 header names.
         :param pulumi.Input[_builtins.int] default_blocking_response_code: The status code returned when a request is blocked. This configuration is applied at the workspace but can be overwritten in rules. Accepted values are [`301`, `302`, `400..599`]. Default value `406`.
+        :param pulumi.Input[_builtins.str] default_redirect_url: The redirect URL used if default*blocking*response_code is `301` or `302`.
         :param pulumi.Input[_builtins.str] description: The description of the workspace
         :param pulumi.Input[_builtins.str] ip_anonymization: Agents will anonymize IP addresses according to the option selected. Accepted value is `hashed`.
         :param pulumi.Input[_builtins.str] mode: The operation mode of the workspace. Accepted values are `off`, `block`, and `log`.
@@ -161,6 +179,8 @@ class _NgwafWorkspaceState:
             pulumi.set(__self__, "client_ip_headers", client_ip_headers)
         if default_blocking_response_code is not None:
             pulumi.set(__self__, "default_blocking_response_code", default_blocking_response_code)
+        if default_redirect_url is not None:
+            pulumi.set(__self__, "default_redirect_url", default_redirect_url)
         if description is not None:
             pulumi.set(__self__, "description", description)
         if ip_anonymization is not None:
@@ -205,6 +225,18 @@ class _NgwafWorkspaceState:
     @default_blocking_response_code.setter
     def default_blocking_response_code(self, value: Optional[pulumi.Input[_builtins.int]]):
         pulumi.set(self, "default_blocking_response_code", value)
+
+    @_builtins.property
+    @pulumi.getter(name="defaultRedirectUrl")
+    def default_redirect_url(self) -> Optional[pulumi.Input[_builtins.str]]:
+        """
+        The redirect URL used if default*blocking*response_code is `301` or `302`.
+        """
+        return pulumi.get(self, "default_redirect_url")
+
+    @default_redirect_url.setter
+    def default_redirect_url(self, value: Optional[pulumi.Input[_builtins.str]]):
+        pulumi.set(self, "default_redirect_url", value)
 
     @_builtins.property
     @pulumi.getter
@@ -264,6 +296,7 @@ class NgwafWorkspace(pulumi.CustomResource):
                  attack_signal_thresholds: Optional[pulumi.Input[Union['NgwafWorkspaceAttackSignalThresholdsArgs', 'NgwafWorkspaceAttackSignalThresholdsArgsDict']]] = None,
                  client_ip_headers: Optional[pulumi.Input[Sequence[pulumi.Input[_builtins.str]]]] = None,
                  default_blocking_response_code: Optional[pulumi.Input[_builtins.int]] = None,
+                 default_redirect_url: Optional[pulumi.Input[_builtins.str]] = None,
                  description: Optional[pulumi.Input[_builtins.str]] = None,
                  ip_anonymization: Optional[pulumi.Input[_builtins.str]] = None,
                  mode: Optional[pulumi.Input[_builtins.str]] = None,
@@ -278,6 +311,22 @@ class NgwafWorkspace(pulumi.CustomResource):
 
         Basic usage:
 
+        ```python
+        import pulumi
+        import pulumi_fastly as fastly
+
+        demo = fastly.NgwafWorkspace("demo",
+            name="Demo",
+            description="Testing",
+            mode="block",
+            attack_signal_thresholds={
+                "one_minute": 100,
+                "ten_minutes": 500,
+                "one_hour": 1000,
+                "immediate": True,
+            })
+        ```
+
         ## Import
 
         Fastly Next-Gen WAF Workspaces can be imported using their workspace ID, e.g.
@@ -291,6 +340,7 @@ class NgwafWorkspace(pulumi.CustomResource):
         :param pulumi.Input[Union['NgwafWorkspaceAttackSignalThresholdsArgs', 'NgwafWorkspaceAttackSignalThresholdsArgsDict']] attack_signal_thresholds: Attack threshold parameters for system site alerts. Each threshold value is the number of attack signals per IP address that must be detected during the interval before the related IP address is flagged. If no values are set then the default value for each field will be applied
         :param pulumi.Input[Sequence[pulumi.Input[_builtins.str]]] client_ip_headers: Specifies the request headers containing the client IP address. Maximum of 10 header names.
         :param pulumi.Input[_builtins.int] default_blocking_response_code: The status code returned when a request is blocked. This configuration is applied at the workspace but can be overwritten in rules. Accepted values are [`301`, `302`, `400..599`]. Default value `406`.
+        :param pulumi.Input[_builtins.str] default_redirect_url: The redirect URL used if default*blocking*response_code is `301` or `302`.
         :param pulumi.Input[_builtins.str] description: The description of the workspace
         :param pulumi.Input[_builtins.str] ip_anonymization: Agents will anonymize IP addresses according to the option selected. Accepted value is `hashed`.
         :param pulumi.Input[_builtins.str] mode: The operation mode of the workspace. Accepted values are `off`, `block`, and `log`.
@@ -310,6 +360,22 @@ class NgwafWorkspace(pulumi.CustomResource):
         ## Example Usage
 
         Basic usage:
+
+        ```python
+        import pulumi
+        import pulumi_fastly as fastly
+
+        demo = fastly.NgwafWorkspace("demo",
+            name="Demo",
+            description="Testing",
+            mode="block",
+            attack_signal_thresholds={
+                "one_minute": 100,
+                "ten_minutes": 500,
+                "one_hour": 1000,
+                "immediate": True,
+            })
+        ```
 
         ## Import
 
@@ -337,6 +403,7 @@ class NgwafWorkspace(pulumi.CustomResource):
                  attack_signal_thresholds: Optional[pulumi.Input[Union['NgwafWorkspaceAttackSignalThresholdsArgs', 'NgwafWorkspaceAttackSignalThresholdsArgsDict']]] = None,
                  client_ip_headers: Optional[pulumi.Input[Sequence[pulumi.Input[_builtins.str]]]] = None,
                  default_blocking_response_code: Optional[pulumi.Input[_builtins.int]] = None,
+                 default_redirect_url: Optional[pulumi.Input[_builtins.str]] = None,
                  description: Optional[pulumi.Input[_builtins.str]] = None,
                  ip_anonymization: Optional[pulumi.Input[_builtins.str]] = None,
                  mode: Optional[pulumi.Input[_builtins.str]] = None,
@@ -355,6 +422,7 @@ class NgwafWorkspace(pulumi.CustomResource):
             __props__.__dict__["attack_signal_thresholds"] = attack_signal_thresholds
             __props__.__dict__["client_ip_headers"] = client_ip_headers
             __props__.__dict__["default_blocking_response_code"] = default_blocking_response_code
+            __props__.__dict__["default_redirect_url"] = default_redirect_url
             if description is None and not opts.urn:
                 raise TypeError("Missing required property 'description'")
             __props__.__dict__["description"] = description
@@ -376,6 +444,7 @@ class NgwafWorkspace(pulumi.CustomResource):
             attack_signal_thresholds: Optional[pulumi.Input[Union['NgwafWorkspaceAttackSignalThresholdsArgs', 'NgwafWorkspaceAttackSignalThresholdsArgsDict']]] = None,
             client_ip_headers: Optional[pulumi.Input[Sequence[pulumi.Input[_builtins.str]]]] = None,
             default_blocking_response_code: Optional[pulumi.Input[_builtins.int]] = None,
+            default_redirect_url: Optional[pulumi.Input[_builtins.str]] = None,
             description: Optional[pulumi.Input[_builtins.str]] = None,
             ip_anonymization: Optional[pulumi.Input[_builtins.str]] = None,
             mode: Optional[pulumi.Input[_builtins.str]] = None,
@@ -390,6 +459,7 @@ class NgwafWorkspace(pulumi.CustomResource):
         :param pulumi.Input[Union['NgwafWorkspaceAttackSignalThresholdsArgs', 'NgwafWorkspaceAttackSignalThresholdsArgsDict']] attack_signal_thresholds: Attack threshold parameters for system site alerts. Each threshold value is the number of attack signals per IP address that must be detected during the interval before the related IP address is flagged. If no values are set then the default value for each field will be applied
         :param pulumi.Input[Sequence[pulumi.Input[_builtins.str]]] client_ip_headers: Specifies the request headers containing the client IP address. Maximum of 10 header names.
         :param pulumi.Input[_builtins.int] default_blocking_response_code: The status code returned when a request is blocked. This configuration is applied at the workspace but can be overwritten in rules. Accepted values are [`301`, `302`, `400..599`]. Default value `406`.
+        :param pulumi.Input[_builtins.str] default_redirect_url: The redirect URL used if default*blocking*response_code is `301` or `302`.
         :param pulumi.Input[_builtins.str] description: The description of the workspace
         :param pulumi.Input[_builtins.str] ip_anonymization: Agents will anonymize IP addresses according to the option selected. Accepted value is `hashed`.
         :param pulumi.Input[_builtins.str] mode: The operation mode of the workspace. Accepted values are `off`, `block`, and `log`.
@@ -402,6 +472,7 @@ class NgwafWorkspace(pulumi.CustomResource):
         __props__.__dict__["attack_signal_thresholds"] = attack_signal_thresholds
         __props__.__dict__["client_ip_headers"] = client_ip_headers
         __props__.__dict__["default_blocking_response_code"] = default_blocking_response_code
+        __props__.__dict__["default_redirect_url"] = default_redirect_url
         __props__.__dict__["description"] = description
         __props__.__dict__["ip_anonymization"] = ip_anonymization
         __props__.__dict__["mode"] = mode
@@ -431,6 +502,14 @@ class NgwafWorkspace(pulumi.CustomResource):
         The status code returned when a request is blocked. This configuration is applied at the workspace but can be overwritten in rules. Accepted values are [`301`, `302`, `400..599`]. Default value `406`.
         """
         return pulumi.get(self, "default_blocking_response_code")
+
+    @_builtins.property
+    @pulumi.getter(name="defaultRedirectUrl")
+    def default_redirect_url(self) -> pulumi.Output[Optional[_builtins.str]]:
+        """
+        The redirect URL used if default*blocking*response_code is `301` or `302`.
+        """
+        return pulumi.get(self, "default_redirect_url")
 
     @_builtins.property
     @pulumi.getter

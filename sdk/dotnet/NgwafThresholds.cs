@@ -67,7 +67,7 @@ namespace Pulumi.Fastly
         /// Duration the action is in place, in seconds. Minimum 1 and maximum 31,556,900.
         /// </summary>
         [Output("duration")]
-        public Output<int> Duration { get; private set; } = null!;
+        public Output<int?> Duration { get; private set; } = null!;
 
         /// <summary>
         /// Whether this threshold is active.
@@ -166,8 +166,8 @@ namespace Pulumi.Fastly
         /// <summary>
         /// Duration the action is in place, in seconds. Minimum 1 and maximum 31,556,900.
         /// </summary>
-        [Input("duration", required: true)]
-        public Input<int> Duration { get; set; } = null!;
+        [Input("duration")]
+        public Input<int>? Duration { get; set; }
 
         /// <summary>
         /// Whether this threshold is active.

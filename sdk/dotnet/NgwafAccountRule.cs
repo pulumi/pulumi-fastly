@@ -127,10 +127,10 @@ namespace Pulumi.Fastly
         public Output<string?> GroupOperator { get; private set; } = null!;
 
         /// <summary>
-        /// Block specifically for rate*limit rules.
+        /// List of multival conditions with nested logic. Each multival list must define a `field, operator, GroupOperator` and at least one condition.
         /// </summary>
-        [Output("rateLimit")]
-        public Output<Outputs.NgwafAccountRuleRateLimit?> RateLimit { get; private set; } = null!;
+        [Output("multivalConditions")]
+        public Output<ImmutableArray<Outputs.NgwafAccountRuleMultivalCondition>> MultivalConditions { get; private set; } = null!;
 
         /// <summary>
         /// Logging behavior for matching requests. Accepted values are `Sampled` and `None`.
@@ -256,11 +256,17 @@ namespace Pulumi.Fastly
         [Input("groupOperator")]
         public Input<string>? GroupOperator { get; set; }
 
+        [Input("multivalConditions")]
+        private InputList<Inputs.NgwafAccountRuleMultivalConditionArgs>? _multivalConditions;
+
         /// <summary>
-        /// Block specifically for rate*limit rules.
+        /// List of multival conditions with nested logic. Each multival list must define a `field, operator, GroupOperator` and at least one condition.
         /// </summary>
-        [Input("rateLimit")]
-        public Input<Inputs.NgwafAccountRuleRateLimitArgs>? RateLimit { get; set; }
+        public InputList<Inputs.NgwafAccountRuleMultivalConditionArgs> MultivalConditions
+        {
+            get => _multivalConditions ?? (_multivalConditions = new InputList<Inputs.NgwafAccountRuleMultivalConditionArgs>());
+            set => _multivalConditions = value;
+        }
 
         /// <summary>
         /// Logging behavior for matching requests. Accepted values are `Sampled` and `None`.
@@ -348,11 +354,17 @@ namespace Pulumi.Fastly
         [Input("groupOperator")]
         public Input<string>? GroupOperator { get; set; }
 
+        [Input("multivalConditions")]
+        private InputList<Inputs.NgwafAccountRuleMultivalConditionGetArgs>? _multivalConditions;
+
         /// <summary>
-        /// Block specifically for rate*limit rules.
+        /// List of multival conditions with nested logic. Each multival list must define a `field, operator, GroupOperator` and at least one condition.
         /// </summary>
-        [Input("rateLimit")]
-        public Input<Inputs.NgwafAccountRuleRateLimitGetArgs>? RateLimit { get; set; }
+        public InputList<Inputs.NgwafAccountRuleMultivalConditionGetArgs> MultivalConditions
+        {
+            get => _multivalConditions ?? (_multivalConditions = new InputList<Inputs.NgwafAccountRuleMultivalConditionGetArgs>());
+            set => _multivalConditions = value;
+        }
 
         /// <summary>
         /// Logging behavior for matching requests. Accepted values are `Sampled` and `None`.

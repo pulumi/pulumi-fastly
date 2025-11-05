@@ -11,6 +11,8 @@ import com.pulumi.deployment.InvokeOutputOptions;
 import com.pulumi.fastly.Utilities;
 import com.pulumi.fastly.inputs.GetDictionariesArgs;
 import com.pulumi.fastly.inputs.GetDictionariesPlainArgs;
+import com.pulumi.fastly.inputs.GetDomainsV1Args;
+import com.pulumi.fastly.inputs.GetDomainsV1PlainArgs;
 import com.pulumi.fastly.inputs.GetNgwafAlertDatadogIntegrationArgs;
 import com.pulumi.fastly.inputs.GetNgwafAlertDatadogIntegrationPlainArgs;
 import com.pulumi.fastly.inputs.GetNgwafAlertJiraIntegrationArgs;
@@ -33,6 +35,12 @@ import com.pulumi.fastly.inputs.GetNgwafThresholdsArgs;
 import com.pulumi.fastly.inputs.GetNgwafThresholdsPlainArgs;
 import com.pulumi.fastly.inputs.GetNgwafVirtualPatchesArgs;
 import com.pulumi.fastly.inputs.GetNgwafVirtualPatchesPlainArgs;
+import com.pulumi.fastly.inputs.GetNgwafWorkspaceListsArgs;
+import com.pulumi.fastly.inputs.GetNgwafWorkspaceListsPlainArgs;
+import com.pulumi.fastly.inputs.GetNgwafWorkspaceRulesArgs;
+import com.pulumi.fastly.inputs.GetNgwafWorkspaceRulesPlainArgs;
+import com.pulumi.fastly.inputs.GetNgwafWorkspaceSignalsArgs;
+import com.pulumi.fastly.inputs.GetNgwafWorkspaceSignalsPlainArgs;
 import com.pulumi.fastly.inputs.GetPackageHashArgs;
 import com.pulumi.fastly.inputs.GetPackageHashPlainArgs;
 import com.pulumi.fastly.inputs.GetTlsActivationArgs;
@@ -53,11 +61,16 @@ import com.pulumi.fastly.inputs.GetTlsSubscriptionArgs;
 import com.pulumi.fastly.inputs.GetTlsSubscriptionPlainArgs;
 import com.pulumi.fastly.inputs.GetVclSnippetsArgs;
 import com.pulumi.fastly.inputs.GetVclSnippetsPlainArgs;
+import com.pulumi.fastly.outputs.GetComputeAclsResult;
 import com.pulumi.fastly.outputs.GetConfigstoresResult;
 import com.pulumi.fastly.outputs.GetDatacentersResult;
 import com.pulumi.fastly.outputs.GetDictionariesResult;
+import com.pulumi.fastly.outputs.GetDomainsV1Result;
 import com.pulumi.fastly.outputs.GetFastlyIpRangesResult;
 import com.pulumi.fastly.outputs.GetKvstoresResult;
+import com.pulumi.fastly.outputs.GetNgwafAccountListsResult;
+import com.pulumi.fastly.outputs.GetNgwafAccountRulesResult;
+import com.pulumi.fastly.outputs.GetNgwafAccountSignalsResult;
 import com.pulumi.fastly.outputs.GetNgwafAlertDatadogIntegrationResult;
 import com.pulumi.fastly.outputs.GetNgwafAlertJiraIntegrationResult;
 import com.pulumi.fastly.outputs.GetNgwafAlertMailingListIntegrationResult;
@@ -69,6 +82,9 @@ import com.pulumi.fastly.outputs.GetNgwafAlertWebhookIntegrationResult;
 import com.pulumi.fastly.outputs.GetNgwafRedactionsResult;
 import com.pulumi.fastly.outputs.GetNgwafThresholdsResult;
 import com.pulumi.fastly.outputs.GetNgwafVirtualPatchesResult;
+import com.pulumi.fastly.outputs.GetNgwafWorkspaceListsResult;
+import com.pulumi.fastly.outputs.GetNgwafWorkspaceRulesResult;
+import com.pulumi.fastly.outputs.GetNgwafWorkspaceSignalsResult;
 import com.pulumi.fastly.outputs.GetNgwafWorkspacesResult;
 import com.pulumi.fastly.outputs.GetPackageHashResult;
 import com.pulumi.fastly.outputs.GetSecretstoresResult;
@@ -91,6 +107,55 @@ import com.pulumi.resources.InvokeArgs;
 import java.util.concurrent.CompletableFuture;
 
 public final class FastlyFunctions {
+    /**
+     * Use this data source to retrieve a list of [Fastly Compute ACLs](https://www.fastly.com/documentation/reference/api/compute-acls/).
+     * 
+     */
+    public static Output<GetComputeAclsResult> getComputeAcls() {
+        return getComputeAcls(InvokeArgs.Empty, InvokeOptions.Empty);
+    }
+    /**
+     * Use this data source to retrieve a list of [Fastly Compute ACLs](https://www.fastly.com/documentation/reference/api/compute-acls/).
+     * 
+     */
+    public static CompletableFuture<GetComputeAclsResult> getComputeAclsPlain() {
+        return getComputeAclsPlain(InvokeArgs.Empty, InvokeOptions.Empty);
+    }
+    /**
+     * Use this data source to retrieve a list of [Fastly Compute ACLs](https://www.fastly.com/documentation/reference/api/compute-acls/).
+     * 
+     */
+    public static Output<GetComputeAclsResult> getComputeAcls(InvokeArgs args) {
+        return getComputeAcls(args, InvokeOptions.Empty);
+    }
+    /**
+     * Use this data source to retrieve a list of [Fastly Compute ACLs](https://www.fastly.com/documentation/reference/api/compute-acls/).
+     * 
+     */
+    public static CompletableFuture<GetComputeAclsResult> getComputeAclsPlain(InvokeArgs args) {
+        return getComputeAclsPlain(args, InvokeOptions.Empty);
+    }
+    /**
+     * Use this data source to retrieve a list of [Fastly Compute ACLs](https://www.fastly.com/documentation/reference/api/compute-acls/).
+     * 
+     */
+    public static Output<GetComputeAclsResult> getComputeAcls(InvokeArgs args, InvokeOptions options) {
+        return Deployment.getInstance().invoke("fastly:index/getComputeAcls:getComputeAcls", TypeShape.of(GetComputeAclsResult.class), args, Utilities.withVersion(options));
+    }
+    /**
+     * Use this data source to retrieve a list of [Fastly Compute ACLs](https://www.fastly.com/documentation/reference/api/compute-acls/).
+     * 
+     */
+    public static Output<GetComputeAclsResult> getComputeAcls(InvokeArgs args, InvokeOutputOptions options) {
+        return Deployment.getInstance().invoke("fastly:index/getComputeAcls:getComputeAcls", TypeShape.of(GetComputeAclsResult.class), args, Utilities.withVersion(options));
+    }
+    /**
+     * Use this data source to retrieve a list of [Fastly Compute ACLs](https://www.fastly.com/documentation/reference/api/compute-acls/).
+     * 
+     */
+    public static CompletableFuture<GetComputeAclsResult> getComputeAclsPlain(InvokeArgs args, InvokeOptions options) {
+        return Deployment.getInstance().invokeAsync("fastly:index/getComputeAcls:getComputeAcls", TypeShape.of(GetComputeAclsResult.class), args, Utilities.withVersion(options));
+    }
     public static Output<GetConfigstoresResult> getConfigstores() {
         return getConfigstores(InvokeArgs.Empty, InvokeOptions.Empty);
     }
@@ -492,6 +557,307 @@ public final class FastlyFunctions {
         return Deployment.getInstance().invokeAsync("fastly:index/getDictionaries:getDictionaries", TypeShape.of(GetDictionariesResult.class), args, Utilities.withVersion(options));
     }
     /**
+     * Use this data source to get information about versionless domains.
+     * 
+     * ## Example Usage
+     * 
+     * <pre>
+     * {@code
+     * package generated_program;
+     * 
+     * import com.pulumi.Context;
+     * import com.pulumi.Pulumi;
+     * import com.pulumi.core.Output;
+     * import com.pulumi.fastly.FastlyFunctions;
+     * import com.pulumi.fastly.inputs.GetDomainsV1Args;
+     * import java.util.List;
+     * import java.util.ArrayList;
+     * import java.util.Map;
+     * import java.io.File;
+     * import java.nio.file.Files;
+     * import java.nio.file.Paths;
+     * 
+     * public class App {
+     *     public static void main(String[] args) {
+     *         Pulumi.run(App::stack);
+     *     }
+     * 
+     *     public static void stack(Context ctx) {
+     *         final var example = FastlyFunctions.getDomainsV1(GetDomainsV1Args.builder()
+     *             .build());
+     * 
+     *         ctx.export("allDomains", example.domains());
+     *         ctx.export("totalDomains", example.total());
+     *     }
+     * }
+     * }
+     * </pre>
+     * 
+     * [1]: https://www.fastly.com/documentation/reference/api/domain-management/domains/
+     * 
+     */
+    public static Output<GetDomainsV1Result> getDomainsV1() {
+        return getDomainsV1(GetDomainsV1Args.Empty, InvokeOptions.Empty);
+    }
+    /**
+     * Use this data source to get information about versionless domains.
+     * 
+     * ## Example Usage
+     * 
+     * <pre>
+     * {@code
+     * package generated_program;
+     * 
+     * import com.pulumi.Context;
+     * import com.pulumi.Pulumi;
+     * import com.pulumi.core.Output;
+     * import com.pulumi.fastly.FastlyFunctions;
+     * import com.pulumi.fastly.inputs.GetDomainsV1Args;
+     * import java.util.List;
+     * import java.util.ArrayList;
+     * import java.util.Map;
+     * import java.io.File;
+     * import java.nio.file.Files;
+     * import java.nio.file.Paths;
+     * 
+     * public class App {
+     *     public static void main(String[] args) {
+     *         Pulumi.run(App::stack);
+     *     }
+     * 
+     *     public static void stack(Context ctx) {
+     *         final var example = FastlyFunctions.getDomainsV1(GetDomainsV1Args.builder()
+     *             .build());
+     * 
+     *         ctx.export("allDomains", example.domains());
+     *         ctx.export("totalDomains", example.total());
+     *     }
+     * }
+     * }
+     * </pre>
+     * 
+     * [1]: https://www.fastly.com/documentation/reference/api/domain-management/domains/
+     * 
+     */
+    public static CompletableFuture<GetDomainsV1Result> getDomainsV1Plain() {
+        return getDomainsV1Plain(GetDomainsV1PlainArgs.Empty, InvokeOptions.Empty);
+    }
+    /**
+     * Use this data source to get information about versionless domains.
+     * 
+     * ## Example Usage
+     * 
+     * <pre>
+     * {@code
+     * package generated_program;
+     * 
+     * import com.pulumi.Context;
+     * import com.pulumi.Pulumi;
+     * import com.pulumi.core.Output;
+     * import com.pulumi.fastly.FastlyFunctions;
+     * import com.pulumi.fastly.inputs.GetDomainsV1Args;
+     * import java.util.List;
+     * import java.util.ArrayList;
+     * import java.util.Map;
+     * import java.io.File;
+     * import java.nio.file.Files;
+     * import java.nio.file.Paths;
+     * 
+     * public class App {
+     *     public static void main(String[] args) {
+     *         Pulumi.run(App::stack);
+     *     }
+     * 
+     *     public static void stack(Context ctx) {
+     *         final var example = FastlyFunctions.getDomainsV1(GetDomainsV1Args.builder()
+     *             .build());
+     * 
+     *         ctx.export("allDomains", example.domains());
+     *         ctx.export("totalDomains", example.total());
+     *     }
+     * }
+     * }
+     * </pre>
+     * 
+     * [1]: https://www.fastly.com/documentation/reference/api/domain-management/domains/
+     * 
+     */
+    public static Output<GetDomainsV1Result> getDomainsV1(GetDomainsV1Args args) {
+        return getDomainsV1(args, InvokeOptions.Empty);
+    }
+    /**
+     * Use this data source to get information about versionless domains.
+     * 
+     * ## Example Usage
+     * 
+     * <pre>
+     * {@code
+     * package generated_program;
+     * 
+     * import com.pulumi.Context;
+     * import com.pulumi.Pulumi;
+     * import com.pulumi.core.Output;
+     * import com.pulumi.fastly.FastlyFunctions;
+     * import com.pulumi.fastly.inputs.GetDomainsV1Args;
+     * import java.util.List;
+     * import java.util.ArrayList;
+     * import java.util.Map;
+     * import java.io.File;
+     * import java.nio.file.Files;
+     * import java.nio.file.Paths;
+     * 
+     * public class App {
+     *     public static void main(String[] args) {
+     *         Pulumi.run(App::stack);
+     *     }
+     * 
+     *     public static void stack(Context ctx) {
+     *         final var example = FastlyFunctions.getDomainsV1(GetDomainsV1Args.builder()
+     *             .build());
+     * 
+     *         ctx.export("allDomains", example.domains());
+     *         ctx.export("totalDomains", example.total());
+     *     }
+     * }
+     * }
+     * </pre>
+     * 
+     * [1]: https://www.fastly.com/documentation/reference/api/domain-management/domains/
+     * 
+     */
+    public static CompletableFuture<GetDomainsV1Result> getDomainsV1Plain(GetDomainsV1PlainArgs args) {
+        return getDomainsV1Plain(args, InvokeOptions.Empty);
+    }
+    /**
+     * Use this data source to get information about versionless domains.
+     * 
+     * ## Example Usage
+     * 
+     * <pre>
+     * {@code
+     * package generated_program;
+     * 
+     * import com.pulumi.Context;
+     * import com.pulumi.Pulumi;
+     * import com.pulumi.core.Output;
+     * import com.pulumi.fastly.FastlyFunctions;
+     * import com.pulumi.fastly.inputs.GetDomainsV1Args;
+     * import java.util.List;
+     * import java.util.ArrayList;
+     * import java.util.Map;
+     * import java.io.File;
+     * import java.nio.file.Files;
+     * import java.nio.file.Paths;
+     * 
+     * public class App {
+     *     public static void main(String[] args) {
+     *         Pulumi.run(App::stack);
+     *     }
+     * 
+     *     public static void stack(Context ctx) {
+     *         final var example = FastlyFunctions.getDomainsV1(GetDomainsV1Args.builder()
+     *             .build());
+     * 
+     *         ctx.export("allDomains", example.domains());
+     *         ctx.export("totalDomains", example.total());
+     *     }
+     * }
+     * }
+     * </pre>
+     * 
+     * [1]: https://www.fastly.com/documentation/reference/api/domain-management/domains/
+     * 
+     */
+    public static Output<GetDomainsV1Result> getDomainsV1(GetDomainsV1Args args, InvokeOptions options) {
+        return Deployment.getInstance().invoke("fastly:index/getDomainsV1:getDomainsV1", TypeShape.of(GetDomainsV1Result.class), args, Utilities.withVersion(options));
+    }
+    /**
+     * Use this data source to get information about versionless domains.
+     * 
+     * ## Example Usage
+     * 
+     * <pre>
+     * {@code
+     * package generated_program;
+     * 
+     * import com.pulumi.Context;
+     * import com.pulumi.Pulumi;
+     * import com.pulumi.core.Output;
+     * import com.pulumi.fastly.FastlyFunctions;
+     * import com.pulumi.fastly.inputs.GetDomainsV1Args;
+     * import java.util.List;
+     * import java.util.ArrayList;
+     * import java.util.Map;
+     * import java.io.File;
+     * import java.nio.file.Files;
+     * import java.nio.file.Paths;
+     * 
+     * public class App {
+     *     public static void main(String[] args) {
+     *         Pulumi.run(App::stack);
+     *     }
+     * 
+     *     public static void stack(Context ctx) {
+     *         final var example = FastlyFunctions.getDomainsV1(GetDomainsV1Args.builder()
+     *             .build());
+     * 
+     *         ctx.export("allDomains", example.domains());
+     *         ctx.export("totalDomains", example.total());
+     *     }
+     * }
+     * }
+     * </pre>
+     * 
+     * [1]: https://www.fastly.com/documentation/reference/api/domain-management/domains/
+     * 
+     */
+    public static Output<GetDomainsV1Result> getDomainsV1(GetDomainsV1Args args, InvokeOutputOptions options) {
+        return Deployment.getInstance().invoke("fastly:index/getDomainsV1:getDomainsV1", TypeShape.of(GetDomainsV1Result.class), args, Utilities.withVersion(options));
+    }
+    /**
+     * Use this data source to get information about versionless domains.
+     * 
+     * ## Example Usage
+     * 
+     * <pre>
+     * {@code
+     * package generated_program;
+     * 
+     * import com.pulumi.Context;
+     * import com.pulumi.Pulumi;
+     * import com.pulumi.core.Output;
+     * import com.pulumi.fastly.FastlyFunctions;
+     * import com.pulumi.fastly.inputs.GetDomainsV1Args;
+     * import java.util.List;
+     * import java.util.ArrayList;
+     * import java.util.Map;
+     * import java.io.File;
+     * import java.nio.file.Files;
+     * import java.nio.file.Paths;
+     * 
+     * public class App {
+     *     public static void main(String[] args) {
+     *         Pulumi.run(App::stack);
+     *     }
+     * 
+     *     public static void stack(Context ctx) {
+     *         final var example = FastlyFunctions.getDomainsV1(GetDomainsV1Args.builder()
+     *             .build());
+     * 
+     *         ctx.export("allDomains", example.domains());
+     *         ctx.export("totalDomains", example.total());
+     *     }
+     * }
+     * }
+     * </pre>
+     * 
+     * [1]: https://www.fastly.com/documentation/reference/api/domain-management/domains/
+     * 
+     */
+    public static CompletableFuture<GetDomainsV1Result> getDomainsV1Plain(GetDomainsV1PlainArgs args, InvokeOptions options) {
+        return Deployment.getInstance().invokeAsync("fastly:index/getDomainsV1:getDomainsV1", TypeShape.of(GetDomainsV1Result.class), args, Utilities.withVersion(options));
+    }
+    /**
      * Use this data source to get the [IP ranges](https://docs.fastly.com/guides/securing-communications/accessing-fastlys-ip-ranges) of Fastly edge nodes.
      * 
      * ## Example Usage
@@ -504,8 +870,8 @@ public final class FastlyFunctions {
      * import com.pulumi.Pulumi;
      * import com.pulumi.core.Output;
      * import com.pulumi.fastly.FastlyFunctions;
-     * import com.pulumi.aws.securityGroup;
-     * import com.pulumi.aws.securityGroupArgs;
+     * import com.pulumi.aws.SecurityGroup;
+     * import com.pulumi.aws.SecurityGroupArgs;
      * import java.util.List;
      * import java.util.ArrayList;
      * import java.util.Map;
@@ -556,8 +922,8 @@ public final class FastlyFunctions {
      * import com.pulumi.Pulumi;
      * import com.pulumi.core.Output;
      * import com.pulumi.fastly.FastlyFunctions;
-     * import com.pulumi.aws.securityGroup;
-     * import com.pulumi.aws.securityGroupArgs;
+     * import com.pulumi.aws.SecurityGroup;
+     * import com.pulumi.aws.SecurityGroupArgs;
      * import java.util.List;
      * import java.util.ArrayList;
      * import java.util.Map;
@@ -608,8 +974,8 @@ public final class FastlyFunctions {
      * import com.pulumi.Pulumi;
      * import com.pulumi.core.Output;
      * import com.pulumi.fastly.FastlyFunctions;
-     * import com.pulumi.aws.securityGroup;
-     * import com.pulumi.aws.securityGroupArgs;
+     * import com.pulumi.aws.SecurityGroup;
+     * import com.pulumi.aws.SecurityGroupArgs;
      * import java.util.List;
      * import java.util.ArrayList;
      * import java.util.Map;
@@ -660,8 +1026,8 @@ public final class FastlyFunctions {
      * import com.pulumi.Pulumi;
      * import com.pulumi.core.Output;
      * import com.pulumi.fastly.FastlyFunctions;
-     * import com.pulumi.aws.securityGroup;
-     * import com.pulumi.aws.securityGroupArgs;
+     * import com.pulumi.aws.SecurityGroup;
+     * import com.pulumi.aws.SecurityGroupArgs;
      * import java.util.List;
      * import java.util.ArrayList;
      * import java.util.Map;
@@ -712,8 +1078,8 @@ public final class FastlyFunctions {
      * import com.pulumi.Pulumi;
      * import com.pulumi.core.Output;
      * import com.pulumi.fastly.FastlyFunctions;
-     * import com.pulumi.aws.securityGroup;
-     * import com.pulumi.aws.securityGroupArgs;
+     * import com.pulumi.aws.SecurityGroup;
+     * import com.pulumi.aws.SecurityGroupArgs;
      * import java.util.List;
      * import java.util.ArrayList;
      * import java.util.Map;
@@ -764,8 +1130,8 @@ public final class FastlyFunctions {
      * import com.pulumi.Pulumi;
      * import com.pulumi.core.Output;
      * import com.pulumi.fastly.FastlyFunctions;
-     * import com.pulumi.aws.securityGroup;
-     * import com.pulumi.aws.securityGroupArgs;
+     * import com.pulumi.aws.SecurityGroup;
+     * import com.pulumi.aws.SecurityGroupArgs;
      * import java.util.List;
      * import java.util.ArrayList;
      * import java.util.Map;
@@ -816,8 +1182,8 @@ public final class FastlyFunctions {
      * import com.pulumi.Pulumi;
      * import com.pulumi.core.Output;
      * import com.pulumi.fastly.FastlyFunctions;
-     * import com.pulumi.aws.securityGroup;
-     * import com.pulumi.aws.securityGroupArgs;
+     * import com.pulumi.aws.SecurityGroup;
+     * import com.pulumi.aws.SecurityGroupArgs;
      * import java.util.List;
      * import java.util.ArrayList;
      * import java.util.Map;
@@ -875,6 +1241,804 @@ public final class FastlyFunctions {
     }
     public static CompletableFuture<GetKvstoresResult> getKvstoresPlain(InvokeArgs args, InvokeOptions options) {
         return Deployment.getInstance().invokeAsync("fastly:index/getKvstores:getKvstores", TypeShape.of(GetKvstoresResult.class), args, Utilities.withVersion(options));
+    }
+    /**
+     * Use this data source to get a Fastly Next-Gen WAF Account List.
+     * 
+     * ## Example Usage
+     * 
+     * <pre>
+     * {@code
+     * package generated_program;
+     * 
+     * import com.pulumi.Context;
+     * import com.pulumi.Pulumi;
+     * import com.pulumi.core.Output;
+     * import com.pulumi.fastly.FastlyFunctions;
+     * import java.util.List;
+     * import java.util.ArrayList;
+     * import java.util.Map;
+     * import java.io.File;
+     * import java.nio.file.Files;
+     * import java.nio.file.Paths;
+     * 
+     * public class App {
+     *     public static void main(String[] args) {
+     *         Pulumi.run(App::stack);
+     *     }
+     * 
+     *     public static void stack(Context ctx) {
+     *         final var accountLists = FastlyFunctions.getNgwafAccountLists(%!v(PANIC=Format method: runtime error: invalid memory address or nil pointer dereference);
+     * 
+     *         ctx.export("fastlyNgwafAccountListsAll", accountLists);
+     *     }
+     * }
+     * }
+     * </pre>
+     * 
+     */
+    public static Output<GetNgwafAccountListsResult> getNgwafAccountLists() {
+        return getNgwafAccountLists(InvokeArgs.Empty, InvokeOptions.Empty);
+    }
+    /**
+     * Use this data source to get a Fastly Next-Gen WAF Account List.
+     * 
+     * ## Example Usage
+     * 
+     * <pre>
+     * {@code
+     * package generated_program;
+     * 
+     * import com.pulumi.Context;
+     * import com.pulumi.Pulumi;
+     * import com.pulumi.core.Output;
+     * import com.pulumi.fastly.FastlyFunctions;
+     * import java.util.List;
+     * import java.util.ArrayList;
+     * import java.util.Map;
+     * import java.io.File;
+     * import java.nio.file.Files;
+     * import java.nio.file.Paths;
+     * 
+     * public class App {
+     *     public static void main(String[] args) {
+     *         Pulumi.run(App::stack);
+     *     }
+     * 
+     *     public static void stack(Context ctx) {
+     *         final var accountLists = FastlyFunctions.getNgwafAccountLists(%!v(PANIC=Format method: runtime error: invalid memory address or nil pointer dereference);
+     * 
+     *         ctx.export("fastlyNgwafAccountListsAll", accountLists);
+     *     }
+     * }
+     * }
+     * </pre>
+     * 
+     */
+    public static CompletableFuture<GetNgwafAccountListsResult> getNgwafAccountListsPlain() {
+        return getNgwafAccountListsPlain(InvokeArgs.Empty, InvokeOptions.Empty);
+    }
+    /**
+     * Use this data source to get a Fastly Next-Gen WAF Account List.
+     * 
+     * ## Example Usage
+     * 
+     * <pre>
+     * {@code
+     * package generated_program;
+     * 
+     * import com.pulumi.Context;
+     * import com.pulumi.Pulumi;
+     * import com.pulumi.core.Output;
+     * import com.pulumi.fastly.FastlyFunctions;
+     * import java.util.List;
+     * import java.util.ArrayList;
+     * import java.util.Map;
+     * import java.io.File;
+     * import java.nio.file.Files;
+     * import java.nio.file.Paths;
+     * 
+     * public class App {
+     *     public static void main(String[] args) {
+     *         Pulumi.run(App::stack);
+     *     }
+     * 
+     *     public static void stack(Context ctx) {
+     *         final var accountLists = FastlyFunctions.getNgwafAccountLists(%!v(PANIC=Format method: runtime error: invalid memory address or nil pointer dereference);
+     * 
+     *         ctx.export("fastlyNgwafAccountListsAll", accountLists);
+     *     }
+     * }
+     * }
+     * </pre>
+     * 
+     */
+    public static Output<GetNgwafAccountListsResult> getNgwafAccountLists(InvokeArgs args) {
+        return getNgwafAccountLists(args, InvokeOptions.Empty);
+    }
+    /**
+     * Use this data source to get a Fastly Next-Gen WAF Account List.
+     * 
+     * ## Example Usage
+     * 
+     * <pre>
+     * {@code
+     * package generated_program;
+     * 
+     * import com.pulumi.Context;
+     * import com.pulumi.Pulumi;
+     * import com.pulumi.core.Output;
+     * import com.pulumi.fastly.FastlyFunctions;
+     * import java.util.List;
+     * import java.util.ArrayList;
+     * import java.util.Map;
+     * import java.io.File;
+     * import java.nio.file.Files;
+     * import java.nio.file.Paths;
+     * 
+     * public class App {
+     *     public static void main(String[] args) {
+     *         Pulumi.run(App::stack);
+     *     }
+     * 
+     *     public static void stack(Context ctx) {
+     *         final var accountLists = FastlyFunctions.getNgwafAccountLists(%!v(PANIC=Format method: runtime error: invalid memory address or nil pointer dereference);
+     * 
+     *         ctx.export("fastlyNgwafAccountListsAll", accountLists);
+     *     }
+     * }
+     * }
+     * </pre>
+     * 
+     */
+    public static CompletableFuture<GetNgwafAccountListsResult> getNgwafAccountListsPlain(InvokeArgs args) {
+        return getNgwafAccountListsPlain(args, InvokeOptions.Empty);
+    }
+    /**
+     * Use this data source to get a Fastly Next-Gen WAF Account List.
+     * 
+     * ## Example Usage
+     * 
+     * <pre>
+     * {@code
+     * package generated_program;
+     * 
+     * import com.pulumi.Context;
+     * import com.pulumi.Pulumi;
+     * import com.pulumi.core.Output;
+     * import com.pulumi.fastly.FastlyFunctions;
+     * import java.util.List;
+     * import java.util.ArrayList;
+     * import java.util.Map;
+     * import java.io.File;
+     * import java.nio.file.Files;
+     * import java.nio.file.Paths;
+     * 
+     * public class App {
+     *     public static void main(String[] args) {
+     *         Pulumi.run(App::stack);
+     *     }
+     * 
+     *     public static void stack(Context ctx) {
+     *         final var accountLists = FastlyFunctions.getNgwafAccountLists(%!v(PANIC=Format method: runtime error: invalid memory address or nil pointer dereference);
+     * 
+     *         ctx.export("fastlyNgwafAccountListsAll", accountLists);
+     *     }
+     * }
+     * }
+     * </pre>
+     * 
+     */
+    public static Output<GetNgwafAccountListsResult> getNgwafAccountLists(InvokeArgs args, InvokeOptions options) {
+        return Deployment.getInstance().invoke("fastly:index/getNgwafAccountLists:getNgwafAccountLists", TypeShape.of(GetNgwafAccountListsResult.class), args, Utilities.withVersion(options));
+    }
+    /**
+     * Use this data source to get a Fastly Next-Gen WAF Account List.
+     * 
+     * ## Example Usage
+     * 
+     * <pre>
+     * {@code
+     * package generated_program;
+     * 
+     * import com.pulumi.Context;
+     * import com.pulumi.Pulumi;
+     * import com.pulumi.core.Output;
+     * import com.pulumi.fastly.FastlyFunctions;
+     * import java.util.List;
+     * import java.util.ArrayList;
+     * import java.util.Map;
+     * import java.io.File;
+     * import java.nio.file.Files;
+     * import java.nio.file.Paths;
+     * 
+     * public class App {
+     *     public static void main(String[] args) {
+     *         Pulumi.run(App::stack);
+     *     }
+     * 
+     *     public static void stack(Context ctx) {
+     *         final var accountLists = FastlyFunctions.getNgwafAccountLists(%!v(PANIC=Format method: runtime error: invalid memory address or nil pointer dereference);
+     * 
+     *         ctx.export("fastlyNgwafAccountListsAll", accountLists);
+     *     }
+     * }
+     * }
+     * </pre>
+     * 
+     */
+    public static Output<GetNgwafAccountListsResult> getNgwafAccountLists(InvokeArgs args, InvokeOutputOptions options) {
+        return Deployment.getInstance().invoke("fastly:index/getNgwafAccountLists:getNgwafAccountLists", TypeShape.of(GetNgwafAccountListsResult.class), args, Utilities.withVersion(options));
+    }
+    /**
+     * Use this data source to get a Fastly Next-Gen WAF Account List.
+     * 
+     * ## Example Usage
+     * 
+     * <pre>
+     * {@code
+     * package generated_program;
+     * 
+     * import com.pulumi.Context;
+     * import com.pulumi.Pulumi;
+     * import com.pulumi.core.Output;
+     * import com.pulumi.fastly.FastlyFunctions;
+     * import java.util.List;
+     * import java.util.ArrayList;
+     * import java.util.Map;
+     * import java.io.File;
+     * import java.nio.file.Files;
+     * import java.nio.file.Paths;
+     * 
+     * public class App {
+     *     public static void main(String[] args) {
+     *         Pulumi.run(App::stack);
+     *     }
+     * 
+     *     public static void stack(Context ctx) {
+     *         final var accountLists = FastlyFunctions.getNgwafAccountLists(%!v(PANIC=Format method: runtime error: invalid memory address or nil pointer dereference);
+     * 
+     *         ctx.export("fastlyNgwafAccountListsAll", accountLists);
+     *     }
+     * }
+     * }
+     * </pre>
+     * 
+     */
+    public static CompletableFuture<GetNgwafAccountListsResult> getNgwafAccountListsPlain(InvokeArgs args, InvokeOptions options) {
+        return Deployment.getInstance().invokeAsync("fastly:index/getNgwafAccountLists:getNgwafAccountLists", TypeShape.of(GetNgwafAccountListsResult.class), args, Utilities.withVersion(options));
+    }
+    /**
+     * Use this data source to get a Fastly Next-Gen WAF Account Rule.
+     * 
+     * ## Example Usage
+     * 
+     * <pre>
+     * {@code
+     * package generated_program;
+     * 
+     * import com.pulumi.Context;
+     * import com.pulumi.Pulumi;
+     * import com.pulumi.core.Output;
+     * import com.pulumi.fastly.FastlyFunctions;
+     * import java.util.List;
+     * import java.util.ArrayList;
+     * import java.util.Map;
+     * import java.io.File;
+     * import java.nio.file.Files;
+     * import java.nio.file.Paths;
+     * 
+     * public class App {
+     *     public static void main(String[] args) {
+     *         Pulumi.run(App::stack);
+     *     }
+     * 
+     *     public static void stack(Context ctx) {
+     *         final var accountRules = FastlyFunctions.getNgwafAccountRules(%!v(PANIC=Format method: runtime error: invalid memory address or nil pointer dereference);
+     * 
+     *         ctx.export("fastlyNgwafAccountRulesAll", accountRules);
+     *     }
+     * }
+     * }
+     * </pre>
+     * 
+     */
+    public static Output<GetNgwafAccountRulesResult> getNgwafAccountRules() {
+        return getNgwafAccountRules(InvokeArgs.Empty, InvokeOptions.Empty);
+    }
+    /**
+     * Use this data source to get a Fastly Next-Gen WAF Account Rule.
+     * 
+     * ## Example Usage
+     * 
+     * <pre>
+     * {@code
+     * package generated_program;
+     * 
+     * import com.pulumi.Context;
+     * import com.pulumi.Pulumi;
+     * import com.pulumi.core.Output;
+     * import com.pulumi.fastly.FastlyFunctions;
+     * import java.util.List;
+     * import java.util.ArrayList;
+     * import java.util.Map;
+     * import java.io.File;
+     * import java.nio.file.Files;
+     * import java.nio.file.Paths;
+     * 
+     * public class App {
+     *     public static void main(String[] args) {
+     *         Pulumi.run(App::stack);
+     *     }
+     * 
+     *     public static void stack(Context ctx) {
+     *         final var accountRules = FastlyFunctions.getNgwafAccountRules(%!v(PANIC=Format method: runtime error: invalid memory address or nil pointer dereference);
+     * 
+     *         ctx.export("fastlyNgwafAccountRulesAll", accountRules);
+     *     }
+     * }
+     * }
+     * </pre>
+     * 
+     */
+    public static CompletableFuture<GetNgwafAccountRulesResult> getNgwafAccountRulesPlain() {
+        return getNgwafAccountRulesPlain(InvokeArgs.Empty, InvokeOptions.Empty);
+    }
+    /**
+     * Use this data source to get a Fastly Next-Gen WAF Account Rule.
+     * 
+     * ## Example Usage
+     * 
+     * <pre>
+     * {@code
+     * package generated_program;
+     * 
+     * import com.pulumi.Context;
+     * import com.pulumi.Pulumi;
+     * import com.pulumi.core.Output;
+     * import com.pulumi.fastly.FastlyFunctions;
+     * import java.util.List;
+     * import java.util.ArrayList;
+     * import java.util.Map;
+     * import java.io.File;
+     * import java.nio.file.Files;
+     * import java.nio.file.Paths;
+     * 
+     * public class App {
+     *     public static void main(String[] args) {
+     *         Pulumi.run(App::stack);
+     *     }
+     * 
+     *     public static void stack(Context ctx) {
+     *         final var accountRules = FastlyFunctions.getNgwafAccountRules(%!v(PANIC=Format method: runtime error: invalid memory address or nil pointer dereference);
+     * 
+     *         ctx.export("fastlyNgwafAccountRulesAll", accountRules);
+     *     }
+     * }
+     * }
+     * </pre>
+     * 
+     */
+    public static Output<GetNgwafAccountRulesResult> getNgwafAccountRules(InvokeArgs args) {
+        return getNgwafAccountRules(args, InvokeOptions.Empty);
+    }
+    /**
+     * Use this data source to get a Fastly Next-Gen WAF Account Rule.
+     * 
+     * ## Example Usage
+     * 
+     * <pre>
+     * {@code
+     * package generated_program;
+     * 
+     * import com.pulumi.Context;
+     * import com.pulumi.Pulumi;
+     * import com.pulumi.core.Output;
+     * import com.pulumi.fastly.FastlyFunctions;
+     * import java.util.List;
+     * import java.util.ArrayList;
+     * import java.util.Map;
+     * import java.io.File;
+     * import java.nio.file.Files;
+     * import java.nio.file.Paths;
+     * 
+     * public class App {
+     *     public static void main(String[] args) {
+     *         Pulumi.run(App::stack);
+     *     }
+     * 
+     *     public static void stack(Context ctx) {
+     *         final var accountRules = FastlyFunctions.getNgwafAccountRules(%!v(PANIC=Format method: runtime error: invalid memory address or nil pointer dereference);
+     * 
+     *         ctx.export("fastlyNgwafAccountRulesAll", accountRules);
+     *     }
+     * }
+     * }
+     * </pre>
+     * 
+     */
+    public static CompletableFuture<GetNgwafAccountRulesResult> getNgwafAccountRulesPlain(InvokeArgs args) {
+        return getNgwafAccountRulesPlain(args, InvokeOptions.Empty);
+    }
+    /**
+     * Use this data source to get a Fastly Next-Gen WAF Account Rule.
+     * 
+     * ## Example Usage
+     * 
+     * <pre>
+     * {@code
+     * package generated_program;
+     * 
+     * import com.pulumi.Context;
+     * import com.pulumi.Pulumi;
+     * import com.pulumi.core.Output;
+     * import com.pulumi.fastly.FastlyFunctions;
+     * import java.util.List;
+     * import java.util.ArrayList;
+     * import java.util.Map;
+     * import java.io.File;
+     * import java.nio.file.Files;
+     * import java.nio.file.Paths;
+     * 
+     * public class App {
+     *     public static void main(String[] args) {
+     *         Pulumi.run(App::stack);
+     *     }
+     * 
+     *     public static void stack(Context ctx) {
+     *         final var accountRules = FastlyFunctions.getNgwafAccountRules(%!v(PANIC=Format method: runtime error: invalid memory address or nil pointer dereference);
+     * 
+     *         ctx.export("fastlyNgwafAccountRulesAll", accountRules);
+     *     }
+     * }
+     * }
+     * </pre>
+     * 
+     */
+    public static Output<GetNgwafAccountRulesResult> getNgwafAccountRules(InvokeArgs args, InvokeOptions options) {
+        return Deployment.getInstance().invoke("fastly:index/getNgwafAccountRules:getNgwafAccountRules", TypeShape.of(GetNgwafAccountRulesResult.class), args, Utilities.withVersion(options));
+    }
+    /**
+     * Use this data source to get a Fastly Next-Gen WAF Account Rule.
+     * 
+     * ## Example Usage
+     * 
+     * <pre>
+     * {@code
+     * package generated_program;
+     * 
+     * import com.pulumi.Context;
+     * import com.pulumi.Pulumi;
+     * import com.pulumi.core.Output;
+     * import com.pulumi.fastly.FastlyFunctions;
+     * import java.util.List;
+     * import java.util.ArrayList;
+     * import java.util.Map;
+     * import java.io.File;
+     * import java.nio.file.Files;
+     * import java.nio.file.Paths;
+     * 
+     * public class App {
+     *     public static void main(String[] args) {
+     *         Pulumi.run(App::stack);
+     *     }
+     * 
+     *     public static void stack(Context ctx) {
+     *         final var accountRules = FastlyFunctions.getNgwafAccountRules(%!v(PANIC=Format method: runtime error: invalid memory address or nil pointer dereference);
+     * 
+     *         ctx.export("fastlyNgwafAccountRulesAll", accountRules);
+     *     }
+     * }
+     * }
+     * </pre>
+     * 
+     */
+    public static Output<GetNgwafAccountRulesResult> getNgwafAccountRules(InvokeArgs args, InvokeOutputOptions options) {
+        return Deployment.getInstance().invoke("fastly:index/getNgwafAccountRules:getNgwafAccountRules", TypeShape.of(GetNgwafAccountRulesResult.class), args, Utilities.withVersion(options));
+    }
+    /**
+     * Use this data source to get a Fastly Next-Gen WAF Account Rule.
+     * 
+     * ## Example Usage
+     * 
+     * <pre>
+     * {@code
+     * package generated_program;
+     * 
+     * import com.pulumi.Context;
+     * import com.pulumi.Pulumi;
+     * import com.pulumi.core.Output;
+     * import com.pulumi.fastly.FastlyFunctions;
+     * import java.util.List;
+     * import java.util.ArrayList;
+     * import java.util.Map;
+     * import java.io.File;
+     * import java.nio.file.Files;
+     * import java.nio.file.Paths;
+     * 
+     * public class App {
+     *     public static void main(String[] args) {
+     *         Pulumi.run(App::stack);
+     *     }
+     * 
+     *     public static void stack(Context ctx) {
+     *         final var accountRules = FastlyFunctions.getNgwafAccountRules(%!v(PANIC=Format method: runtime error: invalid memory address or nil pointer dereference);
+     * 
+     *         ctx.export("fastlyNgwafAccountRulesAll", accountRules);
+     *     }
+     * }
+     * }
+     * </pre>
+     * 
+     */
+    public static CompletableFuture<GetNgwafAccountRulesResult> getNgwafAccountRulesPlain(InvokeArgs args, InvokeOptions options) {
+        return Deployment.getInstance().invokeAsync("fastly:index/getNgwafAccountRules:getNgwafAccountRules", TypeShape.of(GetNgwafAccountRulesResult.class), args, Utilities.withVersion(options));
+    }
+    /**
+     * Use this data source to get a Fastly Next-Gen WAF Account Signal.
+     * 
+     * ## Example Usage
+     * 
+     * <pre>
+     * {@code
+     * package generated_program;
+     * 
+     * import com.pulumi.Context;
+     * import com.pulumi.Pulumi;
+     * import com.pulumi.core.Output;
+     * import com.pulumi.fastly.FastlyFunctions;
+     * import java.util.List;
+     * import java.util.ArrayList;
+     * import java.util.Map;
+     * import java.io.File;
+     * import java.nio.file.Files;
+     * import java.nio.file.Paths;
+     * 
+     * public class App {
+     *     public static void main(String[] args) {
+     *         Pulumi.run(App::stack);
+     *     }
+     * 
+     *     public static void stack(Context ctx) {
+     *         final var accountSignals = FastlyFunctions.getNgwafAccountSignals(%!v(PANIC=Format method: runtime error: invalid memory address or nil pointer dereference);
+     * 
+     *         ctx.export("fastlyNgwafAccountSignalsAll", accountSignals);
+     *     }
+     * }
+     * }
+     * </pre>
+     * 
+     */
+    public static Output<GetNgwafAccountSignalsResult> getNgwafAccountSignals() {
+        return getNgwafAccountSignals(InvokeArgs.Empty, InvokeOptions.Empty);
+    }
+    /**
+     * Use this data source to get a Fastly Next-Gen WAF Account Signal.
+     * 
+     * ## Example Usage
+     * 
+     * <pre>
+     * {@code
+     * package generated_program;
+     * 
+     * import com.pulumi.Context;
+     * import com.pulumi.Pulumi;
+     * import com.pulumi.core.Output;
+     * import com.pulumi.fastly.FastlyFunctions;
+     * import java.util.List;
+     * import java.util.ArrayList;
+     * import java.util.Map;
+     * import java.io.File;
+     * import java.nio.file.Files;
+     * import java.nio.file.Paths;
+     * 
+     * public class App {
+     *     public static void main(String[] args) {
+     *         Pulumi.run(App::stack);
+     *     }
+     * 
+     *     public static void stack(Context ctx) {
+     *         final var accountSignals = FastlyFunctions.getNgwafAccountSignals(%!v(PANIC=Format method: runtime error: invalid memory address or nil pointer dereference);
+     * 
+     *         ctx.export("fastlyNgwafAccountSignalsAll", accountSignals);
+     *     }
+     * }
+     * }
+     * </pre>
+     * 
+     */
+    public static CompletableFuture<GetNgwafAccountSignalsResult> getNgwafAccountSignalsPlain() {
+        return getNgwafAccountSignalsPlain(InvokeArgs.Empty, InvokeOptions.Empty);
+    }
+    /**
+     * Use this data source to get a Fastly Next-Gen WAF Account Signal.
+     * 
+     * ## Example Usage
+     * 
+     * <pre>
+     * {@code
+     * package generated_program;
+     * 
+     * import com.pulumi.Context;
+     * import com.pulumi.Pulumi;
+     * import com.pulumi.core.Output;
+     * import com.pulumi.fastly.FastlyFunctions;
+     * import java.util.List;
+     * import java.util.ArrayList;
+     * import java.util.Map;
+     * import java.io.File;
+     * import java.nio.file.Files;
+     * import java.nio.file.Paths;
+     * 
+     * public class App {
+     *     public static void main(String[] args) {
+     *         Pulumi.run(App::stack);
+     *     }
+     * 
+     *     public static void stack(Context ctx) {
+     *         final var accountSignals = FastlyFunctions.getNgwafAccountSignals(%!v(PANIC=Format method: runtime error: invalid memory address or nil pointer dereference);
+     * 
+     *         ctx.export("fastlyNgwafAccountSignalsAll", accountSignals);
+     *     }
+     * }
+     * }
+     * </pre>
+     * 
+     */
+    public static Output<GetNgwafAccountSignalsResult> getNgwafAccountSignals(InvokeArgs args) {
+        return getNgwafAccountSignals(args, InvokeOptions.Empty);
+    }
+    /**
+     * Use this data source to get a Fastly Next-Gen WAF Account Signal.
+     * 
+     * ## Example Usage
+     * 
+     * <pre>
+     * {@code
+     * package generated_program;
+     * 
+     * import com.pulumi.Context;
+     * import com.pulumi.Pulumi;
+     * import com.pulumi.core.Output;
+     * import com.pulumi.fastly.FastlyFunctions;
+     * import java.util.List;
+     * import java.util.ArrayList;
+     * import java.util.Map;
+     * import java.io.File;
+     * import java.nio.file.Files;
+     * import java.nio.file.Paths;
+     * 
+     * public class App {
+     *     public static void main(String[] args) {
+     *         Pulumi.run(App::stack);
+     *     }
+     * 
+     *     public static void stack(Context ctx) {
+     *         final var accountSignals = FastlyFunctions.getNgwafAccountSignals(%!v(PANIC=Format method: runtime error: invalid memory address or nil pointer dereference);
+     * 
+     *         ctx.export("fastlyNgwafAccountSignalsAll", accountSignals);
+     *     }
+     * }
+     * }
+     * </pre>
+     * 
+     */
+    public static CompletableFuture<GetNgwafAccountSignalsResult> getNgwafAccountSignalsPlain(InvokeArgs args) {
+        return getNgwafAccountSignalsPlain(args, InvokeOptions.Empty);
+    }
+    /**
+     * Use this data source to get a Fastly Next-Gen WAF Account Signal.
+     * 
+     * ## Example Usage
+     * 
+     * <pre>
+     * {@code
+     * package generated_program;
+     * 
+     * import com.pulumi.Context;
+     * import com.pulumi.Pulumi;
+     * import com.pulumi.core.Output;
+     * import com.pulumi.fastly.FastlyFunctions;
+     * import java.util.List;
+     * import java.util.ArrayList;
+     * import java.util.Map;
+     * import java.io.File;
+     * import java.nio.file.Files;
+     * import java.nio.file.Paths;
+     * 
+     * public class App {
+     *     public static void main(String[] args) {
+     *         Pulumi.run(App::stack);
+     *     }
+     * 
+     *     public static void stack(Context ctx) {
+     *         final var accountSignals = FastlyFunctions.getNgwafAccountSignals(%!v(PANIC=Format method: runtime error: invalid memory address or nil pointer dereference);
+     * 
+     *         ctx.export("fastlyNgwafAccountSignalsAll", accountSignals);
+     *     }
+     * }
+     * }
+     * </pre>
+     * 
+     */
+    public static Output<GetNgwafAccountSignalsResult> getNgwafAccountSignals(InvokeArgs args, InvokeOptions options) {
+        return Deployment.getInstance().invoke("fastly:index/getNgwafAccountSignals:getNgwafAccountSignals", TypeShape.of(GetNgwafAccountSignalsResult.class), args, Utilities.withVersion(options));
+    }
+    /**
+     * Use this data source to get a Fastly Next-Gen WAF Account Signal.
+     * 
+     * ## Example Usage
+     * 
+     * <pre>
+     * {@code
+     * package generated_program;
+     * 
+     * import com.pulumi.Context;
+     * import com.pulumi.Pulumi;
+     * import com.pulumi.core.Output;
+     * import com.pulumi.fastly.FastlyFunctions;
+     * import java.util.List;
+     * import java.util.ArrayList;
+     * import java.util.Map;
+     * import java.io.File;
+     * import java.nio.file.Files;
+     * import java.nio.file.Paths;
+     * 
+     * public class App {
+     *     public static void main(String[] args) {
+     *         Pulumi.run(App::stack);
+     *     }
+     * 
+     *     public static void stack(Context ctx) {
+     *         final var accountSignals = FastlyFunctions.getNgwafAccountSignals(%!v(PANIC=Format method: runtime error: invalid memory address or nil pointer dereference);
+     * 
+     *         ctx.export("fastlyNgwafAccountSignalsAll", accountSignals);
+     *     }
+     * }
+     * }
+     * </pre>
+     * 
+     */
+    public static Output<GetNgwafAccountSignalsResult> getNgwafAccountSignals(InvokeArgs args, InvokeOutputOptions options) {
+        return Deployment.getInstance().invoke("fastly:index/getNgwafAccountSignals:getNgwafAccountSignals", TypeShape.of(GetNgwafAccountSignalsResult.class), args, Utilities.withVersion(options));
+    }
+    /**
+     * Use this data source to get a Fastly Next-Gen WAF Account Signal.
+     * 
+     * ## Example Usage
+     * 
+     * <pre>
+     * {@code
+     * package generated_program;
+     * 
+     * import com.pulumi.Context;
+     * import com.pulumi.Pulumi;
+     * import com.pulumi.core.Output;
+     * import com.pulumi.fastly.FastlyFunctions;
+     * import java.util.List;
+     * import java.util.ArrayList;
+     * import java.util.Map;
+     * import java.io.File;
+     * import java.nio.file.Files;
+     * import java.nio.file.Paths;
+     * 
+     * public class App {
+     *     public static void main(String[] args) {
+     *         Pulumi.run(App::stack);
+     *     }
+     * 
+     *     public static void stack(Context ctx) {
+     *         final var accountSignals = FastlyFunctions.getNgwafAccountSignals(%!v(PANIC=Format method: runtime error: invalid memory address or nil pointer dereference);
+     * 
+     *         ctx.export("fastlyNgwafAccountSignalsAll", accountSignals);
+     *     }
+     * }
+     * }
+     * </pre>
+     * 
+     */
+    public static CompletableFuture<GetNgwafAccountSignalsResult> getNgwafAccountSignalsPlain(InvokeArgs args, InvokeOptions options) {
+        return Deployment.getInstance().invokeAsync("fastly:index/getNgwafAccountSignals:getNgwafAccountSignals", TypeShape.of(GetNgwafAccountSignalsResult.class), args, Utilities.withVersion(options));
     }
     /**
      * Use this data source to get a Fastly Next-Gen WAF Alert Datadog integration.
@@ -2960,6 +4124,621 @@ public final class FastlyFunctions {
      */
     public static CompletableFuture<GetNgwafVirtualPatchesResult> getNgwafVirtualPatchesPlain(GetNgwafVirtualPatchesPlainArgs args, InvokeOptions options) {
         return Deployment.getInstance().invokeAsync("fastly:index/getNgwafVirtualPatches:getNgwafVirtualPatches", TypeShape.of(GetNgwafVirtualPatchesResult.class), args, Utilities.withVersion(options));
+    }
+    /**
+     * Use this data source to get a Fastly Next-Gen WAF Workspace List.
+     * 
+     * ## Example Usage
+     * 
+     * <pre>
+     * {@code
+     * package generated_program;
+     * 
+     * import com.pulumi.Context;
+     * import com.pulumi.Pulumi;
+     * import com.pulumi.core.Output;
+     * import com.pulumi.fastly.FastlyFunctions;
+     * import com.pulumi.fastly.inputs.GetNgwafWorkspaceListsArgs;
+     * import java.util.List;
+     * import java.util.ArrayList;
+     * import java.util.Map;
+     * import java.io.File;
+     * import java.nio.file.Files;
+     * import java.nio.file.Paths;
+     * 
+     * public class App {
+     *     public static void main(String[] args) {
+     *         Pulumi.run(App::stack);
+     *     }
+     * 
+     *     public static void stack(Context ctx) {
+     *         final var workspaceLists = FastlyFunctions.getNgwafWorkspaceLists(GetNgwafWorkspaceListsArgs.builder()
+     *             .workspaceId(example.id())
+     *             .build());
+     * 
+     *         ctx.export("fastlyNgwafWorkspaceListsAll", workspaceLists);
+     *     }
+     * }
+     * }
+     * </pre>
+     * 
+     */
+    public static Output<GetNgwafWorkspaceListsResult> getNgwafWorkspaceLists(GetNgwafWorkspaceListsArgs args) {
+        return getNgwafWorkspaceLists(args, InvokeOptions.Empty);
+    }
+    /**
+     * Use this data source to get a Fastly Next-Gen WAF Workspace List.
+     * 
+     * ## Example Usage
+     * 
+     * <pre>
+     * {@code
+     * package generated_program;
+     * 
+     * import com.pulumi.Context;
+     * import com.pulumi.Pulumi;
+     * import com.pulumi.core.Output;
+     * import com.pulumi.fastly.FastlyFunctions;
+     * import com.pulumi.fastly.inputs.GetNgwafWorkspaceListsArgs;
+     * import java.util.List;
+     * import java.util.ArrayList;
+     * import java.util.Map;
+     * import java.io.File;
+     * import java.nio.file.Files;
+     * import java.nio.file.Paths;
+     * 
+     * public class App {
+     *     public static void main(String[] args) {
+     *         Pulumi.run(App::stack);
+     *     }
+     * 
+     *     public static void stack(Context ctx) {
+     *         final var workspaceLists = FastlyFunctions.getNgwafWorkspaceLists(GetNgwafWorkspaceListsArgs.builder()
+     *             .workspaceId(example.id())
+     *             .build());
+     * 
+     *         ctx.export("fastlyNgwafWorkspaceListsAll", workspaceLists);
+     *     }
+     * }
+     * }
+     * </pre>
+     * 
+     */
+    public static CompletableFuture<GetNgwafWorkspaceListsResult> getNgwafWorkspaceListsPlain(GetNgwafWorkspaceListsPlainArgs args) {
+        return getNgwafWorkspaceListsPlain(args, InvokeOptions.Empty);
+    }
+    /**
+     * Use this data source to get a Fastly Next-Gen WAF Workspace List.
+     * 
+     * ## Example Usage
+     * 
+     * <pre>
+     * {@code
+     * package generated_program;
+     * 
+     * import com.pulumi.Context;
+     * import com.pulumi.Pulumi;
+     * import com.pulumi.core.Output;
+     * import com.pulumi.fastly.FastlyFunctions;
+     * import com.pulumi.fastly.inputs.GetNgwafWorkspaceListsArgs;
+     * import java.util.List;
+     * import java.util.ArrayList;
+     * import java.util.Map;
+     * import java.io.File;
+     * import java.nio.file.Files;
+     * import java.nio.file.Paths;
+     * 
+     * public class App {
+     *     public static void main(String[] args) {
+     *         Pulumi.run(App::stack);
+     *     }
+     * 
+     *     public static void stack(Context ctx) {
+     *         final var workspaceLists = FastlyFunctions.getNgwafWorkspaceLists(GetNgwafWorkspaceListsArgs.builder()
+     *             .workspaceId(example.id())
+     *             .build());
+     * 
+     *         ctx.export("fastlyNgwafWorkspaceListsAll", workspaceLists);
+     *     }
+     * }
+     * }
+     * </pre>
+     * 
+     */
+    public static Output<GetNgwafWorkspaceListsResult> getNgwafWorkspaceLists(GetNgwafWorkspaceListsArgs args, InvokeOptions options) {
+        return Deployment.getInstance().invoke("fastly:index/getNgwafWorkspaceLists:getNgwafWorkspaceLists", TypeShape.of(GetNgwafWorkspaceListsResult.class), args, Utilities.withVersion(options));
+    }
+    /**
+     * Use this data source to get a Fastly Next-Gen WAF Workspace List.
+     * 
+     * ## Example Usage
+     * 
+     * <pre>
+     * {@code
+     * package generated_program;
+     * 
+     * import com.pulumi.Context;
+     * import com.pulumi.Pulumi;
+     * import com.pulumi.core.Output;
+     * import com.pulumi.fastly.FastlyFunctions;
+     * import com.pulumi.fastly.inputs.GetNgwafWorkspaceListsArgs;
+     * import java.util.List;
+     * import java.util.ArrayList;
+     * import java.util.Map;
+     * import java.io.File;
+     * import java.nio.file.Files;
+     * import java.nio.file.Paths;
+     * 
+     * public class App {
+     *     public static void main(String[] args) {
+     *         Pulumi.run(App::stack);
+     *     }
+     * 
+     *     public static void stack(Context ctx) {
+     *         final var workspaceLists = FastlyFunctions.getNgwafWorkspaceLists(GetNgwafWorkspaceListsArgs.builder()
+     *             .workspaceId(example.id())
+     *             .build());
+     * 
+     *         ctx.export("fastlyNgwafWorkspaceListsAll", workspaceLists);
+     *     }
+     * }
+     * }
+     * </pre>
+     * 
+     */
+    public static Output<GetNgwafWorkspaceListsResult> getNgwafWorkspaceLists(GetNgwafWorkspaceListsArgs args, InvokeOutputOptions options) {
+        return Deployment.getInstance().invoke("fastly:index/getNgwafWorkspaceLists:getNgwafWorkspaceLists", TypeShape.of(GetNgwafWorkspaceListsResult.class), args, Utilities.withVersion(options));
+    }
+    /**
+     * Use this data source to get a Fastly Next-Gen WAF Workspace List.
+     * 
+     * ## Example Usage
+     * 
+     * <pre>
+     * {@code
+     * package generated_program;
+     * 
+     * import com.pulumi.Context;
+     * import com.pulumi.Pulumi;
+     * import com.pulumi.core.Output;
+     * import com.pulumi.fastly.FastlyFunctions;
+     * import com.pulumi.fastly.inputs.GetNgwafWorkspaceListsArgs;
+     * import java.util.List;
+     * import java.util.ArrayList;
+     * import java.util.Map;
+     * import java.io.File;
+     * import java.nio.file.Files;
+     * import java.nio.file.Paths;
+     * 
+     * public class App {
+     *     public static void main(String[] args) {
+     *         Pulumi.run(App::stack);
+     *     }
+     * 
+     *     public static void stack(Context ctx) {
+     *         final var workspaceLists = FastlyFunctions.getNgwafWorkspaceLists(GetNgwafWorkspaceListsArgs.builder()
+     *             .workspaceId(example.id())
+     *             .build());
+     * 
+     *         ctx.export("fastlyNgwafWorkspaceListsAll", workspaceLists);
+     *     }
+     * }
+     * }
+     * </pre>
+     * 
+     */
+    public static CompletableFuture<GetNgwafWorkspaceListsResult> getNgwafWorkspaceListsPlain(GetNgwafWorkspaceListsPlainArgs args, InvokeOptions options) {
+        return Deployment.getInstance().invokeAsync("fastly:index/getNgwafWorkspaceLists:getNgwafWorkspaceLists", TypeShape.of(GetNgwafWorkspaceListsResult.class), args, Utilities.withVersion(options));
+    }
+    /**
+     * Use this data source to get a Fastly Next-Gen WAF Workspace Rule.
+     * 
+     * ## Example Usage
+     * 
+     * <pre>
+     * {@code
+     * package generated_program;
+     * 
+     * import com.pulumi.Context;
+     * import com.pulumi.Pulumi;
+     * import com.pulumi.core.Output;
+     * import com.pulumi.fastly.FastlyFunctions;
+     * import com.pulumi.fastly.inputs.GetNgwafWorkspaceRulesArgs;
+     * import java.util.List;
+     * import java.util.ArrayList;
+     * import java.util.Map;
+     * import java.io.File;
+     * import java.nio.file.Files;
+     * import java.nio.file.Paths;
+     * 
+     * public class App {
+     *     public static void main(String[] args) {
+     *         Pulumi.run(App::stack);
+     *     }
+     * 
+     *     public static void stack(Context ctx) {
+     *         final var workspaceRules = FastlyFunctions.getNgwafWorkspaceRules(GetNgwafWorkspaceRulesArgs.builder()
+     *             .workspaceId(example.id())
+     *             .build());
+     * 
+     *         ctx.export("fastlyNgwafWorkspaceRulesAll", workspaceRules);
+     *     }
+     * }
+     * }
+     * </pre>
+     * 
+     */
+    public static Output<GetNgwafWorkspaceRulesResult> getNgwafWorkspaceRules(GetNgwafWorkspaceRulesArgs args) {
+        return getNgwafWorkspaceRules(args, InvokeOptions.Empty);
+    }
+    /**
+     * Use this data source to get a Fastly Next-Gen WAF Workspace Rule.
+     * 
+     * ## Example Usage
+     * 
+     * <pre>
+     * {@code
+     * package generated_program;
+     * 
+     * import com.pulumi.Context;
+     * import com.pulumi.Pulumi;
+     * import com.pulumi.core.Output;
+     * import com.pulumi.fastly.FastlyFunctions;
+     * import com.pulumi.fastly.inputs.GetNgwafWorkspaceRulesArgs;
+     * import java.util.List;
+     * import java.util.ArrayList;
+     * import java.util.Map;
+     * import java.io.File;
+     * import java.nio.file.Files;
+     * import java.nio.file.Paths;
+     * 
+     * public class App {
+     *     public static void main(String[] args) {
+     *         Pulumi.run(App::stack);
+     *     }
+     * 
+     *     public static void stack(Context ctx) {
+     *         final var workspaceRules = FastlyFunctions.getNgwafWorkspaceRules(GetNgwafWorkspaceRulesArgs.builder()
+     *             .workspaceId(example.id())
+     *             .build());
+     * 
+     *         ctx.export("fastlyNgwafWorkspaceRulesAll", workspaceRules);
+     *     }
+     * }
+     * }
+     * </pre>
+     * 
+     */
+    public static CompletableFuture<GetNgwafWorkspaceRulesResult> getNgwafWorkspaceRulesPlain(GetNgwafWorkspaceRulesPlainArgs args) {
+        return getNgwafWorkspaceRulesPlain(args, InvokeOptions.Empty);
+    }
+    /**
+     * Use this data source to get a Fastly Next-Gen WAF Workspace Rule.
+     * 
+     * ## Example Usage
+     * 
+     * <pre>
+     * {@code
+     * package generated_program;
+     * 
+     * import com.pulumi.Context;
+     * import com.pulumi.Pulumi;
+     * import com.pulumi.core.Output;
+     * import com.pulumi.fastly.FastlyFunctions;
+     * import com.pulumi.fastly.inputs.GetNgwafWorkspaceRulesArgs;
+     * import java.util.List;
+     * import java.util.ArrayList;
+     * import java.util.Map;
+     * import java.io.File;
+     * import java.nio.file.Files;
+     * import java.nio.file.Paths;
+     * 
+     * public class App {
+     *     public static void main(String[] args) {
+     *         Pulumi.run(App::stack);
+     *     }
+     * 
+     *     public static void stack(Context ctx) {
+     *         final var workspaceRules = FastlyFunctions.getNgwafWorkspaceRules(GetNgwafWorkspaceRulesArgs.builder()
+     *             .workspaceId(example.id())
+     *             .build());
+     * 
+     *         ctx.export("fastlyNgwafWorkspaceRulesAll", workspaceRules);
+     *     }
+     * }
+     * }
+     * </pre>
+     * 
+     */
+    public static Output<GetNgwafWorkspaceRulesResult> getNgwafWorkspaceRules(GetNgwafWorkspaceRulesArgs args, InvokeOptions options) {
+        return Deployment.getInstance().invoke("fastly:index/getNgwafWorkspaceRules:getNgwafWorkspaceRules", TypeShape.of(GetNgwafWorkspaceRulesResult.class), args, Utilities.withVersion(options));
+    }
+    /**
+     * Use this data source to get a Fastly Next-Gen WAF Workspace Rule.
+     * 
+     * ## Example Usage
+     * 
+     * <pre>
+     * {@code
+     * package generated_program;
+     * 
+     * import com.pulumi.Context;
+     * import com.pulumi.Pulumi;
+     * import com.pulumi.core.Output;
+     * import com.pulumi.fastly.FastlyFunctions;
+     * import com.pulumi.fastly.inputs.GetNgwafWorkspaceRulesArgs;
+     * import java.util.List;
+     * import java.util.ArrayList;
+     * import java.util.Map;
+     * import java.io.File;
+     * import java.nio.file.Files;
+     * import java.nio.file.Paths;
+     * 
+     * public class App {
+     *     public static void main(String[] args) {
+     *         Pulumi.run(App::stack);
+     *     }
+     * 
+     *     public static void stack(Context ctx) {
+     *         final var workspaceRules = FastlyFunctions.getNgwafWorkspaceRules(GetNgwafWorkspaceRulesArgs.builder()
+     *             .workspaceId(example.id())
+     *             .build());
+     * 
+     *         ctx.export("fastlyNgwafWorkspaceRulesAll", workspaceRules);
+     *     }
+     * }
+     * }
+     * </pre>
+     * 
+     */
+    public static Output<GetNgwafWorkspaceRulesResult> getNgwafWorkspaceRules(GetNgwafWorkspaceRulesArgs args, InvokeOutputOptions options) {
+        return Deployment.getInstance().invoke("fastly:index/getNgwafWorkspaceRules:getNgwafWorkspaceRules", TypeShape.of(GetNgwafWorkspaceRulesResult.class), args, Utilities.withVersion(options));
+    }
+    /**
+     * Use this data source to get a Fastly Next-Gen WAF Workspace Rule.
+     * 
+     * ## Example Usage
+     * 
+     * <pre>
+     * {@code
+     * package generated_program;
+     * 
+     * import com.pulumi.Context;
+     * import com.pulumi.Pulumi;
+     * import com.pulumi.core.Output;
+     * import com.pulumi.fastly.FastlyFunctions;
+     * import com.pulumi.fastly.inputs.GetNgwafWorkspaceRulesArgs;
+     * import java.util.List;
+     * import java.util.ArrayList;
+     * import java.util.Map;
+     * import java.io.File;
+     * import java.nio.file.Files;
+     * import java.nio.file.Paths;
+     * 
+     * public class App {
+     *     public static void main(String[] args) {
+     *         Pulumi.run(App::stack);
+     *     }
+     * 
+     *     public static void stack(Context ctx) {
+     *         final var workspaceRules = FastlyFunctions.getNgwafWorkspaceRules(GetNgwafWorkspaceRulesArgs.builder()
+     *             .workspaceId(example.id())
+     *             .build());
+     * 
+     *         ctx.export("fastlyNgwafWorkspaceRulesAll", workspaceRules);
+     *     }
+     * }
+     * }
+     * </pre>
+     * 
+     */
+    public static CompletableFuture<GetNgwafWorkspaceRulesResult> getNgwafWorkspaceRulesPlain(GetNgwafWorkspaceRulesPlainArgs args, InvokeOptions options) {
+        return Deployment.getInstance().invokeAsync("fastly:index/getNgwafWorkspaceRules:getNgwafWorkspaceRules", TypeShape.of(GetNgwafWorkspaceRulesResult.class), args, Utilities.withVersion(options));
+    }
+    /**
+     * Use this data source to get a Fastly Next-Gen WAF Workspace Signal.
+     * 
+     * ## Example Usage
+     * 
+     * <pre>
+     * {@code
+     * package generated_program;
+     * 
+     * import com.pulumi.Context;
+     * import com.pulumi.Pulumi;
+     * import com.pulumi.core.Output;
+     * import com.pulumi.fastly.FastlyFunctions;
+     * import com.pulumi.fastly.inputs.GetNgwafWorkspaceSignalsArgs;
+     * import java.util.List;
+     * import java.util.ArrayList;
+     * import java.util.Map;
+     * import java.io.File;
+     * import java.nio.file.Files;
+     * import java.nio.file.Paths;
+     * 
+     * public class App {
+     *     public static void main(String[] args) {
+     *         Pulumi.run(App::stack);
+     *     }
+     * 
+     *     public static void stack(Context ctx) {
+     *         final var workspaceSignals = FastlyFunctions.getNgwafWorkspaceSignals(GetNgwafWorkspaceSignalsArgs.builder()
+     *             .workspaceId(example.id())
+     *             .build());
+     * 
+     *         ctx.export("fastlyNgwafWorkspaceSignalsAll", workspaceSignals);
+     *     }
+     * }
+     * }
+     * </pre>
+     * 
+     */
+    public static Output<GetNgwafWorkspaceSignalsResult> getNgwafWorkspaceSignals(GetNgwafWorkspaceSignalsArgs args) {
+        return getNgwafWorkspaceSignals(args, InvokeOptions.Empty);
+    }
+    /**
+     * Use this data source to get a Fastly Next-Gen WAF Workspace Signal.
+     * 
+     * ## Example Usage
+     * 
+     * <pre>
+     * {@code
+     * package generated_program;
+     * 
+     * import com.pulumi.Context;
+     * import com.pulumi.Pulumi;
+     * import com.pulumi.core.Output;
+     * import com.pulumi.fastly.FastlyFunctions;
+     * import com.pulumi.fastly.inputs.GetNgwafWorkspaceSignalsArgs;
+     * import java.util.List;
+     * import java.util.ArrayList;
+     * import java.util.Map;
+     * import java.io.File;
+     * import java.nio.file.Files;
+     * import java.nio.file.Paths;
+     * 
+     * public class App {
+     *     public static void main(String[] args) {
+     *         Pulumi.run(App::stack);
+     *     }
+     * 
+     *     public static void stack(Context ctx) {
+     *         final var workspaceSignals = FastlyFunctions.getNgwafWorkspaceSignals(GetNgwafWorkspaceSignalsArgs.builder()
+     *             .workspaceId(example.id())
+     *             .build());
+     * 
+     *         ctx.export("fastlyNgwafWorkspaceSignalsAll", workspaceSignals);
+     *     }
+     * }
+     * }
+     * </pre>
+     * 
+     */
+    public static CompletableFuture<GetNgwafWorkspaceSignalsResult> getNgwafWorkspaceSignalsPlain(GetNgwafWorkspaceSignalsPlainArgs args) {
+        return getNgwafWorkspaceSignalsPlain(args, InvokeOptions.Empty);
+    }
+    /**
+     * Use this data source to get a Fastly Next-Gen WAF Workspace Signal.
+     * 
+     * ## Example Usage
+     * 
+     * <pre>
+     * {@code
+     * package generated_program;
+     * 
+     * import com.pulumi.Context;
+     * import com.pulumi.Pulumi;
+     * import com.pulumi.core.Output;
+     * import com.pulumi.fastly.FastlyFunctions;
+     * import com.pulumi.fastly.inputs.GetNgwafWorkspaceSignalsArgs;
+     * import java.util.List;
+     * import java.util.ArrayList;
+     * import java.util.Map;
+     * import java.io.File;
+     * import java.nio.file.Files;
+     * import java.nio.file.Paths;
+     * 
+     * public class App {
+     *     public static void main(String[] args) {
+     *         Pulumi.run(App::stack);
+     *     }
+     * 
+     *     public static void stack(Context ctx) {
+     *         final var workspaceSignals = FastlyFunctions.getNgwafWorkspaceSignals(GetNgwafWorkspaceSignalsArgs.builder()
+     *             .workspaceId(example.id())
+     *             .build());
+     * 
+     *         ctx.export("fastlyNgwafWorkspaceSignalsAll", workspaceSignals);
+     *     }
+     * }
+     * }
+     * </pre>
+     * 
+     */
+    public static Output<GetNgwafWorkspaceSignalsResult> getNgwafWorkspaceSignals(GetNgwafWorkspaceSignalsArgs args, InvokeOptions options) {
+        return Deployment.getInstance().invoke("fastly:index/getNgwafWorkspaceSignals:getNgwafWorkspaceSignals", TypeShape.of(GetNgwafWorkspaceSignalsResult.class), args, Utilities.withVersion(options));
+    }
+    /**
+     * Use this data source to get a Fastly Next-Gen WAF Workspace Signal.
+     * 
+     * ## Example Usage
+     * 
+     * <pre>
+     * {@code
+     * package generated_program;
+     * 
+     * import com.pulumi.Context;
+     * import com.pulumi.Pulumi;
+     * import com.pulumi.core.Output;
+     * import com.pulumi.fastly.FastlyFunctions;
+     * import com.pulumi.fastly.inputs.GetNgwafWorkspaceSignalsArgs;
+     * import java.util.List;
+     * import java.util.ArrayList;
+     * import java.util.Map;
+     * import java.io.File;
+     * import java.nio.file.Files;
+     * import java.nio.file.Paths;
+     * 
+     * public class App {
+     *     public static void main(String[] args) {
+     *         Pulumi.run(App::stack);
+     *     }
+     * 
+     *     public static void stack(Context ctx) {
+     *         final var workspaceSignals = FastlyFunctions.getNgwafWorkspaceSignals(GetNgwafWorkspaceSignalsArgs.builder()
+     *             .workspaceId(example.id())
+     *             .build());
+     * 
+     *         ctx.export("fastlyNgwafWorkspaceSignalsAll", workspaceSignals);
+     *     }
+     * }
+     * }
+     * </pre>
+     * 
+     */
+    public static Output<GetNgwafWorkspaceSignalsResult> getNgwafWorkspaceSignals(GetNgwafWorkspaceSignalsArgs args, InvokeOutputOptions options) {
+        return Deployment.getInstance().invoke("fastly:index/getNgwafWorkspaceSignals:getNgwafWorkspaceSignals", TypeShape.of(GetNgwafWorkspaceSignalsResult.class), args, Utilities.withVersion(options));
+    }
+    /**
+     * Use this data source to get a Fastly Next-Gen WAF Workspace Signal.
+     * 
+     * ## Example Usage
+     * 
+     * <pre>
+     * {@code
+     * package generated_program;
+     * 
+     * import com.pulumi.Context;
+     * import com.pulumi.Pulumi;
+     * import com.pulumi.core.Output;
+     * import com.pulumi.fastly.FastlyFunctions;
+     * import com.pulumi.fastly.inputs.GetNgwafWorkspaceSignalsArgs;
+     * import java.util.List;
+     * import java.util.ArrayList;
+     * import java.util.Map;
+     * import java.io.File;
+     * import java.nio.file.Files;
+     * import java.nio.file.Paths;
+     * 
+     * public class App {
+     *     public static void main(String[] args) {
+     *         Pulumi.run(App::stack);
+     *     }
+     * 
+     *     public static void stack(Context ctx) {
+     *         final var workspaceSignals = FastlyFunctions.getNgwafWorkspaceSignals(GetNgwafWorkspaceSignalsArgs.builder()
+     *             .workspaceId(example.id())
+     *             .build());
+     * 
+     *         ctx.export("fastlyNgwafWorkspaceSignalsAll", workspaceSignals);
+     *     }
+     * }
+     * }
+     * </pre>
+     * 
+     */
+    public static CompletableFuture<GetNgwafWorkspaceSignalsResult> getNgwafWorkspaceSignalsPlain(GetNgwafWorkspaceSignalsPlainArgs args, InvokeOptions options) {
+        return Deployment.getInstance().invokeAsync("fastly:index/getNgwafWorkspaceSignals:getNgwafWorkspaceSignals", TypeShape.of(GetNgwafWorkspaceSignalsResult.class), args, Utilities.withVersion(options));
     }
     /**
      * Use this data source to get a list of [Fastly Next-Gen WAF Workspaces][1].

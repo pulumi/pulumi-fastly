@@ -15,6 +15,11 @@ import javax.annotation.Nullable;
 @CustomType
 public final class ServiceVclProductEnablement {
     /**
+     * @return Enable API Discovery support
+     * 
+     */
+    private @Nullable Boolean apiDiscovery;
+    /**
      * @return Enable Bot Management support
      * 
      */
@@ -66,6 +71,13 @@ public final class ServiceVclProductEnablement {
     private @Nullable Boolean websockets;
 
     private ServiceVclProductEnablement() {}
+    /**
+     * @return Enable API Discovery support
+     * 
+     */
+    public Optional<Boolean> apiDiscovery() {
+        return Optional.ofNullable(this.apiDiscovery);
+    }
     /**
      * @return Enable Bot Management support
      * 
@@ -146,6 +158,7 @@ public final class ServiceVclProductEnablement {
     }
     @CustomType.Builder
     public static final class Builder {
+        private @Nullable Boolean apiDiscovery;
         private @Nullable Boolean botManagement;
         private @Nullable Boolean brotliCompression;
         private @Nullable ServiceVclProductEnablementDdosProtection ddosProtection;
@@ -159,6 +172,7 @@ public final class ServiceVclProductEnablement {
         public Builder() {}
         public Builder(ServiceVclProductEnablement defaults) {
     	      Objects.requireNonNull(defaults);
+    	      this.apiDiscovery = defaults.apiDiscovery;
     	      this.botManagement = defaults.botManagement;
     	      this.brotliCompression = defaults.brotliCompression;
     	      this.ddosProtection = defaults.ddosProtection;
@@ -171,6 +185,12 @@ public final class ServiceVclProductEnablement {
     	      this.websockets = defaults.websockets;
         }
 
+        @CustomType.Setter
+        public Builder apiDiscovery(@Nullable Boolean apiDiscovery) {
+
+            this.apiDiscovery = apiDiscovery;
+            return this;
+        }
         @CustomType.Setter
         public Builder botManagement(@Nullable Boolean botManagement) {
 
@@ -233,6 +253,7 @@ public final class ServiceVclProductEnablement {
         }
         public ServiceVclProductEnablement build() {
             final var _resultValue = new ServiceVclProductEnablement();
+            _resultValue.apiDiscovery = apiDiscovery;
             _resultValue.botManagement = botManagement;
             _resultValue.brotliCompression = brotliCompression;
             _resultValue.ddosProtection = ddosProtection;

@@ -13,7 +13,7 @@ import com.pulumi.fastly.inputs.NgwafAccountRuleState;
 import com.pulumi.fastly.outputs.NgwafAccountRuleAction;
 import com.pulumi.fastly.outputs.NgwafAccountRuleCondition;
 import com.pulumi.fastly.outputs.NgwafAccountRuleGroupCondition;
-import com.pulumi.fastly.outputs.NgwafAccountRuleRateLimit;
+import com.pulumi.fastly.outputs.NgwafAccountRuleMultivalCondition;
 import java.lang.Boolean;
 import java.lang.String;
 import java.util.List;
@@ -193,18 +193,18 @@ public class NgwafAccountRule extends com.pulumi.resources.CustomResource {
         return Codegen.optional(this.groupOperator);
     }
     /**
-     * Block specifically for rate*limit rules.
+     * List of multival conditions with nested logic. Each multival list must define a `field, operator, groupOperator` and at least one condition.
      * 
      */
-    @Export(name="rateLimit", refs={NgwafAccountRuleRateLimit.class}, tree="[0]")
-    private Output</* @Nullable */ NgwafAccountRuleRateLimit> rateLimit;
+    @Export(name="multivalConditions", refs={List.class,NgwafAccountRuleMultivalCondition.class}, tree="[0,1]")
+    private Output</* @Nullable */ List<NgwafAccountRuleMultivalCondition>> multivalConditions;
 
     /**
-     * @return Block specifically for rate*limit rules.
+     * @return List of multival conditions with nested logic. Each multival list must define a `field, operator, groupOperator` and at least one condition.
      * 
      */
-    public Output<Optional<NgwafAccountRuleRateLimit>> rateLimit() {
-        return Codegen.optional(this.rateLimit);
+    public Output<Optional<List<NgwafAccountRuleMultivalCondition>>> multivalConditions() {
+        return Codegen.optional(this.multivalConditions);
     }
     /**
      * Logging behavior for matching requests. Accepted values are `sampled` and `none`.

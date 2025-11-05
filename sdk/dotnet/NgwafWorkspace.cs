@@ -18,6 +18,31 @@ namespace Pulumi.Fastly
     /// 
     /// Basic usage:
     /// 
+    /// ```csharp
+    /// using System.Collections.Generic;
+    /// using System.Linq;
+    /// using Pulumi;
+    /// using Fastly = Pulumi.Fastly;
+    /// 
+    /// return await Deployment.RunAsync(() =&gt; 
+    /// {
+    ///     var demo = new Fastly.NgwafWorkspace("demo", new()
+    ///     {
+    ///         Name = "Demo",
+    ///         Description = "Testing",
+    ///         Mode = "block",
+    ///         AttackSignalThresholds = new Fastly.Inputs.NgwafWorkspaceAttackSignalThresholdsArgs
+    ///         {
+    ///             OneMinute = 100,
+    ///             TenMinutes = 500,
+    ///             OneHour = 1000,
+    ///             Immediate = true,
+    ///         },
+    ///     });
+    /// 
+    /// });
+    /// ```
+    /// 
     /// ## Import
     /// 
     /// Fastly Next-Gen WAF Workspaces can be imported using their workspace ID, e.g.
@@ -46,6 +71,12 @@ namespace Pulumi.Fastly
         /// </summary>
         [Output("defaultBlockingResponseCode")]
         public Output<int?> DefaultBlockingResponseCode { get; private set; } = null!;
+
+        /// <summary>
+        /// The redirect URL used if default*blocking*response_code is `301` or `302`.
+        /// </summary>
+        [Output("defaultRedirectUrl")]
+        public Output<string?> DefaultRedirectUrl { get; private set; } = null!;
 
         /// <summary>
         /// The description of the workspace
@@ -142,6 +173,12 @@ namespace Pulumi.Fastly
         public Input<int>? DefaultBlockingResponseCode { get; set; }
 
         /// <summary>
+        /// The redirect URL used if default*blocking*response_code is `301` or `302`.
+        /// </summary>
+        [Input("defaultRedirectUrl")]
+        public Input<string>? DefaultRedirectUrl { get; set; }
+
+        /// <summary>
         /// The description of the workspace
         /// </summary>
         [Input("description", required: true)]
@@ -196,6 +233,12 @@ namespace Pulumi.Fastly
         /// </summary>
         [Input("defaultBlockingResponseCode")]
         public Input<int>? DefaultBlockingResponseCode { get; set; }
+
+        /// <summary>
+        /// The redirect URL used if default*blocking*response_code is `301` or `302`.
+        /// </summary>
+        [Input("defaultRedirectUrl")]
+        public Input<string>? DefaultRedirectUrl { get; set; }
 
         /// <summary>
         /// The description of the workspace

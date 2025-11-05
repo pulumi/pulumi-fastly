@@ -32,11 +32,22 @@ import (
 //
 //	func main() {
 //		pulumi.Run(func(ctx *pulumi.Context) error {
-//			demo, err := fastly.NewServiceVcl(ctx, "demo", nil)
+//			demo, err := fastly.NewServiceVcl(ctx, "demo", &fastly.ServiceVclArgs{
+//				Name: pulumi.String("demofastly"),
+//				Domains: fastly.ServiceVclDomainArray{
+//					&fastly.ServiceVclDomainArgs{
+//						Name:    pulumi.String("demo.notexample.com"),
+//						Comment: pulumi.String("demo"),
+//					},
+//				},
+//			})
 //			if err != nil {
 //				return err
 //			}
-//			user, err := fastly.NewUser(ctx, "user", nil)
+//			user, err := fastly.NewUser(ctx, "user", &fastly.UserArgs{
+//				Login: pulumi.String("demo@example.com"),
+//				Name:  pulumi.String("Demo User"),
+//			})
 //			if err != nil {
 //				return err
 //			}

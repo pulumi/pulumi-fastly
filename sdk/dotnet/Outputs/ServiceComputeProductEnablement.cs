@@ -14,6 +14,10 @@ namespace Pulumi.Fastly.Outputs
     public sealed class ServiceComputeProductEnablement
     {
         /// <summary>
+        /// Enable API Discovery support
+        /// </summary>
+        public readonly bool? ApiDiscovery;
+        /// <summary>
         /// DDoS Protection product
         /// </summary>
         public readonly Outputs.ServiceComputeProductEnablementDdosProtection? DdosProtection;
@@ -40,6 +44,8 @@ namespace Pulumi.Fastly.Outputs
 
         [OutputConstructor]
         private ServiceComputeProductEnablement(
+            bool? apiDiscovery,
+
             Outputs.ServiceComputeProductEnablementDdosProtection? ddosProtection,
 
             bool? fanout,
@@ -52,6 +58,7 @@ namespace Pulumi.Fastly.Outputs
 
             bool? websockets)
         {
+            ApiDiscovery = apiDiscovery;
             DdosProtection = ddosProtection;
             Fanout = fanout;
             LogExplorerInsights = logExplorerInsights;

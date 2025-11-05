@@ -13,6 +13,7 @@ import com.pulumi.fastly.inputs.NgwafThresholdsState;
 import java.lang.Boolean;
 import java.lang.Integer;
 import java.lang.String;
+import java.util.Optional;
 import javax.annotation.Nullable;
 
 /**
@@ -105,14 +106,14 @@ public class NgwafThresholds extends com.pulumi.resources.CustomResource {
      * 
      */
     @Export(name="duration", refs={Integer.class}, tree="[0]")
-    private Output<Integer> duration;
+    private Output</* @Nullable */ Integer> duration;
 
     /**
      * @return Duration the action is in place, in seconds. Minimum 1 and maximum 31,556,900.
      * 
      */
-    public Output<Integer> duration() {
-        return this.duration;
+    public Output<Optional<Integer>> duration() {
+        return Codegen.optional(this.duration);
     }
     /**
      * Whether this threshold is active.

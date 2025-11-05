@@ -5,6 +5,7 @@ package com.pulumi.fastly.outputs;
 
 import com.pulumi.core.annotations.CustomType;
 import com.pulumi.exceptions.MissingRequiredPropertyException;
+import java.lang.Boolean;
 import java.lang.Integer;
 import java.lang.String;
 import java.util.Objects;
@@ -13,6 +14,16 @@ import javax.annotation.Nullable;
 
 @CustomType
 public final class NgwafWorkspaceRuleAction {
+    /**
+     * @return Specifies if interaction is allowed (used when `type = browserChallenge`).
+     * 
+     */
+    private @Nullable Boolean allowInteractive;
+    /**
+     * @return specifies the type of deception (used when `type = deception`).
+     * 
+     */
+    private @Nullable String deceptionType;
     /**
      * @return Redirect target (used when `type = redirect`).
      * 
@@ -29,12 +40,26 @@ public final class NgwafWorkspaceRuleAction {
      */
     private @Nullable String signal;
     /**
-     * @return The action type, e.g. `block`, `redirect`, `excludeSignal`.
+     * @return The action type. One of: `addSignal`, `allow`, `block`, `browserChallenge`, `dynamicChallenge`, `excludeSignal`, `verifyToken` or for rate limit rule valid values: `logRequest`, `blockSignal`, `browserChallenge`, `verifyToken`
      * 
      */
     private String type;
 
     private NgwafWorkspaceRuleAction() {}
+    /**
+     * @return Specifies if interaction is allowed (used when `type = browserChallenge`).
+     * 
+     */
+    public Optional<Boolean> allowInteractive() {
+        return Optional.ofNullable(this.allowInteractive);
+    }
+    /**
+     * @return specifies the type of deception (used when `type = deception`).
+     * 
+     */
+    public Optional<String> deceptionType() {
+        return Optional.ofNullable(this.deceptionType);
+    }
     /**
      * @return Redirect target (used when `type = redirect`).
      * 
@@ -57,7 +82,7 @@ public final class NgwafWorkspaceRuleAction {
         return Optional.ofNullable(this.signal);
     }
     /**
-     * @return The action type, e.g. `block`, `redirect`, `excludeSignal`.
+     * @return The action type. One of: `addSignal`, `allow`, `block`, `browserChallenge`, `dynamicChallenge`, `excludeSignal`, `verifyToken` or for rate limit rule valid values: `logRequest`, `blockSignal`, `browserChallenge`, `verifyToken`
      * 
      */
     public String type() {
@@ -73,6 +98,8 @@ public final class NgwafWorkspaceRuleAction {
     }
     @CustomType.Builder
     public static final class Builder {
+        private @Nullable Boolean allowInteractive;
+        private @Nullable String deceptionType;
         private @Nullable String redirectUrl;
         private @Nullable Integer responseCode;
         private @Nullable String signal;
@@ -80,12 +107,26 @@ public final class NgwafWorkspaceRuleAction {
         public Builder() {}
         public Builder(NgwafWorkspaceRuleAction defaults) {
     	      Objects.requireNonNull(defaults);
+    	      this.allowInteractive = defaults.allowInteractive;
+    	      this.deceptionType = defaults.deceptionType;
     	      this.redirectUrl = defaults.redirectUrl;
     	      this.responseCode = defaults.responseCode;
     	      this.signal = defaults.signal;
     	      this.type = defaults.type;
         }
 
+        @CustomType.Setter
+        public Builder allowInteractive(@Nullable Boolean allowInteractive) {
+
+            this.allowInteractive = allowInteractive;
+            return this;
+        }
+        @CustomType.Setter
+        public Builder deceptionType(@Nullable String deceptionType) {
+
+            this.deceptionType = deceptionType;
+            return this;
+        }
         @CustomType.Setter
         public Builder redirectUrl(@Nullable String redirectUrl) {
 
@@ -114,6 +155,8 @@ public final class NgwafWorkspaceRuleAction {
         }
         public NgwafWorkspaceRuleAction build() {
             final var _resultValue = new NgwafWorkspaceRuleAction();
+            _resultValue.allowInteractive = allowInteractive;
+            _resultValue.deceptionType = deceptionType;
             _resultValue.redirectUrl = redirectUrl;
             _resultValue.responseCode = responseCode;
             _resultValue.signal = signal;

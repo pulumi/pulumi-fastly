@@ -15,8 +15,20 @@ import * as utilities from "./utilities";
  * import * as pulumi from "@pulumi/pulumi";
  * import * as fastly from "@pulumi/fastly";
  *
- * const example = new fastly.ServiceVcl("example", {name: "my_vcl_service"});
- * const exampleIntegration = new fastly.Integration("example", {name: "my_integration"});
+ * const example = new fastly.ServiceVcl("example", {
+ *     name: "my_vcl_service",
+ *     domains: [{
+ *         name: "demo.notexample.com",
+ *         comment: "demo",
+ *     }],
+ * });
+ * const exampleIntegration = new fastly.Integration("example", {
+ *     name: "my_integration",
+ *     type: "a_valid_type",
+ *     config: {
+ *         webhook: "some_webhook",
+ *     },
+ * });
  * const exampleAlert = new fastly.Alert("example", {
  *     name: "my_vcl_service errors",
  *     serviceId: example.id,

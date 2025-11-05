@@ -44,7 +44,7 @@ namespace Pulumi.Fastly
     ///     {
     ///         WorkspaceId = example.Id,
     ///         Type = "request",
-    ///         Description = "example",
+    ///         Description = "Block requests from specific IP to login path",
     ///         Enabled = true,
     ///         RequestLogging = "sampled",
     ///         GroupOperator = "all",
@@ -61,7 +61,7 @@ namespace Pulumi.Fastly
     ///             {
     ///                 Field = "ip",
     ///                 Operator = "equals",
-    ///                 Value = "127.0.0.1",
+    ///                 Value = "192.0.2.1",
     ///             },
     ///             new Fastly.Inputs.NgwafWorkspaceRuleConditionArgs
     ///             {
@@ -69,34 +69,114 @@ namespace Pulumi.Fastly
     ///                 Operator = "equals",
     ///                 Value = "/login",
     ///             },
+    ///         },
+    ///     });
+    /// 
+    /// });
+    /// ```
+    /// 
+    /// Using templated signals:
+    /// 
+    /// ```csharp
+    /// using System.Collections.Generic;
+    /// using System.Linq;
+    /// using Pulumi;
+    /// using Fastly = Pulumi.Fastly;
+    /// 
+    /// return await Deployment.RunAsync(() =&gt; 
+    /// {
+    ///     var example = new Fastly.NgwafWorkspace("example", new()
+    ///     {
+    ///         Name = "example",
+    ///         Description = "Test NGWAF Workspace",
+    ///         Mode = "block",
+    ///         IpAnonymization = "hashed",
+    ///         ClientIpHeaders = new[]
+    ///         {
+    ///             "X-Forwarded-For",
+    ///             "X-Real-IP",
+    ///         },
+    ///         DefaultBlockingResponseCode = 429,
+    ///         AttackSignalThresholds = null,
+    ///     });
+    /// 
+    ///     var exampleNgwafWorkspaceRule = new Fastly.NgwafWorkspaceRule("example", new()
+    ///     {
+    ///         WorkspaceId = example.Id,
+    ///         Type = "request",
+    ///         Description = "",
+    ///         Enabled = true,
+    ///         GroupOperator = "all",
+    ///         Conditions = new[]
+    ///         {
     ///             new Fastly.Inputs.NgwafWorkspaceRuleConditionArgs
     ///             {
-    ///                 Field = "agent_name",
+    ///                 Field = "method",
     ///                 Operator = "equals",
-    ///                 Value = "host-001",
+    ///                 Value = "POST",
+    ///             },
+    ///             new Fastly.Inputs.NgwafWorkspaceRuleConditionArgs
+    ///             {
+    ///                 Field = "path",
+    ///                 Operator = "equals",
+    ///                 Value = "/login",
+    ///             },
+    ///         },
+    ///         Actions = new[]
+    ///         {
+    ///             new Fastly.Inputs.NgwafWorkspaceRuleActionArgs
+    ///             {
+    ///                 Type = "templated_signal",
+    ///                 Signal = "LOGINATTEMPT",
+    ///             },
+    ///         },
+    ///     });
+    /// 
+    /// });
+    /// ```
+    /// 
+    /// Using group conditions:
+    /// 
+    /// ```csharp
+    /// using System.Collections.Generic;
+    /// using System.Linq;
+    /// using Pulumi;
+    /// using Fastly = Pulumi.Fastly;
+    /// 
+    /// return await Deployment.RunAsync(() =&gt; 
+    /// {
+    ///     var example = new Fastly.NgwafWorkspace("example", new()
+    ///     {
+    ///         Name = "example",
+    ///         Description = "Test NGWAF Workspace",
+    ///         Mode = "block",
+    ///         IpAnonymization = "hashed",
+    ///         ClientIpHeaders = new[]
+    ///         {
+    ///             "X-Forwarded-For",
+    ///             "X-Real-IP",
+    ///         },
+    ///         DefaultBlockingResponseCode = 429,
+    ///         AttackSignalThresholds = null,
+    ///     });
+    /// 
+    ///     var exampleNgwafWorkspaceRule = new Fastly.NgwafWorkspaceRule("example", new()
+    ///     {
+    ///         WorkspaceId = example.Id,
+    ///         Type = "request",
+    ///         Description = "Block requests with grouped conditions",
+    ///         Enabled = true,
+    ///         RequestLogging = "sampled",
+    ///         GroupOperator = "all",
+    ///         Actions = new[]
+    ///         {
+    ///             new Fastly.Inputs.NgwafWorkspaceRuleActionArgs
+    ///             {
+    ///                 Type = "block",
     ///             },
     ///         },
     ///         GroupConditions = new[]
     ///         {
-    ///             new Fastly.Inputs.NgwafWorkspaceRuleGroupConditionArgs
-    ///             {
-    ///                 GroupOperator = "all",
-    ///                 Conditions = new[]
-    ///                 {
-    ///                     new Fastly.Inputs.NgwafWorkspaceRuleGroupConditionConditionArgs
-    ///                     {
-    ///                         Field = "country",
-    ///                         Operator = "equals",
-    ///                         Value = "AD",
-    ///                     },
-    ///                     new Fastly.Inputs.NgwafWorkspaceRuleGroupConditionConditionArgs
-    ///                     {
-    ///                         Field = "method",
-    ///                         Operator = "equals",
-    ///                         Value = "POST",
-    ///                     },
-    ///                 },
-    ///             },
     ///             new Fastly.Inputs.NgwafWorkspaceRuleGroupConditionArgs
     ///             {
     ///                 GroupOperator = "any",
@@ -121,6 +201,174 @@ namespace Pulumi.Fastly
     ///                         Value = "example.com",
     ///                     },
     ///                 },
+    ///             },
+    ///             new Fastly.Inputs.NgwafWorkspaceRuleGroupConditionArgs
+    ///             {
+    ///                 GroupOperator = "all",
+    ///                 Conditions = new[]
+    ///                 {
+    ///                     new Fastly.Inputs.NgwafWorkspaceRuleGroupConditionConditionArgs
+    ///                     {
+    ///                         Field = "country",
+    ///                         Operator = "equals",
+    ///                         Value = "AD",
+    ///                     },
+    ///                     new Fastly.Inputs.NgwafWorkspaceRuleGroupConditionConditionArgs
+    ///                     {
+    ///                         Field = "method",
+    ///                         Operator = "equals",
+    ///                         Value = "POST",
+    ///                     },
+    ///                 },
+    ///             },
+    ///         },
+    ///     });
+    /// 
+    /// });
+    /// ```
+    /// 
+    /// Using multival conditions:
+    /// 
+    /// ```csharp
+    /// using System.Collections.Generic;
+    /// using System.Linq;
+    /// using Pulumi;
+    /// using Fastly = Pulumi.Fastly;
+    /// 
+    /// return await Deployment.RunAsync(() =&gt; 
+    /// {
+    ///     var example = new Fastly.NgwafWorkspace("example", new()
+    ///     {
+    ///         Name = "example",
+    ///         Description = "Test NGWAF Workspace",
+    ///         Mode = "block",
+    ///         IpAnonymization = "hashed",
+    ///         ClientIpHeaders = new[]
+    ///         {
+    ///             "X-Forwarded-For",
+    ///             "X-Real-IP",
+    ///         },
+    ///         DefaultBlockingResponseCode = 429,
+    ///         AttackSignalThresholds = null,
+    ///     });
+    /// 
+    ///     var exampleNgwafWorkspaceRule = new Fastly.NgwafWorkspaceRule("example", new()
+    ///     {
+    ///         WorkspaceId = example.Id,
+    ///         Type = "request",
+    ///         Description = "Block requests with specific header patterns",
+    ///         Enabled = true,
+    ///         RequestLogging = "sampled",
+    ///         GroupOperator = "all",
+    ///         Actions = new[]
+    ///         {
+    ///             new Fastly.Inputs.NgwafWorkspaceRuleActionArgs
+    ///             {
+    ///                 Type = "block",
+    ///             },
+    ///         },
+    ///         MultivalConditions = new[]
+    ///         {
+    ///             new Fastly.Inputs.NgwafWorkspaceRuleMultivalConditionArgs
+    ///             {
+    ///                 Field = "request_header",
+    ///                 Operator = "exists",
+    ///                 GroupOperator = "any",
+    ///                 Conditions = new[]
+    ///                 {
+    ///                     new Fastly.Inputs.NgwafWorkspaceRuleMultivalConditionConditionArgs
+    ///                     {
+    ///                         Field = "name",
+    ///                         Operator = "does_not_equal",
+    ///                         Value = "Header-Sample",
+    ///                     },
+    ///                     new Fastly.Inputs.NgwafWorkspaceRuleMultivalConditionConditionArgs
+    ///                     {
+    ///                         Field = "name",
+    ///                         Operator = "contains",
+    ///                         Value = "X-API-Key",
+    ///                     },
+    ///                     new Fastly.Inputs.NgwafWorkspaceRuleMultivalConditionConditionArgs
+    ///                     {
+    ///                         Field = "value_string",
+    ///                         Operator = "equals",
+    ///                         Value = "application/json",
+    ///                     },
+    ///                 },
+    ///             },
+    ///         },
+    ///     });
+    /// 
+    /// });
+    /// ```
+    /// 
+    /// Using rate limits:
+    /// 
+    /// ```csharp
+    /// using System.Collections.Generic;
+    /// using System.Linq;
+    /// using Pulumi;
+    /// using Fastly = Pulumi.Fastly;
+    /// 
+    /// return await Deployment.RunAsync(() =&gt; 
+    /// {
+    ///     var example = new Fastly.NgwafWorkspace("example", new()
+    ///     {
+    ///         Name = "example",
+    ///         Description = "Test NGWAF Workspace",
+    ///         Mode = "block",
+    ///         IpAnonymization = "hashed",
+    ///         ClientIpHeaders = new[]
+    ///         {
+    ///             "X-Forwarded-For",
+    ///             "X-Real-IP",
+    ///         },
+    ///         DefaultBlockingResponseCode = 429,
+    ///         AttackSignalThresholds = null,
+    ///     });
+    /// 
+    ///     var demoSignal = new Fastly.NgwafWorkspaceSignal("demo_signal", new()
+    ///     {
+    ///         WorkspaceId = example.Id,
+    ///         Name = "demo",
+    ///         Description = "A description of my signal.",
+    ///     });
+    /// 
+    ///     var ipLimit = new Fastly.NgwafWorkspaceRule("ip_limit", new()
+    ///     {
+    ///         WorkspaceId = example.Id,
+    ///         Type = "rate_limit",
+    ///         Description = "Rate limit demo rule-updated",
+    ///         Enabled = true,
+    ///         Conditions = new[]
+    ///         {
+    ///             new Fastly.Inputs.NgwafWorkspaceRuleConditionArgs
+    ///             {
+    ///                 Field = "ip",
+    ///                 Operator = "equals",
+    ///                 Value = "1.2.3.4",
+    ///             },
+    ///         },
+    ///         RateLimit = new Fastly.Inputs.NgwafWorkspaceRuleRateLimitArgs
+    ///         {
+    ///             Signal = "site.demo",
+    ///             Threshold = 100,
+    ///             Interval = 60,
+    ///             Duration = 300,
+    ///             ClientIdentifiers = new[]
+    ///             {
+    ///                 new Fastly.Inputs.NgwafWorkspaceRuleRateLimitClientIdentifierArgs
+    ///                 {
+    ///                     Type = "ip",
+    ///                 },
+    ///             },
+    ///         },
+    ///         Actions = new[]
+    ///         {
+    ///             new Fastly.Inputs.NgwafWorkspaceRuleActionArgs
+    ///             {
+    ///                 Signal = "SUSPECTED-BOT",
+    ///                 Type = "block_signal",
     ///             },
     ///         },
     ///     });
@@ -174,6 +422,12 @@ namespace Pulumi.Fastly
         /// </summary>
         [Output("groupOperator")]
         public Output<string?> GroupOperator { get; private set; } = null!;
+
+        /// <summary>
+        /// List of multival conditions with nested logic. Each multival list must define a `field, operator, GroupOperator` and at least one condition.
+        /// </summary>
+        [Output("multivalConditions")]
+        public Output<ImmutableArray<Outputs.NgwafWorkspaceRuleMultivalCondition>> MultivalConditions { get; private set; } = null!;
 
         /// <summary>
         /// Block specifically for rate*limit rules.
@@ -299,6 +553,18 @@ namespace Pulumi.Fastly
         [Input("groupOperator")]
         public Input<string>? GroupOperator { get; set; }
 
+        [Input("multivalConditions")]
+        private InputList<Inputs.NgwafWorkspaceRuleMultivalConditionArgs>? _multivalConditions;
+
+        /// <summary>
+        /// List of multival conditions with nested logic. Each multival list must define a `field, operator, GroupOperator` and at least one condition.
+        /// </summary>
+        public InputList<Inputs.NgwafWorkspaceRuleMultivalConditionArgs> MultivalConditions
+        {
+            get => _multivalConditions ?? (_multivalConditions = new InputList<Inputs.NgwafWorkspaceRuleMultivalConditionArgs>());
+            set => _multivalConditions = value;
+        }
+
         /// <summary>
         /// Block specifically for rate*limit rules.
         /// </summary>
@@ -384,6 +650,18 @@ namespace Pulumi.Fastly
         /// </summary>
         [Input("groupOperator")]
         public Input<string>? GroupOperator { get; set; }
+
+        [Input("multivalConditions")]
+        private InputList<Inputs.NgwafWorkspaceRuleMultivalConditionGetArgs>? _multivalConditions;
+
+        /// <summary>
+        /// List of multival conditions with nested logic. Each multival list must define a `field, operator, GroupOperator` and at least one condition.
+        /// </summary>
+        public InputList<Inputs.NgwafWorkspaceRuleMultivalConditionGetArgs> MultivalConditions
+        {
+            get => _multivalConditions ?? (_multivalConditions = new InputList<Inputs.NgwafWorkspaceRuleMultivalConditionGetArgs>());
+            set => _multivalConditions = value;
+        }
 
         /// <summary>
         /// Block specifically for rate*limit rules.

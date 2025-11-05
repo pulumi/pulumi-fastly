@@ -32,14 +32,14 @@ public final class NgwafAccountRuleActionArgs extends com.pulumi.resources.Resou
     }
 
     /**
-     * The action type, e.g. `block`, `redirect`, `excludeSignal`.
+     * The action type. One of: `addSignal`, `allow`, `block`, `browserChallenge`, `dynamicChallenge`, `excludeSignal`, `verifyToken` or for rate limit rule valid values: `logRequest`, `blockSignal`, `browserChallenge`, `verifyToken`
      * 
      */
     @Import(name="type", required=true)
     private Output<String> type;
 
     /**
-     * @return The action type, e.g. `block`, `redirect`, `excludeSignal`.
+     * @return The action type. One of: `addSignal`, `allow`, `block`, `browserChallenge`, `dynamicChallenge`, `excludeSignal`, `verifyToken` or for rate limit rule valid values: `logRequest`, `blockSignal`, `browserChallenge`, `verifyToken`
      * 
      */
     public Output<String> type() {
@@ -93,7 +93,7 @@ public final class NgwafAccountRuleActionArgs extends com.pulumi.resources.Resou
         }
 
         /**
-         * @param type The action type, e.g. `block`, `redirect`, `excludeSignal`.
+         * @param type The action type. One of: `addSignal`, `allow`, `block`, `browserChallenge`, `dynamicChallenge`, `excludeSignal`, `verifyToken` or for rate limit rule valid values: `logRequest`, `blockSignal`, `browserChallenge`, `verifyToken`
          * 
          * @return builder
          * 
@@ -104,7 +104,7 @@ public final class NgwafAccountRuleActionArgs extends com.pulumi.resources.Resou
         }
 
         /**
-         * @param type The action type, e.g. `block`, `redirect`, `excludeSignal`.
+         * @param type The action type. One of: `addSignal`, `allow`, `block`, `browserChallenge`, `dynamicChallenge`, `excludeSignal`, `verifyToken` or for rate limit rule valid values: `logRequest`, `blockSignal`, `browserChallenge`, `verifyToken`
          * 
          * @return builder
          * 

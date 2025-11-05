@@ -756,7 +756,7 @@ func (o CustomDashboardDashboardItemVisualizationConfigOutput) PlotType() pulumi
 type NgwafAccountRuleAction struct {
 	// Signal name to exclude (used when `type = excludeSignal`).
 	Signal *string `pulumi:"signal"`
-	// The action type, e.g. `block`, `redirect`, `excludeSignal`.
+	// The action type. One of: `addSignal`, `allow`, `block`, `browserChallenge`, `dynamicChallenge`, `excludeSignal`, `verifyToken` or for rate limit rule valid values: `logRequest`, `blockSignal`, `browserChallenge`, `verifyToken`
 	Type string `pulumi:"type"`
 }
 
@@ -774,7 +774,7 @@ type NgwafAccountRuleActionInput interface {
 type NgwafAccountRuleActionArgs struct {
 	// Signal name to exclude (used when `type = excludeSignal`).
 	Signal pulumi.StringPtrInput `pulumi:"signal"`
-	// The action type, e.g. `block`, `redirect`, `excludeSignal`.
+	// The action type. One of: `addSignal`, `allow`, `block`, `browserChallenge`, `dynamicChallenge`, `excludeSignal`, `verifyToken` or for rate limit rule valid values: `logRequest`, `blockSignal`, `browserChallenge`, `verifyToken`
 	Type pulumi.StringInput `pulumi:"type"`
 }
 
@@ -834,7 +834,7 @@ func (o NgwafAccountRuleActionOutput) Signal() pulumi.StringPtrOutput {
 	return o.ApplyT(func(v NgwafAccountRuleAction) *string { return v.Signal }).(pulumi.StringPtrOutput)
 }
 
-// The action type, e.g. `block`, `redirect`, `excludeSignal`.
+// The action type. One of: `addSignal`, `allow`, `block`, `browserChallenge`, `dynamicChallenge`, `excludeSignal`, `verifyToken` or for rate limit rule valid values: `logRequest`, `blockSignal`, `browserChallenge`, `verifyToken`
 func (o NgwafAccountRuleActionOutput) Type() pulumi.StringOutput {
 	return o.ApplyT(func(v NgwafAccountRuleAction) string { return v.Type }).(pulumi.StringOutput)
 }
@@ -1195,334 +1195,245 @@ func (o NgwafAccountRuleGroupConditionConditionArrayOutput) Index(i pulumi.IntIn
 	}).(NgwafAccountRuleGroupConditionConditionOutput)
 }
 
-type NgwafAccountRuleRateLimit struct {
-	// List of client identifiers used for rate limiting. Can only be length 1 or 2.
-	ClientIdentifiers []NgwafAccountRuleRateLimitClientIdentifier `pulumi:"clientIdentifiers"`
-	// Duration in seconds for the rate limit.
-	Duration int `pulumi:"duration"`
-	// Time interval for the rate limit in seconds. Accepted values are 60, 600, and 3600.
-	Interval int `pulumi:"interval"`
-	// Reference ID of the custom signal this rule uses to count requests.
-	Signal string `pulumi:"signal"`
-	// Rate limit threshold. Minimum 1 and maximum 10,000.
-	Threshold int `pulumi:"threshold"`
+type NgwafAccountRuleMultivalCondition struct {
+	// A list of nested conditions in this list.
+	Conditions []NgwafAccountRuleMultivalConditionCondition `pulumi:"conditions"`
+	// Enums for multival condition field.. Accepted values are `postParameter`, `queryParameter`, `requestCookie`, `requestHeader`, `responseHeader`, and `signal`.
+	Field string `pulumi:"field"`
+	// Logical operator for the group. Accepted values are `any` and `all`.
+	GroupOperator string `pulumi:"groupOperator"`
+	// Indicates whether the supplied conditions will check for existence or non-existence of matching field values. Accepted values are `exists` and `doesNotExist`.
+	Operator string `pulumi:"operator"`
 }
 
-// NgwafAccountRuleRateLimitInput is an input type that accepts NgwafAccountRuleRateLimitArgs and NgwafAccountRuleRateLimitOutput values.
-// You can construct a concrete instance of `NgwafAccountRuleRateLimitInput` via:
+// NgwafAccountRuleMultivalConditionInput is an input type that accepts NgwafAccountRuleMultivalConditionArgs and NgwafAccountRuleMultivalConditionOutput values.
+// You can construct a concrete instance of `NgwafAccountRuleMultivalConditionInput` via:
 //
-//	NgwafAccountRuleRateLimitArgs{...}
-type NgwafAccountRuleRateLimitInput interface {
+//	NgwafAccountRuleMultivalConditionArgs{...}
+type NgwafAccountRuleMultivalConditionInput interface {
 	pulumi.Input
 
-	ToNgwafAccountRuleRateLimitOutput() NgwafAccountRuleRateLimitOutput
-	ToNgwafAccountRuleRateLimitOutputWithContext(context.Context) NgwafAccountRuleRateLimitOutput
+	ToNgwafAccountRuleMultivalConditionOutput() NgwafAccountRuleMultivalConditionOutput
+	ToNgwafAccountRuleMultivalConditionOutputWithContext(context.Context) NgwafAccountRuleMultivalConditionOutput
 }
 
-type NgwafAccountRuleRateLimitArgs struct {
-	// List of client identifiers used for rate limiting. Can only be length 1 or 2.
-	ClientIdentifiers NgwafAccountRuleRateLimitClientIdentifierArrayInput `pulumi:"clientIdentifiers"`
-	// Duration in seconds for the rate limit.
-	Duration pulumi.IntInput `pulumi:"duration"`
-	// Time interval for the rate limit in seconds. Accepted values are 60, 600, and 3600.
-	Interval pulumi.IntInput `pulumi:"interval"`
-	// Reference ID of the custom signal this rule uses to count requests.
-	Signal pulumi.StringInput `pulumi:"signal"`
-	// Rate limit threshold. Minimum 1 and maximum 10,000.
-	Threshold pulumi.IntInput `pulumi:"threshold"`
+type NgwafAccountRuleMultivalConditionArgs struct {
+	// A list of nested conditions in this list.
+	Conditions NgwafAccountRuleMultivalConditionConditionArrayInput `pulumi:"conditions"`
+	// Enums for multival condition field.. Accepted values are `postParameter`, `queryParameter`, `requestCookie`, `requestHeader`, `responseHeader`, and `signal`.
+	Field pulumi.StringInput `pulumi:"field"`
+	// Logical operator for the group. Accepted values are `any` and `all`.
+	GroupOperator pulumi.StringInput `pulumi:"groupOperator"`
+	// Indicates whether the supplied conditions will check for existence or non-existence of matching field values. Accepted values are `exists` and `doesNotExist`.
+	Operator pulumi.StringInput `pulumi:"operator"`
 }
 
-func (NgwafAccountRuleRateLimitArgs) ElementType() reflect.Type {
-	return reflect.TypeOf((*NgwafAccountRuleRateLimit)(nil)).Elem()
+func (NgwafAccountRuleMultivalConditionArgs) ElementType() reflect.Type {
+	return reflect.TypeOf((*NgwafAccountRuleMultivalCondition)(nil)).Elem()
 }
 
-func (i NgwafAccountRuleRateLimitArgs) ToNgwafAccountRuleRateLimitOutput() NgwafAccountRuleRateLimitOutput {
-	return i.ToNgwafAccountRuleRateLimitOutputWithContext(context.Background())
+func (i NgwafAccountRuleMultivalConditionArgs) ToNgwafAccountRuleMultivalConditionOutput() NgwafAccountRuleMultivalConditionOutput {
+	return i.ToNgwafAccountRuleMultivalConditionOutputWithContext(context.Background())
 }
 
-func (i NgwafAccountRuleRateLimitArgs) ToNgwafAccountRuleRateLimitOutputWithContext(ctx context.Context) NgwafAccountRuleRateLimitOutput {
-	return pulumi.ToOutputWithContext(ctx, i).(NgwafAccountRuleRateLimitOutput)
+func (i NgwafAccountRuleMultivalConditionArgs) ToNgwafAccountRuleMultivalConditionOutputWithContext(ctx context.Context) NgwafAccountRuleMultivalConditionOutput {
+	return pulumi.ToOutputWithContext(ctx, i).(NgwafAccountRuleMultivalConditionOutput)
 }
 
-func (i NgwafAccountRuleRateLimitArgs) ToNgwafAccountRuleRateLimitPtrOutput() NgwafAccountRuleRateLimitPtrOutput {
-	return i.ToNgwafAccountRuleRateLimitPtrOutputWithContext(context.Background())
-}
-
-func (i NgwafAccountRuleRateLimitArgs) ToNgwafAccountRuleRateLimitPtrOutputWithContext(ctx context.Context) NgwafAccountRuleRateLimitPtrOutput {
-	return pulumi.ToOutputWithContext(ctx, i).(NgwafAccountRuleRateLimitOutput).ToNgwafAccountRuleRateLimitPtrOutputWithContext(ctx)
-}
-
-// NgwafAccountRuleRateLimitPtrInput is an input type that accepts NgwafAccountRuleRateLimitArgs, NgwafAccountRuleRateLimitPtr and NgwafAccountRuleRateLimitPtrOutput values.
-// You can construct a concrete instance of `NgwafAccountRuleRateLimitPtrInput` via:
+// NgwafAccountRuleMultivalConditionArrayInput is an input type that accepts NgwafAccountRuleMultivalConditionArray and NgwafAccountRuleMultivalConditionArrayOutput values.
+// You can construct a concrete instance of `NgwafAccountRuleMultivalConditionArrayInput` via:
 //
-//	        NgwafAccountRuleRateLimitArgs{...}
-//
-//	or:
-//
-//	        nil
-type NgwafAccountRuleRateLimitPtrInput interface {
+//	NgwafAccountRuleMultivalConditionArray{ NgwafAccountRuleMultivalConditionArgs{...} }
+type NgwafAccountRuleMultivalConditionArrayInput interface {
 	pulumi.Input
 
-	ToNgwafAccountRuleRateLimitPtrOutput() NgwafAccountRuleRateLimitPtrOutput
-	ToNgwafAccountRuleRateLimitPtrOutputWithContext(context.Context) NgwafAccountRuleRateLimitPtrOutput
+	ToNgwafAccountRuleMultivalConditionArrayOutput() NgwafAccountRuleMultivalConditionArrayOutput
+	ToNgwafAccountRuleMultivalConditionArrayOutputWithContext(context.Context) NgwafAccountRuleMultivalConditionArrayOutput
 }
 
-type ngwafAccountRuleRateLimitPtrType NgwafAccountRuleRateLimitArgs
+type NgwafAccountRuleMultivalConditionArray []NgwafAccountRuleMultivalConditionInput
 
-func NgwafAccountRuleRateLimitPtr(v *NgwafAccountRuleRateLimitArgs) NgwafAccountRuleRateLimitPtrInput {
-	return (*ngwafAccountRuleRateLimitPtrType)(v)
+func (NgwafAccountRuleMultivalConditionArray) ElementType() reflect.Type {
+	return reflect.TypeOf((*[]NgwafAccountRuleMultivalCondition)(nil)).Elem()
 }
 
-func (*ngwafAccountRuleRateLimitPtrType) ElementType() reflect.Type {
-	return reflect.TypeOf((**NgwafAccountRuleRateLimit)(nil)).Elem()
+func (i NgwafAccountRuleMultivalConditionArray) ToNgwafAccountRuleMultivalConditionArrayOutput() NgwafAccountRuleMultivalConditionArrayOutput {
+	return i.ToNgwafAccountRuleMultivalConditionArrayOutputWithContext(context.Background())
 }
 
-func (i *ngwafAccountRuleRateLimitPtrType) ToNgwafAccountRuleRateLimitPtrOutput() NgwafAccountRuleRateLimitPtrOutput {
-	return i.ToNgwafAccountRuleRateLimitPtrOutputWithContext(context.Background())
+func (i NgwafAccountRuleMultivalConditionArray) ToNgwafAccountRuleMultivalConditionArrayOutputWithContext(ctx context.Context) NgwafAccountRuleMultivalConditionArrayOutput {
+	return pulumi.ToOutputWithContext(ctx, i).(NgwafAccountRuleMultivalConditionArrayOutput)
 }
 
-func (i *ngwafAccountRuleRateLimitPtrType) ToNgwafAccountRuleRateLimitPtrOutputWithContext(ctx context.Context) NgwafAccountRuleRateLimitPtrOutput {
-	return pulumi.ToOutputWithContext(ctx, i).(NgwafAccountRuleRateLimitPtrOutput)
+type NgwafAccountRuleMultivalConditionOutput struct{ *pulumi.OutputState }
+
+func (NgwafAccountRuleMultivalConditionOutput) ElementType() reflect.Type {
+	return reflect.TypeOf((*NgwafAccountRuleMultivalCondition)(nil)).Elem()
 }
 
-type NgwafAccountRuleRateLimitOutput struct{ *pulumi.OutputState }
-
-func (NgwafAccountRuleRateLimitOutput) ElementType() reflect.Type {
-	return reflect.TypeOf((*NgwafAccountRuleRateLimit)(nil)).Elem()
-}
-
-func (o NgwafAccountRuleRateLimitOutput) ToNgwafAccountRuleRateLimitOutput() NgwafAccountRuleRateLimitOutput {
+func (o NgwafAccountRuleMultivalConditionOutput) ToNgwafAccountRuleMultivalConditionOutput() NgwafAccountRuleMultivalConditionOutput {
 	return o
 }
 
-func (o NgwafAccountRuleRateLimitOutput) ToNgwafAccountRuleRateLimitOutputWithContext(ctx context.Context) NgwafAccountRuleRateLimitOutput {
+func (o NgwafAccountRuleMultivalConditionOutput) ToNgwafAccountRuleMultivalConditionOutputWithContext(ctx context.Context) NgwafAccountRuleMultivalConditionOutput {
 	return o
 }
 
-func (o NgwafAccountRuleRateLimitOutput) ToNgwafAccountRuleRateLimitPtrOutput() NgwafAccountRuleRateLimitPtrOutput {
-	return o.ToNgwafAccountRuleRateLimitPtrOutputWithContext(context.Background())
+// A list of nested conditions in this list.
+func (o NgwafAccountRuleMultivalConditionOutput) Conditions() NgwafAccountRuleMultivalConditionConditionArrayOutput {
+	return o.ApplyT(func(v NgwafAccountRuleMultivalCondition) []NgwafAccountRuleMultivalConditionCondition {
+		return v.Conditions
+	}).(NgwafAccountRuleMultivalConditionConditionArrayOutput)
 }
 
-func (o NgwafAccountRuleRateLimitOutput) ToNgwafAccountRuleRateLimitPtrOutputWithContext(ctx context.Context) NgwafAccountRuleRateLimitPtrOutput {
-	return o.ApplyTWithContext(ctx, func(_ context.Context, v NgwafAccountRuleRateLimit) *NgwafAccountRuleRateLimit {
-		return &v
-	}).(NgwafAccountRuleRateLimitPtrOutput)
+// Enums for multival condition field.. Accepted values are `postParameter`, `queryParameter`, `requestCookie`, `requestHeader`, `responseHeader`, and `signal`.
+func (o NgwafAccountRuleMultivalConditionOutput) Field() pulumi.StringOutput {
+	return o.ApplyT(func(v NgwafAccountRuleMultivalCondition) string { return v.Field }).(pulumi.StringOutput)
 }
 
-// List of client identifiers used for rate limiting. Can only be length 1 or 2.
-func (o NgwafAccountRuleRateLimitOutput) ClientIdentifiers() NgwafAccountRuleRateLimitClientIdentifierArrayOutput {
-	return o.ApplyT(func(v NgwafAccountRuleRateLimit) []NgwafAccountRuleRateLimitClientIdentifier {
-		return v.ClientIdentifiers
-	}).(NgwafAccountRuleRateLimitClientIdentifierArrayOutput)
+// Logical operator for the group. Accepted values are `any` and `all`.
+func (o NgwafAccountRuleMultivalConditionOutput) GroupOperator() pulumi.StringOutput {
+	return o.ApplyT(func(v NgwafAccountRuleMultivalCondition) string { return v.GroupOperator }).(pulumi.StringOutput)
 }
 
-// Duration in seconds for the rate limit.
-func (o NgwafAccountRuleRateLimitOutput) Duration() pulumi.IntOutput {
-	return o.ApplyT(func(v NgwafAccountRuleRateLimit) int { return v.Duration }).(pulumi.IntOutput)
+// Indicates whether the supplied conditions will check for existence or non-existence of matching field values. Accepted values are `exists` and `doesNotExist`.
+func (o NgwafAccountRuleMultivalConditionOutput) Operator() pulumi.StringOutput {
+	return o.ApplyT(func(v NgwafAccountRuleMultivalCondition) string { return v.Operator }).(pulumi.StringOutput)
 }
 
-// Time interval for the rate limit in seconds. Accepted values are 60, 600, and 3600.
-func (o NgwafAccountRuleRateLimitOutput) Interval() pulumi.IntOutput {
-	return o.ApplyT(func(v NgwafAccountRuleRateLimit) int { return v.Interval }).(pulumi.IntOutput)
+type NgwafAccountRuleMultivalConditionArrayOutput struct{ *pulumi.OutputState }
+
+func (NgwafAccountRuleMultivalConditionArrayOutput) ElementType() reflect.Type {
+	return reflect.TypeOf((*[]NgwafAccountRuleMultivalCondition)(nil)).Elem()
 }
 
-// Reference ID of the custom signal this rule uses to count requests.
-func (o NgwafAccountRuleRateLimitOutput) Signal() pulumi.StringOutput {
-	return o.ApplyT(func(v NgwafAccountRuleRateLimit) string { return v.Signal }).(pulumi.StringOutput)
-}
-
-// Rate limit threshold. Minimum 1 and maximum 10,000.
-func (o NgwafAccountRuleRateLimitOutput) Threshold() pulumi.IntOutput {
-	return o.ApplyT(func(v NgwafAccountRuleRateLimit) int { return v.Threshold }).(pulumi.IntOutput)
-}
-
-type NgwafAccountRuleRateLimitPtrOutput struct{ *pulumi.OutputState }
-
-func (NgwafAccountRuleRateLimitPtrOutput) ElementType() reflect.Type {
-	return reflect.TypeOf((**NgwafAccountRuleRateLimit)(nil)).Elem()
-}
-
-func (o NgwafAccountRuleRateLimitPtrOutput) ToNgwafAccountRuleRateLimitPtrOutput() NgwafAccountRuleRateLimitPtrOutput {
+func (o NgwafAccountRuleMultivalConditionArrayOutput) ToNgwafAccountRuleMultivalConditionArrayOutput() NgwafAccountRuleMultivalConditionArrayOutput {
 	return o
 }
 
-func (o NgwafAccountRuleRateLimitPtrOutput) ToNgwafAccountRuleRateLimitPtrOutputWithContext(ctx context.Context) NgwafAccountRuleRateLimitPtrOutput {
+func (o NgwafAccountRuleMultivalConditionArrayOutput) ToNgwafAccountRuleMultivalConditionArrayOutputWithContext(ctx context.Context) NgwafAccountRuleMultivalConditionArrayOutput {
 	return o
 }
 
-func (o NgwafAccountRuleRateLimitPtrOutput) Elem() NgwafAccountRuleRateLimitOutput {
-	return o.ApplyT(func(v *NgwafAccountRuleRateLimit) NgwafAccountRuleRateLimit {
-		if v != nil {
-			return *v
-		}
-		var ret NgwafAccountRuleRateLimit
-		return ret
-	}).(NgwafAccountRuleRateLimitOutput)
+func (o NgwafAccountRuleMultivalConditionArrayOutput) Index(i pulumi.IntInput) NgwafAccountRuleMultivalConditionOutput {
+	return pulumi.All(o, i).ApplyT(func(vs []interface{}) NgwafAccountRuleMultivalCondition {
+		return vs[0].([]NgwafAccountRuleMultivalCondition)[vs[1].(int)]
+	}).(NgwafAccountRuleMultivalConditionOutput)
 }
 
-// List of client identifiers used for rate limiting. Can only be length 1 or 2.
-func (o NgwafAccountRuleRateLimitPtrOutput) ClientIdentifiers() NgwafAccountRuleRateLimitClientIdentifierArrayOutput {
-	return o.ApplyT(func(v *NgwafAccountRuleRateLimit) []NgwafAccountRuleRateLimitClientIdentifier {
-		if v == nil {
-			return nil
-		}
-		return v.ClientIdentifiers
-	}).(NgwafAccountRuleRateLimitClientIdentifierArrayOutput)
+type NgwafAccountRuleMultivalConditionCondition struct {
+	// Field to inspect (e.g., `name`, `value`, `signalId`).
+	Field string `pulumi:"field"`
+	// Operator to apply (e.g., `equals`, `contains`).
+	Operator string `pulumi:"operator"`
+	// The value to test the field against.
+	Value string `pulumi:"value"`
 }
 
-// Duration in seconds for the rate limit.
-func (o NgwafAccountRuleRateLimitPtrOutput) Duration() pulumi.IntPtrOutput {
-	return o.ApplyT(func(v *NgwafAccountRuleRateLimit) *int {
-		if v == nil {
-			return nil
-		}
-		return &v.Duration
-	}).(pulumi.IntPtrOutput)
-}
-
-// Time interval for the rate limit in seconds. Accepted values are 60, 600, and 3600.
-func (o NgwafAccountRuleRateLimitPtrOutput) Interval() pulumi.IntPtrOutput {
-	return o.ApplyT(func(v *NgwafAccountRuleRateLimit) *int {
-		if v == nil {
-			return nil
-		}
-		return &v.Interval
-	}).(pulumi.IntPtrOutput)
-}
-
-// Reference ID of the custom signal this rule uses to count requests.
-func (o NgwafAccountRuleRateLimitPtrOutput) Signal() pulumi.StringPtrOutput {
-	return o.ApplyT(func(v *NgwafAccountRuleRateLimit) *string {
-		if v == nil {
-			return nil
-		}
-		return &v.Signal
-	}).(pulumi.StringPtrOutput)
-}
-
-// Rate limit threshold. Minimum 1 and maximum 10,000.
-func (o NgwafAccountRuleRateLimitPtrOutput) Threshold() pulumi.IntPtrOutput {
-	return o.ApplyT(func(v *NgwafAccountRuleRateLimit) *int {
-		if v == nil {
-			return nil
-		}
-		return &v.Threshold
-	}).(pulumi.IntPtrOutput)
-}
-
-type NgwafAccountRuleRateLimitClientIdentifier struct {
-	// Key for the Client Identifier.
-	Key *string `pulumi:"key"`
-	// Name for the Client Identifier.
-	Name *string `pulumi:"name"`
-	// Type of the Client Identifier.
-	Type string `pulumi:"type"`
-}
-
-// NgwafAccountRuleRateLimitClientIdentifierInput is an input type that accepts NgwafAccountRuleRateLimitClientIdentifierArgs and NgwafAccountRuleRateLimitClientIdentifierOutput values.
-// You can construct a concrete instance of `NgwafAccountRuleRateLimitClientIdentifierInput` via:
+// NgwafAccountRuleMultivalConditionConditionInput is an input type that accepts NgwafAccountRuleMultivalConditionConditionArgs and NgwafAccountRuleMultivalConditionConditionOutput values.
+// You can construct a concrete instance of `NgwafAccountRuleMultivalConditionConditionInput` via:
 //
-//	NgwafAccountRuleRateLimitClientIdentifierArgs{...}
-type NgwafAccountRuleRateLimitClientIdentifierInput interface {
+//	NgwafAccountRuleMultivalConditionConditionArgs{...}
+type NgwafAccountRuleMultivalConditionConditionInput interface {
 	pulumi.Input
 
-	ToNgwafAccountRuleRateLimitClientIdentifierOutput() NgwafAccountRuleRateLimitClientIdentifierOutput
-	ToNgwafAccountRuleRateLimitClientIdentifierOutputWithContext(context.Context) NgwafAccountRuleRateLimitClientIdentifierOutput
+	ToNgwafAccountRuleMultivalConditionConditionOutput() NgwafAccountRuleMultivalConditionConditionOutput
+	ToNgwafAccountRuleMultivalConditionConditionOutputWithContext(context.Context) NgwafAccountRuleMultivalConditionConditionOutput
 }
 
-type NgwafAccountRuleRateLimitClientIdentifierArgs struct {
-	// Key for the Client Identifier.
-	Key pulumi.StringPtrInput `pulumi:"key"`
-	// Name for the Client Identifier.
-	Name pulumi.StringPtrInput `pulumi:"name"`
-	// Type of the Client Identifier.
-	Type pulumi.StringInput `pulumi:"type"`
+type NgwafAccountRuleMultivalConditionConditionArgs struct {
+	// Field to inspect (e.g., `name`, `value`, `signalId`).
+	Field pulumi.StringInput `pulumi:"field"`
+	// Operator to apply (e.g., `equals`, `contains`).
+	Operator pulumi.StringInput `pulumi:"operator"`
+	// The value to test the field against.
+	Value pulumi.StringInput `pulumi:"value"`
 }
 
-func (NgwafAccountRuleRateLimitClientIdentifierArgs) ElementType() reflect.Type {
-	return reflect.TypeOf((*NgwafAccountRuleRateLimitClientIdentifier)(nil)).Elem()
+func (NgwafAccountRuleMultivalConditionConditionArgs) ElementType() reflect.Type {
+	return reflect.TypeOf((*NgwafAccountRuleMultivalConditionCondition)(nil)).Elem()
 }
 
-func (i NgwafAccountRuleRateLimitClientIdentifierArgs) ToNgwafAccountRuleRateLimitClientIdentifierOutput() NgwafAccountRuleRateLimitClientIdentifierOutput {
-	return i.ToNgwafAccountRuleRateLimitClientIdentifierOutputWithContext(context.Background())
+func (i NgwafAccountRuleMultivalConditionConditionArgs) ToNgwafAccountRuleMultivalConditionConditionOutput() NgwafAccountRuleMultivalConditionConditionOutput {
+	return i.ToNgwafAccountRuleMultivalConditionConditionOutputWithContext(context.Background())
 }
 
-func (i NgwafAccountRuleRateLimitClientIdentifierArgs) ToNgwafAccountRuleRateLimitClientIdentifierOutputWithContext(ctx context.Context) NgwafAccountRuleRateLimitClientIdentifierOutput {
-	return pulumi.ToOutputWithContext(ctx, i).(NgwafAccountRuleRateLimitClientIdentifierOutput)
+func (i NgwafAccountRuleMultivalConditionConditionArgs) ToNgwafAccountRuleMultivalConditionConditionOutputWithContext(ctx context.Context) NgwafAccountRuleMultivalConditionConditionOutput {
+	return pulumi.ToOutputWithContext(ctx, i).(NgwafAccountRuleMultivalConditionConditionOutput)
 }
 
-// NgwafAccountRuleRateLimitClientIdentifierArrayInput is an input type that accepts NgwafAccountRuleRateLimitClientIdentifierArray and NgwafAccountRuleRateLimitClientIdentifierArrayOutput values.
-// You can construct a concrete instance of `NgwafAccountRuleRateLimitClientIdentifierArrayInput` via:
+// NgwafAccountRuleMultivalConditionConditionArrayInput is an input type that accepts NgwafAccountRuleMultivalConditionConditionArray and NgwafAccountRuleMultivalConditionConditionArrayOutput values.
+// You can construct a concrete instance of `NgwafAccountRuleMultivalConditionConditionArrayInput` via:
 //
-//	NgwafAccountRuleRateLimitClientIdentifierArray{ NgwafAccountRuleRateLimitClientIdentifierArgs{...} }
-type NgwafAccountRuleRateLimitClientIdentifierArrayInput interface {
+//	NgwafAccountRuleMultivalConditionConditionArray{ NgwafAccountRuleMultivalConditionConditionArgs{...} }
+type NgwafAccountRuleMultivalConditionConditionArrayInput interface {
 	pulumi.Input
 
-	ToNgwafAccountRuleRateLimitClientIdentifierArrayOutput() NgwafAccountRuleRateLimitClientIdentifierArrayOutput
-	ToNgwafAccountRuleRateLimitClientIdentifierArrayOutputWithContext(context.Context) NgwafAccountRuleRateLimitClientIdentifierArrayOutput
+	ToNgwafAccountRuleMultivalConditionConditionArrayOutput() NgwafAccountRuleMultivalConditionConditionArrayOutput
+	ToNgwafAccountRuleMultivalConditionConditionArrayOutputWithContext(context.Context) NgwafAccountRuleMultivalConditionConditionArrayOutput
 }
 
-type NgwafAccountRuleRateLimitClientIdentifierArray []NgwafAccountRuleRateLimitClientIdentifierInput
+type NgwafAccountRuleMultivalConditionConditionArray []NgwafAccountRuleMultivalConditionConditionInput
 
-func (NgwafAccountRuleRateLimitClientIdentifierArray) ElementType() reflect.Type {
-	return reflect.TypeOf((*[]NgwafAccountRuleRateLimitClientIdentifier)(nil)).Elem()
+func (NgwafAccountRuleMultivalConditionConditionArray) ElementType() reflect.Type {
+	return reflect.TypeOf((*[]NgwafAccountRuleMultivalConditionCondition)(nil)).Elem()
 }
 
-func (i NgwafAccountRuleRateLimitClientIdentifierArray) ToNgwafAccountRuleRateLimitClientIdentifierArrayOutput() NgwafAccountRuleRateLimitClientIdentifierArrayOutput {
-	return i.ToNgwafAccountRuleRateLimitClientIdentifierArrayOutputWithContext(context.Background())
+func (i NgwafAccountRuleMultivalConditionConditionArray) ToNgwafAccountRuleMultivalConditionConditionArrayOutput() NgwafAccountRuleMultivalConditionConditionArrayOutput {
+	return i.ToNgwafAccountRuleMultivalConditionConditionArrayOutputWithContext(context.Background())
 }
 
-func (i NgwafAccountRuleRateLimitClientIdentifierArray) ToNgwafAccountRuleRateLimitClientIdentifierArrayOutputWithContext(ctx context.Context) NgwafAccountRuleRateLimitClientIdentifierArrayOutput {
-	return pulumi.ToOutputWithContext(ctx, i).(NgwafAccountRuleRateLimitClientIdentifierArrayOutput)
+func (i NgwafAccountRuleMultivalConditionConditionArray) ToNgwafAccountRuleMultivalConditionConditionArrayOutputWithContext(ctx context.Context) NgwafAccountRuleMultivalConditionConditionArrayOutput {
+	return pulumi.ToOutputWithContext(ctx, i).(NgwafAccountRuleMultivalConditionConditionArrayOutput)
 }
 
-type NgwafAccountRuleRateLimitClientIdentifierOutput struct{ *pulumi.OutputState }
+type NgwafAccountRuleMultivalConditionConditionOutput struct{ *pulumi.OutputState }
 
-func (NgwafAccountRuleRateLimitClientIdentifierOutput) ElementType() reflect.Type {
-	return reflect.TypeOf((*NgwafAccountRuleRateLimitClientIdentifier)(nil)).Elem()
+func (NgwafAccountRuleMultivalConditionConditionOutput) ElementType() reflect.Type {
+	return reflect.TypeOf((*NgwafAccountRuleMultivalConditionCondition)(nil)).Elem()
 }
 
-func (o NgwafAccountRuleRateLimitClientIdentifierOutput) ToNgwafAccountRuleRateLimitClientIdentifierOutput() NgwafAccountRuleRateLimitClientIdentifierOutput {
+func (o NgwafAccountRuleMultivalConditionConditionOutput) ToNgwafAccountRuleMultivalConditionConditionOutput() NgwafAccountRuleMultivalConditionConditionOutput {
 	return o
 }
 
-func (o NgwafAccountRuleRateLimitClientIdentifierOutput) ToNgwafAccountRuleRateLimitClientIdentifierOutputWithContext(ctx context.Context) NgwafAccountRuleRateLimitClientIdentifierOutput {
+func (o NgwafAccountRuleMultivalConditionConditionOutput) ToNgwafAccountRuleMultivalConditionConditionOutputWithContext(ctx context.Context) NgwafAccountRuleMultivalConditionConditionOutput {
 	return o
 }
 
-// Key for the Client Identifier.
-func (o NgwafAccountRuleRateLimitClientIdentifierOutput) Key() pulumi.StringPtrOutput {
-	return o.ApplyT(func(v NgwafAccountRuleRateLimitClientIdentifier) *string { return v.Key }).(pulumi.StringPtrOutput)
+// Field to inspect (e.g., `name`, `value`, `signalId`).
+func (o NgwafAccountRuleMultivalConditionConditionOutput) Field() pulumi.StringOutput {
+	return o.ApplyT(func(v NgwafAccountRuleMultivalConditionCondition) string { return v.Field }).(pulumi.StringOutput)
 }
 
-// Name for the Client Identifier.
-func (o NgwafAccountRuleRateLimitClientIdentifierOutput) Name() pulumi.StringPtrOutput {
-	return o.ApplyT(func(v NgwafAccountRuleRateLimitClientIdentifier) *string { return v.Name }).(pulumi.StringPtrOutput)
+// Operator to apply (e.g., `equals`, `contains`).
+func (o NgwafAccountRuleMultivalConditionConditionOutput) Operator() pulumi.StringOutput {
+	return o.ApplyT(func(v NgwafAccountRuleMultivalConditionCondition) string { return v.Operator }).(pulumi.StringOutput)
 }
 
-// Type of the Client Identifier.
-func (o NgwafAccountRuleRateLimitClientIdentifierOutput) Type() pulumi.StringOutput {
-	return o.ApplyT(func(v NgwafAccountRuleRateLimitClientIdentifier) string { return v.Type }).(pulumi.StringOutput)
+// The value to test the field against.
+func (o NgwafAccountRuleMultivalConditionConditionOutput) Value() pulumi.StringOutput {
+	return o.ApplyT(func(v NgwafAccountRuleMultivalConditionCondition) string { return v.Value }).(pulumi.StringOutput)
 }
 
-type NgwafAccountRuleRateLimitClientIdentifierArrayOutput struct{ *pulumi.OutputState }
+type NgwafAccountRuleMultivalConditionConditionArrayOutput struct{ *pulumi.OutputState }
 
-func (NgwafAccountRuleRateLimitClientIdentifierArrayOutput) ElementType() reflect.Type {
-	return reflect.TypeOf((*[]NgwafAccountRuleRateLimitClientIdentifier)(nil)).Elem()
+func (NgwafAccountRuleMultivalConditionConditionArrayOutput) ElementType() reflect.Type {
+	return reflect.TypeOf((*[]NgwafAccountRuleMultivalConditionCondition)(nil)).Elem()
 }
 
-func (o NgwafAccountRuleRateLimitClientIdentifierArrayOutput) ToNgwafAccountRuleRateLimitClientIdentifierArrayOutput() NgwafAccountRuleRateLimitClientIdentifierArrayOutput {
+func (o NgwafAccountRuleMultivalConditionConditionArrayOutput) ToNgwafAccountRuleMultivalConditionConditionArrayOutput() NgwafAccountRuleMultivalConditionConditionArrayOutput {
 	return o
 }
 
-func (o NgwafAccountRuleRateLimitClientIdentifierArrayOutput) ToNgwafAccountRuleRateLimitClientIdentifierArrayOutputWithContext(ctx context.Context) NgwafAccountRuleRateLimitClientIdentifierArrayOutput {
+func (o NgwafAccountRuleMultivalConditionConditionArrayOutput) ToNgwafAccountRuleMultivalConditionConditionArrayOutputWithContext(ctx context.Context) NgwafAccountRuleMultivalConditionConditionArrayOutput {
 	return o
 }
 
-func (o NgwafAccountRuleRateLimitClientIdentifierArrayOutput) Index(i pulumi.IntInput) NgwafAccountRuleRateLimitClientIdentifierOutput {
-	return pulumi.All(o, i).ApplyT(func(vs []interface{}) NgwafAccountRuleRateLimitClientIdentifier {
-		return vs[0].([]NgwafAccountRuleRateLimitClientIdentifier)[vs[1].(int)]
-	}).(NgwafAccountRuleRateLimitClientIdentifierOutput)
+func (o NgwafAccountRuleMultivalConditionConditionArrayOutput) Index(i pulumi.IntInput) NgwafAccountRuleMultivalConditionConditionOutput {
+	return pulumi.All(o, i).ApplyT(func(vs []interface{}) NgwafAccountRuleMultivalConditionCondition {
+		return vs[0].([]NgwafAccountRuleMultivalConditionCondition)[vs[1].(int)]
+	}).(NgwafAccountRuleMultivalConditionConditionOutput)
 }
 
 type NgwafWorkspaceAttackSignalThresholds struct {
@@ -1720,13 +1631,17 @@ func (o NgwafWorkspaceAttackSignalThresholdsPtrOutput) TenMinutes() pulumi.IntPt
 }
 
 type NgwafWorkspaceRuleAction struct {
+	// Specifies if interaction is allowed (used when `type = browserChallenge`).
+	AllowInteractive *bool `pulumi:"allowInteractive"`
+	// specifies the type of deception (used when `type = deception`).
+	DeceptionType *string `pulumi:"deceptionType"`
 	// Redirect target (used when `type = redirect`).
 	RedirectUrl *string `pulumi:"redirectUrl"`
 	// Response code used with redirect.
 	ResponseCode *int `pulumi:"responseCode"`
 	// Signal name to exclude (used when `type = excludeSignal`).
 	Signal *string `pulumi:"signal"`
-	// The action type, e.g. `block`, `redirect`, `excludeSignal`.
+	// The action type. One of: `addSignal`, `allow`, `block`, `browserChallenge`, `dynamicChallenge`, `excludeSignal`, `verifyToken` or for rate limit rule valid values: `logRequest`, `blockSignal`, `browserChallenge`, `verifyToken`
 	Type string `pulumi:"type"`
 }
 
@@ -1742,13 +1657,17 @@ type NgwafWorkspaceRuleActionInput interface {
 }
 
 type NgwafWorkspaceRuleActionArgs struct {
+	// Specifies if interaction is allowed (used when `type = browserChallenge`).
+	AllowInteractive pulumi.BoolPtrInput `pulumi:"allowInteractive"`
+	// specifies the type of deception (used when `type = deception`).
+	DeceptionType pulumi.StringPtrInput `pulumi:"deceptionType"`
 	// Redirect target (used when `type = redirect`).
 	RedirectUrl pulumi.StringPtrInput `pulumi:"redirectUrl"`
 	// Response code used with redirect.
 	ResponseCode pulumi.IntPtrInput `pulumi:"responseCode"`
 	// Signal name to exclude (used when `type = excludeSignal`).
 	Signal pulumi.StringPtrInput `pulumi:"signal"`
-	// The action type, e.g. `block`, `redirect`, `excludeSignal`.
+	// The action type. One of: `addSignal`, `allow`, `block`, `browserChallenge`, `dynamicChallenge`, `excludeSignal`, `verifyToken` or for rate limit rule valid values: `logRequest`, `blockSignal`, `browserChallenge`, `verifyToken`
 	Type pulumi.StringInput `pulumi:"type"`
 }
 
@@ -1803,6 +1722,16 @@ func (o NgwafWorkspaceRuleActionOutput) ToNgwafWorkspaceRuleActionOutputWithCont
 	return o
 }
 
+// Specifies if interaction is allowed (used when `type = browserChallenge`).
+func (o NgwafWorkspaceRuleActionOutput) AllowInteractive() pulumi.BoolPtrOutput {
+	return o.ApplyT(func(v NgwafWorkspaceRuleAction) *bool { return v.AllowInteractive }).(pulumi.BoolPtrOutput)
+}
+
+// specifies the type of deception (used when `type = deception`).
+func (o NgwafWorkspaceRuleActionOutput) DeceptionType() pulumi.StringPtrOutput {
+	return o.ApplyT(func(v NgwafWorkspaceRuleAction) *string { return v.DeceptionType }).(pulumi.StringPtrOutput)
+}
+
 // Redirect target (used when `type = redirect`).
 func (o NgwafWorkspaceRuleActionOutput) RedirectUrl() pulumi.StringPtrOutput {
 	return o.ApplyT(func(v NgwafWorkspaceRuleAction) *string { return v.RedirectUrl }).(pulumi.StringPtrOutput)
@@ -1818,7 +1747,7 @@ func (o NgwafWorkspaceRuleActionOutput) Signal() pulumi.StringPtrOutput {
 	return o.ApplyT(func(v NgwafWorkspaceRuleAction) *string { return v.Signal }).(pulumi.StringPtrOutput)
 }
 
-// The action type, e.g. `block`, `redirect`, `excludeSignal`.
+// The action type. One of: `addSignal`, `allow`, `block`, `browserChallenge`, `dynamicChallenge`, `excludeSignal`, `verifyToken` or for rate limit rule valid values: `logRequest`, `blockSignal`, `browserChallenge`, `verifyToken`
 func (o NgwafWorkspaceRuleActionOutput) Type() pulumi.StringOutput {
 	return o.ApplyT(func(v NgwafWorkspaceRuleAction) string { return v.Type }).(pulumi.StringOutput)
 }
@@ -2179,6 +2108,247 @@ func (o NgwafWorkspaceRuleGroupConditionConditionArrayOutput) Index(i pulumi.Int
 	return pulumi.All(o, i).ApplyT(func(vs []interface{}) NgwafWorkspaceRuleGroupConditionCondition {
 		return vs[0].([]NgwafWorkspaceRuleGroupConditionCondition)[vs[1].(int)]
 	}).(NgwafWorkspaceRuleGroupConditionConditionOutput)
+}
+
+type NgwafWorkspaceRuleMultivalCondition struct {
+	// A list of nested conditions in this list.
+	Conditions []NgwafWorkspaceRuleMultivalConditionCondition `pulumi:"conditions"`
+	// Enums for multival condition field.. Accepted values are `postParameter`, `queryParameter`, `requestCookie`, `requestHeader`, `responseHeader`, and `signal`.
+	Field string `pulumi:"field"`
+	// Logical operator for the group. Accepted values are `any` and `all`.
+	GroupOperator string `pulumi:"groupOperator"`
+	// Indicates whether the supplied conditions will check for existence or non-existence of matching field values. Accepted values are `exists` and `doesNotExist`.
+	Operator string `pulumi:"operator"`
+}
+
+// NgwafWorkspaceRuleMultivalConditionInput is an input type that accepts NgwafWorkspaceRuleMultivalConditionArgs and NgwafWorkspaceRuleMultivalConditionOutput values.
+// You can construct a concrete instance of `NgwafWorkspaceRuleMultivalConditionInput` via:
+//
+//	NgwafWorkspaceRuleMultivalConditionArgs{...}
+type NgwafWorkspaceRuleMultivalConditionInput interface {
+	pulumi.Input
+
+	ToNgwafWorkspaceRuleMultivalConditionOutput() NgwafWorkspaceRuleMultivalConditionOutput
+	ToNgwafWorkspaceRuleMultivalConditionOutputWithContext(context.Context) NgwafWorkspaceRuleMultivalConditionOutput
+}
+
+type NgwafWorkspaceRuleMultivalConditionArgs struct {
+	// A list of nested conditions in this list.
+	Conditions NgwafWorkspaceRuleMultivalConditionConditionArrayInput `pulumi:"conditions"`
+	// Enums for multival condition field.. Accepted values are `postParameter`, `queryParameter`, `requestCookie`, `requestHeader`, `responseHeader`, and `signal`.
+	Field pulumi.StringInput `pulumi:"field"`
+	// Logical operator for the group. Accepted values are `any` and `all`.
+	GroupOperator pulumi.StringInput `pulumi:"groupOperator"`
+	// Indicates whether the supplied conditions will check for existence or non-existence of matching field values. Accepted values are `exists` and `doesNotExist`.
+	Operator pulumi.StringInput `pulumi:"operator"`
+}
+
+func (NgwafWorkspaceRuleMultivalConditionArgs) ElementType() reflect.Type {
+	return reflect.TypeOf((*NgwafWorkspaceRuleMultivalCondition)(nil)).Elem()
+}
+
+func (i NgwafWorkspaceRuleMultivalConditionArgs) ToNgwafWorkspaceRuleMultivalConditionOutput() NgwafWorkspaceRuleMultivalConditionOutput {
+	return i.ToNgwafWorkspaceRuleMultivalConditionOutputWithContext(context.Background())
+}
+
+func (i NgwafWorkspaceRuleMultivalConditionArgs) ToNgwafWorkspaceRuleMultivalConditionOutputWithContext(ctx context.Context) NgwafWorkspaceRuleMultivalConditionOutput {
+	return pulumi.ToOutputWithContext(ctx, i).(NgwafWorkspaceRuleMultivalConditionOutput)
+}
+
+// NgwafWorkspaceRuleMultivalConditionArrayInput is an input type that accepts NgwafWorkspaceRuleMultivalConditionArray and NgwafWorkspaceRuleMultivalConditionArrayOutput values.
+// You can construct a concrete instance of `NgwafWorkspaceRuleMultivalConditionArrayInput` via:
+//
+//	NgwafWorkspaceRuleMultivalConditionArray{ NgwafWorkspaceRuleMultivalConditionArgs{...} }
+type NgwafWorkspaceRuleMultivalConditionArrayInput interface {
+	pulumi.Input
+
+	ToNgwafWorkspaceRuleMultivalConditionArrayOutput() NgwafWorkspaceRuleMultivalConditionArrayOutput
+	ToNgwafWorkspaceRuleMultivalConditionArrayOutputWithContext(context.Context) NgwafWorkspaceRuleMultivalConditionArrayOutput
+}
+
+type NgwafWorkspaceRuleMultivalConditionArray []NgwafWorkspaceRuleMultivalConditionInput
+
+func (NgwafWorkspaceRuleMultivalConditionArray) ElementType() reflect.Type {
+	return reflect.TypeOf((*[]NgwafWorkspaceRuleMultivalCondition)(nil)).Elem()
+}
+
+func (i NgwafWorkspaceRuleMultivalConditionArray) ToNgwafWorkspaceRuleMultivalConditionArrayOutput() NgwafWorkspaceRuleMultivalConditionArrayOutput {
+	return i.ToNgwafWorkspaceRuleMultivalConditionArrayOutputWithContext(context.Background())
+}
+
+func (i NgwafWorkspaceRuleMultivalConditionArray) ToNgwafWorkspaceRuleMultivalConditionArrayOutputWithContext(ctx context.Context) NgwafWorkspaceRuleMultivalConditionArrayOutput {
+	return pulumi.ToOutputWithContext(ctx, i).(NgwafWorkspaceRuleMultivalConditionArrayOutput)
+}
+
+type NgwafWorkspaceRuleMultivalConditionOutput struct{ *pulumi.OutputState }
+
+func (NgwafWorkspaceRuleMultivalConditionOutput) ElementType() reflect.Type {
+	return reflect.TypeOf((*NgwafWorkspaceRuleMultivalCondition)(nil)).Elem()
+}
+
+func (o NgwafWorkspaceRuleMultivalConditionOutput) ToNgwafWorkspaceRuleMultivalConditionOutput() NgwafWorkspaceRuleMultivalConditionOutput {
+	return o
+}
+
+func (o NgwafWorkspaceRuleMultivalConditionOutput) ToNgwafWorkspaceRuleMultivalConditionOutputWithContext(ctx context.Context) NgwafWorkspaceRuleMultivalConditionOutput {
+	return o
+}
+
+// A list of nested conditions in this list.
+func (o NgwafWorkspaceRuleMultivalConditionOutput) Conditions() NgwafWorkspaceRuleMultivalConditionConditionArrayOutput {
+	return o.ApplyT(func(v NgwafWorkspaceRuleMultivalCondition) []NgwafWorkspaceRuleMultivalConditionCondition {
+		return v.Conditions
+	}).(NgwafWorkspaceRuleMultivalConditionConditionArrayOutput)
+}
+
+// Enums for multival condition field.. Accepted values are `postParameter`, `queryParameter`, `requestCookie`, `requestHeader`, `responseHeader`, and `signal`.
+func (o NgwafWorkspaceRuleMultivalConditionOutput) Field() pulumi.StringOutput {
+	return o.ApplyT(func(v NgwafWorkspaceRuleMultivalCondition) string { return v.Field }).(pulumi.StringOutput)
+}
+
+// Logical operator for the group. Accepted values are `any` and `all`.
+func (o NgwafWorkspaceRuleMultivalConditionOutput) GroupOperator() pulumi.StringOutput {
+	return o.ApplyT(func(v NgwafWorkspaceRuleMultivalCondition) string { return v.GroupOperator }).(pulumi.StringOutput)
+}
+
+// Indicates whether the supplied conditions will check for existence or non-existence of matching field values. Accepted values are `exists` and `doesNotExist`.
+func (o NgwafWorkspaceRuleMultivalConditionOutput) Operator() pulumi.StringOutput {
+	return o.ApplyT(func(v NgwafWorkspaceRuleMultivalCondition) string { return v.Operator }).(pulumi.StringOutput)
+}
+
+type NgwafWorkspaceRuleMultivalConditionArrayOutput struct{ *pulumi.OutputState }
+
+func (NgwafWorkspaceRuleMultivalConditionArrayOutput) ElementType() reflect.Type {
+	return reflect.TypeOf((*[]NgwafWorkspaceRuleMultivalCondition)(nil)).Elem()
+}
+
+func (o NgwafWorkspaceRuleMultivalConditionArrayOutput) ToNgwafWorkspaceRuleMultivalConditionArrayOutput() NgwafWorkspaceRuleMultivalConditionArrayOutput {
+	return o
+}
+
+func (o NgwafWorkspaceRuleMultivalConditionArrayOutput) ToNgwafWorkspaceRuleMultivalConditionArrayOutputWithContext(ctx context.Context) NgwafWorkspaceRuleMultivalConditionArrayOutput {
+	return o
+}
+
+func (o NgwafWorkspaceRuleMultivalConditionArrayOutput) Index(i pulumi.IntInput) NgwafWorkspaceRuleMultivalConditionOutput {
+	return pulumi.All(o, i).ApplyT(func(vs []interface{}) NgwafWorkspaceRuleMultivalCondition {
+		return vs[0].([]NgwafWorkspaceRuleMultivalCondition)[vs[1].(int)]
+	}).(NgwafWorkspaceRuleMultivalConditionOutput)
+}
+
+type NgwafWorkspaceRuleMultivalConditionCondition struct {
+	// Field to inspect (e.g., `name`, `value`, `signalId`).
+	Field string `pulumi:"field"`
+	// Operator to apply (e.g., `equals`, `contains`).
+	Operator string `pulumi:"operator"`
+	// The value to test the field against.
+	Value string `pulumi:"value"`
+}
+
+// NgwafWorkspaceRuleMultivalConditionConditionInput is an input type that accepts NgwafWorkspaceRuleMultivalConditionConditionArgs and NgwafWorkspaceRuleMultivalConditionConditionOutput values.
+// You can construct a concrete instance of `NgwafWorkspaceRuleMultivalConditionConditionInput` via:
+//
+//	NgwafWorkspaceRuleMultivalConditionConditionArgs{...}
+type NgwafWorkspaceRuleMultivalConditionConditionInput interface {
+	pulumi.Input
+
+	ToNgwafWorkspaceRuleMultivalConditionConditionOutput() NgwafWorkspaceRuleMultivalConditionConditionOutput
+	ToNgwafWorkspaceRuleMultivalConditionConditionOutputWithContext(context.Context) NgwafWorkspaceRuleMultivalConditionConditionOutput
+}
+
+type NgwafWorkspaceRuleMultivalConditionConditionArgs struct {
+	// Field to inspect (e.g., `name`, `value`, `signalId`).
+	Field pulumi.StringInput `pulumi:"field"`
+	// Operator to apply (e.g., `equals`, `contains`).
+	Operator pulumi.StringInput `pulumi:"operator"`
+	// The value to test the field against.
+	Value pulumi.StringInput `pulumi:"value"`
+}
+
+func (NgwafWorkspaceRuleMultivalConditionConditionArgs) ElementType() reflect.Type {
+	return reflect.TypeOf((*NgwafWorkspaceRuleMultivalConditionCondition)(nil)).Elem()
+}
+
+func (i NgwafWorkspaceRuleMultivalConditionConditionArgs) ToNgwafWorkspaceRuleMultivalConditionConditionOutput() NgwafWorkspaceRuleMultivalConditionConditionOutput {
+	return i.ToNgwafWorkspaceRuleMultivalConditionConditionOutputWithContext(context.Background())
+}
+
+func (i NgwafWorkspaceRuleMultivalConditionConditionArgs) ToNgwafWorkspaceRuleMultivalConditionConditionOutputWithContext(ctx context.Context) NgwafWorkspaceRuleMultivalConditionConditionOutput {
+	return pulumi.ToOutputWithContext(ctx, i).(NgwafWorkspaceRuleMultivalConditionConditionOutput)
+}
+
+// NgwafWorkspaceRuleMultivalConditionConditionArrayInput is an input type that accepts NgwafWorkspaceRuleMultivalConditionConditionArray and NgwafWorkspaceRuleMultivalConditionConditionArrayOutput values.
+// You can construct a concrete instance of `NgwafWorkspaceRuleMultivalConditionConditionArrayInput` via:
+//
+//	NgwafWorkspaceRuleMultivalConditionConditionArray{ NgwafWorkspaceRuleMultivalConditionConditionArgs{...} }
+type NgwafWorkspaceRuleMultivalConditionConditionArrayInput interface {
+	pulumi.Input
+
+	ToNgwafWorkspaceRuleMultivalConditionConditionArrayOutput() NgwafWorkspaceRuleMultivalConditionConditionArrayOutput
+	ToNgwafWorkspaceRuleMultivalConditionConditionArrayOutputWithContext(context.Context) NgwafWorkspaceRuleMultivalConditionConditionArrayOutput
+}
+
+type NgwafWorkspaceRuleMultivalConditionConditionArray []NgwafWorkspaceRuleMultivalConditionConditionInput
+
+func (NgwafWorkspaceRuleMultivalConditionConditionArray) ElementType() reflect.Type {
+	return reflect.TypeOf((*[]NgwafWorkspaceRuleMultivalConditionCondition)(nil)).Elem()
+}
+
+func (i NgwafWorkspaceRuleMultivalConditionConditionArray) ToNgwafWorkspaceRuleMultivalConditionConditionArrayOutput() NgwafWorkspaceRuleMultivalConditionConditionArrayOutput {
+	return i.ToNgwafWorkspaceRuleMultivalConditionConditionArrayOutputWithContext(context.Background())
+}
+
+func (i NgwafWorkspaceRuleMultivalConditionConditionArray) ToNgwafWorkspaceRuleMultivalConditionConditionArrayOutputWithContext(ctx context.Context) NgwafWorkspaceRuleMultivalConditionConditionArrayOutput {
+	return pulumi.ToOutputWithContext(ctx, i).(NgwafWorkspaceRuleMultivalConditionConditionArrayOutput)
+}
+
+type NgwafWorkspaceRuleMultivalConditionConditionOutput struct{ *pulumi.OutputState }
+
+func (NgwafWorkspaceRuleMultivalConditionConditionOutput) ElementType() reflect.Type {
+	return reflect.TypeOf((*NgwafWorkspaceRuleMultivalConditionCondition)(nil)).Elem()
+}
+
+func (o NgwafWorkspaceRuleMultivalConditionConditionOutput) ToNgwafWorkspaceRuleMultivalConditionConditionOutput() NgwafWorkspaceRuleMultivalConditionConditionOutput {
+	return o
+}
+
+func (o NgwafWorkspaceRuleMultivalConditionConditionOutput) ToNgwafWorkspaceRuleMultivalConditionConditionOutputWithContext(ctx context.Context) NgwafWorkspaceRuleMultivalConditionConditionOutput {
+	return o
+}
+
+// Field to inspect (e.g., `name`, `value`, `signalId`).
+func (o NgwafWorkspaceRuleMultivalConditionConditionOutput) Field() pulumi.StringOutput {
+	return o.ApplyT(func(v NgwafWorkspaceRuleMultivalConditionCondition) string { return v.Field }).(pulumi.StringOutput)
+}
+
+// Operator to apply (e.g., `equals`, `contains`).
+func (o NgwafWorkspaceRuleMultivalConditionConditionOutput) Operator() pulumi.StringOutput {
+	return o.ApplyT(func(v NgwafWorkspaceRuleMultivalConditionCondition) string { return v.Operator }).(pulumi.StringOutput)
+}
+
+// The value to test the field against.
+func (o NgwafWorkspaceRuleMultivalConditionConditionOutput) Value() pulumi.StringOutput {
+	return o.ApplyT(func(v NgwafWorkspaceRuleMultivalConditionCondition) string { return v.Value }).(pulumi.StringOutput)
+}
+
+type NgwafWorkspaceRuleMultivalConditionConditionArrayOutput struct{ *pulumi.OutputState }
+
+func (NgwafWorkspaceRuleMultivalConditionConditionArrayOutput) ElementType() reflect.Type {
+	return reflect.TypeOf((*[]NgwafWorkspaceRuleMultivalConditionCondition)(nil)).Elem()
+}
+
+func (o NgwafWorkspaceRuleMultivalConditionConditionArrayOutput) ToNgwafWorkspaceRuleMultivalConditionConditionArrayOutput() NgwafWorkspaceRuleMultivalConditionConditionArrayOutput {
+	return o
+}
+
+func (o NgwafWorkspaceRuleMultivalConditionConditionArrayOutput) ToNgwafWorkspaceRuleMultivalConditionConditionArrayOutputWithContext(ctx context.Context) NgwafWorkspaceRuleMultivalConditionConditionArrayOutput {
+	return o
+}
+
+func (o NgwafWorkspaceRuleMultivalConditionConditionArrayOutput) Index(i pulumi.IntInput) NgwafWorkspaceRuleMultivalConditionConditionOutput {
+	return pulumi.All(o, i).ApplyT(func(vs []interface{}) NgwafWorkspaceRuleMultivalConditionCondition {
+		return vs[0].([]NgwafWorkspaceRuleMultivalConditionCondition)[vs[1].(int)]
+	}).(NgwafWorkspaceRuleMultivalConditionConditionOutput)
 }
 
 type NgwafWorkspaceRuleRateLimit struct {
@@ -3184,6 +3354,202 @@ func (o ServiceComputeDomainArrayOutput) Index(i pulumi.IntInput) ServiceCompute
 	}).(ServiceComputeDomainOutput)
 }
 
+type ServiceComputeHealthcheck struct {
+	// How often to run the Healthcheck in milliseconds. Default `5000`
+	CheckInterval *int `pulumi:"checkInterval"`
+	// The status code expected from the host. Default `200`
+	ExpectedResponse *int `pulumi:"expectedResponse"`
+	// Custom health check HTTP headers (e.g. if your health check requires an API key to be provided).
+	Headers []string `pulumi:"headers"`
+	// The Host header to send for this Healthcheck
+	Host string `pulumi:"host"`
+	// Whether to use version 1.0 or 1.1 HTTP. Default `1.1`
+	HttpVersion *string `pulumi:"httpVersion"`
+	// When loading a config, the initial number of probes to be seen as OK. Default `3`
+	Initial *int `pulumi:"initial"`
+	// Which HTTP method to use. Default `HEAD`
+	Method *string `pulumi:"method"`
+	// A unique name to identify this Healthcheck. It is important to note that changing this attribute will delete and recreate the resource
+	Name string `pulumi:"name"`
+	// The path to check
+	Path string `pulumi:"path"`
+	// How many Healthchecks must succeed to be considered healthy. Default `3`
+	Threshold *int `pulumi:"threshold"`
+	// Timeout in milliseconds. Default `5000`
+	Timeout *int `pulumi:"timeout"`
+	// The number of most recent Healthcheck queries to keep for this Healthcheck. Default `5`
+	Window *int `pulumi:"window"`
+}
+
+// ServiceComputeHealthcheckInput is an input type that accepts ServiceComputeHealthcheckArgs and ServiceComputeHealthcheckOutput values.
+// You can construct a concrete instance of `ServiceComputeHealthcheckInput` via:
+//
+//	ServiceComputeHealthcheckArgs{...}
+type ServiceComputeHealthcheckInput interface {
+	pulumi.Input
+
+	ToServiceComputeHealthcheckOutput() ServiceComputeHealthcheckOutput
+	ToServiceComputeHealthcheckOutputWithContext(context.Context) ServiceComputeHealthcheckOutput
+}
+
+type ServiceComputeHealthcheckArgs struct {
+	// How often to run the Healthcheck in milliseconds. Default `5000`
+	CheckInterval pulumi.IntPtrInput `pulumi:"checkInterval"`
+	// The status code expected from the host. Default `200`
+	ExpectedResponse pulumi.IntPtrInput `pulumi:"expectedResponse"`
+	// Custom health check HTTP headers (e.g. if your health check requires an API key to be provided).
+	Headers pulumi.StringArrayInput `pulumi:"headers"`
+	// The Host header to send for this Healthcheck
+	Host pulumi.StringInput `pulumi:"host"`
+	// Whether to use version 1.0 or 1.1 HTTP. Default `1.1`
+	HttpVersion pulumi.StringPtrInput `pulumi:"httpVersion"`
+	// When loading a config, the initial number of probes to be seen as OK. Default `3`
+	Initial pulumi.IntPtrInput `pulumi:"initial"`
+	// Which HTTP method to use. Default `HEAD`
+	Method pulumi.StringPtrInput `pulumi:"method"`
+	// A unique name to identify this Healthcheck. It is important to note that changing this attribute will delete and recreate the resource
+	Name pulumi.StringInput `pulumi:"name"`
+	// The path to check
+	Path pulumi.StringInput `pulumi:"path"`
+	// How many Healthchecks must succeed to be considered healthy. Default `3`
+	Threshold pulumi.IntPtrInput `pulumi:"threshold"`
+	// Timeout in milliseconds. Default `5000`
+	Timeout pulumi.IntPtrInput `pulumi:"timeout"`
+	// The number of most recent Healthcheck queries to keep for this Healthcheck. Default `5`
+	Window pulumi.IntPtrInput `pulumi:"window"`
+}
+
+func (ServiceComputeHealthcheckArgs) ElementType() reflect.Type {
+	return reflect.TypeOf((*ServiceComputeHealthcheck)(nil)).Elem()
+}
+
+func (i ServiceComputeHealthcheckArgs) ToServiceComputeHealthcheckOutput() ServiceComputeHealthcheckOutput {
+	return i.ToServiceComputeHealthcheckOutputWithContext(context.Background())
+}
+
+func (i ServiceComputeHealthcheckArgs) ToServiceComputeHealthcheckOutputWithContext(ctx context.Context) ServiceComputeHealthcheckOutput {
+	return pulumi.ToOutputWithContext(ctx, i).(ServiceComputeHealthcheckOutput)
+}
+
+// ServiceComputeHealthcheckArrayInput is an input type that accepts ServiceComputeHealthcheckArray and ServiceComputeHealthcheckArrayOutput values.
+// You can construct a concrete instance of `ServiceComputeHealthcheckArrayInput` via:
+//
+//	ServiceComputeHealthcheckArray{ ServiceComputeHealthcheckArgs{...} }
+type ServiceComputeHealthcheckArrayInput interface {
+	pulumi.Input
+
+	ToServiceComputeHealthcheckArrayOutput() ServiceComputeHealthcheckArrayOutput
+	ToServiceComputeHealthcheckArrayOutputWithContext(context.Context) ServiceComputeHealthcheckArrayOutput
+}
+
+type ServiceComputeHealthcheckArray []ServiceComputeHealthcheckInput
+
+func (ServiceComputeHealthcheckArray) ElementType() reflect.Type {
+	return reflect.TypeOf((*[]ServiceComputeHealthcheck)(nil)).Elem()
+}
+
+func (i ServiceComputeHealthcheckArray) ToServiceComputeHealthcheckArrayOutput() ServiceComputeHealthcheckArrayOutput {
+	return i.ToServiceComputeHealthcheckArrayOutputWithContext(context.Background())
+}
+
+func (i ServiceComputeHealthcheckArray) ToServiceComputeHealthcheckArrayOutputWithContext(ctx context.Context) ServiceComputeHealthcheckArrayOutput {
+	return pulumi.ToOutputWithContext(ctx, i).(ServiceComputeHealthcheckArrayOutput)
+}
+
+type ServiceComputeHealthcheckOutput struct{ *pulumi.OutputState }
+
+func (ServiceComputeHealthcheckOutput) ElementType() reflect.Type {
+	return reflect.TypeOf((*ServiceComputeHealthcheck)(nil)).Elem()
+}
+
+func (o ServiceComputeHealthcheckOutput) ToServiceComputeHealthcheckOutput() ServiceComputeHealthcheckOutput {
+	return o
+}
+
+func (o ServiceComputeHealthcheckOutput) ToServiceComputeHealthcheckOutputWithContext(ctx context.Context) ServiceComputeHealthcheckOutput {
+	return o
+}
+
+// How often to run the Healthcheck in milliseconds. Default `5000`
+func (o ServiceComputeHealthcheckOutput) CheckInterval() pulumi.IntPtrOutput {
+	return o.ApplyT(func(v ServiceComputeHealthcheck) *int { return v.CheckInterval }).(pulumi.IntPtrOutput)
+}
+
+// The status code expected from the host. Default `200`
+func (o ServiceComputeHealthcheckOutput) ExpectedResponse() pulumi.IntPtrOutput {
+	return o.ApplyT(func(v ServiceComputeHealthcheck) *int { return v.ExpectedResponse }).(pulumi.IntPtrOutput)
+}
+
+// Custom health check HTTP headers (e.g. if your health check requires an API key to be provided).
+func (o ServiceComputeHealthcheckOutput) Headers() pulumi.StringArrayOutput {
+	return o.ApplyT(func(v ServiceComputeHealthcheck) []string { return v.Headers }).(pulumi.StringArrayOutput)
+}
+
+// The Host header to send for this Healthcheck
+func (o ServiceComputeHealthcheckOutput) Host() pulumi.StringOutput {
+	return o.ApplyT(func(v ServiceComputeHealthcheck) string { return v.Host }).(pulumi.StringOutput)
+}
+
+// Whether to use version 1.0 or 1.1 HTTP. Default `1.1`
+func (o ServiceComputeHealthcheckOutput) HttpVersion() pulumi.StringPtrOutput {
+	return o.ApplyT(func(v ServiceComputeHealthcheck) *string { return v.HttpVersion }).(pulumi.StringPtrOutput)
+}
+
+// When loading a config, the initial number of probes to be seen as OK. Default `3`
+func (o ServiceComputeHealthcheckOutput) Initial() pulumi.IntPtrOutput {
+	return o.ApplyT(func(v ServiceComputeHealthcheck) *int { return v.Initial }).(pulumi.IntPtrOutput)
+}
+
+// Which HTTP method to use. Default `HEAD`
+func (o ServiceComputeHealthcheckOutput) Method() pulumi.StringPtrOutput {
+	return o.ApplyT(func(v ServiceComputeHealthcheck) *string { return v.Method }).(pulumi.StringPtrOutput)
+}
+
+// A unique name to identify this Healthcheck. It is important to note that changing this attribute will delete and recreate the resource
+func (o ServiceComputeHealthcheckOutput) Name() pulumi.StringOutput {
+	return o.ApplyT(func(v ServiceComputeHealthcheck) string { return v.Name }).(pulumi.StringOutput)
+}
+
+// The path to check
+func (o ServiceComputeHealthcheckOutput) Path() pulumi.StringOutput {
+	return o.ApplyT(func(v ServiceComputeHealthcheck) string { return v.Path }).(pulumi.StringOutput)
+}
+
+// How many Healthchecks must succeed to be considered healthy. Default `3`
+func (o ServiceComputeHealthcheckOutput) Threshold() pulumi.IntPtrOutput {
+	return o.ApplyT(func(v ServiceComputeHealthcheck) *int { return v.Threshold }).(pulumi.IntPtrOutput)
+}
+
+// Timeout in milliseconds. Default `5000`
+func (o ServiceComputeHealthcheckOutput) Timeout() pulumi.IntPtrOutput {
+	return o.ApplyT(func(v ServiceComputeHealthcheck) *int { return v.Timeout }).(pulumi.IntPtrOutput)
+}
+
+// The number of most recent Healthcheck queries to keep for this Healthcheck. Default `5`
+func (o ServiceComputeHealthcheckOutput) Window() pulumi.IntPtrOutput {
+	return o.ApplyT(func(v ServiceComputeHealthcheck) *int { return v.Window }).(pulumi.IntPtrOutput)
+}
+
+type ServiceComputeHealthcheckArrayOutput struct{ *pulumi.OutputState }
+
+func (ServiceComputeHealthcheckArrayOutput) ElementType() reflect.Type {
+	return reflect.TypeOf((*[]ServiceComputeHealthcheck)(nil)).Elem()
+}
+
+func (o ServiceComputeHealthcheckArrayOutput) ToServiceComputeHealthcheckArrayOutput() ServiceComputeHealthcheckArrayOutput {
+	return o
+}
+
+func (o ServiceComputeHealthcheckArrayOutput) ToServiceComputeHealthcheckArrayOutputWithContext(ctx context.Context) ServiceComputeHealthcheckArrayOutput {
+	return o
+}
+
+func (o ServiceComputeHealthcheckArrayOutput) Index(i pulumi.IntInput) ServiceComputeHealthcheckOutput {
+	return pulumi.All(o, i).ApplyT(func(vs []interface{}) ServiceComputeHealthcheck {
+		return vs[0].([]ServiceComputeHealthcheck)[vs[1].(int)]
+	}).(ServiceComputeHealthcheckOutput)
+}
+
 type ServiceComputeImageOptimizerDefaultSettings struct {
 	// Enables GIF to MP4 transformations on this service.
 	AllowVideo *bool `pulumi:"allowVideo"`
@@ -4070,7 +4436,7 @@ type ServiceComputeLoggingDatadog struct {
 	Name string `pulumi:"name"`
 	// Region where logs will be processed before streaming to BigQuery. Valid values are 'none', 'us' and 'eu'.
 	ProcessingRegion *string `pulumi:"processingRegion"`
-	// The region that log data will be sent to. One of `US` or `EU`. Defaults to `US` if undefined
+	// The region that log data will be sent to. Defaults to `US` if undefined
 	Region *string `pulumi:"region"`
 	// The API key from your Datadog account
 	Token string `pulumi:"token"`
@@ -4092,7 +4458,7 @@ type ServiceComputeLoggingDatadogArgs struct {
 	Name pulumi.StringInput `pulumi:"name"`
 	// Region where logs will be processed before streaming to BigQuery. Valid values are 'none', 'us' and 'eu'.
 	ProcessingRegion pulumi.StringPtrInput `pulumi:"processingRegion"`
-	// The region that log data will be sent to. One of `US` or `EU`. Defaults to `US` if undefined
+	// The region that log data will be sent to. Defaults to `US` if undefined
 	Region pulumi.StringPtrInput `pulumi:"region"`
 	// The API key from your Datadog account
 	Token pulumi.StringInput `pulumi:"token"`
@@ -4159,7 +4525,7 @@ func (o ServiceComputeLoggingDatadogOutput) ProcessingRegion() pulumi.StringPtrO
 	return o.ApplyT(func(v ServiceComputeLoggingDatadog) *string { return v.ProcessingRegion }).(pulumi.StringPtrOutput)
 }
 
-// The region that log data will be sent to. One of `US` or `EU`. Defaults to `US` if undefined
+// The region that log data will be sent to. Defaults to `US` if undefined
 func (o ServiceComputeLoggingDatadogOutput) Region() pulumi.StringPtrOutput {
 	return o.ApplyT(func(v ServiceComputeLoggingDatadog) *string { return v.Region }).(pulumi.StringPtrOutput)
 }
@@ -5551,8 +5917,12 @@ func (o ServiceComputeLoggingHoneycombArrayOutput) Index(i pulumi.IntInput) Serv
 }
 
 type ServiceComputeLoggingHttp struct {
+	// The codec used for compression of your logs. Valid values are zstd, snappy, and gzip. If the specified codec is "gzip", gzipLevel will default to 3. To specify a different level, leave compressionCodec blank and explicitly set the level using gzip_level. Specifying both compressionCodec and gzipLevel in the same API request will result in an error.
+	CompressionCodec *string `pulumi:"compressionCodec"`
 	// Value of the `Content-Type` header sent with the request
 	ContentType *string `pulumi:"contentType"`
+	// Level of Gzip compression from `0-9`. `0` means no compression. `1` is the fastest and the least compressed version, `9` is the slowest and the most compressed version. Default `0`
+	GzipLevel *int `pulumi:"gzipLevel"`
 	// Custom header sent with the request
 	HeaderName *string `pulumi:"headerName"`
 	// Value of the custom header sent with the request
@@ -5565,6 +5935,8 @@ type ServiceComputeLoggingHttp struct {
 	Method *string `pulumi:"method"`
 	// The unique name of the HTTPS logging endpoint. It is important to note that changing this attribute will delete and recreate the resource
 	Name string `pulumi:"name"`
+	// How frequently, in seconds, batches of log data are sent to the HTTPS endpoint. A value of 0 sends logs at the same interval as the default, which is 5 seconds.
+	Period *int `pulumi:"period"`
 	// Region where logs will be processed before streaming to BigQuery. Valid values are 'none', 'us' and 'eu'.
 	ProcessingRegion *string `pulumi:"processingRegion"`
 	// The maximum number of bytes sent in one request
@@ -5595,8 +5967,12 @@ type ServiceComputeLoggingHttpInput interface {
 }
 
 type ServiceComputeLoggingHttpArgs struct {
+	// The codec used for compression of your logs. Valid values are zstd, snappy, and gzip. If the specified codec is "gzip", gzipLevel will default to 3. To specify a different level, leave compressionCodec blank and explicitly set the level using gzip_level. Specifying both compressionCodec and gzipLevel in the same API request will result in an error.
+	CompressionCodec pulumi.StringPtrInput `pulumi:"compressionCodec"`
 	// Value of the `Content-Type` header sent with the request
 	ContentType pulumi.StringPtrInput `pulumi:"contentType"`
+	// Level of Gzip compression from `0-9`. `0` means no compression. `1` is the fastest and the least compressed version, `9` is the slowest and the most compressed version. Default `0`
+	GzipLevel pulumi.IntPtrInput `pulumi:"gzipLevel"`
 	// Custom header sent with the request
 	HeaderName pulumi.StringPtrInput `pulumi:"headerName"`
 	// Value of the custom header sent with the request
@@ -5609,6 +5985,8 @@ type ServiceComputeLoggingHttpArgs struct {
 	Method pulumi.StringPtrInput `pulumi:"method"`
 	// The unique name of the HTTPS logging endpoint. It is important to note that changing this attribute will delete and recreate the resource
 	Name pulumi.StringInput `pulumi:"name"`
+	// How frequently, in seconds, batches of log data are sent to the HTTPS endpoint. A value of 0 sends logs at the same interval as the default, which is 5 seconds.
+	Period pulumi.IntPtrInput `pulumi:"period"`
 	// Region where logs will be processed before streaming to BigQuery. Valid values are 'none', 'us' and 'eu'.
 	ProcessingRegion pulumi.StringPtrInput `pulumi:"processingRegion"`
 	// The maximum number of bytes sent in one request
@@ -5678,9 +6056,19 @@ func (o ServiceComputeLoggingHttpOutput) ToServiceComputeLoggingHttpOutputWithCo
 	return o
 }
 
+// The codec used for compression of your logs. Valid values are zstd, snappy, and gzip. If the specified codec is "gzip", gzipLevel will default to 3. To specify a different level, leave compressionCodec blank and explicitly set the level using gzip_level. Specifying both compressionCodec and gzipLevel in the same API request will result in an error.
+func (o ServiceComputeLoggingHttpOutput) CompressionCodec() pulumi.StringPtrOutput {
+	return o.ApplyT(func(v ServiceComputeLoggingHttp) *string { return v.CompressionCodec }).(pulumi.StringPtrOutput)
+}
+
 // Value of the `Content-Type` header sent with the request
 func (o ServiceComputeLoggingHttpOutput) ContentType() pulumi.StringPtrOutput {
 	return o.ApplyT(func(v ServiceComputeLoggingHttp) *string { return v.ContentType }).(pulumi.StringPtrOutput)
+}
+
+// Level of Gzip compression from `0-9`. `0` means no compression. `1` is the fastest and the least compressed version, `9` is the slowest and the most compressed version. Default `0`
+func (o ServiceComputeLoggingHttpOutput) GzipLevel() pulumi.IntPtrOutput {
+	return o.ApplyT(func(v ServiceComputeLoggingHttp) *int { return v.GzipLevel }).(pulumi.IntPtrOutput)
 }
 
 // Custom header sent with the request
@@ -5711,6 +6099,11 @@ func (o ServiceComputeLoggingHttpOutput) Method() pulumi.StringPtrOutput {
 // The unique name of the HTTPS logging endpoint. It is important to note that changing this attribute will delete and recreate the resource
 func (o ServiceComputeLoggingHttpOutput) Name() pulumi.StringOutput {
 	return o.ApplyT(func(v ServiceComputeLoggingHttp) string { return v.Name }).(pulumi.StringOutput)
+}
+
+// How frequently, in seconds, batches of log data are sent to the HTTPS endpoint. A value of 0 sends logs at the same interval as the default, which is 5 seconds.
+func (o ServiceComputeLoggingHttpOutput) Period() pulumi.IntPtrOutput {
+	return o.ApplyT(func(v ServiceComputeLoggingHttp) *int { return v.Period }).(pulumi.IntPtrOutput)
 }
 
 // Region where logs will be processed before streaming to BigQuery. Valid values are 'none', 'us' and 'eu'.
@@ -6650,6 +7043,175 @@ func (o ServiceComputeLoggingNewrelicArrayOutput) Index(i pulumi.IntInput) Servi
 	return pulumi.All(o, i).ApplyT(func(vs []interface{}) ServiceComputeLoggingNewrelic {
 		return vs[0].([]ServiceComputeLoggingNewrelic)[vs[1].(int)]
 	}).(ServiceComputeLoggingNewrelicOutput)
+}
+
+type ServiceComputeLoggingNewrelicotlp struct {
+	// Apache style log formatting. Your log must produce valid JSON that New Relic OTLP can ingest.
+	Format *string `pulumi:"format"`
+	// The version of the custom logging format used for the configured endpoint. Can be either `1` or `2`. (default: `2`).
+	FormatVersion *int `pulumi:"formatVersion"`
+	// The unique name of the New Relic OTLP logging endpoint. It is important to note that changing this attribute will delete and recreate the resource
+	Name string `pulumi:"name"`
+	// Where in the generated VCL the logging call should be placed.
+	Placement *string `pulumi:"placement"`
+	// Region where logs will be processed before streaming to BigQuery. Valid values are 'none', 'us' and 'eu'.
+	ProcessingRegion *string `pulumi:"processingRegion"`
+	// The region that log data will be sent to. Default: `US`
+	Region *string `pulumi:"region"`
+	// The name of the condition to apply.
+	ResponseCondition *string `pulumi:"responseCondition"`
+	// The Insert API key from the Account page of your New Relic account
+	Token string `pulumi:"token"`
+	// The optional New Relic Trace Observer URL to stream logs to for Infinite Tracing.
+	Url *string `pulumi:"url"`
+}
+
+// ServiceComputeLoggingNewrelicotlpInput is an input type that accepts ServiceComputeLoggingNewrelicotlpArgs and ServiceComputeLoggingNewrelicotlpOutput values.
+// You can construct a concrete instance of `ServiceComputeLoggingNewrelicotlpInput` via:
+//
+//	ServiceComputeLoggingNewrelicotlpArgs{...}
+type ServiceComputeLoggingNewrelicotlpInput interface {
+	pulumi.Input
+
+	ToServiceComputeLoggingNewrelicotlpOutput() ServiceComputeLoggingNewrelicotlpOutput
+	ToServiceComputeLoggingNewrelicotlpOutputWithContext(context.Context) ServiceComputeLoggingNewrelicotlpOutput
+}
+
+type ServiceComputeLoggingNewrelicotlpArgs struct {
+	// Apache style log formatting. Your log must produce valid JSON that New Relic OTLP can ingest.
+	Format pulumi.StringPtrInput `pulumi:"format"`
+	// The version of the custom logging format used for the configured endpoint. Can be either `1` or `2`. (default: `2`).
+	FormatVersion pulumi.IntPtrInput `pulumi:"formatVersion"`
+	// The unique name of the New Relic OTLP logging endpoint. It is important to note that changing this attribute will delete and recreate the resource
+	Name pulumi.StringInput `pulumi:"name"`
+	// Where in the generated VCL the logging call should be placed.
+	Placement pulumi.StringPtrInput `pulumi:"placement"`
+	// Region where logs will be processed before streaming to BigQuery. Valid values are 'none', 'us' and 'eu'.
+	ProcessingRegion pulumi.StringPtrInput `pulumi:"processingRegion"`
+	// The region that log data will be sent to. Default: `US`
+	Region pulumi.StringPtrInput `pulumi:"region"`
+	// The name of the condition to apply.
+	ResponseCondition pulumi.StringPtrInput `pulumi:"responseCondition"`
+	// The Insert API key from the Account page of your New Relic account
+	Token pulumi.StringInput `pulumi:"token"`
+	// The optional New Relic Trace Observer URL to stream logs to for Infinite Tracing.
+	Url pulumi.StringPtrInput `pulumi:"url"`
+}
+
+func (ServiceComputeLoggingNewrelicotlpArgs) ElementType() reflect.Type {
+	return reflect.TypeOf((*ServiceComputeLoggingNewrelicotlp)(nil)).Elem()
+}
+
+func (i ServiceComputeLoggingNewrelicotlpArgs) ToServiceComputeLoggingNewrelicotlpOutput() ServiceComputeLoggingNewrelicotlpOutput {
+	return i.ToServiceComputeLoggingNewrelicotlpOutputWithContext(context.Background())
+}
+
+func (i ServiceComputeLoggingNewrelicotlpArgs) ToServiceComputeLoggingNewrelicotlpOutputWithContext(ctx context.Context) ServiceComputeLoggingNewrelicotlpOutput {
+	return pulumi.ToOutputWithContext(ctx, i).(ServiceComputeLoggingNewrelicotlpOutput)
+}
+
+// ServiceComputeLoggingNewrelicotlpArrayInput is an input type that accepts ServiceComputeLoggingNewrelicotlpArray and ServiceComputeLoggingNewrelicotlpArrayOutput values.
+// You can construct a concrete instance of `ServiceComputeLoggingNewrelicotlpArrayInput` via:
+//
+//	ServiceComputeLoggingNewrelicotlpArray{ ServiceComputeLoggingNewrelicotlpArgs{...} }
+type ServiceComputeLoggingNewrelicotlpArrayInput interface {
+	pulumi.Input
+
+	ToServiceComputeLoggingNewrelicotlpArrayOutput() ServiceComputeLoggingNewrelicotlpArrayOutput
+	ToServiceComputeLoggingNewrelicotlpArrayOutputWithContext(context.Context) ServiceComputeLoggingNewrelicotlpArrayOutput
+}
+
+type ServiceComputeLoggingNewrelicotlpArray []ServiceComputeLoggingNewrelicotlpInput
+
+func (ServiceComputeLoggingNewrelicotlpArray) ElementType() reflect.Type {
+	return reflect.TypeOf((*[]ServiceComputeLoggingNewrelicotlp)(nil)).Elem()
+}
+
+func (i ServiceComputeLoggingNewrelicotlpArray) ToServiceComputeLoggingNewrelicotlpArrayOutput() ServiceComputeLoggingNewrelicotlpArrayOutput {
+	return i.ToServiceComputeLoggingNewrelicotlpArrayOutputWithContext(context.Background())
+}
+
+func (i ServiceComputeLoggingNewrelicotlpArray) ToServiceComputeLoggingNewrelicotlpArrayOutputWithContext(ctx context.Context) ServiceComputeLoggingNewrelicotlpArrayOutput {
+	return pulumi.ToOutputWithContext(ctx, i).(ServiceComputeLoggingNewrelicotlpArrayOutput)
+}
+
+type ServiceComputeLoggingNewrelicotlpOutput struct{ *pulumi.OutputState }
+
+func (ServiceComputeLoggingNewrelicotlpOutput) ElementType() reflect.Type {
+	return reflect.TypeOf((*ServiceComputeLoggingNewrelicotlp)(nil)).Elem()
+}
+
+func (o ServiceComputeLoggingNewrelicotlpOutput) ToServiceComputeLoggingNewrelicotlpOutput() ServiceComputeLoggingNewrelicotlpOutput {
+	return o
+}
+
+func (o ServiceComputeLoggingNewrelicotlpOutput) ToServiceComputeLoggingNewrelicotlpOutputWithContext(ctx context.Context) ServiceComputeLoggingNewrelicotlpOutput {
+	return o
+}
+
+// Apache style log formatting. Your log must produce valid JSON that New Relic OTLP can ingest.
+func (o ServiceComputeLoggingNewrelicotlpOutput) Format() pulumi.StringPtrOutput {
+	return o.ApplyT(func(v ServiceComputeLoggingNewrelicotlp) *string { return v.Format }).(pulumi.StringPtrOutput)
+}
+
+// The version of the custom logging format used for the configured endpoint. Can be either `1` or `2`. (default: `2`).
+func (o ServiceComputeLoggingNewrelicotlpOutput) FormatVersion() pulumi.IntPtrOutput {
+	return o.ApplyT(func(v ServiceComputeLoggingNewrelicotlp) *int { return v.FormatVersion }).(pulumi.IntPtrOutput)
+}
+
+// The unique name of the New Relic OTLP logging endpoint. It is important to note that changing this attribute will delete and recreate the resource
+func (o ServiceComputeLoggingNewrelicotlpOutput) Name() pulumi.StringOutput {
+	return o.ApplyT(func(v ServiceComputeLoggingNewrelicotlp) string { return v.Name }).(pulumi.StringOutput)
+}
+
+// Where in the generated VCL the logging call should be placed.
+func (o ServiceComputeLoggingNewrelicotlpOutput) Placement() pulumi.StringPtrOutput {
+	return o.ApplyT(func(v ServiceComputeLoggingNewrelicotlp) *string { return v.Placement }).(pulumi.StringPtrOutput)
+}
+
+// Region where logs will be processed before streaming to BigQuery. Valid values are 'none', 'us' and 'eu'.
+func (o ServiceComputeLoggingNewrelicotlpOutput) ProcessingRegion() pulumi.StringPtrOutput {
+	return o.ApplyT(func(v ServiceComputeLoggingNewrelicotlp) *string { return v.ProcessingRegion }).(pulumi.StringPtrOutput)
+}
+
+// The region that log data will be sent to. Default: `US`
+func (o ServiceComputeLoggingNewrelicotlpOutput) Region() pulumi.StringPtrOutput {
+	return o.ApplyT(func(v ServiceComputeLoggingNewrelicotlp) *string { return v.Region }).(pulumi.StringPtrOutput)
+}
+
+// The name of the condition to apply.
+func (o ServiceComputeLoggingNewrelicotlpOutput) ResponseCondition() pulumi.StringPtrOutput {
+	return o.ApplyT(func(v ServiceComputeLoggingNewrelicotlp) *string { return v.ResponseCondition }).(pulumi.StringPtrOutput)
+}
+
+// The Insert API key from the Account page of your New Relic account
+func (o ServiceComputeLoggingNewrelicotlpOutput) Token() pulumi.StringOutput {
+	return o.ApplyT(func(v ServiceComputeLoggingNewrelicotlp) string { return v.Token }).(pulumi.StringOutput)
+}
+
+// The optional New Relic Trace Observer URL to stream logs to for Infinite Tracing.
+func (o ServiceComputeLoggingNewrelicotlpOutput) Url() pulumi.StringPtrOutput {
+	return o.ApplyT(func(v ServiceComputeLoggingNewrelicotlp) *string { return v.Url }).(pulumi.StringPtrOutput)
+}
+
+type ServiceComputeLoggingNewrelicotlpArrayOutput struct{ *pulumi.OutputState }
+
+func (ServiceComputeLoggingNewrelicotlpArrayOutput) ElementType() reflect.Type {
+	return reflect.TypeOf((*[]ServiceComputeLoggingNewrelicotlp)(nil)).Elem()
+}
+
+func (o ServiceComputeLoggingNewrelicotlpArrayOutput) ToServiceComputeLoggingNewrelicotlpArrayOutput() ServiceComputeLoggingNewrelicotlpArrayOutput {
+	return o
+}
+
+func (o ServiceComputeLoggingNewrelicotlpArrayOutput) ToServiceComputeLoggingNewrelicotlpArrayOutputWithContext(ctx context.Context) ServiceComputeLoggingNewrelicotlpArrayOutput {
+	return o
+}
+
+func (o ServiceComputeLoggingNewrelicotlpArrayOutput) Index(i pulumi.IntInput) ServiceComputeLoggingNewrelicotlpOutput {
+	return pulumi.All(o, i).ApplyT(func(vs []interface{}) ServiceComputeLoggingNewrelicotlp {
+		return vs[0].([]ServiceComputeLoggingNewrelicotlp)[vs[1].(int)]
+	}).(ServiceComputeLoggingNewrelicotlpOutput)
 }
 
 type ServiceComputeLoggingOpenstack struct {
@@ -8252,6 +8814,8 @@ func (o ServiceComputePackagePtrOutput) SourceCodeHash() pulumi.StringPtrOutput 
 }
 
 type ServiceComputeProductEnablement struct {
+	// Enable API Discovery support
+	ApiDiscovery *bool `pulumi:"apiDiscovery"`
 	// DDoS Protection product
 	DdosProtection *ServiceComputeProductEnablementDdosProtection `pulumi:"ddosProtection"`
 	// Enable Fanout support
@@ -8278,6 +8842,8 @@ type ServiceComputeProductEnablementInput interface {
 }
 
 type ServiceComputeProductEnablementArgs struct {
+	// Enable API Discovery support
+	ApiDiscovery pulumi.BoolPtrInput `pulumi:"apiDiscovery"`
 	// DDoS Protection product
 	DdosProtection ServiceComputeProductEnablementDdosProtectionPtrInput `pulumi:"ddosProtection"`
 	// Enable Fanout support
@@ -8369,6 +8935,11 @@ func (o ServiceComputeProductEnablementOutput) ToServiceComputeProductEnablement
 	}).(ServiceComputeProductEnablementPtrOutput)
 }
 
+// Enable API Discovery support
+func (o ServiceComputeProductEnablementOutput) ApiDiscovery() pulumi.BoolPtrOutput {
+	return o.ApplyT(func(v ServiceComputeProductEnablement) *bool { return v.ApiDiscovery }).(pulumi.BoolPtrOutput)
+}
+
 // DDoS Protection product
 func (o ServiceComputeProductEnablementOutput) DdosProtection() ServiceComputeProductEnablementDdosProtectionPtrOutput {
 	return o.ApplyT(func(v ServiceComputeProductEnablement) *ServiceComputeProductEnablementDdosProtection {
@@ -8423,6 +8994,16 @@ func (o ServiceComputeProductEnablementPtrOutput) Elem() ServiceComputeProductEn
 		var ret ServiceComputeProductEnablement
 		return ret
 	}).(ServiceComputeProductEnablementOutput)
+}
+
+// Enable API Discovery support
+func (o ServiceComputeProductEnablementPtrOutput) ApiDiscovery() pulumi.BoolPtrOutput {
+	return o.ApplyT(func(v *ServiceComputeProductEnablement) *bool {
+		if v == nil {
+			return nil
+		}
+		return v.ApiDiscovery
+	}).(pulumi.BoolPtrOutput)
 }
 
 // DDoS Protection product
@@ -11168,7 +11749,7 @@ type ServiceVclLoggingBlobstorage struct {
 	Container string `pulumi:"container"`
 	// Maximum size of an uploaded log file, if non-zero.
 	FileMaxBytes *int `pulumi:"fileMaxBytes"`
-	// Apache-style string or VCL variables to use for log formatting (default: `%h %l %u %t "%r" %>s %b`)
+	// Apache-style string or VCL variables to use for log formatting.
 	Format *string `pulumi:"format"`
 	// The version of the custom logging format used for the configured endpoint. Can be either 1 or 2. (default: 2)
 	FormatVersion *int `pulumi:"formatVersion"`
@@ -11216,7 +11797,7 @@ type ServiceVclLoggingBlobstorageArgs struct {
 	Container pulumi.StringInput `pulumi:"container"`
 	// Maximum size of an uploaded log file, if non-zero.
 	FileMaxBytes pulumi.IntPtrInput `pulumi:"fileMaxBytes"`
-	// Apache-style string or VCL variables to use for log formatting (default: `%h %l %u %t "%r" %>s %b`)
+	// Apache-style string or VCL variables to use for log formatting.
 	Format pulumi.StringPtrInput `pulumi:"format"`
 	// The version of the custom logging format used for the configured endpoint. Can be either 1 or 2. (default: 2)
 	FormatVersion pulumi.IntPtrInput `pulumi:"formatVersion"`
@@ -11315,7 +11896,7 @@ func (o ServiceVclLoggingBlobstorageOutput) FileMaxBytes() pulumi.IntPtrOutput {
 	return o.ApplyT(func(v ServiceVclLoggingBlobstorage) *int { return v.FileMaxBytes }).(pulumi.IntPtrOutput)
 }
 
-// Apache-style string or VCL variables to use for log formatting (default: `%h %l %u %t "%r" %>s %b`)
+// Apache-style string or VCL variables to use for log formatting.
 func (o ServiceVclLoggingBlobstorageOutput) Format() pulumi.StringPtrOutput {
 	return o.ApplyT(func(v ServiceVclLoggingBlobstorage) *string { return v.Format }).(pulumi.StringPtrOutput)
 }
@@ -11652,7 +12233,7 @@ type ServiceVclLoggingDatadog struct {
 	Placement *string `pulumi:"placement"`
 	// Region where logs will be processed before streaming to BigQuery. Valid values are 'none', 'us' and 'eu'.
 	ProcessingRegion *string `pulumi:"processingRegion"`
-	// The region that log data will be sent to. One of `US` or `EU`. Defaults to `US` if undefined
+	// The region that log data will be sent to. Defaults to `US` if undefined
 	Region *string `pulumi:"region"`
 	// The name of the condition to apply.
 	ResponseCondition *string `pulumi:"responseCondition"`
@@ -11682,7 +12263,7 @@ type ServiceVclLoggingDatadogArgs struct {
 	Placement pulumi.StringPtrInput `pulumi:"placement"`
 	// Region where logs will be processed before streaming to BigQuery. Valid values are 'none', 'us' and 'eu'.
 	ProcessingRegion pulumi.StringPtrInput `pulumi:"processingRegion"`
-	// The region that log data will be sent to. One of `US` or `EU`. Defaults to `US` if undefined
+	// The region that log data will be sent to. Defaults to `US` if undefined
 	Region pulumi.StringPtrInput `pulumi:"region"`
 	// The name of the condition to apply.
 	ResponseCondition pulumi.StringPtrInput `pulumi:"responseCondition"`
@@ -11766,7 +12347,7 @@ func (o ServiceVclLoggingDatadogOutput) ProcessingRegion() pulumi.StringPtrOutpu
 	return o.ApplyT(func(v ServiceVclLoggingDatadog) *string { return v.ProcessingRegion }).(pulumi.StringPtrOutput)
 }
 
-// The region that log data will be sent to. One of `US` or `EU`. Defaults to `US` if undefined
+// The region that log data will be sent to. Defaults to `US` if undefined
 func (o ServiceVclLoggingDatadogOutput) Region() pulumi.StringPtrOutput {
 	return o.ApplyT(func(v ServiceVclLoggingDatadog) *string { return v.Region }).(pulumi.StringPtrOutput)
 }
@@ -13451,12 +14032,16 @@ func (o ServiceVclLoggingHoneycombArrayOutput) Index(i pulumi.IntInput) ServiceV
 }
 
 type ServiceVclLoggingHttp struct {
+	// The codec used for compression of your logs. Valid values are zstd, snappy, and gzip. If the specified codec is "gzip", gzipLevel will default to 3. To specify a different level, leave compressionCodec blank and explicitly set the level using gzip_level. Specifying both compressionCodec and gzipLevel in the same API request will result in an error.
+	CompressionCodec *string `pulumi:"compressionCodec"`
 	// Value of the `Content-Type` header sent with the request
 	ContentType *string `pulumi:"contentType"`
 	// Apache-style string or VCL variables to use for log formatting.
 	Format *string `pulumi:"format"`
 	// The version of the custom logging format used for the configured endpoint. Can be either 1 or 2. (default: 2)
 	FormatVersion *int `pulumi:"formatVersion"`
+	// Level of Gzip compression from `0-9`. `0` means no compression. `1` is the fastest and the least compressed version, `9` is the slowest and the most compressed version. Default `0`
+	GzipLevel *int `pulumi:"gzipLevel"`
 	// Custom header sent with the request
 	HeaderName *string `pulumi:"headerName"`
 	// Value of the custom header sent with the request
@@ -13469,6 +14054,8 @@ type ServiceVclLoggingHttp struct {
 	Method *string `pulumi:"method"`
 	// The unique name of the HTTPS logging endpoint. It is important to note that changing this attribute will delete and recreate the resource
 	Name string `pulumi:"name"`
+	// How frequently, in seconds, batches of log data are sent to the HTTPS endpoint. A value of 0 sends logs at the same interval as the default, which is 5 seconds.
+	Period *int `pulumi:"period"`
 	// Where in the generated VCL the logging call should be placed
 	Placement *string `pulumi:"placement"`
 	// Region where logs will be processed before streaming to BigQuery. Valid values are 'none', 'us' and 'eu'.
@@ -13503,12 +14090,16 @@ type ServiceVclLoggingHttpInput interface {
 }
 
 type ServiceVclLoggingHttpArgs struct {
+	// The codec used for compression of your logs. Valid values are zstd, snappy, and gzip. If the specified codec is "gzip", gzipLevel will default to 3. To specify a different level, leave compressionCodec blank and explicitly set the level using gzip_level. Specifying both compressionCodec and gzipLevel in the same API request will result in an error.
+	CompressionCodec pulumi.StringPtrInput `pulumi:"compressionCodec"`
 	// Value of the `Content-Type` header sent with the request
 	ContentType pulumi.StringPtrInput `pulumi:"contentType"`
 	// Apache-style string or VCL variables to use for log formatting.
 	Format pulumi.StringPtrInput `pulumi:"format"`
 	// The version of the custom logging format used for the configured endpoint. Can be either 1 or 2. (default: 2)
 	FormatVersion pulumi.IntPtrInput `pulumi:"formatVersion"`
+	// Level of Gzip compression from `0-9`. `0` means no compression. `1` is the fastest and the least compressed version, `9` is the slowest and the most compressed version. Default `0`
+	GzipLevel pulumi.IntPtrInput `pulumi:"gzipLevel"`
 	// Custom header sent with the request
 	HeaderName pulumi.StringPtrInput `pulumi:"headerName"`
 	// Value of the custom header sent with the request
@@ -13521,6 +14112,8 @@ type ServiceVclLoggingHttpArgs struct {
 	Method pulumi.StringPtrInput `pulumi:"method"`
 	// The unique name of the HTTPS logging endpoint. It is important to note that changing this attribute will delete and recreate the resource
 	Name pulumi.StringInput `pulumi:"name"`
+	// How frequently, in seconds, batches of log data are sent to the HTTPS endpoint. A value of 0 sends logs at the same interval as the default, which is 5 seconds.
+	Period pulumi.IntPtrInput `pulumi:"period"`
 	// Where in the generated VCL the logging call should be placed
 	Placement pulumi.StringPtrInput `pulumi:"placement"`
 	// Region where logs will be processed before streaming to BigQuery. Valid values are 'none', 'us' and 'eu'.
@@ -13594,6 +14187,11 @@ func (o ServiceVclLoggingHttpOutput) ToServiceVclLoggingHttpOutputWithContext(ct
 	return o
 }
 
+// The codec used for compression of your logs. Valid values are zstd, snappy, and gzip. If the specified codec is "gzip", gzipLevel will default to 3. To specify a different level, leave compressionCodec blank and explicitly set the level using gzip_level. Specifying both compressionCodec and gzipLevel in the same API request will result in an error.
+func (o ServiceVclLoggingHttpOutput) CompressionCodec() pulumi.StringPtrOutput {
+	return o.ApplyT(func(v ServiceVclLoggingHttp) *string { return v.CompressionCodec }).(pulumi.StringPtrOutput)
+}
+
 // Value of the `Content-Type` header sent with the request
 func (o ServiceVclLoggingHttpOutput) ContentType() pulumi.StringPtrOutput {
 	return o.ApplyT(func(v ServiceVclLoggingHttp) *string { return v.ContentType }).(pulumi.StringPtrOutput)
@@ -13607,6 +14205,11 @@ func (o ServiceVclLoggingHttpOutput) Format() pulumi.StringPtrOutput {
 // The version of the custom logging format used for the configured endpoint. Can be either 1 or 2. (default: 2)
 func (o ServiceVclLoggingHttpOutput) FormatVersion() pulumi.IntPtrOutput {
 	return o.ApplyT(func(v ServiceVclLoggingHttp) *int { return v.FormatVersion }).(pulumi.IntPtrOutput)
+}
+
+// Level of Gzip compression from `0-9`. `0` means no compression. `1` is the fastest and the least compressed version, `9` is the slowest and the most compressed version. Default `0`
+func (o ServiceVclLoggingHttpOutput) GzipLevel() pulumi.IntPtrOutput {
+	return o.ApplyT(func(v ServiceVclLoggingHttp) *int { return v.GzipLevel }).(pulumi.IntPtrOutput)
 }
 
 // Custom header sent with the request
@@ -13637,6 +14240,11 @@ func (o ServiceVclLoggingHttpOutput) Method() pulumi.StringPtrOutput {
 // The unique name of the HTTPS logging endpoint. It is important to note that changing this attribute will delete and recreate the resource
 func (o ServiceVclLoggingHttpOutput) Name() pulumi.StringOutput {
 	return o.ApplyT(func(v ServiceVclLoggingHttp) string { return v.Name }).(pulumi.StringOutput)
+}
+
+// How frequently, in seconds, batches of log data are sent to the HTTPS endpoint. A value of 0 sends logs at the same interval as the default, which is 5 seconds.
+func (o ServiceVclLoggingHttpOutput) Period() pulumi.IntPtrOutput {
+	return o.ApplyT(func(v ServiceVclLoggingHttp) *int { return v.Period }).(pulumi.IntPtrOutput)
 }
 
 // Where in the generated VCL the logging call should be placed
@@ -16686,6 +17294,8 @@ func (o ServiceVclLoggingSyslogArrayOutput) Index(i pulumi.IntInput) ServiceVclL
 }
 
 type ServiceVclProductEnablement struct {
+	// Enable API Discovery support
+	ApiDiscovery *bool `pulumi:"apiDiscovery"`
 	// Enable Bot Management support
 	BotManagement *bool `pulumi:"botManagement"`
 	// Enable Brotli Compression support
@@ -16720,6 +17330,8 @@ type ServiceVclProductEnablementInput interface {
 }
 
 type ServiceVclProductEnablementArgs struct {
+	// Enable API Discovery support
+	ApiDiscovery pulumi.BoolPtrInput `pulumi:"apiDiscovery"`
 	// Enable Bot Management support
 	BotManagement pulumi.BoolPtrInput `pulumi:"botManagement"`
 	// Enable Brotli Compression support
@@ -16819,6 +17431,11 @@ func (o ServiceVclProductEnablementOutput) ToServiceVclProductEnablementPtrOutpu
 	}).(ServiceVclProductEnablementPtrOutput)
 }
 
+// Enable API Discovery support
+func (o ServiceVclProductEnablementOutput) ApiDiscovery() pulumi.BoolPtrOutput {
+	return o.ApplyT(func(v ServiceVclProductEnablement) *bool { return v.ApiDiscovery }).(pulumi.BoolPtrOutput)
+}
+
 // Enable Bot Management support
 func (o ServiceVclProductEnablementOutput) BotManagement() pulumi.BoolPtrOutput {
 	return o.ApplyT(func(v ServiceVclProductEnablement) *bool { return v.BotManagement }).(pulumi.BoolPtrOutput)
@@ -16893,6 +17510,16 @@ func (o ServiceVclProductEnablementPtrOutput) Elem() ServiceVclProductEnablement
 		var ret ServiceVclProductEnablement
 		return ret
 	}).(ServiceVclProductEnablementOutput)
+}
+
+// Enable API Discovery support
+func (o ServiceVclProductEnablementPtrOutput) ApiDiscovery() pulumi.BoolPtrOutput {
+	return o.ApplyT(func(v *ServiceVclProductEnablement) *bool {
+		if v == nil {
+			return nil
+		}
+		return v.ApiDiscovery
+	}).(pulumi.BoolPtrOutput)
 }
 
 // Enable Bot Management support
@@ -17727,7 +18354,7 @@ type ServiceVclRequestSetting struct {
 	RequestCondition *string `pulumi:"requestCondition"`
 	// Injects the X-Timer info into the request for viewing origin fetch durations
 	TimerSupport *bool `pulumi:"timerSupport"`
-	// X-Forwarded-For, should be `clear`, `leave`, `append`, `appendAll`, or `overwrite`. Default `append`
+	// X-Forwarded-For, should be `clear`, `leave`, `append`, `appendAll`, or `overwrite`
 	Xff *string `pulumi:"xff"`
 }
 
@@ -17763,7 +18390,7 @@ type ServiceVclRequestSettingArgs struct {
 	RequestCondition pulumi.StringPtrInput `pulumi:"requestCondition"`
 	// Injects the X-Timer info into the request for viewing origin fetch durations
 	TimerSupport pulumi.BoolPtrInput `pulumi:"timerSupport"`
-	// X-Forwarded-For, should be `clear`, `leave`, `append`, `appendAll`, or `overwrite`. Default `append`
+	// X-Forwarded-For, should be `clear`, `leave`, `append`, `appendAll`, or `overwrite`
 	Xff pulumi.StringPtrInput `pulumi:"xff"`
 }
 
@@ -17868,7 +18495,7 @@ func (o ServiceVclRequestSettingOutput) TimerSupport() pulumi.BoolPtrOutput {
 	return o.ApplyT(func(v ServiceVclRequestSetting) *bool { return v.TimerSupport }).(pulumi.BoolPtrOutput)
 }
 
-// X-Forwarded-For, should be `clear`, `leave`, `append`, `appendAll`, or `overwrite`. Default `append`
+// X-Forwarded-For, should be `clear`, `leave`, `append`, `appendAll`, or `overwrite`
 func (o ServiceVclRequestSettingOutput) Xff() pulumi.StringPtrOutput {
 	return o.ApplyT(func(v ServiceVclRequestSetting) *string { return v.Xff }).(pulumi.StringPtrOutput)
 }
@@ -18513,6 +19140,112 @@ func (o TlsSubscriptionManagedHttpChallengeArrayOutput) Index(i pulumi.IntInput)
 	}).(TlsSubscriptionManagedHttpChallengeOutput)
 }
 
+type GetComputeAclsAcl struct {
+	// Identifier of the Compute ACL.
+	Id string `pulumi:"id"`
+	// Name of the Compute ACL.
+	Name string `pulumi:"name"`
+}
+
+// GetComputeAclsAclInput is an input type that accepts GetComputeAclsAclArgs and GetComputeAclsAclOutput values.
+// You can construct a concrete instance of `GetComputeAclsAclInput` via:
+//
+//	GetComputeAclsAclArgs{...}
+type GetComputeAclsAclInput interface {
+	pulumi.Input
+
+	ToGetComputeAclsAclOutput() GetComputeAclsAclOutput
+	ToGetComputeAclsAclOutputWithContext(context.Context) GetComputeAclsAclOutput
+}
+
+type GetComputeAclsAclArgs struct {
+	// Identifier of the Compute ACL.
+	Id pulumi.StringInput `pulumi:"id"`
+	// Name of the Compute ACL.
+	Name pulumi.StringInput `pulumi:"name"`
+}
+
+func (GetComputeAclsAclArgs) ElementType() reflect.Type {
+	return reflect.TypeOf((*GetComputeAclsAcl)(nil)).Elem()
+}
+
+func (i GetComputeAclsAclArgs) ToGetComputeAclsAclOutput() GetComputeAclsAclOutput {
+	return i.ToGetComputeAclsAclOutputWithContext(context.Background())
+}
+
+func (i GetComputeAclsAclArgs) ToGetComputeAclsAclOutputWithContext(ctx context.Context) GetComputeAclsAclOutput {
+	return pulumi.ToOutputWithContext(ctx, i).(GetComputeAclsAclOutput)
+}
+
+// GetComputeAclsAclArrayInput is an input type that accepts GetComputeAclsAclArray and GetComputeAclsAclArrayOutput values.
+// You can construct a concrete instance of `GetComputeAclsAclArrayInput` via:
+//
+//	GetComputeAclsAclArray{ GetComputeAclsAclArgs{...} }
+type GetComputeAclsAclArrayInput interface {
+	pulumi.Input
+
+	ToGetComputeAclsAclArrayOutput() GetComputeAclsAclArrayOutput
+	ToGetComputeAclsAclArrayOutputWithContext(context.Context) GetComputeAclsAclArrayOutput
+}
+
+type GetComputeAclsAclArray []GetComputeAclsAclInput
+
+func (GetComputeAclsAclArray) ElementType() reflect.Type {
+	return reflect.TypeOf((*[]GetComputeAclsAcl)(nil)).Elem()
+}
+
+func (i GetComputeAclsAclArray) ToGetComputeAclsAclArrayOutput() GetComputeAclsAclArrayOutput {
+	return i.ToGetComputeAclsAclArrayOutputWithContext(context.Background())
+}
+
+func (i GetComputeAclsAclArray) ToGetComputeAclsAclArrayOutputWithContext(ctx context.Context) GetComputeAclsAclArrayOutput {
+	return pulumi.ToOutputWithContext(ctx, i).(GetComputeAclsAclArrayOutput)
+}
+
+type GetComputeAclsAclOutput struct{ *pulumi.OutputState }
+
+func (GetComputeAclsAclOutput) ElementType() reflect.Type {
+	return reflect.TypeOf((*GetComputeAclsAcl)(nil)).Elem()
+}
+
+func (o GetComputeAclsAclOutput) ToGetComputeAclsAclOutput() GetComputeAclsAclOutput {
+	return o
+}
+
+func (o GetComputeAclsAclOutput) ToGetComputeAclsAclOutputWithContext(ctx context.Context) GetComputeAclsAclOutput {
+	return o
+}
+
+// Identifier of the Compute ACL.
+func (o GetComputeAclsAclOutput) Id() pulumi.StringOutput {
+	return o.ApplyT(func(v GetComputeAclsAcl) string { return v.Id }).(pulumi.StringOutput)
+}
+
+// Name of the Compute ACL.
+func (o GetComputeAclsAclOutput) Name() pulumi.StringOutput {
+	return o.ApplyT(func(v GetComputeAclsAcl) string { return v.Name }).(pulumi.StringOutput)
+}
+
+type GetComputeAclsAclArrayOutput struct{ *pulumi.OutputState }
+
+func (GetComputeAclsAclArrayOutput) ElementType() reflect.Type {
+	return reflect.TypeOf((*[]GetComputeAclsAcl)(nil)).Elem()
+}
+
+func (o GetComputeAclsAclArrayOutput) ToGetComputeAclsAclArrayOutput() GetComputeAclsAclArrayOutput {
+	return o
+}
+
+func (o GetComputeAclsAclArrayOutput) ToGetComputeAclsAclArrayOutputWithContext(ctx context.Context) GetComputeAclsAclArrayOutput {
+	return o
+}
+
+func (o GetComputeAclsAclArrayOutput) Index(i pulumi.IntInput) GetComputeAclsAclOutput {
+	return pulumi.All(o, i).ApplyT(func(vs []interface{}) GetComputeAclsAcl {
+		return vs[0].([]GetComputeAclsAcl)[vs[1].(int)]
+	}).(GetComputeAclsAclOutput)
+}
+
 type GetConfigstoresStore struct {
 	// Alphanumeric string identifying the Config Store.
 	Id string `pulumi:"id"`
@@ -18858,6 +19591,121 @@ func (o GetDictionariesDictionaryArrayOutput) Index(i pulumi.IntInput) GetDictio
 	}).(GetDictionariesDictionaryOutput)
 }
 
+type GetDomainsV1Domain struct {
+	// The fully-qualified domain name for your domain.
+	Fqdn string `pulumi:"fqdn"`
+	// Domain Identifier (UUID).
+	Id string `pulumi:"id"`
+	// The 'service_id' associated with your domain or 'null' if there is no association.
+	ServiceId string `pulumi:"serviceId"`
+}
+
+// GetDomainsV1DomainInput is an input type that accepts GetDomainsV1DomainArgs and GetDomainsV1DomainOutput values.
+// You can construct a concrete instance of `GetDomainsV1DomainInput` via:
+//
+//	GetDomainsV1DomainArgs{...}
+type GetDomainsV1DomainInput interface {
+	pulumi.Input
+
+	ToGetDomainsV1DomainOutput() GetDomainsV1DomainOutput
+	ToGetDomainsV1DomainOutputWithContext(context.Context) GetDomainsV1DomainOutput
+}
+
+type GetDomainsV1DomainArgs struct {
+	// The fully-qualified domain name for your domain.
+	Fqdn pulumi.StringInput `pulumi:"fqdn"`
+	// Domain Identifier (UUID).
+	Id pulumi.StringInput `pulumi:"id"`
+	// The 'service_id' associated with your domain or 'null' if there is no association.
+	ServiceId pulumi.StringInput `pulumi:"serviceId"`
+}
+
+func (GetDomainsV1DomainArgs) ElementType() reflect.Type {
+	return reflect.TypeOf((*GetDomainsV1Domain)(nil)).Elem()
+}
+
+func (i GetDomainsV1DomainArgs) ToGetDomainsV1DomainOutput() GetDomainsV1DomainOutput {
+	return i.ToGetDomainsV1DomainOutputWithContext(context.Background())
+}
+
+func (i GetDomainsV1DomainArgs) ToGetDomainsV1DomainOutputWithContext(ctx context.Context) GetDomainsV1DomainOutput {
+	return pulumi.ToOutputWithContext(ctx, i).(GetDomainsV1DomainOutput)
+}
+
+// GetDomainsV1DomainArrayInput is an input type that accepts GetDomainsV1DomainArray and GetDomainsV1DomainArrayOutput values.
+// You can construct a concrete instance of `GetDomainsV1DomainArrayInput` via:
+//
+//	GetDomainsV1DomainArray{ GetDomainsV1DomainArgs{...} }
+type GetDomainsV1DomainArrayInput interface {
+	pulumi.Input
+
+	ToGetDomainsV1DomainArrayOutput() GetDomainsV1DomainArrayOutput
+	ToGetDomainsV1DomainArrayOutputWithContext(context.Context) GetDomainsV1DomainArrayOutput
+}
+
+type GetDomainsV1DomainArray []GetDomainsV1DomainInput
+
+func (GetDomainsV1DomainArray) ElementType() reflect.Type {
+	return reflect.TypeOf((*[]GetDomainsV1Domain)(nil)).Elem()
+}
+
+func (i GetDomainsV1DomainArray) ToGetDomainsV1DomainArrayOutput() GetDomainsV1DomainArrayOutput {
+	return i.ToGetDomainsV1DomainArrayOutputWithContext(context.Background())
+}
+
+func (i GetDomainsV1DomainArray) ToGetDomainsV1DomainArrayOutputWithContext(ctx context.Context) GetDomainsV1DomainArrayOutput {
+	return pulumi.ToOutputWithContext(ctx, i).(GetDomainsV1DomainArrayOutput)
+}
+
+type GetDomainsV1DomainOutput struct{ *pulumi.OutputState }
+
+func (GetDomainsV1DomainOutput) ElementType() reflect.Type {
+	return reflect.TypeOf((*GetDomainsV1Domain)(nil)).Elem()
+}
+
+func (o GetDomainsV1DomainOutput) ToGetDomainsV1DomainOutput() GetDomainsV1DomainOutput {
+	return o
+}
+
+func (o GetDomainsV1DomainOutput) ToGetDomainsV1DomainOutputWithContext(ctx context.Context) GetDomainsV1DomainOutput {
+	return o
+}
+
+// The fully-qualified domain name for your domain.
+func (o GetDomainsV1DomainOutput) Fqdn() pulumi.StringOutput {
+	return o.ApplyT(func(v GetDomainsV1Domain) string { return v.Fqdn }).(pulumi.StringOutput)
+}
+
+// Domain Identifier (UUID).
+func (o GetDomainsV1DomainOutput) Id() pulumi.StringOutput {
+	return o.ApplyT(func(v GetDomainsV1Domain) string { return v.Id }).(pulumi.StringOutput)
+}
+
+// The 'service_id' associated with your domain or 'null' if there is no association.
+func (o GetDomainsV1DomainOutput) ServiceId() pulumi.StringOutput {
+	return o.ApplyT(func(v GetDomainsV1Domain) string { return v.ServiceId }).(pulumi.StringOutput)
+}
+
+type GetDomainsV1DomainArrayOutput struct{ *pulumi.OutputState }
+
+func (GetDomainsV1DomainArrayOutput) ElementType() reflect.Type {
+	return reflect.TypeOf((*[]GetDomainsV1Domain)(nil)).Elem()
+}
+
+func (o GetDomainsV1DomainArrayOutput) ToGetDomainsV1DomainArrayOutput() GetDomainsV1DomainArrayOutput {
+	return o
+}
+
+func (o GetDomainsV1DomainArrayOutput) ToGetDomainsV1DomainArrayOutputWithContext(ctx context.Context) GetDomainsV1DomainArrayOutput {
+	return o
+}
+
+func (o GetDomainsV1DomainArrayOutput) Index(i pulumi.IntInput) GetDomainsV1DomainOutput {
+	return pulumi.All(o, i).ApplyT(func(vs []interface{}) GetDomainsV1Domain {
+		return vs[0].([]GetDomainsV1Domain)[vs[1].(int)]
+	}).(GetDomainsV1DomainOutput)
+}
+
 type GetKvstoresStore struct {
 	// Alphanumeric string identifying the KV Store.
 	Id string `pulumi:"id"`
@@ -18962,6 +19810,423 @@ func (o GetKvstoresStoreArrayOutput) Index(i pulumi.IntInput) GetKvstoresStoreOu
 	return pulumi.All(o, i).ApplyT(func(vs []interface{}) GetKvstoresStore {
 		return vs[0].([]GetKvstoresStore)[vs[1].(int)]
 	}).(GetKvstoresStoreOutput)
+}
+
+type GetNgwafAccountListsList struct {
+	// The date and time in ISO 8601 format when the list was created.
+	CreatedAt string `pulumi:"createdAt"`
+	// The description of the list.
+	Description string `pulumi:"description"`
+	// The ID of the list.
+	Id string `pulumi:"id"`
+	// The name of the list.
+	Name string `pulumi:"name"`
+	// The reference ID of the list.
+	ReferenceId string `pulumi:"referenceId"`
+	// The type of the list.
+	Type string `pulumi:"type"`
+	// The date and time in ISO 8601 format when the list was last updated.
+	UpdatedAt string `pulumi:"updatedAt"`
+}
+
+// GetNgwafAccountListsListInput is an input type that accepts GetNgwafAccountListsListArgs and GetNgwafAccountListsListOutput values.
+// You can construct a concrete instance of `GetNgwafAccountListsListInput` via:
+//
+//	GetNgwafAccountListsListArgs{...}
+type GetNgwafAccountListsListInput interface {
+	pulumi.Input
+
+	ToGetNgwafAccountListsListOutput() GetNgwafAccountListsListOutput
+	ToGetNgwafAccountListsListOutputWithContext(context.Context) GetNgwafAccountListsListOutput
+}
+
+type GetNgwafAccountListsListArgs struct {
+	// The date and time in ISO 8601 format when the list was created.
+	CreatedAt pulumi.StringInput `pulumi:"createdAt"`
+	// The description of the list.
+	Description pulumi.StringInput `pulumi:"description"`
+	// The ID of the list.
+	Id pulumi.StringInput `pulumi:"id"`
+	// The name of the list.
+	Name pulumi.StringInput `pulumi:"name"`
+	// The reference ID of the list.
+	ReferenceId pulumi.StringInput `pulumi:"referenceId"`
+	// The type of the list.
+	Type pulumi.StringInput `pulumi:"type"`
+	// The date and time in ISO 8601 format when the list was last updated.
+	UpdatedAt pulumi.StringInput `pulumi:"updatedAt"`
+}
+
+func (GetNgwafAccountListsListArgs) ElementType() reflect.Type {
+	return reflect.TypeOf((*GetNgwafAccountListsList)(nil)).Elem()
+}
+
+func (i GetNgwafAccountListsListArgs) ToGetNgwafAccountListsListOutput() GetNgwafAccountListsListOutput {
+	return i.ToGetNgwafAccountListsListOutputWithContext(context.Background())
+}
+
+func (i GetNgwafAccountListsListArgs) ToGetNgwafAccountListsListOutputWithContext(ctx context.Context) GetNgwafAccountListsListOutput {
+	return pulumi.ToOutputWithContext(ctx, i).(GetNgwafAccountListsListOutput)
+}
+
+// GetNgwafAccountListsListArrayInput is an input type that accepts GetNgwafAccountListsListArray and GetNgwafAccountListsListArrayOutput values.
+// You can construct a concrete instance of `GetNgwafAccountListsListArrayInput` via:
+//
+//	GetNgwafAccountListsListArray{ GetNgwafAccountListsListArgs{...} }
+type GetNgwafAccountListsListArrayInput interface {
+	pulumi.Input
+
+	ToGetNgwafAccountListsListArrayOutput() GetNgwafAccountListsListArrayOutput
+	ToGetNgwafAccountListsListArrayOutputWithContext(context.Context) GetNgwafAccountListsListArrayOutput
+}
+
+type GetNgwafAccountListsListArray []GetNgwafAccountListsListInput
+
+func (GetNgwafAccountListsListArray) ElementType() reflect.Type {
+	return reflect.TypeOf((*[]GetNgwafAccountListsList)(nil)).Elem()
+}
+
+func (i GetNgwafAccountListsListArray) ToGetNgwafAccountListsListArrayOutput() GetNgwafAccountListsListArrayOutput {
+	return i.ToGetNgwafAccountListsListArrayOutputWithContext(context.Background())
+}
+
+func (i GetNgwafAccountListsListArray) ToGetNgwafAccountListsListArrayOutputWithContext(ctx context.Context) GetNgwafAccountListsListArrayOutput {
+	return pulumi.ToOutputWithContext(ctx, i).(GetNgwafAccountListsListArrayOutput)
+}
+
+type GetNgwafAccountListsListOutput struct{ *pulumi.OutputState }
+
+func (GetNgwafAccountListsListOutput) ElementType() reflect.Type {
+	return reflect.TypeOf((*GetNgwafAccountListsList)(nil)).Elem()
+}
+
+func (o GetNgwafAccountListsListOutput) ToGetNgwafAccountListsListOutput() GetNgwafAccountListsListOutput {
+	return o
+}
+
+func (o GetNgwafAccountListsListOutput) ToGetNgwafAccountListsListOutputWithContext(ctx context.Context) GetNgwafAccountListsListOutput {
+	return o
+}
+
+// The date and time in ISO 8601 format when the list was created.
+func (o GetNgwafAccountListsListOutput) CreatedAt() pulumi.StringOutput {
+	return o.ApplyT(func(v GetNgwafAccountListsList) string { return v.CreatedAt }).(pulumi.StringOutput)
+}
+
+// The description of the list.
+func (o GetNgwafAccountListsListOutput) Description() pulumi.StringOutput {
+	return o.ApplyT(func(v GetNgwafAccountListsList) string { return v.Description }).(pulumi.StringOutput)
+}
+
+// The ID of the list.
+func (o GetNgwafAccountListsListOutput) Id() pulumi.StringOutput {
+	return o.ApplyT(func(v GetNgwafAccountListsList) string { return v.Id }).(pulumi.StringOutput)
+}
+
+// The name of the list.
+func (o GetNgwafAccountListsListOutput) Name() pulumi.StringOutput {
+	return o.ApplyT(func(v GetNgwafAccountListsList) string { return v.Name }).(pulumi.StringOutput)
+}
+
+// The reference ID of the list.
+func (o GetNgwafAccountListsListOutput) ReferenceId() pulumi.StringOutput {
+	return o.ApplyT(func(v GetNgwafAccountListsList) string { return v.ReferenceId }).(pulumi.StringOutput)
+}
+
+// The type of the list.
+func (o GetNgwafAccountListsListOutput) Type() pulumi.StringOutput {
+	return o.ApplyT(func(v GetNgwafAccountListsList) string { return v.Type }).(pulumi.StringOutput)
+}
+
+// The date and time in ISO 8601 format when the list was last updated.
+func (o GetNgwafAccountListsListOutput) UpdatedAt() pulumi.StringOutput {
+	return o.ApplyT(func(v GetNgwafAccountListsList) string { return v.UpdatedAt }).(pulumi.StringOutput)
+}
+
+type GetNgwafAccountListsListArrayOutput struct{ *pulumi.OutputState }
+
+func (GetNgwafAccountListsListArrayOutput) ElementType() reflect.Type {
+	return reflect.TypeOf((*[]GetNgwafAccountListsList)(nil)).Elem()
+}
+
+func (o GetNgwafAccountListsListArrayOutput) ToGetNgwafAccountListsListArrayOutput() GetNgwafAccountListsListArrayOutput {
+	return o
+}
+
+func (o GetNgwafAccountListsListArrayOutput) ToGetNgwafAccountListsListArrayOutputWithContext(ctx context.Context) GetNgwafAccountListsListArrayOutput {
+	return o
+}
+
+func (o GetNgwafAccountListsListArrayOutput) Index(i pulumi.IntInput) GetNgwafAccountListsListOutput {
+	return pulumi.All(o, i).ApplyT(func(vs []interface{}) GetNgwafAccountListsList {
+		return vs[0].([]GetNgwafAccountListsList)[vs[1].(int)]
+	}).(GetNgwafAccountListsListOutput)
+}
+
+type GetNgwafAccountRulesRule struct {
+	// The date and time in ISO 8601 format when the rule was created.
+	CreatedAt string `pulumi:"createdAt"`
+	// The description of the rule.
+	Description string `pulumi:"description"`
+	// Whether the rule is currently enabled.
+	Enabled bool `pulumi:"enabled"`
+	// The ID of the rule.
+	Id string `pulumi:"id"`
+	// The type of the rule.
+	Type string `pulumi:"type"`
+	// The date and time in ISO 8601 format when the rule was last updated.
+	UpdatedAt string `pulumi:"updatedAt"`
+}
+
+// GetNgwafAccountRulesRuleInput is an input type that accepts GetNgwafAccountRulesRuleArgs and GetNgwafAccountRulesRuleOutput values.
+// You can construct a concrete instance of `GetNgwafAccountRulesRuleInput` via:
+//
+//	GetNgwafAccountRulesRuleArgs{...}
+type GetNgwafAccountRulesRuleInput interface {
+	pulumi.Input
+
+	ToGetNgwafAccountRulesRuleOutput() GetNgwafAccountRulesRuleOutput
+	ToGetNgwafAccountRulesRuleOutputWithContext(context.Context) GetNgwafAccountRulesRuleOutput
+}
+
+type GetNgwafAccountRulesRuleArgs struct {
+	// The date and time in ISO 8601 format when the rule was created.
+	CreatedAt pulumi.StringInput `pulumi:"createdAt"`
+	// The description of the rule.
+	Description pulumi.StringInput `pulumi:"description"`
+	// Whether the rule is currently enabled.
+	Enabled pulumi.BoolInput `pulumi:"enabled"`
+	// The ID of the rule.
+	Id pulumi.StringInput `pulumi:"id"`
+	// The type of the rule.
+	Type pulumi.StringInput `pulumi:"type"`
+	// The date and time in ISO 8601 format when the rule was last updated.
+	UpdatedAt pulumi.StringInput `pulumi:"updatedAt"`
+}
+
+func (GetNgwafAccountRulesRuleArgs) ElementType() reflect.Type {
+	return reflect.TypeOf((*GetNgwafAccountRulesRule)(nil)).Elem()
+}
+
+func (i GetNgwafAccountRulesRuleArgs) ToGetNgwafAccountRulesRuleOutput() GetNgwafAccountRulesRuleOutput {
+	return i.ToGetNgwafAccountRulesRuleOutputWithContext(context.Background())
+}
+
+func (i GetNgwafAccountRulesRuleArgs) ToGetNgwafAccountRulesRuleOutputWithContext(ctx context.Context) GetNgwafAccountRulesRuleOutput {
+	return pulumi.ToOutputWithContext(ctx, i).(GetNgwafAccountRulesRuleOutput)
+}
+
+// GetNgwafAccountRulesRuleArrayInput is an input type that accepts GetNgwafAccountRulesRuleArray and GetNgwafAccountRulesRuleArrayOutput values.
+// You can construct a concrete instance of `GetNgwafAccountRulesRuleArrayInput` via:
+//
+//	GetNgwafAccountRulesRuleArray{ GetNgwafAccountRulesRuleArgs{...} }
+type GetNgwafAccountRulesRuleArrayInput interface {
+	pulumi.Input
+
+	ToGetNgwafAccountRulesRuleArrayOutput() GetNgwafAccountRulesRuleArrayOutput
+	ToGetNgwafAccountRulesRuleArrayOutputWithContext(context.Context) GetNgwafAccountRulesRuleArrayOutput
+}
+
+type GetNgwafAccountRulesRuleArray []GetNgwafAccountRulesRuleInput
+
+func (GetNgwafAccountRulesRuleArray) ElementType() reflect.Type {
+	return reflect.TypeOf((*[]GetNgwafAccountRulesRule)(nil)).Elem()
+}
+
+func (i GetNgwafAccountRulesRuleArray) ToGetNgwafAccountRulesRuleArrayOutput() GetNgwafAccountRulesRuleArrayOutput {
+	return i.ToGetNgwafAccountRulesRuleArrayOutputWithContext(context.Background())
+}
+
+func (i GetNgwafAccountRulesRuleArray) ToGetNgwafAccountRulesRuleArrayOutputWithContext(ctx context.Context) GetNgwafAccountRulesRuleArrayOutput {
+	return pulumi.ToOutputWithContext(ctx, i).(GetNgwafAccountRulesRuleArrayOutput)
+}
+
+type GetNgwafAccountRulesRuleOutput struct{ *pulumi.OutputState }
+
+func (GetNgwafAccountRulesRuleOutput) ElementType() reflect.Type {
+	return reflect.TypeOf((*GetNgwafAccountRulesRule)(nil)).Elem()
+}
+
+func (o GetNgwafAccountRulesRuleOutput) ToGetNgwafAccountRulesRuleOutput() GetNgwafAccountRulesRuleOutput {
+	return o
+}
+
+func (o GetNgwafAccountRulesRuleOutput) ToGetNgwafAccountRulesRuleOutputWithContext(ctx context.Context) GetNgwafAccountRulesRuleOutput {
+	return o
+}
+
+// The date and time in ISO 8601 format when the rule was created.
+func (o GetNgwafAccountRulesRuleOutput) CreatedAt() pulumi.StringOutput {
+	return o.ApplyT(func(v GetNgwafAccountRulesRule) string { return v.CreatedAt }).(pulumi.StringOutput)
+}
+
+// The description of the rule.
+func (o GetNgwafAccountRulesRuleOutput) Description() pulumi.StringOutput {
+	return o.ApplyT(func(v GetNgwafAccountRulesRule) string { return v.Description }).(pulumi.StringOutput)
+}
+
+// Whether the rule is currently enabled.
+func (o GetNgwafAccountRulesRuleOutput) Enabled() pulumi.BoolOutput {
+	return o.ApplyT(func(v GetNgwafAccountRulesRule) bool { return v.Enabled }).(pulumi.BoolOutput)
+}
+
+// The ID of the rule.
+func (o GetNgwafAccountRulesRuleOutput) Id() pulumi.StringOutput {
+	return o.ApplyT(func(v GetNgwafAccountRulesRule) string { return v.Id }).(pulumi.StringOutput)
+}
+
+// The type of the rule.
+func (o GetNgwafAccountRulesRuleOutput) Type() pulumi.StringOutput {
+	return o.ApplyT(func(v GetNgwafAccountRulesRule) string { return v.Type }).(pulumi.StringOutput)
+}
+
+// The date and time in ISO 8601 format when the rule was last updated.
+func (o GetNgwafAccountRulesRuleOutput) UpdatedAt() pulumi.StringOutput {
+	return o.ApplyT(func(v GetNgwafAccountRulesRule) string { return v.UpdatedAt }).(pulumi.StringOutput)
+}
+
+type GetNgwafAccountRulesRuleArrayOutput struct{ *pulumi.OutputState }
+
+func (GetNgwafAccountRulesRuleArrayOutput) ElementType() reflect.Type {
+	return reflect.TypeOf((*[]GetNgwafAccountRulesRule)(nil)).Elem()
+}
+
+func (o GetNgwafAccountRulesRuleArrayOutput) ToGetNgwafAccountRulesRuleArrayOutput() GetNgwafAccountRulesRuleArrayOutput {
+	return o
+}
+
+func (o GetNgwafAccountRulesRuleArrayOutput) ToGetNgwafAccountRulesRuleArrayOutputWithContext(ctx context.Context) GetNgwafAccountRulesRuleArrayOutput {
+	return o
+}
+
+func (o GetNgwafAccountRulesRuleArrayOutput) Index(i pulumi.IntInput) GetNgwafAccountRulesRuleOutput {
+	return pulumi.All(o, i).ApplyT(func(vs []interface{}) GetNgwafAccountRulesRule {
+		return vs[0].([]GetNgwafAccountRulesRule)[vs[1].(int)]
+	}).(GetNgwafAccountRulesRuleOutput)
+}
+
+type GetNgwafAccountSignalsSignal struct {
+	// The description of the signal.
+	Description string `pulumi:"description"`
+	// The ID of the signal.
+	Id string `pulumi:"id"`
+	// The name of the signal.
+	Name string `pulumi:"name"`
+	// The tag name of the signal.
+	TagName string `pulumi:"tagName"`
+}
+
+// GetNgwafAccountSignalsSignalInput is an input type that accepts GetNgwafAccountSignalsSignalArgs and GetNgwafAccountSignalsSignalOutput values.
+// You can construct a concrete instance of `GetNgwafAccountSignalsSignalInput` via:
+//
+//	GetNgwafAccountSignalsSignalArgs{...}
+type GetNgwafAccountSignalsSignalInput interface {
+	pulumi.Input
+
+	ToGetNgwafAccountSignalsSignalOutput() GetNgwafAccountSignalsSignalOutput
+	ToGetNgwafAccountSignalsSignalOutputWithContext(context.Context) GetNgwafAccountSignalsSignalOutput
+}
+
+type GetNgwafAccountSignalsSignalArgs struct {
+	// The description of the signal.
+	Description pulumi.StringInput `pulumi:"description"`
+	// The ID of the signal.
+	Id pulumi.StringInput `pulumi:"id"`
+	// The name of the signal.
+	Name pulumi.StringInput `pulumi:"name"`
+	// The tag name of the signal.
+	TagName pulumi.StringInput `pulumi:"tagName"`
+}
+
+func (GetNgwafAccountSignalsSignalArgs) ElementType() reflect.Type {
+	return reflect.TypeOf((*GetNgwafAccountSignalsSignal)(nil)).Elem()
+}
+
+func (i GetNgwafAccountSignalsSignalArgs) ToGetNgwafAccountSignalsSignalOutput() GetNgwafAccountSignalsSignalOutput {
+	return i.ToGetNgwafAccountSignalsSignalOutputWithContext(context.Background())
+}
+
+func (i GetNgwafAccountSignalsSignalArgs) ToGetNgwafAccountSignalsSignalOutputWithContext(ctx context.Context) GetNgwafAccountSignalsSignalOutput {
+	return pulumi.ToOutputWithContext(ctx, i).(GetNgwafAccountSignalsSignalOutput)
+}
+
+// GetNgwafAccountSignalsSignalArrayInput is an input type that accepts GetNgwafAccountSignalsSignalArray and GetNgwafAccountSignalsSignalArrayOutput values.
+// You can construct a concrete instance of `GetNgwafAccountSignalsSignalArrayInput` via:
+//
+//	GetNgwafAccountSignalsSignalArray{ GetNgwafAccountSignalsSignalArgs{...} }
+type GetNgwafAccountSignalsSignalArrayInput interface {
+	pulumi.Input
+
+	ToGetNgwafAccountSignalsSignalArrayOutput() GetNgwafAccountSignalsSignalArrayOutput
+	ToGetNgwafAccountSignalsSignalArrayOutputWithContext(context.Context) GetNgwafAccountSignalsSignalArrayOutput
+}
+
+type GetNgwafAccountSignalsSignalArray []GetNgwafAccountSignalsSignalInput
+
+func (GetNgwafAccountSignalsSignalArray) ElementType() reflect.Type {
+	return reflect.TypeOf((*[]GetNgwafAccountSignalsSignal)(nil)).Elem()
+}
+
+func (i GetNgwafAccountSignalsSignalArray) ToGetNgwafAccountSignalsSignalArrayOutput() GetNgwafAccountSignalsSignalArrayOutput {
+	return i.ToGetNgwafAccountSignalsSignalArrayOutputWithContext(context.Background())
+}
+
+func (i GetNgwafAccountSignalsSignalArray) ToGetNgwafAccountSignalsSignalArrayOutputWithContext(ctx context.Context) GetNgwafAccountSignalsSignalArrayOutput {
+	return pulumi.ToOutputWithContext(ctx, i).(GetNgwafAccountSignalsSignalArrayOutput)
+}
+
+type GetNgwafAccountSignalsSignalOutput struct{ *pulumi.OutputState }
+
+func (GetNgwafAccountSignalsSignalOutput) ElementType() reflect.Type {
+	return reflect.TypeOf((*GetNgwafAccountSignalsSignal)(nil)).Elem()
+}
+
+func (o GetNgwafAccountSignalsSignalOutput) ToGetNgwafAccountSignalsSignalOutput() GetNgwafAccountSignalsSignalOutput {
+	return o
+}
+
+func (o GetNgwafAccountSignalsSignalOutput) ToGetNgwafAccountSignalsSignalOutputWithContext(ctx context.Context) GetNgwafAccountSignalsSignalOutput {
+	return o
+}
+
+// The description of the signal.
+func (o GetNgwafAccountSignalsSignalOutput) Description() pulumi.StringOutput {
+	return o.ApplyT(func(v GetNgwafAccountSignalsSignal) string { return v.Description }).(pulumi.StringOutput)
+}
+
+// The ID of the signal.
+func (o GetNgwafAccountSignalsSignalOutput) Id() pulumi.StringOutput {
+	return o.ApplyT(func(v GetNgwafAccountSignalsSignal) string { return v.Id }).(pulumi.StringOutput)
+}
+
+// The name of the signal.
+func (o GetNgwafAccountSignalsSignalOutput) Name() pulumi.StringOutput {
+	return o.ApplyT(func(v GetNgwafAccountSignalsSignal) string { return v.Name }).(pulumi.StringOutput)
+}
+
+// The tag name of the signal.
+func (o GetNgwafAccountSignalsSignalOutput) TagName() pulumi.StringOutput {
+	return o.ApplyT(func(v GetNgwafAccountSignalsSignal) string { return v.TagName }).(pulumi.StringOutput)
+}
+
+type GetNgwafAccountSignalsSignalArrayOutput struct{ *pulumi.OutputState }
+
+func (GetNgwafAccountSignalsSignalArrayOutput) ElementType() reflect.Type {
+	return reflect.TypeOf((*[]GetNgwafAccountSignalsSignal)(nil)).Elem()
+}
+
+func (o GetNgwafAccountSignalsSignalArrayOutput) ToGetNgwafAccountSignalsSignalArrayOutput() GetNgwafAccountSignalsSignalArrayOutput {
+	return o
+}
+
+func (o GetNgwafAccountSignalsSignalArrayOutput) ToGetNgwafAccountSignalsSignalArrayOutputWithContext(ctx context.Context) GetNgwafAccountSignalsSignalArrayOutput {
+	return o
+}
+
+func (o GetNgwafAccountSignalsSignalArrayOutput) Index(i pulumi.IntInput) GetNgwafAccountSignalsSignalOutput {
+	return pulumi.All(o, i).ApplyT(func(vs []interface{}) GetNgwafAccountSignalsSignal {
+		return vs[0].([]GetNgwafAccountSignalsSignal)[vs[1].(int)]
+	}).(GetNgwafAccountSignalsSignalOutput)
 }
 
 type GetNgwafAlertDatadogIntegrationDatadogAlert struct {
@@ -20067,6 +21332,423 @@ func (o GetNgwafVirtualPatchesVirtualPatchArrayOutput) Index(i pulumi.IntInput) 
 	}).(GetNgwafVirtualPatchesVirtualPatchOutput)
 }
 
+type GetNgwafWorkspaceListsList struct {
+	// The date and time in ISO 8601 format when the list was created.
+	CreatedAt string `pulumi:"createdAt"`
+	// The description of the list.
+	Description string `pulumi:"description"`
+	// The ID of the list.
+	Id string `pulumi:"id"`
+	// The name of the list.
+	Name string `pulumi:"name"`
+	// The reference ID of the list.
+	ReferenceId string `pulumi:"referenceId"`
+	// The type of the list.
+	Type string `pulumi:"type"`
+	// The date and time in ISO 8601 format when the list was last updated.
+	UpdatedAt string `pulumi:"updatedAt"`
+}
+
+// GetNgwafWorkspaceListsListInput is an input type that accepts GetNgwafWorkspaceListsListArgs and GetNgwafWorkspaceListsListOutput values.
+// You can construct a concrete instance of `GetNgwafWorkspaceListsListInput` via:
+//
+//	GetNgwafWorkspaceListsListArgs{...}
+type GetNgwafWorkspaceListsListInput interface {
+	pulumi.Input
+
+	ToGetNgwafWorkspaceListsListOutput() GetNgwafWorkspaceListsListOutput
+	ToGetNgwafWorkspaceListsListOutputWithContext(context.Context) GetNgwafWorkspaceListsListOutput
+}
+
+type GetNgwafWorkspaceListsListArgs struct {
+	// The date and time in ISO 8601 format when the list was created.
+	CreatedAt pulumi.StringInput `pulumi:"createdAt"`
+	// The description of the list.
+	Description pulumi.StringInput `pulumi:"description"`
+	// The ID of the list.
+	Id pulumi.StringInput `pulumi:"id"`
+	// The name of the list.
+	Name pulumi.StringInput `pulumi:"name"`
+	// The reference ID of the list.
+	ReferenceId pulumi.StringInput `pulumi:"referenceId"`
+	// The type of the list.
+	Type pulumi.StringInput `pulumi:"type"`
+	// The date and time in ISO 8601 format when the list was last updated.
+	UpdatedAt pulumi.StringInput `pulumi:"updatedAt"`
+}
+
+func (GetNgwafWorkspaceListsListArgs) ElementType() reflect.Type {
+	return reflect.TypeOf((*GetNgwafWorkspaceListsList)(nil)).Elem()
+}
+
+func (i GetNgwafWorkspaceListsListArgs) ToGetNgwafWorkspaceListsListOutput() GetNgwafWorkspaceListsListOutput {
+	return i.ToGetNgwafWorkspaceListsListOutputWithContext(context.Background())
+}
+
+func (i GetNgwafWorkspaceListsListArgs) ToGetNgwafWorkspaceListsListOutputWithContext(ctx context.Context) GetNgwafWorkspaceListsListOutput {
+	return pulumi.ToOutputWithContext(ctx, i).(GetNgwafWorkspaceListsListOutput)
+}
+
+// GetNgwafWorkspaceListsListArrayInput is an input type that accepts GetNgwafWorkspaceListsListArray and GetNgwafWorkspaceListsListArrayOutput values.
+// You can construct a concrete instance of `GetNgwafWorkspaceListsListArrayInput` via:
+//
+//	GetNgwafWorkspaceListsListArray{ GetNgwafWorkspaceListsListArgs{...} }
+type GetNgwafWorkspaceListsListArrayInput interface {
+	pulumi.Input
+
+	ToGetNgwafWorkspaceListsListArrayOutput() GetNgwafWorkspaceListsListArrayOutput
+	ToGetNgwafWorkspaceListsListArrayOutputWithContext(context.Context) GetNgwafWorkspaceListsListArrayOutput
+}
+
+type GetNgwafWorkspaceListsListArray []GetNgwafWorkspaceListsListInput
+
+func (GetNgwafWorkspaceListsListArray) ElementType() reflect.Type {
+	return reflect.TypeOf((*[]GetNgwafWorkspaceListsList)(nil)).Elem()
+}
+
+func (i GetNgwafWorkspaceListsListArray) ToGetNgwafWorkspaceListsListArrayOutput() GetNgwafWorkspaceListsListArrayOutput {
+	return i.ToGetNgwafWorkspaceListsListArrayOutputWithContext(context.Background())
+}
+
+func (i GetNgwafWorkspaceListsListArray) ToGetNgwafWorkspaceListsListArrayOutputWithContext(ctx context.Context) GetNgwafWorkspaceListsListArrayOutput {
+	return pulumi.ToOutputWithContext(ctx, i).(GetNgwafWorkspaceListsListArrayOutput)
+}
+
+type GetNgwafWorkspaceListsListOutput struct{ *pulumi.OutputState }
+
+func (GetNgwafWorkspaceListsListOutput) ElementType() reflect.Type {
+	return reflect.TypeOf((*GetNgwafWorkspaceListsList)(nil)).Elem()
+}
+
+func (o GetNgwafWorkspaceListsListOutput) ToGetNgwafWorkspaceListsListOutput() GetNgwafWorkspaceListsListOutput {
+	return o
+}
+
+func (o GetNgwafWorkspaceListsListOutput) ToGetNgwafWorkspaceListsListOutputWithContext(ctx context.Context) GetNgwafWorkspaceListsListOutput {
+	return o
+}
+
+// The date and time in ISO 8601 format when the list was created.
+func (o GetNgwafWorkspaceListsListOutput) CreatedAt() pulumi.StringOutput {
+	return o.ApplyT(func(v GetNgwafWorkspaceListsList) string { return v.CreatedAt }).(pulumi.StringOutput)
+}
+
+// The description of the list.
+func (o GetNgwafWorkspaceListsListOutput) Description() pulumi.StringOutput {
+	return o.ApplyT(func(v GetNgwafWorkspaceListsList) string { return v.Description }).(pulumi.StringOutput)
+}
+
+// The ID of the list.
+func (o GetNgwafWorkspaceListsListOutput) Id() pulumi.StringOutput {
+	return o.ApplyT(func(v GetNgwafWorkspaceListsList) string { return v.Id }).(pulumi.StringOutput)
+}
+
+// The name of the list.
+func (o GetNgwafWorkspaceListsListOutput) Name() pulumi.StringOutput {
+	return o.ApplyT(func(v GetNgwafWorkspaceListsList) string { return v.Name }).(pulumi.StringOutput)
+}
+
+// The reference ID of the list.
+func (o GetNgwafWorkspaceListsListOutput) ReferenceId() pulumi.StringOutput {
+	return o.ApplyT(func(v GetNgwafWorkspaceListsList) string { return v.ReferenceId }).(pulumi.StringOutput)
+}
+
+// The type of the list.
+func (o GetNgwafWorkspaceListsListOutput) Type() pulumi.StringOutput {
+	return o.ApplyT(func(v GetNgwafWorkspaceListsList) string { return v.Type }).(pulumi.StringOutput)
+}
+
+// The date and time in ISO 8601 format when the list was last updated.
+func (o GetNgwafWorkspaceListsListOutput) UpdatedAt() pulumi.StringOutput {
+	return o.ApplyT(func(v GetNgwafWorkspaceListsList) string { return v.UpdatedAt }).(pulumi.StringOutput)
+}
+
+type GetNgwafWorkspaceListsListArrayOutput struct{ *pulumi.OutputState }
+
+func (GetNgwafWorkspaceListsListArrayOutput) ElementType() reflect.Type {
+	return reflect.TypeOf((*[]GetNgwafWorkspaceListsList)(nil)).Elem()
+}
+
+func (o GetNgwafWorkspaceListsListArrayOutput) ToGetNgwafWorkspaceListsListArrayOutput() GetNgwafWorkspaceListsListArrayOutput {
+	return o
+}
+
+func (o GetNgwafWorkspaceListsListArrayOutput) ToGetNgwafWorkspaceListsListArrayOutputWithContext(ctx context.Context) GetNgwafWorkspaceListsListArrayOutput {
+	return o
+}
+
+func (o GetNgwafWorkspaceListsListArrayOutput) Index(i pulumi.IntInput) GetNgwafWorkspaceListsListOutput {
+	return pulumi.All(o, i).ApplyT(func(vs []interface{}) GetNgwafWorkspaceListsList {
+		return vs[0].([]GetNgwafWorkspaceListsList)[vs[1].(int)]
+	}).(GetNgwafWorkspaceListsListOutput)
+}
+
+type GetNgwafWorkspaceRulesRule struct {
+	// The date and time in ISO 8601 format when the rule was created.
+	CreatedAt string `pulumi:"createdAt"`
+	// The description of the rule.
+	Description string `pulumi:"description"`
+	// Whether the rule is currently enabled.
+	Enabled bool `pulumi:"enabled"`
+	// The ID of the rule.
+	Id string `pulumi:"id"`
+	// The type of the rule.
+	Type string `pulumi:"type"`
+	// The date and time in ISO 8601 format when the rule was last updated.
+	UpdatedAt string `pulumi:"updatedAt"`
+}
+
+// GetNgwafWorkspaceRulesRuleInput is an input type that accepts GetNgwafWorkspaceRulesRuleArgs and GetNgwafWorkspaceRulesRuleOutput values.
+// You can construct a concrete instance of `GetNgwafWorkspaceRulesRuleInput` via:
+//
+//	GetNgwafWorkspaceRulesRuleArgs{...}
+type GetNgwafWorkspaceRulesRuleInput interface {
+	pulumi.Input
+
+	ToGetNgwafWorkspaceRulesRuleOutput() GetNgwafWorkspaceRulesRuleOutput
+	ToGetNgwafWorkspaceRulesRuleOutputWithContext(context.Context) GetNgwafWorkspaceRulesRuleOutput
+}
+
+type GetNgwafWorkspaceRulesRuleArgs struct {
+	// The date and time in ISO 8601 format when the rule was created.
+	CreatedAt pulumi.StringInput `pulumi:"createdAt"`
+	// The description of the rule.
+	Description pulumi.StringInput `pulumi:"description"`
+	// Whether the rule is currently enabled.
+	Enabled pulumi.BoolInput `pulumi:"enabled"`
+	// The ID of the rule.
+	Id pulumi.StringInput `pulumi:"id"`
+	// The type of the rule.
+	Type pulumi.StringInput `pulumi:"type"`
+	// The date and time in ISO 8601 format when the rule was last updated.
+	UpdatedAt pulumi.StringInput `pulumi:"updatedAt"`
+}
+
+func (GetNgwafWorkspaceRulesRuleArgs) ElementType() reflect.Type {
+	return reflect.TypeOf((*GetNgwafWorkspaceRulesRule)(nil)).Elem()
+}
+
+func (i GetNgwafWorkspaceRulesRuleArgs) ToGetNgwafWorkspaceRulesRuleOutput() GetNgwafWorkspaceRulesRuleOutput {
+	return i.ToGetNgwafWorkspaceRulesRuleOutputWithContext(context.Background())
+}
+
+func (i GetNgwafWorkspaceRulesRuleArgs) ToGetNgwafWorkspaceRulesRuleOutputWithContext(ctx context.Context) GetNgwafWorkspaceRulesRuleOutput {
+	return pulumi.ToOutputWithContext(ctx, i).(GetNgwafWorkspaceRulesRuleOutput)
+}
+
+// GetNgwafWorkspaceRulesRuleArrayInput is an input type that accepts GetNgwafWorkspaceRulesRuleArray and GetNgwafWorkspaceRulesRuleArrayOutput values.
+// You can construct a concrete instance of `GetNgwafWorkspaceRulesRuleArrayInput` via:
+//
+//	GetNgwafWorkspaceRulesRuleArray{ GetNgwafWorkspaceRulesRuleArgs{...} }
+type GetNgwafWorkspaceRulesRuleArrayInput interface {
+	pulumi.Input
+
+	ToGetNgwafWorkspaceRulesRuleArrayOutput() GetNgwafWorkspaceRulesRuleArrayOutput
+	ToGetNgwafWorkspaceRulesRuleArrayOutputWithContext(context.Context) GetNgwafWorkspaceRulesRuleArrayOutput
+}
+
+type GetNgwafWorkspaceRulesRuleArray []GetNgwafWorkspaceRulesRuleInput
+
+func (GetNgwafWorkspaceRulesRuleArray) ElementType() reflect.Type {
+	return reflect.TypeOf((*[]GetNgwafWorkspaceRulesRule)(nil)).Elem()
+}
+
+func (i GetNgwafWorkspaceRulesRuleArray) ToGetNgwafWorkspaceRulesRuleArrayOutput() GetNgwafWorkspaceRulesRuleArrayOutput {
+	return i.ToGetNgwafWorkspaceRulesRuleArrayOutputWithContext(context.Background())
+}
+
+func (i GetNgwafWorkspaceRulesRuleArray) ToGetNgwafWorkspaceRulesRuleArrayOutputWithContext(ctx context.Context) GetNgwafWorkspaceRulesRuleArrayOutput {
+	return pulumi.ToOutputWithContext(ctx, i).(GetNgwafWorkspaceRulesRuleArrayOutput)
+}
+
+type GetNgwafWorkspaceRulesRuleOutput struct{ *pulumi.OutputState }
+
+func (GetNgwafWorkspaceRulesRuleOutput) ElementType() reflect.Type {
+	return reflect.TypeOf((*GetNgwafWorkspaceRulesRule)(nil)).Elem()
+}
+
+func (o GetNgwafWorkspaceRulesRuleOutput) ToGetNgwafWorkspaceRulesRuleOutput() GetNgwafWorkspaceRulesRuleOutput {
+	return o
+}
+
+func (o GetNgwafWorkspaceRulesRuleOutput) ToGetNgwafWorkspaceRulesRuleOutputWithContext(ctx context.Context) GetNgwafWorkspaceRulesRuleOutput {
+	return o
+}
+
+// The date and time in ISO 8601 format when the rule was created.
+func (o GetNgwafWorkspaceRulesRuleOutput) CreatedAt() pulumi.StringOutput {
+	return o.ApplyT(func(v GetNgwafWorkspaceRulesRule) string { return v.CreatedAt }).(pulumi.StringOutput)
+}
+
+// The description of the rule.
+func (o GetNgwafWorkspaceRulesRuleOutput) Description() pulumi.StringOutput {
+	return o.ApplyT(func(v GetNgwafWorkspaceRulesRule) string { return v.Description }).(pulumi.StringOutput)
+}
+
+// Whether the rule is currently enabled.
+func (o GetNgwafWorkspaceRulesRuleOutput) Enabled() pulumi.BoolOutput {
+	return o.ApplyT(func(v GetNgwafWorkspaceRulesRule) bool { return v.Enabled }).(pulumi.BoolOutput)
+}
+
+// The ID of the rule.
+func (o GetNgwafWorkspaceRulesRuleOutput) Id() pulumi.StringOutput {
+	return o.ApplyT(func(v GetNgwafWorkspaceRulesRule) string { return v.Id }).(pulumi.StringOutput)
+}
+
+// The type of the rule.
+func (o GetNgwafWorkspaceRulesRuleOutput) Type() pulumi.StringOutput {
+	return o.ApplyT(func(v GetNgwafWorkspaceRulesRule) string { return v.Type }).(pulumi.StringOutput)
+}
+
+// The date and time in ISO 8601 format when the rule was last updated.
+func (o GetNgwafWorkspaceRulesRuleOutput) UpdatedAt() pulumi.StringOutput {
+	return o.ApplyT(func(v GetNgwafWorkspaceRulesRule) string { return v.UpdatedAt }).(pulumi.StringOutput)
+}
+
+type GetNgwafWorkspaceRulesRuleArrayOutput struct{ *pulumi.OutputState }
+
+func (GetNgwafWorkspaceRulesRuleArrayOutput) ElementType() reflect.Type {
+	return reflect.TypeOf((*[]GetNgwafWorkspaceRulesRule)(nil)).Elem()
+}
+
+func (o GetNgwafWorkspaceRulesRuleArrayOutput) ToGetNgwafWorkspaceRulesRuleArrayOutput() GetNgwafWorkspaceRulesRuleArrayOutput {
+	return o
+}
+
+func (o GetNgwafWorkspaceRulesRuleArrayOutput) ToGetNgwafWorkspaceRulesRuleArrayOutputWithContext(ctx context.Context) GetNgwafWorkspaceRulesRuleArrayOutput {
+	return o
+}
+
+func (o GetNgwafWorkspaceRulesRuleArrayOutput) Index(i pulumi.IntInput) GetNgwafWorkspaceRulesRuleOutput {
+	return pulumi.All(o, i).ApplyT(func(vs []interface{}) GetNgwafWorkspaceRulesRule {
+		return vs[0].([]GetNgwafWorkspaceRulesRule)[vs[1].(int)]
+	}).(GetNgwafWorkspaceRulesRuleOutput)
+}
+
+type GetNgwafWorkspaceSignalsSignal struct {
+	// The description of the signal.
+	Description string `pulumi:"description"`
+	// The ID of the signal.
+	Id string `pulumi:"id"`
+	// The name of the signal.
+	Name string `pulumi:"name"`
+	// The tag name of the signal.
+	TagName string `pulumi:"tagName"`
+}
+
+// GetNgwafWorkspaceSignalsSignalInput is an input type that accepts GetNgwafWorkspaceSignalsSignalArgs and GetNgwafWorkspaceSignalsSignalOutput values.
+// You can construct a concrete instance of `GetNgwafWorkspaceSignalsSignalInput` via:
+//
+//	GetNgwafWorkspaceSignalsSignalArgs{...}
+type GetNgwafWorkspaceSignalsSignalInput interface {
+	pulumi.Input
+
+	ToGetNgwafWorkspaceSignalsSignalOutput() GetNgwafWorkspaceSignalsSignalOutput
+	ToGetNgwafWorkspaceSignalsSignalOutputWithContext(context.Context) GetNgwafWorkspaceSignalsSignalOutput
+}
+
+type GetNgwafWorkspaceSignalsSignalArgs struct {
+	// The description of the signal.
+	Description pulumi.StringInput `pulumi:"description"`
+	// The ID of the signal.
+	Id pulumi.StringInput `pulumi:"id"`
+	// The name of the signal.
+	Name pulumi.StringInput `pulumi:"name"`
+	// The tag name of the signal.
+	TagName pulumi.StringInput `pulumi:"tagName"`
+}
+
+func (GetNgwafWorkspaceSignalsSignalArgs) ElementType() reflect.Type {
+	return reflect.TypeOf((*GetNgwafWorkspaceSignalsSignal)(nil)).Elem()
+}
+
+func (i GetNgwafWorkspaceSignalsSignalArgs) ToGetNgwafWorkspaceSignalsSignalOutput() GetNgwafWorkspaceSignalsSignalOutput {
+	return i.ToGetNgwafWorkspaceSignalsSignalOutputWithContext(context.Background())
+}
+
+func (i GetNgwafWorkspaceSignalsSignalArgs) ToGetNgwafWorkspaceSignalsSignalOutputWithContext(ctx context.Context) GetNgwafWorkspaceSignalsSignalOutput {
+	return pulumi.ToOutputWithContext(ctx, i).(GetNgwafWorkspaceSignalsSignalOutput)
+}
+
+// GetNgwafWorkspaceSignalsSignalArrayInput is an input type that accepts GetNgwafWorkspaceSignalsSignalArray and GetNgwafWorkspaceSignalsSignalArrayOutput values.
+// You can construct a concrete instance of `GetNgwafWorkspaceSignalsSignalArrayInput` via:
+//
+//	GetNgwafWorkspaceSignalsSignalArray{ GetNgwafWorkspaceSignalsSignalArgs{...} }
+type GetNgwafWorkspaceSignalsSignalArrayInput interface {
+	pulumi.Input
+
+	ToGetNgwafWorkspaceSignalsSignalArrayOutput() GetNgwafWorkspaceSignalsSignalArrayOutput
+	ToGetNgwafWorkspaceSignalsSignalArrayOutputWithContext(context.Context) GetNgwafWorkspaceSignalsSignalArrayOutput
+}
+
+type GetNgwafWorkspaceSignalsSignalArray []GetNgwafWorkspaceSignalsSignalInput
+
+func (GetNgwafWorkspaceSignalsSignalArray) ElementType() reflect.Type {
+	return reflect.TypeOf((*[]GetNgwafWorkspaceSignalsSignal)(nil)).Elem()
+}
+
+func (i GetNgwafWorkspaceSignalsSignalArray) ToGetNgwafWorkspaceSignalsSignalArrayOutput() GetNgwafWorkspaceSignalsSignalArrayOutput {
+	return i.ToGetNgwafWorkspaceSignalsSignalArrayOutputWithContext(context.Background())
+}
+
+func (i GetNgwafWorkspaceSignalsSignalArray) ToGetNgwafWorkspaceSignalsSignalArrayOutputWithContext(ctx context.Context) GetNgwafWorkspaceSignalsSignalArrayOutput {
+	return pulumi.ToOutputWithContext(ctx, i).(GetNgwafWorkspaceSignalsSignalArrayOutput)
+}
+
+type GetNgwafWorkspaceSignalsSignalOutput struct{ *pulumi.OutputState }
+
+func (GetNgwafWorkspaceSignalsSignalOutput) ElementType() reflect.Type {
+	return reflect.TypeOf((*GetNgwafWorkspaceSignalsSignal)(nil)).Elem()
+}
+
+func (o GetNgwafWorkspaceSignalsSignalOutput) ToGetNgwafWorkspaceSignalsSignalOutput() GetNgwafWorkspaceSignalsSignalOutput {
+	return o
+}
+
+func (o GetNgwafWorkspaceSignalsSignalOutput) ToGetNgwafWorkspaceSignalsSignalOutputWithContext(ctx context.Context) GetNgwafWorkspaceSignalsSignalOutput {
+	return o
+}
+
+// The description of the signal.
+func (o GetNgwafWorkspaceSignalsSignalOutput) Description() pulumi.StringOutput {
+	return o.ApplyT(func(v GetNgwafWorkspaceSignalsSignal) string { return v.Description }).(pulumi.StringOutput)
+}
+
+// The ID of the signal.
+func (o GetNgwafWorkspaceSignalsSignalOutput) Id() pulumi.StringOutput {
+	return o.ApplyT(func(v GetNgwafWorkspaceSignalsSignal) string { return v.Id }).(pulumi.StringOutput)
+}
+
+// The name of the signal.
+func (o GetNgwafWorkspaceSignalsSignalOutput) Name() pulumi.StringOutput {
+	return o.ApplyT(func(v GetNgwafWorkspaceSignalsSignal) string { return v.Name }).(pulumi.StringOutput)
+}
+
+// The tag name of the signal.
+func (o GetNgwafWorkspaceSignalsSignalOutput) TagName() pulumi.StringOutput {
+	return o.ApplyT(func(v GetNgwafWorkspaceSignalsSignal) string { return v.TagName }).(pulumi.StringOutput)
+}
+
+type GetNgwafWorkspaceSignalsSignalArrayOutput struct{ *pulumi.OutputState }
+
+func (GetNgwafWorkspaceSignalsSignalArrayOutput) ElementType() reflect.Type {
+	return reflect.TypeOf((*[]GetNgwafWorkspaceSignalsSignal)(nil)).Elem()
+}
+
+func (o GetNgwafWorkspaceSignalsSignalArrayOutput) ToGetNgwafWorkspaceSignalsSignalArrayOutput() GetNgwafWorkspaceSignalsSignalArrayOutput {
+	return o
+}
+
+func (o GetNgwafWorkspaceSignalsSignalArrayOutput) ToGetNgwafWorkspaceSignalsSignalArrayOutputWithContext(ctx context.Context) GetNgwafWorkspaceSignalsSignalArrayOutput {
+	return o
+}
+
+func (o GetNgwafWorkspaceSignalsSignalArrayOutput) Index(i pulumi.IntInput) GetNgwafWorkspaceSignalsSignalOutput {
+	return pulumi.All(o, i).ApplyT(func(vs []interface{}) GetNgwafWorkspaceSignalsSignal {
+		return vs[0].([]GetNgwafWorkspaceSignalsSignal)[vs[1].(int)]
+	}).(GetNgwafWorkspaceSignalsSignalOutput)
+}
+
 type GetNgwafWorkspacesWorkspace struct {
 	// The ID of the workspace.
 	Id string `pulumi:"id"`
@@ -20706,10 +22388,10 @@ func init() {
 	pulumi.RegisterInputType(reflect.TypeOf((*NgwafAccountRuleGroupConditionArrayInput)(nil)).Elem(), NgwafAccountRuleGroupConditionArray{})
 	pulumi.RegisterInputType(reflect.TypeOf((*NgwafAccountRuleGroupConditionConditionInput)(nil)).Elem(), NgwafAccountRuleGroupConditionConditionArgs{})
 	pulumi.RegisterInputType(reflect.TypeOf((*NgwafAccountRuleGroupConditionConditionArrayInput)(nil)).Elem(), NgwafAccountRuleGroupConditionConditionArray{})
-	pulumi.RegisterInputType(reflect.TypeOf((*NgwafAccountRuleRateLimitInput)(nil)).Elem(), NgwafAccountRuleRateLimitArgs{})
-	pulumi.RegisterInputType(reflect.TypeOf((*NgwafAccountRuleRateLimitPtrInput)(nil)).Elem(), NgwafAccountRuleRateLimitArgs{})
-	pulumi.RegisterInputType(reflect.TypeOf((*NgwafAccountRuleRateLimitClientIdentifierInput)(nil)).Elem(), NgwafAccountRuleRateLimitClientIdentifierArgs{})
-	pulumi.RegisterInputType(reflect.TypeOf((*NgwafAccountRuleRateLimitClientIdentifierArrayInput)(nil)).Elem(), NgwafAccountRuleRateLimitClientIdentifierArray{})
+	pulumi.RegisterInputType(reflect.TypeOf((*NgwafAccountRuleMultivalConditionInput)(nil)).Elem(), NgwafAccountRuleMultivalConditionArgs{})
+	pulumi.RegisterInputType(reflect.TypeOf((*NgwafAccountRuleMultivalConditionArrayInput)(nil)).Elem(), NgwafAccountRuleMultivalConditionArray{})
+	pulumi.RegisterInputType(reflect.TypeOf((*NgwafAccountRuleMultivalConditionConditionInput)(nil)).Elem(), NgwafAccountRuleMultivalConditionConditionArgs{})
+	pulumi.RegisterInputType(reflect.TypeOf((*NgwafAccountRuleMultivalConditionConditionArrayInput)(nil)).Elem(), NgwafAccountRuleMultivalConditionConditionArray{})
 	pulumi.RegisterInputType(reflect.TypeOf((*NgwafWorkspaceAttackSignalThresholdsInput)(nil)).Elem(), NgwafWorkspaceAttackSignalThresholdsArgs{})
 	pulumi.RegisterInputType(reflect.TypeOf((*NgwafWorkspaceAttackSignalThresholdsPtrInput)(nil)).Elem(), NgwafWorkspaceAttackSignalThresholdsArgs{})
 	pulumi.RegisterInputType(reflect.TypeOf((*NgwafWorkspaceRuleActionInput)(nil)).Elem(), NgwafWorkspaceRuleActionArgs{})
@@ -20720,6 +22402,10 @@ func init() {
 	pulumi.RegisterInputType(reflect.TypeOf((*NgwafWorkspaceRuleGroupConditionArrayInput)(nil)).Elem(), NgwafWorkspaceRuleGroupConditionArray{})
 	pulumi.RegisterInputType(reflect.TypeOf((*NgwafWorkspaceRuleGroupConditionConditionInput)(nil)).Elem(), NgwafWorkspaceRuleGroupConditionConditionArgs{})
 	pulumi.RegisterInputType(reflect.TypeOf((*NgwafWorkspaceRuleGroupConditionConditionArrayInput)(nil)).Elem(), NgwafWorkspaceRuleGroupConditionConditionArray{})
+	pulumi.RegisterInputType(reflect.TypeOf((*NgwafWorkspaceRuleMultivalConditionInput)(nil)).Elem(), NgwafWorkspaceRuleMultivalConditionArgs{})
+	pulumi.RegisterInputType(reflect.TypeOf((*NgwafWorkspaceRuleMultivalConditionArrayInput)(nil)).Elem(), NgwafWorkspaceRuleMultivalConditionArray{})
+	pulumi.RegisterInputType(reflect.TypeOf((*NgwafWorkspaceRuleMultivalConditionConditionInput)(nil)).Elem(), NgwafWorkspaceRuleMultivalConditionConditionArgs{})
+	pulumi.RegisterInputType(reflect.TypeOf((*NgwafWorkspaceRuleMultivalConditionConditionArrayInput)(nil)).Elem(), NgwafWorkspaceRuleMultivalConditionConditionArray{})
 	pulumi.RegisterInputType(reflect.TypeOf((*NgwafWorkspaceRuleRateLimitInput)(nil)).Elem(), NgwafWorkspaceRuleRateLimitArgs{})
 	pulumi.RegisterInputType(reflect.TypeOf((*NgwafWorkspaceRuleRateLimitPtrInput)(nil)).Elem(), NgwafWorkspaceRuleRateLimitArgs{})
 	pulumi.RegisterInputType(reflect.TypeOf((*NgwafWorkspaceRuleRateLimitClientIdentifierInput)(nil)).Elem(), NgwafWorkspaceRuleRateLimitClientIdentifierArgs{})
@@ -20732,6 +22418,8 @@ func init() {
 	pulumi.RegisterInputType(reflect.TypeOf((*ServiceComputeDictionaryArrayInput)(nil)).Elem(), ServiceComputeDictionaryArray{})
 	pulumi.RegisterInputType(reflect.TypeOf((*ServiceComputeDomainInput)(nil)).Elem(), ServiceComputeDomainArgs{})
 	pulumi.RegisterInputType(reflect.TypeOf((*ServiceComputeDomainArrayInput)(nil)).Elem(), ServiceComputeDomainArray{})
+	pulumi.RegisterInputType(reflect.TypeOf((*ServiceComputeHealthcheckInput)(nil)).Elem(), ServiceComputeHealthcheckArgs{})
+	pulumi.RegisterInputType(reflect.TypeOf((*ServiceComputeHealthcheckArrayInput)(nil)).Elem(), ServiceComputeHealthcheckArray{})
 	pulumi.RegisterInputType(reflect.TypeOf((*ServiceComputeImageOptimizerDefaultSettingsInput)(nil)).Elem(), ServiceComputeImageOptimizerDefaultSettingsArgs{})
 	pulumi.RegisterInputType(reflect.TypeOf((*ServiceComputeImageOptimizerDefaultSettingsPtrInput)(nil)).Elem(), ServiceComputeImageOptimizerDefaultSettingsArgs{})
 	pulumi.RegisterInputType(reflect.TypeOf((*ServiceComputeLoggingBigqueryInput)(nil)).Elem(), ServiceComputeLoggingBigqueryArgs{})
@@ -20772,6 +22460,8 @@ func init() {
 	pulumi.RegisterInputType(reflect.TypeOf((*ServiceComputeLoggingLogshuttleArrayInput)(nil)).Elem(), ServiceComputeLoggingLogshuttleArray{})
 	pulumi.RegisterInputType(reflect.TypeOf((*ServiceComputeLoggingNewrelicInput)(nil)).Elem(), ServiceComputeLoggingNewrelicArgs{})
 	pulumi.RegisterInputType(reflect.TypeOf((*ServiceComputeLoggingNewrelicArrayInput)(nil)).Elem(), ServiceComputeLoggingNewrelicArray{})
+	pulumi.RegisterInputType(reflect.TypeOf((*ServiceComputeLoggingNewrelicotlpInput)(nil)).Elem(), ServiceComputeLoggingNewrelicotlpArgs{})
+	pulumi.RegisterInputType(reflect.TypeOf((*ServiceComputeLoggingNewrelicotlpArrayInput)(nil)).Elem(), ServiceComputeLoggingNewrelicotlpArray{})
 	pulumi.RegisterInputType(reflect.TypeOf((*ServiceComputeLoggingOpenstackInput)(nil)).Elem(), ServiceComputeLoggingOpenstackArgs{})
 	pulumi.RegisterInputType(reflect.TypeOf((*ServiceComputeLoggingOpenstackArrayInput)(nil)).Elem(), ServiceComputeLoggingOpenstackArray{})
 	pulumi.RegisterInputType(reflect.TypeOf((*ServiceComputeLoggingPapertrailInput)(nil)).Elem(), ServiceComputeLoggingPapertrailArgs{})
@@ -20900,14 +22590,24 @@ func init() {
 	pulumi.RegisterInputType(reflect.TypeOf((*TlsSubscriptionManagedDnsChallengeArrayInput)(nil)).Elem(), TlsSubscriptionManagedDnsChallengeArray{})
 	pulumi.RegisterInputType(reflect.TypeOf((*TlsSubscriptionManagedHttpChallengeInput)(nil)).Elem(), TlsSubscriptionManagedHttpChallengeArgs{})
 	pulumi.RegisterInputType(reflect.TypeOf((*TlsSubscriptionManagedHttpChallengeArrayInput)(nil)).Elem(), TlsSubscriptionManagedHttpChallengeArray{})
+	pulumi.RegisterInputType(reflect.TypeOf((*GetComputeAclsAclInput)(nil)).Elem(), GetComputeAclsAclArgs{})
+	pulumi.RegisterInputType(reflect.TypeOf((*GetComputeAclsAclArrayInput)(nil)).Elem(), GetComputeAclsAclArray{})
 	pulumi.RegisterInputType(reflect.TypeOf((*GetConfigstoresStoreInput)(nil)).Elem(), GetConfigstoresStoreArgs{})
 	pulumi.RegisterInputType(reflect.TypeOf((*GetConfigstoresStoreArrayInput)(nil)).Elem(), GetConfigstoresStoreArray{})
 	pulumi.RegisterInputType(reflect.TypeOf((*GetDatacentersPopInput)(nil)).Elem(), GetDatacentersPopArgs{})
 	pulumi.RegisterInputType(reflect.TypeOf((*GetDatacentersPopArrayInput)(nil)).Elem(), GetDatacentersPopArray{})
 	pulumi.RegisterInputType(reflect.TypeOf((*GetDictionariesDictionaryInput)(nil)).Elem(), GetDictionariesDictionaryArgs{})
 	pulumi.RegisterInputType(reflect.TypeOf((*GetDictionariesDictionaryArrayInput)(nil)).Elem(), GetDictionariesDictionaryArray{})
+	pulumi.RegisterInputType(reflect.TypeOf((*GetDomainsV1DomainInput)(nil)).Elem(), GetDomainsV1DomainArgs{})
+	pulumi.RegisterInputType(reflect.TypeOf((*GetDomainsV1DomainArrayInput)(nil)).Elem(), GetDomainsV1DomainArray{})
 	pulumi.RegisterInputType(reflect.TypeOf((*GetKvstoresStoreInput)(nil)).Elem(), GetKvstoresStoreArgs{})
 	pulumi.RegisterInputType(reflect.TypeOf((*GetKvstoresStoreArrayInput)(nil)).Elem(), GetKvstoresStoreArray{})
+	pulumi.RegisterInputType(reflect.TypeOf((*GetNgwafAccountListsListInput)(nil)).Elem(), GetNgwafAccountListsListArgs{})
+	pulumi.RegisterInputType(reflect.TypeOf((*GetNgwafAccountListsListArrayInput)(nil)).Elem(), GetNgwafAccountListsListArray{})
+	pulumi.RegisterInputType(reflect.TypeOf((*GetNgwafAccountRulesRuleInput)(nil)).Elem(), GetNgwafAccountRulesRuleArgs{})
+	pulumi.RegisterInputType(reflect.TypeOf((*GetNgwafAccountRulesRuleArrayInput)(nil)).Elem(), GetNgwafAccountRulesRuleArray{})
+	pulumi.RegisterInputType(reflect.TypeOf((*GetNgwafAccountSignalsSignalInput)(nil)).Elem(), GetNgwafAccountSignalsSignalArgs{})
+	pulumi.RegisterInputType(reflect.TypeOf((*GetNgwafAccountSignalsSignalArrayInput)(nil)).Elem(), GetNgwafAccountSignalsSignalArray{})
 	pulumi.RegisterInputType(reflect.TypeOf((*GetNgwafAlertDatadogIntegrationDatadogAlertInput)(nil)).Elem(), GetNgwafAlertDatadogIntegrationDatadogAlertArgs{})
 	pulumi.RegisterInputType(reflect.TypeOf((*GetNgwafAlertDatadogIntegrationDatadogAlertArrayInput)(nil)).Elem(), GetNgwafAlertDatadogIntegrationDatadogAlertArray{})
 	pulumi.RegisterInputType(reflect.TypeOf((*GetNgwafAlertJiraIntegrationJiraAlertInput)(nil)).Elem(), GetNgwafAlertJiraIntegrationJiraAlertArgs{})
@@ -20930,6 +22630,12 @@ func init() {
 	pulumi.RegisterInputType(reflect.TypeOf((*GetNgwafThresholdsThresholdArrayInput)(nil)).Elem(), GetNgwafThresholdsThresholdArray{})
 	pulumi.RegisterInputType(reflect.TypeOf((*GetNgwafVirtualPatchesVirtualPatchInput)(nil)).Elem(), GetNgwafVirtualPatchesVirtualPatchArgs{})
 	pulumi.RegisterInputType(reflect.TypeOf((*GetNgwafVirtualPatchesVirtualPatchArrayInput)(nil)).Elem(), GetNgwafVirtualPatchesVirtualPatchArray{})
+	pulumi.RegisterInputType(reflect.TypeOf((*GetNgwafWorkspaceListsListInput)(nil)).Elem(), GetNgwafWorkspaceListsListArgs{})
+	pulumi.RegisterInputType(reflect.TypeOf((*GetNgwafWorkspaceListsListArrayInput)(nil)).Elem(), GetNgwafWorkspaceListsListArray{})
+	pulumi.RegisterInputType(reflect.TypeOf((*GetNgwafWorkspaceRulesRuleInput)(nil)).Elem(), GetNgwafWorkspaceRulesRuleArgs{})
+	pulumi.RegisterInputType(reflect.TypeOf((*GetNgwafWorkspaceRulesRuleArrayInput)(nil)).Elem(), GetNgwafWorkspaceRulesRuleArray{})
+	pulumi.RegisterInputType(reflect.TypeOf((*GetNgwafWorkspaceSignalsSignalInput)(nil)).Elem(), GetNgwafWorkspaceSignalsSignalArgs{})
+	pulumi.RegisterInputType(reflect.TypeOf((*GetNgwafWorkspaceSignalsSignalArrayInput)(nil)).Elem(), GetNgwafWorkspaceSignalsSignalArray{})
 	pulumi.RegisterInputType(reflect.TypeOf((*GetNgwafWorkspacesWorkspaceInput)(nil)).Elem(), GetNgwafWorkspacesWorkspaceArgs{})
 	pulumi.RegisterInputType(reflect.TypeOf((*GetNgwafWorkspacesWorkspaceArrayInput)(nil)).Elem(), GetNgwafWorkspacesWorkspaceArray{})
 	pulumi.RegisterInputType(reflect.TypeOf((*GetSecretstoresStoreInput)(nil)).Elem(), GetSecretstoresStoreArgs{})
@@ -20958,10 +22664,10 @@ func init() {
 	pulumi.RegisterOutputType(NgwafAccountRuleGroupConditionArrayOutput{})
 	pulumi.RegisterOutputType(NgwafAccountRuleGroupConditionConditionOutput{})
 	pulumi.RegisterOutputType(NgwafAccountRuleGroupConditionConditionArrayOutput{})
-	pulumi.RegisterOutputType(NgwafAccountRuleRateLimitOutput{})
-	pulumi.RegisterOutputType(NgwafAccountRuleRateLimitPtrOutput{})
-	pulumi.RegisterOutputType(NgwafAccountRuleRateLimitClientIdentifierOutput{})
-	pulumi.RegisterOutputType(NgwafAccountRuleRateLimitClientIdentifierArrayOutput{})
+	pulumi.RegisterOutputType(NgwafAccountRuleMultivalConditionOutput{})
+	pulumi.RegisterOutputType(NgwafAccountRuleMultivalConditionArrayOutput{})
+	pulumi.RegisterOutputType(NgwafAccountRuleMultivalConditionConditionOutput{})
+	pulumi.RegisterOutputType(NgwafAccountRuleMultivalConditionConditionArrayOutput{})
 	pulumi.RegisterOutputType(NgwafWorkspaceAttackSignalThresholdsOutput{})
 	pulumi.RegisterOutputType(NgwafWorkspaceAttackSignalThresholdsPtrOutput{})
 	pulumi.RegisterOutputType(NgwafWorkspaceRuleActionOutput{})
@@ -20972,6 +22678,10 @@ func init() {
 	pulumi.RegisterOutputType(NgwafWorkspaceRuleGroupConditionArrayOutput{})
 	pulumi.RegisterOutputType(NgwafWorkspaceRuleGroupConditionConditionOutput{})
 	pulumi.RegisterOutputType(NgwafWorkspaceRuleGroupConditionConditionArrayOutput{})
+	pulumi.RegisterOutputType(NgwafWorkspaceRuleMultivalConditionOutput{})
+	pulumi.RegisterOutputType(NgwafWorkspaceRuleMultivalConditionArrayOutput{})
+	pulumi.RegisterOutputType(NgwafWorkspaceRuleMultivalConditionConditionOutput{})
+	pulumi.RegisterOutputType(NgwafWorkspaceRuleMultivalConditionConditionArrayOutput{})
 	pulumi.RegisterOutputType(NgwafWorkspaceRuleRateLimitOutput{})
 	pulumi.RegisterOutputType(NgwafWorkspaceRuleRateLimitPtrOutput{})
 	pulumi.RegisterOutputType(NgwafWorkspaceRuleRateLimitClientIdentifierOutput{})
@@ -20984,6 +22694,8 @@ func init() {
 	pulumi.RegisterOutputType(ServiceComputeDictionaryArrayOutput{})
 	pulumi.RegisterOutputType(ServiceComputeDomainOutput{})
 	pulumi.RegisterOutputType(ServiceComputeDomainArrayOutput{})
+	pulumi.RegisterOutputType(ServiceComputeHealthcheckOutput{})
+	pulumi.RegisterOutputType(ServiceComputeHealthcheckArrayOutput{})
 	pulumi.RegisterOutputType(ServiceComputeImageOptimizerDefaultSettingsOutput{})
 	pulumi.RegisterOutputType(ServiceComputeImageOptimizerDefaultSettingsPtrOutput{})
 	pulumi.RegisterOutputType(ServiceComputeLoggingBigqueryOutput{})
@@ -21024,6 +22736,8 @@ func init() {
 	pulumi.RegisterOutputType(ServiceComputeLoggingLogshuttleArrayOutput{})
 	pulumi.RegisterOutputType(ServiceComputeLoggingNewrelicOutput{})
 	pulumi.RegisterOutputType(ServiceComputeLoggingNewrelicArrayOutput{})
+	pulumi.RegisterOutputType(ServiceComputeLoggingNewrelicotlpOutput{})
+	pulumi.RegisterOutputType(ServiceComputeLoggingNewrelicotlpArrayOutput{})
 	pulumi.RegisterOutputType(ServiceComputeLoggingOpenstackOutput{})
 	pulumi.RegisterOutputType(ServiceComputeLoggingOpenstackArrayOutput{})
 	pulumi.RegisterOutputType(ServiceComputeLoggingPapertrailOutput{})
@@ -21152,14 +22866,24 @@ func init() {
 	pulumi.RegisterOutputType(TlsSubscriptionManagedDnsChallengeArrayOutput{})
 	pulumi.RegisterOutputType(TlsSubscriptionManagedHttpChallengeOutput{})
 	pulumi.RegisterOutputType(TlsSubscriptionManagedHttpChallengeArrayOutput{})
+	pulumi.RegisterOutputType(GetComputeAclsAclOutput{})
+	pulumi.RegisterOutputType(GetComputeAclsAclArrayOutput{})
 	pulumi.RegisterOutputType(GetConfigstoresStoreOutput{})
 	pulumi.RegisterOutputType(GetConfigstoresStoreArrayOutput{})
 	pulumi.RegisterOutputType(GetDatacentersPopOutput{})
 	pulumi.RegisterOutputType(GetDatacentersPopArrayOutput{})
 	pulumi.RegisterOutputType(GetDictionariesDictionaryOutput{})
 	pulumi.RegisterOutputType(GetDictionariesDictionaryArrayOutput{})
+	pulumi.RegisterOutputType(GetDomainsV1DomainOutput{})
+	pulumi.RegisterOutputType(GetDomainsV1DomainArrayOutput{})
 	pulumi.RegisterOutputType(GetKvstoresStoreOutput{})
 	pulumi.RegisterOutputType(GetKvstoresStoreArrayOutput{})
+	pulumi.RegisterOutputType(GetNgwafAccountListsListOutput{})
+	pulumi.RegisterOutputType(GetNgwafAccountListsListArrayOutput{})
+	pulumi.RegisterOutputType(GetNgwafAccountRulesRuleOutput{})
+	pulumi.RegisterOutputType(GetNgwafAccountRulesRuleArrayOutput{})
+	pulumi.RegisterOutputType(GetNgwafAccountSignalsSignalOutput{})
+	pulumi.RegisterOutputType(GetNgwafAccountSignalsSignalArrayOutput{})
 	pulumi.RegisterOutputType(GetNgwafAlertDatadogIntegrationDatadogAlertOutput{})
 	pulumi.RegisterOutputType(GetNgwafAlertDatadogIntegrationDatadogAlertArrayOutput{})
 	pulumi.RegisterOutputType(GetNgwafAlertJiraIntegrationJiraAlertOutput{})
@@ -21182,6 +22906,12 @@ func init() {
 	pulumi.RegisterOutputType(GetNgwafThresholdsThresholdArrayOutput{})
 	pulumi.RegisterOutputType(GetNgwafVirtualPatchesVirtualPatchOutput{})
 	pulumi.RegisterOutputType(GetNgwafVirtualPatchesVirtualPatchArrayOutput{})
+	pulumi.RegisterOutputType(GetNgwafWorkspaceListsListOutput{})
+	pulumi.RegisterOutputType(GetNgwafWorkspaceListsListArrayOutput{})
+	pulumi.RegisterOutputType(GetNgwafWorkspaceRulesRuleOutput{})
+	pulumi.RegisterOutputType(GetNgwafWorkspaceRulesRuleArrayOutput{})
+	pulumi.RegisterOutputType(GetNgwafWorkspaceSignalsSignalOutput{})
+	pulumi.RegisterOutputType(GetNgwafWorkspaceSignalsSignalArrayOutput{})
 	pulumi.RegisterOutputType(GetNgwafWorkspacesWorkspaceOutput{})
 	pulumi.RegisterOutputType(GetNgwafWorkspacesWorkspaceArrayOutput{})
 	pulumi.RegisterOutputType(GetSecretstoresStoreOutput{})

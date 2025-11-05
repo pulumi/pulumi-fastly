@@ -7,15 +7,23 @@ from . import _utilities
 import typing
 # Export this package's modules as members:
 from .alert import *
+from .compute_acl import *
+from .compute_acl_entries import *
 from .configstore import *
 from .configstore_entries import *
 from .custom_dashboard import *
 from .domain_v1 import *
+from .domain_v1_service_link import *
+from .get_compute_acls import *
 from .get_configstores import *
 from .get_datacenters import *
 from .get_dictionaries import *
+from .get_domains_v1 import *
 from .get_fastly_ip_ranges import *
 from .get_kvstores import *
+from .get_ngwaf_account_lists import *
+from .get_ngwaf_account_rules import *
+from .get_ngwaf_account_signals import *
 from .get_ngwaf_alert_datadog_integration import *
 from .get_ngwaf_alert_jira_integration import *
 from .get_ngwaf_alert_mailing_list_integration import *
@@ -27,6 +35,9 @@ from .get_ngwaf_alert_webhook_integration import *
 from .get_ngwaf_redactions import *
 from .get_ngwaf_thresholds import *
 from .get_ngwaf_virtual_patches import *
+from .get_ngwaf_workspace_lists import *
+from .get_ngwaf_workspace_rules import *
+from .get_ngwaf_workspace_signals import *
 from .get_ngwaf_workspaces import *
 from .get_package_hash import *
 from .get_secretstores import *
@@ -105,6 +116,22 @@ _utilities.register(
  },
  {
   "pkg": "fastly",
+  "mod": "index/computeAcl",
+  "fqn": "pulumi_fastly",
+  "classes": {
+   "fastly:index/computeAcl:ComputeAcl": "ComputeAcl"
+  }
+ },
+ {
+  "pkg": "fastly",
+  "mod": "index/computeAclEntries",
+  "fqn": "pulumi_fastly",
+  "classes": {
+   "fastly:index/computeAclEntries:ComputeAclEntries": "ComputeAclEntries"
+  }
+ },
+ {
+  "pkg": "fastly",
   "mod": "index/configstore",
   "fqn": "pulumi_fastly",
   "classes": {
@@ -133,6 +160,14 @@ _utilities.register(
   "fqn": "pulumi_fastly",
   "classes": {
    "fastly:index/domainV1:DomainV1": "DomainV1"
+  }
+ },
+ {
+  "pkg": "fastly",
+  "mod": "index/domainV1ServiceLink",
+  "fqn": "pulumi_fastly",
+  "classes": {
+   "fastly:index/domainV1ServiceLink:DomainV1ServiceLink": "DomainV1ServiceLink"
   }
  },
  {

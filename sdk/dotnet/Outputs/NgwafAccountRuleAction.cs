@@ -18,7 +18,7 @@ namespace Pulumi.Fastly.Outputs
         /// </summary>
         public readonly string? Signal;
         /// <summary>
-        /// The action type, e.g. `Block`, `Redirect`, `ExcludeSignal`.
+        /// The action type. One of: `AddSignal`, `Allow`, `Block`, `BrowserChallenge`, `DynamicChallenge`, `ExcludeSignal`, `VerifyToken` or for rate limit rule valid values: `LogRequest`, `BlockSignal`, `BrowserChallenge`, `VerifyToken`
         /// </summary>
         public readonly string Type;
 

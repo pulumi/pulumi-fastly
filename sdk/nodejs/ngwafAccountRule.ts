@@ -109,9 +109,9 @@ export class NgwafAccountRule extends pulumi.CustomResource {
      */
     declare public readonly groupOperator: pulumi.Output<string | undefined>;
     /**
-     * Block specifically for rate*limit rules.
+     * List of multival conditions with nested logic. Each multival list must define a `field, operator, groupOperator` and at least one condition.
      */
-    declare public readonly rateLimit: pulumi.Output<outputs.NgwafAccountRuleRateLimit | undefined>;
+    declare public readonly multivalConditions: pulumi.Output<outputs.NgwafAccountRuleMultivalCondition[] | undefined>;
     /**
      * Logging behavior for matching requests. Accepted values are `sampled` and `none`.
      */
@@ -141,7 +141,7 @@ export class NgwafAccountRule extends pulumi.CustomResource {
             resourceInputs["enabled"] = state?.enabled;
             resourceInputs["groupConditions"] = state?.groupConditions;
             resourceInputs["groupOperator"] = state?.groupOperator;
-            resourceInputs["rateLimit"] = state?.rateLimit;
+            resourceInputs["multivalConditions"] = state?.multivalConditions;
             resourceInputs["requestLogging"] = state?.requestLogging;
             resourceInputs["type"] = state?.type;
         } else {
@@ -168,7 +168,7 @@ export class NgwafAccountRule extends pulumi.CustomResource {
             resourceInputs["enabled"] = args?.enabled;
             resourceInputs["groupConditions"] = args?.groupConditions;
             resourceInputs["groupOperator"] = args?.groupOperator;
-            resourceInputs["rateLimit"] = args?.rateLimit;
+            resourceInputs["multivalConditions"] = args?.multivalConditions;
             resourceInputs["requestLogging"] = args?.requestLogging;
             resourceInputs["type"] = args?.type;
         }
@@ -210,9 +210,9 @@ export interface NgwafAccountRuleState {
      */
     groupOperator?: pulumi.Input<string>;
     /**
-     * Block specifically for rate*limit rules.
+     * List of multival conditions with nested logic. Each multival list must define a `field, operator, groupOperator` and at least one condition.
      */
-    rateLimit?: pulumi.Input<inputs.NgwafAccountRuleRateLimit>;
+    multivalConditions?: pulumi.Input<pulumi.Input<inputs.NgwafAccountRuleMultivalCondition>[]>;
     /**
      * Logging behavior for matching requests. Accepted values are `sampled` and `none`.
      */
@@ -256,9 +256,9 @@ export interface NgwafAccountRuleArgs {
      */
     groupOperator?: pulumi.Input<string>;
     /**
-     * Block specifically for rate*limit rules.
+     * List of multival conditions with nested logic. Each multival list must define a `field, operator, groupOperator` and at least one condition.
      */
-    rateLimit?: pulumi.Input<inputs.NgwafAccountRuleRateLimit>;
+    multivalConditions?: pulumi.Input<pulumi.Input<inputs.NgwafAccountRuleMultivalCondition>[]>;
     /**
      * Logging behavior for matching requests. Accepted values are `sampled` and `none`.
      */

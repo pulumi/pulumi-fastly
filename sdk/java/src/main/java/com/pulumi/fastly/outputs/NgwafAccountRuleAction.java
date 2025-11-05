@@ -18,7 +18,7 @@ public final class NgwafAccountRuleAction {
      */
     private @Nullable String signal;
     /**
-     * @return The action type, e.g. `block`, `redirect`, `excludeSignal`.
+     * @return The action type. One of: `addSignal`, `allow`, `block`, `browserChallenge`, `dynamicChallenge`, `excludeSignal`, `verifyToken` or for rate limit rule valid values: `logRequest`, `blockSignal`, `browserChallenge`, `verifyToken`
      * 
      */
     private String type;
@@ -32,7 +32,7 @@ public final class NgwafAccountRuleAction {
         return Optional.ofNullable(this.signal);
     }
     /**
-     * @return The action type, e.g. `block`, `redirect`, `excludeSignal`.
+     * @return The action type. One of: `addSignal`, `allow`, `block`, `browserChallenge`, `dynamicChallenge`, `excludeSignal`, `verifyToken` or for rate limit rule valid values: `logRequest`, `blockSignal`, `browserChallenge`, `verifyToken`
      * 
      */
     public String type() {

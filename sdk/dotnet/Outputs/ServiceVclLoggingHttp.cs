@@ -14,6 +14,10 @@ namespace Pulumi.Fastly.Outputs
     public sealed class ServiceVclLoggingHttp
     {
         /// <summary>
+        /// The codec used for compression of your logs. Valid values are zstd, snappy, and gzip. If the specified codec is "gzip", GzipLevel will default to 3. To specify a different level, leave CompressionCodec blank and explicitly set the level using gzip_level. Specifying both CompressionCodec and GzipLevel in the same API request will result in an error.
+        /// </summary>
+        public readonly string? CompressionCodec;
+        /// <summary>
         /// Value of the `Content-Type` header sent with the request
         /// </summary>
         public readonly string? ContentType;
@@ -25,6 +29,10 @@ namespace Pulumi.Fastly.Outputs
         /// The version of the custom logging format used for the configured endpoint. Can be either 1 or 2. (default: 2)
         /// </summary>
         public readonly int? FormatVersion;
+        /// <summary>
+        /// Level of Gzip compression from `0-9`. `0` means no compression. `1` is the fastest and the least compressed version, `9` is the slowest and the most compressed version. Default `0`
+        /// </summary>
+        public readonly int? GzipLevel;
         /// <summary>
         /// Custom header sent with the request
         /// </summary>
@@ -49,6 +57,10 @@ namespace Pulumi.Fastly.Outputs
         /// The unique name of the HTTPS logging endpoint. It is important to note that changing this attribute will delete and recreate the resource
         /// </summary>
         public readonly string Name;
+        /// <summary>
+        /// How frequently, in seconds, batches of log data are sent to the HTTPS endpoint. A value of 0 sends logs at the same interval as the default, which is 5 seconds.
+        /// </summary>
+        public readonly int? Period;
         /// <summary>
         /// Where in the generated VCL the logging call should be placed
         /// </summary>
@@ -92,11 +104,15 @@ namespace Pulumi.Fastly.Outputs
 
         [OutputConstructor]
         private ServiceVclLoggingHttp(
+            string? compressionCodec,
+
             string? contentType,
 
             string? format,
 
             int? formatVersion,
+
+            int? gzipLevel,
 
             string? headerName,
 
@@ -109,6 +125,8 @@ namespace Pulumi.Fastly.Outputs
             string? method,
 
             string name,
+
+            int? period,
 
             string? placement,
 
@@ -130,15 +148,18 @@ namespace Pulumi.Fastly.Outputs
 
             string url)
         {
+            CompressionCodec = compressionCodec;
             ContentType = contentType;
             Format = format;
             FormatVersion = formatVersion;
+            GzipLevel = gzipLevel;
             HeaderName = headerName;
             HeaderValue = headerValue;
             JsonFormat = jsonFormat;
             MessageType = messageType;
             Method = method;
             Name = name;
+            Period = period;
             Placement = placement;
             ProcessingRegion = processingRegion;
             RequestMaxBytes = requestMaxBytes;

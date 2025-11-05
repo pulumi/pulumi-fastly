@@ -18,6 +18,21 @@ public final class ServiceComputeLoggingHttpArgs extends com.pulumi.resources.Re
     public static final ServiceComputeLoggingHttpArgs Empty = new ServiceComputeLoggingHttpArgs();
 
     /**
+     * The codec used for compression of your logs. Valid values are zstd, snappy, and gzip. If the specified codec is &#34;gzip&#34;, gzipLevel will default to 3. To specify a different level, leave compressionCodec blank and explicitly set the level using gzip_level. Specifying both compressionCodec and gzipLevel in the same API request will result in an error.
+     * 
+     */
+    @Import(name="compressionCodec")
+    private @Nullable Output<String> compressionCodec;
+
+    /**
+     * @return The codec used for compression of your logs. Valid values are zstd, snappy, and gzip. If the specified codec is &#34;gzip&#34;, gzipLevel will default to 3. To specify a different level, leave compressionCodec blank and explicitly set the level using gzip_level. Specifying both compressionCodec and gzipLevel in the same API request will result in an error.
+     * 
+     */
+    public Optional<Output<String>> compressionCodec() {
+        return Optional.ofNullable(this.compressionCodec);
+    }
+
+    /**
      * Value of the `Content-Type` header sent with the request
      * 
      */
@@ -30,6 +45,21 @@ public final class ServiceComputeLoggingHttpArgs extends com.pulumi.resources.Re
      */
     public Optional<Output<String>> contentType() {
         return Optional.ofNullable(this.contentType);
+    }
+
+    /**
+     * Level of Gzip compression from `0-9`. `0` means no compression. `1` is the fastest and the least compressed version, `9` is the slowest and the most compressed version. Default `0`
+     * 
+     */
+    @Import(name="gzipLevel")
+    private @Nullable Output<Integer> gzipLevel;
+
+    /**
+     * @return Level of Gzip compression from `0-9`. `0` means no compression. `1` is the fastest and the least compressed version, `9` is the slowest and the most compressed version. Default `0`
+     * 
+     */
+    public Optional<Output<Integer>> gzipLevel() {
+        return Optional.ofNullable(this.gzipLevel);
     }
 
     /**
@@ -120,6 +150,21 @@ public final class ServiceComputeLoggingHttpArgs extends com.pulumi.resources.Re
      */
     public Output<String> name() {
         return this.name;
+    }
+
+    /**
+     * How frequently, in seconds, batches of log data are sent to the HTTPS endpoint. A value of 0 sends logs at the same interval as the default, which is 5 seconds.
+     * 
+     */
+    @Import(name="period")
+    private @Nullable Output<Integer> period;
+
+    /**
+     * @return How frequently, in seconds, batches of log data are sent to the HTTPS endpoint. A value of 0 sends logs at the same interval as the default, which is 5 seconds.
+     * 
+     */
+    public Optional<Output<Integer>> period() {
+        return Optional.ofNullable(this.period);
     }
 
     /**
@@ -245,13 +290,16 @@ public final class ServiceComputeLoggingHttpArgs extends com.pulumi.resources.Re
     private ServiceComputeLoggingHttpArgs() {}
 
     private ServiceComputeLoggingHttpArgs(ServiceComputeLoggingHttpArgs $) {
+        this.compressionCodec = $.compressionCodec;
         this.contentType = $.contentType;
+        this.gzipLevel = $.gzipLevel;
         this.headerName = $.headerName;
         this.headerValue = $.headerValue;
         this.jsonFormat = $.jsonFormat;
         this.messageType = $.messageType;
         this.method = $.method;
         this.name = $.name;
+        this.period = $.period;
         this.processingRegion = $.processingRegion;
         this.requestMaxBytes = $.requestMaxBytes;
         this.requestMaxEntries = $.requestMaxEntries;
@@ -281,6 +329,27 @@ public final class ServiceComputeLoggingHttpArgs extends com.pulumi.resources.Re
         }
 
         /**
+         * @param compressionCodec The codec used for compression of your logs. Valid values are zstd, snappy, and gzip. If the specified codec is &#34;gzip&#34;, gzipLevel will default to 3. To specify a different level, leave compressionCodec blank and explicitly set the level using gzip_level. Specifying both compressionCodec and gzipLevel in the same API request will result in an error.
+         * 
+         * @return builder
+         * 
+         */
+        public Builder compressionCodec(@Nullable Output<String> compressionCodec) {
+            $.compressionCodec = compressionCodec;
+            return this;
+        }
+
+        /**
+         * @param compressionCodec The codec used for compression of your logs. Valid values are zstd, snappy, and gzip. If the specified codec is &#34;gzip&#34;, gzipLevel will default to 3. To specify a different level, leave compressionCodec blank and explicitly set the level using gzip_level. Specifying both compressionCodec and gzipLevel in the same API request will result in an error.
+         * 
+         * @return builder
+         * 
+         */
+        public Builder compressionCodec(String compressionCodec) {
+            return compressionCodec(Output.of(compressionCodec));
+        }
+
+        /**
          * @param contentType Value of the `Content-Type` header sent with the request
          * 
          * @return builder
@@ -299,6 +368,27 @@ public final class ServiceComputeLoggingHttpArgs extends com.pulumi.resources.Re
          */
         public Builder contentType(String contentType) {
             return contentType(Output.of(contentType));
+        }
+
+        /**
+         * @param gzipLevel Level of Gzip compression from `0-9`. `0` means no compression. `1` is the fastest and the least compressed version, `9` is the slowest and the most compressed version. Default `0`
+         * 
+         * @return builder
+         * 
+         */
+        public Builder gzipLevel(@Nullable Output<Integer> gzipLevel) {
+            $.gzipLevel = gzipLevel;
+            return this;
+        }
+
+        /**
+         * @param gzipLevel Level of Gzip compression from `0-9`. `0` means no compression. `1` is the fastest and the least compressed version, `9` is the slowest and the most compressed version. Default `0`
+         * 
+         * @return builder
+         * 
+         */
+        public Builder gzipLevel(Integer gzipLevel) {
+            return gzipLevel(Output.of(gzipLevel));
         }
 
         /**
@@ -425,6 +515,27 @@ public final class ServiceComputeLoggingHttpArgs extends com.pulumi.resources.Re
          */
         public Builder name(String name) {
             return name(Output.of(name));
+        }
+
+        /**
+         * @param period How frequently, in seconds, batches of log data are sent to the HTTPS endpoint. A value of 0 sends logs at the same interval as the default, which is 5 seconds.
+         * 
+         * @return builder
+         * 
+         */
+        public Builder period(@Nullable Output<Integer> period) {
+            $.period = period;
+            return this;
+        }
+
+        /**
+         * @param period How frequently, in seconds, batches of log data are sent to the HTTPS endpoint. A value of 0 sends logs at the same interval as the default, which is 5 seconds.
+         * 
+         * @return builder
+         * 
+         */
+        public Builder period(Integer period) {
+            return period(Output.of(period));
         }
 
         /**

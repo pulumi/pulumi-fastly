@@ -65,7 +65,7 @@ type NgwafThresholds struct {
 	// Whether to silence notifications when action is taken.
 	DontNotify pulumi.BoolOutput `pulumi:"dontNotify"`
 	// Duration the action is in place, in seconds. Minimum 1 and maximum 31,556,900.
-	Duration pulumi.IntOutput `pulumi:"duration"`
+	Duration pulumi.IntPtrOutput `pulumi:"duration"`
 	// Whether this threshold is active.
 	Enabled pulumi.BoolOutput `pulumi:"enabled"`
 	// Threshold interval in seconds. Accepted values are `60`, `600`, and `3600`.
@@ -92,9 +92,6 @@ func NewNgwafThresholds(ctx *pulumi.Context,
 	}
 	if args.DontNotify == nil {
 		return nil, errors.New("invalid value for required argument 'DontNotify'")
-	}
-	if args.Duration == nil {
-		return nil, errors.New("invalid value for required argument 'Duration'")
 	}
 	if args.Enabled == nil {
 		return nil, errors.New("invalid value for required argument 'Enabled'")
@@ -185,7 +182,7 @@ type ngwafThresholdsArgs struct {
 	// Whether to silence notifications when action is taken.
 	DontNotify bool `pulumi:"dontNotify"`
 	// Duration the action is in place, in seconds. Minimum 1 and maximum 31,556,900.
-	Duration int `pulumi:"duration"`
+	Duration *int `pulumi:"duration"`
 	// Whether this threshold is active.
 	Enabled bool `pulumi:"enabled"`
 	// Threshold interval in seconds. Accepted values are `60`, `600`, and `3600`.
@@ -207,7 +204,7 @@ type NgwafThresholdsArgs struct {
 	// Whether to silence notifications when action is taken.
 	DontNotify pulumi.BoolInput
 	// Duration the action is in place, in seconds. Minimum 1 and maximum 31,556,900.
-	Duration pulumi.IntInput
+	Duration pulumi.IntPtrInput
 	// Whether this threshold is active.
 	Enabled pulumi.BoolInput
 	// Threshold interval in seconds. Accepted values are `60`, `600`, and `3600`.
@@ -320,8 +317,8 @@ func (o NgwafThresholdsOutput) DontNotify() pulumi.BoolOutput {
 }
 
 // Duration the action is in place, in seconds. Minimum 1 and maximum 31,556,900.
-func (o NgwafThresholdsOutput) Duration() pulumi.IntOutput {
-	return o.ApplyT(func(v *NgwafThresholds) pulumi.IntOutput { return v.Duration }).(pulumi.IntOutput)
+func (o NgwafThresholdsOutput) Duration() pulumi.IntPtrOutput {
+	return o.ApplyT(func(v *NgwafThresholds) pulumi.IntPtrOutput { return v.Duration }).(pulumi.IntPtrOutput)
 }
 
 // Whether this threshold is active.

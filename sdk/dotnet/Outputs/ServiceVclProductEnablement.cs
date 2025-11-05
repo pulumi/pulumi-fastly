@@ -14,6 +14,10 @@ namespace Pulumi.Fastly.Outputs
     public sealed class ServiceVclProductEnablement
     {
         /// <summary>
+        /// Enable API Discovery support
+        /// </summary>
+        public readonly bool? ApiDiscovery;
+        /// <summary>
         /// Enable Bot Management support
         /// </summary>
         public readonly bool? BotManagement;
@@ -56,6 +60,8 @@ namespace Pulumi.Fastly.Outputs
 
         [OutputConstructor]
         private ServiceVclProductEnablement(
+            bool? apiDiscovery,
+
             bool? botManagement,
 
             bool? brotliCompression,
@@ -76,6 +82,7 @@ namespace Pulumi.Fastly.Outputs
 
             bool? websockets)
         {
+            ApiDiscovery = apiDiscovery;
             BotManagement = botManagement;
             BrotliCompression = brotliCompression;
             DdosProtection = ddosProtection;

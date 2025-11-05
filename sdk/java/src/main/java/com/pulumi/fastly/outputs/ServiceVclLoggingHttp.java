@@ -14,6 +14,11 @@ import javax.annotation.Nullable;
 @CustomType
 public final class ServiceVclLoggingHttp {
     /**
+     * @return The codec used for compression of your logs. Valid values are zstd, snappy, and gzip. If the specified codec is &#34;gzip&#34;, gzipLevel will default to 3. To specify a different level, leave compressionCodec blank and explicitly set the level using gzip_level. Specifying both compressionCodec and gzipLevel in the same API request will result in an error.
+     * 
+     */
+    private @Nullable String compressionCodec;
+    /**
      * @return Value of the `Content-Type` header sent with the request
      * 
      */
@@ -28,6 +33,11 @@ public final class ServiceVclLoggingHttp {
      * 
      */
     private @Nullable Integer formatVersion;
+    /**
+     * @return Level of Gzip compression from `0-9`. `0` means no compression. `1` is the fastest and the least compressed version, `9` is the slowest and the most compressed version. Default `0`
+     * 
+     */
+    private @Nullable Integer gzipLevel;
     /**
      * @return Custom header sent with the request
      * 
@@ -58,6 +68,11 @@ public final class ServiceVclLoggingHttp {
      * 
      */
     private String name;
+    /**
+     * @return How frequently, in seconds, batches of log data are sent to the HTTPS endpoint. A value of 0 sends logs at the same interval as the default, which is 5 seconds.
+     * 
+     */
+    private @Nullable Integer period;
     /**
      * @return Where in the generated VCL the logging call should be placed
      * 
@@ -111,6 +126,13 @@ public final class ServiceVclLoggingHttp {
 
     private ServiceVclLoggingHttp() {}
     /**
+     * @return The codec used for compression of your logs. Valid values are zstd, snappy, and gzip. If the specified codec is &#34;gzip&#34;, gzipLevel will default to 3. To specify a different level, leave compressionCodec blank and explicitly set the level using gzip_level. Specifying both compressionCodec and gzipLevel in the same API request will result in an error.
+     * 
+     */
+    public Optional<String> compressionCodec() {
+        return Optional.ofNullable(this.compressionCodec);
+    }
+    /**
      * @return Value of the `Content-Type` header sent with the request
      * 
      */
@@ -130,6 +152,13 @@ public final class ServiceVclLoggingHttp {
      */
     public Optional<Integer> formatVersion() {
         return Optional.ofNullable(this.formatVersion);
+    }
+    /**
+     * @return Level of Gzip compression from `0-9`. `0` means no compression. `1` is the fastest and the least compressed version, `9` is the slowest and the most compressed version. Default `0`
+     * 
+     */
+    public Optional<Integer> gzipLevel() {
+        return Optional.ofNullable(this.gzipLevel);
     }
     /**
      * @return Custom header sent with the request
@@ -172,6 +201,13 @@ public final class ServiceVclLoggingHttp {
      */
     public String name() {
         return this.name;
+    }
+    /**
+     * @return How frequently, in seconds, batches of log data are sent to the HTTPS endpoint. A value of 0 sends logs at the same interval as the default, which is 5 seconds.
+     * 
+     */
+    public Optional<Integer> period() {
+        return Optional.ofNullable(this.period);
     }
     /**
      * @return Where in the generated VCL the logging call should be placed
@@ -253,15 +289,18 @@ public final class ServiceVclLoggingHttp {
     }
     @CustomType.Builder
     public static final class Builder {
+        private @Nullable String compressionCodec;
         private @Nullable String contentType;
         private @Nullable String format;
         private @Nullable Integer formatVersion;
+        private @Nullable Integer gzipLevel;
         private @Nullable String headerName;
         private @Nullable String headerValue;
         private @Nullable String jsonFormat;
         private @Nullable String messageType;
         private @Nullable String method;
         private String name;
+        private @Nullable Integer period;
         private @Nullable String placement;
         private @Nullable String processingRegion;
         private @Nullable Integer requestMaxBytes;
@@ -275,15 +314,18 @@ public final class ServiceVclLoggingHttp {
         public Builder() {}
         public Builder(ServiceVclLoggingHttp defaults) {
     	      Objects.requireNonNull(defaults);
+    	      this.compressionCodec = defaults.compressionCodec;
     	      this.contentType = defaults.contentType;
     	      this.format = defaults.format;
     	      this.formatVersion = defaults.formatVersion;
+    	      this.gzipLevel = defaults.gzipLevel;
     	      this.headerName = defaults.headerName;
     	      this.headerValue = defaults.headerValue;
     	      this.jsonFormat = defaults.jsonFormat;
     	      this.messageType = defaults.messageType;
     	      this.method = defaults.method;
     	      this.name = defaults.name;
+    	      this.period = defaults.period;
     	      this.placement = defaults.placement;
     	      this.processingRegion = defaults.processingRegion;
     	      this.requestMaxBytes = defaults.requestMaxBytes;
@@ -296,6 +338,12 @@ public final class ServiceVclLoggingHttp {
     	      this.url = defaults.url;
         }
 
+        @CustomType.Setter
+        public Builder compressionCodec(@Nullable String compressionCodec) {
+
+            this.compressionCodec = compressionCodec;
+            return this;
+        }
         @CustomType.Setter
         public Builder contentType(@Nullable String contentType) {
 
@@ -312,6 +360,12 @@ public final class ServiceVclLoggingHttp {
         public Builder formatVersion(@Nullable Integer formatVersion) {
 
             this.formatVersion = formatVersion;
+            return this;
+        }
+        @CustomType.Setter
+        public Builder gzipLevel(@Nullable Integer gzipLevel) {
+
+            this.gzipLevel = gzipLevel;
             return this;
         }
         @CustomType.Setter
@@ -350,6 +404,12 @@ public final class ServiceVclLoggingHttp {
               throw new MissingRequiredPropertyException("ServiceVclLoggingHttp", "name");
             }
             this.name = name;
+            return this;
+        }
+        @CustomType.Setter
+        public Builder period(@Nullable Integer period) {
+
+            this.period = period;
             return this;
         }
         @CustomType.Setter
@@ -416,15 +476,18 @@ public final class ServiceVclLoggingHttp {
         }
         public ServiceVclLoggingHttp build() {
             final var _resultValue = new ServiceVclLoggingHttp();
+            _resultValue.compressionCodec = compressionCodec;
             _resultValue.contentType = contentType;
             _resultValue.format = format;
             _resultValue.formatVersion = formatVersion;
+            _resultValue.gzipLevel = gzipLevel;
             _resultValue.headerName = headerName;
             _resultValue.headerValue = headerValue;
             _resultValue.jsonFormat = jsonFormat;
             _resultValue.messageType = messageType;
             _resultValue.method = method;
             _resultValue.name = name;
+            _resultValue.period = period;
             _resultValue.placement = placement;
             _resultValue.processingRegion = processingRegion;
             _resultValue.requestMaxBytes = requestMaxBytes;

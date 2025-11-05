@@ -29,7 +29,7 @@ class NgwafAccountRuleArgs:
                  conditions: Optional[pulumi.Input[Sequence[pulumi.Input['NgwafAccountRuleConditionArgs']]]] = None,
                  group_conditions: Optional[pulumi.Input[Sequence[pulumi.Input['NgwafAccountRuleGroupConditionArgs']]]] = None,
                  group_operator: Optional[pulumi.Input[_builtins.str]] = None,
-                 rate_limit: Optional[pulumi.Input['NgwafAccountRuleRateLimitArgs']] = None,
+                 multival_conditions: Optional[pulumi.Input[Sequence[pulumi.Input['NgwafAccountRuleMultivalConditionArgs']]]] = None,
                  request_logging: Optional[pulumi.Input[_builtins.str]] = None):
         """
         The set of arguments for constructing a NgwafAccountRule resource.
@@ -41,7 +41,7 @@ class NgwafAccountRuleArgs:
         :param pulumi.Input[Sequence[pulumi.Input['NgwafAccountRuleConditionArgs']]] conditions: Flat list of individual conditions. Each must include `field`, `operator`, and `value`.
         :param pulumi.Input[Sequence[pulumi.Input['NgwafAccountRuleGroupConditionArgs']]] group_conditions: List of grouped conditions with nested logic. Each group must define a `group_operator` and at least one condition.
         :param pulumi.Input[_builtins.str] group_operator: Logical operator to apply to group conditions. Accepted values are `any` and `all`.
-        :param pulumi.Input['NgwafAccountRuleRateLimitArgs'] rate_limit: Block specifically for rate*limit rules.
+        :param pulumi.Input[Sequence[pulumi.Input['NgwafAccountRuleMultivalConditionArgs']]] multival_conditions: List of multival conditions with nested logic. Each multival list must define a `field, operator, group_operator` and at least one condition.
         :param pulumi.Input[_builtins.str] request_logging: Logging behavior for matching requests. Accepted values are `sampled` and `none`.
         """
         pulumi.set(__self__, "actions", actions)
@@ -55,8 +55,8 @@ class NgwafAccountRuleArgs:
             pulumi.set(__self__, "group_conditions", group_conditions)
         if group_operator is not None:
             pulumi.set(__self__, "group_operator", group_operator)
-        if rate_limit is not None:
-            pulumi.set(__self__, "rate_limit", rate_limit)
+        if multival_conditions is not None:
+            pulumi.set(__self__, "multival_conditions", multival_conditions)
         if request_logging is not None:
             pulumi.set(__self__, "request_logging", request_logging)
 
@@ -157,16 +157,16 @@ class NgwafAccountRuleArgs:
         pulumi.set(self, "group_operator", value)
 
     @_builtins.property
-    @pulumi.getter(name="rateLimit")
-    def rate_limit(self) -> Optional[pulumi.Input['NgwafAccountRuleRateLimitArgs']]:
+    @pulumi.getter(name="multivalConditions")
+    def multival_conditions(self) -> Optional[pulumi.Input[Sequence[pulumi.Input['NgwafAccountRuleMultivalConditionArgs']]]]:
         """
-        Block specifically for rate*limit rules.
+        List of multival conditions with nested logic. Each multival list must define a `field, operator, group_operator` and at least one condition.
         """
-        return pulumi.get(self, "rate_limit")
+        return pulumi.get(self, "multival_conditions")
 
-    @rate_limit.setter
-    def rate_limit(self, value: Optional[pulumi.Input['NgwafAccountRuleRateLimitArgs']]):
-        pulumi.set(self, "rate_limit", value)
+    @multival_conditions.setter
+    def multival_conditions(self, value: Optional[pulumi.Input[Sequence[pulumi.Input['NgwafAccountRuleMultivalConditionArgs']]]]):
+        pulumi.set(self, "multival_conditions", value)
 
     @_builtins.property
     @pulumi.getter(name="requestLogging")
@@ -191,7 +191,7 @@ class _NgwafAccountRuleState:
                  enabled: Optional[pulumi.Input[_builtins.bool]] = None,
                  group_conditions: Optional[pulumi.Input[Sequence[pulumi.Input['NgwafAccountRuleGroupConditionArgs']]]] = None,
                  group_operator: Optional[pulumi.Input[_builtins.str]] = None,
-                 rate_limit: Optional[pulumi.Input['NgwafAccountRuleRateLimitArgs']] = None,
+                 multival_conditions: Optional[pulumi.Input[Sequence[pulumi.Input['NgwafAccountRuleMultivalConditionArgs']]]] = None,
                  request_logging: Optional[pulumi.Input[_builtins.str]] = None,
                  type: Optional[pulumi.Input[_builtins.str]] = None):
         """
@@ -203,7 +203,7 @@ class _NgwafAccountRuleState:
         :param pulumi.Input[_builtins.bool] enabled: Whether the rule is currently enabled.
         :param pulumi.Input[Sequence[pulumi.Input['NgwafAccountRuleGroupConditionArgs']]] group_conditions: List of grouped conditions with nested logic. Each group must define a `group_operator` and at least one condition.
         :param pulumi.Input[_builtins.str] group_operator: Logical operator to apply to group conditions. Accepted values are `any` and `all`.
-        :param pulumi.Input['NgwafAccountRuleRateLimitArgs'] rate_limit: Block specifically for rate*limit rules.
+        :param pulumi.Input[Sequence[pulumi.Input['NgwafAccountRuleMultivalConditionArgs']]] multival_conditions: List of multival conditions with nested logic. Each multival list must define a `field, operator, group_operator` and at least one condition.
         :param pulumi.Input[_builtins.str] request_logging: Logging behavior for matching requests. Accepted values are `sampled` and `none`.
         :param pulumi.Input[_builtins.str] type: The type of the rule. Accepted values are `request` and `signal`.
         """
@@ -221,8 +221,8 @@ class _NgwafAccountRuleState:
             pulumi.set(__self__, "group_conditions", group_conditions)
         if group_operator is not None:
             pulumi.set(__self__, "group_operator", group_operator)
-        if rate_limit is not None:
-            pulumi.set(__self__, "rate_limit", rate_limit)
+        if multival_conditions is not None:
+            pulumi.set(__self__, "multival_conditions", multival_conditions)
         if request_logging is not None:
             pulumi.set(__self__, "request_logging", request_logging)
         if type is not None:
@@ -313,16 +313,16 @@ class _NgwafAccountRuleState:
         pulumi.set(self, "group_operator", value)
 
     @_builtins.property
-    @pulumi.getter(name="rateLimit")
-    def rate_limit(self) -> Optional[pulumi.Input['NgwafAccountRuleRateLimitArgs']]:
+    @pulumi.getter(name="multivalConditions")
+    def multival_conditions(self) -> Optional[pulumi.Input[Sequence[pulumi.Input['NgwafAccountRuleMultivalConditionArgs']]]]:
         """
-        Block specifically for rate*limit rules.
+        List of multival conditions with nested logic. Each multival list must define a `field, operator, group_operator` and at least one condition.
         """
-        return pulumi.get(self, "rate_limit")
+        return pulumi.get(self, "multival_conditions")
 
-    @rate_limit.setter
-    def rate_limit(self, value: Optional[pulumi.Input['NgwafAccountRuleRateLimitArgs']]):
-        pulumi.set(self, "rate_limit", value)
+    @multival_conditions.setter
+    def multival_conditions(self, value: Optional[pulumi.Input[Sequence[pulumi.Input['NgwafAccountRuleMultivalConditionArgs']]]]):
+        pulumi.set(self, "multival_conditions", value)
 
     @_builtins.property
     @pulumi.getter(name="requestLogging")
@@ -362,7 +362,7 @@ class NgwafAccountRule(pulumi.CustomResource):
                  enabled: Optional[pulumi.Input[_builtins.bool]] = None,
                  group_conditions: Optional[pulumi.Input[Sequence[pulumi.Input[Union['NgwafAccountRuleGroupConditionArgs', 'NgwafAccountRuleGroupConditionArgsDict']]]]] = None,
                  group_operator: Optional[pulumi.Input[_builtins.str]] = None,
-                 rate_limit: Optional[pulumi.Input[Union['NgwafAccountRuleRateLimitArgs', 'NgwafAccountRuleRateLimitArgsDict']]] = None,
+                 multival_conditions: Optional[pulumi.Input[Sequence[pulumi.Input[Union['NgwafAccountRuleMultivalConditionArgs', 'NgwafAccountRuleMultivalConditionArgsDict']]]]] = None,
                  request_logging: Optional[pulumi.Input[_builtins.str]] = None,
                  type: Optional[pulumi.Input[_builtins.str]] = None,
                  __props__=None):
@@ -420,7 +420,7 @@ class NgwafAccountRule(pulumi.CustomResource):
         :param pulumi.Input[_builtins.bool] enabled: Whether the rule is currently enabled.
         :param pulumi.Input[Sequence[pulumi.Input[Union['NgwafAccountRuleGroupConditionArgs', 'NgwafAccountRuleGroupConditionArgsDict']]]] group_conditions: List of grouped conditions with nested logic. Each group must define a `group_operator` and at least one condition.
         :param pulumi.Input[_builtins.str] group_operator: Logical operator to apply to group conditions. Accepted values are `any` and `all`.
-        :param pulumi.Input[Union['NgwafAccountRuleRateLimitArgs', 'NgwafAccountRuleRateLimitArgsDict']] rate_limit: Block specifically for rate*limit rules.
+        :param pulumi.Input[Sequence[pulumi.Input[Union['NgwafAccountRuleMultivalConditionArgs', 'NgwafAccountRuleMultivalConditionArgsDict']]]] multival_conditions: List of multival conditions with nested logic. Each multival list must define a `field, operator, group_operator` and at least one condition.
         :param pulumi.Input[_builtins.str] request_logging: Logging behavior for matching requests. Accepted values are `sampled` and `none`.
         :param pulumi.Input[_builtins.str] type: The type of the rule. Accepted values are `request` and `signal`.
         """
@@ -497,7 +497,7 @@ class NgwafAccountRule(pulumi.CustomResource):
                  enabled: Optional[pulumi.Input[_builtins.bool]] = None,
                  group_conditions: Optional[pulumi.Input[Sequence[pulumi.Input[Union['NgwafAccountRuleGroupConditionArgs', 'NgwafAccountRuleGroupConditionArgsDict']]]]] = None,
                  group_operator: Optional[pulumi.Input[_builtins.str]] = None,
-                 rate_limit: Optional[pulumi.Input[Union['NgwafAccountRuleRateLimitArgs', 'NgwafAccountRuleRateLimitArgsDict']]] = None,
+                 multival_conditions: Optional[pulumi.Input[Sequence[pulumi.Input[Union['NgwafAccountRuleMultivalConditionArgs', 'NgwafAccountRuleMultivalConditionArgsDict']]]]] = None,
                  request_logging: Optional[pulumi.Input[_builtins.str]] = None,
                  type: Optional[pulumi.Input[_builtins.str]] = None,
                  __props__=None):
@@ -524,7 +524,7 @@ class NgwafAccountRule(pulumi.CustomResource):
             __props__.__dict__["enabled"] = enabled
             __props__.__dict__["group_conditions"] = group_conditions
             __props__.__dict__["group_operator"] = group_operator
-            __props__.__dict__["rate_limit"] = rate_limit
+            __props__.__dict__["multival_conditions"] = multival_conditions
             __props__.__dict__["request_logging"] = request_logging
             if type is None and not opts.urn:
                 raise TypeError("Missing required property 'type'")
@@ -546,7 +546,7 @@ class NgwafAccountRule(pulumi.CustomResource):
             enabled: Optional[pulumi.Input[_builtins.bool]] = None,
             group_conditions: Optional[pulumi.Input[Sequence[pulumi.Input[Union['NgwafAccountRuleGroupConditionArgs', 'NgwafAccountRuleGroupConditionArgsDict']]]]] = None,
             group_operator: Optional[pulumi.Input[_builtins.str]] = None,
-            rate_limit: Optional[pulumi.Input[Union['NgwafAccountRuleRateLimitArgs', 'NgwafAccountRuleRateLimitArgsDict']]] = None,
+            multival_conditions: Optional[pulumi.Input[Sequence[pulumi.Input[Union['NgwafAccountRuleMultivalConditionArgs', 'NgwafAccountRuleMultivalConditionArgsDict']]]]] = None,
             request_logging: Optional[pulumi.Input[_builtins.str]] = None,
             type: Optional[pulumi.Input[_builtins.str]] = None) -> 'NgwafAccountRule':
         """
@@ -563,7 +563,7 @@ class NgwafAccountRule(pulumi.CustomResource):
         :param pulumi.Input[_builtins.bool] enabled: Whether the rule is currently enabled.
         :param pulumi.Input[Sequence[pulumi.Input[Union['NgwafAccountRuleGroupConditionArgs', 'NgwafAccountRuleGroupConditionArgsDict']]]] group_conditions: List of grouped conditions with nested logic. Each group must define a `group_operator` and at least one condition.
         :param pulumi.Input[_builtins.str] group_operator: Logical operator to apply to group conditions. Accepted values are `any` and `all`.
-        :param pulumi.Input[Union['NgwafAccountRuleRateLimitArgs', 'NgwafAccountRuleRateLimitArgsDict']] rate_limit: Block specifically for rate*limit rules.
+        :param pulumi.Input[Sequence[pulumi.Input[Union['NgwafAccountRuleMultivalConditionArgs', 'NgwafAccountRuleMultivalConditionArgsDict']]]] multival_conditions: List of multival conditions with nested logic. Each multival list must define a `field, operator, group_operator` and at least one condition.
         :param pulumi.Input[_builtins.str] request_logging: Logging behavior for matching requests. Accepted values are `sampled` and `none`.
         :param pulumi.Input[_builtins.str] type: The type of the rule. Accepted values are `request` and `signal`.
         """
@@ -578,7 +578,7 @@ class NgwafAccountRule(pulumi.CustomResource):
         __props__.__dict__["enabled"] = enabled
         __props__.__dict__["group_conditions"] = group_conditions
         __props__.__dict__["group_operator"] = group_operator
-        __props__.__dict__["rate_limit"] = rate_limit
+        __props__.__dict__["multival_conditions"] = multival_conditions
         __props__.__dict__["request_logging"] = request_logging
         __props__.__dict__["type"] = type
         return NgwafAccountRule(resource_name, opts=opts, __props__=__props__)
@@ -640,12 +640,12 @@ class NgwafAccountRule(pulumi.CustomResource):
         return pulumi.get(self, "group_operator")
 
     @_builtins.property
-    @pulumi.getter(name="rateLimit")
-    def rate_limit(self) -> pulumi.Output[Optional['outputs.NgwafAccountRuleRateLimit']]:
+    @pulumi.getter(name="multivalConditions")
+    def multival_conditions(self) -> pulumi.Output[Optional[Sequence['outputs.NgwafAccountRuleMultivalCondition']]]:
         """
-        Block specifically for rate*limit rules.
+        List of multival conditions with nested logic. Each multival list must define a `field, operator, group_operator` and at least one condition.
         """
-        return pulumi.get(self, "rate_limit")
+        return pulumi.get(self, "multival_conditions")
 
     @_builtins.property
     @pulumi.getter(name="requestLogging")

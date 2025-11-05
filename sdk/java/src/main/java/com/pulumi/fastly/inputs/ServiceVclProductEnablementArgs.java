@@ -19,6 +19,21 @@ public final class ServiceVclProductEnablementArgs extends com.pulumi.resources.
     public static final ServiceVclProductEnablementArgs Empty = new ServiceVclProductEnablementArgs();
 
     /**
+     * Enable API Discovery support
+     * 
+     */
+    @Import(name="apiDiscovery")
+    private @Nullable Output<Boolean> apiDiscovery;
+
+    /**
+     * @return Enable API Discovery support
+     * 
+     */
+    public Optional<Output<Boolean>> apiDiscovery() {
+        return Optional.ofNullable(this.apiDiscovery);
+    }
+
+    /**
      * Enable Bot Management support
      * 
      */
@@ -171,6 +186,7 @@ public final class ServiceVclProductEnablementArgs extends com.pulumi.resources.
     private ServiceVclProductEnablementArgs() {}
 
     private ServiceVclProductEnablementArgs(ServiceVclProductEnablementArgs $) {
+        this.apiDiscovery = $.apiDiscovery;
         this.botManagement = $.botManagement;
         this.brotliCompression = $.brotliCompression;
         this.ddosProtection = $.ddosProtection;
@@ -199,6 +215,27 @@ public final class ServiceVclProductEnablementArgs extends com.pulumi.resources.
 
         public Builder(ServiceVclProductEnablementArgs defaults) {
             $ = new ServiceVclProductEnablementArgs(Objects.requireNonNull(defaults));
+        }
+
+        /**
+         * @param apiDiscovery Enable API Discovery support
+         * 
+         * @return builder
+         * 
+         */
+        public Builder apiDiscovery(@Nullable Output<Boolean> apiDiscovery) {
+            $.apiDiscovery = apiDiscovery;
+            return this;
+        }
+
+        /**
+         * @param apiDiscovery Enable API Discovery support
+         * 
+         * @return builder
+         * 
+         */
+        public Builder apiDiscovery(Boolean apiDiscovery) {
+            return apiDiscovery(Output.of(apiDiscovery));
         }
 
         /**

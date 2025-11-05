@@ -13,6 +13,7 @@ import com.pulumi.fastly.inputs.ServiceComputeState;
 import com.pulumi.fastly.outputs.ServiceComputeBackend;
 import com.pulumi.fastly.outputs.ServiceComputeDictionary;
 import com.pulumi.fastly.outputs.ServiceComputeDomain;
+import com.pulumi.fastly.outputs.ServiceComputeHealthcheck;
 import com.pulumi.fastly.outputs.ServiceComputeImageOptimizerDefaultSettings;
 import com.pulumi.fastly.outputs.ServiceComputeLoggingBigquery;
 import com.pulumi.fastly.outputs.ServiceComputeLoggingBlobstorage;
@@ -33,6 +34,7 @@ import com.pulumi.fastly.outputs.ServiceComputeLoggingLogentry;
 import com.pulumi.fastly.outputs.ServiceComputeLoggingLoggly;
 import com.pulumi.fastly.outputs.ServiceComputeLoggingLogshuttle;
 import com.pulumi.fastly.outputs.ServiceComputeLoggingNewrelic;
+import com.pulumi.fastly.outputs.ServiceComputeLoggingNewrelicotlp;
 import com.pulumi.fastly.outputs.ServiceComputeLoggingOpenstack;
 import com.pulumi.fastly.outputs.ServiceComputeLoggingPapertrail;
 import com.pulumi.fastly.outputs.ServiceComputeLoggingS3;
@@ -136,14 +138,14 @@ public class ServiceCompute extends com.pulumi.resources.CustomResource {
      * 
      */
     @Export(name="domains", refs={List.class,ServiceComputeDomain.class}, tree="[0,1]")
-    private Output<List<ServiceComputeDomain>> domains;
+    private Output</* @Nullable */ List<ServiceComputeDomain>> domains;
 
     /**
      * @return A set of Domain names to serve as entry points for your Service
      * 
      */
-    public Output<List<ServiceComputeDomain>> domains() {
-        return this.domains;
+    public Output<Optional<List<ServiceComputeDomain>>> domains() {
+        return Codegen.optional(this.domains);
     }
     /**
      * Services that are active cannot be destroyed. In order to destroy the Service, set `forceDestroy` to `true`. Default `false`
@@ -164,6 +166,12 @@ public class ServiceCompute extends com.pulumi.resources.CustomResource {
 
     public Output<Boolean> forceRefresh() {
         return this.forceRefresh;
+    }
+    @Export(name="healthchecks", refs={List.class,ServiceComputeHealthcheck.class}, tree="[0,1]")
+    private Output</* @Nullable */ List<ServiceComputeHealthcheck>> healthchecks;
+
+    public Output<Optional<List<ServiceComputeHealthcheck>>> healthchecks() {
+        return Codegen.optional(this.healthchecks);
     }
     @Export(name="imageOptimizerDefaultSettings", refs={ServiceComputeImageOptimizerDefaultSettings.class}, tree="[0]")
     private Output</* @Nullable */ ServiceComputeImageOptimizerDefaultSettings> imageOptimizerDefaultSettings;
@@ -292,6 +300,12 @@ public class ServiceCompute extends com.pulumi.resources.CustomResource {
 
     public Output<Optional<List<ServiceComputeLoggingLogshuttle>>> loggingLogshuttles() {
         return Codegen.optional(this.loggingLogshuttles);
+    }
+    @Export(name="loggingNewrelicotlps", refs={List.class,ServiceComputeLoggingNewrelicotlp.class}, tree="[0,1]")
+    private Output</* @Nullable */ List<ServiceComputeLoggingNewrelicotlp>> loggingNewrelicotlps;
+
+    public Output<Optional<List<ServiceComputeLoggingNewrelicotlp>>> loggingNewrelicotlps() {
+        return Codegen.optional(this.loggingNewrelicotlps);
     }
     @Export(name="loggingNewrelics", refs={List.class,ServiceComputeLoggingNewrelic.class}, tree="[0,1]")
     private Output</* @Nullable */ List<ServiceComputeLoggingNewrelic>> loggingNewrelics;
@@ -456,7 +470,7 @@ public class ServiceCompute extends com.pulumi.resources.CustomResource {
      * @param name The _unique_ name of the resulting resource.
      * @param args The arguments to use to populate this resource's properties.
      */
-    public ServiceCompute(java.lang.String name, ServiceComputeArgs args) {
+    public ServiceCompute(java.lang.String name, @Nullable ServiceComputeArgs args) {
         this(name, args, null);
     }
     /**
@@ -465,7 +479,7 @@ public class ServiceCompute extends com.pulumi.resources.CustomResource {
      * @param args The arguments to use to populate this resource's properties.
      * @param options A bag of options that control this resource's behavior.
      */
-    public ServiceCompute(java.lang.String name, ServiceComputeArgs args, @Nullable com.pulumi.resources.CustomResourceOptions options) {
+    public ServiceCompute(java.lang.String name, @Nullable ServiceComputeArgs args, @Nullable com.pulumi.resources.CustomResourceOptions options) {
         super("fastly:index/serviceCompute:ServiceCompute", name, makeArgs(args, options), makeResourceOptions(options, Codegen.empty()), false);
     }
 
@@ -473,7 +487,7 @@ public class ServiceCompute extends com.pulumi.resources.CustomResource {
         super("fastly:index/serviceCompute:ServiceCompute", name, state, makeResourceOptions(options, id), false);
     }
 
-    private static ServiceComputeArgs makeArgs(ServiceComputeArgs args, @Nullable com.pulumi.resources.CustomResourceOptions options) {
+    private static ServiceComputeArgs makeArgs(@Nullable ServiceComputeArgs args, @Nullable com.pulumi.resources.CustomResourceOptions options) {
         if (options != null && options.getUrn().isPresent()) {
             return null;
         }

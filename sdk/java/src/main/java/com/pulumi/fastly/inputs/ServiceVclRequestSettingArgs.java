@@ -169,14 +169,14 @@ public final class ServiceVclRequestSettingArgs extends com.pulumi.resources.Res
     }
 
     /**
-     * X-Forwarded-For, should be `clear`, `leave`, `append`, `appendAll`, or `overwrite`. Default `append`
+     * X-Forwarded-For, should be `clear`, `leave`, `append`, `appendAll`, or `overwrite`
      * 
      */
     @Import(name="xff")
     private @Nullable Output<String> xff;
 
     /**
-     * @return X-Forwarded-For, should be `clear`, `leave`, `append`, `appendAll`, or `overwrite`. Default `append`
+     * @return X-Forwarded-For, should be `clear`, `leave`, `append`, `appendAll`, or `overwrite`
      * 
      */
     public Optional<Output<String>> xff() {
@@ -428,7 +428,7 @@ public final class ServiceVclRequestSettingArgs extends com.pulumi.resources.Res
         }
 
         /**
-         * @param xff X-Forwarded-For, should be `clear`, `leave`, `append`, `appendAll`, or `overwrite`. Default `append`
+         * @param xff X-Forwarded-For, should be `clear`, `leave`, `append`, `appendAll`, or `overwrite`
          * 
          * @return builder
          * 
@@ -439,7 +439,7 @@ public final class ServiceVclRequestSettingArgs extends com.pulumi.resources.Res
         }
 
         /**
-         * @param xff X-Forwarded-For, should be `clear`, `leave`, `append`, `appendAll`, or `overwrite`. Default `append`
+         * @param xff X-Forwarded-For, should be `clear`, `leave`, `append`, `appendAll`, or `overwrite`
          * 
          * @return builder
          * 

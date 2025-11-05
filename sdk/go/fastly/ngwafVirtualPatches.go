@@ -31,11 +31,11 @@ import (
 //
 //	func main() {
 //		pulumi.Run(func(ctx *pulumi.Context) error {
-//			_, err := fastly.NewNgwafVirtualPatch(ctx, "demo", &fastly.NgwafVirtualPatchArgs{
-//				Action:         "block",
-//				Enabled:        true,
-//				VirtualPatchId: "CVE-2017-5638",
-//				WorkspaceId:    demoFastlyNgwafWorkspace.Id,
+//			_, err := fastly.NewNgwafVirtualPatches(ctx, "demo", &fastly.NgwafVirtualPatchesArgs{
+//				Action:         pulumi.String("block"),
+//				Enabled:        pulumi.Bool(true),
+//				VirtualPatchId: pulumi.String("CVE-2017-5638"),
+//				WorkspaceId:    pulumi.Any(demoFastlyNgwafWorkspace.Id),
 //			})
 //			if err != nil {
 //				return err

@@ -30,7 +30,7 @@ namespace Pulumi.Fastly.Outputs
         /// </summary>
         public readonly int? FileMaxBytes;
         /// <summary>
-        /// Apache-style string or VCL variables to use for log formatting (default: `%h %l %u %t "%r" %&gt;s %b`)
+        /// Apache-style string or VCL variables to use for log formatting.
         /// </summary>
         public readonly string? Format;
         /// <summary>

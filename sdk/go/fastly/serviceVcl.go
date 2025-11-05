@@ -7,7 +7,6 @@ import (
 	"context"
 	"reflect"
 
-	"errors"
 	"github.com/pulumi/pulumi-fastly/sdk/v11/go/fastly/internal"
 	"github.com/pulumi/pulumi/sdk/v3/go/pulumi"
 )
@@ -114,12 +113,9 @@ type ServiceVcl struct {
 func NewServiceVcl(ctx *pulumi.Context,
 	name string, args *ServiceVclArgs, opts ...pulumi.ResourceOption) (*ServiceVcl, error) {
 	if args == nil {
-		return nil, errors.New("missing one or more required arguments")
+		args = &ServiceVclArgs{}
 	}
 
-	if args.Domains == nil {
-		return nil, errors.New("invalid value for required argument 'Domains'")
-	}
 	opts = internal.PkgResourceDefaultOpts(opts)
 	var resource ServiceVcl
 	err := ctx.RegisterResource("fastly:index/serviceVcl:ServiceVcl", name, args, &resource, opts...)

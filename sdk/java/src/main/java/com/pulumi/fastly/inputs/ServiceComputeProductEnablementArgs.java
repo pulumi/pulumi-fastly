@@ -19,6 +19,21 @@ public final class ServiceComputeProductEnablementArgs extends com.pulumi.resour
     public static final ServiceComputeProductEnablementArgs Empty = new ServiceComputeProductEnablementArgs();
 
     /**
+     * Enable API Discovery support
+     * 
+     */
+    @Import(name="apiDiscovery")
+    private @Nullable Output<Boolean> apiDiscovery;
+
+    /**
+     * @return Enable API Discovery support
+     * 
+     */
+    public Optional<Output<Boolean>> apiDiscovery() {
+        return Optional.ofNullable(this.apiDiscovery);
+    }
+
+    /**
      * DDoS Protection product
      * 
      */
@@ -111,6 +126,7 @@ public final class ServiceComputeProductEnablementArgs extends com.pulumi.resour
     private ServiceComputeProductEnablementArgs() {}
 
     private ServiceComputeProductEnablementArgs(ServiceComputeProductEnablementArgs $) {
+        this.apiDiscovery = $.apiDiscovery;
         this.ddosProtection = $.ddosProtection;
         this.fanout = $.fanout;
         this.logExplorerInsights = $.logExplorerInsights;
@@ -135,6 +151,27 @@ public final class ServiceComputeProductEnablementArgs extends com.pulumi.resour
 
         public Builder(ServiceComputeProductEnablementArgs defaults) {
             $ = new ServiceComputeProductEnablementArgs(Objects.requireNonNull(defaults));
+        }
+
+        /**
+         * @param apiDiscovery Enable API Discovery support
+         * 
+         * @return builder
+         * 
+         */
+        public Builder apiDiscovery(@Nullable Output<Boolean> apiDiscovery) {
+            $.apiDiscovery = apiDiscovery;
+            return this;
+        }
+
+        /**
+         * @param apiDiscovery Enable API Discovery support
+         * 
+         * @return builder
+         * 
+         */
+        public Builder apiDiscovery(Boolean apiDiscovery) {
+            return apiDiscovery(Output.of(apiDiscovery));
         }
 
         /**
