@@ -179,11 +179,11 @@ class NgwafVirtualPatches(pulumi.CustomResource):
         import pulumi
         import pulumi_fastly as fastly
 
-        demo = fastly.index.NgwafVirtualPatch("demo",
-            action=block,
+        demo = fastly.NgwafVirtualPatches("demo",
+            action="block",
             enabled=True,
-            virtual_patch_id=CVE-2017-5638,
-            workspace_id=demo_fastly_ngwaf_workspace.id)
+            virtual_patch_id="CVE-2017-5638",
+            workspace_id=demo_fastly_ngwaf_workspace["id"])
         ```
 
         ## Import
@@ -219,11 +219,11 @@ class NgwafVirtualPatches(pulumi.CustomResource):
         import pulumi
         import pulumi_fastly as fastly
 
-        demo = fastly.index.NgwafVirtualPatch("demo",
-            action=block,
+        demo = fastly.NgwafVirtualPatches("demo",
+            action="block",
             enabled=True,
-            virtual_patch_id=CVE-2017-5638,
-            workspace_id=demo_fastly_ngwaf_workspace.id)
+            virtual_patch_id="CVE-2017-5638",
+            workspace_id=demo_fastly_ngwaf_workspace["id"])
         ```
 
         ## Import

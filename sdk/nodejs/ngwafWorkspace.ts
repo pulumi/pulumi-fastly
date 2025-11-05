@@ -15,6 +15,23 @@ import * as utilities from "./utilities";
  *
  * Basic usage:
  *
+ * ```typescript
+ * import * as pulumi from "@pulumi/pulumi";
+ * import * as fastly from "@pulumi/fastly";
+ *
+ * const demo = new fastly.NgwafWorkspace("demo", {
+ *     name: "Demo",
+ *     description: "Testing",
+ *     mode: "block",
+ *     attackSignalThresholds: {
+ *         oneMinute: 100,
+ *         tenMinutes: 500,
+ *         oneHour: 1000,
+ *         immediate: true,
+ *     },
+ * });
+ * ```
+ *
  * ## Import
  *
  * Fastly Next-Gen WAF Workspaces can be imported using their workspace ID, e.g.
@@ -64,6 +81,10 @@ export class NgwafWorkspace extends pulumi.CustomResource {
      */
     declare public readonly defaultBlockingResponseCode: pulumi.Output<number | undefined>;
     /**
+     * The redirect URL used if default*blocking*response_code is `301` or `302`.
+     */
+    declare public readonly defaultRedirectUrl: pulumi.Output<string | undefined>;
+    /**
      * The description of the workspace
      */
     declare public readonly description: pulumi.Output<string>;
@@ -96,6 +117,7 @@ export class NgwafWorkspace extends pulumi.CustomResource {
             resourceInputs["attackSignalThresholds"] = state?.attackSignalThresholds;
             resourceInputs["clientIpHeaders"] = state?.clientIpHeaders;
             resourceInputs["defaultBlockingResponseCode"] = state?.defaultBlockingResponseCode;
+            resourceInputs["defaultRedirectUrl"] = state?.defaultRedirectUrl;
             resourceInputs["description"] = state?.description;
             resourceInputs["ipAnonymization"] = state?.ipAnonymization;
             resourceInputs["mode"] = state?.mode;
@@ -114,6 +136,7 @@ export class NgwafWorkspace extends pulumi.CustomResource {
             resourceInputs["attackSignalThresholds"] = args?.attackSignalThresholds;
             resourceInputs["clientIpHeaders"] = args?.clientIpHeaders;
             resourceInputs["defaultBlockingResponseCode"] = args?.defaultBlockingResponseCode;
+            resourceInputs["defaultRedirectUrl"] = args?.defaultRedirectUrl;
             resourceInputs["description"] = args?.description;
             resourceInputs["ipAnonymization"] = args?.ipAnonymization;
             resourceInputs["mode"] = args?.mode;
@@ -140,6 +163,10 @@ export interface NgwafWorkspaceState {
      * The status code returned when a request is blocked. This configuration is applied at the workspace but can be overwritten in rules. Accepted values are [`301`, `302`, `400..599`]. Default value `406`.
      */
     defaultBlockingResponseCode?: pulumi.Input<number>;
+    /**
+     * The redirect URL used if default*blocking*response_code is `301` or `302`.
+     */
+    defaultRedirectUrl?: pulumi.Input<string>;
     /**
      * The description of the workspace
      */
@@ -174,6 +201,10 @@ export interface NgwafWorkspaceArgs {
      * The status code returned when a request is blocked. This configuration is applied at the workspace but can be overwritten in rules. Accepted values are [`301`, `302`, `400..599`]. Default value `406`.
      */
     defaultBlockingResponseCode?: pulumi.Input<number>;
+    /**
+     * The redirect URL used if default*blocking*response_code is `301` or `302`.
+     */
+    defaultRedirectUrl?: pulumi.Input<string>;
     /**
      * The description of the workspace
      */

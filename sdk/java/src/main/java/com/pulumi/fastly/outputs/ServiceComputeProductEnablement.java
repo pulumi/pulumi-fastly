@@ -15,6 +15,11 @@ import javax.annotation.Nullable;
 @CustomType
 public final class ServiceComputeProductEnablement {
     /**
+     * @return Enable API Discovery support
+     * 
+     */
+    private @Nullable Boolean apiDiscovery;
+    /**
      * @return DDoS Protection product
      * 
      */
@@ -46,6 +51,13 @@ public final class ServiceComputeProductEnablement {
     private @Nullable Boolean websockets;
 
     private ServiceComputeProductEnablement() {}
+    /**
+     * @return Enable API Discovery support
+     * 
+     */
+    public Optional<Boolean> apiDiscovery() {
+        return Optional.ofNullable(this.apiDiscovery);
+    }
     /**
      * @return DDoS Protection product
      * 
@@ -98,6 +110,7 @@ public final class ServiceComputeProductEnablement {
     }
     @CustomType.Builder
     public static final class Builder {
+        private @Nullable Boolean apiDiscovery;
         private @Nullable ServiceComputeProductEnablementDdosProtection ddosProtection;
         private @Nullable Boolean fanout;
         private @Nullable Boolean logExplorerInsights;
@@ -107,6 +120,7 @@ public final class ServiceComputeProductEnablement {
         public Builder() {}
         public Builder(ServiceComputeProductEnablement defaults) {
     	      Objects.requireNonNull(defaults);
+    	      this.apiDiscovery = defaults.apiDiscovery;
     	      this.ddosProtection = defaults.ddosProtection;
     	      this.fanout = defaults.fanout;
     	      this.logExplorerInsights = defaults.logExplorerInsights;
@@ -115,6 +129,12 @@ public final class ServiceComputeProductEnablement {
     	      this.websockets = defaults.websockets;
         }
 
+        @CustomType.Setter
+        public Builder apiDiscovery(@Nullable Boolean apiDiscovery) {
+
+            this.apiDiscovery = apiDiscovery;
+            return this;
+        }
         @CustomType.Setter
         public Builder ddosProtection(@Nullable ServiceComputeProductEnablementDdosProtection ddosProtection) {
 
@@ -153,6 +173,7 @@ public final class ServiceComputeProductEnablement {
         }
         public ServiceComputeProductEnablement build() {
             final var _resultValue = new ServiceComputeProductEnablement();
+            _resultValue.apiDiscovery = apiDiscovery;
             _resultValue.ddosProtection = ddosProtection;
             _resultValue.fanout = fanout;
             _resultValue.logExplorerInsights = logExplorerInsights;

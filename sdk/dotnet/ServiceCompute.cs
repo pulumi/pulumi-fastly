@@ -71,6 +71,9 @@ namespace Pulumi.Fastly
         [Output("forceRefresh")]
         public Output<bool> ForceRefresh { get; private set; } = null!;
 
+        [Output("healthchecks")]
+        public Output<ImmutableArray<Outputs.ServiceComputeHealthcheck>> Healthchecks { get; private set; } = null!;
+
         [Output("imageOptimizerDefaultSettings")]
         public Output<Outputs.ServiceComputeImageOptimizerDefaultSettings?> ImageOptimizerDefaultSettings { get; private set; } = null!;
 
@@ -133,6 +136,9 @@ namespace Pulumi.Fastly
 
         [Output("loggingLogshuttles")]
         public Output<ImmutableArray<Outputs.ServiceComputeLoggingLogshuttle>> LoggingLogshuttles { get; private set; } = null!;
+
+        [Output("loggingNewrelicotlps")]
+        public Output<ImmutableArray<Outputs.ServiceComputeLoggingNewrelicotlp>> LoggingNewrelicotlps { get; private set; } = null!;
 
         [Output("loggingNewrelics")]
         public Output<ImmutableArray<Outputs.ServiceComputeLoggingNewrelic>> LoggingNewrelics { get; private set; } = null!;
@@ -211,7 +217,7 @@ namespace Pulumi.Fastly
         /// <param name="name">The unique name of the resource</param>
         /// <param name="args">The arguments used to populate this resource's properties</param>
         /// <param name="options">A bag of options that control this resource's behavior</param>
-        public ServiceCompute(string name, ServiceComputeArgs args, CustomResourceOptions? options = null)
+        public ServiceCompute(string name, ServiceComputeArgs? args = null, CustomResourceOptions? options = null)
             : base("fastly:index/serviceCompute:ServiceCompute", name, args ?? new ServiceComputeArgs(), MakeResourceOptions(options, ""))
         {
         }
@@ -274,7 +280,7 @@ namespace Pulumi.Fastly
             set => _dictionaries = value;
         }
 
-        [Input("domains", required: true)]
+        [Input("domains")]
         private InputList<Inputs.ServiceComputeDomainArgs>? _domains;
 
         /// <summary>
@@ -291,6 +297,14 @@ namespace Pulumi.Fastly
         /// </summary>
         [Input("forceDestroy")]
         public Input<bool>? ForceDestroy { get; set; }
+
+        [Input("healthchecks")]
+        private InputList<Inputs.ServiceComputeHealthcheckArgs>? _healthchecks;
+        public InputList<Inputs.ServiceComputeHealthcheckArgs> Healthchecks
+        {
+            get => _healthchecks ?? (_healthchecks = new InputList<Inputs.ServiceComputeHealthcheckArgs>());
+            set => _healthchecks = value;
+        }
 
         [Input("imageOptimizerDefaultSettings")]
         public Input<Inputs.ServiceComputeImageOptimizerDefaultSettingsArgs>? ImageOptimizerDefaultSettings { get; set; }
@@ -437,6 +451,14 @@ namespace Pulumi.Fastly
         {
             get => _loggingLogshuttles ?? (_loggingLogshuttles = new InputList<Inputs.ServiceComputeLoggingLogshuttleArgs>());
             set => _loggingLogshuttles = value;
+        }
+
+        [Input("loggingNewrelicotlps")]
+        private InputList<Inputs.ServiceComputeLoggingNewrelicotlpArgs>? _loggingNewrelicotlps;
+        public InputList<Inputs.ServiceComputeLoggingNewrelicotlpArgs> LoggingNewrelicotlps
+        {
+            get => _loggingNewrelicotlps ?? (_loggingNewrelicotlps = new InputList<Inputs.ServiceComputeLoggingNewrelicotlpArgs>());
+            set => _loggingNewrelicotlps = value;
         }
 
         [Input("loggingNewrelics")]
@@ -619,6 +641,14 @@ namespace Pulumi.Fastly
         [Input("forceRefresh")]
         public Input<bool>? ForceRefresh { get; set; }
 
+        [Input("healthchecks")]
+        private InputList<Inputs.ServiceComputeHealthcheckGetArgs>? _healthchecks;
+        public InputList<Inputs.ServiceComputeHealthcheckGetArgs> Healthchecks
+        {
+            get => _healthchecks ?? (_healthchecks = new InputList<Inputs.ServiceComputeHealthcheckGetArgs>());
+            set => _healthchecks = value;
+        }
+
         [Input("imageOptimizerDefaultSettings")]
         public Input<Inputs.ServiceComputeImageOptimizerDefaultSettingsGetArgs>? ImageOptimizerDefaultSettings { get; set; }
 
@@ -770,6 +800,14 @@ namespace Pulumi.Fastly
         {
             get => _loggingLogshuttles ?? (_loggingLogshuttles = new InputList<Inputs.ServiceComputeLoggingLogshuttleGetArgs>());
             set => _loggingLogshuttles = value;
+        }
+
+        [Input("loggingNewrelicotlps")]
+        private InputList<Inputs.ServiceComputeLoggingNewrelicotlpGetArgs>? _loggingNewrelicotlps;
+        public InputList<Inputs.ServiceComputeLoggingNewrelicotlpGetArgs> LoggingNewrelicotlps
+        {
+            get => _loggingNewrelicotlps ?? (_loggingNewrelicotlps = new InputList<Inputs.ServiceComputeLoggingNewrelicotlpGetArgs>());
+            set => _loggingNewrelicotlps = value;
         }
 
         [Input("loggingNewrelics")]

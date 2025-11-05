@@ -49,7 +49,7 @@ import (
 //			_, err = fastly.NewNgwafWorkspaceRule(ctx, "example", &fastly.NgwafWorkspaceRuleArgs{
 //				WorkspaceId:    example.ID(),
 //				Type:           pulumi.String("request"),
-//				Description:    pulumi.String("example"),
+//				Description:    pulumi.String("Block requests from specific IP to login path"),
 //				Enabled:        pulumi.Bool(true),
 //				RequestLogging: pulumi.String("sampled"),
 //				GroupOperator:  pulumi.String("all"),
@@ -62,35 +62,129 @@ import (
 //					&fastly.NgwafWorkspaceRuleConditionArgs{
 //						Field:    pulumi.String("ip"),
 //						Operator: pulumi.String("equals"),
-//						Value:    pulumi.String("127.0.0.1"),
+//						Value:    pulumi.String("192.0.2.1"),
 //					},
 //					&fastly.NgwafWorkspaceRuleConditionArgs{
 //						Field:    pulumi.String("path"),
 //						Operator: pulumi.String("equals"),
 //						Value:    pulumi.String("/login"),
 //					},
+//				},
+//			})
+//			if err != nil {
+//				return err
+//			}
+//			return nil
+//		})
+//	}
+//
+// ```
+//
+// Using templated signals:
+//
+// ```go
+// package main
+//
+// import (
+//
+//	"github.com/pulumi/pulumi-fastly/sdk/v11/go/fastly"
+//	"github.com/pulumi/pulumi/sdk/v3/go/pulumi"
+//
+// )
+//
+//	func main() {
+//		pulumi.Run(func(ctx *pulumi.Context) error {
+//			example, err := fastly.NewNgwafWorkspace(ctx, "example", &fastly.NgwafWorkspaceArgs{
+//				Name:            pulumi.String("example"),
+//				Description:     pulumi.String("Test NGWAF Workspace"),
+//				Mode:            pulumi.String("block"),
+//				IpAnonymization: pulumi.String("hashed"),
+//				ClientIpHeaders: pulumi.StringArray{
+//					pulumi.String("X-Forwarded-For"),
+//					pulumi.String("X-Real-IP"),
+//				},
+//				DefaultBlockingResponseCode: pulumi.Int(429),
+//				AttackSignalThresholds:      &fastly.NgwafWorkspaceAttackSignalThresholdsArgs{},
+//			})
+//			if err != nil {
+//				return err
+//			}
+//			_, err = fastly.NewNgwafWorkspaceRule(ctx, "example", &fastly.NgwafWorkspaceRuleArgs{
+//				WorkspaceId:   example.ID(),
+//				Type:          pulumi.String("request"),
+//				Description:   pulumi.String(""),
+//				Enabled:       pulumi.Bool(true),
+//				GroupOperator: pulumi.String("all"),
+//				Conditions: fastly.NgwafWorkspaceRuleConditionArray{
 //					&fastly.NgwafWorkspaceRuleConditionArgs{
-//						Field:    pulumi.String("agent_name"),
+//						Field:    pulumi.String("method"),
 //						Operator: pulumi.String("equals"),
-//						Value:    pulumi.String("host-001"),
+//						Value:    pulumi.String("POST"),
+//					},
+//					&fastly.NgwafWorkspaceRuleConditionArgs{
+//						Field:    pulumi.String("path"),
+//						Operator: pulumi.String("equals"),
+//						Value:    pulumi.String("/login"),
+//					},
+//				},
+//				Actions: fastly.NgwafWorkspaceRuleActionArray{
+//					&fastly.NgwafWorkspaceRuleActionArgs{
+//						Type:   pulumi.String("templated_signal"),
+//						Signal: pulumi.String("LOGINATTEMPT"),
+//					},
+//				},
+//			})
+//			if err != nil {
+//				return err
+//			}
+//			return nil
+//		})
+//	}
+//
+// ```
+//
+// Using group conditions:
+//
+// ```go
+// package main
+//
+// import (
+//
+//	"github.com/pulumi/pulumi-fastly/sdk/v11/go/fastly"
+//	"github.com/pulumi/pulumi/sdk/v3/go/pulumi"
+//
+// )
+//
+//	func main() {
+//		pulumi.Run(func(ctx *pulumi.Context) error {
+//			example, err := fastly.NewNgwafWorkspace(ctx, "example", &fastly.NgwafWorkspaceArgs{
+//				Name:            pulumi.String("example"),
+//				Description:     pulumi.String("Test NGWAF Workspace"),
+//				Mode:            pulumi.String("block"),
+//				IpAnonymization: pulumi.String("hashed"),
+//				ClientIpHeaders: pulumi.StringArray{
+//					pulumi.String("X-Forwarded-For"),
+//					pulumi.String("X-Real-IP"),
+//				},
+//				DefaultBlockingResponseCode: pulumi.Int(429),
+//				AttackSignalThresholds:      &fastly.NgwafWorkspaceAttackSignalThresholdsArgs{},
+//			})
+//			if err != nil {
+//				return err
+//			}
+//			_, err = fastly.NewNgwafWorkspaceRule(ctx, "example", &fastly.NgwafWorkspaceRuleArgs{
+//				WorkspaceId:    example.ID(),
+//				Type:           pulumi.String("request"),
+//				Description:    pulumi.String("Block requests with grouped conditions"),
+//				Enabled:        pulumi.Bool(true),
+//				RequestLogging: pulumi.String("sampled"),
+//				GroupOperator:  pulumi.String("all"),
+//				Actions: fastly.NgwafWorkspaceRuleActionArray{
+//					&fastly.NgwafWorkspaceRuleActionArgs{
+//						Type: pulumi.String("block"),
 //					},
 //				},
 //				GroupConditions: fastly.NgwafWorkspaceRuleGroupConditionArray{
-//					&fastly.NgwafWorkspaceRuleGroupConditionArgs{
-//						GroupOperator: pulumi.String("all"),
-//						Conditions: fastly.NgwafWorkspaceRuleGroupConditionConditionArray{
-//							&fastly.NgwafWorkspaceRuleGroupConditionConditionArgs{
-//								Field:    pulumi.String("country"),
-//								Operator: pulumi.String("equals"),
-//								Value:    pulumi.String("AD"),
-//							},
-//							&fastly.NgwafWorkspaceRuleGroupConditionConditionArgs{
-//								Field:    pulumi.String("method"),
-//								Operator: pulumi.String("equals"),
-//								Value:    pulumi.String("POST"),
-//							},
-//						},
-//					},
 //					&fastly.NgwafWorkspaceRuleGroupConditionArgs{
 //						GroupOperator: pulumi.String("any"),
 //						Conditions: fastly.NgwafWorkspaceRuleGroupConditionConditionArray{
@@ -110,6 +204,172 @@ import (
 //								Value:    pulumi.String("example.com"),
 //							},
 //						},
+//					},
+//					&fastly.NgwafWorkspaceRuleGroupConditionArgs{
+//						GroupOperator: pulumi.String("all"),
+//						Conditions: fastly.NgwafWorkspaceRuleGroupConditionConditionArray{
+//							&fastly.NgwafWorkspaceRuleGroupConditionConditionArgs{
+//								Field:    pulumi.String("country"),
+//								Operator: pulumi.String("equals"),
+//								Value:    pulumi.String("AD"),
+//							},
+//							&fastly.NgwafWorkspaceRuleGroupConditionConditionArgs{
+//								Field:    pulumi.String("method"),
+//								Operator: pulumi.String("equals"),
+//								Value:    pulumi.String("POST"),
+//							},
+//						},
+//					},
+//				},
+//			})
+//			if err != nil {
+//				return err
+//			}
+//			return nil
+//		})
+//	}
+//
+// ```
+//
+// Using multival conditions:
+//
+// ```go
+// package main
+//
+// import (
+//
+//	"github.com/pulumi/pulumi-fastly/sdk/v11/go/fastly"
+//	"github.com/pulumi/pulumi/sdk/v3/go/pulumi"
+//
+// )
+//
+//	func main() {
+//		pulumi.Run(func(ctx *pulumi.Context) error {
+//			example, err := fastly.NewNgwafWorkspace(ctx, "example", &fastly.NgwafWorkspaceArgs{
+//				Name:            pulumi.String("example"),
+//				Description:     pulumi.String("Test NGWAF Workspace"),
+//				Mode:            pulumi.String("block"),
+//				IpAnonymization: pulumi.String("hashed"),
+//				ClientIpHeaders: pulumi.StringArray{
+//					pulumi.String("X-Forwarded-For"),
+//					pulumi.String("X-Real-IP"),
+//				},
+//				DefaultBlockingResponseCode: pulumi.Int(429),
+//				AttackSignalThresholds:      &fastly.NgwafWorkspaceAttackSignalThresholdsArgs{},
+//			})
+//			if err != nil {
+//				return err
+//			}
+//			_, err = fastly.NewNgwafWorkspaceRule(ctx, "example", &fastly.NgwafWorkspaceRuleArgs{
+//				WorkspaceId:    example.ID(),
+//				Type:           pulumi.String("request"),
+//				Description:    pulumi.String("Block requests with specific header patterns"),
+//				Enabled:        pulumi.Bool(true),
+//				RequestLogging: pulumi.String("sampled"),
+//				GroupOperator:  pulumi.String("all"),
+//				Actions: fastly.NgwafWorkspaceRuleActionArray{
+//					&fastly.NgwafWorkspaceRuleActionArgs{
+//						Type: pulumi.String("block"),
+//					},
+//				},
+//				MultivalConditions: fastly.NgwafWorkspaceRuleMultivalConditionArray{
+//					&fastly.NgwafWorkspaceRuleMultivalConditionArgs{
+//						Field:         pulumi.String("request_header"),
+//						Operator:      pulumi.String("exists"),
+//						GroupOperator: pulumi.String("any"),
+//						Conditions: fastly.NgwafWorkspaceRuleMultivalConditionConditionArray{
+//							&fastly.NgwafWorkspaceRuleMultivalConditionConditionArgs{
+//								Field:    pulumi.String("name"),
+//								Operator: pulumi.String("does_not_equal"),
+//								Value:    pulumi.String("Header-Sample"),
+//							},
+//							&fastly.NgwafWorkspaceRuleMultivalConditionConditionArgs{
+//								Field:    pulumi.String("name"),
+//								Operator: pulumi.String("contains"),
+//								Value:    pulumi.String("X-API-Key"),
+//							},
+//							&fastly.NgwafWorkspaceRuleMultivalConditionConditionArgs{
+//								Field:    pulumi.String("value_string"),
+//								Operator: pulumi.String("equals"),
+//								Value:    pulumi.String("application/json"),
+//							},
+//						},
+//					},
+//				},
+//			})
+//			if err != nil {
+//				return err
+//			}
+//			return nil
+//		})
+//	}
+//
+// ```
+//
+// Using rate limits:
+//
+// ```go
+// package main
+//
+// import (
+//
+//	"github.com/pulumi/pulumi-fastly/sdk/v11/go/fastly"
+//	"github.com/pulumi/pulumi/sdk/v3/go/pulumi"
+//
+// )
+//
+//	func main() {
+//		pulumi.Run(func(ctx *pulumi.Context) error {
+//			example, err := fastly.NewNgwafWorkspace(ctx, "example", &fastly.NgwafWorkspaceArgs{
+//				Name:            pulumi.String("example"),
+//				Description:     pulumi.String("Test NGWAF Workspace"),
+//				Mode:            pulumi.String("block"),
+//				IpAnonymization: pulumi.String("hashed"),
+//				ClientIpHeaders: pulumi.StringArray{
+//					pulumi.String("X-Forwarded-For"),
+//					pulumi.String("X-Real-IP"),
+//				},
+//				DefaultBlockingResponseCode: pulumi.Int(429),
+//				AttackSignalThresholds:      &fastly.NgwafWorkspaceAttackSignalThresholdsArgs{},
+//			})
+//			if err != nil {
+//				return err
+//			}
+//			_, err = fastly.NewNgwafWorkspaceSignal(ctx, "demo_signal", &fastly.NgwafWorkspaceSignalArgs{
+//				WorkspaceId: example.ID(),
+//				Name:        pulumi.String("demo"),
+//				Description: pulumi.String("A description of my signal."),
+//			})
+//			if err != nil {
+//				return err
+//			}
+//			_, err = fastly.NewNgwafWorkspaceRule(ctx, "ip_limit", &fastly.NgwafWorkspaceRuleArgs{
+//				WorkspaceId: example.ID(),
+//				Type:        pulumi.String("rate_limit"),
+//				Description: pulumi.String("Rate limit demo rule-updated"),
+//				Enabled:     pulumi.Bool(true),
+//				Conditions: fastly.NgwafWorkspaceRuleConditionArray{
+//					&fastly.NgwafWorkspaceRuleConditionArgs{
+//						Field:    pulumi.String("ip"),
+//						Operator: pulumi.String("equals"),
+//						Value:    pulumi.String("1.2.3.4"),
+//					},
+//				},
+//				RateLimit: &fastly.NgwafWorkspaceRuleRateLimitArgs{
+//					Signal:    pulumi.String("site.demo"),
+//					Threshold: pulumi.Int(100),
+//					Interval:  pulumi.Int(60),
+//					Duration:  pulumi.Int(300),
+//					ClientIdentifiers: fastly.NgwafWorkspaceRuleRateLimitClientIdentifierArray{
+//						&fastly.NgwafWorkspaceRuleRateLimitClientIdentifierArgs{
+//							Type: pulumi.String("ip"),
+//						},
+//					},
+//				},
+//				Actions: fastly.NgwafWorkspaceRuleActionArray{
+//					&fastly.NgwafWorkspaceRuleActionArgs{
+//						Signal: pulumi.String("SUSPECTED-BOT"),
+//						Type:   pulumi.String("block_signal"),
 //					},
 //				},
 //			})
@@ -144,6 +404,8 @@ type NgwafWorkspaceRule struct {
 	GroupConditions NgwafWorkspaceRuleGroupConditionArrayOutput `pulumi:"groupConditions"`
 	// Logical operator to apply to group conditions. Accepted values are `any` and `all`.
 	GroupOperator pulumi.StringPtrOutput `pulumi:"groupOperator"`
+	// List of multival conditions with nested logic. Each multival list must define a `field, operator, groupOperator` and at least one condition.
+	MultivalConditions NgwafWorkspaceRuleMultivalConditionArrayOutput `pulumi:"multivalConditions"`
 	// Block specifically for rate*limit rules.
 	RateLimit NgwafWorkspaceRuleRateLimitPtrOutput `pulumi:"rateLimit"`
 	// Logging behavior for matching requests. Accepted values are `sampled` and `none`.
@@ -211,6 +473,8 @@ type ngwafWorkspaceRuleState struct {
 	GroupConditions []NgwafWorkspaceRuleGroupCondition `pulumi:"groupConditions"`
 	// Logical operator to apply to group conditions. Accepted values are `any` and `all`.
 	GroupOperator *string `pulumi:"groupOperator"`
+	// List of multival conditions with nested logic. Each multival list must define a `field, operator, groupOperator` and at least one condition.
+	MultivalConditions []NgwafWorkspaceRuleMultivalCondition `pulumi:"multivalConditions"`
 	// Block specifically for rate*limit rules.
 	RateLimit *NgwafWorkspaceRuleRateLimit `pulumi:"rateLimit"`
 	// Logging behavior for matching requests. Accepted values are `sampled` and `none`.
@@ -234,6 +498,8 @@ type NgwafWorkspaceRuleState struct {
 	GroupConditions NgwafWorkspaceRuleGroupConditionArrayInput
 	// Logical operator to apply to group conditions. Accepted values are `any` and `all`.
 	GroupOperator pulumi.StringPtrInput
+	// List of multival conditions with nested logic. Each multival list must define a `field, operator, groupOperator` and at least one condition.
+	MultivalConditions NgwafWorkspaceRuleMultivalConditionArrayInput
 	// Block specifically for rate*limit rules.
 	RateLimit NgwafWorkspaceRuleRateLimitPtrInput
 	// Logging behavior for matching requests. Accepted values are `sampled` and `none`.
@@ -261,6 +527,8 @@ type ngwafWorkspaceRuleArgs struct {
 	GroupConditions []NgwafWorkspaceRuleGroupCondition `pulumi:"groupConditions"`
 	// Logical operator to apply to group conditions. Accepted values are `any` and `all`.
 	GroupOperator *string `pulumi:"groupOperator"`
+	// List of multival conditions with nested logic. Each multival list must define a `field, operator, groupOperator` and at least one condition.
+	MultivalConditions []NgwafWorkspaceRuleMultivalCondition `pulumi:"multivalConditions"`
 	// Block specifically for rate*limit rules.
 	RateLimit *NgwafWorkspaceRuleRateLimit `pulumi:"rateLimit"`
 	// Logging behavior for matching requests. Accepted values are `sampled` and `none`.
@@ -285,6 +553,8 @@ type NgwafWorkspaceRuleArgs struct {
 	GroupConditions NgwafWorkspaceRuleGroupConditionArrayInput
 	// Logical operator to apply to group conditions. Accepted values are `any` and `all`.
 	GroupOperator pulumi.StringPtrInput
+	// List of multival conditions with nested logic. Each multival list must define a `field, operator, groupOperator` and at least one condition.
+	MultivalConditions NgwafWorkspaceRuleMultivalConditionArrayInput
 	// Block specifically for rate*limit rules.
 	RateLimit NgwafWorkspaceRuleRateLimitPtrInput
 	// Logging behavior for matching requests. Accepted values are `sampled` and `none`.
@@ -410,6 +680,13 @@ func (o NgwafWorkspaceRuleOutput) GroupConditions() NgwafWorkspaceRuleGroupCondi
 // Logical operator to apply to group conditions. Accepted values are `any` and `all`.
 func (o NgwafWorkspaceRuleOutput) GroupOperator() pulumi.StringPtrOutput {
 	return o.ApplyT(func(v *NgwafWorkspaceRule) pulumi.StringPtrOutput { return v.GroupOperator }).(pulumi.StringPtrOutput)
+}
+
+// List of multival conditions with nested logic. Each multival list must define a `field, operator, groupOperator` and at least one condition.
+func (o NgwafWorkspaceRuleOutput) MultivalConditions() NgwafWorkspaceRuleMultivalConditionArrayOutput {
+	return o.ApplyT(func(v *NgwafWorkspaceRule) NgwafWorkspaceRuleMultivalConditionArrayOutput {
+		return v.MultivalConditions
+	}).(NgwafWorkspaceRuleMultivalConditionArrayOutput)
 }
 
 // Block specifically for rate*limit rules.

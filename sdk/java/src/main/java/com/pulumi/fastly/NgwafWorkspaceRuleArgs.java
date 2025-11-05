@@ -9,6 +9,7 @@ import com.pulumi.exceptions.MissingRequiredPropertyException;
 import com.pulumi.fastly.inputs.NgwafWorkspaceRuleActionArgs;
 import com.pulumi.fastly.inputs.NgwafWorkspaceRuleConditionArgs;
 import com.pulumi.fastly.inputs.NgwafWorkspaceRuleGroupConditionArgs;
+import com.pulumi.fastly.inputs.NgwafWorkspaceRuleMultivalConditionArgs;
 import com.pulumi.fastly.inputs.NgwafWorkspaceRuleRateLimitArgs;
 import java.lang.Boolean;
 import java.lang.String;
@@ -113,6 +114,21 @@ public final class NgwafWorkspaceRuleArgs extends com.pulumi.resources.ResourceA
     }
 
     /**
+     * List of multival conditions with nested logic. Each multival list must define a `field, operator, groupOperator` and at least one condition.
+     * 
+     */
+    @Import(name="multivalConditions")
+    private @Nullable Output<List<NgwafWorkspaceRuleMultivalConditionArgs>> multivalConditions;
+
+    /**
+     * @return List of multival conditions with nested logic. Each multival list must define a `field, operator, groupOperator` and at least one condition.
+     * 
+     */
+    public Optional<Output<List<NgwafWorkspaceRuleMultivalConditionArgs>>> multivalConditions() {
+        return Optional.ofNullable(this.multivalConditions);
+    }
+
+    /**
      * Block specifically for rate*limit rules.
      * 
      */
@@ -181,6 +197,7 @@ public final class NgwafWorkspaceRuleArgs extends com.pulumi.resources.ResourceA
         this.enabled = $.enabled;
         this.groupConditions = $.groupConditions;
         this.groupOperator = $.groupOperator;
+        this.multivalConditions = $.multivalConditions;
         this.rateLimit = $.rateLimit;
         this.requestLogging = $.requestLogging;
         this.type = $.type;
@@ -359,6 +376,37 @@ public final class NgwafWorkspaceRuleArgs extends com.pulumi.resources.ResourceA
          */
         public Builder groupOperator(String groupOperator) {
             return groupOperator(Output.of(groupOperator));
+        }
+
+        /**
+         * @param multivalConditions List of multival conditions with nested logic. Each multival list must define a `field, operator, groupOperator` and at least one condition.
+         * 
+         * @return builder
+         * 
+         */
+        public Builder multivalConditions(@Nullable Output<List<NgwafWorkspaceRuleMultivalConditionArgs>> multivalConditions) {
+            $.multivalConditions = multivalConditions;
+            return this;
+        }
+
+        /**
+         * @param multivalConditions List of multival conditions with nested logic. Each multival list must define a `field, operator, groupOperator` and at least one condition.
+         * 
+         * @return builder
+         * 
+         */
+        public Builder multivalConditions(List<NgwafWorkspaceRuleMultivalConditionArgs> multivalConditions) {
+            return multivalConditions(Output.of(multivalConditions));
+        }
+
+        /**
+         * @param multivalConditions List of multival conditions with nested logic. Each multival list must define a `field, operator, groupOperator` and at least one condition.
+         * 
+         * @return builder
+         * 
+         */
+        public Builder multivalConditions(NgwafWorkspaceRuleMultivalConditionArgs... multivalConditions) {
+            return multivalConditions(List.of(multivalConditions));
         }
 
         /**

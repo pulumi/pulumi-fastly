@@ -13,6 +13,271 @@ import (
 
 // Provides a Custom Dashboard which can be viewed in the Fastly Control Panel.
 //
+// ## Example Usage
+//
+// ```go
+// package main
+//
+// import (
+//
+//	"github.com/pulumi/pulumi-fastly/sdk/v11/go/fastly"
+//	"github.com/pulumi/pulumi/sdk/v3/go/pulumi"
+//
+// )
+//
+//	func main() {
+//		pulumi.Run(func(ctx *pulumi.Context) error {
+//			_, err := fastly.NewCustomDashboard(ctx, "example", &fastly.CustomDashboardArgs{
+//				Name:        pulumi.String("Example Custom Dashboard"),
+//				Description: pulumi.String("This is an example custom dashboard. A few dashboard items are provided to help you get started."),
+//				DashboardItems: fastly.CustomDashboardDashboardItemArray{
+//					&fastly.CustomDashboardDashboardItemArgs{
+//						Id:       pulumi.String("example1"),
+//						Title:    pulumi.String("Total Requests"),
+//						Subtitle: pulumi.String("Number of requests processed."),
+//						DataSource: &fastly.CustomDashboardDashboardItemDataSourceArgs{
+//							Type: pulumi.String("stats.edge"),
+//							Config: &fastly.CustomDashboardDashboardItemDataSourceConfigArgs{
+//								Metrics: pulumi.StringArray{
+//									pulumi.String("requests"),
+//								},
+//							},
+//						},
+//						Visualization: &fastly.CustomDashboardDashboardItemVisualizationArgs{
+//							Type: pulumi.String("chart"),
+//							Config: &fastly.CustomDashboardDashboardItemVisualizationConfigArgs{
+//								Format:   pulumi.String("requests"),
+//								PlotType: pulumi.String("line"),
+//							},
+//						},
+//					},
+//					&fastly.CustomDashboardDashboardItemArgs{
+//						Id:       pulumi.String("example2"),
+//						Title:    pulumi.String("Hit Ratio"),
+//						Subtitle: pulumi.String("Ratio of requests served from Fastly."),
+//						DataSource: &fastly.CustomDashboardDashboardItemDataSourceArgs{
+//							Type: pulumi.String("stats.edge"),
+//							Config: &fastly.CustomDashboardDashboardItemDataSourceConfigArgs{
+//								Metrics: pulumi.StringArray{
+//									pulumi.String("hit_ratio"),
+//								},
+//							},
+//						},
+//						Visualization: &fastly.CustomDashboardDashboardItemVisualizationArgs{
+//							Type: pulumi.String("chart"),
+//							Config: &fastly.CustomDashboardDashboardItemVisualizationConfigArgs{
+//								Format:            pulumi.String("percent"),
+//								PlotType:          pulumi.String("donut"),
+//								CalculationMethod: pulumi.String("latest"),
+//							},
+//						},
+//					},
+//					&fastly.CustomDashboardDashboardItemArgs{
+//						Id:       pulumi.String("example3"),
+//						Title:    pulumi.String("Client & Server Errors"),
+//						Subtitle: pulumi.String("Total errors served from the client or server."),
+//						DataSource: &fastly.CustomDashboardDashboardItemDataSourceArgs{
+//							Type: pulumi.String("stats.edge"),
+//							Config: &fastly.CustomDashboardDashboardItemDataSourceConfigArgs{
+//								Metrics: pulumi.StringArray{
+//									pulumi.String("status_4xx"),
+//									pulumi.String("status_5xx"),
+//								},
+//							},
+//						},
+//						Visualization: &fastly.CustomDashboardDashboardItemVisualizationArgs{
+//							Type: pulumi.String("chart"),
+//							Config: &fastly.CustomDashboardDashboardItemVisualizationConfigArgs{
+//								Format:   pulumi.String("requests"),
+//								PlotType: pulumi.String("bar"),
+//							},
+//						},
+//					},
+//					&fastly.CustomDashboardDashboardItemArgs{
+//						Id:       pulumi.String("example4"),
+//						Title:    pulumi.String("Domain Requests"),
+//						Subtitle: pulumi.String("Requests by Domain."),
+//						Span:     pulumi.Int(6),
+//						DataSource: &fastly.CustomDashboardDashboardItemDataSourceArgs{
+//							Type: pulumi.String("stats.domain"),
+//							Config: &fastly.CustomDashboardDashboardItemDataSourceConfigArgs{
+//								Metrics: pulumi.StringArray{
+//									pulumi.String("requests"),
+//								},
+//							},
+//						},
+//						Visualization: &fastly.CustomDashboardDashboardItemVisualizationArgs{
+//							Type: pulumi.String("chart"),
+//							Config: &fastly.CustomDashboardDashboardItemVisualizationConfigArgs{
+//								Format:   pulumi.String("requests"),
+//								PlotType: pulumi.String("line"),
+//							},
+//						},
+//					},
+//					&fastly.CustomDashboardDashboardItemArgs{
+//						Id:       pulumi.String("example5"),
+//						Title:    pulumi.String("Origin Responses"),
+//						Subtitle: pulumi.String("Responses by Origin."),
+//						Span:     pulumi.Int(6),
+//						DataSource: &fastly.CustomDashboardDashboardItemDataSourceArgs{
+//							Type: pulumi.String("stats.origin"),
+//							Config: &fastly.CustomDashboardDashboardItemDataSourceConfigArgs{
+//								Metrics: pulumi.StringArray{
+//									pulumi.String("all_responses"),
+//								},
+//							},
+//						},
+//						Visualization: &fastly.CustomDashboardDashboardItemVisualizationArgs{
+//							Type: pulumi.String("chart"),
+//							Config: &fastly.CustomDashboardDashboardItemVisualizationConfigArgs{
+//								PlotType: pulumi.String("line"),
+//							},
+//						},
+//					},
+//					&fastly.CustomDashboardDashboardItemArgs{
+//						Id:       pulumi.String("example6"),
+//						Title:    pulumi.String("Total Bandwidth"),
+//						Subtitle: pulumi.String("Total bandwidth served."),
+//						Span:     pulumi.Int(12),
+//						DataSource: &fastly.CustomDashboardDashboardItemDataSourceArgs{
+//							Type: pulumi.String("stats.edge"),
+//							Config: &fastly.CustomDashboardDashboardItemDataSourceConfigArgs{
+//								Metrics: pulumi.StringArray{
+//									pulumi.String("bandwidth"),
+//								},
+//							},
+//						},
+//						Visualization: &fastly.CustomDashboardDashboardItemVisualizationArgs{
+//							Type: pulumi.String("chart"),
+//							Config: &fastly.CustomDashboardDashboardItemVisualizationConfigArgs{
+//								Format:   pulumi.String("bytes"),
+//								PlotType: pulumi.String("bar"),
+//							},
+//						},
+//					},
+//					&fastly.CustomDashboardDashboardItemArgs{
+//						Id:       pulumi.String("example7"),
+//						Title:    pulumi.String("Products - Image Optimizer & Real-Time Log Streaming"),
+//						Subtitle: pulumi.String("Total IO images served and log statements sent."),
+//						Span:     pulumi.Int(8),
+//						DataSource: &fastly.CustomDashboardDashboardItemDataSourceArgs{
+//							Type: pulumi.String("stats.edge"),
+//							Config: &fastly.CustomDashboardDashboardItemDataSourceConfigArgs{
+//								Metrics: pulumi.StringArray{
+//									pulumi.String("imgopto"),
+//									pulumi.String("log"),
+//								},
+//							},
+//						},
+//						Visualization: &fastly.CustomDashboardDashboardItemVisualizationArgs{
+//							Type: pulumi.String("chart"),
+//							Config: &fastly.CustomDashboardDashboardItemVisualizationConfigArgs{
+//								PlotType: pulumi.String("line"),
+//							},
+//						},
+//					},
+//					&fastly.CustomDashboardDashboardItemArgs{
+//						Id:       pulumi.String("example8"),
+//						Title:    pulumi.String("Transport Protocols & Security"),
+//						Subtitle: pulumi.String("HTTP Protocols & TLS."),
+//						DataSource: &fastly.CustomDashboardDashboardItemDataSourceArgs{
+//							Type: pulumi.String("stats.edge"),
+//							Config: &fastly.CustomDashboardDashboardItemDataSourceConfigArgs{
+//								Metrics: pulumi.StringArray{
+//									pulumi.String("http1"),
+//									pulumi.String("http2"),
+//									pulumi.String("http3"),
+//									pulumi.String("tls_v10"),
+//									pulumi.String("tls_v11"),
+//									pulumi.String("tls_v12"),
+//									pulumi.String("tls_v13"),
+//								},
+//							},
+//						},
+//						Visualization: &fastly.CustomDashboardDashboardItemVisualizationArgs{
+//							Type: pulumi.String("chart"),
+//							Config: &fastly.CustomDashboardDashboardItemVisualizationConfigArgs{
+//								Format:   pulumi.String("requests"),
+//								PlotType: pulumi.String("line"),
+//							},
+//						},
+//					},
+//					&fastly.CustomDashboardDashboardItemArgs{
+//						Id:       pulumi.String("example9"),
+//						Title:    pulumi.String("Origin Miss Latency"),
+//						Subtitle: pulumi.String("Miss latency times for your origins."),
+//						Span:     pulumi.Int(12),
+//						DataSource: &fastly.CustomDashboardDashboardItemDataSourceArgs{
+//							Type: pulumi.String("stats.edge"),
+//							Config: &fastly.CustomDashboardDashboardItemDataSourceConfigArgs{
+//								Metrics: pulumi.StringArray{
+//									pulumi.String("origin_latency"),
+//								},
+//							},
+//						},
+//						Visualization: &fastly.CustomDashboardDashboardItemVisualizationArgs{
+//							Type: pulumi.String("chart"),
+//							Config: &fastly.CustomDashboardDashboardItemVisualizationConfigArgs{
+//								Format:   pulumi.String("milliseconds"),
+//								PlotType: pulumi.String("line"),
+//							},
+//						},
+//					},
+//					&fastly.CustomDashboardDashboardItemArgs{
+//						Id:       pulumi.String("example10"),
+//						Title:    pulumi.String("DDoS - Request Flood Attempts"),
+//						Subtitle: pulumi.String("Number of connections the limit-streams action was applied."),
+//						Span:     pulumi.Int(6),
+//						DataSource: &fastly.CustomDashboardDashboardItemDataSourceArgs{
+//							Type: pulumi.String("stats.edge"),
+//							Config: &fastly.CustomDashboardDashboardItemDataSourceConfigArgs{
+//								Metrics: pulumi.StringArray{
+//									pulumi.String("ddos_action_limit_streams_connections"),
+//									pulumi.String("ddos_action_limit_streams_requests"),
+//								},
+//							},
+//						},
+//						Visualization: &fastly.CustomDashboardDashboardItemVisualizationArgs{
+//							Type: pulumi.String("chart"),
+//							Config: &fastly.CustomDashboardDashboardItemVisualizationConfigArgs{
+//								Format:   pulumi.String("requests"),
+//								PlotType: pulumi.String("line"),
+//							},
+//						},
+//					},
+//					&fastly.CustomDashboardDashboardItemArgs{
+//						Id:       pulumi.String("example11"),
+//						Title:    pulumi.String("DDoS - Malicious Bot Attack"),
+//						Subtitle: pulumi.String("Number of times the blackhole action was taken."),
+//						Span:     pulumi.Int(6),
+//						DataSource: &fastly.CustomDashboardDashboardItemDataSourceArgs{
+//							Type: pulumi.String("stats.edge"),
+//							Config: &fastly.CustomDashboardDashboardItemDataSourceConfigArgs{
+//								Metrics: pulumi.StringArray{
+//									pulumi.String("ddos_action_close"),
+//									pulumi.String("ddos_action_blackhole"),
+//								},
+//							},
+//						},
+//						Visualization: &fastly.CustomDashboardDashboardItemVisualizationArgs{
+//							Type: pulumi.String("chart"),
+//							Config: &fastly.CustomDashboardDashboardItemVisualizationConfigArgs{
+//								Format:   pulumi.String("number"),
+//								PlotType: pulumi.String("line"),
+//							},
+//						},
+//					},
+//				},
+//			})
+//			if err != nil {
+//				return err
+//			}
+//			return nil
+//		})
+//	}
+//
+// ```
+//
 // ## Import
 //
 // Fastly Custom Dashboards can be imported using their ID, e.g.

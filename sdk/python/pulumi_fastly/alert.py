@@ -311,8 +311,18 @@ class Alert(pulumi.CustomResource):
         import pulumi
         import pulumi_fastly as fastly
 
-        example = fastly.ServiceVcl("example", name="my_vcl_service")
-        example_integration = fastly.Integration("example", name="my_integration")
+        example = fastly.ServiceVcl("example",
+            name="my_vcl_service",
+            domains=[{
+                "name": "demo.notexample.com",
+                "comment": "demo",
+            }])
+        example_integration = fastly.Integration("example",
+            name="my_integration",
+            type="a_valid_type",
+            config={
+                "webhook": "some_webhook",
+            })
         example_alert = fastly.Alert("example",
             name="my_vcl_service errors",
             service_id=example.id,
@@ -360,8 +370,18 @@ class Alert(pulumi.CustomResource):
         import pulumi
         import pulumi_fastly as fastly
 
-        example = fastly.ServiceVcl("example", name="my_vcl_service")
-        example_integration = fastly.Integration("example", name="my_integration")
+        example = fastly.ServiceVcl("example",
+            name="my_vcl_service",
+            domains=[{
+                "name": "demo.notexample.com",
+                "comment": "demo",
+            }])
+        example_integration = fastly.Integration("example",
+            name="my_integration",
+            type="a_valid_type",
+            config={
+                "webhook": "some_webhook",
+            })
         example_alert = fastly.Alert("example",
             name="my_vcl_service errors",
             service_id=example.id,

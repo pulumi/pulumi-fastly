@@ -52,15 +52,15 @@ public final class NgwafThresholdsArgs extends com.pulumi.resources.ResourceArgs
      * Duration the action is in place, in seconds. Minimum 1 and maximum 31,556,900.
      * 
      */
-    @Import(name="duration", required=true)
-    private Output<Integer> duration;
+    @Import(name="duration")
+    private @Nullable Output<Integer> duration;
 
     /**
      * @return Duration the action is in place, in seconds. Minimum 1 and maximum 31,556,900.
      * 
      */
-    public Output<Integer> duration() {
-        return this.duration;
+    public Optional<Output<Integer>> duration() {
+        return Optional.ofNullable(this.duration);
     }
 
     /**
@@ -233,7 +233,7 @@ public final class NgwafThresholdsArgs extends com.pulumi.resources.ResourceArgs
          * @return builder
          * 
          */
-        public Builder duration(Output<Integer> duration) {
+        public Builder duration(@Nullable Output<Integer> duration) {
             $.duration = duration;
             return this;
         }
@@ -380,9 +380,6 @@ public final class NgwafThresholdsArgs extends com.pulumi.resources.ResourceArgs
             }
             if ($.dontNotify == null) {
                 throw new MissingRequiredPropertyException("NgwafThresholdsArgs", "dontNotify");
-            }
-            if ($.duration == null) {
-                throw new MissingRequiredPropertyException("NgwafThresholdsArgs", "duration");
             }
             if ($.enabled == null) {
                 throw new MissingRequiredPropertyException("NgwafThresholdsArgs", "enabled");

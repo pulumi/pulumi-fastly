@@ -20,6 +20,38 @@ import (
 //
 // Basic usage:
 //
+// ```go
+// package main
+//
+// import (
+//
+//	"github.com/pulumi/pulumi-fastly/sdk/v11/go/fastly"
+//	"github.com/pulumi/pulumi/sdk/v3/go/pulumi"
+//
+// )
+//
+//	func main() {
+//		pulumi.Run(func(ctx *pulumi.Context) error {
+//			_, err := fastly.NewNgwafWorkspace(ctx, "demo", &fastly.NgwafWorkspaceArgs{
+//				Name:        pulumi.String("Demo"),
+//				Description: pulumi.String("Testing"),
+//				Mode:        pulumi.String("block"),
+//				AttackSignalThresholds: &fastly.NgwafWorkspaceAttackSignalThresholdsArgs{
+//					OneMinute:  pulumi.Int(100),
+//					TenMinutes: pulumi.Int(500),
+//					OneHour:    pulumi.Int(1000),
+//					Immediate:  pulumi.Bool(true),
+//				},
+//			})
+//			if err != nil {
+//				return err
+//			}
+//			return nil
+//		})
+//	}
+//
+// ```
+//
 // ## Import
 //
 // Fastly Next-Gen WAF Workspaces can be imported using their workspace ID, e.g.
@@ -36,6 +68,8 @@ type NgwafWorkspace struct {
 	ClientIpHeaders pulumi.StringArrayOutput `pulumi:"clientIpHeaders"`
 	// The status code returned when a request is blocked. This configuration is applied at the workspace but can be overwritten in rules. Accepted values are [`301`, `302`, `400..599`]. Default value `406`.
 	DefaultBlockingResponseCode pulumi.IntPtrOutput `pulumi:"defaultBlockingResponseCode"`
+	// The redirect URL used if default*blocking*response_code is `301` or `302`.
+	DefaultRedirectUrl pulumi.StringPtrOutput `pulumi:"defaultRedirectUrl"`
 	// The description of the workspace
 	Description pulumi.StringOutput `pulumi:"description"`
 	// Agents will anonymize IP addresses according to the option selected. Accepted value is `hashed`.
@@ -91,6 +125,8 @@ type ngwafWorkspaceState struct {
 	ClientIpHeaders []string `pulumi:"clientIpHeaders"`
 	// The status code returned when a request is blocked. This configuration is applied at the workspace but can be overwritten in rules. Accepted values are [`301`, `302`, `400..599`]. Default value `406`.
 	DefaultBlockingResponseCode *int `pulumi:"defaultBlockingResponseCode"`
+	// The redirect URL used if default*blocking*response_code is `301` or `302`.
+	DefaultRedirectUrl *string `pulumi:"defaultRedirectUrl"`
 	// The description of the workspace
 	Description *string `pulumi:"description"`
 	// Agents will anonymize IP addresses according to the option selected. Accepted value is `hashed`.
@@ -108,6 +144,8 @@ type NgwafWorkspaceState struct {
 	ClientIpHeaders pulumi.StringArrayInput
 	// The status code returned when a request is blocked. This configuration is applied at the workspace but can be overwritten in rules. Accepted values are [`301`, `302`, `400..599`]. Default value `406`.
 	DefaultBlockingResponseCode pulumi.IntPtrInput
+	// The redirect URL used if default*blocking*response_code is `301` or `302`.
+	DefaultRedirectUrl pulumi.StringPtrInput
 	// The description of the workspace
 	Description pulumi.StringPtrInput
 	// Agents will anonymize IP addresses according to the option selected. Accepted value is `hashed`.
@@ -129,6 +167,8 @@ type ngwafWorkspaceArgs struct {
 	ClientIpHeaders []string `pulumi:"clientIpHeaders"`
 	// The status code returned when a request is blocked. This configuration is applied at the workspace but can be overwritten in rules. Accepted values are [`301`, `302`, `400..599`]. Default value `406`.
 	DefaultBlockingResponseCode *int `pulumi:"defaultBlockingResponseCode"`
+	// The redirect URL used if default*blocking*response_code is `301` or `302`.
+	DefaultRedirectUrl *string `pulumi:"defaultRedirectUrl"`
 	// The description of the workspace
 	Description string `pulumi:"description"`
 	// Agents will anonymize IP addresses according to the option selected. Accepted value is `hashed`.
@@ -147,6 +187,8 @@ type NgwafWorkspaceArgs struct {
 	ClientIpHeaders pulumi.StringArrayInput
 	// The status code returned when a request is blocked. This configuration is applied at the workspace but can be overwritten in rules. Accepted values are [`301`, `302`, `400..599`]. Default value `406`.
 	DefaultBlockingResponseCode pulumi.IntPtrInput
+	// The redirect URL used if default*blocking*response_code is `301` or `302`.
+	DefaultRedirectUrl pulumi.StringPtrInput
 	// The description of the workspace
 	Description pulumi.StringInput
 	// Agents will anonymize IP addresses according to the option selected. Accepted value is `hashed`.
@@ -257,6 +299,11 @@ func (o NgwafWorkspaceOutput) ClientIpHeaders() pulumi.StringArrayOutput {
 // The status code returned when a request is blocked. This configuration is applied at the workspace but can be overwritten in rules. Accepted values are [`301`, `302`, `400..599`]. Default value `406`.
 func (o NgwafWorkspaceOutput) DefaultBlockingResponseCode() pulumi.IntPtrOutput {
 	return o.ApplyT(func(v *NgwafWorkspace) pulumi.IntPtrOutput { return v.DefaultBlockingResponseCode }).(pulumi.IntPtrOutput)
+}
+
+// The redirect URL used if default*blocking*response_code is `301` or `302`.
+func (o NgwafWorkspaceOutput) DefaultRedirectUrl() pulumi.StringPtrOutput {
+	return o.ApplyT(func(v *NgwafWorkspace) pulumi.StringPtrOutput { return v.DefaultRedirectUrl }).(pulumi.StringPtrOutput)
 }
 
 // The description of the workspace

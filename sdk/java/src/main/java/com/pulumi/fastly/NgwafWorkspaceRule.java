@@ -13,6 +13,7 @@ import com.pulumi.fastly.inputs.NgwafWorkspaceRuleState;
 import com.pulumi.fastly.outputs.NgwafWorkspaceRuleAction;
 import com.pulumi.fastly.outputs.NgwafWorkspaceRuleCondition;
 import com.pulumi.fastly.outputs.NgwafWorkspaceRuleGroupCondition;
+import com.pulumi.fastly.outputs.NgwafWorkspaceRuleMultivalCondition;
 import com.pulumi.fastly.outputs.NgwafWorkspaceRuleRateLimit;
 import java.lang.Boolean;
 import java.lang.String;
@@ -42,6 +43,145 @@ import javax.annotation.Nullable;
  * import com.pulumi.fastly.NgwafWorkspaceRuleArgs;
  * import com.pulumi.fastly.inputs.NgwafWorkspaceRuleActionArgs;
  * import com.pulumi.fastly.inputs.NgwafWorkspaceRuleConditionArgs;
+ * import java.util.List;
+ * import java.util.ArrayList;
+ * import java.util.Map;
+ * import java.io.File;
+ * import java.nio.file.Files;
+ * import java.nio.file.Paths;
+ * 
+ * public class App {
+ *     public static void main(String[] args) {
+ *         Pulumi.run(App::stack);
+ *     }
+ * 
+ *     public static void stack(Context ctx) {
+ *         var example = new NgwafWorkspace("example", NgwafWorkspaceArgs.builder()
+ *             .name("example")
+ *             .description("Test NGWAF Workspace")
+ *             .mode("block")
+ *             .ipAnonymization("hashed")
+ *             .clientIpHeaders(            
+ *                 "X-Forwarded-For",
+ *                 "X-Real-IP")
+ *             .defaultBlockingResponseCode(429)
+ *             .attackSignalThresholds(NgwafWorkspaceAttackSignalThresholdsArgs.builder()
+ *                 .build())
+ *             .build());
+ * 
+ *         var exampleNgwafWorkspaceRule = new NgwafWorkspaceRule("exampleNgwafWorkspaceRule", NgwafWorkspaceRuleArgs.builder()
+ *             .workspaceId(example.id())
+ *             .type("request")
+ *             .description("Block requests from specific IP to login path")
+ *             .enabled(true)
+ *             .requestLogging("sampled")
+ *             .groupOperator("all")
+ *             .actions(NgwafWorkspaceRuleActionArgs.builder()
+ *                 .type("block")
+ *                 .build())
+ *             .conditions(            
+ *                 NgwafWorkspaceRuleConditionArgs.builder()
+ *                     .field("ip")
+ *                     .operator("equals")
+ *                     .value("192.0.2.1")
+ *                     .build(),
+ *                 NgwafWorkspaceRuleConditionArgs.builder()
+ *                     .field("path")
+ *                     .operator("equals")
+ *                     .value("/login")
+ *                     .build())
+ *             .build());
+ * 
+ *     }
+ * }
+ * }
+ * </pre>
+ * 
+ * Using templated signals:
+ * 
+ * <pre>
+ * {@code
+ * package generated_program;
+ * 
+ * import com.pulumi.Context;
+ * import com.pulumi.Pulumi;
+ * import com.pulumi.core.Output;
+ * import com.pulumi.fastly.NgwafWorkspace;
+ * import com.pulumi.fastly.NgwafWorkspaceArgs;
+ * import com.pulumi.fastly.inputs.NgwafWorkspaceAttackSignalThresholdsArgs;
+ * import com.pulumi.fastly.NgwafWorkspaceRule;
+ * import com.pulumi.fastly.NgwafWorkspaceRuleArgs;
+ * import com.pulumi.fastly.inputs.NgwafWorkspaceRuleConditionArgs;
+ * import com.pulumi.fastly.inputs.NgwafWorkspaceRuleActionArgs;
+ * import java.util.List;
+ * import java.util.ArrayList;
+ * import java.util.Map;
+ * import java.io.File;
+ * import java.nio.file.Files;
+ * import java.nio.file.Paths;
+ * 
+ * public class App {
+ *     public static void main(String[] args) {
+ *         Pulumi.run(App::stack);
+ *     }
+ * 
+ *     public static void stack(Context ctx) {
+ *         var example = new NgwafWorkspace("example", NgwafWorkspaceArgs.builder()
+ *             .name("example")
+ *             .description("Test NGWAF Workspace")
+ *             .mode("block")
+ *             .ipAnonymization("hashed")
+ *             .clientIpHeaders(            
+ *                 "X-Forwarded-For",
+ *                 "X-Real-IP")
+ *             .defaultBlockingResponseCode(429)
+ *             .attackSignalThresholds(NgwafWorkspaceAttackSignalThresholdsArgs.builder()
+ *                 .build())
+ *             .build());
+ * 
+ *         var exampleNgwafWorkspaceRule = new NgwafWorkspaceRule("exampleNgwafWorkspaceRule", NgwafWorkspaceRuleArgs.builder()
+ *             .workspaceId(example.id())
+ *             .type("request")
+ *             .description("")
+ *             .enabled(true)
+ *             .groupOperator("all")
+ *             .conditions(            
+ *                 NgwafWorkspaceRuleConditionArgs.builder()
+ *                     .field("method")
+ *                     .operator("equals")
+ *                     .value("POST")
+ *                     .build(),
+ *                 NgwafWorkspaceRuleConditionArgs.builder()
+ *                     .field("path")
+ *                     .operator("equals")
+ *                     .value("/login")
+ *                     .build())
+ *             .actions(NgwafWorkspaceRuleActionArgs.builder()
+ *                 .type("templated_signal")
+ *                 .signal("LOGINATTEMPT")
+ *                 .build())
+ *             .build());
+ * 
+ *     }
+ * }
+ * }
+ * </pre>
+ * 
+ * Using group conditions:
+ * 
+ * <pre>
+ * {@code
+ * package generated_program;
+ * 
+ * import com.pulumi.Context;
+ * import com.pulumi.Pulumi;
+ * import com.pulumi.core.Output;
+ * import com.pulumi.fastly.NgwafWorkspace;
+ * import com.pulumi.fastly.NgwafWorkspaceArgs;
+ * import com.pulumi.fastly.inputs.NgwafWorkspaceAttackSignalThresholdsArgs;
+ * import com.pulumi.fastly.NgwafWorkspaceRule;
+ * import com.pulumi.fastly.NgwafWorkspaceRuleArgs;
+ * import com.pulumi.fastly.inputs.NgwafWorkspaceRuleActionArgs;
  * import com.pulumi.fastly.inputs.NgwafWorkspaceRuleGroupConditionArgs;
  * import java.util.List;
  * import java.util.ArrayList;
@@ -72,44 +212,14 @@ import javax.annotation.Nullable;
  *         var exampleNgwafWorkspaceRule = new NgwafWorkspaceRule("exampleNgwafWorkspaceRule", NgwafWorkspaceRuleArgs.builder()
  *             .workspaceId(example.id())
  *             .type("request")
- *             .description("example")
+ *             .description("Block requests with grouped conditions")
  *             .enabled(true)
  *             .requestLogging("sampled")
  *             .groupOperator("all")
  *             .actions(NgwafWorkspaceRuleActionArgs.builder()
  *                 .type("block")
  *                 .build())
- *             .conditions(            
- *                 NgwafWorkspaceRuleConditionArgs.builder()
- *                     .field("ip")
- *                     .operator("equals")
- *                     .value("127.0.0.1")
- *                     .build(),
- *                 NgwafWorkspaceRuleConditionArgs.builder()
- *                     .field("path")
- *                     .operator("equals")
- *                     .value("/login")
- *                     .build(),
- *                 NgwafWorkspaceRuleConditionArgs.builder()
- *                     .field("agent_name")
- *                     .operator("equals")
- *                     .value("host-001")
- *                     .build())
  *             .groupConditions(            
- *                 NgwafWorkspaceRuleGroupConditionArgs.builder()
- *                     .groupOperator("all")
- *                     .conditions(                    
- *                         NgwafWorkspaceRuleGroupConditionConditionArgs.builder()
- *                             .field("country")
- *                             .operator("equals")
- *                             .value("AD")
- *                             .build(),
- *                         NgwafWorkspaceRuleGroupConditionConditionArgs.builder()
- *                             .field("method")
- *                             .operator("equals")
- *                             .value("POST")
- *                             .build())
- *                     .build(),
  *                 NgwafWorkspaceRuleGroupConditionArgs.builder()
  *                     .groupOperator("any")
  *                     .conditions(                    
@@ -128,7 +238,182 @@ import javax.annotation.Nullable;
  *                             .operator("equals")
  *                             .value("example.com")
  *                             .build())
+ *                     .build(),
+ *                 NgwafWorkspaceRuleGroupConditionArgs.builder()
+ *                     .groupOperator("all")
+ *                     .conditions(                    
+ *                         NgwafWorkspaceRuleGroupConditionConditionArgs.builder()
+ *                             .field("country")
+ *                             .operator("equals")
+ *                             .value("AD")
+ *                             .build(),
+ *                         NgwafWorkspaceRuleGroupConditionConditionArgs.builder()
+ *                             .field("method")
+ *                             .operator("equals")
+ *                             .value("POST")
+ *                             .build())
  *                     .build())
+ *             .build());
+ * 
+ *     }
+ * }
+ * }
+ * </pre>
+ * 
+ * Using multival conditions:
+ * 
+ * <pre>
+ * {@code
+ * package generated_program;
+ * 
+ * import com.pulumi.Context;
+ * import com.pulumi.Pulumi;
+ * import com.pulumi.core.Output;
+ * import com.pulumi.fastly.NgwafWorkspace;
+ * import com.pulumi.fastly.NgwafWorkspaceArgs;
+ * import com.pulumi.fastly.inputs.NgwafWorkspaceAttackSignalThresholdsArgs;
+ * import com.pulumi.fastly.NgwafWorkspaceRule;
+ * import com.pulumi.fastly.NgwafWorkspaceRuleArgs;
+ * import com.pulumi.fastly.inputs.NgwafWorkspaceRuleActionArgs;
+ * import com.pulumi.fastly.inputs.NgwafWorkspaceRuleMultivalConditionArgs;
+ * import java.util.List;
+ * import java.util.ArrayList;
+ * import java.util.Map;
+ * import java.io.File;
+ * import java.nio.file.Files;
+ * import java.nio.file.Paths;
+ * 
+ * public class App {
+ *     public static void main(String[] args) {
+ *         Pulumi.run(App::stack);
+ *     }
+ * 
+ *     public static void stack(Context ctx) {
+ *         var example = new NgwafWorkspace("example", NgwafWorkspaceArgs.builder()
+ *             .name("example")
+ *             .description("Test NGWAF Workspace")
+ *             .mode("block")
+ *             .ipAnonymization("hashed")
+ *             .clientIpHeaders(            
+ *                 "X-Forwarded-For",
+ *                 "X-Real-IP")
+ *             .defaultBlockingResponseCode(429)
+ *             .attackSignalThresholds(NgwafWorkspaceAttackSignalThresholdsArgs.builder()
+ *                 .build())
+ *             .build());
+ * 
+ *         var exampleNgwafWorkspaceRule = new NgwafWorkspaceRule("exampleNgwafWorkspaceRule", NgwafWorkspaceRuleArgs.builder()
+ *             .workspaceId(example.id())
+ *             .type("request")
+ *             .description("Block requests with specific header patterns")
+ *             .enabled(true)
+ *             .requestLogging("sampled")
+ *             .groupOperator("all")
+ *             .actions(NgwafWorkspaceRuleActionArgs.builder()
+ *                 .type("block")
+ *                 .build())
+ *             .multivalConditions(NgwafWorkspaceRuleMultivalConditionArgs.builder()
+ *                 .field("request_header")
+ *                 .operator("exists")
+ *                 .groupOperator("any")
+ *                 .conditions(                
+ *                     NgwafWorkspaceRuleMultivalConditionConditionArgs.builder()
+ *                         .field("name")
+ *                         .operator("does_not_equal")
+ *                         .value("Header-Sample")
+ *                         .build(),
+ *                     NgwafWorkspaceRuleMultivalConditionConditionArgs.builder()
+ *                         .field("name")
+ *                         .operator("contains")
+ *                         .value("X-API-Key")
+ *                         .build(),
+ *                     NgwafWorkspaceRuleMultivalConditionConditionArgs.builder()
+ *                         .field("value_string")
+ *                         .operator("equals")
+ *                         .value("application/json")
+ *                         .build())
+ *                 .build())
+ *             .build());
+ * 
+ *     }
+ * }
+ * }
+ * </pre>
+ * 
+ * Using rate limits:
+ * 
+ * <pre>
+ * {@code
+ * package generated_program;
+ * 
+ * import com.pulumi.Context;
+ * import com.pulumi.Pulumi;
+ * import com.pulumi.core.Output;
+ * import com.pulumi.fastly.NgwafWorkspace;
+ * import com.pulumi.fastly.NgwafWorkspaceArgs;
+ * import com.pulumi.fastly.inputs.NgwafWorkspaceAttackSignalThresholdsArgs;
+ * import com.pulumi.fastly.NgwafWorkspaceSignal;
+ * import com.pulumi.fastly.NgwafWorkspaceSignalArgs;
+ * import com.pulumi.fastly.NgwafWorkspaceRule;
+ * import com.pulumi.fastly.NgwafWorkspaceRuleArgs;
+ * import com.pulumi.fastly.inputs.NgwafWorkspaceRuleConditionArgs;
+ * import com.pulumi.fastly.inputs.NgwafWorkspaceRuleRateLimitArgs;
+ * import com.pulumi.fastly.inputs.NgwafWorkspaceRuleActionArgs;
+ * import java.util.List;
+ * import java.util.ArrayList;
+ * import java.util.Map;
+ * import java.io.File;
+ * import java.nio.file.Files;
+ * import java.nio.file.Paths;
+ * 
+ * public class App {
+ *     public static void main(String[] args) {
+ *         Pulumi.run(App::stack);
+ *     }
+ * 
+ *     public static void stack(Context ctx) {
+ *         var example = new NgwafWorkspace("example", NgwafWorkspaceArgs.builder()
+ *             .name("example")
+ *             .description("Test NGWAF Workspace")
+ *             .mode("block")
+ *             .ipAnonymization("hashed")
+ *             .clientIpHeaders(            
+ *                 "X-Forwarded-For",
+ *                 "X-Real-IP")
+ *             .defaultBlockingResponseCode(429)
+ *             .attackSignalThresholds(NgwafWorkspaceAttackSignalThresholdsArgs.builder()
+ *                 .build())
+ *             .build());
+ * 
+ *         var demoSignal = new NgwafWorkspaceSignal("demoSignal", NgwafWorkspaceSignalArgs.builder()
+ *             .workspaceId(example.id())
+ *             .name("demo")
+ *             .description("A description of my signal.")
+ *             .build());
+ * 
+ *         var ipLimit = new NgwafWorkspaceRule("ipLimit", NgwafWorkspaceRuleArgs.builder()
+ *             .workspaceId(example.id())
+ *             .type("rate_limit")
+ *             .description("Rate limit demo rule-updated")
+ *             .enabled(true)
+ *             .conditions(NgwafWorkspaceRuleConditionArgs.builder()
+ *                 .field("ip")
+ *                 .operator("equals")
+ *                 .value("1.2.3.4")
+ *                 .build())
+ *             .rateLimit(NgwafWorkspaceRuleRateLimitArgs.builder()
+ *                 .signal("site.demo")
+ *                 .threshold(100)
+ *                 .interval(60)
+ *                 .duration(300)
+ *                 .clientIdentifiers(NgwafWorkspaceRuleRateLimitClientIdentifierArgs.builder()
+ *                     .type("ip")
+ *                     .build())
+ *                 .build())
+ *             .actions(NgwafWorkspaceRuleActionArgs.builder()
+ *                 .signal("SUSPECTED-BOT")
+ *                 .type("block_signal")
+ *                 .build())
  *             .build());
  * 
  *     }
@@ -230,6 +515,20 @@ public class NgwafWorkspaceRule extends com.pulumi.resources.CustomResource {
      */
     public Output<Optional<String>> groupOperator() {
         return Codegen.optional(this.groupOperator);
+    }
+    /**
+     * List of multival conditions with nested logic. Each multival list must define a `field, operator, groupOperator` and at least one condition.
+     * 
+     */
+    @Export(name="multivalConditions", refs={List.class,NgwafWorkspaceRuleMultivalCondition.class}, tree="[0,1]")
+    private Output</* @Nullable */ List<NgwafWorkspaceRuleMultivalCondition>> multivalConditions;
+
+    /**
+     * @return List of multival conditions with nested logic. Each multival list must define a `field, operator, groupOperator` and at least one condition.
+     * 
+     */
+    public Output<Optional<List<NgwafWorkspaceRuleMultivalCondition>>> multivalConditions() {
+        return Codegen.optional(this.multivalConditions);
     }
     /**
      * Block specifically for rate*limit rules.

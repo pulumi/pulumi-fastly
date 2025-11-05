@@ -43,7 +43,7 @@ namespace Pulumi.Fastly.Inputs
         public Input<string>? ProcessingRegion { get; set; }
 
         /// <summary>
-        /// The region that log data will be sent to. One of `US` or `EU`. Defaults to `US` if undefined
+        /// The region that log data will be sent to. Defaults to `US` if undefined
         /// </summary>
         [Input("region")]
         public Input<string>? Region { get; set; }

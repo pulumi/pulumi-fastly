@@ -54,7 +54,7 @@ namespace Pulumi.Fastly.Outputs
         /// </summary>
         public readonly bool? TimerSupport;
         /// <summary>
-        /// X-Forwarded-For, should be `Clear`, `Leave`, `Append`, `AppendAll`, or `Overwrite`. Default `Append`
+        /// X-Forwarded-For, should be `Clear`, `Leave`, `Append`, `AppendAll`, or `Overwrite`
         /// </summary>
         public readonly string? Xff;
 

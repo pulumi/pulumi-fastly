@@ -16,7 +16,7 @@ import * as utilities from "./utilities";
  * import * as pulumi from "@pulumi/pulumi";
  * import * as fastly from "@pulumi/fastly";
  *
- * const demo = new fastly.index.NgwafVirtualPatch("demo", {
+ * const demo = new fastly.NgwafVirtualPatches("demo", {
  *     action: "block",
  *     enabled: true,
  *     virtualPatchId: "CVE-2017-5638",

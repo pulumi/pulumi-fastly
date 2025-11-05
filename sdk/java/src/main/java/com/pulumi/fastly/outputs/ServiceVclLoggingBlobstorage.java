@@ -34,7 +34,7 @@ public final class ServiceVclLoggingBlobstorage {
      */
     private @Nullable Integer fileMaxBytes;
     /**
-     * @return Apache-style string or VCL variables to use for log formatting (default: `%h %l %u %t &#34;%r&#34; %&gt;s %b`)
+     * @return Apache-style string or VCL variables to use for log formatting.
      * 
      */
     private @Nullable String format;
@@ -129,7 +129,7 @@ public final class ServiceVclLoggingBlobstorage {
         return Optional.ofNullable(this.fileMaxBytes);
     }
     /**
-     * @return Apache-style string or VCL variables to use for log formatting (default: `%h %l %u %t &#34;%r&#34; %&gt;s %b`)
+     * @return Apache-style string or VCL variables to use for log formatting.
      * 
      */
     public Optional<String> format() {

@@ -10,6 +10,16 @@ export type Alert = import("./alert").Alert;
 export const Alert: typeof import("./alert").Alert = null as any;
 utilities.lazyLoad(exports, ["Alert"], () => require("./alert"));
 
+export { ComputeAclArgs, ComputeAclState } from "./computeAcl";
+export type ComputeAcl = import("./computeAcl").ComputeAcl;
+export const ComputeAcl: typeof import("./computeAcl").ComputeAcl = null as any;
+utilities.lazyLoad(exports, ["ComputeAcl"], () => require("./computeAcl"));
+
+export { ComputeAclEntriesArgs, ComputeAclEntriesState } from "./computeAclEntries";
+export type ComputeAclEntries = import("./computeAclEntries").ComputeAclEntries;
+export const ComputeAclEntries: typeof import("./computeAclEntries").ComputeAclEntries = null as any;
+utilities.lazyLoad(exports, ["ComputeAclEntries"], () => require("./computeAclEntries"));
+
 export { ConfigstoreArgs, ConfigstoreState } from "./configstore";
 export type Configstore = import("./configstore").Configstore;
 export const Configstore: typeof import("./configstore").Configstore = null as any;
@@ -30,6 +40,16 @@ export type DomainV1 = import("./domainV1").DomainV1;
 export const DomainV1: typeof import("./domainV1").DomainV1 = null as any;
 utilities.lazyLoad(exports, ["DomainV1"], () => require("./domainV1"));
 
+export { DomainV1ServiceLinkArgs, DomainV1ServiceLinkState } from "./domainV1ServiceLink";
+export type DomainV1ServiceLink = import("./domainV1ServiceLink").DomainV1ServiceLink;
+export const DomainV1ServiceLink: typeof import("./domainV1ServiceLink").DomainV1ServiceLink = null as any;
+utilities.lazyLoad(exports, ["DomainV1ServiceLink"], () => require("./domainV1ServiceLink"));
+
+export { GetComputeAclsResult } from "./getComputeAcls";
+export const getComputeAcls: typeof import("./getComputeAcls").getComputeAcls = null as any;
+export const getComputeAclsOutput: typeof import("./getComputeAcls").getComputeAclsOutput = null as any;
+utilities.lazyLoad(exports, ["getComputeAcls","getComputeAclsOutput"], () => require("./getComputeAcls"));
+
 export { GetConfigstoresResult } from "./getConfigstores";
 export const getConfigstores: typeof import("./getConfigstores").getConfigstores = null as any;
 export const getConfigstoresOutput: typeof import("./getConfigstores").getConfigstoresOutput = null as any;
@@ -45,6 +65,11 @@ export const getDictionaries: typeof import("./getDictionaries").getDictionaries
 export const getDictionariesOutput: typeof import("./getDictionaries").getDictionariesOutput = null as any;
 utilities.lazyLoad(exports, ["getDictionaries","getDictionariesOutput"], () => require("./getDictionaries"));
 
+export { GetDomainsV1Args, GetDomainsV1Result, GetDomainsV1OutputArgs } from "./getDomainsV1";
+export const getDomainsV1: typeof import("./getDomainsV1").getDomainsV1 = null as any;
+export const getDomainsV1Output: typeof import("./getDomainsV1").getDomainsV1Output = null as any;
+utilities.lazyLoad(exports, ["getDomainsV1","getDomainsV1Output"], () => require("./getDomainsV1"));
+
 export { GetFastlyIpRangesResult } from "./getFastlyIpRanges";
 export const getFastlyIpRanges: typeof import("./getFastlyIpRanges").getFastlyIpRanges = null as any;
 export const getFastlyIpRangesOutput: typeof import("./getFastlyIpRanges").getFastlyIpRangesOutput = null as any;
@@ -54,6 +79,21 @@ export { GetKvstoresResult } from "./getKvstores";
 export const getKvstores: typeof import("./getKvstores").getKvstores = null as any;
 export const getKvstoresOutput: typeof import("./getKvstores").getKvstoresOutput = null as any;
 utilities.lazyLoad(exports, ["getKvstores","getKvstoresOutput"], () => require("./getKvstores"));
+
+export { GetNgwafAccountListsResult } from "./getNgwafAccountLists";
+export const getNgwafAccountLists: typeof import("./getNgwafAccountLists").getNgwafAccountLists = null as any;
+export const getNgwafAccountListsOutput: typeof import("./getNgwafAccountLists").getNgwafAccountListsOutput = null as any;
+utilities.lazyLoad(exports, ["getNgwafAccountLists","getNgwafAccountListsOutput"], () => require("./getNgwafAccountLists"));
+
+export { GetNgwafAccountRulesResult } from "./getNgwafAccountRules";
+export const getNgwafAccountRules: typeof import("./getNgwafAccountRules").getNgwafAccountRules = null as any;
+export const getNgwafAccountRulesOutput: typeof import("./getNgwafAccountRules").getNgwafAccountRulesOutput = null as any;
+utilities.lazyLoad(exports, ["getNgwafAccountRules","getNgwafAccountRulesOutput"], () => require("./getNgwafAccountRules"));
+
+export { GetNgwafAccountSignalsResult } from "./getNgwafAccountSignals";
+export const getNgwafAccountSignals: typeof import("./getNgwafAccountSignals").getNgwafAccountSignals = null as any;
+export const getNgwafAccountSignalsOutput: typeof import("./getNgwafAccountSignals").getNgwafAccountSignalsOutput = null as any;
+utilities.lazyLoad(exports, ["getNgwafAccountSignals","getNgwafAccountSignalsOutput"], () => require("./getNgwafAccountSignals"));
 
 export { GetNgwafAlertDatadogIntegrationArgs, GetNgwafAlertDatadogIntegrationResult, GetNgwafAlertDatadogIntegrationOutputArgs } from "./getNgwafAlertDatadogIntegration";
 export const getNgwafAlertDatadogIntegration: typeof import("./getNgwafAlertDatadogIntegration").getNgwafAlertDatadogIntegration = null as any;
@@ -109,6 +149,21 @@ export { GetNgwafVirtualPatchesArgs, GetNgwafVirtualPatchesResult, GetNgwafVirtu
 export const getNgwafVirtualPatches: typeof import("./getNgwafVirtualPatches").getNgwafVirtualPatches = null as any;
 export const getNgwafVirtualPatchesOutput: typeof import("./getNgwafVirtualPatches").getNgwafVirtualPatchesOutput = null as any;
 utilities.lazyLoad(exports, ["getNgwafVirtualPatches","getNgwafVirtualPatchesOutput"], () => require("./getNgwafVirtualPatches"));
+
+export { GetNgwafWorkspaceListsArgs, GetNgwafWorkspaceListsResult, GetNgwafWorkspaceListsOutputArgs } from "./getNgwafWorkspaceLists";
+export const getNgwafWorkspaceLists: typeof import("./getNgwafWorkspaceLists").getNgwafWorkspaceLists = null as any;
+export const getNgwafWorkspaceListsOutput: typeof import("./getNgwafWorkspaceLists").getNgwafWorkspaceListsOutput = null as any;
+utilities.lazyLoad(exports, ["getNgwafWorkspaceLists","getNgwafWorkspaceListsOutput"], () => require("./getNgwafWorkspaceLists"));
+
+export { GetNgwafWorkspaceRulesArgs, GetNgwafWorkspaceRulesResult, GetNgwafWorkspaceRulesOutputArgs } from "./getNgwafWorkspaceRules";
+export const getNgwafWorkspaceRules: typeof import("./getNgwafWorkspaceRules").getNgwafWorkspaceRules = null as any;
+export const getNgwafWorkspaceRulesOutput: typeof import("./getNgwafWorkspaceRules").getNgwafWorkspaceRulesOutput = null as any;
+utilities.lazyLoad(exports, ["getNgwafWorkspaceRules","getNgwafWorkspaceRulesOutput"], () => require("./getNgwafWorkspaceRules"));
+
+export { GetNgwafWorkspaceSignalsArgs, GetNgwafWorkspaceSignalsResult, GetNgwafWorkspaceSignalsOutputArgs } from "./getNgwafWorkspaceSignals";
+export const getNgwafWorkspaceSignals: typeof import("./getNgwafWorkspaceSignals").getNgwafWorkspaceSignals = null as any;
+export const getNgwafWorkspaceSignalsOutput: typeof import("./getNgwafWorkspaceSignals").getNgwafWorkspaceSignalsOutput = null as any;
+utilities.lazyLoad(exports, ["getNgwafWorkspaceSignals","getNgwafWorkspaceSignalsOutput"], () => require("./getNgwafWorkspaceSignals"));
 
 export { GetNgwafWorkspacesResult } from "./getNgwafWorkspaces";
 export const getNgwafWorkspaces: typeof import("./getNgwafWorkspaces").getNgwafWorkspaces = null as any;
@@ -399,6 +454,10 @@ const _module = {
         switch (type) {
             case "fastly:index/alert:Alert":
                 return new Alert(name, <any>undefined, { urn })
+            case "fastly:index/computeAcl:ComputeAcl":
+                return new ComputeAcl(name, <any>undefined, { urn })
+            case "fastly:index/computeAclEntries:ComputeAclEntries":
+                return new ComputeAclEntries(name, <any>undefined, { urn })
             case "fastly:index/configstore:Configstore":
                 return new Configstore(name, <any>undefined, { urn })
             case "fastly:index/configstoreEntries:ConfigstoreEntries":
@@ -407,6 +466,8 @@ const _module = {
                 return new CustomDashboard(name, <any>undefined, { urn })
             case "fastly:index/domainV1:DomainV1":
                 return new DomainV1(name, <any>undefined, { urn })
+            case "fastly:index/domainV1ServiceLink:DomainV1ServiceLink":
+                return new DomainV1ServiceLink(name, <any>undefined, { urn })
             case "fastly:index/integration:Integration":
                 return new Integration(name, <any>undefined, { urn })
             case "fastly:index/kvstore:Kvstore":
@@ -485,10 +546,13 @@ const _module = {
     },
 };
 pulumi.runtime.registerResourceModule("fastly", "index/alert", _module)
+pulumi.runtime.registerResourceModule("fastly", "index/computeAcl", _module)
+pulumi.runtime.registerResourceModule("fastly", "index/computeAclEntries", _module)
 pulumi.runtime.registerResourceModule("fastly", "index/configstore", _module)
 pulumi.runtime.registerResourceModule("fastly", "index/configstoreEntries", _module)
 pulumi.runtime.registerResourceModule("fastly", "index/customDashboard", _module)
 pulumi.runtime.registerResourceModule("fastly", "index/domainV1", _module)
+pulumi.runtime.registerResourceModule("fastly", "index/domainV1ServiceLink", _module)
 pulumi.runtime.registerResourceModule("fastly", "index/integration", _module)
 pulumi.runtime.registerResourceModule("fastly", "index/kvstore", _module)
 pulumi.runtime.registerResourceModule("fastly", "index/ngwafAccountList", _module)

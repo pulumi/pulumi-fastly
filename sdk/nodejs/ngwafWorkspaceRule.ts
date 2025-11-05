@@ -33,7 +33,7 @@ import * as utilities from "./utilities";
  * const exampleNgwafWorkspaceRule = new fastly.NgwafWorkspaceRule("example", {
  *     workspaceId: example.id,
  *     type: "request",
- *     description: "example",
+ *     description: "Block requests from specific IP to login path",
  *     enabled: true,
  *     requestLogging: "sampled",
  *     groupOperator: "all",
@@ -44,35 +44,89 @@ import * as utilities from "./utilities";
  *         {
  *             field: "ip",
  *             operator: "equals",
- *             value: "127.0.0.1",
+ *             value: "192.0.2.1",
  *         },
  *         {
  *             field: "path",
  *             operator: "equals",
  *             value: "/login",
  *         },
+ *     ],
+ * });
+ * ```
+ *
+ * Using templated signals:
+ *
+ * ```typescript
+ * import * as pulumi from "@pulumi/pulumi";
+ * import * as fastly from "@pulumi/fastly";
+ *
+ * const example = new fastly.NgwafWorkspace("example", {
+ *     name: "example",
+ *     description: "Test NGWAF Workspace",
+ *     mode: "block",
+ *     ipAnonymization: "hashed",
+ *     clientIpHeaders: [
+ *         "X-Forwarded-For",
+ *         "X-Real-IP",
+ *     ],
+ *     defaultBlockingResponseCode: 429,
+ *     attackSignalThresholds: {},
+ * });
+ * const exampleNgwafWorkspaceRule = new fastly.NgwafWorkspaceRule("example", {
+ *     workspaceId: example.id,
+ *     type: "request",
+ *     description: "",
+ *     enabled: true,
+ *     groupOperator: "all",
+ *     conditions: [
  *         {
- *             field: "agent_name",
+ *             field: "method",
  *             operator: "equals",
- *             value: "host-001",
+ *             value: "POST",
+ *         },
+ *         {
+ *             field: "path",
+ *             operator: "equals",
+ *             value: "/login",
  *         },
  *     ],
+ *     actions: [{
+ *         type: "templated_signal",
+ *         signal: "LOGINATTEMPT",
+ *     }],
+ * });
+ * ```
+ *
+ * Using group conditions:
+ *
+ * ```typescript
+ * import * as pulumi from "@pulumi/pulumi";
+ * import * as fastly from "@pulumi/fastly";
+ *
+ * const example = new fastly.NgwafWorkspace("example", {
+ *     name: "example",
+ *     description: "Test NGWAF Workspace",
+ *     mode: "block",
+ *     ipAnonymization: "hashed",
+ *     clientIpHeaders: [
+ *         "X-Forwarded-For",
+ *         "X-Real-IP",
+ *     ],
+ *     defaultBlockingResponseCode: 429,
+ *     attackSignalThresholds: {},
+ * });
+ * const exampleNgwafWorkspaceRule = new fastly.NgwafWorkspaceRule("example", {
+ *     workspaceId: example.id,
+ *     type: "request",
+ *     description: "Block requests with grouped conditions",
+ *     enabled: true,
+ *     requestLogging: "sampled",
+ *     groupOperator: "all",
+ *     actions: [{
+ *         type: "block",
+ *     }],
  *     groupConditions: [
- *         {
- *             groupOperator: "all",
- *             conditions: [
- *                 {
- *                     field: "country",
- *                     operator: "equals",
- *                     value: "AD",
- *                 },
- *                 {
- *                     field: "method",
- *                     operator: "equals",
- *                     value: "POST",
- *                 },
- *             ],
- *         },
  *         {
  *             groupOperator: "any",
  *             conditions: [
@@ -93,7 +147,124 @@ import * as utilities from "./utilities";
  *                 },
  *             ],
  *         },
+ *         {
+ *             groupOperator: "all",
+ *             conditions: [
+ *                 {
+ *                     field: "country",
+ *                     operator: "equals",
+ *                     value: "AD",
+ *                 },
+ *                 {
+ *                     field: "method",
+ *                     operator: "equals",
+ *                     value: "POST",
+ *                 },
+ *             ],
+ *         },
  *     ],
+ * });
+ * ```
+ *
+ * Using multival conditions:
+ *
+ * ```typescript
+ * import * as pulumi from "@pulumi/pulumi";
+ * import * as fastly from "@pulumi/fastly";
+ *
+ * const example = new fastly.NgwafWorkspace("example", {
+ *     name: "example",
+ *     description: "Test NGWAF Workspace",
+ *     mode: "block",
+ *     ipAnonymization: "hashed",
+ *     clientIpHeaders: [
+ *         "X-Forwarded-For",
+ *         "X-Real-IP",
+ *     ],
+ *     defaultBlockingResponseCode: 429,
+ *     attackSignalThresholds: {},
+ * });
+ * const exampleNgwafWorkspaceRule = new fastly.NgwafWorkspaceRule("example", {
+ *     workspaceId: example.id,
+ *     type: "request",
+ *     description: "Block requests with specific header patterns",
+ *     enabled: true,
+ *     requestLogging: "sampled",
+ *     groupOperator: "all",
+ *     actions: [{
+ *         type: "block",
+ *     }],
+ *     multivalConditions: [{
+ *         field: "request_header",
+ *         operator: "exists",
+ *         groupOperator: "any",
+ *         conditions: [
+ *             {
+ *                 field: "name",
+ *                 operator: "does_not_equal",
+ *                 value: "Header-Sample",
+ *             },
+ *             {
+ *                 field: "name",
+ *                 operator: "contains",
+ *                 value: "X-API-Key",
+ *             },
+ *             {
+ *                 field: "value_string",
+ *                 operator: "equals",
+ *                 value: "application/json",
+ *             },
+ *         ],
+ *     }],
+ * });
+ * ```
+ *
+ * Using rate limits:
+ *
+ * ```typescript
+ * import * as pulumi from "@pulumi/pulumi";
+ * import * as fastly from "@pulumi/fastly";
+ *
+ * const example = new fastly.NgwafWorkspace("example", {
+ *     name: "example",
+ *     description: "Test NGWAF Workspace",
+ *     mode: "block",
+ *     ipAnonymization: "hashed",
+ *     clientIpHeaders: [
+ *         "X-Forwarded-For",
+ *         "X-Real-IP",
+ *     ],
+ *     defaultBlockingResponseCode: 429,
+ *     attackSignalThresholds: {},
+ * });
+ * const demoSignal = new fastly.NgwafWorkspaceSignal("demo_signal", {
+ *     workspaceId: example.id,
+ *     name: "demo",
+ *     description: "A description of my signal.",
+ * });
+ * const ipLimit = new fastly.NgwafWorkspaceRule("ip_limit", {
+ *     workspaceId: example.id,
+ *     type: "rate_limit",
+ *     description: "Rate limit demo rule-updated",
+ *     enabled: true,
+ *     conditions: [{
+ *         field: "ip",
+ *         operator: "equals",
+ *         value: "1.2.3.4",
+ *     }],
+ *     rateLimit: {
+ *         signal: "site.demo",
+ *         threshold: 100,
+ *         interval: 60,
+ *         duration: 300,
+ *         clientIdentifiers: [{
+ *             type: "ip",
+ *         }],
+ *     },
+ *     actions: [{
+ *         signal: "SUSPECTED-BOT",
+ *         type: "block_signal",
+ *     }],
  * });
  * ```
  *
@@ -158,6 +329,10 @@ export class NgwafWorkspaceRule extends pulumi.CustomResource {
      */
     declare public readonly groupOperator: pulumi.Output<string | undefined>;
     /**
+     * List of multival conditions with nested logic. Each multival list must define a `field, operator, groupOperator` and at least one condition.
+     */
+    declare public readonly multivalConditions: pulumi.Output<outputs.NgwafWorkspaceRuleMultivalCondition[] | undefined>;
+    /**
      * Block specifically for rate*limit rules.
      */
     declare public readonly rateLimit: pulumi.Output<outputs.NgwafWorkspaceRuleRateLimit | undefined>;
@@ -193,6 +368,7 @@ export class NgwafWorkspaceRule extends pulumi.CustomResource {
             resourceInputs["enabled"] = state?.enabled;
             resourceInputs["groupConditions"] = state?.groupConditions;
             resourceInputs["groupOperator"] = state?.groupOperator;
+            resourceInputs["multivalConditions"] = state?.multivalConditions;
             resourceInputs["rateLimit"] = state?.rateLimit;
             resourceInputs["requestLogging"] = state?.requestLogging;
             resourceInputs["type"] = state?.type;
@@ -220,6 +396,7 @@ export class NgwafWorkspaceRule extends pulumi.CustomResource {
             resourceInputs["enabled"] = args?.enabled;
             resourceInputs["groupConditions"] = args?.groupConditions;
             resourceInputs["groupOperator"] = args?.groupOperator;
+            resourceInputs["multivalConditions"] = args?.multivalConditions;
             resourceInputs["rateLimit"] = args?.rateLimit;
             resourceInputs["requestLogging"] = args?.requestLogging;
             resourceInputs["type"] = args?.type;
@@ -258,6 +435,10 @@ export interface NgwafWorkspaceRuleState {
      * Logical operator to apply to group conditions. Accepted values are `any` and `all`.
      */
     groupOperator?: pulumi.Input<string>;
+    /**
+     * List of multival conditions with nested logic. Each multival list must define a `field, operator, groupOperator` and at least one condition.
+     */
+    multivalConditions?: pulumi.Input<pulumi.Input<inputs.NgwafWorkspaceRuleMultivalCondition>[]>;
     /**
      * Block specifically for rate*limit rules.
      */
@@ -304,6 +485,10 @@ export interface NgwafWorkspaceRuleArgs {
      * Logical operator to apply to group conditions. Accepted values are `any` and `all`.
      */
     groupOperator?: pulumi.Input<string>;
+    /**
+     * List of multival conditions with nested logic. Each multival list must define a `field, operator, groupOperator` and at least one condition.
+     */
+    multivalConditions?: pulumi.Input<pulumi.Input<inputs.NgwafWorkspaceRuleMultivalCondition>[]>;
     /**
      * Block specifically for rate*limit rules.
      */

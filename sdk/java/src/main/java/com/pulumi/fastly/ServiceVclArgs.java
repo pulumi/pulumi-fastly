@@ -5,7 +5,6 @@ package com.pulumi.fastly;
 
 import com.pulumi.core.Output;
 import com.pulumi.core.annotations.Import;
-import com.pulumi.exceptions.MissingRequiredPropertyException;
 import com.pulumi.fastly.inputs.ServiceVclAclArgs;
 import com.pulumi.fastly.inputs.ServiceVclBackendArgs;
 import com.pulumi.fastly.inputs.ServiceVclCacheSettingArgs;
@@ -163,15 +162,15 @@ public final class ServiceVclArgs extends com.pulumi.resources.ResourceArgs {
      * A set of Domain names to serve as entry points for your Service
      * 
      */
-    @Import(name="domains", required=true)
-    private Output<List<ServiceVclDomainArgs>> domains;
+    @Import(name="domains")
+    private @Nullable Output<List<ServiceVclDomainArgs>> domains;
 
     /**
      * @return A set of Domain names to serve as entry points for your Service
      * 
      */
-    public Output<List<ServiceVclDomainArgs>> domains() {
-        return this.domains;
+    public Optional<Output<List<ServiceVclDomainArgs>>> domains() {
+        return Optional.ofNullable(this.domains);
     }
 
     @Import(name="dynamicsnippets")
@@ -796,7 +795,7 @@ public final class ServiceVclArgs extends com.pulumi.resources.ResourceArgs {
          * @return builder
          * 
          */
-        public Builder domains(Output<List<ServiceVclDomainArgs>> domains) {
+        public Builder domains(@Nullable Output<List<ServiceVclDomainArgs>> domains) {
             $.domains = domains;
             return this;
         }
@@ -1477,9 +1476,6 @@ public final class ServiceVclArgs extends com.pulumi.resources.ResourceArgs {
         }
 
         public ServiceVclArgs build() {
-            if ($.domains == null) {
-                throw new MissingRequiredPropertyException("ServiceVclArgs", "domains");
-            }
             return $;
         }
     }

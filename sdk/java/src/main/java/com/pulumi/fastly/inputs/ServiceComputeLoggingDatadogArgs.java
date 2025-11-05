@@ -47,14 +47,14 @@ public final class ServiceComputeLoggingDatadogArgs extends com.pulumi.resources
     }
 
     /**
-     * The region that log data will be sent to. One of `US` or `EU`. Defaults to `US` if undefined
+     * The region that log data will be sent to. Defaults to `US` if undefined
      * 
      */
     @Import(name="region")
     private @Nullable Output<String> region;
 
     /**
-     * @return The region that log data will be sent to. One of `US` or `EU`. Defaults to `US` if undefined
+     * @return The region that log data will be sent to. Defaults to `US` if undefined
      * 
      */
     public Optional<Output<String>> region() {
@@ -146,7 +146,7 @@ public final class ServiceComputeLoggingDatadogArgs extends com.pulumi.resources
         }
 
         /**
-         * @param region The region that log data will be sent to. One of `US` or `EU`. Defaults to `US` if undefined
+         * @param region The region that log data will be sent to. Defaults to `US` if undefined
          * 
          * @return builder
          * 
@@ -157,7 +157,7 @@ public final class ServiceComputeLoggingDatadogArgs extends com.pulumi.resources
         }
 
         /**
-         * @param region The region that log data will be sent to. One of `US` or `EU`. Defaults to `US` if undefined
+         * @param region The region that log data will be sent to. Defaults to `US` if undefined
          * 
          * @return builder
          * 

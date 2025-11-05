@@ -64,6 +64,21 @@ public final class NgwafWorkspaceState extends com.pulumi.resources.ResourceArgs
     }
 
     /**
+     * The redirect URL used if default*blocking*response_code is `301` or `302`.
+     * 
+     */
+    @Import(name="defaultRedirectUrl")
+    private @Nullable Output<String> defaultRedirectUrl;
+
+    /**
+     * @return The redirect URL used if default*blocking*response_code is `301` or `302`.
+     * 
+     */
+    public Optional<Output<String>> defaultRedirectUrl() {
+        return Optional.ofNullable(this.defaultRedirectUrl);
+    }
+
+    /**
      * The description of the workspace
      * 
      */
@@ -129,6 +144,7 @@ public final class NgwafWorkspaceState extends com.pulumi.resources.ResourceArgs
         this.attackSignalThresholds = $.attackSignalThresholds;
         this.clientIpHeaders = $.clientIpHeaders;
         this.defaultBlockingResponseCode = $.defaultBlockingResponseCode;
+        this.defaultRedirectUrl = $.defaultRedirectUrl;
         this.description = $.description;
         this.ipAnonymization = $.ipAnonymization;
         this.mode = $.mode;
@@ -224,6 +240,27 @@ public final class NgwafWorkspaceState extends com.pulumi.resources.ResourceArgs
          */
         public Builder defaultBlockingResponseCode(Integer defaultBlockingResponseCode) {
             return defaultBlockingResponseCode(Output.of(defaultBlockingResponseCode));
+        }
+
+        /**
+         * @param defaultRedirectUrl The redirect URL used if default*blocking*response_code is `301` or `302`.
+         * 
+         * @return builder
+         * 
+         */
+        public Builder defaultRedirectUrl(@Nullable Output<String> defaultRedirectUrl) {
+            $.defaultRedirectUrl = defaultRedirectUrl;
+            return this;
+        }
+
+        /**
+         * @param defaultRedirectUrl The redirect URL used if default*blocking*response_code is `301` or `302`.
+         * 
+         * @return builder
+         * 
+         */
+        public Builder defaultRedirectUrl(String defaultRedirectUrl) {
+            return defaultRedirectUrl(Output.of(defaultRedirectUrl));
         }
 
         /**

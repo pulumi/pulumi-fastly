@@ -14,9 +14,17 @@ namespace Pulumi.Fastly.Outputs
     public sealed class ServiceComputeLoggingHttp
     {
         /// <summary>
+        /// The codec used for compression of your logs. Valid values are zstd, snappy, and gzip. If the specified codec is "gzip", GzipLevel will default to 3. To specify a different level, leave CompressionCodec blank and explicitly set the level using gzip_level. Specifying both CompressionCodec and GzipLevel in the same API request will result in an error.
+        /// </summary>
+        public readonly string? CompressionCodec;
+        /// <summary>
         /// Value of the `Content-Type` header sent with the request
         /// </summary>
         public readonly string? ContentType;
+        /// <summary>
+        /// Level of Gzip compression from `0-9`. `0` means no compression. `1` is the fastest and the least compressed version, `9` is the slowest and the most compressed version. Default `0`
+        /// </summary>
+        public readonly int? GzipLevel;
         /// <summary>
         /// Custom header sent with the request
         /// </summary>
@@ -41,6 +49,10 @@ namespace Pulumi.Fastly.Outputs
         /// The unique name of the HTTPS logging endpoint. It is important to note that changing this attribute will delete and recreate the resource
         /// </summary>
         public readonly string Name;
+        /// <summary>
+        /// How frequently, in seconds, batches of log data are sent to the HTTPS endpoint. A value of 0 sends logs at the same interval as the default, which is 5 seconds.
+        /// </summary>
+        public readonly int? Period;
         /// <summary>
         /// Region where logs will be processed before streaming to BigQuery. Valid values are 'none', 'us' and 'eu'.
         /// </summary>
@@ -76,7 +88,11 @@ namespace Pulumi.Fastly.Outputs
 
         [OutputConstructor]
         private ServiceComputeLoggingHttp(
+            string? compressionCodec,
+
             string? contentType,
+
+            int? gzipLevel,
 
             string? headerName,
 
@@ -89,6 +105,8 @@ namespace Pulumi.Fastly.Outputs
             string? method,
 
             string name,
+
+            int? period,
 
             string? processingRegion,
 
@@ -106,13 +124,16 @@ namespace Pulumi.Fastly.Outputs
 
             string url)
         {
+            CompressionCodec = compressionCodec;
             ContentType = contentType;
+            GzipLevel = gzipLevel;
             HeaderName = headerName;
             HeaderValue = headerValue;
             JsonFormat = jsonFormat;
             MessageType = messageType;
             Method = method;
             Name = name;
+            Period = period;
             ProcessingRegion = processingRegion;
             RequestMaxBytes = requestMaxBytes;
             RequestMaxEntries = requestMaxEntries;

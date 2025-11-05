@@ -13,6 +13,18 @@ namespace Pulumi.Fastly.Inputs
     public sealed class NgwafWorkspaceRuleActionGetArgs : global::Pulumi.ResourceArgs
     {
         /// <summary>
+        /// Specifies if interaction is allowed (used when `type = BrowserChallenge`).
+        /// </summary>
+        [Input("allowInteractive")]
+        public Input<bool>? AllowInteractive { get; set; }
+
+        /// <summary>
+        /// specifies the type of deception (used when `type = deception`).
+        /// </summary>
+        [Input("deceptionType")]
+        public Input<string>? DeceptionType { get; set; }
+
+        /// <summary>
         /// Redirect target (used when `type = redirect`).
         /// </summary>
         [Input("redirectUrl")]
@@ -31,7 +43,7 @@ namespace Pulumi.Fastly.Inputs
         public Input<string>? Signal { get; set; }
 
         /// <summary>
-        /// The action type, e.g. `Block`, `Redirect`, `ExcludeSignal`.
+        /// The action type. One of: `AddSignal`, `Allow`, `Block`, `BrowserChallenge`, `DynamicChallenge`, `ExcludeSignal`, `VerifyToken` or for rate limit rule valid values: `LogRequest`, `BlockSignal`, `BrowserChallenge`, `VerifyToken`
         /// </summary>
         [Input("type", required: true)]
         public Input<string> Type { get; set; } = null!;

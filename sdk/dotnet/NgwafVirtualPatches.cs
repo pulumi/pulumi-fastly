@@ -25,7 +25,7 @@ namespace Pulumi.Fastly
     /// 
     /// return await Deployment.RunAsync(() =&gt; 
     /// {
-    ///     var demo = new Fastly.Index.NgwafVirtualPatch("demo", new()
+    ///     var demo = new Fastly.NgwafVirtualPatches("demo", new()
     ///     {
     ///         Action = "block",
     ///         Enabled = true,

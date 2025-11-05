@@ -30,12 +30,22 @@ import (
 //		pulumi.Run(func(ctx *pulumi.Context) error {
 //			example, err := fastly.NewServiceVcl(ctx, "example", &fastly.ServiceVclArgs{
 //				Name: pulumi.String("my_vcl_service"),
+//				Domains: fastly.ServiceVclDomainArray{
+//					&fastly.ServiceVclDomainArgs{
+//						Name:    pulumi.String("demo.notexample.com"),
+//						Comment: pulumi.String("demo"),
+//					},
+//				},
 //			})
 //			if err != nil {
 //				return err
 //			}
 //			exampleIntegration, err := fastly.NewIntegration(ctx, "example", &fastly.IntegrationArgs{
 //				Name: pulumi.String("my_integration"),
+//				Type: pulumi.String("a_valid_type"),
+//				Config: pulumi.StringMap{
+//					"webhook": pulumi.String("some_webhook"),
+//				},
 //			})
 //			if err != nil {
 //				return err

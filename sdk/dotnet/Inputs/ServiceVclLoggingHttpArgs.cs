@@ -13,6 +13,12 @@ namespace Pulumi.Fastly.Inputs
     public sealed class ServiceVclLoggingHttpArgs : global::Pulumi.ResourceArgs
     {
         /// <summary>
+        /// The codec used for compression of your logs. Valid values are zstd, snappy, and gzip. If the specified codec is "gzip", GzipLevel will default to 3. To specify a different level, leave CompressionCodec blank and explicitly set the level using gzip_level. Specifying both CompressionCodec and GzipLevel in the same API request will result in an error.
+        /// </summary>
+        [Input("compressionCodec")]
+        public Input<string>? CompressionCodec { get; set; }
+
+        /// <summary>
         /// Value of the `Content-Type` header sent with the request
         /// </summary>
         [Input("contentType")]
@@ -29,6 +35,12 @@ namespace Pulumi.Fastly.Inputs
         /// </summary>
         [Input("formatVersion")]
         public Input<int>? FormatVersion { get; set; }
+
+        /// <summary>
+        /// Level of Gzip compression from `0-9`. `0` means no compression. `1` is the fastest and the least compressed version, `9` is the slowest and the most compressed version. Default `0`
+        /// </summary>
+        [Input("gzipLevel")]
+        public Input<int>? GzipLevel { get; set; }
 
         /// <summary>
         /// Custom header sent with the request
@@ -65,6 +77,12 @@ namespace Pulumi.Fastly.Inputs
         /// </summary>
         [Input("name", required: true)]
         public Input<string> Name { get; set; } = null!;
+
+        /// <summary>
+        /// How frequently, in seconds, batches of log data are sent to the HTTPS endpoint. A value of 0 sends logs at the same interval as the default, which is 5 seconds.
+        /// </summary>
+        [Input("period")]
+        public Input<int>? Period { get; set; }
 
         /// <summary>
         /// Where in the generated VCL the logging call should be placed

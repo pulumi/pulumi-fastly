@@ -21,33 +21,34 @@ class NgwafThresholdsArgs:
     def __init__(__self__, *,
                  action: pulumi.Input[_builtins.str],
                  dont_notify: pulumi.Input[_builtins.bool],
-                 duration: pulumi.Input[_builtins.int],
                  enabled: pulumi.Input[_builtins.bool],
                  interval: pulumi.Input[_builtins.int],
                  limit: pulumi.Input[_builtins.int],
                  signal: pulumi.Input[_builtins.str],
                  workspace_id: pulumi.Input[_builtins.str],
+                 duration: Optional[pulumi.Input[_builtins.int]] = None,
                  name: Optional[pulumi.Input[_builtins.str]] = None):
         """
         The set of arguments for constructing a NgwafThresholds resource.
         :param pulumi.Input[_builtins.str] action: Action to take when threshold is exceeded.
         :param pulumi.Input[_builtins.bool] dont_notify: Whether to silence notifications when action is taken.
-        :param pulumi.Input[_builtins.int] duration: Duration the action is in place, in seconds. Minimum 1 and maximum 31,556,900.
         :param pulumi.Input[_builtins.bool] enabled: Whether this threshold is active.
         :param pulumi.Input[_builtins.int] interval: Threshold interval in seconds. Accepted values are `60`, `600`, and `3600`.
         :param pulumi.Input[_builtins.int] limit: Threshold limit. Minimum 1 and maximum 10,000.
         :param pulumi.Input[_builtins.str] signal: The name of the signal this threshold is acting on.
         :param pulumi.Input[_builtins.str] workspace_id: The ID of the workspace.
+        :param pulumi.Input[_builtins.int] duration: Duration the action is in place, in seconds. Minimum 1 and maximum 31,556,900.
         :param pulumi.Input[_builtins.str] name: The name of the threshold.
         """
         pulumi.set(__self__, "action", action)
         pulumi.set(__self__, "dont_notify", dont_notify)
-        pulumi.set(__self__, "duration", duration)
         pulumi.set(__self__, "enabled", enabled)
         pulumi.set(__self__, "interval", interval)
         pulumi.set(__self__, "limit", limit)
         pulumi.set(__self__, "signal", signal)
         pulumi.set(__self__, "workspace_id", workspace_id)
+        if duration is not None:
+            pulumi.set(__self__, "duration", duration)
         if name is not None:
             pulumi.set(__self__, "name", name)
 
@@ -74,18 +75,6 @@ class NgwafThresholdsArgs:
     @dont_notify.setter
     def dont_notify(self, value: pulumi.Input[_builtins.bool]):
         pulumi.set(self, "dont_notify", value)
-
-    @_builtins.property
-    @pulumi.getter
-    def duration(self) -> pulumi.Input[_builtins.int]:
-        """
-        Duration the action is in place, in seconds. Minimum 1 and maximum 31,556,900.
-        """
-        return pulumi.get(self, "duration")
-
-    @duration.setter
-    def duration(self, value: pulumi.Input[_builtins.int]):
-        pulumi.set(self, "duration", value)
 
     @_builtins.property
     @pulumi.getter
@@ -146,6 +135,18 @@ class NgwafThresholdsArgs:
     @workspace_id.setter
     def workspace_id(self, value: pulumi.Input[_builtins.str]):
         pulumi.set(self, "workspace_id", value)
+
+    @_builtins.property
+    @pulumi.getter
+    def duration(self) -> Optional[pulumi.Input[_builtins.int]]:
+        """
+        Duration the action is in place, in seconds. Minimum 1 and maximum 31,556,900.
+        """
+        return pulumi.get(self, "duration")
+
+    @duration.setter
+    def duration(self, value: Optional[pulumi.Input[_builtins.int]]):
+        pulumi.set(self, "duration", value)
 
     @_builtins.property
     @pulumi.getter
@@ -447,8 +448,6 @@ class NgwafThresholds(pulumi.CustomResource):
             if dont_notify is None and not opts.urn:
                 raise TypeError("Missing required property 'dont_notify'")
             __props__.__dict__["dont_notify"] = dont_notify
-            if duration is None and not opts.urn:
-                raise TypeError("Missing required property 'duration'")
             __props__.__dict__["duration"] = duration
             if enabled is None and not opts.urn:
                 raise TypeError("Missing required property 'enabled'")
@@ -535,7 +534,7 @@ class NgwafThresholds(pulumi.CustomResource):
 
     @_builtins.property
     @pulumi.getter
-    def duration(self) -> pulumi.Output[_builtins.int]:
+    def duration(self) -> pulumi.Output[Optional[_builtins.int]]:
         """
         Duration the action is in place, in seconds. Minimum 1 and maximum 31,556,900.
         """

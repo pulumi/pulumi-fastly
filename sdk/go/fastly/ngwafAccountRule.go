@@ -98,8 +98,8 @@ type NgwafAccountRule struct {
 	GroupConditions NgwafAccountRuleGroupConditionArrayOutput `pulumi:"groupConditions"`
 	// Logical operator to apply to group conditions. Accepted values are `any` and `all`.
 	GroupOperator pulumi.StringPtrOutput `pulumi:"groupOperator"`
-	// Block specifically for rate*limit rules.
-	RateLimit NgwafAccountRuleRateLimitPtrOutput `pulumi:"rateLimit"`
+	// List of multival conditions with nested logic. Each multival list must define a `field, operator, groupOperator` and at least one condition.
+	MultivalConditions NgwafAccountRuleMultivalConditionArrayOutput `pulumi:"multivalConditions"`
 	// Logging behavior for matching requests. Accepted values are `sampled` and `none`.
 	RequestLogging pulumi.StringPtrOutput `pulumi:"requestLogging"`
 	// The type of the rule. Accepted values are `request` and `signal`.
@@ -165,8 +165,8 @@ type ngwafAccountRuleState struct {
 	GroupConditions []NgwafAccountRuleGroupCondition `pulumi:"groupConditions"`
 	// Logical operator to apply to group conditions. Accepted values are `any` and `all`.
 	GroupOperator *string `pulumi:"groupOperator"`
-	// Block specifically for rate*limit rules.
-	RateLimit *NgwafAccountRuleRateLimit `pulumi:"rateLimit"`
+	// List of multival conditions with nested logic. Each multival list must define a `field, operator, groupOperator` and at least one condition.
+	MultivalConditions []NgwafAccountRuleMultivalCondition `pulumi:"multivalConditions"`
 	// Logging behavior for matching requests. Accepted values are `sampled` and `none`.
 	RequestLogging *string `pulumi:"requestLogging"`
 	// The type of the rule. Accepted values are `request` and `signal`.
@@ -188,8 +188,8 @@ type NgwafAccountRuleState struct {
 	GroupConditions NgwafAccountRuleGroupConditionArrayInput
 	// Logical operator to apply to group conditions. Accepted values are `any` and `all`.
 	GroupOperator pulumi.StringPtrInput
-	// Block specifically for rate*limit rules.
-	RateLimit NgwafAccountRuleRateLimitPtrInput
+	// List of multival conditions with nested logic. Each multival list must define a `field, operator, groupOperator` and at least one condition.
+	MultivalConditions NgwafAccountRuleMultivalConditionArrayInput
 	// Logging behavior for matching requests. Accepted values are `sampled` and `none`.
 	RequestLogging pulumi.StringPtrInput
 	// The type of the rule. Accepted values are `request` and `signal`.
@@ -215,8 +215,8 @@ type ngwafAccountRuleArgs struct {
 	GroupConditions []NgwafAccountRuleGroupCondition `pulumi:"groupConditions"`
 	// Logical operator to apply to group conditions. Accepted values are `any` and `all`.
 	GroupOperator *string `pulumi:"groupOperator"`
-	// Block specifically for rate*limit rules.
-	RateLimit *NgwafAccountRuleRateLimit `pulumi:"rateLimit"`
+	// List of multival conditions with nested logic. Each multival list must define a `field, operator, groupOperator` and at least one condition.
+	MultivalConditions []NgwafAccountRuleMultivalCondition `pulumi:"multivalConditions"`
 	// Logging behavior for matching requests. Accepted values are `sampled` and `none`.
 	RequestLogging *string `pulumi:"requestLogging"`
 	// The type of the rule. Accepted values are `request` and `signal`.
@@ -239,8 +239,8 @@ type NgwafAccountRuleArgs struct {
 	GroupConditions NgwafAccountRuleGroupConditionArrayInput
 	// Logical operator to apply to group conditions. Accepted values are `any` and `all`.
 	GroupOperator pulumi.StringPtrInput
-	// Block specifically for rate*limit rules.
-	RateLimit NgwafAccountRuleRateLimitPtrInput
+	// List of multival conditions with nested logic. Each multival list must define a `field, operator, groupOperator` and at least one condition.
+	MultivalConditions NgwafAccountRuleMultivalConditionArrayInput
 	// Logging behavior for matching requests. Accepted values are `sampled` and `none`.
 	RequestLogging pulumi.StringPtrInput
 	// The type of the rule. Accepted values are `request` and `signal`.
@@ -369,9 +369,9 @@ func (o NgwafAccountRuleOutput) GroupOperator() pulumi.StringPtrOutput {
 	return o.ApplyT(func(v *NgwafAccountRule) pulumi.StringPtrOutput { return v.GroupOperator }).(pulumi.StringPtrOutput)
 }
 
-// Block specifically for rate*limit rules.
-func (o NgwafAccountRuleOutput) RateLimit() NgwafAccountRuleRateLimitPtrOutput {
-	return o.ApplyT(func(v *NgwafAccountRule) NgwafAccountRuleRateLimitPtrOutput { return v.RateLimit }).(NgwafAccountRuleRateLimitPtrOutput)
+// List of multival conditions with nested logic. Each multival list must define a `field, operator, groupOperator` and at least one condition.
+func (o NgwafAccountRuleOutput) MultivalConditions() NgwafAccountRuleMultivalConditionArrayOutput {
+	return o.ApplyT(func(v *NgwafAccountRule) NgwafAccountRuleMultivalConditionArrayOutput { return v.MultivalConditions }).(NgwafAccountRuleMultivalConditionArrayOutput)
 }
 
 // Logging behavior for matching requests. Accepted values are `sampled` and `none`.

@@ -13,6 +13,12 @@ namespace Pulumi.Fastly.Inputs
     public sealed class ServiceComputeProductEnablementArgs : global::Pulumi.ResourceArgs
     {
         /// <summary>
+        /// Enable API Discovery support
+        /// </summary>
+        [Input("apiDiscovery")]
+        public Input<bool>? ApiDiscovery { get; set; }
+
+        /// <summary>
         /// DDoS Protection product
         /// </summary>
         [Input("ddosProtection")]

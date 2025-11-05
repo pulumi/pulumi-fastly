@@ -13,6 +13,12 @@ namespace Pulumi.Fastly.Inputs
     public sealed class ServiceVclProductEnablementGetArgs : global::Pulumi.ResourceArgs
     {
         /// <summary>
+        /// Enable API Discovery support
+        /// </summary>
+        [Input("apiDiscovery")]
+        public Input<bool>? ApiDiscovery { get; set; }
+
+        /// <summary>
         /// Enable Bot Management support
         /// </summary>
         [Input("botManagement")]

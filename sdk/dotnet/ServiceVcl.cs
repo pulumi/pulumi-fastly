@@ -271,7 +271,7 @@ namespace Pulumi.Fastly
         /// <param name="name">The unique name of the resource</param>
         /// <param name="args">The arguments used to populate this resource's properties</param>
         /// <param name="options">A bag of options that control this resource's behavior</param>
-        public ServiceVcl(string name, ServiceVclArgs args, CustomResourceOptions? options = null)
+        public ServiceVcl(string name, ServiceVclArgs? args = null, CustomResourceOptions? options = null)
             : base("fastly:index/serviceVcl:ServiceVcl", name, args ?? new ServiceVclArgs(), MakeResourceOptions(options, ""))
         {
         }
@@ -378,7 +378,7 @@ namespace Pulumi.Fastly
             set => _directors = value;
         }
 
-        [Input("domains", required: true)]
+        [Input("domains")]
         private InputList<Inputs.ServiceVclDomainArgs>? _domains;
 
         /// <summary>

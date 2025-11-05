@@ -37,10 +37,10 @@ __all__ = [
     'NgwafAccountRuleGroupConditionArgsDict',
     'NgwafAccountRuleGroupConditionConditionArgs',
     'NgwafAccountRuleGroupConditionConditionArgsDict',
-    'NgwafAccountRuleRateLimitArgs',
-    'NgwafAccountRuleRateLimitArgsDict',
-    'NgwafAccountRuleRateLimitClientIdentifierArgs',
-    'NgwafAccountRuleRateLimitClientIdentifierArgsDict',
+    'NgwafAccountRuleMultivalConditionArgs',
+    'NgwafAccountRuleMultivalConditionArgsDict',
+    'NgwafAccountRuleMultivalConditionConditionArgs',
+    'NgwafAccountRuleMultivalConditionConditionArgsDict',
     'NgwafWorkspaceAttackSignalThresholdsArgs',
     'NgwafWorkspaceAttackSignalThresholdsArgsDict',
     'NgwafWorkspaceRuleActionArgs',
@@ -51,6 +51,10 @@ __all__ = [
     'NgwafWorkspaceRuleGroupConditionArgsDict',
     'NgwafWorkspaceRuleGroupConditionConditionArgs',
     'NgwafWorkspaceRuleGroupConditionConditionArgsDict',
+    'NgwafWorkspaceRuleMultivalConditionArgs',
+    'NgwafWorkspaceRuleMultivalConditionArgsDict',
+    'NgwafWorkspaceRuleMultivalConditionConditionArgs',
+    'NgwafWorkspaceRuleMultivalConditionConditionArgsDict',
     'NgwafWorkspaceRuleRateLimitArgs',
     'NgwafWorkspaceRuleRateLimitArgsDict',
     'NgwafWorkspaceRuleRateLimitClientIdentifierArgs',
@@ -63,6 +67,8 @@ __all__ = [
     'ServiceComputeDictionaryArgsDict',
     'ServiceComputeDomainArgs',
     'ServiceComputeDomainArgsDict',
+    'ServiceComputeHealthcheckArgs',
+    'ServiceComputeHealthcheckArgsDict',
     'ServiceComputeImageOptimizerDefaultSettingsArgs',
     'ServiceComputeImageOptimizerDefaultSettingsArgsDict',
     'ServiceComputeLoggingBigqueryArgs',
@@ -103,6 +109,8 @@ __all__ = [
     'ServiceComputeLoggingLogshuttleArgsDict',
     'ServiceComputeLoggingNewrelicArgs',
     'ServiceComputeLoggingNewrelicArgsDict',
+    'ServiceComputeLoggingNewrelicotlpArgs',
+    'ServiceComputeLoggingNewrelicotlpArgsDict',
     'ServiceComputeLoggingOpenstackArgs',
     'ServiceComputeLoggingOpenstackArgsDict',
     'ServiceComputeLoggingPapertrailArgs',
@@ -709,7 +717,7 @@ if not MYPY:
     class NgwafAccountRuleActionArgsDict(TypedDict):
         type: pulumi.Input[_builtins.str]
         """
-        The action type, e.g. `block`, `redirect`, `exclude_signal`.
+        The action type. One of: `add_signal`, `allow`, `block`, `browser_challenge`, `dynamic_challenge`, `exclude_signal`, `verify_token` or for rate limit rule valid values: `log_request`, `block_signal`, `browser_challenge`, `verify_token`
         """
         signal: NotRequired[pulumi.Input[_builtins.str]]
         """
@@ -724,7 +732,7 @@ class NgwafAccountRuleActionArgs:
                  type: pulumi.Input[_builtins.str],
                  signal: Optional[pulumi.Input[_builtins.str]] = None):
         """
-        :param pulumi.Input[_builtins.str] type: The action type, e.g. `block`, `redirect`, `exclude_signal`.
+        :param pulumi.Input[_builtins.str] type: The action type. One of: `add_signal`, `allow`, `block`, `browser_challenge`, `dynamic_challenge`, `exclude_signal`, `verify_token` or for rate limit rule valid values: `log_request`, `block_signal`, `browser_challenge`, `verify_token`
         :param pulumi.Input[_builtins.str] signal: Signal name to exclude (used when `type = exclude_signal`).
         """
         pulumi.set(__self__, "type", type)
@@ -735,7 +743,7 @@ class NgwafAccountRuleActionArgs:
     @pulumi.getter
     def type(self) -> pulumi.Input[_builtins.str]:
         """
-        The action type, e.g. `block`, `redirect`, `exclude_signal`.
+        The action type. One of: `add_signal`, `allow`, `block`, `browser_challenge`, `dynamic_challenge`, `exclude_signal`, `verify_token` or for rate limit rule valid values: `log_request`, `block_signal`, `browser_challenge`, `verify_token`
         """
         return pulumi.get(self, "type")
 
@@ -945,181 +953,160 @@ class NgwafAccountRuleGroupConditionConditionArgs:
 
 
 if not MYPY:
-    class NgwafAccountRuleRateLimitArgsDict(TypedDict):
-        client_identifiers: pulumi.Input[Sequence[pulumi.Input['NgwafAccountRuleRateLimitClientIdentifierArgsDict']]]
+    class NgwafAccountRuleMultivalConditionArgsDict(TypedDict):
+        conditions: pulumi.Input[Sequence[pulumi.Input['NgwafAccountRuleMultivalConditionConditionArgsDict']]]
         """
-        List of client identifiers used for rate limiting. Can only be length 1 or 2.
+        A list of nested conditions in this list.
         """
-        duration: pulumi.Input[_builtins.int]
+        field: pulumi.Input[_builtins.str]
         """
-        Duration in seconds for the rate limit.
+        Enums for multival condition field.. Accepted values are `post_parameter`, `query_parameter`, `request_cookie`, `request_header`, `response_header`, and `signal`.
         """
-        interval: pulumi.Input[_builtins.int]
+        group_operator: pulumi.Input[_builtins.str]
         """
-        Time interval for the rate limit in seconds. Accepted values are 60, 600, and 3600.
+        Logical operator for the group. Accepted values are `any` and `all`.
         """
-        signal: pulumi.Input[_builtins.str]
+        operator: pulumi.Input[_builtins.str]
         """
-        Reference ID of the custom signal this rule uses to count requests.
-        """
-        threshold: pulumi.Input[_builtins.int]
-        """
-        Rate limit threshold. Minimum 1 and maximum 10,000.
+        Indicates whether the supplied conditions will check for existence or non-existence of matching field values. Accepted values are `exists` and `does_not_exist`.
         """
 elif False:
-    NgwafAccountRuleRateLimitArgsDict: TypeAlias = Mapping[str, Any]
+    NgwafAccountRuleMultivalConditionArgsDict: TypeAlias = Mapping[str, Any]
 
 @pulumi.input_type
-class NgwafAccountRuleRateLimitArgs:
+class NgwafAccountRuleMultivalConditionArgs:
     def __init__(__self__, *,
-                 client_identifiers: pulumi.Input[Sequence[pulumi.Input['NgwafAccountRuleRateLimitClientIdentifierArgs']]],
-                 duration: pulumi.Input[_builtins.int],
-                 interval: pulumi.Input[_builtins.int],
-                 signal: pulumi.Input[_builtins.str],
-                 threshold: pulumi.Input[_builtins.int]):
+                 conditions: pulumi.Input[Sequence[pulumi.Input['NgwafAccountRuleMultivalConditionConditionArgs']]],
+                 field: pulumi.Input[_builtins.str],
+                 group_operator: pulumi.Input[_builtins.str],
+                 operator: pulumi.Input[_builtins.str]):
         """
-        :param pulumi.Input[Sequence[pulumi.Input['NgwafAccountRuleRateLimitClientIdentifierArgs']]] client_identifiers: List of client identifiers used for rate limiting. Can only be length 1 or 2.
-        :param pulumi.Input[_builtins.int] duration: Duration in seconds for the rate limit.
-        :param pulumi.Input[_builtins.int] interval: Time interval for the rate limit in seconds. Accepted values are 60, 600, and 3600.
-        :param pulumi.Input[_builtins.str] signal: Reference ID of the custom signal this rule uses to count requests.
-        :param pulumi.Input[_builtins.int] threshold: Rate limit threshold. Minimum 1 and maximum 10,000.
+        :param pulumi.Input[Sequence[pulumi.Input['NgwafAccountRuleMultivalConditionConditionArgs']]] conditions: A list of nested conditions in this list.
+        :param pulumi.Input[_builtins.str] field: Enums for multival condition field.. Accepted values are `post_parameter`, `query_parameter`, `request_cookie`, `request_header`, `response_header`, and `signal`.
+        :param pulumi.Input[_builtins.str] group_operator: Logical operator for the group. Accepted values are `any` and `all`.
+        :param pulumi.Input[_builtins.str] operator: Indicates whether the supplied conditions will check for existence or non-existence of matching field values. Accepted values are `exists` and `does_not_exist`.
         """
-        pulumi.set(__self__, "client_identifiers", client_identifiers)
-        pulumi.set(__self__, "duration", duration)
-        pulumi.set(__self__, "interval", interval)
-        pulumi.set(__self__, "signal", signal)
-        pulumi.set(__self__, "threshold", threshold)
-
-    @_builtins.property
-    @pulumi.getter(name="clientIdentifiers")
-    def client_identifiers(self) -> pulumi.Input[Sequence[pulumi.Input['NgwafAccountRuleRateLimitClientIdentifierArgs']]]:
-        """
-        List of client identifiers used for rate limiting. Can only be length 1 or 2.
-        """
-        return pulumi.get(self, "client_identifiers")
-
-    @client_identifiers.setter
-    def client_identifiers(self, value: pulumi.Input[Sequence[pulumi.Input['NgwafAccountRuleRateLimitClientIdentifierArgs']]]):
-        pulumi.set(self, "client_identifiers", value)
+        pulumi.set(__self__, "conditions", conditions)
+        pulumi.set(__self__, "field", field)
+        pulumi.set(__self__, "group_operator", group_operator)
+        pulumi.set(__self__, "operator", operator)
 
     @_builtins.property
     @pulumi.getter
-    def duration(self) -> pulumi.Input[_builtins.int]:
+    def conditions(self) -> pulumi.Input[Sequence[pulumi.Input['NgwafAccountRuleMultivalConditionConditionArgs']]]:
         """
-        Duration in seconds for the rate limit.
+        A list of nested conditions in this list.
         """
-        return pulumi.get(self, "duration")
+        return pulumi.get(self, "conditions")
 
-    @duration.setter
-    def duration(self, value: pulumi.Input[_builtins.int]):
-        pulumi.set(self, "duration", value)
-
-    @_builtins.property
-    @pulumi.getter
-    def interval(self) -> pulumi.Input[_builtins.int]:
-        """
-        Time interval for the rate limit in seconds. Accepted values are 60, 600, and 3600.
-        """
-        return pulumi.get(self, "interval")
-
-    @interval.setter
-    def interval(self, value: pulumi.Input[_builtins.int]):
-        pulumi.set(self, "interval", value)
+    @conditions.setter
+    def conditions(self, value: pulumi.Input[Sequence[pulumi.Input['NgwafAccountRuleMultivalConditionConditionArgs']]]):
+        pulumi.set(self, "conditions", value)
 
     @_builtins.property
     @pulumi.getter
-    def signal(self) -> pulumi.Input[_builtins.str]:
+    def field(self) -> pulumi.Input[_builtins.str]:
         """
-        Reference ID of the custom signal this rule uses to count requests.
+        Enums for multival condition field.. Accepted values are `post_parameter`, `query_parameter`, `request_cookie`, `request_header`, `response_header`, and `signal`.
         """
-        return pulumi.get(self, "signal")
+        return pulumi.get(self, "field")
 
-    @signal.setter
-    def signal(self, value: pulumi.Input[_builtins.str]):
-        pulumi.set(self, "signal", value)
+    @field.setter
+    def field(self, value: pulumi.Input[_builtins.str]):
+        pulumi.set(self, "field", value)
+
+    @_builtins.property
+    @pulumi.getter(name="groupOperator")
+    def group_operator(self) -> pulumi.Input[_builtins.str]:
+        """
+        Logical operator for the group. Accepted values are `any` and `all`.
+        """
+        return pulumi.get(self, "group_operator")
+
+    @group_operator.setter
+    def group_operator(self, value: pulumi.Input[_builtins.str]):
+        pulumi.set(self, "group_operator", value)
 
     @_builtins.property
     @pulumi.getter
-    def threshold(self) -> pulumi.Input[_builtins.int]:
+    def operator(self) -> pulumi.Input[_builtins.str]:
         """
-        Rate limit threshold. Minimum 1 and maximum 10,000.
+        Indicates whether the supplied conditions will check for existence or non-existence of matching field values. Accepted values are `exists` and `does_not_exist`.
         """
-        return pulumi.get(self, "threshold")
+        return pulumi.get(self, "operator")
 
-    @threshold.setter
-    def threshold(self, value: pulumi.Input[_builtins.int]):
-        pulumi.set(self, "threshold", value)
+    @operator.setter
+    def operator(self, value: pulumi.Input[_builtins.str]):
+        pulumi.set(self, "operator", value)
 
 
 if not MYPY:
-    class NgwafAccountRuleRateLimitClientIdentifierArgsDict(TypedDict):
-        type: pulumi.Input[_builtins.str]
+    class NgwafAccountRuleMultivalConditionConditionArgsDict(TypedDict):
+        field: pulumi.Input[_builtins.str]
         """
-        Type of the Client Identifier.
+        Field to inspect (e.g., `name`, `value`, `signal_id`).
         """
-        key: NotRequired[pulumi.Input[_builtins.str]]
+        operator: pulumi.Input[_builtins.str]
         """
-        Key for the Client Identifier.
+        Operator to apply (e.g., `equals`, `contains`).
         """
-        name: NotRequired[pulumi.Input[_builtins.str]]
+        value: pulumi.Input[_builtins.str]
         """
-        Name for the Client Identifier.
+        The value to test the field against.
         """
 elif False:
-    NgwafAccountRuleRateLimitClientIdentifierArgsDict: TypeAlias = Mapping[str, Any]
+    NgwafAccountRuleMultivalConditionConditionArgsDict: TypeAlias = Mapping[str, Any]
 
 @pulumi.input_type
-class NgwafAccountRuleRateLimitClientIdentifierArgs:
+class NgwafAccountRuleMultivalConditionConditionArgs:
     def __init__(__self__, *,
-                 type: pulumi.Input[_builtins.str],
-                 key: Optional[pulumi.Input[_builtins.str]] = None,
-                 name: Optional[pulumi.Input[_builtins.str]] = None):
+                 field: pulumi.Input[_builtins.str],
+                 operator: pulumi.Input[_builtins.str],
+                 value: pulumi.Input[_builtins.str]):
         """
-        :param pulumi.Input[_builtins.str] type: Type of the Client Identifier.
-        :param pulumi.Input[_builtins.str] key: Key for the Client Identifier.
-        :param pulumi.Input[_builtins.str] name: Name for the Client Identifier.
+        :param pulumi.Input[_builtins.str] field: Field to inspect (e.g., `name`, `value`, `signal_id`).
+        :param pulumi.Input[_builtins.str] operator: Operator to apply (e.g., `equals`, `contains`).
+        :param pulumi.Input[_builtins.str] value: The value to test the field against.
         """
-        pulumi.set(__self__, "type", type)
-        if key is not None:
-            pulumi.set(__self__, "key", key)
-        if name is not None:
-            pulumi.set(__self__, "name", name)
+        pulumi.set(__self__, "field", field)
+        pulumi.set(__self__, "operator", operator)
+        pulumi.set(__self__, "value", value)
 
     @_builtins.property
     @pulumi.getter
-    def type(self) -> pulumi.Input[_builtins.str]:
+    def field(self) -> pulumi.Input[_builtins.str]:
         """
-        Type of the Client Identifier.
+        Field to inspect (e.g., `name`, `value`, `signal_id`).
         """
-        return pulumi.get(self, "type")
+        return pulumi.get(self, "field")
 
-    @type.setter
-    def type(self, value: pulumi.Input[_builtins.str]):
-        pulumi.set(self, "type", value)
-
-    @_builtins.property
-    @pulumi.getter
-    def key(self) -> Optional[pulumi.Input[_builtins.str]]:
-        """
-        Key for the Client Identifier.
-        """
-        return pulumi.get(self, "key")
-
-    @key.setter
-    def key(self, value: Optional[pulumi.Input[_builtins.str]]):
-        pulumi.set(self, "key", value)
+    @field.setter
+    def field(self, value: pulumi.Input[_builtins.str]):
+        pulumi.set(self, "field", value)
 
     @_builtins.property
     @pulumi.getter
-    def name(self) -> Optional[pulumi.Input[_builtins.str]]:
+    def operator(self) -> pulumi.Input[_builtins.str]:
         """
-        Name for the Client Identifier.
+        Operator to apply (e.g., `equals`, `contains`).
         """
-        return pulumi.get(self, "name")
+        return pulumi.get(self, "operator")
 
-    @name.setter
-    def name(self, value: Optional[pulumi.Input[_builtins.str]]):
-        pulumi.set(self, "name", value)
+    @operator.setter
+    def operator(self, value: pulumi.Input[_builtins.str]):
+        pulumi.set(self, "operator", value)
+
+    @_builtins.property
+    @pulumi.getter
+    def value(self) -> pulumi.Input[_builtins.str]:
+        """
+        The value to test the field against.
+        """
+        return pulumi.get(self, "value")
+
+    @value.setter
+    def value(self, value: pulumi.Input[_builtins.str]):
+        pulumi.set(self, "value", value)
 
 
 if not MYPY:
@@ -1218,7 +1205,15 @@ if not MYPY:
     class NgwafWorkspaceRuleActionArgsDict(TypedDict):
         type: pulumi.Input[_builtins.str]
         """
-        The action type, e.g. `block`, `redirect`, `exclude_signal`.
+        The action type. One of: `add_signal`, `allow`, `block`, `browser_challenge`, `dynamic_challenge`, `exclude_signal`, `verify_token` or for rate limit rule valid values: `log_request`, `block_signal`, `browser_challenge`, `verify_token`
+        """
+        allow_interactive: NotRequired[pulumi.Input[_builtins.bool]]
+        """
+        Specifies if interaction is allowed (used when `type = browser_challenge`).
+        """
+        deception_type: NotRequired[pulumi.Input[_builtins.str]]
+        """
+        specifies the type of deception (used when `type = deception`).
         """
         redirect_url: NotRequired[pulumi.Input[_builtins.str]]
         """
@@ -1239,16 +1234,24 @@ elif False:
 class NgwafWorkspaceRuleActionArgs:
     def __init__(__self__, *,
                  type: pulumi.Input[_builtins.str],
+                 allow_interactive: Optional[pulumi.Input[_builtins.bool]] = None,
+                 deception_type: Optional[pulumi.Input[_builtins.str]] = None,
                  redirect_url: Optional[pulumi.Input[_builtins.str]] = None,
                  response_code: Optional[pulumi.Input[_builtins.int]] = None,
                  signal: Optional[pulumi.Input[_builtins.str]] = None):
         """
-        :param pulumi.Input[_builtins.str] type: The action type, e.g. `block`, `redirect`, `exclude_signal`.
+        :param pulumi.Input[_builtins.str] type: The action type. One of: `add_signal`, `allow`, `block`, `browser_challenge`, `dynamic_challenge`, `exclude_signal`, `verify_token` or for rate limit rule valid values: `log_request`, `block_signal`, `browser_challenge`, `verify_token`
+        :param pulumi.Input[_builtins.bool] allow_interactive: Specifies if interaction is allowed (used when `type = browser_challenge`).
+        :param pulumi.Input[_builtins.str] deception_type: specifies the type of deception (used when `type = deception`).
         :param pulumi.Input[_builtins.str] redirect_url: Redirect target (used when `type = redirect`).
         :param pulumi.Input[_builtins.int] response_code: Response code used with redirect.
         :param pulumi.Input[_builtins.str] signal: Signal name to exclude (used when `type = exclude_signal`).
         """
         pulumi.set(__self__, "type", type)
+        if allow_interactive is not None:
+            pulumi.set(__self__, "allow_interactive", allow_interactive)
+        if deception_type is not None:
+            pulumi.set(__self__, "deception_type", deception_type)
         if redirect_url is not None:
             pulumi.set(__self__, "redirect_url", redirect_url)
         if response_code is not None:
@@ -1260,13 +1263,37 @@ class NgwafWorkspaceRuleActionArgs:
     @pulumi.getter
     def type(self) -> pulumi.Input[_builtins.str]:
         """
-        The action type, e.g. `block`, `redirect`, `exclude_signal`.
+        The action type. One of: `add_signal`, `allow`, `block`, `browser_challenge`, `dynamic_challenge`, `exclude_signal`, `verify_token` or for rate limit rule valid values: `log_request`, `block_signal`, `browser_challenge`, `verify_token`
         """
         return pulumi.get(self, "type")
 
     @type.setter
     def type(self, value: pulumi.Input[_builtins.str]):
         pulumi.set(self, "type", value)
+
+    @_builtins.property
+    @pulumi.getter(name="allowInteractive")
+    def allow_interactive(self) -> Optional[pulumi.Input[_builtins.bool]]:
+        """
+        Specifies if interaction is allowed (used when `type = browser_challenge`).
+        """
+        return pulumi.get(self, "allow_interactive")
+
+    @allow_interactive.setter
+    def allow_interactive(self, value: Optional[pulumi.Input[_builtins.bool]]):
+        pulumi.set(self, "allow_interactive", value)
+
+    @_builtins.property
+    @pulumi.getter(name="deceptionType")
+    def deception_type(self) -> Optional[pulumi.Input[_builtins.str]]:
+        """
+        specifies the type of deception (used when `type = deception`).
+        """
+        return pulumi.get(self, "deception_type")
+
+    @deception_type.setter
+    def deception_type(self, value: Optional[pulumi.Input[_builtins.str]]):
+        pulumi.set(self, "deception_type", value)
 
     @_builtins.property
     @pulumi.getter(name="redirectUrl")
@@ -1461,6 +1488,163 @@ class NgwafWorkspaceRuleGroupConditionConditionArgs:
     def field(self) -> pulumi.Input[_builtins.str]:
         """
         Field to inspect (e.g., `ip`, `path`).
+        """
+        return pulumi.get(self, "field")
+
+    @field.setter
+    def field(self, value: pulumi.Input[_builtins.str]):
+        pulumi.set(self, "field", value)
+
+    @_builtins.property
+    @pulumi.getter
+    def operator(self) -> pulumi.Input[_builtins.str]:
+        """
+        Operator to apply (e.g., `equals`, `contains`).
+        """
+        return pulumi.get(self, "operator")
+
+    @operator.setter
+    def operator(self, value: pulumi.Input[_builtins.str]):
+        pulumi.set(self, "operator", value)
+
+    @_builtins.property
+    @pulumi.getter
+    def value(self) -> pulumi.Input[_builtins.str]:
+        """
+        The value to test the field against.
+        """
+        return pulumi.get(self, "value")
+
+    @value.setter
+    def value(self, value: pulumi.Input[_builtins.str]):
+        pulumi.set(self, "value", value)
+
+
+if not MYPY:
+    class NgwafWorkspaceRuleMultivalConditionArgsDict(TypedDict):
+        conditions: pulumi.Input[Sequence[pulumi.Input['NgwafWorkspaceRuleMultivalConditionConditionArgsDict']]]
+        """
+        A list of nested conditions in this list.
+        """
+        field: pulumi.Input[_builtins.str]
+        """
+        Enums for multival condition field.. Accepted values are `post_parameter`, `query_parameter`, `request_cookie`, `request_header`, `response_header`, and `signal`.
+        """
+        group_operator: pulumi.Input[_builtins.str]
+        """
+        Logical operator for the group. Accepted values are `any` and `all`.
+        """
+        operator: pulumi.Input[_builtins.str]
+        """
+        Indicates whether the supplied conditions will check for existence or non-existence of matching field values. Accepted values are `exists` and `does_not_exist`.
+        """
+elif False:
+    NgwafWorkspaceRuleMultivalConditionArgsDict: TypeAlias = Mapping[str, Any]
+
+@pulumi.input_type
+class NgwafWorkspaceRuleMultivalConditionArgs:
+    def __init__(__self__, *,
+                 conditions: pulumi.Input[Sequence[pulumi.Input['NgwafWorkspaceRuleMultivalConditionConditionArgs']]],
+                 field: pulumi.Input[_builtins.str],
+                 group_operator: pulumi.Input[_builtins.str],
+                 operator: pulumi.Input[_builtins.str]):
+        """
+        :param pulumi.Input[Sequence[pulumi.Input['NgwafWorkspaceRuleMultivalConditionConditionArgs']]] conditions: A list of nested conditions in this list.
+        :param pulumi.Input[_builtins.str] field: Enums for multival condition field.. Accepted values are `post_parameter`, `query_parameter`, `request_cookie`, `request_header`, `response_header`, and `signal`.
+        :param pulumi.Input[_builtins.str] group_operator: Logical operator for the group. Accepted values are `any` and `all`.
+        :param pulumi.Input[_builtins.str] operator: Indicates whether the supplied conditions will check for existence or non-existence of matching field values. Accepted values are `exists` and `does_not_exist`.
+        """
+        pulumi.set(__self__, "conditions", conditions)
+        pulumi.set(__self__, "field", field)
+        pulumi.set(__self__, "group_operator", group_operator)
+        pulumi.set(__self__, "operator", operator)
+
+    @_builtins.property
+    @pulumi.getter
+    def conditions(self) -> pulumi.Input[Sequence[pulumi.Input['NgwafWorkspaceRuleMultivalConditionConditionArgs']]]:
+        """
+        A list of nested conditions in this list.
+        """
+        return pulumi.get(self, "conditions")
+
+    @conditions.setter
+    def conditions(self, value: pulumi.Input[Sequence[pulumi.Input['NgwafWorkspaceRuleMultivalConditionConditionArgs']]]):
+        pulumi.set(self, "conditions", value)
+
+    @_builtins.property
+    @pulumi.getter
+    def field(self) -> pulumi.Input[_builtins.str]:
+        """
+        Enums for multival condition field.. Accepted values are `post_parameter`, `query_parameter`, `request_cookie`, `request_header`, `response_header`, and `signal`.
+        """
+        return pulumi.get(self, "field")
+
+    @field.setter
+    def field(self, value: pulumi.Input[_builtins.str]):
+        pulumi.set(self, "field", value)
+
+    @_builtins.property
+    @pulumi.getter(name="groupOperator")
+    def group_operator(self) -> pulumi.Input[_builtins.str]:
+        """
+        Logical operator for the group. Accepted values are `any` and `all`.
+        """
+        return pulumi.get(self, "group_operator")
+
+    @group_operator.setter
+    def group_operator(self, value: pulumi.Input[_builtins.str]):
+        pulumi.set(self, "group_operator", value)
+
+    @_builtins.property
+    @pulumi.getter
+    def operator(self) -> pulumi.Input[_builtins.str]:
+        """
+        Indicates whether the supplied conditions will check for existence or non-existence of matching field values. Accepted values are `exists` and `does_not_exist`.
+        """
+        return pulumi.get(self, "operator")
+
+    @operator.setter
+    def operator(self, value: pulumi.Input[_builtins.str]):
+        pulumi.set(self, "operator", value)
+
+
+if not MYPY:
+    class NgwafWorkspaceRuleMultivalConditionConditionArgsDict(TypedDict):
+        field: pulumi.Input[_builtins.str]
+        """
+        Field to inspect (e.g., `name`, `value`, `signal_id`).
+        """
+        operator: pulumi.Input[_builtins.str]
+        """
+        Operator to apply (e.g., `equals`, `contains`).
+        """
+        value: pulumi.Input[_builtins.str]
+        """
+        The value to test the field against.
+        """
+elif False:
+    NgwafWorkspaceRuleMultivalConditionConditionArgsDict: TypeAlias = Mapping[str, Any]
+
+@pulumi.input_type
+class NgwafWorkspaceRuleMultivalConditionConditionArgs:
+    def __init__(__self__, *,
+                 field: pulumi.Input[_builtins.str],
+                 operator: pulumi.Input[_builtins.str],
+                 value: pulumi.Input[_builtins.str]):
+        """
+        :param pulumi.Input[_builtins.str] field: Field to inspect (e.g., `name`, `value`, `signal_id`).
+        :param pulumi.Input[_builtins.str] operator: Operator to apply (e.g., `equals`, `contains`).
+        :param pulumi.Input[_builtins.str] value: The value to test the field against.
+        """
+        pulumi.set(__self__, "field", field)
+        pulumi.set(__self__, "operator", operator)
+        pulumi.set(__self__, "value", value)
+
+    @_builtins.property
+    @pulumi.getter
+    def field(self) -> pulumi.Input[_builtins.str]:
+        """
+        Field to inspect (e.g., `name`, `value`, `signal_id`).
         """
         return pulumi.get(self, "field")
 
@@ -2428,6 +2612,255 @@ class ServiceComputeDomainArgs:
 
 
 if not MYPY:
+    class ServiceComputeHealthcheckArgsDict(TypedDict):
+        host: pulumi.Input[_builtins.str]
+        """
+        The Host header to send for this Healthcheck
+        """
+        name: pulumi.Input[_builtins.str]
+        """
+        A unique name to identify this Healthcheck. It is important to note that changing this attribute will delete and recreate the resource
+        """
+        path: pulumi.Input[_builtins.str]
+        """
+        The path to check
+        """
+        check_interval: NotRequired[pulumi.Input[_builtins.int]]
+        """
+        How often to run the Healthcheck in milliseconds. Default `5000`
+        """
+        expected_response: NotRequired[pulumi.Input[_builtins.int]]
+        """
+        The status code expected from the host. Default `200`
+        """
+        headers: NotRequired[pulumi.Input[Sequence[pulumi.Input[_builtins.str]]]]
+        """
+        Custom health check HTTP headers (e.g. if your health check requires an API key to be provided).
+        """
+        http_version: NotRequired[pulumi.Input[_builtins.str]]
+        """
+        Whether to use version 1.0 or 1.1 HTTP. Default `1.1`
+        """
+        initial: NotRequired[pulumi.Input[_builtins.int]]
+        """
+        When loading a config, the initial number of probes to be seen as OK. Default `3`
+        """
+        method: NotRequired[pulumi.Input[_builtins.str]]
+        """
+        Which HTTP method to use. Default `HEAD`
+        """
+        threshold: NotRequired[pulumi.Input[_builtins.int]]
+        """
+        How many Healthchecks must succeed to be considered healthy. Default `3`
+        """
+        timeout: NotRequired[pulumi.Input[_builtins.int]]
+        """
+        Timeout in milliseconds. Default `5000`
+        """
+        window: NotRequired[pulumi.Input[_builtins.int]]
+        """
+        The number of most recent Healthcheck queries to keep for this Healthcheck. Default `5`
+        """
+elif False:
+    ServiceComputeHealthcheckArgsDict: TypeAlias = Mapping[str, Any]
+
+@pulumi.input_type
+class ServiceComputeHealthcheckArgs:
+    def __init__(__self__, *,
+                 host: pulumi.Input[_builtins.str],
+                 name: pulumi.Input[_builtins.str],
+                 path: pulumi.Input[_builtins.str],
+                 check_interval: Optional[pulumi.Input[_builtins.int]] = None,
+                 expected_response: Optional[pulumi.Input[_builtins.int]] = None,
+                 headers: Optional[pulumi.Input[Sequence[pulumi.Input[_builtins.str]]]] = None,
+                 http_version: Optional[pulumi.Input[_builtins.str]] = None,
+                 initial: Optional[pulumi.Input[_builtins.int]] = None,
+                 method: Optional[pulumi.Input[_builtins.str]] = None,
+                 threshold: Optional[pulumi.Input[_builtins.int]] = None,
+                 timeout: Optional[pulumi.Input[_builtins.int]] = None,
+                 window: Optional[pulumi.Input[_builtins.int]] = None):
+        """
+        :param pulumi.Input[_builtins.str] host: The Host header to send for this Healthcheck
+        :param pulumi.Input[_builtins.str] name: A unique name to identify this Healthcheck. It is important to note that changing this attribute will delete and recreate the resource
+        :param pulumi.Input[_builtins.str] path: The path to check
+        :param pulumi.Input[_builtins.int] check_interval: How often to run the Healthcheck in milliseconds. Default `5000`
+        :param pulumi.Input[_builtins.int] expected_response: The status code expected from the host. Default `200`
+        :param pulumi.Input[Sequence[pulumi.Input[_builtins.str]]] headers: Custom health check HTTP headers (e.g. if your health check requires an API key to be provided).
+        :param pulumi.Input[_builtins.str] http_version: Whether to use version 1.0 or 1.1 HTTP. Default `1.1`
+        :param pulumi.Input[_builtins.int] initial: When loading a config, the initial number of probes to be seen as OK. Default `3`
+        :param pulumi.Input[_builtins.str] method: Which HTTP method to use. Default `HEAD`
+        :param pulumi.Input[_builtins.int] threshold: How many Healthchecks must succeed to be considered healthy. Default `3`
+        :param pulumi.Input[_builtins.int] timeout: Timeout in milliseconds. Default `5000`
+        :param pulumi.Input[_builtins.int] window: The number of most recent Healthcheck queries to keep for this Healthcheck. Default `5`
+        """
+        pulumi.set(__self__, "host", host)
+        pulumi.set(__self__, "name", name)
+        pulumi.set(__self__, "path", path)
+        if check_interval is not None:
+            pulumi.set(__self__, "check_interval", check_interval)
+        if expected_response is not None:
+            pulumi.set(__self__, "expected_response", expected_response)
+        if headers is not None:
+            pulumi.set(__self__, "headers", headers)
+        if http_version is not None:
+            pulumi.set(__self__, "http_version", http_version)
+        if initial is not None:
+            pulumi.set(__self__, "initial", initial)
+        if method is not None:
+            pulumi.set(__self__, "method", method)
+        if threshold is not None:
+            pulumi.set(__self__, "threshold", threshold)
+        if timeout is not None:
+            pulumi.set(__self__, "timeout", timeout)
+        if window is not None:
+            pulumi.set(__self__, "window", window)
+
+    @_builtins.property
+    @pulumi.getter
+    def host(self) -> pulumi.Input[_builtins.str]:
+        """
+        The Host header to send for this Healthcheck
+        """
+        return pulumi.get(self, "host")
+
+    @host.setter
+    def host(self, value: pulumi.Input[_builtins.str]):
+        pulumi.set(self, "host", value)
+
+    @_builtins.property
+    @pulumi.getter
+    def name(self) -> pulumi.Input[_builtins.str]:
+        """
+        A unique name to identify this Healthcheck. It is important to note that changing this attribute will delete and recreate the resource
+        """
+        return pulumi.get(self, "name")
+
+    @name.setter
+    def name(self, value: pulumi.Input[_builtins.str]):
+        pulumi.set(self, "name", value)
+
+    @_builtins.property
+    @pulumi.getter
+    def path(self) -> pulumi.Input[_builtins.str]:
+        """
+        The path to check
+        """
+        return pulumi.get(self, "path")
+
+    @path.setter
+    def path(self, value: pulumi.Input[_builtins.str]):
+        pulumi.set(self, "path", value)
+
+    @_builtins.property
+    @pulumi.getter(name="checkInterval")
+    def check_interval(self) -> Optional[pulumi.Input[_builtins.int]]:
+        """
+        How often to run the Healthcheck in milliseconds. Default `5000`
+        """
+        return pulumi.get(self, "check_interval")
+
+    @check_interval.setter
+    def check_interval(self, value: Optional[pulumi.Input[_builtins.int]]):
+        pulumi.set(self, "check_interval", value)
+
+    @_builtins.property
+    @pulumi.getter(name="expectedResponse")
+    def expected_response(self) -> Optional[pulumi.Input[_builtins.int]]:
+        """
+        The status code expected from the host. Default `200`
+        """
+        return pulumi.get(self, "expected_response")
+
+    @expected_response.setter
+    def expected_response(self, value: Optional[pulumi.Input[_builtins.int]]):
+        pulumi.set(self, "expected_response", value)
+
+    @_builtins.property
+    @pulumi.getter
+    def headers(self) -> Optional[pulumi.Input[Sequence[pulumi.Input[_builtins.str]]]]:
+        """
+        Custom health check HTTP headers (e.g. if your health check requires an API key to be provided).
+        """
+        return pulumi.get(self, "headers")
+
+    @headers.setter
+    def headers(self, value: Optional[pulumi.Input[Sequence[pulumi.Input[_builtins.str]]]]):
+        pulumi.set(self, "headers", value)
+
+    @_builtins.property
+    @pulumi.getter(name="httpVersion")
+    def http_version(self) -> Optional[pulumi.Input[_builtins.str]]:
+        """
+        Whether to use version 1.0 or 1.1 HTTP. Default `1.1`
+        """
+        return pulumi.get(self, "http_version")
+
+    @http_version.setter
+    def http_version(self, value: Optional[pulumi.Input[_builtins.str]]):
+        pulumi.set(self, "http_version", value)
+
+    @_builtins.property
+    @pulumi.getter
+    def initial(self) -> Optional[pulumi.Input[_builtins.int]]:
+        """
+        When loading a config, the initial number of probes to be seen as OK. Default `3`
+        """
+        return pulumi.get(self, "initial")
+
+    @initial.setter
+    def initial(self, value: Optional[pulumi.Input[_builtins.int]]):
+        pulumi.set(self, "initial", value)
+
+    @_builtins.property
+    @pulumi.getter
+    def method(self) -> Optional[pulumi.Input[_builtins.str]]:
+        """
+        Which HTTP method to use. Default `HEAD`
+        """
+        return pulumi.get(self, "method")
+
+    @method.setter
+    def method(self, value: Optional[pulumi.Input[_builtins.str]]):
+        pulumi.set(self, "method", value)
+
+    @_builtins.property
+    @pulumi.getter
+    def threshold(self) -> Optional[pulumi.Input[_builtins.int]]:
+        """
+        How many Healthchecks must succeed to be considered healthy. Default `3`
+        """
+        return pulumi.get(self, "threshold")
+
+    @threshold.setter
+    def threshold(self, value: Optional[pulumi.Input[_builtins.int]]):
+        pulumi.set(self, "threshold", value)
+
+    @_builtins.property
+    @pulumi.getter
+    def timeout(self) -> Optional[pulumi.Input[_builtins.int]]:
+        """
+        Timeout in milliseconds. Default `5000`
+        """
+        return pulumi.get(self, "timeout")
+
+    @timeout.setter
+    def timeout(self, value: Optional[pulumi.Input[_builtins.int]]):
+        pulumi.set(self, "timeout", value)
+
+    @_builtins.property
+    @pulumi.getter
+    def window(self) -> Optional[pulumi.Input[_builtins.int]]:
+        """
+        The number of most recent Healthcheck queries to keep for this Healthcheck. Default `5`
+        """
+        return pulumi.get(self, "window")
+
+    @window.setter
+    def window(self, value: Optional[pulumi.Input[_builtins.int]]):
+        pulumi.set(self, "window", value)
+
+
+if not MYPY:
     class ServiceComputeImageOptimizerDefaultSettingsArgsDict(TypedDict):
         allow_video: NotRequired[pulumi.Input[_builtins.bool]]
         """
@@ -3361,7 +3794,7 @@ if not MYPY:
         """
         region: NotRequired[pulumi.Input[_builtins.str]]
         """
-        The region that log data will be sent to. One of `US` or `EU`. Defaults to `US` if undefined
+        The region that log data will be sent to. Defaults to `US` if undefined
         """
 elif False:
     ServiceComputeLoggingDatadogArgsDict: TypeAlias = Mapping[str, Any]
@@ -3377,7 +3810,7 @@ class ServiceComputeLoggingDatadogArgs:
         :param pulumi.Input[_builtins.str] name: The unique name of the Datadog logging endpoint. It is important to note that changing this attribute will delete and recreate the resource
         :param pulumi.Input[_builtins.str] token: The API key from your Datadog account
         :param pulumi.Input[_builtins.str] processing_region: Region where logs will be processed before streaming to BigQuery. Valid values are 'none', 'us' and 'eu'.
-        :param pulumi.Input[_builtins.str] region: The region that log data will be sent to. One of `US` or `EU`. Defaults to `US` if undefined
+        :param pulumi.Input[_builtins.str] region: The region that log data will be sent to. Defaults to `US` if undefined
         """
         pulumi.set(__self__, "name", name)
         pulumi.set(__self__, "token", token)
@@ -3426,7 +3859,7 @@ class ServiceComputeLoggingDatadogArgs:
     @pulumi.getter
     def region(self) -> Optional[pulumi.Input[_builtins.str]]:
         """
-        The region that log data will be sent to. One of `US` or `EU`. Defaults to `US` if undefined
+        The region that log data will be sent to. Defaults to `US` if undefined
         """
         return pulumi.get(self, "region")
 
@@ -4971,9 +5404,17 @@ if not MYPY:
         """
         URL that log data will be sent to. Must use the https protocol
         """
+        compression_codec: NotRequired[pulumi.Input[_builtins.str]]
+        """
+        The codec used for compression of your logs. Valid values are zstd, snappy, and gzip. If the specified codec is "gzip", gzip_level will default to 3. To specify a different level, leave compression_codec blank and explicitly set the level using gzip_level. Specifying both compression_codec and gzip_level in the same API request will result in an error.
+        """
         content_type: NotRequired[pulumi.Input[_builtins.str]]
         """
         Value of the `Content-Type` header sent with the request
+        """
+        gzip_level: NotRequired[pulumi.Input[_builtins.int]]
+        """
+        Level of Gzip compression from `0-9`. `0` means no compression. `1` is the fastest and the least compressed version, `9` is the slowest and the most compressed version. Default `0`
         """
         header_name: NotRequired[pulumi.Input[_builtins.str]]
         """
@@ -4994,6 +5435,10 @@ if not MYPY:
         method: NotRequired[pulumi.Input[_builtins.str]]
         """
         HTTP method used for request. Can be either `POST` or `PUT`. Default `POST`
+        """
+        period: NotRequired[pulumi.Input[_builtins.int]]
+        """
+        How frequently, in seconds, batches of log data are sent to the HTTPS endpoint. A value of 0 sends logs at the same interval as the default, which is 5 seconds.
         """
         processing_region: NotRequired[pulumi.Input[_builtins.str]]
         """
@@ -5031,12 +5476,15 @@ class ServiceComputeLoggingHttpArgs:
     def __init__(__self__, *,
                  name: pulumi.Input[_builtins.str],
                  url: pulumi.Input[_builtins.str],
+                 compression_codec: Optional[pulumi.Input[_builtins.str]] = None,
                  content_type: Optional[pulumi.Input[_builtins.str]] = None,
+                 gzip_level: Optional[pulumi.Input[_builtins.int]] = None,
                  header_name: Optional[pulumi.Input[_builtins.str]] = None,
                  header_value: Optional[pulumi.Input[_builtins.str]] = None,
                  json_format: Optional[pulumi.Input[_builtins.str]] = None,
                  message_type: Optional[pulumi.Input[_builtins.str]] = None,
                  method: Optional[pulumi.Input[_builtins.str]] = None,
+                 period: Optional[pulumi.Input[_builtins.int]] = None,
                  processing_region: Optional[pulumi.Input[_builtins.str]] = None,
                  request_max_bytes: Optional[pulumi.Input[_builtins.int]] = None,
                  request_max_entries: Optional[pulumi.Input[_builtins.int]] = None,
@@ -5047,12 +5495,15 @@ class ServiceComputeLoggingHttpArgs:
         """
         :param pulumi.Input[_builtins.str] name: The unique name of the HTTPS logging endpoint. It is important to note that changing this attribute will delete and recreate the resource
         :param pulumi.Input[_builtins.str] url: URL that log data will be sent to. Must use the https protocol
+        :param pulumi.Input[_builtins.str] compression_codec: The codec used for compression of your logs. Valid values are zstd, snappy, and gzip. If the specified codec is "gzip", gzip_level will default to 3. To specify a different level, leave compression_codec blank and explicitly set the level using gzip_level. Specifying both compression_codec and gzip_level in the same API request will result in an error.
         :param pulumi.Input[_builtins.str] content_type: Value of the `Content-Type` header sent with the request
+        :param pulumi.Input[_builtins.int] gzip_level: Level of Gzip compression from `0-9`. `0` means no compression. `1` is the fastest and the least compressed version, `9` is the slowest and the most compressed version. Default `0`
         :param pulumi.Input[_builtins.str] header_name: Custom header sent with the request
         :param pulumi.Input[_builtins.str] header_value: Value of the custom header sent with the request
         :param pulumi.Input[_builtins.str] json_format: Formats log entries as JSON. Can be either disabled (`0`), array of json (`1`), or newline delimited json (`2`)
         :param pulumi.Input[_builtins.str] message_type: How the message should be formatted. Can be either `classic`, `loggly`, `logplex` or `blank`. Default is `classic`
         :param pulumi.Input[_builtins.str] method: HTTP method used for request. Can be either `POST` or `PUT`. Default `POST`
+        :param pulumi.Input[_builtins.int] period: How frequently, in seconds, batches of log data are sent to the HTTPS endpoint. A value of 0 sends logs at the same interval as the default, which is 5 seconds.
         :param pulumi.Input[_builtins.str] processing_region: Region where logs will be processed before streaming to BigQuery. Valid values are 'none', 'us' and 'eu'.
         :param pulumi.Input[_builtins.int] request_max_bytes: The maximum number of bytes sent in one request
         :param pulumi.Input[_builtins.int] request_max_entries: The maximum number of logs sent in one request
@@ -5063,8 +5514,12 @@ class ServiceComputeLoggingHttpArgs:
         """
         pulumi.set(__self__, "name", name)
         pulumi.set(__self__, "url", url)
+        if compression_codec is not None:
+            pulumi.set(__self__, "compression_codec", compression_codec)
         if content_type is not None:
             pulumi.set(__self__, "content_type", content_type)
+        if gzip_level is not None:
+            pulumi.set(__self__, "gzip_level", gzip_level)
         if header_name is not None:
             pulumi.set(__self__, "header_name", header_name)
         if header_value is not None:
@@ -5075,6 +5530,8 @@ class ServiceComputeLoggingHttpArgs:
             pulumi.set(__self__, "message_type", message_type)
         if method is not None:
             pulumi.set(__self__, "method", method)
+        if period is not None:
+            pulumi.set(__self__, "period", period)
         if processing_region is not None:
             pulumi.set(__self__, "processing_region", processing_region)
         if request_max_bytes is not None:
@@ -5115,6 +5572,18 @@ class ServiceComputeLoggingHttpArgs:
         pulumi.set(self, "url", value)
 
     @_builtins.property
+    @pulumi.getter(name="compressionCodec")
+    def compression_codec(self) -> Optional[pulumi.Input[_builtins.str]]:
+        """
+        The codec used for compression of your logs. Valid values are zstd, snappy, and gzip. If the specified codec is "gzip", gzip_level will default to 3. To specify a different level, leave compression_codec blank and explicitly set the level using gzip_level. Specifying both compression_codec and gzip_level in the same API request will result in an error.
+        """
+        return pulumi.get(self, "compression_codec")
+
+    @compression_codec.setter
+    def compression_codec(self, value: Optional[pulumi.Input[_builtins.str]]):
+        pulumi.set(self, "compression_codec", value)
+
+    @_builtins.property
     @pulumi.getter(name="contentType")
     def content_type(self) -> Optional[pulumi.Input[_builtins.str]]:
         """
@@ -5125,6 +5594,18 @@ class ServiceComputeLoggingHttpArgs:
     @content_type.setter
     def content_type(self, value: Optional[pulumi.Input[_builtins.str]]):
         pulumi.set(self, "content_type", value)
+
+    @_builtins.property
+    @pulumi.getter(name="gzipLevel")
+    def gzip_level(self) -> Optional[pulumi.Input[_builtins.int]]:
+        """
+        Level of Gzip compression from `0-9`. `0` means no compression. `1` is the fastest and the least compressed version, `9` is the slowest and the most compressed version. Default `0`
+        """
+        return pulumi.get(self, "gzip_level")
+
+    @gzip_level.setter
+    def gzip_level(self, value: Optional[pulumi.Input[_builtins.int]]):
+        pulumi.set(self, "gzip_level", value)
 
     @_builtins.property
     @pulumi.getter(name="headerName")
@@ -5185,6 +5666,18 @@ class ServiceComputeLoggingHttpArgs:
     @method.setter
     def method(self, value: Optional[pulumi.Input[_builtins.str]]):
         pulumi.set(self, "method", value)
+
+    @_builtins.property
+    @pulumi.getter
+    def period(self) -> Optional[pulumi.Input[_builtins.int]]:
+        """
+        How frequently, in seconds, batches of log data are sent to the HTTPS endpoint. A value of 0 sends logs at the same interval as the default, which is 5 seconds.
+        """
+        return pulumi.get(self, "period")
+
+    @period.setter
+    def period(self, value: Optional[pulumi.Input[_builtins.int]]):
+        pulumi.set(self, "period", value)
 
     @_builtins.property
     @pulumi.getter(name="processingRegion")
@@ -6107,6 +6600,196 @@ class ServiceComputeLoggingNewrelicArgs:
     @region.setter
     def region(self, value: Optional[pulumi.Input[_builtins.str]]):
         pulumi.set(self, "region", value)
+
+
+if not MYPY:
+    class ServiceComputeLoggingNewrelicotlpArgsDict(TypedDict):
+        name: pulumi.Input[_builtins.str]
+        """
+        The unique name of the New Relic OTLP logging endpoint. It is important to note that changing this attribute will delete and recreate the resource
+        """
+        token: pulumi.Input[_builtins.str]
+        """
+        The Insert API key from the Account page of your New Relic account
+        """
+        format: NotRequired[pulumi.Input[_builtins.str]]
+        """
+        Apache style log formatting. Your log must produce valid JSON that New Relic OTLP can ingest.
+        """
+        format_version: NotRequired[pulumi.Input[_builtins.int]]
+        """
+        The version of the custom logging format used for the configured endpoint. Can be either `1` or `2`. (default: `2`).
+        """
+        placement: NotRequired[pulumi.Input[_builtins.str]]
+        """
+        Where in the generated VCL the logging call should be placed.
+        """
+        processing_region: NotRequired[pulumi.Input[_builtins.str]]
+        """
+        Region where logs will be processed before streaming to BigQuery. Valid values are 'none', 'us' and 'eu'.
+        """
+        region: NotRequired[pulumi.Input[_builtins.str]]
+        """
+        The region that log data will be sent to. Default: `US`
+        """
+        response_condition: NotRequired[pulumi.Input[_builtins.str]]
+        """
+        The name of the condition to apply.
+        """
+        url: NotRequired[pulumi.Input[_builtins.str]]
+        """
+        The optional New Relic Trace Observer URL to stream logs to for Infinite Tracing.
+        """
+elif False:
+    ServiceComputeLoggingNewrelicotlpArgsDict: TypeAlias = Mapping[str, Any]
+
+@pulumi.input_type
+class ServiceComputeLoggingNewrelicotlpArgs:
+    def __init__(__self__, *,
+                 name: pulumi.Input[_builtins.str],
+                 token: pulumi.Input[_builtins.str],
+                 format: Optional[pulumi.Input[_builtins.str]] = None,
+                 format_version: Optional[pulumi.Input[_builtins.int]] = None,
+                 placement: Optional[pulumi.Input[_builtins.str]] = None,
+                 processing_region: Optional[pulumi.Input[_builtins.str]] = None,
+                 region: Optional[pulumi.Input[_builtins.str]] = None,
+                 response_condition: Optional[pulumi.Input[_builtins.str]] = None,
+                 url: Optional[pulumi.Input[_builtins.str]] = None):
+        """
+        :param pulumi.Input[_builtins.str] name: The unique name of the New Relic OTLP logging endpoint. It is important to note that changing this attribute will delete and recreate the resource
+        :param pulumi.Input[_builtins.str] token: The Insert API key from the Account page of your New Relic account
+        :param pulumi.Input[_builtins.str] format: Apache style log formatting. Your log must produce valid JSON that New Relic OTLP can ingest.
+        :param pulumi.Input[_builtins.int] format_version: The version of the custom logging format used for the configured endpoint. Can be either `1` or `2`. (default: `2`).
+        :param pulumi.Input[_builtins.str] placement: Where in the generated VCL the logging call should be placed.
+        :param pulumi.Input[_builtins.str] processing_region: Region where logs will be processed before streaming to BigQuery. Valid values are 'none', 'us' and 'eu'.
+        :param pulumi.Input[_builtins.str] region: The region that log data will be sent to. Default: `US`
+        :param pulumi.Input[_builtins.str] response_condition: The name of the condition to apply.
+        :param pulumi.Input[_builtins.str] url: The optional New Relic Trace Observer URL to stream logs to for Infinite Tracing.
+        """
+        pulumi.set(__self__, "name", name)
+        pulumi.set(__self__, "token", token)
+        if format is not None:
+            pulumi.set(__self__, "format", format)
+        if format_version is not None:
+            pulumi.set(__self__, "format_version", format_version)
+        if placement is not None:
+            pulumi.set(__self__, "placement", placement)
+        if processing_region is not None:
+            pulumi.set(__self__, "processing_region", processing_region)
+        if region is not None:
+            pulumi.set(__self__, "region", region)
+        if response_condition is not None:
+            pulumi.set(__self__, "response_condition", response_condition)
+        if url is not None:
+            pulumi.set(__self__, "url", url)
+
+    @_builtins.property
+    @pulumi.getter
+    def name(self) -> pulumi.Input[_builtins.str]:
+        """
+        The unique name of the New Relic OTLP logging endpoint. It is important to note that changing this attribute will delete and recreate the resource
+        """
+        return pulumi.get(self, "name")
+
+    @name.setter
+    def name(self, value: pulumi.Input[_builtins.str]):
+        pulumi.set(self, "name", value)
+
+    @_builtins.property
+    @pulumi.getter
+    def token(self) -> pulumi.Input[_builtins.str]:
+        """
+        The Insert API key from the Account page of your New Relic account
+        """
+        return pulumi.get(self, "token")
+
+    @token.setter
+    def token(self, value: pulumi.Input[_builtins.str]):
+        pulumi.set(self, "token", value)
+
+    @_builtins.property
+    @pulumi.getter
+    def format(self) -> Optional[pulumi.Input[_builtins.str]]:
+        """
+        Apache style log formatting. Your log must produce valid JSON that New Relic OTLP can ingest.
+        """
+        return pulumi.get(self, "format")
+
+    @format.setter
+    def format(self, value: Optional[pulumi.Input[_builtins.str]]):
+        pulumi.set(self, "format", value)
+
+    @_builtins.property
+    @pulumi.getter(name="formatVersion")
+    def format_version(self) -> Optional[pulumi.Input[_builtins.int]]:
+        """
+        The version of the custom logging format used for the configured endpoint. Can be either `1` or `2`. (default: `2`).
+        """
+        return pulumi.get(self, "format_version")
+
+    @format_version.setter
+    def format_version(self, value: Optional[pulumi.Input[_builtins.int]]):
+        pulumi.set(self, "format_version", value)
+
+    @_builtins.property
+    @pulumi.getter
+    def placement(self) -> Optional[pulumi.Input[_builtins.str]]:
+        """
+        Where in the generated VCL the logging call should be placed.
+        """
+        return pulumi.get(self, "placement")
+
+    @placement.setter
+    def placement(self, value: Optional[pulumi.Input[_builtins.str]]):
+        pulumi.set(self, "placement", value)
+
+    @_builtins.property
+    @pulumi.getter(name="processingRegion")
+    def processing_region(self) -> Optional[pulumi.Input[_builtins.str]]:
+        """
+        Region where logs will be processed before streaming to BigQuery. Valid values are 'none', 'us' and 'eu'.
+        """
+        return pulumi.get(self, "processing_region")
+
+    @processing_region.setter
+    def processing_region(self, value: Optional[pulumi.Input[_builtins.str]]):
+        pulumi.set(self, "processing_region", value)
+
+    @_builtins.property
+    @pulumi.getter
+    def region(self) -> Optional[pulumi.Input[_builtins.str]]:
+        """
+        The region that log data will be sent to. Default: `US`
+        """
+        return pulumi.get(self, "region")
+
+    @region.setter
+    def region(self, value: Optional[pulumi.Input[_builtins.str]]):
+        pulumi.set(self, "region", value)
+
+    @_builtins.property
+    @pulumi.getter(name="responseCondition")
+    def response_condition(self) -> Optional[pulumi.Input[_builtins.str]]:
+        """
+        The name of the condition to apply.
+        """
+        return pulumi.get(self, "response_condition")
+
+    @response_condition.setter
+    def response_condition(self, value: Optional[pulumi.Input[_builtins.str]]):
+        pulumi.set(self, "response_condition", value)
+
+    @_builtins.property
+    @pulumi.getter
+    def url(self) -> Optional[pulumi.Input[_builtins.str]]:
+        """
+        The optional New Relic Trace Observer URL to stream logs to for Infinite Tracing.
+        """
+        return pulumi.get(self, "url")
+
+    @url.setter
+    def url(self, value: Optional[pulumi.Input[_builtins.str]]):
+        pulumi.set(self, "url", value)
 
 
 if not MYPY:
@@ -7855,6 +8538,10 @@ class ServiceComputePackageArgs:
 
 if not MYPY:
     class ServiceComputeProductEnablementArgsDict(TypedDict):
+        api_discovery: NotRequired[pulumi.Input[_builtins.bool]]
+        """
+        Enable API Discovery support
+        """
         ddos_protection: NotRequired[pulumi.Input['ServiceComputeProductEnablementDdosProtectionArgsDict']]
         """
         DDoS Protection product
@@ -7885,6 +8572,7 @@ elif False:
 @pulumi.input_type
 class ServiceComputeProductEnablementArgs:
     def __init__(__self__, *,
+                 api_discovery: Optional[pulumi.Input[_builtins.bool]] = None,
                  ddos_protection: Optional[pulumi.Input['ServiceComputeProductEnablementDdosProtectionArgs']] = None,
                  fanout: Optional[pulumi.Input[_builtins.bool]] = None,
                  log_explorer_insights: Optional[pulumi.Input[_builtins.bool]] = None,
@@ -7892,6 +8580,7 @@ class ServiceComputeProductEnablementArgs:
                  ngwaf: Optional[pulumi.Input['ServiceComputeProductEnablementNgwafArgs']] = None,
                  websockets: Optional[pulumi.Input[_builtins.bool]] = None):
         """
+        :param pulumi.Input[_builtins.bool] api_discovery: Enable API Discovery support
         :param pulumi.Input['ServiceComputeProductEnablementDdosProtectionArgs'] ddos_protection: DDoS Protection product
         :param pulumi.Input[_builtins.bool] fanout: Enable Fanout support
         :param pulumi.Input[_builtins.bool] log_explorer_insights: Enable Log Explorer & Insights
@@ -7899,6 +8588,8 @@ class ServiceComputeProductEnablementArgs:
         :param pulumi.Input['ServiceComputeProductEnablementNgwafArgs'] ngwaf: Next-Gen WAF product
         :param pulumi.Input[_builtins.bool] websockets: Enable WebSockets support
         """
+        if api_discovery is not None:
+            pulumi.set(__self__, "api_discovery", api_discovery)
         if ddos_protection is not None:
             pulumi.set(__self__, "ddos_protection", ddos_protection)
         if fanout is not None:
@@ -7911,6 +8602,18 @@ class ServiceComputeProductEnablementArgs:
             pulumi.set(__self__, "ngwaf", ngwaf)
         if websockets is not None:
             pulumi.set(__self__, "websockets", websockets)
+
+    @_builtins.property
+    @pulumi.getter(name="apiDiscovery")
+    def api_discovery(self) -> Optional[pulumi.Input[_builtins.bool]]:
+        """
+        Enable API Discovery support
+        """
+        return pulumi.get(self, "api_discovery")
+
+    @api_discovery.setter
+    def api_discovery(self, value: Optional[pulumi.Input[_builtins.bool]]):
+        pulumi.set(self, "api_discovery", value)
 
     @_builtins.property
     @pulumi.getter(name="ddosProtection")
@@ -10449,7 +11152,7 @@ if not MYPY:
         """
         format: NotRequired[pulumi.Input[_builtins.str]]
         """
-        Apache-style string or VCL variables to use for log formatting (default: `%h %l %u %t "%r" %>s %b`)
+        Apache-style string or VCL variables to use for log formatting.
         """
         format_version: NotRequired[pulumi.Input[_builtins.int]]
         """
@@ -10521,7 +11224,7 @@ class ServiceVclLoggingBlobstorageArgs:
         :param pulumi.Input[_builtins.str] sas_token: The Azure shared access signature providing write access to the blob service objects. Be sure to update your token before it expires or the logging functionality will not work
         :param pulumi.Input[_builtins.str] compression_codec: The codec used for compression of your logs. Valid values are zstd, snappy, and gzip. If the specified codec is "gzip", gzip_level will default to 3. To specify a different level, leave compression_codec blank and explicitly set the level using gzip_level. Specifying both compression_codec and gzip_level in the same API request will result in an error.
         :param pulumi.Input[_builtins.int] file_max_bytes: Maximum size of an uploaded log file, if non-zero.
-        :param pulumi.Input[_builtins.str] format: Apache-style string or VCL variables to use for log formatting (default: `%h %l %u %t "%r" %>s %b`)
+        :param pulumi.Input[_builtins.str] format: Apache-style string or VCL variables to use for log formatting.
         :param pulumi.Input[_builtins.int] format_version: The version of the custom logging format used for the configured endpoint. Can be either 1 or 2. (default: 2)
         :param pulumi.Input[_builtins.int] gzip_level: Level of Gzip compression from `0-9`. `0` means no compression. `1` is the fastest and the least compressed version, `9` is the slowest and the most compressed version. Default `0`
         :param pulumi.Input[_builtins.str] message_type: How the message should be formatted. Can be either `classic`, `loggly`, `logplex` or `blank`. Default is `classic`
@@ -10640,7 +11343,7 @@ class ServiceVclLoggingBlobstorageArgs:
     @pulumi.getter
     def format(self) -> Optional[pulumi.Input[_builtins.str]]:
         """
-        Apache-style string or VCL variables to use for log formatting (default: `%h %l %u %t "%r" %>s %b`)
+        Apache-style string or VCL variables to use for log formatting.
         """
         return pulumi.get(self, "format")
 
@@ -11145,7 +11848,7 @@ if not MYPY:
         """
         region: NotRequired[pulumi.Input[_builtins.str]]
         """
-        The region that log data will be sent to. One of `US` or `EU`. Defaults to `US` if undefined
+        The region that log data will be sent to. Defaults to `US` if undefined
         """
         response_condition: NotRequired[pulumi.Input[_builtins.str]]
         """
@@ -11172,7 +11875,7 @@ class ServiceVclLoggingDatadogArgs:
         :param pulumi.Input[_builtins.int] format_version: The version of the custom logging format used for the configured endpoint. Can be either `1` or `2`. (default: `2`).
         :param pulumi.Input[_builtins.str] placement: Where in the generated VCL the logging call should be placed.
         :param pulumi.Input[_builtins.str] processing_region: Region where logs will be processed before streaming to BigQuery. Valid values are 'none', 'us' and 'eu'.
-        :param pulumi.Input[_builtins.str] region: The region that log data will be sent to. One of `US` or `EU`. Defaults to `US` if undefined
+        :param pulumi.Input[_builtins.str] region: The region that log data will be sent to. Defaults to `US` if undefined
         :param pulumi.Input[_builtins.str] response_condition: The name of the condition to apply.
         """
         pulumi.set(__self__, "name", name)
@@ -11266,7 +11969,7 @@ class ServiceVclLoggingDatadogArgs:
     @pulumi.getter
     def region(self) -> Optional[pulumi.Input[_builtins.str]]:
         """
-        The region that log data will be sent to. One of `US` or `EU`. Defaults to `US` if undefined
+        The region that log data will be sent to. Defaults to `US` if undefined
         """
         return pulumi.get(self, "region")
 
@@ -13463,6 +14166,10 @@ if not MYPY:
         """
         URL that log data will be sent to. Must use the https protocol
         """
+        compression_codec: NotRequired[pulumi.Input[_builtins.str]]
+        """
+        The codec used for compression of your logs. Valid values are zstd, snappy, and gzip. If the specified codec is "gzip", gzip_level will default to 3. To specify a different level, leave compression_codec blank and explicitly set the level using gzip_level. Specifying both compression_codec and gzip_level in the same API request will result in an error.
+        """
         content_type: NotRequired[pulumi.Input[_builtins.str]]
         """
         Value of the `Content-Type` header sent with the request
@@ -13474,6 +14181,10 @@ if not MYPY:
         format_version: NotRequired[pulumi.Input[_builtins.int]]
         """
         The version of the custom logging format used for the configured endpoint. Can be either 1 or 2. (default: 2)
+        """
+        gzip_level: NotRequired[pulumi.Input[_builtins.int]]
+        """
+        Level of Gzip compression from `0-9`. `0` means no compression. `1` is the fastest and the least compressed version, `9` is the slowest and the most compressed version. Default `0`
         """
         header_name: NotRequired[pulumi.Input[_builtins.str]]
         """
@@ -13494,6 +14205,10 @@ if not MYPY:
         method: NotRequired[pulumi.Input[_builtins.str]]
         """
         HTTP method used for request. Can be either `POST` or `PUT`. Default `POST`
+        """
+        period: NotRequired[pulumi.Input[_builtins.int]]
+        """
+        How frequently, in seconds, batches of log data are sent to the HTTPS endpoint. A value of 0 sends logs at the same interval as the default, which is 5 seconds.
         """
         placement: NotRequired[pulumi.Input[_builtins.str]]
         """
@@ -13539,14 +14254,17 @@ class ServiceVclLoggingHttpArgs:
     def __init__(__self__, *,
                  name: pulumi.Input[_builtins.str],
                  url: pulumi.Input[_builtins.str],
+                 compression_codec: Optional[pulumi.Input[_builtins.str]] = None,
                  content_type: Optional[pulumi.Input[_builtins.str]] = None,
                  format: Optional[pulumi.Input[_builtins.str]] = None,
                  format_version: Optional[pulumi.Input[_builtins.int]] = None,
+                 gzip_level: Optional[pulumi.Input[_builtins.int]] = None,
                  header_name: Optional[pulumi.Input[_builtins.str]] = None,
                  header_value: Optional[pulumi.Input[_builtins.str]] = None,
                  json_format: Optional[pulumi.Input[_builtins.str]] = None,
                  message_type: Optional[pulumi.Input[_builtins.str]] = None,
                  method: Optional[pulumi.Input[_builtins.str]] = None,
+                 period: Optional[pulumi.Input[_builtins.int]] = None,
                  placement: Optional[pulumi.Input[_builtins.str]] = None,
                  processing_region: Optional[pulumi.Input[_builtins.str]] = None,
                  request_max_bytes: Optional[pulumi.Input[_builtins.int]] = None,
@@ -13559,14 +14277,17 @@ class ServiceVclLoggingHttpArgs:
         """
         :param pulumi.Input[_builtins.str] name: The unique name of the HTTPS logging endpoint. It is important to note that changing this attribute will delete and recreate the resource
         :param pulumi.Input[_builtins.str] url: URL that log data will be sent to. Must use the https protocol
+        :param pulumi.Input[_builtins.str] compression_codec: The codec used for compression of your logs. Valid values are zstd, snappy, and gzip. If the specified codec is "gzip", gzip_level will default to 3. To specify a different level, leave compression_codec blank and explicitly set the level using gzip_level. Specifying both compression_codec and gzip_level in the same API request will result in an error.
         :param pulumi.Input[_builtins.str] content_type: Value of the `Content-Type` header sent with the request
         :param pulumi.Input[_builtins.str] format: Apache-style string or VCL variables to use for log formatting.
         :param pulumi.Input[_builtins.int] format_version: The version of the custom logging format used for the configured endpoint. Can be either 1 or 2. (default: 2)
+        :param pulumi.Input[_builtins.int] gzip_level: Level of Gzip compression from `0-9`. `0` means no compression. `1` is the fastest and the least compressed version, `9` is the slowest and the most compressed version. Default `0`
         :param pulumi.Input[_builtins.str] header_name: Custom header sent with the request
         :param pulumi.Input[_builtins.str] header_value: Value of the custom header sent with the request
         :param pulumi.Input[_builtins.str] json_format: Formats log entries as JSON. Can be either disabled (`0`), array of json (`1`), or newline delimited json (`2`)
         :param pulumi.Input[_builtins.str] message_type: How the message should be formatted. Can be either `classic`, `loggly`, `logplex` or `blank`. Default is `classic`
         :param pulumi.Input[_builtins.str] method: HTTP method used for request. Can be either `POST` or `PUT`. Default `POST`
+        :param pulumi.Input[_builtins.int] period: How frequently, in seconds, batches of log data are sent to the HTTPS endpoint. A value of 0 sends logs at the same interval as the default, which is 5 seconds.
         :param pulumi.Input[_builtins.str] placement: Where in the generated VCL the logging call should be placed
         :param pulumi.Input[_builtins.str] processing_region: Region where logs will be processed before streaming to BigQuery. Valid values are 'none', 'us' and 'eu'.
         :param pulumi.Input[_builtins.int] request_max_bytes: The maximum number of bytes sent in one request
@@ -13579,12 +14300,16 @@ class ServiceVclLoggingHttpArgs:
         """
         pulumi.set(__self__, "name", name)
         pulumi.set(__self__, "url", url)
+        if compression_codec is not None:
+            pulumi.set(__self__, "compression_codec", compression_codec)
         if content_type is not None:
             pulumi.set(__self__, "content_type", content_type)
         if format is not None:
             pulumi.set(__self__, "format", format)
         if format_version is not None:
             pulumi.set(__self__, "format_version", format_version)
+        if gzip_level is not None:
+            pulumi.set(__self__, "gzip_level", gzip_level)
         if header_name is not None:
             pulumi.set(__self__, "header_name", header_name)
         if header_value is not None:
@@ -13595,6 +14320,8 @@ class ServiceVclLoggingHttpArgs:
             pulumi.set(__self__, "message_type", message_type)
         if method is not None:
             pulumi.set(__self__, "method", method)
+        if period is not None:
+            pulumi.set(__self__, "period", period)
         if placement is not None:
             pulumi.set(__self__, "placement", placement)
         if processing_region is not None:
@@ -13639,6 +14366,18 @@ class ServiceVclLoggingHttpArgs:
         pulumi.set(self, "url", value)
 
     @_builtins.property
+    @pulumi.getter(name="compressionCodec")
+    def compression_codec(self) -> Optional[pulumi.Input[_builtins.str]]:
+        """
+        The codec used for compression of your logs. Valid values are zstd, snappy, and gzip. If the specified codec is "gzip", gzip_level will default to 3. To specify a different level, leave compression_codec blank and explicitly set the level using gzip_level. Specifying both compression_codec and gzip_level in the same API request will result in an error.
+        """
+        return pulumi.get(self, "compression_codec")
+
+    @compression_codec.setter
+    def compression_codec(self, value: Optional[pulumi.Input[_builtins.str]]):
+        pulumi.set(self, "compression_codec", value)
+
+    @_builtins.property
     @pulumi.getter(name="contentType")
     def content_type(self) -> Optional[pulumi.Input[_builtins.str]]:
         """
@@ -13673,6 +14412,18 @@ class ServiceVclLoggingHttpArgs:
     @format_version.setter
     def format_version(self, value: Optional[pulumi.Input[_builtins.int]]):
         pulumi.set(self, "format_version", value)
+
+    @_builtins.property
+    @pulumi.getter(name="gzipLevel")
+    def gzip_level(self) -> Optional[pulumi.Input[_builtins.int]]:
+        """
+        Level of Gzip compression from `0-9`. `0` means no compression. `1` is the fastest and the least compressed version, `9` is the slowest and the most compressed version. Default `0`
+        """
+        return pulumi.get(self, "gzip_level")
+
+    @gzip_level.setter
+    def gzip_level(self, value: Optional[pulumi.Input[_builtins.int]]):
+        pulumi.set(self, "gzip_level", value)
 
     @_builtins.property
     @pulumi.getter(name="headerName")
@@ -13733,6 +14484,18 @@ class ServiceVclLoggingHttpArgs:
     @method.setter
     def method(self, value: Optional[pulumi.Input[_builtins.str]]):
         pulumi.set(self, "method", value)
+
+    @_builtins.property
+    @pulumi.getter
+    def period(self) -> Optional[pulumi.Input[_builtins.int]]:
+        """
+        How frequently, in seconds, batches of log data are sent to the HTTPS endpoint. A value of 0 sends logs at the same interval as the default, which is 5 seconds.
+        """
+        return pulumi.get(self, "period")
+
+    @period.setter
+    def period(self, value: Optional[pulumi.Input[_builtins.int]]):
+        pulumi.set(self, "period", value)
 
     @_builtins.property
     @pulumi.getter
@@ -17665,6 +18428,10 @@ class ServiceVclLoggingSyslogArgs:
 
 if not MYPY:
     class ServiceVclProductEnablementArgsDict(TypedDict):
+        api_discovery: NotRequired[pulumi.Input[_builtins.bool]]
+        """
+        Enable API Discovery support
+        """
         bot_management: NotRequired[pulumi.Input[_builtins.bool]]
         """
         Enable Bot Management support
@@ -17711,6 +18478,7 @@ elif False:
 @pulumi.input_type
 class ServiceVclProductEnablementArgs:
     def __init__(__self__, *,
+                 api_discovery: Optional[pulumi.Input[_builtins.bool]] = None,
                  bot_management: Optional[pulumi.Input[_builtins.bool]] = None,
                  brotli_compression: Optional[pulumi.Input[_builtins.bool]] = None,
                  ddos_protection: Optional[pulumi.Input['ServiceVclProductEnablementDdosProtectionArgs']] = None,
@@ -17722,6 +18490,7 @@ class ServiceVclProductEnablementArgs:
                  origin_inspector: Optional[pulumi.Input[_builtins.bool]] = None,
                  websockets: Optional[pulumi.Input[_builtins.bool]] = None):
         """
+        :param pulumi.Input[_builtins.bool] api_discovery: Enable API Discovery support
         :param pulumi.Input[_builtins.bool] bot_management: Enable Bot Management support
         :param pulumi.Input[_builtins.bool] brotli_compression: Enable Brotli Compression support
         :param pulumi.Input['ServiceVclProductEnablementDdosProtectionArgs'] ddos_protection: DDoS Protection product
@@ -17733,6 +18502,8 @@ class ServiceVclProductEnablementArgs:
         :param pulumi.Input[_builtins.bool] origin_inspector: Enable Origin Inspector support
         :param pulumi.Input[_builtins.bool] websockets: Enable WebSockets support
         """
+        if api_discovery is not None:
+            pulumi.set(__self__, "api_discovery", api_discovery)
         if bot_management is not None:
             pulumi.set(__self__, "bot_management", bot_management)
         if brotli_compression is not None:
@@ -17753,6 +18524,18 @@ class ServiceVclProductEnablementArgs:
             pulumi.set(__self__, "origin_inspector", origin_inspector)
         if websockets is not None:
             pulumi.set(__self__, "websockets", websockets)
+
+    @_builtins.property
+    @pulumi.getter(name="apiDiscovery")
+    def api_discovery(self) -> Optional[pulumi.Input[_builtins.bool]]:
+        """
+        Enable API Discovery support
+        """
+        return pulumi.get(self, "api_discovery")
+
+    @api_discovery.setter
+    def api_discovery(self, value: Optional[pulumi.Input[_builtins.bool]]):
+        pulumi.set(self, "api_discovery", value)
 
     @_builtins.property
     @pulumi.getter(name="botManagement")
@@ -18373,7 +19156,7 @@ if not MYPY:
         """
         xff: NotRequired[pulumi.Input[_builtins.str]]
         """
-        X-Forwarded-For, should be `clear`, `leave`, `append`, `append_all`, or `overwrite`. Default `append`
+        X-Forwarded-For, should be `clear`, `leave`, `append`, `append_all`, or `overwrite`
         """
 elif False:
     ServiceVclRequestSettingArgsDict: TypeAlias = Mapping[str, Any]
@@ -18403,7 +19186,7 @@ class ServiceVclRequestSettingArgs:
         :param pulumi.Input[_builtins.int] max_stale_age: How old an object is allowed to be to serve `stale-if-error` or `stale-while-revalidate`, in seconds
         :param pulumi.Input[_builtins.str] request_condition: Name of already defined `condition` to determine if this request setting should be applied (should be unique across multiple instances of `request_setting`)
         :param pulumi.Input[_builtins.bool] timer_support: Injects the X-Timer info into the request for viewing origin fetch durations
-        :param pulumi.Input[_builtins.str] xff: X-Forwarded-For, should be `clear`, `leave`, `append`, `append_all`, or `overwrite`. Default `append`
+        :param pulumi.Input[_builtins.str] xff: X-Forwarded-For, should be `clear`, `leave`, `append`, `append_all`, or `overwrite`
         """
         pulumi.set(__self__, "name", name)
         if action is not None:
@@ -18551,7 +19334,7 @@ class ServiceVclRequestSettingArgs:
     @pulumi.getter
     def xff(self) -> Optional[pulumi.Input[_builtins.str]]:
         """
-        X-Forwarded-For, should be `clear`, `leave`, `append`, `append_all`, or `overwrite`. Default `append`
+        X-Forwarded-For, should be `clear`, `leave`, `append`, `append_all`, or `overwrite`
         """
         return pulumi.get(self, "xff")
 

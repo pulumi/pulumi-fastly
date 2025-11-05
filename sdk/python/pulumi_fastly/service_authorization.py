@@ -148,8 +148,15 @@ class ServiceAuthorization(pulumi.CustomResource):
         import pulumi
         import pulumi_fastly as fastly
 
-        demo = fastly.ServiceVcl("demo")
-        user = fastly.User("user")
+        demo = fastly.ServiceVcl("demo",
+            name="demofastly",
+            domains=[{
+                "name": "demo.notexample.com",
+                "comment": "demo",
+            }])
+        user = fastly.User("user",
+            login="demo@example.com",
+            name="Demo User")
         auth = fastly.ServiceAuthorization("auth",
             service_id=demo.id,
             user_id=user.id,
@@ -189,8 +196,15 @@ class ServiceAuthorization(pulumi.CustomResource):
         import pulumi
         import pulumi_fastly as fastly
 
-        demo = fastly.ServiceVcl("demo")
-        user = fastly.User("user")
+        demo = fastly.ServiceVcl("demo",
+            name="demofastly",
+            domains=[{
+                "name": "demo.notexample.com",
+                "comment": "demo",
+            }])
+        user = fastly.User("user",
+            login="demo@example.com",
+            name="Demo User")
         auth = fastly.ServiceAuthorization("auth",
             service_id=demo.id,
             user_id=user.id,

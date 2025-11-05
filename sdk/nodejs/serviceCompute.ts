@@ -69,12 +69,13 @@ export class ServiceCompute extends pulumi.CustomResource {
     /**
      * A set of Domain names to serve as entry points for your Service
      */
-    declare public readonly domains: pulumi.Output<outputs.ServiceComputeDomain[]>;
+    declare public readonly domains: pulumi.Output<outputs.ServiceComputeDomain[] | undefined>;
     /**
      * Services that are active cannot be destroyed. In order to destroy the Service, set `forceDestroy` to `true`. Default `false`
      */
     declare public readonly forceDestroy: pulumi.Output<boolean | undefined>;
     declare public /*out*/ readonly forceRefresh: pulumi.Output<boolean>;
+    declare public readonly healthchecks: pulumi.Output<outputs.ServiceComputeHealthcheck[] | undefined>;
     declare public readonly imageOptimizerDefaultSettings: pulumi.Output<outputs.ServiceComputeImageOptimizerDefaultSettings | undefined>;
     /**
      * Used internally by the provider to temporarily indicate if the service is being imported, and is reset to false once the import is finished
@@ -98,6 +99,7 @@ export class ServiceCompute extends pulumi.CustomResource {
     declare public readonly loggingLogentries: pulumi.Output<outputs.ServiceComputeLoggingLogentry[] | undefined>;
     declare public readonly loggingLogglies: pulumi.Output<outputs.ServiceComputeLoggingLoggly[] | undefined>;
     declare public readonly loggingLogshuttles: pulumi.Output<outputs.ServiceComputeLoggingLogshuttle[] | undefined>;
+    declare public readonly loggingNewrelicotlps: pulumi.Output<outputs.ServiceComputeLoggingNewrelicotlp[] | undefined>;
     declare public readonly loggingNewrelics: pulumi.Output<outputs.ServiceComputeLoggingNewrelic[] | undefined>;
     declare public readonly loggingOpenstacks: pulumi.Output<outputs.ServiceComputeLoggingOpenstack[] | undefined>;
     declare public readonly loggingPapertrails: pulumi.Output<outputs.ServiceComputeLoggingPapertrail[] | undefined>;
@@ -141,7 +143,7 @@ export class ServiceCompute extends pulumi.CustomResource {
      * @param args The arguments to use to populate this resource's properties.
      * @param opts A bag of options that control this resource's behavior.
      */
-    constructor(name: string, args: ServiceComputeArgs, opts?: pulumi.CustomResourceOptions)
+    constructor(name: string, args?: ServiceComputeArgs, opts?: pulumi.CustomResourceOptions)
     constructor(name: string, argsOrState?: ServiceComputeArgs | ServiceComputeState, opts?: pulumi.CustomResourceOptions) {
         let resourceInputs: pulumi.Inputs = {};
         opts = opts || {};
@@ -156,6 +158,7 @@ export class ServiceCompute extends pulumi.CustomResource {
             resourceInputs["domains"] = state?.domains;
             resourceInputs["forceDestroy"] = state?.forceDestroy;
             resourceInputs["forceRefresh"] = state?.forceRefresh;
+            resourceInputs["healthchecks"] = state?.healthchecks;
             resourceInputs["imageOptimizerDefaultSettings"] = state?.imageOptimizerDefaultSettings;
             resourceInputs["imported"] = state?.imported;
             resourceInputs["loggingBigqueries"] = state?.loggingBigqueries;
@@ -176,6 +179,7 @@ export class ServiceCompute extends pulumi.CustomResource {
             resourceInputs["loggingLogentries"] = state?.loggingLogentries;
             resourceInputs["loggingLogglies"] = state?.loggingLogglies;
             resourceInputs["loggingLogshuttles"] = state?.loggingLogshuttles;
+            resourceInputs["loggingNewrelicotlps"] = state?.loggingNewrelicotlps;
             resourceInputs["loggingNewrelics"] = state?.loggingNewrelics;
             resourceInputs["loggingOpenstacks"] = state?.loggingOpenstacks;
             resourceInputs["loggingPapertrails"] = state?.loggingPapertrails;
@@ -195,15 +199,13 @@ export class ServiceCompute extends pulumi.CustomResource {
             resourceInputs["versionComment"] = state?.versionComment;
         } else {
             const args = argsOrState as ServiceComputeArgs | undefined;
-            if (args?.domains === undefined && !opts.urn) {
-                throw new Error("Missing required property 'domains'");
-            }
             resourceInputs["activate"] = args?.activate;
             resourceInputs["backends"] = args?.backends;
             resourceInputs["comment"] = args?.comment;
             resourceInputs["dictionaries"] = args?.dictionaries;
             resourceInputs["domains"] = args?.domains;
             resourceInputs["forceDestroy"] = args?.forceDestroy;
+            resourceInputs["healthchecks"] = args?.healthchecks;
             resourceInputs["imageOptimizerDefaultSettings"] = args?.imageOptimizerDefaultSettings;
             resourceInputs["loggingBigqueries"] = args?.loggingBigqueries;
             resourceInputs["loggingBlobstorages"] = args?.loggingBlobstorages;
@@ -223,6 +225,7 @@ export class ServiceCompute extends pulumi.CustomResource {
             resourceInputs["loggingLogentries"] = args?.loggingLogentries;
             resourceInputs["loggingLogglies"] = args?.loggingLogglies;
             resourceInputs["loggingLogshuttles"] = args?.loggingLogshuttles;
+            resourceInputs["loggingNewrelicotlps"] = args?.loggingNewrelicotlps;
             resourceInputs["loggingNewrelics"] = args?.loggingNewrelics;
             resourceInputs["loggingOpenstacks"] = args?.loggingOpenstacks;
             resourceInputs["loggingPapertrails"] = args?.loggingPapertrails;
@@ -278,6 +281,7 @@ export interface ServiceComputeState {
      */
     forceDestroy?: pulumi.Input<boolean>;
     forceRefresh?: pulumi.Input<boolean>;
+    healthchecks?: pulumi.Input<pulumi.Input<inputs.ServiceComputeHealthcheck>[]>;
     imageOptimizerDefaultSettings?: pulumi.Input<inputs.ServiceComputeImageOptimizerDefaultSettings>;
     /**
      * Used internally by the provider to temporarily indicate if the service is being imported, and is reset to false once the import is finished
@@ -301,6 +305,7 @@ export interface ServiceComputeState {
     loggingLogentries?: pulumi.Input<pulumi.Input<inputs.ServiceComputeLoggingLogentry>[]>;
     loggingLogglies?: pulumi.Input<pulumi.Input<inputs.ServiceComputeLoggingLoggly>[]>;
     loggingLogshuttles?: pulumi.Input<pulumi.Input<inputs.ServiceComputeLoggingLogshuttle>[]>;
+    loggingNewrelicotlps?: pulumi.Input<pulumi.Input<inputs.ServiceComputeLoggingNewrelicotlp>[]>;
     loggingNewrelics?: pulumi.Input<pulumi.Input<inputs.ServiceComputeLoggingNewrelic>[]>;
     loggingOpenstacks?: pulumi.Input<pulumi.Input<inputs.ServiceComputeLoggingOpenstack>[]>;
     loggingPapertrails?: pulumi.Input<pulumi.Input<inputs.ServiceComputeLoggingPapertrail>[]>;
@@ -352,11 +357,12 @@ export interface ServiceComputeArgs {
     /**
      * A set of Domain names to serve as entry points for your Service
      */
-    domains: pulumi.Input<pulumi.Input<inputs.ServiceComputeDomain>[]>;
+    domains?: pulumi.Input<pulumi.Input<inputs.ServiceComputeDomain>[]>;
     /**
      * Services that are active cannot be destroyed. In order to destroy the Service, set `forceDestroy` to `true`. Default `false`
      */
     forceDestroy?: pulumi.Input<boolean>;
+    healthchecks?: pulumi.Input<pulumi.Input<inputs.ServiceComputeHealthcheck>[]>;
     imageOptimizerDefaultSettings?: pulumi.Input<inputs.ServiceComputeImageOptimizerDefaultSettings>;
     loggingBigqueries?: pulumi.Input<pulumi.Input<inputs.ServiceComputeLoggingBigquery>[]>;
     loggingBlobstorages?: pulumi.Input<pulumi.Input<inputs.ServiceComputeLoggingBlobstorage>[]>;
@@ -376,6 +382,7 @@ export interface ServiceComputeArgs {
     loggingLogentries?: pulumi.Input<pulumi.Input<inputs.ServiceComputeLoggingLogentry>[]>;
     loggingLogglies?: pulumi.Input<pulumi.Input<inputs.ServiceComputeLoggingLoggly>[]>;
     loggingLogshuttles?: pulumi.Input<pulumi.Input<inputs.ServiceComputeLoggingLogshuttle>[]>;
+    loggingNewrelicotlps?: pulumi.Input<pulumi.Input<inputs.ServiceComputeLoggingNewrelicotlp>[]>;
     loggingNewrelics?: pulumi.Input<pulumi.Input<inputs.ServiceComputeLoggingNewrelic>[]>;
     loggingOpenstacks?: pulumi.Input<pulumi.Input<inputs.ServiceComputeLoggingOpenstack>[]>;
     loggingPapertrails?: pulumi.Input<pulumi.Input<inputs.ServiceComputeLoggingPapertrail>[]>;

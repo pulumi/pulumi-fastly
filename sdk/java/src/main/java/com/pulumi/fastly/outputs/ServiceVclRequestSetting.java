@@ -65,7 +65,7 @@ public final class ServiceVclRequestSetting {
      */
     private @Nullable Boolean timerSupport;
     /**
-     * @return X-Forwarded-For, should be `clear`, `leave`, `append`, `appendAll`, or `overwrite`. Default `append`
+     * @return X-Forwarded-For, should be `clear`, `leave`, `append`, `appendAll`, or `overwrite`
      * 
      */
     private @Nullable String xff;
@@ -142,7 +142,7 @@ public final class ServiceVclRequestSetting {
         return Optional.ofNullable(this.timerSupport);
     }
     /**
-     * @return X-Forwarded-For, should be `clear`, `leave`, `append`, `appendAll`, or `overwrite`. Default `append`
+     * @return X-Forwarded-For, should be `clear`, `leave`, `append`, `appendAll`, or `overwrite`
      * 
      */
     public Optional<String> xff() {

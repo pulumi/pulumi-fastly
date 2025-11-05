@@ -26,9 +26,24 @@ namespace Pulumi.Fastly
     /// 
     /// return await Deployment.RunAsync(() =&gt; 
     /// {
-    ///     var demo = new Fastly.ServiceVcl("demo");
+    ///     var demo = new Fastly.ServiceVcl("demo", new()
+    ///     {
+    ///         Name = "demofastly",
+    ///         Domains = new[]
+    ///         {
+    ///             new Fastly.Inputs.ServiceVclDomainArgs
+    ///             {
+    ///                 Name = "demo.notexample.com",
+    ///                 Comment = "demo",
+    ///             },
+    ///         },
+    ///     });
     /// 
-    ///     var user = new Fastly.User("user");
+    ///     var user = new Fastly.User("user", new()
+    ///     {
+    ///         Login = "demo@example.com",
+    ///         Name = "Demo User",
+    ///     });
     /// 
     ///     var auth = new Fastly.ServiceAuthorization("auth", new()
     ///     {

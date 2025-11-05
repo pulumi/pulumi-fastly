@@ -29,8 +29,8 @@ import javax.annotation.Nullable;
  * import com.pulumi.Context;
  * import com.pulumi.Pulumi;
  * import com.pulumi.core.Output;
- * import com.pulumi.fastly.ngwafVirtualPatch;
- * import com.pulumi.fastly.ngwafVirtualPatchArgs;
+ * import com.pulumi.fastly.NgwafVirtualPatches;
+ * import com.pulumi.fastly.NgwafVirtualPatchesArgs;
  * import java.util.List;
  * import java.util.ArrayList;
  * import java.util.Map;
@@ -44,7 +44,7 @@ import javax.annotation.Nullable;
  *     }
  * 
  *     public static void stack(Context ctx) {
- *         var demo = new NgwafVirtualPatch("demo", NgwafVirtualPatchArgs.builder()
+ *         var demo = new NgwafVirtualPatches("demo", NgwafVirtualPatchesArgs.builder()
  *             .action("block")
  *             .enabled(true)
  *             .virtualPatchId("CVE-2017-5638")

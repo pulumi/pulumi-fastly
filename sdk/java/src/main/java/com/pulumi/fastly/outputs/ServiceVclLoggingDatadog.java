@@ -39,7 +39,7 @@ public final class ServiceVclLoggingDatadog {
      */
     private @Nullable String processingRegion;
     /**
-     * @return The region that log data will be sent to. One of `US` or `EU`. Defaults to `US` if undefined
+     * @return The region that log data will be sent to. Defaults to `US` if undefined
      * 
      */
     private @Nullable String region;
@@ -91,7 +91,7 @@ public final class ServiceVclLoggingDatadog {
         return Optional.ofNullable(this.processingRegion);
     }
     /**
-     * @return The region that log data will be sent to. One of `US` or `EU`. Defaults to `US` if undefined
+     * @return The region that log data will be sent to. Defaults to `US` if undefined
      * 
      */
     public Optional<String> region() {

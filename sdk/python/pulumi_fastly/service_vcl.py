@@ -21,7 +21,6 @@ __all__ = ['ServiceVclArgs', 'ServiceVcl']
 @pulumi.input_type
 class ServiceVclArgs:
     def __init__(__self__, *,
-                 domains: pulumi.Input[Sequence[pulumi.Input['ServiceVclDomainArgs']]],
                  acls: Optional[pulumi.Input[Sequence[pulumi.Input['ServiceVclAclArgs']]]] = None,
                  activate: Optional[pulumi.Input[_builtins.bool]] = None,
                  backends: Optional[pulumi.Input[Sequence[pulumi.Input['ServiceVclBackendArgs']]]] = None,
@@ -32,6 +31,7 @@ class ServiceVclArgs:
                  default_ttl: Optional[pulumi.Input[_builtins.int]] = None,
                  dictionaries: Optional[pulumi.Input[Sequence[pulumi.Input['ServiceVclDictionaryArgs']]]] = None,
                  directors: Optional[pulumi.Input[Sequence[pulumi.Input['ServiceVclDirectorArgs']]]] = None,
+                 domains: Optional[pulumi.Input[Sequence[pulumi.Input['ServiceVclDomainArgs']]]] = None,
                  dynamicsnippets: Optional[pulumi.Input[Sequence[pulumi.Input['ServiceVclDynamicsnippetArgs']]]] = None,
                  force_destroy: Optional[pulumi.Input[_builtins.bool]] = None,
                  gzips: Optional[pulumi.Input[Sequence[pulumi.Input['ServiceVclGzipArgs']]]] = None,
@@ -81,10 +81,10 @@ class ServiceVclArgs:
                  version_comment: Optional[pulumi.Input[_builtins.str]] = None):
         """
         The set of arguments for constructing a ServiceVcl resource.
-        :param pulumi.Input[Sequence[pulumi.Input['ServiceVclDomainArgs']]] domains: A set of Domain names to serve as entry points for your Service
         :param pulumi.Input[_builtins.bool] activate: Conditionally prevents new service versions from being activated. The apply step will create a new draft version but will not activate it if this is set to `false`. Default `true`
         :param pulumi.Input[_builtins.str] default_host: The default hostname
         :param pulumi.Input[_builtins.int] default_ttl: The default Time-to-live (TTL) for requests
+        :param pulumi.Input[Sequence[pulumi.Input['ServiceVclDomainArgs']]] domains: A set of Domain names to serve as entry points for your Service
         :param pulumi.Input[_builtins.bool] force_destroy: Services that are active cannot be destroyed. In order to destroy the Service, set `force_destroy` to `true`. Default `false`
         :param pulumi.Input[_builtins.bool] http3: Enables support for the HTTP/3 (QUIC) protocol
         :param pulumi.Input[_builtins.str] name: The unique name for the Service to create
@@ -93,7 +93,6 @@ class ServiceVclArgs:
         :param pulumi.Input[_builtins.int] stale_if_error_ttl: The default time-to-live (TTL) for serving the stale object for the version
         :param pulumi.Input[_builtins.str] version_comment: Description field for the version
         """
-        pulumi.set(__self__, "domains", domains)
         if acls is not None:
             pulumi.set(__self__, "acls", acls)
         if activate is not None:
@@ -114,6 +113,8 @@ class ServiceVclArgs:
             pulumi.set(__self__, "dictionaries", dictionaries)
         if directors is not None:
             pulumi.set(__self__, "directors", directors)
+        if domains is not None:
+            pulumi.set(__self__, "domains", domains)
         if dynamicsnippets is not None:
             pulumi.set(__self__, "dynamicsnippets", dynamicsnippets)
         if force_destroy is not None:
@@ -208,18 +209,6 @@ class ServiceVclArgs:
             pulumi.set(__self__, "vcls", vcls)
         if version_comment is not None:
             pulumi.set(__self__, "version_comment", version_comment)
-
-    @_builtins.property
-    @pulumi.getter
-    def domains(self) -> pulumi.Input[Sequence[pulumi.Input['ServiceVclDomainArgs']]]:
-        """
-        A set of Domain names to serve as entry points for your Service
-        """
-        return pulumi.get(self, "domains")
-
-    @domains.setter
-    def domains(self, value: pulumi.Input[Sequence[pulumi.Input['ServiceVclDomainArgs']]]):
-        pulumi.set(self, "domains", value)
 
     @_builtins.property
     @pulumi.getter
@@ -319,6 +308,18 @@ class ServiceVclArgs:
     @directors.setter
     def directors(self, value: Optional[pulumi.Input[Sequence[pulumi.Input['ServiceVclDirectorArgs']]]]):
         pulumi.set(self, "directors", value)
+
+    @_builtins.property
+    @pulumi.getter
+    def domains(self) -> Optional[pulumi.Input[Sequence[pulumi.Input['ServiceVclDomainArgs']]]]:
+        """
+        A set of Domain names to serve as entry points for your Service
+        """
+        return pulumi.get(self, "domains")
+
+    @domains.setter
+    def domains(self, value: Optional[pulumi.Input[Sequence[pulumi.Input['ServiceVclDomainArgs']]]]):
+        pulumi.set(self, "domains", value)
 
     @_builtins.property
     @pulumi.getter
@@ -1689,7 +1690,7 @@ class ServiceVcl(pulumi.CustomResource):
     @overload
     def __init__(__self__,
                  resource_name: str,
-                 args: ServiceVclArgs,
+                 args: Optional[ServiceVclArgs] = None,
                  opts: Optional[pulumi.ResourceOptions] = None):
         """
         ## Import
@@ -1800,8 +1801,6 @@ class ServiceVcl(pulumi.CustomResource):
             __props__.__dict__["default_ttl"] = default_ttl
             __props__.__dict__["dictionaries"] = dictionaries
             __props__.__dict__["directors"] = directors
-            if domains is None and not opts.urn:
-                raise TypeError("Missing required property 'domains'")
             __props__.__dict__["domains"] = domains
             __props__.__dict__["dynamicsnippets"] = dynamicsnippets
             __props__.__dict__["force_destroy"] = force_destroy
@@ -2097,7 +2096,7 @@ class ServiceVcl(pulumi.CustomResource):
 
     @_builtins.property
     @pulumi.getter
-    def domains(self) -> pulumi.Output[Sequence['outputs.ServiceVclDomain']]:
+    def domains(self) -> pulumi.Output[Optional[Sequence['outputs.ServiceVclDomain']]]:
         """
         A set of Domain names to serve as entry points for your Service
         """

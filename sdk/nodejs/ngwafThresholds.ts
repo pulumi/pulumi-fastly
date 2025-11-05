@@ -75,7 +75,7 @@ export class NgwafThresholds extends pulumi.CustomResource {
     /**
      * Duration the action is in place, in seconds. Minimum 1 and maximum 31,556,900.
      */
-    declare public readonly duration: pulumi.Output<number>;
+    declare public readonly duration: pulumi.Output<number | undefined>;
     /**
      * Whether this threshold is active.
      */
@@ -130,9 +130,6 @@ export class NgwafThresholds extends pulumi.CustomResource {
             }
             if (args?.dontNotify === undefined && !opts.urn) {
                 throw new Error("Missing required property 'dontNotify'");
-            }
-            if (args?.duration === undefined && !opts.urn) {
-                throw new Error("Missing required property 'duration'");
             }
             if (args?.enabled === undefined && !opts.urn) {
                 throw new Error("Missing required property 'enabled'");
@@ -221,7 +218,7 @@ export interface NgwafThresholdsArgs {
     /**
      * Duration the action is in place, in seconds. Minimum 1 and maximum 31,556,900.
      */
-    duration: pulumi.Input<number>;
+    duration?: pulumi.Input<number>;
     /**
      * Whether this threshold is active.
      */

@@ -14,6 +14,14 @@ namespace Pulumi.Fastly.Outputs
     public sealed class NgwafWorkspaceRuleAction
     {
         /// <summary>
+        /// Specifies if interaction is allowed (used when `type = BrowserChallenge`).
+        /// </summary>
+        public readonly bool? AllowInteractive;
+        /// <summary>
+        /// specifies the type of deception (used when `type = deception`).
+        /// </summary>
+        public readonly string? DeceptionType;
+        /// <summary>
         /// Redirect target (used when `type = redirect`).
         /// </summary>
         public readonly string? RedirectUrl;
@@ -26,12 +34,16 @@ namespace Pulumi.Fastly.Outputs
         /// </summary>
         public readonly string? Signal;
         /// <summary>
-        /// The action type, e.g. `Block`, `Redirect`, `ExcludeSignal`.
+        /// The action type. One of: `AddSignal`, `Allow`, `Block`, `BrowserChallenge`, `DynamicChallenge`, `ExcludeSignal`, `VerifyToken` or for rate limit rule valid values: `LogRequest`, `BlockSignal`, `BrowserChallenge`, `VerifyToken`
         /// </summary>
         public readonly string Type;
 
         [OutputConstructor]
         private NgwafWorkspaceRuleAction(
+            bool? allowInteractive,
+
+            string? deceptionType,
+
             string? redirectUrl,
 
             int? responseCode,
@@ -40,6 +52,8 @@ namespace Pulumi.Fastly.Outputs
 
             string type)
         {
+            AllowInteractive = allowInteractive;
+            DeceptionType = deceptionType;
             RedirectUrl = redirectUrl;
             ResponseCode = responseCode;
             Signal = signal;

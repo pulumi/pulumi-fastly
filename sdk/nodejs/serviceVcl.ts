@@ -81,7 +81,7 @@ export class ServiceVcl extends pulumi.CustomResource {
     /**
      * A set of Domain names to serve as entry points for your Service
      */
-    declare public readonly domains: pulumi.Output<outputs.ServiceVclDomain[]>;
+    declare public readonly domains: pulumi.Output<outputs.ServiceVclDomain[] | undefined>;
     declare public readonly dynamicsnippets: pulumi.Output<outputs.ServiceVclDynamicsnippet[] | undefined>;
     /**
      * Services that are active cannot be destroyed. In order to destroy the Service, set `forceDestroy` to `true`. Default `false`
@@ -167,7 +167,7 @@ export class ServiceVcl extends pulumi.CustomResource {
      * @param args The arguments to use to populate this resource's properties.
      * @param opts A bag of options that control this resource's behavior.
      */
-    constructor(name: string, args: ServiceVclArgs, opts?: pulumi.CustomResourceOptions)
+    constructor(name: string, args?: ServiceVclArgs, opts?: pulumi.CustomResourceOptions)
     constructor(name: string, argsOrState?: ServiceVclArgs | ServiceVclState, opts?: pulumi.CustomResourceOptions) {
         let resourceInputs: pulumi.Inputs = {};
         opts = opts || {};
@@ -238,9 +238,6 @@ export class ServiceVcl extends pulumi.CustomResource {
             resourceInputs["versionComment"] = state?.versionComment;
         } else {
             const args = argsOrState as ServiceVclArgs | undefined;
-            if (args?.domains === undefined && !opts.urn) {
-                throw new Error("Missing required property 'domains'");
-            }
             resourceInputs["acls"] = args?.acls;
             resourceInputs["activate"] = args?.activate;
             resourceInputs["backends"] = args?.backends;
@@ -450,7 +447,7 @@ export interface ServiceVclArgs {
     /**
      * A set of Domain names to serve as entry points for your Service
      */
-    domains: pulumi.Input<pulumi.Input<inputs.ServiceVclDomain>[]>;
+    domains?: pulumi.Input<pulumi.Input<inputs.ServiceVclDomain>[]>;
     dynamicsnippets?: pulumi.Input<pulumi.Input<inputs.ServiceVclDynamicsnippet>[]>;
     /**
      * Services that are active cannot be destroyed. In order to destroy the Service, set `forceDestroy` to `true`. Default `false`

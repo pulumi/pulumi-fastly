@@ -19,7 +19,7 @@ namespace Pulumi.Fastly.Inputs
         public Input<string>? Signal { get; set; }
 
         /// <summary>
-        /// The action type, e.g. `Block`, `Redirect`, `ExcludeSignal`.
+        /// The action type. One of: `AddSignal`, `Allow`, `Block`, `BrowserChallenge`, `DynamicChallenge`, `ExcludeSignal`, `VerifyToken` or for rate limit rule valid values: `LogRequest`, `BlockSignal`, `BrowserChallenge`, `VerifyToken`
         /// </summary>
         [Input("type", required: true)]
         public Input<string> Type { get; set; } = null!;

@@ -112,7 +112,7 @@ export interface NgwafAccountRuleAction {
      */
     signal?: pulumi.Input<string>;
     /**
-     * The action type, e.g. `block`, `redirect`, `excludeSignal`.
+     * The action type. One of: `addSignal`, `allow`, `block`, `browserChallenge`, `dynamicChallenge`, `excludeSignal`, `verifyToken` or for rate limit rule valid values: `logRequest`, `blockSignal`, `browserChallenge`, `verifyToken`
      */
     type: pulumi.Input<string>;
 }
@@ -158,42 +158,38 @@ export interface NgwafAccountRuleGroupConditionCondition {
     value: pulumi.Input<string>;
 }
 
-export interface NgwafAccountRuleRateLimit {
+export interface NgwafAccountRuleMultivalCondition {
     /**
-     * List of client identifiers used for rate limiting. Can only be length 1 or 2.
+     * A list of nested conditions in this list.
      */
-    clientIdentifiers: pulumi.Input<pulumi.Input<inputs.NgwafAccountRuleRateLimitClientIdentifier>[]>;
+    conditions: pulumi.Input<pulumi.Input<inputs.NgwafAccountRuleMultivalConditionCondition>[]>;
     /**
-     * Duration in seconds for the rate limit.
+     * Enums for multival condition field.. Accepted values are `postParameter`, `queryParameter`, `requestCookie`, `requestHeader`, `responseHeader`, and `signal`.
      */
-    duration: pulumi.Input<number>;
+    field: pulumi.Input<string>;
     /**
-     * Time interval for the rate limit in seconds. Accepted values are 60, 600, and 3600.
+     * Logical operator for the group. Accepted values are `any` and `all`.
      */
-    interval: pulumi.Input<number>;
+    groupOperator: pulumi.Input<string>;
     /**
-     * Reference ID of the custom signal this rule uses to count requests.
+     * Indicates whether the supplied conditions will check for existence or non-existence of matching field values. Accepted values are `exists` and `doesNotExist`.
      */
-    signal: pulumi.Input<string>;
-    /**
-     * Rate limit threshold. Minimum 1 and maximum 10,000.
-     */
-    threshold: pulumi.Input<number>;
+    operator: pulumi.Input<string>;
 }
 
-export interface NgwafAccountRuleRateLimitClientIdentifier {
+export interface NgwafAccountRuleMultivalConditionCondition {
     /**
-     * Key for the Client Identifier.
+     * Field to inspect (e.g., `name`, `value`, `signalId`).
      */
-    key?: pulumi.Input<string>;
+    field: pulumi.Input<string>;
     /**
-     * Name for the Client Identifier.
+     * Operator to apply (e.g., `equals`, `contains`).
      */
-    name?: pulumi.Input<string>;
+    operator: pulumi.Input<string>;
     /**
-     * Type of the Client Identifier.
+     * The value to test the field against.
      */
-    type: pulumi.Input<string>;
+    value: pulumi.Input<string>;
 }
 
 export interface NgwafWorkspaceAttackSignalThresholds {
@@ -217,6 +213,14 @@ export interface NgwafWorkspaceAttackSignalThresholds {
 
 export interface NgwafWorkspaceRuleAction {
     /**
+     * Specifies if interaction is allowed (used when `type = browserChallenge`).
+     */
+    allowInteractive?: pulumi.Input<boolean>;
+    /**
+     * specifies the type of deception (used when `type = deception`).
+     */
+    deceptionType?: pulumi.Input<string>;
+    /**
      * Redirect target (used when `type = redirect`).
      */
     redirectUrl?: pulumi.Input<string>;
@@ -229,7 +233,7 @@ export interface NgwafWorkspaceRuleAction {
      */
     signal?: pulumi.Input<string>;
     /**
-     * The action type, e.g. `block`, `redirect`, `excludeSignal`.
+     * The action type. One of: `addSignal`, `allow`, `block`, `browserChallenge`, `dynamicChallenge`, `excludeSignal`, `verifyToken` or for rate limit rule valid values: `logRequest`, `blockSignal`, `browserChallenge`, `verifyToken`
      */
     type: pulumi.Input<string>;
 }
@@ -263,6 +267,40 @@ export interface NgwafWorkspaceRuleGroupCondition {
 export interface NgwafWorkspaceRuleGroupConditionCondition {
     /**
      * Field to inspect (e.g., `ip`, `path`).
+     */
+    field: pulumi.Input<string>;
+    /**
+     * Operator to apply (e.g., `equals`, `contains`).
+     */
+    operator: pulumi.Input<string>;
+    /**
+     * The value to test the field against.
+     */
+    value: pulumi.Input<string>;
+}
+
+export interface NgwafWorkspaceRuleMultivalCondition {
+    /**
+     * A list of nested conditions in this list.
+     */
+    conditions: pulumi.Input<pulumi.Input<inputs.NgwafWorkspaceRuleMultivalConditionCondition>[]>;
+    /**
+     * Enums for multival condition field.. Accepted values are `postParameter`, `queryParameter`, `requestCookie`, `requestHeader`, `responseHeader`, and `signal`.
+     */
+    field: pulumi.Input<string>;
+    /**
+     * Logical operator for the group. Accepted values are `any` and `all`.
+     */
+    groupOperator: pulumi.Input<string>;
+    /**
+     * Indicates whether the supplied conditions will check for existence or non-existence of matching field values. Accepted values are `exists` and `doesNotExist`.
+     */
+    operator: pulumi.Input<string>;
+}
+
+export interface NgwafWorkspaceRuleMultivalConditionCondition {
+    /**
+     * Field to inspect (e.g., `name`, `value`, `signalId`).
      */
     field: pulumi.Input<string>;
     /**
@@ -464,6 +502,57 @@ export interface ServiceComputeDomain {
      * The domain that this Service will respond to. It is important to note that changing this attribute will delete and recreate the resource.
      */
     name: pulumi.Input<string>;
+}
+
+export interface ServiceComputeHealthcheck {
+    /**
+     * How often to run the Healthcheck in milliseconds. Default `5000`
+     */
+    checkInterval?: pulumi.Input<number>;
+    /**
+     * The status code expected from the host. Default `200`
+     */
+    expectedResponse?: pulumi.Input<number>;
+    /**
+     * Custom health check HTTP headers (e.g. if your health check requires an API key to be provided).
+     */
+    headers?: pulumi.Input<pulumi.Input<string>[]>;
+    /**
+     * The Host header to send for this Healthcheck
+     */
+    host: pulumi.Input<string>;
+    /**
+     * Whether to use version 1.0 or 1.1 HTTP. Default `1.1`
+     */
+    httpVersion?: pulumi.Input<string>;
+    /**
+     * When loading a config, the initial number of probes to be seen as OK. Default `3`
+     */
+    initial?: pulumi.Input<number>;
+    /**
+     * Which HTTP method to use. Default `HEAD`
+     */
+    method?: pulumi.Input<string>;
+    /**
+     * A unique name to identify this Healthcheck. It is important to note that changing this attribute will delete and recreate the resource
+     */
+    name: pulumi.Input<string>;
+    /**
+     * The path to check
+     */
+    path: pulumi.Input<string>;
+    /**
+     * How many Healthchecks must succeed to be considered healthy. Default `3`
+     */
+    threshold?: pulumi.Input<number>;
+    /**
+     * Timeout in milliseconds. Default `5000`
+     */
+    timeout?: pulumi.Input<number>;
+    /**
+     * The number of most recent Healthcheck queries to keep for this Healthcheck. Default `5`
+     */
+    window?: pulumi.Input<number>;
 }
 
 export interface ServiceComputeImageOptimizerDefaultSettings {
@@ -668,7 +757,7 @@ export interface ServiceComputeLoggingDatadog {
      */
     processingRegion?: pulumi.Input<string>;
     /**
-     * The region that log data will be sent to. One of `US` or `EU`. Defaults to `US` if undefined
+     * The region that log data will be sent to. Defaults to `US` if undefined
      */
     region?: pulumi.Input<string>;
     /**
@@ -995,9 +1084,17 @@ export interface ServiceComputeLoggingHoneycomb {
 
 export interface ServiceComputeLoggingHttp {
     /**
+     * The codec used for compression of your logs. Valid values are zstd, snappy, and gzip. If the specified codec is "gzip", gzipLevel will default to 3. To specify a different level, leave compressionCodec blank and explicitly set the level using gzip_level. Specifying both compressionCodec and gzipLevel in the same API request will result in an error.
+     */
+    compressionCodec?: pulumi.Input<string>;
+    /**
      * Value of the `Content-Type` header sent with the request
      */
     contentType?: pulumi.Input<string>;
+    /**
+     * Level of Gzip compression from `0-9`. `0` means no compression. `1` is the fastest and the least compressed version, `9` is the slowest and the most compressed version. Default `0`
+     */
+    gzipLevel?: pulumi.Input<number>;
     /**
      * Custom header sent with the request
      */
@@ -1022,6 +1119,10 @@ export interface ServiceComputeLoggingHttp {
      * The unique name of the HTTPS logging endpoint. It is important to note that changing this attribute will delete and recreate the resource
      */
     name: pulumi.Input<string>;
+    /**
+     * How frequently, in seconds, batches of log data are sent to the HTTPS endpoint. A value of 0 sends logs at the same interval as the default, which is 5 seconds.
+     */
+    period?: pulumi.Input<number>;
     /**
      * Region where logs will be processed before streaming to BigQuery. Valid values are 'none', 'us' and 'eu'.
      */
@@ -1228,6 +1329,45 @@ export interface ServiceComputeLoggingNewrelic {
      * The Insert API key from the Account page of your New Relic account
      */
     token: pulumi.Input<string>;
+}
+
+export interface ServiceComputeLoggingNewrelicotlp {
+    /**
+     * Apache style log formatting. Your log must produce valid JSON that New Relic OTLP can ingest.
+     */
+    format?: pulumi.Input<string>;
+    /**
+     * The version of the custom logging format used for the configured endpoint. Can be either `1` or `2`. (default: `2`).
+     */
+    formatVersion?: pulumi.Input<number>;
+    /**
+     * The unique name of the New Relic OTLP logging endpoint. It is important to note that changing this attribute will delete and recreate the resource
+     */
+    name: pulumi.Input<string>;
+    /**
+     * Where in the generated VCL the logging call should be placed.
+     */
+    placement?: pulumi.Input<string>;
+    /**
+     * Region where logs will be processed before streaming to BigQuery. Valid values are 'none', 'us' and 'eu'.
+     */
+    processingRegion?: pulumi.Input<string>;
+    /**
+     * The region that log data will be sent to. Default: `US`
+     */
+    region?: pulumi.Input<string>;
+    /**
+     * The name of the condition to apply.
+     */
+    responseCondition?: pulumi.Input<string>;
+    /**
+     * The Insert API key from the Account page of your New Relic account
+     */
+    token: pulumi.Input<string>;
+    /**
+     * The optional New Relic Trace Observer URL to stream logs to for Infinite Tracing.
+     */
+    url?: pulumi.Input<string>;
 }
 
 export interface ServiceComputeLoggingOpenstack {
@@ -1590,6 +1730,10 @@ export interface ServiceComputePackage {
 }
 
 export interface ServiceComputeProductEnablement {
+    /**
+     * Enable API Discovery support
+     */
+    apiDiscovery?: pulumi.Input<boolean>;
     /**
      * DDoS Protection product
      */
@@ -2139,7 +2283,7 @@ export interface ServiceVclLoggingBlobstorage {
      */
     fileMaxBytes?: pulumi.Input<number>;
     /**
-     * Apache-style string or VCL variables to use for log formatting (default: `%h %l %u %t "%r" %>s %b`)
+     * Apache-style string or VCL variables to use for log formatting.
      */
     format?: pulumi.Input<string>;
     /**
@@ -2285,7 +2429,7 @@ export interface ServiceVclLoggingDatadog {
      */
     processingRegion?: pulumi.Input<string>;
     /**
-     * The region that log data will be sent to. One of `US` or `EU`. Defaults to `US` if undefined
+     * The region that log data will be sent to. Defaults to `US` if undefined
      */
     region?: pulumi.Input<string>;
     /**
@@ -2744,6 +2888,10 @@ export interface ServiceVclLoggingHoneycomb {
 
 export interface ServiceVclLoggingHttp {
     /**
+     * The codec used for compression of your logs. Valid values are zstd, snappy, and gzip. If the specified codec is "gzip", gzipLevel will default to 3. To specify a different level, leave compressionCodec blank and explicitly set the level using gzip_level. Specifying both compressionCodec and gzipLevel in the same API request will result in an error.
+     */
+    compressionCodec?: pulumi.Input<string>;
+    /**
      * Value of the `Content-Type` header sent with the request
      */
     contentType?: pulumi.Input<string>;
@@ -2755,6 +2903,10 @@ export interface ServiceVclLoggingHttp {
      * The version of the custom logging format used for the configured endpoint. Can be either 1 or 2. (default: 2)
      */
     formatVersion?: pulumi.Input<number>;
+    /**
+     * Level of Gzip compression from `0-9`. `0` means no compression. `1` is the fastest and the least compressed version, `9` is the slowest and the most compressed version. Default `0`
+     */
+    gzipLevel?: pulumi.Input<number>;
     /**
      * Custom header sent with the request
      */
@@ -2779,6 +2931,10 @@ export interface ServiceVclLoggingHttp {
      * The unique name of the HTTPS logging endpoint. It is important to note that changing this attribute will delete and recreate the resource
      */
     name: pulumi.Input<string>;
+    /**
+     * How frequently, in seconds, batches of log data are sent to the HTTPS endpoint. A value of 0 sends logs at the same interval as the default, which is 5 seconds.
+     */
+    period?: pulumi.Input<number>;
     /**
      * Where in the generated VCL the logging call should be placed
      */
@@ -3604,6 +3760,10 @@ export interface ServiceVclLoggingSyslog {
 
 export interface ServiceVclProductEnablement {
     /**
+     * Enable API Discovery support
+     */
+    apiDiscovery?: pulumi.Input<boolean>;
+    /**
      * Enable Bot Management support
      */
     botManagement?: pulumi.Input<boolean>;
@@ -3783,7 +3943,7 @@ export interface ServiceVclRequestSetting {
      */
     timerSupport?: pulumi.Input<boolean>;
     /**
-     * X-Forwarded-For, should be `clear`, `leave`, `append`, `appendAll`, or `overwrite`. Default `append`
+     * X-Forwarded-For, should be `clear`, `leave`, `append`, `appendAll`, or `overwrite`
      */
     xff?: pulumi.Input<string>;
 }

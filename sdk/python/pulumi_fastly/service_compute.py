@@ -21,12 +21,13 @@ __all__ = ['ServiceComputeArgs', 'ServiceCompute']
 @pulumi.input_type
 class ServiceComputeArgs:
     def __init__(__self__, *,
-                 domains: pulumi.Input[Sequence[pulumi.Input['ServiceComputeDomainArgs']]],
                  activate: Optional[pulumi.Input[_builtins.bool]] = None,
                  backends: Optional[pulumi.Input[Sequence[pulumi.Input['ServiceComputeBackendArgs']]]] = None,
                  comment: Optional[pulumi.Input[_builtins.str]] = None,
                  dictionaries: Optional[pulumi.Input[Sequence[pulumi.Input['ServiceComputeDictionaryArgs']]]] = None,
+                 domains: Optional[pulumi.Input[Sequence[pulumi.Input['ServiceComputeDomainArgs']]]] = None,
                  force_destroy: Optional[pulumi.Input[_builtins.bool]] = None,
+                 healthchecks: Optional[pulumi.Input[Sequence[pulumi.Input['ServiceComputeHealthcheckArgs']]]] = None,
                  image_optimizer_default_settings: Optional[pulumi.Input['ServiceComputeImageOptimizerDefaultSettingsArgs']] = None,
                  logging_bigqueries: Optional[pulumi.Input[Sequence[pulumi.Input['ServiceComputeLoggingBigqueryArgs']]]] = None,
                  logging_blobstorages: Optional[pulumi.Input[Sequence[pulumi.Input['ServiceComputeLoggingBlobstorageArgs']]]] = None,
@@ -46,6 +47,7 @@ class ServiceComputeArgs:
                  logging_logentries: Optional[pulumi.Input[Sequence[pulumi.Input['ServiceComputeLoggingLogentryArgs']]]] = None,
                  logging_logglies: Optional[pulumi.Input[Sequence[pulumi.Input['ServiceComputeLoggingLogglyArgs']]]] = None,
                  logging_logshuttles: Optional[pulumi.Input[Sequence[pulumi.Input['ServiceComputeLoggingLogshuttleArgs']]]] = None,
+                 logging_newrelicotlps: Optional[pulumi.Input[Sequence[pulumi.Input['ServiceComputeLoggingNewrelicotlpArgs']]]] = None,
                  logging_newrelics: Optional[pulumi.Input[Sequence[pulumi.Input['ServiceComputeLoggingNewrelicArgs']]]] = None,
                  logging_openstacks: Optional[pulumi.Input[Sequence[pulumi.Input['ServiceComputeLoggingOpenstackArgs']]]] = None,
                  logging_papertrails: Optional[pulumi.Input[Sequence[pulumi.Input['ServiceComputeLoggingPapertrailArgs']]]] = None,
@@ -64,8 +66,8 @@ class ServiceComputeArgs:
                  version_comment: Optional[pulumi.Input[_builtins.str]] = None):
         """
         The set of arguments for constructing a ServiceCompute resource.
-        :param pulumi.Input[Sequence[pulumi.Input['ServiceComputeDomainArgs']]] domains: A set of Domain names to serve as entry points for your Service
         :param pulumi.Input[_builtins.bool] activate: Conditionally prevents new service versions from being activated. The apply step will create a new draft version but will not activate it if this is set to `false`. Default `true`
+        :param pulumi.Input[Sequence[pulumi.Input['ServiceComputeDomainArgs']]] domains: A set of Domain names to serve as entry points for your Service
         :param pulumi.Input[_builtins.bool] force_destroy: Services that are active cannot be destroyed. In order to destroy the Service, set `force_destroy` to `true`. Default `false`
         :param pulumi.Input[_builtins.str] name: The unique name for the Service to create
         :param pulumi.Input['ServiceComputePackageArgs'] package: The `package` block supports uploading or modifying Wasm packages for use in a Fastly Compute service (if omitted, ensure `activate = false` is set on `ServiceCompute` to avoid service validation errors). See Fastly's documentation on [Compute](https://developer.fastly.com/learning/compute/)
@@ -73,7 +75,6 @@ class ServiceComputeArgs:
         :param pulumi.Input[_builtins.bool] stage: Conditionally enables new service versions to be staged. If set to `true`, all changes made by an `apply` step will be staged, even if `apply` did not create a new draft version. Default `false`
         :param pulumi.Input[_builtins.str] version_comment: Description field for the version
         """
-        pulumi.set(__self__, "domains", domains)
         if activate is not None:
             pulumi.set(__self__, "activate", activate)
         if backends is not None:
@@ -82,8 +83,12 @@ class ServiceComputeArgs:
             pulumi.set(__self__, "comment", comment)
         if dictionaries is not None:
             pulumi.set(__self__, "dictionaries", dictionaries)
+        if domains is not None:
+            pulumi.set(__self__, "domains", domains)
         if force_destroy is not None:
             pulumi.set(__self__, "force_destroy", force_destroy)
+        if healthchecks is not None:
+            pulumi.set(__self__, "healthchecks", healthchecks)
         if image_optimizer_default_settings is not None:
             pulumi.set(__self__, "image_optimizer_default_settings", image_optimizer_default_settings)
         if logging_bigqueries is not None:
@@ -122,6 +127,8 @@ class ServiceComputeArgs:
             pulumi.set(__self__, "logging_logglies", logging_logglies)
         if logging_logshuttles is not None:
             pulumi.set(__self__, "logging_logshuttles", logging_logshuttles)
+        if logging_newrelicotlps is not None:
+            pulumi.set(__self__, "logging_newrelicotlps", logging_newrelicotlps)
         if logging_newrelics is not None:
             pulumi.set(__self__, "logging_newrelics", logging_newrelics)
         if logging_openstacks is not None:
@@ -154,18 +161,6 @@ class ServiceComputeArgs:
             pulumi.set(__self__, "stage", stage)
         if version_comment is not None:
             pulumi.set(__self__, "version_comment", version_comment)
-
-    @_builtins.property
-    @pulumi.getter
-    def domains(self) -> pulumi.Input[Sequence[pulumi.Input['ServiceComputeDomainArgs']]]:
-        """
-        A set of Domain names to serve as entry points for your Service
-        """
-        return pulumi.get(self, "domains")
-
-    @domains.setter
-    def domains(self, value: pulumi.Input[Sequence[pulumi.Input['ServiceComputeDomainArgs']]]):
-        pulumi.set(self, "domains", value)
 
     @_builtins.property
     @pulumi.getter
@@ -207,6 +202,18 @@ class ServiceComputeArgs:
         pulumi.set(self, "dictionaries", value)
 
     @_builtins.property
+    @pulumi.getter
+    def domains(self) -> Optional[pulumi.Input[Sequence[pulumi.Input['ServiceComputeDomainArgs']]]]:
+        """
+        A set of Domain names to serve as entry points for your Service
+        """
+        return pulumi.get(self, "domains")
+
+    @domains.setter
+    def domains(self, value: Optional[pulumi.Input[Sequence[pulumi.Input['ServiceComputeDomainArgs']]]]):
+        pulumi.set(self, "domains", value)
+
+    @_builtins.property
     @pulumi.getter(name="forceDestroy")
     def force_destroy(self) -> Optional[pulumi.Input[_builtins.bool]]:
         """
@@ -217,6 +224,15 @@ class ServiceComputeArgs:
     @force_destroy.setter
     def force_destroy(self, value: Optional[pulumi.Input[_builtins.bool]]):
         pulumi.set(self, "force_destroy", value)
+
+    @_builtins.property
+    @pulumi.getter
+    def healthchecks(self) -> Optional[pulumi.Input[Sequence[pulumi.Input['ServiceComputeHealthcheckArgs']]]]:
+        return pulumi.get(self, "healthchecks")
+
+    @healthchecks.setter
+    def healthchecks(self, value: Optional[pulumi.Input[Sequence[pulumi.Input['ServiceComputeHealthcheckArgs']]]]):
+        pulumi.set(self, "healthchecks", value)
 
     @_builtins.property
     @pulumi.getter(name="imageOptimizerDefaultSettings")
@@ -390,6 +406,15 @@ class ServiceComputeArgs:
         pulumi.set(self, "logging_logshuttles", value)
 
     @_builtins.property
+    @pulumi.getter(name="loggingNewrelicotlps")
+    def logging_newrelicotlps(self) -> Optional[pulumi.Input[Sequence[pulumi.Input['ServiceComputeLoggingNewrelicotlpArgs']]]]:
+        return pulumi.get(self, "logging_newrelicotlps")
+
+    @logging_newrelicotlps.setter
+    def logging_newrelicotlps(self, value: Optional[pulumi.Input[Sequence[pulumi.Input['ServiceComputeLoggingNewrelicotlpArgs']]]]):
+        pulumi.set(self, "logging_newrelicotlps", value)
+
+    @_builtins.property
     @pulumi.getter(name="loggingNewrelics")
     def logging_newrelics(self) -> Optional[pulumi.Input[Sequence[pulumi.Input['ServiceComputeLoggingNewrelicArgs']]]]:
         return pulumi.get(self, "logging_newrelics")
@@ -561,6 +586,7 @@ class _ServiceComputeState:
                  domains: Optional[pulumi.Input[Sequence[pulumi.Input['ServiceComputeDomainArgs']]]] = None,
                  force_destroy: Optional[pulumi.Input[_builtins.bool]] = None,
                  force_refresh: Optional[pulumi.Input[_builtins.bool]] = None,
+                 healthchecks: Optional[pulumi.Input[Sequence[pulumi.Input['ServiceComputeHealthcheckArgs']]]] = None,
                  image_optimizer_default_settings: Optional[pulumi.Input['ServiceComputeImageOptimizerDefaultSettingsArgs']] = None,
                  imported: Optional[pulumi.Input[_builtins.bool]] = None,
                  logging_bigqueries: Optional[pulumi.Input[Sequence[pulumi.Input['ServiceComputeLoggingBigqueryArgs']]]] = None,
@@ -581,6 +607,7 @@ class _ServiceComputeState:
                  logging_logentries: Optional[pulumi.Input[Sequence[pulumi.Input['ServiceComputeLoggingLogentryArgs']]]] = None,
                  logging_logglies: Optional[pulumi.Input[Sequence[pulumi.Input['ServiceComputeLoggingLogglyArgs']]]] = None,
                  logging_logshuttles: Optional[pulumi.Input[Sequence[pulumi.Input['ServiceComputeLoggingLogshuttleArgs']]]] = None,
+                 logging_newrelicotlps: Optional[pulumi.Input[Sequence[pulumi.Input['ServiceComputeLoggingNewrelicotlpArgs']]]] = None,
                  logging_newrelics: Optional[pulumi.Input[Sequence[pulumi.Input['ServiceComputeLoggingNewrelicArgs']]]] = None,
                  logging_openstacks: Optional[pulumi.Input[Sequence[pulumi.Input['ServiceComputeLoggingOpenstackArgs']]]] = None,
                  logging_papertrails: Optional[pulumi.Input[Sequence[pulumi.Input['ServiceComputeLoggingPapertrailArgs']]]] = None,
@@ -631,6 +658,8 @@ class _ServiceComputeState:
             pulumi.set(__self__, "force_destroy", force_destroy)
         if force_refresh is not None:
             pulumi.set(__self__, "force_refresh", force_refresh)
+        if healthchecks is not None:
+            pulumi.set(__self__, "healthchecks", healthchecks)
         if image_optimizer_default_settings is not None:
             pulumi.set(__self__, "image_optimizer_default_settings", image_optimizer_default_settings)
         if imported is not None:
@@ -671,6 +700,8 @@ class _ServiceComputeState:
             pulumi.set(__self__, "logging_logglies", logging_logglies)
         if logging_logshuttles is not None:
             pulumi.set(__self__, "logging_logshuttles", logging_logshuttles)
+        if logging_newrelicotlps is not None:
+            pulumi.set(__self__, "logging_newrelicotlps", logging_newrelicotlps)
         if logging_newrelics is not None:
             pulumi.set(__self__, "logging_newrelics", logging_newrelics)
         if logging_openstacks is not None:
@@ -801,6 +832,15 @@ class _ServiceComputeState:
     @force_refresh.setter
     def force_refresh(self, value: Optional[pulumi.Input[_builtins.bool]]):
         pulumi.set(self, "force_refresh", value)
+
+    @_builtins.property
+    @pulumi.getter
+    def healthchecks(self) -> Optional[pulumi.Input[Sequence[pulumi.Input['ServiceComputeHealthcheckArgs']]]]:
+        return pulumi.get(self, "healthchecks")
+
+    @healthchecks.setter
+    def healthchecks(self, value: Optional[pulumi.Input[Sequence[pulumi.Input['ServiceComputeHealthcheckArgs']]]]):
+        pulumi.set(self, "healthchecks", value)
 
     @_builtins.property
     @pulumi.getter(name="imageOptimizerDefaultSettings")
@@ -986,6 +1026,15 @@ class _ServiceComputeState:
         pulumi.set(self, "logging_logshuttles", value)
 
     @_builtins.property
+    @pulumi.getter(name="loggingNewrelicotlps")
+    def logging_newrelicotlps(self) -> Optional[pulumi.Input[Sequence[pulumi.Input['ServiceComputeLoggingNewrelicotlpArgs']]]]:
+        return pulumi.get(self, "logging_newrelicotlps")
+
+    @logging_newrelicotlps.setter
+    def logging_newrelicotlps(self, value: Optional[pulumi.Input[Sequence[pulumi.Input['ServiceComputeLoggingNewrelicotlpArgs']]]]):
+        pulumi.set(self, "logging_newrelicotlps", value)
+
+    @_builtins.property
     @pulumi.getter(name="loggingNewrelics")
     def logging_newrelics(self) -> Optional[pulumi.Input[Sequence[pulumi.Input['ServiceComputeLoggingNewrelicArgs']]]]:
         return pulumi.get(self, "logging_newrelics")
@@ -1169,6 +1218,7 @@ class ServiceCompute(pulumi.CustomResource):
                  dictionaries: Optional[pulumi.Input[Sequence[pulumi.Input[Union['ServiceComputeDictionaryArgs', 'ServiceComputeDictionaryArgsDict']]]]] = None,
                  domains: Optional[pulumi.Input[Sequence[pulumi.Input[Union['ServiceComputeDomainArgs', 'ServiceComputeDomainArgsDict']]]]] = None,
                  force_destroy: Optional[pulumi.Input[_builtins.bool]] = None,
+                 healthchecks: Optional[pulumi.Input[Sequence[pulumi.Input[Union['ServiceComputeHealthcheckArgs', 'ServiceComputeHealthcheckArgsDict']]]]] = None,
                  image_optimizer_default_settings: Optional[pulumi.Input[Union['ServiceComputeImageOptimizerDefaultSettingsArgs', 'ServiceComputeImageOptimizerDefaultSettingsArgsDict']]] = None,
                  logging_bigqueries: Optional[pulumi.Input[Sequence[pulumi.Input[Union['ServiceComputeLoggingBigqueryArgs', 'ServiceComputeLoggingBigqueryArgsDict']]]]] = None,
                  logging_blobstorages: Optional[pulumi.Input[Sequence[pulumi.Input[Union['ServiceComputeLoggingBlobstorageArgs', 'ServiceComputeLoggingBlobstorageArgsDict']]]]] = None,
@@ -1188,6 +1238,7 @@ class ServiceCompute(pulumi.CustomResource):
                  logging_logentries: Optional[pulumi.Input[Sequence[pulumi.Input[Union['ServiceComputeLoggingLogentryArgs', 'ServiceComputeLoggingLogentryArgsDict']]]]] = None,
                  logging_logglies: Optional[pulumi.Input[Sequence[pulumi.Input[Union['ServiceComputeLoggingLogglyArgs', 'ServiceComputeLoggingLogglyArgsDict']]]]] = None,
                  logging_logshuttles: Optional[pulumi.Input[Sequence[pulumi.Input[Union['ServiceComputeLoggingLogshuttleArgs', 'ServiceComputeLoggingLogshuttleArgsDict']]]]] = None,
+                 logging_newrelicotlps: Optional[pulumi.Input[Sequence[pulumi.Input[Union['ServiceComputeLoggingNewrelicotlpArgs', 'ServiceComputeLoggingNewrelicotlpArgsDict']]]]] = None,
                  logging_newrelics: Optional[pulumi.Input[Sequence[pulumi.Input[Union['ServiceComputeLoggingNewrelicArgs', 'ServiceComputeLoggingNewrelicArgsDict']]]]] = None,
                  logging_openstacks: Optional[pulumi.Input[Sequence[pulumi.Input[Union['ServiceComputeLoggingOpenstackArgs', 'ServiceComputeLoggingOpenstackArgsDict']]]]] = None,
                  logging_papertrails: Optional[pulumi.Input[Sequence[pulumi.Input[Union['ServiceComputeLoggingPapertrailArgs', 'ServiceComputeLoggingPapertrailArgsDict']]]]] = None,
@@ -1237,7 +1288,7 @@ class ServiceCompute(pulumi.CustomResource):
     @overload
     def __init__(__self__,
                  resource_name: str,
-                 args: ServiceComputeArgs,
+                 args: Optional[ServiceComputeArgs] = None,
                  opts: Optional[pulumi.ResourceOptions] = None):
         """
         ## Import
@@ -1277,6 +1328,7 @@ class ServiceCompute(pulumi.CustomResource):
                  dictionaries: Optional[pulumi.Input[Sequence[pulumi.Input[Union['ServiceComputeDictionaryArgs', 'ServiceComputeDictionaryArgsDict']]]]] = None,
                  domains: Optional[pulumi.Input[Sequence[pulumi.Input[Union['ServiceComputeDomainArgs', 'ServiceComputeDomainArgsDict']]]]] = None,
                  force_destroy: Optional[pulumi.Input[_builtins.bool]] = None,
+                 healthchecks: Optional[pulumi.Input[Sequence[pulumi.Input[Union['ServiceComputeHealthcheckArgs', 'ServiceComputeHealthcheckArgsDict']]]]] = None,
                  image_optimizer_default_settings: Optional[pulumi.Input[Union['ServiceComputeImageOptimizerDefaultSettingsArgs', 'ServiceComputeImageOptimizerDefaultSettingsArgsDict']]] = None,
                  logging_bigqueries: Optional[pulumi.Input[Sequence[pulumi.Input[Union['ServiceComputeLoggingBigqueryArgs', 'ServiceComputeLoggingBigqueryArgsDict']]]]] = None,
                  logging_blobstorages: Optional[pulumi.Input[Sequence[pulumi.Input[Union['ServiceComputeLoggingBlobstorageArgs', 'ServiceComputeLoggingBlobstorageArgsDict']]]]] = None,
@@ -1296,6 +1348,7 @@ class ServiceCompute(pulumi.CustomResource):
                  logging_logentries: Optional[pulumi.Input[Sequence[pulumi.Input[Union['ServiceComputeLoggingLogentryArgs', 'ServiceComputeLoggingLogentryArgsDict']]]]] = None,
                  logging_logglies: Optional[pulumi.Input[Sequence[pulumi.Input[Union['ServiceComputeLoggingLogglyArgs', 'ServiceComputeLoggingLogglyArgsDict']]]]] = None,
                  logging_logshuttles: Optional[pulumi.Input[Sequence[pulumi.Input[Union['ServiceComputeLoggingLogshuttleArgs', 'ServiceComputeLoggingLogshuttleArgsDict']]]]] = None,
+                 logging_newrelicotlps: Optional[pulumi.Input[Sequence[pulumi.Input[Union['ServiceComputeLoggingNewrelicotlpArgs', 'ServiceComputeLoggingNewrelicotlpArgsDict']]]]] = None,
                  logging_newrelics: Optional[pulumi.Input[Sequence[pulumi.Input[Union['ServiceComputeLoggingNewrelicArgs', 'ServiceComputeLoggingNewrelicArgsDict']]]]] = None,
                  logging_openstacks: Optional[pulumi.Input[Sequence[pulumi.Input[Union['ServiceComputeLoggingOpenstackArgs', 'ServiceComputeLoggingOpenstackArgsDict']]]]] = None,
                  logging_papertrails: Optional[pulumi.Input[Sequence[pulumi.Input[Union['ServiceComputeLoggingPapertrailArgs', 'ServiceComputeLoggingPapertrailArgsDict']]]]] = None,
@@ -1325,10 +1378,9 @@ class ServiceCompute(pulumi.CustomResource):
             __props__.__dict__["backends"] = backends
             __props__.__dict__["comment"] = comment
             __props__.__dict__["dictionaries"] = dictionaries
-            if domains is None and not opts.urn:
-                raise TypeError("Missing required property 'domains'")
             __props__.__dict__["domains"] = domains
             __props__.__dict__["force_destroy"] = force_destroy
+            __props__.__dict__["healthchecks"] = healthchecks
             __props__.__dict__["image_optimizer_default_settings"] = image_optimizer_default_settings
             __props__.__dict__["logging_bigqueries"] = logging_bigqueries
             __props__.__dict__["logging_blobstorages"] = logging_blobstorages
@@ -1348,6 +1400,7 @@ class ServiceCompute(pulumi.CustomResource):
             __props__.__dict__["logging_logentries"] = logging_logentries
             __props__.__dict__["logging_logglies"] = logging_logglies
             __props__.__dict__["logging_logshuttles"] = logging_logshuttles
+            __props__.__dict__["logging_newrelicotlps"] = logging_newrelicotlps
             __props__.__dict__["logging_newrelics"] = logging_newrelics
             __props__.__dict__["logging_openstacks"] = logging_openstacks
             __props__.__dict__["logging_papertrails"] = logging_papertrails
@@ -1388,6 +1441,7 @@ class ServiceCompute(pulumi.CustomResource):
             domains: Optional[pulumi.Input[Sequence[pulumi.Input[Union['ServiceComputeDomainArgs', 'ServiceComputeDomainArgsDict']]]]] = None,
             force_destroy: Optional[pulumi.Input[_builtins.bool]] = None,
             force_refresh: Optional[pulumi.Input[_builtins.bool]] = None,
+            healthchecks: Optional[pulumi.Input[Sequence[pulumi.Input[Union['ServiceComputeHealthcheckArgs', 'ServiceComputeHealthcheckArgsDict']]]]] = None,
             image_optimizer_default_settings: Optional[pulumi.Input[Union['ServiceComputeImageOptimizerDefaultSettingsArgs', 'ServiceComputeImageOptimizerDefaultSettingsArgsDict']]] = None,
             imported: Optional[pulumi.Input[_builtins.bool]] = None,
             logging_bigqueries: Optional[pulumi.Input[Sequence[pulumi.Input[Union['ServiceComputeLoggingBigqueryArgs', 'ServiceComputeLoggingBigqueryArgsDict']]]]] = None,
@@ -1408,6 +1462,7 @@ class ServiceCompute(pulumi.CustomResource):
             logging_logentries: Optional[pulumi.Input[Sequence[pulumi.Input[Union['ServiceComputeLoggingLogentryArgs', 'ServiceComputeLoggingLogentryArgsDict']]]]] = None,
             logging_logglies: Optional[pulumi.Input[Sequence[pulumi.Input[Union['ServiceComputeLoggingLogglyArgs', 'ServiceComputeLoggingLogglyArgsDict']]]]] = None,
             logging_logshuttles: Optional[pulumi.Input[Sequence[pulumi.Input[Union['ServiceComputeLoggingLogshuttleArgs', 'ServiceComputeLoggingLogshuttleArgsDict']]]]] = None,
+            logging_newrelicotlps: Optional[pulumi.Input[Sequence[pulumi.Input[Union['ServiceComputeLoggingNewrelicotlpArgs', 'ServiceComputeLoggingNewrelicotlpArgsDict']]]]] = None,
             logging_newrelics: Optional[pulumi.Input[Sequence[pulumi.Input[Union['ServiceComputeLoggingNewrelicArgs', 'ServiceComputeLoggingNewrelicArgsDict']]]]] = None,
             logging_openstacks: Optional[pulumi.Input[Sequence[pulumi.Input[Union['ServiceComputeLoggingOpenstackArgs', 'ServiceComputeLoggingOpenstackArgsDict']]]]] = None,
             logging_papertrails: Optional[pulumi.Input[Sequence[pulumi.Input[Union['ServiceComputeLoggingPapertrailArgs', 'ServiceComputeLoggingPapertrailArgsDict']]]]] = None,
@@ -1458,6 +1513,7 @@ class ServiceCompute(pulumi.CustomResource):
         __props__.__dict__["domains"] = domains
         __props__.__dict__["force_destroy"] = force_destroy
         __props__.__dict__["force_refresh"] = force_refresh
+        __props__.__dict__["healthchecks"] = healthchecks
         __props__.__dict__["image_optimizer_default_settings"] = image_optimizer_default_settings
         __props__.__dict__["imported"] = imported
         __props__.__dict__["logging_bigqueries"] = logging_bigqueries
@@ -1478,6 +1534,7 @@ class ServiceCompute(pulumi.CustomResource):
         __props__.__dict__["logging_logentries"] = logging_logentries
         __props__.__dict__["logging_logglies"] = logging_logglies
         __props__.__dict__["logging_logshuttles"] = logging_logshuttles
+        __props__.__dict__["logging_newrelicotlps"] = logging_newrelicotlps
         __props__.__dict__["logging_newrelics"] = logging_newrelics
         __props__.__dict__["logging_openstacks"] = logging_openstacks
         __props__.__dict__["logging_papertrails"] = logging_papertrails
@@ -1538,7 +1595,7 @@ class ServiceCompute(pulumi.CustomResource):
 
     @_builtins.property
     @pulumi.getter
-    def domains(self) -> pulumi.Output[Sequence['outputs.ServiceComputeDomain']]:
+    def domains(self) -> pulumi.Output[Optional[Sequence['outputs.ServiceComputeDomain']]]:
         """
         A set of Domain names to serve as entry points for your Service
         """
@@ -1556,6 +1613,11 @@ class ServiceCompute(pulumi.CustomResource):
     @pulumi.getter(name="forceRefresh")
     def force_refresh(self) -> pulumi.Output[_builtins.bool]:
         return pulumi.get(self, "force_refresh")
+
+    @_builtins.property
+    @pulumi.getter
+    def healthchecks(self) -> pulumi.Output[Optional[Sequence['outputs.ServiceComputeHealthcheck']]]:
+        return pulumi.get(self, "healthchecks")
 
     @_builtins.property
     @pulumi.getter(name="imageOptimizerDefaultSettings")
@@ -1659,6 +1721,11 @@ class ServiceCompute(pulumi.CustomResource):
     @pulumi.getter(name="loggingLogshuttles")
     def logging_logshuttles(self) -> pulumi.Output[Optional[Sequence['outputs.ServiceComputeLoggingLogshuttle']]]:
         return pulumi.get(self, "logging_logshuttles")
+
+    @_builtins.property
+    @pulumi.getter(name="loggingNewrelicotlps")
+    def logging_newrelicotlps(self) -> pulumi.Output[Optional[Sequence['outputs.ServiceComputeLoggingNewrelicotlp']]]:
+        return pulumi.get(self, "logging_newrelicotlps")
 
     @_builtins.property
     @pulumi.getter(name="loggingNewrelics")

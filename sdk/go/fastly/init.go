@@ -23,6 +23,10 @@ func (m *module) Construct(ctx *pulumi.Context, name, typ, urn string) (r pulumi
 	switch typ {
 	case "fastly:index/alert:Alert":
 		r = &Alert{}
+	case "fastly:index/computeAcl:ComputeAcl":
+		r = &ComputeAcl{}
+	case "fastly:index/computeAclEntries:ComputeAclEntries":
+		r = &ComputeAclEntries{}
 	case "fastly:index/configstore:Configstore":
 		r = &Configstore{}
 	case "fastly:index/configstoreEntries:ConfigstoreEntries":
@@ -31,6 +35,8 @@ func (m *module) Construct(ctx *pulumi.Context, name, typ, urn string) (r pulumi
 		r = &CustomDashboard{}
 	case "fastly:index/domainV1:DomainV1":
 		r = &DomainV1{}
+	case "fastly:index/domainV1ServiceLink:DomainV1ServiceLink":
+		r = &DomainV1ServiceLink{}
 	case "fastly:index/integration:Integration":
 		r = &Integration{}
 	case "fastly:index/kvstore:Kvstore":
@@ -141,6 +147,16 @@ func init() {
 	)
 	pulumi.RegisterResourceModule(
 		"fastly",
+		"index/computeAcl",
+		&module{version},
+	)
+	pulumi.RegisterResourceModule(
+		"fastly",
+		"index/computeAclEntries",
+		&module{version},
+	)
+	pulumi.RegisterResourceModule(
+		"fastly",
 		"index/configstore",
 		&module{version},
 	)
@@ -157,6 +173,11 @@ func init() {
 	pulumi.RegisterResourceModule(
 		"fastly",
 		"index/domainV1",
+		&module{version},
+	)
+	pulumi.RegisterResourceModule(
+		"fastly",
+		"index/domainV1ServiceLink",
 		&module{version},
 	)
 	pulumi.RegisterResourceModule(
