@@ -19,8 +19,8 @@ import * as utilities from "./utilities";
  * import * as fastly from "@pulumi/fastly";
  * import * as tls from "@pulumi/tls";
  *
- * const key = new tls.index.PrivateKey("key", {algorithm: "RSA"});
- * const cert = new tls.index.SelfSignedCert("cert", {
+ * const key = new tls.PrivateKey("key", {algorithm: "RSA"});
+ * const cert = new tls.SelfSignedCert("cert", {
  *     keyAlgorithm: key.algorithm,
  *     privateKeyPem: key.privateKeyPem,
  *     subject: [{

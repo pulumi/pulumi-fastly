@@ -27,7 +27,7 @@ namespace Pulumi.Fastly
     /// 
     /// return await Deployment.RunAsync(() =&gt; 
     /// {
-    ///     var demo = new Tls.Index.PrivateKey("demo", new()
+    ///     var demo = new Tls.PrivateKey("demo", new()
     ///     {
     ///         Algorithm = "RSA",
     ///     });

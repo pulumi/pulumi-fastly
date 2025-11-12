@@ -26,7 +26,7 @@ import (
 // import (
 //
 //	"github.com/pulumi/pulumi-fastly/sdk/v11/go/fastly"
-//	"github.com/pulumi/pulumi-tls/sdk/go/tls"
+//	"github.com/pulumi/pulumi-tls/sdk/v5/go/tls"
 //	"github.com/pulumi/pulumi/sdk/v3/go/pulumi"
 //
 // )
@@ -34,7 +34,7 @@ import (
 //	func main() {
 //		pulumi.Run(func(ctx *pulumi.Context) error {
 //			demo, err := tls.NewPrivateKey(ctx, "demo", &tls.PrivateKeyArgs{
-//				Algorithm: "RSA",
+//				Algorithm: pulumi.String("RSA"),
 //			})
 //			if err != nil {
 //				return err

@@ -17,6 +17,10 @@ import (
 // Most commonly, this resource is used together with a resource for a DNS record and `TlsSubscription` to request a DNS validated certificate, deploy the required validation records and wait for validation to complete.
 //
 // > **Warning:** This resource implements a part of the validation workflow. It does not represent a real-world entity in Fastly, therefore changing or deleting this resource on its own has no immediate effect.
+//
+// ## Example Usage
+//
+// DNS Validation with AWS Route53:
 type TlsSubscriptionValidation struct {
 	pulumi.CustomResourceState
 
