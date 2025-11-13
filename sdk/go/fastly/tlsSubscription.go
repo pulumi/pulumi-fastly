@@ -22,6 +22,24 @@ import (
 //
 // The examples below demonstrate usage with AWS Route53 to configure DNS, and the `TlsSubscriptionValidation` resource to wait for validation to complete.
 //
+// ## Example Usage
+//
+// **Basic usage:**
+//
+// The following example demonstrates how to configure two subdomains (e.g. `a.example.com`, `b.example.com`).
+//
+// The workflow configures a `TlsSubscription` resource, then a `awsRoute53Record` resource for handling the creation of the 'challenge' DNS records (e.g. `_acme-challenge.a.example.com` and `_acme-challenge.b.example.com`).
+//
+// We configure the `TlsSubscriptionValidation` resource, which blocks other resources until the challenge DNS records have been validated by Fastly.
+//
+// Once the validation has been successful, the configured `getTlsConfiguration` data source will filter the available results looking for an appropriate TLS configuration object. If that filtering process is successful, then the subsequent `awsRoute53Record` resources (for configuring the subdomains) will be executed using the returned TLS configuration data.
+//
+// **Configuring an apex and a wildcard domain:**
+//
+// The following example is similar to the above but differs by demonstrating how to handle configuring an apex domain (e.g. `example.com`) and a wildcard domain (e.g. `*.example.com`) so you can support multiple subdomains to your service.
+//
+// The difference in the workflow is with how to handle the Fastly API returning a single 'challenge' for both domains (e.g. `_acme-challenge.example.com`). This is done by normalising the wildcard (i.e. replacing `*.example.com` with `example.com`) and then working around the issue of the returned object having two identical keys.
+//
 // ## Import
 //
 // A subscription can be imported using its Fastly subscription ID, e.g.

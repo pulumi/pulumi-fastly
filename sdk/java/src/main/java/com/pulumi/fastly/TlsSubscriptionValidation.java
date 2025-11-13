@@ -20,6 +20,10 @@ import javax.annotation.Nullable;
  * 
  * &gt; **Warning:** This resource implements a part of the validation workflow. It does not represent a real-world entity in Fastly, therefore changing or deleting this resource on its own has no immediate effect.
  * 
+ * ## Example Usage
+ * 
+ * DNS Validation with AWS Route53:
+ * 
  */
 @ResourceType(type="fastly:index/tlsSubscriptionValidation:TlsSubscriptionValidation")
 public class TlsSubscriptionValidation extends com.pulumi.resources.CustomResource {

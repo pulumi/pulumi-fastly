@@ -72,21 +72,25 @@ import javax.annotation.Nullable;
  *         var ca = new SelfSignedCert("ca", SelfSignedCertArgs.builder()
  *             .keyAlgorithm(caKey.algorithm())
  *             .privateKeyPem(caKey.privateKeyPem())
- *             .subject(List.of(Map.of("commonName", "Example CA")))
+ *             .subject(SelfSignedCertSubjectArgs.builder()
+ *                 .commonName("Example CA")
+ *                 .build())
  *             .isCaCertificate(true)
  *             .validityPeriodHours(360)
- *             .allowedUses(List.of(            
+ *             .allowedUses(            
  *                 "cert_signing",
- *                 "server_auth"))
+ *                 "server_auth")
  *             .build());
  * 
  *         var example = new CertRequest("example", CertRequestArgs.builder()
  *             .keyAlgorithm(key.algorithm())
  *             .privateKeyPem(key.privateKeyPem())
- *             .subject(List.of(Map.of("commonName", "example.com")))
- *             .dnsNames(List.of(            
+ *             .subject(CertRequestSubjectArgs.builder()
+ *                 .commonName("example.com")
+ *                 .build())
+ *             .dnsNames(            
  *                 "example.com",
- *                 "www.example.com"))
+ *                 "www.example.com")
  *             .build());
  * 
  *         var cert = new LocallySignedCert("cert", LocallySignedCertArgs.builder()
@@ -95,9 +99,9 @@ import javax.annotation.Nullable;
  *             .caPrivateKeyPem(caKey.privateKeyPem())
  *             .caCertPem(ca.certPem())
  *             .validityPeriodHours(360)
- *             .allowedUses(List.of(            
+ *             .allowedUses(            
  *                 "cert_signing",
- *                 "server_auth"))
+ *                 "server_auth")
  *             .build());
  * 
  *         final var config = FastlyFunctions.getTlsConfiguration(GetTlsConfigurationArgs.builder()

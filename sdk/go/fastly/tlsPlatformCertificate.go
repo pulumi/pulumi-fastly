@@ -27,7 +27,7 @@ import (
 // import (
 //
 //	"github.com/pulumi/pulumi-fastly/sdk/v11/go/fastly"
-//	"github.com/pulumi/pulumi-tls/sdk/go/tls"
+//	"github.com/pulumi/pulumi-tls/sdk/v5/go/tls"
 //	"github.com/pulumi/pulumi/sdk/v3/go/pulumi"
 //
 // )
@@ -35,13 +35,13 @@ import (
 //	func main() {
 //		pulumi.Run(func(ctx *pulumi.Context) error {
 //			caKey, err := tls.NewPrivateKey(ctx, "ca_key", &tls.PrivateKeyArgs{
-//				Algorithm: "RSA",
+//				Algorithm: pulumi.String("RSA"),
 //			})
 //			if err != nil {
 //				return err
 //			}
 //			key, err := tls.NewPrivateKey(ctx, "key", &tls.PrivateKeyArgs{
-//				Algorithm: "RSA",
+//				Algorithm: pulumi.String("RSA"),
 //			})
 //			if err != nil {
 //				return err
@@ -49,16 +49,16 @@ import (
 //			ca, err := tls.NewSelfSignedCert(ctx, "ca", &tls.SelfSignedCertArgs{
 //				KeyAlgorithm:  caKey.Algorithm,
 //				PrivateKeyPem: caKey.PrivateKeyPem,
-//				Subject: []map[string]interface{}{
+//				Subject: tls.SelfSignedCertSubjectArgs{
 //					map[string]interface{}{
 //						"commonName": "Example CA",
 //					},
 //				},
-//				IsCaCertificate:     true,
-//				ValidityPeriodHours: 360,
-//				AllowedUses: []string{
-//					"cert_signing",
-//					"server_auth",
+//				IsCaCertificate:     pulumi.Bool(true),
+//				ValidityPeriodHours: pulumi.Int(360),
+//				AllowedUses: pulumi.StringArray{
+//					pulumi.String("cert_signing"),
+//					pulumi.String("server_auth"),
 //				},
 //			})
 //			if err != nil {
@@ -67,14 +67,14 @@ import (
 //			example, err := tls.NewCertRequest(ctx, "example", &tls.CertRequestArgs{
 //				KeyAlgorithm:  key.Algorithm,
 //				PrivateKeyPem: key.PrivateKeyPem,
-//				Subject: []map[string]interface{}{
+//				Subject: tls.CertRequestSubjectArgs{
 //					map[string]interface{}{
 //						"commonName": "example.com",
 //					},
 //				},
-//				DnsNames: []string{
-//					"example.com",
-//					"www.example.com",
+//				DnsNames: pulumi.StringArray{
+//					pulumi.String("example.com"),
+//					pulumi.String("www.example.com"),
 //				},
 //			})
 //			if err != nil {
@@ -85,10 +85,10 @@ import (
 //				CaKeyAlgorithm:      caKey.Algorithm,
 //				CaPrivateKeyPem:     caKey.PrivateKeyPem,
 //				CaCertPem:           ca.CertPem,
-//				ValidityPeriodHours: 360,
-//				AllowedUses: []string{
-//					"cert_signing",
-//					"server_auth",
+//				ValidityPeriodHours: pulumi.Int(360),
+//				AllowedUses: pulumi.StringArray{
+//					pulumi.String("cert_signing"),
+//					pulumi.String("server_auth"),
 //				},
 //			})
 //			if err != nil {

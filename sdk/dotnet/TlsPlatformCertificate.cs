@@ -28,17 +28,17 @@ namespace Pulumi.Fastly
     /// 
     /// return await Deployment.RunAsync(() =&gt; 
     /// {
-    ///     var caKey = new Tls.Index.PrivateKey("ca_key", new()
+    ///     var caKey = new Tls.PrivateKey("ca_key", new()
     ///     {
     ///         Algorithm = "RSA",
     ///     });
     /// 
-    ///     var key = new Tls.Index.PrivateKey("key", new()
+    ///     var key = new Tls.PrivateKey("key", new()
     ///     {
     ///         Algorithm = "RSA",
     ///     });
     /// 
-    ///     var ca = new Tls.Index.SelfSignedCert("ca", new()
+    ///     var ca = new Tls.SelfSignedCert("ca", new()
     ///     {
     ///         KeyAlgorithm = caKey.Algorithm,
     ///         PrivateKeyPem = caKey.PrivateKeyPem,
@@ -58,7 +58,7 @@ namespace Pulumi.Fastly
     ///         },
     ///     });
     /// 
-    ///     var example = new Tls.Index.CertRequest("example", new()
+    ///     var example = new Tls.CertRequest("example", new()
     ///     {
     ///         KeyAlgorithm = key.Algorithm,
     ///         PrivateKeyPem = key.PrivateKeyPem,
@@ -76,7 +76,7 @@ namespace Pulumi.Fastly
     ///         },
     ///     });
     /// 
-    ///     var cert = new Tls.Index.LocallySignedCert("cert", new()
+    ///     var cert = new Tls.LocallySignedCert("cert", new()
     ///     {
     ///         CertRequestPem = example.CertRequestPem,
     ///         CaKeyAlgorithm = caKey.Algorithm,
