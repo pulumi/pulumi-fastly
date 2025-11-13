@@ -364,6 +364,169 @@ class TlsSubscription(pulumi.CustomResource):
 
         The examples below demonstrate usage with AWS Route53 to configure DNS, and the `TlsSubscriptionValidation` resource to wait for validation to complete.
 
+        ## Example Usage
+
+        **Basic usage:**
+
+        The following example demonstrates how to configure two subdomains (e.g. `a.example.com`, `b.example.com`).
+
+        The workflow configures a `TlsSubscription` resource, then a `aws_route53_record` resource for handling the creation of the 'challenge' DNS records (e.g. `_acme-challenge.a.example.com` and `_acme-challenge.b.example.com`).
+
+        We configure the `TlsSubscriptionValidation` resource, which blocks other resources until the challenge DNS records have been validated by Fastly.
+
+        Once the validation has been successful, the configured `get_tls_configuration` data source will filter the available results looking for an appropriate TLS configuration object. If that filtering process is successful, then the subsequent `aws_route53_record` resources (for configuring the subdomains) will be executed using the returned TLS configuration data.
+
+        ```python
+        import pulumi
+        import pulumi_aws as aws
+        import pulumi_fastly as fastly
+        import pulumi_std as std
+
+        # NOTE: Creating a hosted zone will automatically create SOA/NS records.
+        production = aws.index.Route53Zone("production", name=example.com)
+        example = aws.index.Route53domainsRegisteredDomain("example",
+            name_server=[{
+                name: entry.value,
+            } for entry in [{"key": k, "value": v} for k, v in production.name_servers]],
+            domain_name=example.com)
+        subdomains = [
+            "a.example.com",
+            "b.example.com",
+        ]
+        example_service_vcl = fastly.ServiceVcl("example",
+            domains=[{
+                "name": entry["value"],
+            } for entry in [{"key": k, "value": v} for k, v in subdomains]],
+            name="example-service",
+            backends=[{
+                "address": "127.0.0.1",
+                "name": "localhost",
+            }],
+            force_destroy=True)
+        example_tls_subscription = fastly.TlsSubscription("example",
+            domains=example_service_vcl.domains.apply(lambda domains: [domain.name for domain in domains]),
+            certificate_authority="lets-encrypt")
+        domain_validation = []
+        def create_domain_validation(range_body):
+            for range in [{"key": k, "value": v} for [k, v] in enumerate(range_body)]:
+                domain_validation.append(aws.index.Route53Record(f"domain_validation-{range['key']}",
+                    name=range.value.record_name,
+                    type=range.value.record_type,
+                    zone_id=production.zone_id,
+                    allow_overwrite=True,
+                    records=[range.value.record_value],
+                    ttl=60,
+                    opts = pulumi.ResourceOptions(depends_on=[example_tls_subscription])))
+
+        example_tls_subscription.domains.apply(lambda resolved_outputs: create_domain_validation({domain: example_tls_subscription.managed_dns_challenges.apply(lambda managed_dns_challenges: [obj for obj in managed_dns_challenges if obj.record_name == f"_acme-challenge.{domain}"])[0] for domain in resolved_outputs['domains']}))
+        # This is a resource that other resources can depend on if they require the certificate to be issued.
+        # NOTE: Internally the resource keeps retrying `GetTLSSubscription` until no error is returned (or the configured timeout is reached).
+        example_tls_subscription_validation = fastly.TlsSubscriptionValidation("example", subscription_id=example_tls_subscription.id,
+        opts = pulumi.ResourceOptions(depends_on=[domain_validation]))
+        # This data source lists all available configuration objects.
+        # It uses a `default` attribute to narrow down the list to just one configuration object.
+        # If the filtered list has a length that is not exactly one element, you'll see an error returned.
+        # The single TLS configuration is then returned and can be referenced by other resources (see aws_route53_record below).
+        #
+        # IMPORTANT: Not all customers will have a 'default' configuration.
+        # If you have issues filtering with `default = true`, then you may need another attribute.
+        # Refer to the fastly_tls_configuration documentation for available attributes:
+        # https://registry.terraform.io/providers/fastly/fastly/latest/docs/data-sources/tls_configuration#optional
+        default_tls = fastly.get_tls_configuration(default=True)
+        # Once validation is complete and we've retrieved the TLS configuration data, we can create multiple subdomain records.
+        subdomain = []
+        for range in [{"value": i} for i in range(0, std.index.toset(input=subdomains).result)]:
+            subdomain.append(aws.index.Route53Record(f"subdomain-{range['value']}",
+                name=range.value,
+                records=[record.record_value for record in default_tls.dns_records if record.record_type == CNAME],
+                ttl=300,
+                type=CNAME,
+                zone_id=production.zone_id))
+        ```
+
+        **Configuring an apex and a wildcard domain:**
+
+        The following example is similar to the above but differs by demonstrating how to handle configuring an apex domain (e.g. `example.com`) and a wildcard domain (e.g. `*.example.com`) so you can support multiple subdomains to your service.
+
+        The difference in the workflow is with how to handle the Fastly API returning a single 'challenge' for both domains (e.g. `_acme-challenge.example.com`). This is done by normalising the wildcard (i.e. replacing `*.example.com` with `example.com`) and then working around the issue of the returned object having two identical keys.
+
+        ```python
+        import pulumi
+        import pulumi_aws as aws
+        import pulumi_fastly as fastly
+        import pulumi_std as std
+
+        # NOTE: Creating a hosted zone will automatically create SOA/NS records.
+        production = aws.index.Route53Zone("production", name=example.com)
+        example = aws.index.Route53domainsRegisteredDomain("example",
+            name_server=[{
+                name: entry.value,
+            } for entry in [{"key": k, "value": v} for k, v in production.name_servers]],
+            domain_name=example.com)
+        domains = [
+            "example.com",
+            "*.example.com",
+        ]
+        example_service_vcl = fastly.ServiceVcl("example",
+            domains=[{
+                "name": entry["value"],
+            } for entry in [{"key": k, "value": v} for k, v in domains]],
+            name="example-service",
+            backends=[{
+                "address": "127.0.0.1",
+                "name": "localhost",
+            }],
+            force_destroy=True)
+        example_tls_subscription = fastly.TlsSubscription("example",
+            domains=example_service_vcl.domains.apply(lambda domains: [domain.name for domain in domains]),
+            certificate_authority="lets-encrypt")
+        domain_validation = []
+        def create_domain_validation(range_body):
+            for range in [{"key": k, "value": v} for [k, v] in enumerate(range_body)]:
+                domain_validation.append(aws.index.Route53Record(f"domain_validation-{range['key']}",
+                    name=range.value[0].record_name,
+                    type=range.value[0].record_type,
+                    zone_id=production.zone_id,
+                    allow_overwrite=True,
+                    records=[range.value[0].record_value],
+                    ttl=60,
+                    opts = pulumi.ResourceOptions(depends_on=[example_tls_subscription])))
+
+        example_tls_subscription.domains.apply(lambda resolved_outputs: create_domain_validation({std.index.replace(text=domain,
+            search="*.",
+            replace="")["result"]: example_tls_subscription.managed_dns_challenges.apply(lambda managed_dns_challenges: [obj for obj in managed_dns_challenges if obj.record_name == f"_acme-challenge.{std.index.replace(text=domain,
+            search='*.',
+            replace='')['result']}"])[0] for domain in resolved_outputs['domains']}))
+        # This is a resource that other resources can depend on if they require the certificate to be issued.
+        # NOTE: Internally the resource keeps retrying `GetTLSSubscription` until no error is returned (or the configured timeout is reached).
+        example_tls_subscription_validation = fastly.TlsSubscriptionValidation("example", subscription_id=example_tls_subscription.id,
+        opts = pulumi.ResourceOptions(depends_on=[domain_validation]))
+        # This data source lists all available configuration objects.
+        # It uses a `default` attribute to narrow down the list to just one configuration object.
+        # If the filtered list has a length that is not exactly one element, you'll see an error returned.
+        # The single TLS configuration is then returned and can be referenced by other resources (see aws_route53_record below).
+        #
+        # IMPORTANT: Not all customers will have a 'default' configuration.
+        # If you have issues filtering with `default = true`, then you may need another attribute.
+        # Refer to the fastly_tls_configuration documentation for available attributes:
+        # https://registry.terraform.io/providers/fastly/fastly/latest/docs/data-sources/tls_configuration#optional
+        default_tls = fastly.get_tls_configuration(default=True)
+        # Once validation is complete and we've retrieved the TLS configuration data, we can create multiple records...
+        apex = aws.index.Route53Record("apex",
+            name=example.com,
+            records=[record.record_value for record in default_tls.dns_records if record.record_type == A],
+            ttl=300,
+            type=A,
+            zone_id=production.zone_id)
+        # NOTE: This subdomain matches our Fastly service because of the wildcard domain (`*.example.com`) that was added to the service.
+        subdomain = aws.index.Route53Record("subdomain",
+            name=test.example.com,
+            records=[record.record_value for record in default_tls.dns_records if record.record_type == CNAME],
+            ttl=300,
+            type=CNAME,
+            zone_id=production.zone_id)
+        ```
+
         ## Import
 
         A subscription can be imported using its Fastly subscription ID, e.g.
@@ -397,6 +560,169 @@ class TlsSubscription(pulumi.CustomResource):
         > See the [Fastly documentation](https://docs.fastly.com/en/guides/serving-https-traffic-using-fastly-managed-certificates#verifying-domain-ownership) for more information on verifying domain ownership.
 
         The examples below demonstrate usage with AWS Route53 to configure DNS, and the `TlsSubscriptionValidation` resource to wait for validation to complete.
+
+        ## Example Usage
+
+        **Basic usage:**
+
+        The following example demonstrates how to configure two subdomains (e.g. `a.example.com`, `b.example.com`).
+
+        The workflow configures a `TlsSubscription` resource, then a `aws_route53_record` resource for handling the creation of the 'challenge' DNS records (e.g. `_acme-challenge.a.example.com` and `_acme-challenge.b.example.com`).
+
+        We configure the `TlsSubscriptionValidation` resource, which blocks other resources until the challenge DNS records have been validated by Fastly.
+
+        Once the validation has been successful, the configured `get_tls_configuration` data source will filter the available results looking for an appropriate TLS configuration object. If that filtering process is successful, then the subsequent `aws_route53_record` resources (for configuring the subdomains) will be executed using the returned TLS configuration data.
+
+        ```python
+        import pulumi
+        import pulumi_aws as aws
+        import pulumi_fastly as fastly
+        import pulumi_std as std
+
+        # NOTE: Creating a hosted zone will automatically create SOA/NS records.
+        production = aws.index.Route53Zone("production", name=example.com)
+        example = aws.index.Route53domainsRegisteredDomain("example",
+            name_server=[{
+                name: entry.value,
+            } for entry in [{"key": k, "value": v} for k, v in production.name_servers]],
+            domain_name=example.com)
+        subdomains = [
+            "a.example.com",
+            "b.example.com",
+        ]
+        example_service_vcl = fastly.ServiceVcl("example",
+            domains=[{
+                "name": entry["value"],
+            } for entry in [{"key": k, "value": v} for k, v in subdomains]],
+            name="example-service",
+            backends=[{
+                "address": "127.0.0.1",
+                "name": "localhost",
+            }],
+            force_destroy=True)
+        example_tls_subscription = fastly.TlsSubscription("example",
+            domains=example_service_vcl.domains.apply(lambda domains: [domain.name for domain in domains]),
+            certificate_authority="lets-encrypt")
+        domain_validation = []
+        def create_domain_validation(range_body):
+            for range in [{"key": k, "value": v} for [k, v] in enumerate(range_body)]:
+                domain_validation.append(aws.index.Route53Record(f"domain_validation-{range['key']}",
+                    name=range.value.record_name,
+                    type=range.value.record_type,
+                    zone_id=production.zone_id,
+                    allow_overwrite=True,
+                    records=[range.value.record_value],
+                    ttl=60,
+                    opts = pulumi.ResourceOptions(depends_on=[example_tls_subscription])))
+
+        example_tls_subscription.domains.apply(lambda resolved_outputs: create_domain_validation({domain: example_tls_subscription.managed_dns_challenges.apply(lambda managed_dns_challenges: [obj for obj in managed_dns_challenges if obj.record_name == f"_acme-challenge.{domain}"])[0] for domain in resolved_outputs['domains']}))
+        # This is a resource that other resources can depend on if they require the certificate to be issued.
+        # NOTE: Internally the resource keeps retrying `GetTLSSubscription` until no error is returned (or the configured timeout is reached).
+        example_tls_subscription_validation = fastly.TlsSubscriptionValidation("example", subscription_id=example_tls_subscription.id,
+        opts = pulumi.ResourceOptions(depends_on=[domain_validation]))
+        # This data source lists all available configuration objects.
+        # It uses a `default` attribute to narrow down the list to just one configuration object.
+        # If the filtered list has a length that is not exactly one element, you'll see an error returned.
+        # The single TLS configuration is then returned and can be referenced by other resources (see aws_route53_record below).
+        #
+        # IMPORTANT: Not all customers will have a 'default' configuration.
+        # If you have issues filtering with `default = true`, then you may need another attribute.
+        # Refer to the fastly_tls_configuration documentation for available attributes:
+        # https://registry.terraform.io/providers/fastly/fastly/latest/docs/data-sources/tls_configuration#optional
+        default_tls = fastly.get_tls_configuration(default=True)
+        # Once validation is complete and we've retrieved the TLS configuration data, we can create multiple subdomain records.
+        subdomain = []
+        for range in [{"value": i} for i in range(0, std.index.toset(input=subdomains).result)]:
+            subdomain.append(aws.index.Route53Record(f"subdomain-{range['value']}",
+                name=range.value,
+                records=[record.record_value for record in default_tls.dns_records if record.record_type == CNAME],
+                ttl=300,
+                type=CNAME,
+                zone_id=production.zone_id))
+        ```
+
+        **Configuring an apex and a wildcard domain:**
+
+        The following example is similar to the above but differs by demonstrating how to handle configuring an apex domain (e.g. `example.com`) and a wildcard domain (e.g. `*.example.com`) so you can support multiple subdomains to your service.
+
+        The difference in the workflow is with how to handle the Fastly API returning a single 'challenge' for both domains (e.g. `_acme-challenge.example.com`). This is done by normalising the wildcard (i.e. replacing `*.example.com` with `example.com`) and then working around the issue of the returned object having two identical keys.
+
+        ```python
+        import pulumi
+        import pulumi_aws as aws
+        import pulumi_fastly as fastly
+        import pulumi_std as std
+
+        # NOTE: Creating a hosted zone will automatically create SOA/NS records.
+        production = aws.index.Route53Zone("production", name=example.com)
+        example = aws.index.Route53domainsRegisteredDomain("example",
+            name_server=[{
+                name: entry.value,
+            } for entry in [{"key": k, "value": v} for k, v in production.name_servers]],
+            domain_name=example.com)
+        domains = [
+            "example.com",
+            "*.example.com",
+        ]
+        example_service_vcl = fastly.ServiceVcl("example",
+            domains=[{
+                "name": entry["value"],
+            } for entry in [{"key": k, "value": v} for k, v in domains]],
+            name="example-service",
+            backends=[{
+                "address": "127.0.0.1",
+                "name": "localhost",
+            }],
+            force_destroy=True)
+        example_tls_subscription = fastly.TlsSubscription("example",
+            domains=example_service_vcl.domains.apply(lambda domains: [domain.name for domain in domains]),
+            certificate_authority="lets-encrypt")
+        domain_validation = []
+        def create_domain_validation(range_body):
+            for range in [{"key": k, "value": v} for [k, v] in enumerate(range_body)]:
+                domain_validation.append(aws.index.Route53Record(f"domain_validation-{range['key']}",
+                    name=range.value[0].record_name,
+                    type=range.value[0].record_type,
+                    zone_id=production.zone_id,
+                    allow_overwrite=True,
+                    records=[range.value[0].record_value],
+                    ttl=60,
+                    opts = pulumi.ResourceOptions(depends_on=[example_tls_subscription])))
+
+        example_tls_subscription.domains.apply(lambda resolved_outputs: create_domain_validation({std.index.replace(text=domain,
+            search="*.",
+            replace="")["result"]: example_tls_subscription.managed_dns_challenges.apply(lambda managed_dns_challenges: [obj for obj in managed_dns_challenges if obj.record_name == f"_acme-challenge.{std.index.replace(text=domain,
+            search='*.',
+            replace='')['result']}"])[0] for domain in resolved_outputs['domains']}))
+        # This is a resource that other resources can depend on if they require the certificate to be issued.
+        # NOTE: Internally the resource keeps retrying `GetTLSSubscription` until no error is returned (or the configured timeout is reached).
+        example_tls_subscription_validation = fastly.TlsSubscriptionValidation("example", subscription_id=example_tls_subscription.id,
+        opts = pulumi.ResourceOptions(depends_on=[domain_validation]))
+        # This data source lists all available configuration objects.
+        # It uses a `default` attribute to narrow down the list to just one configuration object.
+        # If the filtered list has a length that is not exactly one element, you'll see an error returned.
+        # The single TLS configuration is then returned and can be referenced by other resources (see aws_route53_record below).
+        #
+        # IMPORTANT: Not all customers will have a 'default' configuration.
+        # If you have issues filtering with `default = true`, then you may need another attribute.
+        # Refer to the fastly_tls_configuration documentation for available attributes:
+        # https://registry.terraform.io/providers/fastly/fastly/latest/docs/data-sources/tls_configuration#optional
+        default_tls = fastly.get_tls_configuration(default=True)
+        # Once validation is complete and we've retrieved the TLS configuration data, we can create multiple records...
+        apex = aws.index.Route53Record("apex",
+            name=example.com,
+            records=[record.record_value for record in default_tls.dns_records if record.record_type == A],
+            ttl=300,
+            type=A,
+            zone_id=production.zone_id)
+        # NOTE: This subdomain matches our Fastly service because of the wildcard domain (`*.example.com`) that was added to the service.
+        subdomain = aws.index.Route53Record("subdomain",
+            name=test.example.com,
+            records=[record.record_value for record in default_tls.dns_records if record.record_type == CNAME],
+            ttl=300,
+            type=CNAME,
+            zone_id=production.zone_id)
+        ```
 
         ## Import
 

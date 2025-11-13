@@ -18,7 +18,7 @@ import * as utilities from "./utilities";
  * import * as fastly from "@pulumi/fastly";
  * import * as tls from "@pulumi/tls";
  *
- * const demo = new tls.index.PrivateKey("demo", {algorithm: "RSA"});
+ * const demo = new tls.PrivateKey("demo", {algorithm: "RSA"});
  * const demoTlsPrivateKey = new fastly.TlsPrivateKey("demo", {
  *     keyPem: demo.privateKeyPem,
  *     name: "tf-demo",

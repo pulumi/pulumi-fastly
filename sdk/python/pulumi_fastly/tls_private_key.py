@@ -198,9 +198,9 @@ class TlsPrivateKey(pulumi.CustomResource):
         import pulumi_fastly as fastly
         import pulumi_tls as tls
 
-        demo = tls.index.PrivateKey("demo", algorithm=RSA)
+        demo = tls.PrivateKey("demo", algorithm="RSA")
         demo_tls_private_key = fastly.TlsPrivateKey("demo",
-            key_pem=demo["privateKeyPem"],
+            key_pem=demo.private_key_pem,
             name="tf-demo")
         ```
 
@@ -237,9 +237,9 @@ class TlsPrivateKey(pulumi.CustomResource):
         import pulumi_fastly as fastly
         import pulumi_tls as tls
 
-        demo = tls.index.PrivateKey("demo", algorithm=RSA)
+        demo = tls.PrivateKey("demo", algorithm="RSA")
         demo_tls_private_key = fastly.TlsPrivateKey("demo",
-            key_pem=demo["privateKeyPem"],
+            key_pem=demo.private_key_pem,
             name="tf-demo")
         ```
 

@@ -17,6 +17,198 @@ import * as utilities from "./utilities";
  *
  * The examples below demonstrate usage with AWS Route53 to configure DNS, and the `fastly.TlsSubscriptionValidation` resource to wait for validation to complete.
  *
+ * ## Example Usage
+ *
+ * **Basic usage:**
+ *
+ * The following example demonstrates how to configure two subdomains (e.g. `a.example.com`, `b.example.com`).
+ *
+ * The workflow configures a `fastly.TlsSubscription` resource, then a `awsRoute53Record` resource for handling the creation of the 'challenge' DNS records (e.g. `_acme-challenge.a.example.com` and `_acme-challenge.b.example.com`).
+ *
+ * We configure the `fastly.TlsSubscriptionValidation` resource, which blocks other resources until the challenge DNS records have been validated by Fastly.
+ *
+ * Once the validation has been successful, the configured `fastly.getTlsConfiguration` data source will filter the available results looking for an appropriate TLS configuration object. If that filtering process is successful, then the subsequent `awsRoute53Record` resources (for configuring the subdomains) will be executed using the returned TLS configuration data.
+ *
+ * ```typescript
+ * import * as pulumi from "@pulumi/pulumi";
+ * import * as aws from "@pulumi/aws";
+ * import * as fastly from "@pulumi/fastly";
+ * import * as std from "@pulumi/std";
+ *
+ * // NOTE: Creating a hosted zone will automatically create SOA/NS records.
+ * const production = new aws.index.Route53Zone("production", {name: "example.com"});
+ * const example = new aws.index.Route53domainsRegisteredDomain("example", {
+ *     nameServer: Object.entries(production.nameServers).map(([k, v]) => ({key: k, value: v})).map(entry => ({
+ *         name: entry.value,
+ *     })),
+ *     domainName: "example.com",
+ * });
+ * const subdomains = [
+ *     "a.example.com",
+ *     "b.example.com",
+ * ];
+ * const exampleServiceVcl = new fastly.ServiceVcl("example", {
+ *     domains: subdomains.map((v, k) => ({key: k, value: v})).map(entry => ({
+ *         name: entry.value,
+ *     })),
+ *     name: "example-service",
+ *     backends: [{
+ *         address: "127.0.0.1",
+ *         name: "localhost",
+ *     }],
+ *     forceDestroy: true,
+ * });
+ * const exampleTlsSubscription = new fastly.TlsSubscription("example", {
+ *     domains: exampleServiceVcl.domains.apply(domains => .map(domain => (domain.name))),
+ *     certificateAuthority: "lets-encrypt",
+ * });
+ * const domainValidation: aws.index.Route53Record[] = [];
+ * exampleTlsSubscription.domains.apply(domains => {
+ *     for (const range of Object.entries(domains.reduce((__obj, domain) => ({ ...__obj, [domain]: exampleTlsSubscription.managedDnsChallenges.apply(managedDnsChallenges => managedDnsChallenges.filter(obj => obj.recordName == `_acme-challenge.${domain}`).map(obj => (obj)))[0] }))).map(([k, v]) => ({key: k, value: v}))) {
+ *         domainValidation.push(new aws.index.Route53Record(`domain_validation-${range.key}`, {
+ *             name: range.value.recordName,
+ *             type: range.value.recordType,
+ *             zoneId: production.zoneId,
+ *             allowOverwrite: true,
+ *             records: [range.value.recordValue],
+ *             ttl: 60,
+ *         }, {
+ *         dependsOn: [exampleTlsSubscription],
+ *     }));
+ *     }
+ * });
+ * // This is a resource that other resources can depend on if they require the certificate to be issued.
+ * // NOTE: Internally the resource keeps retrying `GetTLSSubscription` until no error is returned (or the configured timeout is reached).
+ * const exampleTlsSubscriptionValidation = new fastly.TlsSubscriptionValidation("example", {subscriptionId: exampleTlsSubscription.id}, {
+ *     dependsOn: [domainValidation],
+ * });
+ * // This data source lists all available configuration objects.
+ * // It uses a `default` attribute to narrow down the list to just one configuration object.
+ * // If the filtered list has a length that is not exactly one element, you'll see an error returned.
+ * // The single TLS configuration is then returned and can be referenced by other resources (see aws_route53_record below).
+ * //
+ * // IMPORTANT: Not all customers will have a 'default' configuration.
+ * // If you have issues filtering with `default = true`, then you may need another attribute.
+ * // Refer to the fastly_tls_configuration documentation for available attributes:
+ * // https://registry.terraform.io/providers/fastly/fastly/latest/docs/data-sources/tls_configuration#optional
+ * const defaultTls = fastly.getTlsConfiguration({
+ *     "default": true,
+ * });
+ * // Once validation is complete and we've retrieved the TLS configuration data, we can create multiple subdomain records.
+ * const subdomain: aws.index.Route53Record[] = [];
+ * for (const range = {value: 0}; range.value < std.index.toset({
+ *     input: subdomains,
+ * }).result; range.value++) {
+ *     subdomain.push(new aws.index.Route53Record(`subdomain-${range.value}`, {
+ *         name: range.value,
+ *         records: .filter(record => record.recordType == "CNAME").map(record => (record.recordValue)),
+ *         ttl: 300,
+ *         type: "CNAME",
+ *         zoneId: production.zoneId,
+ *     }));
+ * }
+ * ```
+ *
+ * **Configuring an apex and a wildcard domain:**
+ *
+ * The following example is similar to the above but differs by demonstrating how to handle configuring an apex domain (e.g. `example.com`) and a wildcard domain (e.g. `*.example.com`) so you can support multiple subdomains to your service.
+ *
+ * The difference in the workflow is with how to handle the Fastly API returning a single 'challenge' for both domains (e.g. `_acme-challenge.example.com`). This is done by normalising the wildcard (i.e. replacing `*.example.com` with `example.com`) and then working around the issue of the returned object having two identical keys.
+ *
+ * ```typescript
+ * import * as pulumi from "@pulumi/pulumi";
+ * import * as aws from "@pulumi/aws";
+ * import * as fastly from "@pulumi/fastly";
+ * import * as std from "@pulumi/std";
+ *
+ * // NOTE: Creating a hosted zone will automatically create SOA/NS records.
+ * const production = new aws.index.Route53Zone("production", {name: "example.com"});
+ * const example = new aws.index.Route53domainsRegisteredDomain("example", {
+ *     nameServer: Object.entries(production.nameServers).map(([k, v]) => ({key: k, value: v})).map(entry => ({
+ *         name: entry.value,
+ *     })),
+ *     domainName: "example.com",
+ * });
+ * const domains = [
+ *     "example.com",
+ *     "*.example.com",
+ * ];
+ * const exampleServiceVcl = new fastly.ServiceVcl("example", {
+ *     domains: domains.map((v, k) => ({key: k, value: v})).map(entry => ({
+ *         name: entry.value,
+ *     })),
+ *     name: "example-service",
+ *     backends: [{
+ *         address: "127.0.0.1",
+ *         name: "localhost",
+ *     }],
+ *     forceDestroy: true,
+ * });
+ * const exampleTlsSubscription = new fastly.TlsSubscription("example", {
+ *     domains: exampleServiceVcl.domains.apply(domains => .map(domain => (domain.name))),
+ *     certificateAuthority: "lets-encrypt",
+ * });
+ * const domainValidation: aws.index.Route53Record[] = [];
+ * exampleTlsSubscription.domains.apply(domains => {
+ *     const domainValidation: aws.index.Route53Record[] = [];
+ * pulumi.all(domains.reduce((__obj, domain) => ({ ...__obj, [std.index.replace({
+ *         text: domain,
+ *         search: "*.",
+ *         replace: "",
+ *     }).result]: exampleTlsSubscription.managedDnsChallenges.apply(managedDnsChallenges => managedDnsChallenges.filter(obj => obj.recordName == `_acme-challenge.${std.index.replace({
+ *         text: domain,
+ *         search: "*.",
+ *         replace: "",
+ *     }).result}`).map(obj => (obj)))[0] }))).apply(rangeBody => {
+ *         for (const range of Object.entries(rangeBody).map(([k, v]) => ({key: k, value: v}))) {
+ *             domainValidation.push(new aws.index.Route53Record(`domain_validation-${range.key}`, {
+ *                 name: range.value[0].recordName,
+ *                 type: range.value[0].recordType,
+ *                 zoneId: production.zoneId,
+ *                 allowOverwrite: true,
+ *                 records: [range.value[0].recordValue],
+ *                 ttl: 60,
+ *             }, {
+ *             dependsOn: [exampleTlsSubscription],
+ *         }));
+ *         }
+ *     });
+ * });
+ * // This is a resource that other resources can depend on if they require the certificate to be issued.
+ * // NOTE: Internally the resource keeps retrying `GetTLSSubscription` until no error is returned (or the configured timeout is reached).
+ * const exampleTlsSubscriptionValidation = new fastly.TlsSubscriptionValidation("example", {subscriptionId: exampleTlsSubscription.id}, {
+ *     dependsOn: [domainValidation],
+ * });
+ * // This data source lists all available configuration objects.
+ * // It uses a `default` attribute to narrow down the list to just one configuration object.
+ * // If the filtered list has a length that is not exactly one element, you'll see an error returned.
+ * // The single TLS configuration is then returned and can be referenced by other resources (see aws_route53_record below).
+ * //
+ * // IMPORTANT: Not all customers will have a 'default' configuration.
+ * // If you have issues filtering with `default = true`, then you may need another attribute.
+ * // Refer to the fastly_tls_configuration documentation for available attributes:
+ * // https://registry.terraform.io/providers/fastly/fastly/latest/docs/data-sources/tls_configuration#optional
+ * const defaultTls = fastly.getTlsConfiguration({
+ *     "default": true,
+ * });
+ * // Once validation is complete and we've retrieved the TLS configuration data, we can create multiple records...
+ * const apex = new aws.index.Route53Record("apex", {
+ *     name: "example.com",
+ *     records: .filter(record => record.recordType == "A").map(record => (record.recordValue)),
+ *     ttl: 300,
+ *     type: "A",
+ *     zoneId: production.zoneId,
+ * });
+ * // NOTE: This subdomain matches our Fastly service because of the wildcard domain (`*.example.com`) that was added to the service.
+ * const subdomain = new aws.index.Route53Record("subdomain", {
+ *     name: "test.example.com",
+ *     records: .filter(record => record.recordType == "CNAME").map(record => (record.recordValue)),
+ *     ttl: 300,
+ *     type: "CNAME",
+ *     zoneId: production.zoneId,
+ * });
+ * ```
+ *
  * ## Import
  *
  * A subscription can be imported using its Fastly subscription ID, e.g.

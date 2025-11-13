@@ -20,6 +20,302 @@ namespace Pulumi.Fastly
     /// 
     /// The examples below demonstrate usage with AWS Route53 to configure DNS, and the `fastly.TlsSubscriptionValidation` resource to wait for validation to complete.
     /// 
+    /// ## Example Usage
+    /// 
+    /// **Basic usage:**
+    /// 
+    /// The following example demonstrates how to configure two subdomains (e.g. `a.example.com`, `b.example.com`).
+    /// 
+    /// The workflow configures a `fastly.TlsSubscription` resource, then a `AwsRoute53Record` resource for handling the creation of the 'challenge' DNS records (e.g. `_acme-challenge.a.example.com` and `_acme-challenge.b.example.com`).
+    /// 
+    /// We configure the `fastly.TlsSubscriptionValidation` resource, which blocks other resources until the challenge DNS records have been validated by Fastly.
+    /// 
+    /// Once the validation has been successful, the configured `fastly.getTlsConfiguration` data source will filter the available results looking for an appropriate TLS configuration object. If that filtering process is successful, then the subsequent `AwsRoute53Record` resources (for configuring the subdomains) will be executed using the returned TLS configuration data.
+    /// 
+    /// ```csharp
+    /// using System.Collections.Generic;
+    /// using System.Linq;
+    /// using Pulumi;
+    /// using Aws = Pulumi.Aws;
+    /// using Fastly = Pulumi.Fastly;
+    /// using Std = Pulumi.Std;
+    /// 
+    /// return await Deployment.RunAsync(() =&gt; 
+    /// {
+    ///     // NOTE: Creating a hosted zone will automatically create SOA/NS records.
+    ///     var production = new Aws.Index.Route53Zone("production", new()
+    ///     {
+    ///         Name = "example.com",
+    ///     });
+    /// 
+    ///     var example = new Aws.Index.Route53domainsRegisteredDomain("example", new()
+    ///     {
+    ///         NameServer = .Select(entry =&gt; 
+    ///         {
+    ///             return 
+    ///             {
+    ///                 { "name", entry.Value },
+    ///             };
+    ///         }).ToList(),
+    ///         DomainName = "example.com",
+    ///     });
+    /// 
+    ///     var subdomains = new[]
+    ///     {
+    ///         "a.example.com",
+    ///         "b.example.com",
+    ///     };
+    /// 
+    ///     var exampleServiceVcl = new Fastly.ServiceVcl("example", new()
+    ///     {
+    ///         Domains = subdomains.Select((v, k) =&gt; new { Key = k, Value = v }).Select(entry =&gt; 
+    ///         {
+    ///             return new Fastly.Inputs.ServiceVclDomainArgs
+    ///             {
+    ///                 Name = entry.Value,
+    ///             };
+    ///         }).ToList(),
+    ///         Name = "example-service",
+    ///         Backends = new[]
+    ///         {
+    ///             new Fastly.Inputs.ServiceVclBackendArgs
+    ///             {
+    ///                 Address = "127.0.0.1",
+    ///                 Name = "localhost",
+    ///             },
+    ///         },
+    ///         ForceDestroy = true,
+    ///     });
+    /// 
+    ///     var exampleTlsSubscription = new Fastly.TlsSubscription("example", new()
+    ///     {
+    ///         Domains = exampleServiceVcl.Domains.Apply(domains =&gt; .Select(domain =&gt; 
+    ///         {
+    ///             return domain.Name;
+    ///         }).ToList()),
+    ///         CertificateAuthority = "lets-encrypt",
+    ///     });
+    /// 
+    ///     var domainValidation = new List&lt;Aws.Index.Route53Record&gt;();
+    ///     foreach (var range in exampleTlsSubscription.Domains.Apply(domains =&gt; domains.ToDictionary(item =&gt; {
+    ///         var domain = item.Value;
+    ///         return domain;
+    ///     }, item =&gt; {
+    ///         var domain = item.Value;
+    ///         return exampleTlsSubscription.ManagedDnsChallenges.Apply(managedDnsChallenges =&gt; managedDnsChallenges.Where(obj =&gt; obj.RecordName == $"_acme-challenge.{domain}").Select(obj =&gt; 
+    ///         {
+    ///             return obj;
+    ///         }).ToList())[0];
+    ///     })).Select(pair =&gt; new { pair.Key, pair.Value }))
+    ///     {
+    ///         domainValidation.Add(new Aws.Index.Route53Record($"domain_validation-{range.Key}", new()
+    ///         {
+    ///             Name = range.Value.RecordName,
+    ///             Type = range.Value.RecordType,
+    ///             ZoneId = production.ZoneId,
+    ///             AllowOverwrite = true,
+    ///             Records = new[]
+    ///             {
+    ///                 range.Value.RecordValue,
+    ///             },
+    ///             Ttl = 60,
+    ///         }, new CustomResourceOptions
+    ///         {
+    ///             DependsOn =
+    ///             {
+    ///                 exampleTlsSubscription,
+    ///             },
+    ///         }));
+    ///     }
+    ///     // This is a resource that other resources can depend on if they require the certificate to be issued.
+    ///     // NOTE: Internally the resource keeps retrying `GetTLSSubscription` until no error is returned (or the configured timeout is reached).
+    ///     var exampleTlsSubscriptionValidation = new Fastly.TlsSubscriptionValidation("example", new()
+    ///     {
+    ///         SubscriptionId = exampleTlsSubscription.Id,
+    ///     }, new CustomResourceOptions
+    ///     {
+    ///         DependsOn =
+    ///         {
+    ///             domainValidation,
+    ///         },
+    ///     });
+    /// 
+    ///     // This data source lists all available configuration objects.
+    ///     // It uses a `default` attribute to narrow down the list to just one configuration object.
+    ///     // If the filtered list has a length that is not exactly one element, you'll see an error returned.
+    ///     // The single TLS configuration is then returned and can be referenced by other resources (see aws_route53_record below).
+    ///     //
+    ///     // IMPORTANT: Not all customers will have a 'default' configuration.
+    ///     // If you have issues filtering with `default = true`, then you may need another attribute.
+    ///     // Refer to the fastly_tls_configuration documentation for available attributes:
+    ///     // https://registry.terraform.io/providers/fastly/fastly/latest/docs/data-sources/tls_configuration#optional
+    ///     var defaultTls = Fastly.GetTlsConfiguration.Invoke(new()
+    ///     {
+    ///         Default = true,
+    ///     });
+    /// 
+    ///     // Once validation is complete and we've retrieved the TLS configuration data, we can create multiple subdomain records.
+    ///     var subdomain = new List&lt;Aws.Index.Route53Record&gt;();
+    ///     for (var rangeIndex = 0; rangeIndex &lt; Std.Index.Toset.Invoke(new()
+    ///     {
+    ///         Input = subdomains,
+    ///     }).Result; rangeIndex++)
+    ///     {
+    ///         var range = new { Value = rangeIndex };
+    ///         subdomain.Add(new Aws.Index.Route53Record($"subdomain-{range.Value}", new()
+    ///         {
+    ///             Name = range.Value,
+    ///             Records = ,
+    ///             Ttl = 300,
+    ///             Type = "CNAME",
+    ///             ZoneId = production.ZoneId,
+    ///         }));
+    ///     }
+    /// });
+    /// ```
+    /// 
+    /// **Configuring an apex and a wildcard domain:**
+    /// 
+    /// The following example is similar to the above but differs by demonstrating how to handle configuring an apex domain (e.g. `example.com`) and a wildcard domain (e.g. `*.example.com`) so you can support multiple subdomains to your service.
+    /// 
+    /// The difference in the workflow is with how to handle the Fastly API returning a single 'challenge' for both domains (e.g. `_acme-challenge.example.com`). This is done by normalising the wildcard (i.e. replacing `*.example.com` with `example.com`) and then working around the issue of the returned object having two identical keys.
+    /// 
+    /// ```csharp
+    /// using System.Collections.Generic;
+    /// using System.Linq;
+    /// using Pulumi;
+    /// using Aws = Pulumi.Aws;
+    /// using Fastly = Pulumi.Fastly;
+    /// using Std = Pulumi.Std;
+    /// 
+    /// return await Deployment.RunAsync(() =&gt; 
+    /// {
+    ///     // NOTE: Creating a hosted zone will automatically create SOA/NS records.
+    ///     var production = new Aws.Index.Route53Zone("production", new()
+    ///     {
+    ///         Name = "example.com",
+    ///     });
+    /// 
+    ///     var example = new Aws.Index.Route53domainsRegisteredDomain("example", new()
+    ///     {
+    ///         NameServer = .Select(entry =&gt; 
+    ///         {
+    ///             return 
+    ///             {
+    ///                 { "name", entry.Value },
+    ///             };
+    ///         }).ToList(),
+    ///         DomainName = "example.com",
+    ///     });
+    /// 
+    ///     var domains = new[]
+    ///     {
+    ///         "example.com",
+    ///         "*.example.com",
+    ///     };
+    /// 
+    ///     var exampleServiceVcl = new Fastly.ServiceVcl("example", new()
+    ///     {
+    ///         Domains = domains.Select((v, k) =&gt; new { Key = k, Value = v }).Select(entry =&gt; 
+    ///         {
+    ///             return new Fastly.Inputs.ServiceVclDomainArgs
+    ///             {
+    ///                 Name = entry.Value,
+    ///             };
+    ///         }).ToList(),
+    ///         Name = "example-service",
+    ///         Backends = new[]
+    ///         {
+    ///             new Fastly.Inputs.ServiceVclBackendArgs
+    ///             {
+    ///                 Address = "127.0.0.1",
+    ///                 Name = "localhost",
+    ///             },
+    ///         },
+    ///         ForceDestroy = true,
+    ///     });
+    /// 
+    ///     var exampleTlsSubscription = new Fastly.TlsSubscription("example", new()
+    ///     {
+    ///         Domains = exampleServiceVcl.Domains.Apply(domains =&gt; .Select(domain =&gt; 
+    ///         {
+    ///             return domain.Name;
+    ///         }).ToList()),
+    ///         CertificateAuthority = "lets-encrypt",
+    ///     });
+    /// 
+    ///     var domainValidation = new List&lt;Aws.Index.Route53Record&gt;();
+    ///     foreach (var range in exampleTlsSubscription.Domains.Apply(domains =&gt; domains).Select(pair =&gt; new { pair.Key, pair.Value }))
+    ///     {
+    ///         domainValidation.Add(new Aws.Index.Route53Record($"domain_validation-{range.Key}", new()
+    ///         {
+    ///             Name = range.Value[0].RecordName,
+    ///             Type = range.Value[0].RecordType,
+    ///             ZoneId = production.ZoneId,
+    ///             AllowOverwrite = true,
+    ///             Records = new[]
+    ///             {
+    ///                 range.Value[0].RecordValue,
+    ///             },
+    ///             Ttl = 60,
+    ///         }, new CustomResourceOptions
+    ///         {
+    ///             DependsOn =
+    ///             {
+    ///                 exampleTlsSubscription,
+    ///             },
+    ///         }));
+    ///     }
+    ///     // This is a resource that other resources can depend on if they require the certificate to be issued.
+    ///     // NOTE: Internally the resource keeps retrying `GetTLSSubscription` until no error is returned (or the configured timeout is reached).
+    ///     var exampleTlsSubscriptionValidation = new Fastly.TlsSubscriptionValidation("example", new()
+    ///     {
+    ///         SubscriptionId = exampleTlsSubscription.Id,
+    ///     }, new CustomResourceOptions
+    ///     {
+    ///         DependsOn =
+    ///         {
+    ///             domainValidation,
+    ///         },
+    ///     });
+    /// 
+    ///     // This data source lists all available configuration objects.
+    ///     // It uses a `default` attribute to narrow down the list to just one configuration object.
+    ///     // If the filtered list has a length that is not exactly one element, you'll see an error returned.
+    ///     // The single TLS configuration is then returned and can be referenced by other resources (see aws_route53_record below).
+    ///     //
+    ///     // IMPORTANT: Not all customers will have a 'default' configuration.
+    ///     // If you have issues filtering with `default = true`, then you may need another attribute.
+    ///     // Refer to the fastly_tls_configuration documentation for available attributes:
+    ///     // https://registry.terraform.io/providers/fastly/fastly/latest/docs/data-sources/tls_configuration#optional
+    ///     var defaultTls = Fastly.GetTlsConfiguration.Invoke(new()
+    ///     {
+    ///         Default = true,
+    ///     });
+    /// 
+    ///     // Once validation is complete and we've retrieved the TLS configuration data, we can create multiple records...
+    ///     var apex = new Aws.Index.Route53Record("apex", new()
+    ///     {
+    ///         Name = "example.com",
+    ///         Records = ,
+    ///         Ttl = 300,
+    ///         Type = "A",
+    ///         ZoneId = production.ZoneId,
+    ///     });
+    /// 
+    ///     // NOTE: This subdomain matches our Fastly service because of the wildcard domain (`*.example.com`) that was added to the service.
+    ///     var subdomain = new Aws.Index.Route53Record("subdomain", new()
+    ///     {
+    ///         Name = "test.example.com",
+    ///         Records = ,
+    ///         Ttl = 300,
+    ///         Type = "CNAME",
+    ///         ZoneId = production.ZoneId,
+    ///     });
+    /// 
+    /// });
+    /// ```
+    /// 
     /// ## Import
     /// 
     /// A subscription can be imported using its Fastly subscription ID, e.g.

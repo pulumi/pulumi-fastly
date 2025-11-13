@@ -19,9 +19,9 @@ import * as utilities from "./utilities";
  * import * as fastly from "@pulumi/fastly";
  * import * as tls from "@pulumi/tls";
  *
- * const caKey = new tls.index.PrivateKey("ca_key", {algorithm: "RSA"});
- * const key = new tls.index.PrivateKey("key", {algorithm: "RSA"});
- * const ca = new tls.index.SelfSignedCert("ca", {
+ * const caKey = new tls.PrivateKey("ca_key", {algorithm: "RSA"});
+ * const key = new tls.PrivateKey("key", {algorithm: "RSA"});
+ * const ca = new tls.SelfSignedCert("ca", {
  *     keyAlgorithm: caKey.algorithm,
  *     privateKeyPem: caKey.privateKeyPem,
  *     subject: [{
@@ -34,7 +34,7 @@ import * as utilities from "./utilities";
  *         "server_auth",
  *     ],
  * });
- * const example = new tls.index.CertRequest("example", {
+ * const example = new tls.CertRequest("example", {
  *     keyAlgorithm: key.algorithm,
  *     privateKeyPem: key.privateKeyPem,
  *     subject: [{
@@ -45,7 +45,7 @@ import * as utilities from "./utilities";
  *         "www.example.com",
  *     ],
  * });
- * const cert = new tls.index.LocallySignedCert("cert", {
+ * const cert = new tls.LocallySignedCert("cert", {
  *     certRequestPem: example.certRequestPem,
  *     caKeyAlgorithm: caKey.algorithm,
  *     caPrivateKeyPem: caKey.privateKeyPem,

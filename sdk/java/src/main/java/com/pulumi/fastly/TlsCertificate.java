@@ -61,13 +61,15 @@ import javax.annotation.Nullable;
  *         var cert = new SelfSignedCert("cert", SelfSignedCertArgs.builder()
  *             .keyAlgorithm(key.algorithm())
  *             .privateKeyPem(key.privateKeyPem())
- *             .subject(List.of(Map.of("commonName", "example.com")))
+ *             .subject(SelfSignedCertSubjectArgs.builder()
+ *                 .commonName("example.com")
+ *                 .build())
  *             .isCaCertificate(true)
  *             .validityPeriodHours(360)
- *             .allowedUses(List.of(            
+ *             .allowedUses(            
  *                 "cert_signing",
- *                 "server_auth"))
- *             .dnsNames(List.of("example.com"))
+ *                 "server_auth")
+ *             .dnsNames("example.com")
  *             .build());
  * 
  *         var keyTlsPrivateKey = new TlsPrivateKey("keyTlsPrivateKey", TlsPrivateKeyArgs.builder()
