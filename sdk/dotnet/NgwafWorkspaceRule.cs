@@ -376,6 +376,60 @@ namespace Pulumi.Fastly
     /// });
     /// ```
     /// 
+    /// Using signal exclusions:
+    /// 
+    /// ```csharp
+    /// using System.Collections.Generic;
+    /// using System.Linq;
+    /// using Pulumi;
+    /// using Fastly = Pulumi.Fastly;
+    /// 
+    /// return await Deployment.RunAsync(() =&gt; 
+    /// {
+    ///     var example = new Fastly.NgwafWorkspace("example", new()
+    ///     {
+    ///         Name = "example",
+    ///         Description = "Test NGWAF Workspace",
+    ///         Mode = "block",
+    ///         IpAnonymization = "hashed",
+    ///         ClientIpHeaders = new[]
+    ///         {
+    ///             "X-Forwarded-For",
+    ///             "X-Real-IP",
+    ///         },
+    ///         DefaultBlockingResponseCode = 429,
+    ///         AttackSignalThresholds = null,
+    ///     });
+    /// 
+    ///     var excludeXssSignal = new Fastly.NgwafWorkspaceRule("exclude_xss_signal", new()
+    ///     {
+    ///         WorkspaceId = example.Id,
+    ///         Type = "signal",
+    ///         Description = "Exclude XSS signal to address a false positive",
+    ///         Enabled = true,
+    ///         GroupOperator = "all",
+    ///         Conditions = new[]
+    ///         {
+    ///             new Fastly.Inputs.NgwafWorkspaceRuleConditionArgs
+    ///             {
+    ///                 Field = "path",
+    ///                 Operator = "like",
+    ///                 Value = "/contact-form",
+    ///             },
+    ///         },
+    ///         Actions = new[]
+    ///         {
+    ///             new Fastly.Inputs.NgwafWorkspaceRuleActionArgs
+    ///             {
+    ///                 Type = "exclude_signal",
+    ///                 Signal = "XSS",
+    ///             },
+    ///         },
+    ///     });
+    /// 
+    /// });
+    /// ```
+    /// 
     /// ## Import
     /// 
     /// Fastly Next-Gen WAF workspace rules can be imported using the format `&lt;workspaceID&gt;/&lt;ruleID&gt;`, e.g.:

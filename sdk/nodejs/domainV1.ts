@@ -4,6 +4,24 @@
 import * as pulumi from "@pulumi/pulumi";
 import * as utilities from "./utilities";
 
+/**
+ * Domain management allows you to manage your domains on Fastly and the services that they interact with.
+ *
+ * ## Example Usage
+ *
+ * Basic usage:
+ *
+ * ```typescript
+ * import * as pulumi from "@pulumi/pulumi";
+ * import * as fastly from "@pulumi/fastly";
+ *
+ * const example = new fastly.DomainV1("example", {
+ *     fqdn: "example.com",
+ *     serviceId: "12345abcde",
+ *     description: "This is a test domain.",
+ * });
+ * ```
+ */
 export class DomainV1 extends pulumi.CustomResource {
     /**
      * Get an existing DomainV1 resource's state with the given name, ID, and optional extra

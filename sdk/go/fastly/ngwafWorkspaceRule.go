@@ -382,6 +382,64 @@ import (
 //
 // ```
 //
+// Using signal exclusions:
+//
+// ```go
+// package main
+//
+// import (
+//
+//	"github.com/pulumi/pulumi-fastly/sdk/v11/go/fastly"
+//	"github.com/pulumi/pulumi/sdk/v3/go/pulumi"
+//
+// )
+//
+//	func main() {
+//		pulumi.Run(func(ctx *pulumi.Context) error {
+//			example, err := fastly.NewNgwafWorkspace(ctx, "example", &fastly.NgwafWorkspaceArgs{
+//				Name:            pulumi.String("example"),
+//				Description:     pulumi.String("Test NGWAF Workspace"),
+//				Mode:            pulumi.String("block"),
+//				IpAnonymization: pulumi.String("hashed"),
+//				ClientIpHeaders: pulumi.StringArray{
+//					pulumi.String("X-Forwarded-For"),
+//					pulumi.String("X-Real-IP"),
+//				},
+//				DefaultBlockingResponseCode: pulumi.Int(429),
+//				AttackSignalThresholds:      &fastly.NgwafWorkspaceAttackSignalThresholdsArgs{},
+//			})
+//			if err != nil {
+//				return err
+//			}
+//			_, err = fastly.NewNgwafWorkspaceRule(ctx, "exclude_xss_signal", &fastly.NgwafWorkspaceRuleArgs{
+//				WorkspaceId:   example.ID(),
+//				Type:          pulumi.String("signal"),
+//				Description:   pulumi.String("Exclude XSS signal to address a false positive"),
+//				Enabled:       pulumi.Bool(true),
+//				GroupOperator: pulumi.String("all"),
+//				Conditions: fastly.NgwafWorkspaceRuleConditionArray{
+//					&fastly.NgwafWorkspaceRuleConditionArgs{
+//						Field:    pulumi.String("path"),
+//						Operator: pulumi.String("like"),
+//						Value:    pulumi.String("/contact-form"),
+//					},
+//				},
+//				Actions: fastly.NgwafWorkspaceRuleActionArray{
+//					&fastly.NgwafWorkspaceRuleActionArgs{
+//						Type:   pulumi.String("exclude_signal"),
+//						Signal: pulumi.String("XSS"),
+//					},
+//				},
+//			})
+//			if err != nil {
+//				return err
+//			}
+//			return nil
+//		})
+//	}
+//
+// ```
+//
 // ## Import
 //
 // Fastly Next-Gen WAF workspace rules can be imported using the format `<workspaceID>/<ruleID>`, e.g.:
