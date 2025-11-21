@@ -421,6 +421,70 @@ import javax.annotation.Nullable;
  * }
  * </pre>
  * 
+ * Using signal exclusions:
+ * 
+ * <pre>
+ * {@code
+ * package generated_program;
+ * 
+ * import com.pulumi.Context;
+ * import com.pulumi.Pulumi;
+ * import com.pulumi.core.Output;
+ * import com.pulumi.fastly.NgwafWorkspace;
+ * import com.pulumi.fastly.NgwafWorkspaceArgs;
+ * import com.pulumi.fastly.inputs.NgwafWorkspaceAttackSignalThresholdsArgs;
+ * import com.pulumi.fastly.NgwafWorkspaceRule;
+ * import com.pulumi.fastly.NgwafWorkspaceRuleArgs;
+ * import com.pulumi.fastly.inputs.NgwafWorkspaceRuleConditionArgs;
+ * import com.pulumi.fastly.inputs.NgwafWorkspaceRuleActionArgs;
+ * import java.util.List;
+ * import java.util.ArrayList;
+ * import java.util.Map;
+ * import java.io.File;
+ * import java.nio.file.Files;
+ * import java.nio.file.Paths;
+ * 
+ * public class App {
+ *     public static void main(String[] args) {
+ *         Pulumi.run(App::stack);
+ *     }
+ * 
+ *     public static void stack(Context ctx) {
+ *         var example = new NgwafWorkspace("example", NgwafWorkspaceArgs.builder()
+ *             .name("example")
+ *             .description("Test NGWAF Workspace")
+ *             .mode("block")
+ *             .ipAnonymization("hashed")
+ *             .clientIpHeaders(            
+ *                 "X-Forwarded-For",
+ *                 "X-Real-IP")
+ *             .defaultBlockingResponseCode(429)
+ *             .attackSignalThresholds(NgwafWorkspaceAttackSignalThresholdsArgs.builder()
+ *                 .build())
+ *             .build());
+ * 
+ *         var excludeXssSignal = new NgwafWorkspaceRule("excludeXssSignal", NgwafWorkspaceRuleArgs.builder()
+ *             .workspaceId(example.id())
+ *             .type("signal")
+ *             .description("Exclude XSS signal to address a false positive")
+ *             .enabled(true)
+ *             .groupOperator("all")
+ *             .conditions(NgwafWorkspaceRuleConditionArgs.builder()
+ *                 .field("path")
+ *                 .operator("like")
+ *                 .value("/contact-form")
+ *                 .build())
+ *             .actions(NgwafWorkspaceRuleActionArgs.builder()
+ *                 .type("exclude_signal")
+ *                 .signal("XSS")
+ *                 .build())
+ *             .build());
+ * 
+ *     }
+ * }
+ * }
+ * </pre>
+ * 
  * ## Import
  * 
  * Fastly Next-Gen WAF workspace rules can be imported using the format `&lt;workspaceID&gt;/&lt;ruleID&gt;`, e.g.:

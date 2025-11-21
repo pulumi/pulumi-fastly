@@ -14,6 +14,47 @@ import java.lang.String;
 import java.util.Optional;
 import javax.annotation.Nullable;
 
+/**
+ * Domain management allows you to manage your domains on Fastly and the services that they interact with.
+ * 
+ * ## Example Usage
+ * 
+ * Basic usage:
+ * 
+ * <pre>
+ * {@code
+ * package generated_program;
+ * 
+ * import com.pulumi.Context;
+ * import com.pulumi.Pulumi;
+ * import com.pulumi.core.Output;
+ * import com.pulumi.fastly.DomainV1;
+ * import com.pulumi.fastly.DomainV1Args;
+ * import java.util.List;
+ * import java.util.ArrayList;
+ * import java.util.Map;
+ * import java.io.File;
+ * import java.nio.file.Files;
+ * import java.nio.file.Paths;
+ * 
+ * public class App {
+ *     public static void main(String[] args) {
+ *         Pulumi.run(App::stack);
+ *     }
+ * 
+ *     public static void stack(Context ctx) {
+ *         var example = new DomainV1("example", DomainV1Args.builder()
+ *             .fqdn("example.com")
+ *             .serviceId("12345abcde")
+ *             .description("This is a test domain.")
+ *             .build());
+ * 
+ *     }
+ * }
+ * }
+ * </pre>
+ * 
+ */
 @ResourceType(type="fastly:index/domainV1:DomainV1")
 public class DomainV1 extends com.pulumi.resources.CustomResource {
     /**

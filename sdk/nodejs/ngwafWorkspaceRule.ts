@@ -268,6 +268,42 @@ import * as utilities from "./utilities";
  * });
  * ```
  *
+ * Using signal exclusions:
+ *
+ * ```typescript
+ * import * as pulumi from "@pulumi/pulumi";
+ * import * as fastly from "@pulumi/fastly";
+ *
+ * const example = new fastly.NgwafWorkspace("example", {
+ *     name: "example",
+ *     description: "Test NGWAF Workspace",
+ *     mode: "block",
+ *     ipAnonymization: "hashed",
+ *     clientIpHeaders: [
+ *         "X-Forwarded-For",
+ *         "X-Real-IP",
+ *     ],
+ *     defaultBlockingResponseCode: 429,
+ *     attackSignalThresholds: {},
+ * });
+ * const excludeXssSignal = new fastly.NgwafWorkspaceRule("exclude_xss_signal", {
+ *     workspaceId: example.id,
+ *     type: "signal",
+ *     description: "Exclude XSS signal to address a false positive",
+ *     enabled: true,
+ *     groupOperator: "all",
+ *     conditions: [{
+ *         field: "path",
+ *         operator: "like",
+ *         value: "/contact-form",
+ *     }],
+ *     actions: [{
+ *         type: "exclude_signal",
+ *         signal: "XSS",
+ *     }],
+ * });
+ * ```
+ *
  * ## Import
  *
  * Fastly Next-Gen WAF workspace rules can be imported using the format `<workspaceID>/<ruleID>`, e.g.:

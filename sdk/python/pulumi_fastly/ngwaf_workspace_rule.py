@@ -650,6 +650,40 @@ class NgwafWorkspaceRule(pulumi.CustomResource):
             }])
         ```
 
+        Using signal exclusions:
+
+        ```python
+        import pulumi
+        import pulumi_fastly as fastly
+
+        example = fastly.NgwafWorkspace("example",
+            name="example",
+            description="Test NGWAF Workspace",
+            mode="block",
+            ip_anonymization="hashed",
+            client_ip_headers=[
+                "X-Forwarded-For",
+                "X-Real-IP",
+            ],
+            default_blocking_response_code=429,
+            attack_signal_thresholds={})
+        exclude_xss_signal = fastly.NgwafWorkspaceRule("exclude_xss_signal",
+            workspace_id=example.id,
+            type="signal",
+            description="Exclude XSS signal to address a false positive",
+            enabled=True,
+            group_operator="all",
+            conditions=[{
+                "field": "path",
+                "operator": "like",
+                "value": "/contact-form",
+            }],
+            actions=[{
+                "type": "exclude_signal",
+                "signal": "XSS",
+            }])
+        ```
+
         ## Import
 
         Fastly Next-Gen WAF workspace rules can be imported using the format `<workspaceID>/<ruleID>`, e.g.:
@@ -926,6 +960,40 @@ class NgwafWorkspaceRule(pulumi.CustomResource):
             actions=[{
                 "signal": "SUSPECTED-BOT",
                 "type": "block_signal",
+            }])
+        ```
+
+        Using signal exclusions:
+
+        ```python
+        import pulumi
+        import pulumi_fastly as fastly
+
+        example = fastly.NgwafWorkspace("example",
+            name="example",
+            description="Test NGWAF Workspace",
+            mode="block",
+            ip_anonymization="hashed",
+            client_ip_headers=[
+                "X-Forwarded-For",
+                "X-Real-IP",
+            ],
+            default_blocking_response_code=429,
+            attack_signal_thresholds={})
+        exclude_xss_signal = fastly.NgwafWorkspaceRule("exclude_xss_signal",
+            workspace_id=example.id,
+            type="signal",
+            description="Exclude XSS signal to address a false positive",
+            enabled=True,
+            group_operator="all",
+            conditions=[{
+                "field": "path",
+                "operator": "like",
+                "value": "/contact-form",
+            }],
+            actions=[{
+                "type": "exclude_signal",
+                "signal": "XSS",
             }])
         ```
 

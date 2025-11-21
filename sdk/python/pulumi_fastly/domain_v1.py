@@ -154,7 +154,22 @@ class DomainV1(pulumi.CustomResource):
                  service_id: Optional[pulumi.Input[_builtins.str]] = None,
                  __props__=None):
         """
-        Create a DomainV1 resource with the given unique name, props, and options.
+        Domain management allows you to manage your domains on Fastly and the services that they interact with.
+
+        ## Example Usage
+
+        Basic usage:
+
+        ```python
+        import pulumi
+        import pulumi_fastly as fastly
+
+        example = fastly.DomainV1("example",
+            fqdn="example.com",
+            service_id="12345abcde",
+            description="This is a test domain.")
+        ```
+
         :param str resource_name: The name of the resource.
         :param pulumi.ResourceOptions opts: Options for the resource.
         :param pulumi.Input[_builtins.str] description: The description for your domain.
@@ -168,7 +183,22 @@ class DomainV1(pulumi.CustomResource):
                  args: DomainV1Args,
                  opts: Optional[pulumi.ResourceOptions] = None):
         """
-        Create a DomainV1 resource with the given unique name, props, and options.
+        Domain management allows you to manage your domains on Fastly and the services that they interact with.
+
+        ## Example Usage
+
+        Basic usage:
+
+        ```python
+        import pulumi
+        import pulumi_fastly as fastly
+
+        example = fastly.DomainV1("example",
+            fqdn="example.com",
+            service_id="12345abcde",
+            description="This is a test domain.")
+        ```
+
         :param str resource_name: The name of the resource.
         :param DomainV1Args args: The arguments to use to populate this resource's properties.
         :param pulumi.ResourceOptions opts: Options for the resource.
