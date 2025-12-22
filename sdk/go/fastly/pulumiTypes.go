@@ -2571,7 +2571,7 @@ type NgwafWorkspaceRuleRateLimitClientIdentifier struct {
 	Key *string `pulumi:"key"`
 	// Name for the Client Identifier.
 	Name *string `pulumi:"name"`
-	// Type of the Client Identifier.
+	// Type of the Client Identifier. Accepted values are `ip`, `postParameter`, `requestCookie`, `requestHeader`, and `signalPayload`.
 	Type string `pulumi:"type"`
 }
 
@@ -2591,7 +2591,7 @@ type NgwafWorkspaceRuleRateLimitClientIdentifierArgs struct {
 	Key pulumi.StringPtrInput `pulumi:"key"`
 	// Name for the Client Identifier.
 	Name pulumi.StringPtrInput `pulumi:"name"`
-	// Type of the Client Identifier.
+	// Type of the Client Identifier. Accepted values are `ip`, `postParameter`, `requestCookie`, `requestHeader`, and `signalPayload`.
 	Type pulumi.StringInput `pulumi:"type"`
 }
 
@@ -2656,7 +2656,7 @@ func (o NgwafWorkspaceRuleRateLimitClientIdentifierOutput) Name() pulumi.StringP
 	return o.ApplyT(func(v NgwafWorkspaceRuleRateLimitClientIdentifier) *string { return v.Name }).(pulumi.StringPtrOutput)
 }
 
-// Type of the Client Identifier.
+// Type of the Client Identifier. Accepted values are `ip`, `postParameter`, `requestCookie`, `requestHeader`, and `signalPayload`.
 func (o NgwafWorkspaceRuleRateLimitClientIdentifierOutput) Type() pulumi.StringOutput {
 	return o.ApplyT(func(v NgwafWorkspaceRuleRateLimitClientIdentifier) string { return v.Type }).(pulumi.StringOutput)
 }
@@ -3853,7 +3853,7 @@ func (o ServiceComputeImageOptimizerDefaultSettingsPtrOutput) WebpQuality() pulu
 }
 
 type ServiceComputeLoggingBigquery struct {
-	// The google account name used to obtain temporary credentials (default none). You may optionally provide this via an environment variable, `FASTLY_GCS_ACCOUNT_NAME`.
+	// The google account name used to obtain temporary credentials (default none). Not required if 'email' and 'secret_key' are provided. You may optionally provide this via an environment variable, `FASTLY_GCS_ACCOUNT_NAME`.
 	AccountName *string `pulumi:"accountName"`
 	// The ID of your BigQuery dataset
 	Dataset string `pulumi:"dataset"`
@@ -3885,7 +3885,7 @@ type ServiceComputeLoggingBigqueryInput interface {
 }
 
 type ServiceComputeLoggingBigqueryArgs struct {
-	// The google account name used to obtain temporary credentials (default none). You may optionally provide this via an environment variable, `FASTLY_GCS_ACCOUNT_NAME`.
+	// The google account name used to obtain temporary credentials (default none). Not required if 'email' and 'secret_key' are provided. You may optionally provide this via an environment variable, `FASTLY_GCS_ACCOUNT_NAME`.
 	AccountName pulumi.StringPtrInput `pulumi:"accountName"`
 	// The ID of your BigQuery dataset
 	Dataset pulumi.StringInput `pulumi:"dataset"`
@@ -3956,7 +3956,7 @@ func (o ServiceComputeLoggingBigqueryOutput) ToServiceComputeLoggingBigqueryOutp
 	return o
 }
 
-// The google account name used to obtain temporary credentials (default none). You may optionally provide this via an environment variable, `FASTLY_GCS_ACCOUNT_NAME`.
+// The google account name used to obtain temporary credentials (default none). Not required if 'email' and 'secret_key' are provided. You may optionally provide this via an environment variable, `FASTLY_GCS_ACCOUNT_NAME`.
 func (o ServiceComputeLoggingBigqueryOutput) AccountName() pulumi.StringPtrOutput {
 	return o.ApplyT(func(v ServiceComputeLoggingBigquery) *string { return v.AccountName }).(pulumi.StringPtrOutput)
 }
@@ -11545,7 +11545,7 @@ func (o ServiceVclImageOptimizerDefaultSettingsPtrOutput) WebpQuality() pulumi.I
 }
 
 type ServiceVclLoggingBigquery struct {
-	// The google account name used to obtain temporary credentials (default none). You may optionally provide this via an environment variable, `FASTLY_GCS_ACCOUNT_NAME`.
+	// The google account name used to obtain temporary credentials (default none). Not required if 'email' and 'secret_key' are provided. You may optionally provide this via an environment variable, `FASTLY_GCS_ACCOUNT_NAME`.
 	AccountName *string `pulumi:"accountName"`
 	// The ID of your BigQuery dataset
 	Dataset string `pulumi:"dataset"`
@@ -11583,7 +11583,7 @@ type ServiceVclLoggingBigqueryInput interface {
 }
 
 type ServiceVclLoggingBigqueryArgs struct {
-	// The google account name used to obtain temporary credentials (default none). You may optionally provide this via an environment variable, `FASTLY_GCS_ACCOUNT_NAME`.
+	// The google account name used to obtain temporary credentials (default none). Not required if 'email' and 'secret_key' are provided. You may optionally provide this via an environment variable, `FASTLY_GCS_ACCOUNT_NAME`.
 	AccountName pulumi.StringPtrInput `pulumi:"accountName"`
 	// The ID of your BigQuery dataset
 	Dataset pulumi.StringInput `pulumi:"dataset"`
@@ -11660,7 +11660,7 @@ func (o ServiceVclLoggingBigqueryOutput) ToServiceVclLoggingBigqueryOutputWithCo
 	return o
 }
 
-// The google account name used to obtain temporary credentials (default none). You may optionally provide this via an environment variable, `FASTLY_GCS_ACCOUNT_NAME`.
+// The google account name used to obtain temporary credentials (default none). Not required if 'email' and 'secret_key' are provided. You may optionally provide this via an environment variable, `FASTLY_GCS_ACCOUNT_NAME`.
 func (o ServiceVclLoggingBigqueryOutput) AccountName() pulumi.StringPtrOutput {
 	return o.ApplyT(func(v ServiceVclLoggingBigquery) *string { return v.AccountName }).(pulumi.StringPtrOutput)
 }

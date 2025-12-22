@@ -569,7 +569,7 @@
                 },
                 "type": {
                     "type": "string",
-                    "description": "Type of the Client Identifier.\n"
+                    "description": "Type of the Client Identifier. Accepted values are \u003cspan pulumi-lang-nodejs=\"`ip`\" pulumi-lang-dotnet=\"`Ip`\" pulumi-lang-go=\"`ip`\" pulumi-lang-python=\"`ip`\" pulumi-lang-yaml=\"`ip`\" pulumi-lang-java=\"`ip`\"\u003e`ip`\u003c/span\u003e, \u003cspan pulumi-lang-nodejs=\"`postParameter`\" pulumi-lang-dotnet=\"`PostParameter`\" pulumi-lang-go=\"`postParameter`\" pulumi-lang-python=\"`post_parameter`\" pulumi-lang-yaml=\"`postParameter`\" pulumi-lang-java=\"`postParameter`\"\u003e`post_parameter`\u003c/span\u003e, \u003cspan pulumi-lang-nodejs=\"`requestCookie`\" pulumi-lang-dotnet=\"`RequestCookie`\" pulumi-lang-go=\"`requestCookie`\" pulumi-lang-python=\"`request_cookie`\" pulumi-lang-yaml=\"`requestCookie`\" pulumi-lang-java=\"`requestCookie`\"\u003e`request_cookie`\u003c/span\u003e, \u003cspan pulumi-lang-nodejs=\"`requestHeader`\" pulumi-lang-dotnet=\"`RequestHeader`\" pulumi-lang-go=\"`requestHeader`\" pulumi-lang-python=\"`request_header`\" pulumi-lang-yaml=\"`requestHeader`\" pulumi-lang-java=\"`requestHeader`\"\u003e`request_header`\u003c/span\u003e, and \u003cspan pulumi-lang-nodejs=\"`signalPayload`\" pulumi-lang-dotnet=\"`SignalPayload`\" pulumi-lang-go=\"`signalPayload`\" pulumi-lang-python=\"`signal_payload`\" pulumi-lang-yaml=\"`signalPayload`\" pulumi-lang-java=\"`signalPayload`\"\u003e`signal_payload`\u003c/span\u003e.\n"
                 }
             },
             "type": "object",
@@ -722,7 +722,16 @@
             "required": [
                 "address",
                 "name"
-            ]
+            ],
+            "language": {
+                "nodejs": {
+                    "requiredOutputs": [
+                        "address",
+                        "keepaliveTime",
+                        "name"
+                    ]
+                }
+            }
         },
         "fastly:index/ServiceComputeDictionary:ServiceComputeDictionary": {
             "properties": {
@@ -873,7 +882,7 @@
             "properties": {
                 "accountName": {
                     "type": "string",
-                    "description": "The google account name used to obtain temporary credentials (default none). You may optionally provide this via an environment variable, `FASTLY_GCS_ACCOUNT_NAME`.\n"
+                    "description": "The google account name used to obtain temporary credentials (default none). Not required if 'email' and 'secret_key' are provided. You may optionally provide this via an environment variable, `FASTLY_GCS_ACCOUNT_NAME`.\n"
                 },
                 "dataset": {
                     "type": "string",
@@ -2488,7 +2497,16 @@
             "required": [
                 "address",
                 "name"
-            ]
+            ],
+            "language": {
+                "nodejs": {
+                    "requiredOutputs": [
+                        "address",
+                        "keepaliveTime",
+                        "name"
+                    ]
+                }
+            }
         },
         "fastly:index/ServiceVclCacheSetting:ServiceVclCacheSetting": {
             "properties": {
@@ -2873,7 +2891,7 @@
             "properties": {
                 "accountName": {
                     "type": "string",
-                    "description": "The google account name used to obtain temporary credentials (default none). You may optionally provide this via an environment variable, `FASTLY_GCS_ACCOUNT_NAME`.\n"
+                    "description": "The google account name used to obtain temporary credentials (default none). Not required if 'email' and 'secret_key' are provided. You may optionally provide this via an environment variable, `FASTLY_GCS_ACCOUNT_NAME`.\n"
                 },
                 "dataset": {
                     "type": "string",

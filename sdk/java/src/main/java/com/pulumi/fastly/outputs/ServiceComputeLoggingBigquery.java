@@ -13,7 +13,7 @@ import javax.annotation.Nullable;
 @CustomType
 public final class ServiceComputeLoggingBigquery {
     /**
-     * @return The google account name used to obtain temporary credentials (default none). You may optionally provide this via an environment variable, `FASTLY_GCS_ACCOUNT_NAME`.
+     * @return The google account name used to obtain temporary credentials (default none). Not required if &#39;email&#39; and &#39;secret_key&#39; are provided. You may optionally provide this via an environment variable, `FASTLY_GCS_ACCOUNT_NAME`.
      * 
      */
     private @Nullable String accountName;
@@ -60,7 +60,7 @@ public final class ServiceComputeLoggingBigquery {
 
     private ServiceComputeLoggingBigquery() {}
     /**
-     * @return The google account name used to obtain temporary credentials (default none). You may optionally provide this via an environment variable, `FASTLY_GCS_ACCOUNT_NAME`.
+     * @return The google account name used to obtain temporary credentials (default none). Not required if &#39;email&#39; and &#39;secret_key&#39; are provided. You may optionally provide this via an environment variable, `FASTLY_GCS_ACCOUNT_NAME`.
      * 
      */
     public Optional<String> accountName() {

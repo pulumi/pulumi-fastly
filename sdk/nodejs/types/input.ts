@@ -346,7 +346,7 @@ export interface NgwafWorkspaceRuleRateLimitClientIdentifier {
      */
     name?: pulumi.Input<string>;
     /**
-     * Type of the Client Identifier.
+     * Type of the Client Identifier. Accepted values are `ip`, `postParameter`, `requestCookie`, `requestHeader`, and `signalPayload`.
      */
     type: pulumi.Input<string>;
 }
@@ -600,7 +600,7 @@ export interface ServiceComputeImageOptimizerDefaultSettings {
 
 export interface ServiceComputeLoggingBigquery {
     /**
-     * The google account name used to obtain temporary credentials (default none). You may optionally provide this via an environment variable, `FASTLY_GCS_ACCOUNT_NAME`.
+     * The google account name used to obtain temporary credentials (default none). Not required if 'email' and 'secret_key' are provided. You may optionally provide this via an environment variable, `FASTLY_GCS_ACCOUNT_NAME`.
      */
     accountName?: pulumi.Input<string>;
     /**
@@ -2216,7 +2216,7 @@ export interface ServiceVclImageOptimizerDefaultSettings {
 
 export interface ServiceVclLoggingBigquery {
     /**
-     * The google account name used to obtain temporary credentials (default none). You may optionally provide this via an environment variable, `FASTLY_GCS_ACCOUNT_NAME`.
+     * The google account name used to obtain temporary credentials (default none). Not required if 'email' and 'secret_key' are provided. You may optionally provide this via an environment variable, `FASTLY_GCS_ACCOUNT_NAME`.
      */
     accountName?: pulumi.Input<string>;
     /**

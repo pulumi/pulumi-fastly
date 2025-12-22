@@ -23,7 +23,7 @@ public final class NgwafWorkspaceRuleRateLimitClientIdentifier {
      */
     private @Nullable String name;
     /**
-     * @return Type of the Client Identifier.
+     * @return Type of the Client Identifier. Accepted values are `ip`, `postParameter`, `requestCookie`, `requestHeader`, and `signalPayload`.
      * 
      */
     private String type;
@@ -44,7 +44,7 @@ public final class NgwafWorkspaceRuleRateLimitClientIdentifier {
         return Optional.ofNullable(this.name);
     }
     /**
-     * @return Type of the Client Identifier.
+     * @return Type of the Client Identifier. Accepted values are `ip`, `postParameter`, `requestCookie`, `requestHeader`, and `signalPayload`.
      * 
      */
     public String type() {

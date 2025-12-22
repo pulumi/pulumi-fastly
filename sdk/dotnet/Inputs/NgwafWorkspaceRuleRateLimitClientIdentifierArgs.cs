@@ -25,7 +25,7 @@ namespace Pulumi.Fastly.Inputs
         public Input<string>? Name { get; set; }
 
         /// <summary>
-        /// Type of the Client Identifier.
+        /// Type of the Client Identifier. Accepted values are `Ip`, `PostParameter`, `RequestCookie`, `RequestHeader`, and `SignalPayload`.
         /// </summary>
         [Input("type", required: true)]
         public Input<string> Type { get; set; } = null!;

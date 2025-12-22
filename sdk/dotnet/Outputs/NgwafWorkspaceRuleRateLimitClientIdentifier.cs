@@ -22,7 +22,7 @@ namespace Pulumi.Fastly.Outputs
         /// </summary>
         public readonly string? Name;
         /// <summary>
-        /// Type of the Client Identifier.
+        /// Type of the Client Identifier. Accepted values are `Ip`, `PostParameter`, `RequestCookie`, `RequestHeader`, and `SignalPayload`.
         /// </summary>
         public readonly string Type;
 

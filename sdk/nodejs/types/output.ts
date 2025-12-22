@@ -770,7 +770,7 @@ export interface NgwafWorkspaceRuleRateLimitClientIdentifier {
      */
     name?: string;
     /**
-     * Type of the Client Identifier.
+     * Type of the Client Identifier. Accepted values are `ip`, `postParameter`, `requestCookie`, `requestHeader`, and `signalPayload`.
      */
     type: string;
 }
@@ -826,7 +826,7 @@ export interface ServiceComputeBackend {
     /**
      * How long in seconds to keep a persistent connection to the backend between requests.
      */
-    keepaliveTime?: number;
+    keepaliveTime: number;
     /**
      * Maximum number of connections for this Backend. Default `200`
      */
@@ -1024,7 +1024,7 @@ export interface ServiceComputeImageOptimizerDefaultSettings {
 
 export interface ServiceComputeLoggingBigquery {
     /**
-     * The google account name used to obtain temporary credentials (default none). You may optionally provide this via an environment variable, `FASTLY_GCS_ACCOUNT_NAME`.
+     * The google account name used to obtain temporary credentials (default none). Not required if 'email' and 'secret_key' are provided. You may optionally provide this via an environment variable, `FASTLY_GCS_ACCOUNT_NAME`.
      */
     accountName?: string;
     /**
@@ -2272,7 +2272,7 @@ export interface ServiceVclBackend {
     /**
      * How long in seconds to keep a persistent connection to the backend between requests.
      */
-    keepaliveTime?: number;
+    keepaliveTime: number;
     /**
      * Maximum number of connections for this Backend. Default `200`
      */
@@ -2640,7 +2640,7 @@ export interface ServiceVclImageOptimizerDefaultSettings {
 
 export interface ServiceVclLoggingBigquery {
     /**
-     * The google account name used to obtain temporary credentials (default none). You may optionally provide this via an environment variable, `FASTLY_GCS_ACCOUNT_NAME`.
+     * The google account name used to obtain temporary credentials (default none). Not required if 'email' and 'secret_key' are provided. You may optionally provide this via an environment variable, `FASTLY_GCS_ACCOUNT_NAME`.
      */
     accountName?: string;
     /**

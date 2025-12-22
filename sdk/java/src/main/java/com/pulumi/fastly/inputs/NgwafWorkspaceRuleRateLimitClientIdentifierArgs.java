@@ -47,14 +47,14 @@ public final class NgwafWorkspaceRuleRateLimitClientIdentifierArgs extends com.p
     }
 
     /**
-     * Type of the Client Identifier.
+     * Type of the Client Identifier. Accepted values are `ip`, `postParameter`, `requestCookie`, `requestHeader`, and `signalPayload`.
      * 
      */
     @Import(name="type", required=true)
     private Output<String> type;
 
     /**
-     * @return Type of the Client Identifier.
+     * @return Type of the Client Identifier. Accepted values are `ip`, `postParameter`, `requestCookie`, `requestHeader`, and `signalPayload`.
      * 
      */
     public Output<String> type() {
@@ -130,7 +130,7 @@ public final class NgwafWorkspaceRuleRateLimitClientIdentifierArgs extends com.p
         }
 
         /**
-         * @param type Type of the Client Identifier.
+         * @param type Type of the Client Identifier. Accepted values are `ip`, `postParameter`, `requestCookie`, `requestHeader`, and `signalPayload`.
          * 
          * @return builder
          * 
@@ -141,7 +141,7 @@ public final class NgwafWorkspaceRuleRateLimitClientIdentifierArgs extends com.p
         }
 
         /**
-         * @param type Type of the Client Identifier.
+         * @param type Type of the Client Identifier. Accepted values are `ip`, `postParameter`, `requestCookie`, `requestHeader`, and `signalPayload`.
          * 
          * @return builder
          * 

@@ -13,7 +13,7 @@ namespace Pulumi.Fastly.Inputs
     public sealed class ServiceVclLoggingBigqueryArgs : global::Pulumi.ResourceArgs
     {
         /// <summary>
-        /// The google account name used to obtain temporary credentials (default none). You may optionally provide this via an environment variable, `FASTLY_GCS_ACCOUNT_NAME`.
+        /// The google account name used to obtain temporary credentials (default none). Not required if 'email' and 'secret_key' are provided. You may optionally provide this via an environment variable, `FASTLY_GCS_ACCOUNT_NAME`.
         /// </summary>
         [Input("accountName")]
         public Input<string>? AccountName { get; set; }
