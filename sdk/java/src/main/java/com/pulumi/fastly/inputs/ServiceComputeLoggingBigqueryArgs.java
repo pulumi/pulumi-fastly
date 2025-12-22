@@ -17,14 +17,14 @@ public final class ServiceComputeLoggingBigqueryArgs extends com.pulumi.resource
     public static final ServiceComputeLoggingBigqueryArgs Empty = new ServiceComputeLoggingBigqueryArgs();
 
     /**
-     * The google account name used to obtain temporary credentials (default none). You may optionally provide this via an environment variable, `FASTLY_GCS_ACCOUNT_NAME`.
+     * The google account name used to obtain temporary credentials (default none). Not required if &#39;email&#39; and &#39;secret_key&#39; are provided. You may optionally provide this via an environment variable, `FASTLY_GCS_ACCOUNT_NAME`.
      * 
      */
     @Import(name="accountName")
     private @Nullable Output<String> accountName;
 
     /**
-     * @return The google account name used to obtain temporary credentials (default none). You may optionally provide this via an environment variable, `FASTLY_GCS_ACCOUNT_NAME`.
+     * @return The google account name used to obtain temporary credentials (default none). Not required if &#39;email&#39; and &#39;secret_key&#39; are provided. You may optionally provide this via an environment variable, `FASTLY_GCS_ACCOUNT_NAME`.
      * 
      */
     public Optional<Output<String>> accountName() {
@@ -184,7 +184,7 @@ public final class ServiceComputeLoggingBigqueryArgs extends com.pulumi.resource
         }
 
         /**
-         * @param accountName The google account name used to obtain temporary credentials (default none). You may optionally provide this via an environment variable, `FASTLY_GCS_ACCOUNT_NAME`.
+         * @param accountName The google account name used to obtain temporary credentials (default none). Not required if &#39;email&#39; and &#39;secret_key&#39; are provided. You may optionally provide this via an environment variable, `FASTLY_GCS_ACCOUNT_NAME`.
          * 
          * @return builder
          * 
@@ -195,7 +195,7 @@ public final class ServiceComputeLoggingBigqueryArgs extends com.pulumi.resource
         }
 
         /**
-         * @param accountName The google account name used to obtain temporary credentials (default none). You may optionally provide this via an environment variable, `FASTLY_GCS_ACCOUNT_NAME`.
+         * @param accountName The google account name used to obtain temporary credentials (default none). Not required if &#39;email&#39; and &#39;secret_key&#39; are provided. You may optionally provide this via an environment variable, `FASTLY_GCS_ACCOUNT_NAME`.
          * 
          * @return builder
          * 

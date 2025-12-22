@@ -1788,7 +1788,7 @@ if not MYPY:
     class NgwafWorkspaceRuleRateLimitClientIdentifierArgsDict(TypedDict):
         type: pulumi.Input[_builtins.str]
         """
-        Type of the Client Identifier.
+        Type of the Client Identifier. Accepted values are `ip`, `post_parameter`, `request_cookie`, `request_header`, and `signal_payload`.
         """
         key: NotRequired[pulumi.Input[_builtins.str]]
         """
@@ -1808,7 +1808,7 @@ class NgwafWorkspaceRuleRateLimitClientIdentifierArgs:
                  key: Optional[pulumi.Input[_builtins.str]] = None,
                  name: Optional[pulumi.Input[_builtins.str]] = None):
         """
-        :param pulumi.Input[_builtins.str] type: Type of the Client Identifier.
+        :param pulumi.Input[_builtins.str] type: Type of the Client Identifier. Accepted values are `ip`, `post_parameter`, `request_cookie`, `request_header`, and `signal_payload`.
         :param pulumi.Input[_builtins.str] key: Key for the Client Identifier.
         :param pulumi.Input[_builtins.str] name: Name for the Client Identifier.
         """
@@ -1822,7 +1822,7 @@ class NgwafWorkspaceRuleRateLimitClientIdentifierArgs:
     @pulumi.getter
     def type(self) -> pulumi.Input[_builtins.str]:
         """
-        Type of the Client Identifier.
+        Type of the Client Identifier. Accepted values are `ip`, `post_parameter`, `request_cookie`, `request_header`, and `signal_payload`.
         """
         return pulumi.get(self, "type")
 
@@ -3084,7 +3084,7 @@ if not MYPY:
         """
         account_name: NotRequired[pulumi.Input[_builtins.str]]
         """
-        The google account name used to obtain temporary credentials (default none). You may optionally provide this via an environment variable, `FASTLY_GCS_ACCOUNT_NAME`.
+        The google account name used to obtain temporary credentials (default none). Not required if 'email' and 'secret_key' are provided. You may optionally provide this via an environment variable, `FASTLY_GCS_ACCOUNT_NAME`.
         """
         processing_region: NotRequired[pulumi.Input[_builtins.str]]
         """
@@ -3116,7 +3116,7 @@ class ServiceComputeLoggingBigqueryArgs:
         :param pulumi.Input[_builtins.str] project_id: The ID of your GCP project
         :param pulumi.Input[_builtins.str] secret_key: The secret key associated with the service account that has write access to your BigQuery table. If not provided, this will be pulled from the `FASTLY_BQ_SECRET_KEY` environment variable. Typical format for this is a private key in a string with newlines
         :param pulumi.Input[_builtins.str] table: The ID of your BigQuery table
-        :param pulumi.Input[_builtins.str] account_name: The google account name used to obtain temporary credentials (default none). You may optionally provide this via an environment variable, `FASTLY_GCS_ACCOUNT_NAME`.
+        :param pulumi.Input[_builtins.str] account_name: The google account name used to obtain temporary credentials (default none). Not required if 'email' and 'secret_key' are provided. You may optionally provide this via an environment variable, `FASTLY_GCS_ACCOUNT_NAME`.
         :param pulumi.Input[_builtins.str] processing_region: Region where logs will be processed before streaming to BigQuery. Valid values are 'none', 'us' and 'eu'.
         :param pulumi.Input[_builtins.str] template: BigQuery table name suffix template
         """
@@ -3209,7 +3209,7 @@ class ServiceComputeLoggingBigqueryArgs:
     @pulumi.getter(name="accountName")
     def account_name(self) -> Optional[pulumi.Input[_builtins.str]]:
         """
-        The google account name used to obtain temporary credentials (default none). You may optionally provide this via an environment variable, `FASTLY_GCS_ACCOUNT_NAME`.
+        The google account name used to obtain temporary credentials (default none). Not required if 'email' and 'secret_key' are provided. You may optionally provide this via an environment variable, `FASTLY_GCS_ACCOUNT_NAME`.
         """
         return pulumi.get(self, "account_name")
 
@@ -10906,7 +10906,7 @@ if not MYPY:
         """
         account_name: NotRequired[pulumi.Input[_builtins.str]]
         """
-        The google account name used to obtain temporary credentials (default none). You may optionally provide this via an environment variable, `FASTLY_GCS_ACCOUNT_NAME`.
+        The google account name used to obtain temporary credentials (default none). Not required if 'email' and 'secret_key' are provided. You may optionally provide this via an environment variable, `FASTLY_GCS_ACCOUNT_NAME`.
         """
         format: NotRequired[pulumi.Input[_builtins.str]]
         """
@@ -10953,7 +10953,7 @@ class ServiceVclLoggingBigqueryArgs:
         :param pulumi.Input[_builtins.str] project_id: The ID of your GCP project
         :param pulumi.Input[_builtins.str] secret_key: The secret key associated with the service account that has write access to your BigQuery table. If not provided, this will be pulled from the `FASTLY_BQ_SECRET_KEY` environment variable. Typical format for this is a private key in a string with newlines
         :param pulumi.Input[_builtins.str] table: The ID of your BigQuery table
-        :param pulumi.Input[_builtins.str] account_name: The google account name used to obtain temporary credentials (default none). You may optionally provide this via an environment variable, `FASTLY_GCS_ACCOUNT_NAME`.
+        :param pulumi.Input[_builtins.str] account_name: The google account name used to obtain temporary credentials (default none). Not required if 'email' and 'secret_key' are provided. You may optionally provide this via an environment variable, `FASTLY_GCS_ACCOUNT_NAME`.
         :param pulumi.Input[_builtins.str] format: The logging format desired.
         :param pulumi.Input[_builtins.str] placement: Where in the generated VCL the logging call should be placed.
         :param pulumi.Input[_builtins.str] processing_region: Region where logs will be processed before streaming to BigQuery. Valid values are 'none', 'us' and 'eu'.
@@ -11055,7 +11055,7 @@ class ServiceVclLoggingBigqueryArgs:
     @pulumi.getter(name="accountName")
     def account_name(self) -> Optional[pulumi.Input[_builtins.str]]:
         """
-        The google account name used to obtain temporary credentials (default none). You may optionally provide this via an environment variable, `FASTLY_GCS_ACCOUNT_NAME`.
+        The google account name used to obtain temporary credentials (default none). Not required if 'email' and 'secret_key' are provided. You may optionally provide this via an environment variable, `FASTLY_GCS_ACCOUNT_NAME`.
         """
         return pulumi.get(self, "account_name")
 
