@@ -12,21 +12,62 @@ import (
 	"github.com/pulumi/pulumi/sdk/v3/go/pulumi"
 )
 
+// Defines content that represents blocks of VCL logic that is inserted into your service.  This resource will populate the content of a dynamic snippet and allow it to be manged without the creation of a new service verison.
+//
+// > **Note:** By default the Terraform provider allows you to externally manage the snippets via API or UI.
+// If you wish to apply your changes in the HCL, then you should explicitly set the `manageSnippets` attribute. An example of this configuration is provided below.
+//
+// If this provider is being used to populate the initial content of a dynamic snippet which you intend to manage via the API, then the lifecycle `ignoreChanges` field can be used with the resource.  An example of this configuration is provided below.
+//
+// ## Example Usage
+//
+// ### Basic usage:
+//
+// ### Multiple dynamic snippets:
+//
+// ### Terraform >= 0.12.0 && < 0.12.6)
+//
+// `forEach` attributes were not available in Terraform before 0.12.6, however, users can still use `for` expressions to achieve
+// similar behaviour as seen in the example below.
+//
+// > **Warning:** Terraform might not properly calculate implicit dependencies on computed attributes when using `for` expressions
+//
+// For scenarios such as adding a Dynamic Snippet to a service and at the same time, creating the Dynamic Snippets (`ServiceDynamicSnippetContent`)
+// resource, Terraform will not calculate implicit dependencies correctly on `for` expressions. This will result in index lookup
+// problems and the execution will fail.
+//
+// For those scenarios, it's recommended to split the changes into two distinct steps:
+//
+// 1. Add the `dynamicsnippet` block to the `ServiceVcl` and apply the changes
+// 2. Add the `ServiceDynamicSnippetContent` resource with the `for` expressions to the HCL and apply the changes
+//
+// Usage:
+//
+// ### Reapplying original snippets with `manageSnippets` if the state of the snippets drifts
+//
+// By default the user is opted out from reapplying the original changes if the snippets are managed externally.
+// The following example demonstrates how the `manageSnippets` field can be used to reapply the changes defined in the HCL if the state of the snippets drifts.
+// When the value is explicitly set to 'true', Terraform will keep the original changes and discard any other changes made under this resource outside of Terraform.
+//
+// > **Warning:** You will lose externally managed snippets if `manage_snippets=true`.
+//
+// > **Note:** The `ignoreChanges` built-in meta-argument takes precedence over `manageSnippets` regardless of its value.
+//
 // ## Import
 //
 // This is an example of the import command being applied to the resource named `fastly_service_dynamic_snippet_content.content`
-//
-// The resource ID is a combined value of the `service_id` and `snippet_id` separated by a forward slash.
+// The resource ID is a combined value of the `serviceId` and `snippetId` separated by a forward slash.
 //
 // ```sh
 // $ pulumi import fastly:index/serviceDynamicSnippetContent:ServiceDynamicSnippetContent content xxxxxxxxxxxxxxxxxxxx/xxxxxxxxxxxxxxxxxxxx
 // ```
 //
 // If Terraform is already managing remote content against a resource being imported then the user will be asked to remove it from the existing Terraform state.
-//
 // The following is an example of the Terraform state command to remove the resource named `fastly_service_dynamic_snippet_content.content` from the Terraform state file.
 //
+// ```sh
 // $ terraform state rm fastly_service_dynamic_snippet_content.content
+// ```
 type ServiceDynamicSnippetContent struct {
 	pulumi.CustomResourceState
 

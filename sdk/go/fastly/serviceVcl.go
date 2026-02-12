@@ -11,6 +11,168 @@ import (
 	"github.com/pulumi/pulumi/sdk/v3/go/pulumi"
 )
 
+// Provides a Fastly Service, representing the configuration for a website, app,
+// API, or anything else to be served through Fastly. A Service encompasses Domains
+// and Backends.
+//
+// The Service resource requires a domain name that is correctly set up to direct
+// traffic to the Fastly service. See Fastly's guide on [Adding CNAME Records][fastly-cname]
+// on their documentation site for guidance.
+//
+// ## Activation and Staging
+//
+// By default, the `activate` attribute is `true`, and the `stage`
+// attribute is `false`. This combination means that when `terraform
+// apply` is executed for a plan which will make changes to the service,
+// the last version created by the provider (the `clonedVersion`) will
+// be cloned to make a draft version, the changes will be applied to that
+// draft version, and that draft version will be activated.
+//
+// If desired, `activate` can be set to `false`, in which case the
+// behavior above will be modified such that cloning will only occur when
+// the `clonedVersion` is locked, and the draft version will not be
+// activated.
+//
+// Additionally, `stage` can be set to `true`, with `activate` set to
+// `false`. This extends the `activate = false` behavior to include
+// staging of applied changes, every time that changes are applied, even
+// if the changes were applied to an existing draft version.
+//
+// Finally, `activate` should not be set to `true` when `stage` is also
+// set to `true`. While this combination will not cause any harm to the
+// service, there is no logical reason to both stage and activate every
+// set of applied changes.
+//
+// ## Example Usage
+//
+// Basic usage:
+//
+// ```go
+// package main
+//
+// import (
+//
+//	"github.com/pulumi/pulumi-fastly/sdk/v11/go/fastly"
+//	"github.com/pulumi/pulumi/sdk/v3/go/pulumi"
+//
+// )
+//
+//	func main() {
+//		pulumi.Run(func(ctx *pulumi.Context) error {
+//			_, err := fastly.NewServiceVcl(ctx, "demo", &fastly.ServiceVclArgs{
+//				Name: pulumi.String("demofastly"),
+//				Domains: fastly.ServiceVclDomainArray{
+//					&fastly.ServiceVclDomainArgs{
+//						Name:    pulumi.String("demo.notexample.com"),
+//						Comment: pulumi.String("demo"),
+//					},
+//				},
+//				Backends: fastly.ServiceVclBackendArray{
+//					&fastly.ServiceVclBackendArgs{
+//						Address: pulumi.String("127.0.0.1"),
+//						Name:    pulumi.String("localhost"),
+//						Port:    pulumi.Int(80),
+//					},
+//				},
+//				ForceDestroy: pulumi.Bool(true),
+//			})
+//			if err != nil {
+//				return err
+//			}
+//			return nil
+//		})
+//	}
+//
+// ```
+//
+// Basic usage with an Amazon S3 Website and that removes the `x-amz-request-id` header:
+//
+// ```go
+// package main
+//
+// import (
+//
+//	"github.com/pulumi/pulumi-aws/sdk/v7/go/aws"
+//	"github.com/pulumi/pulumi-fastly/sdk/v11/go/fastly"
+//	"github.com/pulumi/pulumi/sdk/v3/go/pulumi"
+//
+// )
+//
+//	func main() {
+//		pulumi.Run(func(ctx *pulumi.Context) error {
+//			_, err := fastly.NewServiceVcl(ctx, "demo", &fastly.ServiceVclArgs{
+//				Name: pulumi.String("demofastly"),
+//				Domains: fastly.ServiceVclDomainArray{
+//					&fastly.ServiceVclDomainArgs{
+//						Name:    pulumi.String("demo.notexample.com"),
+//						Comment: pulumi.String("demo"),
+//					},
+//				},
+//				Backends: fastly.ServiceVclBackendArray{
+//					&fastly.ServiceVclBackendArgs{
+//						Address:      pulumi.String("http-me.fastly.dev"),
+//						Name:         pulumi.String("Glitch Test Site"),
+//						Port:         pulumi.Int(80),
+//						OverrideHost: pulumi.String("http-me.fastly.dev"),
+//					},
+//				},
+//				Headers: fastly.ServiceVclHeaderArray{
+//					&fastly.ServiceVclHeaderArgs{
+//						Destination: pulumi.String("http.x-amz-request-id"),
+//						Type:        pulumi.String("cache"),
+//						Action:      pulumi.String("delete"),
+//						Name:        pulumi.String("remove x-amz-request-id"),
+//					},
+//				},
+//				Gzips: fastly.ServiceVclGzipArray{
+//					&fastly.ServiceVclGzipArgs{
+//						Name: pulumi.String("file extensions and content types"),
+//						Extensions: pulumi.StringArray{
+//							pulumi.String("css"),
+//							pulumi.String("js"),
+//						},
+//						ContentTypes: pulumi.StringArray{
+//							pulumi.String("text/html"),
+//							pulumi.String("text/css"),
+//						},
+//					},
+//				},
+//				ForceDestroy: pulumi.Bool(true),
+//			})
+//			if err != nil {
+//				return err
+//			}
+//			websiteBucket, err := aws.NewS3Bucket(ctx, "website_bucket", &aws.S3BucketArgs{
+//				Bucket: "your-unique-website-bucket-name",
+//			})
+//			if err != nil {
+//				return err
+//			}
+//			_, err = aws.NewS3BucketWebsiteConfiguration(ctx, "website_config", &aws.S3BucketWebsiteConfigurationArgs{
+//				Bucket: websiteBucket.Id,
+//				IndexDocument: []map[string]interface{}{
+//					map[string]interface{}{
+//						"suffix": "index.html",
+//					},
+//				},
+//				ErrorDocument: []map[string]interface{}{
+//					map[string]interface{}{
+//						"key": "error.html",
+//					},
+//				},
+//			})
+//			if err != nil {
+//				return err
+//			}
+//			return nil
+//		})
+//	}
+//
+// ```
+//
+// Basic usage with [custom
+// VCL](https://docs.fastly.com/vcl/custom-vcl/uploading-custom-vcl/):
+//
 // ## Import
 //
 // Fastly Services can be imported using their service ID, e.g.
@@ -20,7 +182,6 @@ import (
 // ```
 //
 // By default, either the active version will be imported, or the latest version if no version is active.
-//
 // Alternatively, a specific version of the service can be selected by appending an `@` followed by the version number to the service ID, e.g.
 //
 // ```sh
@@ -37,9 +198,10 @@ type ServiceVcl struct {
 	Backends      ServiceVclBackendArrayOutput      `pulumi:"backends"`
 	CacheSettings ServiceVclCacheSettingArrayOutput `pulumi:"cacheSettings"`
 	// The latest cloned version by the provider
-	ClonedVersion pulumi.IntOutput               `pulumi:"clonedVersion"`
-	Comment       pulumi.StringPtrOutput         `pulumi:"comment"`
-	Conditions    ServiceVclConditionArrayOutput `pulumi:"conditions"`
+	ClonedVersion pulumi.IntOutput `pulumi:"clonedVersion"`
+	// Description field for the service. Default `Managed by Terraform`
+	Comment    pulumi.StringPtrOutput         `pulumi:"comment"`
+	Conditions ServiceVclConditionArrayOutput `pulumi:"conditions"`
 	// The default hostname
 	DefaultHost pulumi.StringPtrOutput `pulumi:"defaultHost"`
 	// The default Time-to-live (TTL) for requests
@@ -50,7 +212,8 @@ type ServiceVcl struct {
 	Domains         ServiceVclDomainArrayOutput         `pulumi:"domains"`
 	Dynamicsnippets ServiceVclDynamicsnippetArrayOutput `pulumi:"dynamicsnippets"`
 	// Services that are active cannot be destroyed. In order to destroy the Service, set `forceDestroy` to `true`. Default `false`
-	ForceDestroy pulumi.BoolPtrOutput             `pulumi:"forceDestroy"`
+	ForceDestroy pulumi.BoolPtrOutput `pulumi:"forceDestroy"`
+	// Used internally by the provider to temporarily indicate if all resources should call their associated API to update the local state. This is for scenarios where the service version has been reverted outside of Terraform (e.g. via the Fastly UI) and the provider needs to resync the state for a different active version (this is only if `activate` is `true`).
 	ForceRefresh pulumi.BoolOutput                `pulumi:"forceRefresh"`
 	Gzips        ServiceVclGzipArrayOutput        `pulumi:"gzips"`
 	Headers      ServiceVclHeaderArrayOutput      `pulumi:"headers"`
@@ -94,8 +257,9 @@ type ServiceVcl struct {
 	RateLimiters      ServiceVclRateLimiterArrayOutput     `pulumi:"rateLimiters"`
 	RequestSettings   ServiceVclRequestSettingArrayOutput  `pulumi:"requestSettings"`
 	ResponseObjects   ServiceVclResponseObjectArrayOutput  `pulumi:"responseObjects"`
-	Reuse             pulumi.BoolPtrOutput                 `pulumi:"reuse"`
-	Snippets          ServiceVclSnippetArrayOutput         `pulumi:"snippets"`
+	// Services that are active cannot be destroyed. If set to `true` a service Terraform intends to destroy will instead be deactivated (allowing it to be reused by importing it into another Terraform project). If `false`, attempting to destroy an active service will cause an error. Default `false`
+	Reuse    pulumi.BoolPtrOutput         `pulumi:"reuse"`
+	Snippets ServiceVclSnippetArrayOutput `pulumi:"snippets"`
 	// Conditionally enables new service versions to be staged. If set to `true`, all changes made by an `apply` step will be staged, even if `apply` did not create a new draft version. Default `false`
 	Stage pulumi.BoolPtrOutput `pulumi:"stage"`
 	// The currently staged version of your Fastly Service
@@ -147,9 +311,10 @@ type serviceVclState struct {
 	Backends      []ServiceVclBackend      `pulumi:"backends"`
 	CacheSettings []ServiceVclCacheSetting `pulumi:"cacheSettings"`
 	// The latest cloned version by the provider
-	ClonedVersion *int                  `pulumi:"clonedVersion"`
-	Comment       *string               `pulumi:"comment"`
-	Conditions    []ServiceVclCondition `pulumi:"conditions"`
+	ClonedVersion *int `pulumi:"clonedVersion"`
+	// Description field for the service. Default `Managed by Terraform`
+	Comment    *string               `pulumi:"comment"`
+	Conditions []ServiceVclCondition `pulumi:"conditions"`
 	// The default hostname
 	DefaultHost *string `pulumi:"defaultHost"`
 	// The default Time-to-live (TTL) for requests
@@ -160,7 +325,8 @@ type serviceVclState struct {
 	Domains         []ServiceVclDomain         `pulumi:"domains"`
 	Dynamicsnippets []ServiceVclDynamicsnippet `pulumi:"dynamicsnippets"`
 	// Services that are active cannot be destroyed. In order to destroy the Service, set `forceDestroy` to `true`. Default `false`
-	ForceDestroy *bool                   `pulumi:"forceDestroy"`
+	ForceDestroy *bool `pulumi:"forceDestroy"`
+	// Used internally by the provider to temporarily indicate if all resources should call their associated API to update the local state. This is for scenarios where the service version has been reverted outside of Terraform (e.g. via the Fastly UI) and the provider needs to resync the state for a different active version (this is only if `activate` is `true`).
 	ForceRefresh *bool                   `pulumi:"forceRefresh"`
 	Gzips        []ServiceVclGzip        `pulumi:"gzips"`
 	Headers      []ServiceVclHeader      `pulumi:"headers"`
@@ -204,8 +370,9 @@ type serviceVclState struct {
 	RateLimiters      []ServiceVclRateLimiter      `pulumi:"rateLimiters"`
 	RequestSettings   []ServiceVclRequestSetting   `pulumi:"requestSettings"`
 	ResponseObjects   []ServiceVclResponseObject   `pulumi:"responseObjects"`
-	Reuse             *bool                        `pulumi:"reuse"`
-	Snippets          []ServiceVclSnippet          `pulumi:"snippets"`
+	// Services that are active cannot be destroyed. If set to `true` a service Terraform intends to destroy will instead be deactivated (allowing it to be reused by importing it into another Terraform project). If `false`, attempting to destroy an active service will cause an error. Default `false`
+	Reuse    *bool               `pulumi:"reuse"`
+	Snippets []ServiceVclSnippet `pulumi:"snippets"`
 	// Conditionally enables new service versions to be staged. If set to `true`, all changes made by an `apply` step will be staged, even if `apply` did not create a new draft version. Default `false`
 	Stage *bool `pulumi:"stage"`
 	// The currently staged version of your Fastly Service
@@ -229,8 +396,9 @@ type ServiceVclState struct {
 	CacheSettings ServiceVclCacheSettingArrayInput
 	// The latest cloned version by the provider
 	ClonedVersion pulumi.IntPtrInput
-	Comment       pulumi.StringPtrInput
-	Conditions    ServiceVclConditionArrayInput
+	// Description field for the service. Default `Managed by Terraform`
+	Comment    pulumi.StringPtrInput
+	Conditions ServiceVclConditionArrayInput
 	// The default hostname
 	DefaultHost pulumi.StringPtrInput
 	// The default Time-to-live (TTL) for requests
@@ -242,6 +410,7 @@ type ServiceVclState struct {
 	Dynamicsnippets ServiceVclDynamicsnippetArrayInput
 	// Services that are active cannot be destroyed. In order to destroy the Service, set `forceDestroy` to `true`. Default `false`
 	ForceDestroy pulumi.BoolPtrInput
+	// Used internally by the provider to temporarily indicate if all resources should call their associated API to update the local state. This is for scenarios where the service version has been reverted outside of Terraform (e.g. via the Fastly UI) and the provider needs to resync the state for a different active version (this is only if `activate` is `true`).
 	ForceRefresh pulumi.BoolPtrInput
 	Gzips        ServiceVclGzipArrayInput
 	Headers      ServiceVclHeaderArrayInput
@@ -285,8 +454,9 @@ type ServiceVclState struct {
 	RateLimiters      ServiceVclRateLimiterArrayInput
 	RequestSettings   ServiceVclRequestSettingArrayInput
 	ResponseObjects   ServiceVclResponseObjectArrayInput
-	Reuse             pulumi.BoolPtrInput
-	Snippets          ServiceVclSnippetArrayInput
+	// Services that are active cannot be destroyed. If set to `true` a service Terraform intends to destroy will instead be deactivated (allowing it to be reused by importing it into another Terraform project). If `false`, attempting to destroy an active service will cause an error. Default `false`
+	Reuse    pulumi.BoolPtrInput
+	Snippets ServiceVclSnippetArrayInput
 	// Conditionally enables new service versions to be staged. If set to `true`, all changes made by an `apply` step will be staged, even if `apply` did not create a new draft version. Default `false`
 	Stage pulumi.BoolPtrInput
 	// The currently staged version of your Fastly Service
@@ -310,8 +480,9 @@ type serviceVclArgs struct {
 	Activate      *bool                    `pulumi:"activate"`
 	Backends      []ServiceVclBackend      `pulumi:"backends"`
 	CacheSettings []ServiceVclCacheSetting `pulumi:"cacheSettings"`
-	Comment       *string                  `pulumi:"comment"`
-	Conditions    []ServiceVclCondition    `pulumi:"conditions"`
+	// Description field for the service. Default `Managed by Terraform`
+	Comment    *string               `pulumi:"comment"`
+	Conditions []ServiceVclCondition `pulumi:"conditions"`
 	// The default hostname
 	DefaultHost *string `pulumi:"defaultHost"`
 	// The default Time-to-live (TTL) for requests
@@ -363,8 +534,9 @@ type serviceVclArgs struct {
 	RateLimiters      []ServiceVclRateLimiter      `pulumi:"rateLimiters"`
 	RequestSettings   []ServiceVclRequestSetting   `pulumi:"requestSettings"`
 	ResponseObjects   []ServiceVclResponseObject   `pulumi:"responseObjects"`
-	Reuse             *bool                        `pulumi:"reuse"`
-	Snippets          []ServiceVclSnippet          `pulumi:"snippets"`
+	// Services that are active cannot be destroyed. If set to `true` a service Terraform intends to destroy will instead be deactivated (allowing it to be reused by importing it into another Terraform project). If `false`, attempting to destroy an active service will cause an error. Default `false`
+	Reuse    *bool               `pulumi:"reuse"`
+	Snippets []ServiceVclSnippet `pulumi:"snippets"`
 	// Conditionally enables new service versions to be staged. If set to `true`, all changes made by an `apply` step will be staged, even if `apply` did not create a new draft version. Default `false`
 	Stage *bool `pulumi:"stage"`
 	// Enables serving a stale object if there is an error
@@ -383,8 +555,9 @@ type ServiceVclArgs struct {
 	Activate      pulumi.BoolPtrInput
 	Backends      ServiceVclBackendArrayInput
 	CacheSettings ServiceVclCacheSettingArrayInput
-	Comment       pulumi.StringPtrInput
-	Conditions    ServiceVclConditionArrayInput
+	// Description field for the service. Default `Managed by Terraform`
+	Comment    pulumi.StringPtrInput
+	Conditions ServiceVclConditionArrayInput
 	// The default hostname
 	DefaultHost pulumi.StringPtrInput
 	// The default Time-to-live (TTL) for requests
@@ -436,8 +609,9 @@ type ServiceVclArgs struct {
 	RateLimiters      ServiceVclRateLimiterArrayInput
 	RequestSettings   ServiceVclRequestSettingArrayInput
 	ResponseObjects   ServiceVclResponseObjectArrayInput
-	Reuse             pulumi.BoolPtrInput
-	Snippets          ServiceVclSnippetArrayInput
+	// Services that are active cannot be destroyed. If set to `true` a service Terraform intends to destroy will instead be deactivated (allowing it to be reused by importing it into another Terraform project). If `false`, attempting to destroy an active service will cause an error. Default `false`
+	Reuse    pulumi.BoolPtrInput
+	Snippets ServiceVclSnippetArrayInput
 	// Conditionally enables new service versions to be staged. If set to `true`, all changes made by an `apply` step will be staged, even if `apply` did not create a new draft version. Default `false`
 	Stage pulumi.BoolPtrInput
 	// Enables serving a stale object if there is an error
@@ -563,6 +737,7 @@ func (o ServiceVclOutput) ClonedVersion() pulumi.IntOutput {
 	return o.ApplyT(func(v *ServiceVcl) pulumi.IntOutput { return v.ClonedVersion }).(pulumi.IntOutput)
 }
 
+// Description field for the service. Default `Managed by Terraform`
 func (o ServiceVclOutput) Comment() pulumi.StringPtrOutput {
 	return o.ApplyT(func(v *ServiceVcl) pulumi.StringPtrOutput { return v.Comment }).(pulumi.StringPtrOutput)
 }
@@ -603,6 +778,7 @@ func (o ServiceVclOutput) ForceDestroy() pulumi.BoolPtrOutput {
 	return o.ApplyT(func(v *ServiceVcl) pulumi.BoolPtrOutput { return v.ForceDestroy }).(pulumi.BoolPtrOutput)
 }
 
+// Used internally by the provider to temporarily indicate if all resources should call their associated API to update the local state. This is for scenarios where the service version has been reverted outside of Terraform (e.g. via the Fastly UI) and the provider needs to resync the state for a different active version (this is only if `activate` is `true`).
 func (o ServiceVclOutput) ForceRefresh() pulumi.BoolOutput {
 	return o.ApplyT(func(v *ServiceVcl) pulumi.BoolOutput { return v.ForceRefresh }).(pulumi.BoolOutput)
 }
@@ -768,6 +944,7 @@ func (o ServiceVclOutput) ResponseObjects() ServiceVclResponseObjectArrayOutput 
 	return o.ApplyT(func(v *ServiceVcl) ServiceVclResponseObjectArrayOutput { return v.ResponseObjects }).(ServiceVclResponseObjectArrayOutput)
 }
 
+// Services that are active cannot be destroyed. If set to `true` a service Terraform intends to destroy will instead be deactivated (allowing it to be reused by importing it into another Terraform project). If `false`, attempting to destroy an active service will cause an error. Default `false`
 func (o ServiceVclOutput) Reuse() pulumi.BoolPtrOutput {
 	return o.ApplyT(func(v *ServiceVcl) pulumi.BoolPtrOutput { return v.Reuse }).(pulumi.BoolPtrOutput)
 }

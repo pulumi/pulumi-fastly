@@ -10,6 +10,168 @@ using Pulumi.Serialization;
 namespace Pulumi.Fastly
 {
     /// <summary>
+    /// Provides a Fastly Service, representing the configuration for a website, app,
+    /// API, or anything else to be served through Fastly. A Service encompasses Domains
+    /// and Backends.
+    /// 
+    /// The Service resource requires a domain name that is correctly set up to direct
+    /// traffic to the Fastly service. See Fastly's guide on [Adding CNAME Records][fastly-cname]
+    /// on their documentation site for guidance.
+    /// 
+    /// ## Activation and Staging
+    /// 
+    /// By default, the `Activate` attribute is `True`, and the `Stage`
+    /// attribute is `False`. This combination means that when `terraform
+    /// apply` is executed for a plan which will make changes to the service,
+    /// the last version created by the provider (the `ClonedVersion`) will
+    /// be cloned to make a draft version, the changes will be applied to that
+    /// draft version, and that draft version will be activated.
+    /// 
+    /// If desired, `Activate` can be set to `False`, in which case the
+    /// behavior above will be modified such that cloning will only occur when
+    /// the `ClonedVersion` is locked, and the draft version will not be
+    /// activated.
+    /// 
+    /// Additionally, `Stage` can be set to `True`, with `Activate` set to
+    /// `False`. This extends the `activate = false` behavior to include
+    /// staging of applied changes, every time that changes are applied, even
+    /// if the changes were applied to an existing draft version.
+    /// 
+    /// Finally, `Activate` should not be set to `True` when `Stage` is also
+    /// set to `True`. While this combination will not cause any harm to the
+    /// service, there is no logical reason to both stage and activate every
+    /// set of applied changes.
+    /// 
+    /// ## Example Usage
+    /// 
+    /// Basic usage:
+    /// 
+    /// ```csharp
+    /// using System.Collections.Generic;
+    /// using System.Linq;
+    /// using Pulumi;
+    /// using Fastly = Pulumi.Fastly;
+    /// 
+    /// return await Deployment.RunAsync(() =&gt; 
+    /// {
+    ///     var demo = new Fastly.ServiceVcl("demo", new()
+    ///     {
+    ///         Name = "demofastly",
+    ///         Domains = new[]
+    ///         {
+    ///             new Fastly.Inputs.ServiceVclDomainArgs
+    ///             {
+    ///                 Name = "demo.notexample.com",
+    ///                 Comment = "demo",
+    ///             },
+    ///         },
+    ///         Backends = new[]
+    ///         {
+    ///             new Fastly.Inputs.ServiceVclBackendArgs
+    ///             {
+    ///                 Address = "127.0.0.1",
+    ///                 Name = "localhost",
+    ///                 Port = 80,
+    ///             },
+    ///         },
+    ///         ForceDestroy = true,
+    ///     });
+    /// 
+    /// });
+    /// ```
+    /// 
+    /// Basic usage with an Amazon S3 Website and that removes the `x-amz-request-id` header:
+    /// 
+    /// ```csharp
+    /// using System.Collections.Generic;
+    /// using System.Linq;
+    /// using Pulumi;
+    /// using Aws = Pulumi.Aws;
+    /// using Fastly = Pulumi.Fastly;
+    /// 
+    /// return await Deployment.RunAsync(() =&gt; 
+    /// {
+    ///     var demo = new Fastly.ServiceVcl("demo", new()
+    ///     {
+    ///         Name = "demofastly",
+    ///         Domains = new[]
+    ///         {
+    ///             new Fastly.Inputs.ServiceVclDomainArgs
+    ///             {
+    ///                 Name = "demo.notexample.com",
+    ///                 Comment = "demo",
+    ///             },
+    ///         },
+    ///         Backends = new[]
+    ///         {
+    ///             new Fastly.Inputs.ServiceVclBackendArgs
+    ///             {
+    ///                 Address = "http-me.fastly.dev",
+    ///                 Name = "Glitch Test Site",
+    ///                 Port = 80,
+    ///                 OverrideHost = "http-me.fastly.dev",
+    ///             },
+    ///         },
+    ///         Headers = new[]
+    ///         {
+    ///             new Fastly.Inputs.ServiceVclHeaderArgs
+    ///             {
+    ///                 Destination = "http.x-amz-request-id",
+    ///                 Type = "cache",
+    ///                 Action = "delete",
+    ///                 Name = "remove x-amz-request-id",
+    ///             },
+    ///         },
+    ///         Gzips = new[]
+    ///         {
+    ///             new Fastly.Inputs.ServiceVclGzipArgs
+    ///             {
+    ///                 Name = "file extensions and content types",
+    ///                 Extensions = new[]
+    ///                 {
+    ///                     "css",
+    ///                     "js",
+    ///                 },
+    ///                 ContentTypes = new[]
+    ///                 {
+    ///                     "text/html",
+    ///                     "text/css",
+    ///                 },
+    ///             },
+    ///         },
+    ///         ForceDestroy = true,
+    ///     });
+    /// 
+    ///     var websiteBucket = new Aws.Index.S3Bucket("website_bucket", new()
+    ///     {
+    ///         Bucket = "your-unique-website-bucket-name",
+    ///     });
+    /// 
+    ///     var websiteConfig = new Aws.Index.S3BucketWebsiteConfiguration("website_config", new()
+    ///     {
+    ///         Bucket = websiteBucket.Id,
+    ///         IndexDocument = new[]
+    ///         {
+    ///             
+    ///             {
+    ///                 { "suffix", "index.html" },
+    ///             },
+    ///         },
+    ///         ErrorDocument = new[]
+    ///         {
+    ///             
+    ///             {
+    ///                 { "key", "error.html" },
+    ///             },
+    ///         },
+    ///     });
+    /// 
+    /// });
+    /// ```
+    /// 
+    /// Basic usage with [custom
+    /// VCL](https://docs.fastly.com/vcl/custom-vcl/uploading-custom-vcl/):
+    /// 
     /// ## Import
     /// 
     /// Fastly Services can be imported using their service ID, e.g.
@@ -19,7 +181,6 @@ namespace Pulumi.Fastly
     /// ```
     /// 
     /// By default, either the active version will be imported, or the latest version if no version is active.
-    /// 
     /// Alternatively, a specific version of the service can be selected by appending an `@` followed by the version number to the service ID, e.g.
     /// 
     /// ```sh
@@ -56,6 +217,9 @@ namespace Pulumi.Fastly
         [Output("clonedVersion")]
         public Output<int> ClonedVersion { get; private set; } = null!;
 
+        /// <summary>
+        /// Description field for the service. Default `Managed by Terraform`
+        /// </summary>
         [Output("comment")]
         public Output<string?> Comment { get; private set; } = null!;
 
@@ -95,6 +259,9 @@ namespace Pulumi.Fastly
         [Output("forceDestroy")]
         public Output<bool?> ForceDestroy { get; private set; } = null!;
 
+        /// <summary>
+        /// Used internally by the provider to temporarily indicate if all resources should call their associated API to update the local state. This is for scenarios where the service version has been reverted outside of Terraform (e.g. via the Fastly UI) and the provider needs to resync the state for a different active version (this is only if `Activate` is `True`).
+        /// </summary>
         [Output("forceRefresh")]
         public Output<bool> ForceRefresh { get; private set; } = null!;
 
@@ -224,6 +391,9 @@ namespace Pulumi.Fastly
         [Output("responseObjects")]
         public Output<ImmutableArray<Outputs.ServiceVclResponseObject>> ResponseObjects { get; private set; } = null!;
 
+        /// <summary>
+        /// Services that are active cannot be destroyed. If set to `True` a service Terraform intends to destroy will instead be deactivated (allowing it to be reused by importing it into another Terraform project). If `False`, attempting to destroy an active service will cause an error. Default `False`
+        /// </summary>
         [Output("reuse")]
         public Output<bool?> Reuse { get; private set; } = null!;
 
@@ -339,6 +509,9 @@ namespace Pulumi.Fastly
             set => _cacheSettings = value;
         }
 
+        /// <summary>
+        /// Description field for the service. Default `Managed by Terraform`
+        /// </summary>
         [Input("comment")]
         public Input<string>? Comment { get; set; }
 
@@ -694,6 +867,9 @@ namespace Pulumi.Fastly
             set => _responseObjects = value;
         }
 
+        /// <summary>
+        /// Services that are active cannot be destroyed. If set to `True` a service Terraform intends to destroy will instead be deactivated (allowing it to be reused by importing it into another Terraform project). If `False`, attempting to destroy an active service will cause an error. Default `False`
+        /// </summary>
         [Input("reuse")]
         public Input<bool>? Reuse { get; set; }
 
@@ -787,6 +963,9 @@ namespace Pulumi.Fastly
         [Input("clonedVersion")]
         public Input<int>? ClonedVersion { get; set; }
 
+        /// <summary>
+        /// Description field for the service. Default `Managed by Terraform`
+        /// </summary>
         [Input("comment")]
         public Input<string>? Comment { get; set; }
 
@@ -852,6 +1031,9 @@ namespace Pulumi.Fastly
         [Input("forceDestroy")]
         public Input<bool>? ForceDestroy { get; set; }
 
+        /// <summary>
+        /// Used internally by the provider to temporarily indicate if all resources should call their associated API to update the local state. This is for scenarios where the service version has been reverted outside of Terraform (e.g. via the Fastly UI) and the provider needs to resync the state for a different active version (this is only if `Activate` is `True`).
+        /// </summary>
         [Input("forceRefresh")]
         public Input<bool>? ForceRefresh { get; set; }
 
@@ -1151,6 +1333,9 @@ namespace Pulumi.Fastly
             set => _responseObjects = value;
         }
 
+        /// <summary>
+        /// Services that are active cannot be destroyed. If set to `True` a service Terraform intends to destroy will instead be deactivated (allowing it to be reused by importing it into another Terraform project). If `False`, attempting to destroy an active service will cause an error. Default `False`
+        /// </summary>
         [Input("reuse")]
         public Input<bool>? Reuse { get; set; }
 

@@ -17,6 +17,163 @@ import java.util.Optional;
 import javax.annotation.Nullable;
 
 /**
+ * The Config Store (`fastly.Configstore`) can be seeded with initial key-value pairs using the `fastly.ConfigstoreEntries` resource.
+ * 
+ * After the first `pulumi up` the default behaviour is to ignore any further configuration changes to those key-value pairs. Terraform will expect modifications to happen outside of Terraform (e.g. new key-value pairs to be managed using the [Fastly API](https://developer.fastly.com/reference/api/) or [Fastly CLI](https://developer.fastly.com/learning/tools/cli/)).
+ * 
+ * To change the default behaviour (so Terraform continues to manage the key-value pairs within the configuration) set `manageEntries = true`.
+ * 
+ * &gt; **Note:** Terraform should not be used to store large amounts of data, so it&#39;s recommended you leave the default behaviour in place and only seed the store with a small amount of key-value pairs. For more information see &#34;Configuration not data&#34;.
+ * 
+ * ## Example Usage
+ * 
+ * Basic usage (with seeded values):
+ * 
+ * <pre>
+ * {@code
+ * package generated_program;
+ * 
+ * import com.pulumi.Context;
+ * import com.pulumi.Pulumi;
+ * import com.pulumi.core.Output;
+ * import com.pulumi.fastly.Configstore;
+ * import com.pulumi.fastly.ConfigstoreArgs;
+ * import com.pulumi.fastly.ConfigstoreEntries;
+ * import com.pulumi.fastly.ConfigstoreEntriesArgs;
+ * import com.pulumi.fastly.FastlyFunctions;
+ * import com.pulumi.fastly.inputs.GetPackageHashArgs;
+ * import com.pulumi.fastly.ServiceCompute;
+ * import com.pulumi.fastly.ServiceComputeArgs;
+ * import com.pulumi.fastly.inputs.ServiceComputeDomainArgs;
+ * import com.pulumi.fastly.inputs.ServiceComputePackageArgs;
+ * import com.pulumi.fastly.inputs.ServiceComputeResourceLinkArgs;
+ * import java.util.List;
+ * import java.util.ArrayList;
+ * import java.util.Map;
+ * import java.io.File;
+ * import java.nio.file.Files;
+ * import java.nio.file.Paths;
+ * 
+ * public class App {
+ *     public static void main(String[] args) {
+ *         Pulumi.run(App::stack);
+ *     }
+ * 
+ *     public static void stack(Context ctx) {
+ *         // IMPORTANT: Deleting a Config Store requires first deleting its resource_link.
+ *         // This requires a two-step `pulumi up` as we can't guarantee deletion order.
+ *         // e.g. resource_link deletion within fastly_service_compute might not finish first.
+ *         var exampleConfigstore = new Configstore("exampleConfigstore", ConfigstoreArgs.builder()
+ *             .name("%s")
+ *             .build());
+ * 
+ *         var exampleConfigstoreEntries = new ConfigstoreEntries("exampleConfigstoreEntries", ConfigstoreEntriesArgs.builder()
+ *             .storeId(exampleConfigstore.id())
+ *             .entries(Map.ofEntries(
+ *                 Map.entry("key1", "value1"),
+ *                 Map.entry("key2", "value2")
+ *             ))
+ *             .build());
+ * 
+ *         final var example = FastlyFunctions.getPackageHash(GetPackageHashArgs.builder()
+ *             .filename("package.tar.gz")
+ *             .build());
+ * 
+ *         var exampleServiceCompute = new ServiceCompute("exampleServiceCompute", ServiceComputeArgs.builder()
+ *             .name("my_compute_service")
+ *             .domains(ServiceComputeDomainArgs.builder()
+ *                 .name("demo.example.com")
+ *                 .build())
+ *             .package_(ServiceComputePackageArgs.builder()
+ *                 .filename("package.tar.gz")
+ *                 .sourceCodeHash(example.hash())
+ *                 .build())
+ *             .resourceLinks(ServiceComputeResourceLinkArgs.builder()
+ *                 .name("my_resource_link")
+ *                 .resourceId(exampleConfigstore.id())
+ *                 .build())
+ *             .forceDestroy(true)
+ *             .build());
+ * 
+ *     }
+ * }
+ * }
+ * </pre>
+ * 
+ * To have Terraform manage the initially seeded key-value pairs defined in your configuration, then you must set `manageEntries = true` (this will cause any key-value pairs added outside of Terraform to be deleted):
+ * 
+ * <pre>
+ * {@code
+ * package generated_program;
+ * 
+ * import com.pulumi.Context;
+ * import com.pulumi.Pulumi;
+ * import com.pulumi.core.Output;
+ * import com.pulumi.fastly.Configstore;
+ * import com.pulumi.fastly.ConfigstoreArgs;
+ * import com.pulumi.fastly.ConfigstoreEntries;
+ * import com.pulumi.fastly.ConfigstoreEntriesArgs;
+ * import com.pulumi.fastly.FastlyFunctions;
+ * import com.pulumi.fastly.inputs.GetPackageHashArgs;
+ * import com.pulumi.fastly.ServiceCompute;
+ * import com.pulumi.fastly.ServiceComputeArgs;
+ * import com.pulumi.fastly.inputs.ServiceComputeDomainArgs;
+ * import com.pulumi.fastly.inputs.ServiceComputePackageArgs;
+ * import com.pulumi.fastly.inputs.ServiceComputeResourceLinkArgs;
+ * import java.util.List;
+ * import java.util.ArrayList;
+ * import java.util.Map;
+ * import java.io.File;
+ * import java.nio.file.Files;
+ * import java.nio.file.Paths;
+ * 
+ * public class App {
+ *     public static void main(String[] args) {
+ *         Pulumi.run(App::stack);
+ *     }
+ * 
+ *     public static void stack(Context ctx) {
+ *         // IMPORTANT: Deleting a Config Store requires first deleting its resource_link.
+ *         // This requires a two-step `pulumi up` as we can't guarantee deletion order.
+ *         // e.g. resource_link deletion within fastly_service_compute might not finish first.
+ *         var exampleConfigstore = new Configstore("exampleConfigstore", ConfigstoreArgs.builder()
+ *             .name("%s")
+ *             .build());
+ * 
+ *         var exampleConfigstoreEntries = new ConfigstoreEntries("exampleConfigstoreEntries", ConfigstoreEntriesArgs.builder()
+ *             .storeId(exampleConfigstore.id())
+ *             .entries(Map.ofEntries(
+ *                 Map.entry("key1", "value1"),
+ *                 Map.entry("key2", "value2")
+ *             ))
+ *             .manageEntries(true)
+ *             .build());
+ * 
+ *         final var example = FastlyFunctions.getPackageHash(GetPackageHashArgs.builder()
+ *             .filename("package.tar.gz")
+ *             .build());
+ * 
+ *         var exampleServiceCompute = new ServiceCompute("exampleServiceCompute", ServiceComputeArgs.builder()
+ *             .name("my_compute_service")
+ *             .domains(ServiceComputeDomainArgs.builder()
+ *                 .name("demo.example.com")
+ *                 .build())
+ *             .package_(ServiceComputePackageArgs.builder()
+ *                 .filename("package.tar.gz")
+ *                 .sourceCodeHash(example.hash())
+ *                 .build())
+ *             .resourceLinks(ServiceComputeResourceLinkArgs.builder()
+ *                 .name("my_resource_link")
+ *                 .resourceId(exampleConfigstore.id())
+ *                 .build())
+ *             .forceDestroy(true)
+ *             .build());
+ * 
+ *     }
+ * }
+ * }
+ * </pre>
+ * 
  * ## Import
  * 
  * Fastly Config Stores entries can be imported using the corresponding Config Store ID with the `/entries` suffix, e.g.
@@ -42,9 +199,17 @@ public class ConfigstoreEntries extends com.pulumi.resources.CustomResource {
     public Output<Map<String,String>> entries() {
         return this.entries;
     }
+    /**
+     * Have Terraform manage the entries (default: false). If set to `true` Terraform will remove any entries that were added externally from the config seeded values.
+     * 
+     */
     @Export(name="manageEntries", refs={Boolean.class}, tree="[0]")
     private Output</* @Nullable */ Boolean> manageEntries;
 
+    /**
+     * @return Have Terraform manage the entries (default: false). If set to `true` Terraform will remove any entries that were added externally from the config seeded values.
+     * 
+     */
     public Output<Optional<Boolean>> manageEntries() {
         return Codegen.optional(this.manageEntries);
     }

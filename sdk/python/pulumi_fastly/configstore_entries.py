@@ -26,6 +26,7 @@ class ConfigstoreEntriesArgs:
         The set of arguments for constructing a ConfigstoreEntries resource.
         :param pulumi.Input[Mapping[str, pulumi.Input[_builtins.str]]] entries: A map representing an entry in the Config Store, (key/value)
         :param pulumi.Input[_builtins.str] store_id: An alphanumeric string identifying the Config Store.
+        :param pulumi.Input[_builtins.bool] manage_entries: Have Terraform manage the entries (default: false). If set to `true` Terraform will remove any entries that were added externally from the config seeded values.
         """
         pulumi.set(__self__, "entries", entries)
         pulumi.set(__self__, "store_id", store_id)
@@ -59,6 +60,9 @@ class ConfigstoreEntriesArgs:
     @_builtins.property
     @pulumi.getter(name="manageEntries")
     def manage_entries(self) -> Optional[pulumi.Input[_builtins.bool]]:
+        """
+        Have Terraform manage the entries (default: false). If set to `true` Terraform will remove any entries that were added externally from the config seeded values.
+        """
         return pulumi.get(self, "manage_entries")
 
     @manage_entries.setter
@@ -75,6 +79,7 @@ class _ConfigstoreEntriesState:
         """
         Input properties used for looking up and filtering ConfigstoreEntries resources.
         :param pulumi.Input[Mapping[str, pulumi.Input[_builtins.str]]] entries: A map representing an entry in the Config Store, (key/value)
+        :param pulumi.Input[_builtins.bool] manage_entries: Have Terraform manage the entries (default: false). If set to `true` Terraform will remove any entries that were added externally from the config seeded values.
         :param pulumi.Input[_builtins.str] store_id: An alphanumeric string identifying the Config Store.
         """
         if entries is not None:
@@ -99,6 +104,9 @@ class _ConfigstoreEntriesState:
     @_builtins.property
     @pulumi.getter(name="manageEntries")
     def manage_entries(self) -> Optional[pulumi.Input[_builtins.bool]]:
+        """
+        Have Terraform manage the entries (default: false). If set to `true` Terraform will remove any entries that were added externally from the config seeded values.
+        """
         return pulumi.get(self, "manage_entries")
 
     @manage_entries.setter
@@ -129,6 +137,83 @@ class ConfigstoreEntries(pulumi.CustomResource):
                  store_id: Optional[pulumi.Input[_builtins.str]] = None,
                  __props__=None):
         """
+        The Config Store (`Configstore`) can be seeded with initial key-value pairs using the `ConfigstoreEntries` resource.
+
+        After the first `pulumi up` the default behaviour is to ignore any further configuration changes to those key-value pairs. Terraform will expect modifications to happen outside of Terraform (e.g. new key-value pairs to be managed using the [Fastly API](https://developer.fastly.com/reference/api/) or [Fastly CLI](https://developer.fastly.com/learning/tools/cli/)).
+
+        To change the default behaviour (so Terraform continues to manage the key-value pairs within the configuration) set `manage_entries = true`.
+
+        > **Note:** Terraform should not be used to store large amounts of data, so it's recommended you leave the default behaviour in place and only seed the store with a small amount of key-value pairs. For more information see "Configuration not data".
+
+        ## Example Usage
+
+        Basic usage (with seeded values):
+
+        ```python
+        import pulumi
+        import pulumi_fastly as fastly
+
+        # IMPORTANT: Deleting a Config Store requires first deleting its resource_link.
+        # This requires a two-step `pulumi up` as we can't guarantee deletion order.
+        # e.g. resource_link deletion within fastly_service_compute might not finish first.
+        example_configstore = fastly.Configstore("example", name="%s")
+        example_configstore_entries = fastly.ConfigstoreEntries("example",
+            store_id=example_configstore.id,
+            entries={
+                "key1": "value1",
+                "key2": "value2",
+            })
+        example = fastly.get_package_hash(filename="package.tar.gz")
+        example_service_compute = fastly.ServiceCompute("example",
+            name="my_compute_service",
+            domains=[{
+                "name": "demo.example.com",
+            }],
+            package={
+                "filename": "package.tar.gz",
+                "source_code_hash": example.hash,
+            },
+            resource_links=[{
+                "name": "my_resource_link",
+                "resource_id": example_configstore.id,
+            }],
+            force_destroy=True)
+        ```
+
+        To have Terraform manage the initially seeded key-value pairs defined in your configuration, then you must set `manage_entries = true` (this will cause any key-value pairs added outside of Terraform to be deleted):
+
+        ```python
+        import pulumi
+        import pulumi_fastly as fastly
+
+        # IMPORTANT: Deleting a Config Store requires first deleting its resource_link.
+        # This requires a two-step `pulumi up` as we can't guarantee deletion order.
+        # e.g. resource_link deletion within fastly_service_compute might not finish first.
+        example_configstore = fastly.Configstore("example", name="%s")
+        example_configstore_entries = fastly.ConfigstoreEntries("example",
+            store_id=example_configstore.id,
+            entries={
+                "key1": "value1",
+                "key2": "value2",
+            },
+            manage_entries=True)
+        example = fastly.get_package_hash(filename="package.tar.gz")
+        example_service_compute = fastly.ServiceCompute("example",
+            name="my_compute_service",
+            domains=[{
+                "name": "demo.example.com",
+            }],
+            package={
+                "filename": "package.tar.gz",
+                "source_code_hash": example.hash,
+            },
+            resource_links=[{
+                "name": "my_resource_link",
+                "resource_id": example_configstore.id,
+            }],
+            force_destroy=True)
+        ```
+
         ## Import
 
         Fastly Config Stores entries can be imported using the corresponding Config Store ID with the `/entries` suffix, e.g.
@@ -140,6 +225,7 @@ class ConfigstoreEntries(pulumi.CustomResource):
         :param str resource_name: The name of the resource.
         :param pulumi.ResourceOptions opts: Options for the resource.
         :param pulumi.Input[Mapping[str, pulumi.Input[_builtins.str]]] entries: A map representing an entry in the Config Store, (key/value)
+        :param pulumi.Input[_builtins.bool] manage_entries: Have Terraform manage the entries (default: false). If set to `true` Terraform will remove any entries that were added externally from the config seeded values.
         :param pulumi.Input[_builtins.str] store_id: An alphanumeric string identifying the Config Store.
         """
         ...
@@ -149,6 +235,83 @@ class ConfigstoreEntries(pulumi.CustomResource):
                  args: ConfigstoreEntriesArgs,
                  opts: Optional[pulumi.ResourceOptions] = None):
         """
+        The Config Store (`Configstore`) can be seeded with initial key-value pairs using the `ConfigstoreEntries` resource.
+
+        After the first `pulumi up` the default behaviour is to ignore any further configuration changes to those key-value pairs. Terraform will expect modifications to happen outside of Terraform (e.g. new key-value pairs to be managed using the [Fastly API](https://developer.fastly.com/reference/api/) or [Fastly CLI](https://developer.fastly.com/learning/tools/cli/)).
+
+        To change the default behaviour (so Terraform continues to manage the key-value pairs within the configuration) set `manage_entries = true`.
+
+        > **Note:** Terraform should not be used to store large amounts of data, so it's recommended you leave the default behaviour in place and only seed the store with a small amount of key-value pairs. For more information see "Configuration not data".
+
+        ## Example Usage
+
+        Basic usage (with seeded values):
+
+        ```python
+        import pulumi
+        import pulumi_fastly as fastly
+
+        # IMPORTANT: Deleting a Config Store requires first deleting its resource_link.
+        # This requires a two-step `pulumi up` as we can't guarantee deletion order.
+        # e.g. resource_link deletion within fastly_service_compute might not finish first.
+        example_configstore = fastly.Configstore("example", name="%s")
+        example_configstore_entries = fastly.ConfigstoreEntries("example",
+            store_id=example_configstore.id,
+            entries={
+                "key1": "value1",
+                "key2": "value2",
+            })
+        example = fastly.get_package_hash(filename="package.tar.gz")
+        example_service_compute = fastly.ServiceCompute("example",
+            name="my_compute_service",
+            domains=[{
+                "name": "demo.example.com",
+            }],
+            package={
+                "filename": "package.tar.gz",
+                "source_code_hash": example.hash,
+            },
+            resource_links=[{
+                "name": "my_resource_link",
+                "resource_id": example_configstore.id,
+            }],
+            force_destroy=True)
+        ```
+
+        To have Terraform manage the initially seeded key-value pairs defined in your configuration, then you must set `manage_entries = true` (this will cause any key-value pairs added outside of Terraform to be deleted):
+
+        ```python
+        import pulumi
+        import pulumi_fastly as fastly
+
+        # IMPORTANT: Deleting a Config Store requires first deleting its resource_link.
+        # This requires a two-step `pulumi up` as we can't guarantee deletion order.
+        # e.g. resource_link deletion within fastly_service_compute might not finish first.
+        example_configstore = fastly.Configstore("example", name="%s")
+        example_configstore_entries = fastly.ConfigstoreEntries("example",
+            store_id=example_configstore.id,
+            entries={
+                "key1": "value1",
+                "key2": "value2",
+            },
+            manage_entries=True)
+        example = fastly.get_package_hash(filename="package.tar.gz")
+        example_service_compute = fastly.ServiceCompute("example",
+            name="my_compute_service",
+            domains=[{
+                "name": "demo.example.com",
+            }],
+            package={
+                "filename": "package.tar.gz",
+                "source_code_hash": example.hash,
+            },
+            resource_links=[{
+                "name": "my_resource_link",
+                "resource_id": example_configstore.id,
+            }],
+            force_destroy=True)
+        ```
+
         ## Import
 
         Fastly Config Stores entries can be imported using the corresponding Config Store ID with the `/entries` suffix, e.g.
@@ -212,6 +375,7 @@ class ConfigstoreEntries(pulumi.CustomResource):
         :param pulumi.Input[str] id: The unique provider ID of the resource to lookup.
         :param pulumi.ResourceOptions opts: Options for the resource.
         :param pulumi.Input[Mapping[str, pulumi.Input[_builtins.str]]] entries: A map representing an entry in the Config Store, (key/value)
+        :param pulumi.Input[_builtins.bool] manage_entries: Have Terraform manage the entries (default: false). If set to `true` Terraform will remove any entries that were added externally from the config seeded values.
         :param pulumi.Input[_builtins.str] store_id: An alphanumeric string identifying the Config Store.
         """
         opts = pulumi.ResourceOptions.merge(opts, pulumi.ResourceOptions(id=id))
@@ -234,6 +398,9 @@ class ConfigstoreEntries(pulumi.CustomResource):
     @_builtins.property
     @pulumi.getter(name="manageEntries")
     def manage_entries(self) -> pulumi.Output[Optional[_builtins.bool]]:
+        """
+        Have Terraform manage the entries (default: false). If set to `true` Terraform will remove any entries that were added externally from the config seeded values.
+        """
         return pulumi.get(self, "manage_entries")
 
     @_builtins.property

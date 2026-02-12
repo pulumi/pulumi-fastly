@@ -82,12 +82,14 @@ class ServiceVclArgs:
         """
         The set of arguments for constructing a ServiceVcl resource.
         :param pulumi.Input[_builtins.bool] activate: Conditionally prevents new service versions from being activated. The apply step will create a new draft version but will not activate it if this is set to `false`. Default `true`
+        :param pulumi.Input[_builtins.str] comment: Description field for the service. Default `Managed by Terraform`
         :param pulumi.Input[_builtins.str] default_host: The default hostname
         :param pulumi.Input[_builtins.int] default_ttl: The default Time-to-live (TTL) for requests
         :param pulumi.Input[Sequence[pulumi.Input['ServiceVclDomainArgs']]] domains: A set of Domain names to serve as entry points for your Service
         :param pulumi.Input[_builtins.bool] force_destroy: Services that are active cannot be destroyed. In order to destroy the Service, set `force_destroy` to `true`. Default `false`
         :param pulumi.Input[_builtins.bool] http3: Enables support for the HTTP/3 (QUIC) protocol
         :param pulumi.Input[_builtins.str] name: The unique name for the Service to create
+        :param pulumi.Input[_builtins.bool] reuse: Services that are active cannot be destroyed. If set to `true` a service Terraform intends to destroy will instead be deactivated (allowing it to be reused by importing it into another Terraform project). If `false`, attempting to destroy an active service will cause an error. Default `false`
         :param pulumi.Input[_builtins.bool] stage: Conditionally enables new service versions to be staged. If set to `true`, all changes made by an `apply` step will be staged, even if `apply` did not create a new draft version. Default `false`
         :param pulumi.Input[_builtins.bool] stale_if_error: Enables serving a stale object if there is an error
         :param pulumi.Input[_builtins.int] stale_if_error_ttl: The default time-to-live (TTL) for serving the stale object for the version
@@ -252,6 +254,9 @@ class ServiceVclArgs:
     @_builtins.property
     @pulumi.getter
     def comment(self) -> Optional[pulumi.Input[_builtins.str]]:
+        """
+        Description field for the service. Default `Managed by Terraform`
+        """
         return pulumi.get(self, "comment")
 
     @comment.setter
@@ -693,6 +698,9 @@ class ServiceVclArgs:
     @_builtins.property
     @pulumi.getter
     def reuse(self) -> Optional[pulumi.Input[_builtins.bool]]:
+        """
+        Services that are active cannot be destroyed. If set to `true` a service Terraform intends to destroy will instead be deactivated (allowing it to be reused by importing it into another Terraform project). If `false`, attempting to destroy an active service will cause an error. Default `false`
+        """
         return pulumi.get(self, "reuse")
 
     @reuse.setter
@@ -837,13 +845,16 @@ class _ServiceVclState:
         :param pulumi.Input[_builtins.bool] activate: Conditionally prevents new service versions from being activated. The apply step will create a new draft version but will not activate it if this is set to `false`. Default `true`
         :param pulumi.Input[_builtins.int] active_version: The currently active version of your Fastly Service
         :param pulumi.Input[_builtins.int] cloned_version: The latest cloned version by the provider
+        :param pulumi.Input[_builtins.str] comment: Description field for the service. Default `Managed by Terraform`
         :param pulumi.Input[_builtins.str] default_host: The default hostname
         :param pulumi.Input[_builtins.int] default_ttl: The default Time-to-live (TTL) for requests
         :param pulumi.Input[Sequence[pulumi.Input['ServiceVclDomainArgs']]] domains: A set of Domain names to serve as entry points for your Service
         :param pulumi.Input[_builtins.bool] force_destroy: Services that are active cannot be destroyed. In order to destroy the Service, set `force_destroy` to `true`. Default `false`
+        :param pulumi.Input[_builtins.bool] force_refresh: Used internally by the provider to temporarily indicate if all resources should call their associated API to update the local state. This is for scenarios where the service version has been reverted outside of Terraform (e.g. via the Fastly UI) and the provider needs to resync the state for a different active version (this is only if `activate` is `true`).
         :param pulumi.Input[_builtins.bool] http3: Enables support for the HTTP/3 (QUIC) protocol
         :param pulumi.Input[_builtins.bool] imported: Used internally by the provider to temporarily indicate if the service is being imported, and is reset to false once the import is finished
         :param pulumi.Input[_builtins.str] name: The unique name for the Service to create
+        :param pulumi.Input[_builtins.bool] reuse: Services that are active cannot be destroyed. If set to `true` a service Terraform intends to destroy will instead be deactivated (allowing it to be reused by importing it into another Terraform project). If `false`, attempting to destroy an active service will cause an error. Default `false`
         :param pulumi.Input[_builtins.bool] stage: Conditionally enables new service versions to be staged. If set to `true`, all changes made by an `apply` step will be staged, even if `apply` did not create a new draft version. Default `false`
         :param pulumi.Input[_builtins.int] staged_version: The currently staged version of your Fastly Service
         :param pulumi.Input[_builtins.bool] stale_if_error: Enables serving a stale object if there is an error
@@ -1043,6 +1054,9 @@ class _ServiceVclState:
     @_builtins.property
     @pulumi.getter
     def comment(self) -> Optional[pulumi.Input[_builtins.str]]:
+        """
+        Description field for the service. Default `Managed by Terraform`
+        """
         return pulumi.get(self, "comment")
 
     @comment.setter
@@ -1136,6 +1150,9 @@ class _ServiceVclState:
     @_builtins.property
     @pulumi.getter(name="forceRefresh")
     def force_refresh(self) -> Optional[pulumi.Input[_builtins.bool]]:
+        """
+        Used internally by the provider to temporarily indicate if all resources should call their associated API to update the local state. This is for scenarios where the service version has been reverted outside of Terraform (e.g. via the Fastly UI) and the provider needs to resync the state for a different active version (this is only if `activate` is `true`).
+        """
         return pulumi.get(self, "force_refresh")
 
     @force_refresh.setter
@@ -1505,6 +1522,9 @@ class _ServiceVclState:
     @_builtins.property
     @pulumi.getter
     def reuse(self) -> Optional[pulumi.Input[_builtins.bool]]:
+        """
+        Services that are active cannot be destroyed. If set to `true` a service Terraform intends to destroy will instead be deactivated (allowing it to be reused by importing it into another Terraform project). If `false`, attempting to destroy an active service will cause an error. Default `false`
+        """
         return pulumi.get(self, "reuse")
 
     @reuse.setter
@@ -1656,6 +1676,111 @@ class ServiceVcl(pulumi.CustomResource):
                  version_comment: Optional[pulumi.Input[_builtins.str]] = None,
                  __props__=None):
         """
+        Provides a Fastly Service, representing the configuration for a website, app,
+        API, or anything else to be served through Fastly. A Service encompasses Domains
+        and Backends.
+
+        The Service resource requires a domain name that is correctly set up to direct
+        traffic to the Fastly service. See Fastly's guide on [Adding CNAME Records][fastly-cname]
+        on their documentation site for guidance.
+
+        ## Activation and Staging
+
+        By default, the `activate` attribute is `true`, and the `stage`
+        attribute is `false`. This combination means that when `terraform
+        apply` is executed for a plan which will make changes to the service,
+        the last version created by the provider (the `cloned_version`) will
+        be cloned to make a draft version, the changes will be applied to that
+        draft version, and that draft version will be activated.
+
+        If desired, `activate` can be set to `false`, in which case the
+        behavior above will be modified such that cloning will only occur when
+        the `cloned_version` is locked, and the draft version will not be
+        activated.
+
+        Additionally, `stage` can be set to `true`, with `activate` set to
+        `false`. This extends the `activate = false` behavior to include
+        staging of applied changes, every time that changes are applied, even
+        if the changes were applied to an existing draft version.
+
+        Finally, `activate` should not be set to `true` when `stage` is also
+        set to `true`. While this combination will not cause any harm to the
+        service, there is no logical reason to both stage and activate every
+        set of applied changes.
+
+        ## Example Usage
+
+        Basic usage:
+
+        ```python
+        import pulumi
+        import pulumi_fastly as fastly
+
+        demo = fastly.ServiceVcl("demo",
+            name="demofastly",
+            domains=[{
+                "name": "demo.notexample.com",
+                "comment": "demo",
+            }],
+            backends=[{
+                "address": "127.0.0.1",
+                "name": "localhost",
+                "port": 80,
+            }],
+            force_destroy=True)
+        ```
+
+        Basic usage with an Amazon S3 Website and that removes the `x-amz-request-id` header:
+
+        ```python
+        import pulumi
+        import pulumi_aws as aws
+        import pulumi_fastly as fastly
+
+        demo = fastly.ServiceVcl("demo",
+            name="demofastly",
+            domains=[{
+                "name": "demo.notexample.com",
+                "comment": "demo",
+            }],
+            backends=[{
+                "address": "http-me.fastly.dev",
+                "name": "Glitch Test Site",
+                "port": 80,
+                "override_host": "http-me.fastly.dev",
+            }],
+            headers=[{
+                "destination": "http.x-amz-request-id",
+                "type": "cache",
+                "action": "delete",
+                "name": "remove x-amz-request-id",
+            }],
+            gzips=[{
+                "name": "file extensions and content types",
+                "extensions": [
+                    "css",
+                    "js",
+                ],
+                "content_types": [
+                    "text/html",
+                    "text/css",
+                ],
+            }],
+            force_destroy=True)
+        website_bucket = aws.index.S3Bucket("website_bucket", bucket=your-unique-website-bucket-name)
+        website_config = aws.index.S3BucketWebsiteConfiguration("website_config",
+            bucket=website_bucket.id,
+            index_document=[{
+                suffix: index.html,
+            }],
+            error_document=[{
+                key: error.html,
+            }])
+        ```
+
+        Basic usage with [custom
+        VCL](https://docs.fastly.com/vcl/custom-vcl/uploading-custom-vcl/):
+
         ## Import
 
         Fastly Services can be imported using their service ID, e.g.
@@ -1665,7 +1790,6 @@ class ServiceVcl(pulumi.CustomResource):
         ```
 
         By default, either the active version will be imported, or the latest version if no version is active.
-
         Alternatively, a specific version of the service can be selected by appending an `@` followed by the version number to the service ID, e.g.
 
         ```sh
@@ -1675,12 +1799,14 @@ class ServiceVcl(pulumi.CustomResource):
         :param str resource_name: The name of the resource.
         :param pulumi.ResourceOptions opts: Options for the resource.
         :param pulumi.Input[_builtins.bool] activate: Conditionally prevents new service versions from being activated. The apply step will create a new draft version but will not activate it if this is set to `false`. Default `true`
+        :param pulumi.Input[_builtins.str] comment: Description field for the service. Default `Managed by Terraform`
         :param pulumi.Input[_builtins.str] default_host: The default hostname
         :param pulumi.Input[_builtins.int] default_ttl: The default Time-to-live (TTL) for requests
         :param pulumi.Input[Sequence[pulumi.Input[Union['ServiceVclDomainArgs', 'ServiceVclDomainArgsDict']]]] domains: A set of Domain names to serve as entry points for your Service
         :param pulumi.Input[_builtins.bool] force_destroy: Services that are active cannot be destroyed. In order to destroy the Service, set `force_destroy` to `true`. Default `false`
         :param pulumi.Input[_builtins.bool] http3: Enables support for the HTTP/3 (QUIC) protocol
         :param pulumi.Input[_builtins.str] name: The unique name for the Service to create
+        :param pulumi.Input[_builtins.bool] reuse: Services that are active cannot be destroyed. If set to `true` a service Terraform intends to destroy will instead be deactivated (allowing it to be reused by importing it into another Terraform project). If `false`, attempting to destroy an active service will cause an error. Default `false`
         :param pulumi.Input[_builtins.bool] stage: Conditionally enables new service versions to be staged. If set to `true`, all changes made by an `apply` step will be staged, even if `apply` did not create a new draft version. Default `false`
         :param pulumi.Input[_builtins.bool] stale_if_error: Enables serving a stale object if there is an error
         :param pulumi.Input[_builtins.int] stale_if_error_ttl: The default time-to-live (TTL) for serving the stale object for the version
@@ -1693,6 +1819,111 @@ class ServiceVcl(pulumi.CustomResource):
                  args: Optional[ServiceVclArgs] = None,
                  opts: Optional[pulumi.ResourceOptions] = None):
         """
+        Provides a Fastly Service, representing the configuration for a website, app,
+        API, or anything else to be served through Fastly. A Service encompasses Domains
+        and Backends.
+
+        The Service resource requires a domain name that is correctly set up to direct
+        traffic to the Fastly service. See Fastly's guide on [Adding CNAME Records][fastly-cname]
+        on their documentation site for guidance.
+
+        ## Activation and Staging
+
+        By default, the `activate` attribute is `true`, and the `stage`
+        attribute is `false`. This combination means that when `terraform
+        apply` is executed for a plan which will make changes to the service,
+        the last version created by the provider (the `cloned_version`) will
+        be cloned to make a draft version, the changes will be applied to that
+        draft version, and that draft version will be activated.
+
+        If desired, `activate` can be set to `false`, in which case the
+        behavior above will be modified such that cloning will only occur when
+        the `cloned_version` is locked, and the draft version will not be
+        activated.
+
+        Additionally, `stage` can be set to `true`, with `activate` set to
+        `false`. This extends the `activate = false` behavior to include
+        staging of applied changes, every time that changes are applied, even
+        if the changes were applied to an existing draft version.
+
+        Finally, `activate` should not be set to `true` when `stage` is also
+        set to `true`. While this combination will not cause any harm to the
+        service, there is no logical reason to both stage and activate every
+        set of applied changes.
+
+        ## Example Usage
+
+        Basic usage:
+
+        ```python
+        import pulumi
+        import pulumi_fastly as fastly
+
+        demo = fastly.ServiceVcl("demo",
+            name="demofastly",
+            domains=[{
+                "name": "demo.notexample.com",
+                "comment": "demo",
+            }],
+            backends=[{
+                "address": "127.0.0.1",
+                "name": "localhost",
+                "port": 80,
+            }],
+            force_destroy=True)
+        ```
+
+        Basic usage with an Amazon S3 Website and that removes the `x-amz-request-id` header:
+
+        ```python
+        import pulumi
+        import pulumi_aws as aws
+        import pulumi_fastly as fastly
+
+        demo = fastly.ServiceVcl("demo",
+            name="demofastly",
+            domains=[{
+                "name": "demo.notexample.com",
+                "comment": "demo",
+            }],
+            backends=[{
+                "address": "http-me.fastly.dev",
+                "name": "Glitch Test Site",
+                "port": 80,
+                "override_host": "http-me.fastly.dev",
+            }],
+            headers=[{
+                "destination": "http.x-amz-request-id",
+                "type": "cache",
+                "action": "delete",
+                "name": "remove x-amz-request-id",
+            }],
+            gzips=[{
+                "name": "file extensions and content types",
+                "extensions": [
+                    "css",
+                    "js",
+                ],
+                "content_types": [
+                    "text/html",
+                    "text/css",
+                ],
+            }],
+            force_destroy=True)
+        website_bucket = aws.index.S3Bucket("website_bucket", bucket=your-unique-website-bucket-name)
+        website_config = aws.index.S3BucketWebsiteConfiguration("website_config",
+            bucket=website_bucket.id,
+            index_document=[{
+                suffix: index.html,
+            }],
+            error_document=[{
+                key: error.html,
+            }])
+        ```
+
+        Basic usage with [custom
+        VCL](https://docs.fastly.com/vcl/custom-vcl/uploading-custom-vcl/):
+
         ## Import
 
         Fastly Services can be imported using their service ID, e.g.
@@ -1702,7 +1933,6 @@ class ServiceVcl(pulumi.CustomResource):
         ```
 
         By default, either the active version will be imported, or the latest version if no version is active.
-
         Alternatively, a specific version of the service can be selected by appending an `@` followed by the version number to the service ID, e.g.
 
         ```sh
@@ -1937,13 +2167,16 @@ class ServiceVcl(pulumi.CustomResource):
         :param pulumi.Input[_builtins.bool] activate: Conditionally prevents new service versions from being activated. The apply step will create a new draft version but will not activate it if this is set to `false`. Default `true`
         :param pulumi.Input[_builtins.int] active_version: The currently active version of your Fastly Service
         :param pulumi.Input[_builtins.int] cloned_version: The latest cloned version by the provider
+        :param pulumi.Input[_builtins.str] comment: Description field for the service. Default `Managed by Terraform`
         :param pulumi.Input[_builtins.str] default_host: The default hostname
         :param pulumi.Input[_builtins.int] default_ttl: The default Time-to-live (TTL) for requests
         :param pulumi.Input[Sequence[pulumi.Input[Union['ServiceVclDomainArgs', 'ServiceVclDomainArgsDict']]]] domains: A set of Domain names to serve as entry points for your Service
         :param pulumi.Input[_builtins.bool] force_destroy: Services that are active cannot be destroyed. In order to destroy the Service, set `force_destroy` to `true`. Default `false`
+        :param pulumi.Input[_builtins.bool] force_refresh: Used internally by the provider to temporarily indicate if all resources should call their associated API to update the local state. This is for scenarios where the service version has been reverted outside of Terraform (e.g. via the Fastly UI) and the provider needs to resync the state for a different active version (this is only if `activate` is `true`).
         :param pulumi.Input[_builtins.bool] http3: Enables support for the HTTP/3 (QUIC) protocol
         :param pulumi.Input[_builtins.bool] imported: Used internally by the provider to temporarily indicate if the service is being imported, and is reset to false once the import is finished
         :param pulumi.Input[_builtins.str] name: The unique name for the Service to create
+        :param pulumi.Input[_builtins.bool] reuse: Services that are active cannot be destroyed. If set to `true` a service Terraform intends to destroy will instead be deactivated (allowing it to be reused by importing it into another Terraform project). If `false`, attempting to destroy an active service will cause an error. Default `false`
         :param pulumi.Input[_builtins.bool] stage: Conditionally enables new service versions to be staged. If set to `true`, all changes made by an `apply` step will be staged, even if `apply` did not create a new draft version. Default `false`
         :param pulumi.Input[_builtins.int] staged_version: The currently staged version of your Fastly Service
         :param pulumi.Input[_builtins.bool] stale_if_error: Enables serving a stale object if there is an error
@@ -2061,6 +2294,9 @@ class ServiceVcl(pulumi.CustomResource):
     @_builtins.property
     @pulumi.getter
     def comment(self) -> pulumi.Output[Optional[_builtins.str]]:
+        """
+        Description field for the service. Default `Managed by Terraform`
+        """
         return pulumi.get(self, "comment")
 
     @_builtins.property
@@ -2118,6 +2354,9 @@ class ServiceVcl(pulumi.CustomResource):
     @_builtins.property
     @pulumi.getter(name="forceRefresh")
     def force_refresh(self) -> pulumi.Output[_builtins.bool]:
+        """
+        Used internally by the provider to temporarily indicate if all resources should call their associated API to update the local state. This is for scenarios where the service version has been reverted outside of Terraform (e.g. via the Fastly UI) and the provider needs to resync the state for a different active version (this is only if `activate` is `true`).
+        """
         return pulumi.get(self, "force_refresh")
 
     @_builtins.property
@@ -2327,6 +2566,9 @@ class ServiceVcl(pulumi.CustomResource):
     @_builtins.property
     @pulumi.getter
     def reuse(self) -> pulumi.Output[Optional[_builtins.bool]]:
+        """
+        Services that are active cannot be destroyed. If set to `true` a service Terraform intends to destroy will instead be deactivated (allowing it to be reused by importing it into another Terraform project). If `false`, attempting to destroy an active service will cause an error. Default `false`
+        """
         return pulumi.get(self, "reuse")
 
     @_builtins.property

@@ -26,6 +26,7 @@ class ComputeAclEntriesArgs:
         The set of arguments for constructing a ComputeAclEntries resource.
         :param pulumi.Input[_builtins.str] compute_acl_id: Manages entries for a Fastly Compute Access Control List (ACL). To import, use the format \\n\\n/entries.
         :param pulumi.Input[Mapping[str, pulumi.Input[_builtins.str]]] entries: A map representing the entries in the Compute ACL, where the keys are the prefixes and the values are the actions (ALLOW or BLOCK).
+        :param pulumi.Input[_builtins.bool] manage_entries: Manage the ACL entries in Terraform (default: false). If true, Terraform will ensure that the ACL's entries match the entries in the Terraform configuration.
         """
         pulumi.set(__self__, "compute_acl_id", compute_acl_id)
         pulumi.set(__self__, "entries", entries)
@@ -59,6 +60,9 @@ class ComputeAclEntriesArgs:
     @_builtins.property
     @pulumi.getter(name="manageEntries")
     def manage_entries(self) -> Optional[pulumi.Input[_builtins.bool]]:
+        """
+        Manage the ACL entries in Terraform (default: false). If true, Terraform will ensure that the ACL's entries match the entries in the Terraform configuration.
+        """
         return pulumi.get(self, "manage_entries")
 
     @manage_entries.setter
@@ -76,6 +80,7 @@ class _ComputeAclEntriesState:
         Input properties used for looking up and filtering ComputeAclEntries resources.
         :param pulumi.Input[_builtins.str] compute_acl_id: Manages entries for a Fastly Compute Access Control List (ACL). To import, use the format \\n\\n/entries.
         :param pulumi.Input[Mapping[str, pulumi.Input[_builtins.str]]] entries: A map representing the entries in the Compute ACL, where the keys are the prefixes and the values are the actions (ALLOW or BLOCK).
+        :param pulumi.Input[_builtins.bool] manage_entries: Manage the ACL entries in Terraform (default: false). If true, Terraform will ensure that the ACL's entries match the entries in the Terraform configuration.
         """
         if compute_acl_id is not None:
             pulumi.set(__self__, "compute_acl_id", compute_acl_id)
@@ -111,6 +116,9 @@ class _ComputeAclEntriesState:
     @_builtins.property
     @pulumi.getter(name="manageEntries")
     def manage_entries(self) -> Optional[pulumi.Input[_builtins.bool]]:
+        """
+        Manage the ACL entries in Terraform (default: false). If true, Terraform will ensure that the ACL's entries match the entries in the Terraform configuration.
+        """
         return pulumi.get(self, "manage_entries")
 
     @manage_entries.setter
@@ -129,6 +137,81 @@ class ComputeAclEntries(pulumi.CustomResource):
                  manage_entries: Optional[pulumi.Input[_builtins.bool]] = None,
                  __props__=None):
         """
+        The `ComputeAclEntries` resource allows you to manage CIDR-based allow/block rules (ACL entries) inside a Fastly Compute ACL.
+
+        By default, Terraform does not continue to manage the entries after the initial `pulumi up`. This allows you to make changes to ACL entries outside of Terraform using the [Fastly API](https://developer.fastly.com/reference/api/) or [Fastly CLI](https://developer.fastly.com/learning/tools/cli/)) without Terraform resetting them.
+
+        To have Terraform continue managing the entries after creation (e.g., deleting any entries not defined in the config), set `manage_entries = true`.
+
+        > **Note:** Use `manage_entries = true` cautiously. Terraform will overwrite external changes and delete any unmanaged entries.
+
+        ## Example Usage
+
+        Basic usage (with seeded values, unmanaged after initial apply):
+
+        ```python
+        import pulumi
+        import pulumi_fastly as fastly
+
+        # IMPORTANT: Deleting a Compute ACL requires first deleting its resource_link.
+        # This requires a two-step `pulumi up` as we can't guarantee deletion order.
+        example_compute_acl = fastly.ComputeAcl("example", name="my_compute_acl")
+        example_compute_acl_entries = fastly.ComputeAclEntries("example",
+            compute_acl_id=example_compute_acl.id,
+            entries={
+                "192.0.2.0/24": "ALLOW",
+                "198.51.100.0/24": "BLOCK",
+            })
+        example = fastly.get_package_hash(filename="package.tar.gz")
+        example_service_compute = fastly.ServiceCompute("example",
+            name="my_compute_service",
+            domains=[{
+                "name": "demo.example.com",
+            }],
+            package={
+                "filename": "package.tar.gz",
+                "source_code_hash": example.hash,
+            },
+            resource_links=[{
+                "name": "my_acl_link",
+                "resource_id": example_compute_acl.id,
+            }],
+            force_destroy=True)
+        ```
+
+        Terraform-managed usage (where Terraform controls entries long-term):
+
+        ```python
+        import pulumi
+        import pulumi_fastly as fastly
+
+        # IMPORTANT: Deleting a Compute ACL requires first deleting its resource_link.
+        # This requires a two-step `pulumi up` as we can't guarantee deletion order.
+        example_compute_acl = fastly.ComputeAcl("example", name="my_compute_acl")
+        example_compute_acl_entries = fastly.ComputeAclEntries("example",
+            compute_acl_id=example_compute_acl.id,
+            entries={
+                "203.0.113.0/24": "BLOCK",
+                "198.51.100.0/24": "ALLOW",
+            },
+            manage_entries=True)
+        example = fastly.get_package_hash(filename="package.tar.gz")
+        example_service_compute = fastly.ServiceCompute("example",
+            name="my_compute_service",
+            domains=[{
+                "name": "demo.example.com",
+            }],
+            package={
+                "filename": "package.tar.gz",
+                "source_code_hash": example.hash,
+            },
+            resource_links=[{
+                "name": "my_acl_link",
+                "resource_id": example_compute_acl.id,
+            }],
+            force_destroy=True)
+        ```
+
         ## Import
 
         Fastly Compute ACL entries can be imported using the format `<compute_acl_id>/entries`, e.g.
@@ -141,6 +224,7 @@ class ComputeAclEntries(pulumi.CustomResource):
         :param pulumi.ResourceOptions opts: Options for the resource.
         :param pulumi.Input[_builtins.str] compute_acl_id: Manages entries for a Fastly Compute Access Control List (ACL). To import, use the format \\n\\n/entries.
         :param pulumi.Input[Mapping[str, pulumi.Input[_builtins.str]]] entries: A map representing the entries in the Compute ACL, where the keys are the prefixes and the values are the actions (ALLOW or BLOCK).
+        :param pulumi.Input[_builtins.bool] manage_entries: Manage the ACL entries in Terraform (default: false). If true, Terraform will ensure that the ACL's entries match the entries in the Terraform configuration.
         """
         ...
     @overload
@@ -149,6 +233,81 @@ class ComputeAclEntries(pulumi.CustomResource):
                  args: ComputeAclEntriesArgs,
                  opts: Optional[pulumi.ResourceOptions] = None):
         """
+        The `ComputeAclEntries` resource allows you to manage CIDR-based allow/block rules (ACL entries) inside a Fastly Compute ACL.
+
+        By default, Terraform does not continue to manage the entries after the initial `pulumi up`. This allows you to make changes to ACL entries outside of Terraform using the [Fastly API](https://developer.fastly.com/reference/api/) or [Fastly CLI](https://developer.fastly.com/learning/tools/cli/)) without Terraform resetting them.
+
+        To have Terraform continue managing the entries after creation (e.g., deleting any entries not defined in the config), set `manage_entries = true`.
+
+        > **Note:** Use `manage_entries = true` cautiously. Terraform will overwrite external changes and delete any unmanaged entries.
+
+        ## Example Usage
+
+        Basic usage (with seeded values, unmanaged after initial apply):
+
+        ```python
+        import pulumi
+        import pulumi_fastly as fastly
+
+        # IMPORTANT: Deleting a Compute ACL requires first deleting its resource_link.
+        # This requires a two-step `pulumi up` as we can't guarantee deletion order.
+        example_compute_acl = fastly.ComputeAcl("example", name="my_compute_acl")
+        example_compute_acl_entries = fastly.ComputeAclEntries("example",
+            compute_acl_id=example_compute_acl.id,
+            entries={
+                "192.0.2.0/24": "ALLOW",
+                "198.51.100.0/24": "BLOCK",
+            })
+        example = fastly.get_package_hash(filename="package.tar.gz")
+        example_service_compute = fastly.ServiceCompute("example",
+            name="my_compute_service",
+            domains=[{
+                "name": "demo.example.com",
+            }],
+            package={
+                "filename": "package.tar.gz",
+                "source_code_hash": example.hash,
+            },
+            resource_links=[{
+                "name": "my_acl_link",
+                "resource_id": example_compute_acl.id,
+            }],
+            force_destroy=True)
+        ```
+
+        Terraform-managed usage (where Terraform controls entries long-term):
+
+        ```python
+        import pulumi
+        import pulumi_fastly as fastly
+
+        # IMPORTANT: Deleting a Compute ACL requires first deleting its resource_link.
+        # This requires a two-step `pulumi up` as we can't guarantee deletion order.
+        example_compute_acl = fastly.ComputeAcl("example", name="my_compute_acl")
+        example_compute_acl_entries = fastly.ComputeAclEntries("example",
+            compute_acl_id=example_compute_acl.id,
+            entries={
+                "203.0.113.0/24": "BLOCK",
+                "198.51.100.0/24": "ALLOW",
+            },
+            manage_entries=True)
+        example = fastly.get_package_hash(filename="package.tar.gz")
+        example_service_compute = fastly.ServiceCompute("example",
+            name="my_compute_service",
+            domains=[{
+                "name": "demo.example.com",
+            }],
+            package={
+                "filename": "package.tar.gz",
+                "source_code_hash": example.hash,
+            },
+            resource_links=[{
+                "name": "my_acl_link",
+                "resource_id": example_compute_acl.id,
+            }],
+            force_destroy=True)
+        ```
+
         ## Import
 
         Fastly Compute ACL entries can be imported using the format `<compute_acl_id>/entries`, e.g.
@@ -213,6 +372,7 @@ class ComputeAclEntries(pulumi.CustomResource):
         :param pulumi.ResourceOptions opts: Options for the resource.
         :param pulumi.Input[_builtins.str] compute_acl_id: Manages entries for a Fastly Compute Access Control List (ACL). To import, use the format \\n\\n/entries.
         :param pulumi.Input[Mapping[str, pulumi.Input[_builtins.str]]] entries: A map representing the entries in the Compute ACL, where the keys are the prefixes and the values are the actions (ALLOW or BLOCK).
+        :param pulumi.Input[_builtins.bool] manage_entries: Manage the ACL entries in Terraform (default: false). If true, Terraform will ensure that the ACL's entries match the entries in the Terraform configuration.
         """
         opts = pulumi.ResourceOptions.merge(opts, pulumi.ResourceOptions(id=id))
 
@@ -242,5 +402,8 @@ class ComputeAclEntries(pulumi.CustomResource):
     @_builtins.property
     @pulumi.getter(name="manageEntries")
     def manage_entries(self) -> pulumi.Output[Optional[_builtins.bool]]:
+        """
+        Manage the ACL entries in Terraform (default: false). If true, Terraform will ensure that the ACL's entries match the entries in the Terraform configuration.
+        """
         return pulumi.get(self, "manage_entries")
 

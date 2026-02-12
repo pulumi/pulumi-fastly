@@ -16,6 +16,10 @@ import java.util.Optional;
 import javax.annotation.Nullable;
 
 /**
+ * Provides a persistent, globally consistent key-value store accessible to Compute services during request processing.
+ * 
+ * &gt; **Note** The `kvStore` feature does not support seeding the store with data. This is because the size of objects that can be stored is very large and Terraform is designed for containing configuration, not data. You should use either the [Fastly CLI](https://developer.fastly.com/learning/tools/cli/), [Fastly API](https://developer.fastly.com/reference/api/) or one of the available [Fastly API Clients](https://developer.fastly.com/reference/api/#clients) to populate your KV Store.
+ * 
  * ## Example Usage
  * 
  * Basic usage:
