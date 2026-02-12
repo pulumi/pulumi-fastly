@@ -5,6 +5,91 @@ import * as pulumi from "@pulumi/pulumi";
 import * as utilities from "./utilities";
 
 /**
+ * The Config Store (`fastly.Configstore`) can be seeded with initial key-value pairs using the `fastly.ConfigstoreEntries` resource.
+ *
+ * After the first `pulumi up` the default behaviour is to ignore any further configuration changes to those key-value pairs. Terraform will expect modifications to happen outside of Terraform (e.g. new key-value pairs to be managed using the [Fastly API](https://developer.fastly.com/reference/api/) or [Fastly CLI](https://developer.fastly.com/learning/tools/cli/)).
+ *
+ * To change the default behaviour (so Terraform continues to manage the key-value pairs within the configuration) set `manageEntries = true`.
+ *
+ * > **Note:** Terraform should not be used to store large amounts of data, so it's recommended you leave the default behaviour in place and only seed the store with a small amount of key-value pairs. For more information see "Configuration not data".
+ *
+ * ## Example Usage
+ *
+ * Basic usage (with seeded values):
+ *
+ * ```typescript
+ * import * as pulumi from "@pulumi/pulumi";
+ * import * as fastly from "@pulumi/fastly";
+ *
+ * // IMPORTANT: Deleting a Config Store requires first deleting its resource_link.
+ * // This requires a two-step `pulumi up` as we can't guarantee deletion order.
+ * // e.g. resource_link deletion within fastly_service_compute might not finish first.
+ * const exampleConfigstore = new fastly.Configstore("example", {name: "%s"});
+ * const exampleConfigstoreEntries = new fastly.ConfigstoreEntries("example", {
+ *     storeId: exampleConfigstore.id,
+ *     entries: {
+ *         key1: "value1",
+ *         key2: "value2",
+ *     },
+ * });
+ * const example = fastly.getPackageHash({
+ *     filename: "package.tar.gz",
+ * });
+ * const exampleServiceCompute = new fastly.ServiceCompute("example", {
+ *     name: "my_compute_service",
+ *     domains: [{
+ *         name: "demo.example.com",
+ *     }],
+ *     "package": {
+ *         filename: "package.tar.gz",
+ *         sourceCodeHash: example.then(example => example.hash),
+ *     },
+ *     resourceLinks: [{
+ *         name: "my_resource_link",
+ *         resourceId: exampleConfigstore.id,
+ *     }],
+ *     forceDestroy: true,
+ * });
+ * ```
+ *
+ * To have Terraform manage the initially seeded key-value pairs defined in your configuration, then you must set `manageEntries = true` (this will cause any key-value pairs added outside of Terraform to be deleted):
+ *
+ * ```typescript
+ * import * as pulumi from "@pulumi/pulumi";
+ * import * as fastly from "@pulumi/fastly";
+ *
+ * // IMPORTANT: Deleting a Config Store requires first deleting its resource_link.
+ * // This requires a two-step `pulumi up` as we can't guarantee deletion order.
+ * // e.g. resource_link deletion within fastly_service_compute might not finish first.
+ * const exampleConfigstore = new fastly.Configstore("example", {name: "%s"});
+ * const exampleConfigstoreEntries = new fastly.ConfigstoreEntries("example", {
+ *     storeId: exampleConfigstore.id,
+ *     entries: {
+ *         key1: "value1",
+ *         key2: "value2",
+ *     },
+ *     manageEntries: true,
+ * });
+ * const example = fastly.getPackageHash({
+ *     filename: "package.tar.gz",
+ * });
+ * const exampleServiceCompute = new fastly.ServiceCompute("example", {
+ *     name: "my_compute_service",
+ *     domains: [{
+ *         name: "demo.example.com",
+ *     }],
+ *     "package": {
+ *         filename: "package.tar.gz",
+ *         sourceCodeHash: example.then(example => example.hash),
+ *     },
+ *     resourceLinks: [{
+ *         name: "my_resource_link",
+ *         resourceId: exampleConfigstore.id,
+ *     }],
+ *     forceDestroy: true,
+ * });
+ * ```
+ *
  * ## Import
  *
  * Fastly Config Stores entries can be imported using the corresponding Config Store ID with the `/entries` suffix, e.g.
@@ -45,6 +130,9 @@ export class ConfigstoreEntries extends pulumi.CustomResource {
      * A map representing an entry in the Config Store, (key/value)
      */
     declare public readonly entries: pulumi.Output<{[key: string]: string}>;
+    /**
+     * Have Terraform manage the entries (default: false). If set to `true` Terraform will remove any entries that were added externally from the config seeded values.
+     */
     declare public readonly manageEntries: pulumi.Output<boolean | undefined>;
     /**
      * An alphanumeric string identifying the Config Store.
@@ -92,6 +180,9 @@ export interface ConfigstoreEntriesState {
      * A map representing an entry in the Config Store, (key/value)
      */
     entries?: pulumi.Input<{[key: string]: pulumi.Input<string>}>;
+    /**
+     * Have Terraform manage the entries (default: false). If set to `true` Terraform will remove any entries that were added externally from the config seeded values.
+     */
     manageEntries?: pulumi.Input<boolean>;
     /**
      * An alphanumeric string identifying the Config Store.
@@ -107,6 +198,9 @@ export interface ConfigstoreEntriesArgs {
      * A map representing an entry in the Config Store, (key/value)
      */
     entries: pulumi.Input<{[key: string]: pulumi.Input<string>}>;
+    /**
+     * Have Terraform manage the entries (default: false). If set to `true` Terraform will remove any entries that were added externally from the config seeded values.
+     */
     manageEntries?: pulumi.Input<boolean>;
     /**
      * An alphanumeric string identifying the Config Store.

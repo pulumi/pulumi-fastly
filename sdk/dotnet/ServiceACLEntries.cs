@@ -10,21 +10,215 @@ using Pulumi.Serialization;
 namespace Pulumi.Fastly
 {
     /// <summary>
+    /// Defines a set of Fastly ACL entries that can be used to populate a service ACL.  This resource will populate an ACL with the entries and will track their state.
+    /// 
+    /// &gt; **Warning:** This provider will take precedence over any changes you make in the UI or API. Such changes are likely to be reversed if you run the provider again.
+    /// 
+    /// &gt; **Note:** By default the Terraform provider allows you to externally manage the entries via API or UI.
+    /// If you wish to apply your changes in the HCL, then you should explicitly set the `ManageEntries` attribute. An example of this configuration is provided below.
+    /// 
+    /// ## Example Usage
+    /// 
+    /// ### Basic usage:
+    /// 
+    /// ```csharp
+    /// using System.Collections.Generic;
+    /// using System.Linq;
+    /// using Pulumi;
+    /// using Fastly = Pulumi.Fastly;
+    /// 
+    /// return await Deployment.RunAsync(() =&gt; 
+    /// {
+    ///     var config = new Config();
+    ///     var myaclName = config.Get("myaclName") ?? "My ACL";
+    ///     var myservice = new Fastly.ServiceVcl("myservice", new()
+    ///     {
+    ///         Name = "demofastly",
+    ///         Domains = new[]
+    ///         {
+    ///             new Fastly.Inputs.ServiceVclDomainArgs
+    ///             {
+    ///                 Name = "demo.notexample.com",
+    ///                 Comment = "demo",
+    ///             },
+    ///         },
+    ///         Backends = new[]
+    ///         {
+    ///             new Fastly.Inputs.ServiceVclBackendArgs
+    ///             {
+    ///                 Address = "http-me.fastly.dev",
+    ///                 Name = "Glitch Test Site",
+    ///                 Port = 80,
+    ///             },
+    ///         },
+    ///         Acls = new[]
+    ///         {
+    ///             new Fastly.Inputs.ServiceVclAclArgs
+    ///             {
+    ///                 Name = myaclName,
+    ///             },
+    ///         },
+    ///         ForceDestroy = true,
+    ///     });
+    /// 
+    ///     var entries = new List&lt;Fastly.ServiceACLEntries&gt;();
+    ///     foreach (var range in myservice.Acls.Apply(acls =&gt; ).Select(pair =&gt; new { pair.Key, pair.Value }))
+    ///     {
+    ///         entries.Add(new Fastly.ServiceACLEntries($"entries-{range.Key}", new()
+    ///         {
+    ///             ServiceId = myservice.Id,
+    ///             AclId = range.Value.AclId,
+    ///             Entries = new[]
+    ///             {
+    ///                 new Fastly.Inputs.ServiceACLEntriesEntryArgs
+    ///                 {
+    ///                     Ip = "127.0.0.1",
+    ///                     Subnet = "24",
+    ///                     Negated = false,
+    ///                     Comment = "ACL Entry 1",
+    ///                 },
+    ///             },
+    ///         }));
+    ///     }
+    /// });
+    /// ```
+    /// 
+    /// ### Terraform &gt;= 0.12.0 &amp;&amp; &lt; 0.12.6)
+    /// 
+    /// `ForEach` attributes were not available in Terraform before 0.12.6, however, users can still use `For` expressions to achieve
+    /// similar behaviour as seen in the example below.
+    /// 
+    /// &gt; **Warning:** Terraform might not properly calculate implicit dependencies on computed attributes when using `For` expressions
+    /// 
+    /// For scenarios such as adding an ACL to a service and at the same time, creating the ACL entries (`fastly.ServiceACLEntries`)
+    /// resource, Terraform will not calculate implicit dependencies correctly on `For` expressions. This will result in index lookup
+    /// problems and the execution will fail.
+    /// 
+    /// For those scenarios, it's recommended to split the changes into two distinct steps:
+    /// 
+    /// 1. Add the `Acl` block to the `fastly.ServiceVcl` and apply the changes
+    /// 2. Add the `fastly.ServiceACLEntries` resource with the `For` expressions to the HCL and apply the changes
+    /// 
+    /// Usage:
+    /// 
+    /// ```csharp
+    /// using System.Collections.Generic;
+    /// using System.Linq;
+    /// using Pulumi;
+    /// using Fastly = Pulumi.Fastly;
+    /// 
+    /// return await Deployment.RunAsync(() =&gt; 
+    /// {
+    ///     var config = new Config();
+    ///     var myaclName = config.Get("myaclName") ?? "My ACL";
+    ///     var myservice = new Fastly.ServiceVcl("myservice", new()
+    ///     {
+    ///         Name = "demofastly",
+    ///         Domains = new[]
+    ///         {
+    ///             new Fastly.Inputs.ServiceVclDomainArgs
+    ///             {
+    ///                 Name = "demo.notexample.com",
+    ///                 Comment = "demo",
+    ///             },
+    ///         },
+    ///         Acls = new[]
+    ///         {
+    ///             new Fastly.Inputs.ServiceVclAclArgs
+    ///             {
+    ///                 Name = myaclName,
+    ///             },
+    ///         },
+    ///     });
+    /// 
+    ///     var entries = new Fastly.ServiceACLEntries("entries", new()
+    ///     {
+    ///         ServiceId = myservice.Id,
+    ///         AclId = myservice.Acls.Apply(acls =&gt; .ToDictionary(item =&gt; {
+    ///             var d = item.Value;
+    ///             return d.Name;
+    ///         }, item =&gt; {
+    ///             var d = item.Value;
+    ///             return d.AclId;
+    ///         })[myaclName]),
+    ///         Entries = new[]
+    ///         {
+    ///             new Fastly.Inputs.ServiceACLEntriesEntryArgs
+    ///             {
+    ///                 Ip = "127.0.0.1",
+    ///                 Subnet = "24",
+    ///                 Negated = false,
+    ///                 Comment = "ACL Entry 1",
+    ///             },
+    ///         },
+    ///     });
+    /// 
+    /// });
+    /// ```
+    /// 
+    /// ### Reapplying original entries with `ManageEntries` if the state of the entries drifts
+    /// 
+    /// By default the user is opted out from reapplying the original changes if the entries are managed externally.
+    /// The following example demonstrates how the `ManageEntries` field can be used to reapply the changes defined in the HCL if the state of the entries drifts.
+    /// When the value is explicitly set to 'true', Terraform will keep the original changes and discard any other changes made under this resource outside of Terraform.
+    /// 
+    /// &gt; **Warning:** You will lose externally managed entries if `manage_entries=true`.
+    /// 
+    /// &gt; **Note:** The `IgnoreChanges` built-in meta-argument takes precedence over `ManageEntries` regardless of its value.
+    /// 
+    /// ```csharp
+    /// using System.Collections.Generic;
+    /// using System.Linq;
+    /// using Pulumi;
+    /// using Fastly = Pulumi.Fastly;
+    /// 
+    /// return await Deployment.RunAsync(() =&gt; 
+    /// {
+    ///     //...
+    ///     var entries = new List&lt;Fastly.ServiceACLEntries&gt;();
+    ///     foreach (var range in .ToDictionary(item =&gt; {
+    ///         var d = item.Value;
+    ///         return d.Name;
+    ///     }, item =&gt; {
+    ///         var d = item.Value;
+    ///         return d;
+    ///     }).Select(pair =&gt; new { pair.Key, pair.Value }))
+    ///     {
+    ///         entries.Add(new Fastly.ServiceACLEntries($"entries-{range.Key}", new()
+    ///         {
+    ///             ServiceId = myservice.Id,
+    ///             AclId = range.Value.AclId,
+    ///             ManageEntries = true,
+    ///             Entries = new[]
+    ///             {
+    ///                 new Fastly.Inputs.ServiceACLEntriesEntryArgs
+    ///                 {
+    ///                     Ip = "127.0.0.1",
+    ///                     Subnet = "24",
+    ///                     Negated = false,
+    ///                     Comment = "ACL Entry 1",
+    ///                 },
+    ///             },
+    ///         }));
+    ///     }
+    /// });
+    /// ```
+    /// 
     /// ## Import
     /// 
     /// This is an example of the import command being applied to the resource named `fastly_service_acl_entries.entries`
-    /// 
-    /// The resource ID is a combined value of the `service_id` and `acl_id` separated by a forward slash.
+    /// The resource ID is a combined value of the `ServiceId` and `AclId` separated by a forward slash.
     /// 
     /// ```sh
     /// $ pulumi import fastly:index/serviceACLEntries:ServiceACLEntries entries xxxxxxxxxxxxxxxxxxxx/xxxxxxxxxxxxxxxxxxxx
     /// ```
     /// 
     /// If Terraform is already managing remote acl entries against a resource being imported then the user will be asked to remove it from the existing Terraform state.
-    /// 
     /// The following is an example of the Terraform state command to remove the resource named `fastly_service_acl_entries.entries` from the Terraform state file.
     /// 
+    /// ```sh
     /// $ terraform state rm fastly_service_acl_entries.entries
+    /// ```
     /// </summary>
     [FastlyResourceType("fastly:index/serviceACLEntries:ServiceACLEntries")]
     public partial class ServiceACLEntries : global::Pulumi.CustomResource

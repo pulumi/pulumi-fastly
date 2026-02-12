@@ -5,21 +5,250 @@ import * as pulumi from "@pulumi/pulumi";
 import * as utilities from "./utilities";
 
 /**
+ * Defines a map of Fastly dictionary items that can be used to populate a service dictionary.  This resource will populate a dictionary with the items and will track their state.
+ *
+ * > **Warning:** This provider will take precedence over any changes you make in the UI or API. Such changes are likely to be reversed if you run the provider again.
+ *
+ * > **Note:** By default the Terraform provider allows you to externally manage the items via API or UI.
+ * If you wish to apply your changes in the HCL, then you should explicitly set the `manageItems` attribute. An example of this configuration is provided below.
+ *
+ * ## Limitations
+ *
+ * - `writeOnly` dictionaries are not supported
+ *
+ * ## Example Usage
+ *
+ * ### Basic usage:
+ *
+ * ```typescript
+ * import * as pulumi from "@pulumi/pulumi";
+ * import * as fastly from "@pulumi/fastly";
+ *
+ * const config = new pulumi.Config();
+ * const mydictName = config.get("mydictName") || "My Dictionary";
+ * const myservice = new fastly.ServiceVcl("myservice", {
+ *     name: "demofastly",
+ *     domains: [{
+ *         name: "demo.notexample.com",
+ *         comment: "demo",
+ *     }],
+ *     backends: [{
+ *         address: "http-me.fastly.dev",
+ *         name: "Glitch Test Site",
+ *         port: 80,
+ *     }],
+ *     dictionaries: [{
+ *         name: mydictName,
+ *     }],
+ *     forceDestroy: true,
+ * });
+ * const items: fastly.ServiceDictionaryItems[] = [];
+ * myservice.dictionaries.apply(dictionaries => {
+ *     const items: fastly.ServiceDictionaryItems[] = [];
+ * pulumi.all(.filter(d => d.name == mydictName).reduce((__obj, d) => ({ ...__obj, [d.name]: d }))).apply(rangeBody => {
+ *         for (const range of Object.entries(rangeBody).map(([k, v]) => ({key: k, value: v}))) {
+ *             items.push(new fastly.ServiceDictionaryItems(`items-${range.key}`, {
+ *                 serviceId: myservice.id,
+ *                 dictionaryId: range.value.dictionaryId,
+ *                 items: {
+ *                     key1: "value1",
+ *                     key2: "value2",
+ *                 },
+ *             }));
+ *         }
+ *     });
+ * });
+ * ```
+ *
+ * ### Complex object usage:
+ *
+ * ```typescript
+ * import * as pulumi from "@pulumi/pulumi";
+ * import * as fastly from "@pulumi/fastly";
+ *
+ * const config = new pulumi.Config();
+ * const mydict = config.getObject<{items?: Record<string, string>, name?: string}>("mydict") || {
+ *     items: {
+ *         key1: "value1x",
+ *         key2: "value2x",
+ *     },
+ *     name: "My Dictionary",
+ * };
+ * const myservice = new fastly.ServiceVcl("myservice", {
+ *     name: "demofastly",
+ *     domains: [{
+ *         name: "demo.notexample.com",
+ *         comment: "demo",
+ *     }],
+ *     backends: [{
+ *         address: "http-me.fastly.dev",
+ *         name: "Glitch Test Site",
+ *         port: 80,
+ *     }],
+ *     dictionaries: [{
+ *         name: mydict.name,
+ *     }],
+ *     forceDestroy: true,
+ * });
+ * const items: fastly.ServiceDictionaryItems[] = [];
+ * myservice.dictionaries.apply(dictionaries => {
+ *     const items: fastly.ServiceDictionaryItems[] = [];
+ * pulumi.all(.filter(d => d.name == mydict.name).reduce((__obj, d) => ({ ...__obj, [d.name]: d }))).apply(rangeBody => {
+ *         for (const range of Object.entries(rangeBody).map(([k, v]) => ({key: k, value: v}))) {
+ *             items.push(new fastly.ServiceDictionaryItems(`items-${range.key}`, {
+ *                 serviceId: myservice.id,
+ *                 dictionaryId: range.value.dictionaryId,
+ *                 items: mydict.items,
+ *             }));
+ *         }
+ *     });
+ * });
+ * ```
+ *
+ * ### Expression and functions usage:
+ *
+ * ```typescript
+ * import * as pulumi from "@pulumi/pulumi";
+ * import * as fastly from "@pulumi/fastly";
+ * import * as std from "@pulumi/std";
+ *
+ * const dictionaryName = "My Project Dictionary";
+ * const hostBase = "demo.ocnotexample.com";
+ * const hostDivisions = [
+ *     "alpha",
+ *     "beta",
+ *     "gamma",
+ *     "delta",
+ * ];
+ * // Define the standard service that will be used to manage the dictionaries.
+ * const myservice = new fastly.ServiceVcl("myservice", {
+ *     name: "demofastly",
+ *     domains: [{
+ *         name: "demo.ocnotexample.com",
+ *         comment: "demo",
+ *     }],
+ *     backends: [{
+ *         address: "http-me.fastly.dev",
+ *         name: "Glitch Test Site",
+ *         port: 80,
+ *     }],
+ *     dictionaries: [{
+ *         name: dictionaryName,
+ *     }],
+ *     forceDestroy: true,
+ * });
+ * // This resource is dynamically creating the items from the local variables through for expressions and functions.
+ * const project: fastly.ServiceDictionaryItems[] = [];
+ * myservice.dictionaries.apply(dictionaries => {
+ *     const project: fastly.ServiceDictionaryItems[] = [];
+ * pulumi.all(.filter(d => d.name == dictionaryName).reduce((__obj, d) => ({ ...__obj, [d.name]: d }))).apply(rangeBody => {
+ *         for (const range of Object.entries(rangeBody).map(([k, v]) => ({key: k, value: v}))) {
+ *             project.push(new fastly.ServiceDictionaryItems(`project-${range.key}`, {
+ *                 serviceId: myservice.id,
+ *                 dictionaryId: range.value.dictionaryId,
+ *                 items: hostDivisions.reduce((__obj, division) => ({ ...__obj, [division]: std.index.format({
+ *                     input: "%s.%s",
+ *                     args: [
+ *                         division,
+ *                         hostBase,
+ *                     ],
+ *                 }).result })),
+ *             }));
+ *         }
+ *     });
+ * });
+ * ```
+ *
+ * ### Terraform >= 0.12.0 && < 0.12.6)
+ *
+ * `forEach` attributes were not available in Terraform before 0.12.6, however, users can still use `for` expressions to achieve
+ * similar behaviour as seen in the example below.
+ *
+ * > **Warning:** Terraform might not properly calculate implicit dependencies on computed attributes when using `for` expressions
+ *
+ * For scenarios such as adding a Dictionary to a service and at the same time, creating the Dictionary entries (`fastly.ServiceDictionaryItems`)
+ * resource, Terraform will not calculate implicit dependencies correctly on `for` expressions. This will result in index lookup
+ * problems and the execution will fail.
+ *
+ * For those scenarios, it's recommended to split the changes into two distinct steps:
+ *
+ * 1. Add the `dictionary` block to the `fastly.ServiceVcl` and apply the changes
+ * 2. Add the `fastly.ServiceDictionaryItems` resource with the `for` expressions to the HCL and apply the changes
+ *
+ * Usage:
+ *
+ * ```typescript
+ * import * as pulumi from "@pulumi/pulumi";
+ * import * as fastly from "@pulumi/fastly";
+ *
+ * const config = new pulumi.Config();
+ * const mydictName = config.get("mydictName") || "My Dictionary";
+ * const myservice = new fastly.ServiceVcl("myservice", {
+ *     name: "demofastly",
+ *     domains: [{
+ *         name: "demo.notexample.com",
+ *         comment: "demo",
+ *     }],
+ *     dictionaries: [{
+ *         name: mydictName,
+ *     }],
+ * });
+ * const items = new fastly.ServiceDictionaryItems("items", {
+ *     serviceId: myservice.id,
+ *     dictionaryId: myservice.dictionaries.apply(dictionaries => .reduce((__obj, s) => ({ ...__obj, [s.name]: s.dictionaryId }))[mydictName]),
+ *     items: {
+ *         key1: "value1",
+ *         key2: "value2",
+ *     },
+ * });
+ * ```
+ *
+ * ### Reapplying original items with `managedItems` if the state of the items drifts
+ *
+ * By default the user is opted out from reapplying the original changes if the items are managed externally.
+ * The following example demonstrates how the `manageItems` field can be used to reapply the changes defined in the HCL if the state of the items drifts.
+ * When the value is explicitly set to 'true', Terraform will keep the original changes and discard any other changes made under this resource outside of Terraform.
+ *
+ * > **Warning:** You will lose externally managed items if `manage_items=true`.
+ *
+ * > **Note:** The `ignoreChanges` built-in meta-argument takes precedence over `manageItems` regardless of its value.
+ *
+ * ```typescript
+ * import * as pulumi from "@pulumi/pulumi";
+ * import * as fastly from "@pulumi/fastly";
+ *
+ * //...
+ * const items: fastly.ServiceDictionaryItems[] = [];
+ * for (const range of Object.entries(.filter(d => d.name == mydictName).reduce((__obj, d) => ({ ...__obj, [d.name]: d }))).map(([k, v]) => ({key: k, value: v}))) {
+ *     items.push(new fastly.ServiceDictionaryItems(`items-${range.key}`, {
+ *         serviceId: myservice.id,
+ *         dictionaryId: range.value.dictionaryId,
+ *         manageItems: true,
+ *         items: {
+ *             key1: "value1",
+ *             key2: "value2",
+ *         },
+ *     }));
+ * }
+ * ```
+ *
  * ## Import
  *
- * This is an example of the import command being applied to the resource named `fastly_service_dictionary_items.items`
+ * > **Note:** The dictionary resource should be empty before importing
  *
- * The resource ID is a combined value of the `service_id` and `dictionary_id` separated by a forward slash.
+ * This is an example of the import command being applied to the resource named `fastly_service_dictionary_items.items`
+ * The resource ID is a combined value of the `serviceId` and `dictionaryId` separated by a forward slash.
  *
  * ```sh
  * $ pulumi import fastly:index/serviceDictionaryItems:ServiceDictionaryItems items xxxxxxxxxxxxxxxxxxxx/xxxxxxxxxxxxxxxxxxxx
  * ```
  *
  * If Terraform is already managing remote dictionary items against a resource being imported then the user will be asked to remove it from the existing Terraform state.
- *
  * The following is an example of the Terraform state command to remove the resource named `fastly_service_dictionary_items.items` from the Terraform state file.
  *
+ * ```sh
  * $ terraform state rm fastly_service_dictionary_items.items
+ * ```
  */
 export class ServiceDictionaryItems extends pulumi.CustomResource {
     /**

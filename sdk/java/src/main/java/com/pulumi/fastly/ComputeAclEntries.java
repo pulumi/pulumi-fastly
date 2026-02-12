@@ -17,6 +17,161 @@ import java.util.Optional;
 import javax.annotation.Nullable;
 
 /**
+ * The `fastly.ComputeAclEntries` resource allows you to manage CIDR-based allow/block rules (ACL entries) inside a Fastly Compute ACL.
+ * 
+ * By default, Terraform does not continue to manage the entries after the initial `pulumi up`. This allows you to make changes to ACL entries outside of Terraform using the [Fastly API](https://developer.fastly.com/reference/api/) or [Fastly CLI](https://developer.fastly.com/learning/tools/cli/)) without Terraform resetting them.
+ * 
+ * To have Terraform continue managing the entries after creation (e.g., deleting any entries not defined in the config), set `manageEntries = true`.
+ * 
+ * &gt; **Note:** Use `manageEntries = true` cautiously. Terraform will overwrite external changes and delete any unmanaged entries.
+ * 
+ * ## Example Usage
+ * 
+ * Basic usage (with seeded values, unmanaged after initial apply):
+ * 
+ * <pre>
+ * {@code
+ * package generated_program;
+ * 
+ * import com.pulumi.Context;
+ * import com.pulumi.Pulumi;
+ * import com.pulumi.core.Output;
+ * import com.pulumi.fastly.ComputeAcl;
+ * import com.pulumi.fastly.ComputeAclArgs;
+ * import com.pulumi.fastly.ComputeAclEntries;
+ * import com.pulumi.fastly.ComputeAclEntriesArgs;
+ * import com.pulumi.fastly.FastlyFunctions;
+ * import com.pulumi.fastly.inputs.GetPackageHashArgs;
+ * import com.pulumi.fastly.ServiceCompute;
+ * import com.pulumi.fastly.ServiceComputeArgs;
+ * import com.pulumi.fastly.inputs.ServiceComputeDomainArgs;
+ * import com.pulumi.fastly.inputs.ServiceComputePackageArgs;
+ * import com.pulumi.fastly.inputs.ServiceComputeResourceLinkArgs;
+ * import java.util.List;
+ * import java.util.ArrayList;
+ * import java.util.Map;
+ * import java.io.File;
+ * import java.nio.file.Files;
+ * import java.nio.file.Paths;
+ * 
+ * public class App {
+ *     public static void main(String[] args) {
+ *         Pulumi.run(App::stack);
+ *     }
+ * 
+ *     public static void stack(Context ctx) {
+ *         // IMPORTANT: Deleting a Compute ACL requires first deleting its resource_link.
+ *         // This requires a two-step `pulumi up` as we can't guarantee deletion order.
+ *         var exampleComputeAcl = new ComputeAcl("exampleComputeAcl", ComputeAclArgs.builder()
+ *             .name("my_compute_acl")
+ *             .build());
+ * 
+ *         var exampleComputeAclEntries = new ComputeAclEntries("exampleComputeAclEntries", ComputeAclEntriesArgs.builder()
+ *             .computeAclId(exampleComputeAcl.id())
+ *             .entries(Map.ofEntries(
+ *                 Map.entry("192.0.2.0/24", "ALLOW"),
+ *                 Map.entry("198.51.100.0/24", "BLOCK")
+ *             ))
+ *             .build());
+ * 
+ *         final var example = FastlyFunctions.getPackageHash(GetPackageHashArgs.builder()
+ *             .filename("package.tar.gz")
+ *             .build());
+ * 
+ *         var exampleServiceCompute = new ServiceCompute("exampleServiceCompute", ServiceComputeArgs.builder()
+ *             .name("my_compute_service")
+ *             .domains(ServiceComputeDomainArgs.builder()
+ *                 .name("demo.example.com")
+ *                 .build())
+ *             .package_(ServiceComputePackageArgs.builder()
+ *                 .filename("package.tar.gz")
+ *                 .sourceCodeHash(example.hash())
+ *                 .build())
+ *             .resourceLinks(ServiceComputeResourceLinkArgs.builder()
+ *                 .name("my_acl_link")
+ *                 .resourceId(exampleComputeAcl.id())
+ *                 .build())
+ *             .forceDestroy(true)
+ *             .build());
+ * 
+ *     }
+ * }
+ * }
+ * </pre>
+ * 
+ * Terraform-managed usage (where Terraform controls entries long-term):
+ * 
+ * <pre>
+ * {@code
+ * package generated_program;
+ * 
+ * import com.pulumi.Context;
+ * import com.pulumi.Pulumi;
+ * import com.pulumi.core.Output;
+ * import com.pulumi.fastly.ComputeAcl;
+ * import com.pulumi.fastly.ComputeAclArgs;
+ * import com.pulumi.fastly.ComputeAclEntries;
+ * import com.pulumi.fastly.ComputeAclEntriesArgs;
+ * import com.pulumi.fastly.FastlyFunctions;
+ * import com.pulumi.fastly.inputs.GetPackageHashArgs;
+ * import com.pulumi.fastly.ServiceCompute;
+ * import com.pulumi.fastly.ServiceComputeArgs;
+ * import com.pulumi.fastly.inputs.ServiceComputeDomainArgs;
+ * import com.pulumi.fastly.inputs.ServiceComputePackageArgs;
+ * import com.pulumi.fastly.inputs.ServiceComputeResourceLinkArgs;
+ * import java.util.List;
+ * import java.util.ArrayList;
+ * import java.util.Map;
+ * import java.io.File;
+ * import java.nio.file.Files;
+ * import java.nio.file.Paths;
+ * 
+ * public class App {
+ *     public static void main(String[] args) {
+ *         Pulumi.run(App::stack);
+ *     }
+ * 
+ *     public static void stack(Context ctx) {
+ *         // IMPORTANT: Deleting a Compute ACL requires first deleting its resource_link.
+ *         // This requires a two-step `pulumi up` as we can't guarantee deletion order.
+ *         var exampleComputeAcl = new ComputeAcl("exampleComputeAcl", ComputeAclArgs.builder()
+ *             .name("my_compute_acl")
+ *             .build());
+ * 
+ *         var exampleComputeAclEntries = new ComputeAclEntries("exampleComputeAclEntries", ComputeAclEntriesArgs.builder()
+ *             .computeAclId(exampleComputeAcl.id())
+ *             .entries(Map.ofEntries(
+ *                 Map.entry("203.0.113.0/24", "BLOCK"),
+ *                 Map.entry("198.51.100.0/24", "ALLOW")
+ *             ))
+ *             .manageEntries(true)
+ *             .build());
+ * 
+ *         final var example = FastlyFunctions.getPackageHash(GetPackageHashArgs.builder()
+ *             .filename("package.tar.gz")
+ *             .build());
+ * 
+ *         var exampleServiceCompute = new ServiceCompute("exampleServiceCompute", ServiceComputeArgs.builder()
+ *             .name("my_compute_service")
+ *             .domains(ServiceComputeDomainArgs.builder()
+ *                 .name("demo.example.com")
+ *                 .build())
+ *             .package_(ServiceComputePackageArgs.builder()
+ *                 .filename("package.tar.gz")
+ *                 .sourceCodeHash(example.hash())
+ *                 .build())
+ *             .resourceLinks(ServiceComputeResourceLinkArgs.builder()
+ *                 .name("my_acl_link")
+ *                 .resourceId(exampleComputeAcl.id())
+ *                 .build())
+ *             .forceDestroy(true)
+ *             .build());
+ * 
+ *     }
+ * }
+ * }
+ * </pre>
+ * 
  * ## Import
  * 
  * Fastly Compute ACL entries can be imported using the format `&lt;compute_acl_id&gt;/entries`, e.g.
@@ -56,9 +211,17 @@ public class ComputeAclEntries extends com.pulumi.resources.CustomResource {
     public Output<Map<String,String>> entries() {
         return this.entries;
     }
+    /**
+     * Manage the ACL entries in Terraform (default: false). If true, Terraform will ensure that the ACL&#39;s entries match the entries in the Terraform configuration.
+     * 
+     */
     @Export(name="manageEntries", refs={Boolean.class}, tree="[0]")
     private Output</* @Nullable */ Boolean> manageEntries;
 
+    /**
+     * @return Manage the ACL entries in Terraform (default: false). If true, Terraform will ensure that the ACL&#39;s entries match the entries in the Terraform configuration.
+     * 
+     */
     public Output<Optional<Boolean>> manageEntries() {
         return Codegen.optional(this.manageEntries);
     }

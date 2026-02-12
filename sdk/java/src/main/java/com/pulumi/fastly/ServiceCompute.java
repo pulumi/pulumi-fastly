@@ -54,6 +54,102 @@ import java.util.Optional;
 import javax.annotation.Nullable;
 
 /**
+ * Provides a Fastly Compute service. Compute is a computation platform capable of running custom binaries that you compile on your own systems and upload to Fastly. Security and portability is provided by compiling your code to [WebAssembly](https://webassembly.org/) using the `wasm32-wasi` target. A compute service encompasses Domains and Backends.
+ * 
+ * The Service resource requires a domain name that is correctly set up to direct traffic to the Fastly service. See Fastly&#39;s guide on [Adding CNAME Records](https://docs.fastly.com/en/guides/adding-cname-records) on their documentation site for guidance.
+ * 
+ * &gt; **Note:** If you omit the `package` block, you must set `activate = false` to avoid service validation errors.
+ * 
+ * ## Activation and Staging
+ * 
+ * By default, the `activate` attribute is `true`, and the `stage`
+ * attribute is `false`. This combination means that when `terraform
+ * apply` is executed for a plan which will make changes to the service,
+ * the last version created by the provider (the `clonedVersion`) will
+ * be cloned to make a draft version, the changes will be applied to that
+ * draft version, and that draft version will be activated.
+ * 
+ * If desired, `activate` can be set to `false`, in which case the
+ * behavior above will be modified such that cloning will only occur when
+ * the `clonedVersion` is locked, and the draft version will not be
+ * activated.
+ * 
+ * Additionally, `stage` can be set to `true`, with `activate` set to
+ * `false`. This extends the `activate = false` behavior to include
+ * staging of applied changes, every time that changes are applied, even
+ * if the changes were applied to an existing draft version.
+ * 
+ * Finally, `activate` should not be set to `true` when `stage` is also
+ * set to `true`. While this combination will not cause any harm to the
+ * service, there is no logical reason to both stage and activate every
+ * set of applied changes.
+ * 
+ * ## Example Usage
+ * 
+ * Basic usage:
+ * 
+ * <pre>
+ * {@code
+ * package generated_program;
+ * 
+ * import com.pulumi.Context;
+ * import com.pulumi.Pulumi;
+ * import com.pulumi.core.Output;
+ * import com.pulumi.fastly.FastlyFunctions;
+ * import com.pulumi.fastly.inputs.GetPackageHashArgs;
+ * import com.pulumi.fastly.ServiceCompute;
+ * import com.pulumi.fastly.ServiceComputeArgs;
+ * import com.pulumi.fastly.inputs.ServiceComputeDomainArgs;
+ * import com.pulumi.fastly.inputs.ServiceComputePackageArgs;
+ * import java.util.List;
+ * import java.util.ArrayList;
+ * import java.util.Map;
+ * import java.io.File;
+ * import java.nio.file.Files;
+ * import java.nio.file.Paths;
+ * 
+ * public class App {
+ *     public static void main(String[] args) {
+ *         Pulumi.run(App::stack);
+ *     }
+ * 
+ *     public static void stack(Context ctx) {
+ *         final var example = FastlyFunctions.getPackageHash(GetPackageHashArgs.builder()
+ *             .filename("./path/to/package.tar.gz")
+ *             .build());
+ * 
+ *         var exampleServiceCompute = new ServiceCompute("exampleServiceCompute", ServiceComputeArgs.builder()
+ *             .name("demofastly")
+ *             .domains(ServiceComputeDomainArgs.builder()
+ *                 .name("demo.notexample.com")
+ *                 .comment("demo")
+ *                 .build())
+ *             .package_(ServiceComputePackageArgs.builder()
+ *                 .filename("package.tar.gz")
+ *                 .sourceCodeHash(example.hash())
+ *                 .build())
+ *             .forceDestroy(true)
+ *             .build());
+ * 
+ *     }
+ * }
+ * }
+ * </pre>
+ * 
+ * &lt;!-- remove this curated references once https://github.com/hashicorp/terraform-plugin-docs/issues/28 is resolved --&gt;
+ * ### package block
+ * 
+ * The `package` block supports uploading or modifying Wasm packages for use in a Fastly Compute service. See Fastly&#39;s documentation on
+ * [Compute](https://www.fastly.com/products/edge-compute/serverless)
+ * 
+ * ## Product Enablement
+ * 
+ * The [Product Enablement](https://developer.fastly.com/reference/api/products/) APIs allow customers to enable and disable specific products.
+ * 
+ * Not all customers are entitled to use these endpoints and so care needs to be given when configuring a `productEnablement` block in your Terraform configuration.
+ * 
+ * Consult the Product Enablement Guide to understand the internal workings for the `productEnablement` block.
+ * 
  * ## Import
  * 
  * Fastly Services can be imported using their service ID, e.g.
@@ -63,7 +159,6 @@ import javax.annotation.Nullable;
  * ```
  * 
  * By default, either the active version will be imported, or the latest version if no version is active.
- * 
  * Alternatively, a specific version of the service can be selected by appending an `{@literal @}` followed by the version number to the service ID, e.g.
  * 
  * ```sh
@@ -121,9 +216,17 @@ public class ServiceCompute extends com.pulumi.resources.CustomResource {
     public Output<Integer> clonedVersion() {
         return this.clonedVersion;
     }
+    /**
+     * Description field for the service. Default `Managed by Terraform`
+     * 
+     */
     @Export(name="comment", refs={String.class}, tree="[0]")
     private Output</* @Nullable */ String> comment;
 
+    /**
+     * @return Description field for the service. Default `Managed by Terraform`
+     * 
+     */
     public Output<Optional<String>> comment() {
         return Codegen.optional(this.comment);
     }
@@ -161,9 +264,17 @@ public class ServiceCompute extends com.pulumi.resources.CustomResource {
     public Output<Optional<Boolean>> forceDestroy() {
         return Codegen.optional(this.forceDestroy);
     }
+    /**
+     * Used internally by the provider to temporarily indicate if all resources should call their associated API to update the local state. This is for scenarios where the service version has been reverted outside of Terraform (e.g. via the Fastly UI) and the provider needs to resync the state for a different active version (this is only if `activate` is `true`).
+     * 
+     */
     @Export(name="forceRefresh", refs={Boolean.class}, tree="[0]")
     private Output<Boolean> forceRefresh;
 
+    /**
+     * @return Used internally by the provider to temporarily indicate if all resources should call their associated API to update the local state. This is for scenarios where the service version has been reverted outside of Terraform (e.g. via the Fastly UI) and the provider needs to resync the state for a different active version (this is only if `activate` is `true`).
+     * 
+     */
     public Output<Boolean> forceRefresh() {
         return this.forceRefresh;
     }
@@ -409,9 +520,17 @@ public class ServiceCompute extends com.pulumi.resources.CustomResource {
     public Output<Optional<List<ServiceComputeResourceLink>>> resourceLinks() {
         return Codegen.optional(this.resourceLinks);
     }
+    /**
+     * Services that are active cannot be destroyed. If set to `true` a service Terraform intends to destroy will instead be deactivated (allowing it to be reused by importing it into another Terraform project). If `false`, attempting to destroy an active service will cause an error. Default `false`
+     * 
+     */
     @Export(name="reuse", refs={Boolean.class}, tree="[0]")
     private Output</* @Nullable */ Boolean> reuse;
 
+    /**
+     * @return Services that are active cannot be destroyed. If set to `true` a service Terraform intends to destroy will instead be deactivated (allowing it to be reused by importing it into another Terraform project). If `false`, attempting to destroy an active service will cause an error. Default `false`
+     * 
+     */
     public Output<Optional<Boolean>> reuse() {
         return Codegen.optional(this.reuse);
     }

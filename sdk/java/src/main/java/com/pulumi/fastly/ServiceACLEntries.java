@@ -18,21 +18,60 @@ import java.util.Optional;
 import javax.annotation.Nullable;
 
 /**
+ * Defines a set of Fastly ACL entries that can be used to populate a service ACL.  This resource will populate an ACL with the entries and will track their state.
+ * 
+ * &gt; **Warning:** This provider will take precedence over any changes you make in the UI or API. Such changes are likely to be reversed if you run the provider again.
+ * 
+ * &gt; **Note:** By default the Terraform provider allows you to externally manage the entries via API or UI.
+ * If you wish to apply your changes in the HCL, then you should explicitly set the `manageEntries` attribute. An example of this configuration is provided below.
+ * 
+ * ## Example Usage
+ * 
+ * ### Basic usage:
+ * 
+ * ### Terraform &gt;= 0.12.0 &amp;&amp; &lt; 0.12.6)
+ * 
+ * `forEach` attributes were not available in Terraform before 0.12.6, however, users can still use `for` expressions to achieve
+ * similar behaviour as seen in the example below.
+ * 
+ * &gt; **Warning:** Terraform might not properly calculate implicit dependencies on computed attributes when using `for` expressions
+ * 
+ * For scenarios such as adding an ACL to a service and at the same time, creating the ACL entries (`fastly.ServiceACLEntries`)
+ * resource, Terraform will not calculate implicit dependencies correctly on `for` expressions. This will result in index lookup
+ * problems and the execution will fail.
+ * 
+ * For those scenarios, it&#39;s recommended to split the changes into two distinct steps:
+ * 
+ * 1. Add the `acl` block to the `fastly.ServiceVcl` and apply the changes
+ * 2. Add the `fastly.ServiceACLEntries` resource with the `for` expressions to the HCL and apply the changes
+ * 
+ * Usage:
+ * 
+ * ### Reapplying original entries with `manageEntries` if the state of the entries drifts
+ * 
+ * By default the user is opted out from reapplying the original changes if the entries are managed externally.
+ * The following example demonstrates how the `manageEntries` field can be used to reapply the changes defined in the HCL if the state of the entries drifts.
+ * When the value is explicitly set to &#39;true&#39;, Terraform will keep the original changes and discard any other changes made under this resource outside of Terraform.
+ * 
+ * &gt; **Warning:** You will lose externally managed entries if `manage_entries=true`.
+ * 
+ * &gt; **Note:** The `ignoreChanges` built-in meta-argument takes precedence over `manageEntries` regardless of its value.
+ * 
  * ## Import
  * 
  * This is an example of the import command being applied to the resource named `fastly_service_acl_entries.entries`
- * 
- * The resource ID is a combined value of the `service_id` and `acl_id` separated by a forward slash.
+ * The resource ID is a combined value of the `serviceId` and `aclId` separated by a forward slash.
  * 
  * ```sh
  * $ pulumi import fastly:index/serviceACLEntries:ServiceACLEntries entries xxxxxxxxxxxxxxxxxxxx/xxxxxxxxxxxxxxxxxxxx
  * ```
  * 
  * If Terraform is already managing remote acl entries against a resource being imported then the user will be asked to remove it from the existing Terraform state.
- * 
  * The following is an example of the Terraform state command to remove the resource named `fastly_service_acl_entries.entries` from the Terraform state file.
  * 
+ * ```sh
  * $ terraform state rm fastly_service_acl_entries.entries
+ * ```
  * 
  */
 @ResourceType(type="fastly:index/serviceACLEntries:ServiceACLEntries")

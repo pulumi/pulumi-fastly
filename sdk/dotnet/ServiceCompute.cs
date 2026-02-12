@@ -10,6 +10,89 @@ using Pulumi.Serialization;
 namespace Pulumi.Fastly
 {
     /// <summary>
+    /// Provides a Fastly Compute service. Compute is a computation platform capable of running custom binaries that you compile on your own systems and upload to Fastly. Security and portability is provided by compiling your code to [WebAssembly](https://webassembly.org/) using the `wasm32-wasi` target. A compute service encompasses Domains and Backends.
+    /// 
+    /// The Service resource requires a domain name that is correctly set up to direct traffic to the Fastly service. See Fastly's guide on [Adding CNAME Records](https://docs.fastly.com/en/guides/adding-cname-records) on their documentation site for guidance.
+    /// 
+    /// &gt; **Note:** If you omit the `Package` block, you must set `activate = false` to avoid service validation errors.
+    /// 
+    /// ## Activation and Staging
+    /// 
+    /// By default, the `Activate` attribute is `True`, and the `Stage`
+    /// attribute is `False`. This combination means that when `terraform
+    /// apply` is executed for a plan which will make changes to the service,
+    /// the last version created by the provider (the `ClonedVersion`) will
+    /// be cloned to make a draft version, the changes will be applied to that
+    /// draft version, and that draft version will be activated.
+    /// 
+    /// If desired, `Activate` can be set to `False`, in which case the
+    /// behavior above will be modified such that cloning will only occur when
+    /// the `ClonedVersion` is locked, and the draft version will not be
+    /// activated.
+    /// 
+    /// Additionally, `Stage` can be set to `True`, with `Activate` set to
+    /// `False`. This extends the `activate = false` behavior to include
+    /// staging of applied changes, every time that changes are applied, even
+    /// if the changes were applied to an existing draft version.
+    /// 
+    /// Finally, `Activate` should not be set to `True` when `Stage` is also
+    /// set to `True`. While this combination will not cause any harm to the
+    /// service, there is no logical reason to both stage and activate every
+    /// set of applied changes.
+    /// 
+    /// ## Example Usage
+    /// 
+    /// Basic usage:
+    /// 
+    /// ```csharp
+    /// using System.Collections.Generic;
+    /// using System.Linq;
+    /// using Pulumi;
+    /// using Fastly = Pulumi.Fastly;
+    /// 
+    /// return await Deployment.RunAsync(() =&gt; 
+    /// {
+    ///     var example = Fastly.GetPackageHash.Invoke(new()
+    ///     {
+    ///         Filename = "./path/to/package.tar.gz",
+    ///     });
+    /// 
+    ///     var exampleServiceCompute = new Fastly.ServiceCompute("example", new()
+    ///     {
+    ///         Name = "demofastly",
+    ///         Domains = new[]
+    ///         {
+    ///             new Fastly.Inputs.ServiceComputeDomainArgs
+    ///             {
+    ///                 Name = "demo.notexample.com",
+    ///                 Comment = "demo",
+    ///             },
+    ///         },
+    ///         Package = new Fastly.Inputs.ServiceComputePackageArgs
+    ///         {
+    ///             Filename = "package.tar.gz",
+    ///             SourceCodeHash = example.Apply(getPackageHashResult =&gt; getPackageHashResult.Hash),
+    ///         },
+    ///         ForceDestroy = true,
+    ///     });
+    /// 
+    /// });
+    /// ```
+    /// 
+    /// &lt;!-- remove this curated references once https://github.com/hashicorp/terraform-plugin-docs/issues/28 is resolved --&gt;
+    /// ### package block
+    /// 
+    /// The `Package` block supports uploading or modifying Wasm packages for use in a Fastly Compute service. See Fastly's documentation on
+    /// [Compute](https://www.fastly.com/products/edge-compute/serverless)
+    /// 
+    /// ## Product Enablement
+    /// 
+    /// The [Product Enablement](https://developer.fastly.com/reference/api/products/) APIs allow customers to enable and disable specific products.
+    /// 
+    /// Not all customers are entitled to use these endpoints and so care needs to be given when configuring a `ProductEnablement` block in your Terraform configuration.
+    /// 
+    /// Consult the Product Enablement Guide to understand the internal workings for the `ProductEnablement` block.
+    /// 
     /// ## Import
     /// 
     /// Fastly Services can be imported using their service ID, e.g.
@@ -19,7 +102,6 @@ namespace Pulumi.Fastly
     /// ```
     /// 
     /// By default, either the active version will be imported, or the latest version if no version is active.
-    /// 
     /// Alternatively, a specific version of the service can be selected by appending an `@` followed by the version number to the service ID, e.g.
     /// 
     /// ```sh
@@ -50,6 +132,9 @@ namespace Pulumi.Fastly
         [Output("clonedVersion")]
         public Output<int> ClonedVersion { get; private set; } = null!;
 
+        /// <summary>
+        /// Description field for the service. Default `Managed by Terraform`
+        /// </summary>
         [Output("comment")]
         public Output<string?> Comment { get; private set; } = null!;
 
@@ -68,6 +153,9 @@ namespace Pulumi.Fastly
         [Output("forceDestroy")]
         public Output<bool?> ForceDestroy { get; private set; } = null!;
 
+        /// <summary>
+        /// Used internally by the provider to temporarily indicate if all resources should call their associated API to update the local state. This is for scenarios where the service version has been reverted outside of Terraform (e.g. via the Fastly UI) and the provider needs to resync the state for a different active version (this is only if `Activate` is `True`).
+        /// </summary>
         [Output("forceRefresh")]
         public Output<bool> ForceRefresh { get; private set; } = null!;
 
@@ -188,6 +276,9 @@ namespace Pulumi.Fastly
         [Output("resourceLinks")]
         public Output<ImmutableArray<Outputs.ServiceComputeResourceLink>> ResourceLinks { get; private set; } = null!;
 
+        /// <summary>
+        /// Services that are active cannot be destroyed. If set to `True` a service Terraform intends to destroy will instead be deactivated (allowing it to be reused by importing it into another Terraform project). If `False`, attempting to destroy an active service will cause an error. Default `False`
+        /// </summary>
         [Output("reuse")]
         public Output<bool?> Reuse { get; private set; } = null!;
 
@@ -269,6 +360,9 @@ namespace Pulumi.Fastly
             set => _backends = value;
         }
 
+        /// <summary>
+        /// Description field for the service. Default `Managed by Terraform`
+        /// </summary>
         [Input("comment")]
         public Input<string>? Comment { get; set; }
 
@@ -560,6 +654,9 @@ namespace Pulumi.Fastly
             set => _resourceLinks = value;
         }
 
+        /// <summary>
+        /// Services that are active cannot be destroyed. If set to `True` a service Terraform intends to destroy will instead be deactivated (allowing it to be reused by importing it into another Terraform project). If `False`, attempting to destroy an active service will cause an error. Default `False`
+        /// </summary>
         [Input("reuse")]
         public Input<bool>? Reuse { get; set; }
 
@@ -609,6 +706,9 @@ namespace Pulumi.Fastly
         [Input("clonedVersion")]
         public Input<int>? ClonedVersion { get; set; }
 
+        /// <summary>
+        /// Description field for the service. Default `Managed by Terraform`
+        /// </summary>
         [Input("comment")]
         public Input<string>? Comment { get; set; }
 
@@ -638,6 +738,9 @@ namespace Pulumi.Fastly
         [Input("forceDestroy")]
         public Input<bool>? ForceDestroy { get; set; }
 
+        /// <summary>
+        /// Used internally by the provider to temporarily indicate if all resources should call their associated API to update the local state. This is for scenarios where the service version has been reverted outside of Terraform (e.g. via the Fastly UI) and the provider needs to resync the state for a different active version (this is only if `Activate` is `True`).
+        /// </summary>
         [Input("forceRefresh")]
         public Input<bool>? ForceRefresh { get; set; }
 
@@ -909,6 +1012,9 @@ namespace Pulumi.Fastly
             set => _resourceLinks = value;
         }
 
+        /// <summary>
+        /// Services that are active cannot be destroyed. If set to `True` a service Terraform intends to destroy will instead be deactivated (allowing it to be reused by importing it into another Terraform project). If `False`, attempting to destroy an active service will cause an error. Default `False`
+        /// </summary>
         [Input("reuse")]
         public Input<bool>? Reuse { get; set; }
 

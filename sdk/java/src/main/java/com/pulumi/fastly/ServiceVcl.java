@@ -64,6 +64,165 @@ import java.util.Optional;
 import javax.annotation.Nullable;
 
 /**
+ * Provides a Fastly Service, representing the configuration for a website, app,
+ * API, or anything else to be served through Fastly. A Service encompasses Domains
+ * and Backends.
+ * 
+ * The Service resource requires a domain name that is correctly set up to direct
+ * traffic to the Fastly service. See Fastly&#39;s guide on [Adding CNAME Records][fastly-cname]
+ * on their documentation site for guidance.
+ * 
+ * ## Activation and Staging
+ * 
+ * By default, the `activate` attribute is `true`, and the `stage`
+ * attribute is `false`. This combination means that when `terraform
+ * apply` is executed for a plan which will make changes to the service,
+ * the last version created by the provider (the `clonedVersion`) will
+ * be cloned to make a draft version, the changes will be applied to that
+ * draft version, and that draft version will be activated.
+ * 
+ * If desired, `activate` can be set to `false`, in which case the
+ * behavior above will be modified such that cloning will only occur when
+ * the `clonedVersion` is locked, and the draft version will not be
+ * activated.
+ * 
+ * Additionally, `stage` can be set to `true`, with `activate` set to
+ * `false`. This extends the `activate = false` behavior to include
+ * staging of applied changes, every time that changes are applied, even
+ * if the changes were applied to an existing draft version.
+ * 
+ * Finally, `activate` should not be set to `true` when `stage` is also
+ * set to `true`. While this combination will not cause any harm to the
+ * service, there is no logical reason to both stage and activate every
+ * set of applied changes.
+ * 
+ * ## Example Usage
+ * 
+ * Basic usage:
+ * 
+ * <pre>
+ * {@code
+ * package generated_program;
+ * 
+ * import com.pulumi.Context;
+ * import com.pulumi.Pulumi;
+ * import com.pulumi.core.Output;
+ * import com.pulumi.fastly.ServiceVcl;
+ * import com.pulumi.fastly.ServiceVclArgs;
+ * import com.pulumi.fastly.inputs.ServiceVclDomainArgs;
+ * import com.pulumi.fastly.inputs.ServiceVclBackendArgs;
+ * import java.util.List;
+ * import java.util.ArrayList;
+ * import java.util.Map;
+ * import java.io.File;
+ * import java.nio.file.Files;
+ * import java.nio.file.Paths;
+ * 
+ * public class App {
+ *     public static void main(String[] args) {
+ *         Pulumi.run(App::stack);
+ *     }
+ * 
+ *     public static void stack(Context ctx) {
+ *         var demo = new ServiceVcl("demo", ServiceVclArgs.builder()
+ *             .name("demofastly")
+ *             .domains(ServiceVclDomainArgs.builder()
+ *                 .name("demo.notexample.com")
+ *                 .comment("demo")
+ *                 .build())
+ *             .backends(ServiceVclBackendArgs.builder()
+ *                 .address("127.0.0.1")
+ *                 .name("localhost")
+ *                 .port(80)
+ *                 .build())
+ *             .forceDestroy(true)
+ *             .build());
+ * 
+ *     }
+ * }
+ * }
+ * </pre>
+ * 
+ * Basic usage with an Amazon S3 Website and that removes the `x-amz-request-id` header:
+ * 
+ * <pre>
+ * {@code
+ * package generated_program;
+ * 
+ * import com.pulumi.Context;
+ * import com.pulumi.Pulumi;
+ * import com.pulumi.core.Output;
+ * import com.pulumi.fastly.ServiceVcl;
+ * import com.pulumi.fastly.ServiceVclArgs;
+ * import com.pulumi.fastly.inputs.ServiceVclDomainArgs;
+ * import com.pulumi.fastly.inputs.ServiceVclBackendArgs;
+ * import com.pulumi.fastly.inputs.ServiceVclHeaderArgs;
+ * import com.pulumi.fastly.inputs.ServiceVclGzipArgs;
+ * import com.pulumi.aws.S3Bucket;
+ * import com.pulumi.aws.S3BucketArgs;
+ * import com.pulumi.aws.S3BucketWebsiteConfiguration;
+ * import com.pulumi.aws.S3BucketWebsiteConfigurationArgs;
+ * import java.util.List;
+ * import java.util.ArrayList;
+ * import java.util.Map;
+ * import java.io.File;
+ * import java.nio.file.Files;
+ * import java.nio.file.Paths;
+ * 
+ * public class App {
+ *     public static void main(String[] args) {
+ *         Pulumi.run(App::stack);
+ *     }
+ * 
+ *     public static void stack(Context ctx) {
+ *         var demo = new ServiceVcl("demo", ServiceVclArgs.builder()
+ *             .name("demofastly")
+ *             .domains(ServiceVclDomainArgs.builder()
+ *                 .name("demo.notexample.com")
+ *                 .comment("demo")
+ *                 .build())
+ *             .backends(ServiceVclBackendArgs.builder()
+ *                 .address("http-me.fastly.dev")
+ *                 .name("Glitch Test Site")
+ *                 .port(80)
+ *                 .overrideHost("http-me.fastly.dev")
+ *                 .build())
+ *             .headers(ServiceVclHeaderArgs.builder()
+ *                 .destination("http.x-amz-request-id")
+ *                 .type("cache")
+ *                 .action("delete")
+ *                 .name("remove x-amz-request-id")
+ *                 .build())
+ *             .gzips(ServiceVclGzipArgs.builder()
+ *                 .name("file extensions and content types")
+ *                 .extensions(                
+ *                     "css",
+ *                     "js")
+ *                 .contentTypes(                
+ *                     "text/html",
+ *                     "text/css")
+ *                 .build())
+ *             .forceDestroy(true)
+ *             .build());
+ * 
+ *         var websiteBucket = new S3Bucket("websiteBucket", S3BucketArgs.builder()
+ *             .bucket("your-unique-website-bucket-name")
+ *             .build());
+ * 
+ *         var websiteConfig = new S3BucketWebsiteConfiguration("websiteConfig", S3BucketWebsiteConfigurationArgs.builder()
+ *             .bucket(websiteBucket.id())
+ *             .indexDocument(List.of(Map.of("suffix", "index.html")))
+ *             .errorDocument(List.of(Map.of("key", "error.html")))
+ *             .build());
+ * 
+ *     }
+ * }
+ * }
+ * </pre>
+ * 
+ * Basic usage with [custom
+ * VCL](https://docs.fastly.com/vcl/custom-vcl/uploading-custom-vcl/):
+ * 
  * ## Import
  * 
  * Fastly Services can be imported using their service ID, e.g.
@@ -73,7 +232,6 @@ import javax.annotation.Nullable;
  * ```
  * 
  * By default, either the active version will be imported, or the latest version if no version is active.
- * 
  * Alternatively, a specific version of the service can be selected by appending an `{@literal @}` followed by the version number to the service ID, e.g.
  * 
  * ```sh
@@ -143,9 +301,17 @@ public class ServiceVcl extends com.pulumi.resources.CustomResource {
     public Output<Integer> clonedVersion() {
         return this.clonedVersion;
     }
+    /**
+     * Description field for the service. Default `Managed by Terraform`
+     * 
+     */
     @Export(name="comment", refs={String.class}, tree="[0]")
     private Output</* @Nullable */ String> comment;
 
+    /**
+     * @return Description field for the service. Default `Managed by Terraform`
+     * 
+     */
     public Output<Optional<String>> comment() {
         return Codegen.optional(this.comment);
     }
@@ -229,9 +395,17 @@ public class ServiceVcl extends com.pulumi.resources.CustomResource {
     public Output<Optional<Boolean>> forceDestroy() {
         return Codegen.optional(this.forceDestroy);
     }
+    /**
+     * Used internally by the provider to temporarily indicate if all resources should call their associated API to update the local state. This is for scenarios where the service version has been reverted outside of Terraform (e.g. via the Fastly UI) and the provider needs to resync the state for a different active version (this is only if `activate` is `true`).
+     * 
+     */
     @Export(name="forceRefresh", refs={Boolean.class}, tree="[0]")
     private Output<Boolean> forceRefresh;
 
+    /**
+     * @return Used internally by the provider to temporarily indicate if all resources should call their associated API to update the local state. This is for scenarios where the service version has been reverted outside of Terraform (e.g. via the Fastly UI) and the provider needs to resync the state for a different active version (this is only if `activate` is `true`).
+     * 
+     */
     public Output<Boolean> forceRefresh() {
         return this.forceRefresh;
     }
@@ -493,9 +667,17 @@ public class ServiceVcl extends com.pulumi.resources.CustomResource {
     public Output<Optional<List<ServiceVclResponseObject>>> responseObjects() {
         return Codegen.optional(this.responseObjects);
     }
+    /**
+     * Services that are active cannot be destroyed. If set to `true` a service Terraform intends to destroy will instead be deactivated (allowing it to be reused by importing it into another Terraform project). If `false`, attempting to destroy an active service will cause an error. Default `false`
+     * 
+     */
     @Export(name="reuse", refs={Boolean.class}, tree="[0]")
     private Output</* @Nullable */ Boolean> reuse;
 
+    /**
+     * @return Services that are active cannot be destroyed. If set to `true` a service Terraform intends to destroy will instead be deactivated (allowing it to be reused by importing it into another Terraform project). If `false`, attempting to destroy an active service will cause an error. Default `false`
+     * 
+     */
     public Output<Optional<Boolean>> reuse() {
         return Codegen.optional(this.reuse);
     }

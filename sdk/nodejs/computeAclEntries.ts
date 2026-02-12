@@ -5,6 +5,89 @@ import * as pulumi from "@pulumi/pulumi";
 import * as utilities from "./utilities";
 
 /**
+ * The `fastly.ComputeAclEntries` resource allows you to manage CIDR-based allow/block rules (ACL entries) inside a Fastly Compute ACL.
+ *
+ * By default, Terraform does not continue to manage the entries after the initial `pulumi up`. This allows you to make changes to ACL entries outside of Terraform using the [Fastly API](https://developer.fastly.com/reference/api/) or [Fastly CLI](https://developer.fastly.com/learning/tools/cli/)) without Terraform resetting them.
+ *
+ * To have Terraform continue managing the entries after creation (e.g., deleting any entries not defined in the config), set `manageEntries = true`.
+ *
+ * > **Note:** Use `manageEntries = true` cautiously. Terraform will overwrite external changes and delete any unmanaged entries.
+ *
+ * ## Example Usage
+ *
+ * Basic usage (with seeded values, unmanaged after initial apply):
+ *
+ * ```typescript
+ * import * as pulumi from "@pulumi/pulumi";
+ * import * as fastly from "@pulumi/fastly";
+ *
+ * // IMPORTANT: Deleting a Compute ACL requires first deleting its resource_link.
+ * // This requires a two-step `pulumi up` as we can't guarantee deletion order.
+ * const exampleComputeAcl = new fastly.ComputeAcl("example", {name: "my_compute_acl"});
+ * const exampleComputeAclEntries = new fastly.ComputeAclEntries("example", {
+ *     computeAclId: exampleComputeAcl.id,
+ *     entries: {
+ *         "192.0.2.0/24": "ALLOW",
+ *         "198.51.100.0/24": "BLOCK",
+ *     },
+ * });
+ * const example = fastly.getPackageHash({
+ *     filename: "package.tar.gz",
+ * });
+ * const exampleServiceCompute = new fastly.ServiceCompute("example", {
+ *     name: "my_compute_service",
+ *     domains: [{
+ *         name: "demo.example.com",
+ *     }],
+ *     "package": {
+ *         filename: "package.tar.gz",
+ *         sourceCodeHash: example.then(example => example.hash),
+ *     },
+ *     resourceLinks: [{
+ *         name: "my_acl_link",
+ *         resourceId: exampleComputeAcl.id,
+ *     }],
+ *     forceDestroy: true,
+ * });
+ * ```
+ *
+ * Terraform-managed usage (where Terraform controls entries long-term):
+ *
+ * ```typescript
+ * import * as pulumi from "@pulumi/pulumi";
+ * import * as fastly from "@pulumi/fastly";
+ *
+ * // IMPORTANT: Deleting a Compute ACL requires first deleting its resource_link.
+ * // This requires a two-step `pulumi up` as we can't guarantee deletion order.
+ * const exampleComputeAcl = new fastly.ComputeAcl("example", {name: "my_compute_acl"});
+ * const exampleComputeAclEntries = new fastly.ComputeAclEntries("example", {
+ *     computeAclId: exampleComputeAcl.id,
+ *     entries: {
+ *         "203.0.113.0/24": "BLOCK",
+ *         "198.51.100.0/24": "ALLOW",
+ *     },
+ *     manageEntries: true,
+ * });
+ * const example = fastly.getPackageHash({
+ *     filename: "package.tar.gz",
+ * });
+ * const exampleServiceCompute = new fastly.ServiceCompute("example", {
+ *     name: "my_compute_service",
+ *     domains: [{
+ *         name: "demo.example.com",
+ *     }],
+ *     "package": {
+ *         filename: "package.tar.gz",
+ *         sourceCodeHash: example.then(example => example.hash),
+ *     },
+ *     resourceLinks: [{
+ *         name: "my_acl_link",
+ *         resourceId: exampleComputeAcl.id,
+ *     }],
+ *     forceDestroy: true,
+ * });
+ * ```
+ *
  * ## Import
  *
  * Fastly Compute ACL entries can be imported using the format `<compute_acl_id>/entries`, e.g.
@@ -49,6 +132,9 @@ export class ComputeAclEntries extends pulumi.CustomResource {
      * A map representing the entries in the Compute ACL, where the keys are the prefixes and the values are the actions (ALLOW or BLOCK).
      */
     declare public readonly entries: pulumi.Output<{[key: string]: string}>;
+    /**
+     * Manage the ACL entries in Terraform (default: false). If true, Terraform will ensure that the ACL's entries match the entries in the Terraform configuration.
+     */
     declare public readonly manageEntries: pulumi.Output<boolean | undefined>;
 
     /**
@@ -96,6 +182,9 @@ export interface ComputeAclEntriesState {
      * A map representing the entries in the Compute ACL, where the keys are the prefixes and the values are the actions (ALLOW or BLOCK).
      */
     entries?: pulumi.Input<{[key: string]: pulumi.Input<string>}>;
+    /**
+     * Manage the ACL entries in Terraform (default: false). If true, Terraform will ensure that the ACL's entries match the entries in the Terraform configuration.
+     */
     manageEntries?: pulumi.Input<boolean>;
 }
 
@@ -111,5 +200,8 @@ export interface ComputeAclEntriesArgs {
      * A map representing the entries in the Compute ACL, where the keys are the prefixes and the values are the actions (ALLOW or BLOCK).
      */
     entries: pulumi.Input<{[key: string]: pulumi.Input<string>}>;
+    /**
+     * Manage the ACL entries in Terraform (default: false). If true, Terraform will ensure that the ACL's entries match the entries in the Terraform configuration.
+     */
     manageEntries?: pulumi.Input<boolean>;
 }

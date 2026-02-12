@@ -12,6 +12,149 @@ import (
 	"github.com/pulumi/pulumi/sdk/v3/go/pulumi"
 )
 
+// The `ComputeAclEntries` resource allows you to manage CIDR-based allow/block rules (ACL entries) inside a Fastly Compute ACL.
+//
+// By default, Terraform does not continue to manage the entries after the initial `pulumi up`. This allows you to make changes to ACL entries outside of Terraform using the [Fastly API](https://developer.fastly.com/reference/api/) or [Fastly CLI](https://developer.fastly.com/learning/tools/cli/)) without Terraform resetting them.
+//
+// To have Terraform continue managing the entries after creation (e.g., deleting any entries not defined in the config), set `manageEntries = true`.
+//
+// > **Note:** Use `manageEntries = true` cautiously. Terraform will overwrite external changes and delete any unmanaged entries.
+//
+// ## Example Usage
+//
+// Basic usage (with seeded values, unmanaged after initial apply):
+//
+// ```go
+// package main
+//
+// import (
+//
+//	"github.com/pulumi/pulumi-fastly/sdk/v11/go/fastly"
+//	"github.com/pulumi/pulumi/sdk/v3/go/pulumi"
+//
+// )
+//
+//	func main() {
+//		pulumi.Run(func(ctx *pulumi.Context) error {
+//			// IMPORTANT: Deleting a Compute ACL requires first deleting its resource_link.
+//			// This requires a two-step `pulumi up` as we can't guarantee deletion order.
+//			exampleComputeAcl, err := fastly.NewComputeAcl(ctx, "example", &fastly.ComputeAclArgs{
+//				Name: pulumi.String("my_compute_acl"),
+//			})
+//			if err != nil {
+//				return err
+//			}
+//			_, err = fastly.NewComputeAclEntries(ctx, "example", &fastly.ComputeAclEntriesArgs{
+//				ComputeAclId: exampleComputeAcl.ID(),
+//				Entries: pulumi.StringMap{
+//					"192.0.2.0/24":    pulumi.String("ALLOW"),
+//					"198.51.100.0/24": pulumi.String("BLOCK"),
+//				},
+//			})
+//			if err != nil {
+//				return err
+//			}
+//			example, err := fastly.GetPackageHash(ctx, &fastly.GetPackageHashArgs{
+//				Filename: pulumi.StringRef("package.tar.gz"),
+//			}, nil)
+//			if err != nil {
+//				return err
+//			}
+//			_, err = fastly.NewServiceCompute(ctx, "example", &fastly.ServiceComputeArgs{
+//				Name: pulumi.String("my_compute_service"),
+//				Domains: fastly.ServiceComputeDomainArray{
+//					&fastly.ServiceComputeDomainArgs{
+//						Name: pulumi.String("demo.example.com"),
+//					},
+//				},
+//				Package: &fastly.ServiceComputePackageArgs{
+//					Filename:       pulumi.String("package.tar.gz"),
+//					SourceCodeHash: pulumi.String(example.Hash),
+//				},
+//				ResourceLinks: fastly.ServiceComputeResourceLinkArray{
+//					&fastly.ServiceComputeResourceLinkArgs{
+//						Name:       pulumi.String("my_acl_link"),
+//						ResourceId: exampleComputeAcl.ID(),
+//					},
+//				},
+//				ForceDestroy: pulumi.Bool(true),
+//			})
+//			if err != nil {
+//				return err
+//			}
+//			return nil
+//		})
+//	}
+//
+// ```
+//
+// Terraform-managed usage (where Terraform controls entries long-term):
+//
+// ```go
+// package main
+//
+// import (
+//
+//	"github.com/pulumi/pulumi-fastly/sdk/v11/go/fastly"
+//	"github.com/pulumi/pulumi/sdk/v3/go/pulumi"
+//
+// )
+//
+//	func main() {
+//		pulumi.Run(func(ctx *pulumi.Context) error {
+//			// IMPORTANT: Deleting a Compute ACL requires first deleting its resource_link.
+//			// This requires a two-step `pulumi up` as we can't guarantee deletion order.
+//			exampleComputeAcl, err := fastly.NewComputeAcl(ctx, "example", &fastly.ComputeAclArgs{
+//				Name: pulumi.String("my_compute_acl"),
+//			})
+//			if err != nil {
+//				return err
+//			}
+//			_, err = fastly.NewComputeAclEntries(ctx, "example", &fastly.ComputeAclEntriesArgs{
+//				ComputeAclId: exampleComputeAcl.ID(),
+//				Entries: pulumi.StringMap{
+//					"203.0.113.0/24":  pulumi.String("BLOCK"),
+//					"198.51.100.0/24": pulumi.String("ALLOW"),
+//				},
+//				ManageEntries: pulumi.Bool(true),
+//			})
+//			if err != nil {
+//				return err
+//			}
+//			example, err := fastly.GetPackageHash(ctx, &fastly.GetPackageHashArgs{
+//				Filename: pulumi.StringRef("package.tar.gz"),
+//			}, nil)
+//			if err != nil {
+//				return err
+//			}
+//			_, err = fastly.NewServiceCompute(ctx, "example", &fastly.ServiceComputeArgs{
+//				Name: pulumi.String("my_compute_service"),
+//				Domains: fastly.ServiceComputeDomainArray{
+//					&fastly.ServiceComputeDomainArgs{
+//						Name: pulumi.String("demo.example.com"),
+//					},
+//				},
+//				Package: &fastly.ServiceComputePackageArgs{
+//					Filename:       pulumi.String("package.tar.gz"),
+//					SourceCodeHash: pulumi.String(example.Hash),
+//				},
+//				ResourceLinks: fastly.ServiceComputeResourceLinkArray{
+//					&fastly.ServiceComputeResourceLinkArgs{
+//						Name:       pulumi.String("my_acl_link"),
+//						ResourceId: exampleComputeAcl.ID(),
+//					},
+//				},
+//				ForceDestroy: pulumi.Bool(true),
+//			})
+//			if err != nil {
+//				return err
+//			}
+//			return nil
+//		})
+//	}
+//
+// ```
+//
 // ## Import
 //
 // Fastly Compute ACL entries can be imported using the format `<compute_acl_id>/entries`, e.g.
@@ -25,8 +168,9 @@ type ComputeAclEntries struct {
 	// Manages entries for a Fastly Compute Access Control List (ACL). To import, use the format \n\n/entries.
 	ComputeAclId pulumi.StringOutput `pulumi:"computeAclId"`
 	// A map representing the entries in the Compute ACL, where the keys are the prefixes and the values are the actions (ALLOW or BLOCK).
-	Entries       pulumi.StringMapOutput `pulumi:"entries"`
-	ManageEntries pulumi.BoolPtrOutput   `pulumi:"manageEntries"`
+	Entries pulumi.StringMapOutput `pulumi:"entries"`
+	// Manage the ACL entries in Terraform (default: false). If true, Terraform will ensure that the ACL's entries match the entries in the Terraform configuration.
+	ManageEntries pulumi.BoolPtrOutput `pulumi:"manageEntries"`
 }
 
 // NewComputeAclEntries registers a new resource with the given unique name, arguments, and options.
@@ -68,15 +212,17 @@ type computeAclEntriesState struct {
 	// Manages entries for a Fastly Compute Access Control List (ACL). To import, use the format \n\n/entries.
 	ComputeAclId *string `pulumi:"computeAclId"`
 	// A map representing the entries in the Compute ACL, where the keys are the prefixes and the values are the actions (ALLOW or BLOCK).
-	Entries       map[string]string `pulumi:"entries"`
-	ManageEntries *bool             `pulumi:"manageEntries"`
+	Entries map[string]string `pulumi:"entries"`
+	// Manage the ACL entries in Terraform (default: false). If true, Terraform will ensure that the ACL's entries match the entries in the Terraform configuration.
+	ManageEntries *bool `pulumi:"manageEntries"`
 }
 
 type ComputeAclEntriesState struct {
 	// Manages entries for a Fastly Compute Access Control List (ACL). To import, use the format \n\n/entries.
 	ComputeAclId pulumi.StringPtrInput
 	// A map representing the entries in the Compute ACL, where the keys are the prefixes and the values are the actions (ALLOW or BLOCK).
-	Entries       pulumi.StringMapInput
+	Entries pulumi.StringMapInput
+	// Manage the ACL entries in Terraform (default: false). If true, Terraform will ensure that the ACL's entries match the entries in the Terraform configuration.
 	ManageEntries pulumi.BoolPtrInput
 }
 
@@ -88,8 +234,9 @@ type computeAclEntriesArgs struct {
 	// Manages entries for a Fastly Compute Access Control List (ACL). To import, use the format \n\n/entries.
 	ComputeAclId string `pulumi:"computeAclId"`
 	// A map representing the entries in the Compute ACL, where the keys are the prefixes and the values are the actions (ALLOW or BLOCK).
-	Entries       map[string]string `pulumi:"entries"`
-	ManageEntries *bool             `pulumi:"manageEntries"`
+	Entries map[string]string `pulumi:"entries"`
+	// Manage the ACL entries in Terraform (default: false). If true, Terraform will ensure that the ACL's entries match the entries in the Terraform configuration.
+	ManageEntries *bool `pulumi:"manageEntries"`
 }
 
 // The set of arguments for constructing a ComputeAclEntries resource.
@@ -97,7 +244,8 @@ type ComputeAclEntriesArgs struct {
 	// Manages entries for a Fastly Compute Access Control List (ACL). To import, use the format \n\n/entries.
 	ComputeAclId pulumi.StringInput
 	// A map representing the entries in the Compute ACL, where the keys are the prefixes and the values are the actions (ALLOW or BLOCK).
-	Entries       pulumi.StringMapInput
+	Entries pulumi.StringMapInput
+	// Manage the ACL entries in Terraform (default: false). If true, Terraform will ensure that the ACL's entries match the entries in the Terraform configuration.
 	ManageEntries pulumi.BoolPtrInput
 }
 
@@ -198,6 +346,7 @@ func (o ComputeAclEntriesOutput) Entries() pulumi.StringMapOutput {
 	return o.ApplyT(func(v *ComputeAclEntries) pulumi.StringMapOutput { return v.Entries }).(pulumi.StringMapOutput)
 }
 
+// Manage the ACL entries in Terraform (default: false). If true, Terraform will ensure that the ACL's entries match the entries in the Terraform configuration.
 func (o ComputeAclEntriesOutput) ManageEntries() pulumi.BoolPtrOutput {
 	return o.ApplyT(func(v *ComputeAclEntries) pulumi.BoolPtrOutput { return v.ManageEntries }).(pulumi.BoolPtrOutput)
 }

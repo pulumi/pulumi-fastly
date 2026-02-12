@@ -10,6 +10,139 @@ using Pulumi.Serialization;
 namespace Pulumi.Fastly
 {
     /// <summary>
+    /// The `fastly.ComputeAclEntries` resource allows you to manage CIDR-based allow/block rules (ACL entries) inside a Fastly Compute ACL.
+    /// 
+    /// By default, Terraform does not continue to manage the entries after the initial `pulumi up`. This allows you to make changes to ACL entries outside of Terraform using the [Fastly API](https://developer.fastly.com/reference/api/) or [Fastly CLI](https://developer.fastly.com/learning/tools/cli/)) without Terraform resetting them.
+    /// 
+    /// To have Terraform continue managing the entries after creation (e.g., deleting any entries not defined in the config), set `ManageEntries = true`.
+    /// 
+    /// &gt; **Note:** Use `ManageEntries = true` cautiously. Terraform will overwrite external changes and delete any unmanaged entries.
+    /// 
+    /// ## Example Usage
+    /// 
+    /// Basic usage (with seeded values, unmanaged after initial apply):
+    /// 
+    /// ```csharp
+    /// using System.Collections.Generic;
+    /// using System.Linq;
+    /// using Pulumi;
+    /// using Fastly = Pulumi.Fastly;
+    /// 
+    /// return await Deployment.RunAsync(() =&gt; 
+    /// {
+    ///     // IMPORTANT: Deleting a Compute ACL requires first deleting its resource_link.
+    ///     // This requires a two-step `pulumi up` as we can't guarantee deletion order.
+    ///     var exampleComputeAcl = new Fastly.ComputeAcl("example", new()
+    ///     {
+    ///         Name = "my_compute_acl",
+    ///     });
+    /// 
+    ///     var exampleComputeAclEntries = new Fastly.ComputeAclEntries("example", new()
+    ///     {
+    ///         ComputeAclId = exampleComputeAcl.Id,
+    ///         Entries = 
+    ///         {
+    ///             { "192.0.2.0/24", "ALLOW" },
+    ///             { "198.51.100.0/24", "BLOCK" },
+    ///         },
+    ///     });
+    /// 
+    ///     var example = Fastly.GetPackageHash.Invoke(new()
+    ///     {
+    ///         Filename = "package.tar.gz",
+    ///     });
+    /// 
+    ///     var exampleServiceCompute = new Fastly.ServiceCompute("example", new()
+    ///     {
+    ///         Name = "my_compute_service",
+    ///         Domains = new[]
+    ///         {
+    ///             new Fastly.Inputs.ServiceComputeDomainArgs
+    ///             {
+    ///                 Name = "demo.example.com",
+    ///             },
+    ///         },
+    ///         Package = new Fastly.Inputs.ServiceComputePackageArgs
+    ///         {
+    ///             Filename = "package.tar.gz",
+    ///             SourceCodeHash = example.Apply(getPackageHashResult =&gt; getPackageHashResult.Hash),
+    ///         },
+    ///         ResourceLinks = new[]
+    ///         {
+    ///             new Fastly.Inputs.ServiceComputeResourceLinkArgs
+    ///             {
+    ///                 Name = "my_acl_link",
+    ///                 ResourceId = exampleComputeAcl.Id,
+    ///             },
+    ///         },
+    ///         ForceDestroy = true,
+    ///     });
+    /// 
+    /// });
+    /// ```
+    /// 
+    /// Terraform-managed usage (where Terraform controls entries long-term):
+    /// 
+    /// ```csharp
+    /// using System.Collections.Generic;
+    /// using System.Linq;
+    /// using Pulumi;
+    /// using Fastly = Pulumi.Fastly;
+    /// 
+    /// return await Deployment.RunAsync(() =&gt; 
+    /// {
+    ///     // IMPORTANT: Deleting a Compute ACL requires first deleting its resource_link.
+    ///     // This requires a two-step `pulumi up` as we can't guarantee deletion order.
+    ///     var exampleComputeAcl = new Fastly.ComputeAcl("example", new()
+    ///     {
+    ///         Name = "my_compute_acl",
+    ///     });
+    /// 
+    ///     var exampleComputeAclEntries = new Fastly.ComputeAclEntries("example", new()
+    ///     {
+    ///         ComputeAclId = exampleComputeAcl.Id,
+    ///         Entries = 
+    ///         {
+    ///             { "203.0.113.0/24", "BLOCK" },
+    ///             { "198.51.100.0/24", "ALLOW" },
+    ///         },
+    ///         ManageEntries = true,
+    ///     });
+    /// 
+    ///     var example = Fastly.GetPackageHash.Invoke(new()
+    ///     {
+    ///         Filename = "package.tar.gz",
+    ///     });
+    /// 
+    ///     var exampleServiceCompute = new Fastly.ServiceCompute("example", new()
+    ///     {
+    ///         Name = "my_compute_service",
+    ///         Domains = new[]
+    ///         {
+    ///             new Fastly.Inputs.ServiceComputeDomainArgs
+    ///             {
+    ///                 Name = "demo.example.com",
+    ///             },
+    ///         },
+    ///         Package = new Fastly.Inputs.ServiceComputePackageArgs
+    ///         {
+    ///             Filename = "package.tar.gz",
+    ///             SourceCodeHash = example.Apply(getPackageHashResult =&gt; getPackageHashResult.Hash),
+    ///         },
+    ///         ResourceLinks = new[]
+    ///         {
+    ///             new Fastly.Inputs.ServiceComputeResourceLinkArgs
+    ///             {
+    ///                 Name = "my_acl_link",
+    ///                 ResourceId = exampleComputeAcl.Id,
+    ///             },
+    ///         },
+    ///         ForceDestroy = true,
+    ///     });
+    /// 
+    /// });
+    /// ```
+    /// 
     /// ## Import
     /// 
     /// Fastly Compute ACL entries can be imported using the format `&lt;compute_acl_id&gt;/entries`, e.g.
@@ -33,6 +166,9 @@ namespace Pulumi.Fastly
         [Output("entries")]
         public Output<ImmutableDictionary<string, string>> Entries { get; private set; } = null!;
 
+        /// <summary>
+        /// Manage the ACL entries in Terraform (default: false). If true, Terraform will ensure that the ACL's entries match the entries in the Terraform configuration.
+        /// </summary>
         [Output("manageEntries")]
         public Output<bool?> ManageEntries { get; private set; } = null!;
 
@@ -100,6 +236,9 @@ namespace Pulumi.Fastly
             set => _entries = value;
         }
 
+        /// <summary>
+        /// Manage the ACL entries in Terraform (default: false). If true, Terraform will ensure that the ACL's entries match the entries in the Terraform configuration.
+        /// </summary>
         [Input("manageEntries")]
         public Input<bool>? ManageEntries { get; set; }
 
@@ -129,6 +268,9 @@ namespace Pulumi.Fastly
             set => _entries = value;
         }
 
+        /// <summary>
+        /// Manage the ACL entries in Terraform (default: false). If true, Terraform will ensure that the ACL's entries match the entries in the Terraform configuration.
+        /// </summary>
         [Input("manageEntries")]
         public Input<bool>? ManageEntries { get; set; }
 

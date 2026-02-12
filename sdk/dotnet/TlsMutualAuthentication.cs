@@ -45,6 +45,9 @@ namespace Pulumi.Fastly
         [Output("enforced")]
         public Output<bool> Enforced { get; private set; } = null!;
 
+        /// <summary>
+        /// A comma-separated list used by the Terraform provider during a state refresh to return more data related to your mutual authentication from the Fastly API (permitted values: `TlsActivations`).
+        /// </summary>
         [Output("include")]
         public Output<string?> Include { get; private set; } = null!;
 
@@ -136,6 +139,9 @@ namespace Pulumi.Fastly
         [Input("enforced")]
         public Input<bool>? Enforced { get; set; }
 
+        /// <summary>
+        /// A comma-separated list used by the Terraform provider during a state refresh to return more data related to your mutual authentication from the Fastly API (permitted values: `TlsActivations`).
+        /// </summary>
         [Input("include")]
         public Input<string>? Include { get; set; }
 
@@ -183,6 +189,9 @@ namespace Pulumi.Fastly
         [Input("enforced")]
         public Input<bool>? Enforced { get; set; }
 
+        /// <summary>
+        /// A comma-separated list used by the Terraform provider during a state refresh to return more data related to your mutual authentication from the Fastly API (permitted values: `TlsActivations`).
+        /// </summary>
         [Input("include")]
         public Input<string>? Include { get; set; }
 

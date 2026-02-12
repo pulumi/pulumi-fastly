@@ -3133,8 +3133,9 @@ type ServiceComputeDictionary struct {
 	// Allow the dictionary to be deleted, even if it contains entries. Defaults to false.
 	ForceDestroy *bool `pulumi:"forceDestroy"`
 	// A unique name to identify this dictionary. It is important to note that changing this attribute will delete and recreate the dictionary, and discard the current items in the dictionary
-	Name      string `pulumi:"name"`
-	WriteOnly *bool  `pulumi:"writeOnly"`
+	Name string `pulumi:"name"`
+	// If `true`, the dictionary is a [private dictionary](https://docs.fastly.com/en/guides/private-dictionaries). Default is `false`. Please note that changing this attribute will delete and recreate the dictionary, and discard the current items in the dictionary. `ServiceVcl` resource will only manage the dictionary object itself, and items under private dictionaries can not be managed using [`ServiceDictionaryItems`](https://registry.terraform.io/providers/fastly/fastly/latest/docs/resources/service_dictionary_items#limitations) resource. Therefore, using a write-only/private dictionary should only be done if the items are managed outside of Terraform
+	WriteOnly *bool `pulumi:"writeOnly"`
 }
 
 // ServiceComputeDictionaryInput is an input type that accepts ServiceComputeDictionaryArgs and ServiceComputeDictionaryOutput values.
@@ -3154,7 +3155,8 @@ type ServiceComputeDictionaryArgs struct {
 	// Allow the dictionary to be deleted, even if it contains entries. Defaults to false.
 	ForceDestroy pulumi.BoolPtrInput `pulumi:"forceDestroy"`
 	// A unique name to identify this dictionary. It is important to note that changing this attribute will delete and recreate the dictionary, and discard the current items in the dictionary
-	Name      pulumi.StringInput  `pulumi:"name"`
+	Name pulumi.StringInput `pulumi:"name"`
+	// If `true`, the dictionary is a [private dictionary](https://docs.fastly.com/en/guides/private-dictionaries). Default is `false`. Please note that changing this attribute will delete and recreate the dictionary, and discard the current items in the dictionary. `ServiceVcl` resource will only manage the dictionary object itself, and items under private dictionaries can not be managed using [`ServiceDictionaryItems`](https://registry.terraform.io/providers/fastly/fastly/latest/docs/resources/service_dictionary_items#limitations) resource. Therefore, using a write-only/private dictionary should only be done if the items are managed outside of Terraform
 	WriteOnly pulumi.BoolPtrInput `pulumi:"writeOnly"`
 }
 
@@ -3224,6 +3226,7 @@ func (o ServiceComputeDictionaryOutput) Name() pulumi.StringOutput {
 	return o.ApplyT(func(v ServiceComputeDictionary) string { return v.Name }).(pulumi.StringOutput)
 }
 
+// If `true`, the dictionary is a [private dictionary](https://docs.fastly.com/en/guides/private-dictionaries). Default is `false`. Please note that changing this attribute will delete and recreate the dictionary, and discard the current items in the dictionary. `ServiceVcl` resource will only manage the dictionary object itself, and items under private dictionaries can not be managed using [`ServiceDictionaryItems`](https://registry.terraform.io/providers/fastly/fastly/latest/docs/resources/service_dictionary_items#limitations) resource. Therefore, using a write-only/private dictionary should only be done if the items are managed outside of Terraform
 func (o ServiceComputeDictionaryOutput) WriteOnly() pulumi.BoolPtrOutput {
 	return o.ApplyT(func(v ServiceComputeDictionary) *bool { return v.WriteOnly }).(pulumi.BoolPtrOutput)
 }
@@ -10221,8 +10224,9 @@ type ServiceVclDictionary struct {
 	// Allow the dictionary to be deleted, even if it contains entries. Defaults to false.
 	ForceDestroy *bool `pulumi:"forceDestroy"`
 	// A unique name to identify this dictionary. It is important to note that changing this attribute will delete and recreate the dictionary, and discard the current items in the dictionary
-	Name      string `pulumi:"name"`
-	WriteOnly *bool  `pulumi:"writeOnly"`
+	Name string `pulumi:"name"`
+	// If `true`, the dictionary is a [private dictionary](https://docs.fastly.com/en/guides/private-dictionaries). Default is `false`. Please note that changing this attribute will delete and recreate the dictionary, and discard the current items in the dictionary. `ServiceVcl` resource will only manage the dictionary object itself, and items under private dictionaries can not be managed using [`ServiceDictionaryItems`](https://registry.terraform.io/providers/fastly/fastly/latest/docs/resources/service_dictionary_items#limitations) resource. Therefore, using a write-only/private dictionary should only be done if the items are managed outside of Terraform
+	WriteOnly *bool `pulumi:"writeOnly"`
 }
 
 // ServiceVclDictionaryInput is an input type that accepts ServiceVclDictionaryArgs and ServiceVclDictionaryOutput values.
@@ -10242,7 +10246,8 @@ type ServiceVclDictionaryArgs struct {
 	// Allow the dictionary to be deleted, even if it contains entries. Defaults to false.
 	ForceDestroy pulumi.BoolPtrInput `pulumi:"forceDestroy"`
 	// A unique name to identify this dictionary. It is important to note that changing this attribute will delete and recreate the dictionary, and discard the current items in the dictionary
-	Name      pulumi.StringInput  `pulumi:"name"`
+	Name pulumi.StringInput `pulumi:"name"`
+	// If `true`, the dictionary is a [private dictionary](https://docs.fastly.com/en/guides/private-dictionaries). Default is `false`. Please note that changing this attribute will delete and recreate the dictionary, and discard the current items in the dictionary. `ServiceVcl` resource will only manage the dictionary object itself, and items under private dictionaries can not be managed using [`ServiceDictionaryItems`](https://registry.terraform.io/providers/fastly/fastly/latest/docs/resources/service_dictionary_items#limitations) resource. Therefore, using a write-only/private dictionary should only be done if the items are managed outside of Terraform
 	WriteOnly pulumi.BoolPtrInput `pulumi:"writeOnly"`
 }
 
@@ -10312,6 +10317,7 @@ func (o ServiceVclDictionaryOutput) Name() pulumi.StringOutput {
 	return o.ApplyT(func(v ServiceVclDictionary) string { return v.Name }).(pulumi.StringOutput)
 }
 
+// If `true`, the dictionary is a [private dictionary](https://docs.fastly.com/en/guides/private-dictionaries). Default is `false`. Please note that changing this attribute will delete and recreate the dictionary, and discard the current items in the dictionary. `ServiceVcl` resource will only manage the dictionary object itself, and items under private dictionaries can not be managed using [`ServiceDictionaryItems`](https://registry.terraform.io/providers/fastly/fastly/latest/docs/resources/service_dictionary_items#limitations) resource. Therefore, using a write-only/private dictionary should only be done if the items are managed outside of Terraform
 func (o ServiceVclDictionaryOutput) WriteOnly() pulumi.BoolPtrOutput {
 	return o.ApplyT(func(v ServiceVclDictionary) *bool { return v.WriteOnly }).(pulumi.BoolPtrOutput)
 }
