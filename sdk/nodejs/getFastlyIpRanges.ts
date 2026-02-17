@@ -15,14 +15,14 @@ import * as utilities from "./utilities";
  * import * as fastly from "@pulumi/fastly";
  *
  * const fastly = fastly.getFastlyIpRanges({});
- * const fromFastly = new aws.index.SecurityGroup("from_fastly", {
+ * const fromFastly = new aws.ec2.SecurityGroup("from_fastly", {
  *     name: "from_fastly",
  *     ingress: [{
- *         fromPort: "443",
- *         toPort: "443",
+ *         fromPort: 443,
+ *         toPort: 443,
  *         protocol: "tcp",
- *         cidrBlocks: fastly.cidrBlocks,
- *         ipv6CidrBlocks: fastly.ipv6CidrBlocks,
+ *         cidrBlocks: fastly.then(fastly => fastly.cidrBlocks),
+ *         ipv6CidrBlocks: fastly.then(fastly => fastly.ipv6CidrBlocks),
  *     }],
  * });
  * ```
@@ -63,14 +63,14 @@ export interface GetFastlyIpRangesResult {
  * import * as fastly from "@pulumi/fastly";
  *
  * const fastly = fastly.getFastlyIpRanges({});
- * const fromFastly = new aws.index.SecurityGroup("from_fastly", {
+ * const fromFastly = new aws.ec2.SecurityGroup("from_fastly", {
  *     name: "from_fastly",
  *     ingress: [{
- *         fromPort: "443",
- *         toPort: "443",
+ *         fromPort: 443,
+ *         toPort: 443,
  *         protocol: "tcp",
- *         cidrBlocks: fastly.cidrBlocks,
- *         ipv6CidrBlocks: fastly.ipv6CidrBlocks,
+ *         cidrBlocks: fastly.then(fastly => fastly.cidrBlocks),
+ *         ipv6CidrBlocks: fastly.then(fastly => fastly.ipv6CidrBlocks),
  *     }],
  * });
  * ```

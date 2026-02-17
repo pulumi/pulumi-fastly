@@ -142,27 +142,21 @@ namespace Pulumi.Fastly
     ///         ForceDestroy = true,
     ///     });
     /// 
-    ///     var websiteBucket = new Aws.Index.S3Bucket("website_bucket", new()
+    ///     var websiteBucket = new Aws.S3.Bucket("website_bucket", new()
     ///     {
-    ///         Bucket = "your-unique-website-bucket-name",
+    ///         BucketName = "your-unique-website-bucket-name",
     ///     });
     /// 
-    ///     var websiteConfig = new Aws.Index.S3BucketWebsiteConfiguration("website_config", new()
+    ///     var websiteConfig = new Aws.S3.BucketWebsiteConfiguration("website_config", new()
     ///     {
     ///         Bucket = websiteBucket.Id,
-    ///         IndexDocument = new[]
+    ///         IndexDocument = new Aws.S3.Inputs.BucketWebsiteConfigurationIndexDocumentArgs
     ///         {
-    ///             
-    ///             {
-    ///                 { "suffix", "index.html" },
-    ///             },
+    ///             Suffix = "index.html",
     ///         },
-    ///         ErrorDocument = new[]
+    ///         ErrorDocument = new Aws.S3.Inputs.BucketWebsiteConfigurationErrorDocumentArgs
     ///         {
-    ///             
-    ///             {
-    ///                 { "key", "error.html" },
-    ///             },
+    ///             Key = "error.html",
     ///         },
     ///     });
     /// 

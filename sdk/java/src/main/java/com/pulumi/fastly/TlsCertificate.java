@@ -36,6 +36,7 @@ import javax.annotation.Nullable;
  * import com.pulumi.tls.PrivateKeyArgs;
  * import com.pulumi.tls.SelfSignedCert;
  * import com.pulumi.tls.SelfSignedCertArgs;
+ * import com.pulumi.tls.inputs.SelfSignedCertSubjectArgs;
  * import com.pulumi.fastly.TlsPrivateKey;
  * import com.pulumi.fastly.TlsPrivateKeyArgs;
  * import com.pulumi.fastly.TlsCertificate;

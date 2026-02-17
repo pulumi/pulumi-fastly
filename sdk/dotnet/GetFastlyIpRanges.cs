@@ -27,18 +27,18 @@ namespace Pulumi.Fastly
         /// {
         ///     var fastly = Fastly.GetFastlyIpRanges.Invoke();
         /// 
-        ///     var fromFastly = new Aws.Index.SecurityGroup("from_fastly", new()
+        ///     var fromFastly = new Aws.Ec2.SecurityGroup("from_fastly", new()
         ///     {
         ///         Name = "from_fastly",
         ///         Ingress = new[]
         ///         {
-        ///             
+        ///             new Aws.Ec2.Inputs.SecurityGroupIngressArgs
         ///             {
-        ///                 { "fromPort", "443" },
-        ///                 { "toPort", "443" },
-        ///                 { "protocol", "tcp" },
-        ///                 { "cidrBlocks", fastly.Apply(getFastlyIpRangesResult =&gt; getFastlyIpRangesResult.CidrBlocks) },
-        ///                 { "ipv6CidrBlocks", fastly.Apply(getFastlyIpRangesResult =&gt; getFastlyIpRangesResult.Ipv6CidrBlocks) },
+        ///                 FromPort = 443,
+        ///                 ToPort = 443,
+        ///                 Protocol = "tcp",
+        ///                 CidrBlocks = fastly.Apply(getFastlyIpRangesResult =&gt; getFastlyIpRangesResult.CidrBlocks),
+        ///                 Ipv6CidrBlocks = fastly.Apply(getFastlyIpRangesResult =&gt; getFastlyIpRangesResult.Ipv6CidrBlocks),
         ///             },
         ///         },
         ///     });
@@ -67,18 +67,18 @@ namespace Pulumi.Fastly
         /// {
         ///     var fastly = Fastly.GetFastlyIpRanges.Invoke();
         /// 
-        ///     var fromFastly = new Aws.Index.SecurityGroup("from_fastly", new()
+        ///     var fromFastly = new Aws.Ec2.SecurityGroup("from_fastly", new()
         ///     {
         ///         Name = "from_fastly",
         ///         Ingress = new[]
         ///         {
-        ///             
+        ///             new Aws.Ec2.Inputs.SecurityGroupIngressArgs
         ///             {
-        ///                 { "fromPort", "443" },
-        ///                 { "toPort", "443" },
-        ///                 { "protocol", "tcp" },
-        ///                 { "cidrBlocks", fastly.Apply(getFastlyIpRangesResult =&gt; getFastlyIpRangesResult.CidrBlocks) },
-        ///                 { "ipv6CidrBlocks", fastly.Apply(getFastlyIpRangesResult =&gt; getFastlyIpRangesResult.Ipv6CidrBlocks) },
+        ///                 FromPort = 443,
+        ///                 ToPort = 443,
+        ///                 Protocol = "tcp",
+        ///                 CidrBlocks = fastly.Apply(getFastlyIpRangesResult =&gt; getFastlyIpRangesResult.CidrBlocks),
+        ///                 Ipv6CidrBlocks = fastly.Apply(getFastlyIpRangesResult =&gt; getFastlyIpRangesResult.Ipv6CidrBlocks),
         ///             },
         ///         },
         ///     });
@@ -107,18 +107,18 @@ namespace Pulumi.Fastly
         /// {
         ///     var fastly = Fastly.GetFastlyIpRanges.Invoke();
         /// 
-        ///     var fromFastly = new Aws.Index.SecurityGroup("from_fastly", new()
+        ///     var fromFastly = new Aws.Ec2.SecurityGroup("from_fastly", new()
         ///     {
         ///         Name = "from_fastly",
         ///         Ingress = new[]
         ///         {
-        ///             
+        ///             new Aws.Ec2.Inputs.SecurityGroupIngressArgs
         ///             {
-        ///                 { "fromPort", "443" },
-        ///                 { "toPort", "443" },
-        ///                 { "protocol", "tcp" },
-        ///                 { "cidrBlocks", fastly.Apply(getFastlyIpRangesResult =&gt; getFastlyIpRangesResult.CidrBlocks) },
-        ///                 { "ipv6CidrBlocks", fastly.Apply(getFastlyIpRangesResult =&gt; getFastlyIpRangesResult.Ipv6CidrBlocks) },
+        ///                 FromPort = 443,
+        ///                 ToPort = 443,
+        ///                 Protocol = "tcp",
+        ///                 CidrBlocks = fastly.Apply(getFastlyIpRangesResult =&gt; getFastlyIpRangesResult.CidrBlocks),
+        ///                 Ipv6CidrBlocks = fastly.Apply(getFastlyIpRangesResult =&gt; getFastlyIpRangesResult.Ipv6CidrBlocks),
         ///             },
         ///         },
         ///     });

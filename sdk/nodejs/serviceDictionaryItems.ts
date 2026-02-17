@@ -146,13 +146,7 @@ import * as utilities from "./utilities";
  *             project.push(new fastly.ServiceDictionaryItems(`project-${range.key}`, {
  *                 serviceId: myservice.id,
  *                 dictionaryId: range.value.dictionaryId,
- *                 items: hostDivisions.reduce((__obj, division) => ({ ...__obj, [division]: std.index.format({
- *                     input: "%s.%s",
- *                     args: [
- *                         division,
- *                         hostBase,
- *                     ],
- *                 }).result })),
+ *                 items: hostDivisions.reduce((__obj, division) => ({ ...__obj, [division]: _arg0_.result })),
  *             }));
  *         }
  *     });
