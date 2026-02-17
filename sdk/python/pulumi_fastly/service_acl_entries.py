@@ -172,10 +172,134 @@ class ServiceACLEntries(pulumi.CustomResource):
                  service_id: Optional[pulumi.Input[_builtins.str]] = None,
                  __props__=None):
         """
+        Defines a set of Fastly ACL entries that can be used to populate a service ACL.  This resource will populate an ACL with the entries and will track their state.
+
+        > **Warning:** This provider will take precedence over any changes you make in the UI or API. Such changes are likely to be reversed if you run the provider again.
+
+        > **Note:** By default the Terraform provider allows you to externally manage the entries via API or UI.
+        If you wish to apply your changes in the HCL, then you should explicitly set the `manage_entries` attribute. An example of this configuration is provided below.
+
+        ## Example Usage
+
+        ### Basic usage:
+
+        ```python
+        import pulumi
+        import pulumi_fastly as fastly
+
+        config = pulumi.Config()
+        myacl_name = config.get("myaclName")
+        if myacl_name is None:
+            myacl_name = "My ACL"
+        myservice = fastly.ServiceVcl("myservice",
+            name="demofastly",
+            domains=[{
+                "name": "demo.notexample.com",
+                "comment": "demo",
+            }],
+            backends=[{
+                "address": "http-me.fastly.dev",
+                "name": "Glitch Test Site",
+                "port": 80,
+            }],
+            acls=[{
+                "name": myacl_name,
+            }],
+            force_destroy=True)
+        entries = []
+        def create_entries(range_body):
+            for range in [{"key": k, "value": v} for [k, v] in enumerate(range_body)]:
+                entries.append(fastly.ServiceACLEntries(f"entries-{range['key']}",
+                    service_id=myservice.id,
+                    acl_id=range["value"].acl_id,
+                    entries=[{
+                        "ip": "127.0.0.1",
+                        "subnet": "24",
+                        "negated": False,
+                        "comment": "ACL Entry 1",
+                    }]))
+
+        myservice.acls.apply(lambda resolved_outputs: create_entries({d.name: d for d in resolved_outputs['acls'] if d.name == myacl_name}))
+        ```
+
+        ### Terraform >= 0.12.0 && < 0.12.6)
+
+        `for_each` attributes were not available in Terraform before 0.12.6, however, users can still use `for` expressions to achieve
+        similar behaviour as seen in the example below.
+
+        > **Warning:** Terraform might not properly calculate implicit dependencies on computed attributes when using `for` expressions
+
+        For scenarios such as adding an ACL to a service and at the same time, creating the ACL entries (`ServiceACLEntries`)
+        resource, Terraform will not calculate implicit dependencies correctly on `for` expressions. This will result in index lookup
+        problems and the execution will fail.
+
+        For those scenarios, it's recommended to split the changes into two distinct steps:
+
+        1. Add the `acl` block to the `ServiceVcl` and apply the changes
+        2. Add the `ServiceACLEntries` resource with the `for` expressions to the HCL and apply the changes
+
+        Usage:
+
+        ```python
+        import pulumi
+        import pulumi_fastly as fastly
+
+        config = pulumi.Config()
+        myacl_name = config.get("myaclName")
+        if myacl_name is None:
+            myacl_name = "My ACL"
+        myservice = fastly.ServiceVcl("myservice",
+            name="demofastly",
+            domains=[{
+                "name": "demo.notexample.com",
+                "comment": "demo",
+            }],
+            acls=[{
+                "name": myacl_name,
+            }])
+        entries = fastly.ServiceACLEntries("entries",
+            service_id=myservice.id,
+            acl_id=myservice.acls.apply(lambda acls: {d.name: d.acl_id for d in acls}[myacl_name]),
+            entries=[{
+                "ip": "127.0.0.1",
+                "subnet": "24",
+                "negated": False,
+                "comment": "ACL Entry 1",
+            }])
+        ```
+
+        ### Reapplying original entries with `manage_entries` if the state of the entries drifts
+
+        By default the user is opted out from reapplying the original changes if the entries are managed externally.
+        The following example demonstrates how the `manage_entries` field can be used to reapply the changes defined in the HCL if the state of the entries drifts.
+        When the value is explicitly set to 'true', Terraform will keep the original changes and discard any other changes made under this resource outside of Terraform.
+
+        > **Warning:** You will lose externally managed entries if `manage_entries=true`.
+
+        > **Note:** The `ignore_changes` built-in meta-argument takes precedence over `manage_entries` regardless of its value.
+
+        ```python
+        import pulumi
+        import pulumi_fastly as fastly
+
+        #...
+        entries = []
+        for range in [{"key": k, "value": v} for [k, v] in enumerate({d.name: d for d in myservice.acl if d.name == myacl_name})]:
+            entries.append(fastly.ServiceACLEntries(f"entries-{range['key']}",
+                service_id=myservice["id"],
+                acl_id=range["value"]["aclId"],
+                manage_entries=True,
+                entries=[{
+                    "ip": "127.0.0.1",
+                    "subnet": "24",
+                    "negated": False,
+                    "comment": "ACL Entry 1",
+                }]))
+        ```
+
         ## Import
 
         This is an example of the import command being applied to the resource named `fastly_service_acl_entries.entries`
-
         The resource ID is a combined value of the `service_id` and `acl_id` separated by a forward slash.
 
         ```sh
@@ -183,10 +307,11 @@ class ServiceACLEntries(pulumi.CustomResource):
         ```
 
         If Terraform is already managing remote acl entries against a resource being imported then the user will be asked to remove it from the existing Terraform state.
-
         The following is an example of the Terraform state command to remove the resource named `fastly_service_acl_entries.entries` from the Terraform state file.
 
+        ```sh
         $ terraform state rm fastly_service_acl_entries.entries
+        ```
 
         :param str resource_name: The name of the resource.
         :param pulumi.ResourceOptions opts: Options for the resource.
@@ -202,10 +327,134 @@ class ServiceACLEntries(pulumi.CustomResource):
                  args: ServiceACLEntriesArgs,
                  opts: Optional[pulumi.ResourceOptions] = None):
         """
+        Defines a set of Fastly ACL entries that can be used to populate a service ACL.  This resource will populate an ACL with the entries and will track their state.
+
+        > **Warning:** This provider will take precedence over any changes you make in the UI or API. Such changes are likely to be reversed if you run the provider again.
+
+        > **Note:** By default the Terraform provider allows you to externally manage the entries via API or UI.
+        If you wish to apply your changes in the HCL, then you should explicitly set the `manage_entries` attribute. An example of this configuration is provided below.
+
+        ## Example Usage
+
+        ### Basic usage:
+
+        ```python
+        import pulumi
+        import pulumi_fastly as fastly
+
+        config = pulumi.Config()
+        myacl_name = config.get("myaclName")
+        if myacl_name is None:
+            myacl_name = "My ACL"
+        myservice = fastly.ServiceVcl("myservice",
+            name="demofastly",
+            domains=[{
+                "name": "demo.notexample.com",
+                "comment": "demo",
+            }],
+            backends=[{
+                "address": "http-me.fastly.dev",
+                "name": "Glitch Test Site",
+                "port": 80,
+            }],
+            acls=[{
+                "name": myacl_name,
+            }],
+            force_destroy=True)
+        entries = []
+        def create_entries(range_body):
+            for range in [{"key": k, "value": v} for [k, v] in enumerate(range_body)]:
+                entries.append(fastly.ServiceACLEntries(f"entries-{range['key']}",
+                    service_id=myservice.id,
+                    acl_id=range["value"].acl_id,
+                    entries=[{
+                        "ip": "127.0.0.1",
+                        "subnet": "24",
+                        "negated": False,
+                        "comment": "ACL Entry 1",
+                    }]))
+
+        myservice.acls.apply(lambda resolved_outputs: create_entries({d.name: d for d in resolved_outputs['acls'] if d.name == myacl_name}))
+        ```
+
+        ### Terraform >= 0.12.0 && < 0.12.6)
+
+        `for_each` attributes were not available in Terraform before 0.12.6, however, users can still use `for` expressions to achieve
+        similar behaviour as seen in the example below.
+
+        > **Warning:** Terraform might not properly calculate implicit dependencies on computed attributes when using `for` expressions
+
+        For scenarios such as adding an ACL to a service and at the same time, creating the ACL entries (`ServiceACLEntries`)
+        resource, Terraform will not calculate implicit dependencies correctly on `for` expressions. This will result in index lookup
+        problems and the execution will fail.
+
+        For those scenarios, it's recommended to split the changes into two distinct steps:
+
+        1. Add the `acl` block to the `ServiceVcl` and apply the changes
+        2. Add the `ServiceACLEntries` resource with the `for` expressions to the HCL and apply the changes
+
+        Usage:
+
+        ```python
+        import pulumi
+        import pulumi_fastly as fastly
+
+        config = pulumi.Config()
+        myacl_name = config.get("myaclName")
+        if myacl_name is None:
+            myacl_name = "My ACL"
+        myservice = fastly.ServiceVcl("myservice",
+            name="demofastly",
+            domains=[{
+                "name": "demo.notexample.com",
+                "comment": "demo",
+            }],
+            acls=[{
+                "name": myacl_name,
+            }])
+        entries = fastly.ServiceACLEntries("entries",
+            service_id=myservice.id,
+            acl_id=myservice.acls.apply(lambda acls: {d.name: d.acl_id for d in acls}[myacl_name]),
+            entries=[{
+                "ip": "127.0.0.1",
+                "subnet": "24",
+                "negated": False,
+                "comment": "ACL Entry 1",
+            }])
+        ```
+
+        ### Reapplying original entries with `manage_entries` if the state of the entries drifts
+
+        By default the user is opted out from reapplying the original changes if the entries are managed externally.
+        The following example demonstrates how the `manage_entries` field can be used to reapply the changes defined in the HCL if the state of the entries drifts.
+        When the value is explicitly set to 'true', Terraform will keep the original changes and discard any other changes made under this resource outside of Terraform.
+
+        > **Warning:** You will lose externally managed entries if `manage_entries=true`.
+
+        > **Note:** The `ignore_changes` built-in meta-argument takes precedence over `manage_entries` regardless of its value.
+
+        ```python
+        import pulumi
+        import pulumi_fastly as fastly
+
+        #...
+        entries = []
+        for range in [{"key": k, "value": v} for [k, v] in enumerate({d.name: d for d in myservice.acl if d.name == myacl_name})]:
+            entries.append(fastly.ServiceACLEntries(f"entries-{range['key']}",
+                service_id=myservice["id"],
+                acl_id=range["value"]["aclId"],
+                manage_entries=True,
+                entries=[{
+                    "ip": "127.0.0.1",
+                    "subnet": "24",
+                    "negated": False,
+                    "comment": "ACL Entry 1",
+                }]))
+        ```
+
         ## Import
 
         This is an example of the import command being applied to the resource named `fastly_service_acl_entries.entries`
-
         The resource ID is a combined value of the `service_id` and `acl_id` separated by a forward slash.
 
         ```sh
@@ -213,10 +462,11 @@ class ServiceACLEntries(pulumi.CustomResource):
         ```
 
         If Terraform is already managing remote acl entries against a resource being imported then the user will be asked to remove it from the existing Terraform state.
-
         The following is an example of the Terraform state command to remove the resource named `fastly_service_acl_entries.entries` from the Terraform state file.
 
+        ```sh
         $ terraform state rm fastly_service_acl_entries.entries
+        ```
 
         :param str resource_name: The name of the resource.
         :param ServiceACLEntriesArgs args: The arguments to use to populate this resource's properties.

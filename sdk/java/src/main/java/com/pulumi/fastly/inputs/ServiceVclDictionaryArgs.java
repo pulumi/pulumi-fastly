@@ -62,9 +62,17 @@ public final class ServiceVclDictionaryArgs extends com.pulumi.resources.Resourc
         return this.name;
     }
 
+    /**
+     * If `true`, the dictionary is a [private dictionary](https://docs.fastly.com/en/guides/private-dictionaries). Default is `false`. Please note that changing this attribute will delete and recreate the dictionary, and discard the current items in the dictionary. `fastly.ServiceVcl` resource will only manage the dictionary object itself, and items under private dictionaries can not be managed using [`fastly.ServiceDictionaryItems`](https://registry.terraform.io/providers/fastly/fastly/latest/docs/resources/service_dictionary_items#limitations) resource. Therefore, using a write-only/private dictionary should only be done if the items are managed outside of Terraform
+     * 
+     */
     @Import(name="writeOnly")
     private @Nullable Output<Boolean> writeOnly;
 
+    /**
+     * @return If `true`, the dictionary is a [private dictionary](https://docs.fastly.com/en/guides/private-dictionaries). Default is `false`. Please note that changing this attribute will delete and recreate the dictionary, and discard the current items in the dictionary. `fastly.ServiceVcl` resource will only manage the dictionary object itself, and items under private dictionaries can not be managed using [`fastly.ServiceDictionaryItems`](https://registry.terraform.io/providers/fastly/fastly/latest/docs/resources/service_dictionary_items#limitations) resource. Therefore, using a write-only/private dictionary should only be done if the items are managed outside of Terraform
+     * 
+     */
     public Optional<Output<Boolean>> writeOnly() {
         return Optional.ofNullable(this.writeOnly);
     }
@@ -159,11 +167,23 @@ public final class ServiceVclDictionaryArgs extends com.pulumi.resources.Resourc
             return name(Output.of(name));
         }
 
+        /**
+         * @param writeOnly If `true`, the dictionary is a [private dictionary](https://docs.fastly.com/en/guides/private-dictionaries). Default is `false`. Please note that changing this attribute will delete and recreate the dictionary, and discard the current items in the dictionary. `fastly.ServiceVcl` resource will only manage the dictionary object itself, and items under private dictionaries can not be managed using [`fastly.ServiceDictionaryItems`](https://registry.terraform.io/providers/fastly/fastly/latest/docs/resources/service_dictionary_items#limitations) resource. Therefore, using a write-only/private dictionary should only be done if the items are managed outside of Terraform
+         * 
+         * @return builder
+         * 
+         */
         public Builder writeOnly(@Nullable Output<Boolean> writeOnly) {
             $.writeOnly = writeOnly;
             return this;
         }
 
+        /**
+         * @param writeOnly If `true`, the dictionary is a [private dictionary](https://docs.fastly.com/en/guides/private-dictionaries). Default is `false`. Please note that changing this attribute will delete and recreate the dictionary, and discard the current items in the dictionary. `fastly.ServiceVcl` resource will only manage the dictionary object itself, and items under private dictionaries can not be managed using [`fastly.ServiceDictionaryItems`](https://registry.terraform.io/providers/fastly/fastly/latest/docs/resources/service_dictionary_items#limitations) resource. Therefore, using a write-only/private dictionary should only be done if the items are managed outside of Terraform
+         * 
+         * @return builder
+         * 
+         */
         public Builder writeOnly(Boolean writeOnly) {
             return writeOnly(Output.of(writeOnly));
         }

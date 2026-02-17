@@ -10,6 +10,141 @@ using Pulumi.Serialization;
 namespace Pulumi.Fastly
 {
     /// <summary>
+    /// The Config Store (`fastly.Configstore`) can be seeded with initial key-value pairs using the `fastly.ConfigstoreEntries` resource.
+    /// 
+    /// After the first `pulumi up` the default behaviour is to ignore any further configuration changes to those key-value pairs. Terraform will expect modifications to happen outside of Terraform (e.g. new key-value pairs to be managed using the [Fastly API](https://developer.fastly.com/reference/api/) or [Fastly CLI](https://developer.fastly.com/learning/tools/cli/)).
+    /// 
+    /// To change the default behaviour (so Terraform continues to manage the key-value pairs within the configuration) set `ManageEntries = true`.
+    /// 
+    /// &gt; **Note:** Terraform should not be used to store large amounts of data, so it's recommended you leave the default behaviour in place and only seed the store with a small amount of key-value pairs. For more information see "Configuration not data".
+    /// 
+    /// ## Example Usage
+    /// 
+    /// Basic usage (with seeded values):
+    /// 
+    /// ```csharp
+    /// using System.Collections.Generic;
+    /// using System.Linq;
+    /// using Pulumi;
+    /// using Fastly = Pulumi.Fastly;
+    /// 
+    /// return await Deployment.RunAsync(() =&gt; 
+    /// {
+    ///     // IMPORTANT: Deleting a Config Store requires first deleting its resource_link.
+    ///     // This requires a two-step `pulumi up` as we can't guarantee deletion order.
+    ///     // e.g. resource_link deletion within fastly_service_compute might not finish first.
+    ///     var exampleConfigstore = new Fastly.Configstore("example", new()
+    ///     {
+    ///         Name = "%s",
+    ///     });
+    /// 
+    ///     var exampleConfigstoreEntries = new Fastly.ConfigstoreEntries("example", new()
+    ///     {
+    ///         StoreId = exampleConfigstore.Id,
+    ///         Entries = 
+    ///         {
+    ///             { "key1", "value1" },
+    ///             { "key2", "value2" },
+    ///         },
+    ///     });
+    /// 
+    ///     var example = Fastly.GetPackageHash.Invoke(new()
+    ///     {
+    ///         Filename = "package.tar.gz",
+    ///     });
+    /// 
+    ///     var exampleServiceCompute = new Fastly.ServiceCompute("example", new()
+    ///     {
+    ///         Name = "my_compute_service",
+    ///         Domains = new[]
+    ///         {
+    ///             new Fastly.Inputs.ServiceComputeDomainArgs
+    ///             {
+    ///                 Name = "demo.example.com",
+    ///             },
+    ///         },
+    ///         Package = new Fastly.Inputs.ServiceComputePackageArgs
+    ///         {
+    ///             Filename = "package.tar.gz",
+    ///             SourceCodeHash = example.Apply(getPackageHashResult =&gt; getPackageHashResult.Hash),
+    ///         },
+    ///         ResourceLinks = new[]
+    ///         {
+    ///             new Fastly.Inputs.ServiceComputeResourceLinkArgs
+    ///             {
+    ///                 Name = "my_resource_link",
+    ///                 ResourceId = exampleConfigstore.Id,
+    ///             },
+    ///         },
+    ///         ForceDestroy = true,
+    ///     });
+    /// 
+    /// });
+    /// ```
+    /// 
+    /// To have Terraform manage the initially seeded key-value pairs defined in your configuration, then you must set `ManageEntries = true` (this will cause any key-value pairs added outside of Terraform to be deleted):
+    /// 
+    /// ```csharp
+    /// using System.Collections.Generic;
+    /// using System.Linq;
+    /// using Pulumi;
+    /// using Fastly = Pulumi.Fastly;
+    /// 
+    /// return await Deployment.RunAsync(() =&gt; 
+    /// {
+    ///     // IMPORTANT: Deleting a Config Store requires first deleting its resource_link.
+    ///     // This requires a two-step `pulumi up` as we can't guarantee deletion order.
+    ///     // e.g. resource_link deletion within fastly_service_compute might not finish first.
+    ///     var exampleConfigstore = new Fastly.Configstore("example", new()
+    ///     {
+    ///         Name = "%s",
+    ///     });
+    /// 
+    ///     var exampleConfigstoreEntries = new Fastly.ConfigstoreEntries("example", new()
+    ///     {
+    ///         StoreId = exampleConfigstore.Id,
+    ///         Entries = 
+    ///         {
+    ///             { "key1", "value1" },
+    ///             { "key2", "value2" },
+    ///         },
+    ///         ManageEntries = true,
+    ///     });
+    /// 
+    ///     var example = Fastly.GetPackageHash.Invoke(new()
+    ///     {
+    ///         Filename = "package.tar.gz",
+    ///     });
+    /// 
+    ///     var exampleServiceCompute = new Fastly.ServiceCompute("example", new()
+    ///     {
+    ///         Name = "my_compute_service",
+    ///         Domains = new[]
+    ///         {
+    ///             new Fastly.Inputs.ServiceComputeDomainArgs
+    ///             {
+    ///                 Name = "demo.example.com",
+    ///             },
+    ///         },
+    ///         Package = new Fastly.Inputs.ServiceComputePackageArgs
+    ///         {
+    ///             Filename = "package.tar.gz",
+    ///             SourceCodeHash = example.Apply(getPackageHashResult =&gt; getPackageHashResult.Hash),
+    ///         },
+    ///         ResourceLinks = new[]
+    ///         {
+    ///             new Fastly.Inputs.ServiceComputeResourceLinkArgs
+    ///             {
+    ///                 Name = "my_resource_link",
+    ///                 ResourceId = exampleConfigstore.Id,
+    ///             },
+    ///         },
+    ///         ForceDestroy = true,
+    ///     });
+    /// 
+    /// });
+    /// ```
+    /// 
     /// ## Import
     /// 
     /// Fastly Config Stores entries can be imported using the corresponding Config Store ID with the `/entries` suffix, e.g.
@@ -27,6 +162,9 @@ namespace Pulumi.Fastly
         [Output("entries")]
         public Output<ImmutableDictionary<string, string>> Entries { get; private set; } = null!;
 
+        /// <summary>
+        /// Have Terraform manage the entries (default: false). If set to `True` Terraform will remove any entries that were added externally from the config seeded values.
+        /// </summary>
         [Output("manageEntries")]
         public Output<bool?> ManageEntries { get; private set; } = null!;
 
@@ -94,6 +232,9 @@ namespace Pulumi.Fastly
             set => _entries = value;
         }
 
+        /// <summary>
+        /// Have Terraform manage the entries (default: false). If set to `True` Terraform will remove any entries that were added externally from the config seeded values.
+        /// </summary>
         [Input("manageEntries")]
         public Input<bool>? ManageEntries { get; set; }
 
@@ -123,6 +264,9 @@ namespace Pulumi.Fastly
             set => _entries = value;
         }
 
+        /// <summary>
+        /// Have Terraform manage the entries (default: false). If set to `True` Terraform will remove any entries that were added externally from the config seeded values.
+        /// </summary>
         [Input("manageEntries")]
         public Input<bool>? ManageEntries { get; set; }
 

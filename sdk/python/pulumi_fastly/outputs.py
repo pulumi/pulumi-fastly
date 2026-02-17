@@ -1738,6 +1738,7 @@ class ServiceComputeDictionary(dict):
         :param _builtins.str name: A unique name to identify this dictionary. It is important to note that changing this attribute will delete and recreate the dictionary, and discard the current items in the dictionary
         :param _builtins.str dictionary_id: The ID of the dictionary
         :param _builtins.bool force_destroy: Allow the dictionary to be deleted, even if it contains entries. Defaults to false.
+        :param _builtins.bool write_only: If `true`, the dictionary is a [private dictionary](https://docs.fastly.com/en/guides/private-dictionaries). Default is `false`. Please note that changing this attribute will delete and recreate the dictionary, and discard the current items in the dictionary. `ServiceVcl` resource will only manage the dictionary object itself, and items under private dictionaries can not be managed using [`ServiceDictionaryItems`](https://registry.terraform.io/providers/fastly/fastly/latest/docs/resources/service_dictionary_items#limitations) resource. Therefore, using a write-only/private dictionary should only be done if the items are managed outside of Terraform
         """
         pulumi.set(__self__, "name", name)
         if dictionary_id is not None:
@@ -1774,6 +1775,9 @@ class ServiceComputeDictionary(dict):
     @_builtins.property
     @pulumi.getter(name="writeOnly")
     def write_only(self) -> Optional[_builtins.bool]:
+        """
+        If `true`, the dictionary is a [private dictionary](https://docs.fastly.com/en/guides/private-dictionaries). Default is `false`. Please note that changing this attribute will delete and recreate the dictionary, and discard the current items in the dictionary. `ServiceVcl` resource will only manage the dictionary object itself, and items under private dictionaries can not be managed using [`ServiceDictionaryItems`](https://registry.terraform.io/providers/fastly/fastly/latest/docs/resources/service_dictionary_items#limitations) resource. Therefore, using a write-only/private dictionary should only be done if the items are managed outside of Terraform
+        """
         return pulumi.get(self, "write_only")
 
 
@@ -6969,6 +6973,7 @@ class ServiceVclDictionary(dict):
         :param _builtins.str name: A unique name to identify this dictionary. It is important to note that changing this attribute will delete and recreate the dictionary, and discard the current items in the dictionary
         :param _builtins.str dictionary_id: The ID of the dictionary
         :param _builtins.bool force_destroy: Allow the dictionary to be deleted, even if it contains entries. Defaults to false.
+        :param _builtins.bool write_only: If `true`, the dictionary is a [private dictionary](https://docs.fastly.com/en/guides/private-dictionaries). Default is `false`. Please note that changing this attribute will delete and recreate the dictionary, and discard the current items in the dictionary. `ServiceVcl` resource will only manage the dictionary object itself, and items under private dictionaries can not be managed using [`ServiceDictionaryItems`](https://registry.terraform.io/providers/fastly/fastly/latest/docs/resources/service_dictionary_items#limitations) resource. Therefore, using a write-only/private dictionary should only be done if the items are managed outside of Terraform
         """
         pulumi.set(__self__, "name", name)
         if dictionary_id is not None:
@@ -7005,6 +7010,9 @@ class ServiceVclDictionary(dict):
     @_builtins.property
     @pulumi.getter(name="writeOnly")
     def write_only(self) -> Optional[_builtins.bool]:
+        """
+        If `true`, the dictionary is a [private dictionary](https://docs.fastly.com/en/guides/private-dictionaries). Default is `false`. Please note that changing this attribute will delete and recreate the dictionary, and discard the current items in the dictionary. `ServiceVcl` resource will only manage the dictionary object itself, and items under private dictionaries can not be managed using [`ServiceDictionaryItems`](https://registry.terraform.io/providers/fastly/fastly/latest/docs/resources/service_dictionary_items#limitations) resource. Therefore, using a write-only/private dictionary should only be done if the items are managed outside of Terraform
+        """
         return pulumi.get(self, "write_only")
 
 

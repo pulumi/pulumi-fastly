@@ -914,6 +914,9 @@ export interface ServiceComputeDictionary {
      * A unique name to identify this dictionary. It is important to note that changing this attribute will delete and recreate the dictionary, and discard the current items in the dictionary
      */
     name: string;
+    /**
+     * If `true`, the dictionary is a [private dictionary](https://docs.fastly.com/en/guides/private-dictionaries). Default is `false`. Please note that changing this attribute will delete and recreate the dictionary, and discard the current items in the dictionary. `fastly.ServiceVcl` resource will only manage the dictionary object itself, and items under private dictionaries can not be managed using [`fastly.ServiceDictionaryItems`](https://registry.terraform.io/providers/fastly/fastly/latest/docs/resources/service_dictionary_items#limitations) resource. Therefore, using a write-only/private dictionary should only be done if the items are managed outside of Terraform
+     */
     writeOnly?: boolean;
 }
 
@@ -2406,6 +2409,9 @@ export interface ServiceVclDictionary {
      * A unique name to identify this dictionary. It is important to note that changing this attribute will delete and recreate the dictionary, and discard the current items in the dictionary
      */
     name: string;
+    /**
+     * If `true`, the dictionary is a [private dictionary](https://docs.fastly.com/en/guides/private-dictionaries). Default is `false`. Please note that changing this attribute will delete and recreate the dictionary, and discard the current items in the dictionary. `fastly.ServiceVcl` resource will only manage the dictionary object itself, and items under private dictionaries can not be managed using [`fastly.ServiceDictionaryItems`](https://registry.terraform.io/providers/fastly/fastly/latest/docs/resources/service_dictionary_items#limitations) resource. Therefore, using a write-only/private dictionary should only be done if the items are managed outside of Terraform
+     */
     writeOnly?: boolean;
 }
 

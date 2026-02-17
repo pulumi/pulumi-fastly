@@ -11,6 +11,95 @@ import (
 	"github.com/pulumi/pulumi/sdk/v3/go/pulumi"
 )
 
+// Provides a Fastly Compute service. Compute is a computation platform capable of running custom binaries that you compile on your own systems and upload to Fastly. Security and portability is provided by compiling your code to [WebAssembly](https://webassembly.org/) using the `wasm32-wasi` target. A compute service encompasses Domains and Backends.
+//
+// The Service resource requires a domain name that is correctly set up to direct traffic to the Fastly service. See Fastly's guide on [Adding CNAME Records](https://docs.fastly.com/en/guides/adding-cname-records) on their documentation site for guidance.
+//
+// > **Note:** If you omit the `package` block, you must set `activate = false` to avoid service validation errors.
+//
+// ## Activation and Staging
+//
+// By default, the `activate` attribute is `true`, and the `stage`
+// attribute is `false`. This combination means that when `terraform
+// apply` is executed for a plan which will make changes to the service,
+// the last version created by the provider (the `clonedVersion`) will
+// be cloned to make a draft version, the changes will be applied to that
+// draft version, and that draft version will be activated.
+//
+// If desired, `activate` can be set to `false`, in which case the
+// behavior above will be modified such that cloning will only occur when
+// the `clonedVersion` is locked, and the draft version will not be
+// activated.
+//
+// Additionally, `stage` can be set to `true`, with `activate` set to
+// `false`. This extends the `activate = false` behavior to include
+// staging of applied changes, every time that changes are applied, even
+// if the changes were applied to an existing draft version.
+//
+// Finally, `activate` should not be set to `true` when `stage` is also
+// set to `true`. While this combination will not cause any harm to the
+// service, there is no logical reason to both stage and activate every
+// set of applied changes.
+//
+// ## Example Usage
+//
+// Basic usage:
+//
+// ```go
+// package main
+//
+// import (
+//
+//	"github.com/pulumi/pulumi-fastly/sdk/v11/go/fastly"
+//	"github.com/pulumi/pulumi/sdk/v3/go/pulumi"
+//
+// )
+//
+//	func main() {
+//		pulumi.Run(func(ctx *pulumi.Context) error {
+//			example, err := fastly.GetPackageHash(ctx, &fastly.GetPackageHashArgs{
+//				Filename: pulumi.StringRef("./path/to/package.tar.gz"),
+//			}, nil)
+//			if err != nil {
+//				return err
+//			}
+//			_, err = fastly.NewServiceCompute(ctx, "example", &fastly.ServiceComputeArgs{
+//				Name: pulumi.String("demofastly"),
+//				Domains: fastly.ServiceComputeDomainArray{
+//					&fastly.ServiceComputeDomainArgs{
+//						Name:    pulumi.String("demo.notexample.com"),
+//						Comment: pulumi.String("demo"),
+//					},
+//				},
+//				Package: &fastly.ServiceComputePackageArgs{
+//					Filename:       pulumi.String("package.tar.gz"),
+//					SourceCodeHash: pulumi.String(example.Hash),
+//				},
+//				ForceDestroy: pulumi.Bool(true),
+//			})
+//			if err != nil {
+//				return err
+//			}
+//			return nil
+//		})
+//	}
+//
+// ```
+//
+// <!-- remove this curated references once https://github.com/hashicorp/terraform-plugin-docs/issues/28 is resolved -->
+// ### package block
+//
+// The `package` block supports uploading or modifying Wasm packages for use in a Fastly Compute service. See Fastly's documentation on
+// [Compute](https://www.fastly.com/products/edge-compute/serverless)
+//
+// ## Product Enablement
+//
+// The [Product Enablement](https://developer.fastly.com/reference/api/products/) APIs allow customers to enable and disable specific products.
+//
+// Not all customers are entitled to use these endpoints and so care needs to be given when configuring a `productEnablement` block in your Terraform configuration.
+//
+// Consult the Product Enablement Guide to understand the internal workings for the `productEnablement` block.
+//
 // ## Import
 //
 // Fastly Services can be imported using their service ID, e.g.
@@ -20,7 +109,6 @@ import (
 // ```
 //
 // By default, either the active version will be imported, or the latest version if no version is active.
-//
 // Alternatively, a specific version of the service can be selected by appending an `@` followed by the version number to the service ID, e.g.
 //
 // ```sh
@@ -35,13 +123,15 @@ type ServiceCompute struct {
 	ActiveVersion pulumi.IntOutput                 `pulumi:"activeVersion"`
 	Backends      ServiceComputeBackendArrayOutput `pulumi:"backends"`
 	// The latest cloned version by the provider
-	ClonedVersion pulumi.IntOutput                    `pulumi:"clonedVersion"`
-	Comment       pulumi.StringPtrOutput              `pulumi:"comment"`
-	Dictionaries  ServiceComputeDictionaryArrayOutput `pulumi:"dictionaries"`
+	ClonedVersion pulumi.IntOutput `pulumi:"clonedVersion"`
+	// Description field for the service. Default `Managed by Terraform`
+	Comment      pulumi.StringPtrOutput              `pulumi:"comment"`
+	Dictionaries ServiceComputeDictionaryArrayOutput `pulumi:"dictionaries"`
 	// A set of Domain names to serve as entry points for your Service
 	Domains ServiceComputeDomainArrayOutput `pulumi:"domains"`
 	// Services that are active cannot be destroyed. In order to destroy the Service, set `forceDestroy` to `true`. Default `false`
-	ForceDestroy                  pulumi.BoolPtrOutput                                 `pulumi:"forceDestroy"`
+	ForceDestroy pulumi.BoolPtrOutput `pulumi:"forceDestroy"`
+	// Used internally by the provider to temporarily indicate if all resources should call their associated API to update the local state. This is for scenarios where the service version has been reverted outside of Terraform (e.g. via the Fastly UI) and the provider needs to resync the state for a different active version (this is only if `activate` is `true`).
 	ForceRefresh                  pulumi.BoolOutput                                    `pulumi:"forceRefresh"`
 	Healthchecks                  ServiceComputeHealthcheckArrayOutput                 `pulumi:"healthchecks"`
 	ImageOptimizerDefaultSettings ServiceComputeImageOptimizerDefaultSettingsPtrOutput `pulumi:"imageOptimizerDefaultSettings"`
@@ -82,7 +172,8 @@ type ServiceCompute struct {
 	ProductEnablement ServiceComputeProductEnablementPtrOutput `pulumi:"productEnablement"`
 	// A resource link represents a link between a shared resource (such as an KV Store or Config Store) and a service version.
 	ResourceLinks ServiceComputeResourceLinkArrayOutput `pulumi:"resourceLinks"`
-	Reuse         pulumi.BoolPtrOutput                  `pulumi:"reuse"`
+	// Services that are active cannot be destroyed. If set to `true` a service Terraform intends to destroy will instead be deactivated (allowing it to be reused by importing it into another Terraform project). If `false`, attempting to destroy an active service will cause an error. Default `false`
+	Reuse pulumi.BoolPtrOutput `pulumi:"reuse"`
 	// Conditionally enables new service versions to be staged. If set to `true`, all changes made by an `apply` step will be staged, even if `apply` did not create a new draft version. Default `false`
 	Stage pulumi.BoolPtrOutput `pulumi:"stage"`
 	// The currently staged version of your Fastly Service
@@ -127,13 +218,15 @@ type serviceComputeState struct {
 	ActiveVersion *int                    `pulumi:"activeVersion"`
 	Backends      []ServiceComputeBackend `pulumi:"backends"`
 	// The latest cloned version by the provider
-	ClonedVersion *int                       `pulumi:"clonedVersion"`
-	Comment       *string                    `pulumi:"comment"`
-	Dictionaries  []ServiceComputeDictionary `pulumi:"dictionaries"`
+	ClonedVersion *int `pulumi:"clonedVersion"`
+	// Description field for the service. Default `Managed by Terraform`
+	Comment      *string                    `pulumi:"comment"`
+	Dictionaries []ServiceComputeDictionary `pulumi:"dictionaries"`
 	// A set of Domain names to serve as entry points for your Service
 	Domains []ServiceComputeDomain `pulumi:"domains"`
 	// Services that are active cannot be destroyed. In order to destroy the Service, set `forceDestroy` to `true`. Default `false`
-	ForceDestroy                  *bool                                        `pulumi:"forceDestroy"`
+	ForceDestroy *bool `pulumi:"forceDestroy"`
+	// Used internally by the provider to temporarily indicate if all resources should call their associated API to update the local state. This is for scenarios where the service version has been reverted outside of Terraform (e.g. via the Fastly UI) and the provider needs to resync the state for a different active version (this is only if `activate` is `true`).
 	ForceRefresh                  *bool                                        `pulumi:"forceRefresh"`
 	Healthchecks                  []ServiceComputeHealthcheck                  `pulumi:"healthchecks"`
 	ImageOptimizerDefaultSettings *ServiceComputeImageOptimizerDefaultSettings `pulumi:"imageOptimizerDefaultSettings"`
@@ -174,7 +267,8 @@ type serviceComputeState struct {
 	ProductEnablement *ServiceComputeProductEnablement `pulumi:"productEnablement"`
 	// A resource link represents a link between a shared resource (such as an KV Store or Config Store) and a service version.
 	ResourceLinks []ServiceComputeResourceLink `pulumi:"resourceLinks"`
-	Reuse         *bool                        `pulumi:"reuse"`
+	// Services that are active cannot be destroyed. If set to `true` a service Terraform intends to destroy will instead be deactivated (allowing it to be reused by importing it into another Terraform project). If `false`, attempting to destroy an active service will cause an error. Default `false`
+	Reuse *bool `pulumi:"reuse"`
 	// Conditionally enables new service versions to be staged. If set to `true`, all changes made by an `apply` step will be staged, even if `apply` did not create a new draft version. Default `false`
 	Stage *bool `pulumi:"stage"`
 	// The currently staged version of your Fastly Service
@@ -191,12 +285,14 @@ type ServiceComputeState struct {
 	Backends      ServiceComputeBackendArrayInput
 	// The latest cloned version by the provider
 	ClonedVersion pulumi.IntPtrInput
-	Comment       pulumi.StringPtrInput
-	Dictionaries  ServiceComputeDictionaryArrayInput
+	// Description field for the service. Default `Managed by Terraform`
+	Comment      pulumi.StringPtrInput
+	Dictionaries ServiceComputeDictionaryArrayInput
 	// A set of Domain names to serve as entry points for your Service
 	Domains ServiceComputeDomainArrayInput
 	// Services that are active cannot be destroyed. In order to destroy the Service, set `forceDestroy` to `true`. Default `false`
-	ForceDestroy                  pulumi.BoolPtrInput
+	ForceDestroy pulumi.BoolPtrInput
+	// Used internally by the provider to temporarily indicate if all resources should call their associated API to update the local state. This is for scenarios where the service version has been reverted outside of Terraform (e.g. via the Fastly UI) and the provider needs to resync the state for a different active version (this is only if `activate` is `true`).
 	ForceRefresh                  pulumi.BoolPtrInput
 	Healthchecks                  ServiceComputeHealthcheckArrayInput
 	ImageOptimizerDefaultSettings ServiceComputeImageOptimizerDefaultSettingsPtrInput
@@ -237,7 +333,8 @@ type ServiceComputeState struct {
 	ProductEnablement ServiceComputeProductEnablementPtrInput
 	// A resource link represents a link between a shared resource (such as an KV Store or Config Store) and a service version.
 	ResourceLinks ServiceComputeResourceLinkArrayInput
-	Reuse         pulumi.BoolPtrInput
+	// Services that are active cannot be destroyed. If set to `true` a service Terraform intends to destroy will instead be deactivated (allowing it to be reused by importing it into another Terraform project). If `false`, attempting to destroy an active service will cause an error. Default `false`
+	Reuse pulumi.BoolPtrInput
 	// Conditionally enables new service versions to be staged. If set to `true`, all changes made by an `apply` step will be staged, even if `apply` did not create a new draft version. Default `false`
 	Stage pulumi.BoolPtrInput
 	// The currently staged version of your Fastly Service
@@ -252,8 +349,9 @@ func (ServiceComputeState) ElementType() reflect.Type {
 
 type serviceComputeArgs struct {
 	// Conditionally prevents new service versions from being activated. The apply step will create a new draft version but will not activate it if this is set to `false`. Default `true`
-	Activate     *bool                      `pulumi:"activate"`
-	Backends     []ServiceComputeBackend    `pulumi:"backends"`
+	Activate *bool                   `pulumi:"activate"`
+	Backends []ServiceComputeBackend `pulumi:"backends"`
+	// Description field for the service. Default `Managed by Terraform`
 	Comment      *string                    `pulumi:"comment"`
 	Dictionaries []ServiceComputeDictionary `pulumi:"dictionaries"`
 	// A set of Domain names to serve as entry points for your Service
@@ -297,7 +395,8 @@ type serviceComputeArgs struct {
 	ProductEnablement *ServiceComputeProductEnablement `pulumi:"productEnablement"`
 	// A resource link represents a link between a shared resource (such as an KV Store or Config Store) and a service version.
 	ResourceLinks []ServiceComputeResourceLink `pulumi:"resourceLinks"`
-	Reuse         *bool                        `pulumi:"reuse"`
+	// Services that are active cannot be destroyed. If set to `true` a service Terraform intends to destroy will instead be deactivated (allowing it to be reused by importing it into another Terraform project). If `false`, attempting to destroy an active service will cause an error. Default `false`
+	Reuse *bool `pulumi:"reuse"`
 	// Conditionally enables new service versions to be staged. If set to `true`, all changes made by an `apply` step will be staged, even if `apply` did not create a new draft version. Default `false`
 	Stage *bool `pulumi:"stage"`
 	// Description field for the version
@@ -307,8 +406,9 @@ type serviceComputeArgs struct {
 // The set of arguments for constructing a ServiceCompute resource.
 type ServiceComputeArgs struct {
 	// Conditionally prevents new service versions from being activated. The apply step will create a new draft version but will not activate it if this is set to `false`. Default `true`
-	Activate     pulumi.BoolPtrInput
-	Backends     ServiceComputeBackendArrayInput
+	Activate pulumi.BoolPtrInput
+	Backends ServiceComputeBackendArrayInput
+	// Description field for the service. Default `Managed by Terraform`
 	Comment      pulumi.StringPtrInput
 	Dictionaries ServiceComputeDictionaryArrayInput
 	// A set of Domain names to serve as entry points for your Service
@@ -352,7 +452,8 @@ type ServiceComputeArgs struct {
 	ProductEnablement ServiceComputeProductEnablementPtrInput
 	// A resource link represents a link between a shared resource (such as an KV Store or Config Store) and a service version.
 	ResourceLinks ServiceComputeResourceLinkArrayInput
-	Reuse         pulumi.BoolPtrInput
+	// Services that are active cannot be destroyed. If set to `true` a service Terraform intends to destroy will instead be deactivated (allowing it to be reused by importing it into another Terraform project). If `false`, attempting to destroy an active service will cause an error. Default `false`
+	Reuse pulumi.BoolPtrInput
 	// Conditionally enables new service versions to be staged. If set to `true`, all changes made by an `apply` step will be staged, even if `apply` did not create a new draft version. Default `false`
 	Stage pulumi.BoolPtrInput
 	// Description field for the version
@@ -465,6 +566,7 @@ func (o ServiceComputeOutput) ClonedVersion() pulumi.IntOutput {
 	return o.ApplyT(func(v *ServiceCompute) pulumi.IntOutput { return v.ClonedVersion }).(pulumi.IntOutput)
 }
 
+// Description field for the service. Default `Managed by Terraform`
 func (o ServiceComputeOutput) Comment() pulumi.StringPtrOutput {
 	return o.ApplyT(func(v *ServiceCompute) pulumi.StringPtrOutput { return v.Comment }).(pulumi.StringPtrOutput)
 }
@@ -483,6 +585,7 @@ func (o ServiceComputeOutput) ForceDestroy() pulumi.BoolPtrOutput {
 	return o.ApplyT(func(v *ServiceCompute) pulumi.BoolPtrOutput { return v.ForceDestroy }).(pulumi.BoolPtrOutput)
 }
 
+// Used internally by the provider to temporarily indicate if all resources should call their associated API to update the local state. This is for scenarios where the service version has been reverted outside of Terraform (e.g. via the Fastly UI) and the provider needs to resync the state for a different active version (this is only if `activate` is `true`).
 func (o ServiceComputeOutput) ForceRefresh() pulumi.BoolOutput {
 	return o.ApplyT(func(v *ServiceCompute) pulumi.BoolOutput { return v.ForceRefresh }).(pulumi.BoolOutput)
 }
@@ -635,6 +738,7 @@ func (o ServiceComputeOutput) ResourceLinks() ServiceComputeResourceLinkArrayOut
 	return o.ApplyT(func(v *ServiceCompute) ServiceComputeResourceLinkArrayOutput { return v.ResourceLinks }).(ServiceComputeResourceLinkArrayOutput)
 }
 
+// Services that are active cannot be destroyed. If set to `true` a service Terraform intends to destroy will instead be deactivated (allowing it to be reused by importing it into another Terraform project). If `false`, attempting to destroy an active service will cause an error. Default `false`
 func (o ServiceComputeOutput) Reuse() pulumi.BoolPtrOutput {
 	return o.ApplyT(func(v *ServiceCompute) pulumi.BoolPtrOutput { return v.Reuse }).(pulumi.BoolPtrOutput)
 }

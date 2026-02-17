@@ -170,10 +170,223 @@ class ServiceDictionaryItems(pulumi.CustomResource):
                  service_id: Optional[pulumi.Input[_builtins.str]] = None,
                  __props__=None):
         """
+        Defines a map of Fastly dictionary items that can be used to populate a service dictionary.  This resource will populate a dictionary with the items and will track their state.
+
+        > **Warning:** This provider will take precedence over any changes you make in the UI or API. Such changes are likely to be reversed if you run the provider again.
+
+        > **Note:** By default the Terraform provider allows you to externally manage the items via API or UI.
+        If you wish to apply your changes in the HCL, then you should explicitly set the `manage_items` attribute. An example of this configuration is provided below.
+
+        ## Limitations
+
+        - `write_only` dictionaries are not supported
+
+        ## Example Usage
+
+        ### Basic usage:
+
+        ```python
+        import pulumi
+        import pulumi_fastly as fastly
+
+        config = pulumi.Config()
+        mydict_name = config.get("mydictName")
+        if mydict_name is None:
+            mydict_name = "My Dictionary"
+        myservice = fastly.ServiceVcl("myservice",
+            name="demofastly",
+            domains=[{
+                "name": "demo.notexample.com",
+                "comment": "demo",
+            }],
+            backends=[{
+                "address": "http-me.fastly.dev",
+                "name": "Glitch Test Site",
+                "port": 80,
+            }],
+            dictionaries=[{
+                "name": mydict_name,
+            }],
+            force_destroy=True)
+        items = []
+        def create_items(range_body):
+            for range in [{"key": k, "value": v} for [k, v] in enumerate(range_body)]:
+                items.append(fastly.ServiceDictionaryItems(f"items-{range['key']}",
+                    service_id=myservice.id,
+                    dictionary_id=range["value"].dictionary_id,
+                    items={
+                        "key1": "value1",
+                        "key2": "value2",
+                    }))
+
+        myservice.dictionaries.apply(lambda resolved_outputs: create_items({d.name: d for d in resolved_outputs['dictionaries'] if d.name == mydict_name}))
+        ```
+
+        ### Complex object usage:
+
+        ```python
+        import pulumi
+        import pulumi_fastly as fastly
+
+        config = pulumi.Config()
+        mydict = config.get_object("mydict")
+        if mydict is None:
+            mydict = {
+                "items": {
+                    "key1": "value1x",
+                    "key2": "value2x",
+                },
+                "name": "My Dictionary",
+            }
+        myservice = fastly.ServiceVcl("myservice",
+            name="demofastly",
+            domains=[{
+                "name": "demo.notexample.com",
+                "comment": "demo",
+            }],
+            backends=[{
+                "address": "http-me.fastly.dev",
+                "name": "Glitch Test Site",
+                "port": 80,
+            }],
+            dictionaries=[{
+                "name": mydict["name"],
+            }],
+            force_destroy=True)
+        items = []
+        def create_items(range_body):
+            for range in [{"key": k, "value": v} for [k, v] in enumerate(range_body)]:
+                items.append(fastly.ServiceDictionaryItems(f"items-{range['key']}",
+                    service_id=myservice.id,
+                    dictionary_id=range["value"].dictionary_id,
+                    items=mydict["items"]))
+
+        myservice.dictionaries.apply(lambda resolved_outputs: create_items({d.name: d for d in resolved_outputs['dictionaries'] if d.name == mydict["name"]}))
+        ```
+
+        ### Expression and functions usage:
+
+        ```python
+        import pulumi
+        import pulumi_fastly as fastly
+        import pulumi_std as std
+
+        dictionary_name = "My Project Dictionary"
+        host_base = "demo.ocnotexample.com"
+        host_divisions = [
+            "alpha",
+            "beta",
+            "gamma",
+            "delta",
+        ]
+        # Define the standard service that will be used to manage the dictionaries.
+        myservice = fastly.ServiceVcl("myservice",
+            name="demofastly",
+            domains=[{
+                "name": "demo.ocnotexample.com",
+                "comment": "demo",
+            }],
+            backends=[{
+                "address": "http-me.fastly.dev",
+                "name": "Glitch Test Site",
+                "port": 80,
+            }],
+            dictionaries=[{
+                "name": dictionary_name,
+            }],
+            force_destroy=True)
+        # This resource is dynamically creating the items from the local variables through for expressions and functions.
+        project = []
+        def create_project(range_body):
+            for range in [{"key": k, "value": v} for [k, v] in enumerate(range_body)]:
+                project.append(fastly.ServiceDictionaryItems(f"project-{range['key']}",
+                    service_id=myservice.id,
+                    dictionary_id=range["value"].dictionary_id,
+                    items={division: std.index.format(input="%s.%s",
+                        args=[
+                            division,
+                            host_base,
+                        ])["result"] for division in host_divisions}))
+
+        myservice.dictionaries.apply(lambda resolved_outputs: create_project({d.name: d for d in resolved_outputs['dictionaries'] if d.name == dictionary_name}))
+        ```
+
+        ### Terraform >= 0.12.0 && < 0.12.6)
+
+        `for_each` attributes were not available in Terraform before 0.12.6, however, users can still use `for` expressions to achieve
+        similar behaviour as seen in the example below.
+
+        > **Warning:** Terraform might not properly calculate implicit dependencies on computed attributes when using `for` expressions
+
+        For scenarios such as adding a Dictionary to a service and at the same time, creating the Dictionary entries (`ServiceDictionaryItems`)
+        resource, Terraform will not calculate implicit dependencies correctly on `for` expressions. This will result in index lookup
+        problems and the execution will fail.
+
+        For those scenarios, it's recommended to split the changes into two distinct steps:
+
+        1. Add the `dictionary` block to the `ServiceVcl` and apply the changes
+        2. Add the `ServiceDictionaryItems` resource with the `for` expressions to the HCL and apply the changes
+
+        Usage:
+
+        ```python
+        import pulumi
+        import pulumi_fastly as fastly
+
+        config = pulumi.Config()
+        mydict_name = config.get("mydictName")
+        if mydict_name is None:
+            mydict_name = "My Dictionary"
+        myservice = fastly.ServiceVcl("myservice",
+            name="demofastly",
+            domains=[{
+                "name": "demo.notexample.com",
+                "comment": "demo",
+            }],
+            dictionaries=[{
+                "name": mydict_name,
+            }])
+        items = fastly.ServiceDictionaryItems("items",
+            service_id=myservice.id,
+            dictionary_id=myservice.dictionaries.apply(lambda dictionaries: {s.name: s.dictionary_id for s in dictionaries}[mydict_name]),
+            items={
+                "key1": "value1",
+                "key2": "value2",
+            })
+        ```
+
+        ### Reapplying original items with `managed_items` if the state of the items drifts
+
+        By default the user is opted out from reapplying the original changes if the items are managed externally.
+        The following example demonstrates how the `manage_items` field can be used to reapply the changes defined in the HCL if the state of the items drifts.
+        When the value is explicitly set to 'true', Terraform will keep the original changes and discard any other changes made under this resource outside of Terraform.
+
+        > **Warning:** You will lose externally managed items if `manage_items=true`.
+
+        > **Note:** The `ignore_changes` built-in meta-argument takes precedence over `manage_items` regardless of its value.
+
+        ```python
+        import pulumi
+        import pulumi_fastly as fastly
+
+        #...
+        items = []
+        for range in [{"key": k, "value": v} for [k, v] in enumerate({d.name: d for d in myservice.dictionary if d.name == mydict_name})]:
+            items.append(fastly.ServiceDictionaryItems(f"items-{range['key']}",
+                service_id=myservice["id"],
+                dictionary_id=range["value"]["dictionaryId"],
+                manage_items=True,
+                items={
+                    "key1": "value1",
+                    "key2": "value2",
+                }))
+        ```
+
         ## Import
 
-        This is an example of the import command being applied to the resource named `fastly_service_dictionary_items.items`
+        > **Note:** The dictionary resource should be empty before importing
 
+        This is an example of the import command being applied to the resource named `fastly_service_dictionary_items.items`
         The resource ID is a combined value of the `service_id` and `dictionary_id` separated by a forward slash.
 
         ```sh
@@ -181,10 +394,11 @@ class ServiceDictionaryItems(pulumi.CustomResource):
         ```
 
         If Terraform is already managing remote dictionary items against a resource being imported then the user will be asked to remove it from the existing Terraform state.
-
         The following is an example of the Terraform state command to remove the resource named `fastly_service_dictionary_items.items` from the Terraform state file.
 
+        ```sh
         $ terraform state rm fastly_service_dictionary_items.items
+        ```
 
         :param str resource_name: The name of the resource.
         :param pulumi.ResourceOptions opts: Options for the resource.
@@ -200,10 +414,223 @@ class ServiceDictionaryItems(pulumi.CustomResource):
                  args: ServiceDictionaryItemsArgs,
                  opts: Optional[pulumi.ResourceOptions] = None):
         """
+        Defines a map of Fastly dictionary items that can be used to populate a service dictionary.  This resource will populate a dictionary with the items and will track their state.
+
+        > **Warning:** This provider will take precedence over any changes you make in the UI or API. Such changes are likely to be reversed if you run the provider again.
+
+        > **Note:** By default the Terraform provider allows you to externally manage the items via API or UI.
+        If you wish to apply your changes in the HCL, then you should explicitly set the `manage_items` attribute. An example of this configuration is provided below.
+
+        ## Limitations
+
+        - `write_only` dictionaries are not supported
+
+        ## Example Usage
+
+        ### Basic usage:
+
+        ```python
+        import pulumi
+        import pulumi_fastly as fastly
+
+        config = pulumi.Config()
+        mydict_name = config.get("mydictName")
+        if mydict_name is None:
+            mydict_name = "My Dictionary"
+        myservice = fastly.ServiceVcl("myservice",
+            name="demofastly",
+            domains=[{
+                "name": "demo.notexample.com",
+                "comment": "demo",
+            }],
+            backends=[{
+                "address": "http-me.fastly.dev",
+                "name": "Glitch Test Site",
+                "port": 80,
+            }],
+            dictionaries=[{
+                "name": mydict_name,
+            }],
+            force_destroy=True)
+        items = []
+        def create_items(range_body):
+            for range in [{"key": k, "value": v} for [k, v] in enumerate(range_body)]:
+                items.append(fastly.ServiceDictionaryItems(f"items-{range['key']}",
+                    service_id=myservice.id,
+                    dictionary_id=range["value"].dictionary_id,
+                    items={
+                        "key1": "value1",
+                        "key2": "value2",
+                    }))
+
+        myservice.dictionaries.apply(lambda resolved_outputs: create_items({d.name: d for d in resolved_outputs['dictionaries'] if d.name == mydict_name}))
+        ```
+
+        ### Complex object usage:
+
+        ```python
+        import pulumi
+        import pulumi_fastly as fastly
+
+        config = pulumi.Config()
+        mydict = config.get_object("mydict")
+        if mydict is None:
+            mydict = {
+                "items": {
+                    "key1": "value1x",
+                    "key2": "value2x",
+                },
+                "name": "My Dictionary",
+            }
+        myservice = fastly.ServiceVcl("myservice",
+            name="demofastly",
+            domains=[{
+                "name": "demo.notexample.com",
+                "comment": "demo",
+            }],
+            backends=[{
+                "address": "http-me.fastly.dev",
+                "name": "Glitch Test Site",
+                "port": 80,
+            }],
+            dictionaries=[{
+                "name": mydict["name"],
+            }],
+            force_destroy=True)
+        items = []
+        def create_items(range_body):
+            for range in [{"key": k, "value": v} for [k, v] in enumerate(range_body)]:
+                items.append(fastly.ServiceDictionaryItems(f"items-{range['key']}",
+                    service_id=myservice.id,
+                    dictionary_id=range["value"].dictionary_id,
+                    items=mydict["items"]))
+
+        myservice.dictionaries.apply(lambda resolved_outputs: create_items({d.name: d for d in resolved_outputs['dictionaries'] if d.name == mydict["name"]}))
+        ```
+
+        ### Expression and functions usage:
+
+        ```python
+        import pulumi
+        import pulumi_fastly as fastly
+        import pulumi_std as std
+
+        dictionary_name = "My Project Dictionary"
+        host_base = "demo.ocnotexample.com"
+        host_divisions = [
+            "alpha",
+            "beta",
+            "gamma",
+            "delta",
+        ]
+        # Define the standard service that will be used to manage the dictionaries.
+        myservice = fastly.ServiceVcl("myservice",
+            name="demofastly",
+            domains=[{
+                "name": "demo.ocnotexample.com",
+                "comment": "demo",
+            }],
+            backends=[{
+                "address": "http-me.fastly.dev",
+                "name": "Glitch Test Site",
+                "port": 80,
+            }],
+            dictionaries=[{
+                "name": dictionary_name,
+            }],
+            force_destroy=True)
+        # This resource is dynamically creating the items from the local variables through for expressions and functions.
+        project = []
+        def create_project(range_body):
+            for range in [{"key": k, "value": v} for [k, v] in enumerate(range_body)]:
+                project.append(fastly.ServiceDictionaryItems(f"project-{range['key']}",
+                    service_id=myservice.id,
+                    dictionary_id=range["value"].dictionary_id,
+                    items={division: std.index.format(input="%s.%s",
+                        args=[
+                            division,
+                            host_base,
+                        ])["result"] for division in host_divisions}))
+
+        myservice.dictionaries.apply(lambda resolved_outputs: create_project({d.name: d for d in resolved_outputs['dictionaries'] if d.name == dictionary_name}))
+        ```
+
+        ### Terraform >= 0.12.0 && < 0.12.6)
+
+        `for_each` attributes were not available in Terraform before 0.12.6, however, users can still use `for` expressions to achieve
+        similar behaviour as seen in the example below.
+
+        > **Warning:** Terraform might not properly calculate implicit dependencies on computed attributes when using `for` expressions
+
+        For scenarios such as adding a Dictionary to a service and at the same time, creating the Dictionary entries (`ServiceDictionaryItems`)
+        resource, Terraform will not calculate implicit dependencies correctly on `for` expressions. This will result in index lookup
+        problems and the execution will fail.
+
+        For those scenarios, it's recommended to split the changes into two distinct steps:
+
+        1. Add the `dictionary` block to the `ServiceVcl` and apply the changes
+        2. Add the `ServiceDictionaryItems` resource with the `for` expressions to the HCL and apply the changes
+
+        Usage:
+
+        ```python
+        import pulumi
+        import pulumi_fastly as fastly
+
+        config = pulumi.Config()
+        mydict_name = config.get("mydictName")
+        if mydict_name is None:
+            mydict_name = "My Dictionary"
+        myservice = fastly.ServiceVcl("myservice",
+            name="demofastly",
+            domains=[{
+                "name": "demo.notexample.com",
+                "comment": "demo",
+            }],
+            dictionaries=[{
+                "name": mydict_name,
+            }])
+        items = fastly.ServiceDictionaryItems("items",
+            service_id=myservice.id,
+            dictionary_id=myservice.dictionaries.apply(lambda dictionaries: {s.name: s.dictionary_id for s in dictionaries}[mydict_name]),
+            items={
+                "key1": "value1",
+                "key2": "value2",
+            })
+        ```
+
+        ### Reapplying original items with `managed_items` if the state of the items drifts
+
+        By default the user is opted out from reapplying the original changes if the items are managed externally.
+        The following example demonstrates how the `manage_items` field can be used to reapply the changes defined in the HCL if the state of the items drifts.
+        When the value is explicitly set to 'true', Terraform will keep the original changes and discard any other changes made under this resource outside of Terraform.
+
+        > **Warning:** You will lose externally managed items if `manage_items=true`.
+
+        > **Note:** The `ignore_changes` built-in meta-argument takes precedence over `manage_items` regardless of its value.
+
+        ```python
+        import pulumi
+        import pulumi_fastly as fastly
+
+        #...
+        items = []
+        for range in [{"key": k, "value": v} for [k, v] in enumerate({d.name: d for d in myservice.dictionary if d.name == mydict_name})]:
+            items.append(fastly.ServiceDictionaryItems(f"items-{range['key']}",
+                service_id=myservice["id"],
+                dictionary_id=range["value"]["dictionaryId"],
+                manage_items=True,
+                items={
+                    "key1": "value1",
+                    "key2": "value2",
+                }))
+        ```
+
         ## Import
 
-        This is an example of the import command being applied to the resource named `fastly_service_dictionary_items.items`
+        > **Note:** The dictionary resource should be empty before importing
 
+        This is an example of the import command being applied to the resource named `fastly_service_dictionary_items.items`
         The resource ID is a combined value of the `service_id` and `dictionary_id` separated by a forward slash.
 
         ```sh
@@ -211,10 +638,11 @@ class ServiceDictionaryItems(pulumi.CustomResource):
         ```
 
         If Terraform is already managing remote dictionary items against a resource being imported then the user will be asked to remove it from the existing Terraform state.
-
         The following is an example of the Terraform state command to remove the resource named `fastly_service_dictionary_items.items` from the Terraform state file.
 
+        ```sh
         $ terraform state rm fastly_service_dictionary_items.items
+        ```
 
         :param str resource_name: The name of the resource.
         :param ServiceDictionaryItemsArgs args: The arguments to use to populate this resource's properties.

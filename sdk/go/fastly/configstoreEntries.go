@@ -12,6 +12,151 @@ import (
 	"github.com/pulumi/pulumi/sdk/v3/go/pulumi"
 )
 
+// The Config Store (`Configstore`) can be seeded with initial key-value pairs using the `ConfigstoreEntries` resource.
+//
+// After the first `pulumi up` the default behaviour is to ignore any further configuration changes to those key-value pairs. Terraform will expect modifications to happen outside of Terraform (e.g. new key-value pairs to be managed using the [Fastly API](https://developer.fastly.com/reference/api/) or [Fastly CLI](https://developer.fastly.com/learning/tools/cli/)).
+//
+// To change the default behaviour (so Terraform continues to manage the key-value pairs within the configuration) set `manageEntries = true`.
+//
+// > **Note:** Terraform should not be used to store large amounts of data, so it's recommended you leave the default behaviour in place and only seed the store with a small amount of key-value pairs. For more information see "Configuration not data".
+//
+// ## Example Usage
+//
+// Basic usage (with seeded values):
+//
+// ```go
+// package main
+//
+// import (
+//
+//	"github.com/pulumi/pulumi-fastly/sdk/v11/go/fastly"
+//	"github.com/pulumi/pulumi/sdk/v3/go/pulumi"
+//
+// )
+//
+//	func main() {
+//		pulumi.Run(func(ctx *pulumi.Context) error {
+//			// IMPORTANT: Deleting a Config Store requires first deleting its resource_link.
+//			// This requires a two-step `pulumi up` as we can't guarantee deletion order.
+//			// e.g. resource_link deletion within fastly_service_compute might not finish first.
+//			exampleConfigstore, err := fastly.NewConfigstore(ctx, "example", &fastly.ConfigstoreArgs{
+//				Name: pulumi.String("%s"),
+//			})
+//			if err != nil {
+//				return err
+//			}
+//			_, err = fastly.NewConfigstoreEntries(ctx, "example", &fastly.ConfigstoreEntriesArgs{
+//				StoreId: exampleConfigstore.ID(),
+//				Entries: pulumi.StringMap{
+//					"key1": pulumi.String("value1"),
+//					"key2": pulumi.String("value2"),
+//				},
+//			})
+//			if err != nil {
+//				return err
+//			}
+//			example, err := fastly.GetPackageHash(ctx, &fastly.GetPackageHashArgs{
+//				Filename: pulumi.StringRef("package.tar.gz"),
+//			}, nil)
+//			if err != nil {
+//				return err
+//			}
+//			_, err = fastly.NewServiceCompute(ctx, "example", &fastly.ServiceComputeArgs{
+//				Name: pulumi.String("my_compute_service"),
+//				Domains: fastly.ServiceComputeDomainArray{
+//					&fastly.ServiceComputeDomainArgs{
+//						Name: pulumi.String("demo.example.com"),
+//					},
+//				},
+//				Package: &fastly.ServiceComputePackageArgs{
+//					Filename:       pulumi.String("package.tar.gz"),
+//					SourceCodeHash: pulumi.String(example.Hash),
+//				},
+//				ResourceLinks: fastly.ServiceComputeResourceLinkArray{
+//					&fastly.ServiceComputeResourceLinkArgs{
+//						Name:       pulumi.String("my_resource_link"),
+//						ResourceId: exampleConfigstore.ID(),
+//					},
+//				},
+//				ForceDestroy: pulumi.Bool(true),
+//			})
+//			if err != nil {
+//				return err
+//			}
+//			return nil
+//		})
+//	}
+//
+// ```
+//
+// To have Terraform manage the initially seeded key-value pairs defined in your configuration, then you must set `manageEntries = true` (this will cause any key-value pairs added outside of Terraform to be deleted):
+//
+// ```go
+// package main
+//
+// import (
+//
+//	"github.com/pulumi/pulumi-fastly/sdk/v11/go/fastly"
+//	"github.com/pulumi/pulumi/sdk/v3/go/pulumi"
+//
+// )
+//
+//	func main() {
+//		pulumi.Run(func(ctx *pulumi.Context) error {
+//			// IMPORTANT: Deleting a Config Store requires first deleting its resource_link.
+//			// This requires a two-step `pulumi up` as we can't guarantee deletion order.
+//			// e.g. resource_link deletion within fastly_service_compute might not finish first.
+//			exampleConfigstore, err := fastly.NewConfigstore(ctx, "example", &fastly.ConfigstoreArgs{
+//				Name: pulumi.String("%s"),
+//			})
+//			if err != nil {
+//				return err
+//			}
+//			_, err = fastly.NewConfigstoreEntries(ctx, "example", &fastly.ConfigstoreEntriesArgs{
+//				StoreId: exampleConfigstore.ID(),
+//				Entries: pulumi.StringMap{
+//					"key1": pulumi.String("value1"),
+//					"key2": pulumi.String("value2"),
+//				},
+//				ManageEntries: pulumi.Bool(true),
+//			})
+//			if err != nil {
+//				return err
+//			}
+//			example, err := fastly.GetPackageHash(ctx, &fastly.GetPackageHashArgs{
+//				Filename: pulumi.StringRef("package.tar.gz"),
+//			}, nil)
+//			if err != nil {
+//				return err
+//			}
+//			_, err = fastly.NewServiceCompute(ctx, "example", &fastly.ServiceComputeArgs{
+//				Name: pulumi.String("my_compute_service"),
+//				Domains: fastly.ServiceComputeDomainArray{
+//					&fastly.ServiceComputeDomainArgs{
+//						Name: pulumi.String("demo.example.com"),
+//					},
+//				},
+//				Package: &fastly.ServiceComputePackageArgs{
+//					Filename:       pulumi.String("package.tar.gz"),
+//					SourceCodeHash: pulumi.String(example.Hash),
+//				},
+//				ResourceLinks: fastly.ServiceComputeResourceLinkArray{
+//					&fastly.ServiceComputeResourceLinkArgs{
+//						Name:       pulumi.String("my_resource_link"),
+//						ResourceId: exampleConfigstore.ID(),
+//					},
+//				},
+//				ForceDestroy: pulumi.Bool(true),
+//			})
+//			if err != nil {
+//				return err
+//			}
+//			return nil
+//		})
+//	}
+//
+// ```
+//
 // ## Import
 //
 // Fastly Config Stores entries can be imported using the corresponding Config Store ID with the `/entries` suffix, e.g.
@@ -23,8 +168,9 @@ type ConfigstoreEntries struct {
 	pulumi.CustomResourceState
 
 	// A map representing an entry in the Config Store, (key/value)
-	Entries       pulumi.StringMapOutput `pulumi:"entries"`
-	ManageEntries pulumi.BoolPtrOutput   `pulumi:"manageEntries"`
+	Entries pulumi.StringMapOutput `pulumi:"entries"`
+	// Have Terraform manage the entries (default: false). If set to `true` Terraform will remove any entries that were added externally from the config seeded values.
+	ManageEntries pulumi.BoolPtrOutput `pulumi:"manageEntries"`
 	// An alphanumeric string identifying the Config Store.
 	StoreId pulumi.StringOutput `pulumi:"storeId"`
 }
@@ -66,15 +212,17 @@ func GetConfigstoreEntries(ctx *pulumi.Context,
 // Input properties used for looking up and filtering ConfigstoreEntries resources.
 type configstoreEntriesState struct {
 	// A map representing an entry in the Config Store, (key/value)
-	Entries       map[string]string `pulumi:"entries"`
-	ManageEntries *bool             `pulumi:"manageEntries"`
+	Entries map[string]string `pulumi:"entries"`
+	// Have Terraform manage the entries (default: false). If set to `true` Terraform will remove any entries that were added externally from the config seeded values.
+	ManageEntries *bool `pulumi:"manageEntries"`
 	// An alphanumeric string identifying the Config Store.
 	StoreId *string `pulumi:"storeId"`
 }
 
 type ConfigstoreEntriesState struct {
 	// A map representing an entry in the Config Store, (key/value)
-	Entries       pulumi.StringMapInput
+	Entries pulumi.StringMapInput
+	// Have Terraform manage the entries (default: false). If set to `true` Terraform will remove any entries that were added externally from the config seeded values.
 	ManageEntries pulumi.BoolPtrInput
 	// An alphanumeric string identifying the Config Store.
 	StoreId pulumi.StringPtrInput
@@ -86,8 +234,9 @@ func (ConfigstoreEntriesState) ElementType() reflect.Type {
 
 type configstoreEntriesArgs struct {
 	// A map representing an entry in the Config Store, (key/value)
-	Entries       map[string]string `pulumi:"entries"`
-	ManageEntries *bool             `pulumi:"manageEntries"`
+	Entries map[string]string `pulumi:"entries"`
+	// Have Terraform manage the entries (default: false). If set to `true` Terraform will remove any entries that were added externally from the config seeded values.
+	ManageEntries *bool `pulumi:"manageEntries"`
 	// An alphanumeric string identifying the Config Store.
 	StoreId string `pulumi:"storeId"`
 }
@@ -95,7 +244,8 @@ type configstoreEntriesArgs struct {
 // The set of arguments for constructing a ConfigstoreEntries resource.
 type ConfigstoreEntriesArgs struct {
 	// A map representing an entry in the Config Store, (key/value)
-	Entries       pulumi.StringMapInput
+	Entries pulumi.StringMapInput
+	// Have Terraform manage the entries (default: false). If set to `true` Terraform will remove any entries that were added externally from the config seeded values.
 	ManageEntries pulumi.BoolPtrInput
 	// An alphanumeric string identifying the Config Store.
 	StoreId pulumi.StringInput
@@ -193,6 +343,7 @@ func (o ConfigstoreEntriesOutput) Entries() pulumi.StringMapOutput {
 	return o.ApplyT(func(v *ConfigstoreEntries) pulumi.StringMapOutput { return v.Entries }).(pulumi.StringMapOutput)
 }
 
+// Have Terraform manage the entries (default: false). If set to `true` Terraform will remove any entries that were added externally from the config seeded values.
 func (o ConfigstoreEntriesOutput) ManageEntries() pulumi.BoolPtrOutput {
 	return o.ApplyT(func(v *ConfigstoreEntries) pulumi.BoolPtrOutput { return v.ManageEntries }).(pulumi.BoolPtrOutput)
 }

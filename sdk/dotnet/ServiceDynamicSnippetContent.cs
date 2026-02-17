@@ -10,21 +10,271 @@ using Pulumi.Serialization;
 namespace Pulumi.Fastly
 {
     /// <summary>
+    /// Defines content that represents blocks of VCL logic that is inserted into your service.  This resource will populate the content of a dynamic snippet and allow it to be manged without the creation of a new service verison.
+    /// 
+    /// &gt; **Note:** By default the Terraform provider allows you to externally manage the snippets via API or UI.
+    /// If you wish to apply your changes in the HCL, then you should explicitly set the `ManageSnippets` attribute. An example of this configuration is provided below.
+    /// 
+    /// If this provider is being used to populate the initial content of a dynamic snippet which you intend to manage via the API, then the lifecycle `IgnoreChanges` field can be used with the resource.  An example of this configuration is provided below.
+    /// 
+    /// ## Example Usage
+    /// 
+    /// ### Basic usage:
+    /// 
+    /// ```csharp
+    /// using System.Collections.Generic;
+    /// using System.Linq;
+    /// using Pulumi;
+    /// using Fastly = Pulumi.Fastly;
+    /// 
+    /// return await Deployment.RunAsync(() =&gt; 
+    /// {
+    ///     var myservice = new Fastly.ServiceVcl("myservice", new()
+    ///     {
+    ///         Name = "snippet_test",
+    ///         Domains = new[]
+    ///         {
+    ///             new Fastly.Inputs.ServiceVclDomainArgs
+    ///             {
+    ///                 Name = "snippet.fastlytestdomain.com",
+    ///                 Comment = "snippet test",
+    ///             },
+    ///         },
+    ///         Backends = new[]
+    ///         {
+    ///             new Fastly.Inputs.ServiceVclBackendArgs
+    ///             {
+    ///                 Address = "http-me.fastly.dev",
+    ///                 Name = "Glitch Test Site",
+    ///                 Port = 80,
+    ///             },
+    ///         },
+    ///         Dynamicsnippets = new[]
+    ///         {
+    ///             new Fastly.Inputs.ServiceVclDynamicsnippetArgs
+    ///             {
+    ///                 Name = "My Dynamic Snippet",
+    ///                 Type = "recv",
+    ///                 Priority = 110,
+    ///             },
+    ///         },
+    ///         DefaultHost = "http-me.fastly.dev",
+    ///         ForceDestroy = true,
+    ///     });
+    /// 
+    ///     var myDynContent = new List&lt;Fastly.ServiceDynamicSnippetContent&gt;();
+    ///     foreach (var range in myservice.Dynamicsnippets.Apply(dynamicsnippets =&gt; ).Select(pair =&gt; new { pair.Key, pair.Value }))
+    ///     {
+    ///         myDynContent.Add(new Fastly.ServiceDynamicSnippetContent($"my_dyn_content-{range.Key}", new()
+    ///         {
+    ///             ServiceId = myservice.Id,
+    ///             SnippetId = range.Value.SnippetId,
+    ///             Content = @"if ( req.url ) {
+    ///  set req.http.my-snippet-test-header = ""true"";
+    /// }",
+    ///         }));
+    ///     }
+    /// });
+    /// ```
+    /// 
+    /// ### Multiple dynamic snippets:
+    /// 
+    /// ```csharp
+    /// using System.Collections.Generic;
+    /// using System.Linq;
+    /// using Pulumi;
+    /// using Fastly = Pulumi.Fastly;
+    /// 
+    /// return await Deployment.RunAsync(() =&gt; 
+    /// {
+    ///     var myservice = new Fastly.ServiceVcl("myservice", new()
+    ///     {
+    ///         Name = "snippet_test",
+    ///         Domains = new[]
+    ///         {
+    ///             new Fastly.Inputs.ServiceVclDomainArgs
+    ///             {
+    ///                 Name = "snippet.fastlytestdomain.com",
+    ///                 Comment = "snippet test",
+    ///             },
+    ///         },
+    ///         Backends = new[]
+    ///         {
+    ///             new Fastly.Inputs.ServiceVclBackendArgs
+    ///             {
+    ///                 Address = "http-me.fastly.dev",
+    ///                 Name = "Glitch Test Site",
+    ///                 Port = 80,
+    ///             },
+    ///         },
+    ///         Dynamicsnippets = new[]
+    ///         {
+    ///             new Fastly.Inputs.ServiceVclDynamicsnippetArgs
+    ///             {
+    ///                 Name = "My Dynamic Snippet One",
+    ///                 Type = "recv",
+    ///                 Priority = 110,
+    ///             },
+    ///             new Fastly.Inputs.ServiceVclDynamicsnippetArgs
+    ///             {
+    ///                 Name = "My Dynamic Snippet Two",
+    ///                 Type = "recv",
+    ///                 Priority = 110,
+    ///             },
+    ///         },
+    ///         DefaultHost = "http-me.fastly.dev",
+    ///         ForceDestroy = true,
+    ///     });
+    /// 
+    ///     var myDynContentOne = new List&lt;Fastly.ServiceDynamicSnippetContent&gt;();
+    ///     foreach (var range in myservice.Dynamicsnippets.Apply(dynamicsnippets =&gt; ).Select(pair =&gt; new { pair.Key, pair.Value }))
+    ///     {
+    ///         myDynContentOne.Add(new Fastly.ServiceDynamicSnippetContent($"my_dyn_content_one-{range.Key}", new()
+    ///         {
+    ///             ServiceId = myservice.Id,
+    ///             SnippetId = range.Value.SnippetId,
+    ///             Content = @"if ( req.url ) {
+    ///  set req.http.my-snippet-test-header-one = ""true"";
+    /// }",
+    ///         }));
+    ///     }
+    ///     var myDynContentTwo = new List&lt;Fastly.ServiceDynamicSnippetContent&gt;();
+    ///     foreach (var range in myservice.Dynamicsnippets.Apply(dynamicsnippets =&gt; ).Select(pair =&gt; new { pair.Key, pair.Value }))
+    ///     {
+    ///         myDynContentTwo.Add(new Fastly.ServiceDynamicSnippetContent($"my_dyn_content_two-{range.Key}", new()
+    ///         {
+    ///             ServiceId = myservice.Id,
+    ///             SnippetId = range.Value.SnippetId,
+    ///             Content = @"if ( req.url ) {
+    ///  set req.http.my-snippet-test-header-two = ""true"";
+    /// }",
+    ///         }));
+    ///     }
+    /// });
+    /// ```
+    /// 
+    /// ### Terraform &gt;= 0.12.0 &amp;&amp; &lt; 0.12.6)
+    /// 
+    /// `ForEach` attributes were not available in Terraform before 0.12.6, however, users can still use `For` expressions to achieve
+    /// similar behaviour as seen in the example below.
+    /// 
+    /// &gt; **Warning:** Terraform might not properly calculate implicit dependencies on computed attributes when using `For` expressions
+    /// 
+    /// For scenarios such as adding a Dynamic Snippet to a service and at the same time, creating the Dynamic Snippets (`fastly.ServiceDynamicSnippetContent`)
+    /// resource, Terraform will not calculate implicit dependencies correctly on `For` expressions. This will result in index lookup
+    /// problems and the execution will fail.
+    /// 
+    /// For those scenarios, it's recommended to split the changes into two distinct steps:
+    /// 
+    /// 1. Add the `Dynamicsnippet` block to the `fastly.ServiceVcl` and apply the changes
+    /// 2. Add the `fastly.ServiceDynamicSnippetContent` resource with the `For` expressions to the HCL and apply the changes
+    /// 
+    /// Usage:
+    /// 
+    /// ```csharp
+    /// using System.Collections.Generic;
+    /// using System.Linq;
+    /// using Pulumi;
+    /// using Fastly = Pulumi.Fastly;
+    /// 
+    /// return await Deployment.RunAsync(() =&gt; 
+    /// {
+    ///     var myservice = new Fastly.ServiceVcl("myservice", new()
+    ///     {
+    ///         Name = "demofastly",
+    ///         Domains = new[]
+    ///         {
+    ///             new Fastly.Inputs.ServiceVclDomainArgs
+    ///             {
+    ///                 Name = "demo.notexample.com",
+    ///                 Comment = "demo",
+    ///             },
+    ///         },
+    ///         Dynamicsnippets = new[]
+    ///         {
+    ///             new Fastly.Inputs.ServiceVclDynamicsnippetArgs
+    ///             {
+    ///                 Name = "My Dynamic Snippet",
+    ///                 Type = "recv",
+    ///                 Priority = 110,
+    ///             },
+    ///         },
+    ///     });
+    /// 
+    ///     var myDynContent = new Fastly.ServiceDynamicSnippetContent("my_dyn_content", new()
+    ///     {
+    ///         ServiceId = myservice.Id,
+    ///         SnippetId = myservice.Dynamicsnippets.Apply(dynamicsnippets =&gt; .ToDictionary(item =&gt; {
+    ///             var s = item.Value;
+    ///             return s.Name;
+    ///         }, item =&gt; {
+    ///             var s = item.Value;
+    ///             return s.SnippetId;
+    ///         }).My_Dynamic_Snippet),
+    ///         Content = @"if ( req.url ) {
+    ///  set req.http.my-snippet-test-header = ""true"";
+    /// }",
+    ///     });
+    /// 
+    /// });
+    /// ```
+    /// 
+    /// ### Reapplying original snippets with `ManageSnippets` if the state of the snippets drifts
+    /// 
+    /// By default the user is opted out from reapplying the original changes if the snippets are managed externally.
+    /// The following example demonstrates how the `ManageSnippets` field can be used to reapply the changes defined in the HCL if the state of the snippets drifts.
+    /// When the value is explicitly set to 'true', Terraform will keep the original changes and discard any other changes made under this resource outside of Terraform.
+    /// 
+    /// &gt; **Warning:** You will lose externally managed snippets if `manage_snippets=true`.
+    /// 
+    /// &gt; **Note:** The `IgnoreChanges` built-in meta-argument takes precedence over `ManageSnippets` regardless of its value.
+    /// 
+    /// ```csharp
+    /// using System.Collections.Generic;
+    /// using System.Linq;
+    /// using Pulumi;
+    /// using Fastly = Pulumi.Fastly;
+    /// 
+    /// return await Deployment.RunAsync(() =&gt; 
+    /// {
+    ///     //...
+    ///     var myDynContent = new List&lt;Fastly.ServiceDynamicSnippetContent&gt;();
+    ///     foreach (var range in .ToDictionary(item =&gt; {
+    ///         var d = item.Value;
+    ///         return d.Name;
+    ///     }, item =&gt; {
+    ///         var d = item.Value;
+    ///         return d;
+    ///     }).Select(pair =&gt; new { pair.Key, pair.Value }))
+    ///     {
+    ///         myDynContent.Add(new Fastly.ServiceDynamicSnippetContent($"my_dyn_content-{range.Key}", new()
+    ///         {
+    ///             ServiceId = myservice.Id,
+    ///             SnippetId = range.Value.SnippetId,
+    ///             ManageSnippets = true,
+    ///             Content = @"if ( req.url ) {
+    ///  set req.http.my-snippet-test-header = ""true"";
+    /// }",
+    ///         }));
+    ///     }
+    /// });
+    /// ```
+    /// 
     /// ## Import
     /// 
     /// This is an example of the import command being applied to the resource named `fastly_service_dynamic_snippet_content.content`
-    /// 
-    /// The resource ID is a combined value of the `service_id` and `snippet_id` separated by a forward slash.
+    /// The resource ID is a combined value of the `ServiceId` and `SnippetId` separated by a forward slash.
     /// 
     /// ```sh
     /// $ pulumi import fastly:index/serviceDynamicSnippetContent:ServiceDynamicSnippetContent content xxxxxxxxxxxxxxxxxxxx/xxxxxxxxxxxxxxxxxxxx
     /// ```
     /// 
     /// If Terraform is already managing remote content against a resource being imported then the user will be asked to remove it from the existing Terraform state.
-    /// 
     /// The following is an example of the Terraform state command to remove the resource named `fastly_service_dynamic_snippet_content.content` from the Terraform state file.
     /// 
+    /// ```sh
     /// $ terraform state rm fastly_service_dynamic_snippet_content.content
+    /// ```
     /// </summary>
     [FastlyResourceType("fastly:index/serviceDynamicSnippetContent:ServiceDynamicSnippetContent")]
     public partial class ServiceDynamicSnippetContent : global::Pulumi.CustomResource

@@ -48,9 +48,17 @@ public final class ComputeAclEntriesArgs extends com.pulumi.resources.ResourceAr
         return this.entries;
     }
 
+    /**
+     * Manage the ACL entries in Terraform (default: false). If true, Terraform will ensure that the ACL&#39;s entries match the entries in the Terraform configuration.
+     * 
+     */
     @Import(name="manageEntries")
     private @Nullable Output<Boolean> manageEntries;
 
+    /**
+     * @return Manage the ACL entries in Terraform (default: false). If true, Terraform will ensure that the ACL&#39;s entries match the entries in the Terraform configuration.
+     * 
+     */
     public Optional<Output<Boolean>> manageEntries() {
         return Optional.ofNullable(this.manageEntries);
     }
@@ -123,11 +131,23 @@ public final class ComputeAclEntriesArgs extends com.pulumi.resources.ResourceAr
             return entries(Output.of(entries));
         }
 
+        /**
+         * @param manageEntries Manage the ACL entries in Terraform (default: false). If true, Terraform will ensure that the ACL&#39;s entries match the entries in the Terraform configuration.
+         * 
+         * @return builder
+         * 
+         */
         public Builder manageEntries(@Nullable Output<Boolean> manageEntries) {
             $.manageEntries = manageEntries;
             return this;
         }
 
+        /**
+         * @param manageEntries Manage the ACL entries in Terraform (default: false). If true, Terraform will ensure that the ACL&#39;s entries match the entries in the Terraform configuration.
+         * 
+         * @return builder
+         * 
+         */
         public Builder manageEntries(Boolean manageEntries) {
             return manageEntries(Output.of(manageEntries));
         }
