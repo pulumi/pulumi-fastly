@@ -1767,15 +1767,15 @@ class ServiceVcl(pulumi.CustomResource):
                 ],
             }],
             force_destroy=True)
-        website_bucket = aws.index.S3Bucket("website_bucket", bucket=your-unique-website-bucket-name)
-        website_config = aws.index.S3BucketWebsiteConfiguration("website_config",
+        website_bucket = aws.s3.Bucket("website_bucket", bucket="your-unique-website-bucket-name")
+        website_config = aws.s3.BucketWebsiteConfiguration("website_config",
             bucket=website_bucket.id,
-            index_document=[{
-                suffix: index.html,
-            }],
-            error_document=[{
-                key: error.html,
-            }])
+            index_document={
+                "suffix": "index.html",
+            },
+            error_document={
+                "key": "error.html",
+            })
         ```
 
         Basic usage with [custom
@@ -1910,15 +1910,15 @@ class ServiceVcl(pulumi.CustomResource):
                 ],
             }],
             force_destroy=True)
-        website_bucket = aws.index.S3Bucket("website_bucket", bucket=your-unique-website-bucket-name)
-        website_config = aws.index.S3BucketWebsiteConfiguration("website_config",
+        website_bucket = aws.s3.Bucket("website_bucket", bucket="your-unique-website-bucket-name")
+        website_config = aws.s3.BucketWebsiteConfiguration("website_config",
             bucket=website_bucket.id,
-            index_document=[{
-                suffix: index.html,
-            }],
-            error_document=[{
-                key: error.html,
-            }])
+            index_document={
+                "suffix": "index.html",
+            },
+            error_document={
+                "key": "error.html",
+            })
         ```
 
         Basic usage with [custom

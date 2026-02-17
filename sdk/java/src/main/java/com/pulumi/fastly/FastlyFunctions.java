@@ -870,8 +870,9 @@ public final class FastlyFunctions {
      * import com.pulumi.Pulumi;
      * import com.pulumi.core.Output;
      * import com.pulumi.fastly.FastlyFunctions;
-     * import com.pulumi.aws.SecurityGroup;
-     * import com.pulumi.aws.SecurityGroupArgs;
+     * import com.pulumi.aws.ec2.SecurityGroup;
+     * import com.pulumi.aws.ec2.SecurityGroupArgs;
+     * import com.pulumi.aws.ec2.inputs.SecurityGroupIngressArgs;
      * import java.util.List;
      * import java.util.ArrayList;
      * import java.util.Map;
@@ -889,13 +890,13 @@ public final class FastlyFunctions {
      * 
      *         var fromFastly = new SecurityGroup("fromFastly", SecurityGroupArgs.builder()
      *             .name("from_fastly")
-     *             .ingress(List.of(Map.ofEntries(
-     *                 Map.entry("fromPort", "443"),
-     *                 Map.entry("toPort", "443"),
-     *                 Map.entry("protocol", "tcp"),
-     *                 Map.entry("cidrBlocks", fastly.cidrBlocks()),
-     *                 Map.entry("ipv6CidrBlocks", fastly.ipv6CidrBlocks())
-     *             )))
+     *             .ingress(SecurityGroupIngressArgs.builder()
+     *                 .fromPort(443)
+     *                 .toPort(443)
+     *                 .protocol("tcp")
+     *                 .cidrBlocks(fastly.cidrBlocks())
+     *                 .ipv6CidrBlocks(fastly.ipv6CidrBlocks())
+     *                 .build())
      *             .build());
      * 
      *     }
@@ -922,8 +923,9 @@ public final class FastlyFunctions {
      * import com.pulumi.Pulumi;
      * import com.pulumi.core.Output;
      * import com.pulumi.fastly.FastlyFunctions;
-     * import com.pulumi.aws.SecurityGroup;
-     * import com.pulumi.aws.SecurityGroupArgs;
+     * import com.pulumi.aws.ec2.SecurityGroup;
+     * import com.pulumi.aws.ec2.SecurityGroupArgs;
+     * import com.pulumi.aws.ec2.inputs.SecurityGroupIngressArgs;
      * import java.util.List;
      * import java.util.ArrayList;
      * import java.util.Map;
@@ -941,13 +943,13 @@ public final class FastlyFunctions {
      * 
      *         var fromFastly = new SecurityGroup("fromFastly", SecurityGroupArgs.builder()
      *             .name("from_fastly")
-     *             .ingress(List.of(Map.ofEntries(
-     *                 Map.entry("fromPort", "443"),
-     *                 Map.entry("toPort", "443"),
-     *                 Map.entry("protocol", "tcp"),
-     *                 Map.entry("cidrBlocks", fastly.cidrBlocks()),
-     *                 Map.entry("ipv6CidrBlocks", fastly.ipv6CidrBlocks())
-     *             )))
+     *             .ingress(SecurityGroupIngressArgs.builder()
+     *                 .fromPort(443)
+     *                 .toPort(443)
+     *                 .protocol("tcp")
+     *                 .cidrBlocks(fastly.cidrBlocks())
+     *                 .ipv6CidrBlocks(fastly.ipv6CidrBlocks())
+     *                 .build())
      *             .build());
      * 
      *     }
@@ -974,8 +976,9 @@ public final class FastlyFunctions {
      * import com.pulumi.Pulumi;
      * import com.pulumi.core.Output;
      * import com.pulumi.fastly.FastlyFunctions;
-     * import com.pulumi.aws.SecurityGroup;
-     * import com.pulumi.aws.SecurityGroupArgs;
+     * import com.pulumi.aws.ec2.SecurityGroup;
+     * import com.pulumi.aws.ec2.SecurityGroupArgs;
+     * import com.pulumi.aws.ec2.inputs.SecurityGroupIngressArgs;
      * import java.util.List;
      * import java.util.ArrayList;
      * import java.util.Map;
@@ -993,13 +996,13 @@ public final class FastlyFunctions {
      * 
      *         var fromFastly = new SecurityGroup("fromFastly", SecurityGroupArgs.builder()
      *             .name("from_fastly")
-     *             .ingress(List.of(Map.ofEntries(
-     *                 Map.entry("fromPort", "443"),
-     *                 Map.entry("toPort", "443"),
-     *                 Map.entry("protocol", "tcp"),
-     *                 Map.entry("cidrBlocks", fastly.cidrBlocks()),
-     *                 Map.entry("ipv6CidrBlocks", fastly.ipv6CidrBlocks())
-     *             )))
+     *             .ingress(SecurityGroupIngressArgs.builder()
+     *                 .fromPort(443)
+     *                 .toPort(443)
+     *                 .protocol("tcp")
+     *                 .cidrBlocks(fastly.cidrBlocks())
+     *                 .ipv6CidrBlocks(fastly.ipv6CidrBlocks())
+     *                 .build())
      *             .build());
      * 
      *     }
@@ -1026,8 +1029,9 @@ public final class FastlyFunctions {
      * import com.pulumi.Pulumi;
      * import com.pulumi.core.Output;
      * import com.pulumi.fastly.FastlyFunctions;
-     * import com.pulumi.aws.SecurityGroup;
-     * import com.pulumi.aws.SecurityGroupArgs;
+     * import com.pulumi.aws.ec2.SecurityGroup;
+     * import com.pulumi.aws.ec2.SecurityGroupArgs;
+     * import com.pulumi.aws.ec2.inputs.SecurityGroupIngressArgs;
      * import java.util.List;
      * import java.util.ArrayList;
      * import java.util.Map;
@@ -1045,13 +1049,13 @@ public final class FastlyFunctions {
      * 
      *         var fromFastly = new SecurityGroup("fromFastly", SecurityGroupArgs.builder()
      *             .name("from_fastly")
-     *             .ingress(List.of(Map.ofEntries(
-     *                 Map.entry("fromPort", "443"),
-     *                 Map.entry("toPort", "443"),
-     *                 Map.entry("protocol", "tcp"),
-     *                 Map.entry("cidrBlocks", fastly.cidrBlocks()),
-     *                 Map.entry("ipv6CidrBlocks", fastly.ipv6CidrBlocks())
-     *             )))
+     *             .ingress(SecurityGroupIngressArgs.builder()
+     *                 .fromPort(443)
+     *                 .toPort(443)
+     *                 .protocol("tcp")
+     *                 .cidrBlocks(fastly.cidrBlocks())
+     *                 .ipv6CidrBlocks(fastly.ipv6CidrBlocks())
+     *                 .build())
      *             .build());
      * 
      *     }
@@ -1078,8 +1082,9 @@ public final class FastlyFunctions {
      * import com.pulumi.Pulumi;
      * import com.pulumi.core.Output;
      * import com.pulumi.fastly.FastlyFunctions;
-     * import com.pulumi.aws.SecurityGroup;
-     * import com.pulumi.aws.SecurityGroupArgs;
+     * import com.pulumi.aws.ec2.SecurityGroup;
+     * import com.pulumi.aws.ec2.SecurityGroupArgs;
+     * import com.pulumi.aws.ec2.inputs.SecurityGroupIngressArgs;
      * import java.util.List;
      * import java.util.ArrayList;
      * import java.util.Map;
@@ -1097,13 +1102,13 @@ public final class FastlyFunctions {
      * 
      *         var fromFastly = new SecurityGroup("fromFastly", SecurityGroupArgs.builder()
      *             .name("from_fastly")
-     *             .ingress(List.of(Map.ofEntries(
-     *                 Map.entry("fromPort", "443"),
-     *                 Map.entry("toPort", "443"),
-     *                 Map.entry("protocol", "tcp"),
-     *                 Map.entry("cidrBlocks", fastly.cidrBlocks()),
-     *                 Map.entry("ipv6CidrBlocks", fastly.ipv6CidrBlocks())
-     *             )))
+     *             .ingress(SecurityGroupIngressArgs.builder()
+     *                 .fromPort(443)
+     *                 .toPort(443)
+     *                 .protocol("tcp")
+     *                 .cidrBlocks(fastly.cidrBlocks())
+     *                 .ipv6CidrBlocks(fastly.ipv6CidrBlocks())
+     *                 .build())
      *             .build());
      * 
      *     }
@@ -1130,8 +1135,9 @@ public final class FastlyFunctions {
      * import com.pulumi.Pulumi;
      * import com.pulumi.core.Output;
      * import com.pulumi.fastly.FastlyFunctions;
-     * import com.pulumi.aws.SecurityGroup;
-     * import com.pulumi.aws.SecurityGroupArgs;
+     * import com.pulumi.aws.ec2.SecurityGroup;
+     * import com.pulumi.aws.ec2.SecurityGroupArgs;
+     * import com.pulumi.aws.ec2.inputs.SecurityGroupIngressArgs;
      * import java.util.List;
      * import java.util.ArrayList;
      * import java.util.Map;
@@ -1149,13 +1155,13 @@ public final class FastlyFunctions {
      * 
      *         var fromFastly = new SecurityGroup("fromFastly", SecurityGroupArgs.builder()
      *             .name("from_fastly")
-     *             .ingress(List.of(Map.ofEntries(
-     *                 Map.entry("fromPort", "443"),
-     *                 Map.entry("toPort", "443"),
-     *                 Map.entry("protocol", "tcp"),
-     *                 Map.entry("cidrBlocks", fastly.cidrBlocks()),
-     *                 Map.entry("ipv6CidrBlocks", fastly.ipv6CidrBlocks())
-     *             )))
+     *             .ingress(SecurityGroupIngressArgs.builder()
+     *                 .fromPort(443)
+     *                 .toPort(443)
+     *                 .protocol("tcp")
+     *                 .cidrBlocks(fastly.cidrBlocks())
+     *                 .ipv6CidrBlocks(fastly.ipv6CidrBlocks())
+     *                 .build())
      *             .build());
      * 
      *     }
@@ -1182,8 +1188,9 @@ public final class FastlyFunctions {
      * import com.pulumi.Pulumi;
      * import com.pulumi.core.Output;
      * import com.pulumi.fastly.FastlyFunctions;
-     * import com.pulumi.aws.SecurityGroup;
-     * import com.pulumi.aws.SecurityGroupArgs;
+     * import com.pulumi.aws.ec2.SecurityGroup;
+     * import com.pulumi.aws.ec2.SecurityGroupArgs;
+     * import com.pulumi.aws.ec2.inputs.SecurityGroupIngressArgs;
      * import java.util.List;
      * import java.util.ArrayList;
      * import java.util.Map;
@@ -1201,13 +1208,13 @@ public final class FastlyFunctions {
      * 
      *         var fromFastly = new SecurityGroup("fromFastly", SecurityGroupArgs.builder()
      *             .name("from_fastly")
-     *             .ingress(List.of(Map.ofEntries(
-     *                 Map.entry("fromPort", "443"),
-     *                 Map.entry("toPort", "443"),
-     *                 Map.entry("protocol", "tcp"),
-     *                 Map.entry("cidrBlocks", fastly.cidrBlocks()),
-     *                 Map.entry("ipv6CidrBlocks", fastly.ipv6CidrBlocks())
-     *             )))
+     *             .ingress(SecurityGroupIngressArgs.builder()
+     *                 .fromPort(443)
+     *                 .toPort(443)
+     *                 .protocol("tcp")
+     *                 .cidrBlocks(fastly.cidrBlocks())
+     *                 .ipv6CidrBlocks(fastly.ipv6CidrBlocks())
+     *                 .build())
      *             .build());
      * 
      *     }

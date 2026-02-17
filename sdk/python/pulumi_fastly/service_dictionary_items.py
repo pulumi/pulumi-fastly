@@ -302,11 +302,11 @@ class ServiceDictionaryItems(pulumi.CustomResource):
                 project.append(fastly.ServiceDictionaryItems(f"project-{range['key']}",
                     service_id=myservice.id,
                     dictionary_id=range["value"].dictionary_id,
-                    items={division: std.index.format(input="%s.%s",
+                    items={division: std.format(input="%s.%s",
                         args=[
                             division,
                             host_base,
-                        ])["result"] for division in host_divisions}))
+                        ]).result for division in host_divisions}))
 
         myservice.dictionaries.apply(lambda resolved_outputs: create_project({d.name: d for d in resolved_outputs['dictionaries'] if d.name == dictionary_name}))
         ```
@@ -546,11 +546,11 @@ class ServiceDictionaryItems(pulumi.CustomResource):
                 project.append(fastly.ServiceDictionaryItems(f"project-{range['key']}",
                     service_id=myservice.id,
                     dictionary_id=range["value"].dictionary_id,
-                    items={division: std.index.format(input="%s.%s",
+                    items={division: std.format(input="%s.%s",
                         args=[
                             division,
                             host_base,
-                        ])["result"] for division in host_divisions}))
+                        ]).result for division in host_divisions}))
 
         myservice.dictionaries.apply(lambda resolved_outputs: create_project({d.name: d for d in resolved_outputs['dictionaries'] if d.name == dictionary_name}))
         ```

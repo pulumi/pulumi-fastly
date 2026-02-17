@@ -217,16 +217,7 @@ namespace Pulumi.Fastly
     ///                 var division = item.Value;
     ///                 return division;
     ///             }, item =&gt; {
-    ///                 var division = item.Value;
-    ///                 return Std.Index.Format.Invoke(new()
-    ///                 {
-    ///                     Input = "%s.%s",
-    ///                     Args = new[]
-    ///                     {
-    ///                         division,
-    ///                         hostBase,
-    ///                     },
-    ///                 }).Result;
+    ///                 return _arg0_.Result;
     ///             }),
     ///         }));
     ///     }
