@@ -25,6 +25,7 @@ class NgwafVirtualPatchesArgs:
                  workspace_id: pulumi.Input[_builtins.str]):
         """
         The set of arguments for constructing a NgwafVirtualPatches resource.
+
         :param pulumi.Input[_builtins.str] action: Action to take when a signal for virtual patch is detected. Accepted values are `log` and `block`.
         :param pulumi.Input[_builtins.bool] enabled: Control for enabling and disabling a virtual patch.
         :param pulumi.Input[_builtins.str] virtual_patch_id: The ID of the virtual patch.
@@ -93,6 +94,7 @@ class _NgwafVirtualPatchesState:
                  workspace_id: Optional[pulumi.Input[_builtins.str]] = None):
         """
         Input properties used for looking up and filtering NgwafVirtualPatches resources.
+
         :param pulumi.Input[_builtins.str] action: Action to take when a signal for virtual patch is detected. Accepted values are `log` and `block`.
         :param pulumi.Input[_builtins.bool] enabled: Control for enabling and disabling a virtual patch.
         :param pulumi.Input[_builtins.str] virtual_patch_id: The ID of the virtual patch.
@@ -194,6 +196,7 @@ class NgwafVirtualPatches(pulumi.CustomResource):
         $ pulumi import fastly:index/ngwafVirtualPatches:NgwafVirtualPatches demo <workspace_id>/<virtual_patch_id>
         ```
 
+
         :param str resource_name: The name of the resource.
         :param pulumi.ResourceOptions opts: Options for the resource.
         :param pulumi.Input[_builtins.str] action: Action to take when a signal for virtual patch is detected. Accepted values are `log` and `block`.
@@ -233,6 +236,7 @@ class NgwafVirtualPatches(pulumi.CustomResource):
         ```sh
         $ pulumi import fastly:index/ngwafVirtualPatches:NgwafVirtualPatches demo <workspace_id>/<virtual_patch_id>
         ```
+
 
         :param str resource_name: The name of the resource.
         :param NgwafVirtualPatchesArgs args: The arguments to use to populate this resource's properties.

@@ -34,6 +34,7 @@ class NgwafWorkspaceRuleArgs:
                  request_logging: Optional[pulumi.Input[_builtins.str]] = None):
         """
         The set of arguments for constructing a NgwafWorkspaceRule resource.
+
         :param pulumi.Input[Sequence[pulumi.Input['NgwafWorkspaceRuleActionArgs']]] actions: List of actions to perform when the rule matches.
         :param pulumi.Input[_builtins.str] description: The description of the rule.
         :param pulumi.Input[_builtins.bool] enabled: Whether the rule is currently enabled.
@@ -213,6 +214,7 @@ class _NgwafWorkspaceRuleState:
                  workspace_id: Optional[pulumi.Input[_builtins.str]] = None):
         """
         Input properties used for looking up and filtering NgwafWorkspaceRule resources.
+
         :param pulumi.Input[Sequence[pulumi.Input['NgwafWorkspaceRuleActionArgs']]] actions: List of actions to perform when the rule matches.
         :param pulumi.Input[Sequence[pulumi.Input['NgwafWorkspaceRuleConditionArgs']]] conditions: Flat list of individual conditions. Each must include `field`, `operator`, and `value`.
         :param pulumi.Input[_builtins.str] description: The description of the rule.
@@ -692,6 +694,7 @@ class NgwafWorkspaceRule(pulumi.CustomResource):
         $ pulumi import fastly:index/ngwafWorkspaceRule:NgwafWorkspaceRule demo <workspaceID>/<ruleID>
         ```
 
+
         :param str resource_name: The name of the resource.
         :param pulumi.ResourceOptions opts: Options for the resource.
         :param pulumi.Input[Sequence[pulumi.Input[Union['NgwafWorkspaceRuleActionArgs', 'NgwafWorkspaceRuleActionArgsDict']]]] actions: List of actions to perform when the rule matches.
@@ -1004,6 +1007,7 @@ class NgwafWorkspaceRule(pulumi.CustomResource):
         ```sh
         $ pulumi import fastly:index/ngwafWorkspaceRule:NgwafWorkspaceRule demo <workspaceID>/<ruleID>
         ```
+
 
         :param str resource_name: The name of the resource.
         :param NgwafWorkspaceRuleArgs args: The arguments to use to populate this resource's properties.

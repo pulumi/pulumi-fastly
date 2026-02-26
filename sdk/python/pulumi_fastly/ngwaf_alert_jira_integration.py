@@ -28,6 +28,7 @@ class NgwafAlertJiraIntegrationArgs:
                  issue_type: Optional[pulumi.Input[_builtins.str]] = None):
         """
         The set of arguments for constructing a NgwafAlertJiraIntegration resource.
+
         :param pulumi.Input[_builtins.str] host: The name of the Jira instance.
         :param pulumi.Input[_builtins.str] key: The Jira key.
         :param pulumi.Input[_builtins.str] project: The Jira project where the issue will be created.
@@ -143,6 +144,7 @@ class _NgwafAlertJiraIntegrationState:
                  workspace_id: Optional[pulumi.Input[_builtins.str]] = None):
         """
         Input properties used for looking up and filtering NgwafAlertJiraIntegration resources.
+
         :param pulumi.Input[_builtins.str] description: The description of the alert.
         :param pulumi.Input[_builtins.str] host: The name of the Jira instance.
         :param pulumi.Input[_builtins.str] issue_type: The Jira issue type associated with the ticket.
@@ -294,6 +296,7 @@ class NgwafAlertJiraIntegration(pulumi.CustomResource):
         $ pulumi import fastly:index/ngwafAlertJiraIntegration:NgwafAlertJiraIntegration example <workspace_id>/<alert_id>
         ```
 
+
         :param str resource_name: The name of the resource.
         :param pulumi.ResourceOptions opts: Options for the resource.
         :param pulumi.Input[_builtins.str] description: The description of the alert.
@@ -338,6 +341,7 @@ class NgwafAlertJiraIntegration(pulumi.CustomResource):
         ```sh
         $ pulumi import fastly:index/ngwafAlertJiraIntegration:NgwafAlertJiraIntegration example <workspace_id>/<alert_id>
         ```
+
 
         :param str resource_name: The name of the resource.
         :param NgwafAlertJiraIntegrationArgs args: The arguments to use to populate this resource's properties.

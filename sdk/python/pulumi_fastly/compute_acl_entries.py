@@ -24,6 +24,7 @@ class ComputeAclEntriesArgs:
                  manage_entries: Optional[pulumi.Input[_builtins.bool]] = None):
         """
         The set of arguments for constructing a ComputeAclEntries resource.
+
         :param pulumi.Input[_builtins.str] compute_acl_id: Manages entries for a Fastly Compute Access Control List (ACL). To import, use the format \\n\\n/entries.
         :param pulumi.Input[Mapping[str, pulumi.Input[_builtins.str]]] entries: A map representing the entries in the Compute ACL, where the keys are the prefixes and the values are the actions (ALLOW or BLOCK).
         :param pulumi.Input[_builtins.bool] manage_entries: Manage the ACL entries in Terraform (default: false). If true, Terraform will ensure that the ACL's entries match the entries in the Terraform configuration.
@@ -78,6 +79,7 @@ class _ComputeAclEntriesState:
                  manage_entries: Optional[pulumi.Input[_builtins.bool]] = None):
         """
         Input properties used for looking up and filtering ComputeAclEntries resources.
+
         :param pulumi.Input[_builtins.str] compute_acl_id: Manages entries for a Fastly Compute Access Control List (ACL). To import, use the format \\n\\n/entries.
         :param pulumi.Input[Mapping[str, pulumi.Input[_builtins.str]]] entries: A map representing the entries in the Compute ACL, where the keys are the prefixes and the values are the actions (ALLOW or BLOCK).
         :param pulumi.Input[_builtins.bool] manage_entries: Manage the ACL entries in Terraform (default: false). If true, Terraform will ensure that the ACL's entries match the entries in the Terraform configuration.
@@ -220,6 +222,7 @@ class ComputeAclEntries(pulumi.CustomResource):
         $ pulumi import fastly:index/computeAclEntries:ComputeAclEntries example <compute_acl_id>/entries
         ```
 
+
         :param str resource_name: The name of the resource.
         :param pulumi.ResourceOptions opts: Options for the resource.
         :param pulumi.Input[_builtins.str] compute_acl_id: Manages entries for a Fastly Compute Access Control List (ACL). To import, use the format \\n\\n/entries.
@@ -315,6 +318,7 @@ class ComputeAclEntries(pulumi.CustomResource):
         ```sh
         $ pulumi import fastly:index/computeAclEntries:ComputeAclEntries example <compute_acl_id>/entries
         ```
+
 
         :param str resource_name: The name of the resource.
         :param ComputeAclEntriesArgs args: The arguments to use to populate this resource's properties.

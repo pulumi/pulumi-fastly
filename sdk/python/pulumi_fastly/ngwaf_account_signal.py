@@ -24,6 +24,7 @@ class NgwafAccountSignalArgs:
                  name: Optional[pulumi.Input[_builtins.str]] = None):
         """
         The set of arguments for constructing a NgwafAccountSignal resource.
+
         :param pulumi.Input[Sequence[pulumi.Input[_builtins.str]]] applies_tos: The list of workspace IDs this signal applies to, or the wildcard `*` if it applies to all workspaces.
         :param pulumi.Input[_builtins.str] description: The description of the signal.
         :param pulumi.Input[_builtins.str] name: The name of the signal. Special characters and periods are not accepted.
@@ -80,6 +81,7 @@ class _NgwafAccountSignalState:
                  reference_id: Optional[pulumi.Input[_builtins.str]] = None):
         """
         Input properties used for looking up and filtering NgwafAccountSignal resources.
+
         :param pulumi.Input[Sequence[pulumi.Input[_builtins.str]]] applies_tos: The list of workspace IDs this signal applies to, or the wildcard `*` if it applies to all workspaces.
         :param pulumi.Input[_builtins.str] description: The description of the signal.
         :param pulumi.Input[_builtins.str] name: The name of the signal. Special characters and periods are not accepted.
@@ -179,6 +181,7 @@ class NgwafAccountSignal(pulumi.CustomResource):
         $ pulumi import fastly:index/ngwafAccountSignal:NgwafAccountSignal demo <signalID>
         ```
 
+
         :param str resource_name: The name of the resource.
         :param pulumi.ResourceOptions opts: Options for the resource.
         :param pulumi.Input[Sequence[pulumi.Input[_builtins.str]]] applies_tos: The list of workspace IDs this signal applies to, or the wildcard `*` if it applies to all workspaces.
@@ -216,6 +219,7 @@ class NgwafAccountSignal(pulumi.CustomResource):
         ```sh
         $ pulumi import fastly:index/ngwafAccountSignal:NgwafAccountSignal demo <signalID>
         ```
+
 
         :param str resource_name: The name of the resource.
         :param NgwafAccountSignalArgs args: The arguments to use to populate this resource's properties.

@@ -25,6 +25,7 @@ class NgwafAlertDatadogIntegrationArgs:
                  description: Optional[pulumi.Input[_builtins.str]] = None):
         """
         The set of arguments for constructing a NgwafAlertDatadogIntegration resource.
+
         :param pulumi.Input[_builtins.str] key: The Datadog key.
         :param pulumi.Input[_builtins.str] site: The Datadog site.
         :param pulumi.Input[_builtins.str] workspace_id: The ID of the workspace.
@@ -94,6 +95,7 @@ class _NgwafAlertDatadogIntegrationState:
                  workspace_id: Optional[pulumi.Input[_builtins.str]] = None):
         """
         Input properties used for looking up and filtering NgwafAlertDatadogIntegration resources.
+
         :param pulumi.Input[_builtins.str] description: The description of the alert.
         :param pulumi.Input[_builtins.str] key: The Datadog key.
         :param pulumi.Input[_builtins.str] site: The Datadog site.
@@ -194,6 +196,7 @@ class NgwafAlertDatadogIntegration(pulumi.CustomResource):
         $ pulumi import fastly:index/ngwafAlertDatadogIntegration:NgwafAlertDatadogIntegration example <workspace_id>/<alert_id>
         ```
 
+
         :param str resource_name: The name of the resource.
         :param pulumi.ResourceOptions opts: Options for the resource.
         :param pulumi.Input[_builtins.str] description: The description of the alert.
@@ -232,6 +235,7 @@ class NgwafAlertDatadogIntegration(pulumi.CustomResource):
         ```sh
         $ pulumi import fastly:index/ngwafAlertDatadogIntegration:NgwafAlertDatadogIntegration example <workspace_id>/<alert_id>
         ```
+
 
         :param str resource_name: The name of the resource.
         :param NgwafAlertDatadogIntegrationArgs args: The arguments to use to populate this resource's properties.

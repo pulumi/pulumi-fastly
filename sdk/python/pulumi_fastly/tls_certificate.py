@@ -23,6 +23,7 @@ class TlsCertificateArgs:
                  name: Optional[pulumi.Input[_builtins.str]] = None):
         """
         The set of arguments for constructing a TlsCertificate resource.
+
         :param pulumi.Input[_builtins.str] certificate_body: PEM-formatted certificate, optionally including any intermediary certificates.
         :param pulumi.Input[_builtins.str] name: Human-readable name used to identify the certificate. Defaults to the certificate's Common Name or first Subject Alternative Name entry.
         """
@@ -70,6 +71,7 @@ class _TlsCertificateState:
                  updated_at: Optional[pulumi.Input[_builtins.str]] = None):
         """
         Input properties used for looking up and filtering TlsCertificate resources.
+
         :param pulumi.Input[_builtins.str] certificate_body: PEM-formatted certificate, optionally including any intermediary certificates.
         :param pulumi.Input[_builtins.str] created_at: Timestamp (GMT) when the certificate was created.
         :param pulumi.Input[Sequence[pulumi.Input[_builtins.str]]] domains: All the domains (including wildcard domains) that are listed in the certificate's Subject Alternative Names (SAN) list.
@@ -290,6 +292,7 @@ class TlsCertificate(pulumi.CustomResource):
         $ pulumi import fastly:index/tlsCertificate:TlsCertificate demo xxxxxxxxxxx
         ```
 
+
         :param str resource_name: The name of the resource.
         :param pulumi.ResourceOptions opts: Options for the resource.
         :param pulumi.Input[_builtins.str] certificate_body: PEM-formatted certificate, optionally including any intermediary certificates.
@@ -358,6 +361,7 @@ class TlsCertificate(pulumi.CustomResource):
         ```sh
         $ pulumi import fastly:index/tlsCertificate:TlsCertificate demo xxxxxxxxxxx
         ```
+
 
         :param str resource_name: The name of the resource.
         :param TlsCertificateArgs args: The arguments to use to populate this resource's properties.

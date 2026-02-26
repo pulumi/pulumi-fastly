@@ -24,6 +24,7 @@ class NgwafWorkspaceSignalArgs:
                  name: Optional[pulumi.Input[_builtins.str]] = None):
         """
         The set of arguments for constructing a NgwafWorkspaceSignal resource.
+
         :param pulumi.Input[_builtins.str] workspace_id: The ID of the workspace.
         :param pulumi.Input[_builtins.str] description: The description of the signal.
         :param pulumi.Input[_builtins.str] name: The name of the signal. Special characters and periods are not accepted.
@@ -80,6 +81,7 @@ class _NgwafWorkspaceSignalState:
                  workspace_id: Optional[pulumi.Input[_builtins.str]] = None):
         """
         Input properties used for looking up and filtering NgwafWorkspaceSignal resources.
+
         :param pulumi.Input[_builtins.str] description: The description of the signal.
         :param pulumi.Input[_builtins.str] name: The name of the signal. Special characters and periods are not accepted.
         :param pulumi.Input[_builtins.str] reference_id: The generated reference ID of the signal.
@@ -190,6 +192,7 @@ class NgwafWorkspaceSignal(pulumi.CustomResource):
         $ pulumi import fastly:index/ngwafWorkspaceSignal:NgwafWorkspaceSignal demo <workspaceID>/<signalID>
         ```
 
+
         :param str resource_name: The name of the resource.
         :param pulumi.ResourceOptions opts: Options for the resource.
         :param pulumi.Input[_builtins.str] description: The description of the signal.
@@ -238,6 +241,7 @@ class NgwafWorkspaceSignal(pulumi.CustomResource):
         ```sh
         $ pulumi import fastly:index/ngwafWorkspaceSignal:NgwafWorkspaceSignal demo <workspaceID>/<signalID>
         ```
+
 
         :param str resource_name: The name of the resource.
         :param NgwafWorkspaceSignalArgs args: The arguments to use to populate this resource's properties.

@@ -25,6 +25,7 @@ class NgwafAccountListArgs:
                  name: Optional[pulumi.Input[_builtins.str]] = None):
         """
         The set of arguments for constructing a NgwafAccountList resource.
+
         :param pulumi.Input[Sequence[pulumi.Input[_builtins.str]]] entries: The values in the list.
         :param pulumi.Input[_builtins.str] type: The type of list. Accepted values are `string`, `wildcard`, `ip`, `country`, and `signal`.
         :param pulumi.Input[_builtins.str] description: The description of the list.
@@ -96,6 +97,7 @@ class _NgwafAccountListState:
                  type: Optional[pulumi.Input[_builtins.str]] = None):
         """
         Input properties used for looking up and filtering NgwafAccountList resources.
+
         :param pulumi.Input[Sequence[pulumi.Input[_builtins.str]]] applies_tos: INTERNAL: Used to build scope for account-scoped lists. Not user-configurable.
         :param pulumi.Input[_builtins.str] description: The description of the list.
         :param pulumi.Input[Sequence[pulumi.Input[_builtins.str]]] entries: The values in the list.
@@ -217,6 +219,7 @@ class NgwafAccountList(pulumi.CustomResource):
         $ pulumi import fastly:index/ngwafAccountList:NgwafAccountList demo <listID>
         ```
 
+
         :param str resource_name: The name of the resource.
         :param pulumi.ResourceOptions opts: Options for the resource.
         :param pulumi.Input[_builtins.str] description: The description of the list.
@@ -261,6 +264,7 @@ class NgwafAccountList(pulumi.CustomResource):
         ```sh
         $ pulumi import fastly:index/ngwafAccountList:NgwafAccountList demo <listID>
         ```
+
 
         :param str resource_name: The name of the resource.
         :param NgwafAccountListArgs args: The arguments to use to populate this resource's properties.

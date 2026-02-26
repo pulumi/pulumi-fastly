@@ -26,6 +26,7 @@ class TlsMutualAuthenticationArgs:
                  name: Optional[pulumi.Input[_builtins.str]] = None):
         """
         The set of arguments for constructing a TlsMutualAuthentication resource.
+
         :param pulumi.Input[_builtins.str] cert_bundle: One or more certificates. Enter each individual certificate blob on a new line. Must be PEM-formatted.
         :param pulumi.Input[Sequence[pulumi.Input[_builtins.str]]] activation_ids: List of TLS Activation IDs
         :param pulumi.Input[_builtins.bool] enforced: Determines whether Mutual TLS will fail closed (enforced) or fail open. A true value will require a successful Mutual TLS handshake for the connection to continue and will fail closed if unsuccessful. A false value will fail open and allow the connection to proceed (if this attribute is not set we default to `false`).
@@ -116,6 +117,7 @@ class _TlsMutualAuthenticationState:
                  updated_at: Optional[pulumi.Input[_builtins.str]] = None):
         """
         Input properties used for looking up and filtering TlsMutualAuthentication resources.
+
         :param pulumi.Input[Sequence[pulumi.Input[_builtins.str]]] activation_ids: List of TLS Activation IDs
         :param pulumi.Input[_builtins.str] cert_bundle: One or more certificates. Enter each individual certificate blob on a new line. Must be PEM-formatted.
         :param pulumi.Input[_builtins.str] created_at: Date and time in ISO 8601 format.
@@ -260,6 +262,7 @@ class TlsMutualAuthentication(pulumi.CustomResource):
 
         The examples below demonstrate how to use Mutual Authentication along with a TLS Subscription. Refer to the `TlsSubscription` resource documentation for a deeper explanation of that code.
 
+
         :param str resource_name: The name of the resource.
         :param pulumi.ResourceOptions opts: Options for the resource.
         :param pulumi.Input[Sequence[pulumi.Input[_builtins.str]]] activation_ids: List of TLS Activation IDs
@@ -282,6 +285,7 @@ class TlsMutualAuthentication(pulumi.CustomResource):
         Mutual TLS can be added to existing TLS activations to allow for client-to-server authentication. In order to use mutual TLS, you must already have active server-side TLS using either custom certificates or an enabled Fastly-managed subscription.
 
         The examples below demonstrate how to use Mutual Authentication along with a TLS Subscription. Refer to the `TlsSubscription` resource documentation for a deeper explanation of that code.
+
 
         :param str resource_name: The name of the resource.
         :param TlsMutualAuthenticationArgs args: The arguments to use to populate this resource's properties.

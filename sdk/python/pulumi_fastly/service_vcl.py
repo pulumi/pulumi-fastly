@@ -81,6 +81,7 @@ class ServiceVclArgs:
                  version_comment: Optional[pulumi.Input[_builtins.str]] = None):
         """
         The set of arguments for constructing a ServiceVcl resource.
+
         :param pulumi.Input[_builtins.bool] activate: Conditionally prevents new service versions from being activated. The apply step will create a new draft version but will not activate it if this is set to `false`. Default `true`
         :param pulumi.Input[_builtins.str] comment: Description field for the service. Default `Managed by Terraform`
         :param pulumi.Input[_builtins.str] default_host: The default hostname
@@ -842,6 +843,7 @@ class _ServiceVclState:
                  version_comment: Optional[pulumi.Input[_builtins.str]] = None):
         """
         Input properties used for looking up and filtering ServiceVcl resources.
+
         :param pulumi.Input[_builtins.bool] activate: Conditionally prevents new service versions from being activated. The apply step will create a new draft version but will not activate it if this is set to `false`. Default `true`
         :param pulumi.Input[_builtins.int] active_version: The currently active version of your Fastly Service
         :param pulumi.Input[_builtins.int] cloned_version: The latest cloned version by the provider
@@ -1796,6 +1798,7 @@ class ServiceVcl(pulumi.CustomResource):
         $ pulumi import fastly:index/serviceVcl:ServiceVcl demo xxxxxxxxxxxxxxxxxxxx@2
         ```
 
+
         :param str resource_name: The name of the resource.
         :param pulumi.ResourceOptions opts: Options for the resource.
         :param pulumi.Input[_builtins.bool] activate: Conditionally prevents new service versions from being activated. The apply step will create a new draft version but will not activate it if this is set to `false`. Default `true`
@@ -1938,6 +1941,7 @@ class ServiceVcl(pulumi.CustomResource):
         ```sh
         $ pulumi import fastly:index/serviceVcl:ServiceVcl demo xxxxxxxxxxxxxxxxxxxx@2
         ```
+
 
         :param str resource_name: The name of the resource.
         :param ServiceVclArgs args: The arguments to use to populate this resource's properties.

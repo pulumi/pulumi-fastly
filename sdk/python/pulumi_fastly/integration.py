@@ -25,6 +25,7 @@ class IntegrationArgs:
                  name: Optional[pulumi.Input[_builtins.str]] = None):
         """
         The set of arguments for constructing a Integration resource.
+
         :param pulumi.Input[Mapping[str, pulumi.Input[_builtins.str]]] config: Configuration specific to the integration `type` (see documentation examples).
         :param pulumi.Input[_builtins.str] type: Type of the integration. One of: `mailinglist`, `microsoftteams`, `newrelic`, `pagerduty`, `slack`, `webhook`.
         :param pulumi.Input[_builtins.str] description: User submitted description of the integration.
@@ -95,6 +96,7 @@ class _IntegrationState:
                  type: Optional[pulumi.Input[_builtins.str]] = None):
         """
         Input properties used for looking up and filtering Integration resources.
+
         :param pulumi.Input[Mapping[str, pulumi.Input[_builtins.str]]] config: Configuration specific to the integration `type` (see documentation examples).
         :param pulumi.Input[_builtins.str] description: User submitted description of the integration.
         :param pulumi.Input[_builtins.str] name: User submitted name of the integration.
@@ -225,6 +227,7 @@ class Integration(pulumi.CustomResource):
             })
         ```
 
+
         :param str resource_name: The name of the resource.
         :param pulumi.ResourceOptions opts: Options for the resource.
         :param pulumi.Input[Mapping[str, pulumi.Input[_builtins.str]]] config: Configuration specific to the integration `type` (see documentation examples).
@@ -293,6 +296,7 @@ class Integration(pulumi.CustomResource):
                 "webhook": "https://my.domain.com/webhook",
             })
         ```
+
 
         :param str resource_name: The name of the resource.
         :param IntegrationArgs args: The arguments to use to populate this resource's properties.

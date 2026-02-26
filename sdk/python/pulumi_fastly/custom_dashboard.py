@@ -26,6 +26,7 @@ class CustomDashboardArgs:
                  name: Optional[pulumi.Input[_builtins.str]] = None):
         """
         The set of arguments for constructing a CustomDashboard resource.
+
         :param pulumi.Input[Sequence[pulumi.Input['CustomDashboardDashboardItemArgs']]] dashboard_items: A list of dashboard items.
         :param pulumi.Input[_builtins.str] description: A short description of the dashboard.
         :param pulumi.Input[_builtins.str] name: A human-readable name.
@@ -82,6 +83,7 @@ class _CustomDashboardState:
                  name: Optional[pulumi.Input[_builtins.str]] = None):
         """
         Input properties used for looking up and filtering CustomDashboard resources.
+
         :param pulumi.Input[Sequence[pulumi.Input['CustomDashboardDashboardItemArgs']]] dashboard_items: A list of dashboard items.
         :param pulumi.Input[_builtins.str] description: A short description of the dashboard.
         :param pulumi.Input[_builtins.str] name: A human-readable name.
@@ -388,6 +390,7 @@ class CustomDashboard(pulumi.CustomResource):
         $ pulumi import fastly:index/customDashboard:CustomDashboard example xxxxxxxxxxxxxxxxxxxx
         ```
 
+
         :param str resource_name: The name of the resource.
         :param pulumi.ResourceOptions opts: Options for the resource.
         :param pulumi.Input[Sequence[pulumi.Input[Union['CustomDashboardDashboardItemArgs', 'CustomDashboardDashboardItemArgsDict']]]] dashboard_items: A list of dashboard items.
@@ -647,6 +650,7 @@ class CustomDashboard(pulumi.CustomResource):
         ```sh
         $ pulumi import fastly:index/customDashboard:CustomDashboard example xxxxxxxxxxxxxxxxxxxx
         ```
+
 
         :param str resource_name: The name of the resource.
         :param CustomDashboardArgs args: The arguments to use to populate this resource's properties.

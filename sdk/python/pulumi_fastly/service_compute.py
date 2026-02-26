@@ -66,6 +66,7 @@ class ServiceComputeArgs:
                  version_comment: Optional[pulumi.Input[_builtins.str]] = None):
         """
         The set of arguments for constructing a ServiceCompute resource.
+
         :param pulumi.Input[_builtins.bool] activate: Conditionally prevents new service versions from being activated. The apply step will create a new draft version but will not activate it if this is set to `false`. Default `true`
         :param pulumi.Input[_builtins.str] comment: Description field for the service. Default `Managed by Terraform`
         :param pulumi.Input[Sequence[pulumi.Input['ServiceComputeDomainArgs']]] domains: A set of Domain names to serve as entry points for your Service
@@ -635,6 +636,7 @@ class _ServiceComputeState:
                  version_comment: Optional[pulumi.Input[_builtins.str]] = None):
         """
         Input properties used for looking up and filtering ServiceCompute resources.
+
         :param pulumi.Input[_builtins.bool] activate: Conditionally prevents new service versions from being activated. The apply step will create a new draft version but will not activate it if this is set to `false`. Default `true`
         :param pulumi.Input[_builtins.int] active_version: The currently active version of your Fastly Service
         :param pulumi.Input[_builtins.int] cloned_version: The latest cloned version by the provider
@@ -1358,6 +1360,7 @@ class ServiceCompute(pulumi.CustomResource):
         $ pulumi import fastly:index/serviceCompute:ServiceCompute demo xxxxxxxxxxxxxxxxxxxx@2
         ```
 
+
         :param str resource_name: The name of the resource.
         :param pulumi.ResourceOptions opts: Options for the resource.
         :param pulumi.Input[_builtins.bool] activate: Conditionally prevents new service versions from being activated. The apply step will create a new draft version but will not activate it if this is set to `false`. Default `true`
@@ -1458,6 +1461,7 @@ class ServiceCompute(pulumi.CustomResource):
         ```sh
         $ pulumi import fastly:index/serviceCompute:ServiceCompute demo xxxxxxxxxxxxxxxxxxxx@2
         ```
+
 
         :param str resource_name: The name of the resource.
         :param ServiceComputeArgs args: The arguments to use to populate this resource's properties.

@@ -31,6 +31,7 @@ class NgwafWorkspaceArgs:
                  name: Optional[pulumi.Input[_builtins.str]] = None):
         """
         The set of arguments for constructing a NgwafWorkspace resource.
+
         :param pulumi.Input['NgwafWorkspaceAttackSignalThresholdsArgs'] attack_signal_thresholds: Attack threshold parameters for system site alerts. Each threshold value is the number of attack signals per IP address that must be detected during the interval before the related IP address is flagged. If no values are set then the default value for each field will be applied
         :param pulumi.Input[_builtins.str] description: The description of the workspace
         :param pulumi.Input[_builtins.str] mode: The operation mode of the workspace. Accepted values are `off`, `block`, and `log`.
@@ -164,6 +165,7 @@ class _NgwafWorkspaceState:
                  name: Optional[pulumi.Input[_builtins.str]] = None):
         """
         Input properties used for looking up and filtering NgwafWorkspace resources.
+
         :param pulumi.Input['NgwafWorkspaceAttackSignalThresholdsArgs'] attack_signal_thresholds: Attack threshold parameters for system site alerts. Each threshold value is the number of attack signals per IP address that must be detected during the interval before the related IP address is flagged. If no values are set then the default value for each field will be applied
         :param pulumi.Input[Sequence[pulumi.Input[_builtins.str]]] client_ip_headers: Specifies the request headers containing the client IP address. Maximum of 10 header names.
         :param pulumi.Input[_builtins.int] default_blocking_response_code: The status code returned when a request is blocked. This configuration is applied at the workspace but can be overwritten in rules. Accepted values are [`301`, `302`, `400..599`]. Default value `406`.
@@ -335,6 +337,7 @@ class NgwafWorkspace(pulumi.CustomResource):
         $ pulumi import fastly:index/ngwafWorkspace:NgwafWorkspace demo xxxxxxxxxxxxxxxxxxxx
         ```
 
+
         :param str resource_name: The name of the resource.
         :param pulumi.ResourceOptions opts: Options for the resource.
         :param pulumi.Input[Union['NgwafWorkspaceAttackSignalThresholdsArgs', 'NgwafWorkspaceAttackSignalThresholdsArgsDict']] attack_signal_thresholds: Attack threshold parameters for system site alerts. Each threshold value is the number of attack signals per IP address that must be detected during the interval before the related IP address is flagged. If no values are set then the default value for each field will be applied
@@ -384,6 +387,7 @@ class NgwafWorkspace(pulumi.CustomResource):
         ```sh
         $ pulumi import fastly:index/ngwafWorkspace:NgwafWorkspace demo xxxxxxxxxxxxxxxxxxxx
         ```
+
 
         :param str resource_name: The name of the resource.
         :param NgwafWorkspaceArgs args: The arguments to use to populate this resource's properties.

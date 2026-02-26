@@ -24,6 +24,7 @@ class ObjectStorageAccessKeysArgs:
                  buckets: Optional[pulumi.Input[Sequence[pulumi.Input[_builtins.str]]]] = None):
         """
         The set of arguments for constructing a ObjectStorageAccessKeys resource.
+
         :param pulumi.Input[_builtins.str] description: The description of the access key
         :param pulumi.Input[_builtins.str] permission: The permissions of the access key
         :param pulumi.Input[Sequence[pulumi.Input[_builtins.str]]] buckets: Optional list of buckets the access key will be associated with.  Example: `["bucket1", "bucket2"]`
@@ -80,6 +81,7 @@ class _ObjectStorageAccessKeysState:
                  secret_key: Optional[pulumi.Input[_builtins.str]] = None):
         """
         Input properties used for looking up and filtering ObjectStorageAccessKeys resources.
+
         :param pulumi.Input[_builtins.str] access_key_id: ID for the object storage access token
         :param pulumi.Input[Sequence[pulumi.Input[_builtins.str]]] buckets: Optional list of buckets the access key will be associated with.  Example: `["bucket1", "bucket2"]`
         :param pulumi.Input[_builtins.str] description: The description of the access key
@@ -191,6 +193,7 @@ class ObjectStorageAccessKeys(pulumi.CustomResource):
         ```
         > **Note:** Permissions can only be one of these values listed [here](https://quic.fastly.com/documentation/reference/api/services/resources/object-storage-access-keys/#permissions), any other values will return an error
 
+
         :param str resource_name: The name of the resource.
         :param pulumi.ResourceOptions opts: Options for the resource.
         :param pulumi.Input[Sequence[pulumi.Input[_builtins.str]]] buckets: Optional list of buckets the access key will be associated with.  Example: `["bucket1", "bucket2"]`
@@ -225,6 +228,7 @@ class ObjectStorageAccessKeys(pulumi.CustomResource):
             permission="")
         ```
         > **Note:** Permissions can only be one of these values listed [here](https://quic.fastly.com/documentation/reference/api/services/resources/object-storage-access-keys/#permissions), any other values will return an error
+
 
         :param str resource_name: The name of the resource.
         :param ObjectStorageAccessKeysArgs args: The arguments to use to populate this resource's properties.
