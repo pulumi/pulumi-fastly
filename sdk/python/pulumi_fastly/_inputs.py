@@ -37,6 +37,10 @@ __all__ = [
     'NgwafAccountRuleGroupConditionArgsDict',
     'NgwafAccountRuleGroupConditionConditionArgs',
     'NgwafAccountRuleGroupConditionConditionArgsDict',
+    'NgwafAccountRuleGroupConditionMultivalConditionArgs',
+    'NgwafAccountRuleGroupConditionMultivalConditionArgsDict',
+    'NgwafAccountRuleGroupConditionMultivalConditionConditionArgs',
+    'NgwafAccountRuleGroupConditionMultivalConditionConditionArgsDict',
     'NgwafAccountRuleMultivalConditionArgs',
     'NgwafAccountRuleMultivalConditionArgsDict',
     'NgwafAccountRuleMultivalConditionConditionArgs',
@@ -51,6 +55,10 @@ __all__ = [
     'NgwafWorkspaceRuleGroupConditionArgsDict',
     'NgwafWorkspaceRuleGroupConditionConditionArgs',
     'NgwafWorkspaceRuleGroupConditionConditionArgsDict',
+    'NgwafWorkspaceRuleGroupConditionMultivalConditionArgs',
+    'NgwafWorkspaceRuleGroupConditionMultivalConditionArgsDict',
+    'NgwafWorkspaceRuleGroupConditionMultivalConditionConditionArgs',
+    'NgwafWorkspaceRuleGroupConditionMultivalConditionConditionArgsDict',
     'NgwafWorkspaceRuleMultivalConditionArgs',
     'NgwafWorkspaceRuleMultivalConditionArgsDict',
     'NgwafWorkspaceRuleMultivalConditionConditionArgs',
@@ -805,38 +813,35 @@ class NgwafAccountRuleConditionArgs:
 
 
 class NgwafAccountRuleGroupConditionArgsDict(TypedDict):
-    conditions: pulumi.Input[Sequence[pulumi.Input['NgwafAccountRuleGroupConditionConditionArgsDict']]]
-    """
-    A list of nested conditions in this group.
-    """
     group_operator: pulumi.Input[_builtins.str]
     """
     Logical operator for the group. Accepted values are `any` and `all`.
+    """
+    conditions: NotRequired[pulumi.Input[Sequence[pulumi.Input['NgwafAccountRuleGroupConditionConditionArgsDict']]]]
+    """
+    A list of nested conditions in this group.
+    """
+    multival_conditions: NotRequired[pulumi.Input[Sequence[pulumi.Input['NgwafAccountRuleGroupConditionMultivalConditionArgsDict']]]]
+    """
+    List of nested multival conditions in this group. Each multival list must define a `field, operator, group_operator` and at least one condition.
     """
 
 @pulumi.input_type
 class NgwafAccountRuleGroupConditionArgs:
     def __init__(__self__, *,
-                 conditions: pulumi.Input[Sequence[pulumi.Input['NgwafAccountRuleGroupConditionConditionArgs']]],
-                 group_operator: pulumi.Input[_builtins.str]):
+                 group_operator: pulumi.Input[_builtins.str],
+                 conditions: Optional[pulumi.Input[Sequence[pulumi.Input['NgwafAccountRuleGroupConditionConditionArgs']]]] = None,
+                 multival_conditions: Optional[pulumi.Input[Sequence[pulumi.Input['NgwafAccountRuleGroupConditionMultivalConditionArgs']]]] = None):
         """
-        :param pulumi.Input[Sequence[pulumi.Input['NgwafAccountRuleGroupConditionConditionArgs']]] conditions: A list of nested conditions in this group.
         :param pulumi.Input[_builtins.str] group_operator: Logical operator for the group. Accepted values are `any` and `all`.
+        :param pulumi.Input[Sequence[pulumi.Input['NgwafAccountRuleGroupConditionConditionArgs']]] conditions: A list of nested conditions in this group.
+        :param pulumi.Input[Sequence[pulumi.Input['NgwafAccountRuleGroupConditionMultivalConditionArgs']]] multival_conditions: List of nested multival conditions in this group. Each multival list must define a `field, operator, group_operator` and at least one condition.
         """
-        pulumi.set(__self__, "conditions", conditions)
         pulumi.set(__self__, "group_operator", group_operator)
-
-    @_builtins.property
-    @pulumi.getter
-    def conditions(self) -> pulumi.Input[Sequence[pulumi.Input['NgwafAccountRuleGroupConditionConditionArgs']]]:
-        """
-        A list of nested conditions in this group.
-        """
-        return pulumi.get(self, "conditions")
-
-    @conditions.setter
-    def conditions(self, value: pulumi.Input[Sequence[pulumi.Input['NgwafAccountRuleGroupConditionConditionArgs']]]):
-        pulumi.set(self, "conditions", value)
+        if conditions is not None:
+            pulumi.set(__self__, "conditions", conditions)
+        if multival_conditions is not None:
+            pulumi.set(__self__, "multival_conditions", multival_conditions)
 
     @_builtins.property
     @pulumi.getter(name="groupOperator")
@@ -849,6 +854,30 @@ class NgwafAccountRuleGroupConditionArgs:
     @group_operator.setter
     def group_operator(self, value: pulumi.Input[_builtins.str]):
         pulumi.set(self, "group_operator", value)
+
+    @_builtins.property
+    @pulumi.getter
+    def conditions(self) -> Optional[pulumi.Input[Sequence[pulumi.Input['NgwafAccountRuleGroupConditionConditionArgs']]]]:
+        """
+        A list of nested conditions in this group.
+        """
+        return pulumi.get(self, "conditions")
+
+    @conditions.setter
+    def conditions(self, value: Optional[pulumi.Input[Sequence[pulumi.Input['NgwafAccountRuleGroupConditionConditionArgs']]]]):
+        pulumi.set(self, "conditions", value)
+
+    @_builtins.property
+    @pulumi.getter(name="multivalConditions")
+    def multival_conditions(self) -> Optional[pulumi.Input[Sequence[pulumi.Input['NgwafAccountRuleGroupConditionMultivalConditionArgs']]]]:
+        """
+        List of nested multival conditions in this group. Each multival list must define a `field, operator, group_operator` and at least one condition.
+        """
+        return pulumi.get(self, "multival_conditions")
+
+    @multival_conditions.setter
+    def multival_conditions(self, value: Optional[pulumi.Input[Sequence[pulumi.Input['NgwafAccountRuleGroupConditionMultivalConditionArgs']]]]):
+        pulumi.set(self, "multival_conditions", value)
 
 
 class NgwafAccountRuleGroupConditionConditionArgsDict(TypedDict):
@@ -885,6 +914,157 @@ class NgwafAccountRuleGroupConditionConditionArgs:
     def field(self) -> pulumi.Input[_builtins.str]:
         """
         Field to inspect (e.g., `ip`, `path`).
+        """
+        return pulumi.get(self, "field")
+
+    @field.setter
+    def field(self, value: pulumi.Input[_builtins.str]):
+        pulumi.set(self, "field", value)
+
+    @_builtins.property
+    @pulumi.getter
+    def operator(self) -> pulumi.Input[_builtins.str]:
+        """
+        Operator to apply (e.g., `equals`, `contains`).
+        """
+        return pulumi.get(self, "operator")
+
+    @operator.setter
+    def operator(self, value: pulumi.Input[_builtins.str]):
+        pulumi.set(self, "operator", value)
+
+    @_builtins.property
+    @pulumi.getter
+    def value(self) -> pulumi.Input[_builtins.str]:
+        """
+        The value to test the field against.
+        """
+        return pulumi.get(self, "value")
+
+    @value.setter
+    def value(self, value: pulumi.Input[_builtins.str]):
+        pulumi.set(self, "value", value)
+
+
+class NgwafAccountRuleGroupConditionMultivalConditionArgsDict(TypedDict):
+    conditions: pulumi.Input[Sequence[pulumi.Input['NgwafAccountRuleGroupConditionMultivalConditionConditionArgsDict']]]
+    """
+    A list of nested conditions in this multival.
+    """
+    field: pulumi.Input[_builtins.str]
+    """
+    Enums for multival condition field. Accepted values are `post_parameter`, `query_parameter`, `request_cookie`, `request_header`, `response_header`, and `signal`.
+    """
+    group_operator: pulumi.Input[_builtins.str]
+    """
+    Logical operator for the multival condition. Accepted values are `any` and `all`.
+    """
+    operator: pulumi.Input[_builtins.str]
+    """
+    Indicates whether the supplied conditions will check for existence or non-existence of matching field values. Accepted values are `exists` and `does_not_exist`.
+    """
+
+@pulumi.input_type
+class NgwafAccountRuleGroupConditionMultivalConditionArgs:
+    def __init__(__self__, *,
+                 conditions: pulumi.Input[Sequence[pulumi.Input['NgwafAccountRuleGroupConditionMultivalConditionConditionArgs']]],
+                 field: pulumi.Input[_builtins.str],
+                 group_operator: pulumi.Input[_builtins.str],
+                 operator: pulumi.Input[_builtins.str]):
+        """
+        :param pulumi.Input[Sequence[pulumi.Input['NgwafAccountRuleGroupConditionMultivalConditionConditionArgs']]] conditions: A list of nested conditions in this multival.
+        :param pulumi.Input[_builtins.str] field: Enums for multival condition field. Accepted values are `post_parameter`, `query_parameter`, `request_cookie`, `request_header`, `response_header`, and `signal`.
+        :param pulumi.Input[_builtins.str] group_operator: Logical operator for the multival condition. Accepted values are `any` and `all`.
+        :param pulumi.Input[_builtins.str] operator: Indicates whether the supplied conditions will check for existence or non-existence of matching field values. Accepted values are `exists` and `does_not_exist`.
+        """
+        pulumi.set(__self__, "conditions", conditions)
+        pulumi.set(__self__, "field", field)
+        pulumi.set(__self__, "group_operator", group_operator)
+        pulumi.set(__self__, "operator", operator)
+
+    @_builtins.property
+    @pulumi.getter
+    def conditions(self) -> pulumi.Input[Sequence[pulumi.Input['NgwafAccountRuleGroupConditionMultivalConditionConditionArgs']]]:
+        """
+        A list of nested conditions in this multival.
+        """
+        return pulumi.get(self, "conditions")
+
+    @conditions.setter
+    def conditions(self, value: pulumi.Input[Sequence[pulumi.Input['NgwafAccountRuleGroupConditionMultivalConditionConditionArgs']]]):
+        pulumi.set(self, "conditions", value)
+
+    @_builtins.property
+    @pulumi.getter
+    def field(self) -> pulumi.Input[_builtins.str]:
+        """
+        Enums for multival condition field. Accepted values are `post_parameter`, `query_parameter`, `request_cookie`, `request_header`, `response_header`, and `signal`.
+        """
+        return pulumi.get(self, "field")
+
+    @field.setter
+    def field(self, value: pulumi.Input[_builtins.str]):
+        pulumi.set(self, "field", value)
+
+    @_builtins.property
+    @pulumi.getter(name="groupOperator")
+    def group_operator(self) -> pulumi.Input[_builtins.str]:
+        """
+        Logical operator for the multival condition. Accepted values are `any` and `all`.
+        """
+        return pulumi.get(self, "group_operator")
+
+    @group_operator.setter
+    def group_operator(self, value: pulumi.Input[_builtins.str]):
+        pulumi.set(self, "group_operator", value)
+
+    @_builtins.property
+    @pulumi.getter
+    def operator(self) -> pulumi.Input[_builtins.str]:
+        """
+        Indicates whether the supplied conditions will check for existence or non-existence of matching field values. Accepted values are `exists` and `does_not_exist`.
+        """
+        return pulumi.get(self, "operator")
+
+    @operator.setter
+    def operator(self, value: pulumi.Input[_builtins.str]):
+        pulumi.set(self, "operator", value)
+
+
+class NgwafAccountRuleGroupConditionMultivalConditionConditionArgsDict(TypedDict):
+    field: pulumi.Input[_builtins.str]
+    """
+    Field to inspect (e.g., `name`, `value`, `signal_id`).
+    """
+    operator: pulumi.Input[_builtins.str]
+    """
+    Operator to apply (e.g., `equals`, `contains`).
+    """
+    value: pulumi.Input[_builtins.str]
+    """
+    The value to test the field against.
+    """
+
+@pulumi.input_type
+class NgwafAccountRuleGroupConditionMultivalConditionConditionArgs:
+    def __init__(__self__, *,
+                 field: pulumi.Input[_builtins.str],
+                 operator: pulumi.Input[_builtins.str],
+                 value: pulumi.Input[_builtins.str]):
+        """
+        :param pulumi.Input[_builtins.str] field: Field to inspect (e.g., `name`, `value`, `signal_id`).
+        :param pulumi.Input[_builtins.str] operator: Operator to apply (e.g., `equals`, `contains`).
+        :param pulumi.Input[_builtins.str] value: The value to test the field against.
+        """
+        pulumi.set(__self__, "field", field)
+        pulumi.set(__self__, "operator", operator)
+        pulumi.set(__self__, "value", value)
+
+    @_builtins.property
+    @pulumi.getter
+    def field(self) -> pulumi.Input[_builtins.str]:
+        """
+        Field to inspect (e.g., `name`, `value`, `signal_id`).
         """
         return pulumi.get(self, "field")
 
@@ -1352,38 +1532,35 @@ class NgwafWorkspaceRuleConditionArgs:
 
 
 class NgwafWorkspaceRuleGroupConditionArgsDict(TypedDict):
-    conditions: pulumi.Input[Sequence[pulumi.Input['NgwafWorkspaceRuleGroupConditionConditionArgsDict']]]
-    """
-    A list of nested conditions in this group.
-    """
     group_operator: pulumi.Input[_builtins.str]
     """
     Logical operator for the group. Accepted values are `any` and `all`.
+    """
+    conditions: NotRequired[pulumi.Input[Sequence[pulumi.Input['NgwafWorkspaceRuleGroupConditionConditionArgsDict']]]]
+    """
+    A list of nested conditions in this group.
+    """
+    multival_conditions: NotRequired[pulumi.Input[Sequence[pulumi.Input['NgwafWorkspaceRuleGroupConditionMultivalConditionArgsDict']]]]
+    """
+    List of nested multival conditions in this group. Each multival list must define a `field, operator, group_operator` and at least one condition.
     """
 
 @pulumi.input_type
 class NgwafWorkspaceRuleGroupConditionArgs:
     def __init__(__self__, *,
-                 conditions: pulumi.Input[Sequence[pulumi.Input['NgwafWorkspaceRuleGroupConditionConditionArgs']]],
-                 group_operator: pulumi.Input[_builtins.str]):
+                 group_operator: pulumi.Input[_builtins.str],
+                 conditions: Optional[pulumi.Input[Sequence[pulumi.Input['NgwafWorkspaceRuleGroupConditionConditionArgs']]]] = None,
+                 multival_conditions: Optional[pulumi.Input[Sequence[pulumi.Input['NgwafWorkspaceRuleGroupConditionMultivalConditionArgs']]]] = None):
         """
-        :param pulumi.Input[Sequence[pulumi.Input['NgwafWorkspaceRuleGroupConditionConditionArgs']]] conditions: A list of nested conditions in this group.
         :param pulumi.Input[_builtins.str] group_operator: Logical operator for the group. Accepted values are `any` and `all`.
+        :param pulumi.Input[Sequence[pulumi.Input['NgwafWorkspaceRuleGroupConditionConditionArgs']]] conditions: A list of nested conditions in this group.
+        :param pulumi.Input[Sequence[pulumi.Input['NgwafWorkspaceRuleGroupConditionMultivalConditionArgs']]] multival_conditions: List of nested multival conditions in this group. Each multival list must define a `field, operator, group_operator` and at least one condition.
         """
-        pulumi.set(__self__, "conditions", conditions)
         pulumi.set(__self__, "group_operator", group_operator)
-
-    @_builtins.property
-    @pulumi.getter
-    def conditions(self) -> pulumi.Input[Sequence[pulumi.Input['NgwafWorkspaceRuleGroupConditionConditionArgs']]]:
-        """
-        A list of nested conditions in this group.
-        """
-        return pulumi.get(self, "conditions")
-
-    @conditions.setter
-    def conditions(self, value: pulumi.Input[Sequence[pulumi.Input['NgwafWorkspaceRuleGroupConditionConditionArgs']]]):
-        pulumi.set(self, "conditions", value)
+        if conditions is not None:
+            pulumi.set(__self__, "conditions", conditions)
+        if multival_conditions is not None:
+            pulumi.set(__self__, "multival_conditions", multival_conditions)
 
     @_builtins.property
     @pulumi.getter(name="groupOperator")
@@ -1396,6 +1573,30 @@ class NgwafWorkspaceRuleGroupConditionArgs:
     @group_operator.setter
     def group_operator(self, value: pulumi.Input[_builtins.str]):
         pulumi.set(self, "group_operator", value)
+
+    @_builtins.property
+    @pulumi.getter
+    def conditions(self) -> Optional[pulumi.Input[Sequence[pulumi.Input['NgwafWorkspaceRuleGroupConditionConditionArgs']]]]:
+        """
+        A list of nested conditions in this group.
+        """
+        return pulumi.get(self, "conditions")
+
+    @conditions.setter
+    def conditions(self, value: Optional[pulumi.Input[Sequence[pulumi.Input['NgwafWorkspaceRuleGroupConditionConditionArgs']]]]):
+        pulumi.set(self, "conditions", value)
+
+    @_builtins.property
+    @pulumi.getter(name="multivalConditions")
+    def multival_conditions(self) -> Optional[pulumi.Input[Sequence[pulumi.Input['NgwafWorkspaceRuleGroupConditionMultivalConditionArgs']]]]:
+        """
+        List of nested multival conditions in this group. Each multival list must define a `field, operator, group_operator` and at least one condition.
+        """
+        return pulumi.get(self, "multival_conditions")
+
+    @multival_conditions.setter
+    def multival_conditions(self, value: Optional[pulumi.Input[Sequence[pulumi.Input['NgwafWorkspaceRuleGroupConditionMultivalConditionArgs']]]]):
+        pulumi.set(self, "multival_conditions", value)
 
 
 class NgwafWorkspaceRuleGroupConditionConditionArgsDict(TypedDict):
@@ -1432,6 +1633,157 @@ class NgwafWorkspaceRuleGroupConditionConditionArgs:
     def field(self) -> pulumi.Input[_builtins.str]:
         """
         Field to inspect (e.g., `ip`, `path`).
+        """
+        return pulumi.get(self, "field")
+
+    @field.setter
+    def field(self, value: pulumi.Input[_builtins.str]):
+        pulumi.set(self, "field", value)
+
+    @_builtins.property
+    @pulumi.getter
+    def operator(self) -> pulumi.Input[_builtins.str]:
+        """
+        Operator to apply (e.g., `equals`, `contains`).
+        """
+        return pulumi.get(self, "operator")
+
+    @operator.setter
+    def operator(self, value: pulumi.Input[_builtins.str]):
+        pulumi.set(self, "operator", value)
+
+    @_builtins.property
+    @pulumi.getter
+    def value(self) -> pulumi.Input[_builtins.str]:
+        """
+        The value to test the field against.
+        """
+        return pulumi.get(self, "value")
+
+    @value.setter
+    def value(self, value: pulumi.Input[_builtins.str]):
+        pulumi.set(self, "value", value)
+
+
+class NgwafWorkspaceRuleGroupConditionMultivalConditionArgsDict(TypedDict):
+    conditions: pulumi.Input[Sequence[pulumi.Input['NgwafWorkspaceRuleGroupConditionMultivalConditionConditionArgsDict']]]
+    """
+    A list of nested conditions in this multival.
+    """
+    field: pulumi.Input[_builtins.str]
+    """
+    Enums for multival condition field. Accepted values are `post_parameter`, `query_parameter`, `request_cookie`, `request_header`, `response_header`, and `signal`.
+    """
+    group_operator: pulumi.Input[_builtins.str]
+    """
+    Logical operator for the multival condition. Accepted values are `any` and `all`.
+    """
+    operator: pulumi.Input[_builtins.str]
+    """
+    Indicates whether the supplied conditions will check for existence or non-existence of matching field values. Accepted values are `exists` and `does_not_exist`.
+    """
+
+@pulumi.input_type
+class NgwafWorkspaceRuleGroupConditionMultivalConditionArgs:
+    def __init__(__self__, *,
+                 conditions: pulumi.Input[Sequence[pulumi.Input['NgwafWorkspaceRuleGroupConditionMultivalConditionConditionArgs']]],
+                 field: pulumi.Input[_builtins.str],
+                 group_operator: pulumi.Input[_builtins.str],
+                 operator: pulumi.Input[_builtins.str]):
+        """
+        :param pulumi.Input[Sequence[pulumi.Input['NgwafWorkspaceRuleGroupConditionMultivalConditionConditionArgs']]] conditions: A list of nested conditions in this multival.
+        :param pulumi.Input[_builtins.str] field: Enums for multival condition field. Accepted values are `post_parameter`, `query_parameter`, `request_cookie`, `request_header`, `response_header`, and `signal`.
+        :param pulumi.Input[_builtins.str] group_operator: Logical operator for the multival condition. Accepted values are `any` and `all`.
+        :param pulumi.Input[_builtins.str] operator: Indicates whether the supplied conditions will check for existence or non-existence of matching field values. Accepted values are `exists` and `does_not_exist`.
+        """
+        pulumi.set(__self__, "conditions", conditions)
+        pulumi.set(__self__, "field", field)
+        pulumi.set(__self__, "group_operator", group_operator)
+        pulumi.set(__self__, "operator", operator)
+
+    @_builtins.property
+    @pulumi.getter
+    def conditions(self) -> pulumi.Input[Sequence[pulumi.Input['NgwafWorkspaceRuleGroupConditionMultivalConditionConditionArgs']]]:
+        """
+        A list of nested conditions in this multival.
+        """
+        return pulumi.get(self, "conditions")
+
+    @conditions.setter
+    def conditions(self, value: pulumi.Input[Sequence[pulumi.Input['NgwafWorkspaceRuleGroupConditionMultivalConditionConditionArgs']]]):
+        pulumi.set(self, "conditions", value)
+
+    @_builtins.property
+    @pulumi.getter
+    def field(self) -> pulumi.Input[_builtins.str]:
+        """
+        Enums for multival condition field. Accepted values are `post_parameter`, `query_parameter`, `request_cookie`, `request_header`, `response_header`, and `signal`.
+        """
+        return pulumi.get(self, "field")
+
+    @field.setter
+    def field(self, value: pulumi.Input[_builtins.str]):
+        pulumi.set(self, "field", value)
+
+    @_builtins.property
+    @pulumi.getter(name="groupOperator")
+    def group_operator(self) -> pulumi.Input[_builtins.str]:
+        """
+        Logical operator for the multival condition. Accepted values are `any` and `all`.
+        """
+        return pulumi.get(self, "group_operator")
+
+    @group_operator.setter
+    def group_operator(self, value: pulumi.Input[_builtins.str]):
+        pulumi.set(self, "group_operator", value)
+
+    @_builtins.property
+    @pulumi.getter
+    def operator(self) -> pulumi.Input[_builtins.str]:
+        """
+        Indicates whether the supplied conditions will check for existence or non-existence of matching field values. Accepted values are `exists` and `does_not_exist`.
+        """
+        return pulumi.get(self, "operator")
+
+    @operator.setter
+    def operator(self, value: pulumi.Input[_builtins.str]):
+        pulumi.set(self, "operator", value)
+
+
+class NgwafWorkspaceRuleGroupConditionMultivalConditionConditionArgsDict(TypedDict):
+    field: pulumi.Input[_builtins.str]
+    """
+    Field to inspect (e.g., `name`, `value`, `signal_id`).
+    """
+    operator: pulumi.Input[_builtins.str]
+    """
+    Operator to apply (e.g., `equals`, `contains`).
+    """
+    value: pulumi.Input[_builtins.str]
+    """
+    The value to test the field against.
+    """
+
+@pulumi.input_type
+class NgwafWorkspaceRuleGroupConditionMultivalConditionConditionArgs:
+    def __init__(__self__, *,
+                 field: pulumi.Input[_builtins.str],
+                 operator: pulumi.Input[_builtins.str],
+                 value: pulumi.Input[_builtins.str]):
+        """
+        :param pulumi.Input[_builtins.str] field: Field to inspect (e.g., `name`, `value`, `signal_id`).
+        :param pulumi.Input[_builtins.str] operator: Operator to apply (e.g., `equals`, `contains`).
+        :param pulumi.Input[_builtins.str] value: The value to test the field against.
+        """
+        pulumi.set(__self__, "field", field)
+        pulumi.set(__self__, "operator", operator)
+        pulumi.set(__self__, "value", value)
+
+    @_builtins.property
+    @pulumi.getter
+    def field(self) -> pulumi.Input[_builtins.str]:
+        """
+        Field to inspect (e.g., `name`, `value`, `signal_id`).
         """
         return pulumi.get(self, "field")
 
@@ -8379,6 +8731,10 @@ class ServiceComputeProductEnablementArgsDict(TypedDict):
     """
     DDoS Protection product
     """
+    domain_inspector: NotRequired[pulumi.Input[_builtins.bool]]
+    """
+    Enable Domain Inspector support
+    """
     fanout: NotRequired[pulumi.Input[_builtins.bool]]
     """
     Enable Fanout support
@@ -8405,6 +8761,7 @@ class ServiceComputeProductEnablementArgs:
     def __init__(__self__, *,
                  api_discovery: Optional[pulumi.Input[_builtins.bool]] = None,
                  ddos_protection: Optional[pulumi.Input['ServiceComputeProductEnablementDdosProtectionArgs']] = None,
+                 domain_inspector: Optional[pulumi.Input[_builtins.bool]] = None,
                  fanout: Optional[pulumi.Input[_builtins.bool]] = None,
                  log_explorer_insights: Optional[pulumi.Input[_builtins.bool]] = None,
                  name: Optional[pulumi.Input[_builtins.str]] = None,
@@ -8413,6 +8770,7 @@ class ServiceComputeProductEnablementArgs:
         """
         :param pulumi.Input[_builtins.bool] api_discovery: Enable API Discovery support
         :param pulumi.Input['ServiceComputeProductEnablementDdosProtectionArgs'] ddos_protection: DDoS Protection product
+        :param pulumi.Input[_builtins.bool] domain_inspector: Enable Domain Inspector support
         :param pulumi.Input[_builtins.bool] fanout: Enable Fanout support
         :param pulumi.Input[_builtins.bool] log_explorer_insights: Enable Log Explorer & Insights
         :param pulumi.Input[_builtins.str] name: Used by the provider to identify modified settings (changing this value will force the entire block to be deleted, then recreated)
@@ -8423,6 +8781,8 @@ class ServiceComputeProductEnablementArgs:
             pulumi.set(__self__, "api_discovery", api_discovery)
         if ddos_protection is not None:
             pulumi.set(__self__, "ddos_protection", ddos_protection)
+        if domain_inspector is not None:
+            pulumi.set(__self__, "domain_inspector", domain_inspector)
         if fanout is not None:
             pulumi.set(__self__, "fanout", fanout)
         if log_explorer_insights is not None:
@@ -8457,6 +8817,18 @@ class ServiceComputeProductEnablementArgs:
     @ddos_protection.setter
     def ddos_protection(self, value: Optional[pulumi.Input['ServiceComputeProductEnablementDdosProtectionArgs']]):
         pulumi.set(self, "ddos_protection", value)
+
+    @_builtins.property
+    @pulumi.getter(name="domainInspector")
+    def domain_inspector(self) -> Optional[pulumi.Input[_builtins.bool]]:
+        """
+        Enable Domain Inspector support
+        """
+        return pulumi.get(self, "domain_inspector")
+
+    @domain_inspector.setter
+    def domain_inspector(self, value: Optional[pulumi.Input[_builtins.bool]]):
+        pulumi.set(self, "domain_inspector", value)
 
     @_builtins.property
     @pulumi.getter

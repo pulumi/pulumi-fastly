@@ -43,8 +43,10 @@ import (
 //			cert, err := tls.NewSelfSignedCert(ctx, "cert", &tls.SelfSignedCertArgs{
 //				KeyAlgorithm:  key.Algorithm,
 //				PrivateKeyPem: key.PrivateKeyPem,
-//				Subject: &tls.SelfSignedCertSubjectArgs{
-//					CommonName: pulumi.String("example.com"),
+//				Subject: tls.SelfSignedCertSubjectArgs{
+//					map[string]interface{}{
+//						"commonName": "example.com",
+//					},
 //				},
 //				IsCaCertificate:     pulumi.Bool(true),
 //				ValidityPeriodHours: pulumi.Int(360),

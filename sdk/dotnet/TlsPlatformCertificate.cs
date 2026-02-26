@@ -42,9 +42,12 @@ namespace Pulumi.Fastly
     ///     {
     ///         KeyAlgorithm = caKey.Algorithm,
     ///         PrivateKeyPem = caKey.PrivateKeyPem,
-    ///         Subject = new Tls.Inputs.SelfSignedCertSubjectArgs
+    ///         Subject = new[]
     ///         {
-    ///             CommonName = "Example CA",
+    ///             
+    ///             {
+    ///                 { "commonName", "Example CA" },
+    ///             },
     ///         },
     ///         IsCaCertificate = true,
     ///         ValidityPeriodHours = 360,
@@ -59,9 +62,12 @@ namespace Pulumi.Fastly
     ///     {
     ///         KeyAlgorithm = key.Algorithm,
     ///         PrivateKeyPem = key.PrivateKeyPem,
-    ///         Subject = new Tls.Inputs.CertRequestSubjectArgs
+    ///         Subject = new[]
     ///         {
-    ///             CommonName = "example.com",
+    ///             
+    ///             {
+    ///                 { "commonName", "example.com" },
+    ///             },
     ///         },
     ///         DnsNames = new[]
     ///         {

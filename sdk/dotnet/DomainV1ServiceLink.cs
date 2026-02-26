@@ -9,12 +9,6 @@ using Pulumi.Serialization;
 
 namespace Pulumi.Fastly
 {
-    /// <summary>
-    /// Domain service links are for managing versionless domains for services. The link associates an existing service
-    /// with an existing domain, but doesn't create or delete either resource.
-    /// 
-    /// If you are managing your versionless domain with a service link, you may not also use a `ResourceFastlyDomainV1` block as well.
-    /// </summary>
     [FastlyResourceType("fastly:index/domainV1ServiceLink:DomainV1ServiceLink")]
     public partial class DomainV1ServiceLink : global::Pulumi.CustomResource
     {

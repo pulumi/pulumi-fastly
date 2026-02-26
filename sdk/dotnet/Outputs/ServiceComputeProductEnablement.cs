@@ -22,6 +22,10 @@ namespace Pulumi.Fastly.Outputs
         /// </summary>
         public readonly Outputs.ServiceComputeProductEnablementDdosProtection? DdosProtection;
         /// <summary>
+        /// Enable Domain Inspector support
+        /// </summary>
+        public readonly bool? DomainInspector;
+        /// <summary>
         /// Enable Fanout support
         /// </summary>
         public readonly bool? Fanout;
@@ -48,6 +52,8 @@ namespace Pulumi.Fastly.Outputs
 
             Outputs.ServiceComputeProductEnablementDdosProtection? ddosProtection,
 
+            bool? domainInspector,
+
             bool? fanout,
 
             bool? logExplorerInsights,
@@ -60,6 +66,7 @@ namespace Pulumi.Fastly.Outputs
         {
             ApiDiscovery = apiDiscovery;
             DdosProtection = ddosProtection;
+            DomainInspector = domainInspector;
             Fanout = fanout;
             LogExplorerInsights = logExplorerInsights;
             Name = name;

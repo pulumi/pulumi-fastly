@@ -21,15 +21,22 @@ namespace Pulumi.Fastly.Outputs
         /// Logical operator for the group. Accepted values are `Any` and `All`.
         /// </summary>
         public readonly string GroupOperator;
+        /// <summary>
+        /// List of nested multival conditions in this group. Each multival list must define a `field, operator, GroupOperator` and at least one condition.
+        /// </summary>
+        public readonly ImmutableArray<Outputs.NgwafWorkspaceRuleGroupConditionMultivalCondition> MultivalConditions;
 
         [OutputConstructor]
         private NgwafWorkspaceRuleGroupCondition(
             ImmutableArray<Outputs.NgwafWorkspaceRuleGroupConditionCondition> conditions,
 
-            string groupOperator)
+            string groupOperator,
+
+            ImmutableArray<Outputs.NgwafWorkspaceRuleGroupConditionMultivalCondition> multivalConditions)
         {
             Conditions = conditions;
             GroupOperator = groupOperator;
+            MultivalConditions = multivalConditions;
         }
     }
 }

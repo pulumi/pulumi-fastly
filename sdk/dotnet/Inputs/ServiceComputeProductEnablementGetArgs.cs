@@ -25,6 +25,12 @@ namespace Pulumi.Fastly.Inputs
         public Input<Inputs.ServiceComputeProductEnablementDdosProtectionGetArgs>? DdosProtection { get; set; }
 
         /// <summary>
+        /// Enable Domain Inspector support
+        /// </summary>
+        [Input("domainInspector")]
+        public Input<bool>? DomainInspector { get; set; }
+
+        /// <summary>
         /// Enable Fanout support
         /// </summary>
         [Input("fanout")]

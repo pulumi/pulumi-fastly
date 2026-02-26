@@ -6,9 +6,11 @@ package com.pulumi.fastly.outputs;
 import com.pulumi.core.annotations.CustomType;
 import com.pulumi.exceptions.MissingRequiredPropertyException;
 import com.pulumi.fastly.outputs.NgwafAccountRuleGroupConditionCondition;
+import com.pulumi.fastly.outputs.NgwafAccountRuleGroupConditionMultivalCondition;
 import java.lang.String;
 import java.util.List;
 import java.util.Objects;
+import javax.annotation.Nullable;
 
 @CustomType
 public final class NgwafAccountRuleGroupCondition {
@@ -16,12 +18,17 @@ public final class NgwafAccountRuleGroupCondition {
      * @return A list of nested conditions in this group.
      * 
      */
-    private List<NgwafAccountRuleGroupConditionCondition> conditions;
+    private @Nullable List<NgwafAccountRuleGroupConditionCondition> conditions;
     /**
      * @return Logical operator for the group. Accepted values are `any` and `all`.
      * 
      */
     private String groupOperator;
+    /**
+     * @return List of nested multival conditions in this group. Each multival list must define a `field, operator, groupOperator` and at least one condition.
+     * 
+     */
+    private @Nullable List<NgwafAccountRuleGroupConditionMultivalCondition> multivalConditions;
 
     private NgwafAccountRuleGroupCondition() {}
     /**
@@ -29,7 +36,7 @@ public final class NgwafAccountRuleGroupCondition {
      * 
      */
     public List<NgwafAccountRuleGroupConditionCondition> conditions() {
-        return this.conditions;
+        return this.conditions == null ? List.of() : this.conditions;
     }
     /**
      * @return Logical operator for the group. Accepted values are `any` and `all`.
@@ -37,6 +44,13 @@ public final class NgwafAccountRuleGroupCondition {
      */
     public String groupOperator() {
         return this.groupOperator;
+    }
+    /**
+     * @return List of nested multival conditions in this group. Each multival list must define a `field, operator, groupOperator` and at least one condition.
+     * 
+     */
+    public List<NgwafAccountRuleGroupConditionMultivalCondition> multivalConditions() {
+        return this.multivalConditions == null ? List.of() : this.multivalConditions;
     }
 
     public static Builder builder() {
@@ -48,20 +62,20 @@ public final class NgwafAccountRuleGroupCondition {
     }
     @CustomType.Builder
     public static final class Builder {
-        private List<NgwafAccountRuleGroupConditionCondition> conditions;
+        private @Nullable List<NgwafAccountRuleGroupConditionCondition> conditions;
         private String groupOperator;
+        private @Nullable List<NgwafAccountRuleGroupConditionMultivalCondition> multivalConditions;
         public Builder() {}
         public Builder(NgwafAccountRuleGroupCondition defaults) {
     	      Objects.requireNonNull(defaults);
     	      this.conditions = defaults.conditions;
     	      this.groupOperator = defaults.groupOperator;
+    	      this.multivalConditions = defaults.multivalConditions;
         }
 
         @CustomType.Setter
-        public Builder conditions(List<NgwafAccountRuleGroupConditionCondition> conditions) {
-            if (conditions == null) {
-              throw new MissingRequiredPropertyException("NgwafAccountRuleGroupCondition", "conditions");
-            }
+        public Builder conditions(@Nullable List<NgwafAccountRuleGroupConditionCondition> conditions) {
+
             this.conditions = conditions;
             return this;
         }
@@ -76,10 +90,20 @@ public final class NgwafAccountRuleGroupCondition {
             this.groupOperator = groupOperator;
             return this;
         }
+        @CustomType.Setter
+        public Builder multivalConditions(@Nullable List<NgwafAccountRuleGroupConditionMultivalCondition> multivalConditions) {
+
+            this.multivalConditions = multivalConditions;
+            return this;
+        }
+        public Builder multivalConditions(NgwafAccountRuleGroupConditionMultivalCondition... multivalConditions) {
+            return multivalConditions(List.of(multivalConditions));
+        }
         public NgwafAccountRuleGroupCondition build() {
             final var _resultValue = new NgwafAccountRuleGroupCondition();
             _resultValue.conditions = conditions;
             _resultValue.groupOperator = groupOperator;
+            _resultValue.multivalConditions = multivalConditions;
             return _resultValue;
         }
     }

@@ -94,7 +94,7 @@ type NgwafAccountRule struct {
 	Description pulumi.StringOutput `pulumi:"description"`
 	// Whether the rule is currently enabled.
 	Enabled pulumi.BoolOutput `pulumi:"enabled"`
-	// List of grouped conditions with nested logic. Each group must define a `groupOperator` and at least one condition.
+	// List of grouped conditions with nested logic. Each group must define a `groupOperator` and at least one condition or multival*condition.
 	GroupConditions NgwafAccountRuleGroupConditionArrayOutput `pulumi:"groupConditions"`
 	// Logical operator to apply to group conditions. Accepted values are `any` and `all`.
 	GroupOperator pulumi.StringPtrOutput `pulumi:"groupOperator"`
@@ -161,7 +161,7 @@ type ngwafAccountRuleState struct {
 	Description *string `pulumi:"description"`
 	// Whether the rule is currently enabled.
 	Enabled *bool `pulumi:"enabled"`
-	// List of grouped conditions with nested logic. Each group must define a `groupOperator` and at least one condition.
+	// List of grouped conditions with nested logic. Each group must define a `groupOperator` and at least one condition or multival*condition.
 	GroupConditions []NgwafAccountRuleGroupCondition `pulumi:"groupConditions"`
 	// Logical operator to apply to group conditions. Accepted values are `any` and `all`.
 	GroupOperator *string `pulumi:"groupOperator"`
@@ -184,7 +184,7 @@ type NgwafAccountRuleState struct {
 	Description pulumi.StringPtrInput
 	// Whether the rule is currently enabled.
 	Enabled pulumi.BoolPtrInput
-	// List of grouped conditions with nested logic. Each group must define a `groupOperator` and at least one condition.
+	// List of grouped conditions with nested logic. Each group must define a `groupOperator` and at least one condition or multival*condition.
 	GroupConditions NgwafAccountRuleGroupConditionArrayInput
 	// Logical operator to apply to group conditions. Accepted values are `any` and `all`.
 	GroupOperator pulumi.StringPtrInput
@@ -211,7 +211,7 @@ type ngwafAccountRuleArgs struct {
 	Description string `pulumi:"description"`
 	// Whether the rule is currently enabled.
 	Enabled bool `pulumi:"enabled"`
-	// List of grouped conditions with nested logic. Each group must define a `groupOperator` and at least one condition.
+	// List of grouped conditions with nested logic. Each group must define a `groupOperator` and at least one condition or multival*condition.
 	GroupConditions []NgwafAccountRuleGroupCondition `pulumi:"groupConditions"`
 	// Logical operator to apply to group conditions. Accepted values are `any` and `all`.
 	GroupOperator *string `pulumi:"groupOperator"`
@@ -235,7 +235,7 @@ type NgwafAccountRuleArgs struct {
 	Description pulumi.StringInput
 	// Whether the rule is currently enabled.
 	Enabled pulumi.BoolInput
-	// List of grouped conditions with nested logic. Each group must define a `groupOperator` and at least one condition.
+	// List of grouped conditions with nested logic. Each group must define a `groupOperator` and at least one condition or multival*condition.
 	GroupConditions NgwafAccountRuleGroupConditionArrayInput
 	// Logical operator to apply to group conditions. Accepted values are `any` and `all`.
 	GroupOperator pulumi.StringPtrInput
@@ -359,7 +359,7 @@ func (o NgwafAccountRuleOutput) Enabled() pulumi.BoolOutput {
 	return o.ApplyT(func(v *NgwafAccountRule) pulumi.BoolOutput { return v.Enabled }).(pulumi.BoolOutput)
 }
 
-// List of grouped conditions with nested logic. Each group must define a `groupOperator` and at least one condition.
+// List of grouped conditions with nested logic. Each group must define a `groupOperator` and at least one condition or multival*condition.
 func (o NgwafAccountRuleOutput) GroupConditions() NgwafAccountRuleGroupConditionArrayOutput {
 	return o.ApplyT(func(v *NgwafAccountRule) NgwafAccountRuleGroupConditionArrayOutput { return v.GroupConditions }).(NgwafAccountRuleGroupConditionArrayOutput)
 }

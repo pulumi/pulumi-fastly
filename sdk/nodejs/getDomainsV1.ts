@@ -6,22 +6,6 @@ import * as inputs from "./types/input";
 import * as outputs from "./types/output";
 import * as utilities from "./utilities";
 
-/**
- * Use this data source to get information about versionless domains.
- *
- * ## Example Usage
- *
- * ```typescript
- * import * as pulumi from "@pulumi/pulumi";
- * import * as fastly from "@pulumi/fastly";
- *
- * const example = fastly.getDomainsV1({});
- * export const allDomains = example.then(example => example.domains);
- * export const totalDomains = example.then(example => example.total);
- * ```
- *
- * [1]: https://www.fastly.com/documentation/reference/api/domain-management/domains/
- */
 export function getDomainsV1(args?: GetDomainsV1Args, opts?: pulumi.InvokeOptions): Promise<GetDomainsV1Result> {
     args = args || {};
     opts = pulumi.mergeOptions(utilities.resourceOptsDefaults(), opts || {});
@@ -57,22 +41,6 @@ export interface GetDomainsV1Result {
      */
     readonly total: number;
 }
-/**
- * Use this data source to get information about versionless domains.
- *
- * ## Example Usage
- *
- * ```typescript
- * import * as pulumi from "@pulumi/pulumi";
- * import * as fastly from "@pulumi/fastly";
- *
- * const example = fastly.getDomainsV1({});
- * export const allDomains = example.then(example => example.domains);
- * export const totalDomains = example.then(example => example.total);
- * ```
- *
- * [1]: https://www.fastly.com/documentation/reference/api/domain-management/domains/
- */
 export function getDomainsV1Output(args?: GetDomainsV1OutputArgs, opts?: pulumi.InvokeOutputOptions): pulumi.Output<GetDomainsV1Result> {
     args = args || {};
     opts = pulumi.mergeOptions(utilities.resourceOptsDefaults(), opts || {});

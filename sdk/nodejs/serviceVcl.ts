@@ -100,15 +100,15 @@ import * as utilities from "./utilities";
  *     }],
  *     forceDestroy: true,
  * });
- * const websiteBucket = new aws.s3.Bucket("website_bucket", {bucket: "your-unique-website-bucket-name"});
- * const websiteConfig = new aws.s3.BucketWebsiteConfiguration("website_config", {
+ * const websiteBucket = new aws.index.S3Bucket("website_bucket", {bucket: "your-unique-website-bucket-name"});
+ * const websiteConfig = new aws.index.S3BucketWebsiteConfiguration("website_config", {
  *     bucket: websiteBucket.id,
- *     indexDocument: {
+ *     indexDocument: [{
  *         suffix: "index.html",
- *     },
- *     errorDocument: {
+ *     }],
+ *     errorDocument: [{
  *         key: "error.html",
- *     },
+ *     }],
  * });
  * ```
  *

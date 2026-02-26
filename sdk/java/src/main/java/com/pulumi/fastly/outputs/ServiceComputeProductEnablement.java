@@ -25,6 +25,11 @@ public final class ServiceComputeProductEnablement {
      */
     private @Nullable ServiceComputeProductEnablementDdosProtection ddosProtection;
     /**
+     * @return Enable Domain Inspector support
+     * 
+     */
+    private @Nullable Boolean domainInspector;
+    /**
      * @return Enable Fanout support
      * 
      */
@@ -64,6 +69,13 @@ public final class ServiceComputeProductEnablement {
      */
     public Optional<ServiceComputeProductEnablementDdosProtection> ddosProtection() {
         return Optional.ofNullable(this.ddosProtection);
+    }
+    /**
+     * @return Enable Domain Inspector support
+     * 
+     */
+    public Optional<Boolean> domainInspector() {
+        return Optional.ofNullable(this.domainInspector);
     }
     /**
      * @return Enable Fanout support
@@ -112,6 +124,7 @@ public final class ServiceComputeProductEnablement {
     public static final class Builder {
         private @Nullable Boolean apiDiscovery;
         private @Nullable ServiceComputeProductEnablementDdosProtection ddosProtection;
+        private @Nullable Boolean domainInspector;
         private @Nullable Boolean fanout;
         private @Nullable Boolean logExplorerInsights;
         private @Nullable String name;
@@ -122,6 +135,7 @@ public final class ServiceComputeProductEnablement {
     	      Objects.requireNonNull(defaults);
     	      this.apiDiscovery = defaults.apiDiscovery;
     	      this.ddosProtection = defaults.ddosProtection;
+    	      this.domainInspector = defaults.domainInspector;
     	      this.fanout = defaults.fanout;
     	      this.logExplorerInsights = defaults.logExplorerInsights;
     	      this.name = defaults.name;
@@ -139,6 +153,12 @@ public final class ServiceComputeProductEnablement {
         public Builder ddosProtection(@Nullable ServiceComputeProductEnablementDdosProtection ddosProtection) {
 
             this.ddosProtection = ddosProtection;
+            return this;
+        }
+        @CustomType.Setter
+        public Builder domainInspector(@Nullable Boolean domainInspector) {
+
+            this.domainInspector = domainInspector;
             return this;
         }
         @CustomType.Setter
@@ -175,6 +195,7 @@ public final class ServiceComputeProductEnablement {
             final var _resultValue = new ServiceComputeProductEnablement();
             _resultValue.apiDiscovery = apiDiscovery;
             _resultValue.ddosProtection = ddosProtection;
+            _resultValue.domainInspector = domainInspector;
             _resultValue.fanout = fanout;
             _resultValue.logExplorerInsights = logExplorerInsights;
             _resultValue.name = name;

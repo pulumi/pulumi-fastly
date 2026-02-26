@@ -11,35 +11,6 @@ import (
 	"github.com/pulumi/pulumi/sdk/v3/go/pulumi"
 )
 
-// Use this data source to get information about versionless domains.
-//
-// ## Example Usage
-//
-// ```go
-// package main
-//
-// import (
-//
-//	"github.com/pulumi/pulumi-fastly/sdk/v11/go/fastly"
-//	"github.com/pulumi/pulumi/sdk/v3/go/pulumi"
-//
-// )
-//
-//	func main() {
-//		pulumi.Run(func(ctx *pulumi.Context) error {
-//			example, err := fastly.GetDomainsV1(ctx, &fastly.GetDomainsV1Args{}, nil)
-//			if err != nil {
-//				return err
-//			}
-//			ctx.Export("allDomains", example.Domains)
-//			ctx.Export("totalDomains", example.Total)
-//			return nil
-//		})
-//	}
-//
-// ```
-//
-// [1]: https://www.fastly.com/documentation/reference/api/domain-management/domains/
 func GetDomainsV1(ctx *pulumi.Context, args *GetDomainsV1Args, opts ...pulumi.InvokeOption) (*GetDomainsV1Result, error) {
 	opts = internal.PkgInvokeDefaultOpts(opts)
 	var rv GetDomainsV1Result

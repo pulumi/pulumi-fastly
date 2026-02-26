@@ -101,7 +101,7 @@ export class NgwafAccountRule extends pulumi.CustomResource {
      */
     declare public readonly enabled: pulumi.Output<boolean>;
     /**
-     * List of grouped conditions with nested logic. Each group must define a `groupOperator` and at least one condition.
+     * List of grouped conditions with nested logic. Each group must define a `groupOperator` and at least one condition or multival*condition.
      */
     declare public readonly groupConditions: pulumi.Output<outputs.NgwafAccountRuleGroupCondition[] | undefined>;
     /**
@@ -202,7 +202,7 @@ export interface NgwafAccountRuleState {
      */
     enabled?: pulumi.Input<boolean>;
     /**
-     * List of grouped conditions with nested logic. Each group must define a `groupOperator` and at least one condition.
+     * List of grouped conditions with nested logic. Each group must define a `groupOperator` and at least one condition or multival*condition.
      */
     groupConditions?: pulumi.Input<pulumi.Input<inputs.NgwafAccountRuleGroupCondition>[]>;
     /**
@@ -248,7 +248,7 @@ export interface NgwafAccountRuleArgs {
      */
     enabled: pulumi.Input<boolean>;
     /**
-     * List of grouped conditions with nested logic. Each group must define a `groupOperator` and at least one condition.
+     * List of grouped conditions with nested logic. Each group must define a `groupOperator` and at least one condition or multival*condition.
      */
     groupConditions?: pulumi.Input<pulumi.Input<inputs.NgwafAccountRuleGroupCondition>[]>;
     /**

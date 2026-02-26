@@ -40,7 +40,7 @@ class NgwafWorkspaceRuleArgs:
         :param pulumi.Input[_builtins.str] type: The type of the rule. Accepted values are `request`, `signal`, `rate_limit`, and `templated_signal`.
         :param pulumi.Input[_builtins.str] workspace_id: The ID of the workspace.
         :param pulumi.Input[Sequence[pulumi.Input['NgwafWorkspaceRuleConditionArgs']]] conditions: Flat list of individual conditions. Each must include `field`, `operator`, and `value`.
-        :param pulumi.Input[Sequence[pulumi.Input['NgwafWorkspaceRuleGroupConditionArgs']]] group_conditions: List of grouped conditions with nested logic. Each group must define a `group_operator` and at least one condition.
+        :param pulumi.Input[Sequence[pulumi.Input['NgwafWorkspaceRuleGroupConditionArgs']]] group_conditions: List of grouped conditions with nested logic. Each group must define a `group_operator` and at least one condition or multival*condition.
         :param pulumi.Input[_builtins.str] group_operator: Logical operator to apply to group conditions. Accepted values are `any` and `all`.
         :param pulumi.Input[Sequence[pulumi.Input['NgwafWorkspaceRuleMultivalConditionArgs']]] multival_conditions: List of multival conditions with nested logic. Each multival list must define a `field, operator, group_operator` and at least one condition.
         :param pulumi.Input['NgwafWorkspaceRuleRateLimitArgs'] rate_limit: Block specifically for rate*limit rules.
@@ -140,7 +140,7 @@ class NgwafWorkspaceRuleArgs:
     @pulumi.getter(name="groupConditions")
     def group_conditions(self) -> Optional[pulumi.Input[Sequence[pulumi.Input['NgwafWorkspaceRuleGroupConditionArgs']]]]:
         """
-        List of grouped conditions with nested logic. Each group must define a `group_operator` and at least one condition.
+        List of grouped conditions with nested logic. Each group must define a `group_operator` and at least one condition or multival*condition.
         """
         return pulumi.get(self, "group_conditions")
 
@@ -217,7 +217,7 @@ class _NgwafWorkspaceRuleState:
         :param pulumi.Input[Sequence[pulumi.Input['NgwafWorkspaceRuleConditionArgs']]] conditions: Flat list of individual conditions. Each must include `field`, `operator`, and `value`.
         :param pulumi.Input[_builtins.str] description: The description of the rule.
         :param pulumi.Input[_builtins.bool] enabled: Whether the rule is currently enabled.
-        :param pulumi.Input[Sequence[pulumi.Input['NgwafWorkspaceRuleGroupConditionArgs']]] group_conditions: List of grouped conditions with nested logic. Each group must define a `group_operator` and at least one condition.
+        :param pulumi.Input[Sequence[pulumi.Input['NgwafWorkspaceRuleGroupConditionArgs']]] group_conditions: List of grouped conditions with nested logic. Each group must define a `group_operator` and at least one condition or multival*condition.
         :param pulumi.Input[_builtins.str] group_operator: Logical operator to apply to group conditions. Accepted values are `any` and `all`.
         :param pulumi.Input[Sequence[pulumi.Input['NgwafWorkspaceRuleMultivalConditionArgs']]] multival_conditions: List of multival conditions with nested logic. Each multival list must define a `field, operator, group_operator` and at least one condition.
         :param pulumi.Input['NgwafWorkspaceRuleRateLimitArgs'] rate_limit: Block specifically for rate*limit rules.
@@ -300,7 +300,7 @@ class _NgwafWorkspaceRuleState:
     @pulumi.getter(name="groupConditions")
     def group_conditions(self) -> Optional[pulumi.Input[Sequence[pulumi.Input['NgwafWorkspaceRuleGroupConditionArgs']]]]:
         """
-        List of grouped conditions with nested logic. Each group must define a `group_operator` and at least one condition.
+        List of grouped conditions with nested logic. Each group must define a `group_operator` and at least one condition or multival*condition.
         """
         return pulumi.get(self, "group_conditions")
 
@@ -698,7 +698,7 @@ class NgwafWorkspaceRule(pulumi.CustomResource):
         :param pulumi.Input[Sequence[pulumi.Input[Union['NgwafWorkspaceRuleConditionArgs', 'NgwafWorkspaceRuleConditionArgsDict']]]] conditions: Flat list of individual conditions. Each must include `field`, `operator`, and `value`.
         :param pulumi.Input[_builtins.str] description: The description of the rule.
         :param pulumi.Input[_builtins.bool] enabled: Whether the rule is currently enabled.
-        :param pulumi.Input[Sequence[pulumi.Input[Union['NgwafWorkspaceRuleGroupConditionArgs', 'NgwafWorkspaceRuleGroupConditionArgsDict']]]] group_conditions: List of grouped conditions with nested logic. Each group must define a `group_operator` and at least one condition.
+        :param pulumi.Input[Sequence[pulumi.Input[Union['NgwafWorkspaceRuleGroupConditionArgs', 'NgwafWorkspaceRuleGroupConditionArgsDict']]]] group_conditions: List of grouped conditions with nested logic. Each group must define a `group_operator` and at least one condition or multival*condition.
         :param pulumi.Input[_builtins.str] group_operator: Logical operator to apply to group conditions. Accepted values are `any` and `all`.
         :param pulumi.Input[Sequence[pulumi.Input[Union['NgwafWorkspaceRuleMultivalConditionArgs', 'NgwafWorkspaceRuleMultivalConditionArgsDict']]]] multival_conditions: List of multival conditions with nested logic. Each multival list must define a `field, operator, group_operator` and at least one condition.
         :param pulumi.Input[Union['NgwafWorkspaceRuleRateLimitArgs', 'NgwafWorkspaceRuleRateLimitArgsDict']] rate_limit: Block specifically for rate*limit rules.
@@ -1093,7 +1093,7 @@ class NgwafWorkspaceRule(pulumi.CustomResource):
         :param pulumi.Input[Sequence[pulumi.Input[Union['NgwafWorkspaceRuleConditionArgs', 'NgwafWorkspaceRuleConditionArgsDict']]]] conditions: Flat list of individual conditions. Each must include `field`, `operator`, and `value`.
         :param pulumi.Input[_builtins.str] description: The description of the rule.
         :param pulumi.Input[_builtins.bool] enabled: Whether the rule is currently enabled.
-        :param pulumi.Input[Sequence[pulumi.Input[Union['NgwafWorkspaceRuleGroupConditionArgs', 'NgwafWorkspaceRuleGroupConditionArgsDict']]]] group_conditions: List of grouped conditions with nested logic. Each group must define a `group_operator` and at least one condition.
+        :param pulumi.Input[Sequence[pulumi.Input[Union['NgwafWorkspaceRuleGroupConditionArgs', 'NgwafWorkspaceRuleGroupConditionArgsDict']]]] group_conditions: List of grouped conditions with nested logic. Each group must define a `group_operator` and at least one condition or multival*condition.
         :param pulumi.Input[_builtins.str] group_operator: Logical operator to apply to group conditions. Accepted values are `any` and `all`.
         :param pulumi.Input[Sequence[pulumi.Input[Union['NgwafWorkspaceRuleMultivalConditionArgs', 'NgwafWorkspaceRuleMultivalConditionArgsDict']]]] multival_conditions: List of multival conditions with nested logic. Each multival list must define a `field, operator, group_operator` and at least one condition.
         :param pulumi.Input[Union['NgwafWorkspaceRuleRateLimitArgs', 'NgwafWorkspaceRuleRateLimitArgsDict']] rate_limit: Block specifically for rate*limit rules.
@@ -1154,7 +1154,7 @@ class NgwafWorkspaceRule(pulumi.CustomResource):
     @pulumi.getter(name="groupConditions")
     def group_conditions(self) -> pulumi.Output[Optional[Sequence['outputs.NgwafWorkspaceRuleGroupCondition']]]:
         """
-        List of grouped conditions with nested logic. Each group must define a `group_operator` and at least one condition.
+        List of grouped conditions with nested logic. Each group must define a `group_operator` and at least one condition or multival*condition.
         """
         return pulumi.get(self, "group_conditions")
 

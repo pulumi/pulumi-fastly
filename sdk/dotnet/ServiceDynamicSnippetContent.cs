@@ -15,11 +15,11 @@ namespace Pulumi.Fastly
     /// &gt; **Note:** By default the Terraform provider allows you to externally manage the snippets via API or UI.
     /// If you wish to apply your changes in the HCL, then you should explicitly set the `ManageSnippets` attribute. An example of this configuration is provided below.
     /// 
-    /// If this provider is being used to populate the initial content of a dynamic snippet which you intend to manage via the API, then the lifecycle `IgnoreChanges` field can be used with the resource.  An example of this configuration is provided below.
-    /// 
     /// ## Example Usage
     /// 
-    /// ### Basic usage:
+    /// ### Terraform &gt;= 0.12.6)
+    /// 
+    /// Basic usage:
     /// 
     /// ```csharp
     /// using System.Collections.Generic;
@@ -77,7 +77,7 @@ namespace Pulumi.Fastly
     /// });
     /// ```
     /// 
-    /// ### Multiple dynamic snippets:
+    /// Multiple dynamic snippets:
     /// 
     /// ```csharp
     /// using System.Collections.Generic;

@@ -21,13 +21,13 @@ import javax.annotation.Nullable;
  * &gt; **Note:** By default the Terraform provider allows you to externally manage the snippets via API or UI.
  * If you wish to apply your changes in the HCL, then you should explicitly set the `manageSnippets` attribute. An example of this configuration is provided below.
  * 
- * If this provider is being used to populate the initial content of a dynamic snippet which you intend to manage via the API, then the lifecycle `ignoreChanges` field can be used with the resource.  An example of this configuration is provided below.
- * 
  * ## Example Usage
  * 
- * ### Basic usage:
+ * ### Terraform &gt;= 0.12.6)
  * 
- * ### Multiple dynamic snippets:
+ * Basic usage:
+ * 
+ * Multiple dynamic snippets:
  * 
  * ### Terraform &gt;= 0.12.0 &amp;&amp; &lt; 0.12.6)
  * 

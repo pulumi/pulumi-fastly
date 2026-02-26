@@ -104,11 +104,7 @@ class DomainV1ServiceLink(pulumi.CustomResource):
                  service_id: Optional[pulumi.Input[_builtins.str]] = None,
                  __props__=None):
         """
-        Domain service links are for managing versionless domains for services. The link associates an existing service
-        with an existing domain, but doesn't create or delete either resource.
-
-        If you are managing your versionless domain with a service link, you may not also use a `resource_fastly_domain_v1` block as well.
-
+        Create a DomainV1ServiceLink resource with the given unique name, props, and options.
         :param str resource_name: The name of the resource.
         :param pulumi.ResourceOptions opts: Options for the resource.
         :param pulumi.Input[_builtins.str] domain_id: The Domain Identifier of the versionless domain being linked (UUID).
@@ -121,11 +117,7 @@ class DomainV1ServiceLink(pulumi.CustomResource):
                  args: DomainV1ServiceLinkArgs,
                  opts: Optional[pulumi.ResourceOptions] = None):
         """
-        Domain service links are for managing versionless domains for services. The link associates an existing service
-        with an existing domain, but doesn't create or delete either resource.
-
-        If you are managing your versionless domain with a service link, you may not also use a `resource_fastly_domain_v1` block as well.
-
+        Create a DomainV1ServiceLink resource with the given unique name, props, and options.
         :param str resource_name: The name of the resource.
         :param DomainV1ServiceLinkArgs args: The arguments to use to populate this resource's properties.
         :param pulumi.ResourceOptions opts: Options for the resource.

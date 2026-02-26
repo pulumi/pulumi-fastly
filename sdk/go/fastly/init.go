@@ -33,6 +33,10 @@ func (m *module) Construct(ctx *pulumi.Context, name, typ, urn string) (r pulumi
 		r = &ConfigstoreEntries{}
 	case "fastly:index/customDashboard:CustomDashboard":
 		r = &CustomDashboard{}
+	case "fastly:index/domain:Domain":
+		r = &Domain{}
+	case "fastly:index/domainServiceLink:DomainServiceLink":
+		r = &DomainServiceLink{}
 	case "fastly:index/domainV1:DomainV1":
 		r = &DomainV1{}
 	case "fastly:index/domainV1ServiceLink:DomainV1ServiceLink":
@@ -168,6 +172,16 @@ func init() {
 	pulumi.RegisterResourceModule(
 		"fastly",
 		"index/customDashboard",
+		&module{version},
+	)
+	pulumi.RegisterResourceModule(
+		"fastly",
+		"index/domain",
+		&module{version},
+	)
+	pulumi.RegisterResourceModule(
+		"fastly",
+		"index/domainServiceLink",
 		&module{version},
 	)
 	pulumi.RegisterResourceModule(

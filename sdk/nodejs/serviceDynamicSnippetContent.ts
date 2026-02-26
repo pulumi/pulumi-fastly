@@ -10,11 +10,11 @@ import * as utilities from "./utilities";
  * > **Note:** By default the Terraform provider allows you to externally manage the snippets via API or UI.
  * If you wish to apply your changes in the HCL, then you should explicitly set the `manageSnippets` attribute. An example of this configuration is provided below.
  *
- * If this provider is being used to populate the initial content of a dynamic snippet which you intend to manage via the API, then the lifecycle `ignoreChanges` field can be used with the resource.  An example of this configuration is provided below.
- *
  * ## Example Usage
  *
- * ### Basic usage:
+ * ### Terraform >= 0.12.6)
+ *
+ * Basic usage:
  *
  * ```typescript
  * import * as pulumi from "@pulumi/pulumi";
@@ -56,7 +56,7 @@ import * as utilities from "./utilities";
  * });
  * ```
  *
- * ### Multiple dynamic snippets:
+ * Multiple dynamic snippets:
  *
  * ```typescript
  * import * as pulumi from "@pulumi/pulumi";

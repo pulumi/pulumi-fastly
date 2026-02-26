@@ -12,37 +12,6 @@ import (
 	"github.com/pulumi/pulumi/sdk/v3/go/pulumi"
 )
 
-// Domain management allows you to manage your domains on Fastly and the services that they interact with.
-//
-// ## Example Usage
-//
-// Basic usage:
-//
-// ```go
-// package main
-//
-// import (
-//
-//	"github.com/pulumi/pulumi-fastly/sdk/v11/go/fastly"
-//	"github.com/pulumi/pulumi/sdk/v3/go/pulumi"
-//
-// )
-//
-//	func main() {
-//		pulumi.Run(func(ctx *pulumi.Context) error {
-//			_, err := fastly.NewDomainV1(ctx, "example", &fastly.DomainV1Args{
-//				Fqdn:        pulumi.String("example.com"),
-//				ServiceId:   pulumi.String("12345abcde"),
-//				Description: pulumi.String("This is a test domain."),
-//			})
-//			if err != nil {
-//				return err
-//			}
-//			return nil
-//		})
-//	}
-//
-// ```
 type DomainV1 struct {
 	pulumi.CustomResourceState
 

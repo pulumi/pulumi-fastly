@@ -357,7 +357,7 @@ export class NgwafWorkspaceRule extends pulumi.CustomResource {
      */
     declare public readonly enabled: pulumi.Output<boolean>;
     /**
-     * List of grouped conditions with nested logic. Each group must define a `groupOperator` and at least one condition.
+     * List of grouped conditions with nested logic. Each group must define a `groupOperator` and at least one condition or multival*condition.
      */
     declare public readonly groupConditions: pulumi.Output<outputs.NgwafWorkspaceRuleGroupCondition[] | undefined>;
     /**
@@ -464,7 +464,7 @@ export interface NgwafWorkspaceRuleState {
      */
     enabled?: pulumi.Input<boolean>;
     /**
-     * List of grouped conditions with nested logic. Each group must define a `groupOperator` and at least one condition.
+     * List of grouped conditions with nested logic. Each group must define a `groupOperator` and at least one condition or multival*condition.
      */
     groupConditions?: pulumi.Input<pulumi.Input<inputs.NgwafWorkspaceRuleGroupCondition>[]>;
     /**
@@ -514,7 +514,7 @@ export interface NgwafWorkspaceRuleArgs {
      */
     enabled: pulumi.Input<boolean>;
     /**
-     * List of grouped conditions with nested logic. Each group must define a `groupOperator` and at least one condition.
+     * List of grouped conditions with nested logic. Each group must define a `groupOperator` and at least one condition or multival*condition.
      */
     groupConditions?: pulumi.Input<pulumi.Input<inputs.NgwafWorkspaceRuleGroupCondition>[]>;
     /**

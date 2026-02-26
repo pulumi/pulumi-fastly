@@ -84,14 +84,14 @@ public final class NgwafWorkspaceRuleArgs extends com.pulumi.resources.ResourceA
     }
 
     /**
-     * List of grouped conditions with nested logic. Each group must define a `groupOperator` and at least one condition.
+     * List of grouped conditions with nested logic. Each group must define a `groupOperator` and at least one condition or multival*condition.
      * 
      */
     @Import(name="groupConditions")
     private @Nullable Output<List<NgwafWorkspaceRuleGroupConditionArgs>> groupConditions;
 
     /**
-     * @return List of grouped conditions with nested logic. Each group must define a `groupOperator` and at least one condition.
+     * @return List of grouped conditions with nested logic. Each group must define a `groupOperator` and at least one condition or multival*condition.
      * 
      */
     public Optional<Output<List<NgwafWorkspaceRuleGroupConditionArgs>>> groupConditions() {
@@ -327,7 +327,7 @@ public final class NgwafWorkspaceRuleArgs extends com.pulumi.resources.ResourceA
         }
 
         /**
-         * @param groupConditions List of grouped conditions with nested logic. Each group must define a `groupOperator` and at least one condition.
+         * @param groupConditions List of grouped conditions with nested logic. Each group must define a `groupOperator` and at least one condition or multival*condition.
          * 
          * @return builder
          * 
@@ -338,7 +338,7 @@ public final class NgwafWorkspaceRuleArgs extends com.pulumi.resources.ResourceA
         }
 
         /**
-         * @param groupConditions List of grouped conditions with nested logic. Each group must define a `groupOperator` and at least one condition.
+         * @param groupConditions List of grouped conditions with nested logic. Each group must define a `groupOperator` and at least one condition or multival*condition.
          * 
          * @return builder
          * 
@@ -348,7 +348,7 @@ public final class NgwafWorkspaceRuleArgs extends com.pulumi.resources.ResourceA
         }
 
         /**
-         * @param groupConditions List of grouped conditions with nested logic. Each group must define a `groupOperator` and at least one condition.
+         * @param groupConditions List of grouped conditions with nested logic. Each group must define a `groupOperator` and at least one condition or multival*condition.
          * 
          * @return builder
          * 

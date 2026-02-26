@@ -14,14 +14,18 @@ import (
 
 // Defines a set of Fastly ACL entries that can be used to populate a service ACL.  This resource will populate an ACL with the entries and will track their state.
 //
-// > **Warning:** This provider will take precedence over any changes you make in the UI or API. Such changes are likely to be reversed if you run the provider again.
-//
 // > **Note:** By default the Terraform provider allows you to externally manage the entries via API or UI.
 // If you wish to apply your changes in the HCL, then you should explicitly set the `manageEntries` attribute. An example of this configuration is provided below.
 //
 // ## Example Usage
 //
-// ### Basic usage:
+// ### Terraform >= 0.12.6)
+//
+// Basic usage:
+//
+// Complex object usage:
+//
+// The following example demonstrates the use of dynamic nested blocks to create ACL entries.
 //
 // ### Terraform >= 0.12.0 && < 0.12.6)
 //

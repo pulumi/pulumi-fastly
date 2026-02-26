@@ -158,12 +158,10 @@ import javax.annotation.Nullable;
  * import com.pulumi.fastly.inputs.ServiceVclBackendArgs;
  * import com.pulumi.fastly.inputs.ServiceVclHeaderArgs;
  * import com.pulumi.fastly.inputs.ServiceVclGzipArgs;
- * import com.pulumi.aws.s3.Bucket;
- * import com.pulumi.aws.s3.BucketArgs;
- * import com.pulumi.aws.s3.BucketWebsiteConfiguration;
- * import com.pulumi.aws.s3.BucketWebsiteConfigurationArgs;
- * import com.pulumi.aws.s3.inputs.BucketWebsiteConfigurationIndexDocumentArgs;
- * import com.pulumi.aws.s3.inputs.BucketWebsiteConfigurationErrorDocumentArgs;
+ * import com.pulumi.aws.S3Bucket;
+ * import com.pulumi.aws.S3BucketArgs;
+ * import com.pulumi.aws.S3BucketWebsiteConfiguration;
+ * import com.pulumi.aws.S3BucketWebsiteConfigurationArgs;
  * import java.util.List;
  * import java.util.ArrayList;
  * import java.util.Map;
@@ -207,18 +205,14 @@ import javax.annotation.Nullable;
  *             .forceDestroy(true)
  *             .build());
  * 
- *         var websiteBucket = new Bucket("websiteBucket", BucketArgs.builder()
+ *         var websiteBucket = new S3Bucket("websiteBucket", S3BucketArgs.builder()
  *             .bucket("your-unique-website-bucket-name")
  *             .build());
  * 
- *         var websiteConfig = new BucketWebsiteConfiguration("websiteConfig", BucketWebsiteConfigurationArgs.builder()
+ *         var websiteConfig = new S3BucketWebsiteConfiguration("websiteConfig", S3BucketWebsiteConfigurationArgs.builder()
  *             .bucket(websiteBucket.id())
- *             .indexDocument(BucketWebsiteConfigurationIndexDocumentArgs.builder()
- *                 .suffix("index.html")
- *                 .build())
- *             .errorDocument(BucketWebsiteConfigurationErrorDocumentArgs.builder()
- *                 .key("error.html")
- *                 .build())
+ *             .indexDocument(List.of(Map.of("suffix", "index.html")))
+ *             .errorDocument(List.of(Map.of("key", "error.html")))
  *             .build());
  * 
  *     }

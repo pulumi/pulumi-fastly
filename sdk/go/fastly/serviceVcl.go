@@ -92,7 +92,7 @@ import (
 //
 // import (
 //
-//	"github.com/pulumi/pulumi-aws/sdk/v7/go/aws/s3"
+//	"github.com/pulumi/pulumi-aws/sdk/v7/go/aws"
 //	"github.com/pulumi/pulumi-fastly/sdk/v11/go/fastly"
 //	"github.com/pulumi/pulumi/sdk/v3/go/pulumi"
 //
@@ -142,19 +142,23 @@ import (
 //			if err != nil {
 //				return err
 //			}
-//			websiteBucket, err := s3.NewBucket(ctx, "website_bucket", &s3.BucketArgs{
-//				Bucket: pulumi.String("your-unique-website-bucket-name"),
+//			websiteBucket, err := aws.NewS3Bucket(ctx, "website_bucket", &aws.S3BucketArgs{
+//				Bucket: "your-unique-website-bucket-name",
 //			})
 //			if err != nil {
 //				return err
 //			}
-//			_, err = s3.NewBucketWebsiteConfiguration(ctx, "website_config", &s3.BucketWebsiteConfigurationArgs{
-//				Bucket: websiteBucket.ID(),
-//				IndexDocument: &s3.BucketWebsiteConfigurationIndexDocumentArgs{
-//					Suffix: pulumi.String("index.html"),
+//			_, err = aws.NewS3BucketWebsiteConfiguration(ctx, "website_config", &aws.S3BucketWebsiteConfigurationArgs{
+//				Bucket: websiteBucket.Id,
+//				IndexDocument: []map[string]interface{}{
+//					map[string]interface{}{
+//						"suffix": "index.html",
+//					},
 //				},
-//				ErrorDocument: &s3.BucketWebsiteConfigurationErrorDocumentArgs{
-//					Key: pulumi.String("error.html"),
+//				ErrorDocument: []map[string]interface{}{
+//					map[string]interface{}{
+//						"key": "error.html",
+//					},
 //				},
 //			})
 //			if err != nil {

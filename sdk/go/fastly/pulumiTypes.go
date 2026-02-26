@@ -979,6 +979,8 @@ type NgwafAccountRuleGroupCondition struct {
 	Conditions []NgwafAccountRuleGroupConditionCondition `pulumi:"conditions"`
 	// Logical operator for the group. Accepted values are `any` and `all`.
 	GroupOperator string `pulumi:"groupOperator"`
+	// List of nested multival conditions in this group. Each multival list must define a `field, operator, groupOperator` and at least one condition.
+	MultivalConditions []NgwafAccountRuleGroupConditionMultivalCondition `pulumi:"multivalConditions"`
 }
 
 // NgwafAccountRuleGroupConditionInput is an input type that accepts NgwafAccountRuleGroupConditionArgs and NgwafAccountRuleGroupConditionOutput values.
@@ -997,6 +999,8 @@ type NgwafAccountRuleGroupConditionArgs struct {
 	Conditions NgwafAccountRuleGroupConditionConditionArrayInput `pulumi:"conditions"`
 	// Logical operator for the group. Accepted values are `any` and `all`.
 	GroupOperator pulumi.StringInput `pulumi:"groupOperator"`
+	// List of nested multival conditions in this group. Each multival list must define a `field, operator, groupOperator` and at least one condition.
+	MultivalConditions NgwafAccountRuleGroupConditionMultivalConditionArrayInput `pulumi:"multivalConditions"`
 }
 
 func (NgwafAccountRuleGroupConditionArgs) ElementType() reflect.Type {
@@ -1058,6 +1062,13 @@ func (o NgwafAccountRuleGroupConditionOutput) Conditions() NgwafAccountRuleGroup
 // Logical operator for the group. Accepted values are `any` and `all`.
 func (o NgwafAccountRuleGroupConditionOutput) GroupOperator() pulumi.StringOutput {
 	return o.ApplyT(func(v NgwafAccountRuleGroupCondition) string { return v.GroupOperator }).(pulumi.StringOutput)
+}
+
+// List of nested multival conditions in this group. Each multival list must define a `field, operator, groupOperator` and at least one condition.
+func (o NgwafAccountRuleGroupConditionOutput) MultivalConditions() NgwafAccountRuleGroupConditionMultivalConditionArrayOutput {
+	return o.ApplyT(func(v NgwafAccountRuleGroupCondition) []NgwafAccountRuleGroupConditionMultivalCondition {
+		return v.MultivalConditions
+	}).(NgwafAccountRuleGroupConditionMultivalConditionArrayOutput)
 }
 
 type NgwafAccountRuleGroupConditionArrayOutput struct{ *pulumi.OutputState }
@@ -1193,6 +1204,247 @@ func (o NgwafAccountRuleGroupConditionConditionArrayOutput) Index(i pulumi.IntIn
 	return pulumi.All(o, i).ApplyT(func(vs []interface{}) NgwafAccountRuleGroupConditionCondition {
 		return vs[0].([]NgwafAccountRuleGroupConditionCondition)[vs[1].(int)]
 	}).(NgwafAccountRuleGroupConditionConditionOutput)
+}
+
+type NgwafAccountRuleGroupConditionMultivalCondition struct {
+	// A list of nested conditions in this multival.
+	Conditions []NgwafAccountRuleGroupConditionMultivalConditionCondition `pulumi:"conditions"`
+	// Enums for multival condition field. Accepted values are `postParameter`, `queryParameter`, `requestCookie`, `requestHeader`, `responseHeader`, and `signal`.
+	Field string `pulumi:"field"`
+	// Logical operator for the multival condition. Accepted values are `any` and `all`.
+	GroupOperator string `pulumi:"groupOperator"`
+	// Indicates whether the supplied conditions will check for existence or non-existence of matching field values. Accepted values are `exists` and `doesNotExist`.
+	Operator string `pulumi:"operator"`
+}
+
+// NgwafAccountRuleGroupConditionMultivalConditionInput is an input type that accepts NgwafAccountRuleGroupConditionMultivalConditionArgs and NgwafAccountRuleGroupConditionMultivalConditionOutput values.
+// You can construct a concrete instance of `NgwafAccountRuleGroupConditionMultivalConditionInput` via:
+//
+//	NgwafAccountRuleGroupConditionMultivalConditionArgs{...}
+type NgwafAccountRuleGroupConditionMultivalConditionInput interface {
+	pulumi.Input
+
+	ToNgwafAccountRuleGroupConditionMultivalConditionOutput() NgwafAccountRuleGroupConditionMultivalConditionOutput
+	ToNgwafAccountRuleGroupConditionMultivalConditionOutputWithContext(context.Context) NgwafAccountRuleGroupConditionMultivalConditionOutput
+}
+
+type NgwafAccountRuleGroupConditionMultivalConditionArgs struct {
+	// A list of nested conditions in this multival.
+	Conditions NgwafAccountRuleGroupConditionMultivalConditionConditionArrayInput `pulumi:"conditions"`
+	// Enums for multival condition field. Accepted values are `postParameter`, `queryParameter`, `requestCookie`, `requestHeader`, `responseHeader`, and `signal`.
+	Field pulumi.StringInput `pulumi:"field"`
+	// Logical operator for the multival condition. Accepted values are `any` and `all`.
+	GroupOperator pulumi.StringInput `pulumi:"groupOperator"`
+	// Indicates whether the supplied conditions will check for existence or non-existence of matching field values. Accepted values are `exists` and `doesNotExist`.
+	Operator pulumi.StringInput `pulumi:"operator"`
+}
+
+func (NgwafAccountRuleGroupConditionMultivalConditionArgs) ElementType() reflect.Type {
+	return reflect.TypeOf((*NgwafAccountRuleGroupConditionMultivalCondition)(nil)).Elem()
+}
+
+func (i NgwafAccountRuleGroupConditionMultivalConditionArgs) ToNgwafAccountRuleGroupConditionMultivalConditionOutput() NgwafAccountRuleGroupConditionMultivalConditionOutput {
+	return i.ToNgwafAccountRuleGroupConditionMultivalConditionOutputWithContext(context.Background())
+}
+
+func (i NgwafAccountRuleGroupConditionMultivalConditionArgs) ToNgwafAccountRuleGroupConditionMultivalConditionOutputWithContext(ctx context.Context) NgwafAccountRuleGroupConditionMultivalConditionOutput {
+	return pulumi.ToOutputWithContext(ctx, i).(NgwafAccountRuleGroupConditionMultivalConditionOutput)
+}
+
+// NgwafAccountRuleGroupConditionMultivalConditionArrayInput is an input type that accepts NgwafAccountRuleGroupConditionMultivalConditionArray and NgwafAccountRuleGroupConditionMultivalConditionArrayOutput values.
+// You can construct a concrete instance of `NgwafAccountRuleGroupConditionMultivalConditionArrayInput` via:
+//
+//	NgwafAccountRuleGroupConditionMultivalConditionArray{ NgwafAccountRuleGroupConditionMultivalConditionArgs{...} }
+type NgwafAccountRuleGroupConditionMultivalConditionArrayInput interface {
+	pulumi.Input
+
+	ToNgwafAccountRuleGroupConditionMultivalConditionArrayOutput() NgwafAccountRuleGroupConditionMultivalConditionArrayOutput
+	ToNgwafAccountRuleGroupConditionMultivalConditionArrayOutputWithContext(context.Context) NgwafAccountRuleGroupConditionMultivalConditionArrayOutput
+}
+
+type NgwafAccountRuleGroupConditionMultivalConditionArray []NgwafAccountRuleGroupConditionMultivalConditionInput
+
+func (NgwafAccountRuleGroupConditionMultivalConditionArray) ElementType() reflect.Type {
+	return reflect.TypeOf((*[]NgwafAccountRuleGroupConditionMultivalCondition)(nil)).Elem()
+}
+
+func (i NgwafAccountRuleGroupConditionMultivalConditionArray) ToNgwafAccountRuleGroupConditionMultivalConditionArrayOutput() NgwafAccountRuleGroupConditionMultivalConditionArrayOutput {
+	return i.ToNgwafAccountRuleGroupConditionMultivalConditionArrayOutputWithContext(context.Background())
+}
+
+func (i NgwafAccountRuleGroupConditionMultivalConditionArray) ToNgwafAccountRuleGroupConditionMultivalConditionArrayOutputWithContext(ctx context.Context) NgwafAccountRuleGroupConditionMultivalConditionArrayOutput {
+	return pulumi.ToOutputWithContext(ctx, i).(NgwafAccountRuleGroupConditionMultivalConditionArrayOutput)
+}
+
+type NgwafAccountRuleGroupConditionMultivalConditionOutput struct{ *pulumi.OutputState }
+
+func (NgwafAccountRuleGroupConditionMultivalConditionOutput) ElementType() reflect.Type {
+	return reflect.TypeOf((*NgwafAccountRuleGroupConditionMultivalCondition)(nil)).Elem()
+}
+
+func (o NgwafAccountRuleGroupConditionMultivalConditionOutput) ToNgwafAccountRuleGroupConditionMultivalConditionOutput() NgwafAccountRuleGroupConditionMultivalConditionOutput {
+	return o
+}
+
+func (o NgwafAccountRuleGroupConditionMultivalConditionOutput) ToNgwafAccountRuleGroupConditionMultivalConditionOutputWithContext(ctx context.Context) NgwafAccountRuleGroupConditionMultivalConditionOutput {
+	return o
+}
+
+// A list of nested conditions in this multival.
+func (o NgwafAccountRuleGroupConditionMultivalConditionOutput) Conditions() NgwafAccountRuleGroupConditionMultivalConditionConditionArrayOutput {
+	return o.ApplyT(func(v NgwafAccountRuleGroupConditionMultivalCondition) []NgwafAccountRuleGroupConditionMultivalConditionCondition {
+		return v.Conditions
+	}).(NgwafAccountRuleGroupConditionMultivalConditionConditionArrayOutput)
+}
+
+// Enums for multival condition field. Accepted values are `postParameter`, `queryParameter`, `requestCookie`, `requestHeader`, `responseHeader`, and `signal`.
+func (o NgwafAccountRuleGroupConditionMultivalConditionOutput) Field() pulumi.StringOutput {
+	return o.ApplyT(func(v NgwafAccountRuleGroupConditionMultivalCondition) string { return v.Field }).(pulumi.StringOutput)
+}
+
+// Logical operator for the multival condition. Accepted values are `any` and `all`.
+func (o NgwafAccountRuleGroupConditionMultivalConditionOutput) GroupOperator() pulumi.StringOutput {
+	return o.ApplyT(func(v NgwafAccountRuleGroupConditionMultivalCondition) string { return v.GroupOperator }).(pulumi.StringOutput)
+}
+
+// Indicates whether the supplied conditions will check for existence or non-existence of matching field values. Accepted values are `exists` and `doesNotExist`.
+func (o NgwafAccountRuleGroupConditionMultivalConditionOutput) Operator() pulumi.StringOutput {
+	return o.ApplyT(func(v NgwafAccountRuleGroupConditionMultivalCondition) string { return v.Operator }).(pulumi.StringOutput)
+}
+
+type NgwafAccountRuleGroupConditionMultivalConditionArrayOutput struct{ *pulumi.OutputState }
+
+func (NgwafAccountRuleGroupConditionMultivalConditionArrayOutput) ElementType() reflect.Type {
+	return reflect.TypeOf((*[]NgwafAccountRuleGroupConditionMultivalCondition)(nil)).Elem()
+}
+
+func (o NgwafAccountRuleGroupConditionMultivalConditionArrayOutput) ToNgwafAccountRuleGroupConditionMultivalConditionArrayOutput() NgwafAccountRuleGroupConditionMultivalConditionArrayOutput {
+	return o
+}
+
+func (o NgwafAccountRuleGroupConditionMultivalConditionArrayOutput) ToNgwafAccountRuleGroupConditionMultivalConditionArrayOutputWithContext(ctx context.Context) NgwafAccountRuleGroupConditionMultivalConditionArrayOutput {
+	return o
+}
+
+func (o NgwafAccountRuleGroupConditionMultivalConditionArrayOutput) Index(i pulumi.IntInput) NgwafAccountRuleGroupConditionMultivalConditionOutput {
+	return pulumi.All(o, i).ApplyT(func(vs []interface{}) NgwafAccountRuleGroupConditionMultivalCondition {
+		return vs[0].([]NgwafAccountRuleGroupConditionMultivalCondition)[vs[1].(int)]
+	}).(NgwafAccountRuleGroupConditionMultivalConditionOutput)
+}
+
+type NgwafAccountRuleGroupConditionMultivalConditionCondition struct {
+	// Field to inspect (e.g., `name`, `value`, `signalId`).
+	Field string `pulumi:"field"`
+	// Operator to apply (e.g., `equals`, `contains`).
+	Operator string `pulumi:"operator"`
+	// The value to test the field against.
+	Value string `pulumi:"value"`
+}
+
+// NgwafAccountRuleGroupConditionMultivalConditionConditionInput is an input type that accepts NgwafAccountRuleGroupConditionMultivalConditionConditionArgs and NgwafAccountRuleGroupConditionMultivalConditionConditionOutput values.
+// You can construct a concrete instance of `NgwafAccountRuleGroupConditionMultivalConditionConditionInput` via:
+//
+//	NgwafAccountRuleGroupConditionMultivalConditionConditionArgs{...}
+type NgwafAccountRuleGroupConditionMultivalConditionConditionInput interface {
+	pulumi.Input
+
+	ToNgwafAccountRuleGroupConditionMultivalConditionConditionOutput() NgwafAccountRuleGroupConditionMultivalConditionConditionOutput
+	ToNgwafAccountRuleGroupConditionMultivalConditionConditionOutputWithContext(context.Context) NgwafAccountRuleGroupConditionMultivalConditionConditionOutput
+}
+
+type NgwafAccountRuleGroupConditionMultivalConditionConditionArgs struct {
+	// Field to inspect (e.g., `name`, `value`, `signalId`).
+	Field pulumi.StringInput `pulumi:"field"`
+	// Operator to apply (e.g., `equals`, `contains`).
+	Operator pulumi.StringInput `pulumi:"operator"`
+	// The value to test the field against.
+	Value pulumi.StringInput `pulumi:"value"`
+}
+
+func (NgwafAccountRuleGroupConditionMultivalConditionConditionArgs) ElementType() reflect.Type {
+	return reflect.TypeOf((*NgwafAccountRuleGroupConditionMultivalConditionCondition)(nil)).Elem()
+}
+
+func (i NgwafAccountRuleGroupConditionMultivalConditionConditionArgs) ToNgwafAccountRuleGroupConditionMultivalConditionConditionOutput() NgwafAccountRuleGroupConditionMultivalConditionConditionOutput {
+	return i.ToNgwafAccountRuleGroupConditionMultivalConditionConditionOutputWithContext(context.Background())
+}
+
+func (i NgwafAccountRuleGroupConditionMultivalConditionConditionArgs) ToNgwafAccountRuleGroupConditionMultivalConditionConditionOutputWithContext(ctx context.Context) NgwafAccountRuleGroupConditionMultivalConditionConditionOutput {
+	return pulumi.ToOutputWithContext(ctx, i).(NgwafAccountRuleGroupConditionMultivalConditionConditionOutput)
+}
+
+// NgwafAccountRuleGroupConditionMultivalConditionConditionArrayInput is an input type that accepts NgwafAccountRuleGroupConditionMultivalConditionConditionArray and NgwafAccountRuleGroupConditionMultivalConditionConditionArrayOutput values.
+// You can construct a concrete instance of `NgwafAccountRuleGroupConditionMultivalConditionConditionArrayInput` via:
+//
+//	NgwafAccountRuleGroupConditionMultivalConditionConditionArray{ NgwafAccountRuleGroupConditionMultivalConditionConditionArgs{...} }
+type NgwafAccountRuleGroupConditionMultivalConditionConditionArrayInput interface {
+	pulumi.Input
+
+	ToNgwafAccountRuleGroupConditionMultivalConditionConditionArrayOutput() NgwafAccountRuleGroupConditionMultivalConditionConditionArrayOutput
+	ToNgwafAccountRuleGroupConditionMultivalConditionConditionArrayOutputWithContext(context.Context) NgwafAccountRuleGroupConditionMultivalConditionConditionArrayOutput
+}
+
+type NgwafAccountRuleGroupConditionMultivalConditionConditionArray []NgwafAccountRuleGroupConditionMultivalConditionConditionInput
+
+func (NgwafAccountRuleGroupConditionMultivalConditionConditionArray) ElementType() reflect.Type {
+	return reflect.TypeOf((*[]NgwafAccountRuleGroupConditionMultivalConditionCondition)(nil)).Elem()
+}
+
+func (i NgwafAccountRuleGroupConditionMultivalConditionConditionArray) ToNgwafAccountRuleGroupConditionMultivalConditionConditionArrayOutput() NgwafAccountRuleGroupConditionMultivalConditionConditionArrayOutput {
+	return i.ToNgwafAccountRuleGroupConditionMultivalConditionConditionArrayOutputWithContext(context.Background())
+}
+
+func (i NgwafAccountRuleGroupConditionMultivalConditionConditionArray) ToNgwafAccountRuleGroupConditionMultivalConditionConditionArrayOutputWithContext(ctx context.Context) NgwafAccountRuleGroupConditionMultivalConditionConditionArrayOutput {
+	return pulumi.ToOutputWithContext(ctx, i).(NgwafAccountRuleGroupConditionMultivalConditionConditionArrayOutput)
+}
+
+type NgwafAccountRuleGroupConditionMultivalConditionConditionOutput struct{ *pulumi.OutputState }
+
+func (NgwafAccountRuleGroupConditionMultivalConditionConditionOutput) ElementType() reflect.Type {
+	return reflect.TypeOf((*NgwafAccountRuleGroupConditionMultivalConditionCondition)(nil)).Elem()
+}
+
+func (o NgwafAccountRuleGroupConditionMultivalConditionConditionOutput) ToNgwafAccountRuleGroupConditionMultivalConditionConditionOutput() NgwafAccountRuleGroupConditionMultivalConditionConditionOutput {
+	return o
+}
+
+func (o NgwafAccountRuleGroupConditionMultivalConditionConditionOutput) ToNgwafAccountRuleGroupConditionMultivalConditionConditionOutputWithContext(ctx context.Context) NgwafAccountRuleGroupConditionMultivalConditionConditionOutput {
+	return o
+}
+
+// Field to inspect (e.g., `name`, `value`, `signalId`).
+func (o NgwafAccountRuleGroupConditionMultivalConditionConditionOutput) Field() pulumi.StringOutput {
+	return o.ApplyT(func(v NgwafAccountRuleGroupConditionMultivalConditionCondition) string { return v.Field }).(pulumi.StringOutput)
+}
+
+// Operator to apply (e.g., `equals`, `contains`).
+func (o NgwafAccountRuleGroupConditionMultivalConditionConditionOutput) Operator() pulumi.StringOutput {
+	return o.ApplyT(func(v NgwafAccountRuleGroupConditionMultivalConditionCondition) string { return v.Operator }).(pulumi.StringOutput)
+}
+
+// The value to test the field against.
+func (o NgwafAccountRuleGroupConditionMultivalConditionConditionOutput) Value() pulumi.StringOutput {
+	return o.ApplyT(func(v NgwafAccountRuleGroupConditionMultivalConditionCondition) string { return v.Value }).(pulumi.StringOutput)
+}
+
+type NgwafAccountRuleGroupConditionMultivalConditionConditionArrayOutput struct{ *pulumi.OutputState }
+
+func (NgwafAccountRuleGroupConditionMultivalConditionConditionArrayOutput) ElementType() reflect.Type {
+	return reflect.TypeOf((*[]NgwafAccountRuleGroupConditionMultivalConditionCondition)(nil)).Elem()
+}
+
+func (o NgwafAccountRuleGroupConditionMultivalConditionConditionArrayOutput) ToNgwafAccountRuleGroupConditionMultivalConditionConditionArrayOutput() NgwafAccountRuleGroupConditionMultivalConditionConditionArrayOutput {
+	return o
+}
+
+func (o NgwafAccountRuleGroupConditionMultivalConditionConditionArrayOutput) ToNgwafAccountRuleGroupConditionMultivalConditionConditionArrayOutputWithContext(ctx context.Context) NgwafAccountRuleGroupConditionMultivalConditionConditionArrayOutput {
+	return o
+}
+
+func (o NgwafAccountRuleGroupConditionMultivalConditionConditionArrayOutput) Index(i pulumi.IntInput) NgwafAccountRuleGroupConditionMultivalConditionConditionOutput {
+	return pulumi.All(o, i).ApplyT(func(vs []interface{}) NgwafAccountRuleGroupConditionMultivalConditionCondition {
+		return vs[0].([]NgwafAccountRuleGroupConditionMultivalConditionCondition)[vs[1].(int)]
+	}).(NgwafAccountRuleGroupConditionMultivalConditionConditionOutput)
 }
 
 type NgwafAccountRuleMultivalCondition struct {
@@ -1892,6 +2144,8 @@ type NgwafWorkspaceRuleGroupCondition struct {
 	Conditions []NgwafWorkspaceRuleGroupConditionCondition `pulumi:"conditions"`
 	// Logical operator for the group. Accepted values are `any` and `all`.
 	GroupOperator string `pulumi:"groupOperator"`
+	// List of nested multival conditions in this group. Each multival list must define a `field, operator, groupOperator` and at least one condition.
+	MultivalConditions []NgwafWorkspaceRuleGroupConditionMultivalCondition `pulumi:"multivalConditions"`
 }
 
 // NgwafWorkspaceRuleGroupConditionInput is an input type that accepts NgwafWorkspaceRuleGroupConditionArgs and NgwafWorkspaceRuleGroupConditionOutput values.
@@ -1910,6 +2164,8 @@ type NgwafWorkspaceRuleGroupConditionArgs struct {
 	Conditions NgwafWorkspaceRuleGroupConditionConditionArrayInput `pulumi:"conditions"`
 	// Logical operator for the group. Accepted values are `any` and `all`.
 	GroupOperator pulumi.StringInput `pulumi:"groupOperator"`
+	// List of nested multival conditions in this group. Each multival list must define a `field, operator, groupOperator` and at least one condition.
+	MultivalConditions NgwafWorkspaceRuleGroupConditionMultivalConditionArrayInput `pulumi:"multivalConditions"`
 }
 
 func (NgwafWorkspaceRuleGroupConditionArgs) ElementType() reflect.Type {
@@ -1973,6 +2229,13 @@ func (o NgwafWorkspaceRuleGroupConditionOutput) Conditions() NgwafWorkspaceRuleG
 // Logical operator for the group. Accepted values are `any` and `all`.
 func (o NgwafWorkspaceRuleGroupConditionOutput) GroupOperator() pulumi.StringOutput {
 	return o.ApplyT(func(v NgwafWorkspaceRuleGroupCondition) string { return v.GroupOperator }).(pulumi.StringOutput)
+}
+
+// List of nested multival conditions in this group. Each multival list must define a `field, operator, groupOperator` and at least one condition.
+func (o NgwafWorkspaceRuleGroupConditionOutput) MultivalConditions() NgwafWorkspaceRuleGroupConditionMultivalConditionArrayOutput {
+	return o.ApplyT(func(v NgwafWorkspaceRuleGroupCondition) []NgwafWorkspaceRuleGroupConditionMultivalCondition {
+		return v.MultivalConditions
+	}).(NgwafWorkspaceRuleGroupConditionMultivalConditionArrayOutput)
 }
 
 type NgwafWorkspaceRuleGroupConditionArrayOutput struct{ *pulumi.OutputState }
@@ -2108,6 +2371,247 @@ func (o NgwafWorkspaceRuleGroupConditionConditionArrayOutput) Index(i pulumi.Int
 	return pulumi.All(o, i).ApplyT(func(vs []interface{}) NgwafWorkspaceRuleGroupConditionCondition {
 		return vs[0].([]NgwafWorkspaceRuleGroupConditionCondition)[vs[1].(int)]
 	}).(NgwafWorkspaceRuleGroupConditionConditionOutput)
+}
+
+type NgwafWorkspaceRuleGroupConditionMultivalCondition struct {
+	// A list of nested conditions in this multival.
+	Conditions []NgwafWorkspaceRuleGroupConditionMultivalConditionCondition `pulumi:"conditions"`
+	// Enums for multival condition field. Accepted values are `postParameter`, `queryParameter`, `requestCookie`, `requestHeader`, `responseHeader`, and `signal`.
+	Field string `pulumi:"field"`
+	// Logical operator for the multival condition. Accepted values are `any` and `all`.
+	GroupOperator string `pulumi:"groupOperator"`
+	// Indicates whether the supplied conditions will check for existence or non-existence of matching field values. Accepted values are `exists` and `doesNotExist`.
+	Operator string `pulumi:"operator"`
+}
+
+// NgwafWorkspaceRuleGroupConditionMultivalConditionInput is an input type that accepts NgwafWorkspaceRuleGroupConditionMultivalConditionArgs and NgwafWorkspaceRuleGroupConditionMultivalConditionOutput values.
+// You can construct a concrete instance of `NgwafWorkspaceRuleGroupConditionMultivalConditionInput` via:
+//
+//	NgwafWorkspaceRuleGroupConditionMultivalConditionArgs{...}
+type NgwafWorkspaceRuleGroupConditionMultivalConditionInput interface {
+	pulumi.Input
+
+	ToNgwafWorkspaceRuleGroupConditionMultivalConditionOutput() NgwafWorkspaceRuleGroupConditionMultivalConditionOutput
+	ToNgwafWorkspaceRuleGroupConditionMultivalConditionOutputWithContext(context.Context) NgwafWorkspaceRuleGroupConditionMultivalConditionOutput
+}
+
+type NgwafWorkspaceRuleGroupConditionMultivalConditionArgs struct {
+	// A list of nested conditions in this multival.
+	Conditions NgwafWorkspaceRuleGroupConditionMultivalConditionConditionArrayInput `pulumi:"conditions"`
+	// Enums for multival condition field. Accepted values are `postParameter`, `queryParameter`, `requestCookie`, `requestHeader`, `responseHeader`, and `signal`.
+	Field pulumi.StringInput `pulumi:"field"`
+	// Logical operator for the multival condition. Accepted values are `any` and `all`.
+	GroupOperator pulumi.StringInput `pulumi:"groupOperator"`
+	// Indicates whether the supplied conditions will check for existence or non-existence of matching field values. Accepted values are `exists` and `doesNotExist`.
+	Operator pulumi.StringInput `pulumi:"operator"`
+}
+
+func (NgwafWorkspaceRuleGroupConditionMultivalConditionArgs) ElementType() reflect.Type {
+	return reflect.TypeOf((*NgwafWorkspaceRuleGroupConditionMultivalCondition)(nil)).Elem()
+}
+
+func (i NgwafWorkspaceRuleGroupConditionMultivalConditionArgs) ToNgwafWorkspaceRuleGroupConditionMultivalConditionOutput() NgwafWorkspaceRuleGroupConditionMultivalConditionOutput {
+	return i.ToNgwafWorkspaceRuleGroupConditionMultivalConditionOutputWithContext(context.Background())
+}
+
+func (i NgwafWorkspaceRuleGroupConditionMultivalConditionArgs) ToNgwafWorkspaceRuleGroupConditionMultivalConditionOutputWithContext(ctx context.Context) NgwafWorkspaceRuleGroupConditionMultivalConditionOutput {
+	return pulumi.ToOutputWithContext(ctx, i).(NgwafWorkspaceRuleGroupConditionMultivalConditionOutput)
+}
+
+// NgwafWorkspaceRuleGroupConditionMultivalConditionArrayInput is an input type that accepts NgwafWorkspaceRuleGroupConditionMultivalConditionArray and NgwafWorkspaceRuleGroupConditionMultivalConditionArrayOutput values.
+// You can construct a concrete instance of `NgwafWorkspaceRuleGroupConditionMultivalConditionArrayInput` via:
+//
+//	NgwafWorkspaceRuleGroupConditionMultivalConditionArray{ NgwafWorkspaceRuleGroupConditionMultivalConditionArgs{...} }
+type NgwafWorkspaceRuleGroupConditionMultivalConditionArrayInput interface {
+	pulumi.Input
+
+	ToNgwafWorkspaceRuleGroupConditionMultivalConditionArrayOutput() NgwafWorkspaceRuleGroupConditionMultivalConditionArrayOutput
+	ToNgwafWorkspaceRuleGroupConditionMultivalConditionArrayOutputWithContext(context.Context) NgwafWorkspaceRuleGroupConditionMultivalConditionArrayOutput
+}
+
+type NgwafWorkspaceRuleGroupConditionMultivalConditionArray []NgwafWorkspaceRuleGroupConditionMultivalConditionInput
+
+func (NgwafWorkspaceRuleGroupConditionMultivalConditionArray) ElementType() reflect.Type {
+	return reflect.TypeOf((*[]NgwafWorkspaceRuleGroupConditionMultivalCondition)(nil)).Elem()
+}
+
+func (i NgwafWorkspaceRuleGroupConditionMultivalConditionArray) ToNgwafWorkspaceRuleGroupConditionMultivalConditionArrayOutput() NgwafWorkspaceRuleGroupConditionMultivalConditionArrayOutput {
+	return i.ToNgwafWorkspaceRuleGroupConditionMultivalConditionArrayOutputWithContext(context.Background())
+}
+
+func (i NgwafWorkspaceRuleGroupConditionMultivalConditionArray) ToNgwafWorkspaceRuleGroupConditionMultivalConditionArrayOutputWithContext(ctx context.Context) NgwafWorkspaceRuleGroupConditionMultivalConditionArrayOutput {
+	return pulumi.ToOutputWithContext(ctx, i).(NgwafWorkspaceRuleGroupConditionMultivalConditionArrayOutput)
+}
+
+type NgwafWorkspaceRuleGroupConditionMultivalConditionOutput struct{ *pulumi.OutputState }
+
+func (NgwafWorkspaceRuleGroupConditionMultivalConditionOutput) ElementType() reflect.Type {
+	return reflect.TypeOf((*NgwafWorkspaceRuleGroupConditionMultivalCondition)(nil)).Elem()
+}
+
+func (o NgwafWorkspaceRuleGroupConditionMultivalConditionOutput) ToNgwafWorkspaceRuleGroupConditionMultivalConditionOutput() NgwafWorkspaceRuleGroupConditionMultivalConditionOutput {
+	return o
+}
+
+func (o NgwafWorkspaceRuleGroupConditionMultivalConditionOutput) ToNgwafWorkspaceRuleGroupConditionMultivalConditionOutputWithContext(ctx context.Context) NgwafWorkspaceRuleGroupConditionMultivalConditionOutput {
+	return o
+}
+
+// A list of nested conditions in this multival.
+func (o NgwafWorkspaceRuleGroupConditionMultivalConditionOutput) Conditions() NgwafWorkspaceRuleGroupConditionMultivalConditionConditionArrayOutput {
+	return o.ApplyT(func(v NgwafWorkspaceRuleGroupConditionMultivalCondition) []NgwafWorkspaceRuleGroupConditionMultivalConditionCondition {
+		return v.Conditions
+	}).(NgwafWorkspaceRuleGroupConditionMultivalConditionConditionArrayOutput)
+}
+
+// Enums for multival condition field. Accepted values are `postParameter`, `queryParameter`, `requestCookie`, `requestHeader`, `responseHeader`, and `signal`.
+func (o NgwafWorkspaceRuleGroupConditionMultivalConditionOutput) Field() pulumi.StringOutput {
+	return o.ApplyT(func(v NgwafWorkspaceRuleGroupConditionMultivalCondition) string { return v.Field }).(pulumi.StringOutput)
+}
+
+// Logical operator for the multival condition. Accepted values are `any` and `all`.
+func (o NgwafWorkspaceRuleGroupConditionMultivalConditionOutput) GroupOperator() pulumi.StringOutput {
+	return o.ApplyT(func(v NgwafWorkspaceRuleGroupConditionMultivalCondition) string { return v.GroupOperator }).(pulumi.StringOutput)
+}
+
+// Indicates whether the supplied conditions will check for existence or non-existence of matching field values. Accepted values are `exists` and `doesNotExist`.
+func (o NgwafWorkspaceRuleGroupConditionMultivalConditionOutput) Operator() pulumi.StringOutput {
+	return o.ApplyT(func(v NgwafWorkspaceRuleGroupConditionMultivalCondition) string { return v.Operator }).(pulumi.StringOutput)
+}
+
+type NgwafWorkspaceRuleGroupConditionMultivalConditionArrayOutput struct{ *pulumi.OutputState }
+
+func (NgwafWorkspaceRuleGroupConditionMultivalConditionArrayOutput) ElementType() reflect.Type {
+	return reflect.TypeOf((*[]NgwafWorkspaceRuleGroupConditionMultivalCondition)(nil)).Elem()
+}
+
+func (o NgwafWorkspaceRuleGroupConditionMultivalConditionArrayOutput) ToNgwafWorkspaceRuleGroupConditionMultivalConditionArrayOutput() NgwafWorkspaceRuleGroupConditionMultivalConditionArrayOutput {
+	return o
+}
+
+func (o NgwafWorkspaceRuleGroupConditionMultivalConditionArrayOutput) ToNgwafWorkspaceRuleGroupConditionMultivalConditionArrayOutputWithContext(ctx context.Context) NgwafWorkspaceRuleGroupConditionMultivalConditionArrayOutput {
+	return o
+}
+
+func (o NgwafWorkspaceRuleGroupConditionMultivalConditionArrayOutput) Index(i pulumi.IntInput) NgwafWorkspaceRuleGroupConditionMultivalConditionOutput {
+	return pulumi.All(o, i).ApplyT(func(vs []interface{}) NgwafWorkspaceRuleGroupConditionMultivalCondition {
+		return vs[0].([]NgwafWorkspaceRuleGroupConditionMultivalCondition)[vs[1].(int)]
+	}).(NgwafWorkspaceRuleGroupConditionMultivalConditionOutput)
+}
+
+type NgwafWorkspaceRuleGroupConditionMultivalConditionCondition struct {
+	// Field to inspect (e.g., `name`, `value`, `signalId`).
+	Field string `pulumi:"field"`
+	// Operator to apply (e.g., `equals`, `contains`).
+	Operator string `pulumi:"operator"`
+	// The value to test the field against.
+	Value string `pulumi:"value"`
+}
+
+// NgwafWorkspaceRuleGroupConditionMultivalConditionConditionInput is an input type that accepts NgwafWorkspaceRuleGroupConditionMultivalConditionConditionArgs and NgwafWorkspaceRuleGroupConditionMultivalConditionConditionOutput values.
+// You can construct a concrete instance of `NgwafWorkspaceRuleGroupConditionMultivalConditionConditionInput` via:
+//
+//	NgwafWorkspaceRuleGroupConditionMultivalConditionConditionArgs{...}
+type NgwafWorkspaceRuleGroupConditionMultivalConditionConditionInput interface {
+	pulumi.Input
+
+	ToNgwafWorkspaceRuleGroupConditionMultivalConditionConditionOutput() NgwafWorkspaceRuleGroupConditionMultivalConditionConditionOutput
+	ToNgwafWorkspaceRuleGroupConditionMultivalConditionConditionOutputWithContext(context.Context) NgwafWorkspaceRuleGroupConditionMultivalConditionConditionOutput
+}
+
+type NgwafWorkspaceRuleGroupConditionMultivalConditionConditionArgs struct {
+	// Field to inspect (e.g., `name`, `value`, `signalId`).
+	Field pulumi.StringInput `pulumi:"field"`
+	// Operator to apply (e.g., `equals`, `contains`).
+	Operator pulumi.StringInput `pulumi:"operator"`
+	// The value to test the field against.
+	Value pulumi.StringInput `pulumi:"value"`
+}
+
+func (NgwafWorkspaceRuleGroupConditionMultivalConditionConditionArgs) ElementType() reflect.Type {
+	return reflect.TypeOf((*NgwafWorkspaceRuleGroupConditionMultivalConditionCondition)(nil)).Elem()
+}
+
+func (i NgwafWorkspaceRuleGroupConditionMultivalConditionConditionArgs) ToNgwafWorkspaceRuleGroupConditionMultivalConditionConditionOutput() NgwafWorkspaceRuleGroupConditionMultivalConditionConditionOutput {
+	return i.ToNgwafWorkspaceRuleGroupConditionMultivalConditionConditionOutputWithContext(context.Background())
+}
+
+func (i NgwafWorkspaceRuleGroupConditionMultivalConditionConditionArgs) ToNgwafWorkspaceRuleGroupConditionMultivalConditionConditionOutputWithContext(ctx context.Context) NgwafWorkspaceRuleGroupConditionMultivalConditionConditionOutput {
+	return pulumi.ToOutputWithContext(ctx, i).(NgwafWorkspaceRuleGroupConditionMultivalConditionConditionOutput)
+}
+
+// NgwafWorkspaceRuleGroupConditionMultivalConditionConditionArrayInput is an input type that accepts NgwafWorkspaceRuleGroupConditionMultivalConditionConditionArray and NgwafWorkspaceRuleGroupConditionMultivalConditionConditionArrayOutput values.
+// You can construct a concrete instance of `NgwafWorkspaceRuleGroupConditionMultivalConditionConditionArrayInput` via:
+//
+//	NgwafWorkspaceRuleGroupConditionMultivalConditionConditionArray{ NgwafWorkspaceRuleGroupConditionMultivalConditionConditionArgs{...} }
+type NgwafWorkspaceRuleGroupConditionMultivalConditionConditionArrayInput interface {
+	pulumi.Input
+
+	ToNgwafWorkspaceRuleGroupConditionMultivalConditionConditionArrayOutput() NgwafWorkspaceRuleGroupConditionMultivalConditionConditionArrayOutput
+	ToNgwafWorkspaceRuleGroupConditionMultivalConditionConditionArrayOutputWithContext(context.Context) NgwafWorkspaceRuleGroupConditionMultivalConditionConditionArrayOutput
+}
+
+type NgwafWorkspaceRuleGroupConditionMultivalConditionConditionArray []NgwafWorkspaceRuleGroupConditionMultivalConditionConditionInput
+
+func (NgwafWorkspaceRuleGroupConditionMultivalConditionConditionArray) ElementType() reflect.Type {
+	return reflect.TypeOf((*[]NgwafWorkspaceRuleGroupConditionMultivalConditionCondition)(nil)).Elem()
+}
+
+func (i NgwafWorkspaceRuleGroupConditionMultivalConditionConditionArray) ToNgwafWorkspaceRuleGroupConditionMultivalConditionConditionArrayOutput() NgwafWorkspaceRuleGroupConditionMultivalConditionConditionArrayOutput {
+	return i.ToNgwafWorkspaceRuleGroupConditionMultivalConditionConditionArrayOutputWithContext(context.Background())
+}
+
+func (i NgwafWorkspaceRuleGroupConditionMultivalConditionConditionArray) ToNgwafWorkspaceRuleGroupConditionMultivalConditionConditionArrayOutputWithContext(ctx context.Context) NgwafWorkspaceRuleGroupConditionMultivalConditionConditionArrayOutput {
+	return pulumi.ToOutputWithContext(ctx, i).(NgwafWorkspaceRuleGroupConditionMultivalConditionConditionArrayOutput)
+}
+
+type NgwafWorkspaceRuleGroupConditionMultivalConditionConditionOutput struct{ *pulumi.OutputState }
+
+func (NgwafWorkspaceRuleGroupConditionMultivalConditionConditionOutput) ElementType() reflect.Type {
+	return reflect.TypeOf((*NgwafWorkspaceRuleGroupConditionMultivalConditionCondition)(nil)).Elem()
+}
+
+func (o NgwafWorkspaceRuleGroupConditionMultivalConditionConditionOutput) ToNgwafWorkspaceRuleGroupConditionMultivalConditionConditionOutput() NgwafWorkspaceRuleGroupConditionMultivalConditionConditionOutput {
+	return o
+}
+
+func (o NgwafWorkspaceRuleGroupConditionMultivalConditionConditionOutput) ToNgwafWorkspaceRuleGroupConditionMultivalConditionConditionOutputWithContext(ctx context.Context) NgwafWorkspaceRuleGroupConditionMultivalConditionConditionOutput {
+	return o
+}
+
+// Field to inspect (e.g., `name`, `value`, `signalId`).
+func (o NgwafWorkspaceRuleGroupConditionMultivalConditionConditionOutput) Field() pulumi.StringOutput {
+	return o.ApplyT(func(v NgwafWorkspaceRuleGroupConditionMultivalConditionCondition) string { return v.Field }).(pulumi.StringOutput)
+}
+
+// Operator to apply (e.g., `equals`, `contains`).
+func (o NgwafWorkspaceRuleGroupConditionMultivalConditionConditionOutput) Operator() pulumi.StringOutput {
+	return o.ApplyT(func(v NgwafWorkspaceRuleGroupConditionMultivalConditionCondition) string { return v.Operator }).(pulumi.StringOutput)
+}
+
+// The value to test the field against.
+func (o NgwafWorkspaceRuleGroupConditionMultivalConditionConditionOutput) Value() pulumi.StringOutput {
+	return o.ApplyT(func(v NgwafWorkspaceRuleGroupConditionMultivalConditionCondition) string { return v.Value }).(pulumi.StringOutput)
+}
+
+type NgwafWorkspaceRuleGroupConditionMultivalConditionConditionArrayOutput struct{ *pulumi.OutputState }
+
+func (NgwafWorkspaceRuleGroupConditionMultivalConditionConditionArrayOutput) ElementType() reflect.Type {
+	return reflect.TypeOf((*[]NgwafWorkspaceRuleGroupConditionMultivalConditionCondition)(nil)).Elem()
+}
+
+func (o NgwafWorkspaceRuleGroupConditionMultivalConditionConditionArrayOutput) ToNgwafWorkspaceRuleGroupConditionMultivalConditionConditionArrayOutput() NgwafWorkspaceRuleGroupConditionMultivalConditionConditionArrayOutput {
+	return o
+}
+
+func (o NgwafWorkspaceRuleGroupConditionMultivalConditionConditionArrayOutput) ToNgwafWorkspaceRuleGroupConditionMultivalConditionConditionArrayOutputWithContext(ctx context.Context) NgwafWorkspaceRuleGroupConditionMultivalConditionConditionArrayOutput {
+	return o
+}
+
+func (o NgwafWorkspaceRuleGroupConditionMultivalConditionConditionArrayOutput) Index(i pulumi.IntInput) NgwafWorkspaceRuleGroupConditionMultivalConditionConditionOutput {
+	return pulumi.All(o, i).ApplyT(func(vs []interface{}) NgwafWorkspaceRuleGroupConditionMultivalConditionCondition {
+		return vs[0].([]NgwafWorkspaceRuleGroupConditionMultivalConditionCondition)[vs[1].(int)]
+	}).(NgwafWorkspaceRuleGroupConditionMultivalConditionConditionOutput)
 }
 
 type NgwafWorkspaceRuleMultivalCondition struct {
@@ -8821,6 +9325,8 @@ type ServiceComputeProductEnablement struct {
 	ApiDiscovery *bool `pulumi:"apiDiscovery"`
 	// DDoS Protection product
 	DdosProtection *ServiceComputeProductEnablementDdosProtection `pulumi:"ddosProtection"`
+	// Enable Domain Inspector support
+	DomainInspector *bool `pulumi:"domainInspector"`
 	// Enable Fanout support
 	Fanout *bool `pulumi:"fanout"`
 	// Enable Log Explorer & Insights
@@ -8849,6 +9355,8 @@ type ServiceComputeProductEnablementArgs struct {
 	ApiDiscovery pulumi.BoolPtrInput `pulumi:"apiDiscovery"`
 	// DDoS Protection product
 	DdosProtection ServiceComputeProductEnablementDdosProtectionPtrInput `pulumi:"ddosProtection"`
+	// Enable Domain Inspector support
+	DomainInspector pulumi.BoolPtrInput `pulumi:"domainInspector"`
 	// Enable Fanout support
 	Fanout pulumi.BoolPtrInput `pulumi:"fanout"`
 	// Enable Log Explorer & Insights
@@ -8950,6 +9458,11 @@ func (o ServiceComputeProductEnablementOutput) DdosProtection() ServiceComputePr
 	}).(ServiceComputeProductEnablementDdosProtectionPtrOutput)
 }
 
+// Enable Domain Inspector support
+func (o ServiceComputeProductEnablementOutput) DomainInspector() pulumi.BoolPtrOutput {
+	return o.ApplyT(func(v ServiceComputeProductEnablement) *bool { return v.DomainInspector }).(pulumi.BoolPtrOutput)
+}
+
 // Enable Fanout support
 func (o ServiceComputeProductEnablementOutput) Fanout() pulumi.BoolPtrOutput {
 	return o.ApplyT(func(v ServiceComputeProductEnablement) *bool { return v.Fanout }).(pulumi.BoolPtrOutput)
@@ -9017,6 +9530,16 @@ func (o ServiceComputeProductEnablementPtrOutput) DdosProtection() ServiceComput
 		}
 		return v.DdosProtection
 	}).(ServiceComputeProductEnablementDdosProtectionPtrOutput)
+}
+
+// Enable Domain Inspector support
+func (o ServiceComputeProductEnablementPtrOutput) DomainInspector() pulumi.BoolPtrOutput {
+	return o.ApplyT(func(v *ServiceComputeProductEnablement) *bool {
+		if v == nil {
+			return nil
+		}
+		return v.DomainInspector
+	}).(pulumi.BoolPtrOutput)
 }
 
 // Enable Fanout support
@@ -19597,6 +20120,121 @@ func (o GetDictionariesDictionaryArrayOutput) Index(i pulumi.IntInput) GetDictio
 	}).(GetDictionariesDictionaryOutput)
 }
 
+type GetDomainsDomain struct {
+	// The fully-qualified domain name for your domain.
+	Fqdn string `pulumi:"fqdn"`
+	// Domain Identifier (UUID).
+	Id string `pulumi:"id"`
+	// The 'service_id' associated with your domain or 'null' if there is no association.
+	ServiceId string `pulumi:"serviceId"`
+}
+
+// GetDomainsDomainInput is an input type that accepts GetDomainsDomainArgs and GetDomainsDomainOutput values.
+// You can construct a concrete instance of `GetDomainsDomainInput` via:
+//
+//	GetDomainsDomainArgs{...}
+type GetDomainsDomainInput interface {
+	pulumi.Input
+
+	ToGetDomainsDomainOutput() GetDomainsDomainOutput
+	ToGetDomainsDomainOutputWithContext(context.Context) GetDomainsDomainOutput
+}
+
+type GetDomainsDomainArgs struct {
+	// The fully-qualified domain name for your domain.
+	Fqdn pulumi.StringInput `pulumi:"fqdn"`
+	// Domain Identifier (UUID).
+	Id pulumi.StringInput `pulumi:"id"`
+	// The 'service_id' associated with your domain or 'null' if there is no association.
+	ServiceId pulumi.StringInput `pulumi:"serviceId"`
+}
+
+func (GetDomainsDomainArgs) ElementType() reflect.Type {
+	return reflect.TypeOf((*GetDomainsDomain)(nil)).Elem()
+}
+
+func (i GetDomainsDomainArgs) ToGetDomainsDomainOutput() GetDomainsDomainOutput {
+	return i.ToGetDomainsDomainOutputWithContext(context.Background())
+}
+
+func (i GetDomainsDomainArgs) ToGetDomainsDomainOutputWithContext(ctx context.Context) GetDomainsDomainOutput {
+	return pulumi.ToOutputWithContext(ctx, i).(GetDomainsDomainOutput)
+}
+
+// GetDomainsDomainArrayInput is an input type that accepts GetDomainsDomainArray and GetDomainsDomainArrayOutput values.
+// You can construct a concrete instance of `GetDomainsDomainArrayInput` via:
+//
+//	GetDomainsDomainArray{ GetDomainsDomainArgs{...} }
+type GetDomainsDomainArrayInput interface {
+	pulumi.Input
+
+	ToGetDomainsDomainArrayOutput() GetDomainsDomainArrayOutput
+	ToGetDomainsDomainArrayOutputWithContext(context.Context) GetDomainsDomainArrayOutput
+}
+
+type GetDomainsDomainArray []GetDomainsDomainInput
+
+func (GetDomainsDomainArray) ElementType() reflect.Type {
+	return reflect.TypeOf((*[]GetDomainsDomain)(nil)).Elem()
+}
+
+func (i GetDomainsDomainArray) ToGetDomainsDomainArrayOutput() GetDomainsDomainArrayOutput {
+	return i.ToGetDomainsDomainArrayOutputWithContext(context.Background())
+}
+
+func (i GetDomainsDomainArray) ToGetDomainsDomainArrayOutputWithContext(ctx context.Context) GetDomainsDomainArrayOutput {
+	return pulumi.ToOutputWithContext(ctx, i).(GetDomainsDomainArrayOutput)
+}
+
+type GetDomainsDomainOutput struct{ *pulumi.OutputState }
+
+func (GetDomainsDomainOutput) ElementType() reflect.Type {
+	return reflect.TypeOf((*GetDomainsDomain)(nil)).Elem()
+}
+
+func (o GetDomainsDomainOutput) ToGetDomainsDomainOutput() GetDomainsDomainOutput {
+	return o
+}
+
+func (o GetDomainsDomainOutput) ToGetDomainsDomainOutputWithContext(ctx context.Context) GetDomainsDomainOutput {
+	return o
+}
+
+// The fully-qualified domain name for your domain.
+func (o GetDomainsDomainOutput) Fqdn() pulumi.StringOutput {
+	return o.ApplyT(func(v GetDomainsDomain) string { return v.Fqdn }).(pulumi.StringOutput)
+}
+
+// Domain Identifier (UUID).
+func (o GetDomainsDomainOutput) Id() pulumi.StringOutput {
+	return o.ApplyT(func(v GetDomainsDomain) string { return v.Id }).(pulumi.StringOutput)
+}
+
+// The 'service_id' associated with your domain or 'null' if there is no association.
+func (o GetDomainsDomainOutput) ServiceId() pulumi.StringOutput {
+	return o.ApplyT(func(v GetDomainsDomain) string { return v.ServiceId }).(pulumi.StringOutput)
+}
+
+type GetDomainsDomainArrayOutput struct{ *pulumi.OutputState }
+
+func (GetDomainsDomainArrayOutput) ElementType() reflect.Type {
+	return reflect.TypeOf((*[]GetDomainsDomain)(nil)).Elem()
+}
+
+func (o GetDomainsDomainArrayOutput) ToGetDomainsDomainArrayOutput() GetDomainsDomainArrayOutput {
+	return o
+}
+
+func (o GetDomainsDomainArrayOutput) ToGetDomainsDomainArrayOutputWithContext(ctx context.Context) GetDomainsDomainArrayOutput {
+	return o
+}
+
+func (o GetDomainsDomainArrayOutput) Index(i pulumi.IntInput) GetDomainsDomainOutput {
+	return pulumi.All(o, i).ApplyT(func(vs []interface{}) GetDomainsDomain {
+		return vs[0].([]GetDomainsDomain)[vs[1].(int)]
+	}).(GetDomainsDomainOutput)
+}
+
 type GetDomainsV1Domain struct {
 	// The fully-qualified domain name for your domain.
 	Fqdn string `pulumi:"fqdn"`
@@ -22127,6 +22765,112 @@ func (o GetServicesDetailArrayOutput) Index(i pulumi.IntInput) GetServicesDetail
 	}).(GetServicesDetailOutput)
 }
 
+type GetStagingIpsDomain struct {
+	// The domain name.
+	Name string `pulumi:"name"`
+	// The staging IP address for the domain.
+	StagingIp string `pulumi:"stagingIp"`
+}
+
+// GetStagingIpsDomainInput is an input type that accepts GetStagingIpsDomainArgs and GetStagingIpsDomainOutput values.
+// You can construct a concrete instance of `GetStagingIpsDomainInput` via:
+//
+//	GetStagingIpsDomainArgs{...}
+type GetStagingIpsDomainInput interface {
+	pulumi.Input
+
+	ToGetStagingIpsDomainOutput() GetStagingIpsDomainOutput
+	ToGetStagingIpsDomainOutputWithContext(context.Context) GetStagingIpsDomainOutput
+}
+
+type GetStagingIpsDomainArgs struct {
+	// The domain name.
+	Name pulumi.StringInput `pulumi:"name"`
+	// The staging IP address for the domain.
+	StagingIp pulumi.StringInput `pulumi:"stagingIp"`
+}
+
+func (GetStagingIpsDomainArgs) ElementType() reflect.Type {
+	return reflect.TypeOf((*GetStagingIpsDomain)(nil)).Elem()
+}
+
+func (i GetStagingIpsDomainArgs) ToGetStagingIpsDomainOutput() GetStagingIpsDomainOutput {
+	return i.ToGetStagingIpsDomainOutputWithContext(context.Background())
+}
+
+func (i GetStagingIpsDomainArgs) ToGetStagingIpsDomainOutputWithContext(ctx context.Context) GetStagingIpsDomainOutput {
+	return pulumi.ToOutputWithContext(ctx, i).(GetStagingIpsDomainOutput)
+}
+
+// GetStagingIpsDomainArrayInput is an input type that accepts GetStagingIpsDomainArray and GetStagingIpsDomainArrayOutput values.
+// You can construct a concrete instance of `GetStagingIpsDomainArrayInput` via:
+//
+//	GetStagingIpsDomainArray{ GetStagingIpsDomainArgs{...} }
+type GetStagingIpsDomainArrayInput interface {
+	pulumi.Input
+
+	ToGetStagingIpsDomainArrayOutput() GetStagingIpsDomainArrayOutput
+	ToGetStagingIpsDomainArrayOutputWithContext(context.Context) GetStagingIpsDomainArrayOutput
+}
+
+type GetStagingIpsDomainArray []GetStagingIpsDomainInput
+
+func (GetStagingIpsDomainArray) ElementType() reflect.Type {
+	return reflect.TypeOf((*[]GetStagingIpsDomain)(nil)).Elem()
+}
+
+func (i GetStagingIpsDomainArray) ToGetStagingIpsDomainArrayOutput() GetStagingIpsDomainArrayOutput {
+	return i.ToGetStagingIpsDomainArrayOutputWithContext(context.Background())
+}
+
+func (i GetStagingIpsDomainArray) ToGetStagingIpsDomainArrayOutputWithContext(ctx context.Context) GetStagingIpsDomainArrayOutput {
+	return pulumi.ToOutputWithContext(ctx, i).(GetStagingIpsDomainArrayOutput)
+}
+
+type GetStagingIpsDomainOutput struct{ *pulumi.OutputState }
+
+func (GetStagingIpsDomainOutput) ElementType() reflect.Type {
+	return reflect.TypeOf((*GetStagingIpsDomain)(nil)).Elem()
+}
+
+func (o GetStagingIpsDomainOutput) ToGetStagingIpsDomainOutput() GetStagingIpsDomainOutput {
+	return o
+}
+
+func (o GetStagingIpsDomainOutput) ToGetStagingIpsDomainOutputWithContext(ctx context.Context) GetStagingIpsDomainOutput {
+	return o
+}
+
+// The domain name.
+func (o GetStagingIpsDomainOutput) Name() pulumi.StringOutput {
+	return o.ApplyT(func(v GetStagingIpsDomain) string { return v.Name }).(pulumi.StringOutput)
+}
+
+// The staging IP address for the domain.
+func (o GetStagingIpsDomainOutput) StagingIp() pulumi.StringOutput {
+	return o.ApplyT(func(v GetStagingIpsDomain) string { return v.StagingIp }).(pulumi.StringOutput)
+}
+
+type GetStagingIpsDomainArrayOutput struct{ *pulumi.OutputState }
+
+func (GetStagingIpsDomainArrayOutput) ElementType() reflect.Type {
+	return reflect.TypeOf((*[]GetStagingIpsDomain)(nil)).Elem()
+}
+
+func (o GetStagingIpsDomainArrayOutput) ToGetStagingIpsDomainArrayOutput() GetStagingIpsDomainArrayOutput {
+	return o
+}
+
+func (o GetStagingIpsDomainArrayOutput) ToGetStagingIpsDomainArrayOutputWithContext(ctx context.Context) GetStagingIpsDomainArrayOutput {
+	return o
+}
+
+func (o GetStagingIpsDomainArrayOutput) Index(i pulumi.IntInput) GetStagingIpsDomainOutput {
+	return pulumi.All(o, i).ApplyT(func(vs []interface{}) GetStagingIpsDomain {
+		return vs[0].([]GetStagingIpsDomain)[vs[1].(int)]
+	}).(GetStagingIpsDomainOutput)
+}
+
 type GetTlsConfigurationDnsRecord struct {
 	// Type of DNS record to set, e.g. A, AAAA, or CNAME.
 	RecordType string `pulumi:"recordType"`
@@ -22394,6 +23138,10 @@ func init() {
 	pulumi.RegisterInputType(reflect.TypeOf((*NgwafAccountRuleGroupConditionArrayInput)(nil)).Elem(), NgwafAccountRuleGroupConditionArray{})
 	pulumi.RegisterInputType(reflect.TypeOf((*NgwafAccountRuleGroupConditionConditionInput)(nil)).Elem(), NgwafAccountRuleGroupConditionConditionArgs{})
 	pulumi.RegisterInputType(reflect.TypeOf((*NgwafAccountRuleGroupConditionConditionArrayInput)(nil)).Elem(), NgwafAccountRuleGroupConditionConditionArray{})
+	pulumi.RegisterInputType(reflect.TypeOf((*NgwafAccountRuleGroupConditionMultivalConditionInput)(nil)).Elem(), NgwafAccountRuleGroupConditionMultivalConditionArgs{})
+	pulumi.RegisterInputType(reflect.TypeOf((*NgwafAccountRuleGroupConditionMultivalConditionArrayInput)(nil)).Elem(), NgwafAccountRuleGroupConditionMultivalConditionArray{})
+	pulumi.RegisterInputType(reflect.TypeOf((*NgwafAccountRuleGroupConditionMultivalConditionConditionInput)(nil)).Elem(), NgwafAccountRuleGroupConditionMultivalConditionConditionArgs{})
+	pulumi.RegisterInputType(reflect.TypeOf((*NgwafAccountRuleGroupConditionMultivalConditionConditionArrayInput)(nil)).Elem(), NgwafAccountRuleGroupConditionMultivalConditionConditionArray{})
 	pulumi.RegisterInputType(reflect.TypeOf((*NgwafAccountRuleMultivalConditionInput)(nil)).Elem(), NgwafAccountRuleMultivalConditionArgs{})
 	pulumi.RegisterInputType(reflect.TypeOf((*NgwafAccountRuleMultivalConditionArrayInput)(nil)).Elem(), NgwafAccountRuleMultivalConditionArray{})
 	pulumi.RegisterInputType(reflect.TypeOf((*NgwafAccountRuleMultivalConditionConditionInput)(nil)).Elem(), NgwafAccountRuleMultivalConditionConditionArgs{})
@@ -22408,6 +23156,10 @@ func init() {
 	pulumi.RegisterInputType(reflect.TypeOf((*NgwafWorkspaceRuleGroupConditionArrayInput)(nil)).Elem(), NgwafWorkspaceRuleGroupConditionArray{})
 	pulumi.RegisterInputType(reflect.TypeOf((*NgwafWorkspaceRuleGroupConditionConditionInput)(nil)).Elem(), NgwafWorkspaceRuleGroupConditionConditionArgs{})
 	pulumi.RegisterInputType(reflect.TypeOf((*NgwafWorkspaceRuleGroupConditionConditionArrayInput)(nil)).Elem(), NgwafWorkspaceRuleGroupConditionConditionArray{})
+	pulumi.RegisterInputType(reflect.TypeOf((*NgwafWorkspaceRuleGroupConditionMultivalConditionInput)(nil)).Elem(), NgwafWorkspaceRuleGroupConditionMultivalConditionArgs{})
+	pulumi.RegisterInputType(reflect.TypeOf((*NgwafWorkspaceRuleGroupConditionMultivalConditionArrayInput)(nil)).Elem(), NgwafWorkspaceRuleGroupConditionMultivalConditionArray{})
+	pulumi.RegisterInputType(reflect.TypeOf((*NgwafWorkspaceRuleGroupConditionMultivalConditionConditionInput)(nil)).Elem(), NgwafWorkspaceRuleGroupConditionMultivalConditionConditionArgs{})
+	pulumi.RegisterInputType(reflect.TypeOf((*NgwafWorkspaceRuleGroupConditionMultivalConditionConditionArrayInput)(nil)).Elem(), NgwafWorkspaceRuleGroupConditionMultivalConditionConditionArray{})
 	pulumi.RegisterInputType(reflect.TypeOf((*NgwafWorkspaceRuleMultivalConditionInput)(nil)).Elem(), NgwafWorkspaceRuleMultivalConditionArgs{})
 	pulumi.RegisterInputType(reflect.TypeOf((*NgwafWorkspaceRuleMultivalConditionArrayInput)(nil)).Elem(), NgwafWorkspaceRuleMultivalConditionArray{})
 	pulumi.RegisterInputType(reflect.TypeOf((*NgwafWorkspaceRuleMultivalConditionConditionInput)(nil)).Elem(), NgwafWorkspaceRuleMultivalConditionConditionArgs{})
@@ -22604,6 +23356,8 @@ func init() {
 	pulumi.RegisterInputType(reflect.TypeOf((*GetDatacentersPopArrayInput)(nil)).Elem(), GetDatacentersPopArray{})
 	pulumi.RegisterInputType(reflect.TypeOf((*GetDictionariesDictionaryInput)(nil)).Elem(), GetDictionariesDictionaryArgs{})
 	pulumi.RegisterInputType(reflect.TypeOf((*GetDictionariesDictionaryArrayInput)(nil)).Elem(), GetDictionariesDictionaryArray{})
+	pulumi.RegisterInputType(reflect.TypeOf((*GetDomainsDomainInput)(nil)).Elem(), GetDomainsDomainArgs{})
+	pulumi.RegisterInputType(reflect.TypeOf((*GetDomainsDomainArrayInput)(nil)).Elem(), GetDomainsDomainArray{})
 	pulumi.RegisterInputType(reflect.TypeOf((*GetDomainsV1DomainInput)(nil)).Elem(), GetDomainsV1DomainArgs{})
 	pulumi.RegisterInputType(reflect.TypeOf((*GetDomainsV1DomainArrayInput)(nil)).Elem(), GetDomainsV1DomainArray{})
 	pulumi.RegisterInputType(reflect.TypeOf((*GetKvstoresStoreInput)(nil)).Elem(), GetKvstoresStoreArgs{})
@@ -22648,6 +23402,8 @@ func init() {
 	pulumi.RegisterInputType(reflect.TypeOf((*GetSecretstoresStoreArrayInput)(nil)).Elem(), GetSecretstoresStoreArray{})
 	pulumi.RegisterInputType(reflect.TypeOf((*GetServicesDetailInput)(nil)).Elem(), GetServicesDetailArgs{})
 	pulumi.RegisterInputType(reflect.TypeOf((*GetServicesDetailArrayInput)(nil)).Elem(), GetServicesDetailArray{})
+	pulumi.RegisterInputType(reflect.TypeOf((*GetStagingIpsDomainInput)(nil)).Elem(), GetStagingIpsDomainArgs{})
+	pulumi.RegisterInputType(reflect.TypeOf((*GetStagingIpsDomainArrayInput)(nil)).Elem(), GetStagingIpsDomainArray{})
 	pulumi.RegisterInputType(reflect.TypeOf((*GetTlsConfigurationDnsRecordInput)(nil)).Elem(), GetTlsConfigurationDnsRecordArgs{})
 	pulumi.RegisterInputType(reflect.TypeOf((*GetTlsConfigurationDnsRecordArrayInput)(nil)).Elem(), GetTlsConfigurationDnsRecordArray{})
 	pulumi.RegisterInputType(reflect.TypeOf((*GetVclSnippetsVclSnippetInput)(nil)).Elem(), GetVclSnippetsVclSnippetArgs{})
@@ -22670,6 +23426,10 @@ func init() {
 	pulumi.RegisterOutputType(NgwafAccountRuleGroupConditionArrayOutput{})
 	pulumi.RegisterOutputType(NgwafAccountRuleGroupConditionConditionOutput{})
 	pulumi.RegisterOutputType(NgwafAccountRuleGroupConditionConditionArrayOutput{})
+	pulumi.RegisterOutputType(NgwafAccountRuleGroupConditionMultivalConditionOutput{})
+	pulumi.RegisterOutputType(NgwafAccountRuleGroupConditionMultivalConditionArrayOutput{})
+	pulumi.RegisterOutputType(NgwafAccountRuleGroupConditionMultivalConditionConditionOutput{})
+	pulumi.RegisterOutputType(NgwafAccountRuleGroupConditionMultivalConditionConditionArrayOutput{})
 	pulumi.RegisterOutputType(NgwafAccountRuleMultivalConditionOutput{})
 	pulumi.RegisterOutputType(NgwafAccountRuleMultivalConditionArrayOutput{})
 	pulumi.RegisterOutputType(NgwafAccountRuleMultivalConditionConditionOutput{})
@@ -22684,6 +23444,10 @@ func init() {
 	pulumi.RegisterOutputType(NgwafWorkspaceRuleGroupConditionArrayOutput{})
 	pulumi.RegisterOutputType(NgwafWorkspaceRuleGroupConditionConditionOutput{})
 	pulumi.RegisterOutputType(NgwafWorkspaceRuleGroupConditionConditionArrayOutput{})
+	pulumi.RegisterOutputType(NgwafWorkspaceRuleGroupConditionMultivalConditionOutput{})
+	pulumi.RegisterOutputType(NgwafWorkspaceRuleGroupConditionMultivalConditionArrayOutput{})
+	pulumi.RegisterOutputType(NgwafWorkspaceRuleGroupConditionMultivalConditionConditionOutput{})
+	pulumi.RegisterOutputType(NgwafWorkspaceRuleGroupConditionMultivalConditionConditionArrayOutput{})
 	pulumi.RegisterOutputType(NgwafWorkspaceRuleMultivalConditionOutput{})
 	pulumi.RegisterOutputType(NgwafWorkspaceRuleMultivalConditionArrayOutput{})
 	pulumi.RegisterOutputType(NgwafWorkspaceRuleMultivalConditionConditionOutput{})
@@ -22880,6 +23644,8 @@ func init() {
 	pulumi.RegisterOutputType(GetDatacentersPopArrayOutput{})
 	pulumi.RegisterOutputType(GetDictionariesDictionaryOutput{})
 	pulumi.RegisterOutputType(GetDictionariesDictionaryArrayOutput{})
+	pulumi.RegisterOutputType(GetDomainsDomainOutput{})
+	pulumi.RegisterOutputType(GetDomainsDomainArrayOutput{})
 	pulumi.RegisterOutputType(GetDomainsV1DomainOutput{})
 	pulumi.RegisterOutputType(GetDomainsV1DomainArrayOutput{})
 	pulumi.RegisterOutputType(GetKvstoresStoreOutput{})
@@ -22924,6 +23690,8 @@ func init() {
 	pulumi.RegisterOutputType(GetSecretstoresStoreArrayOutput{})
 	pulumi.RegisterOutputType(GetServicesDetailOutput{})
 	pulumi.RegisterOutputType(GetServicesDetailArrayOutput{})
+	pulumi.RegisterOutputType(GetStagingIpsDomainOutput{})
+	pulumi.RegisterOutputType(GetStagingIpsDomainArrayOutput{})
 	pulumi.RegisterOutputType(GetTlsConfigurationDnsRecordOutput{})
 	pulumi.RegisterOutputType(GetTlsConfigurationDnsRecordArrayOutput{})
 	pulumi.RegisterOutputType(GetVclSnippetsVclSnippetOutput{})
