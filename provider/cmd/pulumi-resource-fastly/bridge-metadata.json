@@ -76,6 +76,12 @@
                     }
                 }
             },
+            "fastly_domain": {
+                "current": "fastly:index/domain:Domain"
+            },
+            "fastly_domain_service_link": {
+                "current": "fastly:index/domainServiceLink:DomainServiceLink"
+            },
             "fastly_domain_v1": {
                 "current": "fastly:index/domainV1:DomainV1"
             },
@@ -117,6 +123,16 @@
                             "fields": {
                                 "condition": {
                                     "maxItemsOne": false
+                                },
+                                "multival_condition": {
+                                    "maxItemsOne": false,
+                                    "elem": {
+                                        "fields": {
+                                            "condition": {
+                                                "maxItemsOne": false
+                                            }
+                                        }
+                                    }
                                 }
                             }
                         }
@@ -208,6 +224,16 @@
                             "fields": {
                                 "condition": {
                                     "maxItemsOne": false
+                                },
+                                "multival_condition": {
+                                    "maxItemsOne": false,
+                                    "elem": {
+                                        "fields": {
+                                            "condition": {
+                                                "maxItemsOne": false
+                                            }
+                                        }
+                                    }
                                 }
                             }
                         }
@@ -673,6 +699,14 @@
                     }
                 }
             },
+            "fastly_domains": {
+                "current": "fastly:index/getDomains:getDomains",
+                "fields": {
+                    "domains": {
+                        "maxItemsOne": false
+                    }
+                }
+            },
             "fastly_domains_v1": {
                 "current": "fastly:index/getDomainsV1:getDomainsV1",
                 "fields": {
@@ -862,6 +896,14 @@
                         "maxItemsOne": false
                     },
                     "ids": {
+                        "maxItemsOne": false
+                    }
+                }
+            },
+            "fastly_staging_ips": {
+                "current": "fastly:index/getStagingIps:getStagingIps",
+                "fields": {
+                    "domains": {
                         "maxItemsOne": false
                     }
                 }
