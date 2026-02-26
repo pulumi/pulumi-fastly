@@ -49,6 +49,21 @@ public final class ServiceComputeProductEnablementArgs extends com.pulumi.resour
     }
 
     /**
+     * Enable Domain Inspector support
+     * 
+     */
+    @Import(name="domainInspector")
+    private @Nullable Output<Boolean> domainInspector;
+
+    /**
+     * @return Enable Domain Inspector support
+     * 
+     */
+    public Optional<Output<Boolean>> domainInspector() {
+        return Optional.ofNullable(this.domainInspector);
+    }
+
+    /**
      * Enable Fanout support
      * 
      */
@@ -128,6 +143,7 @@ public final class ServiceComputeProductEnablementArgs extends com.pulumi.resour
     private ServiceComputeProductEnablementArgs(ServiceComputeProductEnablementArgs $) {
         this.apiDiscovery = $.apiDiscovery;
         this.ddosProtection = $.ddosProtection;
+        this.domainInspector = $.domainInspector;
         this.fanout = $.fanout;
         this.logExplorerInsights = $.logExplorerInsights;
         this.name = $.name;
@@ -193,6 +209,27 @@ public final class ServiceComputeProductEnablementArgs extends com.pulumi.resour
          */
         public Builder ddosProtection(ServiceComputeProductEnablementDdosProtectionArgs ddosProtection) {
             return ddosProtection(Output.of(ddosProtection));
+        }
+
+        /**
+         * @param domainInspector Enable Domain Inspector support
+         * 
+         * @return builder
+         * 
+         */
+        public Builder domainInspector(@Nullable Output<Boolean> domainInspector) {
+            $.domainInspector = domainInspector;
+            return this;
+        }
+
+        /**
+         * @param domainInspector Enable Domain Inspector support
+         * 
+         * @return builder
+         * 
+         */
+        public Builder domainInspector(Boolean domainInspector) {
+            return domainInspector(Output.of(domainInspector));
         }
 
         /**

@@ -11,6 +11,8 @@ import com.pulumi.deployment.InvokeOutputOptions;
 import com.pulumi.fastly.Utilities;
 import com.pulumi.fastly.inputs.GetDictionariesArgs;
 import com.pulumi.fastly.inputs.GetDictionariesPlainArgs;
+import com.pulumi.fastly.inputs.GetDomainsArgs;
+import com.pulumi.fastly.inputs.GetDomainsPlainArgs;
 import com.pulumi.fastly.inputs.GetDomainsV1Args;
 import com.pulumi.fastly.inputs.GetDomainsV1PlainArgs;
 import com.pulumi.fastly.inputs.GetNgwafAlertDatadogIntegrationArgs;
@@ -43,6 +45,8 @@ import com.pulumi.fastly.inputs.GetNgwafWorkspaceSignalsArgs;
 import com.pulumi.fastly.inputs.GetNgwafWorkspaceSignalsPlainArgs;
 import com.pulumi.fastly.inputs.GetPackageHashArgs;
 import com.pulumi.fastly.inputs.GetPackageHashPlainArgs;
+import com.pulumi.fastly.inputs.GetStagingIpsArgs;
+import com.pulumi.fastly.inputs.GetStagingIpsPlainArgs;
 import com.pulumi.fastly.inputs.GetTlsActivationArgs;
 import com.pulumi.fastly.inputs.GetTlsActivationIdsArgs;
 import com.pulumi.fastly.inputs.GetTlsActivationIdsPlainArgs;
@@ -65,6 +69,7 @@ import com.pulumi.fastly.outputs.GetComputeAclsResult;
 import com.pulumi.fastly.outputs.GetConfigstoresResult;
 import com.pulumi.fastly.outputs.GetDatacentersResult;
 import com.pulumi.fastly.outputs.GetDictionariesResult;
+import com.pulumi.fastly.outputs.GetDomainsResult;
 import com.pulumi.fastly.outputs.GetDomainsV1Result;
 import com.pulumi.fastly.outputs.GetFastlyIpRangesResult;
 import com.pulumi.fastly.outputs.GetKvstoresResult;
@@ -89,6 +94,7 @@ import com.pulumi.fastly.outputs.GetNgwafWorkspacesResult;
 import com.pulumi.fastly.outputs.GetPackageHashResult;
 import com.pulumi.fastly.outputs.GetSecretstoresResult;
 import com.pulumi.fastly.outputs.GetServicesResult;
+import com.pulumi.fastly.outputs.GetStagingIpsResult;
 import com.pulumi.fastly.outputs.GetTlsActivationIdsResult;
 import com.pulumi.fastly.outputs.GetTlsActivationResult;
 import com.pulumi.fastly.outputs.GetTlsCertificateIdsResult;
@@ -569,7 +575,7 @@ public final class FastlyFunctions {
      * import com.pulumi.Pulumi;
      * import com.pulumi.core.Output;
      * import com.pulumi.fastly.FastlyFunctions;
-     * import com.pulumi.fastly.inputs.GetDomainsV1Args;
+     * import com.pulumi.fastly.inputs.GetDomainsArgs;
      * import java.util.List;
      * import java.util.ArrayList;
      * import java.util.Map;
@@ -583,7 +589,7 @@ public final class FastlyFunctions {
      *     }
      * 
      *     public static void stack(Context ctx) {
-     *         final var example = FastlyFunctions.getDomainsV1(GetDomainsV1Args.builder()
+     *         final var example = FastlyFunctions.getDomains(GetDomainsArgs.builder()
      *             .build());
      * 
      *         ctx.export("allDomains", example.domains());
@@ -596,264 +602,285 @@ public final class FastlyFunctions {
      * [1]: https://www.fastly.com/documentation/reference/api/domain-management/domains/
      * 
      */
+    public static Output<GetDomainsResult> getDomains() {
+        return getDomains(GetDomainsArgs.Empty, InvokeOptions.Empty);
+    }
+    /**
+     * Use this data source to get information about versionless domains.
+     * 
+     * ## Example Usage
+     * 
+     * <pre>
+     * {@code
+     * package generated_program;
+     * 
+     * import com.pulumi.Context;
+     * import com.pulumi.Pulumi;
+     * import com.pulumi.core.Output;
+     * import com.pulumi.fastly.FastlyFunctions;
+     * import com.pulumi.fastly.inputs.GetDomainsArgs;
+     * import java.util.List;
+     * import java.util.ArrayList;
+     * import java.util.Map;
+     * import java.io.File;
+     * import java.nio.file.Files;
+     * import java.nio.file.Paths;
+     * 
+     * public class App {
+     *     public static void main(String[] args) {
+     *         Pulumi.run(App::stack);
+     *     }
+     * 
+     *     public static void stack(Context ctx) {
+     *         final var example = FastlyFunctions.getDomains(GetDomainsArgs.builder()
+     *             .build());
+     * 
+     *         ctx.export("allDomains", example.domains());
+     *         ctx.export("totalDomains", example.total());
+     *     }
+     * }
+     * }
+     * </pre>
+     * 
+     * [1]: https://www.fastly.com/documentation/reference/api/domain-management/domains/
+     * 
+     */
+    public static CompletableFuture<GetDomainsResult> getDomainsPlain() {
+        return getDomainsPlain(GetDomainsPlainArgs.Empty, InvokeOptions.Empty);
+    }
+    /**
+     * Use this data source to get information about versionless domains.
+     * 
+     * ## Example Usage
+     * 
+     * <pre>
+     * {@code
+     * package generated_program;
+     * 
+     * import com.pulumi.Context;
+     * import com.pulumi.Pulumi;
+     * import com.pulumi.core.Output;
+     * import com.pulumi.fastly.FastlyFunctions;
+     * import com.pulumi.fastly.inputs.GetDomainsArgs;
+     * import java.util.List;
+     * import java.util.ArrayList;
+     * import java.util.Map;
+     * import java.io.File;
+     * import java.nio.file.Files;
+     * import java.nio.file.Paths;
+     * 
+     * public class App {
+     *     public static void main(String[] args) {
+     *         Pulumi.run(App::stack);
+     *     }
+     * 
+     *     public static void stack(Context ctx) {
+     *         final var example = FastlyFunctions.getDomains(GetDomainsArgs.builder()
+     *             .build());
+     * 
+     *         ctx.export("allDomains", example.domains());
+     *         ctx.export("totalDomains", example.total());
+     *     }
+     * }
+     * }
+     * </pre>
+     * 
+     * [1]: https://www.fastly.com/documentation/reference/api/domain-management/domains/
+     * 
+     */
+    public static Output<GetDomainsResult> getDomains(GetDomainsArgs args) {
+        return getDomains(args, InvokeOptions.Empty);
+    }
+    /**
+     * Use this data source to get information about versionless domains.
+     * 
+     * ## Example Usage
+     * 
+     * <pre>
+     * {@code
+     * package generated_program;
+     * 
+     * import com.pulumi.Context;
+     * import com.pulumi.Pulumi;
+     * import com.pulumi.core.Output;
+     * import com.pulumi.fastly.FastlyFunctions;
+     * import com.pulumi.fastly.inputs.GetDomainsArgs;
+     * import java.util.List;
+     * import java.util.ArrayList;
+     * import java.util.Map;
+     * import java.io.File;
+     * import java.nio.file.Files;
+     * import java.nio.file.Paths;
+     * 
+     * public class App {
+     *     public static void main(String[] args) {
+     *         Pulumi.run(App::stack);
+     *     }
+     * 
+     *     public static void stack(Context ctx) {
+     *         final var example = FastlyFunctions.getDomains(GetDomainsArgs.builder()
+     *             .build());
+     * 
+     *         ctx.export("allDomains", example.domains());
+     *         ctx.export("totalDomains", example.total());
+     *     }
+     * }
+     * }
+     * </pre>
+     * 
+     * [1]: https://www.fastly.com/documentation/reference/api/domain-management/domains/
+     * 
+     */
+    public static CompletableFuture<GetDomainsResult> getDomainsPlain(GetDomainsPlainArgs args) {
+        return getDomainsPlain(args, InvokeOptions.Empty);
+    }
+    /**
+     * Use this data source to get information about versionless domains.
+     * 
+     * ## Example Usage
+     * 
+     * <pre>
+     * {@code
+     * package generated_program;
+     * 
+     * import com.pulumi.Context;
+     * import com.pulumi.Pulumi;
+     * import com.pulumi.core.Output;
+     * import com.pulumi.fastly.FastlyFunctions;
+     * import com.pulumi.fastly.inputs.GetDomainsArgs;
+     * import java.util.List;
+     * import java.util.ArrayList;
+     * import java.util.Map;
+     * import java.io.File;
+     * import java.nio.file.Files;
+     * import java.nio.file.Paths;
+     * 
+     * public class App {
+     *     public static void main(String[] args) {
+     *         Pulumi.run(App::stack);
+     *     }
+     * 
+     *     public static void stack(Context ctx) {
+     *         final var example = FastlyFunctions.getDomains(GetDomainsArgs.builder()
+     *             .build());
+     * 
+     *         ctx.export("allDomains", example.domains());
+     *         ctx.export("totalDomains", example.total());
+     *     }
+     * }
+     * }
+     * </pre>
+     * 
+     * [1]: https://www.fastly.com/documentation/reference/api/domain-management/domains/
+     * 
+     */
+    public static Output<GetDomainsResult> getDomains(GetDomainsArgs args, InvokeOptions options) {
+        return Deployment.getInstance().invoke("fastly:index/getDomains:getDomains", TypeShape.of(GetDomainsResult.class), args, Utilities.withVersion(options));
+    }
+    /**
+     * Use this data source to get information about versionless domains.
+     * 
+     * ## Example Usage
+     * 
+     * <pre>
+     * {@code
+     * package generated_program;
+     * 
+     * import com.pulumi.Context;
+     * import com.pulumi.Pulumi;
+     * import com.pulumi.core.Output;
+     * import com.pulumi.fastly.FastlyFunctions;
+     * import com.pulumi.fastly.inputs.GetDomainsArgs;
+     * import java.util.List;
+     * import java.util.ArrayList;
+     * import java.util.Map;
+     * import java.io.File;
+     * import java.nio.file.Files;
+     * import java.nio.file.Paths;
+     * 
+     * public class App {
+     *     public static void main(String[] args) {
+     *         Pulumi.run(App::stack);
+     *     }
+     * 
+     *     public static void stack(Context ctx) {
+     *         final var example = FastlyFunctions.getDomains(GetDomainsArgs.builder()
+     *             .build());
+     * 
+     *         ctx.export("allDomains", example.domains());
+     *         ctx.export("totalDomains", example.total());
+     *     }
+     * }
+     * }
+     * </pre>
+     * 
+     * [1]: https://www.fastly.com/documentation/reference/api/domain-management/domains/
+     * 
+     */
+    public static Output<GetDomainsResult> getDomains(GetDomainsArgs args, InvokeOutputOptions options) {
+        return Deployment.getInstance().invoke("fastly:index/getDomains:getDomains", TypeShape.of(GetDomainsResult.class), args, Utilities.withVersion(options));
+    }
+    /**
+     * Use this data source to get information about versionless domains.
+     * 
+     * ## Example Usage
+     * 
+     * <pre>
+     * {@code
+     * package generated_program;
+     * 
+     * import com.pulumi.Context;
+     * import com.pulumi.Pulumi;
+     * import com.pulumi.core.Output;
+     * import com.pulumi.fastly.FastlyFunctions;
+     * import com.pulumi.fastly.inputs.GetDomainsArgs;
+     * import java.util.List;
+     * import java.util.ArrayList;
+     * import java.util.Map;
+     * import java.io.File;
+     * import java.nio.file.Files;
+     * import java.nio.file.Paths;
+     * 
+     * public class App {
+     *     public static void main(String[] args) {
+     *         Pulumi.run(App::stack);
+     *     }
+     * 
+     *     public static void stack(Context ctx) {
+     *         final var example = FastlyFunctions.getDomains(GetDomainsArgs.builder()
+     *             .build());
+     * 
+     *         ctx.export("allDomains", example.domains());
+     *         ctx.export("totalDomains", example.total());
+     *     }
+     * }
+     * }
+     * </pre>
+     * 
+     * [1]: https://www.fastly.com/documentation/reference/api/domain-management/domains/
+     * 
+     */
+    public static CompletableFuture<GetDomainsResult> getDomainsPlain(GetDomainsPlainArgs args, InvokeOptions options) {
+        return Deployment.getInstance().invokeAsync("fastly:index/getDomains:getDomains", TypeShape.of(GetDomainsResult.class), args, Utilities.withVersion(options));
+    }
     public static Output<GetDomainsV1Result> getDomainsV1() {
         return getDomainsV1(GetDomainsV1Args.Empty, InvokeOptions.Empty);
     }
-    /**
-     * Use this data source to get information about versionless domains.
-     * 
-     * ## Example Usage
-     * 
-     * <pre>
-     * {@code
-     * package generated_program;
-     * 
-     * import com.pulumi.Context;
-     * import com.pulumi.Pulumi;
-     * import com.pulumi.core.Output;
-     * import com.pulumi.fastly.FastlyFunctions;
-     * import com.pulumi.fastly.inputs.GetDomainsV1Args;
-     * import java.util.List;
-     * import java.util.ArrayList;
-     * import java.util.Map;
-     * import java.io.File;
-     * import java.nio.file.Files;
-     * import java.nio.file.Paths;
-     * 
-     * public class App {
-     *     public static void main(String[] args) {
-     *         Pulumi.run(App::stack);
-     *     }
-     * 
-     *     public static void stack(Context ctx) {
-     *         final var example = FastlyFunctions.getDomainsV1(GetDomainsV1Args.builder()
-     *             .build());
-     * 
-     *         ctx.export("allDomains", example.domains());
-     *         ctx.export("totalDomains", example.total());
-     *     }
-     * }
-     * }
-     * </pre>
-     * 
-     * [1]: https://www.fastly.com/documentation/reference/api/domain-management/domains/
-     * 
-     */
     public static CompletableFuture<GetDomainsV1Result> getDomainsV1Plain() {
         return getDomainsV1Plain(GetDomainsV1PlainArgs.Empty, InvokeOptions.Empty);
     }
-    /**
-     * Use this data source to get information about versionless domains.
-     * 
-     * ## Example Usage
-     * 
-     * <pre>
-     * {@code
-     * package generated_program;
-     * 
-     * import com.pulumi.Context;
-     * import com.pulumi.Pulumi;
-     * import com.pulumi.core.Output;
-     * import com.pulumi.fastly.FastlyFunctions;
-     * import com.pulumi.fastly.inputs.GetDomainsV1Args;
-     * import java.util.List;
-     * import java.util.ArrayList;
-     * import java.util.Map;
-     * import java.io.File;
-     * import java.nio.file.Files;
-     * import java.nio.file.Paths;
-     * 
-     * public class App {
-     *     public static void main(String[] args) {
-     *         Pulumi.run(App::stack);
-     *     }
-     * 
-     *     public static void stack(Context ctx) {
-     *         final var example = FastlyFunctions.getDomainsV1(GetDomainsV1Args.builder()
-     *             .build());
-     * 
-     *         ctx.export("allDomains", example.domains());
-     *         ctx.export("totalDomains", example.total());
-     *     }
-     * }
-     * }
-     * </pre>
-     * 
-     * [1]: https://www.fastly.com/documentation/reference/api/domain-management/domains/
-     * 
-     */
     public static Output<GetDomainsV1Result> getDomainsV1(GetDomainsV1Args args) {
         return getDomainsV1(args, InvokeOptions.Empty);
     }
-    /**
-     * Use this data source to get information about versionless domains.
-     * 
-     * ## Example Usage
-     * 
-     * <pre>
-     * {@code
-     * package generated_program;
-     * 
-     * import com.pulumi.Context;
-     * import com.pulumi.Pulumi;
-     * import com.pulumi.core.Output;
-     * import com.pulumi.fastly.FastlyFunctions;
-     * import com.pulumi.fastly.inputs.GetDomainsV1Args;
-     * import java.util.List;
-     * import java.util.ArrayList;
-     * import java.util.Map;
-     * import java.io.File;
-     * import java.nio.file.Files;
-     * import java.nio.file.Paths;
-     * 
-     * public class App {
-     *     public static void main(String[] args) {
-     *         Pulumi.run(App::stack);
-     *     }
-     * 
-     *     public static void stack(Context ctx) {
-     *         final var example = FastlyFunctions.getDomainsV1(GetDomainsV1Args.builder()
-     *             .build());
-     * 
-     *         ctx.export("allDomains", example.domains());
-     *         ctx.export("totalDomains", example.total());
-     *     }
-     * }
-     * }
-     * </pre>
-     * 
-     * [1]: https://www.fastly.com/documentation/reference/api/domain-management/domains/
-     * 
-     */
     public static CompletableFuture<GetDomainsV1Result> getDomainsV1Plain(GetDomainsV1PlainArgs args) {
         return getDomainsV1Plain(args, InvokeOptions.Empty);
     }
-    /**
-     * Use this data source to get information about versionless domains.
-     * 
-     * ## Example Usage
-     * 
-     * <pre>
-     * {@code
-     * package generated_program;
-     * 
-     * import com.pulumi.Context;
-     * import com.pulumi.Pulumi;
-     * import com.pulumi.core.Output;
-     * import com.pulumi.fastly.FastlyFunctions;
-     * import com.pulumi.fastly.inputs.GetDomainsV1Args;
-     * import java.util.List;
-     * import java.util.ArrayList;
-     * import java.util.Map;
-     * import java.io.File;
-     * import java.nio.file.Files;
-     * import java.nio.file.Paths;
-     * 
-     * public class App {
-     *     public static void main(String[] args) {
-     *         Pulumi.run(App::stack);
-     *     }
-     * 
-     *     public static void stack(Context ctx) {
-     *         final var example = FastlyFunctions.getDomainsV1(GetDomainsV1Args.builder()
-     *             .build());
-     * 
-     *         ctx.export("allDomains", example.domains());
-     *         ctx.export("totalDomains", example.total());
-     *     }
-     * }
-     * }
-     * </pre>
-     * 
-     * [1]: https://www.fastly.com/documentation/reference/api/domain-management/domains/
-     * 
-     */
     public static Output<GetDomainsV1Result> getDomainsV1(GetDomainsV1Args args, InvokeOptions options) {
         return Deployment.getInstance().invoke("fastly:index/getDomainsV1:getDomainsV1", TypeShape.of(GetDomainsV1Result.class), args, Utilities.withVersion(options));
     }
-    /**
-     * Use this data source to get information about versionless domains.
-     * 
-     * ## Example Usage
-     * 
-     * <pre>
-     * {@code
-     * package generated_program;
-     * 
-     * import com.pulumi.Context;
-     * import com.pulumi.Pulumi;
-     * import com.pulumi.core.Output;
-     * import com.pulumi.fastly.FastlyFunctions;
-     * import com.pulumi.fastly.inputs.GetDomainsV1Args;
-     * import java.util.List;
-     * import java.util.ArrayList;
-     * import java.util.Map;
-     * import java.io.File;
-     * import java.nio.file.Files;
-     * import java.nio.file.Paths;
-     * 
-     * public class App {
-     *     public static void main(String[] args) {
-     *         Pulumi.run(App::stack);
-     *     }
-     * 
-     *     public static void stack(Context ctx) {
-     *         final var example = FastlyFunctions.getDomainsV1(GetDomainsV1Args.builder()
-     *             .build());
-     * 
-     *         ctx.export("allDomains", example.domains());
-     *         ctx.export("totalDomains", example.total());
-     *     }
-     * }
-     * }
-     * </pre>
-     * 
-     * [1]: https://www.fastly.com/documentation/reference/api/domain-management/domains/
-     * 
-     */
     public static Output<GetDomainsV1Result> getDomainsV1(GetDomainsV1Args args, InvokeOutputOptions options) {
         return Deployment.getInstance().invoke("fastly:index/getDomainsV1:getDomainsV1", TypeShape.of(GetDomainsV1Result.class), args, Utilities.withVersion(options));
     }
-    /**
-     * Use this data source to get information about versionless domains.
-     * 
-     * ## Example Usage
-     * 
-     * <pre>
-     * {@code
-     * package generated_program;
-     * 
-     * import com.pulumi.Context;
-     * import com.pulumi.Pulumi;
-     * import com.pulumi.core.Output;
-     * import com.pulumi.fastly.FastlyFunctions;
-     * import com.pulumi.fastly.inputs.GetDomainsV1Args;
-     * import java.util.List;
-     * import java.util.ArrayList;
-     * import java.util.Map;
-     * import java.io.File;
-     * import java.nio.file.Files;
-     * import java.nio.file.Paths;
-     * 
-     * public class App {
-     *     public static void main(String[] args) {
-     *         Pulumi.run(App::stack);
-     *     }
-     * 
-     *     public static void stack(Context ctx) {
-     *         final var example = FastlyFunctions.getDomainsV1(GetDomainsV1Args.builder()
-     *             .build());
-     * 
-     *         ctx.export("allDomains", example.domains());
-     *         ctx.export("totalDomains", example.total());
-     *     }
-     * }
-     * }
-     * </pre>
-     * 
-     * [1]: https://www.fastly.com/documentation/reference/api/domain-management/domains/
-     * 
-     */
     public static CompletableFuture<GetDomainsV1Result> getDomainsV1Plain(GetDomainsV1PlainArgs args, InvokeOptions options) {
         return Deployment.getInstance().invokeAsync("fastly:index/getDomainsV1:getDomainsV1", TypeShape.of(GetDomainsV1Result.class), args, Utilities.withVersion(options));
     }
@@ -870,9 +897,8 @@ public final class FastlyFunctions {
      * import com.pulumi.Pulumi;
      * import com.pulumi.core.Output;
      * import com.pulumi.fastly.FastlyFunctions;
-     * import com.pulumi.aws.ec2.SecurityGroup;
-     * import com.pulumi.aws.ec2.SecurityGroupArgs;
-     * import com.pulumi.aws.ec2.inputs.SecurityGroupIngressArgs;
+     * import com.pulumi.aws.SecurityGroup;
+     * import com.pulumi.aws.SecurityGroupArgs;
      * import java.util.List;
      * import java.util.ArrayList;
      * import java.util.Map;
@@ -890,13 +916,13 @@ public final class FastlyFunctions {
      * 
      *         var fromFastly = new SecurityGroup("fromFastly", SecurityGroupArgs.builder()
      *             .name("from_fastly")
-     *             .ingress(SecurityGroupIngressArgs.builder()
-     *                 .fromPort(443)
-     *                 .toPort(443)
-     *                 .protocol("tcp")
-     *                 .cidrBlocks(fastly.cidrBlocks())
-     *                 .ipv6CidrBlocks(fastly.ipv6CidrBlocks())
-     *                 .build())
+     *             .ingress(List.of(Map.ofEntries(
+     *                 Map.entry("fromPort", "443"),
+     *                 Map.entry("toPort", "443"),
+     *                 Map.entry("protocol", "tcp"),
+     *                 Map.entry("cidrBlocks", fastly.cidrBlocks()),
+     *                 Map.entry("ipv6CidrBlocks", fastly.ipv6CidrBlocks())
+     *             )))
      *             .build());
      * 
      *     }
@@ -923,9 +949,8 @@ public final class FastlyFunctions {
      * import com.pulumi.Pulumi;
      * import com.pulumi.core.Output;
      * import com.pulumi.fastly.FastlyFunctions;
-     * import com.pulumi.aws.ec2.SecurityGroup;
-     * import com.pulumi.aws.ec2.SecurityGroupArgs;
-     * import com.pulumi.aws.ec2.inputs.SecurityGroupIngressArgs;
+     * import com.pulumi.aws.SecurityGroup;
+     * import com.pulumi.aws.SecurityGroupArgs;
      * import java.util.List;
      * import java.util.ArrayList;
      * import java.util.Map;
@@ -943,13 +968,13 @@ public final class FastlyFunctions {
      * 
      *         var fromFastly = new SecurityGroup("fromFastly", SecurityGroupArgs.builder()
      *             .name("from_fastly")
-     *             .ingress(SecurityGroupIngressArgs.builder()
-     *                 .fromPort(443)
-     *                 .toPort(443)
-     *                 .protocol("tcp")
-     *                 .cidrBlocks(fastly.cidrBlocks())
-     *                 .ipv6CidrBlocks(fastly.ipv6CidrBlocks())
-     *                 .build())
+     *             .ingress(List.of(Map.ofEntries(
+     *                 Map.entry("fromPort", "443"),
+     *                 Map.entry("toPort", "443"),
+     *                 Map.entry("protocol", "tcp"),
+     *                 Map.entry("cidrBlocks", fastly.cidrBlocks()),
+     *                 Map.entry("ipv6CidrBlocks", fastly.ipv6CidrBlocks())
+     *             )))
      *             .build());
      * 
      *     }
@@ -976,9 +1001,8 @@ public final class FastlyFunctions {
      * import com.pulumi.Pulumi;
      * import com.pulumi.core.Output;
      * import com.pulumi.fastly.FastlyFunctions;
-     * import com.pulumi.aws.ec2.SecurityGroup;
-     * import com.pulumi.aws.ec2.SecurityGroupArgs;
-     * import com.pulumi.aws.ec2.inputs.SecurityGroupIngressArgs;
+     * import com.pulumi.aws.SecurityGroup;
+     * import com.pulumi.aws.SecurityGroupArgs;
      * import java.util.List;
      * import java.util.ArrayList;
      * import java.util.Map;
@@ -996,13 +1020,13 @@ public final class FastlyFunctions {
      * 
      *         var fromFastly = new SecurityGroup("fromFastly", SecurityGroupArgs.builder()
      *             .name("from_fastly")
-     *             .ingress(SecurityGroupIngressArgs.builder()
-     *                 .fromPort(443)
-     *                 .toPort(443)
-     *                 .protocol("tcp")
-     *                 .cidrBlocks(fastly.cidrBlocks())
-     *                 .ipv6CidrBlocks(fastly.ipv6CidrBlocks())
-     *                 .build())
+     *             .ingress(List.of(Map.ofEntries(
+     *                 Map.entry("fromPort", "443"),
+     *                 Map.entry("toPort", "443"),
+     *                 Map.entry("protocol", "tcp"),
+     *                 Map.entry("cidrBlocks", fastly.cidrBlocks()),
+     *                 Map.entry("ipv6CidrBlocks", fastly.ipv6CidrBlocks())
+     *             )))
      *             .build());
      * 
      *     }
@@ -1029,9 +1053,8 @@ public final class FastlyFunctions {
      * import com.pulumi.Pulumi;
      * import com.pulumi.core.Output;
      * import com.pulumi.fastly.FastlyFunctions;
-     * import com.pulumi.aws.ec2.SecurityGroup;
-     * import com.pulumi.aws.ec2.SecurityGroupArgs;
-     * import com.pulumi.aws.ec2.inputs.SecurityGroupIngressArgs;
+     * import com.pulumi.aws.SecurityGroup;
+     * import com.pulumi.aws.SecurityGroupArgs;
      * import java.util.List;
      * import java.util.ArrayList;
      * import java.util.Map;
@@ -1049,13 +1072,13 @@ public final class FastlyFunctions {
      * 
      *         var fromFastly = new SecurityGroup("fromFastly", SecurityGroupArgs.builder()
      *             .name("from_fastly")
-     *             .ingress(SecurityGroupIngressArgs.builder()
-     *                 .fromPort(443)
-     *                 .toPort(443)
-     *                 .protocol("tcp")
-     *                 .cidrBlocks(fastly.cidrBlocks())
-     *                 .ipv6CidrBlocks(fastly.ipv6CidrBlocks())
-     *                 .build())
+     *             .ingress(List.of(Map.ofEntries(
+     *                 Map.entry("fromPort", "443"),
+     *                 Map.entry("toPort", "443"),
+     *                 Map.entry("protocol", "tcp"),
+     *                 Map.entry("cidrBlocks", fastly.cidrBlocks()),
+     *                 Map.entry("ipv6CidrBlocks", fastly.ipv6CidrBlocks())
+     *             )))
      *             .build());
      * 
      *     }
@@ -1082,9 +1105,8 @@ public final class FastlyFunctions {
      * import com.pulumi.Pulumi;
      * import com.pulumi.core.Output;
      * import com.pulumi.fastly.FastlyFunctions;
-     * import com.pulumi.aws.ec2.SecurityGroup;
-     * import com.pulumi.aws.ec2.SecurityGroupArgs;
-     * import com.pulumi.aws.ec2.inputs.SecurityGroupIngressArgs;
+     * import com.pulumi.aws.SecurityGroup;
+     * import com.pulumi.aws.SecurityGroupArgs;
      * import java.util.List;
      * import java.util.ArrayList;
      * import java.util.Map;
@@ -1102,13 +1124,13 @@ public final class FastlyFunctions {
      * 
      *         var fromFastly = new SecurityGroup("fromFastly", SecurityGroupArgs.builder()
      *             .name("from_fastly")
-     *             .ingress(SecurityGroupIngressArgs.builder()
-     *                 .fromPort(443)
-     *                 .toPort(443)
-     *                 .protocol("tcp")
-     *                 .cidrBlocks(fastly.cidrBlocks())
-     *                 .ipv6CidrBlocks(fastly.ipv6CidrBlocks())
-     *                 .build())
+     *             .ingress(List.of(Map.ofEntries(
+     *                 Map.entry("fromPort", "443"),
+     *                 Map.entry("toPort", "443"),
+     *                 Map.entry("protocol", "tcp"),
+     *                 Map.entry("cidrBlocks", fastly.cidrBlocks()),
+     *                 Map.entry("ipv6CidrBlocks", fastly.ipv6CidrBlocks())
+     *             )))
      *             .build());
      * 
      *     }
@@ -1135,9 +1157,8 @@ public final class FastlyFunctions {
      * import com.pulumi.Pulumi;
      * import com.pulumi.core.Output;
      * import com.pulumi.fastly.FastlyFunctions;
-     * import com.pulumi.aws.ec2.SecurityGroup;
-     * import com.pulumi.aws.ec2.SecurityGroupArgs;
-     * import com.pulumi.aws.ec2.inputs.SecurityGroupIngressArgs;
+     * import com.pulumi.aws.SecurityGroup;
+     * import com.pulumi.aws.SecurityGroupArgs;
      * import java.util.List;
      * import java.util.ArrayList;
      * import java.util.Map;
@@ -1155,13 +1176,13 @@ public final class FastlyFunctions {
      * 
      *         var fromFastly = new SecurityGroup("fromFastly", SecurityGroupArgs.builder()
      *             .name("from_fastly")
-     *             .ingress(SecurityGroupIngressArgs.builder()
-     *                 .fromPort(443)
-     *                 .toPort(443)
-     *                 .protocol("tcp")
-     *                 .cidrBlocks(fastly.cidrBlocks())
-     *                 .ipv6CidrBlocks(fastly.ipv6CidrBlocks())
-     *                 .build())
+     *             .ingress(List.of(Map.ofEntries(
+     *                 Map.entry("fromPort", "443"),
+     *                 Map.entry("toPort", "443"),
+     *                 Map.entry("protocol", "tcp"),
+     *                 Map.entry("cidrBlocks", fastly.cidrBlocks()),
+     *                 Map.entry("ipv6CidrBlocks", fastly.ipv6CidrBlocks())
+     *             )))
      *             .build());
      * 
      *     }
@@ -1188,9 +1209,8 @@ public final class FastlyFunctions {
      * import com.pulumi.Pulumi;
      * import com.pulumi.core.Output;
      * import com.pulumi.fastly.FastlyFunctions;
-     * import com.pulumi.aws.ec2.SecurityGroup;
-     * import com.pulumi.aws.ec2.SecurityGroupArgs;
-     * import com.pulumi.aws.ec2.inputs.SecurityGroupIngressArgs;
+     * import com.pulumi.aws.SecurityGroup;
+     * import com.pulumi.aws.SecurityGroupArgs;
      * import java.util.List;
      * import java.util.ArrayList;
      * import java.util.Map;
@@ -1208,13 +1228,13 @@ public final class FastlyFunctions {
      * 
      *         var fromFastly = new SecurityGroup("fromFastly", SecurityGroupArgs.builder()
      *             .name("from_fastly")
-     *             .ingress(SecurityGroupIngressArgs.builder()
-     *                 .fromPort(443)
-     *                 .toPort(443)
-     *                 .protocol("tcp")
-     *                 .cidrBlocks(fastly.cidrBlocks())
-     *                 .ipv6CidrBlocks(fastly.ipv6CidrBlocks())
-     *                 .build())
+     *             .ingress(List.of(Map.ofEntries(
+     *                 Map.entry("fromPort", "443"),
+     *                 Map.entry("toPort", "443"),
+     *                 Map.entry("protocol", "tcp"),
+     *                 Map.entry("cidrBlocks", fastly.cidrBlocks()),
+     *                 Map.entry("ipv6CidrBlocks", fastly.ipv6CidrBlocks())
+     *             )))
      *             .build());
      * 
      *     }
@@ -5215,6 +5235,21 @@ public final class FastlyFunctions {
      */
     public static CompletableFuture<GetServicesResult> getServicesPlain(InvokeArgs args, InvokeOptions options) {
         return Deployment.getInstance().invokeAsync("fastly:index/getServices:getServices", TypeShape.of(GetServicesResult.class), args, Utilities.withVersion(options));
+    }
+    public static Output<GetStagingIpsResult> getStagingIps(GetStagingIpsArgs args) {
+        return getStagingIps(args, InvokeOptions.Empty);
+    }
+    public static CompletableFuture<GetStagingIpsResult> getStagingIpsPlain(GetStagingIpsPlainArgs args) {
+        return getStagingIpsPlain(args, InvokeOptions.Empty);
+    }
+    public static Output<GetStagingIpsResult> getStagingIps(GetStagingIpsArgs args, InvokeOptions options) {
+        return Deployment.getInstance().invoke("fastly:index/getStagingIps:getStagingIps", TypeShape.of(GetStagingIpsResult.class), args, Utilities.withVersion(options));
+    }
+    public static Output<GetStagingIpsResult> getStagingIps(GetStagingIpsArgs args, InvokeOutputOptions options) {
+        return Deployment.getInstance().invoke("fastly:index/getStagingIps:getStagingIps", TypeShape.of(GetStagingIpsResult.class), args, Utilities.withVersion(options));
+    }
+    public static CompletableFuture<GetStagingIpsResult> getStagingIpsPlain(GetStagingIpsPlainArgs args, InvokeOptions options) {
+        return Deployment.getInstance().invokeAsync("fastly:index/getStagingIps:getStagingIps", TypeShape.of(GetStagingIpsResult.class), args, Utilities.withVersion(options));
     }
     /**
      * Use this data source to get information on a TLS activation, including the certificate used, and the domain on which TLS was enabled.

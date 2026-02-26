@@ -35,6 +35,16 @@ export type CustomDashboard = import("./customDashboard").CustomDashboard;
 export const CustomDashboard: typeof import("./customDashboard").CustomDashboard = null as any;
 utilities.lazyLoad(exports, ["CustomDashboard"], () => require("./customDashboard"));
 
+export { DomainArgs, DomainState } from "./domain";
+export type Domain = import("./domain").Domain;
+export const Domain: typeof import("./domain").Domain = null as any;
+utilities.lazyLoad(exports, ["Domain"], () => require("./domain"));
+
+export { DomainServiceLinkArgs, DomainServiceLinkState } from "./domainServiceLink";
+export type DomainServiceLink = import("./domainServiceLink").DomainServiceLink;
+export const DomainServiceLink: typeof import("./domainServiceLink").DomainServiceLink = null as any;
+utilities.lazyLoad(exports, ["DomainServiceLink"], () => require("./domainServiceLink"));
+
 export { DomainV1Args, DomainV1State } from "./domainV1";
 export type DomainV1 = import("./domainV1").DomainV1;
 export const DomainV1: typeof import("./domainV1").DomainV1 = null as any;
@@ -64,6 +74,11 @@ export { GetDictionariesArgs, GetDictionariesResult, GetDictionariesOutputArgs }
 export const getDictionaries: typeof import("./getDictionaries").getDictionaries = null as any;
 export const getDictionariesOutput: typeof import("./getDictionaries").getDictionariesOutput = null as any;
 utilities.lazyLoad(exports, ["getDictionaries","getDictionariesOutput"], () => require("./getDictionaries"));
+
+export { GetDomainsArgs, GetDomainsResult, GetDomainsOutputArgs } from "./getDomains";
+export const getDomains: typeof import("./getDomains").getDomains = null as any;
+export const getDomainsOutput: typeof import("./getDomains").getDomainsOutput = null as any;
+utilities.lazyLoad(exports, ["getDomains","getDomainsOutput"], () => require("./getDomains"));
 
 export { GetDomainsV1Args, GetDomainsV1Result, GetDomainsV1OutputArgs } from "./getDomainsV1";
 export const getDomainsV1: typeof import("./getDomainsV1").getDomainsV1 = null as any;
@@ -184,6 +199,11 @@ export { GetServicesResult } from "./getServices";
 export const getServices: typeof import("./getServices").getServices = null as any;
 export const getServicesOutput: typeof import("./getServices").getServicesOutput = null as any;
 utilities.lazyLoad(exports, ["getServices","getServicesOutput"], () => require("./getServices"));
+
+export { GetStagingIpsArgs, GetStagingIpsResult, GetStagingIpsOutputArgs } from "./getStagingIps";
+export const getStagingIps: typeof import("./getStagingIps").getStagingIps = null as any;
+export const getStagingIpsOutput: typeof import("./getStagingIps").getStagingIpsOutput = null as any;
+utilities.lazyLoad(exports, ["getStagingIps","getStagingIpsOutput"], () => require("./getStagingIps"));
 
 export { GetTlsActivationArgs, GetTlsActivationResult, GetTlsActivationOutputArgs } from "./getTlsActivation";
 export const getTlsActivation: typeof import("./getTlsActivation").getTlsActivation = null as any;
@@ -464,6 +484,10 @@ const _module = {
                 return new ConfigstoreEntries(name, <any>undefined, { urn })
             case "fastly:index/customDashboard:CustomDashboard":
                 return new CustomDashboard(name, <any>undefined, { urn })
+            case "fastly:index/domain:Domain":
+                return new Domain(name, <any>undefined, { urn })
+            case "fastly:index/domainServiceLink:DomainServiceLink":
+                return new DomainServiceLink(name, <any>undefined, { urn })
             case "fastly:index/domainV1:DomainV1":
                 return new DomainV1(name, <any>undefined, { urn })
             case "fastly:index/domainV1ServiceLink:DomainV1ServiceLink":
@@ -551,6 +575,8 @@ pulumi.runtime.registerResourceModule("fastly", "index/computeAclEntries", _modu
 pulumi.runtime.registerResourceModule("fastly", "index/configstore", _module)
 pulumi.runtime.registerResourceModule("fastly", "index/configstoreEntries", _module)
 pulumi.runtime.registerResourceModule("fastly", "index/customDashboard", _module)
+pulumi.runtime.registerResourceModule("fastly", "index/domain", _module)
+pulumi.runtime.registerResourceModule("fastly", "index/domainServiceLink", _module)
 pulumi.runtime.registerResourceModule("fastly", "index/domainV1", _module)
 pulumi.runtime.registerResourceModule("fastly", "index/domainV1ServiceLink", _module)
 pulumi.runtime.registerResourceModule("fastly", "index/integration", _module)

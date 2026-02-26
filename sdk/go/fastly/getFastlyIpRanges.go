@@ -20,7 +20,7 @@ import (
 //
 // import (
 //
-//	"github.com/pulumi/pulumi-aws/sdk/v7/go/aws/ec2"
+//	"github.com/pulumi/pulumi-aws/sdk/v7/go/aws"
 //	"github.com/pulumi/pulumi-fastly/sdk/v11/go/fastly"
 //	"github.com/pulumi/pulumi/sdk/v3/go/pulumi"
 //
@@ -32,15 +32,15 @@ import (
 //			if err != nil {
 //				return err
 //			}
-//			_, err = ec2.NewSecurityGroup(ctx, "from_fastly", &ec2.SecurityGroupArgs{
-//				Name: pulumi.String("from_fastly"),
-//				Ingress: ec2.SecurityGroupIngressArray{
-//					&ec2.SecurityGroupIngressArgs{
-//						FromPort:       pulumi.Int(443),
-//						ToPort:         pulumi.Int(443),
-//						Protocol:       pulumi.String("tcp"),
-//						CidrBlocks:     interface{}(fastly.CidrBlocks),
-//						Ipv6CidrBlocks: interface{}(fastly.Ipv6CidrBlocks),
+//			_, err = aws.NewSecurityGroup(ctx, "from_fastly", &aws.SecurityGroupArgs{
+//				Name: "from_fastly",
+//				Ingress: []map[string]interface{}{
+//					map[string]interface{}{
+//						"fromPort":       "443",
+//						"toPort":         "443",
+//						"protocol":       "tcp",
+//						"cidrBlocks":     fastly.CidrBlocks,
+//						"ipv6CidrBlocks": fastly.Ipv6CidrBlocks,
 //					},
 //				},
 //			})

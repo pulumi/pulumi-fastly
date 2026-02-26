@@ -27,6 +27,8 @@ __all__ = [
     'NgwafAccountRuleCondition',
     'NgwafAccountRuleGroupCondition',
     'NgwafAccountRuleGroupConditionCondition',
+    'NgwafAccountRuleGroupConditionMultivalCondition',
+    'NgwafAccountRuleGroupConditionMultivalConditionCondition',
     'NgwafAccountRuleMultivalCondition',
     'NgwafAccountRuleMultivalConditionCondition',
     'NgwafWorkspaceAttackSignalThresholds',
@@ -34,6 +36,8 @@ __all__ = [
     'NgwafWorkspaceRuleCondition',
     'NgwafWorkspaceRuleGroupCondition',
     'NgwafWorkspaceRuleGroupConditionCondition',
+    'NgwafWorkspaceRuleGroupConditionMultivalCondition',
+    'NgwafWorkspaceRuleGroupConditionMultivalConditionCondition',
     'NgwafWorkspaceRuleMultivalCondition',
     'NgwafWorkspaceRuleMultivalConditionCondition',
     'NgwafWorkspaceRuleRateLimit',
@@ -132,6 +136,7 @@ __all__ = [
     'GetConfigstoresStoreResult',
     'GetDatacentersPopResult',
     'GetDictionariesDictionaryResult',
+    'GetDomainsDomainResult',
     'GetDomainsV1DomainResult',
     'GetKvstoresStoreResult',
     'GetNgwafAccountListsListResult',
@@ -154,6 +159,7 @@ __all__ = [
     'GetNgwafWorkspacesWorkspaceResult',
     'GetSecretstoresStoreResult',
     'GetServicesDetailResult',
+    'GetStagingIpsDomainResult',
     'GetTlsConfigurationDnsRecordResult',
     'GetVclSnippetsVclSnippetResult',
 ]
@@ -563,6 +569,8 @@ class NgwafAccountRuleGroupCondition(dict):
         suggest = None
         if key == "groupOperator":
             suggest = "group_operator"
+        elif key == "multivalConditions":
+            suggest = "multival_conditions"
 
         if suggest:
             pulumi.log.warn(f"Key '{key}' not found in NgwafAccountRuleGroupCondition. Access the value via the '{suggest}' property getter instead.")
@@ -576,22 +584,19 @@ class NgwafAccountRuleGroupCondition(dict):
         return super().get(key, default)
 
     def __init__(__self__, *,
-                 conditions: Sequence['outputs.NgwafAccountRuleGroupConditionCondition'],
-                 group_operator: _builtins.str):
+                 group_operator: _builtins.str,
+                 conditions: Optional[Sequence['outputs.NgwafAccountRuleGroupConditionCondition']] = None,
+                 multival_conditions: Optional[Sequence['outputs.NgwafAccountRuleGroupConditionMultivalCondition']] = None):
         """
-        :param Sequence['NgwafAccountRuleGroupConditionConditionArgs'] conditions: A list of nested conditions in this group.
         :param _builtins.str group_operator: Logical operator for the group. Accepted values are `any` and `all`.
+        :param Sequence['NgwafAccountRuleGroupConditionConditionArgs'] conditions: A list of nested conditions in this group.
+        :param Sequence['NgwafAccountRuleGroupConditionMultivalConditionArgs'] multival_conditions: List of nested multival conditions in this group. Each multival list must define a `field, operator, group_operator` and at least one condition.
         """
-        pulumi.set(__self__, "conditions", conditions)
         pulumi.set(__self__, "group_operator", group_operator)
-
-    @_builtins.property
-    @pulumi.getter
-    def conditions(self) -> Sequence['outputs.NgwafAccountRuleGroupConditionCondition']:
-        """
-        A list of nested conditions in this group.
-        """
-        return pulumi.get(self, "conditions")
+        if conditions is not None:
+            pulumi.set(__self__, "conditions", conditions)
+        if multival_conditions is not None:
+            pulumi.set(__self__, "multival_conditions", multival_conditions)
 
     @_builtins.property
     @pulumi.getter(name="groupOperator")
@@ -600,6 +605,22 @@ class NgwafAccountRuleGroupCondition(dict):
         Logical operator for the group. Accepted values are `any` and `all`.
         """
         return pulumi.get(self, "group_operator")
+
+    @_builtins.property
+    @pulumi.getter
+    def conditions(self) -> Optional[Sequence['outputs.NgwafAccountRuleGroupConditionCondition']]:
+        """
+        A list of nested conditions in this group.
+        """
+        return pulumi.get(self, "conditions")
+
+    @_builtins.property
+    @pulumi.getter(name="multivalConditions")
+    def multival_conditions(self) -> Optional[Sequence['outputs.NgwafAccountRuleGroupConditionMultivalCondition']]:
+        """
+        List of nested multival conditions in this group. Each multival list must define a `field, operator, group_operator` and at least one condition.
+        """
+        return pulumi.get(self, "multival_conditions")
 
 
 @pulumi.output_type
@@ -622,6 +643,114 @@ class NgwafAccountRuleGroupConditionCondition(dict):
     def field(self) -> _builtins.str:
         """
         Field to inspect (e.g., `ip`, `path`).
+        """
+        return pulumi.get(self, "field")
+
+    @_builtins.property
+    @pulumi.getter
+    def operator(self) -> _builtins.str:
+        """
+        Operator to apply (e.g., `equals`, `contains`).
+        """
+        return pulumi.get(self, "operator")
+
+    @_builtins.property
+    @pulumi.getter
+    def value(self) -> _builtins.str:
+        """
+        The value to test the field against.
+        """
+        return pulumi.get(self, "value")
+
+
+@pulumi.output_type
+class NgwafAccountRuleGroupConditionMultivalCondition(dict):
+    @staticmethod
+    def __key_warning(key: str):
+        suggest = None
+        if key == "groupOperator":
+            suggest = "group_operator"
+
+        if suggest:
+            pulumi.log.warn(f"Key '{key}' not found in NgwafAccountRuleGroupConditionMultivalCondition. Access the value via the '{suggest}' property getter instead.")
+
+    def __getitem__(self, key: str) -> Any:
+        NgwafAccountRuleGroupConditionMultivalCondition.__key_warning(key)
+        return super().__getitem__(key)
+
+    def get(self, key: str, default = None) -> Any:
+        NgwafAccountRuleGroupConditionMultivalCondition.__key_warning(key)
+        return super().get(key, default)
+
+    def __init__(__self__, *,
+                 conditions: Sequence['outputs.NgwafAccountRuleGroupConditionMultivalConditionCondition'],
+                 field: _builtins.str,
+                 group_operator: _builtins.str,
+                 operator: _builtins.str):
+        """
+        :param Sequence['NgwafAccountRuleGroupConditionMultivalConditionConditionArgs'] conditions: A list of nested conditions in this multival.
+        :param _builtins.str field: Enums for multival condition field. Accepted values are `post_parameter`, `query_parameter`, `request_cookie`, `request_header`, `response_header`, and `signal`.
+        :param _builtins.str group_operator: Logical operator for the multival condition. Accepted values are `any` and `all`.
+        :param _builtins.str operator: Indicates whether the supplied conditions will check for existence or non-existence of matching field values. Accepted values are `exists` and `does_not_exist`.
+        """
+        pulumi.set(__self__, "conditions", conditions)
+        pulumi.set(__self__, "field", field)
+        pulumi.set(__self__, "group_operator", group_operator)
+        pulumi.set(__self__, "operator", operator)
+
+    @_builtins.property
+    @pulumi.getter
+    def conditions(self) -> Sequence['outputs.NgwafAccountRuleGroupConditionMultivalConditionCondition']:
+        """
+        A list of nested conditions in this multival.
+        """
+        return pulumi.get(self, "conditions")
+
+    @_builtins.property
+    @pulumi.getter
+    def field(self) -> _builtins.str:
+        """
+        Enums for multival condition field. Accepted values are `post_parameter`, `query_parameter`, `request_cookie`, `request_header`, `response_header`, and `signal`.
+        """
+        return pulumi.get(self, "field")
+
+    @_builtins.property
+    @pulumi.getter(name="groupOperator")
+    def group_operator(self) -> _builtins.str:
+        """
+        Logical operator for the multival condition. Accepted values are `any` and `all`.
+        """
+        return pulumi.get(self, "group_operator")
+
+    @_builtins.property
+    @pulumi.getter
+    def operator(self) -> _builtins.str:
+        """
+        Indicates whether the supplied conditions will check for existence or non-existence of matching field values. Accepted values are `exists` and `does_not_exist`.
+        """
+        return pulumi.get(self, "operator")
+
+
+@pulumi.output_type
+class NgwafAccountRuleGroupConditionMultivalConditionCondition(dict):
+    def __init__(__self__, *,
+                 field: _builtins.str,
+                 operator: _builtins.str,
+                 value: _builtins.str):
+        """
+        :param _builtins.str field: Field to inspect (e.g., `name`, `value`, `signal_id`).
+        :param _builtins.str operator: Operator to apply (e.g., `equals`, `contains`).
+        :param _builtins.str value: The value to test the field against.
+        """
+        pulumi.set(__self__, "field", field)
+        pulumi.set(__self__, "operator", operator)
+        pulumi.set(__self__, "value", value)
+
+    @_builtins.property
+    @pulumi.getter
+    def field(self) -> _builtins.str:
+        """
+        Field to inspect (e.g., `name`, `value`, `signal_id`).
         """
         return pulumi.get(self, "field")
 
@@ -974,6 +1103,8 @@ class NgwafWorkspaceRuleGroupCondition(dict):
         suggest = None
         if key == "groupOperator":
             suggest = "group_operator"
+        elif key == "multivalConditions":
+            suggest = "multival_conditions"
 
         if suggest:
             pulumi.log.warn(f"Key '{key}' not found in NgwafWorkspaceRuleGroupCondition. Access the value via the '{suggest}' property getter instead.")
@@ -987,22 +1118,19 @@ class NgwafWorkspaceRuleGroupCondition(dict):
         return super().get(key, default)
 
     def __init__(__self__, *,
-                 conditions: Sequence['outputs.NgwafWorkspaceRuleGroupConditionCondition'],
-                 group_operator: _builtins.str):
+                 group_operator: _builtins.str,
+                 conditions: Optional[Sequence['outputs.NgwafWorkspaceRuleGroupConditionCondition']] = None,
+                 multival_conditions: Optional[Sequence['outputs.NgwafWorkspaceRuleGroupConditionMultivalCondition']] = None):
         """
-        :param Sequence['NgwafWorkspaceRuleGroupConditionConditionArgs'] conditions: A list of nested conditions in this group.
         :param _builtins.str group_operator: Logical operator for the group. Accepted values are `any` and `all`.
+        :param Sequence['NgwafWorkspaceRuleGroupConditionConditionArgs'] conditions: A list of nested conditions in this group.
+        :param Sequence['NgwafWorkspaceRuleGroupConditionMultivalConditionArgs'] multival_conditions: List of nested multival conditions in this group. Each multival list must define a `field, operator, group_operator` and at least one condition.
         """
-        pulumi.set(__self__, "conditions", conditions)
         pulumi.set(__self__, "group_operator", group_operator)
-
-    @_builtins.property
-    @pulumi.getter
-    def conditions(self) -> Sequence['outputs.NgwafWorkspaceRuleGroupConditionCondition']:
-        """
-        A list of nested conditions in this group.
-        """
-        return pulumi.get(self, "conditions")
+        if conditions is not None:
+            pulumi.set(__self__, "conditions", conditions)
+        if multival_conditions is not None:
+            pulumi.set(__self__, "multival_conditions", multival_conditions)
 
     @_builtins.property
     @pulumi.getter(name="groupOperator")
@@ -1011,6 +1139,22 @@ class NgwafWorkspaceRuleGroupCondition(dict):
         Logical operator for the group. Accepted values are `any` and `all`.
         """
         return pulumi.get(self, "group_operator")
+
+    @_builtins.property
+    @pulumi.getter
+    def conditions(self) -> Optional[Sequence['outputs.NgwafWorkspaceRuleGroupConditionCondition']]:
+        """
+        A list of nested conditions in this group.
+        """
+        return pulumi.get(self, "conditions")
+
+    @_builtins.property
+    @pulumi.getter(name="multivalConditions")
+    def multival_conditions(self) -> Optional[Sequence['outputs.NgwafWorkspaceRuleGroupConditionMultivalCondition']]:
+        """
+        List of nested multival conditions in this group. Each multival list must define a `field, operator, group_operator` and at least one condition.
+        """
+        return pulumi.get(self, "multival_conditions")
 
 
 @pulumi.output_type
@@ -1033,6 +1177,114 @@ class NgwafWorkspaceRuleGroupConditionCondition(dict):
     def field(self) -> _builtins.str:
         """
         Field to inspect (e.g., `ip`, `path`).
+        """
+        return pulumi.get(self, "field")
+
+    @_builtins.property
+    @pulumi.getter
+    def operator(self) -> _builtins.str:
+        """
+        Operator to apply (e.g., `equals`, `contains`).
+        """
+        return pulumi.get(self, "operator")
+
+    @_builtins.property
+    @pulumi.getter
+    def value(self) -> _builtins.str:
+        """
+        The value to test the field against.
+        """
+        return pulumi.get(self, "value")
+
+
+@pulumi.output_type
+class NgwafWorkspaceRuleGroupConditionMultivalCondition(dict):
+    @staticmethod
+    def __key_warning(key: str):
+        suggest = None
+        if key == "groupOperator":
+            suggest = "group_operator"
+
+        if suggest:
+            pulumi.log.warn(f"Key '{key}' not found in NgwafWorkspaceRuleGroupConditionMultivalCondition. Access the value via the '{suggest}' property getter instead.")
+
+    def __getitem__(self, key: str) -> Any:
+        NgwafWorkspaceRuleGroupConditionMultivalCondition.__key_warning(key)
+        return super().__getitem__(key)
+
+    def get(self, key: str, default = None) -> Any:
+        NgwafWorkspaceRuleGroupConditionMultivalCondition.__key_warning(key)
+        return super().get(key, default)
+
+    def __init__(__self__, *,
+                 conditions: Sequence['outputs.NgwafWorkspaceRuleGroupConditionMultivalConditionCondition'],
+                 field: _builtins.str,
+                 group_operator: _builtins.str,
+                 operator: _builtins.str):
+        """
+        :param Sequence['NgwafWorkspaceRuleGroupConditionMultivalConditionConditionArgs'] conditions: A list of nested conditions in this multival.
+        :param _builtins.str field: Enums for multival condition field. Accepted values are `post_parameter`, `query_parameter`, `request_cookie`, `request_header`, `response_header`, and `signal`.
+        :param _builtins.str group_operator: Logical operator for the multival condition. Accepted values are `any` and `all`.
+        :param _builtins.str operator: Indicates whether the supplied conditions will check for existence or non-existence of matching field values. Accepted values are `exists` and `does_not_exist`.
+        """
+        pulumi.set(__self__, "conditions", conditions)
+        pulumi.set(__self__, "field", field)
+        pulumi.set(__self__, "group_operator", group_operator)
+        pulumi.set(__self__, "operator", operator)
+
+    @_builtins.property
+    @pulumi.getter
+    def conditions(self) -> Sequence['outputs.NgwafWorkspaceRuleGroupConditionMultivalConditionCondition']:
+        """
+        A list of nested conditions in this multival.
+        """
+        return pulumi.get(self, "conditions")
+
+    @_builtins.property
+    @pulumi.getter
+    def field(self) -> _builtins.str:
+        """
+        Enums for multival condition field. Accepted values are `post_parameter`, `query_parameter`, `request_cookie`, `request_header`, `response_header`, and `signal`.
+        """
+        return pulumi.get(self, "field")
+
+    @_builtins.property
+    @pulumi.getter(name="groupOperator")
+    def group_operator(self) -> _builtins.str:
+        """
+        Logical operator for the multival condition. Accepted values are `any` and `all`.
+        """
+        return pulumi.get(self, "group_operator")
+
+    @_builtins.property
+    @pulumi.getter
+    def operator(self) -> _builtins.str:
+        """
+        Indicates whether the supplied conditions will check for existence or non-existence of matching field values. Accepted values are `exists` and `does_not_exist`.
+        """
+        return pulumi.get(self, "operator")
+
+
+@pulumi.output_type
+class NgwafWorkspaceRuleGroupConditionMultivalConditionCondition(dict):
+    def __init__(__self__, *,
+                 field: _builtins.str,
+                 operator: _builtins.str,
+                 value: _builtins.str):
+        """
+        :param _builtins.str field: Field to inspect (e.g., `name`, `value`, `signal_id`).
+        :param _builtins.str operator: Operator to apply (e.g., `equals`, `contains`).
+        :param _builtins.str value: The value to test the field against.
+        """
+        pulumi.set(__self__, "field", field)
+        pulumi.set(__self__, "operator", operator)
+        pulumi.set(__self__, "value", value)
+
+    @_builtins.property
+    @pulumi.getter
+    def field(self) -> _builtins.str:
+        """
+        Field to inspect (e.g., `name`, `value`, `signal_id`).
         """
         return pulumi.get(self, "field")
 
@@ -6105,6 +6357,8 @@ class ServiceComputeProductEnablement(dict):
             suggest = "api_discovery"
         elif key == "ddosProtection":
             suggest = "ddos_protection"
+        elif key == "domainInspector":
+            suggest = "domain_inspector"
         elif key == "logExplorerInsights":
             suggest = "log_explorer_insights"
 
@@ -6122,6 +6376,7 @@ class ServiceComputeProductEnablement(dict):
     def __init__(__self__, *,
                  api_discovery: Optional[_builtins.bool] = None,
                  ddos_protection: Optional['outputs.ServiceComputeProductEnablementDdosProtection'] = None,
+                 domain_inspector: Optional[_builtins.bool] = None,
                  fanout: Optional[_builtins.bool] = None,
                  log_explorer_insights: Optional[_builtins.bool] = None,
                  name: Optional[_builtins.str] = None,
@@ -6130,6 +6385,7 @@ class ServiceComputeProductEnablement(dict):
         """
         :param _builtins.bool api_discovery: Enable API Discovery support
         :param 'ServiceComputeProductEnablementDdosProtectionArgs' ddos_protection: DDoS Protection product
+        :param _builtins.bool domain_inspector: Enable Domain Inspector support
         :param _builtins.bool fanout: Enable Fanout support
         :param _builtins.bool log_explorer_insights: Enable Log Explorer & Insights
         :param _builtins.str name: Used by the provider to identify modified settings (changing this value will force the entire block to be deleted, then recreated)
@@ -6140,6 +6396,8 @@ class ServiceComputeProductEnablement(dict):
             pulumi.set(__self__, "api_discovery", api_discovery)
         if ddos_protection is not None:
             pulumi.set(__self__, "ddos_protection", ddos_protection)
+        if domain_inspector is not None:
+            pulumi.set(__self__, "domain_inspector", domain_inspector)
         if fanout is not None:
             pulumi.set(__self__, "fanout", fanout)
         if log_explorer_insights is not None:
@@ -6166,6 +6424,14 @@ class ServiceComputeProductEnablement(dict):
         DDoS Protection product
         """
         return pulumi.get(self, "ddos_protection")
+
+    @_builtins.property
+    @pulumi.getter(name="domainInspector")
+    def domain_inspector(self) -> Optional[_builtins.bool]:
+        """
+        Enable Domain Inspector support
+        """
+        return pulumi.get(self, "domain_inspector")
 
     @_builtins.property
     @pulumi.getter
@@ -14233,6 +14499,46 @@ class GetDictionariesDictionaryResult(dict):
 
 
 @pulumi.output_type
+class GetDomainsDomainResult(dict):
+    def __init__(__self__, *,
+                 fqdn: _builtins.str,
+                 id: _builtins.str,
+                 service_id: _builtins.str):
+        """
+        :param _builtins.str fqdn: The fully-qualified domain name for your domain.
+        :param _builtins.str id: Domain Identifier (UUID).
+        :param _builtins.str service_id: The 'service_id' associated with your domain or 'null' if there is no association.
+        """
+        pulumi.set(__self__, "fqdn", fqdn)
+        pulumi.set(__self__, "id", id)
+        pulumi.set(__self__, "service_id", service_id)
+
+    @_builtins.property
+    @pulumi.getter
+    def fqdn(self) -> _builtins.str:
+        """
+        The fully-qualified domain name for your domain.
+        """
+        return pulumi.get(self, "fqdn")
+
+    @_builtins.property
+    @pulumi.getter
+    def id(self) -> _builtins.str:
+        """
+        Domain Identifier (UUID).
+        """
+        return pulumi.get(self, "id")
+
+    @_builtins.property
+    @pulumi.getter(name="serviceId")
+    def service_id(self) -> _builtins.str:
+        """
+        The 'service_id' associated with your domain or 'null' if there is no association.
+        """
+        return pulumi.get(self, "service_id")
+
+
+@pulumi.output_type
 class GetDomainsV1DomainResult(dict):
     def __init__(__self__, *,
                  fqdn: _builtins.str,
@@ -15110,6 +15416,35 @@ class GetServicesDetailResult(dict):
         The currently activated version.
         """
         return pulumi.get(self, "version")
+
+
+@pulumi.output_type
+class GetStagingIpsDomainResult(dict):
+    def __init__(__self__, *,
+                 name: _builtins.str,
+                 staging_ip: _builtins.str):
+        """
+        :param _builtins.str name: The domain name.
+        :param _builtins.str staging_ip: The staging IP address for the domain.
+        """
+        pulumi.set(__self__, "name", name)
+        pulumi.set(__self__, "staging_ip", staging_ip)
+
+    @_builtins.property
+    @pulumi.getter
+    def name(self) -> _builtins.str:
+        """
+        The domain name.
+        """
+        return pulumi.get(self, "name")
+
+    @_builtins.property
+    @pulumi.getter(name="stagingIp")
+    def staging_ip(self) -> _builtins.str:
+        """
+        The staging IP address for the domain.
+        """
+        return pulumi.get(self, "staging_ip")
 
 
 @pulumi.output_type

@@ -6,9 +6,11 @@ package com.pulumi.fastly.outputs;
 import com.pulumi.core.annotations.CustomType;
 import com.pulumi.exceptions.MissingRequiredPropertyException;
 import com.pulumi.fastly.outputs.NgwafWorkspaceRuleGroupConditionCondition;
+import com.pulumi.fastly.outputs.NgwafWorkspaceRuleGroupConditionMultivalCondition;
 import java.lang.String;
 import java.util.List;
 import java.util.Objects;
+import javax.annotation.Nullable;
 
 @CustomType
 public final class NgwafWorkspaceRuleGroupCondition {
@@ -16,12 +18,17 @@ public final class NgwafWorkspaceRuleGroupCondition {
      * @return A list of nested conditions in this group.
      * 
      */
-    private List<NgwafWorkspaceRuleGroupConditionCondition> conditions;
+    private @Nullable List<NgwafWorkspaceRuleGroupConditionCondition> conditions;
     /**
      * @return Logical operator for the group. Accepted values are `any` and `all`.
      * 
      */
     private String groupOperator;
+    /**
+     * @return List of nested multival conditions in this group. Each multival list must define a `field, operator, groupOperator` and at least one condition.
+     * 
+     */
+    private @Nullable List<NgwafWorkspaceRuleGroupConditionMultivalCondition> multivalConditions;
 
     private NgwafWorkspaceRuleGroupCondition() {}
     /**
@@ -29,7 +36,7 @@ public final class NgwafWorkspaceRuleGroupCondition {
      * 
      */
     public List<NgwafWorkspaceRuleGroupConditionCondition> conditions() {
-        return this.conditions;
+        return this.conditions == null ? List.of() : this.conditions;
     }
     /**
      * @return Logical operator for the group. Accepted values are `any` and `all`.
@@ -37,6 +44,13 @@ public final class NgwafWorkspaceRuleGroupCondition {
      */
     public String groupOperator() {
         return this.groupOperator;
+    }
+    /**
+     * @return List of nested multival conditions in this group. Each multival list must define a `field, operator, groupOperator` and at least one condition.
+     * 
+     */
+    public List<NgwafWorkspaceRuleGroupConditionMultivalCondition> multivalConditions() {
+        return this.multivalConditions == null ? List.of() : this.multivalConditions;
     }
 
     public static Builder builder() {
@@ -48,20 +62,20 @@ public final class NgwafWorkspaceRuleGroupCondition {
     }
     @CustomType.Builder
     public static final class Builder {
-        private List<NgwafWorkspaceRuleGroupConditionCondition> conditions;
+        private @Nullable List<NgwafWorkspaceRuleGroupConditionCondition> conditions;
         private String groupOperator;
+        private @Nullable List<NgwafWorkspaceRuleGroupConditionMultivalCondition> multivalConditions;
         public Builder() {}
         public Builder(NgwafWorkspaceRuleGroupCondition defaults) {
     	      Objects.requireNonNull(defaults);
     	      this.conditions = defaults.conditions;
     	      this.groupOperator = defaults.groupOperator;
+    	      this.multivalConditions = defaults.multivalConditions;
         }
 
         @CustomType.Setter
-        public Builder conditions(List<NgwafWorkspaceRuleGroupConditionCondition> conditions) {
-            if (conditions == null) {
-              throw new MissingRequiredPropertyException("NgwafWorkspaceRuleGroupCondition", "conditions");
-            }
+        public Builder conditions(@Nullable List<NgwafWorkspaceRuleGroupConditionCondition> conditions) {
+
             this.conditions = conditions;
             return this;
         }
@@ -76,10 +90,20 @@ public final class NgwafWorkspaceRuleGroupCondition {
             this.groupOperator = groupOperator;
             return this;
         }
+        @CustomType.Setter
+        public Builder multivalConditions(@Nullable List<NgwafWorkspaceRuleGroupConditionMultivalCondition> multivalConditions) {
+
+            this.multivalConditions = multivalConditions;
+            return this;
+        }
+        public Builder multivalConditions(NgwafWorkspaceRuleGroupConditionMultivalCondition... multivalConditions) {
+            return multivalConditions(List.of(multivalConditions));
+        }
         public NgwafWorkspaceRuleGroupCondition build() {
             final var _resultValue = new NgwafWorkspaceRuleGroupCondition();
             _resultValue.conditions = conditions;
             _resultValue.groupOperator = groupOperator;
+            _resultValue.multivalConditions = multivalConditions;
             return _resultValue;
         }
     }

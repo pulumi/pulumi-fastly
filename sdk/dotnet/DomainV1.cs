@@ -9,31 +9,6 @@ using Pulumi.Serialization;
 
 namespace Pulumi.Fastly
 {
-    /// <summary>
-    /// Domain management allows you to manage your domains on Fastly and the services that they interact with.
-    /// 
-    /// ## Example Usage
-    /// 
-    /// Basic usage:
-    /// 
-    /// ```csharp
-    /// using System.Collections.Generic;
-    /// using System.Linq;
-    /// using Pulumi;
-    /// using Fastly = Pulumi.Fastly;
-    /// 
-    /// return await Deployment.RunAsync(() =&gt; 
-    /// {
-    ///     var example = new Fastly.DomainV1("example", new()
-    ///     {
-    ///         Fqdn = "example.com",
-    ///         ServiceId = "12345abcde",
-    ///         Description = "This is a test domain.",
-    ///     });
-    /// 
-    /// });
-    /// ```
-    /// </summary>
     [FastlyResourceType("fastly:index/domainV1:DomainV1")]
     public partial class DomainV1 : global::Pulumi.CustomResource
     {

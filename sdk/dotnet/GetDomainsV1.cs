@@ -11,87 +11,12 @@ namespace Pulumi.Fastly
 {
     public static class GetDomainsV1
     {
-        /// <summary>
-        /// Use this data source to get information about versionless domains.
-        /// 
-        /// ## Example Usage
-        /// 
-        /// ```csharp
-        /// using System.Collections.Generic;
-        /// using System.Linq;
-        /// using Pulumi;
-        /// using Fastly = Pulumi.Fastly;
-        /// 
-        /// return await Deployment.RunAsync(() =&gt; 
-        /// {
-        ///     var example = Fastly.GetDomainsV1.Invoke();
-        /// 
-        ///     return new Dictionary&lt;string, object?&gt;
-        ///     {
-        ///         ["allDomains"] = example.Apply(getDomainsV1Result =&gt; getDomainsV1Result.Domains),
-        ///         ["totalDomains"] = example.Apply(getDomainsV1Result =&gt; getDomainsV1Result.Total),
-        ///     };
-        /// });
-        /// ```
-        /// 
-        /// [1]: https://www.fastly.com/documentation/reference/api/domain-management/domains/
-        /// </summary>
         public static Task<GetDomainsV1Result> InvokeAsync(GetDomainsV1Args? args = null, InvokeOptions? options = null)
             => global::Pulumi.Deployment.Instance.InvokeAsync<GetDomainsV1Result>("fastly:index/getDomainsV1:getDomainsV1", args ?? new GetDomainsV1Args(), options.WithDefaults());
 
-        /// <summary>
-        /// Use this data source to get information about versionless domains.
-        /// 
-        /// ## Example Usage
-        /// 
-        /// ```csharp
-        /// using System.Collections.Generic;
-        /// using System.Linq;
-        /// using Pulumi;
-        /// using Fastly = Pulumi.Fastly;
-        /// 
-        /// return await Deployment.RunAsync(() =&gt; 
-        /// {
-        ///     var example = Fastly.GetDomainsV1.Invoke();
-        /// 
-        ///     return new Dictionary&lt;string, object?&gt;
-        ///     {
-        ///         ["allDomains"] = example.Apply(getDomainsV1Result =&gt; getDomainsV1Result.Domains),
-        ///         ["totalDomains"] = example.Apply(getDomainsV1Result =&gt; getDomainsV1Result.Total),
-        ///     };
-        /// });
-        /// ```
-        /// 
-        /// [1]: https://www.fastly.com/documentation/reference/api/domain-management/domains/
-        /// </summary>
         public static Output<GetDomainsV1Result> Invoke(GetDomainsV1InvokeArgs? args = null, InvokeOptions? options = null)
             => global::Pulumi.Deployment.Instance.Invoke<GetDomainsV1Result>("fastly:index/getDomainsV1:getDomainsV1", args ?? new GetDomainsV1InvokeArgs(), options.WithDefaults());
 
-        /// <summary>
-        /// Use this data source to get information about versionless domains.
-        /// 
-        /// ## Example Usage
-        /// 
-        /// ```csharp
-        /// using System.Collections.Generic;
-        /// using System.Linq;
-        /// using Pulumi;
-        /// using Fastly = Pulumi.Fastly;
-        /// 
-        /// return await Deployment.RunAsync(() =&gt; 
-        /// {
-        ///     var example = Fastly.GetDomainsV1.Invoke();
-        /// 
-        ///     return new Dictionary&lt;string, object?&gt;
-        ///     {
-        ///         ["allDomains"] = example.Apply(getDomainsV1Result =&gt; getDomainsV1Result.Domains),
-        ///         ["totalDomains"] = example.Apply(getDomainsV1Result =&gt; getDomainsV1Result.Total),
-        ///     };
-        /// });
-        /// ```
-        /// 
-        /// [1]: https://www.fastly.com/documentation/reference/api/domain-management/domains/
-        /// </summary>
         public static Output<GetDomainsV1Result> Invoke(GetDomainsV1InvokeArgs args, InvokeOutputOptions options)
             => global::Pulumi.Deployment.Instance.Invoke<GetDomainsV1Result>("fastly:index/getDomainsV1:getDomainsV1", args ?? new GetDomainsV1InvokeArgs(), options.WithDefaults());
     }

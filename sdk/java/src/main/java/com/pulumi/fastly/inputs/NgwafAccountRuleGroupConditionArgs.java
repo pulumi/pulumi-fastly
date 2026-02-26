@@ -7,9 +7,12 @@ import com.pulumi.core.Output;
 import com.pulumi.core.annotations.Import;
 import com.pulumi.exceptions.MissingRequiredPropertyException;
 import com.pulumi.fastly.inputs.NgwafAccountRuleGroupConditionConditionArgs;
+import com.pulumi.fastly.inputs.NgwafAccountRuleGroupConditionMultivalConditionArgs;
 import java.lang.String;
 import java.util.List;
 import java.util.Objects;
+import java.util.Optional;
+import javax.annotation.Nullable;
 
 
 public final class NgwafAccountRuleGroupConditionArgs extends com.pulumi.resources.ResourceArgs {
@@ -20,15 +23,15 @@ public final class NgwafAccountRuleGroupConditionArgs extends com.pulumi.resourc
      * A list of nested conditions in this group.
      * 
      */
-    @Import(name="conditions", required=true)
-    private Output<List<NgwafAccountRuleGroupConditionConditionArgs>> conditions;
+    @Import(name="conditions")
+    private @Nullable Output<List<NgwafAccountRuleGroupConditionConditionArgs>> conditions;
 
     /**
      * @return A list of nested conditions in this group.
      * 
      */
-    public Output<List<NgwafAccountRuleGroupConditionConditionArgs>> conditions() {
-        return this.conditions;
+    public Optional<Output<List<NgwafAccountRuleGroupConditionConditionArgs>>> conditions() {
+        return Optional.ofNullable(this.conditions);
     }
 
     /**
@@ -46,11 +49,27 @@ public final class NgwafAccountRuleGroupConditionArgs extends com.pulumi.resourc
         return this.groupOperator;
     }
 
+    /**
+     * List of nested multival conditions in this group. Each multival list must define a `field, operator, groupOperator` and at least one condition.
+     * 
+     */
+    @Import(name="multivalConditions")
+    private @Nullable Output<List<NgwafAccountRuleGroupConditionMultivalConditionArgs>> multivalConditions;
+
+    /**
+     * @return List of nested multival conditions in this group. Each multival list must define a `field, operator, groupOperator` and at least one condition.
+     * 
+     */
+    public Optional<Output<List<NgwafAccountRuleGroupConditionMultivalConditionArgs>>> multivalConditions() {
+        return Optional.ofNullable(this.multivalConditions);
+    }
+
     private NgwafAccountRuleGroupConditionArgs() {}
 
     private NgwafAccountRuleGroupConditionArgs(NgwafAccountRuleGroupConditionArgs $) {
         this.conditions = $.conditions;
         this.groupOperator = $.groupOperator;
+        this.multivalConditions = $.multivalConditions;
     }
 
     public static Builder builder() {
@@ -77,7 +96,7 @@ public final class NgwafAccountRuleGroupConditionArgs extends com.pulumi.resourc
          * @return builder
          * 
          */
-        public Builder conditions(Output<List<NgwafAccountRuleGroupConditionConditionArgs>> conditions) {
+        public Builder conditions(@Nullable Output<List<NgwafAccountRuleGroupConditionConditionArgs>> conditions) {
             $.conditions = conditions;
             return this;
         }
@@ -123,10 +142,38 @@ public final class NgwafAccountRuleGroupConditionArgs extends com.pulumi.resourc
             return groupOperator(Output.of(groupOperator));
         }
 
+        /**
+         * @param multivalConditions List of nested multival conditions in this group. Each multival list must define a `field, operator, groupOperator` and at least one condition.
+         * 
+         * @return builder
+         * 
+         */
+        public Builder multivalConditions(@Nullable Output<List<NgwafAccountRuleGroupConditionMultivalConditionArgs>> multivalConditions) {
+            $.multivalConditions = multivalConditions;
+            return this;
+        }
+
+        /**
+         * @param multivalConditions List of nested multival conditions in this group. Each multival list must define a `field, operator, groupOperator` and at least one condition.
+         * 
+         * @return builder
+         * 
+         */
+        public Builder multivalConditions(List<NgwafAccountRuleGroupConditionMultivalConditionArgs> multivalConditions) {
+            return multivalConditions(Output.of(multivalConditions));
+        }
+
+        /**
+         * @param multivalConditions List of nested multival conditions in this group. Each multival list must define a `field, operator, groupOperator` and at least one condition.
+         * 
+         * @return builder
+         * 
+         */
+        public Builder multivalConditions(NgwafAccountRuleGroupConditionMultivalConditionArgs... multivalConditions) {
+            return multivalConditions(List.of(multivalConditions));
+        }
+
         public NgwafAccountRuleGroupConditionArgs build() {
-            if ($.conditions == null) {
-                throw new MissingRequiredPropertyException("NgwafAccountRuleGroupConditionArgs", "conditions");
-            }
             if ($.groupOperator == null) {
                 throw new MissingRequiredPropertyException("NgwafAccountRuleGroupConditionArgs", "groupOperator");
             }

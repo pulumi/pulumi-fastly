@@ -19,8 +19,6 @@ import javax.annotation.Nullable;
 /**
  * Defines a map of Fastly dictionary items that can be used to populate a service dictionary.  This resource will populate a dictionary with the items and will track their state.
  * 
- * &gt; **Warning:** This provider will take precedence over any changes you make in the UI or API. Such changes are likely to be reversed if you run the provider again.
- * 
  * &gt; **Note:** By default the Terraform provider allows you to externally manage the items via API or UI.
  * If you wish to apply your changes in the HCL, then you should explicitly set the `manageItems` attribute. An example of this configuration is provided below.
  * 
@@ -30,11 +28,13 @@ import javax.annotation.Nullable;
  * 
  * ## Example Usage
  * 
- * ### Basic usage:
+ * ### Terraform &gt;= 0.12.6)
  * 
- * ### Complex object usage:
+ * Basic usage:
  * 
- * ### Expression and functions usage:
+ * Complex object usage:
+ * 
+ * Expression and functions usage:
  * 
  * ### Terraform &gt;= 0.12.0 &amp;&amp; &lt; 0.12.6)
  * 

@@ -458,7 +458,7 @@ type NgwafWorkspaceRule struct {
 	Description pulumi.StringOutput `pulumi:"description"`
 	// Whether the rule is currently enabled.
 	Enabled pulumi.BoolOutput `pulumi:"enabled"`
-	// List of grouped conditions with nested logic. Each group must define a `groupOperator` and at least one condition.
+	// List of grouped conditions with nested logic. Each group must define a `groupOperator` and at least one condition or multival*condition.
 	GroupConditions NgwafWorkspaceRuleGroupConditionArrayOutput `pulumi:"groupConditions"`
 	// Logical operator to apply to group conditions. Accepted values are `any` and `all`.
 	GroupOperator pulumi.StringPtrOutput `pulumi:"groupOperator"`
@@ -527,7 +527,7 @@ type ngwafWorkspaceRuleState struct {
 	Description *string `pulumi:"description"`
 	// Whether the rule is currently enabled.
 	Enabled *bool `pulumi:"enabled"`
-	// List of grouped conditions with nested logic. Each group must define a `groupOperator` and at least one condition.
+	// List of grouped conditions with nested logic. Each group must define a `groupOperator` and at least one condition or multival*condition.
 	GroupConditions []NgwafWorkspaceRuleGroupCondition `pulumi:"groupConditions"`
 	// Logical operator to apply to group conditions. Accepted values are `any` and `all`.
 	GroupOperator *string `pulumi:"groupOperator"`
@@ -552,7 +552,7 @@ type NgwafWorkspaceRuleState struct {
 	Description pulumi.StringPtrInput
 	// Whether the rule is currently enabled.
 	Enabled pulumi.BoolPtrInput
-	// List of grouped conditions with nested logic. Each group must define a `groupOperator` and at least one condition.
+	// List of grouped conditions with nested logic. Each group must define a `groupOperator` and at least one condition or multival*condition.
 	GroupConditions NgwafWorkspaceRuleGroupConditionArrayInput
 	// Logical operator to apply to group conditions. Accepted values are `any` and `all`.
 	GroupOperator pulumi.StringPtrInput
@@ -581,7 +581,7 @@ type ngwafWorkspaceRuleArgs struct {
 	Description string `pulumi:"description"`
 	// Whether the rule is currently enabled.
 	Enabled bool `pulumi:"enabled"`
-	// List of grouped conditions with nested logic. Each group must define a `groupOperator` and at least one condition.
+	// List of grouped conditions with nested logic. Each group must define a `groupOperator` and at least one condition or multival*condition.
 	GroupConditions []NgwafWorkspaceRuleGroupCondition `pulumi:"groupConditions"`
 	// Logical operator to apply to group conditions. Accepted values are `any` and `all`.
 	GroupOperator *string `pulumi:"groupOperator"`
@@ -607,7 +607,7 @@ type NgwafWorkspaceRuleArgs struct {
 	Description pulumi.StringInput
 	// Whether the rule is currently enabled.
 	Enabled pulumi.BoolInput
-	// List of grouped conditions with nested logic. Each group must define a `groupOperator` and at least one condition.
+	// List of grouped conditions with nested logic. Each group must define a `groupOperator` and at least one condition or multival*condition.
 	GroupConditions NgwafWorkspaceRuleGroupConditionArrayInput
 	// Logical operator to apply to group conditions. Accepted values are `any` and `all`.
 	GroupOperator pulumi.StringPtrInput
@@ -730,7 +730,7 @@ func (o NgwafWorkspaceRuleOutput) Enabled() pulumi.BoolOutput {
 	return o.ApplyT(func(v *NgwafWorkspaceRule) pulumi.BoolOutput { return v.Enabled }).(pulumi.BoolOutput)
 }
 
-// List of grouped conditions with nested logic. Each group must define a `groupOperator` and at least one condition.
+// List of grouped conditions with nested logic. Each group must define a `groupOperator` and at least one condition or multival*condition.
 func (o NgwafWorkspaceRuleOutput) GroupConditions() NgwafWorkspaceRuleGroupConditionArrayOutput {
 	return o.ApplyT(func(v *NgwafWorkspaceRule) NgwafWorkspaceRuleGroupConditionArrayOutput { return v.GroupConditions }).(NgwafWorkspaceRuleGroupConditionArrayOutput)
 }

@@ -7,8 +7,6 @@ import * as utilities from "./utilities";
 /**
  * Defines a map of Fastly dictionary items that can be used to populate a service dictionary.  This resource will populate a dictionary with the items and will track their state.
  *
- * > **Warning:** This provider will take precedence over any changes you make in the UI or API. Such changes are likely to be reversed if you run the provider again.
- *
  * > **Note:** By default the Terraform provider allows you to externally manage the items via API or UI.
  * If you wish to apply your changes in the HCL, then you should explicitly set the `manageItems` attribute. An example of this configuration is provided below.
  *
@@ -18,7 +16,9 @@ import * as utilities from "./utilities";
  *
  * ## Example Usage
  *
- * ### Basic usage:
+ * ### Terraform >= 0.12.6)
+ *
+ * Basic usage:
  *
  * ```typescript
  * import * as pulumi from "@pulumi/pulumi";
@@ -60,7 +60,7 @@ import * as utilities from "./utilities";
  * });
  * ```
  *
- * ### Complex object usage:
+ * Complex object usage:
  *
  * ```typescript
  * import * as pulumi from "@pulumi/pulumi";
@@ -105,7 +105,7 @@ import * as utilities from "./utilities";
  * });
  * ```
  *
- * ### Expression and functions usage:
+ * Expression and functions usage:
  *
  * ```typescript
  * import * as pulumi from "@pulumi/pulumi";
@@ -146,7 +146,13 @@ import * as utilities from "./utilities";
  *             project.push(new fastly.ServiceDictionaryItems(`project-${range.key}`, {
  *                 serviceId: myservice.id,
  *                 dictionaryId: range.value.dictionaryId,
- *                 items: hostDivisions.reduce((__obj, division) => ({ ...__obj, [division]: _arg0_.result })),
+ *                 items: hostDivisions.reduce((__obj, division) => ({ ...__obj, [division]: std.index.format({
+ *                     input: "%s.%s",
+ *                     args: [
+ *                         division,
+ *                         hostBase,
+ *                     ],
+ *                 }).result })),
  *             }));
  *         }
  *     });

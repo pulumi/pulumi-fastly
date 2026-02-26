@@ -172,8 +172,6 @@ class ServiceDictionaryItems(pulumi.CustomResource):
         """
         Defines a map of Fastly dictionary items that can be used to populate a service dictionary.  This resource will populate a dictionary with the items and will track their state.
 
-        > **Warning:** This provider will take precedence over any changes you make in the UI or API. Such changes are likely to be reversed if you run the provider again.
-
         > **Note:** By default the Terraform provider allows you to externally manage the items via API or UI.
         If you wish to apply your changes in the HCL, then you should explicitly set the `manage_items` attribute. An example of this configuration is provided below.
 
@@ -183,7 +181,9 @@ class ServiceDictionaryItems(pulumi.CustomResource):
 
         ## Example Usage
 
-        ### Basic usage:
+        ### Terraform >= 0.12.6)
+
+        Basic usage:
 
         ```python
         import pulumi
@@ -222,7 +222,7 @@ class ServiceDictionaryItems(pulumi.CustomResource):
         myservice.dictionaries.apply(lambda resolved_outputs: create_items({d.name: d for d in resolved_outputs['dictionaries'] if d.name == mydict_name}))
         ```
 
-        ### Complex object usage:
+        Complex object usage:
 
         ```python
         import pulumi
@@ -264,7 +264,7 @@ class ServiceDictionaryItems(pulumi.CustomResource):
         myservice.dictionaries.apply(lambda resolved_outputs: create_items({d.name: d for d in resolved_outputs['dictionaries'] if d.name == mydict["name"]}))
         ```
 
-        ### Expression and functions usage:
+        Expression and functions usage:
 
         ```python
         import pulumi
@@ -302,11 +302,11 @@ class ServiceDictionaryItems(pulumi.CustomResource):
                 project.append(fastly.ServiceDictionaryItems(f"project-{range['key']}",
                     service_id=myservice.id,
                     dictionary_id=range["value"].dictionary_id,
-                    items={division: std.format(input="%s.%s",
+                    items={division: std.index.format(input="%s.%s",
                         args=[
                             division,
                             host_base,
-                        ]).result for division in host_divisions}))
+                        ])["result"] for division in host_divisions}))
 
         myservice.dictionaries.apply(lambda resolved_outputs: create_project({d.name: d for d in resolved_outputs['dictionaries'] if d.name == dictionary_name}))
         ```
@@ -416,8 +416,6 @@ class ServiceDictionaryItems(pulumi.CustomResource):
         """
         Defines a map of Fastly dictionary items that can be used to populate a service dictionary.  This resource will populate a dictionary with the items and will track their state.
 
-        > **Warning:** This provider will take precedence over any changes you make in the UI or API. Such changes are likely to be reversed if you run the provider again.
-
         > **Note:** By default the Terraform provider allows you to externally manage the items via API or UI.
         If you wish to apply your changes in the HCL, then you should explicitly set the `manage_items` attribute. An example of this configuration is provided below.
 
@@ -427,7 +425,9 @@ class ServiceDictionaryItems(pulumi.CustomResource):
 
         ## Example Usage
 
-        ### Basic usage:
+        ### Terraform >= 0.12.6)
+
+        Basic usage:
 
         ```python
         import pulumi
@@ -466,7 +466,7 @@ class ServiceDictionaryItems(pulumi.CustomResource):
         myservice.dictionaries.apply(lambda resolved_outputs: create_items({d.name: d for d in resolved_outputs['dictionaries'] if d.name == mydict_name}))
         ```
 
-        ### Complex object usage:
+        Complex object usage:
 
         ```python
         import pulumi
@@ -508,7 +508,7 @@ class ServiceDictionaryItems(pulumi.CustomResource):
         myservice.dictionaries.apply(lambda resolved_outputs: create_items({d.name: d for d in resolved_outputs['dictionaries'] if d.name == mydict["name"]}))
         ```
 
-        ### Expression and functions usage:
+        Expression and functions usage:
 
         ```python
         import pulumi
@@ -546,11 +546,11 @@ class ServiceDictionaryItems(pulumi.CustomResource):
                 project.append(fastly.ServiceDictionaryItems(f"project-{range['key']}",
                     service_id=myservice.id,
                     dictionary_id=range["value"].dictionary_id,
-                    items={division: std.format(input="%s.%s",
+                    items={division: std.index.format(input="%s.%s",
                         args=[
                             division,
                             host_base,
-                        ]).result for division in host_divisions}))
+                        ])["result"] for division in host_divisions}))
 
         myservice.dictionaries.apply(lambda resolved_outputs: create_project({d.name: d for d in resolved_outputs['dictionaries'] if d.name == dictionary_name}))
         ```

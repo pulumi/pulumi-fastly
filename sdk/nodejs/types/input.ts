@@ -136,16 +136,54 @@ export interface NgwafAccountRuleGroupCondition {
     /**
      * A list of nested conditions in this group.
      */
-    conditions: pulumi.Input<pulumi.Input<inputs.NgwafAccountRuleGroupConditionCondition>[]>;
+    conditions?: pulumi.Input<pulumi.Input<inputs.NgwafAccountRuleGroupConditionCondition>[]>;
     /**
      * Logical operator for the group. Accepted values are `any` and `all`.
      */
     groupOperator: pulumi.Input<string>;
+    /**
+     * List of nested multival conditions in this group. Each multival list must define a `field, operator, groupOperator` and at least one condition.
+     */
+    multivalConditions?: pulumi.Input<pulumi.Input<inputs.NgwafAccountRuleGroupConditionMultivalCondition>[]>;
 }
 
 export interface NgwafAccountRuleGroupConditionCondition {
     /**
      * Field to inspect (e.g., `ip`, `path`).
+     */
+    field: pulumi.Input<string>;
+    /**
+     * Operator to apply (e.g., `equals`, `contains`).
+     */
+    operator: pulumi.Input<string>;
+    /**
+     * The value to test the field against.
+     */
+    value: pulumi.Input<string>;
+}
+
+export interface NgwafAccountRuleGroupConditionMultivalCondition {
+    /**
+     * A list of nested conditions in this multival.
+     */
+    conditions: pulumi.Input<pulumi.Input<inputs.NgwafAccountRuleGroupConditionMultivalConditionCondition>[]>;
+    /**
+     * Enums for multival condition field. Accepted values are `postParameter`, `queryParameter`, `requestCookie`, `requestHeader`, `responseHeader`, and `signal`.
+     */
+    field: pulumi.Input<string>;
+    /**
+     * Logical operator for the multival condition. Accepted values are `any` and `all`.
+     */
+    groupOperator: pulumi.Input<string>;
+    /**
+     * Indicates whether the supplied conditions will check for existence or non-existence of matching field values. Accepted values are `exists` and `doesNotExist`.
+     */
+    operator: pulumi.Input<string>;
+}
+
+export interface NgwafAccountRuleGroupConditionMultivalConditionCondition {
+    /**
+     * Field to inspect (e.g., `name`, `value`, `signalId`).
      */
     field: pulumi.Input<string>;
     /**
@@ -257,16 +295,54 @@ export interface NgwafWorkspaceRuleGroupCondition {
     /**
      * A list of nested conditions in this group.
      */
-    conditions: pulumi.Input<pulumi.Input<inputs.NgwafWorkspaceRuleGroupConditionCondition>[]>;
+    conditions?: pulumi.Input<pulumi.Input<inputs.NgwafWorkspaceRuleGroupConditionCondition>[]>;
     /**
      * Logical operator for the group. Accepted values are `any` and `all`.
      */
     groupOperator: pulumi.Input<string>;
+    /**
+     * List of nested multival conditions in this group. Each multival list must define a `field, operator, groupOperator` and at least one condition.
+     */
+    multivalConditions?: pulumi.Input<pulumi.Input<inputs.NgwafWorkspaceRuleGroupConditionMultivalCondition>[]>;
 }
 
 export interface NgwafWorkspaceRuleGroupConditionCondition {
     /**
      * Field to inspect (e.g., `ip`, `path`).
+     */
+    field: pulumi.Input<string>;
+    /**
+     * Operator to apply (e.g., `equals`, `contains`).
+     */
+    operator: pulumi.Input<string>;
+    /**
+     * The value to test the field against.
+     */
+    value: pulumi.Input<string>;
+}
+
+export interface NgwafWorkspaceRuleGroupConditionMultivalCondition {
+    /**
+     * A list of nested conditions in this multival.
+     */
+    conditions: pulumi.Input<pulumi.Input<inputs.NgwafWorkspaceRuleGroupConditionMultivalConditionCondition>[]>;
+    /**
+     * Enums for multival condition field. Accepted values are `postParameter`, `queryParameter`, `requestCookie`, `requestHeader`, `responseHeader`, and `signal`.
+     */
+    field: pulumi.Input<string>;
+    /**
+     * Logical operator for the multival condition. Accepted values are `any` and `all`.
+     */
+    groupOperator: pulumi.Input<string>;
+    /**
+     * Indicates whether the supplied conditions will check for existence or non-existence of matching field values. Accepted values are `exists` and `doesNotExist`.
+     */
+    operator: pulumi.Input<string>;
+}
+
+export interface NgwafWorkspaceRuleGroupConditionMultivalConditionCondition {
+    /**
+     * Field to inspect (e.g., `name`, `value`, `signalId`).
      */
     field: pulumi.Input<string>;
     /**
@@ -1741,6 +1817,10 @@ export interface ServiceComputeProductEnablement {
      * DDoS Protection product
      */
     ddosProtection?: pulumi.Input<inputs.ServiceComputeProductEnablementDdosProtection>;
+    /**
+     * Enable Domain Inspector support
+     */
+    domainInspector?: pulumi.Input<boolean>;
     /**
      * Enable Fanout support
      */

@@ -35,23 +35,28 @@ namespace Pulumi.Fastly
     /// ```csharp
     /// using System.Collections.Generic;
     /// using System.Linq;
-    /// using System.Threading.Tasks;
     /// using Pulumi;
     /// using Aws = Pulumi.Aws;
     /// using Fastly = Pulumi.Fastly;
     /// using Std = Pulumi.Std;
     /// 
-    /// return await Deployment.RunAsync(async() =&gt; 
+    /// return await Deployment.RunAsync(() =&gt; 
     /// {
     ///     // NOTE: Creating a hosted zone will automatically create SOA/NS records.
-    ///     var production = new Aws.Route53.Zone("production", new()
+    ///     var production = new Aws.Index.Route53Zone("production", new()
     ///     {
     ///         Name = "example.com",
     ///     });
     /// 
-    ///     var example = new Aws.Route53Domains.RegisteredDomain("example", new()
+    ///     var example = new Aws.Index.Route53domainsRegisteredDomain("example", new()
     ///     {
-    ///         NameServers = ,
+    ///         NameServer = .Select(entry =&gt; 
+    ///         {
+    ///             return 
+    ///             {
+    ///                 { "name", entry.Value },
+    ///             };
+    ///         }).ToList(),
     ///         DomainName = "example.com",
     ///     });
     /// 
@@ -91,7 +96,7 @@ namespace Pulumi.Fastly
     ///         CertificateAuthority = "lets-encrypt",
     ///     });
     /// 
-    ///     var domainValidation = new List&lt;Aws.Route53.Record&gt;();
+    ///     var domainValidation = new List&lt;Aws.Index.Route53Record&gt;();
     ///     foreach (var range in exampleTlsSubscription.Domains.Apply(domains =&gt; domains.ToDictionary(item =&gt; {
     ///         var domain = item.Value;
     ///         return domain;
@@ -103,10 +108,10 @@ namespace Pulumi.Fastly
     ///         }).ToList())[0];
     ///     })).Select(pair =&gt; new { pair.Key, pair.Value }))
     ///     {
-    ///         domainValidation.Add(new Aws.Route53.Record($"domain_validation-{range.Key}", new()
+    ///         domainValidation.Add(new Aws.Index.Route53Record($"domain_validation-{range.Key}", new()
     ///         {
     ///             Name = range.Value.RecordName,
-    ///             Type = System.Enum.Parse&lt;Aws.Route53.RecordType&gt;(range.Value.RecordType),
+    ///             Type = range.Value.RecordType,
     ///             ZoneId = production.ZoneId,
     ///             AllowOverwrite = true,
     ///             Records = new[]
@@ -144,21 +149,25 @@ namespace Pulumi.Fastly
     ///     // If you have issues filtering with `default = true`, then you may need another attribute.
     ///     // Refer to the fastly_tls_configuration documentation for available attributes:
     ///     // https://registry.terraform.io/providers/fastly/fastly/latest/docs/data-sources/tls_configuration#optional
-    ///     var defaultTls = await Fastly.GetTlsConfiguration.InvokeAsync(new()
+    ///     var defaultTls = Fastly.GetTlsConfiguration.Invoke(new()
     ///     {
     ///         Default = true,
     ///     });
     /// 
     ///     // Once validation is complete and we've retrieved the TLS configuration data, we can create multiple subdomain records.
-    ///     var subdomain = new List&lt;Aws.Route53.Record&gt;();
-    ///     foreach (var range in )
+    ///     var subdomain = new List&lt;Aws.Index.Route53Record&gt;();
+    ///     for (var rangeIndex = 0; rangeIndex &lt; Std.Index.Toset.Invoke(new()
     ///     {
-    ///         subdomain.Add(new Aws.Route53.Record($"subdomain-{range.Key}", new()
+    ///         Input = subdomains,
+    ///     }).Result; rangeIndex++)
+    ///     {
+    ///         var range = new { Value = rangeIndex };
+    ///         subdomain.Add(new Aws.Index.Route53Record($"subdomain-{range.Value}", new()
     ///         {
     ///             Name = range.Value,
     ///             Records = ,
     ///             Ttl = 300,
-    ///             Type = Aws.Route53.RecordType.CNAME,
+    ///             Type = "CNAME",
     ///             ZoneId = production.ZoneId,
     ///         }));
     ///     }
@@ -174,23 +183,28 @@ namespace Pulumi.Fastly
     /// ```csharp
     /// using System.Collections.Generic;
     /// using System.Linq;
-    /// using System.Threading.Tasks;
     /// using Pulumi;
     /// using Aws = Pulumi.Aws;
     /// using Fastly = Pulumi.Fastly;
     /// using Std = Pulumi.Std;
     /// 
-    /// return await Deployment.RunAsync(async() =&gt; 
+    /// return await Deployment.RunAsync(() =&gt; 
     /// {
     ///     // NOTE: Creating a hosted zone will automatically create SOA/NS records.
-    ///     var production = new Aws.Route53.Zone("production", new()
+    ///     var production = new Aws.Index.Route53Zone("production", new()
     ///     {
     ///         Name = "example.com",
     ///     });
     /// 
-    ///     var example = new Aws.Route53Domains.RegisteredDomain("example", new()
+    ///     var example = new Aws.Index.Route53domainsRegisteredDomain("example", new()
     ///     {
-    ///         NameServers = ,
+    ///         NameServer = .Select(entry =&gt; 
+    ///         {
+    ///             return 
+    ///             {
+    ///                 { "name", entry.Value },
+    ///             };
+    ///         }).ToList(),
     ///         DomainName = "example.com",
     ///     });
     /// 
@@ -230,13 +244,13 @@ namespace Pulumi.Fastly
     ///         CertificateAuthority = "lets-encrypt",
     ///     });
     /// 
-    ///     var domainValidation = new List&lt;Aws.Route53.Record&gt;();
-    ///     foreach (var range in .Select(pair =&gt; new { pair.Key, pair.Value }))
+    ///     var domainValidation = new List&lt;Aws.Index.Route53Record&gt;();
+    ///     foreach (var range in exampleTlsSubscription.Domains.Apply(domains =&gt; domains).Select(pair =&gt; new { pair.Key, pair.Value }))
     ///     {
-    ///         domainValidation.Add(new Aws.Route53.Record($"domain_validation-{range.Key}", new()
+    ///         domainValidation.Add(new Aws.Index.Route53Record($"domain_validation-{range.Key}", new()
     ///         {
     ///             Name = range.Value[0].RecordName,
-    ///             Type = System.Enum.Parse&lt;Aws.Route53.RecordType&gt;(range.Value[0].RecordType),
+    ///             Type = range.Value[0].RecordType,
     ///             ZoneId = production.ZoneId,
     ///             AllowOverwrite = true,
     ///             Records = new[]
@@ -274,28 +288,28 @@ namespace Pulumi.Fastly
     ///     // If you have issues filtering with `default = true`, then you may need another attribute.
     ///     // Refer to the fastly_tls_configuration documentation for available attributes:
     ///     // https://registry.terraform.io/providers/fastly/fastly/latest/docs/data-sources/tls_configuration#optional
-    ///     var defaultTls = await Fastly.GetTlsConfiguration.InvokeAsync(new()
+    ///     var defaultTls = Fastly.GetTlsConfiguration.Invoke(new()
     ///     {
     ///         Default = true,
     ///     });
     /// 
     ///     // Once validation is complete and we've retrieved the TLS configuration data, we can create multiple records...
-    ///     var apex = new Aws.Route53.Record("apex", new()
+    ///     var apex = new Aws.Index.Route53Record("apex", new()
     ///     {
     ///         Name = "example.com",
     ///         Records = ,
     ///         Ttl = 300,
-    ///         Type = Aws.Route53.RecordType.A,
+    ///         Type = "A",
     ///         ZoneId = production.ZoneId,
     ///     });
     /// 
     ///     // NOTE: This subdomain matches our Fastly service because of the wildcard domain (`*.example.com`) that was added to the service.
-    ///     var subdomain = new Aws.Route53.Record("subdomain", new()
+    ///     var subdomain = new Aws.Index.Route53Record("subdomain", new()
     ///     {
     ///         Name = "test.example.com",
     ///         Records = ,
     ///         Ttl = 300,
-    ///         Type = Aws.Route53.RecordType.CNAME,
+    ///         Type = "CNAME",
     ///         ZoneId = production.ZoneId,
     ///     });
     /// 

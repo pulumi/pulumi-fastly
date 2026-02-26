@@ -4,12 +4,6 @@
 import * as pulumi from "@pulumi/pulumi";
 import * as utilities from "./utilities";
 
-/**
- * Domain service links are for managing versionless domains for services. The link associates an existing service
- * with an existing domain, but doesn't create or delete either resource.
- *
- * If you are managing your versionless domain with a service link, you may not also use a `resourceFastlyDomainV1` block as well.
- */
 export class DomainV1ServiceLink extends pulumi.CustomResource {
     /**
      * Get an existing DomainV1ServiceLink resource's state with the given name, ID, and optional extra

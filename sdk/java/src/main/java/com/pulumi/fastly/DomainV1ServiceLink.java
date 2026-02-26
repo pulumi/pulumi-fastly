@@ -13,13 +13,6 @@ import com.pulumi.fastly.inputs.DomainV1ServiceLinkState;
 import java.lang.String;
 import javax.annotation.Nullable;
 
-/**
- * Domain service links are for managing versionless domains for services. The link associates an existing service
- * with an existing domain, but doesn&#39;t create or delete either resource.
- * 
- * If you are managing your versionless domain with a service link, you may not also use a `resourceFastlyDomainV1` block as well.
- * 
- */
 @ResourceType(type="fastly:index/domainV1ServiceLink:DomainV1ServiceLink")
 public class DomainV1ServiceLink extends com.pulumi.resources.CustomResource {
     /**

@@ -553,14 +553,14 @@ public class NgwafWorkspaceRule extends com.pulumi.resources.CustomResource {
         return this.enabled;
     }
     /**
-     * List of grouped conditions with nested logic. Each group must define a `groupOperator` and at least one condition.
+     * List of grouped conditions with nested logic. Each group must define a `groupOperator` and at least one condition or multival*condition.
      * 
      */
     @Export(name="groupConditions", refs={List.class,NgwafWorkspaceRuleGroupCondition.class}, tree="[0,1]")
     private Output</* @Nullable */ List<NgwafWorkspaceRuleGroupCondition>> groupConditions;
 
     /**
-     * @return List of grouped conditions with nested logic. Each group must define a `groupOperator` and at least one condition.
+     * @return List of grouped conditions with nested logic. Each group must define a `groupOperator` and at least one condition or multival*condition.
      * 
      */
     public Output<Optional<List<NgwafWorkspaceRuleGroupCondition>>> groupConditions() {

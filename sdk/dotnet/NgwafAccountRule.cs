@@ -115,7 +115,7 @@ namespace Pulumi.Fastly
         public Output<bool> Enabled { get; private set; } = null!;
 
         /// <summary>
-        /// List of grouped conditions with nested logic. Each group must define a `GroupOperator` and at least one condition.
+        /// List of grouped conditions with nested logic. Each group must define a `GroupOperator` and at least one condition or multival*condition.
         /// </summary>
         [Output("groupConditions")]
         public Output<ImmutableArray<Outputs.NgwafAccountRuleGroupCondition>> GroupConditions { get; private set; } = null!;
@@ -242,7 +242,7 @@ namespace Pulumi.Fastly
         private InputList<Inputs.NgwafAccountRuleGroupConditionArgs>? _groupConditions;
 
         /// <summary>
-        /// List of grouped conditions with nested logic. Each group must define a `GroupOperator` and at least one condition.
+        /// List of grouped conditions with nested logic. Each group must define a `GroupOperator` and at least one condition or multival*condition.
         /// </summary>
         public InputList<Inputs.NgwafAccountRuleGroupConditionArgs> GroupConditions
         {
@@ -340,7 +340,7 @@ namespace Pulumi.Fastly
         private InputList<Inputs.NgwafAccountRuleGroupConditionGetArgs>? _groupConditions;
 
         /// <summary>
-        /// List of grouped conditions with nested logic. Each group must define a `GroupOperator` and at least one condition.
+        /// List of grouped conditions with nested logic. Each group must define a `GroupOperator` and at least one condition or multival*condition.
         /// </summary>
         public InputList<Inputs.NgwafAccountRuleGroupConditionGetArgs> GroupConditions
         {

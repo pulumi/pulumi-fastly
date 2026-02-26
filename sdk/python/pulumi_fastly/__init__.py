@@ -12,12 +12,15 @@ from .compute_acl_entries import *
 from .configstore import *
 from .configstore_entries import *
 from .custom_dashboard import *
+from .domain import *
+from .domain_service_link import *
 from .domain_v1 import *
 from .domain_v1_service_link import *
 from .get_compute_acls import *
 from .get_configstores import *
 from .get_datacenters import *
 from .get_dictionaries import *
+from .get_domains import *
 from .get_domains_v1 import *
 from .get_fastly_ip_ranges import *
 from .get_kvstores import *
@@ -42,6 +45,7 @@ from .get_ngwaf_workspaces import *
 from .get_package_hash import *
 from .get_secretstores import *
 from .get_services import *
+from .get_staging_ips import *
 from .get_tls_activation import *
 from .get_tls_activation_ids import *
 from .get_tls_certificate import *
@@ -152,6 +156,22 @@ _utilities.register(
   "fqn": "pulumi_fastly",
   "classes": {
    "fastly:index/customDashboard:CustomDashboard": "CustomDashboard"
+  }
+ },
+ {
+  "pkg": "fastly",
+  "mod": "index/domain",
+  "fqn": "pulumi_fastly",
+  "classes": {
+   "fastly:index/domain:Domain": "Domain"
+  }
+ },
+ {
+  "pkg": "fastly",
+  "mod": "index/domainServiceLink",
+  "fqn": "pulumi_fastly",
+  "classes": {
+   "fastly:index/domainServiceLink:DomainServiceLink": "DomainServiceLink"
   }
  },
  {

@@ -162,6 +162,21 @@ export interface GetDictionariesDictionary {
     writeOnly: boolean;
 }
 
+export interface GetDomainsDomain {
+    /**
+     * The fully-qualified domain name for your domain.
+     */
+    fqdn: string;
+    /**
+     * Domain Identifier (UUID).
+     */
+    id: string;
+    /**
+     * The 'service_id' associated with your domain or 'null' if there is no association.
+     */
+    serviceId: string;
+}
+
 export interface GetDomainsV1Domain {
     /**
      * The fully-qualified domain name for your domain.
@@ -492,6 +507,17 @@ export interface GetServicesDetail {
     version: number;
 }
 
+export interface GetStagingIpsDomain {
+    /**
+     * The domain name.
+     */
+    name: string;
+    /**
+     * The staging IP address for the domain.
+     */
+    stagingIp: string;
+}
+
 export interface GetTlsConfigurationDnsRecord {
     /**
      * Type of DNS record to set, e.g. A, AAAA, or CNAME.
@@ -560,16 +586,54 @@ export interface NgwafAccountRuleGroupCondition {
     /**
      * A list of nested conditions in this group.
      */
-    conditions: outputs.NgwafAccountRuleGroupConditionCondition[];
+    conditions?: outputs.NgwafAccountRuleGroupConditionCondition[];
     /**
      * Logical operator for the group. Accepted values are `any` and `all`.
      */
     groupOperator: string;
+    /**
+     * List of nested multival conditions in this group. Each multival list must define a `field, operator, groupOperator` and at least one condition.
+     */
+    multivalConditions?: outputs.NgwafAccountRuleGroupConditionMultivalCondition[];
 }
 
 export interface NgwafAccountRuleGroupConditionCondition {
     /**
      * Field to inspect (e.g., `ip`, `path`).
+     */
+    field: string;
+    /**
+     * Operator to apply (e.g., `equals`, `contains`).
+     */
+    operator: string;
+    /**
+     * The value to test the field against.
+     */
+    value: string;
+}
+
+export interface NgwafAccountRuleGroupConditionMultivalCondition {
+    /**
+     * A list of nested conditions in this multival.
+     */
+    conditions: outputs.NgwafAccountRuleGroupConditionMultivalConditionCondition[];
+    /**
+     * Enums for multival condition field. Accepted values are `postParameter`, `queryParameter`, `requestCookie`, `requestHeader`, `responseHeader`, and `signal`.
+     */
+    field: string;
+    /**
+     * Logical operator for the multival condition. Accepted values are `any` and `all`.
+     */
+    groupOperator: string;
+    /**
+     * Indicates whether the supplied conditions will check for existence or non-existence of matching field values. Accepted values are `exists` and `doesNotExist`.
+     */
+    operator: string;
+}
+
+export interface NgwafAccountRuleGroupConditionMultivalConditionCondition {
+    /**
+     * Field to inspect (e.g., `name`, `value`, `signalId`).
      */
     field: string;
     /**
@@ -681,16 +745,54 @@ export interface NgwafWorkspaceRuleGroupCondition {
     /**
      * A list of nested conditions in this group.
      */
-    conditions: outputs.NgwafWorkspaceRuleGroupConditionCondition[];
+    conditions?: outputs.NgwafWorkspaceRuleGroupConditionCondition[];
     /**
      * Logical operator for the group. Accepted values are `any` and `all`.
      */
     groupOperator: string;
+    /**
+     * List of nested multival conditions in this group. Each multival list must define a `field, operator, groupOperator` and at least one condition.
+     */
+    multivalConditions?: outputs.NgwafWorkspaceRuleGroupConditionMultivalCondition[];
 }
 
 export interface NgwafWorkspaceRuleGroupConditionCondition {
     /**
      * Field to inspect (e.g., `ip`, `path`).
+     */
+    field: string;
+    /**
+     * Operator to apply (e.g., `equals`, `contains`).
+     */
+    operator: string;
+    /**
+     * The value to test the field against.
+     */
+    value: string;
+}
+
+export interface NgwafWorkspaceRuleGroupConditionMultivalCondition {
+    /**
+     * A list of nested conditions in this multival.
+     */
+    conditions: outputs.NgwafWorkspaceRuleGroupConditionMultivalConditionCondition[];
+    /**
+     * Enums for multival condition field. Accepted values are `postParameter`, `queryParameter`, `requestCookie`, `requestHeader`, `responseHeader`, and `signal`.
+     */
+    field: string;
+    /**
+     * Logical operator for the multival condition. Accepted values are `any` and `all`.
+     */
+    groupOperator: string;
+    /**
+     * Indicates whether the supplied conditions will check for existence or non-existence of matching field values. Accepted values are `exists` and `doesNotExist`.
+     */
+    operator: string;
+}
+
+export interface NgwafWorkspaceRuleGroupConditionMultivalConditionCondition {
+    /**
+     * Field to inspect (e.g., `name`, `value`, `signalId`).
      */
     field: string;
     /**
@@ -2165,6 +2267,10 @@ export interface ServiceComputeProductEnablement {
      * DDoS Protection product
      */
     ddosProtection?: outputs.ServiceComputeProductEnablementDdosProtection;
+    /**
+     * Enable Domain Inspector support
+     */
+    domainInspector?: boolean;
     /**
      * Enable Fanout support
      */

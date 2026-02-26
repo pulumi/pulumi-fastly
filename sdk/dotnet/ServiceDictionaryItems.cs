@@ -12,8 +12,6 @@ namespace Pulumi.Fastly
     /// <summary>
     /// Defines a map of Fastly dictionary items that can be used to populate a service dictionary.  This resource will populate a dictionary with the items and will track their state.
     /// 
-    /// &gt; **Warning:** This provider will take precedence over any changes you make in the UI or API. Such changes are likely to be reversed if you run the provider again.
-    /// 
     /// &gt; **Note:** By default the Terraform provider allows you to externally manage the items via API or UI.
     /// If you wish to apply your changes in the HCL, then you should explicitly set the `ManageItems` attribute. An example of this configuration is provided below.
     /// 
@@ -23,7 +21,9 @@ namespace Pulumi.Fastly
     /// 
     /// ## Example Usage
     /// 
-    /// ### Basic usage:
+    /// ### Terraform &gt;= 0.12.6)
+    /// 
+    /// Basic usage:
     /// 
     /// ```csharp
     /// using System.Collections.Generic;
@@ -82,7 +82,7 @@ namespace Pulumi.Fastly
     /// });
     /// ```
     /// 
-    /// ### Complex object usage:
+    /// Complex object usage:
     /// 
     /// ```csharp
     /// using System.Collections.Generic;
@@ -151,7 +151,7 @@ namespace Pulumi.Fastly
     /// }
     /// ```
     /// 
-    /// ### Expression and functions usage:
+    /// Expression and functions usage:
     /// 
     /// ```csharp
     /// using System.Collections.Generic;
@@ -217,7 +217,16 @@ namespace Pulumi.Fastly
     ///                 var division = item.Value;
     ///                 return division;
     ///             }, item =&gt; {
-    ///                 return _arg0_.Result;
+    ///                 var division = item.Value;
+    ///                 return Std.Index.Format.Invoke(new()
+    ///                 {
+    ///                     Input = "%s.%s",
+    ///                     Args = new[]
+    ///                     {
+    ///                         division,
+    ///                         hostBase,
+    ///                     },
+    ///                 }).Result;
     ///             }),
     ///         }));
     ///     }

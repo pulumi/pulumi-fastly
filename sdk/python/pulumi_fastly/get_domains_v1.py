@@ -77,21 +77,7 @@ class AwaitableGetDomainsV1Result(GetDomainsV1Result):
 def get_domains_v1(total: Optional[_builtins.int] = None,
                    opts: Optional[pulumi.InvokeOptions] = None) -> AwaitableGetDomainsV1Result:
     """
-    Use this data source to get information about versionless domains.
-
-    ## Example Usage
-
-    ```python
-    import pulumi
-    import pulumi_fastly as fastly
-
-    example = fastly.get_domains_v1()
-    pulumi.export("allDomains", example.domains)
-    pulumi.export("totalDomains", example.total)
-    ```
-
-    [1]: https://www.fastly.com/documentation/reference/api/domain-management/domains/
-
+    Use this data source to access information about an existing resource.
 
     :param _builtins.int total: The total number of domains returned.
     """
@@ -107,21 +93,7 @@ def get_domains_v1(total: Optional[_builtins.int] = None,
 def get_domains_v1_output(total: Optional[pulumi.Input[Optional[_builtins.int]]] = None,
                           opts: Optional[Union[pulumi.InvokeOptions, pulumi.InvokeOutputOptions]] = None) -> pulumi.Output[GetDomainsV1Result]:
     """
-    Use this data source to get information about versionless domains.
-
-    ## Example Usage
-
-    ```python
-    import pulumi
-    import pulumi_fastly as fastly
-
-    example = fastly.get_domains_v1()
-    pulumi.export("allDomains", example.domains)
-    pulumi.export("totalDomains", example.total)
-    ```
-
-    [1]: https://www.fastly.com/documentation/reference/api/domain-management/domains/
-
+    Use this data source to access information about an existing resource.
 
     :param _builtins.int total: The total number of domains returned.
     """

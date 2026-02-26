@@ -12,7 +12,7 @@ namespace Pulumi.Fastly.Inputs
 
     public sealed class NgwafAccountRuleGroupConditionArgs : global::Pulumi.ResourceArgs
     {
-        [Input("conditions", required: true)]
+        [Input("conditions")]
         private InputList<Inputs.NgwafAccountRuleGroupConditionConditionArgs>? _conditions;
 
         /// <summary>
@@ -29,6 +29,18 @@ namespace Pulumi.Fastly.Inputs
         /// </summary>
         [Input("groupOperator", required: true)]
         public Input<string> GroupOperator { get; set; } = null!;
+
+        [Input("multivalConditions")]
+        private InputList<Inputs.NgwafAccountRuleGroupConditionMultivalConditionArgs>? _multivalConditions;
+
+        /// <summary>
+        /// List of nested multival conditions in this group. Each multival list must define a `field, operator, GroupOperator` and at least one condition.
+        /// </summary>
+        public InputList<Inputs.NgwafAccountRuleGroupConditionMultivalConditionArgs> MultivalConditions
+        {
+            get => _multivalConditions ?? (_multivalConditions = new InputList<Inputs.NgwafAccountRuleGroupConditionMultivalConditionArgs>());
+            set => _multivalConditions = value;
+        }
 
         public NgwafAccountRuleGroupConditionArgs()
         {
