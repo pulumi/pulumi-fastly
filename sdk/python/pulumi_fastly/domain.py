@@ -24,6 +24,7 @@ class DomainArgs:
                  service_id: Optional[pulumi.Input[_builtins.str]] = None):
         """
         The set of arguments for constructing a Domain resource.
+
         :param pulumi.Input[_builtins.str] fqdn: The fully-qualified domain name for your domain (e.g. `www.example.com`, no trailing dot). Can be created, but not updated.
         :param pulumi.Input[_builtins.str] description: The description for your domain.
         :param pulumi.Input[_builtins.str] service_id: The service_id associated with your domain or null if there is no association.
@@ -80,6 +81,7 @@ class _DomainState:
                  service_id: Optional[pulumi.Input[_builtins.str]] = None):
         """
         Input properties used for looking up and filtering Domain resources.
+
         :param pulumi.Input[_builtins.str] description: The description for your domain.
         :param pulumi.Input[_builtins.str] domain_id: The Domain Identifier (UUID).
         :param pulumi.Input[_builtins.str] fqdn: The fully-qualified domain name for your domain (e.g. `www.example.com`, no trailing dot). Can be created, but not updated.
@@ -178,6 +180,7 @@ class Domain(pulumi.CustomResource):
         $ pulumi import fastly:index/domain:Domain example <domain_id>
         ```
 
+
         :param str resource_name: The name of the resource.
         :param pulumi.ResourceOptions opts: Options for the resource.
         :param pulumi.Input[_builtins.str] description: The description for your domain.
@@ -214,6 +217,7 @@ class Domain(pulumi.CustomResource):
         ```sh
         $ pulumi import fastly:index/domain:Domain example <domain_id>
         ```
+
 
         :param str resource_name: The name of the resource.
         :param DomainArgs args: The arguments to use to populate this resource's properties.

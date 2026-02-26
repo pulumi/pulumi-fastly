@@ -30,6 +30,7 @@ class NgwafThresholdsArgs:
                  name: Optional[pulumi.Input[_builtins.str]] = None):
         """
         The set of arguments for constructing a NgwafThresholds resource.
+
         :param pulumi.Input[_builtins.str] action: Action to take when threshold is exceeded.
         :param pulumi.Input[_builtins.bool] dont_notify: Whether to silence notifications when action is taken.
         :param pulumi.Input[_builtins.bool] enabled: Whether this threshold is active.
@@ -175,6 +176,7 @@ class _NgwafThresholdsState:
                  workspace_id: Optional[pulumi.Input[_builtins.str]] = None):
         """
         Input properties used for looking up and filtering NgwafThresholds resources.
+
         :param pulumi.Input[_builtins.str] action: Action to take when threshold is exceeded.
         :param pulumi.Input[_builtins.bool] dont_notify: Whether to silence notifications when action is taken.
         :param pulumi.Input[_builtins.int] duration: Duration the action is in place, in seconds. Minimum 1 and maximum 31,556,900.
@@ -360,6 +362,7 @@ class NgwafThresholds(pulumi.CustomResource):
         $ pulumi import fastly:index/ngwafThresholds:NgwafThresholds example <workspace_id>/<threshold_id>
         ```
 
+
         :param str resource_name: The name of the resource.
         :param pulumi.ResourceOptions opts: Options for the resource.
         :param pulumi.Input[_builtins.str] action: Action to take when threshold is exceeded.
@@ -408,6 +411,7 @@ class NgwafThresholds(pulumi.CustomResource):
         ```sh
         $ pulumi import fastly:index/ngwafThresholds:NgwafThresholds example <workspace_id>/<threshold_id>
         ```
+
 
         :param str resource_name: The name of the resource.
         :param NgwafThresholdsArgs args: The arguments to use to populate this resource's properties.

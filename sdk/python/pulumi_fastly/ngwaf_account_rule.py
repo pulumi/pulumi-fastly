@@ -33,6 +33,7 @@ class NgwafAccountRuleArgs:
                  request_logging: Optional[pulumi.Input[_builtins.str]] = None):
         """
         The set of arguments for constructing a NgwafAccountRule resource.
+
         :param pulumi.Input[Sequence[pulumi.Input['NgwafAccountRuleActionArgs']]] actions: List of actions to perform when the rule matches.
         :param pulumi.Input[Sequence[pulumi.Input[_builtins.str]]] applies_tos: The list of workspace IDs this signal applies to, or the wildcard `*` if it applies to all workspaces.
         :param pulumi.Input[_builtins.str] description: The description of the rule.
@@ -196,6 +197,7 @@ class _NgwafAccountRuleState:
                  type: Optional[pulumi.Input[_builtins.str]] = None):
         """
         Input properties used for looking up and filtering NgwafAccountRule resources.
+
         :param pulumi.Input[Sequence[pulumi.Input['NgwafAccountRuleActionArgs']]] actions: List of actions to perform when the rule matches.
         :param pulumi.Input[Sequence[pulumi.Input[_builtins.str]]] applies_tos: The list of workspace IDs this signal applies to, or the wildcard `*` if it applies to all workspaces.
         :param pulumi.Input[Sequence[pulumi.Input['NgwafAccountRuleConditionArgs']]] conditions: Flat list of individual conditions. Each must include `field`, `operator`, and `value`.
@@ -411,6 +413,7 @@ class NgwafAccountRule(pulumi.CustomResource):
         $ pulumi import fastly:index/ngwafAccountRule:NgwafAccountRule demo <ruleID>
         ```
 
+
         :param str resource_name: The name of the resource.
         :param pulumi.ResourceOptions opts: Options for the resource.
         :param pulumi.Input[Sequence[pulumi.Input[Union['NgwafAccountRuleActionArgs', 'NgwafAccountRuleActionArgsDict']]]] actions: List of actions to perform when the rule matches.
@@ -474,6 +477,7 @@ class NgwafAccountRule(pulumi.CustomResource):
         ```sh
         $ pulumi import fastly:index/ngwafAccountRule:NgwafAccountRule demo <ruleID>
         ```
+
 
         :param str resource_name: The name of the resource.
         :param NgwafAccountRuleArgs args: The arguments to use to populate this resource's properties.

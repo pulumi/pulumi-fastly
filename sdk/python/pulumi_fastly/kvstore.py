@@ -24,6 +24,7 @@ class KvstoreArgs:
                  name: Optional[pulumi.Input[_builtins.str]] = None):
         """
         The set of arguments for constructing a Kvstore resource.
+
         :param pulumi.Input[_builtins.bool] force_destroy: Allow the KV Store to be deleted, even if it contains entries. Defaults to false.
         :param pulumi.Input[_builtins.str] location: The regional location of the KV Store. Valid values are `US`, `EU`, `ASIA`, and `AUS`.
         :param pulumi.Input[_builtins.str] name: A unique name to identify the KV Store. It is important to note that changing this attribute will delete and recreate the KV Store, and discard the current entries. You MUST first delete the associated resource_link block from your service before modifying this field.
@@ -80,6 +81,7 @@ class _KvstoreState:
                  name: Optional[pulumi.Input[_builtins.str]] = None):
         """
         Input properties used for looking up and filtering Kvstore resources.
+
         :param pulumi.Input[_builtins.bool] force_destroy: Allow the KV Store to be deleted, even if it contains entries. Defaults to false.
         :param pulumi.Input[_builtins.str] location: The regional location of the KV Store. Valid values are `US`, `EU`, `ASIA`, and `AUS`.
         :param pulumi.Input[_builtins.str] name: A unique name to identify the KV Store. It is important to note that changing this attribute will delete and recreate the KV Store, and discard the current entries. You MUST first delete the associated resource_link block from your service before modifying this field.
@@ -180,6 +182,7 @@ class Kvstore(pulumi.CustomResource):
         $ pulumi import fastly:index/kvstore:Kvstore example xxxxxxxxxxxxxxxxxxxx
         ```
 
+
         :param str resource_name: The name of the resource.
         :param pulumi.ResourceOptions opts: Options for the resource.
         :param pulumi.Input[_builtins.bool] force_destroy: Allow the KV Store to be deleted, even if it contains entries. Defaults to false.
@@ -233,6 +236,7 @@ class Kvstore(pulumi.CustomResource):
         ```sh
         $ pulumi import fastly:index/kvstore:Kvstore example xxxxxxxxxxxxxxxxxxxx
         ```
+
 
         :param str resource_name: The name of the resource.
         :param KvstoreArgs args: The arguments to use to populate this resource's properties.

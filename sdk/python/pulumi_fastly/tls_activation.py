@@ -25,6 +25,7 @@ class TlsActivationArgs:
                  mutual_authentication_id: Optional[pulumi.Input[_builtins.str]] = None):
         """
         The set of arguments for constructing a TlsActivation resource.
+
         :param pulumi.Input[_builtins.str] certificate_id: ID of certificate to use. Must have the `domain` specified in the certificate's Subject Alternative Names.
         :param pulumi.Input[_builtins.str] domain: Domain to enable TLS on. Must be assigned to an existing Fastly Service.
         :param pulumi.Input[_builtins.str] configuration_id: ID of TLS configuration to be used to terminate TLS traffic, or use the default one if missing.
@@ -96,6 +97,7 @@ class _TlsActivationState:
                  mutual_authentication_id: Optional[pulumi.Input[_builtins.str]] = None):
         """
         Input properties used for looking up and filtering TlsActivation resources.
+
         :param pulumi.Input[_builtins.str] certificate_id: ID of certificate to use. Must have the `domain` specified in the certificate's Subject Alternative Names.
         :param pulumi.Input[_builtins.str] configuration_id: ID of TLS configuration to be used to terminate TLS traffic, or use the default one if missing.
         :param pulumi.Input[_builtins.str] created_at: Time-stamp (GMT) when TLS was enabled.
@@ -231,6 +233,7 @@ class TlsActivation(pulumi.CustomResource):
         $ pulumi import fastly:index/tlsActivation:TlsActivation demo xxxxxxxx
         ```
 
+
         :param str resource_name: The name of the resource.
         :param pulumi.ResourceOptions opts: Options for the resource.
         :param pulumi.Input[_builtins.str] certificate_id: ID of certificate to use. Must have the `domain` specified in the certificate's Subject Alternative Names.
@@ -289,6 +292,7 @@ class TlsActivation(pulumi.CustomResource):
         ```sh
         $ pulumi import fastly:index/tlsActivation:TlsActivation demo xxxxxxxx
         ```
+
 
         :param str resource_name: The name of the resource.
         :param TlsActivationArgs args: The arguments to use to populate this resource's properties.

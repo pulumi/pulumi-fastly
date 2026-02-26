@@ -25,6 +25,7 @@ class TlsPlatformCertificateArgs:
                  allow_untrusted_root: Optional[pulumi.Input[_builtins.bool]] = None):
         """
         The set of arguments for constructing a TlsPlatformCertificate resource.
+
         :param pulumi.Input[_builtins.str] certificate_body: PEM-formatted certificate.
         :param pulumi.Input[_builtins.str] configuration_id: ID of TLS configuration to be used to terminate TLS traffic.
         :param pulumi.Input[_builtins.str] intermediates_blob: PEM-formatted certificate chain from the `certificate_body` to its root.
@@ -100,6 +101,7 @@ class _TlsPlatformCertificateState:
                  updated_at: Optional[pulumi.Input[_builtins.str]] = None):
         """
         Input properties used for looking up and filtering TlsPlatformCertificate resources.
+
         :param pulumi.Input[_builtins.bool] allow_untrusted_root: Disable checking whether the root of the certificate chain is trusted. Useful for development purposes to allow use of self-signed CAs. Defaults to false. Write-only on create.
         :param pulumi.Input[_builtins.str] certificate_body: PEM-formatted certificate.
         :param pulumi.Input[_builtins.str] configuration_id: ID of TLS configuration to be used to terminate TLS traffic.
@@ -333,6 +335,7 @@ class TlsPlatformCertificate(pulumi.CustomResource):
         $ pulumi import fastly:index/tlsPlatformCertificate:TlsPlatformCertificate demo xxxxxxxxxxx
         ```
 
+
         :param str resource_name: The name of the resource.
         :param pulumi.ResourceOptions opts: Options for the resource.
         :param pulumi.Input[_builtins.bool] allow_untrusted_root: Disable checking whether the root of the certificate chain is trusted. Useful for development purposes to allow use of self-signed CAs. Defaults to false. Write-only on create.
@@ -414,6 +417,7 @@ class TlsPlatformCertificate(pulumi.CustomResource):
         ```sh
         $ pulumi import fastly:index/tlsPlatformCertificate:TlsPlatformCertificate demo xxxxxxxxxxx
         ```
+
 
         :param str resource_name: The name of the resource.
         :param TlsPlatformCertificateArgs args: The arguments to use to populate this resource's properties.

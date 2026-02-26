@@ -24,6 +24,7 @@ class NgwafAlertPagerdutyIntegrationArgs:
                  description: Optional[pulumi.Input[_builtins.str]] = None):
         """
         The set of arguments for constructing a NgwafAlertPagerdutyIntegration resource.
+
         :param pulumi.Input[_builtins.str] key: The PagerDuty integration key.
         :param pulumi.Input[_builtins.str] workspace_id: The ID of the workspace.
         :param pulumi.Input[_builtins.str] description: The description of the alert.
@@ -78,6 +79,7 @@ class _NgwafAlertPagerdutyIntegrationState:
                  workspace_id: Optional[pulumi.Input[_builtins.str]] = None):
         """
         Input properties used for looking up and filtering NgwafAlertPagerdutyIntegration resources.
+
         :param pulumi.Input[_builtins.str] description: The description of the alert.
         :param pulumi.Input[_builtins.str] key: The PagerDuty integration key.
         :param pulumi.Input[_builtins.str] workspace_id: The ID of the workspace.
@@ -161,6 +163,7 @@ class NgwafAlertPagerdutyIntegration(pulumi.CustomResource):
         $ pulumi import fastly:index/ngwafAlertPagerdutyIntegration:NgwafAlertPagerdutyIntegration example <workspace_id>/<alert_id>
         ```
 
+
         :param str resource_name: The name of the resource.
         :param pulumi.ResourceOptions opts: Options for the resource.
         :param pulumi.Input[_builtins.str] description: The description of the alert.
@@ -197,6 +200,7 @@ class NgwafAlertPagerdutyIntegration(pulumi.CustomResource):
         ```sh
         $ pulumi import fastly:index/ngwafAlertPagerdutyIntegration:NgwafAlertPagerdutyIntegration example <workspace_id>/<alert_id>
         ```
+
 
         :param str resource_name: The name of the resource.
         :param NgwafAlertPagerdutyIntegrationArgs args: The arguments to use to populate this resource's properties.

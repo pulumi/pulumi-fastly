@@ -23,6 +23,7 @@ class ConfigstoreArgs:
                  name: Optional[pulumi.Input[_builtins.str]] = None):
         """
         The set of arguments for constructing a Configstore resource.
+
         :param pulumi.Input[_builtins.bool] force_destroy: Allow the Config Store to be deleted, even if it contains entries. Defaults to false.
         :param pulumi.Input[_builtins.str] name: A unique name to identify the Config Store. It is important to note that changing this attribute will delete and recreate the Config Store, and discard the current entries. You MUST first delete the associated resource_link block from your service before modifying this field.
         """
@@ -63,6 +64,7 @@ class _ConfigstoreState:
                  name: Optional[pulumi.Input[_builtins.str]] = None):
         """
         Input properties used for looking up and filtering Configstore resources.
+
         :param pulumi.Input[_builtins.bool] force_destroy: Allow the Config Store to be deleted, even if it contains entries. Defaults to false.
         :param pulumi.Input[_builtins.str] name: A unique name to identify the Config Store. It is important to note that changing this attribute will delete and recreate the Config Store, and discard the current entries. You MUST first delete the associated resource_link block from your service before modifying this field.
         """
@@ -147,6 +149,7 @@ class Configstore(pulumi.CustomResource):
         $ pulumi import fastly:index/configstore:Configstore example xxxxxxxxxxxxxxxxxxxx
         ```
 
+
         :param str resource_name: The name of the resource.
         :param pulumi.ResourceOptions opts: Options for the resource.
         :param pulumi.Input[_builtins.bool] force_destroy: Allow the Config Store to be deleted, even if it contains entries. Defaults to false.
@@ -199,6 +202,7 @@ class Configstore(pulumi.CustomResource):
         ```sh
         $ pulumi import fastly:index/configstore:Configstore example xxxxxxxxxxxxxxxxxxxx
         ```
+
 
         :param str resource_name: The name of the resource.
         :param ConfigstoreArgs args: The arguments to use to populate this resource's properties.

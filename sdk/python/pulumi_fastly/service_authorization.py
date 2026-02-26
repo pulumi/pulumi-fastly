@@ -24,6 +24,7 @@ class ServiceAuthorizationArgs:
                  user_id: pulumi.Input[_builtins.str]):
         """
         The set of arguments for constructing a ServiceAuthorization resource.
+
         :param pulumi.Input[_builtins.str] permission: The permissions to grant the user. Can be `full`, `read_only`, `purge_select` or `purge_all`.
         :param pulumi.Input[_builtins.str] service_id: The ID of the service to grant permissions for.
         :param pulumi.Input[_builtins.str] user_id: The ID of the user which will receive the granted permissions.
@@ -77,6 +78,7 @@ class _ServiceAuthorizationState:
                  user_id: Optional[pulumi.Input[_builtins.str]] = None):
         """
         Input properties used for looking up and filtering ServiceAuthorization resources.
+
         :param pulumi.Input[_builtins.str] permission: The permissions to grant the user. Can be `full`, `read_only`, `purge_select` or `purge_all`.
         :param pulumi.Input[_builtins.str] service_id: The ID of the service to grant permissions for.
         :param pulumi.Input[_builtins.str] user_id: The ID of the user which will receive the granted permissions.
@@ -171,6 +173,7 @@ class ServiceAuthorization(pulumi.CustomResource):
         $ pulumi import fastly:index/serviceAuthorization:ServiceAuthorization demo xxxxxxxxxxxxxxxxxxxx
         ```
 
+
         :param str resource_name: The name of the resource.
         :param pulumi.ResourceOptions opts: Options for the resource.
         :param pulumi.Input[_builtins.str] permission: The permissions to grant the user. Can be `full`, `read_only`, `purge_select` or `purge_all`.
@@ -218,6 +221,7 @@ class ServiceAuthorization(pulumi.CustomResource):
         ```sh
         $ pulumi import fastly:index/serviceAuthorization:ServiceAuthorization demo xxxxxxxxxxxxxxxxxxxx
         ```
+
 
         :param str resource_name: The name of the resource.
         :param ServiceAuthorizationArgs args: The arguments to use to populate this resource's properties.

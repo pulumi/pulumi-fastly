@@ -27,6 +27,7 @@ class ServiceACLEntriesArgs:
                  manage_entries: Optional[pulumi.Input[_builtins.bool]] = None):
         """
         The set of arguments for constructing a ServiceACLEntries resource.
+
         :param pulumi.Input[_builtins.str] acl_id: The ID of the ACL that the items belong to
         :param pulumi.Input[_builtins.str] service_id: The ID of the Service that the ACL belongs to
         :param pulumi.Input[Sequence[pulumi.Input['ServiceACLEntriesEntryArgs']]] entries: ACL Entries
@@ -97,6 +98,7 @@ class _ServiceACLEntriesState:
                  service_id: Optional[pulumi.Input[_builtins.str]] = None):
         """
         Input properties used for looking up and filtering ServiceACLEntries resources.
+
         :param pulumi.Input[_builtins.str] acl_id: The ID of the ACL that the items belong to
         :param pulumi.Input[Sequence[pulumi.Input['ServiceACLEntriesEntryArgs']]] entries: ACL Entries
         :param pulumi.Input[_builtins.bool] manage_entries: Whether to reapply changes if the state of the entries drifts, i.e. if entries are managed externally
@@ -317,6 +319,7 @@ class ServiceACLEntries(pulumi.CustomResource):
         $ terraform state rm fastly_service_acl_entries.entries
         ```
 
+
         :param str resource_name: The name of the resource.
         :param pulumi.ResourceOptions opts: Options for the resource.
         :param pulumi.Input[_builtins.str] acl_id: The ID of the ACL that the items belong to
@@ -475,6 +478,7 @@ class ServiceACLEntries(pulumi.CustomResource):
         ```sh
         $ terraform state rm fastly_service_acl_entries.entries
         ```
+
 
         :param str resource_name: The name of the resource.
         :param ServiceACLEntriesArgs args: The arguments to use to populate this resource's properties.

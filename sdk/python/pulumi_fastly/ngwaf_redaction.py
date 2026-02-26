@@ -24,6 +24,7 @@ class NgwafRedactionArgs:
                  workspace_id: pulumi.Input[_builtins.str]):
         """
         The set of arguments for constructing a NgwafRedaction resource.
+
         :param pulumi.Input[_builtins.str] field: The name of the field that should be redacted.
         :param pulumi.Input[_builtins.str] type: The type of field that is being redacted. Accepted values are `request_parameter`, `request_header`, and `response_header`.
         :param pulumi.Input[_builtins.str] workspace_id: The ID of the workspace.
@@ -77,6 +78,7 @@ class _NgwafRedactionState:
                  workspace_id: Optional[pulumi.Input[_builtins.str]] = None):
         """
         Input properties used for looking up and filtering NgwafRedaction resources.
+
         :param pulumi.Input[_builtins.str] field: The name of the field that should be redacted.
         :param pulumi.Input[_builtins.str] type: The type of field that is being redacted. Accepted values are `request_parameter`, `request_header`, and `response_header`.
         :param pulumi.Input[_builtins.str] workspace_id: The ID of the workspace.
@@ -160,6 +162,7 @@ class NgwafRedaction(pulumi.CustomResource):
         $ pulumi import fastly:index/ngwafRedaction:NgwafRedaction example <workspace_id>/<redaction_id>
         ```
 
+
         :param str resource_name: The name of the resource.
         :param pulumi.ResourceOptions opts: Options for the resource.
         :param pulumi.Input[_builtins.str] field: The name of the field that should be redacted.
@@ -196,6 +199,7 @@ class NgwafRedaction(pulumi.CustomResource):
         ```sh
         $ pulumi import fastly:index/ngwafRedaction:NgwafRedaction example <workspace_id>/<redaction_id>
         ```
+
 
         :param str resource_name: The name of the resource.
         :param NgwafRedactionArgs args: The arguments to use to populate this resource's properties.

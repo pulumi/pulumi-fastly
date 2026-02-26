@@ -25,6 +25,7 @@ class ServiceDictionaryItemsArgs:
                  manage_items: Optional[pulumi.Input[_builtins.bool]] = None):
         """
         The set of arguments for constructing a ServiceDictionaryItems resource.
+
         :param pulumi.Input[_builtins.str] dictionary_id: The ID of the dictionary that the items belong to
         :param pulumi.Input[_builtins.str] service_id: The ID of the service that the dictionary belongs to
         :param pulumi.Input[Mapping[str, pulumi.Input[_builtins.str]]] items: A map representing an entry in the dictionary, (key/value)
@@ -95,6 +96,7 @@ class _ServiceDictionaryItemsState:
                  service_id: Optional[pulumi.Input[_builtins.str]] = None):
         """
         Input properties used for looking up and filtering ServiceDictionaryItems resources.
+
         :param pulumi.Input[_builtins.str] dictionary_id: The ID of the dictionary that the items belong to
         :param pulumi.Input[Mapping[str, pulumi.Input[_builtins.str]]] items: A map representing an entry in the dictionary, (key/value)
         :param pulumi.Input[_builtins.bool] manage_items: Whether to reapply changes if the state of the items drifts, i.e. if items are managed externally
@@ -400,6 +402,7 @@ class ServiceDictionaryItems(pulumi.CustomResource):
         $ terraform state rm fastly_service_dictionary_items.items
         ```
 
+
         :param str resource_name: The name of the resource.
         :param pulumi.ResourceOptions opts: Options for the resource.
         :param pulumi.Input[_builtins.str] dictionary_id: The ID of the dictionary that the items belong to
@@ -643,6 +646,7 @@ class ServiceDictionaryItems(pulumi.CustomResource):
         ```sh
         $ terraform state rm fastly_service_dictionary_items.items
         ```
+
 
         :param str resource_name: The name of the resource.
         :param ServiceDictionaryItemsArgs args: The arguments to use to populate this resource's properties.

@@ -24,6 +24,7 @@ class ConfigstoreEntriesArgs:
                  manage_entries: Optional[pulumi.Input[_builtins.bool]] = None):
         """
         The set of arguments for constructing a ConfigstoreEntries resource.
+
         :param pulumi.Input[Mapping[str, pulumi.Input[_builtins.str]]] entries: A map representing an entry in the Config Store, (key/value)
         :param pulumi.Input[_builtins.str] store_id: An alphanumeric string identifying the Config Store.
         :param pulumi.Input[_builtins.bool] manage_entries: Have Terraform manage the entries (default: false). If set to `true` Terraform will remove any entries that were added externally from the config seeded values.
@@ -78,6 +79,7 @@ class _ConfigstoreEntriesState:
                  store_id: Optional[pulumi.Input[_builtins.str]] = None):
         """
         Input properties used for looking up and filtering ConfigstoreEntries resources.
+
         :param pulumi.Input[Mapping[str, pulumi.Input[_builtins.str]]] entries: A map representing an entry in the Config Store, (key/value)
         :param pulumi.Input[_builtins.bool] manage_entries: Have Terraform manage the entries (default: false). If set to `true` Terraform will remove any entries that were added externally from the config seeded values.
         :param pulumi.Input[_builtins.str] store_id: An alphanumeric string identifying the Config Store.
@@ -222,6 +224,7 @@ class ConfigstoreEntries(pulumi.CustomResource):
         $ pulumi import fastly:index/configstoreEntries:ConfigstoreEntries example xxxxxxxxxxxxxxxxxxxx/entries
         ```
 
+
         :param str resource_name: The name of the resource.
         :param pulumi.ResourceOptions opts: Options for the resource.
         :param pulumi.Input[Mapping[str, pulumi.Input[_builtins.str]]] entries: A map representing an entry in the Config Store, (key/value)
@@ -319,6 +322,7 @@ class ConfigstoreEntries(pulumi.CustomResource):
         ```sh
         $ pulumi import fastly:index/configstoreEntries:ConfigstoreEntries example xxxxxxxxxxxxxxxxxxxx/entries
         ```
+
 
         :param str resource_name: The name of the resource.
         :param ConfigstoreEntriesArgs args: The arguments to use to populate this resource's properties.

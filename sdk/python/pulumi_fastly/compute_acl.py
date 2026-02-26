@@ -22,6 +22,7 @@ class ComputeAclArgs:
                  name: Optional[pulumi.Input[_builtins.str]] = None):
         """
         The set of arguments for constructing a ComputeAcl resource.
+
         :param pulumi.Input[_builtins.str] name: A unique name to identify the Compute ACL. It is important to note that changing this attribute will delete and recreate the Compute ACL, and discard the current entries. You MUST first delete the associated resource_link block from your service before modifying this field.
         """
         if name is not None:
@@ -46,6 +47,7 @@ class _ComputeAclState:
                  name: Optional[pulumi.Input[_builtins.str]] = None):
         """
         Input properties used for looking up and filtering ComputeAcl resources.
+
         :param pulumi.Input[_builtins.str] name: A unique name to identify the Compute ACL. It is important to note that changing this attribute will delete and recreate the Compute ACL, and discard the current entries. You MUST first delete the associated resource_link block from your service before modifying this field.
         """
         if name is not None:
@@ -113,6 +115,7 @@ class ComputeAcl(pulumi.CustomResource):
         $ pulumi import fastly:index/computeAcl:ComputeAcl example <compute_acl_id>
         ```
 
+
         :param str resource_name: The name of the resource.
         :param pulumi.ResourceOptions opts: Options for the resource.
         :param pulumi.Input[_builtins.str] name: A unique name to identify the Compute ACL. It is important to note that changing this attribute will delete and recreate the Compute ACL, and discard the current entries. You MUST first delete the associated resource_link block from your service before modifying this field.
@@ -163,6 +166,7 @@ class ComputeAcl(pulumi.CustomResource):
         ```sh
         $ pulumi import fastly:index/computeAcl:ComputeAcl example <compute_acl_id>
         ```
+
 
         :param str resource_name: The name of the resource.
         :param ComputeAclArgs args: The arguments to use to populate this resource's properties.

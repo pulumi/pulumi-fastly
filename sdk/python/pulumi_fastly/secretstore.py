@@ -22,6 +22,7 @@ class SecretstoreArgs:
                  name: Optional[pulumi.Input[_builtins.str]] = None):
         """
         The set of arguments for constructing a Secretstore resource.
+
         :param pulumi.Input[_builtins.str] name: A human-readable name for the Secret Store. The value must contain only letters, numbers, dashes (-), underscores (*), or periods (.). It is important to note that changing this attribute will delete and recreate the Secret Store, and discard the current entries. You MUST first delete the associated resource*link block from your service before modifying this field.
         """
         if name is not None:
@@ -46,6 +47,7 @@ class _SecretstoreState:
                  name: Optional[pulumi.Input[_builtins.str]] = None):
         """
         Input properties used for looking up and filtering Secretstore resources.
+
         :param pulumi.Input[_builtins.str] name: A human-readable name for the Secret Store. The value must contain only letters, numbers, dashes (-), underscores (*), or periods (.). It is important to note that changing this attribute will delete and recreate the Secret Store, and discard the current entries. You MUST first delete the associated resource*link block from your service before modifying this field.
         """
         if name is not None:
@@ -118,6 +120,7 @@ class Secretstore(pulumi.CustomResource):
         $ pulumi import fastly:index/secretstore:Secretstore example xxxxxxxxxxxxxxxxxxxx
         ```
 
+
         :param str resource_name: The name of the resource.
         :param pulumi.ResourceOptions opts: Options for the resource.
         :param pulumi.Input[_builtins.str] name: A human-readable name for the Secret Store. The value must contain only letters, numbers, dashes (-), underscores (*), or periods (.). It is important to note that changing this attribute will delete and recreate the Secret Store, and discard the current entries. You MUST first delete the associated resource*link block from your service before modifying this field.
@@ -173,6 +176,7 @@ class Secretstore(pulumi.CustomResource):
         ```sh
         $ pulumi import fastly:index/secretstore:Secretstore example xxxxxxxxxxxxxxxxxxxx
         ```
+
 
         :param str resource_name: The name of the resource.
         :param SecretstoreArgs args: The arguments to use to populate this resource's properties.

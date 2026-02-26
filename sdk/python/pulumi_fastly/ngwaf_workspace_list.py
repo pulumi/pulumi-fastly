@@ -26,6 +26,7 @@ class NgwafWorkspaceListArgs:
                  name: Optional[pulumi.Input[_builtins.str]] = None):
         """
         The set of arguments for constructing a NgwafWorkspaceList resource.
+
         :param pulumi.Input[Sequence[pulumi.Input[_builtins.str]]] entries: The values in the list.
         :param pulumi.Input[_builtins.str] type: The type of list. Accepted values are `string`, `wildcard`, `ip`, `country`, and `signal`.
         :param pulumi.Input[_builtins.str] description: The description of the list.
@@ -107,6 +108,7 @@ class _NgwafWorkspaceListState:
                  workspace_id: Optional[pulumi.Input[_builtins.str]] = None):
         """
         Input properties used for looking up and filtering NgwafWorkspaceList resources.
+
         :param pulumi.Input[_builtins.str] description: The description of the list.
         :param pulumi.Input[Sequence[pulumi.Input[_builtins.str]]] entries: The values in the list.
         :param pulumi.Input[_builtins.str] name: The name of the list.
@@ -241,6 +243,7 @@ class NgwafWorkspaceList(pulumi.CustomResource):
         $ pulumi import fastly:index/ngwafWorkspaceList:NgwafWorkspaceList demo <workspaceID>/<listID>
         ```
 
+
         :param str resource_name: The name of the resource.
         :param pulumi.ResourceOptions opts: Options for the resource.
         :param pulumi.Input[_builtins.str] description: The description of the list.
@@ -301,6 +304,7 @@ class NgwafWorkspaceList(pulumi.CustomResource):
         ```sh
         $ pulumi import fastly:index/ngwafWorkspaceList:NgwafWorkspaceList demo <workspaceID>/<listID>
         ```
+
 
         :param str resource_name: The name of the resource.
         :param NgwafWorkspaceListArgs args: The arguments to use to populate this resource's properties.

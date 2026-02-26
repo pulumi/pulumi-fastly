@@ -31,6 +31,7 @@ class AlertArgs:
                  service_id: Optional[pulumi.Input[_builtins.str]] = None):
         """
         The set of arguments for constructing a Alert resource.
+
         :param pulumi.Input['AlertEvaluationStrategyArgs'] evaluation_strategy: Criteria on how to alert.
         :param pulumi.Input[_builtins.str] metric: The metric name to alert on for a specific source: [domains](https://developer.fastly.com/reference/api/metrics-stats/domain-inspector/historical), [origins](https://developer.fastly.com/reference/api/metrics-stats/origin-inspector/historical), or [stats](https://developer.fastly.com/reference/api/metrics-stats/historical-stats).
         :param pulumi.Input[_builtins.str] source: The source where the metric comes from. One of: `domains`, `origins`, `stats`.
@@ -164,6 +165,7 @@ class _AlertState:
                  source: Optional[pulumi.Input[_builtins.str]] = None):
         """
         Input properties used for looking up and filtering Alert resources.
+
         :param pulumi.Input[_builtins.str] description: Additional text that is included in the alert notification.
         :param pulumi.Input['AlertDimensionsArgs'] dimensions: More filters depending on the source type.
         :param pulumi.Input['AlertEvaluationStrategyArgs'] evaluation_strategy: Criteria on how to alert.
@@ -344,6 +346,7 @@ class Alert(pulumi.CustomResource):
         $ pulumi import fastly:index/alert:Alert example xxxxxxxxxxxxxxxxxxxx
         ```
 
+
         :param str resource_name: The name of the resource.
         :param pulumi.ResourceOptions opts: Options for the resource.
         :param pulumi.Input[_builtins.str] description: Additional text that is included in the alert notification.
@@ -402,6 +405,7 @@ class Alert(pulumi.CustomResource):
         ```sh
         $ pulumi import fastly:index/alert:Alert example xxxxxxxxxxxxxxxxxxxx
         ```
+
 
         :param str resource_name: The name of the resource.
         :param AlertArgs args: The arguments to use to populate this resource's properties.

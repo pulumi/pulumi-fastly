@@ -24,6 +24,7 @@ class UserArgs:
                  role: Optional[pulumi.Input[_builtins.str]] = None):
         """
         The set of arguments for constructing a User resource.
+
         :param pulumi.Input[_builtins.str] login: The email address, which is the login name, of the User
         :param pulumi.Input[_builtins.str] name: The real life name of the user
         :param pulumi.Input[_builtins.str] role: The role of this user. Can be `user` (the default), `billing`, `engineer`, or `superuser`. For detailed information on the abilities granted to each role, see [Fastly's Documentation on User roles](https://docs.fastly.com/en/guides/configuring-user-roles-and-permissions#user-roles-and-what-they-can-do)
@@ -79,6 +80,7 @@ class _UserState:
                  role: Optional[pulumi.Input[_builtins.str]] = None):
         """
         Input properties used for looking up and filtering User resources.
+
         :param pulumi.Input[_builtins.str] login: The email address, which is the login name, of the User
         :param pulumi.Input[_builtins.str] name: The real life name of the user
         :param pulumi.Input[_builtins.str] role: The role of this user. Can be `user` (the default), `billing`, `engineer`, or `superuser`. For detailed information on the abilities granted to each role, see [Fastly's Documentation on User roles](https://docs.fastly.com/en/guides/configuring-user-roles-and-permissions#user-roles-and-what-they-can-do)
@@ -163,6 +165,7 @@ class User(pulumi.CustomResource):
         $ pulumi import fastly:index/user:User demo xxxxxxxxxxxxxxxxxxxx
         ```
 
+
         :param str resource_name: The name of the resource.
         :param pulumi.ResourceOptions opts: Options for the resource.
         :param pulumi.Input[_builtins.str] login: The email address, which is the login name, of the User
@@ -200,6 +203,7 @@ class User(pulumi.CustomResource):
         ```sh
         $ pulumi import fastly:index/user:User demo xxxxxxxxxxxxxxxxxxxx
         ```
+
 
         :param str resource_name: The name of the resource.
         :param UserArgs args: The arguments to use to populate this resource's properties.

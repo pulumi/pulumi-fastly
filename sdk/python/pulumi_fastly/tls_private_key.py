@@ -23,6 +23,7 @@ class TlsPrivateKeyArgs:
                  name: Optional[pulumi.Input[_builtins.str]] = None):
         """
         The set of arguments for constructing a TlsPrivateKey resource.
+
         :param pulumi.Input[_builtins.str] key_pem: Private key in PEM format.
         :param pulumi.Input[_builtins.str] name: Customisable name of the private key.
         """
@@ -67,6 +68,7 @@ class _TlsPrivateKeyState:
                  replace: Optional[pulumi.Input[_builtins.bool]] = None):
         """
         Input properties used for looking up and filtering TlsPrivateKey resources.
+
         :param pulumi.Input[_builtins.str] created_at: Time-stamp (GMT) when the private key was created.
         :param pulumi.Input[_builtins.int] key_length: The key length used to generate the private key.
         :param pulumi.Input[_builtins.str] key_pem: Private key in PEM format.
@@ -212,6 +214,7 @@ class TlsPrivateKey(pulumi.CustomResource):
         $ pulumi import fastly:index/tlsPrivateKey:TlsPrivateKey demo xxxxxxxxxxx
         ```
 
+
         :param str resource_name: The name of the resource.
         :param pulumi.ResourceOptions opts: Options for the resource.
         :param pulumi.Input[_builtins.str] key_pem: Private key in PEM format.
@@ -250,6 +253,7 @@ class TlsPrivateKey(pulumi.CustomResource):
         ```sh
         $ pulumi import fastly:index/tlsPrivateKey:TlsPrivateKey demo xxxxxxxxxxx
         ```
+
 
         :param str resource_name: The name of the resource.
         :param TlsPrivateKeyArgs args: The arguments to use to populate this resource's properties.

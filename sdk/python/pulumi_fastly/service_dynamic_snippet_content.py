@@ -25,6 +25,7 @@ class ServiceDynamicSnippetContentArgs:
                  manage_snippets: Optional[pulumi.Input[_builtins.bool]] = None):
         """
         The set of arguments for constructing a ServiceDynamicSnippetContent resource.
+
         :param pulumi.Input[_builtins.str] content: The VCL code that specifies exactly what the snippet does
         :param pulumi.Input[_builtins.str] service_id: The ID of the service that the dynamic snippet belongs to
         :param pulumi.Input[_builtins.str] snippet_id: The ID of the dynamic snippet that the content belong to
@@ -94,6 +95,7 @@ class _ServiceDynamicSnippetContentState:
                  snippet_id: Optional[pulumi.Input[_builtins.str]] = None):
         """
         Input properties used for looking up and filtering ServiceDynamicSnippetContent resources.
+
         :param pulumi.Input[_builtins.str] content: The VCL code that specifies exactly what the snippet does
         :param pulumi.Input[_builtins.bool] manage_snippets: Whether to reapply changes if the state of the snippets drifts, i.e. if snippets are managed externally
         :param pulumi.Input[_builtins.str] service_id: The ID of the service that the dynamic snippet belongs to
@@ -353,6 +355,7 @@ class ServiceDynamicSnippetContent(pulumi.CustomResource):
         $ terraform state rm fastly_service_dynamic_snippet_content.content
         ```
 
+
         :param str resource_name: The name of the resource.
         :param pulumi.ResourceOptions opts: Options for the resource.
         :param pulumi.Input[_builtins.str] content: The VCL code that specifies exactly what the snippet does
@@ -550,6 +553,7 @@ class ServiceDynamicSnippetContent(pulumi.CustomResource):
         ```sh
         $ terraform state rm fastly_service_dynamic_snippet_content.content
         ```
+
 
         :param str resource_name: The name of the resource.
         :param ServiceDynamicSnippetContentArgs args: The arguments to use to populate this resource's properties.

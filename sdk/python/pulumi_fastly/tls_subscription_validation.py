@@ -22,6 +22,7 @@ class TlsSubscriptionValidationArgs:
                  subscription_id: pulumi.Input[_builtins.str]):
         """
         The set of arguments for constructing a TlsSubscriptionValidation resource.
+
         :param pulumi.Input[_builtins.str] subscription_id: The ID of the TLS Subscription that should be validated.
         """
         pulumi.set(__self__, "subscription_id", subscription_id)
@@ -45,6 +46,7 @@ class _TlsSubscriptionValidationState:
                  subscription_id: Optional[pulumi.Input[_builtins.str]] = None):
         """
         Input properties used for looking up and filtering TlsSubscriptionValidation resources.
+
         :param pulumi.Input[_builtins.str] subscription_id: The ID of the TLS Subscription that should be validated.
         """
         if subscription_id is not None:
@@ -150,6 +152,7 @@ class TlsSubscriptionValidation(pulumi.CustomResource):
                 zone_id=production.zone_id))
         ```
 
+
         :param str resource_name: The name of the resource.
         :param pulumi.ResourceOptions opts: Options for the resource.
         :param pulumi.Input[_builtins.str] subscription_id: The ID of the TLS Subscription that should be validated.
@@ -238,6 +241,7 @@ class TlsSubscriptionValidation(pulumi.CustomResource):
                 type=CNAME,
                 zone_id=production.zone_id))
         ```
+
 
         :param str resource_name: The name of the resource.
         :param TlsSubscriptionValidationArgs args: The arguments to use to populate this resource's properties.
