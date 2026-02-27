@@ -862,7 +862,7 @@ func (o NgwafAccountRuleActionArrayOutput) Index(i pulumi.IntInput) NgwafAccount
 type NgwafAccountRuleCondition struct {
 	// Field to inspect (e.g., `ip`, `path`).
 	Field string `pulumi:"field"`
-	// Operator to apply (e.g., `equals`, `contains`).
+	// Operator to apply. One of: `equals`, `doesNotEqual`, `contains`, `doesNotContain`, `like`, `notLike`, `inList`, `notInList`, `matches`, `doesNotMatch`, `greaterEqual`, `lesserEqual`.
 	Operator string `pulumi:"operator"`
 	// The value to test the field against.
 	Value string `pulumi:"value"`
@@ -882,7 +882,7 @@ type NgwafAccountRuleConditionInput interface {
 type NgwafAccountRuleConditionArgs struct {
 	// Field to inspect (e.g., `ip`, `path`).
 	Field pulumi.StringInput `pulumi:"field"`
-	// Operator to apply (e.g., `equals`, `contains`).
+	// Operator to apply. One of: `equals`, `doesNotEqual`, `contains`, `doesNotContain`, `like`, `notLike`, `inList`, `notInList`, `matches`, `doesNotMatch`, `greaterEqual`, `lesserEqual`.
 	Operator pulumi.StringInput `pulumi:"operator"`
 	// The value to test the field against.
 	Value pulumi.StringInput `pulumi:"value"`
@@ -944,7 +944,7 @@ func (o NgwafAccountRuleConditionOutput) Field() pulumi.StringOutput {
 	return o.ApplyT(func(v NgwafAccountRuleCondition) string { return v.Field }).(pulumi.StringOutput)
 }
 
-// Operator to apply (e.g., `equals`, `contains`).
+// Operator to apply. One of: `equals`, `doesNotEqual`, `contains`, `doesNotContain`, `like`, `notLike`, `inList`, `notInList`, `matches`, `doesNotMatch`, `greaterEqual`, `lesserEqual`.
 func (o NgwafAccountRuleConditionOutput) Operator() pulumi.StringOutput {
 	return o.ApplyT(func(v NgwafAccountRuleCondition) string { return v.Operator }).(pulumi.StringOutput)
 }
@@ -1094,7 +1094,7 @@ func (o NgwafAccountRuleGroupConditionArrayOutput) Index(i pulumi.IntInput) Ngwa
 type NgwafAccountRuleGroupConditionCondition struct {
 	// Field to inspect (e.g., `ip`, `path`).
 	Field string `pulumi:"field"`
-	// Operator to apply (e.g., `equals`, `contains`).
+	// Operator to apply. One of: `equals`, `doesNotEqual`, `contains`, `doesNotContain`, `like`, `notLike`, `inList`, `notInList`, `matches`, `doesNotMatch`, `greaterEqual`, `lesserEqual`.
 	Operator string `pulumi:"operator"`
 	// The value to test the field against.
 	Value string `pulumi:"value"`
@@ -1114,7 +1114,7 @@ type NgwafAccountRuleGroupConditionConditionInput interface {
 type NgwafAccountRuleGroupConditionConditionArgs struct {
 	// Field to inspect (e.g., `ip`, `path`).
 	Field pulumi.StringInput `pulumi:"field"`
-	// Operator to apply (e.g., `equals`, `contains`).
+	// Operator to apply. One of: `equals`, `doesNotEqual`, `contains`, `doesNotContain`, `like`, `notLike`, `inList`, `notInList`, `matches`, `doesNotMatch`, `greaterEqual`, `lesserEqual`.
 	Operator pulumi.StringInput `pulumi:"operator"`
 	// The value to test the field against.
 	Value pulumi.StringInput `pulumi:"value"`
@@ -1176,7 +1176,7 @@ func (o NgwafAccountRuleGroupConditionConditionOutput) Field() pulumi.StringOutp
 	return o.ApplyT(func(v NgwafAccountRuleGroupConditionCondition) string { return v.Field }).(pulumi.StringOutput)
 }
 
-// Operator to apply (e.g., `equals`, `contains`).
+// Operator to apply. One of: `equals`, `doesNotEqual`, `contains`, `doesNotContain`, `like`, `notLike`, `inList`, `notInList`, `matches`, `doesNotMatch`, `greaterEqual`, `lesserEqual`.
 func (o NgwafAccountRuleGroupConditionConditionOutput) Operator() pulumi.StringOutput {
 	return o.ApplyT(func(v NgwafAccountRuleGroupConditionCondition) string { return v.Operator }).(pulumi.StringOutput)
 }
@@ -1576,7 +1576,7 @@ func (o NgwafAccountRuleMultivalConditionArrayOutput) Index(i pulumi.IntInput) N
 type NgwafAccountRuleMultivalConditionCondition struct {
 	// Field to inspect (e.g., `name`, `value`, `signalId`).
 	Field string `pulumi:"field"`
-	// Operator to apply (e.g., `equals`, `contains`).
+	// Operator to apply. One of: `equals`, `doesNotEqual`, `contains`, `doesNotContain`, `like`, `notLike`, `inList`, `notInList`, `matches`, `doesNotMatch`, `greaterEqual`, `lesserEqual`.
 	Operator string `pulumi:"operator"`
 	// The value to test the field against.
 	Value string `pulumi:"value"`
@@ -1596,7 +1596,7 @@ type NgwafAccountRuleMultivalConditionConditionInput interface {
 type NgwafAccountRuleMultivalConditionConditionArgs struct {
 	// Field to inspect (e.g., `name`, `value`, `signalId`).
 	Field pulumi.StringInput `pulumi:"field"`
-	// Operator to apply (e.g., `equals`, `contains`).
+	// Operator to apply. One of: `equals`, `doesNotEqual`, `contains`, `doesNotContain`, `like`, `notLike`, `inList`, `notInList`, `matches`, `doesNotMatch`, `greaterEqual`, `lesserEqual`.
 	Operator pulumi.StringInput `pulumi:"operator"`
 	// The value to test the field against.
 	Value pulumi.StringInput `pulumi:"value"`
@@ -1658,7 +1658,7 @@ func (o NgwafAccountRuleMultivalConditionConditionOutput) Field() pulumi.StringO
 	return o.ApplyT(func(v NgwafAccountRuleMultivalConditionCondition) string { return v.Field }).(pulumi.StringOutput)
 }
 
-// Operator to apply (e.g., `equals`, `contains`).
+// Operator to apply. One of: `equals`, `doesNotEqual`, `contains`, `doesNotContain`, `like`, `notLike`, `inList`, `notInList`, `matches`, `doesNotMatch`, `greaterEqual`, `lesserEqual`.
 func (o NgwafAccountRuleMultivalConditionConditionOutput) Operator() pulumi.StringOutput {
 	return o.ApplyT(func(v NgwafAccountRuleMultivalConditionCondition) string { return v.Operator }).(pulumi.StringOutput)
 }
@@ -2027,7 +2027,7 @@ func (o NgwafWorkspaceRuleActionArrayOutput) Index(i pulumi.IntInput) NgwafWorks
 type NgwafWorkspaceRuleCondition struct {
 	// Field to inspect (e.g., `ip`, `path`).
 	Field string `pulumi:"field"`
-	// Operator to apply (e.g., `equals`, `contains`).
+	// Operator to apply. One of: `equals`, `doesNotEqual`, `contains`, `doesNotContain`, `like`, `notLike`, `inList`, `notInList`, `matches`, `doesNotMatch`, `greaterEqual`, `lesserEqual`.
 	Operator string `pulumi:"operator"`
 	// The value to test the field against.
 	Value string `pulumi:"value"`
@@ -2047,7 +2047,7 @@ type NgwafWorkspaceRuleConditionInput interface {
 type NgwafWorkspaceRuleConditionArgs struct {
 	// Field to inspect (e.g., `ip`, `path`).
 	Field pulumi.StringInput `pulumi:"field"`
-	// Operator to apply (e.g., `equals`, `contains`).
+	// Operator to apply. One of: `equals`, `doesNotEqual`, `contains`, `doesNotContain`, `like`, `notLike`, `inList`, `notInList`, `matches`, `doesNotMatch`, `greaterEqual`, `lesserEqual`.
 	Operator pulumi.StringInput `pulumi:"operator"`
 	// The value to test the field against.
 	Value pulumi.StringInput `pulumi:"value"`
@@ -2109,7 +2109,7 @@ func (o NgwafWorkspaceRuleConditionOutput) Field() pulumi.StringOutput {
 	return o.ApplyT(func(v NgwafWorkspaceRuleCondition) string { return v.Field }).(pulumi.StringOutput)
 }
 
-// Operator to apply (e.g., `equals`, `contains`).
+// Operator to apply. One of: `equals`, `doesNotEqual`, `contains`, `doesNotContain`, `like`, `notLike`, `inList`, `notInList`, `matches`, `doesNotMatch`, `greaterEqual`, `lesserEqual`.
 func (o NgwafWorkspaceRuleConditionOutput) Operator() pulumi.StringOutput {
 	return o.ApplyT(func(v NgwafWorkspaceRuleCondition) string { return v.Operator }).(pulumi.StringOutput)
 }
@@ -2261,7 +2261,7 @@ func (o NgwafWorkspaceRuleGroupConditionArrayOutput) Index(i pulumi.IntInput) Ng
 type NgwafWorkspaceRuleGroupConditionCondition struct {
 	// Field to inspect (e.g., `ip`, `path`).
 	Field string `pulumi:"field"`
-	// Operator to apply (e.g., `equals`, `contains`).
+	// Operator to apply. One of: `equals`, `doesNotEqual`, `contains`, `doesNotContain`, `like`, `notLike`, `inList`, `notInList`, `matches`, `doesNotMatch`, `greaterEqual`, `lesserEqual`.
 	Operator string `pulumi:"operator"`
 	// The value to test the field against.
 	Value string `pulumi:"value"`
@@ -2281,7 +2281,7 @@ type NgwafWorkspaceRuleGroupConditionConditionInput interface {
 type NgwafWorkspaceRuleGroupConditionConditionArgs struct {
 	// Field to inspect (e.g., `ip`, `path`).
 	Field pulumi.StringInput `pulumi:"field"`
-	// Operator to apply (e.g., `equals`, `contains`).
+	// Operator to apply. One of: `equals`, `doesNotEqual`, `contains`, `doesNotContain`, `like`, `notLike`, `inList`, `notInList`, `matches`, `doesNotMatch`, `greaterEqual`, `lesserEqual`.
 	Operator pulumi.StringInput `pulumi:"operator"`
 	// The value to test the field against.
 	Value pulumi.StringInput `pulumi:"value"`
@@ -2343,7 +2343,7 @@ func (o NgwafWorkspaceRuleGroupConditionConditionOutput) Field() pulumi.StringOu
 	return o.ApplyT(func(v NgwafWorkspaceRuleGroupConditionCondition) string { return v.Field }).(pulumi.StringOutput)
 }
 
-// Operator to apply (e.g., `equals`, `contains`).
+// Operator to apply. One of: `equals`, `doesNotEqual`, `contains`, `doesNotContain`, `like`, `notLike`, `inList`, `notInList`, `matches`, `doesNotMatch`, `greaterEqual`, `lesserEqual`.
 func (o NgwafWorkspaceRuleGroupConditionConditionOutput) Operator() pulumi.StringOutput {
 	return o.ApplyT(func(v NgwafWorkspaceRuleGroupConditionCondition) string { return v.Operator }).(pulumi.StringOutput)
 }
@@ -2743,7 +2743,7 @@ func (o NgwafWorkspaceRuleMultivalConditionArrayOutput) Index(i pulumi.IntInput)
 type NgwafWorkspaceRuleMultivalConditionCondition struct {
 	// Field to inspect (e.g., `name`, `value`, `signalId`).
 	Field string `pulumi:"field"`
-	// Operator to apply (e.g., `equals`, `contains`).
+	// Operator to apply. One of: `equals`, `doesNotEqual`, `contains`, `doesNotContain`, `like`, `notLike`, `inList`, `notInList`, `matches`, `doesNotMatch`, `greaterEqual`, `lesserEqual`.
 	Operator string `pulumi:"operator"`
 	// The value to test the field against.
 	Value string `pulumi:"value"`
@@ -2763,7 +2763,7 @@ type NgwafWorkspaceRuleMultivalConditionConditionInput interface {
 type NgwafWorkspaceRuleMultivalConditionConditionArgs struct {
 	// Field to inspect (e.g., `name`, `value`, `signalId`).
 	Field pulumi.StringInput `pulumi:"field"`
-	// Operator to apply (e.g., `equals`, `contains`).
+	// Operator to apply. One of: `equals`, `doesNotEqual`, `contains`, `doesNotContain`, `like`, `notLike`, `inList`, `notInList`, `matches`, `doesNotMatch`, `greaterEqual`, `lesserEqual`.
 	Operator pulumi.StringInput `pulumi:"operator"`
 	// The value to test the field against.
 	Value pulumi.StringInput `pulumi:"value"`
@@ -2825,7 +2825,7 @@ func (o NgwafWorkspaceRuleMultivalConditionConditionOutput) Field() pulumi.Strin
 	return o.ApplyT(func(v NgwafWorkspaceRuleMultivalConditionCondition) string { return v.Field }).(pulumi.StringOutput)
 }
 
-// Operator to apply (e.g., `equals`, `contains`).
+// Operator to apply. One of: `equals`, `doesNotEqual`, `contains`, `doesNotContain`, `like`, `notLike`, `inList`, `notInList`, `matches`, `doesNotMatch`, `greaterEqual`, `lesserEqual`.
 func (o NgwafWorkspaceRuleMultivalConditionConditionOutput) Operator() pulumi.StringOutput {
 	return o.ApplyT(func(v NgwafWorkspaceRuleMultivalConditionCondition) string { return v.Operator }).(pulumi.StringOutput)
 }

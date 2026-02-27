@@ -17,6 +17,35 @@ import (
 //
 // If you are managing your versionless domain with a service link, you may not also use a `resourceFastlyDomain` block as well.
 //
+// ## Example Usage
+//
+// Basic usage:
+//
+// ```go
+// package main
+//
+// import (
+//
+//	"github.com/pulumi/pulumi-fastly/sdk/v11/go/fastly"
+//	"github.com/pulumi/pulumi/sdk/v3/go/pulumi"
+//
+// )
+//
+//	func main() {
+//		pulumi.Run(func(ctx *pulumi.Context) error {
+//			_, err := fastly.NewDomainServiceLink(ctx, "example", &fastly.DomainServiceLinkArgs{
+//				DomainId:  pulumi.Any(exampleFastlyDomain.Id),
+//				ServiceId: pulumi.Any(exampleFastlyServiceVcl.Id),
+//			})
+//			if err != nil {
+//				return err
+//			}
+//			return nil
+//		})
+//	}
+//
+// ```
+//
 // ## Import
 //
 // Domain service links can be imported using the domain ID, e.g.

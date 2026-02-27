@@ -530,7 +530,7 @@ class NgwafAccountRuleCondition(dict):
                  value: _builtins.str):
         """
         :param _builtins.str field: Field to inspect (e.g., `ip`, `path`).
-        :param _builtins.str operator: Operator to apply (e.g., `equals`, `contains`).
+        :param _builtins.str operator: Operator to apply. One of: `equals`, `does_not_equal`, `contains`, `does_not_contain`, `like`, `not_like`, `in_list`, `not_in_list`, `matches`, `does_not_match`, `greater_equal`, `lesser_equal`.
         :param _builtins.str value: The value to test the field against.
         """
         pulumi.set(__self__, "field", field)
@@ -549,7 +549,7 @@ class NgwafAccountRuleCondition(dict):
     @pulumi.getter
     def operator(self) -> _builtins.str:
         """
-        Operator to apply (e.g., `equals`, `contains`).
+        Operator to apply. One of: `equals`, `does_not_equal`, `contains`, `does_not_contain`, `like`, `not_like`, `in_list`, `not_in_list`, `matches`, `does_not_match`, `greater_equal`, `lesser_equal`.
         """
         return pulumi.get(self, "operator")
 
@@ -631,7 +631,7 @@ class NgwafAccountRuleGroupConditionCondition(dict):
                  value: _builtins.str):
         """
         :param _builtins.str field: Field to inspect (e.g., `ip`, `path`).
-        :param _builtins.str operator: Operator to apply (e.g., `equals`, `contains`).
+        :param _builtins.str operator: Operator to apply. One of: `equals`, `does_not_equal`, `contains`, `does_not_contain`, `like`, `not_like`, `in_list`, `not_in_list`, `matches`, `does_not_match`, `greater_equal`, `lesser_equal`.
         :param _builtins.str value: The value to test the field against.
         """
         pulumi.set(__self__, "field", field)
@@ -650,7 +650,7 @@ class NgwafAccountRuleGroupConditionCondition(dict):
     @pulumi.getter
     def operator(self) -> _builtins.str:
         """
-        Operator to apply (e.g., `equals`, `contains`).
+        Operator to apply. One of: `equals`, `does_not_equal`, `contains`, `does_not_contain`, `like`, `not_like`, `in_list`, `not_in_list`, `matches`, `does_not_match`, `greater_equal`, `lesser_equal`.
         """
         return pulumi.get(self, "operator")
 
@@ -847,7 +847,7 @@ class NgwafAccountRuleMultivalConditionCondition(dict):
                  value: _builtins.str):
         """
         :param _builtins.str field: Field to inspect (e.g., `name`, `value`, `signal_id`).
-        :param _builtins.str operator: Operator to apply (e.g., `equals`, `contains`).
+        :param _builtins.str operator: Operator to apply. One of: `equals`, `does_not_equal`, `contains`, `does_not_contain`, `like`, `not_like`, `in_list`, `not_in_list`, `matches`, `does_not_match`, `greater_equal`, `lesser_equal`.
         :param _builtins.str value: The value to test the field against.
         """
         pulumi.set(__self__, "field", field)
@@ -866,7 +866,7 @@ class NgwafAccountRuleMultivalConditionCondition(dict):
     @pulumi.getter
     def operator(self) -> _builtins.str:
         """
-        Operator to apply (e.g., `equals`, `contains`).
+        Operator to apply. One of: `equals`, `does_not_equal`, `contains`, `does_not_contain`, `like`, `not_like`, `in_list`, `not_in_list`, `matches`, `does_not_match`, `greater_equal`, `lesser_equal`.
         """
         return pulumi.get(self, "operator")
 
@@ -1064,7 +1064,7 @@ class NgwafWorkspaceRuleCondition(dict):
                  value: _builtins.str):
         """
         :param _builtins.str field: Field to inspect (e.g., `ip`, `path`).
-        :param _builtins.str operator: Operator to apply (e.g., `equals`, `contains`).
+        :param _builtins.str operator: Operator to apply. One of: `equals`, `does_not_equal`, `contains`, `does_not_contain`, `like`, `not_like`, `in_list`, `not_in_list`, `matches`, `does_not_match`, `greater_equal`, `lesser_equal`.
         :param _builtins.str value: The value to test the field against.
         """
         pulumi.set(__self__, "field", field)
@@ -1083,7 +1083,7 @@ class NgwafWorkspaceRuleCondition(dict):
     @pulumi.getter
     def operator(self) -> _builtins.str:
         """
-        Operator to apply (e.g., `equals`, `contains`).
+        Operator to apply. One of: `equals`, `does_not_equal`, `contains`, `does_not_contain`, `like`, `not_like`, `in_list`, `not_in_list`, `matches`, `does_not_match`, `greater_equal`, `lesser_equal`.
         """
         return pulumi.get(self, "operator")
 
@@ -1165,7 +1165,7 @@ class NgwafWorkspaceRuleGroupConditionCondition(dict):
                  value: _builtins.str):
         """
         :param _builtins.str field: Field to inspect (e.g., `ip`, `path`).
-        :param _builtins.str operator: Operator to apply (e.g., `equals`, `contains`).
+        :param _builtins.str operator: Operator to apply. One of: `equals`, `does_not_equal`, `contains`, `does_not_contain`, `like`, `not_like`, `in_list`, `not_in_list`, `matches`, `does_not_match`, `greater_equal`, `lesser_equal`.
         :param _builtins.str value: The value to test the field against.
         """
         pulumi.set(__self__, "field", field)
@@ -1184,7 +1184,7 @@ class NgwafWorkspaceRuleGroupConditionCondition(dict):
     @pulumi.getter
     def operator(self) -> _builtins.str:
         """
-        Operator to apply (e.g., `equals`, `contains`).
+        Operator to apply. One of: `equals`, `does_not_equal`, `contains`, `does_not_contain`, `like`, `not_like`, `in_list`, `not_in_list`, `matches`, `does_not_match`, `greater_equal`, `lesser_equal`.
         """
         return pulumi.get(self, "operator")
 
@@ -1381,7 +1381,7 @@ class NgwafWorkspaceRuleMultivalConditionCondition(dict):
                  value: _builtins.str):
         """
         :param _builtins.str field: Field to inspect (e.g., `name`, `value`, `signal_id`).
-        :param _builtins.str operator: Operator to apply (e.g., `equals`, `contains`).
+        :param _builtins.str operator: Operator to apply. One of: `equals`, `does_not_equal`, `contains`, `does_not_contain`, `like`, `not_like`, `in_list`, `not_in_list`, `matches`, `does_not_match`, `greater_equal`, `lesser_equal`.
         :param _builtins.str value: The value to test the field against.
         """
         pulumi.set(__self__, "field", field)
@@ -1400,7 +1400,7 @@ class NgwafWorkspaceRuleMultivalConditionCondition(dict):
     @pulumi.getter
     def operator(self) -> _builtins.str:
         """
-        Operator to apply (e.g., `equals`, `contains`).
+        Operator to apply. One of: `equals`, `does_not_equal`, `contains`, `does_not_contain`, `like`, `not_like`, `in_list`, `not_in_list`, `matches`, `does_not_match`, `greater_equal`, `lesser_equal`.
         """
         return pulumi.get(self, "operator")
 

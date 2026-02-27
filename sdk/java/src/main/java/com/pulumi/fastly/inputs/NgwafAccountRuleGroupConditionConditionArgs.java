@@ -30,14 +30,14 @@ public final class NgwafAccountRuleGroupConditionConditionArgs extends com.pulum
     }
 
     /**
-     * Operator to apply (e.g., `equals`, `contains`).
+     * Operator to apply. One of: `equals`, `doesNotEqual`, `contains`, `doesNotContain`, `like`, `notLike`, `inList`, `notInList`, `matches`, `doesNotMatch`, `greaterEqual`, `lesserEqual`.
      * 
      */
     @Import(name="operator", required=true)
     private Output<String> operator;
 
     /**
-     * @return Operator to apply (e.g., `equals`, `contains`).
+     * @return Operator to apply. One of: `equals`, `doesNotEqual`, `contains`, `doesNotContain`, `like`, `notLike`, `inList`, `notInList`, `matches`, `doesNotMatch`, `greaterEqual`, `lesserEqual`.
      * 
      */
     public Output<String> operator() {
@@ -107,7 +107,7 @@ public final class NgwafAccountRuleGroupConditionConditionArgs extends com.pulum
         }
 
         /**
-         * @param operator Operator to apply (e.g., `equals`, `contains`).
+         * @param operator Operator to apply. One of: `equals`, `doesNotEqual`, `contains`, `doesNotContain`, `like`, `notLike`, `inList`, `notInList`, `matches`, `doesNotMatch`, `greaterEqual`, `lesserEqual`.
          * 
          * @return builder
          * 
@@ -118,7 +118,7 @@ public final class NgwafAccountRuleGroupConditionConditionArgs extends com.pulum
         }
 
         /**
-         * @param operator Operator to apply (e.g., `equals`, `contains`).
+         * @param operator Operator to apply. One of: `equals`, `doesNotEqual`, `contains`, `doesNotContain`, `like`, `notLike`, `inList`, `notInList`, `matches`, `doesNotMatch`, `greaterEqual`, `lesserEqual`.
          * 
          * @return builder
          * 

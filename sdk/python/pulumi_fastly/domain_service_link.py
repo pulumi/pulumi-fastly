@@ -111,6 +111,19 @@ class DomainServiceLink(pulumi.CustomResource):
 
         If you are managing your versionless domain with a service link, you may not also use a `resource_fastly_domain` block as well.
 
+        ## Example Usage
+
+        Basic usage:
+
+        ```python
+        import pulumi
+        import pulumi_fastly as fastly
+
+        example = fastly.DomainServiceLink("example",
+            domain_id=example_fastly_domain["id"],
+            service_id=example_fastly_service_vcl["id"])
+        ```
+
         ## Import
 
         Domain service links can be imported using the domain ID, e.g.
@@ -136,6 +149,19 @@ class DomainServiceLink(pulumi.CustomResource):
         with an existing domain, but doesn't create or delete either resource.
 
         If you are managing your versionless domain with a service link, you may not also use a `resource_fastly_domain` block as well.
+
+        ## Example Usage
+
+        Basic usage:
+
+        ```python
+        import pulumi
+        import pulumi_fastly as fastly
+
+        example = fastly.DomainServiceLink("example",
+            domain_id=example_fastly_domain["id"],
+            service_id=example_fastly_service_vcl["id"])
+        ```
 
         ## Import
 

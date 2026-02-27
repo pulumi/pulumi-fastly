@@ -19,6 +19,42 @@ import javax.annotation.Nullable;
  * 
  * If you are managing your versionless domain with a service link, you may not also use a `resourceFastlyDomain` block as well.
  * 
+ * ## Example Usage
+ * 
+ * Basic usage:
+ * 
+ * <pre>
+ * {@code
+ * package generated_program;
+ * 
+ * import com.pulumi.Context;
+ * import com.pulumi.Pulumi;
+ * import com.pulumi.core.Output;
+ * import com.pulumi.fastly.DomainServiceLink;
+ * import com.pulumi.fastly.DomainServiceLinkArgs;
+ * import java.util.List;
+ * import java.util.ArrayList;
+ * import java.util.Map;
+ * import java.io.File;
+ * import java.nio.file.Files;
+ * import java.nio.file.Paths;
+ * 
+ * public class App {
+ *     public static void main(String[] args) {
+ *         Pulumi.run(App::stack);
+ *     }
+ * 
+ *     public static void stack(Context ctx) {
+ *         var example = new DomainServiceLink("example", DomainServiceLinkArgs.builder()
+ *             .domainId(exampleFastlyDomain.id())
+ *             .serviceId(exampleFastlyServiceVcl.id())
+ *             .build());
+ * 
+ *     }
+ * }
+ * }
+ * </pre>
+ * 
  * ## Import
  * 
  * Domain service links can be imported using the domain ID, e.g.

@@ -123,7 +123,7 @@ export interface NgwafAccountRuleCondition {
      */
     field: pulumi.Input<string>;
     /**
-     * Operator to apply (e.g., `equals`, `contains`).
+     * Operator to apply. One of: `equals`, `doesNotEqual`, `contains`, `doesNotContain`, `like`, `notLike`, `inList`, `notInList`, `matches`, `doesNotMatch`, `greaterEqual`, `lesserEqual`.
      */
     operator: pulumi.Input<string>;
     /**
@@ -153,7 +153,7 @@ export interface NgwafAccountRuleGroupConditionCondition {
      */
     field: pulumi.Input<string>;
     /**
-     * Operator to apply (e.g., `equals`, `contains`).
+     * Operator to apply. One of: `equals`, `doesNotEqual`, `contains`, `doesNotContain`, `like`, `notLike`, `inList`, `notInList`, `matches`, `doesNotMatch`, `greaterEqual`, `lesserEqual`.
      */
     operator: pulumi.Input<string>;
     /**
@@ -221,7 +221,7 @@ export interface NgwafAccountRuleMultivalConditionCondition {
      */
     field: pulumi.Input<string>;
     /**
-     * Operator to apply (e.g., `equals`, `contains`).
+     * Operator to apply. One of: `equals`, `doesNotEqual`, `contains`, `doesNotContain`, `like`, `notLike`, `inList`, `notInList`, `matches`, `doesNotMatch`, `greaterEqual`, `lesserEqual`.
      */
     operator: pulumi.Input<string>;
     /**
@@ -282,7 +282,7 @@ export interface NgwafWorkspaceRuleCondition {
      */
     field: pulumi.Input<string>;
     /**
-     * Operator to apply (e.g., `equals`, `contains`).
+     * Operator to apply. One of: `equals`, `doesNotEqual`, `contains`, `doesNotContain`, `like`, `notLike`, `inList`, `notInList`, `matches`, `doesNotMatch`, `greaterEqual`, `lesserEqual`.
      */
     operator: pulumi.Input<string>;
     /**
@@ -312,7 +312,7 @@ export interface NgwafWorkspaceRuleGroupConditionCondition {
      */
     field: pulumi.Input<string>;
     /**
-     * Operator to apply (e.g., `equals`, `contains`).
+     * Operator to apply. One of: `equals`, `doesNotEqual`, `contains`, `doesNotContain`, `like`, `notLike`, `inList`, `notInList`, `matches`, `doesNotMatch`, `greaterEqual`, `lesserEqual`.
      */
     operator: pulumi.Input<string>;
     /**
@@ -380,7 +380,7 @@ export interface NgwafWorkspaceRuleMultivalConditionCondition {
      */
     field: pulumi.Input<string>;
     /**
-     * Operator to apply (e.g., `equals`, `contains`).
+     * Operator to apply. One of: `equals`, `doesNotEqual`, `contains`, `doesNotContain`, `like`, `notLike`, `inList`, `notInList`, `matches`, `doesNotMatch`, `greaterEqual`, `lesserEqual`.
      */
     operator: pulumi.Input<string>;
     /**

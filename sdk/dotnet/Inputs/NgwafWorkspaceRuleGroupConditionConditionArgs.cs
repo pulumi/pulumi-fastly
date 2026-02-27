@@ -19,7 +19,7 @@ namespace Pulumi.Fastly.Inputs
         public Input<string> Field { get; set; } = null!;
 
         /// <summary>
-        /// Operator to apply (e.g., `Equals`, `Contains`).
+        /// Operator to apply. One of: `Equals`, `DoesNotEqual`, `Contains`, `DoesNotContain`, `Like`, `NotLike`, `InList`, `NotInList`, `Matches`, `DoesNotMatch`, `GreaterEqual`, `LesserEqual`.
         /// </summary>
         [Input("operator", required: true)]
         public Input<string> Operator { get; set; } = null!;
