@@ -18,7 +18,7 @@ namespace Pulumi.Fastly.Outputs
         /// </summary>
         public readonly string Field;
         /// <summary>
-        /// Operator to apply (e.g., `Equals`, `Contains`).
+        /// Operator to apply. One of: `Equals`, `DoesNotEqual`, `Contains`, `DoesNotContain`, `Like`, `NotLike`, `InList`, `NotInList`, `Matches`, `DoesNotMatch`, `GreaterEqual`, `LesserEqual`.
         /// </summary>
         public readonly string Operator;
         /// <summary>

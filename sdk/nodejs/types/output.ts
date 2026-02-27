@@ -573,7 +573,7 @@ export interface NgwafAccountRuleCondition {
      */
     field: string;
     /**
-     * Operator to apply (e.g., `equals`, `contains`).
+     * Operator to apply. One of: `equals`, `doesNotEqual`, `contains`, `doesNotContain`, `like`, `notLike`, `inList`, `notInList`, `matches`, `doesNotMatch`, `greaterEqual`, `lesserEqual`.
      */
     operator: string;
     /**
@@ -603,7 +603,7 @@ export interface NgwafAccountRuleGroupConditionCondition {
      */
     field: string;
     /**
-     * Operator to apply (e.g., `equals`, `contains`).
+     * Operator to apply. One of: `equals`, `doesNotEqual`, `contains`, `doesNotContain`, `like`, `notLike`, `inList`, `notInList`, `matches`, `doesNotMatch`, `greaterEqual`, `lesserEqual`.
      */
     operator: string;
     /**
@@ -671,7 +671,7 @@ export interface NgwafAccountRuleMultivalConditionCondition {
      */
     field: string;
     /**
-     * Operator to apply (e.g., `equals`, `contains`).
+     * Operator to apply. One of: `equals`, `doesNotEqual`, `contains`, `doesNotContain`, `like`, `notLike`, `inList`, `notInList`, `matches`, `doesNotMatch`, `greaterEqual`, `lesserEqual`.
      */
     operator: string;
     /**
@@ -732,7 +732,7 @@ export interface NgwafWorkspaceRuleCondition {
      */
     field: string;
     /**
-     * Operator to apply (e.g., `equals`, `contains`).
+     * Operator to apply. One of: `equals`, `doesNotEqual`, `contains`, `doesNotContain`, `like`, `notLike`, `inList`, `notInList`, `matches`, `doesNotMatch`, `greaterEqual`, `lesserEqual`.
      */
     operator: string;
     /**
@@ -762,7 +762,7 @@ export interface NgwafWorkspaceRuleGroupConditionCondition {
      */
     field: string;
     /**
-     * Operator to apply (e.g., `equals`, `contains`).
+     * Operator to apply. One of: `equals`, `doesNotEqual`, `contains`, `doesNotContain`, `like`, `notLike`, `inList`, `notInList`, `matches`, `doesNotMatch`, `greaterEqual`, `lesserEqual`.
      */
     operator: string;
     /**
@@ -830,7 +830,7 @@ export interface NgwafWorkspaceRuleMultivalConditionCondition {
      */
     field: string;
     /**
-     * Operator to apply (e.g., `equals`, `contains`).
+     * Operator to apply. One of: `equals`, `doesNotEqual`, `contains`, `doesNotContain`, `like`, `notLike`, `inList`, `notInList`, `matches`, `doesNotMatch`, `greaterEqual`, `lesserEqual`.
      */
     operator: string;
     /**

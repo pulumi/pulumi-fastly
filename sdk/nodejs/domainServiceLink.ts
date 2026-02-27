@@ -10,6 +10,20 @@ import * as utilities from "./utilities";
  *
  * If you are managing your versionless domain with a service link, you may not also use a `resourceFastlyDomain` block as well.
  *
+ * ## Example Usage
+ *
+ * Basic usage:
+ *
+ * ```typescript
+ * import * as pulumi from "@pulumi/pulumi";
+ * import * as fastly from "@pulumi/fastly";
+ *
+ * const example = new fastly.DomainServiceLink("example", {
+ *     domainId: exampleFastlyDomain.id,
+ *     serviceId: exampleFastlyServiceVcl.id,
+ * });
+ * ```
+ *
  * ## Import
  *
  * Domain service links can be imported using the domain ID, e.g.

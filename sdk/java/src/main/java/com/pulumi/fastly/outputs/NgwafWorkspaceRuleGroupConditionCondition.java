@@ -16,7 +16,7 @@ public final class NgwafWorkspaceRuleGroupConditionCondition {
      */
     private String field;
     /**
-     * @return Operator to apply (e.g., `equals`, `contains`).
+     * @return Operator to apply. One of: `equals`, `doesNotEqual`, `contains`, `doesNotContain`, `like`, `notLike`, `inList`, `notInList`, `matches`, `doesNotMatch`, `greaterEqual`, `lesserEqual`.
      * 
      */
     private String operator;
@@ -35,7 +35,7 @@ public final class NgwafWorkspaceRuleGroupConditionCondition {
         return this.field;
     }
     /**
-     * @return Operator to apply (e.g., `equals`, `contains`).
+     * @return Operator to apply. One of: `equals`, `doesNotEqual`, `contains`, `doesNotContain`, `like`, `notLike`, `inList`, `notInList`, `matches`, `doesNotMatch`, `greaterEqual`, `lesserEqual`.
      * 
      */
     public String operator() {

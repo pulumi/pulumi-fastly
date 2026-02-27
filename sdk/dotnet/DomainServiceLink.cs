@@ -15,6 +15,27 @@ namespace Pulumi.Fastly
     /// 
     /// If you are managing your versionless domain with a service link, you may not also use a `ResourceFastlyDomain` block as well.
     /// 
+    /// ## Example Usage
+    /// 
+    /// Basic usage:
+    /// 
+    /// ```csharp
+    /// using System.Collections.Generic;
+    /// using System.Linq;
+    /// using Pulumi;
+    /// using Fastly = Pulumi.Fastly;
+    /// 
+    /// return await Deployment.RunAsync(() =&gt; 
+    /// {
+    ///     var example = new Fastly.DomainServiceLink("example", new()
+    ///     {
+    ///         DomainId = exampleFastlyDomain.Id,
+    ///         ServiceId = exampleFastlyServiceVcl.Id,
+    ///     });
+    /// 
+    /// });
+    /// ```
+    /// 
     /// ## Import
     /// 
     /// Domain service links can be imported using the domain ID, e.g.
