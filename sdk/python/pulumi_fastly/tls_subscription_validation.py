@@ -95,7 +95,7 @@ class TlsSubscriptionValidation(pulumi.CustomResource):
         example = aws.index.Route53domainsRegisteredDomain("example",
             name_server=[{
                 name: entry.value,
-            } for entry in [{"key": k, "value": v} for k, v in production.name_servers]],
+            } for entry in [{"key": k, "value": v} for k, v in production.name_servers.items()]],
             domain_name=example.com)
         subdomains = [
             "a.example.com",
@@ -104,7 +104,7 @@ class TlsSubscriptionValidation(pulumi.CustomResource):
         example_service_vcl = fastly.ServiceVcl("example",
             domains=[{
                 "name": entry["value"],
-            } for entry in [{"key": k, "value": v} for k, v in subdomains]],
+            } for entry in [{"key": k, "value": v} for k, v in subdomains.items()]],
             name="example-service",
             backends=[{
                 "address": "127.0.0.1",
@@ -185,7 +185,7 @@ class TlsSubscriptionValidation(pulumi.CustomResource):
         example = aws.index.Route53domainsRegisteredDomain("example",
             name_server=[{
                 name: entry.value,
-            } for entry in [{"key": k, "value": v} for k, v in production.name_servers]],
+            } for entry in [{"key": k, "value": v} for k, v in production.name_servers.items()]],
             domain_name=example.com)
         subdomains = [
             "a.example.com",
@@ -194,7 +194,7 @@ class TlsSubscriptionValidation(pulumi.CustomResource):
         example_service_vcl = fastly.ServiceVcl("example",
             domains=[{
                 "name": entry["value"],
-            } for entry in [{"key": k, "value": v} for k, v in subdomains]],
+            } for entry in [{"key": k, "value": v} for k, v in subdomains.items()]],
             name="example-service",
             backends=[{
                 "address": "127.0.0.1",
