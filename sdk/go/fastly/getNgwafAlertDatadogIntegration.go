@@ -33,7 +33,7 @@ import (
 //			if err != nil {
 //				return err
 //			}
-//			ctx.Export("ngwafDatadogAlertsAll", datadogAlerts)
+//			ctx.Export("ngwafDatadogAlertsAll", pulumi.Any(datadogAlerts))
 //			return nil
 //		})
 //	}

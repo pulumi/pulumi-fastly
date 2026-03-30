@@ -33,7 +33,7 @@ import (
 //			if err != nil {
 //				return err
 //			}
-//			ctx.Export("fastlyNgwafRedactionsAll", redactions)
+//			ctx.Export("fastlyNgwafRedactionsAll", pulumi.Any(redactions))
 //			return nil
 //		})
 //	}
