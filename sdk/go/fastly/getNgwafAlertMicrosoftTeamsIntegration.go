@@ -33,7 +33,7 @@ import (
 //			if err != nil {
 //				return err
 //			}
-//			ctx.Export("ngwafJiraAlertsAll", jiraAlerts)
+//			ctx.Export("ngwafJiraAlertsAll", pulumi.Any(jiraAlerts))
 //			return nil
 //		})
 //	}

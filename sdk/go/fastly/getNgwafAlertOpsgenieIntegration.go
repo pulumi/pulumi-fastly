@@ -33,7 +33,7 @@ import (
 //			if err != nil {
 //				return err
 //			}
-//			ctx.Export("ngwafOpsgenieAlertsAll", opsgenieAlerts)
+//			ctx.Export("ngwafOpsgenieAlertsAll", pulumi.Any(opsgenieAlerts))
 //			return nil
 //		})
 //	}

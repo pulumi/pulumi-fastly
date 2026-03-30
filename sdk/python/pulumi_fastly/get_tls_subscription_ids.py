@@ -72,8 +72,8 @@ def get_tls_subscription_ids(opts: Optional[pulumi.InvokeOptions] = None) -> Awa
     import pulumi_fastly as fastly
 
     example = fastly.get_tls_subscription_ids()
-    example_get_tls_subscription = {__key: fastly.get_tls_subscription(id=__value) for __key, __value in example.ids}
-    pulumi.export("subscriptionDomains", [a.certificate_authority for a in example_get_tls_subscription])
+    example_get_tls_subscription = {__key: fastly.get_tls_subscription(id=__value) for __key, __value in enumerate(example.ids)}
+    pulumi.export("subscriptionDomains", [a.certificate_authority for a in example_get_tls_subscription.values()])
     ```
     """
     __args__ = dict()
@@ -94,8 +94,8 @@ def get_tls_subscription_ids_output(opts: Optional[Union[pulumi.InvokeOptions, p
     import pulumi_fastly as fastly
 
     example = fastly.get_tls_subscription_ids()
-    example_get_tls_subscription = {__key: fastly.get_tls_subscription(id=__value) for __key, __value in example.ids}
-    pulumi.export("subscriptionDomains", [a.certificate_authority for a in example_get_tls_subscription])
+    example_get_tls_subscription = {__key: fastly.get_tls_subscription(id=__value) for __key, __value in enumerate(example.ids)}
+    pulumi.export("subscriptionDomains", [a.certificate_authority for a in example_get_tls_subscription.values()])
     ```
     """
     __args__ = dict()
