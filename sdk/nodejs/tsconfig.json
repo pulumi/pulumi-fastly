@@ -14,6 +14,8 @@
     },
     "files": [
         "alert.ts",
+        "apiSecurityOperation.ts",
+        "apiSecurityOperationTag.ts",
         "computeAcl.ts",
         "computeAclEntries.ts",
         "config/index.ts",
@@ -25,6 +27,9 @@
         "domainServiceLink.ts",
         "domainV1.ts",
         "domainV1ServiceLink.ts",
+        "getApiSecurityDiscoveredOperations.ts",
+        "getApiSecurityOperationTags.ts",
+        "getApiSecurityOperations.ts",
         "getComputeAcls.ts",
         "getConfigstores.ts",
         "getDatacenters.ts",

@@ -25,6 +25,17 @@
                     }
                 }
             },
+            "fastly_api_security_operation": {
+                "current": "fastly:index/apiSecurityOperation:ApiSecurityOperation",
+                "fields": {
+                    "tag_ids": {
+                        "maxItemsOne": false
+                    }
+                }
+            },
+            "fastly_api_security_operation_tag": {
+                "current": "fastly:index/apiSecurityOperationTag:ApiSecurityOperationTag"
+            },
             "fastly_compute_acl": {
                 "current": "fastly:index/computeAcl:ComputeAcl"
             },
@@ -667,6 +678,49 @@
             }
         },
         "datasources": {
+            "fastly_api_security_discovered_operations": {
+                "current": "fastly:index/getApiSecurityDiscoveredOperations:getApiSecurityDiscoveredOperations",
+                "fields": {
+                    "domain": {
+                        "maxItemsOne": false
+                    },
+                    "method": {
+                        "maxItemsOne": false
+                    },
+                    "operations": {
+                        "maxItemsOne": false
+                    }
+                }
+            },
+            "fastly_api_security_operation_tags": {
+                "current": "fastly:index/getApiSecurityOperationTags:getApiSecurityOperationTags",
+                "fields": {
+                    "tags": {
+                        "maxItemsOne": false
+                    }
+                }
+            },
+            "fastly_api_security_operations": {
+                "current": "fastly:index/getApiSecurityOperations:getApiSecurityOperations",
+                "fields": {
+                    "domain": {
+                        "maxItemsOne": false
+                    },
+                    "method": {
+                        "maxItemsOne": false
+                    },
+                    "operations": {
+                        "maxItemsOne": false,
+                        "elem": {
+                            "fields": {
+                                "tag_ids": {
+                                    "maxItemsOne": false
+                                }
+                            }
+                        }
+                    }
+                }
+            },
             "fastly_compute_acls": {
                 "current": "fastly:index/getComputeAcls:getComputeAcls",
                 "fields": {

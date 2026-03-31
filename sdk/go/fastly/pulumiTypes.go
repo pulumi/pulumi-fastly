@@ -19669,6 +19669,495 @@ func (o TlsSubscriptionManagedHttpChallengeArrayOutput) Index(i pulumi.IntInput)
 	}).(TlsSubscriptionManagedHttpChallengeOutput)
 }
 
+type GetApiSecurityDiscoveredOperationsOperation struct {
+	// Discovered operation domain.
+	Domain string `pulumi:"domain"`
+	// Discovered operation ID.
+	Id string `pulumi:"id"`
+	// Last seen timestamp (when present).
+	LastSeenAt string `pulumi:"lastSeenAt"`
+	// Discovered operation HTTP method.
+	Method string `pulumi:"method"`
+	// Discovered operation path.
+	Path string `pulumi:"path"`
+	// Observed requests per second (when present).
+	Rps float64 `pulumi:"rps"`
+	// Discovered operation status (when present).
+	Status string `pulumi:"status"`
+	// Updated timestamp (when present).
+	UpdatedAt string `pulumi:"updatedAt"`
+}
+
+// GetApiSecurityDiscoveredOperationsOperationInput is an input type that accepts GetApiSecurityDiscoveredOperationsOperationArgs and GetApiSecurityDiscoveredOperationsOperationOutput values.
+// You can construct a concrete instance of `GetApiSecurityDiscoveredOperationsOperationInput` via:
+//
+//	GetApiSecurityDiscoveredOperationsOperationArgs{...}
+type GetApiSecurityDiscoveredOperationsOperationInput interface {
+	pulumi.Input
+
+	ToGetApiSecurityDiscoveredOperationsOperationOutput() GetApiSecurityDiscoveredOperationsOperationOutput
+	ToGetApiSecurityDiscoveredOperationsOperationOutputWithContext(context.Context) GetApiSecurityDiscoveredOperationsOperationOutput
+}
+
+type GetApiSecurityDiscoveredOperationsOperationArgs struct {
+	// Discovered operation domain.
+	Domain pulumi.StringInput `pulumi:"domain"`
+	// Discovered operation ID.
+	Id pulumi.StringInput `pulumi:"id"`
+	// Last seen timestamp (when present).
+	LastSeenAt pulumi.StringInput `pulumi:"lastSeenAt"`
+	// Discovered operation HTTP method.
+	Method pulumi.StringInput `pulumi:"method"`
+	// Discovered operation path.
+	Path pulumi.StringInput `pulumi:"path"`
+	// Observed requests per second (when present).
+	Rps pulumi.Float64Input `pulumi:"rps"`
+	// Discovered operation status (when present).
+	Status pulumi.StringInput `pulumi:"status"`
+	// Updated timestamp (when present).
+	UpdatedAt pulumi.StringInput `pulumi:"updatedAt"`
+}
+
+func (GetApiSecurityDiscoveredOperationsOperationArgs) ElementType() reflect.Type {
+	return reflect.TypeOf((*GetApiSecurityDiscoveredOperationsOperation)(nil)).Elem()
+}
+
+func (i GetApiSecurityDiscoveredOperationsOperationArgs) ToGetApiSecurityDiscoveredOperationsOperationOutput() GetApiSecurityDiscoveredOperationsOperationOutput {
+	return i.ToGetApiSecurityDiscoveredOperationsOperationOutputWithContext(context.Background())
+}
+
+func (i GetApiSecurityDiscoveredOperationsOperationArgs) ToGetApiSecurityDiscoveredOperationsOperationOutputWithContext(ctx context.Context) GetApiSecurityDiscoveredOperationsOperationOutput {
+	return pulumi.ToOutputWithContext(ctx, i).(GetApiSecurityDiscoveredOperationsOperationOutput)
+}
+
+// GetApiSecurityDiscoveredOperationsOperationArrayInput is an input type that accepts GetApiSecurityDiscoveredOperationsOperationArray and GetApiSecurityDiscoveredOperationsOperationArrayOutput values.
+// You can construct a concrete instance of `GetApiSecurityDiscoveredOperationsOperationArrayInput` via:
+//
+//	GetApiSecurityDiscoveredOperationsOperationArray{ GetApiSecurityDiscoveredOperationsOperationArgs{...} }
+type GetApiSecurityDiscoveredOperationsOperationArrayInput interface {
+	pulumi.Input
+
+	ToGetApiSecurityDiscoveredOperationsOperationArrayOutput() GetApiSecurityDiscoveredOperationsOperationArrayOutput
+	ToGetApiSecurityDiscoveredOperationsOperationArrayOutputWithContext(context.Context) GetApiSecurityDiscoveredOperationsOperationArrayOutput
+}
+
+type GetApiSecurityDiscoveredOperationsOperationArray []GetApiSecurityDiscoveredOperationsOperationInput
+
+func (GetApiSecurityDiscoveredOperationsOperationArray) ElementType() reflect.Type {
+	return reflect.TypeOf((*[]GetApiSecurityDiscoveredOperationsOperation)(nil)).Elem()
+}
+
+func (i GetApiSecurityDiscoveredOperationsOperationArray) ToGetApiSecurityDiscoveredOperationsOperationArrayOutput() GetApiSecurityDiscoveredOperationsOperationArrayOutput {
+	return i.ToGetApiSecurityDiscoveredOperationsOperationArrayOutputWithContext(context.Background())
+}
+
+func (i GetApiSecurityDiscoveredOperationsOperationArray) ToGetApiSecurityDiscoveredOperationsOperationArrayOutputWithContext(ctx context.Context) GetApiSecurityDiscoveredOperationsOperationArrayOutput {
+	return pulumi.ToOutputWithContext(ctx, i).(GetApiSecurityDiscoveredOperationsOperationArrayOutput)
+}
+
+type GetApiSecurityDiscoveredOperationsOperationOutput struct{ *pulumi.OutputState }
+
+func (GetApiSecurityDiscoveredOperationsOperationOutput) ElementType() reflect.Type {
+	return reflect.TypeOf((*GetApiSecurityDiscoveredOperationsOperation)(nil)).Elem()
+}
+
+func (o GetApiSecurityDiscoveredOperationsOperationOutput) ToGetApiSecurityDiscoveredOperationsOperationOutput() GetApiSecurityDiscoveredOperationsOperationOutput {
+	return o
+}
+
+func (o GetApiSecurityDiscoveredOperationsOperationOutput) ToGetApiSecurityDiscoveredOperationsOperationOutputWithContext(ctx context.Context) GetApiSecurityDiscoveredOperationsOperationOutput {
+	return o
+}
+
+// Discovered operation domain.
+func (o GetApiSecurityDiscoveredOperationsOperationOutput) Domain() pulumi.StringOutput {
+	return o.ApplyT(func(v GetApiSecurityDiscoveredOperationsOperation) string { return v.Domain }).(pulumi.StringOutput)
+}
+
+// Discovered operation ID.
+func (o GetApiSecurityDiscoveredOperationsOperationOutput) Id() pulumi.StringOutput {
+	return o.ApplyT(func(v GetApiSecurityDiscoveredOperationsOperation) string { return v.Id }).(pulumi.StringOutput)
+}
+
+// Last seen timestamp (when present).
+func (o GetApiSecurityDiscoveredOperationsOperationOutput) LastSeenAt() pulumi.StringOutput {
+	return o.ApplyT(func(v GetApiSecurityDiscoveredOperationsOperation) string { return v.LastSeenAt }).(pulumi.StringOutput)
+}
+
+// Discovered operation HTTP method.
+func (o GetApiSecurityDiscoveredOperationsOperationOutput) Method() pulumi.StringOutput {
+	return o.ApplyT(func(v GetApiSecurityDiscoveredOperationsOperation) string { return v.Method }).(pulumi.StringOutput)
+}
+
+// Discovered operation path.
+func (o GetApiSecurityDiscoveredOperationsOperationOutput) Path() pulumi.StringOutput {
+	return o.ApplyT(func(v GetApiSecurityDiscoveredOperationsOperation) string { return v.Path }).(pulumi.StringOutput)
+}
+
+// Observed requests per second (when present).
+func (o GetApiSecurityDiscoveredOperationsOperationOutput) Rps() pulumi.Float64Output {
+	return o.ApplyT(func(v GetApiSecurityDiscoveredOperationsOperation) float64 { return v.Rps }).(pulumi.Float64Output)
+}
+
+// Discovered operation status (when present).
+func (o GetApiSecurityDiscoveredOperationsOperationOutput) Status() pulumi.StringOutput {
+	return o.ApplyT(func(v GetApiSecurityDiscoveredOperationsOperation) string { return v.Status }).(pulumi.StringOutput)
+}
+
+// Updated timestamp (when present).
+func (o GetApiSecurityDiscoveredOperationsOperationOutput) UpdatedAt() pulumi.StringOutput {
+	return o.ApplyT(func(v GetApiSecurityDiscoveredOperationsOperation) string { return v.UpdatedAt }).(pulumi.StringOutput)
+}
+
+type GetApiSecurityDiscoveredOperationsOperationArrayOutput struct{ *pulumi.OutputState }
+
+func (GetApiSecurityDiscoveredOperationsOperationArrayOutput) ElementType() reflect.Type {
+	return reflect.TypeOf((*[]GetApiSecurityDiscoveredOperationsOperation)(nil)).Elem()
+}
+
+func (o GetApiSecurityDiscoveredOperationsOperationArrayOutput) ToGetApiSecurityDiscoveredOperationsOperationArrayOutput() GetApiSecurityDiscoveredOperationsOperationArrayOutput {
+	return o
+}
+
+func (o GetApiSecurityDiscoveredOperationsOperationArrayOutput) ToGetApiSecurityDiscoveredOperationsOperationArrayOutputWithContext(ctx context.Context) GetApiSecurityDiscoveredOperationsOperationArrayOutput {
+	return o
+}
+
+func (o GetApiSecurityDiscoveredOperationsOperationArrayOutput) Index(i pulumi.IntInput) GetApiSecurityDiscoveredOperationsOperationOutput {
+	return pulumi.All(o, i).ApplyT(func(vs []interface{}) GetApiSecurityDiscoveredOperationsOperation {
+		return vs[0].([]GetApiSecurityDiscoveredOperationsOperation)[vs[1].(int)]
+	}).(GetApiSecurityDiscoveredOperationsOperationOutput)
+}
+
+type GetApiSecurityOperationTagsTag struct {
+	// Created timestamp (when present).
+	CreatedAt string `pulumi:"createdAt"`
+	// Tag description (when present).
+	Description string `pulumi:"description"`
+	// Tag ID.
+	Id string `pulumi:"id"`
+	// Tag name.
+	Name string `pulumi:"name"`
+	// Number of operations associated with this tag (when present).
+	OperationCount int `pulumi:"operationCount"`
+	// Updated timestamp (when present).
+	UpdatedAt string `pulumi:"updatedAt"`
+}
+
+// GetApiSecurityOperationTagsTagInput is an input type that accepts GetApiSecurityOperationTagsTagArgs and GetApiSecurityOperationTagsTagOutput values.
+// You can construct a concrete instance of `GetApiSecurityOperationTagsTagInput` via:
+//
+//	GetApiSecurityOperationTagsTagArgs{...}
+type GetApiSecurityOperationTagsTagInput interface {
+	pulumi.Input
+
+	ToGetApiSecurityOperationTagsTagOutput() GetApiSecurityOperationTagsTagOutput
+	ToGetApiSecurityOperationTagsTagOutputWithContext(context.Context) GetApiSecurityOperationTagsTagOutput
+}
+
+type GetApiSecurityOperationTagsTagArgs struct {
+	// Created timestamp (when present).
+	CreatedAt pulumi.StringInput `pulumi:"createdAt"`
+	// Tag description (when present).
+	Description pulumi.StringInput `pulumi:"description"`
+	// Tag ID.
+	Id pulumi.StringInput `pulumi:"id"`
+	// Tag name.
+	Name pulumi.StringInput `pulumi:"name"`
+	// Number of operations associated with this tag (when present).
+	OperationCount pulumi.IntInput `pulumi:"operationCount"`
+	// Updated timestamp (when present).
+	UpdatedAt pulumi.StringInput `pulumi:"updatedAt"`
+}
+
+func (GetApiSecurityOperationTagsTagArgs) ElementType() reflect.Type {
+	return reflect.TypeOf((*GetApiSecurityOperationTagsTag)(nil)).Elem()
+}
+
+func (i GetApiSecurityOperationTagsTagArgs) ToGetApiSecurityOperationTagsTagOutput() GetApiSecurityOperationTagsTagOutput {
+	return i.ToGetApiSecurityOperationTagsTagOutputWithContext(context.Background())
+}
+
+func (i GetApiSecurityOperationTagsTagArgs) ToGetApiSecurityOperationTagsTagOutputWithContext(ctx context.Context) GetApiSecurityOperationTagsTagOutput {
+	return pulumi.ToOutputWithContext(ctx, i).(GetApiSecurityOperationTagsTagOutput)
+}
+
+// GetApiSecurityOperationTagsTagArrayInput is an input type that accepts GetApiSecurityOperationTagsTagArray and GetApiSecurityOperationTagsTagArrayOutput values.
+// You can construct a concrete instance of `GetApiSecurityOperationTagsTagArrayInput` via:
+//
+//	GetApiSecurityOperationTagsTagArray{ GetApiSecurityOperationTagsTagArgs{...} }
+type GetApiSecurityOperationTagsTagArrayInput interface {
+	pulumi.Input
+
+	ToGetApiSecurityOperationTagsTagArrayOutput() GetApiSecurityOperationTagsTagArrayOutput
+	ToGetApiSecurityOperationTagsTagArrayOutputWithContext(context.Context) GetApiSecurityOperationTagsTagArrayOutput
+}
+
+type GetApiSecurityOperationTagsTagArray []GetApiSecurityOperationTagsTagInput
+
+func (GetApiSecurityOperationTagsTagArray) ElementType() reflect.Type {
+	return reflect.TypeOf((*[]GetApiSecurityOperationTagsTag)(nil)).Elem()
+}
+
+func (i GetApiSecurityOperationTagsTagArray) ToGetApiSecurityOperationTagsTagArrayOutput() GetApiSecurityOperationTagsTagArrayOutput {
+	return i.ToGetApiSecurityOperationTagsTagArrayOutputWithContext(context.Background())
+}
+
+func (i GetApiSecurityOperationTagsTagArray) ToGetApiSecurityOperationTagsTagArrayOutputWithContext(ctx context.Context) GetApiSecurityOperationTagsTagArrayOutput {
+	return pulumi.ToOutputWithContext(ctx, i).(GetApiSecurityOperationTagsTagArrayOutput)
+}
+
+type GetApiSecurityOperationTagsTagOutput struct{ *pulumi.OutputState }
+
+func (GetApiSecurityOperationTagsTagOutput) ElementType() reflect.Type {
+	return reflect.TypeOf((*GetApiSecurityOperationTagsTag)(nil)).Elem()
+}
+
+func (o GetApiSecurityOperationTagsTagOutput) ToGetApiSecurityOperationTagsTagOutput() GetApiSecurityOperationTagsTagOutput {
+	return o
+}
+
+func (o GetApiSecurityOperationTagsTagOutput) ToGetApiSecurityOperationTagsTagOutputWithContext(ctx context.Context) GetApiSecurityOperationTagsTagOutput {
+	return o
+}
+
+// Created timestamp (when present).
+func (o GetApiSecurityOperationTagsTagOutput) CreatedAt() pulumi.StringOutput {
+	return o.ApplyT(func(v GetApiSecurityOperationTagsTag) string { return v.CreatedAt }).(pulumi.StringOutput)
+}
+
+// Tag description (when present).
+func (o GetApiSecurityOperationTagsTagOutput) Description() pulumi.StringOutput {
+	return o.ApplyT(func(v GetApiSecurityOperationTagsTag) string { return v.Description }).(pulumi.StringOutput)
+}
+
+// Tag ID.
+func (o GetApiSecurityOperationTagsTagOutput) Id() pulumi.StringOutput {
+	return o.ApplyT(func(v GetApiSecurityOperationTagsTag) string { return v.Id }).(pulumi.StringOutput)
+}
+
+// Tag name.
+func (o GetApiSecurityOperationTagsTagOutput) Name() pulumi.StringOutput {
+	return o.ApplyT(func(v GetApiSecurityOperationTagsTag) string { return v.Name }).(pulumi.StringOutput)
+}
+
+// Number of operations associated with this tag (when present).
+func (o GetApiSecurityOperationTagsTagOutput) OperationCount() pulumi.IntOutput {
+	return o.ApplyT(func(v GetApiSecurityOperationTagsTag) int { return v.OperationCount }).(pulumi.IntOutput)
+}
+
+// Updated timestamp (when present).
+func (o GetApiSecurityOperationTagsTagOutput) UpdatedAt() pulumi.StringOutput {
+	return o.ApplyT(func(v GetApiSecurityOperationTagsTag) string { return v.UpdatedAt }).(pulumi.StringOutput)
+}
+
+type GetApiSecurityOperationTagsTagArrayOutput struct{ *pulumi.OutputState }
+
+func (GetApiSecurityOperationTagsTagArrayOutput) ElementType() reflect.Type {
+	return reflect.TypeOf((*[]GetApiSecurityOperationTagsTag)(nil)).Elem()
+}
+
+func (o GetApiSecurityOperationTagsTagArrayOutput) ToGetApiSecurityOperationTagsTagArrayOutput() GetApiSecurityOperationTagsTagArrayOutput {
+	return o
+}
+
+func (o GetApiSecurityOperationTagsTagArrayOutput) ToGetApiSecurityOperationTagsTagArrayOutputWithContext(ctx context.Context) GetApiSecurityOperationTagsTagArrayOutput {
+	return o
+}
+
+func (o GetApiSecurityOperationTagsTagArrayOutput) Index(i pulumi.IntInput) GetApiSecurityOperationTagsTagOutput {
+	return pulumi.All(o, i).ApplyT(func(vs []interface{}) GetApiSecurityOperationTagsTag {
+		return vs[0].([]GetApiSecurityOperationTagsTag)[vs[1].(int)]
+	}).(GetApiSecurityOperationTagsTagOutput)
+}
+
+type GetApiSecurityOperationsOperation struct {
+	// Created timestamp (when present).
+	CreatedAt string `pulumi:"createdAt"`
+	// Operation description (when present).
+	Description string `pulumi:"description"`
+	// Operation domain.
+	Domain string `pulumi:"domain"`
+	// Operation ID.
+	Id string `pulumi:"id"`
+	// Last seen timestamp (when present).
+	LastSeenAt string `pulumi:"lastSeenAt"`
+	// Operation HTTP method.
+	Method string `pulumi:"method"`
+	// Operation path.
+	Path string `pulumi:"path"`
+	// Observed requests per second (when present).
+	Rps float64 `pulumi:"rps"`
+	// Discovery status (when present). One of `DISCOVERED`, `SAVED`, or `IGNORED`.
+	Status string `pulumi:"status"`
+	// Associated operation tag IDs.
+	TagIds []string `pulumi:"tagIds"`
+	// Updated timestamp (when present).
+	UpdatedAt string `pulumi:"updatedAt"`
+}
+
+// GetApiSecurityOperationsOperationInput is an input type that accepts GetApiSecurityOperationsOperationArgs and GetApiSecurityOperationsOperationOutput values.
+// You can construct a concrete instance of `GetApiSecurityOperationsOperationInput` via:
+//
+//	GetApiSecurityOperationsOperationArgs{...}
+type GetApiSecurityOperationsOperationInput interface {
+	pulumi.Input
+
+	ToGetApiSecurityOperationsOperationOutput() GetApiSecurityOperationsOperationOutput
+	ToGetApiSecurityOperationsOperationOutputWithContext(context.Context) GetApiSecurityOperationsOperationOutput
+}
+
+type GetApiSecurityOperationsOperationArgs struct {
+	// Created timestamp (when present).
+	CreatedAt pulumi.StringInput `pulumi:"createdAt"`
+	// Operation description (when present).
+	Description pulumi.StringInput `pulumi:"description"`
+	// Operation domain.
+	Domain pulumi.StringInput `pulumi:"domain"`
+	// Operation ID.
+	Id pulumi.StringInput `pulumi:"id"`
+	// Last seen timestamp (when present).
+	LastSeenAt pulumi.StringInput `pulumi:"lastSeenAt"`
+	// Operation HTTP method.
+	Method pulumi.StringInput `pulumi:"method"`
+	// Operation path.
+	Path pulumi.StringInput `pulumi:"path"`
+	// Observed requests per second (when present).
+	Rps pulumi.Float64Input `pulumi:"rps"`
+	// Discovery status (when present). One of `DISCOVERED`, `SAVED`, or `IGNORED`.
+	Status pulumi.StringInput `pulumi:"status"`
+	// Associated operation tag IDs.
+	TagIds pulumi.StringArrayInput `pulumi:"tagIds"`
+	// Updated timestamp (when present).
+	UpdatedAt pulumi.StringInput `pulumi:"updatedAt"`
+}
+
+func (GetApiSecurityOperationsOperationArgs) ElementType() reflect.Type {
+	return reflect.TypeOf((*GetApiSecurityOperationsOperation)(nil)).Elem()
+}
+
+func (i GetApiSecurityOperationsOperationArgs) ToGetApiSecurityOperationsOperationOutput() GetApiSecurityOperationsOperationOutput {
+	return i.ToGetApiSecurityOperationsOperationOutputWithContext(context.Background())
+}
+
+func (i GetApiSecurityOperationsOperationArgs) ToGetApiSecurityOperationsOperationOutputWithContext(ctx context.Context) GetApiSecurityOperationsOperationOutput {
+	return pulumi.ToOutputWithContext(ctx, i).(GetApiSecurityOperationsOperationOutput)
+}
+
+// GetApiSecurityOperationsOperationArrayInput is an input type that accepts GetApiSecurityOperationsOperationArray and GetApiSecurityOperationsOperationArrayOutput values.
+// You can construct a concrete instance of `GetApiSecurityOperationsOperationArrayInput` via:
+//
+//	GetApiSecurityOperationsOperationArray{ GetApiSecurityOperationsOperationArgs{...} }
+type GetApiSecurityOperationsOperationArrayInput interface {
+	pulumi.Input
+
+	ToGetApiSecurityOperationsOperationArrayOutput() GetApiSecurityOperationsOperationArrayOutput
+	ToGetApiSecurityOperationsOperationArrayOutputWithContext(context.Context) GetApiSecurityOperationsOperationArrayOutput
+}
+
+type GetApiSecurityOperationsOperationArray []GetApiSecurityOperationsOperationInput
+
+func (GetApiSecurityOperationsOperationArray) ElementType() reflect.Type {
+	return reflect.TypeOf((*[]GetApiSecurityOperationsOperation)(nil)).Elem()
+}
+
+func (i GetApiSecurityOperationsOperationArray) ToGetApiSecurityOperationsOperationArrayOutput() GetApiSecurityOperationsOperationArrayOutput {
+	return i.ToGetApiSecurityOperationsOperationArrayOutputWithContext(context.Background())
+}
+
+func (i GetApiSecurityOperationsOperationArray) ToGetApiSecurityOperationsOperationArrayOutputWithContext(ctx context.Context) GetApiSecurityOperationsOperationArrayOutput {
+	return pulumi.ToOutputWithContext(ctx, i).(GetApiSecurityOperationsOperationArrayOutput)
+}
+
+type GetApiSecurityOperationsOperationOutput struct{ *pulumi.OutputState }
+
+func (GetApiSecurityOperationsOperationOutput) ElementType() reflect.Type {
+	return reflect.TypeOf((*GetApiSecurityOperationsOperation)(nil)).Elem()
+}
+
+func (o GetApiSecurityOperationsOperationOutput) ToGetApiSecurityOperationsOperationOutput() GetApiSecurityOperationsOperationOutput {
+	return o
+}
+
+func (o GetApiSecurityOperationsOperationOutput) ToGetApiSecurityOperationsOperationOutputWithContext(ctx context.Context) GetApiSecurityOperationsOperationOutput {
+	return o
+}
+
+// Created timestamp (when present).
+func (o GetApiSecurityOperationsOperationOutput) CreatedAt() pulumi.StringOutput {
+	return o.ApplyT(func(v GetApiSecurityOperationsOperation) string { return v.CreatedAt }).(pulumi.StringOutput)
+}
+
+// Operation description (when present).
+func (o GetApiSecurityOperationsOperationOutput) Description() pulumi.StringOutput {
+	return o.ApplyT(func(v GetApiSecurityOperationsOperation) string { return v.Description }).(pulumi.StringOutput)
+}
+
+// Operation domain.
+func (o GetApiSecurityOperationsOperationOutput) Domain() pulumi.StringOutput {
+	return o.ApplyT(func(v GetApiSecurityOperationsOperation) string { return v.Domain }).(pulumi.StringOutput)
+}
+
+// Operation ID.
+func (o GetApiSecurityOperationsOperationOutput) Id() pulumi.StringOutput {
+	return o.ApplyT(func(v GetApiSecurityOperationsOperation) string { return v.Id }).(pulumi.StringOutput)
+}
+
+// Last seen timestamp (when present).
+func (o GetApiSecurityOperationsOperationOutput) LastSeenAt() pulumi.StringOutput {
+	return o.ApplyT(func(v GetApiSecurityOperationsOperation) string { return v.LastSeenAt }).(pulumi.StringOutput)
+}
+
+// Operation HTTP method.
+func (o GetApiSecurityOperationsOperationOutput) Method() pulumi.StringOutput {
+	return o.ApplyT(func(v GetApiSecurityOperationsOperation) string { return v.Method }).(pulumi.StringOutput)
+}
+
+// Operation path.
+func (o GetApiSecurityOperationsOperationOutput) Path() pulumi.StringOutput {
+	return o.ApplyT(func(v GetApiSecurityOperationsOperation) string { return v.Path }).(pulumi.StringOutput)
+}
+
+// Observed requests per second (when present).
+func (o GetApiSecurityOperationsOperationOutput) Rps() pulumi.Float64Output {
+	return o.ApplyT(func(v GetApiSecurityOperationsOperation) float64 { return v.Rps }).(pulumi.Float64Output)
+}
+
+// Discovery status (when present). One of `DISCOVERED`, `SAVED`, or `IGNORED`.
+func (o GetApiSecurityOperationsOperationOutput) Status() pulumi.StringOutput {
+	return o.ApplyT(func(v GetApiSecurityOperationsOperation) string { return v.Status }).(pulumi.StringOutput)
+}
+
+// Associated operation tag IDs.
+func (o GetApiSecurityOperationsOperationOutput) TagIds() pulumi.StringArrayOutput {
+	return o.ApplyT(func(v GetApiSecurityOperationsOperation) []string { return v.TagIds }).(pulumi.StringArrayOutput)
+}
+
+// Updated timestamp (when present).
+func (o GetApiSecurityOperationsOperationOutput) UpdatedAt() pulumi.StringOutput {
+	return o.ApplyT(func(v GetApiSecurityOperationsOperation) string { return v.UpdatedAt }).(pulumi.StringOutput)
+}
+
+type GetApiSecurityOperationsOperationArrayOutput struct{ *pulumi.OutputState }
+
+func (GetApiSecurityOperationsOperationArrayOutput) ElementType() reflect.Type {
+	return reflect.TypeOf((*[]GetApiSecurityOperationsOperation)(nil)).Elem()
+}
+
+func (o GetApiSecurityOperationsOperationArrayOutput) ToGetApiSecurityOperationsOperationArrayOutput() GetApiSecurityOperationsOperationArrayOutput {
+	return o
+}
+
+func (o GetApiSecurityOperationsOperationArrayOutput) ToGetApiSecurityOperationsOperationArrayOutputWithContext(ctx context.Context) GetApiSecurityOperationsOperationArrayOutput {
+	return o
+}
+
+func (o GetApiSecurityOperationsOperationArrayOutput) Index(i pulumi.IntInput) GetApiSecurityOperationsOperationOutput {
+	return pulumi.All(o, i).ApplyT(func(vs []interface{}) GetApiSecurityOperationsOperation {
+		return vs[0].([]GetApiSecurityOperationsOperation)[vs[1].(int)]
+	}).(GetApiSecurityOperationsOperationOutput)
+}
+
 type GetComputeAclsAcl struct {
 	// Identifier of the Compute ACL.
 	Id string `pulumi:"id"`
@@ -23348,6 +23837,12 @@ func init() {
 	pulumi.RegisterInputType(reflect.TypeOf((*TlsSubscriptionManagedDnsChallengeArrayInput)(nil)).Elem(), TlsSubscriptionManagedDnsChallengeArray{})
 	pulumi.RegisterInputType(reflect.TypeOf((*TlsSubscriptionManagedHttpChallengeInput)(nil)).Elem(), TlsSubscriptionManagedHttpChallengeArgs{})
 	pulumi.RegisterInputType(reflect.TypeOf((*TlsSubscriptionManagedHttpChallengeArrayInput)(nil)).Elem(), TlsSubscriptionManagedHttpChallengeArray{})
+	pulumi.RegisterInputType(reflect.TypeOf((*GetApiSecurityDiscoveredOperationsOperationInput)(nil)).Elem(), GetApiSecurityDiscoveredOperationsOperationArgs{})
+	pulumi.RegisterInputType(reflect.TypeOf((*GetApiSecurityDiscoveredOperationsOperationArrayInput)(nil)).Elem(), GetApiSecurityDiscoveredOperationsOperationArray{})
+	pulumi.RegisterInputType(reflect.TypeOf((*GetApiSecurityOperationTagsTagInput)(nil)).Elem(), GetApiSecurityOperationTagsTagArgs{})
+	pulumi.RegisterInputType(reflect.TypeOf((*GetApiSecurityOperationTagsTagArrayInput)(nil)).Elem(), GetApiSecurityOperationTagsTagArray{})
+	pulumi.RegisterInputType(reflect.TypeOf((*GetApiSecurityOperationsOperationInput)(nil)).Elem(), GetApiSecurityOperationsOperationArgs{})
+	pulumi.RegisterInputType(reflect.TypeOf((*GetApiSecurityOperationsOperationArrayInput)(nil)).Elem(), GetApiSecurityOperationsOperationArray{})
 	pulumi.RegisterInputType(reflect.TypeOf((*GetComputeAclsAclInput)(nil)).Elem(), GetComputeAclsAclArgs{})
 	pulumi.RegisterInputType(reflect.TypeOf((*GetComputeAclsAclArrayInput)(nil)).Elem(), GetComputeAclsAclArray{})
 	pulumi.RegisterInputType(reflect.TypeOf((*GetConfigstoresStoreInput)(nil)).Elem(), GetConfigstoresStoreArgs{})
@@ -23636,6 +24131,12 @@ func init() {
 	pulumi.RegisterOutputType(TlsSubscriptionManagedDnsChallengeArrayOutput{})
 	pulumi.RegisterOutputType(TlsSubscriptionManagedHttpChallengeOutput{})
 	pulumi.RegisterOutputType(TlsSubscriptionManagedHttpChallengeArrayOutput{})
+	pulumi.RegisterOutputType(GetApiSecurityDiscoveredOperationsOperationOutput{})
+	pulumi.RegisterOutputType(GetApiSecurityDiscoveredOperationsOperationArrayOutput{})
+	pulumi.RegisterOutputType(GetApiSecurityOperationTagsTagOutput{})
+	pulumi.RegisterOutputType(GetApiSecurityOperationTagsTagArrayOutput{})
+	pulumi.RegisterOutputType(GetApiSecurityOperationsOperationOutput{})
+	pulumi.RegisterOutputType(GetApiSecurityOperationsOperationArrayOutput{})
 	pulumi.RegisterOutputType(GetComputeAclsAclOutput{})
 	pulumi.RegisterOutputType(GetComputeAclsAclArrayOutput{})
 	pulumi.RegisterOutputType(GetConfigstoresStoreOutput{})

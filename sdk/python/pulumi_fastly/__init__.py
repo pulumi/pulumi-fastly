@@ -7,6 +7,8 @@ from . import _utilities
 import typing
 # Export this package's modules as members:
 from .alert import *
+from .api_security_operation import *
+from .api_security_operation_tag import *
 from .compute_acl import *
 from .compute_acl_entries import *
 from .configstore import *
@@ -16,6 +18,9 @@ from .domain import *
 from .domain_service_link import *
 from .domain_v1 import *
 from .domain_v1_service_link import *
+from .get_api_security_discovered_operations import *
+from .get_api_security_operation_tags import *
+from .get_api_security_operations import *
 from .get_compute_acls import *
 from .get_configstores import *
 from .get_datacenters import *
@@ -116,6 +121,22 @@ _utilities.register(
   "fqn": "pulumi_fastly",
   "classes": {
    "fastly:index/alert:Alert": "Alert"
+  }
+ },
+ {
+  "pkg": "fastly",
+  "mod": "index/apiSecurityOperation",
+  "fqn": "pulumi_fastly",
+  "classes": {
+   "fastly:index/apiSecurityOperation:ApiSecurityOperation": "ApiSecurityOperation"
+  }
+ },
+ {
+  "pkg": "fastly",
+  "mod": "index/apiSecurityOperationTag",
+  "fqn": "pulumi_fastly",
+  "classes": {
+   "fastly:index/apiSecurityOperationTag:ApiSecurityOperationTag": "ApiSecurityOperationTag"
   }
  },
  {

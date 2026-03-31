@@ -9,6 +9,12 @@ import com.pulumi.deployment.Deployment;
 import com.pulumi.deployment.InvokeOptions;
 import com.pulumi.deployment.InvokeOutputOptions;
 import com.pulumi.fastly.Utilities;
+import com.pulumi.fastly.inputs.GetApiSecurityDiscoveredOperationsArgs;
+import com.pulumi.fastly.inputs.GetApiSecurityDiscoveredOperationsPlainArgs;
+import com.pulumi.fastly.inputs.GetApiSecurityOperationTagsArgs;
+import com.pulumi.fastly.inputs.GetApiSecurityOperationTagsPlainArgs;
+import com.pulumi.fastly.inputs.GetApiSecurityOperationsArgs;
+import com.pulumi.fastly.inputs.GetApiSecurityOperationsPlainArgs;
 import com.pulumi.fastly.inputs.GetDictionariesArgs;
 import com.pulumi.fastly.inputs.GetDictionariesPlainArgs;
 import com.pulumi.fastly.inputs.GetDomainsArgs;
@@ -65,6 +71,9 @@ import com.pulumi.fastly.inputs.GetTlsSubscriptionArgs;
 import com.pulumi.fastly.inputs.GetTlsSubscriptionPlainArgs;
 import com.pulumi.fastly.inputs.GetVclSnippetsArgs;
 import com.pulumi.fastly.inputs.GetVclSnippetsPlainArgs;
+import com.pulumi.fastly.outputs.GetApiSecurityDiscoveredOperationsResult;
+import com.pulumi.fastly.outputs.GetApiSecurityOperationTagsResult;
+import com.pulumi.fastly.outputs.GetApiSecurityOperationsResult;
 import com.pulumi.fastly.outputs.GetComputeAclsResult;
 import com.pulumi.fastly.outputs.GetConfigstoresResult;
 import com.pulumi.fastly.outputs.GetDatacentersResult;
@@ -113,6 +122,966 @@ import com.pulumi.resources.InvokeArgs;
 import java.util.concurrent.CompletableFuture;
 
 public final class FastlyFunctions {
+    /**
+     * Use this data source to list API Security discovered operations for a Fastly service.
+     * 
+     * Discovered operations depend on observed traffic and may be empty.
+     * 
+     * ## Example Usage
+     * 
+     * <pre>
+     * {@code
+     * package generated_program;
+     * 
+     * import com.pulumi.Context;
+     * import com.pulumi.Pulumi;
+     * import com.pulumi.core.Output;
+     * import com.pulumi.fastly.ServiceVcl;
+     * import com.pulumi.fastly.ServiceVclArgs;
+     * import com.pulumi.fastly.inputs.ServiceVclBackendArgs;
+     * import com.pulumi.fastly.FastlyFunctions;
+     * import com.pulumi.fastly.inputs.GetApiSecurityDiscoveredOperationsArgs;
+     * import java.util.List;
+     * import java.util.ArrayList;
+     * import java.util.Map;
+     * import java.io.File;
+     * import java.nio.file.Files;
+     * import java.nio.file.Paths;
+     * 
+     * public class App {
+     *     public static void main(String[] args) {
+     *         Pulumi.run(App::stack);
+     *     }
+     * 
+     *     public static void stack(Context ctx) {
+     *         var svc1 = new ServiceVcl("svc1", ServiceVclArgs.builder()
+     *             .name("test-svc-1-example")
+     *             .forceDestroy(true)
+     *             .backends(ServiceVclBackendArgs.builder()
+     *                 .address("example.com")
+     *                 .name("tf-test-backend-1")
+     *                 .build())
+     *             .build());
+     * 
+     *         // Discovered operations depend on traffic and may legitimately be empty.
+     *         final var discovered = FastlyFunctions.getApiSecurityDiscoveredOperations(GetApiSecurityDiscoveredOperationsArgs.builder()
+     *             .serviceId(svc1.id())
+     *             .status("SAVED")
+     *             .methods("GET")
+     *             .domains("api.example.com")
+     *             .path("/v1/things")
+     *             .build());
+     * 
+     *         ctx.export("apiSecurityDiscoveredOperations", discovered.applyValue(_discovered -> _discovered.operations()));
+     *         ctx.export("apiSecurityDiscoveredOperationsTotal", discovered.applyValue(_discovered -> _discovered.total()));
+     *     }
+     * }
+     * }
+     * </pre>
+     * 
+     */
+    public static Output<GetApiSecurityDiscoveredOperationsResult> getApiSecurityDiscoveredOperations(GetApiSecurityDiscoveredOperationsArgs args) {
+        return getApiSecurityDiscoveredOperations(args, InvokeOptions.Empty);
+    }
+    /**
+     * Use this data source to list API Security discovered operations for a Fastly service.
+     * 
+     * Discovered operations depend on observed traffic and may be empty.
+     * 
+     * ## Example Usage
+     * 
+     * <pre>
+     * {@code
+     * package generated_program;
+     * 
+     * import com.pulumi.Context;
+     * import com.pulumi.Pulumi;
+     * import com.pulumi.core.Output;
+     * import com.pulumi.fastly.ServiceVcl;
+     * import com.pulumi.fastly.ServiceVclArgs;
+     * import com.pulumi.fastly.inputs.ServiceVclBackendArgs;
+     * import com.pulumi.fastly.FastlyFunctions;
+     * import com.pulumi.fastly.inputs.GetApiSecurityDiscoveredOperationsArgs;
+     * import java.util.List;
+     * import java.util.ArrayList;
+     * import java.util.Map;
+     * import java.io.File;
+     * import java.nio.file.Files;
+     * import java.nio.file.Paths;
+     * 
+     * public class App {
+     *     public static void main(String[] args) {
+     *         Pulumi.run(App::stack);
+     *     }
+     * 
+     *     public static void stack(Context ctx) {
+     *         var svc1 = new ServiceVcl("svc1", ServiceVclArgs.builder()
+     *             .name("test-svc-1-example")
+     *             .forceDestroy(true)
+     *             .backends(ServiceVclBackendArgs.builder()
+     *                 .address("example.com")
+     *                 .name("tf-test-backend-1")
+     *                 .build())
+     *             .build());
+     * 
+     *         // Discovered operations depend on traffic and may legitimately be empty.
+     *         final var discovered = FastlyFunctions.getApiSecurityDiscoveredOperations(GetApiSecurityDiscoveredOperationsArgs.builder()
+     *             .serviceId(svc1.id())
+     *             .status("SAVED")
+     *             .methods("GET")
+     *             .domains("api.example.com")
+     *             .path("/v1/things")
+     *             .build());
+     * 
+     *         ctx.export("apiSecurityDiscoveredOperations", discovered.applyValue(_discovered -> _discovered.operations()));
+     *         ctx.export("apiSecurityDiscoveredOperationsTotal", discovered.applyValue(_discovered -> _discovered.total()));
+     *     }
+     * }
+     * }
+     * </pre>
+     * 
+     */
+    public static CompletableFuture<GetApiSecurityDiscoveredOperationsResult> getApiSecurityDiscoveredOperationsPlain(GetApiSecurityDiscoveredOperationsPlainArgs args) {
+        return getApiSecurityDiscoveredOperationsPlain(args, InvokeOptions.Empty);
+    }
+    /**
+     * Use this data source to list API Security discovered operations for a Fastly service.
+     * 
+     * Discovered operations depend on observed traffic and may be empty.
+     * 
+     * ## Example Usage
+     * 
+     * <pre>
+     * {@code
+     * package generated_program;
+     * 
+     * import com.pulumi.Context;
+     * import com.pulumi.Pulumi;
+     * import com.pulumi.core.Output;
+     * import com.pulumi.fastly.ServiceVcl;
+     * import com.pulumi.fastly.ServiceVclArgs;
+     * import com.pulumi.fastly.inputs.ServiceVclBackendArgs;
+     * import com.pulumi.fastly.FastlyFunctions;
+     * import com.pulumi.fastly.inputs.GetApiSecurityDiscoveredOperationsArgs;
+     * import java.util.List;
+     * import java.util.ArrayList;
+     * import java.util.Map;
+     * import java.io.File;
+     * import java.nio.file.Files;
+     * import java.nio.file.Paths;
+     * 
+     * public class App {
+     *     public static void main(String[] args) {
+     *         Pulumi.run(App::stack);
+     *     }
+     * 
+     *     public static void stack(Context ctx) {
+     *         var svc1 = new ServiceVcl("svc1", ServiceVclArgs.builder()
+     *             .name("test-svc-1-example")
+     *             .forceDestroy(true)
+     *             .backends(ServiceVclBackendArgs.builder()
+     *                 .address("example.com")
+     *                 .name("tf-test-backend-1")
+     *                 .build())
+     *             .build());
+     * 
+     *         // Discovered operations depend on traffic and may legitimately be empty.
+     *         final var discovered = FastlyFunctions.getApiSecurityDiscoveredOperations(GetApiSecurityDiscoveredOperationsArgs.builder()
+     *             .serviceId(svc1.id())
+     *             .status("SAVED")
+     *             .methods("GET")
+     *             .domains("api.example.com")
+     *             .path("/v1/things")
+     *             .build());
+     * 
+     *         ctx.export("apiSecurityDiscoveredOperations", discovered.applyValue(_discovered -> _discovered.operations()));
+     *         ctx.export("apiSecurityDiscoveredOperationsTotal", discovered.applyValue(_discovered -> _discovered.total()));
+     *     }
+     * }
+     * }
+     * </pre>
+     * 
+     */
+    public static Output<GetApiSecurityDiscoveredOperationsResult> getApiSecurityDiscoveredOperations(GetApiSecurityDiscoveredOperationsArgs args, InvokeOptions options) {
+        return Deployment.getInstance().invoke("fastly:index/getApiSecurityDiscoveredOperations:getApiSecurityDiscoveredOperations", TypeShape.of(GetApiSecurityDiscoveredOperationsResult.class), args, Utilities.withVersion(options));
+    }
+    /**
+     * Use this data source to list API Security discovered operations for a Fastly service.
+     * 
+     * Discovered operations depend on observed traffic and may be empty.
+     * 
+     * ## Example Usage
+     * 
+     * <pre>
+     * {@code
+     * package generated_program;
+     * 
+     * import com.pulumi.Context;
+     * import com.pulumi.Pulumi;
+     * import com.pulumi.core.Output;
+     * import com.pulumi.fastly.ServiceVcl;
+     * import com.pulumi.fastly.ServiceVclArgs;
+     * import com.pulumi.fastly.inputs.ServiceVclBackendArgs;
+     * import com.pulumi.fastly.FastlyFunctions;
+     * import com.pulumi.fastly.inputs.GetApiSecurityDiscoveredOperationsArgs;
+     * import java.util.List;
+     * import java.util.ArrayList;
+     * import java.util.Map;
+     * import java.io.File;
+     * import java.nio.file.Files;
+     * import java.nio.file.Paths;
+     * 
+     * public class App {
+     *     public static void main(String[] args) {
+     *         Pulumi.run(App::stack);
+     *     }
+     * 
+     *     public static void stack(Context ctx) {
+     *         var svc1 = new ServiceVcl("svc1", ServiceVclArgs.builder()
+     *             .name("test-svc-1-example")
+     *             .forceDestroy(true)
+     *             .backends(ServiceVclBackendArgs.builder()
+     *                 .address("example.com")
+     *                 .name("tf-test-backend-1")
+     *                 .build())
+     *             .build());
+     * 
+     *         // Discovered operations depend on traffic and may legitimately be empty.
+     *         final var discovered = FastlyFunctions.getApiSecurityDiscoveredOperations(GetApiSecurityDiscoveredOperationsArgs.builder()
+     *             .serviceId(svc1.id())
+     *             .status("SAVED")
+     *             .methods("GET")
+     *             .domains("api.example.com")
+     *             .path("/v1/things")
+     *             .build());
+     * 
+     *         ctx.export("apiSecurityDiscoveredOperations", discovered.applyValue(_discovered -> _discovered.operations()));
+     *         ctx.export("apiSecurityDiscoveredOperationsTotal", discovered.applyValue(_discovered -> _discovered.total()));
+     *     }
+     * }
+     * }
+     * </pre>
+     * 
+     */
+    public static Output<GetApiSecurityDiscoveredOperationsResult> getApiSecurityDiscoveredOperations(GetApiSecurityDiscoveredOperationsArgs args, InvokeOutputOptions options) {
+        return Deployment.getInstance().invoke("fastly:index/getApiSecurityDiscoveredOperations:getApiSecurityDiscoveredOperations", TypeShape.of(GetApiSecurityDiscoveredOperationsResult.class), args, Utilities.withVersion(options));
+    }
+    /**
+     * Use this data source to list API Security discovered operations for a Fastly service.
+     * 
+     * Discovered operations depend on observed traffic and may be empty.
+     * 
+     * ## Example Usage
+     * 
+     * <pre>
+     * {@code
+     * package generated_program;
+     * 
+     * import com.pulumi.Context;
+     * import com.pulumi.Pulumi;
+     * import com.pulumi.core.Output;
+     * import com.pulumi.fastly.ServiceVcl;
+     * import com.pulumi.fastly.ServiceVclArgs;
+     * import com.pulumi.fastly.inputs.ServiceVclBackendArgs;
+     * import com.pulumi.fastly.FastlyFunctions;
+     * import com.pulumi.fastly.inputs.GetApiSecurityDiscoveredOperationsArgs;
+     * import java.util.List;
+     * import java.util.ArrayList;
+     * import java.util.Map;
+     * import java.io.File;
+     * import java.nio.file.Files;
+     * import java.nio.file.Paths;
+     * 
+     * public class App {
+     *     public static void main(String[] args) {
+     *         Pulumi.run(App::stack);
+     *     }
+     * 
+     *     public static void stack(Context ctx) {
+     *         var svc1 = new ServiceVcl("svc1", ServiceVclArgs.builder()
+     *             .name("test-svc-1-example")
+     *             .forceDestroy(true)
+     *             .backends(ServiceVclBackendArgs.builder()
+     *                 .address("example.com")
+     *                 .name("tf-test-backend-1")
+     *                 .build())
+     *             .build());
+     * 
+     *         // Discovered operations depend on traffic and may legitimately be empty.
+     *         final var discovered = FastlyFunctions.getApiSecurityDiscoveredOperations(GetApiSecurityDiscoveredOperationsArgs.builder()
+     *             .serviceId(svc1.id())
+     *             .status("SAVED")
+     *             .methods("GET")
+     *             .domains("api.example.com")
+     *             .path("/v1/things")
+     *             .build());
+     * 
+     *         ctx.export("apiSecurityDiscoveredOperations", discovered.applyValue(_discovered -> _discovered.operations()));
+     *         ctx.export("apiSecurityDiscoveredOperationsTotal", discovered.applyValue(_discovered -> _discovered.total()));
+     *     }
+     * }
+     * }
+     * </pre>
+     * 
+     */
+    public static CompletableFuture<GetApiSecurityDiscoveredOperationsResult> getApiSecurityDiscoveredOperationsPlain(GetApiSecurityDiscoveredOperationsPlainArgs args, InvokeOptions options) {
+        return Deployment.getInstance().invokeAsync("fastly:index/getApiSecurityDiscoveredOperations:getApiSecurityDiscoveredOperations", TypeShape.of(GetApiSecurityDiscoveredOperationsResult.class), args, Utilities.withVersion(options));
+    }
+    /**
+     * Use this data source to list API Security operation tags for a Fastly service.
+     * 
+     * ## Example Usage
+     * 
+     * <pre>
+     * {@code
+     * package generated_program;
+     * 
+     * import com.pulumi.Context;
+     * import com.pulumi.Pulumi;
+     * import com.pulumi.core.Output;
+     * import com.pulumi.fastly.ServiceVcl;
+     * import com.pulumi.fastly.ServiceVclArgs;
+     * import com.pulumi.fastly.inputs.ServiceVclBackendArgs;
+     * import com.pulumi.fastly.ApiSecurityOperationTag;
+     * import com.pulumi.fastly.ApiSecurityOperationTagArgs;
+     * import com.pulumi.fastly.FastlyFunctions;
+     * import com.pulumi.fastly.inputs.GetApiSecurityOperationTagsArgs;
+     * import java.util.List;
+     * import java.util.ArrayList;
+     * import java.util.Map;
+     * import java.io.File;
+     * import java.nio.file.Files;
+     * import java.nio.file.Paths;
+     * 
+     * public class App {
+     *     public static void main(String[] args) {
+     *         Pulumi.run(App::stack);
+     *     }
+     * 
+     *     public static void stack(Context ctx) {
+     *         var svc1 = new ServiceVcl("svc1", ServiceVclArgs.builder()
+     *             .name("test-svc-1-example")
+     *             .forceDestroy(true)
+     *             .backends(ServiceVclBackendArgs.builder()
+     *                 .address("example.com")
+     *                 .name("tf-test-backend-1")
+     *                 .build())
+     *             .build());
+     * 
+     *         // Optional: create a tag so the data source returns a predictable result
+     *         var example = new ApiSecurityOperationTag("example", ApiSecurityOperationTagArgs.builder()
+     *             .serviceId(svc1.id())
+     *             .name("example-tag")
+     *             .description("Example tag")
+     *             .build());
+     * 
+     *         final var tags = FastlyFunctions.getApiSecurityOperationTags(GetApiSecurityOperationTagsArgs.builder()
+     *             .serviceId(svc1.id())
+     *             .build());
+     * 
+     *         ctx.export("apiSecurityOperationTags", tags.applyValue(_tags -> _tags.tags()));
+     *         ctx.export("apiSecurityOperationTagsTotal", tags.applyValue(_tags -> _tags.total()));
+     *     }
+     * }
+     * }
+     * </pre>
+     * 
+     */
+    public static Output<GetApiSecurityOperationTagsResult> getApiSecurityOperationTags(GetApiSecurityOperationTagsArgs args) {
+        return getApiSecurityOperationTags(args, InvokeOptions.Empty);
+    }
+    /**
+     * Use this data source to list API Security operation tags for a Fastly service.
+     * 
+     * ## Example Usage
+     * 
+     * <pre>
+     * {@code
+     * package generated_program;
+     * 
+     * import com.pulumi.Context;
+     * import com.pulumi.Pulumi;
+     * import com.pulumi.core.Output;
+     * import com.pulumi.fastly.ServiceVcl;
+     * import com.pulumi.fastly.ServiceVclArgs;
+     * import com.pulumi.fastly.inputs.ServiceVclBackendArgs;
+     * import com.pulumi.fastly.ApiSecurityOperationTag;
+     * import com.pulumi.fastly.ApiSecurityOperationTagArgs;
+     * import com.pulumi.fastly.FastlyFunctions;
+     * import com.pulumi.fastly.inputs.GetApiSecurityOperationTagsArgs;
+     * import java.util.List;
+     * import java.util.ArrayList;
+     * import java.util.Map;
+     * import java.io.File;
+     * import java.nio.file.Files;
+     * import java.nio.file.Paths;
+     * 
+     * public class App {
+     *     public static void main(String[] args) {
+     *         Pulumi.run(App::stack);
+     *     }
+     * 
+     *     public static void stack(Context ctx) {
+     *         var svc1 = new ServiceVcl("svc1", ServiceVclArgs.builder()
+     *             .name("test-svc-1-example")
+     *             .forceDestroy(true)
+     *             .backends(ServiceVclBackendArgs.builder()
+     *                 .address("example.com")
+     *                 .name("tf-test-backend-1")
+     *                 .build())
+     *             .build());
+     * 
+     *         // Optional: create a tag so the data source returns a predictable result
+     *         var example = new ApiSecurityOperationTag("example", ApiSecurityOperationTagArgs.builder()
+     *             .serviceId(svc1.id())
+     *             .name("example-tag")
+     *             .description("Example tag")
+     *             .build());
+     * 
+     *         final var tags = FastlyFunctions.getApiSecurityOperationTags(GetApiSecurityOperationTagsArgs.builder()
+     *             .serviceId(svc1.id())
+     *             .build());
+     * 
+     *         ctx.export("apiSecurityOperationTags", tags.applyValue(_tags -> _tags.tags()));
+     *         ctx.export("apiSecurityOperationTagsTotal", tags.applyValue(_tags -> _tags.total()));
+     *     }
+     * }
+     * }
+     * </pre>
+     * 
+     */
+    public static CompletableFuture<GetApiSecurityOperationTagsResult> getApiSecurityOperationTagsPlain(GetApiSecurityOperationTagsPlainArgs args) {
+        return getApiSecurityOperationTagsPlain(args, InvokeOptions.Empty);
+    }
+    /**
+     * Use this data source to list API Security operation tags for a Fastly service.
+     * 
+     * ## Example Usage
+     * 
+     * <pre>
+     * {@code
+     * package generated_program;
+     * 
+     * import com.pulumi.Context;
+     * import com.pulumi.Pulumi;
+     * import com.pulumi.core.Output;
+     * import com.pulumi.fastly.ServiceVcl;
+     * import com.pulumi.fastly.ServiceVclArgs;
+     * import com.pulumi.fastly.inputs.ServiceVclBackendArgs;
+     * import com.pulumi.fastly.ApiSecurityOperationTag;
+     * import com.pulumi.fastly.ApiSecurityOperationTagArgs;
+     * import com.pulumi.fastly.FastlyFunctions;
+     * import com.pulumi.fastly.inputs.GetApiSecurityOperationTagsArgs;
+     * import java.util.List;
+     * import java.util.ArrayList;
+     * import java.util.Map;
+     * import java.io.File;
+     * import java.nio.file.Files;
+     * import java.nio.file.Paths;
+     * 
+     * public class App {
+     *     public static void main(String[] args) {
+     *         Pulumi.run(App::stack);
+     *     }
+     * 
+     *     public static void stack(Context ctx) {
+     *         var svc1 = new ServiceVcl("svc1", ServiceVclArgs.builder()
+     *             .name("test-svc-1-example")
+     *             .forceDestroy(true)
+     *             .backends(ServiceVclBackendArgs.builder()
+     *                 .address("example.com")
+     *                 .name("tf-test-backend-1")
+     *                 .build())
+     *             .build());
+     * 
+     *         // Optional: create a tag so the data source returns a predictable result
+     *         var example = new ApiSecurityOperationTag("example", ApiSecurityOperationTagArgs.builder()
+     *             .serviceId(svc1.id())
+     *             .name("example-tag")
+     *             .description("Example tag")
+     *             .build());
+     * 
+     *         final var tags = FastlyFunctions.getApiSecurityOperationTags(GetApiSecurityOperationTagsArgs.builder()
+     *             .serviceId(svc1.id())
+     *             .build());
+     * 
+     *         ctx.export("apiSecurityOperationTags", tags.applyValue(_tags -> _tags.tags()));
+     *         ctx.export("apiSecurityOperationTagsTotal", tags.applyValue(_tags -> _tags.total()));
+     *     }
+     * }
+     * }
+     * </pre>
+     * 
+     */
+    public static Output<GetApiSecurityOperationTagsResult> getApiSecurityOperationTags(GetApiSecurityOperationTagsArgs args, InvokeOptions options) {
+        return Deployment.getInstance().invoke("fastly:index/getApiSecurityOperationTags:getApiSecurityOperationTags", TypeShape.of(GetApiSecurityOperationTagsResult.class), args, Utilities.withVersion(options));
+    }
+    /**
+     * Use this data source to list API Security operation tags for a Fastly service.
+     * 
+     * ## Example Usage
+     * 
+     * <pre>
+     * {@code
+     * package generated_program;
+     * 
+     * import com.pulumi.Context;
+     * import com.pulumi.Pulumi;
+     * import com.pulumi.core.Output;
+     * import com.pulumi.fastly.ServiceVcl;
+     * import com.pulumi.fastly.ServiceVclArgs;
+     * import com.pulumi.fastly.inputs.ServiceVclBackendArgs;
+     * import com.pulumi.fastly.ApiSecurityOperationTag;
+     * import com.pulumi.fastly.ApiSecurityOperationTagArgs;
+     * import com.pulumi.fastly.FastlyFunctions;
+     * import com.pulumi.fastly.inputs.GetApiSecurityOperationTagsArgs;
+     * import java.util.List;
+     * import java.util.ArrayList;
+     * import java.util.Map;
+     * import java.io.File;
+     * import java.nio.file.Files;
+     * import java.nio.file.Paths;
+     * 
+     * public class App {
+     *     public static void main(String[] args) {
+     *         Pulumi.run(App::stack);
+     *     }
+     * 
+     *     public static void stack(Context ctx) {
+     *         var svc1 = new ServiceVcl("svc1", ServiceVclArgs.builder()
+     *             .name("test-svc-1-example")
+     *             .forceDestroy(true)
+     *             .backends(ServiceVclBackendArgs.builder()
+     *                 .address("example.com")
+     *                 .name("tf-test-backend-1")
+     *                 .build())
+     *             .build());
+     * 
+     *         // Optional: create a tag so the data source returns a predictable result
+     *         var example = new ApiSecurityOperationTag("example", ApiSecurityOperationTagArgs.builder()
+     *             .serviceId(svc1.id())
+     *             .name("example-tag")
+     *             .description("Example tag")
+     *             .build());
+     * 
+     *         final var tags = FastlyFunctions.getApiSecurityOperationTags(GetApiSecurityOperationTagsArgs.builder()
+     *             .serviceId(svc1.id())
+     *             .build());
+     * 
+     *         ctx.export("apiSecurityOperationTags", tags.applyValue(_tags -> _tags.tags()));
+     *         ctx.export("apiSecurityOperationTagsTotal", tags.applyValue(_tags -> _tags.total()));
+     *     }
+     * }
+     * }
+     * </pre>
+     * 
+     */
+    public static Output<GetApiSecurityOperationTagsResult> getApiSecurityOperationTags(GetApiSecurityOperationTagsArgs args, InvokeOutputOptions options) {
+        return Deployment.getInstance().invoke("fastly:index/getApiSecurityOperationTags:getApiSecurityOperationTags", TypeShape.of(GetApiSecurityOperationTagsResult.class), args, Utilities.withVersion(options));
+    }
+    /**
+     * Use this data source to list API Security operation tags for a Fastly service.
+     * 
+     * ## Example Usage
+     * 
+     * <pre>
+     * {@code
+     * package generated_program;
+     * 
+     * import com.pulumi.Context;
+     * import com.pulumi.Pulumi;
+     * import com.pulumi.core.Output;
+     * import com.pulumi.fastly.ServiceVcl;
+     * import com.pulumi.fastly.ServiceVclArgs;
+     * import com.pulumi.fastly.inputs.ServiceVclBackendArgs;
+     * import com.pulumi.fastly.ApiSecurityOperationTag;
+     * import com.pulumi.fastly.ApiSecurityOperationTagArgs;
+     * import com.pulumi.fastly.FastlyFunctions;
+     * import com.pulumi.fastly.inputs.GetApiSecurityOperationTagsArgs;
+     * import java.util.List;
+     * import java.util.ArrayList;
+     * import java.util.Map;
+     * import java.io.File;
+     * import java.nio.file.Files;
+     * import java.nio.file.Paths;
+     * 
+     * public class App {
+     *     public static void main(String[] args) {
+     *         Pulumi.run(App::stack);
+     *     }
+     * 
+     *     public static void stack(Context ctx) {
+     *         var svc1 = new ServiceVcl("svc1", ServiceVclArgs.builder()
+     *             .name("test-svc-1-example")
+     *             .forceDestroy(true)
+     *             .backends(ServiceVclBackendArgs.builder()
+     *                 .address("example.com")
+     *                 .name("tf-test-backend-1")
+     *                 .build())
+     *             .build());
+     * 
+     *         // Optional: create a tag so the data source returns a predictable result
+     *         var example = new ApiSecurityOperationTag("example", ApiSecurityOperationTagArgs.builder()
+     *             .serviceId(svc1.id())
+     *             .name("example-tag")
+     *             .description("Example tag")
+     *             .build());
+     * 
+     *         final var tags = FastlyFunctions.getApiSecurityOperationTags(GetApiSecurityOperationTagsArgs.builder()
+     *             .serviceId(svc1.id())
+     *             .build());
+     * 
+     *         ctx.export("apiSecurityOperationTags", tags.applyValue(_tags -> _tags.tags()));
+     *         ctx.export("apiSecurityOperationTagsTotal", tags.applyValue(_tags -> _tags.total()));
+     *     }
+     * }
+     * }
+     * </pre>
+     * 
+     */
+    public static CompletableFuture<GetApiSecurityOperationTagsResult> getApiSecurityOperationTagsPlain(GetApiSecurityOperationTagsPlainArgs args, InvokeOptions options) {
+        return Deployment.getInstance().invokeAsync("fastly:index/getApiSecurityOperationTags:getApiSecurityOperationTags", TypeShape.of(GetApiSecurityOperationTagsResult.class), args, Utilities.withVersion(options));
+    }
+    /**
+     * Use this data source to list API Security operations for a Fastly service.
+     * 
+     * ## Example Usage
+     * 
+     * <pre>
+     * {@code
+     * package generated_program;
+     * 
+     * import com.pulumi.Context;
+     * import com.pulumi.Pulumi;
+     * import com.pulumi.core.Output;
+     * import com.pulumi.fastly.ServiceVcl;
+     * import com.pulumi.fastly.ServiceVclArgs;
+     * import com.pulumi.fastly.inputs.ServiceVclBackendArgs;
+     * import com.pulumi.fastly.ApiSecurityOperation;
+     * import com.pulumi.fastly.ApiSecurityOperationArgs;
+     * import com.pulumi.fastly.FastlyFunctions;
+     * import com.pulumi.fastly.inputs.GetApiSecurityOperationsArgs;
+     * import java.util.List;
+     * import java.util.ArrayList;
+     * import java.util.Map;
+     * import java.io.File;
+     * import java.nio.file.Files;
+     * import java.nio.file.Paths;
+     * 
+     * public class App {
+     *     public static void main(String[] args) {
+     *         Pulumi.run(App::stack);
+     *     }
+     * 
+     *     public static void stack(Context ctx) {
+     *         var svc1 = new ServiceVcl("svc1", ServiceVclArgs.builder()
+     *             .name("test-svc-1-example")
+     *             .forceDestroy(true)
+     *             .backends(ServiceVclBackendArgs.builder()
+     *                 .address("example.com")
+     *                 .name("tf-test-backend-1")
+     *                 .build())
+     *             .build());
+     * 
+     *         // Optional: create an operation (so the data source returns something predictable)
+     *         var example = new ApiSecurityOperation("example", ApiSecurityOperationArgs.builder()
+     *             .serviceId(svc1.id())
+     *             .method("GET")
+     *             .domain("api.example.com")
+     *             .path("/v1/things")
+     *             .description("Retrieve things")
+     *             .build());
+     * 
+     *         final var ops = FastlyFunctions.getApiSecurityOperations(GetApiSecurityOperationsArgs.builder()
+     *             .serviceId(svc1.id())
+     *             .methods("GET")
+     *             .domains("api.example.com")
+     *             .path("/v1/things")
+     *             .build());
+     * 
+     *         ctx.export("apiSecurityOperations", ops.applyValue(_ops -> _ops.operations()));
+     *         ctx.export("apiSecurityOperationsTotal", ops.applyValue(_ops -> _ops.total()));
+     *     }
+     * }
+     * }
+     * </pre>
+     * 
+     */
+    public static Output<GetApiSecurityOperationsResult> getApiSecurityOperations(GetApiSecurityOperationsArgs args) {
+        return getApiSecurityOperations(args, InvokeOptions.Empty);
+    }
+    /**
+     * Use this data source to list API Security operations for a Fastly service.
+     * 
+     * ## Example Usage
+     * 
+     * <pre>
+     * {@code
+     * package generated_program;
+     * 
+     * import com.pulumi.Context;
+     * import com.pulumi.Pulumi;
+     * import com.pulumi.core.Output;
+     * import com.pulumi.fastly.ServiceVcl;
+     * import com.pulumi.fastly.ServiceVclArgs;
+     * import com.pulumi.fastly.inputs.ServiceVclBackendArgs;
+     * import com.pulumi.fastly.ApiSecurityOperation;
+     * import com.pulumi.fastly.ApiSecurityOperationArgs;
+     * import com.pulumi.fastly.FastlyFunctions;
+     * import com.pulumi.fastly.inputs.GetApiSecurityOperationsArgs;
+     * import java.util.List;
+     * import java.util.ArrayList;
+     * import java.util.Map;
+     * import java.io.File;
+     * import java.nio.file.Files;
+     * import java.nio.file.Paths;
+     * 
+     * public class App {
+     *     public static void main(String[] args) {
+     *         Pulumi.run(App::stack);
+     *     }
+     * 
+     *     public static void stack(Context ctx) {
+     *         var svc1 = new ServiceVcl("svc1", ServiceVclArgs.builder()
+     *             .name("test-svc-1-example")
+     *             .forceDestroy(true)
+     *             .backends(ServiceVclBackendArgs.builder()
+     *                 .address("example.com")
+     *                 .name("tf-test-backend-1")
+     *                 .build())
+     *             .build());
+     * 
+     *         // Optional: create an operation (so the data source returns something predictable)
+     *         var example = new ApiSecurityOperation("example", ApiSecurityOperationArgs.builder()
+     *             .serviceId(svc1.id())
+     *             .method("GET")
+     *             .domain("api.example.com")
+     *             .path("/v1/things")
+     *             .description("Retrieve things")
+     *             .build());
+     * 
+     *         final var ops = FastlyFunctions.getApiSecurityOperations(GetApiSecurityOperationsArgs.builder()
+     *             .serviceId(svc1.id())
+     *             .methods("GET")
+     *             .domains("api.example.com")
+     *             .path("/v1/things")
+     *             .build());
+     * 
+     *         ctx.export("apiSecurityOperations", ops.applyValue(_ops -> _ops.operations()));
+     *         ctx.export("apiSecurityOperationsTotal", ops.applyValue(_ops -> _ops.total()));
+     *     }
+     * }
+     * }
+     * </pre>
+     * 
+     */
+    public static CompletableFuture<GetApiSecurityOperationsResult> getApiSecurityOperationsPlain(GetApiSecurityOperationsPlainArgs args) {
+        return getApiSecurityOperationsPlain(args, InvokeOptions.Empty);
+    }
+    /**
+     * Use this data source to list API Security operations for a Fastly service.
+     * 
+     * ## Example Usage
+     * 
+     * <pre>
+     * {@code
+     * package generated_program;
+     * 
+     * import com.pulumi.Context;
+     * import com.pulumi.Pulumi;
+     * import com.pulumi.core.Output;
+     * import com.pulumi.fastly.ServiceVcl;
+     * import com.pulumi.fastly.ServiceVclArgs;
+     * import com.pulumi.fastly.inputs.ServiceVclBackendArgs;
+     * import com.pulumi.fastly.ApiSecurityOperation;
+     * import com.pulumi.fastly.ApiSecurityOperationArgs;
+     * import com.pulumi.fastly.FastlyFunctions;
+     * import com.pulumi.fastly.inputs.GetApiSecurityOperationsArgs;
+     * import java.util.List;
+     * import java.util.ArrayList;
+     * import java.util.Map;
+     * import java.io.File;
+     * import java.nio.file.Files;
+     * import java.nio.file.Paths;
+     * 
+     * public class App {
+     *     public static void main(String[] args) {
+     *         Pulumi.run(App::stack);
+     *     }
+     * 
+     *     public static void stack(Context ctx) {
+     *         var svc1 = new ServiceVcl("svc1", ServiceVclArgs.builder()
+     *             .name("test-svc-1-example")
+     *             .forceDestroy(true)
+     *             .backends(ServiceVclBackendArgs.builder()
+     *                 .address("example.com")
+     *                 .name("tf-test-backend-1")
+     *                 .build())
+     *             .build());
+     * 
+     *         // Optional: create an operation (so the data source returns something predictable)
+     *         var example = new ApiSecurityOperation("example", ApiSecurityOperationArgs.builder()
+     *             .serviceId(svc1.id())
+     *             .method("GET")
+     *             .domain("api.example.com")
+     *             .path("/v1/things")
+     *             .description("Retrieve things")
+     *             .build());
+     * 
+     *         final var ops = FastlyFunctions.getApiSecurityOperations(GetApiSecurityOperationsArgs.builder()
+     *             .serviceId(svc1.id())
+     *             .methods("GET")
+     *             .domains("api.example.com")
+     *             .path("/v1/things")
+     *             .build());
+     * 
+     *         ctx.export("apiSecurityOperations", ops.applyValue(_ops -> _ops.operations()));
+     *         ctx.export("apiSecurityOperationsTotal", ops.applyValue(_ops -> _ops.total()));
+     *     }
+     * }
+     * }
+     * </pre>
+     * 
+     */
+    public static Output<GetApiSecurityOperationsResult> getApiSecurityOperations(GetApiSecurityOperationsArgs args, InvokeOptions options) {
+        return Deployment.getInstance().invoke("fastly:index/getApiSecurityOperations:getApiSecurityOperations", TypeShape.of(GetApiSecurityOperationsResult.class), args, Utilities.withVersion(options));
+    }
+    /**
+     * Use this data source to list API Security operations for a Fastly service.
+     * 
+     * ## Example Usage
+     * 
+     * <pre>
+     * {@code
+     * package generated_program;
+     * 
+     * import com.pulumi.Context;
+     * import com.pulumi.Pulumi;
+     * import com.pulumi.core.Output;
+     * import com.pulumi.fastly.ServiceVcl;
+     * import com.pulumi.fastly.ServiceVclArgs;
+     * import com.pulumi.fastly.inputs.ServiceVclBackendArgs;
+     * import com.pulumi.fastly.ApiSecurityOperation;
+     * import com.pulumi.fastly.ApiSecurityOperationArgs;
+     * import com.pulumi.fastly.FastlyFunctions;
+     * import com.pulumi.fastly.inputs.GetApiSecurityOperationsArgs;
+     * import java.util.List;
+     * import java.util.ArrayList;
+     * import java.util.Map;
+     * import java.io.File;
+     * import java.nio.file.Files;
+     * import java.nio.file.Paths;
+     * 
+     * public class App {
+     *     public static void main(String[] args) {
+     *         Pulumi.run(App::stack);
+     *     }
+     * 
+     *     public static void stack(Context ctx) {
+     *         var svc1 = new ServiceVcl("svc1", ServiceVclArgs.builder()
+     *             .name("test-svc-1-example")
+     *             .forceDestroy(true)
+     *             .backends(ServiceVclBackendArgs.builder()
+     *                 .address("example.com")
+     *                 .name("tf-test-backend-1")
+     *                 .build())
+     *             .build());
+     * 
+     *         // Optional: create an operation (so the data source returns something predictable)
+     *         var example = new ApiSecurityOperation("example", ApiSecurityOperationArgs.builder()
+     *             .serviceId(svc1.id())
+     *             .method("GET")
+     *             .domain("api.example.com")
+     *             .path("/v1/things")
+     *             .description("Retrieve things")
+     *             .build());
+     * 
+     *         final var ops = FastlyFunctions.getApiSecurityOperations(GetApiSecurityOperationsArgs.builder()
+     *             .serviceId(svc1.id())
+     *             .methods("GET")
+     *             .domains("api.example.com")
+     *             .path("/v1/things")
+     *             .build());
+     * 
+     *         ctx.export("apiSecurityOperations", ops.applyValue(_ops -> _ops.operations()));
+     *         ctx.export("apiSecurityOperationsTotal", ops.applyValue(_ops -> _ops.total()));
+     *     }
+     * }
+     * }
+     * </pre>
+     * 
+     */
+    public static Output<GetApiSecurityOperationsResult> getApiSecurityOperations(GetApiSecurityOperationsArgs args, InvokeOutputOptions options) {
+        return Deployment.getInstance().invoke("fastly:index/getApiSecurityOperations:getApiSecurityOperations", TypeShape.of(GetApiSecurityOperationsResult.class), args, Utilities.withVersion(options));
+    }
+    /**
+     * Use this data source to list API Security operations for a Fastly service.
+     * 
+     * ## Example Usage
+     * 
+     * <pre>
+     * {@code
+     * package generated_program;
+     * 
+     * import com.pulumi.Context;
+     * import com.pulumi.Pulumi;
+     * import com.pulumi.core.Output;
+     * import com.pulumi.fastly.ServiceVcl;
+     * import com.pulumi.fastly.ServiceVclArgs;
+     * import com.pulumi.fastly.inputs.ServiceVclBackendArgs;
+     * import com.pulumi.fastly.ApiSecurityOperation;
+     * import com.pulumi.fastly.ApiSecurityOperationArgs;
+     * import com.pulumi.fastly.FastlyFunctions;
+     * import com.pulumi.fastly.inputs.GetApiSecurityOperationsArgs;
+     * import java.util.List;
+     * import java.util.ArrayList;
+     * import java.util.Map;
+     * import java.io.File;
+     * import java.nio.file.Files;
+     * import java.nio.file.Paths;
+     * 
+     * public class App {
+     *     public static void main(String[] args) {
+     *         Pulumi.run(App::stack);
+     *     }
+     * 
+     *     public static void stack(Context ctx) {
+     *         var svc1 = new ServiceVcl("svc1", ServiceVclArgs.builder()
+     *             .name("test-svc-1-example")
+     *             .forceDestroy(true)
+     *             .backends(ServiceVclBackendArgs.builder()
+     *                 .address("example.com")
+     *                 .name("tf-test-backend-1")
+     *                 .build())
+     *             .build());
+     * 
+     *         // Optional: create an operation (so the data source returns something predictable)
+     *         var example = new ApiSecurityOperation("example", ApiSecurityOperationArgs.builder()
+     *             .serviceId(svc1.id())
+     *             .method("GET")
+     *             .domain("api.example.com")
+     *             .path("/v1/things")
+     *             .description("Retrieve things")
+     *             .build());
+     * 
+     *         final var ops = FastlyFunctions.getApiSecurityOperations(GetApiSecurityOperationsArgs.builder()
+     *             .serviceId(svc1.id())
+     *             .methods("GET")
+     *             .domains("api.example.com")
+     *             .path("/v1/things")
+     *             .build());
+     * 
+     *         ctx.export("apiSecurityOperations", ops.applyValue(_ops -> _ops.operations()));
+     *         ctx.export("apiSecurityOperationsTotal", ops.applyValue(_ops -> _ops.total()));
+     *     }
+     * }
+     * }
+     * </pre>
+     * 
+     */
+    public static CompletableFuture<GetApiSecurityOperationsResult> getApiSecurityOperationsPlain(GetApiSecurityOperationsPlainArgs args, InvokeOptions options) {
+        return Deployment.getInstance().invokeAsync("fastly:index/getApiSecurityOperations:getApiSecurityOperations", TypeShape.of(GetApiSecurityOperationsResult.class), args, Utilities.withVersion(options));
+    }
     /**
      * Use this data source to retrieve a list of [Fastly Compute ACLs](https://www.fastly.com/documentation/reference/api/compute-acls/).
      * 

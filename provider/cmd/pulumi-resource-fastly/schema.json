@@ -5165,6 +5165,170 @@
                 }
             }
         },
+        "fastly:index/getApiSecurityDiscoveredOperationsOperation:getApiSecurityDiscoveredOperationsOperation": {
+            "properties": {
+                "domain": {
+                    "type": "string",
+                    "description": "Discovered operation domain.\n"
+                },
+                "id": {
+                    "type": "string",
+                    "description": "Discovered operation ID.\n"
+                },
+                "lastSeenAt": {
+                    "type": "string",
+                    "description": "Last seen timestamp (when present).\n"
+                },
+                "method": {
+                    "type": "string",
+                    "description": "Discovered operation HTTP method.\n"
+                },
+                "path": {
+                    "type": "string",
+                    "description": "Discovered operation path.\n"
+                },
+                "rps": {
+                    "type": "number",
+                    "description": "Observed requests per second (when present).\n"
+                },
+                "status": {
+                    "type": "string",
+                    "description": "Discovered operation status (when present).\n"
+                },
+                "updatedAt": {
+                    "type": "string",
+                    "description": "Updated timestamp (when present).\n"
+                }
+            },
+            "type": "object",
+            "required": [
+                "domain",
+                "id",
+                "lastSeenAt",
+                "method",
+                "path",
+                "rps",
+                "status",
+                "updatedAt"
+            ],
+            "language": {
+                "nodejs": {
+                    "requiredInputs": []
+                }
+            }
+        },
+        "fastly:index/getApiSecurityOperationTagsTag:getApiSecurityOperationTagsTag": {
+            "properties": {
+                "createdAt": {
+                    "type": "string",
+                    "description": "Created timestamp (when present).\n"
+                },
+                "description": {
+                    "type": "string",
+                    "description": "Tag description (when present).\n"
+                },
+                "id": {
+                    "type": "string",
+                    "description": "Tag ID.\n"
+                },
+                "name": {
+                    "type": "string",
+                    "description": "Tag name.\n"
+                },
+                "operationCount": {
+                    "type": "integer",
+                    "description": "Number of operations associated with this tag (when present).\n"
+                },
+                "updatedAt": {
+                    "type": "string",
+                    "description": "Updated timestamp (when present).\n"
+                }
+            },
+            "type": "object",
+            "required": [
+                "createdAt",
+                "description",
+                "id",
+                "name",
+                "operationCount",
+                "updatedAt"
+            ],
+            "language": {
+                "nodejs": {
+                    "requiredInputs": []
+                }
+            }
+        },
+        "fastly:index/getApiSecurityOperationsOperation:getApiSecurityOperationsOperation": {
+            "properties": {
+                "createdAt": {
+                    "type": "string",
+                    "description": "Created timestamp (when present).\n"
+                },
+                "description": {
+                    "type": "string",
+                    "description": "Operation description (when present).\n"
+                },
+                "domain": {
+                    "type": "string",
+                    "description": "Operation domain.\n"
+                },
+                "id": {
+                    "type": "string",
+                    "description": "Operation ID.\n"
+                },
+                "lastSeenAt": {
+                    "type": "string",
+                    "description": "Last seen timestamp (when present).\n"
+                },
+                "method": {
+                    "type": "string",
+                    "description": "Operation HTTP method.\n"
+                },
+                "path": {
+                    "type": "string",
+                    "description": "Operation path.\n"
+                },
+                "rps": {
+                    "type": "number",
+                    "description": "Observed requests per second (when present).\n"
+                },
+                "status": {
+                    "type": "string",
+                    "description": "Discovery status (when present). One of `DISCOVERED`, `SAVED`, or `IGNORED`.\n"
+                },
+                "tagIds": {
+                    "type": "array",
+                    "items": {
+                        "type": "string"
+                    },
+                    "description": "Associated operation tag IDs.\n"
+                },
+                "updatedAt": {
+                    "type": "string",
+                    "description": "Updated timestamp (when present).\n"
+                }
+            },
+            "type": "object",
+            "required": [
+                "createdAt",
+                "description",
+                "domain",
+                "id",
+                "lastSeenAt",
+                "method",
+                "path",
+                "rps",
+                "status",
+                "tagIds",
+                "updatedAt"
+            ],
+            "language": {
+                "nodejs": {
+                    "requiredInputs": []
+                }
+            }
+        },
         "fastly:index/getComputeAclsAcl:getComputeAclsAcl": {
             "properties": {
                 "id": {
@@ -6147,6 +6311,268 @@
                         "type": "string",
                         "description": "The source where the metric comes from. One of: \u003cspan pulumi-lang-nodejs=\"`domains`\" pulumi-lang-dotnet=\"`Domains`\" pulumi-lang-go=\"`domains`\" pulumi-lang-python=\"`domains`\" pulumi-lang-yaml=\"`domains`\" pulumi-lang-java=\"`domains`\"\u003e`domains`\u003c/span\u003e, \u003cspan pulumi-lang-nodejs=\"`origins`\" pulumi-lang-dotnet=\"`Origins`\" pulumi-lang-go=\"`origins`\" pulumi-lang-python=\"`origins`\" pulumi-lang-yaml=\"`origins`\" pulumi-lang-java=\"`origins`\"\u003e`origins`\u003c/span\u003e, \u003cspan pulumi-lang-nodejs=\"`stats`\" pulumi-lang-dotnet=\"`Stats`\" pulumi-lang-go=\"`stats`\" pulumi-lang-python=\"`stats`\" pulumi-lang-yaml=\"`stats`\" pulumi-lang-java=\"`stats`\"\u003e`stats`\u003c/span\u003e.\n",
                         "willReplaceOnChanges": true
+                    }
+                },
+                "type": "object"
+            }
+        },
+        "fastly:index/apiSecurityOperation:ApiSecurityOperation": {
+            "description": "Manages an API Security operation for a Fastly service. Operations represent API endpoints (method + domain + path) and can optionally be associated with operation tags.\n\n## Example Usage\n\nBasic usage:\n\n\u003c!--Start PulumiCodeChooser --\u003e\n```typescript\nimport * as pulumi from \"@pulumi/pulumi\";\nimport * as fastly from \"@pulumi/fastly\";\n\nconst svc1 = new fastly.ServiceVcl(\"svc1\", {\n    name: \"test-svc-1-example\",\n    forceDestroy: true,\n    backends: [{\n        address: \"example.com\",\n        name: \"tf-test-backend-1\",\n    }],\n});\nconst example = new fastly.ApiSecurityOperation(\"example\", {\n    serviceId: svc1.id,\n    method: \"GET\",\n    domain: \"api.example.com\",\n    path: \"/v1/things\",\n    description: \"Retrieve things\",\n});\n```\n```python\nimport pulumi\nimport pulumi_fastly as fastly\n\nsvc1 = fastly.ServiceVcl(\"svc1\",\n    name=\"test-svc-1-example\",\n    force_destroy=True,\n    backends=[{\n        \"address\": \"example.com\",\n        \"name\": \"tf-test-backend-1\",\n    }])\nexample = fastly.ApiSecurityOperation(\"example\",\n    service_id=svc1.id,\n    method=\"GET\",\n    domain=\"api.example.com\",\n    path=\"/v1/things\",\n    description=\"Retrieve things\")\n```\n```csharp\nusing System.Collections.Generic;\nusing System.Linq;\nusing Pulumi;\nusing Fastly = Pulumi.Fastly;\n\nreturn await Deployment.RunAsync(() =\u003e \n{\n    var svc1 = new Fastly.ServiceVcl(\"svc1\", new()\n    {\n        Name = \"test-svc-1-example\",\n        ForceDestroy = true,\n        Backends = new[]\n        {\n            new Fastly.Inputs.ServiceVclBackendArgs\n            {\n                Address = \"example.com\",\n                Name = \"tf-test-backend-1\",\n            },\n        },\n    });\n\n    var example = new Fastly.ApiSecurityOperation(\"example\", new()\n    {\n        ServiceId = svc1.Id,\n        Method = \"GET\",\n        Domain = \"api.example.com\",\n        Path = \"/v1/things\",\n        Description = \"Retrieve things\",\n    });\n\n});\n```\n```go\npackage main\n\nimport (\n\t\"github.com/pulumi/pulumi-fastly/sdk/v11/go/fastly\"\n\t\"github.com/pulumi/pulumi/sdk/v3/go/pulumi\"\n)\n\nfunc main() {\n\tpulumi.Run(func(ctx *pulumi.Context) error {\n\t\tsvc1, err := fastly.NewServiceVcl(ctx, \"svc1\", \u0026fastly.ServiceVclArgs{\n\t\t\tName:         pulumi.String(\"test-svc-1-example\"),\n\t\t\tForceDestroy: pulumi.Bool(true),\n\t\t\tBackends: fastly.ServiceVclBackendArray{\n\t\t\t\t\u0026fastly.ServiceVclBackendArgs{\n\t\t\t\t\tAddress: pulumi.String(\"example.com\"),\n\t\t\t\t\tName:    pulumi.String(\"tf-test-backend-1\"),\n\t\t\t\t},\n\t\t\t},\n\t\t})\n\t\tif err != nil {\n\t\t\treturn err\n\t\t}\n\t\t_, err = fastly.NewApiSecurityOperation(ctx, \"example\", \u0026fastly.ApiSecurityOperationArgs{\n\t\t\tServiceId:   svc1.ID(),\n\t\t\tMethod:      pulumi.String(\"GET\"),\n\t\t\tDomain:      pulumi.String(\"api.example.com\"),\n\t\t\tPath:        pulumi.String(\"/v1/things\"),\n\t\t\tDescription: pulumi.String(\"Retrieve things\"),\n\t\t})\n\t\tif err != nil {\n\t\t\treturn err\n\t\t}\n\t\treturn nil\n\t})\n}\n```\n```java\npackage generated_program;\n\nimport com.pulumi.Context;\nimport com.pulumi.Pulumi;\nimport com.pulumi.core.Output;\nimport com.pulumi.fastly.ServiceVcl;\nimport com.pulumi.fastly.ServiceVclArgs;\nimport com.pulumi.fastly.inputs.ServiceVclBackendArgs;\nimport com.pulumi.fastly.ApiSecurityOperation;\nimport com.pulumi.fastly.ApiSecurityOperationArgs;\nimport java.util.List;\nimport java.util.ArrayList;\nimport java.util.Map;\nimport java.io.File;\nimport java.nio.file.Files;\nimport java.nio.file.Paths;\n\npublic class App {\n    public static void main(String[] args) {\n        Pulumi.run(App::stack);\n    }\n\n    public static void stack(Context ctx) {\n        var svc1 = new ServiceVcl(\"svc1\", ServiceVclArgs.builder()\n            .name(\"test-svc-1-example\")\n            .forceDestroy(true)\n            .backends(ServiceVclBackendArgs.builder()\n                .address(\"example.com\")\n                .name(\"tf-test-backend-1\")\n                .build())\n            .build());\n\n        var example = new ApiSecurityOperation(\"example\", ApiSecurityOperationArgs.builder()\n            .serviceId(svc1.id())\n            .method(\"GET\")\n            .domain(\"api.example.com\")\n            .path(\"/v1/things\")\n            .description(\"Retrieve things\")\n            .build());\n\n    }\n}\n```\n```yaml\nresources:\n  svc1:\n    type: fastly:ServiceVcl\n    properties:\n      name: test-svc-1-example\n      forceDestroy: true\n      backends:\n        - address: example.com\n          name: tf-test-backend-1\n  example:\n    type: fastly:ApiSecurityOperation\n    properties:\n      serviceId: ${svc1.id}\n      method: GET\n      domain: api.example.com\n      path: /v1/things\n      description: Retrieve things\n```\n\u003c!--End PulumiCodeChooser --\u003e\n\nWith tags:\n\n\u003c!--Start PulumiCodeChooser --\u003e\n```typescript\nimport * as pulumi from \"@pulumi/pulumi\";\nimport * as fastly from \"@pulumi/fastly\";\n\nconst svc1 = new fastly.ServiceVcl(\"svc1\", {\n    name: \"test-svc-1-example\",\n    forceDestroy: true,\n    backends: [{\n        address: \"example.com\",\n        name: \"tf-test-backend-1\",\n    }],\n});\nconst tag = new fastly.ApiSecurityOperationTag(\"tag\", {\n    serviceId: svc1.id,\n    name: \"production\",\n    description: \"Production endpoints\",\n});\nconst example = new fastly.ApiSecurityOperation(\"example\", {\n    serviceId: svc1.id,\n    method: \"GET\",\n    domain: \"api.example.com\",\n    path: \"/v1/things\",\n    description: \"Retrieve things\",\n    tagIds: [tag.tagId],\n});\n```\n```python\nimport pulumi\nimport pulumi_fastly as fastly\n\nsvc1 = fastly.ServiceVcl(\"svc1\",\n    name=\"test-svc-1-example\",\n    force_destroy=True,\n    backends=[{\n        \"address\": \"example.com\",\n        \"name\": \"tf-test-backend-1\",\n    }])\ntag = fastly.ApiSecurityOperationTag(\"tag\",\n    service_id=svc1.id,\n    name=\"production\",\n    description=\"Production endpoints\")\nexample = fastly.ApiSecurityOperation(\"example\",\n    service_id=svc1.id,\n    method=\"GET\",\n    domain=\"api.example.com\",\n    path=\"/v1/things\",\n    description=\"Retrieve things\",\n    tag_ids=[tag.tag_id])\n```\n```csharp\nusing System.Collections.Generic;\nusing System.Linq;\nusing Pulumi;\nusing Fastly = Pulumi.Fastly;\n\nreturn await Deployment.RunAsync(() =\u003e \n{\n    var svc1 = new Fastly.ServiceVcl(\"svc1\", new()\n    {\n        Name = \"test-svc-1-example\",\n        ForceDestroy = true,\n        Backends = new[]\n        {\n            new Fastly.Inputs.ServiceVclBackendArgs\n            {\n                Address = \"example.com\",\n                Name = \"tf-test-backend-1\",\n            },\n        },\n    });\n\n    var tag = new Fastly.ApiSecurityOperationTag(\"tag\", new()\n    {\n        ServiceId = svc1.Id,\n        Name = \"production\",\n        Description = \"Production endpoints\",\n    });\n\n    var example = new Fastly.ApiSecurityOperation(\"example\", new()\n    {\n        ServiceId = svc1.Id,\n        Method = \"GET\",\n        Domain = \"api.example.com\",\n        Path = \"/v1/things\",\n        Description = \"Retrieve things\",\n        TagIds = new[]\n        {\n            tag.TagId,\n        },\n    });\n\n});\n```\n```go\npackage main\n\nimport (\n\t\"github.com/pulumi/pulumi-fastly/sdk/v11/go/fastly\"\n\t\"github.com/pulumi/pulumi/sdk/v3/go/pulumi\"\n)\n\nfunc main() {\n\tpulumi.Run(func(ctx *pulumi.Context) error {\n\t\tsvc1, err := fastly.NewServiceVcl(ctx, \"svc1\", \u0026fastly.ServiceVclArgs{\n\t\t\tName:         pulumi.String(\"test-svc-1-example\"),\n\t\t\tForceDestroy: pulumi.Bool(true),\n\t\t\tBackends: fastly.ServiceVclBackendArray{\n\t\t\t\t\u0026fastly.ServiceVclBackendArgs{\n\t\t\t\t\tAddress: pulumi.String(\"example.com\"),\n\t\t\t\t\tName:    pulumi.String(\"tf-test-backend-1\"),\n\t\t\t\t},\n\t\t\t},\n\t\t})\n\t\tif err != nil {\n\t\t\treturn err\n\t\t}\n\t\ttag, err := fastly.NewApiSecurityOperationTag(ctx, \"tag\", \u0026fastly.ApiSecurityOperationTagArgs{\n\t\t\tServiceId:   svc1.ID(),\n\t\t\tName:        pulumi.String(\"production\"),\n\t\t\tDescription: pulumi.String(\"Production endpoints\"),\n\t\t})\n\t\tif err != nil {\n\t\t\treturn err\n\t\t}\n\t\t_, err = fastly.NewApiSecurityOperation(ctx, \"example\", \u0026fastly.ApiSecurityOperationArgs{\n\t\t\tServiceId:   svc1.ID(),\n\t\t\tMethod:      pulumi.String(\"GET\"),\n\t\t\tDomain:      pulumi.String(\"api.example.com\"),\n\t\t\tPath:        pulumi.String(\"/v1/things\"),\n\t\t\tDescription: pulumi.String(\"Retrieve things\"),\n\t\t\tTagIds: pulumi.StringArray{\n\t\t\t\ttag.TagId,\n\t\t\t},\n\t\t})\n\t\tif err != nil {\n\t\t\treturn err\n\t\t}\n\t\treturn nil\n\t})\n}\n```\n```java\npackage generated_program;\n\nimport com.pulumi.Context;\nimport com.pulumi.Pulumi;\nimport com.pulumi.core.Output;\nimport com.pulumi.fastly.ServiceVcl;\nimport com.pulumi.fastly.ServiceVclArgs;\nimport com.pulumi.fastly.inputs.ServiceVclBackendArgs;\nimport com.pulumi.fastly.ApiSecurityOperationTag;\nimport com.pulumi.fastly.ApiSecurityOperationTagArgs;\nimport com.pulumi.fastly.ApiSecurityOperation;\nimport com.pulumi.fastly.ApiSecurityOperationArgs;\nimport java.util.List;\nimport java.util.ArrayList;\nimport java.util.Map;\nimport java.io.File;\nimport java.nio.file.Files;\nimport java.nio.file.Paths;\n\npublic class App {\n    public static void main(String[] args) {\n        Pulumi.run(App::stack);\n    }\n\n    public static void stack(Context ctx) {\n        var svc1 = new ServiceVcl(\"svc1\", ServiceVclArgs.builder()\n            .name(\"test-svc-1-example\")\n            .forceDestroy(true)\n            .backends(ServiceVclBackendArgs.builder()\n                .address(\"example.com\")\n                .name(\"tf-test-backend-1\")\n                .build())\n            .build());\n\n        var tag = new ApiSecurityOperationTag(\"tag\", ApiSecurityOperationTagArgs.builder()\n            .serviceId(svc1.id())\n            .name(\"production\")\n            .description(\"Production endpoints\")\n            .build());\n\n        var example = new ApiSecurityOperation(\"example\", ApiSecurityOperationArgs.builder()\n            .serviceId(svc1.id())\n            .method(\"GET\")\n            .domain(\"api.example.com\")\n            .path(\"/v1/things\")\n            .description(\"Retrieve things\")\n            .tagIds(tag.tagId())\n            .build());\n\n    }\n}\n```\n```yaml\nresources:\n  svc1:\n    type: fastly:ServiceVcl\n    properties:\n      name: test-svc-1-example\n      forceDestroy: true\n      backends:\n        - address: example.com\n          name: tf-test-backend-1\n  tag:\n    type: fastly:ApiSecurityOperationTag\n    properties:\n      serviceId: ${svc1.id}\n      name: production\n      description: Production endpoints\n  example:\n    type: fastly:ApiSecurityOperation\n    properties:\n      serviceId: ${svc1.id}\n      method: GET\n      domain: api.example.com\n      path: /v1/things\n      description: Retrieve things\n      tagIds:\n        - ${tag.tagId}\n```\n\u003c!--End PulumiCodeChooser --\u003e\n\n## Import\n\nAPI Security operations can be imported using a composite ID of the form `\u003cservice_id\u003e/\u003coperation_id\u003e`, e.g.\n\n```sh\n$ pulumi import fastly:index/apiSecurityOperation:ApiSecurityOperation example \u003cservice_id\u003e/\u003coperation_id\u003e\n```\n\n",
+            "properties": {
+                "createdAt": {
+                    "type": "string",
+                    "description": "Created timestamp (when present).\n"
+                },
+                "description": {
+                    "type": "string",
+                    "description": "A description of the operation.\n"
+                },
+                "domain": {
+                    "type": "string",
+                    "description": "Domain for the operation (exact match). Can be created, but not updated.\n"
+                },
+                "lastSeenAt": {
+                    "type": "string",
+                    "description": "Last seen timestamp (when present).\n"
+                },
+                "method": {
+                    "type": "string",
+                    "description": "HTTP method for the operation (e.g. GET, POST). Can be created, but not updated.\n"
+                },
+                "operationId": {
+                    "type": "string",
+                    "description": "The operation ID.\n"
+                },
+                "path": {
+                    "type": "string",
+                    "description": "Path for the operation (exact match). Can be created, but not updated.\n"
+                },
+                "rps": {
+                    "type": "number",
+                    "description": "Observed requests per second (when present).\n"
+                },
+                "serviceId": {
+                    "type": "string",
+                    "description": "Service ID the operation belongs to. To import, use: \\n\\n/\\n\\n.\n"
+                },
+                "status": {
+                    "type": "string",
+                    "description": "Discovery status (when present).\n"
+                },
+                "tagIds": {
+                    "type": "array",
+                    "items": {
+                        "type": "string"
+                    },
+                    "description": "Associated operation tag IDs.\n"
+                },
+                "updatedAt": {
+                    "type": "string",
+                    "description": "Updated timestamp (when present).\n"
+                }
+            },
+            "required": [
+                "createdAt",
+                "domain",
+                "lastSeenAt",
+                "method",
+                "operationId",
+                "path",
+                "rps",
+                "serviceId",
+                "status",
+                "updatedAt"
+            ],
+            "inputProperties": {
+                "description": {
+                    "type": "string",
+                    "description": "A description of the operation.\n"
+                },
+                "domain": {
+                    "type": "string",
+                    "description": "Domain for the operation (exact match). Can be created, but not updated.\n",
+                    "willReplaceOnChanges": true
+                },
+                "method": {
+                    "type": "string",
+                    "description": "HTTP method for the operation (e.g. GET, POST). Can be created, but not updated.\n",
+                    "willReplaceOnChanges": true
+                },
+                "path": {
+                    "type": "string",
+                    "description": "Path for the operation (exact match). Can be created, but not updated.\n",
+                    "willReplaceOnChanges": true
+                },
+                "serviceId": {
+                    "type": "string",
+                    "description": "Service ID the operation belongs to. To import, use: \\n\\n/\\n\\n.\n",
+                    "willReplaceOnChanges": true
+                },
+                "tagIds": {
+                    "type": "array",
+                    "items": {
+                        "type": "string"
+                    },
+                    "description": "Associated operation tag IDs.\n"
+                }
+            },
+            "requiredInputs": [
+                "domain",
+                "method",
+                "path",
+                "serviceId"
+            ],
+            "stateInputs": {
+                "description": "Input properties used for looking up and filtering ApiSecurityOperation resources.\n",
+                "properties": {
+                    "createdAt": {
+                        "type": "string",
+                        "description": "Created timestamp (when present).\n"
+                    },
+                    "description": {
+                        "type": "string",
+                        "description": "A description of the operation.\n"
+                    },
+                    "domain": {
+                        "type": "string",
+                        "description": "Domain for the operation (exact match). Can be created, but not updated.\n",
+                        "willReplaceOnChanges": true
+                    },
+                    "lastSeenAt": {
+                        "type": "string",
+                        "description": "Last seen timestamp (when present).\n"
+                    },
+                    "method": {
+                        "type": "string",
+                        "description": "HTTP method for the operation (e.g. GET, POST). Can be created, but not updated.\n",
+                        "willReplaceOnChanges": true
+                    },
+                    "operationId": {
+                        "type": "string",
+                        "description": "The operation ID.\n"
+                    },
+                    "path": {
+                        "type": "string",
+                        "description": "Path for the operation (exact match). Can be created, but not updated.\n",
+                        "willReplaceOnChanges": true
+                    },
+                    "rps": {
+                        "type": "number",
+                        "description": "Observed requests per second (when present).\n"
+                    },
+                    "serviceId": {
+                        "type": "string",
+                        "description": "Service ID the operation belongs to. To import, use: \\n\\n/\\n\\n.\n",
+                        "willReplaceOnChanges": true
+                    },
+                    "status": {
+                        "type": "string",
+                        "description": "Discovery status (when present).\n"
+                    },
+                    "tagIds": {
+                        "type": "array",
+                        "items": {
+                            "type": "string"
+                        },
+                        "description": "Associated operation tag IDs.\n"
+                    },
+                    "updatedAt": {
+                        "type": "string",
+                        "description": "Updated timestamp (when present).\n"
+                    }
+                },
+                "type": "object"
+            }
+        },
+        "fastly:index/apiSecurityOperationTag:ApiSecurityOperationTag": {
+            "description": "Manages an API Security operation tag for a Fastly service. Operation tags can be used to group and organize operations.\n\n## Example Usage\n\nBasic usage:\n\n\u003c!--Start PulumiCodeChooser --\u003e\n```typescript\nimport * as pulumi from \"@pulumi/pulumi\";\nimport * as fastly from \"@pulumi/fastly\";\n\nconst svc1 = new fastly.ServiceVcl(\"svc1\", {\n    name: \"test-svc-1-example\",\n    forceDestroy: true,\n    backends: [{\n        address: \"example.com\",\n        name: \"tf-test-backend-1\",\n    }],\n});\nconst example = new fastly.ApiSecurityOperationTag(\"example\", {\n    serviceId: svc1.id,\n    name: \"production\",\n    description: \"Tag for production endpoints\",\n});\n```\n```python\nimport pulumi\nimport pulumi_fastly as fastly\n\nsvc1 = fastly.ServiceVcl(\"svc1\",\n    name=\"test-svc-1-example\",\n    force_destroy=True,\n    backends=[{\n        \"address\": \"example.com\",\n        \"name\": \"tf-test-backend-1\",\n    }])\nexample = fastly.ApiSecurityOperationTag(\"example\",\n    service_id=svc1.id,\n    name=\"production\",\n    description=\"Tag for production endpoints\")\n```\n```csharp\nusing System.Collections.Generic;\nusing System.Linq;\nusing Pulumi;\nusing Fastly = Pulumi.Fastly;\n\nreturn await Deployment.RunAsync(() =\u003e \n{\n    var svc1 = new Fastly.ServiceVcl(\"svc1\", new()\n    {\n        Name = \"test-svc-1-example\",\n        ForceDestroy = true,\n        Backends = new[]\n        {\n            new Fastly.Inputs.ServiceVclBackendArgs\n            {\n                Address = \"example.com\",\n                Name = \"tf-test-backend-1\",\n            },\n        },\n    });\n\n    var example = new Fastly.ApiSecurityOperationTag(\"example\", new()\n    {\n        ServiceId = svc1.Id,\n        Name = \"production\",\n        Description = \"Tag for production endpoints\",\n    });\n\n});\n```\n```go\npackage main\n\nimport (\n\t\"github.com/pulumi/pulumi-fastly/sdk/v11/go/fastly\"\n\t\"github.com/pulumi/pulumi/sdk/v3/go/pulumi\"\n)\n\nfunc main() {\n\tpulumi.Run(func(ctx *pulumi.Context) error {\n\t\tsvc1, err := fastly.NewServiceVcl(ctx, \"svc1\", \u0026fastly.ServiceVclArgs{\n\t\t\tName:         pulumi.String(\"test-svc-1-example\"),\n\t\t\tForceDestroy: pulumi.Bool(true),\n\t\t\tBackends: fastly.ServiceVclBackendArray{\n\t\t\t\t\u0026fastly.ServiceVclBackendArgs{\n\t\t\t\t\tAddress: pulumi.String(\"example.com\"),\n\t\t\t\t\tName:    pulumi.String(\"tf-test-backend-1\"),\n\t\t\t\t},\n\t\t\t},\n\t\t})\n\t\tif err != nil {\n\t\t\treturn err\n\t\t}\n\t\t_, err = fastly.NewApiSecurityOperationTag(ctx, \"example\", \u0026fastly.ApiSecurityOperationTagArgs{\n\t\t\tServiceId:   svc1.ID(),\n\t\t\tName:        pulumi.String(\"production\"),\n\t\t\tDescription: pulumi.String(\"Tag for production endpoints\"),\n\t\t})\n\t\tif err != nil {\n\t\t\treturn err\n\t\t}\n\t\treturn nil\n\t})\n}\n```\n```java\npackage generated_program;\n\nimport com.pulumi.Context;\nimport com.pulumi.Pulumi;\nimport com.pulumi.core.Output;\nimport com.pulumi.fastly.ServiceVcl;\nimport com.pulumi.fastly.ServiceVclArgs;\nimport com.pulumi.fastly.inputs.ServiceVclBackendArgs;\nimport com.pulumi.fastly.ApiSecurityOperationTag;\nimport com.pulumi.fastly.ApiSecurityOperationTagArgs;\nimport java.util.List;\nimport java.util.ArrayList;\nimport java.util.Map;\nimport java.io.File;\nimport java.nio.file.Files;\nimport java.nio.file.Paths;\n\npublic class App {\n    public static void main(String[] args) {\n        Pulumi.run(App::stack);\n    }\n\n    public static void stack(Context ctx) {\n        var svc1 = new ServiceVcl(\"svc1\", ServiceVclArgs.builder()\n            .name(\"test-svc-1-example\")\n            .forceDestroy(true)\n            .backends(ServiceVclBackendArgs.builder()\n                .address(\"example.com\")\n                .name(\"tf-test-backend-1\")\n                .build())\n            .build());\n\n        var example = new ApiSecurityOperationTag(\"example\", ApiSecurityOperationTagArgs.builder()\n            .serviceId(svc1.id())\n            .name(\"production\")\n            .description(\"Tag for production endpoints\")\n            .build());\n\n    }\n}\n```\n```yaml\nresources:\n  svc1:\n    type: fastly:ServiceVcl\n    properties:\n      name: test-svc-1-example\n      forceDestroy: true\n      backends:\n        - address: example.com\n          name: tf-test-backend-1\n  example:\n    type: fastly:ApiSecurityOperationTag\n    properties:\n      serviceId: ${svc1.id}\n      name: production\n      description: Tag for production endpoints\n```\n\u003c!--End PulumiCodeChooser --\u003e\n\n## Import\n\nAPI Security operation tags can be imported using a composite ID of the form `\u003cservice_id\u003e/\u003ctag_id\u003e`, e.g.\n\n```sh\n$ pulumi import fastly:index/apiSecurityOperationTag:ApiSecurityOperationTag example \u003cservice_id\u003e/\u003ctag_id\u003e\n```\n\n",
+            "properties": {
+                "createdAt": {
+                    "type": "string",
+                    "description": "Created timestamp (when present).\n"
+                },
+                "description": {
+                    "type": "string",
+                    "description": "The description of the operation tag.\n"
+                },
+                "name": {
+                    "type": "string",
+                    "description": "The name of the operation tag.\n"
+                },
+                "operationCount": {
+                    "type": "integer",
+                    "description": "Number of operations associated with this tag (when present).\n"
+                },
+                "serviceId": {
+                    "type": "string",
+                    "description": "Service ID the tag belongs to. To import, use: \\n\\n/\\n\\n.\n"
+                },
+                "tagId": {
+                    "type": "string",
+                    "description": "The tag ID.\n"
+                },
+                "updatedAt": {
+                    "type": "string",
+                    "description": "Updated timestamp (when present).\n"
+                }
+            },
+            "required": [
+                "createdAt",
+                "name",
+                "operationCount",
+                "serviceId",
+                "tagId",
+                "updatedAt"
+            ],
+            "inputProperties": {
+                "description": {
+                    "type": "string",
+                    "description": "The description of the operation tag.\n"
+                },
+                "name": {
+                    "type": "string",
+                    "description": "The name of the operation tag.\n"
+                },
+                "serviceId": {
+                    "type": "string",
+                    "description": "Service ID the tag belongs to. To import, use: \\n\\n/\\n\\n.\n",
+                    "willReplaceOnChanges": true
+                }
+            },
+            "requiredInputs": [
+                "serviceId"
+            ],
+            "stateInputs": {
+                "description": "Input properties used for looking up and filtering ApiSecurityOperationTag resources.\n",
+                "properties": {
+                    "createdAt": {
+                        "type": "string",
+                        "description": "Created timestamp (when present).\n"
+                    },
+                    "description": {
+                        "type": "string",
+                        "description": "The description of the operation tag.\n"
+                    },
+                    "name": {
+                        "type": "string",
+                        "description": "The name of the operation tag.\n"
+                    },
+                    "operationCount": {
+                        "type": "integer",
+                        "description": "Number of operations associated with this tag (when present).\n"
+                    },
+                    "serviceId": {
+                        "type": "string",
+                        "description": "Service ID the tag belongs to. To import, use: \\n\\n/\\n\\n.\n",
+                        "willReplaceOnChanges": true
+                    },
+                    "tagId": {
+                        "type": "string",
+                        "description": "The tag ID.\n"
+                    },
+                    "updatedAt": {
+                        "type": "string",
+                        "description": "Updated timestamp (when present).\n"
                     }
                 },
                 "type": "object"
@@ -11498,6 +11924,235 @@
         }
     },
     "functions": {
+        "fastly:index/getApiSecurityDiscoveredOperations:getApiSecurityDiscoveredOperations": {
+            "description": "Use this data source to list API Security discovered operations for a Fastly service.\n\nDiscovered operations depend on observed traffic and may be empty.\n\n## Example Usage\n\n\u003c!--Start PulumiCodeChooser --\u003e\n```typescript\nimport * as pulumi from \"@pulumi/pulumi\";\nimport * as fastly from \"@pulumi/fastly\";\n\nconst svc1 = new fastly.ServiceVcl(\"svc1\", {\n    name: \"test-svc-1-example\",\n    forceDestroy: true,\n    backends: [{\n        address: \"example.com\",\n        name: \"tf-test-backend-1\",\n    }],\n});\n// Discovered operations depend on traffic and may legitimately be empty.\nconst discovered = fastly.getApiSecurityDiscoveredOperationsOutput({\n    serviceId: svc1.id,\n    status: \"SAVED\",\n    methods: [\"GET\"],\n    domains: [\"api.example.com\"],\n    path: \"/v1/things\",\n});\nexport const apiSecurityDiscoveredOperations = discovered.apply(discovered =\u003e discovered.operations);\nexport const apiSecurityDiscoveredOperationsTotal = discovered.apply(discovered =\u003e discovered.total);\n```\n```python\nimport pulumi\nimport pulumi_fastly as fastly\n\nsvc1 = fastly.ServiceVcl(\"svc1\",\n    name=\"test-svc-1-example\",\n    force_destroy=True,\n    backends=[{\n        \"address\": \"example.com\",\n        \"name\": \"tf-test-backend-1\",\n    }])\n# Discovered operations depend on traffic and may legitimately be empty.\ndiscovered = fastly.get_api_security_discovered_operations_output(service_id=svc1.id,\n    status=\"SAVED\",\n    methods=[\"GET\"],\n    domains=[\"api.example.com\"],\n    path=\"/v1/things\")\npulumi.export(\"apiSecurityDiscoveredOperations\", discovered.operations)\npulumi.export(\"apiSecurityDiscoveredOperationsTotal\", discovered.total)\n```\n```csharp\nusing System.Collections.Generic;\nusing System.Linq;\nusing Pulumi;\nusing Fastly = Pulumi.Fastly;\n\nreturn await Deployment.RunAsync(() =\u003e \n{\n    var svc1 = new Fastly.ServiceVcl(\"svc1\", new()\n    {\n        Name = \"test-svc-1-example\",\n        ForceDestroy = true,\n        Backends = new[]\n        {\n            new Fastly.Inputs.ServiceVclBackendArgs\n            {\n                Address = \"example.com\",\n                Name = \"tf-test-backend-1\",\n            },\n        },\n    });\n\n    // Discovered operations depend on traffic and may legitimately be empty.\n    var discovered = Fastly.GetApiSecurityDiscoveredOperations.Invoke(new()\n    {\n        ServiceId = svc1.Id,\n        Status = \"SAVED\",\n        Methods = new[]\n        {\n            \"GET\",\n        },\n        Domains = new[]\n        {\n            \"api.example.com\",\n        },\n        Path = \"/v1/things\",\n    });\n\n    return new Dictionary\u003cstring, object?\u003e\n    {\n        [\"apiSecurityDiscoveredOperations\"] = discovered.Apply(getApiSecurityDiscoveredOperationsResult =\u003e getApiSecurityDiscoveredOperationsResult.Operations),\n        [\"apiSecurityDiscoveredOperationsTotal\"] = discovered.Apply(getApiSecurityDiscoveredOperationsResult =\u003e getApiSecurityDiscoveredOperationsResult.Total),\n    };\n});\n```\n```go\npackage main\n\nimport (\n\t\"github.com/pulumi/pulumi-fastly/sdk/v11/go/fastly\"\n\t\"github.com/pulumi/pulumi/sdk/v3/go/pulumi\"\n)\n\nfunc main() {\n\tpulumi.Run(func(ctx *pulumi.Context) error {\n\t\tsvc1, err := fastly.NewServiceVcl(ctx, \"svc1\", \u0026fastly.ServiceVclArgs{\n\t\t\tName:         pulumi.String(\"test-svc-1-example\"),\n\t\t\tForceDestroy: pulumi.Bool(true),\n\t\t\tBackends: fastly.ServiceVclBackendArray{\n\t\t\t\t\u0026fastly.ServiceVclBackendArgs{\n\t\t\t\t\tAddress: pulumi.String(\"example.com\"),\n\t\t\t\t\tName:    pulumi.String(\"tf-test-backend-1\"),\n\t\t\t\t},\n\t\t\t},\n\t\t})\n\t\tif err != nil {\n\t\t\treturn err\n\t\t}\n\t\t// Discovered operations depend on traffic and may legitimately be empty.\n\t\tdiscovered := fastly.GetApiSecurityDiscoveredOperationsOutput(ctx, fastly.GetApiSecurityDiscoveredOperationsOutputArgs{\n\t\t\tServiceId: svc1.ID(),\n\t\t\tStatus:    pulumi.String(\"SAVED\"),\n\t\t\tMethods: pulumi.StringArray{\n\t\t\t\tpulumi.String(\"GET\"),\n\t\t\t},\n\t\t\tDomains: pulumi.StringArray{\n\t\t\t\tpulumi.String(\"api.example.com\"),\n\t\t\t},\n\t\t\tPath: pulumi.String(\"/v1/things\"),\n\t\t}, nil)\n\t\tctx.Export(\"apiSecurityDiscoveredOperations\", discovered.ApplyT(func(discovered fastly.GetApiSecurityDiscoveredOperationsResult) ([]fastly.GetApiSecurityDiscoveredOperationsOperation, error) {\n\t\t\treturn []fastly.GetApiSecurityDiscoveredOperationsOperation(discovered.Operations), nil\n\t\t}).([]fastly.GetApiSecurityDiscoveredOperationsOperationOutput))\n\t\tctx.Export(\"apiSecurityDiscoveredOperationsTotal\", discovered.ApplyT(func(discovered fastly.GetApiSecurityDiscoveredOperationsResult) (*int, error) {\n\t\t\treturn \u0026discovered.Total, nil\n\t\t}).(pulumi.IntPtrOutput))\n\t\treturn nil\n\t})\n}\n```\n```java\npackage generated_program;\n\nimport com.pulumi.Context;\nimport com.pulumi.Pulumi;\nimport com.pulumi.core.Output;\nimport com.pulumi.fastly.ServiceVcl;\nimport com.pulumi.fastly.ServiceVclArgs;\nimport com.pulumi.fastly.inputs.ServiceVclBackendArgs;\nimport com.pulumi.fastly.FastlyFunctions;\nimport com.pulumi.fastly.inputs.GetApiSecurityDiscoveredOperationsArgs;\nimport java.util.List;\nimport java.util.ArrayList;\nimport java.util.Map;\nimport java.io.File;\nimport java.nio.file.Files;\nimport java.nio.file.Paths;\n\npublic class App {\n    public static void main(String[] args) {\n        Pulumi.run(App::stack);\n    }\n\n    public static void stack(Context ctx) {\n        var svc1 = new ServiceVcl(\"svc1\", ServiceVclArgs.builder()\n            .name(\"test-svc-1-example\")\n            .forceDestroy(true)\n            .backends(ServiceVclBackendArgs.builder()\n                .address(\"example.com\")\n                .name(\"tf-test-backend-1\")\n                .build())\n            .build());\n\n        // Discovered operations depend on traffic and may legitimately be empty.\n        final var discovered = FastlyFunctions.getApiSecurityDiscoveredOperations(GetApiSecurityDiscoveredOperationsArgs.builder()\n            .serviceId(svc1.id())\n            .status(\"SAVED\")\n            .methods(\"GET\")\n            .domains(\"api.example.com\")\n            .path(\"/v1/things\")\n            .build());\n\n        ctx.export(\"apiSecurityDiscoveredOperations\", discovered.applyValue(_discovered -\u003e _discovered.operations()));\n        ctx.export(\"apiSecurityDiscoveredOperationsTotal\", discovered.applyValue(_discovered -\u003e _discovered.total()));\n    }\n}\n```\n```yaml\nresources:\n  svc1:\n    type: fastly:ServiceVcl\n    properties:\n      name: test-svc-1-example\n      forceDestroy: true\n      backends:\n        - address: example.com\n          name: tf-test-backend-1\nvariables:\n  # Discovered operations depend on traffic and may legitimately be empty.\n  discovered:\n    fn::invoke:\n      function: fastly:getApiSecurityDiscoveredOperations\n      arguments:\n        serviceId: ${svc1.id}\n        status: SAVED\n        methods:\n          - GET\n        domains:\n          - api.example.com\n        path: /v1/things\noutputs:\n  apiSecurityDiscoveredOperations: ${discovered.operations}\n  apiSecurityDiscoveredOperationsTotal: ${discovered.total}\n```\n\u003c!--End PulumiCodeChooser --\u003e\n",
+            "inputs": {
+                "description": "A collection of arguments for invoking getApiSecurityDiscoveredOperations.\n",
+                "properties": {
+                    "domains": {
+                        "type": "array",
+                        "items": {
+                            "type": "string"
+                        },
+                        "description": "Filter by one or more fully-qualified domains (exact match).\n"
+                    },
+                    "methods": {
+                        "type": "array",
+                        "items": {
+                            "type": "string"
+                        },
+                        "description": "Filter by one or more HTTP methods.\n"
+                    },
+                    "path": {
+                        "type": "string",
+                        "description": "Filter by path (exact match).\n"
+                    },
+                    "serviceId": {
+                        "type": "string",
+                        "description": "Service ID.\n"
+                    },
+                    "status": {
+                        "type": "string",
+                        "description": "Filter discovered operations by status. Accepted values are `DISCOVERED`, `SAVED`, and `IGNORED`.\n"
+                    }
+                },
+                "type": "object",
+                "required": [
+                    "serviceId"
+                ]
+            },
+            "outputs": {
+                "description": "A collection of values returned by getApiSecurityDiscoveredOperations.\n",
+                "properties": {
+                    "domains": {
+                        "description": "Filter by one or more fully-qualified domains (exact match).\n",
+                        "items": {
+                            "type": "string"
+                        },
+                        "type": "array"
+                    },
+                    "id": {
+                        "description": "The provider-assigned unique ID for this managed resource.",
+                        "type": "string"
+                    },
+                    "methods": {
+                        "description": "Filter by one or more HTTP methods.\n",
+                        "items": {
+                            "type": "string"
+                        },
+                        "type": "array"
+                    },
+                    "operations": {
+                        "description": "Discovered operations.\n",
+                        "items": {
+                            "$ref": "#/types/fastly:index/getApiSecurityDiscoveredOperationsOperation:getApiSecurityDiscoveredOperationsOperation"
+                        },
+                        "type": "array"
+                    },
+                    "path": {
+                        "description": "Filter by path (exact match).\n",
+                        "type": "string"
+                    },
+                    "serviceId": {
+                        "description": "Service ID.\n",
+                        "type": "string"
+                    },
+                    "status": {
+                        "description": "Filter discovered operations by status. Accepted values are `DISCOVERED`, `SAVED`, and `IGNORED`.\n",
+                        "type": "string"
+                    },
+                    "total": {
+                        "description": "Total number of matching results, as returned by the API.\n",
+                        "type": "integer"
+                    }
+                },
+                "required": [
+                    "operations",
+                    "serviceId",
+                    "total",
+                    "id"
+                ],
+                "type": "object"
+            }
+        },
+        "fastly:index/getApiSecurityOperationTags:getApiSecurityOperationTags": {
+            "description": "Use this data source to list API Security operation tags for a Fastly service.\n\n## Example Usage\n\n\u003c!--Start PulumiCodeChooser --\u003e\n```typescript\nimport * as pulumi from \"@pulumi/pulumi\";\nimport * as fastly from \"@pulumi/fastly\";\n\nconst svc1 = new fastly.ServiceVcl(\"svc1\", {\n    name: \"test-svc-1-example\",\n    forceDestroy: true,\n    backends: [{\n        address: \"example.com\",\n        name: \"tf-test-backend-1\",\n    }],\n});\n// Optional: create a tag so the data source returns a predictable result\nconst example = new fastly.ApiSecurityOperationTag(\"example\", {\n    serviceId: svc1.id,\n    name: \"example-tag\",\n    description: \"Example tag\",\n});\nconst tags = fastly.getApiSecurityOperationTagsOutput({\n    serviceId: svc1.id,\n});\nexport const apiSecurityOperationTags = tags.apply(tags =\u003e tags.tags);\nexport const apiSecurityOperationTagsTotal = tags.apply(tags =\u003e tags.total);\n```\n```python\nimport pulumi\nimport pulumi_fastly as fastly\n\nsvc1 = fastly.ServiceVcl(\"svc1\",\n    name=\"test-svc-1-example\",\n    force_destroy=True,\n    backends=[{\n        \"address\": \"example.com\",\n        \"name\": \"tf-test-backend-1\",\n    }])\n# Optional: create a tag so the data source returns a predictable result\nexample = fastly.ApiSecurityOperationTag(\"example\",\n    service_id=svc1.id,\n    name=\"example-tag\",\n    description=\"Example tag\")\ntags = fastly.get_api_security_operation_tags_output(service_id=svc1.id)\npulumi.export(\"apiSecurityOperationTags\", tags.tags)\npulumi.export(\"apiSecurityOperationTagsTotal\", tags.total)\n```\n```csharp\nusing System.Collections.Generic;\nusing System.Linq;\nusing Pulumi;\nusing Fastly = Pulumi.Fastly;\n\nreturn await Deployment.RunAsync(() =\u003e \n{\n    var svc1 = new Fastly.ServiceVcl(\"svc1\", new()\n    {\n        Name = \"test-svc-1-example\",\n        ForceDestroy = true,\n        Backends = new[]\n        {\n            new Fastly.Inputs.ServiceVclBackendArgs\n            {\n                Address = \"example.com\",\n                Name = \"tf-test-backend-1\",\n            },\n        },\n    });\n\n    // Optional: create a tag so the data source returns a predictable result\n    var example = new Fastly.ApiSecurityOperationTag(\"example\", new()\n    {\n        ServiceId = svc1.Id,\n        Name = \"example-tag\",\n        Description = \"Example tag\",\n    });\n\n    var tags = Fastly.GetApiSecurityOperationTags.Invoke(new()\n    {\n        ServiceId = svc1.Id,\n    });\n\n    return new Dictionary\u003cstring, object?\u003e\n    {\n        [\"apiSecurityOperationTags\"] = tags.Apply(getApiSecurityOperationTagsResult =\u003e getApiSecurityOperationTagsResult.Tags),\n        [\"apiSecurityOperationTagsTotal\"] = tags.Apply(getApiSecurityOperationTagsResult =\u003e getApiSecurityOperationTagsResult.Total),\n    };\n});\n```\n```go\npackage main\n\nimport (\n\t\"github.com/pulumi/pulumi-fastly/sdk/v11/go/fastly\"\n\t\"github.com/pulumi/pulumi/sdk/v3/go/pulumi\"\n)\n\nfunc main() {\n\tpulumi.Run(func(ctx *pulumi.Context) error {\n\t\tsvc1, err := fastly.NewServiceVcl(ctx, \"svc1\", \u0026fastly.ServiceVclArgs{\n\t\t\tName:         pulumi.String(\"test-svc-1-example\"),\n\t\t\tForceDestroy: pulumi.Bool(true),\n\t\t\tBackends: fastly.ServiceVclBackendArray{\n\t\t\t\t\u0026fastly.ServiceVclBackendArgs{\n\t\t\t\t\tAddress: pulumi.String(\"example.com\"),\n\t\t\t\t\tName:    pulumi.String(\"tf-test-backend-1\"),\n\t\t\t\t},\n\t\t\t},\n\t\t})\n\t\tif err != nil {\n\t\t\treturn err\n\t\t}\n\t\t// Optional: create a tag so the data source returns a predictable result\n\t\t_, err = fastly.NewApiSecurityOperationTag(ctx, \"example\", \u0026fastly.ApiSecurityOperationTagArgs{\n\t\t\tServiceId:   svc1.ID(),\n\t\t\tName:        pulumi.String(\"example-tag\"),\n\t\t\tDescription: pulumi.String(\"Example tag\"),\n\t\t})\n\t\tif err != nil {\n\t\t\treturn err\n\t\t}\n\t\ttags := fastly.GetApiSecurityOperationTagsOutput(ctx, fastly.GetApiSecurityOperationTagsOutputArgs{\n\t\t\tServiceId: svc1.ID(),\n\t\t}, nil)\n\t\tctx.Export(\"apiSecurityOperationTags\", tags.ApplyT(func(tags fastly.GetApiSecurityOperationTagsResult) ([]fastly.GetApiSecurityOperationTagsTag, error) {\n\t\t\treturn []fastly.GetApiSecurityOperationTagsTag(tags.Tags), nil\n\t\t}).([]fastly.GetApiSecurityOperationTagsTagOutput))\n\t\tctx.Export(\"apiSecurityOperationTagsTotal\", tags.ApplyT(func(tags fastly.GetApiSecurityOperationTagsResult) (*int, error) {\n\t\t\treturn \u0026tags.Total, nil\n\t\t}).(pulumi.IntPtrOutput))\n\t\treturn nil\n\t})\n}\n```\n```java\npackage generated_program;\n\nimport com.pulumi.Context;\nimport com.pulumi.Pulumi;\nimport com.pulumi.core.Output;\nimport com.pulumi.fastly.ServiceVcl;\nimport com.pulumi.fastly.ServiceVclArgs;\nimport com.pulumi.fastly.inputs.ServiceVclBackendArgs;\nimport com.pulumi.fastly.ApiSecurityOperationTag;\nimport com.pulumi.fastly.ApiSecurityOperationTagArgs;\nimport com.pulumi.fastly.FastlyFunctions;\nimport com.pulumi.fastly.inputs.GetApiSecurityOperationTagsArgs;\nimport java.util.List;\nimport java.util.ArrayList;\nimport java.util.Map;\nimport java.io.File;\nimport java.nio.file.Files;\nimport java.nio.file.Paths;\n\npublic class App {\n    public static void main(String[] args) {\n        Pulumi.run(App::stack);\n    }\n\n    public static void stack(Context ctx) {\n        var svc1 = new ServiceVcl(\"svc1\", ServiceVclArgs.builder()\n            .name(\"test-svc-1-example\")\n            .forceDestroy(true)\n            .backends(ServiceVclBackendArgs.builder()\n                .address(\"example.com\")\n                .name(\"tf-test-backend-1\")\n                .build())\n            .build());\n\n        // Optional: create a tag so the data source returns a predictable result\n        var example = new ApiSecurityOperationTag(\"example\", ApiSecurityOperationTagArgs.builder()\n            .serviceId(svc1.id())\n            .name(\"example-tag\")\n            .description(\"Example tag\")\n            .build());\n\n        final var tags = FastlyFunctions.getApiSecurityOperationTags(GetApiSecurityOperationTagsArgs.builder()\n            .serviceId(svc1.id())\n            .build());\n\n        ctx.export(\"apiSecurityOperationTags\", tags.applyValue(_tags -\u003e _tags.tags()));\n        ctx.export(\"apiSecurityOperationTagsTotal\", tags.applyValue(_tags -\u003e _tags.total()));\n    }\n}\n```\n```yaml\nresources:\n  svc1:\n    type: fastly:ServiceVcl\n    properties:\n      name: test-svc-1-example\n      forceDestroy: true\n      backends:\n        - address: example.com\n          name: tf-test-backend-1\n  # Optional: create a tag so the data source returns a predictable result\n  example:\n    type: fastly:ApiSecurityOperationTag\n    properties:\n      serviceId: ${svc1.id}\n      name: example-tag\n      description: Example tag\nvariables:\n  tags:\n    fn::invoke:\n      function: fastly:getApiSecurityOperationTags\n      arguments:\n        serviceId: ${svc1.id}\noutputs:\n  apiSecurityOperationTags: ${tags.tags}\n  apiSecurityOperationTagsTotal: ${tags.total}\n```\n\u003c!--End PulumiCodeChooser --\u003e\n",
+            "inputs": {
+                "description": "A collection of arguments for invoking getApiSecurityOperationTags.\n",
+                "properties": {
+                    "serviceId": {
+                        "type": "string",
+                        "description": "Service ID.\n"
+                    }
+                },
+                "type": "object",
+                "required": [
+                    "serviceId"
+                ]
+            },
+            "outputs": {
+                "description": "A collection of values returned by getApiSecurityOperationTags.\n",
+                "properties": {
+                    "id": {
+                        "description": "The provider-assigned unique ID for this managed resource.",
+                        "type": "string"
+                    },
+                    "serviceId": {
+                        "description": "Service ID.\n",
+                        "type": "string"
+                    },
+                    "tags": {
+                        "description": "Operation tags.\n",
+                        "items": {
+                            "$ref": "#/types/fastly:index/getApiSecurityOperationTagsTag:getApiSecurityOperationTagsTag"
+                        },
+                        "type": "array"
+                    },
+                    "total": {
+                        "description": "Total number of matching results, as returned by the API.\n",
+                        "type": "integer"
+                    }
+                },
+                "required": [
+                    "serviceId",
+                    "tags",
+                    "total",
+                    "id"
+                ],
+                "type": "object"
+            }
+        },
+        "fastly:index/getApiSecurityOperations:getApiSecurityOperations": {
+            "description": "Use this data source to list API Security operations for a Fastly service.\n\n## Example Usage\n\n\u003c!--Start PulumiCodeChooser --\u003e\n```typescript\nimport * as pulumi from \"@pulumi/pulumi\";\nimport * as fastly from \"@pulumi/fastly\";\n\nconst svc1 = new fastly.ServiceVcl(\"svc1\", {\n    name: \"test-svc-1-example\",\n    forceDestroy: true,\n    backends: [{\n        address: \"example.com\",\n        name: \"tf-test-backend-1\",\n    }],\n});\n// Optional: create an operation (so the data source returns something predictable)\nconst example = new fastly.ApiSecurityOperation(\"example\", {\n    serviceId: svc1.id,\n    method: \"GET\",\n    domain: \"api.example.com\",\n    path: \"/v1/things\",\n    description: \"Retrieve things\",\n});\nconst ops = fastly.getApiSecurityOperationsOutput({\n    serviceId: svc1.id,\n    methods: [\"GET\"],\n    domains: [\"api.example.com\"],\n    path: \"/v1/things\",\n});\nexport const apiSecurityOperations = ops.apply(ops =\u003e ops.operations);\nexport const apiSecurityOperationsTotal = ops.apply(ops =\u003e ops.total);\n```\n```python\nimport pulumi\nimport pulumi_fastly as fastly\n\nsvc1 = fastly.ServiceVcl(\"svc1\",\n    name=\"test-svc-1-example\",\n    force_destroy=True,\n    backends=[{\n        \"address\": \"example.com\",\n        \"name\": \"tf-test-backend-1\",\n    }])\n# Optional: create an operation (so the data source returns something predictable)\nexample = fastly.ApiSecurityOperation(\"example\",\n    service_id=svc1.id,\n    method=\"GET\",\n    domain=\"api.example.com\",\n    path=\"/v1/things\",\n    description=\"Retrieve things\")\nops = fastly.get_api_security_operations_output(service_id=svc1.id,\n    methods=[\"GET\"],\n    domains=[\"api.example.com\"],\n    path=\"/v1/things\")\npulumi.export(\"apiSecurityOperations\", ops.operations)\npulumi.export(\"apiSecurityOperationsTotal\", ops.total)\n```\n```csharp\nusing System.Collections.Generic;\nusing System.Linq;\nusing Pulumi;\nusing Fastly = Pulumi.Fastly;\n\nreturn await Deployment.RunAsync(() =\u003e \n{\n    var svc1 = new Fastly.ServiceVcl(\"svc1\", new()\n    {\n        Name = \"test-svc-1-example\",\n        ForceDestroy = true,\n        Backends = new[]\n        {\n            new Fastly.Inputs.ServiceVclBackendArgs\n            {\n                Address = \"example.com\",\n                Name = \"tf-test-backend-1\",\n            },\n        },\n    });\n\n    // Optional: create an operation (so the data source returns something predictable)\n    var example = new Fastly.ApiSecurityOperation(\"example\", new()\n    {\n        ServiceId = svc1.Id,\n        Method = \"GET\",\n        Domain = \"api.example.com\",\n        Path = \"/v1/things\",\n        Description = \"Retrieve things\",\n    });\n\n    var ops = Fastly.GetApiSecurityOperations.Invoke(new()\n    {\n        ServiceId = svc1.Id,\n        Methods = new[]\n        {\n            \"GET\",\n        },\n        Domains = new[]\n        {\n            \"api.example.com\",\n        },\n        Path = \"/v1/things\",\n    });\n\n    return new Dictionary\u003cstring, object?\u003e\n    {\n        [\"apiSecurityOperations\"] = ops.Apply(getApiSecurityOperationsResult =\u003e getApiSecurityOperationsResult.Operations),\n        [\"apiSecurityOperationsTotal\"] = ops.Apply(getApiSecurityOperationsResult =\u003e getApiSecurityOperationsResult.Total),\n    };\n});\n```\n```go\npackage main\n\nimport (\n\t\"github.com/pulumi/pulumi-fastly/sdk/v11/go/fastly\"\n\t\"github.com/pulumi/pulumi/sdk/v3/go/pulumi\"\n)\n\nfunc main() {\n\tpulumi.Run(func(ctx *pulumi.Context) error {\n\t\tsvc1, err := fastly.NewServiceVcl(ctx, \"svc1\", \u0026fastly.ServiceVclArgs{\n\t\t\tName:         pulumi.String(\"test-svc-1-example\"),\n\t\t\tForceDestroy: pulumi.Bool(true),\n\t\t\tBackends: fastly.ServiceVclBackendArray{\n\t\t\t\t\u0026fastly.ServiceVclBackendArgs{\n\t\t\t\t\tAddress: pulumi.String(\"example.com\"),\n\t\t\t\t\tName:    pulumi.String(\"tf-test-backend-1\"),\n\t\t\t\t},\n\t\t\t},\n\t\t})\n\t\tif err != nil {\n\t\t\treturn err\n\t\t}\n\t\t// Optional: create an operation (so the data source returns something predictable)\n\t\t_, err = fastly.NewApiSecurityOperation(ctx, \"example\", \u0026fastly.ApiSecurityOperationArgs{\n\t\t\tServiceId:   svc1.ID(),\n\t\t\tMethod:      pulumi.String(\"GET\"),\n\t\t\tDomain:      pulumi.String(\"api.example.com\"),\n\t\t\tPath:        pulumi.String(\"/v1/things\"),\n\t\t\tDescription: pulumi.String(\"Retrieve things\"),\n\t\t})\n\t\tif err != nil {\n\t\t\treturn err\n\t\t}\n\t\tops := fastly.GetApiSecurityOperationsOutput(ctx, fastly.GetApiSecurityOperationsOutputArgs{\n\t\t\tServiceId: svc1.ID(),\n\t\t\tMethods: pulumi.StringArray{\n\t\t\t\tpulumi.String(\"GET\"),\n\t\t\t},\n\t\t\tDomains: pulumi.StringArray{\n\t\t\t\tpulumi.String(\"api.example.com\"),\n\t\t\t},\n\t\t\tPath: pulumi.String(\"/v1/things\"),\n\t\t}, nil)\n\t\tctx.Export(\"apiSecurityOperations\", ops.ApplyT(func(ops fastly.GetApiSecurityOperationsResult) ([]fastly.GetApiSecurityOperationsOperation, error) {\n\t\t\treturn []fastly.GetApiSecurityOperationsOperation(ops.Operations), nil\n\t\t}).([]fastly.GetApiSecurityOperationsOperationOutput))\n\t\tctx.Export(\"apiSecurityOperationsTotal\", ops.ApplyT(func(ops fastly.GetApiSecurityOperationsResult) (*int, error) {\n\t\t\treturn \u0026ops.Total, nil\n\t\t}).(pulumi.IntPtrOutput))\n\t\treturn nil\n\t})\n}\n```\n```java\npackage generated_program;\n\nimport com.pulumi.Context;\nimport com.pulumi.Pulumi;\nimport com.pulumi.core.Output;\nimport com.pulumi.fastly.ServiceVcl;\nimport com.pulumi.fastly.ServiceVclArgs;\nimport com.pulumi.fastly.inputs.ServiceVclBackendArgs;\nimport com.pulumi.fastly.ApiSecurityOperation;\nimport com.pulumi.fastly.ApiSecurityOperationArgs;\nimport com.pulumi.fastly.FastlyFunctions;\nimport com.pulumi.fastly.inputs.GetApiSecurityOperationsArgs;\nimport java.util.List;\nimport java.util.ArrayList;\nimport java.util.Map;\nimport java.io.File;\nimport java.nio.file.Files;\nimport java.nio.file.Paths;\n\npublic class App {\n    public static void main(String[] args) {\n        Pulumi.run(App::stack);\n    }\n\n    public static void stack(Context ctx) {\n        var svc1 = new ServiceVcl(\"svc1\", ServiceVclArgs.builder()\n            .name(\"test-svc-1-example\")\n            .forceDestroy(true)\n            .backends(ServiceVclBackendArgs.builder()\n                .address(\"example.com\")\n                .name(\"tf-test-backend-1\")\n                .build())\n            .build());\n\n        // Optional: create an operation (so the data source returns something predictable)\n        var example = new ApiSecurityOperation(\"example\", ApiSecurityOperationArgs.builder()\n            .serviceId(svc1.id())\n            .method(\"GET\")\n            .domain(\"api.example.com\")\n            .path(\"/v1/things\")\n            .description(\"Retrieve things\")\n            .build());\n\n        final var ops = FastlyFunctions.getApiSecurityOperations(GetApiSecurityOperationsArgs.builder()\n            .serviceId(svc1.id())\n            .methods(\"GET\")\n            .domains(\"api.example.com\")\n            .path(\"/v1/things\")\n            .build());\n\n        ctx.export(\"apiSecurityOperations\", ops.applyValue(_ops -\u003e _ops.operations()));\n        ctx.export(\"apiSecurityOperationsTotal\", ops.applyValue(_ops -\u003e _ops.total()));\n    }\n}\n```\n```yaml\nresources:\n  svc1:\n    type: fastly:ServiceVcl\n    properties:\n      name: test-svc-1-example\n      forceDestroy: true\n      backends:\n        - address: example.com\n          name: tf-test-backend-1\n  # Optional: create an operation (so the data source returns something predictable)\n  example:\n    type: fastly:ApiSecurityOperation\n    properties:\n      serviceId: ${svc1.id}\n      method: GET\n      domain: api.example.com\n      path: /v1/things\n      description: Retrieve things\nvariables:\n  ops:\n    fn::invoke:\n      function: fastly:getApiSecurityOperations\n      arguments:\n        serviceId: ${svc1.id}\n        methods:\n          - GET\n        domains:\n          - api.example.com\n        path: /v1/things\noutputs:\n  apiSecurityOperations: ${ops.operations}\n  apiSecurityOperationsTotal: ${ops.total}\n```\n\u003c!--End PulumiCodeChooser --\u003e\n",
+            "inputs": {
+                "description": "A collection of arguments for invoking getApiSecurityOperations.\n",
+                "properties": {
+                    "domains": {
+                        "type": "array",
+                        "items": {
+                            "type": "string"
+                        },
+                        "description": "Filter by one or more domains (exact match).\n"
+                    },
+                    "methods": {
+                        "type": "array",
+                        "items": {
+                            "type": "string"
+                        },
+                        "description": "Filter by one or more HTTP methods.\n"
+                    },
+                    "path": {
+                        "type": "string",
+                        "description": "Filter by path (exact match).\n"
+                    },
+                    "serviceId": {
+                        "type": "string",
+                        "description": "Service ID.\n"
+                    },
+                    "tagId": {
+                        "type": "string",
+                        "description": "Filter by tag ID.\n"
+                    }
+                },
+                "type": "object",
+                "required": [
+                    "serviceId"
+                ]
+            },
+            "outputs": {
+                "description": "A collection of values returned by getApiSecurityOperations.\n",
+                "properties": {
+                    "domains": {
+                        "description": "Filter by one or more domains (exact match).\n",
+                        "items": {
+                            "type": "string"
+                        },
+                        "type": "array"
+                    },
+                    "id": {
+                        "description": "The provider-assigned unique ID for this managed resource.",
+                        "type": "string"
+                    },
+                    "methods": {
+                        "description": "Filter by one or more HTTP methods.\n",
+                        "items": {
+                            "type": "string"
+                        },
+                        "type": "array"
+                    },
+                    "operations": {
+                        "description": "Matching API Security operations.\n",
+                        "items": {
+                            "$ref": "#/types/fastly:index/getApiSecurityOperationsOperation:getApiSecurityOperationsOperation"
+                        },
+                        "type": "array"
+                    },
+                    "path": {
+                        "description": "Filter by path (exact match).\n",
+                        "type": "string"
+                    },
+                    "serviceId": {
+                        "description": "Service ID.\n",
+                        "type": "string"
+                    },
+                    "tagId": {
+                        "description": "Filter by tag ID.\n",
+                        "type": "string"
+                    },
+                    "total": {
+                        "description": "Total number of matching results, as returned by the API.\n",
+                        "type": "integer"
+                    }
+                },
+                "required": [
+                    "operations",
+                    "serviceId",
+                    "total",
+                    "id"
+                ],
+                "type": "object"
+            }
+        },
         "fastly:index/getComputeAcls:getComputeAcls": {
             "description": "Use this data source to retrieve a list of [Fastly Compute ACLs](https://www.fastly.com/documentation/reference/api/compute-acls/).\n\n",
             "outputs": {
