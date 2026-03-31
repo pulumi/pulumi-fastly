@@ -10,6 +10,16 @@ export type Alert = import("./alert").Alert;
 export const Alert: typeof import("./alert").Alert = null as any;
 utilities.lazyLoad(exports, ["Alert"], () => require("./alert"));
 
+export { ApiSecurityOperationArgs, ApiSecurityOperationState } from "./apiSecurityOperation";
+export type ApiSecurityOperation = import("./apiSecurityOperation").ApiSecurityOperation;
+export const ApiSecurityOperation: typeof import("./apiSecurityOperation").ApiSecurityOperation = null as any;
+utilities.lazyLoad(exports, ["ApiSecurityOperation"], () => require("./apiSecurityOperation"));
+
+export { ApiSecurityOperationTagArgs, ApiSecurityOperationTagState } from "./apiSecurityOperationTag";
+export type ApiSecurityOperationTag = import("./apiSecurityOperationTag").ApiSecurityOperationTag;
+export const ApiSecurityOperationTag: typeof import("./apiSecurityOperationTag").ApiSecurityOperationTag = null as any;
+utilities.lazyLoad(exports, ["ApiSecurityOperationTag"], () => require("./apiSecurityOperationTag"));
+
 export { ComputeAclArgs, ComputeAclState } from "./computeAcl";
 export type ComputeAcl = import("./computeAcl").ComputeAcl;
 export const ComputeAcl: typeof import("./computeAcl").ComputeAcl = null as any;
@@ -54,6 +64,21 @@ export { DomainV1ServiceLinkArgs, DomainV1ServiceLinkState } from "./domainV1Ser
 export type DomainV1ServiceLink = import("./domainV1ServiceLink").DomainV1ServiceLink;
 export const DomainV1ServiceLink: typeof import("./domainV1ServiceLink").DomainV1ServiceLink = null as any;
 utilities.lazyLoad(exports, ["DomainV1ServiceLink"], () => require("./domainV1ServiceLink"));
+
+export { GetApiSecurityDiscoveredOperationsArgs, GetApiSecurityDiscoveredOperationsResult, GetApiSecurityDiscoveredOperationsOutputArgs } from "./getApiSecurityDiscoveredOperations";
+export const getApiSecurityDiscoveredOperations: typeof import("./getApiSecurityDiscoveredOperations").getApiSecurityDiscoveredOperations = null as any;
+export const getApiSecurityDiscoveredOperationsOutput: typeof import("./getApiSecurityDiscoveredOperations").getApiSecurityDiscoveredOperationsOutput = null as any;
+utilities.lazyLoad(exports, ["getApiSecurityDiscoveredOperations","getApiSecurityDiscoveredOperationsOutput"], () => require("./getApiSecurityDiscoveredOperations"));
+
+export { GetApiSecurityOperationTagsArgs, GetApiSecurityOperationTagsResult, GetApiSecurityOperationTagsOutputArgs } from "./getApiSecurityOperationTags";
+export const getApiSecurityOperationTags: typeof import("./getApiSecurityOperationTags").getApiSecurityOperationTags = null as any;
+export const getApiSecurityOperationTagsOutput: typeof import("./getApiSecurityOperationTags").getApiSecurityOperationTagsOutput = null as any;
+utilities.lazyLoad(exports, ["getApiSecurityOperationTags","getApiSecurityOperationTagsOutput"], () => require("./getApiSecurityOperationTags"));
+
+export { GetApiSecurityOperationsArgs, GetApiSecurityOperationsResult, GetApiSecurityOperationsOutputArgs } from "./getApiSecurityOperations";
+export const getApiSecurityOperations: typeof import("./getApiSecurityOperations").getApiSecurityOperations = null as any;
+export const getApiSecurityOperationsOutput: typeof import("./getApiSecurityOperations").getApiSecurityOperationsOutput = null as any;
+utilities.lazyLoad(exports, ["getApiSecurityOperations","getApiSecurityOperationsOutput"], () => require("./getApiSecurityOperations"));
 
 export { GetComputeAclsResult } from "./getComputeAcls";
 export const getComputeAcls: typeof import("./getComputeAcls").getComputeAcls = null as any;
@@ -474,6 +499,10 @@ const _module = {
         switch (type) {
             case "fastly:index/alert:Alert":
                 return new Alert(name, <any>undefined, { urn })
+            case "fastly:index/apiSecurityOperation:ApiSecurityOperation":
+                return new ApiSecurityOperation(name, <any>undefined, { urn })
+            case "fastly:index/apiSecurityOperationTag:ApiSecurityOperationTag":
+                return new ApiSecurityOperationTag(name, <any>undefined, { urn })
             case "fastly:index/computeAcl:ComputeAcl":
                 return new ComputeAcl(name, <any>undefined, { urn })
             case "fastly:index/computeAclEntries:ComputeAclEntries":
@@ -570,6 +599,8 @@ const _module = {
     },
 };
 pulumi.runtime.registerResourceModule("fastly", "index/alert", _module)
+pulumi.runtime.registerResourceModule("fastly", "index/apiSecurityOperation", _module)
+pulumi.runtime.registerResourceModule("fastly", "index/apiSecurityOperationTag", _module)
 pulumi.runtime.registerResourceModule("fastly", "index/computeAcl", _module)
 pulumi.runtime.registerResourceModule("fastly", "index/computeAclEntries", _module)
 pulumi.runtime.registerResourceModule("fastly", "index/configstore", _module)

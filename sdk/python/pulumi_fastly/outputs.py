@@ -132,6 +132,9 @@ __all__ = [
     'ServiceVclVcl',
     'TlsSubscriptionManagedDnsChallenge',
     'TlsSubscriptionManagedHttpChallenge',
+    'GetApiSecurityDiscoveredOperationsOperationResult',
+    'GetApiSecurityOperationTagsTagResult',
+    'GetApiSecurityOperationsOperationResult',
     'GetComputeAclsAclResult',
     'GetConfigstoresStoreResult',
     'GetDatacentersPopResult',
@@ -14347,6 +14350,302 @@ class TlsSubscriptionManagedHttpChallenge(dict):
         A list with the value(s) to which the DNS record should point.
         """
         return pulumi.get(self, "record_values")
+
+
+@pulumi.output_type
+class GetApiSecurityDiscoveredOperationsOperationResult(dict):
+    def __init__(__self__, *,
+                 domain: _builtins.str,
+                 id: _builtins.str,
+                 last_seen_at: _builtins.str,
+                 method: _builtins.str,
+                 path: _builtins.str,
+                 rps: _builtins.float,
+                 status: _builtins.str,
+                 updated_at: _builtins.str):
+        """
+        :param _builtins.str domain: Discovered operation domain.
+        :param _builtins.str id: Discovered operation ID.
+        :param _builtins.str last_seen_at: Last seen timestamp (when present).
+        :param _builtins.str method: Discovered operation HTTP method.
+        :param _builtins.str path: Discovered operation path.
+        :param _builtins.float rps: Observed requests per second (when present).
+        :param _builtins.str status: Discovered operation status (when present).
+        :param _builtins.str updated_at: Updated timestamp (when present).
+        """
+        pulumi.set(__self__, "domain", domain)
+        pulumi.set(__self__, "id", id)
+        pulumi.set(__self__, "last_seen_at", last_seen_at)
+        pulumi.set(__self__, "method", method)
+        pulumi.set(__self__, "path", path)
+        pulumi.set(__self__, "rps", rps)
+        pulumi.set(__self__, "status", status)
+        pulumi.set(__self__, "updated_at", updated_at)
+
+    @_builtins.property
+    @pulumi.getter
+    def domain(self) -> _builtins.str:
+        """
+        Discovered operation domain.
+        """
+        return pulumi.get(self, "domain")
+
+    @_builtins.property
+    @pulumi.getter
+    def id(self) -> _builtins.str:
+        """
+        Discovered operation ID.
+        """
+        return pulumi.get(self, "id")
+
+    @_builtins.property
+    @pulumi.getter(name="lastSeenAt")
+    def last_seen_at(self) -> _builtins.str:
+        """
+        Last seen timestamp (when present).
+        """
+        return pulumi.get(self, "last_seen_at")
+
+    @_builtins.property
+    @pulumi.getter
+    def method(self) -> _builtins.str:
+        """
+        Discovered operation HTTP method.
+        """
+        return pulumi.get(self, "method")
+
+    @_builtins.property
+    @pulumi.getter
+    def path(self) -> _builtins.str:
+        """
+        Discovered operation path.
+        """
+        return pulumi.get(self, "path")
+
+    @_builtins.property
+    @pulumi.getter
+    def rps(self) -> _builtins.float:
+        """
+        Observed requests per second (when present).
+        """
+        return pulumi.get(self, "rps")
+
+    @_builtins.property
+    @pulumi.getter
+    def status(self) -> _builtins.str:
+        """
+        Discovered operation status (when present).
+        """
+        return pulumi.get(self, "status")
+
+    @_builtins.property
+    @pulumi.getter(name="updatedAt")
+    def updated_at(self) -> _builtins.str:
+        """
+        Updated timestamp (when present).
+        """
+        return pulumi.get(self, "updated_at")
+
+
+@pulumi.output_type
+class GetApiSecurityOperationTagsTagResult(dict):
+    def __init__(__self__, *,
+                 created_at: _builtins.str,
+                 description: _builtins.str,
+                 id: _builtins.str,
+                 name: _builtins.str,
+                 operation_count: _builtins.int,
+                 updated_at: _builtins.str):
+        """
+        :param _builtins.str created_at: Created timestamp (when present).
+        :param _builtins.str description: Tag description (when present).
+        :param _builtins.str id: Tag ID.
+        :param _builtins.str name: Tag name.
+        :param _builtins.int operation_count: Number of operations associated with this tag (when present).
+        :param _builtins.str updated_at: Updated timestamp (when present).
+        """
+        pulumi.set(__self__, "created_at", created_at)
+        pulumi.set(__self__, "description", description)
+        pulumi.set(__self__, "id", id)
+        pulumi.set(__self__, "name", name)
+        pulumi.set(__self__, "operation_count", operation_count)
+        pulumi.set(__self__, "updated_at", updated_at)
+
+    @_builtins.property
+    @pulumi.getter(name="createdAt")
+    def created_at(self) -> _builtins.str:
+        """
+        Created timestamp (when present).
+        """
+        return pulumi.get(self, "created_at")
+
+    @_builtins.property
+    @pulumi.getter
+    def description(self) -> _builtins.str:
+        """
+        Tag description (when present).
+        """
+        return pulumi.get(self, "description")
+
+    @_builtins.property
+    @pulumi.getter
+    def id(self) -> _builtins.str:
+        """
+        Tag ID.
+        """
+        return pulumi.get(self, "id")
+
+    @_builtins.property
+    @pulumi.getter
+    def name(self) -> _builtins.str:
+        """
+        Tag name.
+        """
+        return pulumi.get(self, "name")
+
+    @_builtins.property
+    @pulumi.getter(name="operationCount")
+    def operation_count(self) -> _builtins.int:
+        """
+        Number of operations associated with this tag (when present).
+        """
+        return pulumi.get(self, "operation_count")
+
+    @_builtins.property
+    @pulumi.getter(name="updatedAt")
+    def updated_at(self) -> _builtins.str:
+        """
+        Updated timestamp (when present).
+        """
+        return pulumi.get(self, "updated_at")
+
+
+@pulumi.output_type
+class GetApiSecurityOperationsOperationResult(dict):
+    def __init__(__self__, *,
+                 created_at: _builtins.str,
+                 description: _builtins.str,
+                 domain: _builtins.str,
+                 id: _builtins.str,
+                 last_seen_at: _builtins.str,
+                 method: _builtins.str,
+                 path: _builtins.str,
+                 rps: _builtins.float,
+                 status: _builtins.str,
+                 tag_ids: Sequence[_builtins.str],
+                 updated_at: _builtins.str):
+        """
+        :param _builtins.str created_at: Created timestamp (when present).
+        :param _builtins.str description: Operation description (when present).
+        :param _builtins.str domain: Operation domain.
+        :param _builtins.str id: Operation ID.
+        :param _builtins.str last_seen_at: Last seen timestamp (when present).
+        :param _builtins.str method: Operation HTTP method.
+        :param _builtins.str path: Operation path.
+        :param _builtins.float rps: Observed requests per second (when present).
+        :param _builtins.str status: Discovery status (when present). One of `DISCOVERED`, `SAVED`, or `IGNORED`.
+        :param Sequence[_builtins.str] tag_ids: Associated operation tag IDs.
+        :param _builtins.str updated_at: Updated timestamp (when present).
+        """
+        pulumi.set(__self__, "created_at", created_at)
+        pulumi.set(__self__, "description", description)
+        pulumi.set(__self__, "domain", domain)
+        pulumi.set(__self__, "id", id)
+        pulumi.set(__self__, "last_seen_at", last_seen_at)
+        pulumi.set(__self__, "method", method)
+        pulumi.set(__self__, "path", path)
+        pulumi.set(__self__, "rps", rps)
+        pulumi.set(__self__, "status", status)
+        pulumi.set(__self__, "tag_ids", tag_ids)
+        pulumi.set(__self__, "updated_at", updated_at)
+
+    @_builtins.property
+    @pulumi.getter(name="createdAt")
+    def created_at(self) -> _builtins.str:
+        """
+        Created timestamp (when present).
+        """
+        return pulumi.get(self, "created_at")
+
+    @_builtins.property
+    @pulumi.getter
+    def description(self) -> _builtins.str:
+        """
+        Operation description (when present).
+        """
+        return pulumi.get(self, "description")
+
+    @_builtins.property
+    @pulumi.getter
+    def domain(self) -> _builtins.str:
+        """
+        Operation domain.
+        """
+        return pulumi.get(self, "domain")
+
+    @_builtins.property
+    @pulumi.getter
+    def id(self) -> _builtins.str:
+        """
+        Operation ID.
+        """
+        return pulumi.get(self, "id")
+
+    @_builtins.property
+    @pulumi.getter(name="lastSeenAt")
+    def last_seen_at(self) -> _builtins.str:
+        """
+        Last seen timestamp (when present).
+        """
+        return pulumi.get(self, "last_seen_at")
+
+    @_builtins.property
+    @pulumi.getter
+    def method(self) -> _builtins.str:
+        """
+        Operation HTTP method.
+        """
+        return pulumi.get(self, "method")
+
+    @_builtins.property
+    @pulumi.getter
+    def path(self) -> _builtins.str:
+        """
+        Operation path.
+        """
+        return pulumi.get(self, "path")
+
+    @_builtins.property
+    @pulumi.getter
+    def rps(self) -> _builtins.float:
+        """
+        Observed requests per second (when present).
+        """
+        return pulumi.get(self, "rps")
+
+    @_builtins.property
+    @pulumi.getter
+    def status(self) -> _builtins.str:
+        """
+        Discovery status (when present). One of `DISCOVERED`, `SAVED`, or `IGNORED`.
+        """
+        return pulumi.get(self, "status")
+
+    @_builtins.property
+    @pulumi.getter(name="tagIds")
+    def tag_ids(self) -> Sequence[_builtins.str]:
+        """
+        Associated operation tag IDs.
+        """
+        return pulumi.get(self, "tag_ids")
+
+    @_builtins.property
+    @pulumi.getter(name="updatedAt")
+    def updated_at(self) -> _builtins.str:
+        """
+        Updated timestamp (when present).
+        """
+        return pulumi.get(self, "updated_at")
 
 
 @pulumi.output_type

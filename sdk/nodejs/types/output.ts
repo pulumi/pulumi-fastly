@@ -106,6 +106,115 @@ export interface CustomDashboardDashboardItemVisualizationConfig {
     plotType: string;
 }
 
+export interface GetApiSecurityDiscoveredOperationsOperation {
+    /**
+     * Discovered operation domain.
+     */
+    domain: string;
+    /**
+     * Discovered operation ID.
+     */
+    id: string;
+    /**
+     * Last seen timestamp (when present).
+     */
+    lastSeenAt: string;
+    /**
+     * Discovered operation HTTP method.
+     */
+    method: string;
+    /**
+     * Discovered operation path.
+     */
+    path: string;
+    /**
+     * Observed requests per second (when present).
+     */
+    rps: number;
+    /**
+     * Discovered operation status (when present).
+     */
+    status: string;
+    /**
+     * Updated timestamp (when present).
+     */
+    updatedAt: string;
+}
+
+export interface GetApiSecurityOperationTagsTag {
+    /**
+     * Created timestamp (when present).
+     */
+    createdAt: string;
+    /**
+     * Tag description (when present).
+     */
+    description: string;
+    /**
+     * Tag ID.
+     */
+    id: string;
+    /**
+     * Tag name.
+     */
+    name: string;
+    /**
+     * Number of operations associated with this tag (when present).
+     */
+    operationCount: number;
+    /**
+     * Updated timestamp (when present).
+     */
+    updatedAt: string;
+}
+
+export interface GetApiSecurityOperationsOperation {
+    /**
+     * Created timestamp (when present).
+     */
+    createdAt: string;
+    /**
+     * Operation description (when present).
+     */
+    description: string;
+    /**
+     * Operation domain.
+     */
+    domain: string;
+    /**
+     * Operation ID.
+     */
+    id: string;
+    /**
+     * Last seen timestamp (when present).
+     */
+    lastSeenAt: string;
+    /**
+     * Operation HTTP method.
+     */
+    method: string;
+    /**
+     * Operation path.
+     */
+    path: string;
+    /**
+     * Observed requests per second (when present).
+     */
+    rps: number;
+    /**
+     * Discovery status (when present). One of `DISCOVERED`, `SAVED`, or `IGNORED`.
+     */
+    status: string;
+    /**
+     * Associated operation tag IDs.
+     */
+    tagIds: string[];
+    /**
+     * Updated timestamp (when present).
+     */
+    updatedAt: string;
+}
+
 export interface GetComputeAclsAcl {
     /**
      * Identifier of the Compute ACL.
