@@ -24,7 +24,7 @@ namespace Pulumi.Fastly
     /// 
     /// return await Deployment.RunAsync(() =&gt; 
     /// {
-    ///     var demoJiraAlert = new Fastly.NgwafAlertJiraIntegration("demo_jira_alert", new()
+    ///     var demoJiraAlert = new Fastly.Index.NgwafAlertJiraIntegration("demo_jira_alert", new()
     ///     {
     ///         Description = "A description",
     ///         Host = "https://mycompany.atlassian.net",

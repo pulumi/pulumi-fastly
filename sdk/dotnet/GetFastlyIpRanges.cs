@@ -25,7 +25,7 @@ namespace Pulumi.Fastly
         /// 
         /// return await Deployment.RunAsync(() =&gt; 
         /// {
-        ///     var fastly = Fastly.GetFastlyIpRanges.Invoke();
+        ///     var fastly = Fastly.Index.GetFastlyIpRanges.Invoke();
         /// 
         ///     var fromFastly = new Aws.Index.SecurityGroup("from_fastly", new()
         ///     {
@@ -65,7 +65,7 @@ namespace Pulumi.Fastly
         /// 
         /// return await Deployment.RunAsync(() =&gt; 
         /// {
-        ///     var fastly = Fastly.GetFastlyIpRanges.Invoke();
+        ///     var fastly = Fastly.Index.GetFastlyIpRanges.Invoke();
         /// 
         ///     var fromFastly = new Aws.Index.SecurityGroup("from_fastly", new()
         ///     {
@@ -105,7 +105,7 @@ namespace Pulumi.Fastly
         /// 
         /// return await Deployment.RunAsync(() =&gt; 
         /// {
-        ///     var fastly = Fastly.GetFastlyIpRanges.Invoke();
+        ///     var fastly = Fastly.Index.GetFastlyIpRanges.Invoke();
         /// 
         ///     var fromFastly = new Aws.Index.SecurityGroup("from_fastly", new()
         ///     {

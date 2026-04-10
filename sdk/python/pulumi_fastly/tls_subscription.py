@@ -385,8 +385,8 @@ class TlsSubscription(pulumi.CustomResource):
         import pulumi_std as std
 
         # NOTE: Creating a hosted zone will automatically create SOA/NS records.
-        production = aws.index.Route53Zone("production", name=example.com)
-        example = aws.index.Route53domainsRegisteredDomain("example",
+        production = aws.Route53Zone("production", name=example.com)
+        example = aws.Route53domainsRegisteredDomain("example",
             name_server=[{
                 name: entry.value,
             } for entry in [{"key": k, "value": v} for k, v in production.name_servers.items()]],
@@ -410,8 +410,8 @@ class TlsSubscription(pulumi.CustomResource):
             certificate_authority="lets-encrypt")
         domain_validation = []
         def create_domain_validation(range_body):
-            for range in [{"key": k, "value": v} for [k, v] in enumerate(range_body)]:
-                domain_validation.append(aws.index.Route53Record(f"domain_validation-{range['key']}",
+            for range in [{"key": k, "value": v} for [k, v] in (range_body).items()]:
+                domain_validation.append(aws.Route53Record(f"domain_validation-{range['key']}",
                     name=range.value.record_name,
                     type=range.value.record_type,
                     zone_id=production.zone_id,
@@ -437,8 +437,8 @@ class TlsSubscription(pulumi.CustomResource):
         default_tls = fastly.get_tls_configuration(default=True)
         # Once validation is complete and we've retrieved the TLS configuration data, we can create multiple subdomain records.
         subdomain = []
-        for range in [{"value": i} for i in range(0, std.index.toset(input=subdomains).result)]:
-            subdomain.append(aws.index.Route53Record(f"subdomain-{range['value']}",
+        for range in [{"value": i} for i in range(0, std.toset(input=subdomains).result)]:
+            subdomain.append(aws.Route53Record(f"subdomain-{range['value']}",
                 name=range.value,
                 records=[record.record_value for record in default_tls.dns_records if record.record_type == CNAME],
                 ttl=300,
@@ -459,8 +459,8 @@ class TlsSubscription(pulumi.CustomResource):
         import pulumi_std as std
 
         # NOTE: Creating a hosted zone will automatically create SOA/NS records.
-        production = aws.index.Route53Zone("production", name=example.com)
-        example = aws.index.Route53domainsRegisteredDomain("example",
+        production = aws.Route53Zone("production", name=example.com)
+        example = aws.Route53domainsRegisteredDomain("example",
             name_server=[{
                 name: entry.value,
             } for entry in [{"key": k, "value": v} for k, v in production.name_servers.items()]],
@@ -484,8 +484,8 @@ class TlsSubscription(pulumi.CustomResource):
             certificate_authority="lets-encrypt")
         domain_validation = []
         def create_domain_validation(range_body):
-            for range in [{"key": k, "value": v} for [k, v] in enumerate(range_body)]:
-                domain_validation.append(aws.index.Route53Record(f"domain_validation-{range['key']}",
+            for range in [{"key": k, "value": v} for [k, v] in (range_body).items()]:
+                domain_validation.append(aws.Route53Record(f"domain_validation-{range['key']}",
                     name=range.value[0].record_name,
                     type=range.value[0].record_type,
                     zone_id=production.zone_id,
@@ -494,9 +494,9 @@ class TlsSubscription(pulumi.CustomResource):
                     ttl=60,
                     opts = pulumi.ResourceOptions(depends_on=[example_tls_subscription])))
 
-        example_tls_subscription.domains.apply(lambda resolved_outputs: create_domain_validation({std.index.replace(text=domain,
+        example_tls_subscription.domains.apply(lambda resolved_outputs: create_domain_validation({std.replace(text=domain,
             search="*.",
-            replace="")["result"]: example_tls_subscription.managed_dns_challenges.apply(lambda managed_dns_challenges: [obj for obj in managed_dns_challenges if obj.record_name == f"_acme-challenge.{std.index.replace(text=domain,
+            replace="")["result"]: example_tls_subscription.managed_dns_challenges.apply(lambda managed_dns_challenges: [obj for obj in managed_dns_challenges if obj.record_name == f"_acme-challenge.{std.replace(text=domain,
             search='*.',
             replace='')['result']}"])[0] for domain in resolved_outputs['domains']}))
         # This is a resource that other resources can depend on if they require the certificate to be issued.
@@ -514,14 +514,14 @@ class TlsSubscription(pulumi.CustomResource):
         # https://registry.terraform.io/providers/fastly/fastly/latest/docs/data-sources/tls_configuration#optional
         default_tls = fastly.get_tls_configuration(default=True)
         # Once validation is complete and we've retrieved the TLS configuration data, we can create multiple records...
-        apex = aws.index.Route53Record("apex",
+        apex = aws.Route53Record("apex",
             name=example.com,
             records=[record.record_value for record in default_tls.dns_records if record.record_type == A],
             ttl=300,
             type=A,
             zone_id=production.zone_id)
         # NOTE: This subdomain matches our Fastly service because of the wildcard domain (`*.example.com`) that was added to the service.
-        subdomain = aws.index.Route53Record("subdomain",
+        subdomain = aws.Route53Record("subdomain",
             name=test.example.com,
             records=[record.record_value for record in default_tls.dns_records if record.record_type == CNAME],
             ttl=300,
@@ -583,8 +583,8 @@ class TlsSubscription(pulumi.CustomResource):
         import pulumi_std as std
 
         # NOTE: Creating a hosted zone will automatically create SOA/NS records.
-        production = aws.index.Route53Zone("production", name=example.com)
-        example = aws.index.Route53domainsRegisteredDomain("example",
+        production = aws.Route53Zone("production", name=example.com)
+        example = aws.Route53domainsRegisteredDomain("example",
             name_server=[{
                 name: entry.value,
             } for entry in [{"key": k, "value": v} for k, v in production.name_servers.items()]],
@@ -608,8 +608,8 @@ class TlsSubscription(pulumi.CustomResource):
             certificate_authority="lets-encrypt")
         domain_validation = []
         def create_domain_validation(range_body):
-            for range in [{"key": k, "value": v} for [k, v] in enumerate(range_body)]:
-                domain_validation.append(aws.index.Route53Record(f"domain_validation-{range['key']}",
+            for range in [{"key": k, "value": v} for [k, v] in (range_body).items()]:
+                domain_validation.append(aws.Route53Record(f"domain_validation-{range['key']}",
                     name=range.value.record_name,
                     type=range.value.record_type,
                     zone_id=production.zone_id,
@@ -635,8 +635,8 @@ class TlsSubscription(pulumi.CustomResource):
         default_tls = fastly.get_tls_configuration(default=True)
         # Once validation is complete and we've retrieved the TLS configuration data, we can create multiple subdomain records.
         subdomain = []
-        for range in [{"value": i} for i in range(0, std.index.toset(input=subdomains).result)]:
-            subdomain.append(aws.index.Route53Record(f"subdomain-{range['value']}",
+        for range in [{"value": i} for i in range(0, std.toset(input=subdomains).result)]:
+            subdomain.append(aws.Route53Record(f"subdomain-{range['value']}",
                 name=range.value,
                 records=[record.record_value for record in default_tls.dns_records if record.record_type == CNAME],
                 ttl=300,
@@ -657,8 +657,8 @@ class TlsSubscription(pulumi.CustomResource):
         import pulumi_std as std
 
         # NOTE: Creating a hosted zone will automatically create SOA/NS records.
-        production = aws.index.Route53Zone("production", name=example.com)
-        example = aws.index.Route53domainsRegisteredDomain("example",
+        production = aws.Route53Zone("production", name=example.com)
+        example = aws.Route53domainsRegisteredDomain("example",
             name_server=[{
                 name: entry.value,
             } for entry in [{"key": k, "value": v} for k, v in production.name_servers.items()]],
@@ -682,8 +682,8 @@ class TlsSubscription(pulumi.CustomResource):
             certificate_authority="lets-encrypt")
         domain_validation = []
         def create_domain_validation(range_body):
-            for range in [{"key": k, "value": v} for [k, v] in enumerate(range_body)]:
-                domain_validation.append(aws.index.Route53Record(f"domain_validation-{range['key']}",
+            for range in [{"key": k, "value": v} for [k, v] in (range_body).items()]:
+                domain_validation.append(aws.Route53Record(f"domain_validation-{range['key']}",
                     name=range.value[0].record_name,
                     type=range.value[0].record_type,
                     zone_id=production.zone_id,
@@ -692,9 +692,9 @@ class TlsSubscription(pulumi.CustomResource):
                     ttl=60,
                     opts = pulumi.ResourceOptions(depends_on=[example_tls_subscription])))
 
-        example_tls_subscription.domains.apply(lambda resolved_outputs: create_domain_validation({std.index.replace(text=domain,
+        example_tls_subscription.domains.apply(lambda resolved_outputs: create_domain_validation({std.replace(text=domain,
             search="*.",
-            replace="")["result"]: example_tls_subscription.managed_dns_challenges.apply(lambda managed_dns_challenges: [obj for obj in managed_dns_challenges if obj.record_name == f"_acme-challenge.{std.index.replace(text=domain,
+            replace="")["result"]: example_tls_subscription.managed_dns_challenges.apply(lambda managed_dns_challenges: [obj for obj in managed_dns_challenges if obj.record_name == f"_acme-challenge.{std.replace(text=domain,
             search='*.',
             replace='')['result']}"])[0] for domain in resolved_outputs['domains']}))
         # This is a resource that other resources can depend on if they require the certificate to be issued.
@@ -712,14 +712,14 @@ class TlsSubscription(pulumi.CustomResource):
         # https://registry.terraform.io/providers/fastly/fastly/latest/docs/data-sources/tls_configuration#optional
         default_tls = fastly.get_tls_configuration(default=True)
         # Once validation is complete and we've retrieved the TLS configuration data, we can create multiple records...
-        apex = aws.index.Route53Record("apex",
+        apex = aws.Route53Record("apex",
             name=example.com,
             records=[record.record_value for record in default_tls.dns_records if record.record_type == A],
             ttl=300,
             type=A,
             zone_id=production.zone_id)
         # NOTE: This subdomain matches our Fastly service because of the wildcard domain (`*.example.com`) that was added to the service.
-        subdomain = aws.index.Route53Record("subdomain",
+        subdomain = aws.Route53Record("subdomain",
             name=test.example.com,
             records=[record.record_value for record in default_tls.dns_records if record.record_type == CNAME],
             ttl=300,

@@ -33,7 +33,7 @@ import (
 //
 //	func main() {
 //		pulumi.Run(func(ctx *pulumi.Context) error {
-//			_, err := fastly.LookupTlsPlatformCertificate(ctx, &fastly.LookupTlsPlatformCertificateArgs{
+//			_, err := fastly.GetTlsPlatformCertificate(ctx, &fastly.LookupTlsPlatformCertificateArgs{
 //				Domains: []string{
 //					"example.com",
 //				},

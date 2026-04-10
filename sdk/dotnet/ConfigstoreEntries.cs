@@ -33,12 +33,12 @@ namespace Pulumi.Fastly
     ///     // IMPORTANT: Deleting a Config Store requires first deleting its resource_link.
     ///     // This requires a two-step `pulumi up` as we can't guarantee deletion order.
     ///     // e.g. resource_link deletion within fastly_service_compute might not finish first.
-    ///     var exampleConfigstore = new Fastly.Configstore("example", new()
+    ///     var exampleConfigstore = new Fastly.Index.Configstore("example", new()
     ///     {
     ///         Name = "%s",
     ///     });
     /// 
-    ///     var exampleConfigstoreEntries = new Fastly.ConfigstoreEntries("example", new()
+    ///     var exampleConfigstoreEntries = new Fastly.Index.ConfigstoreEntries("example", new()
     ///     {
     ///         StoreId = exampleConfigstore.Id,
     ///         Entries = 
@@ -48,12 +48,12 @@ namespace Pulumi.Fastly
     ///         },
     ///     });
     /// 
-    ///     var example = Fastly.GetPackageHash.Invoke(new()
+    ///     var example = Fastly.Index.GetPackageHash.Invoke(new()
     ///     {
     ///         Filename = "package.tar.gz",
     ///     });
     /// 
-    ///     var exampleServiceCompute = new Fastly.ServiceCompute("example", new()
+    ///     var exampleServiceCompute = new Fastly.Index.ServiceCompute("example", new()
     ///     {
     ///         Name = "my_compute_service",
     ///         Domains = new[]
@@ -95,12 +95,12 @@ namespace Pulumi.Fastly
     ///     // IMPORTANT: Deleting a Config Store requires first deleting its resource_link.
     ///     // This requires a two-step `pulumi up` as we can't guarantee deletion order.
     ///     // e.g. resource_link deletion within fastly_service_compute might not finish first.
-    ///     var exampleConfigstore = new Fastly.Configstore("example", new()
+    ///     var exampleConfigstore = new Fastly.Index.Configstore("example", new()
     ///     {
     ///         Name = "%s",
     ///     });
     /// 
-    ///     var exampleConfigstoreEntries = new Fastly.ConfigstoreEntries("example", new()
+    ///     var exampleConfigstoreEntries = new Fastly.Index.ConfigstoreEntries("example", new()
     ///     {
     ///         StoreId = exampleConfigstore.Id,
     ///         Entries = 
@@ -111,12 +111,12 @@ namespace Pulumi.Fastly
     ///         ManageEntries = true,
     ///     });
     /// 
-    ///     var example = Fastly.GetPackageHash.Invoke(new()
+    ///     var example = Fastly.Index.GetPackageHash.Invoke(new()
     ///     {
     ///         Filename = "package.tar.gz",
     ///     });
     /// 
-    ///     var exampleServiceCompute = new Fastly.ServiceCompute("example", new()
+    ///     var exampleServiceCompute = new Fastly.Index.ServiceCompute("example", new()
     ///     {
     ///         Name = "my_compute_service",
     ///         Domains = new[]

@@ -91,8 +91,8 @@ class TlsSubscriptionValidation(pulumi.CustomResource):
         import pulumi_std as std
 
         # NOTE: Creating a hosted zone will automatically create SOA/NS records.
-        production = aws.index.Route53Zone("production", name=example.com)
-        example = aws.index.Route53domainsRegisteredDomain("example",
+        production = aws.Route53Zone("production", name=example.com)
+        example = aws.Route53domainsRegisteredDomain("example",
             name_server=[{
                 name: entry.value,
             } for entry in [{"key": k, "value": v} for k, v in production.name_servers.items()]],
@@ -116,8 +116,8 @@ class TlsSubscriptionValidation(pulumi.CustomResource):
             certificate_authority="lets-encrypt")
         domain_validation = []
         def create_domain_validation(range_body):
-            for range in [{"key": k, "value": v} for [k, v] in enumerate(range_body)]:
-                domain_validation.append(aws.index.Route53Record(f"domain_validation-{range['key']}",
+            for range in [{"key": k, "value": v} for [k, v] in (range_body).items()]:
+                domain_validation.append(aws.Route53Record(f"domain_validation-{range['key']}",
                     name=range.value.record_name,
                     type=range.value.record_type,
                     zone_id=production.zone_id,
@@ -143,8 +143,8 @@ class TlsSubscriptionValidation(pulumi.CustomResource):
         default_tls = fastly.get_tls_configuration(default=True)
         # Once validation is complete and we've retrieved the TLS configuration data, we can create multiple subdomain records.
         subdomain = []
-        for range in [{"value": i} for i in range(0, std.index.toset(input=subdomains).result)]:
-            subdomain.append(aws.index.Route53Record(f"subdomain-{range['value']}",
+        for range in [{"value": i} for i in range(0, std.toset(input=subdomains).result)]:
+            subdomain.append(aws.Route53Record(f"subdomain-{range['value']}",
                 name=range.value,
                 records=[record.record_value for record in default_tls.dns_records if record.record_type == CNAME],
                 ttl=300,
@@ -181,8 +181,8 @@ class TlsSubscriptionValidation(pulumi.CustomResource):
         import pulumi_std as std
 
         # NOTE: Creating a hosted zone will automatically create SOA/NS records.
-        production = aws.index.Route53Zone("production", name=example.com)
-        example = aws.index.Route53domainsRegisteredDomain("example",
+        production = aws.Route53Zone("production", name=example.com)
+        example = aws.Route53domainsRegisteredDomain("example",
             name_server=[{
                 name: entry.value,
             } for entry in [{"key": k, "value": v} for k, v in production.name_servers.items()]],
@@ -206,8 +206,8 @@ class TlsSubscriptionValidation(pulumi.CustomResource):
             certificate_authority="lets-encrypt")
         domain_validation = []
         def create_domain_validation(range_body):
-            for range in [{"key": k, "value": v} for [k, v] in enumerate(range_body)]:
-                domain_validation.append(aws.index.Route53Record(f"domain_validation-{range['key']}",
+            for range in [{"key": k, "value": v} for [k, v] in (range_body).items()]:
+                domain_validation.append(aws.Route53Record(f"domain_validation-{range['key']}",
                     name=range.value.record_name,
                     type=range.value.record_type,
                     zone_id=production.zone_id,
@@ -233,8 +233,8 @@ class TlsSubscriptionValidation(pulumi.CustomResource):
         default_tls = fastly.get_tls_configuration(default=True)
         # Once validation is complete and we've retrieved the TLS configuration data, we can create multiple subdomain records.
         subdomain = []
-        for range in [{"value": i} for i in range(0, std.index.toset(input=subdomains).result)]:
-            subdomain.append(aws.index.Route53Record(f"subdomain-{range['value']}",
+        for range in [{"value": i} for i in range(0, std.toset(input=subdomains).result)]:
+            subdomain.append(aws.Route53Record(f"subdomain-{range['value']}",
                 name=range.value,
                 records=[record.record_value for record in default_tls.dns_records if record.record_type == CNAME],
                 ttl=300,

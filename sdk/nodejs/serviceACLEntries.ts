@@ -43,7 +43,7 @@ import * as utilities from "./utilities";
  * const entries: fastly.ServiceACLEntries[] = [];
  * myservice.acls.apply(acls => {
  *     const entries: fastly.ServiceACLEntries[] = [];
- * pulumi.all(.filter(d => d.name == myaclName).reduce((__obj, d) => ({ ...__obj, [d.name]: d }))).apply(rangeBody => {
+ * pulumi.all(.filter(d => d.name == myaclName).reduce((__obj, d) => ({ ...__obj, [d.name]: d }), {})).apply(rangeBody => {
  *         for (const range of Object.entries(rangeBody).map(([k, v]) => ({key: k, value: v}))) {
  *             entries.push(new fastly.ServiceACLEntries(`entries-${range.key}`, {
  *                 serviceId: myservice.id,
@@ -100,7 +100,7 @@ import * as utilities from "./utilities";
  * });
  * const entries = new fastly.ServiceACLEntries("entries", {
  *     serviceId: myservice.id,
- *     aclId: myservice.acls.apply(acls => .reduce((__obj, d) => ({ ...__obj, [d.name]: d.aclId }))[myaclName]),
+ *     aclId: myservice.acls.apply(acls => .reduce((__obj, d) => ({ ...__obj, [d.name]: d.aclId }), {})[myaclName]),
  *     entries: [{
  *         ip: "127.0.0.1",
  *         subnet: "24",
@@ -126,7 +126,7 @@ import * as utilities from "./utilities";
  *
  * //...
  * const entries: fastly.ServiceACLEntries[] = [];
- * for (const range of Object.entries(.filter(d => d.name == myaclName).reduce((__obj, d) => ({ ...__obj, [d.name]: d }))).map(([k, v]) => ({key: k, value: v}))) {
+ * for (const range of Object.entries(.filter(d => d.name == myaclName).reduce((__obj, d) => ({ ...__obj, [d.name]: d }), {})).map(([k, v]) => ({key: k, value: v}))) {
  *     entries.push(new fastly.ServiceACLEntries(`entries-${range.key}`, {
  *         serviceId: myservice.id,
  *         aclId: range.value.aclId,

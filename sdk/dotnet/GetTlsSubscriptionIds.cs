@@ -24,7 +24,7 @@ namespace Pulumi.Fastly
         /// 
         /// return await Deployment.RunAsync(() =&gt; 
         /// {
-        ///     var example = Fastly.GetTlsSubscriptionIds.Invoke();
+        ///     var example = Fastly.Index.GetTlsSubscriptionIds.Invoke();
         /// 
         ///     var exampleGetTlsSubscription = ;
         /// 
@@ -54,7 +54,7 @@ namespace Pulumi.Fastly
         /// 
         /// return await Deployment.RunAsync(() =&gt; 
         /// {
-        ///     var example = Fastly.GetTlsSubscriptionIds.Invoke();
+        ///     var example = Fastly.Index.GetTlsSubscriptionIds.Invoke();
         /// 
         ///     var exampleGetTlsSubscription = ;
         /// 
@@ -84,7 +84,7 @@ namespace Pulumi.Fastly
         /// 
         /// return await Deployment.RunAsync(() =&gt; 
         /// {
-        ///     var example = Fastly.GetTlsSubscriptionIds.Invoke();
+        ///     var example = Fastly.Index.GetTlsSubscriptionIds.Invoke();
         /// 
         ///     var exampleGetTlsSubscription = ;
         /// 

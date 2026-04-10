@@ -26,7 +26,7 @@ namespace Pulumi.Fastly
         /// 
         /// return await Deployment.RunAsync(() =&gt; 
         /// {
-        ///     var svc1 = new Fastly.ServiceVcl("svc1", new()
+        ///     var svc1 = new Fastly.Index.ServiceVcl("svc1", new()
         ///     {
         ///         Name = "test-svc-1-example",
         ///         ForceDestroy = true,
@@ -41,7 +41,7 @@ namespace Pulumi.Fastly
         ///     });
         /// 
         ///     // Discovered operations depend on traffic and may legitimately be empty.
-        ///     var discovered = Fastly.GetApiSecurityDiscoveredOperations.Invoke(new()
+        ///     var discovered = Fastly.Index.GetApiSecurityDiscoveredOperations.Invoke(new()
         ///     {
         ///         ServiceId = svc1.Id,
         ///         Status = "SAVED",
@@ -82,7 +82,7 @@ namespace Pulumi.Fastly
         /// 
         /// return await Deployment.RunAsync(() =&gt; 
         /// {
-        ///     var svc1 = new Fastly.ServiceVcl("svc1", new()
+        ///     var svc1 = new Fastly.Index.ServiceVcl("svc1", new()
         ///     {
         ///         Name = "test-svc-1-example",
         ///         ForceDestroy = true,
@@ -97,7 +97,7 @@ namespace Pulumi.Fastly
         ///     });
         /// 
         ///     // Discovered operations depend on traffic and may legitimately be empty.
-        ///     var discovered = Fastly.GetApiSecurityDiscoveredOperations.Invoke(new()
+        ///     var discovered = Fastly.Index.GetApiSecurityDiscoveredOperations.Invoke(new()
         ///     {
         ///         ServiceId = svc1.Id,
         ///         Status = "SAVED",
@@ -138,7 +138,7 @@ namespace Pulumi.Fastly
         /// 
         /// return await Deployment.RunAsync(() =&gt; 
         /// {
-        ///     var svc1 = new Fastly.ServiceVcl("svc1", new()
+        ///     var svc1 = new Fastly.Index.ServiceVcl("svc1", new()
         ///     {
         ///         Name = "test-svc-1-example",
         ///         ForceDestroy = true,
@@ -153,7 +153,7 @@ namespace Pulumi.Fastly
         ///     });
         /// 
         ///     // Discovered operations depend on traffic and may legitimately be empty.
-        ///     var discovered = Fastly.GetApiSecurityDiscoveredOperations.Invoke(new()
+        ///     var discovered = Fastly.Index.GetApiSecurityDiscoveredOperations.Invoke(new()
         ///     {
         ///         ServiceId = svc1.Id,
         ///         Status = "SAVED",

@@ -24,7 +24,7 @@ namespace Pulumi.Fastly
         /// 
         /// return await Deployment.RunAsync(() =&gt; 
         /// {
-        ///     var svc1 = new Fastly.ServiceVcl("svc1", new()
+        ///     var svc1 = new Fastly.Index.ServiceVcl("svc1", new()
         ///     {
         ///         Name = "test-svc-1-example",
         ///         ForceDestroy = true,
@@ -39,7 +39,7 @@ namespace Pulumi.Fastly
         ///     });
         /// 
         ///     // Optional: create an operation (so the data source returns something predictable)
-        ///     var example = new Fastly.ApiSecurityOperation("example", new()
+        ///     var example = new Fastly.Index.ApiSecurityOperation("example", new()
         ///     {
         ///         ServiceId = svc1.Id,
         ///         Method = "GET",
@@ -48,7 +48,7 @@ namespace Pulumi.Fastly
         ///         Description = "Retrieve things",
         ///     });
         /// 
-        ///     var ops = Fastly.GetApiSecurityOperations.Invoke(new()
+        ///     var ops = Fastly.Index.GetApiSecurityOperations.Invoke(new()
         ///     {
         ///         ServiceId = svc1.Id,
         ///         Methods = new[]
@@ -86,7 +86,7 @@ namespace Pulumi.Fastly
         /// 
         /// return await Deployment.RunAsync(() =&gt; 
         /// {
-        ///     var svc1 = new Fastly.ServiceVcl("svc1", new()
+        ///     var svc1 = new Fastly.Index.ServiceVcl("svc1", new()
         ///     {
         ///         Name = "test-svc-1-example",
         ///         ForceDestroy = true,
@@ -101,7 +101,7 @@ namespace Pulumi.Fastly
         ///     });
         /// 
         ///     // Optional: create an operation (so the data source returns something predictable)
-        ///     var example = new Fastly.ApiSecurityOperation("example", new()
+        ///     var example = new Fastly.Index.ApiSecurityOperation("example", new()
         ///     {
         ///         ServiceId = svc1.Id,
         ///         Method = "GET",
@@ -110,7 +110,7 @@ namespace Pulumi.Fastly
         ///         Description = "Retrieve things",
         ///     });
         /// 
-        ///     var ops = Fastly.GetApiSecurityOperations.Invoke(new()
+        ///     var ops = Fastly.Index.GetApiSecurityOperations.Invoke(new()
         ///     {
         ///         ServiceId = svc1.Id,
         ///         Methods = new[]
@@ -148,7 +148,7 @@ namespace Pulumi.Fastly
         /// 
         /// return await Deployment.RunAsync(() =&gt; 
         /// {
-        ///     var svc1 = new Fastly.ServiceVcl("svc1", new()
+        ///     var svc1 = new Fastly.Index.ServiceVcl("svc1", new()
         ///     {
         ///         Name = "test-svc-1-example",
         ///         ForceDestroy = true,
@@ -163,7 +163,7 @@ namespace Pulumi.Fastly
         ///     });
         /// 
         ///     // Optional: create an operation (so the data source returns something predictable)
-        ///     var example = new Fastly.ApiSecurityOperation("example", new()
+        ///     var example = new Fastly.Index.ApiSecurityOperation("example", new()
         ///     {
         ///         ServiceId = svc1.Id,
         ///         Method = "GET",
@@ -172,7 +172,7 @@ namespace Pulumi.Fastly
         ///         Description = "Retrieve things",
         ///     });
         /// 
-        ///     var ops = Fastly.GetApiSecurityOperations.Invoke(new()
+        ///     var ops = Fastly.Index.GetApiSecurityOperations.Invoke(new()
         ///     {
         ///         ServiceId = svc1.Id,
         ///         Methods = new[]

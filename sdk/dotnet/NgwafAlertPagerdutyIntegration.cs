@@ -24,7 +24,7 @@ namespace Pulumi.Fastly
     /// 
     /// return await Deployment.RunAsync(() =&gt; 
     /// {
-    ///     var demoPagerdutyAlert = new Fastly.NgwafAlertPagerdutyIntegration("demo_pagerduty_alert", new()
+    ///     var demoPagerdutyAlert = new Fastly.Index.NgwafAlertPagerdutyIntegration("demo_pagerduty_alert", new()
     ///     {
     ///         Description = "Some Description",
     ///         Key = "1234567890abcdef1234567890abcdef",

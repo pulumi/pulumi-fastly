@@ -24,7 +24,7 @@ namespace Pulumi.Fastly
         /// 
         /// return await Deployment.RunAsync(() =&gt; 
         /// {
-        ///     var accountSignals = Fastly.GetNgwafAccountSignals.Invoke();
+        ///     var accountSignals = Fastly.Index.GetNgwafAccountSignals.Invoke();
         /// 
         ///     return new Dictionary&lt;string, object?&gt;
         ///     {
@@ -49,7 +49,7 @@ namespace Pulumi.Fastly
         /// 
         /// return await Deployment.RunAsync(() =&gt; 
         /// {
-        ///     var accountSignals = Fastly.GetNgwafAccountSignals.Invoke();
+        ///     var accountSignals = Fastly.Index.GetNgwafAccountSignals.Invoke();
         /// 
         ///     return new Dictionary&lt;string, object?&gt;
         ///     {
@@ -74,7 +74,7 @@ namespace Pulumi.Fastly
         /// 
         /// return await Deployment.RunAsync(() =&gt; 
         /// {
-        ///     var accountSignals = Fastly.GetNgwafAccountSignals.Invoke();
+        ///     var accountSignals = Fastly.Index.GetNgwafAccountSignals.Invoke();
         /// 
         ///     return new Dictionary&lt;string, object?&gt;
         ///     {

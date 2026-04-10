@@ -32,12 +32,12 @@ namespace Pulumi.Fastly
     /// {
     ///     // IMPORTANT: Deleting a Compute ACL requires first deleting its resource_link.
     ///     // This requires a two-step `pulumi up` as we can't guarantee deletion order.
-    ///     var exampleComputeAcl = new Fastly.ComputeAcl("example", new()
+    ///     var exampleComputeAcl = new Fastly.Index.ComputeAcl("example", new()
     ///     {
     ///         Name = "my_compute_acl",
     ///     });
     /// 
-    ///     var exampleComputeAclEntries = new Fastly.ComputeAclEntries("example", new()
+    ///     var exampleComputeAclEntries = new Fastly.Index.ComputeAclEntries("example", new()
     ///     {
     ///         ComputeAclId = exampleComputeAcl.Id,
     ///         Entries = 
@@ -47,12 +47,12 @@ namespace Pulumi.Fastly
     ///         },
     ///     });
     /// 
-    ///     var example = Fastly.GetPackageHash.Invoke(new()
+    ///     var example = Fastly.Index.GetPackageHash.Invoke(new()
     ///     {
     ///         Filename = "package.tar.gz",
     ///     });
     /// 
-    ///     var exampleServiceCompute = new Fastly.ServiceCompute("example", new()
+    ///     var exampleServiceCompute = new Fastly.Index.ServiceCompute("example", new()
     ///     {
     ///         Name = "my_compute_service",
     ///         Domains = new[]
@@ -93,12 +93,12 @@ namespace Pulumi.Fastly
     /// {
     ///     // IMPORTANT: Deleting a Compute ACL requires first deleting its resource_link.
     ///     // This requires a two-step `pulumi up` as we can't guarantee deletion order.
-    ///     var exampleComputeAcl = new Fastly.ComputeAcl("example", new()
+    ///     var exampleComputeAcl = new Fastly.Index.ComputeAcl("example", new()
     ///     {
     ///         Name = "my_compute_acl",
     ///     });
     /// 
-    ///     var exampleComputeAclEntries = new Fastly.ComputeAclEntries("example", new()
+    ///     var exampleComputeAclEntries = new Fastly.Index.ComputeAclEntries("example", new()
     ///     {
     ///         ComputeAclId = exampleComputeAcl.Id,
     ///         Entries = 
@@ -109,12 +109,12 @@ namespace Pulumi.Fastly
     ///         ManageEntries = true,
     ///     });
     /// 
-    ///     var example = Fastly.GetPackageHash.Invoke(new()
+    ///     var example = Fastly.Index.GetPackageHash.Invoke(new()
     ///     {
     ///         Filename = "package.tar.gz",
     ///     });
     /// 
-    ///     var exampleServiceCompute = new Fastly.ServiceCompute("example", new()
+    ///     var exampleServiceCompute = new Fastly.Index.ServiceCompute("example", new()
     ///     {
     ///         Name = "my_compute_service",
     ///         Domains = new[]

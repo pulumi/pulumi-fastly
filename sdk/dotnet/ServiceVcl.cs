@@ -54,7 +54,7 @@ namespace Pulumi.Fastly
     /// 
     /// return await Deployment.RunAsync(() =&gt; 
     /// {
-    ///     var demo = new Fastly.ServiceVcl("demo", new()
+    ///     var demo = new Fastly.Index.ServiceVcl("demo", new()
     ///     {
     ///         Name = "demofastly",
     ///         Domains = new[]
@@ -91,7 +91,7 @@ namespace Pulumi.Fastly
     /// 
     /// return await Deployment.RunAsync(() =&gt; 
     /// {
-    ///     var demo = new Fastly.ServiceVcl("demo", new()
+    ///     var demo = new Fastly.Index.ServiceVcl("demo", new()
     ///     {
     ///         Name = "demofastly",
     ///         Domains = new[]

@@ -24,7 +24,7 @@ namespace Pulumi.Fastly
         /// 
         /// return await Deployment.RunAsync(() =&gt; 
         /// {
-        ///     var ngwafRedactions = Fastly.GetNgwafRedactions.Invoke(new()
+        ///     var ngwafRedactions = Fastly.Index.GetNgwafRedactions.Invoke(new()
         ///     {
         ///         WorkspaceId = testRedactionsWorkspace.Id,
         ///     });
@@ -54,7 +54,7 @@ namespace Pulumi.Fastly
         /// 
         /// return await Deployment.RunAsync(() =&gt; 
         /// {
-        ///     var ngwafRedactions = Fastly.GetNgwafRedactions.Invoke(new()
+        ///     var ngwafRedactions = Fastly.Index.GetNgwafRedactions.Invoke(new()
         ///     {
         ///         WorkspaceId = testRedactionsWorkspace.Id,
         ///     });
@@ -84,7 +84,7 @@ namespace Pulumi.Fastly
         /// 
         /// return await Deployment.RunAsync(() =&gt; 
         /// {
-        ///     var ngwafRedactions = Fastly.GetNgwafRedactions.Invoke(new()
+        ///     var ngwafRedactions = Fastly.Index.GetNgwafRedactions.Invoke(new()
         ///     {
         ///         WorkspaceId = testRedactionsWorkspace.Id,
         ///     });

@@ -24,7 +24,7 @@ namespace Pulumi.Fastly
         /// 
         /// return await Deployment.RunAsync(() =&gt; 
         /// {
-        ///     var domain = Fastly.GetTlsDomain.Invoke(new()
+        ///     var domain = Fastly.Index.GetTlsDomain.Invoke(new()
         ///     {
         ///         Domain = "example.com",
         ///     });
@@ -48,7 +48,7 @@ namespace Pulumi.Fastly
         /// 
         /// return await Deployment.RunAsync(() =&gt; 
         /// {
-        ///     var domain = Fastly.GetTlsDomain.Invoke(new()
+        ///     var domain = Fastly.Index.GetTlsDomain.Invoke(new()
         ///     {
         ///         Domain = "example.com",
         ///     });
@@ -72,7 +72,7 @@ namespace Pulumi.Fastly
         /// 
         /// return await Deployment.RunAsync(() =&gt; 
         /// {
-        ///     var domain = Fastly.GetTlsDomain.Invoke(new()
+        ///     var domain = Fastly.Index.GetTlsDomain.Invoke(new()
         ///     {
         ///         Domain = "example.com",
         ///     });

@@ -26,7 +26,7 @@ namespace Pulumi.Fastly
     /// 
     /// return await Deployment.RunAsync(() =&gt; 
     /// {
-    ///     var demo = new Fastly.ServiceVcl("demo", new()
+    ///     var demo = new Fastly.Index.ServiceVcl("demo", new()
     ///     {
     ///         Name = "demofastly",
     ///         Domains = new[]
@@ -39,13 +39,13 @@ namespace Pulumi.Fastly
     ///         },
     ///     });
     /// 
-    ///     var user = new Fastly.User("user", new()
+    ///     var user = new Fastly.Index.User("user", new()
     ///     {
     ///         Login = "demo@example.com",
     ///         Name = "Demo User",
     ///     });
     /// 
-    ///     var auth = new Fastly.ServiceAuthorization("auth", new()
+    ///     var auth = new Fastly.Index.ServiceAuthorization("auth", new()
     ///     {
     ///         ServiceId = demo.Id,
     ///         UserId = user.Id,

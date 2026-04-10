@@ -26,7 +26,7 @@ namespace Pulumi.Fastly
     /// 
     /// return await Deployment.RunAsync(() =&gt; 
     /// {
-    ///     var example = new Fastly.NgwafAccountList("example", new()
+    ///     var example = new Fastly.Index.NgwafAccountList("example", new()
     ///     {
     ///         Name = "shared-bot-ip-list",
     ///         Description = "List of known bot IPs shared across workspaces",

@@ -24,7 +24,7 @@ namespace Pulumi.Fastly
         /// 
         /// return await Deployment.RunAsync(() =&gt; 
         /// {
-        ///     var listPatches = Fastly.GetNgwafVirtualPatches.Invoke(new()
+        ///     var listPatches = Fastly.Index.GetNgwafVirtualPatches.Invoke(new()
         ///     {
         ///         WorkspaceId = testVirtualPatchesWorkspace.Id,
         ///     });
@@ -54,7 +54,7 @@ namespace Pulumi.Fastly
         /// 
         /// return await Deployment.RunAsync(() =&gt; 
         /// {
-        ///     var listPatches = Fastly.GetNgwafVirtualPatches.Invoke(new()
+        ///     var listPatches = Fastly.Index.GetNgwafVirtualPatches.Invoke(new()
         ///     {
         ///         WorkspaceId = testVirtualPatchesWorkspace.Id,
         ///     });
@@ -84,7 +84,7 @@ namespace Pulumi.Fastly
         /// 
         /// return await Deployment.RunAsync(() =&gt; 
         /// {
-        ///     var listPatches = Fastly.GetNgwafVirtualPatches.Invoke(new()
+        ///     var listPatches = Fastly.Index.GetNgwafVirtualPatches.Invoke(new()
         ///     {
         ///         WorkspaceId = testVirtualPatchesWorkspace.Id,
         ///     });

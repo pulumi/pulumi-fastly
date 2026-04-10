@@ -27,7 +27,7 @@ import (
 //
 //	func main() {
 //		pulumi.Run(func(ctx *pulumi.Context) error {
-//			listPatches, err := fastly.LookupNgwafVirtualPatches(ctx, &fastly.LookupNgwafVirtualPatchesArgs{
+//			listPatches, err := fastly.GetNgwafVirtualPatches(ctx, &fastly.LookupNgwafVirtualPatchesArgs{
 //				WorkspaceId: testVirtualPatchesWorkspace.Id,
 //			}, nil)
 //			if err != nil {

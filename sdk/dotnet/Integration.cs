@@ -24,7 +24,7 @@ namespace Pulumi.Fastly
     /// 
     /// return await Deployment.RunAsync(() =&gt; 
     /// {
-    ///     var mailinglistExample = new Fastly.Integration("mailinglist_example", new()
+    ///     var mailinglistExample = new Fastly.Index.Integration("mailinglist_example", new()
     ///     {
     ///         Name = "my mailing list integration",
     ///         Description = "example mailing list integration",
@@ -35,7 +35,7 @@ namespace Pulumi.Fastly
     ///         },
     ///     });
     /// 
-    ///     var microsoftteamsExample = new Fastly.Integration("microsoftteams_example", new()
+    ///     var microsoftteamsExample = new Fastly.Index.Integration("microsoftteams_example", new()
     ///     {
     ///         Name = "my Microsoft Teams integration",
     ///         Description = "example Microsoft Teams integration",
@@ -46,7 +46,7 @@ namespace Pulumi.Fastly
     ///         },
     ///     });
     /// 
-    ///     var newrelicExample = new Fastly.Integration("newrelic_example", new()
+    ///     var newrelicExample = new Fastly.Index.Integration("newrelic_example", new()
     ///     {
     ///         Name = "my New Relic integration",
     ///         Description = "example New Relic integration",
@@ -58,7 +58,7 @@ namespace Pulumi.Fastly
     ///         },
     ///     });
     /// 
-    ///     var pagerdutyExample = new Fastly.Integration("pagerduty_example", new()
+    ///     var pagerdutyExample = new Fastly.Index.Integration("pagerduty_example", new()
     ///     {
     ///         Name = "my PagerDuty integration",
     ///         Description = "example PagerDuty integration",
@@ -69,7 +69,7 @@ namespace Pulumi.Fastly
     ///         },
     ///     });
     /// 
-    ///     var slackExample = new Fastly.Integration("slack_example", new()
+    ///     var slackExample = new Fastly.Index.Integration("slack_example", new()
     ///     {
     ///         Name = "my Slack integration",
     ///         Description = "example Slack integration",
@@ -80,7 +80,7 @@ namespace Pulumi.Fastly
     ///         },
     ///     });
     /// 
-    ///     var webhookExample = new Fastly.Integration("webhook_example", new()
+    ///     var webhookExample = new Fastly.Index.Integration("webhook_example", new()
     ///     {
     ///         Name = "my webhook integration",
     ///         Description = "example webhook integration",

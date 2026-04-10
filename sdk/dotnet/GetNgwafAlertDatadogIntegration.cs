@@ -24,7 +24,7 @@ namespace Pulumi.Fastly
         /// 
         /// return await Deployment.RunAsync(() =&gt; 
         /// {
-        ///     var ngwafDatadogAlerts = Fastly.GetNgwafAlertDatadogIntegration.Invoke(new()
+        ///     var ngwafDatadogAlerts = Fastly.Index.GetNgwafAlertDatadogIntegration.Invoke(new()
         ///     {
         ///         WorkspaceId = testRedactionsWorkspace.Id,
         ///     });
@@ -52,7 +52,7 @@ namespace Pulumi.Fastly
         /// 
         /// return await Deployment.RunAsync(() =&gt; 
         /// {
-        ///     var ngwafDatadogAlerts = Fastly.GetNgwafAlertDatadogIntegration.Invoke(new()
+        ///     var ngwafDatadogAlerts = Fastly.Index.GetNgwafAlertDatadogIntegration.Invoke(new()
         ///     {
         ///         WorkspaceId = testRedactionsWorkspace.Id,
         ///     });
@@ -80,7 +80,7 @@ namespace Pulumi.Fastly
         /// 
         /// return await Deployment.RunAsync(() =&gt; 
         /// {
-        ///     var ngwafDatadogAlerts = Fastly.GetNgwafAlertDatadogIntegration.Invoke(new()
+        ///     var ngwafDatadogAlerts = Fastly.Index.GetNgwafAlertDatadogIntegration.Invoke(new()
         ///     {
         ///         WorkspaceId = testRedactionsWorkspace.Id,
         ///     });

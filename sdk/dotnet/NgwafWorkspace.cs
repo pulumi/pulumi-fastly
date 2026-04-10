@@ -26,7 +26,7 @@ namespace Pulumi.Fastly
     /// 
     /// return await Deployment.RunAsync(() =&gt; 
     /// {
-    ///     var demo = new Fastly.NgwafWorkspace("demo", new()
+    ///     var demo = new Fastly.Index.NgwafWorkspace("demo", new()
     ///     {
     ///         Name = "Demo",
     ///         Description = "Testing",

@@ -26,7 +26,7 @@ namespace Pulumi.Fastly
     /// 
     /// return await Deployment.RunAsync(() =&gt; 
     /// {
-    ///     var demo = new Fastly.ObjectStorageAccessKeys("demo", new()
+    ///     var demo = new Fastly.Index.ObjectStorageAccessKeys("demo", new()
     ///     {
     ///         Buckets = new[]
     ///         {

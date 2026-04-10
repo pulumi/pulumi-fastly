@@ -206,7 +206,7 @@ class ServiceDynamicSnippetContent(pulumi.CustomResource):
             force_destroy=True)
         my_dyn_content = []
         def create_my_dyn_content(range_body):
-            for range in [{"key": k, "value": v} for [k, v] in enumerate(range_body)]:
+            for range in [{"key": k, "value": v} for [k, v] in (range_body).items()]:
                 my_dyn_content.append(fastly.ServiceDynamicSnippetContent(f"my_dyn_content-{range['key']}",
                     service_id=myservice.id,
                     snippet_id=range["value"].snippet_id,
@@ -250,7 +250,7 @@ class ServiceDynamicSnippetContent(pulumi.CustomResource):
             force_destroy=True)
         my_dyn_content_one = []
         def create_my_dyn_content_one(range_body):
-            for range in [{"key": k, "value": v} for [k, v] in enumerate(range_body)]:
+            for range in [{"key": k, "value": v} for [k, v] in (range_body).items()]:
                 my_dyn_content_one.append(fastly.ServiceDynamicSnippetContent(f"my_dyn_content_one-{range['key']}",
                     service_id=myservice.id,
                     snippet_id=range["value"].snippet_id,
@@ -261,7 +261,7 @@ class ServiceDynamicSnippetContent(pulumi.CustomResource):
         myservice.dynamicsnippets.apply(lambda resolved_outputs: create_my_dyn_content_one({d.name: d for d in resolved_outputs['dynamicsnippets'] if d.name == "My Dynamic Snippet One"}))
         my_dyn_content_two = []
         def create_my_dyn_content_two(range_body):
-            for range in [{"key": k, "value": v} for [k, v] in enumerate(range_body)]:
+            for range in [{"key": k, "value": v} for [k, v] in (range_body).items()]:
                 my_dyn_content_two.append(fastly.ServiceDynamicSnippetContent(f"my_dyn_content_two-{range['key']}",
                     service_id=myservice.id,
                     snippet_id=range["value"].snippet_id,
@@ -329,7 +329,7 @@ class ServiceDynamicSnippetContent(pulumi.CustomResource):
 
         #...
         my_dyn_content = []
-        for range in [{"key": k, "value": v} for [k, v] in enumerate({d.name: d for d in myservice.dynamicsnippet if d.name == My Dynamic Snippet})]:
+        for range in [{"key": k, "value": v} for [k, v] in ({d.name: d for d in myservice.dynamicsnippet if d.name == My Dynamic Snippet}).items()]:
             my_dyn_content.append(fastly.ServiceDynamicSnippetContent(f"my_dyn_content-{range['key']}",
                 service_id=myservice["id"],
                 snippet_id=range["value"]["snippetId"],
@@ -405,7 +405,7 @@ class ServiceDynamicSnippetContent(pulumi.CustomResource):
             force_destroy=True)
         my_dyn_content = []
         def create_my_dyn_content(range_body):
-            for range in [{"key": k, "value": v} for [k, v] in enumerate(range_body)]:
+            for range in [{"key": k, "value": v} for [k, v] in (range_body).items()]:
                 my_dyn_content.append(fastly.ServiceDynamicSnippetContent(f"my_dyn_content-{range['key']}",
                     service_id=myservice.id,
                     snippet_id=range["value"].snippet_id,
@@ -449,7 +449,7 @@ class ServiceDynamicSnippetContent(pulumi.CustomResource):
             force_destroy=True)
         my_dyn_content_one = []
         def create_my_dyn_content_one(range_body):
-            for range in [{"key": k, "value": v} for [k, v] in enumerate(range_body)]:
+            for range in [{"key": k, "value": v} for [k, v] in (range_body).items()]:
                 my_dyn_content_one.append(fastly.ServiceDynamicSnippetContent(f"my_dyn_content_one-{range['key']}",
                     service_id=myservice.id,
                     snippet_id=range["value"].snippet_id,
@@ -460,7 +460,7 @@ class ServiceDynamicSnippetContent(pulumi.CustomResource):
         myservice.dynamicsnippets.apply(lambda resolved_outputs: create_my_dyn_content_one({d.name: d for d in resolved_outputs['dynamicsnippets'] if d.name == "My Dynamic Snippet One"}))
         my_dyn_content_two = []
         def create_my_dyn_content_two(range_body):
-            for range in [{"key": k, "value": v} for [k, v] in enumerate(range_body)]:
+            for range in [{"key": k, "value": v} for [k, v] in (range_body).items()]:
                 my_dyn_content_two.append(fastly.ServiceDynamicSnippetContent(f"my_dyn_content_two-{range['key']}",
                     service_id=myservice.id,
                     snippet_id=range["value"].snippet_id,
@@ -528,7 +528,7 @@ class ServiceDynamicSnippetContent(pulumi.CustomResource):
 
         #...
         my_dyn_content = []
-        for range in [{"key": k, "value": v} for [k, v] in enumerate({d.name: d for d in myservice.dynamicsnippet if d.name == My Dynamic Snippet})]:
+        for range in [{"key": k, "value": v} for [k, v] in ({d.name: d for d in myservice.dynamicsnippet if d.name == My Dynamic Snippet}).items()]:
             my_dyn_content.append(fastly.ServiceDynamicSnippetContent(f"my_dyn_content-{range['key']}",
                 service_id=myservice["id"],
                 snippet_id=range["value"]["snippetId"],

@@ -27,7 +27,7 @@ import (
 //
 //	func main() {
 //		pulumi.Run(func(ctx *pulumi.Context) error {
-//			_, err := fastly.LookupTlsSubscription(ctx, &fastly.LookupTlsSubscriptionArgs{
+//			_, err := fastly.GetTlsSubscription(ctx, &fastly.LookupTlsSubscriptionArgs{
 //				Domains: []string{
 //					"example.com",
 //				},

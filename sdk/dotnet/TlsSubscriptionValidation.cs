@@ -54,7 +54,7 @@ namespace Pulumi.Fastly
     ///         "b.example.com",
     ///     };
     /// 
-    ///     var exampleServiceVcl = new Fastly.ServiceVcl("example", new()
+    ///     var exampleServiceVcl = new Fastly.Index.ServiceVcl("example", new()
     ///     {
     ///         Domains = subdomains.Select((v, k) =&gt; new { Key = k, Value = v }).Select(entry =&gt; 
     ///         {
@@ -75,7 +75,7 @@ namespace Pulumi.Fastly
     ///         ForceDestroy = true,
     ///     });
     /// 
-    ///     var exampleTlsSubscription = new Fastly.TlsSubscription("example", new()
+    ///     var exampleTlsSubscription = new Fastly.Index.TlsSubscription("example", new()
     ///     {
     ///         Domains = exampleServiceVcl.Domains.Apply(domains =&gt; .Select(domain =&gt; 
     ///         {
@@ -117,7 +117,7 @@ namespace Pulumi.Fastly
     ///     }
     ///     // This is a resource that other resources can depend on if they require the certificate to be issued.
     ///     // NOTE: Internally the resource keeps retrying `GetTLSSubscription` until no error is returned (or the configured timeout is reached).
-    ///     var exampleTlsSubscriptionValidation = new Fastly.TlsSubscriptionValidation("example", new()
+    ///     var exampleTlsSubscriptionValidation = new Fastly.Index.TlsSubscriptionValidation("example", new()
     ///     {
     ///         SubscriptionId = exampleTlsSubscription.Id,
     ///     }, new CustomResourceOptions
@@ -137,7 +137,7 @@ namespace Pulumi.Fastly
     ///     // If you have issues filtering with `default = true`, then you may need another attribute.
     ///     // Refer to the fastly_tls_configuration documentation for available attributes:
     ///     // https://registry.terraform.io/providers/fastly/fastly/latest/docs/data-sources/tls_configuration#optional
-    ///     var defaultTls = Fastly.GetTlsConfiguration.Invoke(new()
+    ///     var defaultTls = Fastly.Index.GetTlsConfiguration.Invoke(new()
     ///     {
     ///         Default = true,
     ///     });

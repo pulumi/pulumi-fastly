@@ -30,12 +30,12 @@ namespace Pulumi.Fastly
         /// 
         /// return await Deployment.RunAsync(() =&gt; 
         /// {
-        ///     var example = Fastly.GetTlsConfiguration.Invoke(new()
+        ///     var example = Fastly.Index.GetTlsConfiguration.Invoke(new()
         ///     {
         ///         Default = true,
         ///     });
         /// 
-        ///     var exampleTlsActivation = new Fastly.TlsActivation("example", new()
+        ///     var exampleTlsActivation = new Fastly.Index.TlsActivation("example", new()
         ///     {
         ///         ConfigurationId = example.Apply(getTlsConfigurationResult =&gt; getTlsConfigurationResult.Id),
         ///     });
@@ -65,12 +65,12 @@ namespace Pulumi.Fastly
         /// 
         /// return await Deployment.RunAsync(() =&gt; 
         /// {
-        ///     var example = Fastly.GetTlsConfiguration.Invoke(new()
+        ///     var example = Fastly.Index.GetTlsConfiguration.Invoke(new()
         ///     {
         ///         Default = true,
         ///     });
         /// 
-        ///     var exampleTlsActivation = new Fastly.TlsActivation("example", new()
+        ///     var exampleTlsActivation = new Fastly.Index.TlsActivation("example", new()
         ///     {
         ///         ConfigurationId = example.Apply(getTlsConfigurationResult =&gt; getTlsConfigurationResult.Id),
         ///     });
@@ -100,12 +100,12 @@ namespace Pulumi.Fastly
         /// 
         /// return await Deployment.RunAsync(() =&gt; 
         /// {
-        ///     var example = Fastly.GetTlsConfiguration.Invoke(new()
+        ///     var example = Fastly.Index.GetTlsConfiguration.Invoke(new()
         ///     {
         ///         Default = true,
         ///     });
         /// 
-        ///     var exampleTlsActivation = new Fastly.TlsActivation("example", new()
+        ///     var exampleTlsActivation = new Fastly.Index.TlsActivation("example", new()
         ///     {
         ///         ConfigurationId = example.Apply(getTlsConfigurationResult =&gt; getTlsConfigurationResult.Id),
         ///     });
