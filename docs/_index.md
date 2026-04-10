@@ -87,7 +87,7 @@ using Fastly = Pulumi.Fastly;
 return await Deployment.RunAsync(() =>
 {
     // Create a Service
-    var myservice = new Fastly.ServiceVcl("myservice", new()
+    var myservice = new Fastly.Index.ServiceVcl("myservice", new()
     {
         Name = "myawesometestservice",
     });
@@ -270,7 +270,7 @@ using Fastly = Pulumi.Fastly;
 
 return await Deployment.RunAsync(() =>
 {
-    var myservice = new Fastly.ServiceVcl("myservice");
+    var myservice = new Fastly.Index.ServiceVcl("myservice");
 
 });
 
@@ -400,7 +400,7 @@ using Fastly = Pulumi.Fastly;
 
 return await Deployment.RunAsync(() =>
 {
-    var myservice = new Fastly.ServiceVcl("myservice");
+    var myservice = new Fastly.Index.ServiceVcl("myservice");
 
 });
 

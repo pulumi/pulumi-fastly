@@ -24,7 +24,7 @@ namespace Pulumi.Fastly
     /// 
     /// return await Deployment.RunAsync(() =&gt; 
     /// {
-    ///     var demoDatadogAlert = new Fastly.NgwafAlertDatadogIntegration("demo_datadog_alert", new()
+    ///     var demoDatadogAlert = new Fastly.Index.NgwafAlertDatadogIntegration("demo_datadog_alert", new()
     ///     {
     ///         Description = "Some Description",
     ///         Key = "123456789",

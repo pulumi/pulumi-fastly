@@ -27,12 +27,12 @@ namespace Pulumi.Fastly
     /// 
     /// return await Deployment.RunAsync(() =&gt; 
     /// {
-    ///     var demo = new Tls.PrivateKey("demo", new()
+    ///     var demo = new Tls.Index.PrivateKey("demo", new()
     ///     {
     ///         Algorithm = "RSA",
     ///     });
     /// 
-    ///     var demoTlsPrivateKey = new Fastly.TlsPrivateKey("demo", new()
+    ///     var demoTlsPrivateKey = new Fastly.Index.TlsPrivateKey("demo", new()
     ///     {
     ///         KeyPem = demo.PrivateKeyPem,
     ///         Name = "tf-demo",

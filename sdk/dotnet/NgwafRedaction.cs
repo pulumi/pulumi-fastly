@@ -24,7 +24,7 @@ namespace Pulumi.Fastly
     /// 
     /// return await Deployment.RunAsync(() =&gt; 
     /// {
-    ///     var demoRedaction = new Fastly.NgwafRedaction("demo_redaction", new()
+    ///     var demoRedaction = new Fastly.Index.NgwafRedaction("demo_redaction", new()
     ///     {
     ///         Field = "some field",
     ///         Type = "request_header",

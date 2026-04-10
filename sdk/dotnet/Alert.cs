@@ -22,7 +22,7 @@ namespace Pulumi.Fastly
     /// 
     /// return await Deployment.RunAsync(() =&gt; 
     /// {
-    ///     var example = new Fastly.ServiceVcl("example", new()
+    ///     var example = new Fastly.Index.ServiceVcl("example", new()
     ///     {
     ///         Name = "my_vcl_service",
     ///         Domains = new[]
@@ -35,7 +35,7 @@ namespace Pulumi.Fastly
     ///         },
     ///     });
     /// 
-    ///     var exampleIntegration = new Fastly.Integration("example", new()
+    ///     var exampleIntegration = new Fastly.Index.Integration("example", new()
     ///     {
     ///         Name = "my_integration",
     ///         Type = "a_valid_type",
@@ -45,7 +45,7 @@ namespace Pulumi.Fastly
     ///         },
     ///     });
     /// 
-    ///     var exampleAlert = new Fastly.Alert("example", new()
+    ///     var exampleAlert = new Fastly.Index.Alert("example", new()
     ///     {
     ///         Name = "my_vcl_service errors",
     ///         ServiceId = example.Id,

@@ -24,7 +24,7 @@ namespace Pulumi.Fastly
         /// 
         /// return await Deployment.RunAsync(() =&gt; 
         /// {
-        ///     var example = Fastly.GetTlsActivationIds.Invoke(new()
+        ///     var example = Fastly.Index.GetTlsActivationIds.Invoke(new()
         ///     {
         ///         CertificateId = exampleFastlyTlsCertificate.Id,
         ///     });
@@ -57,7 +57,7 @@ namespace Pulumi.Fastly
         /// 
         /// return await Deployment.RunAsync(() =&gt; 
         /// {
-        ///     var example = Fastly.GetTlsActivationIds.Invoke(new()
+        ///     var example = Fastly.Index.GetTlsActivationIds.Invoke(new()
         ///     {
         ///         CertificateId = exampleFastlyTlsCertificate.Id,
         ///     });
@@ -90,7 +90,7 @@ namespace Pulumi.Fastly
         /// 
         /// return await Deployment.RunAsync(() =&gt; 
         /// {
-        ///     var example = Fastly.GetTlsActivationIds.Invoke(new()
+        ///     var example = Fastly.Index.GetTlsActivationIds.Invoke(new()
         ///     {
         ///         CertificateId = exampleFastlyTlsCertificate.Id,
         ///     });

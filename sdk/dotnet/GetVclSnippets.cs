@@ -26,7 +26,7 @@ namespace Pulumi.Fastly
         /// 
         /// return await Deployment.RunAsync(() =&gt; 
         /// {
-        ///     var exampleServiceVcl = new Fastly.ServiceVcl("example", new()
+        ///     var exampleServiceVcl = new Fastly.Index.ServiceVcl("example", new()
         ///     {
         ///         Name = "Example Service",
         ///         Domains = new[]
@@ -39,7 +39,7 @@ namespace Pulumi.Fastly
         ///         ForceDestroy = true,
         ///     });
         /// 
-        ///     var example = Fastly.GetVclSnippets.Invoke(new()
+        ///     var example = Fastly.Index.GetVclSnippets.Invoke(new()
         ///     {
         ///         ServiceId = exampleServiceVcl.Id,
         ///         ServiceVersion = exampleServiceVcl.ActiveVersion,
@@ -72,7 +72,7 @@ namespace Pulumi.Fastly
         /// 
         /// return await Deployment.RunAsync(() =&gt; 
         /// {
-        ///     var exampleServiceVcl = new Fastly.ServiceVcl("example", new()
+        ///     var exampleServiceVcl = new Fastly.Index.ServiceVcl("example", new()
         ///     {
         ///         Name = "Example Service",
         ///         Domains = new[]
@@ -85,7 +85,7 @@ namespace Pulumi.Fastly
         ///         ForceDestroy = true,
         ///     });
         /// 
-        ///     var example = Fastly.GetVclSnippets.Invoke(new()
+        ///     var example = Fastly.Index.GetVclSnippets.Invoke(new()
         ///     {
         ///         ServiceId = exampleServiceVcl.Id,
         ///         ServiceVersion = exampleServiceVcl.ActiveVersion,
@@ -118,7 +118,7 @@ namespace Pulumi.Fastly
         /// 
         /// return await Deployment.RunAsync(() =&gt; 
         /// {
-        ///     var exampleServiceVcl = new Fastly.ServiceVcl("example", new()
+        ///     var exampleServiceVcl = new Fastly.Index.ServiceVcl("example", new()
         ///     {
         ///         Name = "Example Service",
         ///         Domains = new[]
@@ -131,7 +131,7 @@ namespace Pulumi.Fastly
         ///         ForceDestroy = true,
         ///     });
         /// 
-        ///     var example = Fastly.GetVclSnippets.Invoke(new()
+        ///     var example = Fastly.Index.GetVclSnippets.Invoke(new()
         ///     {
         ///         ServiceId = exampleServiceVcl.Id,
         ///         ServiceVersion = exampleServiceVcl.ActiveVersion,

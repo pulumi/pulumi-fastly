@@ -24,7 +24,7 @@ namespace Pulumi.Fastly
     /// 
     /// return await Deployment.RunAsync(() =&gt; 
     /// {
-    ///     var demoMicrosoftTeamsAlert = new Fastly.NgwafAlertMicrosoftTeamsIntegration("demo_microsoft_teams_alert", new()
+    ///     var demoMicrosoftTeamsAlert = new Fastly.Index.NgwafAlertMicrosoftTeamsIntegration("demo_microsoft_teams_alert", new()
     ///     {
     ///         Description = "Some Description",
     ///         Webhook = "https://example.com/microsoft-teams/my-service",

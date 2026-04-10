@@ -30,7 +30,7 @@ namespace Pulumi.Fastly
         /// 
         /// return await Deployment.RunAsync(() =&gt; 
         /// {
-        ///     var example = Fastly.GetTlsCertificate.Invoke(new()
+        ///     var example = Fastly.Index.GetTlsCertificate.Invoke(new()
         ///     {
         ///         Name = "example.com",
         ///     });
@@ -60,7 +60,7 @@ namespace Pulumi.Fastly
         /// 
         /// return await Deployment.RunAsync(() =&gt; 
         /// {
-        ///     var example = Fastly.GetTlsCertificate.Invoke(new()
+        ///     var example = Fastly.Index.GetTlsCertificate.Invoke(new()
         ///     {
         ///         Name = "example.com",
         ///     });
@@ -90,7 +90,7 @@ namespace Pulumi.Fastly
         /// 
         /// return await Deployment.RunAsync(() =&gt; 
         /// {
-        ///     var example = Fastly.GetTlsCertificate.Invoke(new()
+        ///     var example = Fastly.Index.GetTlsCertificate.Invoke(new()
         ///     {
         ///         Name = "example.com",
         ///     });

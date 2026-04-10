@@ -25,7 +25,7 @@ namespace Pulumi.Fastly
     /// 
     /// return await Deployment.RunAsync(() =&gt; 
     /// {
-    ///     var example = new Fastly.NgwafAccountSignal("example", new()
+    ///     var example = new Fastly.Index.NgwafAccountSignal("example", new()
     ///     {
     ///         AppliesTos = new[]
     ///         {

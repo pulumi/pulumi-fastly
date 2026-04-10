@@ -24,7 +24,7 @@ namespace Pulumi.Fastly
         /// 
         /// return await Deployment.RunAsync(() =&gt; 
         /// {
-        ///     var workspaceSignals = Fastly.GetNgwafWorkspaceSignals.Invoke(new()
+        ///     var workspaceSignals = Fastly.Index.GetNgwafWorkspaceSignals.Invoke(new()
         ///     {
         ///         WorkspaceId = example.Id,
         ///     });
@@ -52,7 +52,7 @@ namespace Pulumi.Fastly
         /// 
         /// return await Deployment.RunAsync(() =&gt; 
         /// {
-        ///     var workspaceSignals = Fastly.GetNgwafWorkspaceSignals.Invoke(new()
+        ///     var workspaceSignals = Fastly.Index.GetNgwafWorkspaceSignals.Invoke(new()
         ///     {
         ///         WorkspaceId = example.Id,
         ///     });
@@ -80,7 +80,7 @@ namespace Pulumi.Fastly
         /// 
         /// return await Deployment.RunAsync(() =&gt; 
         /// {
-        ///     var workspaceSignals = Fastly.GetNgwafWorkspaceSignals.Invoke(new()
+        ///     var workspaceSignals = Fastly.Index.GetNgwafWorkspaceSignals.Invoke(new()
         ///     {
         ///         WorkspaceId = example.Id,
         ///     });

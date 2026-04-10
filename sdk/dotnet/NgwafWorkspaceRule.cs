@@ -25,7 +25,7 @@ namespace Pulumi.Fastly
     /// 
     /// return await Deployment.RunAsync(() =&gt; 
     /// {
-    ///     var example = new Fastly.NgwafWorkspace("example", new()
+    ///     var example = new Fastly.Index.NgwafWorkspace("example", new()
     ///     {
     ///         Name = "example",
     ///         Description = "Test NGWAF Workspace",
@@ -40,7 +40,7 @@ namespace Pulumi.Fastly
     ///         AttackSignalThresholds = null,
     ///     });
     /// 
-    ///     var exampleNgwafWorkspaceRule = new Fastly.NgwafWorkspaceRule("example", new()
+    ///     var exampleNgwafWorkspaceRule = new Fastly.Index.NgwafWorkspaceRule("example", new()
     ///     {
     ///         WorkspaceId = example.Id,
     ///         Type = "request",
@@ -85,7 +85,7 @@ namespace Pulumi.Fastly
     /// 
     /// return await Deployment.RunAsync(() =&gt; 
     /// {
-    ///     var example = new Fastly.NgwafWorkspace("example", new()
+    ///     var example = new Fastly.Index.NgwafWorkspace("example", new()
     ///     {
     ///         Name = "example",
     ///         Description = "Test NGWAF Workspace",
@@ -100,7 +100,7 @@ namespace Pulumi.Fastly
     ///         AttackSignalThresholds = null,
     ///     });
     /// 
-    ///     var exampleNgwafWorkspaceRule = new Fastly.NgwafWorkspaceRule("example", new()
+    ///     var exampleNgwafWorkspaceRule = new Fastly.Index.NgwafWorkspaceRule("example", new()
     ///     {
     ///         WorkspaceId = example.Id,
     ///         Type = "request",
@@ -145,7 +145,7 @@ namespace Pulumi.Fastly
     /// 
     /// return await Deployment.RunAsync(() =&gt; 
     /// {
-    ///     var example = new Fastly.NgwafWorkspace("example", new()
+    ///     var example = new Fastly.Index.NgwafWorkspace("example", new()
     ///     {
     ///         Name = "example",
     ///         Description = "Test NGWAF Workspace",
@@ -160,7 +160,7 @@ namespace Pulumi.Fastly
     ///         AttackSignalThresholds = null,
     ///     });
     /// 
-    ///     var exampleNgwafWorkspaceRule = new Fastly.NgwafWorkspaceRule("example", new()
+    ///     var exampleNgwafWorkspaceRule = new Fastly.Index.NgwafWorkspaceRule("example", new()
     ///     {
     ///         WorkspaceId = example.Id,
     ///         Type = "request",
@@ -237,7 +237,7 @@ namespace Pulumi.Fastly
     /// 
     /// return await Deployment.RunAsync(() =&gt; 
     /// {
-    ///     var example = new Fastly.NgwafWorkspace("example", new()
+    ///     var example = new Fastly.Index.NgwafWorkspace("example", new()
     ///     {
     ///         Name = "example",
     ///         Description = "Test NGWAF Workspace",
@@ -252,7 +252,7 @@ namespace Pulumi.Fastly
     ///         AttackSignalThresholds = null,
     ///     });
     /// 
-    ///     var exampleNgwafWorkspaceRule = new Fastly.NgwafWorkspaceRule("example", new()
+    ///     var exampleNgwafWorkspaceRule = new Fastly.Index.NgwafWorkspaceRule("example", new()
     ///     {
     ///         WorkspaceId = example.Id,
     ///         Type = "request",
@@ -312,7 +312,7 @@ namespace Pulumi.Fastly
     /// 
     /// return await Deployment.RunAsync(() =&gt; 
     /// {
-    ///     var example = new Fastly.NgwafWorkspace("example", new()
+    ///     var example = new Fastly.Index.NgwafWorkspace("example", new()
     ///     {
     ///         Name = "example",
     ///         Description = "Test NGWAF Workspace",
@@ -327,14 +327,14 @@ namespace Pulumi.Fastly
     ///         AttackSignalThresholds = null,
     ///     });
     /// 
-    ///     var demoSignal = new Fastly.NgwafWorkspaceSignal("demo_signal", new()
+    ///     var demoSignal = new Fastly.Index.NgwafWorkspaceSignal("demo_signal", new()
     ///     {
     ///         WorkspaceId = example.Id,
     ///         Name = "demo",
     ///         Description = "A description of my signal.",
     ///     });
     /// 
-    ///     var ipLimit = new Fastly.NgwafWorkspaceRule("ip_limit", new()
+    ///     var ipLimit = new Fastly.Index.NgwafWorkspaceRule("ip_limit", new()
     ///     {
     ///         WorkspaceId = example.Id,
     ///         Type = "rate_limit",
@@ -386,7 +386,7 @@ namespace Pulumi.Fastly
     /// 
     /// return await Deployment.RunAsync(() =&gt; 
     /// {
-    ///     var example = new Fastly.NgwafWorkspace("example", new()
+    ///     var example = new Fastly.Index.NgwafWorkspace("example", new()
     ///     {
     ///         Name = "example",
     ///         Description = "Test NGWAF Workspace",
@@ -401,7 +401,7 @@ namespace Pulumi.Fastly
     ///         AttackSignalThresholds = null,
     ///     });
     /// 
-    ///     var excludeXssSignal = new Fastly.NgwafWorkspaceRule("exclude_xss_signal", new()
+    ///     var excludeXssSignal = new Fastly.Index.NgwafWorkspaceRule("exclude_xss_signal", new()
     ///     {
     ///         WorkspaceId = example.Id,
     ///         Type = "signal",

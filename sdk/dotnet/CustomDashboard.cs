@@ -22,7 +22,7 @@ namespace Pulumi.Fastly
     /// 
     /// return await Deployment.RunAsync(() =&gt; 
     /// {
-    ///     var example = new Fastly.CustomDashboard("example", new()
+    ///     var example = new Fastly.Index.CustomDashboard("example", new()
     ///     {
     ///         Name = "Example Custom Dashboard",
     ///         Description = "This is an example custom dashboard. A few dashboard items are provided to help you get started.",

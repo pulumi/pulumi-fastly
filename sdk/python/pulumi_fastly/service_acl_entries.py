@@ -210,7 +210,7 @@ class ServiceACLEntries(pulumi.CustomResource):
             force_destroy=True)
         entries = []
         def create_entries(range_body):
-            for range in [{"key": k, "value": v} for [k, v] in enumerate(range_body)]:
+            for range in [{"key": k, "value": v} for [k, v] in (range_body).items()]:
                 entries.append(fastly.ServiceACLEntries(f"entries-{range['key']}",
                     service_id=myservice.id,
                     acl_id=range["value"].acl_id,
@@ -290,7 +290,7 @@ class ServiceACLEntries(pulumi.CustomResource):
 
         #...
         entries = []
-        for range in [{"key": k, "value": v} for [k, v] in enumerate({d.name: d for d in myservice.acl if d.name == myacl_name})]:
+        for range in [{"key": k, "value": v} for [k, v] in ({d.name: d for d in myservice.acl if d.name == myacl_name}).items()]:
             entries.append(fastly.ServiceACLEntries(f"entries-{range['key']}",
                 service_id=myservice["id"],
                 acl_id=range["value"]["aclId"],
@@ -370,7 +370,7 @@ class ServiceACLEntries(pulumi.CustomResource):
             force_destroy=True)
         entries = []
         def create_entries(range_body):
-            for range in [{"key": k, "value": v} for [k, v] in enumerate(range_body)]:
+            for range in [{"key": k, "value": v} for [k, v] in (range_body).items()]:
                 entries.append(fastly.ServiceACLEntries(f"entries-{range['key']}",
                     service_id=myservice.id,
                     acl_id=range["value"].acl_id,
@@ -450,7 +450,7 @@ class ServiceACLEntries(pulumi.CustomResource):
 
         #...
         entries = []
-        for range in [{"key": k, "value": v} for [k, v] in enumerate({d.name: d for d in myservice.acl if d.name == myacl_name})]:
+        for range in [{"key": k, "value": v} for [k, v] in ({d.name: d for d in myservice.acl if d.name == myacl_name}).items()]:
             entries.append(fastly.ServiceACLEntries(f"entries-{range['key']}",
                 service_id=myservice["id"],
                 acl_id=range["value"]["aclId"],

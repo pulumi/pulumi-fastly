@@ -31,7 +31,7 @@ import (
 //			if err != nil {
 //				return err
 //			}
-//			_, err = fastly.LookupTlsPlatformCertificate(ctx, &fastly.LookupTlsPlatformCertificateArgs{
+//			_, err = fastly.GetTlsPlatformCertificate(ctx, &fastly.LookupTlsPlatformCertificateArgs{
 //				Id: pulumi.StringRef(example.Ids[0]),
 //			}, nil)
 //			if err != nil {

@@ -24,7 +24,7 @@ namespace Pulumi.Fastly
     /// 
     /// return await Deployment.RunAsync(() =&gt; 
     /// {
-    ///     var demoWebhookAlert = new Fastly.NgwafAlertWebhookIntegration("demo_webhook_alert", new()
+    ///     var demoWebhookAlert = new Fastly.Index.NgwafAlertWebhookIntegration("demo_webhook_alert", new()
     ///     {
     ///         Description = "Some Description",
     ///         Webhook = "https://example.com/webhooks/my-service",

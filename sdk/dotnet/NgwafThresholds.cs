@@ -24,7 +24,7 @@ namespace Pulumi.Fastly
     /// 
     /// return await Deployment.RunAsync(() =&gt; 
     /// {
-    ///     var demo = new Fastly.NgwafThresholds("demo", new()
+    ///     var demo = new Fastly.Index.NgwafThresholds("demo", new()
     ///     {
     ///         Action = "block",
     ///         DontNotify = false,

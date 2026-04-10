@@ -16,7 +16,7 @@ import * as utilities from "./utilities";
  * const example = fastly.getTlsSubscriptionIds({});
  * const exampleGetTlsSubscription = example.then(example => .reduce((__obj, [__key, __value]) => ({ ...__obj, [__key]: fastly.getTlsSubscription({
  *     id: __value,
- * }) })));
+ * }) }), {}));
  * export const subscriptionDomains = exampleGetTlsSubscription.apply(exampleGetTlsSubscription => Object.values(exampleGetTlsSubscription).map(a => (a.certificateAuthority)));
  * ```
  */
@@ -51,7 +51,7 @@ export interface GetTlsSubscriptionIdsResult {
  * const example = fastly.getTlsSubscriptionIds({});
  * const exampleGetTlsSubscription = example.then(example => .reduce((__obj, [__key, __value]) => ({ ...__obj, [__key]: fastly.getTlsSubscription({
  *     id: __value,
- * }) })));
+ * }) }), {}));
  * export const subscriptionDomains = exampleGetTlsSubscription.apply(exampleGetTlsSubscription => Object.values(exampleGetTlsSubscription).map(a => (a.certificateAuthority)));
  * ```
  */

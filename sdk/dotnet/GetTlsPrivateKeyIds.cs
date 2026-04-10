@@ -24,9 +24,9 @@ namespace Pulumi.Fastly
         /// 
         /// return await Deployment.RunAsync(() =&gt; 
         /// {
-        ///     var demo = Fastly.GetTlsPrivateKeyIds.Invoke();
+        ///     var demo = Fastly.Index.GetTlsPrivateKeyIds.Invoke();
         /// 
-        ///     var example = Fastly.GetTlsPrivateKey.Invoke(new()
+        ///     var example = Fastly.Index.GetTlsPrivateKey.Invoke(new()
         ///     {
         ///         Id = demoFastlyTlsPrivateKeyIds.Ids[0],
         ///     });
@@ -50,9 +50,9 @@ namespace Pulumi.Fastly
         /// 
         /// return await Deployment.RunAsync(() =&gt; 
         /// {
-        ///     var demo = Fastly.GetTlsPrivateKeyIds.Invoke();
+        ///     var demo = Fastly.Index.GetTlsPrivateKeyIds.Invoke();
         /// 
-        ///     var example = Fastly.GetTlsPrivateKey.Invoke(new()
+        ///     var example = Fastly.Index.GetTlsPrivateKey.Invoke(new()
         ///     {
         ///         Id = demoFastlyTlsPrivateKeyIds.Ids[0],
         ///     });
@@ -76,9 +76,9 @@ namespace Pulumi.Fastly
         /// 
         /// return await Deployment.RunAsync(() =&gt; 
         /// {
-        ///     var demo = Fastly.GetTlsPrivateKeyIds.Invoke();
+        ///     var demo = Fastly.Index.GetTlsPrivateKeyIds.Invoke();
         /// 
-        ///     var example = Fastly.GetTlsPrivateKey.Invoke(new()
+        ///     var example = Fastly.Index.GetTlsPrivateKey.Invoke(new()
         ///     {
         ///         Id = demoFastlyTlsPrivateKeyIds.Ids[0],
         ///     });

@@ -24,7 +24,7 @@ namespace Pulumi.Fastly
     /// 
     /// return await Deployment.RunAsync(() =&gt; 
     /// {
-    ///     var example = new Fastly.Domain("example", new()
+    ///     var example = new Fastly.Index.Domain("example", new()
     ///     {
     ///         Fqdn = "example.com",
     ///         ServiceId = "12345abcde",

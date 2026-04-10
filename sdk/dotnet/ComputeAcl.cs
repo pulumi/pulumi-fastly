@@ -28,17 +28,17 @@ namespace Pulumi.Fastly
     /// {
     ///     // IMPORTANT: Deleting a Compute ACL requires first deleting its resource_link.
     ///     // This requires a two-step `pulumi up` because we can't guarantee deletion order.
-    ///     var exampleComputeAcl = new Fastly.ComputeAcl("example", new()
+    ///     var exampleComputeAcl = new Fastly.Index.ComputeAcl("example", new()
     ///     {
     ///         Name = "my_compute_acl",
     ///     });
     /// 
-    ///     var example = Fastly.GetPackageHash.Invoke(new()
+    ///     var example = Fastly.Index.GetPackageHash.Invoke(new()
     ///     {
     ///         Filename = "package.tar.gz",
     ///     });
     /// 
-    ///     var exampleServiceCompute = new Fastly.ServiceCompute("example", new()
+    ///     var exampleServiceCompute = new Fastly.Index.ServiceCompute("example", new()
     ///     {
     ///         Name = "my_compute_service",
     ///         Domains = new[]

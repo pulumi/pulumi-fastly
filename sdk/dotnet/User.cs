@@ -26,7 +26,7 @@ namespace Pulumi.Fastly
     /// 
     /// return await Deployment.RunAsync(() =&gt; 
     /// {
-    ///     var demo = new Fastly.User("demo", new()
+    ///     var demo = new Fastly.Index.User("demo", new()
     ///     {
     ///         Login = "demo@example.com",
     ///         Name = "Demo User",

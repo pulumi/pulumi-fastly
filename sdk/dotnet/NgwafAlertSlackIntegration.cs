@@ -24,7 +24,7 @@ namespace Pulumi.Fastly
     /// 
     /// return await Deployment.RunAsync(() =&gt; 
     /// {
-    ///     var demoSlackAlert = new Fastly.NgwafAlertSlackIntegration("demo_slack_alert", new()
+    ///     var demoSlackAlert = new Fastly.Index.NgwafAlertSlackIntegration("demo_slack_alert", new()
     ///     {
     ///         Description = "Some Description",
     ///         Webhook = "https://example.com/webhooks/my-service",

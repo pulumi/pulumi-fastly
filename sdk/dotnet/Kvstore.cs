@@ -29,17 +29,17 @@ namespace Pulumi.Fastly
     ///     // IMPORTANT: Deleting a KV Store requires first deleting its resource_link.
     ///     // This requires a two-step `pulumi up` as we can't guarantee deletion order.
     ///     // e.g. resource_link deletion within fastly_service_compute might not finish first.
-    ///     var exampleKvstore = new Fastly.Kvstore("example", new()
+    ///     var exampleKvstore = new Fastly.Index.Kvstore("example", new()
     ///     {
     ///         Name = "my_kv_store",
     ///     });
     /// 
-    ///     var example = Fastly.GetPackageHash.Invoke(new()
+    ///     var example = Fastly.Index.GetPackageHash.Invoke(new()
     ///     {
     ///         Filename = "package.tar.gz",
     ///     });
     /// 
-    ///     var exampleServiceCompute = new Fastly.ServiceCompute("example", new()
+    ///     var exampleServiceCompute = new Fastly.Index.ServiceCompute("example", new()
     ///     {
     ///         Name = "my_compute_service",
     ///         Domains = new[]

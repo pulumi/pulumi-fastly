@@ -27,7 +27,7 @@ namespace Pulumi.Fastly
     /// 
     /// return await Deployment.RunAsync(() =&gt; 
     /// {
-    ///     var example = new Fastly.DomainServiceLink("example", new()
+    ///     var example = new Fastly.Index.DomainServiceLink("example", new()
     ///     {
     ///         DomainId = exampleFastlyDomain.Id,
     ///         ServiceId = exampleFastlyServiceVcl.Id,

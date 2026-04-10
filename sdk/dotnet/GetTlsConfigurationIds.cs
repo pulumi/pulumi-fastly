@@ -24,9 +24,9 @@ namespace Pulumi.Fastly
         /// 
         /// return await Deployment.RunAsync(() =&gt; 
         /// {
-        ///     var example = Fastly.GetTlsConfigurationIds.Invoke();
+        ///     var example = Fastly.Index.GetTlsConfigurationIds.Invoke();
         /// 
-        ///     var exampleTlsActivation = new Fastly.TlsActivation("example", new()
+        ///     var exampleTlsActivation = new Fastly.Index.TlsActivation("example", new()
         ///     {
         ///         ConfigurationId = example.Apply(getTlsConfigurationIdsResult =&gt; getTlsConfigurationIdsResult.Ids[0]),
         ///     });
@@ -50,9 +50,9 @@ namespace Pulumi.Fastly
         /// 
         /// return await Deployment.RunAsync(() =&gt; 
         /// {
-        ///     var example = Fastly.GetTlsConfigurationIds.Invoke();
+        ///     var example = Fastly.Index.GetTlsConfigurationIds.Invoke();
         /// 
-        ///     var exampleTlsActivation = new Fastly.TlsActivation("example", new()
+        ///     var exampleTlsActivation = new Fastly.Index.TlsActivation("example", new()
         ///     {
         ///         ConfigurationId = example.Apply(getTlsConfigurationIdsResult =&gt; getTlsConfigurationIdsResult.Ids[0]),
         ///     });
@@ -76,9 +76,9 @@ namespace Pulumi.Fastly
         /// 
         /// return await Deployment.RunAsync(() =&gt; 
         /// {
-        ///     var example = Fastly.GetTlsConfigurationIds.Invoke();
+        ///     var example = Fastly.Index.GetTlsConfigurationIds.Invoke();
         /// 
-        ///     var exampleTlsActivation = new Fastly.TlsActivation("example", new()
+        ///     var exampleTlsActivation = new Fastly.Index.TlsActivation("example", new()
         ///     {
         ///         ConfigurationId = example.Apply(getTlsConfigurationIdsResult =&gt; getTlsConfigurationIdsResult.Ids[0]),
         ///     });

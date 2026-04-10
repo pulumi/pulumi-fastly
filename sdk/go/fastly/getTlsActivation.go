@@ -33,7 +33,7 @@ import (
 //
 //	func main() {
 //		pulumi.Run(func(ctx *pulumi.Context) error {
-//			_, err := fastly.LookupTlsActivation(ctx, &fastly.LookupTlsActivationArgs{
+//			_, err := fastly.GetTlsActivation(ctx, &fastly.LookupTlsActivationArgs{
 //				Domain: pulumi.StringRef("example.com"),
 //			}, nil)
 //			if err != nil {

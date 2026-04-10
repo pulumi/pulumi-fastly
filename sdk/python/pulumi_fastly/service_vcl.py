@@ -1769,8 +1769,8 @@ class ServiceVcl(pulumi.CustomResource):
                 ],
             }],
             force_destroy=True)
-        website_bucket = aws.index.S3Bucket("website_bucket", bucket=your-unique-website-bucket-name)
-        website_config = aws.index.S3BucketWebsiteConfiguration("website_config",
+        website_bucket = aws.S3Bucket("website_bucket", bucket=your-unique-website-bucket-name)
+        website_config = aws.S3BucketWebsiteConfiguration("website_config",
             bucket=website_bucket.id,
             index_document=[{
                 suffix: index.html,
@@ -1913,8 +1913,8 @@ class ServiceVcl(pulumi.CustomResource):
                 ],
             }],
             force_destroy=True)
-        website_bucket = aws.index.S3Bucket("website_bucket", bucket=your-unique-website-bucket-name)
-        website_config = aws.index.S3BucketWebsiteConfiguration("website_config",
+        website_bucket = aws.S3Bucket("website_bucket", bucket=your-unique-website-bucket-name)
+        website_config = aws.S3BucketWebsiteConfiguration("website_config",
             bucket=website_bucket.id,
             index_document=[{
                 suffix: index.html,

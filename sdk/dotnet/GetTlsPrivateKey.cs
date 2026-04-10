@@ -31,7 +31,7 @@ namespace Pulumi.Fastly
         /// 
         /// return await Deployment.RunAsync(() =&gt; 
         /// {
-        ///     var demo = Fastly.GetTlsPrivateKey.Invoke(new()
+        ///     var demo = Fastly.Index.GetTlsPrivateKey.Invoke(new()
         ///     {
         ///         Name = "demo-private-key",
         ///     });
@@ -66,7 +66,7 @@ namespace Pulumi.Fastly
         /// 
         /// return await Deployment.RunAsync(() =&gt; 
         /// {
-        ///     var demo = Fastly.GetTlsPrivateKey.Invoke(new()
+        ///     var demo = Fastly.Index.GetTlsPrivateKey.Invoke(new()
         ///     {
         ///         Name = "demo-private-key",
         ///     });
@@ -101,7 +101,7 @@ namespace Pulumi.Fastly
         /// 
         /// return await Deployment.RunAsync(() =&gt; 
         /// {
-        ///     var demo = Fastly.GetTlsPrivateKey.Invoke(new()
+        ///     var demo = Fastly.Index.GetTlsPrivateKey.Invoke(new()
         ///     {
         ///         Name = "demo-private-key",
         ///     });

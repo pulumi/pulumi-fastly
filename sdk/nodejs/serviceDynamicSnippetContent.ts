@@ -42,7 +42,7 @@ import * as utilities from "./utilities";
  * const myDynContent: fastly.ServiceDynamicSnippetContent[] = [];
  * myservice.dynamicsnippets.apply(dynamicsnippets => {
  *     const myDynContent: fastly.ServiceDynamicSnippetContent[] = [];
- * pulumi.all(.filter(d => d.name == "My Dynamic Snippet").reduce((__obj, d) => ({ ...__obj, [d.name]: d }))).apply(rangeBody => {
+ * pulumi.all(.filter(d => d.name == "My Dynamic Snippet").reduce((__obj, d) => ({ ...__obj, [d.name]: d }), {})).apply(rangeBody => {
  *         for (const range of Object.entries(rangeBody).map(([k, v]) => ({key: k, value: v}))) {
  *             myDynContent.push(new fastly.ServiceDynamicSnippetContent(`my_dyn_content-${range.key}`, {
  *                 serviceId: myservice.id,
@@ -91,7 +91,7 @@ import * as utilities from "./utilities";
  * const myDynContentOne: fastly.ServiceDynamicSnippetContent[] = [];
  * myservice.dynamicsnippets.apply(dynamicsnippets => {
  *     const myDynContentOne: fastly.ServiceDynamicSnippetContent[] = [];
- * pulumi.all(.filter(d => d.name == "My Dynamic Snippet One").reduce((__obj, d) => ({ ...__obj, [d.name]: d }))).apply(rangeBody => {
+ * pulumi.all(.filter(d => d.name == "My Dynamic Snippet One").reduce((__obj, d) => ({ ...__obj, [d.name]: d }), {})).apply(rangeBody => {
  *         for (const range of Object.entries(rangeBody).map(([k, v]) => ({key: k, value: v}))) {
  *             myDynContentOne.push(new fastly.ServiceDynamicSnippetContent(`my_dyn_content_one-${range.key}`, {
  *                 serviceId: myservice.id,
@@ -106,7 +106,7 @@ import * as utilities from "./utilities";
  * const myDynContentTwo: fastly.ServiceDynamicSnippetContent[] = [];
  * myservice.dynamicsnippets.apply(dynamicsnippets => {
  *     const myDynContentTwo: fastly.ServiceDynamicSnippetContent[] = [];
- * pulumi.all(.filter(d => d.name == "My Dynamic Snippet Two").reduce((__obj, d) => ({ ...__obj, [d.name]: d }))).apply(rangeBody => {
+ * pulumi.all(.filter(d => d.name == "My Dynamic Snippet Two").reduce((__obj, d) => ({ ...__obj, [d.name]: d }), {})).apply(rangeBody => {
  *         for (const range of Object.entries(rangeBody).map(([k, v]) => ({key: k, value: v}))) {
  *             myDynContentTwo.push(new fastly.ServiceDynamicSnippetContent(`my_dyn_content_two-${range.key}`, {
  *                 serviceId: myservice.id,
@@ -156,7 +156,7 @@ import * as utilities from "./utilities";
  * });
  * const myDynContent = new fastly.ServiceDynamicSnippetContent("my_dyn_content", {
  *     serviceId: myservice.id,
- *     snippetId: myservice.dynamicsnippets.apply(dynamicsnippets => .reduce((__obj, s) => ({ ...__obj, [s.name]: s.snippetId }))["My Dynamic Snippet"]),
+ *     snippetId: myservice.dynamicsnippets.apply(dynamicsnippets => .reduce((__obj, s) => ({ ...__obj, [s.name]: s.snippetId }), {})["My Dynamic Snippet"]),
  *     content: `if ( req.url ) {
  *  set req.http.my-snippet-test-header = "true";
  * }`,
@@ -179,7 +179,7 @@ import * as utilities from "./utilities";
  *
  * //...
  * const myDynContent: fastly.ServiceDynamicSnippetContent[] = [];
- * for (const range of Object.entries(.filter(d => d.name == "My Dynamic Snippet").reduce((__obj, d) => ({ ...__obj, [d.name]: d }))).map(([k, v]) => ({key: k, value: v}))) {
+ * for (const range of Object.entries(.filter(d => d.name == "My Dynamic Snippet").reduce((__obj, d) => ({ ...__obj, [d.name]: d }), {})).map(([k, v]) => ({key: k, value: v}))) {
  *     myDynContent.push(new fastly.ServiceDynamicSnippetContent(`my_dyn_content-${range.key}`, {
  *         serviceId: myservice.id,
  *         snippetId: range.value.snippetId,

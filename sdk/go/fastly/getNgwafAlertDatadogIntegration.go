@@ -27,7 +27,7 @@ import (
 //
 //	func main() {
 //		pulumi.Run(func(ctx *pulumi.Context) error {
-//			_, err := fastly.LookupNgwafAlertDatadogIntegration(ctx, &fastly.LookupNgwafAlertDatadogIntegrationArgs{
+//			_, err := fastly.GetNgwafAlertDatadogIntegration(ctx, &fastly.LookupNgwafAlertDatadogIntegrationArgs{
 //				WorkspaceId: testRedactionsWorkspace.Id,
 //			}, nil)
 //			if err != nil {

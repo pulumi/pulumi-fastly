@@ -31,7 +31,7 @@ namespace Pulumi.Fastly
     /// {
     ///     var config = new Config();
     ///     var myaclName = config.Get("myaclName") ?? "My ACL";
-    ///     var myservice = new Fastly.ServiceVcl("myservice", new()
+    ///     var myservice = new Fastly.Index.ServiceVcl("myservice", new()
     ///     {
     ///         Name = "demofastly",
     ///         Domains = new[]
@@ -61,10 +61,10 @@ namespace Pulumi.Fastly
     ///         ForceDestroy = true,
     ///     });
     /// 
-    ///     var entries = new List&lt;Fastly.ServiceACLEntries&gt;();
+    ///     var entries = new List&lt;Fastly.Index.ServiceACLEntries&gt;();
     ///     foreach (var range in myservice.Acls.Apply(acls =&gt; ).Select(pair =&gt; new { pair.Key, pair.Value }))
     ///     {
-    ///         entries.Add(new Fastly.ServiceACLEntries($"entries-{range.Key}", new()
+    ///         entries.Add(new Fastly.Index.ServiceACLEntries($"entries-{range.Key}", new()
     ///         {
     ///             ServiceId = myservice.Id,
     ///             AclId = range.Value.AclId,
@@ -115,7 +115,7 @@ namespace Pulumi.Fastly
     /// {
     ///     var config = new Config();
     ///     var myaclName = config.Get("myaclName") ?? "My ACL";
-    ///     var myservice = new Fastly.ServiceVcl("myservice", new()
+    ///     var myservice = new Fastly.Index.ServiceVcl("myservice", new()
     ///     {
     ///         Name = "demofastly",
     ///         Domains = new[]
@@ -135,7 +135,7 @@ namespace Pulumi.Fastly
     ///         },
     ///     });
     /// 
-    ///     var entries = new Fastly.ServiceACLEntries("entries", new()
+    ///     var entries = new Fastly.Index.ServiceACLEntries("entries", new()
     ///     {
     ///         ServiceId = myservice.Id,
     ///         AclId = myservice.Acls.Apply(acls =&gt; .ToDictionary(item =&gt; {
@@ -179,7 +179,7 @@ namespace Pulumi.Fastly
     /// return await Deployment.RunAsync(() =&gt; 
     /// {
     ///     //...
-    ///     var entries = new List&lt;Fastly.ServiceACLEntries&gt;();
+    ///     var entries = new List&lt;Fastly.Index.ServiceACLEntries&gt;();
     ///     foreach (var range in .ToDictionary(item =&gt; {
     ///         var d = item.Value;
     ///         return d.Name;
@@ -188,7 +188,7 @@ namespace Pulumi.Fastly
     ///         return d;
     ///     }).Select(pair =&gt; new { pair.Key, pair.Value }))
     ///     {
-    ///         entries.Add(new Fastly.ServiceACLEntries($"entries-{range.Key}", new()
+    ///         entries.Add(new Fastly.Index.ServiceACLEntries($"entries-{range.Key}", new()
     ///         {
     ///             ServiceId = myservice.Id,
     ///             AclId = range.Value.AclId,

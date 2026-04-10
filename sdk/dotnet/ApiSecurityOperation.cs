@@ -24,7 +24,7 @@ namespace Pulumi.Fastly
     /// 
     /// return await Deployment.RunAsync(() =&gt; 
     /// {
-    ///     var svc1 = new Fastly.ServiceVcl("svc1", new()
+    ///     var svc1 = new Fastly.Index.ServiceVcl("svc1", new()
     ///     {
     ///         Name = "test-svc-1-example",
     ///         ForceDestroy = true,
@@ -38,7 +38,7 @@ namespace Pulumi.Fastly
     ///         },
     ///     });
     /// 
-    ///     var example = new Fastly.ApiSecurityOperation("example", new()
+    ///     var example = new Fastly.Index.ApiSecurityOperation("example", new()
     ///     {
     ///         ServiceId = svc1.Id,
     ///         Method = "GET",
@@ -60,7 +60,7 @@ namespace Pulumi.Fastly
     /// 
     /// return await Deployment.RunAsync(() =&gt; 
     /// {
-    ///     var svc1 = new Fastly.ServiceVcl("svc1", new()
+    ///     var svc1 = new Fastly.Index.ServiceVcl("svc1", new()
     ///     {
     ///         Name = "test-svc-1-example",
     ///         ForceDestroy = true,
@@ -74,14 +74,14 @@ namespace Pulumi.Fastly
     ///         },
     ///     });
     /// 
-    ///     var tag = new Fastly.ApiSecurityOperationTag("tag", new()
+    ///     var tag = new Fastly.Index.ApiSecurityOperationTag("tag", new()
     ///     {
     ///         ServiceId = svc1.Id,
     ///         Name = "production",
     ///         Description = "Production endpoints",
     ///     });
     /// 
-    ///     var example = new Fastly.ApiSecurityOperation("example", new()
+    ///     var example = new Fastly.Index.ApiSecurityOperation("example", new()
     ///     {
     ///         ServiceId = svc1.Id,
     ///         Method = "GET",

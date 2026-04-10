@@ -45,7 +45,7 @@ import * as utilities from "./utilities";
  * const items: fastly.ServiceDictionaryItems[] = [];
  * myservice.dictionaries.apply(dictionaries => {
  *     const items: fastly.ServiceDictionaryItems[] = [];
- * pulumi.all(.filter(d => d.name == mydictName).reduce((__obj, d) => ({ ...__obj, [d.name]: d }))).apply(rangeBody => {
+ * pulumi.all(.filter(d => d.name == mydictName).reduce((__obj, d) => ({ ...__obj, [d.name]: d }), {})).apply(rangeBody => {
  *         for (const range of Object.entries(rangeBody).map(([k, v]) => ({key: k, value: v}))) {
  *             items.push(new fastly.ServiceDictionaryItems(`items-${range.key}`, {
  *                 serviceId: myservice.id,
@@ -93,7 +93,7 @@ import * as utilities from "./utilities";
  * const items: fastly.ServiceDictionaryItems[] = [];
  * myservice.dictionaries.apply(dictionaries => {
  *     const items: fastly.ServiceDictionaryItems[] = [];
- * pulumi.all(.filter(d => d.name == mydict.name).reduce((__obj, d) => ({ ...__obj, [d.name]: d }))).apply(rangeBody => {
+ * pulumi.all(.filter(d => d.name == mydict.name).reduce((__obj, d) => ({ ...__obj, [d.name]: d }), {})).apply(rangeBody => {
  *         for (const range of Object.entries(rangeBody).map(([k, v]) => ({key: k, value: v}))) {
  *             items.push(new fastly.ServiceDictionaryItems(`items-${range.key}`, {
  *                 serviceId: myservice.id,
@@ -141,18 +141,18 @@ import * as utilities from "./utilities";
  * const project: fastly.ServiceDictionaryItems[] = [];
  * myservice.dictionaries.apply(dictionaries => {
  *     const project: fastly.ServiceDictionaryItems[] = [];
- * pulumi.all(.filter(d => d.name == dictionaryName).reduce((__obj, d) => ({ ...__obj, [d.name]: d }))).apply(rangeBody => {
+ * pulumi.all(.filter(d => d.name == dictionaryName).reduce((__obj, d) => ({ ...__obj, [d.name]: d }), {})).apply(rangeBody => {
  *         for (const range of Object.entries(rangeBody).map(([k, v]) => ({key: k, value: v}))) {
  *             project.push(new fastly.ServiceDictionaryItems(`project-${range.key}`, {
  *                 serviceId: myservice.id,
  *                 dictionaryId: range.value.dictionaryId,
- *                 items: hostDivisions.reduce((__obj, division) => ({ ...__obj, [division]: std.index.format({
+ *                 items: hostDivisions.reduce((__obj, division) => ({ ...__obj, [division]: std.format({
  *                     input: "%s.%s",
  *                     args: [
  *                         division,
  *                         hostBase,
  *                     ],
- *                 }).result })),
+ *                 }).result }), {}),
  *             }));
  *         }
  *     });
@@ -195,7 +195,7 @@ import * as utilities from "./utilities";
  * });
  * const items = new fastly.ServiceDictionaryItems("items", {
  *     serviceId: myservice.id,
- *     dictionaryId: myservice.dictionaries.apply(dictionaries => .reduce((__obj, s) => ({ ...__obj, [s.name]: s.dictionaryId }))[mydictName]),
+ *     dictionaryId: myservice.dictionaries.apply(dictionaries => .reduce((__obj, s) => ({ ...__obj, [s.name]: s.dictionaryId }), {})[mydictName]),
  *     items: {
  *         key1: "value1",
  *         key2: "value2",
@@ -219,7 +219,7 @@ import * as utilities from "./utilities";
  *
  * //...
  * const items: fastly.ServiceDictionaryItems[] = [];
- * for (const range of Object.entries(.filter(d => d.name == mydictName).reduce((__obj, d) => ({ ...__obj, [d.name]: d }))).map(([k, v]) => ({key: k, value: v}))) {
+ * for (const range of Object.entries(.filter(d => d.name == mydictName).reduce((__obj, d) => ({ ...__obj, [d.name]: d }), {})).map(([k, v]) => ({key: k, value: v}))) {
  *     items.push(new fastly.ServiceDictionaryItems(`items-${range.key}`, {
  *         serviceId: myservice.id,
  *         dictionaryId: range.value.dictionaryId,

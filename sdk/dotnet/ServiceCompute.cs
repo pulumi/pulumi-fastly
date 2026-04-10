@@ -52,12 +52,12 @@ namespace Pulumi.Fastly
     /// 
     /// return await Deployment.RunAsync(() =&gt; 
     /// {
-    ///     var example = Fastly.GetPackageHash.Invoke(new()
+    ///     var example = Fastly.Index.GetPackageHash.Invoke(new()
     ///     {
     ///         Filename = "./path/to/package.tar.gz",
     ///     });
     /// 
-    ///     var exampleServiceCompute = new Fastly.ServiceCompute("example", new()
+    ///     var exampleServiceCompute = new Fastly.Index.ServiceCompute("example", new()
     ///     {
     ///         Name = "demofastly",
     ///         Domains = new[]

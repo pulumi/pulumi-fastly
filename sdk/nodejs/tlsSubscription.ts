@@ -64,7 +64,7 @@ import * as utilities from "./utilities";
  * });
  * const domainValidation: aws.index.Route53Record[] = [];
  * exampleTlsSubscription.domains.apply(domains => {
- *     for (const range of Object.entries(domains.reduce((__obj, domain) => ({ ...__obj, [domain]: exampleTlsSubscription.managedDnsChallenges.apply(managedDnsChallenges => managedDnsChallenges.filter(obj => obj.recordName == `_acme-challenge.${domain}`).map(obj => (obj)))[0] }))).map(([k, v]) => ({key: k, value: v}))) {
+ *     for (const range of Object.entries(domains.reduce((__obj, domain) => ({ ...__obj, [domain]: exampleTlsSubscription.managedDnsChallenges.apply(managedDnsChallenges => managedDnsChallenges.filter(obj => obj.recordName == `_acme-challenge.${domain}`).map(obj => (obj)))[0] }), {})).map(([k, v]) => ({key: k, value: v}))) {
  *         domainValidation.push(new aws.index.Route53Record(`domain_validation-${range.key}`, {
  *             name: range.value.recordName,
  *             type: range.value.recordType,
@@ -96,7 +96,7 @@ import * as utilities from "./utilities";
  * });
  * // Once validation is complete and we've retrieved the TLS configuration data, we can create multiple subdomain records.
  * const subdomain: aws.index.Route53Record[] = [];
- * for (const range = {value: 0}; range.value < std.index.toset({
+ * for (const range = {value: 0}; range.value < std.toset({
  *     input: subdomains,
  * }).result; range.value++) {
  *     subdomain.push(new aws.index.Route53Record(`subdomain-${range.value}`, {
@@ -151,15 +151,15 @@ import * as utilities from "./utilities";
  * const domainValidation: aws.index.Route53Record[] = [];
  * exampleTlsSubscription.domains.apply(domains => {
  *     const domainValidation: aws.index.Route53Record[] = [];
- * pulumi.all(domains.reduce((__obj, domain) => ({ ...__obj, [std.index.replace({
+ * pulumi.all(domains.reduce((__obj, domain) => ({ ...__obj, [std.replace({
  *         text: domain,
  *         search: "*.",
  *         replace: "",
- *     }).result]: exampleTlsSubscription.managedDnsChallenges.apply(managedDnsChallenges => managedDnsChallenges.filter(obj => obj.recordName == `_acme-challenge.${std.index.replace({
+ *     }).result]: exampleTlsSubscription.managedDnsChallenges.apply(managedDnsChallenges => managedDnsChallenges.filter(obj => obj.recordName == `_acme-challenge.${std.replace({
  *         text: domain,
  *         search: "*.",
  *         replace: "",
- *     }).result}`).map(obj => (obj)))[0] }))).apply(rangeBody => {
+ *     }).result}`).map(obj => (obj)))[0] }), {})).apply(rangeBody => {
  *         for (const range of Object.entries(rangeBody).map(([k, v]) => ({key: k, value: v}))) {
  *             domainValidation.push(new aws.index.Route53Record(`domain_validation-${range.key}`, {
  *                 name: range.value[0].recordName,

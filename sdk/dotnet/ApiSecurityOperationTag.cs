@@ -24,7 +24,7 @@ namespace Pulumi.Fastly
     /// 
     /// return await Deployment.RunAsync(() =&gt; 
     /// {
-    ///     var svc1 = new Fastly.ServiceVcl("svc1", new()
+    ///     var svc1 = new Fastly.Index.ServiceVcl("svc1", new()
     ///     {
     ///         Name = "test-svc-1-example",
     ///         ForceDestroy = true,
@@ -38,7 +38,7 @@ namespace Pulumi.Fastly
     ///         },
     ///     });
     /// 
-    ///     var example = new Fastly.ApiSecurityOperationTag("example", new()
+    ///     var example = new Fastly.Index.ApiSecurityOperationTag("example", new()
     ///     {
     ///         ServiceId = svc1.Id,
     ///         Name = "production",
