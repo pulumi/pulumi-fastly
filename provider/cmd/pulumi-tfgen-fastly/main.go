@@ -17,8 +17,8 @@ package main
 import (
 	"github.com/pulumi/pulumi-terraform-bridge/v3/pkg/tfgen"
 
-	fastly "github.com/pulumi/pulumi-fastly/provider/v11"
-	"github.com/pulumi/pulumi-fastly/provider/v11/pkg/version"
+	fastly "github.com/pulumi/pulumi-fastly/provider/v12"
+	"github.com/pulumi/pulumi-fastly/provider/v12/pkg/version"
 )
 
 func main() {

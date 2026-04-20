@@ -1,4 +1,4 @@
-module github.com/pulumi/pulumi-fastly/provider/v11
+module github.com/pulumi/pulumi-fastly/provider/v12
 
 go 1.25.8
 
@@ -63,7 +63,7 @@ require (
 	github.com/envoyproxy/protoc-gen-validate v1.3.0 // indirect
 	github.com/erikgeiser/coninput v0.0.0-20211004153227-1c3628e74d0f // indirect
 	github.com/ettle/strcase v0.1.1 // indirect
-	github.com/fastly/go-fastly/v13 v13.1.2 // indirect
+	github.com/fastly/go-fastly/v14 v14.0.0 // indirect
 	github.com/fatih/color v1.18.0 // indirect
 	github.com/felixge/httpsnoop v1.0.4 // indirect
 	github.com/go-git/gcfg v1.5.1-0.20230307220236-3a3c6141e376 // indirect
