@@ -5,6 +5,7 @@ package com.pulumi.fastly.inputs;
 
 import com.pulumi.core.Output;
 import com.pulumi.core.annotations.Import;
+import com.pulumi.fastly.inputs.ServiceVclProductEnablementBotManagementArgs;
 import com.pulumi.fastly.inputs.ServiceVclProductEnablementDdosProtectionArgs;
 import com.pulumi.fastly.inputs.ServiceVclProductEnablementNgwafArgs;
 import java.lang.Boolean;
@@ -38,13 +39,13 @@ public final class ServiceVclProductEnablementArgs extends com.pulumi.resources.
      * 
      */
     @Import(name="botManagement")
-    private @Nullable Output<Boolean> botManagement;
+    private @Nullable Output<ServiceVclProductEnablementBotManagementArgs> botManagement;
 
     /**
      * @return Enable Bot Management support
      * 
      */
-    public Optional<Output<Boolean>> botManagement() {
+    public Optional<Output<ServiceVclProductEnablementBotManagementArgs>> botManagement() {
         return Optional.ofNullable(this.botManagement);
     }
 
@@ -244,7 +245,7 @@ public final class ServiceVclProductEnablementArgs extends com.pulumi.resources.
          * @return builder
          * 
          */
-        public Builder botManagement(@Nullable Output<Boolean> botManagement) {
+        public Builder botManagement(@Nullable Output<ServiceVclProductEnablementBotManagementArgs> botManagement) {
             $.botManagement = botManagement;
             return this;
         }
@@ -255,7 +256,7 @@ public final class ServiceVclProductEnablementArgs extends com.pulumi.resources.
          * @return builder
          * 
          */
-        public Builder botManagement(Boolean botManagement) {
+        public Builder botManagement(ServiceVclProductEnablementBotManagementArgs botManagement) {
             return botManagement(Output.of(botManagement));
         }
 

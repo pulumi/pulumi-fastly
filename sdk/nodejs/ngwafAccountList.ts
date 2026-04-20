@@ -19,13 +19,31 @@ import * as utilities from "./utilities";
  *
  * const example = new fastly.NgwafAccountList("example", {
  *     name: "shared-bot-ip-list",
- *     description: "List of known bot IPs shared across workspaces",
+ *     description: "Account list of known bot IPs shared across workspaces",
  *     type: "ip",
  *     entries: [
  *         "1.2.3.4",
  *         "5.6.7.8",
  *         "203.0.113.42",
  *     ],
+ * });
+ * // Example usage with a rule. 
+ * const exampleNgwafWorkspaceRule = new fastly.NgwafWorkspaceRule("example", {
+ *     workspaceId: exampleFastlyNgwafWorkspace.id,
+ *     type: "request",
+ *     description: "Example usage of a workspace list rule",
+ *     enabled: true,
+ *     requestLogging: "sampled",
+ *     conditions: [{
+ *         field: "ip",
+ *         operator: "not_in_list",
+ *         value: pulumi.interpolate`corp.${example.name}`,
+ *     }],
+ *     actions: [{
+ *         type: "block",
+ *     }],
+ * }, {
+ *     dependsOn: [example],
  * });
  * ```
  *

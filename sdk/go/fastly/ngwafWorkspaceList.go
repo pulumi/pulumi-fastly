@@ -8,7 +8,7 @@ import (
 	"reflect"
 
 	"errors"
-	"github.com/pulumi/pulumi-fastly/sdk/v11/go/fastly/internal"
+	"github.com/pulumi/pulumi-fastly/sdk/v12/go/fastly/internal"
 	"github.com/pulumi/pulumi/sdk/v3/go/pulumi"
 )
 
@@ -25,7 +25,9 @@ import (
 //
 // import (
 //
-//	"github.com/pulumi/pulumi-fastly/sdk/v11/go/fastly"
+//	"fmt"
+//
+//	"github.com/pulumi/pulumi-fastly/sdk/v12/go/fastly"
 //	"github.com/pulumi/pulumi/sdk/v3/go/pulumi"
 //
 // )
@@ -52,7 +54,7 @@ import (
 //			if err != nil {
 //				return err
 //			}
-//			_, err = fastly.NewNgwafWorkspaceList(ctx, "example", &fastly.NgwafWorkspaceListArgs{
+//			exampleNgwafWorkspaceList, err := fastly.NewNgwafWorkspaceList(ctx, "example", &fastly.NgwafWorkspaceListArgs{
 //				WorkspaceId: example.ID(),
 //				Name:        pulumi.String("local-allowlist"),
 //				Description: pulumi.String("IP allowlist for this workspace"),
@@ -62,6 +64,33 @@ import (
 //					pulumi.String("10.0.0.1"),
 //				},
 //			})
+//			if err != nil {
+//				return err
+//			}
+//			// Example usage with a rule.
+//			_, err = fastly.NewNgwafWorkspaceRule(ctx, "example", &fastly.NgwafWorkspaceRuleArgs{
+//				WorkspaceId:    example.ID(),
+//				Type:           pulumi.String("request"),
+//				Description:    pulumi.String("Example usage of a workspace list rule"),
+//				Enabled:        pulumi.Bool(true),
+//				RequestLogging: pulumi.String("sampled"),
+//				Conditions: fastly.NgwafWorkspaceRuleConditionArray{
+//					&fastly.NgwafWorkspaceRuleConditionArgs{
+//						Field:    pulumi.String("ip"),
+//						Operator: pulumi.String("not_in_list"),
+//						Value: exampleNgwafWorkspaceList.Name.ApplyT(func(name string) (string, error) {
+//							return fmt.Sprintf("site.%v", name), nil
+//						}).(pulumi.StringOutput),
+//					},
+//				},
+//				Actions: fastly.NgwafWorkspaceRuleActionArray{
+//					&fastly.NgwafWorkspaceRuleActionArgs{
+//						Type: pulumi.String("block"),
+//					},
+//				},
+//			}, pulumi.DependsOn([]pulumi.Resource{
+//				exampleNgwafWorkspaceList,
+//			}))
 //			if err != nil {
 //				return err
 //			}

@@ -8,7 +8,7 @@ import (
 	"reflect"
 
 	"errors"
-	"github.com/pulumi/pulumi-fastly/sdk/v11/go/fastly/internal"
+	"github.com/pulumi/pulumi-fastly/sdk/v12/go/fastly/internal"
 	"github.com/pulumi/pulumi/sdk/v3/go/pulumi"
 )
 
@@ -25,16 +25,18 @@ import (
 //
 // import (
 //
-//	"github.com/pulumi/pulumi-fastly/sdk/v11/go/fastly"
+//	"fmt"
+//
+//	"github.com/pulumi/pulumi-fastly/sdk/v12/go/fastly"
 //	"github.com/pulumi/pulumi/sdk/v3/go/pulumi"
 //
 // )
 //
 //	func main() {
 //		pulumi.Run(func(ctx *pulumi.Context) error {
-//			_, err := fastly.NewNgwafAccountList(ctx, "example", &fastly.NgwafAccountListArgs{
+//			example, err := fastly.NewNgwafAccountList(ctx, "example", &fastly.NgwafAccountListArgs{
 //				Name:        pulumi.String("shared-bot-ip-list"),
-//				Description: pulumi.String("List of known bot IPs shared across workspaces"),
+//				Description: pulumi.String("Account list of known bot IPs shared across workspaces"),
 //				Type:        pulumi.String("ip"),
 //				Entries: pulumi.StringArray{
 //					pulumi.String("1.2.3.4"),
@@ -42,6 +44,33 @@ import (
 //					pulumi.String("203.0.113.42"),
 //				},
 //			})
+//			if err != nil {
+//				return err
+//			}
+//			// Example usage with a rule.
+//			_, err = fastly.NewNgwafWorkspaceRule(ctx, "example", &fastly.NgwafWorkspaceRuleArgs{
+//				WorkspaceId:    pulumi.Any(exampleFastlyNgwafWorkspace.Id),
+//				Type:           pulumi.String("request"),
+//				Description:    pulumi.String("Example usage of a workspace list rule"),
+//				Enabled:        pulumi.Bool(true),
+//				RequestLogging: pulumi.String("sampled"),
+//				Conditions: fastly.NgwafWorkspaceRuleConditionArray{
+//					&fastly.NgwafWorkspaceRuleConditionArgs{
+//						Field:    pulumi.String("ip"),
+//						Operator: pulumi.String("not_in_list"),
+//						Value: example.Name.ApplyT(func(name string) (string, error) {
+//							return fmt.Sprintf("corp.%v", name), nil
+//						}).(pulumi.StringOutput),
+//					},
+//				},
+//				Actions: fastly.NgwafWorkspaceRuleActionArray{
+//					&fastly.NgwafWorkspaceRuleActionArgs{
+//						Type: pulumi.String("block"),
+//					},
+//				},
+//			}, pulumi.DependsOn([]pulumi.Resource{
+//				example,
+//			}))
 //			if err != nil {
 //				return err
 //			}

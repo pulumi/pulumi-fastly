@@ -3852,7 +3852,7 @@ export interface ServiceVclProductEnablement {
     /**
      * Enable Bot Management support
      */
-    botManagement?: pulumi.Input<boolean>;
+    botManagement?: pulumi.Input<inputs.ServiceVclProductEnablementBotManagement>;
     /**
      * Enable Brotli Compression support
      */
@@ -3889,6 +3889,17 @@ export interface ServiceVclProductEnablement {
      * Enable WebSockets support
      */
     websockets?: pulumi.Input<boolean>;
+}
+
+export interface ServiceVclProductEnablementBotManagement {
+    /**
+     * ContentGuard status. Can be either `off`, or `on`.
+     */
+    contentguard: pulumi.Input<string>;
+    /**
+     * Enable Bot Management support
+     */
+    enabled: pulumi.Input<boolean>;
 }
 
 export interface ServiceVclProductEnablementDdosProtection {

@@ -202,13 +202,29 @@ class NgwafAccountList(pulumi.CustomResource):
 
         example = fastly.NgwafAccountList("example",
             name="shared-bot-ip-list",
-            description="List of known bot IPs shared across workspaces",
+            description="Account list of known bot IPs shared across workspaces",
             type="ip",
             entries=[
                 "1.2.3.4",
                 "5.6.7.8",
                 "203.0.113.42",
             ])
+        # Example usage with a rule. 
+        example_ngwaf_workspace_rule = fastly.NgwafWorkspaceRule("example",
+            workspace_id=example_fastly_ngwaf_workspace["id"],
+            type="request",
+            description="Example usage of a workspace list rule",
+            enabled=True,
+            request_logging="sampled",
+            conditions=[{
+                "field": "ip",
+                "operator": "not_in_list",
+                "value": example.name.apply(lambda name: f"corp.{name}"),
+            }],
+            actions=[{
+                "type": "block",
+            }],
+            opts = pulumi.ResourceOptions(depends_on=[example]))
         ```
 
         ## Import
@@ -248,13 +264,29 @@ class NgwafAccountList(pulumi.CustomResource):
 
         example = fastly.NgwafAccountList("example",
             name="shared-bot-ip-list",
-            description="List of known bot IPs shared across workspaces",
+            description="Account list of known bot IPs shared across workspaces",
             type="ip",
             entries=[
                 "1.2.3.4",
                 "5.6.7.8",
                 "203.0.113.42",
             ])
+        # Example usage with a rule. 
+        example_ngwaf_workspace_rule = fastly.NgwafWorkspaceRule("example",
+            workspace_id=example_fastly_ngwaf_workspace["id"],
+            type="request",
+            description="Example usage of a workspace list rule",
+            enabled=True,
+            request_logging="sampled",
+            conditions=[{
+                "field": "ip",
+                "operator": "not_in_list",
+                "value": example.name.apply(lambda name: f"corp.{name}"),
+            }],
+            actions=[{
+                "type": "block",
+            }],
+            opts = pulumi.ResourceOptions(depends_on=[example]))
         ```
 
         ## Import

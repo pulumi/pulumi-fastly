@@ -33,6 +33,11 @@ import javax.annotation.Nullable;
  * import com.pulumi.core.Output;
  * import com.pulumi.fastly.NgwafAccountList;
  * import com.pulumi.fastly.NgwafAccountListArgs;
+ * import com.pulumi.fastly.NgwafWorkspaceRule;
+ * import com.pulumi.fastly.NgwafWorkspaceRuleArgs;
+ * import com.pulumi.fastly.inputs.NgwafWorkspaceRuleConditionArgs;
+ * import com.pulumi.fastly.inputs.NgwafWorkspaceRuleActionArgs;
+ * import com.pulumi.resources.CustomResourceOptions;
  * import java.util.List;
  * import java.util.ArrayList;
  * import java.util.Map;
@@ -48,13 +53,32 @@ import javax.annotation.Nullable;
  *     public static void stack(Context ctx) {
  *         var example = new NgwafAccountList("example", NgwafAccountListArgs.builder()
  *             .name("shared-bot-ip-list")
- *             .description("List of known bot IPs shared across workspaces")
+ *             .description("Account list of known bot IPs shared across workspaces")
  *             .type("ip")
  *             .entries(            
  *                 "1.2.3.4",
  *                 "5.6.7.8",
  *                 "203.0.113.42")
  *             .build());
+ * 
+ *         // Example usage with a rule. 
+ *         var exampleNgwafWorkspaceRule = new NgwafWorkspaceRule("exampleNgwafWorkspaceRule", NgwafWorkspaceRuleArgs.builder()
+ *             .workspaceId(exampleFastlyNgwafWorkspace.id())
+ *             .type("request")
+ *             .description("Example usage of a workspace list rule")
+ *             .enabled(true)
+ *             .requestLogging("sampled")
+ *             .conditions(NgwafWorkspaceRuleConditionArgs.builder()
+ *                 .field("ip")
+ *                 .operator("not_in_list")
+ *                 .value(example.name().applyValue(_name -> String.format("corp.%s", _name)))
+ *                 .build())
+ *             .actions(NgwafWorkspaceRuleActionArgs.builder()
+ *                 .type("block")
+ *                 .build())
+ *             .build(), CustomResourceOptions.builder()
+ *                 .dependsOn(example)
+ *                 .build());
  * 
  *     }
  * }

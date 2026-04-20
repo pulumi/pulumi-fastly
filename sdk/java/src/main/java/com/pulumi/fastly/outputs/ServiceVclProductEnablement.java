@@ -4,6 +4,7 @@
 package com.pulumi.fastly.outputs;
 
 import com.pulumi.core.annotations.CustomType;
+import com.pulumi.fastly.outputs.ServiceVclProductEnablementBotManagement;
 import com.pulumi.fastly.outputs.ServiceVclProductEnablementDdosProtection;
 import com.pulumi.fastly.outputs.ServiceVclProductEnablementNgwaf;
 import java.lang.Boolean;
@@ -23,7 +24,7 @@ public final class ServiceVclProductEnablement {
      * @return Enable Bot Management support
      * 
      */
-    private @Nullable Boolean botManagement;
+    private @Nullable ServiceVclProductEnablementBotManagement botManagement;
     /**
      * @return Enable Brotli Compression support
      * 
@@ -82,7 +83,7 @@ public final class ServiceVclProductEnablement {
      * @return Enable Bot Management support
      * 
      */
-    public Optional<Boolean> botManagement() {
+    public Optional<ServiceVclProductEnablementBotManagement> botManagement() {
         return Optional.ofNullable(this.botManagement);
     }
     /**
@@ -159,7 +160,7 @@ public final class ServiceVclProductEnablement {
     @CustomType.Builder
     public static final class Builder {
         private @Nullable Boolean apiDiscovery;
-        private @Nullable Boolean botManagement;
+        private @Nullable ServiceVclProductEnablementBotManagement botManagement;
         private @Nullable Boolean brotliCompression;
         private @Nullable ServiceVclProductEnablementDdosProtection ddosProtection;
         private @Nullable Boolean domainInspector;
@@ -192,7 +193,7 @@ public final class ServiceVclProductEnablement {
             return this;
         }
         @CustomType.Setter
-        public Builder botManagement(@Nullable Boolean botManagement) {
+        public Builder botManagement(@Nullable ServiceVclProductEnablementBotManagement botManagement) {
 
             this.botManagement = botManagement;
             return this;
