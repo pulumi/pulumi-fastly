@@ -29,13 +29,45 @@ namespace Pulumi.Fastly
     ///     var example = new Fastly.Index.NgwafAccountList("example", new()
     ///     {
     ///         Name = "shared-bot-ip-list",
-    ///         Description = "List of known bot IPs shared across workspaces",
+    ///         Description = "Account list of known bot IPs shared across workspaces",
     ///         Type = "ip",
     ///         Entries = new[]
     ///         {
     ///             "1.2.3.4",
     ///             "5.6.7.8",
     ///             "203.0.113.42",
+    ///         },
+    ///     });
+    /// 
+    ///     // Example usage with a rule. 
+    ///     var exampleNgwafWorkspaceRule = new Fastly.Index.NgwafWorkspaceRule("example", new()
+    ///     {
+    ///         WorkspaceId = exampleFastlyNgwafWorkspace.Id,
+    ///         Type = "request",
+    ///         Description = "Example usage of a workspace list rule",
+    ///         Enabled = true,
+    ///         RequestLogging = "sampled",
+    ///         Conditions = new[]
+    ///         {
+    ///             new Fastly.Inputs.NgwafWorkspaceRuleConditionArgs
+    ///             {
+    ///                 Field = "ip",
+    ///                 Operator = "not_in_list",
+    ///                 Value = example.Name.Apply(name =&gt; $"corp.{name}"),
+    ///             },
+    ///         },
+    ///         Actions = new[]
+    ///         {
+    ///             new Fastly.Inputs.NgwafWorkspaceRuleActionArgs
+    ///             {
+    ///                 Type = "block",
+    ///             },
+    ///         },
+    ///     }, new CustomResourceOptions
+    ///     {
+    ///         DependsOn =
+    ///         {
+    ///             example,
     ///         },
     ///     });
     /// 

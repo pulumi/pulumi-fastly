@@ -1,5 +1,5 @@
 provider: fastly
-major-version: 11
+major-version: 12
 esc:
     enabled: true
 env:

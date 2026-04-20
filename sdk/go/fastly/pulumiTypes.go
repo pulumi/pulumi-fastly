@@ -7,7 +7,7 @@ import (
 	"context"
 	"reflect"
 
-	"github.com/pulumi/pulumi-fastly/sdk/v11/go/fastly/internal"
+	"github.com/pulumi/pulumi-fastly/sdk/v12/go/fastly/internal"
 	"github.com/pulumi/pulumi/sdk/v3/go/pulumi"
 )
 
@@ -17826,7 +17826,7 @@ type ServiceVclProductEnablement struct {
 	// Enable API Discovery support
 	ApiDiscovery *bool `pulumi:"apiDiscovery"`
 	// Enable Bot Management support
-	BotManagement *bool `pulumi:"botManagement"`
+	BotManagement *ServiceVclProductEnablementBotManagement `pulumi:"botManagement"`
 	// Enable Brotli Compression support
 	BrotliCompression *bool `pulumi:"brotliCompression"`
 	// DDoS Protection product
@@ -17862,7 +17862,7 @@ type ServiceVclProductEnablementArgs struct {
 	// Enable API Discovery support
 	ApiDiscovery pulumi.BoolPtrInput `pulumi:"apiDiscovery"`
 	// Enable Bot Management support
-	BotManagement pulumi.BoolPtrInput `pulumi:"botManagement"`
+	BotManagement ServiceVclProductEnablementBotManagementPtrInput `pulumi:"botManagement"`
 	// Enable Brotli Compression support
 	BrotliCompression pulumi.BoolPtrInput `pulumi:"brotliCompression"`
 	// DDoS Protection product
@@ -17966,8 +17966,8 @@ func (o ServiceVclProductEnablementOutput) ApiDiscovery() pulumi.BoolPtrOutput {
 }
 
 // Enable Bot Management support
-func (o ServiceVclProductEnablementOutput) BotManagement() pulumi.BoolPtrOutput {
-	return o.ApplyT(func(v ServiceVclProductEnablement) *bool { return v.BotManagement }).(pulumi.BoolPtrOutput)
+func (o ServiceVclProductEnablementOutput) BotManagement() ServiceVclProductEnablementBotManagementPtrOutput {
+	return o.ApplyT(func(v ServiceVclProductEnablement) *ServiceVclProductEnablementBotManagement { return v.BotManagement }).(ServiceVclProductEnablementBotManagementPtrOutput)
 }
 
 // Enable Brotli Compression support
@@ -18052,13 +18052,13 @@ func (o ServiceVclProductEnablementPtrOutput) ApiDiscovery() pulumi.BoolPtrOutpu
 }
 
 // Enable Bot Management support
-func (o ServiceVclProductEnablementPtrOutput) BotManagement() pulumi.BoolPtrOutput {
-	return o.ApplyT(func(v *ServiceVclProductEnablement) *bool {
+func (o ServiceVclProductEnablementPtrOutput) BotManagement() ServiceVclProductEnablementBotManagementPtrOutput {
+	return o.ApplyT(func(v *ServiceVclProductEnablement) *ServiceVclProductEnablementBotManagement {
 		if v == nil {
 			return nil
 		}
 		return v.BotManagement
-	}).(pulumi.BoolPtrOutput)
+	}).(ServiceVclProductEnablementBotManagementPtrOutput)
 }
 
 // Enable Brotli Compression support
@@ -18148,6 +18148,162 @@ func (o ServiceVclProductEnablementPtrOutput) Websockets() pulumi.BoolPtrOutput 
 			return nil
 		}
 		return v.Websockets
+	}).(pulumi.BoolPtrOutput)
+}
+
+type ServiceVclProductEnablementBotManagement struct {
+	// ContentGuard status. Can be either `off`, or `on`.
+	Contentguard string `pulumi:"contentguard"`
+	// Enable Bot Management support
+	Enabled bool `pulumi:"enabled"`
+}
+
+// ServiceVclProductEnablementBotManagementInput is an input type that accepts ServiceVclProductEnablementBotManagementArgs and ServiceVclProductEnablementBotManagementOutput values.
+// You can construct a concrete instance of `ServiceVclProductEnablementBotManagementInput` via:
+//
+//	ServiceVclProductEnablementBotManagementArgs{...}
+type ServiceVclProductEnablementBotManagementInput interface {
+	pulumi.Input
+
+	ToServiceVclProductEnablementBotManagementOutput() ServiceVclProductEnablementBotManagementOutput
+	ToServiceVclProductEnablementBotManagementOutputWithContext(context.Context) ServiceVclProductEnablementBotManagementOutput
+}
+
+type ServiceVclProductEnablementBotManagementArgs struct {
+	// ContentGuard status. Can be either `off`, or `on`.
+	Contentguard pulumi.StringInput `pulumi:"contentguard"`
+	// Enable Bot Management support
+	Enabled pulumi.BoolInput `pulumi:"enabled"`
+}
+
+func (ServiceVclProductEnablementBotManagementArgs) ElementType() reflect.Type {
+	return reflect.TypeOf((*ServiceVclProductEnablementBotManagement)(nil)).Elem()
+}
+
+func (i ServiceVclProductEnablementBotManagementArgs) ToServiceVclProductEnablementBotManagementOutput() ServiceVclProductEnablementBotManagementOutput {
+	return i.ToServiceVclProductEnablementBotManagementOutputWithContext(context.Background())
+}
+
+func (i ServiceVclProductEnablementBotManagementArgs) ToServiceVclProductEnablementBotManagementOutputWithContext(ctx context.Context) ServiceVclProductEnablementBotManagementOutput {
+	return pulumi.ToOutputWithContext(ctx, i).(ServiceVclProductEnablementBotManagementOutput)
+}
+
+func (i ServiceVclProductEnablementBotManagementArgs) ToServiceVclProductEnablementBotManagementPtrOutput() ServiceVclProductEnablementBotManagementPtrOutput {
+	return i.ToServiceVclProductEnablementBotManagementPtrOutputWithContext(context.Background())
+}
+
+func (i ServiceVclProductEnablementBotManagementArgs) ToServiceVclProductEnablementBotManagementPtrOutputWithContext(ctx context.Context) ServiceVclProductEnablementBotManagementPtrOutput {
+	return pulumi.ToOutputWithContext(ctx, i).(ServiceVclProductEnablementBotManagementOutput).ToServiceVclProductEnablementBotManagementPtrOutputWithContext(ctx)
+}
+
+// ServiceVclProductEnablementBotManagementPtrInput is an input type that accepts ServiceVclProductEnablementBotManagementArgs, ServiceVclProductEnablementBotManagementPtr and ServiceVclProductEnablementBotManagementPtrOutput values.
+// You can construct a concrete instance of `ServiceVclProductEnablementBotManagementPtrInput` via:
+//
+//	        ServiceVclProductEnablementBotManagementArgs{...}
+//
+//	or:
+//
+//	        nil
+type ServiceVclProductEnablementBotManagementPtrInput interface {
+	pulumi.Input
+
+	ToServiceVclProductEnablementBotManagementPtrOutput() ServiceVclProductEnablementBotManagementPtrOutput
+	ToServiceVclProductEnablementBotManagementPtrOutputWithContext(context.Context) ServiceVclProductEnablementBotManagementPtrOutput
+}
+
+type serviceVclProductEnablementBotManagementPtrType ServiceVclProductEnablementBotManagementArgs
+
+func ServiceVclProductEnablementBotManagementPtr(v *ServiceVclProductEnablementBotManagementArgs) ServiceVclProductEnablementBotManagementPtrInput {
+	return (*serviceVclProductEnablementBotManagementPtrType)(v)
+}
+
+func (*serviceVclProductEnablementBotManagementPtrType) ElementType() reflect.Type {
+	return reflect.TypeOf((**ServiceVclProductEnablementBotManagement)(nil)).Elem()
+}
+
+func (i *serviceVclProductEnablementBotManagementPtrType) ToServiceVclProductEnablementBotManagementPtrOutput() ServiceVclProductEnablementBotManagementPtrOutput {
+	return i.ToServiceVclProductEnablementBotManagementPtrOutputWithContext(context.Background())
+}
+
+func (i *serviceVclProductEnablementBotManagementPtrType) ToServiceVclProductEnablementBotManagementPtrOutputWithContext(ctx context.Context) ServiceVclProductEnablementBotManagementPtrOutput {
+	return pulumi.ToOutputWithContext(ctx, i).(ServiceVclProductEnablementBotManagementPtrOutput)
+}
+
+type ServiceVclProductEnablementBotManagementOutput struct{ *pulumi.OutputState }
+
+func (ServiceVclProductEnablementBotManagementOutput) ElementType() reflect.Type {
+	return reflect.TypeOf((*ServiceVclProductEnablementBotManagement)(nil)).Elem()
+}
+
+func (o ServiceVclProductEnablementBotManagementOutput) ToServiceVclProductEnablementBotManagementOutput() ServiceVclProductEnablementBotManagementOutput {
+	return o
+}
+
+func (o ServiceVclProductEnablementBotManagementOutput) ToServiceVclProductEnablementBotManagementOutputWithContext(ctx context.Context) ServiceVclProductEnablementBotManagementOutput {
+	return o
+}
+
+func (o ServiceVclProductEnablementBotManagementOutput) ToServiceVclProductEnablementBotManagementPtrOutput() ServiceVclProductEnablementBotManagementPtrOutput {
+	return o.ToServiceVclProductEnablementBotManagementPtrOutputWithContext(context.Background())
+}
+
+func (o ServiceVclProductEnablementBotManagementOutput) ToServiceVclProductEnablementBotManagementPtrOutputWithContext(ctx context.Context) ServiceVclProductEnablementBotManagementPtrOutput {
+	return o.ApplyTWithContext(ctx, func(_ context.Context, v ServiceVclProductEnablementBotManagement) *ServiceVclProductEnablementBotManagement {
+		return &v
+	}).(ServiceVclProductEnablementBotManagementPtrOutput)
+}
+
+// ContentGuard status. Can be either `off`, or `on`.
+func (o ServiceVclProductEnablementBotManagementOutput) Contentguard() pulumi.StringOutput {
+	return o.ApplyT(func(v ServiceVclProductEnablementBotManagement) string { return v.Contentguard }).(pulumi.StringOutput)
+}
+
+// Enable Bot Management support
+func (o ServiceVclProductEnablementBotManagementOutput) Enabled() pulumi.BoolOutput {
+	return o.ApplyT(func(v ServiceVclProductEnablementBotManagement) bool { return v.Enabled }).(pulumi.BoolOutput)
+}
+
+type ServiceVclProductEnablementBotManagementPtrOutput struct{ *pulumi.OutputState }
+
+func (ServiceVclProductEnablementBotManagementPtrOutput) ElementType() reflect.Type {
+	return reflect.TypeOf((**ServiceVclProductEnablementBotManagement)(nil)).Elem()
+}
+
+func (o ServiceVclProductEnablementBotManagementPtrOutput) ToServiceVclProductEnablementBotManagementPtrOutput() ServiceVclProductEnablementBotManagementPtrOutput {
+	return o
+}
+
+func (o ServiceVclProductEnablementBotManagementPtrOutput) ToServiceVclProductEnablementBotManagementPtrOutputWithContext(ctx context.Context) ServiceVclProductEnablementBotManagementPtrOutput {
+	return o
+}
+
+func (o ServiceVclProductEnablementBotManagementPtrOutput) Elem() ServiceVclProductEnablementBotManagementOutput {
+	return o.ApplyT(func(v *ServiceVclProductEnablementBotManagement) ServiceVclProductEnablementBotManagement {
+		if v != nil {
+			return *v
+		}
+		var ret ServiceVclProductEnablementBotManagement
+		return ret
+	}).(ServiceVclProductEnablementBotManagementOutput)
+}
+
+// ContentGuard status. Can be either `off`, or `on`.
+func (o ServiceVclProductEnablementBotManagementPtrOutput) Contentguard() pulumi.StringPtrOutput {
+	return o.ApplyT(func(v *ServiceVclProductEnablementBotManagement) *string {
+		if v == nil {
+			return nil
+		}
+		return &v.Contentguard
+	}).(pulumi.StringPtrOutput)
+}
+
+// Enable Bot Management support
+func (o ServiceVclProductEnablementBotManagementPtrOutput) Enabled() pulumi.BoolPtrOutput {
+	return o.ApplyT(func(v *ServiceVclProductEnablementBotManagement) *bool {
+		if v == nil {
+			return nil
+		}
+		return &v.Enabled
 	}).(pulumi.BoolPtrOutput)
 }
 
@@ -23817,6 +23973,8 @@ func init() {
 	pulumi.RegisterInputType(reflect.TypeOf((*ServiceVclLoggingSyslogArrayInput)(nil)).Elem(), ServiceVclLoggingSyslogArray{})
 	pulumi.RegisterInputType(reflect.TypeOf((*ServiceVclProductEnablementInput)(nil)).Elem(), ServiceVclProductEnablementArgs{})
 	pulumi.RegisterInputType(reflect.TypeOf((*ServiceVclProductEnablementPtrInput)(nil)).Elem(), ServiceVclProductEnablementArgs{})
+	pulumi.RegisterInputType(reflect.TypeOf((*ServiceVclProductEnablementBotManagementInput)(nil)).Elem(), ServiceVclProductEnablementBotManagementArgs{})
+	pulumi.RegisterInputType(reflect.TypeOf((*ServiceVclProductEnablementBotManagementPtrInput)(nil)).Elem(), ServiceVclProductEnablementBotManagementArgs{})
 	pulumi.RegisterInputType(reflect.TypeOf((*ServiceVclProductEnablementDdosProtectionInput)(nil)).Elem(), ServiceVclProductEnablementDdosProtectionArgs{})
 	pulumi.RegisterInputType(reflect.TypeOf((*ServiceVclProductEnablementDdosProtectionPtrInput)(nil)).Elem(), ServiceVclProductEnablementDdosProtectionArgs{})
 	pulumi.RegisterInputType(reflect.TypeOf((*ServiceVclProductEnablementNgwafInput)(nil)).Elem(), ServiceVclProductEnablementNgwafArgs{})
@@ -24111,6 +24269,8 @@ func init() {
 	pulumi.RegisterOutputType(ServiceVclLoggingSyslogArrayOutput{})
 	pulumi.RegisterOutputType(ServiceVclProductEnablementOutput{})
 	pulumi.RegisterOutputType(ServiceVclProductEnablementPtrOutput{})
+	pulumi.RegisterOutputType(ServiceVclProductEnablementBotManagementOutput{})
+	pulumi.RegisterOutputType(ServiceVclProductEnablementBotManagementPtrOutput{})
 	pulumi.RegisterOutputType(ServiceVclProductEnablementDdosProtectionOutput{})
 	pulumi.RegisterOutputType(ServiceVclProductEnablementDdosProtectionPtrOutput{})
 	pulumi.RegisterOutputType(ServiceVclProductEnablementNgwafOutput{})

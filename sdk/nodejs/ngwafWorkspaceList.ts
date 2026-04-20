@@ -44,6 +44,24 @@ import * as utilities from "./utilities";
  *         "10.0.0.1",
  *     ],
  * });
+ * // Example usage with a rule. 
+ * const exampleNgwafWorkspaceRule = new fastly.NgwafWorkspaceRule("example", {
+ *     workspaceId: example.id,
+ *     type: "request",
+ *     description: "Example usage of a workspace list rule",
+ *     enabled: true,
+ *     requestLogging: "sampled",
+ *     conditions: [{
+ *         field: "ip",
+ *         operator: "not_in_list",
+ *         value: pulumi.interpolate`site.${exampleNgwafWorkspaceList.name}`,
+ *     }],
+ *     actions: [{
+ *         type: "block",
+ *     }],
+ * }, {
+ *     dependsOn: [exampleNgwafWorkspaceList],
+ * });
  * ```
  *
  * ## Import

@@ -20,7 +20,7 @@ namespace Pulumi.Fastly.Outputs
         /// <summary>
         /// Enable Bot Management support
         /// </summary>
-        public readonly bool? BotManagement;
+        public readonly Outputs.ServiceVclProductEnablementBotManagement? BotManagement;
         /// <summary>
         /// Enable Brotli Compression support
         /// </summary>
@@ -62,7 +62,7 @@ namespace Pulumi.Fastly.Outputs
         private ServiceVclProductEnablement(
             bool? apiDiscovery,
 
-            bool? botManagement,
+            Outputs.ServiceVclProductEnablementBotManagement? botManagement,
 
             bool? brotliCompression,
 

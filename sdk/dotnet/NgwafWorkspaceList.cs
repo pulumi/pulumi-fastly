@@ -60,6 +60,38 @@ namespace Pulumi.Fastly
     ///         },
     ///     });
     /// 
+    ///     // Example usage with a rule. 
+    ///     var exampleNgwafWorkspaceRule = new Fastly.Index.NgwafWorkspaceRule("example", new()
+    ///     {
+    ///         WorkspaceId = example.Id,
+    ///         Type = "request",
+    ///         Description = "Example usage of a workspace list rule",
+    ///         Enabled = true,
+    ///         RequestLogging = "sampled",
+    ///         Conditions = new[]
+    ///         {
+    ///             new Fastly.Inputs.NgwafWorkspaceRuleConditionArgs
+    ///             {
+    ///                 Field = "ip",
+    ///                 Operator = "not_in_list",
+    ///                 Value = exampleNgwafWorkspaceList.Name.Apply(name =&gt; $"site.{name}"),
+    ///             },
+    ///         },
+    ///         Actions = new[]
+    ///         {
+    ///             new Fastly.Inputs.NgwafWorkspaceRuleActionArgs
+    ///             {
+    ///                 Type = "block",
+    ///             },
+    ///         },
+    ///     }, new CustomResourceOptions
+    ///     {
+    ///         DependsOn =
+    ///         {
+    ///             exampleNgwafWorkspaceList,
+    ///         },
+    ///     });
+    /// 
     /// });
     /// ```
     /// 

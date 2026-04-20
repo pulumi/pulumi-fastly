@@ -122,6 +122,7 @@ __all__ = [
     'ServiceVclLoggingSumologic',
     'ServiceVclLoggingSyslog',
     'ServiceVclProductEnablement',
+    'ServiceVclProductEnablementBotManagement',
     'ServiceVclProductEnablementDdosProtection',
     'ServiceVclProductEnablementNgwaf',
     'ServiceVclRateLimiter',
@@ -13379,7 +13380,7 @@ class ServiceVclProductEnablement(dict):
 
     def __init__(__self__, *,
                  api_discovery: Optional[_builtins.bool] = None,
-                 bot_management: Optional[_builtins.bool] = None,
+                 bot_management: Optional['outputs.ServiceVclProductEnablementBotManagement'] = None,
                  brotli_compression: Optional[_builtins.bool] = None,
                  ddos_protection: Optional['outputs.ServiceVclProductEnablementDdosProtection'] = None,
                  domain_inspector: Optional[_builtins.bool] = None,
@@ -13391,7 +13392,7 @@ class ServiceVclProductEnablement(dict):
                  websockets: Optional[_builtins.bool] = None):
         """
         :param _builtins.bool api_discovery: Enable API Discovery support
-        :param _builtins.bool bot_management: Enable Bot Management support
+        :param 'ServiceVclProductEnablementBotManagementArgs' bot_management: Enable Bot Management support
         :param _builtins.bool brotli_compression: Enable Brotli Compression support
         :param 'ServiceVclProductEnablementDdosProtectionArgs' ddos_protection: DDoS Protection product
         :param _builtins.bool domain_inspector: Enable Domain Inspector support
@@ -13435,7 +13436,7 @@ class ServiceVclProductEnablement(dict):
 
     @_builtins.property
     @pulumi.getter(name="botManagement")
-    def bot_management(self) -> Optional[_builtins.bool]:
+    def bot_management(self) -> Optional['outputs.ServiceVclProductEnablementBotManagement']:
         """
         Enable Bot Management support
         """
@@ -13512,6 +13513,35 @@ class ServiceVclProductEnablement(dict):
         Enable WebSockets support
         """
         return pulumi.get(self, "websockets")
+
+
+@pulumi.output_type
+class ServiceVclProductEnablementBotManagement(dict):
+    def __init__(__self__, *,
+                 contentguard: _builtins.str,
+                 enabled: _builtins.bool):
+        """
+        :param _builtins.str contentguard: ContentGuard status. Can be either `off`, or `on`.
+        :param _builtins.bool enabled: Enable Bot Management support
+        """
+        pulumi.set(__self__, "contentguard", contentguard)
+        pulumi.set(__self__, "enabled", enabled)
+
+    @_builtins.property
+    @pulumi.getter
+    def contentguard(self) -> _builtins.str:
+        """
+        ContentGuard status. Can be either `off`, or `on`.
+        """
+        return pulumi.get(self, "contentguard")
+
+    @_builtins.property
+    @pulumi.getter
+    def enabled(self) -> _builtins.bool:
+        """
+        Enable Bot Management support
+        """
+        return pulumi.get(self, "enabled")
 
 
 @pulumi.output_type

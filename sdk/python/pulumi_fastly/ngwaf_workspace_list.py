@@ -233,6 +233,22 @@ class NgwafWorkspaceList(pulumi.CustomResource):
                 "192.168.0.1",
                 "10.0.0.1",
             ])
+        # Example usage with a rule. 
+        example_ngwaf_workspace_rule = fastly.NgwafWorkspaceRule("example",
+            workspace_id=example.id,
+            type="request",
+            description="Example usage of a workspace list rule",
+            enabled=True,
+            request_logging="sampled",
+            conditions=[{
+                "field": "ip",
+                "operator": "not_in_list",
+                "value": example_ngwaf_workspace_list.name.apply(lambda name: f"site.{name}"),
+            }],
+            actions=[{
+                "type": "block",
+            }],
+            opts = pulumi.ResourceOptions(depends_on=[example_ngwaf_workspace_list]))
         ```
 
         ## Import
@@ -295,6 +311,22 @@ class NgwafWorkspaceList(pulumi.CustomResource):
                 "192.168.0.1",
                 "10.0.0.1",
             ])
+        # Example usage with a rule. 
+        example_ngwaf_workspace_rule = fastly.NgwafWorkspaceRule("example",
+            workspace_id=example.id,
+            type="request",
+            description="Example usage of a workspace list rule",
+            enabled=True,
+            request_logging="sampled",
+            conditions=[{
+                "field": "ip",
+                "operator": "not_in_list",
+                "value": example_ngwaf_workspace_list.name.apply(lambda name: f"site.{name}"),
+            }],
+            actions=[{
+                "type": "block",
+            }],
+            opts = pulumi.ResourceOptions(depends_on=[example_ngwaf_workspace_list]))
         ```
 
         ## Import

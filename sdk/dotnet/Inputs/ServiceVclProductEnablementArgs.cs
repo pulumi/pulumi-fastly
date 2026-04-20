@@ -22,7 +22,7 @@ namespace Pulumi.Fastly.Inputs
         /// Enable Bot Management support
         /// </summary>
         [Input("botManagement")]
-        public Input<bool>? BotManagement { get; set; }
+        public Input<Inputs.ServiceVclProductEnablementBotManagementArgs>? BotManagement { get; set; }
 
         /// <summary>
         /// Enable Brotli Compression support

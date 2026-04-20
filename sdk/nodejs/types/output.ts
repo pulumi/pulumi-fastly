@@ -4411,7 +4411,7 @@ export interface ServiceVclProductEnablement {
     /**
      * Enable Bot Management support
      */
-    botManagement?: boolean;
+    botManagement?: outputs.ServiceVclProductEnablementBotManagement;
     /**
      * Enable Brotli Compression support
      */
@@ -4448,6 +4448,17 @@ export interface ServiceVclProductEnablement {
      * Enable WebSockets support
      */
     websockets?: boolean;
+}
+
+export interface ServiceVclProductEnablementBotManagement {
+    /**
+     * ContentGuard status. Can be either `off`, or `on`.
+     */
+    contentguard: string;
+    /**
+     * Enable Bot Management support
+     */
+    enabled: boolean;
 }
 
 export interface ServiceVclProductEnablementDdosProtection {

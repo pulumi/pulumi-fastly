@@ -36,6 +36,11 @@ import javax.annotation.Nullable;
  * import com.pulumi.fastly.inputs.NgwafWorkspaceAttackSignalThresholdsArgs;
  * import com.pulumi.fastly.NgwafWorkspaceList;
  * import com.pulumi.fastly.NgwafWorkspaceListArgs;
+ * import com.pulumi.fastly.NgwafWorkspaceRule;
+ * import com.pulumi.fastly.NgwafWorkspaceRuleArgs;
+ * import com.pulumi.fastly.inputs.NgwafWorkspaceRuleConditionArgs;
+ * import com.pulumi.fastly.inputs.NgwafWorkspaceRuleActionArgs;
+ * import com.pulumi.resources.CustomResourceOptions;
  * import java.util.List;
  * import java.util.ArrayList;
  * import java.util.Map;
@@ -75,6 +80,25 @@ import javax.annotation.Nullable;
  *                 "192.168.0.1",
  *                 "10.0.0.1")
  *             .build());
+ * 
+ *         // Example usage with a rule. 
+ *         var exampleNgwafWorkspaceRule = new NgwafWorkspaceRule("exampleNgwafWorkspaceRule", NgwafWorkspaceRuleArgs.builder()
+ *             .workspaceId(example.id())
+ *             .type("request")
+ *             .description("Example usage of a workspace list rule")
+ *             .enabled(true)
+ *             .requestLogging("sampled")
+ *             .conditions(NgwafWorkspaceRuleConditionArgs.builder()
+ *                 .field("ip")
+ *                 .operator("not_in_list")
+ *                 .value(exampleNgwafWorkspaceList.name().applyValue(_name -> String.format("site.%s", _name)))
+ *                 .build())
+ *             .actions(NgwafWorkspaceRuleActionArgs.builder()
+ *                 .type("block")
+ *                 .build())
+ *             .build(), CustomResourceOptions.builder()
+ *                 .dependsOn(exampleNgwafWorkspaceList)
+ *                 .build());
  * 
  *     }
  * }
