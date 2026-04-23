@@ -34,7 +34,7 @@ public final class NgwafWorkspaceRuleRateLimit {
      */
     private String signal;
     /**
-     * @return Rate limit threshold. Minimum 1 and maximum 10,000.
+     * @return Rate limit threshold. Minimum 1 and maximum 100,000.
      * 
      */
     private Integer threshold;
@@ -69,7 +69,7 @@ public final class NgwafWorkspaceRuleRateLimit {
         return this.signal;
     }
     /**
-     * @return Rate limit threshold. Minimum 1 and maximum 10,000.
+     * @return Rate limit threshold. Minimum 1 and maximum 100,000.
      * 
      */
     public Integer threshold() {

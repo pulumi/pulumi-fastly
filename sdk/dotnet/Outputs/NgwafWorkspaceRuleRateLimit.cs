@@ -30,7 +30,7 @@ namespace Pulumi.Fastly.Outputs
         /// </summary>
         public readonly string Signal;
         /// <summary>
-        /// Rate limit threshold. Minimum 1 and maximum 10,000.
+        /// Rate limit threshold. Minimum 1 and maximum 100,000.
         /// </summary>
         public readonly int Threshold;
 

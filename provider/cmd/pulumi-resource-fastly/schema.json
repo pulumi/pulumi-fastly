@@ -661,7 +661,7 @@
                 },
                 "threshold": {
                     "type": "integer",
-                    "description": "Rate limit threshold. Minimum 1 and maximum 10,000.\n"
+                    "description": "Rate limit threshold. Minimum 1 and maximum 100,000.\n"
                 }
             },
             "type": "object",

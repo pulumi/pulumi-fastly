@@ -966,7 +966,7 @@ export interface NgwafWorkspaceRuleRateLimit {
      */
     signal: string;
     /**
-     * Rate limit threshold. Minimum 1 and maximum 10,000.
+     * Rate limit threshold. Minimum 1 and maximum 100,000.
      */
     threshold: number;
 }
