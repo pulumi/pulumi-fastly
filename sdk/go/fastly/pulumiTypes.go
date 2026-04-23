@@ -2864,7 +2864,7 @@ type NgwafWorkspaceRuleRateLimit struct {
 	Interval int `pulumi:"interval"`
 	// Reference ID of the custom signal this rule uses to count requests.
 	Signal string `pulumi:"signal"`
-	// Rate limit threshold. Minimum 1 and maximum 10,000.
+	// Rate limit threshold. Minimum 1 and maximum 100,000.
 	Threshold int `pulumi:"threshold"`
 }
 
@@ -2888,7 +2888,7 @@ type NgwafWorkspaceRuleRateLimitArgs struct {
 	Interval pulumi.IntInput `pulumi:"interval"`
 	// Reference ID of the custom signal this rule uses to count requests.
 	Signal pulumi.StringInput `pulumi:"signal"`
-	// Rate limit threshold. Minimum 1 and maximum 10,000.
+	// Rate limit threshold. Minimum 1 and maximum 100,000.
 	Threshold pulumi.IntInput `pulumi:"threshold"`
 }
 
@@ -2991,7 +2991,7 @@ func (o NgwafWorkspaceRuleRateLimitOutput) Signal() pulumi.StringOutput {
 	return o.ApplyT(func(v NgwafWorkspaceRuleRateLimit) string { return v.Signal }).(pulumi.StringOutput)
 }
 
-// Rate limit threshold. Minimum 1 and maximum 10,000.
+// Rate limit threshold. Minimum 1 and maximum 100,000.
 func (o NgwafWorkspaceRuleRateLimitOutput) Threshold() pulumi.IntOutput {
 	return o.ApplyT(func(v NgwafWorkspaceRuleRateLimit) int { return v.Threshold }).(pulumi.IntOutput)
 }
@@ -3060,7 +3060,7 @@ func (o NgwafWorkspaceRuleRateLimitPtrOutput) Signal() pulumi.StringPtrOutput {
 	}).(pulumi.StringPtrOutput)
 }
 
-// Rate limit threshold. Minimum 1 and maximum 10,000.
+// Rate limit threshold. Minimum 1 and maximum 100,000.
 func (o NgwafWorkspaceRuleRateLimitPtrOutput) Threshold() pulumi.IntPtrOutput {
 	return o.ApplyT(func(v *NgwafWorkspaceRuleRateLimit) *int {
 		if v == nil {

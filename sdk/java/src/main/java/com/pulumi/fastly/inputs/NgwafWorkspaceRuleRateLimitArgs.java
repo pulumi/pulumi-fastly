@@ -78,14 +78,14 @@ public final class NgwafWorkspaceRuleRateLimitArgs extends com.pulumi.resources.
     }
 
     /**
-     * Rate limit threshold. Minimum 1 and maximum 10,000.
+     * Rate limit threshold. Minimum 1 and maximum 100,000.
      * 
      */
     @Import(name="threshold", required=true)
     private Output<Integer> threshold;
 
     /**
-     * @return Rate limit threshold. Minimum 1 and maximum 10,000.
+     * @return Rate limit threshold. Minimum 1 and maximum 100,000.
      * 
      */
     public Output<Integer> threshold() {
@@ -215,7 +215,7 @@ public final class NgwafWorkspaceRuleRateLimitArgs extends com.pulumi.resources.
         }
 
         /**
-         * @param threshold Rate limit threshold. Minimum 1 and maximum 10,000.
+         * @param threshold Rate limit threshold. Minimum 1 and maximum 100,000.
          * 
          * @return builder
          * 
@@ -226,7 +226,7 @@ public final class NgwafWorkspaceRuleRateLimitArgs extends com.pulumi.resources.
         }
 
         /**
-         * @param threshold Rate limit threshold. Minimum 1 and maximum 10,000.
+         * @param threshold Rate limit threshold. Minimum 1 and maximum 100,000.
          * 
          * @return builder
          * 

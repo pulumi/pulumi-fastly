@@ -1988,7 +1988,7 @@ class NgwafWorkspaceRuleRateLimitArgsDict(TypedDict):
     """
     threshold: pulumi.Input[_builtins.int]
     """
-    Rate limit threshold. Minimum 1 and maximum 10,000.
+    Rate limit threshold. Minimum 1 and maximum 100,000.
     """
 
 @pulumi.input_type
@@ -2004,7 +2004,7 @@ class NgwafWorkspaceRuleRateLimitArgs:
         :param pulumi.Input[_builtins.int] duration: Duration in seconds for the rate limit.
         :param pulumi.Input[_builtins.int] interval: Time interval for the rate limit in seconds. Accepted values are 60, 600, and 3600.
         :param pulumi.Input[_builtins.str] signal: Reference ID of the custom signal this rule uses to count requests.
-        :param pulumi.Input[_builtins.int] threshold: Rate limit threshold. Minimum 1 and maximum 10,000.
+        :param pulumi.Input[_builtins.int] threshold: Rate limit threshold. Minimum 1 and maximum 100,000.
         """
         pulumi.set(__self__, "client_identifiers", client_identifiers)
         pulumi.set(__self__, "duration", duration)
@@ -2064,7 +2064,7 @@ class NgwafWorkspaceRuleRateLimitArgs:
     @pulumi.getter
     def threshold(self) -> pulumi.Input[_builtins.int]:
         """
-        Rate limit threshold. Minimum 1 and maximum 10,000.
+        Rate limit threshold. Minimum 1 and maximum 100,000.
         """
         return pulumi.get(self, "threshold")
 

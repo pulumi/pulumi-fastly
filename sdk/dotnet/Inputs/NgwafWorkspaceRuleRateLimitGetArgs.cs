@@ -43,7 +43,7 @@ namespace Pulumi.Fastly.Inputs
         public Input<string> Signal { get; set; } = null!;
 
         /// <summary>
-        /// Rate limit threshold. Minimum 1 and maximum 10,000.
+        /// Rate limit threshold. Minimum 1 and maximum 100,000.
         /// </summary>
         [Input("threshold", required: true)]
         public Input<int> Threshold { get; set; } = null!;
