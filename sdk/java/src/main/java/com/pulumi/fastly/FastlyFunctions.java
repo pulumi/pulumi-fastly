@@ -141,8 +141,8 @@ public final class FastlyFunctions {
      * import com.pulumi.fastly.inputs.ServiceVclBackendArgs;
      * import com.pulumi.fastly.FastlyFunctions;
      * import com.pulumi.fastly.inputs.GetApiSecurityDiscoveredOperationsArgs;
-     * import java.util.List;
      * import java.util.ArrayList;
+     * import java.util.Arrays;
      * import java.util.Map;
      * import java.io.File;
      * import java.nio.file.Files;
@@ -202,8 +202,8 @@ public final class FastlyFunctions {
      * import com.pulumi.fastly.inputs.ServiceVclBackendArgs;
      * import com.pulumi.fastly.FastlyFunctions;
      * import com.pulumi.fastly.inputs.GetApiSecurityDiscoveredOperationsArgs;
-     * import java.util.List;
      * import java.util.ArrayList;
+     * import java.util.Arrays;
      * import java.util.Map;
      * import java.io.File;
      * import java.nio.file.Files;
@@ -263,8 +263,8 @@ public final class FastlyFunctions {
      * import com.pulumi.fastly.inputs.ServiceVclBackendArgs;
      * import com.pulumi.fastly.FastlyFunctions;
      * import com.pulumi.fastly.inputs.GetApiSecurityDiscoveredOperationsArgs;
-     * import java.util.List;
      * import java.util.ArrayList;
+     * import java.util.Arrays;
      * import java.util.Map;
      * import java.io.File;
      * import java.nio.file.Files;
@@ -324,8 +324,8 @@ public final class FastlyFunctions {
      * import com.pulumi.fastly.inputs.ServiceVclBackendArgs;
      * import com.pulumi.fastly.FastlyFunctions;
      * import com.pulumi.fastly.inputs.GetApiSecurityDiscoveredOperationsArgs;
-     * import java.util.List;
      * import java.util.ArrayList;
+     * import java.util.Arrays;
      * import java.util.Map;
      * import java.io.File;
      * import java.nio.file.Files;
@@ -385,8 +385,8 @@ public final class FastlyFunctions {
      * import com.pulumi.fastly.inputs.ServiceVclBackendArgs;
      * import com.pulumi.fastly.FastlyFunctions;
      * import com.pulumi.fastly.inputs.GetApiSecurityDiscoveredOperationsArgs;
-     * import java.util.List;
      * import java.util.ArrayList;
+     * import java.util.Arrays;
      * import java.util.Map;
      * import java.io.File;
      * import java.nio.file.Files;
@@ -446,8 +446,8 @@ public final class FastlyFunctions {
      * import com.pulumi.fastly.ApiSecurityOperationTagArgs;
      * import com.pulumi.fastly.FastlyFunctions;
      * import com.pulumi.fastly.inputs.GetApiSecurityOperationTagsArgs;
-     * import java.util.List;
      * import java.util.ArrayList;
+     * import java.util.Arrays;
      * import java.util.Map;
      * import java.io.File;
      * import java.nio.file.Files;
@@ -509,8 +509,8 @@ public final class FastlyFunctions {
      * import com.pulumi.fastly.ApiSecurityOperationTagArgs;
      * import com.pulumi.fastly.FastlyFunctions;
      * import com.pulumi.fastly.inputs.GetApiSecurityOperationTagsArgs;
-     * import java.util.List;
      * import java.util.ArrayList;
+     * import java.util.Arrays;
      * import java.util.Map;
      * import java.io.File;
      * import java.nio.file.Files;
@@ -572,8 +572,8 @@ public final class FastlyFunctions {
      * import com.pulumi.fastly.ApiSecurityOperationTagArgs;
      * import com.pulumi.fastly.FastlyFunctions;
      * import com.pulumi.fastly.inputs.GetApiSecurityOperationTagsArgs;
-     * import java.util.List;
      * import java.util.ArrayList;
+     * import java.util.Arrays;
      * import java.util.Map;
      * import java.io.File;
      * import java.nio.file.Files;
@@ -635,8 +635,8 @@ public final class FastlyFunctions {
      * import com.pulumi.fastly.ApiSecurityOperationTagArgs;
      * import com.pulumi.fastly.FastlyFunctions;
      * import com.pulumi.fastly.inputs.GetApiSecurityOperationTagsArgs;
-     * import java.util.List;
      * import java.util.ArrayList;
+     * import java.util.Arrays;
      * import java.util.Map;
      * import java.io.File;
      * import java.nio.file.Files;
@@ -698,8 +698,8 @@ public final class FastlyFunctions {
      * import com.pulumi.fastly.ApiSecurityOperationTagArgs;
      * import com.pulumi.fastly.FastlyFunctions;
      * import com.pulumi.fastly.inputs.GetApiSecurityOperationTagsArgs;
-     * import java.util.List;
      * import java.util.ArrayList;
+     * import java.util.Arrays;
      * import java.util.Map;
      * import java.io.File;
      * import java.nio.file.Files;
@@ -761,8 +761,8 @@ public final class FastlyFunctions {
      * import com.pulumi.fastly.ApiSecurityOperationArgs;
      * import com.pulumi.fastly.FastlyFunctions;
      * import com.pulumi.fastly.inputs.GetApiSecurityOperationsArgs;
-     * import java.util.List;
      * import java.util.ArrayList;
+     * import java.util.Arrays;
      * import java.util.Map;
      * import java.io.File;
      * import java.nio.file.Files;
@@ -829,8 +829,8 @@ public final class FastlyFunctions {
      * import com.pulumi.fastly.ApiSecurityOperationArgs;
      * import com.pulumi.fastly.FastlyFunctions;
      * import com.pulumi.fastly.inputs.GetApiSecurityOperationsArgs;
-     * import java.util.List;
      * import java.util.ArrayList;
+     * import java.util.Arrays;
      * import java.util.Map;
      * import java.io.File;
      * import java.nio.file.Files;
@@ -897,8 +897,8 @@ public final class FastlyFunctions {
      * import com.pulumi.fastly.ApiSecurityOperationArgs;
      * import com.pulumi.fastly.FastlyFunctions;
      * import com.pulumi.fastly.inputs.GetApiSecurityOperationsArgs;
-     * import java.util.List;
      * import java.util.ArrayList;
+     * import java.util.Arrays;
      * import java.util.Map;
      * import java.io.File;
      * import java.nio.file.Files;
@@ -965,8 +965,8 @@ public final class FastlyFunctions {
      * import com.pulumi.fastly.ApiSecurityOperationArgs;
      * import com.pulumi.fastly.FastlyFunctions;
      * import com.pulumi.fastly.inputs.GetApiSecurityOperationsArgs;
-     * import java.util.List;
      * import java.util.ArrayList;
+     * import java.util.Arrays;
      * import java.util.Map;
      * import java.io.File;
      * import java.nio.file.Files;
@@ -1033,8 +1033,8 @@ public final class FastlyFunctions {
      * import com.pulumi.fastly.ApiSecurityOperationArgs;
      * import com.pulumi.fastly.FastlyFunctions;
      * import com.pulumi.fastly.inputs.GetApiSecurityOperationsArgs;
-     * import java.util.List;
      * import java.util.ArrayList;
+     * import java.util.Arrays;
      * import java.util.Map;
      * import java.io.File;
      * import java.nio.file.Files;
@@ -1219,8 +1219,8 @@ public final class FastlyFunctions {
      * import com.pulumi.fastly.inputs.ServiceVclDictionaryArgs;
      * import com.pulumi.fastly.FastlyFunctions;
      * import com.pulumi.fastly.inputs.GetDictionariesArgs;
-     * import java.util.List;
      * import java.util.ArrayList;
+     * import java.util.Arrays;
      * import java.util.Map;
      * import java.io.File;
      * import java.nio.file.Files;
@@ -1285,8 +1285,8 @@ public final class FastlyFunctions {
      * import com.pulumi.fastly.inputs.ServiceVclDictionaryArgs;
      * import com.pulumi.fastly.FastlyFunctions;
      * import com.pulumi.fastly.inputs.GetDictionariesArgs;
-     * import java.util.List;
      * import java.util.ArrayList;
+     * import java.util.Arrays;
      * import java.util.Map;
      * import java.io.File;
      * import java.nio.file.Files;
@@ -1351,8 +1351,8 @@ public final class FastlyFunctions {
      * import com.pulumi.fastly.inputs.ServiceVclDictionaryArgs;
      * import com.pulumi.fastly.FastlyFunctions;
      * import com.pulumi.fastly.inputs.GetDictionariesArgs;
-     * import java.util.List;
      * import java.util.ArrayList;
+     * import java.util.Arrays;
      * import java.util.Map;
      * import java.io.File;
      * import java.nio.file.Files;
@@ -1417,8 +1417,8 @@ public final class FastlyFunctions {
      * import com.pulumi.fastly.inputs.ServiceVclDictionaryArgs;
      * import com.pulumi.fastly.FastlyFunctions;
      * import com.pulumi.fastly.inputs.GetDictionariesArgs;
-     * import java.util.List;
      * import java.util.ArrayList;
+     * import java.util.Arrays;
      * import java.util.Map;
      * import java.io.File;
      * import java.nio.file.Files;
@@ -1483,8 +1483,8 @@ public final class FastlyFunctions {
      * import com.pulumi.fastly.inputs.ServiceVclDictionaryArgs;
      * import com.pulumi.fastly.FastlyFunctions;
      * import com.pulumi.fastly.inputs.GetDictionariesArgs;
-     * import java.util.List;
      * import java.util.ArrayList;
+     * import java.util.Arrays;
      * import java.util.Map;
      * import java.io.File;
      * import java.nio.file.Files;
@@ -1545,8 +1545,8 @@ public final class FastlyFunctions {
      * import com.pulumi.core.Output;
      * import com.pulumi.fastly.FastlyFunctions;
      * import com.pulumi.fastly.inputs.GetDomainsArgs;
-     * import java.util.List;
      * import java.util.ArrayList;
+     * import java.util.Arrays;
      * import java.util.Map;
      * import java.io.File;
      * import java.nio.file.Files;
@@ -1588,8 +1588,8 @@ public final class FastlyFunctions {
      * import com.pulumi.core.Output;
      * import com.pulumi.fastly.FastlyFunctions;
      * import com.pulumi.fastly.inputs.GetDomainsArgs;
-     * import java.util.List;
      * import java.util.ArrayList;
+     * import java.util.Arrays;
      * import java.util.Map;
      * import java.io.File;
      * import java.nio.file.Files;
@@ -1631,8 +1631,8 @@ public final class FastlyFunctions {
      * import com.pulumi.core.Output;
      * import com.pulumi.fastly.FastlyFunctions;
      * import com.pulumi.fastly.inputs.GetDomainsArgs;
-     * import java.util.List;
      * import java.util.ArrayList;
+     * import java.util.Arrays;
      * import java.util.Map;
      * import java.io.File;
      * import java.nio.file.Files;
@@ -1674,8 +1674,8 @@ public final class FastlyFunctions {
      * import com.pulumi.core.Output;
      * import com.pulumi.fastly.FastlyFunctions;
      * import com.pulumi.fastly.inputs.GetDomainsArgs;
-     * import java.util.List;
      * import java.util.ArrayList;
+     * import java.util.Arrays;
      * import java.util.Map;
      * import java.io.File;
      * import java.nio.file.Files;
@@ -1717,8 +1717,8 @@ public final class FastlyFunctions {
      * import com.pulumi.core.Output;
      * import com.pulumi.fastly.FastlyFunctions;
      * import com.pulumi.fastly.inputs.GetDomainsArgs;
-     * import java.util.List;
      * import java.util.ArrayList;
+     * import java.util.Arrays;
      * import java.util.Map;
      * import java.io.File;
      * import java.nio.file.Files;
@@ -1760,8 +1760,8 @@ public final class FastlyFunctions {
      * import com.pulumi.core.Output;
      * import com.pulumi.fastly.FastlyFunctions;
      * import com.pulumi.fastly.inputs.GetDomainsArgs;
-     * import java.util.List;
      * import java.util.ArrayList;
+     * import java.util.Arrays;
      * import java.util.Map;
      * import java.io.File;
      * import java.nio.file.Files;
@@ -1803,8 +1803,8 @@ public final class FastlyFunctions {
      * import com.pulumi.core.Output;
      * import com.pulumi.fastly.FastlyFunctions;
      * import com.pulumi.fastly.inputs.GetDomainsArgs;
-     * import java.util.List;
      * import java.util.ArrayList;
+     * import java.util.Arrays;
      * import java.util.Map;
      * import java.io.File;
      * import java.nio.file.Files;
@@ -1868,8 +1868,8 @@ public final class FastlyFunctions {
      * import com.pulumi.fastly.FastlyFunctions;
      * import com.pulumi.aws.SecurityGroup;
      * import com.pulumi.aws.SecurityGroupArgs;
-     * import java.util.List;
      * import java.util.ArrayList;
+     * import java.util.Arrays;
      * import java.util.Map;
      * import java.io.File;
      * import java.nio.file.Files;
@@ -1885,7 +1885,7 @@ public final class FastlyFunctions {
      * 
      *         var fromFastly = new SecurityGroup("fromFastly", SecurityGroupArgs.builder()
      *             .name("from_fastly")
-     *             .ingress(List.of(Map.ofEntries(
+     *             .ingress(Arrays.asList(Map.ofEntries(
      *                 Map.entry("fromPort", "443"),
      *                 Map.entry("toPort", "443"),
      *                 Map.entry("protocol", "tcp"),
@@ -1920,8 +1920,8 @@ public final class FastlyFunctions {
      * import com.pulumi.fastly.FastlyFunctions;
      * import com.pulumi.aws.SecurityGroup;
      * import com.pulumi.aws.SecurityGroupArgs;
-     * import java.util.List;
      * import java.util.ArrayList;
+     * import java.util.Arrays;
      * import java.util.Map;
      * import java.io.File;
      * import java.nio.file.Files;
@@ -1937,7 +1937,7 @@ public final class FastlyFunctions {
      * 
      *         var fromFastly = new SecurityGroup("fromFastly", SecurityGroupArgs.builder()
      *             .name("from_fastly")
-     *             .ingress(List.of(Map.ofEntries(
+     *             .ingress(Arrays.asList(Map.ofEntries(
      *                 Map.entry("fromPort", "443"),
      *                 Map.entry("toPort", "443"),
      *                 Map.entry("protocol", "tcp"),
@@ -1972,8 +1972,8 @@ public final class FastlyFunctions {
      * import com.pulumi.fastly.FastlyFunctions;
      * import com.pulumi.aws.SecurityGroup;
      * import com.pulumi.aws.SecurityGroupArgs;
-     * import java.util.List;
      * import java.util.ArrayList;
+     * import java.util.Arrays;
      * import java.util.Map;
      * import java.io.File;
      * import java.nio.file.Files;
@@ -1989,7 +1989,7 @@ public final class FastlyFunctions {
      * 
      *         var fromFastly = new SecurityGroup("fromFastly", SecurityGroupArgs.builder()
      *             .name("from_fastly")
-     *             .ingress(List.of(Map.ofEntries(
+     *             .ingress(Arrays.asList(Map.ofEntries(
      *                 Map.entry("fromPort", "443"),
      *                 Map.entry("toPort", "443"),
      *                 Map.entry("protocol", "tcp"),
@@ -2024,8 +2024,8 @@ public final class FastlyFunctions {
      * import com.pulumi.fastly.FastlyFunctions;
      * import com.pulumi.aws.SecurityGroup;
      * import com.pulumi.aws.SecurityGroupArgs;
-     * import java.util.List;
      * import java.util.ArrayList;
+     * import java.util.Arrays;
      * import java.util.Map;
      * import java.io.File;
      * import java.nio.file.Files;
@@ -2041,7 +2041,7 @@ public final class FastlyFunctions {
      * 
      *         var fromFastly = new SecurityGroup("fromFastly", SecurityGroupArgs.builder()
      *             .name("from_fastly")
-     *             .ingress(List.of(Map.ofEntries(
+     *             .ingress(Arrays.asList(Map.ofEntries(
      *                 Map.entry("fromPort", "443"),
      *                 Map.entry("toPort", "443"),
      *                 Map.entry("protocol", "tcp"),
@@ -2076,8 +2076,8 @@ public final class FastlyFunctions {
      * import com.pulumi.fastly.FastlyFunctions;
      * import com.pulumi.aws.SecurityGroup;
      * import com.pulumi.aws.SecurityGroupArgs;
-     * import java.util.List;
      * import java.util.ArrayList;
+     * import java.util.Arrays;
      * import java.util.Map;
      * import java.io.File;
      * import java.nio.file.Files;
@@ -2093,7 +2093,7 @@ public final class FastlyFunctions {
      * 
      *         var fromFastly = new SecurityGroup("fromFastly", SecurityGroupArgs.builder()
      *             .name("from_fastly")
-     *             .ingress(List.of(Map.ofEntries(
+     *             .ingress(Arrays.asList(Map.ofEntries(
      *                 Map.entry("fromPort", "443"),
      *                 Map.entry("toPort", "443"),
      *                 Map.entry("protocol", "tcp"),
@@ -2128,8 +2128,8 @@ public final class FastlyFunctions {
      * import com.pulumi.fastly.FastlyFunctions;
      * import com.pulumi.aws.SecurityGroup;
      * import com.pulumi.aws.SecurityGroupArgs;
-     * import java.util.List;
      * import java.util.ArrayList;
+     * import java.util.Arrays;
      * import java.util.Map;
      * import java.io.File;
      * import java.nio.file.Files;
@@ -2145,7 +2145,7 @@ public final class FastlyFunctions {
      * 
      *         var fromFastly = new SecurityGroup("fromFastly", SecurityGroupArgs.builder()
      *             .name("from_fastly")
-     *             .ingress(List.of(Map.ofEntries(
+     *             .ingress(Arrays.asList(Map.ofEntries(
      *                 Map.entry("fromPort", "443"),
      *                 Map.entry("toPort", "443"),
      *                 Map.entry("protocol", "tcp"),
@@ -2180,8 +2180,8 @@ public final class FastlyFunctions {
      * import com.pulumi.fastly.FastlyFunctions;
      * import com.pulumi.aws.SecurityGroup;
      * import com.pulumi.aws.SecurityGroupArgs;
-     * import java.util.List;
      * import java.util.ArrayList;
+     * import java.util.Arrays;
      * import java.util.Map;
      * import java.io.File;
      * import java.nio.file.Files;
@@ -2197,7 +2197,7 @@ public final class FastlyFunctions {
      * 
      *         var fromFastly = new SecurityGroup("fromFastly", SecurityGroupArgs.builder()
      *             .name("from_fastly")
-     *             .ingress(List.of(Map.ofEntries(
+     *             .ingress(Arrays.asList(Map.ofEntries(
      *                 Map.entry("fromPort", "443"),
      *                 Map.entry("toPort", "443"),
      *                 Map.entry("protocol", "tcp"),
@@ -2251,8 +2251,8 @@ public final class FastlyFunctions {
      * import com.pulumi.Pulumi;
      * import com.pulumi.core.Output;
      * import com.pulumi.fastly.FastlyFunctions;
-     * import java.util.List;
      * import java.util.ArrayList;
+     * import java.util.Arrays;
      * import java.util.Map;
      * import java.io.File;
      * import java.nio.file.Files;
@@ -2289,8 +2289,8 @@ public final class FastlyFunctions {
      * import com.pulumi.Pulumi;
      * import com.pulumi.core.Output;
      * import com.pulumi.fastly.FastlyFunctions;
-     * import java.util.List;
      * import java.util.ArrayList;
+     * import java.util.Arrays;
      * import java.util.Map;
      * import java.io.File;
      * import java.nio.file.Files;
@@ -2327,8 +2327,8 @@ public final class FastlyFunctions {
      * import com.pulumi.Pulumi;
      * import com.pulumi.core.Output;
      * import com.pulumi.fastly.FastlyFunctions;
-     * import java.util.List;
      * import java.util.ArrayList;
+     * import java.util.Arrays;
      * import java.util.Map;
      * import java.io.File;
      * import java.nio.file.Files;
@@ -2365,8 +2365,8 @@ public final class FastlyFunctions {
      * import com.pulumi.Pulumi;
      * import com.pulumi.core.Output;
      * import com.pulumi.fastly.FastlyFunctions;
-     * import java.util.List;
      * import java.util.ArrayList;
+     * import java.util.Arrays;
      * import java.util.Map;
      * import java.io.File;
      * import java.nio.file.Files;
@@ -2403,8 +2403,8 @@ public final class FastlyFunctions {
      * import com.pulumi.Pulumi;
      * import com.pulumi.core.Output;
      * import com.pulumi.fastly.FastlyFunctions;
-     * import java.util.List;
      * import java.util.ArrayList;
+     * import java.util.Arrays;
      * import java.util.Map;
      * import java.io.File;
      * import java.nio.file.Files;
@@ -2441,8 +2441,8 @@ public final class FastlyFunctions {
      * import com.pulumi.Pulumi;
      * import com.pulumi.core.Output;
      * import com.pulumi.fastly.FastlyFunctions;
-     * import java.util.List;
      * import java.util.ArrayList;
+     * import java.util.Arrays;
      * import java.util.Map;
      * import java.io.File;
      * import java.nio.file.Files;
@@ -2479,8 +2479,8 @@ public final class FastlyFunctions {
      * import com.pulumi.Pulumi;
      * import com.pulumi.core.Output;
      * import com.pulumi.fastly.FastlyFunctions;
-     * import java.util.List;
      * import java.util.ArrayList;
+     * import java.util.Arrays;
      * import java.util.Map;
      * import java.io.File;
      * import java.nio.file.Files;
@@ -2517,8 +2517,8 @@ public final class FastlyFunctions {
      * import com.pulumi.Pulumi;
      * import com.pulumi.core.Output;
      * import com.pulumi.fastly.FastlyFunctions;
-     * import java.util.List;
      * import java.util.ArrayList;
+     * import java.util.Arrays;
      * import java.util.Map;
      * import java.io.File;
      * import java.nio.file.Files;
@@ -2555,8 +2555,8 @@ public final class FastlyFunctions {
      * import com.pulumi.Pulumi;
      * import com.pulumi.core.Output;
      * import com.pulumi.fastly.FastlyFunctions;
-     * import java.util.List;
      * import java.util.ArrayList;
+     * import java.util.Arrays;
      * import java.util.Map;
      * import java.io.File;
      * import java.nio.file.Files;
@@ -2593,8 +2593,8 @@ public final class FastlyFunctions {
      * import com.pulumi.Pulumi;
      * import com.pulumi.core.Output;
      * import com.pulumi.fastly.FastlyFunctions;
-     * import java.util.List;
      * import java.util.ArrayList;
+     * import java.util.Arrays;
      * import java.util.Map;
      * import java.io.File;
      * import java.nio.file.Files;
@@ -2631,8 +2631,8 @@ public final class FastlyFunctions {
      * import com.pulumi.Pulumi;
      * import com.pulumi.core.Output;
      * import com.pulumi.fastly.FastlyFunctions;
-     * import java.util.List;
      * import java.util.ArrayList;
+     * import java.util.Arrays;
      * import java.util.Map;
      * import java.io.File;
      * import java.nio.file.Files;
@@ -2669,8 +2669,8 @@ public final class FastlyFunctions {
      * import com.pulumi.Pulumi;
      * import com.pulumi.core.Output;
      * import com.pulumi.fastly.FastlyFunctions;
-     * import java.util.List;
      * import java.util.ArrayList;
+     * import java.util.Arrays;
      * import java.util.Map;
      * import java.io.File;
      * import java.nio.file.Files;
@@ -2707,8 +2707,8 @@ public final class FastlyFunctions {
      * import com.pulumi.Pulumi;
      * import com.pulumi.core.Output;
      * import com.pulumi.fastly.FastlyFunctions;
-     * import java.util.List;
      * import java.util.ArrayList;
+     * import java.util.Arrays;
      * import java.util.Map;
      * import java.io.File;
      * import java.nio.file.Files;
@@ -2745,8 +2745,8 @@ public final class FastlyFunctions {
      * import com.pulumi.Pulumi;
      * import com.pulumi.core.Output;
      * import com.pulumi.fastly.FastlyFunctions;
-     * import java.util.List;
      * import java.util.ArrayList;
+     * import java.util.Arrays;
      * import java.util.Map;
      * import java.io.File;
      * import java.nio.file.Files;
@@ -2783,8 +2783,8 @@ public final class FastlyFunctions {
      * import com.pulumi.Pulumi;
      * import com.pulumi.core.Output;
      * import com.pulumi.fastly.FastlyFunctions;
-     * import java.util.List;
      * import java.util.ArrayList;
+     * import java.util.Arrays;
      * import java.util.Map;
      * import java.io.File;
      * import java.nio.file.Files;
@@ -2821,8 +2821,8 @@ public final class FastlyFunctions {
      * import com.pulumi.Pulumi;
      * import com.pulumi.core.Output;
      * import com.pulumi.fastly.FastlyFunctions;
-     * import java.util.List;
      * import java.util.ArrayList;
+     * import java.util.Arrays;
      * import java.util.Map;
      * import java.io.File;
      * import java.nio.file.Files;
@@ -2859,8 +2859,8 @@ public final class FastlyFunctions {
      * import com.pulumi.Pulumi;
      * import com.pulumi.core.Output;
      * import com.pulumi.fastly.FastlyFunctions;
-     * import java.util.List;
      * import java.util.ArrayList;
+     * import java.util.Arrays;
      * import java.util.Map;
      * import java.io.File;
      * import java.nio.file.Files;
@@ -2897,8 +2897,8 @@ public final class FastlyFunctions {
      * import com.pulumi.Pulumi;
      * import com.pulumi.core.Output;
      * import com.pulumi.fastly.FastlyFunctions;
-     * import java.util.List;
      * import java.util.ArrayList;
+     * import java.util.Arrays;
      * import java.util.Map;
      * import java.io.File;
      * import java.nio.file.Files;
@@ -2935,8 +2935,8 @@ public final class FastlyFunctions {
      * import com.pulumi.Pulumi;
      * import com.pulumi.core.Output;
      * import com.pulumi.fastly.FastlyFunctions;
-     * import java.util.List;
      * import java.util.ArrayList;
+     * import java.util.Arrays;
      * import java.util.Map;
      * import java.io.File;
      * import java.nio.file.Files;
@@ -2973,8 +2973,8 @@ public final class FastlyFunctions {
      * import com.pulumi.Pulumi;
      * import com.pulumi.core.Output;
      * import com.pulumi.fastly.FastlyFunctions;
-     * import java.util.List;
      * import java.util.ArrayList;
+     * import java.util.Arrays;
      * import java.util.Map;
      * import java.io.File;
      * import java.nio.file.Files;
@@ -3011,8 +3011,8 @@ public final class FastlyFunctions {
      * import com.pulumi.Pulumi;
      * import com.pulumi.core.Output;
      * import com.pulumi.fastly.FastlyFunctions;
-     * import java.util.List;
      * import java.util.ArrayList;
+     * import java.util.Arrays;
      * import java.util.Map;
      * import java.io.File;
      * import java.nio.file.Files;
@@ -3050,8 +3050,8 @@ public final class FastlyFunctions {
      * import com.pulumi.core.Output;
      * import com.pulumi.fastly.FastlyFunctions;
      * import com.pulumi.fastly.inputs.GetNgwafAlertDatadogIntegrationArgs;
-     * import java.util.List;
      * import java.util.ArrayList;
+     * import java.util.Arrays;
      * import java.util.Map;
      * import java.io.File;
      * import java.nio.file.Files;
@@ -3091,8 +3091,8 @@ public final class FastlyFunctions {
      * import com.pulumi.core.Output;
      * import com.pulumi.fastly.FastlyFunctions;
      * import com.pulumi.fastly.inputs.GetNgwafAlertDatadogIntegrationArgs;
-     * import java.util.List;
      * import java.util.ArrayList;
+     * import java.util.Arrays;
      * import java.util.Map;
      * import java.io.File;
      * import java.nio.file.Files;
@@ -3132,8 +3132,8 @@ public final class FastlyFunctions {
      * import com.pulumi.core.Output;
      * import com.pulumi.fastly.FastlyFunctions;
      * import com.pulumi.fastly.inputs.GetNgwafAlertDatadogIntegrationArgs;
-     * import java.util.List;
      * import java.util.ArrayList;
+     * import java.util.Arrays;
      * import java.util.Map;
      * import java.io.File;
      * import java.nio.file.Files;
@@ -3173,8 +3173,8 @@ public final class FastlyFunctions {
      * import com.pulumi.core.Output;
      * import com.pulumi.fastly.FastlyFunctions;
      * import com.pulumi.fastly.inputs.GetNgwafAlertDatadogIntegrationArgs;
-     * import java.util.List;
      * import java.util.ArrayList;
+     * import java.util.Arrays;
      * import java.util.Map;
      * import java.io.File;
      * import java.nio.file.Files;
@@ -3214,8 +3214,8 @@ public final class FastlyFunctions {
      * import com.pulumi.core.Output;
      * import com.pulumi.fastly.FastlyFunctions;
      * import com.pulumi.fastly.inputs.GetNgwafAlertDatadogIntegrationArgs;
-     * import java.util.List;
      * import java.util.ArrayList;
+     * import java.util.Arrays;
      * import java.util.Map;
      * import java.io.File;
      * import java.nio.file.Files;
@@ -3255,8 +3255,8 @@ public final class FastlyFunctions {
      * import com.pulumi.core.Output;
      * import com.pulumi.fastly.FastlyFunctions;
      * import com.pulumi.fastly.inputs.GetNgwafAlertJiraIntegrationArgs;
-     * import java.util.List;
      * import java.util.ArrayList;
+     * import java.util.Arrays;
      * import java.util.Map;
      * import java.io.File;
      * import java.nio.file.Files;
@@ -3296,8 +3296,8 @@ public final class FastlyFunctions {
      * import com.pulumi.core.Output;
      * import com.pulumi.fastly.FastlyFunctions;
      * import com.pulumi.fastly.inputs.GetNgwafAlertJiraIntegrationArgs;
-     * import java.util.List;
      * import java.util.ArrayList;
+     * import java.util.Arrays;
      * import java.util.Map;
      * import java.io.File;
      * import java.nio.file.Files;
@@ -3337,8 +3337,8 @@ public final class FastlyFunctions {
      * import com.pulumi.core.Output;
      * import com.pulumi.fastly.FastlyFunctions;
      * import com.pulumi.fastly.inputs.GetNgwafAlertJiraIntegrationArgs;
-     * import java.util.List;
      * import java.util.ArrayList;
+     * import java.util.Arrays;
      * import java.util.Map;
      * import java.io.File;
      * import java.nio.file.Files;
@@ -3378,8 +3378,8 @@ public final class FastlyFunctions {
      * import com.pulumi.core.Output;
      * import com.pulumi.fastly.FastlyFunctions;
      * import com.pulumi.fastly.inputs.GetNgwafAlertJiraIntegrationArgs;
-     * import java.util.List;
      * import java.util.ArrayList;
+     * import java.util.Arrays;
      * import java.util.Map;
      * import java.io.File;
      * import java.nio.file.Files;
@@ -3419,8 +3419,8 @@ public final class FastlyFunctions {
      * import com.pulumi.core.Output;
      * import com.pulumi.fastly.FastlyFunctions;
      * import com.pulumi.fastly.inputs.GetNgwafAlertJiraIntegrationArgs;
-     * import java.util.List;
      * import java.util.ArrayList;
+     * import java.util.Arrays;
      * import java.util.Map;
      * import java.io.File;
      * import java.nio.file.Files;
@@ -3460,8 +3460,8 @@ public final class FastlyFunctions {
      * import com.pulumi.core.Output;
      * import com.pulumi.fastly.FastlyFunctions;
      * import com.pulumi.fastly.inputs.GetNgwafAlertJiraIntegrationArgs;
-     * import java.util.List;
      * import java.util.ArrayList;
+     * import java.util.Arrays;
      * import java.util.Map;
      * import java.io.File;
      * import java.nio.file.Files;
@@ -3501,8 +3501,8 @@ public final class FastlyFunctions {
      * import com.pulumi.core.Output;
      * import com.pulumi.fastly.FastlyFunctions;
      * import com.pulumi.fastly.inputs.GetNgwafAlertJiraIntegrationArgs;
-     * import java.util.List;
      * import java.util.ArrayList;
+     * import java.util.Arrays;
      * import java.util.Map;
      * import java.io.File;
      * import java.nio.file.Files;
@@ -3542,8 +3542,8 @@ public final class FastlyFunctions {
      * import com.pulumi.core.Output;
      * import com.pulumi.fastly.FastlyFunctions;
      * import com.pulumi.fastly.inputs.GetNgwafAlertJiraIntegrationArgs;
-     * import java.util.List;
      * import java.util.ArrayList;
+     * import java.util.Arrays;
      * import java.util.Map;
      * import java.io.File;
      * import java.nio.file.Files;
@@ -3583,8 +3583,8 @@ public final class FastlyFunctions {
      * import com.pulumi.core.Output;
      * import com.pulumi.fastly.FastlyFunctions;
      * import com.pulumi.fastly.inputs.GetNgwafAlertJiraIntegrationArgs;
-     * import java.util.List;
      * import java.util.ArrayList;
+     * import java.util.Arrays;
      * import java.util.Map;
      * import java.io.File;
      * import java.nio.file.Files;
@@ -3624,8 +3624,8 @@ public final class FastlyFunctions {
      * import com.pulumi.core.Output;
      * import com.pulumi.fastly.FastlyFunctions;
      * import com.pulumi.fastly.inputs.GetNgwafAlertJiraIntegrationArgs;
-     * import java.util.List;
      * import java.util.ArrayList;
+     * import java.util.Arrays;
      * import java.util.Map;
      * import java.io.File;
      * import java.nio.file.Files;
@@ -3665,8 +3665,8 @@ public final class FastlyFunctions {
      * import com.pulumi.core.Output;
      * import com.pulumi.fastly.FastlyFunctions;
      * import com.pulumi.fastly.inputs.GetNgwafAlertJiraIntegrationArgs;
-     * import java.util.List;
      * import java.util.ArrayList;
+     * import java.util.Arrays;
      * import java.util.Map;
      * import java.io.File;
      * import java.nio.file.Files;
@@ -3706,8 +3706,8 @@ public final class FastlyFunctions {
      * import com.pulumi.core.Output;
      * import com.pulumi.fastly.FastlyFunctions;
      * import com.pulumi.fastly.inputs.GetNgwafAlertJiraIntegrationArgs;
-     * import java.util.List;
      * import java.util.ArrayList;
+     * import java.util.Arrays;
      * import java.util.Map;
      * import java.io.File;
      * import java.nio.file.Files;
@@ -3747,8 +3747,8 @@ public final class FastlyFunctions {
      * import com.pulumi.core.Output;
      * import com.pulumi.fastly.FastlyFunctions;
      * import com.pulumi.fastly.inputs.GetNgwafAlertJiraIntegrationArgs;
-     * import java.util.List;
      * import java.util.ArrayList;
+     * import java.util.Arrays;
      * import java.util.Map;
      * import java.io.File;
      * import java.nio.file.Files;
@@ -3788,8 +3788,8 @@ public final class FastlyFunctions {
      * import com.pulumi.core.Output;
      * import com.pulumi.fastly.FastlyFunctions;
      * import com.pulumi.fastly.inputs.GetNgwafAlertJiraIntegrationArgs;
-     * import java.util.List;
      * import java.util.ArrayList;
+     * import java.util.Arrays;
      * import java.util.Map;
      * import java.io.File;
      * import java.nio.file.Files;
@@ -3829,8 +3829,8 @@ public final class FastlyFunctions {
      * import com.pulumi.core.Output;
      * import com.pulumi.fastly.FastlyFunctions;
      * import com.pulumi.fastly.inputs.GetNgwafAlertJiraIntegrationArgs;
-     * import java.util.List;
      * import java.util.ArrayList;
+     * import java.util.Arrays;
      * import java.util.Map;
      * import java.io.File;
      * import java.nio.file.Files;
@@ -3870,8 +3870,8 @@ public final class FastlyFunctions {
      * import com.pulumi.core.Output;
      * import com.pulumi.fastly.FastlyFunctions;
      * import com.pulumi.fastly.inputs.GetNgwafAlertOpsgenieIntegrationArgs;
-     * import java.util.List;
      * import java.util.ArrayList;
+     * import java.util.Arrays;
      * import java.util.Map;
      * import java.io.File;
      * import java.nio.file.Files;
@@ -3911,8 +3911,8 @@ public final class FastlyFunctions {
      * import com.pulumi.core.Output;
      * import com.pulumi.fastly.FastlyFunctions;
      * import com.pulumi.fastly.inputs.GetNgwafAlertOpsgenieIntegrationArgs;
-     * import java.util.List;
      * import java.util.ArrayList;
+     * import java.util.Arrays;
      * import java.util.Map;
      * import java.io.File;
      * import java.nio.file.Files;
@@ -3952,8 +3952,8 @@ public final class FastlyFunctions {
      * import com.pulumi.core.Output;
      * import com.pulumi.fastly.FastlyFunctions;
      * import com.pulumi.fastly.inputs.GetNgwafAlertOpsgenieIntegrationArgs;
-     * import java.util.List;
      * import java.util.ArrayList;
+     * import java.util.Arrays;
      * import java.util.Map;
      * import java.io.File;
      * import java.nio.file.Files;
@@ -3993,8 +3993,8 @@ public final class FastlyFunctions {
      * import com.pulumi.core.Output;
      * import com.pulumi.fastly.FastlyFunctions;
      * import com.pulumi.fastly.inputs.GetNgwafAlertOpsgenieIntegrationArgs;
-     * import java.util.List;
      * import java.util.ArrayList;
+     * import java.util.Arrays;
      * import java.util.Map;
      * import java.io.File;
      * import java.nio.file.Files;
@@ -4034,8 +4034,8 @@ public final class FastlyFunctions {
      * import com.pulumi.core.Output;
      * import com.pulumi.fastly.FastlyFunctions;
      * import com.pulumi.fastly.inputs.GetNgwafAlertOpsgenieIntegrationArgs;
-     * import java.util.List;
      * import java.util.ArrayList;
+     * import java.util.Arrays;
      * import java.util.Map;
      * import java.io.File;
      * import java.nio.file.Files;
@@ -4075,8 +4075,8 @@ public final class FastlyFunctions {
      * import com.pulumi.core.Output;
      * import com.pulumi.fastly.FastlyFunctions;
      * import com.pulumi.fastly.inputs.GetNgwafAlertPagerdutyIntegrationArgs;
-     * import java.util.List;
      * import java.util.ArrayList;
+     * import java.util.Arrays;
      * import java.util.Map;
      * import java.io.File;
      * import java.nio.file.Files;
@@ -4116,8 +4116,8 @@ public final class FastlyFunctions {
      * import com.pulumi.core.Output;
      * import com.pulumi.fastly.FastlyFunctions;
      * import com.pulumi.fastly.inputs.GetNgwafAlertPagerdutyIntegrationArgs;
-     * import java.util.List;
      * import java.util.ArrayList;
+     * import java.util.Arrays;
      * import java.util.Map;
      * import java.io.File;
      * import java.nio.file.Files;
@@ -4157,8 +4157,8 @@ public final class FastlyFunctions {
      * import com.pulumi.core.Output;
      * import com.pulumi.fastly.FastlyFunctions;
      * import com.pulumi.fastly.inputs.GetNgwafAlertPagerdutyIntegrationArgs;
-     * import java.util.List;
      * import java.util.ArrayList;
+     * import java.util.Arrays;
      * import java.util.Map;
      * import java.io.File;
      * import java.nio.file.Files;
@@ -4198,8 +4198,8 @@ public final class FastlyFunctions {
      * import com.pulumi.core.Output;
      * import com.pulumi.fastly.FastlyFunctions;
      * import com.pulumi.fastly.inputs.GetNgwafAlertPagerdutyIntegrationArgs;
-     * import java.util.List;
      * import java.util.ArrayList;
+     * import java.util.Arrays;
      * import java.util.Map;
      * import java.io.File;
      * import java.nio.file.Files;
@@ -4239,8 +4239,8 @@ public final class FastlyFunctions {
      * import com.pulumi.core.Output;
      * import com.pulumi.fastly.FastlyFunctions;
      * import com.pulumi.fastly.inputs.GetNgwafAlertPagerdutyIntegrationArgs;
-     * import java.util.List;
      * import java.util.ArrayList;
+     * import java.util.Arrays;
      * import java.util.Map;
      * import java.io.File;
      * import java.nio.file.Files;
@@ -4280,8 +4280,8 @@ public final class FastlyFunctions {
      * import com.pulumi.core.Output;
      * import com.pulumi.fastly.FastlyFunctions;
      * import com.pulumi.fastly.inputs.GetNgwafAlertSlackIntegrationArgs;
-     * import java.util.List;
      * import java.util.ArrayList;
+     * import java.util.Arrays;
      * import java.util.Map;
      * import java.io.File;
      * import java.nio.file.Files;
@@ -4321,8 +4321,8 @@ public final class FastlyFunctions {
      * import com.pulumi.core.Output;
      * import com.pulumi.fastly.FastlyFunctions;
      * import com.pulumi.fastly.inputs.GetNgwafAlertSlackIntegrationArgs;
-     * import java.util.List;
      * import java.util.ArrayList;
+     * import java.util.Arrays;
      * import java.util.Map;
      * import java.io.File;
      * import java.nio.file.Files;
@@ -4362,8 +4362,8 @@ public final class FastlyFunctions {
      * import com.pulumi.core.Output;
      * import com.pulumi.fastly.FastlyFunctions;
      * import com.pulumi.fastly.inputs.GetNgwafAlertSlackIntegrationArgs;
-     * import java.util.List;
      * import java.util.ArrayList;
+     * import java.util.Arrays;
      * import java.util.Map;
      * import java.io.File;
      * import java.nio.file.Files;
@@ -4403,8 +4403,8 @@ public final class FastlyFunctions {
      * import com.pulumi.core.Output;
      * import com.pulumi.fastly.FastlyFunctions;
      * import com.pulumi.fastly.inputs.GetNgwafAlertSlackIntegrationArgs;
-     * import java.util.List;
      * import java.util.ArrayList;
+     * import java.util.Arrays;
      * import java.util.Map;
      * import java.io.File;
      * import java.nio.file.Files;
@@ -4444,8 +4444,8 @@ public final class FastlyFunctions {
      * import com.pulumi.core.Output;
      * import com.pulumi.fastly.FastlyFunctions;
      * import com.pulumi.fastly.inputs.GetNgwafAlertSlackIntegrationArgs;
-     * import java.util.List;
      * import java.util.ArrayList;
+     * import java.util.Arrays;
      * import java.util.Map;
      * import java.io.File;
      * import java.nio.file.Files;
@@ -4485,8 +4485,8 @@ public final class FastlyFunctions {
      * import com.pulumi.core.Output;
      * import com.pulumi.fastly.FastlyFunctions;
      * import com.pulumi.fastly.inputs.GetNgwafAlertWebhookIntegrationArgs;
-     * import java.util.List;
      * import java.util.ArrayList;
+     * import java.util.Arrays;
      * import java.util.Map;
      * import java.io.File;
      * import java.nio.file.Files;
@@ -4526,8 +4526,8 @@ public final class FastlyFunctions {
      * import com.pulumi.core.Output;
      * import com.pulumi.fastly.FastlyFunctions;
      * import com.pulumi.fastly.inputs.GetNgwafAlertWebhookIntegrationArgs;
-     * import java.util.List;
      * import java.util.ArrayList;
+     * import java.util.Arrays;
      * import java.util.Map;
      * import java.io.File;
      * import java.nio.file.Files;
@@ -4567,8 +4567,8 @@ public final class FastlyFunctions {
      * import com.pulumi.core.Output;
      * import com.pulumi.fastly.FastlyFunctions;
      * import com.pulumi.fastly.inputs.GetNgwafAlertWebhookIntegrationArgs;
-     * import java.util.List;
      * import java.util.ArrayList;
+     * import java.util.Arrays;
      * import java.util.Map;
      * import java.io.File;
      * import java.nio.file.Files;
@@ -4608,8 +4608,8 @@ public final class FastlyFunctions {
      * import com.pulumi.core.Output;
      * import com.pulumi.fastly.FastlyFunctions;
      * import com.pulumi.fastly.inputs.GetNgwafAlertWebhookIntegrationArgs;
-     * import java.util.List;
      * import java.util.ArrayList;
+     * import java.util.Arrays;
      * import java.util.Map;
      * import java.io.File;
      * import java.nio.file.Files;
@@ -4649,8 +4649,8 @@ public final class FastlyFunctions {
      * import com.pulumi.core.Output;
      * import com.pulumi.fastly.FastlyFunctions;
      * import com.pulumi.fastly.inputs.GetNgwafAlertWebhookIntegrationArgs;
-     * import java.util.List;
      * import java.util.ArrayList;
+     * import java.util.Arrays;
      * import java.util.Map;
      * import java.io.File;
      * import java.nio.file.Files;
@@ -4690,8 +4690,8 @@ public final class FastlyFunctions {
      * import com.pulumi.core.Output;
      * import com.pulumi.fastly.FastlyFunctions;
      * import com.pulumi.fastly.inputs.GetNgwafRedactionsArgs;
-     * import java.util.List;
      * import java.util.ArrayList;
+     * import java.util.Arrays;
      * import java.util.Map;
      * import java.io.File;
      * import java.nio.file.Files;
@@ -4733,8 +4733,8 @@ public final class FastlyFunctions {
      * import com.pulumi.core.Output;
      * import com.pulumi.fastly.FastlyFunctions;
      * import com.pulumi.fastly.inputs.GetNgwafRedactionsArgs;
-     * import java.util.List;
      * import java.util.ArrayList;
+     * import java.util.Arrays;
      * import java.util.Map;
      * import java.io.File;
      * import java.nio.file.Files;
@@ -4776,8 +4776,8 @@ public final class FastlyFunctions {
      * import com.pulumi.core.Output;
      * import com.pulumi.fastly.FastlyFunctions;
      * import com.pulumi.fastly.inputs.GetNgwafRedactionsArgs;
-     * import java.util.List;
      * import java.util.ArrayList;
+     * import java.util.Arrays;
      * import java.util.Map;
      * import java.io.File;
      * import java.nio.file.Files;
@@ -4819,8 +4819,8 @@ public final class FastlyFunctions {
      * import com.pulumi.core.Output;
      * import com.pulumi.fastly.FastlyFunctions;
      * import com.pulumi.fastly.inputs.GetNgwafRedactionsArgs;
-     * import java.util.List;
      * import java.util.ArrayList;
+     * import java.util.Arrays;
      * import java.util.Map;
      * import java.io.File;
      * import java.nio.file.Files;
@@ -4862,8 +4862,8 @@ public final class FastlyFunctions {
      * import com.pulumi.core.Output;
      * import com.pulumi.fastly.FastlyFunctions;
      * import com.pulumi.fastly.inputs.GetNgwafRedactionsArgs;
-     * import java.util.List;
      * import java.util.ArrayList;
+     * import java.util.Arrays;
      * import java.util.Map;
      * import java.io.File;
      * import java.nio.file.Files;
@@ -4920,8 +4920,8 @@ public final class FastlyFunctions {
      * import com.pulumi.core.Output;
      * import com.pulumi.fastly.FastlyFunctions;
      * import com.pulumi.fastly.inputs.GetNgwafVirtualPatchesArgs;
-     * import java.util.List;
      * import java.util.ArrayList;
+     * import java.util.Arrays;
      * import java.util.Map;
      * import java.io.File;
      * import java.nio.file.Files;
@@ -4963,8 +4963,8 @@ public final class FastlyFunctions {
      * import com.pulumi.core.Output;
      * import com.pulumi.fastly.FastlyFunctions;
      * import com.pulumi.fastly.inputs.GetNgwafVirtualPatchesArgs;
-     * import java.util.List;
      * import java.util.ArrayList;
+     * import java.util.Arrays;
      * import java.util.Map;
      * import java.io.File;
      * import java.nio.file.Files;
@@ -5006,8 +5006,8 @@ public final class FastlyFunctions {
      * import com.pulumi.core.Output;
      * import com.pulumi.fastly.FastlyFunctions;
      * import com.pulumi.fastly.inputs.GetNgwafVirtualPatchesArgs;
-     * import java.util.List;
      * import java.util.ArrayList;
+     * import java.util.Arrays;
      * import java.util.Map;
      * import java.io.File;
      * import java.nio.file.Files;
@@ -5049,8 +5049,8 @@ public final class FastlyFunctions {
      * import com.pulumi.core.Output;
      * import com.pulumi.fastly.FastlyFunctions;
      * import com.pulumi.fastly.inputs.GetNgwafVirtualPatchesArgs;
-     * import java.util.List;
      * import java.util.ArrayList;
+     * import java.util.Arrays;
      * import java.util.Map;
      * import java.io.File;
      * import java.nio.file.Files;
@@ -5092,8 +5092,8 @@ public final class FastlyFunctions {
      * import com.pulumi.core.Output;
      * import com.pulumi.fastly.FastlyFunctions;
      * import com.pulumi.fastly.inputs.GetNgwafVirtualPatchesArgs;
-     * import java.util.List;
      * import java.util.ArrayList;
+     * import java.util.Arrays;
      * import java.util.Map;
      * import java.io.File;
      * import java.nio.file.Files;
@@ -5135,8 +5135,8 @@ public final class FastlyFunctions {
      * import com.pulumi.core.Output;
      * import com.pulumi.fastly.FastlyFunctions;
      * import com.pulumi.fastly.inputs.GetNgwafWorkspaceListsArgs;
-     * import java.util.List;
      * import java.util.ArrayList;
+     * import java.util.Arrays;
      * import java.util.Map;
      * import java.io.File;
      * import java.nio.file.Files;
@@ -5176,8 +5176,8 @@ public final class FastlyFunctions {
      * import com.pulumi.core.Output;
      * import com.pulumi.fastly.FastlyFunctions;
      * import com.pulumi.fastly.inputs.GetNgwafWorkspaceListsArgs;
-     * import java.util.List;
      * import java.util.ArrayList;
+     * import java.util.Arrays;
      * import java.util.Map;
      * import java.io.File;
      * import java.nio.file.Files;
@@ -5217,8 +5217,8 @@ public final class FastlyFunctions {
      * import com.pulumi.core.Output;
      * import com.pulumi.fastly.FastlyFunctions;
      * import com.pulumi.fastly.inputs.GetNgwafWorkspaceListsArgs;
-     * import java.util.List;
      * import java.util.ArrayList;
+     * import java.util.Arrays;
      * import java.util.Map;
      * import java.io.File;
      * import java.nio.file.Files;
@@ -5258,8 +5258,8 @@ public final class FastlyFunctions {
      * import com.pulumi.core.Output;
      * import com.pulumi.fastly.FastlyFunctions;
      * import com.pulumi.fastly.inputs.GetNgwafWorkspaceListsArgs;
-     * import java.util.List;
      * import java.util.ArrayList;
+     * import java.util.Arrays;
      * import java.util.Map;
      * import java.io.File;
      * import java.nio.file.Files;
@@ -5299,8 +5299,8 @@ public final class FastlyFunctions {
      * import com.pulumi.core.Output;
      * import com.pulumi.fastly.FastlyFunctions;
      * import com.pulumi.fastly.inputs.GetNgwafWorkspaceListsArgs;
-     * import java.util.List;
      * import java.util.ArrayList;
+     * import java.util.Arrays;
      * import java.util.Map;
      * import java.io.File;
      * import java.nio.file.Files;
@@ -5340,8 +5340,8 @@ public final class FastlyFunctions {
      * import com.pulumi.core.Output;
      * import com.pulumi.fastly.FastlyFunctions;
      * import com.pulumi.fastly.inputs.GetNgwafWorkspaceRulesArgs;
-     * import java.util.List;
      * import java.util.ArrayList;
+     * import java.util.Arrays;
      * import java.util.Map;
      * import java.io.File;
      * import java.nio.file.Files;
@@ -5381,8 +5381,8 @@ public final class FastlyFunctions {
      * import com.pulumi.core.Output;
      * import com.pulumi.fastly.FastlyFunctions;
      * import com.pulumi.fastly.inputs.GetNgwafWorkspaceRulesArgs;
-     * import java.util.List;
      * import java.util.ArrayList;
+     * import java.util.Arrays;
      * import java.util.Map;
      * import java.io.File;
      * import java.nio.file.Files;
@@ -5422,8 +5422,8 @@ public final class FastlyFunctions {
      * import com.pulumi.core.Output;
      * import com.pulumi.fastly.FastlyFunctions;
      * import com.pulumi.fastly.inputs.GetNgwafWorkspaceRulesArgs;
-     * import java.util.List;
      * import java.util.ArrayList;
+     * import java.util.Arrays;
      * import java.util.Map;
      * import java.io.File;
      * import java.nio.file.Files;
@@ -5463,8 +5463,8 @@ public final class FastlyFunctions {
      * import com.pulumi.core.Output;
      * import com.pulumi.fastly.FastlyFunctions;
      * import com.pulumi.fastly.inputs.GetNgwafWorkspaceRulesArgs;
-     * import java.util.List;
      * import java.util.ArrayList;
+     * import java.util.Arrays;
      * import java.util.Map;
      * import java.io.File;
      * import java.nio.file.Files;
@@ -5504,8 +5504,8 @@ public final class FastlyFunctions {
      * import com.pulumi.core.Output;
      * import com.pulumi.fastly.FastlyFunctions;
      * import com.pulumi.fastly.inputs.GetNgwafWorkspaceRulesArgs;
-     * import java.util.List;
      * import java.util.ArrayList;
+     * import java.util.Arrays;
      * import java.util.Map;
      * import java.io.File;
      * import java.nio.file.Files;
@@ -5545,8 +5545,8 @@ public final class FastlyFunctions {
      * import com.pulumi.core.Output;
      * import com.pulumi.fastly.FastlyFunctions;
      * import com.pulumi.fastly.inputs.GetNgwafWorkspaceSignalsArgs;
-     * import java.util.List;
      * import java.util.ArrayList;
+     * import java.util.Arrays;
      * import java.util.Map;
      * import java.io.File;
      * import java.nio.file.Files;
@@ -5586,8 +5586,8 @@ public final class FastlyFunctions {
      * import com.pulumi.core.Output;
      * import com.pulumi.fastly.FastlyFunctions;
      * import com.pulumi.fastly.inputs.GetNgwafWorkspaceSignalsArgs;
-     * import java.util.List;
      * import java.util.ArrayList;
+     * import java.util.Arrays;
      * import java.util.Map;
      * import java.io.File;
      * import java.nio.file.Files;
@@ -5627,8 +5627,8 @@ public final class FastlyFunctions {
      * import com.pulumi.core.Output;
      * import com.pulumi.fastly.FastlyFunctions;
      * import com.pulumi.fastly.inputs.GetNgwafWorkspaceSignalsArgs;
-     * import java.util.List;
      * import java.util.ArrayList;
+     * import java.util.Arrays;
      * import java.util.Map;
      * import java.io.File;
      * import java.nio.file.Files;
@@ -5668,8 +5668,8 @@ public final class FastlyFunctions {
      * import com.pulumi.core.Output;
      * import com.pulumi.fastly.FastlyFunctions;
      * import com.pulumi.fastly.inputs.GetNgwafWorkspaceSignalsArgs;
-     * import java.util.List;
      * import java.util.ArrayList;
+     * import java.util.Arrays;
      * import java.util.Map;
      * import java.io.File;
      * import java.nio.file.Files;
@@ -5709,8 +5709,8 @@ public final class FastlyFunctions {
      * import com.pulumi.core.Output;
      * import com.pulumi.fastly.FastlyFunctions;
      * import com.pulumi.fastly.inputs.GetNgwafWorkspaceSignalsArgs;
-     * import java.util.List;
      * import java.util.ArrayList;
+     * import java.util.Arrays;
      * import java.util.Map;
      * import java.io.File;
      * import java.nio.file.Files;
@@ -5802,8 +5802,8 @@ public final class FastlyFunctions {
      * import com.pulumi.fastly.ServiceCompute;
      * import com.pulumi.fastly.ServiceComputeArgs;
      * import com.pulumi.fastly.inputs.ServiceComputePackageArgs;
-     * import java.util.List;
      * import java.util.ArrayList;
+     * import java.util.Arrays;
      * import java.util.Map;
      * import java.io.File;
      * import java.nio.file.Files;
@@ -5852,8 +5852,8 @@ public final class FastlyFunctions {
      * import com.pulumi.fastly.ServiceCompute;
      * import com.pulumi.fastly.ServiceComputeArgs;
      * import com.pulumi.fastly.inputs.ServiceComputePackageArgs;
-     * import java.util.List;
      * import java.util.ArrayList;
+     * import java.util.Arrays;
      * import java.util.Map;
      * import java.io.File;
      * import java.nio.file.Files;
@@ -5902,8 +5902,8 @@ public final class FastlyFunctions {
      * import com.pulumi.fastly.ServiceCompute;
      * import com.pulumi.fastly.ServiceComputeArgs;
      * import com.pulumi.fastly.inputs.ServiceComputePackageArgs;
-     * import java.util.List;
      * import java.util.ArrayList;
+     * import java.util.Arrays;
      * import java.util.Map;
      * import java.io.File;
      * import java.nio.file.Files;
@@ -5952,8 +5952,8 @@ public final class FastlyFunctions {
      * import com.pulumi.fastly.ServiceCompute;
      * import com.pulumi.fastly.ServiceComputeArgs;
      * import com.pulumi.fastly.inputs.ServiceComputePackageArgs;
-     * import java.util.List;
      * import java.util.ArrayList;
+     * import java.util.Arrays;
      * import java.util.Map;
      * import java.io.File;
      * import java.nio.file.Files;
@@ -6002,8 +6002,8 @@ public final class FastlyFunctions {
      * import com.pulumi.fastly.ServiceCompute;
      * import com.pulumi.fastly.ServiceComputeArgs;
      * import com.pulumi.fastly.inputs.ServiceComputePackageArgs;
-     * import java.util.List;
      * import java.util.ArrayList;
+     * import java.util.Arrays;
      * import java.util.Map;
      * import java.io.File;
      * import java.nio.file.Files;
@@ -6052,8 +6052,8 @@ public final class FastlyFunctions {
      * import com.pulumi.fastly.ServiceCompute;
      * import com.pulumi.fastly.ServiceComputeArgs;
      * import com.pulumi.fastly.inputs.ServiceComputePackageArgs;
-     * import java.util.List;
      * import java.util.ArrayList;
+     * import java.util.Arrays;
      * import java.util.Map;
      * import java.io.File;
      * import java.nio.file.Files;
@@ -6102,8 +6102,8 @@ public final class FastlyFunctions {
      * import com.pulumi.fastly.ServiceCompute;
      * import com.pulumi.fastly.ServiceComputeArgs;
      * import com.pulumi.fastly.inputs.ServiceComputePackageArgs;
-     * import java.util.List;
      * import java.util.ArrayList;
+     * import java.util.Arrays;
      * import java.util.Map;
      * import java.io.File;
      * import java.nio.file.Files;
@@ -6240,8 +6240,8 @@ public final class FastlyFunctions {
      * import com.pulumi.core.Output;
      * import com.pulumi.fastly.FastlyFunctions;
      * import com.pulumi.fastly.inputs.GetTlsActivationArgs;
-     * import java.util.List;
      * import java.util.ArrayList;
+     * import java.util.Arrays;
      * import java.util.Map;
      * import java.io.File;
      * import java.nio.file.Files;
@@ -6286,8 +6286,8 @@ public final class FastlyFunctions {
      * import com.pulumi.core.Output;
      * import com.pulumi.fastly.FastlyFunctions;
      * import com.pulumi.fastly.inputs.GetTlsActivationArgs;
-     * import java.util.List;
      * import java.util.ArrayList;
+     * import java.util.Arrays;
      * import java.util.Map;
      * import java.io.File;
      * import java.nio.file.Files;
@@ -6332,8 +6332,8 @@ public final class FastlyFunctions {
      * import com.pulumi.core.Output;
      * import com.pulumi.fastly.FastlyFunctions;
      * import com.pulumi.fastly.inputs.GetTlsActivationArgs;
-     * import java.util.List;
      * import java.util.ArrayList;
+     * import java.util.Arrays;
      * import java.util.Map;
      * import java.io.File;
      * import java.nio.file.Files;
@@ -6378,8 +6378,8 @@ public final class FastlyFunctions {
      * import com.pulumi.core.Output;
      * import com.pulumi.fastly.FastlyFunctions;
      * import com.pulumi.fastly.inputs.GetTlsActivationArgs;
-     * import java.util.List;
      * import java.util.ArrayList;
+     * import java.util.Arrays;
      * import java.util.Map;
      * import java.io.File;
      * import java.nio.file.Files;
@@ -6424,8 +6424,8 @@ public final class FastlyFunctions {
      * import com.pulumi.core.Output;
      * import com.pulumi.fastly.FastlyFunctions;
      * import com.pulumi.fastly.inputs.GetTlsActivationArgs;
-     * import java.util.List;
      * import java.util.ArrayList;
+     * import java.util.Arrays;
      * import java.util.Map;
      * import java.io.File;
      * import java.nio.file.Files;
@@ -6470,8 +6470,8 @@ public final class FastlyFunctions {
      * import com.pulumi.core.Output;
      * import com.pulumi.fastly.FastlyFunctions;
      * import com.pulumi.fastly.inputs.GetTlsActivationArgs;
-     * import java.util.List;
      * import java.util.ArrayList;
+     * import java.util.Arrays;
      * import java.util.Map;
      * import java.io.File;
      * import java.nio.file.Files;
@@ -6516,8 +6516,8 @@ public final class FastlyFunctions {
      * import com.pulumi.core.Output;
      * import com.pulumi.fastly.FastlyFunctions;
      * import com.pulumi.fastly.inputs.GetTlsActivationArgs;
-     * import java.util.List;
      * import java.util.ArrayList;
+     * import java.util.Arrays;
      * import java.util.Map;
      * import java.io.File;
      * import java.nio.file.Files;
@@ -6625,8 +6625,8 @@ public final class FastlyFunctions {
      * import com.pulumi.core.Output;
      * import com.pulumi.fastly.FastlyFunctions;
      * import com.pulumi.fastly.inputs.GetTlsCertificateArgs;
-     * import java.util.List;
      * import java.util.ArrayList;
+     * import java.util.Arrays;
      * import java.util.Map;
      * import java.io.File;
      * import java.nio.file.Files;
@@ -6671,8 +6671,8 @@ public final class FastlyFunctions {
      * import com.pulumi.core.Output;
      * import com.pulumi.fastly.FastlyFunctions;
      * import com.pulumi.fastly.inputs.GetTlsCertificateArgs;
-     * import java.util.List;
      * import java.util.ArrayList;
+     * import java.util.Arrays;
      * import java.util.Map;
      * import java.io.File;
      * import java.nio.file.Files;
@@ -6717,8 +6717,8 @@ public final class FastlyFunctions {
      * import com.pulumi.core.Output;
      * import com.pulumi.fastly.FastlyFunctions;
      * import com.pulumi.fastly.inputs.GetTlsCertificateArgs;
-     * import java.util.List;
      * import java.util.ArrayList;
+     * import java.util.Arrays;
      * import java.util.Map;
      * import java.io.File;
      * import java.nio.file.Files;
@@ -6763,8 +6763,8 @@ public final class FastlyFunctions {
      * import com.pulumi.core.Output;
      * import com.pulumi.fastly.FastlyFunctions;
      * import com.pulumi.fastly.inputs.GetTlsCertificateArgs;
-     * import java.util.List;
      * import java.util.ArrayList;
+     * import java.util.Arrays;
      * import java.util.Map;
      * import java.io.File;
      * import java.nio.file.Files;
@@ -6809,8 +6809,8 @@ public final class FastlyFunctions {
      * import com.pulumi.core.Output;
      * import com.pulumi.fastly.FastlyFunctions;
      * import com.pulumi.fastly.inputs.GetTlsCertificateArgs;
-     * import java.util.List;
      * import java.util.ArrayList;
+     * import java.util.Arrays;
      * import java.util.Map;
      * import java.io.File;
      * import java.nio.file.Files;
@@ -6855,8 +6855,8 @@ public final class FastlyFunctions {
      * import com.pulumi.core.Output;
      * import com.pulumi.fastly.FastlyFunctions;
      * import com.pulumi.fastly.inputs.GetTlsCertificateArgs;
-     * import java.util.List;
      * import java.util.ArrayList;
+     * import java.util.Arrays;
      * import java.util.Map;
      * import java.io.File;
      * import java.nio.file.Files;
@@ -6901,8 +6901,8 @@ public final class FastlyFunctions {
      * import com.pulumi.core.Output;
      * import com.pulumi.fastly.FastlyFunctions;
      * import com.pulumi.fastly.inputs.GetTlsCertificateArgs;
-     * import java.util.List;
      * import java.util.ArrayList;
+     * import java.util.Arrays;
      * import java.util.Map;
      * import java.io.File;
      * import java.nio.file.Files;
@@ -6942,8 +6942,8 @@ public final class FastlyFunctions {
      * import com.pulumi.fastly.FastlyFunctions;
      * import com.pulumi.fastly.TlsActivation;
      * import com.pulumi.fastly.TlsActivationArgs;
-     * import java.util.List;
      * import java.util.ArrayList;
+     * import java.util.Arrays;
      * import java.util.Map;
      * import java.io.File;
      * import java.nio.file.Files;
@@ -6985,8 +6985,8 @@ public final class FastlyFunctions {
      * import com.pulumi.fastly.FastlyFunctions;
      * import com.pulumi.fastly.TlsActivation;
      * import com.pulumi.fastly.TlsActivationArgs;
-     * import java.util.List;
      * import java.util.ArrayList;
+     * import java.util.Arrays;
      * import java.util.Map;
      * import java.io.File;
      * import java.nio.file.Files;
@@ -7028,8 +7028,8 @@ public final class FastlyFunctions {
      * import com.pulumi.fastly.FastlyFunctions;
      * import com.pulumi.fastly.TlsActivation;
      * import com.pulumi.fastly.TlsActivationArgs;
-     * import java.util.List;
      * import java.util.ArrayList;
+     * import java.util.Arrays;
      * import java.util.Map;
      * import java.io.File;
      * import java.nio.file.Files;
@@ -7071,8 +7071,8 @@ public final class FastlyFunctions {
      * import com.pulumi.fastly.FastlyFunctions;
      * import com.pulumi.fastly.TlsActivation;
      * import com.pulumi.fastly.TlsActivationArgs;
-     * import java.util.List;
      * import java.util.ArrayList;
+     * import java.util.Arrays;
      * import java.util.Map;
      * import java.io.File;
      * import java.nio.file.Files;
@@ -7114,8 +7114,8 @@ public final class FastlyFunctions {
      * import com.pulumi.fastly.FastlyFunctions;
      * import com.pulumi.fastly.TlsActivation;
      * import com.pulumi.fastly.TlsActivationArgs;
-     * import java.util.List;
      * import java.util.ArrayList;
+     * import java.util.Arrays;
      * import java.util.Map;
      * import java.io.File;
      * import java.nio.file.Files;
@@ -7157,8 +7157,8 @@ public final class FastlyFunctions {
      * import com.pulumi.fastly.FastlyFunctions;
      * import com.pulumi.fastly.TlsActivation;
      * import com.pulumi.fastly.TlsActivationArgs;
-     * import java.util.List;
      * import java.util.ArrayList;
+     * import java.util.Arrays;
      * import java.util.Map;
      * import java.io.File;
      * import java.nio.file.Files;
@@ -7200,8 +7200,8 @@ public final class FastlyFunctions {
      * import com.pulumi.fastly.FastlyFunctions;
      * import com.pulumi.fastly.TlsActivation;
      * import com.pulumi.fastly.TlsActivationArgs;
-     * import java.util.List;
      * import java.util.ArrayList;
+     * import java.util.Arrays;
      * import java.util.Map;
      * import java.io.File;
      * import java.nio.file.Files;
@@ -7250,8 +7250,8 @@ public final class FastlyFunctions {
      * import com.pulumi.fastly.inputs.GetTlsConfigurationArgs;
      * import com.pulumi.fastly.TlsActivation;
      * import com.pulumi.fastly.TlsActivationArgs;
-     * import java.util.List;
      * import java.util.ArrayList;
+     * import java.util.Arrays;
      * import java.util.Map;
      * import java.io.File;
      * import java.nio.file.Files;
@@ -7302,8 +7302,8 @@ public final class FastlyFunctions {
      * import com.pulumi.fastly.inputs.GetTlsConfigurationArgs;
      * import com.pulumi.fastly.TlsActivation;
      * import com.pulumi.fastly.TlsActivationArgs;
-     * import java.util.List;
      * import java.util.ArrayList;
+     * import java.util.Arrays;
      * import java.util.Map;
      * import java.io.File;
      * import java.nio.file.Files;
@@ -7354,8 +7354,8 @@ public final class FastlyFunctions {
      * import com.pulumi.fastly.inputs.GetTlsConfigurationArgs;
      * import com.pulumi.fastly.TlsActivation;
      * import com.pulumi.fastly.TlsActivationArgs;
-     * import java.util.List;
      * import java.util.ArrayList;
+     * import java.util.Arrays;
      * import java.util.Map;
      * import java.io.File;
      * import java.nio.file.Files;
@@ -7406,8 +7406,8 @@ public final class FastlyFunctions {
      * import com.pulumi.fastly.inputs.GetTlsConfigurationArgs;
      * import com.pulumi.fastly.TlsActivation;
      * import com.pulumi.fastly.TlsActivationArgs;
-     * import java.util.List;
      * import java.util.ArrayList;
+     * import java.util.Arrays;
      * import java.util.Map;
      * import java.io.File;
      * import java.nio.file.Files;
@@ -7458,8 +7458,8 @@ public final class FastlyFunctions {
      * import com.pulumi.fastly.inputs.GetTlsConfigurationArgs;
      * import com.pulumi.fastly.TlsActivation;
      * import com.pulumi.fastly.TlsActivationArgs;
-     * import java.util.List;
      * import java.util.ArrayList;
+     * import java.util.Arrays;
      * import java.util.Map;
      * import java.io.File;
      * import java.nio.file.Files;
@@ -7510,8 +7510,8 @@ public final class FastlyFunctions {
      * import com.pulumi.fastly.inputs.GetTlsConfigurationArgs;
      * import com.pulumi.fastly.TlsActivation;
      * import com.pulumi.fastly.TlsActivationArgs;
-     * import java.util.List;
      * import java.util.ArrayList;
+     * import java.util.Arrays;
      * import java.util.Map;
      * import java.io.File;
      * import java.nio.file.Files;
@@ -7562,8 +7562,8 @@ public final class FastlyFunctions {
      * import com.pulumi.fastly.inputs.GetTlsConfigurationArgs;
      * import com.pulumi.fastly.TlsActivation;
      * import com.pulumi.fastly.TlsActivationArgs;
-     * import java.util.List;
      * import java.util.ArrayList;
+     * import java.util.Arrays;
      * import java.util.Map;
      * import java.io.File;
      * import java.nio.file.Files;
@@ -7607,8 +7607,8 @@ public final class FastlyFunctions {
      * import com.pulumi.fastly.FastlyFunctions;
      * import com.pulumi.fastly.TlsActivation;
      * import com.pulumi.fastly.TlsActivationArgs;
-     * import java.util.List;
      * import java.util.ArrayList;
+     * import java.util.Arrays;
      * import java.util.Map;
      * import java.io.File;
      * import java.nio.file.Files;
@@ -7650,8 +7650,8 @@ public final class FastlyFunctions {
      * import com.pulumi.fastly.FastlyFunctions;
      * import com.pulumi.fastly.TlsActivation;
      * import com.pulumi.fastly.TlsActivationArgs;
-     * import java.util.List;
      * import java.util.ArrayList;
+     * import java.util.Arrays;
      * import java.util.Map;
      * import java.io.File;
      * import java.nio.file.Files;
@@ -7693,8 +7693,8 @@ public final class FastlyFunctions {
      * import com.pulumi.fastly.FastlyFunctions;
      * import com.pulumi.fastly.TlsActivation;
      * import com.pulumi.fastly.TlsActivationArgs;
-     * import java.util.List;
      * import java.util.ArrayList;
+     * import java.util.Arrays;
      * import java.util.Map;
      * import java.io.File;
      * import java.nio.file.Files;
@@ -7736,8 +7736,8 @@ public final class FastlyFunctions {
      * import com.pulumi.fastly.FastlyFunctions;
      * import com.pulumi.fastly.TlsActivation;
      * import com.pulumi.fastly.TlsActivationArgs;
-     * import java.util.List;
      * import java.util.ArrayList;
+     * import java.util.Arrays;
      * import java.util.Map;
      * import java.io.File;
      * import java.nio.file.Files;
@@ -7779,8 +7779,8 @@ public final class FastlyFunctions {
      * import com.pulumi.fastly.FastlyFunctions;
      * import com.pulumi.fastly.TlsActivation;
      * import com.pulumi.fastly.TlsActivationArgs;
-     * import java.util.List;
      * import java.util.ArrayList;
+     * import java.util.Arrays;
      * import java.util.Map;
      * import java.io.File;
      * import java.nio.file.Files;
@@ -7822,8 +7822,8 @@ public final class FastlyFunctions {
      * import com.pulumi.fastly.FastlyFunctions;
      * import com.pulumi.fastly.TlsActivation;
      * import com.pulumi.fastly.TlsActivationArgs;
-     * import java.util.List;
      * import java.util.ArrayList;
+     * import java.util.Arrays;
      * import java.util.Map;
      * import java.io.File;
      * import java.nio.file.Files;
@@ -7865,8 +7865,8 @@ public final class FastlyFunctions {
      * import com.pulumi.fastly.FastlyFunctions;
      * import com.pulumi.fastly.TlsActivation;
      * import com.pulumi.fastly.TlsActivationArgs;
-     * import java.util.List;
      * import java.util.ArrayList;
+     * import java.util.Arrays;
      * import java.util.Map;
      * import java.io.File;
      * import java.nio.file.Files;
@@ -7907,8 +7907,8 @@ public final class FastlyFunctions {
      * import com.pulumi.core.Output;
      * import com.pulumi.fastly.FastlyFunctions;
      * import com.pulumi.fastly.inputs.GetTlsDomainArgs;
-     * import java.util.List;
      * import java.util.ArrayList;
+     * import java.util.Arrays;
      * import java.util.Map;
      * import java.io.File;
      * import java.nio.file.Files;
@@ -7947,8 +7947,8 @@ public final class FastlyFunctions {
      * import com.pulumi.core.Output;
      * import com.pulumi.fastly.FastlyFunctions;
      * import com.pulumi.fastly.inputs.GetTlsDomainArgs;
-     * import java.util.List;
      * import java.util.ArrayList;
+     * import java.util.Arrays;
      * import java.util.Map;
      * import java.io.File;
      * import java.nio.file.Files;
@@ -7987,8 +7987,8 @@ public final class FastlyFunctions {
      * import com.pulumi.core.Output;
      * import com.pulumi.fastly.FastlyFunctions;
      * import com.pulumi.fastly.inputs.GetTlsDomainArgs;
-     * import java.util.List;
      * import java.util.ArrayList;
+     * import java.util.Arrays;
      * import java.util.Map;
      * import java.io.File;
      * import java.nio.file.Files;
@@ -8027,8 +8027,8 @@ public final class FastlyFunctions {
      * import com.pulumi.core.Output;
      * import com.pulumi.fastly.FastlyFunctions;
      * import com.pulumi.fastly.inputs.GetTlsDomainArgs;
-     * import java.util.List;
      * import java.util.ArrayList;
+     * import java.util.Arrays;
      * import java.util.Map;
      * import java.io.File;
      * import java.nio.file.Files;
@@ -8067,8 +8067,8 @@ public final class FastlyFunctions {
      * import com.pulumi.core.Output;
      * import com.pulumi.fastly.FastlyFunctions;
      * import com.pulumi.fastly.inputs.GetTlsDomainArgs;
-     * import java.util.List;
      * import java.util.ArrayList;
+     * import java.util.Arrays;
      * import java.util.Map;
      * import java.io.File;
      * import java.nio.file.Files;
@@ -8113,8 +8113,8 @@ public final class FastlyFunctions {
      * import com.pulumi.core.Output;
      * import com.pulumi.fastly.FastlyFunctions;
      * import com.pulumi.fastly.inputs.GetTlsPlatformCertificateArgs;
-     * import java.util.List;
      * import java.util.ArrayList;
+     * import java.util.Arrays;
      * import java.util.Map;
      * import java.io.File;
      * import java.nio.file.Files;
@@ -8159,8 +8159,8 @@ public final class FastlyFunctions {
      * import com.pulumi.core.Output;
      * import com.pulumi.fastly.FastlyFunctions;
      * import com.pulumi.fastly.inputs.GetTlsPlatformCertificateArgs;
-     * import java.util.List;
      * import java.util.ArrayList;
+     * import java.util.Arrays;
      * import java.util.Map;
      * import java.io.File;
      * import java.nio.file.Files;
@@ -8205,8 +8205,8 @@ public final class FastlyFunctions {
      * import com.pulumi.core.Output;
      * import com.pulumi.fastly.FastlyFunctions;
      * import com.pulumi.fastly.inputs.GetTlsPlatformCertificateArgs;
-     * import java.util.List;
      * import java.util.ArrayList;
+     * import java.util.Arrays;
      * import java.util.Map;
      * import java.io.File;
      * import java.nio.file.Files;
@@ -8251,8 +8251,8 @@ public final class FastlyFunctions {
      * import com.pulumi.core.Output;
      * import com.pulumi.fastly.FastlyFunctions;
      * import com.pulumi.fastly.inputs.GetTlsPlatformCertificateArgs;
-     * import java.util.List;
      * import java.util.ArrayList;
+     * import java.util.Arrays;
      * import java.util.Map;
      * import java.io.File;
      * import java.nio.file.Files;
@@ -8297,8 +8297,8 @@ public final class FastlyFunctions {
      * import com.pulumi.core.Output;
      * import com.pulumi.fastly.FastlyFunctions;
      * import com.pulumi.fastly.inputs.GetTlsPlatformCertificateArgs;
-     * import java.util.List;
      * import java.util.ArrayList;
+     * import java.util.Arrays;
      * import java.util.Map;
      * import java.io.File;
      * import java.nio.file.Files;
@@ -8343,8 +8343,8 @@ public final class FastlyFunctions {
      * import com.pulumi.core.Output;
      * import com.pulumi.fastly.FastlyFunctions;
      * import com.pulumi.fastly.inputs.GetTlsPlatformCertificateArgs;
-     * import java.util.List;
      * import java.util.ArrayList;
+     * import java.util.Arrays;
      * import java.util.Map;
      * import java.io.File;
      * import java.nio.file.Files;
@@ -8389,8 +8389,8 @@ public final class FastlyFunctions {
      * import com.pulumi.core.Output;
      * import com.pulumi.fastly.FastlyFunctions;
      * import com.pulumi.fastly.inputs.GetTlsPlatformCertificateArgs;
-     * import java.util.List;
      * import java.util.ArrayList;
+     * import java.util.Arrays;
      * import java.util.Map;
      * import java.io.File;
      * import java.nio.file.Files;
@@ -8429,8 +8429,8 @@ public final class FastlyFunctions {
      * import com.pulumi.core.Output;
      * import com.pulumi.fastly.FastlyFunctions;
      * import com.pulumi.fastly.inputs.GetTlsPlatformCertificateArgs;
-     * import java.util.List;
      * import java.util.ArrayList;
+     * import java.util.Arrays;
      * import java.util.Map;
      * import java.io.File;
      * import java.nio.file.Files;
@@ -8471,8 +8471,8 @@ public final class FastlyFunctions {
      * import com.pulumi.core.Output;
      * import com.pulumi.fastly.FastlyFunctions;
      * import com.pulumi.fastly.inputs.GetTlsPlatformCertificateArgs;
-     * import java.util.List;
      * import java.util.ArrayList;
+     * import java.util.Arrays;
      * import java.util.Map;
      * import java.io.File;
      * import java.nio.file.Files;
@@ -8513,8 +8513,8 @@ public final class FastlyFunctions {
      * import com.pulumi.core.Output;
      * import com.pulumi.fastly.FastlyFunctions;
      * import com.pulumi.fastly.inputs.GetTlsPlatformCertificateArgs;
-     * import java.util.List;
      * import java.util.ArrayList;
+     * import java.util.Arrays;
      * import java.util.Map;
      * import java.io.File;
      * import java.nio.file.Files;
@@ -8555,8 +8555,8 @@ public final class FastlyFunctions {
      * import com.pulumi.core.Output;
      * import com.pulumi.fastly.FastlyFunctions;
      * import com.pulumi.fastly.inputs.GetTlsPlatformCertificateArgs;
-     * import java.util.List;
      * import java.util.ArrayList;
+     * import java.util.Arrays;
      * import java.util.Map;
      * import java.io.File;
      * import java.nio.file.Files;
@@ -8597,8 +8597,8 @@ public final class FastlyFunctions {
      * import com.pulumi.core.Output;
      * import com.pulumi.fastly.FastlyFunctions;
      * import com.pulumi.fastly.inputs.GetTlsPlatformCertificateArgs;
-     * import java.util.List;
      * import java.util.ArrayList;
+     * import java.util.Arrays;
      * import java.util.Map;
      * import java.io.File;
      * import java.nio.file.Files;
@@ -8639,8 +8639,8 @@ public final class FastlyFunctions {
      * import com.pulumi.core.Output;
      * import com.pulumi.fastly.FastlyFunctions;
      * import com.pulumi.fastly.inputs.GetTlsPlatformCertificateArgs;
-     * import java.util.List;
      * import java.util.ArrayList;
+     * import java.util.Arrays;
      * import java.util.Map;
      * import java.io.File;
      * import java.nio.file.Files;
@@ -8681,8 +8681,8 @@ public final class FastlyFunctions {
      * import com.pulumi.core.Output;
      * import com.pulumi.fastly.FastlyFunctions;
      * import com.pulumi.fastly.inputs.GetTlsPlatformCertificateArgs;
-     * import java.util.List;
      * import java.util.ArrayList;
+     * import java.util.Arrays;
      * import java.util.Map;
      * import java.io.File;
      * import java.nio.file.Files;
@@ -8730,8 +8730,8 @@ public final class FastlyFunctions {
      * import com.pulumi.core.Output;
      * import com.pulumi.fastly.FastlyFunctions;
      * import com.pulumi.fastly.inputs.GetTlsPrivateKeyArgs;
-     * import java.util.List;
      * import java.util.ArrayList;
+     * import java.util.Arrays;
      * import java.util.Map;
      * import java.io.File;
      * import java.nio.file.Files;
@@ -8778,8 +8778,8 @@ public final class FastlyFunctions {
      * import com.pulumi.core.Output;
      * import com.pulumi.fastly.FastlyFunctions;
      * import com.pulumi.fastly.inputs.GetTlsPrivateKeyArgs;
-     * import java.util.List;
      * import java.util.ArrayList;
+     * import java.util.Arrays;
      * import java.util.Map;
      * import java.io.File;
      * import java.nio.file.Files;
@@ -8826,8 +8826,8 @@ public final class FastlyFunctions {
      * import com.pulumi.core.Output;
      * import com.pulumi.fastly.FastlyFunctions;
      * import com.pulumi.fastly.inputs.GetTlsPrivateKeyArgs;
-     * import java.util.List;
      * import java.util.ArrayList;
+     * import java.util.Arrays;
      * import java.util.Map;
      * import java.io.File;
      * import java.nio.file.Files;
@@ -8874,8 +8874,8 @@ public final class FastlyFunctions {
      * import com.pulumi.core.Output;
      * import com.pulumi.fastly.FastlyFunctions;
      * import com.pulumi.fastly.inputs.GetTlsPrivateKeyArgs;
-     * import java.util.List;
      * import java.util.ArrayList;
+     * import java.util.Arrays;
      * import java.util.Map;
      * import java.io.File;
      * import java.nio.file.Files;
@@ -8922,8 +8922,8 @@ public final class FastlyFunctions {
      * import com.pulumi.core.Output;
      * import com.pulumi.fastly.FastlyFunctions;
      * import com.pulumi.fastly.inputs.GetTlsPrivateKeyArgs;
-     * import java.util.List;
      * import java.util.ArrayList;
+     * import java.util.Arrays;
      * import java.util.Map;
      * import java.io.File;
      * import java.nio.file.Files;
@@ -8970,8 +8970,8 @@ public final class FastlyFunctions {
      * import com.pulumi.core.Output;
      * import com.pulumi.fastly.FastlyFunctions;
      * import com.pulumi.fastly.inputs.GetTlsPrivateKeyArgs;
-     * import java.util.List;
      * import java.util.ArrayList;
+     * import java.util.Arrays;
      * import java.util.Map;
      * import java.io.File;
      * import java.nio.file.Files;
@@ -9018,8 +9018,8 @@ public final class FastlyFunctions {
      * import com.pulumi.core.Output;
      * import com.pulumi.fastly.FastlyFunctions;
      * import com.pulumi.fastly.inputs.GetTlsPrivateKeyArgs;
-     * import java.util.List;
      * import java.util.ArrayList;
+     * import java.util.Arrays;
      * import java.util.Map;
      * import java.io.File;
      * import java.nio.file.Files;
@@ -9059,8 +9059,8 @@ public final class FastlyFunctions {
      * import com.pulumi.core.Output;
      * import com.pulumi.fastly.FastlyFunctions;
      * import com.pulumi.fastly.inputs.GetTlsPrivateKeyArgs;
-     * import java.util.List;
      * import java.util.ArrayList;
+     * import java.util.Arrays;
      * import java.util.Map;
      * import java.io.File;
      * import java.nio.file.Files;
@@ -9101,8 +9101,8 @@ public final class FastlyFunctions {
      * import com.pulumi.core.Output;
      * import com.pulumi.fastly.FastlyFunctions;
      * import com.pulumi.fastly.inputs.GetTlsPrivateKeyArgs;
-     * import java.util.List;
      * import java.util.ArrayList;
+     * import java.util.Arrays;
      * import java.util.Map;
      * import java.io.File;
      * import java.nio.file.Files;
@@ -9143,8 +9143,8 @@ public final class FastlyFunctions {
      * import com.pulumi.core.Output;
      * import com.pulumi.fastly.FastlyFunctions;
      * import com.pulumi.fastly.inputs.GetTlsPrivateKeyArgs;
-     * import java.util.List;
      * import java.util.ArrayList;
+     * import java.util.Arrays;
      * import java.util.Map;
      * import java.io.File;
      * import java.nio.file.Files;
@@ -9185,8 +9185,8 @@ public final class FastlyFunctions {
      * import com.pulumi.core.Output;
      * import com.pulumi.fastly.FastlyFunctions;
      * import com.pulumi.fastly.inputs.GetTlsPrivateKeyArgs;
-     * import java.util.List;
      * import java.util.ArrayList;
+     * import java.util.Arrays;
      * import java.util.Map;
      * import java.io.File;
      * import java.nio.file.Files;
@@ -9227,8 +9227,8 @@ public final class FastlyFunctions {
      * import com.pulumi.core.Output;
      * import com.pulumi.fastly.FastlyFunctions;
      * import com.pulumi.fastly.inputs.GetTlsPrivateKeyArgs;
-     * import java.util.List;
      * import java.util.ArrayList;
+     * import java.util.Arrays;
      * import java.util.Map;
      * import java.io.File;
      * import java.nio.file.Files;
@@ -9269,8 +9269,8 @@ public final class FastlyFunctions {
      * import com.pulumi.core.Output;
      * import com.pulumi.fastly.FastlyFunctions;
      * import com.pulumi.fastly.inputs.GetTlsPrivateKeyArgs;
-     * import java.util.List;
      * import java.util.ArrayList;
+     * import java.util.Arrays;
      * import java.util.Map;
      * import java.io.File;
      * import java.nio.file.Files;
@@ -9311,8 +9311,8 @@ public final class FastlyFunctions {
      * import com.pulumi.core.Output;
      * import com.pulumi.fastly.FastlyFunctions;
      * import com.pulumi.fastly.inputs.GetTlsPrivateKeyArgs;
-     * import java.util.List;
      * import java.util.ArrayList;
+     * import java.util.Arrays;
      * import java.util.Map;
      * import java.io.File;
      * import java.nio.file.Files;
@@ -9353,8 +9353,8 @@ public final class FastlyFunctions {
      * import com.pulumi.core.Output;
      * import com.pulumi.fastly.FastlyFunctions;
      * import com.pulumi.fastly.inputs.GetTlsSubscriptionArgs;
-     * import java.util.List;
      * import java.util.ArrayList;
+     * import java.util.Arrays;
      * import java.util.Map;
      * import java.io.File;
      * import java.nio.file.Files;
@@ -9393,8 +9393,8 @@ public final class FastlyFunctions {
      * import com.pulumi.core.Output;
      * import com.pulumi.fastly.FastlyFunctions;
      * import com.pulumi.fastly.inputs.GetTlsSubscriptionArgs;
-     * import java.util.List;
      * import java.util.ArrayList;
+     * import java.util.Arrays;
      * import java.util.Map;
      * import java.io.File;
      * import java.nio.file.Files;
@@ -9433,8 +9433,8 @@ public final class FastlyFunctions {
      * import com.pulumi.core.Output;
      * import com.pulumi.fastly.FastlyFunctions;
      * import com.pulumi.fastly.inputs.GetTlsSubscriptionArgs;
-     * import java.util.List;
      * import java.util.ArrayList;
+     * import java.util.Arrays;
      * import java.util.Map;
      * import java.io.File;
      * import java.nio.file.Files;
@@ -9473,8 +9473,8 @@ public final class FastlyFunctions {
      * import com.pulumi.core.Output;
      * import com.pulumi.fastly.FastlyFunctions;
      * import com.pulumi.fastly.inputs.GetTlsSubscriptionArgs;
-     * import java.util.List;
      * import java.util.ArrayList;
+     * import java.util.Arrays;
      * import java.util.Map;
      * import java.io.File;
      * import java.nio.file.Files;
@@ -9513,8 +9513,8 @@ public final class FastlyFunctions {
      * import com.pulumi.core.Output;
      * import com.pulumi.fastly.FastlyFunctions;
      * import com.pulumi.fastly.inputs.GetTlsSubscriptionArgs;
-     * import java.util.List;
      * import java.util.ArrayList;
+     * import java.util.Arrays;
      * import java.util.Map;
      * import java.io.File;
      * import java.nio.file.Files;
@@ -9553,8 +9553,8 @@ public final class FastlyFunctions {
      * import com.pulumi.core.Output;
      * import com.pulumi.fastly.FastlyFunctions;
      * import com.pulumi.fastly.inputs.GetTlsSubscriptionArgs;
-     * import java.util.List;
      * import java.util.ArrayList;
+     * import java.util.Arrays;
      * import java.util.Map;
      * import java.io.File;
      * import java.nio.file.Files;
@@ -9593,8 +9593,8 @@ public final class FastlyFunctions {
      * import com.pulumi.core.Output;
      * import com.pulumi.fastly.FastlyFunctions;
      * import com.pulumi.fastly.inputs.GetTlsSubscriptionArgs;
-     * import java.util.List;
      * import java.util.ArrayList;
+     * import java.util.Arrays;
      * import java.util.Map;
      * import java.io.File;
      * import java.nio.file.Files;
@@ -9701,8 +9701,8 @@ public final class FastlyFunctions {
      * import com.pulumi.fastly.inputs.ServiceVclDomainArgs;
      * import com.pulumi.fastly.FastlyFunctions;
      * import com.pulumi.fastly.inputs.GetVclSnippetsArgs;
-     * import java.util.List;
      * import java.util.ArrayList;
+     * import java.util.Arrays;
      * import java.util.Map;
      * import java.io.File;
      * import java.nio.file.Files;
@@ -9758,8 +9758,8 @@ public final class FastlyFunctions {
      * import com.pulumi.fastly.inputs.ServiceVclDomainArgs;
      * import com.pulumi.fastly.FastlyFunctions;
      * import com.pulumi.fastly.inputs.GetVclSnippetsArgs;
-     * import java.util.List;
      * import java.util.ArrayList;
+     * import java.util.Arrays;
      * import java.util.Map;
      * import java.io.File;
      * import java.nio.file.Files;
@@ -9815,8 +9815,8 @@ public final class FastlyFunctions {
      * import com.pulumi.fastly.inputs.ServiceVclDomainArgs;
      * import com.pulumi.fastly.FastlyFunctions;
      * import com.pulumi.fastly.inputs.GetVclSnippetsArgs;
-     * import java.util.List;
      * import java.util.ArrayList;
+     * import java.util.Arrays;
      * import java.util.Map;
      * import java.io.File;
      * import java.nio.file.Files;
@@ -9872,8 +9872,8 @@ public final class FastlyFunctions {
      * import com.pulumi.fastly.inputs.ServiceVclDomainArgs;
      * import com.pulumi.fastly.FastlyFunctions;
      * import com.pulumi.fastly.inputs.GetVclSnippetsArgs;
-     * import java.util.List;
      * import java.util.ArrayList;
+     * import java.util.Arrays;
      * import java.util.Map;
      * import java.io.File;
      * import java.nio.file.Files;
@@ -9929,8 +9929,8 @@ public final class FastlyFunctions {
      * import com.pulumi.fastly.inputs.ServiceVclDomainArgs;
      * import com.pulumi.fastly.FastlyFunctions;
      * import com.pulumi.fastly.inputs.GetVclSnippetsArgs;
-     * import java.util.List;
      * import java.util.ArrayList;
+     * import java.util.Arrays;
      * import java.util.Map;
      * import java.io.File;
      * import java.nio.file.Files;

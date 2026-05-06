@@ -54,7 +54,7 @@ namespace Pulumi.Fastly
     /// 
     /// return await Deployment.RunAsync(() =&gt; 
     /// {
-    ///     var demo = new Fastly.Index.ServiceVcl("demo", new()
+    ///     var demo = new Fastly.ServiceVcl("demo", new()
     ///     {
     ///         Name = "demofastly",
     ///         Domains = new[]
@@ -91,7 +91,7 @@ namespace Pulumi.Fastly
     /// 
     /// return await Deployment.RunAsync(() =&gt; 
     /// {
-    ///     var demo = new Fastly.Index.ServiceVcl("demo", new()
+    ///     var demo = new Fastly.ServiceVcl("demo", new()
     ///     {
     ///         Name = "demofastly",
     ///         Domains = new[]
@@ -142,12 +142,12 @@ namespace Pulumi.Fastly
     ///         ForceDestroy = true,
     ///     });
     /// 
-    ///     var websiteBucket = new Aws.Index.S3Bucket("website_bucket", new()
+    ///     var websiteBucket = new Aws.S3Bucket("website_bucket", new()
     ///     {
     ///         Bucket = "your-unique-website-bucket-name",
     ///     });
     /// 
-    ///     var websiteConfig = new Aws.Index.S3BucketWebsiteConfiguration("website_config", new()
+    ///     var websiteConfig = new Aws.S3BucketWebsiteConfiguration("website_config", new()
     ///     {
     ///         Bucket = websiteBucket.Id,
     ///         IndexDocument = new[]

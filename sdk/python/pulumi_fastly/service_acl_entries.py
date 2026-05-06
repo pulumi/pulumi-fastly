@@ -210,7 +210,7 @@ class ServiceACLEntries(pulumi.CustomResource):
             force_destroy=True)
         entries = []
         def create_entries(range_body):
-            for range in [{"key": k, "value": v} for [k, v] in (range_body).items()]:
+            for range in [{"key": k, "value": v} for [k, v] in sorted((range_body).items())]:
                 entries.append(fastly.ServiceACLEntries(f"entries-{range['key']}",
                     service_id=myservice.id,
                     acl_id=range["value"].acl_id,
@@ -227,6 +227,59 @@ class ServiceACLEntries(pulumi.CustomResource):
         Complex object usage:
 
         The following example demonstrates the use of dynamic nested blocks to create ACL entries.
+
+        ```python
+        import pulumi
+        import pulumi_fastly as fastly
+
+        acl_name = "my_acl"
+        acl_entries = [
+            {
+                "ip": "1.2.3.4",
+                "comment": "acl_entry_1",
+            },
+            {
+                "ip": "1.2.3.5",
+                "comment": "acl_entry_2",
+            },
+            {
+                "ip": "1.2.3.6",
+                "comment": "acl_entry_3",
+            },
+        ]
+        myservice = fastly.ServiceVcl("myservice",
+            name="demofastly",
+            domains=[{
+                "name": "demo.notexample.com",
+                "comment": "demo",
+            }],
+            backends=[{
+                "address": "1.2.3.4",
+                "name": "localhost",
+                "port": 80,
+            }],
+            acls=[{
+                "name": acl_name,
+            }],
+            force_destroy=True)
+        entries = []
+        def create_entries(range_body):
+            for range in [{"key": k, "value": v} for [k, v] in sorted((range_body).items())]:
+                entries.append(fastly.ServiceACLEntries(f"entries-{range['key']}",
+                    entries=[{
+                        "ip": entry["ip"],
+                        "subnet": "22",
+                        "comment": entry["comment"],
+                        "negated": False,
+                    } for entry in [{
+                        "ip": e["ip"],
+                        "comment": e["comment"],
+                    } for e in acl_entries]],
+                    service_id=myservice.id,
+                    acl_id=range["value"].acl_id))
+
+        myservice.acls.apply(lambda resolved_outputs: create_entries({d.name: d for d in resolved_outputs['acls'] if d.name == acl_name}))
+        ```
 
         ### Terraform >= 0.12.0 && < 0.12.6)
 
@@ -290,7 +343,7 @@ class ServiceACLEntries(pulumi.CustomResource):
 
         #...
         entries = []
-        for range in [{"key": k, "value": v} for [k, v] in ({d.name: d for d in myservice.acl if d.name == myacl_name}).items()]:
+        for range in [{"key": k, "value": v} for [k, v] in sorted(({d.name: d for d in myservice.acl if d.name == myacl_name}).items())]:
             entries.append(fastly.ServiceACLEntries(f"entries-{range['key']}",
                 service_id=myservice["id"],
                 acl_id=range["value"]["aclId"],
@@ -370,7 +423,7 @@ class ServiceACLEntries(pulumi.CustomResource):
             force_destroy=True)
         entries = []
         def create_entries(range_body):
-            for range in [{"key": k, "value": v} for [k, v] in (range_body).items()]:
+            for range in [{"key": k, "value": v} for [k, v] in sorted((range_body).items())]:
                 entries.append(fastly.ServiceACLEntries(f"entries-{range['key']}",
                     service_id=myservice.id,
                     acl_id=range["value"].acl_id,
@@ -387,6 +440,59 @@ class ServiceACLEntries(pulumi.CustomResource):
         Complex object usage:
 
         The following example demonstrates the use of dynamic nested blocks to create ACL entries.
+
+        ```python
+        import pulumi
+        import pulumi_fastly as fastly
+
+        acl_name = "my_acl"
+        acl_entries = [
+            {
+                "ip": "1.2.3.4",
+                "comment": "acl_entry_1",
+            },
+            {
+                "ip": "1.2.3.5",
+                "comment": "acl_entry_2",
+            },
+            {
+                "ip": "1.2.3.6",
+                "comment": "acl_entry_3",
+            },
+        ]
+        myservice = fastly.ServiceVcl("myservice",
+            name="demofastly",
+            domains=[{
+                "name": "demo.notexample.com",
+                "comment": "demo",
+            }],
+            backends=[{
+                "address": "1.2.3.4",
+                "name": "localhost",
+                "port": 80,
+            }],
+            acls=[{
+                "name": acl_name,
+            }],
+            force_destroy=True)
+        entries = []
+        def create_entries(range_body):
+            for range in [{"key": k, "value": v} for [k, v] in sorted((range_body).items())]:
+                entries.append(fastly.ServiceACLEntries(f"entries-{range['key']}",
+                    entries=[{
+                        "ip": entry["ip"],
+                        "subnet": "22",
+                        "comment": entry["comment"],
+                        "negated": False,
+                    } for entry in [{
+                        "ip": e["ip"],
+                        "comment": e["comment"],
+                    } for e in acl_entries]],
+                    service_id=myservice.id,
+                    acl_id=range["value"].acl_id))
+
+        myservice.acls.apply(lambda resolved_outputs: create_entries({d.name: d for d in resolved_outputs['acls'] if d.name == acl_name}))
+        ```
 
         ### Terraform >= 0.12.0 && < 0.12.6)
 
@@ -450,7 +556,7 @@ class ServiceACLEntries(pulumi.CustomResource):
 
         #...
         entries = []
-        for range in [{"key": k, "value": v} for [k, v] in ({d.name: d for d in myservice.acl if d.name == myacl_name}).items()]:
+        for range in [{"key": k, "value": v} for [k, v] in sorted(({d.name: d for d in myservice.acl if d.name == myacl_name}).items())]:
             entries.append(fastly.ServiceACLEntries(f"entries-{range['key']}",
                 service_id=myservice["id"],
                 acl_id=range["value"]["aclId"],

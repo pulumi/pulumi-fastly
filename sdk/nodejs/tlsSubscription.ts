@@ -38,8 +38,8 @@ import * as utilities from "./utilities";
  * // NOTE: Creating a hosted zone will automatically create SOA/NS records.
  * const production = new aws.index.Route53Zone("production", {name: "example.com"});
  * const example = new aws.index.Route53domainsRegisteredDomain("example", {
- *     nameServer: Object.entries(production.nameServers).map(([k, v]) => ({key: k, value: v})).map(entry => ({
- *         name: entry.value,
+ *     nameServer: .map(entry => ({
+ *         name: entry,
  *     })),
  *     domainName: "example.com",
  * });
@@ -48,8 +48,8 @@ import * as utilities from "./utilities";
  *     "b.example.com",
  * ];
  * const exampleServiceVcl = new fastly.ServiceVcl("example", {
- *     domains: subdomains.map((v, k) => ({key: k, value: v})).map(entry => ({
- *         name: entry.value,
+ *     domains: subdomains.map(entry => ({
+ *         name: entry,
  *     })),
  *     name: "example-service",
  *     backends: [{
@@ -64,7 +64,7 @@ import * as utilities from "./utilities";
  * });
  * const domainValidation: aws.index.Route53Record[] = [];
  * exampleTlsSubscription.domains.apply(domains => {
- *     for (const range of Object.entries(domains.reduce((__obj, domain) => ({ ...__obj, [domain]: exampleTlsSubscription.managedDnsChallenges.apply(managedDnsChallenges => managedDnsChallenges.filter(obj => obj.recordName == `_acme-challenge.${domain}`).map(obj => (obj)))[0] }), {})).map(([k, v]) => ({key: k, value: v}))) {
+ *     for (const range of Object.entries(domains.reduce((__obj, domain) => ({ ...__obj, [domain]: exampleTlsSubscription.managedDnsChallenges.apply(managedDnsChallenges => managedDnsChallenges.filter(obj => obj.recordName == `_acme-challenge.${domain}`).map(obj => (obj)))[0] }), {})).sort().map(([k, v]) => ({key: k, value: v}))) {
  *         domainValidation.push(new aws.index.Route53Record(`domain_validation-${range.key}`, {
  *             name: range.value.recordName,
  *             type: range.value.recordType,
@@ -124,8 +124,8 @@ import * as utilities from "./utilities";
  * // NOTE: Creating a hosted zone will automatically create SOA/NS records.
  * const production = new aws.index.Route53Zone("production", {name: "example.com"});
  * const example = new aws.index.Route53domainsRegisteredDomain("example", {
- *     nameServer: Object.entries(production.nameServers).map(([k, v]) => ({key: k, value: v})).map(entry => ({
- *         name: entry.value,
+ *     nameServer: .map(entry => ({
+ *         name: entry,
  *     })),
  *     domainName: "example.com",
  * });
@@ -134,8 +134,8 @@ import * as utilities from "./utilities";
  *     "*.example.com",
  * ];
  * const exampleServiceVcl = new fastly.ServiceVcl("example", {
- *     domains: domains.map((v, k) => ({key: k, value: v})).map(entry => ({
- *         name: entry.value,
+ *     domains: domains.map(entry => ({
+ *         name: entry,
  *     })),
  *     name: "example-service",
  *     backends: [{
@@ -151,16 +151,16 @@ import * as utilities from "./utilities";
  * const domainValidation: aws.index.Route53Record[] = [];
  * exampleTlsSubscription.domains.apply(domains => {
  *     const domainValidation: aws.index.Route53Record[] = [];
- * pulumi.all(domains.reduce((__obj, domain) => ({ ...__obj, [std.replace({
+ * pulumi.all(domains.reduce((__obj, domain) => ({ ...__obj, [String(std.replace({
  *         text: domain,
  *         search: "*.",
  *         replace: "",
- *     }).result]: exampleTlsSubscription.managedDnsChallenges.apply(managedDnsChallenges => managedDnsChallenges.filter(obj => obj.recordName == `_acme-challenge.${std.replace({
+ *     }).result)]: exampleTlsSubscription.managedDnsChallenges.apply(managedDnsChallenges => managedDnsChallenges.filter(obj => obj.recordName == `_acme-challenge.${std.replace({
  *         text: domain,
  *         search: "*.",
  *         replace: "",
  *     }).result}`).map(obj => (obj)))[0] }), {})).apply(rangeBody => {
- *         for (const range of Object.entries(rangeBody).map(([k, v]) => ({key: k, value: v}))) {
+ *         for (const range of Object.entries(rangeBody).sort().map(([k, v]) => ({key: k, value: v}))) {
  *             domainValidation.push(new aws.index.Route53Record(`domain_validation-${range.key}`, {
  *                 name: range.value[0].recordName,
  *                 type: range.value[0].recordType,

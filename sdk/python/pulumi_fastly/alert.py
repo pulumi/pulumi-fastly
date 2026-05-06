@@ -333,7 +333,7 @@ class Alert(pulumi.CustomResource):
             evaluation_strategy={
                 "type": "above_threshold",
                 "period": "5m",
-                "threshold": 10,
+                "threshold": float(10),
             },
             integration_ids=[example_integration.id])
         ```
@@ -393,7 +393,7 @@ class Alert(pulumi.CustomResource):
             evaluation_strategy={
                 "type": "above_threshold",
                 "period": "5m",
-                "threshold": 10,
+                "threshold": float(10),
             },
             integration_ids=[example_integration.id])
         ```

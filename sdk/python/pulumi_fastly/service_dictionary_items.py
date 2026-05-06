@@ -212,7 +212,7 @@ class ServiceDictionaryItems(pulumi.CustomResource):
             force_destroy=True)
         items = []
         def create_items(range_body):
-            for range in [{"key": k, "value": v} for [k, v] in (range_body).items()]:
+            for range in [{"key": k, "value": v} for [k, v] in sorted((range_body).items())]:
                 items.append(fastly.ServiceDictionaryItems(f"items-{range['key']}",
                     service_id=myservice.id,
                     dictionary_id=range["value"].dictionary_id,
@@ -257,7 +257,7 @@ class ServiceDictionaryItems(pulumi.CustomResource):
             force_destroy=True)
         items = []
         def create_items(range_body):
-            for range in [{"key": k, "value": v} for [k, v] in (range_body).items()]:
+            for range in [{"key": k, "value": v} for [k, v] in sorted((range_body).items())]:
                 items.append(fastly.ServiceDictionaryItems(f"items-{range['key']}",
                     service_id=myservice.id,
                     dictionary_id=range["value"].dictionary_id,
@@ -300,7 +300,7 @@ class ServiceDictionaryItems(pulumi.CustomResource):
         # This resource is dynamically creating the items from the local variables through for expressions and functions.
         project = []
         def create_project(range_body):
-            for range in [{"key": k, "value": v} for [k, v] in (range_body).items()]:
+            for range in [{"key": k, "value": v} for [k, v] in sorted((range_body).items())]:
                 project.append(fastly.ServiceDictionaryItems(f"project-{range['key']}",
                     service_id=myservice.id,
                     dictionary_id=range["value"].dictionary_id,
@@ -373,7 +373,7 @@ class ServiceDictionaryItems(pulumi.CustomResource):
 
         #...
         items = []
-        for range in [{"key": k, "value": v} for [k, v] in ({d.name: d for d in myservice.dictionary if d.name == mydict_name}).items()]:
+        for range in [{"key": k, "value": v} for [k, v] in sorted(({d.name: d for d in myservice.dictionary if d.name == mydict_name}).items())]:
             items.append(fastly.ServiceDictionaryItems(f"items-{range['key']}",
                 service_id=myservice["id"],
                 dictionary_id=range["value"]["dictionaryId"],
@@ -457,7 +457,7 @@ class ServiceDictionaryItems(pulumi.CustomResource):
             force_destroy=True)
         items = []
         def create_items(range_body):
-            for range in [{"key": k, "value": v} for [k, v] in (range_body).items()]:
+            for range in [{"key": k, "value": v} for [k, v] in sorted((range_body).items())]:
                 items.append(fastly.ServiceDictionaryItems(f"items-{range['key']}",
                     service_id=myservice.id,
                     dictionary_id=range["value"].dictionary_id,
@@ -502,7 +502,7 @@ class ServiceDictionaryItems(pulumi.CustomResource):
             force_destroy=True)
         items = []
         def create_items(range_body):
-            for range in [{"key": k, "value": v} for [k, v] in (range_body).items()]:
+            for range in [{"key": k, "value": v} for [k, v] in sorted((range_body).items())]:
                 items.append(fastly.ServiceDictionaryItems(f"items-{range['key']}",
                     service_id=myservice.id,
                     dictionary_id=range["value"].dictionary_id,
@@ -545,7 +545,7 @@ class ServiceDictionaryItems(pulumi.CustomResource):
         # This resource is dynamically creating the items from the local variables through for expressions and functions.
         project = []
         def create_project(range_body):
-            for range in [{"key": k, "value": v} for [k, v] in (range_body).items()]:
+            for range in [{"key": k, "value": v} for [k, v] in sorted((range_body).items())]:
                 project.append(fastly.ServiceDictionaryItems(f"project-{range['key']}",
                     service_id=myservice.id,
                     dictionary_id=range["value"].dictionary_id,
@@ -618,7 +618,7 @@ class ServiceDictionaryItems(pulumi.CustomResource):
 
         #...
         items = []
-        for range in [{"key": k, "value": v} for [k, v] in ({d.name: d for d in myservice.dictionary if d.name == mydict_name}).items()]:
+        for range in [{"key": k, "value": v} for [k, v] in sorted(({d.name: d for d in myservice.dictionary if d.name == mydict_name}).items())]:
             items.append(fastly.ServiceDictionaryItems(f"items-{range['key']}",
                 service_id=myservice["id"],
                 dictionary_id=range["value"]["dictionaryId"],

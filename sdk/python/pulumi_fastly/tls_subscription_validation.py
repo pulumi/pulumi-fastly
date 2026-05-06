@@ -94,8 +94,8 @@ class TlsSubscriptionValidation(pulumi.CustomResource):
         production = aws.Route53Zone("production", name=example.com)
         example = aws.Route53domainsRegisteredDomain("example",
             name_server=[{
-                name: entry.value,
-            } for entry in [{"key": k, "value": v} for k, v in production.name_servers.items()]],
+                name: entry,
+            } for entry in production.name_servers],
             domain_name=example.com)
         subdomains = [
             "a.example.com",
@@ -103,8 +103,8 @@ class TlsSubscriptionValidation(pulumi.CustomResource):
         ]
         example_service_vcl = fastly.ServiceVcl("example",
             domains=[{
-                "name": entry["value"],
-            } for entry in [{"key": k, "value": v} for k, v in subdomains.items()]],
+                "name": entry,
+            } for entry in subdomains],
             name="example-service",
             backends=[{
                 "address": "127.0.0.1",
@@ -116,7 +116,7 @@ class TlsSubscriptionValidation(pulumi.CustomResource):
             certificate_authority="lets-encrypt")
         domain_validation = []
         def create_domain_validation(range_body):
-            for range in [{"key": k, "value": v} for [k, v] in (range_body).items()]:
+            for range in [{"key": k, "value": v} for [k, v] in sorted((range_body).items())]:
                 domain_validation.append(aws.Route53Record(f"domain_validation-{range['key']}",
                     name=range.value.record_name,
                     type=range.value.record_type,
@@ -184,8 +184,8 @@ class TlsSubscriptionValidation(pulumi.CustomResource):
         production = aws.Route53Zone("production", name=example.com)
         example = aws.Route53domainsRegisteredDomain("example",
             name_server=[{
-                name: entry.value,
-            } for entry in [{"key": k, "value": v} for k, v in production.name_servers.items()]],
+                name: entry,
+            } for entry in production.name_servers],
             domain_name=example.com)
         subdomains = [
             "a.example.com",
@@ -193,8 +193,8 @@ class TlsSubscriptionValidation(pulumi.CustomResource):
         ]
         example_service_vcl = fastly.ServiceVcl("example",
             domains=[{
-                "name": entry["value"],
-            } for entry in [{"key": k, "value": v} for k, v in subdomains.items()]],
+                "name": entry,
+            } for entry in subdomains],
             name="example-service",
             backends=[{
                 "address": "127.0.0.1",
@@ -206,7 +206,7 @@ class TlsSubscriptionValidation(pulumi.CustomResource):
             certificate_authority="lets-encrypt")
         domain_validation = []
         def create_domain_validation(range_body):
-            for range in [{"key": k, "value": v} for [k, v] in (range_body).items()]:
+            for range in [{"key": k, "value": v} for [k, v] in sorted((range_body).items())]:
                 domain_validation.append(aws.Route53Record(f"domain_validation-{range['key']}",
                     name=range.value.record_name,
                     type=range.value.record_type,
