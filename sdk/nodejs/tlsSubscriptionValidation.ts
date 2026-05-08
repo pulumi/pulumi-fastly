@@ -24,8 +24,8 @@ import * as utilities from "./utilities";
  * // NOTE: Creating a hosted zone will automatically create SOA/NS records.
  * const production = new aws.index.Route53Zone("production", {name: "example.com"});
  * const example = new aws.index.Route53domainsRegisteredDomain("example", {
- *     nameServer: Object.entries(production.nameServers).map(([k, v]) => ({key: k, value: v})).map(entry => ({
- *         name: entry.value,
+ *     nameServer: .map(entry => ({
+ *         name: entry,
  *     })),
  *     domainName: "example.com",
  * });
@@ -34,8 +34,8 @@ import * as utilities from "./utilities";
  *     "b.example.com",
  * ];
  * const exampleServiceVcl = new fastly.ServiceVcl("example", {
- *     domains: subdomains.map((v, k) => ({key: k, value: v})).map(entry => ({
- *         name: entry.value,
+ *     domains: subdomains.map(entry => ({
+ *         name: entry,
  *     })),
  *     name: "example-service",
  *     backends: [{
@@ -50,7 +50,7 @@ import * as utilities from "./utilities";
  * });
  * const domainValidation: aws.index.Route53Record[] = [];
  * exampleTlsSubscription.domains.apply(domains => {
- *     for (const range of Object.entries(domains.reduce((__obj, domain) => ({ ...__obj, [domain]: exampleTlsSubscription.managedDnsChallenges.apply(managedDnsChallenges => managedDnsChallenges.filter(obj => obj.recordName == `_acme-challenge.${domain}`).map(obj => (obj)))[0] }), {})).map(([k, v]) => ({key: k, value: v}))) {
+ *     for (const range of Object.entries(domains.reduce((__obj, domain) => ({ ...__obj, [domain]: exampleTlsSubscription.managedDnsChallenges.apply(managedDnsChallenges => managedDnsChallenges.filter(obj => obj.recordName == `_acme-challenge.${domain}`).map(obj => (obj)))[0] }), {})).sort().map(([k, v]) => ({key: k, value: v}))) {
  *         domainValidation.push(new aws.index.Route53Record(`domain_validation-${range.key}`, {
  *             name: range.value.recordName,
  *             type: range.value.recordType,
@@ -161,7 +161,7 @@ export interface TlsSubscriptionValidationState {
     /**
      * The ID of the TLS Subscription that should be validated.
      */
-    subscriptionId?: pulumi.Input<string>;
+    subscriptionId?: pulumi.Input<string | undefined>;
 }
 
 /**

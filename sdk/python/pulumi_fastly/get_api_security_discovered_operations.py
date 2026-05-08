@@ -193,11 +193,11 @@ def get_api_security_discovered_operations(domains: Optional[Sequence[_builtins.
         service_id=pulumi.get(__ret__, 'service_id'),
         status=pulumi.get(__ret__, 'status'),
         total=pulumi.get(__ret__, 'total'))
-def get_api_security_discovered_operations_output(domains: Optional[pulumi.Input[Optional[Sequence[_builtins.str]]]] = None,
-                                                  methods: Optional[pulumi.Input[Optional[Sequence[_builtins.str]]]] = None,
-                                                  path: Optional[pulumi.Input[Optional[_builtins.str]]] = None,
-                                                  service_id: Optional[pulumi.Input[_builtins.str]] = None,
-                                                  status: Optional[pulumi.Input[Optional[_builtins.str]]] = None,
+def get_api_security_discovered_operations_output(domains: pulumi.Input[Optional[Optional[Sequence[_builtins.str]]]] = None,
+                                                  methods: pulumi.Input[Optional[Optional[Sequence[_builtins.str]]]] = None,
+                                                  path: pulumi.Input[Optional[Optional[_builtins.str]]] = None,
+                                                  service_id: pulumi.Input[Optional[_builtins.str]] = None,
+                                                  status: pulumi.Input[Optional[Optional[_builtins.str]]] = None,
                                                   opts: Optional[Union[pulumi.InvokeOptions, pulumi.InvokeOutputOptions]] = None) -> pulumi.Output[GetApiSecurityDiscoveredOperationsResult]:
     """
     Use this data source to list API Security discovered operations for a Fastly service.

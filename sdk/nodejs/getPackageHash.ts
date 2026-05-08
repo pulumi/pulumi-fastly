@@ -100,9 +100,9 @@ export interface GetPackageHashOutputArgs {
     /**
      * The contents of the Wasm deployment package as a base64 encoded string (e.g. could be provided using an input variable or via external data source output variable). Conflicts with `filename`. Exactly one of these two arguments must be specified
      */
-    content?: pulumi.Input<string>;
+    content?: pulumi.Input<string | undefined>;
     /**
      * The path to the Wasm deployment package within your local filesystem. Conflicts with `content`. Exactly one of these two arguments must be specified
      */
-    filename?: pulumi.Input<string>;
+    filename?: pulumi.Input<string | undefined>;
 }

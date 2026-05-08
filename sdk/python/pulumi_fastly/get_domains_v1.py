@@ -90,7 +90,7 @@ def get_domains_v1(total: Optional[_builtins.int] = None,
         domains=pulumi.get(__ret__, 'domains'),
         id=pulumi.get(__ret__, 'id'),
         total=pulumi.get(__ret__, 'total'))
-def get_domains_v1_output(total: Optional[pulumi.Input[Optional[_builtins.int]]] = None,
+def get_domains_v1_output(total: pulumi.Input[Optional[Optional[_builtins.int]]] = None,
                           opts: Optional[Union[pulumi.InvokeOptions, pulumi.InvokeOutputOptions]] = None) -> pulumi.Output[GetDomainsV1Result]:
     """
     Use this data source to access information about an existing resource.

@@ -21,9 +21,9 @@ __all__ = ['CustomDashboardArgs', 'CustomDashboard']
 @pulumi.input_type
 class CustomDashboardArgs:
     def __init__(__self__, *,
-                 dashboard_items: Optional[pulumi.Input[Sequence[pulumi.Input['CustomDashboardDashboardItemArgs']]]] = None,
-                 description: Optional[pulumi.Input[_builtins.str]] = None,
-                 name: Optional[pulumi.Input[_builtins.str]] = None):
+                 dashboard_items: pulumi.Input[Optional[Sequence[pulumi.Input['CustomDashboardDashboardItemArgs']]]] = None,
+                 description: pulumi.Input[Optional[_builtins.str]] = None,
+                 name: pulumi.Input[Optional[_builtins.str]] = None):
         """
         The set of arguments for constructing a CustomDashboard resource.
 
@@ -40,47 +40,47 @@ class CustomDashboardArgs:
 
     @_builtins.property
     @pulumi.getter(name="dashboardItems")
-    def dashboard_items(self) -> Optional[pulumi.Input[Sequence[pulumi.Input['CustomDashboardDashboardItemArgs']]]]:
+    def dashboard_items(self) -> pulumi.Input[Optional[Sequence[pulumi.Input['CustomDashboardDashboardItemArgs']]]]:
         """
         A list of dashboard items.
         """
         return pulumi.get(self, "dashboard_items")
 
     @dashboard_items.setter
-    def dashboard_items(self, value: Optional[pulumi.Input[Sequence[pulumi.Input['CustomDashboardDashboardItemArgs']]]]):
+    def dashboard_items(self, value: pulumi.Input[Optional[Sequence[pulumi.Input['CustomDashboardDashboardItemArgs']]]]):
         pulumi.set(self, "dashboard_items", value)
 
     @_builtins.property
     @pulumi.getter
-    def description(self) -> Optional[pulumi.Input[_builtins.str]]:
+    def description(self) -> pulumi.Input[Optional[_builtins.str]]:
         """
         A short description of the dashboard.
         """
         return pulumi.get(self, "description")
 
     @description.setter
-    def description(self, value: Optional[pulumi.Input[_builtins.str]]):
+    def description(self, value: pulumi.Input[Optional[_builtins.str]]):
         pulumi.set(self, "description", value)
 
     @_builtins.property
     @pulumi.getter
-    def name(self) -> Optional[pulumi.Input[_builtins.str]]:
+    def name(self) -> pulumi.Input[Optional[_builtins.str]]:
         """
         A human-readable name.
         """
         return pulumi.get(self, "name")
 
     @name.setter
-    def name(self, value: Optional[pulumi.Input[_builtins.str]]):
+    def name(self, value: pulumi.Input[Optional[_builtins.str]]):
         pulumi.set(self, "name", value)
 
 
 @pulumi.input_type
 class _CustomDashboardState:
     def __init__(__self__, *,
-                 dashboard_items: Optional[pulumi.Input[Sequence[pulumi.Input['CustomDashboardDashboardItemArgs']]]] = None,
-                 description: Optional[pulumi.Input[_builtins.str]] = None,
-                 name: Optional[pulumi.Input[_builtins.str]] = None):
+                 dashboard_items: pulumi.Input[Optional[Sequence[pulumi.Input['CustomDashboardDashboardItemArgs']]]] = None,
+                 description: pulumi.Input[Optional[_builtins.str]] = None,
+                 name: pulumi.Input[Optional[_builtins.str]] = None):
         """
         Input properties used for looking up and filtering CustomDashboard resources.
 
@@ -97,38 +97,38 @@ class _CustomDashboardState:
 
     @_builtins.property
     @pulumi.getter(name="dashboardItems")
-    def dashboard_items(self) -> Optional[pulumi.Input[Sequence[pulumi.Input['CustomDashboardDashboardItemArgs']]]]:
+    def dashboard_items(self) -> pulumi.Input[Optional[Sequence[pulumi.Input['CustomDashboardDashboardItemArgs']]]]:
         """
         A list of dashboard items.
         """
         return pulumi.get(self, "dashboard_items")
 
     @dashboard_items.setter
-    def dashboard_items(self, value: Optional[pulumi.Input[Sequence[pulumi.Input['CustomDashboardDashboardItemArgs']]]]):
+    def dashboard_items(self, value: pulumi.Input[Optional[Sequence[pulumi.Input['CustomDashboardDashboardItemArgs']]]]):
         pulumi.set(self, "dashboard_items", value)
 
     @_builtins.property
     @pulumi.getter
-    def description(self) -> Optional[pulumi.Input[_builtins.str]]:
+    def description(self) -> pulumi.Input[Optional[_builtins.str]]:
         """
         A short description of the dashboard.
         """
         return pulumi.get(self, "description")
 
     @description.setter
-    def description(self, value: Optional[pulumi.Input[_builtins.str]]):
+    def description(self, value: pulumi.Input[Optional[_builtins.str]]):
         pulumi.set(self, "description", value)
 
     @_builtins.property
     @pulumi.getter
-    def name(self) -> Optional[pulumi.Input[_builtins.str]]:
+    def name(self) -> pulumi.Input[Optional[_builtins.str]]:
         """
         A human-readable name.
         """
         return pulumi.get(self, "name")
 
     @name.setter
-    def name(self, value: Optional[pulumi.Input[_builtins.str]]):
+    def name(self, value: pulumi.Input[Optional[_builtins.str]]):
         pulumi.set(self, "name", value)
 
 
@@ -138,9 +138,9 @@ class CustomDashboard(pulumi.CustomResource):
     def __init__(__self__,
                  resource_name: str,
                  opts: Optional[pulumi.ResourceOptions] = None,
-                 dashboard_items: Optional[pulumi.Input[Sequence[pulumi.Input[Union['CustomDashboardDashboardItemArgs', 'CustomDashboardDashboardItemArgsDict']]]]] = None,
-                 description: Optional[pulumi.Input[_builtins.str]] = None,
-                 name: Optional[pulumi.Input[_builtins.str]] = None,
+                 dashboard_items: pulumi.Input[Optional[Sequence[pulumi.Input[Union['CustomDashboardDashboardItemArgs', 'CustomDashboardDashboardItemArgsDict']]]]] = None,
+                 description: pulumi.Input[Optional[_builtins.str]] = None,
+                 name: pulumi.Input[Optional[_builtins.str]] = None,
                  __props__=None):
         """
         Provides a Custom Dashboard which can be viewed in the Fastly Control Panel.
@@ -667,9 +667,9 @@ class CustomDashboard(pulumi.CustomResource):
     def _internal_init(__self__,
                  resource_name: str,
                  opts: Optional[pulumi.ResourceOptions] = None,
-                 dashboard_items: Optional[pulumi.Input[Sequence[pulumi.Input[Union['CustomDashboardDashboardItemArgs', 'CustomDashboardDashboardItemArgsDict']]]]] = None,
-                 description: Optional[pulumi.Input[_builtins.str]] = None,
-                 name: Optional[pulumi.Input[_builtins.str]] = None,
+                 dashboard_items: pulumi.Input[Optional[Sequence[pulumi.Input[Union['CustomDashboardDashboardItemArgs', 'CustomDashboardDashboardItemArgsDict']]]]] = None,
+                 description: pulumi.Input[Optional[_builtins.str]] = None,
+                 name: pulumi.Input[Optional[_builtins.str]] = None,
                  __props__=None):
         opts = pulumi.ResourceOptions.merge(_utilities.get_resource_opts_defaults(), opts)
         if not isinstance(opts, pulumi.ResourceOptions):
@@ -692,9 +692,9 @@ class CustomDashboard(pulumi.CustomResource):
     def get(resource_name: str,
             id: pulumi.Input[str],
             opts: Optional[pulumi.ResourceOptions] = None,
-            dashboard_items: Optional[pulumi.Input[Sequence[pulumi.Input[Union['CustomDashboardDashboardItemArgs', 'CustomDashboardDashboardItemArgsDict']]]]] = None,
-            description: Optional[pulumi.Input[_builtins.str]] = None,
-            name: Optional[pulumi.Input[_builtins.str]] = None) -> 'CustomDashboard':
+            dashboard_items: pulumi.Input[Optional[Sequence[pulumi.Input[Union['CustomDashboardDashboardItemArgs', 'CustomDashboardDashboardItemArgsDict']]]]] = None,
+            description: pulumi.Input[Optional[_builtins.str]] = None,
+            name: pulumi.Input[Optional[_builtins.str]] = None) -> 'CustomDashboard':
         """
         Get an existing CustomDashboard resource's state with the given name, id, and optional extra
         properties used to qualify the lookup.

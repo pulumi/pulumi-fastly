@@ -87,7 +87,7 @@ using Fastly = Pulumi.Fastly;
 return await Deployment.RunAsync(() =>
 {
     // Create a Service
-    var myservice = new Fastly.Index.ServiceVcl("myservice", new()
+    var myservice = new Fastly.ServiceVcl("myservice", new()
     {
         Name = "myawesometestservice",
     });
@@ -171,8 +171,8 @@ import com.pulumi.Pulumi;
 import com.pulumi.core.Output;
 import com.pulumi.fastly.ServiceVcl;
 import com.pulumi.fastly.ServiceVclArgs;
-import java.util.List;
 import java.util.ArrayList;
+import java.util.Arrays;
 import java.util.Map;
 import java.io.File;
 import java.nio.file.Files;
@@ -270,7 +270,7 @@ using Fastly = Pulumi.Fastly;
 
 return await Deployment.RunAsync(() =>
 {
-    var myservice = new Fastly.Index.ServiceVcl("myservice");
+    var myservice = new Fastly.ServiceVcl("myservice");
 
 });
 
@@ -344,8 +344,8 @@ import com.pulumi.Context;
 import com.pulumi.Pulumi;
 import com.pulumi.core.Output;
 import com.pulumi.fastly.ServiceVcl;
-import java.util.List;
 import java.util.ArrayList;
+import java.util.Arrays;
 import java.util.Map;
 import java.io.File;
 import java.nio.file.Files;
@@ -400,7 +400,7 @@ using Fastly = Pulumi.Fastly;
 
 return await Deployment.RunAsync(() =>
 {
-    var myservice = new Fastly.Index.ServiceVcl("myservice");
+    var myservice = new Fastly.ServiceVcl("myservice");
 
 });
 
@@ -444,8 +444,8 @@ import com.pulumi.Context;
 import com.pulumi.Pulumi;
 import com.pulumi.core.Output;
 import com.pulumi.fastly.ServiceVcl;
-import java.util.List;
 import java.util.ArrayList;
+import java.util.Arrays;
 import java.util.Map;
 import java.io.File;
 import java.nio.file.Files;

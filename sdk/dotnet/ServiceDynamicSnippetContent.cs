@@ -29,7 +29,7 @@ namespace Pulumi.Fastly
     /// 
     /// return await Deployment.RunAsync(() =&gt; 
     /// {
-    ///     var myservice = new Fastly.Index.ServiceVcl("myservice", new()
+    ///     var myservice = new Fastly.ServiceVcl("myservice", new()
     ///     {
     ///         Name = "snippet_test",
     ///         Domains = new[]
@@ -62,18 +62,22 @@ namespace Pulumi.Fastly
     ///         ForceDestroy = true,
     ///     });
     /// 
-    ///     var myDynContent = new List&lt;Fastly.Index.ServiceDynamicSnippetContent&gt;();
-    ///     foreach (var range in myservice.Dynamicsnippets.Apply(dynamicsnippets =&gt; ).Select(pair =&gt; new { pair.Key, pair.Value }))
+    ///     var myDynContent = new List&lt;Fastly.ServiceDynamicSnippetContent&gt;();
+    ///     .Apply(rangeBody =&gt;
     ///     {
-    ///         myDynContent.Add(new Fastly.Index.ServiceDynamicSnippetContent($"my_dyn_content-{range.Key}", new()
+    ///         foreach (var range in rangeBody.Select(pair =&gt; new { pair.Key, pair.Value }))
     ///         {
-    ///             ServiceId = myservice.Id,
-    ///             SnippetId = range.Value.SnippetId,
-    ///             Content = @"if ( req.url ) {
+    ///             myDynContent.Add(new Fastly.ServiceDynamicSnippetContent($"my_dyn_content-{range.Key}", new()
+    ///             {
+    ///                 ServiceId = myservice.Id,
+    ///                 SnippetId = range.Value.SnippetId,
+    ///                 Content = @"if ( req.url ) {
     ///  set req.http.my-snippet-test-header = ""true"";
     /// }",
-    ///         }));
-    ///     }
+    ///             }));
+    ///         }
+    ///         return 0;
+    ///     });
     /// });
     /// ```
     /// 
@@ -87,7 +91,7 @@ namespace Pulumi.Fastly
     /// 
     /// return await Deployment.RunAsync(() =&gt; 
     /// {
-    ///     var myservice = new Fastly.Index.ServiceVcl("myservice", new()
+    ///     var myservice = new Fastly.ServiceVcl("myservice", new()
     ///     {
     ///         Name = "snippet_test",
     ///         Domains = new[]
@@ -126,30 +130,38 @@ namespace Pulumi.Fastly
     ///         ForceDestroy = true,
     ///     });
     /// 
-    ///     var myDynContentOne = new List&lt;Fastly.Index.ServiceDynamicSnippetContent&gt;();
-    ///     foreach (var range in myservice.Dynamicsnippets.Apply(dynamicsnippets =&gt; ).Select(pair =&gt; new { pair.Key, pair.Value }))
+    ///     var myDynContentOne = new List&lt;Fastly.ServiceDynamicSnippetContent&gt;();
+    ///     .Apply(rangeBody =&gt;
     ///     {
-    ///         myDynContentOne.Add(new Fastly.Index.ServiceDynamicSnippetContent($"my_dyn_content_one-{range.Key}", new()
+    ///         foreach (var range in rangeBody.Select(pair =&gt; new { pair.Key, pair.Value }))
     ///         {
-    ///             ServiceId = myservice.Id,
-    ///             SnippetId = range.Value.SnippetId,
-    ///             Content = @"if ( req.url ) {
+    ///             myDynContentOne.Add(new Fastly.ServiceDynamicSnippetContent($"my_dyn_content_one-{range.Key}", new()
+    ///             {
+    ///                 ServiceId = myservice.Id,
+    ///                 SnippetId = range.Value.SnippetId,
+    ///                 Content = @"if ( req.url ) {
     ///  set req.http.my-snippet-test-header-one = ""true"";
     /// }",
-    ///         }));
-    ///     }
-    ///     var myDynContentTwo = new List&lt;Fastly.Index.ServiceDynamicSnippetContent&gt;();
-    ///     foreach (var range in myservice.Dynamicsnippets.Apply(dynamicsnippets =&gt; ).Select(pair =&gt; new { pair.Key, pair.Value }))
+    ///             }));
+    ///         }
+    ///         return 0;
+    ///     });
+    ///     var myDynContentTwo = new List&lt;Fastly.ServiceDynamicSnippetContent&gt;();
+    ///     .Apply(rangeBody =&gt;
     ///     {
-    ///         myDynContentTwo.Add(new Fastly.Index.ServiceDynamicSnippetContent($"my_dyn_content_two-{range.Key}", new()
+    ///         foreach (var range in rangeBody.Select(pair =&gt; new { pair.Key, pair.Value }))
     ///         {
-    ///             ServiceId = myservice.Id,
-    ///             SnippetId = range.Value.SnippetId,
-    ///             Content = @"if ( req.url ) {
+    ///             myDynContentTwo.Add(new Fastly.ServiceDynamicSnippetContent($"my_dyn_content_two-{range.Key}", new()
+    ///             {
+    ///                 ServiceId = myservice.Id,
+    ///                 SnippetId = range.Value.SnippetId,
+    ///                 Content = @"if ( req.url ) {
     ///  set req.http.my-snippet-test-header-two = ""true"";
     /// }",
-    ///         }));
-    ///     }
+    ///             }));
+    ///         }
+    ///         return 0;
+    ///     });
     /// });
     /// ```
     /// 
@@ -179,7 +191,7 @@ namespace Pulumi.Fastly
     /// 
     /// return await Deployment.RunAsync(() =&gt; 
     /// {
-    ///     var myservice = new Fastly.Index.ServiceVcl("myservice", new()
+    ///     var myservice = new Fastly.ServiceVcl("myservice", new()
     ///     {
     ///         Name = "demofastly",
     ///         Domains = new[]
@@ -201,7 +213,7 @@ namespace Pulumi.Fastly
     ///         },
     ///     });
     /// 
-    ///     var myDynContent = new Fastly.Index.ServiceDynamicSnippetContent("my_dyn_content", new()
+    ///     var myDynContent = new Fastly.ServiceDynamicSnippetContent("my_dyn_content", new()
     ///     {
     ///         ServiceId = myservice.Id,
     ///         SnippetId = myservice.Dynamicsnippets.Apply(dynamicsnippets =&gt; .ToDictionary(item =&gt; {
@@ -238,7 +250,7 @@ namespace Pulumi.Fastly
     /// return await Deployment.RunAsync(() =&gt; 
     /// {
     ///     //...
-    ///     var myDynContent = new List&lt;Fastly.Index.ServiceDynamicSnippetContent&gt;();
+    ///     var myDynContent = new List&lt;Fastly.ServiceDynamicSnippetContent&gt;();
     ///     foreach (var range in .ToDictionary(item =&gt; {
     ///         var d = item.Value;
     ///         return d.Name;
@@ -247,7 +259,7 @@ namespace Pulumi.Fastly
     ///         return d;
     ///     }).Select(pair =&gt; new { pair.Key, pair.Value }))
     ///     {
-    ///         myDynContent.Add(new Fastly.Index.ServiceDynamicSnippetContent($"my_dyn_content-{range.Key}", new()
+    ///         myDynContent.Add(new Fastly.ServiceDynamicSnippetContent($"my_dyn_content-{range.Key}", new()
     ///         {
     ///             ServiceId = myservice.Id,
     ///             SnippetId = range.Value.SnippetId,

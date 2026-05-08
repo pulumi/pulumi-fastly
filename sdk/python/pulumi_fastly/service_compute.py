@@ -21,49 +21,49 @@ __all__ = ['ServiceComputeArgs', 'ServiceCompute']
 @pulumi.input_type
 class ServiceComputeArgs:
     def __init__(__self__, *,
-                 activate: Optional[pulumi.Input[_builtins.bool]] = None,
-                 backends: Optional[pulumi.Input[Sequence[pulumi.Input['ServiceComputeBackendArgs']]]] = None,
-                 comment: Optional[pulumi.Input[_builtins.str]] = None,
-                 dictionaries: Optional[pulumi.Input[Sequence[pulumi.Input['ServiceComputeDictionaryArgs']]]] = None,
-                 domains: Optional[pulumi.Input[Sequence[pulumi.Input['ServiceComputeDomainArgs']]]] = None,
-                 force_destroy: Optional[pulumi.Input[_builtins.bool]] = None,
-                 healthchecks: Optional[pulumi.Input[Sequence[pulumi.Input['ServiceComputeHealthcheckArgs']]]] = None,
-                 image_optimizer_default_settings: Optional[pulumi.Input['ServiceComputeImageOptimizerDefaultSettingsArgs']] = None,
-                 logging_bigqueries: Optional[pulumi.Input[Sequence[pulumi.Input['ServiceComputeLoggingBigqueryArgs']]]] = None,
-                 logging_blobstorages: Optional[pulumi.Input[Sequence[pulumi.Input['ServiceComputeLoggingBlobstorageArgs']]]] = None,
-                 logging_cloudfiles: Optional[pulumi.Input[Sequence[pulumi.Input['ServiceComputeLoggingCloudfileArgs']]]] = None,
-                 logging_datadogs: Optional[pulumi.Input[Sequence[pulumi.Input['ServiceComputeLoggingDatadogArgs']]]] = None,
-                 logging_digitaloceans: Optional[pulumi.Input[Sequence[pulumi.Input['ServiceComputeLoggingDigitaloceanArgs']]]] = None,
-                 logging_elasticsearches: Optional[pulumi.Input[Sequence[pulumi.Input['ServiceComputeLoggingElasticsearchArgs']]]] = None,
-                 logging_ftps: Optional[pulumi.Input[Sequence[pulumi.Input['ServiceComputeLoggingFtpArgs']]]] = None,
-                 logging_gcs: Optional[pulumi.Input[Sequence[pulumi.Input['ServiceComputeLoggingGcArgs']]]] = None,
-                 logging_googlepubsubs: Optional[pulumi.Input[Sequence[pulumi.Input['ServiceComputeLoggingGooglepubsubArgs']]]] = None,
-                 logging_grafanacloudlogs: Optional[pulumi.Input[Sequence[pulumi.Input['ServiceComputeLoggingGrafanacloudlogArgs']]]] = None,
-                 logging_heroku: Optional[pulumi.Input[Sequence[pulumi.Input['ServiceComputeLoggingHerokuArgs']]]] = None,
-                 logging_honeycombs: Optional[pulumi.Input[Sequence[pulumi.Input['ServiceComputeLoggingHoneycombArgs']]]] = None,
-                 logging_https: Optional[pulumi.Input[Sequence[pulumi.Input['ServiceComputeLoggingHttpArgs']]]] = None,
-                 logging_kafkas: Optional[pulumi.Input[Sequence[pulumi.Input['ServiceComputeLoggingKafkaArgs']]]] = None,
-                 logging_kineses: Optional[pulumi.Input[Sequence[pulumi.Input['ServiceComputeLoggingKineseArgs']]]] = None,
-                 logging_logentries: Optional[pulumi.Input[Sequence[pulumi.Input['ServiceComputeLoggingLogentryArgs']]]] = None,
-                 logging_logglies: Optional[pulumi.Input[Sequence[pulumi.Input['ServiceComputeLoggingLogglyArgs']]]] = None,
-                 logging_logshuttles: Optional[pulumi.Input[Sequence[pulumi.Input['ServiceComputeLoggingLogshuttleArgs']]]] = None,
-                 logging_newrelicotlps: Optional[pulumi.Input[Sequence[pulumi.Input['ServiceComputeLoggingNewrelicotlpArgs']]]] = None,
-                 logging_newrelics: Optional[pulumi.Input[Sequence[pulumi.Input['ServiceComputeLoggingNewrelicArgs']]]] = None,
-                 logging_openstacks: Optional[pulumi.Input[Sequence[pulumi.Input['ServiceComputeLoggingOpenstackArgs']]]] = None,
-                 logging_papertrails: Optional[pulumi.Input[Sequence[pulumi.Input['ServiceComputeLoggingPapertrailArgs']]]] = None,
-                 logging_s3s: Optional[pulumi.Input[Sequence[pulumi.Input['ServiceComputeLoggingS3Args']]]] = None,
-                 logging_scalyrs: Optional[pulumi.Input[Sequence[pulumi.Input['ServiceComputeLoggingScalyrArgs']]]] = None,
-                 logging_sftps: Optional[pulumi.Input[Sequence[pulumi.Input['ServiceComputeLoggingSftpArgs']]]] = None,
-                 logging_splunks: Optional[pulumi.Input[Sequence[pulumi.Input['ServiceComputeLoggingSplunkArgs']]]] = None,
-                 logging_sumologics: Optional[pulumi.Input[Sequence[pulumi.Input['ServiceComputeLoggingSumologicArgs']]]] = None,
-                 logging_syslogs: Optional[pulumi.Input[Sequence[pulumi.Input['ServiceComputeLoggingSyslogArgs']]]] = None,
-                 name: Optional[pulumi.Input[_builtins.str]] = None,
-                 package: Optional[pulumi.Input['ServiceComputePackageArgs']] = None,
-                 product_enablement: Optional[pulumi.Input['ServiceComputeProductEnablementArgs']] = None,
-                 resource_links: Optional[pulumi.Input[Sequence[pulumi.Input['ServiceComputeResourceLinkArgs']]]] = None,
-                 reuse: Optional[pulumi.Input[_builtins.bool]] = None,
-                 stage: Optional[pulumi.Input[_builtins.bool]] = None,
-                 version_comment: Optional[pulumi.Input[_builtins.str]] = None):
+                 activate: pulumi.Input[Optional[_builtins.bool]] = None,
+                 backends: pulumi.Input[Optional[Sequence[pulumi.Input['ServiceComputeBackendArgs']]]] = None,
+                 comment: pulumi.Input[Optional[_builtins.str]] = None,
+                 dictionaries: pulumi.Input[Optional[Sequence[pulumi.Input['ServiceComputeDictionaryArgs']]]] = None,
+                 domains: pulumi.Input[Optional[Sequence[pulumi.Input['ServiceComputeDomainArgs']]]] = None,
+                 force_destroy: pulumi.Input[Optional[_builtins.bool]] = None,
+                 healthchecks: pulumi.Input[Optional[Sequence[pulumi.Input['ServiceComputeHealthcheckArgs']]]] = None,
+                 image_optimizer_default_settings: pulumi.Input[Optional['ServiceComputeImageOptimizerDefaultSettingsArgs']] = None,
+                 logging_bigqueries: pulumi.Input[Optional[Sequence[pulumi.Input['ServiceComputeLoggingBigqueryArgs']]]] = None,
+                 logging_blobstorages: pulumi.Input[Optional[Sequence[pulumi.Input['ServiceComputeLoggingBlobstorageArgs']]]] = None,
+                 logging_cloudfiles: pulumi.Input[Optional[Sequence[pulumi.Input['ServiceComputeLoggingCloudfileArgs']]]] = None,
+                 logging_datadogs: pulumi.Input[Optional[Sequence[pulumi.Input['ServiceComputeLoggingDatadogArgs']]]] = None,
+                 logging_digitaloceans: pulumi.Input[Optional[Sequence[pulumi.Input['ServiceComputeLoggingDigitaloceanArgs']]]] = None,
+                 logging_elasticsearches: pulumi.Input[Optional[Sequence[pulumi.Input['ServiceComputeLoggingElasticsearchArgs']]]] = None,
+                 logging_ftps: pulumi.Input[Optional[Sequence[pulumi.Input['ServiceComputeLoggingFtpArgs']]]] = None,
+                 logging_gcs: pulumi.Input[Optional[Sequence[pulumi.Input['ServiceComputeLoggingGcArgs']]]] = None,
+                 logging_googlepubsubs: pulumi.Input[Optional[Sequence[pulumi.Input['ServiceComputeLoggingGooglepubsubArgs']]]] = None,
+                 logging_grafanacloudlogs: pulumi.Input[Optional[Sequence[pulumi.Input['ServiceComputeLoggingGrafanacloudlogArgs']]]] = None,
+                 logging_heroku: pulumi.Input[Optional[Sequence[pulumi.Input['ServiceComputeLoggingHerokuArgs']]]] = None,
+                 logging_honeycombs: pulumi.Input[Optional[Sequence[pulumi.Input['ServiceComputeLoggingHoneycombArgs']]]] = None,
+                 logging_https: pulumi.Input[Optional[Sequence[pulumi.Input['ServiceComputeLoggingHttpArgs']]]] = None,
+                 logging_kafkas: pulumi.Input[Optional[Sequence[pulumi.Input['ServiceComputeLoggingKafkaArgs']]]] = None,
+                 logging_kineses: pulumi.Input[Optional[Sequence[pulumi.Input['ServiceComputeLoggingKineseArgs']]]] = None,
+                 logging_logentries: pulumi.Input[Optional[Sequence[pulumi.Input['ServiceComputeLoggingLogentryArgs']]]] = None,
+                 logging_logglies: pulumi.Input[Optional[Sequence[pulumi.Input['ServiceComputeLoggingLogglyArgs']]]] = None,
+                 logging_logshuttles: pulumi.Input[Optional[Sequence[pulumi.Input['ServiceComputeLoggingLogshuttleArgs']]]] = None,
+                 logging_newrelicotlps: pulumi.Input[Optional[Sequence[pulumi.Input['ServiceComputeLoggingNewrelicotlpArgs']]]] = None,
+                 logging_newrelics: pulumi.Input[Optional[Sequence[pulumi.Input['ServiceComputeLoggingNewrelicArgs']]]] = None,
+                 logging_openstacks: pulumi.Input[Optional[Sequence[pulumi.Input['ServiceComputeLoggingOpenstackArgs']]]] = None,
+                 logging_papertrails: pulumi.Input[Optional[Sequence[pulumi.Input['ServiceComputeLoggingPapertrailArgs']]]] = None,
+                 logging_s3s: pulumi.Input[Optional[Sequence[pulumi.Input['ServiceComputeLoggingS3Args']]]] = None,
+                 logging_scalyrs: pulumi.Input[Optional[Sequence[pulumi.Input['ServiceComputeLoggingScalyrArgs']]]] = None,
+                 logging_sftps: pulumi.Input[Optional[Sequence[pulumi.Input['ServiceComputeLoggingSftpArgs']]]] = None,
+                 logging_splunks: pulumi.Input[Optional[Sequence[pulumi.Input['ServiceComputeLoggingSplunkArgs']]]] = None,
+                 logging_sumologics: pulumi.Input[Optional[Sequence[pulumi.Input['ServiceComputeLoggingSumologicArgs']]]] = None,
+                 logging_syslogs: pulumi.Input[Optional[Sequence[pulumi.Input['ServiceComputeLoggingSyslogArgs']]]] = None,
+                 name: pulumi.Input[Optional[_builtins.str]] = None,
+                 package: pulumi.Input[Optional['ServiceComputePackageArgs']] = None,
+                 product_enablement: pulumi.Input[Optional['ServiceComputeProductEnablementArgs']] = None,
+                 resource_links: pulumi.Input[Optional[Sequence[pulumi.Input['ServiceComputeResourceLinkArgs']]]] = None,
+                 reuse: pulumi.Input[Optional[_builtins.bool]] = None,
+                 stage: pulumi.Input[Optional[_builtins.bool]] = None,
+                 version_comment: pulumi.Input[Optional[_builtins.str]] = None):
         """
         The set of arguments for constructing a ServiceCompute resource.
 
@@ -167,473 +167,473 @@ class ServiceComputeArgs:
 
     @_builtins.property
     @pulumi.getter
-    def activate(self) -> Optional[pulumi.Input[_builtins.bool]]:
+    def activate(self) -> pulumi.Input[Optional[_builtins.bool]]:
         """
         Conditionally prevents new service versions from being activated. The apply step will create a new draft version but will not activate it if this is set to `false`. Default `true`
         """
         return pulumi.get(self, "activate")
 
     @activate.setter
-    def activate(self, value: Optional[pulumi.Input[_builtins.bool]]):
+    def activate(self, value: pulumi.Input[Optional[_builtins.bool]]):
         pulumi.set(self, "activate", value)
 
     @_builtins.property
     @pulumi.getter
-    def backends(self) -> Optional[pulumi.Input[Sequence[pulumi.Input['ServiceComputeBackendArgs']]]]:
+    def backends(self) -> pulumi.Input[Optional[Sequence[pulumi.Input['ServiceComputeBackendArgs']]]]:
         return pulumi.get(self, "backends")
 
     @backends.setter
-    def backends(self, value: Optional[pulumi.Input[Sequence[pulumi.Input['ServiceComputeBackendArgs']]]]):
+    def backends(self, value: pulumi.Input[Optional[Sequence[pulumi.Input['ServiceComputeBackendArgs']]]]):
         pulumi.set(self, "backends", value)
 
     @_builtins.property
     @pulumi.getter
-    def comment(self) -> Optional[pulumi.Input[_builtins.str]]:
+    def comment(self) -> pulumi.Input[Optional[_builtins.str]]:
         """
         Description field for the service. Default `Managed by Terraform`
         """
         return pulumi.get(self, "comment")
 
     @comment.setter
-    def comment(self, value: Optional[pulumi.Input[_builtins.str]]):
+    def comment(self, value: pulumi.Input[Optional[_builtins.str]]):
         pulumi.set(self, "comment", value)
 
     @_builtins.property
     @pulumi.getter
-    def dictionaries(self) -> Optional[pulumi.Input[Sequence[pulumi.Input['ServiceComputeDictionaryArgs']]]]:
+    def dictionaries(self) -> pulumi.Input[Optional[Sequence[pulumi.Input['ServiceComputeDictionaryArgs']]]]:
         return pulumi.get(self, "dictionaries")
 
     @dictionaries.setter
-    def dictionaries(self, value: Optional[pulumi.Input[Sequence[pulumi.Input['ServiceComputeDictionaryArgs']]]]):
+    def dictionaries(self, value: pulumi.Input[Optional[Sequence[pulumi.Input['ServiceComputeDictionaryArgs']]]]):
         pulumi.set(self, "dictionaries", value)
 
     @_builtins.property
     @pulumi.getter
-    def domains(self) -> Optional[pulumi.Input[Sequence[pulumi.Input['ServiceComputeDomainArgs']]]]:
+    def domains(self) -> pulumi.Input[Optional[Sequence[pulumi.Input['ServiceComputeDomainArgs']]]]:
         """
         A set of Domain names to serve as entry points for your Service
         """
         return pulumi.get(self, "domains")
 
     @domains.setter
-    def domains(self, value: Optional[pulumi.Input[Sequence[pulumi.Input['ServiceComputeDomainArgs']]]]):
+    def domains(self, value: pulumi.Input[Optional[Sequence[pulumi.Input['ServiceComputeDomainArgs']]]]):
         pulumi.set(self, "domains", value)
 
     @_builtins.property
     @pulumi.getter(name="forceDestroy")
-    def force_destroy(self) -> Optional[pulumi.Input[_builtins.bool]]:
+    def force_destroy(self) -> pulumi.Input[Optional[_builtins.bool]]:
         """
         Services that are active cannot be destroyed. In order to destroy the Service, set `force_destroy` to `true`. Default `false`
         """
         return pulumi.get(self, "force_destroy")
 
     @force_destroy.setter
-    def force_destroy(self, value: Optional[pulumi.Input[_builtins.bool]]):
+    def force_destroy(self, value: pulumi.Input[Optional[_builtins.bool]]):
         pulumi.set(self, "force_destroy", value)
 
     @_builtins.property
     @pulumi.getter
-    def healthchecks(self) -> Optional[pulumi.Input[Sequence[pulumi.Input['ServiceComputeHealthcheckArgs']]]]:
+    def healthchecks(self) -> pulumi.Input[Optional[Sequence[pulumi.Input['ServiceComputeHealthcheckArgs']]]]:
         return pulumi.get(self, "healthchecks")
 
     @healthchecks.setter
-    def healthchecks(self, value: Optional[pulumi.Input[Sequence[pulumi.Input['ServiceComputeHealthcheckArgs']]]]):
+    def healthchecks(self, value: pulumi.Input[Optional[Sequence[pulumi.Input['ServiceComputeHealthcheckArgs']]]]):
         pulumi.set(self, "healthchecks", value)
 
     @_builtins.property
     @pulumi.getter(name="imageOptimizerDefaultSettings")
-    def image_optimizer_default_settings(self) -> Optional[pulumi.Input['ServiceComputeImageOptimizerDefaultSettingsArgs']]:
+    def image_optimizer_default_settings(self) -> pulumi.Input[Optional['ServiceComputeImageOptimizerDefaultSettingsArgs']]:
         return pulumi.get(self, "image_optimizer_default_settings")
 
     @image_optimizer_default_settings.setter
-    def image_optimizer_default_settings(self, value: Optional[pulumi.Input['ServiceComputeImageOptimizerDefaultSettingsArgs']]):
+    def image_optimizer_default_settings(self, value: pulumi.Input[Optional['ServiceComputeImageOptimizerDefaultSettingsArgs']]):
         pulumi.set(self, "image_optimizer_default_settings", value)
 
     @_builtins.property
     @pulumi.getter(name="loggingBigqueries")
-    def logging_bigqueries(self) -> Optional[pulumi.Input[Sequence[pulumi.Input['ServiceComputeLoggingBigqueryArgs']]]]:
+    def logging_bigqueries(self) -> pulumi.Input[Optional[Sequence[pulumi.Input['ServiceComputeLoggingBigqueryArgs']]]]:
         return pulumi.get(self, "logging_bigqueries")
 
     @logging_bigqueries.setter
-    def logging_bigqueries(self, value: Optional[pulumi.Input[Sequence[pulumi.Input['ServiceComputeLoggingBigqueryArgs']]]]):
+    def logging_bigqueries(self, value: pulumi.Input[Optional[Sequence[pulumi.Input['ServiceComputeLoggingBigqueryArgs']]]]):
         pulumi.set(self, "logging_bigqueries", value)
 
     @_builtins.property
     @pulumi.getter(name="loggingBlobstorages")
-    def logging_blobstorages(self) -> Optional[pulumi.Input[Sequence[pulumi.Input['ServiceComputeLoggingBlobstorageArgs']]]]:
+    def logging_blobstorages(self) -> pulumi.Input[Optional[Sequence[pulumi.Input['ServiceComputeLoggingBlobstorageArgs']]]]:
         return pulumi.get(self, "logging_blobstorages")
 
     @logging_blobstorages.setter
-    def logging_blobstorages(self, value: Optional[pulumi.Input[Sequence[pulumi.Input['ServiceComputeLoggingBlobstorageArgs']]]]):
+    def logging_blobstorages(self, value: pulumi.Input[Optional[Sequence[pulumi.Input['ServiceComputeLoggingBlobstorageArgs']]]]):
         pulumi.set(self, "logging_blobstorages", value)
 
     @_builtins.property
     @pulumi.getter(name="loggingCloudfiles")
-    def logging_cloudfiles(self) -> Optional[pulumi.Input[Sequence[pulumi.Input['ServiceComputeLoggingCloudfileArgs']]]]:
+    def logging_cloudfiles(self) -> pulumi.Input[Optional[Sequence[pulumi.Input['ServiceComputeLoggingCloudfileArgs']]]]:
         return pulumi.get(self, "logging_cloudfiles")
 
     @logging_cloudfiles.setter
-    def logging_cloudfiles(self, value: Optional[pulumi.Input[Sequence[pulumi.Input['ServiceComputeLoggingCloudfileArgs']]]]):
+    def logging_cloudfiles(self, value: pulumi.Input[Optional[Sequence[pulumi.Input['ServiceComputeLoggingCloudfileArgs']]]]):
         pulumi.set(self, "logging_cloudfiles", value)
 
     @_builtins.property
     @pulumi.getter(name="loggingDatadogs")
-    def logging_datadogs(self) -> Optional[pulumi.Input[Sequence[pulumi.Input['ServiceComputeLoggingDatadogArgs']]]]:
+    def logging_datadogs(self) -> pulumi.Input[Optional[Sequence[pulumi.Input['ServiceComputeLoggingDatadogArgs']]]]:
         return pulumi.get(self, "logging_datadogs")
 
     @logging_datadogs.setter
-    def logging_datadogs(self, value: Optional[pulumi.Input[Sequence[pulumi.Input['ServiceComputeLoggingDatadogArgs']]]]):
+    def logging_datadogs(self, value: pulumi.Input[Optional[Sequence[pulumi.Input['ServiceComputeLoggingDatadogArgs']]]]):
         pulumi.set(self, "logging_datadogs", value)
 
     @_builtins.property
     @pulumi.getter(name="loggingDigitaloceans")
-    def logging_digitaloceans(self) -> Optional[pulumi.Input[Sequence[pulumi.Input['ServiceComputeLoggingDigitaloceanArgs']]]]:
+    def logging_digitaloceans(self) -> pulumi.Input[Optional[Sequence[pulumi.Input['ServiceComputeLoggingDigitaloceanArgs']]]]:
         return pulumi.get(self, "logging_digitaloceans")
 
     @logging_digitaloceans.setter
-    def logging_digitaloceans(self, value: Optional[pulumi.Input[Sequence[pulumi.Input['ServiceComputeLoggingDigitaloceanArgs']]]]):
+    def logging_digitaloceans(self, value: pulumi.Input[Optional[Sequence[pulumi.Input['ServiceComputeLoggingDigitaloceanArgs']]]]):
         pulumi.set(self, "logging_digitaloceans", value)
 
     @_builtins.property
     @pulumi.getter(name="loggingElasticsearches")
-    def logging_elasticsearches(self) -> Optional[pulumi.Input[Sequence[pulumi.Input['ServiceComputeLoggingElasticsearchArgs']]]]:
+    def logging_elasticsearches(self) -> pulumi.Input[Optional[Sequence[pulumi.Input['ServiceComputeLoggingElasticsearchArgs']]]]:
         return pulumi.get(self, "logging_elasticsearches")
 
     @logging_elasticsearches.setter
-    def logging_elasticsearches(self, value: Optional[pulumi.Input[Sequence[pulumi.Input['ServiceComputeLoggingElasticsearchArgs']]]]):
+    def logging_elasticsearches(self, value: pulumi.Input[Optional[Sequence[pulumi.Input['ServiceComputeLoggingElasticsearchArgs']]]]):
         pulumi.set(self, "logging_elasticsearches", value)
 
     @_builtins.property
     @pulumi.getter(name="loggingFtps")
-    def logging_ftps(self) -> Optional[pulumi.Input[Sequence[pulumi.Input['ServiceComputeLoggingFtpArgs']]]]:
+    def logging_ftps(self) -> pulumi.Input[Optional[Sequence[pulumi.Input['ServiceComputeLoggingFtpArgs']]]]:
         return pulumi.get(self, "logging_ftps")
 
     @logging_ftps.setter
-    def logging_ftps(self, value: Optional[pulumi.Input[Sequence[pulumi.Input['ServiceComputeLoggingFtpArgs']]]]):
+    def logging_ftps(self, value: pulumi.Input[Optional[Sequence[pulumi.Input['ServiceComputeLoggingFtpArgs']]]]):
         pulumi.set(self, "logging_ftps", value)
 
     @_builtins.property
     @pulumi.getter(name="loggingGcs")
-    def logging_gcs(self) -> Optional[pulumi.Input[Sequence[pulumi.Input['ServiceComputeLoggingGcArgs']]]]:
+    def logging_gcs(self) -> pulumi.Input[Optional[Sequence[pulumi.Input['ServiceComputeLoggingGcArgs']]]]:
         return pulumi.get(self, "logging_gcs")
 
     @logging_gcs.setter
-    def logging_gcs(self, value: Optional[pulumi.Input[Sequence[pulumi.Input['ServiceComputeLoggingGcArgs']]]]):
+    def logging_gcs(self, value: pulumi.Input[Optional[Sequence[pulumi.Input['ServiceComputeLoggingGcArgs']]]]):
         pulumi.set(self, "logging_gcs", value)
 
     @_builtins.property
     @pulumi.getter(name="loggingGooglepubsubs")
-    def logging_googlepubsubs(self) -> Optional[pulumi.Input[Sequence[pulumi.Input['ServiceComputeLoggingGooglepubsubArgs']]]]:
+    def logging_googlepubsubs(self) -> pulumi.Input[Optional[Sequence[pulumi.Input['ServiceComputeLoggingGooglepubsubArgs']]]]:
         return pulumi.get(self, "logging_googlepubsubs")
 
     @logging_googlepubsubs.setter
-    def logging_googlepubsubs(self, value: Optional[pulumi.Input[Sequence[pulumi.Input['ServiceComputeLoggingGooglepubsubArgs']]]]):
+    def logging_googlepubsubs(self, value: pulumi.Input[Optional[Sequence[pulumi.Input['ServiceComputeLoggingGooglepubsubArgs']]]]):
         pulumi.set(self, "logging_googlepubsubs", value)
 
     @_builtins.property
     @pulumi.getter(name="loggingGrafanacloudlogs")
-    def logging_grafanacloudlogs(self) -> Optional[pulumi.Input[Sequence[pulumi.Input['ServiceComputeLoggingGrafanacloudlogArgs']]]]:
+    def logging_grafanacloudlogs(self) -> pulumi.Input[Optional[Sequence[pulumi.Input['ServiceComputeLoggingGrafanacloudlogArgs']]]]:
         return pulumi.get(self, "logging_grafanacloudlogs")
 
     @logging_grafanacloudlogs.setter
-    def logging_grafanacloudlogs(self, value: Optional[pulumi.Input[Sequence[pulumi.Input['ServiceComputeLoggingGrafanacloudlogArgs']]]]):
+    def logging_grafanacloudlogs(self, value: pulumi.Input[Optional[Sequence[pulumi.Input['ServiceComputeLoggingGrafanacloudlogArgs']]]]):
         pulumi.set(self, "logging_grafanacloudlogs", value)
 
     @_builtins.property
     @pulumi.getter(name="loggingHeroku")
-    def logging_heroku(self) -> Optional[pulumi.Input[Sequence[pulumi.Input['ServiceComputeLoggingHerokuArgs']]]]:
+    def logging_heroku(self) -> pulumi.Input[Optional[Sequence[pulumi.Input['ServiceComputeLoggingHerokuArgs']]]]:
         return pulumi.get(self, "logging_heroku")
 
     @logging_heroku.setter
-    def logging_heroku(self, value: Optional[pulumi.Input[Sequence[pulumi.Input['ServiceComputeLoggingHerokuArgs']]]]):
+    def logging_heroku(self, value: pulumi.Input[Optional[Sequence[pulumi.Input['ServiceComputeLoggingHerokuArgs']]]]):
         pulumi.set(self, "logging_heroku", value)
 
     @_builtins.property
     @pulumi.getter(name="loggingHoneycombs")
-    def logging_honeycombs(self) -> Optional[pulumi.Input[Sequence[pulumi.Input['ServiceComputeLoggingHoneycombArgs']]]]:
+    def logging_honeycombs(self) -> pulumi.Input[Optional[Sequence[pulumi.Input['ServiceComputeLoggingHoneycombArgs']]]]:
         return pulumi.get(self, "logging_honeycombs")
 
     @logging_honeycombs.setter
-    def logging_honeycombs(self, value: Optional[pulumi.Input[Sequence[pulumi.Input['ServiceComputeLoggingHoneycombArgs']]]]):
+    def logging_honeycombs(self, value: pulumi.Input[Optional[Sequence[pulumi.Input['ServiceComputeLoggingHoneycombArgs']]]]):
         pulumi.set(self, "logging_honeycombs", value)
 
     @_builtins.property
     @pulumi.getter(name="loggingHttps")
-    def logging_https(self) -> Optional[pulumi.Input[Sequence[pulumi.Input['ServiceComputeLoggingHttpArgs']]]]:
+    def logging_https(self) -> pulumi.Input[Optional[Sequence[pulumi.Input['ServiceComputeLoggingHttpArgs']]]]:
         return pulumi.get(self, "logging_https")
 
     @logging_https.setter
-    def logging_https(self, value: Optional[pulumi.Input[Sequence[pulumi.Input['ServiceComputeLoggingHttpArgs']]]]):
+    def logging_https(self, value: pulumi.Input[Optional[Sequence[pulumi.Input['ServiceComputeLoggingHttpArgs']]]]):
         pulumi.set(self, "logging_https", value)
 
     @_builtins.property
     @pulumi.getter(name="loggingKafkas")
-    def logging_kafkas(self) -> Optional[pulumi.Input[Sequence[pulumi.Input['ServiceComputeLoggingKafkaArgs']]]]:
+    def logging_kafkas(self) -> pulumi.Input[Optional[Sequence[pulumi.Input['ServiceComputeLoggingKafkaArgs']]]]:
         return pulumi.get(self, "logging_kafkas")
 
     @logging_kafkas.setter
-    def logging_kafkas(self, value: Optional[pulumi.Input[Sequence[pulumi.Input['ServiceComputeLoggingKafkaArgs']]]]):
+    def logging_kafkas(self, value: pulumi.Input[Optional[Sequence[pulumi.Input['ServiceComputeLoggingKafkaArgs']]]]):
         pulumi.set(self, "logging_kafkas", value)
 
     @_builtins.property
     @pulumi.getter(name="loggingKineses")
-    def logging_kineses(self) -> Optional[pulumi.Input[Sequence[pulumi.Input['ServiceComputeLoggingKineseArgs']]]]:
+    def logging_kineses(self) -> pulumi.Input[Optional[Sequence[pulumi.Input['ServiceComputeLoggingKineseArgs']]]]:
         return pulumi.get(self, "logging_kineses")
 
     @logging_kineses.setter
-    def logging_kineses(self, value: Optional[pulumi.Input[Sequence[pulumi.Input['ServiceComputeLoggingKineseArgs']]]]):
+    def logging_kineses(self, value: pulumi.Input[Optional[Sequence[pulumi.Input['ServiceComputeLoggingKineseArgs']]]]):
         pulumi.set(self, "logging_kineses", value)
 
     @_builtins.property
     @pulumi.getter(name="loggingLogentries")
-    def logging_logentries(self) -> Optional[pulumi.Input[Sequence[pulumi.Input['ServiceComputeLoggingLogentryArgs']]]]:
+    def logging_logentries(self) -> pulumi.Input[Optional[Sequence[pulumi.Input['ServiceComputeLoggingLogentryArgs']]]]:
         return pulumi.get(self, "logging_logentries")
 
     @logging_logentries.setter
-    def logging_logentries(self, value: Optional[pulumi.Input[Sequence[pulumi.Input['ServiceComputeLoggingLogentryArgs']]]]):
+    def logging_logentries(self, value: pulumi.Input[Optional[Sequence[pulumi.Input['ServiceComputeLoggingLogentryArgs']]]]):
         pulumi.set(self, "logging_logentries", value)
 
     @_builtins.property
     @pulumi.getter(name="loggingLogglies")
-    def logging_logglies(self) -> Optional[pulumi.Input[Sequence[pulumi.Input['ServiceComputeLoggingLogglyArgs']]]]:
+    def logging_logglies(self) -> pulumi.Input[Optional[Sequence[pulumi.Input['ServiceComputeLoggingLogglyArgs']]]]:
         return pulumi.get(self, "logging_logglies")
 
     @logging_logglies.setter
-    def logging_logglies(self, value: Optional[pulumi.Input[Sequence[pulumi.Input['ServiceComputeLoggingLogglyArgs']]]]):
+    def logging_logglies(self, value: pulumi.Input[Optional[Sequence[pulumi.Input['ServiceComputeLoggingLogglyArgs']]]]):
         pulumi.set(self, "logging_logglies", value)
 
     @_builtins.property
     @pulumi.getter(name="loggingLogshuttles")
-    def logging_logshuttles(self) -> Optional[pulumi.Input[Sequence[pulumi.Input['ServiceComputeLoggingLogshuttleArgs']]]]:
+    def logging_logshuttles(self) -> pulumi.Input[Optional[Sequence[pulumi.Input['ServiceComputeLoggingLogshuttleArgs']]]]:
         return pulumi.get(self, "logging_logshuttles")
 
     @logging_logshuttles.setter
-    def logging_logshuttles(self, value: Optional[pulumi.Input[Sequence[pulumi.Input['ServiceComputeLoggingLogshuttleArgs']]]]):
+    def logging_logshuttles(self, value: pulumi.Input[Optional[Sequence[pulumi.Input['ServiceComputeLoggingLogshuttleArgs']]]]):
         pulumi.set(self, "logging_logshuttles", value)
 
     @_builtins.property
     @pulumi.getter(name="loggingNewrelicotlps")
-    def logging_newrelicotlps(self) -> Optional[pulumi.Input[Sequence[pulumi.Input['ServiceComputeLoggingNewrelicotlpArgs']]]]:
+    def logging_newrelicotlps(self) -> pulumi.Input[Optional[Sequence[pulumi.Input['ServiceComputeLoggingNewrelicotlpArgs']]]]:
         return pulumi.get(self, "logging_newrelicotlps")
 
     @logging_newrelicotlps.setter
-    def logging_newrelicotlps(self, value: Optional[pulumi.Input[Sequence[pulumi.Input['ServiceComputeLoggingNewrelicotlpArgs']]]]):
+    def logging_newrelicotlps(self, value: pulumi.Input[Optional[Sequence[pulumi.Input['ServiceComputeLoggingNewrelicotlpArgs']]]]):
         pulumi.set(self, "logging_newrelicotlps", value)
 
     @_builtins.property
     @pulumi.getter(name="loggingNewrelics")
-    def logging_newrelics(self) -> Optional[pulumi.Input[Sequence[pulumi.Input['ServiceComputeLoggingNewrelicArgs']]]]:
+    def logging_newrelics(self) -> pulumi.Input[Optional[Sequence[pulumi.Input['ServiceComputeLoggingNewrelicArgs']]]]:
         return pulumi.get(self, "logging_newrelics")
 
     @logging_newrelics.setter
-    def logging_newrelics(self, value: Optional[pulumi.Input[Sequence[pulumi.Input['ServiceComputeLoggingNewrelicArgs']]]]):
+    def logging_newrelics(self, value: pulumi.Input[Optional[Sequence[pulumi.Input['ServiceComputeLoggingNewrelicArgs']]]]):
         pulumi.set(self, "logging_newrelics", value)
 
     @_builtins.property
     @pulumi.getter(name="loggingOpenstacks")
-    def logging_openstacks(self) -> Optional[pulumi.Input[Sequence[pulumi.Input['ServiceComputeLoggingOpenstackArgs']]]]:
+    def logging_openstacks(self) -> pulumi.Input[Optional[Sequence[pulumi.Input['ServiceComputeLoggingOpenstackArgs']]]]:
         return pulumi.get(self, "logging_openstacks")
 
     @logging_openstacks.setter
-    def logging_openstacks(self, value: Optional[pulumi.Input[Sequence[pulumi.Input['ServiceComputeLoggingOpenstackArgs']]]]):
+    def logging_openstacks(self, value: pulumi.Input[Optional[Sequence[pulumi.Input['ServiceComputeLoggingOpenstackArgs']]]]):
         pulumi.set(self, "logging_openstacks", value)
 
     @_builtins.property
     @pulumi.getter(name="loggingPapertrails")
-    def logging_papertrails(self) -> Optional[pulumi.Input[Sequence[pulumi.Input['ServiceComputeLoggingPapertrailArgs']]]]:
+    def logging_papertrails(self) -> pulumi.Input[Optional[Sequence[pulumi.Input['ServiceComputeLoggingPapertrailArgs']]]]:
         return pulumi.get(self, "logging_papertrails")
 
     @logging_papertrails.setter
-    def logging_papertrails(self, value: Optional[pulumi.Input[Sequence[pulumi.Input['ServiceComputeLoggingPapertrailArgs']]]]):
+    def logging_papertrails(self, value: pulumi.Input[Optional[Sequence[pulumi.Input['ServiceComputeLoggingPapertrailArgs']]]]):
         pulumi.set(self, "logging_papertrails", value)
 
     @_builtins.property
     @pulumi.getter(name="loggingS3s")
-    def logging_s3s(self) -> Optional[pulumi.Input[Sequence[pulumi.Input['ServiceComputeLoggingS3Args']]]]:
+    def logging_s3s(self) -> pulumi.Input[Optional[Sequence[pulumi.Input['ServiceComputeLoggingS3Args']]]]:
         return pulumi.get(self, "logging_s3s")
 
     @logging_s3s.setter
-    def logging_s3s(self, value: Optional[pulumi.Input[Sequence[pulumi.Input['ServiceComputeLoggingS3Args']]]]):
+    def logging_s3s(self, value: pulumi.Input[Optional[Sequence[pulumi.Input['ServiceComputeLoggingS3Args']]]]):
         pulumi.set(self, "logging_s3s", value)
 
     @_builtins.property
     @pulumi.getter(name="loggingScalyrs")
-    def logging_scalyrs(self) -> Optional[pulumi.Input[Sequence[pulumi.Input['ServiceComputeLoggingScalyrArgs']]]]:
+    def logging_scalyrs(self) -> pulumi.Input[Optional[Sequence[pulumi.Input['ServiceComputeLoggingScalyrArgs']]]]:
         return pulumi.get(self, "logging_scalyrs")
 
     @logging_scalyrs.setter
-    def logging_scalyrs(self, value: Optional[pulumi.Input[Sequence[pulumi.Input['ServiceComputeLoggingScalyrArgs']]]]):
+    def logging_scalyrs(self, value: pulumi.Input[Optional[Sequence[pulumi.Input['ServiceComputeLoggingScalyrArgs']]]]):
         pulumi.set(self, "logging_scalyrs", value)
 
     @_builtins.property
     @pulumi.getter(name="loggingSftps")
-    def logging_sftps(self) -> Optional[pulumi.Input[Sequence[pulumi.Input['ServiceComputeLoggingSftpArgs']]]]:
+    def logging_sftps(self) -> pulumi.Input[Optional[Sequence[pulumi.Input['ServiceComputeLoggingSftpArgs']]]]:
         return pulumi.get(self, "logging_sftps")
 
     @logging_sftps.setter
-    def logging_sftps(self, value: Optional[pulumi.Input[Sequence[pulumi.Input['ServiceComputeLoggingSftpArgs']]]]):
+    def logging_sftps(self, value: pulumi.Input[Optional[Sequence[pulumi.Input['ServiceComputeLoggingSftpArgs']]]]):
         pulumi.set(self, "logging_sftps", value)
 
     @_builtins.property
     @pulumi.getter(name="loggingSplunks")
-    def logging_splunks(self) -> Optional[pulumi.Input[Sequence[pulumi.Input['ServiceComputeLoggingSplunkArgs']]]]:
+    def logging_splunks(self) -> pulumi.Input[Optional[Sequence[pulumi.Input['ServiceComputeLoggingSplunkArgs']]]]:
         return pulumi.get(self, "logging_splunks")
 
     @logging_splunks.setter
-    def logging_splunks(self, value: Optional[pulumi.Input[Sequence[pulumi.Input['ServiceComputeLoggingSplunkArgs']]]]):
+    def logging_splunks(self, value: pulumi.Input[Optional[Sequence[pulumi.Input['ServiceComputeLoggingSplunkArgs']]]]):
         pulumi.set(self, "logging_splunks", value)
 
     @_builtins.property
     @pulumi.getter(name="loggingSumologics")
-    def logging_sumologics(self) -> Optional[pulumi.Input[Sequence[pulumi.Input['ServiceComputeLoggingSumologicArgs']]]]:
+    def logging_sumologics(self) -> pulumi.Input[Optional[Sequence[pulumi.Input['ServiceComputeLoggingSumologicArgs']]]]:
         return pulumi.get(self, "logging_sumologics")
 
     @logging_sumologics.setter
-    def logging_sumologics(self, value: Optional[pulumi.Input[Sequence[pulumi.Input['ServiceComputeLoggingSumologicArgs']]]]):
+    def logging_sumologics(self, value: pulumi.Input[Optional[Sequence[pulumi.Input['ServiceComputeLoggingSumologicArgs']]]]):
         pulumi.set(self, "logging_sumologics", value)
 
     @_builtins.property
     @pulumi.getter(name="loggingSyslogs")
-    def logging_syslogs(self) -> Optional[pulumi.Input[Sequence[pulumi.Input['ServiceComputeLoggingSyslogArgs']]]]:
+    def logging_syslogs(self) -> pulumi.Input[Optional[Sequence[pulumi.Input['ServiceComputeLoggingSyslogArgs']]]]:
         return pulumi.get(self, "logging_syslogs")
 
     @logging_syslogs.setter
-    def logging_syslogs(self, value: Optional[pulumi.Input[Sequence[pulumi.Input['ServiceComputeLoggingSyslogArgs']]]]):
+    def logging_syslogs(self, value: pulumi.Input[Optional[Sequence[pulumi.Input['ServiceComputeLoggingSyslogArgs']]]]):
         pulumi.set(self, "logging_syslogs", value)
 
     @_builtins.property
     @pulumi.getter
-    def name(self) -> Optional[pulumi.Input[_builtins.str]]:
+    def name(self) -> pulumi.Input[Optional[_builtins.str]]:
         """
         The unique name for the Service to create
         """
         return pulumi.get(self, "name")
 
     @name.setter
-    def name(self, value: Optional[pulumi.Input[_builtins.str]]):
+    def name(self, value: pulumi.Input[Optional[_builtins.str]]):
         pulumi.set(self, "name", value)
 
     @_builtins.property
     @pulumi.getter
-    def package(self) -> Optional[pulumi.Input['ServiceComputePackageArgs']]:
+    def package(self) -> pulumi.Input[Optional['ServiceComputePackageArgs']]:
         """
         The `package` block supports uploading or modifying Wasm packages for use in a Fastly Compute service (if omitted, ensure `activate = false` is set on `ServiceCompute` to avoid service validation errors). See Fastly's documentation on [Compute](https://developer.fastly.com/learning/compute/)
         """
         return pulumi.get(self, "package")
 
     @package.setter
-    def package(self, value: Optional[pulumi.Input['ServiceComputePackageArgs']]):
+    def package(self, value: pulumi.Input[Optional['ServiceComputePackageArgs']]):
         pulumi.set(self, "package", value)
 
     @_builtins.property
     @pulumi.getter(name="productEnablement")
-    def product_enablement(self) -> Optional[pulumi.Input['ServiceComputeProductEnablementArgs']]:
+    def product_enablement(self) -> pulumi.Input[Optional['ServiceComputeProductEnablementArgs']]:
         return pulumi.get(self, "product_enablement")
 
     @product_enablement.setter
-    def product_enablement(self, value: Optional[pulumi.Input['ServiceComputeProductEnablementArgs']]):
+    def product_enablement(self, value: pulumi.Input[Optional['ServiceComputeProductEnablementArgs']]):
         pulumi.set(self, "product_enablement", value)
 
     @_builtins.property
     @pulumi.getter(name="resourceLinks")
-    def resource_links(self) -> Optional[pulumi.Input[Sequence[pulumi.Input['ServiceComputeResourceLinkArgs']]]]:
+    def resource_links(self) -> pulumi.Input[Optional[Sequence[pulumi.Input['ServiceComputeResourceLinkArgs']]]]:
         """
         A resource link represents a link between a shared resource (such as an KV Store or Config Store) and a service version.
         """
         return pulumi.get(self, "resource_links")
 
     @resource_links.setter
-    def resource_links(self, value: Optional[pulumi.Input[Sequence[pulumi.Input['ServiceComputeResourceLinkArgs']]]]):
+    def resource_links(self, value: pulumi.Input[Optional[Sequence[pulumi.Input['ServiceComputeResourceLinkArgs']]]]):
         pulumi.set(self, "resource_links", value)
 
     @_builtins.property
     @pulumi.getter
-    def reuse(self) -> Optional[pulumi.Input[_builtins.bool]]:
+    def reuse(self) -> pulumi.Input[Optional[_builtins.bool]]:
         """
         Services that are active cannot be destroyed. If set to `true` a service Terraform intends to destroy will instead be deactivated (allowing it to be reused by importing it into another Terraform project). If `false`, attempting to destroy an active service will cause an error. Default `false`
         """
         return pulumi.get(self, "reuse")
 
     @reuse.setter
-    def reuse(self, value: Optional[pulumi.Input[_builtins.bool]]):
+    def reuse(self, value: pulumi.Input[Optional[_builtins.bool]]):
         pulumi.set(self, "reuse", value)
 
     @_builtins.property
     @pulumi.getter
-    def stage(self) -> Optional[pulumi.Input[_builtins.bool]]:
+    def stage(self) -> pulumi.Input[Optional[_builtins.bool]]:
         """
         Conditionally enables new service versions to be staged. If set to `true`, all changes made by an `apply` step will be staged, even if `apply` did not create a new draft version. Default `false`
         """
         return pulumi.get(self, "stage")
 
     @stage.setter
-    def stage(self, value: Optional[pulumi.Input[_builtins.bool]]):
+    def stage(self, value: pulumi.Input[Optional[_builtins.bool]]):
         pulumi.set(self, "stage", value)
 
     @_builtins.property
     @pulumi.getter(name="versionComment")
-    def version_comment(self) -> Optional[pulumi.Input[_builtins.str]]:
+    def version_comment(self) -> pulumi.Input[Optional[_builtins.str]]:
         """
         Description field for the version
         """
         return pulumi.get(self, "version_comment")
 
     @version_comment.setter
-    def version_comment(self, value: Optional[pulumi.Input[_builtins.str]]):
+    def version_comment(self, value: pulumi.Input[Optional[_builtins.str]]):
         pulumi.set(self, "version_comment", value)
 
 
 @pulumi.input_type
 class _ServiceComputeState:
     def __init__(__self__, *,
-                 activate: Optional[pulumi.Input[_builtins.bool]] = None,
-                 active_version: Optional[pulumi.Input[_builtins.int]] = None,
-                 backends: Optional[pulumi.Input[Sequence[pulumi.Input['ServiceComputeBackendArgs']]]] = None,
-                 cloned_version: Optional[pulumi.Input[_builtins.int]] = None,
-                 comment: Optional[pulumi.Input[_builtins.str]] = None,
-                 dictionaries: Optional[pulumi.Input[Sequence[pulumi.Input['ServiceComputeDictionaryArgs']]]] = None,
-                 domains: Optional[pulumi.Input[Sequence[pulumi.Input['ServiceComputeDomainArgs']]]] = None,
-                 force_destroy: Optional[pulumi.Input[_builtins.bool]] = None,
-                 force_refresh: Optional[pulumi.Input[_builtins.bool]] = None,
-                 healthchecks: Optional[pulumi.Input[Sequence[pulumi.Input['ServiceComputeHealthcheckArgs']]]] = None,
-                 image_optimizer_default_settings: Optional[pulumi.Input['ServiceComputeImageOptimizerDefaultSettingsArgs']] = None,
-                 imported: Optional[pulumi.Input[_builtins.bool]] = None,
-                 logging_bigqueries: Optional[pulumi.Input[Sequence[pulumi.Input['ServiceComputeLoggingBigqueryArgs']]]] = None,
-                 logging_blobstorages: Optional[pulumi.Input[Sequence[pulumi.Input['ServiceComputeLoggingBlobstorageArgs']]]] = None,
-                 logging_cloudfiles: Optional[pulumi.Input[Sequence[pulumi.Input['ServiceComputeLoggingCloudfileArgs']]]] = None,
-                 logging_datadogs: Optional[pulumi.Input[Sequence[pulumi.Input['ServiceComputeLoggingDatadogArgs']]]] = None,
-                 logging_digitaloceans: Optional[pulumi.Input[Sequence[pulumi.Input['ServiceComputeLoggingDigitaloceanArgs']]]] = None,
-                 logging_elasticsearches: Optional[pulumi.Input[Sequence[pulumi.Input['ServiceComputeLoggingElasticsearchArgs']]]] = None,
-                 logging_ftps: Optional[pulumi.Input[Sequence[pulumi.Input['ServiceComputeLoggingFtpArgs']]]] = None,
-                 logging_gcs: Optional[pulumi.Input[Sequence[pulumi.Input['ServiceComputeLoggingGcArgs']]]] = None,
-                 logging_googlepubsubs: Optional[pulumi.Input[Sequence[pulumi.Input['ServiceComputeLoggingGooglepubsubArgs']]]] = None,
-                 logging_grafanacloudlogs: Optional[pulumi.Input[Sequence[pulumi.Input['ServiceComputeLoggingGrafanacloudlogArgs']]]] = None,
-                 logging_heroku: Optional[pulumi.Input[Sequence[pulumi.Input['ServiceComputeLoggingHerokuArgs']]]] = None,
-                 logging_honeycombs: Optional[pulumi.Input[Sequence[pulumi.Input['ServiceComputeLoggingHoneycombArgs']]]] = None,
-                 logging_https: Optional[pulumi.Input[Sequence[pulumi.Input['ServiceComputeLoggingHttpArgs']]]] = None,
-                 logging_kafkas: Optional[pulumi.Input[Sequence[pulumi.Input['ServiceComputeLoggingKafkaArgs']]]] = None,
-                 logging_kineses: Optional[pulumi.Input[Sequence[pulumi.Input['ServiceComputeLoggingKineseArgs']]]] = None,
-                 logging_logentries: Optional[pulumi.Input[Sequence[pulumi.Input['ServiceComputeLoggingLogentryArgs']]]] = None,
-                 logging_logglies: Optional[pulumi.Input[Sequence[pulumi.Input['ServiceComputeLoggingLogglyArgs']]]] = None,
-                 logging_logshuttles: Optional[pulumi.Input[Sequence[pulumi.Input['ServiceComputeLoggingLogshuttleArgs']]]] = None,
-                 logging_newrelicotlps: Optional[pulumi.Input[Sequence[pulumi.Input['ServiceComputeLoggingNewrelicotlpArgs']]]] = None,
-                 logging_newrelics: Optional[pulumi.Input[Sequence[pulumi.Input['ServiceComputeLoggingNewrelicArgs']]]] = None,
-                 logging_openstacks: Optional[pulumi.Input[Sequence[pulumi.Input['ServiceComputeLoggingOpenstackArgs']]]] = None,
-                 logging_papertrails: Optional[pulumi.Input[Sequence[pulumi.Input['ServiceComputeLoggingPapertrailArgs']]]] = None,
-                 logging_s3s: Optional[pulumi.Input[Sequence[pulumi.Input['ServiceComputeLoggingS3Args']]]] = None,
-                 logging_scalyrs: Optional[pulumi.Input[Sequence[pulumi.Input['ServiceComputeLoggingScalyrArgs']]]] = None,
-                 logging_sftps: Optional[pulumi.Input[Sequence[pulumi.Input['ServiceComputeLoggingSftpArgs']]]] = None,
-                 logging_splunks: Optional[pulumi.Input[Sequence[pulumi.Input['ServiceComputeLoggingSplunkArgs']]]] = None,
-                 logging_sumologics: Optional[pulumi.Input[Sequence[pulumi.Input['ServiceComputeLoggingSumologicArgs']]]] = None,
-                 logging_syslogs: Optional[pulumi.Input[Sequence[pulumi.Input['ServiceComputeLoggingSyslogArgs']]]] = None,
-                 name: Optional[pulumi.Input[_builtins.str]] = None,
-                 package: Optional[pulumi.Input['ServiceComputePackageArgs']] = None,
-                 product_enablement: Optional[pulumi.Input['ServiceComputeProductEnablementArgs']] = None,
-                 resource_links: Optional[pulumi.Input[Sequence[pulumi.Input['ServiceComputeResourceLinkArgs']]]] = None,
-                 reuse: Optional[pulumi.Input[_builtins.bool]] = None,
-                 stage: Optional[pulumi.Input[_builtins.bool]] = None,
-                 staged_version: Optional[pulumi.Input[_builtins.int]] = None,
-                 version_comment: Optional[pulumi.Input[_builtins.str]] = None):
+                 activate: pulumi.Input[Optional[_builtins.bool]] = None,
+                 active_version: pulumi.Input[Optional[_builtins.int]] = None,
+                 backends: pulumi.Input[Optional[Sequence[pulumi.Input['ServiceComputeBackendArgs']]]] = None,
+                 cloned_version: pulumi.Input[Optional[_builtins.int]] = None,
+                 comment: pulumi.Input[Optional[_builtins.str]] = None,
+                 dictionaries: pulumi.Input[Optional[Sequence[pulumi.Input['ServiceComputeDictionaryArgs']]]] = None,
+                 domains: pulumi.Input[Optional[Sequence[pulumi.Input['ServiceComputeDomainArgs']]]] = None,
+                 force_destroy: pulumi.Input[Optional[_builtins.bool]] = None,
+                 force_refresh: pulumi.Input[Optional[_builtins.bool]] = None,
+                 healthchecks: pulumi.Input[Optional[Sequence[pulumi.Input['ServiceComputeHealthcheckArgs']]]] = None,
+                 image_optimizer_default_settings: pulumi.Input[Optional['ServiceComputeImageOptimizerDefaultSettingsArgs']] = None,
+                 imported: pulumi.Input[Optional[_builtins.bool]] = None,
+                 logging_bigqueries: pulumi.Input[Optional[Sequence[pulumi.Input['ServiceComputeLoggingBigqueryArgs']]]] = None,
+                 logging_blobstorages: pulumi.Input[Optional[Sequence[pulumi.Input['ServiceComputeLoggingBlobstorageArgs']]]] = None,
+                 logging_cloudfiles: pulumi.Input[Optional[Sequence[pulumi.Input['ServiceComputeLoggingCloudfileArgs']]]] = None,
+                 logging_datadogs: pulumi.Input[Optional[Sequence[pulumi.Input['ServiceComputeLoggingDatadogArgs']]]] = None,
+                 logging_digitaloceans: pulumi.Input[Optional[Sequence[pulumi.Input['ServiceComputeLoggingDigitaloceanArgs']]]] = None,
+                 logging_elasticsearches: pulumi.Input[Optional[Sequence[pulumi.Input['ServiceComputeLoggingElasticsearchArgs']]]] = None,
+                 logging_ftps: pulumi.Input[Optional[Sequence[pulumi.Input['ServiceComputeLoggingFtpArgs']]]] = None,
+                 logging_gcs: pulumi.Input[Optional[Sequence[pulumi.Input['ServiceComputeLoggingGcArgs']]]] = None,
+                 logging_googlepubsubs: pulumi.Input[Optional[Sequence[pulumi.Input['ServiceComputeLoggingGooglepubsubArgs']]]] = None,
+                 logging_grafanacloudlogs: pulumi.Input[Optional[Sequence[pulumi.Input['ServiceComputeLoggingGrafanacloudlogArgs']]]] = None,
+                 logging_heroku: pulumi.Input[Optional[Sequence[pulumi.Input['ServiceComputeLoggingHerokuArgs']]]] = None,
+                 logging_honeycombs: pulumi.Input[Optional[Sequence[pulumi.Input['ServiceComputeLoggingHoneycombArgs']]]] = None,
+                 logging_https: pulumi.Input[Optional[Sequence[pulumi.Input['ServiceComputeLoggingHttpArgs']]]] = None,
+                 logging_kafkas: pulumi.Input[Optional[Sequence[pulumi.Input['ServiceComputeLoggingKafkaArgs']]]] = None,
+                 logging_kineses: pulumi.Input[Optional[Sequence[pulumi.Input['ServiceComputeLoggingKineseArgs']]]] = None,
+                 logging_logentries: pulumi.Input[Optional[Sequence[pulumi.Input['ServiceComputeLoggingLogentryArgs']]]] = None,
+                 logging_logglies: pulumi.Input[Optional[Sequence[pulumi.Input['ServiceComputeLoggingLogglyArgs']]]] = None,
+                 logging_logshuttles: pulumi.Input[Optional[Sequence[pulumi.Input['ServiceComputeLoggingLogshuttleArgs']]]] = None,
+                 logging_newrelicotlps: pulumi.Input[Optional[Sequence[pulumi.Input['ServiceComputeLoggingNewrelicotlpArgs']]]] = None,
+                 logging_newrelics: pulumi.Input[Optional[Sequence[pulumi.Input['ServiceComputeLoggingNewrelicArgs']]]] = None,
+                 logging_openstacks: pulumi.Input[Optional[Sequence[pulumi.Input['ServiceComputeLoggingOpenstackArgs']]]] = None,
+                 logging_papertrails: pulumi.Input[Optional[Sequence[pulumi.Input['ServiceComputeLoggingPapertrailArgs']]]] = None,
+                 logging_s3s: pulumi.Input[Optional[Sequence[pulumi.Input['ServiceComputeLoggingS3Args']]]] = None,
+                 logging_scalyrs: pulumi.Input[Optional[Sequence[pulumi.Input['ServiceComputeLoggingScalyrArgs']]]] = None,
+                 logging_sftps: pulumi.Input[Optional[Sequence[pulumi.Input['ServiceComputeLoggingSftpArgs']]]] = None,
+                 logging_splunks: pulumi.Input[Optional[Sequence[pulumi.Input['ServiceComputeLoggingSplunkArgs']]]] = None,
+                 logging_sumologics: pulumi.Input[Optional[Sequence[pulumi.Input['ServiceComputeLoggingSumologicArgs']]]] = None,
+                 logging_syslogs: pulumi.Input[Optional[Sequence[pulumi.Input['ServiceComputeLoggingSyslogArgs']]]] = None,
+                 name: pulumi.Input[Optional[_builtins.str]] = None,
+                 package: pulumi.Input[Optional['ServiceComputePackageArgs']] = None,
+                 product_enablement: pulumi.Input[Optional['ServiceComputeProductEnablementArgs']] = None,
+                 resource_links: pulumi.Input[Optional[Sequence[pulumi.Input['ServiceComputeResourceLinkArgs']]]] = None,
+                 reuse: pulumi.Input[Optional[_builtins.bool]] = None,
+                 stage: pulumi.Input[Optional[_builtins.bool]] = None,
+                 staged_version: pulumi.Input[Optional[_builtins.int]] = None,
+                 version_comment: pulumi.Input[Optional[_builtins.str]] = None):
         """
         Input properties used for looking up and filtering ServiceCompute resources.
 
@@ -752,479 +752,479 @@ class _ServiceComputeState:
 
     @_builtins.property
     @pulumi.getter
-    def activate(self) -> Optional[pulumi.Input[_builtins.bool]]:
+    def activate(self) -> pulumi.Input[Optional[_builtins.bool]]:
         """
         Conditionally prevents new service versions from being activated. The apply step will create a new draft version but will not activate it if this is set to `false`. Default `true`
         """
         return pulumi.get(self, "activate")
 
     @activate.setter
-    def activate(self, value: Optional[pulumi.Input[_builtins.bool]]):
+    def activate(self, value: pulumi.Input[Optional[_builtins.bool]]):
         pulumi.set(self, "activate", value)
 
     @_builtins.property
     @pulumi.getter(name="activeVersion")
-    def active_version(self) -> Optional[pulumi.Input[_builtins.int]]:
+    def active_version(self) -> pulumi.Input[Optional[_builtins.int]]:
         """
         The currently active version of your Fastly Service
         """
         return pulumi.get(self, "active_version")
 
     @active_version.setter
-    def active_version(self, value: Optional[pulumi.Input[_builtins.int]]):
+    def active_version(self, value: pulumi.Input[Optional[_builtins.int]]):
         pulumi.set(self, "active_version", value)
 
     @_builtins.property
     @pulumi.getter
-    def backends(self) -> Optional[pulumi.Input[Sequence[pulumi.Input['ServiceComputeBackendArgs']]]]:
+    def backends(self) -> pulumi.Input[Optional[Sequence[pulumi.Input['ServiceComputeBackendArgs']]]]:
         return pulumi.get(self, "backends")
 
     @backends.setter
-    def backends(self, value: Optional[pulumi.Input[Sequence[pulumi.Input['ServiceComputeBackendArgs']]]]):
+    def backends(self, value: pulumi.Input[Optional[Sequence[pulumi.Input['ServiceComputeBackendArgs']]]]):
         pulumi.set(self, "backends", value)
 
     @_builtins.property
     @pulumi.getter(name="clonedVersion")
-    def cloned_version(self) -> Optional[pulumi.Input[_builtins.int]]:
+    def cloned_version(self) -> pulumi.Input[Optional[_builtins.int]]:
         """
         The latest cloned version by the provider
         """
         return pulumi.get(self, "cloned_version")
 
     @cloned_version.setter
-    def cloned_version(self, value: Optional[pulumi.Input[_builtins.int]]):
+    def cloned_version(self, value: pulumi.Input[Optional[_builtins.int]]):
         pulumi.set(self, "cloned_version", value)
 
     @_builtins.property
     @pulumi.getter
-    def comment(self) -> Optional[pulumi.Input[_builtins.str]]:
+    def comment(self) -> pulumi.Input[Optional[_builtins.str]]:
         """
         Description field for the service. Default `Managed by Terraform`
         """
         return pulumi.get(self, "comment")
 
     @comment.setter
-    def comment(self, value: Optional[pulumi.Input[_builtins.str]]):
+    def comment(self, value: pulumi.Input[Optional[_builtins.str]]):
         pulumi.set(self, "comment", value)
 
     @_builtins.property
     @pulumi.getter
-    def dictionaries(self) -> Optional[pulumi.Input[Sequence[pulumi.Input['ServiceComputeDictionaryArgs']]]]:
+    def dictionaries(self) -> pulumi.Input[Optional[Sequence[pulumi.Input['ServiceComputeDictionaryArgs']]]]:
         return pulumi.get(self, "dictionaries")
 
     @dictionaries.setter
-    def dictionaries(self, value: Optional[pulumi.Input[Sequence[pulumi.Input['ServiceComputeDictionaryArgs']]]]):
+    def dictionaries(self, value: pulumi.Input[Optional[Sequence[pulumi.Input['ServiceComputeDictionaryArgs']]]]):
         pulumi.set(self, "dictionaries", value)
 
     @_builtins.property
     @pulumi.getter
-    def domains(self) -> Optional[pulumi.Input[Sequence[pulumi.Input['ServiceComputeDomainArgs']]]]:
+    def domains(self) -> pulumi.Input[Optional[Sequence[pulumi.Input['ServiceComputeDomainArgs']]]]:
         """
         A set of Domain names to serve as entry points for your Service
         """
         return pulumi.get(self, "domains")
 
     @domains.setter
-    def domains(self, value: Optional[pulumi.Input[Sequence[pulumi.Input['ServiceComputeDomainArgs']]]]):
+    def domains(self, value: pulumi.Input[Optional[Sequence[pulumi.Input['ServiceComputeDomainArgs']]]]):
         pulumi.set(self, "domains", value)
 
     @_builtins.property
     @pulumi.getter(name="forceDestroy")
-    def force_destroy(self) -> Optional[pulumi.Input[_builtins.bool]]:
+    def force_destroy(self) -> pulumi.Input[Optional[_builtins.bool]]:
         """
         Services that are active cannot be destroyed. In order to destroy the Service, set `force_destroy` to `true`. Default `false`
         """
         return pulumi.get(self, "force_destroy")
 
     @force_destroy.setter
-    def force_destroy(self, value: Optional[pulumi.Input[_builtins.bool]]):
+    def force_destroy(self, value: pulumi.Input[Optional[_builtins.bool]]):
         pulumi.set(self, "force_destroy", value)
 
     @_builtins.property
     @pulumi.getter(name="forceRefresh")
-    def force_refresh(self) -> Optional[pulumi.Input[_builtins.bool]]:
+    def force_refresh(self) -> pulumi.Input[Optional[_builtins.bool]]:
         """
         Used internally by the provider to temporarily indicate if all resources should call their associated API to update the local state. This is for scenarios where the service version has been reverted outside of Terraform (e.g. via the Fastly UI) and the provider needs to resync the state for a different active version (this is only if `activate` is `true`).
         """
         return pulumi.get(self, "force_refresh")
 
     @force_refresh.setter
-    def force_refresh(self, value: Optional[pulumi.Input[_builtins.bool]]):
+    def force_refresh(self, value: pulumi.Input[Optional[_builtins.bool]]):
         pulumi.set(self, "force_refresh", value)
 
     @_builtins.property
     @pulumi.getter
-    def healthchecks(self) -> Optional[pulumi.Input[Sequence[pulumi.Input['ServiceComputeHealthcheckArgs']]]]:
+    def healthchecks(self) -> pulumi.Input[Optional[Sequence[pulumi.Input['ServiceComputeHealthcheckArgs']]]]:
         return pulumi.get(self, "healthchecks")
 
     @healthchecks.setter
-    def healthchecks(self, value: Optional[pulumi.Input[Sequence[pulumi.Input['ServiceComputeHealthcheckArgs']]]]):
+    def healthchecks(self, value: pulumi.Input[Optional[Sequence[pulumi.Input['ServiceComputeHealthcheckArgs']]]]):
         pulumi.set(self, "healthchecks", value)
 
     @_builtins.property
     @pulumi.getter(name="imageOptimizerDefaultSettings")
-    def image_optimizer_default_settings(self) -> Optional[pulumi.Input['ServiceComputeImageOptimizerDefaultSettingsArgs']]:
+    def image_optimizer_default_settings(self) -> pulumi.Input[Optional['ServiceComputeImageOptimizerDefaultSettingsArgs']]:
         return pulumi.get(self, "image_optimizer_default_settings")
 
     @image_optimizer_default_settings.setter
-    def image_optimizer_default_settings(self, value: Optional[pulumi.Input['ServiceComputeImageOptimizerDefaultSettingsArgs']]):
+    def image_optimizer_default_settings(self, value: pulumi.Input[Optional['ServiceComputeImageOptimizerDefaultSettingsArgs']]):
         pulumi.set(self, "image_optimizer_default_settings", value)
 
     @_builtins.property
     @pulumi.getter
-    def imported(self) -> Optional[pulumi.Input[_builtins.bool]]:
+    def imported(self) -> pulumi.Input[Optional[_builtins.bool]]:
         """
         Used internally by the provider to temporarily indicate if the service is being imported, and is reset to false once the import is finished
         """
         return pulumi.get(self, "imported")
 
     @imported.setter
-    def imported(self, value: Optional[pulumi.Input[_builtins.bool]]):
+    def imported(self, value: pulumi.Input[Optional[_builtins.bool]]):
         pulumi.set(self, "imported", value)
 
     @_builtins.property
     @pulumi.getter(name="loggingBigqueries")
-    def logging_bigqueries(self) -> Optional[pulumi.Input[Sequence[pulumi.Input['ServiceComputeLoggingBigqueryArgs']]]]:
+    def logging_bigqueries(self) -> pulumi.Input[Optional[Sequence[pulumi.Input['ServiceComputeLoggingBigqueryArgs']]]]:
         return pulumi.get(self, "logging_bigqueries")
 
     @logging_bigqueries.setter
-    def logging_bigqueries(self, value: Optional[pulumi.Input[Sequence[pulumi.Input['ServiceComputeLoggingBigqueryArgs']]]]):
+    def logging_bigqueries(self, value: pulumi.Input[Optional[Sequence[pulumi.Input['ServiceComputeLoggingBigqueryArgs']]]]):
         pulumi.set(self, "logging_bigqueries", value)
 
     @_builtins.property
     @pulumi.getter(name="loggingBlobstorages")
-    def logging_blobstorages(self) -> Optional[pulumi.Input[Sequence[pulumi.Input['ServiceComputeLoggingBlobstorageArgs']]]]:
+    def logging_blobstorages(self) -> pulumi.Input[Optional[Sequence[pulumi.Input['ServiceComputeLoggingBlobstorageArgs']]]]:
         return pulumi.get(self, "logging_blobstorages")
 
     @logging_blobstorages.setter
-    def logging_blobstorages(self, value: Optional[pulumi.Input[Sequence[pulumi.Input['ServiceComputeLoggingBlobstorageArgs']]]]):
+    def logging_blobstorages(self, value: pulumi.Input[Optional[Sequence[pulumi.Input['ServiceComputeLoggingBlobstorageArgs']]]]):
         pulumi.set(self, "logging_blobstorages", value)
 
     @_builtins.property
     @pulumi.getter(name="loggingCloudfiles")
-    def logging_cloudfiles(self) -> Optional[pulumi.Input[Sequence[pulumi.Input['ServiceComputeLoggingCloudfileArgs']]]]:
+    def logging_cloudfiles(self) -> pulumi.Input[Optional[Sequence[pulumi.Input['ServiceComputeLoggingCloudfileArgs']]]]:
         return pulumi.get(self, "logging_cloudfiles")
 
     @logging_cloudfiles.setter
-    def logging_cloudfiles(self, value: Optional[pulumi.Input[Sequence[pulumi.Input['ServiceComputeLoggingCloudfileArgs']]]]):
+    def logging_cloudfiles(self, value: pulumi.Input[Optional[Sequence[pulumi.Input['ServiceComputeLoggingCloudfileArgs']]]]):
         pulumi.set(self, "logging_cloudfiles", value)
 
     @_builtins.property
     @pulumi.getter(name="loggingDatadogs")
-    def logging_datadogs(self) -> Optional[pulumi.Input[Sequence[pulumi.Input['ServiceComputeLoggingDatadogArgs']]]]:
+    def logging_datadogs(self) -> pulumi.Input[Optional[Sequence[pulumi.Input['ServiceComputeLoggingDatadogArgs']]]]:
         return pulumi.get(self, "logging_datadogs")
 
     @logging_datadogs.setter
-    def logging_datadogs(self, value: Optional[pulumi.Input[Sequence[pulumi.Input['ServiceComputeLoggingDatadogArgs']]]]):
+    def logging_datadogs(self, value: pulumi.Input[Optional[Sequence[pulumi.Input['ServiceComputeLoggingDatadogArgs']]]]):
         pulumi.set(self, "logging_datadogs", value)
 
     @_builtins.property
     @pulumi.getter(name="loggingDigitaloceans")
-    def logging_digitaloceans(self) -> Optional[pulumi.Input[Sequence[pulumi.Input['ServiceComputeLoggingDigitaloceanArgs']]]]:
+    def logging_digitaloceans(self) -> pulumi.Input[Optional[Sequence[pulumi.Input['ServiceComputeLoggingDigitaloceanArgs']]]]:
         return pulumi.get(self, "logging_digitaloceans")
 
     @logging_digitaloceans.setter
-    def logging_digitaloceans(self, value: Optional[pulumi.Input[Sequence[pulumi.Input['ServiceComputeLoggingDigitaloceanArgs']]]]):
+    def logging_digitaloceans(self, value: pulumi.Input[Optional[Sequence[pulumi.Input['ServiceComputeLoggingDigitaloceanArgs']]]]):
         pulumi.set(self, "logging_digitaloceans", value)
 
     @_builtins.property
     @pulumi.getter(name="loggingElasticsearches")
-    def logging_elasticsearches(self) -> Optional[pulumi.Input[Sequence[pulumi.Input['ServiceComputeLoggingElasticsearchArgs']]]]:
+    def logging_elasticsearches(self) -> pulumi.Input[Optional[Sequence[pulumi.Input['ServiceComputeLoggingElasticsearchArgs']]]]:
         return pulumi.get(self, "logging_elasticsearches")
 
     @logging_elasticsearches.setter
-    def logging_elasticsearches(self, value: Optional[pulumi.Input[Sequence[pulumi.Input['ServiceComputeLoggingElasticsearchArgs']]]]):
+    def logging_elasticsearches(self, value: pulumi.Input[Optional[Sequence[pulumi.Input['ServiceComputeLoggingElasticsearchArgs']]]]):
         pulumi.set(self, "logging_elasticsearches", value)
 
     @_builtins.property
     @pulumi.getter(name="loggingFtps")
-    def logging_ftps(self) -> Optional[pulumi.Input[Sequence[pulumi.Input['ServiceComputeLoggingFtpArgs']]]]:
+    def logging_ftps(self) -> pulumi.Input[Optional[Sequence[pulumi.Input['ServiceComputeLoggingFtpArgs']]]]:
         return pulumi.get(self, "logging_ftps")
 
     @logging_ftps.setter
-    def logging_ftps(self, value: Optional[pulumi.Input[Sequence[pulumi.Input['ServiceComputeLoggingFtpArgs']]]]):
+    def logging_ftps(self, value: pulumi.Input[Optional[Sequence[pulumi.Input['ServiceComputeLoggingFtpArgs']]]]):
         pulumi.set(self, "logging_ftps", value)
 
     @_builtins.property
     @pulumi.getter(name="loggingGcs")
-    def logging_gcs(self) -> Optional[pulumi.Input[Sequence[pulumi.Input['ServiceComputeLoggingGcArgs']]]]:
+    def logging_gcs(self) -> pulumi.Input[Optional[Sequence[pulumi.Input['ServiceComputeLoggingGcArgs']]]]:
         return pulumi.get(self, "logging_gcs")
 
     @logging_gcs.setter
-    def logging_gcs(self, value: Optional[pulumi.Input[Sequence[pulumi.Input['ServiceComputeLoggingGcArgs']]]]):
+    def logging_gcs(self, value: pulumi.Input[Optional[Sequence[pulumi.Input['ServiceComputeLoggingGcArgs']]]]):
         pulumi.set(self, "logging_gcs", value)
 
     @_builtins.property
     @pulumi.getter(name="loggingGooglepubsubs")
-    def logging_googlepubsubs(self) -> Optional[pulumi.Input[Sequence[pulumi.Input['ServiceComputeLoggingGooglepubsubArgs']]]]:
+    def logging_googlepubsubs(self) -> pulumi.Input[Optional[Sequence[pulumi.Input['ServiceComputeLoggingGooglepubsubArgs']]]]:
         return pulumi.get(self, "logging_googlepubsubs")
 
     @logging_googlepubsubs.setter
-    def logging_googlepubsubs(self, value: Optional[pulumi.Input[Sequence[pulumi.Input['ServiceComputeLoggingGooglepubsubArgs']]]]):
+    def logging_googlepubsubs(self, value: pulumi.Input[Optional[Sequence[pulumi.Input['ServiceComputeLoggingGooglepubsubArgs']]]]):
         pulumi.set(self, "logging_googlepubsubs", value)
 
     @_builtins.property
     @pulumi.getter(name="loggingGrafanacloudlogs")
-    def logging_grafanacloudlogs(self) -> Optional[pulumi.Input[Sequence[pulumi.Input['ServiceComputeLoggingGrafanacloudlogArgs']]]]:
+    def logging_grafanacloudlogs(self) -> pulumi.Input[Optional[Sequence[pulumi.Input['ServiceComputeLoggingGrafanacloudlogArgs']]]]:
         return pulumi.get(self, "logging_grafanacloudlogs")
 
     @logging_grafanacloudlogs.setter
-    def logging_grafanacloudlogs(self, value: Optional[pulumi.Input[Sequence[pulumi.Input['ServiceComputeLoggingGrafanacloudlogArgs']]]]):
+    def logging_grafanacloudlogs(self, value: pulumi.Input[Optional[Sequence[pulumi.Input['ServiceComputeLoggingGrafanacloudlogArgs']]]]):
         pulumi.set(self, "logging_grafanacloudlogs", value)
 
     @_builtins.property
     @pulumi.getter(name="loggingHeroku")
-    def logging_heroku(self) -> Optional[pulumi.Input[Sequence[pulumi.Input['ServiceComputeLoggingHerokuArgs']]]]:
+    def logging_heroku(self) -> pulumi.Input[Optional[Sequence[pulumi.Input['ServiceComputeLoggingHerokuArgs']]]]:
         return pulumi.get(self, "logging_heroku")
 
     @logging_heroku.setter
-    def logging_heroku(self, value: Optional[pulumi.Input[Sequence[pulumi.Input['ServiceComputeLoggingHerokuArgs']]]]):
+    def logging_heroku(self, value: pulumi.Input[Optional[Sequence[pulumi.Input['ServiceComputeLoggingHerokuArgs']]]]):
         pulumi.set(self, "logging_heroku", value)
 
     @_builtins.property
     @pulumi.getter(name="loggingHoneycombs")
-    def logging_honeycombs(self) -> Optional[pulumi.Input[Sequence[pulumi.Input['ServiceComputeLoggingHoneycombArgs']]]]:
+    def logging_honeycombs(self) -> pulumi.Input[Optional[Sequence[pulumi.Input['ServiceComputeLoggingHoneycombArgs']]]]:
         return pulumi.get(self, "logging_honeycombs")
 
     @logging_honeycombs.setter
-    def logging_honeycombs(self, value: Optional[pulumi.Input[Sequence[pulumi.Input['ServiceComputeLoggingHoneycombArgs']]]]):
+    def logging_honeycombs(self, value: pulumi.Input[Optional[Sequence[pulumi.Input['ServiceComputeLoggingHoneycombArgs']]]]):
         pulumi.set(self, "logging_honeycombs", value)
 
     @_builtins.property
     @pulumi.getter(name="loggingHttps")
-    def logging_https(self) -> Optional[pulumi.Input[Sequence[pulumi.Input['ServiceComputeLoggingHttpArgs']]]]:
+    def logging_https(self) -> pulumi.Input[Optional[Sequence[pulumi.Input['ServiceComputeLoggingHttpArgs']]]]:
         return pulumi.get(self, "logging_https")
 
     @logging_https.setter
-    def logging_https(self, value: Optional[pulumi.Input[Sequence[pulumi.Input['ServiceComputeLoggingHttpArgs']]]]):
+    def logging_https(self, value: pulumi.Input[Optional[Sequence[pulumi.Input['ServiceComputeLoggingHttpArgs']]]]):
         pulumi.set(self, "logging_https", value)
 
     @_builtins.property
     @pulumi.getter(name="loggingKafkas")
-    def logging_kafkas(self) -> Optional[pulumi.Input[Sequence[pulumi.Input['ServiceComputeLoggingKafkaArgs']]]]:
+    def logging_kafkas(self) -> pulumi.Input[Optional[Sequence[pulumi.Input['ServiceComputeLoggingKafkaArgs']]]]:
         return pulumi.get(self, "logging_kafkas")
 
     @logging_kafkas.setter
-    def logging_kafkas(self, value: Optional[pulumi.Input[Sequence[pulumi.Input['ServiceComputeLoggingKafkaArgs']]]]):
+    def logging_kafkas(self, value: pulumi.Input[Optional[Sequence[pulumi.Input['ServiceComputeLoggingKafkaArgs']]]]):
         pulumi.set(self, "logging_kafkas", value)
 
     @_builtins.property
     @pulumi.getter(name="loggingKineses")
-    def logging_kineses(self) -> Optional[pulumi.Input[Sequence[pulumi.Input['ServiceComputeLoggingKineseArgs']]]]:
+    def logging_kineses(self) -> pulumi.Input[Optional[Sequence[pulumi.Input['ServiceComputeLoggingKineseArgs']]]]:
         return pulumi.get(self, "logging_kineses")
 
     @logging_kineses.setter
-    def logging_kineses(self, value: Optional[pulumi.Input[Sequence[pulumi.Input['ServiceComputeLoggingKineseArgs']]]]):
+    def logging_kineses(self, value: pulumi.Input[Optional[Sequence[pulumi.Input['ServiceComputeLoggingKineseArgs']]]]):
         pulumi.set(self, "logging_kineses", value)
 
     @_builtins.property
     @pulumi.getter(name="loggingLogentries")
-    def logging_logentries(self) -> Optional[pulumi.Input[Sequence[pulumi.Input['ServiceComputeLoggingLogentryArgs']]]]:
+    def logging_logentries(self) -> pulumi.Input[Optional[Sequence[pulumi.Input['ServiceComputeLoggingLogentryArgs']]]]:
         return pulumi.get(self, "logging_logentries")
 
     @logging_logentries.setter
-    def logging_logentries(self, value: Optional[pulumi.Input[Sequence[pulumi.Input['ServiceComputeLoggingLogentryArgs']]]]):
+    def logging_logentries(self, value: pulumi.Input[Optional[Sequence[pulumi.Input['ServiceComputeLoggingLogentryArgs']]]]):
         pulumi.set(self, "logging_logentries", value)
 
     @_builtins.property
     @pulumi.getter(name="loggingLogglies")
-    def logging_logglies(self) -> Optional[pulumi.Input[Sequence[pulumi.Input['ServiceComputeLoggingLogglyArgs']]]]:
+    def logging_logglies(self) -> pulumi.Input[Optional[Sequence[pulumi.Input['ServiceComputeLoggingLogglyArgs']]]]:
         return pulumi.get(self, "logging_logglies")
 
     @logging_logglies.setter
-    def logging_logglies(self, value: Optional[pulumi.Input[Sequence[pulumi.Input['ServiceComputeLoggingLogglyArgs']]]]):
+    def logging_logglies(self, value: pulumi.Input[Optional[Sequence[pulumi.Input['ServiceComputeLoggingLogglyArgs']]]]):
         pulumi.set(self, "logging_logglies", value)
 
     @_builtins.property
     @pulumi.getter(name="loggingLogshuttles")
-    def logging_logshuttles(self) -> Optional[pulumi.Input[Sequence[pulumi.Input['ServiceComputeLoggingLogshuttleArgs']]]]:
+    def logging_logshuttles(self) -> pulumi.Input[Optional[Sequence[pulumi.Input['ServiceComputeLoggingLogshuttleArgs']]]]:
         return pulumi.get(self, "logging_logshuttles")
 
     @logging_logshuttles.setter
-    def logging_logshuttles(self, value: Optional[pulumi.Input[Sequence[pulumi.Input['ServiceComputeLoggingLogshuttleArgs']]]]):
+    def logging_logshuttles(self, value: pulumi.Input[Optional[Sequence[pulumi.Input['ServiceComputeLoggingLogshuttleArgs']]]]):
         pulumi.set(self, "logging_logshuttles", value)
 
     @_builtins.property
     @pulumi.getter(name="loggingNewrelicotlps")
-    def logging_newrelicotlps(self) -> Optional[pulumi.Input[Sequence[pulumi.Input['ServiceComputeLoggingNewrelicotlpArgs']]]]:
+    def logging_newrelicotlps(self) -> pulumi.Input[Optional[Sequence[pulumi.Input['ServiceComputeLoggingNewrelicotlpArgs']]]]:
         return pulumi.get(self, "logging_newrelicotlps")
 
     @logging_newrelicotlps.setter
-    def logging_newrelicotlps(self, value: Optional[pulumi.Input[Sequence[pulumi.Input['ServiceComputeLoggingNewrelicotlpArgs']]]]):
+    def logging_newrelicotlps(self, value: pulumi.Input[Optional[Sequence[pulumi.Input['ServiceComputeLoggingNewrelicotlpArgs']]]]):
         pulumi.set(self, "logging_newrelicotlps", value)
 
     @_builtins.property
     @pulumi.getter(name="loggingNewrelics")
-    def logging_newrelics(self) -> Optional[pulumi.Input[Sequence[pulumi.Input['ServiceComputeLoggingNewrelicArgs']]]]:
+    def logging_newrelics(self) -> pulumi.Input[Optional[Sequence[pulumi.Input['ServiceComputeLoggingNewrelicArgs']]]]:
         return pulumi.get(self, "logging_newrelics")
 
     @logging_newrelics.setter
-    def logging_newrelics(self, value: Optional[pulumi.Input[Sequence[pulumi.Input['ServiceComputeLoggingNewrelicArgs']]]]):
+    def logging_newrelics(self, value: pulumi.Input[Optional[Sequence[pulumi.Input['ServiceComputeLoggingNewrelicArgs']]]]):
         pulumi.set(self, "logging_newrelics", value)
 
     @_builtins.property
     @pulumi.getter(name="loggingOpenstacks")
-    def logging_openstacks(self) -> Optional[pulumi.Input[Sequence[pulumi.Input['ServiceComputeLoggingOpenstackArgs']]]]:
+    def logging_openstacks(self) -> pulumi.Input[Optional[Sequence[pulumi.Input['ServiceComputeLoggingOpenstackArgs']]]]:
         return pulumi.get(self, "logging_openstacks")
 
     @logging_openstacks.setter
-    def logging_openstacks(self, value: Optional[pulumi.Input[Sequence[pulumi.Input['ServiceComputeLoggingOpenstackArgs']]]]):
+    def logging_openstacks(self, value: pulumi.Input[Optional[Sequence[pulumi.Input['ServiceComputeLoggingOpenstackArgs']]]]):
         pulumi.set(self, "logging_openstacks", value)
 
     @_builtins.property
     @pulumi.getter(name="loggingPapertrails")
-    def logging_papertrails(self) -> Optional[pulumi.Input[Sequence[pulumi.Input['ServiceComputeLoggingPapertrailArgs']]]]:
+    def logging_papertrails(self) -> pulumi.Input[Optional[Sequence[pulumi.Input['ServiceComputeLoggingPapertrailArgs']]]]:
         return pulumi.get(self, "logging_papertrails")
 
     @logging_papertrails.setter
-    def logging_papertrails(self, value: Optional[pulumi.Input[Sequence[pulumi.Input['ServiceComputeLoggingPapertrailArgs']]]]):
+    def logging_papertrails(self, value: pulumi.Input[Optional[Sequence[pulumi.Input['ServiceComputeLoggingPapertrailArgs']]]]):
         pulumi.set(self, "logging_papertrails", value)
 
     @_builtins.property
     @pulumi.getter(name="loggingS3s")
-    def logging_s3s(self) -> Optional[pulumi.Input[Sequence[pulumi.Input['ServiceComputeLoggingS3Args']]]]:
+    def logging_s3s(self) -> pulumi.Input[Optional[Sequence[pulumi.Input['ServiceComputeLoggingS3Args']]]]:
         return pulumi.get(self, "logging_s3s")
 
     @logging_s3s.setter
-    def logging_s3s(self, value: Optional[pulumi.Input[Sequence[pulumi.Input['ServiceComputeLoggingS3Args']]]]):
+    def logging_s3s(self, value: pulumi.Input[Optional[Sequence[pulumi.Input['ServiceComputeLoggingS3Args']]]]):
         pulumi.set(self, "logging_s3s", value)
 
     @_builtins.property
     @pulumi.getter(name="loggingScalyrs")
-    def logging_scalyrs(self) -> Optional[pulumi.Input[Sequence[pulumi.Input['ServiceComputeLoggingScalyrArgs']]]]:
+    def logging_scalyrs(self) -> pulumi.Input[Optional[Sequence[pulumi.Input['ServiceComputeLoggingScalyrArgs']]]]:
         return pulumi.get(self, "logging_scalyrs")
 
     @logging_scalyrs.setter
-    def logging_scalyrs(self, value: Optional[pulumi.Input[Sequence[pulumi.Input['ServiceComputeLoggingScalyrArgs']]]]):
+    def logging_scalyrs(self, value: pulumi.Input[Optional[Sequence[pulumi.Input['ServiceComputeLoggingScalyrArgs']]]]):
         pulumi.set(self, "logging_scalyrs", value)
 
     @_builtins.property
     @pulumi.getter(name="loggingSftps")
-    def logging_sftps(self) -> Optional[pulumi.Input[Sequence[pulumi.Input['ServiceComputeLoggingSftpArgs']]]]:
+    def logging_sftps(self) -> pulumi.Input[Optional[Sequence[pulumi.Input['ServiceComputeLoggingSftpArgs']]]]:
         return pulumi.get(self, "logging_sftps")
 
     @logging_sftps.setter
-    def logging_sftps(self, value: Optional[pulumi.Input[Sequence[pulumi.Input['ServiceComputeLoggingSftpArgs']]]]):
+    def logging_sftps(self, value: pulumi.Input[Optional[Sequence[pulumi.Input['ServiceComputeLoggingSftpArgs']]]]):
         pulumi.set(self, "logging_sftps", value)
 
     @_builtins.property
     @pulumi.getter(name="loggingSplunks")
-    def logging_splunks(self) -> Optional[pulumi.Input[Sequence[pulumi.Input['ServiceComputeLoggingSplunkArgs']]]]:
+    def logging_splunks(self) -> pulumi.Input[Optional[Sequence[pulumi.Input['ServiceComputeLoggingSplunkArgs']]]]:
         return pulumi.get(self, "logging_splunks")
 
     @logging_splunks.setter
-    def logging_splunks(self, value: Optional[pulumi.Input[Sequence[pulumi.Input['ServiceComputeLoggingSplunkArgs']]]]):
+    def logging_splunks(self, value: pulumi.Input[Optional[Sequence[pulumi.Input['ServiceComputeLoggingSplunkArgs']]]]):
         pulumi.set(self, "logging_splunks", value)
 
     @_builtins.property
     @pulumi.getter(name="loggingSumologics")
-    def logging_sumologics(self) -> Optional[pulumi.Input[Sequence[pulumi.Input['ServiceComputeLoggingSumologicArgs']]]]:
+    def logging_sumologics(self) -> pulumi.Input[Optional[Sequence[pulumi.Input['ServiceComputeLoggingSumologicArgs']]]]:
         return pulumi.get(self, "logging_sumologics")
 
     @logging_sumologics.setter
-    def logging_sumologics(self, value: Optional[pulumi.Input[Sequence[pulumi.Input['ServiceComputeLoggingSumologicArgs']]]]):
+    def logging_sumologics(self, value: pulumi.Input[Optional[Sequence[pulumi.Input['ServiceComputeLoggingSumologicArgs']]]]):
         pulumi.set(self, "logging_sumologics", value)
 
     @_builtins.property
     @pulumi.getter(name="loggingSyslogs")
-    def logging_syslogs(self) -> Optional[pulumi.Input[Sequence[pulumi.Input['ServiceComputeLoggingSyslogArgs']]]]:
+    def logging_syslogs(self) -> pulumi.Input[Optional[Sequence[pulumi.Input['ServiceComputeLoggingSyslogArgs']]]]:
         return pulumi.get(self, "logging_syslogs")
 
     @logging_syslogs.setter
-    def logging_syslogs(self, value: Optional[pulumi.Input[Sequence[pulumi.Input['ServiceComputeLoggingSyslogArgs']]]]):
+    def logging_syslogs(self, value: pulumi.Input[Optional[Sequence[pulumi.Input['ServiceComputeLoggingSyslogArgs']]]]):
         pulumi.set(self, "logging_syslogs", value)
 
     @_builtins.property
     @pulumi.getter
-    def name(self) -> Optional[pulumi.Input[_builtins.str]]:
+    def name(self) -> pulumi.Input[Optional[_builtins.str]]:
         """
         The unique name for the Service to create
         """
         return pulumi.get(self, "name")
 
     @name.setter
-    def name(self, value: Optional[pulumi.Input[_builtins.str]]):
+    def name(self, value: pulumi.Input[Optional[_builtins.str]]):
         pulumi.set(self, "name", value)
 
     @_builtins.property
     @pulumi.getter
-    def package(self) -> Optional[pulumi.Input['ServiceComputePackageArgs']]:
+    def package(self) -> pulumi.Input[Optional['ServiceComputePackageArgs']]:
         """
         The `package` block supports uploading or modifying Wasm packages for use in a Fastly Compute service (if omitted, ensure `activate = false` is set on `ServiceCompute` to avoid service validation errors). See Fastly's documentation on [Compute](https://developer.fastly.com/learning/compute/)
         """
         return pulumi.get(self, "package")
 
     @package.setter
-    def package(self, value: Optional[pulumi.Input['ServiceComputePackageArgs']]):
+    def package(self, value: pulumi.Input[Optional['ServiceComputePackageArgs']]):
         pulumi.set(self, "package", value)
 
     @_builtins.property
     @pulumi.getter(name="productEnablement")
-    def product_enablement(self) -> Optional[pulumi.Input['ServiceComputeProductEnablementArgs']]:
+    def product_enablement(self) -> pulumi.Input[Optional['ServiceComputeProductEnablementArgs']]:
         return pulumi.get(self, "product_enablement")
 
     @product_enablement.setter
-    def product_enablement(self, value: Optional[pulumi.Input['ServiceComputeProductEnablementArgs']]):
+    def product_enablement(self, value: pulumi.Input[Optional['ServiceComputeProductEnablementArgs']]):
         pulumi.set(self, "product_enablement", value)
 
     @_builtins.property
     @pulumi.getter(name="resourceLinks")
-    def resource_links(self) -> Optional[pulumi.Input[Sequence[pulumi.Input['ServiceComputeResourceLinkArgs']]]]:
+    def resource_links(self) -> pulumi.Input[Optional[Sequence[pulumi.Input['ServiceComputeResourceLinkArgs']]]]:
         """
         A resource link represents a link between a shared resource (such as an KV Store or Config Store) and a service version.
         """
         return pulumi.get(self, "resource_links")
 
     @resource_links.setter
-    def resource_links(self, value: Optional[pulumi.Input[Sequence[pulumi.Input['ServiceComputeResourceLinkArgs']]]]):
+    def resource_links(self, value: pulumi.Input[Optional[Sequence[pulumi.Input['ServiceComputeResourceLinkArgs']]]]):
         pulumi.set(self, "resource_links", value)
 
     @_builtins.property
     @pulumi.getter
-    def reuse(self) -> Optional[pulumi.Input[_builtins.bool]]:
+    def reuse(self) -> pulumi.Input[Optional[_builtins.bool]]:
         """
         Services that are active cannot be destroyed. If set to `true` a service Terraform intends to destroy will instead be deactivated (allowing it to be reused by importing it into another Terraform project). If `false`, attempting to destroy an active service will cause an error. Default `false`
         """
         return pulumi.get(self, "reuse")
 
     @reuse.setter
-    def reuse(self, value: Optional[pulumi.Input[_builtins.bool]]):
+    def reuse(self, value: pulumi.Input[Optional[_builtins.bool]]):
         pulumi.set(self, "reuse", value)
 
     @_builtins.property
     @pulumi.getter
-    def stage(self) -> Optional[pulumi.Input[_builtins.bool]]:
+    def stage(self) -> pulumi.Input[Optional[_builtins.bool]]:
         """
         Conditionally enables new service versions to be staged. If set to `true`, all changes made by an `apply` step will be staged, even if `apply` did not create a new draft version. Default `false`
         """
         return pulumi.get(self, "stage")
 
     @stage.setter
-    def stage(self, value: Optional[pulumi.Input[_builtins.bool]]):
+    def stage(self, value: pulumi.Input[Optional[_builtins.bool]]):
         pulumi.set(self, "stage", value)
 
     @_builtins.property
     @pulumi.getter(name="stagedVersion")
-    def staged_version(self) -> Optional[pulumi.Input[_builtins.int]]:
+    def staged_version(self) -> pulumi.Input[Optional[_builtins.int]]:
         """
         The currently staged version of your Fastly Service
         """
         return pulumi.get(self, "staged_version")
 
     @staged_version.setter
-    def staged_version(self, value: Optional[pulumi.Input[_builtins.int]]):
+    def staged_version(self, value: pulumi.Input[Optional[_builtins.int]]):
         pulumi.set(self, "staged_version", value)
 
     @_builtins.property
     @pulumi.getter(name="versionComment")
-    def version_comment(self) -> Optional[pulumi.Input[_builtins.str]]:
+    def version_comment(self) -> pulumi.Input[Optional[_builtins.str]]:
         """
         Description field for the version
         """
         return pulumi.get(self, "version_comment")
 
     @version_comment.setter
-    def version_comment(self, value: Optional[pulumi.Input[_builtins.str]]):
+    def version_comment(self, value: pulumi.Input[Optional[_builtins.str]]):
         pulumi.set(self, "version_comment", value)
 
 
@@ -1234,49 +1234,49 @@ class ServiceCompute(pulumi.CustomResource):
     def __init__(__self__,
                  resource_name: str,
                  opts: Optional[pulumi.ResourceOptions] = None,
-                 activate: Optional[pulumi.Input[_builtins.bool]] = None,
-                 backends: Optional[pulumi.Input[Sequence[pulumi.Input[Union['ServiceComputeBackendArgs', 'ServiceComputeBackendArgsDict']]]]] = None,
-                 comment: Optional[pulumi.Input[_builtins.str]] = None,
-                 dictionaries: Optional[pulumi.Input[Sequence[pulumi.Input[Union['ServiceComputeDictionaryArgs', 'ServiceComputeDictionaryArgsDict']]]]] = None,
-                 domains: Optional[pulumi.Input[Sequence[pulumi.Input[Union['ServiceComputeDomainArgs', 'ServiceComputeDomainArgsDict']]]]] = None,
-                 force_destroy: Optional[pulumi.Input[_builtins.bool]] = None,
-                 healthchecks: Optional[pulumi.Input[Sequence[pulumi.Input[Union['ServiceComputeHealthcheckArgs', 'ServiceComputeHealthcheckArgsDict']]]]] = None,
-                 image_optimizer_default_settings: Optional[pulumi.Input[Union['ServiceComputeImageOptimizerDefaultSettingsArgs', 'ServiceComputeImageOptimizerDefaultSettingsArgsDict']]] = None,
-                 logging_bigqueries: Optional[pulumi.Input[Sequence[pulumi.Input[Union['ServiceComputeLoggingBigqueryArgs', 'ServiceComputeLoggingBigqueryArgsDict']]]]] = None,
-                 logging_blobstorages: Optional[pulumi.Input[Sequence[pulumi.Input[Union['ServiceComputeLoggingBlobstorageArgs', 'ServiceComputeLoggingBlobstorageArgsDict']]]]] = None,
-                 logging_cloudfiles: Optional[pulumi.Input[Sequence[pulumi.Input[Union['ServiceComputeLoggingCloudfileArgs', 'ServiceComputeLoggingCloudfileArgsDict']]]]] = None,
-                 logging_datadogs: Optional[pulumi.Input[Sequence[pulumi.Input[Union['ServiceComputeLoggingDatadogArgs', 'ServiceComputeLoggingDatadogArgsDict']]]]] = None,
-                 logging_digitaloceans: Optional[pulumi.Input[Sequence[pulumi.Input[Union['ServiceComputeLoggingDigitaloceanArgs', 'ServiceComputeLoggingDigitaloceanArgsDict']]]]] = None,
-                 logging_elasticsearches: Optional[pulumi.Input[Sequence[pulumi.Input[Union['ServiceComputeLoggingElasticsearchArgs', 'ServiceComputeLoggingElasticsearchArgsDict']]]]] = None,
-                 logging_ftps: Optional[pulumi.Input[Sequence[pulumi.Input[Union['ServiceComputeLoggingFtpArgs', 'ServiceComputeLoggingFtpArgsDict']]]]] = None,
-                 logging_gcs: Optional[pulumi.Input[Sequence[pulumi.Input[Union['ServiceComputeLoggingGcArgs', 'ServiceComputeLoggingGcArgsDict']]]]] = None,
-                 logging_googlepubsubs: Optional[pulumi.Input[Sequence[pulumi.Input[Union['ServiceComputeLoggingGooglepubsubArgs', 'ServiceComputeLoggingGooglepubsubArgsDict']]]]] = None,
-                 logging_grafanacloudlogs: Optional[pulumi.Input[Sequence[pulumi.Input[Union['ServiceComputeLoggingGrafanacloudlogArgs', 'ServiceComputeLoggingGrafanacloudlogArgsDict']]]]] = None,
-                 logging_heroku: Optional[pulumi.Input[Sequence[pulumi.Input[Union['ServiceComputeLoggingHerokuArgs', 'ServiceComputeLoggingHerokuArgsDict']]]]] = None,
-                 logging_honeycombs: Optional[pulumi.Input[Sequence[pulumi.Input[Union['ServiceComputeLoggingHoneycombArgs', 'ServiceComputeLoggingHoneycombArgsDict']]]]] = None,
-                 logging_https: Optional[pulumi.Input[Sequence[pulumi.Input[Union['ServiceComputeLoggingHttpArgs', 'ServiceComputeLoggingHttpArgsDict']]]]] = None,
-                 logging_kafkas: Optional[pulumi.Input[Sequence[pulumi.Input[Union['ServiceComputeLoggingKafkaArgs', 'ServiceComputeLoggingKafkaArgsDict']]]]] = None,
-                 logging_kineses: Optional[pulumi.Input[Sequence[pulumi.Input[Union['ServiceComputeLoggingKineseArgs', 'ServiceComputeLoggingKineseArgsDict']]]]] = None,
-                 logging_logentries: Optional[pulumi.Input[Sequence[pulumi.Input[Union['ServiceComputeLoggingLogentryArgs', 'ServiceComputeLoggingLogentryArgsDict']]]]] = None,
-                 logging_logglies: Optional[pulumi.Input[Sequence[pulumi.Input[Union['ServiceComputeLoggingLogglyArgs', 'ServiceComputeLoggingLogglyArgsDict']]]]] = None,
-                 logging_logshuttles: Optional[pulumi.Input[Sequence[pulumi.Input[Union['ServiceComputeLoggingLogshuttleArgs', 'ServiceComputeLoggingLogshuttleArgsDict']]]]] = None,
-                 logging_newrelicotlps: Optional[pulumi.Input[Sequence[pulumi.Input[Union['ServiceComputeLoggingNewrelicotlpArgs', 'ServiceComputeLoggingNewrelicotlpArgsDict']]]]] = None,
-                 logging_newrelics: Optional[pulumi.Input[Sequence[pulumi.Input[Union['ServiceComputeLoggingNewrelicArgs', 'ServiceComputeLoggingNewrelicArgsDict']]]]] = None,
-                 logging_openstacks: Optional[pulumi.Input[Sequence[pulumi.Input[Union['ServiceComputeLoggingOpenstackArgs', 'ServiceComputeLoggingOpenstackArgsDict']]]]] = None,
-                 logging_papertrails: Optional[pulumi.Input[Sequence[pulumi.Input[Union['ServiceComputeLoggingPapertrailArgs', 'ServiceComputeLoggingPapertrailArgsDict']]]]] = None,
-                 logging_s3s: Optional[pulumi.Input[Sequence[pulumi.Input[Union['ServiceComputeLoggingS3Args', 'ServiceComputeLoggingS3ArgsDict']]]]] = None,
-                 logging_scalyrs: Optional[pulumi.Input[Sequence[pulumi.Input[Union['ServiceComputeLoggingScalyrArgs', 'ServiceComputeLoggingScalyrArgsDict']]]]] = None,
-                 logging_sftps: Optional[pulumi.Input[Sequence[pulumi.Input[Union['ServiceComputeLoggingSftpArgs', 'ServiceComputeLoggingSftpArgsDict']]]]] = None,
-                 logging_splunks: Optional[pulumi.Input[Sequence[pulumi.Input[Union['ServiceComputeLoggingSplunkArgs', 'ServiceComputeLoggingSplunkArgsDict']]]]] = None,
-                 logging_sumologics: Optional[pulumi.Input[Sequence[pulumi.Input[Union['ServiceComputeLoggingSumologicArgs', 'ServiceComputeLoggingSumologicArgsDict']]]]] = None,
-                 logging_syslogs: Optional[pulumi.Input[Sequence[pulumi.Input[Union['ServiceComputeLoggingSyslogArgs', 'ServiceComputeLoggingSyslogArgsDict']]]]] = None,
-                 name: Optional[pulumi.Input[_builtins.str]] = None,
-                 package: Optional[pulumi.Input[Union['ServiceComputePackageArgs', 'ServiceComputePackageArgsDict']]] = None,
-                 product_enablement: Optional[pulumi.Input[Union['ServiceComputeProductEnablementArgs', 'ServiceComputeProductEnablementArgsDict']]] = None,
-                 resource_links: Optional[pulumi.Input[Sequence[pulumi.Input[Union['ServiceComputeResourceLinkArgs', 'ServiceComputeResourceLinkArgsDict']]]]] = None,
-                 reuse: Optional[pulumi.Input[_builtins.bool]] = None,
-                 stage: Optional[pulumi.Input[_builtins.bool]] = None,
-                 version_comment: Optional[pulumi.Input[_builtins.str]] = None,
+                 activate: pulumi.Input[Optional[_builtins.bool]] = None,
+                 backends: pulumi.Input[Optional[Sequence[pulumi.Input[Union['ServiceComputeBackendArgs', 'ServiceComputeBackendArgsDict']]]]] = None,
+                 comment: pulumi.Input[Optional[_builtins.str]] = None,
+                 dictionaries: pulumi.Input[Optional[Sequence[pulumi.Input[Union['ServiceComputeDictionaryArgs', 'ServiceComputeDictionaryArgsDict']]]]] = None,
+                 domains: pulumi.Input[Optional[Sequence[pulumi.Input[Union['ServiceComputeDomainArgs', 'ServiceComputeDomainArgsDict']]]]] = None,
+                 force_destroy: pulumi.Input[Optional[_builtins.bool]] = None,
+                 healthchecks: pulumi.Input[Optional[Sequence[pulumi.Input[Union['ServiceComputeHealthcheckArgs', 'ServiceComputeHealthcheckArgsDict']]]]] = None,
+                 image_optimizer_default_settings: pulumi.Input[Optional[Union['ServiceComputeImageOptimizerDefaultSettingsArgs', 'ServiceComputeImageOptimizerDefaultSettingsArgsDict']]] = None,
+                 logging_bigqueries: pulumi.Input[Optional[Sequence[pulumi.Input[Union['ServiceComputeLoggingBigqueryArgs', 'ServiceComputeLoggingBigqueryArgsDict']]]]] = None,
+                 logging_blobstorages: pulumi.Input[Optional[Sequence[pulumi.Input[Union['ServiceComputeLoggingBlobstorageArgs', 'ServiceComputeLoggingBlobstorageArgsDict']]]]] = None,
+                 logging_cloudfiles: pulumi.Input[Optional[Sequence[pulumi.Input[Union['ServiceComputeLoggingCloudfileArgs', 'ServiceComputeLoggingCloudfileArgsDict']]]]] = None,
+                 logging_datadogs: pulumi.Input[Optional[Sequence[pulumi.Input[Union['ServiceComputeLoggingDatadogArgs', 'ServiceComputeLoggingDatadogArgsDict']]]]] = None,
+                 logging_digitaloceans: pulumi.Input[Optional[Sequence[pulumi.Input[Union['ServiceComputeLoggingDigitaloceanArgs', 'ServiceComputeLoggingDigitaloceanArgsDict']]]]] = None,
+                 logging_elasticsearches: pulumi.Input[Optional[Sequence[pulumi.Input[Union['ServiceComputeLoggingElasticsearchArgs', 'ServiceComputeLoggingElasticsearchArgsDict']]]]] = None,
+                 logging_ftps: pulumi.Input[Optional[Sequence[pulumi.Input[Union['ServiceComputeLoggingFtpArgs', 'ServiceComputeLoggingFtpArgsDict']]]]] = None,
+                 logging_gcs: pulumi.Input[Optional[Sequence[pulumi.Input[Union['ServiceComputeLoggingGcArgs', 'ServiceComputeLoggingGcArgsDict']]]]] = None,
+                 logging_googlepubsubs: pulumi.Input[Optional[Sequence[pulumi.Input[Union['ServiceComputeLoggingGooglepubsubArgs', 'ServiceComputeLoggingGooglepubsubArgsDict']]]]] = None,
+                 logging_grafanacloudlogs: pulumi.Input[Optional[Sequence[pulumi.Input[Union['ServiceComputeLoggingGrafanacloudlogArgs', 'ServiceComputeLoggingGrafanacloudlogArgsDict']]]]] = None,
+                 logging_heroku: pulumi.Input[Optional[Sequence[pulumi.Input[Union['ServiceComputeLoggingHerokuArgs', 'ServiceComputeLoggingHerokuArgsDict']]]]] = None,
+                 logging_honeycombs: pulumi.Input[Optional[Sequence[pulumi.Input[Union['ServiceComputeLoggingHoneycombArgs', 'ServiceComputeLoggingHoneycombArgsDict']]]]] = None,
+                 logging_https: pulumi.Input[Optional[Sequence[pulumi.Input[Union['ServiceComputeLoggingHttpArgs', 'ServiceComputeLoggingHttpArgsDict']]]]] = None,
+                 logging_kafkas: pulumi.Input[Optional[Sequence[pulumi.Input[Union['ServiceComputeLoggingKafkaArgs', 'ServiceComputeLoggingKafkaArgsDict']]]]] = None,
+                 logging_kineses: pulumi.Input[Optional[Sequence[pulumi.Input[Union['ServiceComputeLoggingKineseArgs', 'ServiceComputeLoggingKineseArgsDict']]]]] = None,
+                 logging_logentries: pulumi.Input[Optional[Sequence[pulumi.Input[Union['ServiceComputeLoggingLogentryArgs', 'ServiceComputeLoggingLogentryArgsDict']]]]] = None,
+                 logging_logglies: pulumi.Input[Optional[Sequence[pulumi.Input[Union['ServiceComputeLoggingLogglyArgs', 'ServiceComputeLoggingLogglyArgsDict']]]]] = None,
+                 logging_logshuttles: pulumi.Input[Optional[Sequence[pulumi.Input[Union['ServiceComputeLoggingLogshuttleArgs', 'ServiceComputeLoggingLogshuttleArgsDict']]]]] = None,
+                 logging_newrelicotlps: pulumi.Input[Optional[Sequence[pulumi.Input[Union['ServiceComputeLoggingNewrelicotlpArgs', 'ServiceComputeLoggingNewrelicotlpArgsDict']]]]] = None,
+                 logging_newrelics: pulumi.Input[Optional[Sequence[pulumi.Input[Union['ServiceComputeLoggingNewrelicArgs', 'ServiceComputeLoggingNewrelicArgsDict']]]]] = None,
+                 logging_openstacks: pulumi.Input[Optional[Sequence[pulumi.Input[Union['ServiceComputeLoggingOpenstackArgs', 'ServiceComputeLoggingOpenstackArgsDict']]]]] = None,
+                 logging_papertrails: pulumi.Input[Optional[Sequence[pulumi.Input[Union['ServiceComputeLoggingPapertrailArgs', 'ServiceComputeLoggingPapertrailArgsDict']]]]] = None,
+                 logging_s3s: pulumi.Input[Optional[Sequence[pulumi.Input[Union['ServiceComputeLoggingS3Args', 'ServiceComputeLoggingS3ArgsDict']]]]] = None,
+                 logging_scalyrs: pulumi.Input[Optional[Sequence[pulumi.Input[Union['ServiceComputeLoggingScalyrArgs', 'ServiceComputeLoggingScalyrArgsDict']]]]] = None,
+                 logging_sftps: pulumi.Input[Optional[Sequence[pulumi.Input[Union['ServiceComputeLoggingSftpArgs', 'ServiceComputeLoggingSftpArgsDict']]]]] = None,
+                 logging_splunks: pulumi.Input[Optional[Sequence[pulumi.Input[Union['ServiceComputeLoggingSplunkArgs', 'ServiceComputeLoggingSplunkArgsDict']]]]] = None,
+                 logging_sumologics: pulumi.Input[Optional[Sequence[pulumi.Input[Union['ServiceComputeLoggingSumologicArgs', 'ServiceComputeLoggingSumologicArgsDict']]]]] = None,
+                 logging_syslogs: pulumi.Input[Optional[Sequence[pulumi.Input[Union['ServiceComputeLoggingSyslogArgs', 'ServiceComputeLoggingSyslogArgsDict']]]]] = None,
+                 name: pulumi.Input[Optional[_builtins.str]] = None,
+                 package: pulumi.Input[Optional[Union['ServiceComputePackageArgs', 'ServiceComputePackageArgsDict']]] = None,
+                 product_enablement: pulumi.Input[Optional[Union['ServiceComputeProductEnablementArgs', 'ServiceComputeProductEnablementArgsDict']]] = None,
+                 resource_links: pulumi.Input[Optional[Sequence[pulumi.Input[Union['ServiceComputeResourceLinkArgs', 'ServiceComputeResourceLinkArgsDict']]]]] = None,
+                 reuse: pulumi.Input[Optional[_builtins.bool]] = None,
+                 stage: pulumi.Input[Optional[_builtins.bool]] = None,
+                 version_comment: pulumi.Input[Optional[_builtins.str]] = None,
                  __props__=None):
         """
         Provides a Fastly Compute service. Compute is a computation platform capable of running custom binaries that you compile on your own systems and upload to Fastly. Security and portability is provided by compiling your code to [WebAssembly](https://webassembly.org/) using the `wasm32-wasi` target. A compute service encompasses Domains and Backends.
@@ -1478,49 +1478,49 @@ class ServiceCompute(pulumi.CustomResource):
     def _internal_init(__self__,
                  resource_name: str,
                  opts: Optional[pulumi.ResourceOptions] = None,
-                 activate: Optional[pulumi.Input[_builtins.bool]] = None,
-                 backends: Optional[pulumi.Input[Sequence[pulumi.Input[Union['ServiceComputeBackendArgs', 'ServiceComputeBackendArgsDict']]]]] = None,
-                 comment: Optional[pulumi.Input[_builtins.str]] = None,
-                 dictionaries: Optional[pulumi.Input[Sequence[pulumi.Input[Union['ServiceComputeDictionaryArgs', 'ServiceComputeDictionaryArgsDict']]]]] = None,
-                 domains: Optional[pulumi.Input[Sequence[pulumi.Input[Union['ServiceComputeDomainArgs', 'ServiceComputeDomainArgsDict']]]]] = None,
-                 force_destroy: Optional[pulumi.Input[_builtins.bool]] = None,
-                 healthchecks: Optional[pulumi.Input[Sequence[pulumi.Input[Union['ServiceComputeHealthcheckArgs', 'ServiceComputeHealthcheckArgsDict']]]]] = None,
-                 image_optimizer_default_settings: Optional[pulumi.Input[Union['ServiceComputeImageOptimizerDefaultSettingsArgs', 'ServiceComputeImageOptimizerDefaultSettingsArgsDict']]] = None,
-                 logging_bigqueries: Optional[pulumi.Input[Sequence[pulumi.Input[Union['ServiceComputeLoggingBigqueryArgs', 'ServiceComputeLoggingBigqueryArgsDict']]]]] = None,
-                 logging_blobstorages: Optional[pulumi.Input[Sequence[pulumi.Input[Union['ServiceComputeLoggingBlobstorageArgs', 'ServiceComputeLoggingBlobstorageArgsDict']]]]] = None,
-                 logging_cloudfiles: Optional[pulumi.Input[Sequence[pulumi.Input[Union['ServiceComputeLoggingCloudfileArgs', 'ServiceComputeLoggingCloudfileArgsDict']]]]] = None,
-                 logging_datadogs: Optional[pulumi.Input[Sequence[pulumi.Input[Union['ServiceComputeLoggingDatadogArgs', 'ServiceComputeLoggingDatadogArgsDict']]]]] = None,
-                 logging_digitaloceans: Optional[pulumi.Input[Sequence[pulumi.Input[Union['ServiceComputeLoggingDigitaloceanArgs', 'ServiceComputeLoggingDigitaloceanArgsDict']]]]] = None,
-                 logging_elasticsearches: Optional[pulumi.Input[Sequence[pulumi.Input[Union['ServiceComputeLoggingElasticsearchArgs', 'ServiceComputeLoggingElasticsearchArgsDict']]]]] = None,
-                 logging_ftps: Optional[pulumi.Input[Sequence[pulumi.Input[Union['ServiceComputeLoggingFtpArgs', 'ServiceComputeLoggingFtpArgsDict']]]]] = None,
-                 logging_gcs: Optional[pulumi.Input[Sequence[pulumi.Input[Union['ServiceComputeLoggingGcArgs', 'ServiceComputeLoggingGcArgsDict']]]]] = None,
-                 logging_googlepubsubs: Optional[pulumi.Input[Sequence[pulumi.Input[Union['ServiceComputeLoggingGooglepubsubArgs', 'ServiceComputeLoggingGooglepubsubArgsDict']]]]] = None,
-                 logging_grafanacloudlogs: Optional[pulumi.Input[Sequence[pulumi.Input[Union['ServiceComputeLoggingGrafanacloudlogArgs', 'ServiceComputeLoggingGrafanacloudlogArgsDict']]]]] = None,
-                 logging_heroku: Optional[pulumi.Input[Sequence[pulumi.Input[Union['ServiceComputeLoggingHerokuArgs', 'ServiceComputeLoggingHerokuArgsDict']]]]] = None,
-                 logging_honeycombs: Optional[pulumi.Input[Sequence[pulumi.Input[Union['ServiceComputeLoggingHoneycombArgs', 'ServiceComputeLoggingHoneycombArgsDict']]]]] = None,
-                 logging_https: Optional[pulumi.Input[Sequence[pulumi.Input[Union['ServiceComputeLoggingHttpArgs', 'ServiceComputeLoggingHttpArgsDict']]]]] = None,
-                 logging_kafkas: Optional[pulumi.Input[Sequence[pulumi.Input[Union['ServiceComputeLoggingKafkaArgs', 'ServiceComputeLoggingKafkaArgsDict']]]]] = None,
-                 logging_kineses: Optional[pulumi.Input[Sequence[pulumi.Input[Union['ServiceComputeLoggingKineseArgs', 'ServiceComputeLoggingKineseArgsDict']]]]] = None,
-                 logging_logentries: Optional[pulumi.Input[Sequence[pulumi.Input[Union['ServiceComputeLoggingLogentryArgs', 'ServiceComputeLoggingLogentryArgsDict']]]]] = None,
-                 logging_logglies: Optional[pulumi.Input[Sequence[pulumi.Input[Union['ServiceComputeLoggingLogglyArgs', 'ServiceComputeLoggingLogglyArgsDict']]]]] = None,
-                 logging_logshuttles: Optional[pulumi.Input[Sequence[pulumi.Input[Union['ServiceComputeLoggingLogshuttleArgs', 'ServiceComputeLoggingLogshuttleArgsDict']]]]] = None,
-                 logging_newrelicotlps: Optional[pulumi.Input[Sequence[pulumi.Input[Union['ServiceComputeLoggingNewrelicotlpArgs', 'ServiceComputeLoggingNewrelicotlpArgsDict']]]]] = None,
-                 logging_newrelics: Optional[pulumi.Input[Sequence[pulumi.Input[Union['ServiceComputeLoggingNewrelicArgs', 'ServiceComputeLoggingNewrelicArgsDict']]]]] = None,
-                 logging_openstacks: Optional[pulumi.Input[Sequence[pulumi.Input[Union['ServiceComputeLoggingOpenstackArgs', 'ServiceComputeLoggingOpenstackArgsDict']]]]] = None,
-                 logging_papertrails: Optional[pulumi.Input[Sequence[pulumi.Input[Union['ServiceComputeLoggingPapertrailArgs', 'ServiceComputeLoggingPapertrailArgsDict']]]]] = None,
-                 logging_s3s: Optional[pulumi.Input[Sequence[pulumi.Input[Union['ServiceComputeLoggingS3Args', 'ServiceComputeLoggingS3ArgsDict']]]]] = None,
-                 logging_scalyrs: Optional[pulumi.Input[Sequence[pulumi.Input[Union['ServiceComputeLoggingScalyrArgs', 'ServiceComputeLoggingScalyrArgsDict']]]]] = None,
-                 logging_sftps: Optional[pulumi.Input[Sequence[pulumi.Input[Union['ServiceComputeLoggingSftpArgs', 'ServiceComputeLoggingSftpArgsDict']]]]] = None,
-                 logging_splunks: Optional[pulumi.Input[Sequence[pulumi.Input[Union['ServiceComputeLoggingSplunkArgs', 'ServiceComputeLoggingSplunkArgsDict']]]]] = None,
-                 logging_sumologics: Optional[pulumi.Input[Sequence[pulumi.Input[Union['ServiceComputeLoggingSumologicArgs', 'ServiceComputeLoggingSumologicArgsDict']]]]] = None,
-                 logging_syslogs: Optional[pulumi.Input[Sequence[pulumi.Input[Union['ServiceComputeLoggingSyslogArgs', 'ServiceComputeLoggingSyslogArgsDict']]]]] = None,
-                 name: Optional[pulumi.Input[_builtins.str]] = None,
-                 package: Optional[pulumi.Input[Union['ServiceComputePackageArgs', 'ServiceComputePackageArgsDict']]] = None,
-                 product_enablement: Optional[pulumi.Input[Union['ServiceComputeProductEnablementArgs', 'ServiceComputeProductEnablementArgsDict']]] = None,
-                 resource_links: Optional[pulumi.Input[Sequence[pulumi.Input[Union['ServiceComputeResourceLinkArgs', 'ServiceComputeResourceLinkArgsDict']]]]] = None,
-                 reuse: Optional[pulumi.Input[_builtins.bool]] = None,
-                 stage: Optional[pulumi.Input[_builtins.bool]] = None,
-                 version_comment: Optional[pulumi.Input[_builtins.str]] = None,
+                 activate: pulumi.Input[Optional[_builtins.bool]] = None,
+                 backends: pulumi.Input[Optional[Sequence[pulumi.Input[Union['ServiceComputeBackendArgs', 'ServiceComputeBackendArgsDict']]]]] = None,
+                 comment: pulumi.Input[Optional[_builtins.str]] = None,
+                 dictionaries: pulumi.Input[Optional[Sequence[pulumi.Input[Union['ServiceComputeDictionaryArgs', 'ServiceComputeDictionaryArgsDict']]]]] = None,
+                 domains: pulumi.Input[Optional[Sequence[pulumi.Input[Union['ServiceComputeDomainArgs', 'ServiceComputeDomainArgsDict']]]]] = None,
+                 force_destroy: pulumi.Input[Optional[_builtins.bool]] = None,
+                 healthchecks: pulumi.Input[Optional[Sequence[pulumi.Input[Union['ServiceComputeHealthcheckArgs', 'ServiceComputeHealthcheckArgsDict']]]]] = None,
+                 image_optimizer_default_settings: pulumi.Input[Optional[Union['ServiceComputeImageOptimizerDefaultSettingsArgs', 'ServiceComputeImageOptimizerDefaultSettingsArgsDict']]] = None,
+                 logging_bigqueries: pulumi.Input[Optional[Sequence[pulumi.Input[Union['ServiceComputeLoggingBigqueryArgs', 'ServiceComputeLoggingBigqueryArgsDict']]]]] = None,
+                 logging_blobstorages: pulumi.Input[Optional[Sequence[pulumi.Input[Union['ServiceComputeLoggingBlobstorageArgs', 'ServiceComputeLoggingBlobstorageArgsDict']]]]] = None,
+                 logging_cloudfiles: pulumi.Input[Optional[Sequence[pulumi.Input[Union['ServiceComputeLoggingCloudfileArgs', 'ServiceComputeLoggingCloudfileArgsDict']]]]] = None,
+                 logging_datadogs: pulumi.Input[Optional[Sequence[pulumi.Input[Union['ServiceComputeLoggingDatadogArgs', 'ServiceComputeLoggingDatadogArgsDict']]]]] = None,
+                 logging_digitaloceans: pulumi.Input[Optional[Sequence[pulumi.Input[Union['ServiceComputeLoggingDigitaloceanArgs', 'ServiceComputeLoggingDigitaloceanArgsDict']]]]] = None,
+                 logging_elasticsearches: pulumi.Input[Optional[Sequence[pulumi.Input[Union['ServiceComputeLoggingElasticsearchArgs', 'ServiceComputeLoggingElasticsearchArgsDict']]]]] = None,
+                 logging_ftps: pulumi.Input[Optional[Sequence[pulumi.Input[Union['ServiceComputeLoggingFtpArgs', 'ServiceComputeLoggingFtpArgsDict']]]]] = None,
+                 logging_gcs: pulumi.Input[Optional[Sequence[pulumi.Input[Union['ServiceComputeLoggingGcArgs', 'ServiceComputeLoggingGcArgsDict']]]]] = None,
+                 logging_googlepubsubs: pulumi.Input[Optional[Sequence[pulumi.Input[Union['ServiceComputeLoggingGooglepubsubArgs', 'ServiceComputeLoggingGooglepubsubArgsDict']]]]] = None,
+                 logging_grafanacloudlogs: pulumi.Input[Optional[Sequence[pulumi.Input[Union['ServiceComputeLoggingGrafanacloudlogArgs', 'ServiceComputeLoggingGrafanacloudlogArgsDict']]]]] = None,
+                 logging_heroku: pulumi.Input[Optional[Sequence[pulumi.Input[Union['ServiceComputeLoggingHerokuArgs', 'ServiceComputeLoggingHerokuArgsDict']]]]] = None,
+                 logging_honeycombs: pulumi.Input[Optional[Sequence[pulumi.Input[Union['ServiceComputeLoggingHoneycombArgs', 'ServiceComputeLoggingHoneycombArgsDict']]]]] = None,
+                 logging_https: pulumi.Input[Optional[Sequence[pulumi.Input[Union['ServiceComputeLoggingHttpArgs', 'ServiceComputeLoggingHttpArgsDict']]]]] = None,
+                 logging_kafkas: pulumi.Input[Optional[Sequence[pulumi.Input[Union['ServiceComputeLoggingKafkaArgs', 'ServiceComputeLoggingKafkaArgsDict']]]]] = None,
+                 logging_kineses: pulumi.Input[Optional[Sequence[pulumi.Input[Union['ServiceComputeLoggingKineseArgs', 'ServiceComputeLoggingKineseArgsDict']]]]] = None,
+                 logging_logentries: pulumi.Input[Optional[Sequence[pulumi.Input[Union['ServiceComputeLoggingLogentryArgs', 'ServiceComputeLoggingLogentryArgsDict']]]]] = None,
+                 logging_logglies: pulumi.Input[Optional[Sequence[pulumi.Input[Union['ServiceComputeLoggingLogglyArgs', 'ServiceComputeLoggingLogglyArgsDict']]]]] = None,
+                 logging_logshuttles: pulumi.Input[Optional[Sequence[pulumi.Input[Union['ServiceComputeLoggingLogshuttleArgs', 'ServiceComputeLoggingLogshuttleArgsDict']]]]] = None,
+                 logging_newrelicotlps: pulumi.Input[Optional[Sequence[pulumi.Input[Union['ServiceComputeLoggingNewrelicotlpArgs', 'ServiceComputeLoggingNewrelicotlpArgsDict']]]]] = None,
+                 logging_newrelics: pulumi.Input[Optional[Sequence[pulumi.Input[Union['ServiceComputeLoggingNewrelicArgs', 'ServiceComputeLoggingNewrelicArgsDict']]]]] = None,
+                 logging_openstacks: pulumi.Input[Optional[Sequence[pulumi.Input[Union['ServiceComputeLoggingOpenstackArgs', 'ServiceComputeLoggingOpenstackArgsDict']]]]] = None,
+                 logging_papertrails: pulumi.Input[Optional[Sequence[pulumi.Input[Union['ServiceComputeLoggingPapertrailArgs', 'ServiceComputeLoggingPapertrailArgsDict']]]]] = None,
+                 logging_s3s: pulumi.Input[Optional[Sequence[pulumi.Input[Union['ServiceComputeLoggingS3Args', 'ServiceComputeLoggingS3ArgsDict']]]]] = None,
+                 logging_scalyrs: pulumi.Input[Optional[Sequence[pulumi.Input[Union['ServiceComputeLoggingScalyrArgs', 'ServiceComputeLoggingScalyrArgsDict']]]]] = None,
+                 logging_sftps: pulumi.Input[Optional[Sequence[pulumi.Input[Union['ServiceComputeLoggingSftpArgs', 'ServiceComputeLoggingSftpArgsDict']]]]] = None,
+                 logging_splunks: pulumi.Input[Optional[Sequence[pulumi.Input[Union['ServiceComputeLoggingSplunkArgs', 'ServiceComputeLoggingSplunkArgsDict']]]]] = None,
+                 logging_sumologics: pulumi.Input[Optional[Sequence[pulumi.Input[Union['ServiceComputeLoggingSumologicArgs', 'ServiceComputeLoggingSumologicArgsDict']]]]] = None,
+                 logging_syslogs: pulumi.Input[Optional[Sequence[pulumi.Input[Union['ServiceComputeLoggingSyslogArgs', 'ServiceComputeLoggingSyslogArgsDict']]]]] = None,
+                 name: pulumi.Input[Optional[_builtins.str]] = None,
+                 package: pulumi.Input[Optional[Union['ServiceComputePackageArgs', 'ServiceComputePackageArgsDict']]] = None,
+                 product_enablement: pulumi.Input[Optional[Union['ServiceComputeProductEnablementArgs', 'ServiceComputeProductEnablementArgsDict']]] = None,
+                 resource_links: pulumi.Input[Optional[Sequence[pulumi.Input[Union['ServiceComputeResourceLinkArgs', 'ServiceComputeResourceLinkArgsDict']]]]] = None,
+                 reuse: pulumi.Input[Optional[_builtins.bool]] = None,
+                 stage: pulumi.Input[Optional[_builtins.bool]] = None,
+                 version_comment: pulumi.Input[Optional[_builtins.str]] = None,
                  __props__=None):
         opts = pulumi.ResourceOptions.merge(_utilities.get_resource_opts_defaults(), opts)
         if not isinstance(opts, pulumi.ResourceOptions):
@@ -1588,54 +1588,54 @@ class ServiceCompute(pulumi.CustomResource):
     def get(resource_name: str,
             id: pulumi.Input[str],
             opts: Optional[pulumi.ResourceOptions] = None,
-            activate: Optional[pulumi.Input[_builtins.bool]] = None,
-            active_version: Optional[pulumi.Input[_builtins.int]] = None,
-            backends: Optional[pulumi.Input[Sequence[pulumi.Input[Union['ServiceComputeBackendArgs', 'ServiceComputeBackendArgsDict']]]]] = None,
-            cloned_version: Optional[pulumi.Input[_builtins.int]] = None,
-            comment: Optional[pulumi.Input[_builtins.str]] = None,
-            dictionaries: Optional[pulumi.Input[Sequence[pulumi.Input[Union['ServiceComputeDictionaryArgs', 'ServiceComputeDictionaryArgsDict']]]]] = None,
-            domains: Optional[pulumi.Input[Sequence[pulumi.Input[Union['ServiceComputeDomainArgs', 'ServiceComputeDomainArgsDict']]]]] = None,
-            force_destroy: Optional[pulumi.Input[_builtins.bool]] = None,
-            force_refresh: Optional[pulumi.Input[_builtins.bool]] = None,
-            healthchecks: Optional[pulumi.Input[Sequence[pulumi.Input[Union['ServiceComputeHealthcheckArgs', 'ServiceComputeHealthcheckArgsDict']]]]] = None,
-            image_optimizer_default_settings: Optional[pulumi.Input[Union['ServiceComputeImageOptimizerDefaultSettingsArgs', 'ServiceComputeImageOptimizerDefaultSettingsArgsDict']]] = None,
-            imported: Optional[pulumi.Input[_builtins.bool]] = None,
-            logging_bigqueries: Optional[pulumi.Input[Sequence[pulumi.Input[Union['ServiceComputeLoggingBigqueryArgs', 'ServiceComputeLoggingBigqueryArgsDict']]]]] = None,
-            logging_blobstorages: Optional[pulumi.Input[Sequence[pulumi.Input[Union['ServiceComputeLoggingBlobstorageArgs', 'ServiceComputeLoggingBlobstorageArgsDict']]]]] = None,
-            logging_cloudfiles: Optional[pulumi.Input[Sequence[pulumi.Input[Union['ServiceComputeLoggingCloudfileArgs', 'ServiceComputeLoggingCloudfileArgsDict']]]]] = None,
-            logging_datadogs: Optional[pulumi.Input[Sequence[pulumi.Input[Union['ServiceComputeLoggingDatadogArgs', 'ServiceComputeLoggingDatadogArgsDict']]]]] = None,
-            logging_digitaloceans: Optional[pulumi.Input[Sequence[pulumi.Input[Union['ServiceComputeLoggingDigitaloceanArgs', 'ServiceComputeLoggingDigitaloceanArgsDict']]]]] = None,
-            logging_elasticsearches: Optional[pulumi.Input[Sequence[pulumi.Input[Union['ServiceComputeLoggingElasticsearchArgs', 'ServiceComputeLoggingElasticsearchArgsDict']]]]] = None,
-            logging_ftps: Optional[pulumi.Input[Sequence[pulumi.Input[Union['ServiceComputeLoggingFtpArgs', 'ServiceComputeLoggingFtpArgsDict']]]]] = None,
-            logging_gcs: Optional[pulumi.Input[Sequence[pulumi.Input[Union['ServiceComputeLoggingGcArgs', 'ServiceComputeLoggingGcArgsDict']]]]] = None,
-            logging_googlepubsubs: Optional[pulumi.Input[Sequence[pulumi.Input[Union['ServiceComputeLoggingGooglepubsubArgs', 'ServiceComputeLoggingGooglepubsubArgsDict']]]]] = None,
-            logging_grafanacloudlogs: Optional[pulumi.Input[Sequence[pulumi.Input[Union['ServiceComputeLoggingGrafanacloudlogArgs', 'ServiceComputeLoggingGrafanacloudlogArgsDict']]]]] = None,
-            logging_heroku: Optional[pulumi.Input[Sequence[pulumi.Input[Union['ServiceComputeLoggingHerokuArgs', 'ServiceComputeLoggingHerokuArgsDict']]]]] = None,
-            logging_honeycombs: Optional[pulumi.Input[Sequence[pulumi.Input[Union['ServiceComputeLoggingHoneycombArgs', 'ServiceComputeLoggingHoneycombArgsDict']]]]] = None,
-            logging_https: Optional[pulumi.Input[Sequence[pulumi.Input[Union['ServiceComputeLoggingHttpArgs', 'ServiceComputeLoggingHttpArgsDict']]]]] = None,
-            logging_kafkas: Optional[pulumi.Input[Sequence[pulumi.Input[Union['ServiceComputeLoggingKafkaArgs', 'ServiceComputeLoggingKafkaArgsDict']]]]] = None,
-            logging_kineses: Optional[pulumi.Input[Sequence[pulumi.Input[Union['ServiceComputeLoggingKineseArgs', 'ServiceComputeLoggingKineseArgsDict']]]]] = None,
-            logging_logentries: Optional[pulumi.Input[Sequence[pulumi.Input[Union['ServiceComputeLoggingLogentryArgs', 'ServiceComputeLoggingLogentryArgsDict']]]]] = None,
-            logging_logglies: Optional[pulumi.Input[Sequence[pulumi.Input[Union['ServiceComputeLoggingLogglyArgs', 'ServiceComputeLoggingLogglyArgsDict']]]]] = None,
-            logging_logshuttles: Optional[pulumi.Input[Sequence[pulumi.Input[Union['ServiceComputeLoggingLogshuttleArgs', 'ServiceComputeLoggingLogshuttleArgsDict']]]]] = None,
-            logging_newrelicotlps: Optional[pulumi.Input[Sequence[pulumi.Input[Union['ServiceComputeLoggingNewrelicotlpArgs', 'ServiceComputeLoggingNewrelicotlpArgsDict']]]]] = None,
-            logging_newrelics: Optional[pulumi.Input[Sequence[pulumi.Input[Union['ServiceComputeLoggingNewrelicArgs', 'ServiceComputeLoggingNewrelicArgsDict']]]]] = None,
-            logging_openstacks: Optional[pulumi.Input[Sequence[pulumi.Input[Union['ServiceComputeLoggingOpenstackArgs', 'ServiceComputeLoggingOpenstackArgsDict']]]]] = None,
-            logging_papertrails: Optional[pulumi.Input[Sequence[pulumi.Input[Union['ServiceComputeLoggingPapertrailArgs', 'ServiceComputeLoggingPapertrailArgsDict']]]]] = None,
-            logging_s3s: Optional[pulumi.Input[Sequence[pulumi.Input[Union['ServiceComputeLoggingS3Args', 'ServiceComputeLoggingS3ArgsDict']]]]] = None,
-            logging_scalyrs: Optional[pulumi.Input[Sequence[pulumi.Input[Union['ServiceComputeLoggingScalyrArgs', 'ServiceComputeLoggingScalyrArgsDict']]]]] = None,
-            logging_sftps: Optional[pulumi.Input[Sequence[pulumi.Input[Union['ServiceComputeLoggingSftpArgs', 'ServiceComputeLoggingSftpArgsDict']]]]] = None,
-            logging_splunks: Optional[pulumi.Input[Sequence[pulumi.Input[Union['ServiceComputeLoggingSplunkArgs', 'ServiceComputeLoggingSplunkArgsDict']]]]] = None,
-            logging_sumologics: Optional[pulumi.Input[Sequence[pulumi.Input[Union['ServiceComputeLoggingSumologicArgs', 'ServiceComputeLoggingSumologicArgsDict']]]]] = None,
-            logging_syslogs: Optional[pulumi.Input[Sequence[pulumi.Input[Union['ServiceComputeLoggingSyslogArgs', 'ServiceComputeLoggingSyslogArgsDict']]]]] = None,
-            name: Optional[pulumi.Input[_builtins.str]] = None,
-            package: Optional[pulumi.Input[Union['ServiceComputePackageArgs', 'ServiceComputePackageArgsDict']]] = None,
-            product_enablement: Optional[pulumi.Input[Union['ServiceComputeProductEnablementArgs', 'ServiceComputeProductEnablementArgsDict']]] = None,
-            resource_links: Optional[pulumi.Input[Sequence[pulumi.Input[Union['ServiceComputeResourceLinkArgs', 'ServiceComputeResourceLinkArgsDict']]]]] = None,
-            reuse: Optional[pulumi.Input[_builtins.bool]] = None,
-            stage: Optional[pulumi.Input[_builtins.bool]] = None,
-            staged_version: Optional[pulumi.Input[_builtins.int]] = None,
-            version_comment: Optional[pulumi.Input[_builtins.str]] = None) -> 'ServiceCompute':
+            activate: pulumi.Input[Optional[_builtins.bool]] = None,
+            active_version: pulumi.Input[Optional[_builtins.int]] = None,
+            backends: pulumi.Input[Optional[Sequence[pulumi.Input[Union['ServiceComputeBackendArgs', 'ServiceComputeBackendArgsDict']]]]] = None,
+            cloned_version: pulumi.Input[Optional[_builtins.int]] = None,
+            comment: pulumi.Input[Optional[_builtins.str]] = None,
+            dictionaries: pulumi.Input[Optional[Sequence[pulumi.Input[Union['ServiceComputeDictionaryArgs', 'ServiceComputeDictionaryArgsDict']]]]] = None,
+            domains: pulumi.Input[Optional[Sequence[pulumi.Input[Union['ServiceComputeDomainArgs', 'ServiceComputeDomainArgsDict']]]]] = None,
+            force_destroy: pulumi.Input[Optional[_builtins.bool]] = None,
+            force_refresh: pulumi.Input[Optional[_builtins.bool]] = None,
+            healthchecks: pulumi.Input[Optional[Sequence[pulumi.Input[Union['ServiceComputeHealthcheckArgs', 'ServiceComputeHealthcheckArgsDict']]]]] = None,
+            image_optimizer_default_settings: pulumi.Input[Optional[Union['ServiceComputeImageOptimizerDefaultSettingsArgs', 'ServiceComputeImageOptimizerDefaultSettingsArgsDict']]] = None,
+            imported: pulumi.Input[Optional[_builtins.bool]] = None,
+            logging_bigqueries: pulumi.Input[Optional[Sequence[pulumi.Input[Union['ServiceComputeLoggingBigqueryArgs', 'ServiceComputeLoggingBigqueryArgsDict']]]]] = None,
+            logging_blobstorages: pulumi.Input[Optional[Sequence[pulumi.Input[Union['ServiceComputeLoggingBlobstorageArgs', 'ServiceComputeLoggingBlobstorageArgsDict']]]]] = None,
+            logging_cloudfiles: pulumi.Input[Optional[Sequence[pulumi.Input[Union['ServiceComputeLoggingCloudfileArgs', 'ServiceComputeLoggingCloudfileArgsDict']]]]] = None,
+            logging_datadogs: pulumi.Input[Optional[Sequence[pulumi.Input[Union['ServiceComputeLoggingDatadogArgs', 'ServiceComputeLoggingDatadogArgsDict']]]]] = None,
+            logging_digitaloceans: pulumi.Input[Optional[Sequence[pulumi.Input[Union['ServiceComputeLoggingDigitaloceanArgs', 'ServiceComputeLoggingDigitaloceanArgsDict']]]]] = None,
+            logging_elasticsearches: pulumi.Input[Optional[Sequence[pulumi.Input[Union['ServiceComputeLoggingElasticsearchArgs', 'ServiceComputeLoggingElasticsearchArgsDict']]]]] = None,
+            logging_ftps: pulumi.Input[Optional[Sequence[pulumi.Input[Union['ServiceComputeLoggingFtpArgs', 'ServiceComputeLoggingFtpArgsDict']]]]] = None,
+            logging_gcs: pulumi.Input[Optional[Sequence[pulumi.Input[Union['ServiceComputeLoggingGcArgs', 'ServiceComputeLoggingGcArgsDict']]]]] = None,
+            logging_googlepubsubs: pulumi.Input[Optional[Sequence[pulumi.Input[Union['ServiceComputeLoggingGooglepubsubArgs', 'ServiceComputeLoggingGooglepubsubArgsDict']]]]] = None,
+            logging_grafanacloudlogs: pulumi.Input[Optional[Sequence[pulumi.Input[Union['ServiceComputeLoggingGrafanacloudlogArgs', 'ServiceComputeLoggingGrafanacloudlogArgsDict']]]]] = None,
+            logging_heroku: pulumi.Input[Optional[Sequence[pulumi.Input[Union['ServiceComputeLoggingHerokuArgs', 'ServiceComputeLoggingHerokuArgsDict']]]]] = None,
+            logging_honeycombs: pulumi.Input[Optional[Sequence[pulumi.Input[Union['ServiceComputeLoggingHoneycombArgs', 'ServiceComputeLoggingHoneycombArgsDict']]]]] = None,
+            logging_https: pulumi.Input[Optional[Sequence[pulumi.Input[Union['ServiceComputeLoggingHttpArgs', 'ServiceComputeLoggingHttpArgsDict']]]]] = None,
+            logging_kafkas: pulumi.Input[Optional[Sequence[pulumi.Input[Union['ServiceComputeLoggingKafkaArgs', 'ServiceComputeLoggingKafkaArgsDict']]]]] = None,
+            logging_kineses: pulumi.Input[Optional[Sequence[pulumi.Input[Union['ServiceComputeLoggingKineseArgs', 'ServiceComputeLoggingKineseArgsDict']]]]] = None,
+            logging_logentries: pulumi.Input[Optional[Sequence[pulumi.Input[Union['ServiceComputeLoggingLogentryArgs', 'ServiceComputeLoggingLogentryArgsDict']]]]] = None,
+            logging_logglies: pulumi.Input[Optional[Sequence[pulumi.Input[Union['ServiceComputeLoggingLogglyArgs', 'ServiceComputeLoggingLogglyArgsDict']]]]] = None,
+            logging_logshuttles: pulumi.Input[Optional[Sequence[pulumi.Input[Union['ServiceComputeLoggingLogshuttleArgs', 'ServiceComputeLoggingLogshuttleArgsDict']]]]] = None,
+            logging_newrelicotlps: pulumi.Input[Optional[Sequence[pulumi.Input[Union['ServiceComputeLoggingNewrelicotlpArgs', 'ServiceComputeLoggingNewrelicotlpArgsDict']]]]] = None,
+            logging_newrelics: pulumi.Input[Optional[Sequence[pulumi.Input[Union['ServiceComputeLoggingNewrelicArgs', 'ServiceComputeLoggingNewrelicArgsDict']]]]] = None,
+            logging_openstacks: pulumi.Input[Optional[Sequence[pulumi.Input[Union['ServiceComputeLoggingOpenstackArgs', 'ServiceComputeLoggingOpenstackArgsDict']]]]] = None,
+            logging_papertrails: pulumi.Input[Optional[Sequence[pulumi.Input[Union['ServiceComputeLoggingPapertrailArgs', 'ServiceComputeLoggingPapertrailArgsDict']]]]] = None,
+            logging_s3s: pulumi.Input[Optional[Sequence[pulumi.Input[Union['ServiceComputeLoggingS3Args', 'ServiceComputeLoggingS3ArgsDict']]]]] = None,
+            logging_scalyrs: pulumi.Input[Optional[Sequence[pulumi.Input[Union['ServiceComputeLoggingScalyrArgs', 'ServiceComputeLoggingScalyrArgsDict']]]]] = None,
+            logging_sftps: pulumi.Input[Optional[Sequence[pulumi.Input[Union['ServiceComputeLoggingSftpArgs', 'ServiceComputeLoggingSftpArgsDict']]]]] = None,
+            logging_splunks: pulumi.Input[Optional[Sequence[pulumi.Input[Union['ServiceComputeLoggingSplunkArgs', 'ServiceComputeLoggingSplunkArgsDict']]]]] = None,
+            logging_sumologics: pulumi.Input[Optional[Sequence[pulumi.Input[Union['ServiceComputeLoggingSumologicArgs', 'ServiceComputeLoggingSumologicArgsDict']]]]] = None,
+            logging_syslogs: pulumi.Input[Optional[Sequence[pulumi.Input[Union['ServiceComputeLoggingSyslogArgs', 'ServiceComputeLoggingSyslogArgsDict']]]]] = None,
+            name: pulumi.Input[Optional[_builtins.str]] = None,
+            package: pulumi.Input[Optional[Union['ServiceComputePackageArgs', 'ServiceComputePackageArgsDict']]] = None,
+            product_enablement: pulumi.Input[Optional[Union['ServiceComputeProductEnablementArgs', 'ServiceComputeProductEnablementArgsDict']]] = None,
+            resource_links: pulumi.Input[Optional[Sequence[pulumi.Input[Union['ServiceComputeResourceLinkArgs', 'ServiceComputeResourceLinkArgsDict']]]]] = None,
+            reuse: pulumi.Input[Optional[_builtins.bool]] = None,
+            stage: pulumi.Input[Optional[_builtins.bool]] = None,
+            staged_version: pulumi.Input[Optional[_builtins.int]] = None,
+            version_comment: pulumi.Input[Optional[_builtins.str]] = None) -> 'ServiceCompute':
         """
         Get an existing ServiceCompute resource's state with the given name, id, and optional extra
         properties used to qualify the lookup.

@@ -123,23 +123,23 @@ export interface ObjectStorageAccessKeysState {
     /**
      * ID for the object storage access token
      */
-    accessKeyId?: pulumi.Input<string>;
+    accessKeyId?: pulumi.Input<string | undefined>;
     /**
      * Optional list of buckets the access key will be associated with.  Example: `["bucket1", "bucket2"]`
      */
-    buckets?: pulumi.Input<pulumi.Input<string>[]>;
+    buckets?: pulumi.Input<pulumi.Input<string>[] | undefined>;
     /**
      * The description of the access key
      */
-    description?: pulumi.Input<string>;
+    description?: pulumi.Input<string | undefined>;
     /**
      * The permissions of the access key
      */
-    permission?: pulumi.Input<string>;
+    permission?: pulumi.Input<string | undefined>;
     /**
      * Secret key for the object storage access token
      */
-    secretKey?: pulumi.Input<string>;
+    secretKey?: pulumi.Input<string | undefined>;
 }
 
 /**
@@ -149,7 +149,7 @@ export interface ObjectStorageAccessKeysArgs {
     /**
      * Optional list of buckets the access key will be associated with.  Example: `["bucket1", "bucket2"]`
      */
-    buckets?: pulumi.Input<pulumi.Input<string>[]>;
+    buckets?: pulumi.Input<pulumi.Input<string>[] | undefined>;
     /**
      * The description of the access key
      */

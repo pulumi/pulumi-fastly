@@ -186,43 +186,43 @@ export interface TlsCertificateState {
     /**
      * PEM-formatted certificate, optionally including any intermediary certificates.
      */
-    certificateBody?: pulumi.Input<string>;
+    certificateBody?: pulumi.Input<string | undefined>;
     /**
      * Timestamp (GMT) when the certificate was created.
      */
-    createdAt?: pulumi.Input<string>;
+    createdAt?: pulumi.Input<string | undefined>;
     /**
      * All the domains (including wildcard domains) that are listed in the certificate's Subject Alternative Names (SAN) list.
      */
-    domains?: pulumi.Input<pulumi.Input<string>[]>;
+    domains?: pulumi.Input<pulumi.Input<string>[] | undefined>;
     /**
      * The hostname for which a certificate was issued.
      */
-    issuedTo?: pulumi.Input<string>;
+    issuedTo?: pulumi.Input<string | undefined>;
     /**
      * The certificate authority that issued the certificate.
      */
-    issuer?: pulumi.Input<string>;
+    issuer?: pulumi.Input<string | undefined>;
     /**
      * Human-readable name used to identify the certificate. Defaults to the certificate's Common Name or first Subject Alternative Name entry.
      */
-    name?: pulumi.Input<string>;
+    name?: pulumi.Input<string | undefined>;
     /**
      * A recommendation from Fastly indicating the key associated with this certificate is in need of rotation.
      */
-    replace?: pulumi.Input<boolean>;
+    replace?: pulumi.Input<boolean | undefined>;
     /**
      * A value assigned by the issuer that is unique to a certificate.
      */
-    serialNumber?: pulumi.Input<string>;
+    serialNumber?: pulumi.Input<string | undefined>;
     /**
      * The algorithm used to sign the certificate.
      */
-    signatureAlgorithm?: pulumi.Input<string>;
+    signatureAlgorithm?: pulumi.Input<string | undefined>;
     /**
      * Timestamp (GMT) when the certificate was last updated.
      */
-    updatedAt?: pulumi.Input<string>;
+    updatedAt?: pulumi.Input<string | undefined>;
 }
 
 /**
@@ -236,5 +236,5 @@ export interface TlsCertificateArgs {
     /**
      * Human-readable name used to identify the certificate. Defaults to the certificate's Common Name or first Subject Alternative Name entry.
      */
-    name?: pulumi.Input<string>;
+    name?: pulumi.Input<string | undefined>;
 }

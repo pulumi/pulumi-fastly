@@ -23,8 +23,8 @@ class ApiSecurityOperationArgs:
                  method: pulumi.Input[_builtins.str],
                  path: pulumi.Input[_builtins.str],
                  service_id: pulumi.Input[_builtins.str],
-                 description: Optional[pulumi.Input[_builtins.str]] = None,
-                 tag_ids: Optional[pulumi.Input[Sequence[pulumi.Input[_builtins.str]]]] = None):
+                 description: pulumi.Input[Optional[_builtins.str]] = None,
+                 tag_ids: pulumi.Input[Optional[Sequence[pulumi.Input[_builtins.str]]]] = None):
         """
         The set of arguments for constructing a ApiSecurityOperation resource.
 
@@ -94,44 +94,44 @@ class ApiSecurityOperationArgs:
 
     @_builtins.property
     @pulumi.getter
-    def description(self) -> Optional[pulumi.Input[_builtins.str]]:
+    def description(self) -> pulumi.Input[Optional[_builtins.str]]:
         """
         A description of the operation.
         """
         return pulumi.get(self, "description")
 
     @description.setter
-    def description(self, value: Optional[pulumi.Input[_builtins.str]]):
+    def description(self, value: pulumi.Input[Optional[_builtins.str]]):
         pulumi.set(self, "description", value)
 
     @_builtins.property
     @pulumi.getter(name="tagIds")
-    def tag_ids(self) -> Optional[pulumi.Input[Sequence[pulumi.Input[_builtins.str]]]]:
+    def tag_ids(self) -> pulumi.Input[Optional[Sequence[pulumi.Input[_builtins.str]]]]:
         """
         Associated operation tag IDs.
         """
         return pulumi.get(self, "tag_ids")
 
     @tag_ids.setter
-    def tag_ids(self, value: Optional[pulumi.Input[Sequence[pulumi.Input[_builtins.str]]]]):
+    def tag_ids(self, value: pulumi.Input[Optional[Sequence[pulumi.Input[_builtins.str]]]]):
         pulumi.set(self, "tag_ids", value)
 
 
 @pulumi.input_type
 class _ApiSecurityOperationState:
     def __init__(__self__, *,
-                 created_at: Optional[pulumi.Input[_builtins.str]] = None,
-                 description: Optional[pulumi.Input[_builtins.str]] = None,
-                 domain: Optional[pulumi.Input[_builtins.str]] = None,
-                 last_seen_at: Optional[pulumi.Input[_builtins.str]] = None,
-                 method: Optional[pulumi.Input[_builtins.str]] = None,
-                 operation_id: Optional[pulumi.Input[_builtins.str]] = None,
-                 path: Optional[pulumi.Input[_builtins.str]] = None,
-                 rps: Optional[pulumi.Input[_builtins.float]] = None,
-                 service_id: Optional[pulumi.Input[_builtins.str]] = None,
-                 status: Optional[pulumi.Input[_builtins.str]] = None,
-                 tag_ids: Optional[pulumi.Input[Sequence[pulumi.Input[_builtins.str]]]] = None,
-                 updated_at: Optional[pulumi.Input[_builtins.str]] = None):
+                 created_at: pulumi.Input[Optional[_builtins.str]] = None,
+                 description: pulumi.Input[Optional[_builtins.str]] = None,
+                 domain: pulumi.Input[Optional[_builtins.str]] = None,
+                 last_seen_at: pulumi.Input[Optional[_builtins.str]] = None,
+                 method: pulumi.Input[Optional[_builtins.str]] = None,
+                 operation_id: pulumi.Input[Optional[_builtins.str]] = None,
+                 path: pulumi.Input[Optional[_builtins.str]] = None,
+                 rps: pulumi.Input[Optional[_builtins.float]] = None,
+                 service_id: pulumi.Input[Optional[_builtins.str]] = None,
+                 status: pulumi.Input[Optional[_builtins.str]] = None,
+                 tag_ids: pulumi.Input[Optional[Sequence[pulumi.Input[_builtins.str]]]] = None,
+                 updated_at: pulumi.Input[Optional[_builtins.str]] = None):
         """
         Input properties used for looking up and filtering ApiSecurityOperation resources.
 
@@ -175,146 +175,146 @@ class _ApiSecurityOperationState:
 
     @_builtins.property
     @pulumi.getter(name="createdAt")
-    def created_at(self) -> Optional[pulumi.Input[_builtins.str]]:
+    def created_at(self) -> pulumi.Input[Optional[_builtins.str]]:
         """
         Created timestamp (when present).
         """
         return pulumi.get(self, "created_at")
 
     @created_at.setter
-    def created_at(self, value: Optional[pulumi.Input[_builtins.str]]):
+    def created_at(self, value: pulumi.Input[Optional[_builtins.str]]):
         pulumi.set(self, "created_at", value)
 
     @_builtins.property
     @pulumi.getter
-    def description(self) -> Optional[pulumi.Input[_builtins.str]]:
+    def description(self) -> pulumi.Input[Optional[_builtins.str]]:
         """
         A description of the operation.
         """
         return pulumi.get(self, "description")
 
     @description.setter
-    def description(self, value: Optional[pulumi.Input[_builtins.str]]):
+    def description(self, value: pulumi.Input[Optional[_builtins.str]]):
         pulumi.set(self, "description", value)
 
     @_builtins.property
     @pulumi.getter
-    def domain(self) -> Optional[pulumi.Input[_builtins.str]]:
+    def domain(self) -> pulumi.Input[Optional[_builtins.str]]:
         """
         Domain for the operation (exact match). Can be created, but not updated.
         """
         return pulumi.get(self, "domain")
 
     @domain.setter
-    def domain(self, value: Optional[pulumi.Input[_builtins.str]]):
+    def domain(self, value: pulumi.Input[Optional[_builtins.str]]):
         pulumi.set(self, "domain", value)
 
     @_builtins.property
     @pulumi.getter(name="lastSeenAt")
-    def last_seen_at(self) -> Optional[pulumi.Input[_builtins.str]]:
+    def last_seen_at(self) -> pulumi.Input[Optional[_builtins.str]]:
         """
         Last seen timestamp (when present).
         """
         return pulumi.get(self, "last_seen_at")
 
     @last_seen_at.setter
-    def last_seen_at(self, value: Optional[pulumi.Input[_builtins.str]]):
+    def last_seen_at(self, value: pulumi.Input[Optional[_builtins.str]]):
         pulumi.set(self, "last_seen_at", value)
 
     @_builtins.property
     @pulumi.getter
-    def method(self) -> Optional[pulumi.Input[_builtins.str]]:
+    def method(self) -> pulumi.Input[Optional[_builtins.str]]:
         """
         HTTP method for the operation (e.g. GET, POST). Can be created, but not updated.
         """
         return pulumi.get(self, "method")
 
     @method.setter
-    def method(self, value: Optional[pulumi.Input[_builtins.str]]):
+    def method(self, value: pulumi.Input[Optional[_builtins.str]]):
         pulumi.set(self, "method", value)
 
     @_builtins.property
     @pulumi.getter(name="operationId")
-    def operation_id(self) -> Optional[pulumi.Input[_builtins.str]]:
+    def operation_id(self) -> pulumi.Input[Optional[_builtins.str]]:
         """
         The operation ID.
         """
         return pulumi.get(self, "operation_id")
 
     @operation_id.setter
-    def operation_id(self, value: Optional[pulumi.Input[_builtins.str]]):
+    def operation_id(self, value: pulumi.Input[Optional[_builtins.str]]):
         pulumi.set(self, "operation_id", value)
 
     @_builtins.property
     @pulumi.getter
-    def path(self) -> Optional[pulumi.Input[_builtins.str]]:
+    def path(self) -> pulumi.Input[Optional[_builtins.str]]:
         """
         Path for the operation (exact match). Can be created, but not updated.
         """
         return pulumi.get(self, "path")
 
     @path.setter
-    def path(self, value: Optional[pulumi.Input[_builtins.str]]):
+    def path(self, value: pulumi.Input[Optional[_builtins.str]]):
         pulumi.set(self, "path", value)
 
     @_builtins.property
     @pulumi.getter
-    def rps(self) -> Optional[pulumi.Input[_builtins.float]]:
+    def rps(self) -> pulumi.Input[Optional[_builtins.float]]:
         """
         Observed requests per second (when present).
         """
         return pulumi.get(self, "rps")
 
     @rps.setter
-    def rps(self, value: Optional[pulumi.Input[_builtins.float]]):
+    def rps(self, value: pulumi.Input[Optional[_builtins.float]]):
         pulumi.set(self, "rps", value)
 
     @_builtins.property
     @pulumi.getter(name="serviceId")
-    def service_id(self) -> Optional[pulumi.Input[_builtins.str]]:
+    def service_id(self) -> pulumi.Input[Optional[_builtins.str]]:
         """
         Service ID the operation belongs to. To import, use: \\n\\n/\\n\\n.
         """
         return pulumi.get(self, "service_id")
 
     @service_id.setter
-    def service_id(self, value: Optional[pulumi.Input[_builtins.str]]):
+    def service_id(self, value: pulumi.Input[Optional[_builtins.str]]):
         pulumi.set(self, "service_id", value)
 
     @_builtins.property
     @pulumi.getter
-    def status(self) -> Optional[pulumi.Input[_builtins.str]]:
+    def status(self) -> pulumi.Input[Optional[_builtins.str]]:
         """
         Discovery status (when present).
         """
         return pulumi.get(self, "status")
 
     @status.setter
-    def status(self, value: Optional[pulumi.Input[_builtins.str]]):
+    def status(self, value: pulumi.Input[Optional[_builtins.str]]):
         pulumi.set(self, "status", value)
 
     @_builtins.property
     @pulumi.getter(name="tagIds")
-    def tag_ids(self) -> Optional[pulumi.Input[Sequence[pulumi.Input[_builtins.str]]]]:
+    def tag_ids(self) -> pulumi.Input[Optional[Sequence[pulumi.Input[_builtins.str]]]]:
         """
         Associated operation tag IDs.
         """
         return pulumi.get(self, "tag_ids")
 
     @tag_ids.setter
-    def tag_ids(self, value: Optional[pulumi.Input[Sequence[pulumi.Input[_builtins.str]]]]):
+    def tag_ids(self, value: pulumi.Input[Optional[Sequence[pulumi.Input[_builtins.str]]]]):
         pulumi.set(self, "tag_ids", value)
 
     @_builtins.property
     @pulumi.getter(name="updatedAt")
-    def updated_at(self) -> Optional[pulumi.Input[_builtins.str]]:
+    def updated_at(self) -> pulumi.Input[Optional[_builtins.str]]:
         """
         Updated timestamp (when present).
         """
         return pulumi.get(self, "updated_at")
 
     @updated_at.setter
-    def updated_at(self, value: Optional[pulumi.Input[_builtins.str]]):
+    def updated_at(self, value: pulumi.Input[Optional[_builtins.str]]):
         pulumi.set(self, "updated_at", value)
 
 
@@ -324,12 +324,12 @@ class ApiSecurityOperation(pulumi.CustomResource):
     def __init__(__self__,
                  resource_name: str,
                  opts: Optional[pulumi.ResourceOptions] = None,
-                 description: Optional[pulumi.Input[_builtins.str]] = None,
-                 domain: Optional[pulumi.Input[_builtins.str]] = None,
-                 method: Optional[pulumi.Input[_builtins.str]] = None,
-                 path: Optional[pulumi.Input[_builtins.str]] = None,
-                 service_id: Optional[pulumi.Input[_builtins.str]] = None,
-                 tag_ids: Optional[pulumi.Input[Sequence[pulumi.Input[_builtins.str]]]] = None,
+                 description: pulumi.Input[Optional[_builtins.str]] = None,
+                 domain: pulumi.Input[Optional[_builtins.str]] = None,
+                 method: pulumi.Input[Optional[_builtins.str]] = None,
+                 path: pulumi.Input[Optional[_builtins.str]] = None,
+                 service_id: pulumi.Input[Optional[_builtins.str]] = None,
+                 tag_ids: pulumi.Input[Optional[Sequence[pulumi.Input[_builtins.str]]]] = None,
                  __props__=None):
         """
         Manages an API Security operation for a Fastly service. Operations represent API endpoints (method + domain + path) and can optionally be associated with operation tags.
@@ -483,12 +483,12 @@ class ApiSecurityOperation(pulumi.CustomResource):
     def _internal_init(__self__,
                  resource_name: str,
                  opts: Optional[pulumi.ResourceOptions] = None,
-                 description: Optional[pulumi.Input[_builtins.str]] = None,
-                 domain: Optional[pulumi.Input[_builtins.str]] = None,
-                 method: Optional[pulumi.Input[_builtins.str]] = None,
-                 path: Optional[pulumi.Input[_builtins.str]] = None,
-                 service_id: Optional[pulumi.Input[_builtins.str]] = None,
-                 tag_ids: Optional[pulumi.Input[Sequence[pulumi.Input[_builtins.str]]]] = None,
+                 description: pulumi.Input[Optional[_builtins.str]] = None,
+                 domain: pulumi.Input[Optional[_builtins.str]] = None,
+                 method: pulumi.Input[Optional[_builtins.str]] = None,
+                 path: pulumi.Input[Optional[_builtins.str]] = None,
+                 service_id: pulumi.Input[Optional[_builtins.str]] = None,
+                 tag_ids: pulumi.Input[Optional[Sequence[pulumi.Input[_builtins.str]]]] = None,
                  __props__=None):
         opts = pulumi.ResourceOptions.merge(_utilities.get_resource_opts_defaults(), opts)
         if not isinstance(opts, pulumi.ResourceOptions):
@@ -528,18 +528,18 @@ class ApiSecurityOperation(pulumi.CustomResource):
     def get(resource_name: str,
             id: pulumi.Input[str],
             opts: Optional[pulumi.ResourceOptions] = None,
-            created_at: Optional[pulumi.Input[_builtins.str]] = None,
-            description: Optional[pulumi.Input[_builtins.str]] = None,
-            domain: Optional[pulumi.Input[_builtins.str]] = None,
-            last_seen_at: Optional[pulumi.Input[_builtins.str]] = None,
-            method: Optional[pulumi.Input[_builtins.str]] = None,
-            operation_id: Optional[pulumi.Input[_builtins.str]] = None,
-            path: Optional[pulumi.Input[_builtins.str]] = None,
-            rps: Optional[pulumi.Input[_builtins.float]] = None,
-            service_id: Optional[pulumi.Input[_builtins.str]] = None,
-            status: Optional[pulumi.Input[_builtins.str]] = None,
-            tag_ids: Optional[pulumi.Input[Sequence[pulumi.Input[_builtins.str]]]] = None,
-            updated_at: Optional[pulumi.Input[_builtins.str]] = None) -> 'ApiSecurityOperation':
+            created_at: pulumi.Input[Optional[_builtins.str]] = None,
+            description: pulumi.Input[Optional[_builtins.str]] = None,
+            domain: pulumi.Input[Optional[_builtins.str]] = None,
+            last_seen_at: pulumi.Input[Optional[_builtins.str]] = None,
+            method: pulumi.Input[Optional[_builtins.str]] = None,
+            operation_id: pulumi.Input[Optional[_builtins.str]] = None,
+            path: pulumi.Input[Optional[_builtins.str]] = None,
+            rps: pulumi.Input[Optional[_builtins.float]] = None,
+            service_id: pulumi.Input[Optional[_builtins.str]] = None,
+            status: pulumi.Input[Optional[_builtins.str]] = None,
+            tag_ids: pulumi.Input[Optional[Sequence[pulumi.Input[_builtins.str]]]] = None,
+            updated_at: pulumi.Input[Optional[_builtins.str]] = None) -> 'ApiSecurityOperation':
         """
         Get an existing ApiSecurityOperation resource's state with the given name, id, and optional extra
         properties used to qualify the lookup.

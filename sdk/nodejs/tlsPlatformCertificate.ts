@@ -207,43 +207,43 @@ export interface TlsPlatformCertificateState {
     /**
      * Disable checking whether the root of the certificate chain is trusted. Useful for development purposes to allow use of self-signed CAs. Defaults to false. Write-only on create.
      */
-    allowUntrustedRoot?: pulumi.Input<boolean>;
+    allowUntrustedRoot?: pulumi.Input<boolean | undefined>;
     /**
      * PEM-formatted certificate.
      */
-    certificateBody?: pulumi.Input<string>;
+    certificateBody?: pulumi.Input<string | undefined>;
     /**
      * ID of TLS configuration to be used to terminate TLS traffic.
      */
-    configurationId?: pulumi.Input<string>;
+    configurationId?: pulumi.Input<string | undefined>;
     /**
      * Timestamp (GMT) when the certificate was created.
      */
-    createdAt?: pulumi.Input<string>;
+    createdAt?: pulumi.Input<string | undefined>;
     /**
      * All the domains (including wildcard domains) that are listed in any certificate's Subject Alternative Names (SAN) list.
      */
-    domains?: pulumi.Input<pulumi.Input<string>[]>;
+    domains?: pulumi.Input<pulumi.Input<string>[] | undefined>;
     /**
      * PEM-formatted certificate chain from the `certificateBody` to its root.
      */
-    intermediatesBlob?: pulumi.Input<string>;
+    intermediatesBlob?: pulumi.Input<string | undefined>;
     /**
      * Timestamp (GMT) when the certificate will expire.
      */
-    notAfter?: pulumi.Input<string>;
+    notAfter?: pulumi.Input<string | undefined>;
     /**
      * Timestamp (GMT) when the certificate will become valid.
      */
-    notBefore?: pulumi.Input<string>;
+    notBefore?: pulumi.Input<string | undefined>;
     /**
      * A recommendation from Fastly indicating the key associated with this certificate is in need of rotation.
      */
-    replace?: pulumi.Input<boolean>;
+    replace?: pulumi.Input<boolean | undefined>;
     /**
      * Timestamp (GMT) when the certificate was last updated.
      */
-    updatedAt?: pulumi.Input<string>;
+    updatedAt?: pulumi.Input<string | undefined>;
 }
 
 /**
@@ -253,7 +253,7 @@ export interface TlsPlatformCertificateArgs {
     /**
      * Disable checking whether the root of the certificate chain is trusted. Useful for development purposes to allow use of self-signed CAs. Defaults to false. Write-only on create.
      */
-    allowUntrustedRoot?: pulumi.Input<boolean>;
+    allowUntrustedRoot?: pulumi.Input<boolean | undefined>;
     /**
      * PEM-formatted certificate.
      */

@@ -43,7 +43,7 @@ class TlsSubscriptionValidationArgs:
 @pulumi.input_type
 class _TlsSubscriptionValidationState:
     def __init__(__self__, *,
-                 subscription_id: Optional[pulumi.Input[_builtins.str]] = None):
+                 subscription_id: pulumi.Input[Optional[_builtins.str]] = None):
         """
         Input properties used for looking up and filtering TlsSubscriptionValidation resources.
 
@@ -54,14 +54,14 @@ class _TlsSubscriptionValidationState:
 
     @_builtins.property
     @pulumi.getter(name="subscriptionId")
-    def subscription_id(self) -> Optional[pulumi.Input[_builtins.str]]:
+    def subscription_id(self) -> pulumi.Input[Optional[_builtins.str]]:
         """
         The ID of the TLS Subscription that should be validated.
         """
         return pulumi.get(self, "subscription_id")
 
     @subscription_id.setter
-    def subscription_id(self, value: Optional[pulumi.Input[_builtins.str]]):
+    def subscription_id(self, value: pulumi.Input[Optional[_builtins.str]]):
         pulumi.set(self, "subscription_id", value)
 
 
@@ -71,7 +71,7 @@ class TlsSubscriptionValidation(pulumi.CustomResource):
     def __init__(__self__,
                  resource_name: str,
                  opts: Optional[pulumi.ResourceOptions] = None,
-                 subscription_id: Optional[pulumi.Input[_builtins.str]] = None,
+                 subscription_id: pulumi.Input[Optional[_builtins.str]] = None,
                  __props__=None):
         """
         This resource represents a successful validation of a Fastly TLS Subscription in concert with other resources.
@@ -86,6 +86,7 @@ class TlsSubscriptionValidation(pulumi.CustomResource):
 
         ```python
         import pulumi
+        from typing import Any
         import pulumi_aws as aws
         import pulumi_fastly as fastly
         import pulumi_std as std
@@ -94,8 +95,8 @@ class TlsSubscriptionValidation(pulumi.CustomResource):
         production = aws.Route53Zone("production", name=example.com)
         example = aws.Route53domainsRegisteredDomain("example",
             name_server=[{
-                name: entry.value,
-            } for entry in [{"key": k, "value": v} for k, v in production.name_servers.items()]],
+                name: entry,
+            } for entry in production.name_servers],
             domain_name=example.com)
         subdomains = [
             "a.example.com",
@@ -103,8 +104,8 @@ class TlsSubscriptionValidation(pulumi.CustomResource):
         ]
         example_service_vcl = fastly.ServiceVcl("example",
             domains=[{
-                "name": entry["value"],
-            } for entry in [{"key": k, "value": v} for k, v in subdomains.items()]],
+                "name": entry,
+            } for entry in subdomains],
             name="example-service",
             backends=[{
                 "address": "127.0.0.1",
@@ -114,9 +115,9 @@ class TlsSubscriptionValidation(pulumi.CustomResource):
         example_tls_subscription = fastly.TlsSubscription("example",
             domains=example_service_vcl.domains.apply(lambda domains: [domain.name for domain in domains]),
             certificate_authority="lets-encrypt")
-        domain_validation = []
+        domain_validation: list[Any] = []
         def create_domain_validation(range_body):
-            for range in [{"key": k, "value": v} for [k, v] in (range_body).items()]:
+            for range in [{"key": k, "value": v} for [k, v] in sorted((range_body).items())]:
                 domain_validation.append(aws.Route53Record(f"domain_validation-{range['key']}",
                     name=range.value.record_name,
                     type=range.value.record_type,
@@ -142,7 +143,7 @@ class TlsSubscriptionValidation(pulumi.CustomResource):
         # https://registry.terraform.io/providers/fastly/fastly/latest/docs/data-sources/tls_configuration#optional
         default_tls = fastly.get_tls_configuration(default=True)
         # Once validation is complete and we've retrieved the TLS configuration data, we can create multiple subdomain records.
-        subdomain = []
+        subdomain: list[Any] = []
         for range in [{"value": i} for i in range(0, std.toset(input=subdomains).result)]:
             subdomain.append(aws.Route53Record(f"subdomain-{range['value']}",
                 name=range.value,
@@ -176,6 +177,7 @@ class TlsSubscriptionValidation(pulumi.CustomResource):
 
         ```python
         import pulumi
+        from typing import Any
         import pulumi_aws as aws
         import pulumi_fastly as fastly
         import pulumi_std as std
@@ -184,8 +186,8 @@ class TlsSubscriptionValidation(pulumi.CustomResource):
         production = aws.Route53Zone("production", name=example.com)
         example = aws.Route53domainsRegisteredDomain("example",
             name_server=[{
-                name: entry.value,
-            } for entry in [{"key": k, "value": v} for k, v in production.name_servers.items()]],
+                name: entry,
+            } for entry in production.name_servers],
             domain_name=example.com)
         subdomains = [
             "a.example.com",
@@ -193,8 +195,8 @@ class TlsSubscriptionValidation(pulumi.CustomResource):
         ]
         example_service_vcl = fastly.ServiceVcl("example",
             domains=[{
-                "name": entry["value"],
-            } for entry in [{"key": k, "value": v} for k, v in subdomains.items()]],
+                "name": entry,
+            } for entry in subdomains],
             name="example-service",
             backends=[{
                 "address": "127.0.0.1",
@@ -204,9 +206,9 @@ class TlsSubscriptionValidation(pulumi.CustomResource):
         example_tls_subscription = fastly.TlsSubscription("example",
             domains=example_service_vcl.domains.apply(lambda domains: [domain.name for domain in domains]),
             certificate_authority="lets-encrypt")
-        domain_validation = []
+        domain_validation: list[Any] = []
         def create_domain_validation(range_body):
-            for range in [{"key": k, "value": v} for [k, v] in (range_body).items()]:
+            for range in [{"key": k, "value": v} for [k, v] in sorted((range_body).items())]:
                 domain_validation.append(aws.Route53Record(f"domain_validation-{range['key']}",
                     name=range.value.record_name,
                     type=range.value.record_type,
@@ -232,7 +234,7 @@ class TlsSubscriptionValidation(pulumi.CustomResource):
         # https://registry.terraform.io/providers/fastly/fastly/latest/docs/data-sources/tls_configuration#optional
         default_tls = fastly.get_tls_configuration(default=True)
         # Once validation is complete and we've retrieved the TLS configuration data, we can create multiple subdomain records.
-        subdomain = []
+        subdomain: list[Any] = []
         for range in [{"value": i} for i in range(0, std.toset(input=subdomains).result)]:
             subdomain.append(aws.Route53Record(f"subdomain-{range['value']}",
                 name=range.value,
@@ -258,7 +260,7 @@ class TlsSubscriptionValidation(pulumi.CustomResource):
     def _internal_init(__self__,
                  resource_name: str,
                  opts: Optional[pulumi.ResourceOptions] = None,
-                 subscription_id: Optional[pulumi.Input[_builtins.str]] = None,
+                 subscription_id: pulumi.Input[Optional[_builtins.str]] = None,
                  __props__=None):
         opts = pulumi.ResourceOptions.merge(_utilities.get_resource_opts_defaults(), opts)
         if not isinstance(opts, pulumi.ResourceOptions):
@@ -281,7 +283,7 @@ class TlsSubscriptionValidation(pulumi.CustomResource):
     def get(resource_name: str,
             id: pulumi.Input[str],
             opts: Optional[pulumi.ResourceOptions] = None,
-            subscription_id: Optional[pulumi.Input[_builtins.str]] = None) -> 'TlsSubscriptionValidation':
+            subscription_id: pulumi.Input[Optional[_builtins.str]] = None) -> 'TlsSubscriptionValidation':
         """
         Get an existing TlsSubscriptionValidation resource's state with the given name, id, and optional extra
         properties used to qualify the lookup.

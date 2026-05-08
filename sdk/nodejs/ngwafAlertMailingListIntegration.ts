@@ -115,15 +115,15 @@ export interface NgwafAlertMailingListIntegrationState {
     /**
      * Email address that the alert will use.
      */
-    address?: pulumi.Input<string>;
+    address?: pulumi.Input<string | undefined>;
     /**
      * The description of the alert.
      */
-    description?: pulumi.Input<string>;
+    description?: pulumi.Input<string | undefined>;
     /**
      * The ID of the workspace.
      */
-    workspaceId?: pulumi.Input<string>;
+    workspaceId?: pulumi.Input<string | undefined>;
 }
 
 /**
@@ -137,7 +137,7 @@ export interface NgwafAlertMailingListIntegrationArgs {
     /**
      * The description of the alert.
      */
-    description?: pulumi.Input<string>;
+    description?: pulumi.Input<string | undefined>;
     /**
      * The ID of the workspace.
      */

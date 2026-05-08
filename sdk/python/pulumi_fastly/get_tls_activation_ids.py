@@ -85,7 +85,7 @@ def get_tls_activation_ids(certificate_id: Optional[_builtins.str] = None,
     import pulumi_fastly as fastly
 
     example = fastly.get_tls_activation_ids(certificate_id=example_fastly_tls_certificate["id"])
-    example_get_tls_activation = {__key: fastly.get_tls_activation(id=__value) for __key, __value in enumerate(example.ids)}
+    example_get_tls_activation = {str(__key): fastly.get_tls_activation(id=__value) for __key, __value in enumerate(example.ids)}
     pulumi.export("activationDomains", [a.domain for a in example_get_tls_activation.values()])
     ```
 
@@ -101,7 +101,7 @@ def get_tls_activation_ids(certificate_id: Optional[_builtins.str] = None,
         certificate_id=pulumi.get(__ret__, 'certificate_id'),
         id=pulumi.get(__ret__, 'id'),
         ids=pulumi.get(__ret__, 'ids'))
-def get_tls_activation_ids_output(certificate_id: Optional[pulumi.Input[Optional[_builtins.str]]] = None,
+def get_tls_activation_ids_output(certificate_id: pulumi.Input[Optional[Optional[_builtins.str]]] = None,
                                   opts: Optional[Union[pulumi.InvokeOptions, pulumi.InvokeOutputOptions]] = None) -> pulumi.Output[GetTlsActivationIdsResult]:
     """
     Use this data source to get the list of TLS Activation identifiers in Fastly.
@@ -113,7 +113,7 @@ def get_tls_activation_ids_output(certificate_id: Optional[pulumi.Input[Optional
     import pulumi_fastly as fastly
 
     example = fastly.get_tls_activation_ids(certificate_id=example_fastly_tls_certificate["id"])
-    example_get_tls_activation = {__key: fastly.get_tls_activation(id=__value) for __key, __value in enumerate(example.ids)}
+    example_get_tls_activation = {str(__key): fastly.get_tls_activation(id=__value) for __key, __value in enumerate(example.ids)}
     pulumi.export("activationDomains", [a.domain for a in example_get_tls_activation.values()])
     ```
 

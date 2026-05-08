@@ -144,25 +144,25 @@ export interface GetTlsPrivateKeyOutputArgs {
     /**
      * Timestamp (GMT) when the private key was created.
      */
-    createdAt?: pulumi.Input<string>;
+    createdAt?: pulumi.Input<string | undefined>;
     /**
      * Fastly private key ID. Conflicts with all the other filters
      */
-    id?: pulumi.Input<string>;
+    id?: pulumi.Input<string | undefined>;
     /**
      * The key length used to generate the private key.
      */
-    keyLength?: pulumi.Input<number>;
+    keyLength?: pulumi.Input<number | undefined>;
     /**
      * The algorithm used to generate the private key. Must be RSA.
      */
-    keyType?: pulumi.Input<string>;
+    keyType?: pulumi.Input<string | undefined>;
     /**
      * The human-readable name assigned to the private key when uploaded.
      */
-    name?: pulumi.Input<string>;
+    name?: pulumi.Input<string | undefined>;
     /**
      * A hash of the associated public key, useful for safely identifying it.
      */
-    publicKeySha1?: pulumi.Input<string>;
+    publicKeySha1?: pulumi.Input<string | undefined>;
 }

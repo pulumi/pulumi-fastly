@@ -111,8 +111,8 @@ import javax.annotation.Nullable;
  * import com.pulumi.fastly.ServiceVclArgs;
  * import com.pulumi.fastly.inputs.ServiceVclDomainArgs;
  * import com.pulumi.fastly.inputs.ServiceVclBackendArgs;
- * import java.util.List;
  * import java.util.ArrayList;
+ * import java.util.Arrays;
  * import java.util.Map;
  * import java.io.File;
  * import java.nio.file.Files;
@@ -162,8 +162,8 @@ import javax.annotation.Nullable;
  * import com.pulumi.aws.S3BucketArgs;
  * import com.pulumi.aws.S3BucketWebsiteConfiguration;
  * import com.pulumi.aws.S3BucketWebsiteConfigurationArgs;
- * import java.util.List;
  * import java.util.ArrayList;
+ * import java.util.Arrays;
  * import java.util.Map;
  * import java.io.File;
  * import java.nio.file.Files;
@@ -211,8 +211,8 @@ import javax.annotation.Nullable;
  * 
  *         var websiteConfig = new S3BucketWebsiteConfiguration("websiteConfig", S3BucketWebsiteConfigurationArgs.builder()
  *             .bucket(websiteBucket.id())
- *             .indexDocument(List.of(Map.of("suffix", "index.html")))
- *             .errorDocument(List.of(Map.of("key", "error.html")))
+ *             .indexDocument(Arrays.asList(Map.of("suffix", "index.html")))
+ *             .errorDocument(Arrays.asList(Map.of("key", "error.html")))
  *             .build());
  * 
  *     }

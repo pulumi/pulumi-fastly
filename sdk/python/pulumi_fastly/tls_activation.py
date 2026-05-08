@@ -21,8 +21,8 @@ class TlsActivationArgs:
     def __init__(__self__, *,
                  certificate_id: pulumi.Input[_builtins.str],
                  domain: pulumi.Input[_builtins.str],
-                 configuration_id: Optional[pulumi.Input[_builtins.str]] = None,
-                 mutual_authentication_id: Optional[pulumi.Input[_builtins.str]] = None):
+                 configuration_id: pulumi.Input[Optional[_builtins.str]] = None,
+                 mutual_authentication_id: pulumi.Input[Optional[_builtins.str]] = None):
         """
         The set of arguments for constructing a TlsActivation resource.
 
@@ -64,37 +64,37 @@ class TlsActivationArgs:
 
     @_builtins.property
     @pulumi.getter(name="configurationId")
-    def configuration_id(self) -> Optional[pulumi.Input[_builtins.str]]:
+    def configuration_id(self) -> pulumi.Input[Optional[_builtins.str]]:
         """
         ID of TLS configuration to be used to terminate TLS traffic, or use the default one if missing.
         """
         return pulumi.get(self, "configuration_id")
 
     @configuration_id.setter
-    def configuration_id(self, value: Optional[pulumi.Input[_builtins.str]]):
+    def configuration_id(self, value: pulumi.Input[Optional[_builtins.str]]):
         pulumi.set(self, "configuration_id", value)
 
     @_builtins.property
     @pulumi.getter(name="mutualAuthenticationId")
-    def mutual_authentication_id(self) -> Optional[pulumi.Input[_builtins.str]]:
+    def mutual_authentication_id(self) -> pulumi.Input[Optional[_builtins.str]]:
         """
         An alphanumeric string identifying a mutual authentication.
         """
         return pulumi.get(self, "mutual_authentication_id")
 
     @mutual_authentication_id.setter
-    def mutual_authentication_id(self, value: Optional[pulumi.Input[_builtins.str]]):
+    def mutual_authentication_id(self, value: pulumi.Input[Optional[_builtins.str]]):
         pulumi.set(self, "mutual_authentication_id", value)
 
 
 @pulumi.input_type
 class _TlsActivationState:
     def __init__(__self__, *,
-                 certificate_id: Optional[pulumi.Input[_builtins.str]] = None,
-                 configuration_id: Optional[pulumi.Input[_builtins.str]] = None,
-                 created_at: Optional[pulumi.Input[_builtins.str]] = None,
-                 domain: Optional[pulumi.Input[_builtins.str]] = None,
-                 mutual_authentication_id: Optional[pulumi.Input[_builtins.str]] = None):
+                 certificate_id: pulumi.Input[Optional[_builtins.str]] = None,
+                 configuration_id: pulumi.Input[Optional[_builtins.str]] = None,
+                 created_at: pulumi.Input[Optional[_builtins.str]] = None,
+                 domain: pulumi.Input[Optional[_builtins.str]] = None,
+                 mutual_authentication_id: pulumi.Input[Optional[_builtins.str]] = None):
         """
         Input properties used for looking up and filtering TlsActivation resources.
 
@@ -117,62 +117,62 @@ class _TlsActivationState:
 
     @_builtins.property
     @pulumi.getter(name="certificateId")
-    def certificate_id(self) -> Optional[pulumi.Input[_builtins.str]]:
+    def certificate_id(self) -> pulumi.Input[Optional[_builtins.str]]:
         """
         ID of certificate to use. Must have the `domain` specified in the certificate's Subject Alternative Names.
         """
         return pulumi.get(self, "certificate_id")
 
     @certificate_id.setter
-    def certificate_id(self, value: Optional[pulumi.Input[_builtins.str]]):
+    def certificate_id(self, value: pulumi.Input[Optional[_builtins.str]]):
         pulumi.set(self, "certificate_id", value)
 
     @_builtins.property
     @pulumi.getter(name="configurationId")
-    def configuration_id(self) -> Optional[pulumi.Input[_builtins.str]]:
+    def configuration_id(self) -> pulumi.Input[Optional[_builtins.str]]:
         """
         ID of TLS configuration to be used to terminate TLS traffic, or use the default one if missing.
         """
         return pulumi.get(self, "configuration_id")
 
     @configuration_id.setter
-    def configuration_id(self, value: Optional[pulumi.Input[_builtins.str]]):
+    def configuration_id(self, value: pulumi.Input[Optional[_builtins.str]]):
         pulumi.set(self, "configuration_id", value)
 
     @_builtins.property
     @pulumi.getter(name="createdAt")
-    def created_at(self) -> Optional[pulumi.Input[_builtins.str]]:
+    def created_at(self) -> pulumi.Input[Optional[_builtins.str]]:
         """
         Time-stamp (GMT) when TLS was enabled.
         """
         return pulumi.get(self, "created_at")
 
     @created_at.setter
-    def created_at(self, value: Optional[pulumi.Input[_builtins.str]]):
+    def created_at(self, value: pulumi.Input[Optional[_builtins.str]]):
         pulumi.set(self, "created_at", value)
 
     @_builtins.property
     @pulumi.getter
-    def domain(self) -> Optional[pulumi.Input[_builtins.str]]:
+    def domain(self) -> pulumi.Input[Optional[_builtins.str]]:
         """
         Domain to enable TLS on. Must be assigned to an existing Fastly Service.
         """
         return pulumi.get(self, "domain")
 
     @domain.setter
-    def domain(self, value: Optional[pulumi.Input[_builtins.str]]):
+    def domain(self, value: pulumi.Input[Optional[_builtins.str]]):
         pulumi.set(self, "domain", value)
 
     @_builtins.property
     @pulumi.getter(name="mutualAuthenticationId")
-    def mutual_authentication_id(self) -> Optional[pulumi.Input[_builtins.str]]:
+    def mutual_authentication_id(self) -> pulumi.Input[Optional[_builtins.str]]:
         """
         An alphanumeric string identifying a mutual authentication.
         """
         return pulumi.get(self, "mutual_authentication_id")
 
     @mutual_authentication_id.setter
-    def mutual_authentication_id(self, value: Optional[pulumi.Input[_builtins.str]]):
+    def mutual_authentication_id(self, value: pulumi.Input[Optional[_builtins.str]]):
         pulumi.set(self, "mutual_authentication_id", value)
 
 
@@ -182,10 +182,10 @@ class TlsActivation(pulumi.CustomResource):
     def __init__(__self__,
                  resource_name: str,
                  opts: Optional[pulumi.ResourceOptions] = None,
-                 certificate_id: Optional[pulumi.Input[_builtins.str]] = None,
-                 configuration_id: Optional[pulumi.Input[_builtins.str]] = None,
-                 domain: Optional[pulumi.Input[_builtins.str]] = None,
-                 mutual_authentication_id: Optional[pulumi.Input[_builtins.str]] = None,
+                 certificate_id: pulumi.Input[Optional[_builtins.str]] = None,
+                 configuration_id: pulumi.Input[Optional[_builtins.str]] = None,
+                 domain: pulumi.Input[Optional[_builtins.str]] = None,
+                 mutual_authentication_id: pulumi.Input[Optional[_builtins.str]] = None,
                  __props__=None):
         """
         Enables TLS on a domain using a specified custom TLS certificate.
@@ -309,10 +309,10 @@ class TlsActivation(pulumi.CustomResource):
     def _internal_init(__self__,
                  resource_name: str,
                  opts: Optional[pulumi.ResourceOptions] = None,
-                 certificate_id: Optional[pulumi.Input[_builtins.str]] = None,
-                 configuration_id: Optional[pulumi.Input[_builtins.str]] = None,
-                 domain: Optional[pulumi.Input[_builtins.str]] = None,
-                 mutual_authentication_id: Optional[pulumi.Input[_builtins.str]] = None,
+                 certificate_id: pulumi.Input[Optional[_builtins.str]] = None,
+                 configuration_id: pulumi.Input[Optional[_builtins.str]] = None,
+                 domain: pulumi.Input[Optional[_builtins.str]] = None,
+                 mutual_authentication_id: pulumi.Input[Optional[_builtins.str]] = None,
                  __props__=None):
         opts = pulumi.ResourceOptions.merge(_utilities.get_resource_opts_defaults(), opts)
         if not isinstance(opts, pulumi.ResourceOptions):
@@ -341,11 +341,11 @@ class TlsActivation(pulumi.CustomResource):
     def get(resource_name: str,
             id: pulumi.Input[str],
             opts: Optional[pulumi.ResourceOptions] = None,
-            certificate_id: Optional[pulumi.Input[_builtins.str]] = None,
-            configuration_id: Optional[pulumi.Input[_builtins.str]] = None,
-            created_at: Optional[pulumi.Input[_builtins.str]] = None,
-            domain: Optional[pulumi.Input[_builtins.str]] = None,
-            mutual_authentication_id: Optional[pulumi.Input[_builtins.str]] = None) -> 'TlsActivation':
+            certificate_id: pulumi.Input[Optional[_builtins.str]] = None,
+            configuration_id: pulumi.Input[Optional[_builtins.str]] = None,
+            created_at: pulumi.Input[Optional[_builtins.str]] = None,
+            domain: pulumi.Input[Optional[_builtins.str]] = None,
+            mutual_authentication_id: pulumi.Input[Optional[_builtins.str]] = None) -> 'TlsActivation':
         """
         Get an existing TlsActivation resource's state with the given name, id, and optional extra
         properties used to qualify the lookup.

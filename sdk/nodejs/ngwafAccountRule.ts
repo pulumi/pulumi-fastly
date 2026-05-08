@@ -184,43 +184,43 @@ export interface NgwafAccountRuleState {
     /**
      * List of actions to perform when the rule matches.
      */
-    actions?: pulumi.Input<pulumi.Input<inputs.NgwafAccountRuleAction>[]>;
+    actions?: pulumi.Input<pulumi.Input<inputs.NgwafAccountRuleAction>[] | undefined>;
     /**
      * The list of workspace IDs this signal applies to, or the wildcard `*` if it applies to all workspaces.
      */
-    appliesTos?: pulumi.Input<pulumi.Input<string>[]>;
+    appliesTos?: pulumi.Input<pulumi.Input<string>[] | undefined>;
     /**
      * Flat list of individual conditions. Each must include `field`, `operator`, and `value`.
      */
-    conditions?: pulumi.Input<pulumi.Input<inputs.NgwafAccountRuleCondition>[]>;
+    conditions?: pulumi.Input<pulumi.Input<inputs.NgwafAccountRuleCondition>[] | undefined>;
     /**
      * The description of the rule.
      */
-    description?: pulumi.Input<string>;
+    description?: pulumi.Input<string | undefined>;
     /**
      * Whether the rule is currently enabled.
      */
-    enabled?: pulumi.Input<boolean>;
+    enabled?: pulumi.Input<boolean | undefined>;
     /**
      * List of grouped conditions with nested logic. Each group must define a `groupOperator` and at least one condition or multival*condition.
      */
-    groupConditions?: pulumi.Input<pulumi.Input<inputs.NgwafAccountRuleGroupCondition>[]>;
+    groupConditions?: pulumi.Input<pulumi.Input<inputs.NgwafAccountRuleGroupCondition>[] | undefined>;
     /**
      * Logical operator to apply to group conditions. Accepted values are `any` and `all`.
      */
-    groupOperator?: pulumi.Input<string>;
+    groupOperator?: pulumi.Input<string | undefined>;
     /**
      * List of multival conditions with nested logic. Each multival list must define a `field, operator, groupOperator` and at least one condition.
      */
-    multivalConditions?: pulumi.Input<pulumi.Input<inputs.NgwafAccountRuleMultivalCondition>[]>;
+    multivalConditions?: pulumi.Input<pulumi.Input<inputs.NgwafAccountRuleMultivalCondition>[] | undefined>;
     /**
      * Logging behavior for matching requests. Accepted values are `sampled` and `none`.
      */
-    requestLogging?: pulumi.Input<string>;
+    requestLogging?: pulumi.Input<string | undefined>;
     /**
      * The type of the rule. Accepted values are `request` and `signal`.
      */
-    type?: pulumi.Input<string>;
+    type?: pulumi.Input<string | undefined>;
 }
 
 /**
@@ -238,7 +238,7 @@ export interface NgwafAccountRuleArgs {
     /**
      * Flat list of individual conditions. Each must include `field`, `operator`, and `value`.
      */
-    conditions?: pulumi.Input<pulumi.Input<inputs.NgwafAccountRuleCondition>[]>;
+    conditions?: pulumi.Input<pulumi.Input<inputs.NgwafAccountRuleCondition>[] | undefined>;
     /**
      * The description of the rule.
      */
@@ -250,19 +250,19 @@ export interface NgwafAccountRuleArgs {
     /**
      * List of grouped conditions with nested logic. Each group must define a `groupOperator` and at least one condition or multival*condition.
      */
-    groupConditions?: pulumi.Input<pulumi.Input<inputs.NgwafAccountRuleGroupCondition>[]>;
+    groupConditions?: pulumi.Input<pulumi.Input<inputs.NgwafAccountRuleGroupCondition>[] | undefined>;
     /**
      * Logical operator to apply to group conditions. Accepted values are `any` and `all`.
      */
-    groupOperator?: pulumi.Input<string>;
+    groupOperator?: pulumi.Input<string | undefined>;
     /**
      * List of multival conditions with nested logic. Each multival list must define a `field, operator, groupOperator` and at least one condition.
      */
-    multivalConditions?: pulumi.Input<pulumi.Input<inputs.NgwafAccountRuleMultivalCondition>[]>;
+    multivalConditions?: pulumi.Input<pulumi.Input<inputs.NgwafAccountRuleMultivalCondition>[] | undefined>;
     /**
      * Logging behavior for matching requests. Accepted values are `sampled` and `none`.
      */
-    requestLogging?: pulumi.Input<string>;
+    requestLogging?: pulumi.Input<string | undefined>;
     /**
      * The type of the rule. Accepted values are `request` and `signal`.
      */

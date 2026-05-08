@@ -22,7 +22,7 @@ class TlsPlatformCertificateArgs:
                  certificate_body: pulumi.Input[_builtins.str],
                  configuration_id: pulumi.Input[_builtins.str],
                  intermediates_blob: pulumi.Input[_builtins.str],
-                 allow_untrusted_root: Optional[pulumi.Input[_builtins.bool]] = None):
+                 allow_untrusted_root: pulumi.Input[Optional[_builtins.bool]] = None):
         """
         The set of arguments for constructing a TlsPlatformCertificate resource.
 
@@ -75,30 +75,30 @@ class TlsPlatformCertificateArgs:
 
     @_builtins.property
     @pulumi.getter(name="allowUntrustedRoot")
-    def allow_untrusted_root(self) -> Optional[pulumi.Input[_builtins.bool]]:
+    def allow_untrusted_root(self) -> pulumi.Input[Optional[_builtins.bool]]:
         """
         Disable checking whether the root of the certificate chain is trusted. Useful for development purposes to allow use of self-signed CAs. Defaults to false. Write-only on create.
         """
         return pulumi.get(self, "allow_untrusted_root")
 
     @allow_untrusted_root.setter
-    def allow_untrusted_root(self, value: Optional[pulumi.Input[_builtins.bool]]):
+    def allow_untrusted_root(self, value: pulumi.Input[Optional[_builtins.bool]]):
         pulumi.set(self, "allow_untrusted_root", value)
 
 
 @pulumi.input_type
 class _TlsPlatformCertificateState:
     def __init__(__self__, *,
-                 allow_untrusted_root: Optional[pulumi.Input[_builtins.bool]] = None,
-                 certificate_body: Optional[pulumi.Input[_builtins.str]] = None,
-                 configuration_id: Optional[pulumi.Input[_builtins.str]] = None,
-                 created_at: Optional[pulumi.Input[_builtins.str]] = None,
-                 domains: Optional[pulumi.Input[Sequence[pulumi.Input[_builtins.str]]]] = None,
-                 intermediates_blob: Optional[pulumi.Input[_builtins.str]] = None,
-                 not_after: Optional[pulumi.Input[_builtins.str]] = None,
-                 not_before: Optional[pulumi.Input[_builtins.str]] = None,
-                 replace: Optional[pulumi.Input[_builtins.bool]] = None,
-                 updated_at: Optional[pulumi.Input[_builtins.str]] = None):
+                 allow_untrusted_root: pulumi.Input[Optional[_builtins.bool]] = None,
+                 certificate_body: pulumi.Input[Optional[_builtins.str]] = None,
+                 configuration_id: pulumi.Input[Optional[_builtins.str]] = None,
+                 created_at: pulumi.Input[Optional[_builtins.str]] = None,
+                 domains: pulumi.Input[Optional[Sequence[pulumi.Input[_builtins.str]]]] = None,
+                 intermediates_blob: pulumi.Input[Optional[_builtins.str]] = None,
+                 not_after: pulumi.Input[Optional[_builtins.str]] = None,
+                 not_before: pulumi.Input[Optional[_builtins.str]] = None,
+                 replace: pulumi.Input[Optional[_builtins.bool]] = None,
+                 updated_at: pulumi.Input[Optional[_builtins.str]] = None):
         """
         Input properties used for looking up and filtering TlsPlatformCertificate resources.
 
@@ -136,122 +136,122 @@ class _TlsPlatformCertificateState:
 
     @_builtins.property
     @pulumi.getter(name="allowUntrustedRoot")
-    def allow_untrusted_root(self) -> Optional[pulumi.Input[_builtins.bool]]:
+    def allow_untrusted_root(self) -> pulumi.Input[Optional[_builtins.bool]]:
         """
         Disable checking whether the root of the certificate chain is trusted. Useful for development purposes to allow use of self-signed CAs. Defaults to false. Write-only on create.
         """
         return pulumi.get(self, "allow_untrusted_root")
 
     @allow_untrusted_root.setter
-    def allow_untrusted_root(self, value: Optional[pulumi.Input[_builtins.bool]]):
+    def allow_untrusted_root(self, value: pulumi.Input[Optional[_builtins.bool]]):
         pulumi.set(self, "allow_untrusted_root", value)
 
     @_builtins.property
     @pulumi.getter(name="certificateBody")
-    def certificate_body(self) -> Optional[pulumi.Input[_builtins.str]]:
+    def certificate_body(self) -> pulumi.Input[Optional[_builtins.str]]:
         """
         PEM-formatted certificate.
         """
         return pulumi.get(self, "certificate_body")
 
     @certificate_body.setter
-    def certificate_body(self, value: Optional[pulumi.Input[_builtins.str]]):
+    def certificate_body(self, value: pulumi.Input[Optional[_builtins.str]]):
         pulumi.set(self, "certificate_body", value)
 
     @_builtins.property
     @pulumi.getter(name="configurationId")
-    def configuration_id(self) -> Optional[pulumi.Input[_builtins.str]]:
+    def configuration_id(self) -> pulumi.Input[Optional[_builtins.str]]:
         """
         ID of TLS configuration to be used to terminate TLS traffic.
         """
         return pulumi.get(self, "configuration_id")
 
     @configuration_id.setter
-    def configuration_id(self, value: Optional[pulumi.Input[_builtins.str]]):
+    def configuration_id(self, value: pulumi.Input[Optional[_builtins.str]]):
         pulumi.set(self, "configuration_id", value)
 
     @_builtins.property
     @pulumi.getter(name="createdAt")
-    def created_at(self) -> Optional[pulumi.Input[_builtins.str]]:
+    def created_at(self) -> pulumi.Input[Optional[_builtins.str]]:
         """
         Timestamp (GMT) when the certificate was created.
         """
         return pulumi.get(self, "created_at")
 
     @created_at.setter
-    def created_at(self, value: Optional[pulumi.Input[_builtins.str]]):
+    def created_at(self, value: pulumi.Input[Optional[_builtins.str]]):
         pulumi.set(self, "created_at", value)
 
     @_builtins.property
     @pulumi.getter
-    def domains(self) -> Optional[pulumi.Input[Sequence[pulumi.Input[_builtins.str]]]]:
+    def domains(self) -> pulumi.Input[Optional[Sequence[pulumi.Input[_builtins.str]]]]:
         """
         All the domains (including wildcard domains) that are listed in any certificate's Subject Alternative Names (SAN) list.
         """
         return pulumi.get(self, "domains")
 
     @domains.setter
-    def domains(self, value: Optional[pulumi.Input[Sequence[pulumi.Input[_builtins.str]]]]):
+    def domains(self, value: pulumi.Input[Optional[Sequence[pulumi.Input[_builtins.str]]]]):
         pulumi.set(self, "domains", value)
 
     @_builtins.property
     @pulumi.getter(name="intermediatesBlob")
-    def intermediates_blob(self) -> Optional[pulumi.Input[_builtins.str]]:
+    def intermediates_blob(self) -> pulumi.Input[Optional[_builtins.str]]:
         """
         PEM-formatted certificate chain from the `certificate_body` to its root.
         """
         return pulumi.get(self, "intermediates_blob")
 
     @intermediates_blob.setter
-    def intermediates_blob(self, value: Optional[pulumi.Input[_builtins.str]]):
+    def intermediates_blob(self, value: pulumi.Input[Optional[_builtins.str]]):
         pulumi.set(self, "intermediates_blob", value)
 
     @_builtins.property
     @pulumi.getter(name="notAfter")
-    def not_after(self) -> Optional[pulumi.Input[_builtins.str]]:
+    def not_after(self) -> pulumi.Input[Optional[_builtins.str]]:
         """
         Timestamp (GMT) when the certificate will expire.
         """
         return pulumi.get(self, "not_after")
 
     @not_after.setter
-    def not_after(self, value: Optional[pulumi.Input[_builtins.str]]):
+    def not_after(self, value: pulumi.Input[Optional[_builtins.str]]):
         pulumi.set(self, "not_after", value)
 
     @_builtins.property
     @pulumi.getter(name="notBefore")
-    def not_before(self) -> Optional[pulumi.Input[_builtins.str]]:
+    def not_before(self) -> pulumi.Input[Optional[_builtins.str]]:
         """
         Timestamp (GMT) when the certificate will become valid.
         """
         return pulumi.get(self, "not_before")
 
     @not_before.setter
-    def not_before(self, value: Optional[pulumi.Input[_builtins.str]]):
+    def not_before(self, value: pulumi.Input[Optional[_builtins.str]]):
         pulumi.set(self, "not_before", value)
 
     @_builtins.property
     @pulumi.getter
-    def replace(self) -> Optional[pulumi.Input[_builtins.bool]]:
+    def replace(self) -> pulumi.Input[Optional[_builtins.bool]]:
         """
         A recommendation from Fastly indicating the key associated with this certificate is in need of rotation.
         """
         return pulumi.get(self, "replace")
 
     @replace.setter
-    def replace(self, value: Optional[pulumi.Input[_builtins.bool]]):
+    def replace(self, value: pulumi.Input[Optional[_builtins.bool]]):
         pulumi.set(self, "replace", value)
 
     @_builtins.property
     @pulumi.getter(name="updatedAt")
-    def updated_at(self) -> Optional[pulumi.Input[_builtins.str]]:
+    def updated_at(self) -> pulumi.Input[Optional[_builtins.str]]:
         """
         Timestamp (GMT) when the certificate was last updated.
         """
         return pulumi.get(self, "updated_at")
 
     @updated_at.setter
-    def updated_at(self, value: Optional[pulumi.Input[_builtins.str]]):
+    def updated_at(self, value: pulumi.Input[Optional[_builtins.str]]):
         pulumi.set(self, "updated_at", value)
 
 
@@ -261,10 +261,10 @@ class TlsPlatformCertificate(pulumi.CustomResource):
     def __init__(__self__,
                  resource_name: str,
                  opts: Optional[pulumi.ResourceOptions] = None,
-                 allow_untrusted_root: Optional[pulumi.Input[_builtins.bool]] = None,
-                 certificate_body: Optional[pulumi.Input[_builtins.str]] = None,
-                 configuration_id: Optional[pulumi.Input[_builtins.str]] = None,
-                 intermediates_blob: Optional[pulumi.Input[_builtins.str]] = None,
+                 allow_untrusted_root: pulumi.Input[Optional[_builtins.bool]] = None,
+                 certificate_body: pulumi.Input[Optional[_builtins.str]] = None,
+                 configuration_id: pulumi.Input[Optional[_builtins.str]] = None,
+                 intermediates_blob: pulumi.Input[Optional[_builtins.str]] = None,
                  __props__=None):
         """
         Uploads a TLS certificate to the Fastly Platform TLS service.
@@ -434,10 +434,10 @@ class TlsPlatformCertificate(pulumi.CustomResource):
     def _internal_init(__self__,
                  resource_name: str,
                  opts: Optional[pulumi.ResourceOptions] = None,
-                 allow_untrusted_root: Optional[pulumi.Input[_builtins.bool]] = None,
-                 certificate_body: Optional[pulumi.Input[_builtins.str]] = None,
-                 configuration_id: Optional[pulumi.Input[_builtins.str]] = None,
-                 intermediates_blob: Optional[pulumi.Input[_builtins.str]] = None,
+                 allow_untrusted_root: pulumi.Input[Optional[_builtins.bool]] = None,
+                 certificate_body: pulumi.Input[Optional[_builtins.str]] = None,
+                 configuration_id: pulumi.Input[Optional[_builtins.str]] = None,
+                 intermediates_blob: pulumi.Input[Optional[_builtins.str]] = None,
                  __props__=None):
         opts = pulumi.ResourceOptions.merge(_utilities.get_resource_opts_defaults(), opts)
         if not isinstance(opts, pulumi.ResourceOptions):
@@ -473,16 +473,16 @@ class TlsPlatformCertificate(pulumi.CustomResource):
     def get(resource_name: str,
             id: pulumi.Input[str],
             opts: Optional[pulumi.ResourceOptions] = None,
-            allow_untrusted_root: Optional[pulumi.Input[_builtins.bool]] = None,
-            certificate_body: Optional[pulumi.Input[_builtins.str]] = None,
-            configuration_id: Optional[pulumi.Input[_builtins.str]] = None,
-            created_at: Optional[pulumi.Input[_builtins.str]] = None,
-            domains: Optional[pulumi.Input[Sequence[pulumi.Input[_builtins.str]]]] = None,
-            intermediates_blob: Optional[pulumi.Input[_builtins.str]] = None,
-            not_after: Optional[pulumi.Input[_builtins.str]] = None,
-            not_before: Optional[pulumi.Input[_builtins.str]] = None,
-            replace: Optional[pulumi.Input[_builtins.bool]] = None,
-            updated_at: Optional[pulumi.Input[_builtins.str]] = None) -> 'TlsPlatformCertificate':
+            allow_untrusted_root: pulumi.Input[Optional[_builtins.bool]] = None,
+            certificate_body: pulumi.Input[Optional[_builtins.str]] = None,
+            configuration_id: pulumi.Input[Optional[_builtins.str]] = None,
+            created_at: pulumi.Input[Optional[_builtins.str]] = None,
+            domains: pulumi.Input[Optional[Sequence[pulumi.Input[_builtins.str]]]] = None,
+            intermediates_blob: pulumi.Input[Optional[_builtins.str]] = None,
+            not_after: pulumi.Input[Optional[_builtins.str]] = None,
+            not_before: pulumi.Input[Optional[_builtins.str]] = None,
+            replace: pulumi.Input[Optional[_builtins.bool]] = None,
+            updated_at: pulumi.Input[Optional[_builtins.str]] = None) -> 'TlsPlatformCertificate':
         """
         Get an existing TlsPlatformCertificate resource's state with the given name, id, and optional extra
         properties used to qualify the lookup.

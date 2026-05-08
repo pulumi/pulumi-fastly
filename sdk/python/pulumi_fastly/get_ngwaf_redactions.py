@@ -103,7 +103,7 @@ def get_ngwaf_redactions(workspace_id: Optional[_builtins.str] = None,
         id=pulumi.get(__ret__, 'id'),
         redactions=pulumi.get(__ret__, 'redactions'),
         workspace_id=pulumi.get(__ret__, 'workspace_id'))
-def get_ngwaf_redactions_output(workspace_id: Optional[pulumi.Input[_builtins.str]] = None,
+def get_ngwaf_redactions_output(workspace_id: pulumi.Input[Optional[_builtins.str]] = None,
                                 opts: Optional[Union[pulumi.InvokeOptions, pulumi.InvokeOutputOptions]] = None) -> pulumi.Output[GetNgwafRedactionsResult]:
     """
     Use this data source to get a list of [Fastly Next-Gen WAF Redactions][1].

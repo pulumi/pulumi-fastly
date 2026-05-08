@@ -121,35 +121,35 @@ export interface TlsMutualAuthenticationState {
     /**
      * List of TLS Activation IDs
      */
-    activationIds?: pulumi.Input<pulumi.Input<string>[]>;
+    activationIds?: pulumi.Input<pulumi.Input<string>[] | undefined>;
     /**
      * One or more certificates. Enter each individual certificate blob on a new line. Must be PEM-formatted.
      */
-    certBundle?: pulumi.Input<string>;
+    certBundle?: pulumi.Input<string | undefined>;
     /**
      * Date and time in ISO 8601 format.
      */
-    createdAt?: pulumi.Input<string>;
+    createdAt?: pulumi.Input<string | undefined>;
     /**
      * Determines whether Mutual TLS will fail closed (enforced) or fail open. A true value will require a successful Mutual TLS handshake for the connection to continue and will fail closed if unsuccessful. A false value will fail open and allow the connection to proceed (if this attribute is not set we default to `false`).
      */
-    enforced?: pulumi.Input<boolean>;
+    enforced?: pulumi.Input<boolean | undefined>;
     /**
      * A comma-separated list used by the Terraform provider during a state refresh to return more data related to your mutual authentication from the Fastly API (permitted values: `tlsActivations`).
      */
-    include?: pulumi.Input<string>;
+    include?: pulumi.Input<string | undefined>;
     /**
      * A custom name for your mutual authentication. If name is not supplied we will auto-generate one.
      */
-    name?: pulumi.Input<string>;
+    name?: pulumi.Input<string | undefined>;
     /**
      * List of alphanumeric strings identifying TLS activations.
      */
-    tlsActivations?: pulumi.Input<pulumi.Input<string>[]>;
+    tlsActivations?: pulumi.Input<pulumi.Input<string>[] | undefined>;
     /**
      * Date and time in ISO 8601 format.
      */
-    updatedAt?: pulumi.Input<string>;
+    updatedAt?: pulumi.Input<string | undefined>;
 }
 
 /**
@@ -159,7 +159,7 @@ export interface TlsMutualAuthenticationArgs {
     /**
      * List of TLS Activation IDs
      */
-    activationIds?: pulumi.Input<pulumi.Input<string>[]>;
+    activationIds?: pulumi.Input<pulumi.Input<string>[] | undefined>;
     /**
      * One or more certificates. Enter each individual certificate blob on a new line. Must be PEM-formatted.
      */
@@ -167,13 +167,13 @@ export interface TlsMutualAuthenticationArgs {
     /**
      * Determines whether Mutual TLS will fail closed (enforced) or fail open. A true value will require a successful Mutual TLS handshake for the connection to continue and will fail closed if unsuccessful. A false value will fail open and allow the connection to proceed (if this attribute is not set we default to `false`).
      */
-    enforced?: pulumi.Input<boolean>;
+    enforced?: pulumi.Input<boolean | undefined>;
     /**
      * A comma-separated list used by the Terraform provider during a state refresh to return more data related to your mutual authentication from the Fastly API (permitted values: `tlsActivations`).
      */
-    include?: pulumi.Input<string>;
+    include?: pulumi.Input<string | undefined>;
     /**
      * A custom name for your mutual authentication. If name is not supplied we will auto-generate one.
      */
-    name?: pulumi.Input<string>;
+    name?: pulumi.Input<string | undefined>;
 }

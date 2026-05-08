@@ -43,7 +43,7 @@ import * as utilities from "./utilities";
  * myservice.dynamicsnippets.apply(dynamicsnippets => {
  *     const myDynContent: fastly.ServiceDynamicSnippetContent[] = [];
  * pulumi.all(.filter(d => d.name == "My Dynamic Snippet").reduce((__obj, d) => ({ ...__obj, [d.name]: d }), {})).apply(rangeBody => {
- *         for (const range of Object.entries(rangeBody).map(([k, v]) => ({key: k, value: v}))) {
+ *         for (const range of Object.entries(rangeBody).sort().map(([k, v]) => ({key: k, value: v}))) {
  *             myDynContent.push(new fastly.ServiceDynamicSnippetContent(`my_dyn_content-${range.key}`, {
  *                 serviceId: myservice.id,
  *                 snippetId: range.value.snippetId,
@@ -92,7 +92,7 @@ import * as utilities from "./utilities";
  * myservice.dynamicsnippets.apply(dynamicsnippets => {
  *     const myDynContentOne: fastly.ServiceDynamicSnippetContent[] = [];
  * pulumi.all(.filter(d => d.name == "My Dynamic Snippet One").reduce((__obj, d) => ({ ...__obj, [d.name]: d }), {})).apply(rangeBody => {
- *         for (const range of Object.entries(rangeBody).map(([k, v]) => ({key: k, value: v}))) {
+ *         for (const range of Object.entries(rangeBody).sort().map(([k, v]) => ({key: k, value: v}))) {
  *             myDynContentOne.push(new fastly.ServiceDynamicSnippetContent(`my_dyn_content_one-${range.key}`, {
  *                 serviceId: myservice.id,
  *                 snippetId: range.value.snippetId,
@@ -107,7 +107,7 @@ import * as utilities from "./utilities";
  * myservice.dynamicsnippets.apply(dynamicsnippets => {
  *     const myDynContentTwo: fastly.ServiceDynamicSnippetContent[] = [];
  * pulumi.all(.filter(d => d.name == "My Dynamic Snippet Two").reduce((__obj, d) => ({ ...__obj, [d.name]: d }), {})).apply(rangeBody => {
- *         for (const range of Object.entries(rangeBody).map(([k, v]) => ({key: k, value: v}))) {
+ *         for (const range of Object.entries(rangeBody).sort().map(([k, v]) => ({key: k, value: v}))) {
  *             myDynContentTwo.push(new fastly.ServiceDynamicSnippetContent(`my_dyn_content_two-${range.key}`, {
  *                 serviceId: myservice.id,
  *                 snippetId: range.value.snippetId,
@@ -179,7 +179,7 @@ import * as utilities from "./utilities";
  *
  * //...
  * const myDynContent: fastly.ServiceDynamicSnippetContent[] = [];
- * for (const range of Object.entries(.filter(d => d.name == "My Dynamic Snippet").reduce((__obj, d) => ({ ...__obj, [d.name]: d }), {})).map(([k, v]) => ({key: k, value: v}))) {
+ * for (const range of Object.entries(.filter(d => d.name == "My Dynamic Snippet").reduce((__obj, d) => ({ ...__obj, [d.name]: d }), {})).sort().map(([k, v]) => ({key: k, value: v}))) {
  *     myDynContent.push(new fastly.ServiceDynamicSnippetContent(`my_dyn_content-${range.key}`, {
  *         serviceId: myservice.id,
  *         snippetId: range.value.snippetId,
@@ -297,19 +297,19 @@ export interface ServiceDynamicSnippetContentState {
     /**
      * The VCL code that specifies exactly what the snippet does
      */
-    content?: pulumi.Input<string>;
+    content?: pulumi.Input<string | undefined>;
     /**
      * Whether to reapply changes if the state of the snippets drifts, i.e. if snippets are managed externally
      */
-    manageSnippets?: pulumi.Input<boolean>;
+    manageSnippets?: pulumi.Input<boolean | undefined>;
     /**
      * The ID of the service that the dynamic snippet belongs to
      */
-    serviceId?: pulumi.Input<string>;
+    serviceId?: pulumi.Input<string | undefined>;
     /**
      * The ID of the dynamic snippet that the content belong to
      */
-    snippetId?: pulumi.Input<string>;
+    snippetId?: pulumi.Input<string | undefined>;
 }
 
 /**
@@ -323,7 +323,7 @@ export interface ServiceDynamicSnippetContentArgs {
     /**
      * Whether to reapply changes if the state of the snippets drifts, i.e. if snippets are managed externally
      */
-    manageSnippets?: pulumi.Input<boolean>;
+    manageSnippets?: pulumi.Input<boolean | undefined>;
     /**
      * The ID of the service that the dynamic snippet belongs to
      */

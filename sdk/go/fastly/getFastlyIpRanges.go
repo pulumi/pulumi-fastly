@@ -28,7 +28,7 @@ import (
 //
 //	func main() {
 //		pulumi.Run(func(ctx *pulumi.Context) error {
-//			fastly, err := fastly.GetFastlyIpRanges(ctx, map[string]interface{}{}, nil)
+//			fastly2, err := fastly.GetFastlyIpRanges(ctx, map[string]interface{}{}, nil)
 //			if err != nil {
 //				return err
 //			}
@@ -39,8 +39,8 @@ import (
 //						"fromPort":       "443",
 //						"toPort":         "443",
 //						"protocol":       "tcp",
-//						"cidrBlocks":     fastly.CidrBlocks,
-//						"ipv6CidrBlocks": fastly.Ipv6CidrBlocks,
+//						"cidrBlocks":     fastly2.CidrBlocks,
+//						"ipv6CidrBlocks": fastly2.Ipv6CidrBlocks,
 //					},
 //				},
 //			})

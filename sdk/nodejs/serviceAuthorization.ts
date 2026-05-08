@@ -127,15 +127,15 @@ export interface ServiceAuthorizationState {
     /**
      * The permissions to grant the user. Can be `full`, `readOnly`, `purgeSelect` or `purgeAll`.
      */
-    permission?: pulumi.Input<string>;
+    permission?: pulumi.Input<string | undefined>;
     /**
      * The ID of the service to grant permissions for.
      */
-    serviceId?: pulumi.Input<string>;
+    serviceId?: pulumi.Input<string | undefined>;
     /**
      * The ID of the user which will receive the granted permissions.
      */
-    userId?: pulumi.Input<string>;
+    userId?: pulumi.Input<string | undefined>;
 }
 
 /**

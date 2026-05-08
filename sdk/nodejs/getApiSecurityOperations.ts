@@ -168,15 +168,15 @@ export interface GetApiSecurityOperationsOutputArgs {
     /**
      * Filter by one or more domains (exact match).
      */
-    domains?: pulumi.Input<pulumi.Input<string>[]>;
+    domains?: pulumi.Input<pulumi.Input<string>[] | undefined>;
     /**
      * Filter by one or more HTTP methods.
      */
-    methods?: pulumi.Input<pulumi.Input<string>[]>;
+    methods?: pulumi.Input<pulumi.Input<string>[] | undefined>;
     /**
      * Filter by path (exact match).
      */
-    path?: pulumi.Input<string>;
+    path?: pulumi.Input<string | undefined>;
     /**
      * Service ID.
      */
@@ -184,5 +184,5 @@ export interface GetApiSecurityOperationsOutputArgs {
     /**
      * Filter by tag ID.
      */
-    tagId?: pulumi.Input<string>;
+    tagId?: pulumi.Input<string | undefined>;
 }

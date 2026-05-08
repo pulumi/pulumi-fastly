@@ -103,7 +103,7 @@ def get_ngwaf_virtual_patches(workspace_id: Optional[_builtins.str] = None,
         id=pulumi.get(__ret__, 'id'),
         virtual_patches=pulumi.get(__ret__, 'virtual_patches'),
         workspace_id=pulumi.get(__ret__, 'workspace_id'))
-def get_ngwaf_virtual_patches_output(workspace_id: Optional[pulumi.Input[_builtins.str]] = None,
+def get_ngwaf_virtual_patches_output(workspace_id: pulumi.Input[Optional[_builtins.str]] = None,
                                      opts: Optional[Union[pulumi.InvokeOptions, pulumi.InvokeOutputOptions]] = None) -> pulumi.Output[GetNgwafVirtualPatchesResult]:
     """
     Use this data source to get a list of [Fastly Next-Gen WAF Virtual Patches][1] for a given workspace.

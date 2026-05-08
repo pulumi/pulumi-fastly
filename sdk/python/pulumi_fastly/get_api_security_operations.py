@@ -196,11 +196,11 @@ def get_api_security_operations(domains: Optional[Sequence[_builtins.str]] = Non
         service_id=pulumi.get(__ret__, 'service_id'),
         tag_id=pulumi.get(__ret__, 'tag_id'),
         total=pulumi.get(__ret__, 'total'))
-def get_api_security_operations_output(domains: Optional[pulumi.Input[Optional[Sequence[_builtins.str]]]] = None,
-                                       methods: Optional[pulumi.Input[Optional[Sequence[_builtins.str]]]] = None,
-                                       path: Optional[pulumi.Input[Optional[_builtins.str]]] = None,
-                                       service_id: Optional[pulumi.Input[_builtins.str]] = None,
-                                       tag_id: Optional[pulumi.Input[Optional[_builtins.str]]] = None,
+def get_api_security_operations_output(domains: pulumi.Input[Optional[Optional[Sequence[_builtins.str]]]] = None,
+                                       methods: pulumi.Input[Optional[Optional[Sequence[_builtins.str]]]] = None,
+                                       path: pulumi.Input[Optional[Optional[_builtins.str]]] = None,
+                                       service_id: pulumi.Input[Optional[_builtins.str]] = None,
+                                       tag_id: pulumi.Input[Optional[Optional[_builtins.str]]] = None,
                                        opts: Optional[Union[pulumi.InvokeOptions, pulumi.InvokeOutputOptions]] = None) -> pulumi.Output[GetApiSecurityOperationsResult]:
     """
     Use this data source to list API Security operations for a Fastly service.

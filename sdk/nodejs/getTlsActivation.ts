@@ -120,17 +120,17 @@ export interface GetTlsActivationOutputArgs {
     /**
      * ID of the TLS Certificate used.
      */
-    certificateId?: pulumi.Input<string>;
+    certificateId?: pulumi.Input<string | undefined>;
     /**
      * ID of the TLS Configuration used.
      */
-    configurationId?: pulumi.Input<string>;
+    configurationId?: pulumi.Input<string | undefined>;
     /**
      * Domain that TLS was enabled on.
      */
-    domain?: pulumi.Input<string>;
+    domain?: pulumi.Input<string | undefined>;
     /**
      * Fastly Activation ID. Conflicts with all other filters.
      */
-    id?: pulumi.Input<string>;
+    id?: pulumi.Input<string | undefined>;
 }
