@@ -26,11 +26,11 @@ class NgwafAccountRuleArgs:
                  description: pulumi.Input[_builtins.str],
                  enabled: pulumi.Input[_builtins.bool],
                  type: pulumi.Input[_builtins.str],
-                 conditions: Optional[pulumi.Input[Sequence[pulumi.Input['NgwafAccountRuleConditionArgs']]]] = None,
-                 group_conditions: Optional[pulumi.Input[Sequence[pulumi.Input['NgwafAccountRuleGroupConditionArgs']]]] = None,
-                 group_operator: Optional[pulumi.Input[_builtins.str]] = None,
-                 multival_conditions: Optional[pulumi.Input[Sequence[pulumi.Input['NgwafAccountRuleMultivalConditionArgs']]]] = None,
-                 request_logging: Optional[pulumi.Input[_builtins.str]] = None):
+                 conditions: pulumi.Input[Optional[Sequence[pulumi.Input['NgwafAccountRuleConditionArgs']]]] = None,
+                 group_conditions: pulumi.Input[Optional[Sequence[pulumi.Input['NgwafAccountRuleGroupConditionArgs']]]] = None,
+                 group_operator: pulumi.Input[Optional[_builtins.str]] = None,
+                 multival_conditions: pulumi.Input[Optional[Sequence[pulumi.Input['NgwafAccountRuleMultivalConditionArgs']]]] = None,
+                 request_logging: pulumi.Input[Optional[_builtins.str]] = None):
         """
         The set of arguments for constructing a NgwafAccountRule resource.
 
@@ -123,78 +123,78 @@ class NgwafAccountRuleArgs:
 
     @_builtins.property
     @pulumi.getter
-    def conditions(self) -> Optional[pulumi.Input[Sequence[pulumi.Input['NgwafAccountRuleConditionArgs']]]]:
+    def conditions(self) -> pulumi.Input[Optional[Sequence[pulumi.Input['NgwafAccountRuleConditionArgs']]]]:
         """
         Flat list of individual conditions. Each must include `field`, `operator`, and `value`.
         """
         return pulumi.get(self, "conditions")
 
     @conditions.setter
-    def conditions(self, value: Optional[pulumi.Input[Sequence[pulumi.Input['NgwafAccountRuleConditionArgs']]]]):
+    def conditions(self, value: pulumi.Input[Optional[Sequence[pulumi.Input['NgwafAccountRuleConditionArgs']]]]):
         pulumi.set(self, "conditions", value)
 
     @_builtins.property
     @pulumi.getter(name="groupConditions")
-    def group_conditions(self) -> Optional[pulumi.Input[Sequence[pulumi.Input['NgwafAccountRuleGroupConditionArgs']]]]:
+    def group_conditions(self) -> pulumi.Input[Optional[Sequence[pulumi.Input['NgwafAccountRuleGroupConditionArgs']]]]:
         """
         List of grouped conditions with nested logic. Each group must define a `group_operator` and at least one condition or multival*condition.
         """
         return pulumi.get(self, "group_conditions")
 
     @group_conditions.setter
-    def group_conditions(self, value: Optional[pulumi.Input[Sequence[pulumi.Input['NgwafAccountRuleGroupConditionArgs']]]]):
+    def group_conditions(self, value: pulumi.Input[Optional[Sequence[pulumi.Input['NgwafAccountRuleGroupConditionArgs']]]]):
         pulumi.set(self, "group_conditions", value)
 
     @_builtins.property
     @pulumi.getter(name="groupOperator")
-    def group_operator(self) -> Optional[pulumi.Input[_builtins.str]]:
+    def group_operator(self) -> pulumi.Input[Optional[_builtins.str]]:
         """
         Logical operator to apply to group conditions. Accepted values are `any` and `all`.
         """
         return pulumi.get(self, "group_operator")
 
     @group_operator.setter
-    def group_operator(self, value: Optional[pulumi.Input[_builtins.str]]):
+    def group_operator(self, value: pulumi.Input[Optional[_builtins.str]]):
         pulumi.set(self, "group_operator", value)
 
     @_builtins.property
     @pulumi.getter(name="multivalConditions")
-    def multival_conditions(self) -> Optional[pulumi.Input[Sequence[pulumi.Input['NgwafAccountRuleMultivalConditionArgs']]]]:
+    def multival_conditions(self) -> pulumi.Input[Optional[Sequence[pulumi.Input['NgwafAccountRuleMultivalConditionArgs']]]]:
         """
         List of multival conditions with nested logic. Each multival list must define a `field, operator, group_operator` and at least one condition.
         """
         return pulumi.get(self, "multival_conditions")
 
     @multival_conditions.setter
-    def multival_conditions(self, value: Optional[pulumi.Input[Sequence[pulumi.Input['NgwafAccountRuleMultivalConditionArgs']]]]):
+    def multival_conditions(self, value: pulumi.Input[Optional[Sequence[pulumi.Input['NgwafAccountRuleMultivalConditionArgs']]]]):
         pulumi.set(self, "multival_conditions", value)
 
     @_builtins.property
     @pulumi.getter(name="requestLogging")
-    def request_logging(self) -> Optional[pulumi.Input[_builtins.str]]:
+    def request_logging(self) -> pulumi.Input[Optional[_builtins.str]]:
         """
         Logging behavior for matching requests. Accepted values are `sampled` and `none`.
         """
         return pulumi.get(self, "request_logging")
 
     @request_logging.setter
-    def request_logging(self, value: Optional[pulumi.Input[_builtins.str]]):
+    def request_logging(self, value: pulumi.Input[Optional[_builtins.str]]):
         pulumi.set(self, "request_logging", value)
 
 
 @pulumi.input_type
 class _NgwafAccountRuleState:
     def __init__(__self__, *,
-                 actions: Optional[pulumi.Input[Sequence[pulumi.Input['NgwafAccountRuleActionArgs']]]] = None,
-                 applies_tos: Optional[pulumi.Input[Sequence[pulumi.Input[_builtins.str]]]] = None,
-                 conditions: Optional[pulumi.Input[Sequence[pulumi.Input['NgwafAccountRuleConditionArgs']]]] = None,
-                 description: Optional[pulumi.Input[_builtins.str]] = None,
-                 enabled: Optional[pulumi.Input[_builtins.bool]] = None,
-                 group_conditions: Optional[pulumi.Input[Sequence[pulumi.Input['NgwafAccountRuleGroupConditionArgs']]]] = None,
-                 group_operator: Optional[pulumi.Input[_builtins.str]] = None,
-                 multival_conditions: Optional[pulumi.Input[Sequence[pulumi.Input['NgwafAccountRuleMultivalConditionArgs']]]] = None,
-                 request_logging: Optional[pulumi.Input[_builtins.str]] = None,
-                 type: Optional[pulumi.Input[_builtins.str]] = None):
+                 actions: pulumi.Input[Optional[Sequence[pulumi.Input['NgwafAccountRuleActionArgs']]]] = None,
+                 applies_tos: pulumi.Input[Optional[Sequence[pulumi.Input[_builtins.str]]]] = None,
+                 conditions: pulumi.Input[Optional[Sequence[pulumi.Input['NgwafAccountRuleConditionArgs']]]] = None,
+                 description: pulumi.Input[Optional[_builtins.str]] = None,
+                 enabled: pulumi.Input[Optional[_builtins.bool]] = None,
+                 group_conditions: pulumi.Input[Optional[Sequence[pulumi.Input['NgwafAccountRuleGroupConditionArgs']]]] = None,
+                 group_operator: pulumi.Input[Optional[_builtins.str]] = None,
+                 multival_conditions: pulumi.Input[Optional[Sequence[pulumi.Input['NgwafAccountRuleMultivalConditionArgs']]]] = None,
+                 request_logging: pulumi.Input[Optional[_builtins.str]] = None,
+                 type: pulumi.Input[Optional[_builtins.str]] = None):
         """
         Input properties used for looking up and filtering NgwafAccountRule resources.
 
@@ -232,122 +232,122 @@ class _NgwafAccountRuleState:
 
     @_builtins.property
     @pulumi.getter
-    def actions(self) -> Optional[pulumi.Input[Sequence[pulumi.Input['NgwafAccountRuleActionArgs']]]]:
+    def actions(self) -> pulumi.Input[Optional[Sequence[pulumi.Input['NgwafAccountRuleActionArgs']]]]:
         """
         List of actions to perform when the rule matches.
         """
         return pulumi.get(self, "actions")
 
     @actions.setter
-    def actions(self, value: Optional[pulumi.Input[Sequence[pulumi.Input['NgwafAccountRuleActionArgs']]]]):
+    def actions(self, value: pulumi.Input[Optional[Sequence[pulumi.Input['NgwafAccountRuleActionArgs']]]]):
         pulumi.set(self, "actions", value)
 
     @_builtins.property
     @pulumi.getter(name="appliesTos")
-    def applies_tos(self) -> Optional[pulumi.Input[Sequence[pulumi.Input[_builtins.str]]]]:
+    def applies_tos(self) -> pulumi.Input[Optional[Sequence[pulumi.Input[_builtins.str]]]]:
         """
         The list of workspace IDs this signal applies to, or the wildcard `*` if it applies to all workspaces.
         """
         return pulumi.get(self, "applies_tos")
 
     @applies_tos.setter
-    def applies_tos(self, value: Optional[pulumi.Input[Sequence[pulumi.Input[_builtins.str]]]]):
+    def applies_tos(self, value: pulumi.Input[Optional[Sequence[pulumi.Input[_builtins.str]]]]):
         pulumi.set(self, "applies_tos", value)
 
     @_builtins.property
     @pulumi.getter
-    def conditions(self) -> Optional[pulumi.Input[Sequence[pulumi.Input['NgwafAccountRuleConditionArgs']]]]:
+    def conditions(self) -> pulumi.Input[Optional[Sequence[pulumi.Input['NgwafAccountRuleConditionArgs']]]]:
         """
         Flat list of individual conditions. Each must include `field`, `operator`, and `value`.
         """
         return pulumi.get(self, "conditions")
 
     @conditions.setter
-    def conditions(self, value: Optional[pulumi.Input[Sequence[pulumi.Input['NgwafAccountRuleConditionArgs']]]]):
+    def conditions(self, value: pulumi.Input[Optional[Sequence[pulumi.Input['NgwafAccountRuleConditionArgs']]]]):
         pulumi.set(self, "conditions", value)
 
     @_builtins.property
     @pulumi.getter
-    def description(self) -> Optional[pulumi.Input[_builtins.str]]:
+    def description(self) -> pulumi.Input[Optional[_builtins.str]]:
         """
         The description of the rule.
         """
         return pulumi.get(self, "description")
 
     @description.setter
-    def description(self, value: Optional[pulumi.Input[_builtins.str]]):
+    def description(self, value: pulumi.Input[Optional[_builtins.str]]):
         pulumi.set(self, "description", value)
 
     @_builtins.property
     @pulumi.getter
-    def enabled(self) -> Optional[pulumi.Input[_builtins.bool]]:
+    def enabled(self) -> pulumi.Input[Optional[_builtins.bool]]:
         """
         Whether the rule is currently enabled.
         """
         return pulumi.get(self, "enabled")
 
     @enabled.setter
-    def enabled(self, value: Optional[pulumi.Input[_builtins.bool]]):
+    def enabled(self, value: pulumi.Input[Optional[_builtins.bool]]):
         pulumi.set(self, "enabled", value)
 
     @_builtins.property
     @pulumi.getter(name="groupConditions")
-    def group_conditions(self) -> Optional[pulumi.Input[Sequence[pulumi.Input['NgwafAccountRuleGroupConditionArgs']]]]:
+    def group_conditions(self) -> pulumi.Input[Optional[Sequence[pulumi.Input['NgwafAccountRuleGroupConditionArgs']]]]:
         """
         List of grouped conditions with nested logic. Each group must define a `group_operator` and at least one condition or multival*condition.
         """
         return pulumi.get(self, "group_conditions")
 
     @group_conditions.setter
-    def group_conditions(self, value: Optional[pulumi.Input[Sequence[pulumi.Input['NgwafAccountRuleGroupConditionArgs']]]]):
+    def group_conditions(self, value: pulumi.Input[Optional[Sequence[pulumi.Input['NgwafAccountRuleGroupConditionArgs']]]]):
         pulumi.set(self, "group_conditions", value)
 
     @_builtins.property
     @pulumi.getter(name="groupOperator")
-    def group_operator(self) -> Optional[pulumi.Input[_builtins.str]]:
+    def group_operator(self) -> pulumi.Input[Optional[_builtins.str]]:
         """
         Logical operator to apply to group conditions. Accepted values are `any` and `all`.
         """
         return pulumi.get(self, "group_operator")
 
     @group_operator.setter
-    def group_operator(self, value: Optional[pulumi.Input[_builtins.str]]):
+    def group_operator(self, value: pulumi.Input[Optional[_builtins.str]]):
         pulumi.set(self, "group_operator", value)
 
     @_builtins.property
     @pulumi.getter(name="multivalConditions")
-    def multival_conditions(self) -> Optional[pulumi.Input[Sequence[pulumi.Input['NgwafAccountRuleMultivalConditionArgs']]]]:
+    def multival_conditions(self) -> pulumi.Input[Optional[Sequence[pulumi.Input['NgwafAccountRuleMultivalConditionArgs']]]]:
         """
         List of multival conditions with nested logic. Each multival list must define a `field, operator, group_operator` and at least one condition.
         """
         return pulumi.get(self, "multival_conditions")
 
     @multival_conditions.setter
-    def multival_conditions(self, value: Optional[pulumi.Input[Sequence[pulumi.Input['NgwafAccountRuleMultivalConditionArgs']]]]):
+    def multival_conditions(self, value: pulumi.Input[Optional[Sequence[pulumi.Input['NgwafAccountRuleMultivalConditionArgs']]]]):
         pulumi.set(self, "multival_conditions", value)
 
     @_builtins.property
     @pulumi.getter(name="requestLogging")
-    def request_logging(self) -> Optional[pulumi.Input[_builtins.str]]:
+    def request_logging(self) -> pulumi.Input[Optional[_builtins.str]]:
         """
         Logging behavior for matching requests. Accepted values are `sampled` and `none`.
         """
         return pulumi.get(self, "request_logging")
 
     @request_logging.setter
-    def request_logging(self, value: Optional[pulumi.Input[_builtins.str]]):
+    def request_logging(self, value: pulumi.Input[Optional[_builtins.str]]):
         pulumi.set(self, "request_logging", value)
 
     @_builtins.property
     @pulumi.getter
-    def type(self) -> Optional[pulumi.Input[_builtins.str]]:
+    def type(self) -> pulumi.Input[Optional[_builtins.str]]:
         """
         The type of the rule. Accepted values are `request` and `signal`.
         """
         return pulumi.get(self, "type")
 
     @type.setter
-    def type(self, value: Optional[pulumi.Input[_builtins.str]]):
+    def type(self, value: pulumi.Input[Optional[_builtins.str]]):
         pulumi.set(self, "type", value)
 
 
@@ -357,16 +357,16 @@ class NgwafAccountRule(pulumi.CustomResource):
     def __init__(__self__,
                  resource_name: str,
                  opts: Optional[pulumi.ResourceOptions] = None,
-                 actions: Optional[pulumi.Input[Sequence[pulumi.Input[Union['NgwafAccountRuleActionArgs', 'NgwafAccountRuleActionArgsDict']]]]] = None,
-                 applies_tos: Optional[pulumi.Input[Sequence[pulumi.Input[_builtins.str]]]] = None,
-                 conditions: Optional[pulumi.Input[Sequence[pulumi.Input[Union['NgwafAccountRuleConditionArgs', 'NgwafAccountRuleConditionArgsDict']]]]] = None,
-                 description: Optional[pulumi.Input[_builtins.str]] = None,
-                 enabled: Optional[pulumi.Input[_builtins.bool]] = None,
-                 group_conditions: Optional[pulumi.Input[Sequence[pulumi.Input[Union['NgwafAccountRuleGroupConditionArgs', 'NgwafAccountRuleGroupConditionArgsDict']]]]] = None,
-                 group_operator: Optional[pulumi.Input[_builtins.str]] = None,
-                 multival_conditions: Optional[pulumi.Input[Sequence[pulumi.Input[Union['NgwafAccountRuleMultivalConditionArgs', 'NgwafAccountRuleMultivalConditionArgsDict']]]]] = None,
-                 request_logging: Optional[pulumi.Input[_builtins.str]] = None,
-                 type: Optional[pulumi.Input[_builtins.str]] = None,
+                 actions: pulumi.Input[Optional[Sequence[pulumi.Input[Union['NgwafAccountRuleActionArgs', 'NgwafAccountRuleActionArgsDict']]]]] = None,
+                 applies_tos: pulumi.Input[Optional[Sequence[pulumi.Input[_builtins.str]]]] = None,
+                 conditions: pulumi.Input[Optional[Sequence[pulumi.Input[Union['NgwafAccountRuleConditionArgs', 'NgwafAccountRuleConditionArgsDict']]]]] = None,
+                 description: pulumi.Input[Optional[_builtins.str]] = None,
+                 enabled: pulumi.Input[Optional[_builtins.bool]] = None,
+                 group_conditions: pulumi.Input[Optional[Sequence[pulumi.Input[Union['NgwafAccountRuleGroupConditionArgs', 'NgwafAccountRuleGroupConditionArgsDict']]]]] = None,
+                 group_operator: pulumi.Input[Optional[_builtins.str]] = None,
+                 multival_conditions: pulumi.Input[Optional[Sequence[pulumi.Input[Union['NgwafAccountRuleMultivalConditionArgs', 'NgwafAccountRuleMultivalConditionArgsDict']]]]] = None,
+                 request_logging: pulumi.Input[Optional[_builtins.str]] = None,
+                 type: pulumi.Input[Optional[_builtins.str]] = None,
                  __props__=None):
         """
         Provides a Fastly Next-Gen WAF Account Rule.\\
@@ -494,16 +494,16 @@ class NgwafAccountRule(pulumi.CustomResource):
     def _internal_init(__self__,
                  resource_name: str,
                  opts: Optional[pulumi.ResourceOptions] = None,
-                 actions: Optional[pulumi.Input[Sequence[pulumi.Input[Union['NgwafAccountRuleActionArgs', 'NgwafAccountRuleActionArgsDict']]]]] = None,
-                 applies_tos: Optional[pulumi.Input[Sequence[pulumi.Input[_builtins.str]]]] = None,
-                 conditions: Optional[pulumi.Input[Sequence[pulumi.Input[Union['NgwafAccountRuleConditionArgs', 'NgwafAccountRuleConditionArgsDict']]]]] = None,
-                 description: Optional[pulumi.Input[_builtins.str]] = None,
-                 enabled: Optional[pulumi.Input[_builtins.bool]] = None,
-                 group_conditions: Optional[pulumi.Input[Sequence[pulumi.Input[Union['NgwafAccountRuleGroupConditionArgs', 'NgwafAccountRuleGroupConditionArgsDict']]]]] = None,
-                 group_operator: Optional[pulumi.Input[_builtins.str]] = None,
-                 multival_conditions: Optional[pulumi.Input[Sequence[pulumi.Input[Union['NgwafAccountRuleMultivalConditionArgs', 'NgwafAccountRuleMultivalConditionArgsDict']]]]] = None,
-                 request_logging: Optional[pulumi.Input[_builtins.str]] = None,
-                 type: Optional[pulumi.Input[_builtins.str]] = None,
+                 actions: pulumi.Input[Optional[Sequence[pulumi.Input[Union['NgwafAccountRuleActionArgs', 'NgwafAccountRuleActionArgsDict']]]]] = None,
+                 applies_tos: pulumi.Input[Optional[Sequence[pulumi.Input[_builtins.str]]]] = None,
+                 conditions: pulumi.Input[Optional[Sequence[pulumi.Input[Union['NgwafAccountRuleConditionArgs', 'NgwafAccountRuleConditionArgsDict']]]]] = None,
+                 description: pulumi.Input[Optional[_builtins.str]] = None,
+                 enabled: pulumi.Input[Optional[_builtins.bool]] = None,
+                 group_conditions: pulumi.Input[Optional[Sequence[pulumi.Input[Union['NgwafAccountRuleGroupConditionArgs', 'NgwafAccountRuleGroupConditionArgsDict']]]]] = None,
+                 group_operator: pulumi.Input[Optional[_builtins.str]] = None,
+                 multival_conditions: pulumi.Input[Optional[Sequence[pulumi.Input[Union['NgwafAccountRuleMultivalConditionArgs', 'NgwafAccountRuleMultivalConditionArgsDict']]]]] = None,
+                 request_logging: pulumi.Input[Optional[_builtins.str]] = None,
+                 type: pulumi.Input[Optional[_builtins.str]] = None,
                  __props__=None):
         opts = pulumi.ResourceOptions.merge(_utilities.get_resource_opts_defaults(), opts)
         if not isinstance(opts, pulumi.ResourceOptions):
@@ -543,16 +543,16 @@ class NgwafAccountRule(pulumi.CustomResource):
     def get(resource_name: str,
             id: pulumi.Input[str],
             opts: Optional[pulumi.ResourceOptions] = None,
-            actions: Optional[pulumi.Input[Sequence[pulumi.Input[Union['NgwafAccountRuleActionArgs', 'NgwafAccountRuleActionArgsDict']]]]] = None,
-            applies_tos: Optional[pulumi.Input[Sequence[pulumi.Input[_builtins.str]]]] = None,
-            conditions: Optional[pulumi.Input[Sequence[pulumi.Input[Union['NgwafAccountRuleConditionArgs', 'NgwafAccountRuleConditionArgsDict']]]]] = None,
-            description: Optional[pulumi.Input[_builtins.str]] = None,
-            enabled: Optional[pulumi.Input[_builtins.bool]] = None,
-            group_conditions: Optional[pulumi.Input[Sequence[pulumi.Input[Union['NgwafAccountRuleGroupConditionArgs', 'NgwafAccountRuleGroupConditionArgsDict']]]]] = None,
-            group_operator: Optional[pulumi.Input[_builtins.str]] = None,
-            multival_conditions: Optional[pulumi.Input[Sequence[pulumi.Input[Union['NgwafAccountRuleMultivalConditionArgs', 'NgwafAccountRuleMultivalConditionArgsDict']]]]] = None,
-            request_logging: Optional[pulumi.Input[_builtins.str]] = None,
-            type: Optional[pulumi.Input[_builtins.str]] = None) -> 'NgwafAccountRule':
+            actions: pulumi.Input[Optional[Sequence[pulumi.Input[Union['NgwafAccountRuleActionArgs', 'NgwafAccountRuleActionArgsDict']]]]] = None,
+            applies_tos: pulumi.Input[Optional[Sequence[pulumi.Input[_builtins.str]]]] = None,
+            conditions: pulumi.Input[Optional[Sequence[pulumi.Input[Union['NgwafAccountRuleConditionArgs', 'NgwafAccountRuleConditionArgsDict']]]]] = None,
+            description: pulumi.Input[Optional[_builtins.str]] = None,
+            enabled: pulumi.Input[Optional[_builtins.bool]] = None,
+            group_conditions: pulumi.Input[Optional[Sequence[pulumi.Input[Union['NgwafAccountRuleGroupConditionArgs', 'NgwafAccountRuleGroupConditionArgsDict']]]]] = None,
+            group_operator: pulumi.Input[Optional[_builtins.str]] = None,
+            multival_conditions: pulumi.Input[Optional[Sequence[pulumi.Input[Union['NgwafAccountRuleMultivalConditionArgs', 'NgwafAccountRuleMultivalConditionArgsDict']]]]] = None,
+            request_logging: pulumi.Input[Optional[_builtins.str]] = None,
+            type: pulumi.Input[Optional[_builtins.str]] = None) -> 'NgwafAccountRule':
         """
         Get an existing NgwafAccountRule resource's state with the given name, id, and optional extra
         properties used to qualify the lookup.

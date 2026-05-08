@@ -165,20 +165,20 @@ export interface NgwafWorkspaceListState {
     /**
      * The description of the list.
      */
-    description?: pulumi.Input<string>;
+    description?: pulumi.Input<string | undefined>;
     /**
      * The values in the list.
      */
-    entries?: pulumi.Input<pulumi.Input<string>[]>;
+    entries?: pulumi.Input<pulumi.Input<string>[] | undefined>;
     /**
      * The name of the list.
      */
-    name?: pulumi.Input<string>;
+    name?: pulumi.Input<string | undefined>;
     /**
      * The type of list. Accepted values are `string`, `wildcard`, `ip`, `country`, and `signal`.
      */
-    type?: pulumi.Input<string>;
-    workspaceId?: pulumi.Input<string>;
+    type?: pulumi.Input<string | undefined>;
+    workspaceId?: pulumi.Input<string | undefined>;
 }
 
 /**
@@ -188,7 +188,7 @@ export interface NgwafWorkspaceListArgs {
     /**
      * The description of the list.
      */
-    description?: pulumi.Input<string>;
+    description?: pulumi.Input<string | undefined>;
     /**
      * The values in the list.
      */
@@ -196,7 +196,7 @@ export interface NgwafWorkspaceListArgs {
     /**
      * The name of the list.
      */
-    name?: pulumi.Input<string>;
+    name?: pulumi.Input<string | undefined>;
     /**
      * The type of list. Accepted values are `string`, `wildcard`, `ip`, `country`, and `signal`.
      */

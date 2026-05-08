@@ -21,64 +21,64 @@ __all__ = ['ServiceVclArgs', 'ServiceVcl']
 @pulumi.input_type
 class ServiceVclArgs:
     def __init__(__self__, *,
-                 acls: Optional[pulumi.Input[Sequence[pulumi.Input['ServiceVclAclArgs']]]] = None,
-                 activate: Optional[pulumi.Input[_builtins.bool]] = None,
-                 backends: Optional[pulumi.Input[Sequence[pulumi.Input['ServiceVclBackendArgs']]]] = None,
-                 cache_settings: Optional[pulumi.Input[Sequence[pulumi.Input['ServiceVclCacheSettingArgs']]]] = None,
-                 comment: Optional[pulumi.Input[_builtins.str]] = None,
-                 conditions: Optional[pulumi.Input[Sequence[pulumi.Input['ServiceVclConditionArgs']]]] = None,
-                 default_host: Optional[pulumi.Input[_builtins.str]] = None,
-                 default_ttl: Optional[pulumi.Input[_builtins.int]] = None,
-                 dictionaries: Optional[pulumi.Input[Sequence[pulumi.Input['ServiceVclDictionaryArgs']]]] = None,
-                 directors: Optional[pulumi.Input[Sequence[pulumi.Input['ServiceVclDirectorArgs']]]] = None,
-                 domains: Optional[pulumi.Input[Sequence[pulumi.Input['ServiceVclDomainArgs']]]] = None,
-                 dynamicsnippets: Optional[pulumi.Input[Sequence[pulumi.Input['ServiceVclDynamicsnippetArgs']]]] = None,
-                 force_destroy: Optional[pulumi.Input[_builtins.bool]] = None,
-                 gzips: Optional[pulumi.Input[Sequence[pulumi.Input['ServiceVclGzipArgs']]]] = None,
-                 headers: Optional[pulumi.Input[Sequence[pulumi.Input['ServiceVclHeaderArgs']]]] = None,
-                 healthchecks: Optional[pulumi.Input[Sequence[pulumi.Input['ServiceVclHealthcheckArgs']]]] = None,
-                 http3: Optional[pulumi.Input[_builtins.bool]] = None,
-                 image_optimizer_default_settings: Optional[pulumi.Input['ServiceVclImageOptimizerDefaultSettingsArgs']] = None,
-                 logging_bigqueries: Optional[pulumi.Input[Sequence[pulumi.Input['ServiceVclLoggingBigqueryArgs']]]] = None,
-                 logging_blobstorages: Optional[pulumi.Input[Sequence[pulumi.Input['ServiceVclLoggingBlobstorageArgs']]]] = None,
-                 logging_cloudfiles: Optional[pulumi.Input[Sequence[pulumi.Input['ServiceVclLoggingCloudfileArgs']]]] = None,
-                 logging_datadogs: Optional[pulumi.Input[Sequence[pulumi.Input['ServiceVclLoggingDatadogArgs']]]] = None,
-                 logging_digitaloceans: Optional[pulumi.Input[Sequence[pulumi.Input['ServiceVclLoggingDigitaloceanArgs']]]] = None,
-                 logging_elasticsearches: Optional[pulumi.Input[Sequence[pulumi.Input['ServiceVclLoggingElasticsearchArgs']]]] = None,
-                 logging_ftps: Optional[pulumi.Input[Sequence[pulumi.Input['ServiceVclLoggingFtpArgs']]]] = None,
-                 logging_gcs: Optional[pulumi.Input[Sequence[pulumi.Input['ServiceVclLoggingGcArgs']]]] = None,
-                 logging_googlepubsubs: Optional[pulumi.Input[Sequence[pulumi.Input['ServiceVclLoggingGooglepubsubArgs']]]] = None,
-                 logging_grafanacloudlogs: Optional[pulumi.Input[Sequence[pulumi.Input['ServiceVclLoggingGrafanacloudlogArgs']]]] = None,
-                 logging_herokus: Optional[pulumi.Input[Sequence[pulumi.Input['ServiceVclLoggingHerokusArgs']]]] = None,
-                 logging_honeycombs: Optional[pulumi.Input[Sequence[pulumi.Input['ServiceVclLoggingHoneycombArgs']]]] = None,
-                 logging_https: Optional[pulumi.Input[Sequence[pulumi.Input['ServiceVclLoggingHttpArgs']]]] = None,
-                 logging_kafkas: Optional[pulumi.Input[Sequence[pulumi.Input['ServiceVclLoggingKafkaArgs']]]] = None,
-                 logging_kineses: Optional[pulumi.Input[Sequence[pulumi.Input['ServiceVclLoggingKineseArgs']]]] = None,
-                 logging_logentries: Optional[pulumi.Input[Sequence[pulumi.Input['ServiceVclLoggingLogentryArgs']]]] = None,
-                 logging_logglies: Optional[pulumi.Input[Sequence[pulumi.Input['ServiceVclLoggingLogglyArgs']]]] = None,
-                 logging_logshuttles: Optional[pulumi.Input[Sequence[pulumi.Input['ServiceVclLoggingLogshuttleArgs']]]] = None,
-                 logging_newrelicotlps: Optional[pulumi.Input[Sequence[pulumi.Input['ServiceVclLoggingNewrelicotlpArgs']]]] = None,
-                 logging_newrelics: Optional[pulumi.Input[Sequence[pulumi.Input['ServiceVclLoggingNewrelicArgs']]]] = None,
-                 logging_openstacks: Optional[pulumi.Input[Sequence[pulumi.Input['ServiceVclLoggingOpenstackArgs']]]] = None,
-                 logging_papertrails: Optional[pulumi.Input[Sequence[pulumi.Input['ServiceVclLoggingPapertrailArgs']]]] = None,
-                 logging_s3s: Optional[pulumi.Input[Sequence[pulumi.Input['ServiceVclLoggingS3Args']]]] = None,
-                 logging_scalyrs: Optional[pulumi.Input[Sequence[pulumi.Input['ServiceVclLoggingScalyrArgs']]]] = None,
-                 logging_sftps: Optional[pulumi.Input[Sequence[pulumi.Input['ServiceVclLoggingSftpArgs']]]] = None,
-                 logging_splunks: Optional[pulumi.Input[Sequence[pulumi.Input['ServiceVclLoggingSplunkArgs']]]] = None,
-                 logging_sumologics: Optional[pulumi.Input[Sequence[pulumi.Input['ServiceVclLoggingSumologicArgs']]]] = None,
-                 logging_syslogs: Optional[pulumi.Input[Sequence[pulumi.Input['ServiceVclLoggingSyslogArgs']]]] = None,
-                 name: Optional[pulumi.Input[_builtins.str]] = None,
-                 product_enablement: Optional[pulumi.Input['ServiceVclProductEnablementArgs']] = None,
-                 rate_limiters: Optional[pulumi.Input[Sequence[pulumi.Input['ServiceVclRateLimiterArgs']]]] = None,
-                 request_settings: Optional[pulumi.Input[Sequence[pulumi.Input['ServiceVclRequestSettingArgs']]]] = None,
-                 response_objects: Optional[pulumi.Input[Sequence[pulumi.Input['ServiceVclResponseObjectArgs']]]] = None,
-                 reuse: Optional[pulumi.Input[_builtins.bool]] = None,
-                 snippets: Optional[pulumi.Input[Sequence[pulumi.Input['ServiceVclSnippetArgs']]]] = None,
-                 stage: Optional[pulumi.Input[_builtins.bool]] = None,
-                 stale_if_error: Optional[pulumi.Input[_builtins.bool]] = None,
-                 stale_if_error_ttl: Optional[pulumi.Input[_builtins.int]] = None,
-                 vcls: Optional[pulumi.Input[Sequence[pulumi.Input['ServiceVclVclArgs']]]] = None,
-                 version_comment: Optional[pulumi.Input[_builtins.str]] = None):
+                 acls: pulumi.Input[Optional[Sequence[pulumi.Input['ServiceVclAclArgs']]]] = None,
+                 activate: pulumi.Input[Optional[_builtins.bool]] = None,
+                 backends: pulumi.Input[Optional[Sequence[pulumi.Input['ServiceVclBackendArgs']]]] = None,
+                 cache_settings: pulumi.Input[Optional[Sequence[pulumi.Input['ServiceVclCacheSettingArgs']]]] = None,
+                 comment: pulumi.Input[Optional[_builtins.str]] = None,
+                 conditions: pulumi.Input[Optional[Sequence[pulumi.Input['ServiceVclConditionArgs']]]] = None,
+                 default_host: pulumi.Input[Optional[_builtins.str]] = None,
+                 default_ttl: pulumi.Input[Optional[_builtins.int]] = None,
+                 dictionaries: pulumi.Input[Optional[Sequence[pulumi.Input['ServiceVclDictionaryArgs']]]] = None,
+                 directors: pulumi.Input[Optional[Sequence[pulumi.Input['ServiceVclDirectorArgs']]]] = None,
+                 domains: pulumi.Input[Optional[Sequence[pulumi.Input['ServiceVclDomainArgs']]]] = None,
+                 dynamicsnippets: pulumi.Input[Optional[Sequence[pulumi.Input['ServiceVclDynamicsnippetArgs']]]] = None,
+                 force_destroy: pulumi.Input[Optional[_builtins.bool]] = None,
+                 gzips: pulumi.Input[Optional[Sequence[pulumi.Input['ServiceVclGzipArgs']]]] = None,
+                 headers: pulumi.Input[Optional[Sequence[pulumi.Input['ServiceVclHeaderArgs']]]] = None,
+                 healthchecks: pulumi.Input[Optional[Sequence[pulumi.Input['ServiceVclHealthcheckArgs']]]] = None,
+                 http3: pulumi.Input[Optional[_builtins.bool]] = None,
+                 image_optimizer_default_settings: pulumi.Input[Optional['ServiceVclImageOptimizerDefaultSettingsArgs']] = None,
+                 logging_bigqueries: pulumi.Input[Optional[Sequence[pulumi.Input['ServiceVclLoggingBigqueryArgs']]]] = None,
+                 logging_blobstorages: pulumi.Input[Optional[Sequence[pulumi.Input['ServiceVclLoggingBlobstorageArgs']]]] = None,
+                 logging_cloudfiles: pulumi.Input[Optional[Sequence[pulumi.Input['ServiceVclLoggingCloudfileArgs']]]] = None,
+                 logging_datadogs: pulumi.Input[Optional[Sequence[pulumi.Input['ServiceVclLoggingDatadogArgs']]]] = None,
+                 logging_digitaloceans: pulumi.Input[Optional[Sequence[pulumi.Input['ServiceVclLoggingDigitaloceanArgs']]]] = None,
+                 logging_elasticsearches: pulumi.Input[Optional[Sequence[pulumi.Input['ServiceVclLoggingElasticsearchArgs']]]] = None,
+                 logging_ftps: pulumi.Input[Optional[Sequence[pulumi.Input['ServiceVclLoggingFtpArgs']]]] = None,
+                 logging_gcs: pulumi.Input[Optional[Sequence[pulumi.Input['ServiceVclLoggingGcArgs']]]] = None,
+                 logging_googlepubsubs: pulumi.Input[Optional[Sequence[pulumi.Input['ServiceVclLoggingGooglepubsubArgs']]]] = None,
+                 logging_grafanacloudlogs: pulumi.Input[Optional[Sequence[pulumi.Input['ServiceVclLoggingGrafanacloudlogArgs']]]] = None,
+                 logging_herokus: pulumi.Input[Optional[Sequence[pulumi.Input['ServiceVclLoggingHerokusArgs']]]] = None,
+                 logging_honeycombs: pulumi.Input[Optional[Sequence[pulumi.Input['ServiceVclLoggingHoneycombArgs']]]] = None,
+                 logging_https: pulumi.Input[Optional[Sequence[pulumi.Input['ServiceVclLoggingHttpArgs']]]] = None,
+                 logging_kafkas: pulumi.Input[Optional[Sequence[pulumi.Input['ServiceVclLoggingKafkaArgs']]]] = None,
+                 logging_kineses: pulumi.Input[Optional[Sequence[pulumi.Input['ServiceVclLoggingKineseArgs']]]] = None,
+                 logging_logentries: pulumi.Input[Optional[Sequence[pulumi.Input['ServiceVclLoggingLogentryArgs']]]] = None,
+                 logging_logglies: pulumi.Input[Optional[Sequence[pulumi.Input['ServiceVclLoggingLogglyArgs']]]] = None,
+                 logging_logshuttles: pulumi.Input[Optional[Sequence[pulumi.Input['ServiceVclLoggingLogshuttleArgs']]]] = None,
+                 logging_newrelicotlps: pulumi.Input[Optional[Sequence[pulumi.Input['ServiceVclLoggingNewrelicotlpArgs']]]] = None,
+                 logging_newrelics: pulumi.Input[Optional[Sequence[pulumi.Input['ServiceVclLoggingNewrelicArgs']]]] = None,
+                 logging_openstacks: pulumi.Input[Optional[Sequence[pulumi.Input['ServiceVclLoggingOpenstackArgs']]]] = None,
+                 logging_papertrails: pulumi.Input[Optional[Sequence[pulumi.Input['ServiceVclLoggingPapertrailArgs']]]] = None,
+                 logging_s3s: pulumi.Input[Optional[Sequence[pulumi.Input['ServiceVclLoggingS3Args']]]] = None,
+                 logging_scalyrs: pulumi.Input[Optional[Sequence[pulumi.Input['ServiceVclLoggingScalyrArgs']]]] = None,
+                 logging_sftps: pulumi.Input[Optional[Sequence[pulumi.Input['ServiceVclLoggingSftpArgs']]]] = None,
+                 logging_splunks: pulumi.Input[Optional[Sequence[pulumi.Input['ServiceVclLoggingSplunkArgs']]]] = None,
+                 logging_sumologics: pulumi.Input[Optional[Sequence[pulumi.Input['ServiceVclLoggingSumologicArgs']]]] = None,
+                 logging_syslogs: pulumi.Input[Optional[Sequence[pulumi.Input['ServiceVclLoggingSyslogArgs']]]] = None,
+                 name: pulumi.Input[Optional[_builtins.str]] = None,
+                 product_enablement: pulumi.Input[Optional['ServiceVclProductEnablementArgs']] = None,
+                 rate_limiters: pulumi.Input[Optional[Sequence[pulumi.Input['ServiceVclRateLimiterArgs']]]] = None,
+                 request_settings: pulumi.Input[Optional[Sequence[pulumi.Input['ServiceVclRequestSettingArgs']]]] = None,
+                 response_objects: pulumi.Input[Optional[Sequence[pulumi.Input['ServiceVclResponseObjectArgs']]]] = None,
+                 reuse: pulumi.Input[Optional[_builtins.bool]] = None,
+                 snippets: pulumi.Input[Optional[Sequence[pulumi.Input['ServiceVclSnippetArgs']]]] = None,
+                 stage: pulumi.Input[Optional[_builtins.bool]] = None,
+                 stale_if_error: pulumi.Input[Optional[_builtins.bool]] = None,
+                 stale_if_error_ttl: pulumi.Input[Optional[_builtins.int]] = None,
+                 vcls: pulumi.Input[Optional[Sequence[pulumi.Input['ServiceVclVclArgs']]]] = None,
+                 version_comment: pulumi.Input[Optional[_builtins.str]] = None):
         """
         The set of arguments for constructing a ServiceVcl resource.
 
@@ -215,632 +215,632 @@ class ServiceVclArgs:
 
     @_builtins.property
     @pulumi.getter
-    def acls(self) -> Optional[pulumi.Input[Sequence[pulumi.Input['ServiceVclAclArgs']]]]:
+    def acls(self) -> pulumi.Input[Optional[Sequence[pulumi.Input['ServiceVclAclArgs']]]]:
         return pulumi.get(self, "acls")
 
     @acls.setter
-    def acls(self, value: Optional[pulumi.Input[Sequence[pulumi.Input['ServiceVclAclArgs']]]]):
+    def acls(self, value: pulumi.Input[Optional[Sequence[pulumi.Input['ServiceVclAclArgs']]]]):
         pulumi.set(self, "acls", value)
 
     @_builtins.property
     @pulumi.getter
-    def activate(self) -> Optional[pulumi.Input[_builtins.bool]]:
+    def activate(self) -> pulumi.Input[Optional[_builtins.bool]]:
         """
         Conditionally prevents new service versions from being activated. The apply step will create a new draft version but will not activate it if this is set to `false`. Default `true`
         """
         return pulumi.get(self, "activate")
 
     @activate.setter
-    def activate(self, value: Optional[pulumi.Input[_builtins.bool]]):
+    def activate(self, value: pulumi.Input[Optional[_builtins.bool]]):
         pulumi.set(self, "activate", value)
 
     @_builtins.property
     @pulumi.getter
-    def backends(self) -> Optional[pulumi.Input[Sequence[pulumi.Input['ServiceVclBackendArgs']]]]:
+    def backends(self) -> pulumi.Input[Optional[Sequence[pulumi.Input['ServiceVclBackendArgs']]]]:
         return pulumi.get(self, "backends")
 
     @backends.setter
-    def backends(self, value: Optional[pulumi.Input[Sequence[pulumi.Input['ServiceVclBackendArgs']]]]):
+    def backends(self, value: pulumi.Input[Optional[Sequence[pulumi.Input['ServiceVclBackendArgs']]]]):
         pulumi.set(self, "backends", value)
 
     @_builtins.property
     @pulumi.getter(name="cacheSettings")
-    def cache_settings(self) -> Optional[pulumi.Input[Sequence[pulumi.Input['ServiceVclCacheSettingArgs']]]]:
+    def cache_settings(self) -> pulumi.Input[Optional[Sequence[pulumi.Input['ServiceVclCacheSettingArgs']]]]:
         return pulumi.get(self, "cache_settings")
 
     @cache_settings.setter
-    def cache_settings(self, value: Optional[pulumi.Input[Sequence[pulumi.Input['ServiceVclCacheSettingArgs']]]]):
+    def cache_settings(self, value: pulumi.Input[Optional[Sequence[pulumi.Input['ServiceVclCacheSettingArgs']]]]):
         pulumi.set(self, "cache_settings", value)
 
     @_builtins.property
     @pulumi.getter
-    def comment(self) -> Optional[pulumi.Input[_builtins.str]]:
+    def comment(self) -> pulumi.Input[Optional[_builtins.str]]:
         """
         Description field for the service. Default `Managed by Terraform`
         """
         return pulumi.get(self, "comment")
 
     @comment.setter
-    def comment(self, value: Optional[pulumi.Input[_builtins.str]]):
+    def comment(self, value: pulumi.Input[Optional[_builtins.str]]):
         pulumi.set(self, "comment", value)
 
     @_builtins.property
     @pulumi.getter
-    def conditions(self) -> Optional[pulumi.Input[Sequence[pulumi.Input['ServiceVclConditionArgs']]]]:
+    def conditions(self) -> pulumi.Input[Optional[Sequence[pulumi.Input['ServiceVclConditionArgs']]]]:
         return pulumi.get(self, "conditions")
 
     @conditions.setter
-    def conditions(self, value: Optional[pulumi.Input[Sequence[pulumi.Input['ServiceVclConditionArgs']]]]):
+    def conditions(self, value: pulumi.Input[Optional[Sequence[pulumi.Input['ServiceVclConditionArgs']]]]):
         pulumi.set(self, "conditions", value)
 
     @_builtins.property
     @pulumi.getter(name="defaultHost")
-    def default_host(self) -> Optional[pulumi.Input[_builtins.str]]:
+    def default_host(self) -> pulumi.Input[Optional[_builtins.str]]:
         """
         The default hostname
         """
         return pulumi.get(self, "default_host")
 
     @default_host.setter
-    def default_host(self, value: Optional[pulumi.Input[_builtins.str]]):
+    def default_host(self, value: pulumi.Input[Optional[_builtins.str]]):
         pulumi.set(self, "default_host", value)
 
     @_builtins.property
     @pulumi.getter(name="defaultTtl")
-    def default_ttl(self) -> Optional[pulumi.Input[_builtins.int]]:
+    def default_ttl(self) -> pulumi.Input[Optional[_builtins.int]]:
         """
         The default Time-to-live (TTL) for requests
         """
         return pulumi.get(self, "default_ttl")
 
     @default_ttl.setter
-    def default_ttl(self, value: Optional[pulumi.Input[_builtins.int]]):
+    def default_ttl(self, value: pulumi.Input[Optional[_builtins.int]]):
         pulumi.set(self, "default_ttl", value)
 
     @_builtins.property
     @pulumi.getter
-    def dictionaries(self) -> Optional[pulumi.Input[Sequence[pulumi.Input['ServiceVclDictionaryArgs']]]]:
+    def dictionaries(self) -> pulumi.Input[Optional[Sequence[pulumi.Input['ServiceVclDictionaryArgs']]]]:
         return pulumi.get(self, "dictionaries")
 
     @dictionaries.setter
-    def dictionaries(self, value: Optional[pulumi.Input[Sequence[pulumi.Input['ServiceVclDictionaryArgs']]]]):
+    def dictionaries(self, value: pulumi.Input[Optional[Sequence[pulumi.Input['ServiceVclDictionaryArgs']]]]):
         pulumi.set(self, "dictionaries", value)
 
     @_builtins.property
     @pulumi.getter
-    def directors(self) -> Optional[pulumi.Input[Sequence[pulumi.Input['ServiceVclDirectorArgs']]]]:
+    def directors(self) -> pulumi.Input[Optional[Sequence[pulumi.Input['ServiceVclDirectorArgs']]]]:
         return pulumi.get(self, "directors")
 
     @directors.setter
-    def directors(self, value: Optional[pulumi.Input[Sequence[pulumi.Input['ServiceVclDirectorArgs']]]]):
+    def directors(self, value: pulumi.Input[Optional[Sequence[pulumi.Input['ServiceVclDirectorArgs']]]]):
         pulumi.set(self, "directors", value)
 
     @_builtins.property
     @pulumi.getter
-    def domains(self) -> Optional[pulumi.Input[Sequence[pulumi.Input['ServiceVclDomainArgs']]]]:
+    def domains(self) -> pulumi.Input[Optional[Sequence[pulumi.Input['ServiceVclDomainArgs']]]]:
         """
         A set of Domain names to serve as entry points for your Service
         """
         return pulumi.get(self, "domains")
 
     @domains.setter
-    def domains(self, value: Optional[pulumi.Input[Sequence[pulumi.Input['ServiceVclDomainArgs']]]]):
+    def domains(self, value: pulumi.Input[Optional[Sequence[pulumi.Input['ServiceVclDomainArgs']]]]):
         pulumi.set(self, "domains", value)
 
     @_builtins.property
     @pulumi.getter
-    def dynamicsnippets(self) -> Optional[pulumi.Input[Sequence[pulumi.Input['ServiceVclDynamicsnippetArgs']]]]:
+    def dynamicsnippets(self) -> pulumi.Input[Optional[Sequence[pulumi.Input['ServiceVclDynamicsnippetArgs']]]]:
         return pulumi.get(self, "dynamicsnippets")
 
     @dynamicsnippets.setter
-    def dynamicsnippets(self, value: Optional[pulumi.Input[Sequence[pulumi.Input['ServiceVclDynamicsnippetArgs']]]]):
+    def dynamicsnippets(self, value: pulumi.Input[Optional[Sequence[pulumi.Input['ServiceVclDynamicsnippetArgs']]]]):
         pulumi.set(self, "dynamicsnippets", value)
 
     @_builtins.property
     @pulumi.getter(name="forceDestroy")
-    def force_destroy(self) -> Optional[pulumi.Input[_builtins.bool]]:
+    def force_destroy(self) -> pulumi.Input[Optional[_builtins.bool]]:
         """
         Services that are active cannot be destroyed. In order to destroy the Service, set `force_destroy` to `true`. Default `false`
         """
         return pulumi.get(self, "force_destroy")
 
     @force_destroy.setter
-    def force_destroy(self, value: Optional[pulumi.Input[_builtins.bool]]):
+    def force_destroy(self, value: pulumi.Input[Optional[_builtins.bool]]):
         pulumi.set(self, "force_destroy", value)
 
     @_builtins.property
     @pulumi.getter
-    def gzips(self) -> Optional[pulumi.Input[Sequence[pulumi.Input['ServiceVclGzipArgs']]]]:
+    def gzips(self) -> pulumi.Input[Optional[Sequence[pulumi.Input['ServiceVclGzipArgs']]]]:
         return pulumi.get(self, "gzips")
 
     @gzips.setter
-    def gzips(self, value: Optional[pulumi.Input[Sequence[pulumi.Input['ServiceVclGzipArgs']]]]):
+    def gzips(self, value: pulumi.Input[Optional[Sequence[pulumi.Input['ServiceVclGzipArgs']]]]):
         pulumi.set(self, "gzips", value)
 
     @_builtins.property
     @pulumi.getter
-    def headers(self) -> Optional[pulumi.Input[Sequence[pulumi.Input['ServiceVclHeaderArgs']]]]:
+    def headers(self) -> pulumi.Input[Optional[Sequence[pulumi.Input['ServiceVclHeaderArgs']]]]:
         return pulumi.get(self, "headers")
 
     @headers.setter
-    def headers(self, value: Optional[pulumi.Input[Sequence[pulumi.Input['ServiceVclHeaderArgs']]]]):
+    def headers(self, value: pulumi.Input[Optional[Sequence[pulumi.Input['ServiceVclHeaderArgs']]]]):
         pulumi.set(self, "headers", value)
 
     @_builtins.property
     @pulumi.getter
-    def healthchecks(self) -> Optional[pulumi.Input[Sequence[pulumi.Input['ServiceVclHealthcheckArgs']]]]:
+    def healthchecks(self) -> pulumi.Input[Optional[Sequence[pulumi.Input['ServiceVclHealthcheckArgs']]]]:
         return pulumi.get(self, "healthchecks")
 
     @healthchecks.setter
-    def healthchecks(self, value: Optional[pulumi.Input[Sequence[pulumi.Input['ServiceVclHealthcheckArgs']]]]):
+    def healthchecks(self, value: pulumi.Input[Optional[Sequence[pulumi.Input['ServiceVclHealthcheckArgs']]]]):
         pulumi.set(self, "healthchecks", value)
 
     @_builtins.property
     @pulumi.getter
-    def http3(self) -> Optional[pulumi.Input[_builtins.bool]]:
+    def http3(self) -> pulumi.Input[Optional[_builtins.bool]]:
         """
         Enables support for the HTTP/3 (QUIC) protocol
         """
         return pulumi.get(self, "http3")
 
     @http3.setter
-    def http3(self, value: Optional[pulumi.Input[_builtins.bool]]):
+    def http3(self, value: pulumi.Input[Optional[_builtins.bool]]):
         pulumi.set(self, "http3", value)
 
     @_builtins.property
     @pulumi.getter(name="imageOptimizerDefaultSettings")
-    def image_optimizer_default_settings(self) -> Optional[pulumi.Input['ServiceVclImageOptimizerDefaultSettingsArgs']]:
+    def image_optimizer_default_settings(self) -> pulumi.Input[Optional['ServiceVclImageOptimizerDefaultSettingsArgs']]:
         return pulumi.get(self, "image_optimizer_default_settings")
 
     @image_optimizer_default_settings.setter
-    def image_optimizer_default_settings(self, value: Optional[pulumi.Input['ServiceVclImageOptimizerDefaultSettingsArgs']]):
+    def image_optimizer_default_settings(self, value: pulumi.Input[Optional['ServiceVclImageOptimizerDefaultSettingsArgs']]):
         pulumi.set(self, "image_optimizer_default_settings", value)
 
     @_builtins.property
     @pulumi.getter(name="loggingBigqueries")
-    def logging_bigqueries(self) -> Optional[pulumi.Input[Sequence[pulumi.Input['ServiceVclLoggingBigqueryArgs']]]]:
+    def logging_bigqueries(self) -> pulumi.Input[Optional[Sequence[pulumi.Input['ServiceVclLoggingBigqueryArgs']]]]:
         return pulumi.get(self, "logging_bigqueries")
 
     @logging_bigqueries.setter
-    def logging_bigqueries(self, value: Optional[pulumi.Input[Sequence[pulumi.Input['ServiceVclLoggingBigqueryArgs']]]]):
+    def logging_bigqueries(self, value: pulumi.Input[Optional[Sequence[pulumi.Input['ServiceVclLoggingBigqueryArgs']]]]):
         pulumi.set(self, "logging_bigqueries", value)
 
     @_builtins.property
     @pulumi.getter(name="loggingBlobstorages")
-    def logging_blobstorages(self) -> Optional[pulumi.Input[Sequence[pulumi.Input['ServiceVclLoggingBlobstorageArgs']]]]:
+    def logging_blobstorages(self) -> pulumi.Input[Optional[Sequence[pulumi.Input['ServiceVclLoggingBlobstorageArgs']]]]:
         return pulumi.get(self, "logging_blobstorages")
 
     @logging_blobstorages.setter
-    def logging_blobstorages(self, value: Optional[pulumi.Input[Sequence[pulumi.Input['ServiceVclLoggingBlobstorageArgs']]]]):
+    def logging_blobstorages(self, value: pulumi.Input[Optional[Sequence[pulumi.Input['ServiceVclLoggingBlobstorageArgs']]]]):
         pulumi.set(self, "logging_blobstorages", value)
 
     @_builtins.property
     @pulumi.getter(name="loggingCloudfiles")
-    def logging_cloudfiles(self) -> Optional[pulumi.Input[Sequence[pulumi.Input['ServiceVclLoggingCloudfileArgs']]]]:
+    def logging_cloudfiles(self) -> pulumi.Input[Optional[Sequence[pulumi.Input['ServiceVclLoggingCloudfileArgs']]]]:
         return pulumi.get(self, "logging_cloudfiles")
 
     @logging_cloudfiles.setter
-    def logging_cloudfiles(self, value: Optional[pulumi.Input[Sequence[pulumi.Input['ServiceVclLoggingCloudfileArgs']]]]):
+    def logging_cloudfiles(self, value: pulumi.Input[Optional[Sequence[pulumi.Input['ServiceVclLoggingCloudfileArgs']]]]):
         pulumi.set(self, "logging_cloudfiles", value)
 
     @_builtins.property
     @pulumi.getter(name="loggingDatadogs")
-    def logging_datadogs(self) -> Optional[pulumi.Input[Sequence[pulumi.Input['ServiceVclLoggingDatadogArgs']]]]:
+    def logging_datadogs(self) -> pulumi.Input[Optional[Sequence[pulumi.Input['ServiceVclLoggingDatadogArgs']]]]:
         return pulumi.get(self, "logging_datadogs")
 
     @logging_datadogs.setter
-    def logging_datadogs(self, value: Optional[pulumi.Input[Sequence[pulumi.Input['ServiceVclLoggingDatadogArgs']]]]):
+    def logging_datadogs(self, value: pulumi.Input[Optional[Sequence[pulumi.Input['ServiceVclLoggingDatadogArgs']]]]):
         pulumi.set(self, "logging_datadogs", value)
 
     @_builtins.property
     @pulumi.getter(name="loggingDigitaloceans")
-    def logging_digitaloceans(self) -> Optional[pulumi.Input[Sequence[pulumi.Input['ServiceVclLoggingDigitaloceanArgs']]]]:
+    def logging_digitaloceans(self) -> pulumi.Input[Optional[Sequence[pulumi.Input['ServiceVclLoggingDigitaloceanArgs']]]]:
         return pulumi.get(self, "logging_digitaloceans")
 
     @logging_digitaloceans.setter
-    def logging_digitaloceans(self, value: Optional[pulumi.Input[Sequence[pulumi.Input['ServiceVclLoggingDigitaloceanArgs']]]]):
+    def logging_digitaloceans(self, value: pulumi.Input[Optional[Sequence[pulumi.Input['ServiceVclLoggingDigitaloceanArgs']]]]):
         pulumi.set(self, "logging_digitaloceans", value)
 
     @_builtins.property
     @pulumi.getter(name="loggingElasticsearches")
-    def logging_elasticsearches(self) -> Optional[pulumi.Input[Sequence[pulumi.Input['ServiceVclLoggingElasticsearchArgs']]]]:
+    def logging_elasticsearches(self) -> pulumi.Input[Optional[Sequence[pulumi.Input['ServiceVclLoggingElasticsearchArgs']]]]:
         return pulumi.get(self, "logging_elasticsearches")
 
     @logging_elasticsearches.setter
-    def logging_elasticsearches(self, value: Optional[pulumi.Input[Sequence[pulumi.Input['ServiceVclLoggingElasticsearchArgs']]]]):
+    def logging_elasticsearches(self, value: pulumi.Input[Optional[Sequence[pulumi.Input['ServiceVclLoggingElasticsearchArgs']]]]):
         pulumi.set(self, "logging_elasticsearches", value)
 
     @_builtins.property
     @pulumi.getter(name="loggingFtps")
-    def logging_ftps(self) -> Optional[pulumi.Input[Sequence[pulumi.Input['ServiceVclLoggingFtpArgs']]]]:
+    def logging_ftps(self) -> pulumi.Input[Optional[Sequence[pulumi.Input['ServiceVclLoggingFtpArgs']]]]:
         return pulumi.get(self, "logging_ftps")
 
     @logging_ftps.setter
-    def logging_ftps(self, value: Optional[pulumi.Input[Sequence[pulumi.Input['ServiceVclLoggingFtpArgs']]]]):
+    def logging_ftps(self, value: pulumi.Input[Optional[Sequence[pulumi.Input['ServiceVclLoggingFtpArgs']]]]):
         pulumi.set(self, "logging_ftps", value)
 
     @_builtins.property
     @pulumi.getter(name="loggingGcs")
-    def logging_gcs(self) -> Optional[pulumi.Input[Sequence[pulumi.Input['ServiceVclLoggingGcArgs']]]]:
+    def logging_gcs(self) -> pulumi.Input[Optional[Sequence[pulumi.Input['ServiceVclLoggingGcArgs']]]]:
         return pulumi.get(self, "logging_gcs")
 
     @logging_gcs.setter
-    def logging_gcs(self, value: Optional[pulumi.Input[Sequence[pulumi.Input['ServiceVclLoggingGcArgs']]]]):
+    def logging_gcs(self, value: pulumi.Input[Optional[Sequence[pulumi.Input['ServiceVclLoggingGcArgs']]]]):
         pulumi.set(self, "logging_gcs", value)
 
     @_builtins.property
     @pulumi.getter(name="loggingGooglepubsubs")
-    def logging_googlepubsubs(self) -> Optional[pulumi.Input[Sequence[pulumi.Input['ServiceVclLoggingGooglepubsubArgs']]]]:
+    def logging_googlepubsubs(self) -> pulumi.Input[Optional[Sequence[pulumi.Input['ServiceVclLoggingGooglepubsubArgs']]]]:
         return pulumi.get(self, "logging_googlepubsubs")
 
     @logging_googlepubsubs.setter
-    def logging_googlepubsubs(self, value: Optional[pulumi.Input[Sequence[pulumi.Input['ServiceVclLoggingGooglepubsubArgs']]]]):
+    def logging_googlepubsubs(self, value: pulumi.Input[Optional[Sequence[pulumi.Input['ServiceVclLoggingGooglepubsubArgs']]]]):
         pulumi.set(self, "logging_googlepubsubs", value)
 
     @_builtins.property
     @pulumi.getter(name="loggingGrafanacloudlogs")
-    def logging_grafanacloudlogs(self) -> Optional[pulumi.Input[Sequence[pulumi.Input['ServiceVclLoggingGrafanacloudlogArgs']]]]:
+    def logging_grafanacloudlogs(self) -> pulumi.Input[Optional[Sequence[pulumi.Input['ServiceVclLoggingGrafanacloudlogArgs']]]]:
         return pulumi.get(self, "logging_grafanacloudlogs")
 
     @logging_grafanacloudlogs.setter
-    def logging_grafanacloudlogs(self, value: Optional[pulumi.Input[Sequence[pulumi.Input['ServiceVclLoggingGrafanacloudlogArgs']]]]):
+    def logging_grafanacloudlogs(self, value: pulumi.Input[Optional[Sequence[pulumi.Input['ServiceVclLoggingGrafanacloudlogArgs']]]]):
         pulumi.set(self, "logging_grafanacloudlogs", value)
 
     @_builtins.property
     @pulumi.getter(name="loggingHerokus")
-    def logging_herokus(self) -> Optional[pulumi.Input[Sequence[pulumi.Input['ServiceVclLoggingHerokusArgs']]]]:
+    def logging_herokus(self) -> pulumi.Input[Optional[Sequence[pulumi.Input['ServiceVclLoggingHerokusArgs']]]]:
         return pulumi.get(self, "logging_herokus")
 
     @logging_herokus.setter
-    def logging_herokus(self, value: Optional[pulumi.Input[Sequence[pulumi.Input['ServiceVclLoggingHerokusArgs']]]]):
+    def logging_herokus(self, value: pulumi.Input[Optional[Sequence[pulumi.Input['ServiceVclLoggingHerokusArgs']]]]):
         pulumi.set(self, "logging_herokus", value)
 
     @_builtins.property
     @pulumi.getter(name="loggingHoneycombs")
-    def logging_honeycombs(self) -> Optional[pulumi.Input[Sequence[pulumi.Input['ServiceVclLoggingHoneycombArgs']]]]:
+    def logging_honeycombs(self) -> pulumi.Input[Optional[Sequence[pulumi.Input['ServiceVclLoggingHoneycombArgs']]]]:
         return pulumi.get(self, "logging_honeycombs")
 
     @logging_honeycombs.setter
-    def logging_honeycombs(self, value: Optional[pulumi.Input[Sequence[pulumi.Input['ServiceVclLoggingHoneycombArgs']]]]):
+    def logging_honeycombs(self, value: pulumi.Input[Optional[Sequence[pulumi.Input['ServiceVclLoggingHoneycombArgs']]]]):
         pulumi.set(self, "logging_honeycombs", value)
 
     @_builtins.property
     @pulumi.getter(name="loggingHttps")
-    def logging_https(self) -> Optional[pulumi.Input[Sequence[pulumi.Input['ServiceVclLoggingHttpArgs']]]]:
+    def logging_https(self) -> pulumi.Input[Optional[Sequence[pulumi.Input['ServiceVclLoggingHttpArgs']]]]:
         return pulumi.get(self, "logging_https")
 
     @logging_https.setter
-    def logging_https(self, value: Optional[pulumi.Input[Sequence[pulumi.Input['ServiceVclLoggingHttpArgs']]]]):
+    def logging_https(self, value: pulumi.Input[Optional[Sequence[pulumi.Input['ServiceVclLoggingHttpArgs']]]]):
         pulumi.set(self, "logging_https", value)
 
     @_builtins.property
     @pulumi.getter(name="loggingKafkas")
-    def logging_kafkas(self) -> Optional[pulumi.Input[Sequence[pulumi.Input['ServiceVclLoggingKafkaArgs']]]]:
+    def logging_kafkas(self) -> pulumi.Input[Optional[Sequence[pulumi.Input['ServiceVclLoggingKafkaArgs']]]]:
         return pulumi.get(self, "logging_kafkas")
 
     @logging_kafkas.setter
-    def logging_kafkas(self, value: Optional[pulumi.Input[Sequence[pulumi.Input['ServiceVclLoggingKafkaArgs']]]]):
+    def logging_kafkas(self, value: pulumi.Input[Optional[Sequence[pulumi.Input['ServiceVclLoggingKafkaArgs']]]]):
         pulumi.set(self, "logging_kafkas", value)
 
     @_builtins.property
     @pulumi.getter(name="loggingKineses")
-    def logging_kineses(self) -> Optional[pulumi.Input[Sequence[pulumi.Input['ServiceVclLoggingKineseArgs']]]]:
+    def logging_kineses(self) -> pulumi.Input[Optional[Sequence[pulumi.Input['ServiceVclLoggingKineseArgs']]]]:
         return pulumi.get(self, "logging_kineses")
 
     @logging_kineses.setter
-    def logging_kineses(self, value: Optional[pulumi.Input[Sequence[pulumi.Input['ServiceVclLoggingKineseArgs']]]]):
+    def logging_kineses(self, value: pulumi.Input[Optional[Sequence[pulumi.Input['ServiceVclLoggingKineseArgs']]]]):
         pulumi.set(self, "logging_kineses", value)
 
     @_builtins.property
     @pulumi.getter(name="loggingLogentries")
-    def logging_logentries(self) -> Optional[pulumi.Input[Sequence[pulumi.Input['ServiceVclLoggingLogentryArgs']]]]:
+    def logging_logentries(self) -> pulumi.Input[Optional[Sequence[pulumi.Input['ServiceVclLoggingLogentryArgs']]]]:
         return pulumi.get(self, "logging_logentries")
 
     @logging_logentries.setter
-    def logging_logentries(self, value: Optional[pulumi.Input[Sequence[pulumi.Input['ServiceVclLoggingLogentryArgs']]]]):
+    def logging_logentries(self, value: pulumi.Input[Optional[Sequence[pulumi.Input['ServiceVclLoggingLogentryArgs']]]]):
         pulumi.set(self, "logging_logentries", value)
 
     @_builtins.property
     @pulumi.getter(name="loggingLogglies")
-    def logging_logglies(self) -> Optional[pulumi.Input[Sequence[pulumi.Input['ServiceVclLoggingLogglyArgs']]]]:
+    def logging_logglies(self) -> pulumi.Input[Optional[Sequence[pulumi.Input['ServiceVclLoggingLogglyArgs']]]]:
         return pulumi.get(self, "logging_logglies")
 
     @logging_logglies.setter
-    def logging_logglies(self, value: Optional[pulumi.Input[Sequence[pulumi.Input['ServiceVclLoggingLogglyArgs']]]]):
+    def logging_logglies(self, value: pulumi.Input[Optional[Sequence[pulumi.Input['ServiceVclLoggingLogglyArgs']]]]):
         pulumi.set(self, "logging_logglies", value)
 
     @_builtins.property
     @pulumi.getter(name="loggingLogshuttles")
-    def logging_logshuttles(self) -> Optional[pulumi.Input[Sequence[pulumi.Input['ServiceVclLoggingLogshuttleArgs']]]]:
+    def logging_logshuttles(self) -> pulumi.Input[Optional[Sequence[pulumi.Input['ServiceVclLoggingLogshuttleArgs']]]]:
         return pulumi.get(self, "logging_logshuttles")
 
     @logging_logshuttles.setter
-    def logging_logshuttles(self, value: Optional[pulumi.Input[Sequence[pulumi.Input['ServiceVclLoggingLogshuttleArgs']]]]):
+    def logging_logshuttles(self, value: pulumi.Input[Optional[Sequence[pulumi.Input['ServiceVclLoggingLogshuttleArgs']]]]):
         pulumi.set(self, "logging_logshuttles", value)
 
     @_builtins.property
     @pulumi.getter(name="loggingNewrelicotlps")
-    def logging_newrelicotlps(self) -> Optional[pulumi.Input[Sequence[pulumi.Input['ServiceVclLoggingNewrelicotlpArgs']]]]:
+    def logging_newrelicotlps(self) -> pulumi.Input[Optional[Sequence[pulumi.Input['ServiceVclLoggingNewrelicotlpArgs']]]]:
         return pulumi.get(self, "logging_newrelicotlps")
 
     @logging_newrelicotlps.setter
-    def logging_newrelicotlps(self, value: Optional[pulumi.Input[Sequence[pulumi.Input['ServiceVclLoggingNewrelicotlpArgs']]]]):
+    def logging_newrelicotlps(self, value: pulumi.Input[Optional[Sequence[pulumi.Input['ServiceVclLoggingNewrelicotlpArgs']]]]):
         pulumi.set(self, "logging_newrelicotlps", value)
 
     @_builtins.property
     @pulumi.getter(name="loggingNewrelics")
-    def logging_newrelics(self) -> Optional[pulumi.Input[Sequence[pulumi.Input['ServiceVclLoggingNewrelicArgs']]]]:
+    def logging_newrelics(self) -> pulumi.Input[Optional[Sequence[pulumi.Input['ServiceVclLoggingNewrelicArgs']]]]:
         return pulumi.get(self, "logging_newrelics")
 
     @logging_newrelics.setter
-    def logging_newrelics(self, value: Optional[pulumi.Input[Sequence[pulumi.Input['ServiceVclLoggingNewrelicArgs']]]]):
+    def logging_newrelics(self, value: pulumi.Input[Optional[Sequence[pulumi.Input['ServiceVclLoggingNewrelicArgs']]]]):
         pulumi.set(self, "logging_newrelics", value)
 
     @_builtins.property
     @pulumi.getter(name="loggingOpenstacks")
-    def logging_openstacks(self) -> Optional[pulumi.Input[Sequence[pulumi.Input['ServiceVclLoggingOpenstackArgs']]]]:
+    def logging_openstacks(self) -> pulumi.Input[Optional[Sequence[pulumi.Input['ServiceVclLoggingOpenstackArgs']]]]:
         return pulumi.get(self, "logging_openstacks")
 
     @logging_openstacks.setter
-    def logging_openstacks(self, value: Optional[pulumi.Input[Sequence[pulumi.Input['ServiceVclLoggingOpenstackArgs']]]]):
+    def logging_openstacks(self, value: pulumi.Input[Optional[Sequence[pulumi.Input['ServiceVclLoggingOpenstackArgs']]]]):
         pulumi.set(self, "logging_openstacks", value)
 
     @_builtins.property
     @pulumi.getter(name="loggingPapertrails")
-    def logging_papertrails(self) -> Optional[pulumi.Input[Sequence[pulumi.Input['ServiceVclLoggingPapertrailArgs']]]]:
+    def logging_papertrails(self) -> pulumi.Input[Optional[Sequence[pulumi.Input['ServiceVclLoggingPapertrailArgs']]]]:
         return pulumi.get(self, "logging_papertrails")
 
     @logging_papertrails.setter
-    def logging_papertrails(self, value: Optional[pulumi.Input[Sequence[pulumi.Input['ServiceVclLoggingPapertrailArgs']]]]):
+    def logging_papertrails(self, value: pulumi.Input[Optional[Sequence[pulumi.Input['ServiceVclLoggingPapertrailArgs']]]]):
         pulumi.set(self, "logging_papertrails", value)
 
     @_builtins.property
     @pulumi.getter(name="loggingS3s")
-    def logging_s3s(self) -> Optional[pulumi.Input[Sequence[pulumi.Input['ServiceVclLoggingS3Args']]]]:
+    def logging_s3s(self) -> pulumi.Input[Optional[Sequence[pulumi.Input['ServiceVclLoggingS3Args']]]]:
         return pulumi.get(self, "logging_s3s")
 
     @logging_s3s.setter
-    def logging_s3s(self, value: Optional[pulumi.Input[Sequence[pulumi.Input['ServiceVclLoggingS3Args']]]]):
+    def logging_s3s(self, value: pulumi.Input[Optional[Sequence[pulumi.Input['ServiceVclLoggingS3Args']]]]):
         pulumi.set(self, "logging_s3s", value)
 
     @_builtins.property
     @pulumi.getter(name="loggingScalyrs")
-    def logging_scalyrs(self) -> Optional[pulumi.Input[Sequence[pulumi.Input['ServiceVclLoggingScalyrArgs']]]]:
+    def logging_scalyrs(self) -> pulumi.Input[Optional[Sequence[pulumi.Input['ServiceVclLoggingScalyrArgs']]]]:
         return pulumi.get(self, "logging_scalyrs")
 
     @logging_scalyrs.setter
-    def logging_scalyrs(self, value: Optional[pulumi.Input[Sequence[pulumi.Input['ServiceVclLoggingScalyrArgs']]]]):
+    def logging_scalyrs(self, value: pulumi.Input[Optional[Sequence[pulumi.Input['ServiceVclLoggingScalyrArgs']]]]):
         pulumi.set(self, "logging_scalyrs", value)
 
     @_builtins.property
     @pulumi.getter(name="loggingSftps")
-    def logging_sftps(self) -> Optional[pulumi.Input[Sequence[pulumi.Input['ServiceVclLoggingSftpArgs']]]]:
+    def logging_sftps(self) -> pulumi.Input[Optional[Sequence[pulumi.Input['ServiceVclLoggingSftpArgs']]]]:
         return pulumi.get(self, "logging_sftps")
 
     @logging_sftps.setter
-    def logging_sftps(self, value: Optional[pulumi.Input[Sequence[pulumi.Input['ServiceVclLoggingSftpArgs']]]]):
+    def logging_sftps(self, value: pulumi.Input[Optional[Sequence[pulumi.Input['ServiceVclLoggingSftpArgs']]]]):
         pulumi.set(self, "logging_sftps", value)
 
     @_builtins.property
     @pulumi.getter(name="loggingSplunks")
-    def logging_splunks(self) -> Optional[pulumi.Input[Sequence[pulumi.Input['ServiceVclLoggingSplunkArgs']]]]:
+    def logging_splunks(self) -> pulumi.Input[Optional[Sequence[pulumi.Input['ServiceVclLoggingSplunkArgs']]]]:
         return pulumi.get(self, "logging_splunks")
 
     @logging_splunks.setter
-    def logging_splunks(self, value: Optional[pulumi.Input[Sequence[pulumi.Input['ServiceVclLoggingSplunkArgs']]]]):
+    def logging_splunks(self, value: pulumi.Input[Optional[Sequence[pulumi.Input['ServiceVclLoggingSplunkArgs']]]]):
         pulumi.set(self, "logging_splunks", value)
 
     @_builtins.property
     @pulumi.getter(name="loggingSumologics")
-    def logging_sumologics(self) -> Optional[pulumi.Input[Sequence[pulumi.Input['ServiceVclLoggingSumologicArgs']]]]:
+    def logging_sumologics(self) -> pulumi.Input[Optional[Sequence[pulumi.Input['ServiceVclLoggingSumologicArgs']]]]:
         return pulumi.get(self, "logging_sumologics")
 
     @logging_sumologics.setter
-    def logging_sumologics(self, value: Optional[pulumi.Input[Sequence[pulumi.Input['ServiceVclLoggingSumologicArgs']]]]):
+    def logging_sumologics(self, value: pulumi.Input[Optional[Sequence[pulumi.Input['ServiceVclLoggingSumologicArgs']]]]):
         pulumi.set(self, "logging_sumologics", value)
 
     @_builtins.property
     @pulumi.getter(name="loggingSyslogs")
-    def logging_syslogs(self) -> Optional[pulumi.Input[Sequence[pulumi.Input['ServiceVclLoggingSyslogArgs']]]]:
+    def logging_syslogs(self) -> pulumi.Input[Optional[Sequence[pulumi.Input['ServiceVclLoggingSyslogArgs']]]]:
         return pulumi.get(self, "logging_syslogs")
 
     @logging_syslogs.setter
-    def logging_syslogs(self, value: Optional[pulumi.Input[Sequence[pulumi.Input['ServiceVclLoggingSyslogArgs']]]]):
+    def logging_syslogs(self, value: pulumi.Input[Optional[Sequence[pulumi.Input['ServiceVclLoggingSyslogArgs']]]]):
         pulumi.set(self, "logging_syslogs", value)
 
     @_builtins.property
     @pulumi.getter
-    def name(self) -> Optional[pulumi.Input[_builtins.str]]:
+    def name(self) -> pulumi.Input[Optional[_builtins.str]]:
         """
         The unique name for the Service to create
         """
         return pulumi.get(self, "name")
 
     @name.setter
-    def name(self, value: Optional[pulumi.Input[_builtins.str]]):
+    def name(self, value: pulumi.Input[Optional[_builtins.str]]):
         pulumi.set(self, "name", value)
 
     @_builtins.property
     @pulumi.getter(name="productEnablement")
-    def product_enablement(self) -> Optional[pulumi.Input['ServiceVclProductEnablementArgs']]:
+    def product_enablement(self) -> pulumi.Input[Optional['ServiceVclProductEnablementArgs']]:
         return pulumi.get(self, "product_enablement")
 
     @product_enablement.setter
-    def product_enablement(self, value: Optional[pulumi.Input['ServiceVclProductEnablementArgs']]):
+    def product_enablement(self, value: pulumi.Input[Optional['ServiceVclProductEnablementArgs']]):
         pulumi.set(self, "product_enablement", value)
 
     @_builtins.property
     @pulumi.getter(name="rateLimiters")
-    def rate_limiters(self) -> Optional[pulumi.Input[Sequence[pulumi.Input['ServiceVclRateLimiterArgs']]]]:
+    def rate_limiters(self) -> pulumi.Input[Optional[Sequence[pulumi.Input['ServiceVclRateLimiterArgs']]]]:
         return pulumi.get(self, "rate_limiters")
 
     @rate_limiters.setter
-    def rate_limiters(self, value: Optional[pulumi.Input[Sequence[pulumi.Input['ServiceVclRateLimiterArgs']]]]):
+    def rate_limiters(self, value: pulumi.Input[Optional[Sequence[pulumi.Input['ServiceVclRateLimiterArgs']]]]):
         pulumi.set(self, "rate_limiters", value)
 
     @_builtins.property
     @pulumi.getter(name="requestSettings")
-    def request_settings(self) -> Optional[pulumi.Input[Sequence[pulumi.Input['ServiceVclRequestSettingArgs']]]]:
+    def request_settings(self) -> pulumi.Input[Optional[Sequence[pulumi.Input['ServiceVclRequestSettingArgs']]]]:
         return pulumi.get(self, "request_settings")
 
     @request_settings.setter
-    def request_settings(self, value: Optional[pulumi.Input[Sequence[pulumi.Input['ServiceVclRequestSettingArgs']]]]):
+    def request_settings(self, value: pulumi.Input[Optional[Sequence[pulumi.Input['ServiceVclRequestSettingArgs']]]]):
         pulumi.set(self, "request_settings", value)
 
     @_builtins.property
     @pulumi.getter(name="responseObjects")
-    def response_objects(self) -> Optional[pulumi.Input[Sequence[pulumi.Input['ServiceVclResponseObjectArgs']]]]:
+    def response_objects(self) -> pulumi.Input[Optional[Sequence[pulumi.Input['ServiceVclResponseObjectArgs']]]]:
         return pulumi.get(self, "response_objects")
 
     @response_objects.setter
-    def response_objects(self, value: Optional[pulumi.Input[Sequence[pulumi.Input['ServiceVclResponseObjectArgs']]]]):
+    def response_objects(self, value: pulumi.Input[Optional[Sequence[pulumi.Input['ServiceVclResponseObjectArgs']]]]):
         pulumi.set(self, "response_objects", value)
 
     @_builtins.property
     @pulumi.getter
-    def reuse(self) -> Optional[pulumi.Input[_builtins.bool]]:
+    def reuse(self) -> pulumi.Input[Optional[_builtins.bool]]:
         """
         Services that are active cannot be destroyed. If set to `true` a service Terraform intends to destroy will instead be deactivated (allowing it to be reused by importing it into another Terraform project). If `false`, attempting to destroy an active service will cause an error. Default `false`
         """
         return pulumi.get(self, "reuse")
 
     @reuse.setter
-    def reuse(self, value: Optional[pulumi.Input[_builtins.bool]]):
+    def reuse(self, value: pulumi.Input[Optional[_builtins.bool]]):
         pulumi.set(self, "reuse", value)
 
     @_builtins.property
     @pulumi.getter
-    def snippets(self) -> Optional[pulumi.Input[Sequence[pulumi.Input['ServiceVclSnippetArgs']]]]:
+    def snippets(self) -> pulumi.Input[Optional[Sequence[pulumi.Input['ServiceVclSnippetArgs']]]]:
         return pulumi.get(self, "snippets")
 
     @snippets.setter
-    def snippets(self, value: Optional[pulumi.Input[Sequence[pulumi.Input['ServiceVclSnippetArgs']]]]):
+    def snippets(self, value: pulumi.Input[Optional[Sequence[pulumi.Input['ServiceVclSnippetArgs']]]]):
         pulumi.set(self, "snippets", value)
 
     @_builtins.property
     @pulumi.getter
-    def stage(self) -> Optional[pulumi.Input[_builtins.bool]]:
+    def stage(self) -> pulumi.Input[Optional[_builtins.bool]]:
         """
         Conditionally enables new service versions to be staged. If set to `true`, all changes made by an `apply` step will be staged, even if `apply` did not create a new draft version. Default `false`
         """
         return pulumi.get(self, "stage")
 
     @stage.setter
-    def stage(self, value: Optional[pulumi.Input[_builtins.bool]]):
+    def stage(self, value: pulumi.Input[Optional[_builtins.bool]]):
         pulumi.set(self, "stage", value)
 
     @_builtins.property
     @pulumi.getter(name="staleIfError")
-    def stale_if_error(self) -> Optional[pulumi.Input[_builtins.bool]]:
+    def stale_if_error(self) -> pulumi.Input[Optional[_builtins.bool]]:
         """
         Enables serving a stale object if there is an error
         """
         return pulumi.get(self, "stale_if_error")
 
     @stale_if_error.setter
-    def stale_if_error(self, value: Optional[pulumi.Input[_builtins.bool]]):
+    def stale_if_error(self, value: pulumi.Input[Optional[_builtins.bool]]):
         pulumi.set(self, "stale_if_error", value)
 
     @_builtins.property
     @pulumi.getter(name="staleIfErrorTtl")
-    def stale_if_error_ttl(self) -> Optional[pulumi.Input[_builtins.int]]:
+    def stale_if_error_ttl(self) -> pulumi.Input[Optional[_builtins.int]]:
         """
         The default time-to-live (TTL) for serving the stale object for the version
         """
         return pulumi.get(self, "stale_if_error_ttl")
 
     @stale_if_error_ttl.setter
-    def stale_if_error_ttl(self, value: Optional[pulumi.Input[_builtins.int]]):
+    def stale_if_error_ttl(self, value: pulumi.Input[Optional[_builtins.int]]):
         pulumi.set(self, "stale_if_error_ttl", value)
 
     @_builtins.property
     @pulumi.getter
-    def vcls(self) -> Optional[pulumi.Input[Sequence[pulumi.Input['ServiceVclVclArgs']]]]:
+    def vcls(self) -> pulumi.Input[Optional[Sequence[pulumi.Input['ServiceVclVclArgs']]]]:
         return pulumi.get(self, "vcls")
 
     @vcls.setter
-    def vcls(self, value: Optional[pulumi.Input[Sequence[pulumi.Input['ServiceVclVclArgs']]]]):
+    def vcls(self, value: pulumi.Input[Optional[Sequence[pulumi.Input['ServiceVclVclArgs']]]]):
         pulumi.set(self, "vcls", value)
 
     @_builtins.property
     @pulumi.getter(name="versionComment")
-    def version_comment(self) -> Optional[pulumi.Input[_builtins.str]]:
+    def version_comment(self) -> pulumi.Input[Optional[_builtins.str]]:
         """
         Description field for the version
         """
         return pulumi.get(self, "version_comment")
 
     @version_comment.setter
-    def version_comment(self, value: Optional[pulumi.Input[_builtins.str]]):
+    def version_comment(self, value: pulumi.Input[Optional[_builtins.str]]):
         pulumi.set(self, "version_comment", value)
 
 
 @pulumi.input_type
 class _ServiceVclState:
     def __init__(__self__, *,
-                 acls: Optional[pulumi.Input[Sequence[pulumi.Input['ServiceVclAclArgs']]]] = None,
-                 activate: Optional[pulumi.Input[_builtins.bool]] = None,
-                 active_version: Optional[pulumi.Input[_builtins.int]] = None,
-                 backends: Optional[pulumi.Input[Sequence[pulumi.Input['ServiceVclBackendArgs']]]] = None,
-                 cache_settings: Optional[pulumi.Input[Sequence[pulumi.Input['ServiceVclCacheSettingArgs']]]] = None,
-                 cloned_version: Optional[pulumi.Input[_builtins.int]] = None,
-                 comment: Optional[pulumi.Input[_builtins.str]] = None,
-                 conditions: Optional[pulumi.Input[Sequence[pulumi.Input['ServiceVclConditionArgs']]]] = None,
-                 default_host: Optional[pulumi.Input[_builtins.str]] = None,
-                 default_ttl: Optional[pulumi.Input[_builtins.int]] = None,
-                 dictionaries: Optional[pulumi.Input[Sequence[pulumi.Input['ServiceVclDictionaryArgs']]]] = None,
-                 directors: Optional[pulumi.Input[Sequence[pulumi.Input['ServiceVclDirectorArgs']]]] = None,
-                 domains: Optional[pulumi.Input[Sequence[pulumi.Input['ServiceVclDomainArgs']]]] = None,
-                 dynamicsnippets: Optional[pulumi.Input[Sequence[pulumi.Input['ServiceVclDynamicsnippetArgs']]]] = None,
-                 force_destroy: Optional[pulumi.Input[_builtins.bool]] = None,
-                 force_refresh: Optional[pulumi.Input[_builtins.bool]] = None,
-                 gzips: Optional[pulumi.Input[Sequence[pulumi.Input['ServiceVclGzipArgs']]]] = None,
-                 headers: Optional[pulumi.Input[Sequence[pulumi.Input['ServiceVclHeaderArgs']]]] = None,
-                 healthchecks: Optional[pulumi.Input[Sequence[pulumi.Input['ServiceVclHealthcheckArgs']]]] = None,
-                 http3: Optional[pulumi.Input[_builtins.bool]] = None,
-                 image_optimizer_default_settings: Optional[pulumi.Input['ServiceVclImageOptimizerDefaultSettingsArgs']] = None,
-                 imported: Optional[pulumi.Input[_builtins.bool]] = None,
-                 logging_bigqueries: Optional[pulumi.Input[Sequence[pulumi.Input['ServiceVclLoggingBigqueryArgs']]]] = None,
-                 logging_blobstorages: Optional[pulumi.Input[Sequence[pulumi.Input['ServiceVclLoggingBlobstorageArgs']]]] = None,
-                 logging_cloudfiles: Optional[pulumi.Input[Sequence[pulumi.Input['ServiceVclLoggingCloudfileArgs']]]] = None,
-                 logging_datadogs: Optional[pulumi.Input[Sequence[pulumi.Input['ServiceVclLoggingDatadogArgs']]]] = None,
-                 logging_digitaloceans: Optional[pulumi.Input[Sequence[pulumi.Input['ServiceVclLoggingDigitaloceanArgs']]]] = None,
-                 logging_elasticsearches: Optional[pulumi.Input[Sequence[pulumi.Input['ServiceVclLoggingElasticsearchArgs']]]] = None,
-                 logging_ftps: Optional[pulumi.Input[Sequence[pulumi.Input['ServiceVclLoggingFtpArgs']]]] = None,
-                 logging_gcs: Optional[pulumi.Input[Sequence[pulumi.Input['ServiceVclLoggingGcArgs']]]] = None,
-                 logging_googlepubsubs: Optional[pulumi.Input[Sequence[pulumi.Input['ServiceVclLoggingGooglepubsubArgs']]]] = None,
-                 logging_grafanacloudlogs: Optional[pulumi.Input[Sequence[pulumi.Input['ServiceVclLoggingGrafanacloudlogArgs']]]] = None,
-                 logging_herokus: Optional[pulumi.Input[Sequence[pulumi.Input['ServiceVclLoggingHerokusArgs']]]] = None,
-                 logging_honeycombs: Optional[pulumi.Input[Sequence[pulumi.Input['ServiceVclLoggingHoneycombArgs']]]] = None,
-                 logging_https: Optional[pulumi.Input[Sequence[pulumi.Input['ServiceVclLoggingHttpArgs']]]] = None,
-                 logging_kafkas: Optional[pulumi.Input[Sequence[pulumi.Input['ServiceVclLoggingKafkaArgs']]]] = None,
-                 logging_kineses: Optional[pulumi.Input[Sequence[pulumi.Input['ServiceVclLoggingKineseArgs']]]] = None,
-                 logging_logentries: Optional[pulumi.Input[Sequence[pulumi.Input['ServiceVclLoggingLogentryArgs']]]] = None,
-                 logging_logglies: Optional[pulumi.Input[Sequence[pulumi.Input['ServiceVclLoggingLogglyArgs']]]] = None,
-                 logging_logshuttles: Optional[pulumi.Input[Sequence[pulumi.Input['ServiceVclLoggingLogshuttleArgs']]]] = None,
-                 logging_newrelicotlps: Optional[pulumi.Input[Sequence[pulumi.Input['ServiceVclLoggingNewrelicotlpArgs']]]] = None,
-                 logging_newrelics: Optional[pulumi.Input[Sequence[pulumi.Input['ServiceVclLoggingNewrelicArgs']]]] = None,
-                 logging_openstacks: Optional[pulumi.Input[Sequence[pulumi.Input['ServiceVclLoggingOpenstackArgs']]]] = None,
-                 logging_papertrails: Optional[pulumi.Input[Sequence[pulumi.Input['ServiceVclLoggingPapertrailArgs']]]] = None,
-                 logging_s3s: Optional[pulumi.Input[Sequence[pulumi.Input['ServiceVclLoggingS3Args']]]] = None,
-                 logging_scalyrs: Optional[pulumi.Input[Sequence[pulumi.Input['ServiceVclLoggingScalyrArgs']]]] = None,
-                 logging_sftps: Optional[pulumi.Input[Sequence[pulumi.Input['ServiceVclLoggingSftpArgs']]]] = None,
-                 logging_splunks: Optional[pulumi.Input[Sequence[pulumi.Input['ServiceVclLoggingSplunkArgs']]]] = None,
-                 logging_sumologics: Optional[pulumi.Input[Sequence[pulumi.Input['ServiceVclLoggingSumologicArgs']]]] = None,
-                 logging_syslogs: Optional[pulumi.Input[Sequence[pulumi.Input['ServiceVclLoggingSyslogArgs']]]] = None,
-                 name: Optional[pulumi.Input[_builtins.str]] = None,
-                 product_enablement: Optional[pulumi.Input['ServiceVclProductEnablementArgs']] = None,
-                 rate_limiters: Optional[pulumi.Input[Sequence[pulumi.Input['ServiceVclRateLimiterArgs']]]] = None,
-                 request_settings: Optional[pulumi.Input[Sequence[pulumi.Input['ServiceVclRequestSettingArgs']]]] = None,
-                 response_objects: Optional[pulumi.Input[Sequence[pulumi.Input['ServiceVclResponseObjectArgs']]]] = None,
-                 reuse: Optional[pulumi.Input[_builtins.bool]] = None,
-                 snippets: Optional[pulumi.Input[Sequence[pulumi.Input['ServiceVclSnippetArgs']]]] = None,
-                 stage: Optional[pulumi.Input[_builtins.bool]] = None,
-                 staged_version: Optional[pulumi.Input[_builtins.int]] = None,
-                 stale_if_error: Optional[pulumi.Input[_builtins.bool]] = None,
-                 stale_if_error_ttl: Optional[pulumi.Input[_builtins.int]] = None,
-                 vcls: Optional[pulumi.Input[Sequence[pulumi.Input['ServiceVclVclArgs']]]] = None,
-                 version_comment: Optional[pulumi.Input[_builtins.str]] = None):
+                 acls: pulumi.Input[Optional[Sequence[pulumi.Input['ServiceVclAclArgs']]]] = None,
+                 activate: pulumi.Input[Optional[_builtins.bool]] = None,
+                 active_version: pulumi.Input[Optional[_builtins.int]] = None,
+                 backends: pulumi.Input[Optional[Sequence[pulumi.Input['ServiceVclBackendArgs']]]] = None,
+                 cache_settings: pulumi.Input[Optional[Sequence[pulumi.Input['ServiceVclCacheSettingArgs']]]] = None,
+                 cloned_version: pulumi.Input[Optional[_builtins.int]] = None,
+                 comment: pulumi.Input[Optional[_builtins.str]] = None,
+                 conditions: pulumi.Input[Optional[Sequence[pulumi.Input['ServiceVclConditionArgs']]]] = None,
+                 default_host: pulumi.Input[Optional[_builtins.str]] = None,
+                 default_ttl: pulumi.Input[Optional[_builtins.int]] = None,
+                 dictionaries: pulumi.Input[Optional[Sequence[pulumi.Input['ServiceVclDictionaryArgs']]]] = None,
+                 directors: pulumi.Input[Optional[Sequence[pulumi.Input['ServiceVclDirectorArgs']]]] = None,
+                 domains: pulumi.Input[Optional[Sequence[pulumi.Input['ServiceVclDomainArgs']]]] = None,
+                 dynamicsnippets: pulumi.Input[Optional[Sequence[pulumi.Input['ServiceVclDynamicsnippetArgs']]]] = None,
+                 force_destroy: pulumi.Input[Optional[_builtins.bool]] = None,
+                 force_refresh: pulumi.Input[Optional[_builtins.bool]] = None,
+                 gzips: pulumi.Input[Optional[Sequence[pulumi.Input['ServiceVclGzipArgs']]]] = None,
+                 headers: pulumi.Input[Optional[Sequence[pulumi.Input['ServiceVclHeaderArgs']]]] = None,
+                 healthchecks: pulumi.Input[Optional[Sequence[pulumi.Input['ServiceVclHealthcheckArgs']]]] = None,
+                 http3: pulumi.Input[Optional[_builtins.bool]] = None,
+                 image_optimizer_default_settings: pulumi.Input[Optional['ServiceVclImageOptimizerDefaultSettingsArgs']] = None,
+                 imported: pulumi.Input[Optional[_builtins.bool]] = None,
+                 logging_bigqueries: pulumi.Input[Optional[Sequence[pulumi.Input['ServiceVclLoggingBigqueryArgs']]]] = None,
+                 logging_blobstorages: pulumi.Input[Optional[Sequence[pulumi.Input['ServiceVclLoggingBlobstorageArgs']]]] = None,
+                 logging_cloudfiles: pulumi.Input[Optional[Sequence[pulumi.Input['ServiceVclLoggingCloudfileArgs']]]] = None,
+                 logging_datadogs: pulumi.Input[Optional[Sequence[pulumi.Input['ServiceVclLoggingDatadogArgs']]]] = None,
+                 logging_digitaloceans: pulumi.Input[Optional[Sequence[pulumi.Input['ServiceVclLoggingDigitaloceanArgs']]]] = None,
+                 logging_elasticsearches: pulumi.Input[Optional[Sequence[pulumi.Input['ServiceVclLoggingElasticsearchArgs']]]] = None,
+                 logging_ftps: pulumi.Input[Optional[Sequence[pulumi.Input['ServiceVclLoggingFtpArgs']]]] = None,
+                 logging_gcs: pulumi.Input[Optional[Sequence[pulumi.Input['ServiceVclLoggingGcArgs']]]] = None,
+                 logging_googlepubsubs: pulumi.Input[Optional[Sequence[pulumi.Input['ServiceVclLoggingGooglepubsubArgs']]]] = None,
+                 logging_grafanacloudlogs: pulumi.Input[Optional[Sequence[pulumi.Input['ServiceVclLoggingGrafanacloudlogArgs']]]] = None,
+                 logging_herokus: pulumi.Input[Optional[Sequence[pulumi.Input['ServiceVclLoggingHerokusArgs']]]] = None,
+                 logging_honeycombs: pulumi.Input[Optional[Sequence[pulumi.Input['ServiceVclLoggingHoneycombArgs']]]] = None,
+                 logging_https: pulumi.Input[Optional[Sequence[pulumi.Input['ServiceVclLoggingHttpArgs']]]] = None,
+                 logging_kafkas: pulumi.Input[Optional[Sequence[pulumi.Input['ServiceVclLoggingKafkaArgs']]]] = None,
+                 logging_kineses: pulumi.Input[Optional[Sequence[pulumi.Input['ServiceVclLoggingKineseArgs']]]] = None,
+                 logging_logentries: pulumi.Input[Optional[Sequence[pulumi.Input['ServiceVclLoggingLogentryArgs']]]] = None,
+                 logging_logglies: pulumi.Input[Optional[Sequence[pulumi.Input['ServiceVclLoggingLogglyArgs']]]] = None,
+                 logging_logshuttles: pulumi.Input[Optional[Sequence[pulumi.Input['ServiceVclLoggingLogshuttleArgs']]]] = None,
+                 logging_newrelicotlps: pulumi.Input[Optional[Sequence[pulumi.Input['ServiceVclLoggingNewrelicotlpArgs']]]] = None,
+                 logging_newrelics: pulumi.Input[Optional[Sequence[pulumi.Input['ServiceVclLoggingNewrelicArgs']]]] = None,
+                 logging_openstacks: pulumi.Input[Optional[Sequence[pulumi.Input['ServiceVclLoggingOpenstackArgs']]]] = None,
+                 logging_papertrails: pulumi.Input[Optional[Sequence[pulumi.Input['ServiceVclLoggingPapertrailArgs']]]] = None,
+                 logging_s3s: pulumi.Input[Optional[Sequence[pulumi.Input['ServiceVclLoggingS3Args']]]] = None,
+                 logging_scalyrs: pulumi.Input[Optional[Sequence[pulumi.Input['ServiceVclLoggingScalyrArgs']]]] = None,
+                 logging_sftps: pulumi.Input[Optional[Sequence[pulumi.Input['ServiceVclLoggingSftpArgs']]]] = None,
+                 logging_splunks: pulumi.Input[Optional[Sequence[pulumi.Input['ServiceVclLoggingSplunkArgs']]]] = None,
+                 logging_sumologics: pulumi.Input[Optional[Sequence[pulumi.Input['ServiceVclLoggingSumologicArgs']]]] = None,
+                 logging_syslogs: pulumi.Input[Optional[Sequence[pulumi.Input['ServiceVclLoggingSyslogArgs']]]] = None,
+                 name: pulumi.Input[Optional[_builtins.str]] = None,
+                 product_enablement: pulumi.Input[Optional['ServiceVclProductEnablementArgs']] = None,
+                 rate_limiters: pulumi.Input[Optional[Sequence[pulumi.Input['ServiceVclRateLimiterArgs']]]] = None,
+                 request_settings: pulumi.Input[Optional[Sequence[pulumi.Input['ServiceVclRequestSettingArgs']]]] = None,
+                 response_objects: pulumi.Input[Optional[Sequence[pulumi.Input['ServiceVclResponseObjectArgs']]]] = None,
+                 reuse: pulumi.Input[Optional[_builtins.bool]] = None,
+                 snippets: pulumi.Input[Optional[Sequence[pulumi.Input['ServiceVclSnippetArgs']]]] = None,
+                 stage: pulumi.Input[Optional[_builtins.bool]] = None,
+                 staged_version: pulumi.Input[Optional[_builtins.int]] = None,
+                 stale_if_error: pulumi.Input[Optional[_builtins.bool]] = None,
+                 stale_if_error_ttl: pulumi.Input[Optional[_builtins.int]] = None,
+                 vcls: pulumi.Input[Optional[Sequence[pulumi.Input['ServiceVclVclArgs']]]] = None,
+                 version_comment: pulumi.Input[Optional[_builtins.str]] = None):
         """
         Input properties used for looking up and filtering ServiceVcl resources.
 
@@ -992,623 +992,623 @@ class _ServiceVclState:
 
     @_builtins.property
     @pulumi.getter
-    def acls(self) -> Optional[pulumi.Input[Sequence[pulumi.Input['ServiceVclAclArgs']]]]:
+    def acls(self) -> pulumi.Input[Optional[Sequence[pulumi.Input['ServiceVclAclArgs']]]]:
         return pulumi.get(self, "acls")
 
     @acls.setter
-    def acls(self, value: Optional[pulumi.Input[Sequence[pulumi.Input['ServiceVclAclArgs']]]]):
+    def acls(self, value: pulumi.Input[Optional[Sequence[pulumi.Input['ServiceVclAclArgs']]]]):
         pulumi.set(self, "acls", value)
 
     @_builtins.property
     @pulumi.getter
-    def activate(self) -> Optional[pulumi.Input[_builtins.bool]]:
+    def activate(self) -> pulumi.Input[Optional[_builtins.bool]]:
         """
         Conditionally prevents new service versions from being activated. The apply step will create a new draft version but will not activate it if this is set to `false`. Default `true`
         """
         return pulumi.get(self, "activate")
 
     @activate.setter
-    def activate(self, value: Optional[pulumi.Input[_builtins.bool]]):
+    def activate(self, value: pulumi.Input[Optional[_builtins.bool]]):
         pulumi.set(self, "activate", value)
 
     @_builtins.property
     @pulumi.getter(name="activeVersion")
-    def active_version(self) -> Optional[pulumi.Input[_builtins.int]]:
+    def active_version(self) -> pulumi.Input[Optional[_builtins.int]]:
         """
         The currently active version of your Fastly Service
         """
         return pulumi.get(self, "active_version")
 
     @active_version.setter
-    def active_version(self, value: Optional[pulumi.Input[_builtins.int]]):
+    def active_version(self, value: pulumi.Input[Optional[_builtins.int]]):
         pulumi.set(self, "active_version", value)
 
     @_builtins.property
     @pulumi.getter
-    def backends(self) -> Optional[pulumi.Input[Sequence[pulumi.Input['ServiceVclBackendArgs']]]]:
+    def backends(self) -> pulumi.Input[Optional[Sequence[pulumi.Input['ServiceVclBackendArgs']]]]:
         return pulumi.get(self, "backends")
 
     @backends.setter
-    def backends(self, value: Optional[pulumi.Input[Sequence[pulumi.Input['ServiceVclBackendArgs']]]]):
+    def backends(self, value: pulumi.Input[Optional[Sequence[pulumi.Input['ServiceVclBackendArgs']]]]):
         pulumi.set(self, "backends", value)
 
     @_builtins.property
     @pulumi.getter(name="cacheSettings")
-    def cache_settings(self) -> Optional[pulumi.Input[Sequence[pulumi.Input['ServiceVclCacheSettingArgs']]]]:
+    def cache_settings(self) -> pulumi.Input[Optional[Sequence[pulumi.Input['ServiceVclCacheSettingArgs']]]]:
         return pulumi.get(self, "cache_settings")
 
     @cache_settings.setter
-    def cache_settings(self, value: Optional[pulumi.Input[Sequence[pulumi.Input['ServiceVclCacheSettingArgs']]]]):
+    def cache_settings(self, value: pulumi.Input[Optional[Sequence[pulumi.Input['ServiceVclCacheSettingArgs']]]]):
         pulumi.set(self, "cache_settings", value)
 
     @_builtins.property
     @pulumi.getter(name="clonedVersion")
-    def cloned_version(self) -> Optional[pulumi.Input[_builtins.int]]:
+    def cloned_version(self) -> pulumi.Input[Optional[_builtins.int]]:
         """
         The latest cloned version by the provider
         """
         return pulumi.get(self, "cloned_version")
 
     @cloned_version.setter
-    def cloned_version(self, value: Optional[pulumi.Input[_builtins.int]]):
+    def cloned_version(self, value: pulumi.Input[Optional[_builtins.int]]):
         pulumi.set(self, "cloned_version", value)
 
     @_builtins.property
     @pulumi.getter
-    def comment(self) -> Optional[pulumi.Input[_builtins.str]]:
+    def comment(self) -> pulumi.Input[Optional[_builtins.str]]:
         """
         Description field for the service. Default `Managed by Terraform`
         """
         return pulumi.get(self, "comment")
 
     @comment.setter
-    def comment(self, value: Optional[pulumi.Input[_builtins.str]]):
+    def comment(self, value: pulumi.Input[Optional[_builtins.str]]):
         pulumi.set(self, "comment", value)
 
     @_builtins.property
     @pulumi.getter
-    def conditions(self) -> Optional[pulumi.Input[Sequence[pulumi.Input['ServiceVclConditionArgs']]]]:
+    def conditions(self) -> pulumi.Input[Optional[Sequence[pulumi.Input['ServiceVclConditionArgs']]]]:
         return pulumi.get(self, "conditions")
 
     @conditions.setter
-    def conditions(self, value: Optional[pulumi.Input[Sequence[pulumi.Input['ServiceVclConditionArgs']]]]):
+    def conditions(self, value: pulumi.Input[Optional[Sequence[pulumi.Input['ServiceVclConditionArgs']]]]):
         pulumi.set(self, "conditions", value)
 
     @_builtins.property
     @pulumi.getter(name="defaultHost")
-    def default_host(self) -> Optional[pulumi.Input[_builtins.str]]:
+    def default_host(self) -> pulumi.Input[Optional[_builtins.str]]:
         """
         The default hostname
         """
         return pulumi.get(self, "default_host")
 
     @default_host.setter
-    def default_host(self, value: Optional[pulumi.Input[_builtins.str]]):
+    def default_host(self, value: pulumi.Input[Optional[_builtins.str]]):
         pulumi.set(self, "default_host", value)
 
     @_builtins.property
     @pulumi.getter(name="defaultTtl")
-    def default_ttl(self) -> Optional[pulumi.Input[_builtins.int]]:
+    def default_ttl(self) -> pulumi.Input[Optional[_builtins.int]]:
         """
         The default Time-to-live (TTL) for requests
         """
         return pulumi.get(self, "default_ttl")
 
     @default_ttl.setter
-    def default_ttl(self, value: Optional[pulumi.Input[_builtins.int]]):
+    def default_ttl(self, value: pulumi.Input[Optional[_builtins.int]]):
         pulumi.set(self, "default_ttl", value)
 
     @_builtins.property
     @pulumi.getter
-    def dictionaries(self) -> Optional[pulumi.Input[Sequence[pulumi.Input['ServiceVclDictionaryArgs']]]]:
+    def dictionaries(self) -> pulumi.Input[Optional[Sequence[pulumi.Input['ServiceVclDictionaryArgs']]]]:
         return pulumi.get(self, "dictionaries")
 
     @dictionaries.setter
-    def dictionaries(self, value: Optional[pulumi.Input[Sequence[pulumi.Input['ServiceVclDictionaryArgs']]]]):
+    def dictionaries(self, value: pulumi.Input[Optional[Sequence[pulumi.Input['ServiceVclDictionaryArgs']]]]):
         pulumi.set(self, "dictionaries", value)
 
     @_builtins.property
     @pulumi.getter
-    def directors(self) -> Optional[pulumi.Input[Sequence[pulumi.Input['ServiceVclDirectorArgs']]]]:
+    def directors(self) -> pulumi.Input[Optional[Sequence[pulumi.Input['ServiceVclDirectorArgs']]]]:
         return pulumi.get(self, "directors")
 
     @directors.setter
-    def directors(self, value: Optional[pulumi.Input[Sequence[pulumi.Input['ServiceVclDirectorArgs']]]]):
+    def directors(self, value: pulumi.Input[Optional[Sequence[pulumi.Input['ServiceVclDirectorArgs']]]]):
         pulumi.set(self, "directors", value)
 
     @_builtins.property
     @pulumi.getter
-    def domains(self) -> Optional[pulumi.Input[Sequence[pulumi.Input['ServiceVclDomainArgs']]]]:
+    def domains(self) -> pulumi.Input[Optional[Sequence[pulumi.Input['ServiceVclDomainArgs']]]]:
         """
         A set of Domain names to serve as entry points for your Service
         """
         return pulumi.get(self, "domains")
 
     @domains.setter
-    def domains(self, value: Optional[pulumi.Input[Sequence[pulumi.Input['ServiceVclDomainArgs']]]]):
+    def domains(self, value: pulumi.Input[Optional[Sequence[pulumi.Input['ServiceVclDomainArgs']]]]):
         pulumi.set(self, "domains", value)
 
     @_builtins.property
     @pulumi.getter
-    def dynamicsnippets(self) -> Optional[pulumi.Input[Sequence[pulumi.Input['ServiceVclDynamicsnippetArgs']]]]:
+    def dynamicsnippets(self) -> pulumi.Input[Optional[Sequence[pulumi.Input['ServiceVclDynamicsnippetArgs']]]]:
         return pulumi.get(self, "dynamicsnippets")
 
     @dynamicsnippets.setter
-    def dynamicsnippets(self, value: Optional[pulumi.Input[Sequence[pulumi.Input['ServiceVclDynamicsnippetArgs']]]]):
+    def dynamicsnippets(self, value: pulumi.Input[Optional[Sequence[pulumi.Input['ServiceVclDynamicsnippetArgs']]]]):
         pulumi.set(self, "dynamicsnippets", value)
 
     @_builtins.property
     @pulumi.getter(name="forceDestroy")
-    def force_destroy(self) -> Optional[pulumi.Input[_builtins.bool]]:
+    def force_destroy(self) -> pulumi.Input[Optional[_builtins.bool]]:
         """
         Services that are active cannot be destroyed. In order to destroy the Service, set `force_destroy` to `true`. Default `false`
         """
         return pulumi.get(self, "force_destroy")
 
     @force_destroy.setter
-    def force_destroy(self, value: Optional[pulumi.Input[_builtins.bool]]):
+    def force_destroy(self, value: pulumi.Input[Optional[_builtins.bool]]):
         pulumi.set(self, "force_destroy", value)
 
     @_builtins.property
     @pulumi.getter(name="forceRefresh")
-    def force_refresh(self) -> Optional[pulumi.Input[_builtins.bool]]:
+    def force_refresh(self) -> pulumi.Input[Optional[_builtins.bool]]:
         """
         Used internally by the provider to temporarily indicate if all resources should call their associated API to update the local state. This is for scenarios where the service version has been reverted outside of Terraform (e.g. via the Fastly UI) and the provider needs to resync the state for a different active version (this is only if `activate` is `true`).
         """
         return pulumi.get(self, "force_refresh")
 
     @force_refresh.setter
-    def force_refresh(self, value: Optional[pulumi.Input[_builtins.bool]]):
+    def force_refresh(self, value: pulumi.Input[Optional[_builtins.bool]]):
         pulumi.set(self, "force_refresh", value)
 
     @_builtins.property
     @pulumi.getter
-    def gzips(self) -> Optional[pulumi.Input[Sequence[pulumi.Input['ServiceVclGzipArgs']]]]:
+    def gzips(self) -> pulumi.Input[Optional[Sequence[pulumi.Input['ServiceVclGzipArgs']]]]:
         return pulumi.get(self, "gzips")
 
     @gzips.setter
-    def gzips(self, value: Optional[pulumi.Input[Sequence[pulumi.Input['ServiceVclGzipArgs']]]]):
+    def gzips(self, value: pulumi.Input[Optional[Sequence[pulumi.Input['ServiceVclGzipArgs']]]]):
         pulumi.set(self, "gzips", value)
 
     @_builtins.property
     @pulumi.getter
-    def headers(self) -> Optional[pulumi.Input[Sequence[pulumi.Input['ServiceVclHeaderArgs']]]]:
+    def headers(self) -> pulumi.Input[Optional[Sequence[pulumi.Input['ServiceVclHeaderArgs']]]]:
         return pulumi.get(self, "headers")
 
     @headers.setter
-    def headers(self, value: Optional[pulumi.Input[Sequence[pulumi.Input['ServiceVclHeaderArgs']]]]):
+    def headers(self, value: pulumi.Input[Optional[Sequence[pulumi.Input['ServiceVclHeaderArgs']]]]):
         pulumi.set(self, "headers", value)
 
     @_builtins.property
     @pulumi.getter
-    def healthchecks(self) -> Optional[pulumi.Input[Sequence[pulumi.Input['ServiceVclHealthcheckArgs']]]]:
+    def healthchecks(self) -> pulumi.Input[Optional[Sequence[pulumi.Input['ServiceVclHealthcheckArgs']]]]:
         return pulumi.get(self, "healthchecks")
 
     @healthchecks.setter
-    def healthchecks(self, value: Optional[pulumi.Input[Sequence[pulumi.Input['ServiceVclHealthcheckArgs']]]]):
+    def healthchecks(self, value: pulumi.Input[Optional[Sequence[pulumi.Input['ServiceVclHealthcheckArgs']]]]):
         pulumi.set(self, "healthchecks", value)
 
     @_builtins.property
     @pulumi.getter
-    def http3(self) -> Optional[pulumi.Input[_builtins.bool]]:
+    def http3(self) -> pulumi.Input[Optional[_builtins.bool]]:
         """
         Enables support for the HTTP/3 (QUIC) protocol
         """
         return pulumi.get(self, "http3")
 
     @http3.setter
-    def http3(self, value: Optional[pulumi.Input[_builtins.bool]]):
+    def http3(self, value: pulumi.Input[Optional[_builtins.bool]]):
         pulumi.set(self, "http3", value)
 
     @_builtins.property
     @pulumi.getter(name="imageOptimizerDefaultSettings")
-    def image_optimizer_default_settings(self) -> Optional[pulumi.Input['ServiceVclImageOptimizerDefaultSettingsArgs']]:
+    def image_optimizer_default_settings(self) -> pulumi.Input[Optional['ServiceVclImageOptimizerDefaultSettingsArgs']]:
         return pulumi.get(self, "image_optimizer_default_settings")
 
     @image_optimizer_default_settings.setter
-    def image_optimizer_default_settings(self, value: Optional[pulumi.Input['ServiceVclImageOptimizerDefaultSettingsArgs']]):
+    def image_optimizer_default_settings(self, value: pulumi.Input[Optional['ServiceVclImageOptimizerDefaultSettingsArgs']]):
         pulumi.set(self, "image_optimizer_default_settings", value)
 
     @_builtins.property
     @pulumi.getter
-    def imported(self) -> Optional[pulumi.Input[_builtins.bool]]:
+    def imported(self) -> pulumi.Input[Optional[_builtins.bool]]:
         """
         Used internally by the provider to temporarily indicate if the service is being imported, and is reset to false once the import is finished
         """
         return pulumi.get(self, "imported")
 
     @imported.setter
-    def imported(self, value: Optional[pulumi.Input[_builtins.bool]]):
+    def imported(self, value: pulumi.Input[Optional[_builtins.bool]]):
         pulumi.set(self, "imported", value)
 
     @_builtins.property
     @pulumi.getter(name="loggingBigqueries")
-    def logging_bigqueries(self) -> Optional[pulumi.Input[Sequence[pulumi.Input['ServiceVclLoggingBigqueryArgs']]]]:
+    def logging_bigqueries(self) -> pulumi.Input[Optional[Sequence[pulumi.Input['ServiceVclLoggingBigqueryArgs']]]]:
         return pulumi.get(self, "logging_bigqueries")
 
     @logging_bigqueries.setter
-    def logging_bigqueries(self, value: Optional[pulumi.Input[Sequence[pulumi.Input['ServiceVclLoggingBigqueryArgs']]]]):
+    def logging_bigqueries(self, value: pulumi.Input[Optional[Sequence[pulumi.Input['ServiceVclLoggingBigqueryArgs']]]]):
         pulumi.set(self, "logging_bigqueries", value)
 
     @_builtins.property
     @pulumi.getter(name="loggingBlobstorages")
-    def logging_blobstorages(self) -> Optional[pulumi.Input[Sequence[pulumi.Input['ServiceVclLoggingBlobstorageArgs']]]]:
+    def logging_blobstorages(self) -> pulumi.Input[Optional[Sequence[pulumi.Input['ServiceVclLoggingBlobstorageArgs']]]]:
         return pulumi.get(self, "logging_blobstorages")
 
     @logging_blobstorages.setter
-    def logging_blobstorages(self, value: Optional[pulumi.Input[Sequence[pulumi.Input['ServiceVclLoggingBlobstorageArgs']]]]):
+    def logging_blobstorages(self, value: pulumi.Input[Optional[Sequence[pulumi.Input['ServiceVclLoggingBlobstorageArgs']]]]):
         pulumi.set(self, "logging_blobstorages", value)
 
     @_builtins.property
     @pulumi.getter(name="loggingCloudfiles")
-    def logging_cloudfiles(self) -> Optional[pulumi.Input[Sequence[pulumi.Input['ServiceVclLoggingCloudfileArgs']]]]:
+    def logging_cloudfiles(self) -> pulumi.Input[Optional[Sequence[pulumi.Input['ServiceVclLoggingCloudfileArgs']]]]:
         return pulumi.get(self, "logging_cloudfiles")
 
     @logging_cloudfiles.setter
-    def logging_cloudfiles(self, value: Optional[pulumi.Input[Sequence[pulumi.Input['ServiceVclLoggingCloudfileArgs']]]]):
+    def logging_cloudfiles(self, value: pulumi.Input[Optional[Sequence[pulumi.Input['ServiceVclLoggingCloudfileArgs']]]]):
         pulumi.set(self, "logging_cloudfiles", value)
 
     @_builtins.property
     @pulumi.getter(name="loggingDatadogs")
-    def logging_datadogs(self) -> Optional[pulumi.Input[Sequence[pulumi.Input['ServiceVclLoggingDatadogArgs']]]]:
+    def logging_datadogs(self) -> pulumi.Input[Optional[Sequence[pulumi.Input['ServiceVclLoggingDatadogArgs']]]]:
         return pulumi.get(self, "logging_datadogs")
 
     @logging_datadogs.setter
-    def logging_datadogs(self, value: Optional[pulumi.Input[Sequence[pulumi.Input['ServiceVclLoggingDatadogArgs']]]]):
+    def logging_datadogs(self, value: pulumi.Input[Optional[Sequence[pulumi.Input['ServiceVclLoggingDatadogArgs']]]]):
         pulumi.set(self, "logging_datadogs", value)
 
     @_builtins.property
     @pulumi.getter(name="loggingDigitaloceans")
-    def logging_digitaloceans(self) -> Optional[pulumi.Input[Sequence[pulumi.Input['ServiceVclLoggingDigitaloceanArgs']]]]:
+    def logging_digitaloceans(self) -> pulumi.Input[Optional[Sequence[pulumi.Input['ServiceVclLoggingDigitaloceanArgs']]]]:
         return pulumi.get(self, "logging_digitaloceans")
 
     @logging_digitaloceans.setter
-    def logging_digitaloceans(self, value: Optional[pulumi.Input[Sequence[pulumi.Input['ServiceVclLoggingDigitaloceanArgs']]]]):
+    def logging_digitaloceans(self, value: pulumi.Input[Optional[Sequence[pulumi.Input['ServiceVclLoggingDigitaloceanArgs']]]]):
         pulumi.set(self, "logging_digitaloceans", value)
 
     @_builtins.property
     @pulumi.getter(name="loggingElasticsearches")
-    def logging_elasticsearches(self) -> Optional[pulumi.Input[Sequence[pulumi.Input['ServiceVclLoggingElasticsearchArgs']]]]:
+    def logging_elasticsearches(self) -> pulumi.Input[Optional[Sequence[pulumi.Input['ServiceVclLoggingElasticsearchArgs']]]]:
         return pulumi.get(self, "logging_elasticsearches")
 
     @logging_elasticsearches.setter
-    def logging_elasticsearches(self, value: Optional[pulumi.Input[Sequence[pulumi.Input['ServiceVclLoggingElasticsearchArgs']]]]):
+    def logging_elasticsearches(self, value: pulumi.Input[Optional[Sequence[pulumi.Input['ServiceVclLoggingElasticsearchArgs']]]]):
         pulumi.set(self, "logging_elasticsearches", value)
 
     @_builtins.property
     @pulumi.getter(name="loggingFtps")
-    def logging_ftps(self) -> Optional[pulumi.Input[Sequence[pulumi.Input['ServiceVclLoggingFtpArgs']]]]:
+    def logging_ftps(self) -> pulumi.Input[Optional[Sequence[pulumi.Input['ServiceVclLoggingFtpArgs']]]]:
         return pulumi.get(self, "logging_ftps")
 
     @logging_ftps.setter
-    def logging_ftps(self, value: Optional[pulumi.Input[Sequence[pulumi.Input['ServiceVclLoggingFtpArgs']]]]):
+    def logging_ftps(self, value: pulumi.Input[Optional[Sequence[pulumi.Input['ServiceVclLoggingFtpArgs']]]]):
         pulumi.set(self, "logging_ftps", value)
 
     @_builtins.property
     @pulumi.getter(name="loggingGcs")
-    def logging_gcs(self) -> Optional[pulumi.Input[Sequence[pulumi.Input['ServiceVclLoggingGcArgs']]]]:
+    def logging_gcs(self) -> pulumi.Input[Optional[Sequence[pulumi.Input['ServiceVclLoggingGcArgs']]]]:
         return pulumi.get(self, "logging_gcs")
 
     @logging_gcs.setter
-    def logging_gcs(self, value: Optional[pulumi.Input[Sequence[pulumi.Input['ServiceVclLoggingGcArgs']]]]):
+    def logging_gcs(self, value: pulumi.Input[Optional[Sequence[pulumi.Input['ServiceVclLoggingGcArgs']]]]):
         pulumi.set(self, "logging_gcs", value)
 
     @_builtins.property
     @pulumi.getter(name="loggingGooglepubsubs")
-    def logging_googlepubsubs(self) -> Optional[pulumi.Input[Sequence[pulumi.Input['ServiceVclLoggingGooglepubsubArgs']]]]:
+    def logging_googlepubsubs(self) -> pulumi.Input[Optional[Sequence[pulumi.Input['ServiceVclLoggingGooglepubsubArgs']]]]:
         return pulumi.get(self, "logging_googlepubsubs")
 
     @logging_googlepubsubs.setter
-    def logging_googlepubsubs(self, value: Optional[pulumi.Input[Sequence[pulumi.Input['ServiceVclLoggingGooglepubsubArgs']]]]):
+    def logging_googlepubsubs(self, value: pulumi.Input[Optional[Sequence[pulumi.Input['ServiceVclLoggingGooglepubsubArgs']]]]):
         pulumi.set(self, "logging_googlepubsubs", value)
 
     @_builtins.property
     @pulumi.getter(name="loggingGrafanacloudlogs")
-    def logging_grafanacloudlogs(self) -> Optional[pulumi.Input[Sequence[pulumi.Input['ServiceVclLoggingGrafanacloudlogArgs']]]]:
+    def logging_grafanacloudlogs(self) -> pulumi.Input[Optional[Sequence[pulumi.Input['ServiceVclLoggingGrafanacloudlogArgs']]]]:
         return pulumi.get(self, "logging_grafanacloudlogs")
 
     @logging_grafanacloudlogs.setter
-    def logging_grafanacloudlogs(self, value: Optional[pulumi.Input[Sequence[pulumi.Input['ServiceVclLoggingGrafanacloudlogArgs']]]]):
+    def logging_grafanacloudlogs(self, value: pulumi.Input[Optional[Sequence[pulumi.Input['ServiceVclLoggingGrafanacloudlogArgs']]]]):
         pulumi.set(self, "logging_grafanacloudlogs", value)
 
     @_builtins.property
     @pulumi.getter(name="loggingHerokus")
-    def logging_herokus(self) -> Optional[pulumi.Input[Sequence[pulumi.Input['ServiceVclLoggingHerokusArgs']]]]:
+    def logging_herokus(self) -> pulumi.Input[Optional[Sequence[pulumi.Input['ServiceVclLoggingHerokusArgs']]]]:
         return pulumi.get(self, "logging_herokus")
 
     @logging_herokus.setter
-    def logging_herokus(self, value: Optional[pulumi.Input[Sequence[pulumi.Input['ServiceVclLoggingHerokusArgs']]]]):
+    def logging_herokus(self, value: pulumi.Input[Optional[Sequence[pulumi.Input['ServiceVclLoggingHerokusArgs']]]]):
         pulumi.set(self, "logging_herokus", value)
 
     @_builtins.property
     @pulumi.getter(name="loggingHoneycombs")
-    def logging_honeycombs(self) -> Optional[pulumi.Input[Sequence[pulumi.Input['ServiceVclLoggingHoneycombArgs']]]]:
+    def logging_honeycombs(self) -> pulumi.Input[Optional[Sequence[pulumi.Input['ServiceVclLoggingHoneycombArgs']]]]:
         return pulumi.get(self, "logging_honeycombs")
 
     @logging_honeycombs.setter
-    def logging_honeycombs(self, value: Optional[pulumi.Input[Sequence[pulumi.Input['ServiceVclLoggingHoneycombArgs']]]]):
+    def logging_honeycombs(self, value: pulumi.Input[Optional[Sequence[pulumi.Input['ServiceVclLoggingHoneycombArgs']]]]):
         pulumi.set(self, "logging_honeycombs", value)
 
     @_builtins.property
     @pulumi.getter(name="loggingHttps")
-    def logging_https(self) -> Optional[pulumi.Input[Sequence[pulumi.Input['ServiceVclLoggingHttpArgs']]]]:
+    def logging_https(self) -> pulumi.Input[Optional[Sequence[pulumi.Input['ServiceVclLoggingHttpArgs']]]]:
         return pulumi.get(self, "logging_https")
 
     @logging_https.setter
-    def logging_https(self, value: Optional[pulumi.Input[Sequence[pulumi.Input['ServiceVclLoggingHttpArgs']]]]):
+    def logging_https(self, value: pulumi.Input[Optional[Sequence[pulumi.Input['ServiceVclLoggingHttpArgs']]]]):
         pulumi.set(self, "logging_https", value)
 
     @_builtins.property
     @pulumi.getter(name="loggingKafkas")
-    def logging_kafkas(self) -> Optional[pulumi.Input[Sequence[pulumi.Input['ServiceVclLoggingKafkaArgs']]]]:
+    def logging_kafkas(self) -> pulumi.Input[Optional[Sequence[pulumi.Input['ServiceVclLoggingKafkaArgs']]]]:
         return pulumi.get(self, "logging_kafkas")
 
     @logging_kafkas.setter
-    def logging_kafkas(self, value: Optional[pulumi.Input[Sequence[pulumi.Input['ServiceVclLoggingKafkaArgs']]]]):
+    def logging_kafkas(self, value: pulumi.Input[Optional[Sequence[pulumi.Input['ServiceVclLoggingKafkaArgs']]]]):
         pulumi.set(self, "logging_kafkas", value)
 
     @_builtins.property
     @pulumi.getter(name="loggingKineses")
-    def logging_kineses(self) -> Optional[pulumi.Input[Sequence[pulumi.Input['ServiceVclLoggingKineseArgs']]]]:
+    def logging_kineses(self) -> pulumi.Input[Optional[Sequence[pulumi.Input['ServiceVclLoggingKineseArgs']]]]:
         return pulumi.get(self, "logging_kineses")
 
     @logging_kineses.setter
-    def logging_kineses(self, value: Optional[pulumi.Input[Sequence[pulumi.Input['ServiceVclLoggingKineseArgs']]]]):
+    def logging_kineses(self, value: pulumi.Input[Optional[Sequence[pulumi.Input['ServiceVclLoggingKineseArgs']]]]):
         pulumi.set(self, "logging_kineses", value)
 
     @_builtins.property
     @pulumi.getter(name="loggingLogentries")
-    def logging_logentries(self) -> Optional[pulumi.Input[Sequence[pulumi.Input['ServiceVclLoggingLogentryArgs']]]]:
+    def logging_logentries(self) -> pulumi.Input[Optional[Sequence[pulumi.Input['ServiceVclLoggingLogentryArgs']]]]:
         return pulumi.get(self, "logging_logentries")
 
     @logging_logentries.setter
-    def logging_logentries(self, value: Optional[pulumi.Input[Sequence[pulumi.Input['ServiceVclLoggingLogentryArgs']]]]):
+    def logging_logentries(self, value: pulumi.Input[Optional[Sequence[pulumi.Input['ServiceVclLoggingLogentryArgs']]]]):
         pulumi.set(self, "logging_logentries", value)
 
     @_builtins.property
     @pulumi.getter(name="loggingLogglies")
-    def logging_logglies(self) -> Optional[pulumi.Input[Sequence[pulumi.Input['ServiceVclLoggingLogglyArgs']]]]:
+    def logging_logglies(self) -> pulumi.Input[Optional[Sequence[pulumi.Input['ServiceVclLoggingLogglyArgs']]]]:
         return pulumi.get(self, "logging_logglies")
 
     @logging_logglies.setter
-    def logging_logglies(self, value: Optional[pulumi.Input[Sequence[pulumi.Input['ServiceVclLoggingLogglyArgs']]]]):
+    def logging_logglies(self, value: pulumi.Input[Optional[Sequence[pulumi.Input['ServiceVclLoggingLogglyArgs']]]]):
         pulumi.set(self, "logging_logglies", value)
 
     @_builtins.property
     @pulumi.getter(name="loggingLogshuttles")
-    def logging_logshuttles(self) -> Optional[pulumi.Input[Sequence[pulumi.Input['ServiceVclLoggingLogshuttleArgs']]]]:
+    def logging_logshuttles(self) -> pulumi.Input[Optional[Sequence[pulumi.Input['ServiceVclLoggingLogshuttleArgs']]]]:
         return pulumi.get(self, "logging_logshuttles")
 
     @logging_logshuttles.setter
-    def logging_logshuttles(self, value: Optional[pulumi.Input[Sequence[pulumi.Input['ServiceVclLoggingLogshuttleArgs']]]]):
+    def logging_logshuttles(self, value: pulumi.Input[Optional[Sequence[pulumi.Input['ServiceVclLoggingLogshuttleArgs']]]]):
         pulumi.set(self, "logging_logshuttles", value)
 
     @_builtins.property
     @pulumi.getter(name="loggingNewrelicotlps")
-    def logging_newrelicotlps(self) -> Optional[pulumi.Input[Sequence[pulumi.Input['ServiceVclLoggingNewrelicotlpArgs']]]]:
+    def logging_newrelicotlps(self) -> pulumi.Input[Optional[Sequence[pulumi.Input['ServiceVclLoggingNewrelicotlpArgs']]]]:
         return pulumi.get(self, "logging_newrelicotlps")
 
     @logging_newrelicotlps.setter
-    def logging_newrelicotlps(self, value: Optional[pulumi.Input[Sequence[pulumi.Input['ServiceVclLoggingNewrelicotlpArgs']]]]):
+    def logging_newrelicotlps(self, value: pulumi.Input[Optional[Sequence[pulumi.Input['ServiceVclLoggingNewrelicotlpArgs']]]]):
         pulumi.set(self, "logging_newrelicotlps", value)
 
     @_builtins.property
     @pulumi.getter(name="loggingNewrelics")
-    def logging_newrelics(self) -> Optional[pulumi.Input[Sequence[pulumi.Input['ServiceVclLoggingNewrelicArgs']]]]:
+    def logging_newrelics(self) -> pulumi.Input[Optional[Sequence[pulumi.Input['ServiceVclLoggingNewrelicArgs']]]]:
         return pulumi.get(self, "logging_newrelics")
 
     @logging_newrelics.setter
-    def logging_newrelics(self, value: Optional[pulumi.Input[Sequence[pulumi.Input['ServiceVclLoggingNewrelicArgs']]]]):
+    def logging_newrelics(self, value: pulumi.Input[Optional[Sequence[pulumi.Input['ServiceVclLoggingNewrelicArgs']]]]):
         pulumi.set(self, "logging_newrelics", value)
 
     @_builtins.property
     @pulumi.getter(name="loggingOpenstacks")
-    def logging_openstacks(self) -> Optional[pulumi.Input[Sequence[pulumi.Input['ServiceVclLoggingOpenstackArgs']]]]:
+    def logging_openstacks(self) -> pulumi.Input[Optional[Sequence[pulumi.Input['ServiceVclLoggingOpenstackArgs']]]]:
         return pulumi.get(self, "logging_openstacks")
 
     @logging_openstacks.setter
-    def logging_openstacks(self, value: Optional[pulumi.Input[Sequence[pulumi.Input['ServiceVclLoggingOpenstackArgs']]]]):
+    def logging_openstacks(self, value: pulumi.Input[Optional[Sequence[pulumi.Input['ServiceVclLoggingOpenstackArgs']]]]):
         pulumi.set(self, "logging_openstacks", value)
 
     @_builtins.property
     @pulumi.getter(name="loggingPapertrails")
-    def logging_papertrails(self) -> Optional[pulumi.Input[Sequence[pulumi.Input['ServiceVclLoggingPapertrailArgs']]]]:
+    def logging_papertrails(self) -> pulumi.Input[Optional[Sequence[pulumi.Input['ServiceVclLoggingPapertrailArgs']]]]:
         return pulumi.get(self, "logging_papertrails")
 
     @logging_papertrails.setter
-    def logging_papertrails(self, value: Optional[pulumi.Input[Sequence[pulumi.Input['ServiceVclLoggingPapertrailArgs']]]]):
+    def logging_papertrails(self, value: pulumi.Input[Optional[Sequence[pulumi.Input['ServiceVclLoggingPapertrailArgs']]]]):
         pulumi.set(self, "logging_papertrails", value)
 
     @_builtins.property
     @pulumi.getter(name="loggingS3s")
-    def logging_s3s(self) -> Optional[pulumi.Input[Sequence[pulumi.Input['ServiceVclLoggingS3Args']]]]:
+    def logging_s3s(self) -> pulumi.Input[Optional[Sequence[pulumi.Input['ServiceVclLoggingS3Args']]]]:
         return pulumi.get(self, "logging_s3s")
 
     @logging_s3s.setter
-    def logging_s3s(self, value: Optional[pulumi.Input[Sequence[pulumi.Input['ServiceVclLoggingS3Args']]]]):
+    def logging_s3s(self, value: pulumi.Input[Optional[Sequence[pulumi.Input['ServiceVclLoggingS3Args']]]]):
         pulumi.set(self, "logging_s3s", value)
 
     @_builtins.property
     @pulumi.getter(name="loggingScalyrs")
-    def logging_scalyrs(self) -> Optional[pulumi.Input[Sequence[pulumi.Input['ServiceVclLoggingScalyrArgs']]]]:
+    def logging_scalyrs(self) -> pulumi.Input[Optional[Sequence[pulumi.Input['ServiceVclLoggingScalyrArgs']]]]:
         return pulumi.get(self, "logging_scalyrs")
 
     @logging_scalyrs.setter
-    def logging_scalyrs(self, value: Optional[pulumi.Input[Sequence[pulumi.Input['ServiceVclLoggingScalyrArgs']]]]):
+    def logging_scalyrs(self, value: pulumi.Input[Optional[Sequence[pulumi.Input['ServiceVclLoggingScalyrArgs']]]]):
         pulumi.set(self, "logging_scalyrs", value)
 
     @_builtins.property
     @pulumi.getter(name="loggingSftps")
-    def logging_sftps(self) -> Optional[pulumi.Input[Sequence[pulumi.Input['ServiceVclLoggingSftpArgs']]]]:
+    def logging_sftps(self) -> pulumi.Input[Optional[Sequence[pulumi.Input['ServiceVclLoggingSftpArgs']]]]:
         return pulumi.get(self, "logging_sftps")
 
     @logging_sftps.setter
-    def logging_sftps(self, value: Optional[pulumi.Input[Sequence[pulumi.Input['ServiceVclLoggingSftpArgs']]]]):
+    def logging_sftps(self, value: pulumi.Input[Optional[Sequence[pulumi.Input['ServiceVclLoggingSftpArgs']]]]):
         pulumi.set(self, "logging_sftps", value)
 
     @_builtins.property
     @pulumi.getter(name="loggingSplunks")
-    def logging_splunks(self) -> Optional[pulumi.Input[Sequence[pulumi.Input['ServiceVclLoggingSplunkArgs']]]]:
+    def logging_splunks(self) -> pulumi.Input[Optional[Sequence[pulumi.Input['ServiceVclLoggingSplunkArgs']]]]:
         return pulumi.get(self, "logging_splunks")
 
     @logging_splunks.setter
-    def logging_splunks(self, value: Optional[pulumi.Input[Sequence[pulumi.Input['ServiceVclLoggingSplunkArgs']]]]):
+    def logging_splunks(self, value: pulumi.Input[Optional[Sequence[pulumi.Input['ServiceVclLoggingSplunkArgs']]]]):
         pulumi.set(self, "logging_splunks", value)
 
     @_builtins.property
     @pulumi.getter(name="loggingSumologics")
-    def logging_sumologics(self) -> Optional[pulumi.Input[Sequence[pulumi.Input['ServiceVclLoggingSumologicArgs']]]]:
+    def logging_sumologics(self) -> pulumi.Input[Optional[Sequence[pulumi.Input['ServiceVclLoggingSumologicArgs']]]]:
         return pulumi.get(self, "logging_sumologics")
 
     @logging_sumologics.setter
-    def logging_sumologics(self, value: Optional[pulumi.Input[Sequence[pulumi.Input['ServiceVclLoggingSumologicArgs']]]]):
+    def logging_sumologics(self, value: pulumi.Input[Optional[Sequence[pulumi.Input['ServiceVclLoggingSumologicArgs']]]]):
         pulumi.set(self, "logging_sumologics", value)
 
     @_builtins.property
     @pulumi.getter(name="loggingSyslogs")
-    def logging_syslogs(self) -> Optional[pulumi.Input[Sequence[pulumi.Input['ServiceVclLoggingSyslogArgs']]]]:
+    def logging_syslogs(self) -> pulumi.Input[Optional[Sequence[pulumi.Input['ServiceVclLoggingSyslogArgs']]]]:
         return pulumi.get(self, "logging_syslogs")
 
     @logging_syslogs.setter
-    def logging_syslogs(self, value: Optional[pulumi.Input[Sequence[pulumi.Input['ServiceVclLoggingSyslogArgs']]]]):
+    def logging_syslogs(self, value: pulumi.Input[Optional[Sequence[pulumi.Input['ServiceVclLoggingSyslogArgs']]]]):
         pulumi.set(self, "logging_syslogs", value)
 
     @_builtins.property
     @pulumi.getter
-    def name(self) -> Optional[pulumi.Input[_builtins.str]]:
+    def name(self) -> pulumi.Input[Optional[_builtins.str]]:
         """
         The unique name for the Service to create
         """
         return pulumi.get(self, "name")
 
     @name.setter
-    def name(self, value: Optional[pulumi.Input[_builtins.str]]):
+    def name(self, value: pulumi.Input[Optional[_builtins.str]]):
         pulumi.set(self, "name", value)
 
     @_builtins.property
     @pulumi.getter(name="productEnablement")
-    def product_enablement(self) -> Optional[pulumi.Input['ServiceVclProductEnablementArgs']]:
+    def product_enablement(self) -> pulumi.Input[Optional['ServiceVclProductEnablementArgs']]:
         return pulumi.get(self, "product_enablement")
 
     @product_enablement.setter
-    def product_enablement(self, value: Optional[pulumi.Input['ServiceVclProductEnablementArgs']]):
+    def product_enablement(self, value: pulumi.Input[Optional['ServiceVclProductEnablementArgs']]):
         pulumi.set(self, "product_enablement", value)
 
     @_builtins.property
     @pulumi.getter(name="rateLimiters")
-    def rate_limiters(self) -> Optional[pulumi.Input[Sequence[pulumi.Input['ServiceVclRateLimiterArgs']]]]:
+    def rate_limiters(self) -> pulumi.Input[Optional[Sequence[pulumi.Input['ServiceVclRateLimiterArgs']]]]:
         return pulumi.get(self, "rate_limiters")
 
     @rate_limiters.setter
-    def rate_limiters(self, value: Optional[pulumi.Input[Sequence[pulumi.Input['ServiceVclRateLimiterArgs']]]]):
+    def rate_limiters(self, value: pulumi.Input[Optional[Sequence[pulumi.Input['ServiceVclRateLimiterArgs']]]]):
         pulumi.set(self, "rate_limiters", value)
 
     @_builtins.property
     @pulumi.getter(name="requestSettings")
-    def request_settings(self) -> Optional[pulumi.Input[Sequence[pulumi.Input['ServiceVclRequestSettingArgs']]]]:
+    def request_settings(self) -> pulumi.Input[Optional[Sequence[pulumi.Input['ServiceVclRequestSettingArgs']]]]:
         return pulumi.get(self, "request_settings")
 
     @request_settings.setter
-    def request_settings(self, value: Optional[pulumi.Input[Sequence[pulumi.Input['ServiceVclRequestSettingArgs']]]]):
+    def request_settings(self, value: pulumi.Input[Optional[Sequence[pulumi.Input['ServiceVclRequestSettingArgs']]]]):
         pulumi.set(self, "request_settings", value)
 
     @_builtins.property
     @pulumi.getter(name="responseObjects")
-    def response_objects(self) -> Optional[pulumi.Input[Sequence[pulumi.Input['ServiceVclResponseObjectArgs']]]]:
+    def response_objects(self) -> pulumi.Input[Optional[Sequence[pulumi.Input['ServiceVclResponseObjectArgs']]]]:
         return pulumi.get(self, "response_objects")
 
     @response_objects.setter
-    def response_objects(self, value: Optional[pulumi.Input[Sequence[pulumi.Input['ServiceVclResponseObjectArgs']]]]):
+    def response_objects(self, value: pulumi.Input[Optional[Sequence[pulumi.Input['ServiceVclResponseObjectArgs']]]]):
         pulumi.set(self, "response_objects", value)
 
     @_builtins.property
     @pulumi.getter
-    def reuse(self) -> Optional[pulumi.Input[_builtins.bool]]:
+    def reuse(self) -> pulumi.Input[Optional[_builtins.bool]]:
         """
         Services that are active cannot be destroyed. If set to `true` a service Terraform intends to destroy will instead be deactivated (allowing it to be reused by importing it into another Terraform project). If `false`, attempting to destroy an active service will cause an error. Default `false`
         """
         return pulumi.get(self, "reuse")
 
     @reuse.setter
-    def reuse(self, value: Optional[pulumi.Input[_builtins.bool]]):
+    def reuse(self, value: pulumi.Input[Optional[_builtins.bool]]):
         pulumi.set(self, "reuse", value)
 
     @_builtins.property
     @pulumi.getter
-    def snippets(self) -> Optional[pulumi.Input[Sequence[pulumi.Input['ServiceVclSnippetArgs']]]]:
+    def snippets(self) -> pulumi.Input[Optional[Sequence[pulumi.Input['ServiceVclSnippetArgs']]]]:
         return pulumi.get(self, "snippets")
 
     @snippets.setter
-    def snippets(self, value: Optional[pulumi.Input[Sequence[pulumi.Input['ServiceVclSnippetArgs']]]]):
+    def snippets(self, value: pulumi.Input[Optional[Sequence[pulumi.Input['ServiceVclSnippetArgs']]]]):
         pulumi.set(self, "snippets", value)
 
     @_builtins.property
     @pulumi.getter
-    def stage(self) -> Optional[pulumi.Input[_builtins.bool]]:
+    def stage(self) -> pulumi.Input[Optional[_builtins.bool]]:
         """
         Conditionally enables new service versions to be staged. If set to `true`, all changes made by an `apply` step will be staged, even if `apply` did not create a new draft version. Default `false`
         """
         return pulumi.get(self, "stage")
 
     @stage.setter
-    def stage(self, value: Optional[pulumi.Input[_builtins.bool]]):
+    def stage(self, value: pulumi.Input[Optional[_builtins.bool]]):
         pulumi.set(self, "stage", value)
 
     @_builtins.property
     @pulumi.getter(name="stagedVersion")
-    def staged_version(self) -> Optional[pulumi.Input[_builtins.int]]:
+    def staged_version(self) -> pulumi.Input[Optional[_builtins.int]]:
         """
         The currently staged version of your Fastly Service
         """
         return pulumi.get(self, "staged_version")
 
     @staged_version.setter
-    def staged_version(self, value: Optional[pulumi.Input[_builtins.int]]):
+    def staged_version(self, value: pulumi.Input[Optional[_builtins.int]]):
         pulumi.set(self, "staged_version", value)
 
     @_builtins.property
     @pulumi.getter(name="staleIfError")
-    def stale_if_error(self) -> Optional[pulumi.Input[_builtins.bool]]:
+    def stale_if_error(self) -> pulumi.Input[Optional[_builtins.bool]]:
         """
         Enables serving a stale object if there is an error
         """
         return pulumi.get(self, "stale_if_error")
 
     @stale_if_error.setter
-    def stale_if_error(self, value: Optional[pulumi.Input[_builtins.bool]]):
+    def stale_if_error(self, value: pulumi.Input[Optional[_builtins.bool]]):
         pulumi.set(self, "stale_if_error", value)
 
     @_builtins.property
     @pulumi.getter(name="staleIfErrorTtl")
-    def stale_if_error_ttl(self) -> Optional[pulumi.Input[_builtins.int]]:
+    def stale_if_error_ttl(self) -> pulumi.Input[Optional[_builtins.int]]:
         """
         The default time-to-live (TTL) for serving the stale object for the version
         """
         return pulumi.get(self, "stale_if_error_ttl")
 
     @stale_if_error_ttl.setter
-    def stale_if_error_ttl(self, value: Optional[pulumi.Input[_builtins.int]]):
+    def stale_if_error_ttl(self, value: pulumi.Input[Optional[_builtins.int]]):
         pulumi.set(self, "stale_if_error_ttl", value)
 
     @_builtins.property
     @pulumi.getter
-    def vcls(self) -> Optional[pulumi.Input[Sequence[pulumi.Input['ServiceVclVclArgs']]]]:
+    def vcls(self) -> pulumi.Input[Optional[Sequence[pulumi.Input['ServiceVclVclArgs']]]]:
         return pulumi.get(self, "vcls")
 
     @vcls.setter
-    def vcls(self, value: Optional[pulumi.Input[Sequence[pulumi.Input['ServiceVclVclArgs']]]]):
+    def vcls(self, value: pulumi.Input[Optional[Sequence[pulumi.Input['ServiceVclVclArgs']]]]):
         pulumi.set(self, "vcls", value)
 
     @_builtins.property
     @pulumi.getter(name="versionComment")
-    def version_comment(self) -> Optional[pulumi.Input[_builtins.str]]:
+    def version_comment(self) -> pulumi.Input[Optional[_builtins.str]]:
         """
         Description field for the version
         """
         return pulumi.get(self, "version_comment")
 
     @version_comment.setter
-    def version_comment(self, value: Optional[pulumi.Input[_builtins.str]]):
+    def version_comment(self, value: pulumi.Input[Optional[_builtins.str]]):
         pulumi.set(self, "version_comment", value)
 
 
@@ -1618,64 +1618,64 @@ class ServiceVcl(pulumi.CustomResource):
     def __init__(__self__,
                  resource_name: str,
                  opts: Optional[pulumi.ResourceOptions] = None,
-                 acls: Optional[pulumi.Input[Sequence[pulumi.Input[Union['ServiceVclAclArgs', 'ServiceVclAclArgsDict']]]]] = None,
-                 activate: Optional[pulumi.Input[_builtins.bool]] = None,
-                 backends: Optional[pulumi.Input[Sequence[pulumi.Input[Union['ServiceVclBackendArgs', 'ServiceVclBackendArgsDict']]]]] = None,
-                 cache_settings: Optional[pulumi.Input[Sequence[pulumi.Input[Union['ServiceVclCacheSettingArgs', 'ServiceVclCacheSettingArgsDict']]]]] = None,
-                 comment: Optional[pulumi.Input[_builtins.str]] = None,
-                 conditions: Optional[pulumi.Input[Sequence[pulumi.Input[Union['ServiceVclConditionArgs', 'ServiceVclConditionArgsDict']]]]] = None,
-                 default_host: Optional[pulumi.Input[_builtins.str]] = None,
-                 default_ttl: Optional[pulumi.Input[_builtins.int]] = None,
-                 dictionaries: Optional[pulumi.Input[Sequence[pulumi.Input[Union['ServiceVclDictionaryArgs', 'ServiceVclDictionaryArgsDict']]]]] = None,
-                 directors: Optional[pulumi.Input[Sequence[pulumi.Input[Union['ServiceVclDirectorArgs', 'ServiceVclDirectorArgsDict']]]]] = None,
-                 domains: Optional[pulumi.Input[Sequence[pulumi.Input[Union['ServiceVclDomainArgs', 'ServiceVclDomainArgsDict']]]]] = None,
-                 dynamicsnippets: Optional[pulumi.Input[Sequence[pulumi.Input[Union['ServiceVclDynamicsnippetArgs', 'ServiceVclDynamicsnippetArgsDict']]]]] = None,
-                 force_destroy: Optional[pulumi.Input[_builtins.bool]] = None,
-                 gzips: Optional[pulumi.Input[Sequence[pulumi.Input[Union['ServiceVclGzipArgs', 'ServiceVclGzipArgsDict']]]]] = None,
-                 headers: Optional[pulumi.Input[Sequence[pulumi.Input[Union['ServiceVclHeaderArgs', 'ServiceVclHeaderArgsDict']]]]] = None,
-                 healthchecks: Optional[pulumi.Input[Sequence[pulumi.Input[Union['ServiceVclHealthcheckArgs', 'ServiceVclHealthcheckArgsDict']]]]] = None,
-                 http3: Optional[pulumi.Input[_builtins.bool]] = None,
-                 image_optimizer_default_settings: Optional[pulumi.Input[Union['ServiceVclImageOptimizerDefaultSettingsArgs', 'ServiceVclImageOptimizerDefaultSettingsArgsDict']]] = None,
-                 logging_bigqueries: Optional[pulumi.Input[Sequence[pulumi.Input[Union['ServiceVclLoggingBigqueryArgs', 'ServiceVclLoggingBigqueryArgsDict']]]]] = None,
-                 logging_blobstorages: Optional[pulumi.Input[Sequence[pulumi.Input[Union['ServiceVclLoggingBlobstorageArgs', 'ServiceVclLoggingBlobstorageArgsDict']]]]] = None,
-                 logging_cloudfiles: Optional[pulumi.Input[Sequence[pulumi.Input[Union['ServiceVclLoggingCloudfileArgs', 'ServiceVclLoggingCloudfileArgsDict']]]]] = None,
-                 logging_datadogs: Optional[pulumi.Input[Sequence[pulumi.Input[Union['ServiceVclLoggingDatadogArgs', 'ServiceVclLoggingDatadogArgsDict']]]]] = None,
-                 logging_digitaloceans: Optional[pulumi.Input[Sequence[pulumi.Input[Union['ServiceVclLoggingDigitaloceanArgs', 'ServiceVclLoggingDigitaloceanArgsDict']]]]] = None,
-                 logging_elasticsearches: Optional[pulumi.Input[Sequence[pulumi.Input[Union['ServiceVclLoggingElasticsearchArgs', 'ServiceVclLoggingElasticsearchArgsDict']]]]] = None,
-                 logging_ftps: Optional[pulumi.Input[Sequence[pulumi.Input[Union['ServiceVclLoggingFtpArgs', 'ServiceVclLoggingFtpArgsDict']]]]] = None,
-                 logging_gcs: Optional[pulumi.Input[Sequence[pulumi.Input[Union['ServiceVclLoggingGcArgs', 'ServiceVclLoggingGcArgsDict']]]]] = None,
-                 logging_googlepubsubs: Optional[pulumi.Input[Sequence[pulumi.Input[Union['ServiceVclLoggingGooglepubsubArgs', 'ServiceVclLoggingGooglepubsubArgsDict']]]]] = None,
-                 logging_grafanacloudlogs: Optional[pulumi.Input[Sequence[pulumi.Input[Union['ServiceVclLoggingGrafanacloudlogArgs', 'ServiceVclLoggingGrafanacloudlogArgsDict']]]]] = None,
-                 logging_herokus: Optional[pulumi.Input[Sequence[pulumi.Input[Union['ServiceVclLoggingHerokusArgs', 'ServiceVclLoggingHerokusArgsDict']]]]] = None,
-                 logging_honeycombs: Optional[pulumi.Input[Sequence[pulumi.Input[Union['ServiceVclLoggingHoneycombArgs', 'ServiceVclLoggingHoneycombArgsDict']]]]] = None,
-                 logging_https: Optional[pulumi.Input[Sequence[pulumi.Input[Union['ServiceVclLoggingHttpArgs', 'ServiceVclLoggingHttpArgsDict']]]]] = None,
-                 logging_kafkas: Optional[pulumi.Input[Sequence[pulumi.Input[Union['ServiceVclLoggingKafkaArgs', 'ServiceVclLoggingKafkaArgsDict']]]]] = None,
-                 logging_kineses: Optional[pulumi.Input[Sequence[pulumi.Input[Union['ServiceVclLoggingKineseArgs', 'ServiceVclLoggingKineseArgsDict']]]]] = None,
-                 logging_logentries: Optional[pulumi.Input[Sequence[pulumi.Input[Union['ServiceVclLoggingLogentryArgs', 'ServiceVclLoggingLogentryArgsDict']]]]] = None,
-                 logging_logglies: Optional[pulumi.Input[Sequence[pulumi.Input[Union['ServiceVclLoggingLogglyArgs', 'ServiceVclLoggingLogglyArgsDict']]]]] = None,
-                 logging_logshuttles: Optional[pulumi.Input[Sequence[pulumi.Input[Union['ServiceVclLoggingLogshuttleArgs', 'ServiceVclLoggingLogshuttleArgsDict']]]]] = None,
-                 logging_newrelicotlps: Optional[pulumi.Input[Sequence[pulumi.Input[Union['ServiceVclLoggingNewrelicotlpArgs', 'ServiceVclLoggingNewrelicotlpArgsDict']]]]] = None,
-                 logging_newrelics: Optional[pulumi.Input[Sequence[pulumi.Input[Union['ServiceVclLoggingNewrelicArgs', 'ServiceVclLoggingNewrelicArgsDict']]]]] = None,
-                 logging_openstacks: Optional[pulumi.Input[Sequence[pulumi.Input[Union['ServiceVclLoggingOpenstackArgs', 'ServiceVclLoggingOpenstackArgsDict']]]]] = None,
-                 logging_papertrails: Optional[pulumi.Input[Sequence[pulumi.Input[Union['ServiceVclLoggingPapertrailArgs', 'ServiceVclLoggingPapertrailArgsDict']]]]] = None,
-                 logging_s3s: Optional[pulumi.Input[Sequence[pulumi.Input[Union['ServiceVclLoggingS3Args', 'ServiceVclLoggingS3ArgsDict']]]]] = None,
-                 logging_scalyrs: Optional[pulumi.Input[Sequence[pulumi.Input[Union['ServiceVclLoggingScalyrArgs', 'ServiceVclLoggingScalyrArgsDict']]]]] = None,
-                 logging_sftps: Optional[pulumi.Input[Sequence[pulumi.Input[Union['ServiceVclLoggingSftpArgs', 'ServiceVclLoggingSftpArgsDict']]]]] = None,
-                 logging_splunks: Optional[pulumi.Input[Sequence[pulumi.Input[Union['ServiceVclLoggingSplunkArgs', 'ServiceVclLoggingSplunkArgsDict']]]]] = None,
-                 logging_sumologics: Optional[pulumi.Input[Sequence[pulumi.Input[Union['ServiceVclLoggingSumologicArgs', 'ServiceVclLoggingSumologicArgsDict']]]]] = None,
-                 logging_syslogs: Optional[pulumi.Input[Sequence[pulumi.Input[Union['ServiceVclLoggingSyslogArgs', 'ServiceVclLoggingSyslogArgsDict']]]]] = None,
-                 name: Optional[pulumi.Input[_builtins.str]] = None,
-                 product_enablement: Optional[pulumi.Input[Union['ServiceVclProductEnablementArgs', 'ServiceVclProductEnablementArgsDict']]] = None,
-                 rate_limiters: Optional[pulumi.Input[Sequence[pulumi.Input[Union['ServiceVclRateLimiterArgs', 'ServiceVclRateLimiterArgsDict']]]]] = None,
-                 request_settings: Optional[pulumi.Input[Sequence[pulumi.Input[Union['ServiceVclRequestSettingArgs', 'ServiceVclRequestSettingArgsDict']]]]] = None,
-                 response_objects: Optional[pulumi.Input[Sequence[pulumi.Input[Union['ServiceVclResponseObjectArgs', 'ServiceVclResponseObjectArgsDict']]]]] = None,
-                 reuse: Optional[pulumi.Input[_builtins.bool]] = None,
-                 snippets: Optional[pulumi.Input[Sequence[pulumi.Input[Union['ServiceVclSnippetArgs', 'ServiceVclSnippetArgsDict']]]]] = None,
-                 stage: Optional[pulumi.Input[_builtins.bool]] = None,
-                 stale_if_error: Optional[pulumi.Input[_builtins.bool]] = None,
-                 stale_if_error_ttl: Optional[pulumi.Input[_builtins.int]] = None,
-                 vcls: Optional[pulumi.Input[Sequence[pulumi.Input[Union['ServiceVclVclArgs', 'ServiceVclVclArgsDict']]]]] = None,
-                 version_comment: Optional[pulumi.Input[_builtins.str]] = None,
+                 acls: pulumi.Input[Optional[Sequence[pulumi.Input[Union['ServiceVclAclArgs', 'ServiceVclAclArgsDict']]]]] = None,
+                 activate: pulumi.Input[Optional[_builtins.bool]] = None,
+                 backends: pulumi.Input[Optional[Sequence[pulumi.Input[Union['ServiceVclBackendArgs', 'ServiceVclBackendArgsDict']]]]] = None,
+                 cache_settings: pulumi.Input[Optional[Sequence[pulumi.Input[Union['ServiceVclCacheSettingArgs', 'ServiceVclCacheSettingArgsDict']]]]] = None,
+                 comment: pulumi.Input[Optional[_builtins.str]] = None,
+                 conditions: pulumi.Input[Optional[Sequence[pulumi.Input[Union['ServiceVclConditionArgs', 'ServiceVclConditionArgsDict']]]]] = None,
+                 default_host: pulumi.Input[Optional[_builtins.str]] = None,
+                 default_ttl: pulumi.Input[Optional[_builtins.int]] = None,
+                 dictionaries: pulumi.Input[Optional[Sequence[pulumi.Input[Union['ServiceVclDictionaryArgs', 'ServiceVclDictionaryArgsDict']]]]] = None,
+                 directors: pulumi.Input[Optional[Sequence[pulumi.Input[Union['ServiceVclDirectorArgs', 'ServiceVclDirectorArgsDict']]]]] = None,
+                 domains: pulumi.Input[Optional[Sequence[pulumi.Input[Union['ServiceVclDomainArgs', 'ServiceVclDomainArgsDict']]]]] = None,
+                 dynamicsnippets: pulumi.Input[Optional[Sequence[pulumi.Input[Union['ServiceVclDynamicsnippetArgs', 'ServiceVclDynamicsnippetArgsDict']]]]] = None,
+                 force_destroy: pulumi.Input[Optional[_builtins.bool]] = None,
+                 gzips: pulumi.Input[Optional[Sequence[pulumi.Input[Union['ServiceVclGzipArgs', 'ServiceVclGzipArgsDict']]]]] = None,
+                 headers: pulumi.Input[Optional[Sequence[pulumi.Input[Union['ServiceVclHeaderArgs', 'ServiceVclHeaderArgsDict']]]]] = None,
+                 healthchecks: pulumi.Input[Optional[Sequence[pulumi.Input[Union['ServiceVclHealthcheckArgs', 'ServiceVclHealthcheckArgsDict']]]]] = None,
+                 http3: pulumi.Input[Optional[_builtins.bool]] = None,
+                 image_optimizer_default_settings: pulumi.Input[Optional[Union['ServiceVclImageOptimizerDefaultSettingsArgs', 'ServiceVclImageOptimizerDefaultSettingsArgsDict']]] = None,
+                 logging_bigqueries: pulumi.Input[Optional[Sequence[pulumi.Input[Union['ServiceVclLoggingBigqueryArgs', 'ServiceVclLoggingBigqueryArgsDict']]]]] = None,
+                 logging_blobstorages: pulumi.Input[Optional[Sequence[pulumi.Input[Union['ServiceVclLoggingBlobstorageArgs', 'ServiceVclLoggingBlobstorageArgsDict']]]]] = None,
+                 logging_cloudfiles: pulumi.Input[Optional[Sequence[pulumi.Input[Union['ServiceVclLoggingCloudfileArgs', 'ServiceVclLoggingCloudfileArgsDict']]]]] = None,
+                 logging_datadogs: pulumi.Input[Optional[Sequence[pulumi.Input[Union['ServiceVclLoggingDatadogArgs', 'ServiceVclLoggingDatadogArgsDict']]]]] = None,
+                 logging_digitaloceans: pulumi.Input[Optional[Sequence[pulumi.Input[Union['ServiceVclLoggingDigitaloceanArgs', 'ServiceVclLoggingDigitaloceanArgsDict']]]]] = None,
+                 logging_elasticsearches: pulumi.Input[Optional[Sequence[pulumi.Input[Union['ServiceVclLoggingElasticsearchArgs', 'ServiceVclLoggingElasticsearchArgsDict']]]]] = None,
+                 logging_ftps: pulumi.Input[Optional[Sequence[pulumi.Input[Union['ServiceVclLoggingFtpArgs', 'ServiceVclLoggingFtpArgsDict']]]]] = None,
+                 logging_gcs: pulumi.Input[Optional[Sequence[pulumi.Input[Union['ServiceVclLoggingGcArgs', 'ServiceVclLoggingGcArgsDict']]]]] = None,
+                 logging_googlepubsubs: pulumi.Input[Optional[Sequence[pulumi.Input[Union['ServiceVclLoggingGooglepubsubArgs', 'ServiceVclLoggingGooglepubsubArgsDict']]]]] = None,
+                 logging_grafanacloudlogs: pulumi.Input[Optional[Sequence[pulumi.Input[Union['ServiceVclLoggingGrafanacloudlogArgs', 'ServiceVclLoggingGrafanacloudlogArgsDict']]]]] = None,
+                 logging_herokus: pulumi.Input[Optional[Sequence[pulumi.Input[Union['ServiceVclLoggingHerokusArgs', 'ServiceVclLoggingHerokusArgsDict']]]]] = None,
+                 logging_honeycombs: pulumi.Input[Optional[Sequence[pulumi.Input[Union['ServiceVclLoggingHoneycombArgs', 'ServiceVclLoggingHoneycombArgsDict']]]]] = None,
+                 logging_https: pulumi.Input[Optional[Sequence[pulumi.Input[Union['ServiceVclLoggingHttpArgs', 'ServiceVclLoggingHttpArgsDict']]]]] = None,
+                 logging_kafkas: pulumi.Input[Optional[Sequence[pulumi.Input[Union['ServiceVclLoggingKafkaArgs', 'ServiceVclLoggingKafkaArgsDict']]]]] = None,
+                 logging_kineses: pulumi.Input[Optional[Sequence[pulumi.Input[Union['ServiceVclLoggingKineseArgs', 'ServiceVclLoggingKineseArgsDict']]]]] = None,
+                 logging_logentries: pulumi.Input[Optional[Sequence[pulumi.Input[Union['ServiceVclLoggingLogentryArgs', 'ServiceVclLoggingLogentryArgsDict']]]]] = None,
+                 logging_logglies: pulumi.Input[Optional[Sequence[pulumi.Input[Union['ServiceVclLoggingLogglyArgs', 'ServiceVclLoggingLogglyArgsDict']]]]] = None,
+                 logging_logshuttles: pulumi.Input[Optional[Sequence[pulumi.Input[Union['ServiceVclLoggingLogshuttleArgs', 'ServiceVclLoggingLogshuttleArgsDict']]]]] = None,
+                 logging_newrelicotlps: pulumi.Input[Optional[Sequence[pulumi.Input[Union['ServiceVclLoggingNewrelicotlpArgs', 'ServiceVclLoggingNewrelicotlpArgsDict']]]]] = None,
+                 logging_newrelics: pulumi.Input[Optional[Sequence[pulumi.Input[Union['ServiceVclLoggingNewrelicArgs', 'ServiceVclLoggingNewrelicArgsDict']]]]] = None,
+                 logging_openstacks: pulumi.Input[Optional[Sequence[pulumi.Input[Union['ServiceVclLoggingOpenstackArgs', 'ServiceVclLoggingOpenstackArgsDict']]]]] = None,
+                 logging_papertrails: pulumi.Input[Optional[Sequence[pulumi.Input[Union['ServiceVclLoggingPapertrailArgs', 'ServiceVclLoggingPapertrailArgsDict']]]]] = None,
+                 logging_s3s: pulumi.Input[Optional[Sequence[pulumi.Input[Union['ServiceVclLoggingS3Args', 'ServiceVclLoggingS3ArgsDict']]]]] = None,
+                 logging_scalyrs: pulumi.Input[Optional[Sequence[pulumi.Input[Union['ServiceVclLoggingScalyrArgs', 'ServiceVclLoggingScalyrArgsDict']]]]] = None,
+                 logging_sftps: pulumi.Input[Optional[Sequence[pulumi.Input[Union['ServiceVclLoggingSftpArgs', 'ServiceVclLoggingSftpArgsDict']]]]] = None,
+                 logging_splunks: pulumi.Input[Optional[Sequence[pulumi.Input[Union['ServiceVclLoggingSplunkArgs', 'ServiceVclLoggingSplunkArgsDict']]]]] = None,
+                 logging_sumologics: pulumi.Input[Optional[Sequence[pulumi.Input[Union['ServiceVclLoggingSumologicArgs', 'ServiceVclLoggingSumologicArgsDict']]]]] = None,
+                 logging_syslogs: pulumi.Input[Optional[Sequence[pulumi.Input[Union['ServiceVclLoggingSyslogArgs', 'ServiceVclLoggingSyslogArgsDict']]]]] = None,
+                 name: pulumi.Input[Optional[_builtins.str]] = None,
+                 product_enablement: pulumi.Input[Optional[Union['ServiceVclProductEnablementArgs', 'ServiceVclProductEnablementArgsDict']]] = None,
+                 rate_limiters: pulumi.Input[Optional[Sequence[pulumi.Input[Union['ServiceVclRateLimiterArgs', 'ServiceVclRateLimiterArgsDict']]]]] = None,
+                 request_settings: pulumi.Input[Optional[Sequence[pulumi.Input[Union['ServiceVclRequestSettingArgs', 'ServiceVclRequestSettingArgsDict']]]]] = None,
+                 response_objects: pulumi.Input[Optional[Sequence[pulumi.Input[Union['ServiceVclResponseObjectArgs', 'ServiceVclResponseObjectArgsDict']]]]] = None,
+                 reuse: pulumi.Input[Optional[_builtins.bool]] = None,
+                 snippets: pulumi.Input[Optional[Sequence[pulumi.Input[Union['ServiceVclSnippetArgs', 'ServiceVclSnippetArgsDict']]]]] = None,
+                 stage: pulumi.Input[Optional[_builtins.bool]] = None,
+                 stale_if_error: pulumi.Input[Optional[_builtins.bool]] = None,
+                 stale_if_error_ttl: pulumi.Input[Optional[_builtins.int]] = None,
+                 vcls: pulumi.Input[Optional[Sequence[pulumi.Input[Union['ServiceVclVclArgs', 'ServiceVclVclArgsDict']]]]] = None,
+                 version_comment: pulumi.Input[Optional[_builtins.str]] = None,
                  __props__=None):
         """
         Provides a Fastly Service, representing the configuration for a website, app,
@@ -1958,64 +1958,64 @@ class ServiceVcl(pulumi.CustomResource):
     def _internal_init(__self__,
                  resource_name: str,
                  opts: Optional[pulumi.ResourceOptions] = None,
-                 acls: Optional[pulumi.Input[Sequence[pulumi.Input[Union['ServiceVclAclArgs', 'ServiceVclAclArgsDict']]]]] = None,
-                 activate: Optional[pulumi.Input[_builtins.bool]] = None,
-                 backends: Optional[pulumi.Input[Sequence[pulumi.Input[Union['ServiceVclBackendArgs', 'ServiceVclBackendArgsDict']]]]] = None,
-                 cache_settings: Optional[pulumi.Input[Sequence[pulumi.Input[Union['ServiceVclCacheSettingArgs', 'ServiceVclCacheSettingArgsDict']]]]] = None,
-                 comment: Optional[pulumi.Input[_builtins.str]] = None,
-                 conditions: Optional[pulumi.Input[Sequence[pulumi.Input[Union['ServiceVclConditionArgs', 'ServiceVclConditionArgsDict']]]]] = None,
-                 default_host: Optional[pulumi.Input[_builtins.str]] = None,
-                 default_ttl: Optional[pulumi.Input[_builtins.int]] = None,
-                 dictionaries: Optional[pulumi.Input[Sequence[pulumi.Input[Union['ServiceVclDictionaryArgs', 'ServiceVclDictionaryArgsDict']]]]] = None,
-                 directors: Optional[pulumi.Input[Sequence[pulumi.Input[Union['ServiceVclDirectorArgs', 'ServiceVclDirectorArgsDict']]]]] = None,
-                 domains: Optional[pulumi.Input[Sequence[pulumi.Input[Union['ServiceVclDomainArgs', 'ServiceVclDomainArgsDict']]]]] = None,
-                 dynamicsnippets: Optional[pulumi.Input[Sequence[pulumi.Input[Union['ServiceVclDynamicsnippetArgs', 'ServiceVclDynamicsnippetArgsDict']]]]] = None,
-                 force_destroy: Optional[pulumi.Input[_builtins.bool]] = None,
-                 gzips: Optional[pulumi.Input[Sequence[pulumi.Input[Union['ServiceVclGzipArgs', 'ServiceVclGzipArgsDict']]]]] = None,
-                 headers: Optional[pulumi.Input[Sequence[pulumi.Input[Union['ServiceVclHeaderArgs', 'ServiceVclHeaderArgsDict']]]]] = None,
-                 healthchecks: Optional[pulumi.Input[Sequence[pulumi.Input[Union['ServiceVclHealthcheckArgs', 'ServiceVclHealthcheckArgsDict']]]]] = None,
-                 http3: Optional[pulumi.Input[_builtins.bool]] = None,
-                 image_optimizer_default_settings: Optional[pulumi.Input[Union['ServiceVclImageOptimizerDefaultSettingsArgs', 'ServiceVclImageOptimizerDefaultSettingsArgsDict']]] = None,
-                 logging_bigqueries: Optional[pulumi.Input[Sequence[pulumi.Input[Union['ServiceVclLoggingBigqueryArgs', 'ServiceVclLoggingBigqueryArgsDict']]]]] = None,
-                 logging_blobstorages: Optional[pulumi.Input[Sequence[pulumi.Input[Union['ServiceVclLoggingBlobstorageArgs', 'ServiceVclLoggingBlobstorageArgsDict']]]]] = None,
-                 logging_cloudfiles: Optional[pulumi.Input[Sequence[pulumi.Input[Union['ServiceVclLoggingCloudfileArgs', 'ServiceVclLoggingCloudfileArgsDict']]]]] = None,
-                 logging_datadogs: Optional[pulumi.Input[Sequence[pulumi.Input[Union['ServiceVclLoggingDatadogArgs', 'ServiceVclLoggingDatadogArgsDict']]]]] = None,
-                 logging_digitaloceans: Optional[pulumi.Input[Sequence[pulumi.Input[Union['ServiceVclLoggingDigitaloceanArgs', 'ServiceVclLoggingDigitaloceanArgsDict']]]]] = None,
-                 logging_elasticsearches: Optional[pulumi.Input[Sequence[pulumi.Input[Union['ServiceVclLoggingElasticsearchArgs', 'ServiceVclLoggingElasticsearchArgsDict']]]]] = None,
-                 logging_ftps: Optional[pulumi.Input[Sequence[pulumi.Input[Union['ServiceVclLoggingFtpArgs', 'ServiceVclLoggingFtpArgsDict']]]]] = None,
-                 logging_gcs: Optional[pulumi.Input[Sequence[pulumi.Input[Union['ServiceVclLoggingGcArgs', 'ServiceVclLoggingGcArgsDict']]]]] = None,
-                 logging_googlepubsubs: Optional[pulumi.Input[Sequence[pulumi.Input[Union['ServiceVclLoggingGooglepubsubArgs', 'ServiceVclLoggingGooglepubsubArgsDict']]]]] = None,
-                 logging_grafanacloudlogs: Optional[pulumi.Input[Sequence[pulumi.Input[Union['ServiceVclLoggingGrafanacloudlogArgs', 'ServiceVclLoggingGrafanacloudlogArgsDict']]]]] = None,
-                 logging_herokus: Optional[pulumi.Input[Sequence[pulumi.Input[Union['ServiceVclLoggingHerokusArgs', 'ServiceVclLoggingHerokusArgsDict']]]]] = None,
-                 logging_honeycombs: Optional[pulumi.Input[Sequence[pulumi.Input[Union['ServiceVclLoggingHoneycombArgs', 'ServiceVclLoggingHoneycombArgsDict']]]]] = None,
-                 logging_https: Optional[pulumi.Input[Sequence[pulumi.Input[Union['ServiceVclLoggingHttpArgs', 'ServiceVclLoggingHttpArgsDict']]]]] = None,
-                 logging_kafkas: Optional[pulumi.Input[Sequence[pulumi.Input[Union['ServiceVclLoggingKafkaArgs', 'ServiceVclLoggingKafkaArgsDict']]]]] = None,
-                 logging_kineses: Optional[pulumi.Input[Sequence[pulumi.Input[Union['ServiceVclLoggingKineseArgs', 'ServiceVclLoggingKineseArgsDict']]]]] = None,
-                 logging_logentries: Optional[pulumi.Input[Sequence[pulumi.Input[Union['ServiceVclLoggingLogentryArgs', 'ServiceVclLoggingLogentryArgsDict']]]]] = None,
-                 logging_logglies: Optional[pulumi.Input[Sequence[pulumi.Input[Union['ServiceVclLoggingLogglyArgs', 'ServiceVclLoggingLogglyArgsDict']]]]] = None,
-                 logging_logshuttles: Optional[pulumi.Input[Sequence[pulumi.Input[Union['ServiceVclLoggingLogshuttleArgs', 'ServiceVclLoggingLogshuttleArgsDict']]]]] = None,
-                 logging_newrelicotlps: Optional[pulumi.Input[Sequence[pulumi.Input[Union['ServiceVclLoggingNewrelicotlpArgs', 'ServiceVclLoggingNewrelicotlpArgsDict']]]]] = None,
-                 logging_newrelics: Optional[pulumi.Input[Sequence[pulumi.Input[Union['ServiceVclLoggingNewrelicArgs', 'ServiceVclLoggingNewrelicArgsDict']]]]] = None,
-                 logging_openstacks: Optional[pulumi.Input[Sequence[pulumi.Input[Union['ServiceVclLoggingOpenstackArgs', 'ServiceVclLoggingOpenstackArgsDict']]]]] = None,
-                 logging_papertrails: Optional[pulumi.Input[Sequence[pulumi.Input[Union['ServiceVclLoggingPapertrailArgs', 'ServiceVclLoggingPapertrailArgsDict']]]]] = None,
-                 logging_s3s: Optional[pulumi.Input[Sequence[pulumi.Input[Union['ServiceVclLoggingS3Args', 'ServiceVclLoggingS3ArgsDict']]]]] = None,
-                 logging_scalyrs: Optional[pulumi.Input[Sequence[pulumi.Input[Union['ServiceVclLoggingScalyrArgs', 'ServiceVclLoggingScalyrArgsDict']]]]] = None,
-                 logging_sftps: Optional[pulumi.Input[Sequence[pulumi.Input[Union['ServiceVclLoggingSftpArgs', 'ServiceVclLoggingSftpArgsDict']]]]] = None,
-                 logging_splunks: Optional[pulumi.Input[Sequence[pulumi.Input[Union['ServiceVclLoggingSplunkArgs', 'ServiceVclLoggingSplunkArgsDict']]]]] = None,
-                 logging_sumologics: Optional[pulumi.Input[Sequence[pulumi.Input[Union['ServiceVclLoggingSumologicArgs', 'ServiceVclLoggingSumologicArgsDict']]]]] = None,
-                 logging_syslogs: Optional[pulumi.Input[Sequence[pulumi.Input[Union['ServiceVclLoggingSyslogArgs', 'ServiceVclLoggingSyslogArgsDict']]]]] = None,
-                 name: Optional[pulumi.Input[_builtins.str]] = None,
-                 product_enablement: Optional[pulumi.Input[Union['ServiceVclProductEnablementArgs', 'ServiceVclProductEnablementArgsDict']]] = None,
-                 rate_limiters: Optional[pulumi.Input[Sequence[pulumi.Input[Union['ServiceVclRateLimiterArgs', 'ServiceVclRateLimiterArgsDict']]]]] = None,
-                 request_settings: Optional[pulumi.Input[Sequence[pulumi.Input[Union['ServiceVclRequestSettingArgs', 'ServiceVclRequestSettingArgsDict']]]]] = None,
-                 response_objects: Optional[pulumi.Input[Sequence[pulumi.Input[Union['ServiceVclResponseObjectArgs', 'ServiceVclResponseObjectArgsDict']]]]] = None,
-                 reuse: Optional[pulumi.Input[_builtins.bool]] = None,
-                 snippets: Optional[pulumi.Input[Sequence[pulumi.Input[Union['ServiceVclSnippetArgs', 'ServiceVclSnippetArgsDict']]]]] = None,
-                 stage: Optional[pulumi.Input[_builtins.bool]] = None,
-                 stale_if_error: Optional[pulumi.Input[_builtins.bool]] = None,
-                 stale_if_error_ttl: Optional[pulumi.Input[_builtins.int]] = None,
-                 vcls: Optional[pulumi.Input[Sequence[pulumi.Input[Union['ServiceVclVclArgs', 'ServiceVclVclArgsDict']]]]] = None,
-                 version_comment: Optional[pulumi.Input[_builtins.str]] = None,
+                 acls: pulumi.Input[Optional[Sequence[pulumi.Input[Union['ServiceVclAclArgs', 'ServiceVclAclArgsDict']]]]] = None,
+                 activate: pulumi.Input[Optional[_builtins.bool]] = None,
+                 backends: pulumi.Input[Optional[Sequence[pulumi.Input[Union['ServiceVclBackendArgs', 'ServiceVclBackendArgsDict']]]]] = None,
+                 cache_settings: pulumi.Input[Optional[Sequence[pulumi.Input[Union['ServiceVclCacheSettingArgs', 'ServiceVclCacheSettingArgsDict']]]]] = None,
+                 comment: pulumi.Input[Optional[_builtins.str]] = None,
+                 conditions: pulumi.Input[Optional[Sequence[pulumi.Input[Union['ServiceVclConditionArgs', 'ServiceVclConditionArgsDict']]]]] = None,
+                 default_host: pulumi.Input[Optional[_builtins.str]] = None,
+                 default_ttl: pulumi.Input[Optional[_builtins.int]] = None,
+                 dictionaries: pulumi.Input[Optional[Sequence[pulumi.Input[Union['ServiceVclDictionaryArgs', 'ServiceVclDictionaryArgsDict']]]]] = None,
+                 directors: pulumi.Input[Optional[Sequence[pulumi.Input[Union['ServiceVclDirectorArgs', 'ServiceVclDirectorArgsDict']]]]] = None,
+                 domains: pulumi.Input[Optional[Sequence[pulumi.Input[Union['ServiceVclDomainArgs', 'ServiceVclDomainArgsDict']]]]] = None,
+                 dynamicsnippets: pulumi.Input[Optional[Sequence[pulumi.Input[Union['ServiceVclDynamicsnippetArgs', 'ServiceVclDynamicsnippetArgsDict']]]]] = None,
+                 force_destroy: pulumi.Input[Optional[_builtins.bool]] = None,
+                 gzips: pulumi.Input[Optional[Sequence[pulumi.Input[Union['ServiceVclGzipArgs', 'ServiceVclGzipArgsDict']]]]] = None,
+                 headers: pulumi.Input[Optional[Sequence[pulumi.Input[Union['ServiceVclHeaderArgs', 'ServiceVclHeaderArgsDict']]]]] = None,
+                 healthchecks: pulumi.Input[Optional[Sequence[pulumi.Input[Union['ServiceVclHealthcheckArgs', 'ServiceVclHealthcheckArgsDict']]]]] = None,
+                 http3: pulumi.Input[Optional[_builtins.bool]] = None,
+                 image_optimizer_default_settings: pulumi.Input[Optional[Union['ServiceVclImageOptimizerDefaultSettingsArgs', 'ServiceVclImageOptimizerDefaultSettingsArgsDict']]] = None,
+                 logging_bigqueries: pulumi.Input[Optional[Sequence[pulumi.Input[Union['ServiceVclLoggingBigqueryArgs', 'ServiceVclLoggingBigqueryArgsDict']]]]] = None,
+                 logging_blobstorages: pulumi.Input[Optional[Sequence[pulumi.Input[Union['ServiceVclLoggingBlobstorageArgs', 'ServiceVclLoggingBlobstorageArgsDict']]]]] = None,
+                 logging_cloudfiles: pulumi.Input[Optional[Sequence[pulumi.Input[Union['ServiceVclLoggingCloudfileArgs', 'ServiceVclLoggingCloudfileArgsDict']]]]] = None,
+                 logging_datadogs: pulumi.Input[Optional[Sequence[pulumi.Input[Union['ServiceVclLoggingDatadogArgs', 'ServiceVclLoggingDatadogArgsDict']]]]] = None,
+                 logging_digitaloceans: pulumi.Input[Optional[Sequence[pulumi.Input[Union['ServiceVclLoggingDigitaloceanArgs', 'ServiceVclLoggingDigitaloceanArgsDict']]]]] = None,
+                 logging_elasticsearches: pulumi.Input[Optional[Sequence[pulumi.Input[Union['ServiceVclLoggingElasticsearchArgs', 'ServiceVclLoggingElasticsearchArgsDict']]]]] = None,
+                 logging_ftps: pulumi.Input[Optional[Sequence[pulumi.Input[Union['ServiceVclLoggingFtpArgs', 'ServiceVclLoggingFtpArgsDict']]]]] = None,
+                 logging_gcs: pulumi.Input[Optional[Sequence[pulumi.Input[Union['ServiceVclLoggingGcArgs', 'ServiceVclLoggingGcArgsDict']]]]] = None,
+                 logging_googlepubsubs: pulumi.Input[Optional[Sequence[pulumi.Input[Union['ServiceVclLoggingGooglepubsubArgs', 'ServiceVclLoggingGooglepubsubArgsDict']]]]] = None,
+                 logging_grafanacloudlogs: pulumi.Input[Optional[Sequence[pulumi.Input[Union['ServiceVclLoggingGrafanacloudlogArgs', 'ServiceVclLoggingGrafanacloudlogArgsDict']]]]] = None,
+                 logging_herokus: pulumi.Input[Optional[Sequence[pulumi.Input[Union['ServiceVclLoggingHerokusArgs', 'ServiceVclLoggingHerokusArgsDict']]]]] = None,
+                 logging_honeycombs: pulumi.Input[Optional[Sequence[pulumi.Input[Union['ServiceVclLoggingHoneycombArgs', 'ServiceVclLoggingHoneycombArgsDict']]]]] = None,
+                 logging_https: pulumi.Input[Optional[Sequence[pulumi.Input[Union['ServiceVclLoggingHttpArgs', 'ServiceVclLoggingHttpArgsDict']]]]] = None,
+                 logging_kafkas: pulumi.Input[Optional[Sequence[pulumi.Input[Union['ServiceVclLoggingKafkaArgs', 'ServiceVclLoggingKafkaArgsDict']]]]] = None,
+                 logging_kineses: pulumi.Input[Optional[Sequence[pulumi.Input[Union['ServiceVclLoggingKineseArgs', 'ServiceVclLoggingKineseArgsDict']]]]] = None,
+                 logging_logentries: pulumi.Input[Optional[Sequence[pulumi.Input[Union['ServiceVclLoggingLogentryArgs', 'ServiceVclLoggingLogentryArgsDict']]]]] = None,
+                 logging_logglies: pulumi.Input[Optional[Sequence[pulumi.Input[Union['ServiceVclLoggingLogglyArgs', 'ServiceVclLoggingLogglyArgsDict']]]]] = None,
+                 logging_logshuttles: pulumi.Input[Optional[Sequence[pulumi.Input[Union['ServiceVclLoggingLogshuttleArgs', 'ServiceVclLoggingLogshuttleArgsDict']]]]] = None,
+                 logging_newrelicotlps: pulumi.Input[Optional[Sequence[pulumi.Input[Union['ServiceVclLoggingNewrelicotlpArgs', 'ServiceVclLoggingNewrelicotlpArgsDict']]]]] = None,
+                 logging_newrelics: pulumi.Input[Optional[Sequence[pulumi.Input[Union['ServiceVclLoggingNewrelicArgs', 'ServiceVclLoggingNewrelicArgsDict']]]]] = None,
+                 logging_openstacks: pulumi.Input[Optional[Sequence[pulumi.Input[Union['ServiceVclLoggingOpenstackArgs', 'ServiceVclLoggingOpenstackArgsDict']]]]] = None,
+                 logging_papertrails: pulumi.Input[Optional[Sequence[pulumi.Input[Union['ServiceVclLoggingPapertrailArgs', 'ServiceVclLoggingPapertrailArgsDict']]]]] = None,
+                 logging_s3s: pulumi.Input[Optional[Sequence[pulumi.Input[Union['ServiceVclLoggingS3Args', 'ServiceVclLoggingS3ArgsDict']]]]] = None,
+                 logging_scalyrs: pulumi.Input[Optional[Sequence[pulumi.Input[Union['ServiceVclLoggingScalyrArgs', 'ServiceVclLoggingScalyrArgsDict']]]]] = None,
+                 logging_sftps: pulumi.Input[Optional[Sequence[pulumi.Input[Union['ServiceVclLoggingSftpArgs', 'ServiceVclLoggingSftpArgsDict']]]]] = None,
+                 logging_splunks: pulumi.Input[Optional[Sequence[pulumi.Input[Union['ServiceVclLoggingSplunkArgs', 'ServiceVclLoggingSplunkArgsDict']]]]] = None,
+                 logging_sumologics: pulumi.Input[Optional[Sequence[pulumi.Input[Union['ServiceVclLoggingSumologicArgs', 'ServiceVclLoggingSumologicArgsDict']]]]] = None,
+                 logging_syslogs: pulumi.Input[Optional[Sequence[pulumi.Input[Union['ServiceVclLoggingSyslogArgs', 'ServiceVclLoggingSyslogArgsDict']]]]] = None,
+                 name: pulumi.Input[Optional[_builtins.str]] = None,
+                 product_enablement: pulumi.Input[Optional[Union['ServiceVclProductEnablementArgs', 'ServiceVclProductEnablementArgsDict']]] = None,
+                 rate_limiters: pulumi.Input[Optional[Sequence[pulumi.Input[Union['ServiceVclRateLimiterArgs', 'ServiceVclRateLimiterArgsDict']]]]] = None,
+                 request_settings: pulumi.Input[Optional[Sequence[pulumi.Input[Union['ServiceVclRequestSettingArgs', 'ServiceVclRequestSettingArgsDict']]]]] = None,
+                 response_objects: pulumi.Input[Optional[Sequence[pulumi.Input[Union['ServiceVclResponseObjectArgs', 'ServiceVclResponseObjectArgsDict']]]]] = None,
+                 reuse: pulumi.Input[Optional[_builtins.bool]] = None,
+                 snippets: pulumi.Input[Optional[Sequence[pulumi.Input[Union['ServiceVclSnippetArgs', 'ServiceVclSnippetArgsDict']]]]] = None,
+                 stage: pulumi.Input[Optional[_builtins.bool]] = None,
+                 stale_if_error: pulumi.Input[Optional[_builtins.bool]] = None,
+                 stale_if_error_ttl: pulumi.Input[Optional[_builtins.int]] = None,
+                 vcls: pulumi.Input[Optional[Sequence[pulumi.Input[Union['ServiceVclVclArgs', 'ServiceVclVclArgsDict']]]]] = None,
+                 version_comment: pulumi.Input[Optional[_builtins.str]] = None,
                  __props__=None):
         opts = pulumi.ResourceOptions.merge(_utilities.get_resource_opts_defaults(), opts)
         if not isinstance(opts, pulumi.ResourceOptions):
@@ -2098,69 +2098,69 @@ class ServiceVcl(pulumi.CustomResource):
     def get(resource_name: str,
             id: pulumi.Input[str],
             opts: Optional[pulumi.ResourceOptions] = None,
-            acls: Optional[pulumi.Input[Sequence[pulumi.Input[Union['ServiceVclAclArgs', 'ServiceVclAclArgsDict']]]]] = None,
-            activate: Optional[pulumi.Input[_builtins.bool]] = None,
-            active_version: Optional[pulumi.Input[_builtins.int]] = None,
-            backends: Optional[pulumi.Input[Sequence[pulumi.Input[Union['ServiceVclBackendArgs', 'ServiceVclBackendArgsDict']]]]] = None,
-            cache_settings: Optional[pulumi.Input[Sequence[pulumi.Input[Union['ServiceVclCacheSettingArgs', 'ServiceVclCacheSettingArgsDict']]]]] = None,
-            cloned_version: Optional[pulumi.Input[_builtins.int]] = None,
-            comment: Optional[pulumi.Input[_builtins.str]] = None,
-            conditions: Optional[pulumi.Input[Sequence[pulumi.Input[Union['ServiceVclConditionArgs', 'ServiceVclConditionArgsDict']]]]] = None,
-            default_host: Optional[pulumi.Input[_builtins.str]] = None,
-            default_ttl: Optional[pulumi.Input[_builtins.int]] = None,
-            dictionaries: Optional[pulumi.Input[Sequence[pulumi.Input[Union['ServiceVclDictionaryArgs', 'ServiceVclDictionaryArgsDict']]]]] = None,
-            directors: Optional[pulumi.Input[Sequence[pulumi.Input[Union['ServiceVclDirectorArgs', 'ServiceVclDirectorArgsDict']]]]] = None,
-            domains: Optional[pulumi.Input[Sequence[pulumi.Input[Union['ServiceVclDomainArgs', 'ServiceVclDomainArgsDict']]]]] = None,
-            dynamicsnippets: Optional[pulumi.Input[Sequence[pulumi.Input[Union['ServiceVclDynamicsnippetArgs', 'ServiceVclDynamicsnippetArgsDict']]]]] = None,
-            force_destroy: Optional[pulumi.Input[_builtins.bool]] = None,
-            force_refresh: Optional[pulumi.Input[_builtins.bool]] = None,
-            gzips: Optional[pulumi.Input[Sequence[pulumi.Input[Union['ServiceVclGzipArgs', 'ServiceVclGzipArgsDict']]]]] = None,
-            headers: Optional[pulumi.Input[Sequence[pulumi.Input[Union['ServiceVclHeaderArgs', 'ServiceVclHeaderArgsDict']]]]] = None,
-            healthchecks: Optional[pulumi.Input[Sequence[pulumi.Input[Union['ServiceVclHealthcheckArgs', 'ServiceVclHealthcheckArgsDict']]]]] = None,
-            http3: Optional[pulumi.Input[_builtins.bool]] = None,
-            image_optimizer_default_settings: Optional[pulumi.Input[Union['ServiceVclImageOptimizerDefaultSettingsArgs', 'ServiceVclImageOptimizerDefaultSettingsArgsDict']]] = None,
-            imported: Optional[pulumi.Input[_builtins.bool]] = None,
-            logging_bigqueries: Optional[pulumi.Input[Sequence[pulumi.Input[Union['ServiceVclLoggingBigqueryArgs', 'ServiceVclLoggingBigqueryArgsDict']]]]] = None,
-            logging_blobstorages: Optional[pulumi.Input[Sequence[pulumi.Input[Union['ServiceVclLoggingBlobstorageArgs', 'ServiceVclLoggingBlobstorageArgsDict']]]]] = None,
-            logging_cloudfiles: Optional[pulumi.Input[Sequence[pulumi.Input[Union['ServiceVclLoggingCloudfileArgs', 'ServiceVclLoggingCloudfileArgsDict']]]]] = None,
-            logging_datadogs: Optional[pulumi.Input[Sequence[pulumi.Input[Union['ServiceVclLoggingDatadogArgs', 'ServiceVclLoggingDatadogArgsDict']]]]] = None,
-            logging_digitaloceans: Optional[pulumi.Input[Sequence[pulumi.Input[Union['ServiceVclLoggingDigitaloceanArgs', 'ServiceVclLoggingDigitaloceanArgsDict']]]]] = None,
-            logging_elasticsearches: Optional[pulumi.Input[Sequence[pulumi.Input[Union['ServiceVclLoggingElasticsearchArgs', 'ServiceVclLoggingElasticsearchArgsDict']]]]] = None,
-            logging_ftps: Optional[pulumi.Input[Sequence[pulumi.Input[Union['ServiceVclLoggingFtpArgs', 'ServiceVclLoggingFtpArgsDict']]]]] = None,
-            logging_gcs: Optional[pulumi.Input[Sequence[pulumi.Input[Union['ServiceVclLoggingGcArgs', 'ServiceVclLoggingGcArgsDict']]]]] = None,
-            logging_googlepubsubs: Optional[pulumi.Input[Sequence[pulumi.Input[Union['ServiceVclLoggingGooglepubsubArgs', 'ServiceVclLoggingGooglepubsubArgsDict']]]]] = None,
-            logging_grafanacloudlogs: Optional[pulumi.Input[Sequence[pulumi.Input[Union['ServiceVclLoggingGrafanacloudlogArgs', 'ServiceVclLoggingGrafanacloudlogArgsDict']]]]] = None,
-            logging_herokus: Optional[pulumi.Input[Sequence[pulumi.Input[Union['ServiceVclLoggingHerokusArgs', 'ServiceVclLoggingHerokusArgsDict']]]]] = None,
-            logging_honeycombs: Optional[pulumi.Input[Sequence[pulumi.Input[Union['ServiceVclLoggingHoneycombArgs', 'ServiceVclLoggingHoneycombArgsDict']]]]] = None,
-            logging_https: Optional[pulumi.Input[Sequence[pulumi.Input[Union['ServiceVclLoggingHttpArgs', 'ServiceVclLoggingHttpArgsDict']]]]] = None,
-            logging_kafkas: Optional[pulumi.Input[Sequence[pulumi.Input[Union['ServiceVclLoggingKafkaArgs', 'ServiceVclLoggingKafkaArgsDict']]]]] = None,
-            logging_kineses: Optional[pulumi.Input[Sequence[pulumi.Input[Union['ServiceVclLoggingKineseArgs', 'ServiceVclLoggingKineseArgsDict']]]]] = None,
-            logging_logentries: Optional[pulumi.Input[Sequence[pulumi.Input[Union['ServiceVclLoggingLogentryArgs', 'ServiceVclLoggingLogentryArgsDict']]]]] = None,
-            logging_logglies: Optional[pulumi.Input[Sequence[pulumi.Input[Union['ServiceVclLoggingLogglyArgs', 'ServiceVclLoggingLogglyArgsDict']]]]] = None,
-            logging_logshuttles: Optional[pulumi.Input[Sequence[pulumi.Input[Union['ServiceVclLoggingLogshuttleArgs', 'ServiceVclLoggingLogshuttleArgsDict']]]]] = None,
-            logging_newrelicotlps: Optional[pulumi.Input[Sequence[pulumi.Input[Union['ServiceVclLoggingNewrelicotlpArgs', 'ServiceVclLoggingNewrelicotlpArgsDict']]]]] = None,
-            logging_newrelics: Optional[pulumi.Input[Sequence[pulumi.Input[Union['ServiceVclLoggingNewrelicArgs', 'ServiceVclLoggingNewrelicArgsDict']]]]] = None,
-            logging_openstacks: Optional[pulumi.Input[Sequence[pulumi.Input[Union['ServiceVclLoggingOpenstackArgs', 'ServiceVclLoggingOpenstackArgsDict']]]]] = None,
-            logging_papertrails: Optional[pulumi.Input[Sequence[pulumi.Input[Union['ServiceVclLoggingPapertrailArgs', 'ServiceVclLoggingPapertrailArgsDict']]]]] = None,
-            logging_s3s: Optional[pulumi.Input[Sequence[pulumi.Input[Union['ServiceVclLoggingS3Args', 'ServiceVclLoggingS3ArgsDict']]]]] = None,
-            logging_scalyrs: Optional[pulumi.Input[Sequence[pulumi.Input[Union['ServiceVclLoggingScalyrArgs', 'ServiceVclLoggingScalyrArgsDict']]]]] = None,
-            logging_sftps: Optional[pulumi.Input[Sequence[pulumi.Input[Union['ServiceVclLoggingSftpArgs', 'ServiceVclLoggingSftpArgsDict']]]]] = None,
-            logging_splunks: Optional[pulumi.Input[Sequence[pulumi.Input[Union['ServiceVclLoggingSplunkArgs', 'ServiceVclLoggingSplunkArgsDict']]]]] = None,
-            logging_sumologics: Optional[pulumi.Input[Sequence[pulumi.Input[Union['ServiceVclLoggingSumologicArgs', 'ServiceVclLoggingSumologicArgsDict']]]]] = None,
-            logging_syslogs: Optional[pulumi.Input[Sequence[pulumi.Input[Union['ServiceVclLoggingSyslogArgs', 'ServiceVclLoggingSyslogArgsDict']]]]] = None,
-            name: Optional[pulumi.Input[_builtins.str]] = None,
-            product_enablement: Optional[pulumi.Input[Union['ServiceVclProductEnablementArgs', 'ServiceVclProductEnablementArgsDict']]] = None,
-            rate_limiters: Optional[pulumi.Input[Sequence[pulumi.Input[Union['ServiceVclRateLimiterArgs', 'ServiceVclRateLimiterArgsDict']]]]] = None,
-            request_settings: Optional[pulumi.Input[Sequence[pulumi.Input[Union['ServiceVclRequestSettingArgs', 'ServiceVclRequestSettingArgsDict']]]]] = None,
-            response_objects: Optional[pulumi.Input[Sequence[pulumi.Input[Union['ServiceVclResponseObjectArgs', 'ServiceVclResponseObjectArgsDict']]]]] = None,
-            reuse: Optional[pulumi.Input[_builtins.bool]] = None,
-            snippets: Optional[pulumi.Input[Sequence[pulumi.Input[Union['ServiceVclSnippetArgs', 'ServiceVclSnippetArgsDict']]]]] = None,
-            stage: Optional[pulumi.Input[_builtins.bool]] = None,
-            staged_version: Optional[pulumi.Input[_builtins.int]] = None,
-            stale_if_error: Optional[pulumi.Input[_builtins.bool]] = None,
-            stale_if_error_ttl: Optional[pulumi.Input[_builtins.int]] = None,
-            vcls: Optional[pulumi.Input[Sequence[pulumi.Input[Union['ServiceVclVclArgs', 'ServiceVclVclArgsDict']]]]] = None,
-            version_comment: Optional[pulumi.Input[_builtins.str]] = None) -> 'ServiceVcl':
+            acls: pulumi.Input[Optional[Sequence[pulumi.Input[Union['ServiceVclAclArgs', 'ServiceVclAclArgsDict']]]]] = None,
+            activate: pulumi.Input[Optional[_builtins.bool]] = None,
+            active_version: pulumi.Input[Optional[_builtins.int]] = None,
+            backends: pulumi.Input[Optional[Sequence[pulumi.Input[Union['ServiceVclBackendArgs', 'ServiceVclBackendArgsDict']]]]] = None,
+            cache_settings: pulumi.Input[Optional[Sequence[pulumi.Input[Union['ServiceVclCacheSettingArgs', 'ServiceVclCacheSettingArgsDict']]]]] = None,
+            cloned_version: pulumi.Input[Optional[_builtins.int]] = None,
+            comment: pulumi.Input[Optional[_builtins.str]] = None,
+            conditions: pulumi.Input[Optional[Sequence[pulumi.Input[Union['ServiceVclConditionArgs', 'ServiceVclConditionArgsDict']]]]] = None,
+            default_host: pulumi.Input[Optional[_builtins.str]] = None,
+            default_ttl: pulumi.Input[Optional[_builtins.int]] = None,
+            dictionaries: pulumi.Input[Optional[Sequence[pulumi.Input[Union['ServiceVclDictionaryArgs', 'ServiceVclDictionaryArgsDict']]]]] = None,
+            directors: pulumi.Input[Optional[Sequence[pulumi.Input[Union['ServiceVclDirectorArgs', 'ServiceVclDirectorArgsDict']]]]] = None,
+            domains: pulumi.Input[Optional[Sequence[pulumi.Input[Union['ServiceVclDomainArgs', 'ServiceVclDomainArgsDict']]]]] = None,
+            dynamicsnippets: pulumi.Input[Optional[Sequence[pulumi.Input[Union['ServiceVclDynamicsnippetArgs', 'ServiceVclDynamicsnippetArgsDict']]]]] = None,
+            force_destroy: pulumi.Input[Optional[_builtins.bool]] = None,
+            force_refresh: pulumi.Input[Optional[_builtins.bool]] = None,
+            gzips: pulumi.Input[Optional[Sequence[pulumi.Input[Union['ServiceVclGzipArgs', 'ServiceVclGzipArgsDict']]]]] = None,
+            headers: pulumi.Input[Optional[Sequence[pulumi.Input[Union['ServiceVclHeaderArgs', 'ServiceVclHeaderArgsDict']]]]] = None,
+            healthchecks: pulumi.Input[Optional[Sequence[pulumi.Input[Union['ServiceVclHealthcheckArgs', 'ServiceVclHealthcheckArgsDict']]]]] = None,
+            http3: pulumi.Input[Optional[_builtins.bool]] = None,
+            image_optimizer_default_settings: pulumi.Input[Optional[Union['ServiceVclImageOptimizerDefaultSettingsArgs', 'ServiceVclImageOptimizerDefaultSettingsArgsDict']]] = None,
+            imported: pulumi.Input[Optional[_builtins.bool]] = None,
+            logging_bigqueries: pulumi.Input[Optional[Sequence[pulumi.Input[Union['ServiceVclLoggingBigqueryArgs', 'ServiceVclLoggingBigqueryArgsDict']]]]] = None,
+            logging_blobstorages: pulumi.Input[Optional[Sequence[pulumi.Input[Union['ServiceVclLoggingBlobstorageArgs', 'ServiceVclLoggingBlobstorageArgsDict']]]]] = None,
+            logging_cloudfiles: pulumi.Input[Optional[Sequence[pulumi.Input[Union['ServiceVclLoggingCloudfileArgs', 'ServiceVclLoggingCloudfileArgsDict']]]]] = None,
+            logging_datadogs: pulumi.Input[Optional[Sequence[pulumi.Input[Union['ServiceVclLoggingDatadogArgs', 'ServiceVclLoggingDatadogArgsDict']]]]] = None,
+            logging_digitaloceans: pulumi.Input[Optional[Sequence[pulumi.Input[Union['ServiceVclLoggingDigitaloceanArgs', 'ServiceVclLoggingDigitaloceanArgsDict']]]]] = None,
+            logging_elasticsearches: pulumi.Input[Optional[Sequence[pulumi.Input[Union['ServiceVclLoggingElasticsearchArgs', 'ServiceVclLoggingElasticsearchArgsDict']]]]] = None,
+            logging_ftps: pulumi.Input[Optional[Sequence[pulumi.Input[Union['ServiceVclLoggingFtpArgs', 'ServiceVclLoggingFtpArgsDict']]]]] = None,
+            logging_gcs: pulumi.Input[Optional[Sequence[pulumi.Input[Union['ServiceVclLoggingGcArgs', 'ServiceVclLoggingGcArgsDict']]]]] = None,
+            logging_googlepubsubs: pulumi.Input[Optional[Sequence[pulumi.Input[Union['ServiceVclLoggingGooglepubsubArgs', 'ServiceVclLoggingGooglepubsubArgsDict']]]]] = None,
+            logging_grafanacloudlogs: pulumi.Input[Optional[Sequence[pulumi.Input[Union['ServiceVclLoggingGrafanacloudlogArgs', 'ServiceVclLoggingGrafanacloudlogArgsDict']]]]] = None,
+            logging_herokus: pulumi.Input[Optional[Sequence[pulumi.Input[Union['ServiceVclLoggingHerokusArgs', 'ServiceVclLoggingHerokusArgsDict']]]]] = None,
+            logging_honeycombs: pulumi.Input[Optional[Sequence[pulumi.Input[Union['ServiceVclLoggingHoneycombArgs', 'ServiceVclLoggingHoneycombArgsDict']]]]] = None,
+            logging_https: pulumi.Input[Optional[Sequence[pulumi.Input[Union['ServiceVclLoggingHttpArgs', 'ServiceVclLoggingHttpArgsDict']]]]] = None,
+            logging_kafkas: pulumi.Input[Optional[Sequence[pulumi.Input[Union['ServiceVclLoggingKafkaArgs', 'ServiceVclLoggingKafkaArgsDict']]]]] = None,
+            logging_kineses: pulumi.Input[Optional[Sequence[pulumi.Input[Union['ServiceVclLoggingKineseArgs', 'ServiceVclLoggingKineseArgsDict']]]]] = None,
+            logging_logentries: pulumi.Input[Optional[Sequence[pulumi.Input[Union['ServiceVclLoggingLogentryArgs', 'ServiceVclLoggingLogentryArgsDict']]]]] = None,
+            logging_logglies: pulumi.Input[Optional[Sequence[pulumi.Input[Union['ServiceVclLoggingLogglyArgs', 'ServiceVclLoggingLogglyArgsDict']]]]] = None,
+            logging_logshuttles: pulumi.Input[Optional[Sequence[pulumi.Input[Union['ServiceVclLoggingLogshuttleArgs', 'ServiceVclLoggingLogshuttleArgsDict']]]]] = None,
+            logging_newrelicotlps: pulumi.Input[Optional[Sequence[pulumi.Input[Union['ServiceVclLoggingNewrelicotlpArgs', 'ServiceVclLoggingNewrelicotlpArgsDict']]]]] = None,
+            logging_newrelics: pulumi.Input[Optional[Sequence[pulumi.Input[Union['ServiceVclLoggingNewrelicArgs', 'ServiceVclLoggingNewrelicArgsDict']]]]] = None,
+            logging_openstacks: pulumi.Input[Optional[Sequence[pulumi.Input[Union['ServiceVclLoggingOpenstackArgs', 'ServiceVclLoggingOpenstackArgsDict']]]]] = None,
+            logging_papertrails: pulumi.Input[Optional[Sequence[pulumi.Input[Union['ServiceVclLoggingPapertrailArgs', 'ServiceVclLoggingPapertrailArgsDict']]]]] = None,
+            logging_s3s: pulumi.Input[Optional[Sequence[pulumi.Input[Union['ServiceVclLoggingS3Args', 'ServiceVclLoggingS3ArgsDict']]]]] = None,
+            logging_scalyrs: pulumi.Input[Optional[Sequence[pulumi.Input[Union['ServiceVclLoggingScalyrArgs', 'ServiceVclLoggingScalyrArgsDict']]]]] = None,
+            logging_sftps: pulumi.Input[Optional[Sequence[pulumi.Input[Union['ServiceVclLoggingSftpArgs', 'ServiceVclLoggingSftpArgsDict']]]]] = None,
+            logging_splunks: pulumi.Input[Optional[Sequence[pulumi.Input[Union['ServiceVclLoggingSplunkArgs', 'ServiceVclLoggingSplunkArgsDict']]]]] = None,
+            logging_sumologics: pulumi.Input[Optional[Sequence[pulumi.Input[Union['ServiceVclLoggingSumologicArgs', 'ServiceVclLoggingSumologicArgsDict']]]]] = None,
+            logging_syslogs: pulumi.Input[Optional[Sequence[pulumi.Input[Union['ServiceVclLoggingSyslogArgs', 'ServiceVclLoggingSyslogArgsDict']]]]] = None,
+            name: pulumi.Input[Optional[_builtins.str]] = None,
+            product_enablement: pulumi.Input[Optional[Union['ServiceVclProductEnablementArgs', 'ServiceVclProductEnablementArgsDict']]] = None,
+            rate_limiters: pulumi.Input[Optional[Sequence[pulumi.Input[Union['ServiceVclRateLimiterArgs', 'ServiceVclRateLimiterArgsDict']]]]] = None,
+            request_settings: pulumi.Input[Optional[Sequence[pulumi.Input[Union['ServiceVclRequestSettingArgs', 'ServiceVclRequestSettingArgsDict']]]]] = None,
+            response_objects: pulumi.Input[Optional[Sequence[pulumi.Input[Union['ServiceVclResponseObjectArgs', 'ServiceVclResponseObjectArgsDict']]]]] = None,
+            reuse: pulumi.Input[Optional[_builtins.bool]] = None,
+            snippets: pulumi.Input[Optional[Sequence[pulumi.Input[Union['ServiceVclSnippetArgs', 'ServiceVclSnippetArgsDict']]]]] = None,
+            stage: pulumi.Input[Optional[_builtins.bool]] = None,
+            staged_version: pulumi.Input[Optional[_builtins.int]] = None,
+            stale_if_error: pulumi.Input[Optional[_builtins.bool]] = None,
+            stale_if_error_ttl: pulumi.Input[Optional[_builtins.int]] = None,
+            vcls: pulumi.Input[Optional[Sequence[pulumi.Input[Union['ServiceVclVclArgs', 'ServiceVclVclArgsDict']]]]] = None,
+            version_comment: pulumi.Input[Optional[_builtins.str]] = None) -> 'ServiceVcl':
         """
         Get an existing ServiceVcl resource's state with the given name, id, and optional extra
         properties used to qualify the lookup.

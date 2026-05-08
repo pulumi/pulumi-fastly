@@ -168,39 +168,39 @@ export interface NgwafThresholdsState {
     /**
      * Action to take when threshold is exceeded.
      */
-    action?: pulumi.Input<string>;
+    action?: pulumi.Input<string | undefined>;
     /**
      * Whether to silence notifications when action is taken.
      */
-    dontNotify?: pulumi.Input<boolean>;
+    dontNotify?: pulumi.Input<boolean | undefined>;
     /**
      * Duration the action is in place, in seconds. Minimum 1 and maximum 31,556,900.
      */
-    duration?: pulumi.Input<number>;
+    duration?: pulumi.Input<number | undefined>;
     /**
      * Whether this threshold is active.
      */
-    enabled?: pulumi.Input<boolean>;
+    enabled?: pulumi.Input<boolean | undefined>;
     /**
      * Threshold interval in seconds. Accepted values are `60`, `600`, and `3600`.
      */
-    interval?: pulumi.Input<number>;
+    interval?: pulumi.Input<number | undefined>;
     /**
      * Threshold limit. Minimum 1 and maximum 10,000.
      */
-    limit?: pulumi.Input<number>;
+    limit?: pulumi.Input<number | undefined>;
     /**
      * The name of the threshold.
      */
-    name?: pulumi.Input<string>;
+    name?: pulumi.Input<string | undefined>;
     /**
      * The name of the signal this threshold is acting on.
      */
-    signal?: pulumi.Input<string>;
+    signal?: pulumi.Input<string | undefined>;
     /**
      * The ID of the workspace.
      */
-    workspaceId?: pulumi.Input<string>;
+    workspaceId?: pulumi.Input<string | undefined>;
 }
 
 /**
@@ -218,7 +218,7 @@ export interface NgwafThresholdsArgs {
     /**
      * Duration the action is in place, in seconds. Minimum 1 and maximum 31,556,900.
      */
-    duration?: pulumi.Input<number>;
+    duration?: pulumi.Input<number | undefined>;
     /**
      * Whether this threshold is active.
      */
@@ -234,7 +234,7 @@ export interface NgwafThresholdsArgs {
     /**
      * The name of the threshold.
      */
-    name?: pulumi.Input<string>;
+    name?: pulumi.Input<string | undefined>;
     /**
      * The name of the signal this threshold is acting on.
      */

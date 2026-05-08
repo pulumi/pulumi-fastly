@@ -186,10 +186,10 @@ def get_tls_subscription(certificate_authority: Optional[_builtins.str] = None,
         id=pulumi.get(__ret__, 'id'),
         state=pulumi.get(__ret__, 'state'),
         updated_at=pulumi.get(__ret__, 'updated_at'))
-def get_tls_subscription_output(certificate_authority: Optional[pulumi.Input[Optional[_builtins.str]]] = None,
-                                configuration_id: Optional[pulumi.Input[Optional[_builtins.str]]] = None,
-                                domains: Optional[pulumi.Input[Optional[Sequence[_builtins.str]]]] = None,
-                                id: Optional[pulumi.Input[Optional[_builtins.str]]] = None,
+def get_tls_subscription_output(certificate_authority: pulumi.Input[Optional[Optional[_builtins.str]]] = None,
+                                configuration_id: pulumi.Input[Optional[Optional[_builtins.str]]] = None,
+                                domains: pulumi.Input[Optional[Optional[Sequence[_builtins.str]]]] = None,
+                                id: pulumi.Input[Optional[Optional[_builtins.str]]] = None,
                                 opts: Optional[Union[pulumi.InvokeOptions, pulumi.InvokeOutputOptions]] = None) -> pulumi.Output[GetTlsSubscriptionResult]:
     """
     Use this data source to get information about a TLS subscription.

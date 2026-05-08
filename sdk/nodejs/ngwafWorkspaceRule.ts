@@ -450,47 +450,47 @@ export interface NgwafWorkspaceRuleState {
     /**
      * List of actions to perform when the rule matches.
      */
-    actions?: pulumi.Input<pulumi.Input<inputs.NgwafWorkspaceRuleAction>[]>;
+    actions?: pulumi.Input<pulumi.Input<inputs.NgwafWorkspaceRuleAction>[] | undefined>;
     /**
      * Flat list of individual conditions. Each must include `field`, `operator`, and `value`.
      */
-    conditions?: pulumi.Input<pulumi.Input<inputs.NgwafWorkspaceRuleCondition>[]>;
+    conditions?: pulumi.Input<pulumi.Input<inputs.NgwafWorkspaceRuleCondition>[] | undefined>;
     /**
      * The description of the rule.
      */
-    description?: pulumi.Input<string>;
+    description?: pulumi.Input<string | undefined>;
     /**
      * Whether the rule is currently enabled.
      */
-    enabled?: pulumi.Input<boolean>;
+    enabled?: pulumi.Input<boolean | undefined>;
     /**
      * List of grouped conditions with nested logic. Each group must define a `groupOperator` and at least one condition or multival*condition.
      */
-    groupConditions?: pulumi.Input<pulumi.Input<inputs.NgwafWorkspaceRuleGroupCondition>[]>;
+    groupConditions?: pulumi.Input<pulumi.Input<inputs.NgwafWorkspaceRuleGroupCondition>[] | undefined>;
     /**
      * Logical operator to apply to group conditions. Accepted values are `any` and `all`.
      */
-    groupOperator?: pulumi.Input<string>;
+    groupOperator?: pulumi.Input<string | undefined>;
     /**
      * List of multival conditions with nested logic. Each multival list must define a `field, operator, groupOperator` and at least one condition.
      */
-    multivalConditions?: pulumi.Input<pulumi.Input<inputs.NgwafWorkspaceRuleMultivalCondition>[]>;
+    multivalConditions?: pulumi.Input<pulumi.Input<inputs.NgwafWorkspaceRuleMultivalCondition>[] | undefined>;
     /**
      * Block specifically for rate*limit rules.
      */
-    rateLimit?: pulumi.Input<inputs.NgwafWorkspaceRuleRateLimit>;
+    rateLimit?: pulumi.Input<inputs.NgwafWorkspaceRuleRateLimit | undefined>;
     /**
      * Logging behavior for matching requests. Accepted values are `sampled` and `none`.
      */
-    requestLogging?: pulumi.Input<string>;
+    requestLogging?: pulumi.Input<string | undefined>;
     /**
      * The type of the rule. Accepted values are `request`, `signal`, `rateLimit`, and `templatedSignal`.
      */
-    type?: pulumi.Input<string>;
+    type?: pulumi.Input<string | undefined>;
     /**
      * The ID of the workspace.
      */
-    workspaceId?: pulumi.Input<string>;
+    workspaceId?: pulumi.Input<string | undefined>;
 }
 
 /**
@@ -504,7 +504,7 @@ export interface NgwafWorkspaceRuleArgs {
     /**
      * Flat list of individual conditions. Each must include `field`, `operator`, and `value`.
      */
-    conditions?: pulumi.Input<pulumi.Input<inputs.NgwafWorkspaceRuleCondition>[]>;
+    conditions?: pulumi.Input<pulumi.Input<inputs.NgwafWorkspaceRuleCondition>[] | undefined>;
     /**
      * The description of the rule.
      */
@@ -516,23 +516,23 @@ export interface NgwafWorkspaceRuleArgs {
     /**
      * List of grouped conditions with nested logic. Each group must define a `groupOperator` and at least one condition or multival*condition.
      */
-    groupConditions?: pulumi.Input<pulumi.Input<inputs.NgwafWorkspaceRuleGroupCondition>[]>;
+    groupConditions?: pulumi.Input<pulumi.Input<inputs.NgwafWorkspaceRuleGroupCondition>[] | undefined>;
     /**
      * Logical operator to apply to group conditions. Accepted values are `any` and `all`.
      */
-    groupOperator?: pulumi.Input<string>;
+    groupOperator?: pulumi.Input<string | undefined>;
     /**
      * List of multival conditions with nested logic. Each multival list must define a `field, operator, groupOperator` and at least one condition.
      */
-    multivalConditions?: pulumi.Input<pulumi.Input<inputs.NgwafWorkspaceRuleMultivalCondition>[]>;
+    multivalConditions?: pulumi.Input<pulumi.Input<inputs.NgwafWorkspaceRuleMultivalCondition>[] | undefined>;
     /**
      * Block specifically for rate*limit rules.
      */
-    rateLimit?: pulumi.Input<inputs.NgwafWorkspaceRuleRateLimit>;
+    rateLimit?: pulumi.Input<inputs.NgwafWorkspaceRuleRateLimit | undefined>;
     /**
      * Logging behavior for matching requests. Accepted values are `sampled` and `none`.
      */
-    requestLogging?: pulumi.Input<string>;
+    requestLogging?: pulumi.Input<string | undefined>;
     /**
      * The type of the rule. Accepted values are `request`, `signal`, `rateLimit`, and `templatedSignal`.
      */

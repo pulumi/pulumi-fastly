@@ -427,224 +427,224 @@ export class ServiceVcl extends pulumi.CustomResource {
  * Input properties used for looking up and filtering ServiceVcl resources.
  */
 export interface ServiceVclState {
-    acls?: pulumi.Input<pulumi.Input<inputs.ServiceVclAcl>[]>;
+    acls?: pulumi.Input<pulumi.Input<inputs.ServiceVclAcl>[] | undefined>;
     /**
      * Conditionally prevents new service versions from being activated. The apply step will create a new draft version but will not activate it if this is set to `false`. Default `true`
      */
-    activate?: pulumi.Input<boolean>;
+    activate?: pulumi.Input<boolean | undefined>;
     /**
      * The currently active version of your Fastly Service
      */
-    activeVersion?: pulumi.Input<number>;
-    backends?: pulumi.Input<pulumi.Input<inputs.ServiceVclBackend>[]>;
-    cacheSettings?: pulumi.Input<pulumi.Input<inputs.ServiceVclCacheSetting>[]>;
+    activeVersion?: pulumi.Input<number | undefined>;
+    backends?: pulumi.Input<pulumi.Input<inputs.ServiceVclBackend>[] | undefined>;
+    cacheSettings?: pulumi.Input<pulumi.Input<inputs.ServiceVclCacheSetting>[] | undefined>;
     /**
      * The latest cloned version by the provider
      */
-    clonedVersion?: pulumi.Input<number>;
+    clonedVersion?: pulumi.Input<number | undefined>;
     /**
      * Description field for the service. Default `Managed by Terraform`
      */
-    comment?: pulumi.Input<string>;
-    conditions?: pulumi.Input<pulumi.Input<inputs.ServiceVclCondition>[]>;
+    comment?: pulumi.Input<string | undefined>;
+    conditions?: pulumi.Input<pulumi.Input<inputs.ServiceVclCondition>[] | undefined>;
     /**
      * The default hostname
      */
-    defaultHost?: pulumi.Input<string>;
+    defaultHost?: pulumi.Input<string | undefined>;
     /**
      * The default Time-to-live (TTL) for requests
      */
-    defaultTtl?: pulumi.Input<number>;
-    dictionaries?: pulumi.Input<pulumi.Input<inputs.ServiceVclDictionary>[]>;
-    directors?: pulumi.Input<pulumi.Input<inputs.ServiceVclDirector>[]>;
+    defaultTtl?: pulumi.Input<number | undefined>;
+    dictionaries?: pulumi.Input<pulumi.Input<inputs.ServiceVclDictionary>[] | undefined>;
+    directors?: pulumi.Input<pulumi.Input<inputs.ServiceVclDirector>[] | undefined>;
     /**
      * A set of Domain names to serve as entry points for your Service
      */
-    domains?: pulumi.Input<pulumi.Input<inputs.ServiceVclDomain>[]>;
-    dynamicsnippets?: pulumi.Input<pulumi.Input<inputs.ServiceVclDynamicsnippet>[]>;
+    domains?: pulumi.Input<pulumi.Input<inputs.ServiceVclDomain>[] | undefined>;
+    dynamicsnippets?: pulumi.Input<pulumi.Input<inputs.ServiceVclDynamicsnippet>[] | undefined>;
     /**
      * Services that are active cannot be destroyed. In order to destroy the Service, set `forceDestroy` to `true`. Default `false`
      */
-    forceDestroy?: pulumi.Input<boolean>;
+    forceDestroy?: pulumi.Input<boolean | undefined>;
     /**
      * Used internally by the provider to temporarily indicate if all resources should call their associated API to update the local state. This is for scenarios where the service version has been reverted outside of Terraform (e.g. via the Fastly UI) and the provider needs to resync the state for a different active version (this is only if `activate` is `true`).
      */
-    forceRefresh?: pulumi.Input<boolean>;
-    gzips?: pulumi.Input<pulumi.Input<inputs.ServiceVclGzip>[]>;
-    headers?: pulumi.Input<pulumi.Input<inputs.ServiceVclHeader>[]>;
-    healthchecks?: pulumi.Input<pulumi.Input<inputs.ServiceVclHealthcheck>[]>;
+    forceRefresh?: pulumi.Input<boolean | undefined>;
+    gzips?: pulumi.Input<pulumi.Input<inputs.ServiceVclGzip>[] | undefined>;
+    headers?: pulumi.Input<pulumi.Input<inputs.ServiceVclHeader>[] | undefined>;
+    healthchecks?: pulumi.Input<pulumi.Input<inputs.ServiceVclHealthcheck>[] | undefined>;
     /**
      * Enables support for the HTTP/3 (QUIC) protocol
      */
-    http3?: pulumi.Input<boolean>;
-    imageOptimizerDefaultSettings?: pulumi.Input<inputs.ServiceVclImageOptimizerDefaultSettings>;
+    http3?: pulumi.Input<boolean | undefined>;
+    imageOptimizerDefaultSettings?: pulumi.Input<inputs.ServiceVclImageOptimizerDefaultSettings | undefined>;
     /**
      * Used internally by the provider to temporarily indicate if the service is being imported, and is reset to false once the import is finished
      */
-    imported?: pulumi.Input<boolean>;
-    loggingBigqueries?: pulumi.Input<pulumi.Input<inputs.ServiceVclLoggingBigquery>[]>;
-    loggingBlobstorages?: pulumi.Input<pulumi.Input<inputs.ServiceVclLoggingBlobstorage>[]>;
-    loggingCloudfiles?: pulumi.Input<pulumi.Input<inputs.ServiceVclLoggingCloudfile>[]>;
-    loggingDatadogs?: pulumi.Input<pulumi.Input<inputs.ServiceVclLoggingDatadog>[]>;
-    loggingDigitaloceans?: pulumi.Input<pulumi.Input<inputs.ServiceVclLoggingDigitalocean>[]>;
-    loggingElasticsearches?: pulumi.Input<pulumi.Input<inputs.ServiceVclLoggingElasticsearch>[]>;
-    loggingFtps?: pulumi.Input<pulumi.Input<inputs.ServiceVclLoggingFtp>[]>;
-    loggingGcs?: pulumi.Input<pulumi.Input<inputs.ServiceVclLoggingGc>[]>;
-    loggingGooglepubsubs?: pulumi.Input<pulumi.Input<inputs.ServiceVclLoggingGooglepubsub>[]>;
-    loggingGrafanacloudlogs?: pulumi.Input<pulumi.Input<inputs.ServiceVclLoggingGrafanacloudlog>[]>;
-    loggingHerokus?: pulumi.Input<pulumi.Input<inputs.ServiceVclLoggingHerokus>[]>;
-    loggingHoneycombs?: pulumi.Input<pulumi.Input<inputs.ServiceVclLoggingHoneycomb>[]>;
-    loggingHttps?: pulumi.Input<pulumi.Input<inputs.ServiceVclLoggingHttp>[]>;
-    loggingKafkas?: pulumi.Input<pulumi.Input<inputs.ServiceVclLoggingKafka>[]>;
-    loggingKineses?: pulumi.Input<pulumi.Input<inputs.ServiceVclLoggingKinese>[]>;
-    loggingLogentries?: pulumi.Input<pulumi.Input<inputs.ServiceVclLoggingLogentry>[]>;
-    loggingLogglies?: pulumi.Input<pulumi.Input<inputs.ServiceVclLoggingLoggly>[]>;
-    loggingLogshuttles?: pulumi.Input<pulumi.Input<inputs.ServiceVclLoggingLogshuttle>[]>;
-    loggingNewrelicotlps?: pulumi.Input<pulumi.Input<inputs.ServiceVclLoggingNewrelicotlp>[]>;
-    loggingNewrelics?: pulumi.Input<pulumi.Input<inputs.ServiceVclLoggingNewrelic>[]>;
-    loggingOpenstacks?: pulumi.Input<pulumi.Input<inputs.ServiceVclLoggingOpenstack>[]>;
-    loggingPapertrails?: pulumi.Input<pulumi.Input<inputs.ServiceVclLoggingPapertrail>[]>;
-    loggingS3s?: pulumi.Input<pulumi.Input<inputs.ServiceVclLoggingS3>[]>;
-    loggingScalyrs?: pulumi.Input<pulumi.Input<inputs.ServiceVclLoggingScalyr>[]>;
-    loggingSftps?: pulumi.Input<pulumi.Input<inputs.ServiceVclLoggingSftp>[]>;
-    loggingSplunks?: pulumi.Input<pulumi.Input<inputs.ServiceVclLoggingSplunk>[]>;
-    loggingSumologics?: pulumi.Input<pulumi.Input<inputs.ServiceVclLoggingSumologic>[]>;
-    loggingSyslogs?: pulumi.Input<pulumi.Input<inputs.ServiceVclLoggingSyslog>[]>;
+    imported?: pulumi.Input<boolean | undefined>;
+    loggingBigqueries?: pulumi.Input<pulumi.Input<inputs.ServiceVclLoggingBigquery>[] | undefined>;
+    loggingBlobstorages?: pulumi.Input<pulumi.Input<inputs.ServiceVclLoggingBlobstorage>[] | undefined>;
+    loggingCloudfiles?: pulumi.Input<pulumi.Input<inputs.ServiceVclLoggingCloudfile>[] | undefined>;
+    loggingDatadogs?: pulumi.Input<pulumi.Input<inputs.ServiceVclLoggingDatadog>[] | undefined>;
+    loggingDigitaloceans?: pulumi.Input<pulumi.Input<inputs.ServiceVclLoggingDigitalocean>[] | undefined>;
+    loggingElasticsearches?: pulumi.Input<pulumi.Input<inputs.ServiceVclLoggingElasticsearch>[] | undefined>;
+    loggingFtps?: pulumi.Input<pulumi.Input<inputs.ServiceVclLoggingFtp>[] | undefined>;
+    loggingGcs?: pulumi.Input<pulumi.Input<inputs.ServiceVclLoggingGc>[] | undefined>;
+    loggingGooglepubsubs?: pulumi.Input<pulumi.Input<inputs.ServiceVclLoggingGooglepubsub>[] | undefined>;
+    loggingGrafanacloudlogs?: pulumi.Input<pulumi.Input<inputs.ServiceVclLoggingGrafanacloudlog>[] | undefined>;
+    loggingHerokus?: pulumi.Input<pulumi.Input<inputs.ServiceVclLoggingHerokus>[] | undefined>;
+    loggingHoneycombs?: pulumi.Input<pulumi.Input<inputs.ServiceVclLoggingHoneycomb>[] | undefined>;
+    loggingHttps?: pulumi.Input<pulumi.Input<inputs.ServiceVclLoggingHttp>[] | undefined>;
+    loggingKafkas?: pulumi.Input<pulumi.Input<inputs.ServiceVclLoggingKafka>[] | undefined>;
+    loggingKineses?: pulumi.Input<pulumi.Input<inputs.ServiceVclLoggingKinese>[] | undefined>;
+    loggingLogentries?: pulumi.Input<pulumi.Input<inputs.ServiceVclLoggingLogentry>[] | undefined>;
+    loggingLogglies?: pulumi.Input<pulumi.Input<inputs.ServiceVclLoggingLoggly>[] | undefined>;
+    loggingLogshuttles?: pulumi.Input<pulumi.Input<inputs.ServiceVclLoggingLogshuttle>[] | undefined>;
+    loggingNewrelicotlps?: pulumi.Input<pulumi.Input<inputs.ServiceVclLoggingNewrelicotlp>[] | undefined>;
+    loggingNewrelics?: pulumi.Input<pulumi.Input<inputs.ServiceVclLoggingNewrelic>[] | undefined>;
+    loggingOpenstacks?: pulumi.Input<pulumi.Input<inputs.ServiceVclLoggingOpenstack>[] | undefined>;
+    loggingPapertrails?: pulumi.Input<pulumi.Input<inputs.ServiceVclLoggingPapertrail>[] | undefined>;
+    loggingS3s?: pulumi.Input<pulumi.Input<inputs.ServiceVclLoggingS3>[] | undefined>;
+    loggingScalyrs?: pulumi.Input<pulumi.Input<inputs.ServiceVclLoggingScalyr>[] | undefined>;
+    loggingSftps?: pulumi.Input<pulumi.Input<inputs.ServiceVclLoggingSftp>[] | undefined>;
+    loggingSplunks?: pulumi.Input<pulumi.Input<inputs.ServiceVclLoggingSplunk>[] | undefined>;
+    loggingSumologics?: pulumi.Input<pulumi.Input<inputs.ServiceVclLoggingSumologic>[] | undefined>;
+    loggingSyslogs?: pulumi.Input<pulumi.Input<inputs.ServiceVclLoggingSyslog>[] | undefined>;
     /**
      * The unique name for the Service to create
      */
-    name?: pulumi.Input<string>;
-    productEnablement?: pulumi.Input<inputs.ServiceVclProductEnablement>;
-    rateLimiters?: pulumi.Input<pulumi.Input<inputs.ServiceVclRateLimiter>[]>;
-    requestSettings?: pulumi.Input<pulumi.Input<inputs.ServiceVclRequestSetting>[]>;
-    responseObjects?: pulumi.Input<pulumi.Input<inputs.ServiceVclResponseObject>[]>;
+    name?: pulumi.Input<string | undefined>;
+    productEnablement?: pulumi.Input<inputs.ServiceVclProductEnablement | undefined>;
+    rateLimiters?: pulumi.Input<pulumi.Input<inputs.ServiceVclRateLimiter>[] | undefined>;
+    requestSettings?: pulumi.Input<pulumi.Input<inputs.ServiceVclRequestSetting>[] | undefined>;
+    responseObjects?: pulumi.Input<pulumi.Input<inputs.ServiceVclResponseObject>[] | undefined>;
     /**
      * Services that are active cannot be destroyed. If set to `true` a service Terraform intends to destroy will instead be deactivated (allowing it to be reused by importing it into another Terraform project). If `false`, attempting to destroy an active service will cause an error. Default `false`
      */
-    reuse?: pulumi.Input<boolean>;
-    snippets?: pulumi.Input<pulumi.Input<inputs.ServiceVclSnippet>[]>;
+    reuse?: pulumi.Input<boolean | undefined>;
+    snippets?: pulumi.Input<pulumi.Input<inputs.ServiceVclSnippet>[] | undefined>;
     /**
      * Conditionally enables new service versions to be staged. If set to `true`, all changes made by an `apply` step will be staged, even if `apply` did not create a new draft version. Default `false`
      */
-    stage?: pulumi.Input<boolean>;
+    stage?: pulumi.Input<boolean | undefined>;
     /**
      * The currently staged version of your Fastly Service
      */
-    stagedVersion?: pulumi.Input<number>;
+    stagedVersion?: pulumi.Input<number | undefined>;
     /**
      * Enables serving a stale object if there is an error
      */
-    staleIfError?: pulumi.Input<boolean>;
+    staleIfError?: pulumi.Input<boolean | undefined>;
     /**
      * The default time-to-live (TTL) for serving the stale object for the version
      */
-    staleIfErrorTtl?: pulumi.Input<number>;
-    vcls?: pulumi.Input<pulumi.Input<inputs.ServiceVclVcl>[]>;
+    staleIfErrorTtl?: pulumi.Input<number | undefined>;
+    vcls?: pulumi.Input<pulumi.Input<inputs.ServiceVclVcl>[] | undefined>;
     /**
      * Description field for the version
      */
-    versionComment?: pulumi.Input<string>;
+    versionComment?: pulumi.Input<string | undefined>;
 }
 
 /**
  * The set of arguments for constructing a ServiceVcl resource.
  */
 export interface ServiceVclArgs {
-    acls?: pulumi.Input<pulumi.Input<inputs.ServiceVclAcl>[]>;
+    acls?: pulumi.Input<pulumi.Input<inputs.ServiceVclAcl>[] | undefined>;
     /**
      * Conditionally prevents new service versions from being activated. The apply step will create a new draft version but will not activate it if this is set to `false`. Default `true`
      */
-    activate?: pulumi.Input<boolean>;
-    backends?: pulumi.Input<pulumi.Input<inputs.ServiceVclBackend>[]>;
-    cacheSettings?: pulumi.Input<pulumi.Input<inputs.ServiceVclCacheSetting>[]>;
+    activate?: pulumi.Input<boolean | undefined>;
+    backends?: pulumi.Input<pulumi.Input<inputs.ServiceVclBackend>[] | undefined>;
+    cacheSettings?: pulumi.Input<pulumi.Input<inputs.ServiceVclCacheSetting>[] | undefined>;
     /**
      * Description field for the service. Default `Managed by Terraform`
      */
-    comment?: pulumi.Input<string>;
-    conditions?: pulumi.Input<pulumi.Input<inputs.ServiceVclCondition>[]>;
+    comment?: pulumi.Input<string | undefined>;
+    conditions?: pulumi.Input<pulumi.Input<inputs.ServiceVclCondition>[] | undefined>;
     /**
      * The default hostname
      */
-    defaultHost?: pulumi.Input<string>;
+    defaultHost?: pulumi.Input<string | undefined>;
     /**
      * The default Time-to-live (TTL) for requests
      */
-    defaultTtl?: pulumi.Input<number>;
-    dictionaries?: pulumi.Input<pulumi.Input<inputs.ServiceVclDictionary>[]>;
-    directors?: pulumi.Input<pulumi.Input<inputs.ServiceVclDirector>[]>;
+    defaultTtl?: pulumi.Input<number | undefined>;
+    dictionaries?: pulumi.Input<pulumi.Input<inputs.ServiceVclDictionary>[] | undefined>;
+    directors?: pulumi.Input<pulumi.Input<inputs.ServiceVclDirector>[] | undefined>;
     /**
      * A set of Domain names to serve as entry points for your Service
      */
-    domains?: pulumi.Input<pulumi.Input<inputs.ServiceVclDomain>[]>;
-    dynamicsnippets?: pulumi.Input<pulumi.Input<inputs.ServiceVclDynamicsnippet>[]>;
+    domains?: pulumi.Input<pulumi.Input<inputs.ServiceVclDomain>[] | undefined>;
+    dynamicsnippets?: pulumi.Input<pulumi.Input<inputs.ServiceVclDynamicsnippet>[] | undefined>;
     /**
      * Services that are active cannot be destroyed. In order to destroy the Service, set `forceDestroy` to `true`. Default `false`
      */
-    forceDestroy?: pulumi.Input<boolean>;
-    gzips?: pulumi.Input<pulumi.Input<inputs.ServiceVclGzip>[]>;
-    headers?: pulumi.Input<pulumi.Input<inputs.ServiceVclHeader>[]>;
-    healthchecks?: pulumi.Input<pulumi.Input<inputs.ServiceVclHealthcheck>[]>;
+    forceDestroy?: pulumi.Input<boolean | undefined>;
+    gzips?: pulumi.Input<pulumi.Input<inputs.ServiceVclGzip>[] | undefined>;
+    headers?: pulumi.Input<pulumi.Input<inputs.ServiceVclHeader>[] | undefined>;
+    healthchecks?: pulumi.Input<pulumi.Input<inputs.ServiceVclHealthcheck>[] | undefined>;
     /**
      * Enables support for the HTTP/3 (QUIC) protocol
      */
-    http3?: pulumi.Input<boolean>;
-    imageOptimizerDefaultSettings?: pulumi.Input<inputs.ServiceVclImageOptimizerDefaultSettings>;
-    loggingBigqueries?: pulumi.Input<pulumi.Input<inputs.ServiceVclLoggingBigquery>[]>;
-    loggingBlobstorages?: pulumi.Input<pulumi.Input<inputs.ServiceVclLoggingBlobstorage>[]>;
-    loggingCloudfiles?: pulumi.Input<pulumi.Input<inputs.ServiceVclLoggingCloudfile>[]>;
-    loggingDatadogs?: pulumi.Input<pulumi.Input<inputs.ServiceVclLoggingDatadog>[]>;
-    loggingDigitaloceans?: pulumi.Input<pulumi.Input<inputs.ServiceVclLoggingDigitalocean>[]>;
-    loggingElasticsearches?: pulumi.Input<pulumi.Input<inputs.ServiceVclLoggingElasticsearch>[]>;
-    loggingFtps?: pulumi.Input<pulumi.Input<inputs.ServiceVclLoggingFtp>[]>;
-    loggingGcs?: pulumi.Input<pulumi.Input<inputs.ServiceVclLoggingGc>[]>;
-    loggingGooglepubsubs?: pulumi.Input<pulumi.Input<inputs.ServiceVclLoggingGooglepubsub>[]>;
-    loggingGrafanacloudlogs?: pulumi.Input<pulumi.Input<inputs.ServiceVclLoggingGrafanacloudlog>[]>;
-    loggingHerokus?: pulumi.Input<pulumi.Input<inputs.ServiceVclLoggingHerokus>[]>;
-    loggingHoneycombs?: pulumi.Input<pulumi.Input<inputs.ServiceVclLoggingHoneycomb>[]>;
-    loggingHttps?: pulumi.Input<pulumi.Input<inputs.ServiceVclLoggingHttp>[]>;
-    loggingKafkas?: pulumi.Input<pulumi.Input<inputs.ServiceVclLoggingKafka>[]>;
-    loggingKineses?: pulumi.Input<pulumi.Input<inputs.ServiceVclLoggingKinese>[]>;
-    loggingLogentries?: pulumi.Input<pulumi.Input<inputs.ServiceVclLoggingLogentry>[]>;
-    loggingLogglies?: pulumi.Input<pulumi.Input<inputs.ServiceVclLoggingLoggly>[]>;
-    loggingLogshuttles?: pulumi.Input<pulumi.Input<inputs.ServiceVclLoggingLogshuttle>[]>;
-    loggingNewrelicotlps?: pulumi.Input<pulumi.Input<inputs.ServiceVclLoggingNewrelicotlp>[]>;
-    loggingNewrelics?: pulumi.Input<pulumi.Input<inputs.ServiceVclLoggingNewrelic>[]>;
-    loggingOpenstacks?: pulumi.Input<pulumi.Input<inputs.ServiceVclLoggingOpenstack>[]>;
-    loggingPapertrails?: pulumi.Input<pulumi.Input<inputs.ServiceVclLoggingPapertrail>[]>;
-    loggingS3s?: pulumi.Input<pulumi.Input<inputs.ServiceVclLoggingS3>[]>;
-    loggingScalyrs?: pulumi.Input<pulumi.Input<inputs.ServiceVclLoggingScalyr>[]>;
-    loggingSftps?: pulumi.Input<pulumi.Input<inputs.ServiceVclLoggingSftp>[]>;
-    loggingSplunks?: pulumi.Input<pulumi.Input<inputs.ServiceVclLoggingSplunk>[]>;
-    loggingSumologics?: pulumi.Input<pulumi.Input<inputs.ServiceVclLoggingSumologic>[]>;
-    loggingSyslogs?: pulumi.Input<pulumi.Input<inputs.ServiceVclLoggingSyslog>[]>;
+    http3?: pulumi.Input<boolean | undefined>;
+    imageOptimizerDefaultSettings?: pulumi.Input<inputs.ServiceVclImageOptimizerDefaultSettings | undefined>;
+    loggingBigqueries?: pulumi.Input<pulumi.Input<inputs.ServiceVclLoggingBigquery>[] | undefined>;
+    loggingBlobstorages?: pulumi.Input<pulumi.Input<inputs.ServiceVclLoggingBlobstorage>[] | undefined>;
+    loggingCloudfiles?: pulumi.Input<pulumi.Input<inputs.ServiceVclLoggingCloudfile>[] | undefined>;
+    loggingDatadogs?: pulumi.Input<pulumi.Input<inputs.ServiceVclLoggingDatadog>[] | undefined>;
+    loggingDigitaloceans?: pulumi.Input<pulumi.Input<inputs.ServiceVclLoggingDigitalocean>[] | undefined>;
+    loggingElasticsearches?: pulumi.Input<pulumi.Input<inputs.ServiceVclLoggingElasticsearch>[] | undefined>;
+    loggingFtps?: pulumi.Input<pulumi.Input<inputs.ServiceVclLoggingFtp>[] | undefined>;
+    loggingGcs?: pulumi.Input<pulumi.Input<inputs.ServiceVclLoggingGc>[] | undefined>;
+    loggingGooglepubsubs?: pulumi.Input<pulumi.Input<inputs.ServiceVclLoggingGooglepubsub>[] | undefined>;
+    loggingGrafanacloudlogs?: pulumi.Input<pulumi.Input<inputs.ServiceVclLoggingGrafanacloudlog>[] | undefined>;
+    loggingHerokus?: pulumi.Input<pulumi.Input<inputs.ServiceVclLoggingHerokus>[] | undefined>;
+    loggingHoneycombs?: pulumi.Input<pulumi.Input<inputs.ServiceVclLoggingHoneycomb>[] | undefined>;
+    loggingHttps?: pulumi.Input<pulumi.Input<inputs.ServiceVclLoggingHttp>[] | undefined>;
+    loggingKafkas?: pulumi.Input<pulumi.Input<inputs.ServiceVclLoggingKafka>[] | undefined>;
+    loggingKineses?: pulumi.Input<pulumi.Input<inputs.ServiceVclLoggingKinese>[] | undefined>;
+    loggingLogentries?: pulumi.Input<pulumi.Input<inputs.ServiceVclLoggingLogentry>[] | undefined>;
+    loggingLogglies?: pulumi.Input<pulumi.Input<inputs.ServiceVclLoggingLoggly>[] | undefined>;
+    loggingLogshuttles?: pulumi.Input<pulumi.Input<inputs.ServiceVclLoggingLogshuttle>[] | undefined>;
+    loggingNewrelicotlps?: pulumi.Input<pulumi.Input<inputs.ServiceVclLoggingNewrelicotlp>[] | undefined>;
+    loggingNewrelics?: pulumi.Input<pulumi.Input<inputs.ServiceVclLoggingNewrelic>[] | undefined>;
+    loggingOpenstacks?: pulumi.Input<pulumi.Input<inputs.ServiceVclLoggingOpenstack>[] | undefined>;
+    loggingPapertrails?: pulumi.Input<pulumi.Input<inputs.ServiceVclLoggingPapertrail>[] | undefined>;
+    loggingS3s?: pulumi.Input<pulumi.Input<inputs.ServiceVclLoggingS3>[] | undefined>;
+    loggingScalyrs?: pulumi.Input<pulumi.Input<inputs.ServiceVclLoggingScalyr>[] | undefined>;
+    loggingSftps?: pulumi.Input<pulumi.Input<inputs.ServiceVclLoggingSftp>[] | undefined>;
+    loggingSplunks?: pulumi.Input<pulumi.Input<inputs.ServiceVclLoggingSplunk>[] | undefined>;
+    loggingSumologics?: pulumi.Input<pulumi.Input<inputs.ServiceVclLoggingSumologic>[] | undefined>;
+    loggingSyslogs?: pulumi.Input<pulumi.Input<inputs.ServiceVclLoggingSyslog>[] | undefined>;
     /**
      * The unique name for the Service to create
      */
-    name?: pulumi.Input<string>;
-    productEnablement?: pulumi.Input<inputs.ServiceVclProductEnablement>;
-    rateLimiters?: pulumi.Input<pulumi.Input<inputs.ServiceVclRateLimiter>[]>;
-    requestSettings?: pulumi.Input<pulumi.Input<inputs.ServiceVclRequestSetting>[]>;
-    responseObjects?: pulumi.Input<pulumi.Input<inputs.ServiceVclResponseObject>[]>;
+    name?: pulumi.Input<string | undefined>;
+    productEnablement?: pulumi.Input<inputs.ServiceVclProductEnablement | undefined>;
+    rateLimiters?: pulumi.Input<pulumi.Input<inputs.ServiceVclRateLimiter>[] | undefined>;
+    requestSettings?: pulumi.Input<pulumi.Input<inputs.ServiceVclRequestSetting>[] | undefined>;
+    responseObjects?: pulumi.Input<pulumi.Input<inputs.ServiceVclResponseObject>[] | undefined>;
     /**
      * Services that are active cannot be destroyed. If set to `true` a service Terraform intends to destroy will instead be deactivated (allowing it to be reused by importing it into another Terraform project). If `false`, attempting to destroy an active service will cause an error. Default `false`
      */
-    reuse?: pulumi.Input<boolean>;
-    snippets?: pulumi.Input<pulumi.Input<inputs.ServiceVclSnippet>[]>;
+    reuse?: pulumi.Input<boolean | undefined>;
+    snippets?: pulumi.Input<pulumi.Input<inputs.ServiceVclSnippet>[] | undefined>;
     /**
      * Conditionally enables new service versions to be staged. If set to `true`, all changes made by an `apply` step will be staged, even if `apply` did not create a new draft version. Default `false`
      */
-    stage?: pulumi.Input<boolean>;
+    stage?: pulumi.Input<boolean | undefined>;
     /**
      * Enables serving a stale object if there is an error
      */
-    staleIfError?: pulumi.Input<boolean>;
+    staleIfError?: pulumi.Input<boolean | undefined>;
     /**
      * The default time-to-live (TTL) for serving the stale object for the version
      */
-    staleIfErrorTtl?: pulumi.Input<number>;
-    vcls?: pulumi.Input<pulumi.Input<inputs.ServiceVclVcl>[]>;
+    staleIfErrorTtl?: pulumi.Input<number | undefined>;
+    vcls?: pulumi.Input<pulumi.Input<inputs.ServiceVclVcl>[] | undefined>;
     /**
      * Description field for the version
      */
-    versionComment?: pulumi.Input<string>;
+    versionComment?: pulumi.Input<string | undefined>;
 }

@@ -252,11 +252,11 @@ __all__ = [
 ]
 
 class AlertDimensionsArgsDict(TypedDict):
-    domains: NotRequired[pulumi.Input[Sequence[pulumi.Input[_builtins.str]]]]
+    domains: NotRequired[pulumi.Input[Optional[Sequence[pulumi.Input[_builtins.str]]]]]
     """
     Names of a subset of domains that the alert monitors.
     """
-    origins: NotRequired[pulumi.Input[Sequence[pulumi.Input[_builtins.str]]]]
+    origins: NotRequired[pulumi.Input[Optional[Sequence[pulumi.Input[_builtins.str]]]]]
     """
     Addresses of a subset of backends that the alert monitors.
     """
@@ -264,8 +264,8 @@ class AlertDimensionsArgsDict(TypedDict):
 @pulumi.input_type
 class AlertDimensionsArgs:
     def __init__(__self__, *,
-                 domains: Optional[pulumi.Input[Sequence[pulumi.Input[_builtins.str]]]] = None,
-                 origins: Optional[pulumi.Input[Sequence[pulumi.Input[_builtins.str]]]] = None):
+                 domains: pulumi.Input[Optional[Sequence[pulumi.Input[_builtins.str]]]] = None,
+                 origins: pulumi.Input[Optional[Sequence[pulumi.Input[_builtins.str]]]] = None):
         """
         :param pulumi.Input[Sequence[pulumi.Input[_builtins.str]]] domains: Names of a subset of domains that the alert monitors.
         :param pulumi.Input[Sequence[pulumi.Input[_builtins.str]]] origins: Addresses of a subset of backends that the alert monitors.
@@ -277,26 +277,26 @@ class AlertDimensionsArgs:
 
     @_builtins.property
     @pulumi.getter
-    def domains(self) -> Optional[pulumi.Input[Sequence[pulumi.Input[_builtins.str]]]]:
+    def domains(self) -> pulumi.Input[Optional[Sequence[pulumi.Input[_builtins.str]]]]:
         """
         Names of a subset of domains that the alert monitors.
         """
         return pulumi.get(self, "domains")
 
     @domains.setter
-    def domains(self, value: Optional[pulumi.Input[Sequence[pulumi.Input[_builtins.str]]]]):
+    def domains(self, value: pulumi.Input[Optional[Sequence[pulumi.Input[_builtins.str]]]]):
         pulumi.set(self, "domains", value)
 
     @_builtins.property
     @pulumi.getter
-    def origins(self) -> Optional[pulumi.Input[Sequence[pulumi.Input[_builtins.str]]]]:
+    def origins(self) -> pulumi.Input[Optional[Sequence[pulumi.Input[_builtins.str]]]]:
         """
         Addresses of a subset of backends that the alert monitors.
         """
         return pulumi.get(self, "origins")
 
     @origins.setter
-    def origins(self, value: Optional[pulumi.Input[Sequence[pulumi.Input[_builtins.str]]]]):
+    def origins(self, value: pulumi.Input[Optional[Sequence[pulumi.Input[_builtins.str]]]]):
         pulumi.set(self, "origins", value)
 
 
@@ -313,7 +313,7 @@ class AlertEvaluationStrategyArgsDict(TypedDict):
     """
     Type of strategy to use to evaluate. One of: `above_threshold`, `all_above_threshold`, `below_threshold`, `percent_absolute`, `percent_decrease`, `percent_increase`.
     """
-    ignore_below: NotRequired[pulumi.Input[_builtins.float]]
+    ignore_below: NotRequired[pulumi.Input[Optional[_builtins.float]]]
     """
     Threshold for the denominator value used in evaluations that calculate a rate or ratio. Usually used to filter out noise.
     """
@@ -324,7 +324,7 @@ class AlertEvaluationStrategyArgs:
                  period: pulumi.Input[_builtins.str],
                  threshold: pulumi.Input[_builtins.float],
                  type: pulumi.Input[_builtins.str],
-                 ignore_below: Optional[pulumi.Input[_builtins.float]] = None):
+                 ignore_below: pulumi.Input[Optional[_builtins.float]] = None):
         """
         :param pulumi.Input[_builtins.str] period: The length of time to evaluate whether the conditions have been met. The data is polled every minute. One of: `2m`, `3m`, `5m`, `15m`, `30m`.
         :param pulumi.Input[_builtins.float] threshold: Threshold used to alert.
@@ -375,14 +375,14 @@ class AlertEvaluationStrategyArgs:
 
     @_builtins.property
     @pulumi.getter(name="ignoreBelow")
-    def ignore_below(self) -> Optional[pulumi.Input[_builtins.float]]:
+    def ignore_below(self) -> pulumi.Input[Optional[_builtins.float]]:
         """
         Threshold for the denominator value used in evaluations that calculate a rate or ratio. Usually used to filter out noise.
         """
         return pulumi.get(self, "ignore_below")
 
     @ignore_below.setter
-    def ignore_below(self, value: Optional[pulumi.Input[_builtins.float]]):
+    def ignore_below(self, value: pulumi.Input[Optional[_builtins.float]]):
         pulumi.set(self, "ignore_below", value)
 
 
@@ -407,7 +407,7 @@ class CustomDashboardDashboardItemArgsDict(TypedDict):
     """
     An object which describes the data visualization to display.
     """
-    span: NotRequired[pulumi.Input[_builtins.int]]
+    span: NotRequired[pulumi.Input[Optional[_builtins.int]]]
     """
     The number of columns for the dashboard item to span. Dashboards are rendered on a 12-column grid on "desktop" screen sizes.
     """
@@ -420,7 +420,7 @@ class CustomDashboardDashboardItemArgs:
                  subtitle: pulumi.Input[_builtins.str],
                  title: pulumi.Input[_builtins.str],
                  visualization: pulumi.Input['CustomDashboardDashboardItemVisualizationArgs'],
-                 span: Optional[pulumi.Input[_builtins.int]] = None):
+                 span: pulumi.Input[Optional[_builtins.int]] = None):
         """
         :param pulumi.Input['CustomDashboardDashboardItemDataSourceArgs'] data_source: An object which describes the data to display.
         :param pulumi.Input[_builtins.str] id: Dashboard item identifier (alphanumeric). Must be unique, relative to other items in the same dashboard.
@@ -499,14 +499,14 @@ class CustomDashboardDashboardItemArgs:
 
     @_builtins.property
     @pulumi.getter
-    def span(self) -> Optional[pulumi.Input[_builtins.int]]:
+    def span(self) -> pulumi.Input[Optional[_builtins.int]]:
         """
         The number of columns for the dashboard item to span. Dashboards are rendered on a 12-column grid on "desktop" screen sizes.
         """
         return pulumi.get(self, "span")
 
     @span.setter
-    def span(self, value: Optional[pulumi.Input[_builtins.int]]):
+    def span(self, value: pulumi.Input[Optional[_builtins.int]]):
         pulumi.set(self, "span", value)
 
 
@@ -637,11 +637,11 @@ class CustomDashboardDashboardItemVisualizationConfigArgsDict(TypedDict):
     """
     The type of chart to display. One of: `line`, `bar`, `single-metric`, `donut`.
     """
-    calculation_method: NotRequired[pulumi.Input[_builtins.str]]
+    calculation_method: NotRequired[pulumi.Input[Optional[_builtins.str]]]
     """
     The aggregation function to apply to the dataset. One of: `avg`, `sum`, `min`, `max`, `latest`, `p95`.
     """
-    format: NotRequired[pulumi.Input[_builtins.str]]
+    format: NotRequired[pulumi.Input[Optional[_builtins.str]]]
     """
     The units to use to format the data. One of: `number`, `bytes`, `percent`, `requests`, `responses`, `seconds`, `milliseconds`, `ratio`, `bitrate`.
     """
@@ -650,8 +650,8 @@ class CustomDashboardDashboardItemVisualizationConfigArgsDict(TypedDict):
 class CustomDashboardDashboardItemVisualizationConfigArgs:
     def __init__(__self__, *,
                  plot_type: pulumi.Input[_builtins.str],
-                 calculation_method: Optional[pulumi.Input[_builtins.str]] = None,
-                 format: Optional[pulumi.Input[_builtins.str]] = None):
+                 calculation_method: pulumi.Input[Optional[_builtins.str]] = None,
+                 format: pulumi.Input[Optional[_builtins.str]] = None):
         """
         :param pulumi.Input[_builtins.str] plot_type: The type of chart to display. One of: `line`, `bar`, `single-metric`, `donut`.
         :param pulumi.Input[_builtins.str] calculation_method: The aggregation function to apply to the dataset. One of: `avg`, `sum`, `min`, `max`, `latest`, `p95`.
@@ -677,26 +677,26 @@ class CustomDashboardDashboardItemVisualizationConfigArgs:
 
     @_builtins.property
     @pulumi.getter(name="calculationMethod")
-    def calculation_method(self) -> Optional[pulumi.Input[_builtins.str]]:
+    def calculation_method(self) -> pulumi.Input[Optional[_builtins.str]]:
         """
         The aggregation function to apply to the dataset. One of: `avg`, `sum`, `min`, `max`, `latest`, `p95`.
         """
         return pulumi.get(self, "calculation_method")
 
     @calculation_method.setter
-    def calculation_method(self, value: Optional[pulumi.Input[_builtins.str]]):
+    def calculation_method(self, value: pulumi.Input[Optional[_builtins.str]]):
         pulumi.set(self, "calculation_method", value)
 
     @_builtins.property
     @pulumi.getter
-    def format(self) -> Optional[pulumi.Input[_builtins.str]]:
+    def format(self) -> pulumi.Input[Optional[_builtins.str]]:
         """
         The units to use to format the data. One of: `number`, `bytes`, `percent`, `requests`, `responses`, `seconds`, `milliseconds`, `ratio`, `bitrate`.
         """
         return pulumi.get(self, "format")
 
     @format.setter
-    def format(self, value: Optional[pulumi.Input[_builtins.str]]):
+    def format(self, value: pulumi.Input[Optional[_builtins.str]]):
         pulumi.set(self, "format", value)
 
 
@@ -705,7 +705,7 @@ class NgwafAccountRuleActionArgsDict(TypedDict):
     """
     The action type. One of: `add_signal`, `allow`, `block`, `browser_challenge`, `dynamic_challenge`, `exclude_signal`, `verify_token` or for rate limit rule valid values: `log_request`, `block_signal`, `browser_challenge`, `verify_token`
     """
-    signal: NotRequired[pulumi.Input[_builtins.str]]
+    signal: NotRequired[pulumi.Input[Optional[_builtins.str]]]
     """
     Signal name to exclude (used when `type = exclude_signal`).
     """
@@ -714,7 +714,7 @@ class NgwafAccountRuleActionArgsDict(TypedDict):
 class NgwafAccountRuleActionArgs:
     def __init__(__self__, *,
                  type: pulumi.Input[_builtins.str],
-                 signal: Optional[pulumi.Input[_builtins.str]] = None):
+                 signal: pulumi.Input[Optional[_builtins.str]] = None):
         """
         :param pulumi.Input[_builtins.str] type: The action type. One of: `add_signal`, `allow`, `block`, `browser_challenge`, `dynamic_challenge`, `exclude_signal`, `verify_token` or for rate limit rule valid values: `log_request`, `block_signal`, `browser_challenge`, `verify_token`
         :param pulumi.Input[_builtins.str] signal: Signal name to exclude (used when `type = exclude_signal`).
@@ -737,14 +737,14 @@ class NgwafAccountRuleActionArgs:
 
     @_builtins.property
     @pulumi.getter
-    def signal(self) -> Optional[pulumi.Input[_builtins.str]]:
+    def signal(self) -> pulumi.Input[Optional[_builtins.str]]:
         """
         Signal name to exclude (used when `type = exclude_signal`).
         """
         return pulumi.get(self, "signal")
 
     @signal.setter
-    def signal(self, value: Optional[pulumi.Input[_builtins.str]]):
+    def signal(self, value: pulumi.Input[Optional[_builtins.str]]):
         pulumi.set(self, "signal", value)
 
 
@@ -819,11 +819,11 @@ class NgwafAccountRuleGroupConditionArgsDict(TypedDict):
     """
     Logical operator for the group. Accepted values are `any` and `all`.
     """
-    conditions: NotRequired[pulumi.Input[Sequence[pulumi.Input['NgwafAccountRuleGroupConditionConditionArgsDict']]]]
+    conditions: NotRequired[pulumi.Input[Optional[Sequence[pulumi.Input['NgwafAccountRuleGroupConditionConditionArgs']]]]]
     """
     A list of nested conditions in this group.
     """
-    multival_conditions: NotRequired[pulumi.Input[Sequence[pulumi.Input['NgwafAccountRuleGroupConditionMultivalConditionArgsDict']]]]
+    multival_conditions: NotRequired[pulumi.Input[Optional[Sequence[pulumi.Input['NgwafAccountRuleGroupConditionMultivalConditionArgs']]]]]
     """
     List of nested multival conditions in this group. Each multival list must define a `field, operator, group_operator` and at least one condition.
     """
@@ -832,8 +832,8 @@ class NgwafAccountRuleGroupConditionArgsDict(TypedDict):
 class NgwafAccountRuleGroupConditionArgs:
     def __init__(__self__, *,
                  group_operator: pulumi.Input[_builtins.str],
-                 conditions: Optional[pulumi.Input[Sequence[pulumi.Input['NgwafAccountRuleGroupConditionConditionArgs']]]] = None,
-                 multival_conditions: Optional[pulumi.Input[Sequence[pulumi.Input['NgwafAccountRuleGroupConditionMultivalConditionArgs']]]] = None):
+                 conditions: pulumi.Input[Optional[Sequence[pulumi.Input['NgwafAccountRuleGroupConditionConditionArgs']]]] = None,
+                 multival_conditions: pulumi.Input[Optional[Sequence[pulumi.Input['NgwafAccountRuleGroupConditionMultivalConditionArgs']]]] = None):
         """
         :param pulumi.Input[_builtins.str] group_operator: Logical operator for the group. Accepted values are `any` and `all`.
         :param pulumi.Input[Sequence[pulumi.Input['NgwafAccountRuleGroupConditionConditionArgs']]] conditions: A list of nested conditions in this group.
@@ -859,26 +859,26 @@ class NgwafAccountRuleGroupConditionArgs:
 
     @_builtins.property
     @pulumi.getter
-    def conditions(self) -> Optional[pulumi.Input[Sequence[pulumi.Input['NgwafAccountRuleGroupConditionConditionArgs']]]]:
+    def conditions(self) -> pulumi.Input[Optional[Sequence[pulumi.Input['NgwafAccountRuleGroupConditionConditionArgs']]]]:
         """
         A list of nested conditions in this group.
         """
         return pulumi.get(self, "conditions")
 
     @conditions.setter
-    def conditions(self, value: Optional[pulumi.Input[Sequence[pulumi.Input['NgwafAccountRuleGroupConditionConditionArgs']]]]):
+    def conditions(self, value: pulumi.Input[Optional[Sequence[pulumi.Input['NgwafAccountRuleGroupConditionConditionArgs']]]]):
         pulumi.set(self, "conditions", value)
 
     @_builtins.property
     @pulumi.getter(name="multivalConditions")
-    def multival_conditions(self) -> Optional[pulumi.Input[Sequence[pulumi.Input['NgwafAccountRuleGroupConditionMultivalConditionArgs']]]]:
+    def multival_conditions(self) -> pulumi.Input[Optional[Sequence[pulumi.Input['NgwafAccountRuleGroupConditionMultivalConditionArgs']]]]:
         """
         List of nested multival conditions in this group. Each multival list must define a `field, operator, group_operator` and at least one condition.
         """
         return pulumi.get(self, "multival_conditions")
 
     @multival_conditions.setter
-    def multival_conditions(self, value: Optional[pulumi.Input[Sequence[pulumi.Input['NgwafAccountRuleGroupConditionMultivalConditionArgs']]]]):
+    def multival_conditions(self, value: pulumi.Input[Optional[Sequence[pulumi.Input['NgwafAccountRuleGroupConditionMultivalConditionArgs']]]]):
         pulumi.set(self, "multival_conditions", value)
 
 
@@ -1251,19 +1251,19 @@ class NgwafAccountRuleMultivalConditionConditionArgs:
 
 
 class NgwafWorkspaceAttackSignalThresholdsArgsDict(TypedDict):
-    immediate: NotRequired[pulumi.Input[_builtins.bool]]
+    immediate: NotRequired[pulumi.Input[Optional[_builtins.bool]]]
     """
     Ignore thresholds and block immediately when at least one attack signal is detected. Default value `false`.
     """
-    one_hour: NotRequired[pulumi.Input[_builtins.int]]
+    one_hour: NotRequired[pulumi.Input[Optional[_builtins.int]]]
     """
     The one-hour interval threshold. Minimum 1 and maximum 10,000. Default value 100.
     """
-    one_minute: NotRequired[pulumi.Input[_builtins.int]]
+    one_minute: NotRequired[pulumi.Input[Optional[_builtins.int]]]
     """
     The one-minute interval threshold. Minimum 1 and maximum 10,000. Default value 1.
     """
-    ten_minutes: NotRequired[pulumi.Input[_builtins.int]]
+    ten_minutes: NotRequired[pulumi.Input[Optional[_builtins.int]]]
     """
     The ten-minute interval threshold. Minimum 1 and maximum 10,000. Default value 60.
     """
@@ -1271,10 +1271,10 @@ class NgwafWorkspaceAttackSignalThresholdsArgsDict(TypedDict):
 @pulumi.input_type
 class NgwafWorkspaceAttackSignalThresholdsArgs:
     def __init__(__self__, *,
-                 immediate: Optional[pulumi.Input[_builtins.bool]] = None,
-                 one_hour: Optional[pulumi.Input[_builtins.int]] = None,
-                 one_minute: Optional[pulumi.Input[_builtins.int]] = None,
-                 ten_minutes: Optional[pulumi.Input[_builtins.int]] = None):
+                 immediate: pulumi.Input[Optional[_builtins.bool]] = None,
+                 one_hour: pulumi.Input[Optional[_builtins.int]] = None,
+                 one_minute: pulumi.Input[Optional[_builtins.int]] = None,
+                 ten_minutes: pulumi.Input[Optional[_builtins.int]] = None):
         """
         :param pulumi.Input[_builtins.bool] immediate: Ignore thresholds and block immediately when at least one attack signal is detected. Default value `false`.
         :param pulumi.Input[_builtins.int] one_hour: The one-hour interval threshold. Minimum 1 and maximum 10,000. Default value 100.
@@ -1292,50 +1292,50 @@ class NgwafWorkspaceAttackSignalThresholdsArgs:
 
     @_builtins.property
     @pulumi.getter
-    def immediate(self) -> Optional[pulumi.Input[_builtins.bool]]:
+    def immediate(self) -> pulumi.Input[Optional[_builtins.bool]]:
         """
         Ignore thresholds and block immediately when at least one attack signal is detected. Default value `false`.
         """
         return pulumi.get(self, "immediate")
 
     @immediate.setter
-    def immediate(self, value: Optional[pulumi.Input[_builtins.bool]]):
+    def immediate(self, value: pulumi.Input[Optional[_builtins.bool]]):
         pulumi.set(self, "immediate", value)
 
     @_builtins.property
     @pulumi.getter(name="oneHour")
-    def one_hour(self) -> Optional[pulumi.Input[_builtins.int]]:
+    def one_hour(self) -> pulumi.Input[Optional[_builtins.int]]:
         """
         The one-hour interval threshold. Minimum 1 and maximum 10,000. Default value 100.
         """
         return pulumi.get(self, "one_hour")
 
     @one_hour.setter
-    def one_hour(self, value: Optional[pulumi.Input[_builtins.int]]):
+    def one_hour(self, value: pulumi.Input[Optional[_builtins.int]]):
         pulumi.set(self, "one_hour", value)
 
     @_builtins.property
     @pulumi.getter(name="oneMinute")
-    def one_minute(self) -> Optional[pulumi.Input[_builtins.int]]:
+    def one_minute(self) -> pulumi.Input[Optional[_builtins.int]]:
         """
         The one-minute interval threshold. Minimum 1 and maximum 10,000. Default value 1.
         """
         return pulumi.get(self, "one_minute")
 
     @one_minute.setter
-    def one_minute(self, value: Optional[pulumi.Input[_builtins.int]]):
+    def one_minute(self, value: pulumi.Input[Optional[_builtins.int]]):
         pulumi.set(self, "one_minute", value)
 
     @_builtins.property
     @pulumi.getter(name="tenMinutes")
-    def ten_minutes(self) -> Optional[pulumi.Input[_builtins.int]]:
+    def ten_minutes(self) -> pulumi.Input[Optional[_builtins.int]]:
         """
         The ten-minute interval threshold. Minimum 1 and maximum 10,000. Default value 60.
         """
         return pulumi.get(self, "ten_minutes")
 
     @ten_minutes.setter
-    def ten_minutes(self, value: Optional[pulumi.Input[_builtins.int]]):
+    def ten_minutes(self, value: pulumi.Input[Optional[_builtins.int]]):
         pulumi.set(self, "ten_minutes", value)
 
 
@@ -1344,23 +1344,23 @@ class NgwafWorkspaceRuleActionArgsDict(TypedDict):
     """
     The action type. One of: `add_signal`, `allow`, `block`, `browser_challenge`, `dynamic_challenge`, `exclude_signal`, `verify_token` or for rate limit rule valid values: `log_request`, `block_signal`, `browser_challenge`, `verify_token`
     """
-    allow_interactive: NotRequired[pulumi.Input[_builtins.bool]]
+    allow_interactive: NotRequired[pulumi.Input[Optional[_builtins.bool]]]
     """
     Specifies if interaction is allowed (used when `type = browser_challenge`).
     """
-    deception_type: NotRequired[pulumi.Input[_builtins.str]]
+    deception_type: NotRequired[pulumi.Input[Optional[_builtins.str]]]
     """
     specifies the type of deception (used when `type = deception`).
     """
-    redirect_url: NotRequired[pulumi.Input[_builtins.str]]
+    redirect_url: NotRequired[pulumi.Input[Optional[_builtins.str]]]
     """
     Redirect target (used when `type = redirect`).
     """
-    response_code: NotRequired[pulumi.Input[_builtins.int]]
+    response_code: NotRequired[pulumi.Input[Optional[_builtins.int]]]
     """
     Response code used with redirect.
     """
-    signal: NotRequired[pulumi.Input[_builtins.str]]
+    signal: NotRequired[pulumi.Input[Optional[_builtins.str]]]
     """
     Signal name to exclude (used when `type = exclude_signal`).
     """
@@ -1369,11 +1369,11 @@ class NgwafWorkspaceRuleActionArgsDict(TypedDict):
 class NgwafWorkspaceRuleActionArgs:
     def __init__(__self__, *,
                  type: pulumi.Input[_builtins.str],
-                 allow_interactive: Optional[pulumi.Input[_builtins.bool]] = None,
-                 deception_type: Optional[pulumi.Input[_builtins.str]] = None,
-                 redirect_url: Optional[pulumi.Input[_builtins.str]] = None,
-                 response_code: Optional[pulumi.Input[_builtins.int]] = None,
-                 signal: Optional[pulumi.Input[_builtins.str]] = None):
+                 allow_interactive: pulumi.Input[Optional[_builtins.bool]] = None,
+                 deception_type: pulumi.Input[Optional[_builtins.str]] = None,
+                 redirect_url: pulumi.Input[Optional[_builtins.str]] = None,
+                 response_code: pulumi.Input[Optional[_builtins.int]] = None,
+                 signal: pulumi.Input[Optional[_builtins.str]] = None):
         """
         :param pulumi.Input[_builtins.str] type: The action type. One of: `add_signal`, `allow`, `block`, `browser_challenge`, `dynamic_challenge`, `exclude_signal`, `verify_token` or for rate limit rule valid values: `log_request`, `block_signal`, `browser_challenge`, `verify_token`
         :param pulumi.Input[_builtins.bool] allow_interactive: Specifies if interaction is allowed (used when `type = browser_challenge`).
@@ -1408,62 +1408,62 @@ class NgwafWorkspaceRuleActionArgs:
 
     @_builtins.property
     @pulumi.getter(name="allowInteractive")
-    def allow_interactive(self) -> Optional[pulumi.Input[_builtins.bool]]:
+    def allow_interactive(self) -> pulumi.Input[Optional[_builtins.bool]]:
         """
         Specifies if interaction is allowed (used when `type = browser_challenge`).
         """
         return pulumi.get(self, "allow_interactive")
 
     @allow_interactive.setter
-    def allow_interactive(self, value: Optional[pulumi.Input[_builtins.bool]]):
+    def allow_interactive(self, value: pulumi.Input[Optional[_builtins.bool]]):
         pulumi.set(self, "allow_interactive", value)
 
     @_builtins.property
     @pulumi.getter(name="deceptionType")
-    def deception_type(self) -> Optional[pulumi.Input[_builtins.str]]:
+    def deception_type(self) -> pulumi.Input[Optional[_builtins.str]]:
         """
         specifies the type of deception (used when `type = deception`).
         """
         return pulumi.get(self, "deception_type")
 
     @deception_type.setter
-    def deception_type(self, value: Optional[pulumi.Input[_builtins.str]]):
+    def deception_type(self, value: pulumi.Input[Optional[_builtins.str]]):
         pulumi.set(self, "deception_type", value)
 
     @_builtins.property
     @pulumi.getter(name="redirectUrl")
-    def redirect_url(self) -> Optional[pulumi.Input[_builtins.str]]:
+    def redirect_url(self) -> pulumi.Input[Optional[_builtins.str]]:
         """
         Redirect target (used when `type = redirect`).
         """
         return pulumi.get(self, "redirect_url")
 
     @redirect_url.setter
-    def redirect_url(self, value: Optional[pulumi.Input[_builtins.str]]):
+    def redirect_url(self, value: pulumi.Input[Optional[_builtins.str]]):
         pulumi.set(self, "redirect_url", value)
 
     @_builtins.property
     @pulumi.getter(name="responseCode")
-    def response_code(self) -> Optional[pulumi.Input[_builtins.int]]:
+    def response_code(self) -> pulumi.Input[Optional[_builtins.int]]:
         """
         Response code used with redirect.
         """
         return pulumi.get(self, "response_code")
 
     @response_code.setter
-    def response_code(self, value: Optional[pulumi.Input[_builtins.int]]):
+    def response_code(self, value: pulumi.Input[Optional[_builtins.int]]):
         pulumi.set(self, "response_code", value)
 
     @_builtins.property
     @pulumi.getter
-    def signal(self) -> Optional[pulumi.Input[_builtins.str]]:
+    def signal(self) -> pulumi.Input[Optional[_builtins.str]]:
         """
         Signal name to exclude (used when `type = exclude_signal`).
         """
         return pulumi.get(self, "signal")
 
     @signal.setter
-    def signal(self, value: Optional[pulumi.Input[_builtins.str]]):
+    def signal(self, value: pulumi.Input[Optional[_builtins.str]]):
         pulumi.set(self, "signal", value)
 
 
@@ -1538,11 +1538,11 @@ class NgwafWorkspaceRuleGroupConditionArgsDict(TypedDict):
     """
     Logical operator for the group. Accepted values are `any` and `all`.
     """
-    conditions: NotRequired[pulumi.Input[Sequence[pulumi.Input['NgwafWorkspaceRuleGroupConditionConditionArgsDict']]]]
+    conditions: NotRequired[pulumi.Input[Optional[Sequence[pulumi.Input['NgwafWorkspaceRuleGroupConditionConditionArgs']]]]]
     """
     A list of nested conditions in this group.
     """
-    multival_conditions: NotRequired[pulumi.Input[Sequence[pulumi.Input['NgwafWorkspaceRuleGroupConditionMultivalConditionArgsDict']]]]
+    multival_conditions: NotRequired[pulumi.Input[Optional[Sequence[pulumi.Input['NgwafWorkspaceRuleGroupConditionMultivalConditionArgs']]]]]
     """
     List of nested multival conditions in this group. Each multival list must define a `field, operator, group_operator` and at least one condition.
     """
@@ -1551,8 +1551,8 @@ class NgwafWorkspaceRuleGroupConditionArgsDict(TypedDict):
 class NgwafWorkspaceRuleGroupConditionArgs:
     def __init__(__self__, *,
                  group_operator: pulumi.Input[_builtins.str],
-                 conditions: Optional[pulumi.Input[Sequence[pulumi.Input['NgwafWorkspaceRuleGroupConditionConditionArgs']]]] = None,
-                 multival_conditions: Optional[pulumi.Input[Sequence[pulumi.Input['NgwafWorkspaceRuleGroupConditionMultivalConditionArgs']]]] = None):
+                 conditions: pulumi.Input[Optional[Sequence[pulumi.Input['NgwafWorkspaceRuleGroupConditionConditionArgs']]]] = None,
+                 multival_conditions: pulumi.Input[Optional[Sequence[pulumi.Input['NgwafWorkspaceRuleGroupConditionMultivalConditionArgs']]]] = None):
         """
         :param pulumi.Input[_builtins.str] group_operator: Logical operator for the group. Accepted values are `any` and `all`.
         :param pulumi.Input[Sequence[pulumi.Input['NgwafWorkspaceRuleGroupConditionConditionArgs']]] conditions: A list of nested conditions in this group.
@@ -1578,26 +1578,26 @@ class NgwafWorkspaceRuleGroupConditionArgs:
 
     @_builtins.property
     @pulumi.getter
-    def conditions(self) -> Optional[pulumi.Input[Sequence[pulumi.Input['NgwafWorkspaceRuleGroupConditionConditionArgs']]]]:
+    def conditions(self) -> pulumi.Input[Optional[Sequence[pulumi.Input['NgwafWorkspaceRuleGroupConditionConditionArgs']]]]:
         """
         A list of nested conditions in this group.
         """
         return pulumi.get(self, "conditions")
 
     @conditions.setter
-    def conditions(self, value: Optional[pulumi.Input[Sequence[pulumi.Input['NgwafWorkspaceRuleGroupConditionConditionArgs']]]]):
+    def conditions(self, value: pulumi.Input[Optional[Sequence[pulumi.Input['NgwafWorkspaceRuleGroupConditionConditionArgs']]]]):
         pulumi.set(self, "conditions", value)
 
     @_builtins.property
     @pulumi.getter(name="multivalConditions")
-    def multival_conditions(self) -> Optional[pulumi.Input[Sequence[pulumi.Input['NgwafWorkspaceRuleGroupConditionMultivalConditionArgs']]]]:
+    def multival_conditions(self) -> pulumi.Input[Optional[Sequence[pulumi.Input['NgwafWorkspaceRuleGroupConditionMultivalConditionArgs']]]]:
         """
         List of nested multival conditions in this group. Each multival list must define a `field, operator, group_operator` and at least one condition.
         """
         return pulumi.get(self, "multival_conditions")
 
     @multival_conditions.setter
-    def multival_conditions(self, value: Optional[pulumi.Input[Sequence[pulumi.Input['NgwafWorkspaceRuleGroupConditionMultivalConditionArgs']]]]):
+    def multival_conditions(self, value: pulumi.Input[Optional[Sequence[pulumi.Input['NgwafWorkspaceRuleGroupConditionMultivalConditionArgs']]]]):
         pulumi.set(self, "multival_conditions", value)
 
 
@@ -2078,11 +2078,11 @@ class NgwafWorkspaceRuleRateLimitClientIdentifierArgsDict(TypedDict):
     """
     Type of the Client Identifier. Accepted values are `ip`, `post_parameter`, `request_cookie`, `request_header`, and `signal_payload`.
     """
-    key: NotRequired[pulumi.Input[_builtins.str]]
+    key: NotRequired[pulumi.Input[Optional[_builtins.str]]]
     """
     Key for the Client Identifier.
     """
-    name: NotRequired[pulumi.Input[_builtins.str]]
+    name: NotRequired[pulumi.Input[Optional[_builtins.str]]]
     """
     Name for the Client Identifier.
     """
@@ -2091,8 +2091,8 @@ class NgwafWorkspaceRuleRateLimitClientIdentifierArgsDict(TypedDict):
 class NgwafWorkspaceRuleRateLimitClientIdentifierArgs:
     def __init__(__self__, *,
                  type: pulumi.Input[_builtins.str],
-                 key: Optional[pulumi.Input[_builtins.str]] = None,
-                 name: Optional[pulumi.Input[_builtins.str]] = None):
+                 key: pulumi.Input[Optional[_builtins.str]] = None,
+                 name: pulumi.Input[Optional[_builtins.str]] = None):
         """
         :param pulumi.Input[_builtins.str] type: Type of the Client Identifier. Accepted values are `ip`, `post_parameter`, `request_cookie`, `request_header`, and `signal_payload`.
         :param pulumi.Input[_builtins.str] key: Key for the Client Identifier.
@@ -2118,26 +2118,26 @@ class NgwafWorkspaceRuleRateLimitClientIdentifierArgs:
 
     @_builtins.property
     @pulumi.getter
-    def key(self) -> Optional[pulumi.Input[_builtins.str]]:
+    def key(self) -> pulumi.Input[Optional[_builtins.str]]:
         """
         Key for the Client Identifier.
         """
         return pulumi.get(self, "key")
 
     @key.setter
-    def key(self, value: Optional[pulumi.Input[_builtins.str]]):
+    def key(self, value: pulumi.Input[Optional[_builtins.str]]):
         pulumi.set(self, "key", value)
 
     @_builtins.property
     @pulumi.getter
-    def name(self) -> Optional[pulumi.Input[_builtins.str]]:
+    def name(self) -> pulumi.Input[Optional[_builtins.str]]:
         """
         Name for the Client Identifier.
         """
         return pulumi.get(self, "name")
 
     @name.setter
-    def name(self, value: Optional[pulumi.Input[_builtins.str]]):
+    def name(self, value: pulumi.Input[Optional[_builtins.str]]):
         pulumi.set(self, "name", value)
 
 
@@ -2146,19 +2146,19 @@ class ServiceACLEntriesEntryArgsDict(TypedDict):
     """
     An IP address that is the focus for the ACL
     """
-    comment: NotRequired[pulumi.Input[_builtins.str]]
+    comment: NotRequired[pulumi.Input[Optional[_builtins.str]]]
     """
     A personal freeform descriptive note
     """
-    id: NotRequired[pulumi.Input[_builtins.str]]
+    id: NotRequired[pulumi.Input[Optional[_builtins.str]]]
     """
     The unique ID of the entry
     """
-    negated: NotRequired[pulumi.Input[_builtins.bool]]
+    negated: NotRequired[pulumi.Input[Optional[_builtins.bool]]]
     """
     A boolean that will negate the match if true
     """
-    subnet: NotRequired[pulumi.Input[_builtins.str]]
+    subnet: NotRequired[pulumi.Input[Optional[_builtins.str]]]
     """
     An optional subnet mask applied to the IP address
     """
@@ -2167,10 +2167,10 @@ class ServiceACLEntriesEntryArgsDict(TypedDict):
 class ServiceACLEntriesEntryArgs:
     def __init__(__self__, *,
                  ip: pulumi.Input[_builtins.str],
-                 comment: Optional[pulumi.Input[_builtins.str]] = None,
-                 id: Optional[pulumi.Input[_builtins.str]] = None,
-                 negated: Optional[pulumi.Input[_builtins.bool]] = None,
-                 subnet: Optional[pulumi.Input[_builtins.str]] = None):
+                 comment: pulumi.Input[Optional[_builtins.str]] = None,
+                 id: pulumi.Input[Optional[_builtins.str]] = None,
+                 negated: pulumi.Input[Optional[_builtins.bool]] = None,
+                 subnet: pulumi.Input[Optional[_builtins.str]] = None):
         """
         :param pulumi.Input[_builtins.str] ip: An IP address that is the focus for the ACL
         :param pulumi.Input[_builtins.str] comment: A personal freeform descriptive note
@@ -2202,50 +2202,50 @@ class ServiceACLEntriesEntryArgs:
 
     @_builtins.property
     @pulumi.getter
-    def comment(self) -> Optional[pulumi.Input[_builtins.str]]:
+    def comment(self) -> pulumi.Input[Optional[_builtins.str]]:
         """
         A personal freeform descriptive note
         """
         return pulumi.get(self, "comment")
 
     @comment.setter
-    def comment(self, value: Optional[pulumi.Input[_builtins.str]]):
+    def comment(self, value: pulumi.Input[Optional[_builtins.str]]):
         pulumi.set(self, "comment", value)
 
     @_builtins.property
     @pulumi.getter
-    def id(self) -> Optional[pulumi.Input[_builtins.str]]:
+    def id(self) -> pulumi.Input[Optional[_builtins.str]]:
         """
         The unique ID of the entry
         """
         return pulumi.get(self, "id")
 
     @id.setter
-    def id(self, value: Optional[pulumi.Input[_builtins.str]]):
+    def id(self, value: pulumi.Input[Optional[_builtins.str]]):
         pulumi.set(self, "id", value)
 
     @_builtins.property
     @pulumi.getter
-    def negated(self) -> Optional[pulumi.Input[_builtins.bool]]:
+    def negated(self) -> pulumi.Input[Optional[_builtins.bool]]:
         """
         A boolean that will negate the match if true
         """
         return pulumi.get(self, "negated")
 
     @negated.setter
-    def negated(self, value: Optional[pulumi.Input[_builtins.bool]]):
+    def negated(self, value: pulumi.Input[Optional[_builtins.bool]]):
         pulumi.set(self, "negated", value)
 
     @_builtins.property
     @pulumi.getter
-    def subnet(self) -> Optional[pulumi.Input[_builtins.str]]:
+    def subnet(self) -> pulumi.Input[Optional[_builtins.str]]:
         """
         An optional subnet mask applied to the IP address
         """
         return pulumi.get(self, "subnet")
 
     @subnet.setter
-    def subnet(self, value: Optional[pulumi.Input[_builtins.str]]):
+    def subnet(self, value: pulumi.Input[Optional[_builtins.str]]):
         pulumi.set(self, "subnet", value)
 
 
@@ -2258,95 +2258,95 @@ class ServiceComputeBackendArgsDict(TypedDict):
     """
     Name for this Backend. Must be unique to this Service. It is important to note that changing this attribute will delete and recreate the resource
     """
-    between_bytes_timeout: NotRequired[pulumi.Input[_builtins.int]]
+    between_bytes_timeout: NotRequired[pulumi.Input[Optional[_builtins.int]]]
     """
     How long to wait between bytes in milliseconds. Default `10000`
     """
-    connect_timeout: NotRequired[pulumi.Input[_builtins.int]]
+    connect_timeout: NotRequired[pulumi.Input[Optional[_builtins.int]]]
     """
     How long to wait for a timeout in milliseconds. Default `1000`
     """
-    error_threshold: NotRequired[pulumi.Input[_builtins.int]]
+    error_threshold: NotRequired[pulumi.Input[Optional[_builtins.int]]]
     """
     Number of errors to allow before the Backend is marked as down. Default `0`
     """
-    first_byte_timeout: NotRequired[pulumi.Input[_builtins.int]]
+    first_byte_timeout: NotRequired[pulumi.Input[Optional[_builtins.int]]]
     """
     How long to wait for the first bytes in milliseconds. Default `15000`
     """
-    healthcheck: NotRequired[pulumi.Input[_builtins.str]]
+    healthcheck: NotRequired[pulumi.Input[Optional[_builtins.str]]]
     """
     Name of a defined `healthcheck` to assign to this backend
     """
-    keepalive_time: NotRequired[pulumi.Input[_builtins.int]]
+    keepalive_time: NotRequired[pulumi.Input[Optional[_builtins.int]]]
     """
     How long in seconds to keep a persistent connection to the backend between requests.
     """
-    max_conn: NotRequired[pulumi.Input[_builtins.int]]
+    max_conn: NotRequired[pulumi.Input[Optional[_builtins.int]]]
     """
     Maximum number of connections for this Backend. Default `200`
     """
-    max_tls_version: NotRequired[pulumi.Input[_builtins.str]]
+    max_tls_version: NotRequired[pulumi.Input[Optional[_builtins.str]]]
     """
     Maximum allowed TLS version on SSL connections to this backend.
     """
-    min_tls_version: NotRequired[pulumi.Input[_builtins.str]]
+    min_tls_version: NotRequired[pulumi.Input[Optional[_builtins.str]]]
     """
     Minimum allowed TLS version on SSL connections to this backend.
     """
-    override_host: NotRequired[pulumi.Input[_builtins.str]]
+    override_host: NotRequired[pulumi.Input[Optional[_builtins.str]]]
     """
     The hostname to override the Host header
     """
-    port: NotRequired[pulumi.Input[_builtins.int]]
+    port: NotRequired[pulumi.Input[Optional[_builtins.int]]]
     """
     The port number on which the Backend responds. Default `80`
     """
-    prefer_ipv6: NotRequired[pulumi.Input[_builtins.bool]]
+    prefer_ipv6: NotRequired[pulumi.Input[Optional[_builtins.bool]]]
     """
     Prefer IPv6 connections to origins for hostname backends. Default `true`
     """
-    share_key: NotRequired[pulumi.Input[_builtins.str]]
+    share_key: NotRequired[pulumi.Input[Optional[_builtins.str]]]
     """
     Value that when shared across backends will enable those backends to share the same health check.
     """
-    shield: NotRequired[pulumi.Input[_builtins.str]]
+    shield: NotRequired[pulumi.Input[Optional[_builtins.str]]]
     """
     The POP of the shield designated to reduce inbound load. Valid values for `shield` are included in the `GET /datacenters` API response
     """
-    ssl_ca_cert: NotRequired[pulumi.Input[_builtins.str]]
+    ssl_ca_cert: NotRequired[pulumi.Input[Optional[_builtins.str]]]
     """
     CA certificate attached to origin.
     """
-    ssl_cert_hostname: NotRequired[pulumi.Input[_builtins.str]]
+    ssl_cert_hostname: NotRequired[pulumi.Input[Optional[_builtins.str]]]
     """
     Configure certificate validation. Does not affect SNI at all
     """
-    ssl_check_cert: NotRequired[pulumi.Input[_builtins.bool]]
+    ssl_check_cert: NotRequired[pulumi.Input[Optional[_builtins.bool]]]
     """
     Be strict about checking SSL certs. Default `true`
     """
-    ssl_ciphers: NotRequired[pulumi.Input[_builtins.str]]
+    ssl_ciphers: NotRequired[pulumi.Input[Optional[_builtins.str]]]
     """
     Cipher list consisting of one or more cipher strings separated by colons. Commas or spaces are also acceptable separators but colons are normally used.
     """
-    ssl_client_cert: NotRequired[pulumi.Input[_builtins.str]]
+    ssl_client_cert: NotRequired[pulumi.Input[Optional[_builtins.str]]]
     """
     Client certificate attached to origin. Used when connecting to the backend
     """
-    ssl_client_key: NotRequired[pulumi.Input[_builtins.str]]
+    ssl_client_key: NotRequired[pulumi.Input[Optional[_builtins.str]]]
     """
     Client key attached to origin. Used when connecting to the backend
     """
-    ssl_sni_hostname: NotRequired[pulumi.Input[_builtins.str]]
+    ssl_sni_hostname: NotRequired[pulumi.Input[Optional[_builtins.str]]]
     """
     Configure SNI in the TLS handshake. Does not affect cert validation at all
     """
-    use_ssl: NotRequired[pulumi.Input[_builtins.bool]]
+    use_ssl: NotRequired[pulumi.Input[Optional[_builtins.bool]]]
     """
     Whether or not to use SSL to reach the Backend. Default `false`
     """
-    weight: NotRequired[pulumi.Input[_builtins.int]]
+    weight: NotRequired[pulumi.Input[Optional[_builtins.int]]]
     """
     The [portion of traffic](https://docs.fastly.com/en/guides/load-balancing-configuration#how-weight-affects-load-balancing) to send to this Backend. Each Backend receives weight / total of the traffic. Default `100`
     """
@@ -2356,29 +2356,29 @@ class ServiceComputeBackendArgs:
     def __init__(__self__, *,
                  address: pulumi.Input[_builtins.str],
                  name: pulumi.Input[_builtins.str],
-                 between_bytes_timeout: Optional[pulumi.Input[_builtins.int]] = None,
-                 connect_timeout: Optional[pulumi.Input[_builtins.int]] = None,
-                 error_threshold: Optional[pulumi.Input[_builtins.int]] = None,
-                 first_byte_timeout: Optional[pulumi.Input[_builtins.int]] = None,
-                 healthcheck: Optional[pulumi.Input[_builtins.str]] = None,
-                 keepalive_time: Optional[pulumi.Input[_builtins.int]] = None,
-                 max_conn: Optional[pulumi.Input[_builtins.int]] = None,
-                 max_tls_version: Optional[pulumi.Input[_builtins.str]] = None,
-                 min_tls_version: Optional[pulumi.Input[_builtins.str]] = None,
-                 override_host: Optional[pulumi.Input[_builtins.str]] = None,
-                 port: Optional[pulumi.Input[_builtins.int]] = None,
-                 prefer_ipv6: Optional[pulumi.Input[_builtins.bool]] = None,
-                 share_key: Optional[pulumi.Input[_builtins.str]] = None,
-                 shield: Optional[pulumi.Input[_builtins.str]] = None,
-                 ssl_ca_cert: Optional[pulumi.Input[_builtins.str]] = None,
-                 ssl_cert_hostname: Optional[pulumi.Input[_builtins.str]] = None,
-                 ssl_check_cert: Optional[pulumi.Input[_builtins.bool]] = None,
-                 ssl_ciphers: Optional[pulumi.Input[_builtins.str]] = None,
-                 ssl_client_cert: Optional[pulumi.Input[_builtins.str]] = None,
-                 ssl_client_key: Optional[pulumi.Input[_builtins.str]] = None,
-                 ssl_sni_hostname: Optional[pulumi.Input[_builtins.str]] = None,
-                 use_ssl: Optional[pulumi.Input[_builtins.bool]] = None,
-                 weight: Optional[pulumi.Input[_builtins.int]] = None):
+                 between_bytes_timeout: pulumi.Input[Optional[_builtins.int]] = None,
+                 connect_timeout: pulumi.Input[Optional[_builtins.int]] = None,
+                 error_threshold: pulumi.Input[Optional[_builtins.int]] = None,
+                 first_byte_timeout: pulumi.Input[Optional[_builtins.int]] = None,
+                 healthcheck: pulumi.Input[Optional[_builtins.str]] = None,
+                 keepalive_time: pulumi.Input[Optional[_builtins.int]] = None,
+                 max_conn: pulumi.Input[Optional[_builtins.int]] = None,
+                 max_tls_version: pulumi.Input[Optional[_builtins.str]] = None,
+                 min_tls_version: pulumi.Input[Optional[_builtins.str]] = None,
+                 override_host: pulumi.Input[Optional[_builtins.str]] = None,
+                 port: pulumi.Input[Optional[_builtins.int]] = None,
+                 prefer_ipv6: pulumi.Input[Optional[_builtins.bool]] = None,
+                 share_key: pulumi.Input[Optional[_builtins.str]] = None,
+                 shield: pulumi.Input[Optional[_builtins.str]] = None,
+                 ssl_ca_cert: pulumi.Input[Optional[_builtins.str]] = None,
+                 ssl_cert_hostname: pulumi.Input[Optional[_builtins.str]] = None,
+                 ssl_check_cert: pulumi.Input[Optional[_builtins.bool]] = None,
+                 ssl_ciphers: pulumi.Input[Optional[_builtins.str]] = None,
+                 ssl_client_cert: pulumi.Input[Optional[_builtins.str]] = None,
+                 ssl_client_key: pulumi.Input[Optional[_builtins.str]] = None,
+                 ssl_sni_hostname: pulumi.Input[Optional[_builtins.str]] = None,
+                 use_ssl: pulumi.Input[Optional[_builtins.bool]] = None,
+                 weight: pulumi.Input[Optional[_builtins.int]] = None):
         """
         :param pulumi.Input[_builtins.str] address: An IPv4, hostname, or IPv6 address for the Backend
         :param pulumi.Input[_builtins.str] name: Name for this Backend. Must be unique to this Service. It is important to note that changing this attribute will delete and recreate the resource
@@ -2481,278 +2481,278 @@ class ServiceComputeBackendArgs:
 
     @_builtins.property
     @pulumi.getter(name="betweenBytesTimeout")
-    def between_bytes_timeout(self) -> Optional[pulumi.Input[_builtins.int]]:
+    def between_bytes_timeout(self) -> pulumi.Input[Optional[_builtins.int]]:
         """
         How long to wait between bytes in milliseconds. Default `10000`
         """
         return pulumi.get(self, "between_bytes_timeout")
 
     @between_bytes_timeout.setter
-    def between_bytes_timeout(self, value: Optional[pulumi.Input[_builtins.int]]):
+    def between_bytes_timeout(self, value: pulumi.Input[Optional[_builtins.int]]):
         pulumi.set(self, "between_bytes_timeout", value)
 
     @_builtins.property
     @pulumi.getter(name="connectTimeout")
-    def connect_timeout(self) -> Optional[pulumi.Input[_builtins.int]]:
+    def connect_timeout(self) -> pulumi.Input[Optional[_builtins.int]]:
         """
         How long to wait for a timeout in milliseconds. Default `1000`
         """
         return pulumi.get(self, "connect_timeout")
 
     @connect_timeout.setter
-    def connect_timeout(self, value: Optional[pulumi.Input[_builtins.int]]):
+    def connect_timeout(self, value: pulumi.Input[Optional[_builtins.int]]):
         pulumi.set(self, "connect_timeout", value)
 
     @_builtins.property
     @pulumi.getter(name="errorThreshold")
-    def error_threshold(self) -> Optional[pulumi.Input[_builtins.int]]:
+    def error_threshold(self) -> pulumi.Input[Optional[_builtins.int]]:
         """
         Number of errors to allow before the Backend is marked as down. Default `0`
         """
         return pulumi.get(self, "error_threshold")
 
     @error_threshold.setter
-    def error_threshold(self, value: Optional[pulumi.Input[_builtins.int]]):
+    def error_threshold(self, value: pulumi.Input[Optional[_builtins.int]]):
         pulumi.set(self, "error_threshold", value)
 
     @_builtins.property
     @pulumi.getter(name="firstByteTimeout")
-    def first_byte_timeout(self) -> Optional[pulumi.Input[_builtins.int]]:
+    def first_byte_timeout(self) -> pulumi.Input[Optional[_builtins.int]]:
         """
         How long to wait for the first bytes in milliseconds. Default `15000`
         """
         return pulumi.get(self, "first_byte_timeout")
 
     @first_byte_timeout.setter
-    def first_byte_timeout(self, value: Optional[pulumi.Input[_builtins.int]]):
+    def first_byte_timeout(self, value: pulumi.Input[Optional[_builtins.int]]):
         pulumi.set(self, "first_byte_timeout", value)
 
     @_builtins.property
     @pulumi.getter
-    def healthcheck(self) -> Optional[pulumi.Input[_builtins.str]]:
+    def healthcheck(self) -> pulumi.Input[Optional[_builtins.str]]:
         """
         Name of a defined `healthcheck` to assign to this backend
         """
         return pulumi.get(self, "healthcheck")
 
     @healthcheck.setter
-    def healthcheck(self, value: Optional[pulumi.Input[_builtins.str]]):
+    def healthcheck(self, value: pulumi.Input[Optional[_builtins.str]]):
         pulumi.set(self, "healthcheck", value)
 
     @_builtins.property
     @pulumi.getter(name="keepaliveTime")
-    def keepalive_time(self) -> Optional[pulumi.Input[_builtins.int]]:
+    def keepalive_time(self) -> pulumi.Input[Optional[_builtins.int]]:
         """
         How long in seconds to keep a persistent connection to the backend between requests.
         """
         return pulumi.get(self, "keepalive_time")
 
     @keepalive_time.setter
-    def keepalive_time(self, value: Optional[pulumi.Input[_builtins.int]]):
+    def keepalive_time(self, value: pulumi.Input[Optional[_builtins.int]]):
         pulumi.set(self, "keepalive_time", value)
 
     @_builtins.property
     @pulumi.getter(name="maxConn")
-    def max_conn(self) -> Optional[pulumi.Input[_builtins.int]]:
+    def max_conn(self) -> pulumi.Input[Optional[_builtins.int]]:
         """
         Maximum number of connections for this Backend. Default `200`
         """
         return pulumi.get(self, "max_conn")
 
     @max_conn.setter
-    def max_conn(self, value: Optional[pulumi.Input[_builtins.int]]):
+    def max_conn(self, value: pulumi.Input[Optional[_builtins.int]]):
         pulumi.set(self, "max_conn", value)
 
     @_builtins.property
     @pulumi.getter(name="maxTlsVersion")
-    def max_tls_version(self) -> Optional[pulumi.Input[_builtins.str]]:
+    def max_tls_version(self) -> pulumi.Input[Optional[_builtins.str]]:
         """
         Maximum allowed TLS version on SSL connections to this backend.
         """
         return pulumi.get(self, "max_tls_version")
 
     @max_tls_version.setter
-    def max_tls_version(self, value: Optional[pulumi.Input[_builtins.str]]):
+    def max_tls_version(self, value: pulumi.Input[Optional[_builtins.str]]):
         pulumi.set(self, "max_tls_version", value)
 
     @_builtins.property
     @pulumi.getter(name="minTlsVersion")
-    def min_tls_version(self) -> Optional[pulumi.Input[_builtins.str]]:
+    def min_tls_version(self) -> pulumi.Input[Optional[_builtins.str]]:
         """
         Minimum allowed TLS version on SSL connections to this backend.
         """
         return pulumi.get(self, "min_tls_version")
 
     @min_tls_version.setter
-    def min_tls_version(self, value: Optional[pulumi.Input[_builtins.str]]):
+    def min_tls_version(self, value: pulumi.Input[Optional[_builtins.str]]):
         pulumi.set(self, "min_tls_version", value)
 
     @_builtins.property
     @pulumi.getter(name="overrideHost")
-    def override_host(self) -> Optional[pulumi.Input[_builtins.str]]:
+    def override_host(self) -> pulumi.Input[Optional[_builtins.str]]:
         """
         The hostname to override the Host header
         """
         return pulumi.get(self, "override_host")
 
     @override_host.setter
-    def override_host(self, value: Optional[pulumi.Input[_builtins.str]]):
+    def override_host(self, value: pulumi.Input[Optional[_builtins.str]]):
         pulumi.set(self, "override_host", value)
 
     @_builtins.property
     @pulumi.getter
-    def port(self) -> Optional[pulumi.Input[_builtins.int]]:
+    def port(self) -> pulumi.Input[Optional[_builtins.int]]:
         """
         The port number on which the Backend responds. Default `80`
         """
         return pulumi.get(self, "port")
 
     @port.setter
-    def port(self, value: Optional[pulumi.Input[_builtins.int]]):
+    def port(self, value: pulumi.Input[Optional[_builtins.int]]):
         pulumi.set(self, "port", value)
 
     @_builtins.property
     @pulumi.getter(name="preferIpv6")
-    def prefer_ipv6(self) -> Optional[pulumi.Input[_builtins.bool]]:
+    def prefer_ipv6(self) -> pulumi.Input[Optional[_builtins.bool]]:
         """
         Prefer IPv6 connections to origins for hostname backends. Default `true`
         """
         return pulumi.get(self, "prefer_ipv6")
 
     @prefer_ipv6.setter
-    def prefer_ipv6(self, value: Optional[pulumi.Input[_builtins.bool]]):
+    def prefer_ipv6(self, value: pulumi.Input[Optional[_builtins.bool]]):
         pulumi.set(self, "prefer_ipv6", value)
 
     @_builtins.property
     @pulumi.getter(name="shareKey")
-    def share_key(self) -> Optional[pulumi.Input[_builtins.str]]:
+    def share_key(self) -> pulumi.Input[Optional[_builtins.str]]:
         """
         Value that when shared across backends will enable those backends to share the same health check.
         """
         return pulumi.get(self, "share_key")
 
     @share_key.setter
-    def share_key(self, value: Optional[pulumi.Input[_builtins.str]]):
+    def share_key(self, value: pulumi.Input[Optional[_builtins.str]]):
         pulumi.set(self, "share_key", value)
 
     @_builtins.property
     @pulumi.getter
-    def shield(self) -> Optional[pulumi.Input[_builtins.str]]:
+    def shield(self) -> pulumi.Input[Optional[_builtins.str]]:
         """
         The POP of the shield designated to reduce inbound load. Valid values for `shield` are included in the `GET /datacenters` API response
         """
         return pulumi.get(self, "shield")
 
     @shield.setter
-    def shield(self, value: Optional[pulumi.Input[_builtins.str]]):
+    def shield(self, value: pulumi.Input[Optional[_builtins.str]]):
         pulumi.set(self, "shield", value)
 
     @_builtins.property
     @pulumi.getter(name="sslCaCert")
-    def ssl_ca_cert(self) -> Optional[pulumi.Input[_builtins.str]]:
+    def ssl_ca_cert(self) -> pulumi.Input[Optional[_builtins.str]]:
         """
         CA certificate attached to origin.
         """
         return pulumi.get(self, "ssl_ca_cert")
 
     @ssl_ca_cert.setter
-    def ssl_ca_cert(self, value: Optional[pulumi.Input[_builtins.str]]):
+    def ssl_ca_cert(self, value: pulumi.Input[Optional[_builtins.str]]):
         pulumi.set(self, "ssl_ca_cert", value)
 
     @_builtins.property
     @pulumi.getter(name="sslCertHostname")
-    def ssl_cert_hostname(self) -> Optional[pulumi.Input[_builtins.str]]:
+    def ssl_cert_hostname(self) -> pulumi.Input[Optional[_builtins.str]]:
         """
         Configure certificate validation. Does not affect SNI at all
         """
         return pulumi.get(self, "ssl_cert_hostname")
 
     @ssl_cert_hostname.setter
-    def ssl_cert_hostname(self, value: Optional[pulumi.Input[_builtins.str]]):
+    def ssl_cert_hostname(self, value: pulumi.Input[Optional[_builtins.str]]):
         pulumi.set(self, "ssl_cert_hostname", value)
 
     @_builtins.property
     @pulumi.getter(name="sslCheckCert")
-    def ssl_check_cert(self) -> Optional[pulumi.Input[_builtins.bool]]:
+    def ssl_check_cert(self) -> pulumi.Input[Optional[_builtins.bool]]:
         """
         Be strict about checking SSL certs. Default `true`
         """
         return pulumi.get(self, "ssl_check_cert")
 
     @ssl_check_cert.setter
-    def ssl_check_cert(self, value: Optional[pulumi.Input[_builtins.bool]]):
+    def ssl_check_cert(self, value: pulumi.Input[Optional[_builtins.bool]]):
         pulumi.set(self, "ssl_check_cert", value)
 
     @_builtins.property
     @pulumi.getter(name="sslCiphers")
-    def ssl_ciphers(self) -> Optional[pulumi.Input[_builtins.str]]:
+    def ssl_ciphers(self) -> pulumi.Input[Optional[_builtins.str]]:
         """
         Cipher list consisting of one or more cipher strings separated by colons. Commas or spaces are also acceptable separators but colons are normally used.
         """
         return pulumi.get(self, "ssl_ciphers")
 
     @ssl_ciphers.setter
-    def ssl_ciphers(self, value: Optional[pulumi.Input[_builtins.str]]):
+    def ssl_ciphers(self, value: pulumi.Input[Optional[_builtins.str]]):
         pulumi.set(self, "ssl_ciphers", value)
 
     @_builtins.property
     @pulumi.getter(name="sslClientCert")
-    def ssl_client_cert(self) -> Optional[pulumi.Input[_builtins.str]]:
+    def ssl_client_cert(self) -> pulumi.Input[Optional[_builtins.str]]:
         """
         Client certificate attached to origin. Used when connecting to the backend
         """
         return pulumi.get(self, "ssl_client_cert")
 
     @ssl_client_cert.setter
-    def ssl_client_cert(self, value: Optional[pulumi.Input[_builtins.str]]):
+    def ssl_client_cert(self, value: pulumi.Input[Optional[_builtins.str]]):
         pulumi.set(self, "ssl_client_cert", value)
 
     @_builtins.property
     @pulumi.getter(name="sslClientKey")
-    def ssl_client_key(self) -> Optional[pulumi.Input[_builtins.str]]:
+    def ssl_client_key(self) -> pulumi.Input[Optional[_builtins.str]]:
         """
         Client key attached to origin. Used when connecting to the backend
         """
         return pulumi.get(self, "ssl_client_key")
 
     @ssl_client_key.setter
-    def ssl_client_key(self, value: Optional[pulumi.Input[_builtins.str]]):
+    def ssl_client_key(self, value: pulumi.Input[Optional[_builtins.str]]):
         pulumi.set(self, "ssl_client_key", value)
 
     @_builtins.property
     @pulumi.getter(name="sslSniHostname")
-    def ssl_sni_hostname(self) -> Optional[pulumi.Input[_builtins.str]]:
+    def ssl_sni_hostname(self) -> pulumi.Input[Optional[_builtins.str]]:
         """
         Configure SNI in the TLS handshake. Does not affect cert validation at all
         """
         return pulumi.get(self, "ssl_sni_hostname")
 
     @ssl_sni_hostname.setter
-    def ssl_sni_hostname(self, value: Optional[pulumi.Input[_builtins.str]]):
+    def ssl_sni_hostname(self, value: pulumi.Input[Optional[_builtins.str]]):
         pulumi.set(self, "ssl_sni_hostname", value)
 
     @_builtins.property
     @pulumi.getter(name="useSsl")
-    def use_ssl(self) -> Optional[pulumi.Input[_builtins.bool]]:
+    def use_ssl(self) -> pulumi.Input[Optional[_builtins.bool]]:
         """
         Whether or not to use SSL to reach the Backend. Default `false`
         """
         return pulumi.get(self, "use_ssl")
 
     @use_ssl.setter
-    def use_ssl(self, value: Optional[pulumi.Input[_builtins.bool]]):
+    def use_ssl(self, value: pulumi.Input[Optional[_builtins.bool]]):
         pulumi.set(self, "use_ssl", value)
 
     @_builtins.property
     @pulumi.getter
-    def weight(self) -> Optional[pulumi.Input[_builtins.int]]:
+    def weight(self) -> pulumi.Input[Optional[_builtins.int]]:
         """
         The [portion of traffic](https://docs.fastly.com/en/guides/load-balancing-configuration#how-weight-affects-load-balancing) to send to this Backend. Each Backend receives weight / total of the traffic. Default `100`
         """
         return pulumi.get(self, "weight")
 
     @weight.setter
-    def weight(self, value: Optional[pulumi.Input[_builtins.int]]):
+    def weight(self, value: pulumi.Input[Optional[_builtins.int]]):
         pulumi.set(self, "weight", value)
 
 
@@ -2761,15 +2761,15 @@ class ServiceComputeDictionaryArgsDict(TypedDict):
     """
     A unique name to identify this dictionary. It is important to note that changing this attribute will delete and recreate the dictionary, and discard the current items in the dictionary
     """
-    dictionary_id: NotRequired[pulumi.Input[_builtins.str]]
+    dictionary_id: NotRequired[pulumi.Input[Optional[_builtins.str]]]
     """
     The ID of the dictionary
     """
-    force_destroy: NotRequired[pulumi.Input[_builtins.bool]]
+    force_destroy: NotRequired[pulumi.Input[Optional[_builtins.bool]]]
     """
     Allow the dictionary to be deleted, even if it contains entries. Defaults to false.
     """
-    write_only: NotRequired[pulumi.Input[_builtins.bool]]
+    write_only: NotRequired[pulumi.Input[Optional[_builtins.bool]]]
     """
     If `true`, the dictionary is a [private dictionary](https://docs.fastly.com/en/guides/private-dictionaries). Default is `false`. Please note that changing this attribute will delete and recreate the dictionary, and discard the current items in the dictionary. `ServiceVcl` resource will only manage the dictionary object itself, and items under private dictionaries can not be managed using [`ServiceDictionaryItems`](https://registry.terraform.io/providers/fastly/fastly/latest/docs/resources/service_dictionary_items#limitations) resource. Therefore, using a write-only/private dictionary should only be done if the items are managed outside of Terraform
     """
@@ -2778,9 +2778,9 @@ class ServiceComputeDictionaryArgsDict(TypedDict):
 class ServiceComputeDictionaryArgs:
     def __init__(__self__, *,
                  name: pulumi.Input[_builtins.str],
-                 dictionary_id: Optional[pulumi.Input[_builtins.str]] = None,
-                 force_destroy: Optional[pulumi.Input[_builtins.bool]] = None,
-                 write_only: Optional[pulumi.Input[_builtins.bool]] = None):
+                 dictionary_id: pulumi.Input[Optional[_builtins.str]] = None,
+                 force_destroy: pulumi.Input[Optional[_builtins.bool]] = None,
+                 write_only: pulumi.Input[Optional[_builtins.bool]] = None):
         """
         :param pulumi.Input[_builtins.str] name: A unique name to identify this dictionary. It is important to note that changing this attribute will delete and recreate the dictionary, and discard the current items in the dictionary
         :param pulumi.Input[_builtins.str] dictionary_id: The ID of the dictionary
@@ -2809,38 +2809,38 @@ class ServiceComputeDictionaryArgs:
 
     @_builtins.property
     @pulumi.getter(name="dictionaryId")
-    def dictionary_id(self) -> Optional[pulumi.Input[_builtins.str]]:
+    def dictionary_id(self) -> pulumi.Input[Optional[_builtins.str]]:
         """
         The ID of the dictionary
         """
         return pulumi.get(self, "dictionary_id")
 
     @dictionary_id.setter
-    def dictionary_id(self, value: Optional[pulumi.Input[_builtins.str]]):
+    def dictionary_id(self, value: pulumi.Input[Optional[_builtins.str]]):
         pulumi.set(self, "dictionary_id", value)
 
     @_builtins.property
     @pulumi.getter(name="forceDestroy")
-    def force_destroy(self) -> Optional[pulumi.Input[_builtins.bool]]:
+    def force_destroy(self) -> pulumi.Input[Optional[_builtins.bool]]:
         """
         Allow the dictionary to be deleted, even if it contains entries. Defaults to false.
         """
         return pulumi.get(self, "force_destroy")
 
     @force_destroy.setter
-    def force_destroy(self, value: Optional[pulumi.Input[_builtins.bool]]):
+    def force_destroy(self, value: pulumi.Input[Optional[_builtins.bool]]):
         pulumi.set(self, "force_destroy", value)
 
     @_builtins.property
     @pulumi.getter(name="writeOnly")
-    def write_only(self) -> Optional[pulumi.Input[_builtins.bool]]:
+    def write_only(self) -> pulumi.Input[Optional[_builtins.bool]]:
         """
         If `true`, the dictionary is a [private dictionary](https://docs.fastly.com/en/guides/private-dictionaries). Default is `false`. Please note that changing this attribute will delete and recreate the dictionary, and discard the current items in the dictionary. `ServiceVcl` resource will only manage the dictionary object itself, and items under private dictionaries can not be managed using [`ServiceDictionaryItems`](https://registry.terraform.io/providers/fastly/fastly/latest/docs/resources/service_dictionary_items#limitations) resource. Therefore, using a write-only/private dictionary should only be done if the items are managed outside of Terraform
         """
         return pulumi.get(self, "write_only")
 
     @write_only.setter
-    def write_only(self, value: Optional[pulumi.Input[_builtins.bool]]):
+    def write_only(self, value: pulumi.Input[Optional[_builtins.bool]]):
         pulumi.set(self, "write_only", value)
 
 
@@ -2849,7 +2849,7 @@ class ServiceComputeDomainArgsDict(TypedDict):
     """
     The domain that this Service will respond to. It is important to note that changing this attribute will delete and recreate the resource.
     """
-    comment: NotRequired[pulumi.Input[_builtins.str]]
+    comment: NotRequired[pulumi.Input[Optional[_builtins.str]]]
     """
     An optional comment about the Domain.
     """
@@ -2858,7 +2858,7 @@ class ServiceComputeDomainArgsDict(TypedDict):
 class ServiceComputeDomainArgs:
     def __init__(__self__, *,
                  name: pulumi.Input[_builtins.str],
-                 comment: Optional[pulumi.Input[_builtins.str]] = None):
+                 comment: pulumi.Input[Optional[_builtins.str]] = None):
         """
         :param pulumi.Input[_builtins.str] name: The domain that this Service will respond to. It is important to note that changing this attribute will delete and recreate the resource.
         :param pulumi.Input[_builtins.str] comment: An optional comment about the Domain.
@@ -2881,14 +2881,14 @@ class ServiceComputeDomainArgs:
 
     @_builtins.property
     @pulumi.getter
-    def comment(self) -> Optional[pulumi.Input[_builtins.str]]:
+    def comment(self) -> pulumi.Input[Optional[_builtins.str]]:
         """
         An optional comment about the Domain.
         """
         return pulumi.get(self, "comment")
 
     @comment.setter
-    def comment(self, value: Optional[pulumi.Input[_builtins.str]]):
+    def comment(self, value: pulumi.Input[Optional[_builtins.str]]):
         pulumi.set(self, "comment", value)
 
 
@@ -2905,39 +2905,39 @@ class ServiceComputeHealthcheckArgsDict(TypedDict):
     """
     The path to check
     """
-    check_interval: NotRequired[pulumi.Input[_builtins.int]]
+    check_interval: NotRequired[pulumi.Input[Optional[_builtins.int]]]
     """
     How often to run the Healthcheck in milliseconds. Default `5000`
     """
-    expected_response: NotRequired[pulumi.Input[_builtins.int]]
+    expected_response: NotRequired[pulumi.Input[Optional[_builtins.int]]]
     """
     The status code expected from the host. Default `200`
     """
-    headers: NotRequired[pulumi.Input[Sequence[pulumi.Input[_builtins.str]]]]
+    headers: NotRequired[pulumi.Input[Optional[Sequence[pulumi.Input[_builtins.str]]]]]
     """
     Custom health check HTTP headers (e.g. if your health check requires an API key to be provided).
     """
-    http_version: NotRequired[pulumi.Input[_builtins.str]]
+    http_version: NotRequired[pulumi.Input[Optional[_builtins.str]]]
     """
     Whether to use version 1.0 or 1.1 HTTP. Default `1.1`
     """
-    initial: NotRequired[pulumi.Input[_builtins.int]]
+    initial: NotRequired[pulumi.Input[Optional[_builtins.int]]]
     """
     When loading a config, the initial number of probes to be seen as OK. Default `3`
     """
-    method: NotRequired[pulumi.Input[_builtins.str]]
+    method: NotRequired[pulumi.Input[Optional[_builtins.str]]]
     """
     Which HTTP method to use. Default `HEAD`
     """
-    threshold: NotRequired[pulumi.Input[_builtins.int]]
+    threshold: NotRequired[pulumi.Input[Optional[_builtins.int]]]
     """
     How many Healthchecks must succeed to be considered healthy. Default `3`
     """
-    timeout: NotRequired[pulumi.Input[_builtins.int]]
+    timeout: NotRequired[pulumi.Input[Optional[_builtins.int]]]
     """
     Timeout in milliseconds. Default `5000`
     """
-    window: NotRequired[pulumi.Input[_builtins.int]]
+    window: NotRequired[pulumi.Input[Optional[_builtins.int]]]
     """
     The number of most recent Healthcheck queries to keep for this Healthcheck. Default `5`
     """
@@ -2948,15 +2948,15 @@ class ServiceComputeHealthcheckArgs:
                  host: pulumi.Input[_builtins.str],
                  name: pulumi.Input[_builtins.str],
                  path: pulumi.Input[_builtins.str],
-                 check_interval: Optional[pulumi.Input[_builtins.int]] = None,
-                 expected_response: Optional[pulumi.Input[_builtins.int]] = None,
-                 headers: Optional[pulumi.Input[Sequence[pulumi.Input[_builtins.str]]]] = None,
-                 http_version: Optional[pulumi.Input[_builtins.str]] = None,
-                 initial: Optional[pulumi.Input[_builtins.int]] = None,
-                 method: Optional[pulumi.Input[_builtins.str]] = None,
-                 threshold: Optional[pulumi.Input[_builtins.int]] = None,
-                 timeout: Optional[pulumi.Input[_builtins.int]] = None,
-                 window: Optional[pulumi.Input[_builtins.int]] = None):
+                 check_interval: pulumi.Input[Optional[_builtins.int]] = None,
+                 expected_response: pulumi.Input[Optional[_builtins.int]] = None,
+                 headers: pulumi.Input[Optional[Sequence[pulumi.Input[_builtins.str]]]] = None,
+                 http_version: pulumi.Input[Optional[_builtins.str]] = None,
+                 initial: pulumi.Input[Optional[_builtins.int]] = None,
+                 method: pulumi.Input[Optional[_builtins.str]] = None,
+                 threshold: pulumi.Input[Optional[_builtins.int]] = None,
+                 timeout: pulumi.Input[Optional[_builtins.int]] = None,
+                 window: pulumi.Input[Optional[_builtins.int]] = None):
         """
         :param pulumi.Input[_builtins.str] host: The Host header to send for this Healthcheck
         :param pulumi.Input[_builtins.str] name: A unique name to identify this Healthcheck. It is important to note that changing this attribute will delete and recreate the resource
@@ -3031,134 +3031,134 @@ class ServiceComputeHealthcheckArgs:
 
     @_builtins.property
     @pulumi.getter(name="checkInterval")
-    def check_interval(self) -> Optional[pulumi.Input[_builtins.int]]:
+    def check_interval(self) -> pulumi.Input[Optional[_builtins.int]]:
         """
         How often to run the Healthcheck in milliseconds. Default `5000`
         """
         return pulumi.get(self, "check_interval")
 
     @check_interval.setter
-    def check_interval(self, value: Optional[pulumi.Input[_builtins.int]]):
+    def check_interval(self, value: pulumi.Input[Optional[_builtins.int]]):
         pulumi.set(self, "check_interval", value)
 
     @_builtins.property
     @pulumi.getter(name="expectedResponse")
-    def expected_response(self) -> Optional[pulumi.Input[_builtins.int]]:
+    def expected_response(self) -> pulumi.Input[Optional[_builtins.int]]:
         """
         The status code expected from the host. Default `200`
         """
         return pulumi.get(self, "expected_response")
 
     @expected_response.setter
-    def expected_response(self, value: Optional[pulumi.Input[_builtins.int]]):
+    def expected_response(self, value: pulumi.Input[Optional[_builtins.int]]):
         pulumi.set(self, "expected_response", value)
 
     @_builtins.property
     @pulumi.getter
-    def headers(self) -> Optional[pulumi.Input[Sequence[pulumi.Input[_builtins.str]]]]:
+    def headers(self) -> pulumi.Input[Optional[Sequence[pulumi.Input[_builtins.str]]]]:
         """
         Custom health check HTTP headers (e.g. if your health check requires an API key to be provided).
         """
         return pulumi.get(self, "headers")
 
     @headers.setter
-    def headers(self, value: Optional[pulumi.Input[Sequence[pulumi.Input[_builtins.str]]]]):
+    def headers(self, value: pulumi.Input[Optional[Sequence[pulumi.Input[_builtins.str]]]]):
         pulumi.set(self, "headers", value)
 
     @_builtins.property
     @pulumi.getter(name="httpVersion")
-    def http_version(self) -> Optional[pulumi.Input[_builtins.str]]:
+    def http_version(self) -> pulumi.Input[Optional[_builtins.str]]:
         """
         Whether to use version 1.0 or 1.1 HTTP. Default `1.1`
         """
         return pulumi.get(self, "http_version")
 
     @http_version.setter
-    def http_version(self, value: Optional[pulumi.Input[_builtins.str]]):
+    def http_version(self, value: pulumi.Input[Optional[_builtins.str]]):
         pulumi.set(self, "http_version", value)
 
     @_builtins.property
     @pulumi.getter
-    def initial(self) -> Optional[pulumi.Input[_builtins.int]]:
+    def initial(self) -> pulumi.Input[Optional[_builtins.int]]:
         """
         When loading a config, the initial number of probes to be seen as OK. Default `3`
         """
         return pulumi.get(self, "initial")
 
     @initial.setter
-    def initial(self, value: Optional[pulumi.Input[_builtins.int]]):
+    def initial(self, value: pulumi.Input[Optional[_builtins.int]]):
         pulumi.set(self, "initial", value)
 
     @_builtins.property
     @pulumi.getter
-    def method(self) -> Optional[pulumi.Input[_builtins.str]]:
+    def method(self) -> pulumi.Input[Optional[_builtins.str]]:
         """
         Which HTTP method to use. Default `HEAD`
         """
         return pulumi.get(self, "method")
 
     @method.setter
-    def method(self, value: Optional[pulumi.Input[_builtins.str]]):
+    def method(self, value: pulumi.Input[Optional[_builtins.str]]):
         pulumi.set(self, "method", value)
 
     @_builtins.property
     @pulumi.getter
-    def threshold(self) -> Optional[pulumi.Input[_builtins.int]]:
+    def threshold(self) -> pulumi.Input[Optional[_builtins.int]]:
         """
         How many Healthchecks must succeed to be considered healthy. Default `3`
         """
         return pulumi.get(self, "threshold")
 
     @threshold.setter
-    def threshold(self, value: Optional[pulumi.Input[_builtins.int]]):
+    def threshold(self, value: pulumi.Input[Optional[_builtins.int]]):
         pulumi.set(self, "threshold", value)
 
     @_builtins.property
     @pulumi.getter
-    def timeout(self) -> Optional[pulumi.Input[_builtins.int]]:
+    def timeout(self) -> pulumi.Input[Optional[_builtins.int]]:
         """
         Timeout in milliseconds. Default `5000`
         """
         return pulumi.get(self, "timeout")
 
     @timeout.setter
-    def timeout(self, value: Optional[pulumi.Input[_builtins.int]]):
+    def timeout(self, value: pulumi.Input[Optional[_builtins.int]]):
         pulumi.set(self, "timeout", value)
 
     @_builtins.property
     @pulumi.getter
-    def window(self) -> Optional[pulumi.Input[_builtins.int]]:
+    def window(self) -> pulumi.Input[Optional[_builtins.int]]:
         """
         The number of most recent Healthcheck queries to keep for this Healthcheck. Default `5`
         """
         return pulumi.get(self, "window")
 
     @window.setter
-    def window(self, value: Optional[pulumi.Input[_builtins.int]]):
+    def window(self, value: pulumi.Input[Optional[_builtins.int]]):
         pulumi.set(self, "window", value)
 
 
 class ServiceComputeImageOptimizerDefaultSettingsArgsDict(TypedDict):
-    allow_video: NotRequired[pulumi.Input[_builtins.bool]]
+    allow_video: NotRequired[pulumi.Input[Optional[_builtins.bool]]]
     """
     Enables GIF to MP4 transformations on this service.
     """
-    jpeg_quality: NotRequired[pulumi.Input[_builtins.int]]
+    jpeg_quality: NotRequired[pulumi.Input[Optional[_builtins.int]]]
     """
     The default quality to use with JPEG output. This can be overridden with the "quality" parameter on specific image optimizer requests.
     """
-    jpeg_type: NotRequired[pulumi.Input[_builtins.str]]
+    jpeg_type: NotRequired[pulumi.Input[Optional[_builtins.str]]]
     """
     The default type of JPEG output to use. This can be overridden with "format=bjpeg" and "format=pjpeg" on specific image optimizer requests. Valid values are `auto`, `baseline` and `progressive`.
     	- auto: Match the input JPEG type, or baseline if transforming from a non-JPEG input.
     	- baseline: Output baseline JPEG images
     	- progressive: Output progressive JPEG images
     """
-    name: NotRequired[pulumi.Input[_builtins.str]]
+    name: NotRequired[pulumi.Input[Optional[_builtins.str]]]
     """
     Used by the provider to identify modified settings. Changing this value will force the entire block to be deleted, then recreated.
     """
-    resize_filter: NotRequired[pulumi.Input[_builtins.str]]
+    resize_filter: NotRequired[pulumi.Input[Optional[_builtins.str]]]
     """
     The type of filter to use while resizing an image. Valid values are `lanczos3`, `lanczos2`, `bicubic`, `bilinear` and `nearest`.
     	- lanczos3: A Lanczos filter with a kernel size of 3. Lanczos filters can detect edges and linear features within an image, providing the best possible reconstruction.
@@ -3167,15 +3167,15 @@ class ServiceComputeImageOptimizerDefaultSettingsArgsDict(TypedDict):
     	- bilinear: A filter using an average of a 2x2 environment of pixels.
     	- nearest: A filter using the value of nearby translated pixel values. Preserves hard edges.
     """
-    upscale: NotRequired[pulumi.Input[_builtins.bool]]
+    upscale: NotRequired[pulumi.Input[Optional[_builtins.bool]]]
     """
     Whether or not we should allow output images to render at sizes larger than input.
     """
-    webp: NotRequired[pulumi.Input[_builtins.bool]]
+    webp: NotRequired[pulumi.Input[Optional[_builtins.bool]]]
     """
     Controls whether or not to default to WebP output when the client supports it. This is equivalent to adding "auto=webp" to all image optimizer requests.
     """
-    webp_quality: NotRequired[pulumi.Input[_builtins.int]]
+    webp_quality: NotRequired[pulumi.Input[Optional[_builtins.int]]]
     """
     The default quality to use with WebP output. This can be overridden with the second option in the "quality" URL parameter on specific image optimizer requests.
     """
@@ -3183,14 +3183,14 @@ class ServiceComputeImageOptimizerDefaultSettingsArgsDict(TypedDict):
 @pulumi.input_type
 class ServiceComputeImageOptimizerDefaultSettingsArgs:
     def __init__(__self__, *,
-                 allow_video: Optional[pulumi.Input[_builtins.bool]] = None,
-                 jpeg_quality: Optional[pulumi.Input[_builtins.int]] = None,
-                 jpeg_type: Optional[pulumi.Input[_builtins.str]] = None,
-                 name: Optional[pulumi.Input[_builtins.str]] = None,
-                 resize_filter: Optional[pulumi.Input[_builtins.str]] = None,
-                 upscale: Optional[pulumi.Input[_builtins.bool]] = None,
-                 webp: Optional[pulumi.Input[_builtins.bool]] = None,
-                 webp_quality: Optional[pulumi.Input[_builtins.int]] = None):
+                 allow_video: pulumi.Input[Optional[_builtins.bool]] = None,
+                 jpeg_quality: pulumi.Input[Optional[_builtins.int]] = None,
+                 jpeg_type: pulumi.Input[Optional[_builtins.str]] = None,
+                 name: pulumi.Input[Optional[_builtins.str]] = None,
+                 resize_filter: pulumi.Input[Optional[_builtins.str]] = None,
+                 upscale: pulumi.Input[Optional[_builtins.bool]] = None,
+                 webp: pulumi.Input[Optional[_builtins.bool]] = None,
+                 webp_quality: pulumi.Input[Optional[_builtins.int]] = None):
         """
         :param pulumi.Input[_builtins.bool] allow_video: Enables GIF to MP4 transformations on this service.
         :param pulumi.Input[_builtins.int] jpeg_quality: The default quality to use with JPEG output. This can be overridden with the "quality" parameter on specific image optimizer requests.
@@ -3228,31 +3228,31 @@ class ServiceComputeImageOptimizerDefaultSettingsArgs:
 
     @_builtins.property
     @pulumi.getter(name="allowVideo")
-    def allow_video(self) -> Optional[pulumi.Input[_builtins.bool]]:
+    def allow_video(self) -> pulumi.Input[Optional[_builtins.bool]]:
         """
         Enables GIF to MP4 transformations on this service.
         """
         return pulumi.get(self, "allow_video")
 
     @allow_video.setter
-    def allow_video(self, value: Optional[pulumi.Input[_builtins.bool]]):
+    def allow_video(self, value: pulumi.Input[Optional[_builtins.bool]]):
         pulumi.set(self, "allow_video", value)
 
     @_builtins.property
     @pulumi.getter(name="jpegQuality")
-    def jpeg_quality(self) -> Optional[pulumi.Input[_builtins.int]]:
+    def jpeg_quality(self) -> pulumi.Input[Optional[_builtins.int]]:
         """
         The default quality to use with JPEG output. This can be overridden with the "quality" parameter on specific image optimizer requests.
         """
         return pulumi.get(self, "jpeg_quality")
 
     @jpeg_quality.setter
-    def jpeg_quality(self, value: Optional[pulumi.Input[_builtins.int]]):
+    def jpeg_quality(self, value: pulumi.Input[Optional[_builtins.int]]):
         pulumi.set(self, "jpeg_quality", value)
 
     @_builtins.property
     @pulumi.getter(name="jpegType")
-    def jpeg_type(self) -> Optional[pulumi.Input[_builtins.str]]:
+    def jpeg_type(self) -> pulumi.Input[Optional[_builtins.str]]:
         """
         The default type of JPEG output to use. This can be overridden with "format=bjpeg" and "format=pjpeg" on specific image optimizer requests. Valid values are `auto`, `baseline` and `progressive`.
         	- auto: Match the input JPEG type, or baseline if transforming from a non-JPEG input.
@@ -3262,24 +3262,24 @@ class ServiceComputeImageOptimizerDefaultSettingsArgs:
         return pulumi.get(self, "jpeg_type")
 
     @jpeg_type.setter
-    def jpeg_type(self, value: Optional[pulumi.Input[_builtins.str]]):
+    def jpeg_type(self, value: pulumi.Input[Optional[_builtins.str]]):
         pulumi.set(self, "jpeg_type", value)
 
     @_builtins.property
     @pulumi.getter
-    def name(self) -> Optional[pulumi.Input[_builtins.str]]:
+    def name(self) -> pulumi.Input[Optional[_builtins.str]]:
         """
         Used by the provider to identify modified settings. Changing this value will force the entire block to be deleted, then recreated.
         """
         return pulumi.get(self, "name")
 
     @name.setter
-    def name(self, value: Optional[pulumi.Input[_builtins.str]]):
+    def name(self, value: pulumi.Input[Optional[_builtins.str]]):
         pulumi.set(self, "name", value)
 
     @_builtins.property
     @pulumi.getter(name="resizeFilter")
-    def resize_filter(self) -> Optional[pulumi.Input[_builtins.str]]:
+    def resize_filter(self) -> pulumi.Input[Optional[_builtins.str]]:
         """
         The type of filter to use while resizing an image. Valid values are `lanczos3`, `lanczos2`, `bicubic`, `bilinear` and `nearest`.
         	- lanczos3: A Lanczos filter with a kernel size of 3. Lanczos filters can detect edges and linear features within an image, providing the best possible reconstruction.
@@ -3291,43 +3291,43 @@ class ServiceComputeImageOptimizerDefaultSettingsArgs:
         return pulumi.get(self, "resize_filter")
 
     @resize_filter.setter
-    def resize_filter(self, value: Optional[pulumi.Input[_builtins.str]]):
+    def resize_filter(self, value: pulumi.Input[Optional[_builtins.str]]):
         pulumi.set(self, "resize_filter", value)
 
     @_builtins.property
     @pulumi.getter
-    def upscale(self) -> Optional[pulumi.Input[_builtins.bool]]:
+    def upscale(self) -> pulumi.Input[Optional[_builtins.bool]]:
         """
         Whether or not we should allow output images to render at sizes larger than input.
         """
         return pulumi.get(self, "upscale")
 
     @upscale.setter
-    def upscale(self, value: Optional[pulumi.Input[_builtins.bool]]):
+    def upscale(self, value: pulumi.Input[Optional[_builtins.bool]]):
         pulumi.set(self, "upscale", value)
 
     @_builtins.property
     @pulumi.getter
-    def webp(self) -> Optional[pulumi.Input[_builtins.bool]]:
+    def webp(self) -> pulumi.Input[Optional[_builtins.bool]]:
         """
         Controls whether or not to default to WebP output when the client supports it. This is equivalent to adding "auto=webp" to all image optimizer requests.
         """
         return pulumi.get(self, "webp")
 
     @webp.setter
-    def webp(self, value: Optional[pulumi.Input[_builtins.bool]]):
+    def webp(self, value: pulumi.Input[Optional[_builtins.bool]]):
         pulumi.set(self, "webp", value)
 
     @_builtins.property
     @pulumi.getter(name="webpQuality")
-    def webp_quality(self) -> Optional[pulumi.Input[_builtins.int]]:
+    def webp_quality(self) -> pulumi.Input[Optional[_builtins.int]]:
         """
         The default quality to use with WebP output. This can be overridden with the second option in the "quality" URL parameter on specific image optimizer requests.
         """
         return pulumi.get(self, "webp_quality")
 
     @webp_quality.setter
-    def webp_quality(self, value: Optional[pulumi.Input[_builtins.int]]):
+    def webp_quality(self, value: pulumi.Input[Optional[_builtins.int]]):
         pulumi.set(self, "webp_quality", value)
 
 
@@ -3356,15 +3356,15 @@ class ServiceComputeLoggingBigqueryArgsDict(TypedDict):
     """
     The ID of your BigQuery table
     """
-    account_name: NotRequired[pulumi.Input[_builtins.str]]
+    account_name: NotRequired[pulumi.Input[Optional[_builtins.str]]]
     """
     The google account name used to obtain temporary credentials (default none). Not required if 'email' and 'secret_key' are provided. You may optionally provide this via an environment variable, `FASTLY_GCS_ACCOUNT_NAME`.
     """
-    processing_region: NotRequired[pulumi.Input[_builtins.str]]
+    processing_region: NotRequired[pulumi.Input[Optional[_builtins.str]]]
     """
     Region where logs will be processed before streaming to BigQuery. Valid values are 'none', 'us' and 'eu'.
     """
-    template: NotRequired[pulumi.Input[_builtins.str]]
+    template: NotRequired[pulumi.Input[Optional[_builtins.str]]]
     """
     BigQuery table name suffix template
     """
@@ -3378,9 +3378,9 @@ class ServiceComputeLoggingBigqueryArgs:
                  project_id: pulumi.Input[_builtins.str],
                  secret_key: pulumi.Input[_builtins.str],
                  table: pulumi.Input[_builtins.str],
-                 account_name: Optional[pulumi.Input[_builtins.str]] = None,
-                 processing_region: Optional[pulumi.Input[_builtins.str]] = None,
-                 template: Optional[pulumi.Input[_builtins.str]] = None):
+                 account_name: pulumi.Input[Optional[_builtins.str]] = None,
+                 processing_region: pulumi.Input[Optional[_builtins.str]] = None,
+                 template: pulumi.Input[Optional[_builtins.str]] = None):
         """
         :param pulumi.Input[_builtins.str] dataset: The ID of your BigQuery dataset
         :param pulumi.Input[_builtins.str] email: The email for the service account with write access to your BigQuery dataset. If not provided, this will be pulled from a `FASTLY_BQ_EMAIL` environment variable
@@ -3479,38 +3479,38 @@ class ServiceComputeLoggingBigqueryArgs:
 
     @_builtins.property
     @pulumi.getter(name="accountName")
-    def account_name(self) -> Optional[pulumi.Input[_builtins.str]]:
+    def account_name(self) -> pulumi.Input[Optional[_builtins.str]]:
         """
         The google account name used to obtain temporary credentials (default none). Not required if 'email' and 'secret_key' are provided. You may optionally provide this via an environment variable, `FASTLY_GCS_ACCOUNT_NAME`.
         """
         return pulumi.get(self, "account_name")
 
     @account_name.setter
-    def account_name(self, value: Optional[pulumi.Input[_builtins.str]]):
+    def account_name(self, value: pulumi.Input[Optional[_builtins.str]]):
         pulumi.set(self, "account_name", value)
 
     @_builtins.property
     @pulumi.getter(name="processingRegion")
-    def processing_region(self) -> Optional[pulumi.Input[_builtins.str]]:
+    def processing_region(self) -> pulumi.Input[Optional[_builtins.str]]:
         """
         Region where logs will be processed before streaming to BigQuery. Valid values are 'none', 'us' and 'eu'.
         """
         return pulumi.get(self, "processing_region")
 
     @processing_region.setter
-    def processing_region(self, value: Optional[pulumi.Input[_builtins.str]]):
+    def processing_region(self, value: pulumi.Input[Optional[_builtins.str]]):
         pulumi.set(self, "processing_region", value)
 
     @_builtins.property
     @pulumi.getter
-    def template(self) -> Optional[pulumi.Input[_builtins.str]]:
+    def template(self) -> pulumi.Input[Optional[_builtins.str]]:
         """
         BigQuery table name suffix template
         """
         return pulumi.get(self, "template")
 
     @template.setter
-    def template(self, value: Optional[pulumi.Input[_builtins.str]]):
+    def template(self, value: pulumi.Input[Optional[_builtins.str]]):
         pulumi.set(self, "template", value)
 
 
@@ -3531,39 +3531,39 @@ class ServiceComputeLoggingBlobstorageArgsDict(TypedDict):
     """
     The Azure shared access signature providing write access to the blob service objects. Be sure to update your token before it expires or the logging functionality will not work
     """
-    compression_codec: NotRequired[pulumi.Input[_builtins.str]]
+    compression_codec: NotRequired[pulumi.Input[Optional[_builtins.str]]]
     """
     The codec used for compression of your logs. Valid values are zstd, snappy, and gzip. If the specified codec is "gzip", gzip_level will default to 3. To specify a different level, leave compression_codec blank and explicitly set the level using gzip_level. Specifying both compression_codec and gzip_level in the same API request will result in an error.
     """
-    file_max_bytes: NotRequired[pulumi.Input[_builtins.int]]
+    file_max_bytes: NotRequired[pulumi.Input[Optional[_builtins.int]]]
     """
     Maximum size of an uploaded log file, if non-zero.
     """
-    gzip_level: NotRequired[pulumi.Input[_builtins.int]]
+    gzip_level: NotRequired[pulumi.Input[Optional[_builtins.int]]]
     """
     Level of Gzip compression from `0-9`. `0` means no compression. `1` is the fastest and the least compressed version, `9` is the slowest and the most compressed version. Default `0`
     """
-    message_type: NotRequired[pulumi.Input[_builtins.str]]
+    message_type: NotRequired[pulumi.Input[Optional[_builtins.str]]]
     """
     How the message should be formatted. Can be either `classic`, `loggly`, `logplex` or `blank`. Default is `classic`
     """
-    path: NotRequired[pulumi.Input[_builtins.str]]
+    path: NotRequired[pulumi.Input[Optional[_builtins.str]]]
     """
     The path to upload logs to. Must end with a trailing slash. If this field is left empty, the files will be saved in the container's root path
     """
-    period: NotRequired[pulumi.Input[_builtins.int]]
+    period: NotRequired[pulumi.Input[Optional[_builtins.int]]]
     """
     How frequently the logs should be transferred in seconds. Default `3600`
     """
-    processing_region: NotRequired[pulumi.Input[_builtins.str]]
+    processing_region: NotRequired[pulumi.Input[Optional[_builtins.str]]]
     """
     Region where logs will be processed before streaming to BigQuery. Valid values are 'none', 'us' and 'eu'.
     """
-    public_key: NotRequired[pulumi.Input[_builtins.str]]
+    public_key: NotRequired[pulumi.Input[Optional[_builtins.str]]]
     """
     A PGP public key that Fastly will use to encrypt your log files before writing them to disk
     """
-    timestamp_format: NotRequired[pulumi.Input[_builtins.str]]
+    timestamp_format: NotRequired[pulumi.Input[Optional[_builtins.str]]]
     """
     The `strftime` specified timestamp formatting (default `%Y-%m-%dT%H:%M:%S.000`)
     """
@@ -3575,15 +3575,15 @@ class ServiceComputeLoggingBlobstorageArgs:
                  container: pulumi.Input[_builtins.str],
                  name: pulumi.Input[_builtins.str],
                  sas_token: pulumi.Input[_builtins.str],
-                 compression_codec: Optional[pulumi.Input[_builtins.str]] = None,
-                 file_max_bytes: Optional[pulumi.Input[_builtins.int]] = None,
-                 gzip_level: Optional[pulumi.Input[_builtins.int]] = None,
-                 message_type: Optional[pulumi.Input[_builtins.str]] = None,
-                 path: Optional[pulumi.Input[_builtins.str]] = None,
-                 period: Optional[pulumi.Input[_builtins.int]] = None,
-                 processing_region: Optional[pulumi.Input[_builtins.str]] = None,
-                 public_key: Optional[pulumi.Input[_builtins.str]] = None,
-                 timestamp_format: Optional[pulumi.Input[_builtins.str]] = None):
+                 compression_codec: pulumi.Input[Optional[_builtins.str]] = None,
+                 file_max_bytes: pulumi.Input[Optional[_builtins.int]] = None,
+                 gzip_level: pulumi.Input[Optional[_builtins.int]] = None,
+                 message_type: pulumi.Input[Optional[_builtins.str]] = None,
+                 path: pulumi.Input[Optional[_builtins.str]] = None,
+                 period: pulumi.Input[Optional[_builtins.int]] = None,
+                 processing_region: pulumi.Input[Optional[_builtins.str]] = None,
+                 public_key: pulumi.Input[Optional[_builtins.str]] = None,
+                 timestamp_format: pulumi.Input[Optional[_builtins.str]] = None):
         """
         :param pulumi.Input[_builtins.str] account_name: The unique Azure Blob Storage namespace in which your data objects are stored
         :param pulumi.Input[_builtins.str] container: The name of the Azure Blob Storage container in which to store logs
@@ -3672,110 +3672,110 @@ class ServiceComputeLoggingBlobstorageArgs:
 
     @_builtins.property
     @pulumi.getter(name="compressionCodec")
-    def compression_codec(self) -> Optional[pulumi.Input[_builtins.str]]:
+    def compression_codec(self) -> pulumi.Input[Optional[_builtins.str]]:
         """
         The codec used for compression of your logs. Valid values are zstd, snappy, and gzip. If the specified codec is "gzip", gzip_level will default to 3. To specify a different level, leave compression_codec blank and explicitly set the level using gzip_level. Specifying both compression_codec and gzip_level in the same API request will result in an error.
         """
         return pulumi.get(self, "compression_codec")
 
     @compression_codec.setter
-    def compression_codec(self, value: Optional[pulumi.Input[_builtins.str]]):
+    def compression_codec(self, value: pulumi.Input[Optional[_builtins.str]]):
         pulumi.set(self, "compression_codec", value)
 
     @_builtins.property
     @pulumi.getter(name="fileMaxBytes")
-    def file_max_bytes(self) -> Optional[pulumi.Input[_builtins.int]]:
+    def file_max_bytes(self) -> pulumi.Input[Optional[_builtins.int]]:
         """
         Maximum size of an uploaded log file, if non-zero.
         """
         return pulumi.get(self, "file_max_bytes")
 
     @file_max_bytes.setter
-    def file_max_bytes(self, value: Optional[pulumi.Input[_builtins.int]]):
+    def file_max_bytes(self, value: pulumi.Input[Optional[_builtins.int]]):
         pulumi.set(self, "file_max_bytes", value)
 
     @_builtins.property
     @pulumi.getter(name="gzipLevel")
-    def gzip_level(self) -> Optional[pulumi.Input[_builtins.int]]:
+    def gzip_level(self) -> pulumi.Input[Optional[_builtins.int]]:
         """
         Level of Gzip compression from `0-9`. `0` means no compression. `1` is the fastest and the least compressed version, `9` is the slowest and the most compressed version. Default `0`
         """
         return pulumi.get(self, "gzip_level")
 
     @gzip_level.setter
-    def gzip_level(self, value: Optional[pulumi.Input[_builtins.int]]):
+    def gzip_level(self, value: pulumi.Input[Optional[_builtins.int]]):
         pulumi.set(self, "gzip_level", value)
 
     @_builtins.property
     @pulumi.getter(name="messageType")
-    def message_type(self) -> Optional[pulumi.Input[_builtins.str]]:
+    def message_type(self) -> pulumi.Input[Optional[_builtins.str]]:
         """
         How the message should be formatted. Can be either `classic`, `loggly`, `logplex` or `blank`. Default is `classic`
         """
         return pulumi.get(self, "message_type")
 
     @message_type.setter
-    def message_type(self, value: Optional[pulumi.Input[_builtins.str]]):
+    def message_type(self, value: pulumi.Input[Optional[_builtins.str]]):
         pulumi.set(self, "message_type", value)
 
     @_builtins.property
     @pulumi.getter
-    def path(self) -> Optional[pulumi.Input[_builtins.str]]:
+    def path(self) -> pulumi.Input[Optional[_builtins.str]]:
         """
         The path to upload logs to. Must end with a trailing slash. If this field is left empty, the files will be saved in the container's root path
         """
         return pulumi.get(self, "path")
 
     @path.setter
-    def path(self, value: Optional[pulumi.Input[_builtins.str]]):
+    def path(self, value: pulumi.Input[Optional[_builtins.str]]):
         pulumi.set(self, "path", value)
 
     @_builtins.property
     @pulumi.getter
-    def period(self) -> Optional[pulumi.Input[_builtins.int]]:
+    def period(self) -> pulumi.Input[Optional[_builtins.int]]:
         """
         How frequently the logs should be transferred in seconds. Default `3600`
         """
         return pulumi.get(self, "period")
 
     @period.setter
-    def period(self, value: Optional[pulumi.Input[_builtins.int]]):
+    def period(self, value: pulumi.Input[Optional[_builtins.int]]):
         pulumi.set(self, "period", value)
 
     @_builtins.property
     @pulumi.getter(name="processingRegion")
-    def processing_region(self) -> Optional[pulumi.Input[_builtins.str]]:
+    def processing_region(self) -> pulumi.Input[Optional[_builtins.str]]:
         """
         Region where logs will be processed before streaming to BigQuery. Valid values are 'none', 'us' and 'eu'.
         """
         return pulumi.get(self, "processing_region")
 
     @processing_region.setter
-    def processing_region(self, value: Optional[pulumi.Input[_builtins.str]]):
+    def processing_region(self, value: pulumi.Input[Optional[_builtins.str]]):
         pulumi.set(self, "processing_region", value)
 
     @_builtins.property
     @pulumi.getter(name="publicKey")
-    def public_key(self) -> Optional[pulumi.Input[_builtins.str]]:
+    def public_key(self) -> pulumi.Input[Optional[_builtins.str]]:
         """
         A PGP public key that Fastly will use to encrypt your log files before writing them to disk
         """
         return pulumi.get(self, "public_key")
 
     @public_key.setter
-    def public_key(self, value: Optional[pulumi.Input[_builtins.str]]):
+    def public_key(self, value: pulumi.Input[Optional[_builtins.str]]):
         pulumi.set(self, "public_key", value)
 
     @_builtins.property
     @pulumi.getter(name="timestampFormat")
-    def timestamp_format(self) -> Optional[pulumi.Input[_builtins.str]]:
+    def timestamp_format(self) -> pulumi.Input[Optional[_builtins.str]]:
         """
         The `strftime` specified timestamp formatting (default `%Y-%m-%dT%H:%M:%S.000`)
         """
         return pulumi.get(self, "timestamp_format")
 
     @timestamp_format.setter
-    def timestamp_format(self, value: Optional[pulumi.Input[_builtins.str]]):
+    def timestamp_format(self, value: pulumi.Input[Optional[_builtins.str]]):
         pulumi.set(self, "timestamp_format", value)
 
 
@@ -3796,39 +3796,39 @@ class ServiceComputeLoggingCloudfileArgsDict(TypedDict):
     """
     The username for your Cloud Files account
     """
-    compression_codec: NotRequired[pulumi.Input[_builtins.str]]
+    compression_codec: NotRequired[pulumi.Input[Optional[_builtins.str]]]
     """
     The codec used for compression of your logs. Valid values are zstd, snappy, and gzip. If the specified codec is "gzip", gzip_level will default to 3. To specify a different level, leave compression_codec blank and explicitly set the level using gzip_level. Specifying both compression_codec and gzip_level in the same API request will result in an error.
     """
-    gzip_level: NotRequired[pulumi.Input[_builtins.int]]
+    gzip_level: NotRequired[pulumi.Input[Optional[_builtins.int]]]
     """
     Level of Gzip compression from `0-9`. `0` means no compression. `1` is the fastest and the least compressed version, `9` is the slowest and the most compressed version. Default `0`
     """
-    message_type: NotRequired[pulumi.Input[_builtins.str]]
+    message_type: NotRequired[pulumi.Input[Optional[_builtins.str]]]
     """
     How the message should be formatted. Can be either `classic`, `loggly`, `logplex` or `blank`. Default is `classic`
     """
-    path: NotRequired[pulumi.Input[_builtins.str]]
+    path: NotRequired[pulumi.Input[Optional[_builtins.str]]]
     """
     The path to upload logs to
     """
-    period: NotRequired[pulumi.Input[_builtins.int]]
+    period: NotRequired[pulumi.Input[Optional[_builtins.int]]]
     """
     How frequently log files are finalized so they can be available for reading (in seconds, default `3600`)
     """
-    processing_region: NotRequired[pulumi.Input[_builtins.str]]
+    processing_region: NotRequired[pulumi.Input[Optional[_builtins.str]]]
     """
     Region where logs will be processed before streaming to BigQuery. Valid values are 'none', 'us' and 'eu'.
     """
-    public_key: NotRequired[pulumi.Input[_builtins.str]]
+    public_key: NotRequired[pulumi.Input[Optional[_builtins.str]]]
     """
     The PGP public key that Fastly will use to encrypt your log files before writing them to disk
     """
-    region: NotRequired[pulumi.Input[_builtins.str]]
+    region: NotRequired[pulumi.Input[Optional[_builtins.str]]]
     """
     The region to stream logs to. One of: DFW (Dallas), ORD (Chicago), IAD (Northern Virginia), LON (London), SYD (Sydney), HKG (Hong Kong)
     """
-    timestamp_format: NotRequired[pulumi.Input[_builtins.str]]
+    timestamp_format: NotRequired[pulumi.Input[Optional[_builtins.str]]]
     """
     The `strftime` specified timestamp formatting (default `%Y-%m-%dT%H:%M:%S.000`)
     """
@@ -3840,15 +3840,15 @@ class ServiceComputeLoggingCloudfileArgs:
                  bucket_name: pulumi.Input[_builtins.str],
                  name: pulumi.Input[_builtins.str],
                  user: pulumi.Input[_builtins.str],
-                 compression_codec: Optional[pulumi.Input[_builtins.str]] = None,
-                 gzip_level: Optional[pulumi.Input[_builtins.int]] = None,
-                 message_type: Optional[pulumi.Input[_builtins.str]] = None,
-                 path: Optional[pulumi.Input[_builtins.str]] = None,
-                 period: Optional[pulumi.Input[_builtins.int]] = None,
-                 processing_region: Optional[pulumi.Input[_builtins.str]] = None,
-                 public_key: Optional[pulumi.Input[_builtins.str]] = None,
-                 region: Optional[pulumi.Input[_builtins.str]] = None,
-                 timestamp_format: Optional[pulumi.Input[_builtins.str]] = None):
+                 compression_codec: pulumi.Input[Optional[_builtins.str]] = None,
+                 gzip_level: pulumi.Input[Optional[_builtins.int]] = None,
+                 message_type: pulumi.Input[Optional[_builtins.str]] = None,
+                 path: pulumi.Input[Optional[_builtins.str]] = None,
+                 period: pulumi.Input[Optional[_builtins.int]] = None,
+                 processing_region: pulumi.Input[Optional[_builtins.str]] = None,
+                 public_key: pulumi.Input[Optional[_builtins.str]] = None,
+                 region: pulumi.Input[Optional[_builtins.str]] = None,
+                 timestamp_format: pulumi.Input[Optional[_builtins.str]] = None):
         """
         :param pulumi.Input[_builtins.str] access_key: Your Cloud File account access key
         :param pulumi.Input[_builtins.str] bucket_name: The name of your Cloud Files container
@@ -3937,110 +3937,110 @@ class ServiceComputeLoggingCloudfileArgs:
 
     @_builtins.property
     @pulumi.getter(name="compressionCodec")
-    def compression_codec(self) -> Optional[pulumi.Input[_builtins.str]]:
+    def compression_codec(self) -> pulumi.Input[Optional[_builtins.str]]:
         """
         The codec used for compression of your logs. Valid values are zstd, snappy, and gzip. If the specified codec is "gzip", gzip_level will default to 3. To specify a different level, leave compression_codec blank and explicitly set the level using gzip_level. Specifying both compression_codec and gzip_level in the same API request will result in an error.
         """
         return pulumi.get(self, "compression_codec")
 
     @compression_codec.setter
-    def compression_codec(self, value: Optional[pulumi.Input[_builtins.str]]):
+    def compression_codec(self, value: pulumi.Input[Optional[_builtins.str]]):
         pulumi.set(self, "compression_codec", value)
 
     @_builtins.property
     @pulumi.getter(name="gzipLevel")
-    def gzip_level(self) -> Optional[pulumi.Input[_builtins.int]]:
+    def gzip_level(self) -> pulumi.Input[Optional[_builtins.int]]:
         """
         Level of Gzip compression from `0-9`. `0` means no compression. `1` is the fastest and the least compressed version, `9` is the slowest and the most compressed version. Default `0`
         """
         return pulumi.get(self, "gzip_level")
 
     @gzip_level.setter
-    def gzip_level(self, value: Optional[pulumi.Input[_builtins.int]]):
+    def gzip_level(self, value: pulumi.Input[Optional[_builtins.int]]):
         pulumi.set(self, "gzip_level", value)
 
     @_builtins.property
     @pulumi.getter(name="messageType")
-    def message_type(self) -> Optional[pulumi.Input[_builtins.str]]:
+    def message_type(self) -> pulumi.Input[Optional[_builtins.str]]:
         """
         How the message should be formatted. Can be either `classic`, `loggly`, `logplex` or `blank`. Default is `classic`
         """
         return pulumi.get(self, "message_type")
 
     @message_type.setter
-    def message_type(self, value: Optional[pulumi.Input[_builtins.str]]):
+    def message_type(self, value: pulumi.Input[Optional[_builtins.str]]):
         pulumi.set(self, "message_type", value)
 
     @_builtins.property
     @pulumi.getter
-    def path(self) -> Optional[pulumi.Input[_builtins.str]]:
+    def path(self) -> pulumi.Input[Optional[_builtins.str]]:
         """
         The path to upload logs to
         """
         return pulumi.get(self, "path")
 
     @path.setter
-    def path(self, value: Optional[pulumi.Input[_builtins.str]]):
+    def path(self, value: pulumi.Input[Optional[_builtins.str]]):
         pulumi.set(self, "path", value)
 
     @_builtins.property
     @pulumi.getter
-    def period(self) -> Optional[pulumi.Input[_builtins.int]]:
+    def period(self) -> pulumi.Input[Optional[_builtins.int]]:
         """
         How frequently log files are finalized so they can be available for reading (in seconds, default `3600`)
         """
         return pulumi.get(self, "period")
 
     @period.setter
-    def period(self, value: Optional[pulumi.Input[_builtins.int]]):
+    def period(self, value: pulumi.Input[Optional[_builtins.int]]):
         pulumi.set(self, "period", value)
 
     @_builtins.property
     @pulumi.getter(name="processingRegion")
-    def processing_region(self) -> Optional[pulumi.Input[_builtins.str]]:
+    def processing_region(self) -> pulumi.Input[Optional[_builtins.str]]:
         """
         Region where logs will be processed before streaming to BigQuery. Valid values are 'none', 'us' and 'eu'.
         """
         return pulumi.get(self, "processing_region")
 
     @processing_region.setter
-    def processing_region(self, value: Optional[pulumi.Input[_builtins.str]]):
+    def processing_region(self, value: pulumi.Input[Optional[_builtins.str]]):
         pulumi.set(self, "processing_region", value)
 
     @_builtins.property
     @pulumi.getter(name="publicKey")
-    def public_key(self) -> Optional[pulumi.Input[_builtins.str]]:
+    def public_key(self) -> pulumi.Input[Optional[_builtins.str]]:
         """
         The PGP public key that Fastly will use to encrypt your log files before writing them to disk
         """
         return pulumi.get(self, "public_key")
 
     @public_key.setter
-    def public_key(self, value: Optional[pulumi.Input[_builtins.str]]):
+    def public_key(self, value: pulumi.Input[Optional[_builtins.str]]):
         pulumi.set(self, "public_key", value)
 
     @_builtins.property
     @pulumi.getter
-    def region(self) -> Optional[pulumi.Input[_builtins.str]]:
+    def region(self) -> pulumi.Input[Optional[_builtins.str]]:
         """
         The region to stream logs to. One of: DFW (Dallas), ORD (Chicago), IAD (Northern Virginia), LON (London), SYD (Sydney), HKG (Hong Kong)
         """
         return pulumi.get(self, "region")
 
     @region.setter
-    def region(self, value: Optional[pulumi.Input[_builtins.str]]):
+    def region(self, value: pulumi.Input[Optional[_builtins.str]]):
         pulumi.set(self, "region", value)
 
     @_builtins.property
     @pulumi.getter(name="timestampFormat")
-    def timestamp_format(self) -> Optional[pulumi.Input[_builtins.str]]:
+    def timestamp_format(self) -> pulumi.Input[Optional[_builtins.str]]:
         """
         The `strftime` specified timestamp formatting (default `%Y-%m-%dT%H:%M:%S.000`)
         """
         return pulumi.get(self, "timestamp_format")
 
     @timestamp_format.setter
-    def timestamp_format(self, value: Optional[pulumi.Input[_builtins.str]]):
+    def timestamp_format(self, value: pulumi.Input[Optional[_builtins.str]]):
         pulumi.set(self, "timestamp_format", value)
 
 
@@ -4053,11 +4053,11 @@ class ServiceComputeLoggingDatadogArgsDict(TypedDict):
     """
     The API key from your Datadog account
     """
-    processing_region: NotRequired[pulumi.Input[_builtins.str]]
+    processing_region: NotRequired[pulumi.Input[Optional[_builtins.str]]]
     """
     Region where logs will be processed before streaming to BigQuery. Valid values are 'none', 'us' and 'eu'.
     """
-    region: NotRequired[pulumi.Input[_builtins.str]]
+    region: NotRequired[pulumi.Input[Optional[_builtins.str]]]
     """
     The region that log data will be sent to. Defaults to `US` if undefined
     """
@@ -4067,8 +4067,8 @@ class ServiceComputeLoggingDatadogArgs:
     def __init__(__self__, *,
                  name: pulumi.Input[_builtins.str],
                  token: pulumi.Input[_builtins.str],
-                 processing_region: Optional[pulumi.Input[_builtins.str]] = None,
-                 region: Optional[pulumi.Input[_builtins.str]] = None):
+                 processing_region: pulumi.Input[Optional[_builtins.str]] = None,
+                 region: pulumi.Input[Optional[_builtins.str]] = None):
         """
         :param pulumi.Input[_builtins.str] name: The unique name of the Datadog logging endpoint. It is important to note that changing this attribute will delete and recreate the resource
         :param pulumi.Input[_builtins.str] token: The API key from your Datadog account
@@ -4108,26 +4108,26 @@ class ServiceComputeLoggingDatadogArgs:
 
     @_builtins.property
     @pulumi.getter(name="processingRegion")
-    def processing_region(self) -> Optional[pulumi.Input[_builtins.str]]:
+    def processing_region(self) -> pulumi.Input[Optional[_builtins.str]]:
         """
         Region where logs will be processed before streaming to BigQuery. Valid values are 'none', 'us' and 'eu'.
         """
         return pulumi.get(self, "processing_region")
 
     @processing_region.setter
-    def processing_region(self, value: Optional[pulumi.Input[_builtins.str]]):
+    def processing_region(self, value: pulumi.Input[Optional[_builtins.str]]):
         pulumi.set(self, "processing_region", value)
 
     @_builtins.property
     @pulumi.getter
-    def region(self) -> Optional[pulumi.Input[_builtins.str]]:
+    def region(self) -> pulumi.Input[Optional[_builtins.str]]:
         """
         The region that log data will be sent to. Defaults to `US` if undefined
         """
         return pulumi.get(self, "region")
 
     @region.setter
-    def region(self, value: Optional[pulumi.Input[_builtins.str]]):
+    def region(self, value: pulumi.Input[Optional[_builtins.str]]):
         pulumi.set(self, "region", value)
 
 
@@ -4148,39 +4148,39 @@ class ServiceComputeLoggingDigitaloceanArgsDict(TypedDict):
     """
     Your DigitalOcean Spaces account secret key
     """
-    compression_codec: NotRequired[pulumi.Input[_builtins.str]]
+    compression_codec: NotRequired[pulumi.Input[Optional[_builtins.str]]]
     """
     The codec used for compression of your logs. Valid values are zstd, snappy, and gzip. If the specified codec is "gzip", gzip_level will default to 3. To specify a different level, leave compression_codec blank and explicitly set the level using gzip_level. Specifying both compression_codec and gzip_level in the same API request will result in an error.
     """
-    domain: NotRequired[pulumi.Input[_builtins.str]]
+    domain: NotRequired[pulumi.Input[Optional[_builtins.str]]]
     """
     The domain of the DigitalOcean Spaces endpoint (default `nyc3.digitaloceanspaces.com`)
     """
-    gzip_level: NotRequired[pulumi.Input[_builtins.int]]
+    gzip_level: NotRequired[pulumi.Input[Optional[_builtins.int]]]
     """
     Level of Gzip compression from `0-9`. `0` means no compression. `1` is the fastest and the least compressed version, `9` is the slowest and the most compressed version. Default `0`
     """
-    message_type: NotRequired[pulumi.Input[_builtins.str]]
+    message_type: NotRequired[pulumi.Input[Optional[_builtins.str]]]
     """
     How the message should be formatted. Can be either `classic`, `loggly`, `logplex` or `blank`. Default is `classic`
     """
-    path: NotRequired[pulumi.Input[_builtins.str]]
+    path: NotRequired[pulumi.Input[Optional[_builtins.str]]]
     """
     The path to upload logs to
     """
-    period: NotRequired[pulumi.Input[_builtins.int]]
+    period: NotRequired[pulumi.Input[Optional[_builtins.int]]]
     """
     How frequently log files are finalized so they can be available for reading (in seconds, default `3600`)
     """
-    processing_region: NotRequired[pulumi.Input[_builtins.str]]
+    processing_region: NotRequired[pulumi.Input[Optional[_builtins.str]]]
     """
     Region where logs will be processed before streaming to BigQuery. Valid values are 'none', 'us' and 'eu'.
     """
-    public_key: NotRequired[pulumi.Input[_builtins.str]]
+    public_key: NotRequired[pulumi.Input[Optional[_builtins.str]]]
     """
     A PGP public key that Fastly will use to encrypt your log files before writing them to disk
     """
-    timestamp_format: NotRequired[pulumi.Input[_builtins.str]]
+    timestamp_format: NotRequired[pulumi.Input[Optional[_builtins.str]]]
     """
     The `strftime` specified timestamp formatting (default `%Y-%m-%dT%H:%M:%S.000`)
     """
@@ -4192,15 +4192,15 @@ class ServiceComputeLoggingDigitaloceanArgs:
                  bucket_name: pulumi.Input[_builtins.str],
                  name: pulumi.Input[_builtins.str],
                  secret_key: pulumi.Input[_builtins.str],
-                 compression_codec: Optional[pulumi.Input[_builtins.str]] = None,
-                 domain: Optional[pulumi.Input[_builtins.str]] = None,
-                 gzip_level: Optional[pulumi.Input[_builtins.int]] = None,
-                 message_type: Optional[pulumi.Input[_builtins.str]] = None,
-                 path: Optional[pulumi.Input[_builtins.str]] = None,
-                 period: Optional[pulumi.Input[_builtins.int]] = None,
-                 processing_region: Optional[pulumi.Input[_builtins.str]] = None,
-                 public_key: Optional[pulumi.Input[_builtins.str]] = None,
-                 timestamp_format: Optional[pulumi.Input[_builtins.str]] = None):
+                 compression_codec: pulumi.Input[Optional[_builtins.str]] = None,
+                 domain: pulumi.Input[Optional[_builtins.str]] = None,
+                 gzip_level: pulumi.Input[Optional[_builtins.int]] = None,
+                 message_type: pulumi.Input[Optional[_builtins.str]] = None,
+                 path: pulumi.Input[Optional[_builtins.str]] = None,
+                 period: pulumi.Input[Optional[_builtins.int]] = None,
+                 processing_region: pulumi.Input[Optional[_builtins.str]] = None,
+                 public_key: pulumi.Input[Optional[_builtins.str]] = None,
+                 timestamp_format: pulumi.Input[Optional[_builtins.str]] = None):
         """
         :param pulumi.Input[_builtins.str] access_key: Your DigitalOcean Spaces account access key
         :param pulumi.Input[_builtins.str] bucket_name: The name of the DigitalOcean Space
@@ -4289,110 +4289,110 @@ class ServiceComputeLoggingDigitaloceanArgs:
 
     @_builtins.property
     @pulumi.getter(name="compressionCodec")
-    def compression_codec(self) -> Optional[pulumi.Input[_builtins.str]]:
+    def compression_codec(self) -> pulumi.Input[Optional[_builtins.str]]:
         """
         The codec used for compression of your logs. Valid values are zstd, snappy, and gzip. If the specified codec is "gzip", gzip_level will default to 3. To specify a different level, leave compression_codec blank and explicitly set the level using gzip_level. Specifying both compression_codec and gzip_level in the same API request will result in an error.
         """
         return pulumi.get(self, "compression_codec")
 
     @compression_codec.setter
-    def compression_codec(self, value: Optional[pulumi.Input[_builtins.str]]):
+    def compression_codec(self, value: pulumi.Input[Optional[_builtins.str]]):
         pulumi.set(self, "compression_codec", value)
 
     @_builtins.property
     @pulumi.getter
-    def domain(self) -> Optional[pulumi.Input[_builtins.str]]:
+    def domain(self) -> pulumi.Input[Optional[_builtins.str]]:
         """
         The domain of the DigitalOcean Spaces endpoint (default `nyc3.digitaloceanspaces.com`)
         """
         return pulumi.get(self, "domain")
 
     @domain.setter
-    def domain(self, value: Optional[pulumi.Input[_builtins.str]]):
+    def domain(self, value: pulumi.Input[Optional[_builtins.str]]):
         pulumi.set(self, "domain", value)
 
     @_builtins.property
     @pulumi.getter(name="gzipLevel")
-    def gzip_level(self) -> Optional[pulumi.Input[_builtins.int]]:
+    def gzip_level(self) -> pulumi.Input[Optional[_builtins.int]]:
         """
         Level of Gzip compression from `0-9`. `0` means no compression. `1` is the fastest and the least compressed version, `9` is the slowest and the most compressed version. Default `0`
         """
         return pulumi.get(self, "gzip_level")
 
     @gzip_level.setter
-    def gzip_level(self, value: Optional[pulumi.Input[_builtins.int]]):
+    def gzip_level(self, value: pulumi.Input[Optional[_builtins.int]]):
         pulumi.set(self, "gzip_level", value)
 
     @_builtins.property
     @pulumi.getter(name="messageType")
-    def message_type(self) -> Optional[pulumi.Input[_builtins.str]]:
+    def message_type(self) -> pulumi.Input[Optional[_builtins.str]]:
         """
         How the message should be formatted. Can be either `classic`, `loggly`, `logplex` or `blank`. Default is `classic`
         """
         return pulumi.get(self, "message_type")
 
     @message_type.setter
-    def message_type(self, value: Optional[pulumi.Input[_builtins.str]]):
+    def message_type(self, value: pulumi.Input[Optional[_builtins.str]]):
         pulumi.set(self, "message_type", value)
 
     @_builtins.property
     @pulumi.getter
-    def path(self) -> Optional[pulumi.Input[_builtins.str]]:
+    def path(self) -> pulumi.Input[Optional[_builtins.str]]:
         """
         The path to upload logs to
         """
         return pulumi.get(self, "path")
 
     @path.setter
-    def path(self, value: Optional[pulumi.Input[_builtins.str]]):
+    def path(self, value: pulumi.Input[Optional[_builtins.str]]):
         pulumi.set(self, "path", value)
 
     @_builtins.property
     @pulumi.getter
-    def period(self) -> Optional[pulumi.Input[_builtins.int]]:
+    def period(self) -> pulumi.Input[Optional[_builtins.int]]:
         """
         How frequently log files are finalized so they can be available for reading (in seconds, default `3600`)
         """
         return pulumi.get(self, "period")
 
     @period.setter
-    def period(self, value: Optional[pulumi.Input[_builtins.int]]):
+    def period(self, value: pulumi.Input[Optional[_builtins.int]]):
         pulumi.set(self, "period", value)
 
     @_builtins.property
     @pulumi.getter(name="processingRegion")
-    def processing_region(self) -> Optional[pulumi.Input[_builtins.str]]:
+    def processing_region(self) -> pulumi.Input[Optional[_builtins.str]]:
         """
         Region where logs will be processed before streaming to BigQuery. Valid values are 'none', 'us' and 'eu'.
         """
         return pulumi.get(self, "processing_region")
 
     @processing_region.setter
-    def processing_region(self, value: Optional[pulumi.Input[_builtins.str]]):
+    def processing_region(self, value: pulumi.Input[Optional[_builtins.str]]):
         pulumi.set(self, "processing_region", value)
 
     @_builtins.property
     @pulumi.getter(name="publicKey")
-    def public_key(self) -> Optional[pulumi.Input[_builtins.str]]:
+    def public_key(self) -> pulumi.Input[Optional[_builtins.str]]:
         """
         A PGP public key that Fastly will use to encrypt your log files before writing them to disk
         """
         return pulumi.get(self, "public_key")
 
     @public_key.setter
-    def public_key(self, value: Optional[pulumi.Input[_builtins.str]]):
+    def public_key(self, value: pulumi.Input[Optional[_builtins.str]]):
         pulumi.set(self, "public_key", value)
 
     @_builtins.property
     @pulumi.getter(name="timestampFormat")
-    def timestamp_format(self) -> Optional[pulumi.Input[_builtins.str]]:
+    def timestamp_format(self) -> pulumi.Input[Optional[_builtins.str]]:
         """
         The `strftime` specified timestamp formatting (default `%Y-%m-%dT%H:%M:%S.000`)
         """
         return pulumi.get(self, "timestamp_format")
 
     @timestamp_format.setter
-    def timestamp_format(self, value: Optional[pulumi.Input[_builtins.str]]):
+    def timestamp_format(self, value: pulumi.Input[Optional[_builtins.str]]):
         pulumi.set(self, "timestamp_format", value)
 
 
@@ -4409,43 +4409,43 @@ class ServiceComputeLoggingElasticsearchArgsDict(TypedDict):
     """
     The Elasticsearch URL to stream logs to
     """
-    password: NotRequired[pulumi.Input[_builtins.str]]
+    password: NotRequired[pulumi.Input[Optional[_builtins.str]]]
     """
     BasicAuth password for Elasticsearch
     """
-    pipeline: NotRequired[pulumi.Input[_builtins.str]]
+    pipeline: NotRequired[pulumi.Input[Optional[_builtins.str]]]
     """
     The ID of the Elasticsearch ingest pipeline to apply pre-process transformations to before indexing
     """
-    processing_region: NotRequired[pulumi.Input[_builtins.str]]
+    processing_region: NotRequired[pulumi.Input[Optional[_builtins.str]]]
     """
     Region where logs will be processed before streaming to BigQuery. Valid values are 'none', 'us' and 'eu'.
     """
-    request_max_bytes: NotRequired[pulumi.Input[_builtins.int]]
+    request_max_bytes: NotRequired[pulumi.Input[Optional[_builtins.int]]]
     """
     The maximum number of logs sent in one request. Defaults to `0` for unbounded
     """
-    request_max_entries: NotRequired[pulumi.Input[_builtins.int]]
+    request_max_entries: NotRequired[pulumi.Input[Optional[_builtins.int]]]
     """
     The maximum number of bytes sent in one request. Defaults to `0` for unbounded
     """
-    tls_ca_cert: NotRequired[pulumi.Input[_builtins.str]]
+    tls_ca_cert: NotRequired[pulumi.Input[Optional[_builtins.str]]]
     """
     A secure certificate to authenticate the server with. Must be in PEM format
     """
-    tls_client_cert: NotRequired[pulumi.Input[_builtins.str]]
+    tls_client_cert: NotRequired[pulumi.Input[Optional[_builtins.str]]]
     """
     The client certificate used to make authenticated requests. Must be in PEM format
     """
-    tls_client_key: NotRequired[pulumi.Input[_builtins.str]]
+    tls_client_key: NotRequired[pulumi.Input[Optional[_builtins.str]]]
     """
     The client private key used to make authenticated requests. Must be in PEM format
     """
-    tls_hostname: NotRequired[pulumi.Input[_builtins.str]]
+    tls_hostname: NotRequired[pulumi.Input[Optional[_builtins.str]]]
     """
     The hostname used to verify the server's certificate. It can either be the Common Name (CN) or a Subject Alternative Name (SAN)
     """
-    user: NotRequired[pulumi.Input[_builtins.str]]
+    user: NotRequired[pulumi.Input[Optional[_builtins.str]]]
     """
     BasicAuth username for Elasticsearch
     """
@@ -4456,16 +4456,16 @@ class ServiceComputeLoggingElasticsearchArgs:
                  index: pulumi.Input[_builtins.str],
                  name: pulumi.Input[_builtins.str],
                  url: pulumi.Input[_builtins.str],
-                 password: Optional[pulumi.Input[_builtins.str]] = None,
-                 pipeline: Optional[pulumi.Input[_builtins.str]] = None,
-                 processing_region: Optional[pulumi.Input[_builtins.str]] = None,
-                 request_max_bytes: Optional[pulumi.Input[_builtins.int]] = None,
-                 request_max_entries: Optional[pulumi.Input[_builtins.int]] = None,
-                 tls_ca_cert: Optional[pulumi.Input[_builtins.str]] = None,
-                 tls_client_cert: Optional[pulumi.Input[_builtins.str]] = None,
-                 tls_client_key: Optional[pulumi.Input[_builtins.str]] = None,
-                 tls_hostname: Optional[pulumi.Input[_builtins.str]] = None,
-                 user: Optional[pulumi.Input[_builtins.str]] = None):
+                 password: pulumi.Input[Optional[_builtins.str]] = None,
+                 pipeline: pulumi.Input[Optional[_builtins.str]] = None,
+                 processing_region: pulumi.Input[Optional[_builtins.str]] = None,
+                 request_max_bytes: pulumi.Input[Optional[_builtins.int]] = None,
+                 request_max_entries: pulumi.Input[Optional[_builtins.int]] = None,
+                 tls_ca_cert: pulumi.Input[Optional[_builtins.str]] = None,
+                 tls_client_cert: pulumi.Input[Optional[_builtins.str]] = None,
+                 tls_client_key: pulumi.Input[Optional[_builtins.str]] = None,
+                 tls_hostname: pulumi.Input[Optional[_builtins.str]] = None,
+                 user: pulumi.Input[Optional[_builtins.str]] = None):
         """
         :param pulumi.Input[_builtins.str] index: The name of the Elasticsearch index to send documents (logs) to
         :param pulumi.Input[_builtins.str] name: The unique name of the Elasticsearch logging endpoint. It is important to note that changing this attribute will delete and recreate the resource
@@ -4543,122 +4543,122 @@ class ServiceComputeLoggingElasticsearchArgs:
 
     @_builtins.property
     @pulumi.getter
-    def password(self) -> Optional[pulumi.Input[_builtins.str]]:
+    def password(self) -> pulumi.Input[Optional[_builtins.str]]:
         """
         BasicAuth password for Elasticsearch
         """
         return pulumi.get(self, "password")
 
     @password.setter
-    def password(self, value: Optional[pulumi.Input[_builtins.str]]):
+    def password(self, value: pulumi.Input[Optional[_builtins.str]]):
         pulumi.set(self, "password", value)
 
     @_builtins.property
     @pulumi.getter
-    def pipeline(self) -> Optional[pulumi.Input[_builtins.str]]:
+    def pipeline(self) -> pulumi.Input[Optional[_builtins.str]]:
         """
         The ID of the Elasticsearch ingest pipeline to apply pre-process transformations to before indexing
         """
         return pulumi.get(self, "pipeline")
 
     @pipeline.setter
-    def pipeline(self, value: Optional[pulumi.Input[_builtins.str]]):
+    def pipeline(self, value: pulumi.Input[Optional[_builtins.str]]):
         pulumi.set(self, "pipeline", value)
 
     @_builtins.property
     @pulumi.getter(name="processingRegion")
-    def processing_region(self) -> Optional[pulumi.Input[_builtins.str]]:
+    def processing_region(self) -> pulumi.Input[Optional[_builtins.str]]:
         """
         Region where logs will be processed before streaming to BigQuery. Valid values are 'none', 'us' and 'eu'.
         """
         return pulumi.get(self, "processing_region")
 
     @processing_region.setter
-    def processing_region(self, value: Optional[pulumi.Input[_builtins.str]]):
+    def processing_region(self, value: pulumi.Input[Optional[_builtins.str]]):
         pulumi.set(self, "processing_region", value)
 
     @_builtins.property
     @pulumi.getter(name="requestMaxBytes")
-    def request_max_bytes(self) -> Optional[pulumi.Input[_builtins.int]]:
+    def request_max_bytes(self) -> pulumi.Input[Optional[_builtins.int]]:
         """
         The maximum number of logs sent in one request. Defaults to `0` for unbounded
         """
         return pulumi.get(self, "request_max_bytes")
 
     @request_max_bytes.setter
-    def request_max_bytes(self, value: Optional[pulumi.Input[_builtins.int]]):
+    def request_max_bytes(self, value: pulumi.Input[Optional[_builtins.int]]):
         pulumi.set(self, "request_max_bytes", value)
 
     @_builtins.property
     @pulumi.getter(name="requestMaxEntries")
-    def request_max_entries(self) -> Optional[pulumi.Input[_builtins.int]]:
+    def request_max_entries(self) -> pulumi.Input[Optional[_builtins.int]]:
         """
         The maximum number of bytes sent in one request. Defaults to `0` for unbounded
         """
         return pulumi.get(self, "request_max_entries")
 
     @request_max_entries.setter
-    def request_max_entries(self, value: Optional[pulumi.Input[_builtins.int]]):
+    def request_max_entries(self, value: pulumi.Input[Optional[_builtins.int]]):
         pulumi.set(self, "request_max_entries", value)
 
     @_builtins.property
     @pulumi.getter(name="tlsCaCert")
-    def tls_ca_cert(self) -> Optional[pulumi.Input[_builtins.str]]:
+    def tls_ca_cert(self) -> pulumi.Input[Optional[_builtins.str]]:
         """
         A secure certificate to authenticate the server with. Must be in PEM format
         """
         return pulumi.get(self, "tls_ca_cert")
 
     @tls_ca_cert.setter
-    def tls_ca_cert(self, value: Optional[pulumi.Input[_builtins.str]]):
+    def tls_ca_cert(self, value: pulumi.Input[Optional[_builtins.str]]):
         pulumi.set(self, "tls_ca_cert", value)
 
     @_builtins.property
     @pulumi.getter(name="tlsClientCert")
-    def tls_client_cert(self) -> Optional[pulumi.Input[_builtins.str]]:
+    def tls_client_cert(self) -> pulumi.Input[Optional[_builtins.str]]:
         """
         The client certificate used to make authenticated requests. Must be in PEM format
         """
         return pulumi.get(self, "tls_client_cert")
 
     @tls_client_cert.setter
-    def tls_client_cert(self, value: Optional[pulumi.Input[_builtins.str]]):
+    def tls_client_cert(self, value: pulumi.Input[Optional[_builtins.str]]):
         pulumi.set(self, "tls_client_cert", value)
 
     @_builtins.property
     @pulumi.getter(name="tlsClientKey")
-    def tls_client_key(self) -> Optional[pulumi.Input[_builtins.str]]:
+    def tls_client_key(self) -> pulumi.Input[Optional[_builtins.str]]:
         """
         The client private key used to make authenticated requests. Must be in PEM format
         """
         return pulumi.get(self, "tls_client_key")
 
     @tls_client_key.setter
-    def tls_client_key(self, value: Optional[pulumi.Input[_builtins.str]]):
+    def tls_client_key(self, value: pulumi.Input[Optional[_builtins.str]]):
         pulumi.set(self, "tls_client_key", value)
 
     @_builtins.property
     @pulumi.getter(name="tlsHostname")
-    def tls_hostname(self) -> Optional[pulumi.Input[_builtins.str]]:
+    def tls_hostname(self) -> pulumi.Input[Optional[_builtins.str]]:
         """
         The hostname used to verify the server's certificate. It can either be the Common Name (CN) or a Subject Alternative Name (SAN)
         """
         return pulumi.get(self, "tls_hostname")
 
     @tls_hostname.setter
-    def tls_hostname(self, value: Optional[pulumi.Input[_builtins.str]]):
+    def tls_hostname(self, value: pulumi.Input[Optional[_builtins.str]]):
         pulumi.set(self, "tls_hostname", value)
 
     @_builtins.property
     @pulumi.getter
-    def user(self) -> Optional[pulumi.Input[_builtins.str]]:
+    def user(self) -> pulumi.Input[Optional[_builtins.str]]:
         """
         BasicAuth username for Elasticsearch
         """
         return pulumi.get(self, "user")
 
     @user.setter
-    def user(self, value: Optional[pulumi.Input[_builtins.str]]):
+    def user(self, value: pulumi.Input[Optional[_builtins.str]]):
         pulumi.set(self, "user", value)
 
 
@@ -4683,35 +4683,35 @@ class ServiceComputeLoggingFtpArgsDict(TypedDict):
     """
     The username for the server (can be `anonymous`)
     """
-    compression_codec: NotRequired[pulumi.Input[_builtins.str]]
+    compression_codec: NotRequired[pulumi.Input[Optional[_builtins.str]]]
     """
     The codec used for compression of your logs. Valid values are zstd, snappy, and gzip. If the specified codec is "gzip", gzip_level will default to 3. To specify a different level, leave compression_codec blank and explicitly set the level using gzip_level. Specifying both compression_codec and gzip_level in the same API request will result in an error.
     """
-    gzip_level: NotRequired[pulumi.Input[_builtins.int]]
+    gzip_level: NotRequired[pulumi.Input[Optional[_builtins.int]]]
     """
     Level of Gzip compression from `0-9`. `0` means no compression. `1` is the fastest and the least compressed version, `9` is the slowest and the most compressed version. Default `0`
     """
-    message_type: NotRequired[pulumi.Input[_builtins.str]]
+    message_type: NotRequired[pulumi.Input[Optional[_builtins.str]]]
     """
     How the message should be formatted. Can be either `classic`, `loggly`, `logplex` or `blank`. Default is `classic`
     """
-    period: NotRequired[pulumi.Input[_builtins.int]]
+    period: NotRequired[pulumi.Input[Optional[_builtins.int]]]
     """
     How frequently the logs should be transferred, in seconds (Default `3600`)
     """
-    port: NotRequired[pulumi.Input[_builtins.int]]
+    port: NotRequired[pulumi.Input[Optional[_builtins.int]]]
     """
     The port number. Default: `21`
     """
-    processing_region: NotRequired[pulumi.Input[_builtins.str]]
+    processing_region: NotRequired[pulumi.Input[Optional[_builtins.str]]]
     """
     Region where logs will be processed before streaming to BigQuery. Valid values are 'none', 'us' and 'eu'.
     """
-    public_key: NotRequired[pulumi.Input[_builtins.str]]
+    public_key: NotRequired[pulumi.Input[Optional[_builtins.str]]]
     """
     The PGP public key that Fastly will use to encrypt your log files before writing them to disk
     """
-    timestamp_format: NotRequired[pulumi.Input[_builtins.str]]
+    timestamp_format: NotRequired[pulumi.Input[Optional[_builtins.str]]]
     """
     The `strftime` specified timestamp formatting (default `%Y-%m-%dT%H:%M:%S.000`)
     """
@@ -4724,14 +4724,14 @@ class ServiceComputeLoggingFtpArgs:
                  password: pulumi.Input[_builtins.str],
                  path: pulumi.Input[_builtins.str],
                  user: pulumi.Input[_builtins.str],
-                 compression_codec: Optional[pulumi.Input[_builtins.str]] = None,
-                 gzip_level: Optional[pulumi.Input[_builtins.int]] = None,
-                 message_type: Optional[pulumi.Input[_builtins.str]] = None,
-                 period: Optional[pulumi.Input[_builtins.int]] = None,
-                 port: Optional[pulumi.Input[_builtins.int]] = None,
-                 processing_region: Optional[pulumi.Input[_builtins.str]] = None,
-                 public_key: Optional[pulumi.Input[_builtins.str]] = None,
-                 timestamp_format: Optional[pulumi.Input[_builtins.str]] = None):
+                 compression_codec: pulumi.Input[Optional[_builtins.str]] = None,
+                 gzip_level: pulumi.Input[Optional[_builtins.int]] = None,
+                 message_type: pulumi.Input[Optional[_builtins.str]] = None,
+                 period: pulumi.Input[Optional[_builtins.int]] = None,
+                 port: pulumi.Input[Optional[_builtins.int]] = None,
+                 processing_region: pulumi.Input[Optional[_builtins.str]] = None,
+                 public_key: pulumi.Input[Optional[_builtins.str]] = None,
+                 timestamp_format: pulumi.Input[Optional[_builtins.str]] = None):
         """
         :param pulumi.Input[_builtins.str] address: The FTP address to stream logs to
         :param pulumi.Input[_builtins.str] name: The unique name of the FTP logging endpoint. It is important to note that changing this attribute will delete and recreate the resource
@@ -4831,98 +4831,98 @@ class ServiceComputeLoggingFtpArgs:
 
     @_builtins.property
     @pulumi.getter(name="compressionCodec")
-    def compression_codec(self) -> Optional[pulumi.Input[_builtins.str]]:
+    def compression_codec(self) -> pulumi.Input[Optional[_builtins.str]]:
         """
         The codec used for compression of your logs. Valid values are zstd, snappy, and gzip. If the specified codec is "gzip", gzip_level will default to 3. To specify a different level, leave compression_codec blank and explicitly set the level using gzip_level. Specifying both compression_codec and gzip_level in the same API request will result in an error.
         """
         return pulumi.get(self, "compression_codec")
 
     @compression_codec.setter
-    def compression_codec(self, value: Optional[pulumi.Input[_builtins.str]]):
+    def compression_codec(self, value: pulumi.Input[Optional[_builtins.str]]):
         pulumi.set(self, "compression_codec", value)
 
     @_builtins.property
     @pulumi.getter(name="gzipLevel")
-    def gzip_level(self) -> Optional[pulumi.Input[_builtins.int]]:
+    def gzip_level(self) -> pulumi.Input[Optional[_builtins.int]]:
         """
         Level of Gzip compression from `0-9`. `0` means no compression. `1` is the fastest and the least compressed version, `9` is the slowest and the most compressed version. Default `0`
         """
         return pulumi.get(self, "gzip_level")
 
     @gzip_level.setter
-    def gzip_level(self, value: Optional[pulumi.Input[_builtins.int]]):
+    def gzip_level(self, value: pulumi.Input[Optional[_builtins.int]]):
         pulumi.set(self, "gzip_level", value)
 
     @_builtins.property
     @pulumi.getter(name="messageType")
-    def message_type(self) -> Optional[pulumi.Input[_builtins.str]]:
+    def message_type(self) -> pulumi.Input[Optional[_builtins.str]]:
         """
         How the message should be formatted. Can be either `classic`, `loggly`, `logplex` or `blank`. Default is `classic`
         """
         return pulumi.get(self, "message_type")
 
     @message_type.setter
-    def message_type(self, value: Optional[pulumi.Input[_builtins.str]]):
+    def message_type(self, value: pulumi.Input[Optional[_builtins.str]]):
         pulumi.set(self, "message_type", value)
 
     @_builtins.property
     @pulumi.getter
-    def period(self) -> Optional[pulumi.Input[_builtins.int]]:
+    def period(self) -> pulumi.Input[Optional[_builtins.int]]:
         """
         How frequently the logs should be transferred, in seconds (Default `3600`)
         """
         return pulumi.get(self, "period")
 
     @period.setter
-    def period(self, value: Optional[pulumi.Input[_builtins.int]]):
+    def period(self, value: pulumi.Input[Optional[_builtins.int]]):
         pulumi.set(self, "period", value)
 
     @_builtins.property
     @pulumi.getter
-    def port(self) -> Optional[pulumi.Input[_builtins.int]]:
+    def port(self) -> pulumi.Input[Optional[_builtins.int]]:
         """
         The port number. Default: `21`
         """
         return pulumi.get(self, "port")
 
     @port.setter
-    def port(self, value: Optional[pulumi.Input[_builtins.int]]):
+    def port(self, value: pulumi.Input[Optional[_builtins.int]]):
         pulumi.set(self, "port", value)
 
     @_builtins.property
     @pulumi.getter(name="processingRegion")
-    def processing_region(self) -> Optional[pulumi.Input[_builtins.str]]:
+    def processing_region(self) -> pulumi.Input[Optional[_builtins.str]]:
         """
         Region where logs will be processed before streaming to BigQuery. Valid values are 'none', 'us' and 'eu'.
         """
         return pulumi.get(self, "processing_region")
 
     @processing_region.setter
-    def processing_region(self, value: Optional[pulumi.Input[_builtins.str]]):
+    def processing_region(self, value: pulumi.Input[Optional[_builtins.str]]):
         pulumi.set(self, "processing_region", value)
 
     @_builtins.property
     @pulumi.getter(name="publicKey")
-    def public_key(self) -> Optional[pulumi.Input[_builtins.str]]:
+    def public_key(self) -> pulumi.Input[Optional[_builtins.str]]:
         """
         The PGP public key that Fastly will use to encrypt your log files before writing them to disk
         """
         return pulumi.get(self, "public_key")
 
     @public_key.setter
-    def public_key(self, value: Optional[pulumi.Input[_builtins.str]]):
+    def public_key(self, value: pulumi.Input[Optional[_builtins.str]]):
         pulumi.set(self, "public_key", value)
 
     @_builtins.property
     @pulumi.getter(name="timestampFormat")
-    def timestamp_format(self) -> Optional[pulumi.Input[_builtins.str]]:
+    def timestamp_format(self) -> pulumi.Input[Optional[_builtins.str]]:
         """
         The `strftime` specified timestamp formatting (default `%Y-%m-%dT%H:%M:%S.000`)
         """
         return pulumi.get(self, "timestamp_format")
 
     @timestamp_format.setter
-    def timestamp_format(self, value: Optional[pulumi.Input[_builtins.str]]):
+    def timestamp_format(self, value: pulumi.Input[Optional[_builtins.str]]):
         pulumi.set(self, "timestamp_format", value)
 
 
@@ -4935,47 +4935,47 @@ class ServiceComputeLoggingGcArgsDict(TypedDict):
     """
     A unique name to identify this GCS endpoint. It is important to note that changing this attribute will delete and recreate the resource
     """
-    account_name: NotRequired[pulumi.Input[_builtins.str]]
+    account_name: NotRequired[pulumi.Input[Optional[_builtins.str]]]
     """
     The google account name used to obtain temporary credentials (default none). You may optionally provide this via an environment variable, `FASTLY_GCS_ACCOUNT_NAME`.
     """
-    compression_codec: NotRequired[pulumi.Input[_builtins.str]]
+    compression_codec: NotRequired[pulumi.Input[Optional[_builtins.str]]]
     """
     The codec used for compression of your logs. Valid values are zstd, snappy, and gzip. If the specified codec is "gzip", gzip_level will default to 3. To specify a different level, leave compression_codec blank and explicitly set the level using gzip_level. Specifying both compression_codec and gzip_level in the same API request will result in an error.
     """
-    gzip_level: NotRequired[pulumi.Input[_builtins.int]]
+    gzip_level: NotRequired[pulumi.Input[Optional[_builtins.int]]]
     """
     Level of Gzip compression from `0-9`. `0` means no compression. `1` is the fastest and the least compressed version, `9` is the slowest and the most compressed version. Default `0`
     """
-    message_type: NotRequired[pulumi.Input[_builtins.str]]
+    message_type: NotRequired[pulumi.Input[Optional[_builtins.str]]]
     """
     How the message should be formatted. Can be either `classic`, `loggly`, `logplex` or `blank`. Default is `classic`
     """
-    path: NotRequired[pulumi.Input[_builtins.str]]
+    path: NotRequired[pulumi.Input[Optional[_builtins.str]]]
     """
     Path to store the files. Must end with a trailing slash. If this field is left empty, the files will be saved in the bucket's root path
     """
-    period: NotRequired[pulumi.Input[_builtins.int]]
+    period: NotRequired[pulumi.Input[Optional[_builtins.int]]]
     """
     How frequently the logs should be transferred, in seconds (Default 3600)
     """
-    processing_region: NotRequired[pulumi.Input[_builtins.str]]
+    processing_region: NotRequired[pulumi.Input[Optional[_builtins.str]]]
     """
     Region where logs will be processed before streaming to BigQuery. Valid values are 'none', 'us' and 'eu'.
     """
-    project_id: NotRequired[pulumi.Input[_builtins.str]]
+    project_id: NotRequired[pulumi.Input[Optional[_builtins.str]]]
     """
     The ID of your Google Cloud Platform project
     """
-    secret_key: NotRequired[pulumi.Input[_builtins.str]]
+    secret_key: NotRequired[pulumi.Input[Optional[_builtins.str]]]
     """
     The secret key associated with the target gcs bucket on your account. You may optionally provide this secret via an environment variable, `FASTLY_GCS_SECRET_KEY`. A typical format for the key is PEM format, containing actual newline characters where required
     """
-    timestamp_format: NotRequired[pulumi.Input[_builtins.str]]
+    timestamp_format: NotRequired[pulumi.Input[Optional[_builtins.str]]]
     """
     The `strftime` specified timestamp formatting (default `%Y-%m-%dT%H:%M:%S.000`)
     """
-    user: NotRequired[pulumi.Input[_builtins.str]]
+    user: NotRequired[pulumi.Input[Optional[_builtins.str]]]
     """
     Your Google Cloud Platform service account email address. The `client_email` field in your service account authentication JSON. You may optionally provide this via an environment variable, `FASTLY_GCS_EMAIL`.
     """
@@ -4985,17 +4985,17 @@ class ServiceComputeLoggingGcArgs:
     def __init__(__self__, *,
                  bucket_name: pulumi.Input[_builtins.str],
                  name: pulumi.Input[_builtins.str],
-                 account_name: Optional[pulumi.Input[_builtins.str]] = None,
-                 compression_codec: Optional[pulumi.Input[_builtins.str]] = None,
-                 gzip_level: Optional[pulumi.Input[_builtins.int]] = None,
-                 message_type: Optional[pulumi.Input[_builtins.str]] = None,
-                 path: Optional[pulumi.Input[_builtins.str]] = None,
-                 period: Optional[pulumi.Input[_builtins.int]] = None,
-                 processing_region: Optional[pulumi.Input[_builtins.str]] = None,
-                 project_id: Optional[pulumi.Input[_builtins.str]] = None,
-                 secret_key: Optional[pulumi.Input[_builtins.str]] = None,
-                 timestamp_format: Optional[pulumi.Input[_builtins.str]] = None,
-                 user: Optional[pulumi.Input[_builtins.str]] = None):
+                 account_name: pulumi.Input[Optional[_builtins.str]] = None,
+                 compression_codec: pulumi.Input[Optional[_builtins.str]] = None,
+                 gzip_level: pulumi.Input[Optional[_builtins.int]] = None,
+                 message_type: pulumi.Input[Optional[_builtins.str]] = None,
+                 path: pulumi.Input[Optional[_builtins.str]] = None,
+                 period: pulumi.Input[Optional[_builtins.int]] = None,
+                 processing_region: pulumi.Input[Optional[_builtins.str]] = None,
+                 project_id: pulumi.Input[Optional[_builtins.str]] = None,
+                 secret_key: pulumi.Input[Optional[_builtins.str]] = None,
+                 timestamp_format: pulumi.Input[Optional[_builtins.str]] = None,
+                 user: pulumi.Input[Optional[_builtins.str]] = None):
         """
         :param pulumi.Input[_builtins.str] bucket_name: The name of the bucket in which to store the logs
         :param pulumi.Input[_builtins.str] name: A unique name to identify this GCS endpoint. It is important to note that changing this attribute will delete and recreate the resource
@@ -5062,134 +5062,134 @@ class ServiceComputeLoggingGcArgs:
 
     @_builtins.property
     @pulumi.getter(name="accountName")
-    def account_name(self) -> Optional[pulumi.Input[_builtins.str]]:
+    def account_name(self) -> pulumi.Input[Optional[_builtins.str]]:
         """
         The google account name used to obtain temporary credentials (default none). You may optionally provide this via an environment variable, `FASTLY_GCS_ACCOUNT_NAME`.
         """
         return pulumi.get(self, "account_name")
 
     @account_name.setter
-    def account_name(self, value: Optional[pulumi.Input[_builtins.str]]):
+    def account_name(self, value: pulumi.Input[Optional[_builtins.str]]):
         pulumi.set(self, "account_name", value)
 
     @_builtins.property
     @pulumi.getter(name="compressionCodec")
-    def compression_codec(self) -> Optional[pulumi.Input[_builtins.str]]:
+    def compression_codec(self) -> pulumi.Input[Optional[_builtins.str]]:
         """
         The codec used for compression of your logs. Valid values are zstd, snappy, and gzip. If the specified codec is "gzip", gzip_level will default to 3. To specify a different level, leave compression_codec blank and explicitly set the level using gzip_level. Specifying both compression_codec and gzip_level in the same API request will result in an error.
         """
         return pulumi.get(self, "compression_codec")
 
     @compression_codec.setter
-    def compression_codec(self, value: Optional[pulumi.Input[_builtins.str]]):
+    def compression_codec(self, value: pulumi.Input[Optional[_builtins.str]]):
         pulumi.set(self, "compression_codec", value)
 
     @_builtins.property
     @pulumi.getter(name="gzipLevel")
-    def gzip_level(self) -> Optional[pulumi.Input[_builtins.int]]:
+    def gzip_level(self) -> pulumi.Input[Optional[_builtins.int]]:
         """
         Level of Gzip compression from `0-9`. `0` means no compression. `1` is the fastest and the least compressed version, `9` is the slowest and the most compressed version. Default `0`
         """
         return pulumi.get(self, "gzip_level")
 
     @gzip_level.setter
-    def gzip_level(self, value: Optional[pulumi.Input[_builtins.int]]):
+    def gzip_level(self, value: pulumi.Input[Optional[_builtins.int]]):
         pulumi.set(self, "gzip_level", value)
 
     @_builtins.property
     @pulumi.getter(name="messageType")
-    def message_type(self) -> Optional[pulumi.Input[_builtins.str]]:
+    def message_type(self) -> pulumi.Input[Optional[_builtins.str]]:
         """
         How the message should be formatted. Can be either `classic`, `loggly`, `logplex` or `blank`. Default is `classic`
         """
         return pulumi.get(self, "message_type")
 
     @message_type.setter
-    def message_type(self, value: Optional[pulumi.Input[_builtins.str]]):
+    def message_type(self, value: pulumi.Input[Optional[_builtins.str]]):
         pulumi.set(self, "message_type", value)
 
     @_builtins.property
     @pulumi.getter
-    def path(self) -> Optional[pulumi.Input[_builtins.str]]:
+    def path(self) -> pulumi.Input[Optional[_builtins.str]]:
         """
         Path to store the files. Must end with a trailing slash. If this field is left empty, the files will be saved in the bucket's root path
         """
         return pulumi.get(self, "path")
 
     @path.setter
-    def path(self, value: Optional[pulumi.Input[_builtins.str]]):
+    def path(self, value: pulumi.Input[Optional[_builtins.str]]):
         pulumi.set(self, "path", value)
 
     @_builtins.property
     @pulumi.getter
-    def period(self) -> Optional[pulumi.Input[_builtins.int]]:
+    def period(self) -> pulumi.Input[Optional[_builtins.int]]:
         """
         How frequently the logs should be transferred, in seconds (Default 3600)
         """
         return pulumi.get(self, "period")
 
     @period.setter
-    def period(self, value: Optional[pulumi.Input[_builtins.int]]):
+    def period(self, value: pulumi.Input[Optional[_builtins.int]]):
         pulumi.set(self, "period", value)
 
     @_builtins.property
     @pulumi.getter(name="processingRegion")
-    def processing_region(self) -> Optional[pulumi.Input[_builtins.str]]:
+    def processing_region(self) -> pulumi.Input[Optional[_builtins.str]]:
         """
         Region where logs will be processed before streaming to BigQuery. Valid values are 'none', 'us' and 'eu'.
         """
         return pulumi.get(self, "processing_region")
 
     @processing_region.setter
-    def processing_region(self, value: Optional[pulumi.Input[_builtins.str]]):
+    def processing_region(self, value: pulumi.Input[Optional[_builtins.str]]):
         pulumi.set(self, "processing_region", value)
 
     @_builtins.property
     @pulumi.getter(name="projectId")
-    def project_id(self) -> Optional[pulumi.Input[_builtins.str]]:
+    def project_id(self) -> pulumi.Input[Optional[_builtins.str]]:
         """
         The ID of your Google Cloud Platform project
         """
         return pulumi.get(self, "project_id")
 
     @project_id.setter
-    def project_id(self, value: Optional[pulumi.Input[_builtins.str]]):
+    def project_id(self, value: pulumi.Input[Optional[_builtins.str]]):
         pulumi.set(self, "project_id", value)
 
     @_builtins.property
     @pulumi.getter(name="secretKey")
-    def secret_key(self) -> Optional[pulumi.Input[_builtins.str]]:
+    def secret_key(self) -> pulumi.Input[Optional[_builtins.str]]:
         """
         The secret key associated with the target gcs bucket on your account. You may optionally provide this secret via an environment variable, `FASTLY_GCS_SECRET_KEY`. A typical format for the key is PEM format, containing actual newline characters where required
         """
         return pulumi.get(self, "secret_key")
 
     @secret_key.setter
-    def secret_key(self, value: Optional[pulumi.Input[_builtins.str]]):
+    def secret_key(self, value: pulumi.Input[Optional[_builtins.str]]):
         pulumi.set(self, "secret_key", value)
 
     @_builtins.property
     @pulumi.getter(name="timestampFormat")
-    def timestamp_format(self) -> Optional[pulumi.Input[_builtins.str]]:
+    def timestamp_format(self) -> pulumi.Input[Optional[_builtins.str]]:
         """
         The `strftime` specified timestamp formatting (default `%Y-%m-%dT%H:%M:%S.000`)
         """
         return pulumi.get(self, "timestamp_format")
 
     @timestamp_format.setter
-    def timestamp_format(self, value: Optional[pulumi.Input[_builtins.str]]):
+    def timestamp_format(self, value: pulumi.Input[Optional[_builtins.str]]):
         pulumi.set(self, "timestamp_format", value)
 
     @_builtins.property
     @pulumi.getter
-    def user(self) -> Optional[pulumi.Input[_builtins.str]]:
+    def user(self) -> pulumi.Input[Optional[_builtins.str]]:
         """
         Your Google Cloud Platform service account email address. The `client_email` field in your service account authentication JSON. You may optionally provide this via an environment variable, `FASTLY_GCS_EMAIL`.
         """
         return pulumi.get(self, "user")
 
     @user.setter
-    def user(self, value: Optional[pulumi.Input[_builtins.str]]):
+    def user(self, value: pulumi.Input[Optional[_builtins.str]]):
         pulumi.set(self, "user", value)
 
 
@@ -5214,11 +5214,11 @@ class ServiceComputeLoggingGooglepubsubArgsDict(TypedDict):
     """
     Your Google Cloud Platform service account email address. The `client_email` field in your service account authentication JSON. You may optionally provide this via an environment variable, `FASTLY_GOOGLE_PUBSUB_EMAIL`.
     """
-    account_name: NotRequired[pulumi.Input[_builtins.str]]
+    account_name: NotRequired[pulumi.Input[Optional[_builtins.str]]]
     """
     The google account name used to obtain temporary credentials (default none). You may optionally provide this via an environment variable, `FASTLY_GCS_ACCOUNT_NAME`.
     """
-    processing_region: NotRequired[pulumi.Input[_builtins.str]]
+    processing_region: NotRequired[pulumi.Input[Optional[_builtins.str]]]
     """
     Region where logs will be processed before streaming to BigQuery. Valid values are 'none', 'us' and 'eu'.
     """
@@ -5231,8 +5231,8 @@ class ServiceComputeLoggingGooglepubsubArgs:
                  secret_key: pulumi.Input[_builtins.str],
                  topic: pulumi.Input[_builtins.str],
                  user: pulumi.Input[_builtins.str],
-                 account_name: Optional[pulumi.Input[_builtins.str]] = None,
-                 processing_region: Optional[pulumi.Input[_builtins.str]] = None):
+                 account_name: pulumi.Input[Optional[_builtins.str]] = None,
+                 processing_region: pulumi.Input[Optional[_builtins.str]] = None):
         """
         :param pulumi.Input[_builtins.str] name: The unique name of the Google Cloud Pub/Sub logging endpoint. It is important to note that changing this attribute will delete and recreate the resource
         :param pulumi.Input[_builtins.str] project_id: The ID of your Google Cloud Platform project
@@ -5314,26 +5314,26 @@ class ServiceComputeLoggingGooglepubsubArgs:
 
     @_builtins.property
     @pulumi.getter(name="accountName")
-    def account_name(self) -> Optional[pulumi.Input[_builtins.str]]:
+    def account_name(self) -> pulumi.Input[Optional[_builtins.str]]:
         """
         The google account name used to obtain temporary credentials (default none). You may optionally provide this via an environment variable, `FASTLY_GCS_ACCOUNT_NAME`.
         """
         return pulumi.get(self, "account_name")
 
     @account_name.setter
-    def account_name(self, value: Optional[pulumi.Input[_builtins.str]]):
+    def account_name(self, value: pulumi.Input[Optional[_builtins.str]]):
         pulumi.set(self, "account_name", value)
 
     @_builtins.property
     @pulumi.getter(name="processingRegion")
-    def processing_region(self) -> Optional[pulumi.Input[_builtins.str]]:
+    def processing_region(self) -> pulumi.Input[Optional[_builtins.str]]:
         """
         Region where logs will be processed before streaming to BigQuery. Valid values are 'none', 'us' and 'eu'.
         """
         return pulumi.get(self, "processing_region")
 
     @processing_region.setter
-    def processing_region(self, value: Optional[pulumi.Input[_builtins.str]]):
+    def processing_region(self, value: pulumi.Input[Optional[_builtins.str]]):
         pulumi.set(self, "processing_region", value)
 
 
@@ -5358,7 +5358,7 @@ class ServiceComputeLoggingGrafanacloudlogArgsDict(TypedDict):
     """
     The Grafana User ID
     """
-    processing_region: NotRequired[pulumi.Input[_builtins.str]]
+    processing_region: NotRequired[pulumi.Input[Optional[_builtins.str]]]
     """
     Region where logs will be processed before streaming to BigQuery. Valid values are 'none', 'us' and 'eu'.
     """
@@ -5371,7 +5371,7 @@ class ServiceComputeLoggingGrafanacloudlogArgs:
                  token: pulumi.Input[_builtins.str],
                  url: pulumi.Input[_builtins.str],
                  user: pulumi.Input[_builtins.str],
-                 processing_region: Optional[pulumi.Input[_builtins.str]] = None):
+                 processing_region: pulumi.Input[Optional[_builtins.str]] = None):
         """
         :param pulumi.Input[_builtins.str] index: The stream identifier as a JSON string
         :param pulumi.Input[_builtins.str] name: The unique name of the GrafanaCloudLogs logging endpoint. It is important to note that changing this attribute will delete and recreate the resource
@@ -5450,14 +5450,14 @@ class ServiceComputeLoggingGrafanacloudlogArgs:
 
     @_builtins.property
     @pulumi.getter(name="processingRegion")
-    def processing_region(self) -> Optional[pulumi.Input[_builtins.str]]:
+    def processing_region(self) -> pulumi.Input[Optional[_builtins.str]]:
         """
         Region where logs will be processed before streaming to BigQuery. Valid values are 'none', 'us' and 'eu'.
         """
         return pulumi.get(self, "processing_region")
 
     @processing_region.setter
-    def processing_region(self, value: Optional[pulumi.Input[_builtins.str]]):
+    def processing_region(self, value: pulumi.Input[Optional[_builtins.str]]):
         pulumi.set(self, "processing_region", value)
 
 
@@ -5474,7 +5474,7 @@ class ServiceComputeLoggingHerokuArgsDict(TypedDict):
     """
     The URL to stream logs to
     """
-    processing_region: NotRequired[pulumi.Input[_builtins.str]]
+    processing_region: NotRequired[pulumi.Input[Optional[_builtins.str]]]
     """
     Region where logs will be processed before streaming to BigQuery. Valid values are 'none', 'us' and 'eu'.
     """
@@ -5485,7 +5485,7 @@ class ServiceComputeLoggingHerokuArgs:
                  name: pulumi.Input[_builtins.str],
                  token: pulumi.Input[_builtins.str],
                  url: pulumi.Input[_builtins.str],
-                 processing_region: Optional[pulumi.Input[_builtins.str]] = None):
+                 processing_region: pulumi.Input[Optional[_builtins.str]] = None):
         """
         :param pulumi.Input[_builtins.str] name: The unique name of the Heroku logging endpoint. It is important to note that changing this attribute will delete and recreate the resource
         :param pulumi.Input[_builtins.str] token: The token to use for authentication (https://www.heroku.com/docs/customer-token-authentication-token/)
@@ -5536,14 +5536,14 @@ class ServiceComputeLoggingHerokuArgs:
 
     @_builtins.property
     @pulumi.getter(name="processingRegion")
-    def processing_region(self) -> Optional[pulumi.Input[_builtins.str]]:
+    def processing_region(self) -> pulumi.Input[Optional[_builtins.str]]:
         """
         Region where logs will be processed before streaming to BigQuery. Valid values are 'none', 'us' and 'eu'.
         """
         return pulumi.get(self, "processing_region")
 
     @processing_region.setter
-    def processing_region(self, value: Optional[pulumi.Input[_builtins.str]]):
+    def processing_region(self, value: pulumi.Input[Optional[_builtins.str]]):
         pulumi.set(self, "processing_region", value)
 
 
@@ -5560,7 +5560,7 @@ class ServiceComputeLoggingHoneycombArgsDict(TypedDict):
     """
     The Write Key from the Account page of your Honeycomb account
     """
-    processing_region: NotRequired[pulumi.Input[_builtins.str]]
+    processing_region: NotRequired[pulumi.Input[Optional[_builtins.str]]]
     """
     Region where logs will be processed before streaming to BigQuery. Valid values are 'none', 'us' and 'eu'.
     """
@@ -5571,7 +5571,7 @@ class ServiceComputeLoggingHoneycombArgs:
                  dataset: pulumi.Input[_builtins.str],
                  name: pulumi.Input[_builtins.str],
                  token: pulumi.Input[_builtins.str],
-                 processing_region: Optional[pulumi.Input[_builtins.str]] = None):
+                 processing_region: pulumi.Input[Optional[_builtins.str]] = None):
         """
         :param pulumi.Input[_builtins.str] dataset: The Honeycomb Dataset you want to log to
         :param pulumi.Input[_builtins.str] name: The unique name of the Honeycomb logging endpoint. It is important to note that changing this attribute will delete and recreate the resource
@@ -5622,14 +5622,14 @@ class ServiceComputeLoggingHoneycombArgs:
 
     @_builtins.property
     @pulumi.getter(name="processingRegion")
-    def processing_region(self) -> Optional[pulumi.Input[_builtins.str]]:
+    def processing_region(self) -> pulumi.Input[Optional[_builtins.str]]:
         """
         Region where logs will be processed before streaming to BigQuery. Valid values are 'none', 'us' and 'eu'.
         """
         return pulumi.get(self, "processing_region")
 
     @processing_region.setter
-    def processing_region(self, value: Optional[pulumi.Input[_builtins.str]]):
+    def processing_region(self, value: pulumi.Input[Optional[_builtins.str]]):
         pulumi.set(self, "processing_region", value)
 
 
@@ -5642,67 +5642,67 @@ class ServiceComputeLoggingHttpArgsDict(TypedDict):
     """
     URL that log data will be sent to. Must use the https protocol
     """
-    compression_codec: NotRequired[pulumi.Input[_builtins.str]]
+    compression_codec: NotRequired[pulumi.Input[Optional[_builtins.str]]]
     """
     The codec used for compression of your logs. Valid values are zstd, snappy, and gzip. If the specified codec is "gzip", gzip_level will default to 3. To specify a different level, leave compression_codec blank and explicitly set the level using gzip_level. Specifying both compression_codec and gzip_level in the same API request will result in an error.
     """
-    content_type: NotRequired[pulumi.Input[_builtins.str]]
+    content_type: NotRequired[pulumi.Input[Optional[_builtins.str]]]
     """
     Value of the `Content-Type` header sent with the request
     """
-    gzip_level: NotRequired[pulumi.Input[_builtins.int]]
+    gzip_level: NotRequired[pulumi.Input[Optional[_builtins.int]]]
     """
     Level of Gzip compression from `0-9`. `0` means no compression. `1` is the fastest and the least compressed version, `9` is the slowest and the most compressed version. Default `0`
     """
-    header_name: NotRequired[pulumi.Input[_builtins.str]]
+    header_name: NotRequired[pulumi.Input[Optional[_builtins.str]]]
     """
     Custom header sent with the request
     """
-    header_value: NotRequired[pulumi.Input[_builtins.str]]
+    header_value: NotRequired[pulumi.Input[Optional[_builtins.str]]]
     """
     Value of the custom header sent with the request
     """
-    json_format: NotRequired[pulumi.Input[_builtins.str]]
+    json_format: NotRequired[pulumi.Input[Optional[_builtins.str]]]
     """
     Formats log entries as JSON. Can be either disabled (`0`), array of json (`1`), or newline delimited json (`2`)
     """
-    message_type: NotRequired[pulumi.Input[_builtins.str]]
+    message_type: NotRequired[pulumi.Input[Optional[_builtins.str]]]
     """
     How the message should be formatted. Can be either `classic`, `loggly`, `logplex` or `blank`. Default is `classic`
     """
-    method: NotRequired[pulumi.Input[_builtins.str]]
+    method: NotRequired[pulumi.Input[Optional[_builtins.str]]]
     """
     HTTP method used for request. Can be either `POST` or `PUT`. Default `POST`
     """
-    period: NotRequired[pulumi.Input[_builtins.int]]
+    period: NotRequired[pulumi.Input[Optional[_builtins.int]]]
     """
     How frequently, in seconds, batches of log data are sent to the HTTPS endpoint. A value of 0 sends logs at the same interval as the default, which is 5 seconds.
     """
-    processing_region: NotRequired[pulumi.Input[_builtins.str]]
+    processing_region: NotRequired[pulumi.Input[Optional[_builtins.str]]]
     """
     Region where logs will be processed before streaming to BigQuery. Valid values are 'none', 'us' and 'eu'.
     """
-    request_max_bytes: NotRequired[pulumi.Input[_builtins.int]]
+    request_max_bytes: NotRequired[pulumi.Input[Optional[_builtins.int]]]
     """
     The maximum number of bytes sent in one request
     """
-    request_max_entries: NotRequired[pulumi.Input[_builtins.int]]
+    request_max_entries: NotRequired[pulumi.Input[Optional[_builtins.int]]]
     """
     The maximum number of logs sent in one request
     """
-    tls_ca_cert: NotRequired[pulumi.Input[_builtins.str]]
+    tls_ca_cert: NotRequired[pulumi.Input[Optional[_builtins.str]]]
     """
     A secure certificate to authenticate the server with. Must be in PEM format
     """
-    tls_client_cert: NotRequired[pulumi.Input[_builtins.str]]
+    tls_client_cert: NotRequired[pulumi.Input[Optional[_builtins.str]]]
     """
     The client certificate used to make authenticated requests. Must be in PEM format
     """
-    tls_client_key: NotRequired[pulumi.Input[_builtins.str]]
+    tls_client_key: NotRequired[pulumi.Input[Optional[_builtins.str]]]
     """
     The client private key used to make authenticated requests. Must be in PEM format
     """
-    tls_hostname: NotRequired[pulumi.Input[_builtins.str]]
+    tls_hostname: NotRequired[pulumi.Input[Optional[_builtins.str]]]
     """
     Used during the TLS handshake to validate the certificate
     """
@@ -5712,22 +5712,22 @@ class ServiceComputeLoggingHttpArgs:
     def __init__(__self__, *,
                  name: pulumi.Input[_builtins.str],
                  url: pulumi.Input[_builtins.str],
-                 compression_codec: Optional[pulumi.Input[_builtins.str]] = None,
-                 content_type: Optional[pulumi.Input[_builtins.str]] = None,
-                 gzip_level: Optional[pulumi.Input[_builtins.int]] = None,
-                 header_name: Optional[pulumi.Input[_builtins.str]] = None,
-                 header_value: Optional[pulumi.Input[_builtins.str]] = None,
-                 json_format: Optional[pulumi.Input[_builtins.str]] = None,
-                 message_type: Optional[pulumi.Input[_builtins.str]] = None,
-                 method: Optional[pulumi.Input[_builtins.str]] = None,
-                 period: Optional[pulumi.Input[_builtins.int]] = None,
-                 processing_region: Optional[pulumi.Input[_builtins.str]] = None,
-                 request_max_bytes: Optional[pulumi.Input[_builtins.int]] = None,
-                 request_max_entries: Optional[pulumi.Input[_builtins.int]] = None,
-                 tls_ca_cert: Optional[pulumi.Input[_builtins.str]] = None,
-                 tls_client_cert: Optional[pulumi.Input[_builtins.str]] = None,
-                 tls_client_key: Optional[pulumi.Input[_builtins.str]] = None,
-                 tls_hostname: Optional[pulumi.Input[_builtins.str]] = None):
+                 compression_codec: pulumi.Input[Optional[_builtins.str]] = None,
+                 content_type: pulumi.Input[Optional[_builtins.str]] = None,
+                 gzip_level: pulumi.Input[Optional[_builtins.int]] = None,
+                 header_name: pulumi.Input[Optional[_builtins.str]] = None,
+                 header_value: pulumi.Input[Optional[_builtins.str]] = None,
+                 json_format: pulumi.Input[Optional[_builtins.str]] = None,
+                 message_type: pulumi.Input[Optional[_builtins.str]] = None,
+                 method: pulumi.Input[Optional[_builtins.str]] = None,
+                 period: pulumi.Input[Optional[_builtins.int]] = None,
+                 processing_region: pulumi.Input[Optional[_builtins.str]] = None,
+                 request_max_bytes: pulumi.Input[Optional[_builtins.int]] = None,
+                 request_max_entries: pulumi.Input[Optional[_builtins.int]] = None,
+                 tls_ca_cert: pulumi.Input[Optional[_builtins.str]] = None,
+                 tls_client_cert: pulumi.Input[Optional[_builtins.str]] = None,
+                 tls_client_key: pulumi.Input[Optional[_builtins.str]] = None,
+                 tls_hostname: pulumi.Input[Optional[_builtins.str]] = None):
         """
         :param pulumi.Input[_builtins.str] name: The unique name of the HTTPS logging endpoint. It is important to note that changing this attribute will delete and recreate the resource
         :param pulumi.Input[_builtins.str] url: URL that log data will be sent to. Must use the https protocol
@@ -5809,194 +5809,194 @@ class ServiceComputeLoggingHttpArgs:
 
     @_builtins.property
     @pulumi.getter(name="compressionCodec")
-    def compression_codec(self) -> Optional[pulumi.Input[_builtins.str]]:
+    def compression_codec(self) -> pulumi.Input[Optional[_builtins.str]]:
         """
         The codec used for compression of your logs. Valid values are zstd, snappy, and gzip. If the specified codec is "gzip", gzip_level will default to 3. To specify a different level, leave compression_codec blank and explicitly set the level using gzip_level. Specifying both compression_codec and gzip_level in the same API request will result in an error.
         """
         return pulumi.get(self, "compression_codec")
 
     @compression_codec.setter
-    def compression_codec(self, value: Optional[pulumi.Input[_builtins.str]]):
+    def compression_codec(self, value: pulumi.Input[Optional[_builtins.str]]):
         pulumi.set(self, "compression_codec", value)
 
     @_builtins.property
     @pulumi.getter(name="contentType")
-    def content_type(self) -> Optional[pulumi.Input[_builtins.str]]:
+    def content_type(self) -> pulumi.Input[Optional[_builtins.str]]:
         """
         Value of the `Content-Type` header sent with the request
         """
         return pulumi.get(self, "content_type")
 
     @content_type.setter
-    def content_type(self, value: Optional[pulumi.Input[_builtins.str]]):
+    def content_type(self, value: pulumi.Input[Optional[_builtins.str]]):
         pulumi.set(self, "content_type", value)
 
     @_builtins.property
     @pulumi.getter(name="gzipLevel")
-    def gzip_level(self) -> Optional[pulumi.Input[_builtins.int]]:
+    def gzip_level(self) -> pulumi.Input[Optional[_builtins.int]]:
         """
         Level of Gzip compression from `0-9`. `0` means no compression. `1` is the fastest and the least compressed version, `9` is the slowest and the most compressed version. Default `0`
         """
         return pulumi.get(self, "gzip_level")
 
     @gzip_level.setter
-    def gzip_level(self, value: Optional[pulumi.Input[_builtins.int]]):
+    def gzip_level(self, value: pulumi.Input[Optional[_builtins.int]]):
         pulumi.set(self, "gzip_level", value)
 
     @_builtins.property
     @pulumi.getter(name="headerName")
-    def header_name(self) -> Optional[pulumi.Input[_builtins.str]]:
+    def header_name(self) -> pulumi.Input[Optional[_builtins.str]]:
         """
         Custom header sent with the request
         """
         return pulumi.get(self, "header_name")
 
     @header_name.setter
-    def header_name(self, value: Optional[pulumi.Input[_builtins.str]]):
+    def header_name(self, value: pulumi.Input[Optional[_builtins.str]]):
         pulumi.set(self, "header_name", value)
 
     @_builtins.property
     @pulumi.getter(name="headerValue")
-    def header_value(self) -> Optional[pulumi.Input[_builtins.str]]:
+    def header_value(self) -> pulumi.Input[Optional[_builtins.str]]:
         """
         Value of the custom header sent with the request
         """
         return pulumi.get(self, "header_value")
 
     @header_value.setter
-    def header_value(self, value: Optional[pulumi.Input[_builtins.str]]):
+    def header_value(self, value: pulumi.Input[Optional[_builtins.str]]):
         pulumi.set(self, "header_value", value)
 
     @_builtins.property
     @pulumi.getter(name="jsonFormat")
-    def json_format(self) -> Optional[pulumi.Input[_builtins.str]]:
+    def json_format(self) -> pulumi.Input[Optional[_builtins.str]]:
         """
         Formats log entries as JSON. Can be either disabled (`0`), array of json (`1`), or newline delimited json (`2`)
         """
         return pulumi.get(self, "json_format")
 
     @json_format.setter
-    def json_format(self, value: Optional[pulumi.Input[_builtins.str]]):
+    def json_format(self, value: pulumi.Input[Optional[_builtins.str]]):
         pulumi.set(self, "json_format", value)
 
     @_builtins.property
     @pulumi.getter(name="messageType")
-    def message_type(self) -> Optional[pulumi.Input[_builtins.str]]:
+    def message_type(self) -> pulumi.Input[Optional[_builtins.str]]:
         """
         How the message should be formatted. Can be either `classic`, `loggly`, `logplex` or `blank`. Default is `classic`
         """
         return pulumi.get(self, "message_type")
 
     @message_type.setter
-    def message_type(self, value: Optional[pulumi.Input[_builtins.str]]):
+    def message_type(self, value: pulumi.Input[Optional[_builtins.str]]):
         pulumi.set(self, "message_type", value)
 
     @_builtins.property
     @pulumi.getter
-    def method(self) -> Optional[pulumi.Input[_builtins.str]]:
+    def method(self) -> pulumi.Input[Optional[_builtins.str]]:
         """
         HTTP method used for request. Can be either `POST` or `PUT`. Default `POST`
         """
         return pulumi.get(self, "method")
 
     @method.setter
-    def method(self, value: Optional[pulumi.Input[_builtins.str]]):
+    def method(self, value: pulumi.Input[Optional[_builtins.str]]):
         pulumi.set(self, "method", value)
 
     @_builtins.property
     @pulumi.getter
-    def period(self) -> Optional[pulumi.Input[_builtins.int]]:
+    def period(self) -> pulumi.Input[Optional[_builtins.int]]:
         """
         How frequently, in seconds, batches of log data are sent to the HTTPS endpoint. A value of 0 sends logs at the same interval as the default, which is 5 seconds.
         """
         return pulumi.get(self, "period")
 
     @period.setter
-    def period(self, value: Optional[pulumi.Input[_builtins.int]]):
+    def period(self, value: pulumi.Input[Optional[_builtins.int]]):
         pulumi.set(self, "period", value)
 
     @_builtins.property
     @pulumi.getter(name="processingRegion")
-    def processing_region(self) -> Optional[pulumi.Input[_builtins.str]]:
+    def processing_region(self) -> pulumi.Input[Optional[_builtins.str]]:
         """
         Region where logs will be processed before streaming to BigQuery. Valid values are 'none', 'us' and 'eu'.
         """
         return pulumi.get(self, "processing_region")
 
     @processing_region.setter
-    def processing_region(self, value: Optional[pulumi.Input[_builtins.str]]):
+    def processing_region(self, value: pulumi.Input[Optional[_builtins.str]]):
         pulumi.set(self, "processing_region", value)
 
     @_builtins.property
     @pulumi.getter(name="requestMaxBytes")
-    def request_max_bytes(self) -> Optional[pulumi.Input[_builtins.int]]:
+    def request_max_bytes(self) -> pulumi.Input[Optional[_builtins.int]]:
         """
         The maximum number of bytes sent in one request
         """
         return pulumi.get(self, "request_max_bytes")
 
     @request_max_bytes.setter
-    def request_max_bytes(self, value: Optional[pulumi.Input[_builtins.int]]):
+    def request_max_bytes(self, value: pulumi.Input[Optional[_builtins.int]]):
         pulumi.set(self, "request_max_bytes", value)
 
     @_builtins.property
     @pulumi.getter(name="requestMaxEntries")
-    def request_max_entries(self) -> Optional[pulumi.Input[_builtins.int]]:
+    def request_max_entries(self) -> pulumi.Input[Optional[_builtins.int]]:
         """
         The maximum number of logs sent in one request
         """
         return pulumi.get(self, "request_max_entries")
 
     @request_max_entries.setter
-    def request_max_entries(self, value: Optional[pulumi.Input[_builtins.int]]):
+    def request_max_entries(self, value: pulumi.Input[Optional[_builtins.int]]):
         pulumi.set(self, "request_max_entries", value)
 
     @_builtins.property
     @pulumi.getter(name="tlsCaCert")
-    def tls_ca_cert(self) -> Optional[pulumi.Input[_builtins.str]]:
+    def tls_ca_cert(self) -> pulumi.Input[Optional[_builtins.str]]:
         """
         A secure certificate to authenticate the server with. Must be in PEM format
         """
         return pulumi.get(self, "tls_ca_cert")
 
     @tls_ca_cert.setter
-    def tls_ca_cert(self, value: Optional[pulumi.Input[_builtins.str]]):
+    def tls_ca_cert(self, value: pulumi.Input[Optional[_builtins.str]]):
         pulumi.set(self, "tls_ca_cert", value)
 
     @_builtins.property
     @pulumi.getter(name="tlsClientCert")
-    def tls_client_cert(self) -> Optional[pulumi.Input[_builtins.str]]:
+    def tls_client_cert(self) -> pulumi.Input[Optional[_builtins.str]]:
         """
         The client certificate used to make authenticated requests. Must be in PEM format
         """
         return pulumi.get(self, "tls_client_cert")
 
     @tls_client_cert.setter
-    def tls_client_cert(self, value: Optional[pulumi.Input[_builtins.str]]):
+    def tls_client_cert(self, value: pulumi.Input[Optional[_builtins.str]]):
         pulumi.set(self, "tls_client_cert", value)
 
     @_builtins.property
     @pulumi.getter(name="tlsClientKey")
-    def tls_client_key(self) -> Optional[pulumi.Input[_builtins.str]]:
+    def tls_client_key(self) -> pulumi.Input[Optional[_builtins.str]]:
         """
         The client private key used to make authenticated requests. Must be in PEM format
         """
         return pulumi.get(self, "tls_client_key")
 
     @tls_client_key.setter
-    def tls_client_key(self, value: Optional[pulumi.Input[_builtins.str]]):
+    def tls_client_key(self, value: pulumi.Input[Optional[_builtins.str]]):
         pulumi.set(self, "tls_client_key", value)
 
     @_builtins.property
     @pulumi.getter(name="tlsHostname")
-    def tls_hostname(self) -> Optional[pulumi.Input[_builtins.str]]:
+    def tls_hostname(self) -> pulumi.Input[Optional[_builtins.str]]:
         """
         Used during the TLS handshake to validate the certificate
         """
         return pulumi.get(self, "tls_hostname")
 
     @tls_hostname.setter
-    def tls_hostname(self, value: Optional[pulumi.Input[_builtins.str]]):
+    def tls_hostname(self, value: pulumi.Input[Optional[_builtins.str]]):
         pulumi.set(self, "tls_hostname", value)
 
 
@@ -6013,55 +6013,55 @@ class ServiceComputeLoggingKafkaArgsDict(TypedDict):
     """
     The Kafka topic to send logs to
     """
-    auth_method: NotRequired[pulumi.Input[_builtins.str]]
+    auth_method: NotRequired[pulumi.Input[Optional[_builtins.str]]]
     """
     SASL authentication method. One of: plain, scram-sha-256, scram-sha-512
     """
-    compression_codec: NotRequired[pulumi.Input[_builtins.str]]
+    compression_codec: NotRequired[pulumi.Input[Optional[_builtins.str]]]
     """
     The codec used for compression of your logs. One of: `gzip`, `snappy`, `lz4`
     """
-    parse_log_keyvals: NotRequired[pulumi.Input[_builtins.bool]]
+    parse_log_keyvals: NotRequired[pulumi.Input[Optional[_builtins.bool]]]
     """
     Enables parsing of key=value tuples from the beginning of a logline, turning them into record headers
     """
-    password: NotRequired[pulumi.Input[_builtins.str]]
+    password: NotRequired[pulumi.Input[Optional[_builtins.str]]]
     """
     SASL Pass
     """
-    processing_region: NotRequired[pulumi.Input[_builtins.str]]
+    processing_region: NotRequired[pulumi.Input[Optional[_builtins.str]]]
     """
     Region where logs will be processed before streaming to BigQuery. Valid values are 'none', 'us' and 'eu'.
     """
-    request_max_bytes: NotRequired[pulumi.Input[_builtins.int]]
+    request_max_bytes: NotRequired[pulumi.Input[Optional[_builtins.int]]]
     """
     Maximum size of log batch, if non-zero. Defaults to 0 for unbounded
     """
-    required_acks: NotRequired[pulumi.Input[_builtins.str]]
+    required_acks: NotRequired[pulumi.Input[Optional[_builtins.str]]]
     """
     The Number of acknowledgements a leader must receive before a write is considered successful. One of: `1` (default) One server needs to respond. `0` No servers need to respond. `-1` Wait for all in-sync replicas to respond
     """
-    tls_ca_cert: NotRequired[pulumi.Input[_builtins.str]]
+    tls_ca_cert: NotRequired[pulumi.Input[Optional[_builtins.str]]]
     """
     A secure certificate to authenticate the server with. Must be in PEM format
     """
-    tls_client_cert: NotRequired[pulumi.Input[_builtins.str]]
+    tls_client_cert: NotRequired[pulumi.Input[Optional[_builtins.str]]]
     """
     The client certificate used to make authenticated requests. Must be in PEM format
     """
-    tls_client_key: NotRequired[pulumi.Input[_builtins.str]]
+    tls_client_key: NotRequired[pulumi.Input[Optional[_builtins.str]]]
     """
     The client private key used to make authenticated requests. Must be in PEM format
     """
-    tls_hostname: NotRequired[pulumi.Input[_builtins.str]]
+    tls_hostname: NotRequired[pulumi.Input[Optional[_builtins.str]]]
     """
     The hostname used to verify the server's certificate. It can either be the Common Name or a Subject Alternative Name (SAN)
     """
-    use_tls: NotRequired[pulumi.Input[_builtins.bool]]
+    use_tls: NotRequired[pulumi.Input[Optional[_builtins.bool]]]
     """
     Whether to use TLS for secure logging. Can be either `true` or `false`
     """
-    user: NotRequired[pulumi.Input[_builtins.str]]
+    user: NotRequired[pulumi.Input[Optional[_builtins.str]]]
     """
     SASL User
     """
@@ -6072,19 +6072,19 @@ class ServiceComputeLoggingKafkaArgs:
                  brokers: pulumi.Input[_builtins.str],
                  name: pulumi.Input[_builtins.str],
                  topic: pulumi.Input[_builtins.str],
-                 auth_method: Optional[pulumi.Input[_builtins.str]] = None,
-                 compression_codec: Optional[pulumi.Input[_builtins.str]] = None,
-                 parse_log_keyvals: Optional[pulumi.Input[_builtins.bool]] = None,
-                 password: Optional[pulumi.Input[_builtins.str]] = None,
-                 processing_region: Optional[pulumi.Input[_builtins.str]] = None,
-                 request_max_bytes: Optional[pulumi.Input[_builtins.int]] = None,
-                 required_acks: Optional[pulumi.Input[_builtins.str]] = None,
-                 tls_ca_cert: Optional[pulumi.Input[_builtins.str]] = None,
-                 tls_client_cert: Optional[pulumi.Input[_builtins.str]] = None,
-                 tls_client_key: Optional[pulumi.Input[_builtins.str]] = None,
-                 tls_hostname: Optional[pulumi.Input[_builtins.str]] = None,
-                 use_tls: Optional[pulumi.Input[_builtins.bool]] = None,
-                 user: Optional[pulumi.Input[_builtins.str]] = None):
+                 auth_method: pulumi.Input[Optional[_builtins.str]] = None,
+                 compression_codec: pulumi.Input[Optional[_builtins.str]] = None,
+                 parse_log_keyvals: pulumi.Input[Optional[_builtins.bool]] = None,
+                 password: pulumi.Input[Optional[_builtins.str]] = None,
+                 processing_region: pulumi.Input[Optional[_builtins.str]] = None,
+                 request_max_bytes: pulumi.Input[Optional[_builtins.int]] = None,
+                 required_acks: pulumi.Input[Optional[_builtins.str]] = None,
+                 tls_ca_cert: pulumi.Input[Optional[_builtins.str]] = None,
+                 tls_client_cert: pulumi.Input[Optional[_builtins.str]] = None,
+                 tls_client_key: pulumi.Input[Optional[_builtins.str]] = None,
+                 tls_hostname: pulumi.Input[Optional[_builtins.str]] = None,
+                 use_tls: pulumi.Input[Optional[_builtins.bool]] = None,
+                 user: pulumi.Input[Optional[_builtins.str]] = None):
         """
         :param pulumi.Input[_builtins.str] brokers: A comma-separated list of IP addresses or hostnames of Kafka brokers
         :param pulumi.Input[_builtins.str] name: The unique name of the Kafka logging endpoint. It is important to note that changing this attribute will delete and recreate the resource
@@ -6171,158 +6171,158 @@ class ServiceComputeLoggingKafkaArgs:
 
     @_builtins.property
     @pulumi.getter(name="authMethod")
-    def auth_method(self) -> Optional[pulumi.Input[_builtins.str]]:
+    def auth_method(self) -> pulumi.Input[Optional[_builtins.str]]:
         """
         SASL authentication method. One of: plain, scram-sha-256, scram-sha-512
         """
         return pulumi.get(self, "auth_method")
 
     @auth_method.setter
-    def auth_method(self, value: Optional[pulumi.Input[_builtins.str]]):
+    def auth_method(self, value: pulumi.Input[Optional[_builtins.str]]):
         pulumi.set(self, "auth_method", value)
 
     @_builtins.property
     @pulumi.getter(name="compressionCodec")
-    def compression_codec(self) -> Optional[pulumi.Input[_builtins.str]]:
+    def compression_codec(self) -> pulumi.Input[Optional[_builtins.str]]:
         """
         The codec used for compression of your logs. One of: `gzip`, `snappy`, `lz4`
         """
         return pulumi.get(self, "compression_codec")
 
     @compression_codec.setter
-    def compression_codec(self, value: Optional[pulumi.Input[_builtins.str]]):
+    def compression_codec(self, value: pulumi.Input[Optional[_builtins.str]]):
         pulumi.set(self, "compression_codec", value)
 
     @_builtins.property
     @pulumi.getter(name="parseLogKeyvals")
-    def parse_log_keyvals(self) -> Optional[pulumi.Input[_builtins.bool]]:
+    def parse_log_keyvals(self) -> pulumi.Input[Optional[_builtins.bool]]:
         """
         Enables parsing of key=value tuples from the beginning of a logline, turning them into record headers
         """
         return pulumi.get(self, "parse_log_keyvals")
 
     @parse_log_keyvals.setter
-    def parse_log_keyvals(self, value: Optional[pulumi.Input[_builtins.bool]]):
+    def parse_log_keyvals(self, value: pulumi.Input[Optional[_builtins.bool]]):
         pulumi.set(self, "parse_log_keyvals", value)
 
     @_builtins.property
     @pulumi.getter
-    def password(self) -> Optional[pulumi.Input[_builtins.str]]:
+    def password(self) -> pulumi.Input[Optional[_builtins.str]]:
         """
         SASL Pass
         """
         return pulumi.get(self, "password")
 
     @password.setter
-    def password(self, value: Optional[pulumi.Input[_builtins.str]]):
+    def password(self, value: pulumi.Input[Optional[_builtins.str]]):
         pulumi.set(self, "password", value)
 
     @_builtins.property
     @pulumi.getter(name="processingRegion")
-    def processing_region(self) -> Optional[pulumi.Input[_builtins.str]]:
+    def processing_region(self) -> pulumi.Input[Optional[_builtins.str]]:
         """
         Region where logs will be processed before streaming to BigQuery. Valid values are 'none', 'us' and 'eu'.
         """
         return pulumi.get(self, "processing_region")
 
     @processing_region.setter
-    def processing_region(self, value: Optional[pulumi.Input[_builtins.str]]):
+    def processing_region(self, value: pulumi.Input[Optional[_builtins.str]]):
         pulumi.set(self, "processing_region", value)
 
     @_builtins.property
     @pulumi.getter(name="requestMaxBytes")
-    def request_max_bytes(self) -> Optional[pulumi.Input[_builtins.int]]:
+    def request_max_bytes(self) -> pulumi.Input[Optional[_builtins.int]]:
         """
         Maximum size of log batch, if non-zero. Defaults to 0 for unbounded
         """
         return pulumi.get(self, "request_max_bytes")
 
     @request_max_bytes.setter
-    def request_max_bytes(self, value: Optional[pulumi.Input[_builtins.int]]):
+    def request_max_bytes(self, value: pulumi.Input[Optional[_builtins.int]]):
         pulumi.set(self, "request_max_bytes", value)
 
     @_builtins.property
     @pulumi.getter(name="requiredAcks")
-    def required_acks(self) -> Optional[pulumi.Input[_builtins.str]]:
+    def required_acks(self) -> pulumi.Input[Optional[_builtins.str]]:
         """
         The Number of acknowledgements a leader must receive before a write is considered successful. One of: `1` (default) One server needs to respond. `0` No servers need to respond. `-1` Wait for all in-sync replicas to respond
         """
         return pulumi.get(self, "required_acks")
 
     @required_acks.setter
-    def required_acks(self, value: Optional[pulumi.Input[_builtins.str]]):
+    def required_acks(self, value: pulumi.Input[Optional[_builtins.str]]):
         pulumi.set(self, "required_acks", value)
 
     @_builtins.property
     @pulumi.getter(name="tlsCaCert")
-    def tls_ca_cert(self) -> Optional[pulumi.Input[_builtins.str]]:
+    def tls_ca_cert(self) -> pulumi.Input[Optional[_builtins.str]]:
         """
         A secure certificate to authenticate the server with. Must be in PEM format
         """
         return pulumi.get(self, "tls_ca_cert")
 
     @tls_ca_cert.setter
-    def tls_ca_cert(self, value: Optional[pulumi.Input[_builtins.str]]):
+    def tls_ca_cert(self, value: pulumi.Input[Optional[_builtins.str]]):
         pulumi.set(self, "tls_ca_cert", value)
 
     @_builtins.property
     @pulumi.getter(name="tlsClientCert")
-    def tls_client_cert(self) -> Optional[pulumi.Input[_builtins.str]]:
+    def tls_client_cert(self) -> pulumi.Input[Optional[_builtins.str]]:
         """
         The client certificate used to make authenticated requests. Must be in PEM format
         """
         return pulumi.get(self, "tls_client_cert")
 
     @tls_client_cert.setter
-    def tls_client_cert(self, value: Optional[pulumi.Input[_builtins.str]]):
+    def tls_client_cert(self, value: pulumi.Input[Optional[_builtins.str]]):
         pulumi.set(self, "tls_client_cert", value)
 
     @_builtins.property
     @pulumi.getter(name="tlsClientKey")
-    def tls_client_key(self) -> Optional[pulumi.Input[_builtins.str]]:
+    def tls_client_key(self) -> pulumi.Input[Optional[_builtins.str]]:
         """
         The client private key used to make authenticated requests. Must be in PEM format
         """
         return pulumi.get(self, "tls_client_key")
 
     @tls_client_key.setter
-    def tls_client_key(self, value: Optional[pulumi.Input[_builtins.str]]):
+    def tls_client_key(self, value: pulumi.Input[Optional[_builtins.str]]):
         pulumi.set(self, "tls_client_key", value)
 
     @_builtins.property
     @pulumi.getter(name="tlsHostname")
-    def tls_hostname(self) -> Optional[pulumi.Input[_builtins.str]]:
+    def tls_hostname(self) -> pulumi.Input[Optional[_builtins.str]]:
         """
         The hostname used to verify the server's certificate. It can either be the Common Name or a Subject Alternative Name (SAN)
         """
         return pulumi.get(self, "tls_hostname")
 
     @tls_hostname.setter
-    def tls_hostname(self, value: Optional[pulumi.Input[_builtins.str]]):
+    def tls_hostname(self, value: pulumi.Input[Optional[_builtins.str]]):
         pulumi.set(self, "tls_hostname", value)
 
     @_builtins.property
     @pulumi.getter(name="useTls")
-    def use_tls(self) -> Optional[pulumi.Input[_builtins.bool]]:
+    def use_tls(self) -> pulumi.Input[Optional[_builtins.bool]]:
         """
         Whether to use TLS for secure logging. Can be either `true` or `false`
         """
         return pulumi.get(self, "use_tls")
 
     @use_tls.setter
-    def use_tls(self, value: Optional[pulumi.Input[_builtins.bool]]):
+    def use_tls(self, value: pulumi.Input[Optional[_builtins.bool]]):
         pulumi.set(self, "use_tls", value)
 
     @_builtins.property
     @pulumi.getter
-    def user(self) -> Optional[pulumi.Input[_builtins.str]]:
+    def user(self) -> pulumi.Input[Optional[_builtins.str]]:
         """
         SASL User
         """
         return pulumi.get(self, "user")
 
     @user.setter
-    def user(self, value: Optional[pulumi.Input[_builtins.str]]):
+    def user(self, value: pulumi.Input[Optional[_builtins.str]]):
         pulumi.set(self, "user", value)
 
 
@@ -6335,23 +6335,23 @@ class ServiceComputeLoggingKineseArgsDict(TypedDict):
     """
     The Kinesis stream name
     """
-    access_key: NotRequired[pulumi.Input[_builtins.str]]
+    access_key: NotRequired[pulumi.Input[Optional[_builtins.str]]]
     """
     The AWS access key to be used to write to the stream
     """
-    iam_role: NotRequired[pulumi.Input[_builtins.str]]
+    iam_role: NotRequired[pulumi.Input[Optional[_builtins.str]]]
     """
     The Amazon Resource Name (ARN) for the IAM role granting Fastly access to Kinesis. Not required if `access_key` and `secret_key` are provided.
     """
-    processing_region: NotRequired[pulumi.Input[_builtins.str]]
+    processing_region: NotRequired[pulumi.Input[Optional[_builtins.str]]]
     """
     Region where logs will be processed before streaming to BigQuery. Valid values are 'none', 'us' and 'eu'.
     """
-    region: NotRequired[pulumi.Input[_builtins.str]]
+    region: NotRequired[pulumi.Input[Optional[_builtins.str]]]
     """
     The AWS region the stream resides in. (Default: `us-east-1`)
     """
-    secret_key: NotRequired[pulumi.Input[_builtins.str]]
+    secret_key: NotRequired[pulumi.Input[Optional[_builtins.str]]]
     """
     The AWS secret access key to authenticate with
     """
@@ -6361,11 +6361,11 @@ class ServiceComputeLoggingKineseArgs:
     def __init__(__self__, *,
                  name: pulumi.Input[_builtins.str],
                  topic: pulumi.Input[_builtins.str],
-                 access_key: Optional[pulumi.Input[_builtins.str]] = None,
-                 iam_role: Optional[pulumi.Input[_builtins.str]] = None,
-                 processing_region: Optional[pulumi.Input[_builtins.str]] = None,
-                 region: Optional[pulumi.Input[_builtins.str]] = None,
-                 secret_key: Optional[pulumi.Input[_builtins.str]] = None):
+                 access_key: pulumi.Input[Optional[_builtins.str]] = None,
+                 iam_role: pulumi.Input[Optional[_builtins.str]] = None,
+                 processing_region: pulumi.Input[Optional[_builtins.str]] = None,
+                 region: pulumi.Input[Optional[_builtins.str]] = None,
+                 secret_key: pulumi.Input[Optional[_builtins.str]] = None):
         """
         :param pulumi.Input[_builtins.str] name: The unique name of the Kinesis logging endpoint. It is important to note that changing this attribute will delete and recreate the resource
         :param pulumi.Input[_builtins.str] topic: The Kinesis stream name
@@ -6414,62 +6414,62 @@ class ServiceComputeLoggingKineseArgs:
 
     @_builtins.property
     @pulumi.getter(name="accessKey")
-    def access_key(self) -> Optional[pulumi.Input[_builtins.str]]:
+    def access_key(self) -> pulumi.Input[Optional[_builtins.str]]:
         """
         The AWS access key to be used to write to the stream
         """
         return pulumi.get(self, "access_key")
 
     @access_key.setter
-    def access_key(self, value: Optional[pulumi.Input[_builtins.str]]):
+    def access_key(self, value: pulumi.Input[Optional[_builtins.str]]):
         pulumi.set(self, "access_key", value)
 
     @_builtins.property
     @pulumi.getter(name="iamRole")
-    def iam_role(self) -> Optional[pulumi.Input[_builtins.str]]:
+    def iam_role(self) -> pulumi.Input[Optional[_builtins.str]]:
         """
         The Amazon Resource Name (ARN) for the IAM role granting Fastly access to Kinesis. Not required if `access_key` and `secret_key` are provided.
         """
         return pulumi.get(self, "iam_role")
 
     @iam_role.setter
-    def iam_role(self, value: Optional[pulumi.Input[_builtins.str]]):
+    def iam_role(self, value: pulumi.Input[Optional[_builtins.str]]):
         pulumi.set(self, "iam_role", value)
 
     @_builtins.property
     @pulumi.getter(name="processingRegion")
-    def processing_region(self) -> Optional[pulumi.Input[_builtins.str]]:
+    def processing_region(self) -> pulumi.Input[Optional[_builtins.str]]:
         """
         Region where logs will be processed before streaming to BigQuery. Valid values are 'none', 'us' and 'eu'.
         """
         return pulumi.get(self, "processing_region")
 
     @processing_region.setter
-    def processing_region(self, value: Optional[pulumi.Input[_builtins.str]]):
+    def processing_region(self, value: pulumi.Input[Optional[_builtins.str]]):
         pulumi.set(self, "processing_region", value)
 
     @_builtins.property
     @pulumi.getter
-    def region(self) -> Optional[pulumi.Input[_builtins.str]]:
+    def region(self) -> pulumi.Input[Optional[_builtins.str]]:
         """
         The AWS region the stream resides in. (Default: `us-east-1`)
         """
         return pulumi.get(self, "region")
 
     @region.setter
-    def region(self, value: Optional[pulumi.Input[_builtins.str]]):
+    def region(self, value: pulumi.Input[Optional[_builtins.str]]):
         pulumi.set(self, "region", value)
 
     @_builtins.property
     @pulumi.getter(name="secretKey")
-    def secret_key(self) -> Optional[pulumi.Input[_builtins.str]]:
+    def secret_key(self) -> pulumi.Input[Optional[_builtins.str]]:
         """
         The AWS secret access key to authenticate with
         """
         return pulumi.get(self, "secret_key")
 
     @secret_key.setter
-    def secret_key(self, value: Optional[pulumi.Input[_builtins.str]]):
+    def secret_key(self, value: pulumi.Input[Optional[_builtins.str]]):
         pulumi.set(self, "secret_key", value)
 
 
@@ -6482,15 +6482,15 @@ class ServiceComputeLoggingLogentryArgsDict(TypedDict):
     """
     Use token based authentication (https://logentries.com/doc/input-token/)
     """
-    port: NotRequired[pulumi.Input[_builtins.int]]
+    port: NotRequired[pulumi.Input[Optional[_builtins.int]]]
     """
     The port number configured in Logentries
     """
-    processing_region: NotRequired[pulumi.Input[_builtins.str]]
+    processing_region: NotRequired[pulumi.Input[Optional[_builtins.str]]]
     """
     Region where logs will be processed before streaming to BigQuery. Valid values are 'none', 'us' and 'eu'.
     """
-    use_tls: NotRequired[pulumi.Input[_builtins.bool]]
+    use_tls: NotRequired[pulumi.Input[Optional[_builtins.bool]]]
     """
     Whether to use TLS for secure logging
     """
@@ -6500,9 +6500,9 @@ class ServiceComputeLoggingLogentryArgs:
     def __init__(__self__, *,
                  name: pulumi.Input[_builtins.str],
                  token: pulumi.Input[_builtins.str],
-                 port: Optional[pulumi.Input[_builtins.int]] = None,
-                 processing_region: Optional[pulumi.Input[_builtins.str]] = None,
-                 use_tls: Optional[pulumi.Input[_builtins.bool]] = None):
+                 port: pulumi.Input[Optional[_builtins.int]] = None,
+                 processing_region: pulumi.Input[Optional[_builtins.str]] = None,
+                 use_tls: pulumi.Input[Optional[_builtins.bool]] = None):
         """
         :param pulumi.Input[_builtins.str] name: The unique name of the Logentries logging endpoint. It is important to note that changing this attribute will delete and recreate the resource
         :param pulumi.Input[_builtins.str] token: Use token based authentication (https://logentries.com/doc/input-token/)
@@ -6545,38 +6545,38 @@ class ServiceComputeLoggingLogentryArgs:
 
     @_builtins.property
     @pulumi.getter
-    def port(self) -> Optional[pulumi.Input[_builtins.int]]:
+    def port(self) -> pulumi.Input[Optional[_builtins.int]]:
         """
         The port number configured in Logentries
         """
         return pulumi.get(self, "port")
 
     @port.setter
-    def port(self, value: Optional[pulumi.Input[_builtins.int]]):
+    def port(self, value: pulumi.Input[Optional[_builtins.int]]):
         pulumi.set(self, "port", value)
 
     @_builtins.property
     @pulumi.getter(name="processingRegion")
-    def processing_region(self) -> Optional[pulumi.Input[_builtins.str]]:
+    def processing_region(self) -> pulumi.Input[Optional[_builtins.str]]:
         """
         Region where logs will be processed before streaming to BigQuery. Valid values are 'none', 'us' and 'eu'.
         """
         return pulumi.get(self, "processing_region")
 
     @processing_region.setter
-    def processing_region(self, value: Optional[pulumi.Input[_builtins.str]]):
+    def processing_region(self, value: pulumi.Input[Optional[_builtins.str]]):
         pulumi.set(self, "processing_region", value)
 
     @_builtins.property
     @pulumi.getter(name="useTls")
-    def use_tls(self) -> Optional[pulumi.Input[_builtins.bool]]:
+    def use_tls(self) -> pulumi.Input[Optional[_builtins.bool]]:
         """
         Whether to use TLS for secure logging
         """
         return pulumi.get(self, "use_tls")
 
     @use_tls.setter
-    def use_tls(self, value: Optional[pulumi.Input[_builtins.bool]]):
+    def use_tls(self, value: pulumi.Input[Optional[_builtins.bool]]):
         pulumi.set(self, "use_tls", value)
 
 
@@ -6589,7 +6589,7 @@ class ServiceComputeLoggingLogglyArgsDict(TypedDict):
     """
     The token to use for authentication (https://www.loggly.com/docs/customer-token-authentication-token/).
     """
-    processing_region: NotRequired[pulumi.Input[_builtins.str]]
+    processing_region: NotRequired[pulumi.Input[Optional[_builtins.str]]]
     """
     Region where logs will be processed before streaming to BigQuery. Valid values are 'none', 'us' and 'eu'.
     """
@@ -6599,7 +6599,7 @@ class ServiceComputeLoggingLogglyArgs:
     def __init__(__self__, *,
                  name: pulumi.Input[_builtins.str],
                  token: pulumi.Input[_builtins.str],
-                 processing_region: Optional[pulumi.Input[_builtins.str]] = None):
+                 processing_region: pulumi.Input[Optional[_builtins.str]] = None):
         """
         :param pulumi.Input[_builtins.str] name: The unique name of the Loggly logging endpoint. It is important to note that changing this attribute will delete and recreate the resource
         :param pulumi.Input[_builtins.str] token: The token to use for authentication (https://www.loggly.com/docs/customer-token-authentication-token/).
@@ -6636,14 +6636,14 @@ class ServiceComputeLoggingLogglyArgs:
 
     @_builtins.property
     @pulumi.getter(name="processingRegion")
-    def processing_region(self) -> Optional[pulumi.Input[_builtins.str]]:
+    def processing_region(self) -> pulumi.Input[Optional[_builtins.str]]:
         """
         Region where logs will be processed before streaming to BigQuery. Valid values are 'none', 'us' and 'eu'.
         """
         return pulumi.get(self, "processing_region")
 
     @processing_region.setter
-    def processing_region(self, value: Optional[pulumi.Input[_builtins.str]]):
+    def processing_region(self, value: pulumi.Input[Optional[_builtins.str]]):
         pulumi.set(self, "processing_region", value)
 
 
@@ -6660,7 +6660,7 @@ class ServiceComputeLoggingLogshuttleArgsDict(TypedDict):
     """
     Your Log Shuttle endpoint URL
     """
-    processing_region: NotRequired[pulumi.Input[_builtins.str]]
+    processing_region: NotRequired[pulumi.Input[Optional[_builtins.str]]]
     """
     Region where logs will be processed before streaming to BigQuery. Valid values are 'none', 'us' and 'eu'.
     """
@@ -6671,7 +6671,7 @@ class ServiceComputeLoggingLogshuttleArgs:
                  name: pulumi.Input[_builtins.str],
                  token: pulumi.Input[_builtins.str],
                  url: pulumi.Input[_builtins.str],
-                 processing_region: Optional[pulumi.Input[_builtins.str]] = None):
+                 processing_region: pulumi.Input[Optional[_builtins.str]] = None):
         """
         :param pulumi.Input[_builtins.str] name: The unique name of the Log Shuttle logging endpoint. It is important to note that changing this attribute will delete and recreate the resource
         :param pulumi.Input[_builtins.str] token: The data authentication token associated with this endpoint
@@ -6722,14 +6722,14 @@ class ServiceComputeLoggingLogshuttleArgs:
 
     @_builtins.property
     @pulumi.getter(name="processingRegion")
-    def processing_region(self) -> Optional[pulumi.Input[_builtins.str]]:
+    def processing_region(self) -> pulumi.Input[Optional[_builtins.str]]:
         """
         Region where logs will be processed before streaming to BigQuery. Valid values are 'none', 'us' and 'eu'.
         """
         return pulumi.get(self, "processing_region")
 
     @processing_region.setter
-    def processing_region(self, value: Optional[pulumi.Input[_builtins.str]]):
+    def processing_region(self, value: pulumi.Input[Optional[_builtins.str]]):
         pulumi.set(self, "processing_region", value)
 
 
@@ -6742,11 +6742,11 @@ class ServiceComputeLoggingNewrelicArgsDict(TypedDict):
     """
     The Insert API key from the Account page of your New Relic account
     """
-    processing_region: NotRequired[pulumi.Input[_builtins.str]]
+    processing_region: NotRequired[pulumi.Input[Optional[_builtins.str]]]
     """
     Region where logs will be processed before streaming to BigQuery. Valid values are 'none', 'us' and 'eu'.
     """
-    region: NotRequired[pulumi.Input[_builtins.str]]
+    region: NotRequired[pulumi.Input[Optional[_builtins.str]]]
     """
     The region that log data will be sent to. Default: `US`
     """
@@ -6756,8 +6756,8 @@ class ServiceComputeLoggingNewrelicArgs:
     def __init__(__self__, *,
                  name: pulumi.Input[_builtins.str],
                  token: pulumi.Input[_builtins.str],
-                 processing_region: Optional[pulumi.Input[_builtins.str]] = None,
-                 region: Optional[pulumi.Input[_builtins.str]] = None):
+                 processing_region: pulumi.Input[Optional[_builtins.str]] = None,
+                 region: pulumi.Input[Optional[_builtins.str]] = None):
         """
         :param pulumi.Input[_builtins.str] name: The unique name of the New Relic logging endpoint. It is important to note that changing this attribute will delete and recreate the resource
         :param pulumi.Input[_builtins.str] token: The Insert API key from the Account page of your New Relic account
@@ -6797,26 +6797,26 @@ class ServiceComputeLoggingNewrelicArgs:
 
     @_builtins.property
     @pulumi.getter(name="processingRegion")
-    def processing_region(self) -> Optional[pulumi.Input[_builtins.str]]:
+    def processing_region(self) -> pulumi.Input[Optional[_builtins.str]]:
         """
         Region where logs will be processed before streaming to BigQuery. Valid values are 'none', 'us' and 'eu'.
         """
         return pulumi.get(self, "processing_region")
 
     @processing_region.setter
-    def processing_region(self, value: Optional[pulumi.Input[_builtins.str]]):
+    def processing_region(self, value: pulumi.Input[Optional[_builtins.str]]):
         pulumi.set(self, "processing_region", value)
 
     @_builtins.property
     @pulumi.getter
-    def region(self) -> Optional[pulumi.Input[_builtins.str]]:
+    def region(self) -> pulumi.Input[Optional[_builtins.str]]:
         """
         The region that log data will be sent to. Default: `US`
         """
         return pulumi.get(self, "region")
 
     @region.setter
-    def region(self, value: Optional[pulumi.Input[_builtins.str]]):
+    def region(self, value: pulumi.Input[Optional[_builtins.str]]):
         pulumi.set(self, "region", value)
 
 
@@ -6829,31 +6829,31 @@ class ServiceComputeLoggingNewrelicotlpArgsDict(TypedDict):
     """
     The Insert API key from the Account page of your New Relic account
     """
-    format: NotRequired[pulumi.Input[_builtins.str]]
+    format: NotRequired[pulumi.Input[Optional[_builtins.str]]]
     """
     Apache style log formatting. Your log must produce valid JSON that New Relic OTLP can ingest.
     """
-    format_version: NotRequired[pulumi.Input[_builtins.int]]
+    format_version: NotRequired[pulumi.Input[Optional[_builtins.int]]]
     """
     The version of the custom logging format used for the configured endpoint. Can be either `1` or `2`. (default: `2`).
     """
-    placement: NotRequired[pulumi.Input[_builtins.str]]
+    placement: NotRequired[pulumi.Input[Optional[_builtins.str]]]
     """
     Where in the generated VCL the logging call should be placed.
     """
-    processing_region: NotRequired[pulumi.Input[_builtins.str]]
+    processing_region: NotRequired[pulumi.Input[Optional[_builtins.str]]]
     """
     Region where logs will be processed before streaming to BigQuery. Valid values are 'none', 'us' and 'eu'.
     """
-    region: NotRequired[pulumi.Input[_builtins.str]]
+    region: NotRequired[pulumi.Input[Optional[_builtins.str]]]
     """
     The region that log data will be sent to. Default: `US`
     """
-    response_condition: NotRequired[pulumi.Input[_builtins.str]]
+    response_condition: NotRequired[pulumi.Input[Optional[_builtins.str]]]
     """
     The name of the condition to apply.
     """
-    url: NotRequired[pulumi.Input[_builtins.str]]
+    url: NotRequired[pulumi.Input[Optional[_builtins.str]]]
     """
     The optional New Relic Trace Observer URL to stream logs to for Infinite Tracing.
     """
@@ -6863,13 +6863,13 @@ class ServiceComputeLoggingNewrelicotlpArgs:
     def __init__(__self__, *,
                  name: pulumi.Input[_builtins.str],
                  token: pulumi.Input[_builtins.str],
-                 format: Optional[pulumi.Input[_builtins.str]] = None,
-                 format_version: Optional[pulumi.Input[_builtins.int]] = None,
-                 placement: Optional[pulumi.Input[_builtins.str]] = None,
-                 processing_region: Optional[pulumi.Input[_builtins.str]] = None,
-                 region: Optional[pulumi.Input[_builtins.str]] = None,
-                 response_condition: Optional[pulumi.Input[_builtins.str]] = None,
-                 url: Optional[pulumi.Input[_builtins.str]] = None):
+                 format: pulumi.Input[Optional[_builtins.str]] = None,
+                 format_version: pulumi.Input[Optional[_builtins.int]] = None,
+                 placement: pulumi.Input[Optional[_builtins.str]] = None,
+                 processing_region: pulumi.Input[Optional[_builtins.str]] = None,
+                 region: pulumi.Input[Optional[_builtins.str]] = None,
+                 response_condition: pulumi.Input[Optional[_builtins.str]] = None,
+                 url: pulumi.Input[Optional[_builtins.str]] = None):
         """
         :param pulumi.Input[_builtins.str] name: The unique name of the New Relic OTLP logging endpoint. It is important to note that changing this attribute will delete and recreate the resource
         :param pulumi.Input[_builtins.str] token: The Insert API key from the Account page of your New Relic account
@@ -6924,86 +6924,86 @@ class ServiceComputeLoggingNewrelicotlpArgs:
 
     @_builtins.property
     @pulumi.getter
-    def format(self) -> Optional[pulumi.Input[_builtins.str]]:
+    def format(self) -> pulumi.Input[Optional[_builtins.str]]:
         """
         Apache style log formatting. Your log must produce valid JSON that New Relic OTLP can ingest.
         """
         return pulumi.get(self, "format")
 
     @format.setter
-    def format(self, value: Optional[pulumi.Input[_builtins.str]]):
+    def format(self, value: pulumi.Input[Optional[_builtins.str]]):
         pulumi.set(self, "format", value)
 
     @_builtins.property
     @pulumi.getter(name="formatVersion")
-    def format_version(self) -> Optional[pulumi.Input[_builtins.int]]:
+    def format_version(self) -> pulumi.Input[Optional[_builtins.int]]:
         """
         The version of the custom logging format used for the configured endpoint. Can be either `1` or `2`. (default: `2`).
         """
         return pulumi.get(self, "format_version")
 
     @format_version.setter
-    def format_version(self, value: Optional[pulumi.Input[_builtins.int]]):
+    def format_version(self, value: pulumi.Input[Optional[_builtins.int]]):
         pulumi.set(self, "format_version", value)
 
     @_builtins.property
     @pulumi.getter
-    def placement(self) -> Optional[pulumi.Input[_builtins.str]]:
+    def placement(self) -> pulumi.Input[Optional[_builtins.str]]:
         """
         Where in the generated VCL the logging call should be placed.
         """
         return pulumi.get(self, "placement")
 
     @placement.setter
-    def placement(self, value: Optional[pulumi.Input[_builtins.str]]):
+    def placement(self, value: pulumi.Input[Optional[_builtins.str]]):
         pulumi.set(self, "placement", value)
 
     @_builtins.property
     @pulumi.getter(name="processingRegion")
-    def processing_region(self) -> Optional[pulumi.Input[_builtins.str]]:
+    def processing_region(self) -> pulumi.Input[Optional[_builtins.str]]:
         """
         Region where logs will be processed before streaming to BigQuery. Valid values are 'none', 'us' and 'eu'.
         """
         return pulumi.get(self, "processing_region")
 
     @processing_region.setter
-    def processing_region(self, value: Optional[pulumi.Input[_builtins.str]]):
+    def processing_region(self, value: pulumi.Input[Optional[_builtins.str]]):
         pulumi.set(self, "processing_region", value)
 
     @_builtins.property
     @pulumi.getter
-    def region(self) -> Optional[pulumi.Input[_builtins.str]]:
+    def region(self) -> pulumi.Input[Optional[_builtins.str]]:
         """
         The region that log data will be sent to. Default: `US`
         """
         return pulumi.get(self, "region")
 
     @region.setter
-    def region(self, value: Optional[pulumi.Input[_builtins.str]]):
+    def region(self, value: pulumi.Input[Optional[_builtins.str]]):
         pulumi.set(self, "region", value)
 
     @_builtins.property
     @pulumi.getter(name="responseCondition")
-    def response_condition(self) -> Optional[pulumi.Input[_builtins.str]]:
+    def response_condition(self) -> pulumi.Input[Optional[_builtins.str]]:
         """
         The name of the condition to apply.
         """
         return pulumi.get(self, "response_condition")
 
     @response_condition.setter
-    def response_condition(self, value: Optional[pulumi.Input[_builtins.str]]):
+    def response_condition(self, value: pulumi.Input[Optional[_builtins.str]]):
         pulumi.set(self, "response_condition", value)
 
     @_builtins.property
     @pulumi.getter
-    def url(self) -> Optional[pulumi.Input[_builtins.str]]:
+    def url(self) -> pulumi.Input[Optional[_builtins.str]]:
         """
         The optional New Relic Trace Observer URL to stream logs to for Infinite Tracing.
         """
         return pulumi.get(self, "url")
 
     @url.setter
-    def url(self, value: Optional[pulumi.Input[_builtins.str]]):
+    def url(self, value: pulumi.Input[Optional[_builtins.str]]):
         pulumi.set(self, "url", value)
 
 
@@ -7028,35 +7028,35 @@ class ServiceComputeLoggingOpenstackArgsDict(TypedDict):
     """
     The username for your OpenStack account
     """
-    compression_codec: NotRequired[pulumi.Input[_builtins.str]]
+    compression_codec: NotRequired[pulumi.Input[Optional[_builtins.str]]]
     """
     The codec used for compression of your logs. Valid values are zstd, snappy, and gzip. If the specified codec is "gzip", gzip_level will default to 3. To specify a different level, leave compression_codec blank and explicitly set the level using gzip_level. Specifying both compression_codec and gzip_level in the same API request will result in an error.
     """
-    gzip_level: NotRequired[pulumi.Input[_builtins.int]]
+    gzip_level: NotRequired[pulumi.Input[Optional[_builtins.int]]]
     """
     Level of Gzip compression from `0-9`. `0` means no compression. `1` is the fastest and the least compressed version, `9` is the slowest and the most compressed version. Default `0`
     """
-    message_type: NotRequired[pulumi.Input[_builtins.str]]
+    message_type: NotRequired[pulumi.Input[Optional[_builtins.str]]]
     """
     How the message should be formatted. Can be either `classic`, `loggly`, `logplex` or `blank`. Default is `classic`
     """
-    path: NotRequired[pulumi.Input[_builtins.str]]
+    path: NotRequired[pulumi.Input[Optional[_builtins.str]]]
     """
     Path to store the files. Must end with a trailing slash. If this field is left empty, the files will be saved in the bucket's root path
     """
-    period: NotRequired[pulumi.Input[_builtins.int]]
+    period: NotRequired[pulumi.Input[Optional[_builtins.int]]]
     """
     How frequently the logs should be transferred, in seconds. Default `3600`
     """
-    processing_region: NotRequired[pulumi.Input[_builtins.str]]
+    processing_region: NotRequired[pulumi.Input[Optional[_builtins.str]]]
     """
     Region where logs will be processed before streaming to BigQuery. Valid values are 'none', 'us' and 'eu'.
     """
-    public_key: NotRequired[pulumi.Input[_builtins.str]]
+    public_key: NotRequired[pulumi.Input[Optional[_builtins.str]]]
     """
     A PGP public key that Fastly will use to encrypt your log files before writing them to disk
     """
-    timestamp_format: NotRequired[pulumi.Input[_builtins.str]]
+    timestamp_format: NotRequired[pulumi.Input[Optional[_builtins.str]]]
     """
     The `strftime` specified timestamp formatting (default `%Y-%m-%dT%H:%M:%S.000`)
     """
@@ -7069,14 +7069,14 @@ class ServiceComputeLoggingOpenstackArgs:
                  name: pulumi.Input[_builtins.str],
                  url: pulumi.Input[_builtins.str],
                  user: pulumi.Input[_builtins.str],
-                 compression_codec: Optional[pulumi.Input[_builtins.str]] = None,
-                 gzip_level: Optional[pulumi.Input[_builtins.int]] = None,
-                 message_type: Optional[pulumi.Input[_builtins.str]] = None,
-                 path: Optional[pulumi.Input[_builtins.str]] = None,
-                 period: Optional[pulumi.Input[_builtins.int]] = None,
-                 processing_region: Optional[pulumi.Input[_builtins.str]] = None,
-                 public_key: Optional[pulumi.Input[_builtins.str]] = None,
-                 timestamp_format: Optional[pulumi.Input[_builtins.str]] = None):
+                 compression_codec: pulumi.Input[Optional[_builtins.str]] = None,
+                 gzip_level: pulumi.Input[Optional[_builtins.int]] = None,
+                 message_type: pulumi.Input[Optional[_builtins.str]] = None,
+                 path: pulumi.Input[Optional[_builtins.str]] = None,
+                 period: pulumi.Input[Optional[_builtins.int]] = None,
+                 processing_region: pulumi.Input[Optional[_builtins.str]] = None,
+                 public_key: pulumi.Input[Optional[_builtins.str]] = None,
+                 timestamp_format: pulumi.Input[Optional[_builtins.str]] = None):
         """
         :param pulumi.Input[_builtins.str] access_key: Your OpenStack account access key
         :param pulumi.Input[_builtins.str] bucket_name: The name of your OpenStack container
@@ -7176,98 +7176,98 @@ class ServiceComputeLoggingOpenstackArgs:
 
     @_builtins.property
     @pulumi.getter(name="compressionCodec")
-    def compression_codec(self) -> Optional[pulumi.Input[_builtins.str]]:
+    def compression_codec(self) -> pulumi.Input[Optional[_builtins.str]]:
         """
         The codec used for compression of your logs. Valid values are zstd, snappy, and gzip. If the specified codec is "gzip", gzip_level will default to 3. To specify a different level, leave compression_codec blank and explicitly set the level using gzip_level. Specifying both compression_codec and gzip_level in the same API request will result in an error.
         """
         return pulumi.get(self, "compression_codec")
 
     @compression_codec.setter
-    def compression_codec(self, value: Optional[pulumi.Input[_builtins.str]]):
+    def compression_codec(self, value: pulumi.Input[Optional[_builtins.str]]):
         pulumi.set(self, "compression_codec", value)
 
     @_builtins.property
     @pulumi.getter(name="gzipLevel")
-    def gzip_level(self) -> Optional[pulumi.Input[_builtins.int]]:
+    def gzip_level(self) -> pulumi.Input[Optional[_builtins.int]]:
         """
         Level of Gzip compression from `0-9`. `0` means no compression. `1` is the fastest and the least compressed version, `9` is the slowest and the most compressed version. Default `0`
         """
         return pulumi.get(self, "gzip_level")
 
     @gzip_level.setter
-    def gzip_level(self, value: Optional[pulumi.Input[_builtins.int]]):
+    def gzip_level(self, value: pulumi.Input[Optional[_builtins.int]]):
         pulumi.set(self, "gzip_level", value)
 
     @_builtins.property
     @pulumi.getter(name="messageType")
-    def message_type(self) -> Optional[pulumi.Input[_builtins.str]]:
+    def message_type(self) -> pulumi.Input[Optional[_builtins.str]]:
         """
         How the message should be formatted. Can be either `classic`, `loggly`, `logplex` or `blank`. Default is `classic`
         """
         return pulumi.get(self, "message_type")
 
     @message_type.setter
-    def message_type(self, value: Optional[pulumi.Input[_builtins.str]]):
+    def message_type(self, value: pulumi.Input[Optional[_builtins.str]]):
         pulumi.set(self, "message_type", value)
 
     @_builtins.property
     @pulumi.getter
-    def path(self) -> Optional[pulumi.Input[_builtins.str]]:
+    def path(self) -> pulumi.Input[Optional[_builtins.str]]:
         """
         Path to store the files. Must end with a trailing slash. If this field is left empty, the files will be saved in the bucket's root path
         """
         return pulumi.get(self, "path")
 
     @path.setter
-    def path(self, value: Optional[pulumi.Input[_builtins.str]]):
+    def path(self, value: pulumi.Input[Optional[_builtins.str]]):
         pulumi.set(self, "path", value)
 
     @_builtins.property
     @pulumi.getter
-    def period(self) -> Optional[pulumi.Input[_builtins.int]]:
+    def period(self) -> pulumi.Input[Optional[_builtins.int]]:
         """
         How frequently the logs should be transferred, in seconds. Default `3600`
         """
         return pulumi.get(self, "period")
 
     @period.setter
-    def period(self, value: Optional[pulumi.Input[_builtins.int]]):
+    def period(self, value: pulumi.Input[Optional[_builtins.int]]):
         pulumi.set(self, "period", value)
 
     @_builtins.property
     @pulumi.getter(name="processingRegion")
-    def processing_region(self) -> Optional[pulumi.Input[_builtins.str]]:
+    def processing_region(self) -> pulumi.Input[Optional[_builtins.str]]:
         """
         Region where logs will be processed before streaming to BigQuery. Valid values are 'none', 'us' and 'eu'.
         """
         return pulumi.get(self, "processing_region")
 
     @processing_region.setter
-    def processing_region(self, value: Optional[pulumi.Input[_builtins.str]]):
+    def processing_region(self, value: pulumi.Input[Optional[_builtins.str]]):
         pulumi.set(self, "processing_region", value)
 
     @_builtins.property
     @pulumi.getter(name="publicKey")
-    def public_key(self) -> Optional[pulumi.Input[_builtins.str]]:
+    def public_key(self) -> pulumi.Input[Optional[_builtins.str]]:
         """
         A PGP public key that Fastly will use to encrypt your log files before writing them to disk
         """
         return pulumi.get(self, "public_key")
 
     @public_key.setter
-    def public_key(self, value: Optional[pulumi.Input[_builtins.str]]):
+    def public_key(self, value: pulumi.Input[Optional[_builtins.str]]):
         pulumi.set(self, "public_key", value)
 
     @_builtins.property
     @pulumi.getter(name="timestampFormat")
-    def timestamp_format(self) -> Optional[pulumi.Input[_builtins.str]]:
+    def timestamp_format(self) -> pulumi.Input[Optional[_builtins.str]]:
         """
         The `strftime` specified timestamp formatting (default `%Y-%m-%dT%H:%M:%S.000`)
         """
         return pulumi.get(self, "timestamp_format")
 
     @timestamp_format.setter
-    def timestamp_format(self, value: Optional[pulumi.Input[_builtins.str]]):
+    def timestamp_format(self, value: pulumi.Input[Optional[_builtins.str]]):
         pulumi.set(self, "timestamp_format", value)
 
 
@@ -7284,7 +7284,7 @@ class ServiceComputeLoggingPapertrailArgsDict(TypedDict):
     """
     The port associated with the address where the Papertrail endpoint can be accessed
     """
-    processing_region: NotRequired[pulumi.Input[_builtins.str]]
+    processing_region: NotRequired[pulumi.Input[Optional[_builtins.str]]]
     """
     Region where logs will be processed before streaming to BigQuery. Valid values are 'none', 'us' and 'eu'.
     """
@@ -7295,7 +7295,7 @@ class ServiceComputeLoggingPapertrailArgs:
                  address: pulumi.Input[_builtins.str],
                  name: pulumi.Input[_builtins.str],
                  port: pulumi.Input[_builtins.int],
-                 processing_region: Optional[pulumi.Input[_builtins.str]] = None):
+                 processing_region: pulumi.Input[Optional[_builtins.str]] = None):
         """
         :param pulumi.Input[_builtins.str] address: The address of the Papertrail endpoint
         :param pulumi.Input[_builtins.str] name: A unique name to identify this Papertrail endpoint. It is important to note that changing this attribute will delete and recreate the resource
@@ -7346,14 +7346,14 @@ class ServiceComputeLoggingPapertrailArgs:
 
     @_builtins.property
     @pulumi.getter(name="processingRegion")
-    def processing_region(self) -> Optional[pulumi.Input[_builtins.str]]:
+    def processing_region(self) -> pulumi.Input[Optional[_builtins.str]]:
         """
         Region where logs will be processed before streaming to BigQuery. Valid values are 'none', 'us' and 'eu'.
         """
         return pulumi.get(self, "processing_region")
 
     @processing_region.setter
-    def processing_region(self, value: Optional[pulumi.Input[_builtins.str]]):
+    def processing_region(self, value: pulumi.Input[Optional[_builtins.str]]):
         pulumi.set(self, "processing_region", value)
 
 
@@ -7366,71 +7366,71 @@ class ServiceComputeLoggingS3ArgsDict(TypedDict):
     """
     The unique name of the S3 logging endpoint. It is important to note that changing this attribute will delete and recreate the resource
     """
-    acl: NotRequired[pulumi.Input[_builtins.str]]
+    acl: NotRequired[pulumi.Input[Optional[_builtins.str]]]
     """
     The AWS [Canned ACL](https://docs.aws.amazon.com/AmazonS3/latest/userguide/acl-overview.html#canned-acl) to use for objects uploaded to the S3 bucket. Options are: `private`, `public-read`, `public-read-write`, `aws-exec-read`, `authenticated-read`, `bucket-owner-read`, `bucket-owner-full-control`
     """
-    compression_codec: NotRequired[pulumi.Input[_builtins.str]]
+    compression_codec: NotRequired[pulumi.Input[Optional[_builtins.str]]]
     """
     The codec used for compression of your logs. Valid values are zstd, snappy, and gzip. If the specified codec is "gzip", gzip_level will default to 3. To specify a different level, leave compression_codec blank and explicitly set the level using gzip_level. Specifying both compression_codec and gzip_level in the same API request will result in an error.
     """
-    domain: NotRequired[pulumi.Input[_builtins.str]]
+    domain: NotRequired[pulumi.Input[Optional[_builtins.str]]]
     """
     If you created the S3 bucket outside of `us-east-1`, then specify the corresponding bucket endpoint. Example: `s3-us-west-2.amazonaws.com`
     """
-    file_max_bytes: NotRequired[pulumi.Input[_builtins.int]]
+    file_max_bytes: NotRequired[pulumi.Input[Optional[_builtins.int]]]
     """
     Maximum size of an uploaded log file, if non-zero.
     """
-    gzip_level: NotRequired[pulumi.Input[_builtins.int]]
+    gzip_level: NotRequired[pulumi.Input[Optional[_builtins.int]]]
     """
     Level of Gzip compression from `0-9`. `0` means no compression. `1` is the fastest and the least compressed version, `9` is the slowest and the most compressed version. Default `0`
     """
-    message_type: NotRequired[pulumi.Input[_builtins.str]]
+    message_type: NotRequired[pulumi.Input[Optional[_builtins.str]]]
     """
     How the message should be formatted. Can be either `classic`, `loggly`, `logplex` or `blank`. Default is `classic`
     """
-    path: NotRequired[pulumi.Input[_builtins.str]]
+    path: NotRequired[pulumi.Input[Optional[_builtins.str]]]
     """
     Path to store the files. Must end with a trailing slash. If this field is left empty, the files will be saved in the bucket's root path
     """
-    period: NotRequired[pulumi.Input[_builtins.int]]
+    period: NotRequired[pulumi.Input[Optional[_builtins.int]]]
     """
     How frequently the logs should be transferred, in seconds. Default `3600`
     """
-    processing_region: NotRequired[pulumi.Input[_builtins.str]]
+    processing_region: NotRequired[pulumi.Input[Optional[_builtins.str]]]
     """
     Region where logs will be processed before streaming to BigQuery. Valid values are 'none', 'us' and 'eu'.
     """
-    public_key: NotRequired[pulumi.Input[_builtins.str]]
+    public_key: NotRequired[pulumi.Input[Optional[_builtins.str]]]
     """
     A PGP public key that Fastly will use to encrypt your log files before writing them to disk
     """
-    redundancy: NotRequired[pulumi.Input[_builtins.str]]
+    redundancy: NotRequired[pulumi.Input[Optional[_builtins.str]]]
     """
     The S3 storage class (redundancy level). Should be one of: `standard`, `intelligent_tiering`, `standard_ia`, `onezone_ia`, `glacier`, `glacier_ir`, `deep_archive`, or `reduced_redundancy`
     """
-    s3_access_key: NotRequired[pulumi.Input[_builtins.str]]
+    s3_access_key: NotRequired[pulumi.Input[Optional[_builtins.str]]]
     """
     AWS Access Key of an account with the required permissions to post logs. It is **strongly** recommended you create a separate IAM user with permissions to only operate on this Bucket. This key will be not be encrypted. Not required if `iam_role` is provided. You can provide this key via an environment variable, `FASTLY_S3_ACCESS_KEY`
     """
-    s3_iam_role: NotRequired[pulumi.Input[_builtins.str]]
+    s3_iam_role: NotRequired[pulumi.Input[Optional[_builtins.str]]]
     """
     The Amazon Resource Name (ARN) for the IAM role granting Fastly access to S3. Not required if `access_key` and `secret_key` are provided. You can provide this value via an environment variable, `FASTLY_S3_IAM_ROLE`
     """
-    s3_secret_key: NotRequired[pulumi.Input[_builtins.str]]
+    s3_secret_key: NotRequired[pulumi.Input[Optional[_builtins.str]]]
     """
     AWS Secret Key of an account with the required permissions to post logs. It is **strongly** recommended you create a separate IAM user with permissions to only operate on this Bucket. This secret will be not be encrypted. Not required if `iam_role` is provided. You can provide this secret via an environment variable, `FASTLY_S3_SECRET_KEY`
     """
-    server_side_encryption: NotRequired[pulumi.Input[_builtins.str]]
+    server_side_encryption: NotRequired[pulumi.Input[Optional[_builtins.str]]]
     """
     Specify what type of server side encryption should be used. Can be either `AES256` or `aws:kms`
     """
-    server_side_encryption_kms_key_id: NotRequired[pulumi.Input[_builtins.str]]
+    server_side_encryption_kms_key_id: NotRequired[pulumi.Input[Optional[_builtins.str]]]
     """
     Optional server-side KMS Key Id. Must be set if server_side_encryption is set to `aws:kms`
     """
-    timestamp_format: NotRequired[pulumi.Input[_builtins.str]]
+    timestamp_format: NotRequired[pulumi.Input[Optional[_builtins.str]]]
     """
     The `strftime` specified timestamp formatting (default `%Y-%m-%dT%H:%M:%S.000`)
     """
@@ -7440,23 +7440,23 @@ class ServiceComputeLoggingS3Args:
     def __init__(__self__, *,
                  bucket_name: pulumi.Input[_builtins.str],
                  name: pulumi.Input[_builtins.str],
-                 acl: Optional[pulumi.Input[_builtins.str]] = None,
-                 compression_codec: Optional[pulumi.Input[_builtins.str]] = None,
-                 domain: Optional[pulumi.Input[_builtins.str]] = None,
-                 file_max_bytes: Optional[pulumi.Input[_builtins.int]] = None,
-                 gzip_level: Optional[pulumi.Input[_builtins.int]] = None,
-                 message_type: Optional[pulumi.Input[_builtins.str]] = None,
-                 path: Optional[pulumi.Input[_builtins.str]] = None,
-                 period: Optional[pulumi.Input[_builtins.int]] = None,
-                 processing_region: Optional[pulumi.Input[_builtins.str]] = None,
-                 public_key: Optional[pulumi.Input[_builtins.str]] = None,
-                 redundancy: Optional[pulumi.Input[_builtins.str]] = None,
-                 s3_access_key: Optional[pulumi.Input[_builtins.str]] = None,
-                 s3_iam_role: Optional[pulumi.Input[_builtins.str]] = None,
-                 s3_secret_key: Optional[pulumi.Input[_builtins.str]] = None,
-                 server_side_encryption: Optional[pulumi.Input[_builtins.str]] = None,
-                 server_side_encryption_kms_key_id: Optional[pulumi.Input[_builtins.str]] = None,
-                 timestamp_format: Optional[pulumi.Input[_builtins.str]] = None):
+                 acl: pulumi.Input[Optional[_builtins.str]] = None,
+                 compression_codec: pulumi.Input[Optional[_builtins.str]] = None,
+                 domain: pulumi.Input[Optional[_builtins.str]] = None,
+                 file_max_bytes: pulumi.Input[Optional[_builtins.int]] = None,
+                 gzip_level: pulumi.Input[Optional[_builtins.int]] = None,
+                 message_type: pulumi.Input[Optional[_builtins.str]] = None,
+                 path: pulumi.Input[Optional[_builtins.str]] = None,
+                 period: pulumi.Input[Optional[_builtins.int]] = None,
+                 processing_region: pulumi.Input[Optional[_builtins.str]] = None,
+                 public_key: pulumi.Input[Optional[_builtins.str]] = None,
+                 redundancy: pulumi.Input[Optional[_builtins.str]] = None,
+                 s3_access_key: pulumi.Input[Optional[_builtins.str]] = None,
+                 s3_iam_role: pulumi.Input[Optional[_builtins.str]] = None,
+                 s3_secret_key: pulumi.Input[Optional[_builtins.str]] = None,
+                 server_side_encryption: pulumi.Input[Optional[_builtins.str]] = None,
+                 server_side_encryption_kms_key_id: pulumi.Input[Optional[_builtins.str]] = None,
+                 timestamp_format: pulumi.Input[Optional[_builtins.str]] = None):
         """
         :param pulumi.Input[_builtins.str] bucket_name: The name of the bucket in which to store the logs
         :param pulumi.Input[_builtins.str] name: The unique name of the S3 logging endpoint. It is important to note that changing this attribute will delete and recreate the resource
@@ -7541,206 +7541,206 @@ class ServiceComputeLoggingS3Args:
 
     @_builtins.property
     @pulumi.getter
-    def acl(self) -> Optional[pulumi.Input[_builtins.str]]:
+    def acl(self) -> pulumi.Input[Optional[_builtins.str]]:
         """
         The AWS [Canned ACL](https://docs.aws.amazon.com/AmazonS3/latest/userguide/acl-overview.html#canned-acl) to use for objects uploaded to the S3 bucket. Options are: `private`, `public-read`, `public-read-write`, `aws-exec-read`, `authenticated-read`, `bucket-owner-read`, `bucket-owner-full-control`
         """
         return pulumi.get(self, "acl")
 
     @acl.setter
-    def acl(self, value: Optional[pulumi.Input[_builtins.str]]):
+    def acl(self, value: pulumi.Input[Optional[_builtins.str]]):
         pulumi.set(self, "acl", value)
 
     @_builtins.property
     @pulumi.getter(name="compressionCodec")
-    def compression_codec(self) -> Optional[pulumi.Input[_builtins.str]]:
+    def compression_codec(self) -> pulumi.Input[Optional[_builtins.str]]:
         """
         The codec used for compression of your logs. Valid values are zstd, snappy, and gzip. If the specified codec is "gzip", gzip_level will default to 3. To specify a different level, leave compression_codec blank and explicitly set the level using gzip_level. Specifying both compression_codec and gzip_level in the same API request will result in an error.
         """
         return pulumi.get(self, "compression_codec")
 
     @compression_codec.setter
-    def compression_codec(self, value: Optional[pulumi.Input[_builtins.str]]):
+    def compression_codec(self, value: pulumi.Input[Optional[_builtins.str]]):
         pulumi.set(self, "compression_codec", value)
 
     @_builtins.property
     @pulumi.getter
-    def domain(self) -> Optional[pulumi.Input[_builtins.str]]:
+    def domain(self) -> pulumi.Input[Optional[_builtins.str]]:
         """
         If you created the S3 bucket outside of `us-east-1`, then specify the corresponding bucket endpoint. Example: `s3-us-west-2.amazonaws.com`
         """
         return pulumi.get(self, "domain")
 
     @domain.setter
-    def domain(self, value: Optional[pulumi.Input[_builtins.str]]):
+    def domain(self, value: pulumi.Input[Optional[_builtins.str]]):
         pulumi.set(self, "domain", value)
 
     @_builtins.property
     @pulumi.getter(name="fileMaxBytes")
-    def file_max_bytes(self) -> Optional[pulumi.Input[_builtins.int]]:
+    def file_max_bytes(self) -> pulumi.Input[Optional[_builtins.int]]:
         """
         Maximum size of an uploaded log file, if non-zero.
         """
         return pulumi.get(self, "file_max_bytes")
 
     @file_max_bytes.setter
-    def file_max_bytes(self, value: Optional[pulumi.Input[_builtins.int]]):
+    def file_max_bytes(self, value: pulumi.Input[Optional[_builtins.int]]):
         pulumi.set(self, "file_max_bytes", value)
 
     @_builtins.property
     @pulumi.getter(name="gzipLevel")
-    def gzip_level(self) -> Optional[pulumi.Input[_builtins.int]]:
+    def gzip_level(self) -> pulumi.Input[Optional[_builtins.int]]:
         """
         Level of Gzip compression from `0-9`. `0` means no compression. `1` is the fastest and the least compressed version, `9` is the slowest and the most compressed version. Default `0`
         """
         return pulumi.get(self, "gzip_level")
 
     @gzip_level.setter
-    def gzip_level(self, value: Optional[pulumi.Input[_builtins.int]]):
+    def gzip_level(self, value: pulumi.Input[Optional[_builtins.int]]):
         pulumi.set(self, "gzip_level", value)
 
     @_builtins.property
     @pulumi.getter(name="messageType")
-    def message_type(self) -> Optional[pulumi.Input[_builtins.str]]:
+    def message_type(self) -> pulumi.Input[Optional[_builtins.str]]:
         """
         How the message should be formatted. Can be either `classic`, `loggly`, `logplex` or `blank`. Default is `classic`
         """
         return pulumi.get(self, "message_type")
 
     @message_type.setter
-    def message_type(self, value: Optional[pulumi.Input[_builtins.str]]):
+    def message_type(self, value: pulumi.Input[Optional[_builtins.str]]):
         pulumi.set(self, "message_type", value)
 
     @_builtins.property
     @pulumi.getter
-    def path(self) -> Optional[pulumi.Input[_builtins.str]]:
+    def path(self) -> pulumi.Input[Optional[_builtins.str]]:
         """
         Path to store the files. Must end with a trailing slash. If this field is left empty, the files will be saved in the bucket's root path
         """
         return pulumi.get(self, "path")
 
     @path.setter
-    def path(self, value: Optional[pulumi.Input[_builtins.str]]):
+    def path(self, value: pulumi.Input[Optional[_builtins.str]]):
         pulumi.set(self, "path", value)
 
     @_builtins.property
     @pulumi.getter
-    def period(self) -> Optional[pulumi.Input[_builtins.int]]:
+    def period(self) -> pulumi.Input[Optional[_builtins.int]]:
         """
         How frequently the logs should be transferred, in seconds. Default `3600`
         """
         return pulumi.get(self, "period")
 
     @period.setter
-    def period(self, value: Optional[pulumi.Input[_builtins.int]]):
+    def period(self, value: pulumi.Input[Optional[_builtins.int]]):
         pulumi.set(self, "period", value)
 
     @_builtins.property
     @pulumi.getter(name="processingRegion")
-    def processing_region(self) -> Optional[pulumi.Input[_builtins.str]]:
+    def processing_region(self) -> pulumi.Input[Optional[_builtins.str]]:
         """
         Region where logs will be processed before streaming to BigQuery. Valid values are 'none', 'us' and 'eu'.
         """
         return pulumi.get(self, "processing_region")
 
     @processing_region.setter
-    def processing_region(self, value: Optional[pulumi.Input[_builtins.str]]):
+    def processing_region(self, value: pulumi.Input[Optional[_builtins.str]]):
         pulumi.set(self, "processing_region", value)
 
     @_builtins.property
     @pulumi.getter(name="publicKey")
-    def public_key(self) -> Optional[pulumi.Input[_builtins.str]]:
+    def public_key(self) -> pulumi.Input[Optional[_builtins.str]]:
         """
         A PGP public key that Fastly will use to encrypt your log files before writing them to disk
         """
         return pulumi.get(self, "public_key")
 
     @public_key.setter
-    def public_key(self, value: Optional[pulumi.Input[_builtins.str]]):
+    def public_key(self, value: pulumi.Input[Optional[_builtins.str]]):
         pulumi.set(self, "public_key", value)
 
     @_builtins.property
     @pulumi.getter
-    def redundancy(self) -> Optional[pulumi.Input[_builtins.str]]:
+    def redundancy(self) -> pulumi.Input[Optional[_builtins.str]]:
         """
         The S3 storage class (redundancy level). Should be one of: `standard`, `intelligent_tiering`, `standard_ia`, `onezone_ia`, `glacier`, `glacier_ir`, `deep_archive`, or `reduced_redundancy`
         """
         return pulumi.get(self, "redundancy")
 
     @redundancy.setter
-    def redundancy(self, value: Optional[pulumi.Input[_builtins.str]]):
+    def redundancy(self, value: pulumi.Input[Optional[_builtins.str]]):
         pulumi.set(self, "redundancy", value)
 
     @_builtins.property
     @pulumi.getter(name="s3AccessKey")
-    def s3_access_key(self) -> Optional[pulumi.Input[_builtins.str]]:
+    def s3_access_key(self) -> pulumi.Input[Optional[_builtins.str]]:
         """
         AWS Access Key of an account with the required permissions to post logs. It is **strongly** recommended you create a separate IAM user with permissions to only operate on this Bucket. This key will be not be encrypted. Not required if `iam_role` is provided. You can provide this key via an environment variable, `FASTLY_S3_ACCESS_KEY`
         """
         return pulumi.get(self, "s3_access_key")
 
     @s3_access_key.setter
-    def s3_access_key(self, value: Optional[pulumi.Input[_builtins.str]]):
+    def s3_access_key(self, value: pulumi.Input[Optional[_builtins.str]]):
         pulumi.set(self, "s3_access_key", value)
 
     @_builtins.property
     @pulumi.getter(name="s3IamRole")
-    def s3_iam_role(self) -> Optional[pulumi.Input[_builtins.str]]:
+    def s3_iam_role(self) -> pulumi.Input[Optional[_builtins.str]]:
         """
         The Amazon Resource Name (ARN) for the IAM role granting Fastly access to S3. Not required if `access_key` and `secret_key` are provided. You can provide this value via an environment variable, `FASTLY_S3_IAM_ROLE`
         """
         return pulumi.get(self, "s3_iam_role")
 
     @s3_iam_role.setter
-    def s3_iam_role(self, value: Optional[pulumi.Input[_builtins.str]]):
+    def s3_iam_role(self, value: pulumi.Input[Optional[_builtins.str]]):
         pulumi.set(self, "s3_iam_role", value)
 
     @_builtins.property
     @pulumi.getter(name="s3SecretKey")
-    def s3_secret_key(self) -> Optional[pulumi.Input[_builtins.str]]:
+    def s3_secret_key(self) -> pulumi.Input[Optional[_builtins.str]]:
         """
         AWS Secret Key of an account with the required permissions to post logs. It is **strongly** recommended you create a separate IAM user with permissions to only operate on this Bucket. This secret will be not be encrypted. Not required if `iam_role` is provided. You can provide this secret via an environment variable, `FASTLY_S3_SECRET_KEY`
         """
         return pulumi.get(self, "s3_secret_key")
 
     @s3_secret_key.setter
-    def s3_secret_key(self, value: Optional[pulumi.Input[_builtins.str]]):
+    def s3_secret_key(self, value: pulumi.Input[Optional[_builtins.str]]):
         pulumi.set(self, "s3_secret_key", value)
 
     @_builtins.property
     @pulumi.getter(name="serverSideEncryption")
-    def server_side_encryption(self) -> Optional[pulumi.Input[_builtins.str]]:
+    def server_side_encryption(self) -> pulumi.Input[Optional[_builtins.str]]:
         """
         Specify what type of server side encryption should be used. Can be either `AES256` or `aws:kms`
         """
         return pulumi.get(self, "server_side_encryption")
 
     @server_side_encryption.setter
-    def server_side_encryption(self, value: Optional[pulumi.Input[_builtins.str]]):
+    def server_side_encryption(self, value: pulumi.Input[Optional[_builtins.str]]):
         pulumi.set(self, "server_side_encryption", value)
 
     @_builtins.property
     @pulumi.getter(name="serverSideEncryptionKmsKeyId")
-    def server_side_encryption_kms_key_id(self) -> Optional[pulumi.Input[_builtins.str]]:
+    def server_side_encryption_kms_key_id(self) -> pulumi.Input[Optional[_builtins.str]]:
         """
         Optional server-side KMS Key Id. Must be set if server_side_encryption is set to `aws:kms`
         """
         return pulumi.get(self, "server_side_encryption_kms_key_id")
 
     @server_side_encryption_kms_key_id.setter
-    def server_side_encryption_kms_key_id(self, value: Optional[pulumi.Input[_builtins.str]]):
+    def server_side_encryption_kms_key_id(self, value: pulumi.Input[Optional[_builtins.str]]):
         pulumi.set(self, "server_side_encryption_kms_key_id", value)
 
     @_builtins.property
     @pulumi.getter(name="timestampFormat")
-    def timestamp_format(self) -> Optional[pulumi.Input[_builtins.str]]:
+    def timestamp_format(self) -> pulumi.Input[Optional[_builtins.str]]:
         """
         The `strftime` specified timestamp formatting (default `%Y-%m-%dT%H:%M:%S.000`)
         """
         return pulumi.get(self, "timestamp_format")
 
     @timestamp_format.setter
-    def timestamp_format(self, value: Optional[pulumi.Input[_builtins.str]]):
+    def timestamp_format(self, value: pulumi.Input[Optional[_builtins.str]]):
         pulumi.set(self, "timestamp_format", value)
 
 
@@ -7753,15 +7753,15 @@ class ServiceComputeLoggingScalyrArgsDict(TypedDict):
     """
     The token to use for authentication (https://www.scalyr.com/keys)
     """
-    processing_region: NotRequired[pulumi.Input[_builtins.str]]
+    processing_region: NotRequired[pulumi.Input[Optional[_builtins.str]]]
     """
     Region where logs will be processed before streaming to BigQuery. Valid values are 'none', 'us' and 'eu'.
     """
-    project_id: NotRequired[pulumi.Input[_builtins.str]]
+    project_id: NotRequired[pulumi.Input[Optional[_builtins.str]]]
     """
     The name of the logfile field sent to Scalyr
     """
-    region: NotRequired[pulumi.Input[_builtins.str]]
+    region: NotRequired[pulumi.Input[Optional[_builtins.str]]]
     """
     The region that log data will be sent to. One of `US` or `EU`. Defaults to `US` if undefined
     """
@@ -7771,9 +7771,9 @@ class ServiceComputeLoggingScalyrArgs:
     def __init__(__self__, *,
                  name: pulumi.Input[_builtins.str],
                  token: pulumi.Input[_builtins.str],
-                 processing_region: Optional[pulumi.Input[_builtins.str]] = None,
-                 project_id: Optional[pulumi.Input[_builtins.str]] = None,
-                 region: Optional[pulumi.Input[_builtins.str]] = None):
+                 processing_region: pulumi.Input[Optional[_builtins.str]] = None,
+                 project_id: pulumi.Input[Optional[_builtins.str]] = None,
+                 region: pulumi.Input[Optional[_builtins.str]] = None):
         """
         :param pulumi.Input[_builtins.str] name: The unique name of the Scalyr logging endpoint. It is important to note that changing this attribute will delete and recreate the resource
         :param pulumi.Input[_builtins.str] token: The token to use for authentication (https://www.scalyr.com/keys)
@@ -7816,38 +7816,38 @@ class ServiceComputeLoggingScalyrArgs:
 
     @_builtins.property
     @pulumi.getter(name="processingRegion")
-    def processing_region(self) -> Optional[pulumi.Input[_builtins.str]]:
+    def processing_region(self) -> pulumi.Input[Optional[_builtins.str]]:
         """
         Region where logs will be processed before streaming to BigQuery. Valid values are 'none', 'us' and 'eu'.
         """
         return pulumi.get(self, "processing_region")
 
     @processing_region.setter
-    def processing_region(self, value: Optional[pulumi.Input[_builtins.str]]):
+    def processing_region(self, value: pulumi.Input[Optional[_builtins.str]]):
         pulumi.set(self, "processing_region", value)
 
     @_builtins.property
     @pulumi.getter(name="projectId")
-    def project_id(self) -> Optional[pulumi.Input[_builtins.str]]:
+    def project_id(self) -> pulumi.Input[Optional[_builtins.str]]:
         """
         The name of the logfile field sent to Scalyr
         """
         return pulumi.get(self, "project_id")
 
     @project_id.setter
-    def project_id(self, value: Optional[pulumi.Input[_builtins.str]]):
+    def project_id(self, value: pulumi.Input[Optional[_builtins.str]]):
         pulumi.set(self, "project_id", value)
 
     @_builtins.property
     @pulumi.getter
-    def region(self) -> Optional[pulumi.Input[_builtins.str]]:
+    def region(self) -> pulumi.Input[Optional[_builtins.str]]:
         """
         The region that log data will be sent to. One of `US` or `EU`. Defaults to `US` if undefined
         """
         return pulumi.get(self, "region")
 
     @region.setter
-    def region(self, value: Optional[pulumi.Input[_builtins.str]]):
+    def region(self, value: pulumi.Input[Optional[_builtins.str]]):
         pulumi.set(self, "region", value)
 
 
@@ -7872,43 +7872,43 @@ class ServiceComputeLoggingSftpArgsDict(TypedDict):
     """
     The username for the server
     """
-    compression_codec: NotRequired[pulumi.Input[_builtins.str]]
+    compression_codec: NotRequired[pulumi.Input[Optional[_builtins.str]]]
     """
     The codec used for compression of your logs. Valid values are zstd, snappy, and gzip. If the specified codec is "gzip", gzip_level will default to 3. To specify a different level, leave compression_codec blank and explicitly set the level using gzip_level. Specifying both compression_codec and gzip_level in the same API request will result in an error.
     """
-    gzip_level: NotRequired[pulumi.Input[_builtins.int]]
+    gzip_level: NotRequired[pulumi.Input[Optional[_builtins.int]]]
     """
     Level of Gzip compression from `0-9`. `0` means no compression. `1` is the fastest and the least compressed version, `9` is the slowest and the most compressed version. Default `0`
     """
-    message_type: NotRequired[pulumi.Input[_builtins.str]]
+    message_type: NotRequired[pulumi.Input[Optional[_builtins.str]]]
     """
     How the message should be formatted. Can be either `classic`, `loggly`, `logplex` or `blank`. Default is `classic`
     """
-    password: NotRequired[pulumi.Input[_builtins.str]]
+    password: NotRequired[pulumi.Input[Optional[_builtins.str]]]
     """
     The password for the server. If both `password` and `secret_key` are passed, `secret_key` will be preferred
     """
-    period: NotRequired[pulumi.Input[_builtins.int]]
+    period: NotRequired[pulumi.Input[Optional[_builtins.int]]]
     """
     How frequently log files are finalized so they can be available for reading (in seconds, default `3600`)
     """
-    port: NotRequired[pulumi.Input[_builtins.int]]
+    port: NotRequired[pulumi.Input[Optional[_builtins.int]]]
     """
     The port the SFTP service listens on. (Default: `22`)
     """
-    processing_region: NotRequired[pulumi.Input[_builtins.str]]
+    processing_region: NotRequired[pulumi.Input[Optional[_builtins.str]]]
     """
     Region where logs will be processed before streaming to BigQuery. Valid values are 'none', 'us' and 'eu'.
     """
-    public_key: NotRequired[pulumi.Input[_builtins.str]]
+    public_key: NotRequired[pulumi.Input[Optional[_builtins.str]]]
     """
     A PGP public key that Fastly will use to encrypt your log files before writing them to disk
     """
-    secret_key: NotRequired[pulumi.Input[_builtins.str]]
+    secret_key: NotRequired[pulumi.Input[Optional[_builtins.str]]]
     """
     The SSH private key for the server. If both `password` and `secret_key` are passed, `secret_key` will be preferred
     """
-    timestamp_format: NotRequired[pulumi.Input[_builtins.str]]
+    timestamp_format: NotRequired[pulumi.Input[Optional[_builtins.str]]]
     """
     The `strftime` specified timestamp formatting (default `%Y-%m-%dT%H:%M:%S.000`)
     """
@@ -7921,16 +7921,16 @@ class ServiceComputeLoggingSftpArgs:
                  path: pulumi.Input[_builtins.str],
                  ssh_known_hosts: pulumi.Input[_builtins.str],
                  user: pulumi.Input[_builtins.str],
-                 compression_codec: Optional[pulumi.Input[_builtins.str]] = None,
-                 gzip_level: Optional[pulumi.Input[_builtins.int]] = None,
-                 message_type: Optional[pulumi.Input[_builtins.str]] = None,
-                 password: Optional[pulumi.Input[_builtins.str]] = None,
-                 period: Optional[pulumi.Input[_builtins.int]] = None,
-                 port: Optional[pulumi.Input[_builtins.int]] = None,
-                 processing_region: Optional[pulumi.Input[_builtins.str]] = None,
-                 public_key: Optional[pulumi.Input[_builtins.str]] = None,
-                 secret_key: Optional[pulumi.Input[_builtins.str]] = None,
-                 timestamp_format: Optional[pulumi.Input[_builtins.str]] = None):
+                 compression_codec: pulumi.Input[Optional[_builtins.str]] = None,
+                 gzip_level: pulumi.Input[Optional[_builtins.int]] = None,
+                 message_type: pulumi.Input[Optional[_builtins.str]] = None,
+                 password: pulumi.Input[Optional[_builtins.str]] = None,
+                 period: pulumi.Input[Optional[_builtins.int]] = None,
+                 port: pulumi.Input[Optional[_builtins.int]] = None,
+                 processing_region: pulumi.Input[Optional[_builtins.str]] = None,
+                 public_key: pulumi.Input[Optional[_builtins.str]] = None,
+                 secret_key: pulumi.Input[Optional[_builtins.str]] = None,
+                 timestamp_format: pulumi.Input[Optional[_builtins.str]] = None):
         """
         :param pulumi.Input[_builtins.str] address: The SFTP address to stream logs to
         :param pulumi.Input[_builtins.str] name: The unique name of the SFTP logging endpoint. It is important to note that changing this attribute will delete and recreate the resource
@@ -8036,122 +8036,122 @@ class ServiceComputeLoggingSftpArgs:
 
     @_builtins.property
     @pulumi.getter(name="compressionCodec")
-    def compression_codec(self) -> Optional[pulumi.Input[_builtins.str]]:
+    def compression_codec(self) -> pulumi.Input[Optional[_builtins.str]]:
         """
         The codec used for compression of your logs. Valid values are zstd, snappy, and gzip. If the specified codec is "gzip", gzip_level will default to 3. To specify a different level, leave compression_codec blank and explicitly set the level using gzip_level. Specifying both compression_codec and gzip_level in the same API request will result in an error.
         """
         return pulumi.get(self, "compression_codec")
 
     @compression_codec.setter
-    def compression_codec(self, value: Optional[pulumi.Input[_builtins.str]]):
+    def compression_codec(self, value: pulumi.Input[Optional[_builtins.str]]):
         pulumi.set(self, "compression_codec", value)
 
     @_builtins.property
     @pulumi.getter(name="gzipLevel")
-    def gzip_level(self) -> Optional[pulumi.Input[_builtins.int]]:
+    def gzip_level(self) -> pulumi.Input[Optional[_builtins.int]]:
         """
         Level of Gzip compression from `0-9`. `0` means no compression. `1` is the fastest and the least compressed version, `9` is the slowest and the most compressed version. Default `0`
         """
         return pulumi.get(self, "gzip_level")
 
     @gzip_level.setter
-    def gzip_level(self, value: Optional[pulumi.Input[_builtins.int]]):
+    def gzip_level(self, value: pulumi.Input[Optional[_builtins.int]]):
         pulumi.set(self, "gzip_level", value)
 
     @_builtins.property
     @pulumi.getter(name="messageType")
-    def message_type(self) -> Optional[pulumi.Input[_builtins.str]]:
+    def message_type(self) -> pulumi.Input[Optional[_builtins.str]]:
         """
         How the message should be formatted. Can be either `classic`, `loggly`, `logplex` or `blank`. Default is `classic`
         """
         return pulumi.get(self, "message_type")
 
     @message_type.setter
-    def message_type(self, value: Optional[pulumi.Input[_builtins.str]]):
+    def message_type(self, value: pulumi.Input[Optional[_builtins.str]]):
         pulumi.set(self, "message_type", value)
 
     @_builtins.property
     @pulumi.getter
-    def password(self) -> Optional[pulumi.Input[_builtins.str]]:
+    def password(self) -> pulumi.Input[Optional[_builtins.str]]:
         """
         The password for the server. If both `password` and `secret_key` are passed, `secret_key` will be preferred
         """
         return pulumi.get(self, "password")
 
     @password.setter
-    def password(self, value: Optional[pulumi.Input[_builtins.str]]):
+    def password(self, value: pulumi.Input[Optional[_builtins.str]]):
         pulumi.set(self, "password", value)
 
     @_builtins.property
     @pulumi.getter
-    def period(self) -> Optional[pulumi.Input[_builtins.int]]:
+    def period(self) -> pulumi.Input[Optional[_builtins.int]]:
         """
         How frequently log files are finalized so they can be available for reading (in seconds, default `3600`)
         """
         return pulumi.get(self, "period")
 
     @period.setter
-    def period(self, value: Optional[pulumi.Input[_builtins.int]]):
+    def period(self, value: pulumi.Input[Optional[_builtins.int]]):
         pulumi.set(self, "period", value)
 
     @_builtins.property
     @pulumi.getter
-    def port(self) -> Optional[pulumi.Input[_builtins.int]]:
+    def port(self) -> pulumi.Input[Optional[_builtins.int]]:
         """
         The port the SFTP service listens on. (Default: `22`)
         """
         return pulumi.get(self, "port")
 
     @port.setter
-    def port(self, value: Optional[pulumi.Input[_builtins.int]]):
+    def port(self, value: pulumi.Input[Optional[_builtins.int]]):
         pulumi.set(self, "port", value)
 
     @_builtins.property
     @pulumi.getter(name="processingRegion")
-    def processing_region(self) -> Optional[pulumi.Input[_builtins.str]]:
+    def processing_region(self) -> pulumi.Input[Optional[_builtins.str]]:
         """
         Region where logs will be processed before streaming to BigQuery. Valid values are 'none', 'us' and 'eu'.
         """
         return pulumi.get(self, "processing_region")
 
     @processing_region.setter
-    def processing_region(self, value: Optional[pulumi.Input[_builtins.str]]):
+    def processing_region(self, value: pulumi.Input[Optional[_builtins.str]]):
         pulumi.set(self, "processing_region", value)
 
     @_builtins.property
     @pulumi.getter(name="publicKey")
-    def public_key(self) -> Optional[pulumi.Input[_builtins.str]]:
+    def public_key(self) -> pulumi.Input[Optional[_builtins.str]]:
         """
         A PGP public key that Fastly will use to encrypt your log files before writing them to disk
         """
         return pulumi.get(self, "public_key")
 
     @public_key.setter
-    def public_key(self, value: Optional[pulumi.Input[_builtins.str]]):
+    def public_key(self, value: pulumi.Input[Optional[_builtins.str]]):
         pulumi.set(self, "public_key", value)
 
     @_builtins.property
     @pulumi.getter(name="secretKey")
-    def secret_key(self) -> Optional[pulumi.Input[_builtins.str]]:
+    def secret_key(self) -> pulumi.Input[Optional[_builtins.str]]:
         """
         The SSH private key for the server. If both `password` and `secret_key` are passed, `secret_key` will be preferred
         """
         return pulumi.get(self, "secret_key")
 
     @secret_key.setter
-    def secret_key(self, value: Optional[pulumi.Input[_builtins.str]]):
+    def secret_key(self, value: pulumi.Input[Optional[_builtins.str]]):
         pulumi.set(self, "secret_key", value)
 
     @_builtins.property
     @pulumi.getter(name="timestampFormat")
-    def timestamp_format(self) -> Optional[pulumi.Input[_builtins.str]]:
+    def timestamp_format(self) -> pulumi.Input[Optional[_builtins.str]]:
         """
         The `strftime` specified timestamp formatting (default `%Y-%m-%dT%H:%M:%S.000`)
         """
         return pulumi.get(self, "timestamp_format")
 
     @timestamp_format.setter
-    def timestamp_format(self, value: Optional[pulumi.Input[_builtins.str]]):
+    def timestamp_format(self, value: pulumi.Input[Optional[_builtins.str]]):
         pulumi.set(self, "timestamp_format", value)
 
 
@@ -8168,27 +8168,27 @@ class ServiceComputeLoggingSplunkArgsDict(TypedDict):
     """
     The Splunk URL to stream logs to
     """
-    processing_region: NotRequired[pulumi.Input[_builtins.str]]
+    processing_region: NotRequired[pulumi.Input[Optional[_builtins.str]]]
     """
     Region where logs will be processed before streaming to BigQuery. Valid values are 'none', 'us' and 'eu'.
     """
-    tls_ca_cert: NotRequired[pulumi.Input[_builtins.str]]
+    tls_ca_cert: NotRequired[pulumi.Input[Optional[_builtins.str]]]
     """
     A secure certificate to authenticate the server with. Must be in PEM format. You can provide this certificate via an environment variable, `FASTLY_SPLUNK_CA_CERT`
     """
-    tls_client_cert: NotRequired[pulumi.Input[_builtins.str]]
+    tls_client_cert: NotRequired[pulumi.Input[Optional[_builtins.str]]]
     """
     The client certificate used to make authenticated requests. Must be in PEM format.
     """
-    tls_client_key: NotRequired[pulumi.Input[_builtins.str]]
+    tls_client_key: NotRequired[pulumi.Input[Optional[_builtins.str]]]
     """
     The client private key used to make authenticated requests. Must be in PEM format.
     """
-    tls_hostname: NotRequired[pulumi.Input[_builtins.str]]
+    tls_hostname: NotRequired[pulumi.Input[Optional[_builtins.str]]]
     """
     The hostname used to verify the server's certificate. It can either be the Common Name or a Subject Alternative Name (SAN)
     """
-    use_tls: NotRequired[pulumi.Input[_builtins.bool]]
+    use_tls: NotRequired[pulumi.Input[Optional[_builtins.bool]]]
     """
     Whether to use TLS for secure logging. Default: `false`
     """
@@ -8199,12 +8199,12 @@ class ServiceComputeLoggingSplunkArgs:
                  name: pulumi.Input[_builtins.str],
                  token: pulumi.Input[_builtins.str],
                  url: pulumi.Input[_builtins.str],
-                 processing_region: Optional[pulumi.Input[_builtins.str]] = None,
-                 tls_ca_cert: Optional[pulumi.Input[_builtins.str]] = None,
-                 tls_client_cert: Optional[pulumi.Input[_builtins.str]] = None,
-                 tls_client_key: Optional[pulumi.Input[_builtins.str]] = None,
-                 tls_hostname: Optional[pulumi.Input[_builtins.str]] = None,
-                 use_tls: Optional[pulumi.Input[_builtins.bool]] = None):
+                 processing_region: pulumi.Input[Optional[_builtins.str]] = None,
+                 tls_ca_cert: pulumi.Input[Optional[_builtins.str]] = None,
+                 tls_client_cert: pulumi.Input[Optional[_builtins.str]] = None,
+                 tls_client_key: pulumi.Input[Optional[_builtins.str]] = None,
+                 tls_hostname: pulumi.Input[Optional[_builtins.str]] = None,
+                 use_tls: pulumi.Input[Optional[_builtins.bool]] = None):
         """
         :param pulumi.Input[_builtins.str] name: A unique name to identify the Splunk endpoint. It is important to note that changing this attribute will delete and recreate the resource
         :param pulumi.Input[_builtins.str] token: The Splunk token to be used for authentication
@@ -8270,74 +8270,74 @@ class ServiceComputeLoggingSplunkArgs:
 
     @_builtins.property
     @pulumi.getter(name="processingRegion")
-    def processing_region(self) -> Optional[pulumi.Input[_builtins.str]]:
+    def processing_region(self) -> pulumi.Input[Optional[_builtins.str]]:
         """
         Region where logs will be processed before streaming to BigQuery. Valid values are 'none', 'us' and 'eu'.
         """
         return pulumi.get(self, "processing_region")
 
     @processing_region.setter
-    def processing_region(self, value: Optional[pulumi.Input[_builtins.str]]):
+    def processing_region(self, value: pulumi.Input[Optional[_builtins.str]]):
         pulumi.set(self, "processing_region", value)
 
     @_builtins.property
     @pulumi.getter(name="tlsCaCert")
-    def tls_ca_cert(self) -> Optional[pulumi.Input[_builtins.str]]:
+    def tls_ca_cert(self) -> pulumi.Input[Optional[_builtins.str]]:
         """
         A secure certificate to authenticate the server with. Must be in PEM format. You can provide this certificate via an environment variable, `FASTLY_SPLUNK_CA_CERT`
         """
         return pulumi.get(self, "tls_ca_cert")
 
     @tls_ca_cert.setter
-    def tls_ca_cert(self, value: Optional[pulumi.Input[_builtins.str]]):
+    def tls_ca_cert(self, value: pulumi.Input[Optional[_builtins.str]]):
         pulumi.set(self, "tls_ca_cert", value)
 
     @_builtins.property
     @pulumi.getter(name="tlsClientCert")
-    def tls_client_cert(self) -> Optional[pulumi.Input[_builtins.str]]:
+    def tls_client_cert(self) -> pulumi.Input[Optional[_builtins.str]]:
         """
         The client certificate used to make authenticated requests. Must be in PEM format.
         """
         return pulumi.get(self, "tls_client_cert")
 
     @tls_client_cert.setter
-    def tls_client_cert(self, value: Optional[pulumi.Input[_builtins.str]]):
+    def tls_client_cert(self, value: pulumi.Input[Optional[_builtins.str]]):
         pulumi.set(self, "tls_client_cert", value)
 
     @_builtins.property
     @pulumi.getter(name="tlsClientKey")
-    def tls_client_key(self) -> Optional[pulumi.Input[_builtins.str]]:
+    def tls_client_key(self) -> pulumi.Input[Optional[_builtins.str]]:
         """
         The client private key used to make authenticated requests. Must be in PEM format.
         """
         return pulumi.get(self, "tls_client_key")
 
     @tls_client_key.setter
-    def tls_client_key(self, value: Optional[pulumi.Input[_builtins.str]]):
+    def tls_client_key(self, value: pulumi.Input[Optional[_builtins.str]]):
         pulumi.set(self, "tls_client_key", value)
 
     @_builtins.property
     @pulumi.getter(name="tlsHostname")
-    def tls_hostname(self) -> Optional[pulumi.Input[_builtins.str]]:
+    def tls_hostname(self) -> pulumi.Input[Optional[_builtins.str]]:
         """
         The hostname used to verify the server's certificate. It can either be the Common Name or a Subject Alternative Name (SAN)
         """
         return pulumi.get(self, "tls_hostname")
 
     @tls_hostname.setter
-    def tls_hostname(self, value: Optional[pulumi.Input[_builtins.str]]):
+    def tls_hostname(self, value: pulumi.Input[Optional[_builtins.str]]):
         pulumi.set(self, "tls_hostname", value)
 
     @_builtins.property
     @pulumi.getter(name="useTls")
-    def use_tls(self) -> Optional[pulumi.Input[_builtins.bool]]:
+    def use_tls(self) -> pulumi.Input[Optional[_builtins.bool]]:
         """
         Whether to use TLS for secure logging. Default: `false`
         """
         return pulumi.get(self, "use_tls")
 
     @use_tls.setter
-    def use_tls(self, value: Optional[pulumi.Input[_builtins.bool]]):
+    def use_tls(self, value: pulumi.Input[Optional[_builtins.bool]]):
         pulumi.set(self, "use_tls", value)
 
 
@@ -8350,11 +8350,11 @@ class ServiceComputeLoggingSumologicArgsDict(TypedDict):
     """
     The URL to Sumologic collector endpoint
     """
-    message_type: NotRequired[pulumi.Input[_builtins.str]]
+    message_type: NotRequired[pulumi.Input[Optional[_builtins.str]]]
     """
     How the message should be formatted. Can be either `classic`, `loggly`, `logplex` or `blank`. Default is `classic`
     """
-    processing_region: NotRequired[pulumi.Input[_builtins.str]]
+    processing_region: NotRequired[pulumi.Input[Optional[_builtins.str]]]
     """
     Region where logs will be processed before streaming to BigQuery. Valid values are 'none', 'us' and 'eu'.
     """
@@ -8364,8 +8364,8 @@ class ServiceComputeLoggingSumologicArgs:
     def __init__(__self__, *,
                  name: pulumi.Input[_builtins.str],
                  url: pulumi.Input[_builtins.str],
-                 message_type: Optional[pulumi.Input[_builtins.str]] = None,
-                 processing_region: Optional[pulumi.Input[_builtins.str]] = None):
+                 message_type: pulumi.Input[Optional[_builtins.str]] = None,
+                 processing_region: pulumi.Input[Optional[_builtins.str]] = None):
         """
         :param pulumi.Input[_builtins.str] name: A unique name to identify this Sumologic endpoint. It is important to note that changing this attribute will delete and recreate the resource
         :param pulumi.Input[_builtins.str] url: The URL to Sumologic collector endpoint
@@ -8405,26 +8405,26 @@ class ServiceComputeLoggingSumologicArgs:
 
     @_builtins.property
     @pulumi.getter(name="messageType")
-    def message_type(self) -> Optional[pulumi.Input[_builtins.str]]:
+    def message_type(self) -> pulumi.Input[Optional[_builtins.str]]:
         """
         How the message should be formatted. Can be either `classic`, `loggly`, `logplex` or `blank`. Default is `classic`
         """
         return pulumi.get(self, "message_type")
 
     @message_type.setter
-    def message_type(self, value: Optional[pulumi.Input[_builtins.str]]):
+    def message_type(self, value: pulumi.Input[Optional[_builtins.str]]):
         pulumi.set(self, "message_type", value)
 
     @_builtins.property
     @pulumi.getter(name="processingRegion")
-    def processing_region(self) -> Optional[pulumi.Input[_builtins.str]]:
+    def processing_region(self) -> pulumi.Input[Optional[_builtins.str]]:
         """
         Region where logs will be processed before streaming to BigQuery. Valid values are 'none', 'us' and 'eu'.
         """
         return pulumi.get(self, "processing_region")
 
     @processing_region.setter
-    def processing_region(self, value: Optional[pulumi.Input[_builtins.str]]):
+    def processing_region(self, value: pulumi.Input[Optional[_builtins.str]]):
         pulumi.set(self, "processing_region", value)
 
 
@@ -8437,39 +8437,39 @@ class ServiceComputeLoggingSyslogArgsDict(TypedDict):
     """
     A unique name to identify this Syslog endpoint. It is important to note that changing this attribute will delete and recreate the resource
     """
-    message_type: NotRequired[pulumi.Input[_builtins.str]]
+    message_type: NotRequired[pulumi.Input[Optional[_builtins.str]]]
     """
     How the message should be formatted. Can be either `classic`, `loggly`, `logplex` or `blank`. Default is `classic`
     """
-    port: NotRequired[pulumi.Input[_builtins.int]]
+    port: NotRequired[pulumi.Input[Optional[_builtins.int]]]
     """
     The port associated with the address where the Syslog endpoint can be accessed. Default `514`
     """
-    processing_region: NotRequired[pulumi.Input[_builtins.str]]
+    processing_region: NotRequired[pulumi.Input[Optional[_builtins.str]]]
     """
     Region where logs will be processed before streaming to BigQuery. Valid values are 'none', 'us' and 'eu'.
     """
-    tls_ca_cert: NotRequired[pulumi.Input[_builtins.str]]
+    tls_ca_cert: NotRequired[pulumi.Input[Optional[_builtins.str]]]
     """
     A secure certificate to authenticate the server with. Must be in PEM format. You can provide this certificate via an environment variable, `FASTLY_SYSLOG_CA_CERT`
     """
-    tls_client_cert: NotRequired[pulumi.Input[_builtins.str]]
+    tls_client_cert: NotRequired[pulumi.Input[Optional[_builtins.str]]]
     """
     The client certificate used to make authenticated requests. Must be in PEM format. You can provide this certificate via an environment variable, `FASTLY_SYSLOG_CLIENT_CERT`
     """
-    tls_client_key: NotRequired[pulumi.Input[_builtins.str]]
+    tls_client_key: NotRequired[pulumi.Input[Optional[_builtins.str]]]
     """
     The client private key used to make authenticated requests. Must be in PEM format. You can provide this key via an environment variable, `FASTLY_SYSLOG_CLIENT_KEY`
     """
-    tls_hostname: NotRequired[pulumi.Input[_builtins.str]]
+    tls_hostname: NotRequired[pulumi.Input[Optional[_builtins.str]]]
     """
     Used during the TLS handshake to validate the certificate
     """
-    token: NotRequired[pulumi.Input[_builtins.str]]
+    token: NotRequired[pulumi.Input[Optional[_builtins.str]]]
     """
     Whether to prepend each message with a specific token
     """
-    use_tls: NotRequired[pulumi.Input[_builtins.bool]]
+    use_tls: NotRequired[pulumi.Input[Optional[_builtins.bool]]]
     """
     Whether to use TLS for secure logging. Default `false`
     """
@@ -8479,15 +8479,15 @@ class ServiceComputeLoggingSyslogArgs:
     def __init__(__self__, *,
                  address: pulumi.Input[_builtins.str],
                  name: pulumi.Input[_builtins.str],
-                 message_type: Optional[pulumi.Input[_builtins.str]] = None,
-                 port: Optional[pulumi.Input[_builtins.int]] = None,
-                 processing_region: Optional[pulumi.Input[_builtins.str]] = None,
-                 tls_ca_cert: Optional[pulumi.Input[_builtins.str]] = None,
-                 tls_client_cert: Optional[pulumi.Input[_builtins.str]] = None,
-                 tls_client_key: Optional[pulumi.Input[_builtins.str]] = None,
-                 tls_hostname: Optional[pulumi.Input[_builtins.str]] = None,
-                 token: Optional[pulumi.Input[_builtins.str]] = None,
-                 use_tls: Optional[pulumi.Input[_builtins.bool]] = None):
+                 message_type: pulumi.Input[Optional[_builtins.str]] = None,
+                 port: pulumi.Input[Optional[_builtins.int]] = None,
+                 processing_region: pulumi.Input[Optional[_builtins.str]] = None,
+                 tls_ca_cert: pulumi.Input[Optional[_builtins.str]] = None,
+                 tls_client_cert: pulumi.Input[Optional[_builtins.str]] = None,
+                 tls_client_key: pulumi.Input[Optional[_builtins.str]] = None,
+                 tls_hostname: pulumi.Input[Optional[_builtins.str]] = None,
+                 token: pulumi.Input[Optional[_builtins.str]] = None,
+                 use_tls: pulumi.Input[Optional[_builtins.bool]] = None):
         """
         :param pulumi.Input[_builtins.str] address: A hostname or IPv4 address of the Syslog endpoint
         :param pulumi.Input[_builtins.str] name: A unique name to identify this Syslog endpoint. It is important to note that changing this attribute will delete and recreate the resource
@@ -8548,123 +8548,123 @@ class ServiceComputeLoggingSyslogArgs:
 
     @_builtins.property
     @pulumi.getter(name="messageType")
-    def message_type(self) -> Optional[pulumi.Input[_builtins.str]]:
+    def message_type(self) -> pulumi.Input[Optional[_builtins.str]]:
         """
         How the message should be formatted. Can be either `classic`, `loggly`, `logplex` or `blank`. Default is `classic`
         """
         return pulumi.get(self, "message_type")
 
     @message_type.setter
-    def message_type(self, value: Optional[pulumi.Input[_builtins.str]]):
+    def message_type(self, value: pulumi.Input[Optional[_builtins.str]]):
         pulumi.set(self, "message_type", value)
 
     @_builtins.property
     @pulumi.getter
-    def port(self) -> Optional[pulumi.Input[_builtins.int]]:
+    def port(self) -> pulumi.Input[Optional[_builtins.int]]:
         """
         The port associated with the address where the Syslog endpoint can be accessed. Default `514`
         """
         return pulumi.get(self, "port")
 
     @port.setter
-    def port(self, value: Optional[pulumi.Input[_builtins.int]]):
+    def port(self, value: pulumi.Input[Optional[_builtins.int]]):
         pulumi.set(self, "port", value)
 
     @_builtins.property
     @pulumi.getter(name="processingRegion")
-    def processing_region(self) -> Optional[pulumi.Input[_builtins.str]]:
+    def processing_region(self) -> pulumi.Input[Optional[_builtins.str]]:
         """
         Region where logs will be processed before streaming to BigQuery. Valid values are 'none', 'us' and 'eu'.
         """
         return pulumi.get(self, "processing_region")
 
     @processing_region.setter
-    def processing_region(self, value: Optional[pulumi.Input[_builtins.str]]):
+    def processing_region(self, value: pulumi.Input[Optional[_builtins.str]]):
         pulumi.set(self, "processing_region", value)
 
     @_builtins.property
     @pulumi.getter(name="tlsCaCert")
-    def tls_ca_cert(self) -> Optional[pulumi.Input[_builtins.str]]:
+    def tls_ca_cert(self) -> pulumi.Input[Optional[_builtins.str]]:
         """
         A secure certificate to authenticate the server with. Must be in PEM format. You can provide this certificate via an environment variable, `FASTLY_SYSLOG_CA_CERT`
         """
         return pulumi.get(self, "tls_ca_cert")
 
     @tls_ca_cert.setter
-    def tls_ca_cert(self, value: Optional[pulumi.Input[_builtins.str]]):
+    def tls_ca_cert(self, value: pulumi.Input[Optional[_builtins.str]]):
         pulumi.set(self, "tls_ca_cert", value)
 
     @_builtins.property
     @pulumi.getter(name="tlsClientCert")
-    def tls_client_cert(self) -> Optional[pulumi.Input[_builtins.str]]:
+    def tls_client_cert(self) -> pulumi.Input[Optional[_builtins.str]]:
         """
         The client certificate used to make authenticated requests. Must be in PEM format. You can provide this certificate via an environment variable, `FASTLY_SYSLOG_CLIENT_CERT`
         """
         return pulumi.get(self, "tls_client_cert")
 
     @tls_client_cert.setter
-    def tls_client_cert(self, value: Optional[pulumi.Input[_builtins.str]]):
+    def tls_client_cert(self, value: pulumi.Input[Optional[_builtins.str]]):
         pulumi.set(self, "tls_client_cert", value)
 
     @_builtins.property
     @pulumi.getter(name="tlsClientKey")
-    def tls_client_key(self) -> Optional[pulumi.Input[_builtins.str]]:
+    def tls_client_key(self) -> pulumi.Input[Optional[_builtins.str]]:
         """
         The client private key used to make authenticated requests. Must be in PEM format. You can provide this key via an environment variable, `FASTLY_SYSLOG_CLIENT_KEY`
         """
         return pulumi.get(self, "tls_client_key")
 
     @tls_client_key.setter
-    def tls_client_key(self, value: Optional[pulumi.Input[_builtins.str]]):
+    def tls_client_key(self, value: pulumi.Input[Optional[_builtins.str]]):
         pulumi.set(self, "tls_client_key", value)
 
     @_builtins.property
     @pulumi.getter(name="tlsHostname")
-    def tls_hostname(self) -> Optional[pulumi.Input[_builtins.str]]:
+    def tls_hostname(self) -> pulumi.Input[Optional[_builtins.str]]:
         """
         Used during the TLS handshake to validate the certificate
         """
         return pulumi.get(self, "tls_hostname")
 
     @tls_hostname.setter
-    def tls_hostname(self, value: Optional[pulumi.Input[_builtins.str]]):
+    def tls_hostname(self, value: pulumi.Input[Optional[_builtins.str]]):
         pulumi.set(self, "tls_hostname", value)
 
     @_builtins.property
     @pulumi.getter
-    def token(self) -> Optional[pulumi.Input[_builtins.str]]:
+    def token(self) -> pulumi.Input[Optional[_builtins.str]]:
         """
         Whether to prepend each message with a specific token
         """
         return pulumi.get(self, "token")
 
     @token.setter
-    def token(self, value: Optional[pulumi.Input[_builtins.str]]):
+    def token(self, value: pulumi.Input[Optional[_builtins.str]]):
         pulumi.set(self, "token", value)
 
     @_builtins.property
     @pulumi.getter(name="useTls")
-    def use_tls(self) -> Optional[pulumi.Input[_builtins.bool]]:
+    def use_tls(self) -> pulumi.Input[Optional[_builtins.bool]]:
         """
         Whether to use TLS for secure logging. Default `false`
         """
         return pulumi.get(self, "use_tls")
 
     @use_tls.setter
-    def use_tls(self, value: Optional[pulumi.Input[_builtins.bool]]):
+    def use_tls(self, value: pulumi.Input[Optional[_builtins.bool]]):
         pulumi.set(self, "use_tls", value)
 
 
 class ServiceComputePackageArgsDict(TypedDict):
-    content: NotRequired[pulumi.Input[_builtins.str]]
+    content: NotRequired[pulumi.Input[Optional[_builtins.str]]]
     """
     The contents of the Wasm deployment package as a base64 encoded string (e.g. could be provided using an input variable or via external data source output variable). Conflicts with `filename`. Exactly one of these two arguments must be specified
     """
-    filename: NotRequired[pulumi.Input[_builtins.str]]
+    filename: NotRequired[pulumi.Input[Optional[_builtins.str]]]
     """
     The path to the Wasm deployment package within your local filesystem. Conflicts with `content`. Exactly one of these two arguments must be specified
     """
-    source_code_hash: NotRequired[pulumi.Input[_builtins.str]]
+    source_code_hash: NotRequired[pulumi.Input[Optional[_builtins.str]]]
     """
     Used to trigger updates. Must be set to a SHA512 hash of all files (in sorted order) within the package. The usual way to set this is using the get_package_hash data source.
     """
@@ -8672,9 +8672,9 @@ class ServiceComputePackageArgsDict(TypedDict):
 @pulumi.input_type
 class ServiceComputePackageArgs:
     def __init__(__self__, *,
-                 content: Optional[pulumi.Input[_builtins.str]] = None,
-                 filename: Optional[pulumi.Input[_builtins.str]] = None,
-                 source_code_hash: Optional[pulumi.Input[_builtins.str]] = None):
+                 content: pulumi.Input[Optional[_builtins.str]] = None,
+                 filename: pulumi.Input[Optional[_builtins.str]] = None,
+                 source_code_hash: pulumi.Input[Optional[_builtins.str]] = None):
         """
         :param pulumi.Input[_builtins.str] content: The contents of the Wasm deployment package as a base64 encoded string (e.g. could be provided using an input variable or via external data source output variable). Conflicts with `filename`. Exactly one of these two arguments must be specified
         :param pulumi.Input[_builtins.str] filename: The path to the Wasm deployment package within your local filesystem. Conflicts with `content`. Exactly one of these two arguments must be specified
@@ -8689,71 +8689,71 @@ class ServiceComputePackageArgs:
 
     @_builtins.property
     @pulumi.getter
-    def content(self) -> Optional[pulumi.Input[_builtins.str]]:
+    def content(self) -> pulumi.Input[Optional[_builtins.str]]:
         """
         The contents of the Wasm deployment package as a base64 encoded string (e.g. could be provided using an input variable or via external data source output variable). Conflicts with `filename`. Exactly one of these two arguments must be specified
         """
         return pulumi.get(self, "content")
 
     @content.setter
-    def content(self, value: Optional[pulumi.Input[_builtins.str]]):
+    def content(self, value: pulumi.Input[Optional[_builtins.str]]):
         pulumi.set(self, "content", value)
 
     @_builtins.property
     @pulumi.getter
-    def filename(self) -> Optional[pulumi.Input[_builtins.str]]:
+    def filename(self) -> pulumi.Input[Optional[_builtins.str]]:
         """
         The path to the Wasm deployment package within your local filesystem. Conflicts with `content`. Exactly one of these two arguments must be specified
         """
         return pulumi.get(self, "filename")
 
     @filename.setter
-    def filename(self, value: Optional[pulumi.Input[_builtins.str]]):
+    def filename(self, value: pulumi.Input[Optional[_builtins.str]]):
         pulumi.set(self, "filename", value)
 
     @_builtins.property
     @pulumi.getter(name="sourceCodeHash")
-    def source_code_hash(self) -> Optional[pulumi.Input[_builtins.str]]:
+    def source_code_hash(self) -> pulumi.Input[Optional[_builtins.str]]:
         """
         Used to trigger updates. Must be set to a SHA512 hash of all files (in sorted order) within the package. The usual way to set this is using the get_package_hash data source.
         """
         return pulumi.get(self, "source_code_hash")
 
     @source_code_hash.setter
-    def source_code_hash(self, value: Optional[pulumi.Input[_builtins.str]]):
+    def source_code_hash(self, value: pulumi.Input[Optional[_builtins.str]]):
         pulumi.set(self, "source_code_hash", value)
 
 
 class ServiceComputeProductEnablementArgsDict(TypedDict):
-    api_discovery: NotRequired[pulumi.Input[_builtins.bool]]
+    api_discovery: NotRequired[pulumi.Input[Optional[_builtins.bool]]]
     """
     Enable API Discovery support
     """
-    ddos_protection: NotRequired[pulumi.Input['ServiceComputeProductEnablementDdosProtectionArgsDict']]
+    ddos_protection: NotRequired[pulumi.Input[Optional['ServiceComputeProductEnablementDdosProtectionArgs']]]
     """
     DDoS Protection product
     """
-    domain_inspector: NotRequired[pulumi.Input[_builtins.bool]]
+    domain_inspector: NotRequired[pulumi.Input[Optional[_builtins.bool]]]
     """
     Enable Domain Inspector support
     """
-    fanout: NotRequired[pulumi.Input[_builtins.bool]]
+    fanout: NotRequired[pulumi.Input[Optional[_builtins.bool]]]
     """
     Enable Fanout support
     """
-    log_explorer_insights: NotRequired[pulumi.Input[_builtins.bool]]
+    log_explorer_insights: NotRequired[pulumi.Input[Optional[_builtins.bool]]]
     """
     Enable Log Explorer & Insights
     """
-    name: NotRequired[pulumi.Input[_builtins.str]]
+    name: NotRequired[pulumi.Input[Optional[_builtins.str]]]
     """
     Used by the provider to identify modified settings (changing this value will force the entire block to be deleted, then recreated)
     """
-    ngwaf: NotRequired[pulumi.Input['ServiceComputeProductEnablementNgwafArgsDict']]
+    ngwaf: NotRequired[pulumi.Input[Optional['ServiceComputeProductEnablementNgwafArgs']]]
     """
     Next-Gen WAF product
     """
-    websockets: NotRequired[pulumi.Input[_builtins.bool]]
+    websockets: NotRequired[pulumi.Input[Optional[_builtins.bool]]]
     """
     Enable WebSockets support
     """
@@ -8761,14 +8761,14 @@ class ServiceComputeProductEnablementArgsDict(TypedDict):
 @pulumi.input_type
 class ServiceComputeProductEnablementArgs:
     def __init__(__self__, *,
-                 api_discovery: Optional[pulumi.Input[_builtins.bool]] = None,
-                 ddos_protection: Optional[pulumi.Input['ServiceComputeProductEnablementDdosProtectionArgs']] = None,
-                 domain_inspector: Optional[pulumi.Input[_builtins.bool]] = None,
-                 fanout: Optional[pulumi.Input[_builtins.bool]] = None,
-                 log_explorer_insights: Optional[pulumi.Input[_builtins.bool]] = None,
-                 name: Optional[pulumi.Input[_builtins.str]] = None,
-                 ngwaf: Optional[pulumi.Input['ServiceComputeProductEnablementNgwafArgs']] = None,
-                 websockets: Optional[pulumi.Input[_builtins.bool]] = None):
+                 api_discovery: pulumi.Input[Optional[_builtins.bool]] = None,
+                 ddos_protection: pulumi.Input[Optional['ServiceComputeProductEnablementDdosProtectionArgs']] = None,
+                 domain_inspector: pulumi.Input[Optional[_builtins.bool]] = None,
+                 fanout: pulumi.Input[Optional[_builtins.bool]] = None,
+                 log_explorer_insights: pulumi.Input[Optional[_builtins.bool]] = None,
+                 name: pulumi.Input[Optional[_builtins.str]] = None,
+                 ngwaf: pulumi.Input[Optional['ServiceComputeProductEnablementNgwafArgs']] = None,
+                 websockets: pulumi.Input[Optional[_builtins.bool]] = None):
         """
         :param pulumi.Input[_builtins.bool] api_discovery: Enable API Discovery support
         :param pulumi.Input['ServiceComputeProductEnablementDdosProtectionArgs'] ddos_protection: DDoS Protection product
@@ -8798,98 +8798,98 @@ class ServiceComputeProductEnablementArgs:
 
     @_builtins.property
     @pulumi.getter(name="apiDiscovery")
-    def api_discovery(self) -> Optional[pulumi.Input[_builtins.bool]]:
+    def api_discovery(self) -> pulumi.Input[Optional[_builtins.bool]]:
         """
         Enable API Discovery support
         """
         return pulumi.get(self, "api_discovery")
 
     @api_discovery.setter
-    def api_discovery(self, value: Optional[pulumi.Input[_builtins.bool]]):
+    def api_discovery(self, value: pulumi.Input[Optional[_builtins.bool]]):
         pulumi.set(self, "api_discovery", value)
 
     @_builtins.property
     @pulumi.getter(name="ddosProtection")
-    def ddos_protection(self) -> Optional[pulumi.Input['ServiceComputeProductEnablementDdosProtectionArgs']]:
+    def ddos_protection(self) -> pulumi.Input[Optional['ServiceComputeProductEnablementDdosProtectionArgs']]:
         """
         DDoS Protection product
         """
         return pulumi.get(self, "ddos_protection")
 
     @ddos_protection.setter
-    def ddos_protection(self, value: Optional[pulumi.Input['ServiceComputeProductEnablementDdosProtectionArgs']]):
+    def ddos_protection(self, value: pulumi.Input[Optional['ServiceComputeProductEnablementDdosProtectionArgs']]):
         pulumi.set(self, "ddos_protection", value)
 
     @_builtins.property
     @pulumi.getter(name="domainInspector")
-    def domain_inspector(self) -> Optional[pulumi.Input[_builtins.bool]]:
+    def domain_inspector(self) -> pulumi.Input[Optional[_builtins.bool]]:
         """
         Enable Domain Inspector support
         """
         return pulumi.get(self, "domain_inspector")
 
     @domain_inspector.setter
-    def domain_inspector(self, value: Optional[pulumi.Input[_builtins.bool]]):
+    def domain_inspector(self, value: pulumi.Input[Optional[_builtins.bool]]):
         pulumi.set(self, "domain_inspector", value)
 
     @_builtins.property
     @pulumi.getter
-    def fanout(self) -> Optional[pulumi.Input[_builtins.bool]]:
+    def fanout(self) -> pulumi.Input[Optional[_builtins.bool]]:
         """
         Enable Fanout support
         """
         return pulumi.get(self, "fanout")
 
     @fanout.setter
-    def fanout(self, value: Optional[pulumi.Input[_builtins.bool]]):
+    def fanout(self, value: pulumi.Input[Optional[_builtins.bool]]):
         pulumi.set(self, "fanout", value)
 
     @_builtins.property
     @pulumi.getter(name="logExplorerInsights")
-    def log_explorer_insights(self) -> Optional[pulumi.Input[_builtins.bool]]:
+    def log_explorer_insights(self) -> pulumi.Input[Optional[_builtins.bool]]:
         """
         Enable Log Explorer & Insights
         """
         return pulumi.get(self, "log_explorer_insights")
 
     @log_explorer_insights.setter
-    def log_explorer_insights(self, value: Optional[pulumi.Input[_builtins.bool]]):
+    def log_explorer_insights(self, value: pulumi.Input[Optional[_builtins.bool]]):
         pulumi.set(self, "log_explorer_insights", value)
 
     @_builtins.property
     @pulumi.getter
-    def name(self) -> Optional[pulumi.Input[_builtins.str]]:
+    def name(self) -> pulumi.Input[Optional[_builtins.str]]:
         """
         Used by the provider to identify modified settings (changing this value will force the entire block to be deleted, then recreated)
         """
         return pulumi.get(self, "name")
 
     @name.setter
-    def name(self, value: Optional[pulumi.Input[_builtins.str]]):
+    def name(self, value: pulumi.Input[Optional[_builtins.str]]):
         pulumi.set(self, "name", value)
 
     @_builtins.property
     @pulumi.getter
-    def ngwaf(self) -> Optional[pulumi.Input['ServiceComputeProductEnablementNgwafArgs']]:
+    def ngwaf(self) -> pulumi.Input[Optional['ServiceComputeProductEnablementNgwafArgs']]:
         """
         Next-Gen WAF product
         """
         return pulumi.get(self, "ngwaf")
 
     @ngwaf.setter
-    def ngwaf(self, value: Optional[pulumi.Input['ServiceComputeProductEnablementNgwafArgs']]):
+    def ngwaf(self, value: pulumi.Input[Optional['ServiceComputeProductEnablementNgwafArgs']]):
         pulumi.set(self, "ngwaf", value)
 
     @_builtins.property
     @pulumi.getter
-    def websockets(self) -> Optional[pulumi.Input[_builtins.bool]]:
+    def websockets(self) -> pulumi.Input[Optional[_builtins.bool]]:
         """
         Enable WebSockets support
         """
         return pulumi.get(self, "websockets")
 
     @websockets.setter
-    def websockets(self, value: Optional[pulumi.Input[_builtins.bool]]):
+    def websockets(self, value: pulumi.Input[Optional[_builtins.bool]]):
         pulumi.set(self, "websockets", value)
 
 
@@ -8949,7 +8949,7 @@ class ServiceComputeProductEnablementNgwafArgsDict(TypedDict):
     """
     The workspace to link
     """
-    traffic_ramp: NotRequired[pulumi.Input[_builtins.int]]
+    traffic_ramp: NotRequired[pulumi.Input[Optional[_builtins.int]]]
     """
     The percentage of traffic to inspect
     """
@@ -8959,7 +8959,7 @@ class ServiceComputeProductEnablementNgwafArgs:
     def __init__(__self__, *,
                  enabled: pulumi.Input[_builtins.bool],
                  workspace_id: pulumi.Input[_builtins.str],
-                 traffic_ramp: Optional[pulumi.Input[_builtins.int]] = None):
+                 traffic_ramp: pulumi.Input[Optional[_builtins.int]] = None):
         """
         :param pulumi.Input[_builtins.bool] enabled: Enable Next-Gen WAF support
         :param pulumi.Input[_builtins.str] workspace_id: The workspace to link
@@ -8996,14 +8996,14 @@ class ServiceComputeProductEnablementNgwafArgs:
 
     @_builtins.property
     @pulumi.getter(name="trafficRamp")
-    def traffic_ramp(self) -> Optional[pulumi.Input[_builtins.int]]:
+    def traffic_ramp(self) -> pulumi.Input[Optional[_builtins.int]]:
         """
         The percentage of traffic to inspect
         """
         return pulumi.get(self, "traffic_ramp")
 
     @traffic_ramp.setter
-    def traffic_ramp(self, value: Optional[pulumi.Input[_builtins.int]]):
+    def traffic_ramp(self, value: pulumi.Input[Optional[_builtins.int]]):
         pulumi.set(self, "traffic_ramp", value)
 
 
@@ -9016,7 +9016,7 @@ class ServiceComputeResourceLinkArgsDict(TypedDict):
     """
     The ID of the underlying linked resource.
     """
-    link_id: NotRequired[pulumi.Input[_builtins.str]]
+    link_id: NotRequired[pulumi.Input[Optional[_builtins.str]]]
     """
     An alphanumeric string identifying the resource link.
     """
@@ -9026,7 +9026,7 @@ class ServiceComputeResourceLinkArgs:
     def __init__(__self__, *,
                  name: pulumi.Input[_builtins.str],
                  resource_id: pulumi.Input[_builtins.str],
-                 link_id: Optional[pulumi.Input[_builtins.str]] = None):
+                 link_id: pulumi.Input[Optional[_builtins.str]] = None):
         """
         :param pulumi.Input[_builtins.str] name: The name of the resource link.
         :param pulumi.Input[_builtins.str] resource_id: The ID of the underlying linked resource.
@@ -9063,14 +9063,14 @@ class ServiceComputeResourceLinkArgs:
 
     @_builtins.property
     @pulumi.getter(name="linkId")
-    def link_id(self) -> Optional[pulumi.Input[_builtins.str]]:
+    def link_id(self) -> pulumi.Input[Optional[_builtins.str]]:
         """
         An alphanumeric string identifying the resource link.
         """
         return pulumi.get(self, "link_id")
 
     @link_id.setter
-    def link_id(self, value: Optional[pulumi.Input[_builtins.str]]):
+    def link_id(self, value: pulumi.Input[Optional[_builtins.str]]):
         pulumi.set(self, "link_id", value)
 
 
@@ -9079,11 +9079,11 @@ class ServiceVclAclArgsDict(TypedDict):
     """
     A unique name to identify this ACL. It is important to note that changing this attribute will delete and recreate the ACL, and discard the current items in the ACL
     """
-    acl_id: NotRequired[pulumi.Input[_builtins.str]]
+    acl_id: NotRequired[pulumi.Input[Optional[_builtins.str]]]
     """
     The ID of the ACL
     """
-    force_destroy: NotRequired[pulumi.Input[_builtins.bool]]
+    force_destroy: NotRequired[pulumi.Input[Optional[_builtins.bool]]]
     """
     Allow the ACL to be deleted, even if it contains entries. Defaults to false.
     """
@@ -9092,8 +9092,8 @@ class ServiceVclAclArgsDict(TypedDict):
 class ServiceVclAclArgs:
     def __init__(__self__, *,
                  name: pulumi.Input[_builtins.str],
-                 acl_id: Optional[pulumi.Input[_builtins.str]] = None,
-                 force_destroy: Optional[pulumi.Input[_builtins.bool]] = None):
+                 acl_id: pulumi.Input[Optional[_builtins.str]] = None,
+                 force_destroy: pulumi.Input[Optional[_builtins.bool]] = None):
         """
         :param pulumi.Input[_builtins.str] name: A unique name to identify this ACL. It is important to note that changing this attribute will delete and recreate the ACL, and discard the current items in the ACL
         :param pulumi.Input[_builtins.str] acl_id: The ID of the ACL
@@ -9119,26 +9119,26 @@ class ServiceVclAclArgs:
 
     @_builtins.property
     @pulumi.getter(name="aclId")
-    def acl_id(self) -> Optional[pulumi.Input[_builtins.str]]:
+    def acl_id(self) -> pulumi.Input[Optional[_builtins.str]]:
         """
         The ID of the ACL
         """
         return pulumi.get(self, "acl_id")
 
     @acl_id.setter
-    def acl_id(self, value: Optional[pulumi.Input[_builtins.str]]):
+    def acl_id(self, value: pulumi.Input[Optional[_builtins.str]]):
         pulumi.set(self, "acl_id", value)
 
     @_builtins.property
     @pulumi.getter(name="forceDestroy")
-    def force_destroy(self) -> Optional[pulumi.Input[_builtins.bool]]:
+    def force_destroy(self) -> pulumi.Input[Optional[_builtins.bool]]:
         """
         Allow the ACL to be deleted, even if it contains entries. Defaults to false.
         """
         return pulumi.get(self, "force_destroy")
 
     @force_destroy.setter
-    def force_destroy(self, value: Optional[pulumi.Input[_builtins.bool]]):
+    def force_destroy(self, value: pulumi.Input[Optional[_builtins.bool]]):
         pulumi.set(self, "force_destroy", value)
 
 
@@ -9151,103 +9151,103 @@ class ServiceVclBackendArgsDict(TypedDict):
     """
     Name for this Backend. Must be unique to this Service. It is important to note that changing this attribute will delete and recreate the resource
     """
-    auto_loadbalance: NotRequired[pulumi.Input[_builtins.bool]]
+    auto_loadbalance: NotRequired[pulumi.Input[Optional[_builtins.bool]]]
     """
     Denotes if this Backend should be included in the pool of backends that requests are load balanced against. Default `false`
     """
-    between_bytes_timeout: NotRequired[pulumi.Input[_builtins.int]]
+    between_bytes_timeout: NotRequired[pulumi.Input[Optional[_builtins.int]]]
     """
     How long to wait between bytes in milliseconds. Default `10000`
     """
-    connect_timeout: NotRequired[pulumi.Input[_builtins.int]]
+    connect_timeout: NotRequired[pulumi.Input[Optional[_builtins.int]]]
     """
     How long to wait for a timeout in milliseconds. Default `1000`
     """
-    error_threshold: NotRequired[pulumi.Input[_builtins.int]]
+    error_threshold: NotRequired[pulumi.Input[Optional[_builtins.int]]]
     """
     Number of errors to allow before the Backend is marked as down. Default `0`
     """
-    first_byte_timeout: NotRequired[pulumi.Input[_builtins.int]]
+    first_byte_timeout: NotRequired[pulumi.Input[Optional[_builtins.int]]]
     """
     How long to wait for the first bytes in milliseconds. Default `15000`
     """
-    healthcheck: NotRequired[pulumi.Input[_builtins.str]]
+    healthcheck: NotRequired[pulumi.Input[Optional[_builtins.str]]]
     """
     Name of a defined `healthcheck` to assign to this backend
     """
-    keepalive_time: NotRequired[pulumi.Input[_builtins.int]]
+    keepalive_time: NotRequired[pulumi.Input[Optional[_builtins.int]]]
     """
     How long in seconds to keep a persistent connection to the backend between requests.
     """
-    max_conn: NotRequired[pulumi.Input[_builtins.int]]
+    max_conn: NotRequired[pulumi.Input[Optional[_builtins.int]]]
     """
     Maximum number of connections for this Backend. Default `200`
     """
-    max_tls_version: NotRequired[pulumi.Input[_builtins.str]]
+    max_tls_version: NotRequired[pulumi.Input[Optional[_builtins.str]]]
     """
     Maximum allowed TLS version on SSL connections to this backend.
     """
-    min_tls_version: NotRequired[pulumi.Input[_builtins.str]]
+    min_tls_version: NotRequired[pulumi.Input[Optional[_builtins.str]]]
     """
     Minimum allowed TLS version on SSL connections to this backend.
     """
-    override_host: NotRequired[pulumi.Input[_builtins.str]]
+    override_host: NotRequired[pulumi.Input[Optional[_builtins.str]]]
     """
     The hostname to override the Host header
     """
-    port: NotRequired[pulumi.Input[_builtins.int]]
+    port: NotRequired[pulumi.Input[Optional[_builtins.int]]]
     """
     The port number on which the Backend responds. Default `80`
     """
-    prefer_ipv6: NotRequired[pulumi.Input[_builtins.bool]]
+    prefer_ipv6: NotRequired[pulumi.Input[Optional[_builtins.bool]]]
     """
     Prefer IPv6 connections to origins for hostname backends. Default `false`
     """
-    request_condition: NotRequired[pulumi.Input[_builtins.str]]
+    request_condition: NotRequired[pulumi.Input[Optional[_builtins.str]]]
     """
     Name of a condition, which if met, will select this backend during a request.
     """
-    share_key: NotRequired[pulumi.Input[_builtins.str]]
+    share_key: NotRequired[pulumi.Input[Optional[_builtins.str]]]
     """
     Value that when shared across backends will enable those backends to share the same health check.
     """
-    shield: NotRequired[pulumi.Input[_builtins.str]]
+    shield: NotRequired[pulumi.Input[Optional[_builtins.str]]]
     """
     The POP of the shield designated to reduce inbound load. Valid values for `shield` are included in the `GET /datacenters` API response
     """
-    ssl_ca_cert: NotRequired[pulumi.Input[_builtins.str]]
+    ssl_ca_cert: NotRequired[pulumi.Input[Optional[_builtins.str]]]
     """
     CA certificate attached to origin.
     """
-    ssl_cert_hostname: NotRequired[pulumi.Input[_builtins.str]]
+    ssl_cert_hostname: NotRequired[pulumi.Input[Optional[_builtins.str]]]
     """
     Configure certificate validation. Does not affect SNI at all
     """
-    ssl_check_cert: NotRequired[pulumi.Input[_builtins.bool]]
+    ssl_check_cert: NotRequired[pulumi.Input[Optional[_builtins.bool]]]
     """
     Be strict about checking SSL certs. Default `true`
     """
-    ssl_ciphers: NotRequired[pulumi.Input[_builtins.str]]
+    ssl_ciphers: NotRequired[pulumi.Input[Optional[_builtins.str]]]
     """
     Cipher list consisting of one or more cipher strings separated by colons. Commas or spaces are also acceptable separators but colons are normally used.
     """
-    ssl_client_cert: NotRequired[pulumi.Input[_builtins.str]]
+    ssl_client_cert: NotRequired[pulumi.Input[Optional[_builtins.str]]]
     """
     Client certificate attached to origin. Used when connecting to the backend
     """
-    ssl_client_key: NotRequired[pulumi.Input[_builtins.str]]
+    ssl_client_key: NotRequired[pulumi.Input[Optional[_builtins.str]]]
     """
     Client key attached to origin. Used when connecting to the backend
     """
-    ssl_sni_hostname: NotRequired[pulumi.Input[_builtins.str]]
+    ssl_sni_hostname: NotRequired[pulumi.Input[Optional[_builtins.str]]]
     """
     Configure SNI in the TLS handshake. Does not affect cert validation at all
     """
-    use_ssl: NotRequired[pulumi.Input[_builtins.bool]]
+    use_ssl: NotRequired[pulumi.Input[Optional[_builtins.bool]]]
     """
     Whether or not to use SSL to reach the Backend. Default `false`
     """
-    weight: NotRequired[pulumi.Input[_builtins.int]]
+    weight: NotRequired[pulumi.Input[Optional[_builtins.int]]]
     """
     The [portion of traffic](https://docs.fastly.com/en/guides/load-balancing-configuration#how-weight-affects-load-balancing) to send to this Backend. Each Backend receives weight / total of the traffic. Default `100`
     """
@@ -9257,31 +9257,31 @@ class ServiceVclBackendArgs:
     def __init__(__self__, *,
                  address: pulumi.Input[_builtins.str],
                  name: pulumi.Input[_builtins.str],
-                 auto_loadbalance: Optional[pulumi.Input[_builtins.bool]] = None,
-                 between_bytes_timeout: Optional[pulumi.Input[_builtins.int]] = None,
-                 connect_timeout: Optional[pulumi.Input[_builtins.int]] = None,
-                 error_threshold: Optional[pulumi.Input[_builtins.int]] = None,
-                 first_byte_timeout: Optional[pulumi.Input[_builtins.int]] = None,
-                 healthcheck: Optional[pulumi.Input[_builtins.str]] = None,
-                 keepalive_time: Optional[pulumi.Input[_builtins.int]] = None,
-                 max_conn: Optional[pulumi.Input[_builtins.int]] = None,
-                 max_tls_version: Optional[pulumi.Input[_builtins.str]] = None,
-                 min_tls_version: Optional[pulumi.Input[_builtins.str]] = None,
-                 override_host: Optional[pulumi.Input[_builtins.str]] = None,
-                 port: Optional[pulumi.Input[_builtins.int]] = None,
-                 prefer_ipv6: Optional[pulumi.Input[_builtins.bool]] = None,
-                 request_condition: Optional[pulumi.Input[_builtins.str]] = None,
-                 share_key: Optional[pulumi.Input[_builtins.str]] = None,
-                 shield: Optional[pulumi.Input[_builtins.str]] = None,
-                 ssl_ca_cert: Optional[pulumi.Input[_builtins.str]] = None,
-                 ssl_cert_hostname: Optional[pulumi.Input[_builtins.str]] = None,
-                 ssl_check_cert: Optional[pulumi.Input[_builtins.bool]] = None,
-                 ssl_ciphers: Optional[pulumi.Input[_builtins.str]] = None,
-                 ssl_client_cert: Optional[pulumi.Input[_builtins.str]] = None,
-                 ssl_client_key: Optional[pulumi.Input[_builtins.str]] = None,
-                 ssl_sni_hostname: Optional[pulumi.Input[_builtins.str]] = None,
-                 use_ssl: Optional[pulumi.Input[_builtins.bool]] = None,
-                 weight: Optional[pulumi.Input[_builtins.int]] = None):
+                 auto_loadbalance: pulumi.Input[Optional[_builtins.bool]] = None,
+                 between_bytes_timeout: pulumi.Input[Optional[_builtins.int]] = None,
+                 connect_timeout: pulumi.Input[Optional[_builtins.int]] = None,
+                 error_threshold: pulumi.Input[Optional[_builtins.int]] = None,
+                 first_byte_timeout: pulumi.Input[Optional[_builtins.int]] = None,
+                 healthcheck: pulumi.Input[Optional[_builtins.str]] = None,
+                 keepalive_time: pulumi.Input[Optional[_builtins.int]] = None,
+                 max_conn: pulumi.Input[Optional[_builtins.int]] = None,
+                 max_tls_version: pulumi.Input[Optional[_builtins.str]] = None,
+                 min_tls_version: pulumi.Input[Optional[_builtins.str]] = None,
+                 override_host: pulumi.Input[Optional[_builtins.str]] = None,
+                 port: pulumi.Input[Optional[_builtins.int]] = None,
+                 prefer_ipv6: pulumi.Input[Optional[_builtins.bool]] = None,
+                 request_condition: pulumi.Input[Optional[_builtins.str]] = None,
+                 share_key: pulumi.Input[Optional[_builtins.str]] = None,
+                 shield: pulumi.Input[Optional[_builtins.str]] = None,
+                 ssl_ca_cert: pulumi.Input[Optional[_builtins.str]] = None,
+                 ssl_cert_hostname: pulumi.Input[Optional[_builtins.str]] = None,
+                 ssl_check_cert: pulumi.Input[Optional[_builtins.bool]] = None,
+                 ssl_ciphers: pulumi.Input[Optional[_builtins.str]] = None,
+                 ssl_client_cert: pulumi.Input[Optional[_builtins.str]] = None,
+                 ssl_client_key: pulumi.Input[Optional[_builtins.str]] = None,
+                 ssl_sni_hostname: pulumi.Input[Optional[_builtins.str]] = None,
+                 use_ssl: pulumi.Input[Optional[_builtins.bool]] = None,
+                 weight: pulumi.Input[Optional[_builtins.int]] = None):
         """
         :param pulumi.Input[_builtins.str] address: An IPv4, hostname, or IPv6 address for the Backend
         :param pulumi.Input[_builtins.str] name: Name for this Backend. Must be unique to this Service. It is important to note that changing this attribute will delete and recreate the resource
@@ -9390,302 +9390,302 @@ class ServiceVclBackendArgs:
 
     @_builtins.property
     @pulumi.getter(name="autoLoadbalance")
-    def auto_loadbalance(self) -> Optional[pulumi.Input[_builtins.bool]]:
+    def auto_loadbalance(self) -> pulumi.Input[Optional[_builtins.bool]]:
         """
         Denotes if this Backend should be included in the pool of backends that requests are load balanced against. Default `false`
         """
         return pulumi.get(self, "auto_loadbalance")
 
     @auto_loadbalance.setter
-    def auto_loadbalance(self, value: Optional[pulumi.Input[_builtins.bool]]):
+    def auto_loadbalance(self, value: pulumi.Input[Optional[_builtins.bool]]):
         pulumi.set(self, "auto_loadbalance", value)
 
     @_builtins.property
     @pulumi.getter(name="betweenBytesTimeout")
-    def between_bytes_timeout(self) -> Optional[pulumi.Input[_builtins.int]]:
+    def between_bytes_timeout(self) -> pulumi.Input[Optional[_builtins.int]]:
         """
         How long to wait between bytes in milliseconds. Default `10000`
         """
         return pulumi.get(self, "between_bytes_timeout")
 
     @between_bytes_timeout.setter
-    def between_bytes_timeout(self, value: Optional[pulumi.Input[_builtins.int]]):
+    def between_bytes_timeout(self, value: pulumi.Input[Optional[_builtins.int]]):
         pulumi.set(self, "between_bytes_timeout", value)
 
     @_builtins.property
     @pulumi.getter(name="connectTimeout")
-    def connect_timeout(self) -> Optional[pulumi.Input[_builtins.int]]:
+    def connect_timeout(self) -> pulumi.Input[Optional[_builtins.int]]:
         """
         How long to wait for a timeout in milliseconds. Default `1000`
         """
         return pulumi.get(self, "connect_timeout")
 
     @connect_timeout.setter
-    def connect_timeout(self, value: Optional[pulumi.Input[_builtins.int]]):
+    def connect_timeout(self, value: pulumi.Input[Optional[_builtins.int]]):
         pulumi.set(self, "connect_timeout", value)
 
     @_builtins.property
     @pulumi.getter(name="errorThreshold")
-    def error_threshold(self) -> Optional[pulumi.Input[_builtins.int]]:
+    def error_threshold(self) -> pulumi.Input[Optional[_builtins.int]]:
         """
         Number of errors to allow before the Backend is marked as down. Default `0`
         """
         return pulumi.get(self, "error_threshold")
 
     @error_threshold.setter
-    def error_threshold(self, value: Optional[pulumi.Input[_builtins.int]]):
+    def error_threshold(self, value: pulumi.Input[Optional[_builtins.int]]):
         pulumi.set(self, "error_threshold", value)
 
     @_builtins.property
     @pulumi.getter(name="firstByteTimeout")
-    def first_byte_timeout(self) -> Optional[pulumi.Input[_builtins.int]]:
+    def first_byte_timeout(self) -> pulumi.Input[Optional[_builtins.int]]:
         """
         How long to wait for the first bytes in milliseconds. Default `15000`
         """
         return pulumi.get(self, "first_byte_timeout")
 
     @first_byte_timeout.setter
-    def first_byte_timeout(self, value: Optional[pulumi.Input[_builtins.int]]):
+    def first_byte_timeout(self, value: pulumi.Input[Optional[_builtins.int]]):
         pulumi.set(self, "first_byte_timeout", value)
 
     @_builtins.property
     @pulumi.getter
-    def healthcheck(self) -> Optional[pulumi.Input[_builtins.str]]:
+    def healthcheck(self) -> pulumi.Input[Optional[_builtins.str]]:
         """
         Name of a defined `healthcheck` to assign to this backend
         """
         return pulumi.get(self, "healthcheck")
 
     @healthcheck.setter
-    def healthcheck(self, value: Optional[pulumi.Input[_builtins.str]]):
+    def healthcheck(self, value: pulumi.Input[Optional[_builtins.str]]):
         pulumi.set(self, "healthcheck", value)
 
     @_builtins.property
     @pulumi.getter(name="keepaliveTime")
-    def keepalive_time(self) -> Optional[pulumi.Input[_builtins.int]]:
+    def keepalive_time(self) -> pulumi.Input[Optional[_builtins.int]]:
         """
         How long in seconds to keep a persistent connection to the backend between requests.
         """
         return pulumi.get(self, "keepalive_time")
 
     @keepalive_time.setter
-    def keepalive_time(self, value: Optional[pulumi.Input[_builtins.int]]):
+    def keepalive_time(self, value: pulumi.Input[Optional[_builtins.int]]):
         pulumi.set(self, "keepalive_time", value)
 
     @_builtins.property
     @pulumi.getter(name="maxConn")
-    def max_conn(self) -> Optional[pulumi.Input[_builtins.int]]:
+    def max_conn(self) -> pulumi.Input[Optional[_builtins.int]]:
         """
         Maximum number of connections for this Backend. Default `200`
         """
         return pulumi.get(self, "max_conn")
 
     @max_conn.setter
-    def max_conn(self, value: Optional[pulumi.Input[_builtins.int]]):
+    def max_conn(self, value: pulumi.Input[Optional[_builtins.int]]):
         pulumi.set(self, "max_conn", value)
 
     @_builtins.property
     @pulumi.getter(name="maxTlsVersion")
-    def max_tls_version(self) -> Optional[pulumi.Input[_builtins.str]]:
+    def max_tls_version(self) -> pulumi.Input[Optional[_builtins.str]]:
         """
         Maximum allowed TLS version on SSL connections to this backend.
         """
         return pulumi.get(self, "max_tls_version")
 
     @max_tls_version.setter
-    def max_tls_version(self, value: Optional[pulumi.Input[_builtins.str]]):
+    def max_tls_version(self, value: pulumi.Input[Optional[_builtins.str]]):
         pulumi.set(self, "max_tls_version", value)
 
     @_builtins.property
     @pulumi.getter(name="minTlsVersion")
-    def min_tls_version(self) -> Optional[pulumi.Input[_builtins.str]]:
+    def min_tls_version(self) -> pulumi.Input[Optional[_builtins.str]]:
         """
         Minimum allowed TLS version on SSL connections to this backend.
         """
         return pulumi.get(self, "min_tls_version")
 
     @min_tls_version.setter
-    def min_tls_version(self, value: Optional[pulumi.Input[_builtins.str]]):
+    def min_tls_version(self, value: pulumi.Input[Optional[_builtins.str]]):
         pulumi.set(self, "min_tls_version", value)
 
     @_builtins.property
     @pulumi.getter(name="overrideHost")
-    def override_host(self) -> Optional[pulumi.Input[_builtins.str]]:
+    def override_host(self) -> pulumi.Input[Optional[_builtins.str]]:
         """
         The hostname to override the Host header
         """
         return pulumi.get(self, "override_host")
 
     @override_host.setter
-    def override_host(self, value: Optional[pulumi.Input[_builtins.str]]):
+    def override_host(self, value: pulumi.Input[Optional[_builtins.str]]):
         pulumi.set(self, "override_host", value)
 
     @_builtins.property
     @pulumi.getter
-    def port(self) -> Optional[pulumi.Input[_builtins.int]]:
+    def port(self) -> pulumi.Input[Optional[_builtins.int]]:
         """
         The port number on which the Backend responds. Default `80`
         """
         return pulumi.get(self, "port")
 
     @port.setter
-    def port(self, value: Optional[pulumi.Input[_builtins.int]]):
+    def port(self, value: pulumi.Input[Optional[_builtins.int]]):
         pulumi.set(self, "port", value)
 
     @_builtins.property
     @pulumi.getter(name="preferIpv6")
-    def prefer_ipv6(self) -> Optional[pulumi.Input[_builtins.bool]]:
+    def prefer_ipv6(self) -> pulumi.Input[Optional[_builtins.bool]]:
         """
         Prefer IPv6 connections to origins for hostname backends. Default `false`
         """
         return pulumi.get(self, "prefer_ipv6")
 
     @prefer_ipv6.setter
-    def prefer_ipv6(self, value: Optional[pulumi.Input[_builtins.bool]]):
+    def prefer_ipv6(self, value: pulumi.Input[Optional[_builtins.bool]]):
         pulumi.set(self, "prefer_ipv6", value)
 
     @_builtins.property
     @pulumi.getter(name="requestCondition")
-    def request_condition(self) -> Optional[pulumi.Input[_builtins.str]]:
+    def request_condition(self) -> pulumi.Input[Optional[_builtins.str]]:
         """
         Name of a condition, which if met, will select this backend during a request.
         """
         return pulumi.get(self, "request_condition")
 
     @request_condition.setter
-    def request_condition(self, value: Optional[pulumi.Input[_builtins.str]]):
+    def request_condition(self, value: pulumi.Input[Optional[_builtins.str]]):
         pulumi.set(self, "request_condition", value)
 
     @_builtins.property
     @pulumi.getter(name="shareKey")
-    def share_key(self) -> Optional[pulumi.Input[_builtins.str]]:
+    def share_key(self) -> pulumi.Input[Optional[_builtins.str]]:
         """
         Value that when shared across backends will enable those backends to share the same health check.
         """
         return pulumi.get(self, "share_key")
 
     @share_key.setter
-    def share_key(self, value: Optional[pulumi.Input[_builtins.str]]):
+    def share_key(self, value: pulumi.Input[Optional[_builtins.str]]):
         pulumi.set(self, "share_key", value)
 
     @_builtins.property
     @pulumi.getter
-    def shield(self) -> Optional[pulumi.Input[_builtins.str]]:
+    def shield(self) -> pulumi.Input[Optional[_builtins.str]]:
         """
         The POP of the shield designated to reduce inbound load. Valid values for `shield` are included in the `GET /datacenters` API response
         """
         return pulumi.get(self, "shield")
 
     @shield.setter
-    def shield(self, value: Optional[pulumi.Input[_builtins.str]]):
+    def shield(self, value: pulumi.Input[Optional[_builtins.str]]):
         pulumi.set(self, "shield", value)
 
     @_builtins.property
     @pulumi.getter(name="sslCaCert")
-    def ssl_ca_cert(self) -> Optional[pulumi.Input[_builtins.str]]:
+    def ssl_ca_cert(self) -> pulumi.Input[Optional[_builtins.str]]:
         """
         CA certificate attached to origin.
         """
         return pulumi.get(self, "ssl_ca_cert")
 
     @ssl_ca_cert.setter
-    def ssl_ca_cert(self, value: Optional[pulumi.Input[_builtins.str]]):
+    def ssl_ca_cert(self, value: pulumi.Input[Optional[_builtins.str]]):
         pulumi.set(self, "ssl_ca_cert", value)
 
     @_builtins.property
     @pulumi.getter(name="sslCertHostname")
-    def ssl_cert_hostname(self) -> Optional[pulumi.Input[_builtins.str]]:
+    def ssl_cert_hostname(self) -> pulumi.Input[Optional[_builtins.str]]:
         """
         Configure certificate validation. Does not affect SNI at all
         """
         return pulumi.get(self, "ssl_cert_hostname")
 
     @ssl_cert_hostname.setter
-    def ssl_cert_hostname(self, value: Optional[pulumi.Input[_builtins.str]]):
+    def ssl_cert_hostname(self, value: pulumi.Input[Optional[_builtins.str]]):
         pulumi.set(self, "ssl_cert_hostname", value)
 
     @_builtins.property
     @pulumi.getter(name="sslCheckCert")
-    def ssl_check_cert(self) -> Optional[pulumi.Input[_builtins.bool]]:
+    def ssl_check_cert(self) -> pulumi.Input[Optional[_builtins.bool]]:
         """
         Be strict about checking SSL certs. Default `true`
         """
         return pulumi.get(self, "ssl_check_cert")
 
     @ssl_check_cert.setter
-    def ssl_check_cert(self, value: Optional[pulumi.Input[_builtins.bool]]):
+    def ssl_check_cert(self, value: pulumi.Input[Optional[_builtins.bool]]):
         pulumi.set(self, "ssl_check_cert", value)
 
     @_builtins.property
     @pulumi.getter(name="sslCiphers")
-    def ssl_ciphers(self) -> Optional[pulumi.Input[_builtins.str]]:
+    def ssl_ciphers(self) -> pulumi.Input[Optional[_builtins.str]]:
         """
         Cipher list consisting of one or more cipher strings separated by colons. Commas or spaces are also acceptable separators but colons are normally used.
         """
         return pulumi.get(self, "ssl_ciphers")
 
     @ssl_ciphers.setter
-    def ssl_ciphers(self, value: Optional[pulumi.Input[_builtins.str]]):
+    def ssl_ciphers(self, value: pulumi.Input[Optional[_builtins.str]]):
         pulumi.set(self, "ssl_ciphers", value)
 
     @_builtins.property
     @pulumi.getter(name="sslClientCert")
-    def ssl_client_cert(self) -> Optional[pulumi.Input[_builtins.str]]:
+    def ssl_client_cert(self) -> pulumi.Input[Optional[_builtins.str]]:
         """
         Client certificate attached to origin. Used when connecting to the backend
         """
         return pulumi.get(self, "ssl_client_cert")
 
     @ssl_client_cert.setter
-    def ssl_client_cert(self, value: Optional[pulumi.Input[_builtins.str]]):
+    def ssl_client_cert(self, value: pulumi.Input[Optional[_builtins.str]]):
         pulumi.set(self, "ssl_client_cert", value)
 
     @_builtins.property
     @pulumi.getter(name="sslClientKey")
-    def ssl_client_key(self) -> Optional[pulumi.Input[_builtins.str]]:
+    def ssl_client_key(self) -> pulumi.Input[Optional[_builtins.str]]:
         """
         Client key attached to origin. Used when connecting to the backend
         """
         return pulumi.get(self, "ssl_client_key")
 
     @ssl_client_key.setter
-    def ssl_client_key(self, value: Optional[pulumi.Input[_builtins.str]]):
+    def ssl_client_key(self, value: pulumi.Input[Optional[_builtins.str]]):
         pulumi.set(self, "ssl_client_key", value)
 
     @_builtins.property
     @pulumi.getter(name="sslSniHostname")
-    def ssl_sni_hostname(self) -> Optional[pulumi.Input[_builtins.str]]:
+    def ssl_sni_hostname(self) -> pulumi.Input[Optional[_builtins.str]]:
         """
         Configure SNI in the TLS handshake. Does not affect cert validation at all
         """
         return pulumi.get(self, "ssl_sni_hostname")
 
     @ssl_sni_hostname.setter
-    def ssl_sni_hostname(self, value: Optional[pulumi.Input[_builtins.str]]):
+    def ssl_sni_hostname(self, value: pulumi.Input[Optional[_builtins.str]]):
         pulumi.set(self, "ssl_sni_hostname", value)
 
     @_builtins.property
     @pulumi.getter(name="useSsl")
-    def use_ssl(self) -> Optional[pulumi.Input[_builtins.bool]]:
+    def use_ssl(self) -> pulumi.Input[Optional[_builtins.bool]]:
         """
         Whether or not to use SSL to reach the Backend. Default `false`
         """
         return pulumi.get(self, "use_ssl")
 
     @use_ssl.setter
-    def use_ssl(self, value: Optional[pulumi.Input[_builtins.bool]]):
+    def use_ssl(self, value: pulumi.Input[Optional[_builtins.bool]]):
         pulumi.set(self, "use_ssl", value)
 
     @_builtins.property
     @pulumi.getter
-    def weight(self) -> Optional[pulumi.Input[_builtins.int]]:
+    def weight(self) -> pulumi.Input[Optional[_builtins.int]]:
         """
         The [portion of traffic](https://docs.fastly.com/en/guides/load-balancing-configuration#how-weight-affects-load-balancing) to send to this Backend. Each Backend receives weight / total of the traffic. Default `100`
         """
         return pulumi.get(self, "weight")
 
     @weight.setter
-    def weight(self, value: Optional[pulumi.Input[_builtins.int]]):
+    def weight(self, value: pulumi.Input[Optional[_builtins.int]]):
         pulumi.set(self, "weight", value)
 
 
@@ -9694,19 +9694,19 @@ class ServiceVclCacheSettingArgsDict(TypedDict):
     """
     Unique name for this Cache Setting. It is important to note that changing this attribute will delete and recreate the resource
     """
-    action: NotRequired[pulumi.Input[_builtins.str]]
+    action: NotRequired[pulumi.Input[Optional[_builtins.str]]]
     """
     One of cache, pass, or restart, as defined on Fastly's documentation under "[Caching action descriptions](https://docs.fastly.com/en/guides/controlling-caching#caching-action-descriptions)"
     """
-    cache_condition: NotRequired[pulumi.Input[_builtins.str]]
+    cache_condition: NotRequired[pulumi.Input[Optional[_builtins.str]]]
     """
     Name of already defined `condition` used to test whether this settings object should be used. This `condition` must be of type `CACHE`
     """
-    stale_ttl: NotRequired[pulumi.Input[_builtins.int]]
+    stale_ttl: NotRequired[pulumi.Input[Optional[_builtins.int]]]
     """
     Max "Time To Live" for stale (unreachable) objects
     """
-    ttl: NotRequired[pulumi.Input[_builtins.int]]
+    ttl: NotRequired[pulumi.Input[Optional[_builtins.int]]]
     """
     The Time-To-Live (TTL) for the object
     """
@@ -9715,10 +9715,10 @@ class ServiceVclCacheSettingArgsDict(TypedDict):
 class ServiceVclCacheSettingArgs:
     def __init__(__self__, *,
                  name: pulumi.Input[_builtins.str],
-                 action: Optional[pulumi.Input[_builtins.str]] = None,
-                 cache_condition: Optional[pulumi.Input[_builtins.str]] = None,
-                 stale_ttl: Optional[pulumi.Input[_builtins.int]] = None,
-                 ttl: Optional[pulumi.Input[_builtins.int]] = None):
+                 action: pulumi.Input[Optional[_builtins.str]] = None,
+                 cache_condition: pulumi.Input[Optional[_builtins.str]] = None,
+                 stale_ttl: pulumi.Input[Optional[_builtins.int]] = None,
+                 ttl: pulumi.Input[Optional[_builtins.int]] = None):
         """
         :param pulumi.Input[_builtins.str] name: Unique name for this Cache Setting. It is important to note that changing this attribute will delete and recreate the resource
         :param pulumi.Input[_builtins.str] action: One of cache, pass, or restart, as defined on Fastly's documentation under "[Caching action descriptions](https://docs.fastly.com/en/guides/controlling-caching#caching-action-descriptions)"
@@ -9750,50 +9750,50 @@ class ServiceVclCacheSettingArgs:
 
     @_builtins.property
     @pulumi.getter
-    def action(self) -> Optional[pulumi.Input[_builtins.str]]:
+    def action(self) -> pulumi.Input[Optional[_builtins.str]]:
         """
         One of cache, pass, or restart, as defined on Fastly's documentation under "[Caching action descriptions](https://docs.fastly.com/en/guides/controlling-caching#caching-action-descriptions)"
         """
         return pulumi.get(self, "action")
 
     @action.setter
-    def action(self, value: Optional[pulumi.Input[_builtins.str]]):
+    def action(self, value: pulumi.Input[Optional[_builtins.str]]):
         pulumi.set(self, "action", value)
 
     @_builtins.property
     @pulumi.getter(name="cacheCondition")
-    def cache_condition(self) -> Optional[pulumi.Input[_builtins.str]]:
+    def cache_condition(self) -> pulumi.Input[Optional[_builtins.str]]:
         """
         Name of already defined `condition` used to test whether this settings object should be used. This `condition` must be of type `CACHE`
         """
         return pulumi.get(self, "cache_condition")
 
     @cache_condition.setter
-    def cache_condition(self, value: Optional[pulumi.Input[_builtins.str]]):
+    def cache_condition(self, value: pulumi.Input[Optional[_builtins.str]]):
         pulumi.set(self, "cache_condition", value)
 
     @_builtins.property
     @pulumi.getter(name="staleTtl")
-    def stale_ttl(self) -> Optional[pulumi.Input[_builtins.int]]:
+    def stale_ttl(self) -> pulumi.Input[Optional[_builtins.int]]:
         """
         Max "Time To Live" for stale (unreachable) objects
         """
         return pulumi.get(self, "stale_ttl")
 
     @stale_ttl.setter
-    def stale_ttl(self, value: Optional[pulumi.Input[_builtins.int]]):
+    def stale_ttl(self, value: pulumi.Input[Optional[_builtins.int]]):
         pulumi.set(self, "stale_ttl", value)
 
     @_builtins.property
     @pulumi.getter
-    def ttl(self) -> Optional[pulumi.Input[_builtins.int]]:
+    def ttl(self) -> pulumi.Input[Optional[_builtins.int]]:
         """
         The Time-To-Live (TTL) for the object
         """
         return pulumi.get(self, "ttl")
 
     @ttl.setter
-    def ttl(self, value: Optional[pulumi.Input[_builtins.int]]):
+    def ttl(self, value: pulumi.Input[Optional[_builtins.int]]):
         pulumi.set(self, "ttl", value)
 
 
@@ -9810,7 +9810,7 @@ class ServiceVclConditionArgsDict(TypedDict):
     """
     Type of condition, either `REQUEST` (req), `RESPONSE` (req, resp), or `CACHE` (req, beresp)
     """
-    priority: NotRequired[pulumi.Input[_builtins.int]]
+    priority: NotRequired[pulumi.Input[Optional[_builtins.int]]]
     """
     A number used to determine the order in which multiple conditions execute. Lower numbers execute first. Default `10`
     """
@@ -9821,7 +9821,7 @@ class ServiceVclConditionArgs:
                  name: pulumi.Input[_builtins.str],
                  statement: pulumi.Input[_builtins.str],
                  type: pulumi.Input[_builtins.str],
-                 priority: Optional[pulumi.Input[_builtins.int]] = None):
+                 priority: pulumi.Input[Optional[_builtins.int]] = None):
         """
         :param pulumi.Input[_builtins.str] name: The unique name for the condition. It is important to note that changing this attribute will delete and recreate the resource
         :param pulumi.Input[_builtins.str] statement: The statement used to determine if the condition is met
@@ -9872,14 +9872,14 @@ class ServiceVclConditionArgs:
 
     @_builtins.property
     @pulumi.getter
-    def priority(self) -> Optional[pulumi.Input[_builtins.int]]:
+    def priority(self) -> pulumi.Input[Optional[_builtins.int]]:
         """
         A number used to determine the order in which multiple conditions execute. Lower numbers execute first. Default `10`
         """
         return pulumi.get(self, "priority")
 
     @priority.setter
-    def priority(self, value: Optional[pulumi.Input[_builtins.int]]):
+    def priority(self, value: pulumi.Input[Optional[_builtins.int]]):
         pulumi.set(self, "priority", value)
 
 
@@ -9888,15 +9888,15 @@ class ServiceVclDictionaryArgsDict(TypedDict):
     """
     A unique name to identify this dictionary. It is important to note that changing this attribute will delete and recreate the dictionary, and discard the current items in the dictionary
     """
-    dictionary_id: NotRequired[pulumi.Input[_builtins.str]]
+    dictionary_id: NotRequired[pulumi.Input[Optional[_builtins.str]]]
     """
     The ID of the dictionary
     """
-    force_destroy: NotRequired[pulumi.Input[_builtins.bool]]
+    force_destroy: NotRequired[pulumi.Input[Optional[_builtins.bool]]]
     """
     Allow the dictionary to be deleted, even if it contains entries. Defaults to false.
     """
-    write_only: NotRequired[pulumi.Input[_builtins.bool]]
+    write_only: NotRequired[pulumi.Input[Optional[_builtins.bool]]]
     """
     If `true`, the dictionary is a [private dictionary](https://docs.fastly.com/en/guides/private-dictionaries). Default is `false`. Please note that changing this attribute will delete and recreate the dictionary, and discard the current items in the dictionary. `ServiceVcl` resource will only manage the dictionary object itself, and items under private dictionaries can not be managed using [`ServiceDictionaryItems`](https://registry.terraform.io/providers/fastly/fastly/latest/docs/resources/service_dictionary_items#limitations) resource. Therefore, using a write-only/private dictionary should only be done if the items are managed outside of Terraform
     """
@@ -9905,9 +9905,9 @@ class ServiceVclDictionaryArgsDict(TypedDict):
 class ServiceVclDictionaryArgs:
     def __init__(__self__, *,
                  name: pulumi.Input[_builtins.str],
-                 dictionary_id: Optional[pulumi.Input[_builtins.str]] = None,
-                 force_destroy: Optional[pulumi.Input[_builtins.bool]] = None,
-                 write_only: Optional[pulumi.Input[_builtins.bool]] = None):
+                 dictionary_id: pulumi.Input[Optional[_builtins.str]] = None,
+                 force_destroy: pulumi.Input[Optional[_builtins.bool]] = None,
+                 write_only: pulumi.Input[Optional[_builtins.bool]] = None):
         """
         :param pulumi.Input[_builtins.str] name: A unique name to identify this dictionary. It is important to note that changing this attribute will delete and recreate the dictionary, and discard the current items in the dictionary
         :param pulumi.Input[_builtins.str] dictionary_id: The ID of the dictionary
@@ -9936,38 +9936,38 @@ class ServiceVclDictionaryArgs:
 
     @_builtins.property
     @pulumi.getter(name="dictionaryId")
-    def dictionary_id(self) -> Optional[pulumi.Input[_builtins.str]]:
+    def dictionary_id(self) -> pulumi.Input[Optional[_builtins.str]]:
         """
         The ID of the dictionary
         """
         return pulumi.get(self, "dictionary_id")
 
     @dictionary_id.setter
-    def dictionary_id(self, value: Optional[pulumi.Input[_builtins.str]]):
+    def dictionary_id(self, value: pulumi.Input[Optional[_builtins.str]]):
         pulumi.set(self, "dictionary_id", value)
 
     @_builtins.property
     @pulumi.getter(name="forceDestroy")
-    def force_destroy(self) -> Optional[pulumi.Input[_builtins.bool]]:
+    def force_destroy(self) -> pulumi.Input[Optional[_builtins.bool]]:
         """
         Allow the dictionary to be deleted, even if it contains entries. Defaults to false.
         """
         return pulumi.get(self, "force_destroy")
 
     @force_destroy.setter
-    def force_destroy(self, value: Optional[pulumi.Input[_builtins.bool]]):
+    def force_destroy(self, value: pulumi.Input[Optional[_builtins.bool]]):
         pulumi.set(self, "force_destroy", value)
 
     @_builtins.property
     @pulumi.getter(name="writeOnly")
-    def write_only(self) -> Optional[pulumi.Input[_builtins.bool]]:
+    def write_only(self) -> pulumi.Input[Optional[_builtins.bool]]:
         """
         If `true`, the dictionary is a [private dictionary](https://docs.fastly.com/en/guides/private-dictionaries). Default is `false`. Please note that changing this attribute will delete and recreate the dictionary, and discard the current items in the dictionary. `ServiceVcl` resource will only manage the dictionary object itself, and items under private dictionaries can not be managed using [`ServiceDictionaryItems`](https://registry.terraform.io/providers/fastly/fastly/latest/docs/resources/service_dictionary_items#limitations) resource. Therefore, using a write-only/private dictionary should only be done if the items are managed outside of Terraform
         """
         return pulumi.get(self, "write_only")
 
     @write_only.setter
-    def write_only(self, value: Optional[pulumi.Input[_builtins.bool]]):
+    def write_only(self, value: pulumi.Input[Optional[_builtins.bool]]):
         pulumi.set(self, "write_only", value)
 
 
@@ -9980,23 +9980,23 @@ class ServiceVclDirectorArgsDict(TypedDict):
     """
     Unique name for this Director. It is important to note that changing this attribute will delete and recreate the resource
     """
-    comment: NotRequired[pulumi.Input[_builtins.str]]
+    comment: NotRequired[pulumi.Input[Optional[_builtins.str]]]
     """
     An optional comment about the Director
     """
-    quorum: NotRequired[pulumi.Input[_builtins.int]]
+    quorum: NotRequired[pulumi.Input[Optional[_builtins.int]]]
     """
     Percentage of capacity that needs to be up for the director itself to be considered up. Default `75`
     """
-    retries: NotRequired[pulumi.Input[_builtins.int]]
+    retries: NotRequired[pulumi.Input[Optional[_builtins.int]]]
     """
     How many backends to search if it fails. Default `5`
     """
-    shield: NotRequired[pulumi.Input[_builtins.str]]
+    shield: NotRequired[pulumi.Input[Optional[_builtins.str]]]
     """
     Selected POP to serve as a "shield" for backends. Valid values for `shield` are included in the [`GET /datacenters`](https://developer.fastly.com/reference/api/utils/datacenter/) API response
     """
-    type: NotRequired[pulumi.Input[_builtins.int]]
+    type: NotRequired[pulumi.Input[Optional[_builtins.int]]]
     """
     Type of load balance group to use. Integer, 1 to 4. Values: `1` (random), `3` (hash), `4` (client). Default `1`
     """
@@ -10006,11 +10006,11 @@ class ServiceVclDirectorArgs:
     def __init__(__self__, *,
                  backends: pulumi.Input[Sequence[pulumi.Input[_builtins.str]]],
                  name: pulumi.Input[_builtins.str],
-                 comment: Optional[pulumi.Input[_builtins.str]] = None,
-                 quorum: Optional[pulumi.Input[_builtins.int]] = None,
-                 retries: Optional[pulumi.Input[_builtins.int]] = None,
-                 shield: Optional[pulumi.Input[_builtins.str]] = None,
-                 type: Optional[pulumi.Input[_builtins.int]] = None):
+                 comment: pulumi.Input[Optional[_builtins.str]] = None,
+                 quorum: pulumi.Input[Optional[_builtins.int]] = None,
+                 retries: pulumi.Input[Optional[_builtins.int]] = None,
+                 shield: pulumi.Input[Optional[_builtins.str]] = None,
+                 type: pulumi.Input[Optional[_builtins.int]] = None):
         """
         :param pulumi.Input[Sequence[pulumi.Input[_builtins.str]]] backends: Names of defined backends to map the director to. Example: `[ "origin1", "origin2" ]`
         :param pulumi.Input[_builtins.str] name: Unique name for this Director. It is important to note that changing this attribute will delete and recreate the resource
@@ -10059,62 +10059,62 @@ class ServiceVclDirectorArgs:
 
     @_builtins.property
     @pulumi.getter
-    def comment(self) -> Optional[pulumi.Input[_builtins.str]]:
+    def comment(self) -> pulumi.Input[Optional[_builtins.str]]:
         """
         An optional comment about the Director
         """
         return pulumi.get(self, "comment")
 
     @comment.setter
-    def comment(self, value: Optional[pulumi.Input[_builtins.str]]):
+    def comment(self, value: pulumi.Input[Optional[_builtins.str]]):
         pulumi.set(self, "comment", value)
 
     @_builtins.property
     @pulumi.getter
-    def quorum(self) -> Optional[pulumi.Input[_builtins.int]]:
+    def quorum(self) -> pulumi.Input[Optional[_builtins.int]]:
         """
         Percentage of capacity that needs to be up for the director itself to be considered up. Default `75`
         """
         return pulumi.get(self, "quorum")
 
     @quorum.setter
-    def quorum(self, value: Optional[pulumi.Input[_builtins.int]]):
+    def quorum(self, value: pulumi.Input[Optional[_builtins.int]]):
         pulumi.set(self, "quorum", value)
 
     @_builtins.property
     @pulumi.getter
-    def retries(self) -> Optional[pulumi.Input[_builtins.int]]:
+    def retries(self) -> pulumi.Input[Optional[_builtins.int]]:
         """
         How many backends to search if it fails. Default `5`
         """
         return pulumi.get(self, "retries")
 
     @retries.setter
-    def retries(self, value: Optional[pulumi.Input[_builtins.int]]):
+    def retries(self, value: pulumi.Input[Optional[_builtins.int]]):
         pulumi.set(self, "retries", value)
 
     @_builtins.property
     @pulumi.getter
-    def shield(self) -> Optional[pulumi.Input[_builtins.str]]:
+    def shield(self) -> pulumi.Input[Optional[_builtins.str]]:
         """
         Selected POP to serve as a "shield" for backends. Valid values for `shield` are included in the [`GET /datacenters`](https://developer.fastly.com/reference/api/utils/datacenter/) API response
         """
         return pulumi.get(self, "shield")
 
     @shield.setter
-    def shield(self, value: Optional[pulumi.Input[_builtins.str]]):
+    def shield(self, value: pulumi.Input[Optional[_builtins.str]]):
         pulumi.set(self, "shield", value)
 
     @_builtins.property
     @pulumi.getter
-    def type(self) -> Optional[pulumi.Input[_builtins.int]]:
+    def type(self) -> pulumi.Input[Optional[_builtins.int]]:
         """
         Type of load balance group to use. Integer, 1 to 4. Values: `1` (random), `3` (hash), `4` (client). Default `1`
         """
         return pulumi.get(self, "type")
 
     @type.setter
-    def type(self, value: Optional[pulumi.Input[_builtins.int]]):
+    def type(self, value: pulumi.Input[Optional[_builtins.int]]):
         pulumi.set(self, "type", value)
 
 
@@ -10123,7 +10123,7 @@ class ServiceVclDomainArgsDict(TypedDict):
     """
     The domain that this Service will respond to. It is important to note that changing this attribute will delete and recreate the resource.
     """
-    comment: NotRequired[pulumi.Input[_builtins.str]]
+    comment: NotRequired[pulumi.Input[Optional[_builtins.str]]]
     """
     An optional comment about the Domain.
     """
@@ -10132,7 +10132,7 @@ class ServiceVclDomainArgsDict(TypedDict):
 class ServiceVclDomainArgs:
     def __init__(__self__, *,
                  name: pulumi.Input[_builtins.str],
-                 comment: Optional[pulumi.Input[_builtins.str]] = None):
+                 comment: pulumi.Input[Optional[_builtins.str]] = None):
         """
         :param pulumi.Input[_builtins.str] name: The domain that this Service will respond to. It is important to note that changing this attribute will delete and recreate the resource.
         :param pulumi.Input[_builtins.str] comment: An optional comment about the Domain.
@@ -10155,14 +10155,14 @@ class ServiceVclDomainArgs:
 
     @_builtins.property
     @pulumi.getter
-    def comment(self) -> Optional[pulumi.Input[_builtins.str]]:
+    def comment(self) -> pulumi.Input[Optional[_builtins.str]]:
         """
         An optional comment about the Domain.
         """
         return pulumi.get(self, "comment")
 
     @comment.setter
-    def comment(self, value: Optional[pulumi.Input[_builtins.str]]):
+    def comment(self, value: pulumi.Input[Optional[_builtins.str]]):
         pulumi.set(self, "comment", value)
 
 
@@ -10175,15 +10175,15 @@ class ServiceVclDynamicsnippetArgsDict(TypedDict):
     """
     The location in generated VCL where the snippet should be placed (can be one of `init`, `recv`, `hash`, `hit`, `miss`, `pass`, `fetch`, `error`, `deliver`, `log` or `none`)
     """
-    content: NotRequired[pulumi.Input[_builtins.str]]
+    content: NotRequired[pulumi.Input[Optional[_builtins.str]]]
     """
     The VCL code that specifies exactly what the snippet does
     """
-    priority: NotRequired[pulumi.Input[_builtins.int]]
+    priority: NotRequired[pulumi.Input[Optional[_builtins.int]]]
     """
     Priority determines the ordering for multiple snippets. Lower numbers execute first. Defaults to `100`
     """
-    snippet_id: NotRequired[pulumi.Input[_builtins.str]]
+    snippet_id: NotRequired[pulumi.Input[Optional[_builtins.str]]]
     """
     The ID of the dynamic snippet
     """
@@ -10193,9 +10193,9 @@ class ServiceVclDynamicsnippetArgs:
     def __init__(__self__, *,
                  name: pulumi.Input[_builtins.str],
                  type: pulumi.Input[_builtins.str],
-                 content: Optional[pulumi.Input[_builtins.str]] = None,
-                 priority: Optional[pulumi.Input[_builtins.int]] = None,
-                 snippet_id: Optional[pulumi.Input[_builtins.str]] = None):
+                 content: pulumi.Input[Optional[_builtins.str]] = None,
+                 priority: pulumi.Input[Optional[_builtins.int]] = None,
+                 snippet_id: pulumi.Input[Optional[_builtins.str]] = None):
         """
         :param pulumi.Input[_builtins.str] name: A name that is unique across "regular" and "dynamic" VCL Snippet configuration blocks. It is important to note that changing this attribute will delete and recreate the resource
         :param pulumi.Input[_builtins.str] type: The location in generated VCL where the snippet should be placed (can be one of `init`, `recv`, `hash`, `hit`, `miss`, `pass`, `fetch`, `error`, `deliver`, `log` or `none`)
@@ -10238,38 +10238,38 @@ class ServiceVclDynamicsnippetArgs:
 
     @_builtins.property
     @pulumi.getter
-    def content(self) -> Optional[pulumi.Input[_builtins.str]]:
+    def content(self) -> pulumi.Input[Optional[_builtins.str]]:
         """
         The VCL code that specifies exactly what the snippet does
         """
         return pulumi.get(self, "content")
 
     @content.setter
-    def content(self, value: Optional[pulumi.Input[_builtins.str]]):
+    def content(self, value: pulumi.Input[Optional[_builtins.str]]):
         pulumi.set(self, "content", value)
 
     @_builtins.property
     @pulumi.getter
-    def priority(self) -> Optional[pulumi.Input[_builtins.int]]:
+    def priority(self) -> pulumi.Input[Optional[_builtins.int]]:
         """
         Priority determines the ordering for multiple snippets. Lower numbers execute first. Defaults to `100`
         """
         return pulumi.get(self, "priority")
 
     @priority.setter
-    def priority(self, value: Optional[pulumi.Input[_builtins.int]]):
+    def priority(self, value: pulumi.Input[Optional[_builtins.int]]):
         pulumi.set(self, "priority", value)
 
     @_builtins.property
     @pulumi.getter(name="snippetId")
-    def snippet_id(self) -> Optional[pulumi.Input[_builtins.str]]:
+    def snippet_id(self) -> pulumi.Input[Optional[_builtins.str]]:
         """
         The ID of the dynamic snippet
         """
         return pulumi.get(self, "snippet_id")
 
     @snippet_id.setter
-    def snippet_id(self, value: Optional[pulumi.Input[_builtins.str]]):
+    def snippet_id(self, value: pulumi.Input[Optional[_builtins.str]]):
         pulumi.set(self, "snippet_id", value)
 
 
@@ -10278,15 +10278,15 @@ class ServiceVclGzipArgsDict(TypedDict):
     """
     A name to refer to this gzip condition. It is important to note that changing this attribute will delete and recreate the resource
     """
-    cache_condition: NotRequired[pulumi.Input[_builtins.str]]
+    cache_condition: NotRequired[pulumi.Input[Optional[_builtins.str]]]
     """
     Name of already defined `condition` controlling when this gzip configuration applies. This `condition` must be of type `CACHE`. For detailed information about Conditionals, see [Fastly's Documentation on Conditionals](https://docs.fastly.com/en/guides/using-conditions)
     """
-    content_types: NotRequired[pulumi.Input[Sequence[pulumi.Input[_builtins.str]]]]
+    content_types: NotRequired[pulumi.Input[Optional[Sequence[pulumi.Input[_builtins.str]]]]]
     """
     The content-type for each type of content you wish to have dynamically gzip'ed. Example: `["text/html", "text/css"]`
     """
-    extensions: NotRequired[pulumi.Input[Sequence[pulumi.Input[_builtins.str]]]]
+    extensions: NotRequired[pulumi.Input[Optional[Sequence[pulumi.Input[_builtins.str]]]]]
     """
     File extensions for each file type to dynamically gzip. Example: `["css", "js"]`
     """
@@ -10295,9 +10295,9 @@ class ServiceVclGzipArgsDict(TypedDict):
 class ServiceVclGzipArgs:
     def __init__(__self__, *,
                  name: pulumi.Input[_builtins.str],
-                 cache_condition: Optional[pulumi.Input[_builtins.str]] = None,
-                 content_types: Optional[pulumi.Input[Sequence[pulumi.Input[_builtins.str]]]] = None,
-                 extensions: Optional[pulumi.Input[Sequence[pulumi.Input[_builtins.str]]]] = None):
+                 cache_condition: pulumi.Input[Optional[_builtins.str]] = None,
+                 content_types: pulumi.Input[Optional[Sequence[pulumi.Input[_builtins.str]]]] = None,
+                 extensions: pulumi.Input[Optional[Sequence[pulumi.Input[_builtins.str]]]] = None):
         """
         :param pulumi.Input[_builtins.str] name: A name to refer to this gzip condition. It is important to note that changing this attribute will delete and recreate the resource
         :param pulumi.Input[_builtins.str] cache_condition: Name of already defined `condition` controlling when this gzip configuration applies. This `condition` must be of type `CACHE`. For detailed information about Conditionals, see [Fastly's Documentation on Conditionals](https://docs.fastly.com/en/guides/using-conditions)
@@ -10326,38 +10326,38 @@ class ServiceVclGzipArgs:
 
     @_builtins.property
     @pulumi.getter(name="cacheCondition")
-    def cache_condition(self) -> Optional[pulumi.Input[_builtins.str]]:
+    def cache_condition(self) -> pulumi.Input[Optional[_builtins.str]]:
         """
         Name of already defined `condition` controlling when this gzip configuration applies. This `condition` must be of type `CACHE`. For detailed information about Conditionals, see [Fastly's Documentation on Conditionals](https://docs.fastly.com/en/guides/using-conditions)
         """
         return pulumi.get(self, "cache_condition")
 
     @cache_condition.setter
-    def cache_condition(self, value: Optional[pulumi.Input[_builtins.str]]):
+    def cache_condition(self, value: pulumi.Input[Optional[_builtins.str]]):
         pulumi.set(self, "cache_condition", value)
 
     @_builtins.property
     @pulumi.getter(name="contentTypes")
-    def content_types(self) -> Optional[pulumi.Input[Sequence[pulumi.Input[_builtins.str]]]]:
+    def content_types(self) -> pulumi.Input[Optional[Sequence[pulumi.Input[_builtins.str]]]]:
         """
         The content-type for each type of content you wish to have dynamically gzip'ed. Example: `["text/html", "text/css"]`
         """
         return pulumi.get(self, "content_types")
 
     @content_types.setter
-    def content_types(self, value: Optional[pulumi.Input[Sequence[pulumi.Input[_builtins.str]]]]):
+    def content_types(self, value: pulumi.Input[Optional[Sequence[pulumi.Input[_builtins.str]]]]):
         pulumi.set(self, "content_types", value)
 
     @_builtins.property
     @pulumi.getter
-    def extensions(self) -> Optional[pulumi.Input[Sequence[pulumi.Input[_builtins.str]]]]:
+    def extensions(self) -> pulumi.Input[Optional[Sequence[pulumi.Input[_builtins.str]]]]:
         """
         File extensions for each file type to dynamically gzip. Example: `["css", "js"]`
         """
         return pulumi.get(self, "extensions")
 
     @extensions.setter
-    def extensions(self, value: Optional[pulumi.Input[Sequence[pulumi.Input[_builtins.str]]]]):
+    def extensions(self, value: pulumi.Input[Optional[Sequence[pulumi.Input[_builtins.str]]]]):
         pulumi.set(self, "extensions", value)
 
 
@@ -10378,35 +10378,35 @@ class ServiceVclHeaderArgsDict(TypedDict):
     """
     The Request type on which to apply the selected Action; must be one of `request`, `fetch`, `cache` or `response`
     """
-    cache_condition: NotRequired[pulumi.Input[_builtins.str]]
+    cache_condition: NotRequired[pulumi.Input[Optional[_builtins.str]]]
     """
     Name of already defined `condition` to apply. This `condition` must be of type `CACHE`
     """
-    ignore_if_set: NotRequired[pulumi.Input[_builtins.bool]]
+    ignore_if_set: NotRequired[pulumi.Input[Optional[_builtins.bool]]]
     """
     Don't add the header if it is already. (Only applies to `set` action.). Default `false`
     """
-    priority: NotRequired[pulumi.Input[_builtins.int]]
+    priority: NotRequired[pulumi.Input[Optional[_builtins.int]]]
     """
     Lower priorities execute first. Default: `100`
     """
-    regex: NotRequired[pulumi.Input[_builtins.str]]
+    regex: NotRequired[pulumi.Input[Optional[_builtins.str]]]
     """
     Regular expression to use (Only applies to `regex` and `regex_repeat` actions.)
     """
-    request_condition: NotRequired[pulumi.Input[_builtins.str]]
+    request_condition: NotRequired[pulumi.Input[Optional[_builtins.str]]]
     """
     Name of already defined `condition` to apply. This `condition` must be of type `REQUEST`
     """
-    response_condition: NotRequired[pulumi.Input[_builtins.str]]
+    response_condition: NotRequired[pulumi.Input[Optional[_builtins.str]]]
     """
     Name of already defined `condition` to apply. This `condition` must be of type `RESPONSE`. For detailed information about Conditionals, see [Fastly's Documentation on Conditionals](https://docs.fastly.com/en/guides/using-conditions)
     """
-    source: NotRequired[pulumi.Input[_builtins.str]]
+    source: NotRequired[pulumi.Input[Optional[_builtins.str]]]
     """
     Variable to be used as a source for the header content (Does not apply to `delete` action.)
     """
-    substitution: NotRequired[pulumi.Input[_builtins.str]]
+    substitution: NotRequired[pulumi.Input[Optional[_builtins.str]]]
     """
     Value to substitute in place of regular expression. (Only applies to `regex` and `regex_repeat`.)
     """
@@ -10418,14 +10418,14 @@ class ServiceVclHeaderArgs:
                  destination: pulumi.Input[_builtins.str],
                  name: pulumi.Input[_builtins.str],
                  type: pulumi.Input[_builtins.str],
-                 cache_condition: Optional[pulumi.Input[_builtins.str]] = None,
-                 ignore_if_set: Optional[pulumi.Input[_builtins.bool]] = None,
-                 priority: Optional[pulumi.Input[_builtins.int]] = None,
-                 regex: Optional[pulumi.Input[_builtins.str]] = None,
-                 request_condition: Optional[pulumi.Input[_builtins.str]] = None,
-                 response_condition: Optional[pulumi.Input[_builtins.str]] = None,
-                 source: Optional[pulumi.Input[_builtins.str]] = None,
-                 substitution: Optional[pulumi.Input[_builtins.str]] = None):
+                 cache_condition: pulumi.Input[Optional[_builtins.str]] = None,
+                 ignore_if_set: pulumi.Input[Optional[_builtins.bool]] = None,
+                 priority: pulumi.Input[Optional[_builtins.int]] = None,
+                 regex: pulumi.Input[Optional[_builtins.str]] = None,
+                 request_condition: pulumi.Input[Optional[_builtins.str]] = None,
+                 response_condition: pulumi.Input[Optional[_builtins.str]] = None,
+                 source: pulumi.Input[Optional[_builtins.str]] = None,
+                 substitution: pulumi.Input[Optional[_builtins.str]] = None):
         """
         :param pulumi.Input[_builtins.str] action: The Header manipulation action to take; must be one of `set`, `append`, `delete`, `regex`, or `regex_repeat`
         :param pulumi.Input[_builtins.str] destination: The name of the header that is going to be affected by the Action
@@ -10511,98 +10511,98 @@ class ServiceVclHeaderArgs:
 
     @_builtins.property
     @pulumi.getter(name="cacheCondition")
-    def cache_condition(self) -> Optional[pulumi.Input[_builtins.str]]:
+    def cache_condition(self) -> pulumi.Input[Optional[_builtins.str]]:
         """
         Name of already defined `condition` to apply. This `condition` must be of type `CACHE`
         """
         return pulumi.get(self, "cache_condition")
 
     @cache_condition.setter
-    def cache_condition(self, value: Optional[pulumi.Input[_builtins.str]]):
+    def cache_condition(self, value: pulumi.Input[Optional[_builtins.str]]):
         pulumi.set(self, "cache_condition", value)
 
     @_builtins.property
     @pulumi.getter(name="ignoreIfSet")
-    def ignore_if_set(self) -> Optional[pulumi.Input[_builtins.bool]]:
+    def ignore_if_set(self) -> pulumi.Input[Optional[_builtins.bool]]:
         """
         Don't add the header if it is already. (Only applies to `set` action.). Default `false`
         """
         return pulumi.get(self, "ignore_if_set")
 
     @ignore_if_set.setter
-    def ignore_if_set(self, value: Optional[pulumi.Input[_builtins.bool]]):
+    def ignore_if_set(self, value: pulumi.Input[Optional[_builtins.bool]]):
         pulumi.set(self, "ignore_if_set", value)
 
     @_builtins.property
     @pulumi.getter
-    def priority(self) -> Optional[pulumi.Input[_builtins.int]]:
+    def priority(self) -> pulumi.Input[Optional[_builtins.int]]:
         """
         Lower priorities execute first. Default: `100`
         """
         return pulumi.get(self, "priority")
 
     @priority.setter
-    def priority(self, value: Optional[pulumi.Input[_builtins.int]]):
+    def priority(self, value: pulumi.Input[Optional[_builtins.int]]):
         pulumi.set(self, "priority", value)
 
     @_builtins.property
     @pulumi.getter
-    def regex(self) -> Optional[pulumi.Input[_builtins.str]]:
+    def regex(self) -> pulumi.Input[Optional[_builtins.str]]:
         """
         Regular expression to use (Only applies to `regex` and `regex_repeat` actions.)
         """
         return pulumi.get(self, "regex")
 
     @regex.setter
-    def regex(self, value: Optional[pulumi.Input[_builtins.str]]):
+    def regex(self, value: pulumi.Input[Optional[_builtins.str]]):
         pulumi.set(self, "regex", value)
 
     @_builtins.property
     @pulumi.getter(name="requestCondition")
-    def request_condition(self) -> Optional[pulumi.Input[_builtins.str]]:
+    def request_condition(self) -> pulumi.Input[Optional[_builtins.str]]:
         """
         Name of already defined `condition` to apply. This `condition` must be of type `REQUEST`
         """
         return pulumi.get(self, "request_condition")
 
     @request_condition.setter
-    def request_condition(self, value: Optional[pulumi.Input[_builtins.str]]):
+    def request_condition(self, value: pulumi.Input[Optional[_builtins.str]]):
         pulumi.set(self, "request_condition", value)
 
     @_builtins.property
     @pulumi.getter(name="responseCondition")
-    def response_condition(self) -> Optional[pulumi.Input[_builtins.str]]:
+    def response_condition(self) -> pulumi.Input[Optional[_builtins.str]]:
         """
         Name of already defined `condition` to apply. This `condition` must be of type `RESPONSE`. For detailed information about Conditionals, see [Fastly's Documentation on Conditionals](https://docs.fastly.com/en/guides/using-conditions)
         """
         return pulumi.get(self, "response_condition")
 
     @response_condition.setter
-    def response_condition(self, value: Optional[pulumi.Input[_builtins.str]]):
+    def response_condition(self, value: pulumi.Input[Optional[_builtins.str]]):
         pulumi.set(self, "response_condition", value)
 
     @_builtins.property
     @pulumi.getter
-    def source(self) -> Optional[pulumi.Input[_builtins.str]]:
+    def source(self) -> pulumi.Input[Optional[_builtins.str]]:
         """
         Variable to be used as a source for the header content (Does not apply to `delete` action.)
         """
         return pulumi.get(self, "source")
 
     @source.setter
-    def source(self, value: Optional[pulumi.Input[_builtins.str]]):
+    def source(self, value: pulumi.Input[Optional[_builtins.str]]):
         pulumi.set(self, "source", value)
 
     @_builtins.property
     @pulumi.getter
-    def substitution(self) -> Optional[pulumi.Input[_builtins.str]]:
+    def substitution(self) -> pulumi.Input[Optional[_builtins.str]]:
         """
         Value to substitute in place of regular expression. (Only applies to `regex` and `regex_repeat`.)
         """
         return pulumi.get(self, "substitution")
 
     @substitution.setter
-    def substitution(self, value: Optional[pulumi.Input[_builtins.str]]):
+    def substitution(self, value: pulumi.Input[Optional[_builtins.str]]):
         pulumi.set(self, "substitution", value)
 
 
@@ -10619,39 +10619,39 @@ class ServiceVclHealthcheckArgsDict(TypedDict):
     """
     The path to check
     """
-    check_interval: NotRequired[pulumi.Input[_builtins.int]]
+    check_interval: NotRequired[pulumi.Input[Optional[_builtins.int]]]
     """
     How often to run the Healthcheck in milliseconds. Default `5000`
     """
-    expected_response: NotRequired[pulumi.Input[_builtins.int]]
+    expected_response: NotRequired[pulumi.Input[Optional[_builtins.int]]]
     """
     The status code expected from the host. Default `200`
     """
-    headers: NotRequired[pulumi.Input[Sequence[pulumi.Input[_builtins.str]]]]
+    headers: NotRequired[pulumi.Input[Optional[Sequence[pulumi.Input[_builtins.str]]]]]
     """
     Custom health check HTTP headers (e.g. if your health check requires an API key to be provided).
     """
-    http_version: NotRequired[pulumi.Input[_builtins.str]]
+    http_version: NotRequired[pulumi.Input[Optional[_builtins.str]]]
     """
     Whether to use version 1.0 or 1.1 HTTP. Default `1.1`
     """
-    initial: NotRequired[pulumi.Input[_builtins.int]]
+    initial: NotRequired[pulumi.Input[Optional[_builtins.int]]]
     """
     When loading a config, the initial number of probes to be seen as OK. Default `3`
     """
-    method: NotRequired[pulumi.Input[_builtins.str]]
+    method: NotRequired[pulumi.Input[Optional[_builtins.str]]]
     """
     Which HTTP method to use. Default `HEAD`
     """
-    threshold: NotRequired[pulumi.Input[_builtins.int]]
+    threshold: NotRequired[pulumi.Input[Optional[_builtins.int]]]
     """
     How many Healthchecks must succeed to be considered healthy. Default `3`
     """
-    timeout: NotRequired[pulumi.Input[_builtins.int]]
+    timeout: NotRequired[pulumi.Input[Optional[_builtins.int]]]
     """
     Timeout in milliseconds. Default `5000`
     """
-    window: NotRequired[pulumi.Input[_builtins.int]]
+    window: NotRequired[pulumi.Input[Optional[_builtins.int]]]
     """
     The number of most recent Healthcheck queries to keep for this Healthcheck. Default `5`
     """
@@ -10662,15 +10662,15 @@ class ServiceVclHealthcheckArgs:
                  host: pulumi.Input[_builtins.str],
                  name: pulumi.Input[_builtins.str],
                  path: pulumi.Input[_builtins.str],
-                 check_interval: Optional[pulumi.Input[_builtins.int]] = None,
-                 expected_response: Optional[pulumi.Input[_builtins.int]] = None,
-                 headers: Optional[pulumi.Input[Sequence[pulumi.Input[_builtins.str]]]] = None,
-                 http_version: Optional[pulumi.Input[_builtins.str]] = None,
-                 initial: Optional[pulumi.Input[_builtins.int]] = None,
-                 method: Optional[pulumi.Input[_builtins.str]] = None,
-                 threshold: Optional[pulumi.Input[_builtins.int]] = None,
-                 timeout: Optional[pulumi.Input[_builtins.int]] = None,
-                 window: Optional[pulumi.Input[_builtins.int]] = None):
+                 check_interval: pulumi.Input[Optional[_builtins.int]] = None,
+                 expected_response: pulumi.Input[Optional[_builtins.int]] = None,
+                 headers: pulumi.Input[Optional[Sequence[pulumi.Input[_builtins.str]]]] = None,
+                 http_version: pulumi.Input[Optional[_builtins.str]] = None,
+                 initial: pulumi.Input[Optional[_builtins.int]] = None,
+                 method: pulumi.Input[Optional[_builtins.str]] = None,
+                 threshold: pulumi.Input[Optional[_builtins.int]] = None,
+                 timeout: pulumi.Input[Optional[_builtins.int]] = None,
+                 window: pulumi.Input[Optional[_builtins.int]] = None):
         """
         :param pulumi.Input[_builtins.str] host: The Host header to send for this Healthcheck
         :param pulumi.Input[_builtins.str] name: A unique name to identify this Healthcheck. It is important to note that changing this attribute will delete and recreate the resource
@@ -10745,134 +10745,134 @@ class ServiceVclHealthcheckArgs:
 
     @_builtins.property
     @pulumi.getter(name="checkInterval")
-    def check_interval(self) -> Optional[pulumi.Input[_builtins.int]]:
+    def check_interval(self) -> pulumi.Input[Optional[_builtins.int]]:
         """
         How often to run the Healthcheck in milliseconds. Default `5000`
         """
         return pulumi.get(self, "check_interval")
 
     @check_interval.setter
-    def check_interval(self, value: Optional[pulumi.Input[_builtins.int]]):
+    def check_interval(self, value: pulumi.Input[Optional[_builtins.int]]):
         pulumi.set(self, "check_interval", value)
 
     @_builtins.property
     @pulumi.getter(name="expectedResponse")
-    def expected_response(self) -> Optional[pulumi.Input[_builtins.int]]:
+    def expected_response(self) -> pulumi.Input[Optional[_builtins.int]]:
         """
         The status code expected from the host. Default `200`
         """
         return pulumi.get(self, "expected_response")
 
     @expected_response.setter
-    def expected_response(self, value: Optional[pulumi.Input[_builtins.int]]):
+    def expected_response(self, value: pulumi.Input[Optional[_builtins.int]]):
         pulumi.set(self, "expected_response", value)
 
     @_builtins.property
     @pulumi.getter
-    def headers(self) -> Optional[pulumi.Input[Sequence[pulumi.Input[_builtins.str]]]]:
+    def headers(self) -> pulumi.Input[Optional[Sequence[pulumi.Input[_builtins.str]]]]:
         """
         Custom health check HTTP headers (e.g. if your health check requires an API key to be provided).
         """
         return pulumi.get(self, "headers")
 
     @headers.setter
-    def headers(self, value: Optional[pulumi.Input[Sequence[pulumi.Input[_builtins.str]]]]):
+    def headers(self, value: pulumi.Input[Optional[Sequence[pulumi.Input[_builtins.str]]]]):
         pulumi.set(self, "headers", value)
 
     @_builtins.property
     @pulumi.getter(name="httpVersion")
-    def http_version(self) -> Optional[pulumi.Input[_builtins.str]]:
+    def http_version(self) -> pulumi.Input[Optional[_builtins.str]]:
         """
         Whether to use version 1.0 or 1.1 HTTP. Default `1.1`
         """
         return pulumi.get(self, "http_version")
 
     @http_version.setter
-    def http_version(self, value: Optional[pulumi.Input[_builtins.str]]):
+    def http_version(self, value: pulumi.Input[Optional[_builtins.str]]):
         pulumi.set(self, "http_version", value)
 
     @_builtins.property
     @pulumi.getter
-    def initial(self) -> Optional[pulumi.Input[_builtins.int]]:
+    def initial(self) -> pulumi.Input[Optional[_builtins.int]]:
         """
         When loading a config, the initial number of probes to be seen as OK. Default `3`
         """
         return pulumi.get(self, "initial")
 
     @initial.setter
-    def initial(self, value: Optional[pulumi.Input[_builtins.int]]):
+    def initial(self, value: pulumi.Input[Optional[_builtins.int]]):
         pulumi.set(self, "initial", value)
 
     @_builtins.property
     @pulumi.getter
-    def method(self) -> Optional[pulumi.Input[_builtins.str]]:
+    def method(self) -> pulumi.Input[Optional[_builtins.str]]:
         """
         Which HTTP method to use. Default `HEAD`
         """
         return pulumi.get(self, "method")
 
     @method.setter
-    def method(self, value: Optional[pulumi.Input[_builtins.str]]):
+    def method(self, value: pulumi.Input[Optional[_builtins.str]]):
         pulumi.set(self, "method", value)
 
     @_builtins.property
     @pulumi.getter
-    def threshold(self) -> Optional[pulumi.Input[_builtins.int]]:
+    def threshold(self) -> pulumi.Input[Optional[_builtins.int]]:
         """
         How many Healthchecks must succeed to be considered healthy. Default `3`
         """
         return pulumi.get(self, "threshold")
 
     @threshold.setter
-    def threshold(self, value: Optional[pulumi.Input[_builtins.int]]):
+    def threshold(self, value: pulumi.Input[Optional[_builtins.int]]):
         pulumi.set(self, "threshold", value)
 
     @_builtins.property
     @pulumi.getter
-    def timeout(self) -> Optional[pulumi.Input[_builtins.int]]:
+    def timeout(self) -> pulumi.Input[Optional[_builtins.int]]:
         """
         Timeout in milliseconds. Default `5000`
         """
         return pulumi.get(self, "timeout")
 
     @timeout.setter
-    def timeout(self, value: Optional[pulumi.Input[_builtins.int]]):
+    def timeout(self, value: pulumi.Input[Optional[_builtins.int]]):
         pulumi.set(self, "timeout", value)
 
     @_builtins.property
     @pulumi.getter
-    def window(self) -> Optional[pulumi.Input[_builtins.int]]:
+    def window(self) -> pulumi.Input[Optional[_builtins.int]]:
         """
         The number of most recent Healthcheck queries to keep for this Healthcheck. Default `5`
         """
         return pulumi.get(self, "window")
 
     @window.setter
-    def window(self, value: Optional[pulumi.Input[_builtins.int]]):
+    def window(self, value: pulumi.Input[Optional[_builtins.int]]):
         pulumi.set(self, "window", value)
 
 
 class ServiceVclImageOptimizerDefaultSettingsArgsDict(TypedDict):
-    allow_video: NotRequired[pulumi.Input[_builtins.bool]]
+    allow_video: NotRequired[pulumi.Input[Optional[_builtins.bool]]]
     """
     Enables GIF to MP4 transformations on this service.
     """
-    jpeg_quality: NotRequired[pulumi.Input[_builtins.int]]
+    jpeg_quality: NotRequired[pulumi.Input[Optional[_builtins.int]]]
     """
     The default quality to use with JPEG output. This can be overridden with the "quality" parameter on specific image optimizer requests.
     """
-    jpeg_type: NotRequired[pulumi.Input[_builtins.str]]
+    jpeg_type: NotRequired[pulumi.Input[Optional[_builtins.str]]]
     """
     The default type of JPEG output to use. This can be overridden with "format=bjpeg" and "format=pjpeg" on specific image optimizer requests. Valid values are `auto`, `baseline` and `progressive`.
     	- auto: Match the input JPEG type, or baseline if transforming from a non-JPEG input.
     	- baseline: Output baseline JPEG images
     	- progressive: Output progressive JPEG images
     """
-    name: NotRequired[pulumi.Input[_builtins.str]]
+    name: NotRequired[pulumi.Input[Optional[_builtins.str]]]
     """
     Used by the provider to identify modified settings. Changing this value will force the entire block to be deleted, then recreated.
     """
-    resize_filter: NotRequired[pulumi.Input[_builtins.str]]
+    resize_filter: NotRequired[pulumi.Input[Optional[_builtins.str]]]
     """
     The type of filter to use while resizing an image. Valid values are `lanczos3`, `lanczos2`, `bicubic`, `bilinear` and `nearest`.
     	- lanczos3: A Lanczos filter with a kernel size of 3. Lanczos filters can detect edges and linear features within an image, providing the best possible reconstruction.
@@ -10881,15 +10881,15 @@ class ServiceVclImageOptimizerDefaultSettingsArgsDict(TypedDict):
     	- bilinear: A filter using an average of a 2x2 environment of pixels.
     	- nearest: A filter using the value of nearby translated pixel values. Preserves hard edges.
     """
-    upscale: NotRequired[pulumi.Input[_builtins.bool]]
+    upscale: NotRequired[pulumi.Input[Optional[_builtins.bool]]]
     """
     Whether or not we should allow output images to render at sizes larger than input.
     """
-    webp: NotRequired[pulumi.Input[_builtins.bool]]
+    webp: NotRequired[pulumi.Input[Optional[_builtins.bool]]]
     """
     Controls whether or not to default to WebP output when the client supports it. This is equivalent to adding "auto=webp" to all image optimizer requests.
     """
-    webp_quality: NotRequired[pulumi.Input[_builtins.int]]
+    webp_quality: NotRequired[pulumi.Input[Optional[_builtins.int]]]
     """
     The default quality to use with WebP output. This can be overridden with the second option in the "quality" URL parameter on specific image optimizer requests.
     """
@@ -10897,14 +10897,14 @@ class ServiceVclImageOptimizerDefaultSettingsArgsDict(TypedDict):
 @pulumi.input_type
 class ServiceVclImageOptimizerDefaultSettingsArgs:
     def __init__(__self__, *,
-                 allow_video: Optional[pulumi.Input[_builtins.bool]] = None,
-                 jpeg_quality: Optional[pulumi.Input[_builtins.int]] = None,
-                 jpeg_type: Optional[pulumi.Input[_builtins.str]] = None,
-                 name: Optional[pulumi.Input[_builtins.str]] = None,
-                 resize_filter: Optional[pulumi.Input[_builtins.str]] = None,
-                 upscale: Optional[pulumi.Input[_builtins.bool]] = None,
-                 webp: Optional[pulumi.Input[_builtins.bool]] = None,
-                 webp_quality: Optional[pulumi.Input[_builtins.int]] = None):
+                 allow_video: pulumi.Input[Optional[_builtins.bool]] = None,
+                 jpeg_quality: pulumi.Input[Optional[_builtins.int]] = None,
+                 jpeg_type: pulumi.Input[Optional[_builtins.str]] = None,
+                 name: pulumi.Input[Optional[_builtins.str]] = None,
+                 resize_filter: pulumi.Input[Optional[_builtins.str]] = None,
+                 upscale: pulumi.Input[Optional[_builtins.bool]] = None,
+                 webp: pulumi.Input[Optional[_builtins.bool]] = None,
+                 webp_quality: pulumi.Input[Optional[_builtins.int]] = None):
         """
         :param pulumi.Input[_builtins.bool] allow_video: Enables GIF to MP4 transformations on this service.
         :param pulumi.Input[_builtins.int] jpeg_quality: The default quality to use with JPEG output. This can be overridden with the "quality" parameter on specific image optimizer requests.
@@ -10942,31 +10942,31 @@ class ServiceVclImageOptimizerDefaultSettingsArgs:
 
     @_builtins.property
     @pulumi.getter(name="allowVideo")
-    def allow_video(self) -> Optional[pulumi.Input[_builtins.bool]]:
+    def allow_video(self) -> pulumi.Input[Optional[_builtins.bool]]:
         """
         Enables GIF to MP4 transformations on this service.
         """
         return pulumi.get(self, "allow_video")
 
     @allow_video.setter
-    def allow_video(self, value: Optional[pulumi.Input[_builtins.bool]]):
+    def allow_video(self, value: pulumi.Input[Optional[_builtins.bool]]):
         pulumi.set(self, "allow_video", value)
 
     @_builtins.property
     @pulumi.getter(name="jpegQuality")
-    def jpeg_quality(self) -> Optional[pulumi.Input[_builtins.int]]:
+    def jpeg_quality(self) -> pulumi.Input[Optional[_builtins.int]]:
         """
         The default quality to use with JPEG output. This can be overridden with the "quality" parameter on specific image optimizer requests.
         """
         return pulumi.get(self, "jpeg_quality")
 
     @jpeg_quality.setter
-    def jpeg_quality(self, value: Optional[pulumi.Input[_builtins.int]]):
+    def jpeg_quality(self, value: pulumi.Input[Optional[_builtins.int]]):
         pulumi.set(self, "jpeg_quality", value)
 
     @_builtins.property
     @pulumi.getter(name="jpegType")
-    def jpeg_type(self) -> Optional[pulumi.Input[_builtins.str]]:
+    def jpeg_type(self) -> pulumi.Input[Optional[_builtins.str]]:
         """
         The default type of JPEG output to use. This can be overridden with "format=bjpeg" and "format=pjpeg" on specific image optimizer requests. Valid values are `auto`, `baseline` and `progressive`.
         	- auto: Match the input JPEG type, or baseline if transforming from a non-JPEG input.
@@ -10976,24 +10976,24 @@ class ServiceVclImageOptimizerDefaultSettingsArgs:
         return pulumi.get(self, "jpeg_type")
 
     @jpeg_type.setter
-    def jpeg_type(self, value: Optional[pulumi.Input[_builtins.str]]):
+    def jpeg_type(self, value: pulumi.Input[Optional[_builtins.str]]):
         pulumi.set(self, "jpeg_type", value)
 
     @_builtins.property
     @pulumi.getter
-    def name(self) -> Optional[pulumi.Input[_builtins.str]]:
+    def name(self) -> pulumi.Input[Optional[_builtins.str]]:
         """
         Used by the provider to identify modified settings. Changing this value will force the entire block to be deleted, then recreated.
         """
         return pulumi.get(self, "name")
 
     @name.setter
-    def name(self, value: Optional[pulumi.Input[_builtins.str]]):
+    def name(self, value: pulumi.Input[Optional[_builtins.str]]):
         pulumi.set(self, "name", value)
 
     @_builtins.property
     @pulumi.getter(name="resizeFilter")
-    def resize_filter(self) -> Optional[pulumi.Input[_builtins.str]]:
+    def resize_filter(self) -> pulumi.Input[Optional[_builtins.str]]:
         """
         The type of filter to use while resizing an image. Valid values are `lanczos3`, `lanczos2`, `bicubic`, `bilinear` and `nearest`.
         	- lanczos3: A Lanczos filter with a kernel size of 3. Lanczos filters can detect edges and linear features within an image, providing the best possible reconstruction.
@@ -11005,43 +11005,43 @@ class ServiceVclImageOptimizerDefaultSettingsArgs:
         return pulumi.get(self, "resize_filter")
 
     @resize_filter.setter
-    def resize_filter(self, value: Optional[pulumi.Input[_builtins.str]]):
+    def resize_filter(self, value: pulumi.Input[Optional[_builtins.str]]):
         pulumi.set(self, "resize_filter", value)
 
     @_builtins.property
     @pulumi.getter
-    def upscale(self) -> Optional[pulumi.Input[_builtins.bool]]:
+    def upscale(self) -> pulumi.Input[Optional[_builtins.bool]]:
         """
         Whether or not we should allow output images to render at sizes larger than input.
         """
         return pulumi.get(self, "upscale")
 
     @upscale.setter
-    def upscale(self, value: Optional[pulumi.Input[_builtins.bool]]):
+    def upscale(self, value: pulumi.Input[Optional[_builtins.bool]]):
         pulumi.set(self, "upscale", value)
 
     @_builtins.property
     @pulumi.getter
-    def webp(self) -> Optional[pulumi.Input[_builtins.bool]]:
+    def webp(self) -> pulumi.Input[Optional[_builtins.bool]]:
         """
         Controls whether or not to default to WebP output when the client supports it. This is equivalent to adding "auto=webp" to all image optimizer requests.
         """
         return pulumi.get(self, "webp")
 
     @webp.setter
-    def webp(self, value: Optional[pulumi.Input[_builtins.bool]]):
+    def webp(self, value: pulumi.Input[Optional[_builtins.bool]]):
         pulumi.set(self, "webp", value)
 
     @_builtins.property
     @pulumi.getter(name="webpQuality")
-    def webp_quality(self) -> Optional[pulumi.Input[_builtins.int]]:
+    def webp_quality(self) -> pulumi.Input[Optional[_builtins.int]]:
         """
         The default quality to use with WebP output. This can be overridden with the second option in the "quality" URL parameter on specific image optimizer requests.
         """
         return pulumi.get(self, "webp_quality")
 
     @webp_quality.setter
-    def webp_quality(self, value: Optional[pulumi.Input[_builtins.int]]):
+    def webp_quality(self, value: pulumi.Input[Optional[_builtins.int]]):
         pulumi.set(self, "webp_quality", value)
 
 
@@ -11070,27 +11070,27 @@ class ServiceVclLoggingBigqueryArgsDict(TypedDict):
     """
     The ID of your BigQuery table
     """
-    account_name: NotRequired[pulumi.Input[_builtins.str]]
+    account_name: NotRequired[pulumi.Input[Optional[_builtins.str]]]
     """
     The google account name used to obtain temporary credentials (default none). Not required if 'email' and 'secret_key' are provided. You may optionally provide this via an environment variable, `FASTLY_GCS_ACCOUNT_NAME`.
     """
-    format: NotRequired[pulumi.Input[_builtins.str]]
+    format: NotRequired[pulumi.Input[Optional[_builtins.str]]]
     """
     The logging format desired.
     """
-    placement: NotRequired[pulumi.Input[_builtins.str]]
+    placement: NotRequired[pulumi.Input[Optional[_builtins.str]]]
     """
     Where in the generated VCL the logging call should be placed.
     """
-    processing_region: NotRequired[pulumi.Input[_builtins.str]]
+    processing_region: NotRequired[pulumi.Input[Optional[_builtins.str]]]
     """
     Region where logs will be processed before streaming to BigQuery. Valid values are 'none', 'us' and 'eu'.
     """
-    response_condition: NotRequired[pulumi.Input[_builtins.str]]
+    response_condition: NotRequired[pulumi.Input[Optional[_builtins.str]]]
     """
     Name of a condition to apply this logging.
     """
-    template: NotRequired[pulumi.Input[_builtins.str]]
+    template: NotRequired[pulumi.Input[Optional[_builtins.str]]]
     """
     BigQuery table name suffix template
     """
@@ -11104,12 +11104,12 @@ class ServiceVclLoggingBigqueryArgs:
                  project_id: pulumi.Input[_builtins.str],
                  secret_key: pulumi.Input[_builtins.str],
                  table: pulumi.Input[_builtins.str],
-                 account_name: Optional[pulumi.Input[_builtins.str]] = None,
-                 format: Optional[pulumi.Input[_builtins.str]] = None,
-                 placement: Optional[pulumi.Input[_builtins.str]] = None,
-                 processing_region: Optional[pulumi.Input[_builtins.str]] = None,
-                 response_condition: Optional[pulumi.Input[_builtins.str]] = None,
-                 template: Optional[pulumi.Input[_builtins.str]] = None):
+                 account_name: pulumi.Input[Optional[_builtins.str]] = None,
+                 format: pulumi.Input[Optional[_builtins.str]] = None,
+                 placement: pulumi.Input[Optional[_builtins.str]] = None,
+                 processing_region: pulumi.Input[Optional[_builtins.str]] = None,
+                 response_condition: pulumi.Input[Optional[_builtins.str]] = None,
+                 template: pulumi.Input[Optional[_builtins.str]] = None):
         """
         :param pulumi.Input[_builtins.str] dataset: The ID of your BigQuery dataset
         :param pulumi.Input[_builtins.str] email: The email for the service account with write access to your BigQuery dataset. If not provided, this will be pulled from a `FASTLY_BQ_EMAIL` environment variable
@@ -11217,74 +11217,74 @@ class ServiceVclLoggingBigqueryArgs:
 
     @_builtins.property
     @pulumi.getter(name="accountName")
-    def account_name(self) -> Optional[pulumi.Input[_builtins.str]]:
+    def account_name(self) -> pulumi.Input[Optional[_builtins.str]]:
         """
         The google account name used to obtain temporary credentials (default none). Not required if 'email' and 'secret_key' are provided. You may optionally provide this via an environment variable, `FASTLY_GCS_ACCOUNT_NAME`.
         """
         return pulumi.get(self, "account_name")
 
     @account_name.setter
-    def account_name(self, value: Optional[pulumi.Input[_builtins.str]]):
+    def account_name(self, value: pulumi.Input[Optional[_builtins.str]]):
         pulumi.set(self, "account_name", value)
 
     @_builtins.property
     @pulumi.getter
-    def format(self) -> Optional[pulumi.Input[_builtins.str]]:
+    def format(self) -> pulumi.Input[Optional[_builtins.str]]:
         """
         The logging format desired.
         """
         return pulumi.get(self, "format")
 
     @format.setter
-    def format(self, value: Optional[pulumi.Input[_builtins.str]]):
+    def format(self, value: pulumi.Input[Optional[_builtins.str]]):
         pulumi.set(self, "format", value)
 
     @_builtins.property
     @pulumi.getter
-    def placement(self) -> Optional[pulumi.Input[_builtins.str]]:
+    def placement(self) -> pulumi.Input[Optional[_builtins.str]]:
         """
         Where in the generated VCL the logging call should be placed.
         """
         return pulumi.get(self, "placement")
 
     @placement.setter
-    def placement(self, value: Optional[pulumi.Input[_builtins.str]]):
+    def placement(self, value: pulumi.Input[Optional[_builtins.str]]):
         pulumi.set(self, "placement", value)
 
     @_builtins.property
     @pulumi.getter(name="processingRegion")
-    def processing_region(self) -> Optional[pulumi.Input[_builtins.str]]:
+    def processing_region(self) -> pulumi.Input[Optional[_builtins.str]]:
         """
         Region where logs will be processed before streaming to BigQuery. Valid values are 'none', 'us' and 'eu'.
         """
         return pulumi.get(self, "processing_region")
 
     @processing_region.setter
-    def processing_region(self, value: Optional[pulumi.Input[_builtins.str]]):
+    def processing_region(self, value: pulumi.Input[Optional[_builtins.str]]):
         pulumi.set(self, "processing_region", value)
 
     @_builtins.property
     @pulumi.getter(name="responseCondition")
-    def response_condition(self) -> Optional[pulumi.Input[_builtins.str]]:
+    def response_condition(self) -> pulumi.Input[Optional[_builtins.str]]:
         """
         Name of a condition to apply this logging.
         """
         return pulumi.get(self, "response_condition")
 
     @response_condition.setter
-    def response_condition(self, value: Optional[pulumi.Input[_builtins.str]]):
+    def response_condition(self, value: pulumi.Input[Optional[_builtins.str]]):
         pulumi.set(self, "response_condition", value)
 
     @_builtins.property
     @pulumi.getter
-    def template(self) -> Optional[pulumi.Input[_builtins.str]]:
+    def template(self) -> pulumi.Input[Optional[_builtins.str]]:
         """
         BigQuery table name suffix template
         """
         return pulumi.get(self, "template")
 
     @template.setter
-    def template(self, value: Optional[pulumi.Input[_builtins.str]]):
+    def template(self, value: pulumi.Input[Optional[_builtins.str]]):
         pulumi.set(self, "template", value)
 
 
@@ -11305,55 +11305,55 @@ class ServiceVclLoggingBlobstorageArgsDict(TypedDict):
     """
     The Azure shared access signature providing write access to the blob service objects. Be sure to update your token before it expires or the logging functionality will not work
     """
-    compression_codec: NotRequired[pulumi.Input[_builtins.str]]
+    compression_codec: NotRequired[pulumi.Input[Optional[_builtins.str]]]
     """
     The codec used for compression of your logs. Valid values are zstd, snappy, and gzip. If the specified codec is "gzip", gzip_level will default to 3. To specify a different level, leave compression_codec blank and explicitly set the level using gzip_level. Specifying both compression_codec and gzip_level in the same API request will result in an error.
     """
-    file_max_bytes: NotRequired[pulumi.Input[_builtins.int]]
+    file_max_bytes: NotRequired[pulumi.Input[Optional[_builtins.int]]]
     """
     Maximum size of an uploaded log file, if non-zero.
     """
-    format: NotRequired[pulumi.Input[_builtins.str]]
+    format: NotRequired[pulumi.Input[Optional[_builtins.str]]]
     """
     Apache-style string or VCL variables to use for log formatting.
     """
-    format_version: NotRequired[pulumi.Input[_builtins.int]]
+    format_version: NotRequired[pulumi.Input[Optional[_builtins.int]]]
     """
     The version of the custom logging format used for the configured endpoint. Can be either 1 or 2. (default: 2)
     """
-    gzip_level: NotRequired[pulumi.Input[_builtins.int]]
+    gzip_level: NotRequired[pulumi.Input[Optional[_builtins.int]]]
     """
     Level of Gzip compression from `0-9`. `0` means no compression. `1` is the fastest and the least compressed version, `9` is the slowest and the most compressed version. Default `0`
     """
-    message_type: NotRequired[pulumi.Input[_builtins.str]]
+    message_type: NotRequired[pulumi.Input[Optional[_builtins.str]]]
     """
     How the message should be formatted. Can be either `classic`, `loggly`, `logplex` or `blank`. Default is `classic`
     """
-    path: NotRequired[pulumi.Input[_builtins.str]]
+    path: NotRequired[pulumi.Input[Optional[_builtins.str]]]
     """
     The path to upload logs to. Must end with a trailing slash. If this field is left empty, the files will be saved in the container's root path
     """
-    period: NotRequired[pulumi.Input[_builtins.int]]
+    period: NotRequired[pulumi.Input[Optional[_builtins.int]]]
     """
     How frequently the logs should be transferred in seconds. Default `3600`
     """
-    placement: NotRequired[pulumi.Input[_builtins.str]]
+    placement: NotRequired[pulumi.Input[Optional[_builtins.str]]]
     """
     Where in the generated VCL the logging call should be placed
     """
-    processing_region: NotRequired[pulumi.Input[_builtins.str]]
+    processing_region: NotRequired[pulumi.Input[Optional[_builtins.str]]]
     """
     Region where logs will be processed before streaming to BigQuery. Valid values are 'none', 'us' and 'eu'.
     """
-    public_key: NotRequired[pulumi.Input[_builtins.str]]
+    public_key: NotRequired[pulumi.Input[Optional[_builtins.str]]]
     """
     A PGP public key that Fastly will use to encrypt your log files before writing them to disk
     """
-    response_condition: NotRequired[pulumi.Input[_builtins.str]]
+    response_condition: NotRequired[pulumi.Input[Optional[_builtins.str]]]
     """
     The name of the condition to apply
     """
-    timestamp_format: NotRequired[pulumi.Input[_builtins.str]]
+    timestamp_format: NotRequired[pulumi.Input[Optional[_builtins.str]]]
     """
     The `strftime` specified timestamp formatting (default `%Y-%m-%dT%H:%M:%S.000`)
     """
@@ -11365,19 +11365,19 @@ class ServiceVclLoggingBlobstorageArgs:
                  container: pulumi.Input[_builtins.str],
                  name: pulumi.Input[_builtins.str],
                  sas_token: pulumi.Input[_builtins.str],
-                 compression_codec: Optional[pulumi.Input[_builtins.str]] = None,
-                 file_max_bytes: Optional[pulumi.Input[_builtins.int]] = None,
-                 format: Optional[pulumi.Input[_builtins.str]] = None,
-                 format_version: Optional[pulumi.Input[_builtins.int]] = None,
-                 gzip_level: Optional[pulumi.Input[_builtins.int]] = None,
-                 message_type: Optional[pulumi.Input[_builtins.str]] = None,
-                 path: Optional[pulumi.Input[_builtins.str]] = None,
-                 period: Optional[pulumi.Input[_builtins.int]] = None,
-                 placement: Optional[pulumi.Input[_builtins.str]] = None,
-                 processing_region: Optional[pulumi.Input[_builtins.str]] = None,
-                 public_key: Optional[pulumi.Input[_builtins.str]] = None,
-                 response_condition: Optional[pulumi.Input[_builtins.str]] = None,
-                 timestamp_format: Optional[pulumi.Input[_builtins.str]] = None):
+                 compression_codec: pulumi.Input[Optional[_builtins.str]] = None,
+                 file_max_bytes: pulumi.Input[Optional[_builtins.int]] = None,
+                 format: pulumi.Input[Optional[_builtins.str]] = None,
+                 format_version: pulumi.Input[Optional[_builtins.int]] = None,
+                 gzip_level: pulumi.Input[Optional[_builtins.int]] = None,
+                 message_type: pulumi.Input[Optional[_builtins.str]] = None,
+                 path: pulumi.Input[Optional[_builtins.str]] = None,
+                 period: pulumi.Input[Optional[_builtins.int]] = None,
+                 placement: pulumi.Input[Optional[_builtins.str]] = None,
+                 processing_region: pulumi.Input[Optional[_builtins.str]] = None,
+                 public_key: pulumi.Input[Optional[_builtins.str]] = None,
+                 response_condition: pulumi.Input[Optional[_builtins.str]] = None,
+                 timestamp_format: pulumi.Input[Optional[_builtins.str]] = None):
         """
         :param pulumi.Input[_builtins.str] account_name: The unique Azure Blob Storage namespace in which your data objects are stored
         :param pulumi.Input[_builtins.str] container: The name of the Azure Blob Storage container in which to store logs
@@ -11478,158 +11478,158 @@ class ServiceVclLoggingBlobstorageArgs:
 
     @_builtins.property
     @pulumi.getter(name="compressionCodec")
-    def compression_codec(self) -> Optional[pulumi.Input[_builtins.str]]:
+    def compression_codec(self) -> pulumi.Input[Optional[_builtins.str]]:
         """
         The codec used for compression of your logs. Valid values are zstd, snappy, and gzip. If the specified codec is "gzip", gzip_level will default to 3. To specify a different level, leave compression_codec blank and explicitly set the level using gzip_level. Specifying both compression_codec and gzip_level in the same API request will result in an error.
         """
         return pulumi.get(self, "compression_codec")
 
     @compression_codec.setter
-    def compression_codec(self, value: Optional[pulumi.Input[_builtins.str]]):
+    def compression_codec(self, value: pulumi.Input[Optional[_builtins.str]]):
         pulumi.set(self, "compression_codec", value)
 
     @_builtins.property
     @pulumi.getter(name="fileMaxBytes")
-    def file_max_bytes(self) -> Optional[pulumi.Input[_builtins.int]]:
+    def file_max_bytes(self) -> pulumi.Input[Optional[_builtins.int]]:
         """
         Maximum size of an uploaded log file, if non-zero.
         """
         return pulumi.get(self, "file_max_bytes")
 
     @file_max_bytes.setter
-    def file_max_bytes(self, value: Optional[pulumi.Input[_builtins.int]]):
+    def file_max_bytes(self, value: pulumi.Input[Optional[_builtins.int]]):
         pulumi.set(self, "file_max_bytes", value)
 
     @_builtins.property
     @pulumi.getter
-    def format(self) -> Optional[pulumi.Input[_builtins.str]]:
+    def format(self) -> pulumi.Input[Optional[_builtins.str]]:
         """
         Apache-style string or VCL variables to use for log formatting.
         """
         return pulumi.get(self, "format")
 
     @format.setter
-    def format(self, value: Optional[pulumi.Input[_builtins.str]]):
+    def format(self, value: pulumi.Input[Optional[_builtins.str]]):
         pulumi.set(self, "format", value)
 
     @_builtins.property
     @pulumi.getter(name="formatVersion")
-    def format_version(self) -> Optional[pulumi.Input[_builtins.int]]:
+    def format_version(self) -> pulumi.Input[Optional[_builtins.int]]:
         """
         The version of the custom logging format used for the configured endpoint. Can be either 1 or 2. (default: 2)
         """
         return pulumi.get(self, "format_version")
 
     @format_version.setter
-    def format_version(self, value: Optional[pulumi.Input[_builtins.int]]):
+    def format_version(self, value: pulumi.Input[Optional[_builtins.int]]):
         pulumi.set(self, "format_version", value)
 
     @_builtins.property
     @pulumi.getter(name="gzipLevel")
-    def gzip_level(self) -> Optional[pulumi.Input[_builtins.int]]:
+    def gzip_level(self) -> pulumi.Input[Optional[_builtins.int]]:
         """
         Level of Gzip compression from `0-9`. `0` means no compression. `1` is the fastest and the least compressed version, `9` is the slowest and the most compressed version. Default `0`
         """
         return pulumi.get(self, "gzip_level")
 
     @gzip_level.setter
-    def gzip_level(self, value: Optional[pulumi.Input[_builtins.int]]):
+    def gzip_level(self, value: pulumi.Input[Optional[_builtins.int]]):
         pulumi.set(self, "gzip_level", value)
 
     @_builtins.property
     @pulumi.getter(name="messageType")
-    def message_type(self) -> Optional[pulumi.Input[_builtins.str]]:
+    def message_type(self) -> pulumi.Input[Optional[_builtins.str]]:
         """
         How the message should be formatted. Can be either `classic`, `loggly`, `logplex` or `blank`. Default is `classic`
         """
         return pulumi.get(self, "message_type")
 
     @message_type.setter
-    def message_type(self, value: Optional[pulumi.Input[_builtins.str]]):
+    def message_type(self, value: pulumi.Input[Optional[_builtins.str]]):
         pulumi.set(self, "message_type", value)
 
     @_builtins.property
     @pulumi.getter
-    def path(self) -> Optional[pulumi.Input[_builtins.str]]:
+    def path(self) -> pulumi.Input[Optional[_builtins.str]]:
         """
         The path to upload logs to. Must end with a trailing slash. If this field is left empty, the files will be saved in the container's root path
         """
         return pulumi.get(self, "path")
 
     @path.setter
-    def path(self, value: Optional[pulumi.Input[_builtins.str]]):
+    def path(self, value: pulumi.Input[Optional[_builtins.str]]):
         pulumi.set(self, "path", value)
 
     @_builtins.property
     @pulumi.getter
-    def period(self) -> Optional[pulumi.Input[_builtins.int]]:
+    def period(self) -> pulumi.Input[Optional[_builtins.int]]:
         """
         How frequently the logs should be transferred in seconds. Default `3600`
         """
         return pulumi.get(self, "period")
 
     @period.setter
-    def period(self, value: Optional[pulumi.Input[_builtins.int]]):
+    def period(self, value: pulumi.Input[Optional[_builtins.int]]):
         pulumi.set(self, "period", value)
 
     @_builtins.property
     @pulumi.getter
-    def placement(self) -> Optional[pulumi.Input[_builtins.str]]:
+    def placement(self) -> pulumi.Input[Optional[_builtins.str]]:
         """
         Where in the generated VCL the logging call should be placed
         """
         return pulumi.get(self, "placement")
 
     @placement.setter
-    def placement(self, value: Optional[pulumi.Input[_builtins.str]]):
+    def placement(self, value: pulumi.Input[Optional[_builtins.str]]):
         pulumi.set(self, "placement", value)
 
     @_builtins.property
     @pulumi.getter(name="processingRegion")
-    def processing_region(self) -> Optional[pulumi.Input[_builtins.str]]:
+    def processing_region(self) -> pulumi.Input[Optional[_builtins.str]]:
         """
         Region where logs will be processed before streaming to BigQuery. Valid values are 'none', 'us' and 'eu'.
         """
         return pulumi.get(self, "processing_region")
 
     @processing_region.setter
-    def processing_region(self, value: Optional[pulumi.Input[_builtins.str]]):
+    def processing_region(self, value: pulumi.Input[Optional[_builtins.str]]):
         pulumi.set(self, "processing_region", value)
 
     @_builtins.property
     @pulumi.getter(name="publicKey")
-    def public_key(self) -> Optional[pulumi.Input[_builtins.str]]:
+    def public_key(self) -> pulumi.Input[Optional[_builtins.str]]:
         """
         A PGP public key that Fastly will use to encrypt your log files before writing them to disk
         """
         return pulumi.get(self, "public_key")
 
     @public_key.setter
-    def public_key(self, value: Optional[pulumi.Input[_builtins.str]]):
+    def public_key(self, value: pulumi.Input[Optional[_builtins.str]]):
         pulumi.set(self, "public_key", value)
 
     @_builtins.property
     @pulumi.getter(name="responseCondition")
-    def response_condition(self) -> Optional[pulumi.Input[_builtins.str]]:
+    def response_condition(self) -> pulumi.Input[Optional[_builtins.str]]:
         """
         The name of the condition to apply
         """
         return pulumi.get(self, "response_condition")
 
     @response_condition.setter
-    def response_condition(self, value: Optional[pulumi.Input[_builtins.str]]):
+    def response_condition(self, value: pulumi.Input[Optional[_builtins.str]]):
         pulumi.set(self, "response_condition", value)
 
     @_builtins.property
     @pulumi.getter(name="timestampFormat")
-    def timestamp_format(self) -> Optional[pulumi.Input[_builtins.str]]:
+    def timestamp_format(self) -> pulumi.Input[Optional[_builtins.str]]:
         """
         The `strftime` specified timestamp formatting (default `%Y-%m-%dT%H:%M:%S.000`)
         """
         return pulumi.get(self, "timestamp_format")
 
     @timestamp_format.setter
-    def timestamp_format(self, value: Optional[pulumi.Input[_builtins.str]]):
+    def timestamp_format(self, value: pulumi.Input[Optional[_builtins.str]]):
         pulumi.set(self, "timestamp_format", value)
 
 
@@ -11650,55 +11650,55 @@ class ServiceVclLoggingCloudfileArgsDict(TypedDict):
     """
     The username for your Cloud Files account
     """
-    compression_codec: NotRequired[pulumi.Input[_builtins.str]]
+    compression_codec: NotRequired[pulumi.Input[Optional[_builtins.str]]]
     """
     The codec used for compression of your logs. Valid values are zstd, snappy, and gzip. If the specified codec is "gzip", gzip_level will default to 3. To specify a different level, leave compression_codec blank and explicitly set the level using gzip_level. Specifying both compression_codec and gzip_level in the same API request will result in an error.
     """
-    format: NotRequired[pulumi.Input[_builtins.str]]
+    format: NotRequired[pulumi.Input[Optional[_builtins.str]]]
     """
     Apache style log formatting.
     """
-    format_version: NotRequired[pulumi.Input[_builtins.int]]
+    format_version: NotRequired[pulumi.Input[Optional[_builtins.int]]]
     """
     The version of the custom logging format used for the configured endpoint. Can be either `1` or `2`. (default: `2`).
     """
-    gzip_level: NotRequired[pulumi.Input[_builtins.int]]
+    gzip_level: NotRequired[pulumi.Input[Optional[_builtins.int]]]
     """
     Level of Gzip compression from `0-9`. `0` means no compression. `1` is the fastest and the least compressed version, `9` is the slowest and the most compressed version. Default `0`
     """
-    message_type: NotRequired[pulumi.Input[_builtins.str]]
+    message_type: NotRequired[pulumi.Input[Optional[_builtins.str]]]
     """
     How the message should be formatted. Can be either `classic`, `loggly`, `logplex` or `blank`. Default is `classic`
     """
-    path: NotRequired[pulumi.Input[_builtins.str]]
+    path: NotRequired[pulumi.Input[Optional[_builtins.str]]]
     """
     The path to upload logs to
     """
-    period: NotRequired[pulumi.Input[_builtins.int]]
+    period: NotRequired[pulumi.Input[Optional[_builtins.int]]]
     """
     How frequently log files are finalized so they can be available for reading (in seconds, default `3600`)
     """
-    placement: NotRequired[pulumi.Input[_builtins.str]]
+    placement: NotRequired[pulumi.Input[Optional[_builtins.str]]]
     """
     Where in the generated VCL the logging call should be placed. Can be `none` or `none`.
     """
-    processing_region: NotRequired[pulumi.Input[_builtins.str]]
+    processing_region: NotRequired[pulumi.Input[Optional[_builtins.str]]]
     """
     Region where logs will be processed before streaming to BigQuery. Valid values are 'none', 'us' and 'eu'.
     """
-    public_key: NotRequired[pulumi.Input[_builtins.str]]
+    public_key: NotRequired[pulumi.Input[Optional[_builtins.str]]]
     """
     The PGP public key that Fastly will use to encrypt your log files before writing them to disk
     """
-    region: NotRequired[pulumi.Input[_builtins.str]]
+    region: NotRequired[pulumi.Input[Optional[_builtins.str]]]
     """
     The region to stream logs to. One of: DFW (Dallas), ORD (Chicago), IAD (Northern Virginia), LON (London), SYD (Sydney), HKG (Hong Kong)
     """
-    response_condition: NotRequired[pulumi.Input[_builtins.str]]
+    response_condition: NotRequired[pulumi.Input[Optional[_builtins.str]]]
     """
     The name of an existing condition in the configured endpoint, or leave blank to always execute.
     """
-    timestamp_format: NotRequired[pulumi.Input[_builtins.str]]
+    timestamp_format: NotRequired[pulumi.Input[Optional[_builtins.str]]]
     """
     The `strftime` specified timestamp formatting (default `%Y-%m-%dT%H:%M:%S.000`)
     """
@@ -11710,19 +11710,19 @@ class ServiceVclLoggingCloudfileArgs:
                  bucket_name: pulumi.Input[_builtins.str],
                  name: pulumi.Input[_builtins.str],
                  user: pulumi.Input[_builtins.str],
-                 compression_codec: Optional[pulumi.Input[_builtins.str]] = None,
-                 format: Optional[pulumi.Input[_builtins.str]] = None,
-                 format_version: Optional[pulumi.Input[_builtins.int]] = None,
-                 gzip_level: Optional[pulumi.Input[_builtins.int]] = None,
-                 message_type: Optional[pulumi.Input[_builtins.str]] = None,
-                 path: Optional[pulumi.Input[_builtins.str]] = None,
-                 period: Optional[pulumi.Input[_builtins.int]] = None,
-                 placement: Optional[pulumi.Input[_builtins.str]] = None,
-                 processing_region: Optional[pulumi.Input[_builtins.str]] = None,
-                 public_key: Optional[pulumi.Input[_builtins.str]] = None,
-                 region: Optional[pulumi.Input[_builtins.str]] = None,
-                 response_condition: Optional[pulumi.Input[_builtins.str]] = None,
-                 timestamp_format: Optional[pulumi.Input[_builtins.str]] = None):
+                 compression_codec: pulumi.Input[Optional[_builtins.str]] = None,
+                 format: pulumi.Input[Optional[_builtins.str]] = None,
+                 format_version: pulumi.Input[Optional[_builtins.int]] = None,
+                 gzip_level: pulumi.Input[Optional[_builtins.int]] = None,
+                 message_type: pulumi.Input[Optional[_builtins.str]] = None,
+                 path: pulumi.Input[Optional[_builtins.str]] = None,
+                 period: pulumi.Input[Optional[_builtins.int]] = None,
+                 placement: pulumi.Input[Optional[_builtins.str]] = None,
+                 processing_region: pulumi.Input[Optional[_builtins.str]] = None,
+                 public_key: pulumi.Input[Optional[_builtins.str]] = None,
+                 region: pulumi.Input[Optional[_builtins.str]] = None,
+                 response_condition: pulumi.Input[Optional[_builtins.str]] = None,
+                 timestamp_format: pulumi.Input[Optional[_builtins.str]] = None):
         """
         :param pulumi.Input[_builtins.str] access_key: Your Cloud File account access key
         :param pulumi.Input[_builtins.str] bucket_name: The name of your Cloud Files container
@@ -11823,158 +11823,158 @@ class ServiceVclLoggingCloudfileArgs:
 
     @_builtins.property
     @pulumi.getter(name="compressionCodec")
-    def compression_codec(self) -> Optional[pulumi.Input[_builtins.str]]:
+    def compression_codec(self) -> pulumi.Input[Optional[_builtins.str]]:
         """
         The codec used for compression of your logs. Valid values are zstd, snappy, and gzip. If the specified codec is "gzip", gzip_level will default to 3. To specify a different level, leave compression_codec blank and explicitly set the level using gzip_level. Specifying both compression_codec and gzip_level in the same API request will result in an error.
         """
         return pulumi.get(self, "compression_codec")
 
     @compression_codec.setter
-    def compression_codec(self, value: Optional[pulumi.Input[_builtins.str]]):
+    def compression_codec(self, value: pulumi.Input[Optional[_builtins.str]]):
         pulumi.set(self, "compression_codec", value)
 
     @_builtins.property
     @pulumi.getter
-    def format(self) -> Optional[pulumi.Input[_builtins.str]]:
+    def format(self) -> pulumi.Input[Optional[_builtins.str]]:
         """
         Apache style log formatting.
         """
         return pulumi.get(self, "format")
 
     @format.setter
-    def format(self, value: Optional[pulumi.Input[_builtins.str]]):
+    def format(self, value: pulumi.Input[Optional[_builtins.str]]):
         pulumi.set(self, "format", value)
 
     @_builtins.property
     @pulumi.getter(name="formatVersion")
-    def format_version(self) -> Optional[pulumi.Input[_builtins.int]]:
+    def format_version(self) -> pulumi.Input[Optional[_builtins.int]]:
         """
         The version of the custom logging format used for the configured endpoint. Can be either `1` or `2`. (default: `2`).
         """
         return pulumi.get(self, "format_version")
 
     @format_version.setter
-    def format_version(self, value: Optional[pulumi.Input[_builtins.int]]):
+    def format_version(self, value: pulumi.Input[Optional[_builtins.int]]):
         pulumi.set(self, "format_version", value)
 
     @_builtins.property
     @pulumi.getter(name="gzipLevel")
-    def gzip_level(self) -> Optional[pulumi.Input[_builtins.int]]:
+    def gzip_level(self) -> pulumi.Input[Optional[_builtins.int]]:
         """
         Level of Gzip compression from `0-9`. `0` means no compression. `1` is the fastest and the least compressed version, `9` is the slowest and the most compressed version. Default `0`
         """
         return pulumi.get(self, "gzip_level")
 
     @gzip_level.setter
-    def gzip_level(self, value: Optional[pulumi.Input[_builtins.int]]):
+    def gzip_level(self, value: pulumi.Input[Optional[_builtins.int]]):
         pulumi.set(self, "gzip_level", value)
 
     @_builtins.property
     @pulumi.getter(name="messageType")
-    def message_type(self) -> Optional[pulumi.Input[_builtins.str]]:
+    def message_type(self) -> pulumi.Input[Optional[_builtins.str]]:
         """
         How the message should be formatted. Can be either `classic`, `loggly`, `logplex` or `blank`. Default is `classic`
         """
         return pulumi.get(self, "message_type")
 
     @message_type.setter
-    def message_type(self, value: Optional[pulumi.Input[_builtins.str]]):
+    def message_type(self, value: pulumi.Input[Optional[_builtins.str]]):
         pulumi.set(self, "message_type", value)
 
     @_builtins.property
     @pulumi.getter
-    def path(self) -> Optional[pulumi.Input[_builtins.str]]:
+    def path(self) -> pulumi.Input[Optional[_builtins.str]]:
         """
         The path to upload logs to
         """
         return pulumi.get(self, "path")
 
     @path.setter
-    def path(self, value: Optional[pulumi.Input[_builtins.str]]):
+    def path(self, value: pulumi.Input[Optional[_builtins.str]]):
         pulumi.set(self, "path", value)
 
     @_builtins.property
     @pulumi.getter
-    def period(self) -> Optional[pulumi.Input[_builtins.int]]:
+    def period(self) -> pulumi.Input[Optional[_builtins.int]]:
         """
         How frequently log files are finalized so they can be available for reading (in seconds, default `3600`)
         """
         return pulumi.get(self, "period")
 
     @period.setter
-    def period(self, value: Optional[pulumi.Input[_builtins.int]]):
+    def period(self, value: pulumi.Input[Optional[_builtins.int]]):
         pulumi.set(self, "period", value)
 
     @_builtins.property
     @pulumi.getter
-    def placement(self) -> Optional[pulumi.Input[_builtins.str]]:
+    def placement(self) -> pulumi.Input[Optional[_builtins.str]]:
         """
         Where in the generated VCL the logging call should be placed. Can be `none` or `none`.
         """
         return pulumi.get(self, "placement")
 
     @placement.setter
-    def placement(self, value: Optional[pulumi.Input[_builtins.str]]):
+    def placement(self, value: pulumi.Input[Optional[_builtins.str]]):
         pulumi.set(self, "placement", value)
 
     @_builtins.property
     @pulumi.getter(name="processingRegion")
-    def processing_region(self) -> Optional[pulumi.Input[_builtins.str]]:
+    def processing_region(self) -> pulumi.Input[Optional[_builtins.str]]:
         """
         Region where logs will be processed before streaming to BigQuery. Valid values are 'none', 'us' and 'eu'.
         """
         return pulumi.get(self, "processing_region")
 
     @processing_region.setter
-    def processing_region(self, value: Optional[pulumi.Input[_builtins.str]]):
+    def processing_region(self, value: pulumi.Input[Optional[_builtins.str]]):
         pulumi.set(self, "processing_region", value)
 
     @_builtins.property
     @pulumi.getter(name="publicKey")
-    def public_key(self) -> Optional[pulumi.Input[_builtins.str]]:
+    def public_key(self) -> pulumi.Input[Optional[_builtins.str]]:
         """
         The PGP public key that Fastly will use to encrypt your log files before writing them to disk
         """
         return pulumi.get(self, "public_key")
 
     @public_key.setter
-    def public_key(self, value: Optional[pulumi.Input[_builtins.str]]):
+    def public_key(self, value: pulumi.Input[Optional[_builtins.str]]):
         pulumi.set(self, "public_key", value)
 
     @_builtins.property
     @pulumi.getter
-    def region(self) -> Optional[pulumi.Input[_builtins.str]]:
+    def region(self) -> pulumi.Input[Optional[_builtins.str]]:
         """
         The region to stream logs to. One of: DFW (Dallas), ORD (Chicago), IAD (Northern Virginia), LON (London), SYD (Sydney), HKG (Hong Kong)
         """
         return pulumi.get(self, "region")
 
     @region.setter
-    def region(self, value: Optional[pulumi.Input[_builtins.str]]):
+    def region(self, value: pulumi.Input[Optional[_builtins.str]]):
         pulumi.set(self, "region", value)
 
     @_builtins.property
     @pulumi.getter(name="responseCondition")
-    def response_condition(self) -> Optional[pulumi.Input[_builtins.str]]:
+    def response_condition(self) -> pulumi.Input[Optional[_builtins.str]]:
         """
         The name of an existing condition in the configured endpoint, or leave blank to always execute.
         """
         return pulumi.get(self, "response_condition")
 
     @response_condition.setter
-    def response_condition(self, value: Optional[pulumi.Input[_builtins.str]]):
+    def response_condition(self, value: pulumi.Input[Optional[_builtins.str]]):
         pulumi.set(self, "response_condition", value)
 
     @_builtins.property
     @pulumi.getter(name="timestampFormat")
-    def timestamp_format(self) -> Optional[pulumi.Input[_builtins.str]]:
+    def timestamp_format(self) -> pulumi.Input[Optional[_builtins.str]]:
         """
         The `strftime` specified timestamp formatting (default `%Y-%m-%dT%H:%M:%S.000`)
         """
         return pulumi.get(self, "timestamp_format")
 
     @timestamp_format.setter
-    def timestamp_format(self, value: Optional[pulumi.Input[_builtins.str]]):
+    def timestamp_format(self, value: pulumi.Input[Optional[_builtins.str]]):
         pulumi.set(self, "timestamp_format", value)
 
 
@@ -11987,27 +11987,27 @@ class ServiceVclLoggingDatadogArgsDict(TypedDict):
     """
     The API key from your Datadog account
     """
-    format: NotRequired[pulumi.Input[_builtins.str]]
+    format: NotRequired[pulumi.Input[Optional[_builtins.str]]]
     """
     Apache-style string or VCL variables to use for log formatting.
     """
-    format_version: NotRequired[pulumi.Input[_builtins.int]]
+    format_version: NotRequired[pulumi.Input[Optional[_builtins.int]]]
     """
     The version of the custom logging format used for the configured endpoint. Can be either `1` or `2`. (default: `2`).
     """
-    placement: NotRequired[pulumi.Input[_builtins.str]]
+    placement: NotRequired[pulumi.Input[Optional[_builtins.str]]]
     """
     Where in the generated VCL the logging call should be placed.
     """
-    processing_region: NotRequired[pulumi.Input[_builtins.str]]
+    processing_region: NotRequired[pulumi.Input[Optional[_builtins.str]]]
     """
     Region where logs will be processed before streaming to BigQuery. Valid values are 'none', 'us' and 'eu'.
     """
-    region: NotRequired[pulumi.Input[_builtins.str]]
+    region: NotRequired[pulumi.Input[Optional[_builtins.str]]]
     """
     The region that log data will be sent to. Defaults to `US` if undefined
     """
-    response_condition: NotRequired[pulumi.Input[_builtins.str]]
+    response_condition: NotRequired[pulumi.Input[Optional[_builtins.str]]]
     """
     The name of the condition to apply.
     """
@@ -12017,12 +12017,12 @@ class ServiceVclLoggingDatadogArgs:
     def __init__(__self__, *,
                  name: pulumi.Input[_builtins.str],
                  token: pulumi.Input[_builtins.str],
-                 format: Optional[pulumi.Input[_builtins.str]] = None,
-                 format_version: Optional[pulumi.Input[_builtins.int]] = None,
-                 placement: Optional[pulumi.Input[_builtins.str]] = None,
-                 processing_region: Optional[pulumi.Input[_builtins.str]] = None,
-                 region: Optional[pulumi.Input[_builtins.str]] = None,
-                 response_condition: Optional[pulumi.Input[_builtins.str]] = None):
+                 format: pulumi.Input[Optional[_builtins.str]] = None,
+                 format_version: pulumi.Input[Optional[_builtins.int]] = None,
+                 placement: pulumi.Input[Optional[_builtins.str]] = None,
+                 processing_region: pulumi.Input[Optional[_builtins.str]] = None,
+                 region: pulumi.Input[Optional[_builtins.str]] = None,
+                 response_condition: pulumi.Input[Optional[_builtins.str]] = None):
         """
         :param pulumi.Input[_builtins.str] name: The unique name of the Datadog logging endpoint. It is important to note that changing this attribute will delete and recreate the resource
         :param pulumi.Input[_builtins.str] token: The API key from your Datadog account
@@ -12074,74 +12074,74 @@ class ServiceVclLoggingDatadogArgs:
 
     @_builtins.property
     @pulumi.getter
-    def format(self) -> Optional[pulumi.Input[_builtins.str]]:
+    def format(self) -> pulumi.Input[Optional[_builtins.str]]:
         """
         Apache-style string or VCL variables to use for log formatting.
         """
         return pulumi.get(self, "format")
 
     @format.setter
-    def format(self, value: Optional[pulumi.Input[_builtins.str]]):
+    def format(self, value: pulumi.Input[Optional[_builtins.str]]):
         pulumi.set(self, "format", value)
 
     @_builtins.property
     @pulumi.getter(name="formatVersion")
-    def format_version(self) -> Optional[pulumi.Input[_builtins.int]]:
+    def format_version(self) -> pulumi.Input[Optional[_builtins.int]]:
         """
         The version of the custom logging format used for the configured endpoint. Can be either `1` or `2`. (default: `2`).
         """
         return pulumi.get(self, "format_version")
 
     @format_version.setter
-    def format_version(self, value: Optional[pulumi.Input[_builtins.int]]):
+    def format_version(self, value: pulumi.Input[Optional[_builtins.int]]):
         pulumi.set(self, "format_version", value)
 
     @_builtins.property
     @pulumi.getter
-    def placement(self) -> Optional[pulumi.Input[_builtins.str]]:
+    def placement(self) -> pulumi.Input[Optional[_builtins.str]]:
         """
         Where in the generated VCL the logging call should be placed.
         """
         return pulumi.get(self, "placement")
 
     @placement.setter
-    def placement(self, value: Optional[pulumi.Input[_builtins.str]]):
+    def placement(self, value: pulumi.Input[Optional[_builtins.str]]):
         pulumi.set(self, "placement", value)
 
     @_builtins.property
     @pulumi.getter(name="processingRegion")
-    def processing_region(self) -> Optional[pulumi.Input[_builtins.str]]:
+    def processing_region(self) -> pulumi.Input[Optional[_builtins.str]]:
         """
         Region where logs will be processed before streaming to BigQuery. Valid values are 'none', 'us' and 'eu'.
         """
         return pulumi.get(self, "processing_region")
 
     @processing_region.setter
-    def processing_region(self, value: Optional[pulumi.Input[_builtins.str]]):
+    def processing_region(self, value: pulumi.Input[Optional[_builtins.str]]):
         pulumi.set(self, "processing_region", value)
 
     @_builtins.property
     @pulumi.getter
-    def region(self) -> Optional[pulumi.Input[_builtins.str]]:
+    def region(self) -> pulumi.Input[Optional[_builtins.str]]:
         """
         The region that log data will be sent to. Defaults to `US` if undefined
         """
         return pulumi.get(self, "region")
 
     @region.setter
-    def region(self, value: Optional[pulumi.Input[_builtins.str]]):
+    def region(self, value: pulumi.Input[Optional[_builtins.str]]):
         pulumi.set(self, "region", value)
 
     @_builtins.property
     @pulumi.getter(name="responseCondition")
-    def response_condition(self) -> Optional[pulumi.Input[_builtins.str]]:
+    def response_condition(self) -> pulumi.Input[Optional[_builtins.str]]:
         """
         The name of the condition to apply.
         """
         return pulumi.get(self, "response_condition")
 
     @response_condition.setter
-    def response_condition(self, value: Optional[pulumi.Input[_builtins.str]]):
+    def response_condition(self, value: pulumi.Input[Optional[_builtins.str]]):
         pulumi.set(self, "response_condition", value)
 
 
@@ -12162,55 +12162,55 @@ class ServiceVclLoggingDigitaloceanArgsDict(TypedDict):
     """
     Your DigitalOcean Spaces account secret key
     """
-    compression_codec: NotRequired[pulumi.Input[_builtins.str]]
+    compression_codec: NotRequired[pulumi.Input[Optional[_builtins.str]]]
     """
     The codec used for compression of your logs. Valid values are zstd, snappy, and gzip. If the specified codec is "gzip", gzip_level will default to 3. To specify a different level, leave compression_codec blank and explicitly set the level using gzip_level. Specifying both compression_codec and gzip_level in the same API request will result in an error.
     """
-    domain: NotRequired[pulumi.Input[_builtins.str]]
+    domain: NotRequired[pulumi.Input[Optional[_builtins.str]]]
     """
     The domain of the DigitalOcean Spaces endpoint (default `nyc3.digitaloceanspaces.com`)
     """
-    format: NotRequired[pulumi.Input[_builtins.str]]
+    format: NotRequired[pulumi.Input[Optional[_builtins.str]]]
     """
     Apache style log formatting.
     """
-    format_version: NotRequired[pulumi.Input[_builtins.int]]
+    format_version: NotRequired[pulumi.Input[Optional[_builtins.int]]]
     """
     The version of the custom logging format used for the configured endpoint. Can be either `1` or `2`. (default: `2`).
     """
-    gzip_level: NotRequired[pulumi.Input[_builtins.int]]
+    gzip_level: NotRequired[pulumi.Input[Optional[_builtins.int]]]
     """
     Level of Gzip compression from `0-9`. `0` means no compression. `1` is the fastest and the least compressed version, `9` is the slowest and the most compressed version. Default `0`
     """
-    message_type: NotRequired[pulumi.Input[_builtins.str]]
+    message_type: NotRequired[pulumi.Input[Optional[_builtins.str]]]
     """
     How the message should be formatted. Can be either `classic`, `loggly`, `logplex` or `blank`. Default is `classic`
     """
-    path: NotRequired[pulumi.Input[_builtins.str]]
+    path: NotRequired[pulumi.Input[Optional[_builtins.str]]]
     """
     The path to upload logs to
     """
-    period: NotRequired[pulumi.Input[_builtins.int]]
+    period: NotRequired[pulumi.Input[Optional[_builtins.int]]]
     """
     How frequently log files are finalized so they can be available for reading (in seconds, default `3600`)
     """
-    placement: NotRequired[pulumi.Input[_builtins.str]]
+    placement: NotRequired[pulumi.Input[Optional[_builtins.str]]]
     """
     Where in the generated VCL the logging call should be placed. Can be `none` or `none`.
     """
-    processing_region: NotRequired[pulumi.Input[_builtins.str]]
+    processing_region: NotRequired[pulumi.Input[Optional[_builtins.str]]]
     """
     Region where logs will be processed before streaming to BigQuery. Valid values are 'none', 'us' and 'eu'.
     """
-    public_key: NotRequired[pulumi.Input[_builtins.str]]
+    public_key: NotRequired[pulumi.Input[Optional[_builtins.str]]]
     """
     A PGP public key that Fastly will use to encrypt your log files before writing them to disk
     """
-    response_condition: NotRequired[pulumi.Input[_builtins.str]]
+    response_condition: NotRequired[pulumi.Input[Optional[_builtins.str]]]
     """
     The name of an existing condition in the configured endpoint, or leave blank to always execute.
     """
-    timestamp_format: NotRequired[pulumi.Input[_builtins.str]]
+    timestamp_format: NotRequired[pulumi.Input[Optional[_builtins.str]]]
     """
     The `strftime` specified timestamp formatting (default `%Y-%m-%dT%H:%M:%S.000`)
     """
@@ -12222,19 +12222,19 @@ class ServiceVclLoggingDigitaloceanArgs:
                  bucket_name: pulumi.Input[_builtins.str],
                  name: pulumi.Input[_builtins.str],
                  secret_key: pulumi.Input[_builtins.str],
-                 compression_codec: Optional[pulumi.Input[_builtins.str]] = None,
-                 domain: Optional[pulumi.Input[_builtins.str]] = None,
-                 format: Optional[pulumi.Input[_builtins.str]] = None,
-                 format_version: Optional[pulumi.Input[_builtins.int]] = None,
-                 gzip_level: Optional[pulumi.Input[_builtins.int]] = None,
-                 message_type: Optional[pulumi.Input[_builtins.str]] = None,
-                 path: Optional[pulumi.Input[_builtins.str]] = None,
-                 period: Optional[pulumi.Input[_builtins.int]] = None,
-                 placement: Optional[pulumi.Input[_builtins.str]] = None,
-                 processing_region: Optional[pulumi.Input[_builtins.str]] = None,
-                 public_key: Optional[pulumi.Input[_builtins.str]] = None,
-                 response_condition: Optional[pulumi.Input[_builtins.str]] = None,
-                 timestamp_format: Optional[pulumi.Input[_builtins.str]] = None):
+                 compression_codec: pulumi.Input[Optional[_builtins.str]] = None,
+                 domain: pulumi.Input[Optional[_builtins.str]] = None,
+                 format: pulumi.Input[Optional[_builtins.str]] = None,
+                 format_version: pulumi.Input[Optional[_builtins.int]] = None,
+                 gzip_level: pulumi.Input[Optional[_builtins.int]] = None,
+                 message_type: pulumi.Input[Optional[_builtins.str]] = None,
+                 path: pulumi.Input[Optional[_builtins.str]] = None,
+                 period: pulumi.Input[Optional[_builtins.int]] = None,
+                 placement: pulumi.Input[Optional[_builtins.str]] = None,
+                 processing_region: pulumi.Input[Optional[_builtins.str]] = None,
+                 public_key: pulumi.Input[Optional[_builtins.str]] = None,
+                 response_condition: pulumi.Input[Optional[_builtins.str]] = None,
+                 timestamp_format: pulumi.Input[Optional[_builtins.str]] = None):
         """
         :param pulumi.Input[_builtins.str] access_key: Your DigitalOcean Spaces account access key
         :param pulumi.Input[_builtins.str] bucket_name: The name of the DigitalOcean Space
@@ -12335,158 +12335,158 @@ class ServiceVclLoggingDigitaloceanArgs:
 
     @_builtins.property
     @pulumi.getter(name="compressionCodec")
-    def compression_codec(self) -> Optional[pulumi.Input[_builtins.str]]:
+    def compression_codec(self) -> pulumi.Input[Optional[_builtins.str]]:
         """
         The codec used for compression of your logs. Valid values are zstd, snappy, and gzip. If the specified codec is "gzip", gzip_level will default to 3. To specify a different level, leave compression_codec blank and explicitly set the level using gzip_level. Specifying both compression_codec and gzip_level in the same API request will result in an error.
         """
         return pulumi.get(self, "compression_codec")
 
     @compression_codec.setter
-    def compression_codec(self, value: Optional[pulumi.Input[_builtins.str]]):
+    def compression_codec(self, value: pulumi.Input[Optional[_builtins.str]]):
         pulumi.set(self, "compression_codec", value)
 
     @_builtins.property
     @pulumi.getter
-    def domain(self) -> Optional[pulumi.Input[_builtins.str]]:
+    def domain(self) -> pulumi.Input[Optional[_builtins.str]]:
         """
         The domain of the DigitalOcean Spaces endpoint (default `nyc3.digitaloceanspaces.com`)
         """
         return pulumi.get(self, "domain")
 
     @domain.setter
-    def domain(self, value: Optional[pulumi.Input[_builtins.str]]):
+    def domain(self, value: pulumi.Input[Optional[_builtins.str]]):
         pulumi.set(self, "domain", value)
 
     @_builtins.property
     @pulumi.getter
-    def format(self) -> Optional[pulumi.Input[_builtins.str]]:
+    def format(self) -> pulumi.Input[Optional[_builtins.str]]:
         """
         Apache style log formatting.
         """
         return pulumi.get(self, "format")
 
     @format.setter
-    def format(self, value: Optional[pulumi.Input[_builtins.str]]):
+    def format(self, value: pulumi.Input[Optional[_builtins.str]]):
         pulumi.set(self, "format", value)
 
     @_builtins.property
     @pulumi.getter(name="formatVersion")
-    def format_version(self) -> Optional[pulumi.Input[_builtins.int]]:
+    def format_version(self) -> pulumi.Input[Optional[_builtins.int]]:
         """
         The version of the custom logging format used for the configured endpoint. Can be either `1` or `2`. (default: `2`).
         """
         return pulumi.get(self, "format_version")
 
     @format_version.setter
-    def format_version(self, value: Optional[pulumi.Input[_builtins.int]]):
+    def format_version(self, value: pulumi.Input[Optional[_builtins.int]]):
         pulumi.set(self, "format_version", value)
 
     @_builtins.property
     @pulumi.getter(name="gzipLevel")
-    def gzip_level(self) -> Optional[pulumi.Input[_builtins.int]]:
+    def gzip_level(self) -> pulumi.Input[Optional[_builtins.int]]:
         """
         Level of Gzip compression from `0-9`. `0` means no compression. `1` is the fastest and the least compressed version, `9` is the slowest and the most compressed version. Default `0`
         """
         return pulumi.get(self, "gzip_level")
 
     @gzip_level.setter
-    def gzip_level(self, value: Optional[pulumi.Input[_builtins.int]]):
+    def gzip_level(self, value: pulumi.Input[Optional[_builtins.int]]):
         pulumi.set(self, "gzip_level", value)
 
     @_builtins.property
     @pulumi.getter(name="messageType")
-    def message_type(self) -> Optional[pulumi.Input[_builtins.str]]:
+    def message_type(self) -> pulumi.Input[Optional[_builtins.str]]:
         """
         How the message should be formatted. Can be either `classic`, `loggly`, `logplex` or `blank`. Default is `classic`
         """
         return pulumi.get(self, "message_type")
 
     @message_type.setter
-    def message_type(self, value: Optional[pulumi.Input[_builtins.str]]):
+    def message_type(self, value: pulumi.Input[Optional[_builtins.str]]):
         pulumi.set(self, "message_type", value)
 
     @_builtins.property
     @pulumi.getter
-    def path(self) -> Optional[pulumi.Input[_builtins.str]]:
+    def path(self) -> pulumi.Input[Optional[_builtins.str]]:
         """
         The path to upload logs to
         """
         return pulumi.get(self, "path")
 
     @path.setter
-    def path(self, value: Optional[pulumi.Input[_builtins.str]]):
+    def path(self, value: pulumi.Input[Optional[_builtins.str]]):
         pulumi.set(self, "path", value)
 
     @_builtins.property
     @pulumi.getter
-    def period(self) -> Optional[pulumi.Input[_builtins.int]]:
+    def period(self) -> pulumi.Input[Optional[_builtins.int]]:
         """
         How frequently log files are finalized so they can be available for reading (in seconds, default `3600`)
         """
         return pulumi.get(self, "period")
 
     @period.setter
-    def period(self, value: Optional[pulumi.Input[_builtins.int]]):
+    def period(self, value: pulumi.Input[Optional[_builtins.int]]):
         pulumi.set(self, "period", value)
 
     @_builtins.property
     @pulumi.getter
-    def placement(self) -> Optional[pulumi.Input[_builtins.str]]:
+    def placement(self) -> pulumi.Input[Optional[_builtins.str]]:
         """
         Where in the generated VCL the logging call should be placed. Can be `none` or `none`.
         """
         return pulumi.get(self, "placement")
 
     @placement.setter
-    def placement(self, value: Optional[pulumi.Input[_builtins.str]]):
+    def placement(self, value: pulumi.Input[Optional[_builtins.str]]):
         pulumi.set(self, "placement", value)
 
     @_builtins.property
     @pulumi.getter(name="processingRegion")
-    def processing_region(self) -> Optional[pulumi.Input[_builtins.str]]:
+    def processing_region(self) -> pulumi.Input[Optional[_builtins.str]]:
         """
         Region where logs will be processed before streaming to BigQuery. Valid values are 'none', 'us' and 'eu'.
         """
         return pulumi.get(self, "processing_region")
 
     @processing_region.setter
-    def processing_region(self, value: Optional[pulumi.Input[_builtins.str]]):
+    def processing_region(self, value: pulumi.Input[Optional[_builtins.str]]):
         pulumi.set(self, "processing_region", value)
 
     @_builtins.property
     @pulumi.getter(name="publicKey")
-    def public_key(self) -> Optional[pulumi.Input[_builtins.str]]:
+    def public_key(self) -> pulumi.Input[Optional[_builtins.str]]:
         """
         A PGP public key that Fastly will use to encrypt your log files before writing them to disk
         """
         return pulumi.get(self, "public_key")
 
     @public_key.setter
-    def public_key(self, value: Optional[pulumi.Input[_builtins.str]]):
+    def public_key(self, value: pulumi.Input[Optional[_builtins.str]]):
         pulumi.set(self, "public_key", value)
 
     @_builtins.property
     @pulumi.getter(name="responseCondition")
-    def response_condition(self) -> Optional[pulumi.Input[_builtins.str]]:
+    def response_condition(self) -> pulumi.Input[Optional[_builtins.str]]:
         """
         The name of an existing condition in the configured endpoint, or leave blank to always execute.
         """
         return pulumi.get(self, "response_condition")
 
     @response_condition.setter
-    def response_condition(self, value: Optional[pulumi.Input[_builtins.str]]):
+    def response_condition(self, value: pulumi.Input[Optional[_builtins.str]]):
         pulumi.set(self, "response_condition", value)
 
     @_builtins.property
     @pulumi.getter(name="timestampFormat")
-    def timestamp_format(self) -> Optional[pulumi.Input[_builtins.str]]:
+    def timestamp_format(self) -> pulumi.Input[Optional[_builtins.str]]:
         """
         The `strftime` specified timestamp formatting (default `%Y-%m-%dT%H:%M:%S.000`)
         """
         return pulumi.get(self, "timestamp_format")
 
     @timestamp_format.setter
-    def timestamp_format(self, value: Optional[pulumi.Input[_builtins.str]]):
+    def timestamp_format(self, value: pulumi.Input[Optional[_builtins.str]]):
         pulumi.set(self, "timestamp_format", value)
 
 
@@ -12503,59 +12503,59 @@ class ServiceVclLoggingElasticsearchArgsDict(TypedDict):
     """
     The Elasticsearch URL to stream logs to
     """
-    format: NotRequired[pulumi.Input[_builtins.str]]
+    format: NotRequired[pulumi.Input[Optional[_builtins.str]]]
     """
     Apache-style string or VCL variables to use for log formatting.
     """
-    format_version: NotRequired[pulumi.Input[_builtins.int]]
+    format_version: NotRequired[pulumi.Input[Optional[_builtins.int]]]
     """
     The version of the custom logging format used for the configured endpoint. Can be either 1 or 2. (default: 2).
     """
-    password: NotRequired[pulumi.Input[_builtins.str]]
+    password: NotRequired[pulumi.Input[Optional[_builtins.str]]]
     """
     BasicAuth password for Elasticsearch
     """
-    pipeline: NotRequired[pulumi.Input[_builtins.str]]
+    pipeline: NotRequired[pulumi.Input[Optional[_builtins.str]]]
     """
     The ID of the Elasticsearch ingest pipeline to apply pre-process transformations to before indexing
     """
-    placement: NotRequired[pulumi.Input[_builtins.str]]
+    placement: NotRequired[pulumi.Input[Optional[_builtins.str]]]
     """
     Where in the generated VCL the logging call should be placed.
     """
-    processing_region: NotRequired[pulumi.Input[_builtins.str]]
+    processing_region: NotRequired[pulumi.Input[Optional[_builtins.str]]]
     """
     Region where logs will be processed before streaming to BigQuery. Valid values are 'none', 'us' and 'eu'.
     """
-    request_max_bytes: NotRequired[pulumi.Input[_builtins.int]]
+    request_max_bytes: NotRequired[pulumi.Input[Optional[_builtins.int]]]
     """
     The maximum number of logs sent in one request. Defaults to `0` for unbounded
     """
-    request_max_entries: NotRequired[pulumi.Input[_builtins.int]]
+    request_max_entries: NotRequired[pulumi.Input[Optional[_builtins.int]]]
     """
     The maximum number of bytes sent in one request. Defaults to `0` for unbounded
     """
-    response_condition: NotRequired[pulumi.Input[_builtins.str]]
+    response_condition: NotRequired[pulumi.Input[Optional[_builtins.str]]]
     """
     The name of the condition to apply
     """
-    tls_ca_cert: NotRequired[pulumi.Input[_builtins.str]]
+    tls_ca_cert: NotRequired[pulumi.Input[Optional[_builtins.str]]]
     """
     A secure certificate to authenticate the server with. Must be in PEM format
     """
-    tls_client_cert: NotRequired[pulumi.Input[_builtins.str]]
+    tls_client_cert: NotRequired[pulumi.Input[Optional[_builtins.str]]]
     """
     The client certificate used to make authenticated requests. Must be in PEM format
     """
-    tls_client_key: NotRequired[pulumi.Input[_builtins.str]]
+    tls_client_key: NotRequired[pulumi.Input[Optional[_builtins.str]]]
     """
     The client private key used to make authenticated requests. Must be in PEM format
     """
-    tls_hostname: NotRequired[pulumi.Input[_builtins.str]]
+    tls_hostname: NotRequired[pulumi.Input[Optional[_builtins.str]]]
     """
     The hostname used to verify the server's certificate. It can either be the Common Name (CN) or a Subject Alternative Name (SAN)
     """
-    user: NotRequired[pulumi.Input[_builtins.str]]
+    user: NotRequired[pulumi.Input[Optional[_builtins.str]]]
     """
     BasicAuth username for Elasticsearch
     """
@@ -12566,20 +12566,20 @@ class ServiceVclLoggingElasticsearchArgs:
                  index: pulumi.Input[_builtins.str],
                  name: pulumi.Input[_builtins.str],
                  url: pulumi.Input[_builtins.str],
-                 format: Optional[pulumi.Input[_builtins.str]] = None,
-                 format_version: Optional[pulumi.Input[_builtins.int]] = None,
-                 password: Optional[pulumi.Input[_builtins.str]] = None,
-                 pipeline: Optional[pulumi.Input[_builtins.str]] = None,
-                 placement: Optional[pulumi.Input[_builtins.str]] = None,
-                 processing_region: Optional[pulumi.Input[_builtins.str]] = None,
-                 request_max_bytes: Optional[pulumi.Input[_builtins.int]] = None,
-                 request_max_entries: Optional[pulumi.Input[_builtins.int]] = None,
-                 response_condition: Optional[pulumi.Input[_builtins.str]] = None,
-                 tls_ca_cert: Optional[pulumi.Input[_builtins.str]] = None,
-                 tls_client_cert: Optional[pulumi.Input[_builtins.str]] = None,
-                 tls_client_key: Optional[pulumi.Input[_builtins.str]] = None,
-                 tls_hostname: Optional[pulumi.Input[_builtins.str]] = None,
-                 user: Optional[pulumi.Input[_builtins.str]] = None):
+                 format: pulumi.Input[Optional[_builtins.str]] = None,
+                 format_version: pulumi.Input[Optional[_builtins.int]] = None,
+                 password: pulumi.Input[Optional[_builtins.str]] = None,
+                 pipeline: pulumi.Input[Optional[_builtins.str]] = None,
+                 placement: pulumi.Input[Optional[_builtins.str]] = None,
+                 processing_region: pulumi.Input[Optional[_builtins.str]] = None,
+                 request_max_bytes: pulumi.Input[Optional[_builtins.int]] = None,
+                 request_max_entries: pulumi.Input[Optional[_builtins.int]] = None,
+                 response_condition: pulumi.Input[Optional[_builtins.str]] = None,
+                 tls_ca_cert: pulumi.Input[Optional[_builtins.str]] = None,
+                 tls_client_cert: pulumi.Input[Optional[_builtins.str]] = None,
+                 tls_client_key: pulumi.Input[Optional[_builtins.str]] = None,
+                 tls_hostname: pulumi.Input[Optional[_builtins.str]] = None,
+                 user: pulumi.Input[Optional[_builtins.str]] = None):
         """
         :param pulumi.Input[_builtins.str] index: The name of the Elasticsearch index to send documents (logs) to
         :param pulumi.Input[_builtins.str] name: The unique name of the Elasticsearch logging endpoint. It is important to note that changing this attribute will delete and recreate the resource
@@ -12669,170 +12669,170 @@ class ServiceVclLoggingElasticsearchArgs:
 
     @_builtins.property
     @pulumi.getter
-    def format(self) -> Optional[pulumi.Input[_builtins.str]]:
+    def format(self) -> pulumi.Input[Optional[_builtins.str]]:
         """
         Apache-style string or VCL variables to use for log formatting.
         """
         return pulumi.get(self, "format")
 
     @format.setter
-    def format(self, value: Optional[pulumi.Input[_builtins.str]]):
+    def format(self, value: pulumi.Input[Optional[_builtins.str]]):
         pulumi.set(self, "format", value)
 
     @_builtins.property
     @pulumi.getter(name="formatVersion")
-    def format_version(self) -> Optional[pulumi.Input[_builtins.int]]:
+    def format_version(self) -> pulumi.Input[Optional[_builtins.int]]:
         """
         The version of the custom logging format used for the configured endpoint. Can be either 1 or 2. (default: 2).
         """
         return pulumi.get(self, "format_version")
 
     @format_version.setter
-    def format_version(self, value: Optional[pulumi.Input[_builtins.int]]):
+    def format_version(self, value: pulumi.Input[Optional[_builtins.int]]):
         pulumi.set(self, "format_version", value)
 
     @_builtins.property
     @pulumi.getter
-    def password(self) -> Optional[pulumi.Input[_builtins.str]]:
+    def password(self) -> pulumi.Input[Optional[_builtins.str]]:
         """
         BasicAuth password for Elasticsearch
         """
         return pulumi.get(self, "password")
 
     @password.setter
-    def password(self, value: Optional[pulumi.Input[_builtins.str]]):
+    def password(self, value: pulumi.Input[Optional[_builtins.str]]):
         pulumi.set(self, "password", value)
 
     @_builtins.property
     @pulumi.getter
-    def pipeline(self) -> Optional[pulumi.Input[_builtins.str]]:
+    def pipeline(self) -> pulumi.Input[Optional[_builtins.str]]:
         """
         The ID of the Elasticsearch ingest pipeline to apply pre-process transformations to before indexing
         """
         return pulumi.get(self, "pipeline")
 
     @pipeline.setter
-    def pipeline(self, value: Optional[pulumi.Input[_builtins.str]]):
+    def pipeline(self, value: pulumi.Input[Optional[_builtins.str]]):
         pulumi.set(self, "pipeline", value)
 
     @_builtins.property
     @pulumi.getter
-    def placement(self) -> Optional[pulumi.Input[_builtins.str]]:
+    def placement(self) -> pulumi.Input[Optional[_builtins.str]]:
         """
         Where in the generated VCL the logging call should be placed.
         """
         return pulumi.get(self, "placement")
 
     @placement.setter
-    def placement(self, value: Optional[pulumi.Input[_builtins.str]]):
+    def placement(self, value: pulumi.Input[Optional[_builtins.str]]):
         pulumi.set(self, "placement", value)
 
     @_builtins.property
     @pulumi.getter(name="processingRegion")
-    def processing_region(self) -> Optional[pulumi.Input[_builtins.str]]:
+    def processing_region(self) -> pulumi.Input[Optional[_builtins.str]]:
         """
         Region where logs will be processed before streaming to BigQuery. Valid values are 'none', 'us' and 'eu'.
         """
         return pulumi.get(self, "processing_region")
 
     @processing_region.setter
-    def processing_region(self, value: Optional[pulumi.Input[_builtins.str]]):
+    def processing_region(self, value: pulumi.Input[Optional[_builtins.str]]):
         pulumi.set(self, "processing_region", value)
 
     @_builtins.property
     @pulumi.getter(name="requestMaxBytes")
-    def request_max_bytes(self) -> Optional[pulumi.Input[_builtins.int]]:
+    def request_max_bytes(self) -> pulumi.Input[Optional[_builtins.int]]:
         """
         The maximum number of logs sent in one request. Defaults to `0` for unbounded
         """
         return pulumi.get(self, "request_max_bytes")
 
     @request_max_bytes.setter
-    def request_max_bytes(self, value: Optional[pulumi.Input[_builtins.int]]):
+    def request_max_bytes(self, value: pulumi.Input[Optional[_builtins.int]]):
         pulumi.set(self, "request_max_bytes", value)
 
     @_builtins.property
     @pulumi.getter(name="requestMaxEntries")
-    def request_max_entries(self) -> Optional[pulumi.Input[_builtins.int]]:
+    def request_max_entries(self) -> pulumi.Input[Optional[_builtins.int]]:
         """
         The maximum number of bytes sent in one request. Defaults to `0` for unbounded
         """
         return pulumi.get(self, "request_max_entries")
 
     @request_max_entries.setter
-    def request_max_entries(self, value: Optional[pulumi.Input[_builtins.int]]):
+    def request_max_entries(self, value: pulumi.Input[Optional[_builtins.int]]):
         pulumi.set(self, "request_max_entries", value)
 
     @_builtins.property
     @pulumi.getter(name="responseCondition")
-    def response_condition(self) -> Optional[pulumi.Input[_builtins.str]]:
+    def response_condition(self) -> pulumi.Input[Optional[_builtins.str]]:
         """
         The name of the condition to apply
         """
         return pulumi.get(self, "response_condition")
 
     @response_condition.setter
-    def response_condition(self, value: Optional[pulumi.Input[_builtins.str]]):
+    def response_condition(self, value: pulumi.Input[Optional[_builtins.str]]):
         pulumi.set(self, "response_condition", value)
 
     @_builtins.property
     @pulumi.getter(name="tlsCaCert")
-    def tls_ca_cert(self) -> Optional[pulumi.Input[_builtins.str]]:
+    def tls_ca_cert(self) -> pulumi.Input[Optional[_builtins.str]]:
         """
         A secure certificate to authenticate the server with. Must be in PEM format
         """
         return pulumi.get(self, "tls_ca_cert")
 
     @tls_ca_cert.setter
-    def tls_ca_cert(self, value: Optional[pulumi.Input[_builtins.str]]):
+    def tls_ca_cert(self, value: pulumi.Input[Optional[_builtins.str]]):
         pulumi.set(self, "tls_ca_cert", value)
 
     @_builtins.property
     @pulumi.getter(name="tlsClientCert")
-    def tls_client_cert(self) -> Optional[pulumi.Input[_builtins.str]]:
+    def tls_client_cert(self) -> pulumi.Input[Optional[_builtins.str]]:
         """
         The client certificate used to make authenticated requests. Must be in PEM format
         """
         return pulumi.get(self, "tls_client_cert")
 
     @tls_client_cert.setter
-    def tls_client_cert(self, value: Optional[pulumi.Input[_builtins.str]]):
+    def tls_client_cert(self, value: pulumi.Input[Optional[_builtins.str]]):
         pulumi.set(self, "tls_client_cert", value)
 
     @_builtins.property
     @pulumi.getter(name="tlsClientKey")
-    def tls_client_key(self) -> Optional[pulumi.Input[_builtins.str]]:
+    def tls_client_key(self) -> pulumi.Input[Optional[_builtins.str]]:
         """
         The client private key used to make authenticated requests. Must be in PEM format
         """
         return pulumi.get(self, "tls_client_key")
 
     @tls_client_key.setter
-    def tls_client_key(self, value: Optional[pulumi.Input[_builtins.str]]):
+    def tls_client_key(self, value: pulumi.Input[Optional[_builtins.str]]):
         pulumi.set(self, "tls_client_key", value)
 
     @_builtins.property
     @pulumi.getter(name="tlsHostname")
-    def tls_hostname(self) -> Optional[pulumi.Input[_builtins.str]]:
+    def tls_hostname(self) -> pulumi.Input[Optional[_builtins.str]]:
         """
         The hostname used to verify the server's certificate. It can either be the Common Name (CN) or a Subject Alternative Name (SAN)
         """
         return pulumi.get(self, "tls_hostname")
 
     @tls_hostname.setter
-    def tls_hostname(self, value: Optional[pulumi.Input[_builtins.str]]):
+    def tls_hostname(self, value: pulumi.Input[Optional[_builtins.str]]):
         pulumi.set(self, "tls_hostname", value)
 
     @_builtins.property
     @pulumi.getter
-    def user(self) -> Optional[pulumi.Input[_builtins.str]]:
+    def user(self) -> pulumi.Input[Optional[_builtins.str]]:
         """
         BasicAuth username for Elasticsearch
         """
         return pulumi.get(self, "user")
 
     @user.setter
-    def user(self, value: Optional[pulumi.Input[_builtins.str]]):
+    def user(self, value: pulumi.Input[Optional[_builtins.str]]):
         pulumi.set(self, "user", value)
 
 
@@ -12857,51 +12857,51 @@ class ServiceVclLoggingFtpArgsDict(TypedDict):
     """
     The username for the server (can be `anonymous`)
     """
-    compression_codec: NotRequired[pulumi.Input[_builtins.str]]
+    compression_codec: NotRequired[pulumi.Input[Optional[_builtins.str]]]
     """
     The codec used for compression of your logs. Valid values are zstd, snappy, and gzip. If the specified codec is "gzip", gzip_level will default to 3. To specify a different level, leave compression_codec blank and explicitly set the level using gzip_level. Specifying both compression_codec and gzip_level in the same API request will result in an error.
     """
-    format: NotRequired[pulumi.Input[_builtins.str]]
+    format: NotRequired[pulumi.Input[Optional[_builtins.str]]]
     """
     Apache-style string or VCL variables to use for log formatting.
     """
-    format_version: NotRequired[pulumi.Input[_builtins.int]]
+    format_version: NotRequired[pulumi.Input[Optional[_builtins.int]]]
     """
     The version of the custom logging format used for the configured endpoint. Can be either 1 or 2. (default: 2).
     """
-    gzip_level: NotRequired[pulumi.Input[_builtins.int]]
+    gzip_level: NotRequired[pulumi.Input[Optional[_builtins.int]]]
     """
     Level of Gzip compression from `0-9`. `0` means no compression. `1` is the fastest and the least compressed version, `9` is the slowest and the most compressed version. Default `0`
     """
-    message_type: NotRequired[pulumi.Input[_builtins.str]]
+    message_type: NotRequired[pulumi.Input[Optional[_builtins.str]]]
     """
     How the message should be formatted. Can be either `classic`, `loggly`, `logplex` or `blank`. Default is `classic`
     """
-    period: NotRequired[pulumi.Input[_builtins.int]]
+    period: NotRequired[pulumi.Input[Optional[_builtins.int]]]
     """
     How frequently the logs should be transferred, in seconds (Default `3600`)
     """
-    placement: NotRequired[pulumi.Input[_builtins.str]]
+    placement: NotRequired[pulumi.Input[Optional[_builtins.str]]]
     """
     Where in the generated VCL the logging call should be placed.
     """
-    port: NotRequired[pulumi.Input[_builtins.int]]
+    port: NotRequired[pulumi.Input[Optional[_builtins.int]]]
     """
     The port number. Default: `21`
     """
-    processing_region: NotRequired[pulumi.Input[_builtins.str]]
+    processing_region: NotRequired[pulumi.Input[Optional[_builtins.str]]]
     """
     Region where logs will be processed before streaming to BigQuery. Valid values are 'none', 'us' and 'eu'.
     """
-    public_key: NotRequired[pulumi.Input[_builtins.str]]
+    public_key: NotRequired[pulumi.Input[Optional[_builtins.str]]]
     """
     The PGP public key that Fastly will use to encrypt your log files before writing them to disk
     """
-    response_condition: NotRequired[pulumi.Input[_builtins.str]]
+    response_condition: NotRequired[pulumi.Input[Optional[_builtins.str]]]
     """
     The name of the condition to apply.
     """
-    timestamp_format: NotRequired[pulumi.Input[_builtins.str]]
+    timestamp_format: NotRequired[pulumi.Input[Optional[_builtins.str]]]
     """
     The `strftime` specified timestamp formatting (default `%Y-%m-%dT%H:%M:%S.000`)
     """
@@ -12914,18 +12914,18 @@ class ServiceVclLoggingFtpArgs:
                  password: pulumi.Input[_builtins.str],
                  path: pulumi.Input[_builtins.str],
                  user: pulumi.Input[_builtins.str],
-                 compression_codec: Optional[pulumi.Input[_builtins.str]] = None,
-                 format: Optional[pulumi.Input[_builtins.str]] = None,
-                 format_version: Optional[pulumi.Input[_builtins.int]] = None,
-                 gzip_level: Optional[pulumi.Input[_builtins.int]] = None,
-                 message_type: Optional[pulumi.Input[_builtins.str]] = None,
-                 period: Optional[pulumi.Input[_builtins.int]] = None,
-                 placement: Optional[pulumi.Input[_builtins.str]] = None,
-                 port: Optional[pulumi.Input[_builtins.int]] = None,
-                 processing_region: Optional[pulumi.Input[_builtins.str]] = None,
-                 public_key: Optional[pulumi.Input[_builtins.str]] = None,
-                 response_condition: Optional[pulumi.Input[_builtins.str]] = None,
-                 timestamp_format: Optional[pulumi.Input[_builtins.str]] = None):
+                 compression_codec: pulumi.Input[Optional[_builtins.str]] = None,
+                 format: pulumi.Input[Optional[_builtins.str]] = None,
+                 format_version: pulumi.Input[Optional[_builtins.int]] = None,
+                 gzip_level: pulumi.Input[Optional[_builtins.int]] = None,
+                 message_type: pulumi.Input[Optional[_builtins.str]] = None,
+                 period: pulumi.Input[Optional[_builtins.int]] = None,
+                 placement: pulumi.Input[Optional[_builtins.str]] = None,
+                 port: pulumi.Input[Optional[_builtins.int]] = None,
+                 processing_region: pulumi.Input[Optional[_builtins.str]] = None,
+                 public_key: pulumi.Input[Optional[_builtins.str]] = None,
+                 response_condition: pulumi.Input[Optional[_builtins.str]] = None,
+                 timestamp_format: pulumi.Input[Optional[_builtins.str]] = None):
         """
         :param pulumi.Input[_builtins.str] address: The FTP address to stream logs to
         :param pulumi.Input[_builtins.str] name: The unique name of the FTP logging endpoint. It is important to note that changing this attribute will delete and recreate the resource
@@ -13037,146 +13037,146 @@ class ServiceVclLoggingFtpArgs:
 
     @_builtins.property
     @pulumi.getter(name="compressionCodec")
-    def compression_codec(self) -> Optional[pulumi.Input[_builtins.str]]:
+    def compression_codec(self) -> pulumi.Input[Optional[_builtins.str]]:
         """
         The codec used for compression of your logs. Valid values are zstd, snappy, and gzip. If the specified codec is "gzip", gzip_level will default to 3. To specify a different level, leave compression_codec blank and explicitly set the level using gzip_level. Specifying both compression_codec and gzip_level in the same API request will result in an error.
         """
         return pulumi.get(self, "compression_codec")
 
     @compression_codec.setter
-    def compression_codec(self, value: Optional[pulumi.Input[_builtins.str]]):
+    def compression_codec(self, value: pulumi.Input[Optional[_builtins.str]]):
         pulumi.set(self, "compression_codec", value)
 
     @_builtins.property
     @pulumi.getter
-    def format(self) -> Optional[pulumi.Input[_builtins.str]]:
+    def format(self) -> pulumi.Input[Optional[_builtins.str]]:
         """
         Apache-style string or VCL variables to use for log formatting.
         """
         return pulumi.get(self, "format")
 
     @format.setter
-    def format(self, value: Optional[pulumi.Input[_builtins.str]]):
+    def format(self, value: pulumi.Input[Optional[_builtins.str]]):
         pulumi.set(self, "format", value)
 
     @_builtins.property
     @pulumi.getter(name="formatVersion")
-    def format_version(self) -> Optional[pulumi.Input[_builtins.int]]:
+    def format_version(self) -> pulumi.Input[Optional[_builtins.int]]:
         """
         The version of the custom logging format used for the configured endpoint. Can be either 1 or 2. (default: 2).
         """
         return pulumi.get(self, "format_version")
 
     @format_version.setter
-    def format_version(self, value: Optional[pulumi.Input[_builtins.int]]):
+    def format_version(self, value: pulumi.Input[Optional[_builtins.int]]):
         pulumi.set(self, "format_version", value)
 
     @_builtins.property
     @pulumi.getter(name="gzipLevel")
-    def gzip_level(self) -> Optional[pulumi.Input[_builtins.int]]:
+    def gzip_level(self) -> pulumi.Input[Optional[_builtins.int]]:
         """
         Level of Gzip compression from `0-9`. `0` means no compression. `1` is the fastest and the least compressed version, `9` is the slowest and the most compressed version. Default `0`
         """
         return pulumi.get(self, "gzip_level")
 
     @gzip_level.setter
-    def gzip_level(self, value: Optional[pulumi.Input[_builtins.int]]):
+    def gzip_level(self, value: pulumi.Input[Optional[_builtins.int]]):
         pulumi.set(self, "gzip_level", value)
 
     @_builtins.property
     @pulumi.getter(name="messageType")
-    def message_type(self) -> Optional[pulumi.Input[_builtins.str]]:
+    def message_type(self) -> pulumi.Input[Optional[_builtins.str]]:
         """
         How the message should be formatted. Can be either `classic`, `loggly`, `logplex` or `blank`. Default is `classic`
         """
         return pulumi.get(self, "message_type")
 
     @message_type.setter
-    def message_type(self, value: Optional[pulumi.Input[_builtins.str]]):
+    def message_type(self, value: pulumi.Input[Optional[_builtins.str]]):
         pulumi.set(self, "message_type", value)
 
     @_builtins.property
     @pulumi.getter
-    def period(self) -> Optional[pulumi.Input[_builtins.int]]:
+    def period(self) -> pulumi.Input[Optional[_builtins.int]]:
         """
         How frequently the logs should be transferred, in seconds (Default `3600`)
         """
         return pulumi.get(self, "period")
 
     @period.setter
-    def period(self, value: Optional[pulumi.Input[_builtins.int]]):
+    def period(self, value: pulumi.Input[Optional[_builtins.int]]):
         pulumi.set(self, "period", value)
 
     @_builtins.property
     @pulumi.getter
-    def placement(self) -> Optional[pulumi.Input[_builtins.str]]:
+    def placement(self) -> pulumi.Input[Optional[_builtins.str]]:
         """
         Where in the generated VCL the logging call should be placed.
         """
         return pulumi.get(self, "placement")
 
     @placement.setter
-    def placement(self, value: Optional[pulumi.Input[_builtins.str]]):
+    def placement(self, value: pulumi.Input[Optional[_builtins.str]]):
         pulumi.set(self, "placement", value)
 
     @_builtins.property
     @pulumi.getter
-    def port(self) -> Optional[pulumi.Input[_builtins.int]]:
+    def port(self) -> pulumi.Input[Optional[_builtins.int]]:
         """
         The port number. Default: `21`
         """
         return pulumi.get(self, "port")
 
     @port.setter
-    def port(self, value: Optional[pulumi.Input[_builtins.int]]):
+    def port(self, value: pulumi.Input[Optional[_builtins.int]]):
         pulumi.set(self, "port", value)
 
     @_builtins.property
     @pulumi.getter(name="processingRegion")
-    def processing_region(self) -> Optional[pulumi.Input[_builtins.str]]:
+    def processing_region(self) -> pulumi.Input[Optional[_builtins.str]]:
         """
         Region where logs will be processed before streaming to BigQuery. Valid values are 'none', 'us' and 'eu'.
         """
         return pulumi.get(self, "processing_region")
 
     @processing_region.setter
-    def processing_region(self, value: Optional[pulumi.Input[_builtins.str]]):
+    def processing_region(self, value: pulumi.Input[Optional[_builtins.str]]):
         pulumi.set(self, "processing_region", value)
 
     @_builtins.property
     @pulumi.getter(name="publicKey")
-    def public_key(self) -> Optional[pulumi.Input[_builtins.str]]:
+    def public_key(self) -> pulumi.Input[Optional[_builtins.str]]:
         """
         The PGP public key that Fastly will use to encrypt your log files before writing them to disk
         """
         return pulumi.get(self, "public_key")
 
     @public_key.setter
-    def public_key(self, value: Optional[pulumi.Input[_builtins.str]]):
+    def public_key(self, value: pulumi.Input[Optional[_builtins.str]]):
         pulumi.set(self, "public_key", value)
 
     @_builtins.property
     @pulumi.getter(name="responseCondition")
-    def response_condition(self) -> Optional[pulumi.Input[_builtins.str]]:
+    def response_condition(self) -> pulumi.Input[Optional[_builtins.str]]:
         """
         The name of the condition to apply.
         """
         return pulumi.get(self, "response_condition")
 
     @response_condition.setter
-    def response_condition(self, value: Optional[pulumi.Input[_builtins.str]]):
+    def response_condition(self, value: pulumi.Input[Optional[_builtins.str]]):
         pulumi.set(self, "response_condition", value)
 
     @_builtins.property
     @pulumi.getter(name="timestampFormat")
-    def timestamp_format(self) -> Optional[pulumi.Input[_builtins.str]]:
+    def timestamp_format(self) -> pulumi.Input[Optional[_builtins.str]]:
         """
         The `strftime` specified timestamp formatting (default `%Y-%m-%dT%H:%M:%S.000`)
         """
         return pulumi.get(self, "timestamp_format")
 
     @timestamp_format.setter
-    def timestamp_format(self, value: Optional[pulumi.Input[_builtins.str]]):
+    def timestamp_format(self, value: pulumi.Input[Optional[_builtins.str]]):
         pulumi.set(self, "timestamp_format", value)
 
 
@@ -13189,63 +13189,63 @@ class ServiceVclLoggingGcArgsDict(TypedDict):
     """
     A unique name to identify this GCS endpoint. It is important to note that changing this attribute will delete and recreate the resource
     """
-    account_name: NotRequired[pulumi.Input[_builtins.str]]
+    account_name: NotRequired[pulumi.Input[Optional[_builtins.str]]]
     """
     The google account name used to obtain temporary credentials (default none). You may optionally provide this via an environment variable, `FASTLY_GCS_ACCOUNT_NAME`.
     """
-    compression_codec: NotRequired[pulumi.Input[_builtins.str]]
+    compression_codec: NotRequired[pulumi.Input[Optional[_builtins.str]]]
     """
     The codec used for compression of your logs. Valid values are zstd, snappy, and gzip. If the specified codec is "gzip", gzip_level will default to 3. To specify a different level, leave compression_codec blank and explicitly set the level using gzip_level. Specifying both compression_codec and gzip_level in the same API request will result in an error.
     """
-    format: NotRequired[pulumi.Input[_builtins.str]]
+    format: NotRequired[pulumi.Input[Optional[_builtins.str]]]
     """
     Apache-style string or VCL variables to use for log formatting
     """
-    format_version: NotRequired[pulumi.Input[_builtins.int]]
+    format_version: NotRequired[pulumi.Input[Optional[_builtins.int]]]
     """
     The version of the custom logging format used for the configured endpoint. Can be either 1 or 2. (Default: 2)
     """
-    gzip_level: NotRequired[pulumi.Input[_builtins.int]]
+    gzip_level: NotRequired[pulumi.Input[Optional[_builtins.int]]]
     """
     Level of Gzip compression from `0-9`. `0` means no compression. `1` is the fastest and the least compressed version, `9` is the slowest and the most compressed version. Default `0`
     """
-    message_type: NotRequired[pulumi.Input[_builtins.str]]
+    message_type: NotRequired[pulumi.Input[Optional[_builtins.str]]]
     """
     How the message should be formatted. Can be either `classic`, `loggly`, `logplex` or `blank`. Default is `classic`
     """
-    path: NotRequired[pulumi.Input[_builtins.str]]
+    path: NotRequired[pulumi.Input[Optional[_builtins.str]]]
     """
     Path to store the files. Must end with a trailing slash. If this field is left empty, the files will be saved in the bucket's root path
     """
-    period: NotRequired[pulumi.Input[_builtins.int]]
+    period: NotRequired[pulumi.Input[Optional[_builtins.int]]]
     """
     How frequently the logs should be transferred, in seconds (Default 3600)
     """
-    placement: NotRequired[pulumi.Input[_builtins.str]]
+    placement: NotRequired[pulumi.Input[Optional[_builtins.str]]]
     """
     Where in the generated VCL the logging call should be placed.
     """
-    processing_region: NotRequired[pulumi.Input[_builtins.str]]
+    processing_region: NotRequired[pulumi.Input[Optional[_builtins.str]]]
     """
     Region where logs will be processed before streaming to BigQuery. Valid values are 'none', 'us' and 'eu'.
     """
-    project_id: NotRequired[pulumi.Input[_builtins.str]]
+    project_id: NotRequired[pulumi.Input[Optional[_builtins.str]]]
     """
     The ID of your Google Cloud Platform project
     """
-    response_condition: NotRequired[pulumi.Input[_builtins.str]]
+    response_condition: NotRequired[pulumi.Input[Optional[_builtins.str]]]
     """
     Name of a condition to apply this logging.
     """
-    secret_key: NotRequired[pulumi.Input[_builtins.str]]
+    secret_key: NotRequired[pulumi.Input[Optional[_builtins.str]]]
     """
     The secret key associated with the target gcs bucket on your account. You may optionally provide this secret via an environment variable, `FASTLY_GCS_SECRET_KEY`. A typical format for the key is PEM format, containing actual newline characters where required
     """
-    timestamp_format: NotRequired[pulumi.Input[_builtins.str]]
+    timestamp_format: NotRequired[pulumi.Input[Optional[_builtins.str]]]
     """
     The `strftime` specified timestamp formatting (default `%Y-%m-%dT%H:%M:%S.000`)
     """
-    user: NotRequired[pulumi.Input[_builtins.str]]
+    user: NotRequired[pulumi.Input[Optional[_builtins.str]]]
     """
     Your Google Cloud Platform service account email address. The `client_email` field in your service account authentication JSON. You may optionally provide this via an environment variable, `FASTLY_GCS_EMAIL`.
     """
@@ -13255,21 +13255,21 @@ class ServiceVclLoggingGcArgs:
     def __init__(__self__, *,
                  bucket_name: pulumi.Input[_builtins.str],
                  name: pulumi.Input[_builtins.str],
-                 account_name: Optional[pulumi.Input[_builtins.str]] = None,
-                 compression_codec: Optional[pulumi.Input[_builtins.str]] = None,
-                 format: Optional[pulumi.Input[_builtins.str]] = None,
-                 format_version: Optional[pulumi.Input[_builtins.int]] = None,
-                 gzip_level: Optional[pulumi.Input[_builtins.int]] = None,
-                 message_type: Optional[pulumi.Input[_builtins.str]] = None,
-                 path: Optional[pulumi.Input[_builtins.str]] = None,
-                 period: Optional[pulumi.Input[_builtins.int]] = None,
-                 placement: Optional[pulumi.Input[_builtins.str]] = None,
-                 processing_region: Optional[pulumi.Input[_builtins.str]] = None,
-                 project_id: Optional[pulumi.Input[_builtins.str]] = None,
-                 response_condition: Optional[pulumi.Input[_builtins.str]] = None,
-                 secret_key: Optional[pulumi.Input[_builtins.str]] = None,
-                 timestamp_format: Optional[pulumi.Input[_builtins.str]] = None,
-                 user: Optional[pulumi.Input[_builtins.str]] = None):
+                 account_name: pulumi.Input[Optional[_builtins.str]] = None,
+                 compression_codec: pulumi.Input[Optional[_builtins.str]] = None,
+                 format: pulumi.Input[Optional[_builtins.str]] = None,
+                 format_version: pulumi.Input[Optional[_builtins.int]] = None,
+                 gzip_level: pulumi.Input[Optional[_builtins.int]] = None,
+                 message_type: pulumi.Input[Optional[_builtins.str]] = None,
+                 path: pulumi.Input[Optional[_builtins.str]] = None,
+                 period: pulumi.Input[Optional[_builtins.int]] = None,
+                 placement: pulumi.Input[Optional[_builtins.str]] = None,
+                 processing_region: pulumi.Input[Optional[_builtins.str]] = None,
+                 project_id: pulumi.Input[Optional[_builtins.str]] = None,
+                 response_condition: pulumi.Input[Optional[_builtins.str]] = None,
+                 secret_key: pulumi.Input[Optional[_builtins.str]] = None,
+                 timestamp_format: pulumi.Input[Optional[_builtins.str]] = None,
+                 user: pulumi.Input[Optional[_builtins.str]] = None):
         """
         :param pulumi.Input[_builtins.str] bucket_name: The name of the bucket in which to store the logs
         :param pulumi.Input[_builtins.str] name: A unique name to identify this GCS endpoint. It is important to note that changing this attribute will delete and recreate the resource
@@ -13348,182 +13348,182 @@ class ServiceVclLoggingGcArgs:
 
     @_builtins.property
     @pulumi.getter(name="accountName")
-    def account_name(self) -> Optional[pulumi.Input[_builtins.str]]:
+    def account_name(self) -> pulumi.Input[Optional[_builtins.str]]:
         """
         The google account name used to obtain temporary credentials (default none). You may optionally provide this via an environment variable, `FASTLY_GCS_ACCOUNT_NAME`.
         """
         return pulumi.get(self, "account_name")
 
     @account_name.setter
-    def account_name(self, value: Optional[pulumi.Input[_builtins.str]]):
+    def account_name(self, value: pulumi.Input[Optional[_builtins.str]]):
         pulumi.set(self, "account_name", value)
 
     @_builtins.property
     @pulumi.getter(name="compressionCodec")
-    def compression_codec(self) -> Optional[pulumi.Input[_builtins.str]]:
+    def compression_codec(self) -> pulumi.Input[Optional[_builtins.str]]:
         """
         The codec used for compression of your logs. Valid values are zstd, snappy, and gzip. If the specified codec is "gzip", gzip_level will default to 3. To specify a different level, leave compression_codec blank and explicitly set the level using gzip_level. Specifying both compression_codec and gzip_level in the same API request will result in an error.
         """
         return pulumi.get(self, "compression_codec")
 
     @compression_codec.setter
-    def compression_codec(self, value: Optional[pulumi.Input[_builtins.str]]):
+    def compression_codec(self, value: pulumi.Input[Optional[_builtins.str]]):
         pulumi.set(self, "compression_codec", value)
 
     @_builtins.property
     @pulumi.getter
-    def format(self) -> Optional[pulumi.Input[_builtins.str]]:
+    def format(self) -> pulumi.Input[Optional[_builtins.str]]:
         """
         Apache-style string or VCL variables to use for log formatting
         """
         return pulumi.get(self, "format")
 
     @format.setter
-    def format(self, value: Optional[pulumi.Input[_builtins.str]]):
+    def format(self, value: pulumi.Input[Optional[_builtins.str]]):
         pulumi.set(self, "format", value)
 
     @_builtins.property
     @pulumi.getter(name="formatVersion")
-    def format_version(self) -> Optional[pulumi.Input[_builtins.int]]:
+    def format_version(self) -> pulumi.Input[Optional[_builtins.int]]:
         """
         The version of the custom logging format used for the configured endpoint. Can be either 1 or 2. (Default: 2)
         """
         return pulumi.get(self, "format_version")
 
     @format_version.setter
-    def format_version(self, value: Optional[pulumi.Input[_builtins.int]]):
+    def format_version(self, value: pulumi.Input[Optional[_builtins.int]]):
         pulumi.set(self, "format_version", value)
 
     @_builtins.property
     @pulumi.getter(name="gzipLevel")
-    def gzip_level(self) -> Optional[pulumi.Input[_builtins.int]]:
+    def gzip_level(self) -> pulumi.Input[Optional[_builtins.int]]:
         """
         Level of Gzip compression from `0-9`. `0` means no compression. `1` is the fastest and the least compressed version, `9` is the slowest and the most compressed version. Default `0`
         """
         return pulumi.get(self, "gzip_level")
 
     @gzip_level.setter
-    def gzip_level(self, value: Optional[pulumi.Input[_builtins.int]]):
+    def gzip_level(self, value: pulumi.Input[Optional[_builtins.int]]):
         pulumi.set(self, "gzip_level", value)
 
     @_builtins.property
     @pulumi.getter(name="messageType")
-    def message_type(self) -> Optional[pulumi.Input[_builtins.str]]:
+    def message_type(self) -> pulumi.Input[Optional[_builtins.str]]:
         """
         How the message should be formatted. Can be either `classic`, `loggly`, `logplex` or `blank`. Default is `classic`
         """
         return pulumi.get(self, "message_type")
 
     @message_type.setter
-    def message_type(self, value: Optional[pulumi.Input[_builtins.str]]):
+    def message_type(self, value: pulumi.Input[Optional[_builtins.str]]):
         pulumi.set(self, "message_type", value)
 
     @_builtins.property
     @pulumi.getter
-    def path(self) -> Optional[pulumi.Input[_builtins.str]]:
+    def path(self) -> pulumi.Input[Optional[_builtins.str]]:
         """
         Path to store the files. Must end with a trailing slash. If this field is left empty, the files will be saved in the bucket's root path
         """
         return pulumi.get(self, "path")
 
     @path.setter
-    def path(self, value: Optional[pulumi.Input[_builtins.str]]):
+    def path(self, value: pulumi.Input[Optional[_builtins.str]]):
         pulumi.set(self, "path", value)
 
     @_builtins.property
     @pulumi.getter
-    def period(self) -> Optional[pulumi.Input[_builtins.int]]:
+    def period(self) -> pulumi.Input[Optional[_builtins.int]]:
         """
         How frequently the logs should be transferred, in seconds (Default 3600)
         """
         return pulumi.get(self, "period")
 
     @period.setter
-    def period(self, value: Optional[pulumi.Input[_builtins.int]]):
+    def period(self, value: pulumi.Input[Optional[_builtins.int]]):
         pulumi.set(self, "period", value)
 
     @_builtins.property
     @pulumi.getter
-    def placement(self) -> Optional[pulumi.Input[_builtins.str]]:
+    def placement(self) -> pulumi.Input[Optional[_builtins.str]]:
         """
         Where in the generated VCL the logging call should be placed.
         """
         return pulumi.get(self, "placement")
 
     @placement.setter
-    def placement(self, value: Optional[pulumi.Input[_builtins.str]]):
+    def placement(self, value: pulumi.Input[Optional[_builtins.str]]):
         pulumi.set(self, "placement", value)
 
     @_builtins.property
     @pulumi.getter(name="processingRegion")
-    def processing_region(self) -> Optional[pulumi.Input[_builtins.str]]:
+    def processing_region(self) -> pulumi.Input[Optional[_builtins.str]]:
         """
         Region where logs will be processed before streaming to BigQuery. Valid values are 'none', 'us' and 'eu'.
         """
         return pulumi.get(self, "processing_region")
 
     @processing_region.setter
-    def processing_region(self, value: Optional[pulumi.Input[_builtins.str]]):
+    def processing_region(self, value: pulumi.Input[Optional[_builtins.str]]):
         pulumi.set(self, "processing_region", value)
 
     @_builtins.property
     @pulumi.getter(name="projectId")
-    def project_id(self) -> Optional[pulumi.Input[_builtins.str]]:
+    def project_id(self) -> pulumi.Input[Optional[_builtins.str]]:
         """
         The ID of your Google Cloud Platform project
         """
         return pulumi.get(self, "project_id")
 
     @project_id.setter
-    def project_id(self, value: Optional[pulumi.Input[_builtins.str]]):
+    def project_id(self, value: pulumi.Input[Optional[_builtins.str]]):
         pulumi.set(self, "project_id", value)
 
     @_builtins.property
     @pulumi.getter(name="responseCondition")
-    def response_condition(self) -> Optional[pulumi.Input[_builtins.str]]:
+    def response_condition(self) -> pulumi.Input[Optional[_builtins.str]]:
         """
         Name of a condition to apply this logging.
         """
         return pulumi.get(self, "response_condition")
 
     @response_condition.setter
-    def response_condition(self, value: Optional[pulumi.Input[_builtins.str]]):
+    def response_condition(self, value: pulumi.Input[Optional[_builtins.str]]):
         pulumi.set(self, "response_condition", value)
 
     @_builtins.property
     @pulumi.getter(name="secretKey")
-    def secret_key(self) -> Optional[pulumi.Input[_builtins.str]]:
+    def secret_key(self) -> pulumi.Input[Optional[_builtins.str]]:
         """
         The secret key associated with the target gcs bucket on your account. You may optionally provide this secret via an environment variable, `FASTLY_GCS_SECRET_KEY`. A typical format for the key is PEM format, containing actual newline characters where required
         """
         return pulumi.get(self, "secret_key")
 
     @secret_key.setter
-    def secret_key(self, value: Optional[pulumi.Input[_builtins.str]]):
+    def secret_key(self, value: pulumi.Input[Optional[_builtins.str]]):
         pulumi.set(self, "secret_key", value)
 
     @_builtins.property
     @pulumi.getter(name="timestampFormat")
-    def timestamp_format(self) -> Optional[pulumi.Input[_builtins.str]]:
+    def timestamp_format(self) -> pulumi.Input[Optional[_builtins.str]]:
         """
         The `strftime` specified timestamp formatting (default `%Y-%m-%dT%H:%M:%S.000`)
         """
         return pulumi.get(self, "timestamp_format")
 
     @timestamp_format.setter
-    def timestamp_format(self, value: Optional[pulumi.Input[_builtins.str]]):
+    def timestamp_format(self, value: pulumi.Input[Optional[_builtins.str]]):
         pulumi.set(self, "timestamp_format", value)
 
     @_builtins.property
     @pulumi.getter
-    def user(self) -> Optional[pulumi.Input[_builtins.str]]:
+    def user(self) -> pulumi.Input[Optional[_builtins.str]]:
         """
         Your Google Cloud Platform service account email address. The `client_email` field in your service account authentication JSON. You may optionally provide this via an environment variable, `FASTLY_GCS_EMAIL`.
         """
         return pulumi.get(self, "user")
 
     @user.setter
-    def user(self, value: Optional[pulumi.Input[_builtins.str]]):
+    def user(self, value: pulumi.Input[Optional[_builtins.str]]):
         pulumi.set(self, "user", value)
 
 
@@ -13548,27 +13548,27 @@ class ServiceVclLoggingGooglepubsubArgsDict(TypedDict):
     """
     Your Google Cloud Platform service account email address. The `client_email` field in your service account authentication JSON. You may optionally provide this via an environment variable, `FASTLY_GOOGLE_PUBSUB_EMAIL`.
     """
-    account_name: NotRequired[pulumi.Input[_builtins.str]]
+    account_name: NotRequired[pulumi.Input[Optional[_builtins.str]]]
     """
     The google account name used to obtain temporary credentials (default none). You may optionally provide this via an environment variable, `FASTLY_GCS_ACCOUNT_NAME`.
     """
-    format: NotRequired[pulumi.Input[_builtins.str]]
+    format: NotRequired[pulumi.Input[Optional[_builtins.str]]]
     """
     Apache style log formatting.
     """
-    format_version: NotRequired[pulumi.Input[_builtins.int]]
+    format_version: NotRequired[pulumi.Input[Optional[_builtins.int]]]
     """
     The version of the custom logging format used for the configured endpoint. Can be either 1 or 2. (default: 2).
     """
-    placement: NotRequired[pulumi.Input[_builtins.str]]
+    placement: NotRequired[pulumi.Input[Optional[_builtins.str]]]
     """
     Where in the generated VCL the logging call should be placed.
     """
-    processing_region: NotRequired[pulumi.Input[_builtins.str]]
+    processing_region: NotRequired[pulumi.Input[Optional[_builtins.str]]]
     """
     Region where logs will be processed before streaming to BigQuery. Valid values are 'none', 'us' and 'eu'.
     """
-    response_condition: NotRequired[pulumi.Input[_builtins.str]]
+    response_condition: NotRequired[pulumi.Input[Optional[_builtins.str]]]
     """
     The name of an existing condition in the configured endpoint, or leave blank to always execute.
     """
@@ -13581,12 +13581,12 @@ class ServiceVclLoggingGooglepubsubArgs:
                  secret_key: pulumi.Input[_builtins.str],
                  topic: pulumi.Input[_builtins.str],
                  user: pulumi.Input[_builtins.str],
-                 account_name: Optional[pulumi.Input[_builtins.str]] = None,
-                 format: Optional[pulumi.Input[_builtins.str]] = None,
-                 format_version: Optional[pulumi.Input[_builtins.int]] = None,
-                 placement: Optional[pulumi.Input[_builtins.str]] = None,
-                 processing_region: Optional[pulumi.Input[_builtins.str]] = None,
-                 response_condition: Optional[pulumi.Input[_builtins.str]] = None):
+                 account_name: pulumi.Input[Optional[_builtins.str]] = None,
+                 format: pulumi.Input[Optional[_builtins.str]] = None,
+                 format_version: pulumi.Input[Optional[_builtins.int]] = None,
+                 placement: pulumi.Input[Optional[_builtins.str]] = None,
+                 processing_region: pulumi.Input[Optional[_builtins.str]] = None,
+                 response_condition: pulumi.Input[Optional[_builtins.str]] = None):
         """
         :param pulumi.Input[_builtins.str] name: The unique name of the Google Cloud Pub/Sub logging endpoint. It is important to note that changing this attribute will delete and recreate the resource
         :param pulumi.Input[_builtins.str] project_id: The ID of your Google Cloud Platform project
@@ -13680,74 +13680,74 @@ class ServiceVclLoggingGooglepubsubArgs:
 
     @_builtins.property
     @pulumi.getter(name="accountName")
-    def account_name(self) -> Optional[pulumi.Input[_builtins.str]]:
+    def account_name(self) -> pulumi.Input[Optional[_builtins.str]]:
         """
         The google account name used to obtain temporary credentials (default none). You may optionally provide this via an environment variable, `FASTLY_GCS_ACCOUNT_NAME`.
         """
         return pulumi.get(self, "account_name")
 
     @account_name.setter
-    def account_name(self, value: Optional[pulumi.Input[_builtins.str]]):
+    def account_name(self, value: pulumi.Input[Optional[_builtins.str]]):
         pulumi.set(self, "account_name", value)
 
     @_builtins.property
     @pulumi.getter
-    def format(self) -> Optional[pulumi.Input[_builtins.str]]:
+    def format(self) -> pulumi.Input[Optional[_builtins.str]]:
         """
         Apache style log formatting.
         """
         return pulumi.get(self, "format")
 
     @format.setter
-    def format(self, value: Optional[pulumi.Input[_builtins.str]]):
+    def format(self, value: pulumi.Input[Optional[_builtins.str]]):
         pulumi.set(self, "format", value)
 
     @_builtins.property
     @pulumi.getter(name="formatVersion")
-    def format_version(self) -> Optional[pulumi.Input[_builtins.int]]:
+    def format_version(self) -> pulumi.Input[Optional[_builtins.int]]:
         """
         The version of the custom logging format used for the configured endpoint. Can be either 1 or 2. (default: 2).
         """
         return pulumi.get(self, "format_version")
 
     @format_version.setter
-    def format_version(self, value: Optional[pulumi.Input[_builtins.int]]):
+    def format_version(self, value: pulumi.Input[Optional[_builtins.int]]):
         pulumi.set(self, "format_version", value)
 
     @_builtins.property
     @pulumi.getter
-    def placement(self) -> Optional[pulumi.Input[_builtins.str]]:
+    def placement(self) -> pulumi.Input[Optional[_builtins.str]]:
         """
         Where in the generated VCL the logging call should be placed.
         """
         return pulumi.get(self, "placement")
 
     @placement.setter
-    def placement(self, value: Optional[pulumi.Input[_builtins.str]]):
+    def placement(self, value: pulumi.Input[Optional[_builtins.str]]):
         pulumi.set(self, "placement", value)
 
     @_builtins.property
     @pulumi.getter(name="processingRegion")
-    def processing_region(self) -> Optional[pulumi.Input[_builtins.str]]:
+    def processing_region(self) -> pulumi.Input[Optional[_builtins.str]]:
         """
         Region where logs will be processed before streaming to BigQuery. Valid values are 'none', 'us' and 'eu'.
         """
         return pulumi.get(self, "processing_region")
 
     @processing_region.setter
-    def processing_region(self, value: Optional[pulumi.Input[_builtins.str]]):
+    def processing_region(self, value: pulumi.Input[Optional[_builtins.str]]):
         pulumi.set(self, "processing_region", value)
 
     @_builtins.property
     @pulumi.getter(name="responseCondition")
-    def response_condition(self) -> Optional[pulumi.Input[_builtins.str]]:
+    def response_condition(self) -> pulumi.Input[Optional[_builtins.str]]:
         """
         The name of an existing condition in the configured endpoint, or leave blank to always execute.
         """
         return pulumi.get(self, "response_condition")
 
     @response_condition.setter
-    def response_condition(self, value: Optional[pulumi.Input[_builtins.str]]):
+    def response_condition(self, value: pulumi.Input[Optional[_builtins.str]]):
         pulumi.set(self, "response_condition", value)
 
 
@@ -13772,23 +13772,23 @@ class ServiceVclLoggingGrafanacloudlogArgsDict(TypedDict):
     """
     The Grafana User ID
     """
-    format: NotRequired[pulumi.Input[_builtins.str]]
+    format: NotRequired[pulumi.Input[Optional[_builtins.str]]]
     """
     Apache-style string or VCL variables to use for log formatting.
     """
-    format_version: NotRequired[pulumi.Input[_builtins.int]]
+    format_version: NotRequired[pulumi.Input[Optional[_builtins.int]]]
     """
     The version of the custom logging format used for the configured endpoint. Can be either `1` or `2`. (default: `2`).
     """
-    placement: NotRequired[pulumi.Input[_builtins.str]]
+    placement: NotRequired[pulumi.Input[Optional[_builtins.str]]]
     """
     Where in the generated VCL the logging call should be placed.
     """
-    processing_region: NotRequired[pulumi.Input[_builtins.str]]
+    processing_region: NotRequired[pulumi.Input[Optional[_builtins.str]]]
     """
     Region where logs will be processed before streaming to BigQuery. Valid values are 'none', 'us' and 'eu'.
     """
-    response_condition: NotRequired[pulumi.Input[_builtins.str]]
+    response_condition: NotRequired[pulumi.Input[Optional[_builtins.str]]]
     """
     The name of the condition to apply.
     """
@@ -13801,11 +13801,11 @@ class ServiceVclLoggingGrafanacloudlogArgs:
                  token: pulumi.Input[_builtins.str],
                  url: pulumi.Input[_builtins.str],
                  user: pulumi.Input[_builtins.str],
-                 format: Optional[pulumi.Input[_builtins.str]] = None,
-                 format_version: Optional[pulumi.Input[_builtins.int]] = None,
-                 placement: Optional[pulumi.Input[_builtins.str]] = None,
-                 processing_region: Optional[pulumi.Input[_builtins.str]] = None,
-                 response_condition: Optional[pulumi.Input[_builtins.str]] = None):
+                 format: pulumi.Input[Optional[_builtins.str]] = None,
+                 format_version: pulumi.Input[Optional[_builtins.int]] = None,
+                 placement: pulumi.Input[Optional[_builtins.str]] = None,
+                 processing_region: pulumi.Input[Optional[_builtins.str]] = None,
+                 response_condition: pulumi.Input[Optional[_builtins.str]] = None):
         """
         :param pulumi.Input[_builtins.str] index: The stream identifier as a JSON string
         :param pulumi.Input[_builtins.str] name: The unique name of the GrafanaCloudLogs logging endpoint. It is important to note that changing this attribute will delete and recreate the resource
@@ -13896,62 +13896,62 @@ class ServiceVclLoggingGrafanacloudlogArgs:
 
     @_builtins.property
     @pulumi.getter
-    def format(self) -> Optional[pulumi.Input[_builtins.str]]:
+    def format(self) -> pulumi.Input[Optional[_builtins.str]]:
         """
         Apache-style string or VCL variables to use for log formatting.
         """
         return pulumi.get(self, "format")
 
     @format.setter
-    def format(self, value: Optional[pulumi.Input[_builtins.str]]):
+    def format(self, value: pulumi.Input[Optional[_builtins.str]]):
         pulumi.set(self, "format", value)
 
     @_builtins.property
     @pulumi.getter(name="formatVersion")
-    def format_version(self) -> Optional[pulumi.Input[_builtins.int]]:
+    def format_version(self) -> pulumi.Input[Optional[_builtins.int]]:
         """
         The version of the custom logging format used for the configured endpoint. Can be either `1` or `2`. (default: `2`).
         """
         return pulumi.get(self, "format_version")
 
     @format_version.setter
-    def format_version(self, value: Optional[pulumi.Input[_builtins.int]]):
+    def format_version(self, value: pulumi.Input[Optional[_builtins.int]]):
         pulumi.set(self, "format_version", value)
 
     @_builtins.property
     @pulumi.getter
-    def placement(self) -> Optional[pulumi.Input[_builtins.str]]:
+    def placement(self) -> pulumi.Input[Optional[_builtins.str]]:
         """
         Where in the generated VCL the logging call should be placed.
         """
         return pulumi.get(self, "placement")
 
     @placement.setter
-    def placement(self, value: Optional[pulumi.Input[_builtins.str]]):
+    def placement(self, value: pulumi.Input[Optional[_builtins.str]]):
         pulumi.set(self, "placement", value)
 
     @_builtins.property
     @pulumi.getter(name="processingRegion")
-    def processing_region(self) -> Optional[pulumi.Input[_builtins.str]]:
+    def processing_region(self) -> pulumi.Input[Optional[_builtins.str]]:
         """
         Region where logs will be processed before streaming to BigQuery. Valid values are 'none', 'us' and 'eu'.
         """
         return pulumi.get(self, "processing_region")
 
     @processing_region.setter
-    def processing_region(self, value: Optional[pulumi.Input[_builtins.str]]):
+    def processing_region(self, value: pulumi.Input[Optional[_builtins.str]]):
         pulumi.set(self, "processing_region", value)
 
     @_builtins.property
     @pulumi.getter(name="responseCondition")
-    def response_condition(self) -> Optional[pulumi.Input[_builtins.str]]:
+    def response_condition(self) -> pulumi.Input[Optional[_builtins.str]]:
         """
         The name of the condition to apply.
         """
         return pulumi.get(self, "response_condition")
 
     @response_condition.setter
-    def response_condition(self, value: Optional[pulumi.Input[_builtins.str]]):
+    def response_condition(self, value: pulumi.Input[Optional[_builtins.str]]):
         pulumi.set(self, "response_condition", value)
 
 
@@ -13968,23 +13968,23 @@ class ServiceVclLoggingHerokusArgsDict(TypedDict):
     """
     The URL to stream logs to
     """
-    format: NotRequired[pulumi.Input[_builtins.str]]
+    format: NotRequired[pulumi.Input[Optional[_builtins.str]]]
     """
     Apache-style string or VCL variables to use for log formatting.
     """
-    format_version: NotRequired[pulumi.Input[_builtins.int]]
+    format_version: NotRequired[pulumi.Input[Optional[_builtins.int]]]
     """
     The version of the custom logging format used for the configured endpoint. Can be either `1` or `2`. (default: `2`).
     """
-    placement: NotRequired[pulumi.Input[_builtins.str]]
+    placement: NotRequired[pulumi.Input[Optional[_builtins.str]]]
     """
     Where in the generated VCL the logging call should be placed. Can be `none` or `none`.
     """
-    processing_region: NotRequired[pulumi.Input[_builtins.str]]
+    processing_region: NotRequired[pulumi.Input[Optional[_builtins.str]]]
     """
     Region where logs will be processed before streaming to BigQuery. Valid values are 'none', 'us' and 'eu'.
     """
-    response_condition: NotRequired[pulumi.Input[_builtins.str]]
+    response_condition: NotRequired[pulumi.Input[Optional[_builtins.str]]]
     """
     The name of an existing condition in the configured endpoint, or leave blank to always execute.
     """
@@ -13995,11 +13995,11 @@ class ServiceVclLoggingHerokusArgs:
                  name: pulumi.Input[_builtins.str],
                  token: pulumi.Input[_builtins.str],
                  url: pulumi.Input[_builtins.str],
-                 format: Optional[pulumi.Input[_builtins.str]] = None,
-                 format_version: Optional[pulumi.Input[_builtins.int]] = None,
-                 placement: Optional[pulumi.Input[_builtins.str]] = None,
-                 processing_region: Optional[pulumi.Input[_builtins.str]] = None,
-                 response_condition: Optional[pulumi.Input[_builtins.str]] = None):
+                 format: pulumi.Input[Optional[_builtins.str]] = None,
+                 format_version: pulumi.Input[Optional[_builtins.int]] = None,
+                 placement: pulumi.Input[Optional[_builtins.str]] = None,
+                 processing_region: pulumi.Input[Optional[_builtins.str]] = None,
+                 response_condition: pulumi.Input[Optional[_builtins.str]] = None):
         """
         :param pulumi.Input[_builtins.str] name: The unique name of the Heroku logging endpoint. It is important to note that changing this attribute will delete and recreate the resource
         :param pulumi.Input[_builtins.str] token: The token to use for authentication (https://www.heroku.com/docs/customer-token-authentication-token/)
@@ -14062,62 +14062,62 @@ class ServiceVclLoggingHerokusArgs:
 
     @_builtins.property
     @pulumi.getter
-    def format(self) -> Optional[pulumi.Input[_builtins.str]]:
+    def format(self) -> pulumi.Input[Optional[_builtins.str]]:
         """
         Apache-style string or VCL variables to use for log formatting.
         """
         return pulumi.get(self, "format")
 
     @format.setter
-    def format(self, value: Optional[pulumi.Input[_builtins.str]]):
+    def format(self, value: pulumi.Input[Optional[_builtins.str]]):
         pulumi.set(self, "format", value)
 
     @_builtins.property
     @pulumi.getter(name="formatVersion")
-    def format_version(self) -> Optional[pulumi.Input[_builtins.int]]:
+    def format_version(self) -> pulumi.Input[Optional[_builtins.int]]:
         """
         The version of the custom logging format used for the configured endpoint. Can be either `1` or `2`. (default: `2`).
         """
         return pulumi.get(self, "format_version")
 
     @format_version.setter
-    def format_version(self, value: Optional[pulumi.Input[_builtins.int]]):
+    def format_version(self, value: pulumi.Input[Optional[_builtins.int]]):
         pulumi.set(self, "format_version", value)
 
     @_builtins.property
     @pulumi.getter
-    def placement(self) -> Optional[pulumi.Input[_builtins.str]]:
+    def placement(self) -> pulumi.Input[Optional[_builtins.str]]:
         """
         Where in the generated VCL the logging call should be placed. Can be `none` or `none`.
         """
         return pulumi.get(self, "placement")
 
     @placement.setter
-    def placement(self, value: Optional[pulumi.Input[_builtins.str]]):
+    def placement(self, value: pulumi.Input[Optional[_builtins.str]]):
         pulumi.set(self, "placement", value)
 
     @_builtins.property
     @pulumi.getter(name="processingRegion")
-    def processing_region(self) -> Optional[pulumi.Input[_builtins.str]]:
+    def processing_region(self) -> pulumi.Input[Optional[_builtins.str]]:
         """
         Region where logs will be processed before streaming to BigQuery. Valid values are 'none', 'us' and 'eu'.
         """
         return pulumi.get(self, "processing_region")
 
     @processing_region.setter
-    def processing_region(self, value: Optional[pulumi.Input[_builtins.str]]):
+    def processing_region(self, value: pulumi.Input[Optional[_builtins.str]]):
         pulumi.set(self, "processing_region", value)
 
     @_builtins.property
     @pulumi.getter(name="responseCondition")
-    def response_condition(self) -> Optional[pulumi.Input[_builtins.str]]:
+    def response_condition(self) -> pulumi.Input[Optional[_builtins.str]]:
         """
         The name of an existing condition in the configured endpoint, or leave blank to always execute.
         """
         return pulumi.get(self, "response_condition")
 
     @response_condition.setter
-    def response_condition(self, value: Optional[pulumi.Input[_builtins.str]]):
+    def response_condition(self, value: pulumi.Input[Optional[_builtins.str]]):
         pulumi.set(self, "response_condition", value)
 
 
@@ -14134,23 +14134,23 @@ class ServiceVclLoggingHoneycombArgsDict(TypedDict):
     """
     The Write Key from the Account page of your Honeycomb account
     """
-    format: NotRequired[pulumi.Input[_builtins.str]]
+    format: NotRequired[pulumi.Input[Optional[_builtins.str]]]
     """
     Apache style log formatting. Your log must produce valid JSON that Honeycomb can ingest.
     """
-    format_version: NotRequired[pulumi.Input[_builtins.int]]
+    format_version: NotRequired[pulumi.Input[Optional[_builtins.int]]]
     """
     The version of the custom logging format used for the configured endpoint. Can be either `1` or `2`. (default: `2`).
     """
-    placement: NotRequired[pulumi.Input[_builtins.str]]
+    placement: NotRequired[pulumi.Input[Optional[_builtins.str]]]
     """
     Where in the generated VCL the logging call should be placed. Can be `none` or `none`.
     """
-    processing_region: NotRequired[pulumi.Input[_builtins.str]]
+    processing_region: NotRequired[pulumi.Input[Optional[_builtins.str]]]
     """
     Region where logs will be processed before streaming to BigQuery. Valid values are 'none', 'us' and 'eu'.
     """
-    response_condition: NotRequired[pulumi.Input[_builtins.str]]
+    response_condition: NotRequired[pulumi.Input[Optional[_builtins.str]]]
     """
     The name of an existing condition in the configured endpoint, or leave blank to always execute.
     """
@@ -14161,11 +14161,11 @@ class ServiceVclLoggingHoneycombArgs:
                  dataset: pulumi.Input[_builtins.str],
                  name: pulumi.Input[_builtins.str],
                  token: pulumi.Input[_builtins.str],
-                 format: Optional[pulumi.Input[_builtins.str]] = None,
-                 format_version: Optional[pulumi.Input[_builtins.int]] = None,
-                 placement: Optional[pulumi.Input[_builtins.str]] = None,
-                 processing_region: Optional[pulumi.Input[_builtins.str]] = None,
-                 response_condition: Optional[pulumi.Input[_builtins.str]] = None):
+                 format: pulumi.Input[Optional[_builtins.str]] = None,
+                 format_version: pulumi.Input[Optional[_builtins.int]] = None,
+                 placement: pulumi.Input[Optional[_builtins.str]] = None,
+                 processing_region: pulumi.Input[Optional[_builtins.str]] = None,
+                 response_condition: pulumi.Input[Optional[_builtins.str]] = None):
         """
         :param pulumi.Input[_builtins.str] dataset: The Honeycomb Dataset you want to log to
         :param pulumi.Input[_builtins.str] name: The unique name of the Honeycomb logging endpoint. It is important to note that changing this attribute will delete and recreate the resource
@@ -14228,62 +14228,62 @@ class ServiceVclLoggingHoneycombArgs:
 
     @_builtins.property
     @pulumi.getter
-    def format(self) -> Optional[pulumi.Input[_builtins.str]]:
+    def format(self) -> pulumi.Input[Optional[_builtins.str]]:
         """
         Apache style log formatting. Your log must produce valid JSON that Honeycomb can ingest.
         """
         return pulumi.get(self, "format")
 
     @format.setter
-    def format(self, value: Optional[pulumi.Input[_builtins.str]]):
+    def format(self, value: pulumi.Input[Optional[_builtins.str]]):
         pulumi.set(self, "format", value)
 
     @_builtins.property
     @pulumi.getter(name="formatVersion")
-    def format_version(self) -> Optional[pulumi.Input[_builtins.int]]:
+    def format_version(self) -> pulumi.Input[Optional[_builtins.int]]:
         """
         The version of the custom logging format used for the configured endpoint. Can be either `1` or `2`. (default: `2`).
         """
         return pulumi.get(self, "format_version")
 
     @format_version.setter
-    def format_version(self, value: Optional[pulumi.Input[_builtins.int]]):
+    def format_version(self, value: pulumi.Input[Optional[_builtins.int]]):
         pulumi.set(self, "format_version", value)
 
     @_builtins.property
     @pulumi.getter
-    def placement(self) -> Optional[pulumi.Input[_builtins.str]]:
+    def placement(self) -> pulumi.Input[Optional[_builtins.str]]:
         """
         Where in the generated VCL the logging call should be placed. Can be `none` or `none`.
         """
         return pulumi.get(self, "placement")
 
     @placement.setter
-    def placement(self, value: Optional[pulumi.Input[_builtins.str]]):
+    def placement(self, value: pulumi.Input[Optional[_builtins.str]]):
         pulumi.set(self, "placement", value)
 
     @_builtins.property
     @pulumi.getter(name="processingRegion")
-    def processing_region(self) -> Optional[pulumi.Input[_builtins.str]]:
+    def processing_region(self) -> pulumi.Input[Optional[_builtins.str]]:
         """
         Region where logs will be processed before streaming to BigQuery. Valid values are 'none', 'us' and 'eu'.
         """
         return pulumi.get(self, "processing_region")
 
     @processing_region.setter
-    def processing_region(self, value: Optional[pulumi.Input[_builtins.str]]):
+    def processing_region(self, value: pulumi.Input[Optional[_builtins.str]]):
         pulumi.set(self, "processing_region", value)
 
     @_builtins.property
     @pulumi.getter(name="responseCondition")
-    def response_condition(self) -> Optional[pulumi.Input[_builtins.str]]:
+    def response_condition(self) -> pulumi.Input[Optional[_builtins.str]]:
         """
         The name of an existing condition in the configured endpoint, or leave blank to always execute.
         """
         return pulumi.get(self, "response_condition")
 
     @response_condition.setter
-    def response_condition(self, value: Optional[pulumi.Input[_builtins.str]]):
+    def response_condition(self, value: pulumi.Input[Optional[_builtins.str]]):
         pulumi.set(self, "response_condition", value)
 
 
@@ -14296,83 +14296,83 @@ class ServiceVclLoggingHttpArgsDict(TypedDict):
     """
     URL that log data will be sent to. Must use the https protocol
     """
-    compression_codec: NotRequired[pulumi.Input[_builtins.str]]
+    compression_codec: NotRequired[pulumi.Input[Optional[_builtins.str]]]
     """
     The codec used for compression of your logs. Valid values are zstd, snappy, and gzip. If the specified codec is "gzip", gzip_level will default to 3. To specify a different level, leave compression_codec blank and explicitly set the level using gzip_level. Specifying both compression_codec and gzip_level in the same API request will result in an error.
     """
-    content_type: NotRequired[pulumi.Input[_builtins.str]]
+    content_type: NotRequired[pulumi.Input[Optional[_builtins.str]]]
     """
     Value of the `Content-Type` header sent with the request
     """
-    format: NotRequired[pulumi.Input[_builtins.str]]
+    format: NotRequired[pulumi.Input[Optional[_builtins.str]]]
     """
     Apache-style string or VCL variables to use for log formatting.
     """
-    format_version: NotRequired[pulumi.Input[_builtins.int]]
+    format_version: NotRequired[pulumi.Input[Optional[_builtins.int]]]
     """
     The version of the custom logging format used for the configured endpoint. Can be either 1 or 2. (default: 2)
     """
-    gzip_level: NotRequired[pulumi.Input[_builtins.int]]
+    gzip_level: NotRequired[pulumi.Input[Optional[_builtins.int]]]
     """
     Level of Gzip compression from `0-9`. `0` means no compression. `1` is the fastest and the least compressed version, `9` is the slowest and the most compressed version. Default `0`
     """
-    header_name: NotRequired[pulumi.Input[_builtins.str]]
+    header_name: NotRequired[pulumi.Input[Optional[_builtins.str]]]
     """
     Custom header sent with the request
     """
-    header_value: NotRequired[pulumi.Input[_builtins.str]]
+    header_value: NotRequired[pulumi.Input[Optional[_builtins.str]]]
     """
     Value of the custom header sent with the request
     """
-    json_format: NotRequired[pulumi.Input[_builtins.str]]
+    json_format: NotRequired[pulumi.Input[Optional[_builtins.str]]]
     """
     Formats log entries as JSON. Can be either disabled (`0`), array of json (`1`), or newline delimited json (`2`)
     """
-    message_type: NotRequired[pulumi.Input[_builtins.str]]
+    message_type: NotRequired[pulumi.Input[Optional[_builtins.str]]]
     """
     How the message should be formatted. Can be either `classic`, `loggly`, `logplex` or `blank`. Default is `classic`
     """
-    method: NotRequired[pulumi.Input[_builtins.str]]
+    method: NotRequired[pulumi.Input[Optional[_builtins.str]]]
     """
     HTTP method used for request. Can be either `POST` or `PUT`. Default `POST`
     """
-    period: NotRequired[pulumi.Input[_builtins.int]]
+    period: NotRequired[pulumi.Input[Optional[_builtins.int]]]
     """
     How frequently, in seconds, batches of log data are sent to the HTTPS endpoint. A value of 0 sends logs at the same interval as the default, which is 5 seconds.
     """
-    placement: NotRequired[pulumi.Input[_builtins.str]]
+    placement: NotRequired[pulumi.Input[Optional[_builtins.str]]]
     """
     Where in the generated VCL the logging call should be placed
     """
-    processing_region: NotRequired[pulumi.Input[_builtins.str]]
+    processing_region: NotRequired[pulumi.Input[Optional[_builtins.str]]]
     """
     Region where logs will be processed before streaming to BigQuery. Valid values are 'none', 'us' and 'eu'.
     """
-    request_max_bytes: NotRequired[pulumi.Input[_builtins.int]]
+    request_max_bytes: NotRequired[pulumi.Input[Optional[_builtins.int]]]
     """
     The maximum number of bytes sent in one request
     """
-    request_max_entries: NotRequired[pulumi.Input[_builtins.int]]
+    request_max_entries: NotRequired[pulumi.Input[Optional[_builtins.int]]]
     """
     The maximum number of logs sent in one request
     """
-    response_condition: NotRequired[pulumi.Input[_builtins.str]]
+    response_condition: NotRequired[pulumi.Input[Optional[_builtins.str]]]
     """
     The name of the condition to apply
     """
-    tls_ca_cert: NotRequired[pulumi.Input[_builtins.str]]
+    tls_ca_cert: NotRequired[pulumi.Input[Optional[_builtins.str]]]
     """
     A secure certificate to authenticate the server with. Must be in PEM format
     """
-    tls_client_cert: NotRequired[pulumi.Input[_builtins.str]]
+    tls_client_cert: NotRequired[pulumi.Input[Optional[_builtins.str]]]
     """
     The client certificate used to make authenticated requests. Must be in PEM format
     """
-    tls_client_key: NotRequired[pulumi.Input[_builtins.str]]
+    tls_client_key: NotRequired[pulumi.Input[Optional[_builtins.str]]]
     """
     The client private key used to make authenticated requests. Must be in PEM format
     """
-    tls_hostname: NotRequired[pulumi.Input[_builtins.str]]
+    tls_hostname: NotRequired[pulumi.Input[Optional[_builtins.str]]]
     """
     Used during the TLS handshake to validate the certificate
     """
@@ -14382,26 +14382,26 @@ class ServiceVclLoggingHttpArgs:
     def __init__(__self__, *,
                  name: pulumi.Input[_builtins.str],
                  url: pulumi.Input[_builtins.str],
-                 compression_codec: Optional[pulumi.Input[_builtins.str]] = None,
-                 content_type: Optional[pulumi.Input[_builtins.str]] = None,
-                 format: Optional[pulumi.Input[_builtins.str]] = None,
-                 format_version: Optional[pulumi.Input[_builtins.int]] = None,
-                 gzip_level: Optional[pulumi.Input[_builtins.int]] = None,
-                 header_name: Optional[pulumi.Input[_builtins.str]] = None,
-                 header_value: Optional[pulumi.Input[_builtins.str]] = None,
-                 json_format: Optional[pulumi.Input[_builtins.str]] = None,
-                 message_type: Optional[pulumi.Input[_builtins.str]] = None,
-                 method: Optional[pulumi.Input[_builtins.str]] = None,
-                 period: Optional[pulumi.Input[_builtins.int]] = None,
-                 placement: Optional[pulumi.Input[_builtins.str]] = None,
-                 processing_region: Optional[pulumi.Input[_builtins.str]] = None,
-                 request_max_bytes: Optional[pulumi.Input[_builtins.int]] = None,
-                 request_max_entries: Optional[pulumi.Input[_builtins.int]] = None,
-                 response_condition: Optional[pulumi.Input[_builtins.str]] = None,
-                 tls_ca_cert: Optional[pulumi.Input[_builtins.str]] = None,
-                 tls_client_cert: Optional[pulumi.Input[_builtins.str]] = None,
-                 tls_client_key: Optional[pulumi.Input[_builtins.str]] = None,
-                 tls_hostname: Optional[pulumi.Input[_builtins.str]] = None):
+                 compression_codec: pulumi.Input[Optional[_builtins.str]] = None,
+                 content_type: pulumi.Input[Optional[_builtins.str]] = None,
+                 format: pulumi.Input[Optional[_builtins.str]] = None,
+                 format_version: pulumi.Input[Optional[_builtins.int]] = None,
+                 gzip_level: pulumi.Input[Optional[_builtins.int]] = None,
+                 header_name: pulumi.Input[Optional[_builtins.str]] = None,
+                 header_value: pulumi.Input[Optional[_builtins.str]] = None,
+                 json_format: pulumi.Input[Optional[_builtins.str]] = None,
+                 message_type: pulumi.Input[Optional[_builtins.str]] = None,
+                 method: pulumi.Input[Optional[_builtins.str]] = None,
+                 period: pulumi.Input[Optional[_builtins.int]] = None,
+                 placement: pulumi.Input[Optional[_builtins.str]] = None,
+                 processing_region: pulumi.Input[Optional[_builtins.str]] = None,
+                 request_max_bytes: pulumi.Input[Optional[_builtins.int]] = None,
+                 request_max_entries: pulumi.Input[Optional[_builtins.int]] = None,
+                 response_condition: pulumi.Input[Optional[_builtins.str]] = None,
+                 tls_ca_cert: pulumi.Input[Optional[_builtins.str]] = None,
+                 tls_client_cert: pulumi.Input[Optional[_builtins.str]] = None,
+                 tls_client_key: pulumi.Input[Optional[_builtins.str]] = None,
+                 tls_hostname: pulumi.Input[Optional[_builtins.str]] = None):
         """
         :param pulumi.Input[_builtins.str] name: The unique name of the HTTPS logging endpoint. It is important to note that changing this attribute will delete and recreate the resource
         :param pulumi.Input[_builtins.str] url: URL that log data will be sent to. Must use the https protocol
@@ -14495,242 +14495,242 @@ class ServiceVclLoggingHttpArgs:
 
     @_builtins.property
     @pulumi.getter(name="compressionCodec")
-    def compression_codec(self) -> Optional[pulumi.Input[_builtins.str]]:
+    def compression_codec(self) -> pulumi.Input[Optional[_builtins.str]]:
         """
         The codec used for compression of your logs. Valid values are zstd, snappy, and gzip. If the specified codec is "gzip", gzip_level will default to 3. To specify a different level, leave compression_codec blank and explicitly set the level using gzip_level. Specifying both compression_codec and gzip_level in the same API request will result in an error.
         """
         return pulumi.get(self, "compression_codec")
 
     @compression_codec.setter
-    def compression_codec(self, value: Optional[pulumi.Input[_builtins.str]]):
+    def compression_codec(self, value: pulumi.Input[Optional[_builtins.str]]):
         pulumi.set(self, "compression_codec", value)
 
     @_builtins.property
     @pulumi.getter(name="contentType")
-    def content_type(self) -> Optional[pulumi.Input[_builtins.str]]:
+    def content_type(self) -> pulumi.Input[Optional[_builtins.str]]:
         """
         Value of the `Content-Type` header sent with the request
         """
         return pulumi.get(self, "content_type")
 
     @content_type.setter
-    def content_type(self, value: Optional[pulumi.Input[_builtins.str]]):
+    def content_type(self, value: pulumi.Input[Optional[_builtins.str]]):
         pulumi.set(self, "content_type", value)
 
     @_builtins.property
     @pulumi.getter
-    def format(self) -> Optional[pulumi.Input[_builtins.str]]:
+    def format(self) -> pulumi.Input[Optional[_builtins.str]]:
         """
         Apache-style string or VCL variables to use for log formatting.
         """
         return pulumi.get(self, "format")
 
     @format.setter
-    def format(self, value: Optional[pulumi.Input[_builtins.str]]):
+    def format(self, value: pulumi.Input[Optional[_builtins.str]]):
         pulumi.set(self, "format", value)
 
     @_builtins.property
     @pulumi.getter(name="formatVersion")
-    def format_version(self) -> Optional[pulumi.Input[_builtins.int]]:
+    def format_version(self) -> pulumi.Input[Optional[_builtins.int]]:
         """
         The version of the custom logging format used for the configured endpoint. Can be either 1 or 2. (default: 2)
         """
         return pulumi.get(self, "format_version")
 
     @format_version.setter
-    def format_version(self, value: Optional[pulumi.Input[_builtins.int]]):
+    def format_version(self, value: pulumi.Input[Optional[_builtins.int]]):
         pulumi.set(self, "format_version", value)
 
     @_builtins.property
     @pulumi.getter(name="gzipLevel")
-    def gzip_level(self) -> Optional[pulumi.Input[_builtins.int]]:
+    def gzip_level(self) -> pulumi.Input[Optional[_builtins.int]]:
         """
         Level of Gzip compression from `0-9`. `0` means no compression. `1` is the fastest and the least compressed version, `9` is the slowest and the most compressed version. Default `0`
         """
         return pulumi.get(self, "gzip_level")
 
     @gzip_level.setter
-    def gzip_level(self, value: Optional[pulumi.Input[_builtins.int]]):
+    def gzip_level(self, value: pulumi.Input[Optional[_builtins.int]]):
         pulumi.set(self, "gzip_level", value)
 
     @_builtins.property
     @pulumi.getter(name="headerName")
-    def header_name(self) -> Optional[pulumi.Input[_builtins.str]]:
+    def header_name(self) -> pulumi.Input[Optional[_builtins.str]]:
         """
         Custom header sent with the request
         """
         return pulumi.get(self, "header_name")
 
     @header_name.setter
-    def header_name(self, value: Optional[pulumi.Input[_builtins.str]]):
+    def header_name(self, value: pulumi.Input[Optional[_builtins.str]]):
         pulumi.set(self, "header_name", value)
 
     @_builtins.property
     @pulumi.getter(name="headerValue")
-    def header_value(self) -> Optional[pulumi.Input[_builtins.str]]:
+    def header_value(self) -> pulumi.Input[Optional[_builtins.str]]:
         """
         Value of the custom header sent with the request
         """
         return pulumi.get(self, "header_value")
 
     @header_value.setter
-    def header_value(self, value: Optional[pulumi.Input[_builtins.str]]):
+    def header_value(self, value: pulumi.Input[Optional[_builtins.str]]):
         pulumi.set(self, "header_value", value)
 
     @_builtins.property
     @pulumi.getter(name="jsonFormat")
-    def json_format(self) -> Optional[pulumi.Input[_builtins.str]]:
+    def json_format(self) -> pulumi.Input[Optional[_builtins.str]]:
         """
         Formats log entries as JSON. Can be either disabled (`0`), array of json (`1`), or newline delimited json (`2`)
         """
         return pulumi.get(self, "json_format")
 
     @json_format.setter
-    def json_format(self, value: Optional[pulumi.Input[_builtins.str]]):
+    def json_format(self, value: pulumi.Input[Optional[_builtins.str]]):
         pulumi.set(self, "json_format", value)
 
     @_builtins.property
     @pulumi.getter(name="messageType")
-    def message_type(self) -> Optional[pulumi.Input[_builtins.str]]:
+    def message_type(self) -> pulumi.Input[Optional[_builtins.str]]:
         """
         How the message should be formatted. Can be either `classic`, `loggly`, `logplex` or `blank`. Default is `classic`
         """
         return pulumi.get(self, "message_type")
 
     @message_type.setter
-    def message_type(self, value: Optional[pulumi.Input[_builtins.str]]):
+    def message_type(self, value: pulumi.Input[Optional[_builtins.str]]):
         pulumi.set(self, "message_type", value)
 
     @_builtins.property
     @pulumi.getter
-    def method(self) -> Optional[pulumi.Input[_builtins.str]]:
+    def method(self) -> pulumi.Input[Optional[_builtins.str]]:
         """
         HTTP method used for request. Can be either `POST` or `PUT`. Default `POST`
         """
         return pulumi.get(self, "method")
 
     @method.setter
-    def method(self, value: Optional[pulumi.Input[_builtins.str]]):
+    def method(self, value: pulumi.Input[Optional[_builtins.str]]):
         pulumi.set(self, "method", value)
 
     @_builtins.property
     @pulumi.getter
-    def period(self) -> Optional[pulumi.Input[_builtins.int]]:
+    def period(self) -> pulumi.Input[Optional[_builtins.int]]:
         """
         How frequently, in seconds, batches of log data are sent to the HTTPS endpoint. A value of 0 sends logs at the same interval as the default, which is 5 seconds.
         """
         return pulumi.get(self, "period")
 
     @period.setter
-    def period(self, value: Optional[pulumi.Input[_builtins.int]]):
+    def period(self, value: pulumi.Input[Optional[_builtins.int]]):
         pulumi.set(self, "period", value)
 
     @_builtins.property
     @pulumi.getter
-    def placement(self) -> Optional[pulumi.Input[_builtins.str]]:
+    def placement(self) -> pulumi.Input[Optional[_builtins.str]]:
         """
         Where in the generated VCL the logging call should be placed
         """
         return pulumi.get(self, "placement")
 
     @placement.setter
-    def placement(self, value: Optional[pulumi.Input[_builtins.str]]):
+    def placement(self, value: pulumi.Input[Optional[_builtins.str]]):
         pulumi.set(self, "placement", value)
 
     @_builtins.property
     @pulumi.getter(name="processingRegion")
-    def processing_region(self) -> Optional[pulumi.Input[_builtins.str]]:
+    def processing_region(self) -> pulumi.Input[Optional[_builtins.str]]:
         """
         Region where logs will be processed before streaming to BigQuery. Valid values are 'none', 'us' and 'eu'.
         """
         return pulumi.get(self, "processing_region")
 
     @processing_region.setter
-    def processing_region(self, value: Optional[pulumi.Input[_builtins.str]]):
+    def processing_region(self, value: pulumi.Input[Optional[_builtins.str]]):
         pulumi.set(self, "processing_region", value)
 
     @_builtins.property
     @pulumi.getter(name="requestMaxBytes")
-    def request_max_bytes(self) -> Optional[pulumi.Input[_builtins.int]]:
+    def request_max_bytes(self) -> pulumi.Input[Optional[_builtins.int]]:
         """
         The maximum number of bytes sent in one request
         """
         return pulumi.get(self, "request_max_bytes")
 
     @request_max_bytes.setter
-    def request_max_bytes(self, value: Optional[pulumi.Input[_builtins.int]]):
+    def request_max_bytes(self, value: pulumi.Input[Optional[_builtins.int]]):
         pulumi.set(self, "request_max_bytes", value)
 
     @_builtins.property
     @pulumi.getter(name="requestMaxEntries")
-    def request_max_entries(self) -> Optional[pulumi.Input[_builtins.int]]:
+    def request_max_entries(self) -> pulumi.Input[Optional[_builtins.int]]:
         """
         The maximum number of logs sent in one request
         """
         return pulumi.get(self, "request_max_entries")
 
     @request_max_entries.setter
-    def request_max_entries(self, value: Optional[pulumi.Input[_builtins.int]]):
+    def request_max_entries(self, value: pulumi.Input[Optional[_builtins.int]]):
         pulumi.set(self, "request_max_entries", value)
 
     @_builtins.property
     @pulumi.getter(name="responseCondition")
-    def response_condition(self) -> Optional[pulumi.Input[_builtins.str]]:
+    def response_condition(self) -> pulumi.Input[Optional[_builtins.str]]:
         """
         The name of the condition to apply
         """
         return pulumi.get(self, "response_condition")
 
     @response_condition.setter
-    def response_condition(self, value: Optional[pulumi.Input[_builtins.str]]):
+    def response_condition(self, value: pulumi.Input[Optional[_builtins.str]]):
         pulumi.set(self, "response_condition", value)
 
     @_builtins.property
     @pulumi.getter(name="tlsCaCert")
-    def tls_ca_cert(self) -> Optional[pulumi.Input[_builtins.str]]:
+    def tls_ca_cert(self) -> pulumi.Input[Optional[_builtins.str]]:
         """
         A secure certificate to authenticate the server with. Must be in PEM format
         """
         return pulumi.get(self, "tls_ca_cert")
 
     @tls_ca_cert.setter
-    def tls_ca_cert(self, value: Optional[pulumi.Input[_builtins.str]]):
+    def tls_ca_cert(self, value: pulumi.Input[Optional[_builtins.str]]):
         pulumi.set(self, "tls_ca_cert", value)
 
     @_builtins.property
     @pulumi.getter(name="tlsClientCert")
-    def tls_client_cert(self) -> Optional[pulumi.Input[_builtins.str]]:
+    def tls_client_cert(self) -> pulumi.Input[Optional[_builtins.str]]:
         """
         The client certificate used to make authenticated requests. Must be in PEM format
         """
         return pulumi.get(self, "tls_client_cert")
 
     @tls_client_cert.setter
-    def tls_client_cert(self, value: Optional[pulumi.Input[_builtins.str]]):
+    def tls_client_cert(self, value: pulumi.Input[Optional[_builtins.str]]):
         pulumi.set(self, "tls_client_cert", value)
 
     @_builtins.property
     @pulumi.getter(name="tlsClientKey")
-    def tls_client_key(self) -> Optional[pulumi.Input[_builtins.str]]:
+    def tls_client_key(self) -> pulumi.Input[Optional[_builtins.str]]:
         """
         The client private key used to make authenticated requests. Must be in PEM format
         """
         return pulumi.get(self, "tls_client_key")
 
     @tls_client_key.setter
-    def tls_client_key(self, value: Optional[pulumi.Input[_builtins.str]]):
+    def tls_client_key(self, value: pulumi.Input[Optional[_builtins.str]]):
         pulumi.set(self, "tls_client_key", value)
 
     @_builtins.property
     @pulumi.getter(name="tlsHostname")
-    def tls_hostname(self) -> Optional[pulumi.Input[_builtins.str]]:
+    def tls_hostname(self) -> pulumi.Input[Optional[_builtins.str]]:
         """
         Used during the TLS handshake to validate the certificate
         """
         return pulumi.get(self, "tls_hostname")
 
     @tls_hostname.setter
-    def tls_hostname(self, value: Optional[pulumi.Input[_builtins.str]]):
+    def tls_hostname(self, value: pulumi.Input[Optional[_builtins.str]]):
         pulumi.set(self, "tls_hostname", value)
 
 
@@ -14747,71 +14747,71 @@ class ServiceVclLoggingKafkaArgsDict(TypedDict):
     """
     The Kafka topic to send logs to
     """
-    auth_method: NotRequired[pulumi.Input[_builtins.str]]
+    auth_method: NotRequired[pulumi.Input[Optional[_builtins.str]]]
     """
     SASL authentication method. One of: plain, scram-sha-256, scram-sha-512
     """
-    compression_codec: NotRequired[pulumi.Input[_builtins.str]]
+    compression_codec: NotRequired[pulumi.Input[Optional[_builtins.str]]]
     """
     The codec used for compression of your logs. One of: `gzip`, `snappy`, `lz4`
     """
-    format: NotRequired[pulumi.Input[_builtins.str]]
+    format: NotRequired[pulumi.Input[Optional[_builtins.str]]]
     """
     Apache style log formatting.
     """
-    format_version: NotRequired[pulumi.Input[_builtins.int]]
+    format_version: NotRequired[pulumi.Input[Optional[_builtins.int]]]
     """
     The version of the custom logging format used for the configured endpoint. Can be either 1 or 2. (default: 2).
     """
-    parse_log_keyvals: NotRequired[pulumi.Input[_builtins.bool]]
+    parse_log_keyvals: NotRequired[pulumi.Input[Optional[_builtins.bool]]]
     """
     Enables parsing of key=value tuples from the beginning of a logline, turning them into record headers
     """
-    password: NotRequired[pulumi.Input[_builtins.str]]
+    password: NotRequired[pulumi.Input[Optional[_builtins.str]]]
     """
     SASL Pass
     """
-    placement: NotRequired[pulumi.Input[_builtins.str]]
+    placement: NotRequired[pulumi.Input[Optional[_builtins.str]]]
     """
     Where in the generated VCL the logging call should be placed.
     """
-    processing_region: NotRequired[pulumi.Input[_builtins.str]]
+    processing_region: NotRequired[pulumi.Input[Optional[_builtins.str]]]
     """
     Region where logs will be processed before streaming to BigQuery. Valid values are 'none', 'us' and 'eu'.
     """
-    request_max_bytes: NotRequired[pulumi.Input[_builtins.int]]
+    request_max_bytes: NotRequired[pulumi.Input[Optional[_builtins.int]]]
     """
     Maximum size of log batch, if non-zero. Defaults to 0 for unbounded
     """
-    required_acks: NotRequired[pulumi.Input[_builtins.str]]
+    required_acks: NotRequired[pulumi.Input[Optional[_builtins.str]]]
     """
     The Number of acknowledgements a leader must receive before a write is considered successful. One of: `1` (default) One server needs to respond. `0` No servers need to respond. `-1` Wait for all in-sync replicas to respond
     """
-    response_condition: NotRequired[pulumi.Input[_builtins.str]]
+    response_condition: NotRequired[pulumi.Input[Optional[_builtins.str]]]
     """
     The name of an existing condition in the configured endpoint, or leave blank to always execute.
     """
-    tls_ca_cert: NotRequired[pulumi.Input[_builtins.str]]
+    tls_ca_cert: NotRequired[pulumi.Input[Optional[_builtins.str]]]
     """
     A secure certificate to authenticate the server with. Must be in PEM format
     """
-    tls_client_cert: NotRequired[pulumi.Input[_builtins.str]]
+    tls_client_cert: NotRequired[pulumi.Input[Optional[_builtins.str]]]
     """
     The client certificate used to make authenticated requests. Must be in PEM format
     """
-    tls_client_key: NotRequired[pulumi.Input[_builtins.str]]
+    tls_client_key: NotRequired[pulumi.Input[Optional[_builtins.str]]]
     """
     The client private key used to make authenticated requests. Must be in PEM format
     """
-    tls_hostname: NotRequired[pulumi.Input[_builtins.str]]
+    tls_hostname: NotRequired[pulumi.Input[Optional[_builtins.str]]]
     """
     The hostname used to verify the server's certificate. It can either be the Common Name or a Subject Alternative Name (SAN)
     """
-    use_tls: NotRequired[pulumi.Input[_builtins.bool]]
+    use_tls: NotRequired[pulumi.Input[Optional[_builtins.bool]]]
     """
     Whether to use TLS for secure logging. Can be either `true` or `false`
     """
-    user: NotRequired[pulumi.Input[_builtins.str]]
+    user: NotRequired[pulumi.Input[Optional[_builtins.str]]]
     """
     SASL User
     """
@@ -14822,23 +14822,23 @@ class ServiceVclLoggingKafkaArgs:
                  brokers: pulumi.Input[_builtins.str],
                  name: pulumi.Input[_builtins.str],
                  topic: pulumi.Input[_builtins.str],
-                 auth_method: Optional[pulumi.Input[_builtins.str]] = None,
-                 compression_codec: Optional[pulumi.Input[_builtins.str]] = None,
-                 format: Optional[pulumi.Input[_builtins.str]] = None,
-                 format_version: Optional[pulumi.Input[_builtins.int]] = None,
-                 parse_log_keyvals: Optional[pulumi.Input[_builtins.bool]] = None,
-                 password: Optional[pulumi.Input[_builtins.str]] = None,
-                 placement: Optional[pulumi.Input[_builtins.str]] = None,
-                 processing_region: Optional[pulumi.Input[_builtins.str]] = None,
-                 request_max_bytes: Optional[pulumi.Input[_builtins.int]] = None,
-                 required_acks: Optional[pulumi.Input[_builtins.str]] = None,
-                 response_condition: Optional[pulumi.Input[_builtins.str]] = None,
-                 tls_ca_cert: Optional[pulumi.Input[_builtins.str]] = None,
-                 tls_client_cert: Optional[pulumi.Input[_builtins.str]] = None,
-                 tls_client_key: Optional[pulumi.Input[_builtins.str]] = None,
-                 tls_hostname: Optional[pulumi.Input[_builtins.str]] = None,
-                 use_tls: Optional[pulumi.Input[_builtins.bool]] = None,
-                 user: Optional[pulumi.Input[_builtins.str]] = None):
+                 auth_method: pulumi.Input[Optional[_builtins.str]] = None,
+                 compression_codec: pulumi.Input[Optional[_builtins.str]] = None,
+                 format: pulumi.Input[Optional[_builtins.str]] = None,
+                 format_version: pulumi.Input[Optional[_builtins.int]] = None,
+                 parse_log_keyvals: pulumi.Input[Optional[_builtins.bool]] = None,
+                 password: pulumi.Input[Optional[_builtins.str]] = None,
+                 placement: pulumi.Input[Optional[_builtins.str]] = None,
+                 processing_region: pulumi.Input[Optional[_builtins.str]] = None,
+                 request_max_bytes: pulumi.Input[Optional[_builtins.int]] = None,
+                 required_acks: pulumi.Input[Optional[_builtins.str]] = None,
+                 response_condition: pulumi.Input[Optional[_builtins.str]] = None,
+                 tls_ca_cert: pulumi.Input[Optional[_builtins.str]] = None,
+                 tls_client_cert: pulumi.Input[Optional[_builtins.str]] = None,
+                 tls_client_key: pulumi.Input[Optional[_builtins.str]] = None,
+                 tls_hostname: pulumi.Input[Optional[_builtins.str]] = None,
+                 use_tls: pulumi.Input[Optional[_builtins.bool]] = None,
+                 user: pulumi.Input[Optional[_builtins.str]] = None):
         """
         :param pulumi.Input[_builtins.str] brokers: A comma-separated list of IP addresses or hostnames of Kafka brokers
         :param pulumi.Input[_builtins.str] name: The unique name of the Kafka logging endpoint. It is important to note that changing this attribute will delete and recreate the resource
@@ -14937,206 +14937,206 @@ class ServiceVclLoggingKafkaArgs:
 
     @_builtins.property
     @pulumi.getter(name="authMethod")
-    def auth_method(self) -> Optional[pulumi.Input[_builtins.str]]:
+    def auth_method(self) -> pulumi.Input[Optional[_builtins.str]]:
         """
         SASL authentication method. One of: plain, scram-sha-256, scram-sha-512
         """
         return pulumi.get(self, "auth_method")
 
     @auth_method.setter
-    def auth_method(self, value: Optional[pulumi.Input[_builtins.str]]):
+    def auth_method(self, value: pulumi.Input[Optional[_builtins.str]]):
         pulumi.set(self, "auth_method", value)
 
     @_builtins.property
     @pulumi.getter(name="compressionCodec")
-    def compression_codec(self) -> Optional[pulumi.Input[_builtins.str]]:
+    def compression_codec(self) -> pulumi.Input[Optional[_builtins.str]]:
         """
         The codec used for compression of your logs. One of: `gzip`, `snappy`, `lz4`
         """
         return pulumi.get(self, "compression_codec")
 
     @compression_codec.setter
-    def compression_codec(self, value: Optional[pulumi.Input[_builtins.str]]):
+    def compression_codec(self, value: pulumi.Input[Optional[_builtins.str]]):
         pulumi.set(self, "compression_codec", value)
 
     @_builtins.property
     @pulumi.getter
-    def format(self) -> Optional[pulumi.Input[_builtins.str]]:
+    def format(self) -> pulumi.Input[Optional[_builtins.str]]:
         """
         Apache style log formatting.
         """
         return pulumi.get(self, "format")
 
     @format.setter
-    def format(self, value: Optional[pulumi.Input[_builtins.str]]):
+    def format(self, value: pulumi.Input[Optional[_builtins.str]]):
         pulumi.set(self, "format", value)
 
     @_builtins.property
     @pulumi.getter(name="formatVersion")
-    def format_version(self) -> Optional[pulumi.Input[_builtins.int]]:
+    def format_version(self) -> pulumi.Input[Optional[_builtins.int]]:
         """
         The version of the custom logging format used for the configured endpoint. Can be either 1 or 2. (default: 2).
         """
         return pulumi.get(self, "format_version")
 
     @format_version.setter
-    def format_version(self, value: Optional[pulumi.Input[_builtins.int]]):
+    def format_version(self, value: pulumi.Input[Optional[_builtins.int]]):
         pulumi.set(self, "format_version", value)
 
     @_builtins.property
     @pulumi.getter(name="parseLogKeyvals")
-    def parse_log_keyvals(self) -> Optional[pulumi.Input[_builtins.bool]]:
+    def parse_log_keyvals(self) -> pulumi.Input[Optional[_builtins.bool]]:
         """
         Enables parsing of key=value tuples from the beginning of a logline, turning them into record headers
         """
         return pulumi.get(self, "parse_log_keyvals")
 
     @parse_log_keyvals.setter
-    def parse_log_keyvals(self, value: Optional[pulumi.Input[_builtins.bool]]):
+    def parse_log_keyvals(self, value: pulumi.Input[Optional[_builtins.bool]]):
         pulumi.set(self, "parse_log_keyvals", value)
 
     @_builtins.property
     @pulumi.getter
-    def password(self) -> Optional[pulumi.Input[_builtins.str]]:
+    def password(self) -> pulumi.Input[Optional[_builtins.str]]:
         """
         SASL Pass
         """
         return pulumi.get(self, "password")
 
     @password.setter
-    def password(self, value: Optional[pulumi.Input[_builtins.str]]):
+    def password(self, value: pulumi.Input[Optional[_builtins.str]]):
         pulumi.set(self, "password", value)
 
     @_builtins.property
     @pulumi.getter
-    def placement(self) -> Optional[pulumi.Input[_builtins.str]]:
+    def placement(self) -> pulumi.Input[Optional[_builtins.str]]:
         """
         Where in the generated VCL the logging call should be placed.
         """
         return pulumi.get(self, "placement")
 
     @placement.setter
-    def placement(self, value: Optional[pulumi.Input[_builtins.str]]):
+    def placement(self, value: pulumi.Input[Optional[_builtins.str]]):
         pulumi.set(self, "placement", value)
 
     @_builtins.property
     @pulumi.getter(name="processingRegion")
-    def processing_region(self) -> Optional[pulumi.Input[_builtins.str]]:
+    def processing_region(self) -> pulumi.Input[Optional[_builtins.str]]:
         """
         Region where logs will be processed before streaming to BigQuery. Valid values are 'none', 'us' and 'eu'.
         """
         return pulumi.get(self, "processing_region")
 
     @processing_region.setter
-    def processing_region(self, value: Optional[pulumi.Input[_builtins.str]]):
+    def processing_region(self, value: pulumi.Input[Optional[_builtins.str]]):
         pulumi.set(self, "processing_region", value)
 
     @_builtins.property
     @pulumi.getter(name="requestMaxBytes")
-    def request_max_bytes(self) -> Optional[pulumi.Input[_builtins.int]]:
+    def request_max_bytes(self) -> pulumi.Input[Optional[_builtins.int]]:
         """
         Maximum size of log batch, if non-zero. Defaults to 0 for unbounded
         """
         return pulumi.get(self, "request_max_bytes")
 
     @request_max_bytes.setter
-    def request_max_bytes(self, value: Optional[pulumi.Input[_builtins.int]]):
+    def request_max_bytes(self, value: pulumi.Input[Optional[_builtins.int]]):
         pulumi.set(self, "request_max_bytes", value)
 
     @_builtins.property
     @pulumi.getter(name="requiredAcks")
-    def required_acks(self) -> Optional[pulumi.Input[_builtins.str]]:
+    def required_acks(self) -> pulumi.Input[Optional[_builtins.str]]:
         """
         The Number of acknowledgements a leader must receive before a write is considered successful. One of: `1` (default) One server needs to respond. `0` No servers need to respond. `-1` Wait for all in-sync replicas to respond
         """
         return pulumi.get(self, "required_acks")
 
     @required_acks.setter
-    def required_acks(self, value: Optional[pulumi.Input[_builtins.str]]):
+    def required_acks(self, value: pulumi.Input[Optional[_builtins.str]]):
         pulumi.set(self, "required_acks", value)
 
     @_builtins.property
     @pulumi.getter(name="responseCondition")
-    def response_condition(self) -> Optional[pulumi.Input[_builtins.str]]:
+    def response_condition(self) -> pulumi.Input[Optional[_builtins.str]]:
         """
         The name of an existing condition in the configured endpoint, or leave blank to always execute.
         """
         return pulumi.get(self, "response_condition")
 
     @response_condition.setter
-    def response_condition(self, value: Optional[pulumi.Input[_builtins.str]]):
+    def response_condition(self, value: pulumi.Input[Optional[_builtins.str]]):
         pulumi.set(self, "response_condition", value)
 
     @_builtins.property
     @pulumi.getter(name="tlsCaCert")
-    def tls_ca_cert(self) -> Optional[pulumi.Input[_builtins.str]]:
+    def tls_ca_cert(self) -> pulumi.Input[Optional[_builtins.str]]:
         """
         A secure certificate to authenticate the server with. Must be in PEM format
         """
         return pulumi.get(self, "tls_ca_cert")
 
     @tls_ca_cert.setter
-    def tls_ca_cert(self, value: Optional[pulumi.Input[_builtins.str]]):
+    def tls_ca_cert(self, value: pulumi.Input[Optional[_builtins.str]]):
         pulumi.set(self, "tls_ca_cert", value)
 
     @_builtins.property
     @pulumi.getter(name="tlsClientCert")
-    def tls_client_cert(self) -> Optional[pulumi.Input[_builtins.str]]:
+    def tls_client_cert(self) -> pulumi.Input[Optional[_builtins.str]]:
         """
         The client certificate used to make authenticated requests. Must be in PEM format
         """
         return pulumi.get(self, "tls_client_cert")
 
     @tls_client_cert.setter
-    def tls_client_cert(self, value: Optional[pulumi.Input[_builtins.str]]):
+    def tls_client_cert(self, value: pulumi.Input[Optional[_builtins.str]]):
         pulumi.set(self, "tls_client_cert", value)
 
     @_builtins.property
     @pulumi.getter(name="tlsClientKey")
-    def tls_client_key(self) -> Optional[pulumi.Input[_builtins.str]]:
+    def tls_client_key(self) -> pulumi.Input[Optional[_builtins.str]]:
         """
         The client private key used to make authenticated requests. Must be in PEM format
         """
         return pulumi.get(self, "tls_client_key")
 
     @tls_client_key.setter
-    def tls_client_key(self, value: Optional[pulumi.Input[_builtins.str]]):
+    def tls_client_key(self, value: pulumi.Input[Optional[_builtins.str]]):
         pulumi.set(self, "tls_client_key", value)
 
     @_builtins.property
     @pulumi.getter(name="tlsHostname")
-    def tls_hostname(self) -> Optional[pulumi.Input[_builtins.str]]:
+    def tls_hostname(self) -> pulumi.Input[Optional[_builtins.str]]:
         """
         The hostname used to verify the server's certificate. It can either be the Common Name or a Subject Alternative Name (SAN)
         """
         return pulumi.get(self, "tls_hostname")
 
     @tls_hostname.setter
-    def tls_hostname(self, value: Optional[pulumi.Input[_builtins.str]]):
+    def tls_hostname(self, value: pulumi.Input[Optional[_builtins.str]]):
         pulumi.set(self, "tls_hostname", value)
 
     @_builtins.property
     @pulumi.getter(name="useTls")
-    def use_tls(self) -> Optional[pulumi.Input[_builtins.bool]]:
+    def use_tls(self) -> pulumi.Input[Optional[_builtins.bool]]:
         """
         Whether to use TLS for secure logging. Can be either `true` or `false`
         """
         return pulumi.get(self, "use_tls")
 
     @use_tls.setter
-    def use_tls(self, value: Optional[pulumi.Input[_builtins.bool]]):
+    def use_tls(self, value: pulumi.Input[Optional[_builtins.bool]]):
         pulumi.set(self, "use_tls", value)
 
     @_builtins.property
     @pulumi.getter
-    def user(self) -> Optional[pulumi.Input[_builtins.str]]:
+    def user(self) -> pulumi.Input[Optional[_builtins.str]]:
         """
         SASL User
         """
         return pulumi.get(self, "user")
 
     @user.setter
-    def user(self, value: Optional[pulumi.Input[_builtins.str]]):
+    def user(self, value: pulumi.Input[Optional[_builtins.str]]):
         pulumi.set(self, "user", value)
 
 
@@ -15149,39 +15149,39 @@ class ServiceVclLoggingKineseArgsDict(TypedDict):
     """
     The Kinesis stream name
     """
-    access_key: NotRequired[pulumi.Input[_builtins.str]]
+    access_key: NotRequired[pulumi.Input[Optional[_builtins.str]]]
     """
     The AWS access key to be used to write to the stream
     """
-    format: NotRequired[pulumi.Input[_builtins.str]]
+    format: NotRequired[pulumi.Input[Optional[_builtins.str]]]
     """
     Apache style log formatting.
     """
-    format_version: NotRequired[pulumi.Input[_builtins.int]]
+    format_version: NotRequired[pulumi.Input[Optional[_builtins.int]]]
     """
     The version of the custom logging format used for the configured endpoint. Can be either `1` or `2`. (default: `2`).
     """
-    iam_role: NotRequired[pulumi.Input[_builtins.str]]
+    iam_role: NotRequired[pulumi.Input[Optional[_builtins.str]]]
     """
     The Amazon Resource Name (ARN) for the IAM role granting Fastly access to Kinesis. Not required if `access_key` and `secret_key` are provided.
     """
-    placement: NotRequired[pulumi.Input[_builtins.str]]
+    placement: NotRequired[pulumi.Input[Optional[_builtins.str]]]
     """
     Where in the generated VCL the logging call should be placed. Can be `none` or `none`.
     """
-    processing_region: NotRequired[pulumi.Input[_builtins.str]]
+    processing_region: NotRequired[pulumi.Input[Optional[_builtins.str]]]
     """
     Region where logs will be processed before streaming to BigQuery. Valid values are 'none', 'us' and 'eu'.
     """
-    region: NotRequired[pulumi.Input[_builtins.str]]
+    region: NotRequired[pulumi.Input[Optional[_builtins.str]]]
     """
     The AWS region the stream resides in. (Default: `us-east-1`)
     """
-    response_condition: NotRequired[pulumi.Input[_builtins.str]]
+    response_condition: NotRequired[pulumi.Input[Optional[_builtins.str]]]
     """
     The name of an existing condition in the configured endpoint, or leave blank to always execute.
     """
-    secret_key: NotRequired[pulumi.Input[_builtins.str]]
+    secret_key: NotRequired[pulumi.Input[Optional[_builtins.str]]]
     """
     The AWS secret access key to authenticate with
     """
@@ -15191,15 +15191,15 @@ class ServiceVclLoggingKineseArgs:
     def __init__(__self__, *,
                  name: pulumi.Input[_builtins.str],
                  topic: pulumi.Input[_builtins.str],
-                 access_key: Optional[pulumi.Input[_builtins.str]] = None,
-                 format: Optional[pulumi.Input[_builtins.str]] = None,
-                 format_version: Optional[pulumi.Input[_builtins.int]] = None,
-                 iam_role: Optional[pulumi.Input[_builtins.str]] = None,
-                 placement: Optional[pulumi.Input[_builtins.str]] = None,
-                 processing_region: Optional[pulumi.Input[_builtins.str]] = None,
-                 region: Optional[pulumi.Input[_builtins.str]] = None,
-                 response_condition: Optional[pulumi.Input[_builtins.str]] = None,
-                 secret_key: Optional[pulumi.Input[_builtins.str]] = None):
+                 access_key: pulumi.Input[Optional[_builtins.str]] = None,
+                 format: pulumi.Input[Optional[_builtins.str]] = None,
+                 format_version: pulumi.Input[Optional[_builtins.int]] = None,
+                 iam_role: pulumi.Input[Optional[_builtins.str]] = None,
+                 placement: pulumi.Input[Optional[_builtins.str]] = None,
+                 processing_region: pulumi.Input[Optional[_builtins.str]] = None,
+                 region: pulumi.Input[Optional[_builtins.str]] = None,
+                 response_condition: pulumi.Input[Optional[_builtins.str]] = None,
+                 secret_key: pulumi.Input[Optional[_builtins.str]] = None):
         """
         :param pulumi.Input[_builtins.str] name: The unique name of the Kinesis logging endpoint. It is important to note that changing this attribute will delete and recreate the resource
         :param pulumi.Input[_builtins.str] topic: The Kinesis stream name
@@ -15260,110 +15260,110 @@ class ServiceVclLoggingKineseArgs:
 
     @_builtins.property
     @pulumi.getter(name="accessKey")
-    def access_key(self) -> Optional[pulumi.Input[_builtins.str]]:
+    def access_key(self) -> pulumi.Input[Optional[_builtins.str]]:
         """
         The AWS access key to be used to write to the stream
         """
         return pulumi.get(self, "access_key")
 
     @access_key.setter
-    def access_key(self, value: Optional[pulumi.Input[_builtins.str]]):
+    def access_key(self, value: pulumi.Input[Optional[_builtins.str]]):
         pulumi.set(self, "access_key", value)
 
     @_builtins.property
     @pulumi.getter
-    def format(self) -> Optional[pulumi.Input[_builtins.str]]:
+    def format(self) -> pulumi.Input[Optional[_builtins.str]]:
         """
         Apache style log formatting.
         """
         return pulumi.get(self, "format")
 
     @format.setter
-    def format(self, value: Optional[pulumi.Input[_builtins.str]]):
+    def format(self, value: pulumi.Input[Optional[_builtins.str]]):
         pulumi.set(self, "format", value)
 
     @_builtins.property
     @pulumi.getter(name="formatVersion")
-    def format_version(self) -> Optional[pulumi.Input[_builtins.int]]:
+    def format_version(self) -> pulumi.Input[Optional[_builtins.int]]:
         """
         The version of the custom logging format used for the configured endpoint. Can be either `1` or `2`. (default: `2`).
         """
         return pulumi.get(self, "format_version")
 
     @format_version.setter
-    def format_version(self, value: Optional[pulumi.Input[_builtins.int]]):
+    def format_version(self, value: pulumi.Input[Optional[_builtins.int]]):
         pulumi.set(self, "format_version", value)
 
     @_builtins.property
     @pulumi.getter(name="iamRole")
-    def iam_role(self) -> Optional[pulumi.Input[_builtins.str]]:
+    def iam_role(self) -> pulumi.Input[Optional[_builtins.str]]:
         """
         The Amazon Resource Name (ARN) for the IAM role granting Fastly access to Kinesis. Not required if `access_key` and `secret_key` are provided.
         """
         return pulumi.get(self, "iam_role")
 
     @iam_role.setter
-    def iam_role(self, value: Optional[pulumi.Input[_builtins.str]]):
+    def iam_role(self, value: pulumi.Input[Optional[_builtins.str]]):
         pulumi.set(self, "iam_role", value)
 
     @_builtins.property
     @pulumi.getter
-    def placement(self) -> Optional[pulumi.Input[_builtins.str]]:
+    def placement(self) -> pulumi.Input[Optional[_builtins.str]]:
         """
         Where in the generated VCL the logging call should be placed. Can be `none` or `none`.
         """
         return pulumi.get(self, "placement")
 
     @placement.setter
-    def placement(self, value: Optional[pulumi.Input[_builtins.str]]):
+    def placement(self, value: pulumi.Input[Optional[_builtins.str]]):
         pulumi.set(self, "placement", value)
 
     @_builtins.property
     @pulumi.getter(name="processingRegion")
-    def processing_region(self) -> Optional[pulumi.Input[_builtins.str]]:
+    def processing_region(self) -> pulumi.Input[Optional[_builtins.str]]:
         """
         Region where logs will be processed before streaming to BigQuery. Valid values are 'none', 'us' and 'eu'.
         """
         return pulumi.get(self, "processing_region")
 
     @processing_region.setter
-    def processing_region(self, value: Optional[pulumi.Input[_builtins.str]]):
+    def processing_region(self, value: pulumi.Input[Optional[_builtins.str]]):
         pulumi.set(self, "processing_region", value)
 
     @_builtins.property
     @pulumi.getter
-    def region(self) -> Optional[pulumi.Input[_builtins.str]]:
+    def region(self) -> pulumi.Input[Optional[_builtins.str]]:
         """
         The AWS region the stream resides in. (Default: `us-east-1`)
         """
         return pulumi.get(self, "region")
 
     @region.setter
-    def region(self, value: Optional[pulumi.Input[_builtins.str]]):
+    def region(self, value: pulumi.Input[Optional[_builtins.str]]):
         pulumi.set(self, "region", value)
 
     @_builtins.property
     @pulumi.getter(name="responseCondition")
-    def response_condition(self) -> Optional[pulumi.Input[_builtins.str]]:
+    def response_condition(self) -> pulumi.Input[Optional[_builtins.str]]:
         """
         The name of an existing condition in the configured endpoint, or leave blank to always execute.
         """
         return pulumi.get(self, "response_condition")
 
     @response_condition.setter
-    def response_condition(self, value: Optional[pulumi.Input[_builtins.str]]):
+    def response_condition(self, value: pulumi.Input[Optional[_builtins.str]]):
         pulumi.set(self, "response_condition", value)
 
     @_builtins.property
     @pulumi.getter(name="secretKey")
-    def secret_key(self) -> Optional[pulumi.Input[_builtins.str]]:
+    def secret_key(self) -> pulumi.Input[Optional[_builtins.str]]:
         """
         The AWS secret access key to authenticate with
         """
         return pulumi.get(self, "secret_key")
 
     @secret_key.setter
-    def secret_key(self, value: Optional[pulumi.Input[_builtins.str]]):
+    def secret_key(self, value: pulumi.Input[Optional[_builtins.str]]):
         pulumi.set(self, "secret_key", value)
 
 
@@ -15376,31 +15376,31 @@ class ServiceVclLoggingLogentryArgsDict(TypedDict):
     """
     Use token based authentication (https://logentries.com/doc/input-token/)
     """
-    format: NotRequired[pulumi.Input[_builtins.str]]
+    format: NotRequired[pulumi.Input[Optional[_builtins.str]]]
     """
     Apache-style string or VCL variables to use for log formatting
     """
-    format_version: NotRequired[pulumi.Input[_builtins.int]]
+    format_version: NotRequired[pulumi.Input[Optional[_builtins.int]]]
     """
     The version of the custom logging format used for the configured endpoint. Can be either 1 or 2. (Default: 2)
     """
-    placement: NotRequired[pulumi.Input[_builtins.str]]
+    placement: NotRequired[pulumi.Input[Optional[_builtins.str]]]
     """
     Where in the generated VCL the logging call should be placed.
     """
-    port: NotRequired[pulumi.Input[_builtins.int]]
+    port: NotRequired[pulumi.Input[Optional[_builtins.int]]]
     """
     The port number configured in Logentries
     """
-    processing_region: NotRequired[pulumi.Input[_builtins.str]]
+    processing_region: NotRequired[pulumi.Input[Optional[_builtins.str]]]
     """
     Region where logs will be processed before streaming to BigQuery. Valid values are 'none', 'us' and 'eu'.
     """
-    response_condition: NotRequired[pulumi.Input[_builtins.str]]
+    response_condition: NotRequired[pulumi.Input[Optional[_builtins.str]]]
     """
     Name of blockAttributes condition to apply this logging.
     """
-    use_tls: NotRequired[pulumi.Input[_builtins.bool]]
+    use_tls: NotRequired[pulumi.Input[Optional[_builtins.bool]]]
     """
     Whether to use TLS for secure logging
     """
@@ -15410,13 +15410,13 @@ class ServiceVclLoggingLogentryArgs:
     def __init__(__self__, *,
                  name: pulumi.Input[_builtins.str],
                  token: pulumi.Input[_builtins.str],
-                 format: Optional[pulumi.Input[_builtins.str]] = None,
-                 format_version: Optional[pulumi.Input[_builtins.int]] = None,
-                 placement: Optional[pulumi.Input[_builtins.str]] = None,
-                 port: Optional[pulumi.Input[_builtins.int]] = None,
-                 processing_region: Optional[pulumi.Input[_builtins.str]] = None,
-                 response_condition: Optional[pulumi.Input[_builtins.str]] = None,
-                 use_tls: Optional[pulumi.Input[_builtins.bool]] = None):
+                 format: pulumi.Input[Optional[_builtins.str]] = None,
+                 format_version: pulumi.Input[Optional[_builtins.int]] = None,
+                 placement: pulumi.Input[Optional[_builtins.str]] = None,
+                 port: pulumi.Input[Optional[_builtins.int]] = None,
+                 processing_region: pulumi.Input[Optional[_builtins.str]] = None,
+                 response_condition: pulumi.Input[Optional[_builtins.str]] = None,
+                 use_tls: pulumi.Input[Optional[_builtins.bool]] = None):
         """
         :param pulumi.Input[_builtins.str] name: The unique name of the Logentries logging endpoint. It is important to note that changing this attribute will delete and recreate the resource
         :param pulumi.Input[_builtins.str] token: Use token based authentication (https://logentries.com/doc/input-token/)
@@ -15471,86 +15471,86 @@ class ServiceVclLoggingLogentryArgs:
 
     @_builtins.property
     @pulumi.getter
-    def format(self) -> Optional[pulumi.Input[_builtins.str]]:
+    def format(self) -> pulumi.Input[Optional[_builtins.str]]:
         """
         Apache-style string or VCL variables to use for log formatting
         """
         return pulumi.get(self, "format")
 
     @format.setter
-    def format(self, value: Optional[pulumi.Input[_builtins.str]]):
+    def format(self, value: pulumi.Input[Optional[_builtins.str]]):
         pulumi.set(self, "format", value)
 
     @_builtins.property
     @pulumi.getter(name="formatVersion")
-    def format_version(self) -> Optional[pulumi.Input[_builtins.int]]:
+    def format_version(self) -> pulumi.Input[Optional[_builtins.int]]:
         """
         The version of the custom logging format used for the configured endpoint. Can be either 1 or 2. (Default: 2)
         """
         return pulumi.get(self, "format_version")
 
     @format_version.setter
-    def format_version(self, value: Optional[pulumi.Input[_builtins.int]]):
+    def format_version(self, value: pulumi.Input[Optional[_builtins.int]]):
         pulumi.set(self, "format_version", value)
 
     @_builtins.property
     @pulumi.getter
-    def placement(self) -> Optional[pulumi.Input[_builtins.str]]:
+    def placement(self) -> pulumi.Input[Optional[_builtins.str]]:
         """
         Where in the generated VCL the logging call should be placed.
         """
         return pulumi.get(self, "placement")
 
     @placement.setter
-    def placement(self, value: Optional[pulumi.Input[_builtins.str]]):
+    def placement(self, value: pulumi.Input[Optional[_builtins.str]]):
         pulumi.set(self, "placement", value)
 
     @_builtins.property
     @pulumi.getter
-    def port(self) -> Optional[pulumi.Input[_builtins.int]]:
+    def port(self) -> pulumi.Input[Optional[_builtins.int]]:
         """
         The port number configured in Logentries
         """
         return pulumi.get(self, "port")
 
     @port.setter
-    def port(self, value: Optional[pulumi.Input[_builtins.int]]):
+    def port(self, value: pulumi.Input[Optional[_builtins.int]]):
         pulumi.set(self, "port", value)
 
     @_builtins.property
     @pulumi.getter(name="processingRegion")
-    def processing_region(self) -> Optional[pulumi.Input[_builtins.str]]:
+    def processing_region(self) -> pulumi.Input[Optional[_builtins.str]]:
         """
         Region where logs will be processed before streaming to BigQuery. Valid values are 'none', 'us' and 'eu'.
         """
         return pulumi.get(self, "processing_region")
 
     @processing_region.setter
-    def processing_region(self, value: Optional[pulumi.Input[_builtins.str]]):
+    def processing_region(self, value: pulumi.Input[Optional[_builtins.str]]):
         pulumi.set(self, "processing_region", value)
 
     @_builtins.property
     @pulumi.getter(name="responseCondition")
-    def response_condition(self) -> Optional[pulumi.Input[_builtins.str]]:
+    def response_condition(self) -> pulumi.Input[Optional[_builtins.str]]:
         """
         Name of blockAttributes condition to apply this logging.
         """
         return pulumi.get(self, "response_condition")
 
     @response_condition.setter
-    def response_condition(self, value: Optional[pulumi.Input[_builtins.str]]):
+    def response_condition(self, value: pulumi.Input[Optional[_builtins.str]]):
         pulumi.set(self, "response_condition", value)
 
     @_builtins.property
     @pulumi.getter(name="useTls")
-    def use_tls(self) -> Optional[pulumi.Input[_builtins.bool]]:
+    def use_tls(self) -> pulumi.Input[Optional[_builtins.bool]]:
         """
         Whether to use TLS for secure logging
         """
         return pulumi.get(self, "use_tls")
 
     @use_tls.setter
-    def use_tls(self, value: Optional[pulumi.Input[_builtins.bool]]):
+    def use_tls(self, value: pulumi.Input[Optional[_builtins.bool]]):
         pulumi.set(self, "use_tls", value)
 
 
@@ -15563,23 +15563,23 @@ class ServiceVclLoggingLogglyArgsDict(TypedDict):
     """
     The token to use for authentication (https://www.loggly.com/docs/customer-token-authentication-token/).
     """
-    format: NotRequired[pulumi.Input[_builtins.str]]
+    format: NotRequired[pulumi.Input[Optional[_builtins.str]]]
     """
     Apache-style string or VCL variables to use for log formatting.
     """
-    format_version: NotRequired[pulumi.Input[_builtins.int]]
+    format_version: NotRequired[pulumi.Input[Optional[_builtins.int]]]
     """
     The version of the custom logging format used for the configured endpoint. Can be either `1` or `2`. (default: `2`).
     """
-    placement: NotRequired[pulumi.Input[_builtins.str]]
+    placement: NotRequired[pulumi.Input[Optional[_builtins.str]]]
     """
     Where in the generated VCL the logging call should be placed. Can be `none` or `none`.
     """
-    processing_region: NotRequired[pulumi.Input[_builtins.str]]
+    processing_region: NotRequired[pulumi.Input[Optional[_builtins.str]]]
     """
     Region where logs will be processed before streaming to BigQuery. Valid values are 'none', 'us' and 'eu'.
     """
-    response_condition: NotRequired[pulumi.Input[_builtins.str]]
+    response_condition: NotRequired[pulumi.Input[Optional[_builtins.str]]]
     """
     The name of an existing condition in the configured endpoint, or leave blank to always execute.
     """
@@ -15589,11 +15589,11 @@ class ServiceVclLoggingLogglyArgs:
     def __init__(__self__, *,
                  name: pulumi.Input[_builtins.str],
                  token: pulumi.Input[_builtins.str],
-                 format: Optional[pulumi.Input[_builtins.str]] = None,
-                 format_version: Optional[pulumi.Input[_builtins.int]] = None,
-                 placement: Optional[pulumi.Input[_builtins.str]] = None,
-                 processing_region: Optional[pulumi.Input[_builtins.str]] = None,
-                 response_condition: Optional[pulumi.Input[_builtins.str]] = None):
+                 format: pulumi.Input[Optional[_builtins.str]] = None,
+                 format_version: pulumi.Input[Optional[_builtins.int]] = None,
+                 placement: pulumi.Input[Optional[_builtins.str]] = None,
+                 processing_region: pulumi.Input[Optional[_builtins.str]] = None,
+                 response_condition: pulumi.Input[Optional[_builtins.str]] = None):
         """
         :param pulumi.Input[_builtins.str] name: The unique name of the Loggly logging endpoint. It is important to note that changing this attribute will delete and recreate the resource
         :param pulumi.Input[_builtins.str] token: The token to use for authentication (https://www.loggly.com/docs/customer-token-authentication-token/).
@@ -15642,62 +15642,62 @@ class ServiceVclLoggingLogglyArgs:
 
     @_builtins.property
     @pulumi.getter
-    def format(self) -> Optional[pulumi.Input[_builtins.str]]:
+    def format(self) -> pulumi.Input[Optional[_builtins.str]]:
         """
         Apache-style string or VCL variables to use for log formatting.
         """
         return pulumi.get(self, "format")
 
     @format.setter
-    def format(self, value: Optional[pulumi.Input[_builtins.str]]):
+    def format(self, value: pulumi.Input[Optional[_builtins.str]]):
         pulumi.set(self, "format", value)
 
     @_builtins.property
     @pulumi.getter(name="formatVersion")
-    def format_version(self) -> Optional[pulumi.Input[_builtins.int]]:
+    def format_version(self) -> pulumi.Input[Optional[_builtins.int]]:
         """
         The version of the custom logging format used for the configured endpoint. Can be either `1` or `2`. (default: `2`).
         """
         return pulumi.get(self, "format_version")
 
     @format_version.setter
-    def format_version(self, value: Optional[pulumi.Input[_builtins.int]]):
+    def format_version(self, value: pulumi.Input[Optional[_builtins.int]]):
         pulumi.set(self, "format_version", value)
 
     @_builtins.property
     @pulumi.getter
-    def placement(self) -> Optional[pulumi.Input[_builtins.str]]:
+    def placement(self) -> pulumi.Input[Optional[_builtins.str]]:
         """
         Where in the generated VCL the logging call should be placed. Can be `none` or `none`.
         """
         return pulumi.get(self, "placement")
 
     @placement.setter
-    def placement(self, value: Optional[pulumi.Input[_builtins.str]]):
+    def placement(self, value: pulumi.Input[Optional[_builtins.str]]):
         pulumi.set(self, "placement", value)
 
     @_builtins.property
     @pulumi.getter(name="processingRegion")
-    def processing_region(self) -> Optional[pulumi.Input[_builtins.str]]:
+    def processing_region(self) -> pulumi.Input[Optional[_builtins.str]]:
         """
         Region where logs will be processed before streaming to BigQuery. Valid values are 'none', 'us' and 'eu'.
         """
         return pulumi.get(self, "processing_region")
 
     @processing_region.setter
-    def processing_region(self, value: Optional[pulumi.Input[_builtins.str]]):
+    def processing_region(self, value: pulumi.Input[Optional[_builtins.str]]):
         pulumi.set(self, "processing_region", value)
 
     @_builtins.property
     @pulumi.getter(name="responseCondition")
-    def response_condition(self) -> Optional[pulumi.Input[_builtins.str]]:
+    def response_condition(self) -> pulumi.Input[Optional[_builtins.str]]:
         """
         The name of an existing condition in the configured endpoint, or leave blank to always execute.
         """
         return pulumi.get(self, "response_condition")
 
     @response_condition.setter
-    def response_condition(self, value: Optional[pulumi.Input[_builtins.str]]):
+    def response_condition(self, value: pulumi.Input[Optional[_builtins.str]]):
         pulumi.set(self, "response_condition", value)
 
 
@@ -15714,23 +15714,23 @@ class ServiceVclLoggingLogshuttleArgsDict(TypedDict):
     """
     Your Log Shuttle endpoint URL
     """
-    format: NotRequired[pulumi.Input[_builtins.str]]
+    format: NotRequired[pulumi.Input[Optional[_builtins.str]]]
     """
     Apache style log formatting.
     """
-    format_version: NotRequired[pulumi.Input[_builtins.int]]
+    format_version: NotRequired[pulumi.Input[Optional[_builtins.int]]]
     """
     The version of the custom logging format used for the configured endpoint. Can be either `1` or `2`. (default: `2`).
     """
-    placement: NotRequired[pulumi.Input[_builtins.str]]
+    placement: NotRequired[pulumi.Input[Optional[_builtins.str]]]
     """
     Where in the generated VCL the logging call should be placed. Can be `none` or `none`.
     """
-    processing_region: NotRequired[pulumi.Input[_builtins.str]]
+    processing_region: NotRequired[pulumi.Input[Optional[_builtins.str]]]
     """
     Region where logs will be processed before streaming to BigQuery. Valid values are 'none', 'us' and 'eu'.
     """
-    response_condition: NotRequired[pulumi.Input[_builtins.str]]
+    response_condition: NotRequired[pulumi.Input[Optional[_builtins.str]]]
     """
     The name of an existing condition in the configured endpoint, or leave blank to always execute.
     """
@@ -15741,11 +15741,11 @@ class ServiceVclLoggingLogshuttleArgs:
                  name: pulumi.Input[_builtins.str],
                  token: pulumi.Input[_builtins.str],
                  url: pulumi.Input[_builtins.str],
-                 format: Optional[pulumi.Input[_builtins.str]] = None,
-                 format_version: Optional[pulumi.Input[_builtins.int]] = None,
-                 placement: Optional[pulumi.Input[_builtins.str]] = None,
-                 processing_region: Optional[pulumi.Input[_builtins.str]] = None,
-                 response_condition: Optional[pulumi.Input[_builtins.str]] = None):
+                 format: pulumi.Input[Optional[_builtins.str]] = None,
+                 format_version: pulumi.Input[Optional[_builtins.int]] = None,
+                 placement: pulumi.Input[Optional[_builtins.str]] = None,
+                 processing_region: pulumi.Input[Optional[_builtins.str]] = None,
+                 response_condition: pulumi.Input[Optional[_builtins.str]] = None):
         """
         :param pulumi.Input[_builtins.str] name: The unique name of the Log Shuttle logging endpoint. It is important to note that changing this attribute will delete and recreate the resource
         :param pulumi.Input[_builtins.str] token: The data authentication token associated with this endpoint
@@ -15808,62 +15808,62 @@ class ServiceVclLoggingLogshuttleArgs:
 
     @_builtins.property
     @pulumi.getter
-    def format(self) -> Optional[pulumi.Input[_builtins.str]]:
+    def format(self) -> pulumi.Input[Optional[_builtins.str]]:
         """
         Apache style log formatting.
         """
         return pulumi.get(self, "format")
 
     @format.setter
-    def format(self, value: Optional[pulumi.Input[_builtins.str]]):
+    def format(self, value: pulumi.Input[Optional[_builtins.str]]):
         pulumi.set(self, "format", value)
 
     @_builtins.property
     @pulumi.getter(name="formatVersion")
-    def format_version(self) -> Optional[pulumi.Input[_builtins.int]]:
+    def format_version(self) -> pulumi.Input[Optional[_builtins.int]]:
         """
         The version of the custom logging format used for the configured endpoint. Can be either `1` or `2`. (default: `2`).
         """
         return pulumi.get(self, "format_version")
 
     @format_version.setter
-    def format_version(self, value: Optional[pulumi.Input[_builtins.int]]):
+    def format_version(self, value: pulumi.Input[Optional[_builtins.int]]):
         pulumi.set(self, "format_version", value)
 
     @_builtins.property
     @pulumi.getter
-    def placement(self) -> Optional[pulumi.Input[_builtins.str]]:
+    def placement(self) -> pulumi.Input[Optional[_builtins.str]]:
         """
         Where in the generated VCL the logging call should be placed. Can be `none` or `none`.
         """
         return pulumi.get(self, "placement")
 
     @placement.setter
-    def placement(self, value: Optional[pulumi.Input[_builtins.str]]):
+    def placement(self, value: pulumi.Input[Optional[_builtins.str]]):
         pulumi.set(self, "placement", value)
 
     @_builtins.property
     @pulumi.getter(name="processingRegion")
-    def processing_region(self) -> Optional[pulumi.Input[_builtins.str]]:
+    def processing_region(self) -> pulumi.Input[Optional[_builtins.str]]:
         """
         Region where logs will be processed before streaming to BigQuery. Valid values are 'none', 'us' and 'eu'.
         """
         return pulumi.get(self, "processing_region")
 
     @processing_region.setter
-    def processing_region(self, value: Optional[pulumi.Input[_builtins.str]]):
+    def processing_region(self, value: pulumi.Input[Optional[_builtins.str]]):
         pulumi.set(self, "processing_region", value)
 
     @_builtins.property
     @pulumi.getter(name="responseCondition")
-    def response_condition(self) -> Optional[pulumi.Input[_builtins.str]]:
+    def response_condition(self) -> pulumi.Input[Optional[_builtins.str]]:
         """
         The name of an existing condition in the configured endpoint, or leave blank to always execute.
         """
         return pulumi.get(self, "response_condition")
 
     @response_condition.setter
-    def response_condition(self, value: Optional[pulumi.Input[_builtins.str]]):
+    def response_condition(self, value: pulumi.Input[Optional[_builtins.str]]):
         pulumi.set(self, "response_condition", value)
 
 
@@ -15876,27 +15876,27 @@ class ServiceVclLoggingNewrelicArgsDict(TypedDict):
     """
     The Insert API key from the Account page of your New Relic account
     """
-    format: NotRequired[pulumi.Input[_builtins.str]]
+    format: NotRequired[pulumi.Input[Optional[_builtins.str]]]
     """
     Apache style log formatting. Your log must produce valid JSON that New Relic Logs can ingest.
     """
-    format_version: NotRequired[pulumi.Input[_builtins.int]]
+    format_version: NotRequired[pulumi.Input[Optional[_builtins.int]]]
     """
     The version of the custom logging format used for the configured endpoint. Can be either `1` or `2`. (default: `2`).
     """
-    placement: NotRequired[pulumi.Input[_builtins.str]]
+    placement: NotRequired[pulumi.Input[Optional[_builtins.str]]]
     """
     Where in the generated VCL the logging call should be placed.
     """
-    processing_region: NotRequired[pulumi.Input[_builtins.str]]
+    processing_region: NotRequired[pulumi.Input[Optional[_builtins.str]]]
     """
     Region where logs will be processed before streaming to BigQuery. Valid values are 'none', 'us' and 'eu'.
     """
-    region: NotRequired[pulumi.Input[_builtins.str]]
+    region: NotRequired[pulumi.Input[Optional[_builtins.str]]]
     """
     The region that log data will be sent to. Default: `US`
     """
-    response_condition: NotRequired[pulumi.Input[_builtins.str]]
+    response_condition: NotRequired[pulumi.Input[Optional[_builtins.str]]]
     """
     The name of the condition to apply.
     """
@@ -15906,12 +15906,12 @@ class ServiceVclLoggingNewrelicArgs:
     def __init__(__self__, *,
                  name: pulumi.Input[_builtins.str],
                  token: pulumi.Input[_builtins.str],
-                 format: Optional[pulumi.Input[_builtins.str]] = None,
-                 format_version: Optional[pulumi.Input[_builtins.int]] = None,
-                 placement: Optional[pulumi.Input[_builtins.str]] = None,
-                 processing_region: Optional[pulumi.Input[_builtins.str]] = None,
-                 region: Optional[pulumi.Input[_builtins.str]] = None,
-                 response_condition: Optional[pulumi.Input[_builtins.str]] = None):
+                 format: pulumi.Input[Optional[_builtins.str]] = None,
+                 format_version: pulumi.Input[Optional[_builtins.int]] = None,
+                 placement: pulumi.Input[Optional[_builtins.str]] = None,
+                 processing_region: pulumi.Input[Optional[_builtins.str]] = None,
+                 region: pulumi.Input[Optional[_builtins.str]] = None,
+                 response_condition: pulumi.Input[Optional[_builtins.str]] = None):
         """
         :param pulumi.Input[_builtins.str] name: The unique name of the New Relic logging endpoint. It is important to note that changing this attribute will delete and recreate the resource
         :param pulumi.Input[_builtins.str] token: The Insert API key from the Account page of your New Relic account
@@ -15963,74 +15963,74 @@ class ServiceVclLoggingNewrelicArgs:
 
     @_builtins.property
     @pulumi.getter
-    def format(self) -> Optional[pulumi.Input[_builtins.str]]:
+    def format(self) -> pulumi.Input[Optional[_builtins.str]]:
         """
         Apache style log formatting. Your log must produce valid JSON that New Relic Logs can ingest.
         """
         return pulumi.get(self, "format")
 
     @format.setter
-    def format(self, value: Optional[pulumi.Input[_builtins.str]]):
+    def format(self, value: pulumi.Input[Optional[_builtins.str]]):
         pulumi.set(self, "format", value)
 
     @_builtins.property
     @pulumi.getter(name="formatVersion")
-    def format_version(self) -> Optional[pulumi.Input[_builtins.int]]:
+    def format_version(self) -> pulumi.Input[Optional[_builtins.int]]:
         """
         The version of the custom logging format used for the configured endpoint. Can be either `1` or `2`. (default: `2`).
         """
         return pulumi.get(self, "format_version")
 
     @format_version.setter
-    def format_version(self, value: Optional[pulumi.Input[_builtins.int]]):
+    def format_version(self, value: pulumi.Input[Optional[_builtins.int]]):
         pulumi.set(self, "format_version", value)
 
     @_builtins.property
     @pulumi.getter
-    def placement(self) -> Optional[pulumi.Input[_builtins.str]]:
+    def placement(self) -> pulumi.Input[Optional[_builtins.str]]:
         """
         Where in the generated VCL the logging call should be placed.
         """
         return pulumi.get(self, "placement")
 
     @placement.setter
-    def placement(self, value: Optional[pulumi.Input[_builtins.str]]):
+    def placement(self, value: pulumi.Input[Optional[_builtins.str]]):
         pulumi.set(self, "placement", value)
 
     @_builtins.property
     @pulumi.getter(name="processingRegion")
-    def processing_region(self) -> Optional[pulumi.Input[_builtins.str]]:
+    def processing_region(self) -> pulumi.Input[Optional[_builtins.str]]:
         """
         Region where logs will be processed before streaming to BigQuery. Valid values are 'none', 'us' and 'eu'.
         """
         return pulumi.get(self, "processing_region")
 
     @processing_region.setter
-    def processing_region(self, value: Optional[pulumi.Input[_builtins.str]]):
+    def processing_region(self, value: pulumi.Input[Optional[_builtins.str]]):
         pulumi.set(self, "processing_region", value)
 
     @_builtins.property
     @pulumi.getter
-    def region(self) -> Optional[pulumi.Input[_builtins.str]]:
+    def region(self) -> pulumi.Input[Optional[_builtins.str]]:
         """
         The region that log data will be sent to. Default: `US`
         """
         return pulumi.get(self, "region")
 
     @region.setter
-    def region(self, value: Optional[pulumi.Input[_builtins.str]]):
+    def region(self, value: pulumi.Input[Optional[_builtins.str]]):
         pulumi.set(self, "region", value)
 
     @_builtins.property
     @pulumi.getter(name="responseCondition")
-    def response_condition(self) -> Optional[pulumi.Input[_builtins.str]]:
+    def response_condition(self) -> pulumi.Input[Optional[_builtins.str]]:
         """
         The name of the condition to apply.
         """
         return pulumi.get(self, "response_condition")
 
     @response_condition.setter
-    def response_condition(self, value: Optional[pulumi.Input[_builtins.str]]):
+    def response_condition(self, value: pulumi.Input[Optional[_builtins.str]]):
         pulumi.set(self, "response_condition", value)
 
 
@@ -16043,31 +16043,31 @@ class ServiceVclLoggingNewrelicotlpArgsDict(TypedDict):
     """
     The Insert API key from the Account page of your New Relic account
     """
-    format: NotRequired[pulumi.Input[_builtins.str]]
+    format: NotRequired[pulumi.Input[Optional[_builtins.str]]]
     """
     Apache style log formatting. Your log must produce valid JSON that New Relic OTLP can ingest.
     """
-    format_version: NotRequired[pulumi.Input[_builtins.int]]
+    format_version: NotRequired[pulumi.Input[Optional[_builtins.int]]]
     """
     The version of the custom logging format used for the configured endpoint. Can be either `1` or `2`. (default: `2`).
     """
-    placement: NotRequired[pulumi.Input[_builtins.str]]
+    placement: NotRequired[pulumi.Input[Optional[_builtins.str]]]
     """
     Where in the generated VCL the logging call should be placed.
     """
-    processing_region: NotRequired[pulumi.Input[_builtins.str]]
+    processing_region: NotRequired[pulumi.Input[Optional[_builtins.str]]]
     """
     Region where logs will be processed before streaming to BigQuery. Valid values are 'none', 'us' and 'eu'.
     """
-    region: NotRequired[pulumi.Input[_builtins.str]]
+    region: NotRequired[pulumi.Input[Optional[_builtins.str]]]
     """
     The region that log data will be sent to. Default: `US`
     """
-    response_condition: NotRequired[pulumi.Input[_builtins.str]]
+    response_condition: NotRequired[pulumi.Input[Optional[_builtins.str]]]
     """
     The name of the condition to apply.
     """
-    url: NotRequired[pulumi.Input[_builtins.str]]
+    url: NotRequired[pulumi.Input[Optional[_builtins.str]]]
     """
     The optional New Relic Trace Observer URL to stream logs to for Infinite Tracing.
     """
@@ -16077,13 +16077,13 @@ class ServiceVclLoggingNewrelicotlpArgs:
     def __init__(__self__, *,
                  name: pulumi.Input[_builtins.str],
                  token: pulumi.Input[_builtins.str],
-                 format: Optional[pulumi.Input[_builtins.str]] = None,
-                 format_version: Optional[pulumi.Input[_builtins.int]] = None,
-                 placement: Optional[pulumi.Input[_builtins.str]] = None,
-                 processing_region: Optional[pulumi.Input[_builtins.str]] = None,
-                 region: Optional[pulumi.Input[_builtins.str]] = None,
-                 response_condition: Optional[pulumi.Input[_builtins.str]] = None,
-                 url: Optional[pulumi.Input[_builtins.str]] = None):
+                 format: pulumi.Input[Optional[_builtins.str]] = None,
+                 format_version: pulumi.Input[Optional[_builtins.int]] = None,
+                 placement: pulumi.Input[Optional[_builtins.str]] = None,
+                 processing_region: pulumi.Input[Optional[_builtins.str]] = None,
+                 region: pulumi.Input[Optional[_builtins.str]] = None,
+                 response_condition: pulumi.Input[Optional[_builtins.str]] = None,
+                 url: pulumi.Input[Optional[_builtins.str]] = None):
         """
         :param pulumi.Input[_builtins.str] name: The unique name of the New Relic OTLP logging endpoint. It is important to note that changing this attribute will delete and recreate the resource
         :param pulumi.Input[_builtins.str] token: The Insert API key from the Account page of your New Relic account
@@ -16138,86 +16138,86 @@ class ServiceVclLoggingNewrelicotlpArgs:
 
     @_builtins.property
     @pulumi.getter
-    def format(self) -> Optional[pulumi.Input[_builtins.str]]:
+    def format(self) -> pulumi.Input[Optional[_builtins.str]]:
         """
         Apache style log formatting. Your log must produce valid JSON that New Relic OTLP can ingest.
         """
         return pulumi.get(self, "format")
 
     @format.setter
-    def format(self, value: Optional[pulumi.Input[_builtins.str]]):
+    def format(self, value: pulumi.Input[Optional[_builtins.str]]):
         pulumi.set(self, "format", value)
 
     @_builtins.property
     @pulumi.getter(name="formatVersion")
-    def format_version(self) -> Optional[pulumi.Input[_builtins.int]]:
+    def format_version(self) -> pulumi.Input[Optional[_builtins.int]]:
         """
         The version of the custom logging format used for the configured endpoint. Can be either `1` or `2`. (default: `2`).
         """
         return pulumi.get(self, "format_version")
 
     @format_version.setter
-    def format_version(self, value: Optional[pulumi.Input[_builtins.int]]):
+    def format_version(self, value: pulumi.Input[Optional[_builtins.int]]):
         pulumi.set(self, "format_version", value)
 
     @_builtins.property
     @pulumi.getter
-    def placement(self) -> Optional[pulumi.Input[_builtins.str]]:
+    def placement(self) -> pulumi.Input[Optional[_builtins.str]]:
         """
         Where in the generated VCL the logging call should be placed.
         """
         return pulumi.get(self, "placement")
 
     @placement.setter
-    def placement(self, value: Optional[pulumi.Input[_builtins.str]]):
+    def placement(self, value: pulumi.Input[Optional[_builtins.str]]):
         pulumi.set(self, "placement", value)
 
     @_builtins.property
     @pulumi.getter(name="processingRegion")
-    def processing_region(self) -> Optional[pulumi.Input[_builtins.str]]:
+    def processing_region(self) -> pulumi.Input[Optional[_builtins.str]]:
         """
         Region where logs will be processed before streaming to BigQuery. Valid values are 'none', 'us' and 'eu'.
         """
         return pulumi.get(self, "processing_region")
 
     @processing_region.setter
-    def processing_region(self, value: Optional[pulumi.Input[_builtins.str]]):
+    def processing_region(self, value: pulumi.Input[Optional[_builtins.str]]):
         pulumi.set(self, "processing_region", value)
 
     @_builtins.property
     @pulumi.getter
-    def region(self) -> Optional[pulumi.Input[_builtins.str]]:
+    def region(self) -> pulumi.Input[Optional[_builtins.str]]:
         """
         The region that log data will be sent to. Default: `US`
         """
         return pulumi.get(self, "region")
 
     @region.setter
-    def region(self, value: Optional[pulumi.Input[_builtins.str]]):
+    def region(self, value: pulumi.Input[Optional[_builtins.str]]):
         pulumi.set(self, "region", value)
 
     @_builtins.property
     @pulumi.getter(name="responseCondition")
-    def response_condition(self) -> Optional[pulumi.Input[_builtins.str]]:
+    def response_condition(self) -> pulumi.Input[Optional[_builtins.str]]:
         """
         The name of the condition to apply.
         """
         return pulumi.get(self, "response_condition")
 
     @response_condition.setter
-    def response_condition(self, value: Optional[pulumi.Input[_builtins.str]]):
+    def response_condition(self, value: pulumi.Input[Optional[_builtins.str]]):
         pulumi.set(self, "response_condition", value)
 
     @_builtins.property
     @pulumi.getter
-    def url(self) -> Optional[pulumi.Input[_builtins.str]]:
+    def url(self) -> pulumi.Input[Optional[_builtins.str]]:
         """
         The optional New Relic Trace Observer URL to stream logs to for Infinite Tracing.
         """
         return pulumi.get(self, "url")
 
     @url.setter
-    def url(self, value: Optional[pulumi.Input[_builtins.str]]):
+    def url(self, value: pulumi.Input[Optional[_builtins.str]]):
         pulumi.set(self, "url", value)
 
 
@@ -16242,51 +16242,51 @@ class ServiceVclLoggingOpenstackArgsDict(TypedDict):
     """
     The username for your OpenStack account
     """
-    compression_codec: NotRequired[pulumi.Input[_builtins.str]]
+    compression_codec: NotRequired[pulumi.Input[Optional[_builtins.str]]]
     """
     The codec used for compression of your logs. Valid values are zstd, snappy, and gzip. If the specified codec is "gzip", gzip_level will default to 3. To specify a different level, leave compression_codec blank and explicitly set the level using gzip_level. Specifying both compression_codec and gzip_level in the same API request will result in an error.
     """
-    format: NotRequired[pulumi.Input[_builtins.str]]
+    format: NotRequired[pulumi.Input[Optional[_builtins.str]]]
     """
     Apache style log formatting.
     """
-    format_version: NotRequired[pulumi.Input[_builtins.int]]
+    format_version: NotRequired[pulumi.Input[Optional[_builtins.int]]]
     """
     The version of the custom logging format used for the configured endpoint. Can be either `1` or `2`. (default: `2`).
     """
-    gzip_level: NotRequired[pulumi.Input[_builtins.int]]
+    gzip_level: NotRequired[pulumi.Input[Optional[_builtins.int]]]
     """
     Level of Gzip compression from `0-9`. `0` means no compression. `1` is the fastest and the least compressed version, `9` is the slowest and the most compressed version. Default `0`
     """
-    message_type: NotRequired[pulumi.Input[_builtins.str]]
+    message_type: NotRequired[pulumi.Input[Optional[_builtins.str]]]
     """
     How the message should be formatted. Can be either `classic`, `loggly`, `logplex` or `blank`. Default is `classic`
     """
-    path: NotRequired[pulumi.Input[_builtins.str]]
+    path: NotRequired[pulumi.Input[Optional[_builtins.str]]]
     """
     Path to store the files. Must end with a trailing slash. If this field is left empty, the files will be saved in the bucket's root path
     """
-    period: NotRequired[pulumi.Input[_builtins.int]]
+    period: NotRequired[pulumi.Input[Optional[_builtins.int]]]
     """
     How frequently the logs should be transferred, in seconds. Default `3600`
     """
-    placement: NotRequired[pulumi.Input[_builtins.str]]
+    placement: NotRequired[pulumi.Input[Optional[_builtins.str]]]
     """
     Where in the generated VCL the logging call should be placed. Can be `none` or `none`.
     """
-    processing_region: NotRequired[pulumi.Input[_builtins.str]]
+    processing_region: NotRequired[pulumi.Input[Optional[_builtins.str]]]
     """
     Region where logs will be processed before streaming to BigQuery. Valid values are 'none', 'us' and 'eu'.
     """
-    public_key: NotRequired[pulumi.Input[_builtins.str]]
+    public_key: NotRequired[pulumi.Input[Optional[_builtins.str]]]
     """
     A PGP public key that Fastly will use to encrypt your log files before writing them to disk
     """
-    response_condition: NotRequired[pulumi.Input[_builtins.str]]
+    response_condition: NotRequired[pulumi.Input[Optional[_builtins.str]]]
     """
     The name of an existing condition in the configured endpoint, or leave blank to always execute.
     """
-    timestamp_format: NotRequired[pulumi.Input[_builtins.str]]
+    timestamp_format: NotRequired[pulumi.Input[Optional[_builtins.str]]]
     """
     The `strftime` specified timestamp formatting (default `%Y-%m-%dT%H:%M:%S.000`)
     """
@@ -16299,18 +16299,18 @@ class ServiceVclLoggingOpenstackArgs:
                  name: pulumi.Input[_builtins.str],
                  url: pulumi.Input[_builtins.str],
                  user: pulumi.Input[_builtins.str],
-                 compression_codec: Optional[pulumi.Input[_builtins.str]] = None,
-                 format: Optional[pulumi.Input[_builtins.str]] = None,
-                 format_version: Optional[pulumi.Input[_builtins.int]] = None,
-                 gzip_level: Optional[pulumi.Input[_builtins.int]] = None,
-                 message_type: Optional[pulumi.Input[_builtins.str]] = None,
-                 path: Optional[pulumi.Input[_builtins.str]] = None,
-                 period: Optional[pulumi.Input[_builtins.int]] = None,
-                 placement: Optional[pulumi.Input[_builtins.str]] = None,
-                 processing_region: Optional[pulumi.Input[_builtins.str]] = None,
-                 public_key: Optional[pulumi.Input[_builtins.str]] = None,
-                 response_condition: Optional[pulumi.Input[_builtins.str]] = None,
-                 timestamp_format: Optional[pulumi.Input[_builtins.str]] = None):
+                 compression_codec: pulumi.Input[Optional[_builtins.str]] = None,
+                 format: pulumi.Input[Optional[_builtins.str]] = None,
+                 format_version: pulumi.Input[Optional[_builtins.int]] = None,
+                 gzip_level: pulumi.Input[Optional[_builtins.int]] = None,
+                 message_type: pulumi.Input[Optional[_builtins.str]] = None,
+                 path: pulumi.Input[Optional[_builtins.str]] = None,
+                 period: pulumi.Input[Optional[_builtins.int]] = None,
+                 placement: pulumi.Input[Optional[_builtins.str]] = None,
+                 processing_region: pulumi.Input[Optional[_builtins.str]] = None,
+                 public_key: pulumi.Input[Optional[_builtins.str]] = None,
+                 response_condition: pulumi.Input[Optional[_builtins.str]] = None,
+                 timestamp_format: pulumi.Input[Optional[_builtins.str]] = None):
         """
         :param pulumi.Input[_builtins.str] access_key: Your OpenStack account access key
         :param pulumi.Input[_builtins.str] bucket_name: The name of your OpenStack container
@@ -16422,146 +16422,146 @@ class ServiceVclLoggingOpenstackArgs:
 
     @_builtins.property
     @pulumi.getter(name="compressionCodec")
-    def compression_codec(self) -> Optional[pulumi.Input[_builtins.str]]:
+    def compression_codec(self) -> pulumi.Input[Optional[_builtins.str]]:
         """
         The codec used for compression of your logs. Valid values are zstd, snappy, and gzip. If the specified codec is "gzip", gzip_level will default to 3. To specify a different level, leave compression_codec blank and explicitly set the level using gzip_level. Specifying both compression_codec and gzip_level in the same API request will result in an error.
         """
         return pulumi.get(self, "compression_codec")
 
     @compression_codec.setter
-    def compression_codec(self, value: Optional[pulumi.Input[_builtins.str]]):
+    def compression_codec(self, value: pulumi.Input[Optional[_builtins.str]]):
         pulumi.set(self, "compression_codec", value)
 
     @_builtins.property
     @pulumi.getter
-    def format(self) -> Optional[pulumi.Input[_builtins.str]]:
+    def format(self) -> pulumi.Input[Optional[_builtins.str]]:
         """
         Apache style log formatting.
         """
         return pulumi.get(self, "format")
 
     @format.setter
-    def format(self, value: Optional[pulumi.Input[_builtins.str]]):
+    def format(self, value: pulumi.Input[Optional[_builtins.str]]):
         pulumi.set(self, "format", value)
 
     @_builtins.property
     @pulumi.getter(name="formatVersion")
-    def format_version(self) -> Optional[pulumi.Input[_builtins.int]]:
+    def format_version(self) -> pulumi.Input[Optional[_builtins.int]]:
         """
         The version of the custom logging format used for the configured endpoint. Can be either `1` or `2`. (default: `2`).
         """
         return pulumi.get(self, "format_version")
 
     @format_version.setter
-    def format_version(self, value: Optional[pulumi.Input[_builtins.int]]):
+    def format_version(self, value: pulumi.Input[Optional[_builtins.int]]):
         pulumi.set(self, "format_version", value)
 
     @_builtins.property
     @pulumi.getter(name="gzipLevel")
-    def gzip_level(self) -> Optional[pulumi.Input[_builtins.int]]:
+    def gzip_level(self) -> pulumi.Input[Optional[_builtins.int]]:
         """
         Level of Gzip compression from `0-9`. `0` means no compression. `1` is the fastest and the least compressed version, `9` is the slowest and the most compressed version. Default `0`
         """
         return pulumi.get(self, "gzip_level")
 
     @gzip_level.setter
-    def gzip_level(self, value: Optional[pulumi.Input[_builtins.int]]):
+    def gzip_level(self, value: pulumi.Input[Optional[_builtins.int]]):
         pulumi.set(self, "gzip_level", value)
 
     @_builtins.property
     @pulumi.getter(name="messageType")
-    def message_type(self) -> Optional[pulumi.Input[_builtins.str]]:
+    def message_type(self) -> pulumi.Input[Optional[_builtins.str]]:
         """
         How the message should be formatted. Can be either `classic`, `loggly`, `logplex` or `blank`. Default is `classic`
         """
         return pulumi.get(self, "message_type")
 
     @message_type.setter
-    def message_type(self, value: Optional[pulumi.Input[_builtins.str]]):
+    def message_type(self, value: pulumi.Input[Optional[_builtins.str]]):
         pulumi.set(self, "message_type", value)
 
     @_builtins.property
     @pulumi.getter
-    def path(self) -> Optional[pulumi.Input[_builtins.str]]:
+    def path(self) -> pulumi.Input[Optional[_builtins.str]]:
         """
         Path to store the files. Must end with a trailing slash. If this field is left empty, the files will be saved in the bucket's root path
         """
         return pulumi.get(self, "path")
 
     @path.setter
-    def path(self, value: Optional[pulumi.Input[_builtins.str]]):
+    def path(self, value: pulumi.Input[Optional[_builtins.str]]):
         pulumi.set(self, "path", value)
 
     @_builtins.property
     @pulumi.getter
-    def period(self) -> Optional[pulumi.Input[_builtins.int]]:
+    def period(self) -> pulumi.Input[Optional[_builtins.int]]:
         """
         How frequently the logs should be transferred, in seconds. Default `3600`
         """
         return pulumi.get(self, "period")
 
     @period.setter
-    def period(self, value: Optional[pulumi.Input[_builtins.int]]):
+    def period(self, value: pulumi.Input[Optional[_builtins.int]]):
         pulumi.set(self, "period", value)
 
     @_builtins.property
     @pulumi.getter
-    def placement(self) -> Optional[pulumi.Input[_builtins.str]]:
+    def placement(self) -> pulumi.Input[Optional[_builtins.str]]:
         """
         Where in the generated VCL the logging call should be placed. Can be `none` or `none`.
         """
         return pulumi.get(self, "placement")
 
     @placement.setter
-    def placement(self, value: Optional[pulumi.Input[_builtins.str]]):
+    def placement(self, value: pulumi.Input[Optional[_builtins.str]]):
         pulumi.set(self, "placement", value)
 
     @_builtins.property
     @pulumi.getter(name="processingRegion")
-    def processing_region(self) -> Optional[pulumi.Input[_builtins.str]]:
+    def processing_region(self) -> pulumi.Input[Optional[_builtins.str]]:
         """
         Region where logs will be processed before streaming to BigQuery. Valid values are 'none', 'us' and 'eu'.
         """
         return pulumi.get(self, "processing_region")
 
     @processing_region.setter
-    def processing_region(self, value: Optional[pulumi.Input[_builtins.str]]):
+    def processing_region(self, value: pulumi.Input[Optional[_builtins.str]]):
         pulumi.set(self, "processing_region", value)
 
     @_builtins.property
     @pulumi.getter(name="publicKey")
-    def public_key(self) -> Optional[pulumi.Input[_builtins.str]]:
+    def public_key(self) -> pulumi.Input[Optional[_builtins.str]]:
         """
         A PGP public key that Fastly will use to encrypt your log files before writing them to disk
         """
         return pulumi.get(self, "public_key")
 
     @public_key.setter
-    def public_key(self, value: Optional[pulumi.Input[_builtins.str]]):
+    def public_key(self, value: pulumi.Input[Optional[_builtins.str]]):
         pulumi.set(self, "public_key", value)
 
     @_builtins.property
     @pulumi.getter(name="responseCondition")
-    def response_condition(self) -> Optional[pulumi.Input[_builtins.str]]:
+    def response_condition(self) -> pulumi.Input[Optional[_builtins.str]]:
         """
         The name of an existing condition in the configured endpoint, or leave blank to always execute.
         """
         return pulumi.get(self, "response_condition")
 
     @response_condition.setter
-    def response_condition(self, value: Optional[pulumi.Input[_builtins.str]]):
+    def response_condition(self, value: pulumi.Input[Optional[_builtins.str]]):
         pulumi.set(self, "response_condition", value)
 
     @_builtins.property
     @pulumi.getter(name="timestampFormat")
-    def timestamp_format(self) -> Optional[pulumi.Input[_builtins.str]]:
+    def timestamp_format(self) -> pulumi.Input[Optional[_builtins.str]]:
         """
         The `strftime` specified timestamp formatting (default `%Y-%m-%dT%H:%M:%S.000`)
         """
         return pulumi.get(self, "timestamp_format")
 
     @timestamp_format.setter
-    def timestamp_format(self, value: Optional[pulumi.Input[_builtins.str]]):
+    def timestamp_format(self, value: pulumi.Input[Optional[_builtins.str]]):
         pulumi.set(self, "timestamp_format", value)
 
 
@@ -16578,23 +16578,23 @@ class ServiceVclLoggingPapertrailArgsDict(TypedDict):
     """
     The port associated with the address where the Papertrail endpoint can be accessed
     """
-    format: NotRequired[pulumi.Input[_builtins.str]]
+    format: NotRequired[pulumi.Input[Optional[_builtins.str]]]
     """
     A Fastly [log format string](https://docs.fastly.com/en/guides/custom-log-formats)
     """
-    format_version: NotRequired[pulumi.Input[_builtins.int]]
+    format_version: NotRequired[pulumi.Input[Optional[_builtins.int]]]
     """
     The version of the custom logging format used for the configured endpoint. The logging call gets placed by default in `vcl_log` if `format_version` is set to `2` and in `vcl_deliver` if `format_version` is set to `1`
     """
-    placement: NotRequired[pulumi.Input[_builtins.str]]
+    placement: NotRequired[pulumi.Input[Optional[_builtins.str]]]
     """
     Where in the generated VCL the logging call should be placed. If not set, endpoints with `format_version` of 2 are placed in `vcl_log` and those with `format_version` of 1 are placed in `vcl_deliver`
     """
-    processing_region: NotRequired[pulumi.Input[_builtins.str]]
+    processing_region: NotRequired[pulumi.Input[Optional[_builtins.str]]]
     """
     Region where logs will be processed before streaming to BigQuery. Valid values are 'none', 'us' and 'eu'.
     """
-    response_condition: NotRequired[pulumi.Input[_builtins.str]]
+    response_condition: NotRequired[pulumi.Input[Optional[_builtins.str]]]
     """
     The name of an existing condition in the configured endpoint, or leave blank to always execute
     """
@@ -16605,11 +16605,11 @@ class ServiceVclLoggingPapertrailArgs:
                  address: pulumi.Input[_builtins.str],
                  name: pulumi.Input[_builtins.str],
                  port: pulumi.Input[_builtins.int],
-                 format: Optional[pulumi.Input[_builtins.str]] = None,
-                 format_version: Optional[pulumi.Input[_builtins.int]] = None,
-                 placement: Optional[pulumi.Input[_builtins.str]] = None,
-                 processing_region: Optional[pulumi.Input[_builtins.str]] = None,
-                 response_condition: Optional[pulumi.Input[_builtins.str]] = None):
+                 format: pulumi.Input[Optional[_builtins.str]] = None,
+                 format_version: pulumi.Input[Optional[_builtins.int]] = None,
+                 placement: pulumi.Input[Optional[_builtins.str]] = None,
+                 processing_region: pulumi.Input[Optional[_builtins.str]] = None,
+                 response_condition: pulumi.Input[Optional[_builtins.str]] = None):
         """
         :param pulumi.Input[_builtins.str] address: The address of the Papertrail endpoint
         :param pulumi.Input[_builtins.str] name: A unique name to identify this Papertrail endpoint. It is important to note that changing this attribute will delete and recreate the resource
@@ -16672,62 +16672,62 @@ class ServiceVclLoggingPapertrailArgs:
 
     @_builtins.property
     @pulumi.getter
-    def format(self) -> Optional[pulumi.Input[_builtins.str]]:
+    def format(self) -> pulumi.Input[Optional[_builtins.str]]:
         """
         A Fastly [log format string](https://docs.fastly.com/en/guides/custom-log-formats)
         """
         return pulumi.get(self, "format")
 
     @format.setter
-    def format(self, value: Optional[pulumi.Input[_builtins.str]]):
+    def format(self, value: pulumi.Input[Optional[_builtins.str]]):
         pulumi.set(self, "format", value)
 
     @_builtins.property
     @pulumi.getter(name="formatVersion")
-    def format_version(self) -> Optional[pulumi.Input[_builtins.int]]:
+    def format_version(self) -> pulumi.Input[Optional[_builtins.int]]:
         """
         The version of the custom logging format used for the configured endpoint. The logging call gets placed by default in `vcl_log` if `format_version` is set to `2` and in `vcl_deliver` if `format_version` is set to `1`
         """
         return pulumi.get(self, "format_version")
 
     @format_version.setter
-    def format_version(self, value: Optional[pulumi.Input[_builtins.int]]):
+    def format_version(self, value: pulumi.Input[Optional[_builtins.int]]):
         pulumi.set(self, "format_version", value)
 
     @_builtins.property
     @pulumi.getter
-    def placement(self) -> Optional[pulumi.Input[_builtins.str]]:
+    def placement(self) -> pulumi.Input[Optional[_builtins.str]]:
         """
         Where in the generated VCL the logging call should be placed. If not set, endpoints with `format_version` of 2 are placed in `vcl_log` and those with `format_version` of 1 are placed in `vcl_deliver`
         """
         return pulumi.get(self, "placement")
 
     @placement.setter
-    def placement(self, value: Optional[pulumi.Input[_builtins.str]]):
+    def placement(self, value: pulumi.Input[Optional[_builtins.str]]):
         pulumi.set(self, "placement", value)
 
     @_builtins.property
     @pulumi.getter(name="processingRegion")
-    def processing_region(self) -> Optional[pulumi.Input[_builtins.str]]:
+    def processing_region(self) -> pulumi.Input[Optional[_builtins.str]]:
         """
         Region where logs will be processed before streaming to BigQuery. Valid values are 'none', 'us' and 'eu'.
         """
         return pulumi.get(self, "processing_region")
 
     @processing_region.setter
-    def processing_region(self, value: Optional[pulumi.Input[_builtins.str]]):
+    def processing_region(self, value: pulumi.Input[Optional[_builtins.str]]):
         pulumi.set(self, "processing_region", value)
 
     @_builtins.property
     @pulumi.getter(name="responseCondition")
-    def response_condition(self) -> Optional[pulumi.Input[_builtins.str]]:
+    def response_condition(self) -> pulumi.Input[Optional[_builtins.str]]:
         """
         The name of an existing condition in the configured endpoint, or leave blank to always execute
         """
         return pulumi.get(self, "response_condition")
 
     @response_condition.setter
-    def response_condition(self, value: Optional[pulumi.Input[_builtins.str]]):
+    def response_condition(self, value: pulumi.Input[Optional[_builtins.str]]):
         pulumi.set(self, "response_condition", value)
 
 
@@ -16740,87 +16740,87 @@ class ServiceVclLoggingS3ArgsDict(TypedDict):
     """
     The unique name of the S3 logging endpoint. It is important to note that changing this attribute will delete and recreate the resource
     """
-    acl: NotRequired[pulumi.Input[_builtins.str]]
+    acl: NotRequired[pulumi.Input[Optional[_builtins.str]]]
     """
     The AWS [Canned ACL](https://docs.aws.amazon.com/AmazonS3/latest/userguide/acl-overview.html#canned-acl) to use for objects uploaded to the S3 bucket. Options are: `private`, `public-read`, `public-read-write`, `aws-exec-read`, `authenticated-read`, `bucket-owner-read`, `bucket-owner-full-control`
     """
-    compression_codec: NotRequired[pulumi.Input[_builtins.str]]
+    compression_codec: NotRequired[pulumi.Input[Optional[_builtins.str]]]
     """
     The codec used for compression of your logs. Valid values are zstd, snappy, and gzip. If the specified codec is "gzip", gzip_level will default to 3. To specify a different level, leave compression_codec blank and explicitly set the level using gzip_level. Specifying both compression_codec and gzip_level in the same API request will result in an error.
     """
-    domain: NotRequired[pulumi.Input[_builtins.str]]
+    domain: NotRequired[pulumi.Input[Optional[_builtins.str]]]
     """
     If you created the S3 bucket outside of `us-east-1`, then specify the corresponding bucket endpoint. Example: `s3-us-west-2.amazonaws.com`
     """
-    file_max_bytes: NotRequired[pulumi.Input[_builtins.int]]
+    file_max_bytes: NotRequired[pulumi.Input[Optional[_builtins.int]]]
     """
     Maximum size of an uploaded log file, if non-zero.
     """
-    format: NotRequired[pulumi.Input[_builtins.str]]
+    format: NotRequired[pulumi.Input[Optional[_builtins.str]]]
     """
     Apache-style string or VCL variables to use for log formatting.
     """
-    format_version: NotRequired[pulumi.Input[_builtins.int]]
+    format_version: NotRequired[pulumi.Input[Optional[_builtins.int]]]
     """
     The version of the custom logging format used for the configured endpoint. Can be either 1 or 2. (Default: 2).
     """
-    gzip_level: NotRequired[pulumi.Input[_builtins.int]]
+    gzip_level: NotRequired[pulumi.Input[Optional[_builtins.int]]]
     """
     Level of Gzip compression from `0-9`. `0` means no compression. `1` is the fastest and the least compressed version, `9` is the slowest and the most compressed version. Default `0`
     """
-    message_type: NotRequired[pulumi.Input[_builtins.str]]
+    message_type: NotRequired[pulumi.Input[Optional[_builtins.str]]]
     """
     How the message should be formatted. Can be either `classic`, `loggly`, `logplex` or `blank`. Default is `classic`
     """
-    path: NotRequired[pulumi.Input[_builtins.str]]
+    path: NotRequired[pulumi.Input[Optional[_builtins.str]]]
     """
     Path to store the files. Must end with a trailing slash. If this field is left empty, the files will be saved in the bucket's root path
     """
-    period: NotRequired[pulumi.Input[_builtins.int]]
+    period: NotRequired[pulumi.Input[Optional[_builtins.int]]]
     """
     How frequently the logs should be transferred, in seconds. Default `3600`
     """
-    placement: NotRequired[pulumi.Input[_builtins.str]]
+    placement: NotRequired[pulumi.Input[Optional[_builtins.str]]]
     """
     Where in the generated VCL the logging call should be placed.
     """
-    processing_region: NotRequired[pulumi.Input[_builtins.str]]
+    processing_region: NotRequired[pulumi.Input[Optional[_builtins.str]]]
     """
     Region where logs will be processed before streaming to BigQuery. Valid values are 'none', 'us' and 'eu'.
     """
-    public_key: NotRequired[pulumi.Input[_builtins.str]]
+    public_key: NotRequired[pulumi.Input[Optional[_builtins.str]]]
     """
     A PGP public key that Fastly will use to encrypt your log files before writing them to disk
     """
-    redundancy: NotRequired[pulumi.Input[_builtins.str]]
+    redundancy: NotRequired[pulumi.Input[Optional[_builtins.str]]]
     """
     The S3 storage class (redundancy level). Should be one of: `standard`, `intelligent_tiering`, `standard_ia`, `onezone_ia`, `glacier`, `glacier_ir`, `deep_archive`, or `reduced_redundancy`
     """
-    response_condition: NotRequired[pulumi.Input[_builtins.str]]
+    response_condition: NotRequired[pulumi.Input[Optional[_builtins.str]]]
     """
     Name of blockAttributes condition to apply this logging.
     """
-    s3_access_key: NotRequired[pulumi.Input[_builtins.str]]
+    s3_access_key: NotRequired[pulumi.Input[Optional[_builtins.str]]]
     """
     AWS Access Key of an account with the required permissions to post logs. It is **strongly** recommended you create a separate IAM user with permissions to only operate on this Bucket. This key will be not be encrypted. Not required if `iam_role` is provided. You can provide this key via an environment variable, `FASTLY_S3_ACCESS_KEY`
     """
-    s3_iam_role: NotRequired[pulumi.Input[_builtins.str]]
+    s3_iam_role: NotRequired[pulumi.Input[Optional[_builtins.str]]]
     """
     The Amazon Resource Name (ARN) for the IAM role granting Fastly access to S3. Not required if `access_key` and `secret_key` are provided. You can provide this value via an environment variable, `FASTLY_S3_IAM_ROLE`
     """
-    s3_secret_key: NotRequired[pulumi.Input[_builtins.str]]
+    s3_secret_key: NotRequired[pulumi.Input[Optional[_builtins.str]]]
     """
     AWS Secret Key of an account with the required permissions to post logs. It is **strongly** recommended you create a separate IAM user with permissions to only operate on this Bucket. This secret will be not be encrypted. Not required if `iam_role` is provided. You can provide this secret via an environment variable, `FASTLY_S3_SECRET_KEY`
     """
-    server_side_encryption: NotRequired[pulumi.Input[_builtins.str]]
+    server_side_encryption: NotRequired[pulumi.Input[Optional[_builtins.str]]]
     """
     Specify what type of server side encryption should be used. Can be either `AES256` or `aws:kms`
     """
-    server_side_encryption_kms_key_id: NotRequired[pulumi.Input[_builtins.str]]
+    server_side_encryption_kms_key_id: NotRequired[pulumi.Input[Optional[_builtins.str]]]
     """
     Optional server-side KMS Key Id. Must be set if server_side_encryption is set to `aws:kms`
     """
-    timestamp_format: NotRequired[pulumi.Input[_builtins.str]]
+    timestamp_format: NotRequired[pulumi.Input[Optional[_builtins.str]]]
     """
     The `strftime` specified timestamp formatting (default `%Y-%m-%dT%H:%M:%S.000`)
     """
@@ -16830,27 +16830,27 @@ class ServiceVclLoggingS3Args:
     def __init__(__self__, *,
                  bucket_name: pulumi.Input[_builtins.str],
                  name: pulumi.Input[_builtins.str],
-                 acl: Optional[pulumi.Input[_builtins.str]] = None,
-                 compression_codec: Optional[pulumi.Input[_builtins.str]] = None,
-                 domain: Optional[pulumi.Input[_builtins.str]] = None,
-                 file_max_bytes: Optional[pulumi.Input[_builtins.int]] = None,
-                 format: Optional[pulumi.Input[_builtins.str]] = None,
-                 format_version: Optional[pulumi.Input[_builtins.int]] = None,
-                 gzip_level: Optional[pulumi.Input[_builtins.int]] = None,
-                 message_type: Optional[pulumi.Input[_builtins.str]] = None,
-                 path: Optional[pulumi.Input[_builtins.str]] = None,
-                 period: Optional[pulumi.Input[_builtins.int]] = None,
-                 placement: Optional[pulumi.Input[_builtins.str]] = None,
-                 processing_region: Optional[pulumi.Input[_builtins.str]] = None,
-                 public_key: Optional[pulumi.Input[_builtins.str]] = None,
-                 redundancy: Optional[pulumi.Input[_builtins.str]] = None,
-                 response_condition: Optional[pulumi.Input[_builtins.str]] = None,
-                 s3_access_key: Optional[pulumi.Input[_builtins.str]] = None,
-                 s3_iam_role: Optional[pulumi.Input[_builtins.str]] = None,
-                 s3_secret_key: Optional[pulumi.Input[_builtins.str]] = None,
-                 server_side_encryption: Optional[pulumi.Input[_builtins.str]] = None,
-                 server_side_encryption_kms_key_id: Optional[pulumi.Input[_builtins.str]] = None,
-                 timestamp_format: Optional[pulumi.Input[_builtins.str]] = None):
+                 acl: pulumi.Input[Optional[_builtins.str]] = None,
+                 compression_codec: pulumi.Input[Optional[_builtins.str]] = None,
+                 domain: pulumi.Input[Optional[_builtins.str]] = None,
+                 file_max_bytes: pulumi.Input[Optional[_builtins.int]] = None,
+                 format: pulumi.Input[Optional[_builtins.str]] = None,
+                 format_version: pulumi.Input[Optional[_builtins.int]] = None,
+                 gzip_level: pulumi.Input[Optional[_builtins.int]] = None,
+                 message_type: pulumi.Input[Optional[_builtins.str]] = None,
+                 path: pulumi.Input[Optional[_builtins.str]] = None,
+                 period: pulumi.Input[Optional[_builtins.int]] = None,
+                 placement: pulumi.Input[Optional[_builtins.str]] = None,
+                 processing_region: pulumi.Input[Optional[_builtins.str]] = None,
+                 public_key: pulumi.Input[Optional[_builtins.str]] = None,
+                 redundancy: pulumi.Input[Optional[_builtins.str]] = None,
+                 response_condition: pulumi.Input[Optional[_builtins.str]] = None,
+                 s3_access_key: pulumi.Input[Optional[_builtins.str]] = None,
+                 s3_iam_role: pulumi.Input[Optional[_builtins.str]] = None,
+                 s3_secret_key: pulumi.Input[Optional[_builtins.str]] = None,
+                 server_side_encryption: pulumi.Input[Optional[_builtins.str]] = None,
+                 server_side_encryption_kms_key_id: pulumi.Input[Optional[_builtins.str]] = None,
+                 timestamp_format: pulumi.Input[Optional[_builtins.str]] = None):
         """
         :param pulumi.Input[_builtins.str] bucket_name: The name of the bucket in which to store the logs
         :param pulumi.Input[_builtins.str] name: The unique name of the S3 logging endpoint. It is important to note that changing this attribute will delete and recreate the resource
@@ -16947,254 +16947,254 @@ class ServiceVclLoggingS3Args:
 
     @_builtins.property
     @pulumi.getter
-    def acl(self) -> Optional[pulumi.Input[_builtins.str]]:
+    def acl(self) -> pulumi.Input[Optional[_builtins.str]]:
         """
         The AWS [Canned ACL](https://docs.aws.amazon.com/AmazonS3/latest/userguide/acl-overview.html#canned-acl) to use for objects uploaded to the S3 bucket. Options are: `private`, `public-read`, `public-read-write`, `aws-exec-read`, `authenticated-read`, `bucket-owner-read`, `bucket-owner-full-control`
         """
         return pulumi.get(self, "acl")
 
     @acl.setter
-    def acl(self, value: Optional[pulumi.Input[_builtins.str]]):
+    def acl(self, value: pulumi.Input[Optional[_builtins.str]]):
         pulumi.set(self, "acl", value)
 
     @_builtins.property
     @pulumi.getter(name="compressionCodec")
-    def compression_codec(self) -> Optional[pulumi.Input[_builtins.str]]:
+    def compression_codec(self) -> pulumi.Input[Optional[_builtins.str]]:
         """
         The codec used for compression of your logs. Valid values are zstd, snappy, and gzip. If the specified codec is "gzip", gzip_level will default to 3. To specify a different level, leave compression_codec blank and explicitly set the level using gzip_level. Specifying both compression_codec and gzip_level in the same API request will result in an error.
         """
         return pulumi.get(self, "compression_codec")
 
     @compression_codec.setter
-    def compression_codec(self, value: Optional[pulumi.Input[_builtins.str]]):
+    def compression_codec(self, value: pulumi.Input[Optional[_builtins.str]]):
         pulumi.set(self, "compression_codec", value)
 
     @_builtins.property
     @pulumi.getter
-    def domain(self) -> Optional[pulumi.Input[_builtins.str]]:
+    def domain(self) -> pulumi.Input[Optional[_builtins.str]]:
         """
         If you created the S3 bucket outside of `us-east-1`, then specify the corresponding bucket endpoint. Example: `s3-us-west-2.amazonaws.com`
         """
         return pulumi.get(self, "domain")
 
     @domain.setter
-    def domain(self, value: Optional[pulumi.Input[_builtins.str]]):
+    def domain(self, value: pulumi.Input[Optional[_builtins.str]]):
         pulumi.set(self, "domain", value)
 
     @_builtins.property
     @pulumi.getter(name="fileMaxBytes")
-    def file_max_bytes(self) -> Optional[pulumi.Input[_builtins.int]]:
+    def file_max_bytes(self) -> pulumi.Input[Optional[_builtins.int]]:
         """
         Maximum size of an uploaded log file, if non-zero.
         """
         return pulumi.get(self, "file_max_bytes")
 
     @file_max_bytes.setter
-    def file_max_bytes(self, value: Optional[pulumi.Input[_builtins.int]]):
+    def file_max_bytes(self, value: pulumi.Input[Optional[_builtins.int]]):
         pulumi.set(self, "file_max_bytes", value)
 
     @_builtins.property
     @pulumi.getter
-    def format(self) -> Optional[pulumi.Input[_builtins.str]]:
+    def format(self) -> pulumi.Input[Optional[_builtins.str]]:
         """
         Apache-style string or VCL variables to use for log formatting.
         """
         return pulumi.get(self, "format")
 
     @format.setter
-    def format(self, value: Optional[pulumi.Input[_builtins.str]]):
+    def format(self, value: pulumi.Input[Optional[_builtins.str]]):
         pulumi.set(self, "format", value)
 
     @_builtins.property
     @pulumi.getter(name="formatVersion")
-    def format_version(self) -> Optional[pulumi.Input[_builtins.int]]:
+    def format_version(self) -> pulumi.Input[Optional[_builtins.int]]:
         """
         The version of the custom logging format used for the configured endpoint. Can be either 1 or 2. (Default: 2).
         """
         return pulumi.get(self, "format_version")
 
     @format_version.setter
-    def format_version(self, value: Optional[pulumi.Input[_builtins.int]]):
+    def format_version(self, value: pulumi.Input[Optional[_builtins.int]]):
         pulumi.set(self, "format_version", value)
 
     @_builtins.property
     @pulumi.getter(name="gzipLevel")
-    def gzip_level(self) -> Optional[pulumi.Input[_builtins.int]]:
+    def gzip_level(self) -> pulumi.Input[Optional[_builtins.int]]:
         """
         Level of Gzip compression from `0-9`. `0` means no compression. `1` is the fastest and the least compressed version, `9` is the slowest and the most compressed version. Default `0`
         """
         return pulumi.get(self, "gzip_level")
 
     @gzip_level.setter
-    def gzip_level(self, value: Optional[pulumi.Input[_builtins.int]]):
+    def gzip_level(self, value: pulumi.Input[Optional[_builtins.int]]):
         pulumi.set(self, "gzip_level", value)
 
     @_builtins.property
     @pulumi.getter(name="messageType")
-    def message_type(self) -> Optional[pulumi.Input[_builtins.str]]:
+    def message_type(self) -> pulumi.Input[Optional[_builtins.str]]:
         """
         How the message should be formatted. Can be either `classic`, `loggly`, `logplex` or `blank`. Default is `classic`
         """
         return pulumi.get(self, "message_type")
 
     @message_type.setter
-    def message_type(self, value: Optional[pulumi.Input[_builtins.str]]):
+    def message_type(self, value: pulumi.Input[Optional[_builtins.str]]):
         pulumi.set(self, "message_type", value)
 
     @_builtins.property
     @pulumi.getter
-    def path(self) -> Optional[pulumi.Input[_builtins.str]]:
+    def path(self) -> pulumi.Input[Optional[_builtins.str]]:
         """
         Path to store the files. Must end with a trailing slash. If this field is left empty, the files will be saved in the bucket's root path
         """
         return pulumi.get(self, "path")
 
     @path.setter
-    def path(self, value: Optional[pulumi.Input[_builtins.str]]):
+    def path(self, value: pulumi.Input[Optional[_builtins.str]]):
         pulumi.set(self, "path", value)
 
     @_builtins.property
     @pulumi.getter
-    def period(self) -> Optional[pulumi.Input[_builtins.int]]:
+    def period(self) -> pulumi.Input[Optional[_builtins.int]]:
         """
         How frequently the logs should be transferred, in seconds. Default `3600`
         """
         return pulumi.get(self, "period")
 
     @period.setter
-    def period(self, value: Optional[pulumi.Input[_builtins.int]]):
+    def period(self, value: pulumi.Input[Optional[_builtins.int]]):
         pulumi.set(self, "period", value)
 
     @_builtins.property
     @pulumi.getter
-    def placement(self) -> Optional[pulumi.Input[_builtins.str]]:
+    def placement(self) -> pulumi.Input[Optional[_builtins.str]]:
         """
         Where in the generated VCL the logging call should be placed.
         """
         return pulumi.get(self, "placement")
 
     @placement.setter
-    def placement(self, value: Optional[pulumi.Input[_builtins.str]]):
+    def placement(self, value: pulumi.Input[Optional[_builtins.str]]):
         pulumi.set(self, "placement", value)
 
     @_builtins.property
     @pulumi.getter(name="processingRegion")
-    def processing_region(self) -> Optional[pulumi.Input[_builtins.str]]:
+    def processing_region(self) -> pulumi.Input[Optional[_builtins.str]]:
         """
         Region where logs will be processed before streaming to BigQuery. Valid values are 'none', 'us' and 'eu'.
         """
         return pulumi.get(self, "processing_region")
 
     @processing_region.setter
-    def processing_region(self, value: Optional[pulumi.Input[_builtins.str]]):
+    def processing_region(self, value: pulumi.Input[Optional[_builtins.str]]):
         pulumi.set(self, "processing_region", value)
 
     @_builtins.property
     @pulumi.getter(name="publicKey")
-    def public_key(self) -> Optional[pulumi.Input[_builtins.str]]:
+    def public_key(self) -> pulumi.Input[Optional[_builtins.str]]:
         """
         A PGP public key that Fastly will use to encrypt your log files before writing them to disk
         """
         return pulumi.get(self, "public_key")
 
     @public_key.setter
-    def public_key(self, value: Optional[pulumi.Input[_builtins.str]]):
+    def public_key(self, value: pulumi.Input[Optional[_builtins.str]]):
         pulumi.set(self, "public_key", value)
 
     @_builtins.property
     @pulumi.getter
-    def redundancy(self) -> Optional[pulumi.Input[_builtins.str]]:
+    def redundancy(self) -> pulumi.Input[Optional[_builtins.str]]:
         """
         The S3 storage class (redundancy level). Should be one of: `standard`, `intelligent_tiering`, `standard_ia`, `onezone_ia`, `glacier`, `glacier_ir`, `deep_archive`, or `reduced_redundancy`
         """
         return pulumi.get(self, "redundancy")
 
     @redundancy.setter
-    def redundancy(self, value: Optional[pulumi.Input[_builtins.str]]):
+    def redundancy(self, value: pulumi.Input[Optional[_builtins.str]]):
         pulumi.set(self, "redundancy", value)
 
     @_builtins.property
     @pulumi.getter(name="responseCondition")
-    def response_condition(self) -> Optional[pulumi.Input[_builtins.str]]:
+    def response_condition(self) -> pulumi.Input[Optional[_builtins.str]]:
         """
         Name of blockAttributes condition to apply this logging.
         """
         return pulumi.get(self, "response_condition")
 
     @response_condition.setter
-    def response_condition(self, value: Optional[pulumi.Input[_builtins.str]]):
+    def response_condition(self, value: pulumi.Input[Optional[_builtins.str]]):
         pulumi.set(self, "response_condition", value)
 
     @_builtins.property
     @pulumi.getter(name="s3AccessKey")
-    def s3_access_key(self) -> Optional[pulumi.Input[_builtins.str]]:
+    def s3_access_key(self) -> pulumi.Input[Optional[_builtins.str]]:
         """
         AWS Access Key of an account with the required permissions to post logs. It is **strongly** recommended you create a separate IAM user with permissions to only operate on this Bucket. This key will be not be encrypted. Not required if `iam_role` is provided. You can provide this key via an environment variable, `FASTLY_S3_ACCESS_KEY`
         """
         return pulumi.get(self, "s3_access_key")
 
     @s3_access_key.setter
-    def s3_access_key(self, value: Optional[pulumi.Input[_builtins.str]]):
+    def s3_access_key(self, value: pulumi.Input[Optional[_builtins.str]]):
         pulumi.set(self, "s3_access_key", value)
 
     @_builtins.property
     @pulumi.getter(name="s3IamRole")
-    def s3_iam_role(self) -> Optional[pulumi.Input[_builtins.str]]:
+    def s3_iam_role(self) -> pulumi.Input[Optional[_builtins.str]]:
         """
         The Amazon Resource Name (ARN) for the IAM role granting Fastly access to S3. Not required if `access_key` and `secret_key` are provided. You can provide this value via an environment variable, `FASTLY_S3_IAM_ROLE`
         """
         return pulumi.get(self, "s3_iam_role")
 
     @s3_iam_role.setter
-    def s3_iam_role(self, value: Optional[pulumi.Input[_builtins.str]]):
+    def s3_iam_role(self, value: pulumi.Input[Optional[_builtins.str]]):
         pulumi.set(self, "s3_iam_role", value)
 
     @_builtins.property
     @pulumi.getter(name="s3SecretKey")
-    def s3_secret_key(self) -> Optional[pulumi.Input[_builtins.str]]:
+    def s3_secret_key(self) -> pulumi.Input[Optional[_builtins.str]]:
         """
         AWS Secret Key of an account with the required permissions to post logs. It is **strongly** recommended you create a separate IAM user with permissions to only operate on this Bucket. This secret will be not be encrypted. Not required if `iam_role` is provided. You can provide this secret via an environment variable, `FASTLY_S3_SECRET_KEY`
         """
         return pulumi.get(self, "s3_secret_key")
 
     @s3_secret_key.setter
-    def s3_secret_key(self, value: Optional[pulumi.Input[_builtins.str]]):
+    def s3_secret_key(self, value: pulumi.Input[Optional[_builtins.str]]):
         pulumi.set(self, "s3_secret_key", value)
 
     @_builtins.property
     @pulumi.getter(name="serverSideEncryption")
-    def server_side_encryption(self) -> Optional[pulumi.Input[_builtins.str]]:
+    def server_side_encryption(self) -> pulumi.Input[Optional[_builtins.str]]:
         """
         Specify what type of server side encryption should be used. Can be either `AES256` or `aws:kms`
         """
         return pulumi.get(self, "server_side_encryption")
 
     @server_side_encryption.setter
-    def server_side_encryption(self, value: Optional[pulumi.Input[_builtins.str]]):
+    def server_side_encryption(self, value: pulumi.Input[Optional[_builtins.str]]):
         pulumi.set(self, "server_side_encryption", value)
 
     @_builtins.property
     @pulumi.getter(name="serverSideEncryptionKmsKeyId")
-    def server_side_encryption_kms_key_id(self) -> Optional[pulumi.Input[_builtins.str]]:
+    def server_side_encryption_kms_key_id(self) -> pulumi.Input[Optional[_builtins.str]]:
         """
         Optional server-side KMS Key Id. Must be set if server_side_encryption is set to `aws:kms`
         """
         return pulumi.get(self, "server_side_encryption_kms_key_id")
 
     @server_side_encryption_kms_key_id.setter
-    def server_side_encryption_kms_key_id(self, value: Optional[pulumi.Input[_builtins.str]]):
+    def server_side_encryption_kms_key_id(self, value: pulumi.Input[Optional[_builtins.str]]):
         pulumi.set(self, "server_side_encryption_kms_key_id", value)
 
     @_builtins.property
     @pulumi.getter(name="timestampFormat")
-    def timestamp_format(self) -> Optional[pulumi.Input[_builtins.str]]:
+    def timestamp_format(self) -> pulumi.Input[Optional[_builtins.str]]:
         """
         The `strftime` specified timestamp formatting (default `%Y-%m-%dT%H:%M:%S.000`)
         """
         return pulumi.get(self, "timestamp_format")
 
     @timestamp_format.setter
-    def timestamp_format(self, value: Optional[pulumi.Input[_builtins.str]]):
+    def timestamp_format(self, value: pulumi.Input[Optional[_builtins.str]]):
         pulumi.set(self, "timestamp_format", value)
 
 
@@ -17207,31 +17207,31 @@ class ServiceVclLoggingScalyrArgsDict(TypedDict):
     """
     The token to use for authentication (https://www.scalyr.com/keys)
     """
-    format: NotRequired[pulumi.Input[_builtins.str]]
+    format: NotRequired[pulumi.Input[Optional[_builtins.str]]]
     """
     Apache style log formatting.
     """
-    format_version: NotRequired[pulumi.Input[_builtins.int]]
+    format_version: NotRequired[pulumi.Input[Optional[_builtins.int]]]
     """
     The version of the custom logging format used for the configured endpoint. Can be either 1 or 2. (default: 2).
     """
-    placement: NotRequired[pulumi.Input[_builtins.str]]
+    placement: NotRequired[pulumi.Input[Optional[_builtins.str]]]
     """
     Where in the generated VCL the logging call should be placed.
     """
-    processing_region: NotRequired[pulumi.Input[_builtins.str]]
+    processing_region: NotRequired[pulumi.Input[Optional[_builtins.str]]]
     """
     Region where logs will be processed before streaming to BigQuery. Valid values are 'none', 'us' and 'eu'.
     """
-    project_id: NotRequired[pulumi.Input[_builtins.str]]
+    project_id: NotRequired[pulumi.Input[Optional[_builtins.str]]]
     """
     The name of the logfile field sent to Scalyr
     """
-    region: NotRequired[pulumi.Input[_builtins.str]]
+    region: NotRequired[pulumi.Input[Optional[_builtins.str]]]
     """
     The region that log data will be sent to. One of `US` or `EU`. Defaults to `US` if undefined
     """
-    response_condition: NotRequired[pulumi.Input[_builtins.str]]
+    response_condition: NotRequired[pulumi.Input[Optional[_builtins.str]]]
     """
     The name of an existing condition in the configured endpoint, or leave blank to always execute.
     """
@@ -17241,13 +17241,13 @@ class ServiceVclLoggingScalyrArgs:
     def __init__(__self__, *,
                  name: pulumi.Input[_builtins.str],
                  token: pulumi.Input[_builtins.str],
-                 format: Optional[pulumi.Input[_builtins.str]] = None,
-                 format_version: Optional[pulumi.Input[_builtins.int]] = None,
-                 placement: Optional[pulumi.Input[_builtins.str]] = None,
-                 processing_region: Optional[pulumi.Input[_builtins.str]] = None,
-                 project_id: Optional[pulumi.Input[_builtins.str]] = None,
-                 region: Optional[pulumi.Input[_builtins.str]] = None,
-                 response_condition: Optional[pulumi.Input[_builtins.str]] = None):
+                 format: pulumi.Input[Optional[_builtins.str]] = None,
+                 format_version: pulumi.Input[Optional[_builtins.int]] = None,
+                 placement: pulumi.Input[Optional[_builtins.str]] = None,
+                 processing_region: pulumi.Input[Optional[_builtins.str]] = None,
+                 project_id: pulumi.Input[Optional[_builtins.str]] = None,
+                 region: pulumi.Input[Optional[_builtins.str]] = None,
+                 response_condition: pulumi.Input[Optional[_builtins.str]] = None):
         """
         :param pulumi.Input[_builtins.str] name: The unique name of the Scalyr logging endpoint. It is important to note that changing this attribute will delete and recreate the resource
         :param pulumi.Input[_builtins.str] token: The token to use for authentication (https://www.scalyr.com/keys)
@@ -17302,86 +17302,86 @@ class ServiceVclLoggingScalyrArgs:
 
     @_builtins.property
     @pulumi.getter
-    def format(self) -> Optional[pulumi.Input[_builtins.str]]:
+    def format(self) -> pulumi.Input[Optional[_builtins.str]]:
         """
         Apache style log formatting.
         """
         return pulumi.get(self, "format")
 
     @format.setter
-    def format(self, value: Optional[pulumi.Input[_builtins.str]]):
+    def format(self, value: pulumi.Input[Optional[_builtins.str]]):
         pulumi.set(self, "format", value)
 
     @_builtins.property
     @pulumi.getter(name="formatVersion")
-    def format_version(self) -> Optional[pulumi.Input[_builtins.int]]:
+    def format_version(self) -> pulumi.Input[Optional[_builtins.int]]:
         """
         The version of the custom logging format used for the configured endpoint. Can be either 1 or 2. (default: 2).
         """
         return pulumi.get(self, "format_version")
 
     @format_version.setter
-    def format_version(self, value: Optional[pulumi.Input[_builtins.int]]):
+    def format_version(self, value: pulumi.Input[Optional[_builtins.int]]):
         pulumi.set(self, "format_version", value)
 
     @_builtins.property
     @pulumi.getter
-    def placement(self) -> Optional[pulumi.Input[_builtins.str]]:
+    def placement(self) -> pulumi.Input[Optional[_builtins.str]]:
         """
         Where in the generated VCL the logging call should be placed.
         """
         return pulumi.get(self, "placement")
 
     @placement.setter
-    def placement(self, value: Optional[pulumi.Input[_builtins.str]]):
+    def placement(self, value: pulumi.Input[Optional[_builtins.str]]):
         pulumi.set(self, "placement", value)
 
     @_builtins.property
     @pulumi.getter(name="processingRegion")
-    def processing_region(self) -> Optional[pulumi.Input[_builtins.str]]:
+    def processing_region(self) -> pulumi.Input[Optional[_builtins.str]]:
         """
         Region where logs will be processed before streaming to BigQuery. Valid values are 'none', 'us' and 'eu'.
         """
         return pulumi.get(self, "processing_region")
 
     @processing_region.setter
-    def processing_region(self, value: Optional[pulumi.Input[_builtins.str]]):
+    def processing_region(self, value: pulumi.Input[Optional[_builtins.str]]):
         pulumi.set(self, "processing_region", value)
 
     @_builtins.property
     @pulumi.getter(name="projectId")
-    def project_id(self) -> Optional[pulumi.Input[_builtins.str]]:
+    def project_id(self) -> pulumi.Input[Optional[_builtins.str]]:
         """
         The name of the logfile field sent to Scalyr
         """
         return pulumi.get(self, "project_id")
 
     @project_id.setter
-    def project_id(self, value: Optional[pulumi.Input[_builtins.str]]):
+    def project_id(self, value: pulumi.Input[Optional[_builtins.str]]):
         pulumi.set(self, "project_id", value)
 
     @_builtins.property
     @pulumi.getter
-    def region(self) -> Optional[pulumi.Input[_builtins.str]]:
+    def region(self) -> pulumi.Input[Optional[_builtins.str]]:
         """
         The region that log data will be sent to. One of `US` or `EU`. Defaults to `US` if undefined
         """
         return pulumi.get(self, "region")
 
     @region.setter
-    def region(self, value: Optional[pulumi.Input[_builtins.str]]):
+    def region(self, value: pulumi.Input[Optional[_builtins.str]]):
         pulumi.set(self, "region", value)
 
     @_builtins.property
     @pulumi.getter(name="responseCondition")
-    def response_condition(self) -> Optional[pulumi.Input[_builtins.str]]:
+    def response_condition(self) -> pulumi.Input[Optional[_builtins.str]]:
         """
         The name of an existing condition in the configured endpoint, or leave blank to always execute.
         """
         return pulumi.get(self, "response_condition")
 
     @response_condition.setter
-    def response_condition(self, value: Optional[pulumi.Input[_builtins.str]]):
+    def response_condition(self, value: pulumi.Input[Optional[_builtins.str]]):
         pulumi.set(self, "response_condition", value)
 
 
@@ -17406,59 +17406,59 @@ class ServiceVclLoggingSftpArgsDict(TypedDict):
     """
     The username for the server
     """
-    compression_codec: NotRequired[pulumi.Input[_builtins.str]]
+    compression_codec: NotRequired[pulumi.Input[Optional[_builtins.str]]]
     """
     The codec used for compression of your logs. Valid values are zstd, snappy, and gzip. If the specified codec is "gzip", gzip_level will default to 3. To specify a different level, leave compression_codec blank and explicitly set the level using gzip_level. Specifying both compression_codec and gzip_level in the same API request will result in an error.
     """
-    format: NotRequired[pulumi.Input[_builtins.str]]
+    format: NotRequired[pulumi.Input[Optional[_builtins.str]]]
     """
     Apache-style string or VCL variables to use for log formatting.
     """
-    format_version: NotRequired[pulumi.Input[_builtins.int]]
+    format_version: NotRequired[pulumi.Input[Optional[_builtins.int]]]
     """
     The version of the custom logging format used for the configured endpoint. Can be either 1 or 2. (default: 2).
     """
-    gzip_level: NotRequired[pulumi.Input[_builtins.int]]
+    gzip_level: NotRequired[pulumi.Input[Optional[_builtins.int]]]
     """
     Level of Gzip compression from `0-9`. `0` means no compression. `1` is the fastest and the least compressed version, `9` is the slowest and the most compressed version. Default `0`
     """
-    message_type: NotRequired[pulumi.Input[_builtins.str]]
+    message_type: NotRequired[pulumi.Input[Optional[_builtins.str]]]
     """
     How the message should be formatted. Can be either `classic`, `loggly`, `logplex` or `blank`. Default is `classic`
     """
-    password: NotRequired[pulumi.Input[_builtins.str]]
+    password: NotRequired[pulumi.Input[Optional[_builtins.str]]]
     """
     The password for the server. If both `password` and `secret_key` are passed, `secret_key` will be preferred
     """
-    period: NotRequired[pulumi.Input[_builtins.int]]
+    period: NotRequired[pulumi.Input[Optional[_builtins.int]]]
     """
     How frequently log files are finalized so they can be available for reading (in seconds, default `3600`)
     """
-    placement: NotRequired[pulumi.Input[_builtins.str]]
+    placement: NotRequired[pulumi.Input[Optional[_builtins.str]]]
     """
     Where in the generated VCL the logging call should be placed.
     """
-    port: NotRequired[pulumi.Input[_builtins.int]]
+    port: NotRequired[pulumi.Input[Optional[_builtins.int]]]
     """
     The port the SFTP service listens on. (Default: `22`)
     """
-    processing_region: NotRequired[pulumi.Input[_builtins.str]]
+    processing_region: NotRequired[pulumi.Input[Optional[_builtins.str]]]
     """
     Region where logs will be processed before streaming to BigQuery. Valid values are 'none', 'us' and 'eu'.
     """
-    public_key: NotRequired[pulumi.Input[_builtins.str]]
+    public_key: NotRequired[pulumi.Input[Optional[_builtins.str]]]
     """
     A PGP public key that Fastly will use to encrypt your log files before writing them to disk
     """
-    response_condition: NotRequired[pulumi.Input[_builtins.str]]
+    response_condition: NotRequired[pulumi.Input[Optional[_builtins.str]]]
     """
     The name of the condition to apply.
     """
-    secret_key: NotRequired[pulumi.Input[_builtins.str]]
+    secret_key: NotRequired[pulumi.Input[Optional[_builtins.str]]]
     """
     The SSH private key for the server. If both `password` and `secret_key` are passed, `secret_key` will be preferred
     """
-    timestamp_format: NotRequired[pulumi.Input[_builtins.str]]
+    timestamp_format: NotRequired[pulumi.Input[Optional[_builtins.str]]]
     """
     The `strftime` specified timestamp formatting (default `%Y-%m-%dT%H:%M:%S.000`)
     """
@@ -17471,20 +17471,20 @@ class ServiceVclLoggingSftpArgs:
                  path: pulumi.Input[_builtins.str],
                  ssh_known_hosts: pulumi.Input[_builtins.str],
                  user: pulumi.Input[_builtins.str],
-                 compression_codec: Optional[pulumi.Input[_builtins.str]] = None,
-                 format: Optional[pulumi.Input[_builtins.str]] = None,
-                 format_version: Optional[pulumi.Input[_builtins.int]] = None,
-                 gzip_level: Optional[pulumi.Input[_builtins.int]] = None,
-                 message_type: Optional[pulumi.Input[_builtins.str]] = None,
-                 password: Optional[pulumi.Input[_builtins.str]] = None,
-                 period: Optional[pulumi.Input[_builtins.int]] = None,
-                 placement: Optional[pulumi.Input[_builtins.str]] = None,
-                 port: Optional[pulumi.Input[_builtins.int]] = None,
-                 processing_region: Optional[pulumi.Input[_builtins.str]] = None,
-                 public_key: Optional[pulumi.Input[_builtins.str]] = None,
-                 response_condition: Optional[pulumi.Input[_builtins.str]] = None,
-                 secret_key: Optional[pulumi.Input[_builtins.str]] = None,
-                 timestamp_format: Optional[pulumi.Input[_builtins.str]] = None):
+                 compression_codec: pulumi.Input[Optional[_builtins.str]] = None,
+                 format: pulumi.Input[Optional[_builtins.str]] = None,
+                 format_version: pulumi.Input[Optional[_builtins.int]] = None,
+                 gzip_level: pulumi.Input[Optional[_builtins.int]] = None,
+                 message_type: pulumi.Input[Optional[_builtins.str]] = None,
+                 password: pulumi.Input[Optional[_builtins.str]] = None,
+                 period: pulumi.Input[Optional[_builtins.int]] = None,
+                 placement: pulumi.Input[Optional[_builtins.str]] = None,
+                 port: pulumi.Input[Optional[_builtins.int]] = None,
+                 processing_region: pulumi.Input[Optional[_builtins.str]] = None,
+                 public_key: pulumi.Input[Optional[_builtins.str]] = None,
+                 response_condition: pulumi.Input[Optional[_builtins.str]] = None,
+                 secret_key: pulumi.Input[Optional[_builtins.str]] = None,
+                 timestamp_format: pulumi.Input[Optional[_builtins.str]] = None):
         """
         :param pulumi.Input[_builtins.str] address: The SFTP address to stream logs to
         :param pulumi.Input[_builtins.str] name: The unique name of the SFTP logging endpoint. It is important to note that changing this attribute will delete and recreate the resource
@@ -17602,170 +17602,170 @@ class ServiceVclLoggingSftpArgs:
 
     @_builtins.property
     @pulumi.getter(name="compressionCodec")
-    def compression_codec(self) -> Optional[pulumi.Input[_builtins.str]]:
+    def compression_codec(self) -> pulumi.Input[Optional[_builtins.str]]:
         """
         The codec used for compression of your logs. Valid values are zstd, snappy, and gzip. If the specified codec is "gzip", gzip_level will default to 3. To specify a different level, leave compression_codec blank and explicitly set the level using gzip_level. Specifying both compression_codec and gzip_level in the same API request will result in an error.
         """
         return pulumi.get(self, "compression_codec")
 
     @compression_codec.setter
-    def compression_codec(self, value: Optional[pulumi.Input[_builtins.str]]):
+    def compression_codec(self, value: pulumi.Input[Optional[_builtins.str]]):
         pulumi.set(self, "compression_codec", value)
 
     @_builtins.property
     @pulumi.getter
-    def format(self) -> Optional[pulumi.Input[_builtins.str]]:
+    def format(self) -> pulumi.Input[Optional[_builtins.str]]:
         """
         Apache-style string or VCL variables to use for log formatting.
         """
         return pulumi.get(self, "format")
 
     @format.setter
-    def format(self, value: Optional[pulumi.Input[_builtins.str]]):
+    def format(self, value: pulumi.Input[Optional[_builtins.str]]):
         pulumi.set(self, "format", value)
 
     @_builtins.property
     @pulumi.getter(name="formatVersion")
-    def format_version(self) -> Optional[pulumi.Input[_builtins.int]]:
+    def format_version(self) -> pulumi.Input[Optional[_builtins.int]]:
         """
         The version of the custom logging format used for the configured endpoint. Can be either 1 or 2. (default: 2).
         """
         return pulumi.get(self, "format_version")
 
     @format_version.setter
-    def format_version(self, value: Optional[pulumi.Input[_builtins.int]]):
+    def format_version(self, value: pulumi.Input[Optional[_builtins.int]]):
         pulumi.set(self, "format_version", value)
 
     @_builtins.property
     @pulumi.getter(name="gzipLevel")
-    def gzip_level(self) -> Optional[pulumi.Input[_builtins.int]]:
+    def gzip_level(self) -> pulumi.Input[Optional[_builtins.int]]:
         """
         Level of Gzip compression from `0-9`. `0` means no compression. `1` is the fastest and the least compressed version, `9` is the slowest and the most compressed version. Default `0`
         """
         return pulumi.get(self, "gzip_level")
 
     @gzip_level.setter
-    def gzip_level(self, value: Optional[pulumi.Input[_builtins.int]]):
+    def gzip_level(self, value: pulumi.Input[Optional[_builtins.int]]):
         pulumi.set(self, "gzip_level", value)
 
     @_builtins.property
     @pulumi.getter(name="messageType")
-    def message_type(self) -> Optional[pulumi.Input[_builtins.str]]:
+    def message_type(self) -> pulumi.Input[Optional[_builtins.str]]:
         """
         How the message should be formatted. Can be either `classic`, `loggly`, `logplex` or `blank`. Default is `classic`
         """
         return pulumi.get(self, "message_type")
 
     @message_type.setter
-    def message_type(self, value: Optional[pulumi.Input[_builtins.str]]):
+    def message_type(self, value: pulumi.Input[Optional[_builtins.str]]):
         pulumi.set(self, "message_type", value)
 
     @_builtins.property
     @pulumi.getter
-    def password(self) -> Optional[pulumi.Input[_builtins.str]]:
+    def password(self) -> pulumi.Input[Optional[_builtins.str]]:
         """
         The password for the server. If both `password` and `secret_key` are passed, `secret_key` will be preferred
         """
         return pulumi.get(self, "password")
 
     @password.setter
-    def password(self, value: Optional[pulumi.Input[_builtins.str]]):
+    def password(self, value: pulumi.Input[Optional[_builtins.str]]):
         pulumi.set(self, "password", value)
 
     @_builtins.property
     @pulumi.getter
-    def period(self) -> Optional[pulumi.Input[_builtins.int]]:
+    def period(self) -> pulumi.Input[Optional[_builtins.int]]:
         """
         How frequently log files are finalized so they can be available for reading (in seconds, default `3600`)
         """
         return pulumi.get(self, "period")
 
     @period.setter
-    def period(self, value: Optional[pulumi.Input[_builtins.int]]):
+    def period(self, value: pulumi.Input[Optional[_builtins.int]]):
         pulumi.set(self, "period", value)
 
     @_builtins.property
     @pulumi.getter
-    def placement(self) -> Optional[pulumi.Input[_builtins.str]]:
+    def placement(self) -> pulumi.Input[Optional[_builtins.str]]:
         """
         Where in the generated VCL the logging call should be placed.
         """
         return pulumi.get(self, "placement")
 
     @placement.setter
-    def placement(self, value: Optional[pulumi.Input[_builtins.str]]):
+    def placement(self, value: pulumi.Input[Optional[_builtins.str]]):
         pulumi.set(self, "placement", value)
 
     @_builtins.property
     @pulumi.getter
-    def port(self) -> Optional[pulumi.Input[_builtins.int]]:
+    def port(self) -> pulumi.Input[Optional[_builtins.int]]:
         """
         The port the SFTP service listens on. (Default: `22`)
         """
         return pulumi.get(self, "port")
 
     @port.setter
-    def port(self, value: Optional[pulumi.Input[_builtins.int]]):
+    def port(self, value: pulumi.Input[Optional[_builtins.int]]):
         pulumi.set(self, "port", value)
 
     @_builtins.property
     @pulumi.getter(name="processingRegion")
-    def processing_region(self) -> Optional[pulumi.Input[_builtins.str]]:
+    def processing_region(self) -> pulumi.Input[Optional[_builtins.str]]:
         """
         Region where logs will be processed before streaming to BigQuery. Valid values are 'none', 'us' and 'eu'.
         """
         return pulumi.get(self, "processing_region")
 
     @processing_region.setter
-    def processing_region(self, value: Optional[pulumi.Input[_builtins.str]]):
+    def processing_region(self, value: pulumi.Input[Optional[_builtins.str]]):
         pulumi.set(self, "processing_region", value)
 
     @_builtins.property
     @pulumi.getter(name="publicKey")
-    def public_key(self) -> Optional[pulumi.Input[_builtins.str]]:
+    def public_key(self) -> pulumi.Input[Optional[_builtins.str]]:
         """
         A PGP public key that Fastly will use to encrypt your log files before writing them to disk
         """
         return pulumi.get(self, "public_key")
 
     @public_key.setter
-    def public_key(self, value: Optional[pulumi.Input[_builtins.str]]):
+    def public_key(self, value: pulumi.Input[Optional[_builtins.str]]):
         pulumi.set(self, "public_key", value)
 
     @_builtins.property
     @pulumi.getter(name="responseCondition")
-    def response_condition(self) -> Optional[pulumi.Input[_builtins.str]]:
+    def response_condition(self) -> pulumi.Input[Optional[_builtins.str]]:
         """
         The name of the condition to apply.
         """
         return pulumi.get(self, "response_condition")
 
     @response_condition.setter
-    def response_condition(self, value: Optional[pulumi.Input[_builtins.str]]):
+    def response_condition(self, value: pulumi.Input[Optional[_builtins.str]]):
         pulumi.set(self, "response_condition", value)
 
     @_builtins.property
     @pulumi.getter(name="secretKey")
-    def secret_key(self) -> Optional[pulumi.Input[_builtins.str]]:
+    def secret_key(self) -> pulumi.Input[Optional[_builtins.str]]:
         """
         The SSH private key for the server. If both `password` and `secret_key` are passed, `secret_key` will be preferred
         """
         return pulumi.get(self, "secret_key")
 
     @secret_key.setter
-    def secret_key(self, value: Optional[pulumi.Input[_builtins.str]]):
+    def secret_key(self, value: pulumi.Input[Optional[_builtins.str]]):
         pulumi.set(self, "secret_key", value)
 
     @_builtins.property
     @pulumi.getter(name="timestampFormat")
-    def timestamp_format(self) -> Optional[pulumi.Input[_builtins.str]]:
+    def timestamp_format(self) -> pulumi.Input[Optional[_builtins.str]]:
         """
         The `strftime` specified timestamp formatting (default `%Y-%m-%dT%H:%M:%S.000`)
         """
         return pulumi.get(self, "timestamp_format")
 
     @timestamp_format.setter
-    def timestamp_format(self, value: Optional[pulumi.Input[_builtins.str]]):
+    def timestamp_format(self, value: pulumi.Input[Optional[_builtins.str]]):
         pulumi.set(self, "timestamp_format", value)
 
 
@@ -17782,43 +17782,43 @@ class ServiceVclLoggingSplunkArgsDict(TypedDict):
     """
     The Splunk URL to stream logs to
     """
-    format: NotRequired[pulumi.Input[_builtins.str]]
+    format: NotRequired[pulumi.Input[Optional[_builtins.str]]]
     """
     Apache-style string or VCL variables to use for log formatting (default: `%h %l %u %t "%r" %>s %b`)
     """
-    format_version: NotRequired[pulumi.Input[_builtins.int]]
+    format_version: NotRequired[pulumi.Input[Optional[_builtins.int]]]
     """
     The version of the custom logging format used for the configured endpoint. Can be either 1 or 2. (default: 2)
     """
-    placement: NotRequired[pulumi.Input[_builtins.str]]
+    placement: NotRequired[pulumi.Input[Optional[_builtins.str]]]
     """
     Where in the generated VCL the logging call should be placed
     """
-    processing_region: NotRequired[pulumi.Input[_builtins.str]]
+    processing_region: NotRequired[pulumi.Input[Optional[_builtins.str]]]
     """
     Region where logs will be processed before streaming to BigQuery. Valid values are 'none', 'us' and 'eu'.
     """
-    response_condition: NotRequired[pulumi.Input[_builtins.str]]
+    response_condition: NotRequired[pulumi.Input[Optional[_builtins.str]]]
     """
     The name of the condition to apply
     """
-    tls_ca_cert: NotRequired[pulumi.Input[_builtins.str]]
+    tls_ca_cert: NotRequired[pulumi.Input[Optional[_builtins.str]]]
     """
     A secure certificate to authenticate the server with. Must be in PEM format. You can provide this certificate via an environment variable, `FASTLY_SPLUNK_CA_CERT`
     """
-    tls_client_cert: NotRequired[pulumi.Input[_builtins.str]]
+    tls_client_cert: NotRequired[pulumi.Input[Optional[_builtins.str]]]
     """
     The client certificate used to make authenticated requests. Must be in PEM format.
     """
-    tls_client_key: NotRequired[pulumi.Input[_builtins.str]]
+    tls_client_key: NotRequired[pulumi.Input[Optional[_builtins.str]]]
     """
     The client private key used to make authenticated requests. Must be in PEM format.
     """
-    tls_hostname: NotRequired[pulumi.Input[_builtins.str]]
+    tls_hostname: NotRequired[pulumi.Input[Optional[_builtins.str]]]
     """
     The hostname used to verify the server's certificate. It can either be the Common Name or a Subject Alternative Name (SAN)
     """
-    use_tls: NotRequired[pulumi.Input[_builtins.bool]]
+    use_tls: NotRequired[pulumi.Input[Optional[_builtins.bool]]]
     """
     Whether to use TLS for secure logging. Default: `false`
     """
@@ -17829,16 +17829,16 @@ class ServiceVclLoggingSplunkArgs:
                  name: pulumi.Input[_builtins.str],
                  token: pulumi.Input[_builtins.str],
                  url: pulumi.Input[_builtins.str],
-                 format: Optional[pulumi.Input[_builtins.str]] = None,
-                 format_version: Optional[pulumi.Input[_builtins.int]] = None,
-                 placement: Optional[pulumi.Input[_builtins.str]] = None,
-                 processing_region: Optional[pulumi.Input[_builtins.str]] = None,
-                 response_condition: Optional[pulumi.Input[_builtins.str]] = None,
-                 tls_ca_cert: Optional[pulumi.Input[_builtins.str]] = None,
-                 tls_client_cert: Optional[pulumi.Input[_builtins.str]] = None,
-                 tls_client_key: Optional[pulumi.Input[_builtins.str]] = None,
-                 tls_hostname: Optional[pulumi.Input[_builtins.str]] = None,
-                 use_tls: Optional[pulumi.Input[_builtins.bool]] = None):
+                 format: pulumi.Input[Optional[_builtins.str]] = None,
+                 format_version: pulumi.Input[Optional[_builtins.int]] = None,
+                 placement: pulumi.Input[Optional[_builtins.str]] = None,
+                 processing_region: pulumi.Input[Optional[_builtins.str]] = None,
+                 response_condition: pulumi.Input[Optional[_builtins.str]] = None,
+                 tls_ca_cert: pulumi.Input[Optional[_builtins.str]] = None,
+                 tls_client_cert: pulumi.Input[Optional[_builtins.str]] = None,
+                 tls_client_key: pulumi.Input[Optional[_builtins.str]] = None,
+                 tls_hostname: pulumi.Input[Optional[_builtins.str]] = None,
+                 use_tls: pulumi.Input[Optional[_builtins.bool]] = None):
         """
         :param pulumi.Input[_builtins.str] name: A unique name to identify the Splunk endpoint. It is important to note that changing this attribute will delete and recreate the resource
         :param pulumi.Input[_builtins.str] token: The Splunk token to be used for authentication
@@ -17916,122 +17916,122 @@ class ServiceVclLoggingSplunkArgs:
 
     @_builtins.property
     @pulumi.getter
-    def format(self) -> Optional[pulumi.Input[_builtins.str]]:
+    def format(self) -> pulumi.Input[Optional[_builtins.str]]:
         """
         Apache-style string or VCL variables to use for log formatting (default: `%h %l %u %t "%r" %>s %b`)
         """
         return pulumi.get(self, "format")
 
     @format.setter
-    def format(self, value: Optional[pulumi.Input[_builtins.str]]):
+    def format(self, value: pulumi.Input[Optional[_builtins.str]]):
         pulumi.set(self, "format", value)
 
     @_builtins.property
     @pulumi.getter(name="formatVersion")
-    def format_version(self) -> Optional[pulumi.Input[_builtins.int]]:
+    def format_version(self) -> pulumi.Input[Optional[_builtins.int]]:
         """
         The version of the custom logging format used for the configured endpoint. Can be either 1 or 2. (default: 2)
         """
         return pulumi.get(self, "format_version")
 
     @format_version.setter
-    def format_version(self, value: Optional[pulumi.Input[_builtins.int]]):
+    def format_version(self, value: pulumi.Input[Optional[_builtins.int]]):
         pulumi.set(self, "format_version", value)
 
     @_builtins.property
     @pulumi.getter
-    def placement(self) -> Optional[pulumi.Input[_builtins.str]]:
+    def placement(self) -> pulumi.Input[Optional[_builtins.str]]:
         """
         Where in the generated VCL the logging call should be placed
         """
         return pulumi.get(self, "placement")
 
     @placement.setter
-    def placement(self, value: Optional[pulumi.Input[_builtins.str]]):
+    def placement(self, value: pulumi.Input[Optional[_builtins.str]]):
         pulumi.set(self, "placement", value)
 
     @_builtins.property
     @pulumi.getter(name="processingRegion")
-    def processing_region(self) -> Optional[pulumi.Input[_builtins.str]]:
+    def processing_region(self) -> pulumi.Input[Optional[_builtins.str]]:
         """
         Region where logs will be processed before streaming to BigQuery. Valid values are 'none', 'us' and 'eu'.
         """
         return pulumi.get(self, "processing_region")
 
     @processing_region.setter
-    def processing_region(self, value: Optional[pulumi.Input[_builtins.str]]):
+    def processing_region(self, value: pulumi.Input[Optional[_builtins.str]]):
         pulumi.set(self, "processing_region", value)
 
     @_builtins.property
     @pulumi.getter(name="responseCondition")
-    def response_condition(self) -> Optional[pulumi.Input[_builtins.str]]:
+    def response_condition(self) -> pulumi.Input[Optional[_builtins.str]]:
         """
         The name of the condition to apply
         """
         return pulumi.get(self, "response_condition")
 
     @response_condition.setter
-    def response_condition(self, value: Optional[pulumi.Input[_builtins.str]]):
+    def response_condition(self, value: pulumi.Input[Optional[_builtins.str]]):
         pulumi.set(self, "response_condition", value)
 
     @_builtins.property
     @pulumi.getter(name="tlsCaCert")
-    def tls_ca_cert(self) -> Optional[pulumi.Input[_builtins.str]]:
+    def tls_ca_cert(self) -> pulumi.Input[Optional[_builtins.str]]:
         """
         A secure certificate to authenticate the server with. Must be in PEM format. You can provide this certificate via an environment variable, `FASTLY_SPLUNK_CA_CERT`
         """
         return pulumi.get(self, "tls_ca_cert")
 
     @tls_ca_cert.setter
-    def tls_ca_cert(self, value: Optional[pulumi.Input[_builtins.str]]):
+    def tls_ca_cert(self, value: pulumi.Input[Optional[_builtins.str]]):
         pulumi.set(self, "tls_ca_cert", value)
 
     @_builtins.property
     @pulumi.getter(name="tlsClientCert")
-    def tls_client_cert(self) -> Optional[pulumi.Input[_builtins.str]]:
+    def tls_client_cert(self) -> pulumi.Input[Optional[_builtins.str]]:
         """
         The client certificate used to make authenticated requests. Must be in PEM format.
         """
         return pulumi.get(self, "tls_client_cert")
 
     @tls_client_cert.setter
-    def tls_client_cert(self, value: Optional[pulumi.Input[_builtins.str]]):
+    def tls_client_cert(self, value: pulumi.Input[Optional[_builtins.str]]):
         pulumi.set(self, "tls_client_cert", value)
 
     @_builtins.property
     @pulumi.getter(name="tlsClientKey")
-    def tls_client_key(self) -> Optional[pulumi.Input[_builtins.str]]:
+    def tls_client_key(self) -> pulumi.Input[Optional[_builtins.str]]:
         """
         The client private key used to make authenticated requests. Must be in PEM format.
         """
         return pulumi.get(self, "tls_client_key")
 
     @tls_client_key.setter
-    def tls_client_key(self, value: Optional[pulumi.Input[_builtins.str]]):
+    def tls_client_key(self, value: pulumi.Input[Optional[_builtins.str]]):
         pulumi.set(self, "tls_client_key", value)
 
     @_builtins.property
     @pulumi.getter(name="tlsHostname")
-    def tls_hostname(self) -> Optional[pulumi.Input[_builtins.str]]:
+    def tls_hostname(self) -> pulumi.Input[Optional[_builtins.str]]:
         """
         The hostname used to verify the server's certificate. It can either be the Common Name or a Subject Alternative Name (SAN)
         """
         return pulumi.get(self, "tls_hostname")
 
     @tls_hostname.setter
-    def tls_hostname(self, value: Optional[pulumi.Input[_builtins.str]]):
+    def tls_hostname(self, value: pulumi.Input[Optional[_builtins.str]]):
         pulumi.set(self, "tls_hostname", value)
 
     @_builtins.property
     @pulumi.getter(name="useTls")
-    def use_tls(self) -> Optional[pulumi.Input[_builtins.bool]]:
+    def use_tls(self) -> pulumi.Input[Optional[_builtins.bool]]:
         """
         Whether to use TLS for secure logging. Default: `false`
         """
         return pulumi.get(self, "use_tls")
 
     @use_tls.setter
-    def use_tls(self, value: Optional[pulumi.Input[_builtins.bool]]):
+    def use_tls(self, value: pulumi.Input[Optional[_builtins.bool]]):
         pulumi.set(self, "use_tls", value)
 
 
@@ -18044,27 +18044,27 @@ class ServiceVclLoggingSumologicArgsDict(TypedDict):
     """
     The URL to Sumologic collector endpoint
     """
-    format: NotRequired[pulumi.Input[_builtins.str]]
+    format: NotRequired[pulumi.Input[Optional[_builtins.str]]]
     """
     Apache-style string or VCL variables to use for log formatting
     """
-    format_version: NotRequired[pulumi.Input[_builtins.int]]
+    format_version: NotRequired[pulumi.Input[Optional[_builtins.int]]]
     """
     The version of the custom logging format used for the configured endpoint. Can be either 1 or 2. (Default: 2)
     """
-    message_type: NotRequired[pulumi.Input[_builtins.str]]
+    message_type: NotRequired[pulumi.Input[Optional[_builtins.str]]]
     """
     How the message should be formatted. Can be either `classic`, `loggly`, `logplex` or `blank`. Default is `classic`
     """
-    placement: NotRequired[pulumi.Input[_builtins.str]]
+    placement: NotRequired[pulumi.Input[Optional[_builtins.str]]]
     """
     Where in the generated VCL the logging call should be placed.
     """
-    processing_region: NotRequired[pulumi.Input[_builtins.str]]
+    processing_region: NotRequired[pulumi.Input[Optional[_builtins.str]]]
     """
     Region where logs will be processed before streaming to BigQuery. Valid values are 'none', 'us' and 'eu'.
     """
-    response_condition: NotRequired[pulumi.Input[_builtins.str]]
+    response_condition: NotRequired[pulumi.Input[Optional[_builtins.str]]]
     """
     Name of blockAttributes condition to apply this logging.
     """
@@ -18074,12 +18074,12 @@ class ServiceVclLoggingSumologicArgs:
     def __init__(__self__, *,
                  name: pulumi.Input[_builtins.str],
                  url: pulumi.Input[_builtins.str],
-                 format: Optional[pulumi.Input[_builtins.str]] = None,
-                 format_version: Optional[pulumi.Input[_builtins.int]] = None,
-                 message_type: Optional[pulumi.Input[_builtins.str]] = None,
-                 placement: Optional[pulumi.Input[_builtins.str]] = None,
-                 processing_region: Optional[pulumi.Input[_builtins.str]] = None,
-                 response_condition: Optional[pulumi.Input[_builtins.str]] = None):
+                 format: pulumi.Input[Optional[_builtins.str]] = None,
+                 format_version: pulumi.Input[Optional[_builtins.int]] = None,
+                 message_type: pulumi.Input[Optional[_builtins.str]] = None,
+                 placement: pulumi.Input[Optional[_builtins.str]] = None,
+                 processing_region: pulumi.Input[Optional[_builtins.str]] = None,
+                 response_condition: pulumi.Input[Optional[_builtins.str]] = None):
         """
         :param pulumi.Input[_builtins.str] name: A unique name to identify this Sumologic endpoint. It is important to note that changing this attribute will delete and recreate the resource
         :param pulumi.Input[_builtins.str] url: The URL to Sumologic collector endpoint
@@ -18131,74 +18131,74 @@ class ServiceVclLoggingSumologicArgs:
 
     @_builtins.property
     @pulumi.getter
-    def format(self) -> Optional[pulumi.Input[_builtins.str]]:
+    def format(self) -> pulumi.Input[Optional[_builtins.str]]:
         """
         Apache-style string or VCL variables to use for log formatting
         """
         return pulumi.get(self, "format")
 
     @format.setter
-    def format(self, value: Optional[pulumi.Input[_builtins.str]]):
+    def format(self, value: pulumi.Input[Optional[_builtins.str]]):
         pulumi.set(self, "format", value)
 
     @_builtins.property
     @pulumi.getter(name="formatVersion")
-    def format_version(self) -> Optional[pulumi.Input[_builtins.int]]:
+    def format_version(self) -> pulumi.Input[Optional[_builtins.int]]:
         """
         The version of the custom logging format used for the configured endpoint. Can be either 1 or 2. (Default: 2)
         """
         return pulumi.get(self, "format_version")
 
     @format_version.setter
-    def format_version(self, value: Optional[pulumi.Input[_builtins.int]]):
+    def format_version(self, value: pulumi.Input[Optional[_builtins.int]]):
         pulumi.set(self, "format_version", value)
 
     @_builtins.property
     @pulumi.getter(name="messageType")
-    def message_type(self) -> Optional[pulumi.Input[_builtins.str]]:
+    def message_type(self) -> pulumi.Input[Optional[_builtins.str]]:
         """
         How the message should be formatted. Can be either `classic`, `loggly`, `logplex` or `blank`. Default is `classic`
         """
         return pulumi.get(self, "message_type")
 
     @message_type.setter
-    def message_type(self, value: Optional[pulumi.Input[_builtins.str]]):
+    def message_type(self, value: pulumi.Input[Optional[_builtins.str]]):
         pulumi.set(self, "message_type", value)
 
     @_builtins.property
     @pulumi.getter
-    def placement(self) -> Optional[pulumi.Input[_builtins.str]]:
+    def placement(self) -> pulumi.Input[Optional[_builtins.str]]:
         """
         Where in the generated VCL the logging call should be placed.
         """
         return pulumi.get(self, "placement")
 
     @placement.setter
-    def placement(self, value: Optional[pulumi.Input[_builtins.str]]):
+    def placement(self, value: pulumi.Input[Optional[_builtins.str]]):
         pulumi.set(self, "placement", value)
 
     @_builtins.property
     @pulumi.getter(name="processingRegion")
-    def processing_region(self) -> Optional[pulumi.Input[_builtins.str]]:
+    def processing_region(self) -> pulumi.Input[Optional[_builtins.str]]:
         """
         Region where logs will be processed before streaming to BigQuery. Valid values are 'none', 'us' and 'eu'.
         """
         return pulumi.get(self, "processing_region")
 
     @processing_region.setter
-    def processing_region(self, value: Optional[pulumi.Input[_builtins.str]]):
+    def processing_region(self, value: pulumi.Input[Optional[_builtins.str]]):
         pulumi.set(self, "processing_region", value)
 
     @_builtins.property
     @pulumi.getter(name="responseCondition")
-    def response_condition(self) -> Optional[pulumi.Input[_builtins.str]]:
+    def response_condition(self) -> pulumi.Input[Optional[_builtins.str]]:
         """
         Name of blockAttributes condition to apply this logging.
         """
         return pulumi.get(self, "response_condition")
 
     @response_condition.setter
-    def response_condition(self, value: Optional[pulumi.Input[_builtins.str]]):
+    def response_condition(self, value: pulumi.Input[Optional[_builtins.str]]):
         pulumi.set(self, "response_condition", value)
 
 
@@ -18211,55 +18211,55 @@ class ServiceVclLoggingSyslogArgsDict(TypedDict):
     """
     A unique name to identify this Syslog endpoint. It is important to note that changing this attribute will delete and recreate the resource
     """
-    format: NotRequired[pulumi.Input[_builtins.str]]
+    format: NotRequired[pulumi.Input[Optional[_builtins.str]]]
     """
     Apache-style string or VCL variables to use for log formatting
     """
-    format_version: NotRequired[pulumi.Input[_builtins.int]]
+    format_version: NotRequired[pulumi.Input[Optional[_builtins.int]]]
     """
     The version of the custom logging format. Can be either 1 or 2. (Default: 2)
     """
-    message_type: NotRequired[pulumi.Input[_builtins.str]]
+    message_type: NotRequired[pulumi.Input[Optional[_builtins.str]]]
     """
     How the message should be formatted. Can be either `classic`, `loggly`, `logplex` or `blank`. Default is `classic`
     """
-    placement: NotRequired[pulumi.Input[_builtins.str]]
+    placement: NotRequired[pulumi.Input[Optional[_builtins.str]]]
     """
     Where in the generated VCL the logging call should be placed.
     """
-    port: NotRequired[pulumi.Input[_builtins.int]]
+    port: NotRequired[pulumi.Input[Optional[_builtins.int]]]
     """
     The port associated with the address where the Syslog endpoint can be accessed. Default `514`
     """
-    processing_region: NotRequired[pulumi.Input[_builtins.str]]
+    processing_region: NotRequired[pulumi.Input[Optional[_builtins.str]]]
     """
     Region where logs will be processed before streaming to BigQuery. Valid values are 'none', 'us' and 'eu'.
     """
-    response_condition: NotRequired[pulumi.Input[_builtins.str]]
+    response_condition: NotRequired[pulumi.Input[Optional[_builtins.str]]]
     """
     Name of blockAttributes condition to apply this logging.
     """
-    tls_ca_cert: NotRequired[pulumi.Input[_builtins.str]]
+    tls_ca_cert: NotRequired[pulumi.Input[Optional[_builtins.str]]]
     """
     A secure certificate to authenticate the server with. Must be in PEM format. You can provide this certificate via an environment variable, `FASTLY_SYSLOG_CA_CERT`
     """
-    tls_client_cert: NotRequired[pulumi.Input[_builtins.str]]
+    tls_client_cert: NotRequired[pulumi.Input[Optional[_builtins.str]]]
     """
     The client certificate used to make authenticated requests. Must be in PEM format. You can provide this certificate via an environment variable, `FASTLY_SYSLOG_CLIENT_CERT`
     """
-    tls_client_key: NotRequired[pulumi.Input[_builtins.str]]
+    tls_client_key: NotRequired[pulumi.Input[Optional[_builtins.str]]]
     """
     The client private key used to make authenticated requests. Must be in PEM format. You can provide this key via an environment variable, `FASTLY_SYSLOG_CLIENT_KEY`
     """
-    tls_hostname: NotRequired[pulumi.Input[_builtins.str]]
+    tls_hostname: NotRequired[pulumi.Input[Optional[_builtins.str]]]
     """
     Used during the TLS handshake to validate the certificate
     """
-    token: NotRequired[pulumi.Input[_builtins.str]]
+    token: NotRequired[pulumi.Input[Optional[_builtins.str]]]
     """
     Whether to prepend each message with a specific token
     """
-    use_tls: NotRequired[pulumi.Input[_builtins.bool]]
+    use_tls: NotRequired[pulumi.Input[Optional[_builtins.bool]]]
     """
     Whether to use TLS for secure logging. Default `false`
     """
@@ -18269,19 +18269,19 @@ class ServiceVclLoggingSyslogArgs:
     def __init__(__self__, *,
                  address: pulumi.Input[_builtins.str],
                  name: pulumi.Input[_builtins.str],
-                 format: Optional[pulumi.Input[_builtins.str]] = None,
-                 format_version: Optional[pulumi.Input[_builtins.int]] = None,
-                 message_type: Optional[pulumi.Input[_builtins.str]] = None,
-                 placement: Optional[pulumi.Input[_builtins.str]] = None,
-                 port: Optional[pulumi.Input[_builtins.int]] = None,
-                 processing_region: Optional[pulumi.Input[_builtins.str]] = None,
-                 response_condition: Optional[pulumi.Input[_builtins.str]] = None,
-                 tls_ca_cert: Optional[pulumi.Input[_builtins.str]] = None,
-                 tls_client_cert: Optional[pulumi.Input[_builtins.str]] = None,
-                 tls_client_key: Optional[pulumi.Input[_builtins.str]] = None,
-                 tls_hostname: Optional[pulumi.Input[_builtins.str]] = None,
-                 token: Optional[pulumi.Input[_builtins.str]] = None,
-                 use_tls: Optional[pulumi.Input[_builtins.bool]] = None):
+                 format: pulumi.Input[Optional[_builtins.str]] = None,
+                 format_version: pulumi.Input[Optional[_builtins.int]] = None,
+                 message_type: pulumi.Input[Optional[_builtins.str]] = None,
+                 placement: pulumi.Input[Optional[_builtins.str]] = None,
+                 port: pulumi.Input[Optional[_builtins.int]] = None,
+                 processing_region: pulumi.Input[Optional[_builtins.str]] = None,
+                 response_condition: pulumi.Input[Optional[_builtins.str]] = None,
+                 tls_ca_cert: pulumi.Input[Optional[_builtins.str]] = None,
+                 tls_client_cert: pulumi.Input[Optional[_builtins.str]] = None,
+                 tls_client_key: pulumi.Input[Optional[_builtins.str]] = None,
+                 tls_hostname: pulumi.Input[Optional[_builtins.str]] = None,
+                 token: pulumi.Input[Optional[_builtins.str]] = None,
+                 use_tls: pulumi.Input[Optional[_builtins.bool]] = None):
         """
         :param pulumi.Input[_builtins.str] address: A hostname or IPv4 address of the Syslog endpoint
         :param pulumi.Input[_builtins.str] name: A unique name to identify this Syslog endpoint. It is important to note that changing this attribute will delete and recreate the resource
@@ -18354,203 +18354,203 @@ class ServiceVclLoggingSyslogArgs:
 
     @_builtins.property
     @pulumi.getter
-    def format(self) -> Optional[pulumi.Input[_builtins.str]]:
+    def format(self) -> pulumi.Input[Optional[_builtins.str]]:
         """
         Apache-style string or VCL variables to use for log formatting
         """
         return pulumi.get(self, "format")
 
     @format.setter
-    def format(self, value: Optional[pulumi.Input[_builtins.str]]):
+    def format(self, value: pulumi.Input[Optional[_builtins.str]]):
         pulumi.set(self, "format", value)
 
     @_builtins.property
     @pulumi.getter(name="formatVersion")
-    def format_version(self) -> Optional[pulumi.Input[_builtins.int]]:
+    def format_version(self) -> pulumi.Input[Optional[_builtins.int]]:
         """
         The version of the custom logging format. Can be either 1 or 2. (Default: 2)
         """
         return pulumi.get(self, "format_version")
 
     @format_version.setter
-    def format_version(self, value: Optional[pulumi.Input[_builtins.int]]):
+    def format_version(self, value: pulumi.Input[Optional[_builtins.int]]):
         pulumi.set(self, "format_version", value)
 
     @_builtins.property
     @pulumi.getter(name="messageType")
-    def message_type(self) -> Optional[pulumi.Input[_builtins.str]]:
+    def message_type(self) -> pulumi.Input[Optional[_builtins.str]]:
         """
         How the message should be formatted. Can be either `classic`, `loggly`, `logplex` or `blank`. Default is `classic`
         """
         return pulumi.get(self, "message_type")
 
     @message_type.setter
-    def message_type(self, value: Optional[pulumi.Input[_builtins.str]]):
+    def message_type(self, value: pulumi.Input[Optional[_builtins.str]]):
         pulumi.set(self, "message_type", value)
 
     @_builtins.property
     @pulumi.getter
-    def placement(self) -> Optional[pulumi.Input[_builtins.str]]:
+    def placement(self) -> pulumi.Input[Optional[_builtins.str]]:
         """
         Where in the generated VCL the logging call should be placed.
         """
         return pulumi.get(self, "placement")
 
     @placement.setter
-    def placement(self, value: Optional[pulumi.Input[_builtins.str]]):
+    def placement(self, value: pulumi.Input[Optional[_builtins.str]]):
         pulumi.set(self, "placement", value)
 
     @_builtins.property
     @pulumi.getter
-    def port(self) -> Optional[pulumi.Input[_builtins.int]]:
+    def port(self) -> pulumi.Input[Optional[_builtins.int]]:
         """
         The port associated with the address where the Syslog endpoint can be accessed. Default `514`
         """
         return pulumi.get(self, "port")
 
     @port.setter
-    def port(self, value: Optional[pulumi.Input[_builtins.int]]):
+    def port(self, value: pulumi.Input[Optional[_builtins.int]]):
         pulumi.set(self, "port", value)
 
     @_builtins.property
     @pulumi.getter(name="processingRegion")
-    def processing_region(self) -> Optional[pulumi.Input[_builtins.str]]:
+    def processing_region(self) -> pulumi.Input[Optional[_builtins.str]]:
         """
         Region where logs will be processed before streaming to BigQuery. Valid values are 'none', 'us' and 'eu'.
         """
         return pulumi.get(self, "processing_region")
 
     @processing_region.setter
-    def processing_region(self, value: Optional[pulumi.Input[_builtins.str]]):
+    def processing_region(self, value: pulumi.Input[Optional[_builtins.str]]):
         pulumi.set(self, "processing_region", value)
 
     @_builtins.property
     @pulumi.getter(name="responseCondition")
-    def response_condition(self) -> Optional[pulumi.Input[_builtins.str]]:
+    def response_condition(self) -> pulumi.Input[Optional[_builtins.str]]:
         """
         Name of blockAttributes condition to apply this logging.
         """
         return pulumi.get(self, "response_condition")
 
     @response_condition.setter
-    def response_condition(self, value: Optional[pulumi.Input[_builtins.str]]):
+    def response_condition(self, value: pulumi.Input[Optional[_builtins.str]]):
         pulumi.set(self, "response_condition", value)
 
     @_builtins.property
     @pulumi.getter(name="tlsCaCert")
-    def tls_ca_cert(self) -> Optional[pulumi.Input[_builtins.str]]:
+    def tls_ca_cert(self) -> pulumi.Input[Optional[_builtins.str]]:
         """
         A secure certificate to authenticate the server with. Must be in PEM format. You can provide this certificate via an environment variable, `FASTLY_SYSLOG_CA_CERT`
         """
         return pulumi.get(self, "tls_ca_cert")
 
     @tls_ca_cert.setter
-    def tls_ca_cert(self, value: Optional[pulumi.Input[_builtins.str]]):
+    def tls_ca_cert(self, value: pulumi.Input[Optional[_builtins.str]]):
         pulumi.set(self, "tls_ca_cert", value)
 
     @_builtins.property
     @pulumi.getter(name="tlsClientCert")
-    def tls_client_cert(self) -> Optional[pulumi.Input[_builtins.str]]:
+    def tls_client_cert(self) -> pulumi.Input[Optional[_builtins.str]]:
         """
         The client certificate used to make authenticated requests. Must be in PEM format. You can provide this certificate via an environment variable, `FASTLY_SYSLOG_CLIENT_CERT`
         """
         return pulumi.get(self, "tls_client_cert")
 
     @tls_client_cert.setter
-    def tls_client_cert(self, value: Optional[pulumi.Input[_builtins.str]]):
+    def tls_client_cert(self, value: pulumi.Input[Optional[_builtins.str]]):
         pulumi.set(self, "tls_client_cert", value)
 
     @_builtins.property
     @pulumi.getter(name="tlsClientKey")
-    def tls_client_key(self) -> Optional[pulumi.Input[_builtins.str]]:
+    def tls_client_key(self) -> pulumi.Input[Optional[_builtins.str]]:
         """
         The client private key used to make authenticated requests. Must be in PEM format. You can provide this key via an environment variable, `FASTLY_SYSLOG_CLIENT_KEY`
         """
         return pulumi.get(self, "tls_client_key")
 
     @tls_client_key.setter
-    def tls_client_key(self, value: Optional[pulumi.Input[_builtins.str]]):
+    def tls_client_key(self, value: pulumi.Input[Optional[_builtins.str]]):
         pulumi.set(self, "tls_client_key", value)
 
     @_builtins.property
     @pulumi.getter(name="tlsHostname")
-    def tls_hostname(self) -> Optional[pulumi.Input[_builtins.str]]:
+    def tls_hostname(self) -> pulumi.Input[Optional[_builtins.str]]:
         """
         Used during the TLS handshake to validate the certificate
         """
         return pulumi.get(self, "tls_hostname")
 
     @tls_hostname.setter
-    def tls_hostname(self, value: Optional[pulumi.Input[_builtins.str]]):
+    def tls_hostname(self, value: pulumi.Input[Optional[_builtins.str]]):
         pulumi.set(self, "tls_hostname", value)
 
     @_builtins.property
     @pulumi.getter
-    def token(self) -> Optional[pulumi.Input[_builtins.str]]:
+    def token(self) -> pulumi.Input[Optional[_builtins.str]]:
         """
         Whether to prepend each message with a specific token
         """
         return pulumi.get(self, "token")
 
     @token.setter
-    def token(self, value: Optional[pulumi.Input[_builtins.str]]):
+    def token(self, value: pulumi.Input[Optional[_builtins.str]]):
         pulumi.set(self, "token", value)
 
     @_builtins.property
     @pulumi.getter(name="useTls")
-    def use_tls(self) -> Optional[pulumi.Input[_builtins.bool]]:
+    def use_tls(self) -> pulumi.Input[Optional[_builtins.bool]]:
         """
         Whether to use TLS for secure logging. Default `false`
         """
         return pulumi.get(self, "use_tls")
 
     @use_tls.setter
-    def use_tls(self, value: Optional[pulumi.Input[_builtins.bool]]):
+    def use_tls(self, value: pulumi.Input[Optional[_builtins.bool]]):
         pulumi.set(self, "use_tls", value)
 
 
 class ServiceVclProductEnablementArgsDict(TypedDict):
-    api_discovery: NotRequired[pulumi.Input[_builtins.bool]]
+    api_discovery: NotRequired[pulumi.Input[Optional[_builtins.bool]]]
     """
     Enable API Discovery support
     """
-    bot_management: NotRequired[pulumi.Input['ServiceVclProductEnablementBotManagementArgsDict']]
+    bot_management: NotRequired[pulumi.Input[Optional['ServiceVclProductEnablementBotManagementArgs']]]
     """
     Enable Bot Management support
     """
-    brotli_compression: NotRequired[pulumi.Input[_builtins.bool]]
+    brotli_compression: NotRequired[pulumi.Input[Optional[_builtins.bool]]]
     """
     Enable Brotli Compression support
     """
-    ddos_protection: NotRequired[pulumi.Input['ServiceVclProductEnablementDdosProtectionArgsDict']]
+    ddos_protection: NotRequired[pulumi.Input[Optional['ServiceVclProductEnablementDdosProtectionArgs']]]
     """
     DDoS Protection product
     """
-    domain_inspector: NotRequired[pulumi.Input[_builtins.bool]]
+    domain_inspector: NotRequired[pulumi.Input[Optional[_builtins.bool]]]
     """
     Enable Domain Inspector support
     """
-    image_optimizer: NotRequired[pulumi.Input[_builtins.bool]]
+    image_optimizer: NotRequired[pulumi.Input[Optional[_builtins.bool]]]
     """
     Enable Image Optimizer support (all backends must have a `shield` attribute)
     """
-    log_explorer_insights: NotRequired[pulumi.Input[_builtins.bool]]
+    log_explorer_insights: NotRequired[pulumi.Input[Optional[_builtins.bool]]]
     """
     Enable Log Explorer & Insights
     """
-    name: NotRequired[pulumi.Input[_builtins.str]]
+    name: NotRequired[pulumi.Input[Optional[_builtins.str]]]
     """
     Used by the provider to identify modified settings (changing this value will force the entire block to be deleted, then recreated)
     """
-    ngwaf: NotRequired[pulumi.Input['ServiceVclProductEnablementNgwafArgsDict']]
+    ngwaf: NotRequired[pulumi.Input[Optional['ServiceVclProductEnablementNgwafArgs']]]
     """
     Next-Gen WAF product
     """
-    origin_inspector: NotRequired[pulumi.Input[_builtins.bool]]
+    origin_inspector: NotRequired[pulumi.Input[Optional[_builtins.bool]]]
     """
     Enable Origin Inspector support
     """
-    websockets: NotRequired[pulumi.Input[_builtins.bool]]
+    websockets: NotRequired[pulumi.Input[Optional[_builtins.bool]]]
     """
     Enable WebSockets support
     """
@@ -18558,17 +18558,17 @@ class ServiceVclProductEnablementArgsDict(TypedDict):
 @pulumi.input_type
 class ServiceVclProductEnablementArgs:
     def __init__(__self__, *,
-                 api_discovery: Optional[pulumi.Input[_builtins.bool]] = None,
-                 bot_management: Optional[pulumi.Input['ServiceVclProductEnablementBotManagementArgs']] = None,
-                 brotli_compression: Optional[pulumi.Input[_builtins.bool]] = None,
-                 ddos_protection: Optional[pulumi.Input['ServiceVclProductEnablementDdosProtectionArgs']] = None,
-                 domain_inspector: Optional[pulumi.Input[_builtins.bool]] = None,
-                 image_optimizer: Optional[pulumi.Input[_builtins.bool]] = None,
-                 log_explorer_insights: Optional[pulumi.Input[_builtins.bool]] = None,
-                 name: Optional[pulumi.Input[_builtins.str]] = None,
-                 ngwaf: Optional[pulumi.Input['ServiceVclProductEnablementNgwafArgs']] = None,
-                 origin_inspector: Optional[pulumi.Input[_builtins.bool]] = None,
-                 websockets: Optional[pulumi.Input[_builtins.bool]] = None):
+                 api_discovery: pulumi.Input[Optional[_builtins.bool]] = None,
+                 bot_management: pulumi.Input[Optional['ServiceVclProductEnablementBotManagementArgs']] = None,
+                 brotli_compression: pulumi.Input[Optional[_builtins.bool]] = None,
+                 ddos_protection: pulumi.Input[Optional['ServiceVclProductEnablementDdosProtectionArgs']] = None,
+                 domain_inspector: pulumi.Input[Optional[_builtins.bool]] = None,
+                 image_optimizer: pulumi.Input[Optional[_builtins.bool]] = None,
+                 log_explorer_insights: pulumi.Input[Optional[_builtins.bool]] = None,
+                 name: pulumi.Input[Optional[_builtins.str]] = None,
+                 ngwaf: pulumi.Input[Optional['ServiceVclProductEnablementNgwafArgs']] = None,
+                 origin_inspector: pulumi.Input[Optional[_builtins.bool]] = None,
+                 websockets: pulumi.Input[Optional[_builtins.bool]] = None):
         """
         :param pulumi.Input[_builtins.bool] api_discovery: Enable API Discovery support
         :param pulumi.Input['ServiceVclProductEnablementBotManagementArgs'] bot_management: Enable Bot Management support
@@ -18607,134 +18607,134 @@ class ServiceVclProductEnablementArgs:
 
     @_builtins.property
     @pulumi.getter(name="apiDiscovery")
-    def api_discovery(self) -> Optional[pulumi.Input[_builtins.bool]]:
+    def api_discovery(self) -> pulumi.Input[Optional[_builtins.bool]]:
         """
         Enable API Discovery support
         """
         return pulumi.get(self, "api_discovery")
 
     @api_discovery.setter
-    def api_discovery(self, value: Optional[pulumi.Input[_builtins.bool]]):
+    def api_discovery(self, value: pulumi.Input[Optional[_builtins.bool]]):
         pulumi.set(self, "api_discovery", value)
 
     @_builtins.property
     @pulumi.getter(name="botManagement")
-    def bot_management(self) -> Optional[pulumi.Input['ServiceVclProductEnablementBotManagementArgs']]:
+    def bot_management(self) -> pulumi.Input[Optional['ServiceVclProductEnablementBotManagementArgs']]:
         """
         Enable Bot Management support
         """
         return pulumi.get(self, "bot_management")
 
     @bot_management.setter
-    def bot_management(self, value: Optional[pulumi.Input['ServiceVclProductEnablementBotManagementArgs']]):
+    def bot_management(self, value: pulumi.Input[Optional['ServiceVclProductEnablementBotManagementArgs']]):
         pulumi.set(self, "bot_management", value)
 
     @_builtins.property
     @pulumi.getter(name="brotliCompression")
-    def brotli_compression(self) -> Optional[pulumi.Input[_builtins.bool]]:
+    def brotli_compression(self) -> pulumi.Input[Optional[_builtins.bool]]:
         """
         Enable Brotli Compression support
         """
         return pulumi.get(self, "brotli_compression")
 
     @brotli_compression.setter
-    def brotli_compression(self, value: Optional[pulumi.Input[_builtins.bool]]):
+    def brotli_compression(self, value: pulumi.Input[Optional[_builtins.bool]]):
         pulumi.set(self, "brotli_compression", value)
 
     @_builtins.property
     @pulumi.getter(name="ddosProtection")
-    def ddos_protection(self) -> Optional[pulumi.Input['ServiceVclProductEnablementDdosProtectionArgs']]:
+    def ddos_protection(self) -> pulumi.Input[Optional['ServiceVclProductEnablementDdosProtectionArgs']]:
         """
         DDoS Protection product
         """
         return pulumi.get(self, "ddos_protection")
 
     @ddos_protection.setter
-    def ddos_protection(self, value: Optional[pulumi.Input['ServiceVclProductEnablementDdosProtectionArgs']]):
+    def ddos_protection(self, value: pulumi.Input[Optional['ServiceVclProductEnablementDdosProtectionArgs']]):
         pulumi.set(self, "ddos_protection", value)
 
     @_builtins.property
     @pulumi.getter(name="domainInspector")
-    def domain_inspector(self) -> Optional[pulumi.Input[_builtins.bool]]:
+    def domain_inspector(self) -> pulumi.Input[Optional[_builtins.bool]]:
         """
         Enable Domain Inspector support
         """
         return pulumi.get(self, "domain_inspector")
 
     @domain_inspector.setter
-    def domain_inspector(self, value: Optional[pulumi.Input[_builtins.bool]]):
+    def domain_inspector(self, value: pulumi.Input[Optional[_builtins.bool]]):
         pulumi.set(self, "domain_inspector", value)
 
     @_builtins.property
     @pulumi.getter(name="imageOptimizer")
-    def image_optimizer(self) -> Optional[pulumi.Input[_builtins.bool]]:
+    def image_optimizer(self) -> pulumi.Input[Optional[_builtins.bool]]:
         """
         Enable Image Optimizer support (all backends must have a `shield` attribute)
         """
         return pulumi.get(self, "image_optimizer")
 
     @image_optimizer.setter
-    def image_optimizer(self, value: Optional[pulumi.Input[_builtins.bool]]):
+    def image_optimizer(self, value: pulumi.Input[Optional[_builtins.bool]]):
         pulumi.set(self, "image_optimizer", value)
 
     @_builtins.property
     @pulumi.getter(name="logExplorerInsights")
-    def log_explorer_insights(self) -> Optional[pulumi.Input[_builtins.bool]]:
+    def log_explorer_insights(self) -> pulumi.Input[Optional[_builtins.bool]]:
         """
         Enable Log Explorer & Insights
         """
         return pulumi.get(self, "log_explorer_insights")
 
     @log_explorer_insights.setter
-    def log_explorer_insights(self, value: Optional[pulumi.Input[_builtins.bool]]):
+    def log_explorer_insights(self, value: pulumi.Input[Optional[_builtins.bool]]):
         pulumi.set(self, "log_explorer_insights", value)
 
     @_builtins.property
     @pulumi.getter
-    def name(self) -> Optional[pulumi.Input[_builtins.str]]:
+    def name(self) -> pulumi.Input[Optional[_builtins.str]]:
         """
         Used by the provider to identify modified settings (changing this value will force the entire block to be deleted, then recreated)
         """
         return pulumi.get(self, "name")
 
     @name.setter
-    def name(self, value: Optional[pulumi.Input[_builtins.str]]):
+    def name(self, value: pulumi.Input[Optional[_builtins.str]]):
         pulumi.set(self, "name", value)
 
     @_builtins.property
     @pulumi.getter
-    def ngwaf(self) -> Optional[pulumi.Input['ServiceVclProductEnablementNgwafArgs']]:
+    def ngwaf(self) -> pulumi.Input[Optional['ServiceVclProductEnablementNgwafArgs']]:
         """
         Next-Gen WAF product
         """
         return pulumi.get(self, "ngwaf")
 
     @ngwaf.setter
-    def ngwaf(self, value: Optional[pulumi.Input['ServiceVclProductEnablementNgwafArgs']]):
+    def ngwaf(self, value: pulumi.Input[Optional['ServiceVclProductEnablementNgwafArgs']]):
         pulumi.set(self, "ngwaf", value)
 
     @_builtins.property
     @pulumi.getter(name="originInspector")
-    def origin_inspector(self) -> Optional[pulumi.Input[_builtins.bool]]:
+    def origin_inspector(self) -> pulumi.Input[Optional[_builtins.bool]]:
         """
         Enable Origin Inspector support
         """
         return pulumi.get(self, "origin_inspector")
 
     @origin_inspector.setter
-    def origin_inspector(self, value: Optional[pulumi.Input[_builtins.bool]]):
+    def origin_inspector(self, value: pulumi.Input[Optional[_builtins.bool]]):
         pulumi.set(self, "origin_inspector", value)
 
     @_builtins.property
     @pulumi.getter
-    def websockets(self) -> Optional[pulumi.Input[_builtins.bool]]:
+    def websockets(self) -> pulumi.Input[Optional[_builtins.bool]]:
         """
         Enable WebSockets support
         """
         return pulumi.get(self, "websockets")
 
     @websockets.setter
-    def websockets(self, value: Optional[pulumi.Input[_builtins.bool]]):
+    def websockets(self, value: pulumi.Input[Optional[_builtins.bool]]):
         pulumi.set(self, "websockets", value)
 
 
@@ -18841,7 +18841,7 @@ class ServiceVclProductEnablementNgwafArgsDict(TypedDict):
     """
     The workspace to link
     """
-    traffic_ramp: NotRequired[pulumi.Input[_builtins.int]]
+    traffic_ramp: NotRequired[pulumi.Input[Optional[_builtins.int]]]
     """
     The percentage of traffic to inspect
     """
@@ -18851,7 +18851,7 @@ class ServiceVclProductEnablementNgwafArgs:
     def __init__(__self__, *,
                  enabled: pulumi.Input[_builtins.bool],
                  workspace_id: pulumi.Input[_builtins.str],
-                 traffic_ramp: Optional[pulumi.Input[_builtins.int]] = None):
+                 traffic_ramp: pulumi.Input[Optional[_builtins.int]] = None):
         """
         :param pulumi.Input[_builtins.bool] enabled: Enable Next-Gen WAF support
         :param pulumi.Input[_builtins.str] workspace_id: The workspace to link
@@ -18888,14 +18888,14 @@ class ServiceVclProductEnablementNgwafArgs:
 
     @_builtins.property
     @pulumi.getter(name="trafficRamp")
-    def traffic_ramp(self) -> Optional[pulumi.Input[_builtins.int]]:
+    def traffic_ramp(self) -> pulumi.Input[Optional[_builtins.int]]:
         """
         The percentage of traffic to inspect
         """
         return pulumi.get(self, "traffic_ramp")
 
     @traffic_ramp.setter
-    def traffic_ramp(self, value: Optional[pulumi.Input[_builtins.int]]):
+    def traffic_ramp(self, value: pulumi.Input[Optional[_builtins.int]]):
         pulumi.set(self, "traffic_ramp", value)
 
 
@@ -18928,27 +18928,27 @@ class ServiceVclRateLimiterArgsDict(TypedDict):
     """
     Number of seconds during which the RPS limit must be exceeded in order to trigger a violation (one of: 1, 10, 60)
     """
-    feature_revision: NotRequired[pulumi.Input[_builtins.int]]
+    feature_revision: NotRequired[pulumi.Input[Optional[_builtins.int]]]
     """
     Revision number of the rate limiting feature implementation
     """
-    logger_type: NotRequired[pulumi.Input[_builtins.str]]
+    logger_type: NotRequired[pulumi.Input[Optional[_builtins.str]]]
     """
     Name of the type of logging endpoint to be used when action is log_only (one of: azureblob, bigquery, cloudfiles, datadog, digitalocean, elasticsearch, ftp, gcs, googleanalytics, heroku, honeycomb, http, https, kafka, kinesis, logentries, loggly, logshuttle, newrelic, openstack, papertrail, pubsub, s3, scalyr, sftp, splunk, stackdriver, sumologic, syslog)
     """
-    ratelimiter_id: NotRequired[pulumi.Input[_builtins.str]]
+    ratelimiter_id: NotRequired[pulumi.Input[Optional[_builtins.str]]]
     """
     Alphanumeric string identifying the rate limiter
     """
-    response: NotRequired[pulumi.Input['ServiceVclRateLimiterResponseArgsDict']]
+    response: NotRequired[pulumi.Input[Optional['ServiceVclRateLimiterResponseArgs']]]
     """
     Custom response to be sent when the rate limit is exceeded. Required if action is response
     """
-    response_object_name: NotRequired[pulumi.Input[_builtins.str]]
+    response_object_name: NotRequired[pulumi.Input[Optional[_builtins.str]]]
     """
     Name of existing response object. Required if action is response_object
     """
-    uri_dictionary_name: NotRequired[pulumi.Input[_builtins.str]]
+    uri_dictionary_name: NotRequired[pulumi.Input[Optional[_builtins.str]]]
     """
     The name of an Edge Dictionary containing URIs as keys. If not defined or null, all origin URIs will be rate limited
     """
@@ -18963,12 +18963,12 @@ class ServiceVclRateLimiterArgs:
                  penalty_box_duration: pulumi.Input[_builtins.int],
                  rps_limit: pulumi.Input[_builtins.int],
                  window_size: pulumi.Input[_builtins.int],
-                 feature_revision: Optional[pulumi.Input[_builtins.int]] = None,
-                 logger_type: Optional[pulumi.Input[_builtins.str]] = None,
-                 ratelimiter_id: Optional[pulumi.Input[_builtins.str]] = None,
-                 response: Optional[pulumi.Input['ServiceVclRateLimiterResponseArgs']] = None,
-                 response_object_name: Optional[pulumi.Input[_builtins.str]] = None,
-                 uri_dictionary_name: Optional[pulumi.Input[_builtins.str]] = None):
+                 feature_revision: pulumi.Input[Optional[_builtins.int]] = None,
+                 logger_type: pulumi.Input[Optional[_builtins.str]] = None,
+                 ratelimiter_id: pulumi.Input[Optional[_builtins.str]] = None,
+                 response: pulumi.Input[Optional['ServiceVclRateLimiterResponseArgs']] = None,
+                 response_object_name: pulumi.Input[Optional[_builtins.str]] = None,
+                 uri_dictionary_name: pulumi.Input[Optional[_builtins.str]] = None):
         """
         :param pulumi.Input[_builtins.str] action: The action to take when a rate limiter violation is detected (one of: log_only, response, response_object)
         :param pulumi.Input[_builtins.str] client_key: Comma-separated list of VCL variables used to generate a counter key to identify a client
@@ -19090,74 +19090,74 @@ class ServiceVclRateLimiterArgs:
 
     @_builtins.property
     @pulumi.getter(name="featureRevision")
-    def feature_revision(self) -> Optional[pulumi.Input[_builtins.int]]:
+    def feature_revision(self) -> pulumi.Input[Optional[_builtins.int]]:
         """
         Revision number of the rate limiting feature implementation
         """
         return pulumi.get(self, "feature_revision")
 
     @feature_revision.setter
-    def feature_revision(self, value: Optional[pulumi.Input[_builtins.int]]):
+    def feature_revision(self, value: pulumi.Input[Optional[_builtins.int]]):
         pulumi.set(self, "feature_revision", value)
 
     @_builtins.property
     @pulumi.getter(name="loggerType")
-    def logger_type(self) -> Optional[pulumi.Input[_builtins.str]]:
+    def logger_type(self) -> pulumi.Input[Optional[_builtins.str]]:
         """
         Name of the type of logging endpoint to be used when action is log_only (one of: azureblob, bigquery, cloudfiles, datadog, digitalocean, elasticsearch, ftp, gcs, googleanalytics, heroku, honeycomb, http, https, kafka, kinesis, logentries, loggly, logshuttle, newrelic, openstack, papertrail, pubsub, s3, scalyr, sftp, splunk, stackdriver, sumologic, syslog)
         """
         return pulumi.get(self, "logger_type")
 
     @logger_type.setter
-    def logger_type(self, value: Optional[pulumi.Input[_builtins.str]]):
+    def logger_type(self, value: pulumi.Input[Optional[_builtins.str]]):
         pulumi.set(self, "logger_type", value)
 
     @_builtins.property
     @pulumi.getter(name="ratelimiterId")
-    def ratelimiter_id(self) -> Optional[pulumi.Input[_builtins.str]]:
+    def ratelimiter_id(self) -> pulumi.Input[Optional[_builtins.str]]:
         """
         Alphanumeric string identifying the rate limiter
         """
         return pulumi.get(self, "ratelimiter_id")
 
     @ratelimiter_id.setter
-    def ratelimiter_id(self, value: Optional[pulumi.Input[_builtins.str]]):
+    def ratelimiter_id(self, value: pulumi.Input[Optional[_builtins.str]]):
         pulumi.set(self, "ratelimiter_id", value)
 
     @_builtins.property
     @pulumi.getter
-    def response(self) -> Optional[pulumi.Input['ServiceVclRateLimiterResponseArgs']]:
+    def response(self) -> pulumi.Input[Optional['ServiceVclRateLimiterResponseArgs']]:
         """
         Custom response to be sent when the rate limit is exceeded. Required if action is response
         """
         return pulumi.get(self, "response")
 
     @response.setter
-    def response(self, value: Optional[pulumi.Input['ServiceVclRateLimiterResponseArgs']]):
+    def response(self, value: pulumi.Input[Optional['ServiceVclRateLimiterResponseArgs']]):
         pulumi.set(self, "response", value)
 
     @_builtins.property
     @pulumi.getter(name="responseObjectName")
-    def response_object_name(self) -> Optional[pulumi.Input[_builtins.str]]:
+    def response_object_name(self) -> pulumi.Input[Optional[_builtins.str]]:
         """
         Name of existing response object. Required if action is response_object
         """
         return pulumi.get(self, "response_object_name")
 
     @response_object_name.setter
-    def response_object_name(self, value: Optional[pulumi.Input[_builtins.str]]):
+    def response_object_name(self, value: pulumi.Input[Optional[_builtins.str]]):
         pulumi.set(self, "response_object_name", value)
 
     @_builtins.property
     @pulumi.getter(name="uriDictionaryName")
-    def uri_dictionary_name(self) -> Optional[pulumi.Input[_builtins.str]]:
+    def uri_dictionary_name(self) -> pulumi.Input[Optional[_builtins.str]]:
         """
         The name of an Edge Dictionary containing URIs as keys. If not defined or null, all origin URIs will be rate limited
         """
         return pulumi.get(self, "uri_dictionary_name")
 
     @uri_dictionary_name.setter
-    def uri_dictionary_name(self, value: Optional[pulumi.Input[_builtins.str]]):
+    def uri_dictionary_name(self, value: pulumi.Input[Optional[_builtins.str]]):
         pulumi.set(self, "uri_dictionary_name", value)
 
 
@@ -19232,43 +19232,43 @@ class ServiceVclRequestSettingArgsDict(TypedDict):
     """
     Unique name to refer to this Request Setting. It is important to note that changing this attribute will delete and recreate the resource
     """
-    action: NotRequired[pulumi.Input[_builtins.str]]
+    action: NotRequired[pulumi.Input[Optional[_builtins.str]]]
     """
     Allows you to terminate request handling and immediately perform an action. When set it can be `lookup` or `pass` (Ignore the cache completely)
     """
-    bypass_busy_wait: NotRequired[pulumi.Input[_builtins.bool]]
+    bypass_busy_wait: NotRequired[pulumi.Input[Optional[_builtins.bool]]]
     """
     Disable collapsed forwarding, so you don't wait for other objects to origin
     """
-    default_host: NotRequired[pulumi.Input[_builtins.str]]
+    default_host: NotRequired[pulumi.Input[Optional[_builtins.str]]]
     """
     Sets the host header
     """
-    force_miss: NotRequired[pulumi.Input[_builtins.bool]]
+    force_miss: NotRequired[pulumi.Input[Optional[_builtins.bool]]]
     """
     Force a cache miss for the request. If specified, can be `true` or `false`
     """
-    force_ssl: NotRequired[pulumi.Input[_builtins.bool]]
+    force_ssl: NotRequired[pulumi.Input[Optional[_builtins.bool]]]
     """
     Forces the request to use SSL (Redirects a non-SSL request to SSL)
     """
-    hash_keys: NotRequired[pulumi.Input[_builtins.str]]
+    hash_keys: NotRequired[pulumi.Input[Optional[_builtins.str]]]
     """
     Comma separated list of varnish request object fields that should be in the hash key
     """
-    max_stale_age: NotRequired[pulumi.Input[_builtins.int]]
+    max_stale_age: NotRequired[pulumi.Input[Optional[_builtins.int]]]
     """
     How old an object is allowed to be to serve `stale-if-error` or `stale-while-revalidate`, in seconds
     """
-    request_condition: NotRequired[pulumi.Input[_builtins.str]]
+    request_condition: NotRequired[pulumi.Input[Optional[_builtins.str]]]
     """
     Name of already defined `condition` to determine if this request setting should be applied (should be unique across multiple instances of `request_setting`)
     """
-    timer_support: NotRequired[pulumi.Input[_builtins.bool]]
+    timer_support: NotRequired[pulumi.Input[Optional[_builtins.bool]]]
     """
     Injects the X-Timer info into the request for viewing origin fetch durations
     """
-    xff: NotRequired[pulumi.Input[_builtins.str]]
+    xff: NotRequired[pulumi.Input[Optional[_builtins.str]]]
     """
     X-Forwarded-For, should be `clear`, `leave`, `append`, `append_all`, or `overwrite`
     """
@@ -19277,16 +19277,16 @@ class ServiceVclRequestSettingArgsDict(TypedDict):
 class ServiceVclRequestSettingArgs:
     def __init__(__self__, *,
                  name: pulumi.Input[_builtins.str],
-                 action: Optional[pulumi.Input[_builtins.str]] = None,
-                 bypass_busy_wait: Optional[pulumi.Input[_builtins.bool]] = None,
-                 default_host: Optional[pulumi.Input[_builtins.str]] = None,
-                 force_miss: Optional[pulumi.Input[_builtins.bool]] = None,
-                 force_ssl: Optional[pulumi.Input[_builtins.bool]] = None,
-                 hash_keys: Optional[pulumi.Input[_builtins.str]] = None,
-                 max_stale_age: Optional[pulumi.Input[_builtins.int]] = None,
-                 request_condition: Optional[pulumi.Input[_builtins.str]] = None,
-                 timer_support: Optional[pulumi.Input[_builtins.bool]] = None,
-                 xff: Optional[pulumi.Input[_builtins.str]] = None):
+                 action: pulumi.Input[Optional[_builtins.str]] = None,
+                 bypass_busy_wait: pulumi.Input[Optional[_builtins.bool]] = None,
+                 default_host: pulumi.Input[Optional[_builtins.str]] = None,
+                 force_miss: pulumi.Input[Optional[_builtins.bool]] = None,
+                 force_ssl: pulumi.Input[Optional[_builtins.bool]] = None,
+                 hash_keys: pulumi.Input[Optional[_builtins.str]] = None,
+                 max_stale_age: pulumi.Input[Optional[_builtins.int]] = None,
+                 request_condition: pulumi.Input[Optional[_builtins.str]] = None,
+                 timer_support: pulumi.Input[Optional[_builtins.bool]] = None,
+                 xff: pulumi.Input[Optional[_builtins.str]] = None):
         """
         :param pulumi.Input[_builtins.str] name: Unique name to refer to this Request Setting. It is important to note that changing this attribute will delete and recreate the resource
         :param pulumi.Input[_builtins.str] action: Allows you to terminate request handling and immediately perform an action. When set it can be `lookup` or `pass` (Ignore the cache completely)
@@ -19336,122 +19336,122 @@ class ServiceVclRequestSettingArgs:
 
     @_builtins.property
     @pulumi.getter
-    def action(self) -> Optional[pulumi.Input[_builtins.str]]:
+    def action(self) -> pulumi.Input[Optional[_builtins.str]]:
         """
         Allows you to terminate request handling and immediately perform an action. When set it can be `lookup` or `pass` (Ignore the cache completely)
         """
         return pulumi.get(self, "action")
 
     @action.setter
-    def action(self, value: Optional[pulumi.Input[_builtins.str]]):
+    def action(self, value: pulumi.Input[Optional[_builtins.str]]):
         pulumi.set(self, "action", value)
 
     @_builtins.property
     @pulumi.getter(name="bypassBusyWait")
-    def bypass_busy_wait(self) -> Optional[pulumi.Input[_builtins.bool]]:
+    def bypass_busy_wait(self) -> pulumi.Input[Optional[_builtins.bool]]:
         """
         Disable collapsed forwarding, so you don't wait for other objects to origin
         """
         return pulumi.get(self, "bypass_busy_wait")
 
     @bypass_busy_wait.setter
-    def bypass_busy_wait(self, value: Optional[pulumi.Input[_builtins.bool]]):
+    def bypass_busy_wait(self, value: pulumi.Input[Optional[_builtins.bool]]):
         pulumi.set(self, "bypass_busy_wait", value)
 
     @_builtins.property
     @pulumi.getter(name="defaultHost")
-    def default_host(self) -> Optional[pulumi.Input[_builtins.str]]:
+    def default_host(self) -> pulumi.Input[Optional[_builtins.str]]:
         """
         Sets the host header
         """
         return pulumi.get(self, "default_host")
 
     @default_host.setter
-    def default_host(self, value: Optional[pulumi.Input[_builtins.str]]):
+    def default_host(self, value: pulumi.Input[Optional[_builtins.str]]):
         pulumi.set(self, "default_host", value)
 
     @_builtins.property
     @pulumi.getter(name="forceMiss")
-    def force_miss(self) -> Optional[pulumi.Input[_builtins.bool]]:
+    def force_miss(self) -> pulumi.Input[Optional[_builtins.bool]]:
         """
         Force a cache miss for the request. If specified, can be `true` or `false`
         """
         return pulumi.get(self, "force_miss")
 
     @force_miss.setter
-    def force_miss(self, value: Optional[pulumi.Input[_builtins.bool]]):
+    def force_miss(self, value: pulumi.Input[Optional[_builtins.bool]]):
         pulumi.set(self, "force_miss", value)
 
     @_builtins.property
     @pulumi.getter(name="forceSsl")
-    def force_ssl(self) -> Optional[pulumi.Input[_builtins.bool]]:
+    def force_ssl(self) -> pulumi.Input[Optional[_builtins.bool]]:
         """
         Forces the request to use SSL (Redirects a non-SSL request to SSL)
         """
         return pulumi.get(self, "force_ssl")
 
     @force_ssl.setter
-    def force_ssl(self, value: Optional[pulumi.Input[_builtins.bool]]):
+    def force_ssl(self, value: pulumi.Input[Optional[_builtins.bool]]):
         pulumi.set(self, "force_ssl", value)
 
     @_builtins.property
     @pulumi.getter(name="hashKeys")
-    def hash_keys(self) -> Optional[pulumi.Input[_builtins.str]]:
+    def hash_keys(self) -> pulumi.Input[Optional[_builtins.str]]:
         """
         Comma separated list of varnish request object fields that should be in the hash key
         """
         return pulumi.get(self, "hash_keys")
 
     @hash_keys.setter
-    def hash_keys(self, value: Optional[pulumi.Input[_builtins.str]]):
+    def hash_keys(self, value: pulumi.Input[Optional[_builtins.str]]):
         pulumi.set(self, "hash_keys", value)
 
     @_builtins.property
     @pulumi.getter(name="maxStaleAge")
-    def max_stale_age(self) -> Optional[pulumi.Input[_builtins.int]]:
+    def max_stale_age(self) -> pulumi.Input[Optional[_builtins.int]]:
         """
         How old an object is allowed to be to serve `stale-if-error` or `stale-while-revalidate`, in seconds
         """
         return pulumi.get(self, "max_stale_age")
 
     @max_stale_age.setter
-    def max_stale_age(self, value: Optional[pulumi.Input[_builtins.int]]):
+    def max_stale_age(self, value: pulumi.Input[Optional[_builtins.int]]):
         pulumi.set(self, "max_stale_age", value)
 
     @_builtins.property
     @pulumi.getter(name="requestCondition")
-    def request_condition(self) -> Optional[pulumi.Input[_builtins.str]]:
+    def request_condition(self) -> pulumi.Input[Optional[_builtins.str]]:
         """
         Name of already defined `condition` to determine if this request setting should be applied (should be unique across multiple instances of `request_setting`)
         """
         return pulumi.get(self, "request_condition")
 
     @request_condition.setter
-    def request_condition(self, value: Optional[pulumi.Input[_builtins.str]]):
+    def request_condition(self, value: pulumi.Input[Optional[_builtins.str]]):
         pulumi.set(self, "request_condition", value)
 
     @_builtins.property
     @pulumi.getter(name="timerSupport")
-    def timer_support(self) -> Optional[pulumi.Input[_builtins.bool]]:
+    def timer_support(self) -> pulumi.Input[Optional[_builtins.bool]]:
         """
         Injects the X-Timer info into the request for viewing origin fetch durations
         """
         return pulumi.get(self, "timer_support")
 
     @timer_support.setter
-    def timer_support(self, value: Optional[pulumi.Input[_builtins.bool]]):
+    def timer_support(self, value: pulumi.Input[Optional[_builtins.bool]]):
         pulumi.set(self, "timer_support", value)
 
     @_builtins.property
     @pulumi.getter
-    def xff(self) -> Optional[pulumi.Input[_builtins.str]]:
+    def xff(self) -> pulumi.Input[Optional[_builtins.str]]:
         """
         X-Forwarded-For, should be `clear`, `leave`, `append`, `append_all`, or `overwrite`
         """
         return pulumi.get(self, "xff")
 
     @xff.setter
-    def xff(self, value: Optional[pulumi.Input[_builtins.str]]):
+    def xff(self, value: pulumi.Input[Optional[_builtins.str]]):
         pulumi.set(self, "xff", value)
 
 
@@ -19460,27 +19460,27 @@ class ServiceVclResponseObjectArgsDict(TypedDict):
     """
     A unique name to identify this Response Object. It is important to note that changing this attribute will delete and recreate the resource
     """
-    cache_condition: NotRequired[pulumi.Input[_builtins.str]]
+    cache_condition: NotRequired[pulumi.Input[Optional[_builtins.str]]]
     """
     Name of already defined `condition` to check after we have retrieved an object. If the condition passes then deliver this Request Object instead. This `condition` must be of type `CACHE`. For detailed information about Conditionals, see [Fastly's Documentation on Conditionals](https://docs.fastly.com/en/guides/using-conditions)
     """
-    content: NotRequired[pulumi.Input[_builtins.str]]
+    content: NotRequired[pulumi.Input[Optional[_builtins.str]]]
     """
     The content to deliver for the response object
     """
-    content_type: NotRequired[pulumi.Input[_builtins.str]]
+    content_type: NotRequired[pulumi.Input[Optional[_builtins.str]]]
     """
     The MIME type of the content
     """
-    request_condition: NotRequired[pulumi.Input[_builtins.str]]
+    request_condition: NotRequired[pulumi.Input[Optional[_builtins.str]]]
     """
     Name of already defined `condition` to be checked during the request phase. If the condition passes then this object will be delivered. This `condition` must be of type `REQUEST`
     """
-    response: NotRequired[pulumi.Input[_builtins.str]]
+    response: NotRequired[pulumi.Input[Optional[_builtins.str]]]
     """
     The HTTP Response. Default `OK`
     """
-    status: NotRequired[pulumi.Input[_builtins.int]]
+    status: NotRequired[pulumi.Input[Optional[_builtins.int]]]
     """
     The HTTP Status Code. Default `200`
     """
@@ -19489,12 +19489,12 @@ class ServiceVclResponseObjectArgsDict(TypedDict):
 class ServiceVclResponseObjectArgs:
     def __init__(__self__, *,
                  name: pulumi.Input[_builtins.str],
-                 cache_condition: Optional[pulumi.Input[_builtins.str]] = None,
-                 content: Optional[pulumi.Input[_builtins.str]] = None,
-                 content_type: Optional[pulumi.Input[_builtins.str]] = None,
-                 request_condition: Optional[pulumi.Input[_builtins.str]] = None,
-                 response: Optional[pulumi.Input[_builtins.str]] = None,
-                 status: Optional[pulumi.Input[_builtins.int]] = None):
+                 cache_condition: pulumi.Input[Optional[_builtins.str]] = None,
+                 content: pulumi.Input[Optional[_builtins.str]] = None,
+                 content_type: pulumi.Input[Optional[_builtins.str]] = None,
+                 request_condition: pulumi.Input[Optional[_builtins.str]] = None,
+                 response: pulumi.Input[Optional[_builtins.str]] = None,
+                 status: pulumi.Input[Optional[_builtins.int]] = None):
         """
         :param pulumi.Input[_builtins.str] name: A unique name to identify this Response Object. It is important to note that changing this attribute will delete and recreate the resource
         :param pulumi.Input[_builtins.str] cache_condition: Name of already defined `condition` to check after we have retrieved an object. If the condition passes then deliver this Request Object instead. This `condition` must be of type `CACHE`. For detailed information about Conditionals, see [Fastly's Documentation on Conditionals](https://docs.fastly.com/en/guides/using-conditions)
@@ -19532,74 +19532,74 @@ class ServiceVclResponseObjectArgs:
 
     @_builtins.property
     @pulumi.getter(name="cacheCondition")
-    def cache_condition(self) -> Optional[pulumi.Input[_builtins.str]]:
+    def cache_condition(self) -> pulumi.Input[Optional[_builtins.str]]:
         """
         Name of already defined `condition` to check after we have retrieved an object. If the condition passes then deliver this Request Object instead. This `condition` must be of type `CACHE`. For detailed information about Conditionals, see [Fastly's Documentation on Conditionals](https://docs.fastly.com/en/guides/using-conditions)
         """
         return pulumi.get(self, "cache_condition")
 
     @cache_condition.setter
-    def cache_condition(self, value: Optional[pulumi.Input[_builtins.str]]):
+    def cache_condition(self, value: pulumi.Input[Optional[_builtins.str]]):
         pulumi.set(self, "cache_condition", value)
 
     @_builtins.property
     @pulumi.getter
-    def content(self) -> Optional[pulumi.Input[_builtins.str]]:
+    def content(self) -> pulumi.Input[Optional[_builtins.str]]:
         """
         The content to deliver for the response object
         """
         return pulumi.get(self, "content")
 
     @content.setter
-    def content(self, value: Optional[pulumi.Input[_builtins.str]]):
+    def content(self, value: pulumi.Input[Optional[_builtins.str]]):
         pulumi.set(self, "content", value)
 
     @_builtins.property
     @pulumi.getter(name="contentType")
-    def content_type(self) -> Optional[pulumi.Input[_builtins.str]]:
+    def content_type(self) -> pulumi.Input[Optional[_builtins.str]]:
         """
         The MIME type of the content
         """
         return pulumi.get(self, "content_type")
 
     @content_type.setter
-    def content_type(self, value: Optional[pulumi.Input[_builtins.str]]):
+    def content_type(self, value: pulumi.Input[Optional[_builtins.str]]):
         pulumi.set(self, "content_type", value)
 
     @_builtins.property
     @pulumi.getter(name="requestCondition")
-    def request_condition(self) -> Optional[pulumi.Input[_builtins.str]]:
+    def request_condition(self) -> pulumi.Input[Optional[_builtins.str]]:
         """
         Name of already defined `condition` to be checked during the request phase. If the condition passes then this object will be delivered. This `condition` must be of type `REQUEST`
         """
         return pulumi.get(self, "request_condition")
 
     @request_condition.setter
-    def request_condition(self, value: Optional[pulumi.Input[_builtins.str]]):
+    def request_condition(self, value: pulumi.Input[Optional[_builtins.str]]):
         pulumi.set(self, "request_condition", value)
 
     @_builtins.property
     @pulumi.getter
-    def response(self) -> Optional[pulumi.Input[_builtins.str]]:
+    def response(self) -> pulumi.Input[Optional[_builtins.str]]:
         """
         The HTTP Response. Default `OK`
         """
         return pulumi.get(self, "response")
 
     @response.setter
-    def response(self, value: Optional[pulumi.Input[_builtins.str]]):
+    def response(self, value: pulumi.Input[Optional[_builtins.str]]):
         pulumi.set(self, "response", value)
 
     @_builtins.property
     @pulumi.getter
-    def status(self) -> Optional[pulumi.Input[_builtins.int]]:
+    def status(self) -> pulumi.Input[Optional[_builtins.int]]:
         """
         The HTTP Status Code. Default `200`
         """
         return pulumi.get(self, "status")
 
     @status.setter
-    def status(self, value: Optional[pulumi.Input[_builtins.int]]):
+    def status(self, value: pulumi.Input[Optional[_builtins.int]]):
         pulumi.set(self, "status", value)
 
 
@@ -19616,7 +19616,7 @@ class ServiceVclSnippetArgsDict(TypedDict):
     """
     The location in generated VCL where the snippet should be placed (can be one of `init`, `recv`, `hash`, `hit`, `miss`, `pass`, `fetch`, `error`, `deliver`, `log` or `none`)
     """
-    priority: NotRequired[pulumi.Input[_builtins.int]]
+    priority: NotRequired[pulumi.Input[Optional[_builtins.int]]]
     """
     Priority determines the ordering for multiple snippets. Lower numbers execute first. Defaults to `100`
     """
@@ -19627,7 +19627,7 @@ class ServiceVclSnippetArgs:
                  content: pulumi.Input[_builtins.str],
                  name: pulumi.Input[_builtins.str],
                  type: pulumi.Input[_builtins.str],
-                 priority: Optional[pulumi.Input[_builtins.int]] = None):
+                 priority: pulumi.Input[Optional[_builtins.int]] = None):
         """
         :param pulumi.Input[_builtins.str] content: The VCL code that specifies exactly what the snippet does
         :param pulumi.Input[_builtins.str] name: A name that is unique across "regular" and "dynamic" VCL Snippet configuration blocks. It is important to note that changing this attribute will delete and recreate the resource
@@ -19678,14 +19678,14 @@ class ServiceVclSnippetArgs:
 
     @_builtins.property
     @pulumi.getter
-    def priority(self) -> Optional[pulumi.Input[_builtins.int]]:
+    def priority(self) -> pulumi.Input[Optional[_builtins.int]]:
         """
         Priority determines the ordering for multiple snippets. Lower numbers execute first. Defaults to `100`
         """
         return pulumi.get(self, "priority")
 
     @priority.setter
-    def priority(self, value: Optional[pulumi.Input[_builtins.int]]):
+    def priority(self, value: pulumi.Input[Optional[_builtins.int]]):
         pulumi.set(self, "priority", value)
 
 
@@ -19698,7 +19698,7 @@ class ServiceVclVclArgsDict(TypedDict):
     """
     A unique name for this configuration block. It is important to note that changing this attribute will delete and recreate the resource
     """
-    main: NotRequired[pulumi.Input[_builtins.bool]]
+    main: NotRequired[pulumi.Input[Optional[_builtins.bool]]]
     """
     If `true`, use this block as the main configuration. If `false`, use this block as an includable library. Only a single VCL block can be marked as the main block. Default is `false`
     """
@@ -19708,7 +19708,7 @@ class ServiceVclVclArgs:
     def __init__(__self__, *,
                  content: pulumi.Input[_builtins.str],
                  name: pulumi.Input[_builtins.str],
-                 main: Optional[pulumi.Input[_builtins.bool]] = None):
+                 main: pulumi.Input[Optional[_builtins.bool]] = None):
         """
         :param pulumi.Input[_builtins.str] content: The custom VCL code to upload
         :param pulumi.Input[_builtins.str] name: A unique name for this configuration block. It is important to note that changing this attribute will delete and recreate the resource
@@ -19745,27 +19745,27 @@ class ServiceVclVclArgs:
 
     @_builtins.property
     @pulumi.getter
-    def main(self) -> Optional[pulumi.Input[_builtins.bool]]:
+    def main(self) -> pulumi.Input[Optional[_builtins.bool]]:
         """
         If `true`, use this block as the main configuration. If `false`, use this block as an includable library. Only a single VCL block can be marked as the main block. Default is `false`
         """
         return pulumi.get(self, "main")
 
     @main.setter
-    def main(self, value: Optional[pulumi.Input[_builtins.bool]]):
+    def main(self, value: pulumi.Input[Optional[_builtins.bool]]):
         pulumi.set(self, "main", value)
 
 
 class TlsSubscriptionManagedDnsChallengeArgsDict(TypedDict):
-    record_name: NotRequired[pulumi.Input[_builtins.str]]
+    record_name: NotRequired[pulumi.Input[Optional[_builtins.str]]]
     """
     The name of the DNS record to add. For example `_acme-challenge.example.com`.
     """
-    record_type: NotRequired[pulumi.Input[_builtins.str]]
+    record_type: NotRequired[pulumi.Input[Optional[_builtins.str]]]
     """
     The type of DNS record to add, e.g. `A`, or `CNAME`.
     """
-    record_value: NotRequired[pulumi.Input[_builtins.str]]
+    record_value: NotRequired[pulumi.Input[Optional[_builtins.str]]]
     """
     The value to which the DNS record should point, e.g. `xxxxx.fastly-validations.com`.
     """
@@ -19773,9 +19773,9 @@ class TlsSubscriptionManagedDnsChallengeArgsDict(TypedDict):
 @pulumi.input_type
 class TlsSubscriptionManagedDnsChallengeArgs:
     def __init__(__self__, *,
-                 record_name: Optional[pulumi.Input[_builtins.str]] = None,
-                 record_type: Optional[pulumi.Input[_builtins.str]] = None,
-                 record_value: Optional[pulumi.Input[_builtins.str]] = None):
+                 record_name: pulumi.Input[Optional[_builtins.str]] = None,
+                 record_type: pulumi.Input[Optional[_builtins.str]] = None,
+                 record_value: pulumi.Input[Optional[_builtins.str]] = None):
         """
         :param pulumi.Input[_builtins.str] record_name: The name of the DNS record to add. For example `_acme-challenge.example.com`.
         :param pulumi.Input[_builtins.str] record_type: The type of DNS record to add, e.g. `A`, or `CNAME`.
@@ -19790,51 +19790,51 @@ class TlsSubscriptionManagedDnsChallengeArgs:
 
     @_builtins.property
     @pulumi.getter(name="recordName")
-    def record_name(self) -> Optional[pulumi.Input[_builtins.str]]:
+    def record_name(self) -> pulumi.Input[Optional[_builtins.str]]:
         """
         The name of the DNS record to add. For example `_acme-challenge.example.com`.
         """
         return pulumi.get(self, "record_name")
 
     @record_name.setter
-    def record_name(self, value: Optional[pulumi.Input[_builtins.str]]):
+    def record_name(self, value: pulumi.Input[Optional[_builtins.str]]):
         pulumi.set(self, "record_name", value)
 
     @_builtins.property
     @pulumi.getter(name="recordType")
-    def record_type(self) -> Optional[pulumi.Input[_builtins.str]]:
+    def record_type(self) -> pulumi.Input[Optional[_builtins.str]]:
         """
         The type of DNS record to add, e.g. `A`, or `CNAME`.
         """
         return pulumi.get(self, "record_type")
 
     @record_type.setter
-    def record_type(self, value: Optional[pulumi.Input[_builtins.str]]):
+    def record_type(self, value: pulumi.Input[Optional[_builtins.str]]):
         pulumi.set(self, "record_type", value)
 
     @_builtins.property
     @pulumi.getter(name="recordValue")
-    def record_value(self) -> Optional[pulumi.Input[_builtins.str]]:
+    def record_value(self) -> pulumi.Input[Optional[_builtins.str]]:
         """
         The value to which the DNS record should point, e.g. `xxxxx.fastly-validations.com`.
         """
         return pulumi.get(self, "record_value")
 
     @record_value.setter
-    def record_value(self, value: Optional[pulumi.Input[_builtins.str]]):
+    def record_value(self, value: pulumi.Input[Optional[_builtins.str]]):
         pulumi.set(self, "record_value", value)
 
 
 class TlsSubscriptionManagedHttpChallengeArgsDict(TypedDict):
-    record_name: NotRequired[pulumi.Input[_builtins.str]]
+    record_name: NotRequired[pulumi.Input[Optional[_builtins.str]]]
     """
     The name of the DNS record to add. For example `example.com`. Best accessed through a `for` expression to filter the relevant record.
     """
-    record_type: NotRequired[pulumi.Input[_builtins.str]]
+    record_type: NotRequired[pulumi.Input[Optional[_builtins.str]]]
     """
     The type of DNS record to add, e.g. `A`, or `CNAME`.
     """
-    record_values: NotRequired[pulumi.Input[Sequence[pulumi.Input[_builtins.str]]]]
+    record_values: NotRequired[pulumi.Input[Optional[Sequence[pulumi.Input[_builtins.str]]]]]
     """
     A list with the value(s) to which the DNS record should point.
     """
@@ -19842,9 +19842,9 @@ class TlsSubscriptionManagedHttpChallengeArgsDict(TypedDict):
 @pulumi.input_type
 class TlsSubscriptionManagedHttpChallengeArgs:
     def __init__(__self__, *,
-                 record_name: Optional[pulumi.Input[_builtins.str]] = None,
-                 record_type: Optional[pulumi.Input[_builtins.str]] = None,
-                 record_values: Optional[pulumi.Input[Sequence[pulumi.Input[_builtins.str]]]] = None):
+                 record_name: pulumi.Input[Optional[_builtins.str]] = None,
+                 record_type: pulumi.Input[Optional[_builtins.str]] = None,
+                 record_values: pulumi.Input[Optional[Sequence[pulumi.Input[_builtins.str]]]] = None):
         """
         :param pulumi.Input[_builtins.str] record_name: The name of the DNS record to add. For example `example.com`. Best accessed through a `for` expression to filter the relevant record.
         :param pulumi.Input[_builtins.str] record_type: The type of DNS record to add, e.g. `A`, or `CNAME`.
@@ -19859,38 +19859,38 @@ class TlsSubscriptionManagedHttpChallengeArgs:
 
     @_builtins.property
     @pulumi.getter(name="recordName")
-    def record_name(self) -> Optional[pulumi.Input[_builtins.str]]:
+    def record_name(self) -> pulumi.Input[Optional[_builtins.str]]:
         """
         The name of the DNS record to add. For example `example.com`. Best accessed through a `for` expression to filter the relevant record.
         """
         return pulumi.get(self, "record_name")
 
     @record_name.setter
-    def record_name(self, value: Optional[pulumi.Input[_builtins.str]]):
+    def record_name(self, value: pulumi.Input[Optional[_builtins.str]]):
         pulumi.set(self, "record_name", value)
 
     @_builtins.property
     @pulumi.getter(name="recordType")
-    def record_type(self) -> Optional[pulumi.Input[_builtins.str]]:
+    def record_type(self) -> pulumi.Input[Optional[_builtins.str]]:
         """
         The type of DNS record to add, e.g. `A`, or `CNAME`.
         """
         return pulumi.get(self, "record_type")
 
     @record_type.setter
-    def record_type(self, value: Optional[pulumi.Input[_builtins.str]]):
+    def record_type(self, value: pulumi.Input[Optional[_builtins.str]]):
         pulumi.set(self, "record_type", value)
 
     @_builtins.property
     @pulumi.getter(name="recordValues")
-    def record_values(self) -> Optional[pulumi.Input[Sequence[pulumi.Input[_builtins.str]]]]:
+    def record_values(self) -> pulumi.Input[Optional[Sequence[pulumi.Input[_builtins.str]]]]:
         """
         A list with the value(s) to which the DNS record should point.
         """
         return pulumi.get(self, "record_values")
 
     @record_values.setter
-    def record_values(self, value: Optional[pulumi.Input[Sequence[pulumi.Input[_builtins.str]]]]):
+    def record_values(self, value: pulumi.Input[Optional[Sequence[pulumi.Input[_builtins.str]]]]):
         pulumi.set(self, "record_values", value)
 
 

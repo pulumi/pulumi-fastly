@@ -160,15 +160,15 @@ export interface GetApiSecurityDiscoveredOperationsOutputArgs {
     /**
      * Filter by one or more fully-qualified domains (exact match).
      */
-    domains?: pulumi.Input<pulumi.Input<string>[]>;
+    domains?: pulumi.Input<pulumi.Input<string>[] | undefined>;
     /**
      * Filter by one or more HTTP methods.
      */
-    methods?: pulumi.Input<pulumi.Input<string>[]>;
+    methods?: pulumi.Input<pulumi.Input<string>[] | undefined>;
     /**
      * Filter by path (exact match).
      */
-    path?: pulumi.Input<string>;
+    path?: pulumi.Input<string | undefined>;
     /**
      * Service ID.
      */
@@ -176,5 +176,5 @@ export interface GetApiSecurityDiscoveredOperationsOutputArgs {
     /**
      * Filter discovered operations by status. Accepted values are `DISCOVERED`, `SAVED`, and `IGNORED`.
      */
-    status?: pulumi.Input<string>;
+    status?: pulumi.Input<string | undefined>;
 }

@@ -22,7 +22,7 @@ class ServiceDynamicSnippetContentArgs:
                  content: pulumi.Input[_builtins.str],
                  service_id: pulumi.Input[_builtins.str],
                  snippet_id: pulumi.Input[_builtins.str],
-                 manage_snippets: Optional[pulumi.Input[_builtins.bool]] = None):
+                 manage_snippets: pulumi.Input[Optional[_builtins.bool]] = None):
         """
         The set of arguments for constructing a ServiceDynamicSnippetContent resource.
 
@@ -75,24 +75,24 @@ class ServiceDynamicSnippetContentArgs:
 
     @_builtins.property
     @pulumi.getter(name="manageSnippets")
-    def manage_snippets(self) -> Optional[pulumi.Input[_builtins.bool]]:
+    def manage_snippets(self) -> pulumi.Input[Optional[_builtins.bool]]:
         """
         Whether to reapply changes if the state of the snippets drifts, i.e. if snippets are managed externally
         """
         return pulumi.get(self, "manage_snippets")
 
     @manage_snippets.setter
-    def manage_snippets(self, value: Optional[pulumi.Input[_builtins.bool]]):
+    def manage_snippets(self, value: pulumi.Input[Optional[_builtins.bool]]):
         pulumi.set(self, "manage_snippets", value)
 
 
 @pulumi.input_type
 class _ServiceDynamicSnippetContentState:
     def __init__(__self__, *,
-                 content: Optional[pulumi.Input[_builtins.str]] = None,
-                 manage_snippets: Optional[pulumi.Input[_builtins.bool]] = None,
-                 service_id: Optional[pulumi.Input[_builtins.str]] = None,
-                 snippet_id: Optional[pulumi.Input[_builtins.str]] = None):
+                 content: pulumi.Input[Optional[_builtins.str]] = None,
+                 manage_snippets: pulumi.Input[Optional[_builtins.bool]] = None,
+                 service_id: pulumi.Input[Optional[_builtins.str]] = None,
+                 snippet_id: pulumi.Input[Optional[_builtins.str]] = None):
         """
         Input properties used for looking up and filtering ServiceDynamicSnippetContent resources.
 
@@ -112,50 +112,50 @@ class _ServiceDynamicSnippetContentState:
 
     @_builtins.property
     @pulumi.getter
-    def content(self) -> Optional[pulumi.Input[_builtins.str]]:
+    def content(self) -> pulumi.Input[Optional[_builtins.str]]:
         """
         The VCL code that specifies exactly what the snippet does
         """
         return pulumi.get(self, "content")
 
     @content.setter
-    def content(self, value: Optional[pulumi.Input[_builtins.str]]):
+    def content(self, value: pulumi.Input[Optional[_builtins.str]]):
         pulumi.set(self, "content", value)
 
     @_builtins.property
     @pulumi.getter(name="manageSnippets")
-    def manage_snippets(self) -> Optional[pulumi.Input[_builtins.bool]]:
+    def manage_snippets(self) -> pulumi.Input[Optional[_builtins.bool]]:
         """
         Whether to reapply changes if the state of the snippets drifts, i.e. if snippets are managed externally
         """
         return pulumi.get(self, "manage_snippets")
 
     @manage_snippets.setter
-    def manage_snippets(self, value: Optional[pulumi.Input[_builtins.bool]]):
+    def manage_snippets(self, value: pulumi.Input[Optional[_builtins.bool]]):
         pulumi.set(self, "manage_snippets", value)
 
     @_builtins.property
     @pulumi.getter(name="serviceId")
-    def service_id(self) -> Optional[pulumi.Input[_builtins.str]]:
+    def service_id(self) -> pulumi.Input[Optional[_builtins.str]]:
         """
         The ID of the service that the dynamic snippet belongs to
         """
         return pulumi.get(self, "service_id")
 
     @service_id.setter
-    def service_id(self, value: Optional[pulumi.Input[_builtins.str]]):
+    def service_id(self, value: pulumi.Input[Optional[_builtins.str]]):
         pulumi.set(self, "service_id", value)
 
     @_builtins.property
     @pulumi.getter(name="snippetId")
-    def snippet_id(self) -> Optional[pulumi.Input[_builtins.str]]:
+    def snippet_id(self) -> pulumi.Input[Optional[_builtins.str]]:
         """
         The ID of the dynamic snippet that the content belong to
         """
         return pulumi.get(self, "snippet_id")
 
     @snippet_id.setter
-    def snippet_id(self, value: Optional[pulumi.Input[_builtins.str]]):
+    def snippet_id(self, value: pulumi.Input[Optional[_builtins.str]]):
         pulumi.set(self, "snippet_id", value)
 
 
@@ -165,10 +165,10 @@ class ServiceDynamicSnippetContent(pulumi.CustomResource):
     def __init__(__self__,
                  resource_name: str,
                  opts: Optional[pulumi.ResourceOptions] = None,
-                 content: Optional[pulumi.Input[_builtins.str]] = None,
-                 manage_snippets: Optional[pulumi.Input[_builtins.bool]] = None,
-                 service_id: Optional[pulumi.Input[_builtins.str]] = None,
-                 snippet_id: Optional[pulumi.Input[_builtins.str]] = None,
+                 content: pulumi.Input[Optional[_builtins.str]] = None,
+                 manage_snippets: pulumi.Input[Optional[_builtins.bool]] = None,
+                 service_id: pulumi.Input[Optional[_builtins.str]] = None,
+                 snippet_id: pulumi.Input[Optional[_builtins.str]] = None,
                  __props__=None):
         """
         Defines content that represents blocks of VCL logic that is inserted into your service.  This resource will populate the content of a dynamic snippet and allow it to be manged without the creation of a new service verison.
@@ -184,6 +184,7 @@ class ServiceDynamicSnippetContent(pulumi.CustomResource):
 
         ```python
         import pulumi
+        from typing import Any
         import pulumi_fastly as fastly
 
         myservice = fastly.ServiceVcl("myservice",
@@ -204,9 +205,9 @@ class ServiceDynamicSnippetContent(pulumi.CustomResource):
             }],
             default_host="http-me.fastly.dev",
             force_destroy=True)
-        my_dyn_content = []
+        my_dyn_content: list[Any] = []
         def create_my_dyn_content(range_body):
-            for range in [{"key": k, "value": v} for [k, v] in (range_body).items()]:
+            for range in [{"key": k, "value": v} for [k, v] in sorted((range_body).items())]:
                 my_dyn_content.append(fastly.ServiceDynamicSnippetContent(f"my_dyn_content-{range['key']}",
                     service_id=myservice.id,
                     snippet_id=range["value"].snippet_id,
@@ -221,6 +222,7 @@ class ServiceDynamicSnippetContent(pulumi.CustomResource):
 
         ```python
         import pulumi
+        from typing import Any
         import pulumi_fastly as fastly
 
         myservice = fastly.ServiceVcl("myservice",
@@ -248,9 +250,9 @@ class ServiceDynamicSnippetContent(pulumi.CustomResource):
             ],
             default_host="http-me.fastly.dev",
             force_destroy=True)
-        my_dyn_content_one = []
+        my_dyn_content_one: list[Any] = []
         def create_my_dyn_content_one(range_body):
-            for range in [{"key": k, "value": v} for [k, v] in (range_body).items()]:
+            for range in [{"key": k, "value": v} for [k, v] in sorted((range_body).items())]:
                 my_dyn_content_one.append(fastly.ServiceDynamicSnippetContent(f"my_dyn_content_one-{range['key']}",
                     service_id=myservice.id,
                     snippet_id=range["value"].snippet_id,
@@ -259,9 +261,9 @@ class ServiceDynamicSnippetContent(pulumi.CustomResource):
         }\"\"\"))
 
         myservice.dynamicsnippets.apply(lambda resolved_outputs: create_my_dyn_content_one({d.name: d for d in resolved_outputs['dynamicsnippets'] if d.name == "My Dynamic Snippet One"}))
-        my_dyn_content_two = []
+        my_dyn_content_two: list[Any] = []
         def create_my_dyn_content_two(range_body):
-            for range in [{"key": k, "value": v} for [k, v] in (range_body).items()]:
+            for range in [{"key": k, "value": v} for [k, v] in sorted((range_body).items())]:
                 my_dyn_content_two.append(fastly.ServiceDynamicSnippetContent(f"my_dyn_content_two-{range['key']}",
                     service_id=myservice.id,
                     snippet_id=range["value"].snippet_id,
@@ -325,11 +327,12 @@ class ServiceDynamicSnippetContent(pulumi.CustomResource):
 
         ```python
         import pulumi
+        from typing import Any
         import pulumi_fastly as fastly
 
         #...
-        my_dyn_content = []
-        for range in [{"key": k, "value": v} for [k, v] in ({d.name: d for d in myservice.dynamicsnippet if d.name == My Dynamic Snippet}).items()]:
+        my_dyn_content: list[Any] = []
+        for range in [{"key": k, "value": v} for [k, v] in sorted(({d.name: d for d in myservice.dynamicsnippet if d.name == My Dynamic Snippet}).items())]:
             my_dyn_content.append(fastly.ServiceDynamicSnippetContent(f"my_dyn_content-{range['key']}",
                 service_id=myservice["id"],
                 snippet_id=range["value"]["snippetId"],
@@ -383,6 +386,7 @@ class ServiceDynamicSnippetContent(pulumi.CustomResource):
 
         ```python
         import pulumi
+        from typing import Any
         import pulumi_fastly as fastly
 
         myservice = fastly.ServiceVcl("myservice",
@@ -403,9 +407,9 @@ class ServiceDynamicSnippetContent(pulumi.CustomResource):
             }],
             default_host="http-me.fastly.dev",
             force_destroy=True)
-        my_dyn_content = []
+        my_dyn_content: list[Any] = []
         def create_my_dyn_content(range_body):
-            for range in [{"key": k, "value": v} for [k, v] in (range_body).items()]:
+            for range in [{"key": k, "value": v} for [k, v] in sorted((range_body).items())]:
                 my_dyn_content.append(fastly.ServiceDynamicSnippetContent(f"my_dyn_content-{range['key']}",
                     service_id=myservice.id,
                     snippet_id=range["value"].snippet_id,
@@ -420,6 +424,7 @@ class ServiceDynamicSnippetContent(pulumi.CustomResource):
 
         ```python
         import pulumi
+        from typing import Any
         import pulumi_fastly as fastly
 
         myservice = fastly.ServiceVcl("myservice",
@@ -447,9 +452,9 @@ class ServiceDynamicSnippetContent(pulumi.CustomResource):
             ],
             default_host="http-me.fastly.dev",
             force_destroy=True)
-        my_dyn_content_one = []
+        my_dyn_content_one: list[Any] = []
         def create_my_dyn_content_one(range_body):
-            for range in [{"key": k, "value": v} for [k, v] in (range_body).items()]:
+            for range in [{"key": k, "value": v} for [k, v] in sorted((range_body).items())]:
                 my_dyn_content_one.append(fastly.ServiceDynamicSnippetContent(f"my_dyn_content_one-{range['key']}",
                     service_id=myservice.id,
                     snippet_id=range["value"].snippet_id,
@@ -458,9 +463,9 @@ class ServiceDynamicSnippetContent(pulumi.CustomResource):
         }\"\"\"))
 
         myservice.dynamicsnippets.apply(lambda resolved_outputs: create_my_dyn_content_one({d.name: d for d in resolved_outputs['dynamicsnippets'] if d.name == "My Dynamic Snippet One"}))
-        my_dyn_content_two = []
+        my_dyn_content_two: list[Any] = []
         def create_my_dyn_content_two(range_body):
-            for range in [{"key": k, "value": v} for [k, v] in (range_body).items()]:
+            for range in [{"key": k, "value": v} for [k, v] in sorted((range_body).items())]:
                 my_dyn_content_two.append(fastly.ServiceDynamicSnippetContent(f"my_dyn_content_two-{range['key']}",
                     service_id=myservice.id,
                     snippet_id=range["value"].snippet_id,
@@ -524,11 +529,12 @@ class ServiceDynamicSnippetContent(pulumi.CustomResource):
 
         ```python
         import pulumi
+        from typing import Any
         import pulumi_fastly as fastly
 
         #...
-        my_dyn_content = []
-        for range in [{"key": k, "value": v} for [k, v] in ({d.name: d for d in myservice.dynamicsnippet if d.name == My Dynamic Snippet}).items()]:
+        my_dyn_content: list[Any] = []
+        for range in [{"key": k, "value": v} for [k, v] in sorted(({d.name: d for d in myservice.dynamicsnippet if d.name == My Dynamic Snippet}).items())]:
             my_dyn_content.append(fastly.ServiceDynamicSnippetContent(f"my_dyn_content-{range['key']}",
                 service_id=myservice["id"],
                 snippet_id=range["value"]["snippetId"],
@@ -570,10 +576,10 @@ class ServiceDynamicSnippetContent(pulumi.CustomResource):
     def _internal_init(__self__,
                  resource_name: str,
                  opts: Optional[pulumi.ResourceOptions] = None,
-                 content: Optional[pulumi.Input[_builtins.str]] = None,
-                 manage_snippets: Optional[pulumi.Input[_builtins.bool]] = None,
-                 service_id: Optional[pulumi.Input[_builtins.str]] = None,
-                 snippet_id: Optional[pulumi.Input[_builtins.str]] = None,
+                 content: pulumi.Input[Optional[_builtins.str]] = None,
+                 manage_snippets: pulumi.Input[Optional[_builtins.bool]] = None,
+                 service_id: pulumi.Input[Optional[_builtins.str]] = None,
+                 snippet_id: pulumi.Input[Optional[_builtins.str]] = None,
                  __props__=None):
         opts = pulumi.ResourceOptions.merge(_utilities.get_resource_opts_defaults(), opts)
         if not isinstance(opts, pulumi.ResourceOptions):
@@ -603,10 +609,10 @@ class ServiceDynamicSnippetContent(pulumi.CustomResource):
     def get(resource_name: str,
             id: pulumi.Input[str],
             opts: Optional[pulumi.ResourceOptions] = None,
-            content: Optional[pulumi.Input[_builtins.str]] = None,
-            manage_snippets: Optional[pulumi.Input[_builtins.bool]] = None,
-            service_id: Optional[pulumi.Input[_builtins.str]] = None,
-            snippet_id: Optional[pulumi.Input[_builtins.str]] = None) -> 'ServiceDynamicSnippetContent':
+            content: pulumi.Input[Optional[_builtins.str]] = None,
+            manage_snippets: pulumi.Input[Optional[_builtins.bool]] = None,
+            service_id: pulumi.Input[Optional[_builtins.str]] = None,
+            snippet_id: pulumi.Input[Optional[_builtins.str]] = None) -> 'ServiceDynamicSnippetContent':
         """
         Get an existing ServiceDynamicSnippetContent resource's state with the given name, id, and optional extra
         properties used to qualify the lookup.

@@ -115,19 +115,19 @@ export interface NgwafAccountSignalState {
     /**
      * The list of workspace IDs this signal applies to, or the wildcard `*` if it applies to all workspaces.
      */
-    appliesTos?: pulumi.Input<pulumi.Input<string>[]>;
+    appliesTos?: pulumi.Input<pulumi.Input<string>[] | undefined>;
     /**
      * The description of the signal.
      */
-    description?: pulumi.Input<string>;
+    description?: pulumi.Input<string | undefined>;
     /**
      * The name of the signal. Special characters and periods are not accepted.
      */
-    name?: pulumi.Input<string>;
+    name?: pulumi.Input<string | undefined>;
     /**
      * The generated reference ID of the signal.
      */
-    referenceId?: pulumi.Input<string>;
+    referenceId?: pulumi.Input<string | undefined>;
 }
 
 /**
@@ -141,9 +141,9 @@ export interface NgwafAccountSignalArgs {
     /**
      * The description of the signal.
      */
-    description?: pulumi.Input<string>;
+    description?: pulumi.Input<string | undefined>;
     /**
      * The name of the signal. Special characters and periods are not accepted.
      */
-    name?: pulumi.Input<string>;
+    name?: pulumi.Input<string | undefined>;
 }

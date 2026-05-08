@@ -101,7 +101,7 @@ def get_ngwaf_alert_slack_integration(workspace_id: Optional[_builtins.str] = No
         id=pulumi.get(__ret__, 'id'),
         slack_alerts=pulumi.get(__ret__, 'slack_alerts'),
         workspace_id=pulumi.get(__ret__, 'workspace_id'))
-def get_ngwaf_alert_slack_integration_output(workspace_id: Optional[pulumi.Input[_builtins.str]] = None,
+def get_ngwaf_alert_slack_integration_output(workspace_id: pulumi.Input[Optional[_builtins.str]] = None,
                                              opts: Optional[Union[pulumi.InvokeOptions, pulumi.InvokeOutputOptions]] = None) -> pulumi.Output[GetNgwafAlertSlackIntegrationResult]:
     """
     Use this data source to get a Fastly Next-Gen WAF Alert Slack integration.

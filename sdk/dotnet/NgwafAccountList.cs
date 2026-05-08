@@ -26,7 +26,7 @@ namespace Pulumi.Fastly
     /// 
     /// return await Deployment.RunAsync(() =&gt; 
     /// {
-    ///     var example = new Fastly.Index.NgwafAccountList("example", new()
+    ///     var example = new Fastly.NgwafAccountList("example", new()
     ///     {
     ///         Name = "shared-bot-ip-list",
     ///         Description = "Account list of known bot IPs shared across workspaces",
@@ -40,7 +40,7 @@ namespace Pulumi.Fastly
     ///     });
     /// 
     ///     // Example usage with a rule. 
-    ///     var exampleNgwafWorkspaceRule = new Fastly.Index.NgwafWorkspaceRule("example", new()
+    ///     var exampleNgwafWorkspaceRule = new Fastly.NgwafWorkspaceRule("example", new()
     ///     {
     ///         WorkspaceId = exampleFastlyNgwafWorkspace.Id,
     ///         Type = "request",

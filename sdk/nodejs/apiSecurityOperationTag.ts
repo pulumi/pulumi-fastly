@@ -140,31 +140,31 @@ export interface ApiSecurityOperationTagState {
     /**
      * Created timestamp (when present).
      */
-    createdAt?: pulumi.Input<string>;
+    createdAt?: pulumi.Input<string | undefined>;
     /**
      * The description of the operation tag.
      */
-    description?: pulumi.Input<string>;
+    description?: pulumi.Input<string | undefined>;
     /**
      * The name of the operation tag.
      */
-    name?: pulumi.Input<string>;
+    name?: pulumi.Input<string | undefined>;
     /**
      * Number of operations associated with this tag (when present).
      */
-    operationCount?: pulumi.Input<number>;
+    operationCount?: pulumi.Input<number | undefined>;
     /**
      * Service ID the tag belongs to. To import, use: \n\n/\n\n.
      */
-    serviceId?: pulumi.Input<string>;
+    serviceId?: pulumi.Input<string | undefined>;
     /**
      * The tag ID.
      */
-    tagId?: pulumi.Input<string>;
+    tagId?: pulumi.Input<string | undefined>;
     /**
      * Updated timestamp (when present).
      */
-    updatedAt?: pulumi.Input<string>;
+    updatedAt?: pulumi.Input<string | undefined>;
 }
 
 /**
@@ -174,11 +174,11 @@ export interface ApiSecurityOperationTagArgs {
     /**
      * The description of the operation tag.
      */
-    description?: pulumi.Input<string>;
+    description?: pulumi.Input<string | undefined>;
     /**
      * The name of the operation tag.
      */
-    name?: pulumi.Input<string>;
+    name?: pulumi.Input<string | undefined>;
     /**
      * Service ID the tag belongs to. To import, use: \n\n/\n\n.
      */

@@ -177,15 +177,15 @@ export interface ComputeAclEntriesState {
     /**
      * Manages entries for a Fastly Compute Access Control List (ACL). To import, use the format \n\n/entries.
      */
-    computeAclId?: pulumi.Input<string>;
+    computeAclId?: pulumi.Input<string | undefined>;
     /**
      * A map representing the entries in the Compute ACL, where the keys are the prefixes and the values are the actions (ALLOW or BLOCK).
      */
-    entries?: pulumi.Input<{[key: string]: pulumi.Input<string>}>;
+    entries?: pulumi.Input<{[key: string]: pulumi.Input<string>} | undefined>;
     /**
      * Manage the ACL entries in Terraform (default: false). If true, Terraform will ensure that the ACL's entries match the entries in the Terraform configuration.
      */
-    manageEntries?: pulumi.Input<boolean>;
+    manageEntries?: pulumi.Input<boolean | undefined>;
 }
 
 /**
@@ -203,5 +203,5 @@ export interface ComputeAclEntriesArgs {
     /**
      * Manage the ACL entries in Terraform (default: false). If true, Terraform will ensure that the ACL's entries match the entries in the Terraform configuration.
      */
-    manageEntries?: pulumi.Input<boolean>;
+    manageEntries?: pulumi.Input<boolean | undefined>;
 }

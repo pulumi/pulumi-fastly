@@ -114,15 +114,15 @@ export interface NgwafRedactionState {
     /**
      * The name of the field that should be redacted.
      */
-    field?: pulumi.Input<string>;
+    field?: pulumi.Input<string | undefined>;
     /**
      * The type of field that is being redacted. Accepted values are `requestParameter`, `requestHeader`, and `responseHeader`.
      */
-    type?: pulumi.Input<string>;
+    type?: pulumi.Input<string | undefined>;
     /**
      * The ID of the workspace.
      */
-    workspaceId?: pulumi.Input<string>;
+    workspaceId?: pulumi.Input<string | undefined>;
 }
 
 /**

@@ -179,15 +179,15 @@ export interface ConfigstoreEntriesState {
     /**
      * A map representing an entry in the Config Store, (key/value)
      */
-    entries?: pulumi.Input<{[key: string]: pulumi.Input<string>}>;
+    entries?: pulumi.Input<{[key: string]: pulumi.Input<string>} | undefined>;
     /**
      * Have Terraform manage the entries (default: false). If set to `true` Terraform will remove any entries that were added externally from the config seeded values.
      */
-    manageEntries?: pulumi.Input<boolean>;
+    manageEntries?: pulumi.Input<boolean | undefined>;
     /**
      * An alphanumeric string identifying the Config Store.
      */
-    storeId?: pulumi.Input<string>;
+    storeId?: pulumi.Input<string | undefined>;
 }
 
 /**
@@ -201,7 +201,7 @@ export interface ConfigstoreEntriesArgs {
     /**
      * Have Terraform manage the entries (default: false). If set to `true` Terraform will remove any entries that were added externally from the config seeded values.
      */
-    manageEntries?: pulumi.Input<boolean>;
+    manageEntries?: pulumi.Input<boolean | undefined>;
     /**
      * An alphanumeric string identifying the Config Store.
      */

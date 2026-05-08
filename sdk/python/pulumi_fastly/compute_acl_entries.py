@@ -21,7 +21,7 @@ class ComputeAclEntriesArgs:
     def __init__(__self__, *,
                  compute_acl_id: pulumi.Input[_builtins.str],
                  entries: pulumi.Input[Mapping[str, pulumi.Input[_builtins.str]]],
-                 manage_entries: Optional[pulumi.Input[_builtins.bool]] = None):
+                 manage_entries: pulumi.Input[Optional[_builtins.bool]] = None):
         """
         The set of arguments for constructing a ComputeAclEntries resource.
 
@@ -60,23 +60,23 @@ class ComputeAclEntriesArgs:
 
     @_builtins.property
     @pulumi.getter(name="manageEntries")
-    def manage_entries(self) -> Optional[pulumi.Input[_builtins.bool]]:
+    def manage_entries(self) -> pulumi.Input[Optional[_builtins.bool]]:
         """
         Manage the ACL entries in Terraform (default: false). If true, Terraform will ensure that the ACL's entries match the entries in the Terraform configuration.
         """
         return pulumi.get(self, "manage_entries")
 
     @manage_entries.setter
-    def manage_entries(self, value: Optional[pulumi.Input[_builtins.bool]]):
+    def manage_entries(self, value: pulumi.Input[Optional[_builtins.bool]]):
         pulumi.set(self, "manage_entries", value)
 
 
 @pulumi.input_type
 class _ComputeAclEntriesState:
     def __init__(__self__, *,
-                 compute_acl_id: Optional[pulumi.Input[_builtins.str]] = None,
-                 entries: Optional[pulumi.Input[Mapping[str, pulumi.Input[_builtins.str]]]] = None,
-                 manage_entries: Optional[pulumi.Input[_builtins.bool]] = None):
+                 compute_acl_id: pulumi.Input[Optional[_builtins.str]] = None,
+                 entries: pulumi.Input[Optional[Mapping[str, pulumi.Input[_builtins.str]]]] = None,
+                 manage_entries: pulumi.Input[Optional[_builtins.bool]] = None):
         """
         Input properties used for looking up and filtering ComputeAclEntries resources.
 
@@ -93,38 +93,38 @@ class _ComputeAclEntriesState:
 
     @_builtins.property
     @pulumi.getter(name="computeAclId")
-    def compute_acl_id(self) -> Optional[pulumi.Input[_builtins.str]]:
+    def compute_acl_id(self) -> pulumi.Input[Optional[_builtins.str]]:
         """
         Manages entries for a Fastly Compute Access Control List (ACL). To import, use the format \\n\\n/entries.
         """
         return pulumi.get(self, "compute_acl_id")
 
     @compute_acl_id.setter
-    def compute_acl_id(self, value: Optional[pulumi.Input[_builtins.str]]):
+    def compute_acl_id(self, value: pulumi.Input[Optional[_builtins.str]]):
         pulumi.set(self, "compute_acl_id", value)
 
     @_builtins.property
     @pulumi.getter
-    def entries(self) -> Optional[pulumi.Input[Mapping[str, pulumi.Input[_builtins.str]]]]:
+    def entries(self) -> pulumi.Input[Optional[Mapping[str, pulumi.Input[_builtins.str]]]]:
         """
         A map representing the entries in the Compute ACL, where the keys are the prefixes and the values are the actions (ALLOW or BLOCK).
         """
         return pulumi.get(self, "entries")
 
     @entries.setter
-    def entries(self, value: Optional[pulumi.Input[Mapping[str, pulumi.Input[_builtins.str]]]]):
+    def entries(self, value: pulumi.Input[Optional[Mapping[str, pulumi.Input[_builtins.str]]]]):
         pulumi.set(self, "entries", value)
 
     @_builtins.property
     @pulumi.getter(name="manageEntries")
-    def manage_entries(self) -> Optional[pulumi.Input[_builtins.bool]]:
+    def manage_entries(self) -> pulumi.Input[Optional[_builtins.bool]]:
         """
         Manage the ACL entries in Terraform (default: false). If true, Terraform will ensure that the ACL's entries match the entries in the Terraform configuration.
         """
         return pulumi.get(self, "manage_entries")
 
     @manage_entries.setter
-    def manage_entries(self, value: Optional[pulumi.Input[_builtins.bool]]):
+    def manage_entries(self, value: pulumi.Input[Optional[_builtins.bool]]):
         pulumi.set(self, "manage_entries", value)
 
 
@@ -134,9 +134,9 @@ class ComputeAclEntries(pulumi.CustomResource):
     def __init__(__self__,
                  resource_name: str,
                  opts: Optional[pulumi.ResourceOptions] = None,
-                 compute_acl_id: Optional[pulumi.Input[_builtins.str]] = None,
-                 entries: Optional[pulumi.Input[Mapping[str, pulumi.Input[_builtins.str]]]] = None,
-                 manage_entries: Optional[pulumi.Input[_builtins.bool]] = None,
+                 compute_acl_id: pulumi.Input[Optional[_builtins.str]] = None,
+                 entries: pulumi.Input[Optional[Mapping[str, pulumi.Input[_builtins.str]]]] = None,
+                 manage_entries: pulumi.Input[Optional[_builtins.bool]] = None,
                  __props__=None):
         """
         The `ComputeAclEntries` resource allows you to manage CIDR-based allow/block rules (ACL entries) inside a Fastly Compute ACL.
@@ -335,9 +335,9 @@ class ComputeAclEntries(pulumi.CustomResource):
     def _internal_init(__self__,
                  resource_name: str,
                  opts: Optional[pulumi.ResourceOptions] = None,
-                 compute_acl_id: Optional[pulumi.Input[_builtins.str]] = None,
-                 entries: Optional[pulumi.Input[Mapping[str, pulumi.Input[_builtins.str]]]] = None,
-                 manage_entries: Optional[pulumi.Input[_builtins.bool]] = None,
+                 compute_acl_id: pulumi.Input[Optional[_builtins.str]] = None,
+                 entries: pulumi.Input[Optional[Mapping[str, pulumi.Input[_builtins.str]]]] = None,
+                 manage_entries: pulumi.Input[Optional[_builtins.bool]] = None,
                  __props__=None):
         opts = pulumi.ResourceOptions.merge(_utilities.get_resource_opts_defaults(), opts)
         if not isinstance(opts, pulumi.ResourceOptions):
@@ -364,9 +364,9 @@ class ComputeAclEntries(pulumi.CustomResource):
     def get(resource_name: str,
             id: pulumi.Input[str],
             opts: Optional[pulumi.ResourceOptions] = None,
-            compute_acl_id: Optional[pulumi.Input[_builtins.str]] = None,
-            entries: Optional[pulumi.Input[Mapping[str, pulumi.Input[_builtins.str]]]] = None,
-            manage_entries: Optional[pulumi.Input[_builtins.bool]] = None) -> 'ComputeAclEntries':
+            compute_acl_id: pulumi.Input[Optional[_builtins.str]] = None,
+            entries: pulumi.Input[Optional[Mapping[str, pulumi.Input[_builtins.str]]]] = None,
+            manage_entries: pulumi.Input[Optional[_builtins.bool]] = None) -> 'ComputeAclEntries':
         """
         Get an existing ComputeAclEntries resource's state with the given name, id, and optional extra
         properties used to qualify the lookup.
