@@ -3335,8 +3335,12 @@ type ServiceComputeBackend struct {
 	KeepaliveTime *int `pulumi:"keepaliveTime"`
 	// Maximum number of connections for this Backend. Default `200`
 	MaxConn *int `pulumi:"maxConn"`
+	// Maximum time from creation (in milliseconds) that a pooled HTTP keepalive connection will be eligible for reuse; 0 is treated as unlimited - which is the default behavior.
+	MaxLifetime *int `pulumi:"maxLifetime"`
 	// Maximum allowed TLS version on SSL connections to this backend.
 	MaxTlsVersion *string `pulumi:"maxTlsVersion"`
+	// Maximum number of requests allowed over a single, pooled HTTP keepalive connection to this backend; 0 is treated as unlimited - which is the default behavior.
+	MaxUse *int `pulumi:"maxUse"`
 	// Minimum allowed TLS version on SSL connections to this backend.
 	MinTlsVersion *string `pulumi:"minTlsVersion"`
 	// Name for this Backend. Must be unique to this Service. It is important to note that changing this attribute will delete and recreate the resource
@@ -3399,8 +3403,12 @@ type ServiceComputeBackendArgs struct {
 	KeepaliveTime pulumi.IntPtrInput `pulumi:"keepaliveTime"`
 	// Maximum number of connections for this Backend. Default `200`
 	MaxConn pulumi.IntPtrInput `pulumi:"maxConn"`
+	// Maximum time from creation (in milliseconds) that a pooled HTTP keepalive connection will be eligible for reuse; 0 is treated as unlimited - which is the default behavior.
+	MaxLifetime pulumi.IntPtrInput `pulumi:"maxLifetime"`
 	// Maximum allowed TLS version on SSL connections to this backend.
 	MaxTlsVersion pulumi.StringPtrInput `pulumi:"maxTlsVersion"`
+	// Maximum number of requests allowed over a single, pooled HTTP keepalive connection to this backend; 0 is treated as unlimited - which is the default behavior.
+	MaxUse pulumi.IntPtrInput `pulumi:"maxUse"`
 	// Minimum allowed TLS version on SSL connections to this backend.
 	MinTlsVersion pulumi.StringPtrInput `pulumi:"minTlsVersion"`
 	// Name for this Backend. Must be unique to this Service. It is important to note that changing this attribute will delete and recreate the resource
@@ -3526,9 +3534,19 @@ func (o ServiceComputeBackendOutput) MaxConn() pulumi.IntPtrOutput {
 	return o.ApplyT(func(v ServiceComputeBackend) *int { return v.MaxConn }).(pulumi.IntPtrOutput)
 }
 
+// Maximum time from creation (in milliseconds) that a pooled HTTP keepalive connection will be eligible for reuse; 0 is treated as unlimited - which is the default behavior.
+func (o ServiceComputeBackendOutput) MaxLifetime() pulumi.IntPtrOutput {
+	return o.ApplyT(func(v ServiceComputeBackend) *int { return v.MaxLifetime }).(pulumi.IntPtrOutput)
+}
+
 // Maximum allowed TLS version on SSL connections to this backend.
 func (o ServiceComputeBackendOutput) MaxTlsVersion() pulumi.StringPtrOutput {
 	return o.ApplyT(func(v ServiceComputeBackend) *string { return v.MaxTlsVersion }).(pulumi.StringPtrOutput)
+}
+
+// Maximum number of requests allowed over a single, pooled HTTP keepalive connection to this backend; 0 is treated as unlimited - which is the default behavior.
+func (o ServiceComputeBackendOutput) MaxUse() pulumi.IntPtrOutput {
+	return o.ApplyT(func(v ServiceComputeBackend) *int { return v.MaxUse }).(pulumi.IntPtrOutput)
 }
 
 // Minimum allowed TLS version on SSL connections to this backend.
@@ -9323,6 +9341,8 @@ func (o ServiceComputePackagePtrOutput) SourceCodeHash() pulumi.StringPtrOutput 
 type ServiceComputeProductEnablement struct {
 	// Enable API Discovery support
 	ApiDiscovery *bool `pulumi:"apiDiscovery"`
+	// Enable Bot Management support
+	BotManagement *ServiceComputeProductEnablementBotManagement `pulumi:"botManagement"`
 	// DDoS Protection product
 	DdosProtection *ServiceComputeProductEnablementDdosProtection `pulumi:"ddosProtection"`
 	// Enable Domain Inspector support
@@ -9353,6 +9373,8 @@ type ServiceComputeProductEnablementInput interface {
 type ServiceComputeProductEnablementArgs struct {
 	// Enable API Discovery support
 	ApiDiscovery pulumi.BoolPtrInput `pulumi:"apiDiscovery"`
+	// Enable Bot Management support
+	BotManagement ServiceComputeProductEnablementBotManagementPtrInput `pulumi:"botManagement"`
 	// DDoS Protection product
 	DdosProtection ServiceComputeProductEnablementDdosProtectionPtrInput `pulumi:"ddosProtection"`
 	// Enable Domain Inspector support
@@ -9451,6 +9473,13 @@ func (o ServiceComputeProductEnablementOutput) ApiDiscovery() pulumi.BoolPtrOutp
 	return o.ApplyT(func(v ServiceComputeProductEnablement) *bool { return v.ApiDiscovery }).(pulumi.BoolPtrOutput)
 }
 
+// Enable Bot Management support
+func (o ServiceComputeProductEnablementOutput) BotManagement() ServiceComputeProductEnablementBotManagementPtrOutput {
+	return o.ApplyT(func(v ServiceComputeProductEnablement) *ServiceComputeProductEnablementBotManagement {
+		return v.BotManagement
+	}).(ServiceComputeProductEnablementBotManagementPtrOutput)
+}
+
 // DDoS Protection product
 func (o ServiceComputeProductEnablementOutput) DdosProtection() ServiceComputeProductEnablementDdosProtectionPtrOutput {
 	return o.ApplyT(func(v ServiceComputeProductEnablement) *ServiceComputeProductEnablementDdosProtection {
@@ -9522,6 +9551,16 @@ func (o ServiceComputeProductEnablementPtrOutput) ApiDiscovery() pulumi.BoolPtrO
 	}).(pulumi.BoolPtrOutput)
 }
 
+// Enable Bot Management support
+func (o ServiceComputeProductEnablementPtrOutput) BotManagement() ServiceComputeProductEnablementBotManagementPtrOutput {
+	return o.ApplyT(func(v *ServiceComputeProductEnablement) *ServiceComputeProductEnablementBotManagement {
+		if v == nil {
+			return nil
+		}
+		return v.BotManagement
+	}).(ServiceComputeProductEnablementBotManagementPtrOutput)
+}
+
 // DDoS Protection product
 func (o ServiceComputeProductEnablementPtrOutput) DdosProtection() ServiceComputeProductEnablementDdosProtectionPtrOutput {
 	return o.ApplyT(func(v *ServiceComputeProductEnablement) *ServiceComputeProductEnablementDdosProtection {
@@ -9589,6 +9628,162 @@ func (o ServiceComputeProductEnablementPtrOutput) Websockets() pulumi.BoolPtrOut
 			return nil
 		}
 		return v.Websockets
+	}).(pulumi.BoolPtrOutput)
+}
+
+type ServiceComputeProductEnablementBotManagement struct {
+	// ContentGuard status. Can be either `off`, or `on`.
+	Contentguard string `pulumi:"contentguard"`
+	// Enable Bot Management support
+	Enabled bool `pulumi:"enabled"`
+}
+
+// ServiceComputeProductEnablementBotManagementInput is an input type that accepts ServiceComputeProductEnablementBotManagementArgs and ServiceComputeProductEnablementBotManagementOutput values.
+// You can construct a concrete instance of `ServiceComputeProductEnablementBotManagementInput` via:
+//
+//	ServiceComputeProductEnablementBotManagementArgs{...}
+type ServiceComputeProductEnablementBotManagementInput interface {
+	pulumi.Input
+
+	ToServiceComputeProductEnablementBotManagementOutput() ServiceComputeProductEnablementBotManagementOutput
+	ToServiceComputeProductEnablementBotManagementOutputWithContext(context.Context) ServiceComputeProductEnablementBotManagementOutput
+}
+
+type ServiceComputeProductEnablementBotManagementArgs struct {
+	// ContentGuard status. Can be either `off`, or `on`.
+	Contentguard pulumi.StringInput `pulumi:"contentguard"`
+	// Enable Bot Management support
+	Enabled pulumi.BoolInput `pulumi:"enabled"`
+}
+
+func (ServiceComputeProductEnablementBotManagementArgs) ElementType() reflect.Type {
+	return reflect.TypeOf((*ServiceComputeProductEnablementBotManagement)(nil)).Elem()
+}
+
+func (i ServiceComputeProductEnablementBotManagementArgs) ToServiceComputeProductEnablementBotManagementOutput() ServiceComputeProductEnablementBotManagementOutput {
+	return i.ToServiceComputeProductEnablementBotManagementOutputWithContext(context.Background())
+}
+
+func (i ServiceComputeProductEnablementBotManagementArgs) ToServiceComputeProductEnablementBotManagementOutputWithContext(ctx context.Context) ServiceComputeProductEnablementBotManagementOutput {
+	return pulumi.ToOutputWithContext(ctx, i).(ServiceComputeProductEnablementBotManagementOutput)
+}
+
+func (i ServiceComputeProductEnablementBotManagementArgs) ToServiceComputeProductEnablementBotManagementPtrOutput() ServiceComputeProductEnablementBotManagementPtrOutput {
+	return i.ToServiceComputeProductEnablementBotManagementPtrOutputWithContext(context.Background())
+}
+
+func (i ServiceComputeProductEnablementBotManagementArgs) ToServiceComputeProductEnablementBotManagementPtrOutputWithContext(ctx context.Context) ServiceComputeProductEnablementBotManagementPtrOutput {
+	return pulumi.ToOutputWithContext(ctx, i).(ServiceComputeProductEnablementBotManagementOutput).ToServiceComputeProductEnablementBotManagementPtrOutputWithContext(ctx)
+}
+
+// ServiceComputeProductEnablementBotManagementPtrInput is an input type that accepts ServiceComputeProductEnablementBotManagementArgs, ServiceComputeProductEnablementBotManagementPtr and ServiceComputeProductEnablementBotManagementPtrOutput values.
+// You can construct a concrete instance of `ServiceComputeProductEnablementBotManagementPtrInput` via:
+//
+//	        ServiceComputeProductEnablementBotManagementArgs{...}
+//
+//	or:
+//
+//	        nil
+type ServiceComputeProductEnablementBotManagementPtrInput interface {
+	pulumi.Input
+
+	ToServiceComputeProductEnablementBotManagementPtrOutput() ServiceComputeProductEnablementBotManagementPtrOutput
+	ToServiceComputeProductEnablementBotManagementPtrOutputWithContext(context.Context) ServiceComputeProductEnablementBotManagementPtrOutput
+}
+
+type serviceComputeProductEnablementBotManagementPtrType ServiceComputeProductEnablementBotManagementArgs
+
+func ServiceComputeProductEnablementBotManagementPtr(v *ServiceComputeProductEnablementBotManagementArgs) ServiceComputeProductEnablementBotManagementPtrInput {
+	return (*serviceComputeProductEnablementBotManagementPtrType)(v)
+}
+
+func (*serviceComputeProductEnablementBotManagementPtrType) ElementType() reflect.Type {
+	return reflect.TypeOf((**ServiceComputeProductEnablementBotManagement)(nil)).Elem()
+}
+
+func (i *serviceComputeProductEnablementBotManagementPtrType) ToServiceComputeProductEnablementBotManagementPtrOutput() ServiceComputeProductEnablementBotManagementPtrOutput {
+	return i.ToServiceComputeProductEnablementBotManagementPtrOutputWithContext(context.Background())
+}
+
+func (i *serviceComputeProductEnablementBotManagementPtrType) ToServiceComputeProductEnablementBotManagementPtrOutputWithContext(ctx context.Context) ServiceComputeProductEnablementBotManagementPtrOutput {
+	return pulumi.ToOutputWithContext(ctx, i).(ServiceComputeProductEnablementBotManagementPtrOutput)
+}
+
+type ServiceComputeProductEnablementBotManagementOutput struct{ *pulumi.OutputState }
+
+func (ServiceComputeProductEnablementBotManagementOutput) ElementType() reflect.Type {
+	return reflect.TypeOf((*ServiceComputeProductEnablementBotManagement)(nil)).Elem()
+}
+
+func (o ServiceComputeProductEnablementBotManagementOutput) ToServiceComputeProductEnablementBotManagementOutput() ServiceComputeProductEnablementBotManagementOutput {
+	return o
+}
+
+func (o ServiceComputeProductEnablementBotManagementOutput) ToServiceComputeProductEnablementBotManagementOutputWithContext(ctx context.Context) ServiceComputeProductEnablementBotManagementOutput {
+	return o
+}
+
+func (o ServiceComputeProductEnablementBotManagementOutput) ToServiceComputeProductEnablementBotManagementPtrOutput() ServiceComputeProductEnablementBotManagementPtrOutput {
+	return o.ToServiceComputeProductEnablementBotManagementPtrOutputWithContext(context.Background())
+}
+
+func (o ServiceComputeProductEnablementBotManagementOutput) ToServiceComputeProductEnablementBotManagementPtrOutputWithContext(ctx context.Context) ServiceComputeProductEnablementBotManagementPtrOutput {
+	return o.ApplyTWithContext(ctx, func(_ context.Context, v ServiceComputeProductEnablementBotManagement) *ServiceComputeProductEnablementBotManagement {
+		return &v
+	}).(ServiceComputeProductEnablementBotManagementPtrOutput)
+}
+
+// ContentGuard status. Can be either `off`, or `on`.
+func (o ServiceComputeProductEnablementBotManagementOutput) Contentguard() pulumi.StringOutput {
+	return o.ApplyT(func(v ServiceComputeProductEnablementBotManagement) string { return v.Contentguard }).(pulumi.StringOutput)
+}
+
+// Enable Bot Management support
+func (o ServiceComputeProductEnablementBotManagementOutput) Enabled() pulumi.BoolOutput {
+	return o.ApplyT(func(v ServiceComputeProductEnablementBotManagement) bool { return v.Enabled }).(pulumi.BoolOutput)
+}
+
+type ServiceComputeProductEnablementBotManagementPtrOutput struct{ *pulumi.OutputState }
+
+func (ServiceComputeProductEnablementBotManagementPtrOutput) ElementType() reflect.Type {
+	return reflect.TypeOf((**ServiceComputeProductEnablementBotManagement)(nil)).Elem()
+}
+
+func (o ServiceComputeProductEnablementBotManagementPtrOutput) ToServiceComputeProductEnablementBotManagementPtrOutput() ServiceComputeProductEnablementBotManagementPtrOutput {
+	return o
+}
+
+func (o ServiceComputeProductEnablementBotManagementPtrOutput) ToServiceComputeProductEnablementBotManagementPtrOutputWithContext(ctx context.Context) ServiceComputeProductEnablementBotManagementPtrOutput {
+	return o
+}
+
+func (o ServiceComputeProductEnablementBotManagementPtrOutput) Elem() ServiceComputeProductEnablementBotManagementOutput {
+	return o.ApplyT(func(v *ServiceComputeProductEnablementBotManagement) ServiceComputeProductEnablementBotManagement {
+		if v != nil {
+			return *v
+		}
+		var ret ServiceComputeProductEnablementBotManagement
+		return ret
+	}).(ServiceComputeProductEnablementBotManagementOutput)
+}
+
+// ContentGuard status. Can be either `off`, or `on`.
+func (o ServiceComputeProductEnablementBotManagementPtrOutput) Contentguard() pulumi.StringPtrOutput {
+	return o.ApplyT(func(v *ServiceComputeProductEnablementBotManagement) *string {
+		if v == nil {
+			return nil
+		}
+		return &v.Contentguard
+	}).(pulumi.StringPtrOutput)
+}
+
+// Enable Bot Management support
+func (o ServiceComputeProductEnablementBotManagementPtrOutput) Enabled() pulumi.BoolPtrOutput {
+	return o.ApplyT(func(v *ServiceComputeProductEnablementBotManagement) *bool {
+		if v == nil {
+			return nil
+		}
+		return &v.Enabled
 	}).(pulumi.BoolPtrOutput)
 }
 
@@ -10172,8 +10367,12 @@ type ServiceVclBackend struct {
 	KeepaliveTime *int `pulumi:"keepaliveTime"`
 	// Maximum number of connections for this Backend. Default `200`
 	MaxConn *int `pulumi:"maxConn"`
+	// Maximum time from creation (in milliseconds) that a pooled HTTP keepalive connection will be eligible for reuse; 0 is treated as unlimited - which is the default behavior.
+	MaxLifetime *int `pulumi:"maxLifetime"`
 	// Maximum allowed TLS version on SSL connections to this backend.
 	MaxTlsVersion *string `pulumi:"maxTlsVersion"`
+	// Maximum number of requests allowed over a single, pooled HTTP keepalive connection to this backend; 0 is treated as unlimited - which is the default behavior.
+	MaxUse *int `pulumi:"maxUse"`
 	// Minimum allowed TLS version on SSL connections to this backend.
 	MinTlsVersion *string `pulumi:"minTlsVersion"`
 	// Name for this Backend. Must be unique to this Service. It is important to note that changing this attribute will delete and recreate the resource
@@ -10240,8 +10439,12 @@ type ServiceVclBackendArgs struct {
 	KeepaliveTime pulumi.IntPtrInput `pulumi:"keepaliveTime"`
 	// Maximum number of connections for this Backend. Default `200`
 	MaxConn pulumi.IntPtrInput `pulumi:"maxConn"`
+	// Maximum time from creation (in milliseconds) that a pooled HTTP keepalive connection will be eligible for reuse; 0 is treated as unlimited - which is the default behavior.
+	MaxLifetime pulumi.IntPtrInput `pulumi:"maxLifetime"`
 	// Maximum allowed TLS version on SSL connections to this backend.
 	MaxTlsVersion pulumi.StringPtrInput `pulumi:"maxTlsVersion"`
+	// Maximum number of requests allowed over a single, pooled HTTP keepalive connection to this backend; 0 is treated as unlimited - which is the default behavior.
+	MaxUse pulumi.IntPtrInput `pulumi:"maxUse"`
 	// Minimum allowed TLS version on SSL connections to this backend.
 	MinTlsVersion pulumi.StringPtrInput `pulumi:"minTlsVersion"`
 	// Name for this Backend. Must be unique to this Service. It is important to note that changing this attribute will delete and recreate the resource
@@ -10374,9 +10577,19 @@ func (o ServiceVclBackendOutput) MaxConn() pulumi.IntPtrOutput {
 	return o.ApplyT(func(v ServiceVclBackend) *int { return v.MaxConn }).(pulumi.IntPtrOutput)
 }
 
+// Maximum time from creation (in milliseconds) that a pooled HTTP keepalive connection will be eligible for reuse; 0 is treated as unlimited - which is the default behavior.
+func (o ServiceVclBackendOutput) MaxLifetime() pulumi.IntPtrOutput {
+	return o.ApplyT(func(v ServiceVclBackend) *int { return v.MaxLifetime }).(pulumi.IntPtrOutput)
+}
+
 // Maximum allowed TLS version on SSL connections to this backend.
 func (o ServiceVclBackendOutput) MaxTlsVersion() pulumi.StringPtrOutput {
 	return o.ApplyT(func(v ServiceVclBackend) *string { return v.MaxTlsVersion }).(pulumi.StringPtrOutput)
+}
+
+// Maximum number of requests allowed over a single, pooled HTTP keepalive connection to this backend; 0 is treated as unlimited - which is the default behavior.
+func (o ServiceVclBackendOutput) MaxUse() pulumi.IntPtrOutput {
+	return o.ApplyT(func(v ServiceVclBackend) *int { return v.MaxUse }).(pulumi.IntPtrOutput)
 }
 
 // Minimum allowed TLS version on SSL connections to this backend.
@@ -23885,6 +24098,8 @@ func init() {
 	pulumi.RegisterInputType(reflect.TypeOf((*ServiceComputePackagePtrInput)(nil)).Elem(), ServiceComputePackageArgs{})
 	pulumi.RegisterInputType(reflect.TypeOf((*ServiceComputeProductEnablementInput)(nil)).Elem(), ServiceComputeProductEnablementArgs{})
 	pulumi.RegisterInputType(reflect.TypeOf((*ServiceComputeProductEnablementPtrInput)(nil)).Elem(), ServiceComputeProductEnablementArgs{})
+	pulumi.RegisterInputType(reflect.TypeOf((*ServiceComputeProductEnablementBotManagementInput)(nil)).Elem(), ServiceComputeProductEnablementBotManagementArgs{})
+	pulumi.RegisterInputType(reflect.TypeOf((*ServiceComputeProductEnablementBotManagementPtrInput)(nil)).Elem(), ServiceComputeProductEnablementBotManagementArgs{})
 	pulumi.RegisterInputType(reflect.TypeOf((*ServiceComputeProductEnablementDdosProtectionInput)(nil)).Elem(), ServiceComputeProductEnablementDdosProtectionArgs{})
 	pulumi.RegisterInputType(reflect.TypeOf((*ServiceComputeProductEnablementDdosProtectionPtrInput)(nil)).Elem(), ServiceComputeProductEnablementDdosProtectionArgs{})
 	pulumi.RegisterInputType(reflect.TypeOf((*ServiceComputeProductEnablementNgwafInput)(nil)).Elem(), ServiceComputeProductEnablementNgwafArgs{})
@@ -24181,6 +24396,8 @@ func init() {
 	pulumi.RegisterOutputType(ServiceComputePackagePtrOutput{})
 	pulumi.RegisterOutputType(ServiceComputeProductEnablementOutput{})
 	pulumi.RegisterOutputType(ServiceComputeProductEnablementPtrOutput{})
+	pulumi.RegisterOutputType(ServiceComputeProductEnablementBotManagementOutput{})
+	pulumi.RegisterOutputType(ServiceComputeProductEnablementBotManagementPtrOutput{})
 	pulumi.RegisterOutputType(ServiceComputeProductEnablementDdosProtectionOutput{})
 	pulumi.RegisterOutputType(ServiceComputeProductEnablementDdosProtectionPtrOutput{})
 	pulumi.RegisterOutputType(ServiceComputeProductEnablementNgwafOutput{})

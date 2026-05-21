@@ -484,9 +484,17 @@ export interface ServiceComputeBackend {
      */
     maxConn?: pulumi.Input<number | undefined>;
     /**
+     * Maximum time from creation (in milliseconds) that a pooled HTTP keepalive connection will be eligible for reuse; 0 is treated as unlimited - which is the default behavior.
+     */
+    maxLifetime?: pulumi.Input<number | undefined>;
+    /**
      * Maximum allowed TLS version on SSL connections to this backend.
      */
     maxTlsVersion?: pulumi.Input<string | undefined>;
+    /**
+     * Maximum number of requests allowed over a single, pooled HTTP keepalive connection to this backend; 0 is treated as unlimited - which is the default behavior.
+     */
+    maxUse?: pulumi.Input<number | undefined>;
     /**
      * Minimum allowed TLS version on SSL connections to this backend.
      */
@@ -1814,6 +1822,10 @@ export interface ServiceComputeProductEnablement {
      */
     apiDiscovery?: pulumi.Input<boolean | undefined>;
     /**
+     * Enable Bot Management support
+     */
+    botManagement?: pulumi.Input<inputs.ServiceComputeProductEnablementBotManagement | undefined>;
+    /**
      * DDoS Protection product
      */
     ddosProtection?: pulumi.Input<inputs.ServiceComputeProductEnablementDdosProtection | undefined>;
@@ -1841,6 +1853,17 @@ export interface ServiceComputeProductEnablement {
      * Enable WebSockets support
      */
     websockets?: pulumi.Input<boolean | undefined>;
+}
+
+export interface ServiceComputeProductEnablementBotManagement {
+    /**
+     * ContentGuard status. Can be either `off`, or `on`.
+     */
+    contentguard: pulumi.Input<string>;
+    /**
+     * Enable Bot Management support
+     */
+    enabled: pulumi.Input<boolean>;
 }
 
 export interface ServiceComputeProductEnablementDdosProtection {
@@ -1937,9 +1960,17 @@ export interface ServiceVclBackend {
      */
     maxConn?: pulumi.Input<number | undefined>;
     /**
+     * Maximum time from creation (in milliseconds) that a pooled HTTP keepalive connection will be eligible for reuse; 0 is treated as unlimited - which is the default behavior.
+     */
+    maxLifetime?: pulumi.Input<number | undefined>;
+    /**
      * Maximum allowed TLS version on SSL connections to this backend.
      */
     maxTlsVersion?: pulumi.Input<string | undefined>;
+    /**
+     * Maximum number of requests allowed over a single, pooled HTTP keepalive connection to this backend; 0 is treated as unlimited - which is the default behavior.
+     */
+    maxUse?: pulumi.Input<number | undefined>;
     /**
      * Minimum allowed TLS version on SSL connections to this backend.
      */

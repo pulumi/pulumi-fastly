@@ -1043,9 +1043,17 @@ export interface ServiceComputeBackend {
      */
     maxConn?: number;
     /**
+     * Maximum time from creation (in milliseconds) that a pooled HTTP keepalive connection will be eligible for reuse; 0 is treated as unlimited - which is the default behavior.
+     */
+    maxLifetime?: number;
+    /**
      * Maximum allowed TLS version on SSL connections to this backend.
      */
     maxTlsVersion?: string;
+    /**
+     * Maximum number of requests allowed over a single, pooled HTTP keepalive connection to this backend; 0 is treated as unlimited - which is the default behavior.
+     */
+    maxUse?: number;
     /**
      * Minimum allowed TLS version on SSL connections to this backend.
      */
@@ -2373,6 +2381,10 @@ export interface ServiceComputeProductEnablement {
      */
     apiDiscovery?: boolean;
     /**
+     * Enable Bot Management support
+     */
+    botManagement?: outputs.ServiceComputeProductEnablementBotManagement;
+    /**
      * DDoS Protection product
      */
     ddosProtection?: outputs.ServiceComputeProductEnablementDdosProtection;
@@ -2400,6 +2412,17 @@ export interface ServiceComputeProductEnablement {
      * Enable WebSockets support
      */
     websockets?: boolean;
+}
+
+export interface ServiceComputeProductEnablementBotManagement {
+    /**
+     * ContentGuard status. Can be either `off`, or `on`.
+     */
+    contentguard: string;
+    /**
+     * Enable Bot Management support
+     */
+    enabled: boolean;
 }
 
 export interface ServiceComputeProductEnablementDdosProtection {
@@ -2496,9 +2519,17 @@ export interface ServiceVclBackend {
      */
     maxConn?: number;
     /**
+     * Maximum time from creation (in milliseconds) that a pooled HTTP keepalive connection will be eligible for reuse; 0 is treated as unlimited - which is the default behavior.
+     */
+    maxLifetime?: number;
+    /**
      * Maximum allowed TLS version on SSL connections to this backend.
      */
     maxTlsVersion?: string;
+    /**
+     * Maximum number of requests allowed over a single, pooled HTTP keepalive connection to this backend; 0 is treated as unlimited - which is the default behavior.
+     */
+    maxUse?: number;
     /**
      * Minimum allowed TLS version on SSL connections to this backend.
      */
