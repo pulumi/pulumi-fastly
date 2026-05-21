@@ -18,6 +18,10 @@ namespace Pulumi.Fastly.Outputs
         /// </summary>
         public readonly bool? ApiDiscovery;
         /// <summary>
+        /// Enable Bot Management support
+        /// </summary>
+        public readonly Outputs.ServiceComputeProductEnablementBotManagement? BotManagement;
+        /// <summary>
         /// DDoS Protection product
         /// </summary>
         public readonly Outputs.ServiceComputeProductEnablementDdosProtection? DdosProtection;
@@ -50,6 +54,8 @@ namespace Pulumi.Fastly.Outputs
         private ServiceComputeProductEnablement(
             bool? apiDiscovery,
 
+            Outputs.ServiceComputeProductEnablementBotManagement? botManagement,
+
             Outputs.ServiceComputeProductEnablementDdosProtection? ddosProtection,
 
             bool? domainInspector,
@@ -65,6 +71,7 @@ namespace Pulumi.Fastly.Outputs
             bool? websockets)
         {
             ApiDiscovery = apiDiscovery;
+            BotManagement = botManagement;
             DdosProtection = ddosProtection;
             DomainInspector = domainInspector;
             Fanout = fanout;

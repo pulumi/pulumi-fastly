@@ -50,9 +50,17 @@ namespace Pulumi.Fastly.Outputs
         /// </summary>
         public readonly int? MaxConn;
         /// <summary>
+        /// Maximum time from creation (in milliseconds) that a pooled HTTP keepalive connection will be eligible for reuse; 0 is treated as unlimited - which is the default behavior.
+        /// </summary>
+        public readonly int? MaxLifetime;
+        /// <summary>
         /// Maximum allowed TLS version on SSL connections to this backend.
         /// </summary>
         public readonly string? MaxTlsVersion;
+        /// <summary>
+        /// Maximum number of requests allowed over a single, pooled HTTP keepalive connection to this backend; 0 is treated as unlimited - which is the default behavior.
+        /// </summary>
+        public readonly int? MaxUse;
         /// <summary>
         /// Minimum allowed TLS version on SSL connections to this backend.
         /// </summary>
@@ -142,7 +150,11 @@ namespace Pulumi.Fastly.Outputs
 
             int? maxConn,
 
+            int? maxLifetime,
+
             string? maxTlsVersion,
+
+            int? maxUse,
 
             string? minTlsVersion,
 
@@ -187,7 +199,9 @@ namespace Pulumi.Fastly.Outputs
             Healthcheck = healthcheck;
             KeepaliveTime = keepaliveTime;
             MaxConn = maxConn;
+            MaxLifetime = maxLifetime;
             MaxTlsVersion = maxTlsVersion;
+            MaxUse = maxUse;
             MinTlsVersion = minTlsVersion;
             Name = name;
             OverrideHost = overrideHost;

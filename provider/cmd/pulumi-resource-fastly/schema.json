@@ -763,9 +763,17 @@
                     "type": "integer",
                     "description": "Maximum number of connections for this Backend. Default \u003cspan pulumi-lang-nodejs=\"`200`\" pulumi-lang-dotnet=\"`200`\" pulumi-lang-go=\"`200`\" pulumi-lang-python=\"`200`\" pulumi-lang-yaml=\"`200`\" pulumi-lang-java=\"`200`\"\u003e`200`\u003c/span\u003e\n"
                 },
+                "maxLifetime": {
+                    "type": "integer",
+                    "description": "Maximum time from creation (in milliseconds) that a pooled HTTP keepalive connection will be eligible for reuse; 0 is treated as unlimited - which is the default behavior.\n"
+                },
                 "maxTlsVersion": {
                     "type": "string",
                     "description": "Maximum allowed TLS version on SSL connections to this backend.\n"
+                },
+                "maxUse": {
+                    "type": "integer",
+                    "description": "Maximum number of requests allowed over a single, pooled HTTP keepalive connection to this backend; 0 is treated as unlimited - which is the default behavior.\n"
                 },
                 "minTlsVersion": {
                     "type": "string",
@@ -2374,6 +2382,10 @@
                     "type": "boolean",
                     "description": "Enable API Discovery support\n"
                 },
+                "botManagement": {
+                    "$ref": "#/types/fastly:index/ServiceComputeProductEnablementBotManagement:ServiceComputeProductEnablementBotManagement",
+                    "description": "Enable Bot Management support\n"
+                },
                 "ddosProtection": {
                     "$ref": "#/types/fastly:index/ServiceComputeProductEnablementDdosProtection:ServiceComputeProductEnablementDdosProtection",
                     "description": "DDoS Protection product\n"
@@ -2404,6 +2416,23 @@
                 }
             },
             "type": "object"
+        },
+        "fastly:index/ServiceComputeProductEnablementBotManagement:ServiceComputeProductEnablementBotManagement": {
+            "properties": {
+                "contentguard": {
+                    "type": "string",
+                    "description": "ContentGuard status. Can be either \u003cspan pulumi-lang-nodejs=\"`off`\" pulumi-lang-dotnet=\"`Off`\" pulumi-lang-go=\"`off`\" pulumi-lang-python=\"`off`\" pulumi-lang-yaml=\"`off`\" pulumi-lang-java=\"`off`\"\u003e`off`\u003c/span\u003e, or \u003cspan pulumi-lang-nodejs=\"`on`\" pulumi-lang-dotnet=\"`On`\" pulumi-lang-go=\"`on`\" pulumi-lang-python=\"`on`\" pulumi-lang-yaml=\"`on`\" pulumi-lang-java=\"`on`\"\u003e`on`\u003c/span\u003e.\n"
+                },
+                "enabled": {
+                    "type": "boolean",
+                    "description": "Enable Bot Management support\n"
+                }
+            },
+            "type": "object",
+            "required": [
+                "contentguard",
+                "enabled"
+            ]
         },
         "fastly:index/ServiceComputeProductEnablementDdosProtection:ServiceComputeProductEnablementDdosProtection": {
             "properties": {
@@ -2539,9 +2568,17 @@
                     "type": "integer",
                     "description": "Maximum number of connections for this Backend. Default \u003cspan pulumi-lang-nodejs=\"`200`\" pulumi-lang-dotnet=\"`200`\" pulumi-lang-go=\"`200`\" pulumi-lang-python=\"`200`\" pulumi-lang-yaml=\"`200`\" pulumi-lang-java=\"`200`\"\u003e`200`\u003c/span\u003e\n"
                 },
+                "maxLifetime": {
+                    "type": "integer",
+                    "description": "Maximum time from creation (in milliseconds) that a pooled HTTP keepalive connection will be eligible for reuse; 0 is treated as unlimited - which is the default behavior.\n"
+                },
                 "maxTlsVersion": {
                     "type": "string",
                     "description": "Maximum allowed TLS version on SSL connections to this backend.\n"
+                },
+                "maxUse": {
+                    "type": "integer",
+                    "description": "Maximum number of requests allowed over a single, pooled HTTP keepalive connection to this backend; 0 is treated as unlimited - which is the default behavior.\n"
                 },
                 "minTlsVersion": {
                     "type": "string",

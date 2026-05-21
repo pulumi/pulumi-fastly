@@ -4,6 +4,7 @@
 package com.pulumi.fastly.outputs;
 
 import com.pulumi.core.annotations.CustomType;
+import com.pulumi.fastly.outputs.ServiceComputeProductEnablementBotManagement;
 import com.pulumi.fastly.outputs.ServiceComputeProductEnablementDdosProtection;
 import com.pulumi.fastly.outputs.ServiceComputeProductEnablementNgwaf;
 import java.lang.Boolean;
@@ -19,6 +20,11 @@ public final class ServiceComputeProductEnablement {
      * 
      */
     private @Nullable Boolean apiDiscovery;
+    /**
+     * @return Enable Bot Management support
+     * 
+     */
+    private @Nullable ServiceComputeProductEnablementBotManagement botManagement;
     /**
      * @return DDoS Protection product
      * 
@@ -62,6 +68,13 @@ public final class ServiceComputeProductEnablement {
      */
     public Optional<Boolean> apiDiscovery() {
         return Optional.ofNullable(this.apiDiscovery);
+    }
+    /**
+     * @return Enable Bot Management support
+     * 
+     */
+    public Optional<ServiceComputeProductEnablementBotManagement> botManagement() {
+        return Optional.ofNullable(this.botManagement);
     }
     /**
      * @return DDoS Protection product
@@ -123,6 +136,7 @@ public final class ServiceComputeProductEnablement {
     @CustomType.Builder
     public static final class Builder {
         private @Nullable Boolean apiDiscovery;
+        private @Nullable ServiceComputeProductEnablementBotManagement botManagement;
         private @Nullable ServiceComputeProductEnablementDdosProtection ddosProtection;
         private @Nullable Boolean domainInspector;
         private @Nullable Boolean fanout;
@@ -134,6 +148,7 @@ public final class ServiceComputeProductEnablement {
         public Builder(ServiceComputeProductEnablement defaults) {
     	      Objects.requireNonNull(defaults);
     	      this.apiDiscovery = defaults.apiDiscovery;
+    	      this.botManagement = defaults.botManagement;
     	      this.ddosProtection = defaults.ddosProtection;
     	      this.domainInspector = defaults.domainInspector;
     	      this.fanout = defaults.fanout;
@@ -147,6 +162,12 @@ public final class ServiceComputeProductEnablement {
         public Builder apiDiscovery(@Nullable Boolean apiDiscovery) {
 
             this.apiDiscovery = apiDiscovery;
+            return this;
+        }
+        @CustomType.Setter
+        public Builder botManagement(@Nullable ServiceComputeProductEnablementBotManagement botManagement) {
+
+            this.botManagement = botManagement;
             return this;
         }
         @CustomType.Setter
@@ -194,6 +215,7 @@ public final class ServiceComputeProductEnablement {
         public ServiceComputeProductEnablement build() {
             final var _resultValue = new ServiceComputeProductEnablement();
             _resultValue.apiDiscovery = apiDiscovery;
+            _resultValue.botManagement = botManagement;
             _resultValue.ddosProtection = ddosProtection;
             _resultValue.domainInspector = domainInspector;
             _resultValue.fanout = fanout;

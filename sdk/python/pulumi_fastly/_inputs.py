@@ -139,6 +139,8 @@ __all__ = [
     'ServiceComputePackageArgsDict',
     'ServiceComputeProductEnablementArgs',
     'ServiceComputeProductEnablementArgsDict',
+    'ServiceComputeProductEnablementBotManagementArgs',
+    'ServiceComputeProductEnablementBotManagementArgsDict',
     'ServiceComputeProductEnablementDdosProtectionArgs',
     'ServiceComputeProductEnablementDdosProtectionArgsDict',
     'ServiceComputeProductEnablementNgwafArgs',
@@ -2286,9 +2288,17 @@ class ServiceComputeBackendArgsDict(TypedDict):
     """
     Maximum number of connections for this Backend. Default `200`
     """
+    max_lifetime: NotRequired[pulumi.Input[Optional[_builtins.int]]]
+    """
+    Maximum time from creation (in milliseconds) that a pooled HTTP keepalive connection will be eligible for reuse; 0 is treated as unlimited - which is the default behavior.
+    """
     max_tls_version: NotRequired[pulumi.Input[Optional[_builtins.str]]]
     """
     Maximum allowed TLS version on SSL connections to this backend.
+    """
+    max_use: NotRequired[pulumi.Input[Optional[_builtins.int]]]
+    """
+    Maximum number of requests allowed over a single, pooled HTTP keepalive connection to this backend; 0 is treated as unlimited - which is the default behavior.
     """
     min_tls_version: NotRequired[pulumi.Input[Optional[_builtins.str]]]
     """
@@ -2363,7 +2373,9 @@ class ServiceComputeBackendArgs:
                  healthcheck: pulumi.Input[Optional[_builtins.str]] = None,
                  keepalive_time: pulumi.Input[Optional[_builtins.int]] = None,
                  max_conn: pulumi.Input[Optional[_builtins.int]] = None,
+                 max_lifetime: pulumi.Input[Optional[_builtins.int]] = None,
                  max_tls_version: pulumi.Input[Optional[_builtins.str]] = None,
+                 max_use: pulumi.Input[Optional[_builtins.int]] = None,
                  min_tls_version: pulumi.Input[Optional[_builtins.str]] = None,
                  override_host: pulumi.Input[Optional[_builtins.str]] = None,
                  port: pulumi.Input[Optional[_builtins.int]] = None,
@@ -2389,7 +2401,9 @@ class ServiceComputeBackendArgs:
         :param pulumi.Input[_builtins.str] healthcheck: Name of a defined `healthcheck` to assign to this backend
         :param pulumi.Input[_builtins.int] keepalive_time: How long in seconds to keep a persistent connection to the backend between requests.
         :param pulumi.Input[_builtins.int] max_conn: Maximum number of connections for this Backend. Default `200`
+        :param pulumi.Input[_builtins.int] max_lifetime: Maximum time from creation (in milliseconds) that a pooled HTTP keepalive connection will be eligible for reuse; 0 is treated as unlimited - which is the default behavior.
         :param pulumi.Input[_builtins.str] max_tls_version: Maximum allowed TLS version on SSL connections to this backend.
+        :param pulumi.Input[_builtins.int] max_use: Maximum number of requests allowed over a single, pooled HTTP keepalive connection to this backend; 0 is treated as unlimited - which is the default behavior.
         :param pulumi.Input[_builtins.str] min_tls_version: Minimum allowed TLS version on SSL connections to this backend.
         :param pulumi.Input[_builtins.str] override_host: The hostname to override the Host header
         :param pulumi.Input[_builtins.int] port: The port number on which the Backend responds. Default `80`
@@ -2422,8 +2436,12 @@ class ServiceComputeBackendArgs:
             pulumi.set(__self__, "keepalive_time", keepalive_time)
         if max_conn is not None:
             pulumi.set(__self__, "max_conn", max_conn)
+        if max_lifetime is not None:
+            pulumi.set(__self__, "max_lifetime", max_lifetime)
         if max_tls_version is not None:
             pulumi.set(__self__, "max_tls_version", max_tls_version)
+        if max_use is not None:
+            pulumi.set(__self__, "max_use", max_use)
         if min_tls_version is not None:
             pulumi.set(__self__, "min_tls_version", min_tls_version)
         if override_host is not None:
@@ -2564,6 +2582,18 @@ class ServiceComputeBackendArgs:
         pulumi.set(self, "max_conn", value)
 
     @_builtins.property
+    @pulumi.getter(name="maxLifetime")
+    def max_lifetime(self) -> pulumi.Input[Optional[_builtins.int]]:
+        """
+        Maximum time from creation (in milliseconds) that a pooled HTTP keepalive connection will be eligible for reuse; 0 is treated as unlimited - which is the default behavior.
+        """
+        return pulumi.get(self, "max_lifetime")
+
+    @max_lifetime.setter
+    def max_lifetime(self, value: pulumi.Input[Optional[_builtins.int]]):
+        pulumi.set(self, "max_lifetime", value)
+
+    @_builtins.property
     @pulumi.getter(name="maxTlsVersion")
     def max_tls_version(self) -> pulumi.Input[Optional[_builtins.str]]:
         """
@@ -2574,6 +2604,18 @@ class ServiceComputeBackendArgs:
     @max_tls_version.setter
     def max_tls_version(self, value: pulumi.Input[Optional[_builtins.str]]):
         pulumi.set(self, "max_tls_version", value)
+
+    @_builtins.property
+    @pulumi.getter(name="maxUse")
+    def max_use(self) -> pulumi.Input[Optional[_builtins.int]]:
+        """
+        Maximum number of requests allowed over a single, pooled HTTP keepalive connection to this backend; 0 is treated as unlimited - which is the default behavior.
+        """
+        return pulumi.get(self, "max_use")
+
+    @max_use.setter
+    def max_use(self, value: pulumi.Input[Optional[_builtins.int]]):
+        pulumi.set(self, "max_use", value)
 
     @_builtins.property
     @pulumi.getter(name="minTlsVersion")
@@ -8729,6 +8771,10 @@ class ServiceComputeProductEnablementArgsDict(TypedDict):
     """
     Enable API Discovery support
     """
+    bot_management: NotRequired[pulumi.Input[Optional['ServiceComputeProductEnablementBotManagementArgs']]]
+    """
+    Enable Bot Management support
+    """
     ddos_protection: NotRequired[pulumi.Input[Optional['ServiceComputeProductEnablementDdosProtectionArgs']]]
     """
     DDoS Protection product
@@ -8762,6 +8808,7 @@ class ServiceComputeProductEnablementArgsDict(TypedDict):
 class ServiceComputeProductEnablementArgs:
     def __init__(__self__, *,
                  api_discovery: pulumi.Input[Optional[_builtins.bool]] = None,
+                 bot_management: pulumi.Input[Optional['ServiceComputeProductEnablementBotManagementArgs']] = None,
                  ddos_protection: pulumi.Input[Optional['ServiceComputeProductEnablementDdosProtectionArgs']] = None,
                  domain_inspector: pulumi.Input[Optional[_builtins.bool]] = None,
                  fanout: pulumi.Input[Optional[_builtins.bool]] = None,
@@ -8771,6 +8818,7 @@ class ServiceComputeProductEnablementArgs:
                  websockets: pulumi.Input[Optional[_builtins.bool]] = None):
         """
         :param pulumi.Input[_builtins.bool] api_discovery: Enable API Discovery support
+        :param pulumi.Input['ServiceComputeProductEnablementBotManagementArgs'] bot_management: Enable Bot Management support
         :param pulumi.Input['ServiceComputeProductEnablementDdosProtectionArgs'] ddos_protection: DDoS Protection product
         :param pulumi.Input[_builtins.bool] domain_inspector: Enable Domain Inspector support
         :param pulumi.Input[_builtins.bool] fanout: Enable Fanout support
@@ -8781,6 +8829,8 @@ class ServiceComputeProductEnablementArgs:
         """
         if api_discovery is not None:
             pulumi.set(__self__, "api_discovery", api_discovery)
+        if bot_management is not None:
+            pulumi.set(__self__, "bot_management", bot_management)
         if ddos_protection is not None:
             pulumi.set(__self__, "ddos_protection", ddos_protection)
         if domain_inspector is not None:
@@ -8807,6 +8857,18 @@ class ServiceComputeProductEnablementArgs:
     @api_discovery.setter
     def api_discovery(self, value: pulumi.Input[Optional[_builtins.bool]]):
         pulumi.set(self, "api_discovery", value)
+
+    @_builtins.property
+    @pulumi.getter(name="botManagement")
+    def bot_management(self) -> pulumi.Input[Optional['ServiceComputeProductEnablementBotManagementArgs']]:
+        """
+        Enable Bot Management support
+        """
+        return pulumi.get(self, "bot_management")
+
+    @bot_management.setter
+    def bot_management(self, value: pulumi.Input[Optional['ServiceComputeProductEnablementBotManagementArgs']]):
+        pulumi.set(self, "bot_management", value)
 
     @_builtins.property
     @pulumi.getter(name="ddosProtection")
@@ -8891,6 +8953,53 @@ class ServiceComputeProductEnablementArgs:
     @websockets.setter
     def websockets(self, value: pulumi.Input[Optional[_builtins.bool]]):
         pulumi.set(self, "websockets", value)
+
+
+class ServiceComputeProductEnablementBotManagementArgsDict(TypedDict):
+    contentguard: pulumi.Input[_builtins.str]
+    """
+    ContentGuard status. Can be either `off`, or `on`.
+    """
+    enabled: pulumi.Input[_builtins.bool]
+    """
+    Enable Bot Management support
+    """
+
+@pulumi.input_type
+class ServiceComputeProductEnablementBotManagementArgs:
+    def __init__(__self__, *,
+                 contentguard: pulumi.Input[_builtins.str],
+                 enabled: pulumi.Input[_builtins.bool]):
+        """
+        :param pulumi.Input[_builtins.str] contentguard: ContentGuard status. Can be either `off`, or `on`.
+        :param pulumi.Input[_builtins.bool] enabled: Enable Bot Management support
+        """
+        pulumi.set(__self__, "contentguard", contentguard)
+        pulumi.set(__self__, "enabled", enabled)
+
+    @_builtins.property
+    @pulumi.getter
+    def contentguard(self) -> pulumi.Input[_builtins.str]:
+        """
+        ContentGuard status. Can be either `off`, or `on`.
+        """
+        return pulumi.get(self, "contentguard")
+
+    @contentguard.setter
+    def contentguard(self, value: pulumi.Input[_builtins.str]):
+        pulumi.set(self, "contentguard", value)
+
+    @_builtins.property
+    @pulumi.getter
+    def enabled(self) -> pulumi.Input[_builtins.bool]:
+        """
+        Enable Bot Management support
+        """
+        return pulumi.get(self, "enabled")
+
+    @enabled.setter
+    def enabled(self, value: pulumi.Input[_builtins.bool]):
+        pulumi.set(self, "enabled", value)
 
 
 class ServiceComputeProductEnablementDdosProtectionArgsDict(TypedDict):
@@ -9183,9 +9292,17 @@ class ServiceVclBackendArgsDict(TypedDict):
     """
     Maximum number of connections for this Backend. Default `200`
     """
+    max_lifetime: NotRequired[pulumi.Input[Optional[_builtins.int]]]
+    """
+    Maximum time from creation (in milliseconds) that a pooled HTTP keepalive connection will be eligible for reuse; 0 is treated as unlimited - which is the default behavior.
+    """
     max_tls_version: NotRequired[pulumi.Input[Optional[_builtins.str]]]
     """
     Maximum allowed TLS version on SSL connections to this backend.
+    """
+    max_use: NotRequired[pulumi.Input[Optional[_builtins.int]]]
+    """
+    Maximum number of requests allowed over a single, pooled HTTP keepalive connection to this backend; 0 is treated as unlimited - which is the default behavior.
     """
     min_tls_version: NotRequired[pulumi.Input[Optional[_builtins.str]]]
     """
@@ -9265,7 +9382,9 @@ class ServiceVclBackendArgs:
                  healthcheck: pulumi.Input[Optional[_builtins.str]] = None,
                  keepalive_time: pulumi.Input[Optional[_builtins.int]] = None,
                  max_conn: pulumi.Input[Optional[_builtins.int]] = None,
+                 max_lifetime: pulumi.Input[Optional[_builtins.int]] = None,
                  max_tls_version: pulumi.Input[Optional[_builtins.str]] = None,
+                 max_use: pulumi.Input[Optional[_builtins.int]] = None,
                  min_tls_version: pulumi.Input[Optional[_builtins.str]] = None,
                  override_host: pulumi.Input[Optional[_builtins.str]] = None,
                  port: pulumi.Input[Optional[_builtins.int]] = None,
@@ -9293,7 +9412,9 @@ class ServiceVclBackendArgs:
         :param pulumi.Input[_builtins.str] healthcheck: Name of a defined `healthcheck` to assign to this backend
         :param pulumi.Input[_builtins.int] keepalive_time: How long in seconds to keep a persistent connection to the backend between requests.
         :param pulumi.Input[_builtins.int] max_conn: Maximum number of connections for this Backend. Default `200`
+        :param pulumi.Input[_builtins.int] max_lifetime: Maximum time from creation (in milliseconds) that a pooled HTTP keepalive connection will be eligible for reuse; 0 is treated as unlimited - which is the default behavior.
         :param pulumi.Input[_builtins.str] max_tls_version: Maximum allowed TLS version on SSL connections to this backend.
+        :param pulumi.Input[_builtins.int] max_use: Maximum number of requests allowed over a single, pooled HTTP keepalive connection to this backend; 0 is treated as unlimited - which is the default behavior.
         :param pulumi.Input[_builtins.str] min_tls_version: Minimum allowed TLS version on SSL connections to this backend.
         :param pulumi.Input[_builtins.str] override_host: The hostname to override the Host header
         :param pulumi.Input[_builtins.int] port: The port number on which the Backend responds. Default `80`
@@ -9329,8 +9450,12 @@ class ServiceVclBackendArgs:
             pulumi.set(__self__, "keepalive_time", keepalive_time)
         if max_conn is not None:
             pulumi.set(__self__, "max_conn", max_conn)
+        if max_lifetime is not None:
+            pulumi.set(__self__, "max_lifetime", max_lifetime)
         if max_tls_version is not None:
             pulumi.set(__self__, "max_tls_version", max_tls_version)
+        if max_use is not None:
+            pulumi.set(__self__, "max_use", max_use)
         if min_tls_version is not None:
             pulumi.set(__self__, "min_tls_version", min_tls_version)
         if override_host is not None:
@@ -9485,6 +9610,18 @@ class ServiceVclBackendArgs:
         pulumi.set(self, "max_conn", value)
 
     @_builtins.property
+    @pulumi.getter(name="maxLifetime")
+    def max_lifetime(self) -> pulumi.Input[Optional[_builtins.int]]:
+        """
+        Maximum time from creation (in milliseconds) that a pooled HTTP keepalive connection will be eligible for reuse; 0 is treated as unlimited - which is the default behavior.
+        """
+        return pulumi.get(self, "max_lifetime")
+
+    @max_lifetime.setter
+    def max_lifetime(self, value: pulumi.Input[Optional[_builtins.int]]):
+        pulumi.set(self, "max_lifetime", value)
+
+    @_builtins.property
     @pulumi.getter(name="maxTlsVersion")
     def max_tls_version(self) -> pulumi.Input[Optional[_builtins.str]]:
         """
@@ -9495,6 +9632,18 @@ class ServiceVclBackendArgs:
     @max_tls_version.setter
     def max_tls_version(self, value: pulumi.Input[Optional[_builtins.str]]):
         pulumi.set(self, "max_tls_version", value)
+
+    @_builtins.property
+    @pulumi.getter(name="maxUse")
+    def max_use(self) -> pulumi.Input[Optional[_builtins.int]]:
+        """
+        Maximum number of requests allowed over a single, pooled HTTP keepalive connection to this backend; 0 is treated as unlimited - which is the default behavior.
+        """
+        return pulumi.get(self, "max_use")
+
+    @max_use.setter
+    def max_use(self, value: pulumi.Input[Optional[_builtins.int]]):
+        pulumi.set(self, "max_use", value)
 
     @_builtins.property
     @pulumi.getter(name="minTlsVersion")

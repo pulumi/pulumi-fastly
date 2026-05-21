@@ -60,10 +60,20 @@ public final class ServiceVclBackend {
      */
     private @Nullable Integer maxConn;
     /**
+     * @return Maximum time from creation (in milliseconds) that a pooled HTTP keepalive connection will be eligible for reuse; 0 is treated as unlimited - which is the default behavior.
+     * 
+     */
+    private @Nullable Integer maxLifetime;
+    /**
      * @return Maximum allowed TLS version on SSL connections to this backend.
      * 
      */
     private @Nullable String maxTlsVersion;
+    /**
+     * @return Maximum number of requests allowed over a single, pooled HTTP keepalive connection to this backend; 0 is treated as unlimited - which is the default behavior.
+     * 
+     */
+    private @Nullable Integer maxUse;
     /**
      * @return Minimum allowed TLS version on SSL connections to this backend.
      * 
@@ -215,11 +225,25 @@ public final class ServiceVclBackend {
         return Optional.ofNullable(this.maxConn);
     }
     /**
+     * @return Maximum time from creation (in milliseconds) that a pooled HTTP keepalive connection will be eligible for reuse; 0 is treated as unlimited - which is the default behavior.
+     * 
+     */
+    public Optional<Integer> maxLifetime() {
+        return Optional.ofNullable(this.maxLifetime);
+    }
+    /**
      * @return Maximum allowed TLS version on SSL connections to this backend.
      * 
      */
     public Optional<String> maxTlsVersion() {
         return Optional.ofNullable(this.maxTlsVersion);
+    }
+    /**
+     * @return Maximum number of requests allowed over a single, pooled HTTP keepalive connection to this backend; 0 is treated as unlimited - which is the default behavior.
+     * 
+     */
+    public Optional<Integer> maxUse() {
+        return Optional.ofNullable(this.maxUse);
     }
     /**
      * @return Minimum allowed TLS version on SSL connections to this backend.
@@ -359,7 +383,9 @@ public final class ServiceVclBackend {
         private @Nullable String healthcheck;
         private @Nullable Integer keepaliveTime;
         private @Nullable Integer maxConn;
+        private @Nullable Integer maxLifetime;
         private @Nullable String maxTlsVersion;
+        private @Nullable Integer maxUse;
         private @Nullable String minTlsVersion;
         private String name;
         private @Nullable String overrideHost;
@@ -389,7 +415,9 @@ public final class ServiceVclBackend {
     	      this.healthcheck = defaults.healthcheck;
     	      this.keepaliveTime = defaults.keepaliveTime;
     	      this.maxConn = defaults.maxConn;
+    	      this.maxLifetime = defaults.maxLifetime;
     	      this.maxTlsVersion = defaults.maxTlsVersion;
+    	      this.maxUse = defaults.maxUse;
     	      this.minTlsVersion = defaults.minTlsVersion;
     	      this.name = defaults.name;
     	      this.overrideHost = defaults.overrideHost;
@@ -466,9 +494,21 @@ public final class ServiceVclBackend {
             return this;
         }
         @CustomType.Setter
+        public Builder maxLifetime(@Nullable Integer maxLifetime) {
+
+            this.maxLifetime = maxLifetime;
+            return this;
+        }
+        @CustomType.Setter
         public Builder maxTlsVersion(@Nullable String maxTlsVersion) {
 
             this.maxTlsVersion = maxTlsVersion;
+            return this;
+        }
+        @CustomType.Setter
+        public Builder maxUse(@Nullable Integer maxUse) {
+
+            this.maxUse = maxUse;
             return this;
         }
         @CustomType.Setter
@@ -586,7 +626,9 @@ public final class ServiceVclBackend {
             _resultValue.healthcheck = healthcheck;
             _resultValue.keepaliveTime = keepaliveTime;
             _resultValue.maxConn = maxConn;
+            _resultValue.maxLifetime = maxLifetime;
             _resultValue.maxTlsVersion = maxTlsVersion;
+            _resultValue.maxUse = maxUse;
             _resultValue.minTlsVersion = minTlsVersion;
             _resultValue.name = name;
             _resultValue.overrideHost = overrideHost;
