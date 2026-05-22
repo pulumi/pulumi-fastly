@@ -26,7 +26,7 @@ Pricing and signup information can be found at <https://www.fastly.com/signup>
 Use the navigation to the left to read about the available resources.
 ## Example Usage
 
-{{< chooser language "typescript,python,go,csharp,java,yaml" >}}
+{{< chooser language "typescript,python,go,csharp,java,yaml,hcl" >}}
 {{% choosable language typescript %}}
 ```yaml
 # Pulumi.yaml provider configuration file
@@ -194,6 +194,23 @@ public class App {
 ```
 
 {{% /choosable %}}
+{{% choosable language hcl %}}
+```hcl
+pulumi {
+  required_providers {
+    fastly = {
+      source = "pulumi/fastly"
+    }
+  }
+}
+
+# Create a Service
+resource "fastly_servicevcl" "myservice" {
+  name = "myawesometestservice"
+}
+```
+
+{{% /choosable %}}
 {{< /chooser >}}
 ## Importing
 
@@ -212,7 +229,7 @@ Static credentials can be provided by adding a `apiKey` in-line:
 
 Usage:
 
-{{< chooser language "typescript,python,go,csharp,java,yaml" >}}
+{{< chooser language "typescript,python,go,csharp,java,yaml,hcl" >}}
 {{% choosable language typescript %}}
 ```yaml
 # Pulumi.yaml provider configuration file
@@ -364,6 +381,21 @@ public class App {
 ```
 
 {{% /choosable %}}
+{{% choosable language hcl %}}
+```hcl
+pulumi {
+  required_providers {
+    fastly = {
+      source = "pulumi/fastly"
+    }
+  }
+}
+
+resource "fastly_servicevcl" "myservice" {
+}
+```
+
+{{% /choosable %}}
 {{< /chooser >}}
 
 You can create a credential on the Personal API Tokens page: <https://manage.fastly.com/account/personal/tokens>
@@ -372,7 +404,7 @@ You can create a credential on the Personal API Tokens page: <https://manage.fas
 You can provide your API key via `FASTLY_API_KEY` environment variable,
 representing your Fastly API key.
 
-{{< chooser language "typescript,python,go,csharp,java,yaml" >}}
+{{< chooser language "typescript,python,go,csharp,java,yaml,hcl" >}}
 {{% choosable language typescript %}}
 ```typescript
 import * as pulumi from "@pulumi/pulumi";
@@ -460,6 +492,21 @@ public class App {
         var myservice = new ServiceVcl("myservice");
 
     }
+}
+```
+
+{{% /choosable %}}
+{{% choosable language hcl %}}
+```hcl
+pulumi {
+  required_providers {
+    fastly = {
+      source = "pulumi/fastly"
+    }
+  }
+}
+
+resource "fastly_servicevcl" "myservice" {
 }
 ```
 
