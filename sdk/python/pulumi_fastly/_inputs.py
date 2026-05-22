@@ -821,11 +821,11 @@ class NgwafAccountRuleGroupConditionArgsDict(TypedDict):
     """
     Logical operator for the group. Accepted values are `any` and `all`.
     """
-    conditions: NotRequired[pulumi.Input[Optional[Sequence[pulumi.Input['NgwafAccountRuleGroupConditionConditionArgs']]]]]
+    conditions: NotRequired[pulumi.Input[Optional[Sequence[pulumi.Input['NgwafAccountRuleGroupConditionConditionArgsDict']]]]]
     """
     A list of nested conditions in this group.
     """
-    multival_conditions: NotRequired[pulumi.Input[Optional[Sequence[pulumi.Input['NgwafAccountRuleGroupConditionMultivalConditionArgs']]]]]
+    multival_conditions: NotRequired[pulumi.Input[Optional[Sequence[pulumi.Input['NgwafAccountRuleGroupConditionMultivalConditionArgsDict']]]]]
     """
     List of nested multival conditions in this group. Each multival list must define a `field, operator, group_operator` and at least one condition.
     """
@@ -1540,11 +1540,11 @@ class NgwafWorkspaceRuleGroupConditionArgsDict(TypedDict):
     """
     Logical operator for the group. Accepted values are `any` and `all`.
     """
-    conditions: NotRequired[pulumi.Input[Optional[Sequence[pulumi.Input['NgwafWorkspaceRuleGroupConditionConditionArgs']]]]]
+    conditions: NotRequired[pulumi.Input[Optional[Sequence[pulumi.Input['NgwafWorkspaceRuleGroupConditionConditionArgsDict']]]]]
     """
     A list of nested conditions in this group.
     """
-    multival_conditions: NotRequired[pulumi.Input[Optional[Sequence[pulumi.Input['NgwafWorkspaceRuleGroupConditionMultivalConditionArgs']]]]]
+    multival_conditions: NotRequired[pulumi.Input[Optional[Sequence[pulumi.Input['NgwafWorkspaceRuleGroupConditionMultivalConditionArgsDict']]]]]
     """
     List of nested multival conditions in this group. Each multival list must define a `field, operator, group_operator` and at least one condition.
     """
@@ -8771,11 +8771,11 @@ class ServiceComputeProductEnablementArgsDict(TypedDict):
     """
     Enable API Discovery support
     """
-    bot_management: NotRequired[pulumi.Input[Optional['ServiceComputeProductEnablementBotManagementArgs']]]
+    bot_management: NotRequired[pulumi.Input[Optional['ServiceComputeProductEnablementBotManagementArgsDict']]]
     """
     Enable Bot Management support
     """
-    ddos_protection: NotRequired[pulumi.Input[Optional['ServiceComputeProductEnablementDdosProtectionArgs']]]
+    ddos_protection: NotRequired[pulumi.Input[Optional['ServiceComputeProductEnablementDdosProtectionArgsDict']]]
     """
     DDoS Protection product
     """
@@ -8795,7 +8795,7 @@ class ServiceComputeProductEnablementArgsDict(TypedDict):
     """
     Used by the provider to identify modified settings (changing this value will force the entire block to be deleted, then recreated)
     """
-    ngwaf: NotRequired[pulumi.Input[Optional['ServiceComputeProductEnablementNgwafArgs']]]
+    ngwaf: NotRequired[pulumi.Input[Optional['ServiceComputeProductEnablementNgwafArgsDict']]]
     """
     Next-Gen WAF product
     """
@@ -18663,7 +18663,7 @@ class ServiceVclProductEnablementArgsDict(TypedDict):
     """
     Enable API Discovery support
     """
-    bot_management: NotRequired[pulumi.Input[Optional['ServiceVclProductEnablementBotManagementArgs']]]
+    bot_management: NotRequired[pulumi.Input[Optional['ServiceVclProductEnablementBotManagementArgsDict']]]
     """
     Enable Bot Management support
     """
@@ -18671,7 +18671,7 @@ class ServiceVclProductEnablementArgsDict(TypedDict):
     """
     Enable Brotli Compression support
     """
-    ddos_protection: NotRequired[pulumi.Input[Optional['ServiceVclProductEnablementDdosProtectionArgs']]]
+    ddos_protection: NotRequired[pulumi.Input[Optional['ServiceVclProductEnablementDdosProtectionArgsDict']]]
     """
     DDoS Protection product
     """
@@ -18691,7 +18691,7 @@ class ServiceVclProductEnablementArgsDict(TypedDict):
     """
     Used by the provider to identify modified settings (changing this value will force the entire block to be deleted, then recreated)
     """
-    ngwaf: NotRequired[pulumi.Input[Optional['ServiceVclProductEnablementNgwafArgs']]]
+    ngwaf: NotRequired[pulumi.Input[Optional['ServiceVclProductEnablementNgwafArgsDict']]]
     """
     Next-Gen WAF product
     """
@@ -19089,7 +19089,7 @@ class ServiceVclRateLimiterArgsDict(TypedDict):
     """
     Alphanumeric string identifying the rate limiter
     """
-    response: NotRequired[pulumi.Input[Optional['ServiceVclRateLimiterResponseArgs']]]
+    response: NotRequired[pulumi.Input[Optional['ServiceVclRateLimiterResponseArgsDict']]]
     """
     Custom response to be sent when the rate limit is exceeded. Required if action is response
     """
