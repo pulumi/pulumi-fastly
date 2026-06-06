@@ -37,6 +37,8 @@ func (m *module) Construct(ctx *pulumi.Context, name, typ, urn string) (r pulumi
 		r = &ConfigstoreEntries{}
 	case "fastly:index/customDashboard:CustomDashboard":
 		r = &CustomDashboard{}
+	case "fastly:index/dnsZone:DnsZone":
+		r = &DnsZone{}
 	case "fastly:index/domain:Domain":
 		r = &Domain{}
 	case "fastly:index/domainServiceLink:DomainServiceLink":
@@ -115,6 +117,8 @@ func (m *module) Construct(ctx *pulumi.Context, name, typ, urn string) (r pulumi
 		r = &TlsSubscription{}
 	case "fastly:index/tlsSubscriptionValidation:TlsSubscriptionValidation":
 		r = &TlsSubscriptionValidation{}
+	case "fastly:index/tsigKey:TsigKey":
+		r = &TsigKey{}
 	case "fastly:index/user:User":
 		r = &User{}
 	default:
@@ -186,6 +190,11 @@ func init() {
 	pulumi.RegisterResourceModule(
 		"fastly",
 		"index/customDashboard",
+		&module{version},
+	)
+	pulumi.RegisterResourceModule(
+		"fastly",
+		"index/dnsZone",
 		&module{version},
 	)
 	pulumi.RegisterResourceModule(
@@ -381,6 +390,11 @@ func init() {
 	pulumi.RegisterResourceModule(
 		"fastly",
 		"index/tlsSubscriptionValidation",
+		&module{version},
+	)
+	pulumi.RegisterResourceModule(
+		"fastly",
+		"index/tsigKey",
 		&module{version},
 	)
 	pulumi.RegisterResourceModule(

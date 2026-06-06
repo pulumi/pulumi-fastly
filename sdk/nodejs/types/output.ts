@@ -106,6 +106,28 @@ export interface CustomDashboardDashboardItemVisualizationConfig {
     plotType: string;
 }
 
+export interface DnsZoneXfrConfigInbound {
+    /**
+     * The ID of the TSIG key used to secure inbound zone transfers.
+     */
+    inboundTsigKeyId?: string;
+    /**
+     * An array of the primary DNS server objects associated with inbound zone transfers.
+     */
+    primaries?: outputs.DnsZoneXfrConfigInboundPrimary[];
+}
+
+export interface DnsZoneXfrConfigInboundPrimary {
+    /**
+     * An IPv4 address for the Primary DNS Server.
+     */
+    address?: string;
+    /**
+     * A description of the Primary DNS server.
+     */
+    description?: string;
+}
+
 export interface GetApiSecurityDiscoveredOperationsOperation {
     /**
      * Discovered operation domain.
@@ -269,6 +291,21 @@ export interface GetDictionariesDictionary {
      * Indicates if items in the dictionary are readable or not.
      */
     writeOnly: boolean;
+}
+
+export interface GetDnsZonesZone {
+    /**
+     * A freeform descriptive note.
+     */
+    description: string;
+    /**
+     * Zone Identifier (UUID).
+     */
+    id: string;
+    /**
+     * The domain name for the zone.
+     */
+    name: string;
 }
 
 export interface GetDomainsDomain {
@@ -640,6 +677,25 @@ export interface GetTlsConfigurationDnsRecord {
      * The regions that will be used to route traffic. Select DNS Records with a `global` region to route traffic to the most performant point of presence (POP) worldwide (global pricing will apply). Select DNS records with a `us-eu` region to exclusively land traffic on North American and European POPs.
      */
     region: string;
+}
+
+export interface GetTsigKeysKey {
+    /**
+     * The algorithm of the TSIG key.
+     */
+    algorithm: string;
+    /**
+     * A freeform descriptive note.
+     */
+    description: string;
+    /**
+     * TSIG Key Identifier (UUID).
+     */
+    id: string;
+    /**
+     * The name of the TSIG key.
+     */
+    name: string;
 }
 
 export interface GetVclSnippetsVclSnippet {
@@ -2441,10 +2497,6 @@ export interface ServiceComputeProductEnablementNgwaf {
      * Enable Next-Gen WAF support
      */
     enabled: boolean;
-    /**
-     * The percentage of traffic to inspect
-     */
-    trafficRamp?: number;
     /**
      * The workspace to link
      */

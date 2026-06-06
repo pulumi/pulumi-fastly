@@ -11,25 +11,25 @@ namespace Pulumi.Fastly.Outputs
 {
 
     [OutputType]
-    public sealed class ServiceComputeProductEnablementNgwaf
+    public sealed class DnsZoneXfrConfigInboundPrimary
     {
         /// <summary>
-        /// Enable Next-Gen WAF support
+        /// An IPv4 address for the Primary DNS Server.
         /// </summary>
-        public readonly bool Enabled;
+        public readonly string? Address;
         /// <summary>
-        /// The workspace to link
+        /// A description of the Primary DNS server.
         /// </summary>
-        public readonly string WorkspaceId;
+        public readonly string? Description;
 
         [OutputConstructor]
-        private ServiceComputeProductEnablementNgwaf(
-            bool enabled,
+        private DnsZoneXfrConfigInboundPrimary(
+            string? address,
 
-            string workspaceId)
+            string? description)
         {
-            Enabled = enabled;
-            WorkspaceId = workspaceId;
+            Address = address;
+            Description = description;
         }
     }
 }

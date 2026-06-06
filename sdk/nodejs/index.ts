@@ -45,6 +45,11 @@ export type CustomDashboard = import("./customDashboard").CustomDashboard;
 export const CustomDashboard: typeof import("./customDashboard").CustomDashboard = null as any;
 utilities.lazyLoad(exports, ["CustomDashboard"], () => require("./customDashboard"));
 
+export { DnsZoneArgs, DnsZoneState } from "./dnsZone";
+export type DnsZone = import("./dnsZone").DnsZone;
+export const DnsZone: typeof import("./dnsZone").DnsZone = null as any;
+utilities.lazyLoad(exports, ["DnsZone"], () => require("./dnsZone"));
+
 export { DomainArgs, DomainState } from "./domain";
 export type Domain = import("./domain").Domain;
 export const Domain: typeof import("./domain").Domain = null as any;
@@ -99,6 +104,11 @@ export { GetDictionariesArgs, GetDictionariesResult, GetDictionariesOutputArgs }
 export const getDictionaries: typeof import("./getDictionaries").getDictionaries = null as any;
 export const getDictionariesOutput: typeof import("./getDictionaries").getDictionariesOutput = null as any;
 utilities.lazyLoad(exports, ["getDictionaries","getDictionariesOutput"], () => require("./getDictionaries"));
+
+export { GetDnsZonesArgs, GetDnsZonesResult, GetDnsZonesOutputArgs } from "./getDnsZones";
+export const getDnsZones: typeof import("./getDnsZones").getDnsZones = null as any;
+export const getDnsZonesOutput: typeof import("./getDnsZones").getDnsZonesOutput = null as any;
+utilities.lazyLoad(exports, ["getDnsZones","getDnsZonesOutput"], () => require("./getDnsZones"));
 
 export { GetDomainsArgs, GetDomainsResult, GetDomainsOutputArgs } from "./getDomains";
 export const getDomains: typeof import("./getDomains").getDomains = null as any;
@@ -295,6 +305,11 @@ export const getTlsSubscriptionIds: typeof import("./getTlsSubscriptionIds").get
 export const getTlsSubscriptionIdsOutput: typeof import("./getTlsSubscriptionIds").getTlsSubscriptionIdsOutput = null as any;
 utilities.lazyLoad(exports, ["getTlsSubscriptionIds","getTlsSubscriptionIdsOutput"], () => require("./getTlsSubscriptionIds"));
 
+export { GetTsigKeysArgs, GetTsigKeysResult, GetTsigKeysOutputArgs } from "./getTsigKeys";
+export const getTsigKeys: typeof import("./getTsigKeys").getTsigKeys = null as any;
+export const getTsigKeysOutput: typeof import("./getTsigKeys").getTsigKeysOutput = null as any;
+utilities.lazyLoad(exports, ["getTsigKeys","getTsigKeysOutput"], () => require("./getTsigKeys"));
+
 export { GetVclSnippetsArgs, GetVclSnippetsResult, GetVclSnippetsOutputArgs } from "./getVclSnippets";
 export const getVclSnippets: typeof import("./getVclSnippets").getVclSnippets = null as any;
 export const getVclSnippetsOutput: typeof import("./getVclSnippets").getVclSnippetsOutput = null as any;
@@ -478,6 +493,11 @@ export type TlsSubscriptionValidation = import("./tlsSubscriptionValidation").Tl
 export const TlsSubscriptionValidation: typeof import("./tlsSubscriptionValidation").TlsSubscriptionValidation = null as any;
 utilities.lazyLoad(exports, ["TlsSubscriptionValidation"], () => require("./tlsSubscriptionValidation"));
 
+export { TsigKeyArgs, TsigKeyState } from "./tsigKey";
+export type TsigKey = import("./tsigKey").TsigKey;
+export const TsigKey: typeof import("./tsigKey").TsigKey = null as any;
+utilities.lazyLoad(exports, ["TsigKey"], () => require("./tsigKey"));
+
 export { UserArgs, UserState } from "./user";
 export type User = import("./user").User;
 export const User: typeof import("./user").User = null as any;
@@ -513,6 +533,8 @@ const _module = {
                 return new ConfigstoreEntries(name, <any>undefined, { urn })
             case "fastly:index/customDashboard:CustomDashboard":
                 return new CustomDashboard(name, <any>undefined, { urn })
+            case "fastly:index/dnsZone:DnsZone":
+                return new DnsZone(name, <any>undefined, { urn })
             case "fastly:index/domain:Domain":
                 return new Domain(name, <any>undefined, { urn })
             case "fastly:index/domainServiceLink:DomainServiceLink":
@@ -591,6 +613,8 @@ const _module = {
                 return new TlsSubscription(name, <any>undefined, { urn })
             case "fastly:index/tlsSubscriptionValidation:TlsSubscriptionValidation":
                 return new TlsSubscriptionValidation(name, <any>undefined, { urn })
+            case "fastly:index/tsigKey:TsigKey":
+                return new TsigKey(name, <any>undefined, { urn })
             case "fastly:index/user:User":
                 return new User(name, <any>undefined, { urn })
             default:
@@ -606,6 +630,7 @@ pulumi.runtime.registerResourceModule("fastly", "index/computeAclEntries", _modu
 pulumi.runtime.registerResourceModule("fastly", "index/configstore", _module)
 pulumi.runtime.registerResourceModule("fastly", "index/configstoreEntries", _module)
 pulumi.runtime.registerResourceModule("fastly", "index/customDashboard", _module)
+pulumi.runtime.registerResourceModule("fastly", "index/dnsZone", _module)
 pulumi.runtime.registerResourceModule("fastly", "index/domain", _module)
 pulumi.runtime.registerResourceModule("fastly", "index/domainServiceLink", _module)
 pulumi.runtime.registerResourceModule("fastly", "index/domainV1", _module)
@@ -645,6 +670,7 @@ pulumi.runtime.registerResourceModule("fastly", "index/tlsPlatformCertificate", 
 pulumi.runtime.registerResourceModule("fastly", "index/tlsPrivateKey", _module)
 pulumi.runtime.registerResourceModule("fastly", "index/tlsSubscription", _module)
 pulumi.runtime.registerResourceModule("fastly", "index/tlsSubscriptionValidation", _module)
+pulumi.runtime.registerResourceModule("fastly", "index/tsigKey", _module)
 pulumi.runtime.registerResourceModule("fastly", "index/user", _module)
 pulumi.runtime.registerResourcePackage("fastly", {
     version: utilities.getVersion(),

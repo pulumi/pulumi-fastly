@@ -17,6 +17,8 @@ import com.pulumi.fastly.inputs.GetApiSecurityOperationsArgs;
 import com.pulumi.fastly.inputs.GetApiSecurityOperationsPlainArgs;
 import com.pulumi.fastly.inputs.GetDictionariesArgs;
 import com.pulumi.fastly.inputs.GetDictionariesPlainArgs;
+import com.pulumi.fastly.inputs.GetDnsZonesArgs;
+import com.pulumi.fastly.inputs.GetDnsZonesPlainArgs;
 import com.pulumi.fastly.inputs.GetDomainsArgs;
 import com.pulumi.fastly.inputs.GetDomainsPlainArgs;
 import com.pulumi.fastly.inputs.GetDomainsV1Args;
@@ -69,6 +71,8 @@ import com.pulumi.fastly.inputs.GetTlsPrivateKeyArgs;
 import com.pulumi.fastly.inputs.GetTlsPrivateKeyPlainArgs;
 import com.pulumi.fastly.inputs.GetTlsSubscriptionArgs;
 import com.pulumi.fastly.inputs.GetTlsSubscriptionPlainArgs;
+import com.pulumi.fastly.inputs.GetTsigKeysArgs;
+import com.pulumi.fastly.inputs.GetTsigKeysPlainArgs;
 import com.pulumi.fastly.inputs.GetVclSnippetsArgs;
 import com.pulumi.fastly.inputs.GetVclSnippetsPlainArgs;
 import com.pulumi.fastly.outputs.GetApiSecurityDiscoveredOperationsResult;
@@ -78,6 +82,7 @@ import com.pulumi.fastly.outputs.GetComputeAclsResult;
 import com.pulumi.fastly.outputs.GetConfigstoresResult;
 import com.pulumi.fastly.outputs.GetDatacentersResult;
 import com.pulumi.fastly.outputs.GetDictionariesResult;
+import com.pulumi.fastly.outputs.GetDnsZonesResult;
 import com.pulumi.fastly.outputs.GetDomainsResult;
 import com.pulumi.fastly.outputs.GetDomainsV1Result;
 import com.pulumi.fastly.outputs.GetFastlyIpRangesResult;
@@ -117,6 +122,7 @@ import com.pulumi.fastly.outputs.GetTlsPrivateKeyIdsResult;
 import com.pulumi.fastly.outputs.GetTlsPrivateKeyResult;
 import com.pulumi.fastly.outputs.GetTlsSubscriptionIdsResult;
 import com.pulumi.fastly.outputs.GetTlsSubscriptionResult;
+import com.pulumi.fastly.outputs.GetTsigKeysResult;
 import com.pulumi.fastly.outputs.GetVclSnippetsResult;
 import com.pulumi.resources.InvokeArgs;
 import java.util.concurrent.CompletableFuture;
@@ -1530,6 +1536,286 @@ public final class FastlyFunctions {
      */
     public static CompletableFuture<GetDictionariesResult> getDictionariesPlain(GetDictionariesPlainArgs args, InvokeOptions options) {
         return Deployment.getInstance().invokeAsync("fastly:index/getDictionaries:getDictionaries", TypeShape.of(GetDictionariesResult.class), args, Utilities.withVersion(options));
+    }
+    /**
+     * Use this data source to get a list of Fastly DNS Zones.
+     * 
+     * ## Example Usage
+     * 
+     * <pre>
+     * {@code
+     * package generated_program;
+     * 
+     * import com.pulumi.Context;
+     * import com.pulumi.Pulumi;
+     * import com.pulumi.core.Output;
+     * import com.pulumi.fastly.FastlyFunctions;
+     * import com.pulumi.fastly.inputs.GetDnsZonesArgs;
+     * import java.util.ArrayList;
+     * import java.util.Arrays;
+     * import java.util.Map;
+     * import java.io.File;
+     * import java.nio.file.Files;
+     * import java.nio.file.Paths;
+     * 
+     * public class App {
+     *     public static void main(String[] args) {
+     *         Pulumi.run(App::stack);
+     *     }
+     * 
+     *     public static void stack(Context ctx) {
+     *         final var example = FastlyFunctions.getDnsZones(GetDnsZonesArgs.builder()
+     *             .build());
+     * 
+     *         ctx.export("fastlyDnsZonesAll", example.zones());
+     *     }
+     * }
+     * }
+     * </pre>
+     * 
+     */
+    public static Output<GetDnsZonesResult> getDnsZones() {
+        return getDnsZones(GetDnsZonesArgs.Empty, InvokeOptions.Empty);
+    }
+    /**
+     * Use this data source to get a list of Fastly DNS Zones.
+     * 
+     * ## Example Usage
+     * 
+     * <pre>
+     * {@code
+     * package generated_program;
+     * 
+     * import com.pulumi.Context;
+     * import com.pulumi.Pulumi;
+     * import com.pulumi.core.Output;
+     * import com.pulumi.fastly.FastlyFunctions;
+     * import com.pulumi.fastly.inputs.GetDnsZonesArgs;
+     * import java.util.ArrayList;
+     * import java.util.Arrays;
+     * import java.util.Map;
+     * import java.io.File;
+     * import java.nio.file.Files;
+     * import java.nio.file.Paths;
+     * 
+     * public class App {
+     *     public static void main(String[] args) {
+     *         Pulumi.run(App::stack);
+     *     }
+     * 
+     *     public static void stack(Context ctx) {
+     *         final var example = FastlyFunctions.getDnsZones(GetDnsZonesArgs.builder()
+     *             .build());
+     * 
+     *         ctx.export("fastlyDnsZonesAll", example.zones());
+     *     }
+     * }
+     * }
+     * </pre>
+     * 
+     */
+    public static CompletableFuture<GetDnsZonesResult> getDnsZonesPlain() {
+        return getDnsZonesPlain(GetDnsZonesPlainArgs.Empty, InvokeOptions.Empty);
+    }
+    /**
+     * Use this data source to get a list of Fastly DNS Zones.
+     * 
+     * ## Example Usage
+     * 
+     * <pre>
+     * {@code
+     * package generated_program;
+     * 
+     * import com.pulumi.Context;
+     * import com.pulumi.Pulumi;
+     * import com.pulumi.core.Output;
+     * import com.pulumi.fastly.FastlyFunctions;
+     * import com.pulumi.fastly.inputs.GetDnsZonesArgs;
+     * import java.util.ArrayList;
+     * import java.util.Arrays;
+     * import java.util.Map;
+     * import java.io.File;
+     * import java.nio.file.Files;
+     * import java.nio.file.Paths;
+     * 
+     * public class App {
+     *     public static void main(String[] args) {
+     *         Pulumi.run(App::stack);
+     *     }
+     * 
+     *     public static void stack(Context ctx) {
+     *         final var example = FastlyFunctions.getDnsZones(GetDnsZonesArgs.builder()
+     *             .build());
+     * 
+     *         ctx.export("fastlyDnsZonesAll", example.zones());
+     *     }
+     * }
+     * }
+     * </pre>
+     * 
+     */
+    public static Output<GetDnsZonesResult> getDnsZones(GetDnsZonesArgs args) {
+        return getDnsZones(args, InvokeOptions.Empty);
+    }
+    /**
+     * Use this data source to get a list of Fastly DNS Zones.
+     * 
+     * ## Example Usage
+     * 
+     * <pre>
+     * {@code
+     * package generated_program;
+     * 
+     * import com.pulumi.Context;
+     * import com.pulumi.Pulumi;
+     * import com.pulumi.core.Output;
+     * import com.pulumi.fastly.FastlyFunctions;
+     * import com.pulumi.fastly.inputs.GetDnsZonesArgs;
+     * import java.util.ArrayList;
+     * import java.util.Arrays;
+     * import java.util.Map;
+     * import java.io.File;
+     * import java.nio.file.Files;
+     * import java.nio.file.Paths;
+     * 
+     * public class App {
+     *     public static void main(String[] args) {
+     *         Pulumi.run(App::stack);
+     *     }
+     * 
+     *     public static void stack(Context ctx) {
+     *         final var example = FastlyFunctions.getDnsZones(GetDnsZonesArgs.builder()
+     *             .build());
+     * 
+     *         ctx.export("fastlyDnsZonesAll", example.zones());
+     *     }
+     * }
+     * }
+     * </pre>
+     * 
+     */
+    public static CompletableFuture<GetDnsZonesResult> getDnsZonesPlain(GetDnsZonesPlainArgs args) {
+        return getDnsZonesPlain(args, InvokeOptions.Empty);
+    }
+    /**
+     * Use this data source to get a list of Fastly DNS Zones.
+     * 
+     * ## Example Usage
+     * 
+     * <pre>
+     * {@code
+     * package generated_program;
+     * 
+     * import com.pulumi.Context;
+     * import com.pulumi.Pulumi;
+     * import com.pulumi.core.Output;
+     * import com.pulumi.fastly.FastlyFunctions;
+     * import com.pulumi.fastly.inputs.GetDnsZonesArgs;
+     * import java.util.ArrayList;
+     * import java.util.Arrays;
+     * import java.util.Map;
+     * import java.io.File;
+     * import java.nio.file.Files;
+     * import java.nio.file.Paths;
+     * 
+     * public class App {
+     *     public static void main(String[] args) {
+     *         Pulumi.run(App::stack);
+     *     }
+     * 
+     *     public static void stack(Context ctx) {
+     *         final var example = FastlyFunctions.getDnsZones(GetDnsZonesArgs.builder()
+     *             .build());
+     * 
+     *         ctx.export("fastlyDnsZonesAll", example.zones());
+     *     }
+     * }
+     * }
+     * </pre>
+     * 
+     */
+    public static Output<GetDnsZonesResult> getDnsZones(GetDnsZonesArgs args, InvokeOptions options) {
+        return Deployment.getInstance().invoke("fastly:index/getDnsZones:getDnsZones", TypeShape.of(GetDnsZonesResult.class), args, Utilities.withVersion(options));
+    }
+    /**
+     * Use this data source to get a list of Fastly DNS Zones.
+     * 
+     * ## Example Usage
+     * 
+     * <pre>
+     * {@code
+     * package generated_program;
+     * 
+     * import com.pulumi.Context;
+     * import com.pulumi.Pulumi;
+     * import com.pulumi.core.Output;
+     * import com.pulumi.fastly.FastlyFunctions;
+     * import com.pulumi.fastly.inputs.GetDnsZonesArgs;
+     * import java.util.ArrayList;
+     * import java.util.Arrays;
+     * import java.util.Map;
+     * import java.io.File;
+     * import java.nio.file.Files;
+     * import java.nio.file.Paths;
+     * 
+     * public class App {
+     *     public static void main(String[] args) {
+     *         Pulumi.run(App::stack);
+     *     }
+     * 
+     *     public static void stack(Context ctx) {
+     *         final var example = FastlyFunctions.getDnsZones(GetDnsZonesArgs.builder()
+     *             .build());
+     * 
+     *         ctx.export("fastlyDnsZonesAll", example.zones());
+     *     }
+     * }
+     * }
+     * </pre>
+     * 
+     */
+    public static Output<GetDnsZonesResult> getDnsZones(GetDnsZonesArgs args, InvokeOutputOptions options) {
+        return Deployment.getInstance().invoke("fastly:index/getDnsZones:getDnsZones", TypeShape.of(GetDnsZonesResult.class), args, Utilities.withVersion(options));
+    }
+    /**
+     * Use this data source to get a list of Fastly DNS Zones.
+     * 
+     * ## Example Usage
+     * 
+     * <pre>
+     * {@code
+     * package generated_program;
+     * 
+     * import com.pulumi.Context;
+     * import com.pulumi.Pulumi;
+     * import com.pulumi.core.Output;
+     * import com.pulumi.fastly.FastlyFunctions;
+     * import com.pulumi.fastly.inputs.GetDnsZonesArgs;
+     * import java.util.ArrayList;
+     * import java.util.Arrays;
+     * import java.util.Map;
+     * import java.io.File;
+     * import java.nio.file.Files;
+     * import java.nio.file.Paths;
+     * 
+     * public class App {
+     *     public static void main(String[] args) {
+     *         Pulumi.run(App::stack);
+     *     }
+     * 
+     *     public static void stack(Context ctx) {
+     *         final var example = FastlyFunctions.getDnsZones(GetDnsZonesArgs.builder()
+     *             .build());
+     * 
+     *         ctx.export("fastlyDnsZonesAll", example.zones());
+     *     }
+     * }
+     * }
+     * </pre>
+     * 
+     */
+    public static CompletableFuture<GetDnsZonesResult> getDnsZonesPlain(GetDnsZonesPlainArgs args, InvokeOptions options) {
+        return Deployment.getInstance().invokeAsync("fastly:index/getDnsZones:getDnsZones", TypeShape.of(GetDnsZonesResult.class), args, Utilities.withVersion(options));
     }
     /**
      * Use this data source to get information about versionless domains.
@@ -9681,6 +9967,286 @@ public final class FastlyFunctions {
      */
     public static CompletableFuture<GetTlsSubscriptionIdsResult> getTlsSubscriptionIdsPlain(InvokeArgs args, InvokeOptions options) {
         return Deployment.getInstance().invokeAsync("fastly:index/getTlsSubscriptionIds:getTlsSubscriptionIds", TypeShape.of(GetTlsSubscriptionIdsResult.class), args, Utilities.withVersion(options));
+    }
+    /**
+     * Use this data source to get a list of Fastly TSIG Keys.
+     * 
+     * ## Example Usage
+     * 
+     * <pre>
+     * {@code
+     * package generated_program;
+     * 
+     * import com.pulumi.Context;
+     * import com.pulumi.Pulumi;
+     * import com.pulumi.core.Output;
+     * import com.pulumi.fastly.FastlyFunctions;
+     * import com.pulumi.fastly.inputs.GetTsigKeysArgs;
+     * import java.util.ArrayList;
+     * import java.util.Arrays;
+     * import java.util.Map;
+     * import java.io.File;
+     * import java.nio.file.Files;
+     * import java.nio.file.Paths;
+     * 
+     * public class App {
+     *     public static void main(String[] args) {
+     *         Pulumi.run(App::stack);
+     *     }
+     * 
+     *     public static void stack(Context ctx) {
+     *         final var example = FastlyFunctions.getTsigKeys(GetTsigKeysArgs.builder()
+     *             .build());
+     * 
+     *         ctx.export("fastlyTsigKeysAll", example.keys());
+     *     }
+     * }
+     * }
+     * </pre>
+     * 
+     */
+    public static Output<GetTsigKeysResult> getTsigKeys() {
+        return getTsigKeys(GetTsigKeysArgs.Empty, InvokeOptions.Empty);
+    }
+    /**
+     * Use this data source to get a list of Fastly TSIG Keys.
+     * 
+     * ## Example Usage
+     * 
+     * <pre>
+     * {@code
+     * package generated_program;
+     * 
+     * import com.pulumi.Context;
+     * import com.pulumi.Pulumi;
+     * import com.pulumi.core.Output;
+     * import com.pulumi.fastly.FastlyFunctions;
+     * import com.pulumi.fastly.inputs.GetTsigKeysArgs;
+     * import java.util.ArrayList;
+     * import java.util.Arrays;
+     * import java.util.Map;
+     * import java.io.File;
+     * import java.nio.file.Files;
+     * import java.nio.file.Paths;
+     * 
+     * public class App {
+     *     public static void main(String[] args) {
+     *         Pulumi.run(App::stack);
+     *     }
+     * 
+     *     public static void stack(Context ctx) {
+     *         final var example = FastlyFunctions.getTsigKeys(GetTsigKeysArgs.builder()
+     *             .build());
+     * 
+     *         ctx.export("fastlyTsigKeysAll", example.keys());
+     *     }
+     * }
+     * }
+     * </pre>
+     * 
+     */
+    public static CompletableFuture<GetTsigKeysResult> getTsigKeysPlain() {
+        return getTsigKeysPlain(GetTsigKeysPlainArgs.Empty, InvokeOptions.Empty);
+    }
+    /**
+     * Use this data source to get a list of Fastly TSIG Keys.
+     * 
+     * ## Example Usage
+     * 
+     * <pre>
+     * {@code
+     * package generated_program;
+     * 
+     * import com.pulumi.Context;
+     * import com.pulumi.Pulumi;
+     * import com.pulumi.core.Output;
+     * import com.pulumi.fastly.FastlyFunctions;
+     * import com.pulumi.fastly.inputs.GetTsigKeysArgs;
+     * import java.util.ArrayList;
+     * import java.util.Arrays;
+     * import java.util.Map;
+     * import java.io.File;
+     * import java.nio.file.Files;
+     * import java.nio.file.Paths;
+     * 
+     * public class App {
+     *     public static void main(String[] args) {
+     *         Pulumi.run(App::stack);
+     *     }
+     * 
+     *     public static void stack(Context ctx) {
+     *         final var example = FastlyFunctions.getTsigKeys(GetTsigKeysArgs.builder()
+     *             .build());
+     * 
+     *         ctx.export("fastlyTsigKeysAll", example.keys());
+     *     }
+     * }
+     * }
+     * </pre>
+     * 
+     */
+    public static Output<GetTsigKeysResult> getTsigKeys(GetTsigKeysArgs args) {
+        return getTsigKeys(args, InvokeOptions.Empty);
+    }
+    /**
+     * Use this data source to get a list of Fastly TSIG Keys.
+     * 
+     * ## Example Usage
+     * 
+     * <pre>
+     * {@code
+     * package generated_program;
+     * 
+     * import com.pulumi.Context;
+     * import com.pulumi.Pulumi;
+     * import com.pulumi.core.Output;
+     * import com.pulumi.fastly.FastlyFunctions;
+     * import com.pulumi.fastly.inputs.GetTsigKeysArgs;
+     * import java.util.ArrayList;
+     * import java.util.Arrays;
+     * import java.util.Map;
+     * import java.io.File;
+     * import java.nio.file.Files;
+     * import java.nio.file.Paths;
+     * 
+     * public class App {
+     *     public static void main(String[] args) {
+     *         Pulumi.run(App::stack);
+     *     }
+     * 
+     *     public static void stack(Context ctx) {
+     *         final var example = FastlyFunctions.getTsigKeys(GetTsigKeysArgs.builder()
+     *             .build());
+     * 
+     *         ctx.export("fastlyTsigKeysAll", example.keys());
+     *     }
+     * }
+     * }
+     * </pre>
+     * 
+     */
+    public static CompletableFuture<GetTsigKeysResult> getTsigKeysPlain(GetTsigKeysPlainArgs args) {
+        return getTsigKeysPlain(args, InvokeOptions.Empty);
+    }
+    /**
+     * Use this data source to get a list of Fastly TSIG Keys.
+     * 
+     * ## Example Usage
+     * 
+     * <pre>
+     * {@code
+     * package generated_program;
+     * 
+     * import com.pulumi.Context;
+     * import com.pulumi.Pulumi;
+     * import com.pulumi.core.Output;
+     * import com.pulumi.fastly.FastlyFunctions;
+     * import com.pulumi.fastly.inputs.GetTsigKeysArgs;
+     * import java.util.ArrayList;
+     * import java.util.Arrays;
+     * import java.util.Map;
+     * import java.io.File;
+     * import java.nio.file.Files;
+     * import java.nio.file.Paths;
+     * 
+     * public class App {
+     *     public static void main(String[] args) {
+     *         Pulumi.run(App::stack);
+     *     }
+     * 
+     *     public static void stack(Context ctx) {
+     *         final var example = FastlyFunctions.getTsigKeys(GetTsigKeysArgs.builder()
+     *             .build());
+     * 
+     *         ctx.export("fastlyTsigKeysAll", example.keys());
+     *     }
+     * }
+     * }
+     * </pre>
+     * 
+     */
+    public static Output<GetTsigKeysResult> getTsigKeys(GetTsigKeysArgs args, InvokeOptions options) {
+        return Deployment.getInstance().invoke("fastly:index/getTsigKeys:getTsigKeys", TypeShape.of(GetTsigKeysResult.class), args, Utilities.withVersion(options));
+    }
+    /**
+     * Use this data source to get a list of Fastly TSIG Keys.
+     * 
+     * ## Example Usage
+     * 
+     * <pre>
+     * {@code
+     * package generated_program;
+     * 
+     * import com.pulumi.Context;
+     * import com.pulumi.Pulumi;
+     * import com.pulumi.core.Output;
+     * import com.pulumi.fastly.FastlyFunctions;
+     * import com.pulumi.fastly.inputs.GetTsigKeysArgs;
+     * import java.util.ArrayList;
+     * import java.util.Arrays;
+     * import java.util.Map;
+     * import java.io.File;
+     * import java.nio.file.Files;
+     * import java.nio.file.Paths;
+     * 
+     * public class App {
+     *     public static void main(String[] args) {
+     *         Pulumi.run(App::stack);
+     *     }
+     * 
+     *     public static void stack(Context ctx) {
+     *         final var example = FastlyFunctions.getTsigKeys(GetTsigKeysArgs.builder()
+     *             .build());
+     * 
+     *         ctx.export("fastlyTsigKeysAll", example.keys());
+     *     }
+     * }
+     * }
+     * </pre>
+     * 
+     */
+    public static Output<GetTsigKeysResult> getTsigKeys(GetTsigKeysArgs args, InvokeOutputOptions options) {
+        return Deployment.getInstance().invoke("fastly:index/getTsigKeys:getTsigKeys", TypeShape.of(GetTsigKeysResult.class), args, Utilities.withVersion(options));
+    }
+    /**
+     * Use this data source to get a list of Fastly TSIG Keys.
+     * 
+     * ## Example Usage
+     * 
+     * <pre>
+     * {@code
+     * package generated_program;
+     * 
+     * import com.pulumi.Context;
+     * import com.pulumi.Pulumi;
+     * import com.pulumi.core.Output;
+     * import com.pulumi.fastly.FastlyFunctions;
+     * import com.pulumi.fastly.inputs.GetTsigKeysArgs;
+     * import java.util.ArrayList;
+     * import java.util.Arrays;
+     * import java.util.Map;
+     * import java.io.File;
+     * import java.nio.file.Files;
+     * import java.nio.file.Paths;
+     * 
+     * public class App {
+     *     public static void main(String[] args) {
+     *         Pulumi.run(App::stack);
+     *     }
+     * 
+     *     public static void stack(Context ctx) {
+     *         final var example = FastlyFunctions.getTsigKeys(GetTsigKeysArgs.builder()
+     *             .build());
+     * 
+     *         ctx.export("fastlyTsigKeysAll", example.keys());
+     *     }
+     * }
+     * }
+     * </pre>
+     * 
+     */
+    public static CompletableFuture<GetTsigKeysResult> getTsigKeysPlain(GetTsigKeysPlainArgs args, InvokeOptions options) {
+        return Deployment.getInstance().invokeAsync("fastly:index/getTsigKeys:getTsigKeys", TypeShape.of(GetTsigKeysResult.class), args, Utilities.withVersion(options));
     }
     /**
      * VCL Snippets are blocks of VCL logic inserted into your service&#39;s configuration that don&#39;t require custom VCL.

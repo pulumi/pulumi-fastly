@@ -29,6 +29,10 @@ __all__ = [
     'CustomDashboardDashboardItemVisualizationArgsDict',
     'CustomDashboardDashboardItemVisualizationConfigArgs',
     'CustomDashboardDashboardItemVisualizationConfigArgsDict',
+    'DnsZoneXfrConfigInboundArgs',
+    'DnsZoneXfrConfigInboundArgsDict',
+    'DnsZoneXfrConfigInboundPrimaryArgs',
+    'DnsZoneXfrConfigInboundPrimaryArgsDict',
     'NgwafAccountRuleActionArgs',
     'NgwafAccountRuleActionArgsDict',
     'NgwafAccountRuleConditionArgs',
@@ -700,6 +704,104 @@ class CustomDashboardDashboardItemVisualizationConfigArgs:
     @format.setter
     def format(self, value: pulumi.Input[Optional[_builtins.str]]):
         pulumi.set(self, "format", value)
+
+
+class DnsZoneXfrConfigInboundArgsDict(TypedDict):
+    inbound_tsig_key_id: NotRequired[pulumi.Input[Optional[_builtins.str]]]
+    """
+    The ID of the TSIG key used to secure inbound zone transfers.
+    """
+    primaries: NotRequired[pulumi.Input[Optional[Sequence[pulumi.Input['DnsZoneXfrConfigInboundPrimaryArgsDict']]]]]
+    """
+    An array of the primary DNS server objects associated with inbound zone transfers.
+    """
+
+@pulumi.input_type
+class DnsZoneXfrConfigInboundArgs:
+    def __init__(__self__, *,
+                 inbound_tsig_key_id: pulumi.Input[Optional[_builtins.str]] = None,
+                 primaries: pulumi.Input[Optional[Sequence[pulumi.Input['DnsZoneXfrConfigInboundPrimaryArgs']]]] = None):
+        """
+        :param pulumi.Input[_builtins.str] inbound_tsig_key_id: The ID of the TSIG key used to secure inbound zone transfers.
+        :param pulumi.Input[Sequence[pulumi.Input['DnsZoneXfrConfigInboundPrimaryArgs']]] primaries: An array of the primary DNS server objects associated with inbound zone transfers.
+        """
+        if inbound_tsig_key_id is not None:
+            pulumi.set(__self__, "inbound_tsig_key_id", inbound_tsig_key_id)
+        if primaries is not None:
+            pulumi.set(__self__, "primaries", primaries)
+
+    @_builtins.property
+    @pulumi.getter(name="inboundTsigKeyId")
+    def inbound_tsig_key_id(self) -> pulumi.Input[Optional[_builtins.str]]:
+        """
+        The ID of the TSIG key used to secure inbound zone transfers.
+        """
+        return pulumi.get(self, "inbound_tsig_key_id")
+
+    @inbound_tsig_key_id.setter
+    def inbound_tsig_key_id(self, value: pulumi.Input[Optional[_builtins.str]]):
+        pulumi.set(self, "inbound_tsig_key_id", value)
+
+    @_builtins.property
+    @pulumi.getter
+    def primaries(self) -> pulumi.Input[Optional[Sequence[pulumi.Input['DnsZoneXfrConfigInboundPrimaryArgs']]]]:
+        """
+        An array of the primary DNS server objects associated with inbound zone transfers.
+        """
+        return pulumi.get(self, "primaries")
+
+    @primaries.setter
+    def primaries(self, value: pulumi.Input[Optional[Sequence[pulumi.Input['DnsZoneXfrConfigInboundPrimaryArgs']]]]):
+        pulumi.set(self, "primaries", value)
+
+
+class DnsZoneXfrConfigInboundPrimaryArgsDict(TypedDict):
+    address: NotRequired[pulumi.Input[Optional[_builtins.str]]]
+    """
+    An IPv4 address for the Primary DNS Server.
+    """
+    description: NotRequired[pulumi.Input[Optional[_builtins.str]]]
+    """
+    A description of the Primary DNS server.
+    """
+
+@pulumi.input_type
+class DnsZoneXfrConfigInboundPrimaryArgs:
+    def __init__(__self__, *,
+                 address: pulumi.Input[Optional[_builtins.str]] = None,
+                 description: pulumi.Input[Optional[_builtins.str]] = None):
+        """
+        :param pulumi.Input[_builtins.str] address: An IPv4 address for the Primary DNS Server.
+        :param pulumi.Input[_builtins.str] description: A description of the Primary DNS server.
+        """
+        if address is not None:
+            pulumi.set(__self__, "address", address)
+        if description is not None:
+            pulumi.set(__self__, "description", description)
+
+    @_builtins.property
+    @pulumi.getter
+    def address(self) -> pulumi.Input[Optional[_builtins.str]]:
+        """
+        An IPv4 address for the Primary DNS Server.
+        """
+        return pulumi.get(self, "address")
+
+    @address.setter
+    def address(self, value: pulumi.Input[Optional[_builtins.str]]):
+        pulumi.set(self, "address", value)
+
+    @_builtins.property
+    @pulumi.getter
+    def description(self) -> pulumi.Input[Optional[_builtins.str]]:
+        """
+        A description of the Primary DNS server.
+        """
+        return pulumi.get(self, "description")
+
+    @description.setter
+    def description(self, value: pulumi.Input[Optional[_builtins.str]]):
+        pulumi.set(self, "description", value)
 
 
 class NgwafAccountRuleActionArgsDict(TypedDict):
@@ -9058,26 +9160,18 @@ class ServiceComputeProductEnablementNgwafArgsDict(TypedDict):
     """
     The workspace to link
     """
-    traffic_ramp: NotRequired[pulumi.Input[Optional[_builtins.int]]]
-    """
-    The percentage of traffic to inspect
-    """
 
 @pulumi.input_type
 class ServiceComputeProductEnablementNgwafArgs:
     def __init__(__self__, *,
                  enabled: pulumi.Input[_builtins.bool],
-                 workspace_id: pulumi.Input[_builtins.str],
-                 traffic_ramp: pulumi.Input[Optional[_builtins.int]] = None):
+                 workspace_id: pulumi.Input[_builtins.str]):
         """
         :param pulumi.Input[_builtins.bool] enabled: Enable Next-Gen WAF support
         :param pulumi.Input[_builtins.str] workspace_id: The workspace to link
-        :param pulumi.Input[_builtins.int] traffic_ramp: The percentage of traffic to inspect
         """
         pulumi.set(__self__, "enabled", enabled)
         pulumi.set(__self__, "workspace_id", workspace_id)
-        if traffic_ramp is not None:
-            pulumi.set(__self__, "traffic_ramp", traffic_ramp)
 
     @_builtins.property
     @pulumi.getter
@@ -9102,18 +9196,6 @@ class ServiceComputeProductEnablementNgwafArgs:
     @workspace_id.setter
     def workspace_id(self, value: pulumi.Input[_builtins.str]):
         pulumi.set(self, "workspace_id", value)
-
-    @_builtins.property
-    @pulumi.getter(name="trafficRamp")
-    def traffic_ramp(self) -> pulumi.Input[Optional[_builtins.int]]:
-        """
-        The percentage of traffic to inspect
-        """
-        return pulumi.get(self, "traffic_ramp")
-
-    @traffic_ramp.setter
-    def traffic_ramp(self, value: pulumi.Input[Optional[_builtins.int]]):
-        pulumi.set(self, "traffic_ramp", value)
 
 
 class ServiceComputeResourceLinkArgsDict(TypedDict):

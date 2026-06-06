@@ -23,6 +23,8 @@ __all__ = [
     'CustomDashboardDashboardItemDataSourceConfig',
     'CustomDashboardDashboardItemVisualization',
     'CustomDashboardDashboardItemVisualizationConfig',
+    'DnsZoneXfrConfigInbound',
+    'DnsZoneXfrConfigInboundPrimary',
     'NgwafAccountRuleAction',
     'NgwafAccountRuleCondition',
     'NgwafAccountRuleGroupCondition',
@@ -141,6 +143,7 @@ __all__ = [
     'GetConfigstoresStoreResult',
     'GetDatacentersPopResult',
     'GetDictionariesDictionaryResult',
+    'GetDnsZonesZoneResult',
     'GetDomainsDomainResult',
     'GetDomainsV1DomainResult',
     'GetKvstoresStoreResult',
@@ -166,6 +169,7 @@ __all__ = [
     'GetServicesDetailResult',
     'GetStagingIpsDomainResult',
     'GetTlsConfigurationDnsRecordResult',
+    'GetTsigKeysKeyResult',
     'GetVclSnippetsVclSnippetResult',
 ]
 
@@ -495,6 +499,85 @@ class CustomDashboardDashboardItemVisualizationConfig(dict):
         The units to use to format the data. One of: `number`, `bytes`, `percent`, `requests`, `responses`, `seconds`, `milliseconds`, `ratio`, `bitrate`.
         """
         return pulumi.get(self, "format")
+
+
+@pulumi.output_type
+class DnsZoneXfrConfigInbound(dict):
+    @staticmethod
+    def __key_warning(key: str):
+        suggest = None
+        if key == "inboundTsigKeyId":
+            suggest = "inbound_tsig_key_id"
+
+        if suggest:
+            pulumi.log.warn(f"Key '{key}' not found in DnsZoneXfrConfigInbound. Access the value via the '{suggest}' property getter instead.")
+
+    def __getitem__(self, key: str) -> Any:
+        DnsZoneXfrConfigInbound.__key_warning(key)
+        return super().__getitem__(key)
+
+    def get(self, key: str, default = None) -> Any:
+        DnsZoneXfrConfigInbound.__key_warning(key)
+        return super().get(key, default)
+
+    def __init__(__self__, *,
+                 inbound_tsig_key_id: Optional[_builtins.str] = None,
+                 primaries: Optional[Sequence['outputs.DnsZoneXfrConfigInboundPrimary']] = None):
+        """
+        :param _builtins.str inbound_tsig_key_id: The ID of the TSIG key used to secure inbound zone transfers.
+        :param Sequence['DnsZoneXfrConfigInboundPrimaryArgs'] primaries: An array of the primary DNS server objects associated with inbound zone transfers.
+        """
+        if inbound_tsig_key_id is not None:
+            pulumi.set(__self__, "inbound_tsig_key_id", inbound_tsig_key_id)
+        if primaries is not None:
+            pulumi.set(__self__, "primaries", primaries)
+
+    @_builtins.property
+    @pulumi.getter(name="inboundTsigKeyId")
+    def inbound_tsig_key_id(self) -> Optional[_builtins.str]:
+        """
+        The ID of the TSIG key used to secure inbound zone transfers.
+        """
+        return pulumi.get(self, "inbound_tsig_key_id")
+
+    @_builtins.property
+    @pulumi.getter
+    def primaries(self) -> Optional[Sequence['outputs.DnsZoneXfrConfigInboundPrimary']]:
+        """
+        An array of the primary DNS server objects associated with inbound zone transfers.
+        """
+        return pulumi.get(self, "primaries")
+
+
+@pulumi.output_type
+class DnsZoneXfrConfigInboundPrimary(dict):
+    def __init__(__self__, *,
+                 address: Optional[_builtins.str] = None,
+                 description: Optional[_builtins.str] = None):
+        """
+        :param _builtins.str address: An IPv4 address for the Primary DNS Server.
+        :param _builtins.str description: A description of the Primary DNS server.
+        """
+        if address is not None:
+            pulumi.set(__self__, "address", address)
+        if description is not None:
+            pulumi.set(__self__, "description", description)
+
+    @_builtins.property
+    @pulumi.getter
+    def address(self) -> Optional[_builtins.str]:
+        """
+        An IPv4 address for the Primary DNS Server.
+        """
+        return pulumi.get(self, "address")
+
+    @_builtins.property
+    @pulumi.getter
+    def description(self) -> Optional[_builtins.str]:
+        """
+        A description of the Primary DNS server.
+        """
+        return pulumi.get(self, "description")
 
 
 @pulumi.output_type
@@ -6586,8 +6669,6 @@ class ServiceComputeProductEnablementNgwaf(dict):
         suggest = None
         if key == "workspaceId":
             suggest = "workspace_id"
-        elif key == "trafficRamp":
-            suggest = "traffic_ramp"
 
         if suggest:
             pulumi.log.warn(f"Key '{key}' not found in ServiceComputeProductEnablementNgwaf. Access the value via the '{suggest}' property getter instead.")
@@ -6602,17 +6683,13 @@ class ServiceComputeProductEnablementNgwaf(dict):
 
     def __init__(__self__, *,
                  enabled: _builtins.bool,
-                 workspace_id: _builtins.str,
-                 traffic_ramp: Optional[_builtins.int] = None):
+                 workspace_id: _builtins.str):
         """
         :param _builtins.bool enabled: Enable Next-Gen WAF support
         :param _builtins.str workspace_id: The workspace to link
-        :param _builtins.int traffic_ramp: The percentage of traffic to inspect
         """
         pulumi.set(__self__, "enabled", enabled)
         pulumi.set(__self__, "workspace_id", workspace_id)
-        if traffic_ramp is not None:
-            pulumi.set(__self__, "traffic_ramp", traffic_ramp)
 
     @_builtins.property
     @pulumi.getter
@@ -6629,14 +6706,6 @@ class ServiceComputeProductEnablementNgwaf(dict):
         The workspace to link
         """
         return pulumi.get(self, "workspace_id")
-
-    @_builtins.property
-    @pulumi.getter(name="trafficRamp")
-    def traffic_ramp(self) -> Optional[_builtins.int]:
-        """
-        The percentage of traffic to inspect
-        """
-        return pulumi.get(self, "traffic_ramp")
 
 
 @pulumi.output_type
@@ -14928,6 +14997,46 @@ class GetDictionariesDictionaryResult(dict):
 
 
 @pulumi.output_type
+class GetDnsZonesZoneResult(dict):
+    def __init__(__self__, *,
+                 description: _builtins.str,
+                 id: _builtins.str,
+                 name: _builtins.str):
+        """
+        :param _builtins.str description: A freeform descriptive note.
+        :param _builtins.str id: Zone Identifier (UUID).
+        :param _builtins.str name: The domain name for the zone.
+        """
+        pulumi.set(__self__, "description", description)
+        pulumi.set(__self__, "id", id)
+        pulumi.set(__self__, "name", name)
+
+    @_builtins.property
+    @pulumi.getter
+    def description(self) -> _builtins.str:
+        """
+        A freeform descriptive note.
+        """
+        return pulumi.get(self, "description")
+
+    @_builtins.property
+    @pulumi.getter
+    def id(self) -> _builtins.str:
+        """
+        Zone Identifier (UUID).
+        """
+        return pulumi.get(self, "id")
+
+    @_builtins.property
+    @pulumi.getter
+    def name(self) -> _builtins.str:
+        """
+        The domain name for the zone.
+        """
+        return pulumi.get(self, "name")
+
+
+@pulumi.output_type
 class GetDomainsDomainResult(dict):
     def __init__(__self__, *,
                  fqdn: _builtins.str,
@@ -15914,6 +16023,57 @@ class GetTlsConfigurationDnsRecordResult(dict):
         The regions that will be used to route traffic. Select DNS Records with a `global` region to route traffic to the most performant point of presence (POP) worldwide (global pricing will apply). Select DNS records with a `us-eu` region to exclusively land traffic on North American and European POPs.
         """
         return pulumi.get(self, "region")
+
+
+@pulumi.output_type
+class GetTsigKeysKeyResult(dict):
+    def __init__(__self__, *,
+                 algorithm: _builtins.str,
+                 description: _builtins.str,
+                 id: _builtins.str,
+                 name: _builtins.str):
+        """
+        :param _builtins.str algorithm: The algorithm of the TSIG key.
+        :param _builtins.str description: A freeform descriptive note.
+        :param _builtins.str id: TSIG Key Identifier (UUID).
+        :param _builtins.str name: The name of the TSIG key.
+        """
+        pulumi.set(__self__, "algorithm", algorithm)
+        pulumi.set(__self__, "description", description)
+        pulumi.set(__self__, "id", id)
+        pulumi.set(__self__, "name", name)
+
+    @_builtins.property
+    @pulumi.getter
+    def algorithm(self) -> _builtins.str:
+        """
+        The algorithm of the TSIG key.
+        """
+        return pulumi.get(self, "algorithm")
+
+    @_builtins.property
+    @pulumi.getter
+    def description(self) -> _builtins.str:
+        """
+        A freeform descriptive note.
+        """
+        return pulumi.get(self, "description")
+
+    @_builtins.property
+    @pulumi.getter
+    def id(self) -> _builtins.str:
+        """
+        TSIG Key Identifier (UUID).
+        """
+        return pulumi.get(self, "id")
+
+    @_builtins.property
+    @pulumi.getter
+    def name(self) -> _builtins.str:
+        """
+        The name of the TSIG key.
+        """
+        return pulumi.get(self, "name")
 
 
 @pulumi.output_type
