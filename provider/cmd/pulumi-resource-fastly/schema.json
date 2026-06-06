@@ -221,6 +221,35 @@
                 "plotType"
             ]
         },
+        "fastly:index/DnsZoneXfrConfigInbound:DnsZoneXfrConfigInbound": {
+            "properties": {
+                "inboundTsigKeyId": {
+                    "type": "string",
+                    "description": "The ID of the TSIG key used to secure inbound zone transfers.\n"
+                },
+                "primaries": {
+                    "type": "array",
+                    "items": {
+                        "$ref": "#/types/fastly:index/DnsZoneXfrConfigInboundPrimary:DnsZoneXfrConfigInboundPrimary"
+                    },
+                    "description": "An array of the primary DNS server objects associated with inbound zone transfers.\n"
+                }
+            },
+            "type": "object"
+        },
+        "fastly:index/DnsZoneXfrConfigInboundPrimary:DnsZoneXfrConfigInboundPrimary": {
+            "properties": {
+                "address": {
+                    "type": "string",
+                    "description": "An IPv4 address for the Primary DNS Server.\n"
+                },
+                "description": {
+                    "type": "string",
+                    "description": "A description of the Primary DNS server.\n"
+                }
+            },
+            "type": "object"
+        },
         "fastly:index/NgwafAccountRuleAction:NgwafAccountRuleAction": {
             "properties": {
                 "signal": {
@@ -2456,10 +2485,6 @@
                 "enabled": {
                     "type": "boolean",
                     "description": "Enable Next-Gen WAF support\n"
-                },
-                "trafficRamp": {
-                    "type": "integer",
-                    "description": "The percentage of traffic to inspect\n"
                 },
                 "workspaceId": {
                     "type": "string",
@@ -5486,6 +5511,33 @@
                 }
             }
         },
+        "fastly:index/getDnsZonesZone:getDnsZonesZone": {
+            "properties": {
+                "description": {
+                    "type": "string",
+                    "description": "A freeform descriptive note.\n"
+                },
+                "id": {
+                    "type": "string",
+                    "description": "Zone Identifier (UUID).\n"
+                },
+                "name": {
+                    "type": "string",
+                    "description": "The domain name for the zone.\n"
+                }
+            },
+            "type": "object",
+            "required": [
+                "description",
+                "id",
+                "name"
+            ],
+            "language": {
+                "nodejs": {
+                    "requiredInputs": []
+                }
+            }
+        },
         "fastly:index/getDomainsDomain:getDomainsDomain": {
             "properties": {
                 "fqdn": {
@@ -6149,6 +6201,38 @@
                 "recordType",
                 "recordValue",
                 "region"
+            ],
+            "language": {
+                "nodejs": {
+                    "requiredInputs": []
+                }
+            }
+        },
+        "fastly:index/getTsigKeysKey:getTsigKeysKey": {
+            "properties": {
+                "algorithm": {
+                    "type": "string",
+                    "description": "The algorithm of the TSIG key.\n"
+                },
+                "description": {
+                    "type": "string",
+                    "description": "A freeform descriptive note.\n"
+                },
+                "id": {
+                    "type": "string",
+                    "description": "TSIG Key Identifier (UUID).\n"
+                },
+                "name": {
+                    "type": "string",
+                    "description": "The name of the TSIG key.\n"
+                }
+            },
+            "type": "object",
+            "required": [
+                "algorithm",
+                "description",
+                "id",
+                "name"
             ],
             "language": {
                 "nodejs": {
@@ -6892,6 +6976,58 @@
                     "name": {
                         "type": "string",
                         "description": "A human-readable name.\n"
+                    }
+                },
+                "type": "object"
+            }
+        },
+        "fastly:index/dnsZone:DnsZone": {
+            "description": "Provides a Fastly DNS Zone.\n\n## Example Usage\n\n\u003c!--Start PulumiCodeChooser --\u003e\n```typescript\nimport * as pulumi from \"@pulumi/pulumi\";\nimport * as fastly from \"@pulumi/fastly\";\n\nconst example = new fastly.DnsZone(\"example\", {\n    name: \"example.com.\",\n    description: \"My secondary DNS zone\",\n    xfrConfigInbound: {\n        inboundTsigKeyId: exampleFastlyTsigKey.id,\n        primaries: [\n            {\n                address: \"192.0.2.1\",\n                description: \"Primary nameserver #1\",\n            },\n            {\n                address: \"192.0.2.2\",\n                description: \"Primary nameserver #1\",\n            },\n        ],\n    },\n});\n```\n```python\nimport pulumi\nimport pulumi_fastly as fastly\n\nexample = fastly.DnsZone(\"example\",\n    name=\"example.com.\",\n    description=\"My secondary DNS zone\",\n    xfr_config_inbound={\n        \"inbound_tsig_key_id\": example_fastly_tsig_key[\"id\"],\n        \"primaries\": [\n            {\n                \"address\": \"192.0.2.1\",\n                \"description\": \"Primary nameserver #1\",\n            },\n            {\n                \"address\": \"192.0.2.2\",\n                \"description\": \"Primary nameserver #1\",\n            },\n        ],\n    })\n```\n```csharp\nusing System.Collections.Generic;\nusing System.Linq;\nusing Pulumi;\nusing Fastly = Pulumi.Fastly;\n\nreturn await Deployment.RunAsync(() =\u003e \n{\n    var example = new Fastly.DnsZone(\"example\", new()\n    {\n        Name = \"example.com.\",\n        Description = \"My secondary DNS zone\",\n        XfrConfigInbound = new Fastly.Inputs.DnsZoneXfrConfigInboundArgs\n        {\n            InboundTsigKeyId = exampleFastlyTsigKey.Id,\n            Primaries = new[]\n            {\n                new Fastly.Inputs.DnsZoneXfrConfigInboundPrimaryArgs\n                {\n                    Address = \"192.0.2.1\",\n                    Description = \"Primary nameserver #1\",\n                },\n                new Fastly.Inputs.DnsZoneXfrConfigInboundPrimaryArgs\n                {\n                    Address = \"192.0.2.2\",\n                    Description = \"Primary nameserver #1\",\n                },\n            },\n        },\n    });\n\n});\n```\n```go\npackage main\n\nimport (\n\t\"github.com/pulumi/pulumi-fastly/sdk/v12/go/fastly\"\n\t\"github.com/pulumi/pulumi/sdk/v3/go/pulumi\"\n)\n\nfunc main() {\n\tpulumi.Run(func(ctx *pulumi.Context) error {\n\t\t_, err := fastly.NewDnsZone(ctx, \"example\", \u0026fastly.DnsZoneArgs{\n\t\t\tName:        pulumi.String(\"example.com.\"),\n\t\t\tDescription: pulumi.String(\"My secondary DNS zone\"),\n\t\t\tXfrConfigInbound: \u0026fastly.DnsZoneXfrConfigInboundArgs{\n\t\t\t\tInboundTsigKeyId: pulumi.Any(exampleFastlyTsigKey.Id),\n\t\t\t\tPrimaries: fastly.DnsZoneXfrConfigInboundPrimaryArray{\n\t\t\t\t\t\u0026fastly.DnsZoneXfrConfigInboundPrimaryArgs{\n\t\t\t\t\t\tAddress:     pulumi.String(\"192.0.2.1\"),\n\t\t\t\t\t\tDescription: pulumi.String(\"Primary nameserver #1\"),\n\t\t\t\t\t},\n\t\t\t\t\t\u0026fastly.DnsZoneXfrConfigInboundPrimaryArgs{\n\t\t\t\t\t\tAddress:     pulumi.String(\"192.0.2.2\"),\n\t\t\t\t\t\tDescription: pulumi.String(\"Primary nameserver #1\"),\n\t\t\t\t\t},\n\t\t\t\t},\n\t\t\t},\n\t\t})\n\t\tif err != nil {\n\t\t\treturn err\n\t\t}\n\t\treturn nil\n\t})\n}\n```\n```hcl\npulumi {\n  required_providers {\n    fastly = {\n      source = \"pulumi/fastly\"\n    }\n  }\n}\n\nresource \"fastly_dnszone\" \"example\" {\n  name        = \"example.com.\"\n  description = \"My secondary DNS zone\"\n  xfr_config_inbound = {\n    inbound_tsig_key_id = exampleFastlyTsigKey.id\n    primaries = [{\n      \"address\"     = \"192.0.2.1\"\n      \"description\" = \"Primary nameserver #1\"\n      }, {\n      \"address\"     = \"192.0.2.2\"\n      \"description\" = \"Primary nameserver #1\"\n    }]\n  }\n}\n```\n```java\npackage generated_program;\n\nimport com.pulumi.Context;\nimport com.pulumi.Pulumi;\nimport com.pulumi.core.Output;\nimport com.pulumi.fastly.DnsZone;\nimport com.pulumi.fastly.DnsZoneArgs;\nimport com.pulumi.fastly.inputs.DnsZoneXfrConfigInboundArgs;\nimport java.util.ArrayList;\nimport java.util.Arrays;\nimport java.util.Map;\nimport java.io.File;\nimport java.nio.file.Files;\nimport java.nio.file.Paths;\n\npublic class App {\n    public static void main(String[] args) {\n        Pulumi.run(App::stack);\n    }\n\n    public static void stack(Context ctx) {\n        var example = new DnsZone(\"example\", DnsZoneArgs.builder()\n            .name(\"example.com.\")\n            .description(\"My secondary DNS zone\")\n            .xfrConfigInbound(DnsZoneXfrConfigInboundArgs.builder()\n                .inboundTsigKeyId(exampleFastlyTsigKey.id())\n                .primaries(                \n                    DnsZoneXfrConfigInboundPrimaryArgs.builder()\n                        .address(\"192.0.2.1\")\n                        .description(\"Primary nameserver #1\")\n                        .build(),\n                    DnsZoneXfrConfigInboundPrimaryArgs.builder()\n                        .address(\"192.0.2.2\")\n                        .description(\"Primary nameserver #1\")\n                        .build())\n                .build())\n            .build());\n\n    }\n}\n```\n```yaml\nresources:\n  example:\n    type: fastly:DnsZone\n    properties:\n      name: example.com.\n      description: My secondary DNS zone\n      xfrConfigInbound:\n        inboundTsigKeyId: ${exampleFastlyTsigKey.id}\n        primaries:\n          - address: 192.0.2.1\n            description: 'Primary nameserver #1'\n          - address: 192.0.2.2\n            description: 'Primary nameserver #1'\n```\n\u003c!--End PulumiCodeChooser --\u003e\n\n## Import\n\nFastly DNS Zones can be imported using their Zone ID, e.g.\n\n```sh\n$ pulumi import fastly:index/dnsZone:DnsZone example xxxxxxxxxxxxxxxxxxxx\n```\n\n",
+            "properties": {
+                "description": {
+                    "type": "string",
+                    "description": "A freeform descriptive note.\n"
+                },
+                "name": {
+                    "type": "string",
+                    "description": "The domain name for your zone in FQDN format (e.g. `example.com.`). Must include a trailing dot.\n"
+                },
+                "xfrConfigInbound": {
+                    "$ref": "#/types/fastly:index/DnsZoneXfrConfigInbound:DnsZoneXfrConfigInbound",
+                    "description": "All attributes associated with inbound zone transfers.\n"
+                }
+            },
+            "required": [
+                "name"
+            ],
+            "inputProperties": {
+                "description": {
+                    "type": "string",
+                    "description": "A freeform descriptive note.\n"
+                },
+                "name": {
+                    "type": "string",
+                    "description": "The domain name for your zone in FQDN format (e.g. `example.com.`). Must include a trailing dot.\n"
+                },
+                "xfrConfigInbound": {
+                    "$ref": "#/types/fastly:index/DnsZoneXfrConfigInbound:DnsZoneXfrConfigInbound",
+                    "description": "All attributes associated with inbound zone transfers.\n"
+                }
+            },
+            "stateInputs": {
+                "description": "Input properties used for looking up and filtering DnsZone resources.\n",
+                "properties": {
+                    "description": {
+                        "type": "string",
+                        "description": "A freeform descriptive note.\n"
+                    },
+                    "name": {
+                        "type": "string",
+                        "description": "The domain name for your zone in FQDN format (e.g. `example.com.`). Must include a trailing dot.\n"
+                    },
+                    "xfrConfigInbound": {
+                        "$ref": "#/types/fastly:index/DnsZoneXfrConfigInbound:DnsZoneXfrConfigInbound",
+                        "description": "All attributes associated with inbound zone transfers.\n"
                     }
                 },
                 "type": "object"
@@ -11918,6 +12054,79 @@
                 "type": "object"
             }
         },
+        "fastly:index/tsigKey:TsigKey": {
+            "description": "Provides a Fastly TSIG Key.\n\n## Example Usage\n\n\u003c!--Start PulumiCodeChooser --\u003e\n```typescript\nimport * as pulumi from \"@pulumi/pulumi\";\nimport * as fastly from \"@pulumi/fastly\";\n\n// IMPORTANT: Deleting a TSIG Key requires first removing the inbound_tsig_key_id reference in any DNS Zone that uses it.\n// This requires a two-step `pulumi up` as we can't guarantee deletion order.\n// e.g. removal of inbound_tsig_key_id within fastly_dns_zone might not finish first.\nconst example = new fastly.TsigKey(\"example\", {\n    name: \"example.com.\",\n    algorithm: \"hmac-sha256\",\n    secret: \"c2VjcmV0a2V5MTIzNDU2Nzg=\",\n    description: \"My TSIG key\",\n});\n```\n```python\nimport pulumi\nimport pulumi_fastly as fastly\n\n# IMPORTANT: Deleting a TSIG Key requires first removing the inbound_tsig_key_id reference in any DNS Zone that uses it.\n# This requires a two-step `pulumi up` as we can't guarantee deletion order.\n# e.g. removal of inbound_tsig_key_id within fastly_dns_zone might not finish first.\nexample = fastly.TsigKey(\"example\",\n    name=\"example.com.\",\n    algorithm=\"hmac-sha256\",\n    secret=\"c2VjcmV0a2V5MTIzNDU2Nzg=\",\n    description=\"My TSIG key\")\n```\n```csharp\nusing System.Collections.Generic;\nusing System.Linq;\nusing Pulumi;\nusing Fastly = Pulumi.Fastly;\n\nreturn await Deployment.RunAsync(() =\u003e \n{\n    // IMPORTANT: Deleting a TSIG Key requires first removing the inbound_tsig_key_id reference in any DNS Zone that uses it.\n    // This requires a two-step `pulumi up` as we can't guarantee deletion order.\n    // e.g. removal of inbound_tsig_key_id within fastly_dns_zone might not finish first.\n    var example = new Fastly.TsigKey(\"example\", new()\n    {\n        Name = \"example.com.\",\n        Algorithm = \"hmac-sha256\",\n        Secret = \"c2VjcmV0a2V5MTIzNDU2Nzg=\",\n        Description = \"My TSIG key\",\n    });\n\n});\n```\n```go\npackage main\n\nimport (\n\t\"github.com/pulumi/pulumi-fastly/sdk/v12/go/fastly\"\n\t\"github.com/pulumi/pulumi/sdk/v3/go/pulumi\"\n)\n\nfunc main() {\n\tpulumi.Run(func(ctx *pulumi.Context) error {\n\t\t// IMPORTANT: Deleting a TSIG Key requires first removing the inbound_tsig_key_id reference in any DNS Zone that uses it.\n\t\t// This requires a two-step `pulumi up` as we can't guarantee deletion order.\n\t\t// e.g. removal of inbound_tsig_key_id within fastly_dns_zone might not finish first.\n\t\t_, err := fastly.NewTsigKey(ctx, \"example\", \u0026fastly.TsigKeyArgs{\n\t\t\tName:        pulumi.String(\"example.com.\"),\n\t\t\tAlgorithm:   pulumi.String(\"hmac-sha256\"),\n\t\t\tSecret:      pulumi.String(\"c2VjcmV0a2V5MTIzNDU2Nzg=\"),\n\t\t\tDescription: pulumi.String(\"My TSIG key\"),\n\t\t})\n\t\tif err != nil {\n\t\t\treturn err\n\t\t}\n\t\treturn nil\n\t})\n}\n```\n```hcl\npulumi {\n  required_providers {\n    fastly = {\n      source = \"pulumi/fastly\"\n    }\n  }\n}\n\n# IMPORTANT: Deleting a TSIG Key requires first removing the inbound_tsig_key_id reference in any DNS Zone that uses it.\n# This requires a two-step `pulumi up` as we can't guarantee deletion order.\n# e.g. removal of inbound_tsig_key_id within fastly_dns_zone might not finish first.\nresource \"fastly_tsigkey\" \"example\" {\n  name        = \"example.com.\"\n  algorithm   = \"hmac-sha256\"\n  secret      = \"c2VjcmV0a2V5MTIzNDU2Nzg=\"\n  description = \"My TSIG key\"\n}\n```\n```java\npackage generated_program;\n\nimport com.pulumi.Context;\nimport com.pulumi.Pulumi;\nimport com.pulumi.core.Output;\nimport com.pulumi.fastly.TsigKey;\nimport com.pulumi.fastly.TsigKeyArgs;\nimport java.util.ArrayList;\nimport java.util.Arrays;\nimport java.util.Map;\nimport java.io.File;\nimport java.nio.file.Files;\nimport java.nio.file.Paths;\n\npublic class App {\n    public static void main(String[] args) {\n        Pulumi.run(App::stack);\n    }\n\n    public static void stack(Context ctx) {\n        // IMPORTANT: Deleting a TSIG Key requires first removing the inbound_tsig_key_id reference in any DNS Zone that uses it.\n        // This requires a two-step `pulumi up` as we can't guarantee deletion order.\n        // e.g. removal of inbound_tsig_key_id within fastly_dns_zone might not finish first.\n        var example = new TsigKey(\"example\", TsigKeyArgs.builder()\n            .name(\"example.com.\")\n            .algorithm(\"hmac-sha256\")\n            .secret(\"c2VjcmV0a2V5MTIzNDU2Nzg=\")\n            .description(\"My TSIG key\")\n            .build());\n\n    }\n}\n```\n```yaml\nresources:\n  # IMPORTANT: Deleting a TSIG Key requires first removing the inbound_tsig_key_id reference in any DNS Zone that uses it.\n  # This requires a two-step `pulumi up` as we can't guarantee deletion order.\n  # e.g. removal of inbound_tsig_key_id within fastly_dns_zone might not finish first.\n  example:\n    type: fastly:TsigKey\n    properties:\n      name: example.com.\n      algorithm: hmac-sha256\n      secret: c2VjcmV0a2V5MTIzNDU2Nzg=\n      description: My TSIG key\n```\n\u003c!--End PulumiCodeChooser --\u003e\n\n## Import\n\nFastly TSIG Keys can be imported using their Key ID, e.g.\n\n```sh\n$ pulumi import fastly:index/tsigKey:TsigKey example xxxxxxxxxxxxxxxxxxxx\n```\n\n",
+            "properties": {
+                "algorithm": {
+                    "type": "string",
+                    "description": "The algorithm of the TSIG key. One of: `hmac-sha224`, `hmac-sha256`, `hmac-sha384`, `hmac-sha512`.\n"
+                },
+                "description": {
+                    "type": "string",
+                    "description": "A freeform descriptive note.\n"
+                },
+                "name": {
+                    "type": "string",
+                    "description": "The name of the TSIG key.\n"
+                },
+                "secret": {
+                    "type": "string",
+                    "description": "The Base64 encoded secret key.\n",
+                    "secret": true
+                }
+            },
+            "required": [
+                "algorithm",
+                "name",
+                "secret"
+            ],
+            "inputProperties": {
+                "algorithm": {
+                    "type": "string",
+                    "description": "The algorithm of the TSIG key. One of: `hmac-sha224`, `hmac-sha256`, `hmac-sha384`, `hmac-sha512`.\n"
+                },
+                "description": {
+                    "type": "string",
+                    "description": "A freeform descriptive note.\n"
+                },
+                "name": {
+                    "type": "string",
+                    "description": "The name of the TSIG key.\n"
+                },
+                "secret": {
+                    "type": "string",
+                    "description": "The Base64 encoded secret key.\n",
+                    "secret": true
+                }
+            },
+            "requiredInputs": [
+                "algorithm",
+                "secret"
+            ],
+            "stateInputs": {
+                "description": "Input properties used for looking up and filtering TsigKey resources.\n",
+                "properties": {
+                    "algorithm": {
+                        "type": "string",
+                        "description": "The algorithm of the TSIG key. One of: `hmac-sha224`, `hmac-sha256`, `hmac-sha384`, `hmac-sha512`.\n"
+                    },
+                    "description": {
+                        "type": "string",
+                        "description": "A freeform descriptive note.\n"
+                    },
+                    "name": {
+                        "type": "string",
+                        "description": "The name of the TSIG key.\n"
+                    },
+                    "secret": {
+                        "type": "string",
+                        "description": "The Base64 encoded secret key.\n",
+                        "secret": true
+                    }
+                },
+                "type": "object"
+            }
+        },
         "fastly:index/user:User": {
             "description": "Provides a Fastly User, representing the configuration for a user account for interacting with Fastly.\n\nThe User resource requires a login and name, and optionally a role.\n\n## Example Usage\n\nBasic usage:\n\n\u003c!--Start PulumiCodeChooser --\u003e\n```typescript\nimport * as pulumi from \"@pulumi/pulumi\";\nimport * as fastly from \"@pulumi/fastly\";\n\nconst demo = new fastly.User(\"demo\", {\n    login: \"demo@example.com\",\n    name: \"Demo User\",\n});\n```\n```python\nimport pulumi\nimport pulumi_fastly as fastly\n\ndemo = fastly.User(\"demo\",\n    login=\"demo@example.com\",\n    name=\"Demo User\")\n```\n```csharp\nusing System.Collections.Generic;\nusing System.Linq;\nusing Pulumi;\nusing Fastly = Pulumi.Fastly;\n\nreturn await Deployment.RunAsync(() =\u003e \n{\n    var demo = new Fastly.User(\"demo\", new()\n    {\n        Login = \"demo@example.com\",\n        Name = \"Demo User\",\n    });\n\n});\n```\n```go\npackage main\n\nimport (\n\t\"github.com/pulumi/pulumi-fastly/sdk/v12/go/fastly\"\n\t\"github.com/pulumi/pulumi/sdk/v3/go/pulumi\"\n)\n\nfunc main() {\n\tpulumi.Run(func(ctx *pulumi.Context) error {\n\t\t_, err := fastly.NewUser(ctx, \"demo\", \u0026fastly.UserArgs{\n\t\t\tLogin: pulumi.String(\"demo@example.com\"),\n\t\t\tName:  pulumi.String(\"Demo User\"),\n\t\t})\n\t\tif err != nil {\n\t\t\treturn err\n\t\t}\n\t\treturn nil\n\t})\n}\n```\n```hcl\npulumi {\n  required_providers {\n    fastly = {\n      source = \"pulumi/fastly\"\n    }\n  }\n}\n\nresource \"fastly_user\" \"demo\" {\n  login = \"demo@example.com\"\n  name  = \"Demo User\"\n}\n```\n```java\npackage generated_program;\n\nimport com.pulumi.Context;\nimport com.pulumi.Pulumi;\nimport com.pulumi.core.Output;\nimport com.pulumi.fastly.User;\nimport com.pulumi.fastly.UserArgs;\nimport java.util.ArrayList;\nimport java.util.Arrays;\nimport java.util.Map;\nimport java.io.File;\nimport java.nio.file.Files;\nimport java.nio.file.Paths;\n\npublic class App {\n    public static void main(String[] args) {\n        Pulumi.run(App::stack);\n    }\n\n    public static void stack(Context ctx) {\n        var demo = new User(\"demo\", UserArgs.builder()\n            .login(\"demo@example.com\")\n            .name(\"Demo User\")\n            .build());\n\n    }\n}\n```\n```yaml\nresources:\n  demo:\n    type: fastly:User\n    properties:\n      login: demo@example.com\n      name: Demo User\n```\n\u003c!--End PulumiCodeChooser --\u003e\n\n## Import\n\nA Fastly User can be imported using their user ID, e.g.\n\n```sh\n$ pulumi import fastly:index/user:User demo xxxxxxxxxxxxxxxxxxxx\n```\n\n",
             "properties": {
@@ -12325,6 +12534,45 @@
                     "dictionaries",
                     "serviceId",
                     "serviceVersion",
+                    "id"
+                ],
+                "type": "object"
+            }
+        },
+        "fastly:index/getDnsZones:getDnsZones": {
+            "description": "Use this data source to get a list of Fastly DNS Zones.\n\n## Example Usage\n\n\u003c!--Start PulumiCodeChooser --\u003e\n```typescript\nimport * as pulumi from \"@pulumi/pulumi\";\nimport * as fastly from \"@pulumi/fastly\";\n\nconst example = fastly.getDnsZones({});\nexport const fastlyDnsZonesAll = example.then(example =\u003e example.zones);\n```\n```python\nimport pulumi\nimport pulumi_fastly as fastly\n\nexample = fastly.get_dns_zones()\npulumi.export(\"fastlyDnsZonesAll\", example.zones)\n```\n```csharp\nusing System.Collections.Generic;\nusing System.Linq;\nusing Pulumi;\nusing Fastly = Pulumi.Fastly;\n\nreturn await Deployment.RunAsync(() =\u003e \n{\n    var example = Fastly.GetDnsZones.Invoke();\n\n    return new Dictionary\u003cstring, object?\u003e\n    {\n        [\"fastlyDnsZonesAll\"] = example.Apply(getDnsZonesResult =\u003e getDnsZonesResult.Zones),\n    };\n});\n```\n```go\npackage main\n\nimport (\n\t\"github.com/pulumi/pulumi-fastly/sdk/v12/go/fastly\"\n\t\"github.com/pulumi/pulumi/sdk/v3/go/pulumi\"\n)\n\nfunc main() {\n\tpulumi.Run(func(ctx *pulumi.Context) error {\n\t\texample, err := fastly.GetDnsZones(ctx, \u0026fastly.GetDnsZonesArgs{}, nil)\n\t\tif err != nil {\n\t\t\treturn err\n\t\t}\n\t\tctx.Export(\"fastlyDnsZonesAll\", example.Zones)\n\t\treturn nil\n\t})\n}\n```\n```hcl\npulumi {\n  required_providers {\n    fastly = {\n      source = \"pulumi/fastly\"\n    }\n  }\n}\n\ndata \"fastly_getdnszones\" \"example\" {\n}\n\noutput \"fastlyDnsZonesAll\" {\n  value = data.fastly_getdnszones.example.zones\n}\n```\n```java\npackage generated_program;\n\nimport com.pulumi.Context;\nimport com.pulumi.Pulumi;\nimport com.pulumi.core.Output;\nimport com.pulumi.fastly.FastlyFunctions;\nimport com.pulumi.fastly.inputs.GetDnsZonesArgs;\nimport java.util.ArrayList;\nimport java.util.Arrays;\nimport java.util.Map;\nimport java.io.File;\nimport java.nio.file.Files;\nimport java.nio.file.Paths;\n\npublic class App {\n    public static void main(String[] args) {\n        Pulumi.run(App::stack);\n    }\n\n    public static void stack(Context ctx) {\n        final var example = FastlyFunctions.getDnsZones(GetDnsZonesArgs.builder()\n            .build());\n\n        ctx.export(\"fastlyDnsZonesAll\", example.zones());\n    }\n}\n```\n```yaml\nvariables:\n  example:\n    fn::invoke:\n      function: fastly:getDnsZones\n      arguments: {}\noutputs:\n  fastlyDnsZonesAll: ${example.zones}\n```\n\u003c!--End PulumiCodeChooser --\u003e\n",
+            "inputs": {
+                "description": "A collection of arguments for invoking getDnsZones.\n",
+                "properties": {
+                    "total": {
+                        "type": "integer",
+                        "description": "The total number of DNS zones returned.\n"
+                    }
+                },
+                "type": "object"
+            },
+            "outputs": {
+                "description": "A collection of values returned by getDnsZones.\n",
+                "properties": {
+                    "id": {
+                        "description": "The provider-assigned unique ID for this managed resource.",
+                        "type": "string"
+                    },
+                    "total": {
+                        "description": "The total number of DNS zones returned.\n",
+                        "type": "integer"
+                    },
+                    "zones": {
+                        "description": "A list of DNS zones.\n",
+                        "items": {
+                            "$ref": "#/types/fastly:index/getDnsZonesZone:getDnsZonesZone"
+                        },
+                        "type": "array"
+                    }
+                },
+                "required": [
+                    "total",
+                    "zones",
                     "id"
                 ],
                 "type": "object"
@@ -13991,6 +14239,45 @@
                 },
                 "required": [
                     "ids",
+                    "id"
+                ],
+                "type": "object"
+            }
+        },
+        "fastly:index/getTsigKeys:getTsigKeys": {
+            "description": "Use this data source to get a list of Fastly TSIG Keys.\n\n## Example Usage\n\n\u003c!--Start PulumiCodeChooser --\u003e\n```typescript\nimport * as pulumi from \"@pulumi/pulumi\";\nimport * as fastly from \"@pulumi/fastly\";\n\nconst example = fastly.getTsigKeys({});\nexport const fastlyTsigKeysAll = example.then(example =\u003e example.keys);\n```\n```python\nimport pulumi\nimport pulumi_fastly as fastly\n\nexample = fastly.get_tsig_keys()\npulumi.export(\"fastlyTsigKeysAll\", example.keys)\n```\n```csharp\nusing System.Collections.Generic;\nusing System.Linq;\nusing Pulumi;\nusing Fastly = Pulumi.Fastly;\n\nreturn await Deployment.RunAsync(() =\u003e \n{\n    var example = Fastly.GetTsigKeys.Invoke();\n\n    return new Dictionary\u003cstring, object?\u003e\n    {\n        [\"fastlyTsigKeysAll\"] = example.Apply(getTsigKeysResult =\u003e getTsigKeysResult.Keys),\n    };\n});\n```\n```go\npackage main\n\nimport (\n\t\"github.com/pulumi/pulumi-fastly/sdk/v12/go/fastly\"\n\t\"github.com/pulumi/pulumi/sdk/v3/go/pulumi\"\n)\n\nfunc main() {\n\tpulumi.Run(func(ctx *pulumi.Context) error {\n\t\texample, err := fastly.GetTsigKeys(ctx, \u0026fastly.GetTsigKeysArgs{}, nil)\n\t\tif err != nil {\n\t\t\treturn err\n\t\t}\n\t\tctx.Export(\"fastlyTsigKeysAll\", example.Keys)\n\t\treturn nil\n\t})\n}\n```\n```hcl\npulumi {\n  required_providers {\n    fastly = {\n      source = \"pulumi/fastly\"\n    }\n  }\n}\n\ndata \"fastly_gettsigkeys\" \"example\" {\n}\n\noutput \"fastlyTsigKeysAll\" {\n  value = data.fastly_gettsigkeys.example.keys\n}\n```\n```java\npackage generated_program;\n\nimport com.pulumi.Context;\nimport com.pulumi.Pulumi;\nimport com.pulumi.core.Output;\nimport com.pulumi.fastly.FastlyFunctions;\nimport com.pulumi.fastly.inputs.GetTsigKeysArgs;\nimport java.util.ArrayList;\nimport java.util.Arrays;\nimport java.util.Map;\nimport java.io.File;\nimport java.nio.file.Files;\nimport java.nio.file.Paths;\n\npublic class App {\n    public static void main(String[] args) {\n        Pulumi.run(App::stack);\n    }\n\n    public static void stack(Context ctx) {\n        final var example = FastlyFunctions.getTsigKeys(GetTsigKeysArgs.builder()\n            .build());\n\n        ctx.export(\"fastlyTsigKeysAll\", example.keys());\n    }\n}\n```\n```yaml\nvariables:\n  example:\n    fn::invoke:\n      function: fastly:getTsigKeys\n      arguments: {}\noutputs:\n  fastlyTsigKeysAll: ${example.keys}\n```\n\u003c!--End PulumiCodeChooser --\u003e\n",
+            "inputs": {
+                "description": "A collection of arguments for invoking getTsigKeys.\n",
+                "properties": {
+                    "total": {
+                        "type": "integer",
+                        "description": "The total number of TSIG keys returned.\n"
+                    }
+                },
+                "type": "object"
+            },
+            "outputs": {
+                "description": "A collection of values returned by getTsigKeys.\n",
+                "properties": {
+                    "id": {
+                        "description": "The provider-assigned unique ID for this managed resource.",
+                        "type": "string"
+                    },
+                    "keys": {
+                        "description": "A list of TSIG keys.\n",
+                        "items": {
+                            "$ref": "#/types/fastly:index/getTsigKeysKey:getTsigKeysKey"
+                        },
+                        "type": "array"
+                    },
+                    "total": {
+                        "description": "The total number of TSIG keys returned.\n",
+                        "type": "integer"
+                    }
+                },
+                "required": [
+                    "keys",
+                    "total",
                     "id"
                 ],
                 "type": "object"

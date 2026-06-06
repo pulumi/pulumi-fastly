@@ -106,6 +106,28 @@ export interface CustomDashboardDashboardItemVisualizationConfig {
     plotType: pulumi.Input<string>;
 }
 
+export interface DnsZoneXfrConfigInbound {
+    /**
+     * The ID of the TSIG key used to secure inbound zone transfers.
+     */
+    inboundTsigKeyId?: pulumi.Input<string | undefined>;
+    /**
+     * An array of the primary DNS server objects associated with inbound zone transfers.
+     */
+    primaries?: pulumi.Input<pulumi.Input<inputs.DnsZoneXfrConfigInboundPrimary>[] | undefined>;
+}
+
+export interface DnsZoneXfrConfigInboundPrimary {
+    /**
+     * An IPv4 address for the Primary DNS Server.
+     */
+    address?: pulumi.Input<string | undefined>;
+    /**
+     * A description of the Primary DNS server.
+     */
+    description?: pulumi.Input<string | undefined>;
+}
+
 export interface NgwafAccountRuleAction {
     /**
      * Signal name to exclude (used when `type = excludeSignal`).
@@ -1882,10 +1904,6 @@ export interface ServiceComputeProductEnablementNgwaf {
      * Enable Next-Gen WAF support
      */
     enabled: pulumi.Input<boolean>;
-    /**
-     * The percentage of traffic to inspect
-     */
-    trafficRamp?: pulumi.Input<number | undefined>;
     /**
      * The workspace to link
      */

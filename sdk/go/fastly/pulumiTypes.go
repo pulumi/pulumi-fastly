@@ -753,6 +753,268 @@ func (o CustomDashboardDashboardItemVisualizationConfigOutput) PlotType() pulumi
 	return o.ApplyT(func(v CustomDashboardDashboardItemVisualizationConfig) string { return v.PlotType }).(pulumi.StringOutput)
 }
 
+type DnsZoneXfrConfigInbound struct {
+	// The ID of the TSIG key used to secure inbound zone transfers.
+	InboundTsigKeyId *string `pulumi:"inboundTsigKeyId"`
+	// An array of the primary DNS server objects associated with inbound zone transfers.
+	Primaries []DnsZoneXfrConfigInboundPrimary `pulumi:"primaries"`
+}
+
+// DnsZoneXfrConfigInboundInput is an input type that accepts DnsZoneXfrConfigInboundArgs and DnsZoneXfrConfigInboundOutput values.
+// You can construct a concrete instance of `DnsZoneXfrConfigInboundInput` via:
+//
+//	DnsZoneXfrConfigInboundArgs{...}
+type DnsZoneXfrConfigInboundInput interface {
+	pulumi.Input
+
+	ToDnsZoneXfrConfigInboundOutput() DnsZoneXfrConfigInboundOutput
+	ToDnsZoneXfrConfigInboundOutputWithContext(context.Context) DnsZoneXfrConfigInboundOutput
+}
+
+type DnsZoneXfrConfigInboundArgs struct {
+	// The ID of the TSIG key used to secure inbound zone transfers.
+	InboundTsigKeyId pulumi.StringPtrInput `pulumi:"inboundTsigKeyId"`
+	// An array of the primary DNS server objects associated with inbound zone transfers.
+	Primaries DnsZoneXfrConfigInboundPrimaryArrayInput `pulumi:"primaries"`
+}
+
+func (DnsZoneXfrConfigInboundArgs) ElementType() reflect.Type {
+	return reflect.TypeOf((*DnsZoneXfrConfigInbound)(nil)).Elem()
+}
+
+func (i DnsZoneXfrConfigInboundArgs) ToDnsZoneXfrConfigInboundOutput() DnsZoneXfrConfigInboundOutput {
+	return i.ToDnsZoneXfrConfigInboundOutputWithContext(context.Background())
+}
+
+func (i DnsZoneXfrConfigInboundArgs) ToDnsZoneXfrConfigInboundOutputWithContext(ctx context.Context) DnsZoneXfrConfigInboundOutput {
+	return pulumi.ToOutputWithContext(ctx, i).(DnsZoneXfrConfigInboundOutput)
+}
+
+func (i DnsZoneXfrConfigInboundArgs) ToDnsZoneXfrConfigInboundPtrOutput() DnsZoneXfrConfigInboundPtrOutput {
+	return i.ToDnsZoneXfrConfigInboundPtrOutputWithContext(context.Background())
+}
+
+func (i DnsZoneXfrConfigInboundArgs) ToDnsZoneXfrConfigInboundPtrOutputWithContext(ctx context.Context) DnsZoneXfrConfigInboundPtrOutput {
+	return pulumi.ToOutputWithContext(ctx, i).(DnsZoneXfrConfigInboundOutput).ToDnsZoneXfrConfigInboundPtrOutputWithContext(ctx)
+}
+
+// DnsZoneXfrConfigInboundPtrInput is an input type that accepts DnsZoneXfrConfigInboundArgs, DnsZoneXfrConfigInboundPtr and DnsZoneXfrConfigInboundPtrOutput values.
+// You can construct a concrete instance of `DnsZoneXfrConfigInboundPtrInput` via:
+//
+//	        DnsZoneXfrConfigInboundArgs{...}
+//
+//	or:
+//
+//	        nil
+type DnsZoneXfrConfigInboundPtrInput interface {
+	pulumi.Input
+
+	ToDnsZoneXfrConfigInboundPtrOutput() DnsZoneXfrConfigInboundPtrOutput
+	ToDnsZoneXfrConfigInboundPtrOutputWithContext(context.Context) DnsZoneXfrConfigInboundPtrOutput
+}
+
+type dnsZoneXfrConfigInboundPtrType DnsZoneXfrConfigInboundArgs
+
+func DnsZoneXfrConfigInboundPtr(v *DnsZoneXfrConfigInboundArgs) DnsZoneXfrConfigInboundPtrInput {
+	return (*dnsZoneXfrConfigInboundPtrType)(v)
+}
+
+func (*dnsZoneXfrConfigInboundPtrType) ElementType() reflect.Type {
+	return reflect.TypeOf((**DnsZoneXfrConfigInbound)(nil)).Elem()
+}
+
+func (i *dnsZoneXfrConfigInboundPtrType) ToDnsZoneXfrConfigInboundPtrOutput() DnsZoneXfrConfigInboundPtrOutput {
+	return i.ToDnsZoneXfrConfigInboundPtrOutputWithContext(context.Background())
+}
+
+func (i *dnsZoneXfrConfigInboundPtrType) ToDnsZoneXfrConfigInboundPtrOutputWithContext(ctx context.Context) DnsZoneXfrConfigInboundPtrOutput {
+	return pulumi.ToOutputWithContext(ctx, i).(DnsZoneXfrConfigInboundPtrOutput)
+}
+
+type DnsZoneXfrConfigInboundOutput struct{ *pulumi.OutputState }
+
+func (DnsZoneXfrConfigInboundOutput) ElementType() reflect.Type {
+	return reflect.TypeOf((*DnsZoneXfrConfigInbound)(nil)).Elem()
+}
+
+func (o DnsZoneXfrConfigInboundOutput) ToDnsZoneXfrConfigInboundOutput() DnsZoneXfrConfigInboundOutput {
+	return o
+}
+
+func (o DnsZoneXfrConfigInboundOutput) ToDnsZoneXfrConfigInboundOutputWithContext(ctx context.Context) DnsZoneXfrConfigInboundOutput {
+	return o
+}
+
+func (o DnsZoneXfrConfigInboundOutput) ToDnsZoneXfrConfigInboundPtrOutput() DnsZoneXfrConfigInboundPtrOutput {
+	return o.ToDnsZoneXfrConfigInboundPtrOutputWithContext(context.Background())
+}
+
+func (o DnsZoneXfrConfigInboundOutput) ToDnsZoneXfrConfigInboundPtrOutputWithContext(ctx context.Context) DnsZoneXfrConfigInboundPtrOutput {
+	return o.ApplyTWithContext(ctx, func(_ context.Context, v DnsZoneXfrConfigInbound) *DnsZoneXfrConfigInbound {
+		return &v
+	}).(DnsZoneXfrConfigInboundPtrOutput)
+}
+
+// The ID of the TSIG key used to secure inbound zone transfers.
+func (o DnsZoneXfrConfigInboundOutput) InboundTsigKeyId() pulumi.StringPtrOutput {
+	return o.ApplyT(func(v DnsZoneXfrConfigInbound) *string { return v.InboundTsigKeyId }).(pulumi.StringPtrOutput)
+}
+
+// An array of the primary DNS server objects associated with inbound zone transfers.
+func (o DnsZoneXfrConfigInboundOutput) Primaries() DnsZoneXfrConfigInboundPrimaryArrayOutput {
+	return o.ApplyT(func(v DnsZoneXfrConfigInbound) []DnsZoneXfrConfigInboundPrimary { return v.Primaries }).(DnsZoneXfrConfigInboundPrimaryArrayOutput)
+}
+
+type DnsZoneXfrConfigInboundPtrOutput struct{ *pulumi.OutputState }
+
+func (DnsZoneXfrConfigInboundPtrOutput) ElementType() reflect.Type {
+	return reflect.TypeOf((**DnsZoneXfrConfigInbound)(nil)).Elem()
+}
+
+func (o DnsZoneXfrConfigInboundPtrOutput) ToDnsZoneXfrConfigInboundPtrOutput() DnsZoneXfrConfigInboundPtrOutput {
+	return o
+}
+
+func (o DnsZoneXfrConfigInboundPtrOutput) ToDnsZoneXfrConfigInboundPtrOutputWithContext(ctx context.Context) DnsZoneXfrConfigInboundPtrOutput {
+	return o
+}
+
+func (o DnsZoneXfrConfigInboundPtrOutput) Elem() DnsZoneXfrConfigInboundOutput {
+	return o.ApplyT(func(v *DnsZoneXfrConfigInbound) DnsZoneXfrConfigInbound {
+		if v != nil {
+			return *v
+		}
+		var ret DnsZoneXfrConfigInbound
+		return ret
+	}).(DnsZoneXfrConfigInboundOutput)
+}
+
+// The ID of the TSIG key used to secure inbound zone transfers.
+func (o DnsZoneXfrConfigInboundPtrOutput) InboundTsigKeyId() pulumi.StringPtrOutput {
+	return o.ApplyT(func(v *DnsZoneXfrConfigInbound) *string {
+		if v == nil {
+			return nil
+		}
+		return v.InboundTsigKeyId
+	}).(pulumi.StringPtrOutput)
+}
+
+// An array of the primary DNS server objects associated with inbound zone transfers.
+func (o DnsZoneXfrConfigInboundPtrOutput) Primaries() DnsZoneXfrConfigInboundPrimaryArrayOutput {
+	return o.ApplyT(func(v *DnsZoneXfrConfigInbound) []DnsZoneXfrConfigInboundPrimary {
+		if v == nil {
+			return nil
+		}
+		return v.Primaries
+	}).(DnsZoneXfrConfigInboundPrimaryArrayOutput)
+}
+
+type DnsZoneXfrConfigInboundPrimary struct {
+	// An IPv4 address for the Primary DNS Server.
+	Address *string `pulumi:"address"`
+	// A description of the Primary DNS server.
+	Description *string `pulumi:"description"`
+}
+
+// DnsZoneXfrConfigInboundPrimaryInput is an input type that accepts DnsZoneXfrConfigInboundPrimaryArgs and DnsZoneXfrConfigInboundPrimaryOutput values.
+// You can construct a concrete instance of `DnsZoneXfrConfigInboundPrimaryInput` via:
+//
+//	DnsZoneXfrConfigInboundPrimaryArgs{...}
+type DnsZoneXfrConfigInboundPrimaryInput interface {
+	pulumi.Input
+
+	ToDnsZoneXfrConfigInboundPrimaryOutput() DnsZoneXfrConfigInboundPrimaryOutput
+	ToDnsZoneXfrConfigInboundPrimaryOutputWithContext(context.Context) DnsZoneXfrConfigInboundPrimaryOutput
+}
+
+type DnsZoneXfrConfigInboundPrimaryArgs struct {
+	// An IPv4 address for the Primary DNS Server.
+	Address pulumi.StringPtrInput `pulumi:"address"`
+	// A description of the Primary DNS server.
+	Description pulumi.StringPtrInput `pulumi:"description"`
+}
+
+func (DnsZoneXfrConfigInboundPrimaryArgs) ElementType() reflect.Type {
+	return reflect.TypeOf((*DnsZoneXfrConfigInboundPrimary)(nil)).Elem()
+}
+
+func (i DnsZoneXfrConfigInboundPrimaryArgs) ToDnsZoneXfrConfigInboundPrimaryOutput() DnsZoneXfrConfigInboundPrimaryOutput {
+	return i.ToDnsZoneXfrConfigInboundPrimaryOutputWithContext(context.Background())
+}
+
+func (i DnsZoneXfrConfigInboundPrimaryArgs) ToDnsZoneXfrConfigInboundPrimaryOutputWithContext(ctx context.Context) DnsZoneXfrConfigInboundPrimaryOutput {
+	return pulumi.ToOutputWithContext(ctx, i).(DnsZoneXfrConfigInboundPrimaryOutput)
+}
+
+// DnsZoneXfrConfigInboundPrimaryArrayInput is an input type that accepts DnsZoneXfrConfigInboundPrimaryArray and DnsZoneXfrConfigInboundPrimaryArrayOutput values.
+// You can construct a concrete instance of `DnsZoneXfrConfigInboundPrimaryArrayInput` via:
+//
+//	DnsZoneXfrConfigInboundPrimaryArray{ DnsZoneXfrConfigInboundPrimaryArgs{...} }
+type DnsZoneXfrConfigInboundPrimaryArrayInput interface {
+	pulumi.Input
+
+	ToDnsZoneXfrConfigInboundPrimaryArrayOutput() DnsZoneXfrConfigInboundPrimaryArrayOutput
+	ToDnsZoneXfrConfigInboundPrimaryArrayOutputWithContext(context.Context) DnsZoneXfrConfigInboundPrimaryArrayOutput
+}
+
+type DnsZoneXfrConfigInboundPrimaryArray []DnsZoneXfrConfigInboundPrimaryInput
+
+func (DnsZoneXfrConfigInboundPrimaryArray) ElementType() reflect.Type {
+	return reflect.TypeOf((*[]DnsZoneXfrConfigInboundPrimary)(nil)).Elem()
+}
+
+func (i DnsZoneXfrConfigInboundPrimaryArray) ToDnsZoneXfrConfigInboundPrimaryArrayOutput() DnsZoneXfrConfigInboundPrimaryArrayOutput {
+	return i.ToDnsZoneXfrConfigInboundPrimaryArrayOutputWithContext(context.Background())
+}
+
+func (i DnsZoneXfrConfigInboundPrimaryArray) ToDnsZoneXfrConfigInboundPrimaryArrayOutputWithContext(ctx context.Context) DnsZoneXfrConfigInboundPrimaryArrayOutput {
+	return pulumi.ToOutputWithContext(ctx, i).(DnsZoneXfrConfigInboundPrimaryArrayOutput)
+}
+
+type DnsZoneXfrConfigInboundPrimaryOutput struct{ *pulumi.OutputState }
+
+func (DnsZoneXfrConfigInboundPrimaryOutput) ElementType() reflect.Type {
+	return reflect.TypeOf((*DnsZoneXfrConfigInboundPrimary)(nil)).Elem()
+}
+
+func (o DnsZoneXfrConfigInboundPrimaryOutput) ToDnsZoneXfrConfigInboundPrimaryOutput() DnsZoneXfrConfigInboundPrimaryOutput {
+	return o
+}
+
+func (o DnsZoneXfrConfigInboundPrimaryOutput) ToDnsZoneXfrConfigInboundPrimaryOutputWithContext(ctx context.Context) DnsZoneXfrConfigInboundPrimaryOutput {
+	return o
+}
+
+// An IPv4 address for the Primary DNS Server.
+func (o DnsZoneXfrConfigInboundPrimaryOutput) Address() pulumi.StringPtrOutput {
+	return o.ApplyT(func(v DnsZoneXfrConfigInboundPrimary) *string { return v.Address }).(pulumi.StringPtrOutput)
+}
+
+// A description of the Primary DNS server.
+func (o DnsZoneXfrConfigInboundPrimaryOutput) Description() pulumi.StringPtrOutput {
+	return o.ApplyT(func(v DnsZoneXfrConfigInboundPrimary) *string { return v.Description }).(pulumi.StringPtrOutput)
+}
+
+type DnsZoneXfrConfigInboundPrimaryArrayOutput struct{ *pulumi.OutputState }
+
+func (DnsZoneXfrConfigInboundPrimaryArrayOutput) ElementType() reflect.Type {
+	return reflect.TypeOf((*[]DnsZoneXfrConfigInboundPrimary)(nil)).Elem()
+}
+
+func (o DnsZoneXfrConfigInboundPrimaryArrayOutput) ToDnsZoneXfrConfigInboundPrimaryArrayOutput() DnsZoneXfrConfigInboundPrimaryArrayOutput {
+	return o
+}
+
+func (o DnsZoneXfrConfigInboundPrimaryArrayOutput) ToDnsZoneXfrConfigInboundPrimaryArrayOutputWithContext(ctx context.Context) DnsZoneXfrConfigInboundPrimaryArrayOutput {
+	return o
+}
+
+func (o DnsZoneXfrConfigInboundPrimaryArrayOutput) Index(i pulumi.IntInput) DnsZoneXfrConfigInboundPrimaryOutput {
+	return pulumi.All(o, i).ApplyT(func(vs []interface{}) DnsZoneXfrConfigInboundPrimary {
+		return vs[0].([]DnsZoneXfrConfigInboundPrimary)[vs[1].(int)]
+	}).(DnsZoneXfrConfigInboundPrimaryOutput)
+}
+
 type NgwafAccountRuleAction struct {
 	// Signal name to exclude (used when `type = excludeSignal`).
 	Signal *string `pulumi:"signal"`
@@ -9946,8 +10208,6 @@ func (o ServiceComputeProductEnablementDdosProtectionPtrOutput) Mode() pulumi.St
 type ServiceComputeProductEnablementNgwaf struct {
 	// Enable Next-Gen WAF support
 	Enabled bool `pulumi:"enabled"`
-	// The percentage of traffic to inspect
-	TrafficRamp *int `pulumi:"trafficRamp"`
 	// The workspace to link
 	WorkspaceId string `pulumi:"workspaceId"`
 }
@@ -9966,8 +10226,6 @@ type ServiceComputeProductEnablementNgwafInput interface {
 type ServiceComputeProductEnablementNgwafArgs struct {
 	// Enable Next-Gen WAF support
 	Enabled pulumi.BoolInput `pulumi:"enabled"`
-	// The percentage of traffic to inspect
-	TrafficRamp pulumi.IntPtrInput `pulumi:"trafficRamp"`
 	// The workspace to link
 	WorkspaceId pulumi.StringInput `pulumi:"workspaceId"`
 }
@@ -10054,11 +10312,6 @@ func (o ServiceComputeProductEnablementNgwafOutput) Enabled() pulumi.BoolOutput 
 	return o.ApplyT(func(v ServiceComputeProductEnablementNgwaf) bool { return v.Enabled }).(pulumi.BoolOutput)
 }
 
-// The percentage of traffic to inspect
-func (o ServiceComputeProductEnablementNgwafOutput) TrafficRamp() pulumi.IntPtrOutput {
-	return o.ApplyT(func(v ServiceComputeProductEnablementNgwaf) *int { return v.TrafficRamp }).(pulumi.IntPtrOutput)
-}
-
 // The workspace to link
 func (o ServiceComputeProductEnablementNgwafOutput) WorkspaceId() pulumi.StringOutput {
 	return o.ApplyT(func(v ServiceComputeProductEnablementNgwaf) string { return v.WorkspaceId }).(pulumi.StringOutput)
@@ -10096,16 +10349,6 @@ func (o ServiceComputeProductEnablementNgwafPtrOutput) Enabled() pulumi.BoolPtrO
 		}
 		return &v.Enabled
 	}).(pulumi.BoolPtrOutput)
-}
-
-// The percentage of traffic to inspect
-func (o ServiceComputeProductEnablementNgwafPtrOutput) TrafficRamp() pulumi.IntPtrOutput {
-	return o.ApplyT(func(v *ServiceComputeProductEnablementNgwaf) *int {
-		if v == nil {
-			return nil
-		}
-		return v.TrafficRamp
-	}).(pulumi.IntPtrOutput)
 }
 
 // The workspace to link
@@ -20978,6 +21221,121 @@ func (o GetDictionariesDictionaryArrayOutput) Index(i pulumi.IntInput) GetDictio
 	}).(GetDictionariesDictionaryOutput)
 }
 
+type GetDnsZonesZone struct {
+	// A freeform descriptive note.
+	Description string `pulumi:"description"`
+	// Zone Identifier (UUID).
+	Id string `pulumi:"id"`
+	// The domain name for the zone.
+	Name string `pulumi:"name"`
+}
+
+// GetDnsZonesZoneInput is an input type that accepts GetDnsZonesZoneArgs and GetDnsZonesZoneOutput values.
+// You can construct a concrete instance of `GetDnsZonesZoneInput` via:
+//
+//	GetDnsZonesZoneArgs{...}
+type GetDnsZonesZoneInput interface {
+	pulumi.Input
+
+	ToGetDnsZonesZoneOutput() GetDnsZonesZoneOutput
+	ToGetDnsZonesZoneOutputWithContext(context.Context) GetDnsZonesZoneOutput
+}
+
+type GetDnsZonesZoneArgs struct {
+	// A freeform descriptive note.
+	Description pulumi.StringInput `pulumi:"description"`
+	// Zone Identifier (UUID).
+	Id pulumi.StringInput `pulumi:"id"`
+	// The domain name for the zone.
+	Name pulumi.StringInput `pulumi:"name"`
+}
+
+func (GetDnsZonesZoneArgs) ElementType() reflect.Type {
+	return reflect.TypeOf((*GetDnsZonesZone)(nil)).Elem()
+}
+
+func (i GetDnsZonesZoneArgs) ToGetDnsZonesZoneOutput() GetDnsZonesZoneOutput {
+	return i.ToGetDnsZonesZoneOutputWithContext(context.Background())
+}
+
+func (i GetDnsZonesZoneArgs) ToGetDnsZonesZoneOutputWithContext(ctx context.Context) GetDnsZonesZoneOutput {
+	return pulumi.ToOutputWithContext(ctx, i).(GetDnsZonesZoneOutput)
+}
+
+// GetDnsZonesZoneArrayInput is an input type that accepts GetDnsZonesZoneArray and GetDnsZonesZoneArrayOutput values.
+// You can construct a concrete instance of `GetDnsZonesZoneArrayInput` via:
+//
+//	GetDnsZonesZoneArray{ GetDnsZonesZoneArgs{...} }
+type GetDnsZonesZoneArrayInput interface {
+	pulumi.Input
+
+	ToGetDnsZonesZoneArrayOutput() GetDnsZonesZoneArrayOutput
+	ToGetDnsZonesZoneArrayOutputWithContext(context.Context) GetDnsZonesZoneArrayOutput
+}
+
+type GetDnsZonesZoneArray []GetDnsZonesZoneInput
+
+func (GetDnsZonesZoneArray) ElementType() reflect.Type {
+	return reflect.TypeOf((*[]GetDnsZonesZone)(nil)).Elem()
+}
+
+func (i GetDnsZonesZoneArray) ToGetDnsZonesZoneArrayOutput() GetDnsZonesZoneArrayOutput {
+	return i.ToGetDnsZonesZoneArrayOutputWithContext(context.Background())
+}
+
+func (i GetDnsZonesZoneArray) ToGetDnsZonesZoneArrayOutputWithContext(ctx context.Context) GetDnsZonesZoneArrayOutput {
+	return pulumi.ToOutputWithContext(ctx, i).(GetDnsZonesZoneArrayOutput)
+}
+
+type GetDnsZonesZoneOutput struct{ *pulumi.OutputState }
+
+func (GetDnsZonesZoneOutput) ElementType() reflect.Type {
+	return reflect.TypeOf((*GetDnsZonesZone)(nil)).Elem()
+}
+
+func (o GetDnsZonesZoneOutput) ToGetDnsZonesZoneOutput() GetDnsZonesZoneOutput {
+	return o
+}
+
+func (o GetDnsZonesZoneOutput) ToGetDnsZonesZoneOutputWithContext(ctx context.Context) GetDnsZonesZoneOutput {
+	return o
+}
+
+// A freeform descriptive note.
+func (o GetDnsZonesZoneOutput) Description() pulumi.StringOutput {
+	return o.ApplyT(func(v GetDnsZonesZone) string { return v.Description }).(pulumi.StringOutput)
+}
+
+// Zone Identifier (UUID).
+func (o GetDnsZonesZoneOutput) Id() pulumi.StringOutput {
+	return o.ApplyT(func(v GetDnsZonesZone) string { return v.Id }).(pulumi.StringOutput)
+}
+
+// The domain name for the zone.
+func (o GetDnsZonesZoneOutput) Name() pulumi.StringOutput {
+	return o.ApplyT(func(v GetDnsZonesZone) string { return v.Name }).(pulumi.StringOutput)
+}
+
+type GetDnsZonesZoneArrayOutput struct{ *pulumi.OutputState }
+
+func (GetDnsZonesZoneArrayOutput) ElementType() reflect.Type {
+	return reflect.TypeOf((*[]GetDnsZonesZone)(nil)).Elem()
+}
+
+func (o GetDnsZonesZoneArrayOutput) ToGetDnsZonesZoneArrayOutput() GetDnsZonesZoneArrayOutput {
+	return o
+}
+
+func (o GetDnsZonesZoneArrayOutput) ToGetDnsZonesZoneArrayOutputWithContext(ctx context.Context) GetDnsZonesZoneArrayOutput {
+	return o
+}
+
+func (o GetDnsZonesZoneArrayOutput) Index(i pulumi.IntInput) GetDnsZonesZoneOutput {
+	return pulumi.All(o, i).ApplyT(func(vs []interface{}) GetDnsZonesZone {
+		return vs[0].([]GetDnsZonesZone)[vs[1].(int)]
+	}).(GetDnsZonesZoneOutput)
+}
+
 type GetDomainsDomain struct {
 	// The fully-qualified domain name for your domain.
 	Fqdn string `pulumi:"fqdn"`
@@ -23844,6 +24202,130 @@ func (o GetTlsConfigurationDnsRecordArrayOutput) Index(i pulumi.IntInput) GetTls
 	}).(GetTlsConfigurationDnsRecordOutput)
 }
 
+type GetTsigKeysKey struct {
+	// The algorithm of the TSIG key.
+	Algorithm string `pulumi:"algorithm"`
+	// A freeform descriptive note.
+	Description string `pulumi:"description"`
+	// TSIG Key Identifier (UUID).
+	Id string `pulumi:"id"`
+	// The name of the TSIG key.
+	Name string `pulumi:"name"`
+}
+
+// GetTsigKeysKeyInput is an input type that accepts GetTsigKeysKeyArgs and GetTsigKeysKeyOutput values.
+// You can construct a concrete instance of `GetTsigKeysKeyInput` via:
+//
+//	GetTsigKeysKeyArgs{...}
+type GetTsigKeysKeyInput interface {
+	pulumi.Input
+
+	ToGetTsigKeysKeyOutput() GetTsigKeysKeyOutput
+	ToGetTsigKeysKeyOutputWithContext(context.Context) GetTsigKeysKeyOutput
+}
+
+type GetTsigKeysKeyArgs struct {
+	// The algorithm of the TSIG key.
+	Algorithm pulumi.StringInput `pulumi:"algorithm"`
+	// A freeform descriptive note.
+	Description pulumi.StringInput `pulumi:"description"`
+	// TSIG Key Identifier (UUID).
+	Id pulumi.StringInput `pulumi:"id"`
+	// The name of the TSIG key.
+	Name pulumi.StringInput `pulumi:"name"`
+}
+
+func (GetTsigKeysKeyArgs) ElementType() reflect.Type {
+	return reflect.TypeOf((*GetTsigKeysKey)(nil)).Elem()
+}
+
+func (i GetTsigKeysKeyArgs) ToGetTsigKeysKeyOutput() GetTsigKeysKeyOutput {
+	return i.ToGetTsigKeysKeyOutputWithContext(context.Background())
+}
+
+func (i GetTsigKeysKeyArgs) ToGetTsigKeysKeyOutputWithContext(ctx context.Context) GetTsigKeysKeyOutput {
+	return pulumi.ToOutputWithContext(ctx, i).(GetTsigKeysKeyOutput)
+}
+
+// GetTsigKeysKeyArrayInput is an input type that accepts GetTsigKeysKeyArray and GetTsigKeysKeyArrayOutput values.
+// You can construct a concrete instance of `GetTsigKeysKeyArrayInput` via:
+//
+//	GetTsigKeysKeyArray{ GetTsigKeysKeyArgs{...} }
+type GetTsigKeysKeyArrayInput interface {
+	pulumi.Input
+
+	ToGetTsigKeysKeyArrayOutput() GetTsigKeysKeyArrayOutput
+	ToGetTsigKeysKeyArrayOutputWithContext(context.Context) GetTsigKeysKeyArrayOutput
+}
+
+type GetTsigKeysKeyArray []GetTsigKeysKeyInput
+
+func (GetTsigKeysKeyArray) ElementType() reflect.Type {
+	return reflect.TypeOf((*[]GetTsigKeysKey)(nil)).Elem()
+}
+
+func (i GetTsigKeysKeyArray) ToGetTsigKeysKeyArrayOutput() GetTsigKeysKeyArrayOutput {
+	return i.ToGetTsigKeysKeyArrayOutputWithContext(context.Background())
+}
+
+func (i GetTsigKeysKeyArray) ToGetTsigKeysKeyArrayOutputWithContext(ctx context.Context) GetTsigKeysKeyArrayOutput {
+	return pulumi.ToOutputWithContext(ctx, i).(GetTsigKeysKeyArrayOutput)
+}
+
+type GetTsigKeysKeyOutput struct{ *pulumi.OutputState }
+
+func (GetTsigKeysKeyOutput) ElementType() reflect.Type {
+	return reflect.TypeOf((*GetTsigKeysKey)(nil)).Elem()
+}
+
+func (o GetTsigKeysKeyOutput) ToGetTsigKeysKeyOutput() GetTsigKeysKeyOutput {
+	return o
+}
+
+func (o GetTsigKeysKeyOutput) ToGetTsigKeysKeyOutputWithContext(ctx context.Context) GetTsigKeysKeyOutput {
+	return o
+}
+
+// The algorithm of the TSIG key.
+func (o GetTsigKeysKeyOutput) Algorithm() pulumi.StringOutput {
+	return o.ApplyT(func(v GetTsigKeysKey) string { return v.Algorithm }).(pulumi.StringOutput)
+}
+
+// A freeform descriptive note.
+func (o GetTsigKeysKeyOutput) Description() pulumi.StringOutput {
+	return o.ApplyT(func(v GetTsigKeysKey) string { return v.Description }).(pulumi.StringOutput)
+}
+
+// TSIG Key Identifier (UUID).
+func (o GetTsigKeysKeyOutput) Id() pulumi.StringOutput {
+	return o.ApplyT(func(v GetTsigKeysKey) string { return v.Id }).(pulumi.StringOutput)
+}
+
+// The name of the TSIG key.
+func (o GetTsigKeysKeyOutput) Name() pulumi.StringOutput {
+	return o.ApplyT(func(v GetTsigKeysKey) string { return v.Name }).(pulumi.StringOutput)
+}
+
+type GetTsigKeysKeyArrayOutput struct{ *pulumi.OutputState }
+
+func (GetTsigKeysKeyArrayOutput) ElementType() reflect.Type {
+	return reflect.TypeOf((*[]GetTsigKeysKey)(nil)).Elem()
+}
+
+func (o GetTsigKeysKeyArrayOutput) ToGetTsigKeysKeyArrayOutput() GetTsigKeysKeyArrayOutput {
+	return o
+}
+
+func (o GetTsigKeysKeyArrayOutput) ToGetTsigKeysKeyArrayOutputWithContext(ctx context.Context) GetTsigKeysKeyArrayOutput {
+	return o
+}
+
+func (o GetTsigKeysKeyArrayOutput) Index(i pulumi.IntInput) GetTsigKeysKeyOutput {
+	return pulumi.All(o, i).ApplyT(func(vs []interface{}) GetTsigKeysKey {
+		return vs[0].([]GetTsigKeysKey)[vs[1].(int)]
+	}).(GetTsigKeysKeyOutput)
+}
+
 type GetVclSnippetsVclSnippet struct {
 	// The VCL code that specifies exactly what the snippet does.
 	Content string `pulumi:"content"`
@@ -23988,6 +24470,10 @@ func init() {
 	pulumi.RegisterInputType(reflect.TypeOf((*CustomDashboardDashboardItemDataSourceConfigInput)(nil)).Elem(), CustomDashboardDashboardItemDataSourceConfigArgs{})
 	pulumi.RegisterInputType(reflect.TypeOf((*CustomDashboardDashboardItemVisualizationInput)(nil)).Elem(), CustomDashboardDashboardItemVisualizationArgs{})
 	pulumi.RegisterInputType(reflect.TypeOf((*CustomDashboardDashboardItemVisualizationConfigInput)(nil)).Elem(), CustomDashboardDashboardItemVisualizationConfigArgs{})
+	pulumi.RegisterInputType(reflect.TypeOf((*DnsZoneXfrConfigInboundInput)(nil)).Elem(), DnsZoneXfrConfigInboundArgs{})
+	pulumi.RegisterInputType(reflect.TypeOf((*DnsZoneXfrConfigInboundPtrInput)(nil)).Elem(), DnsZoneXfrConfigInboundArgs{})
+	pulumi.RegisterInputType(reflect.TypeOf((*DnsZoneXfrConfigInboundPrimaryInput)(nil)).Elem(), DnsZoneXfrConfigInboundPrimaryArgs{})
+	pulumi.RegisterInputType(reflect.TypeOf((*DnsZoneXfrConfigInboundPrimaryArrayInput)(nil)).Elem(), DnsZoneXfrConfigInboundPrimaryArray{})
 	pulumi.RegisterInputType(reflect.TypeOf((*NgwafAccountRuleActionInput)(nil)).Elem(), NgwafAccountRuleActionArgs{})
 	pulumi.RegisterInputType(reflect.TypeOf((*NgwafAccountRuleActionArrayInput)(nil)).Elem(), NgwafAccountRuleActionArray{})
 	pulumi.RegisterInputType(reflect.TypeOf((*NgwafAccountRuleConditionInput)(nil)).Elem(), NgwafAccountRuleConditionArgs{})
@@ -24224,6 +24710,8 @@ func init() {
 	pulumi.RegisterInputType(reflect.TypeOf((*GetDatacentersPopArrayInput)(nil)).Elem(), GetDatacentersPopArray{})
 	pulumi.RegisterInputType(reflect.TypeOf((*GetDictionariesDictionaryInput)(nil)).Elem(), GetDictionariesDictionaryArgs{})
 	pulumi.RegisterInputType(reflect.TypeOf((*GetDictionariesDictionaryArrayInput)(nil)).Elem(), GetDictionariesDictionaryArray{})
+	pulumi.RegisterInputType(reflect.TypeOf((*GetDnsZonesZoneInput)(nil)).Elem(), GetDnsZonesZoneArgs{})
+	pulumi.RegisterInputType(reflect.TypeOf((*GetDnsZonesZoneArrayInput)(nil)).Elem(), GetDnsZonesZoneArray{})
 	pulumi.RegisterInputType(reflect.TypeOf((*GetDomainsDomainInput)(nil)).Elem(), GetDomainsDomainArgs{})
 	pulumi.RegisterInputType(reflect.TypeOf((*GetDomainsDomainArrayInput)(nil)).Elem(), GetDomainsDomainArray{})
 	pulumi.RegisterInputType(reflect.TypeOf((*GetDomainsV1DomainInput)(nil)).Elem(), GetDomainsV1DomainArgs{})
@@ -24274,6 +24762,8 @@ func init() {
 	pulumi.RegisterInputType(reflect.TypeOf((*GetStagingIpsDomainArrayInput)(nil)).Elem(), GetStagingIpsDomainArray{})
 	pulumi.RegisterInputType(reflect.TypeOf((*GetTlsConfigurationDnsRecordInput)(nil)).Elem(), GetTlsConfigurationDnsRecordArgs{})
 	pulumi.RegisterInputType(reflect.TypeOf((*GetTlsConfigurationDnsRecordArrayInput)(nil)).Elem(), GetTlsConfigurationDnsRecordArray{})
+	pulumi.RegisterInputType(reflect.TypeOf((*GetTsigKeysKeyInput)(nil)).Elem(), GetTsigKeysKeyArgs{})
+	pulumi.RegisterInputType(reflect.TypeOf((*GetTsigKeysKeyArrayInput)(nil)).Elem(), GetTsigKeysKeyArray{})
 	pulumi.RegisterInputType(reflect.TypeOf((*GetVclSnippetsVclSnippetInput)(nil)).Elem(), GetVclSnippetsVclSnippetArgs{})
 	pulumi.RegisterInputType(reflect.TypeOf((*GetVclSnippetsVclSnippetArrayInput)(nil)).Elem(), GetVclSnippetsVclSnippetArray{})
 	pulumi.RegisterOutputType(AlertDimensionsOutput{})
@@ -24286,6 +24776,10 @@ func init() {
 	pulumi.RegisterOutputType(CustomDashboardDashboardItemDataSourceConfigOutput{})
 	pulumi.RegisterOutputType(CustomDashboardDashboardItemVisualizationOutput{})
 	pulumi.RegisterOutputType(CustomDashboardDashboardItemVisualizationConfigOutput{})
+	pulumi.RegisterOutputType(DnsZoneXfrConfigInboundOutput{})
+	pulumi.RegisterOutputType(DnsZoneXfrConfigInboundPtrOutput{})
+	pulumi.RegisterOutputType(DnsZoneXfrConfigInboundPrimaryOutput{})
+	pulumi.RegisterOutputType(DnsZoneXfrConfigInboundPrimaryArrayOutput{})
 	pulumi.RegisterOutputType(NgwafAccountRuleActionOutput{})
 	pulumi.RegisterOutputType(NgwafAccountRuleActionArrayOutput{})
 	pulumi.RegisterOutputType(NgwafAccountRuleConditionOutput{})
@@ -24522,6 +25016,8 @@ func init() {
 	pulumi.RegisterOutputType(GetDatacentersPopArrayOutput{})
 	pulumi.RegisterOutputType(GetDictionariesDictionaryOutput{})
 	pulumi.RegisterOutputType(GetDictionariesDictionaryArrayOutput{})
+	pulumi.RegisterOutputType(GetDnsZonesZoneOutput{})
+	pulumi.RegisterOutputType(GetDnsZonesZoneArrayOutput{})
 	pulumi.RegisterOutputType(GetDomainsDomainOutput{})
 	pulumi.RegisterOutputType(GetDomainsDomainArrayOutput{})
 	pulumi.RegisterOutputType(GetDomainsV1DomainOutput{})
@@ -24572,6 +25068,8 @@ func init() {
 	pulumi.RegisterOutputType(GetStagingIpsDomainArrayOutput{})
 	pulumi.RegisterOutputType(GetTlsConfigurationDnsRecordOutput{})
 	pulumi.RegisterOutputType(GetTlsConfigurationDnsRecordArrayOutput{})
+	pulumi.RegisterOutputType(GetTsigKeysKeyOutput{})
+	pulumi.RegisterOutputType(GetTsigKeysKeyArrayOutput{})
 	pulumi.RegisterOutputType(GetVclSnippetsVclSnippetOutput{})
 	pulumi.RegisterOutputType(GetVclSnippetsVclSnippetArrayOutput{})
 }

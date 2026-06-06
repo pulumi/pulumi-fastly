@@ -14,6 +14,7 @@ from .compute_acl_entries import *
 from .configstore import *
 from .configstore_entries import *
 from .custom_dashboard import *
+from .dns_zone import *
 from .domain import *
 from .domain_service_link import *
 from .domain_v1 import *
@@ -25,6 +26,7 @@ from .get_compute_acls import *
 from .get_configstores import *
 from .get_datacenters import *
 from .get_dictionaries import *
+from .get_dns_zones import *
 from .get_domains import *
 from .get_domains_v1 import *
 from .get_fastly_ip_ranges import *
@@ -64,6 +66,7 @@ from .get_tls_private_key import *
 from .get_tls_private_key_ids import *
 from .get_tls_subscription import *
 from .get_tls_subscription_ids import *
+from .get_tsig_keys import *
 from .get_vcl_snippets import *
 from .integration import *
 from .kvstore import *
@@ -101,6 +104,7 @@ from .tls_platform_certificate import *
 from .tls_private_key import *
 from .tls_subscription import *
 from .tls_subscription_validation import *
+from .tsig_key import *
 from .user import *
 from ._inputs import *
 from . import outputs
@@ -177,6 +181,14 @@ _utilities.register(
   "fqn": "pulumi_fastly",
   "classes": {
    "fastly:index/customDashboard:CustomDashboard": "CustomDashboard"
+  }
+ },
+ {
+  "pkg": "fastly",
+  "mod": "index/dnsZone",
+  "fqn": "pulumi_fastly",
+  "classes": {
+   "fastly:index/dnsZone:DnsZone": "DnsZone"
   }
  },
  {
@@ -489,6 +501,14 @@ _utilities.register(
   "fqn": "pulumi_fastly",
   "classes": {
    "fastly:index/tlsSubscriptionValidation:TlsSubscriptionValidation": "TlsSubscriptionValidation"
+  }
+ },
+ {
+  "pkg": "fastly",
+  "mod": "index/tsigKey",
+  "fqn": "pulumi_fastly",
+  "classes": {
+   "fastly:index/tsigKey:TsigKey": "TsigKey"
   }
  },
  {

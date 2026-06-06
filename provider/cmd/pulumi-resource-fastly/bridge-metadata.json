@@ -87,6 +87,21 @@
                     }
                 }
             },
+            "fastly_dns_zone": {
+                "current": "fastly:index/dnsZone:DnsZone",
+                "fields": {
+                    "xfr_config_inbound": {
+                        "maxItemsOne": true,
+                        "elem": {
+                            "fields": {
+                                "primaries": {
+                                    "maxItemsOne": false
+                                }
+                            }
+                        }
+                    }
+                }
+            },
             "fastly_domain": {
                 "current": "fastly:index/domain:Domain"
             },
@@ -679,6 +694,9 @@
             "fastly_tls_subscription_validation": {
                 "current": "fastly:index/tlsSubscriptionValidation:TlsSubscriptionValidation"
             },
+            "fastly_tsig_key": {
+                "current": "fastly:index/tsigKey:TsigKey"
+            },
             "fastly_user": {
                 "current": "fastly:index/user:User"
             }
@@ -755,6 +773,14 @@
                 "current": "fastly:index/getDictionaries:getDictionaries",
                 "fields": {
                     "dictionaries": {
+                        "maxItemsOne": false
+                    }
+                }
+            },
+            "fastly_dns_zones": {
+                "current": "fastly:index/getDnsZones:getDnsZones",
+                "fields": {
+                    "zones": {
                         "maxItemsOne": false
                     }
                 }
@@ -1073,6 +1099,14 @@
                 "current": "fastly:index/getTlsSubscriptionIds:getTlsSubscriptionIds",
                 "fields": {
                     "ids": {
+                        "maxItemsOne": false
+                    }
+                }
+            },
+            "fastly_tsig_keys": {
+                "current": "fastly:index/getTsigKeys:getTsigKeys",
+                "fields": {
+                    "keys": {
                         "maxItemsOne": false
                     }
                 }

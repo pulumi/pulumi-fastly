@@ -6,11 +6,8 @@ package com.pulumi.fastly.outputs;
 import com.pulumi.core.annotations.CustomType;
 import com.pulumi.exceptions.MissingRequiredPropertyException;
 import java.lang.Boolean;
-import java.lang.Integer;
 import java.lang.String;
 import java.util.Objects;
-import java.util.Optional;
-import javax.annotation.Nullable;
 
 @CustomType
 public final class ServiceComputeProductEnablementNgwaf {
@@ -19,11 +16,6 @@ public final class ServiceComputeProductEnablementNgwaf {
      * 
      */
     private Boolean enabled;
-    /**
-     * @return The percentage of traffic to inspect
-     * 
-     */
-    private @Nullable Integer trafficRamp;
     /**
      * @return The workspace to link
      * 
@@ -37,13 +29,6 @@ public final class ServiceComputeProductEnablementNgwaf {
      */
     public Boolean enabled() {
         return this.enabled;
-    }
-    /**
-     * @return The percentage of traffic to inspect
-     * 
-     */
-    public Optional<Integer> trafficRamp() {
-        return Optional.ofNullable(this.trafficRamp);
     }
     /**
      * @return The workspace to link
@@ -63,13 +48,11 @@ public final class ServiceComputeProductEnablementNgwaf {
     @CustomType.Builder
     public static final class Builder {
         private Boolean enabled;
-        private @Nullable Integer trafficRamp;
         private String workspaceId;
         public Builder() {}
         public Builder(ServiceComputeProductEnablementNgwaf defaults) {
     	      Objects.requireNonNull(defaults);
     	      this.enabled = defaults.enabled;
-    	      this.trafficRamp = defaults.trafficRamp;
     	      this.workspaceId = defaults.workspaceId;
         }
 
@@ -79,12 +62,6 @@ public final class ServiceComputeProductEnablementNgwaf {
               throw new MissingRequiredPropertyException("ServiceComputeProductEnablementNgwaf", "enabled");
             }
             this.enabled = enabled;
-            return this;
-        }
-        @CustomType.Setter
-        public Builder trafficRamp(@Nullable Integer trafficRamp) {
-
-            this.trafficRamp = trafficRamp;
             return this;
         }
         @CustomType.Setter
@@ -98,7 +75,6 @@ public final class ServiceComputeProductEnablementNgwaf {
         public ServiceComputeProductEnablementNgwaf build() {
             final var _resultValue = new ServiceComputeProductEnablementNgwaf();
             _resultValue.enabled = enabled;
-            _resultValue.trafficRamp = trafficRamp;
             _resultValue.workspaceId = workspaceId;
             return _resultValue;
         }

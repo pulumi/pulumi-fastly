@@ -19,12 +19,6 @@ namespace Pulumi.Fastly.Inputs
         public Input<bool> Enabled { get; set; } = null!;
 
         /// <summary>
-        /// The percentage of traffic to inspect
-        /// </summary>
-        [Input("trafficRamp")]
-        public Input<int>? TrafficRamp { get; set; }
-
-        /// <summary>
         /// The workspace to link
         /// </summary>
         [Input("workspaceId", required: true)]
