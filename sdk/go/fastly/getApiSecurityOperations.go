@@ -63,9 +63,9 @@ import (
 //			}, nil)
 //			ctx.Export("apiSecurityOperations", ops.ApplyT(func(ops fastly.GetApiSecurityOperationsResult) ([]fastly.GetApiSecurityOperationsOperation, error) {
 //				return []fastly.GetApiSecurityOperationsOperation(ops.Operations), nil
-//			}).([]fastly.GetApiSecurityOperationsOperationOutput))
+//			}).(pulumi.ArrayOutput))
 //			ctx.Export("apiSecurityOperationsTotal", ops.ApplyT(func(ops fastly.GetApiSecurityOperationsResult) (*int, error) {
-//				return &ops.Total, nil
+//				return ops.Total, nil
 //			}).(pulumi.IntPtrOutput))
 //			return nil
 //		})

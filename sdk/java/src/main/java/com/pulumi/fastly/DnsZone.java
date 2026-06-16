@@ -30,6 +30,7 @@ import javax.annotation.Nullable;
  * import com.pulumi.fastly.DnsZone;
  * import com.pulumi.fastly.DnsZoneArgs;
  * import com.pulumi.fastly.inputs.DnsZoneXfrConfigInboundArgs;
+ * import com.pulumi.fastly.inputs.DnsZoneXfrConfigInboundPrimaryArgs;
  * import java.util.ArrayList;
  * import java.util.Arrays;
  * import java.util.Map;

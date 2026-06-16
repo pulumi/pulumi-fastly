@@ -40,6 +40,7 @@ import javax.annotation.Nullable;
  * import com.pulumi.fastly.inputs.NgwafAccountRuleActionArgs;
  * import com.pulumi.fastly.inputs.NgwafAccountRuleConditionArgs;
  * import com.pulumi.fastly.inputs.NgwafAccountRuleGroupConditionArgs;
+ * import com.pulumi.fastly.inputs.NgwafAccountRuleGroupConditionConditionArgs;
  * import java.util.ArrayList;
  * import java.util.Arrays;
  * import java.util.Map;
