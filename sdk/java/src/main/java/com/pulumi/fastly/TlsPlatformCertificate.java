@@ -72,7 +72,7 @@ import javax.annotation.Nullable;
  *         var ca = new SelfSignedCert("ca", SelfSignedCertArgs.builder()
  *             .keyAlgorithm(caKey.algorithm())
  *             .privateKeyPem(caKey.privateKeyPem())
- *             .subject(SelfSignedCertSubjectArgs.builder()
+ *             .subject(com.pulumi.tls.inputs.SelfSignedCertSubjectArgs.builder()
  *                 .commonName("Example CA")
  *                 .build())
  *             .isCaCertificate(true)
@@ -85,7 +85,7 @@ import javax.annotation.Nullable;
  *         var example = new CertRequest("example", CertRequestArgs.builder()
  *             .keyAlgorithm(key.algorithm())
  *             .privateKeyPem(key.privateKeyPem())
- *             .subject(CertRequestSubjectArgs.builder()
+ *             .subject(com.pulumi.tls.inputs.CertRequestSubjectArgs.builder()
  *                 .commonName("example.com")
  *                 .build())
  *             .dnsNames(            

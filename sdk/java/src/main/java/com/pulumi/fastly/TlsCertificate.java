@@ -61,7 +61,7 @@ import javax.annotation.Nullable;
  *         var cert = new SelfSignedCert("cert", SelfSignedCertArgs.builder()
  *             .keyAlgorithm(key.algorithm())
  *             .privateKeyPem(key.privateKeyPem())
- *             .subject(SelfSignedCertSubjectArgs.builder()
+ *             .subject(com.pulumi.tls.inputs.SelfSignedCertSubjectArgs.builder()
  *                 .commonName("example.com")
  *                 .build())
  *             .isCaCertificate(true)
