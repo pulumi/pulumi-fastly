@@ -3042,8 +3042,8 @@ github.com/erikgeiser/coninput v0.0.0-20211004153227-1c3628e74d0f h1:Y/CXytFA4m6
 github.com/erikgeiser/coninput v0.0.0-20211004153227-1c3628e74d0f/go.mod h1:vw97MGsxSvLiUE2X8qFplwetxpGLQrlU1Q9AUEIzCaM=
 github.com/esiqveland/notify v0.11.0/go.mod h1:63UbVSaeJwF0LVJARHFuPgUAoM7o1BEvCZyknsuonBc=
 github.com/ettle/strcase v0.1.1/go.mod h1:hzDLsPC7/lwKyBOywSHEP89nt2pDgdy+No1NBA9o9VY=
-github.com/fastly/go-fastly/v15 v15.0.2 h1:T5PutYmcACkGHRivZ68yXFi5g7WmTrJ++kzeE8ev4Mw=
-github.com/fastly/go-fastly/v15 v15.0.2/go.mod h1:oZmar1FnJBOn9ZsiJJVhwlXMFBhu1uP3Eyngewi7F8w=
+github.com/fastly/go-fastly/v15 v15.0.3 h1:eSeviq6rSbwJfV+uyV5m5H2nWePtYsrEaKPCLH8gFes=
+github.com/fastly/go-fastly/v15 v15.0.3/go.mod h1:ZwzEo1cN3adPpQc3dg83+siO8CUYCsSBSEJJzUjxkQo=
 github.com/fatih/color v1.7.0/go.mod h1:Zm6kSWBoL9eyXnKyktHP6abPY2pDugNf5KwzbycvMj4=
 github.com/fatih/color v1.9.0/go.mod h1:eQcE1qtQxscV5RaZvpXrrb8Drkc3/DdQ+uUYCNjL+zU=
 github.com/fatih/color v1.10.0/go.mod h1:ELkj/draVOlAH/xkhN6mQ50Qd0MPOk5AAr3maGEBuJM=
