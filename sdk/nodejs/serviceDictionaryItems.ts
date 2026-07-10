@@ -42,19 +42,19 @@ import * as utilities from "./utilities";
  *     }],
  *     forceDestroy: true,
  * });
- * const items: fastly.ServiceDictionaryItems[] = [];
+ * const items: {[key: string]: fastly.ServiceDictionaryItems} = {};
  * myservice.dictionaries.apply(dictionaries => {
- *     const items: fastly.ServiceDictionaryItems[] = [];
+ *     const items: {[key: string]: fastly.ServiceDictionaryItems} = {};
  * pulumi.all(.filter(d => d.name == mydictName).reduce((__obj, d) => ({ ...__obj, [d.name]: d }), {})).apply(rangeBody => {
  *         for (const range of Object.entries(rangeBody).sort().map(([k, v]) => ({key: k, value: v}))) {
- *             items.push(new fastly.ServiceDictionaryItems(`items-${range.key}`, {
+ *             items[range.key] = new fastly.ServiceDictionaryItems(`items-${range.key}`, {
  *                 serviceId: myservice.id,
  *                 dictionaryId: range.value.dictionaryId,
  *                 items: {
  *                     key1: "value1",
  *                     key2: "value2",
  *                 },
- *             }));
+ *             });
  *         }
  *     });
  * });
@@ -90,16 +90,16 @@ import * as utilities from "./utilities";
  *     }],
  *     forceDestroy: true,
  * });
- * const items: fastly.ServiceDictionaryItems[] = [];
+ * const items: {[key: string]: fastly.ServiceDictionaryItems} = {};
  * myservice.dictionaries.apply(dictionaries => {
- *     const items: fastly.ServiceDictionaryItems[] = [];
+ *     const items: {[key: string]: fastly.ServiceDictionaryItems} = {};
  * pulumi.all(.filter(d => d.name == mydict.name).reduce((__obj, d) => ({ ...__obj, [d.name]: d }), {})).apply(rangeBody => {
  *         for (const range of Object.entries(rangeBody).sort().map(([k, v]) => ({key: k, value: v}))) {
- *             items.push(new fastly.ServiceDictionaryItems(`items-${range.key}`, {
+ *             items[range.key] = new fastly.ServiceDictionaryItems(`items-${range.key}`, {
  *                 serviceId: myservice.id,
  *                 dictionaryId: range.value.dictionaryId,
  *                 items: mydict.items,
- *             }));
+ *             });
  *         }
  *     });
  * });
@@ -138,12 +138,12 @@ import * as utilities from "./utilities";
  *     forceDestroy: true,
  * });
  * // This resource is dynamically creating the items from the local variables through for expressions and functions.
- * const project: fastly.ServiceDictionaryItems[] = [];
+ * const project: {[key: string]: fastly.ServiceDictionaryItems} = {};
  * myservice.dictionaries.apply(dictionaries => {
- *     const project: fastly.ServiceDictionaryItems[] = [];
+ *     const project: {[key: string]: fastly.ServiceDictionaryItems} = {};
  * pulumi.all(.filter(d => d.name == dictionaryName).reduce((__obj, d) => ({ ...__obj, [d.name]: d }), {})).apply(rangeBody => {
  *         for (const range of Object.entries(rangeBody).sort().map(([k, v]) => ({key: k, value: v}))) {
- *             project.push(new fastly.ServiceDictionaryItems(`project-${range.key}`, {
+ *             project[range.key] = new fastly.ServiceDictionaryItems(`project-${range.key}`, {
  *                 serviceId: myservice.id,
  *                 dictionaryId: range.value.dictionaryId,
  *                 items: hostDivisions.reduce((__obj, division) => ({ ...__obj, [division]: std.format({
@@ -153,7 +153,7 @@ import * as utilities from "./utilities";
  *                         hostBase,
  *                     ],
  *                 }).result }), {}),
- *             }));
+ *             });
  *         }
  *     });
  * });
@@ -218,9 +218,9 @@ import * as utilities from "./utilities";
  * import * as fastly from "@pulumi/fastly";
  *
  * //...
- * const items: fastly.ServiceDictionaryItems[] = [];
+ * const items: {[key: string]: fastly.ServiceDictionaryItems} = {};
  * for (const range of Object.entries(.filter(d => d.name == mydictName).reduce((__obj, d) => ({ ...__obj, [d.name]: d }), {})).sort().map(([k, v]) => ({key: k, value: v}))) {
- *     items.push(new fastly.ServiceDictionaryItems(`items-${range.key}`, {
+ *     items[range.key] = new fastly.ServiceDictionaryItems(`items-${range.key}`, {
  *         serviceId: myservice.id,
  *         dictionaryId: range.value.dictionaryId,
  *         manageItems: true,
@@ -228,7 +228,7 @@ import * as utilities from "./utilities";
  *             key1: "value1",
  *             key2: "value2",
  *         },
- *     }));
+ *     });
  * }
  * ```
  *

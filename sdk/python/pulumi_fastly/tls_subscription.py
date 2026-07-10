@@ -409,17 +409,17 @@ class TlsSubscription(pulumi.CustomResource):
         example_tls_subscription = fastly.TlsSubscription("example",
             domains=example_service_vcl.domains.apply(lambda domains: [domain.name for domain in domains]),
             certificate_authority="lets-encrypt")
-        domain_validation: list[Any] = []
+        domain_validation: dict[str, aws.Route53Record] = {}
         def create_domain_validation(range_body):
-            for range in [{"key": k, "value": v} for [k, v] in sorted((range_body).items())]:
-                domain_validation.append(aws.Route53Record(f"domain_validation-{range['key']}",
-                    name=range.value.record_name,
-                    type=range.value.record_type,
+            for domain_validation_range in [{"key": k, "value": v} for [k, v] in sorted((range_body).items())]:
+                domain_validation[domain_validation_range['key']] = aws.Route53Record(f"domain_validation-{domain_validation_range['key']}",
+                    name=domain_validation_range.value.record_name,
+                    type=domain_validation_range.value.record_type,
                     zone_id=production.zone_id,
                     allow_overwrite=True,
-                    records=[range.value.record_value],
+                    records=[domain_validation_range.value.record_value],
                     ttl=60,
-                    opts = pulumi.ResourceOptions(depends_on=[example_tls_subscription])))
+                    opts = pulumi.ResourceOptions(depends_on=[example_tls_subscription]))
 
         example_tls_subscription.domains.apply(lambda resolved_outputs: create_domain_validation({domain: example_tls_subscription.managed_dns_challenges.apply(lambda managed_dns_challenges: [obj for obj in managed_dns_challenges if obj.record_name == f"_acme-challenge.{domain}"])[0] for domain in resolved_outputs['domains']}))
         # This is a resource that other resources can depend on if they require the certificate to be issued.
@@ -437,10 +437,10 @@ class TlsSubscription(pulumi.CustomResource):
         # https://registry.terraform.io/providers/fastly/fastly/latest/docs/data-sources/tls_configuration#optional
         default_tls = fastly.get_tls_configuration(default=True)
         # Once validation is complete and we've retrieved the TLS configuration data, we can create multiple subdomain records.
-        subdomain: list[Any] = []
-        for range in [{"value": i} for i in range(0, std.toset(input=subdomains).result)]:
-            subdomain.append(aws.Route53Record(f"subdomain-{range['value']}",
-                name=range.value,
+        subdomain: list[aws.Route53Record] = []
+        for subdomain_range in [{"value": i} for i in range(0, std.toset(input=subdomains).result)]:
+            subdomain.append(aws.Route53Record(f"subdomain-{subdomain_range['value']}",
+                name=subdomain_range.value,
                 records=[record.record_value for record in default_tls.dns_records if record.record_type == CNAME],
                 ttl=300,
                 type=CNAME,
@@ -484,17 +484,17 @@ class TlsSubscription(pulumi.CustomResource):
         example_tls_subscription = fastly.TlsSubscription("example",
             domains=example_service_vcl.domains.apply(lambda domains: [domain.name for domain in domains]),
             certificate_authority="lets-encrypt")
-        domain_validation: list[Any] = []
+        domain_validation: dict[str, aws.Route53Record] = {}
         def create_domain_validation(range_body):
-            for range in [{"key": k, "value": v} for [k, v] in sorted((range_body).items())]:
-                domain_validation.append(aws.Route53Record(f"domain_validation-{range['key']}",
-                    name=range.value[0].record_name,
-                    type=range.value[0].record_type,
+            for domain_validation_range in [{"key": k, "value": v} for [k, v] in sorted((range_body).items())]:
+                domain_validation[domain_validation_range['key']] = aws.Route53Record(f"domain_validation-{domain_validation_range['key']}",
+                    name=domain_validation_range.value[0].record_name,
+                    type=domain_validation_range.value[0].record_type,
                     zone_id=production.zone_id,
                     allow_overwrite=True,
-                    records=[range.value[0].record_value],
+                    records=[domain_validation_range.value[0].record_value],
                     ttl=60,
-                    opts = pulumi.ResourceOptions(depends_on=[example_tls_subscription])))
+                    opts = pulumi.ResourceOptions(depends_on=[example_tls_subscription]))
 
         example_tls_subscription.domains.apply(lambda resolved_outputs: create_domain_validation({str(std.replace(text=domain,
             search="*.",
@@ -609,17 +609,17 @@ class TlsSubscription(pulumi.CustomResource):
         example_tls_subscription = fastly.TlsSubscription("example",
             domains=example_service_vcl.domains.apply(lambda domains: [domain.name for domain in domains]),
             certificate_authority="lets-encrypt")
-        domain_validation: list[Any] = []
+        domain_validation: dict[str, aws.Route53Record] = {}
         def create_domain_validation(range_body):
-            for range in [{"key": k, "value": v} for [k, v] in sorted((range_body).items())]:
-                domain_validation.append(aws.Route53Record(f"domain_validation-{range['key']}",
-                    name=range.value.record_name,
-                    type=range.value.record_type,
+            for domain_validation_range in [{"key": k, "value": v} for [k, v] in sorted((range_body).items())]:
+                domain_validation[domain_validation_range['key']] = aws.Route53Record(f"domain_validation-{domain_validation_range['key']}",
+                    name=domain_validation_range.value.record_name,
+                    type=domain_validation_range.value.record_type,
                     zone_id=production.zone_id,
                     allow_overwrite=True,
-                    records=[range.value.record_value],
+                    records=[domain_validation_range.value.record_value],
                     ttl=60,
-                    opts = pulumi.ResourceOptions(depends_on=[example_tls_subscription])))
+                    opts = pulumi.ResourceOptions(depends_on=[example_tls_subscription]))
 
         example_tls_subscription.domains.apply(lambda resolved_outputs: create_domain_validation({domain: example_tls_subscription.managed_dns_challenges.apply(lambda managed_dns_challenges: [obj for obj in managed_dns_challenges if obj.record_name == f"_acme-challenge.{domain}"])[0] for domain in resolved_outputs['domains']}))
         # This is a resource that other resources can depend on if they require the certificate to be issued.
@@ -637,10 +637,10 @@ class TlsSubscription(pulumi.CustomResource):
         # https://registry.terraform.io/providers/fastly/fastly/latest/docs/data-sources/tls_configuration#optional
         default_tls = fastly.get_tls_configuration(default=True)
         # Once validation is complete and we've retrieved the TLS configuration data, we can create multiple subdomain records.
-        subdomain: list[Any] = []
-        for range in [{"value": i} for i in range(0, std.toset(input=subdomains).result)]:
-            subdomain.append(aws.Route53Record(f"subdomain-{range['value']}",
-                name=range.value,
+        subdomain: list[aws.Route53Record] = []
+        for subdomain_range in [{"value": i} for i in range(0, std.toset(input=subdomains).result)]:
+            subdomain.append(aws.Route53Record(f"subdomain-{subdomain_range['value']}",
+                name=subdomain_range.value,
                 records=[record.record_value for record in default_tls.dns_records if record.record_type == CNAME],
                 ttl=300,
                 type=CNAME,
@@ -684,17 +684,17 @@ class TlsSubscription(pulumi.CustomResource):
         example_tls_subscription = fastly.TlsSubscription("example",
             domains=example_service_vcl.domains.apply(lambda domains: [domain.name for domain in domains]),
             certificate_authority="lets-encrypt")
-        domain_validation: list[Any] = []
+        domain_validation: dict[str, aws.Route53Record] = {}
         def create_domain_validation(range_body):
-            for range in [{"key": k, "value": v} for [k, v] in sorted((range_body).items())]:
-                domain_validation.append(aws.Route53Record(f"domain_validation-{range['key']}",
-                    name=range.value[0].record_name,
-                    type=range.value[0].record_type,
+            for domain_validation_range in [{"key": k, "value": v} for [k, v] in sorted((range_body).items())]:
+                domain_validation[domain_validation_range['key']] = aws.Route53Record(f"domain_validation-{domain_validation_range['key']}",
+                    name=domain_validation_range.value[0].record_name,
+                    type=domain_validation_range.value[0].record_type,
                     zone_id=production.zone_id,
                     allow_overwrite=True,
-                    records=[range.value[0].record_value],
+                    records=[domain_validation_range.value[0].record_value],
                     ttl=60,
-                    opts = pulumi.ResourceOptions(depends_on=[example_tls_subscription])))
+                    opts = pulumi.ResourceOptions(depends_on=[example_tls_subscription]))
 
         example_tls_subscription.domains.apply(lambda resolved_outputs: create_domain_validation({str(std.replace(text=domain,
             search="*.",

@@ -39,18 +39,18 @@ import * as utilities from "./utilities";
  *     defaultHost: "http-me.fastly.dev",
  *     forceDestroy: true,
  * });
- * const myDynContent: fastly.ServiceDynamicSnippetContent[] = [];
+ * const myDynContent: {[key: string]: fastly.ServiceDynamicSnippetContent} = {};
  * myservice.dynamicsnippets.apply(dynamicsnippets => {
- *     const myDynContent: fastly.ServiceDynamicSnippetContent[] = [];
+ *     const myDynContent: {[key: string]: fastly.ServiceDynamicSnippetContent} = {};
  * pulumi.all(.filter(d => d.name == "My Dynamic Snippet").reduce((__obj, d) => ({ ...__obj, [d.name]: d }), {})).apply(rangeBody => {
  *         for (const range of Object.entries(rangeBody).sort().map(([k, v]) => ({key: k, value: v}))) {
- *             myDynContent.push(new fastly.ServiceDynamicSnippetContent(`my_dyn_content-${range.key}`, {
+ *             myDynContent[range.key] = new fastly.ServiceDynamicSnippetContent(`my_dyn_content-${range.key}`, {
  *                 serviceId: myservice.id,
  *                 snippetId: range.value.snippetId,
  *                 content: `if ( req.url ) {
  *  set req.http.my-snippet-test-header = "true";
  * }`,
- *             }));
+ *             });
  *         }
  *     });
  * });
@@ -88,33 +88,33 @@ import * as utilities from "./utilities";
  *     defaultHost: "http-me.fastly.dev",
  *     forceDestroy: true,
  * });
- * const myDynContentOne: fastly.ServiceDynamicSnippetContent[] = [];
+ * const myDynContentOne: {[key: string]: fastly.ServiceDynamicSnippetContent} = {};
  * myservice.dynamicsnippets.apply(dynamicsnippets => {
- *     const myDynContentOne: fastly.ServiceDynamicSnippetContent[] = [];
+ *     const myDynContentOne: {[key: string]: fastly.ServiceDynamicSnippetContent} = {};
  * pulumi.all(.filter(d => d.name == "My Dynamic Snippet One").reduce((__obj, d) => ({ ...__obj, [d.name]: d }), {})).apply(rangeBody => {
  *         for (const range of Object.entries(rangeBody).sort().map(([k, v]) => ({key: k, value: v}))) {
- *             myDynContentOne.push(new fastly.ServiceDynamicSnippetContent(`my_dyn_content_one-${range.key}`, {
+ *             myDynContentOne[range.key] = new fastly.ServiceDynamicSnippetContent(`my_dyn_content_one-${range.key}`, {
  *                 serviceId: myservice.id,
  *                 snippetId: range.value.snippetId,
  *                 content: `if ( req.url ) {
  *  set req.http.my-snippet-test-header-one = "true";
  * }`,
- *             }));
+ *             });
  *         }
  *     });
  * });
- * const myDynContentTwo: fastly.ServiceDynamicSnippetContent[] = [];
+ * const myDynContentTwo: {[key: string]: fastly.ServiceDynamicSnippetContent} = {};
  * myservice.dynamicsnippets.apply(dynamicsnippets => {
- *     const myDynContentTwo: fastly.ServiceDynamicSnippetContent[] = [];
+ *     const myDynContentTwo: {[key: string]: fastly.ServiceDynamicSnippetContent} = {};
  * pulumi.all(.filter(d => d.name == "My Dynamic Snippet Two").reduce((__obj, d) => ({ ...__obj, [d.name]: d }), {})).apply(rangeBody => {
  *         for (const range of Object.entries(rangeBody).sort().map(([k, v]) => ({key: k, value: v}))) {
- *             myDynContentTwo.push(new fastly.ServiceDynamicSnippetContent(`my_dyn_content_two-${range.key}`, {
+ *             myDynContentTwo[range.key] = new fastly.ServiceDynamicSnippetContent(`my_dyn_content_two-${range.key}`, {
  *                 serviceId: myservice.id,
  *                 snippetId: range.value.snippetId,
  *                 content: `if ( req.url ) {
  *  set req.http.my-snippet-test-header-two = "true";
  * }`,
- *             }));
+ *             });
  *         }
  *     });
  * });
@@ -178,16 +178,16 @@ import * as utilities from "./utilities";
  * import * as fastly from "@pulumi/fastly";
  *
  * //...
- * const myDynContent: fastly.ServiceDynamicSnippetContent[] = [];
+ * const myDynContent: {[key: string]: fastly.ServiceDynamicSnippetContent} = {};
  * for (const range of Object.entries(.filter(d => d.name == "My Dynamic Snippet").reduce((__obj, d) => ({ ...__obj, [d.name]: d }), {})).sort().map(([k, v]) => ({key: k, value: v}))) {
- *     myDynContent.push(new fastly.ServiceDynamicSnippetContent(`my_dyn_content-${range.key}`, {
+ *     myDynContent[range.key] = new fastly.ServiceDynamicSnippetContent(`my_dyn_content-${range.key}`, {
  *         serviceId: myservice.id,
  *         snippetId: range.value.snippetId,
  *         manageSnippets: true,
  *         content: `if ( req.url ) {
  *  set req.http.my-snippet-test-header = "true";
  * }`,
- *     }));
+ *     });
  * }
  * ```
  *
