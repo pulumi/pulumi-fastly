@@ -205,15 +205,15 @@ class ServiceDynamicSnippetContent(pulumi.CustomResource):
             }],
             default_host="http-me.fastly.dev",
             force_destroy=True)
-        my_dyn_content: list[Any] = []
+        my_dyn_content: dict[str, fastly.ServiceDynamicSnippetContent] = {}
         def create_my_dyn_content(range_body):
-            for range in [{"key": k, "value": v} for [k, v] in sorted((range_body).items())]:
-                my_dyn_content.append(fastly.ServiceDynamicSnippetContent(f"my_dyn_content-{range['key']}",
+            for my_dyn_content_range in [{"key": k, "value": v} for [k, v] in sorted((range_body).items())]:
+                my_dyn_content[my_dyn_content_range['key']] = fastly.ServiceDynamicSnippetContent(f"my_dyn_content-{my_dyn_content_range['key']}",
                     service_id=myservice.id,
-                    snippet_id=range["value"].snippet_id,
+                    snippet_id=my_dyn_content_range["value"].snippet_id,
                     content=\"\"\"if ( req.url ) {
          set req.http.my-snippet-test-header = "true";
-        }\"\"\"))
+        }\"\"\")
 
         myservice.dynamicsnippets.apply(lambda resolved_outputs: create_my_dyn_content({d.name: d for d in resolved_outputs['dynamicsnippets'] if d.name == "My Dynamic Snippet"}))
         ```
@@ -250,26 +250,26 @@ class ServiceDynamicSnippetContent(pulumi.CustomResource):
             ],
             default_host="http-me.fastly.dev",
             force_destroy=True)
-        my_dyn_content_one: list[Any] = []
+        my_dyn_content_one: dict[str, fastly.ServiceDynamicSnippetContent] = {}
         def create_my_dyn_content_one(range_body):
-            for range in [{"key": k, "value": v} for [k, v] in sorted((range_body).items())]:
-                my_dyn_content_one.append(fastly.ServiceDynamicSnippetContent(f"my_dyn_content_one-{range['key']}",
+            for my_dyn_content_one_range in [{"key": k, "value": v} for [k, v] in sorted((range_body).items())]:
+                my_dyn_content_one[my_dyn_content_one_range['key']] = fastly.ServiceDynamicSnippetContent(f"my_dyn_content_one-{my_dyn_content_one_range['key']}",
                     service_id=myservice.id,
-                    snippet_id=range["value"].snippet_id,
+                    snippet_id=my_dyn_content_one_range["value"].snippet_id,
                     content=\"\"\"if ( req.url ) {
          set req.http.my-snippet-test-header-one = "true";
-        }\"\"\"))
+        }\"\"\")
 
         myservice.dynamicsnippets.apply(lambda resolved_outputs: create_my_dyn_content_one({d.name: d for d in resolved_outputs['dynamicsnippets'] if d.name == "My Dynamic Snippet One"}))
-        my_dyn_content_two: list[Any] = []
+        my_dyn_content_two: dict[str, fastly.ServiceDynamicSnippetContent] = {}
         def create_my_dyn_content_two(range_body):
-            for range in [{"key": k, "value": v} for [k, v] in sorted((range_body).items())]:
-                my_dyn_content_two.append(fastly.ServiceDynamicSnippetContent(f"my_dyn_content_two-{range['key']}",
+            for my_dyn_content_two_range in [{"key": k, "value": v} for [k, v] in sorted((range_body).items())]:
+                my_dyn_content_two[my_dyn_content_two_range['key']] = fastly.ServiceDynamicSnippetContent(f"my_dyn_content_two-{my_dyn_content_two_range['key']}",
                     service_id=myservice.id,
-                    snippet_id=range["value"].snippet_id,
+                    snippet_id=my_dyn_content_two_range["value"].snippet_id,
                     content=\"\"\"if ( req.url ) {
          set req.http.my-snippet-test-header-two = "true";
-        }\"\"\"))
+        }\"\"\")
 
         myservice.dynamicsnippets.apply(lambda resolved_outputs: create_my_dyn_content_two({d.name: d for d in resolved_outputs['dynamicsnippets'] if d.name == "My Dynamic Snippet Two"}))
         ```
@@ -331,15 +331,15 @@ class ServiceDynamicSnippetContent(pulumi.CustomResource):
         import pulumi_fastly as fastly
 
         #...
-        my_dyn_content: list[Any] = []
-        for range in [{"key": k, "value": v} for [k, v] in sorted(({d.name: d for d in myservice.dynamicsnippet if d.name == My Dynamic Snippet}).items())]:
-            my_dyn_content.append(fastly.ServiceDynamicSnippetContent(f"my_dyn_content-{range['key']}",
+        my_dyn_content: dict[str, fastly.ServiceDynamicSnippetContent] = {}
+        for my_dyn_content_range in [{"key": k, "value": v} for [k, v] in sorted(({d.name: d for d in myservice.dynamicsnippet if d.name == My Dynamic Snippet}).items())]:
+            my_dyn_content[my_dyn_content_range['key']] = fastly.ServiceDynamicSnippetContent(f"my_dyn_content-{my_dyn_content_range['key']}",
                 service_id=myservice["id"],
-                snippet_id=range["value"]["snippetId"],
+                snippet_id=my_dyn_content_range["value"]["snippetId"],
                 manage_snippets=True,
                 content=\"\"\"if ( req.url ) {
          set req.http.my-snippet-test-header = "true";
-        }\"\"\"))
+        }\"\"\")
         ```
 
         ## Import
@@ -407,15 +407,15 @@ class ServiceDynamicSnippetContent(pulumi.CustomResource):
             }],
             default_host="http-me.fastly.dev",
             force_destroy=True)
-        my_dyn_content: list[Any] = []
+        my_dyn_content: dict[str, fastly.ServiceDynamicSnippetContent] = {}
         def create_my_dyn_content(range_body):
-            for range in [{"key": k, "value": v} for [k, v] in sorted((range_body).items())]:
-                my_dyn_content.append(fastly.ServiceDynamicSnippetContent(f"my_dyn_content-{range['key']}",
+            for my_dyn_content_range in [{"key": k, "value": v} for [k, v] in sorted((range_body).items())]:
+                my_dyn_content[my_dyn_content_range['key']] = fastly.ServiceDynamicSnippetContent(f"my_dyn_content-{my_dyn_content_range['key']}",
                     service_id=myservice.id,
-                    snippet_id=range["value"].snippet_id,
+                    snippet_id=my_dyn_content_range["value"].snippet_id,
                     content=\"\"\"if ( req.url ) {
          set req.http.my-snippet-test-header = "true";
-        }\"\"\"))
+        }\"\"\")
 
         myservice.dynamicsnippets.apply(lambda resolved_outputs: create_my_dyn_content({d.name: d for d in resolved_outputs['dynamicsnippets'] if d.name == "My Dynamic Snippet"}))
         ```
@@ -452,26 +452,26 @@ class ServiceDynamicSnippetContent(pulumi.CustomResource):
             ],
             default_host="http-me.fastly.dev",
             force_destroy=True)
-        my_dyn_content_one: list[Any] = []
+        my_dyn_content_one: dict[str, fastly.ServiceDynamicSnippetContent] = {}
         def create_my_dyn_content_one(range_body):
-            for range in [{"key": k, "value": v} for [k, v] in sorted((range_body).items())]:
-                my_dyn_content_one.append(fastly.ServiceDynamicSnippetContent(f"my_dyn_content_one-{range['key']}",
+            for my_dyn_content_one_range in [{"key": k, "value": v} for [k, v] in sorted((range_body).items())]:
+                my_dyn_content_one[my_dyn_content_one_range['key']] = fastly.ServiceDynamicSnippetContent(f"my_dyn_content_one-{my_dyn_content_one_range['key']}",
                     service_id=myservice.id,
-                    snippet_id=range["value"].snippet_id,
+                    snippet_id=my_dyn_content_one_range["value"].snippet_id,
                     content=\"\"\"if ( req.url ) {
          set req.http.my-snippet-test-header-one = "true";
-        }\"\"\"))
+        }\"\"\")
 
         myservice.dynamicsnippets.apply(lambda resolved_outputs: create_my_dyn_content_one({d.name: d for d in resolved_outputs['dynamicsnippets'] if d.name == "My Dynamic Snippet One"}))
-        my_dyn_content_two: list[Any] = []
+        my_dyn_content_two: dict[str, fastly.ServiceDynamicSnippetContent] = {}
         def create_my_dyn_content_two(range_body):
-            for range in [{"key": k, "value": v} for [k, v] in sorted((range_body).items())]:
-                my_dyn_content_two.append(fastly.ServiceDynamicSnippetContent(f"my_dyn_content_two-{range['key']}",
+            for my_dyn_content_two_range in [{"key": k, "value": v} for [k, v] in sorted((range_body).items())]:
+                my_dyn_content_two[my_dyn_content_two_range['key']] = fastly.ServiceDynamicSnippetContent(f"my_dyn_content_two-{my_dyn_content_two_range['key']}",
                     service_id=myservice.id,
-                    snippet_id=range["value"].snippet_id,
+                    snippet_id=my_dyn_content_two_range["value"].snippet_id,
                     content=\"\"\"if ( req.url ) {
          set req.http.my-snippet-test-header-two = "true";
-        }\"\"\"))
+        }\"\"\")
 
         myservice.dynamicsnippets.apply(lambda resolved_outputs: create_my_dyn_content_two({d.name: d for d in resolved_outputs['dynamicsnippets'] if d.name == "My Dynamic Snippet Two"}))
         ```
@@ -533,15 +533,15 @@ class ServiceDynamicSnippetContent(pulumi.CustomResource):
         import pulumi_fastly as fastly
 
         #...
-        my_dyn_content: list[Any] = []
-        for range in [{"key": k, "value": v} for [k, v] in sorted(({d.name: d for d in myservice.dynamicsnippet if d.name == My Dynamic Snippet}).items())]:
-            my_dyn_content.append(fastly.ServiceDynamicSnippetContent(f"my_dyn_content-{range['key']}",
+        my_dyn_content: dict[str, fastly.ServiceDynamicSnippetContent] = {}
+        for my_dyn_content_range in [{"key": k, "value": v} for [k, v] in sorted(({d.name: d for d in myservice.dynamicsnippet if d.name == My Dynamic Snippet}).items())]:
+            my_dyn_content[my_dyn_content_range['key']] = fastly.ServiceDynamicSnippetContent(f"my_dyn_content-{my_dyn_content_range['key']}",
                 service_id=myservice["id"],
-                snippet_id=range["value"]["snippetId"],
+                snippet_id=my_dyn_content_range["value"]["snippetId"],
                 manage_snippets=True,
                 content=\"\"\"if ( req.url ) {
          set req.http.my-snippet-test-header = "true";
-        }\"\"\"))
+        }\"\"\")
         ```
 
         ## Import

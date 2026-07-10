@@ -209,18 +209,18 @@ class ServiceACLEntries(pulumi.CustomResource):
                 "name": myacl_name,
             }],
             force_destroy=True)
-        entries: list[Any] = []
+        entries: dict[str, fastly.ServiceACLEntries] = {}
         def create_entries(range_body):
-            for range in [{"key": k, "value": v} for [k, v] in sorted((range_body).items())]:
-                entries.append(fastly.ServiceACLEntries(f"entries-{range['key']}",
+            for entries_range in [{"key": k, "value": v} for [k, v] in sorted((range_body).items())]:
+                entries[entries_range['key']] = fastly.ServiceACLEntries(f"entries-{entries_range['key']}",
                     service_id=myservice.id,
-                    acl_id=range["value"].acl_id,
+                    acl_id=entries_range["value"].acl_id,
                     entries=[{
                         "ip": "127.0.0.1",
                         "subnet": "24",
                         "negated": False,
                         "comment": "ACL Entry 1",
-                    }]))
+                    }])
 
         myservice.acls.apply(lambda resolved_outputs: create_entries({d.name: d for d in resolved_outputs['acls'] if d.name == myacl_name}))
         ```
@@ -264,10 +264,10 @@ class ServiceACLEntries(pulumi.CustomResource):
                 "name": acl_name,
             }],
             force_destroy=True)
-        entries: list[Any] = []
+        entries: dict[str, fastly.ServiceACLEntries] = {}
         def create_entries(range_body):
-            for range in [{"key": k, "value": v} for [k, v] in sorted((range_body).items())]:
-                entries.append(fastly.ServiceACLEntries(f"entries-{range['key']}",
+            for entries_range in [{"key": k, "value": v} for [k, v] in sorted((range_body).items())]:
+                entries[entries_range['key']] = fastly.ServiceACLEntries(f"entries-{entries_range['key']}",
                     entries=[{
                         "ip": entry["ip"],
                         "subnet": "22",
@@ -278,7 +278,7 @@ class ServiceACLEntries(pulumi.CustomResource):
                         "comment": e["comment"],
                     } for e in acl_entries]],
                     service_id=myservice.id,
-                    acl_id=range["value"].acl_id))
+                    acl_id=entries_range["value"].acl_id)
 
         myservice.acls.apply(lambda resolved_outputs: create_entries({d.name: d for d in resolved_outputs['acls'] if d.name == acl_name}))
         ```
@@ -345,18 +345,18 @@ class ServiceACLEntries(pulumi.CustomResource):
         import pulumi_fastly as fastly
 
         #...
-        entries: list[Any] = []
-        for range in [{"key": k, "value": v} for [k, v] in sorted(({d.name: d for d in myservice.acl if d.name == myacl_name}).items())]:
-            entries.append(fastly.ServiceACLEntries(f"entries-{range['key']}",
+        entries: dict[str, fastly.ServiceACLEntries] = {}
+        for entries_range in [{"key": k, "value": v} for [k, v] in sorted(({d.name: d for d in myservice.acl if d.name == myacl_name}).items())]:
+            entries[entries_range['key']] = fastly.ServiceACLEntries(f"entries-{entries_range['key']}",
                 service_id=myservice["id"],
-                acl_id=range["value"]["aclId"],
+                acl_id=entries_range["value"]["aclId"],
                 manage_entries=True,
                 entries=[{
                     "ip": "127.0.0.1",
                     "subnet": "24",
                     "negated": False,
                     "comment": "ACL Entry 1",
-                }]))
+                }])
         ```
 
         ## Import
@@ -425,18 +425,18 @@ class ServiceACLEntries(pulumi.CustomResource):
                 "name": myacl_name,
             }],
             force_destroy=True)
-        entries: list[Any] = []
+        entries: dict[str, fastly.ServiceACLEntries] = {}
         def create_entries(range_body):
-            for range in [{"key": k, "value": v} for [k, v] in sorted((range_body).items())]:
-                entries.append(fastly.ServiceACLEntries(f"entries-{range['key']}",
+            for entries_range in [{"key": k, "value": v} for [k, v] in sorted((range_body).items())]:
+                entries[entries_range['key']] = fastly.ServiceACLEntries(f"entries-{entries_range['key']}",
                     service_id=myservice.id,
-                    acl_id=range["value"].acl_id,
+                    acl_id=entries_range["value"].acl_id,
                     entries=[{
                         "ip": "127.0.0.1",
                         "subnet": "24",
                         "negated": False,
                         "comment": "ACL Entry 1",
-                    }]))
+                    }])
 
         myservice.acls.apply(lambda resolved_outputs: create_entries({d.name: d for d in resolved_outputs['acls'] if d.name == myacl_name}))
         ```
@@ -480,10 +480,10 @@ class ServiceACLEntries(pulumi.CustomResource):
                 "name": acl_name,
             }],
             force_destroy=True)
-        entries: list[Any] = []
+        entries: dict[str, fastly.ServiceACLEntries] = {}
         def create_entries(range_body):
-            for range in [{"key": k, "value": v} for [k, v] in sorted((range_body).items())]:
-                entries.append(fastly.ServiceACLEntries(f"entries-{range['key']}",
+            for entries_range in [{"key": k, "value": v} for [k, v] in sorted((range_body).items())]:
+                entries[entries_range['key']] = fastly.ServiceACLEntries(f"entries-{entries_range['key']}",
                     entries=[{
                         "ip": entry["ip"],
                         "subnet": "22",
@@ -494,7 +494,7 @@ class ServiceACLEntries(pulumi.CustomResource):
                         "comment": e["comment"],
                     } for e in acl_entries]],
                     service_id=myservice.id,
-                    acl_id=range["value"].acl_id))
+                    acl_id=entries_range["value"].acl_id)
 
         myservice.acls.apply(lambda resolved_outputs: create_entries({d.name: d for d in resolved_outputs['acls'] if d.name == acl_name}))
         ```
@@ -561,18 +561,18 @@ class ServiceACLEntries(pulumi.CustomResource):
         import pulumi_fastly as fastly
 
         #...
-        entries: list[Any] = []
-        for range in [{"key": k, "value": v} for [k, v] in sorted(({d.name: d for d in myservice.acl if d.name == myacl_name}).items())]:
-            entries.append(fastly.ServiceACLEntries(f"entries-{range['key']}",
+        entries: dict[str, fastly.ServiceACLEntries] = {}
+        for entries_range in [{"key": k, "value": v} for [k, v] in sorted(({d.name: d for d in myservice.acl if d.name == myacl_name}).items())]:
+            entries[entries_range['key']] = fastly.ServiceACLEntries(f"entries-{entries_range['key']}",
                 service_id=myservice["id"],
-                acl_id=range["value"]["aclId"],
+                acl_id=entries_range["value"]["aclId"],
                 manage_entries=True,
                 entries=[{
                     "ip": "127.0.0.1",
                     "subnet": "24",
                     "negated": False,
                     "comment": "ACL Entry 1",
-                }]))
+                }])
         ```
 
         ## Import

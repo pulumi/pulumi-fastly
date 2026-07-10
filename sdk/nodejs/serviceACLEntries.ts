@@ -40,12 +40,12 @@ import * as utilities from "./utilities";
  *     }],
  *     forceDestroy: true,
  * });
- * const entries: fastly.ServiceACLEntries[] = [];
+ * const entries: {[key: string]: fastly.ServiceACLEntries} = {};
  * myservice.acls.apply(acls => {
- *     const entries: fastly.ServiceACLEntries[] = [];
+ *     const entries: {[key: string]: fastly.ServiceACLEntries} = {};
  * pulumi.all(.filter(d => d.name == myaclName).reduce((__obj, d) => ({ ...__obj, [d.name]: d }), {})).apply(rangeBody => {
  *         for (const range of Object.entries(rangeBody).sort().map(([k, v]) => ({key: k, value: v}))) {
- *             entries.push(new fastly.ServiceACLEntries(`entries-${range.key}`, {
+ *             entries[range.key] = new fastly.ServiceACLEntries(`entries-${range.key}`, {
  *                 serviceId: myservice.id,
  *                 aclId: range.value.aclId,
  *                 entries: [{
@@ -54,7 +54,7 @@ import * as utilities from "./utilities";
  *                     negated: false,
  *                     comment: "ACL Entry 1",
  *                 }],
- *             }));
+ *             });
  *         }
  *     });
  * });
@@ -99,12 +99,12 @@ import * as utilities from "./utilities";
  *     }],
  *     forceDestroy: true,
  * });
- * const entries: fastly.ServiceACLEntries[] = [];
+ * const entries: {[key: string]: fastly.ServiceACLEntries} = {};
  * myservice.acls.apply(acls => {
- *     const entries: fastly.ServiceACLEntries[] = [];
+ *     const entries: {[key: string]: fastly.ServiceACLEntries} = {};
  * pulumi.all(.filter(d => d.name == aclName).reduce((__obj, d) => ({ ...__obj, [d.name]: d }), {})).apply(rangeBody => {
  *         for (const range of Object.entries(rangeBody).sort().map(([k, v]) => ({key: k, value: v}))) {
- *             entries.push(new fastly.ServiceACLEntries(`entries-${range.key}`, {
+ *             entries[range.key] = new fastly.ServiceACLEntries(`entries-${range.key}`, {
  *                 entries: aclEntries.map(e => ({
  *                     ip: e.ip,
  *                     comment: e.comment,
@@ -116,7 +116,7 @@ import * as utilities from "./utilities";
  *                 })),
  *                 serviceId: myservice.id,
  *                 aclId: range.value.aclId,
- *             }));
+ *             });
  *         }
  *     });
  * });
@@ -183,9 +183,9 @@ import * as utilities from "./utilities";
  * import * as fastly from "@pulumi/fastly";
  *
  * //...
- * const entries: fastly.ServiceACLEntries[] = [];
+ * const entries: {[key: string]: fastly.ServiceACLEntries} = {};
  * for (const range of Object.entries(.filter(d => d.name == myaclName).reduce((__obj, d) => ({ ...__obj, [d.name]: d }), {})).sort().map(([k, v]) => ({key: k, value: v}))) {
- *     entries.push(new fastly.ServiceACLEntries(`entries-${range.key}`, {
+ *     entries[range.key] = new fastly.ServiceACLEntries(`entries-${range.key}`, {
  *         serviceId: myservice.id,
  *         aclId: range.value.aclId,
  *         manageEntries: true,
@@ -195,7 +195,7 @@ import * as utilities from "./utilities";
  *             negated: false,
  *             comment: "ACL Entry 1",
  *         }],
- *     }));
+ *     });
  * }
  * ```
  *

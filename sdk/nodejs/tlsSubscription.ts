@@ -62,10 +62,10 @@ import * as utilities from "./utilities";
  *     domains: exampleServiceVcl.domains.apply(domains => .map(domain => (domain.name))),
  *     certificateAuthority: "lets-encrypt",
  * });
- * const domainValidation: aws.index.Route53Record[] = [];
+ * const domainValidation: {[key: string]: aws.index.Route53Record} = {};
  * exampleTlsSubscription.domains.apply(domains => {
  *     for (const range of Object.entries(domains.reduce((__obj, domain) => ({ ...__obj, [domain]: exampleTlsSubscription.managedDnsChallenges.apply(managedDnsChallenges => managedDnsChallenges.filter(obj => obj.recordName == `_acme-challenge.${domain}`).map(obj => (obj)))[0] }), {})).sort().map(([k, v]) => ({key: k, value: v}))) {
- *         domainValidation.push(new aws.index.Route53Record(`domain_validation-${range.key}`, {
+ *         domainValidation[range.key] = new aws.index.Route53Record(`domain_validation-${range.key}`, {
  *             name: range.value.recordName,
  *             type: range.value.recordType,
  *             zoneId: production.zoneId,
@@ -74,7 +74,7 @@ import * as utilities from "./utilities";
  *             ttl: 60,
  *         }, {
  *         dependsOn: [exampleTlsSubscription],
- *     }));
+ *     });
  *     }
  * });
  * // This is a resource that other resources can depend on if they require the certificate to be issued.
@@ -96,11 +96,11 @@ import * as utilities from "./utilities";
  * });
  * // Once validation is complete and we've retrieved the TLS configuration data, we can create multiple subdomain records.
  * const subdomain: aws.index.Route53Record[] = [];
- * for (const range = {value: 0}; range.value < std.toset({
+ * for (let range = 0; range < std.toset({
  *     input: subdomains,
- * }).result; range.value++) {
- *     subdomain.push(new aws.index.Route53Record(`subdomain-${range.value}`, {
- *         name: range.value,
+ * }).result; range++) {
+ *     subdomain.push(new aws.index.Route53Record(`subdomain-${range}`, {
+ *         name: range,
  *         records: .filter(record => record.recordType == "CNAME").map(record => (record.recordValue)),
  *         ttl: 300,
  *         type: "CNAME",
@@ -148,9 +148,9 @@ import * as utilities from "./utilities";
  *     domains: exampleServiceVcl.domains.apply(domains => .map(domain => (domain.name))),
  *     certificateAuthority: "lets-encrypt",
  * });
- * const domainValidation: aws.index.Route53Record[] = [];
+ * const domainValidation: {[key: string]: aws.index.Route53Record} = {};
  * exampleTlsSubscription.domains.apply(domains => {
- *     const domainValidation: aws.index.Route53Record[] = [];
+ *     const domainValidation: {[key: string]: aws.index.Route53Record} = {};
  * pulumi.all(domains.reduce((__obj, domain) => ({ ...__obj, [String(std.replace({
  *         text: domain,
  *         search: "*.",
@@ -161,7 +161,7 @@ import * as utilities from "./utilities";
  *         replace: "",
  *     }).result}`).map(obj => (obj)))[0] }), {})).apply(rangeBody => {
  *         for (const range of Object.entries(rangeBody).sort().map(([k, v]) => ({key: k, value: v}))) {
- *             domainValidation.push(new aws.index.Route53Record(`domain_validation-${range.key}`, {
+ *             domainValidation[range.key] = new aws.index.Route53Record(`domain_validation-${range.key}`, {
  *                 name: range.value[0].recordName,
  *                 type: range.value[0].recordType,
  *                 zoneId: production.zoneId,
@@ -170,7 +170,7 @@ import * as utilities from "./utilities";
  *                 ttl: 60,
  *             }, {
  *             dependsOn: [exampleTlsSubscription],
- *         }));
+ *         });
  *         }
  *     });
  * });
