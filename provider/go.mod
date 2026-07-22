@@ -4,8 +4,8 @@ go 1.25.11
 
 require (
 	github.com/fastly/terraform-provider-fastly v0.0.0
-	github.com/pulumi/pulumi-terraform-bridge/v3 v3.134.0
-	github.com/pulumi/pulumi/sdk/v3 v3.251.0
+	github.com/pulumi/pulumi-terraform-bridge/v3 v3.135.0
+	github.com/pulumi/pulumi/sdk/v3 v3.253.0
 )
 
 require (
@@ -163,10 +163,10 @@ require (
 	github.com/pulumi-labs/pulumi-hcl v0.3.1 // indirect
 	github.com/pulumi/appdash v0.0.0-20231130102222-75f619a67231 // indirect
 	github.com/pulumi/inflector v0.2.1 // indirect
-	github.com/pulumi/pulumi-dotnet/pulumi-language-dotnet/v3 v3.107.4-0.20260707145817-560bdceddcf2 // indirect
+	github.com/pulumi/pulumi-dotnet/pulumi-language-dotnet/v3 v3.107.4-0.20260720135410-6a2eb2585b50 // indirect
 	github.com/pulumi/pulumi-java v1.32.0 // indirect
-	github.com/pulumi/pulumi-yaml v1.37.1-0.20260709082604-efc7b02d80e5 // indirect
-	github.com/pulumi/pulumi/pkg/v3 v3.251.0 // indirect
+	github.com/pulumi/pulumi-yaml v1.37.1-0.20260717123218-294c561f47f4 // indirect
+	github.com/pulumi/pulumi/pkg/v3 v3.253.0 // indirect
 	github.com/pulumi/terraform-diff-reader v0.0.2 // indirect
 	github.com/rivo/uniseg v0.4.7 // indirect
 	github.com/rogpeppe/go-internal v1.14.1 // indirect
@@ -192,7 +192,7 @@ require (
 	github.com/vmihailenco/msgpack/v5 v5.4.1 // indirect
 	github.com/vmihailenco/tagparser/v2 v2.0.0 // indirect
 	github.com/xo/terminfo v0.0.0-20220910002029-abceb7e1c41e // indirect
-	github.com/yuin/goldmark v1.7.13 // indirect
+	github.com/yuin/goldmark v1.7.17 // indirect
 	github.com/zclconf/go-cty v1.18.1 // indirect
 	go.mongodb.org/mongo-driver v1.17.7 // indirect
 	go.opentelemetry.io/auto/sdk v1.2.1 // indirect
@@ -230,9 +230,9 @@ require (
 	google.golang.org/api v0.272.0 // indirect
 	google.golang.org/appengine v1.6.8 // indirect
 	google.golang.org/genproto v0.0.0-20260316180232-0b37fe3546d5 // indirect
-	google.golang.org/genproto/googleapis/api v0.0.0-20260706201446-f0a921348800 // indirect
-	google.golang.org/genproto/googleapis/rpc v0.0.0-20260706201446-f0a921348800 // indirect
-	google.golang.org/grpc v1.82.0 // indirect
+	google.golang.org/genproto/googleapis/api v0.0.0-20260713224248-f5fc221cf8c4 // indirect
+	google.golang.org/genproto/googleapis/rpc v0.0.0-20260713224248-f5fc221cf8c4 // indirect
+	google.golang.org/grpc v1.82.1 // indirect
 	google.golang.org/protobuf v1.36.11 // indirect
 	gopkg.in/yaml.v2 v2.4.0 // indirect
 	gopkg.in/yaml.v3 v3.0.1 // indirect
