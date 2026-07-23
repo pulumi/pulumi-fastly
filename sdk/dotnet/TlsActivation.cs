@@ -14,6 +14,8 @@ namespace Pulumi.Fastly
     /// 
     /// &gt; **Note:** The Fastly service must be provisioned _prior_ to enabling TLS on it. This can be achieved in Pulumi using `DependsOn`.
     /// 
+    /// &gt; **Warning:** This resource is for custom (uploaded) certificates. Do not pair it with a `fastly.TlsSubscription` — Fastly automatically activates TLS on a subscription's domains once the managed certificate is issued, so creating an activation for those domains fails with `400 DomainId has already been taken` (and referencing `fastly_tls_subscription.&lt;name&gt;.certificate_id` in the same apply fails earlier with an empty certificate ID). For managed certificates, set `ConfigurationId` on the subscription and use the `fastly.TlsActivation` data source to read the automatically-created activation — see the `fastly.TlsSubscriptionValidation` documentation for a complete example.
+    /// 
     /// ## Example Usage
     /// 
     /// Basic usage:

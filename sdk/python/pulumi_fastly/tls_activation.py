@@ -192,6 +192,8 @@ class TlsActivation(pulumi.CustomResource):
 
         > **Note:** The Fastly service must be provisioned _prior_ to enabling TLS on it. This can be achieved in Pulumi using `depends_on`.
 
+        > **Warning:** This resource is for custom (uploaded) certificates. Do not pair it with a `TlsSubscription` — Fastly automatically activates TLS on a subscription's domains once the managed certificate is issued, so creating an activation for those domains fails with `400 domain_id has already been taken` (and referencing `fastly_tls_subscription.<name>.certificate_id` in the same apply fails earlier with an empty certificate ID). For managed certificates, set `configuration_id` on the subscription and use the `TlsActivation` data source to read the automatically-created activation — see the `TlsSubscriptionValidation` documentation for a complete example.
+
         ## Example Usage
 
         Basic usage:
@@ -251,6 +253,8 @@ class TlsActivation(pulumi.CustomResource):
         Enables TLS on a domain using a specified custom TLS certificate.
 
         > **Note:** The Fastly service must be provisioned _prior_ to enabling TLS on it. This can be achieved in Pulumi using `depends_on`.
+
+        > **Warning:** This resource is for custom (uploaded) certificates. Do not pair it with a `TlsSubscription` — Fastly automatically activates TLS on a subscription's domains once the managed certificate is issued, so creating an activation for those domains fails with `400 domain_id has already been taken` (and referencing `fastly_tls_subscription.<name>.certificate_id` in the same apply fails earlier with an empty certificate ID). For managed certificates, set `configuration_id` on the subscription and use the `TlsActivation` data source to read the automatically-created activation — see the `TlsSubscriptionValidation` documentation for a complete example.
 
         ## Example Usage
 

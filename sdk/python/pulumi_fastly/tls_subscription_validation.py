@@ -43,14 +43,30 @@ class TlsSubscriptionValidationArgs:
 @pulumi.input_type
 class _TlsSubscriptionValidationState:
     def __init__(__self__, *,
+                 certificate_id: pulumi.Input[Optional[_builtins.str]] = None,
                  subscription_id: pulumi.Input[Optional[_builtins.str]] = None):
         """
         Input properties used for looking up and filtering TlsSubscriptionValidation resources.
 
+        :param pulumi.Input[_builtins.str] certificate_id: The ID of the certificate issued for the validated subscription. Only populated once the subscription reaches the `issued` state. Reference this from `fastly_tls_activation.certificate_id` to guarantee the activation is created after the certificate exists, within a single apply.
         :param pulumi.Input[_builtins.str] subscription_id: The ID of the TLS Subscription that should be validated.
         """
+        if certificate_id is not None:
+            pulumi.set(__self__, "certificate_id", certificate_id)
         if subscription_id is not None:
             pulumi.set(__self__, "subscription_id", subscription_id)
+
+    @_builtins.property
+    @pulumi.getter(name="certificateId")
+    def certificate_id(self) -> pulumi.Input[Optional[_builtins.str]]:
+        """
+        The ID of the certificate issued for the validated subscription. Only populated once the subscription reaches the `issued` state. Reference this from `fastly_tls_activation.certificate_id` to guarantee the activation is created after the certificate exists, within a single apply.
+        """
+        return pulumi.get(self, "certificate_id")
+
+    @certificate_id.setter
+    def certificate_id(self, value: pulumi.Input[Optional[_builtins.str]]):
+        pulumi.set(self, "certificate_id", value)
 
     @_builtins.property
     @pulumi.getter(name="subscriptionId")
@@ -153,6 +169,59 @@ class TlsSubscriptionValidation(pulumi.CustomResource):
                 zone_id=production.zone_id))
         ```
 
+        Managed certificates for multiple domains, in a single apply:
+
+        The `certificate_id` attribute is only populated once the certificate has been issued, so resources referencing it are guaranteed to run after issuance — unlike `fastly_tls_subscription.<name>.certificate_id`, which is empty on first apply (certificates are issued asynchronously after domain validation) and causes API 400 errors when consumed in the same apply.
+
+        > **Note:** Fastly automatically activates TLS on a subscription's domains once the certificate is issued — set `configuration_id` on the `TlsSubscription` itself and do **not** create a `TlsActivation` for those domains (it fails with `400 domain_id has already been taken`). Use the `TlsActivation` data source to read the automatically-created activation.
+
+        ```python
+        import pulumi
+        from typing import Any
+        import pulumi_aws as aws
+        import pulumi_fastly as fastly
+
+        config = pulumi.Config()
+        certificates = config.require_object("certificates")
+        default_tls = fastly.get_tls_configuration(default=True)
+        example_tls_subscription: dict[str, fastly.TlsSubscription] = {}
+        for example_tls_subscription_range in [{"key": k, "value": v} for [k, v] in sorted((certificates).items())]:
+            example_tls_subscription[example_tls_subscription_range['key']] = fastly.TlsSubscription(f"example-{example_tls_subscription_range['key']}",
+                certificate_authority=example_tls_subscription_range["value"]["authority"],
+                common_name=example_tls_subscription_range["value"]["commonName"],
+                domains=example_tls_subscription_range["value"]["domains"],
+                force_destroy=example_tls_subscription_range["value"]["forceDestroy"],
+                configuration_id=default_tls.id)
+        # The domain validation challenge records MUST be created before validation
+        # can succeed. This example uses DNS-based validation: replace with your DNS
+        # provider's record resource, fed from
+        # fastly_tls_subscription.example[each.key].managed_dns_challenges
+        # (see the fastly_tls_subscription documentation for a Route53 example).
+        domain_validation: dict[str, aws.Route53Record] = {}
+        def create_domain_validation(range_body):
+            for domain_validation_range in [{"key": k, "value": v} for [k, v] in sorted((range_body).items())]:
+                domain_validation[domain_validation_range['key']] = aws.Route53Record(f"domain_validation-{domain_validation_range['key']}",
+                    name=domain_validation_range.value.managed_dns_challenges[0].record_name,
+                    type=domain_validation_range.value.managed_dns_challenges[0].record_type,
+                    records=[domain_validation_range.value.managed_dns_challenges[0].record_value],
+                    zone_id=REPLACE_WITH_YOUR_ZONE_ID,
+                    allow_overwrite=True,
+                    ttl=60)
+
+        example_tls_subscription.apply(create_domain_validation)
+        # Blocks until the certificate has been issued. Its certificate_id attribute
+        # is only known after issuance, so downstream resources referencing it are
+        # guaranteed to run with a valid certificate — all in a single apply.
+        example_tls_subscription_validation: dict[str, fastly.TlsSubscriptionValidation] = {}
+        for example_tls_subscription_validation_range in [{"key": k, "value": v} for [k, v] in sorted((certificates).items())]:
+            example_tls_subscription_validation[example_tls_subscription_validation_range['key']] = fastly.TlsSubscriptionValidation(f"example-{example_tls_subscription_validation_range['key']}", subscription_id=example_tls_subscription[example_tls_subscription_validation_range["key"]].id,
+            opts = pulumi.ResourceOptions(depends_on=[domain_validation]))
+        # The activation was created automatically by Fastly when the certificate was
+        # issued; this data source reads it (e.g. to consume dns_records/IDs).
+        example = {__key: fastly.get_tls_activation(domain=__value["commonName"]) for __key, __value in sorted(certificates.items())}
+        pulumi.export("certificateIds", {k: v.certificate_id for k, v in sorted(example_tls_subscription_validation.items())})
+        ```
+
 
         :param str resource_name: The name of the resource.
         :param pulumi.ResourceOptions opts: Options for the resource.
@@ -244,6 +313,59 @@ class TlsSubscriptionValidation(pulumi.CustomResource):
                 zone_id=production.zone_id))
         ```
 
+        Managed certificates for multiple domains, in a single apply:
+
+        The `certificate_id` attribute is only populated once the certificate has been issued, so resources referencing it are guaranteed to run after issuance — unlike `fastly_tls_subscription.<name>.certificate_id`, which is empty on first apply (certificates are issued asynchronously after domain validation) and causes API 400 errors when consumed in the same apply.
+
+        > **Note:** Fastly automatically activates TLS on a subscription's domains once the certificate is issued — set `configuration_id` on the `TlsSubscription` itself and do **not** create a `TlsActivation` for those domains (it fails with `400 domain_id has already been taken`). Use the `TlsActivation` data source to read the automatically-created activation.
+
+        ```python
+        import pulumi
+        from typing import Any
+        import pulumi_aws as aws
+        import pulumi_fastly as fastly
+
+        config = pulumi.Config()
+        certificates = config.require_object("certificates")
+        default_tls = fastly.get_tls_configuration(default=True)
+        example_tls_subscription: dict[str, fastly.TlsSubscription] = {}
+        for example_tls_subscription_range in [{"key": k, "value": v} for [k, v] in sorted((certificates).items())]:
+            example_tls_subscription[example_tls_subscription_range['key']] = fastly.TlsSubscription(f"example-{example_tls_subscription_range['key']}",
+                certificate_authority=example_tls_subscription_range["value"]["authority"],
+                common_name=example_tls_subscription_range["value"]["commonName"],
+                domains=example_tls_subscription_range["value"]["domains"],
+                force_destroy=example_tls_subscription_range["value"]["forceDestroy"],
+                configuration_id=default_tls.id)
+        # The domain validation challenge records MUST be created before validation
+        # can succeed. This example uses DNS-based validation: replace with your DNS
+        # provider's record resource, fed from
+        # fastly_tls_subscription.example[each.key].managed_dns_challenges
+        # (see the fastly_tls_subscription documentation for a Route53 example).
+        domain_validation: dict[str, aws.Route53Record] = {}
+        def create_domain_validation(range_body):
+            for domain_validation_range in [{"key": k, "value": v} for [k, v] in sorted((range_body).items())]:
+                domain_validation[domain_validation_range['key']] = aws.Route53Record(f"domain_validation-{domain_validation_range['key']}",
+                    name=domain_validation_range.value.managed_dns_challenges[0].record_name,
+                    type=domain_validation_range.value.managed_dns_challenges[0].record_type,
+                    records=[domain_validation_range.value.managed_dns_challenges[0].record_value],
+                    zone_id=REPLACE_WITH_YOUR_ZONE_ID,
+                    allow_overwrite=True,
+                    ttl=60)
+
+        example_tls_subscription.apply(create_domain_validation)
+        # Blocks until the certificate has been issued. Its certificate_id attribute
+        # is only known after issuance, so downstream resources referencing it are
+        # guaranteed to run with a valid certificate — all in a single apply.
+        example_tls_subscription_validation: dict[str, fastly.TlsSubscriptionValidation] = {}
+        for example_tls_subscription_validation_range in [{"key": k, "value": v} for [k, v] in sorted((certificates).items())]:
+            example_tls_subscription_validation[example_tls_subscription_validation_range['key']] = fastly.TlsSubscriptionValidation(f"example-{example_tls_subscription_validation_range['key']}", subscription_id=example_tls_subscription[example_tls_subscription_validation_range["key"]].id,
+            opts = pulumi.ResourceOptions(depends_on=[domain_validation]))
+        # The activation was created automatically by Fastly when the certificate was
+        # issued; this data source reads it (e.g. to consume dns_records/IDs).
+        example = {__key: fastly.get_tls_activation(domain=__value["commonName"]) for __key, __value in sorted(certificates.items())}
+        pulumi.export("certificateIds", {k: v.certificate_id for k, v in sorted(example_tls_subscription_validation.items())})
+        ```
+
 
         :param str resource_name: The name of the resource.
         :param TlsSubscriptionValidationArgs args: The arguments to use to populate this resource's properties.
@@ -273,6 +395,7 @@ class TlsSubscriptionValidation(pulumi.CustomResource):
             if subscription_id is None and not opts.urn:
                 raise TypeError("Missing required property 'subscription_id'")
             __props__.__dict__["subscription_id"] = subscription_id
+            __props__.__dict__["certificate_id"] = None
         super(TlsSubscriptionValidation, __self__).__init__(
             'fastly:index/tlsSubscriptionValidation:TlsSubscriptionValidation',
             resource_name,
@@ -283,6 +406,7 @@ class TlsSubscriptionValidation(pulumi.CustomResource):
     def get(resource_name: str,
             id: pulumi.Input[str],
             opts: Optional[pulumi.ResourceOptions] = None,
+            certificate_id: pulumi.Input[Optional[_builtins.str]] = None,
             subscription_id: pulumi.Input[Optional[_builtins.str]] = None) -> 'TlsSubscriptionValidation':
         """
         Get an existing TlsSubscriptionValidation resource's state with the given name, id, and optional extra
@@ -291,14 +415,24 @@ class TlsSubscriptionValidation(pulumi.CustomResource):
         :param str resource_name: The unique name of the resulting resource.
         :param pulumi.Input[str] id: The unique provider ID of the resource to lookup.
         :param pulumi.ResourceOptions opts: Options for the resource.
+        :param pulumi.Input[_builtins.str] certificate_id: The ID of the certificate issued for the validated subscription. Only populated once the subscription reaches the `issued` state. Reference this from `fastly_tls_activation.certificate_id` to guarantee the activation is created after the certificate exists, within a single apply.
         :param pulumi.Input[_builtins.str] subscription_id: The ID of the TLS Subscription that should be validated.
         """
         opts = pulumi.ResourceOptions.merge(opts, pulumi.ResourceOptions(id=id))
 
         __props__ = _TlsSubscriptionValidationState.__new__(_TlsSubscriptionValidationState)
 
+        __props__.__dict__["certificate_id"] = certificate_id
         __props__.__dict__["subscription_id"] = subscription_id
         return TlsSubscriptionValidation(resource_name, opts=opts, __props__=__props__)
+
+    @_builtins.property
+    @pulumi.getter(name="certificateId")
+    def certificate_id(self) -> pulumi.Output[_builtins.str]:
+        """
+        The ID of the certificate issued for the validated subscription. Only populated once the subscription reaches the `issued` state. Reference this from `fastly_tls_activation.certificate_id` to guarantee the activation is created after the certificate exists, within a single apply.
+        """
+        return pulumi.get(self, "certificate_id")
 
     @_builtins.property
     @pulumi.getter(name="subscriptionId")

@@ -21,9 +21,17 @@ import (
 // ## Example Usage
 //
 // DNS Validation with AWS Route53:
+//
+// Managed certificates for multiple domains, in a single apply:
+//
+// The `certificateId` attribute is only populated once the certificate has been issued, so resources referencing it are guaranteed to run after issuance — unlike `fastly_tls_subscription.<name>.certificate_id`, which is empty on first apply (certificates are issued asynchronously after domain validation) and causes API 400 errors when consumed in the same apply.
+//
+// > **Note:** Fastly automatically activates TLS on a subscription's domains once the certificate is issued — set `configurationId` on the `TlsSubscription` itself and do **not** create a `TlsActivation` for those domains (it fails with `400 domainId has already been taken`). Use the `TlsActivation` data source to read the automatically-created activation.
 type TlsSubscriptionValidation struct {
 	pulumi.CustomResourceState
 
+	// The ID of the certificate issued for the validated subscription. Only populated once the subscription reaches the `issued` state. Reference this from `fastly_tls_activation.certificate_id` to guarantee the activation is created after the certificate exists, within a single apply.
+	CertificateId pulumi.StringOutput `pulumi:"certificateId"`
 	// The ID of the TLS Subscription that should be validated.
 	SubscriptionId pulumi.StringOutput `pulumi:"subscriptionId"`
 }
@@ -61,11 +69,15 @@ func GetTlsSubscriptionValidation(ctx *pulumi.Context,
 
 // Input properties used for looking up and filtering TlsSubscriptionValidation resources.
 type tlsSubscriptionValidationState struct {
+	// The ID of the certificate issued for the validated subscription. Only populated once the subscription reaches the `issued` state. Reference this from `fastly_tls_activation.certificate_id` to guarantee the activation is created after the certificate exists, within a single apply.
+	CertificateId *string `pulumi:"certificateId"`
 	// The ID of the TLS Subscription that should be validated.
 	SubscriptionId *string `pulumi:"subscriptionId"`
 }
 
 type TlsSubscriptionValidationState struct {
+	// The ID of the certificate issued for the validated subscription. Only populated once the subscription reaches the `issued` state. Reference this from `fastly_tls_activation.certificate_id` to guarantee the activation is created after the certificate exists, within a single apply.
+	CertificateId pulumi.StringPtrInput
 	// The ID of the TLS Subscription that should be validated.
 	SubscriptionId pulumi.StringPtrInput
 }
@@ -170,6 +182,11 @@ func (o TlsSubscriptionValidationOutput) ToTlsSubscriptionValidationOutput() Tls
 
 func (o TlsSubscriptionValidationOutput) ToTlsSubscriptionValidationOutputWithContext(ctx context.Context) TlsSubscriptionValidationOutput {
 	return o
+}
+
+// The ID of the certificate issued for the validated subscription. Only populated once the subscription reaches the `issued` state. Reference this from `fastly_tls_activation.certificate_id` to guarantee the activation is created after the certificate exists, within a single apply.
+func (o TlsSubscriptionValidationOutput) CertificateId() pulumi.StringOutput {
+	return o.ApplyT(func(v *TlsSubscriptionValidation) pulumi.StringOutput { return v.CertificateId }).(pulumi.StringOutput)
 }
 
 // The ID of the TLS Subscription that should be validated.
