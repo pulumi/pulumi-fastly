@@ -37,6 +37,10 @@ import * as utilities from "./utilities";
  * service, there is no logical reason to both stage and activate every
  * set of applied changes.
  *
+ * The `activate` and `stage` attributes only control version lifecycle operations.
+ * Versionless service attributes, including `name` and `comment`, are updated
+ * immediately during `pulumi up` regardless of these settings.
+ *
  * ## Example Usage
  *
  * Basic usage:
@@ -120,7 +124,7 @@ export class ServiceCompute extends pulumi.CustomResource {
     }
 
     /**
-     * Conditionally prevents new service versions from being activated. The apply step will create a new draft version but will not activate it if this is set to `false`. Default `true`
+     * Controls whether newly created service versions are activated. When versioned configuration changes, the apply step creates a draft version but does not activate it if this is set to `false`. Versionless service attributes, such as `name` and `comment`, are updated regardless of this setting. Default `true`
      */
     declare public readonly activate: pulumi.Output<boolean | undefined>;
     /**
@@ -133,7 +137,7 @@ export class ServiceCompute extends pulumi.CustomResource {
      */
     declare public /*out*/ readonly clonedVersion: pulumi.Output<number>;
     /**
-     * Description field for the service. Default `Managed by Terraform`
+     * Description field for the service. This versionless attribute is updated regardless of the `activate` and `stage` settings. Default `Managed by Terraform`
      */
     declare public readonly comment: pulumi.Output<string | undefined>;
     declare public readonly dictionaries: pulumi.Output<outputs.ServiceComputeDictionary[] | undefined>;
@@ -184,7 +188,7 @@ export class ServiceCompute extends pulumi.CustomResource {
     declare public readonly loggingSumologics: pulumi.Output<outputs.ServiceComputeLoggingSumologic[] | undefined>;
     declare public readonly loggingSyslogs: pulumi.Output<outputs.ServiceComputeLoggingSyslog[] | undefined>;
     /**
-     * The unique name for the Service to create
+     * The unique name for the Service to create. This versionless attribute is updated regardless of the `activate` and `stage` settings
      */
     declare public readonly name: pulumi.Output<string>;
     /**
@@ -201,7 +205,7 @@ export class ServiceCompute extends pulumi.CustomResource {
      */
     declare public readonly reuse: pulumi.Output<boolean | undefined>;
     /**
-     * Conditionally enables new service versions to be staged. If set to `true`, all changes made by an `apply` step will be staged, even if `apply` did not create a new draft version. Default `false`
+     * Conditionally enables new service versions to be staged. If set to `true`, versioned changes made by an `apply` step will be staged, even if `apply` did not create a new draft version. Versionless service attributes, such as `name` and `comment`, are updated regardless of this setting. Default `false`
      */
     declare public readonly stage: pulumi.Output<boolean | undefined>;
     /**
@@ -335,7 +339,7 @@ export class ServiceCompute extends pulumi.CustomResource {
  */
 export interface ServiceComputeState {
     /**
-     * Conditionally prevents new service versions from being activated. The apply step will create a new draft version but will not activate it if this is set to `false`. Default `true`
+     * Controls whether newly created service versions are activated. When versioned configuration changes, the apply step creates a draft version but does not activate it if this is set to `false`. Versionless service attributes, such as `name` and `comment`, are updated regardless of this setting. Default `true`
      */
     activate?: pulumi.Input<boolean | undefined>;
     /**
@@ -348,7 +352,7 @@ export interface ServiceComputeState {
      */
     clonedVersion?: pulumi.Input<number | undefined>;
     /**
-     * Description field for the service. Default `Managed by Terraform`
+     * Description field for the service. This versionless attribute is updated regardless of the `activate` and `stage` settings. Default `Managed by Terraform`
      */
     comment?: pulumi.Input<string | undefined>;
     dictionaries?: pulumi.Input<pulumi.Input<inputs.ServiceComputeDictionary>[] | undefined>;
@@ -399,7 +403,7 @@ export interface ServiceComputeState {
     loggingSumologics?: pulumi.Input<pulumi.Input<inputs.ServiceComputeLoggingSumologic>[] | undefined>;
     loggingSyslogs?: pulumi.Input<pulumi.Input<inputs.ServiceComputeLoggingSyslog>[] | undefined>;
     /**
-     * The unique name for the Service to create
+     * The unique name for the Service to create. This versionless attribute is updated regardless of the `activate` and `stage` settings
      */
     name?: pulumi.Input<string | undefined>;
     /**
@@ -416,7 +420,7 @@ export interface ServiceComputeState {
      */
     reuse?: pulumi.Input<boolean | undefined>;
     /**
-     * Conditionally enables new service versions to be staged. If set to `true`, all changes made by an `apply` step will be staged, even if `apply` did not create a new draft version. Default `false`
+     * Conditionally enables new service versions to be staged. If set to `true`, versioned changes made by an `apply` step will be staged, even if `apply` did not create a new draft version. Versionless service attributes, such as `name` and `comment`, are updated regardless of this setting. Default `false`
      */
     stage?: pulumi.Input<boolean | undefined>;
     /**
@@ -434,12 +438,12 @@ export interface ServiceComputeState {
  */
 export interface ServiceComputeArgs {
     /**
-     * Conditionally prevents new service versions from being activated. The apply step will create a new draft version but will not activate it if this is set to `false`. Default `true`
+     * Controls whether newly created service versions are activated. When versioned configuration changes, the apply step creates a draft version but does not activate it if this is set to `false`. Versionless service attributes, such as `name` and `comment`, are updated regardless of this setting. Default `true`
      */
     activate?: pulumi.Input<boolean | undefined>;
     backends?: pulumi.Input<pulumi.Input<inputs.ServiceComputeBackend>[] | undefined>;
     /**
-     * Description field for the service. Default `Managed by Terraform`
+     * Description field for the service. This versionless attribute is updated regardless of the `activate` and `stage` settings. Default `Managed by Terraform`
      */
     comment?: pulumi.Input<string | undefined>;
     dictionaries?: pulumi.Input<pulumi.Input<inputs.ServiceComputeDictionary>[] | undefined>;
@@ -482,7 +486,7 @@ export interface ServiceComputeArgs {
     loggingSumologics?: pulumi.Input<pulumi.Input<inputs.ServiceComputeLoggingSumologic>[] | undefined>;
     loggingSyslogs?: pulumi.Input<pulumi.Input<inputs.ServiceComputeLoggingSyslog>[] | undefined>;
     /**
-     * The unique name for the Service to create
+     * The unique name for the Service to create. This versionless attribute is updated regardless of the `activate` and `stage` settings
      */
     name?: pulumi.Input<string | undefined>;
     /**
@@ -499,7 +503,7 @@ export interface ServiceComputeArgs {
      */
     reuse?: pulumi.Input<boolean | undefined>;
     /**
-     * Conditionally enables new service versions to be staged. If set to `true`, all changes made by an `apply` step will be staged, even if `apply` did not create a new draft version. Default `false`
+     * Conditionally enables new service versions to be staged. If set to `true`, versioned changes made by an `apply` step will be staged, even if `apply` did not create a new draft version. Versionless service attributes, such as `name` and `comment`, are updated regardless of this setting. Default `false`
      */
     stage?: pulumi.Input<boolean | undefined>;
     /**

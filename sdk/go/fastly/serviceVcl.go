@@ -43,6 +43,10 @@ import (
 // service, there is no logical reason to both stage and activate every
 // set of applied changes.
 //
+// The `activate` and `stage` attributes only control version lifecycle operations.
+// Versionless service attributes, including `name` and `comment`, are updated
+// immediately during `pulumi up` regardless of these settings.
+//
 // ## Example Usage
 //
 // Basic usage:
@@ -191,7 +195,7 @@ type ServiceVcl struct {
 	pulumi.CustomResourceState
 
 	Acls ServiceVclAclArrayOutput `pulumi:"acls"`
-	// Conditionally prevents new service versions from being activated. The apply step will create a new draft version but will not activate it if this is set to `false`. Default `true`
+	// Controls whether newly created service versions are activated. When versioned configuration changes, the apply step creates a draft version but does not activate it if this is set to `false`. Versionless service attributes, such as `name` and `comment`, are updated regardless of this setting. Default `true`
 	Activate pulumi.BoolPtrOutput `pulumi:"activate"`
 	// The currently active version of your Fastly Service
 	ActiveVersion pulumi.IntOutput                  `pulumi:"activeVersion"`
@@ -199,7 +203,7 @@ type ServiceVcl struct {
 	CacheSettings ServiceVclCacheSettingArrayOutput `pulumi:"cacheSettings"`
 	// The latest cloned version by the provider
 	ClonedVersion pulumi.IntOutput `pulumi:"clonedVersion"`
-	// Description field for the service. Default `Managed by Terraform`
+	// Description field for the service. This versionless attribute is updated regardless of the `activate` and `stage` settings. Default `Managed by Terraform`
 	Comment    pulumi.StringPtrOutput         `pulumi:"comment"`
 	Conditions ServiceVclConditionArrayOutput `pulumi:"conditions"`
 	// The default hostname
@@ -251,7 +255,7 @@ type ServiceVcl struct {
 	LoggingSplunks          ServiceVclLoggingSplunkArrayOutput          `pulumi:"loggingSplunks"`
 	LoggingSumologics       ServiceVclLoggingSumologicArrayOutput       `pulumi:"loggingSumologics"`
 	LoggingSyslogs          ServiceVclLoggingSyslogArrayOutput          `pulumi:"loggingSyslogs"`
-	// The unique name for the Service to create
+	// The unique name for the Service to create. This versionless attribute is updated regardless of the `activate` and `stage` settings
 	Name              pulumi.StringOutput                  `pulumi:"name"`
 	ProductEnablement ServiceVclProductEnablementPtrOutput `pulumi:"productEnablement"`
 	RateLimiters      ServiceVclRateLimiterArrayOutput     `pulumi:"rateLimiters"`
@@ -260,7 +264,7 @@ type ServiceVcl struct {
 	// Services that are active cannot be destroyed. If set to `true` a service Terraform intends to destroy will instead be deactivated (allowing it to be reused by importing it into another Terraform project). If `false`, attempting to destroy an active service will cause an error. Default `false`
 	Reuse    pulumi.BoolPtrOutput         `pulumi:"reuse"`
 	Snippets ServiceVclSnippetArrayOutput `pulumi:"snippets"`
-	// Conditionally enables new service versions to be staged. If set to `true`, all changes made by an `apply` step will be staged, even if `apply` did not create a new draft version. Default `false`
+	// Conditionally enables new service versions to be staged. If set to `true`, versioned changes made by an `apply` step will be staged, even if `apply` did not create a new draft version. Versionless service attributes, such as `name` and `comment`, are updated regardless of this setting. Default `false`
 	Stage pulumi.BoolPtrOutput `pulumi:"stage"`
 	// The currently staged version of your Fastly Service
 	StagedVersion pulumi.IntOutput `pulumi:"stagedVersion"`
@@ -304,7 +308,7 @@ func GetServiceVcl(ctx *pulumi.Context,
 // Input properties used for looking up and filtering ServiceVcl resources.
 type serviceVclState struct {
 	Acls []ServiceVclAcl `pulumi:"acls"`
-	// Conditionally prevents new service versions from being activated. The apply step will create a new draft version but will not activate it if this is set to `false`. Default `true`
+	// Controls whether newly created service versions are activated. When versioned configuration changes, the apply step creates a draft version but does not activate it if this is set to `false`. Versionless service attributes, such as `name` and `comment`, are updated regardless of this setting. Default `true`
 	Activate *bool `pulumi:"activate"`
 	// The currently active version of your Fastly Service
 	ActiveVersion *int                     `pulumi:"activeVersion"`
@@ -312,7 +316,7 @@ type serviceVclState struct {
 	CacheSettings []ServiceVclCacheSetting `pulumi:"cacheSettings"`
 	// The latest cloned version by the provider
 	ClonedVersion *int `pulumi:"clonedVersion"`
-	// Description field for the service. Default `Managed by Terraform`
+	// Description field for the service. This versionless attribute is updated regardless of the `activate` and `stage` settings. Default `Managed by Terraform`
 	Comment    *string               `pulumi:"comment"`
 	Conditions []ServiceVclCondition `pulumi:"conditions"`
 	// The default hostname
@@ -364,7 +368,7 @@ type serviceVclState struct {
 	LoggingSplunks          []ServiceVclLoggingSplunk          `pulumi:"loggingSplunks"`
 	LoggingSumologics       []ServiceVclLoggingSumologic       `pulumi:"loggingSumologics"`
 	LoggingSyslogs          []ServiceVclLoggingSyslog          `pulumi:"loggingSyslogs"`
-	// The unique name for the Service to create
+	// The unique name for the Service to create. This versionless attribute is updated regardless of the `activate` and `stage` settings
 	Name              *string                      `pulumi:"name"`
 	ProductEnablement *ServiceVclProductEnablement `pulumi:"productEnablement"`
 	RateLimiters      []ServiceVclRateLimiter      `pulumi:"rateLimiters"`
@@ -373,7 +377,7 @@ type serviceVclState struct {
 	// Services that are active cannot be destroyed. If set to `true` a service Terraform intends to destroy will instead be deactivated (allowing it to be reused by importing it into another Terraform project). If `false`, attempting to destroy an active service will cause an error. Default `false`
 	Reuse    *bool               `pulumi:"reuse"`
 	Snippets []ServiceVclSnippet `pulumi:"snippets"`
-	// Conditionally enables new service versions to be staged. If set to `true`, all changes made by an `apply` step will be staged, even if `apply` did not create a new draft version. Default `false`
+	// Conditionally enables new service versions to be staged. If set to `true`, versioned changes made by an `apply` step will be staged, even if `apply` did not create a new draft version. Versionless service attributes, such as `name` and `comment`, are updated regardless of this setting. Default `false`
 	Stage *bool `pulumi:"stage"`
 	// The currently staged version of your Fastly Service
 	StagedVersion *int `pulumi:"stagedVersion"`
@@ -388,7 +392,7 @@ type serviceVclState struct {
 
 type ServiceVclState struct {
 	Acls ServiceVclAclArrayInput
-	// Conditionally prevents new service versions from being activated. The apply step will create a new draft version but will not activate it if this is set to `false`. Default `true`
+	// Controls whether newly created service versions are activated. When versioned configuration changes, the apply step creates a draft version but does not activate it if this is set to `false`. Versionless service attributes, such as `name` and `comment`, are updated regardless of this setting. Default `true`
 	Activate pulumi.BoolPtrInput
 	// The currently active version of your Fastly Service
 	ActiveVersion pulumi.IntPtrInput
@@ -396,7 +400,7 @@ type ServiceVclState struct {
 	CacheSettings ServiceVclCacheSettingArrayInput
 	// The latest cloned version by the provider
 	ClonedVersion pulumi.IntPtrInput
-	// Description field for the service. Default `Managed by Terraform`
+	// Description field for the service. This versionless attribute is updated regardless of the `activate` and `stage` settings. Default `Managed by Terraform`
 	Comment    pulumi.StringPtrInput
 	Conditions ServiceVclConditionArrayInput
 	// The default hostname
@@ -448,7 +452,7 @@ type ServiceVclState struct {
 	LoggingSplunks          ServiceVclLoggingSplunkArrayInput
 	LoggingSumologics       ServiceVclLoggingSumologicArrayInput
 	LoggingSyslogs          ServiceVclLoggingSyslogArrayInput
-	// The unique name for the Service to create
+	// The unique name for the Service to create. This versionless attribute is updated regardless of the `activate` and `stage` settings
 	Name              pulumi.StringPtrInput
 	ProductEnablement ServiceVclProductEnablementPtrInput
 	RateLimiters      ServiceVclRateLimiterArrayInput
@@ -457,7 +461,7 @@ type ServiceVclState struct {
 	// Services that are active cannot be destroyed. If set to `true` a service Terraform intends to destroy will instead be deactivated (allowing it to be reused by importing it into another Terraform project). If `false`, attempting to destroy an active service will cause an error. Default `false`
 	Reuse    pulumi.BoolPtrInput
 	Snippets ServiceVclSnippetArrayInput
-	// Conditionally enables new service versions to be staged. If set to `true`, all changes made by an `apply` step will be staged, even if `apply` did not create a new draft version. Default `false`
+	// Conditionally enables new service versions to be staged. If set to `true`, versioned changes made by an `apply` step will be staged, even if `apply` did not create a new draft version. Versionless service attributes, such as `name` and `comment`, are updated regardless of this setting. Default `false`
 	Stage pulumi.BoolPtrInput
 	// The currently staged version of your Fastly Service
 	StagedVersion pulumi.IntPtrInput
@@ -476,11 +480,11 @@ func (ServiceVclState) ElementType() reflect.Type {
 
 type serviceVclArgs struct {
 	Acls []ServiceVclAcl `pulumi:"acls"`
-	// Conditionally prevents new service versions from being activated. The apply step will create a new draft version but will not activate it if this is set to `false`. Default `true`
+	// Controls whether newly created service versions are activated. When versioned configuration changes, the apply step creates a draft version but does not activate it if this is set to `false`. Versionless service attributes, such as `name` and `comment`, are updated regardless of this setting. Default `true`
 	Activate      *bool                    `pulumi:"activate"`
 	Backends      []ServiceVclBackend      `pulumi:"backends"`
 	CacheSettings []ServiceVclCacheSetting `pulumi:"cacheSettings"`
-	// Description field for the service. Default `Managed by Terraform`
+	// Description field for the service. This versionless attribute is updated regardless of the `activate` and `stage` settings. Default `Managed by Terraform`
 	Comment    *string               `pulumi:"comment"`
 	Conditions []ServiceVclCondition `pulumi:"conditions"`
 	// The default hostname
@@ -528,7 +532,7 @@ type serviceVclArgs struct {
 	LoggingSplunks                []ServiceVclLoggingSplunk                `pulumi:"loggingSplunks"`
 	LoggingSumologics             []ServiceVclLoggingSumologic             `pulumi:"loggingSumologics"`
 	LoggingSyslogs                []ServiceVclLoggingSyslog                `pulumi:"loggingSyslogs"`
-	// The unique name for the Service to create
+	// The unique name for the Service to create. This versionless attribute is updated regardless of the `activate` and `stage` settings
 	Name              *string                      `pulumi:"name"`
 	ProductEnablement *ServiceVclProductEnablement `pulumi:"productEnablement"`
 	RateLimiters      []ServiceVclRateLimiter      `pulumi:"rateLimiters"`
@@ -537,7 +541,7 @@ type serviceVclArgs struct {
 	// Services that are active cannot be destroyed. If set to `true` a service Terraform intends to destroy will instead be deactivated (allowing it to be reused by importing it into another Terraform project). If `false`, attempting to destroy an active service will cause an error. Default `false`
 	Reuse    *bool               `pulumi:"reuse"`
 	Snippets []ServiceVclSnippet `pulumi:"snippets"`
-	// Conditionally enables new service versions to be staged. If set to `true`, all changes made by an `apply` step will be staged, even if `apply` did not create a new draft version. Default `false`
+	// Conditionally enables new service versions to be staged. If set to `true`, versioned changes made by an `apply` step will be staged, even if `apply` did not create a new draft version. Versionless service attributes, such as `name` and `comment`, are updated regardless of this setting. Default `false`
 	Stage *bool `pulumi:"stage"`
 	// Enables serving a stale object if there is an error
 	StaleIfError *bool `pulumi:"staleIfError"`
@@ -551,11 +555,11 @@ type serviceVclArgs struct {
 // The set of arguments for constructing a ServiceVcl resource.
 type ServiceVclArgs struct {
 	Acls ServiceVclAclArrayInput
-	// Conditionally prevents new service versions from being activated. The apply step will create a new draft version but will not activate it if this is set to `false`. Default `true`
+	// Controls whether newly created service versions are activated. When versioned configuration changes, the apply step creates a draft version but does not activate it if this is set to `false`. Versionless service attributes, such as `name` and `comment`, are updated regardless of this setting. Default `true`
 	Activate      pulumi.BoolPtrInput
 	Backends      ServiceVclBackendArrayInput
 	CacheSettings ServiceVclCacheSettingArrayInput
-	// Description field for the service. Default `Managed by Terraform`
+	// Description field for the service. This versionless attribute is updated regardless of the `activate` and `stage` settings. Default `Managed by Terraform`
 	Comment    pulumi.StringPtrInput
 	Conditions ServiceVclConditionArrayInput
 	// The default hostname
@@ -603,7 +607,7 @@ type ServiceVclArgs struct {
 	LoggingSplunks                ServiceVclLoggingSplunkArrayInput
 	LoggingSumologics             ServiceVclLoggingSumologicArrayInput
 	LoggingSyslogs                ServiceVclLoggingSyslogArrayInput
-	// The unique name for the Service to create
+	// The unique name for the Service to create. This versionless attribute is updated regardless of the `activate` and `stage` settings
 	Name              pulumi.StringPtrInput
 	ProductEnablement ServiceVclProductEnablementPtrInput
 	RateLimiters      ServiceVclRateLimiterArrayInput
@@ -612,7 +616,7 @@ type ServiceVclArgs struct {
 	// Services that are active cannot be destroyed. If set to `true` a service Terraform intends to destroy will instead be deactivated (allowing it to be reused by importing it into another Terraform project). If `false`, attempting to destroy an active service will cause an error. Default `false`
 	Reuse    pulumi.BoolPtrInput
 	Snippets ServiceVclSnippetArrayInput
-	// Conditionally enables new service versions to be staged. If set to `true`, all changes made by an `apply` step will be staged, even if `apply` did not create a new draft version. Default `false`
+	// Conditionally enables new service versions to be staged. If set to `true`, versioned changes made by an `apply` step will be staged, even if `apply` did not create a new draft version. Versionless service attributes, such as `name` and `comment`, are updated regardless of this setting. Default `false`
 	Stage pulumi.BoolPtrInput
 	// Enables serving a stale object if there is an error
 	StaleIfError pulumi.BoolPtrInput
@@ -714,7 +718,7 @@ func (o ServiceVclOutput) Acls() ServiceVclAclArrayOutput {
 	return o.ApplyT(func(v *ServiceVcl) ServiceVclAclArrayOutput { return v.Acls }).(ServiceVclAclArrayOutput)
 }
 
-// Conditionally prevents new service versions from being activated. The apply step will create a new draft version but will not activate it if this is set to `false`. Default `true`
+// Controls whether newly created service versions are activated. When versioned configuration changes, the apply step creates a draft version but does not activate it if this is set to `false`. Versionless service attributes, such as `name` and `comment`, are updated regardless of this setting. Default `true`
 func (o ServiceVclOutput) Activate() pulumi.BoolPtrOutput {
 	return o.ApplyT(func(v *ServiceVcl) pulumi.BoolPtrOutput { return v.Activate }).(pulumi.BoolPtrOutput)
 }
@@ -737,7 +741,7 @@ func (o ServiceVclOutput) ClonedVersion() pulumi.IntOutput {
 	return o.ApplyT(func(v *ServiceVcl) pulumi.IntOutput { return v.ClonedVersion }).(pulumi.IntOutput)
 }
 
-// Description field for the service. Default `Managed by Terraform`
+// Description field for the service. This versionless attribute is updated regardless of the `activate` and `stage` settings. Default `Managed by Terraform`
 func (o ServiceVclOutput) Comment() pulumi.StringPtrOutput {
 	return o.ApplyT(func(v *ServiceVcl) pulumi.StringPtrOutput { return v.Comment }).(pulumi.StringPtrOutput)
 }
@@ -923,7 +927,7 @@ func (o ServiceVclOutput) LoggingSyslogs() ServiceVclLoggingSyslogArrayOutput {
 	return o.ApplyT(func(v *ServiceVcl) ServiceVclLoggingSyslogArrayOutput { return v.LoggingSyslogs }).(ServiceVclLoggingSyslogArrayOutput)
 }
 
-// The unique name for the Service to create
+// The unique name for the Service to create. This versionless attribute is updated regardless of the `activate` and `stage` settings
 func (o ServiceVclOutput) Name() pulumi.StringOutput {
 	return o.ApplyT(func(v *ServiceVcl) pulumi.StringOutput { return v.Name }).(pulumi.StringOutput)
 }
@@ -953,7 +957,7 @@ func (o ServiceVclOutput) Snippets() ServiceVclSnippetArrayOutput {
 	return o.ApplyT(func(v *ServiceVcl) ServiceVclSnippetArrayOutput { return v.Snippets }).(ServiceVclSnippetArrayOutput)
 }
 
-// Conditionally enables new service versions to be staged. If set to `true`, all changes made by an `apply` step will be staged, even if `apply` did not create a new draft version. Default `false`
+// Conditionally enables new service versions to be staged. If set to `true`, versioned changes made by an `apply` step will be staged, even if `apply` did not create a new draft version. Versionless service attributes, such as `name` and `comment`, are updated regardless of this setting. Default `false`
 func (o ServiceVclOutput) Stage() pulumi.BoolPtrOutput {
 	return o.ApplyT(func(v *ServiceVcl) pulumi.BoolPtrOutput { return v.Stage }).(pulumi.BoolPtrOutput)
 }

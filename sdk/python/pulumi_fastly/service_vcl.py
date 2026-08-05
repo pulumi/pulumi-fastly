@@ -82,16 +82,16 @@ class ServiceVclArgs:
         """
         The set of arguments for constructing a ServiceVcl resource.
 
-        :param pulumi.Input[_builtins.bool] activate: Conditionally prevents new service versions from being activated. The apply step will create a new draft version but will not activate it if this is set to `false`. Default `true`
-        :param pulumi.Input[_builtins.str] comment: Description field for the service. Default `Managed by Terraform`
+        :param pulumi.Input[_builtins.bool] activate: Controls whether newly created service versions are activated. When versioned configuration changes, the apply step creates a draft version but does not activate it if this is set to `false`. Versionless service attributes, such as `name` and `comment`, are updated regardless of this setting. Default `true`
+        :param pulumi.Input[_builtins.str] comment: Description field for the service. This versionless attribute is updated regardless of the `activate` and `stage` settings. Default `Managed by Terraform`
         :param pulumi.Input[_builtins.str] default_host: The default hostname
         :param pulumi.Input[_builtins.int] default_ttl: The default Time-to-live (TTL) for requests
         :param pulumi.Input[Sequence[pulumi.Input['ServiceVclDomainArgs']]] domains: A set of Domain names to serve as entry points for your Service
         :param pulumi.Input[_builtins.bool] force_destroy: Services that are active cannot be destroyed. In order to destroy the Service, set `force_destroy` to `true`. Default `false`
         :param pulumi.Input[_builtins.bool] http3: Enables support for the HTTP/3 (QUIC) protocol
-        :param pulumi.Input[_builtins.str] name: The unique name for the Service to create
+        :param pulumi.Input[_builtins.str] name: The unique name for the Service to create. This versionless attribute is updated regardless of the `activate` and `stage` settings
         :param pulumi.Input[_builtins.bool] reuse: Services that are active cannot be destroyed. If set to `true` a service Terraform intends to destroy will instead be deactivated (allowing it to be reused by importing it into another Terraform project). If `false`, attempting to destroy an active service will cause an error. Default `false`
-        :param pulumi.Input[_builtins.bool] stage: Conditionally enables new service versions to be staged. If set to `true`, all changes made by an `apply` step will be staged, even if `apply` did not create a new draft version. Default `false`
+        :param pulumi.Input[_builtins.bool] stage: Conditionally enables new service versions to be staged. If set to `true`, versioned changes made by an `apply` step will be staged, even if `apply` did not create a new draft version. Versionless service attributes, such as `name` and `comment`, are updated regardless of this setting. Default `false`
         :param pulumi.Input[_builtins.bool] stale_if_error: Enables serving a stale object if there is an error
         :param pulumi.Input[_builtins.int] stale_if_error_ttl: The default time-to-live (TTL) for serving the stale object for the version
         :param pulumi.Input[_builtins.str] version_comment: Description field for the version
@@ -226,7 +226,7 @@ class ServiceVclArgs:
     @pulumi.getter
     def activate(self) -> pulumi.Input[Optional[_builtins.bool]]:
         """
-        Conditionally prevents new service versions from being activated. The apply step will create a new draft version but will not activate it if this is set to `false`. Default `true`
+        Controls whether newly created service versions are activated. When versioned configuration changes, the apply step creates a draft version but does not activate it if this is set to `false`. Versionless service attributes, such as `name` and `comment`, are updated regardless of this setting. Default `true`
         """
         return pulumi.get(self, "activate")
 
@@ -256,7 +256,7 @@ class ServiceVclArgs:
     @pulumi.getter
     def comment(self) -> pulumi.Input[Optional[_builtins.str]]:
         """
-        Description field for the service. Default `Managed by Terraform`
+        Description field for the service. This versionless attribute is updated regardless of the `activate` and `stage` settings. Default `Managed by Terraform`
         """
         return pulumi.get(self, "comment")
 
@@ -652,7 +652,7 @@ class ServiceVclArgs:
     @pulumi.getter
     def name(self) -> pulumi.Input[Optional[_builtins.str]]:
         """
-        The unique name for the Service to create
+        The unique name for the Service to create. This versionless attribute is updated regardless of the `activate` and `stage` settings
         """
         return pulumi.get(self, "name")
 
@@ -721,7 +721,7 @@ class ServiceVclArgs:
     @pulumi.getter
     def stage(self) -> pulumi.Input[Optional[_builtins.bool]]:
         """
-        Conditionally enables new service versions to be staged. If set to `true`, all changes made by an `apply` step will be staged, even if `apply` did not create a new draft version. Default `false`
+        Conditionally enables new service versions to be staged. If set to `true`, versioned changes made by an `apply` step will be staged, even if `apply` did not create a new draft version. Versionless service attributes, such as `name` and `comment`, are updated regardless of this setting. Default `false`
         """
         return pulumi.get(self, "stage")
 
@@ -844,10 +844,10 @@ class _ServiceVclState:
         """
         Input properties used for looking up and filtering ServiceVcl resources.
 
-        :param pulumi.Input[_builtins.bool] activate: Conditionally prevents new service versions from being activated. The apply step will create a new draft version but will not activate it if this is set to `false`. Default `true`
+        :param pulumi.Input[_builtins.bool] activate: Controls whether newly created service versions are activated. When versioned configuration changes, the apply step creates a draft version but does not activate it if this is set to `false`. Versionless service attributes, such as `name` and `comment`, are updated regardless of this setting. Default `true`
         :param pulumi.Input[_builtins.int] active_version: The currently active version of your Fastly Service
         :param pulumi.Input[_builtins.int] cloned_version: The latest cloned version by the provider
-        :param pulumi.Input[_builtins.str] comment: Description field for the service. Default `Managed by Terraform`
+        :param pulumi.Input[_builtins.str] comment: Description field for the service. This versionless attribute is updated regardless of the `activate` and `stage` settings. Default `Managed by Terraform`
         :param pulumi.Input[_builtins.str] default_host: The default hostname
         :param pulumi.Input[_builtins.int] default_ttl: The default Time-to-live (TTL) for requests
         :param pulumi.Input[Sequence[pulumi.Input['ServiceVclDomainArgs']]] domains: A set of Domain names to serve as entry points for your Service
@@ -855,9 +855,9 @@ class _ServiceVclState:
         :param pulumi.Input[_builtins.bool] force_refresh: Used internally by the provider to temporarily indicate if all resources should call their associated API to update the local state. This is for scenarios where the service version has been reverted outside of Terraform (e.g. via the Fastly UI) and the provider needs to resync the state for a different active version (this is only if `activate` is `true`).
         :param pulumi.Input[_builtins.bool] http3: Enables support for the HTTP/3 (QUIC) protocol
         :param pulumi.Input[_builtins.bool] imported: Used internally by the provider to temporarily indicate if the service is being imported, and is reset to false once the import is finished
-        :param pulumi.Input[_builtins.str] name: The unique name for the Service to create
+        :param pulumi.Input[_builtins.str] name: The unique name for the Service to create. This versionless attribute is updated regardless of the `activate` and `stage` settings
         :param pulumi.Input[_builtins.bool] reuse: Services that are active cannot be destroyed. If set to `true` a service Terraform intends to destroy will instead be deactivated (allowing it to be reused by importing it into another Terraform project). If `false`, attempting to destroy an active service will cause an error. Default `false`
-        :param pulumi.Input[_builtins.bool] stage: Conditionally enables new service versions to be staged. If set to `true`, all changes made by an `apply` step will be staged, even if `apply` did not create a new draft version. Default `false`
+        :param pulumi.Input[_builtins.bool] stage: Conditionally enables new service versions to be staged. If set to `true`, versioned changes made by an `apply` step will be staged, even if `apply` did not create a new draft version. Versionless service attributes, such as `name` and `comment`, are updated regardless of this setting. Default `false`
         :param pulumi.Input[_builtins.int] staged_version: The currently staged version of your Fastly Service
         :param pulumi.Input[_builtins.bool] stale_if_error: Enables serving a stale object if there is an error
         :param pulumi.Input[_builtins.int] stale_if_error_ttl: The default time-to-live (TTL) for serving the stale object for the version
@@ -1003,7 +1003,7 @@ class _ServiceVclState:
     @pulumi.getter
     def activate(self) -> pulumi.Input[Optional[_builtins.bool]]:
         """
-        Conditionally prevents new service versions from being activated. The apply step will create a new draft version but will not activate it if this is set to `false`. Default `true`
+        Controls whether newly created service versions are activated. When versioned configuration changes, the apply step creates a draft version but does not activate it if this is set to `false`. Versionless service attributes, such as `name` and `comment`, are updated regardless of this setting. Default `true`
         """
         return pulumi.get(self, "activate")
 
@@ -1057,7 +1057,7 @@ class _ServiceVclState:
     @pulumi.getter
     def comment(self) -> pulumi.Input[Optional[_builtins.str]]:
         """
-        Description field for the service. Default `Managed by Terraform`
+        Description field for the service. This versionless attribute is updated regardless of the `activate` and `stage` settings. Default `Managed by Terraform`
         """
         return pulumi.get(self, "comment")
 
@@ -1477,7 +1477,7 @@ class _ServiceVclState:
     @pulumi.getter
     def name(self) -> pulumi.Input[Optional[_builtins.str]]:
         """
-        The unique name for the Service to create
+        The unique name for the Service to create. This versionless attribute is updated regardless of the `activate` and `stage` settings
         """
         return pulumi.get(self, "name")
 
@@ -1546,7 +1546,7 @@ class _ServiceVclState:
     @pulumi.getter
     def stage(self) -> pulumi.Input[Optional[_builtins.bool]]:
         """
-        Conditionally enables new service versions to be staged. If set to `true`, all changes made by an `apply` step will be staged, even if `apply` did not create a new draft version. Default `false`
+        Conditionally enables new service versions to be staged. If set to `true`, versioned changes made by an `apply` step will be staged, even if `apply` did not create a new draft version. Versionless service attributes, such as `name` and `comment`, are updated regardless of this setting. Default `false`
         """
         return pulumi.get(self, "stage")
 
@@ -1710,6 +1710,10 @@ class ServiceVcl(pulumi.CustomResource):
         service, there is no logical reason to both stage and activate every
         set of applied changes.
 
+        The `activate` and `stage` attributes only control version lifecycle operations.
+        Versionless service attributes, including `name` and `comment`, are updated
+        immediately during `pulumi up` regardless of these settings.
+
         ## Example Usage
 
         Basic usage:
@@ -1801,16 +1805,16 @@ class ServiceVcl(pulumi.CustomResource):
 
         :param str resource_name: The name of the resource.
         :param pulumi.ResourceOptions opts: Options for the resource.
-        :param pulumi.Input[_builtins.bool] activate: Conditionally prevents new service versions from being activated. The apply step will create a new draft version but will not activate it if this is set to `false`. Default `true`
-        :param pulumi.Input[_builtins.str] comment: Description field for the service. Default `Managed by Terraform`
+        :param pulumi.Input[_builtins.bool] activate: Controls whether newly created service versions are activated. When versioned configuration changes, the apply step creates a draft version but does not activate it if this is set to `false`. Versionless service attributes, such as `name` and `comment`, are updated regardless of this setting. Default `true`
+        :param pulumi.Input[_builtins.str] comment: Description field for the service. This versionless attribute is updated regardless of the `activate` and `stage` settings. Default `Managed by Terraform`
         :param pulumi.Input[_builtins.str] default_host: The default hostname
         :param pulumi.Input[_builtins.int] default_ttl: The default Time-to-live (TTL) for requests
         :param pulumi.Input[Sequence[pulumi.Input[Union['ServiceVclDomainArgs', 'ServiceVclDomainArgsDict']]]] domains: A set of Domain names to serve as entry points for your Service
         :param pulumi.Input[_builtins.bool] force_destroy: Services that are active cannot be destroyed. In order to destroy the Service, set `force_destroy` to `true`. Default `false`
         :param pulumi.Input[_builtins.bool] http3: Enables support for the HTTP/3 (QUIC) protocol
-        :param pulumi.Input[_builtins.str] name: The unique name for the Service to create
+        :param pulumi.Input[_builtins.str] name: The unique name for the Service to create. This versionless attribute is updated regardless of the `activate` and `stage` settings
         :param pulumi.Input[_builtins.bool] reuse: Services that are active cannot be destroyed. If set to `true` a service Terraform intends to destroy will instead be deactivated (allowing it to be reused by importing it into another Terraform project). If `false`, attempting to destroy an active service will cause an error. Default `false`
-        :param pulumi.Input[_builtins.bool] stage: Conditionally enables new service versions to be staged. If set to `true`, all changes made by an `apply` step will be staged, even if `apply` did not create a new draft version. Default `false`
+        :param pulumi.Input[_builtins.bool] stage: Conditionally enables new service versions to be staged. If set to `true`, versioned changes made by an `apply` step will be staged, even if `apply` did not create a new draft version. Versionless service attributes, such as `name` and `comment`, are updated regardless of this setting. Default `false`
         :param pulumi.Input[_builtins.bool] stale_if_error: Enables serving a stale object if there is an error
         :param pulumi.Input[_builtins.int] stale_if_error_ttl: The default time-to-live (TTL) for serving the stale object for the version
         :param pulumi.Input[_builtins.str] version_comment: Description field for the version
@@ -1853,6 +1857,10 @@ class ServiceVcl(pulumi.CustomResource):
         set to `true`. While this combination will not cause any harm to the
         service, there is no logical reason to both stage and activate every
         set of applied changes.
+
+        The `activate` and `stage` attributes only control version lifecycle operations.
+        Versionless service attributes, including `name` and `comment`, are updated
+        immediately during `pulumi up` regardless of these settings.
 
         ## Example Usage
 
@@ -2168,10 +2176,10 @@ class ServiceVcl(pulumi.CustomResource):
         :param str resource_name: The unique name of the resulting resource.
         :param pulumi.Input[str] id: The unique provider ID of the resource to lookup.
         :param pulumi.ResourceOptions opts: Options for the resource.
-        :param pulumi.Input[_builtins.bool] activate: Conditionally prevents new service versions from being activated. The apply step will create a new draft version but will not activate it if this is set to `false`. Default `true`
+        :param pulumi.Input[_builtins.bool] activate: Controls whether newly created service versions are activated. When versioned configuration changes, the apply step creates a draft version but does not activate it if this is set to `false`. Versionless service attributes, such as `name` and `comment`, are updated regardless of this setting. Default `true`
         :param pulumi.Input[_builtins.int] active_version: The currently active version of your Fastly Service
         :param pulumi.Input[_builtins.int] cloned_version: The latest cloned version by the provider
-        :param pulumi.Input[_builtins.str] comment: Description field for the service. Default `Managed by Terraform`
+        :param pulumi.Input[_builtins.str] comment: Description field for the service. This versionless attribute is updated regardless of the `activate` and `stage` settings. Default `Managed by Terraform`
         :param pulumi.Input[_builtins.str] default_host: The default hostname
         :param pulumi.Input[_builtins.int] default_ttl: The default Time-to-live (TTL) for requests
         :param pulumi.Input[Sequence[pulumi.Input[Union['ServiceVclDomainArgs', 'ServiceVclDomainArgsDict']]]] domains: A set of Domain names to serve as entry points for your Service
@@ -2179,9 +2187,9 @@ class ServiceVcl(pulumi.CustomResource):
         :param pulumi.Input[_builtins.bool] force_refresh: Used internally by the provider to temporarily indicate if all resources should call their associated API to update the local state. This is for scenarios where the service version has been reverted outside of Terraform (e.g. via the Fastly UI) and the provider needs to resync the state for a different active version (this is only if `activate` is `true`).
         :param pulumi.Input[_builtins.bool] http3: Enables support for the HTTP/3 (QUIC) protocol
         :param pulumi.Input[_builtins.bool] imported: Used internally by the provider to temporarily indicate if the service is being imported, and is reset to false once the import is finished
-        :param pulumi.Input[_builtins.str] name: The unique name for the Service to create
+        :param pulumi.Input[_builtins.str] name: The unique name for the Service to create. This versionless attribute is updated regardless of the `activate` and `stage` settings
         :param pulumi.Input[_builtins.bool] reuse: Services that are active cannot be destroyed. If set to `true` a service Terraform intends to destroy will instead be deactivated (allowing it to be reused by importing it into another Terraform project). If `false`, attempting to destroy an active service will cause an error. Default `false`
-        :param pulumi.Input[_builtins.bool] stage: Conditionally enables new service versions to be staged. If set to `true`, all changes made by an `apply` step will be staged, even if `apply` did not create a new draft version. Default `false`
+        :param pulumi.Input[_builtins.bool] stage: Conditionally enables new service versions to be staged. If set to `true`, versioned changes made by an `apply` step will be staged, even if `apply` did not create a new draft version. Versionless service attributes, such as `name` and `comment`, are updated regardless of this setting. Default `false`
         :param pulumi.Input[_builtins.int] staged_version: The currently staged version of your Fastly Service
         :param pulumi.Input[_builtins.bool] stale_if_error: Enables serving a stale object if there is an error
         :param pulumi.Input[_builtins.int] stale_if_error_ttl: The default time-to-live (TTL) for serving the stale object for the version
@@ -2265,7 +2273,7 @@ class ServiceVcl(pulumi.CustomResource):
     @pulumi.getter
     def activate(self) -> pulumi.Output[Optional[_builtins.bool]]:
         """
-        Conditionally prevents new service versions from being activated. The apply step will create a new draft version but will not activate it if this is set to `false`. Default `true`
+        Controls whether newly created service versions are activated. When versioned configuration changes, the apply step creates a draft version but does not activate it if this is set to `false`. Versionless service attributes, such as `name` and `comment`, are updated regardless of this setting. Default `true`
         """
         return pulumi.get(self, "activate")
 
@@ -2299,7 +2307,7 @@ class ServiceVcl(pulumi.CustomResource):
     @pulumi.getter
     def comment(self) -> pulumi.Output[Optional[_builtins.str]]:
         """
-        Description field for the service. Default `Managed by Terraform`
+        Description field for the service. This versionless attribute is updated regardless of the `activate` and `stage` settings. Default `Managed by Terraform`
         """
         return pulumi.get(self, "comment")
 
@@ -2543,7 +2551,7 @@ class ServiceVcl(pulumi.CustomResource):
     @pulumi.getter
     def name(self) -> pulumi.Output[_builtins.str]:
         """
-        The unique name for the Service to create
+        The unique name for the Service to create. This versionless attribute is updated regardless of the `activate` and `stage` settings
         """
         return pulumi.get(self, "name")
 
@@ -2584,7 +2592,7 @@ class ServiceVcl(pulumi.CustomResource):
     @pulumi.getter
     def stage(self) -> pulumi.Output[Optional[_builtins.bool]]:
         """
-        Conditionally enables new service versions to be staged. If set to `true`, all changes made by an `apply` step will be staged, even if `apply` did not create a new draft version. Default `false`
+        Conditionally enables new service versions to be staged. If set to `true`, versioned changes made by an `apply` step will be staged, even if `apply` did not create a new draft version. Versionless service attributes, such as `name` and `comment`, are updated regardless of this setting. Default `false`
         """
         return pulumi.get(self, "stage")
 

@@ -84,6 +84,10 @@ import javax.annotation.Nullable;
  * service, there is no logical reason to both stage and activate every
  * set of applied changes.
  * 
+ * The `activate` and `stage` attributes only control version lifecycle operations.
+ * Versionless service attributes, including `name` and `comment`, are updated
+ * immediately during `pulumi up` regardless of these settings.
+ * 
  * ## Example Usage
  * 
  * Basic usage:
@@ -169,14 +173,14 @@ import javax.annotation.Nullable;
 @ResourceType(type="fastly:index/serviceCompute:ServiceCompute")
 public class ServiceCompute extends com.pulumi.resources.CustomResource {
     /**
-     * Conditionally prevents new service versions from being activated. The apply step will create a new draft version but will not activate it if this is set to `false`. Default `true`
+     * Controls whether newly created service versions are activated. When versioned configuration changes, the apply step creates a draft version but does not activate it if this is set to `false`. Versionless service attributes, such as `name` and `comment`, are updated regardless of this setting. Default `true`
      * 
      */
     @Export(name="activate", refs={Boolean.class}, tree="[0]")
     private Output</* @Nullable */ Boolean> activate;
 
     /**
-     * @return Conditionally prevents new service versions from being activated. The apply step will create a new draft version but will not activate it if this is set to `false`. Default `true`
+     * @return Controls whether newly created service versions are activated. When versioned configuration changes, the apply step creates a draft version but does not activate it if this is set to `false`. Versionless service attributes, such as `name` and `comment`, are updated regardless of this setting. Default `true`
      * 
      */
     public Output<Optional<Boolean>> activate() {
@@ -217,14 +221,14 @@ public class ServiceCompute extends com.pulumi.resources.CustomResource {
         return this.clonedVersion;
     }
     /**
-     * Description field for the service. Default `Managed by Terraform`
+     * Description field for the service. This versionless attribute is updated regardless of the `activate` and `stage` settings. Default `Managed by Terraform`
      * 
      */
     @Export(name="comment", refs={String.class}, tree="[0]")
     private Output</* @Nullable */ String> comment;
 
     /**
-     * @return Description field for the service. Default `Managed by Terraform`
+     * @return Description field for the service. This versionless attribute is updated regardless of the `activate` and `stage` settings. Default `Managed by Terraform`
      * 
      */
     public Output<Optional<String>> comment() {
@@ -473,14 +477,14 @@ public class ServiceCompute extends com.pulumi.resources.CustomResource {
         return Codegen.optional(this.loggingSyslogs);
     }
     /**
-     * The unique name for the Service to create
+     * The unique name for the Service to create. This versionless attribute is updated regardless of the `activate` and `stage` settings
      * 
      */
     @Export(name="name", refs={String.class}, tree="[0]")
     private Output<String> name;
 
     /**
-     * @return The unique name for the Service to create
+     * @return The unique name for the Service to create. This versionless attribute is updated regardless of the `activate` and `stage` settings
      * 
      */
     public Output<String> name() {
@@ -535,14 +539,14 @@ public class ServiceCompute extends com.pulumi.resources.CustomResource {
         return Codegen.optional(this.reuse);
     }
     /**
-     * Conditionally enables new service versions to be staged. If set to `true`, all changes made by an `apply` step will be staged, even if `apply` did not create a new draft version. Default `false`
+     * Conditionally enables new service versions to be staged. If set to `true`, versioned changes made by an `apply` step will be staged, even if `apply` did not create a new draft version. Versionless service attributes, such as `name` and `comment`, are updated regardless of this setting. Default `false`
      * 
      */
     @Export(name="stage", refs={Boolean.class}, tree="[0]")
     private Output</* @Nullable */ Boolean> stage;
 
     /**
-     * @return Conditionally enables new service versions to be staged. If set to `true`, all changes made by an `apply` step will be staged, even if `apply` did not create a new draft version. Default `false`
+     * @return Conditionally enables new service versions to be staged. If set to `true`, versioned changes made by an `apply` step will be staged, even if `apply` did not create a new draft version. Versionless service attributes, such as `name` and `comment`, are updated regardless of this setting. Default `false`
      * 
      */
     public Output<Optional<Boolean>> stage() {
