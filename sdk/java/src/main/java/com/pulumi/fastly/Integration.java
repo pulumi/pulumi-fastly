@@ -17,7 +17,7 @@ import java.util.Optional;
 import javax.annotation.Nullable;
 
 /**
- * Provides a Fastly integration. Fastly will use these integrations to send you notifications and alerts related to the Fastly product. Mailing list, Microsoft Teams, New Relic, PagerDuty, Slack, and webhook are supported as integrations.
+ * Provides a Fastly integration. Fastly will use these integrations to send you notifications and alerts related to the Fastly product. Datadog, Jira, Jira Service Management, Mailing list, Microsoft Teams, New Relic, OpsGenie, PagerDuty, Slack, Splunk On-Call, and webhook are supported as integrations.
  * 
  * &gt; **IMPORTANT:** The mailing list integrations require confirmation. To send a confirmation email and verify integration status, after applying changes using Terraform, please visit https://manage.fastly.com/observability/alerts/integrations
  * 
@@ -45,6 +45,36 @@ import javax.annotation.Nullable;
  *     }}{@code
  * 
  *     public static void stack(Context ctx) }{{@code
+ *         var datadogExample = new Integration("datadogExample", IntegrationArgs.builder()
+ *             .name("my Datadog integration")
+ *             .description("example Datadog integration")
+ *             .type("datadog")
+ *             .config(Map.ofEntries(
+ *                 Map.entry("apikey", "XXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXX"),
+ *                 Map.entry("site", "datadoghq.eu")
+ *             ))
+ *             .build());
+ * 
+ *         var jiraissueExample = new Integration("jiraissueExample", IntegrationArgs.builder()
+ *             .name("my Jira integration")
+ *             .description("example Jira integration")
+ *             .type("jiraissue")
+ *             .config(Map.ofEntries(
+ *                 Map.entry("baseurl", "https://my-org.atlassian.net"),
+ *                 Map.entry("username", "user}{@literal @}{@code my-org.com"),
+ *                 Map.entry("token", "XXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXX"),
+ *                 Map.entry("projectkey", "ABC"),
+ *                 Map.entry("issuetype", "Bug")
+ *             ))
+ *             .build());
+ * 
+ *         var jsmExample = new Integration("jsmExample", IntegrationArgs.builder()
+ *             .name("my Jira Service Management integration")
+ *             .description("example Jira Service Management integration")
+ *             .type("jsm")
+ *             .config(Map.of("apikey", "XXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXX"))
+ *             .build());
+ * 
  *         var mailinglistExample = new Integration("mailinglistExample", IntegrationArgs.builder()
  *             .name("my mailing list integration")
  *             .description("example mailing list integration")
@@ -69,6 +99,13 @@ import javax.annotation.Nullable;
  *             ))
  *             .build());
  * 
+ *         var opsgenieExample = new Integration("opsgenieExample", IntegrationArgs.builder()
+ *             .name("my OpsGenie integration")
+ *             .description("example OpsGenie integration")
+ *             .type("opsgenie")
+ *             .config(Map.of("apikey", "XXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXX"))
+ *             .build());
+ * 
  *         var pagerdutyExample = new Integration("pagerdutyExample", IntegrationArgs.builder()
  *             .name("my PagerDuty integration")
  *             .description("example PagerDuty integration")
@@ -81,6 +118,13 @@ import javax.annotation.Nullable;
  *             .description("example Slack integration")
  *             .type("slack")
  *             .config(Map.of("webhook", "https://hooks.slack.com/services/T00000000/B00000000/XXXXXXXXXXXXXXXXXXXXXXXX"))
+ *             .build());
+ * 
+ *         var splunkoncallExample = new Integration("splunkoncallExample", IntegrationArgs.builder()
+ *             .name("my Splunk On-Call integration")
+ *             .description("example Splunk On-Call integration")
+ *             .type("splunkoncall")
+ *             .config(Map.of("url", "https://alert.victorops.com/integrations/generic/20131114/alert/XXXXXXXXXXXXXXXXXXXXXXXX"))
  *             .build());
  * 
  *         var webhookExample = new Integration("webhookExample", IntegrationArgs.builder()
@@ -141,14 +185,14 @@ public class Integration extends com.pulumi.resources.CustomResource {
         return this.name;
     }
     /**
-     * Type of the integration. One of: `mailinglist`, `microsoftteams`, `newrelic`, `pagerduty`, `slack`, `webhook`.
+     * Type of the integration. One of: `datadog`, `jiraissue`, `jsm`, `mailinglist`, `microsoftteams`, `newrelic`, `opsgenie`, `pagerduty`, `slack`, `splunkoncall`, `webhook`.
      * 
      */
     @Export(name="type", refs={String.class}, tree="[0]")
     private Output<String> type;
 
     /**
-     * @return Type of the integration. One of: `mailinglist`, `microsoftteams`, `newrelic`, `pagerduty`, `slack`, `webhook`.
+     * @return Type of the integration. One of: `datadog`, `jiraissue`, `jsm`, `mailinglist`, `microsoftteams`, `newrelic`, `opsgenie`, `pagerduty`, `slack`, `splunkoncall`, `webhook`.
      * 
      */
     public Output<String> type() {

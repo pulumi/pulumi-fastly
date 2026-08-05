@@ -40,6 +40,10 @@ namespace Pulumi.Fastly
     /// service, there is no logical reason to both stage and activate every
     /// set of applied changes.
     /// 
+    /// The `Activate` and `Stage` attributes only control version lifecycle operations.
+    /// Versionless service attributes, including `Name` and `Comment`, are updated
+    /// immediately during `pulumi up` regardless of these settings.
+    /// 
     /// ## Example Usage
     /// 
     /// Basic usage:
@@ -112,7 +116,7 @@ namespace Pulumi.Fastly
     public partial class ServiceCompute : global::Pulumi.CustomResource
     {
         /// <summary>
-        /// Conditionally prevents new service versions from being activated. The apply step will create a new draft version but will not activate it if this is set to `False`. Default `True`
+        /// Controls whether newly created service versions are activated. When versioned configuration changes, the apply step creates a draft version but does not activate it if this is set to `False`. Versionless service attributes, such as `Name` and `Comment`, are updated regardless of this setting. Default `True`
         /// </summary>
         [Output("activate")]
         public Output<bool?> Activate { get; private set; } = null!;
@@ -133,7 +137,7 @@ namespace Pulumi.Fastly
         public Output<int> ClonedVersion { get; private set; } = null!;
 
         /// <summary>
-        /// Description field for the service. Default `Managed by Terraform`
+        /// Description field for the service. This versionless attribute is updated regardless of the `Activate` and `Stage` settings. Default `Managed by Terraform`
         /// </summary>
         [Output("comment")]
         public Output<string?> Comment { get; private set; } = null!;
@@ -256,7 +260,7 @@ namespace Pulumi.Fastly
         public Output<ImmutableArray<Outputs.ServiceComputeLoggingSyslog>> LoggingSyslogs { get; private set; } = null!;
 
         /// <summary>
-        /// The unique name for the Service to create
+        /// The unique name for the Service to create. This versionless attribute is updated regardless of the `Activate` and `Stage` settings
         /// </summary>
         [Output("name")]
         public Output<string> Name { get; private set; } = null!;
@@ -283,7 +287,7 @@ namespace Pulumi.Fastly
         public Output<bool?> Reuse { get; private set; } = null!;
 
         /// <summary>
-        /// Conditionally enables new service versions to be staged. If set to `True`, all changes made by an `Apply` step will be staged, even if `Apply` did not create a new draft version. Default `False`
+        /// Conditionally enables new service versions to be staged. If set to `True`, versioned changes made by an `Apply` step will be staged, even if `Apply` did not create a new draft version. Versionless service attributes, such as `Name` and `Comment`, are updated regardless of this setting. Default `False`
         /// </summary>
         [Output("stage")]
         public Output<bool?> Stage { get; private set; } = null!;
@@ -347,7 +351,7 @@ namespace Pulumi.Fastly
     public sealed class ServiceComputeArgs : global::Pulumi.ResourceArgs
     {
         /// <summary>
-        /// Conditionally prevents new service versions from being activated. The apply step will create a new draft version but will not activate it if this is set to `False`. Default `True`
+        /// Controls whether newly created service versions are activated. When versioned configuration changes, the apply step creates a draft version but does not activate it if this is set to `False`. Versionless service attributes, such as `Name` and `Comment`, are updated regardless of this setting. Default `True`
         /// </summary>
         [Input("activate")]
         public Input<bool>? Activate { get; set; }
@@ -361,7 +365,7 @@ namespace Pulumi.Fastly
         }
 
         /// <summary>
-        /// Description field for the service. Default `Managed by Terraform`
+        /// Description field for the service. This versionless attribute is updated regardless of the `Activate` and `Stage` settings. Default `Managed by Terraform`
         /// </summary>
         [Input("comment")]
         public Input<string>? Comment { get; set; }
@@ -628,7 +632,7 @@ namespace Pulumi.Fastly
         }
 
         /// <summary>
-        /// The unique name for the Service to create
+        /// The unique name for the Service to create. This versionless attribute is updated regardless of the `Activate` and `Stage` settings
         /// </summary>
         [Input("name")]
         public Input<string>? Name { get; set; }
@@ -661,7 +665,7 @@ namespace Pulumi.Fastly
         public Input<bool>? Reuse { get; set; }
 
         /// <summary>
-        /// Conditionally enables new service versions to be staged. If set to `True`, all changes made by an `Apply` step will be staged, even if `Apply` did not create a new draft version. Default `False`
+        /// Conditionally enables new service versions to be staged. If set to `True`, versioned changes made by an `Apply` step will be staged, even if `Apply` did not create a new draft version. Versionless service attributes, such as `Name` and `Comment`, are updated regardless of this setting. Default `False`
         /// </summary>
         [Input("stage")]
         public Input<bool>? Stage { get; set; }
@@ -681,7 +685,7 @@ namespace Pulumi.Fastly
     public sealed class ServiceComputeState : global::Pulumi.ResourceArgs
     {
         /// <summary>
-        /// Conditionally prevents new service versions from being activated. The apply step will create a new draft version but will not activate it if this is set to `False`. Default `True`
+        /// Controls whether newly created service versions are activated. When versioned configuration changes, the apply step creates a draft version but does not activate it if this is set to `False`. Versionless service attributes, such as `Name` and `Comment`, are updated regardless of this setting. Default `True`
         /// </summary>
         [Input("activate")]
         public Input<bool>? Activate { get; set; }
@@ -707,7 +711,7 @@ namespace Pulumi.Fastly
         public Input<int>? ClonedVersion { get; set; }
 
         /// <summary>
-        /// Description field for the service. Default `Managed by Terraform`
+        /// Description field for the service. This versionless attribute is updated regardless of the `Activate` and `Stage` settings. Default `Managed by Terraform`
         /// </summary>
         [Input("comment")]
         public Input<string>? Comment { get; set; }
@@ -986,7 +990,7 @@ namespace Pulumi.Fastly
         }
 
         /// <summary>
-        /// The unique name for the Service to create
+        /// The unique name for the Service to create. This versionless attribute is updated regardless of the `Activate` and `Stage` settings
         /// </summary>
         [Input("name")]
         public Input<string>? Name { get; set; }
@@ -1019,7 +1023,7 @@ namespace Pulumi.Fastly
         public Input<bool>? Reuse { get; set; }
 
         /// <summary>
-        /// Conditionally enables new service versions to be staged. If set to `True`, all changes made by an `Apply` step will be staged, even if `Apply` did not create a new draft version. Default `False`
+        /// Conditionally enables new service versions to be staged. If set to `True`, versioned changes made by an `Apply` step will be staged, even if `Apply` did not create a new draft version. Versionless service attributes, such as `Name` and `Comment`, are updated regardless of this setting. Default `False`
         /// </summary>
         [Input("stage")]
         public Input<bool>? Stage { get; set; }

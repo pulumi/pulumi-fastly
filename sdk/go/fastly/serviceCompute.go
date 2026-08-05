@@ -41,6 +41,10 @@ import (
 // service, there is no logical reason to both stage and activate every
 // set of applied changes.
 //
+// The `activate` and `stage` attributes only control version lifecycle operations.
+// Versionless service attributes, including `name` and `comment`, are updated
+// immediately during `pulumi up` regardless of these settings.
+//
 // ## Example Usage
 //
 // Basic usage:
@@ -117,14 +121,14 @@ import (
 type ServiceCompute struct {
 	pulumi.CustomResourceState
 
-	// Conditionally prevents new service versions from being activated. The apply step will create a new draft version but will not activate it if this is set to `false`. Default `true`
+	// Controls whether newly created service versions are activated. When versioned configuration changes, the apply step creates a draft version but does not activate it if this is set to `false`. Versionless service attributes, such as `name` and `comment`, are updated regardless of this setting. Default `true`
 	Activate pulumi.BoolPtrOutput `pulumi:"activate"`
 	// The currently active version of your Fastly Service
 	ActiveVersion pulumi.IntOutput                 `pulumi:"activeVersion"`
 	Backends      ServiceComputeBackendArrayOutput `pulumi:"backends"`
 	// The latest cloned version by the provider
 	ClonedVersion pulumi.IntOutput `pulumi:"clonedVersion"`
-	// Description field for the service. Default `Managed by Terraform`
+	// Description field for the service. This versionless attribute is updated regardless of the `activate` and `stage` settings. Default `Managed by Terraform`
 	Comment      pulumi.StringPtrOutput              `pulumi:"comment"`
 	Dictionaries ServiceComputeDictionaryArrayOutput `pulumi:"dictionaries"`
 	// A set of Domain names to serve as entry points for your Service
@@ -165,7 +169,7 @@ type ServiceCompute struct {
 	LoggingSplunks          ServiceComputeLoggingSplunkArrayOutput          `pulumi:"loggingSplunks"`
 	LoggingSumologics       ServiceComputeLoggingSumologicArrayOutput       `pulumi:"loggingSumologics"`
 	LoggingSyslogs          ServiceComputeLoggingSyslogArrayOutput          `pulumi:"loggingSyslogs"`
-	// The unique name for the Service to create
+	// The unique name for the Service to create. This versionless attribute is updated regardless of the `activate` and `stage` settings
 	Name pulumi.StringOutput `pulumi:"name"`
 	// The `package` block supports uploading or modifying Wasm packages for use in a Fastly Compute service (if omitted, ensure `activate = false` is set on `ServiceCompute` to avoid service validation errors). See Fastly's documentation on [Compute](https://developer.fastly.com/learning/compute/)
 	Package           ServiceComputePackagePtrOutput           `pulumi:"package"`
@@ -174,7 +178,7 @@ type ServiceCompute struct {
 	ResourceLinks ServiceComputeResourceLinkArrayOutput `pulumi:"resourceLinks"`
 	// Services that are active cannot be destroyed. If set to `true` a service Terraform intends to destroy will instead be deactivated (allowing it to be reused by importing it into another Terraform project). If `false`, attempting to destroy an active service will cause an error. Default `false`
 	Reuse pulumi.BoolPtrOutput `pulumi:"reuse"`
-	// Conditionally enables new service versions to be staged. If set to `true`, all changes made by an `apply` step will be staged, even if `apply` did not create a new draft version. Default `false`
+	// Conditionally enables new service versions to be staged. If set to `true`, versioned changes made by an `apply` step will be staged, even if `apply` did not create a new draft version. Versionless service attributes, such as `name` and `comment`, are updated regardless of this setting. Default `false`
 	Stage pulumi.BoolPtrOutput `pulumi:"stage"`
 	// The currently staged version of your Fastly Service
 	StagedVersion pulumi.IntOutput `pulumi:"stagedVersion"`
@@ -212,14 +216,14 @@ func GetServiceCompute(ctx *pulumi.Context,
 
 // Input properties used for looking up and filtering ServiceCompute resources.
 type serviceComputeState struct {
-	// Conditionally prevents new service versions from being activated. The apply step will create a new draft version but will not activate it if this is set to `false`. Default `true`
+	// Controls whether newly created service versions are activated. When versioned configuration changes, the apply step creates a draft version but does not activate it if this is set to `false`. Versionless service attributes, such as `name` and `comment`, are updated regardless of this setting. Default `true`
 	Activate *bool `pulumi:"activate"`
 	// The currently active version of your Fastly Service
 	ActiveVersion *int                    `pulumi:"activeVersion"`
 	Backends      []ServiceComputeBackend `pulumi:"backends"`
 	// The latest cloned version by the provider
 	ClonedVersion *int `pulumi:"clonedVersion"`
-	// Description field for the service. Default `Managed by Terraform`
+	// Description field for the service. This versionless attribute is updated regardless of the `activate` and `stage` settings. Default `Managed by Terraform`
 	Comment      *string                    `pulumi:"comment"`
 	Dictionaries []ServiceComputeDictionary `pulumi:"dictionaries"`
 	// A set of Domain names to serve as entry points for your Service
@@ -260,7 +264,7 @@ type serviceComputeState struct {
 	LoggingSplunks          []ServiceComputeLoggingSplunk          `pulumi:"loggingSplunks"`
 	LoggingSumologics       []ServiceComputeLoggingSumologic       `pulumi:"loggingSumologics"`
 	LoggingSyslogs          []ServiceComputeLoggingSyslog          `pulumi:"loggingSyslogs"`
-	// The unique name for the Service to create
+	// The unique name for the Service to create. This versionless attribute is updated regardless of the `activate` and `stage` settings
 	Name *string `pulumi:"name"`
 	// The `package` block supports uploading or modifying Wasm packages for use in a Fastly Compute service (if omitted, ensure `activate = false` is set on `ServiceCompute` to avoid service validation errors). See Fastly's documentation on [Compute](https://developer.fastly.com/learning/compute/)
 	Package           *ServiceComputePackage           `pulumi:"package"`
@@ -269,7 +273,7 @@ type serviceComputeState struct {
 	ResourceLinks []ServiceComputeResourceLink `pulumi:"resourceLinks"`
 	// Services that are active cannot be destroyed. If set to `true` a service Terraform intends to destroy will instead be deactivated (allowing it to be reused by importing it into another Terraform project). If `false`, attempting to destroy an active service will cause an error. Default `false`
 	Reuse *bool `pulumi:"reuse"`
-	// Conditionally enables new service versions to be staged. If set to `true`, all changes made by an `apply` step will be staged, even if `apply` did not create a new draft version. Default `false`
+	// Conditionally enables new service versions to be staged. If set to `true`, versioned changes made by an `apply` step will be staged, even if `apply` did not create a new draft version. Versionless service attributes, such as `name` and `comment`, are updated regardless of this setting. Default `false`
 	Stage *bool `pulumi:"stage"`
 	// The currently staged version of your Fastly Service
 	StagedVersion *int `pulumi:"stagedVersion"`
@@ -278,14 +282,14 @@ type serviceComputeState struct {
 }
 
 type ServiceComputeState struct {
-	// Conditionally prevents new service versions from being activated. The apply step will create a new draft version but will not activate it if this is set to `false`. Default `true`
+	// Controls whether newly created service versions are activated. When versioned configuration changes, the apply step creates a draft version but does not activate it if this is set to `false`. Versionless service attributes, such as `name` and `comment`, are updated regardless of this setting. Default `true`
 	Activate pulumi.BoolPtrInput
 	// The currently active version of your Fastly Service
 	ActiveVersion pulumi.IntPtrInput
 	Backends      ServiceComputeBackendArrayInput
 	// The latest cloned version by the provider
 	ClonedVersion pulumi.IntPtrInput
-	// Description field for the service. Default `Managed by Terraform`
+	// Description field for the service. This versionless attribute is updated regardless of the `activate` and `stage` settings. Default `Managed by Terraform`
 	Comment      pulumi.StringPtrInput
 	Dictionaries ServiceComputeDictionaryArrayInput
 	// A set of Domain names to serve as entry points for your Service
@@ -326,7 +330,7 @@ type ServiceComputeState struct {
 	LoggingSplunks          ServiceComputeLoggingSplunkArrayInput
 	LoggingSumologics       ServiceComputeLoggingSumologicArrayInput
 	LoggingSyslogs          ServiceComputeLoggingSyslogArrayInput
-	// The unique name for the Service to create
+	// The unique name for the Service to create. This versionless attribute is updated regardless of the `activate` and `stage` settings
 	Name pulumi.StringPtrInput
 	// The `package` block supports uploading or modifying Wasm packages for use in a Fastly Compute service (if omitted, ensure `activate = false` is set on `ServiceCompute` to avoid service validation errors). See Fastly's documentation on [Compute](https://developer.fastly.com/learning/compute/)
 	Package           ServiceComputePackagePtrInput
@@ -335,7 +339,7 @@ type ServiceComputeState struct {
 	ResourceLinks ServiceComputeResourceLinkArrayInput
 	// Services that are active cannot be destroyed. If set to `true` a service Terraform intends to destroy will instead be deactivated (allowing it to be reused by importing it into another Terraform project). If `false`, attempting to destroy an active service will cause an error. Default `false`
 	Reuse pulumi.BoolPtrInput
-	// Conditionally enables new service versions to be staged. If set to `true`, all changes made by an `apply` step will be staged, even if `apply` did not create a new draft version. Default `false`
+	// Conditionally enables new service versions to be staged. If set to `true`, versioned changes made by an `apply` step will be staged, even if `apply` did not create a new draft version. Versionless service attributes, such as `name` and `comment`, are updated regardless of this setting. Default `false`
 	Stage pulumi.BoolPtrInput
 	// The currently staged version of your Fastly Service
 	StagedVersion pulumi.IntPtrInput
@@ -348,10 +352,10 @@ func (ServiceComputeState) ElementType() reflect.Type {
 }
 
 type serviceComputeArgs struct {
-	// Conditionally prevents new service versions from being activated. The apply step will create a new draft version but will not activate it if this is set to `false`. Default `true`
+	// Controls whether newly created service versions are activated. When versioned configuration changes, the apply step creates a draft version but does not activate it if this is set to `false`. Versionless service attributes, such as `name` and `comment`, are updated regardless of this setting. Default `true`
 	Activate *bool                   `pulumi:"activate"`
 	Backends []ServiceComputeBackend `pulumi:"backends"`
-	// Description field for the service. Default `Managed by Terraform`
+	// Description field for the service. This versionless attribute is updated regardless of the `activate` and `stage` settings. Default `Managed by Terraform`
 	Comment      *string                    `pulumi:"comment"`
 	Dictionaries []ServiceComputeDictionary `pulumi:"dictionaries"`
 	// A set of Domain names to serve as entry points for your Service
@@ -388,7 +392,7 @@ type serviceComputeArgs struct {
 	LoggingSplunks                []ServiceComputeLoggingSplunk                `pulumi:"loggingSplunks"`
 	LoggingSumologics             []ServiceComputeLoggingSumologic             `pulumi:"loggingSumologics"`
 	LoggingSyslogs                []ServiceComputeLoggingSyslog                `pulumi:"loggingSyslogs"`
-	// The unique name for the Service to create
+	// The unique name for the Service to create. This versionless attribute is updated regardless of the `activate` and `stage` settings
 	Name *string `pulumi:"name"`
 	// The `package` block supports uploading or modifying Wasm packages for use in a Fastly Compute service (if omitted, ensure `activate = false` is set on `ServiceCompute` to avoid service validation errors). See Fastly's documentation on [Compute](https://developer.fastly.com/learning/compute/)
 	Package           *ServiceComputePackage           `pulumi:"package"`
@@ -397,7 +401,7 @@ type serviceComputeArgs struct {
 	ResourceLinks []ServiceComputeResourceLink `pulumi:"resourceLinks"`
 	// Services that are active cannot be destroyed. If set to `true` a service Terraform intends to destroy will instead be deactivated (allowing it to be reused by importing it into another Terraform project). If `false`, attempting to destroy an active service will cause an error. Default `false`
 	Reuse *bool `pulumi:"reuse"`
-	// Conditionally enables new service versions to be staged. If set to `true`, all changes made by an `apply` step will be staged, even if `apply` did not create a new draft version. Default `false`
+	// Conditionally enables new service versions to be staged. If set to `true`, versioned changes made by an `apply` step will be staged, even if `apply` did not create a new draft version. Versionless service attributes, such as `name` and `comment`, are updated regardless of this setting. Default `false`
 	Stage *bool `pulumi:"stage"`
 	// Description field for the version
 	VersionComment *string `pulumi:"versionComment"`
@@ -405,10 +409,10 @@ type serviceComputeArgs struct {
 
 // The set of arguments for constructing a ServiceCompute resource.
 type ServiceComputeArgs struct {
-	// Conditionally prevents new service versions from being activated. The apply step will create a new draft version but will not activate it if this is set to `false`. Default `true`
+	// Controls whether newly created service versions are activated. When versioned configuration changes, the apply step creates a draft version but does not activate it if this is set to `false`. Versionless service attributes, such as `name` and `comment`, are updated regardless of this setting. Default `true`
 	Activate pulumi.BoolPtrInput
 	Backends ServiceComputeBackendArrayInput
-	// Description field for the service. Default `Managed by Terraform`
+	// Description field for the service. This versionless attribute is updated regardless of the `activate` and `stage` settings. Default `Managed by Terraform`
 	Comment      pulumi.StringPtrInput
 	Dictionaries ServiceComputeDictionaryArrayInput
 	// A set of Domain names to serve as entry points for your Service
@@ -445,7 +449,7 @@ type ServiceComputeArgs struct {
 	LoggingSplunks                ServiceComputeLoggingSplunkArrayInput
 	LoggingSumologics             ServiceComputeLoggingSumologicArrayInput
 	LoggingSyslogs                ServiceComputeLoggingSyslogArrayInput
-	// The unique name for the Service to create
+	// The unique name for the Service to create. This versionless attribute is updated regardless of the `activate` and `stage` settings
 	Name pulumi.StringPtrInput
 	// The `package` block supports uploading or modifying Wasm packages for use in a Fastly Compute service (if omitted, ensure `activate = false` is set on `ServiceCompute` to avoid service validation errors). See Fastly's documentation on [Compute](https://developer.fastly.com/learning/compute/)
 	Package           ServiceComputePackagePtrInput
@@ -454,7 +458,7 @@ type ServiceComputeArgs struct {
 	ResourceLinks ServiceComputeResourceLinkArrayInput
 	// Services that are active cannot be destroyed. If set to `true` a service Terraform intends to destroy will instead be deactivated (allowing it to be reused by importing it into another Terraform project). If `false`, attempting to destroy an active service will cause an error. Default `false`
 	Reuse pulumi.BoolPtrInput
-	// Conditionally enables new service versions to be staged. If set to `true`, all changes made by an `apply` step will be staged, even if `apply` did not create a new draft version. Default `false`
+	// Conditionally enables new service versions to be staged. If set to `true`, versioned changes made by an `apply` step will be staged, even if `apply` did not create a new draft version. Versionless service attributes, such as `name` and `comment`, are updated regardless of this setting. Default `false`
 	Stage pulumi.BoolPtrInput
 	// Description field for the version
 	VersionComment pulumi.StringPtrInput
@@ -547,7 +551,7 @@ func (o ServiceComputeOutput) ToServiceComputeOutputWithContext(ctx context.Cont
 	return o
 }
 
-// Conditionally prevents new service versions from being activated. The apply step will create a new draft version but will not activate it if this is set to `false`. Default `true`
+// Controls whether newly created service versions are activated. When versioned configuration changes, the apply step creates a draft version but does not activate it if this is set to `false`. Versionless service attributes, such as `name` and `comment`, are updated regardless of this setting. Default `true`
 func (o ServiceComputeOutput) Activate() pulumi.BoolPtrOutput {
 	return o.ApplyT(func(v *ServiceCompute) pulumi.BoolPtrOutput { return v.Activate }).(pulumi.BoolPtrOutput)
 }
@@ -566,7 +570,7 @@ func (o ServiceComputeOutput) ClonedVersion() pulumi.IntOutput {
 	return o.ApplyT(func(v *ServiceCompute) pulumi.IntOutput { return v.ClonedVersion }).(pulumi.IntOutput)
 }
 
-// Description field for the service. Default `Managed by Terraform`
+// Description field for the service. This versionless attribute is updated regardless of the `activate` and `stage` settings. Default `Managed by Terraform`
 func (o ServiceComputeOutput) Comment() pulumi.StringPtrOutput {
 	return o.ApplyT(func(v *ServiceCompute) pulumi.StringPtrOutput { return v.Comment }).(pulumi.StringPtrOutput)
 }
@@ -719,7 +723,7 @@ func (o ServiceComputeOutput) LoggingSyslogs() ServiceComputeLoggingSyslogArrayO
 	return o.ApplyT(func(v *ServiceCompute) ServiceComputeLoggingSyslogArrayOutput { return v.LoggingSyslogs }).(ServiceComputeLoggingSyslogArrayOutput)
 }
 
-// The unique name for the Service to create
+// The unique name for the Service to create. This versionless attribute is updated regardless of the `activate` and `stage` settings
 func (o ServiceComputeOutput) Name() pulumi.StringOutput {
 	return o.ApplyT(func(v *ServiceCompute) pulumi.StringOutput { return v.Name }).(pulumi.StringOutput)
 }
@@ -743,7 +747,7 @@ func (o ServiceComputeOutput) Reuse() pulumi.BoolPtrOutput {
 	return o.ApplyT(func(v *ServiceCompute) pulumi.BoolPtrOutput { return v.Reuse }).(pulumi.BoolPtrOutput)
 }
 
-// Conditionally enables new service versions to be staged. If set to `true`, all changes made by an `apply` step will be staged, even if `apply` did not create a new draft version. Default `false`
+// Conditionally enables new service versions to be staged. If set to `true`, versioned changes made by an `apply` step will be staged, even if `apply` did not create a new draft version. Versionless service attributes, such as `name` and `comment`, are updated regardless of this setting. Default `false`
 func (o ServiceComputeOutput) Stage() pulumi.BoolPtrOutput {
 	return o.ApplyT(func(v *ServiceCompute) pulumi.BoolPtrOutput { return v.Stage }).(pulumi.BoolPtrOutput)
 }

@@ -5,7 +5,7 @@ import * as pulumi from "@pulumi/pulumi";
 import * as utilities from "./utilities";
 
 /**
- * Provides a Fastly integration. Fastly will use these integrations to send you notifications and alerts related to the Fastly product. Mailing list, Microsoft Teams, New Relic, PagerDuty, Slack, and webhook are supported as integrations.
+ * Provides a Fastly integration. Fastly will use these integrations to send you notifications and alerts related to the Fastly product. Datadog, Jira, Jira Service Management, Mailing list, Microsoft Teams, New Relic, OpsGenie, PagerDuty, Slack, Splunk On-Call, and webhook are supported as integrations.
  *
  * > **IMPORTANT:** The mailing list integrations require confirmation. To send a confirmation email and verify integration status, after applying changes using Terraform, please visit https://manage.fastly.com/observability/alerts/integrations
  *
@@ -15,6 +15,35 @@ import * as utilities from "./utilities";
  * import * as pulumi from "@pulumi/pulumi";
  * import * as fastly from "@pulumi/fastly";
  *
+ * const datadogExample = new fastly.Integration("datadog_example", {
+ *     name: "my Datadog integration",
+ *     description: "example Datadog integration",
+ *     type: "datadog",
+ *     config: {
+ *         apikey: "XXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXX",
+ *         site: "datadoghq.eu",
+ *     },
+ * });
+ * const jiraissueExample = new fastly.Integration("jiraissue_example", {
+ *     name: "my Jira integration",
+ *     description: "example Jira integration",
+ *     type: "jiraissue",
+ *     config: {
+ *         baseurl: "https://my-org.atlassian.net",
+ *         username: "user@my-org.com",
+ *         token: "XXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXX",
+ *         projectkey: "ABC",
+ *         issuetype: "Bug",
+ *     },
+ * });
+ * const jsmExample = new fastly.Integration("jsm_example", {
+ *     name: "my Jira Service Management integration",
+ *     description: "example Jira Service Management integration",
+ *     type: "jsm",
+ *     config: {
+ *         apikey: "XXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXX",
+ *     },
+ * });
  * const mailinglistExample = new fastly.Integration("mailinglist_example", {
  *     name: "my mailing list integration",
  *     description: "example mailing list integration",
@@ -40,6 +69,14 @@ import * as utilities from "./utilities";
  *         key: "XXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXX",
  *     },
  * });
+ * const opsgenieExample = new fastly.Integration("opsgenie_example", {
+ *     name: "my OpsGenie integration",
+ *     description: "example OpsGenie integration",
+ *     type: "opsgenie",
+ *     config: {
+ *         apikey: "XXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXX",
+ *     },
+ * });
  * const pagerdutyExample = new fastly.Integration("pagerduty_example", {
  *     name: "my PagerDuty integration",
  *     description: "example PagerDuty integration",
@@ -54,6 +91,14 @@ import * as utilities from "./utilities";
  *     type: "slack",
  *     config: {
  *         webhook: "https://hooks.slack.com/services/T00000000/B00000000/XXXXXXXXXXXXXXXXXXXXXXXX",
+ *     },
+ * });
+ * const splunkoncallExample = new fastly.Integration("splunkoncall_example", {
+ *     name: "my Splunk On-Call integration",
+ *     description: "example Splunk On-Call integration",
+ *     type: "splunkoncall",
+ *     config: {
+ *         url: "https://alert.victorops.com/integrations/generic/20131114/alert/XXXXXXXXXXXXXXXXXXXXXXXX",
  *     },
  * });
  * const webhookExample = new fastly.Integration("webhook_example", {
@@ -107,7 +152,7 @@ export class Integration extends pulumi.CustomResource {
      */
     declare public readonly name: pulumi.Output<string>;
     /**
-     * Type of the integration. One of: `mailinglist`, `microsoftteams`, `newrelic`, `pagerduty`, `slack`, `webhook`.
+     * Type of the integration. One of: `datadog`, `jiraissue`, `jsm`, `mailinglist`, `microsoftteams`, `newrelic`, `opsgenie`, `pagerduty`, `slack`, `splunkoncall`, `webhook`.
      */
     declare public readonly type: pulumi.Output<string>;
 
@@ -165,7 +210,7 @@ export interface IntegrationState {
      */
     name?: pulumi.Input<string | undefined>;
     /**
-     * Type of the integration. One of: `mailinglist`, `microsoftteams`, `newrelic`, `pagerduty`, `slack`, `webhook`.
+     * Type of the integration. One of: `datadog`, `jiraissue`, `jsm`, `mailinglist`, `microsoftteams`, `newrelic`, `opsgenie`, `pagerduty`, `slack`, `splunkoncall`, `webhook`.
      */
     type?: pulumi.Input<string | undefined>;
 }
@@ -187,7 +232,7 @@ export interface IntegrationArgs {
      */
     name?: pulumi.Input<string | undefined>;
     /**
-     * Type of the integration. One of: `mailinglist`, `microsoftteams`, `newrelic`, `pagerduty`, `slack`, `webhook`.
+     * Type of the integration. One of: `datadog`, `jiraissue`, `jsm`, `mailinglist`, `microsoftteams`, `newrelic`, `opsgenie`, `pagerduty`, `slack`, `splunkoncall`, `webhook`.
      */
     type: pulumi.Input<string>;
 }
