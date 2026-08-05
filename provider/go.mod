@@ -1,6 +1,6 @@
 module github.com/pulumi/pulumi-fastly/provider/v12
 
-go 1.25.11
+go 1.26.5
 
 require (
 	github.com/fastly/terraform-provider-fastly v0.0.0
@@ -77,7 +77,7 @@ require (
 	github.com/envoyproxy/go-control-plane/envoy v1.37.0 // indirect
 	github.com/envoyproxy/protoc-gen-validate v1.3.3 // indirect
 	github.com/erikgeiser/coninput v0.0.0-20211004153227-1c3628e74d0f // indirect
-	github.com/fastly/go-fastly/v16 v16.0.1 // indirect
+	github.com/fastly/go-fastly/v17 v17.1.0 // indirect
 	github.com/fatih/color v1.18.0 // indirect
 	github.com/felixge/httpsnoop v1.0.4 // indirect
 	github.com/go-git/gcfg/v2 v2.0.2 // indirect
