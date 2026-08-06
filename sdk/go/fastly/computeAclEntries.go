@@ -45,7 +45,7 @@ import (
 //				return err
 //			}
 //			_, err = fastly.NewComputeAclEntries(ctx, "example", &fastly.ComputeAclEntriesArgs{
-//				ComputeAclId: exampleComputeAcl.ID(),
+//				ComputeAclId: exampleComputeAcl.ID().ToIDOutput().ToStringOutput(),
 //				Entries: pulumi.StringMap{
 //					"192.0.2.0/24":    pulumi.String("ALLOW"),
 //					"198.51.100.0/24": pulumi.String("BLOCK"),
@@ -74,7 +74,7 @@ import (
 //				ResourceLinks: fastly.ServiceComputeResourceLinkArray{
 //					&fastly.ServiceComputeResourceLinkArgs{
 //						Name:       pulumi.String("my_acl_link"),
-//						ResourceId: exampleComputeAcl.ID(),
+//						ResourceId: exampleComputeAcl.ID().ToIDOutput().ToStringOutput(),
 //					},
 //				},
 //				ForceDestroy: pulumi.Bool(true),
@@ -111,7 +111,7 @@ import (
 //				return err
 //			}
 //			_, err = fastly.NewComputeAclEntries(ctx, "example", &fastly.ComputeAclEntriesArgs{
-//				ComputeAclId: exampleComputeAcl.ID(),
+//				ComputeAclId: exampleComputeAcl.ID().ToIDOutput().ToStringOutput(),
 //				Entries: pulumi.StringMap{
 //					"203.0.113.0/24":  pulumi.String("BLOCK"),
 //					"198.51.100.0/24": pulumi.String("ALLOW"),
@@ -141,7 +141,7 @@ import (
 //				ResourceLinks: fastly.ServiceComputeResourceLinkArray{
 //					&fastly.ServiceComputeResourceLinkArgs{
 //						Name:       pulumi.String("my_acl_link"),
-//						ResourceId: exampleComputeAcl.ID(),
+//						ResourceId: exampleComputeAcl.ID().ToIDOutput().ToStringOutput(),
 //					},
 //				},
 //				ForceDestroy: pulumi.Bool(true),

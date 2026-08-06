@@ -47,7 +47,7 @@ import (
 //				return err
 //			}
 //			_, err = fastly.NewNgwafWorkspaceSignal(ctx, "example", &fastly.NgwafWorkspaceSignalArgs{
-//				WorkspaceId: example.ID(),
+//				WorkspaceId: example.ID().ToIDOutput().ToStringOutput(),
 //				Description: pulumi.String("example"),
 //				Name:        pulumi.String("Test Name"),
 //			})

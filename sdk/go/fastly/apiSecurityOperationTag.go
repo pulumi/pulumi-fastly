@@ -44,7 +44,7 @@ import (
 //				return err
 //			}
 //			_, err = fastly.NewApiSecurityOperationTag(ctx, "example", &fastly.ApiSecurityOperationTagArgs{
-//				ServiceId:   svc1.ID(),
+//				ServiceId:   svc1.ID().ToIDOutput().ToStringOutput(),
 //				Name:        pulumi.String("production"),
 //				Description: pulumi.String("Tag for production endpoints"),
 //			})

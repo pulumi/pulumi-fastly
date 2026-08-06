@@ -42,7 +42,7 @@ import (
 //			}
 //			// Optional: create an operation (so the data source returns something predictable)
 //			_, err = fastly.NewApiSecurityOperation(ctx, "example", &fastly.ApiSecurityOperationArgs{
-//				ServiceId:   svc1.ID(),
+//				ServiceId:   svc1.ID().ToIDOutput().ToStringOutput(),
 //				Method:      pulumi.String("GET"),
 //				Domain:      pulumi.String("api.example.com"),
 //				Path:        pulumi.String("/v1/things"),
@@ -52,7 +52,7 @@ import (
 //				return err
 //			}
 //			ops := fastly.GetApiSecurityOperationsOutput(ctx, fastly.GetApiSecurityOperationsOutputArgs{
-//				ServiceId: svc1.ID(),
+//				ServiceId: svc1.ID().ToIDOutput().ToStringOutput(),
 //				Methods: pulumi.StringArray{
 //					pulumi.String("GET"),
 //				},
@@ -64,9 +64,7 @@ import (
 //			ctx.Export("apiSecurityOperations", ops.ApplyT(func(ops fastly.GetApiSecurityOperationsResult) ([]fastly.GetApiSecurityOperationsOperation, error) {
 //				return []fastly.GetApiSecurityOperationsOperation(ops.Operations), nil
 //			}).(pulumi.ArrayOutput))
-//			ctx.Export("apiSecurityOperationsTotal", ops.ApplyT(func(ops fastly.GetApiSecurityOperationsResult) (*int, error) {
-//				return ops.Total, nil
-//			}).(pulumi.IntPtrOutput))
+//			ctx.Export("apiSecurityOperationsTotal", ops.Total())
 //			return nil
 //		})
 //	}

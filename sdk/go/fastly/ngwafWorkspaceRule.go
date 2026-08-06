@@ -47,7 +47,7 @@ import (
 //				return err
 //			}
 //			_, err = fastly.NewNgwafWorkspaceRule(ctx, "example", &fastly.NgwafWorkspaceRuleArgs{
-//				WorkspaceId:    example.ID(),
+//				WorkspaceId:    example.ID().ToIDOutput().ToStringOutput(),
 //				Type:           pulumi.String("request"),
 //				Description:    pulumi.String("Block requests from specific IP to login path"),
 //				Enabled:        pulumi.Bool(true),
@@ -110,7 +110,7 @@ import (
 //				return err
 //			}
 //			_, err = fastly.NewNgwafWorkspaceRule(ctx, "example", &fastly.NgwafWorkspaceRuleArgs{
-//				WorkspaceId:   example.ID(),
+//				WorkspaceId:   example.ID().ToIDOutput().ToStringOutput(),
 //				Type:          pulumi.String("request"),
 //				Description:   pulumi.String(""),
 //				Enabled:       pulumi.Bool(true),
@@ -173,7 +173,7 @@ import (
 //				return err
 //			}
 //			_, err = fastly.NewNgwafWorkspaceRule(ctx, "example", &fastly.NgwafWorkspaceRuleArgs{
-//				WorkspaceId:    example.ID(),
+//				WorkspaceId:    example.ID().ToIDOutput().ToStringOutput(),
 //				Type:           pulumi.String("request"),
 //				Description:    pulumi.String("Block requests with grouped conditions"),
 //				Enabled:        pulumi.Bool(true),
@@ -261,7 +261,7 @@ import (
 //				return err
 //			}
 //			_, err = fastly.NewNgwafWorkspaceRule(ctx, "example", &fastly.NgwafWorkspaceRuleArgs{
-//				WorkspaceId:    example.ID(),
+//				WorkspaceId:    example.ID().ToIDOutput().ToStringOutput(),
 //				Type:           pulumi.String("request"),
 //				Description:    pulumi.String("Block requests with specific header patterns"),
 //				Enabled:        pulumi.Bool(true),
@@ -336,7 +336,7 @@ import (
 //				return err
 //			}
 //			_, err = fastly.NewNgwafWorkspaceSignal(ctx, "demo_signal", &fastly.NgwafWorkspaceSignalArgs{
-//				WorkspaceId: example.ID(),
+//				WorkspaceId: example.ID().ToIDOutput().ToStringOutput(),
 //				Name:        pulumi.String("demo"),
 //				Description: pulumi.String("A description of my signal."),
 //			})
@@ -344,7 +344,7 @@ import (
 //				return err
 //			}
 //			_, err = fastly.NewNgwafWorkspaceRule(ctx, "ip_limit", &fastly.NgwafWorkspaceRuleArgs{
-//				WorkspaceId: example.ID(),
+//				WorkspaceId: example.ID().ToIDOutput().ToStringOutput(),
 //				Type:        pulumi.String("rate_limit"),
 //				Description: pulumi.String("Rate limit demo rule-updated"),
 //				Enabled:     pulumi.Bool(true),
@@ -412,7 +412,7 @@ import (
 //				return err
 //			}
 //			_, err = fastly.NewNgwafWorkspaceRule(ctx, "exclude_xss_signal", &fastly.NgwafWorkspaceRuleArgs{
-//				WorkspaceId:   example.ID(),
+//				WorkspaceId:   example.ID().ToIDOutput().ToStringOutput(),
 //				Type:          pulumi.String("signal"),
 //				Description:   pulumi.String("Exclude XSS signal to address a false positive"),
 //				Enabled:       pulumi.Bool(true),

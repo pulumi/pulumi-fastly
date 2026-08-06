@@ -52,8 +52,8 @@ import (
 //				return err
 //			}
 //			_, err = fastly.NewServiceAuthorization(ctx, "auth", &fastly.ServiceAuthorizationArgs{
-//				ServiceId:  demo.ID(),
-//				UserId:     user.ID(),
+//				ServiceId:  demo.ID().ToIDOutput().ToStringOutput(),
+//				UserId:     user.ID().ToIDOutput().ToStringOutput(),
 //				Permission: pulumi.String("purge_all"),
 //			})
 //			if err != nil {

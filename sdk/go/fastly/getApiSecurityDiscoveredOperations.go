@@ -44,7 +44,7 @@ import (
 //			}
 //			// Discovered operations depend on traffic and may legitimately be empty.
 //			discovered := fastly.GetApiSecurityDiscoveredOperationsOutput(ctx, fastly.GetApiSecurityDiscoveredOperationsOutputArgs{
-//				ServiceId: svc1.ID(),
+//				ServiceId: svc1.ID().ToIDOutput().ToStringOutput(),
 //				Status:    pulumi.String("SAVED"),
 //				Methods: pulumi.StringArray{
 //					pulumi.String("GET"),
@@ -57,9 +57,7 @@ import (
 //			ctx.Export("apiSecurityDiscoveredOperations", discovered.ApplyT(func(discovered fastly.GetApiSecurityDiscoveredOperationsResult) ([]fastly.GetApiSecurityDiscoveredOperationsOperation, error) {
 //				return []fastly.GetApiSecurityDiscoveredOperationsOperation(discovered.Operations), nil
 //			}).(pulumi.ArrayOutput))
-//			ctx.Export("apiSecurityDiscoveredOperationsTotal", discovered.ApplyT(func(discovered fastly.GetApiSecurityDiscoveredOperationsResult) (*int, error) {
-//				return discovered.Total, nil
-//			}).(pulumi.IntPtrOutput))
+//			ctx.Export("apiSecurityDiscoveredOperationsTotal", discovered.Total())
 //			return nil
 //		})
 //	}
