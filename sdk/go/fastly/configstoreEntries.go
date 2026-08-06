@@ -46,7 +46,7 @@ import (
 //				return err
 //			}
 //			_, err = fastly.NewConfigstoreEntries(ctx, "example", &fastly.ConfigstoreEntriesArgs{
-//				StoreId: exampleConfigstore.ID(),
+//				StoreId: exampleConfigstore.ID().ToIDOutput().ToStringOutput(),
 //				Entries: pulumi.StringMap{
 //					"key1": pulumi.String("value1"),
 //					"key2": pulumi.String("value2"),
@@ -75,7 +75,7 @@ import (
 //				ResourceLinks: fastly.ServiceComputeResourceLinkArray{
 //					&fastly.ServiceComputeResourceLinkArgs{
 //						Name:       pulumi.String("my_resource_link"),
-//						ResourceId: exampleConfigstore.ID(),
+//						ResourceId: exampleConfigstore.ID().ToIDOutput().ToStringOutput(),
 //					},
 //				},
 //				ForceDestroy: pulumi.Bool(true),
@@ -113,7 +113,7 @@ import (
 //				return err
 //			}
 //			_, err = fastly.NewConfigstoreEntries(ctx, "example", &fastly.ConfigstoreEntriesArgs{
-//				StoreId: exampleConfigstore.ID(),
+//				StoreId: exampleConfigstore.ID().ToIDOutput().ToStringOutput(),
 //				Entries: pulumi.StringMap{
 //					"key1": pulumi.String("value1"),
 //					"key2": pulumi.String("value2"),
@@ -143,7 +143,7 @@ import (
 //				ResourceLinks: fastly.ServiceComputeResourceLinkArray{
 //					&fastly.ServiceComputeResourceLinkArgs{
 //						Name:       pulumi.String("my_resource_link"),
-//						ResourceId: exampleConfigstore.ID(),
+//						ResourceId: exampleConfigstore.ID().ToIDOutput().ToStringOutput(),
 //					},
 //				},
 //				ForceDestroy: pulumi.Bool(true),

@@ -33,7 +33,7 @@ import * as utilities from "./utilities";
  *     serviceId: svc1.id,
  * });
  * export const apiSecurityOperationTags = tags.apply(tags => tags.tags);
- * export const apiSecurityOperationTagsTotal = tags.apply(tags => tags.total);
+ * export const apiSecurityOperationTagsTotal = tags.total;
  * ```
  */
 export function getApiSecurityOperationTags(args: GetApiSecurityOperationTagsArgs, opts?: pulumi.InvokeOptions): Promise<GetApiSecurityOperationTagsResult> {
@@ -101,7 +101,7 @@ export interface GetApiSecurityOperationTagsResult {
  *     serviceId: svc1.id,
  * });
  * export const apiSecurityOperationTags = tags.apply(tags => tags.tags);
- * export const apiSecurityOperationTagsTotal = tags.apply(tags => tags.total);
+ * export const apiSecurityOperationTagsTotal = tags.total;
  * ```
  */
 export function getApiSecurityOperationTagsOutput(args: GetApiSecurityOperationTagsOutputArgs, opts?: pulumi.InvokeOutputOptions): pulumi.Output<GetApiSecurityOperationTagsResult> {

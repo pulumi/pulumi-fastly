@@ -42,7 +42,7 @@ import (
 //				return err
 //			}
 //			example := fastly.GetVclSnippetsOutput(ctx, fastly.GetVclSnippetsOutputArgs{
-//				ServiceId:      exampleServiceVcl.ID(),
+//				ServiceId:      exampleServiceVcl.ID().ToIDOutput().ToStringOutput(),
 //				ServiceVersion: exampleServiceVcl.ActiveVersion,
 //			}, nil)
 //			ctx.Export("serviceVclSnippets", example)

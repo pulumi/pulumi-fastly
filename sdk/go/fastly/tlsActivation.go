@@ -69,7 +69,7 @@ import (
 //				return err
 //			}
 //			_, err = fastly.NewTlsActivation(ctx, "test", &fastly.TlsActivationArgs{
-//				CertificateId: demoTlsCertificate.ID(),
+//				CertificateId: demoTlsCertificate.ID().ToIDOutput().ToStringOutput(),
 //				Domain:        pulumi.String("example.com"),
 //			}, pulumi.DependsOn([]pulumi.Resource{
 //				demo,

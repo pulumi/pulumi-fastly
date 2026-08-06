@@ -154,13 +154,13 @@ import (
 //			}
 //			_, err = aws.NewS3BucketWebsiteConfiguration(ctx, "website_config", &aws.S3BucketWebsiteConfigurationArgs{
 //				Bucket: websiteBucket.Id,
-//				IndexDocument: []map[string]interface{}{
-//					map[string]interface{}{
+//				IndexDocument: []map[string]string{
+//					{
 //						"suffix": "index.html",
 //					},
 //				},
-//				ErrorDocument: []map[string]interface{}{
-//					map[string]interface{}{
+//				ErrorDocument: []map[string]string{
+//					{
 //						"key": "error.html",
 //					},
 //				},

@@ -60,7 +60,7 @@ import (
 //				ResourceLinks: fastly.ServiceComputeResourceLinkArray{
 //					&fastly.ServiceComputeResourceLinkArgs{
 //						Name:       pulumi.String("my_resource_link"),
-//						ResourceId: exampleConfigstore.ID(),
+//						ResourceId: exampleConfigstore.ID().ToIDOutput().ToStringOutput(),
 //					},
 //				},
 //				ForceDestroy: pulumi.Bool(true),

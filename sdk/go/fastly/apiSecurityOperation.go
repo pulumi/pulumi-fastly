@@ -44,7 +44,7 @@ import (
 //				return err
 //			}
 //			_, err = fastly.NewApiSecurityOperation(ctx, "example", &fastly.ApiSecurityOperationArgs{
-//				ServiceId:   svc1.ID(),
+//				ServiceId:   svc1.ID().ToIDOutput().ToStringOutput(),
 //				Method:      pulumi.String("GET"),
 //				Domain:      pulumi.String("api.example.com"),
 //				Path:        pulumi.String("/v1/things"),
@@ -87,7 +87,7 @@ import (
 //				return err
 //			}
 //			tag, err := fastly.NewApiSecurityOperationTag(ctx, "tag", &fastly.ApiSecurityOperationTagArgs{
-//				ServiceId:   svc1.ID(),
+//				ServiceId:   svc1.ID().ToIDOutput().ToStringOutput(),
 //				Name:        pulumi.String("production"),
 //				Description: pulumi.String("Production endpoints"),
 //			})
@@ -95,7 +95,7 @@ import (
 //				return err
 //			}
 //			_, err = fastly.NewApiSecurityOperation(ctx, "example", &fastly.ApiSecurityOperationArgs{
-//				ServiceId:   svc1.ID(),
+//				ServiceId:   svc1.ID().ToIDOutput().ToStringOutput(),
 //				Method:      pulumi.String("GET"),
 //				Domain:      pulumi.String("api.example.com"),
 //				Path:        pulumi.String("/v1/things"),

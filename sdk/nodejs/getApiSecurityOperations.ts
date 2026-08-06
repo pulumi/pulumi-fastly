@@ -38,7 +38,7 @@ import * as utilities from "./utilities";
  *     path: "/v1/things",
  * });
  * export const apiSecurityOperations = ops.apply(ops => ops.operations);
- * export const apiSecurityOperationsTotal = ops.apply(ops => ops.total);
+ * export const apiSecurityOperationsTotal = ops.total;
  * ```
  */
 export function getApiSecurityOperations(args: GetApiSecurityOperationsArgs, opts?: pulumi.InvokeOptions): Promise<GetApiSecurityOperationsResult> {
@@ -147,7 +147,7 @@ export interface GetApiSecurityOperationsResult {
  *     path: "/v1/things",
  * });
  * export const apiSecurityOperations = ops.apply(ops => ops.operations);
- * export const apiSecurityOperationsTotal = ops.apply(ops => ops.total);
+ * export const apiSecurityOperationsTotal = ops.total;
  * ```
  */
 export function getApiSecurityOperationsOutput(args: GetApiSecurityOperationsOutputArgs, opts?: pulumi.InvokeOutputOptions): pulumi.Output<GetApiSecurityOperationsResult> {
