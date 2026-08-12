@@ -15,6 +15,8 @@ import com.pulumi.fastly.inputs.GetApiSecurityOperationTagsArgs;
 import com.pulumi.fastly.inputs.GetApiSecurityOperationTagsPlainArgs;
 import com.pulumi.fastly.inputs.GetApiSecurityOperationsArgs;
 import com.pulumi.fastly.inputs.GetApiSecurityOperationsPlainArgs;
+import com.pulumi.fastly.inputs.GetAuditLogEventMappingArgs;
+import com.pulumi.fastly.inputs.GetAuditLogEventMappingPlainArgs;
 import com.pulumi.fastly.inputs.GetDictionariesArgs;
 import com.pulumi.fastly.inputs.GetDictionariesPlainArgs;
 import com.pulumi.fastly.inputs.GetDnsZonesArgs;
@@ -78,6 +80,7 @@ import com.pulumi.fastly.inputs.GetVclSnippetsPlainArgs;
 import com.pulumi.fastly.outputs.GetApiSecurityDiscoveredOperationsResult;
 import com.pulumi.fastly.outputs.GetApiSecurityOperationTagsResult;
 import com.pulumi.fastly.outputs.GetApiSecurityOperationsResult;
+import com.pulumi.fastly.outputs.GetAuditLogEventMappingResult;
 import com.pulumi.fastly.outputs.GetComputeAclsResult;
 import com.pulumi.fastly.outputs.GetConfigstoresResult;
 import com.pulumi.fastly.outputs.GetDatacentersResult;
@@ -1087,6 +1090,342 @@ public final class FastlyFunctions {
      */
     public static CompletableFuture<GetApiSecurityOperationsResult> getApiSecurityOperationsPlain(GetApiSecurityOperationsPlainArgs args, InvokeOptions options) {
         return Deployment.getInstance().invokeAsync("fastly:index/getApiSecurityOperations:getApiSecurityOperations", TypeShape.of(GetApiSecurityOperationsResult.class), args, Utilities.withVersion(options));
+    }
+    /**
+     * Use this data source to get information about an existing Audit Log Event
+     * Mapping for use with other resources.
+     * 
+     * &gt; **Warning:** The data source&#39;s filters are applied using an **AND** boolean operator, so depending on the combination
+     * of filters, they may become mutually exclusive. The exception to this is `id` which must not be specified in combination
+     * with any of the others.
+     * 
+     * &gt; **Note:** If more or less than a single match is returned by the search, an error will be reported. Ensure that your search is specific enough to return a single mapping.
+     * 
+     * ## Example Usage
+     * 
+     * <pre>
+     * {@code
+     * package generated_program;
+     * 
+     * import com.pulumi.Context;
+     * import com.pulumi.Pulumi;
+     * import com.pulumi.core.Output;
+     * import com.pulumi.fastly.FastlyFunctions;
+     * import com.pulumi.fastly.inputs.GetAuditLogEventMappingArgs;
+     * import java.util.ArrayList;
+     * import java.util.Arrays;
+     * import java.util.Map;
+     * import java.io.File;
+     * import java.nio.file.Files;
+     * import java.nio.file.Paths;
+     * 
+     * public class App {
+     *     public static void main(String[] args) {
+     *         Pulumi.run(App::stack);
+     *     }
+     * 
+     *     public static void stack(Context ctx) {
+     *         final var example = FastlyFunctions.getAuditLogEventMapping(GetAuditLogEventMappingArgs.builder()
+     *             .name("Example mapping")
+     *             .scopeType("account")
+     *             .build());
+     * 
+     *     }
+     * }
+     * }
+     * </pre>
+     * 
+     */
+    public static Output<GetAuditLogEventMappingResult> getAuditLogEventMapping() {
+        return getAuditLogEventMapping(GetAuditLogEventMappingArgs.Empty, InvokeOptions.Empty);
+    }
+    /**
+     * Use this data source to get information about an existing Audit Log Event
+     * Mapping for use with other resources.
+     * 
+     * &gt; **Warning:** The data source&#39;s filters are applied using an **AND** boolean operator, so depending on the combination
+     * of filters, they may become mutually exclusive. The exception to this is `id` which must not be specified in combination
+     * with any of the others.
+     * 
+     * &gt; **Note:** If more or less than a single match is returned by the search, an error will be reported. Ensure that your search is specific enough to return a single mapping.
+     * 
+     * ## Example Usage
+     * 
+     * <pre>
+     * {@code
+     * package generated_program;
+     * 
+     * import com.pulumi.Context;
+     * import com.pulumi.Pulumi;
+     * import com.pulumi.core.Output;
+     * import com.pulumi.fastly.FastlyFunctions;
+     * import com.pulumi.fastly.inputs.GetAuditLogEventMappingArgs;
+     * import java.util.ArrayList;
+     * import java.util.Arrays;
+     * import java.util.Map;
+     * import java.io.File;
+     * import java.nio.file.Files;
+     * import java.nio.file.Paths;
+     * 
+     * public class App {
+     *     public static void main(String[] args) {
+     *         Pulumi.run(App::stack);
+     *     }
+     * 
+     *     public static void stack(Context ctx) {
+     *         final var example = FastlyFunctions.getAuditLogEventMapping(GetAuditLogEventMappingArgs.builder()
+     *             .name("Example mapping")
+     *             .scopeType("account")
+     *             .build());
+     * 
+     *     }
+     * }
+     * }
+     * </pre>
+     * 
+     */
+    public static CompletableFuture<GetAuditLogEventMappingResult> getAuditLogEventMappingPlain() {
+        return getAuditLogEventMappingPlain(GetAuditLogEventMappingPlainArgs.Empty, InvokeOptions.Empty);
+    }
+    /**
+     * Use this data source to get information about an existing Audit Log Event
+     * Mapping for use with other resources.
+     * 
+     * &gt; **Warning:** The data source&#39;s filters are applied using an **AND** boolean operator, so depending on the combination
+     * of filters, they may become mutually exclusive. The exception to this is `id` which must not be specified in combination
+     * with any of the others.
+     * 
+     * &gt; **Note:** If more or less than a single match is returned by the search, an error will be reported. Ensure that your search is specific enough to return a single mapping.
+     * 
+     * ## Example Usage
+     * 
+     * <pre>
+     * {@code
+     * package generated_program;
+     * 
+     * import com.pulumi.Context;
+     * import com.pulumi.Pulumi;
+     * import com.pulumi.core.Output;
+     * import com.pulumi.fastly.FastlyFunctions;
+     * import com.pulumi.fastly.inputs.GetAuditLogEventMappingArgs;
+     * import java.util.ArrayList;
+     * import java.util.Arrays;
+     * import java.util.Map;
+     * import java.io.File;
+     * import java.nio.file.Files;
+     * import java.nio.file.Paths;
+     * 
+     * public class App {
+     *     public static void main(String[] args) {
+     *         Pulumi.run(App::stack);
+     *     }
+     * 
+     *     public static void stack(Context ctx) {
+     *         final var example = FastlyFunctions.getAuditLogEventMapping(GetAuditLogEventMappingArgs.builder()
+     *             .name("Example mapping")
+     *             .scopeType("account")
+     *             .build());
+     * 
+     *     }
+     * }
+     * }
+     * </pre>
+     * 
+     */
+    public static Output<GetAuditLogEventMappingResult> getAuditLogEventMapping(GetAuditLogEventMappingArgs args) {
+        return getAuditLogEventMapping(args, InvokeOptions.Empty);
+    }
+    /**
+     * Use this data source to get information about an existing Audit Log Event
+     * Mapping for use with other resources.
+     * 
+     * &gt; **Warning:** The data source&#39;s filters are applied using an **AND** boolean operator, so depending on the combination
+     * of filters, they may become mutually exclusive. The exception to this is `id` which must not be specified in combination
+     * with any of the others.
+     * 
+     * &gt; **Note:** If more or less than a single match is returned by the search, an error will be reported. Ensure that your search is specific enough to return a single mapping.
+     * 
+     * ## Example Usage
+     * 
+     * <pre>
+     * {@code
+     * package generated_program;
+     * 
+     * import com.pulumi.Context;
+     * import com.pulumi.Pulumi;
+     * import com.pulumi.core.Output;
+     * import com.pulumi.fastly.FastlyFunctions;
+     * import com.pulumi.fastly.inputs.GetAuditLogEventMappingArgs;
+     * import java.util.ArrayList;
+     * import java.util.Arrays;
+     * import java.util.Map;
+     * import java.io.File;
+     * import java.nio.file.Files;
+     * import java.nio.file.Paths;
+     * 
+     * public class App {
+     *     public static void main(String[] args) {
+     *         Pulumi.run(App::stack);
+     *     }
+     * 
+     *     public static void stack(Context ctx) {
+     *         final var example = FastlyFunctions.getAuditLogEventMapping(GetAuditLogEventMappingArgs.builder()
+     *             .name("Example mapping")
+     *             .scopeType("account")
+     *             .build());
+     * 
+     *     }
+     * }
+     * }
+     * </pre>
+     * 
+     */
+    public static CompletableFuture<GetAuditLogEventMappingResult> getAuditLogEventMappingPlain(GetAuditLogEventMappingPlainArgs args) {
+        return getAuditLogEventMappingPlain(args, InvokeOptions.Empty);
+    }
+    /**
+     * Use this data source to get information about an existing Audit Log Event
+     * Mapping for use with other resources.
+     * 
+     * &gt; **Warning:** The data source&#39;s filters are applied using an **AND** boolean operator, so depending on the combination
+     * of filters, they may become mutually exclusive. The exception to this is `id` which must not be specified in combination
+     * with any of the others.
+     * 
+     * &gt; **Note:** If more or less than a single match is returned by the search, an error will be reported. Ensure that your search is specific enough to return a single mapping.
+     * 
+     * ## Example Usage
+     * 
+     * <pre>
+     * {@code
+     * package generated_program;
+     * 
+     * import com.pulumi.Context;
+     * import com.pulumi.Pulumi;
+     * import com.pulumi.core.Output;
+     * import com.pulumi.fastly.FastlyFunctions;
+     * import com.pulumi.fastly.inputs.GetAuditLogEventMappingArgs;
+     * import java.util.ArrayList;
+     * import java.util.Arrays;
+     * import java.util.Map;
+     * import java.io.File;
+     * import java.nio.file.Files;
+     * import java.nio.file.Paths;
+     * 
+     * public class App {
+     *     public static void main(String[] args) {
+     *         Pulumi.run(App::stack);
+     *     }
+     * 
+     *     public static void stack(Context ctx) {
+     *         final var example = FastlyFunctions.getAuditLogEventMapping(GetAuditLogEventMappingArgs.builder()
+     *             .name("Example mapping")
+     *             .scopeType("account")
+     *             .build());
+     * 
+     *     }
+     * }
+     * }
+     * </pre>
+     * 
+     */
+    public static Output<GetAuditLogEventMappingResult> getAuditLogEventMapping(GetAuditLogEventMappingArgs args, InvokeOptions options) {
+        return Deployment.getInstance().invoke("fastly:index/getAuditLogEventMapping:getAuditLogEventMapping", TypeShape.of(GetAuditLogEventMappingResult.class), args, Utilities.withVersion(options));
+    }
+    /**
+     * Use this data source to get information about an existing Audit Log Event
+     * Mapping for use with other resources.
+     * 
+     * &gt; **Warning:** The data source&#39;s filters are applied using an **AND** boolean operator, so depending on the combination
+     * of filters, they may become mutually exclusive. The exception to this is `id` which must not be specified in combination
+     * with any of the others.
+     * 
+     * &gt; **Note:** If more or less than a single match is returned by the search, an error will be reported. Ensure that your search is specific enough to return a single mapping.
+     * 
+     * ## Example Usage
+     * 
+     * <pre>
+     * {@code
+     * package generated_program;
+     * 
+     * import com.pulumi.Context;
+     * import com.pulumi.Pulumi;
+     * import com.pulumi.core.Output;
+     * import com.pulumi.fastly.FastlyFunctions;
+     * import com.pulumi.fastly.inputs.GetAuditLogEventMappingArgs;
+     * import java.util.ArrayList;
+     * import java.util.Arrays;
+     * import java.util.Map;
+     * import java.io.File;
+     * import java.nio.file.Files;
+     * import java.nio.file.Paths;
+     * 
+     * public class App {
+     *     public static void main(String[] args) {
+     *         Pulumi.run(App::stack);
+     *     }
+     * 
+     *     public static void stack(Context ctx) {
+     *         final var example = FastlyFunctions.getAuditLogEventMapping(GetAuditLogEventMappingArgs.builder()
+     *             .name("Example mapping")
+     *             .scopeType("account")
+     *             .build());
+     * 
+     *     }
+     * }
+     * }
+     * </pre>
+     * 
+     */
+    public static Output<GetAuditLogEventMappingResult> getAuditLogEventMapping(GetAuditLogEventMappingArgs args, InvokeOutputOptions options) {
+        return Deployment.getInstance().invoke("fastly:index/getAuditLogEventMapping:getAuditLogEventMapping", TypeShape.of(GetAuditLogEventMappingResult.class), args, Utilities.withVersion(options));
+    }
+    /**
+     * Use this data source to get information about an existing Audit Log Event
+     * Mapping for use with other resources.
+     * 
+     * &gt; **Warning:** The data source&#39;s filters are applied using an **AND** boolean operator, so depending on the combination
+     * of filters, they may become mutually exclusive. The exception to this is `id` which must not be specified in combination
+     * with any of the others.
+     * 
+     * &gt; **Note:** If more or less than a single match is returned by the search, an error will be reported. Ensure that your search is specific enough to return a single mapping.
+     * 
+     * ## Example Usage
+     * 
+     * <pre>
+     * {@code
+     * package generated_program;
+     * 
+     * import com.pulumi.Context;
+     * import com.pulumi.Pulumi;
+     * import com.pulumi.core.Output;
+     * import com.pulumi.fastly.FastlyFunctions;
+     * import com.pulumi.fastly.inputs.GetAuditLogEventMappingArgs;
+     * import java.util.ArrayList;
+     * import java.util.Arrays;
+     * import java.util.Map;
+     * import java.io.File;
+     * import java.nio.file.Files;
+     * import java.nio.file.Paths;
+     * 
+     * public class App {
+     *     public static void main(String[] args) {
+     *         Pulumi.run(App::stack);
+     *     }
+     * 
+     *     public static void stack(Context ctx) {
+     *         final var example = FastlyFunctions.getAuditLogEventMapping(GetAuditLogEventMappingArgs.builder()
+     *             .name("Example mapping")
+     *             .scopeType("account")
+     *             .build());
+     * 
+     *     }
+     * }
+     * }
+     * </pre>
+     * 
+     */
+    public static CompletableFuture<GetAuditLogEventMappingResult> getAuditLogEventMappingPlain(GetAuditLogEventMappingPlainArgs args, InvokeOptions options) {
+        return Deployment.getInstance().invokeAsync("fastly:index/getAuditLogEventMapping:getAuditLogEventMapping", TypeShape.of(GetAuditLogEventMappingResult.class), args, Utilities.withVersion(options));
     }
     /**
      * Use this data source to retrieve a list of [Fastly Compute ACLs](https://www.fastly.com/documentation/reference/api/compute-acls/).

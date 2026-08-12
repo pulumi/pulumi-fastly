@@ -36,6 +36,20 @@
             "fastly_api_security_operation_tag": {
                 "current": "fastly:index/apiSecurityOperationTag:ApiSecurityOperationTag"
             },
+            "fastly_audit_log_event_mapping": {
+                "current": "fastly:index/auditLogEventMapping:AuditLogEventMapping",
+                "fields": {
+                    "event_types": {
+                        "maxItemsOne": false
+                    },
+                    "integration_ids": {
+                        "maxItemsOne": false
+                    },
+                    "scope_ids": {
+                        "maxItemsOne": false
+                    }
+                }
+            },
             "fastly_compute_acl": {
                 "current": "fastly:index/computeAcl:ComputeAcl"
             },
@@ -742,6 +756,20 @@
                                 }
                             }
                         }
+                    }
+                }
+            },
+            "fastly_audit_log_event_mapping": {
+                "current": "fastly:index/getAuditLogEventMapping:getAuditLogEventMapping",
+                "fields": {
+                    "event_types": {
+                        "maxItemsOne": false
+                    },
+                    "integration_ids": {
+                        "maxItemsOne": false
+                    },
+                    "scope_ids": {
+                        "maxItemsOne": false
                     }
                 }
             },

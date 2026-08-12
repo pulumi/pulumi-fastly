@@ -27,6 +27,8 @@ func (m *module) Construct(ctx *pulumi.Context, name, typ, urn string) (r pulumi
 		r = &ApiSecurityOperation{}
 	case "fastly:index/apiSecurityOperationTag:ApiSecurityOperationTag":
 		r = &ApiSecurityOperationTag{}
+	case "fastly:index/auditLogEventMapping:AuditLogEventMapping":
+		r = &AuditLogEventMapping{}
 	case "fastly:index/computeAcl:ComputeAcl":
 		r = &ComputeAcl{}
 	case "fastly:index/computeAclEntries:ComputeAclEntries":
@@ -165,6 +167,11 @@ func init() {
 	pulumi.RegisterResourceModule(
 		"fastly",
 		"index/apiSecurityOperationTag",
+		&module{version},
+	)
+	pulumi.RegisterResourceModule(
+		"fastly",
+		"index/auditLogEventMapping",
 		&module{version},
 	)
 	pulumi.RegisterResourceModule(
