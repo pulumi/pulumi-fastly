@@ -20,6 +20,11 @@ export type ApiSecurityOperationTag = import("./apiSecurityOperationTag").ApiSec
 export const ApiSecurityOperationTag: typeof import("./apiSecurityOperationTag").ApiSecurityOperationTag = null as any;
 utilities.lazyLoad(exports, ["ApiSecurityOperationTag"], () => require("./apiSecurityOperationTag"));
 
+export { AuditLogEventMappingArgs, AuditLogEventMappingState } from "./auditLogEventMapping";
+export type AuditLogEventMapping = import("./auditLogEventMapping").AuditLogEventMapping;
+export const AuditLogEventMapping: typeof import("./auditLogEventMapping").AuditLogEventMapping = null as any;
+utilities.lazyLoad(exports, ["AuditLogEventMapping"], () => require("./auditLogEventMapping"));
+
 export { ComputeAclArgs, ComputeAclState } from "./computeAcl";
 export type ComputeAcl = import("./computeAcl").ComputeAcl;
 export const ComputeAcl: typeof import("./computeAcl").ComputeAcl = null as any;
@@ -84,6 +89,11 @@ export { GetApiSecurityOperationsArgs, GetApiSecurityOperationsResult, GetApiSec
 export const getApiSecurityOperations: typeof import("./getApiSecurityOperations").getApiSecurityOperations = null as any;
 export const getApiSecurityOperationsOutput: typeof import("./getApiSecurityOperations").getApiSecurityOperationsOutput = null as any;
 utilities.lazyLoad(exports, ["getApiSecurityOperations","getApiSecurityOperationsOutput"], () => require("./getApiSecurityOperations"));
+
+export { GetAuditLogEventMappingArgs, GetAuditLogEventMappingResult, GetAuditLogEventMappingOutputArgs } from "./getAuditLogEventMapping";
+export const getAuditLogEventMapping: typeof import("./getAuditLogEventMapping").getAuditLogEventMapping = null as any;
+export const getAuditLogEventMappingOutput: typeof import("./getAuditLogEventMapping").getAuditLogEventMappingOutput = null as any;
+utilities.lazyLoad(exports, ["getAuditLogEventMapping","getAuditLogEventMappingOutput"], () => require("./getAuditLogEventMapping"));
 
 export { GetComputeAclsResult } from "./getComputeAcls";
 export const getComputeAcls: typeof import("./getComputeAcls").getComputeAcls = null as any;
@@ -523,6 +533,8 @@ const _module = {
                 return new ApiSecurityOperation(name, <any>undefined, { urn })
             case "fastly:index/apiSecurityOperationTag:ApiSecurityOperationTag":
                 return new ApiSecurityOperationTag(name, <any>undefined, { urn })
+            case "fastly:index/auditLogEventMapping:AuditLogEventMapping":
+                return new AuditLogEventMapping(name, <any>undefined, { urn })
             case "fastly:index/computeAcl:ComputeAcl":
                 return new ComputeAcl(name, <any>undefined, { urn })
             case "fastly:index/computeAclEntries:ComputeAclEntries":
@@ -625,6 +637,7 @@ const _module = {
 pulumi.runtime.registerResourceModule("fastly", "index/alert", _module)
 pulumi.runtime.registerResourceModule("fastly", "index/apiSecurityOperation", _module)
 pulumi.runtime.registerResourceModule("fastly", "index/apiSecurityOperationTag", _module)
+pulumi.runtime.registerResourceModule("fastly", "index/auditLogEventMapping", _module)
 pulumi.runtime.registerResourceModule("fastly", "index/computeAcl", _module)
 pulumi.runtime.registerResourceModule("fastly", "index/computeAclEntries", _module)
 pulumi.runtime.registerResourceModule("fastly", "index/configstore", _module)
