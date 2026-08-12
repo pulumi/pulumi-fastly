@@ -6716,6 +6716,156 @@
                 "type": "object"
             }
         },
+        "fastly:index/auditLogEventMapping:AuditLogEventMapping": {
+            "description": "Provides a Fastly Audit Log Event Mapping, which routes audit log events to\none or more notification integrations based on scope and event type.\n\n## Example Usage\n\n\u003c!--Start PulumiCodeChooser --\u003e\n```typescript\nimport * as pulumi from \"@pulumi/pulumi\";\nimport * as fastly from \"@pulumi/fastly\";\n\nconst example = new fastly.Integration(\"example\", {\n    name: \"Example Slack integration\",\n    description: \"Notifies #alerts on Slack\",\n    type: \"slack\",\n    config: {\n        webhook: \"https://hooks.slack.com/services/xxx/xxx/xxx\",\n    },\n});\nconst exampleAuditLogEventMapping = new fastly.AuditLogEventMapping(\"example\", {\n    name: \"Example mapping\",\n    description: \"Sends a notification when any user logs in\",\n    scopeType: \"account\",\n    eventTypes: [\"user.login\"],\n    integrationIds: [example.id],\n});\n```\n```python\nimport pulumi\nimport pulumi_fastly as fastly\n\nexample = fastly.Integration(\"example\",\n    name=\"Example Slack integration\",\n    description=\"Notifies #alerts on Slack\",\n    type=\"slack\",\n    config={\n        \"webhook\": \"https://hooks.slack.com/services/xxx/xxx/xxx\",\n    })\nexample_audit_log_event_mapping = fastly.AuditLogEventMapping(\"example\",\n    name=\"Example mapping\",\n    description=\"Sends a notification when any user logs in\",\n    scope_type=\"account\",\n    event_types=[\"user.login\"],\n    integration_ids=[example.id])\n```\n```csharp\nusing System.Collections.Generic;\nusing System.Linq;\nusing Pulumi;\nusing Fastly = Pulumi.Fastly;\n\nreturn await Deployment.RunAsync(() =\u003e \n{\n    var example = new Fastly.Integration(\"example\", new()\n    {\n        Name = \"Example Slack integration\",\n        Description = \"Notifies #alerts on Slack\",\n        Type = \"slack\",\n        Config = \n        {\n            { \"webhook\", \"https://hooks.slack.com/services/xxx/xxx/xxx\" },\n        },\n    });\n\n    var exampleAuditLogEventMapping = new Fastly.AuditLogEventMapping(\"example\", new()\n    {\n        Name = \"Example mapping\",\n        Description = \"Sends a notification when any user logs in\",\n        ScopeType = \"account\",\n        EventTypes = new[]\n        {\n            \"user.login\",\n        },\n        IntegrationIds = new[]\n        {\n            example.Id,\n        },\n    });\n\n});\n```\n```go\npackage main\n\nimport (\n\t\"github.com/pulumi/pulumi-fastly/sdk/v12/go/fastly\"\n\t\"github.com/pulumi/pulumi/sdk/v3/go/pulumi\"\n)\n\nfunc main() {\n\tpulumi.Run(func(ctx *pulumi.Context) error {\n\t\texample, err := fastly.NewIntegration(ctx, \"example\", \u0026fastly.IntegrationArgs{\n\t\t\tName:        pulumi.String(\"Example Slack integration\"),\n\t\t\tDescription: pulumi.String(\"Notifies #alerts on Slack\"),\n\t\t\tType:        pulumi.String(\"slack\"),\n\t\t\tConfig: pulumi.StringMap{\n\t\t\t\t\"webhook\": pulumi.String(\"https://hooks.slack.com/services/xxx/xxx/xxx\"),\n\t\t\t},\n\t\t})\n\t\tif err != nil {\n\t\t\treturn err\n\t\t}\n\t\t_, err = fastly.NewAuditLogEventMapping(ctx, \"example\", \u0026fastly.AuditLogEventMappingArgs{\n\t\t\tName:        pulumi.String(\"Example mapping\"),\n\t\t\tDescription: pulumi.String(\"Sends a notification when any user logs in\"),\n\t\t\tScopeType:   pulumi.String(\"account\"),\n\t\t\tEventTypes: pulumi.StringArray{\n\t\t\t\tpulumi.String(\"user.login\"),\n\t\t\t},\n\t\t\tIntegrationIds: pulumi.StringArray{\n\t\t\t\texample.ID().ToIDOutput().ToStringOutput(),\n\t\t\t},\n\t\t})\n\t\tif err != nil {\n\t\t\treturn err\n\t\t}\n\t\treturn nil\n\t})\n}\n```\n```hcl\npulumi {\n  required_providers {\n    fastly = {\n      source = \"pulumi/fastly\"\n    }\n  }\n}\n\nresource \"fastly_integration\" \"example\" {\n  name        = \"Example Slack integration\"\n  description = \"Notifies #alerts on Slack\"\n  type        = \"slack\"\n  config = {\n    \"webhook\" = \"https://hooks.slack.com/services/xxx/xxx/xxx\"\n  }\n}\nresource \"fastly_auditlogeventmapping\" \"example\" {\n  name            = \"Example mapping\"\n  description     = \"Sends a notification when any user logs in\"\n  scope_type      = \"account\"\n  event_types     = [\"user.login\"]\n  integration_ids = [fastly_integration.example.id]\n}\n```\n```java\npackage generated_program;\n\nimport com.pulumi.Context;\nimport com.pulumi.Pulumi;\nimport com.pulumi.core.Output;\nimport com.pulumi.fastly.Integration;\nimport com.pulumi.fastly.IntegrationArgs;\nimport com.pulumi.fastly.AuditLogEventMapping;\nimport com.pulumi.fastly.AuditLogEventMappingArgs;\nimport java.util.ArrayList;\nimport java.util.Arrays;\nimport java.util.Map;\nimport java.io.File;\nimport java.nio.file.Files;\nimport java.nio.file.Paths;\n\npublic class App {\n    public static void main(String[] args) {\n        Pulumi.run(App::stack);\n    }\n\n    public static void stack(Context ctx) {\n        var example = new Integration(\"example\", IntegrationArgs.builder()\n            .name(\"Example Slack integration\")\n            .description(\"Notifies #alerts on Slack\")\n            .type(\"slack\")\n            .config(Map.of(\"webhook\", \"https://hooks.slack.com/services/xxx/xxx/xxx\"))\n            .build());\n\n        var exampleAuditLogEventMapping = new AuditLogEventMapping(\"exampleAuditLogEventMapping\", AuditLogEventMappingArgs.builder()\n            .name(\"Example mapping\")\n            .description(\"Sends a notification when any user logs in\")\n            .scopeType(\"account\")\n            .eventTypes(\"user.login\")\n            .integrationIds(example.id())\n            .build());\n\n    }\n}\n```\n```yaml\nresources:\n  example:\n    type: fastly:Integration\n    properties:\n      name: Example Slack integration\n      description: 'Notifies #alerts on Slack'\n      type: slack\n      config:\n        webhook: https://hooks.slack.com/services/xxx/xxx/xxx\n  exampleAuditLogEventMapping:\n    type: fastly:AuditLogEventMapping\n    name: example\n    properties:\n      name: Example mapping\n      description: Sends a notification when any user logs in\n      scopeType: account\n      eventTypes:\n        - user.login\n      integrationIds:\n        - ${example.id}\n```\n\u003c!--End PulumiCodeChooser --\u003e\n\n## Import\n\nFastly Audit Log Event Mappings can be imported using their mapping ID, e.g.\n\n```sh\n$ pulumi import fastly:index/auditLogEventMapping:AuditLogEventMapping example xxxxxxxxxxxxxxxxxxxx\n```\n\n",
+            "properties": {
+                "createdAt": {
+                    "type": "string",
+                    "description": "Timestamp (RFC3339) when the mapping was created.\n"
+                },
+                "description": {
+                    "type": "string",
+                    "description": "Description of the mapping.\n"
+                },
+                "eventTypes": {
+                    "type": "array",
+                    "items": {
+                        "type": "string"
+                    },
+                    "description": "The audit event types that trigger a notification. Each event type must be valid for the given \u003cspan pulumi-lang-nodejs=\"`scopeType`\" pulumi-lang-dotnet=\"`ScopeType`\" pulumi-lang-go=\"`scopeType`\" pulumi-lang-python=\"`scope_type`\" pulumi-lang-yaml=\"`scopeType`\" pulumi-lang-java=\"`scopeType`\" pulumi-lang-hcl=\"`scope_type`\"\u003e`scopeType`\u003c/span\u003e.\n"
+                },
+                "integrationIds": {
+                    "type": "array",
+                    "items": {
+                        "type": "string"
+                    },
+                    "description": "The IDs of the integrations that should receive notifications. Must reference integrations belonging to the account linked to the configured token.\n"
+                },
+                "mappingStatus": {
+                    "type": "string",
+                    "description": "Whether the mapping is permitted to send notifications. One of \u003cspan pulumi-lang-nodejs=\"`active`\" pulumi-lang-dotnet=\"`Active`\" pulumi-lang-go=\"`active`\" pulumi-lang-python=\"`active`\" pulumi-lang-yaml=\"`active`\" pulumi-lang-java=\"`active`\" pulumi-lang-hcl=\"`active`\"\u003e`active`\u003c/span\u003e or \u003cspan pulumi-lang-nodejs=\"`inactive`\" pulumi-lang-dotnet=\"`Inactive`\" pulumi-lang-go=\"`inactive`\" pulumi-lang-python=\"`inactive`\" pulumi-lang-yaml=\"`inactive`\" pulumi-lang-java=\"`inactive`\" pulumi-lang-hcl=\"`inactive`\"\u003e`inactive`\u003c/span\u003e. A mapping is \u003cspan pulumi-lang-nodejs=\"`active`\" pulumi-lang-dotnet=\"`Active`\" pulumi-lang-go=\"`active`\" pulumi-lang-python=\"`active`\" pulumi-lang-yaml=\"`active`\" pulumi-lang-java=\"`active`\" pulumi-lang-hcl=\"`active`\"\u003e`active`\u003c/span\u003e as long as it has at least one integration ID.\n"
+                },
+                "name": {
+                    "type": "string",
+                    "description": "Descriptive name for the mapping.\n"
+                },
+                "scopeIds": {
+                    "type": "array",
+                    "items": {
+                        "type": "string"
+                    },
+                    "description": "The specific service or workspace IDs to scope the mapping to. Omit to apply the mapping to all resources of the given \u003cspan pulumi-lang-nodejs=\"`scopeType`\" pulumi-lang-dotnet=\"`ScopeType`\" pulumi-lang-go=\"`scopeType`\" pulumi-lang-python=\"`scope_type`\" pulumi-lang-yaml=\"`scopeType`\" pulumi-lang-java=\"`scopeType`\" pulumi-lang-hcl=\"`scope_type`\"\u003e`scopeType`\u003c/span\u003e. Must be empty when \u003cspan pulumi-lang-nodejs=\"`scopeType`\" pulumi-lang-dotnet=\"`ScopeType`\" pulumi-lang-go=\"`scopeType`\" pulumi-lang-python=\"`scope_type`\" pulumi-lang-yaml=\"`scopeType`\" pulumi-lang-java=\"`scopeType`\" pulumi-lang-hcl=\"`scope_type`\"\u003e`scopeType`\u003c/span\u003e is \u003cspan pulumi-lang-nodejs=\"`account`\" pulumi-lang-dotnet=\"`Account`\" pulumi-lang-go=\"`account`\" pulumi-lang-python=\"`account`\" pulumi-lang-yaml=\"`account`\" pulumi-lang-java=\"`account`\" pulumi-lang-hcl=\"`account`\"\u003e`account`\u003c/span\u003e.\n"
+                },
+                "scopeType": {
+                    "type": "string",
+                    "description": "The category of Fastly resource the mapping applies to. One of \u003cspan pulumi-lang-nodejs=\"`account`\" pulumi-lang-dotnet=\"`Account`\" pulumi-lang-go=\"`account`\" pulumi-lang-python=\"`account`\" pulumi-lang-yaml=\"`account`\" pulumi-lang-java=\"`account`\" pulumi-lang-hcl=\"`account`\"\u003e`account`\u003c/span\u003e, \u003cspan pulumi-lang-nodejs=\"`vcl`\" pulumi-lang-dotnet=\"`Vcl`\" pulumi-lang-go=\"`vcl`\" pulumi-lang-python=\"`vcl`\" pulumi-lang-yaml=\"`vcl`\" pulumi-lang-java=\"`vcl`\" pulumi-lang-hcl=\"`vcl`\"\u003e`vcl`\u003c/span\u003e, \u003cspan pulumi-lang-nodejs=\"`wasm`\" pulumi-lang-dotnet=\"`Wasm`\" pulumi-lang-go=\"`wasm`\" pulumi-lang-python=\"`wasm`\" pulumi-lang-yaml=\"`wasm`\" pulumi-lang-java=\"`wasm`\" pulumi-lang-hcl=\"`wasm`\"\u003e`wasm`\u003c/span\u003e, or \u003cspan pulumi-lang-nodejs=\"`ngwaf`\" pulumi-lang-dotnet=\"`Ngwaf`\" pulumi-lang-go=\"`ngwaf`\" pulumi-lang-python=\"`ngwaf`\" pulumi-lang-yaml=\"`ngwaf`\" pulumi-lang-java=\"`ngwaf`\" pulumi-lang-hcl=\"`ngwaf`\"\u003e`ngwaf`\u003c/span\u003e.\n"
+                },
+                "updatedAt": {
+                    "type": "string",
+                    "description": "Timestamp (RFC3339) when the mapping was last updated.\n"
+                }
+            },
+            "required": [
+                "createdAt",
+                "eventTypes",
+                "integrationIds",
+                "mappingStatus",
+                "name",
+                "scopeType",
+                "updatedAt"
+            ],
+            "inputProperties": {
+                "description": {
+                    "type": "string",
+                    "description": "Description of the mapping.\n"
+                },
+                "eventTypes": {
+                    "type": "array",
+                    "items": {
+                        "type": "string"
+                    },
+                    "description": "The audit event types that trigger a notification. Each event type must be valid for the given \u003cspan pulumi-lang-nodejs=\"`scopeType`\" pulumi-lang-dotnet=\"`ScopeType`\" pulumi-lang-go=\"`scopeType`\" pulumi-lang-python=\"`scope_type`\" pulumi-lang-yaml=\"`scopeType`\" pulumi-lang-java=\"`scopeType`\" pulumi-lang-hcl=\"`scope_type`\"\u003e`scopeType`\u003c/span\u003e.\n"
+                },
+                "integrationIds": {
+                    "type": "array",
+                    "items": {
+                        "type": "string"
+                    },
+                    "description": "The IDs of the integrations that should receive notifications. Must reference integrations belonging to the account linked to the configured token.\n"
+                },
+                "name": {
+                    "type": "string",
+                    "description": "Descriptive name for the mapping.\n"
+                },
+                "scopeIds": {
+                    "type": "array",
+                    "items": {
+                        "type": "string"
+                    },
+                    "description": "The specific service or workspace IDs to scope the mapping to. Omit to apply the mapping to all resources of the given \u003cspan pulumi-lang-nodejs=\"`scopeType`\" pulumi-lang-dotnet=\"`ScopeType`\" pulumi-lang-go=\"`scopeType`\" pulumi-lang-python=\"`scope_type`\" pulumi-lang-yaml=\"`scopeType`\" pulumi-lang-java=\"`scopeType`\" pulumi-lang-hcl=\"`scope_type`\"\u003e`scopeType`\u003c/span\u003e. Must be empty when \u003cspan pulumi-lang-nodejs=\"`scopeType`\" pulumi-lang-dotnet=\"`ScopeType`\" pulumi-lang-go=\"`scopeType`\" pulumi-lang-python=\"`scope_type`\" pulumi-lang-yaml=\"`scopeType`\" pulumi-lang-java=\"`scopeType`\" pulumi-lang-hcl=\"`scope_type`\"\u003e`scopeType`\u003c/span\u003e is \u003cspan pulumi-lang-nodejs=\"`account`\" pulumi-lang-dotnet=\"`Account`\" pulumi-lang-go=\"`account`\" pulumi-lang-python=\"`account`\" pulumi-lang-yaml=\"`account`\" pulumi-lang-java=\"`account`\" pulumi-lang-hcl=\"`account`\"\u003e`account`\u003c/span\u003e.\n"
+                },
+                "scopeType": {
+                    "type": "string",
+                    "description": "The category of Fastly resource the mapping applies to. One of \u003cspan pulumi-lang-nodejs=\"`account`\" pulumi-lang-dotnet=\"`Account`\" pulumi-lang-go=\"`account`\" pulumi-lang-python=\"`account`\" pulumi-lang-yaml=\"`account`\" pulumi-lang-java=\"`account`\" pulumi-lang-hcl=\"`account`\"\u003e`account`\u003c/span\u003e, \u003cspan pulumi-lang-nodejs=\"`vcl`\" pulumi-lang-dotnet=\"`Vcl`\" pulumi-lang-go=\"`vcl`\" pulumi-lang-python=\"`vcl`\" pulumi-lang-yaml=\"`vcl`\" pulumi-lang-java=\"`vcl`\" pulumi-lang-hcl=\"`vcl`\"\u003e`vcl`\u003c/span\u003e, \u003cspan pulumi-lang-nodejs=\"`wasm`\" pulumi-lang-dotnet=\"`Wasm`\" pulumi-lang-go=\"`wasm`\" pulumi-lang-python=\"`wasm`\" pulumi-lang-yaml=\"`wasm`\" pulumi-lang-java=\"`wasm`\" pulumi-lang-hcl=\"`wasm`\"\u003e`wasm`\u003c/span\u003e, or \u003cspan pulumi-lang-nodejs=\"`ngwaf`\" pulumi-lang-dotnet=\"`Ngwaf`\" pulumi-lang-go=\"`ngwaf`\" pulumi-lang-python=\"`ngwaf`\" pulumi-lang-yaml=\"`ngwaf`\" pulumi-lang-java=\"`ngwaf`\" pulumi-lang-hcl=\"`ngwaf`\"\u003e`ngwaf`\u003c/span\u003e.\n"
+                }
+            },
+            "requiredInputs": [
+                "eventTypes",
+                "integrationIds",
+                "scopeType"
+            ],
+            "stateInputs": {
+                "description": "Input properties used for looking up and filtering AuditLogEventMapping resources.\n",
+                "properties": {
+                    "createdAt": {
+                        "type": "string",
+                        "description": "Timestamp (RFC3339) when the mapping was created.\n"
+                    },
+                    "description": {
+                        "type": "string",
+                        "description": "Description of the mapping.\n"
+                    },
+                    "eventTypes": {
+                        "type": "array",
+                        "items": {
+                            "type": "string"
+                        },
+                        "description": "The audit event types that trigger a notification. Each event type must be valid for the given \u003cspan pulumi-lang-nodejs=\"`scopeType`\" pulumi-lang-dotnet=\"`ScopeType`\" pulumi-lang-go=\"`scopeType`\" pulumi-lang-python=\"`scope_type`\" pulumi-lang-yaml=\"`scopeType`\" pulumi-lang-java=\"`scopeType`\" pulumi-lang-hcl=\"`scope_type`\"\u003e`scopeType`\u003c/span\u003e.\n"
+                    },
+                    "integrationIds": {
+                        "type": "array",
+                        "items": {
+                            "type": "string"
+                        },
+                        "description": "The IDs of the integrations that should receive notifications. Must reference integrations belonging to the account linked to the configured token.\n"
+                    },
+                    "mappingStatus": {
+                        "type": "string",
+                        "description": "Whether the mapping is permitted to send notifications. One of \u003cspan pulumi-lang-nodejs=\"`active`\" pulumi-lang-dotnet=\"`Active`\" pulumi-lang-go=\"`active`\" pulumi-lang-python=\"`active`\" pulumi-lang-yaml=\"`active`\" pulumi-lang-java=\"`active`\" pulumi-lang-hcl=\"`active`\"\u003e`active`\u003c/span\u003e or \u003cspan pulumi-lang-nodejs=\"`inactive`\" pulumi-lang-dotnet=\"`Inactive`\" pulumi-lang-go=\"`inactive`\" pulumi-lang-python=\"`inactive`\" pulumi-lang-yaml=\"`inactive`\" pulumi-lang-java=\"`inactive`\" pulumi-lang-hcl=\"`inactive`\"\u003e`inactive`\u003c/span\u003e. A mapping is \u003cspan pulumi-lang-nodejs=\"`active`\" pulumi-lang-dotnet=\"`Active`\" pulumi-lang-go=\"`active`\" pulumi-lang-python=\"`active`\" pulumi-lang-yaml=\"`active`\" pulumi-lang-java=\"`active`\" pulumi-lang-hcl=\"`active`\"\u003e`active`\u003c/span\u003e as long as it has at least one integration ID.\n"
+                    },
+                    "name": {
+                        "type": "string",
+                        "description": "Descriptive name for the mapping.\n"
+                    },
+                    "scopeIds": {
+                        "type": "array",
+                        "items": {
+                            "type": "string"
+                        },
+                        "description": "The specific service or workspace IDs to scope the mapping to. Omit to apply the mapping to all resources of the given \u003cspan pulumi-lang-nodejs=\"`scopeType`\" pulumi-lang-dotnet=\"`ScopeType`\" pulumi-lang-go=\"`scopeType`\" pulumi-lang-python=\"`scope_type`\" pulumi-lang-yaml=\"`scopeType`\" pulumi-lang-java=\"`scopeType`\" pulumi-lang-hcl=\"`scope_type`\"\u003e`scopeType`\u003c/span\u003e. Must be empty when \u003cspan pulumi-lang-nodejs=\"`scopeType`\" pulumi-lang-dotnet=\"`ScopeType`\" pulumi-lang-go=\"`scopeType`\" pulumi-lang-python=\"`scope_type`\" pulumi-lang-yaml=\"`scopeType`\" pulumi-lang-java=\"`scopeType`\" pulumi-lang-hcl=\"`scope_type`\"\u003e`scopeType`\u003c/span\u003e is \u003cspan pulumi-lang-nodejs=\"`account`\" pulumi-lang-dotnet=\"`Account`\" pulumi-lang-go=\"`account`\" pulumi-lang-python=\"`account`\" pulumi-lang-yaml=\"`account`\" pulumi-lang-java=\"`account`\" pulumi-lang-hcl=\"`account`\"\u003e`account`\u003c/span\u003e.\n"
+                    },
+                    "scopeType": {
+                        "type": "string",
+                        "description": "The category of Fastly resource the mapping applies to. One of \u003cspan pulumi-lang-nodejs=\"`account`\" pulumi-lang-dotnet=\"`Account`\" pulumi-lang-go=\"`account`\" pulumi-lang-python=\"`account`\" pulumi-lang-yaml=\"`account`\" pulumi-lang-java=\"`account`\" pulumi-lang-hcl=\"`account`\"\u003e`account`\u003c/span\u003e, \u003cspan pulumi-lang-nodejs=\"`vcl`\" pulumi-lang-dotnet=\"`Vcl`\" pulumi-lang-go=\"`vcl`\" pulumi-lang-python=\"`vcl`\" pulumi-lang-yaml=\"`vcl`\" pulumi-lang-java=\"`vcl`\" pulumi-lang-hcl=\"`vcl`\"\u003e`vcl`\u003c/span\u003e, \u003cspan pulumi-lang-nodejs=\"`wasm`\" pulumi-lang-dotnet=\"`Wasm`\" pulumi-lang-go=\"`wasm`\" pulumi-lang-python=\"`wasm`\" pulumi-lang-yaml=\"`wasm`\" pulumi-lang-java=\"`wasm`\" pulumi-lang-hcl=\"`wasm`\"\u003e`wasm`\u003c/span\u003e, or \u003cspan pulumi-lang-nodejs=\"`ngwaf`\" pulumi-lang-dotnet=\"`Ngwaf`\" pulumi-lang-go=\"`ngwaf`\" pulumi-lang-python=\"`ngwaf`\" pulumi-lang-yaml=\"`ngwaf`\" pulumi-lang-java=\"`ngwaf`\" pulumi-lang-hcl=\"`ngwaf`\"\u003e`ngwaf`\u003c/span\u003e.\n"
+                    },
+                    "updatedAt": {
+                        "type": "string",
+                        "description": "Timestamp (RFC3339) when the mapping was last updated.\n"
+                    }
+                },
+                "type": "object"
+            }
+        },
         "fastly:index/computeAcl:ComputeAcl": {
             "description": "Provides a Compute Access Control List (ACL) that defines CIDR-based access rules (e.g., allow/block IP ranges) and is accessible to Compute services during request processing.\n\nIn order for a Compute ACL (\u003cspan pulumi-lang-nodejs=\"`fastly.ComputeAcl`\" pulumi-lang-dotnet=\"`fastly.ComputeAcl`\" pulumi-lang-go=\"`ComputeAcl`\" pulumi-lang-python=\"`ComputeAcl`\" pulumi-lang-yaml=\"`fastly.ComputeAcl`\" pulumi-lang-java=\"`fastly.ComputeAcl`\" pulumi-lang-hcl=\"`fastly_compute_acl`\"\u003e`fastly.ComputeAcl`\u003c/span\u003e) to be accessible to a [Compute](https://developer.fastly.com/learning/compute/) service you'll first need to define a Compute service (\u003cspan pulumi-lang-nodejs=\"`fastly.ServiceCompute`\" pulumi-lang-dotnet=\"`fastly.ServiceCompute`\" pulumi-lang-go=\"`ServiceCompute`\" pulumi-lang-python=\"`ServiceCompute`\" pulumi-lang-yaml=\"`fastly.ServiceCompute`\" pulumi-lang-java=\"`fastly.ServiceCompute`\" pulumi-lang-hcl=\"`fastly_service_compute`\"\u003e`fastly.ServiceCompute`\u003c/span\u003e) in your configuration, and then create a link to the ACL from within the service using the \u003cspan pulumi-lang-nodejs=\"`resourceLink`\" pulumi-lang-dotnet=\"`ResourceLink`\" pulumi-lang-go=\"`resourceLink`\" pulumi-lang-python=\"`resource_link`\" pulumi-lang-yaml=\"`resourceLink`\" pulumi-lang-java=\"`resourceLink`\" pulumi-lang-hcl=\"`resource_link`\"\u003e`resourceLink`\u003c/span\u003e block (shown in the below examples).\n\n## Example Usage\n\nBasic usage:\n\n\u003c!--Start PulumiCodeChooser --\u003e\n```typescript\nimport * as pulumi from \"@pulumi/pulumi\";\nimport * as fastly from \"@pulumi/fastly\";\n\n// IMPORTANT: Deleting a Compute ACL requires first deleting its resource_link.\n// This requires a two-step `pulumi up` because we can't guarantee deletion order.\nconst exampleComputeAcl = new fastly.ComputeAcl(\"example\", {name: \"my_compute_acl\"});\nconst example = fastly.getPackageHash({\n    filename: \"package.tar.gz\",\n});\nconst exampleServiceCompute = new fastly.ServiceCompute(\"example\", {\n    name: \"my_compute_service\",\n    domains: [{\n        name: \"demo.example.com\",\n    }],\n    \"package\": {\n        filename: \"package.tar.gz\",\n        sourceCodeHash: example.then(example =\u003e example.hash),\n    },\n    resourceLinks: [{\n        name: \"my_acl_link\",\n        resourceId: exampleComputeAcl.id,\n    }],\n    forceDestroy: true,\n});\n```\n```python\nimport pulumi\nimport pulumi_fastly as fastly\n\n# IMPORTANT: Deleting a Compute ACL requires first deleting its resource_link.\n# This requires a two-step `pulumi up` because we can't guarantee deletion order.\nexample_compute_acl = fastly.ComputeAcl(\"example\", name=\"my_compute_acl\")\nexample = fastly.get_package_hash(filename=\"package.tar.gz\")\nexample_service_compute = fastly.ServiceCompute(\"example\",\n    name=\"my_compute_service\",\n    domains=[{\n        \"name\": \"demo.example.com\",\n    }],\n    package={\n        \"filename\": \"package.tar.gz\",\n        \"source_code_hash\": example.hash,\n    },\n    resource_links=[{\n        \"name\": \"my_acl_link\",\n        \"resource_id\": example_compute_acl.id,\n    }],\n    force_destroy=True)\n```\n```csharp\nusing System.Collections.Generic;\nusing System.Linq;\nusing Pulumi;\nusing Fastly = Pulumi.Fastly;\n\nreturn await Deployment.RunAsync(() =\u003e \n{\n    // IMPORTANT: Deleting a Compute ACL requires first deleting its resource_link.\n    // This requires a two-step `pulumi up` because we can't guarantee deletion order.\n    var exampleComputeAcl = new Fastly.ComputeAcl(\"example\", new()\n    {\n        Name = \"my_compute_acl\",\n    });\n\n    var example = Fastly.GetPackageHash.Invoke(new()\n    {\n        Filename = \"package.tar.gz\",\n    });\n\n    var exampleServiceCompute = new Fastly.ServiceCompute(\"example\", new()\n    {\n        Name = \"my_compute_service\",\n        Domains = new[]\n        {\n            new Fastly.Inputs.ServiceComputeDomainArgs\n            {\n                Name = \"demo.example.com\",\n            },\n        },\n        Package = new Fastly.Inputs.ServiceComputePackageArgs\n        {\n            Filename = \"package.tar.gz\",\n            SourceCodeHash = example.Apply(getPackageHashResult =\u003e getPackageHashResult.Hash),\n        },\n        ResourceLinks = new[]\n        {\n            new Fastly.Inputs.ServiceComputeResourceLinkArgs\n            {\n                Name = \"my_acl_link\",\n                ResourceId = exampleComputeAcl.Id,\n            },\n        },\n        ForceDestroy = true,\n    });\n\n});\n```\n```go\npackage main\n\nimport (\n\t\"github.com/pulumi/pulumi-fastly/sdk/v12/go/fastly\"\n\t\"github.com/pulumi/pulumi/sdk/v3/go/pulumi\"\n)\n\nfunc main() {\n\tpulumi.Run(func(ctx *pulumi.Context) error {\n\t\t// IMPORTANT: Deleting a Compute ACL requires first deleting its resource_link.\n\t\t// This requires a two-step `pulumi up` because we can't guarantee deletion order.\n\t\texampleComputeAcl, err := fastly.NewComputeAcl(ctx, \"example\", \u0026fastly.ComputeAclArgs{\n\t\t\tName: pulumi.String(\"my_compute_acl\"),\n\t\t})\n\t\tif err != nil {\n\t\t\treturn err\n\t\t}\n\t\texample, err := fastly.GetPackageHash(ctx, \u0026fastly.GetPackageHashArgs{\n\t\t\tFilename: pulumi.StringRef(\"package.tar.gz\"),\n\t\t}, nil)\n\t\tif err != nil {\n\t\t\treturn err\n\t\t}\n\t\t_, err = fastly.NewServiceCompute(ctx, \"example\", \u0026fastly.ServiceComputeArgs{\n\t\t\tName: pulumi.String(\"my_compute_service\"),\n\t\t\tDomains: fastly.ServiceComputeDomainArray{\n\t\t\t\t\u0026fastly.ServiceComputeDomainArgs{\n\t\t\t\t\tName: pulumi.String(\"demo.example.com\"),\n\t\t\t\t},\n\t\t\t},\n\t\t\tPackage: \u0026fastly.ServiceComputePackageArgs{\n\t\t\t\tFilename:       pulumi.String(\"package.tar.gz\"),\n\t\t\t\tSourceCodeHash: pulumi.String(example.Hash),\n\t\t\t},\n\t\t\tResourceLinks: fastly.ServiceComputeResourceLinkArray{\n\t\t\t\t\u0026fastly.ServiceComputeResourceLinkArgs{\n\t\t\t\t\tName:       pulumi.String(\"my_acl_link\"),\n\t\t\t\t\tResourceId: exampleComputeAcl.ID().ToIDOutput().ToStringOutput(),\n\t\t\t\t},\n\t\t\t},\n\t\t\tForceDestroy: pulumi.Bool(true),\n\t\t})\n\t\tif err != nil {\n\t\t\treturn err\n\t\t}\n\t\treturn nil\n\t})\n}\n```\n```hcl\npulumi {\n  required_providers {\n    fastly = {\n      source = \"pulumi/fastly\"\n    }\n  }\n}\n\ndata \"fastly_getpackagehash\" \"example\" {\n  filename = \"package.tar.gz\"\n}\n\n# IMPORTANT: Deleting a Compute ACL requires first deleting its resource_link.\n# This requires a two-step `pulumi up` because we can't guarantee deletion order.\nresource \"fastly_computeacl\" \"example\" {\n  name = \"my_compute_acl\"\n}\nresource \"fastly_servicecompute\" \"example\" {\n  name = \"my_compute_service\"\n  domains {\n    name = \"demo.example.com\"\n  }\n  package = {\n    filename         = \"package.tar.gz\"\n    source_code_hash = data.fastly_getpackagehash.example.hash\n  }\n  resource_links {\n    name        = \"my_acl_link\"\n    resource_id = fastly_computeacl.example.id\n  }\n  force_destroy = true\n}\n```\n```java\npackage generated_program;\n\nimport com.pulumi.Context;\nimport com.pulumi.Pulumi;\nimport com.pulumi.core.Output;\nimport com.pulumi.fastly.ComputeAcl;\nimport com.pulumi.fastly.ComputeAclArgs;\nimport com.pulumi.fastly.FastlyFunctions;\nimport com.pulumi.fastly.inputs.GetPackageHashArgs;\nimport com.pulumi.fastly.ServiceCompute;\nimport com.pulumi.fastly.ServiceComputeArgs;\nimport com.pulumi.fastly.inputs.ServiceComputeDomainArgs;\nimport com.pulumi.fastly.inputs.ServiceComputePackageArgs;\nimport com.pulumi.fastly.inputs.ServiceComputeResourceLinkArgs;\nimport java.util.ArrayList;\nimport java.util.Arrays;\nimport java.util.Map;\nimport java.io.File;\nimport java.nio.file.Files;\nimport java.nio.file.Paths;\n\npublic class App {\n    public static void main(String[] args) {\n        Pulumi.run(App::stack);\n    }\n\n    public static void stack(Context ctx) {\n        // IMPORTANT: Deleting a Compute ACL requires first deleting its resource_link.\n        // This requires a two-step `pulumi up` because we can't guarantee deletion order.\n        var exampleComputeAcl = new ComputeAcl(\"exampleComputeAcl\", ComputeAclArgs.builder()\n            .name(\"my_compute_acl\")\n            .build());\n\n        final var example = FastlyFunctions.getPackageHash(GetPackageHashArgs.builder()\n            .filename(\"package.tar.gz\")\n            .build());\n\n        var exampleServiceCompute = new ServiceCompute(\"exampleServiceCompute\", ServiceComputeArgs.builder()\n            .name(\"my_compute_service\")\n            .domains(ServiceComputeDomainArgs.builder()\n                .name(\"demo.example.com\")\n                .build())\n            .package_(ServiceComputePackageArgs.builder()\n                .filename(\"package.tar.gz\")\n                .sourceCodeHash(example.hash())\n                .build())\n            .resourceLinks(ServiceComputeResourceLinkArgs.builder()\n                .name(\"my_acl_link\")\n                .resourceId(exampleComputeAcl.id())\n                .build())\n            .forceDestroy(true)\n            .build());\n\n    }\n}\n```\n```yaml\nresources:\n  # IMPORTANT: Deleting a Compute ACL requires first deleting its resource_link.\n  # This requires a two-step `pulumi up` because we can't guarantee deletion order.\n  exampleComputeAcl:\n    type: fastly:ComputeAcl\n    name: example\n    properties:\n      name: my_compute_acl\n  exampleServiceCompute:\n    type: fastly:ServiceCompute\n    name: example\n    properties:\n      name: my_compute_service\n      domains:\n        - name: demo.example.com\n      package:\n        filename: package.tar.gz\n        sourceCodeHash: ${example.hash}\n      resourceLinks:\n        - name: my_acl_link\n          resourceId: ${exampleComputeAcl.id}\n      forceDestroy: true\nvariables:\n  example:\n    fn::invoke:\n      function: fastly:getPackageHash\n      arguments:\n        filename: package.tar.gz\n```\n\u003c!--End PulumiCodeChooser --\u003e\n\n## Import\n\nFastly Compute ACLs can be imported using their ACL ID, e.g.\n\n```sh\n$ pulumi import fastly:index/computeAcl:ComputeAcl example \u003ccompute_acl_id\u003e\n```\n\n",
             "properties": {
@@ -12421,6 +12571,114 @@
                     "serviceId",
                     "total",
                     "id"
+                ],
+                "type": "object"
+            }
+        },
+        "fastly:index/getAuditLogEventMapping:getAuditLogEventMapping": {
+            "description": "Use this data source to get information about an existing Audit Log Event\nMapping for use with other resources.\n\n\u003e **Warning:** The data source's filters are applied using an **AND** boolean operator, so depending on the combination\nof filters, they may become mutually exclusive. The exception to this is \u003cspan pulumi-lang-nodejs=\"`id`\" pulumi-lang-dotnet=\"`Id`\" pulumi-lang-go=\"`id`\" pulumi-lang-python=\"`id`\" pulumi-lang-yaml=\"`id`\" pulumi-lang-java=\"`id`\" pulumi-lang-hcl=\"`id`\"\u003e`id`\u003c/span\u003e which must not be specified in combination\nwith any of the others.\n\n\u003e **Note:** If more or less than a single match is returned by the search, an error will be reported. Ensure that your search is specific enough to return a single mapping.\n\n## Example Usage\n\n\u003c!--Start PulumiCodeChooser --\u003e\n```typescript\nimport * as pulumi from \"@pulumi/pulumi\";\nimport * as fastly from \"@pulumi/fastly\";\n\nconst example = fastly.getAuditLogEventMapping({\n    name: \"Example mapping\",\n    scopeType: \"account\",\n});\n```\n```python\nimport pulumi\nimport pulumi_fastly as fastly\n\nexample = fastly.get_audit_log_event_mapping(name=\"Example mapping\",\n    scope_type=\"account\")\n```\n```csharp\nusing System.Collections.Generic;\nusing System.Linq;\nusing Pulumi;\nusing Fastly = Pulumi.Fastly;\n\nreturn await Deployment.RunAsync(() =\u003e \n{\n    var example = Fastly.GetAuditLogEventMapping.Invoke(new()\n    {\n        Name = \"Example mapping\",\n        ScopeType = \"account\",\n    });\n\n});\n```\n```go\npackage main\n\nimport (\n\t\"github.com/pulumi/pulumi-fastly/sdk/v12/go/fastly\"\n\t\"github.com/pulumi/pulumi/sdk/v3/go/pulumi\"\n)\n\nfunc main() {\n\tpulumi.Run(func(ctx *pulumi.Context) error {\n\t\t_, err := fastly.GetAuditLogEventMapping(ctx, \u0026fastly.LookupAuditLogEventMappingArgs{\n\t\t\tName:      pulumi.StringRef(\"Example mapping\"),\n\t\t\tScopeType: pulumi.StringRef(\"account\"),\n\t\t}, nil)\n\t\tif err != nil {\n\t\t\treturn err\n\t\t}\n\t\treturn nil\n\t})\n}\n```\n```hcl\npulumi {\n  required_providers {\n    fastly = {\n      source = \"pulumi/fastly\"\n    }\n  }\n}\n\ndata \"fastly_getauditlogeventmapping\" \"example\" {\n  name       = \"Example mapping\"\n  scope_type = \"account\"\n}\n```\n```java\npackage generated_program;\n\nimport com.pulumi.Context;\nimport com.pulumi.Pulumi;\nimport com.pulumi.core.Output;\nimport com.pulumi.fastly.FastlyFunctions;\nimport com.pulumi.fastly.inputs.GetAuditLogEventMappingArgs;\nimport java.util.ArrayList;\nimport java.util.Arrays;\nimport java.util.Map;\nimport java.io.File;\nimport java.nio.file.Files;\nimport java.nio.file.Paths;\n\npublic class App {\n    public static void main(String[] args) {\n        Pulumi.run(App::stack);\n    }\n\n    public static void stack(Context ctx) {\n        final var example = FastlyFunctions.getAuditLogEventMapping(GetAuditLogEventMappingArgs.builder()\n            .name(\"Example mapping\")\n            .scopeType(\"account\")\n            .build());\n\n    }\n}\n```\n```yaml\nvariables:\n  example:\n    fn::invoke:\n      function: fastly:getAuditLogEventMapping\n      arguments:\n        name: Example mapping\n        scopeType: account\n```\n\u003c!--End PulumiCodeChooser --\u003e\n",
+            "inputs": {
+                "description": "A collection of arguments for invoking getAuditLogEventMapping.\n",
+                "properties": {
+                    "id": {
+                        "type": "string",
+                        "description": "Unique ID of the mapping. Conflicts with all the other filters.\n"
+                    },
+                    "integrationId": {
+                        "type": "string",
+                        "description": "Filters results to mappings that reference the given integration ID.\n"
+                    },
+                    "mappingStatus": {
+                        "type": "string",
+                        "description": "Filters results by mapping status: \u003cspan pulumi-lang-nodejs=\"`active`\" pulumi-lang-dotnet=\"`Active`\" pulumi-lang-go=\"`active`\" pulumi-lang-python=\"`active`\" pulumi-lang-yaml=\"`active`\" pulumi-lang-java=\"`active`\" pulumi-lang-hcl=\"`active`\"\u003e`active`\u003c/span\u003e or \u003cspan pulumi-lang-nodejs=\"`inactive`\" pulumi-lang-dotnet=\"`Inactive`\" pulumi-lang-go=\"`inactive`\" pulumi-lang-python=\"`inactive`\" pulumi-lang-yaml=\"`inactive`\" pulumi-lang-java=\"`inactive`\" pulumi-lang-hcl=\"`inactive`\"\u003e`inactive`\u003c/span\u003e.\n"
+                    },
+                    "name": {
+                        "type": "string",
+                        "description": "Filters results to mappings whose name contains the given string (case-insensitive).\n"
+                    },
+                    "scopeId": {
+                        "type": "string",
+                        "description": "Filters results to mappings that apply to the given service or workspace ID.\n"
+                    },
+                    "scopeType": {
+                        "type": "string",
+                        "description": "Filters results to the given scope type: \u003cspan pulumi-lang-nodejs=\"`account`\" pulumi-lang-dotnet=\"`Account`\" pulumi-lang-go=\"`account`\" pulumi-lang-python=\"`account`\" pulumi-lang-yaml=\"`account`\" pulumi-lang-java=\"`account`\" pulumi-lang-hcl=\"`account`\"\u003e`account`\u003c/span\u003e, \u003cspan pulumi-lang-nodejs=\"`vcl`\" pulumi-lang-dotnet=\"`Vcl`\" pulumi-lang-go=\"`vcl`\" pulumi-lang-python=\"`vcl`\" pulumi-lang-yaml=\"`vcl`\" pulumi-lang-java=\"`vcl`\" pulumi-lang-hcl=\"`vcl`\"\u003e`vcl`\u003c/span\u003e, \u003cspan pulumi-lang-nodejs=\"`wasm`\" pulumi-lang-dotnet=\"`Wasm`\" pulumi-lang-go=\"`wasm`\" pulumi-lang-python=\"`wasm`\" pulumi-lang-yaml=\"`wasm`\" pulumi-lang-java=\"`wasm`\" pulumi-lang-hcl=\"`wasm`\"\u003e`wasm`\u003c/span\u003e, or \u003cspan pulumi-lang-nodejs=\"`ngwaf`\" pulumi-lang-dotnet=\"`Ngwaf`\" pulumi-lang-go=\"`ngwaf`\" pulumi-lang-python=\"`ngwaf`\" pulumi-lang-yaml=\"`ngwaf`\" pulumi-lang-java=\"`ngwaf`\" pulumi-lang-hcl=\"`ngwaf`\"\u003e`ngwaf`\u003c/span\u003e.\n"
+                    }
+                },
+                "type": "object"
+            },
+            "outputs": {
+                "description": "A collection of values returned by getAuditLogEventMapping.\n",
+                "properties": {
+                    "createdAt": {
+                        "description": "Timestamp (RFC3339) when the mapping was created.\n",
+                        "type": "string"
+                    },
+                    "description": {
+                        "description": "Description of the mapping.\n",
+                        "type": "string"
+                    },
+                    "eventTypes": {
+                        "description": "The audit event types that trigger a notification.\n",
+                        "items": {
+                            "type": "string"
+                        },
+                        "type": "array"
+                    },
+                    "id": {
+                        "description": "Unique ID of the mapping. Conflicts with all the other filters.\n",
+                        "type": "string"
+                    },
+                    "integrationId": {
+                        "description": "Filters results to mappings that reference the given integration ID.\n",
+                        "type": "string"
+                    },
+                    "integrationIds": {
+                        "description": "The IDs of the integrations that receive notifications.\n",
+                        "items": {
+                            "type": "string"
+                        },
+                        "type": "array"
+                    },
+                    "mappingStatus": {
+                        "description": "Filters results by mapping status: \u003cspan pulumi-lang-nodejs=\"`active`\" pulumi-lang-dotnet=\"`Active`\" pulumi-lang-go=\"`active`\" pulumi-lang-python=\"`active`\" pulumi-lang-yaml=\"`active`\" pulumi-lang-java=\"`active`\" pulumi-lang-hcl=\"`active`\"\u003e`active`\u003c/span\u003e or \u003cspan pulumi-lang-nodejs=\"`inactive`\" pulumi-lang-dotnet=\"`Inactive`\" pulumi-lang-go=\"`inactive`\" pulumi-lang-python=\"`inactive`\" pulumi-lang-yaml=\"`inactive`\" pulumi-lang-java=\"`inactive`\" pulumi-lang-hcl=\"`inactive`\"\u003e`inactive`\u003c/span\u003e.\n",
+                        "type": "string"
+                    },
+                    "name": {
+                        "description": "Filters results to mappings whose name contains the given string (case-insensitive).\n",
+                        "type": "string"
+                    },
+                    "scopeId": {
+                        "description": "Filters results to mappings that apply to the given service or workspace ID.\n",
+                        "type": "string"
+                    },
+                    "scopeIds": {
+                        "description": "The specific service or workspace IDs the mapping is scoped to.\n",
+                        "items": {
+                            "type": "string"
+                        },
+                        "type": "array"
+                    },
+                    "scopeType": {
+                        "description": "Filters results to the given scope type: \u003cspan pulumi-lang-nodejs=\"`account`\" pulumi-lang-dotnet=\"`Account`\" pulumi-lang-go=\"`account`\" pulumi-lang-python=\"`account`\" pulumi-lang-yaml=\"`account`\" pulumi-lang-java=\"`account`\" pulumi-lang-hcl=\"`account`\"\u003e`account`\u003c/span\u003e, \u003cspan pulumi-lang-nodejs=\"`vcl`\" pulumi-lang-dotnet=\"`Vcl`\" pulumi-lang-go=\"`vcl`\" pulumi-lang-python=\"`vcl`\" pulumi-lang-yaml=\"`vcl`\" pulumi-lang-java=\"`vcl`\" pulumi-lang-hcl=\"`vcl`\"\u003e`vcl`\u003c/span\u003e, \u003cspan pulumi-lang-nodejs=\"`wasm`\" pulumi-lang-dotnet=\"`Wasm`\" pulumi-lang-go=\"`wasm`\" pulumi-lang-python=\"`wasm`\" pulumi-lang-yaml=\"`wasm`\" pulumi-lang-java=\"`wasm`\" pulumi-lang-hcl=\"`wasm`\"\u003e`wasm`\u003c/span\u003e, or \u003cspan pulumi-lang-nodejs=\"`ngwaf`\" pulumi-lang-dotnet=\"`Ngwaf`\" pulumi-lang-go=\"`ngwaf`\" pulumi-lang-python=\"`ngwaf`\" pulumi-lang-yaml=\"`ngwaf`\" pulumi-lang-java=\"`ngwaf`\" pulumi-lang-hcl=\"`ngwaf`\"\u003e`ngwaf`\u003c/span\u003e.\n",
+                        "type": "string"
+                    },
+                    "updatedAt": {
+                        "description": "Timestamp (RFC3339) when the mapping was last updated.\n",
+                        "type": "string"
+                    }
+                },
+                "required": [
+                    "createdAt",
+                    "description",
+                    "eventTypes",
+                    "id",
+                    "integrationIds",
+                    "mappingStatus",
+                    "name",
+                    "scopeIds",
+                    "scopeType",
+                    "updatedAt"
                 ],
                 "type": "object"
             }
