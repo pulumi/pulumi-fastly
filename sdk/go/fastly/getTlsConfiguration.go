@@ -99,12 +99,8 @@ type GetTlsConfigurationResult struct {
 }
 
 func GetTlsConfigurationOutput(ctx *pulumi.Context, args GetTlsConfigurationOutputArgs, opts ...pulumi.InvokeOption) GetTlsConfigurationResultOutput {
-	return pulumi.ToOutputWithContext(ctx.Context(), args).
-		ApplyT(func(v interface{}) (GetTlsConfigurationResultOutput, error) {
-			args := v.(GetTlsConfigurationArgs)
-			options := pulumi.InvokeOutputOptions{InvokeOptions: internal.PkgInvokeDefaultOpts(opts)}
-			return ctx.InvokeOutput("fastly:index/getTlsConfiguration:getTlsConfiguration", args, GetTlsConfigurationResultOutput{}, options).(GetTlsConfigurationResultOutput), nil
-		}).(GetTlsConfigurationResultOutput)
+	options := pulumi.InvokeOutputOptions{InvokeOptions: internal.PkgInvokeDefaultOpts(opts)}
+	return ctx.InvokeOutput("fastly:index/getTlsConfiguration:getTlsConfiguration", args, GetTlsConfigurationResultOutput{}, options).(GetTlsConfigurationResultOutput)
 }
 
 // A collection of arguments for invoking getTlsConfiguration.

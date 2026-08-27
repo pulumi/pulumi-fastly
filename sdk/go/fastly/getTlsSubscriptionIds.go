@@ -33,10 +33,8 @@ type GetTlsSubscriptionIdsResult struct {
 }
 
 func GetTlsSubscriptionIdsOutput(ctx *pulumi.Context, opts ...pulumi.InvokeOption) GetTlsSubscriptionIdsResultOutput {
-	return pulumi.ToOutput(0).ApplyT(func(int) (GetTlsSubscriptionIdsResultOutput, error) {
-		options := pulumi.InvokeOutputOptions{InvokeOptions: internal.PkgInvokeDefaultOpts(opts)}
-		return ctx.InvokeOutput("fastly:index/getTlsSubscriptionIds:getTlsSubscriptionIds", nil, GetTlsSubscriptionIdsResultOutput{}, options).(GetTlsSubscriptionIdsResultOutput), nil
-	}).(GetTlsSubscriptionIdsResultOutput)
+	options := pulumi.InvokeOutputOptions{InvokeOptions: internal.PkgInvokeDefaultOpts(opts)}
+	return ctx.InvokeOutput("fastly:index/getTlsSubscriptionIds:getTlsSubscriptionIds", nil, GetTlsSubscriptionIdsResultOutput{}, options).(GetTlsSubscriptionIdsResultOutput)
 }
 
 // A collection of values returned by getTlsSubscriptionIds.

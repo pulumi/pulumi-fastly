@@ -66,12 +66,8 @@ type LookupNgwafAlertJiraIntegrationResult struct {
 }
 
 func LookupNgwafAlertJiraIntegrationOutput(ctx *pulumi.Context, args LookupNgwafAlertJiraIntegrationOutputArgs, opts ...pulumi.InvokeOption) LookupNgwafAlertJiraIntegrationResultOutput {
-	return pulumi.ToOutputWithContext(ctx.Context(), args).
-		ApplyT(func(v interface{}) (LookupNgwafAlertJiraIntegrationResultOutput, error) {
-			args := v.(LookupNgwafAlertJiraIntegrationArgs)
-			options := pulumi.InvokeOutputOptions{InvokeOptions: internal.PkgInvokeDefaultOpts(opts)}
-			return ctx.InvokeOutput("fastly:index/getNgwafAlertJiraIntegration:getNgwafAlertJiraIntegration", args, LookupNgwafAlertJiraIntegrationResultOutput{}, options).(LookupNgwafAlertJiraIntegrationResultOutput), nil
-		}).(LookupNgwafAlertJiraIntegrationResultOutput)
+	options := pulumi.InvokeOutputOptions{InvokeOptions: internal.PkgInvokeDefaultOpts(opts)}
+	return ctx.InvokeOutput("fastly:index/getNgwafAlertJiraIntegration:getNgwafAlertJiraIntegration", args, LookupNgwafAlertJiraIntegrationResultOutput{}, options).(LookupNgwafAlertJiraIntegrationResultOutput)
 }
 
 // A collection of arguments for invoking getNgwafAlertJiraIntegration.

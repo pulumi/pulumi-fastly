@@ -38,12 +38,8 @@ type LookupNgwafThresholdsResult struct {
 }
 
 func LookupNgwafThresholdsOutput(ctx *pulumi.Context, args LookupNgwafThresholdsOutputArgs, opts ...pulumi.InvokeOption) LookupNgwafThresholdsResultOutput {
-	return pulumi.ToOutputWithContext(ctx.Context(), args).
-		ApplyT(func(v interface{}) (LookupNgwafThresholdsResultOutput, error) {
-			args := v.(LookupNgwafThresholdsArgs)
-			options := pulumi.InvokeOutputOptions{InvokeOptions: internal.PkgInvokeDefaultOpts(opts)}
-			return ctx.InvokeOutput("fastly:index/getNgwafThresholds:getNgwafThresholds", args, LookupNgwafThresholdsResultOutput{}, options).(LookupNgwafThresholdsResultOutput), nil
-		}).(LookupNgwafThresholdsResultOutput)
+	options := pulumi.InvokeOutputOptions{InvokeOptions: internal.PkgInvokeDefaultOpts(opts)}
+	return ctx.InvokeOutput("fastly:index/getNgwafThresholds:getNgwafThresholds", args, LookupNgwafThresholdsResultOutput{}, options).(LookupNgwafThresholdsResultOutput)
 }
 
 // A collection of arguments for invoking getNgwafThresholds.

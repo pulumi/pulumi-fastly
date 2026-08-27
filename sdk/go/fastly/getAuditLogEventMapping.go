@@ -101,12 +101,8 @@ type LookupAuditLogEventMappingResult struct {
 }
 
 func LookupAuditLogEventMappingOutput(ctx *pulumi.Context, args LookupAuditLogEventMappingOutputArgs, opts ...pulumi.InvokeOption) LookupAuditLogEventMappingResultOutput {
-	return pulumi.ToOutputWithContext(ctx.Context(), args).
-		ApplyT(func(v interface{}) (LookupAuditLogEventMappingResultOutput, error) {
-			args := v.(LookupAuditLogEventMappingArgs)
-			options := pulumi.InvokeOutputOptions{InvokeOptions: internal.PkgInvokeDefaultOpts(opts)}
-			return ctx.InvokeOutput("fastly:index/getAuditLogEventMapping:getAuditLogEventMapping", args, LookupAuditLogEventMappingResultOutput{}, options).(LookupAuditLogEventMappingResultOutput), nil
-		}).(LookupAuditLogEventMappingResultOutput)
+	options := pulumi.InvokeOutputOptions{InvokeOptions: internal.PkgInvokeDefaultOpts(opts)}
+	return ctx.InvokeOutput("fastly:index/getAuditLogEventMapping:getAuditLogEventMapping", args, LookupAuditLogEventMappingResultOutput{}, options).(LookupAuditLogEventMappingResultOutput)
 }
 
 // A collection of arguments for invoking getAuditLogEventMapping.

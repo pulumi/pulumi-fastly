@@ -61,10 +61,8 @@ type GetTlsPlatformCertificateIdsResult struct {
 }
 
 func GetTlsPlatformCertificateIdsOutput(ctx *pulumi.Context, opts ...pulumi.InvokeOption) GetTlsPlatformCertificateIdsResultOutput {
-	return pulumi.ToOutput(0).ApplyT(func(int) (GetTlsPlatformCertificateIdsResultOutput, error) {
-		options := pulumi.InvokeOutputOptions{InvokeOptions: internal.PkgInvokeDefaultOpts(opts)}
-		return ctx.InvokeOutput("fastly:index/getTlsPlatformCertificateIds:getTlsPlatformCertificateIds", nil, GetTlsPlatformCertificateIdsResultOutput{}, options).(GetTlsPlatformCertificateIdsResultOutput), nil
-	}).(GetTlsPlatformCertificateIdsResultOutput)
+	options := pulumi.InvokeOutputOptions{InvokeOptions: internal.PkgInvokeDefaultOpts(opts)}
+	return ctx.InvokeOutput("fastly:index/getTlsPlatformCertificateIds:getTlsPlatformCertificateIds", nil, GetTlsPlatformCertificateIdsResultOutput{}, options).(GetTlsPlatformCertificateIdsResultOutput)
 }
 
 // A collection of values returned by getTlsPlatformCertificateIds.

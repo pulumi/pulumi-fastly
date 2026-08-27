@@ -42,12 +42,8 @@ type GetStagingIpsResult struct {
 }
 
 func GetStagingIpsOutput(ctx *pulumi.Context, args GetStagingIpsOutputArgs, opts ...pulumi.InvokeOption) GetStagingIpsResultOutput {
-	return pulumi.ToOutputWithContext(ctx.Context(), args).
-		ApplyT(func(v interface{}) (GetStagingIpsResultOutput, error) {
-			args := v.(GetStagingIpsArgs)
-			options := pulumi.InvokeOutputOptions{InvokeOptions: internal.PkgInvokeDefaultOpts(opts)}
-			return ctx.InvokeOutput("fastly:index/getStagingIps:getStagingIps", args, GetStagingIpsResultOutput{}, options).(GetStagingIpsResultOutput), nil
-		}).(GetStagingIpsResultOutput)
+	options := pulumi.InvokeOutputOptions{InvokeOptions: internal.PkgInvokeDefaultOpts(opts)}
+	return ctx.InvokeOutput("fastly:index/getStagingIps:getStagingIps", args, GetStagingIpsResultOutput{}, options).(GetStagingIpsResultOutput)
 }
 
 // A collection of arguments for invoking getStagingIps.

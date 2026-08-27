@@ -61,10 +61,8 @@ type GetTlsConfigurationIdsResult struct {
 }
 
 func GetTlsConfigurationIdsOutput(ctx *pulumi.Context, opts ...pulumi.InvokeOption) GetTlsConfigurationIdsResultOutput {
-	return pulumi.ToOutput(0).ApplyT(func(int) (GetTlsConfigurationIdsResultOutput, error) {
-		options := pulumi.InvokeOutputOptions{InvokeOptions: internal.PkgInvokeDefaultOpts(opts)}
-		return ctx.InvokeOutput("fastly:index/getTlsConfigurationIds:getTlsConfigurationIds", nil, GetTlsConfigurationIdsResultOutput{}, options).(GetTlsConfigurationIdsResultOutput), nil
-	}).(GetTlsConfigurationIdsResultOutput)
+	options := pulumi.InvokeOutputOptions{InvokeOptions: internal.PkgInvokeDefaultOpts(opts)}
+	return ctx.InvokeOutput("fastly:index/getTlsConfigurationIds:getTlsConfigurationIds", nil, GetTlsConfigurationIdsResultOutput{}, options).(GetTlsConfigurationIdsResultOutput)
 }
 
 // A collection of values returned by getTlsConfigurationIds.

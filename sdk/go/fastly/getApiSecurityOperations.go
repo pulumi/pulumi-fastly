@@ -62,7 +62,7 @@ import (
 //				Path: pulumi.String("/v1/things"),
 //			}, nil)
 //			ctx.Export("apiSecurityOperations", ops.ApplyT(func(ops fastly.GetApiSecurityOperationsResult) ([]fastly.GetApiSecurityOperationsOperation, error) {
-//				return []fastly.GetApiSecurityOperationsOperation(ops.Operations), nil
+//				return ops.Operations.([]fastly.GetApiSecurityOperationsOperation), nil
 //			}).(pulumi.ArrayOutput))
 //			ctx.Export("apiSecurityOperationsTotal", ops.Total())
 //			return nil
@@ -115,12 +115,8 @@ type GetApiSecurityOperationsResult struct {
 }
 
 func GetApiSecurityOperationsOutput(ctx *pulumi.Context, args GetApiSecurityOperationsOutputArgs, opts ...pulumi.InvokeOption) GetApiSecurityOperationsResultOutput {
-	return pulumi.ToOutputWithContext(ctx.Context(), args).
-		ApplyT(func(v interface{}) (GetApiSecurityOperationsResultOutput, error) {
-			args := v.(GetApiSecurityOperationsArgs)
-			options := pulumi.InvokeOutputOptions{InvokeOptions: internal.PkgInvokeDefaultOpts(opts)}
-			return ctx.InvokeOutput("fastly:index/getApiSecurityOperations:getApiSecurityOperations", args, GetApiSecurityOperationsResultOutput{}, options).(GetApiSecurityOperationsResultOutput), nil
-		}).(GetApiSecurityOperationsResultOutput)
+	options := pulumi.InvokeOutputOptions{InvokeOptions: internal.PkgInvokeDefaultOpts(opts)}
+	return ctx.InvokeOutput("fastly:index/getApiSecurityOperations:getApiSecurityOperations", args, GetApiSecurityOperationsResultOutput{}, options).(GetApiSecurityOperationsResultOutput)
 }
 
 // A collection of arguments for invoking getApiSecurityOperations.

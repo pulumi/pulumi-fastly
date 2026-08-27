@@ -64,12 +64,8 @@ type GetDnsZonesResult struct {
 }
 
 func GetDnsZonesOutput(ctx *pulumi.Context, args GetDnsZonesOutputArgs, opts ...pulumi.InvokeOption) GetDnsZonesResultOutput {
-	return pulumi.ToOutputWithContext(ctx.Context(), args).
-		ApplyT(func(v interface{}) (GetDnsZonesResultOutput, error) {
-			args := v.(GetDnsZonesArgs)
-			options := pulumi.InvokeOutputOptions{InvokeOptions: internal.PkgInvokeDefaultOpts(opts)}
-			return ctx.InvokeOutput("fastly:index/getDnsZones:getDnsZones", args, GetDnsZonesResultOutput{}, options).(GetDnsZonesResultOutput), nil
-		}).(GetDnsZonesResultOutput)
+	options := pulumi.InvokeOutputOptions{InvokeOptions: internal.PkgInvokeDefaultOpts(opts)}
+	return ctx.InvokeOutput("fastly:index/getDnsZones:getDnsZones", args, GetDnsZonesResultOutput{}, options).(GetDnsZonesResultOutput)
 }
 
 // A collection of arguments for invoking getDnsZones.

@@ -68,12 +68,8 @@ type LookupNgwafVirtualPatchesResult struct {
 }
 
 func LookupNgwafVirtualPatchesOutput(ctx *pulumi.Context, args LookupNgwafVirtualPatchesOutputArgs, opts ...pulumi.InvokeOption) LookupNgwafVirtualPatchesResultOutput {
-	return pulumi.ToOutputWithContext(ctx.Context(), args).
-		ApplyT(func(v interface{}) (LookupNgwafVirtualPatchesResultOutput, error) {
-			args := v.(LookupNgwafVirtualPatchesArgs)
-			options := pulumi.InvokeOutputOptions{InvokeOptions: internal.PkgInvokeDefaultOpts(opts)}
-			return ctx.InvokeOutput("fastly:index/getNgwafVirtualPatches:getNgwafVirtualPatches", args, LookupNgwafVirtualPatchesResultOutput{}, options).(LookupNgwafVirtualPatchesResultOutput), nil
-		}).(LookupNgwafVirtualPatchesResultOutput)
+	options := pulumi.InvokeOutputOptions{InvokeOptions: internal.PkgInvokeDefaultOpts(opts)}
+	return ctx.InvokeOutput("fastly:index/getNgwafVirtualPatches:getNgwafVirtualPatches", args, LookupNgwafVirtualPatchesResultOutput{}, options).(LookupNgwafVirtualPatchesResultOutput)
 }
 
 // A collection of arguments for invoking getNgwafVirtualPatches.

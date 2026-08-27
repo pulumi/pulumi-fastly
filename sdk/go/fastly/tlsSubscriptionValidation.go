@@ -27,6 +27,116 @@ import (
 // The `certificateId` attribute is only populated once the certificate has been issued, so resources referencing it are guaranteed to run after issuance — unlike `fastly_tls_subscription.<name>.certificate_id`, which is empty on first apply (certificates are issued asynchronously after domain validation) and causes API 400 errors when consumed in the same apply.
 //
 // > **Note:** Fastly automatically activates TLS on a subscription's domains once the certificate is issued — set `configurationId` on the `TlsSubscription` itself and do **not** create a `TlsActivation` for those domains (it fails with `400 domainId has already been taken`). Use the `TlsActivation` data source to read the automatically-created activation.
+//
+// ```go
+// package main
+//
+// import (
+//
+//	"fmt"
+//	"sort"
+//
+//	"github.com/pulumi/pulumi-aws/sdk/v7/go/aws"
+//	"github.com/pulumi/pulumi-fastly/sdk/v12/go/fastly"
+//	"github.com/pulumi/pulumi/sdk/v3/go/pulumi"
+//	"github.com/pulumi/pulumi/sdk/v3/go/pulumi/config"
+//
+// )
+//
+//	func main() {
+//		pulumi.Run(func(ctx *pulumi.Context) error {
+//			cfg := config.New(ctx, "")
+//			certificates := cfg.Require("certificates")
+//			defaultTls, err := fastly.GetTlsConfiguration(ctx, &fastly.GetTlsConfigurationArgs{
+//				Default: pulumi.BoolRef(true),
+//			}, nil)
+//			if err != nil {
+//				return err
+//			}
+//			var exampleTlsSubscription []*fastly.TlsSubscription
+//			for key0, val0 := range certificates {
+//				__res, err := fastly.NewTlsSubscription(ctx, fmt.Sprintf("example-%v", key0), &fastly.TlsSubscriptionArgs{
+//					CertificateAuthority: pulumi.String(val0),
+//					CommonName:           pulumi.String(val0),
+//					Domains:              val0,
+//					ForceDestroy:         pulumi.Bool(val0),
+//					ConfigurationId:      pulumi.String(defaultTls.Id),
+//				})
+//				if err != nil {
+//					return err
+//				}
+//				exampleTlsSubscription = append(exampleTlsSubscription, __res)
+//			}
+//			// The domain validation challenge records MUST be created before validation
+//			// can succeed. This example uses DNS-based validation: replace with your DNS
+//			// provider's record resource, fed from
+//			// fastly_tls_subscription.example[each.key].managed_dns_challenges
+//			// (see the fastly_tls_subscription documentation for a Route53 example).
+//			var domainValidation []*aws.Route53Record
+//			for key0, val0 := range exampleTlsSubscription {
+//				__res, err := aws.NewRoute53Record(ctx, fmt.Sprintf("domain_validation-%v", key0), &aws.Route53RecordArgs{
+//					Name: val0,
+//					Type: val0,
+//					Records: []*string{
+//						val0,
+//					},
+//					ZoneId:         "REPLACE_WITH_YOUR_ZONE_ID",
+//					AllowOverwrite: true,
+//					Ttl:            60,
+//				})
+//				if err != nil {
+//					return err
+//				}
+//				domainValidation = append(domainValidation, __res)
+//			}
+//			// Blocks until the certificate has been issued. Its certificate_id attribute
+//			// is only known after issuance, so downstream resources referencing it are
+//			// guaranteed to run with a valid certificate — all in a single apply.
+//			var exampleTlsSubscriptionValidation []*fastly.TlsSubscriptionValidation
+//			for key0, _ := range certificates {
+//				__res, err := fastly.NewTlsSubscriptionValidation(ctx, fmt.Sprintf("example-%v", key0), &fastly.TlsSubscriptionValidationArgs{
+//					SubscriptionId: exampleTlsSubscription[key0].ID().ToIDOutput().ToStringOutput(),
+//				}, pulumi.DependsOn([]pulumi.Resource{
+//					domainValidation,
+//				}))
+//				if err != nil {
+//					return err
+//				}
+//				exampleTlsSubscriptionValidation = append(exampleTlsSubscriptionValidation, __res)
+//			}
+//			forResult0 := fastly.GetTlsActivationResultMap{}
+//			forRange0 := certificates
+//			forKeys0 := make([]string, 0, len(forRange0))
+//			for forKey0 := range forRange0 {
+//				forKeys0 = append(forKeys0, forKey0)
+//			}
+//			sort.Strings(forKeys0)
+//			for _, __key := range forKeys0 {
+//				__value := forRange0[__key]
+//				forResult0[__key] = fastly.GetTlsActivation(ctx, &fastly.LookupTlsActivationArgs{
+//					Domain: __value["commonName"].(string),
+//				}, nil)
+//			}
+//			// The activation was created automatically by Fastly when the certificate was
+//			// issued; this data source reads it (e.g. to consume dns_records/IDs).
+//			_ := forResult0
+//			forResult1 := pulumi.StringMap{}
+//			forRange1 := exampleTlsSubscriptionValidation
+//			forKeys1 := make([]string, 0, len(forRange1))
+//			for forKey1 := range forRange1 {
+//				forKeys1 = append(forKeys1, forKey1)
+//			}
+//			sort.Strings(forKeys1)
+//			for _, k := range forKeys1 {
+//				v := forRange1[k]
+//				forResult1[k] = v.CertificateId
+//			}
+//			ctx.Export("certificateIds", forResult1)
+//			return nil
+//		})
+//	}
+//
+// ```
 type TlsSubscriptionValidation struct {
 	pulumi.CustomResourceState
 

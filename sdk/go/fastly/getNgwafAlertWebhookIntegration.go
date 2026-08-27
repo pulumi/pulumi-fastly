@@ -66,12 +66,8 @@ type LookupNgwafAlertWebhookIntegrationResult struct {
 }
 
 func LookupNgwafAlertWebhookIntegrationOutput(ctx *pulumi.Context, args LookupNgwafAlertWebhookIntegrationOutputArgs, opts ...pulumi.InvokeOption) LookupNgwafAlertWebhookIntegrationResultOutput {
-	return pulumi.ToOutputWithContext(ctx.Context(), args).
-		ApplyT(func(v interface{}) (LookupNgwafAlertWebhookIntegrationResultOutput, error) {
-			args := v.(LookupNgwafAlertWebhookIntegrationArgs)
-			options := pulumi.InvokeOutputOptions{InvokeOptions: internal.PkgInvokeDefaultOpts(opts)}
-			return ctx.InvokeOutput("fastly:index/getNgwafAlertWebhookIntegration:getNgwafAlertWebhookIntegration", args, LookupNgwafAlertWebhookIntegrationResultOutput{}, options).(LookupNgwafAlertWebhookIntegrationResultOutput), nil
-		}).(LookupNgwafAlertWebhookIntegrationResultOutput)
+	options := pulumi.InvokeOutputOptions{InvokeOptions: internal.PkgInvokeDefaultOpts(opts)}
+	return ctx.InvokeOutput("fastly:index/getNgwafAlertWebhookIntegration:getNgwafAlertWebhookIntegration", args, LookupNgwafAlertWebhookIntegrationResultOutput{}, options).(LookupNgwafAlertWebhookIntegrationResultOutput)
 }
 
 // A collection of arguments for invoking getNgwafAlertWebhookIntegration.

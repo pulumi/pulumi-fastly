@@ -66,12 +66,8 @@ type LookupNgwafAlertOpsgenieIntegrationResult struct {
 }
 
 func LookupNgwafAlertOpsgenieIntegrationOutput(ctx *pulumi.Context, args LookupNgwafAlertOpsgenieIntegrationOutputArgs, opts ...pulumi.InvokeOption) LookupNgwafAlertOpsgenieIntegrationResultOutput {
-	return pulumi.ToOutputWithContext(ctx.Context(), args).
-		ApplyT(func(v interface{}) (LookupNgwafAlertOpsgenieIntegrationResultOutput, error) {
-			args := v.(LookupNgwafAlertOpsgenieIntegrationArgs)
-			options := pulumi.InvokeOutputOptions{InvokeOptions: internal.PkgInvokeDefaultOpts(opts)}
-			return ctx.InvokeOutput("fastly:index/getNgwafAlertOpsgenieIntegration:getNgwafAlertOpsgenieIntegration", args, LookupNgwafAlertOpsgenieIntegrationResultOutput{}, options).(LookupNgwafAlertOpsgenieIntegrationResultOutput), nil
-		}).(LookupNgwafAlertOpsgenieIntegrationResultOutput)
+	options := pulumi.InvokeOutputOptions{InvokeOptions: internal.PkgInvokeDefaultOpts(opts)}
+	return ctx.InvokeOutput("fastly:index/getNgwafAlertOpsgenieIntegration:getNgwafAlertOpsgenieIntegration", args, LookupNgwafAlertOpsgenieIntegrationResultOutput{}, options).(LookupNgwafAlertOpsgenieIntegrationResultOutput)
 }
 
 // A collection of arguments for invoking getNgwafAlertOpsgenieIntegration.
