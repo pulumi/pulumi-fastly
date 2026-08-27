@@ -85,12 +85,8 @@ type LookupTlsPlatformCertificateResult struct {
 }
 
 func LookupTlsPlatformCertificateOutput(ctx *pulumi.Context, args LookupTlsPlatformCertificateOutputArgs, opts ...pulumi.InvokeOption) LookupTlsPlatformCertificateResultOutput {
-	return pulumi.ToOutputWithContext(ctx.Context(), args).
-		ApplyT(func(v interface{}) (LookupTlsPlatformCertificateResultOutput, error) {
-			args := v.(LookupTlsPlatformCertificateArgs)
-			options := pulumi.InvokeOutputOptions{InvokeOptions: internal.PkgInvokeDefaultOpts(opts)}
-			return ctx.InvokeOutput("fastly:index/getTlsPlatformCertificate:getTlsPlatformCertificate", args, LookupTlsPlatformCertificateResultOutput{}, options).(LookupTlsPlatformCertificateResultOutput), nil
-		}).(LookupTlsPlatformCertificateResultOutput)
+	options := pulumi.InvokeOutputOptions{InvokeOptions: internal.PkgInvokeDefaultOpts(opts)}
+	return ctx.InvokeOutput("fastly:index/getTlsPlatformCertificate:getTlsPlatformCertificate", args, LookupTlsPlatformCertificateResultOutput{}, options).(LookupTlsPlatformCertificateResultOutput)
 }
 
 // A collection of arguments for invoking getTlsPlatformCertificate.

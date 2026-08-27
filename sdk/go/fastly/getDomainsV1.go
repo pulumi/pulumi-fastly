@@ -38,12 +38,8 @@ type GetDomainsV1Result struct {
 }
 
 func GetDomainsV1Output(ctx *pulumi.Context, args GetDomainsV1OutputArgs, opts ...pulumi.InvokeOption) GetDomainsV1ResultOutput {
-	return pulumi.ToOutputWithContext(ctx.Context(), args).
-		ApplyT(func(v interface{}) (GetDomainsV1ResultOutput, error) {
-			args := v.(GetDomainsV1Args)
-			options := pulumi.InvokeOutputOptions{InvokeOptions: internal.PkgInvokeDefaultOpts(opts)}
-			return ctx.InvokeOutput("fastly:index/getDomainsV1:getDomainsV1", args, GetDomainsV1ResultOutput{}, options).(GetDomainsV1ResultOutput), nil
-		}).(GetDomainsV1ResultOutput)
+	options := pulumi.InvokeOutputOptions{InvokeOptions: internal.PkgInvokeDefaultOpts(opts)}
+	return ctx.InvokeOutput("fastly:index/getDomainsV1:getDomainsV1", args, GetDomainsV1ResultOutput{}, options).(GetDomainsV1ResultOutput)
 }
 
 // A collection of arguments for invoking getDomainsV1.

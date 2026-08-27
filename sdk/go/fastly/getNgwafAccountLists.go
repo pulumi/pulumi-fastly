@@ -56,10 +56,8 @@ type GetNgwafAccountListsResult struct {
 }
 
 func GetNgwafAccountListsOutput(ctx *pulumi.Context, opts ...pulumi.InvokeOption) GetNgwafAccountListsResultOutput {
-	return pulumi.ToOutput(0).ApplyT(func(int) (GetNgwafAccountListsResultOutput, error) {
-		options := pulumi.InvokeOutputOptions{InvokeOptions: internal.PkgInvokeDefaultOpts(opts)}
-		return ctx.InvokeOutput("fastly:index/getNgwafAccountLists:getNgwafAccountLists", nil, GetNgwafAccountListsResultOutput{}, options).(GetNgwafAccountListsResultOutput), nil
-	}).(GetNgwafAccountListsResultOutput)
+	options := pulumi.InvokeOutputOptions{InvokeOptions: internal.PkgInvokeDefaultOpts(opts)}
+	return ctx.InvokeOutput("fastly:index/getNgwafAccountLists:getNgwafAccountLists", nil, GetNgwafAccountListsResultOutput{}, options).(GetNgwafAccountListsResultOutput)
 }
 
 // A collection of values returned by getNgwafAccountLists.

@@ -66,12 +66,8 @@ type LookupNgwafAlertPagerdutyIntegrationResult struct {
 }
 
 func LookupNgwafAlertPagerdutyIntegrationOutput(ctx *pulumi.Context, args LookupNgwafAlertPagerdutyIntegrationOutputArgs, opts ...pulumi.InvokeOption) LookupNgwafAlertPagerdutyIntegrationResultOutput {
-	return pulumi.ToOutputWithContext(ctx.Context(), args).
-		ApplyT(func(v interface{}) (LookupNgwafAlertPagerdutyIntegrationResultOutput, error) {
-			args := v.(LookupNgwafAlertPagerdutyIntegrationArgs)
-			options := pulumi.InvokeOutputOptions{InvokeOptions: internal.PkgInvokeDefaultOpts(opts)}
-			return ctx.InvokeOutput("fastly:index/getNgwafAlertPagerdutyIntegration:getNgwafAlertPagerdutyIntegration", args, LookupNgwafAlertPagerdutyIntegrationResultOutput{}, options).(LookupNgwafAlertPagerdutyIntegrationResultOutput), nil
-		}).(LookupNgwafAlertPagerdutyIntegrationResultOutput)
+	options := pulumi.InvokeOutputOptions{InvokeOptions: internal.PkgInvokeDefaultOpts(opts)}
+	return ctx.InvokeOutput("fastly:index/getNgwafAlertPagerdutyIntegration:getNgwafAlertPagerdutyIntegration", args, LookupNgwafAlertPagerdutyIntegrationResultOutput{}, options).(LookupNgwafAlertPagerdutyIntegrationResultOutput)
 }
 
 // A collection of arguments for invoking getNgwafAlertPagerdutyIntegration.

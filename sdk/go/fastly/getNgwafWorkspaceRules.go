@@ -66,12 +66,8 @@ type GetNgwafWorkspaceRulesResult struct {
 }
 
 func GetNgwafWorkspaceRulesOutput(ctx *pulumi.Context, args GetNgwafWorkspaceRulesOutputArgs, opts ...pulumi.InvokeOption) GetNgwafWorkspaceRulesResultOutput {
-	return pulumi.ToOutputWithContext(ctx.Context(), args).
-		ApplyT(func(v interface{}) (GetNgwafWorkspaceRulesResultOutput, error) {
-			args := v.(GetNgwafWorkspaceRulesArgs)
-			options := pulumi.InvokeOutputOptions{InvokeOptions: internal.PkgInvokeDefaultOpts(opts)}
-			return ctx.InvokeOutput("fastly:index/getNgwafWorkspaceRules:getNgwafWorkspaceRules", args, GetNgwafWorkspaceRulesResultOutput{}, options).(GetNgwafWorkspaceRulesResultOutput), nil
-		}).(GetNgwafWorkspaceRulesResultOutput)
+	options := pulumi.InvokeOutputOptions{InvokeOptions: internal.PkgInvokeDefaultOpts(opts)}
+	return ctx.InvokeOutput("fastly:index/getNgwafWorkspaceRules:getNgwafWorkspaceRules", args, GetNgwafWorkspaceRulesResultOutput{}, options).(GetNgwafWorkspaceRulesResultOutput)
 }
 
 // A collection of arguments for invoking getNgwafWorkspaceRules.

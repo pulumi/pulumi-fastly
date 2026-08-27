@@ -84,12 +84,8 @@ type GetVclSnippetsResult struct {
 }
 
 func GetVclSnippetsOutput(ctx *pulumi.Context, args GetVclSnippetsOutputArgs, opts ...pulumi.InvokeOption) GetVclSnippetsResultOutput {
-	return pulumi.ToOutputWithContext(ctx.Context(), args).
-		ApplyT(func(v interface{}) (GetVclSnippetsResultOutput, error) {
-			args := v.(GetVclSnippetsArgs)
-			options := pulumi.InvokeOutputOptions{InvokeOptions: internal.PkgInvokeDefaultOpts(opts)}
-			return ctx.InvokeOutput("fastly:index/getVclSnippets:getVclSnippets", args, GetVclSnippetsResultOutput{}, options).(GetVclSnippetsResultOutput), nil
-		}).(GetVclSnippetsResultOutput)
+	options := pulumi.InvokeOutputOptions{InvokeOptions: internal.PkgInvokeDefaultOpts(opts)}
+	return ctx.InvokeOutput("fastly:index/getVclSnippets:getVclSnippets", args, GetVclSnippetsResultOutput{}, options).(GetVclSnippetsResultOutput)
 }
 
 // A collection of arguments for invoking getVclSnippets.

@@ -30,10 +30,8 @@ type GetSecretstoresResult struct {
 }
 
 func GetSecretstoresOutput(ctx *pulumi.Context, opts ...pulumi.InvokeOption) GetSecretstoresResultOutput {
-	return pulumi.ToOutput(0).ApplyT(func(int) (GetSecretstoresResultOutput, error) {
-		options := pulumi.InvokeOutputOptions{InvokeOptions: internal.PkgInvokeDefaultOpts(opts)}
-		return ctx.InvokeOutput("fastly:index/getSecretstores:getSecretstores", nil, GetSecretstoresResultOutput{}, options).(GetSecretstoresResultOutput), nil
-	}).(GetSecretstoresResultOutput)
+	options := pulumi.InvokeOutputOptions{InvokeOptions: internal.PkgInvokeDefaultOpts(opts)}
+	return ctx.InvokeOutput("fastly:index/getSecretstores:getSecretstores", nil, GetSecretstoresResultOutput{}, options).(GetSecretstoresResultOutput)
 }
 
 // A collection of values returned by getSecretstores.

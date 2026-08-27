@@ -33,10 +33,8 @@ type GetServicesResult struct {
 }
 
 func GetServicesOutput(ctx *pulumi.Context, opts ...pulumi.InvokeOption) GetServicesResultOutput {
-	return pulumi.ToOutput(0).ApplyT(func(int) (GetServicesResultOutput, error) {
-		options := pulumi.InvokeOutputOptions{InvokeOptions: internal.PkgInvokeDefaultOpts(opts)}
-		return ctx.InvokeOutput("fastly:index/getServices:getServices", nil, GetServicesResultOutput{}, options).(GetServicesResultOutput), nil
-	}).(GetServicesResultOutput)
+	options := pulumi.InvokeOutputOptions{InvokeOptions: internal.PkgInvokeDefaultOpts(opts)}
+	return ctx.InvokeOutput("fastly:index/getServices:getServices", nil, GetServicesResultOutput{}, options).(GetServicesResultOutput)
 }
 
 // A collection of values returned by getServices.

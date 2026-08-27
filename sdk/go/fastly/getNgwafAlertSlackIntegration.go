@@ -66,12 +66,8 @@ type LookupNgwafAlertSlackIntegrationResult struct {
 }
 
 func LookupNgwafAlertSlackIntegrationOutput(ctx *pulumi.Context, args LookupNgwafAlertSlackIntegrationOutputArgs, opts ...pulumi.InvokeOption) LookupNgwafAlertSlackIntegrationResultOutput {
-	return pulumi.ToOutputWithContext(ctx.Context(), args).
-		ApplyT(func(v interface{}) (LookupNgwafAlertSlackIntegrationResultOutput, error) {
-			args := v.(LookupNgwafAlertSlackIntegrationArgs)
-			options := pulumi.InvokeOutputOptions{InvokeOptions: internal.PkgInvokeDefaultOpts(opts)}
-			return ctx.InvokeOutput("fastly:index/getNgwafAlertSlackIntegration:getNgwafAlertSlackIntegration", args, LookupNgwafAlertSlackIntegrationResultOutput{}, options).(LookupNgwafAlertSlackIntegrationResultOutput), nil
-		}).(LookupNgwafAlertSlackIntegrationResultOutput)
+	options := pulumi.InvokeOutputOptions{InvokeOptions: internal.PkgInvokeDefaultOpts(opts)}
+	return ctx.InvokeOutput("fastly:index/getNgwafAlertSlackIntegration:getNgwafAlertSlackIntegration", args, LookupNgwafAlertSlackIntegrationResultOutput{}, options).(LookupNgwafAlertSlackIntegrationResultOutput)
 }
 
 // A collection of arguments for invoking getNgwafAlertSlackIntegration.
