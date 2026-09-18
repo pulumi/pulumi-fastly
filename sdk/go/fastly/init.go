@@ -21,6 +21,10 @@ func (m *module) Version() semver.Version {
 
 func (m *module) Construct(ctx *pulumi.Context, name, typ, urn string) (r pulumi.Resource, err error) {
 	switch typ {
+	case "fastly:index/aiRuntimeControlProviderConnection:AiRuntimeControlProviderConnection":
+		r = &AiRuntimeControlProviderConnection{}
+	case "fastly:index/aiRuntimeControlVirtualKey:AiRuntimeControlVirtualKey":
+		r = &AiRuntimeControlVirtualKey{}
 	case "fastly:index/alert:Alert":
 		r = &Alert{}
 	case "fastly:index/apiSecurityOperation:ApiSecurityOperation":
@@ -154,6 +158,16 @@ func init() {
 	if err != nil {
 		version = semver.Version{Major: 1}
 	}
+	pulumi.RegisterResourceModule(
+		"fastly",
+		"index/aiRuntimeControlProviderConnection",
+		&module{version},
+	)
+	pulumi.RegisterResourceModule(
+		"fastly",
+		"index/aiRuntimeControlVirtualKey",
+		&module{version},
+	)
 	pulumi.RegisterResourceModule(
 		"fastly",
 		"index/alert",

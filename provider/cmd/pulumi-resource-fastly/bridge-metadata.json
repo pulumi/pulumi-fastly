@@ -1,6 +1,17 @@
 {
     "auto-aliasing": {
         "resources": {
+            "fastly_ai_runtime_control_provider_connection": {
+                "current": "fastly:index/aiRuntimeControlProviderConnection:AiRuntimeControlProviderConnection",
+                "fields": {
+                    "models": {
+                        "maxItemsOne": false
+                    }
+                }
+            },
+            "fastly_ai_runtime_control_virtual_key": {
+                "current": "fastly:index/aiRuntimeControlVirtualKey:AiRuntimeControlVirtualKey"
+            },
             "fastly_alert": {
                 "current": "fastly:index/alert:Alert",
                 "fields": {
@@ -716,6 +727,44 @@
             }
         },
         "datasources": {
+            "fastly_ai_runtime_control_provider_connections": {
+                "current": "fastly:index/getAiRuntimeControlProviderConnections:getAiRuntimeControlProviderConnections",
+                "fields": {
+                    "provider_connections": {
+                        "maxItemsOne": false,
+                        "elem": {
+                            "fields": {
+                                "models": {
+                                    "maxItemsOne": false
+                                }
+                            }
+                        }
+                    }
+                }
+            },
+            "fastly_ai_runtime_control_providers": {
+                "current": "fastly:index/getAiRuntimeControlProviders:getAiRuntimeControlProviders",
+                "fields": {
+                    "providers": {
+                        "maxItemsOne": false,
+                        "elem": {
+                            "fields": {
+                                "models": {
+                                    "maxItemsOne": false
+                                }
+                            }
+                        }
+                    }
+                }
+            },
+            "fastly_ai_runtime_control_virtual_keys": {
+                "current": "fastly:index/getAiRuntimeControlVirtualKeys:getAiRuntimeControlVirtualKeys",
+                "fields": {
+                    "virtual_keys": {
+                        "maxItemsOne": false
+                    }
+                }
+            },
             "fastly_api_security_discovered_operations": {
                 "current": "fastly:index/getApiSecurityDiscoveredOperations:getApiSecurityDiscoveredOperations",
                 "fields": {

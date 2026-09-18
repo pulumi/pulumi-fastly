@@ -9111,7 +9111,7 @@ class ServiceComputeProductEnablementDdosProtectionArgsDict(TypedDict):
     """
     mode: pulumi.Input[_builtins.str]
     """
-    Operation mode. Can be either `off`, `log`, or `block`.
+    Operation mode. Can be `off`, `log`, `block`, or `client_challenge`.
     """
 
 @pulumi.input_type
@@ -9121,7 +9121,7 @@ class ServiceComputeProductEnablementDdosProtectionArgs:
                  mode: pulumi.Input[_builtins.str]):
         """
         :param pulumi.Input[_builtins.bool] enabled: Enable DDoS Protection support
-        :param pulumi.Input[_builtins.str] mode: Operation mode. Can be either `off`, `log`, or `block`.
+        :param pulumi.Input[_builtins.str] mode: Operation mode. Can be `off`, `log`, `block`, or `client_challenge`.
         """
         pulumi.set(__self__, "enabled", enabled)
         pulumi.set(__self__, "mode", mode)
@@ -9142,7 +9142,7 @@ class ServiceComputeProductEnablementDdosProtectionArgs:
     @pulumi.getter
     def mode(self) -> pulumi.Input[_builtins.str]:
         """
-        Operation mode. Can be either `off`, `log`, or `block`.
+        Operation mode. Can be `off`, `log`, `block`, or `client_challenge`.
         """
         return pulumi.get(self, "mode")
 
@@ -19023,7 +19023,7 @@ class ServiceVclProductEnablementDdosProtectionArgsDict(TypedDict):
     """
     mode: pulumi.Input[_builtins.str]
     """
-    Operation mode. Can be either `off`, `log`, or `block`.
+    Operation mode. Can be `off`, `log`, `block`, or `client_challenge`.
     """
 
 @pulumi.input_type
@@ -19033,7 +19033,7 @@ class ServiceVclProductEnablementDdosProtectionArgs:
                  mode: pulumi.Input[_builtins.str]):
         """
         :param pulumi.Input[_builtins.bool] enabled: Enable DDoS Protection support
-        :param pulumi.Input[_builtins.str] mode: Operation mode. Can be either `off`, `log`, or `block`.
+        :param pulumi.Input[_builtins.str] mode: Operation mode. Can be `off`, `log`, `block`, or `client_challenge`.
         """
         pulumi.set(__self__, "enabled", enabled)
         pulumi.set(__self__, "mode", mode)
@@ -19054,7 +19054,7 @@ class ServiceVclProductEnablementDdosProtectionArgs:
     @pulumi.getter
     def mode(self) -> pulumi.Input[_builtins.str]:
         """
-        Operation mode. Can be either `off`, `log`, or `block`.
+        Operation mode. Can be `off`, `log`, `block`, or `client_challenge`.
         """
         return pulumi.get(self, "mode")
 

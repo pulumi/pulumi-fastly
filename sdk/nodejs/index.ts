@@ -5,6 +5,16 @@ import * as pulumi from "@pulumi/pulumi";
 import * as utilities from "./utilities";
 
 // Export members:
+export { AiRuntimeControlProviderConnectionArgs, AiRuntimeControlProviderConnectionState } from "./aiRuntimeControlProviderConnection";
+export type AiRuntimeControlProviderConnection = import("./aiRuntimeControlProviderConnection").AiRuntimeControlProviderConnection;
+export const AiRuntimeControlProviderConnection: typeof import("./aiRuntimeControlProviderConnection").AiRuntimeControlProviderConnection = null as any;
+utilities.lazyLoad(exports, ["AiRuntimeControlProviderConnection"], () => require("./aiRuntimeControlProviderConnection"));
+
+export { AiRuntimeControlVirtualKeyArgs, AiRuntimeControlVirtualKeyState } from "./aiRuntimeControlVirtualKey";
+export type AiRuntimeControlVirtualKey = import("./aiRuntimeControlVirtualKey").AiRuntimeControlVirtualKey;
+export const AiRuntimeControlVirtualKey: typeof import("./aiRuntimeControlVirtualKey").AiRuntimeControlVirtualKey = null as any;
+utilities.lazyLoad(exports, ["AiRuntimeControlVirtualKey"], () => require("./aiRuntimeControlVirtualKey"));
+
 export { AlertArgs, AlertState } from "./alert";
 export type Alert = import("./alert").Alert;
 export const Alert: typeof import("./alert").Alert = null as any;
@@ -74,6 +84,21 @@ export { DomainV1ServiceLinkArgs, DomainV1ServiceLinkState } from "./domainV1Ser
 export type DomainV1ServiceLink = import("./domainV1ServiceLink").DomainV1ServiceLink;
 export const DomainV1ServiceLink: typeof import("./domainV1ServiceLink").DomainV1ServiceLink = null as any;
 utilities.lazyLoad(exports, ["DomainV1ServiceLink"], () => require("./domainV1ServiceLink"));
+
+export { GetAiRuntimeControlProviderConnectionsResult } from "./getAiRuntimeControlProviderConnections";
+export const getAiRuntimeControlProviderConnections: typeof import("./getAiRuntimeControlProviderConnections").getAiRuntimeControlProviderConnections = null as any;
+export const getAiRuntimeControlProviderConnectionsOutput: typeof import("./getAiRuntimeControlProviderConnections").getAiRuntimeControlProviderConnectionsOutput = null as any;
+utilities.lazyLoad(exports, ["getAiRuntimeControlProviderConnections","getAiRuntimeControlProviderConnectionsOutput"], () => require("./getAiRuntimeControlProviderConnections"));
+
+export { GetAiRuntimeControlProvidersResult } from "./getAiRuntimeControlProviders";
+export const getAiRuntimeControlProviders: typeof import("./getAiRuntimeControlProviders").getAiRuntimeControlProviders = null as any;
+export const getAiRuntimeControlProvidersOutput: typeof import("./getAiRuntimeControlProviders").getAiRuntimeControlProvidersOutput = null as any;
+utilities.lazyLoad(exports, ["getAiRuntimeControlProviders","getAiRuntimeControlProvidersOutput"], () => require("./getAiRuntimeControlProviders"));
+
+export { GetAiRuntimeControlVirtualKeysArgs, GetAiRuntimeControlVirtualKeysResult, GetAiRuntimeControlVirtualKeysOutputArgs } from "./getAiRuntimeControlVirtualKeys";
+export const getAiRuntimeControlVirtualKeys: typeof import("./getAiRuntimeControlVirtualKeys").getAiRuntimeControlVirtualKeys = null as any;
+export const getAiRuntimeControlVirtualKeysOutput: typeof import("./getAiRuntimeControlVirtualKeys").getAiRuntimeControlVirtualKeysOutput = null as any;
+utilities.lazyLoad(exports, ["getAiRuntimeControlVirtualKeys","getAiRuntimeControlVirtualKeysOutput"], () => require("./getAiRuntimeControlVirtualKeys"));
 
 export { GetApiSecurityDiscoveredOperationsArgs, GetApiSecurityDiscoveredOperationsResult, GetApiSecurityDiscoveredOperationsOutputArgs } from "./getApiSecurityDiscoveredOperations";
 export const getApiSecurityDiscoveredOperations: typeof import("./getApiSecurityDiscoveredOperations").getApiSecurityDiscoveredOperations = null as any;
@@ -527,6 +552,10 @@ const _module = {
     version: utilities.getVersion(),
     construct: (name: string, type: string, urn: string): pulumi.Resource => {
         switch (type) {
+            case "fastly:index/aiRuntimeControlProviderConnection:AiRuntimeControlProviderConnection":
+                return new AiRuntimeControlProviderConnection(name, <any>undefined, { urn })
+            case "fastly:index/aiRuntimeControlVirtualKey:AiRuntimeControlVirtualKey":
+                return new AiRuntimeControlVirtualKey(name, <any>undefined, { urn })
             case "fastly:index/alert:Alert":
                 return new Alert(name, <any>undefined, { urn })
             case "fastly:index/apiSecurityOperation:ApiSecurityOperation":
@@ -634,6 +663,8 @@ const _module = {
         }
     },
 };
+pulumi.runtime.registerResourceModule("fastly", "index/aiRuntimeControlProviderConnection", _module)
+pulumi.runtime.registerResourceModule("fastly", "index/aiRuntimeControlVirtualKey", _module)
 pulumi.runtime.registerResourceModule("fastly", "index/alert", _module)
 pulumi.runtime.registerResourceModule("fastly", "index/apiSecurityOperation", _module)
 pulumi.runtime.registerResourceModule("fastly", "index/apiSecurityOperationTag", _module)

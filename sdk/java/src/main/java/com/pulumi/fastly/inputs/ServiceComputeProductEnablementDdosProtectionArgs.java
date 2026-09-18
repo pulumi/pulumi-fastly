@@ -31,14 +31,14 @@ public final class ServiceComputeProductEnablementDdosProtectionArgs extends com
     }
 
     /**
-     * Operation mode. Can be either `off`, `log`, or `block`.
+     * Operation mode. Can be `off`, `log`, `block`, or `clientChallenge`.
      * 
      */
     @Import(name="mode", required=true)
     private Output<String> mode;
 
     /**
-     * @return Operation mode. Can be either `off`, `log`, or `block`.
+     * @return Operation mode. Can be `off`, `log`, `block`, or `clientChallenge`.
      * 
      */
     public Output<String> mode() {
@@ -92,7 +92,7 @@ public final class ServiceComputeProductEnablementDdosProtectionArgs extends com
         }
 
         /**
-         * @param mode Operation mode. Can be either `off`, `log`, or `block`.
+         * @param mode Operation mode. Can be `off`, `log`, `block`, or `clientChallenge`.
          * 
          * @return builder
          * 
@@ -103,7 +103,7 @@ public final class ServiceComputeProductEnablementDdosProtectionArgs extends com
         }
 
         /**
-         * @param mode Operation mode. Can be either `off`, `log`, or `block`.
+         * @param mode Operation mode. Can be `off`, `log`, `block`, or `clientChallenge`.
          * 
          * @return builder
          * 
