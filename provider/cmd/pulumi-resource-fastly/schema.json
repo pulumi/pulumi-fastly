@@ -2471,7 +2471,7 @@
                 },
                 "mode": {
                     "type": "string",
-                    "description": "Operation mode. Can be either \u003cspan pulumi-lang-nodejs=\"`off`\" pulumi-lang-dotnet=\"`Off`\" pulumi-lang-go=\"`off`\" pulumi-lang-python=\"`off`\" pulumi-lang-yaml=\"`off`\" pulumi-lang-java=\"`off`\" pulumi-lang-hcl=\"`off`\"\u003e`off`\u003c/span\u003e, \u003cspan pulumi-lang-nodejs=\"`log`\" pulumi-lang-dotnet=\"`Log`\" pulumi-lang-go=\"`log`\" pulumi-lang-python=\"`log`\" pulumi-lang-yaml=\"`log`\" pulumi-lang-java=\"`log`\" pulumi-lang-hcl=\"`log`\"\u003e`log`\u003c/span\u003e, or \u003cspan pulumi-lang-nodejs=\"`block`\" pulumi-lang-dotnet=\"`Block`\" pulumi-lang-go=\"`block`\" pulumi-lang-python=\"`block`\" pulumi-lang-yaml=\"`block`\" pulumi-lang-java=\"`block`\" pulumi-lang-hcl=\"`block`\"\u003e`block`\u003c/span\u003e.\n"
+                    "description": "Operation mode. Can be \u003cspan pulumi-lang-nodejs=\"`off`\" pulumi-lang-dotnet=\"`Off`\" pulumi-lang-go=\"`off`\" pulumi-lang-python=\"`off`\" pulumi-lang-yaml=\"`off`\" pulumi-lang-java=\"`off`\" pulumi-lang-hcl=\"`off`\"\u003e`off`\u003c/span\u003e, \u003cspan pulumi-lang-nodejs=\"`log`\" pulumi-lang-dotnet=\"`Log`\" pulumi-lang-go=\"`log`\" pulumi-lang-python=\"`log`\" pulumi-lang-yaml=\"`log`\" pulumi-lang-java=\"`log`\" pulumi-lang-hcl=\"`log`\"\u003e`log`\u003c/span\u003e, \u003cspan pulumi-lang-nodejs=\"`block`\" pulumi-lang-dotnet=\"`Block`\" pulumi-lang-go=\"`block`\" pulumi-lang-python=\"`block`\" pulumi-lang-yaml=\"`block`\" pulumi-lang-java=\"`block`\" pulumi-lang-hcl=\"`block`\"\u003e`block`\u003c/span\u003e, or \u003cspan pulumi-lang-nodejs=\"`clientChallenge`\" pulumi-lang-dotnet=\"`ClientChallenge`\" pulumi-lang-go=\"`clientChallenge`\" pulumi-lang-python=\"`client_challenge`\" pulumi-lang-yaml=\"`clientChallenge`\" pulumi-lang-java=\"`clientChallenge`\" pulumi-lang-hcl=\"`client_challenge`\"\u003e`clientChallenge`\u003c/span\u003e.\n"
                 }
             },
             "type": "object",
@@ -4922,7 +4922,7 @@
                 },
                 "mode": {
                     "type": "string",
-                    "description": "Operation mode. Can be either \u003cspan pulumi-lang-nodejs=\"`off`\" pulumi-lang-dotnet=\"`Off`\" pulumi-lang-go=\"`off`\" pulumi-lang-python=\"`off`\" pulumi-lang-yaml=\"`off`\" pulumi-lang-java=\"`off`\" pulumi-lang-hcl=\"`off`\"\u003e`off`\u003c/span\u003e, \u003cspan pulumi-lang-nodejs=\"`log`\" pulumi-lang-dotnet=\"`Log`\" pulumi-lang-go=\"`log`\" pulumi-lang-python=\"`log`\" pulumi-lang-yaml=\"`log`\" pulumi-lang-java=\"`log`\" pulumi-lang-hcl=\"`log`\"\u003e`log`\u003c/span\u003e, or \u003cspan pulumi-lang-nodejs=\"`block`\" pulumi-lang-dotnet=\"`Block`\" pulumi-lang-go=\"`block`\" pulumi-lang-python=\"`block`\" pulumi-lang-yaml=\"`block`\" pulumi-lang-java=\"`block`\" pulumi-lang-hcl=\"`block`\"\u003e`block`\u003c/span\u003e.\n"
+                    "description": "Operation mode. Can be \u003cspan pulumi-lang-nodejs=\"`off`\" pulumi-lang-dotnet=\"`Off`\" pulumi-lang-go=\"`off`\" pulumi-lang-python=\"`off`\" pulumi-lang-yaml=\"`off`\" pulumi-lang-java=\"`off`\" pulumi-lang-hcl=\"`off`\"\u003e`off`\u003c/span\u003e, \u003cspan pulumi-lang-nodejs=\"`log`\" pulumi-lang-dotnet=\"`Log`\" pulumi-lang-go=\"`log`\" pulumi-lang-python=\"`log`\" pulumi-lang-yaml=\"`log`\" pulumi-lang-java=\"`log`\" pulumi-lang-hcl=\"`log`\"\u003e`log`\u003c/span\u003e, \u003cspan pulumi-lang-nodejs=\"`block`\" pulumi-lang-dotnet=\"`Block`\" pulumi-lang-go=\"`block`\" pulumi-lang-python=\"`block`\" pulumi-lang-yaml=\"`block`\" pulumi-lang-java=\"`block`\" pulumi-lang-hcl=\"`block`\"\u003e`block`\u003c/span\u003e, or \u003cspan pulumi-lang-nodejs=\"`clientChallenge`\" pulumi-lang-dotnet=\"`ClientChallenge`\" pulumi-lang-go=\"`clientChallenge`\" pulumi-lang-python=\"`client_challenge`\" pulumi-lang-yaml=\"`clientChallenge`\" pulumi-lang-java=\"`clientChallenge`\" pulumi-lang-hcl=\"`client_challenge`\"\u003e`clientChallenge`\u003c/span\u003e.\n"
                 }
             },
             "type": "object",
@@ -5241,6 +5241,200 @@
                         "recordType",
                         "recordValues"
                     ]
+                }
+            }
+        },
+        "fastly:index/getAiRuntimeControlProviderConnectionsProviderConnection:getAiRuntimeControlProviderConnectionsProviderConnection": {
+            "properties": {
+                "baseUrl": {
+                    "type": "string",
+                    "description": "The base URL for the provider's API.\n"
+                },
+                "createdAt": {
+                    "type": "string",
+                    "description": "Timestamp (UTC) of when the provider connection was created.\n"
+                },
+                "id": {
+                    "type": "string",
+                    "description": "The ID of the provider connection.\n"
+                },
+                "models": {
+                    "type": "array",
+                    "items": {
+                        "type": "string"
+                    },
+                    "description": "The allowed AI model identifiers.\n"
+                },
+                "name": {
+                    "type": "string",
+                    "description": "The human-readable name of the provider.\n"
+                },
+                "secretId": {
+                    "type": "string",
+                    "description": "A hash representing the API key used to create the provider connection.\n"
+                },
+                "updatedAt": {
+                    "type": "string",
+                    "description": "Timestamp (UTC) of when the provider connection was last updated.\n"
+                }
+            },
+            "type": "object",
+            "required": [
+                "baseUrl",
+                "createdAt",
+                "id",
+                "models",
+                "name",
+                "secretId",
+                "updatedAt"
+            ],
+            "language": {
+                "nodejs": {
+                    "requiredInputs": []
+                }
+            }
+        },
+        "fastly:index/getAiRuntimeControlProvidersProvider:getAiRuntimeControlProvidersProvider": {
+            "properties": {
+                "defaultBaseUrl": {
+                    "type": "string",
+                    "description": "The default API base URL for the provider.\n"
+                },
+                "displayName": {
+                    "type": "string",
+                    "description": "The human-readable provider name, e.g. `Anthropic`.\n"
+                },
+                "id": {
+                    "type": "string",
+                    "description": "The provider identifier, e.g. \u003cspan pulumi-lang-nodejs=\"`anthropic`\" pulumi-lang-dotnet=\"`Anthropic`\" pulumi-lang-go=\"`anthropic`\" pulumi-lang-python=\"`anthropic`\" pulumi-lang-yaml=\"`anthropic`\" pulumi-lang-java=\"`anthropic`\" pulumi-lang-hcl=\"`anthropic`\"\u003e`anthropic`\u003c/span\u003e.\n"
+                },
+                "models": {
+                    "type": "array",
+                    "items": {
+                        "$ref": "#/types/fastly:index/getAiRuntimeControlProvidersProviderModel:getAiRuntimeControlProvidersProviderModel"
+                    },
+                    "description": "The models available for the provider.\n"
+                }
+            },
+            "type": "object",
+            "required": [
+                "defaultBaseUrl",
+                "displayName",
+                "id",
+                "models"
+            ],
+            "language": {
+                "nodejs": {
+                    "requiredInputs": []
+                }
+            }
+        },
+        "fastly:index/getAiRuntimeControlProvidersProviderModel:getAiRuntimeControlProvidersProviderModel": {
+            "properties": {
+                "displayName": {
+                    "type": "string",
+                    "description": "The human-readable model name, e.g. `Claude Sonnet 4`.\n"
+                },
+                "id": {
+                    "type": "string",
+                    "description": "The model identifier, e.g. `claude-sonnet-4-20250514`.\n"
+                },
+                "providerId": {
+                    "type": "string",
+                    "description": "The ID of the provider this model belongs to.\n"
+                }
+            },
+            "type": "object",
+            "required": [
+                "displayName",
+                "id",
+                "providerId"
+            ],
+            "language": {
+                "nodejs": {
+                    "requiredInputs": []
+                }
+            }
+        },
+        "fastly:index/getAiRuntimeControlVirtualKeysVirtualKey:getAiRuntimeControlVirtualKeysVirtualKey": {
+            "properties": {
+                "createdAt": {
+                    "type": "string",
+                    "description": "Timestamp (UTC) of when the virtual key was created.\n"
+                },
+                "createdBy": {
+                    "type": "string",
+                    "description": "The display name of the user who created the virtual key.\n"
+                },
+                "customerId": {
+                    "type": "string",
+                    "description": "The ID of the customer that owns the virtual key.\n"
+                },
+                "deletedAt": {
+                    "type": "string",
+                    "description": "Timestamp (UTC) of when the virtual key was deleted, if applicable.\n"
+                },
+                "expiresAt": {
+                    "type": "string",
+                    "description": "The expiration timestamp of the virtual key, if any.\n"
+                },
+                "id": {
+                    "type": "string",
+                    "description": "The ID of the virtual key.\n"
+                },
+                "lastUsedAt": {
+                    "type": "string",
+                    "description": "Timestamp (UTC) of when the virtual key was last used, if applicable.\n"
+                },
+                "model": {
+                    "type": "string",
+                    "description": "The AI model identifier.\n"
+                },
+                "name": {
+                    "type": "string",
+                    "description": "The human-readable name of the virtual key.\n"
+                },
+                "provider": {
+                    "type": "string",
+                    "description": "The AI model provider name.\n"
+                },
+                "type": {
+                    "type": "string",
+                    "description": "The type of the virtual key.\n"
+                },
+                "updatedAt": {
+                    "type": "string",
+                    "description": "Timestamp (UTC) of when the virtual key was last updated.\n"
+                },
+                "userId": {
+                    "type": "string",
+                    "description": "The ID of the user who created the virtual key.\n"
+                },
+                "userName": {
+                    "type": "string",
+                    "description": "The display name of the user who created the virtual key.\n"
+                }
+            },
+            "type": "object",
+            "required": [
+                "createdAt",
+                "createdBy",
+                "customerId",
+                "deletedAt",
+                "expiresAt",
+                "id",
+                "lastUsedAt",
+                "model",
+                "name",
+                "provider",
+                "type",
+                "updatedAt",
+                "userId",
+                "userName"
+            ],
+            "language": {
+                "nodejs": {
+                    "requiredInputs": []
                 }
             }
         },
@@ -6321,6 +6515,261 @@
         }
     },
     "resources": {
+        "fastly:index/aiRuntimeControlProviderConnection:AiRuntimeControlProviderConnection": {
+            "description": "Provides a Fastly AI Runtime Control provider connection, which stores the\nauthentication details and the set of allowed models for an AI model provider.\n\n\u003e **Note:** The API never returns the provider's \u003cspan pulumi-lang-nodejs=\"`apiKey`\" pulumi-lang-dotnet=\"`ApiKey`\" pulumi-lang-go=\"`apiKey`\" pulumi-lang-python=\"`api_key`\" pulumi-lang-yaml=\"`apiKey`\" pulumi-lang-java=\"`apiKey`\" pulumi-lang-hcl=\"`api_key`\"\u003e`apiKey`\u003c/span\u003e, so its value cannot\nbe reconciled against the remote state. Terraform will only update it when the\nconfigured value changes.\n\n## Example Usage\n\nBasic usage:\n\n\u003c!--Start PulumiCodeChooser --\u003e\n```typescript\nimport * as pulumi from \"@pulumi/pulumi\";\nimport * as fastly from \"@pulumi/fastly\";\n\nconst demo = new fastly.AiRuntimeControlProviderConnection(\"demo\", {\n    name: \"OpenAI\",\n    baseUrl: \"https://api.openai.com\",\n    apiKey: openaiApiKey,\n    models: [\n        \"gpt-4o\",\n        \"gpt-4o-mini\",\n    ],\n});\n```\n```python\nimport pulumi\nimport pulumi_fastly as fastly\n\ndemo = fastly.AiRuntimeControlProviderConnection(\"demo\",\n    name=\"OpenAI\",\n    base_url=\"https://api.openai.com\",\n    api_key=openai_api_key,\n    models=[\n        \"gpt-4o\",\n        \"gpt-4o-mini\",\n    ])\n```\n```csharp\nusing System.Collections.Generic;\nusing System.Linq;\nusing Pulumi;\nusing Fastly = Pulumi.Fastly;\n\nreturn await Deployment.RunAsync(() =\u003e \n{\n    var demo = new Fastly.AiRuntimeControlProviderConnection(\"demo\", new()\n    {\n        Name = \"OpenAI\",\n        BaseUrl = \"https://api.openai.com\",\n        ApiKey = openaiApiKey,\n        Models = new[]\n        {\n            \"gpt-4o\",\n            \"gpt-4o-mini\",\n        },\n    });\n\n});\n```\n```go\npackage main\n\nimport (\n\t\"github.com/pulumi/pulumi-fastly/sdk/v12/go/fastly\"\n\t\"github.com/pulumi/pulumi/sdk/v3/go/pulumi\"\n)\n\nfunc main() {\n\tpulumi.Run(func(ctx *pulumi.Context) error {\n\t\t_, err := fastly.NewAiRuntimeControlProviderConnection(ctx, \"demo\", \u0026fastly.AiRuntimeControlProviderConnectionArgs{\n\t\t\tName:    pulumi.String(\"OpenAI\"),\n\t\t\tBaseUrl: pulumi.String(\"https://api.openai.com\"),\n\t\t\tApiKey:  pulumi.Any(openaiApiKey),\n\t\t\tModels: pulumi.StringArray{\n\t\t\t\tpulumi.String(\"gpt-4o\"),\n\t\t\t\tpulumi.String(\"gpt-4o-mini\"),\n\t\t\t},\n\t\t})\n\t\tif err != nil {\n\t\t\treturn err\n\t\t}\n\t\treturn nil\n\t})\n}\n```\n```hcl\npulumi {\n  required_providers {\n    fastly = {\n      source = \"pulumi/fastly\"\n    }\n  }\n}\n\nresource \"fastly_airuntimecontrolproviderconnection\" \"demo\" {\n  name     = \"OpenAI\"\n  base_url = \"https://api.openai.com\"\n  api_key  = openaiApiKey\n  models   = [\"gpt-4o\", \"gpt-4o-mini\"]\n}\n```\n```java\npackage generated_program;\n\nimport com.pulumi.Context;\nimport com.pulumi.Pulumi;\nimport com.pulumi.core.Output;\nimport com.pulumi.fastly.AiRuntimeControlProviderConnection;\nimport com.pulumi.fastly.AiRuntimeControlProviderConnectionArgs;\nimport java.util.ArrayList;\nimport java.util.Arrays;\nimport java.util.Map;\nimport java.io.File;\nimport java.nio.file.Files;\nimport java.nio.file.Paths;\n\npublic class App {\n    public static void main(String[] args) {\n        Pulumi.run(App::stack);\n    }\n\n    public static void stack(Context ctx) {\n        var demo = new AiRuntimeControlProviderConnection(\"demo\", AiRuntimeControlProviderConnectionArgs.builder()\n            .name(\"OpenAI\")\n            .baseUrl(\"https://api.openai.com\")\n            .apiKey(openaiApiKey)\n            .models(            \n                \"gpt-4o\",\n                \"gpt-4o-mini\")\n            .build());\n\n    }\n}\n```\n```yaml\nresources:\n  demo:\n    type: fastly:AiRuntimeControlProviderConnection\n    properties:\n      name: OpenAI\n      baseUrl: https://api.openai.com\n      apiKey: ${openaiApiKey}\n      models:\n        - gpt-4o\n        - gpt-4o-mini\n```\n\u003c!--End PulumiCodeChooser --\u003e\n\n## Import\n\nFastly AI Runtime Control provider connections can be imported using their ID, e.g.\n\n```sh\n$ pulumi import fastly:index/aiRuntimeControlProviderConnection:AiRuntimeControlProviderConnection demo xxxxxxxxxxxxxxxxxxxx\n```\n\nNote that \u003cspan pulumi-lang-nodejs=\"`apiKey`\" pulumi-lang-dotnet=\"`ApiKey`\" pulumi-lang-go=\"`apiKey`\" pulumi-lang-python=\"`api_key`\" pulumi-lang-yaml=\"`apiKey`\" pulumi-lang-java=\"`apiKey`\" pulumi-lang-hcl=\"`api_key`\"\u003e`apiKey`\u003c/span\u003e cannot be imported, since the API does not return it.\n\n",
+            "properties": {
+                "apiKey": {
+                    "type": "string",
+                    "description": "The provider's secret key used for authentication. Never returned by the API, so it cannot be reconciled with the remote state.\n",
+                    "secret": true
+                },
+                "baseUrl": {
+                    "type": "string",
+                    "description": "The base URL for the provider's API, e.g. `https://api.openai.com`. Must not include a `/v1` suffix, which the API appends automatically. Trailing slashes are stripped.\n"
+                },
+                "createdAt": {
+                    "type": "string",
+                    "description": "Timestamp (UTC) of when the provider connection was created.\n"
+                },
+                "models": {
+                    "type": "array",
+                    "items": {
+                        "type": "string"
+                    },
+                    "description": "The set of allowed AI model identifiers, e.g. `[\"gpt-4o\", \"gpt-4o-mini\"]`.\n"
+                },
+                "name": {
+                    "type": "string",
+                    "description": "A human-readable name for the provider. Changing this forces a new provider connection to be created.\n"
+                },
+                "secretId": {
+                    "type": "string",
+                    "description": "A hash representing the \u003cspan pulumi-lang-nodejs=\"`apiKey`\" pulumi-lang-dotnet=\"`ApiKey`\" pulumi-lang-go=\"`apiKey`\" pulumi-lang-python=\"`api_key`\" pulumi-lang-yaml=\"`apiKey`\" pulumi-lang-java=\"`apiKey`\" pulumi-lang-hcl=\"`api_key`\"\u003e`apiKey`\u003c/span\u003e used to create the provider connection.\n"
+                },
+                "updatedAt": {
+                    "type": "string",
+                    "description": "Timestamp (UTC) of when the provider connection was last updated.\n"
+                }
+            },
+            "required": [
+                "apiKey",
+                "baseUrl",
+                "createdAt",
+                "models",
+                "name",
+                "secretId",
+                "updatedAt"
+            ],
+            "inputProperties": {
+                "apiKey": {
+                    "type": "string",
+                    "description": "The provider's secret key used for authentication. Never returned by the API, so it cannot be reconciled with the remote state.\n",
+                    "secret": true
+                },
+                "baseUrl": {
+                    "type": "string",
+                    "description": "The base URL for the provider's API, e.g. `https://api.openai.com`. Must not include a `/v1` suffix, which the API appends automatically. Trailing slashes are stripped.\n"
+                },
+                "models": {
+                    "type": "array",
+                    "items": {
+                        "type": "string"
+                    },
+                    "description": "The set of allowed AI model identifiers, e.g. `[\"gpt-4o\", \"gpt-4o-mini\"]`.\n"
+                },
+                "name": {
+                    "type": "string",
+                    "description": "A human-readable name for the provider. Changing this forces a new provider connection to be created.\n",
+                    "willReplaceOnChanges": true
+                }
+            },
+            "requiredInputs": [
+                "apiKey",
+                "baseUrl",
+                "models"
+            ],
+            "stateInputs": {
+                "description": "Input properties used for looking up and filtering AiRuntimeControlProviderConnection resources.\n",
+                "properties": {
+                    "apiKey": {
+                        "type": "string",
+                        "description": "The provider's secret key used for authentication. Never returned by the API, so it cannot be reconciled with the remote state.\n",
+                        "secret": true
+                    },
+                    "baseUrl": {
+                        "type": "string",
+                        "description": "The base URL for the provider's API, e.g. `https://api.openai.com`. Must not include a `/v1` suffix, which the API appends automatically. Trailing slashes are stripped.\n"
+                    },
+                    "createdAt": {
+                        "type": "string",
+                        "description": "Timestamp (UTC) of when the provider connection was created.\n"
+                    },
+                    "models": {
+                        "type": "array",
+                        "items": {
+                            "type": "string"
+                        },
+                        "description": "The set of allowed AI model identifiers, e.g. `[\"gpt-4o\", \"gpt-4o-mini\"]`.\n"
+                    },
+                    "name": {
+                        "type": "string",
+                        "description": "A human-readable name for the provider. Changing this forces a new provider connection to be created.\n",
+                        "willReplaceOnChanges": true
+                    },
+                    "secretId": {
+                        "type": "string",
+                        "description": "A hash representing the \u003cspan pulumi-lang-nodejs=\"`apiKey`\" pulumi-lang-dotnet=\"`ApiKey`\" pulumi-lang-go=\"`apiKey`\" pulumi-lang-python=\"`api_key`\" pulumi-lang-yaml=\"`apiKey`\" pulumi-lang-java=\"`apiKey`\" pulumi-lang-hcl=\"`api_key`\"\u003e`apiKey`\u003c/span\u003e used to create the provider connection.\n"
+                    },
+                    "updatedAt": {
+                        "type": "string",
+                        "description": "Timestamp (UTC) of when the provider connection was last updated.\n"
+                    }
+                },
+                "type": "object"
+            }
+        },
+        "fastly:index/aiRuntimeControlVirtualKey:AiRuntimeControlVirtualKey": {
+            "description": "Provides a Fastly AI Runtime Control virtual key, used to authenticate\nrequests to an AI service and to attribute usage and session logs back to a\nnamed key.\n\n## Example Usage\n\nBasic usage:\n\n\u003c!--Start PulumiCodeChooser --\u003e\n```typescript\nimport * as pulumi from \"@pulumi/pulumi\";\nimport * as fastly from \"@pulumi/fastly\";\n\nconst demo = new fastly.AiRuntimeControlVirtualKey(\"demo\", {\n    name: \"prod website chatbot\",\n    model: \"claude-sonnet-4-20250514\",\n    providerName: \"Anthropic\",\n    userId: \"6zhNCY1236787aJIwUgN\",\n    expiresAt: \"2026-08-05T17:13:36Z\",\n});\n```\n```python\nimport pulumi\nimport pulumi_fastly as fastly\n\ndemo = fastly.AiRuntimeControlVirtualKey(\"demo\",\n    name=\"prod website chatbot\",\n    model=\"claude-sonnet-4-20250514\",\n    provider_name=\"Anthropic\",\n    user_id=\"6zhNCY1236787aJIwUgN\",\n    expires_at=\"2026-08-05T17:13:36Z\")\n```\n```csharp\nusing System.Collections.Generic;\nusing System.Linq;\nusing Pulumi;\nusing Fastly = Pulumi.Fastly;\n\nreturn await Deployment.RunAsync(() =\u003e \n{\n    var demo = new Fastly.AiRuntimeControlVirtualKey(\"demo\", new()\n    {\n        Name = \"prod website chatbot\",\n        Model = \"claude-sonnet-4-20250514\",\n        ProviderName = \"Anthropic\",\n        UserId = \"6zhNCY1236787aJIwUgN\",\n        ExpiresAt = \"2026-08-05T17:13:36Z\",\n    });\n\n});\n```\n```go\npackage main\n\nimport (\n\t\"github.com/pulumi/pulumi-fastly/sdk/v12/go/fastly\"\n\t\"github.com/pulumi/pulumi/sdk/v3/go/pulumi\"\n)\n\nfunc main() {\n\tpulumi.Run(func(ctx *pulumi.Context) error {\n\t\t_, err := fastly.NewAiRuntimeControlVirtualKey(ctx, \"demo\", \u0026fastly.AiRuntimeControlVirtualKeyArgs{\n\t\t\tName:         pulumi.String(\"prod website chatbot\"),\n\t\t\tModel:        pulumi.String(\"claude-sonnet-4-20250514\"),\n\t\t\tProviderName: pulumi.String(\"Anthropic\"),\n\t\t\tUserId:       pulumi.String(\"6zhNCY1236787aJIwUgN\"),\n\t\t\tExpiresAt:    pulumi.String(\"2026-08-05T17:13:36Z\"),\n\t\t})\n\t\tif err != nil {\n\t\t\treturn err\n\t\t}\n\t\treturn nil\n\t})\n}\n```\n```hcl\npulumi {\n  required_providers {\n    fastly = {\n      source = \"pulumi/fastly\"\n    }\n  }\n}\n\nresource \"fastly_airuntimecontrolvirtualkey\" \"demo\" {\n  name          = \"prod website chatbot\"\n  model         = \"claude-sonnet-4-20250514\"\n  provider_name = \"Anthropic\"\n  user_id       = \"6zhNCY1236787aJIwUgN\"\n  expires_at    = \"2026-08-05T17:13:36Z\"\n}\n```\n```java\npackage generated_program;\n\nimport com.pulumi.Context;\nimport com.pulumi.Pulumi;\nimport com.pulumi.core.Output;\nimport com.pulumi.fastly.AiRuntimeControlVirtualKey;\nimport com.pulumi.fastly.AiRuntimeControlVirtualKeyArgs;\nimport java.util.ArrayList;\nimport java.util.Arrays;\nimport java.util.Map;\nimport java.io.File;\nimport java.nio.file.Files;\nimport java.nio.file.Paths;\n\npublic class App {\n    public static void main(String[] args) {\n        Pulumi.run(App::stack);\n    }\n\n    public static void stack(Context ctx) {\n        var demo = new AiRuntimeControlVirtualKey(\"demo\", AiRuntimeControlVirtualKeyArgs.builder()\n            .name(\"prod website chatbot\")\n            .model(\"claude-sonnet-4-20250514\")\n            .providerName(\"Anthropic\")\n            .userId(\"6zhNCY1236787aJIwUgN\")\n            .expiresAt(\"2026-08-05T17:13:36Z\")\n            .build());\n\n    }\n}\n```\n```yaml\nresources:\n  demo:\n    type: fastly:AiRuntimeControlVirtualKey\n    properties:\n      name: prod website chatbot\n      model: claude-sonnet-4-20250514\n      providerName: Anthropic\n      userId: 6zhNCY1236787aJIwUgN\n      expiresAt: 2026-08-05T17:13:36Z\n```\n\u003c!--End PulumiCodeChooser --\u003e\n\n## Import\n\nFastly AI Runtime Control virtual keys can be imported using their key ID, e.g.\n\n```sh\n$ pulumi import fastly:index/aiRuntimeControlVirtualKey:AiRuntimeControlVirtualKey demo xxxxxxxxxxxxxxxxxxxx\n```\n\n\u003e **Note:** Since \u003cspan pulumi-lang-nodejs=\"`accessToken`\" pulumi-lang-dotnet=\"`AccessToken`\" pulumi-lang-go=\"`accessToken`\" pulumi-lang-python=\"`access_token`\" pulumi-lang-yaml=\"`accessToken`\" pulumi-lang-java=\"`accessToken`\" pulumi-lang-hcl=\"`access_token`\"\u003e`accessToken`\u003c/span\u003e is only returned by the API at creation time, it will be empty after importing an existing virtual key.\n\n",
+            "properties": {
+                "accessToken": {
+                    "type": "string",
+                    "description": "The generated access token used to authenticate as this virtual key. Only returned by the API when the key is created.\n",
+                    "secret": true
+                },
+                "createdAt": {
+                    "type": "string",
+                    "description": "Timestamp (UTC) of when the virtual key was created.\n"
+                },
+                "createdBy": {
+                    "type": "string",
+                    "description": "The display name of the user who created the virtual key.\n"
+                },
+                "expiresAt": {
+                    "type": "string",
+                    "description": "The expiration timestamp of the virtual key, in RFC 3339 format. Once set, this value cannot be unset, only changed.\n"
+                },
+                "lastUsedAt": {
+                    "type": "string",
+                    "description": "Timestamp (UTC) of when the virtual key was last used.\n"
+                },
+                "model": {
+                    "type": "string",
+                    "description": "The AI model identifier, e.g. `claude-sonnet-4-20250514`.\n"
+                },
+                "name": {
+                    "type": "string",
+                    "description": "A human-readable name for the virtual key.\n"
+                },
+                "providerName": {
+                    "type": "string",
+                    "description": "The AI model provider name, e.g. `Anthropic`.\n"
+                },
+                "type": {
+                    "type": "string",
+                    "description": "The type of the virtual key.\n"
+                },
+                "updatedAt": {
+                    "type": "string",
+                    "description": "Timestamp (UTC) of when the virtual key was last updated.\n"
+                },
+                "userId": {
+                    "type": "string",
+                    "description": "The ID of the user creating the virtual key. Changing this forces a new virtual key to be created.\n"
+                }
+            },
+            "required": [
+                "accessToken",
+                "createdAt",
+                "createdBy",
+                "lastUsedAt",
+                "model",
+                "name",
+                "providerName",
+                "type",
+                "updatedAt",
+                "userId"
+            ],
+            "inputProperties": {
+                "expiresAt": {
+                    "type": "string",
+                    "description": "The expiration timestamp of the virtual key, in RFC 3339 format. Once set, this value cannot be unset, only changed.\n"
+                },
+                "model": {
+                    "type": "string",
+                    "description": "The AI model identifier, e.g. `claude-sonnet-4-20250514`.\n"
+                },
+                "name": {
+                    "type": "string",
+                    "description": "A human-readable name for the virtual key.\n"
+                },
+                "providerName": {
+                    "type": "string",
+                    "description": "The AI model provider name, e.g. `Anthropic`.\n"
+                },
+                "userId": {
+                    "type": "string",
+                    "description": "The ID of the user creating the virtual key. Changing this forces a new virtual key to be created.\n",
+                    "willReplaceOnChanges": true
+                }
+            },
+            "requiredInputs": [
+                "model",
+                "providerName",
+                "userId"
+            ],
+            "stateInputs": {
+                "description": "Input properties used for looking up and filtering AiRuntimeControlVirtualKey resources.\n",
+                "properties": {
+                    "accessToken": {
+                        "type": "string",
+                        "description": "The generated access token used to authenticate as this virtual key. Only returned by the API when the key is created.\n",
+                        "secret": true
+                    },
+                    "createdAt": {
+                        "type": "string",
+                        "description": "Timestamp (UTC) of when the virtual key was created.\n"
+                    },
+                    "createdBy": {
+                        "type": "string",
+                        "description": "The display name of the user who created the virtual key.\n"
+                    },
+                    "expiresAt": {
+                        "type": "string",
+                        "description": "The expiration timestamp of the virtual key, in RFC 3339 format. Once set, this value cannot be unset, only changed.\n"
+                    },
+                    "lastUsedAt": {
+                        "type": "string",
+                        "description": "Timestamp (UTC) of when the virtual key was last used.\n"
+                    },
+                    "model": {
+                        "type": "string",
+                        "description": "The AI model identifier, e.g. `claude-sonnet-4-20250514`.\n"
+                    },
+                    "name": {
+                        "type": "string",
+                        "description": "A human-readable name for the virtual key.\n"
+                    },
+                    "providerName": {
+                        "type": "string",
+                        "description": "The AI model provider name, e.g. `Anthropic`.\n"
+                    },
+                    "type": {
+                        "type": "string",
+                        "description": "The type of the virtual key.\n"
+                    },
+                    "updatedAt": {
+                        "type": "string",
+                        "description": "Timestamp (UTC) of when the virtual key was last updated.\n"
+                    },
+                    "userId": {
+                        "type": "string",
+                        "description": "The ID of the user creating the virtual key. Changing this forces a new virtual key to be created.\n",
+                        "willReplaceOnChanges": true
+                    }
+                },
+                "type": "object"
+            }
+        },
         "fastly:index/alert:Alert": {
             "description": "Provides a Fastly Alert. Alerts send notifications to custom integrations (e.g., Slack channels, PagerDuty, Microsoft Teams and New Relic) when an observed metric either exceeds or falls below a threshold.\n\n## Example Usage\n\n\u003c!--Start PulumiCodeChooser --\u003e\n```typescript\nimport * as pulumi from \"@pulumi/pulumi\";\nimport * as fastly from \"@pulumi/fastly\";\n\nconst example = new fastly.ServiceVcl(\"example\", {\n    name: \"my_vcl_service\",\n    domains: [{\n        name: \"demo.notexample.com\",\n        comment: \"demo\",\n    }],\n});\nconst exampleIntegration = new fastly.Integration(\"example\", {\n    name: \"my_integration\",\n    type: \"a_valid_type\",\n    config: {\n        webhook: \"some_webhook\",\n    },\n});\nconst exampleAlert = new fastly.Alert(\"example\", {\n    name: \"my_vcl_service errors\",\n    serviceId: example.id,\n    source: \"stats\",\n    metric: \"status_5xx\",\n    evaluationStrategy: {\n        type: \"above_threshold\",\n        period: \"5m\",\n        threshold: 10,\n    },\n    integrationIds: [exampleIntegration.id],\n});\n```\n```python\nimport pulumi\nimport pulumi_fastly as fastly\n\nexample = fastly.ServiceVcl(\"example\",\n    name=\"my_vcl_service\",\n    domains=[{\n        \"name\": \"demo.notexample.com\",\n        \"comment\": \"demo\",\n    }])\nexample_integration = fastly.Integration(\"example\",\n    name=\"my_integration\",\n    type=\"a_valid_type\",\n    config={\n        \"webhook\": \"some_webhook\",\n    })\nexample_alert = fastly.Alert(\"example\",\n    name=\"my_vcl_service errors\",\n    service_id=example.id,\n    source=\"stats\",\n    metric=\"status_5xx\",\n    evaluation_strategy={\n        \"type\": \"above_threshold\",\n        \"period\": \"5m\",\n        \"threshold\": float(10),\n    },\n    integration_ids=[example_integration.id])\n```\n```csharp\nusing System.Collections.Generic;\nusing System.Linq;\nusing Pulumi;\nusing Fastly = Pulumi.Fastly;\n\nreturn await Deployment.RunAsync(() =\u003e \n{\n    var example = new Fastly.ServiceVcl(\"example\", new()\n    {\n        Name = \"my_vcl_service\",\n        Domains = new[]\n        {\n            new Fastly.Inputs.ServiceVclDomainArgs\n            {\n                Name = \"demo.notexample.com\",\n                Comment = \"demo\",\n            },\n        },\n    });\n\n    var exampleIntegration = new Fastly.Integration(\"example\", new()\n    {\n        Name = \"my_integration\",\n        Type = \"a_valid_type\",\n        Config = \n        {\n            { \"webhook\", \"some_webhook\" },\n        },\n    });\n\n    var exampleAlert = new Fastly.Alert(\"example\", new()\n    {\n        Name = \"my_vcl_service errors\",\n        ServiceId = example.Id,\n        Source = \"stats\",\n        Metric = \"status_5xx\",\n        EvaluationStrategy = new Fastly.Inputs.AlertEvaluationStrategyArgs\n        {\n            Type = \"above_threshold\",\n            Period = \"5m\",\n            Threshold = 10,\n        },\n        IntegrationIds = new[]\n        {\n            exampleIntegration.Id,\n        },\n    });\n\n});\n```\n```go\npackage main\n\nimport (\n\t\"github.com/pulumi/pulumi-fastly/sdk/v12/go/fastly\"\n\t\"github.com/pulumi/pulumi/sdk/v3/go/pulumi\"\n)\n\nfunc main() {\n\tpulumi.Run(func(ctx *pulumi.Context) error {\n\t\texample, err := fastly.NewServiceVcl(ctx, \"example\", \u0026fastly.ServiceVclArgs{\n\t\t\tName: pulumi.String(\"my_vcl_service\"),\n\t\t\tDomains: fastly.ServiceVclDomainArray{\n\t\t\t\t\u0026fastly.ServiceVclDomainArgs{\n\t\t\t\t\tName:    pulumi.String(\"demo.notexample.com\"),\n\t\t\t\t\tComment: pulumi.String(\"demo\"),\n\t\t\t\t},\n\t\t\t},\n\t\t})\n\t\tif err != nil {\n\t\t\treturn err\n\t\t}\n\t\texampleIntegration, err := fastly.NewIntegration(ctx, \"example\", \u0026fastly.IntegrationArgs{\n\t\t\tName: pulumi.String(\"my_integration\"),\n\t\t\tType: pulumi.String(\"a_valid_type\"),\n\t\t\tConfig: pulumi.StringMap{\n\t\t\t\t\"webhook\": pulumi.String(\"some_webhook\"),\n\t\t\t},\n\t\t})\n\t\tif err != nil {\n\t\t\treturn err\n\t\t}\n\t\t_, err = fastly.NewAlert(ctx, \"example\", \u0026fastly.AlertArgs{\n\t\t\tName:      pulumi.String(\"my_vcl_service errors\"),\n\t\t\tServiceId: example.ID().ToIDOutput().ToStringOutput(),\n\t\t\tSource:    pulumi.String(\"stats\"),\n\t\t\tMetric:    pulumi.String(\"status_5xx\"),\n\t\t\tEvaluationStrategy: \u0026fastly.AlertEvaluationStrategyArgs{\n\t\t\t\tType:      pulumi.String(\"above_threshold\"),\n\t\t\t\tPeriod:    pulumi.String(\"5m\"),\n\t\t\t\tThreshold: pulumi.Float64(10),\n\t\t\t},\n\t\t\tIntegrationIds: pulumi.StringArray{\n\t\t\t\texampleIntegration.ID().ToIDOutput().ToStringOutput(),\n\t\t\t},\n\t\t})\n\t\tif err != nil {\n\t\t\treturn err\n\t\t}\n\t\treturn nil\n\t})\n}\n```\n```hcl\npulumi {\n  required_providers {\n    fastly = {\n      source = \"pulumi/fastly\"\n    }\n  }\n}\n\nresource \"fastly_servicevcl\" \"example\" {\n  name = \"my_vcl_service\"\n  domains {\n    name    = \"demo.notexample.com\"\n    comment = \"demo\"\n  }\n}\nresource \"fastly_integration\" \"example\" {\n  name = \"my_integration\"\n  type = \"a_valid_type\"\n  config = {\n    \"webhook\" = \"some_webhook\"\n  }\n}\nresource \"fastly_alert\" \"example\" {\n  name       = \"my_vcl_service errors\"\n  service_id = fastly_servicevcl.example.id\n  source     = \"stats\"\n  metric     = \"status_5xx\"\n  evaluation_strategy = {\n    type      = \"above_threshold\"\n    period    = \"5m\"\n    threshold = 10\n  }\n  integration_ids = [fastly_integration.example.id]\n}\n```\n```java\npackage generated_program;\n\nimport com.pulumi.Context;\nimport com.pulumi.Pulumi;\nimport com.pulumi.core.Output;\nimport com.pulumi.fastly.ServiceVcl;\nimport com.pulumi.fastly.ServiceVclArgs;\nimport com.pulumi.fastly.inputs.ServiceVclDomainArgs;\nimport com.pulumi.fastly.Integration;\nimport com.pulumi.fastly.IntegrationArgs;\nimport com.pulumi.fastly.Alert;\nimport com.pulumi.fastly.AlertArgs;\nimport com.pulumi.fastly.inputs.AlertEvaluationStrategyArgs;\nimport java.util.ArrayList;\nimport java.util.Arrays;\nimport java.util.Map;\nimport java.io.File;\nimport java.nio.file.Files;\nimport java.nio.file.Paths;\n\npublic class App {\n    public static void main(String[] args) {\n        Pulumi.run(App::stack);\n    }\n\n    public static void stack(Context ctx) {\n        var example = new ServiceVcl(\"example\", ServiceVclArgs.builder()\n            .name(\"my_vcl_service\")\n            .domains(ServiceVclDomainArgs.builder()\n                .name(\"demo.notexample.com\")\n                .comment(\"demo\")\n                .build())\n            .build());\n\n        var exampleIntegration = new Integration(\"exampleIntegration\", IntegrationArgs.builder()\n            .name(\"my_integration\")\n            .type(\"a_valid_type\")\n            .config(Map.of(\"webhook\", \"some_webhook\"))\n            .build());\n\n        var exampleAlert = new Alert(\"exampleAlert\", AlertArgs.builder()\n            .name(\"my_vcl_service errors\")\n            .serviceId(example.id())\n            .source(\"stats\")\n            .metric(\"status_5xx\")\n            .evaluationStrategy(AlertEvaluationStrategyArgs.builder()\n                .type(\"above_threshold\")\n                .period(\"5m\")\n                .threshold(10.0)\n                .build())\n            .integrationIds(exampleIntegration.id())\n            .build());\n\n    }\n}\n```\n```yaml\nresources:\n  example:\n    type: fastly:ServiceVcl\n    properties:\n      name: my_vcl_service\n      domains:\n        - name: demo.notexample.com\n          comment: demo\n  exampleIntegration:\n    type: fastly:Integration\n    name: example\n    properties:\n      name: my_integration\n      type: a_valid_type\n      config:\n        webhook: some_webhook\n  exampleAlert:\n    type: fastly:Alert\n    name: example\n    properties:\n      name: my_vcl_service errors\n      serviceId: ${example.id}\n      source: stats\n      metric: status_5xx\n      evaluationStrategy:\n        type: above_threshold\n        period: 5m\n        threshold: 10\n      integrationIds:\n        - ${exampleIntegration.id}\n```\n\u003c!--End PulumiCodeChooser --\u003e\n\n## Import\n\nFastly Alerts can be imported using their ID, e.g.\n\n```sh\n$ pulumi import fastly:index/alert:Alert example xxxxxxxxxxxxxxxxxxxx\n```\n\n",
             "properties": {
@@ -12346,6 +12795,131 @@
         }
     },
     "functions": {
+        "fastly:index/getAiRuntimeControlProviderConnections:getAiRuntimeControlProviderConnections": {
+            "description": "Use this data source to get the list of provider connections configured for your\ncustomer account in [Fastly AI Runtime Control](https://www.fastly.com/documentation/reference/api/ai-runtime-control/).\n\n",
+            "outputs": {
+                "description": "A collection of values returned by getAiRuntimeControlProviderConnections.\n",
+                "properties": {
+                    "id": {
+                        "description": "The provider-assigned unique ID for this managed resource.",
+                        "type": "string"
+                    },
+                    "providerConnections": {
+                        "description": "The provider connections configured for the customer.\n",
+                        "items": {
+                            "$ref": "#/types/fastly:index/getAiRuntimeControlProviderConnectionsProviderConnection:getAiRuntimeControlProviderConnectionsProviderConnection"
+                        },
+                        "type": "array"
+                    },
+                    "total": {
+                        "description": "The total number of provider connections returned.\n",
+                        "type": "integer"
+                    }
+                },
+                "required": [
+                    "providerConnections",
+                    "total",
+                    "id"
+                ],
+                "type": "object"
+            }
+        },
+        "fastly:index/getAiRuntimeControlProviders:getAiRuntimeControlProviders": {
+            "description": "Use this data source to get the list of AI providers supported by [Fastly AI\nRuntime Control][1], with each provider's available models nested within.\n\n",
+            "outputs": {
+                "description": "A collection of values returned by getAiRuntimeControlProviders.\n",
+                "properties": {
+                    "id": {
+                        "description": "The provider-assigned unique ID for this managed resource.",
+                        "type": "string"
+                    },
+                    "providers": {
+                        "description": "The AI providers supported by AI Runtime Control, with each provider's available models nested within.\n",
+                        "items": {
+                            "$ref": "#/types/fastly:index/getAiRuntimeControlProvidersProvider:getAiRuntimeControlProvidersProvider"
+                        },
+                        "type": "array"
+                    },
+                    "total": {
+                        "description": "The total number of providers returned.\n",
+                        "type": "integer"
+                    }
+                },
+                "required": [
+                    "providers",
+                    "total",
+                    "id"
+                ],
+                "type": "object"
+            }
+        },
+        "fastly:index/getAiRuntimeControlVirtualKeys:getAiRuntimeControlVirtualKeys": {
+            "description": "Use this data source to get the list of virtual keys configured for your customer\naccount in [Fastly AI Runtime Control](https://www.fastly.com/documentation/reference/api/ai-runtime-control/), optionally filtered by model,\nprovider, or a substring match on the key name.\n\n\u003e **Note:** Access tokens are never returned by this endpoint.\n\n## Example Usage\n\n\u003c!--Start PulumiCodeChooser --\u003e\n```typescript\nimport * as pulumi from \"@pulumi/pulumi\";\nimport * as fastly from \"@pulumi/fastly\";\n\nconst anthropic = fastly.getAiRuntimeControlVirtualKeys({\n    providerName: \"Anthropic\",\n});\nexport const fastlyAiRuntimeControlVirtualKeysAll = anthropic.then(anthropic =\u003e anthropic.virtualKeys);\n// Substring match on the virtual key name.\nconst chatbot = fastly.getAiRuntimeControlVirtualKeys({\n    search: \"chatbot\",\n});\nexport const fastlyAiRuntimeControlChatbotKeyIds = chatbot.then(chatbot =\u003e .map(key =\u003e (key.id)));\n```\n```python\nimport pulumi\nimport pulumi_fastly as fastly\n\nanthropic = fastly.get_ai_runtime_control_virtual_keys(provider_name=\"Anthropic\")\npulumi.export(\"fastlyAiRuntimeControlVirtualKeysAll\", anthropic.virtual_keys)\n# Substring match on the virtual key name.\nchatbot = fastly.get_ai_runtime_control_virtual_keys(search=\"chatbot\")\npulumi.export(\"fastlyAiRuntimeControlChatbotKeyIds\", [key.id for key in chatbot.virtual_keys])\n```\n```csharp\nusing System.Collections.Generic;\nusing System.Linq;\nusing Pulumi;\nusing Fastly = Pulumi.Fastly;\n\nreturn await Deployment.RunAsync(() =\u003e \n{\n    var anthropic = Fastly.GetAiRuntimeControlVirtualKeys.Invoke(new()\n    {\n        ProviderName = \"Anthropic\",\n    });\n\n    // Substring match on the virtual key name.\n    var chatbot = Fastly.GetAiRuntimeControlVirtualKeys.Invoke(new()\n    {\n        Search = \"chatbot\",\n    });\n\n    return new Dictionary\u003cstring, object?\u003e\n    {\n        [\"fastlyAiRuntimeControlVirtualKeysAll\"] = anthropic.Apply(getAiRuntimeControlVirtualKeysResult =\u003e getAiRuntimeControlVirtualKeysResult.VirtualKeys),\n        [\"fastlyAiRuntimeControlChatbotKeyIds\"] = .Select(key =\u003e \n        {\n            return key.Id;\n        }).ToList(),\n    };\n});\n```\n```hcl\npulumi {\n  required_providers {\n    fastly = {\n      source = \"pulumi/fastly\"\n    }\n  }\n}\n\ndata \"fastly_getairuntimecontrolvirtualkeys\" \"anthropic\" {\n  provider_name = \"Anthropic\"\n}\ndata \"fastly_getairuntimecontrolvirtualkeys\" \"chatbot\" {\n  search = \"chatbot\"\n}\n\noutput \"fastlyAiRuntimeControlVirtualKeysAll\" {\n  value = data.fastly_getairuntimecontrolvirtualkeys.anthropic.virtual_keys\n}\n# Substring match on the virtual key name.\noutput \"fastlyAiRuntimeControlChatbotKeyIds\" {\n  value = [for key in data.fastly_getairuntimecontrolvirtualkeys.chatbot.virtual_keys : key.id]\n}\n```\n\u003c!--End PulumiCodeChooser --\u003e\n\n[1]: https://www.fastly.com/documentation/reference/api/ai-runtime-control/\n",
+            "inputs": {
+                "description": "A collection of arguments for invoking getAiRuntimeControlVirtualKeys.\n",
+                "properties": {
+                    "includeDeleted": {
+                        "type": "boolean",
+                        "description": "Include deleted virtual keys in the results. Default \u003cspan pulumi-lang-nodejs=\"`false`\" pulumi-lang-dotnet=\"`False`\" pulumi-lang-go=\"`false`\" pulumi-lang-python=\"`false`\" pulumi-lang-yaml=\"`false`\" pulumi-lang-java=\"`false`\" pulumi-lang-hcl=\"`false`\"\u003e`false`\u003c/span\u003e.\n"
+                    },
+                    "model": {
+                        "type": "string",
+                        "description": "Filter the results by AI model identifier.\n"
+                    },
+                    "providerName": {
+                        "type": "string",
+                        "description": "Filter the results by AI model provider name.\n"
+                    },
+                    "search": {
+                        "type": "string",
+                        "description": "Filter the results by a substring match on the virtual key name.\n"
+                    }
+                },
+                "type": "object"
+            },
+            "outputs": {
+                "description": "A collection of values returned by getAiRuntimeControlVirtualKeys.\n",
+                "properties": {
+                    "id": {
+                        "description": "The provider-assigned unique ID for this managed resource.",
+                        "type": "string"
+                    },
+                    "includeDeleted": {
+                        "description": "Include deleted virtual keys in the results. Default \u003cspan pulumi-lang-nodejs=\"`false`\" pulumi-lang-dotnet=\"`False`\" pulumi-lang-go=\"`false`\" pulumi-lang-python=\"`false`\" pulumi-lang-yaml=\"`false`\" pulumi-lang-java=\"`false`\" pulumi-lang-hcl=\"`false`\"\u003e`false`\u003c/span\u003e.\n",
+                        "type": "boolean"
+                    },
+                    "model": {
+                        "description": "Filter the results by AI model identifier.\n",
+                        "type": "string"
+                    },
+                    "providerName": {
+                        "description": "Filter the results by AI model provider name.\n",
+                        "type": "string"
+                    },
+                    "search": {
+                        "description": "Filter the results by a substring match on the virtual key name.\n",
+                        "type": "string"
+                    },
+                    "total": {
+                        "description": "The total number of virtual keys returned.\n",
+                        "type": "integer"
+                    },
+                    "virtualKeys": {
+                        "description": "The virtual keys matching the given filters. Access tokens are never returned by this endpoint.\n",
+                        "items": {
+                            "$ref": "#/types/fastly:index/getAiRuntimeControlVirtualKeysVirtualKey:getAiRuntimeControlVirtualKeysVirtualKey"
+                        },
+                        "type": "array"
+                    }
+                },
+                "required": [
+                    "total",
+                    "virtualKeys",
+                    "id"
+                ],
+                "type": "object"
+            }
+        },
         "fastly:index/getApiSecurityDiscoveredOperations:getApiSecurityDiscoveredOperations": {
             "description": "Use this data source to list API Security discovered operations for a Fastly service.\n\nDiscovered operations depend on observed traffic and may be empty.\n\n## Example Usage\n\n\u003c!--Start PulumiCodeChooser --\u003e\n```typescript\nimport * as pulumi from \"@pulumi/pulumi\";\nimport * as fastly from \"@pulumi/fastly\";\n\nconst svc1 = new fastly.ServiceVcl(\"svc1\", {\n    name: \"test-svc-1-example\",\n    forceDestroy: true,\n    backends: [{\n        address: \"example.com\",\n        name: \"tf-test-backend-1\",\n    }],\n});\n// Discovered operations depend on traffic and may legitimately be empty.\nconst discovered = fastly.getApiSecurityDiscoveredOperationsOutput({\n    serviceId: svc1.id,\n    status: \"SAVED\",\n    methods: [\"GET\"],\n    domains: [\"api.example.com\"],\n    path: \"/v1/things\",\n});\nexport const apiSecurityDiscoveredOperations = discovered.apply(discovered =\u003e discovered.operations);\nexport const apiSecurityDiscoveredOperationsTotal = discovered.total;\n```\n```python\nimport pulumi\nimport pulumi_fastly as fastly\n\nsvc1 = fastly.ServiceVcl(\"svc1\",\n    name=\"test-svc-1-example\",\n    force_destroy=True,\n    backends=[{\n        \"address\": \"example.com\",\n        \"name\": \"tf-test-backend-1\",\n    }])\n# Discovered operations depend on traffic and may legitimately be empty.\ndiscovered = fastly.get_api_security_discovered_operations_output(service_id=svc1.id,\n    status=\"SAVED\",\n    methods=[\"GET\"],\n    domains=[\"api.example.com\"],\n    path=\"/v1/things\")\npulumi.export(\"apiSecurityDiscoveredOperations\", discovered.operations)\npulumi.export(\"apiSecurityDiscoveredOperationsTotal\", discovered.total)\n```\n```csharp\nusing System.Collections.Generic;\nusing System.Linq;\nusing Pulumi;\nusing Fastly = Pulumi.Fastly;\n\nreturn await Deployment.RunAsync(() =\u003e \n{\n    var svc1 = new Fastly.ServiceVcl(\"svc1\", new()\n    {\n        Name = \"test-svc-1-example\",\n        ForceDestroy = true,\n        Backends = new[]\n        {\n            new Fastly.Inputs.ServiceVclBackendArgs\n            {\n                Address = \"example.com\",\n                Name = \"tf-test-backend-1\",\n            },\n        },\n    });\n\n    // Discovered operations depend on traffic and may legitimately be empty.\n    var discovered = Fastly.GetApiSecurityDiscoveredOperations.Invoke(new()\n    {\n        ServiceId = svc1.Id,\n        Status = \"SAVED\",\n        Methods = new[]\n        {\n            \"GET\",\n        },\n        Domains = new[]\n        {\n            \"api.example.com\",\n        },\n        Path = \"/v1/things\",\n    });\n\n    return new Dictionary\u003cstring, object?\u003e\n    {\n        [\"apiSecurityDiscoveredOperations\"] = discovered.Apply(getApiSecurityDiscoveredOperationsResult =\u003e getApiSecurityDiscoveredOperationsResult.Operations),\n        [\"apiSecurityDiscoveredOperationsTotal\"] = discovered.Apply(getApiSecurityDiscoveredOperationsResult =\u003e getApiSecurityDiscoveredOperationsResult.Total),\n    };\n});\n```\n```go\npackage main\n\nimport (\n\t\"github.com/pulumi/pulumi-fastly/sdk/v12/go/fastly\"\n\t\"github.com/pulumi/pulumi/sdk/v3/go/pulumi\"\n)\n\nfunc main() {\n\tpulumi.Run(func(ctx *pulumi.Context) error {\n\t\tsvc1, err := fastly.NewServiceVcl(ctx, \"svc1\", \u0026fastly.ServiceVclArgs{\n\t\t\tName:         pulumi.String(\"test-svc-1-example\"),\n\t\t\tForceDestroy: pulumi.Bool(true),\n\t\t\tBackends: fastly.ServiceVclBackendArray{\n\t\t\t\t\u0026fastly.ServiceVclBackendArgs{\n\t\t\t\t\tAddress: pulumi.String(\"example.com\"),\n\t\t\t\t\tName:    pulumi.String(\"tf-test-backend-1\"),\n\t\t\t\t},\n\t\t\t},\n\t\t})\n\t\tif err != nil {\n\t\t\treturn err\n\t\t}\n\t\t// Discovered operations depend on traffic and may legitimately be empty.\n\t\tdiscovered := fastly.GetApiSecurityDiscoveredOperationsOutput(ctx, fastly.GetApiSecurityDiscoveredOperationsOutputArgs{\n\t\t\tServiceId: svc1.ID().ToIDOutput().ToStringOutput(),\n\t\t\tStatus:    pulumi.String(\"SAVED\"),\n\t\t\tMethods: pulumi.StringArray{\n\t\t\t\tpulumi.String(\"GET\"),\n\t\t\t},\n\t\t\tDomains: pulumi.StringArray{\n\t\t\t\tpulumi.String(\"api.example.com\"),\n\t\t\t},\n\t\t\tPath: pulumi.String(\"/v1/things\"),\n\t\t}, nil)\n\t\tctx.Export(\"apiSecurityDiscoveredOperations\", discovered.ApplyT(func(discovered fastly.GetApiSecurityDiscoveredOperationsResult) ([]fastly.GetApiSecurityDiscoveredOperationsOperation, error) {\n\t\t\treturn discovered.Operations.([]fastly.GetApiSecurityDiscoveredOperationsOperation), nil\n\t\t}).(pulumi.ArrayOutput))\n\t\tctx.Export(\"apiSecurityDiscoveredOperationsTotal\", discovered.Total())\n\t\treturn nil\n\t})\n}\n```\n```hcl\npulumi {\n  required_providers {\n    fastly = {\n      source = \"pulumi/fastly\"\n    }\n  }\n}\n\ndata \"fastly_getapisecuritydiscoveredoperations\" \"discovered\" {\n  service_id = fastly_servicevcl.svc1.id\n  status     = \"SAVED\"\n  methods    = [\"GET\"]\n  domains    = [\"api.example.com\"]\n  path       = \"/v1/things\"\n}\n\nresource \"fastly_servicevcl\" \"svc1\" {\n  name          = \"test-svc-1-example\"\n  force_destroy = true\n  backends {\n    address = \"example.com\"\n    name    = \"tf-test-backend-1\"\n  }\n}\n# Discovered operations depend on traffic and may legitimately be empty.\n# Optional filters\noutput \"apiSecurityDiscoveredOperations\" {\n  value = data.fastly_getapisecuritydiscoveredoperations.discovered.operations\n}\noutput \"apiSecurityDiscoveredOperationsTotal\" {\n  value = data.fastly_getapisecuritydiscoveredoperations.discovered.total\n}\n```\n```java\npackage generated_program;\n\nimport com.pulumi.Context;\nimport com.pulumi.Pulumi;\nimport com.pulumi.core.Output;\nimport com.pulumi.fastly.ServiceVcl;\nimport com.pulumi.fastly.ServiceVclArgs;\nimport com.pulumi.fastly.inputs.ServiceVclBackendArgs;\nimport com.pulumi.fastly.FastlyFunctions;\nimport com.pulumi.fastly.inputs.GetApiSecurityDiscoveredOperationsArgs;\nimport java.util.ArrayList;\nimport java.util.Arrays;\nimport java.util.Map;\nimport java.io.File;\nimport java.nio.file.Files;\nimport java.nio.file.Paths;\n\npublic class App {\n    public static void main(String[] args) {\n        Pulumi.run(App::stack);\n    }\n\n    public static void stack(Context ctx) {\n        var svc1 = new ServiceVcl(\"svc1\", ServiceVclArgs.builder()\n            .name(\"test-svc-1-example\")\n            .forceDestroy(true)\n            .backends(ServiceVclBackendArgs.builder()\n                .address(\"example.com\")\n                .name(\"tf-test-backend-1\")\n                .build())\n            .build());\n\n        // Discovered operations depend on traffic and may legitimately be empty.\n        final var discovered = FastlyFunctions.getApiSecurityDiscoveredOperations(GetApiSecurityDiscoveredOperationsArgs.builder()\n            .serviceId(svc1.id())\n            .status(\"SAVED\")\n            .methods(\"GET\")\n            .domains(\"api.example.com\")\n            .path(\"/v1/things\")\n            .build());\n\n        ctx.export(\"apiSecurityDiscoveredOperations\", discovered.applyValue(_discovered -\u003e _discovered.operations()));\n        ctx.export(\"apiSecurityDiscoveredOperationsTotal\", discovered.applyValue(_discovered -\u003e _discovered.total()));\n    }\n}\n```\n```yaml\nresources:\n  svc1:\n    type: fastly:ServiceVcl\n    properties:\n      name: test-svc-1-example\n      forceDestroy: true\n      backends:\n        - address: example.com\n          name: tf-test-backend-1\nvariables:\n  # Discovered operations depend on traffic and may legitimately be empty.\n  discovered:\n    fn::invoke:\n      function: fastly:getApiSecurityDiscoveredOperations\n      arguments:\n        serviceId: ${svc1.id}\n        status: SAVED\n        methods:\n          - GET\n        domains:\n          - api.example.com\n        path: /v1/things\noutputs:\n  apiSecurityDiscoveredOperations: ${discovered.operations}\n  apiSecurityDiscoveredOperationsTotal: ${discovered.total}\n```\n\u003c!--End PulumiCodeChooser --\u003e\n",
             "inputs": {
