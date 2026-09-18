@@ -19,6 +19,8 @@
         "skipLibCheck": true
     },
     "files": [
+        "aiRuntimeControlProviderConnection.ts",
+        "aiRuntimeControlVirtualKey.ts",
         "alert.ts",
         "apiSecurityOperation.ts",
         "apiSecurityOperationTag.ts",
@@ -35,6 +37,9 @@
         "domainServiceLink.ts",
         "domainV1.ts",
         "domainV1ServiceLink.ts",
+        "getAiRuntimeControlProviderConnections.ts",
+        "getAiRuntimeControlProviders.ts",
+        "getAiRuntimeControlVirtualKeys.ts",
         "getApiSecurityDiscoveredOperations.ts",
         "getApiSecurityOperationTags.ts",
         "getApiSecurityOperations.ts",

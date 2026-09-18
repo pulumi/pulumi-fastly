@@ -1894,7 +1894,7 @@ export interface ServiceComputeProductEnablementDdosProtection {
      */
     enabled: pulumi.Input<boolean>;
     /**
-     * Operation mode. Can be either `off`, `log`, or `block`.
+     * Operation mode. Can be `off`, `log`, `block`, or `clientChallenge`.
      */
     mode: pulumi.Input<string>;
 }
@@ -3957,7 +3957,7 @@ export interface ServiceVclProductEnablementDdosProtection {
      */
     enabled: pulumi.Input<boolean>;
     /**
-     * Operation mode. Can be either `off`, `log`, or `block`.
+     * Operation mode. Can be `off`, `log`, `block`, or `clientChallenge`.
      */
     mode: pulumi.Input<string>;
 }

@@ -136,6 +136,10 @@ __all__ = [
     'ServiceVclVcl',
     'TlsSubscriptionManagedDnsChallenge',
     'TlsSubscriptionManagedHttpChallenge',
+    'GetAiRuntimeControlProviderConnectionsProviderConnectionResult',
+    'GetAiRuntimeControlProvidersProviderResult',
+    'GetAiRuntimeControlProvidersProviderModelResult',
+    'GetAiRuntimeControlVirtualKeysVirtualKeyResult',
     'GetApiSecurityDiscoveredOperationsOperationResult',
     'GetApiSecurityOperationTagsTagResult',
     'GetApiSecurityOperationsOperationResult',
@@ -6640,7 +6644,7 @@ class ServiceComputeProductEnablementDdosProtection(dict):
                  mode: _builtins.str):
         """
         :param _builtins.bool enabled: Enable DDoS Protection support
-        :param _builtins.str mode: Operation mode. Can be either `off`, `log`, or `block`.
+        :param _builtins.str mode: Operation mode. Can be `off`, `log`, `block`, or `client_challenge`.
         """
         pulumi.set(__self__, "enabled", enabled)
         pulumi.set(__self__, "mode", mode)
@@ -6657,7 +6661,7 @@ class ServiceComputeProductEnablementDdosProtection(dict):
     @pulumi.getter
     def mode(self) -> _builtins.str:
         """
-        Operation mode. Can be either `off`, `log`, or `block`.
+        Operation mode. Can be `off`, `log`, `block`, or `client_challenge`.
         """
         return pulumi.get(self, "mode")
 
@@ -13720,7 +13724,7 @@ class ServiceVclProductEnablementDdosProtection(dict):
                  mode: _builtins.str):
         """
         :param _builtins.bool enabled: Enable DDoS Protection support
-        :param _builtins.str mode: Operation mode. Can be either `off`, `log`, or `block`.
+        :param _builtins.str mode: Operation mode. Can be `off`, `log`, `block`, or `client_challenge`.
         """
         pulumi.set(__self__, "enabled", enabled)
         pulumi.set(__self__, "mode", mode)
@@ -13737,7 +13741,7 @@ class ServiceVclProductEnablementDdosProtection(dict):
     @pulumi.getter
     def mode(self) -> _builtins.str:
         """
-        Operation mode. Can be either `off`, `log`, or `block`.
+        Operation mode. Can be `off`, `log`, `block`, or `client_challenge`.
         """
         return pulumi.get(self, "mode")
 
@@ -14549,6 +14553,342 @@ class TlsSubscriptionManagedHttpChallenge(dict):
         A list with the value(s) to which the DNS record should point.
         """
         return pulumi.get(self, "record_values")
+
+
+@pulumi.output_type
+class GetAiRuntimeControlProviderConnectionsProviderConnectionResult(dict):
+    def __init__(__self__, *,
+                 base_url: _builtins.str,
+                 created_at: _builtins.str,
+                 id: _builtins.str,
+                 models: Sequence[_builtins.str],
+                 name: _builtins.str,
+                 secret_id: _builtins.str,
+                 updated_at: _builtins.str):
+        """
+        :param _builtins.str base_url: The base URL for the provider's API.
+        :param _builtins.str created_at: Timestamp (UTC) of when the provider connection was created.
+        :param _builtins.str id: The ID of the provider connection.
+        :param Sequence[_builtins.str] models: The allowed AI model identifiers.
+        :param _builtins.str name: The human-readable name of the provider.
+        :param _builtins.str secret_id: A hash representing the API key used to create the provider connection.
+        :param _builtins.str updated_at: Timestamp (UTC) of when the provider connection was last updated.
+        """
+        pulumi.set(__self__, "base_url", base_url)
+        pulumi.set(__self__, "created_at", created_at)
+        pulumi.set(__self__, "id", id)
+        pulumi.set(__self__, "models", models)
+        pulumi.set(__self__, "name", name)
+        pulumi.set(__self__, "secret_id", secret_id)
+        pulumi.set(__self__, "updated_at", updated_at)
+
+    @_builtins.property
+    @pulumi.getter(name="baseUrl")
+    def base_url(self) -> _builtins.str:
+        """
+        The base URL for the provider's API.
+        """
+        return pulumi.get(self, "base_url")
+
+    @_builtins.property
+    @pulumi.getter(name="createdAt")
+    def created_at(self) -> _builtins.str:
+        """
+        Timestamp (UTC) of when the provider connection was created.
+        """
+        return pulumi.get(self, "created_at")
+
+    @_builtins.property
+    @pulumi.getter
+    def id(self) -> _builtins.str:
+        """
+        The ID of the provider connection.
+        """
+        return pulumi.get(self, "id")
+
+    @_builtins.property
+    @pulumi.getter
+    def models(self) -> Sequence[_builtins.str]:
+        """
+        The allowed AI model identifiers.
+        """
+        return pulumi.get(self, "models")
+
+    @_builtins.property
+    @pulumi.getter
+    def name(self) -> _builtins.str:
+        """
+        The human-readable name of the provider.
+        """
+        return pulumi.get(self, "name")
+
+    @_builtins.property
+    @pulumi.getter(name="secretId")
+    def secret_id(self) -> _builtins.str:
+        """
+        A hash representing the API key used to create the provider connection.
+        """
+        return pulumi.get(self, "secret_id")
+
+    @_builtins.property
+    @pulumi.getter(name="updatedAt")
+    def updated_at(self) -> _builtins.str:
+        """
+        Timestamp (UTC) of when the provider connection was last updated.
+        """
+        return pulumi.get(self, "updated_at")
+
+
+@pulumi.output_type
+class GetAiRuntimeControlProvidersProviderResult(dict):
+    def __init__(__self__, *,
+                 default_base_url: _builtins.str,
+                 display_name: _builtins.str,
+                 id: _builtins.str,
+                 models: Sequence['outputs.GetAiRuntimeControlProvidersProviderModelResult']):
+        """
+        :param _builtins.str default_base_url: The default API base URL for the provider.
+        :param _builtins.str display_name: The human-readable provider name, e.g. `Anthropic`.
+        :param _builtins.str id: The provider identifier, e.g. `anthropic`.
+        :param Sequence['GetAiRuntimeControlProvidersProviderModelArgs'] models: The models available for the provider.
+        """
+        pulumi.set(__self__, "default_base_url", default_base_url)
+        pulumi.set(__self__, "display_name", display_name)
+        pulumi.set(__self__, "id", id)
+        pulumi.set(__self__, "models", models)
+
+    @_builtins.property
+    @pulumi.getter(name="defaultBaseUrl")
+    def default_base_url(self) -> _builtins.str:
+        """
+        The default API base URL for the provider.
+        """
+        return pulumi.get(self, "default_base_url")
+
+    @_builtins.property
+    @pulumi.getter(name="displayName")
+    def display_name(self) -> _builtins.str:
+        """
+        The human-readable provider name, e.g. `Anthropic`.
+        """
+        return pulumi.get(self, "display_name")
+
+    @_builtins.property
+    @pulumi.getter
+    def id(self) -> _builtins.str:
+        """
+        The provider identifier, e.g. `anthropic`.
+        """
+        return pulumi.get(self, "id")
+
+    @_builtins.property
+    @pulumi.getter
+    def models(self) -> Sequence['outputs.GetAiRuntimeControlProvidersProviderModelResult']:
+        """
+        The models available for the provider.
+        """
+        return pulumi.get(self, "models")
+
+
+@pulumi.output_type
+class GetAiRuntimeControlProvidersProviderModelResult(dict):
+    def __init__(__self__, *,
+                 display_name: _builtins.str,
+                 id: _builtins.str,
+                 provider_id: _builtins.str):
+        """
+        :param _builtins.str display_name: The human-readable model name, e.g. `Claude Sonnet 4`.
+        :param _builtins.str id: The model identifier, e.g. `claude-sonnet-4-20250514`.
+        :param _builtins.str provider_id: The ID of the provider this model belongs to.
+        """
+        pulumi.set(__self__, "display_name", display_name)
+        pulumi.set(__self__, "id", id)
+        pulumi.set(__self__, "provider_id", provider_id)
+
+    @_builtins.property
+    @pulumi.getter(name="displayName")
+    def display_name(self) -> _builtins.str:
+        """
+        The human-readable model name, e.g. `Claude Sonnet 4`.
+        """
+        return pulumi.get(self, "display_name")
+
+    @_builtins.property
+    @pulumi.getter
+    def id(self) -> _builtins.str:
+        """
+        The model identifier, e.g. `claude-sonnet-4-20250514`.
+        """
+        return pulumi.get(self, "id")
+
+    @_builtins.property
+    @pulumi.getter(name="providerId")
+    def provider_id(self) -> _builtins.str:
+        """
+        The ID of the provider this model belongs to.
+        """
+        return pulumi.get(self, "provider_id")
+
+
+@pulumi.output_type
+class GetAiRuntimeControlVirtualKeysVirtualKeyResult(dict):
+    def __init__(__self__, *,
+                 created_at: _builtins.str,
+                 created_by: _builtins.str,
+                 customer_id: _builtins.str,
+                 deleted_at: _builtins.str,
+                 expires_at: _builtins.str,
+                 id: _builtins.str,
+                 last_used_at: _builtins.str,
+                 model: _builtins.str,
+                 name: _builtins.str,
+                 provider: _builtins.str,
+                 type: _builtins.str,
+                 updated_at: _builtins.str,
+                 user_id: _builtins.str,
+                 user_name: _builtins.str):
+        """
+        :param _builtins.str created_at: Timestamp (UTC) of when the virtual key was created.
+        :param _builtins.str created_by: The display name of the user who created the virtual key.
+        :param _builtins.str customer_id: The ID of the customer that owns the virtual key.
+        :param _builtins.str deleted_at: Timestamp (UTC) of when the virtual key was deleted, if applicable.
+        :param _builtins.str expires_at: The expiration timestamp of the virtual key, if any.
+        :param _builtins.str id: The ID of the virtual key.
+        :param _builtins.str last_used_at: Timestamp (UTC) of when the virtual key was last used, if applicable.
+        :param _builtins.str model: The AI model identifier.
+        :param _builtins.str name: The human-readable name of the virtual key.
+        :param _builtins.str provider: The AI model provider name.
+        :param _builtins.str type: The type of the virtual key.
+        :param _builtins.str updated_at: Timestamp (UTC) of when the virtual key was last updated.
+        :param _builtins.str user_id: The ID of the user who created the virtual key.
+        :param _builtins.str user_name: The display name of the user who created the virtual key.
+        """
+        pulumi.set(__self__, "created_at", created_at)
+        pulumi.set(__self__, "created_by", created_by)
+        pulumi.set(__self__, "customer_id", customer_id)
+        pulumi.set(__self__, "deleted_at", deleted_at)
+        pulumi.set(__self__, "expires_at", expires_at)
+        pulumi.set(__self__, "id", id)
+        pulumi.set(__self__, "last_used_at", last_used_at)
+        pulumi.set(__self__, "model", model)
+        pulumi.set(__self__, "name", name)
+        pulumi.set(__self__, "provider", provider)
+        pulumi.set(__self__, "type", type)
+        pulumi.set(__self__, "updated_at", updated_at)
+        pulumi.set(__self__, "user_id", user_id)
+        pulumi.set(__self__, "user_name", user_name)
+
+    @_builtins.property
+    @pulumi.getter(name="createdAt")
+    def created_at(self) -> _builtins.str:
+        """
+        Timestamp (UTC) of when the virtual key was created.
+        """
+        return pulumi.get(self, "created_at")
+
+    @_builtins.property
+    @pulumi.getter(name="createdBy")
+    def created_by(self) -> _builtins.str:
+        """
+        The display name of the user who created the virtual key.
+        """
+        return pulumi.get(self, "created_by")
+
+    @_builtins.property
+    @pulumi.getter(name="customerId")
+    def customer_id(self) -> _builtins.str:
+        """
+        The ID of the customer that owns the virtual key.
+        """
+        return pulumi.get(self, "customer_id")
+
+    @_builtins.property
+    @pulumi.getter(name="deletedAt")
+    def deleted_at(self) -> _builtins.str:
+        """
+        Timestamp (UTC) of when the virtual key was deleted, if applicable.
+        """
+        return pulumi.get(self, "deleted_at")
+
+    @_builtins.property
+    @pulumi.getter(name="expiresAt")
+    def expires_at(self) -> _builtins.str:
+        """
+        The expiration timestamp of the virtual key, if any.
+        """
+        return pulumi.get(self, "expires_at")
+
+    @_builtins.property
+    @pulumi.getter
+    def id(self) -> _builtins.str:
+        """
+        The ID of the virtual key.
+        """
+        return pulumi.get(self, "id")
+
+    @_builtins.property
+    @pulumi.getter(name="lastUsedAt")
+    def last_used_at(self) -> _builtins.str:
+        """
+        Timestamp (UTC) of when the virtual key was last used, if applicable.
+        """
+        return pulumi.get(self, "last_used_at")
+
+    @_builtins.property
+    @pulumi.getter
+    def model(self) -> _builtins.str:
+        """
+        The AI model identifier.
+        """
+        return pulumi.get(self, "model")
+
+    @_builtins.property
+    @pulumi.getter
+    def name(self) -> _builtins.str:
+        """
+        The human-readable name of the virtual key.
+        """
+        return pulumi.get(self, "name")
+
+    @_builtins.property
+    @pulumi.getter
+    def provider(self) -> _builtins.str:
+        """
+        The AI model provider name.
+        """
+        return pulumi.get(self, "provider")
+
+    @_builtins.property
+    @pulumi.getter
+    def type(self) -> _builtins.str:
+        """
+        The type of the virtual key.
+        """
+        return pulumi.get(self, "type")
+
+    @_builtins.property
+    @pulumi.getter(name="updatedAt")
+    def updated_at(self) -> _builtins.str:
+        """
+        Timestamp (UTC) of when the virtual key was last updated.
+        """
+        return pulumi.get(self, "updated_at")
+
+    @_builtins.property
+    @pulumi.getter(name="userId")
+    def user_id(self) -> _builtins.str:
+        """
+        The ID of the user who created the virtual key.
+        """
+        return pulumi.get(self, "user_id")
+
+    @_builtins.property
+    @pulumi.getter(name="userName")
+    def user_name(self) -> _builtins.str:
+        """
+        The display name of the user who created the virtual key.
+        """
+        return pulumi.get(self, "user_name")
 
 
 @pulumi.output_type

@@ -128,6 +128,130 @@ export interface DnsZoneXfrConfigInboundPrimary {
     description?: string;
 }
 
+export interface GetAiRuntimeControlProviderConnectionsProviderConnection {
+    /**
+     * The base URL for the provider's API.
+     */
+    baseUrl: string;
+    /**
+     * Timestamp (UTC) of when the provider connection was created.
+     */
+    createdAt: string;
+    /**
+     * The ID of the provider connection.
+     */
+    id: string;
+    /**
+     * The allowed AI model identifiers.
+     */
+    models: string[];
+    /**
+     * The human-readable name of the provider.
+     */
+    name: string;
+    /**
+     * A hash representing the API key used to create the provider connection.
+     */
+    secretId: string;
+    /**
+     * Timestamp (UTC) of when the provider connection was last updated.
+     */
+    updatedAt: string;
+}
+
+export interface GetAiRuntimeControlProvidersProvider {
+    /**
+     * The default API base URL for the provider.
+     */
+    defaultBaseUrl: string;
+    /**
+     * The human-readable provider name, e.g. `Anthropic`.
+     */
+    displayName: string;
+    /**
+     * The provider identifier, e.g. `anthropic`.
+     */
+    id: string;
+    /**
+     * The models available for the provider.
+     */
+    models: outputs.GetAiRuntimeControlProvidersProviderModel[];
+}
+
+export interface GetAiRuntimeControlProvidersProviderModel {
+    /**
+     * The human-readable model name, e.g. `Claude Sonnet 4`.
+     */
+    displayName: string;
+    /**
+     * The model identifier, e.g. `claude-sonnet-4-20250514`.
+     */
+    id: string;
+    /**
+     * The ID of the provider this model belongs to.
+     */
+    providerId: string;
+}
+
+export interface GetAiRuntimeControlVirtualKeysVirtualKey {
+    /**
+     * Timestamp (UTC) of when the virtual key was created.
+     */
+    createdAt: string;
+    /**
+     * The display name of the user who created the virtual key.
+     */
+    createdBy: string;
+    /**
+     * The ID of the customer that owns the virtual key.
+     */
+    customerId: string;
+    /**
+     * Timestamp (UTC) of when the virtual key was deleted, if applicable.
+     */
+    deletedAt: string;
+    /**
+     * The expiration timestamp of the virtual key, if any.
+     */
+    expiresAt: string;
+    /**
+     * The ID of the virtual key.
+     */
+    id: string;
+    /**
+     * Timestamp (UTC) of when the virtual key was last used, if applicable.
+     */
+    lastUsedAt: string;
+    /**
+     * The AI model identifier.
+     */
+    model: string;
+    /**
+     * The human-readable name of the virtual key.
+     */
+    name: string;
+    /**
+     * The AI model provider name.
+     */
+    provider: string;
+    /**
+     * The type of the virtual key.
+     */
+    type: string;
+    /**
+     * Timestamp (UTC) of when the virtual key was last updated.
+     */
+    updatedAt: string;
+    /**
+     * The ID of the user who created the virtual key.
+     */
+    userId: string;
+    /**
+     * The display name of the user who created the virtual key.
+     */
+    userName: string;
+}
+
 export interface GetApiSecurityDiscoveredOperationsOperation {
     /**
      * Discovered operation domain.
@@ -2487,7 +2611,7 @@ export interface ServiceComputeProductEnablementDdosProtection {
      */
     enabled: boolean;
     /**
-     * Operation mode. Can be either `off`, `log`, or `block`.
+     * Operation mode. Can be `off`, `log`, `block`, or `clientChallenge`.
      */
     mode: string;
 }
@@ -4550,7 +4674,7 @@ export interface ServiceVclProductEnablementDdosProtection {
      */
     enabled: boolean;
     /**
-     * Operation mode. Can be either `off`, `log`, or `block`.
+     * Operation mode. Can be `off`, `log`, `block`, or `clientChallenge`.
      */
     mode: string;
 }

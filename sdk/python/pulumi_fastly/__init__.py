@@ -6,6 +6,8 @@ import builtins as _builtins
 from . import _utilities
 import typing
 # Export this package's modules as members:
+from .ai_runtime_control_provider_connection import *
+from .ai_runtime_control_virtual_key import *
 from .alert import *
 from .api_security_operation import *
 from .api_security_operation_tag import *
@@ -20,6 +22,9 @@ from .domain import *
 from .domain_service_link import *
 from .domain_v1 import *
 from .domain_v1_service_link import *
+from .get_ai_runtime_control_provider_connections import *
+from .get_ai_runtime_control_providers import *
+from .get_ai_runtime_control_virtual_keys import *
 from .get_api_security_discovered_operations import *
 from .get_api_security_operation_tags import *
 from .get_api_security_operations import *
@@ -121,6 +126,22 @@ else:
 _utilities.register(
     resource_modules="""
 [
+ {
+  "pkg": "fastly",
+  "mod": "index/aiRuntimeControlProviderConnection",
+  "fqn": "pulumi_fastly",
+  "classes": {
+   "fastly:index/aiRuntimeControlProviderConnection:AiRuntimeControlProviderConnection": "AiRuntimeControlProviderConnection"
+  }
+ },
+ {
+  "pkg": "fastly",
+  "mod": "index/aiRuntimeControlVirtualKey",
+  "fqn": "pulumi_fastly",
+  "classes": {
+   "fastly:index/aiRuntimeControlVirtualKey:AiRuntimeControlVirtualKey": "AiRuntimeControlVirtualKey"
+  }
+ },
  {
   "pkg": "fastly",
   "mod": "index/alert",

@@ -9,6 +9,8 @@ import com.pulumi.deployment.Deployment;
 import com.pulumi.deployment.InvokeOptions;
 import com.pulumi.deployment.InvokeOutputOptions;
 import com.pulumi.fastly.Utilities;
+import com.pulumi.fastly.inputs.GetAiRuntimeControlVirtualKeysArgs;
+import com.pulumi.fastly.inputs.GetAiRuntimeControlVirtualKeysPlainArgs;
 import com.pulumi.fastly.inputs.GetApiSecurityDiscoveredOperationsArgs;
 import com.pulumi.fastly.inputs.GetApiSecurityDiscoveredOperationsPlainArgs;
 import com.pulumi.fastly.inputs.GetApiSecurityOperationTagsArgs;
@@ -77,6 +79,9 @@ import com.pulumi.fastly.inputs.GetTsigKeysArgs;
 import com.pulumi.fastly.inputs.GetTsigKeysPlainArgs;
 import com.pulumi.fastly.inputs.GetVclSnippetsArgs;
 import com.pulumi.fastly.inputs.GetVclSnippetsPlainArgs;
+import com.pulumi.fastly.outputs.GetAiRuntimeControlProviderConnectionsResult;
+import com.pulumi.fastly.outputs.GetAiRuntimeControlProvidersResult;
+import com.pulumi.fastly.outputs.GetAiRuntimeControlVirtualKeysResult;
 import com.pulumi.fastly.outputs.GetApiSecurityDiscoveredOperationsResult;
 import com.pulumi.fastly.outputs.GetApiSecurityOperationTagsResult;
 import com.pulumi.fastly.outputs.GetApiSecurityOperationsResult;
@@ -131,6 +136,223 @@ import com.pulumi.resources.InvokeArgs;
 import java.util.concurrent.CompletableFuture;
 
 public final class FastlyFunctions {
+    /**
+     * Use this data source to get the list of provider connections configured for your
+     * customer account in [Fastly AI Runtime Control](https://www.fastly.com/documentation/reference/api/ai-runtime-control/).
+     * 
+     */
+    public static Output<GetAiRuntimeControlProviderConnectionsResult> getAiRuntimeControlProviderConnections() {
+        return getAiRuntimeControlProviderConnections(InvokeArgs.Empty, InvokeOptions.Empty);
+    }
+    /**
+     * Use this data source to get the list of provider connections configured for your
+     * customer account in [Fastly AI Runtime Control](https://www.fastly.com/documentation/reference/api/ai-runtime-control/).
+     * 
+     */
+    public static CompletableFuture<GetAiRuntimeControlProviderConnectionsResult> getAiRuntimeControlProviderConnectionsPlain() {
+        return getAiRuntimeControlProviderConnectionsPlain(InvokeArgs.Empty, InvokeOptions.Empty);
+    }
+    /**
+     * Use this data source to get the list of provider connections configured for your
+     * customer account in [Fastly AI Runtime Control](https://www.fastly.com/documentation/reference/api/ai-runtime-control/).
+     * 
+     */
+    public static Output<GetAiRuntimeControlProviderConnectionsResult> getAiRuntimeControlProviderConnections(InvokeArgs args) {
+        return getAiRuntimeControlProviderConnections(args, InvokeOptions.Empty);
+    }
+    /**
+     * Use this data source to get the list of provider connections configured for your
+     * customer account in [Fastly AI Runtime Control](https://www.fastly.com/documentation/reference/api/ai-runtime-control/).
+     * 
+     */
+    public static CompletableFuture<GetAiRuntimeControlProviderConnectionsResult> getAiRuntimeControlProviderConnectionsPlain(InvokeArgs args) {
+        return getAiRuntimeControlProviderConnectionsPlain(args, InvokeOptions.Empty);
+    }
+    /**
+     * Use this data source to get the list of provider connections configured for your
+     * customer account in [Fastly AI Runtime Control](https://www.fastly.com/documentation/reference/api/ai-runtime-control/).
+     * 
+     */
+    public static Output<GetAiRuntimeControlProviderConnectionsResult> getAiRuntimeControlProviderConnections(InvokeArgs args, InvokeOptions options) {
+        return Deployment.getInstance().invoke("fastly:index/getAiRuntimeControlProviderConnections:getAiRuntimeControlProviderConnections", TypeShape.of(GetAiRuntimeControlProviderConnectionsResult.class), args, Utilities.withVersion(options));
+    }
+    /**
+     * Use this data source to get the list of provider connections configured for your
+     * customer account in [Fastly AI Runtime Control](https://www.fastly.com/documentation/reference/api/ai-runtime-control/).
+     * 
+     */
+    public static Output<GetAiRuntimeControlProviderConnectionsResult> getAiRuntimeControlProviderConnections(InvokeArgs args, InvokeOutputOptions options) {
+        return Deployment.getInstance().invoke("fastly:index/getAiRuntimeControlProviderConnections:getAiRuntimeControlProviderConnections", TypeShape.of(GetAiRuntimeControlProviderConnectionsResult.class), args, Utilities.withVersion(options));
+    }
+    /**
+     * Use this data source to get the list of provider connections configured for your
+     * customer account in [Fastly AI Runtime Control](https://www.fastly.com/documentation/reference/api/ai-runtime-control/).
+     * 
+     */
+    public static CompletableFuture<GetAiRuntimeControlProviderConnectionsResult> getAiRuntimeControlProviderConnectionsPlain(InvokeArgs args, InvokeOptions options) {
+        return Deployment.getInstance().invokeAsync("fastly:index/getAiRuntimeControlProviderConnections:getAiRuntimeControlProviderConnections", TypeShape.of(GetAiRuntimeControlProviderConnectionsResult.class), args, Utilities.withVersion(options));
+    }
+    /**
+     * Use this data source to get the list of AI providers supported by [Fastly AI
+     * Runtime Control][1], with each provider&#39;s available models nested within.
+     * 
+     */
+    public static Output<GetAiRuntimeControlProvidersResult> getAiRuntimeControlProviders() {
+        return getAiRuntimeControlProviders(InvokeArgs.Empty, InvokeOptions.Empty);
+    }
+    /**
+     * Use this data source to get the list of AI providers supported by [Fastly AI
+     * Runtime Control][1], with each provider&#39;s available models nested within.
+     * 
+     */
+    public static CompletableFuture<GetAiRuntimeControlProvidersResult> getAiRuntimeControlProvidersPlain() {
+        return getAiRuntimeControlProvidersPlain(InvokeArgs.Empty, InvokeOptions.Empty);
+    }
+    /**
+     * Use this data source to get the list of AI providers supported by [Fastly AI
+     * Runtime Control][1], with each provider&#39;s available models nested within.
+     * 
+     */
+    public static Output<GetAiRuntimeControlProvidersResult> getAiRuntimeControlProviders(InvokeArgs args) {
+        return getAiRuntimeControlProviders(args, InvokeOptions.Empty);
+    }
+    /**
+     * Use this data source to get the list of AI providers supported by [Fastly AI
+     * Runtime Control][1], with each provider&#39;s available models nested within.
+     * 
+     */
+    public static CompletableFuture<GetAiRuntimeControlProvidersResult> getAiRuntimeControlProvidersPlain(InvokeArgs args) {
+        return getAiRuntimeControlProvidersPlain(args, InvokeOptions.Empty);
+    }
+    /**
+     * Use this data source to get the list of AI providers supported by [Fastly AI
+     * Runtime Control][1], with each provider&#39;s available models nested within.
+     * 
+     */
+    public static Output<GetAiRuntimeControlProvidersResult> getAiRuntimeControlProviders(InvokeArgs args, InvokeOptions options) {
+        return Deployment.getInstance().invoke("fastly:index/getAiRuntimeControlProviders:getAiRuntimeControlProviders", TypeShape.of(GetAiRuntimeControlProvidersResult.class), args, Utilities.withVersion(options));
+    }
+    /**
+     * Use this data source to get the list of AI providers supported by [Fastly AI
+     * Runtime Control][1], with each provider&#39;s available models nested within.
+     * 
+     */
+    public static Output<GetAiRuntimeControlProvidersResult> getAiRuntimeControlProviders(InvokeArgs args, InvokeOutputOptions options) {
+        return Deployment.getInstance().invoke("fastly:index/getAiRuntimeControlProviders:getAiRuntimeControlProviders", TypeShape.of(GetAiRuntimeControlProvidersResult.class), args, Utilities.withVersion(options));
+    }
+    /**
+     * Use this data source to get the list of AI providers supported by [Fastly AI
+     * Runtime Control][1], with each provider&#39;s available models nested within.
+     * 
+     */
+    public static CompletableFuture<GetAiRuntimeControlProvidersResult> getAiRuntimeControlProvidersPlain(InvokeArgs args, InvokeOptions options) {
+        return Deployment.getInstance().invokeAsync("fastly:index/getAiRuntimeControlProviders:getAiRuntimeControlProviders", TypeShape.of(GetAiRuntimeControlProvidersResult.class), args, Utilities.withVersion(options));
+    }
+    /**
+     * Use this data source to get the list of virtual keys configured for your customer
+     * account in [Fastly AI Runtime Control](https://www.fastly.com/documentation/reference/api/ai-runtime-control/), optionally filtered by model,
+     * provider, or a substring match on the key name.
+     * 
+     * &gt; **Note:** Access tokens are never returned by this endpoint.
+     * 
+     * ## Example Usage
+     * 
+     * [1]: https://www.fastly.com/documentation/reference/api/ai-runtime-control/
+     * 
+     */
+    public static Output<GetAiRuntimeControlVirtualKeysResult> getAiRuntimeControlVirtualKeys() {
+        return getAiRuntimeControlVirtualKeys(GetAiRuntimeControlVirtualKeysArgs.Empty, InvokeOptions.Empty);
+    }
+    /**
+     * Use this data source to get the list of virtual keys configured for your customer
+     * account in [Fastly AI Runtime Control](https://www.fastly.com/documentation/reference/api/ai-runtime-control/), optionally filtered by model,
+     * provider, or a substring match on the key name.
+     * 
+     * &gt; **Note:** Access tokens are never returned by this endpoint.
+     * 
+     * ## Example Usage
+     * 
+     * [1]: https://www.fastly.com/documentation/reference/api/ai-runtime-control/
+     * 
+     */
+    public static CompletableFuture<GetAiRuntimeControlVirtualKeysResult> getAiRuntimeControlVirtualKeysPlain() {
+        return getAiRuntimeControlVirtualKeysPlain(GetAiRuntimeControlVirtualKeysPlainArgs.Empty, InvokeOptions.Empty);
+    }
+    /**
+     * Use this data source to get the list of virtual keys configured for your customer
+     * account in [Fastly AI Runtime Control](https://www.fastly.com/documentation/reference/api/ai-runtime-control/), optionally filtered by model,
+     * provider, or a substring match on the key name.
+     * 
+     * &gt; **Note:** Access tokens are never returned by this endpoint.
+     * 
+     * ## Example Usage
+     * 
+     * [1]: https://www.fastly.com/documentation/reference/api/ai-runtime-control/
+     * 
+     */
+    public static Output<GetAiRuntimeControlVirtualKeysResult> getAiRuntimeControlVirtualKeys(GetAiRuntimeControlVirtualKeysArgs args) {
+        return getAiRuntimeControlVirtualKeys(args, InvokeOptions.Empty);
+    }
+    /**
+     * Use this data source to get the list of virtual keys configured for your customer
+     * account in [Fastly AI Runtime Control](https://www.fastly.com/documentation/reference/api/ai-runtime-control/), optionally filtered by model,
+     * provider, or a substring match on the key name.
+     * 
+     * &gt; **Note:** Access tokens are never returned by this endpoint.
+     * 
+     * ## Example Usage
+     * 
+     * [1]: https://www.fastly.com/documentation/reference/api/ai-runtime-control/
+     * 
+     */
+    public static CompletableFuture<GetAiRuntimeControlVirtualKeysResult> getAiRuntimeControlVirtualKeysPlain(GetAiRuntimeControlVirtualKeysPlainArgs args) {
+        return getAiRuntimeControlVirtualKeysPlain(args, InvokeOptions.Empty);
+    }
+    /**
+     * Use this data source to get the list of virtual keys configured for your customer
+     * account in [Fastly AI Runtime Control](https://www.fastly.com/documentation/reference/api/ai-runtime-control/), optionally filtered by model,
+     * provider, or a substring match on the key name.
+     * 
+     * &gt; **Note:** Access tokens are never returned by this endpoint.
+     * 
+     * ## Example Usage
+     * 
+     * [1]: https://www.fastly.com/documentation/reference/api/ai-runtime-control/
+     * 
+     */
+    public static Output<GetAiRuntimeControlVirtualKeysResult> getAiRuntimeControlVirtualKeys(GetAiRuntimeControlVirtualKeysArgs args, InvokeOptions options) {
+        return Deployment.getInstance().invoke("fastly:index/getAiRuntimeControlVirtualKeys:getAiRuntimeControlVirtualKeys", TypeShape.of(GetAiRuntimeControlVirtualKeysResult.class), args, Utilities.withVersion(options));
+    }
+    /**
+     * Use this data source to get the list of virtual keys configured for your customer
+     * account in [Fastly AI Runtime Control](https://www.fastly.com/documentation/reference/api/ai-runtime-control/), optionally filtered by model,
+     * provider, or a substring match on the key name.
+     * 
+     * &gt; **Note:** Access tokens are never returned by this endpoint.
+     * 
+     * ## Example Usage
+     * 
+     * [1]: https://www.fastly.com/documentation/reference/api/ai-runtime-control/
+     * 
+     */
+    public static Output<GetAiRuntimeControlVirtualKeysResult> getAiRuntimeControlVirtualKeys(GetAiRuntimeControlVirtualKeysArgs args, InvokeOutputOptions options) {
+        return Deployment.getInstance().invoke("fastly:index/getAiRuntimeControlVirtualKeys:getAiRuntimeControlVirtualKeys", TypeShape.of(GetAiRuntimeControlVirtualKeysResult.class), args, Utilities.withVersion(options));
+    }
+    /**
+     * Use this data source to get the list of virtual keys configured for your customer
+     * account in [Fastly AI Runtime Control](https://www.fastly.com/documentation/reference/api/ai-runtime-control/), optionally filtered by model,
+     * provider, or a substring match on the key name.
+     * 
+     * &gt; **Note:** Access tokens are never returned by this endpoint.
+     * 
+     * ## Example Usage
+     * 
+     * [1]: https://www.fastly.com/documentation/reference/api/ai-runtime-control/
+     * 
+     */
+    public static CompletableFuture<GetAiRuntimeControlVirtualKeysResult> getAiRuntimeControlVirtualKeysPlain(GetAiRuntimeControlVirtualKeysPlainArgs args, InvokeOptions options) {
+        return Deployment.getInstance().invokeAsync("fastly:index/getAiRuntimeControlVirtualKeys:getAiRuntimeControlVirtualKeys", TypeShape.of(GetAiRuntimeControlVirtualKeysResult.class), args, Utilities.withVersion(options));
+    }
     /**
      * Use this data source to list API Security discovered operations for a Fastly service.
      * 

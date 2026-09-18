@@ -19,7 +19,7 @@ namespace Pulumi.Fastly.Inputs
         public Input<bool> Enabled { get; set; } = null!;
 
         /// <summary>
-        /// Operation mode. Can be either `Off`, `Log`, or `Block`.
+        /// Operation mode. Can be `Off`, `Log`, `Block`, or `ClientChallenge`.
         /// </summary>
         [Input("mode", required: true)]
         public Input<string> Mode { get; set; } = null!;

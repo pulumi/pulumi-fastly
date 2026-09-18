@@ -10052,7 +10052,7 @@ func (o ServiceComputeProductEnablementBotManagementPtrOutput) Enabled() pulumi.
 type ServiceComputeProductEnablementDdosProtection struct {
 	// Enable DDoS Protection support
 	Enabled bool `pulumi:"enabled"`
-	// Operation mode. Can be either `off`, `log`, or `block`.
+	// Operation mode. Can be `off`, `log`, `block`, or `clientChallenge`.
 	Mode string `pulumi:"mode"`
 }
 
@@ -10070,7 +10070,7 @@ type ServiceComputeProductEnablementDdosProtectionInput interface {
 type ServiceComputeProductEnablementDdosProtectionArgs struct {
 	// Enable DDoS Protection support
 	Enabled pulumi.BoolInput `pulumi:"enabled"`
-	// Operation mode. Can be either `off`, `log`, or `block`.
+	// Operation mode. Can be `off`, `log`, `block`, or `clientChallenge`.
 	Mode pulumi.StringInput `pulumi:"mode"`
 }
 
@@ -10156,7 +10156,7 @@ func (o ServiceComputeProductEnablementDdosProtectionOutput) Enabled() pulumi.Bo
 	return o.ApplyT(func(v ServiceComputeProductEnablementDdosProtection) bool { return v.Enabled }).(pulumi.BoolOutput)
 }
 
-// Operation mode. Can be either `off`, `log`, or `block`.
+// Operation mode. Can be `off`, `log`, `block`, or `clientChallenge`.
 func (o ServiceComputeProductEnablementDdosProtectionOutput) Mode() pulumi.StringOutput {
 	return o.ApplyT(func(v ServiceComputeProductEnablementDdosProtection) string { return v.Mode }).(pulumi.StringOutput)
 }
@@ -10195,7 +10195,7 @@ func (o ServiceComputeProductEnablementDdosProtectionPtrOutput) Enabled() pulumi
 	}).(pulumi.BoolPtrOutput)
 }
 
-// Operation mode. Can be either `off`, `log`, or `block`.
+// Operation mode. Can be `off`, `log`, `block`, or `clientChallenge`.
 func (o ServiceComputeProductEnablementDdosProtectionPtrOutput) Mode() pulumi.StringPtrOutput {
 	return o.ApplyT(func(v *ServiceComputeProductEnablementDdosProtection) *string {
 		if v == nil {
@@ -18766,7 +18766,7 @@ func (o ServiceVclProductEnablementBotManagementPtrOutput) Enabled() pulumi.Bool
 type ServiceVclProductEnablementDdosProtection struct {
 	// Enable DDoS Protection support
 	Enabled bool `pulumi:"enabled"`
-	// Operation mode. Can be either `off`, `log`, or `block`.
+	// Operation mode. Can be `off`, `log`, `block`, or `clientChallenge`.
 	Mode string `pulumi:"mode"`
 }
 
@@ -18784,7 +18784,7 @@ type ServiceVclProductEnablementDdosProtectionInput interface {
 type ServiceVclProductEnablementDdosProtectionArgs struct {
 	// Enable DDoS Protection support
 	Enabled pulumi.BoolInput `pulumi:"enabled"`
-	// Operation mode. Can be either `off`, `log`, or `block`.
+	// Operation mode. Can be `off`, `log`, `block`, or `clientChallenge`.
 	Mode pulumi.StringInput `pulumi:"mode"`
 }
 
@@ -18870,7 +18870,7 @@ func (o ServiceVclProductEnablementDdosProtectionOutput) Enabled() pulumi.BoolOu
 	return o.ApplyT(func(v ServiceVclProductEnablementDdosProtection) bool { return v.Enabled }).(pulumi.BoolOutput)
 }
 
-// Operation mode. Can be either `off`, `log`, or `block`.
+// Operation mode. Can be `off`, `log`, `block`, or `clientChallenge`.
 func (o ServiceVclProductEnablementDdosProtectionOutput) Mode() pulumi.StringOutput {
 	return o.ApplyT(func(v ServiceVclProductEnablementDdosProtection) string { return v.Mode }).(pulumi.StringOutput)
 }
@@ -18909,7 +18909,7 @@ func (o ServiceVclProductEnablementDdosProtectionPtrOutput) Enabled() pulumi.Boo
 	}).(pulumi.BoolPtrOutput)
 }
 
-// Operation mode. Can be either `off`, `log`, or `block`.
+// Operation mode. Can be `off`, `log`, `block`, or `clientChallenge`.
 func (o ServiceVclProductEnablementDdosProtectionPtrOutput) Mode() pulumi.StringPtrOutput {
 	return o.ApplyT(func(v *ServiceVclProductEnablementDdosProtection) *string {
 		if v == nil {
@@ -20279,6 +20279,612 @@ func (o TlsSubscriptionManagedHttpChallengeArrayOutput) Index(i pulumi.IntInput)
 	return pulumi.All(o, i).ApplyT(func(vs []interface{}) TlsSubscriptionManagedHttpChallenge {
 		return vs[0].([]TlsSubscriptionManagedHttpChallenge)[vs[1].(int)]
 	}).(TlsSubscriptionManagedHttpChallengeOutput)
+}
+
+type GetAiRuntimeControlProviderConnectionsProviderConnection struct {
+	// The base URL for the provider's API.
+	BaseUrl string `pulumi:"baseUrl"`
+	// Timestamp (UTC) of when the provider connection was created.
+	CreatedAt string `pulumi:"createdAt"`
+	// The ID of the provider connection.
+	Id string `pulumi:"id"`
+	// The allowed AI model identifiers.
+	Models []string `pulumi:"models"`
+	// The human-readable name of the provider.
+	Name string `pulumi:"name"`
+	// A hash representing the API key used to create the provider connection.
+	SecretId string `pulumi:"secretId"`
+	// Timestamp (UTC) of when the provider connection was last updated.
+	UpdatedAt string `pulumi:"updatedAt"`
+}
+
+// GetAiRuntimeControlProviderConnectionsProviderConnectionInput is an input type that accepts GetAiRuntimeControlProviderConnectionsProviderConnectionArgs and GetAiRuntimeControlProviderConnectionsProviderConnectionOutput values.
+// You can construct a concrete instance of `GetAiRuntimeControlProviderConnectionsProviderConnectionInput` via:
+//
+//	GetAiRuntimeControlProviderConnectionsProviderConnectionArgs{...}
+type GetAiRuntimeControlProviderConnectionsProviderConnectionInput interface {
+	pulumi.Input
+
+	ToGetAiRuntimeControlProviderConnectionsProviderConnectionOutput() GetAiRuntimeControlProviderConnectionsProviderConnectionOutput
+	ToGetAiRuntimeControlProviderConnectionsProviderConnectionOutputWithContext(context.Context) GetAiRuntimeControlProviderConnectionsProviderConnectionOutput
+}
+
+type GetAiRuntimeControlProviderConnectionsProviderConnectionArgs struct {
+	// The base URL for the provider's API.
+	BaseUrl pulumi.StringInput `pulumi:"baseUrl"`
+	// Timestamp (UTC) of when the provider connection was created.
+	CreatedAt pulumi.StringInput `pulumi:"createdAt"`
+	// The ID of the provider connection.
+	Id pulumi.StringInput `pulumi:"id"`
+	// The allowed AI model identifiers.
+	Models pulumi.StringArrayInput `pulumi:"models"`
+	// The human-readable name of the provider.
+	Name pulumi.StringInput `pulumi:"name"`
+	// A hash representing the API key used to create the provider connection.
+	SecretId pulumi.StringInput `pulumi:"secretId"`
+	// Timestamp (UTC) of when the provider connection was last updated.
+	UpdatedAt pulumi.StringInput `pulumi:"updatedAt"`
+}
+
+func (GetAiRuntimeControlProviderConnectionsProviderConnectionArgs) ElementType() reflect.Type {
+	return reflect.TypeOf((*GetAiRuntimeControlProviderConnectionsProviderConnection)(nil)).Elem()
+}
+
+func (i GetAiRuntimeControlProviderConnectionsProviderConnectionArgs) ToGetAiRuntimeControlProviderConnectionsProviderConnectionOutput() GetAiRuntimeControlProviderConnectionsProviderConnectionOutput {
+	return i.ToGetAiRuntimeControlProviderConnectionsProviderConnectionOutputWithContext(context.Background())
+}
+
+func (i GetAiRuntimeControlProviderConnectionsProviderConnectionArgs) ToGetAiRuntimeControlProviderConnectionsProviderConnectionOutputWithContext(ctx context.Context) GetAiRuntimeControlProviderConnectionsProviderConnectionOutput {
+	return pulumi.ToOutputWithContext(ctx, i).(GetAiRuntimeControlProviderConnectionsProviderConnectionOutput)
+}
+
+// GetAiRuntimeControlProviderConnectionsProviderConnectionArrayInput is an input type that accepts GetAiRuntimeControlProviderConnectionsProviderConnectionArray and GetAiRuntimeControlProviderConnectionsProviderConnectionArrayOutput values.
+// You can construct a concrete instance of `GetAiRuntimeControlProviderConnectionsProviderConnectionArrayInput` via:
+//
+//	GetAiRuntimeControlProviderConnectionsProviderConnectionArray{ GetAiRuntimeControlProviderConnectionsProviderConnectionArgs{...} }
+type GetAiRuntimeControlProviderConnectionsProviderConnectionArrayInput interface {
+	pulumi.Input
+
+	ToGetAiRuntimeControlProviderConnectionsProviderConnectionArrayOutput() GetAiRuntimeControlProviderConnectionsProviderConnectionArrayOutput
+	ToGetAiRuntimeControlProviderConnectionsProviderConnectionArrayOutputWithContext(context.Context) GetAiRuntimeControlProviderConnectionsProviderConnectionArrayOutput
+}
+
+type GetAiRuntimeControlProviderConnectionsProviderConnectionArray []GetAiRuntimeControlProviderConnectionsProviderConnectionInput
+
+func (GetAiRuntimeControlProviderConnectionsProviderConnectionArray) ElementType() reflect.Type {
+	return reflect.TypeOf((*[]GetAiRuntimeControlProviderConnectionsProviderConnection)(nil)).Elem()
+}
+
+func (i GetAiRuntimeControlProviderConnectionsProviderConnectionArray) ToGetAiRuntimeControlProviderConnectionsProviderConnectionArrayOutput() GetAiRuntimeControlProviderConnectionsProviderConnectionArrayOutput {
+	return i.ToGetAiRuntimeControlProviderConnectionsProviderConnectionArrayOutputWithContext(context.Background())
+}
+
+func (i GetAiRuntimeControlProviderConnectionsProviderConnectionArray) ToGetAiRuntimeControlProviderConnectionsProviderConnectionArrayOutputWithContext(ctx context.Context) GetAiRuntimeControlProviderConnectionsProviderConnectionArrayOutput {
+	return pulumi.ToOutputWithContext(ctx, i).(GetAiRuntimeControlProviderConnectionsProviderConnectionArrayOutput)
+}
+
+type GetAiRuntimeControlProviderConnectionsProviderConnectionOutput struct{ *pulumi.OutputState }
+
+func (GetAiRuntimeControlProviderConnectionsProviderConnectionOutput) ElementType() reflect.Type {
+	return reflect.TypeOf((*GetAiRuntimeControlProviderConnectionsProviderConnection)(nil)).Elem()
+}
+
+func (o GetAiRuntimeControlProviderConnectionsProviderConnectionOutput) ToGetAiRuntimeControlProviderConnectionsProviderConnectionOutput() GetAiRuntimeControlProviderConnectionsProviderConnectionOutput {
+	return o
+}
+
+func (o GetAiRuntimeControlProviderConnectionsProviderConnectionOutput) ToGetAiRuntimeControlProviderConnectionsProviderConnectionOutputWithContext(ctx context.Context) GetAiRuntimeControlProviderConnectionsProviderConnectionOutput {
+	return o
+}
+
+// The base URL for the provider's API.
+func (o GetAiRuntimeControlProviderConnectionsProviderConnectionOutput) BaseUrl() pulumi.StringOutput {
+	return o.ApplyT(func(v GetAiRuntimeControlProviderConnectionsProviderConnection) string { return v.BaseUrl }).(pulumi.StringOutput)
+}
+
+// Timestamp (UTC) of when the provider connection was created.
+func (o GetAiRuntimeControlProviderConnectionsProviderConnectionOutput) CreatedAt() pulumi.StringOutput {
+	return o.ApplyT(func(v GetAiRuntimeControlProviderConnectionsProviderConnection) string { return v.CreatedAt }).(pulumi.StringOutput)
+}
+
+// The ID of the provider connection.
+func (o GetAiRuntimeControlProviderConnectionsProviderConnectionOutput) Id() pulumi.StringOutput {
+	return o.ApplyT(func(v GetAiRuntimeControlProviderConnectionsProviderConnection) string { return v.Id }).(pulumi.StringOutput)
+}
+
+// The allowed AI model identifiers.
+func (o GetAiRuntimeControlProviderConnectionsProviderConnectionOutput) Models() pulumi.StringArrayOutput {
+	return o.ApplyT(func(v GetAiRuntimeControlProviderConnectionsProviderConnection) []string { return v.Models }).(pulumi.StringArrayOutput)
+}
+
+// The human-readable name of the provider.
+func (o GetAiRuntimeControlProviderConnectionsProviderConnectionOutput) Name() pulumi.StringOutput {
+	return o.ApplyT(func(v GetAiRuntimeControlProviderConnectionsProviderConnection) string { return v.Name }).(pulumi.StringOutput)
+}
+
+// A hash representing the API key used to create the provider connection.
+func (o GetAiRuntimeControlProviderConnectionsProviderConnectionOutput) SecretId() pulumi.StringOutput {
+	return o.ApplyT(func(v GetAiRuntimeControlProviderConnectionsProviderConnection) string { return v.SecretId }).(pulumi.StringOutput)
+}
+
+// Timestamp (UTC) of when the provider connection was last updated.
+func (o GetAiRuntimeControlProviderConnectionsProviderConnectionOutput) UpdatedAt() pulumi.StringOutput {
+	return o.ApplyT(func(v GetAiRuntimeControlProviderConnectionsProviderConnection) string { return v.UpdatedAt }).(pulumi.StringOutput)
+}
+
+type GetAiRuntimeControlProviderConnectionsProviderConnectionArrayOutput struct{ *pulumi.OutputState }
+
+func (GetAiRuntimeControlProviderConnectionsProviderConnectionArrayOutput) ElementType() reflect.Type {
+	return reflect.TypeOf((*[]GetAiRuntimeControlProviderConnectionsProviderConnection)(nil)).Elem()
+}
+
+func (o GetAiRuntimeControlProviderConnectionsProviderConnectionArrayOutput) ToGetAiRuntimeControlProviderConnectionsProviderConnectionArrayOutput() GetAiRuntimeControlProviderConnectionsProviderConnectionArrayOutput {
+	return o
+}
+
+func (o GetAiRuntimeControlProviderConnectionsProviderConnectionArrayOutput) ToGetAiRuntimeControlProviderConnectionsProviderConnectionArrayOutputWithContext(ctx context.Context) GetAiRuntimeControlProviderConnectionsProviderConnectionArrayOutput {
+	return o
+}
+
+func (o GetAiRuntimeControlProviderConnectionsProviderConnectionArrayOutput) Index(i pulumi.IntInput) GetAiRuntimeControlProviderConnectionsProviderConnectionOutput {
+	return pulumi.All(o, i).ApplyT(func(vs []interface{}) GetAiRuntimeControlProviderConnectionsProviderConnection {
+		return vs[0].([]GetAiRuntimeControlProviderConnectionsProviderConnection)[vs[1].(int)]
+	}).(GetAiRuntimeControlProviderConnectionsProviderConnectionOutput)
+}
+
+type GetAiRuntimeControlProvidersProvider struct {
+	// The default API base URL for the provider.
+	DefaultBaseUrl string `pulumi:"defaultBaseUrl"`
+	// The human-readable provider name, e.g. `Anthropic`.
+	DisplayName string `pulumi:"displayName"`
+	// The provider identifier, e.g. `anthropic`.
+	Id string `pulumi:"id"`
+	// The models available for the provider.
+	Models []GetAiRuntimeControlProvidersProviderModel `pulumi:"models"`
+}
+
+// GetAiRuntimeControlProvidersProviderInput is an input type that accepts GetAiRuntimeControlProvidersProviderArgs and GetAiRuntimeControlProvidersProviderOutput values.
+// You can construct a concrete instance of `GetAiRuntimeControlProvidersProviderInput` via:
+//
+//	GetAiRuntimeControlProvidersProviderArgs{...}
+type GetAiRuntimeControlProvidersProviderInput interface {
+	pulumi.Input
+
+	ToGetAiRuntimeControlProvidersProviderOutput() GetAiRuntimeControlProvidersProviderOutput
+	ToGetAiRuntimeControlProvidersProviderOutputWithContext(context.Context) GetAiRuntimeControlProvidersProviderOutput
+}
+
+type GetAiRuntimeControlProvidersProviderArgs struct {
+	// The default API base URL for the provider.
+	DefaultBaseUrl pulumi.StringInput `pulumi:"defaultBaseUrl"`
+	// The human-readable provider name, e.g. `Anthropic`.
+	DisplayName pulumi.StringInput `pulumi:"displayName"`
+	// The provider identifier, e.g. `anthropic`.
+	Id pulumi.StringInput `pulumi:"id"`
+	// The models available for the provider.
+	Models GetAiRuntimeControlProvidersProviderModelArrayInput `pulumi:"models"`
+}
+
+func (GetAiRuntimeControlProvidersProviderArgs) ElementType() reflect.Type {
+	return reflect.TypeOf((*GetAiRuntimeControlProvidersProvider)(nil)).Elem()
+}
+
+func (i GetAiRuntimeControlProvidersProviderArgs) ToGetAiRuntimeControlProvidersProviderOutput() GetAiRuntimeControlProvidersProviderOutput {
+	return i.ToGetAiRuntimeControlProvidersProviderOutputWithContext(context.Background())
+}
+
+func (i GetAiRuntimeControlProvidersProviderArgs) ToGetAiRuntimeControlProvidersProviderOutputWithContext(ctx context.Context) GetAiRuntimeControlProvidersProviderOutput {
+	return pulumi.ToOutputWithContext(ctx, i).(GetAiRuntimeControlProvidersProviderOutput)
+}
+
+// GetAiRuntimeControlProvidersProviderArrayInput is an input type that accepts GetAiRuntimeControlProvidersProviderArray and GetAiRuntimeControlProvidersProviderArrayOutput values.
+// You can construct a concrete instance of `GetAiRuntimeControlProvidersProviderArrayInput` via:
+//
+//	GetAiRuntimeControlProvidersProviderArray{ GetAiRuntimeControlProvidersProviderArgs{...} }
+type GetAiRuntimeControlProvidersProviderArrayInput interface {
+	pulumi.Input
+
+	ToGetAiRuntimeControlProvidersProviderArrayOutput() GetAiRuntimeControlProvidersProviderArrayOutput
+	ToGetAiRuntimeControlProvidersProviderArrayOutputWithContext(context.Context) GetAiRuntimeControlProvidersProviderArrayOutput
+}
+
+type GetAiRuntimeControlProvidersProviderArray []GetAiRuntimeControlProvidersProviderInput
+
+func (GetAiRuntimeControlProvidersProviderArray) ElementType() reflect.Type {
+	return reflect.TypeOf((*[]GetAiRuntimeControlProvidersProvider)(nil)).Elem()
+}
+
+func (i GetAiRuntimeControlProvidersProviderArray) ToGetAiRuntimeControlProvidersProviderArrayOutput() GetAiRuntimeControlProvidersProviderArrayOutput {
+	return i.ToGetAiRuntimeControlProvidersProviderArrayOutputWithContext(context.Background())
+}
+
+func (i GetAiRuntimeControlProvidersProviderArray) ToGetAiRuntimeControlProvidersProviderArrayOutputWithContext(ctx context.Context) GetAiRuntimeControlProvidersProviderArrayOutput {
+	return pulumi.ToOutputWithContext(ctx, i).(GetAiRuntimeControlProvidersProviderArrayOutput)
+}
+
+type GetAiRuntimeControlProvidersProviderOutput struct{ *pulumi.OutputState }
+
+func (GetAiRuntimeControlProvidersProviderOutput) ElementType() reflect.Type {
+	return reflect.TypeOf((*GetAiRuntimeControlProvidersProvider)(nil)).Elem()
+}
+
+func (o GetAiRuntimeControlProvidersProviderOutput) ToGetAiRuntimeControlProvidersProviderOutput() GetAiRuntimeControlProvidersProviderOutput {
+	return o
+}
+
+func (o GetAiRuntimeControlProvidersProviderOutput) ToGetAiRuntimeControlProvidersProviderOutputWithContext(ctx context.Context) GetAiRuntimeControlProvidersProviderOutput {
+	return o
+}
+
+// The default API base URL for the provider.
+func (o GetAiRuntimeControlProvidersProviderOutput) DefaultBaseUrl() pulumi.StringOutput {
+	return o.ApplyT(func(v GetAiRuntimeControlProvidersProvider) string { return v.DefaultBaseUrl }).(pulumi.StringOutput)
+}
+
+// The human-readable provider name, e.g. `Anthropic`.
+func (o GetAiRuntimeControlProvidersProviderOutput) DisplayName() pulumi.StringOutput {
+	return o.ApplyT(func(v GetAiRuntimeControlProvidersProvider) string { return v.DisplayName }).(pulumi.StringOutput)
+}
+
+// The provider identifier, e.g. `anthropic`.
+func (o GetAiRuntimeControlProvidersProviderOutput) Id() pulumi.StringOutput {
+	return o.ApplyT(func(v GetAiRuntimeControlProvidersProvider) string { return v.Id }).(pulumi.StringOutput)
+}
+
+// The models available for the provider.
+func (o GetAiRuntimeControlProvidersProviderOutput) Models() GetAiRuntimeControlProvidersProviderModelArrayOutput {
+	return o.ApplyT(func(v GetAiRuntimeControlProvidersProvider) []GetAiRuntimeControlProvidersProviderModel {
+		return v.Models
+	}).(GetAiRuntimeControlProvidersProviderModelArrayOutput)
+}
+
+type GetAiRuntimeControlProvidersProviderArrayOutput struct{ *pulumi.OutputState }
+
+func (GetAiRuntimeControlProvidersProviderArrayOutput) ElementType() reflect.Type {
+	return reflect.TypeOf((*[]GetAiRuntimeControlProvidersProvider)(nil)).Elem()
+}
+
+func (o GetAiRuntimeControlProvidersProviderArrayOutput) ToGetAiRuntimeControlProvidersProviderArrayOutput() GetAiRuntimeControlProvidersProviderArrayOutput {
+	return o
+}
+
+func (o GetAiRuntimeControlProvidersProviderArrayOutput) ToGetAiRuntimeControlProvidersProviderArrayOutputWithContext(ctx context.Context) GetAiRuntimeControlProvidersProviderArrayOutput {
+	return o
+}
+
+func (o GetAiRuntimeControlProvidersProviderArrayOutput) Index(i pulumi.IntInput) GetAiRuntimeControlProvidersProviderOutput {
+	return pulumi.All(o, i).ApplyT(func(vs []interface{}) GetAiRuntimeControlProvidersProvider {
+		return vs[0].([]GetAiRuntimeControlProvidersProvider)[vs[1].(int)]
+	}).(GetAiRuntimeControlProvidersProviderOutput)
+}
+
+type GetAiRuntimeControlProvidersProviderModel struct {
+	// The human-readable model name, e.g. `Claude Sonnet 4`.
+	DisplayName string `pulumi:"displayName"`
+	// The model identifier, e.g. `claude-sonnet-4-20250514`.
+	Id string `pulumi:"id"`
+	// The ID of the provider this model belongs to.
+	ProviderId string `pulumi:"providerId"`
+}
+
+// GetAiRuntimeControlProvidersProviderModelInput is an input type that accepts GetAiRuntimeControlProvidersProviderModelArgs and GetAiRuntimeControlProvidersProviderModelOutput values.
+// You can construct a concrete instance of `GetAiRuntimeControlProvidersProviderModelInput` via:
+//
+//	GetAiRuntimeControlProvidersProviderModelArgs{...}
+type GetAiRuntimeControlProvidersProviderModelInput interface {
+	pulumi.Input
+
+	ToGetAiRuntimeControlProvidersProviderModelOutput() GetAiRuntimeControlProvidersProviderModelOutput
+	ToGetAiRuntimeControlProvidersProviderModelOutputWithContext(context.Context) GetAiRuntimeControlProvidersProviderModelOutput
+}
+
+type GetAiRuntimeControlProvidersProviderModelArgs struct {
+	// The human-readable model name, e.g. `Claude Sonnet 4`.
+	DisplayName pulumi.StringInput `pulumi:"displayName"`
+	// The model identifier, e.g. `claude-sonnet-4-20250514`.
+	Id pulumi.StringInput `pulumi:"id"`
+	// The ID of the provider this model belongs to.
+	ProviderId pulumi.StringInput `pulumi:"providerId"`
+}
+
+func (GetAiRuntimeControlProvidersProviderModelArgs) ElementType() reflect.Type {
+	return reflect.TypeOf((*GetAiRuntimeControlProvidersProviderModel)(nil)).Elem()
+}
+
+func (i GetAiRuntimeControlProvidersProviderModelArgs) ToGetAiRuntimeControlProvidersProviderModelOutput() GetAiRuntimeControlProvidersProviderModelOutput {
+	return i.ToGetAiRuntimeControlProvidersProviderModelOutputWithContext(context.Background())
+}
+
+func (i GetAiRuntimeControlProvidersProviderModelArgs) ToGetAiRuntimeControlProvidersProviderModelOutputWithContext(ctx context.Context) GetAiRuntimeControlProvidersProviderModelOutput {
+	return pulumi.ToOutputWithContext(ctx, i).(GetAiRuntimeControlProvidersProviderModelOutput)
+}
+
+// GetAiRuntimeControlProvidersProviderModelArrayInput is an input type that accepts GetAiRuntimeControlProvidersProviderModelArray and GetAiRuntimeControlProvidersProviderModelArrayOutput values.
+// You can construct a concrete instance of `GetAiRuntimeControlProvidersProviderModelArrayInput` via:
+//
+//	GetAiRuntimeControlProvidersProviderModelArray{ GetAiRuntimeControlProvidersProviderModelArgs{...} }
+type GetAiRuntimeControlProvidersProviderModelArrayInput interface {
+	pulumi.Input
+
+	ToGetAiRuntimeControlProvidersProviderModelArrayOutput() GetAiRuntimeControlProvidersProviderModelArrayOutput
+	ToGetAiRuntimeControlProvidersProviderModelArrayOutputWithContext(context.Context) GetAiRuntimeControlProvidersProviderModelArrayOutput
+}
+
+type GetAiRuntimeControlProvidersProviderModelArray []GetAiRuntimeControlProvidersProviderModelInput
+
+func (GetAiRuntimeControlProvidersProviderModelArray) ElementType() reflect.Type {
+	return reflect.TypeOf((*[]GetAiRuntimeControlProvidersProviderModel)(nil)).Elem()
+}
+
+func (i GetAiRuntimeControlProvidersProviderModelArray) ToGetAiRuntimeControlProvidersProviderModelArrayOutput() GetAiRuntimeControlProvidersProviderModelArrayOutput {
+	return i.ToGetAiRuntimeControlProvidersProviderModelArrayOutputWithContext(context.Background())
+}
+
+func (i GetAiRuntimeControlProvidersProviderModelArray) ToGetAiRuntimeControlProvidersProviderModelArrayOutputWithContext(ctx context.Context) GetAiRuntimeControlProvidersProviderModelArrayOutput {
+	return pulumi.ToOutputWithContext(ctx, i).(GetAiRuntimeControlProvidersProviderModelArrayOutput)
+}
+
+type GetAiRuntimeControlProvidersProviderModelOutput struct{ *pulumi.OutputState }
+
+func (GetAiRuntimeControlProvidersProviderModelOutput) ElementType() reflect.Type {
+	return reflect.TypeOf((*GetAiRuntimeControlProvidersProviderModel)(nil)).Elem()
+}
+
+func (o GetAiRuntimeControlProvidersProviderModelOutput) ToGetAiRuntimeControlProvidersProviderModelOutput() GetAiRuntimeControlProvidersProviderModelOutput {
+	return o
+}
+
+func (o GetAiRuntimeControlProvidersProviderModelOutput) ToGetAiRuntimeControlProvidersProviderModelOutputWithContext(ctx context.Context) GetAiRuntimeControlProvidersProviderModelOutput {
+	return o
+}
+
+// The human-readable model name, e.g. `Claude Sonnet 4`.
+func (o GetAiRuntimeControlProvidersProviderModelOutput) DisplayName() pulumi.StringOutput {
+	return o.ApplyT(func(v GetAiRuntimeControlProvidersProviderModel) string { return v.DisplayName }).(pulumi.StringOutput)
+}
+
+// The model identifier, e.g. `claude-sonnet-4-20250514`.
+func (o GetAiRuntimeControlProvidersProviderModelOutput) Id() pulumi.StringOutput {
+	return o.ApplyT(func(v GetAiRuntimeControlProvidersProviderModel) string { return v.Id }).(pulumi.StringOutput)
+}
+
+// The ID of the provider this model belongs to.
+func (o GetAiRuntimeControlProvidersProviderModelOutput) ProviderId() pulumi.StringOutput {
+	return o.ApplyT(func(v GetAiRuntimeControlProvidersProviderModel) string { return v.ProviderId }).(pulumi.StringOutput)
+}
+
+type GetAiRuntimeControlProvidersProviderModelArrayOutput struct{ *pulumi.OutputState }
+
+func (GetAiRuntimeControlProvidersProviderModelArrayOutput) ElementType() reflect.Type {
+	return reflect.TypeOf((*[]GetAiRuntimeControlProvidersProviderModel)(nil)).Elem()
+}
+
+func (o GetAiRuntimeControlProvidersProviderModelArrayOutput) ToGetAiRuntimeControlProvidersProviderModelArrayOutput() GetAiRuntimeControlProvidersProviderModelArrayOutput {
+	return o
+}
+
+func (o GetAiRuntimeControlProvidersProviderModelArrayOutput) ToGetAiRuntimeControlProvidersProviderModelArrayOutputWithContext(ctx context.Context) GetAiRuntimeControlProvidersProviderModelArrayOutput {
+	return o
+}
+
+func (o GetAiRuntimeControlProvidersProviderModelArrayOutput) Index(i pulumi.IntInput) GetAiRuntimeControlProvidersProviderModelOutput {
+	return pulumi.All(o, i).ApplyT(func(vs []interface{}) GetAiRuntimeControlProvidersProviderModel {
+		return vs[0].([]GetAiRuntimeControlProvidersProviderModel)[vs[1].(int)]
+	}).(GetAiRuntimeControlProvidersProviderModelOutput)
+}
+
+type GetAiRuntimeControlVirtualKeysVirtualKey struct {
+	// Timestamp (UTC) of when the virtual key was created.
+	CreatedAt string `pulumi:"createdAt"`
+	// The display name of the user who created the virtual key.
+	CreatedBy string `pulumi:"createdBy"`
+	// The ID of the customer that owns the virtual key.
+	CustomerId string `pulumi:"customerId"`
+	// Timestamp (UTC) of when the virtual key was deleted, if applicable.
+	DeletedAt string `pulumi:"deletedAt"`
+	// The expiration timestamp of the virtual key, if any.
+	ExpiresAt string `pulumi:"expiresAt"`
+	// The ID of the virtual key.
+	Id string `pulumi:"id"`
+	// Timestamp (UTC) of when the virtual key was last used, if applicable.
+	LastUsedAt string `pulumi:"lastUsedAt"`
+	// The AI model identifier.
+	Model string `pulumi:"model"`
+	// The human-readable name of the virtual key.
+	Name string `pulumi:"name"`
+	// The AI model provider name.
+	Provider string `pulumi:"provider"`
+	// The type of the virtual key.
+	Type string `pulumi:"type"`
+	// Timestamp (UTC) of when the virtual key was last updated.
+	UpdatedAt string `pulumi:"updatedAt"`
+	// The ID of the user who created the virtual key.
+	UserId string `pulumi:"userId"`
+	// The display name of the user who created the virtual key.
+	UserName string `pulumi:"userName"`
+}
+
+// GetAiRuntimeControlVirtualKeysVirtualKeyInput is an input type that accepts GetAiRuntimeControlVirtualKeysVirtualKeyArgs and GetAiRuntimeControlVirtualKeysVirtualKeyOutput values.
+// You can construct a concrete instance of `GetAiRuntimeControlVirtualKeysVirtualKeyInput` via:
+//
+//	GetAiRuntimeControlVirtualKeysVirtualKeyArgs{...}
+type GetAiRuntimeControlVirtualKeysVirtualKeyInput interface {
+	pulumi.Input
+
+	ToGetAiRuntimeControlVirtualKeysVirtualKeyOutput() GetAiRuntimeControlVirtualKeysVirtualKeyOutput
+	ToGetAiRuntimeControlVirtualKeysVirtualKeyOutputWithContext(context.Context) GetAiRuntimeControlVirtualKeysVirtualKeyOutput
+}
+
+type GetAiRuntimeControlVirtualKeysVirtualKeyArgs struct {
+	// Timestamp (UTC) of when the virtual key was created.
+	CreatedAt pulumi.StringInput `pulumi:"createdAt"`
+	// The display name of the user who created the virtual key.
+	CreatedBy pulumi.StringInput `pulumi:"createdBy"`
+	// The ID of the customer that owns the virtual key.
+	CustomerId pulumi.StringInput `pulumi:"customerId"`
+	// Timestamp (UTC) of when the virtual key was deleted, if applicable.
+	DeletedAt pulumi.StringInput `pulumi:"deletedAt"`
+	// The expiration timestamp of the virtual key, if any.
+	ExpiresAt pulumi.StringInput `pulumi:"expiresAt"`
+	// The ID of the virtual key.
+	Id pulumi.StringInput `pulumi:"id"`
+	// Timestamp (UTC) of when the virtual key was last used, if applicable.
+	LastUsedAt pulumi.StringInput `pulumi:"lastUsedAt"`
+	// The AI model identifier.
+	Model pulumi.StringInput `pulumi:"model"`
+	// The human-readable name of the virtual key.
+	Name pulumi.StringInput `pulumi:"name"`
+	// The AI model provider name.
+	Provider pulumi.StringInput `pulumi:"provider"`
+	// The type of the virtual key.
+	Type pulumi.StringInput `pulumi:"type"`
+	// Timestamp (UTC) of when the virtual key was last updated.
+	UpdatedAt pulumi.StringInput `pulumi:"updatedAt"`
+	// The ID of the user who created the virtual key.
+	UserId pulumi.StringInput `pulumi:"userId"`
+	// The display name of the user who created the virtual key.
+	UserName pulumi.StringInput `pulumi:"userName"`
+}
+
+func (GetAiRuntimeControlVirtualKeysVirtualKeyArgs) ElementType() reflect.Type {
+	return reflect.TypeOf((*GetAiRuntimeControlVirtualKeysVirtualKey)(nil)).Elem()
+}
+
+func (i GetAiRuntimeControlVirtualKeysVirtualKeyArgs) ToGetAiRuntimeControlVirtualKeysVirtualKeyOutput() GetAiRuntimeControlVirtualKeysVirtualKeyOutput {
+	return i.ToGetAiRuntimeControlVirtualKeysVirtualKeyOutputWithContext(context.Background())
+}
+
+func (i GetAiRuntimeControlVirtualKeysVirtualKeyArgs) ToGetAiRuntimeControlVirtualKeysVirtualKeyOutputWithContext(ctx context.Context) GetAiRuntimeControlVirtualKeysVirtualKeyOutput {
+	return pulumi.ToOutputWithContext(ctx, i).(GetAiRuntimeControlVirtualKeysVirtualKeyOutput)
+}
+
+// GetAiRuntimeControlVirtualKeysVirtualKeyArrayInput is an input type that accepts GetAiRuntimeControlVirtualKeysVirtualKeyArray and GetAiRuntimeControlVirtualKeysVirtualKeyArrayOutput values.
+// You can construct a concrete instance of `GetAiRuntimeControlVirtualKeysVirtualKeyArrayInput` via:
+//
+//	GetAiRuntimeControlVirtualKeysVirtualKeyArray{ GetAiRuntimeControlVirtualKeysVirtualKeyArgs{...} }
+type GetAiRuntimeControlVirtualKeysVirtualKeyArrayInput interface {
+	pulumi.Input
+
+	ToGetAiRuntimeControlVirtualKeysVirtualKeyArrayOutput() GetAiRuntimeControlVirtualKeysVirtualKeyArrayOutput
+	ToGetAiRuntimeControlVirtualKeysVirtualKeyArrayOutputWithContext(context.Context) GetAiRuntimeControlVirtualKeysVirtualKeyArrayOutput
+}
+
+type GetAiRuntimeControlVirtualKeysVirtualKeyArray []GetAiRuntimeControlVirtualKeysVirtualKeyInput
+
+func (GetAiRuntimeControlVirtualKeysVirtualKeyArray) ElementType() reflect.Type {
+	return reflect.TypeOf((*[]GetAiRuntimeControlVirtualKeysVirtualKey)(nil)).Elem()
+}
+
+func (i GetAiRuntimeControlVirtualKeysVirtualKeyArray) ToGetAiRuntimeControlVirtualKeysVirtualKeyArrayOutput() GetAiRuntimeControlVirtualKeysVirtualKeyArrayOutput {
+	return i.ToGetAiRuntimeControlVirtualKeysVirtualKeyArrayOutputWithContext(context.Background())
+}
+
+func (i GetAiRuntimeControlVirtualKeysVirtualKeyArray) ToGetAiRuntimeControlVirtualKeysVirtualKeyArrayOutputWithContext(ctx context.Context) GetAiRuntimeControlVirtualKeysVirtualKeyArrayOutput {
+	return pulumi.ToOutputWithContext(ctx, i).(GetAiRuntimeControlVirtualKeysVirtualKeyArrayOutput)
+}
+
+type GetAiRuntimeControlVirtualKeysVirtualKeyOutput struct{ *pulumi.OutputState }
+
+func (GetAiRuntimeControlVirtualKeysVirtualKeyOutput) ElementType() reflect.Type {
+	return reflect.TypeOf((*GetAiRuntimeControlVirtualKeysVirtualKey)(nil)).Elem()
+}
+
+func (o GetAiRuntimeControlVirtualKeysVirtualKeyOutput) ToGetAiRuntimeControlVirtualKeysVirtualKeyOutput() GetAiRuntimeControlVirtualKeysVirtualKeyOutput {
+	return o
+}
+
+func (o GetAiRuntimeControlVirtualKeysVirtualKeyOutput) ToGetAiRuntimeControlVirtualKeysVirtualKeyOutputWithContext(ctx context.Context) GetAiRuntimeControlVirtualKeysVirtualKeyOutput {
+	return o
+}
+
+// Timestamp (UTC) of when the virtual key was created.
+func (o GetAiRuntimeControlVirtualKeysVirtualKeyOutput) CreatedAt() pulumi.StringOutput {
+	return o.ApplyT(func(v GetAiRuntimeControlVirtualKeysVirtualKey) string { return v.CreatedAt }).(pulumi.StringOutput)
+}
+
+// The display name of the user who created the virtual key.
+func (o GetAiRuntimeControlVirtualKeysVirtualKeyOutput) CreatedBy() pulumi.StringOutput {
+	return o.ApplyT(func(v GetAiRuntimeControlVirtualKeysVirtualKey) string { return v.CreatedBy }).(pulumi.StringOutput)
+}
+
+// The ID of the customer that owns the virtual key.
+func (o GetAiRuntimeControlVirtualKeysVirtualKeyOutput) CustomerId() pulumi.StringOutput {
+	return o.ApplyT(func(v GetAiRuntimeControlVirtualKeysVirtualKey) string { return v.CustomerId }).(pulumi.StringOutput)
+}
+
+// Timestamp (UTC) of when the virtual key was deleted, if applicable.
+func (o GetAiRuntimeControlVirtualKeysVirtualKeyOutput) DeletedAt() pulumi.StringOutput {
+	return o.ApplyT(func(v GetAiRuntimeControlVirtualKeysVirtualKey) string { return v.DeletedAt }).(pulumi.StringOutput)
+}
+
+// The expiration timestamp of the virtual key, if any.
+func (o GetAiRuntimeControlVirtualKeysVirtualKeyOutput) ExpiresAt() pulumi.StringOutput {
+	return o.ApplyT(func(v GetAiRuntimeControlVirtualKeysVirtualKey) string { return v.ExpiresAt }).(pulumi.StringOutput)
+}
+
+// The ID of the virtual key.
+func (o GetAiRuntimeControlVirtualKeysVirtualKeyOutput) Id() pulumi.StringOutput {
+	return o.ApplyT(func(v GetAiRuntimeControlVirtualKeysVirtualKey) string { return v.Id }).(pulumi.StringOutput)
+}
+
+// Timestamp (UTC) of when the virtual key was last used, if applicable.
+func (o GetAiRuntimeControlVirtualKeysVirtualKeyOutput) LastUsedAt() pulumi.StringOutput {
+	return o.ApplyT(func(v GetAiRuntimeControlVirtualKeysVirtualKey) string { return v.LastUsedAt }).(pulumi.StringOutput)
+}
+
+// The AI model identifier.
+func (o GetAiRuntimeControlVirtualKeysVirtualKeyOutput) Model() pulumi.StringOutput {
+	return o.ApplyT(func(v GetAiRuntimeControlVirtualKeysVirtualKey) string { return v.Model }).(pulumi.StringOutput)
+}
+
+// The human-readable name of the virtual key.
+func (o GetAiRuntimeControlVirtualKeysVirtualKeyOutput) Name() pulumi.StringOutput {
+	return o.ApplyT(func(v GetAiRuntimeControlVirtualKeysVirtualKey) string { return v.Name }).(pulumi.StringOutput)
+}
+
+// The AI model provider name.
+func (o GetAiRuntimeControlVirtualKeysVirtualKeyOutput) Provider() pulumi.StringOutput {
+	return o.ApplyT(func(v GetAiRuntimeControlVirtualKeysVirtualKey) string { return v.Provider }).(pulumi.StringOutput)
+}
+
+// The type of the virtual key.
+func (o GetAiRuntimeControlVirtualKeysVirtualKeyOutput) Type() pulumi.StringOutput {
+	return o.ApplyT(func(v GetAiRuntimeControlVirtualKeysVirtualKey) string { return v.Type }).(pulumi.StringOutput)
+}
+
+// Timestamp (UTC) of when the virtual key was last updated.
+func (o GetAiRuntimeControlVirtualKeysVirtualKeyOutput) UpdatedAt() pulumi.StringOutput {
+	return o.ApplyT(func(v GetAiRuntimeControlVirtualKeysVirtualKey) string { return v.UpdatedAt }).(pulumi.StringOutput)
+}
+
+// The ID of the user who created the virtual key.
+func (o GetAiRuntimeControlVirtualKeysVirtualKeyOutput) UserId() pulumi.StringOutput {
+	return o.ApplyT(func(v GetAiRuntimeControlVirtualKeysVirtualKey) string { return v.UserId }).(pulumi.StringOutput)
+}
+
+// The display name of the user who created the virtual key.
+func (o GetAiRuntimeControlVirtualKeysVirtualKeyOutput) UserName() pulumi.StringOutput {
+	return o.ApplyT(func(v GetAiRuntimeControlVirtualKeysVirtualKey) string { return v.UserName }).(pulumi.StringOutput)
+}
+
+type GetAiRuntimeControlVirtualKeysVirtualKeyArrayOutput struct{ *pulumi.OutputState }
+
+func (GetAiRuntimeControlVirtualKeysVirtualKeyArrayOutput) ElementType() reflect.Type {
+	return reflect.TypeOf((*[]GetAiRuntimeControlVirtualKeysVirtualKey)(nil)).Elem()
+}
+
+func (o GetAiRuntimeControlVirtualKeysVirtualKeyArrayOutput) ToGetAiRuntimeControlVirtualKeysVirtualKeyArrayOutput() GetAiRuntimeControlVirtualKeysVirtualKeyArrayOutput {
+	return o
+}
+
+func (o GetAiRuntimeControlVirtualKeysVirtualKeyArrayOutput) ToGetAiRuntimeControlVirtualKeysVirtualKeyArrayOutputWithContext(ctx context.Context) GetAiRuntimeControlVirtualKeysVirtualKeyArrayOutput {
+	return o
+}
+
+func (o GetAiRuntimeControlVirtualKeysVirtualKeyArrayOutput) Index(i pulumi.IntInput) GetAiRuntimeControlVirtualKeysVirtualKeyOutput {
+	return pulumi.All(o, i).ApplyT(func(vs []interface{}) GetAiRuntimeControlVirtualKeysVirtualKey {
+		return vs[0].([]GetAiRuntimeControlVirtualKeysVirtualKey)[vs[1].(int)]
+	}).(GetAiRuntimeControlVirtualKeysVirtualKeyOutput)
 }
 
 type GetApiSecurityDiscoveredOperationsOperation struct {
@@ -24696,6 +25302,14 @@ func init() {
 	pulumi.RegisterInputType(reflect.TypeOf((*TlsSubscriptionManagedDnsChallengeArrayInput)(nil)).Elem(), TlsSubscriptionManagedDnsChallengeArray{})
 	pulumi.RegisterInputType(reflect.TypeOf((*TlsSubscriptionManagedHttpChallengeInput)(nil)).Elem(), TlsSubscriptionManagedHttpChallengeArgs{})
 	pulumi.RegisterInputType(reflect.TypeOf((*TlsSubscriptionManagedHttpChallengeArrayInput)(nil)).Elem(), TlsSubscriptionManagedHttpChallengeArray{})
+	pulumi.RegisterInputType(reflect.TypeOf((*GetAiRuntimeControlProviderConnectionsProviderConnectionInput)(nil)).Elem(), GetAiRuntimeControlProviderConnectionsProviderConnectionArgs{})
+	pulumi.RegisterInputType(reflect.TypeOf((*GetAiRuntimeControlProviderConnectionsProviderConnectionArrayInput)(nil)).Elem(), GetAiRuntimeControlProviderConnectionsProviderConnectionArray{})
+	pulumi.RegisterInputType(reflect.TypeOf((*GetAiRuntimeControlProvidersProviderInput)(nil)).Elem(), GetAiRuntimeControlProvidersProviderArgs{})
+	pulumi.RegisterInputType(reflect.TypeOf((*GetAiRuntimeControlProvidersProviderArrayInput)(nil)).Elem(), GetAiRuntimeControlProvidersProviderArray{})
+	pulumi.RegisterInputType(reflect.TypeOf((*GetAiRuntimeControlProvidersProviderModelInput)(nil)).Elem(), GetAiRuntimeControlProvidersProviderModelArgs{})
+	pulumi.RegisterInputType(reflect.TypeOf((*GetAiRuntimeControlProvidersProviderModelArrayInput)(nil)).Elem(), GetAiRuntimeControlProvidersProviderModelArray{})
+	pulumi.RegisterInputType(reflect.TypeOf((*GetAiRuntimeControlVirtualKeysVirtualKeyInput)(nil)).Elem(), GetAiRuntimeControlVirtualKeysVirtualKeyArgs{})
+	pulumi.RegisterInputType(reflect.TypeOf((*GetAiRuntimeControlVirtualKeysVirtualKeyArrayInput)(nil)).Elem(), GetAiRuntimeControlVirtualKeysVirtualKeyArray{})
 	pulumi.RegisterInputType(reflect.TypeOf((*GetApiSecurityDiscoveredOperationsOperationInput)(nil)).Elem(), GetApiSecurityDiscoveredOperationsOperationArgs{})
 	pulumi.RegisterInputType(reflect.TypeOf((*GetApiSecurityDiscoveredOperationsOperationArrayInput)(nil)).Elem(), GetApiSecurityDiscoveredOperationsOperationArray{})
 	pulumi.RegisterInputType(reflect.TypeOf((*GetApiSecurityOperationTagsTagInput)(nil)).Elem(), GetApiSecurityOperationTagsTagArgs{})
@@ -25002,6 +25616,14 @@ func init() {
 	pulumi.RegisterOutputType(TlsSubscriptionManagedDnsChallengeArrayOutput{})
 	pulumi.RegisterOutputType(TlsSubscriptionManagedHttpChallengeOutput{})
 	pulumi.RegisterOutputType(TlsSubscriptionManagedHttpChallengeArrayOutput{})
+	pulumi.RegisterOutputType(GetAiRuntimeControlProviderConnectionsProviderConnectionOutput{})
+	pulumi.RegisterOutputType(GetAiRuntimeControlProviderConnectionsProviderConnectionArrayOutput{})
+	pulumi.RegisterOutputType(GetAiRuntimeControlProvidersProviderOutput{})
+	pulumi.RegisterOutputType(GetAiRuntimeControlProvidersProviderArrayOutput{})
+	pulumi.RegisterOutputType(GetAiRuntimeControlProvidersProviderModelOutput{})
+	pulumi.RegisterOutputType(GetAiRuntimeControlProvidersProviderModelArrayOutput{})
+	pulumi.RegisterOutputType(GetAiRuntimeControlVirtualKeysVirtualKeyOutput{})
+	pulumi.RegisterOutputType(GetAiRuntimeControlVirtualKeysVirtualKeyArrayOutput{})
 	pulumi.RegisterOutputType(GetApiSecurityDiscoveredOperationsOperationOutput{})
 	pulumi.RegisterOutputType(GetApiSecurityDiscoveredOperationsOperationArrayOutput{})
 	pulumi.RegisterOutputType(GetApiSecurityOperationTagsTagOutput{})
