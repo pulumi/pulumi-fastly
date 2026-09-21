@@ -169,7 +169,7 @@ class ServiceACLEntries(pulumi.CustomResource):
                  resource_name: str,
                  opts: Optional[pulumi.ResourceOptions] = None,
                  acl_id: pulumi.Input[Optional[_builtins.str]] = None,
-                 entries: pulumi.Input[Optional[Sequence[pulumi.Input[Union['ServiceACLEntriesEntryArgs', 'ServiceACLEntriesEntryArgsDict']]]]] = None,
+                 entries: pulumi.Input[Optional[Sequence[pulumi.Input[Union['ServiceACLEntriesEntryArgs', 'ServiceACLEntriesEntryArgsDict', 'outputs.ServiceACLEntriesEntry']]]]] = None,
                  manage_entries: pulumi.Input[Optional[_builtins.bool]] = None,
                  service_id: pulumi.Input[Optional[_builtins.str]] = None,
                  __props__=None):
@@ -379,7 +379,7 @@ class ServiceACLEntries(pulumi.CustomResource):
         :param str resource_name: The name of the resource.
         :param pulumi.ResourceOptions opts: Options for the resource.
         :param pulumi.Input[_builtins.str] acl_id: The ID of the ACL that the items belong to
-        :param pulumi.Input[Sequence[pulumi.Input[Union['ServiceACLEntriesEntryArgs', 'ServiceACLEntriesEntryArgsDict']]]] entries: ACL Entries
+        :param pulumi.Input[Sequence[pulumi.Input[Union['ServiceACLEntriesEntryArgs', 'ServiceACLEntriesEntryArgsDict', 'outputs.ServiceACLEntriesEntry']]]] entries: ACL Entries
         :param pulumi.Input[_builtins.bool] manage_entries: Whether to reapply changes if the state of the entries drifts, i.e. if entries are managed externally
         :param pulumi.Input[_builtins.str] service_id: The ID of the Service that the ACL belongs to
         """
@@ -608,7 +608,7 @@ class ServiceACLEntries(pulumi.CustomResource):
                  resource_name: str,
                  opts: Optional[pulumi.ResourceOptions] = None,
                  acl_id: pulumi.Input[Optional[_builtins.str]] = None,
-                 entries: pulumi.Input[Optional[Sequence[pulumi.Input[Union['ServiceACLEntriesEntryArgs', 'ServiceACLEntriesEntryArgsDict']]]]] = None,
+                 entries: pulumi.Input[Optional[Sequence[pulumi.Input[Union['ServiceACLEntriesEntryArgs', 'ServiceACLEntriesEntryArgsDict', 'outputs.ServiceACLEntriesEntry']]]]] = None,
                  manage_entries: pulumi.Input[Optional[_builtins.bool]] = None,
                  service_id: pulumi.Input[Optional[_builtins.str]] = None,
                  __props__=None):
@@ -639,7 +639,7 @@ class ServiceACLEntries(pulumi.CustomResource):
             id: pulumi.Input[str],
             opts: Optional[pulumi.ResourceOptions] = None,
             acl_id: pulumi.Input[Optional[_builtins.str]] = None,
-            entries: pulumi.Input[Optional[Sequence[pulumi.Input[Union['ServiceACLEntriesEntryArgs', 'ServiceACLEntriesEntryArgsDict']]]]] = None,
+            entries: pulumi.Input[Optional[Sequence[pulumi.Input[Union['ServiceACLEntriesEntryArgs', 'ServiceACLEntriesEntryArgsDict', 'outputs.ServiceACLEntriesEntry']]]]] = None,
             manage_entries: pulumi.Input[Optional[_builtins.bool]] = None,
             service_id: pulumi.Input[Optional[_builtins.str]] = None) -> 'ServiceACLEntries':
         """
@@ -650,7 +650,7 @@ class ServiceACLEntries(pulumi.CustomResource):
         :param pulumi.Input[str] id: The unique provider ID of the resource to lookup.
         :param pulumi.ResourceOptions opts: Options for the resource.
         :param pulumi.Input[_builtins.str] acl_id: The ID of the ACL that the items belong to
-        :param pulumi.Input[Sequence[pulumi.Input[Union['ServiceACLEntriesEntryArgs', 'ServiceACLEntriesEntryArgsDict']]]] entries: ACL Entries
+        :param pulumi.Input[Sequence[pulumi.Input[Union['ServiceACLEntriesEntryArgs', 'ServiceACLEntriesEntryArgsDict', 'outputs.ServiceACLEntriesEntry']]]] entries: ACL Entries
         :param pulumi.Input[_builtins.bool] manage_entries: Whether to reapply changes if the state of the entries drifts, i.e. if entries are managed externally
         :param pulumi.Input[_builtins.str] service_id: The ID of the Service that the ACL belongs to
         """

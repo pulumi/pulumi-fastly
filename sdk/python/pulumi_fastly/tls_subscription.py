@@ -810,8 +810,8 @@ class TlsSubscription(pulumi.CustomResource):
             force_destroy: pulumi.Input[Optional[_builtins.bool]] = None,
             force_update: pulumi.Input[Optional[_builtins.bool]] = None,
             managed_dns_challenge: pulumi.Input[Optional[Mapping[str, pulumi.Input[_builtins.str]]]] = None,
-            managed_dns_challenges: pulumi.Input[Optional[Sequence[pulumi.Input[Union['TlsSubscriptionManagedDnsChallengeArgs', 'TlsSubscriptionManagedDnsChallengeArgsDict']]]]] = None,
-            managed_http_challenges: pulumi.Input[Optional[Sequence[pulumi.Input[Union['TlsSubscriptionManagedHttpChallengeArgs', 'TlsSubscriptionManagedHttpChallengeArgsDict']]]]] = None,
+            managed_dns_challenges: pulumi.Input[Optional[Sequence[pulumi.Input[Union['TlsSubscriptionManagedDnsChallengeArgs', 'TlsSubscriptionManagedDnsChallengeArgsDict', 'outputs.TlsSubscriptionManagedDnsChallenge']]]]] = None,
+            managed_http_challenges: pulumi.Input[Optional[Sequence[pulumi.Input[Union['TlsSubscriptionManagedHttpChallengeArgs', 'TlsSubscriptionManagedHttpChallengeArgsDict', 'outputs.TlsSubscriptionManagedHttpChallenge']]]]] = None,
             state: pulumi.Input[Optional[_builtins.str]] = None,
             updated_at: pulumi.Input[Optional[_builtins.str]] = None) -> 'TlsSubscription':
         """
@@ -830,8 +830,8 @@ class TlsSubscription(pulumi.CustomResource):
         :param pulumi.Input[_builtins.bool] force_destroy: Force delete the subscription even if it has active domains. Warning: this can disable production traffic if used incorrectly. Defaults to false.
         :param pulumi.Input[_builtins.bool] force_update: Force update the subscription even if it has active domains. Warning: this can disable production traffic if used incorrectly.
         :param pulumi.Input[Mapping[str, pulumi.Input[_builtins.str]]] managed_dns_challenge: The details required to configure DNS to respond to ACME DNS challenge in order to verify domain ownership.
-        :param pulumi.Input[Sequence[pulumi.Input[Union['TlsSubscriptionManagedDnsChallengeArgs', 'TlsSubscriptionManagedDnsChallengeArgsDict']]]] managed_dns_challenges: A list of options for configuring DNS to respond to ACME DNS challenge in order to verify domain ownership.
-        :param pulumi.Input[Sequence[pulumi.Input[Union['TlsSubscriptionManagedHttpChallengeArgs', 'TlsSubscriptionManagedHttpChallengeArgsDict']]]] managed_http_challenges: A list of options for configuring DNS to respond to ACME HTTP challenge in order to verify domain ownership. Best accessed through a `for` expression to filter the relevant record.
+        :param pulumi.Input[Sequence[pulumi.Input[Union['TlsSubscriptionManagedDnsChallengeArgs', 'TlsSubscriptionManagedDnsChallengeArgsDict', 'outputs.TlsSubscriptionManagedDnsChallenge']]]] managed_dns_challenges: A list of options for configuring DNS to respond to ACME DNS challenge in order to verify domain ownership.
+        :param pulumi.Input[Sequence[pulumi.Input[Union['TlsSubscriptionManagedHttpChallengeArgs', 'TlsSubscriptionManagedHttpChallengeArgsDict', 'outputs.TlsSubscriptionManagedHttpChallenge']]]] managed_http_challenges: A list of options for configuring DNS to respond to ACME HTTP challenge in order to verify domain ownership. Best accessed through a `for` expression to filter the relevant record.
         :param pulumi.Input[_builtins.str] state: The current state of the subscription. The list of possible states are: `pending`, `processing`, `issued`, and `renewing`.
         :param pulumi.Input[_builtins.str] updated_at: Timestamp (GMT) when the subscription was updated.
         """

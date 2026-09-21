@@ -140,7 +140,7 @@ class DnsZone(pulumi.CustomResource):
                  opts: Optional[pulumi.ResourceOptions] = None,
                  description: pulumi.Input[Optional[_builtins.str]] = None,
                  name: pulumi.Input[Optional[_builtins.str]] = None,
-                 xfr_config_inbound: pulumi.Input[Optional[Union['DnsZoneXfrConfigInboundArgs', 'DnsZoneXfrConfigInboundArgsDict']]] = None,
+                 xfr_config_inbound: pulumi.Input[Optional[Union['DnsZoneXfrConfigInboundArgs', 'DnsZoneXfrConfigInboundArgsDict', 'outputs.DnsZoneXfrConfigInbound']]] = None,
                  __props__=None):
         """
         Provides a Fastly DNS Zone.
@@ -182,7 +182,7 @@ class DnsZone(pulumi.CustomResource):
         :param pulumi.ResourceOptions opts: Options for the resource.
         :param pulumi.Input[_builtins.str] description: A freeform descriptive note.
         :param pulumi.Input[_builtins.str] name: The domain name for your zone in FQDN format (e.g. `example.com.`). Must include a trailing dot.
-        :param pulumi.Input[Union['DnsZoneXfrConfigInboundArgs', 'DnsZoneXfrConfigInboundArgsDict']] xfr_config_inbound: All attributes associated with inbound zone transfers.
+        :param pulumi.Input[Union['DnsZoneXfrConfigInboundArgs', 'DnsZoneXfrConfigInboundArgsDict', 'outputs.DnsZoneXfrConfigInbound']] xfr_config_inbound: All attributes associated with inbound zone transfers.
         """
         ...
     @overload
@@ -243,7 +243,7 @@ class DnsZone(pulumi.CustomResource):
                  opts: Optional[pulumi.ResourceOptions] = None,
                  description: pulumi.Input[Optional[_builtins.str]] = None,
                  name: pulumi.Input[Optional[_builtins.str]] = None,
-                 xfr_config_inbound: pulumi.Input[Optional[Union['DnsZoneXfrConfigInboundArgs', 'DnsZoneXfrConfigInboundArgsDict']]] = None,
+                 xfr_config_inbound: pulumi.Input[Optional[Union['DnsZoneXfrConfigInboundArgs', 'DnsZoneXfrConfigInboundArgsDict', 'outputs.DnsZoneXfrConfigInbound']]] = None,
                  __props__=None):
         opts = pulumi.ResourceOptions.merge(_utilities.get_resource_opts_defaults(), opts)
         if not isinstance(opts, pulumi.ResourceOptions):
@@ -268,7 +268,7 @@ class DnsZone(pulumi.CustomResource):
             opts: Optional[pulumi.ResourceOptions] = None,
             description: pulumi.Input[Optional[_builtins.str]] = None,
             name: pulumi.Input[Optional[_builtins.str]] = None,
-            xfr_config_inbound: pulumi.Input[Optional[Union['DnsZoneXfrConfigInboundArgs', 'DnsZoneXfrConfigInboundArgsDict']]] = None) -> 'DnsZone':
+            xfr_config_inbound: pulumi.Input[Optional[Union['DnsZoneXfrConfigInboundArgs', 'DnsZoneXfrConfigInboundArgsDict', 'outputs.DnsZoneXfrConfigInbound']]] = None) -> 'DnsZone':
         """
         Get an existing DnsZone resource's state with the given name, id, and optional extra
         properties used to qualify the lookup.
@@ -278,7 +278,7 @@ class DnsZone(pulumi.CustomResource):
         :param pulumi.ResourceOptions opts: Options for the resource.
         :param pulumi.Input[_builtins.str] description: A freeform descriptive note.
         :param pulumi.Input[_builtins.str] name: The domain name for your zone in FQDN format (e.g. `example.com.`). Must include a trailing dot.
-        :param pulumi.Input[Union['DnsZoneXfrConfigInboundArgs', 'DnsZoneXfrConfigInboundArgsDict']] xfr_config_inbound: All attributes associated with inbound zone transfers.
+        :param pulumi.Input[Union['DnsZoneXfrConfigInboundArgs', 'DnsZoneXfrConfigInboundArgsDict', 'outputs.DnsZoneXfrConfigInbound']] xfr_config_inbound: All attributes associated with inbound zone transfers.
         """
         opts = pulumi.ResourceOptions.merge(opts, pulumi.ResourceOptions(id=id))
 
