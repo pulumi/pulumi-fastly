@@ -322,6 +322,31 @@
                     }
                 }
             },
+            "fastly_routing_config": {
+                "current": "fastly:index/routingConfig:RoutingConfig",
+                "fields": {
+                    "path": {
+                        "maxItemsOne": false,
+                        "elem": {
+                            "fields": {
+                                "rule": {
+                                    "maxItemsOne": false,
+                                    "elem": {
+                                        "fields": {
+                                            "condition": {
+                                                "maxItemsOne": false
+                                            }
+                                        }
+                                    }
+                                }
+                            }
+                        }
+                    }
+                }
+            },
+            "fastly_routing_config_domain_link": {
+                "current": "fastly:index/routingConfigDomainLink:RoutingConfigDomainLink"
+            },
             "fastly_secretstore": {
                 "current": "fastly:index/secretstore:Secretstore"
             },
