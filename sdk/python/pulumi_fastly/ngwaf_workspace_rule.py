@@ -467,10 +467,10 @@ class NgwafWorkspaceRule(pulumi.CustomResource):
             attack_signal_thresholds={})
         example_ngwaf_workspace_rule = fastly.NgwafWorkspaceRule("example",
             workspace_id=example.id,
-            type="request",
             description="",
             enabled=True,
             group_operator="all",
+            type="templated_signal",
             conditions=[
                 {
                     "field": "method",
@@ -781,10 +781,10 @@ class NgwafWorkspaceRule(pulumi.CustomResource):
             attack_signal_thresholds={})
         example_ngwaf_workspace_rule = fastly.NgwafWorkspaceRule("example",
             workspace_id=example.id,
-            type="request",
             description="",
             enabled=True,
             group_operator="all",
+            type="templated_signal",
             conditions=[
                 {
                     "field": "method",

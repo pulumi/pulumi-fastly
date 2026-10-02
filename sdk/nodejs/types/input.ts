@@ -449,6 +449,63 @@ export interface NgwafWorkspaceRuleRateLimitClientIdentifier {
     type: pulumi.Input<string>;
 }
 
+export interface RoutingConfigPath {
+    /**
+     * The URL path pattern (max 2048 characters, starts with `/`).
+     */
+    path: pulumi.Input<string>;
+    /**
+     * The path identifier.
+     */
+    pathId?: pulumi.Input<string | undefined>;
+    /**
+     * A conditional routing rule for this path. A rule with no `condition` blocks is the default (catch-all) rule for the path.
+     */
+    rules: pulumi.Input<pulumi.Input<inputs.RoutingConfigPathRule>[]>;
+}
+
+export interface RoutingConfigPathRule {
+    /**
+     * The action type. Currently only `service` is supported.
+     */
+    actionType: pulumi.Input<string>;
+    /**
+     * The destination for the action (e.g. a service ID when `actionType` is `service`).
+     */
+    actionValue: pulumi.Input<string>;
+    /**
+     * A matching criterion evaluated against the incoming request. Omit to make this the default (catch-all) rule for the path.
+     */
+    conditions?: pulumi.Input<pulumi.Input<inputs.RoutingConfigPathRuleCondition>[] | undefined>;
+    /**
+     * Whether this is the catch-all rule for its path (i.e. it has no conditions).
+     */
+    isDefault?: pulumi.Input<boolean | undefined>;
+    /**
+     * The rule identifier.
+     */
+    ruleId?: pulumi.Input<string | undefined>;
+}
+
+export interface RoutingConfigPathRuleCondition {
+    /**
+     * The header name to match against. Only applicable when `type` is `header`.
+     */
+    key?: pulumi.Input<string | undefined>;
+    /**
+     * The comparison operator used to evaluate `value` against the request. One of `equals`, `startsWith`, `endsWith`, or `contains`.
+     */
+    operator: pulumi.Input<string>;
+    /**
+     * The condition category. Currently only `header` is supported.
+     */
+    type: pulumi.Input<string>;
+    /**
+     * The value compared against the request using `operator`.
+     */
+    value: pulumi.Input<string>;
+}
+
 export interface ServiceACLEntriesEntry {
     /**
      * A personal freeform descriptive note

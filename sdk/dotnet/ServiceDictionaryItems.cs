@@ -10,10 +10,13 @@ using Pulumi.Serialization;
 namespace Pulumi.Fastly
 {
     /// <summary>
-    /// Defines a map of Fastly dictionary items that can be used to populate a service dictionary.  This resource will populate a dictionary with the items and will track their state.
+    /// Defines a map of Fastly dictionary items that can be used to populate a service dictionary. This resource seeds configured items when it is created.
     /// 
-    /// &gt; **Note:** By default the Terraform provider allows you to externally manage the items via API or UI.
-    /// If you wish to apply your changes in the HCL, then you should explicitly set the `ManageItems` attribute. An example of this configuration is provided below.
+    /// &gt; **Note:** By default (`ManageItems = false`), the Terraform provider allows you to externally manage dictionary items via API or UI. In this mode, item data is cleared from Terraform state during refresh and remote items are not listed by the provider. Changes to configured `Items` after creation are ignored. Set `ManageItems = true` if Terraform should track and reconcile the dictionary items.
+    /// 
+    /// &gt; **Note:** Because unmanaged item data is not retained in Terraform state, removing a `fastly.ServiceDictionaryItems` resource with `ManageItems = false` does not delete the items that it originally seeded. If management is later enabled, Terraform performs one remote reconciliation so existing items can be adopted without blindly recreating them.
+    /// 
+    /// &gt; **Note:** Use `ManageItems = true` cautiously. Terraform will overwrite external changes and delete remote items that are not present in the configured `Items` map.
     /// 
     /// ## Limitations
     /// 

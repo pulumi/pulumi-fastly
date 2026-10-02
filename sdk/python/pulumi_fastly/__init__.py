@@ -97,6 +97,8 @@ from .ngwaf_workspace_rule import *
 from .ngwaf_workspace_signal import *
 from .object_storage_access_keys import *
 from .provider import *
+from .routing_config import *
+from .routing_config_domain_link import *
 from .secretstore import *
 from .service_acl_entries import *
 from .service_authorization import *
@@ -420,6 +422,22 @@ _utilities.register(
   "fqn": "pulumi_fastly",
   "classes": {
    "fastly:index/objectStorageAccessKeys:ObjectStorageAccessKeys": "ObjectStorageAccessKeys"
+  }
+ },
+ {
+  "pkg": "fastly",
+  "mod": "index/routingConfig",
+  "fqn": "pulumi_fastly",
+  "classes": {
+   "fastly:index/routingConfig:RoutingConfig": "RoutingConfig"
+  }
+ },
+ {
+  "pkg": "fastly",
+  "mod": "index/routingConfigDomainLink",
+  "fqn": "pulumi_fastly",
+  "classes": {
+   "fastly:index/routingConfigDomainLink:RoutingConfigDomainLink": "RoutingConfigDomainLink"
   }
  },
  {

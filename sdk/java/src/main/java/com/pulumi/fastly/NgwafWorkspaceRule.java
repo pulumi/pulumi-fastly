@@ -141,10 +141,10 @@ import javax.annotation.Nullable;
  * 
  *         var exampleNgwafWorkspaceRule = new NgwafWorkspaceRule("exampleNgwafWorkspaceRule", NgwafWorkspaceRuleArgs.builder()
  *             .workspaceId(example.id())
- *             .type("request")
  *             .description("")
  *             .enabled(true)
  *             .groupOperator("all")
+ *             .type("templated_signal")
  *             .conditions(            
  *                 NgwafWorkspaceRuleConditionArgs.builder()
  *                     .field("method")

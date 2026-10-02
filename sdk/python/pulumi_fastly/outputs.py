@@ -44,6 +44,9 @@ __all__ = [
     'NgwafWorkspaceRuleMultivalConditionCondition',
     'NgwafWorkspaceRuleRateLimit',
     'NgwafWorkspaceRuleRateLimitClientIdentifier',
+    'RoutingConfigPath',
+    'RoutingConfigPathRule',
+    'RoutingConfigPathRuleCondition',
     'ServiceACLEntriesEntry',
     'ServiceComputeBackend',
     'ServiceComputeDictionary',
@@ -1624,6 +1627,204 @@ class NgwafWorkspaceRuleRateLimitClientIdentifier(dict):
         Name for the Client Identifier.
         """
         return pulumi.get(self, "name")
+
+
+@pulumi.output_type
+class RoutingConfigPath(dict):
+    @staticmethod
+    def __key_warning(key: str):
+        suggest = None
+        if key == "pathId":
+            suggest = "path_id"
+
+        if suggest:
+            pulumi.log.warn(f"Key '{key}' not found in RoutingConfigPath. Access the value via the '{suggest}' property getter instead.")
+
+    def __getitem__(self, key: str) -> Any:
+        RoutingConfigPath.__key_warning(key)
+        return super().__getitem__(key)
+
+    def get(self, key: str, default = None) -> Any:
+        RoutingConfigPath.__key_warning(key)
+        return super().get(key, default)
+
+    def __init__(__self__, *,
+                 path: _builtins.str,
+                 rules: Sequence['outputs.RoutingConfigPathRule'],
+                 path_id: Optional[_builtins.str] = None):
+        """
+        :param _builtins.str path: The URL path pattern (max 2048 characters, starts with `/`).
+        :param Sequence['RoutingConfigPathRuleArgs'] rules: A conditional routing rule for this path. A rule with no `condition` blocks is the default (catch-all) rule for the path.
+        :param _builtins.str path_id: The path identifier.
+        """
+        pulumi.set(__self__, "path", path)
+        pulumi.set(__self__, "rules", rules)
+        if path_id is not None:
+            pulumi.set(__self__, "path_id", path_id)
+
+    @_builtins.property
+    @pulumi.getter
+    def path(self) -> _builtins.str:
+        """
+        The URL path pattern (max 2048 characters, starts with `/`).
+        """
+        return pulumi.get(self, "path")
+
+    @_builtins.property
+    @pulumi.getter
+    def rules(self) -> Sequence['outputs.RoutingConfigPathRule']:
+        """
+        A conditional routing rule for this path. A rule with no `condition` blocks is the default (catch-all) rule for the path.
+        """
+        return pulumi.get(self, "rules")
+
+    @_builtins.property
+    @pulumi.getter(name="pathId")
+    def path_id(self) -> Optional[_builtins.str]:
+        """
+        The path identifier.
+        """
+        return pulumi.get(self, "path_id")
+
+
+@pulumi.output_type
+class RoutingConfigPathRule(dict):
+    @staticmethod
+    def __key_warning(key: str):
+        suggest = None
+        if key == "actionType":
+            suggest = "action_type"
+        elif key == "actionValue":
+            suggest = "action_value"
+        elif key == "isDefault":
+            suggest = "is_default"
+        elif key == "ruleId":
+            suggest = "rule_id"
+
+        if suggest:
+            pulumi.log.warn(f"Key '{key}' not found in RoutingConfigPathRule. Access the value via the '{suggest}' property getter instead.")
+
+    def __getitem__(self, key: str) -> Any:
+        RoutingConfigPathRule.__key_warning(key)
+        return super().__getitem__(key)
+
+    def get(self, key: str, default = None) -> Any:
+        RoutingConfigPathRule.__key_warning(key)
+        return super().get(key, default)
+
+    def __init__(__self__, *,
+                 action_type: _builtins.str,
+                 action_value: _builtins.str,
+                 conditions: Optional[Sequence['outputs.RoutingConfigPathRuleCondition']] = None,
+                 is_default: Optional[_builtins.bool] = None,
+                 rule_id: Optional[_builtins.str] = None):
+        """
+        :param _builtins.str action_type: The action type. Currently only `service` is supported.
+        :param _builtins.str action_value: The destination for the action (e.g. a service ID when `action_type` is `service`).
+        :param Sequence['RoutingConfigPathRuleConditionArgs'] conditions: A matching criterion evaluated against the incoming request. Omit to make this the default (catch-all) rule for the path.
+        :param _builtins.bool is_default: Whether this is the catch-all rule for its path (i.e. it has no conditions).
+        :param _builtins.str rule_id: The rule identifier.
+        """
+        pulumi.set(__self__, "action_type", action_type)
+        pulumi.set(__self__, "action_value", action_value)
+        if conditions is not None:
+            pulumi.set(__self__, "conditions", conditions)
+        if is_default is not None:
+            pulumi.set(__self__, "is_default", is_default)
+        if rule_id is not None:
+            pulumi.set(__self__, "rule_id", rule_id)
+
+    @_builtins.property
+    @pulumi.getter(name="actionType")
+    def action_type(self) -> _builtins.str:
+        """
+        The action type. Currently only `service` is supported.
+        """
+        return pulumi.get(self, "action_type")
+
+    @_builtins.property
+    @pulumi.getter(name="actionValue")
+    def action_value(self) -> _builtins.str:
+        """
+        The destination for the action (e.g. a service ID when `action_type` is `service`).
+        """
+        return pulumi.get(self, "action_value")
+
+    @_builtins.property
+    @pulumi.getter
+    def conditions(self) -> Optional[Sequence['outputs.RoutingConfigPathRuleCondition']]:
+        """
+        A matching criterion evaluated against the incoming request. Omit to make this the default (catch-all) rule for the path.
+        """
+        return pulumi.get(self, "conditions")
+
+    @_builtins.property
+    @pulumi.getter(name="isDefault")
+    def is_default(self) -> Optional[_builtins.bool]:
+        """
+        Whether this is the catch-all rule for its path (i.e. it has no conditions).
+        """
+        return pulumi.get(self, "is_default")
+
+    @_builtins.property
+    @pulumi.getter(name="ruleId")
+    def rule_id(self) -> Optional[_builtins.str]:
+        """
+        The rule identifier.
+        """
+        return pulumi.get(self, "rule_id")
+
+
+@pulumi.output_type
+class RoutingConfigPathRuleCondition(dict):
+    def __init__(__self__, *,
+                 operator: _builtins.str,
+                 type: _builtins.str,
+                 value: _builtins.str,
+                 key: Optional[_builtins.str] = None):
+        """
+        :param _builtins.str operator: The comparison operator used to evaluate `value` against the request. One of `equals`, `starts_with`, `ends_with`, or `contains`.
+        :param _builtins.str type: The condition category. Currently only `header` is supported.
+        :param _builtins.str value: The value compared against the request using `operator`.
+        :param _builtins.str key: The header name to match against. Only applicable when `type` is `header`.
+        """
+        pulumi.set(__self__, "operator", operator)
+        pulumi.set(__self__, "type", type)
+        pulumi.set(__self__, "value", value)
+        if key is not None:
+            pulumi.set(__self__, "key", key)
+
+    @_builtins.property
+    @pulumi.getter
+    def operator(self) -> _builtins.str:
+        """
+        The comparison operator used to evaluate `value` against the request. One of `equals`, `starts_with`, `ends_with`, or `contains`.
+        """
+        return pulumi.get(self, "operator")
+
+    @_builtins.property
+    @pulumi.getter
+    def type(self) -> _builtins.str:
+        """
+        The condition category. Currently only `header` is supported.
+        """
+        return pulumi.get(self, "type")
+
+    @_builtins.property
+    @pulumi.getter
+    def value(self) -> _builtins.str:
+        """
+        The value compared against the request using `operator`.
+        """
+        return pulumi.get(self, "value")
+
+    @_builtins.property
+    @pulumi.getter
+    def key(self) -> Optional[_builtins.str]:
+        """
+        The header name to match against. Only applicable when `type` is `header`.
+        """
+        return pulumi.get(self, "key")
 
 
 @pulumi.output_type

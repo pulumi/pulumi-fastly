@@ -75,10 +75,10 @@ import * as utilities from "./utilities";
  * });
  * const exampleNgwafWorkspaceRule = new fastly.NgwafWorkspaceRule("example", {
  *     workspaceId: example.id,
- *     type: "request",
  *     description: "",
  *     enabled: true,
  *     groupOperator: "all",
+ *     type: "templated_signal",
  *     conditions: [
  *         {
  *             field: "method",

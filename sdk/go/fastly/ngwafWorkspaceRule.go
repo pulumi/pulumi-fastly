@@ -111,10 +111,10 @@ import (
 //			}
 //			_, err = fastly.NewNgwafWorkspaceRule(ctx, "example", &fastly.NgwafWorkspaceRuleArgs{
 //				WorkspaceId:   example.ID().ToIDOutput().ToStringOutput(),
-//				Type:          pulumi.String("request"),
 //				Description:   pulumi.String(""),
 //				Enabled:       pulumi.Bool(true),
 //				GroupOperator: pulumi.String("all"),
+//				Type:          pulumi.String("templated_signal"),
 //				Conditions: fastly.NgwafWorkspaceRuleConditionArray{
 //					&fastly.NgwafWorkspaceRuleConditionArgs{
 //						Field:    pulumi.String("method"),

@@ -103,10 +103,10 @@ namespace Pulumi.Fastly
     ///     var exampleNgwafWorkspaceRule = new Fastly.NgwafWorkspaceRule("example", new()
     ///     {
     ///         WorkspaceId = example.Id,
-    ///         Type = "request",
     ///         Description = "",
     ///         Enabled = true,
     ///         GroupOperator = "all",
+    ///         Type = "templated_signal",
     ///         Conditions = new[]
     ///         {
     ///             new Fastly.Inputs.NgwafWorkspaceRuleConditionArgs
