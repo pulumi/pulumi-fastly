@@ -458,6 +458,16 @@ utilities.lazyLoad(exports, ["ObjectStorageAccessKeys"], () => require("./object
 export * from "./provider";
 import { Provider } from "./provider";
 
+export { RoutingConfigArgs, RoutingConfigState } from "./routingConfig";
+export type RoutingConfig = import("./routingConfig").RoutingConfig;
+export const RoutingConfig: typeof import("./routingConfig").RoutingConfig = null as any;
+utilities.lazyLoad(exports, ["RoutingConfig"], () => require("./routingConfig"));
+
+export { RoutingConfigDomainLinkArgs, RoutingConfigDomainLinkState } from "./routingConfigDomainLink";
+export type RoutingConfigDomainLink = import("./routingConfigDomainLink").RoutingConfigDomainLink;
+export const RoutingConfigDomainLink: typeof import("./routingConfigDomainLink").RoutingConfigDomainLink = null as any;
+utilities.lazyLoad(exports, ["RoutingConfigDomainLink"], () => require("./routingConfigDomainLink"));
+
 export { SecretstoreArgs, SecretstoreState } from "./secretstore";
 export type Secretstore = import("./secretstore").Secretstore;
 export const Secretstore: typeof import("./secretstore").Secretstore = null as any;
@@ -626,6 +636,10 @@ const _module = {
                 return new NgwafWorkspaceSignal(name, <any>undefined, { urn })
             case "fastly:index/objectStorageAccessKeys:ObjectStorageAccessKeys":
                 return new ObjectStorageAccessKeys(name, <any>undefined, { urn })
+            case "fastly:index/routingConfig:RoutingConfig":
+                return new RoutingConfig(name, <any>undefined, { urn })
+            case "fastly:index/routingConfigDomainLink:RoutingConfigDomainLink":
+                return new RoutingConfigDomainLink(name, <any>undefined, { urn })
             case "fastly:index/secretstore:Secretstore":
                 return new Secretstore(name, <any>undefined, { urn })
             case "fastly:index/serviceACLEntries:ServiceACLEntries":
@@ -700,6 +714,8 @@ pulumi.runtime.registerResourceModule("fastly", "index/ngwafWorkspaceList", _mod
 pulumi.runtime.registerResourceModule("fastly", "index/ngwafWorkspaceRule", _module)
 pulumi.runtime.registerResourceModule("fastly", "index/ngwafWorkspaceSignal", _module)
 pulumi.runtime.registerResourceModule("fastly", "index/objectStorageAccessKeys", _module)
+pulumi.runtime.registerResourceModule("fastly", "index/routingConfig", _module)
+pulumi.runtime.registerResourceModule("fastly", "index/routingConfigDomainLink", _module)
 pulumi.runtime.registerResourceModule("fastly", "index/secretstore", _module)
 pulumi.runtime.registerResourceModule("fastly", "index/serviceACLEntries", _module)
 pulumi.runtime.registerResourceModule("fastly", "index/serviceAuthorization", _module)

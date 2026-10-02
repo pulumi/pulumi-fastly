@@ -12,11 +12,13 @@ import (
 	"github.com/pulumi/pulumi/sdk/v3/go/pulumi"
 )
 
-// The `ComputeAclEntries` resource allows you to manage CIDR-based allow/block rules (ACL entries) inside a Fastly Compute ACL.
+// The `ComputeAclEntries` resource allows you to seed or manage CIDR-based allow/block rules (ACL entries) inside a Fastly Compute ACL.
 //
-// By default, Terraform does not continue to manage the entries after the initial `pulumi up`. This allows you to make changes to ACL entries outside of Terraform using the [Fastly API](https://developer.fastly.com/reference/api/) or [Fastly CLI](https://developer.fastly.com/learning/tools/cli/)) without Terraform resetting them.
+// By default (`manageEntries = false`), Terraform seeds the configured entries when the resource is created and then allows the entries to be managed externally using the [Fastly API](https://developer.fastly.com/reference/api/) or [Fastly CLI](https://developer.fastly.com/learning/tools/cli/). In this mode, entry data is cleared from Terraform state during refresh and remote entries are not listed by the provider. Changes to configured `entries` after creation are ignored.
 //
-// To have Terraform continue managing the entries after creation (e.g., deleting any entries not defined in the config), set `manageEntries = true`.
+// Set `manageEntries = true` if Terraform should continue to track and reconcile the Compute ACL entries. If management is enabled after being disabled, Terraform performs one remote reconciliation so existing entries can be adopted without blindly recreating them.
+//
+// > **Note:** Because unmanaged entry data is not retained in Terraform state, removing a `ComputeAclEntries` resource with `manageEntries = false` does not delete the entries that it originally seeded.
 //
 // > **Note:** Use `manageEntries = true` cautiously. Terraform will overwrite external changes and delete any unmanaged entries.
 //

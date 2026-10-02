@@ -71,6 +71,12 @@ __all__ = [
     'NgwafWorkspaceRuleRateLimitArgsDict',
     'NgwafWorkspaceRuleRateLimitClientIdentifierArgs',
     'NgwafWorkspaceRuleRateLimitClientIdentifierArgsDict',
+    'RoutingConfigPathArgs',
+    'RoutingConfigPathArgsDict',
+    'RoutingConfigPathRuleArgs',
+    'RoutingConfigPathRuleArgsDict',
+    'RoutingConfigPathRuleConditionArgs',
+    'RoutingConfigPathRuleConditionArgsDict',
     'ServiceACLEntriesEntryArgs',
     'ServiceACLEntriesEntryArgsDict',
     'ServiceComputeBackendArgs',
@@ -2243,6 +2249,266 @@ class NgwafWorkspaceRuleRateLimitClientIdentifierArgs:
     @name.setter
     def name(self, value: pulumi.Input[Optional[_builtins.str]]):
         pulumi.set(self, "name", value)
+
+
+class RoutingConfigPathArgsDict(TypedDict):
+    path: pulumi.Input[_builtins.str]
+    """
+    The URL path pattern (max 2048 characters, starts with `/`).
+    """
+    rules: pulumi.Input[Sequence[pulumi.Input['RoutingConfigPathRuleArgsDict']]]
+    """
+    A conditional routing rule for this path. A rule with no `condition` blocks is the default (catch-all) rule for the path.
+    """
+    path_id: NotRequired[pulumi.Input[Optional[_builtins.str]]]
+    """
+    The path identifier.
+    """
+
+@pulumi.input_type
+class RoutingConfigPathArgs:
+    def __init__(__self__, *,
+                 path: pulumi.Input[_builtins.str],
+                 rules: pulumi.Input[Sequence[pulumi.Input['RoutingConfigPathRuleArgs']]],
+                 path_id: pulumi.Input[Optional[_builtins.str]] = None):
+        """
+        :param pulumi.Input[_builtins.str] path: The URL path pattern (max 2048 characters, starts with `/`).
+        :param pulumi.Input[Sequence[pulumi.Input['RoutingConfigPathRuleArgs']]] rules: A conditional routing rule for this path. A rule with no `condition` blocks is the default (catch-all) rule for the path.
+        :param pulumi.Input[_builtins.str] path_id: The path identifier.
+        """
+        pulumi.set(__self__, "path", path)
+        pulumi.set(__self__, "rules", rules)
+        if path_id is not None:
+            pulumi.set(__self__, "path_id", path_id)
+
+    @_builtins.property
+    @pulumi.getter
+    def path(self) -> pulumi.Input[_builtins.str]:
+        """
+        The URL path pattern (max 2048 characters, starts with `/`).
+        """
+        return pulumi.get(self, "path")
+
+    @path.setter
+    def path(self, value: pulumi.Input[_builtins.str]):
+        pulumi.set(self, "path", value)
+
+    @_builtins.property
+    @pulumi.getter
+    def rules(self) -> pulumi.Input[Sequence[pulumi.Input['RoutingConfigPathRuleArgs']]]:
+        """
+        A conditional routing rule for this path. A rule with no `condition` blocks is the default (catch-all) rule for the path.
+        """
+        return pulumi.get(self, "rules")
+
+    @rules.setter
+    def rules(self, value: pulumi.Input[Sequence[pulumi.Input['RoutingConfigPathRuleArgs']]]):
+        pulumi.set(self, "rules", value)
+
+    @_builtins.property
+    @pulumi.getter(name="pathId")
+    def path_id(self) -> pulumi.Input[Optional[_builtins.str]]:
+        """
+        The path identifier.
+        """
+        return pulumi.get(self, "path_id")
+
+    @path_id.setter
+    def path_id(self, value: pulumi.Input[Optional[_builtins.str]]):
+        pulumi.set(self, "path_id", value)
+
+
+class RoutingConfigPathRuleArgsDict(TypedDict):
+    action_type: pulumi.Input[_builtins.str]
+    """
+    The action type. Currently only `service` is supported.
+    """
+    action_value: pulumi.Input[_builtins.str]
+    """
+    The destination for the action (e.g. a service ID when `action_type` is `service`).
+    """
+    conditions: NotRequired[pulumi.Input[Optional[Sequence[pulumi.Input['RoutingConfigPathRuleConditionArgsDict']]]]]
+    """
+    A matching criterion evaluated against the incoming request. Omit to make this the default (catch-all) rule for the path.
+    """
+    is_default: NotRequired[pulumi.Input[Optional[_builtins.bool]]]
+    """
+    Whether this is the catch-all rule for its path (i.e. it has no conditions).
+    """
+    rule_id: NotRequired[pulumi.Input[Optional[_builtins.str]]]
+    """
+    The rule identifier.
+    """
+
+@pulumi.input_type
+class RoutingConfigPathRuleArgs:
+    def __init__(__self__, *,
+                 action_type: pulumi.Input[_builtins.str],
+                 action_value: pulumi.Input[_builtins.str],
+                 conditions: pulumi.Input[Optional[Sequence[pulumi.Input['RoutingConfigPathRuleConditionArgs']]]] = None,
+                 is_default: pulumi.Input[Optional[_builtins.bool]] = None,
+                 rule_id: pulumi.Input[Optional[_builtins.str]] = None):
+        """
+        :param pulumi.Input[_builtins.str] action_type: The action type. Currently only `service` is supported.
+        :param pulumi.Input[_builtins.str] action_value: The destination for the action (e.g. a service ID when `action_type` is `service`).
+        :param pulumi.Input[Sequence[pulumi.Input['RoutingConfigPathRuleConditionArgs']]] conditions: A matching criterion evaluated against the incoming request. Omit to make this the default (catch-all) rule for the path.
+        :param pulumi.Input[_builtins.bool] is_default: Whether this is the catch-all rule for its path (i.e. it has no conditions).
+        :param pulumi.Input[_builtins.str] rule_id: The rule identifier.
+        """
+        pulumi.set(__self__, "action_type", action_type)
+        pulumi.set(__self__, "action_value", action_value)
+        if conditions is not None:
+            pulumi.set(__self__, "conditions", conditions)
+        if is_default is not None:
+            pulumi.set(__self__, "is_default", is_default)
+        if rule_id is not None:
+            pulumi.set(__self__, "rule_id", rule_id)
+
+    @_builtins.property
+    @pulumi.getter(name="actionType")
+    def action_type(self) -> pulumi.Input[_builtins.str]:
+        """
+        The action type. Currently only `service` is supported.
+        """
+        return pulumi.get(self, "action_type")
+
+    @action_type.setter
+    def action_type(self, value: pulumi.Input[_builtins.str]):
+        pulumi.set(self, "action_type", value)
+
+    @_builtins.property
+    @pulumi.getter(name="actionValue")
+    def action_value(self) -> pulumi.Input[_builtins.str]:
+        """
+        The destination for the action (e.g. a service ID when `action_type` is `service`).
+        """
+        return pulumi.get(self, "action_value")
+
+    @action_value.setter
+    def action_value(self, value: pulumi.Input[_builtins.str]):
+        pulumi.set(self, "action_value", value)
+
+    @_builtins.property
+    @pulumi.getter
+    def conditions(self) -> pulumi.Input[Optional[Sequence[pulumi.Input['RoutingConfigPathRuleConditionArgs']]]]:
+        """
+        A matching criterion evaluated against the incoming request. Omit to make this the default (catch-all) rule for the path.
+        """
+        return pulumi.get(self, "conditions")
+
+    @conditions.setter
+    def conditions(self, value: pulumi.Input[Optional[Sequence[pulumi.Input['RoutingConfigPathRuleConditionArgs']]]]):
+        pulumi.set(self, "conditions", value)
+
+    @_builtins.property
+    @pulumi.getter(name="isDefault")
+    def is_default(self) -> pulumi.Input[Optional[_builtins.bool]]:
+        """
+        Whether this is the catch-all rule for its path (i.e. it has no conditions).
+        """
+        return pulumi.get(self, "is_default")
+
+    @is_default.setter
+    def is_default(self, value: pulumi.Input[Optional[_builtins.bool]]):
+        pulumi.set(self, "is_default", value)
+
+    @_builtins.property
+    @pulumi.getter(name="ruleId")
+    def rule_id(self) -> pulumi.Input[Optional[_builtins.str]]:
+        """
+        The rule identifier.
+        """
+        return pulumi.get(self, "rule_id")
+
+    @rule_id.setter
+    def rule_id(self, value: pulumi.Input[Optional[_builtins.str]]):
+        pulumi.set(self, "rule_id", value)
+
+
+class RoutingConfigPathRuleConditionArgsDict(TypedDict):
+    operator: pulumi.Input[_builtins.str]
+    """
+    The comparison operator used to evaluate `value` against the request. One of `equals`, `starts_with`, `ends_with`, or `contains`.
+    """
+    type: pulumi.Input[_builtins.str]
+    """
+    The condition category. Currently only `header` is supported.
+    """
+    value: pulumi.Input[_builtins.str]
+    """
+    The value compared against the request using `operator`.
+    """
+    key: NotRequired[pulumi.Input[Optional[_builtins.str]]]
+    """
+    The header name to match against. Only applicable when `type` is `header`.
+    """
+
+@pulumi.input_type
+class RoutingConfigPathRuleConditionArgs:
+    def __init__(__self__, *,
+                 operator: pulumi.Input[_builtins.str],
+                 type: pulumi.Input[_builtins.str],
+                 value: pulumi.Input[_builtins.str],
+                 key: pulumi.Input[Optional[_builtins.str]] = None):
+        """
+        :param pulumi.Input[_builtins.str] operator: The comparison operator used to evaluate `value` against the request. One of `equals`, `starts_with`, `ends_with`, or `contains`.
+        :param pulumi.Input[_builtins.str] type: The condition category. Currently only `header` is supported.
+        :param pulumi.Input[_builtins.str] value: The value compared against the request using `operator`.
+        :param pulumi.Input[_builtins.str] key: The header name to match against. Only applicable when `type` is `header`.
+        """
+        pulumi.set(__self__, "operator", operator)
+        pulumi.set(__self__, "type", type)
+        pulumi.set(__self__, "value", value)
+        if key is not None:
+            pulumi.set(__self__, "key", key)
+
+    @_builtins.property
+    @pulumi.getter
+    def operator(self) -> pulumi.Input[_builtins.str]:
+        """
+        The comparison operator used to evaluate `value` against the request. One of `equals`, `starts_with`, `ends_with`, or `contains`.
+        """
+        return pulumi.get(self, "operator")
+
+    @operator.setter
+    def operator(self, value: pulumi.Input[_builtins.str]):
+        pulumi.set(self, "operator", value)
+
+    @_builtins.property
+    @pulumi.getter
+    def type(self) -> pulumi.Input[_builtins.str]:
+        """
+        The condition category. Currently only `header` is supported.
+        """
+        return pulumi.get(self, "type")
+
+    @type.setter
+    def type(self, value: pulumi.Input[_builtins.str]):
+        pulumi.set(self, "type", value)
+
+    @_builtins.property
+    @pulumi.getter
+    def value(self) -> pulumi.Input[_builtins.str]:
+        """
+        The value compared against the request using `operator`.
+        """
+        return pulumi.get(self, "value")
+
+    @value.setter
+    def value(self, value: pulumi.Input[_builtins.str]):
+        pulumi.set(self, "value", value)
+
+    @_builtins.property
+    @pulumi.getter
+    def key(self) -> pulumi.Input[Optional[_builtins.str]]:
+        """
+        The header name to match against. Only applicable when `type` is `header`.
+        """
+        return pulumi.get(self, "key")
+
+    @key.setter
+    def key(self, value: pulumi.Input[Optional[_builtins.str]]):
+        pulumi.set(self, "key", value)
 
 
 class ServiceACLEntriesEntryArgsDict(TypedDict):

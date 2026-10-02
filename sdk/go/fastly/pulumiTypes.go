@@ -3447,6 +3447,378 @@ func (o NgwafWorkspaceRuleRateLimitClientIdentifierArrayOutput) Index(i pulumi.I
 	}).(NgwafWorkspaceRuleRateLimitClientIdentifierOutput)
 }
 
+type RoutingConfigPath struct {
+	// The URL path pattern (max 2048 characters, starts with `/`).
+	Path string `pulumi:"path"`
+	// The path identifier.
+	PathId *string `pulumi:"pathId"`
+	// A conditional routing rule for this path. A rule with no `condition` blocks is the default (catch-all) rule for the path.
+	Rules []RoutingConfigPathRule `pulumi:"rules"`
+}
+
+// RoutingConfigPathInput is an input type that accepts RoutingConfigPathArgs and RoutingConfigPathOutput values.
+// You can construct a concrete instance of `RoutingConfigPathInput` via:
+//
+//	RoutingConfigPathArgs{...}
+type RoutingConfigPathInput interface {
+	pulumi.Input
+
+	ToRoutingConfigPathOutput() RoutingConfigPathOutput
+	ToRoutingConfigPathOutputWithContext(context.Context) RoutingConfigPathOutput
+}
+
+type RoutingConfigPathArgs struct {
+	// The URL path pattern (max 2048 characters, starts with `/`).
+	Path pulumi.StringInput `pulumi:"path"`
+	// The path identifier.
+	PathId pulumi.StringPtrInput `pulumi:"pathId"`
+	// A conditional routing rule for this path. A rule with no `condition` blocks is the default (catch-all) rule for the path.
+	Rules RoutingConfigPathRuleArrayInput `pulumi:"rules"`
+}
+
+func (RoutingConfigPathArgs) ElementType() reflect.Type {
+	return reflect.TypeOf((*RoutingConfigPath)(nil)).Elem()
+}
+
+func (i RoutingConfigPathArgs) ToRoutingConfigPathOutput() RoutingConfigPathOutput {
+	return i.ToRoutingConfigPathOutputWithContext(context.Background())
+}
+
+func (i RoutingConfigPathArgs) ToRoutingConfigPathOutputWithContext(ctx context.Context) RoutingConfigPathOutput {
+	return pulumi.ToOutputWithContext(ctx, i).(RoutingConfigPathOutput)
+}
+
+// RoutingConfigPathArrayInput is an input type that accepts RoutingConfigPathArray and RoutingConfigPathArrayOutput values.
+// You can construct a concrete instance of `RoutingConfigPathArrayInput` via:
+//
+//	RoutingConfigPathArray{ RoutingConfigPathArgs{...} }
+type RoutingConfigPathArrayInput interface {
+	pulumi.Input
+
+	ToRoutingConfigPathArrayOutput() RoutingConfigPathArrayOutput
+	ToRoutingConfigPathArrayOutputWithContext(context.Context) RoutingConfigPathArrayOutput
+}
+
+type RoutingConfigPathArray []RoutingConfigPathInput
+
+func (RoutingConfigPathArray) ElementType() reflect.Type {
+	return reflect.TypeOf((*[]RoutingConfigPath)(nil)).Elem()
+}
+
+func (i RoutingConfigPathArray) ToRoutingConfigPathArrayOutput() RoutingConfigPathArrayOutput {
+	return i.ToRoutingConfigPathArrayOutputWithContext(context.Background())
+}
+
+func (i RoutingConfigPathArray) ToRoutingConfigPathArrayOutputWithContext(ctx context.Context) RoutingConfigPathArrayOutput {
+	return pulumi.ToOutputWithContext(ctx, i).(RoutingConfigPathArrayOutput)
+}
+
+type RoutingConfigPathOutput struct{ *pulumi.OutputState }
+
+func (RoutingConfigPathOutput) ElementType() reflect.Type {
+	return reflect.TypeOf((*RoutingConfigPath)(nil)).Elem()
+}
+
+func (o RoutingConfigPathOutput) ToRoutingConfigPathOutput() RoutingConfigPathOutput {
+	return o
+}
+
+func (o RoutingConfigPathOutput) ToRoutingConfigPathOutputWithContext(ctx context.Context) RoutingConfigPathOutput {
+	return o
+}
+
+// The URL path pattern (max 2048 characters, starts with `/`).
+func (o RoutingConfigPathOutput) Path() pulumi.StringOutput {
+	return o.ApplyT(func(v RoutingConfigPath) string { return v.Path }).(pulumi.StringOutput)
+}
+
+// The path identifier.
+func (o RoutingConfigPathOutput) PathId() pulumi.StringPtrOutput {
+	return o.ApplyT(func(v RoutingConfigPath) *string { return v.PathId }).(pulumi.StringPtrOutput)
+}
+
+// A conditional routing rule for this path. A rule with no `condition` blocks is the default (catch-all) rule for the path.
+func (o RoutingConfigPathOutput) Rules() RoutingConfigPathRuleArrayOutput {
+	return o.ApplyT(func(v RoutingConfigPath) []RoutingConfigPathRule { return v.Rules }).(RoutingConfigPathRuleArrayOutput)
+}
+
+type RoutingConfigPathArrayOutput struct{ *pulumi.OutputState }
+
+func (RoutingConfigPathArrayOutput) ElementType() reflect.Type {
+	return reflect.TypeOf((*[]RoutingConfigPath)(nil)).Elem()
+}
+
+func (o RoutingConfigPathArrayOutput) ToRoutingConfigPathArrayOutput() RoutingConfigPathArrayOutput {
+	return o
+}
+
+func (o RoutingConfigPathArrayOutput) ToRoutingConfigPathArrayOutputWithContext(ctx context.Context) RoutingConfigPathArrayOutput {
+	return o
+}
+
+func (o RoutingConfigPathArrayOutput) Index(i pulumi.IntInput) RoutingConfigPathOutput {
+	return pulumi.All(o, i).ApplyT(func(vs []interface{}) RoutingConfigPath {
+		return vs[0].([]RoutingConfigPath)[vs[1].(int)]
+	}).(RoutingConfigPathOutput)
+}
+
+type RoutingConfigPathRule struct {
+	// The action type. Currently only `service` is supported.
+	ActionType string `pulumi:"actionType"`
+	// The destination for the action (e.g. a service ID when `actionType` is `service`).
+	ActionValue string `pulumi:"actionValue"`
+	// A matching criterion evaluated against the incoming request. Omit to make this the default (catch-all) rule for the path.
+	Conditions []RoutingConfigPathRuleCondition `pulumi:"conditions"`
+	// Whether this is the catch-all rule for its path (i.e. it has no conditions).
+	IsDefault *bool `pulumi:"isDefault"`
+	// The rule identifier.
+	RuleId *string `pulumi:"ruleId"`
+}
+
+// RoutingConfigPathRuleInput is an input type that accepts RoutingConfigPathRuleArgs and RoutingConfigPathRuleOutput values.
+// You can construct a concrete instance of `RoutingConfigPathRuleInput` via:
+//
+//	RoutingConfigPathRuleArgs{...}
+type RoutingConfigPathRuleInput interface {
+	pulumi.Input
+
+	ToRoutingConfigPathRuleOutput() RoutingConfigPathRuleOutput
+	ToRoutingConfigPathRuleOutputWithContext(context.Context) RoutingConfigPathRuleOutput
+}
+
+type RoutingConfigPathRuleArgs struct {
+	// The action type. Currently only `service` is supported.
+	ActionType pulumi.StringInput `pulumi:"actionType"`
+	// The destination for the action (e.g. a service ID when `actionType` is `service`).
+	ActionValue pulumi.StringInput `pulumi:"actionValue"`
+	// A matching criterion evaluated against the incoming request. Omit to make this the default (catch-all) rule for the path.
+	Conditions RoutingConfigPathRuleConditionArrayInput `pulumi:"conditions"`
+	// Whether this is the catch-all rule for its path (i.e. it has no conditions).
+	IsDefault pulumi.BoolPtrInput `pulumi:"isDefault"`
+	// The rule identifier.
+	RuleId pulumi.StringPtrInput `pulumi:"ruleId"`
+}
+
+func (RoutingConfigPathRuleArgs) ElementType() reflect.Type {
+	return reflect.TypeOf((*RoutingConfigPathRule)(nil)).Elem()
+}
+
+func (i RoutingConfigPathRuleArgs) ToRoutingConfigPathRuleOutput() RoutingConfigPathRuleOutput {
+	return i.ToRoutingConfigPathRuleOutputWithContext(context.Background())
+}
+
+func (i RoutingConfigPathRuleArgs) ToRoutingConfigPathRuleOutputWithContext(ctx context.Context) RoutingConfigPathRuleOutput {
+	return pulumi.ToOutputWithContext(ctx, i).(RoutingConfigPathRuleOutput)
+}
+
+// RoutingConfigPathRuleArrayInput is an input type that accepts RoutingConfigPathRuleArray and RoutingConfigPathRuleArrayOutput values.
+// You can construct a concrete instance of `RoutingConfigPathRuleArrayInput` via:
+//
+//	RoutingConfigPathRuleArray{ RoutingConfigPathRuleArgs{...} }
+type RoutingConfigPathRuleArrayInput interface {
+	pulumi.Input
+
+	ToRoutingConfigPathRuleArrayOutput() RoutingConfigPathRuleArrayOutput
+	ToRoutingConfigPathRuleArrayOutputWithContext(context.Context) RoutingConfigPathRuleArrayOutput
+}
+
+type RoutingConfigPathRuleArray []RoutingConfigPathRuleInput
+
+func (RoutingConfigPathRuleArray) ElementType() reflect.Type {
+	return reflect.TypeOf((*[]RoutingConfigPathRule)(nil)).Elem()
+}
+
+func (i RoutingConfigPathRuleArray) ToRoutingConfigPathRuleArrayOutput() RoutingConfigPathRuleArrayOutput {
+	return i.ToRoutingConfigPathRuleArrayOutputWithContext(context.Background())
+}
+
+func (i RoutingConfigPathRuleArray) ToRoutingConfigPathRuleArrayOutputWithContext(ctx context.Context) RoutingConfigPathRuleArrayOutput {
+	return pulumi.ToOutputWithContext(ctx, i).(RoutingConfigPathRuleArrayOutput)
+}
+
+type RoutingConfigPathRuleOutput struct{ *pulumi.OutputState }
+
+func (RoutingConfigPathRuleOutput) ElementType() reflect.Type {
+	return reflect.TypeOf((*RoutingConfigPathRule)(nil)).Elem()
+}
+
+func (o RoutingConfigPathRuleOutput) ToRoutingConfigPathRuleOutput() RoutingConfigPathRuleOutput {
+	return o
+}
+
+func (o RoutingConfigPathRuleOutput) ToRoutingConfigPathRuleOutputWithContext(ctx context.Context) RoutingConfigPathRuleOutput {
+	return o
+}
+
+// The action type. Currently only `service` is supported.
+func (o RoutingConfigPathRuleOutput) ActionType() pulumi.StringOutput {
+	return o.ApplyT(func(v RoutingConfigPathRule) string { return v.ActionType }).(pulumi.StringOutput)
+}
+
+// The destination for the action (e.g. a service ID when `actionType` is `service`).
+func (o RoutingConfigPathRuleOutput) ActionValue() pulumi.StringOutput {
+	return o.ApplyT(func(v RoutingConfigPathRule) string { return v.ActionValue }).(pulumi.StringOutput)
+}
+
+// A matching criterion evaluated against the incoming request. Omit to make this the default (catch-all) rule for the path.
+func (o RoutingConfigPathRuleOutput) Conditions() RoutingConfigPathRuleConditionArrayOutput {
+	return o.ApplyT(func(v RoutingConfigPathRule) []RoutingConfigPathRuleCondition { return v.Conditions }).(RoutingConfigPathRuleConditionArrayOutput)
+}
+
+// Whether this is the catch-all rule for its path (i.e. it has no conditions).
+func (o RoutingConfigPathRuleOutput) IsDefault() pulumi.BoolPtrOutput {
+	return o.ApplyT(func(v RoutingConfigPathRule) *bool { return v.IsDefault }).(pulumi.BoolPtrOutput)
+}
+
+// The rule identifier.
+func (o RoutingConfigPathRuleOutput) RuleId() pulumi.StringPtrOutput {
+	return o.ApplyT(func(v RoutingConfigPathRule) *string { return v.RuleId }).(pulumi.StringPtrOutput)
+}
+
+type RoutingConfigPathRuleArrayOutput struct{ *pulumi.OutputState }
+
+func (RoutingConfigPathRuleArrayOutput) ElementType() reflect.Type {
+	return reflect.TypeOf((*[]RoutingConfigPathRule)(nil)).Elem()
+}
+
+func (o RoutingConfigPathRuleArrayOutput) ToRoutingConfigPathRuleArrayOutput() RoutingConfigPathRuleArrayOutput {
+	return o
+}
+
+func (o RoutingConfigPathRuleArrayOutput) ToRoutingConfigPathRuleArrayOutputWithContext(ctx context.Context) RoutingConfigPathRuleArrayOutput {
+	return o
+}
+
+func (o RoutingConfigPathRuleArrayOutput) Index(i pulumi.IntInput) RoutingConfigPathRuleOutput {
+	return pulumi.All(o, i).ApplyT(func(vs []interface{}) RoutingConfigPathRule {
+		return vs[0].([]RoutingConfigPathRule)[vs[1].(int)]
+	}).(RoutingConfigPathRuleOutput)
+}
+
+type RoutingConfigPathRuleCondition struct {
+	// The header name to match against. Only applicable when `type` is `header`.
+	Key *string `pulumi:"key"`
+	// The comparison operator used to evaluate `value` against the request. One of `equals`, `startsWith`, `endsWith`, or `contains`.
+	Operator string `pulumi:"operator"`
+	// The condition category. Currently only `header` is supported.
+	Type string `pulumi:"type"`
+	// The value compared against the request using `operator`.
+	Value string `pulumi:"value"`
+}
+
+// RoutingConfigPathRuleConditionInput is an input type that accepts RoutingConfigPathRuleConditionArgs and RoutingConfigPathRuleConditionOutput values.
+// You can construct a concrete instance of `RoutingConfigPathRuleConditionInput` via:
+//
+//	RoutingConfigPathRuleConditionArgs{...}
+type RoutingConfigPathRuleConditionInput interface {
+	pulumi.Input
+
+	ToRoutingConfigPathRuleConditionOutput() RoutingConfigPathRuleConditionOutput
+	ToRoutingConfigPathRuleConditionOutputWithContext(context.Context) RoutingConfigPathRuleConditionOutput
+}
+
+type RoutingConfigPathRuleConditionArgs struct {
+	// The header name to match against. Only applicable when `type` is `header`.
+	Key pulumi.StringPtrInput `pulumi:"key"`
+	// The comparison operator used to evaluate `value` against the request. One of `equals`, `startsWith`, `endsWith`, or `contains`.
+	Operator pulumi.StringInput `pulumi:"operator"`
+	// The condition category. Currently only `header` is supported.
+	Type pulumi.StringInput `pulumi:"type"`
+	// The value compared against the request using `operator`.
+	Value pulumi.StringInput `pulumi:"value"`
+}
+
+func (RoutingConfigPathRuleConditionArgs) ElementType() reflect.Type {
+	return reflect.TypeOf((*RoutingConfigPathRuleCondition)(nil)).Elem()
+}
+
+func (i RoutingConfigPathRuleConditionArgs) ToRoutingConfigPathRuleConditionOutput() RoutingConfigPathRuleConditionOutput {
+	return i.ToRoutingConfigPathRuleConditionOutputWithContext(context.Background())
+}
+
+func (i RoutingConfigPathRuleConditionArgs) ToRoutingConfigPathRuleConditionOutputWithContext(ctx context.Context) RoutingConfigPathRuleConditionOutput {
+	return pulumi.ToOutputWithContext(ctx, i).(RoutingConfigPathRuleConditionOutput)
+}
+
+// RoutingConfigPathRuleConditionArrayInput is an input type that accepts RoutingConfigPathRuleConditionArray and RoutingConfigPathRuleConditionArrayOutput values.
+// You can construct a concrete instance of `RoutingConfigPathRuleConditionArrayInput` via:
+//
+//	RoutingConfigPathRuleConditionArray{ RoutingConfigPathRuleConditionArgs{...} }
+type RoutingConfigPathRuleConditionArrayInput interface {
+	pulumi.Input
+
+	ToRoutingConfigPathRuleConditionArrayOutput() RoutingConfigPathRuleConditionArrayOutput
+	ToRoutingConfigPathRuleConditionArrayOutputWithContext(context.Context) RoutingConfigPathRuleConditionArrayOutput
+}
+
+type RoutingConfigPathRuleConditionArray []RoutingConfigPathRuleConditionInput
+
+func (RoutingConfigPathRuleConditionArray) ElementType() reflect.Type {
+	return reflect.TypeOf((*[]RoutingConfigPathRuleCondition)(nil)).Elem()
+}
+
+func (i RoutingConfigPathRuleConditionArray) ToRoutingConfigPathRuleConditionArrayOutput() RoutingConfigPathRuleConditionArrayOutput {
+	return i.ToRoutingConfigPathRuleConditionArrayOutputWithContext(context.Background())
+}
+
+func (i RoutingConfigPathRuleConditionArray) ToRoutingConfigPathRuleConditionArrayOutputWithContext(ctx context.Context) RoutingConfigPathRuleConditionArrayOutput {
+	return pulumi.ToOutputWithContext(ctx, i).(RoutingConfigPathRuleConditionArrayOutput)
+}
+
+type RoutingConfigPathRuleConditionOutput struct{ *pulumi.OutputState }
+
+func (RoutingConfigPathRuleConditionOutput) ElementType() reflect.Type {
+	return reflect.TypeOf((*RoutingConfigPathRuleCondition)(nil)).Elem()
+}
+
+func (o RoutingConfigPathRuleConditionOutput) ToRoutingConfigPathRuleConditionOutput() RoutingConfigPathRuleConditionOutput {
+	return o
+}
+
+func (o RoutingConfigPathRuleConditionOutput) ToRoutingConfigPathRuleConditionOutputWithContext(ctx context.Context) RoutingConfigPathRuleConditionOutput {
+	return o
+}
+
+// The header name to match against. Only applicable when `type` is `header`.
+func (o RoutingConfigPathRuleConditionOutput) Key() pulumi.StringPtrOutput {
+	return o.ApplyT(func(v RoutingConfigPathRuleCondition) *string { return v.Key }).(pulumi.StringPtrOutput)
+}
+
+// The comparison operator used to evaluate `value` against the request. One of `equals`, `startsWith`, `endsWith`, or `contains`.
+func (o RoutingConfigPathRuleConditionOutput) Operator() pulumi.StringOutput {
+	return o.ApplyT(func(v RoutingConfigPathRuleCondition) string { return v.Operator }).(pulumi.StringOutput)
+}
+
+// The condition category. Currently only `header` is supported.
+func (o RoutingConfigPathRuleConditionOutput) Type() pulumi.StringOutput {
+	return o.ApplyT(func(v RoutingConfigPathRuleCondition) string { return v.Type }).(pulumi.StringOutput)
+}
+
+// The value compared against the request using `operator`.
+func (o RoutingConfigPathRuleConditionOutput) Value() pulumi.StringOutput {
+	return o.ApplyT(func(v RoutingConfigPathRuleCondition) string { return v.Value }).(pulumi.StringOutput)
+}
+
+type RoutingConfigPathRuleConditionArrayOutput struct{ *pulumi.OutputState }
+
+func (RoutingConfigPathRuleConditionArrayOutput) ElementType() reflect.Type {
+	return reflect.TypeOf((*[]RoutingConfigPathRuleCondition)(nil)).Elem()
+}
+
+func (o RoutingConfigPathRuleConditionArrayOutput) ToRoutingConfigPathRuleConditionArrayOutput() RoutingConfigPathRuleConditionArrayOutput {
+	return o
+}
+
+func (o RoutingConfigPathRuleConditionArrayOutput) ToRoutingConfigPathRuleConditionArrayOutputWithContext(ctx context.Context) RoutingConfigPathRuleConditionArrayOutput {
+	return o
+}
+
+func (o RoutingConfigPathRuleConditionArrayOutput) Index(i pulumi.IntInput) RoutingConfigPathRuleConditionOutput {
+	return pulumi.All(o, i).ApplyT(func(vs []interface{}) RoutingConfigPathRuleCondition {
+		return vs[0].([]RoutingConfigPathRuleCondition)[vs[1].(int)]
+	}).(RoutingConfigPathRuleConditionOutput)
+}
+
 type ServiceACLEntriesEntry struct {
 	// A personal freeform descriptive note
 	Comment *string `pulumi:"comment"`
@@ -25118,6 +25490,12 @@ func init() {
 	pulumi.RegisterInputType(reflect.TypeOf((*NgwafWorkspaceRuleRateLimitPtrInput)(nil)).Elem(), NgwafWorkspaceRuleRateLimitArgs{})
 	pulumi.RegisterInputType(reflect.TypeOf((*NgwafWorkspaceRuleRateLimitClientIdentifierInput)(nil)).Elem(), NgwafWorkspaceRuleRateLimitClientIdentifierArgs{})
 	pulumi.RegisterInputType(reflect.TypeOf((*NgwafWorkspaceRuleRateLimitClientIdentifierArrayInput)(nil)).Elem(), NgwafWorkspaceRuleRateLimitClientIdentifierArray{})
+	pulumi.RegisterInputType(reflect.TypeOf((*RoutingConfigPathInput)(nil)).Elem(), RoutingConfigPathArgs{})
+	pulumi.RegisterInputType(reflect.TypeOf((*RoutingConfigPathArrayInput)(nil)).Elem(), RoutingConfigPathArray{})
+	pulumi.RegisterInputType(reflect.TypeOf((*RoutingConfigPathRuleInput)(nil)).Elem(), RoutingConfigPathRuleArgs{})
+	pulumi.RegisterInputType(reflect.TypeOf((*RoutingConfigPathRuleArrayInput)(nil)).Elem(), RoutingConfigPathRuleArray{})
+	pulumi.RegisterInputType(reflect.TypeOf((*RoutingConfigPathRuleConditionInput)(nil)).Elem(), RoutingConfigPathRuleConditionArgs{})
+	pulumi.RegisterInputType(reflect.TypeOf((*RoutingConfigPathRuleConditionArrayInput)(nil)).Elem(), RoutingConfigPathRuleConditionArray{})
 	pulumi.RegisterInputType(reflect.TypeOf((*ServiceACLEntriesEntryInput)(nil)).Elem(), ServiceACLEntriesEntryArgs{})
 	pulumi.RegisterInputType(reflect.TypeOf((*ServiceACLEntriesEntryArrayInput)(nil)).Elem(), ServiceACLEntriesEntryArray{})
 	pulumi.RegisterInputType(reflect.TypeOf((*ServiceComputeBackendInput)(nil)).Elem(), ServiceComputeBackendArgs{})
@@ -25432,6 +25810,12 @@ func init() {
 	pulumi.RegisterOutputType(NgwafWorkspaceRuleRateLimitPtrOutput{})
 	pulumi.RegisterOutputType(NgwafWorkspaceRuleRateLimitClientIdentifierOutput{})
 	pulumi.RegisterOutputType(NgwafWorkspaceRuleRateLimitClientIdentifierArrayOutput{})
+	pulumi.RegisterOutputType(RoutingConfigPathOutput{})
+	pulumi.RegisterOutputType(RoutingConfigPathArrayOutput{})
+	pulumi.RegisterOutputType(RoutingConfigPathRuleOutput{})
+	pulumi.RegisterOutputType(RoutingConfigPathRuleArrayOutput{})
+	pulumi.RegisterOutputType(RoutingConfigPathRuleConditionOutput{})
+	pulumi.RegisterOutputType(RoutingConfigPathRuleConditionArrayOutput{})
 	pulumi.RegisterOutputType(ServiceACLEntriesEntryOutput{})
 	pulumi.RegisterOutputType(ServiceACLEntriesEntryArrayOutput{})
 	pulumi.RegisterOutputType(ServiceComputeBackendOutput{})

@@ -95,6 +95,10 @@ func (m *module) Construct(ctx *pulumi.Context, name, typ, urn string) (r pulumi
 		r = &NgwafWorkspaceSignal{}
 	case "fastly:index/objectStorageAccessKeys:ObjectStorageAccessKeys":
 		r = &ObjectStorageAccessKeys{}
+	case "fastly:index/routingConfig:RoutingConfig":
+		r = &RoutingConfig{}
+	case "fastly:index/routingConfigDomainLink:RoutingConfigDomainLink":
+		r = &RoutingConfigDomainLink{}
 	case "fastly:index/secretstore:Secretstore":
 		r = &Secretstore{}
 	case "fastly:index/serviceACLEntries:ServiceACLEntries":
@@ -341,6 +345,16 @@ func init() {
 	pulumi.RegisterResourceModule(
 		"fastly",
 		"index/objectStorageAccessKeys",
+		&module{version},
+	)
+	pulumi.RegisterResourceModule(
+		"fastly",
+		"index/routingConfig",
+		&module{version},
+	)
+	pulumi.RegisterResourceModule(
+		"fastly",
+		"index/routingConfigDomainLink",
 		&module{version},
 	)
 	pulumi.RegisterResourceModule(

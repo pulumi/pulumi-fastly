@@ -1166,6 +1166,63 @@ export interface NgwafWorkspaceRuleRateLimitClientIdentifier {
     type: string;
 }
 
+export interface RoutingConfigPath {
+    /**
+     * The URL path pattern (max 2048 characters, starts with `/`).
+     */
+    path: string;
+    /**
+     * The path identifier.
+     */
+    pathId: string;
+    /**
+     * A conditional routing rule for this path. A rule with no `condition` blocks is the default (catch-all) rule for the path.
+     */
+    rules: outputs.RoutingConfigPathRule[];
+}
+
+export interface RoutingConfigPathRule {
+    /**
+     * The action type. Currently only `service` is supported.
+     */
+    actionType: string;
+    /**
+     * The destination for the action (e.g. a service ID when `actionType` is `service`).
+     */
+    actionValue: string;
+    /**
+     * A matching criterion evaluated against the incoming request. Omit to make this the default (catch-all) rule for the path.
+     */
+    conditions?: outputs.RoutingConfigPathRuleCondition[];
+    /**
+     * Whether this is the catch-all rule for its path (i.e. it has no conditions).
+     */
+    isDefault: boolean;
+    /**
+     * The rule identifier.
+     */
+    ruleId: string;
+}
+
+export interface RoutingConfigPathRuleCondition {
+    /**
+     * The header name to match against. Only applicable when `type` is `header`.
+     */
+    key?: string;
+    /**
+     * The comparison operator used to evaluate `value` against the request. One of `equals`, `startsWith`, `endsWith`, or `contains`.
+     */
+    operator: string;
+    /**
+     * The condition category. Currently only `header` is supported.
+     */
+    type: string;
+    /**
+     * The value compared against the request using `operator`.
+     */
+    value: string;
+}
+
 export interface ServiceACLEntriesEntry {
     /**
      * A personal freeform descriptive note

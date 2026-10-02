@@ -113,6 +113,8 @@
         "ngwafWorkspaceSignal.ts",
         "objectStorageAccessKeys.ts",
         "provider.ts",
+        "routingConfig.ts",
+        "routingConfigDomainLink.ts",
         "secretstore.ts",
         "serviceACLEntries.ts",
         "serviceAuthorization.ts",

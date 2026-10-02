@@ -10,10 +10,11 @@ using Pulumi.Serialization;
 namespace Pulumi.Fastly
 {
     /// <summary>
-    /// Defines a set of Fastly ACL entries that can be used to populate a service ACL.  This resource will populate an ACL with the entries and will track their state.
+    /// Defines a set of Fastly ACL entries that can be used to populate a service ACL. This resource seeds configured entries when it is created.
     /// 
-    /// &gt; **Note:** By default the Terraform provider allows you to externally manage the entries via API or UI.
-    /// If you wish to apply your changes in the HCL, then you should explicitly set the `ManageEntries` attribute. An example of this configuration is provided below.
+    /// &gt; **Note:** By default (`ManageEntries = false`), the Terraform provider allows you to externally manage ACL entries via API or UI. In this mode, entry data is cleared from Terraform state during refresh so large externally managed ACLs are not retained in state. Changes to configured `Entry` blocks after creation are ignored. Set `ManageEntries = true` if Terraform should track and reconcile the ACL entries.
+    /// 
+    /// &gt; **Note:** Because unmanaged entry data is not retained in Terraform state, removing a `fastly.ServiceACLEntries` resource with `ManageEntries = false` does not delete the ACL entries that it originally seeded.
     /// 
     /// ## Example Usage
     /// 
