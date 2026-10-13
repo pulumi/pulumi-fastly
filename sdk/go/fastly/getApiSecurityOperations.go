@@ -40,7 +40,7 @@ import (
 //			if err != nil {
 //				return err
 //			}
-//			// Optional: create an operation (so the data source returns something predictable)
+//			// Optional: create an operation (so the function returns something predictable)
 //			_, err = fastly.NewApiSecurityOperation(ctx, "example", &fastly.ApiSecurityOperationArgs{
 //				ServiceId:   svc1.ID().ToIDOutput().ToStringOutput(),
 //				Method:      pulumi.String("GET"),

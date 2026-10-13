@@ -54,7 +54,7 @@ import javax.annotation.Nullable;
  *             .limit(10)
  *             .name("%s")
  *             .signal("SQLI")
- *             .workspaceId(example.id())
+ *             .workspaceId(example.get("id"))
  *             .build());
  * 
  *     }

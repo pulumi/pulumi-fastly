@@ -100,14 +100,14 @@ namespace Pulumi.Fastly
     /// return await Deployment.RunAsync(() =&gt; 
     /// {
     ///     var config = new Config();
-    ///     var mydict = config.GetObject&lt;Mydict&gt;("mydict") ?? 
+    ///     var mydict = config.GetObject&lt;Mydict&gt;("mydict") ?? new Dictionary&lt;string, object?&gt;
     ///     {
-    ///         { "items", 
+    ///         ["items"] = new Dictionary&lt;string, object?&gt;
     ///         {
-    ///             { "key1", "value1x" },
-    ///             { "key2", "value2x" },
-    ///         } },
-    ///         { "name", "My Dictionary" },
+    ///             ["key1"] = "value1x",
+    ///             ["key2"] = "value2x",
+    ///         },
+    ///         ["name"] = "My Dictionary",
     ///     };
     ///     var myservice = new Fastly.ServiceVcl("myservice", new()
     ///     {
@@ -234,7 +234,7 @@ namespace Pulumi.Fastly
     ///                     return Std.Format.Invoke(new()
     ///                     {
     ///                         Input = "%s.%s",
-    ///                         Args = new[]
+    ///                         Args = 
     ///                         {
     ///                             division,
     ///                             hostBase,
@@ -338,7 +338,7 @@ namespace Pulumi.Fastly
     ///     var items = new List&lt;Fastly.ServiceDictionaryItems&gt;();
     ///     foreach (var range in .ToDictionary(item =&gt; {
     ///         var d = item.Value;
-    ///         return d.Name;
+    ///         return d.Name.ToString(System.Globalization.CultureInfo.InvariantCulture);
     ///     }, item =&gt; {
     ///         var d = item.Value;
     ///         return d;

@@ -389,14 +389,14 @@ class NgwafWorkspaceRule(pulumi.CustomResource):
     def __init__(__self__,
                  resource_name: str,
                  opts: Optional[pulumi.ResourceOptions] = None,
-                 actions: pulumi.Input[Optional[Sequence[pulumi.Input[Union['NgwafWorkspaceRuleActionArgs', 'NgwafWorkspaceRuleActionArgsDict']]]]] = None,
-                 conditions: pulumi.Input[Optional[Sequence[pulumi.Input[Union['NgwafWorkspaceRuleConditionArgs', 'NgwafWorkspaceRuleConditionArgsDict']]]]] = None,
+                 actions: pulumi.Input[Optional[Sequence[pulumi.Input[Union['NgwafWorkspaceRuleActionArgs', 'NgwafWorkspaceRuleActionArgsDict', 'outputs.NgwafWorkspaceRuleAction']]]]] = None,
+                 conditions: pulumi.Input[Optional[Sequence[pulumi.Input[Union['NgwafWorkspaceRuleConditionArgs', 'NgwafWorkspaceRuleConditionArgsDict', 'outputs.NgwafWorkspaceRuleCondition']]]]] = None,
                  description: pulumi.Input[Optional[_builtins.str]] = None,
                  enabled: pulumi.Input[Optional[_builtins.bool]] = None,
-                 group_conditions: pulumi.Input[Optional[Sequence[pulumi.Input[Union['NgwafWorkspaceRuleGroupConditionArgs', 'NgwafWorkspaceRuleGroupConditionArgsDict']]]]] = None,
+                 group_conditions: pulumi.Input[Optional[Sequence[pulumi.Input[Union['NgwafWorkspaceRuleGroupConditionArgs', 'NgwafWorkspaceRuleGroupConditionArgsDict', 'outputs.NgwafWorkspaceRuleGroupCondition']]]]] = None,
                  group_operator: pulumi.Input[Optional[_builtins.str]] = None,
-                 multival_conditions: pulumi.Input[Optional[Sequence[pulumi.Input[Union['NgwafWorkspaceRuleMultivalConditionArgs', 'NgwafWorkspaceRuleMultivalConditionArgsDict']]]]] = None,
-                 rate_limit: pulumi.Input[Optional[Union['NgwafWorkspaceRuleRateLimitArgs', 'NgwafWorkspaceRuleRateLimitArgsDict']]] = None,
+                 multival_conditions: pulumi.Input[Optional[Sequence[pulumi.Input[Union['NgwafWorkspaceRuleMultivalConditionArgs', 'NgwafWorkspaceRuleMultivalConditionArgsDict', 'outputs.NgwafWorkspaceRuleMultivalCondition']]]]] = None,
+                 rate_limit: pulumi.Input[Optional[Union['NgwafWorkspaceRuleRateLimitArgs', 'NgwafWorkspaceRuleRateLimitArgsDict', 'outputs.NgwafWorkspaceRuleRateLimit']]] = None,
                  request_logging: pulumi.Input[Optional[_builtins.str]] = None,
                  type: pulumi.Input[Optional[_builtins.str]] = None,
                  workspace_id: pulumi.Input[Optional[_builtins.str]] = None,
@@ -697,14 +697,14 @@ class NgwafWorkspaceRule(pulumi.CustomResource):
 
         :param str resource_name: The name of the resource.
         :param pulumi.ResourceOptions opts: Options for the resource.
-        :param pulumi.Input[Sequence[pulumi.Input[Union['NgwafWorkspaceRuleActionArgs', 'NgwafWorkspaceRuleActionArgsDict']]]] actions: List of actions to perform when the rule matches.
-        :param pulumi.Input[Sequence[pulumi.Input[Union['NgwafWorkspaceRuleConditionArgs', 'NgwafWorkspaceRuleConditionArgsDict']]]] conditions: Flat list of individual conditions. Each must include `field`, `operator`, and `value`.
+        :param pulumi.Input[Sequence[pulumi.Input[Union['NgwafWorkspaceRuleActionArgs', 'NgwafWorkspaceRuleActionArgsDict', 'outputs.NgwafWorkspaceRuleAction']]]] actions: List of actions to perform when the rule matches.
+        :param pulumi.Input[Sequence[pulumi.Input[Union['NgwafWorkspaceRuleConditionArgs', 'NgwafWorkspaceRuleConditionArgsDict', 'outputs.NgwafWorkspaceRuleCondition']]]] conditions: Flat list of individual conditions. Each must include `field`, `operator`, and `value`.
         :param pulumi.Input[_builtins.str] description: The description of the rule.
         :param pulumi.Input[_builtins.bool] enabled: Whether the rule is currently enabled.
-        :param pulumi.Input[Sequence[pulumi.Input[Union['NgwafWorkspaceRuleGroupConditionArgs', 'NgwafWorkspaceRuleGroupConditionArgsDict']]]] group_conditions: List of grouped conditions with nested logic. Each group must define a `group_operator` and at least one condition or multival*condition.
+        :param pulumi.Input[Sequence[pulumi.Input[Union['NgwafWorkspaceRuleGroupConditionArgs', 'NgwafWorkspaceRuleGroupConditionArgsDict', 'outputs.NgwafWorkspaceRuleGroupCondition']]]] group_conditions: List of grouped conditions with nested logic. Each group must define a `group_operator` and at least one condition or multival*condition.
         :param pulumi.Input[_builtins.str] group_operator: Logical operator to apply to group conditions. Accepted values are `any` and `all`.
-        :param pulumi.Input[Sequence[pulumi.Input[Union['NgwafWorkspaceRuleMultivalConditionArgs', 'NgwafWorkspaceRuleMultivalConditionArgsDict']]]] multival_conditions: List of multival conditions with nested logic. Each multival list must define a `field, operator, group_operator` and at least one condition.
-        :param pulumi.Input[Union['NgwafWorkspaceRuleRateLimitArgs', 'NgwafWorkspaceRuleRateLimitArgsDict']] rate_limit: Block specifically for rate*limit rules.
+        :param pulumi.Input[Sequence[pulumi.Input[Union['NgwafWorkspaceRuleMultivalConditionArgs', 'NgwafWorkspaceRuleMultivalConditionArgsDict', 'outputs.NgwafWorkspaceRuleMultivalCondition']]]] multival_conditions: List of multival conditions with nested logic. Each multival list must define a `field, operator, group_operator` and at least one condition.
+        :param pulumi.Input[Union['NgwafWorkspaceRuleRateLimitArgs', 'NgwafWorkspaceRuleRateLimitArgsDict', 'outputs.NgwafWorkspaceRuleRateLimit']] rate_limit: Block specifically for rate*limit rules.
         :param pulumi.Input[_builtins.str] request_logging: Logging behavior for matching requests. Accepted values are `sampled` and `none`.
         :param pulumi.Input[_builtins.str] type: The type of the rule. Accepted values are `request`, `signal`, `rate_limit`, and `templated_signal`.
         :param pulumi.Input[_builtins.str] workspace_id: The ID of the workspace.
@@ -1024,14 +1024,14 @@ class NgwafWorkspaceRule(pulumi.CustomResource):
     def _internal_init(__self__,
                  resource_name: str,
                  opts: Optional[pulumi.ResourceOptions] = None,
-                 actions: pulumi.Input[Optional[Sequence[pulumi.Input[Union['NgwafWorkspaceRuleActionArgs', 'NgwafWorkspaceRuleActionArgsDict']]]]] = None,
-                 conditions: pulumi.Input[Optional[Sequence[pulumi.Input[Union['NgwafWorkspaceRuleConditionArgs', 'NgwafWorkspaceRuleConditionArgsDict']]]]] = None,
+                 actions: pulumi.Input[Optional[Sequence[pulumi.Input[Union['NgwafWorkspaceRuleActionArgs', 'NgwafWorkspaceRuleActionArgsDict', 'outputs.NgwafWorkspaceRuleAction']]]]] = None,
+                 conditions: pulumi.Input[Optional[Sequence[pulumi.Input[Union['NgwafWorkspaceRuleConditionArgs', 'NgwafWorkspaceRuleConditionArgsDict', 'outputs.NgwafWorkspaceRuleCondition']]]]] = None,
                  description: pulumi.Input[Optional[_builtins.str]] = None,
                  enabled: pulumi.Input[Optional[_builtins.bool]] = None,
-                 group_conditions: pulumi.Input[Optional[Sequence[pulumi.Input[Union['NgwafWorkspaceRuleGroupConditionArgs', 'NgwafWorkspaceRuleGroupConditionArgsDict']]]]] = None,
+                 group_conditions: pulumi.Input[Optional[Sequence[pulumi.Input[Union['NgwafWorkspaceRuleGroupConditionArgs', 'NgwafWorkspaceRuleGroupConditionArgsDict', 'outputs.NgwafWorkspaceRuleGroupCondition']]]]] = None,
                  group_operator: pulumi.Input[Optional[_builtins.str]] = None,
-                 multival_conditions: pulumi.Input[Optional[Sequence[pulumi.Input[Union['NgwafWorkspaceRuleMultivalConditionArgs', 'NgwafWorkspaceRuleMultivalConditionArgsDict']]]]] = None,
-                 rate_limit: pulumi.Input[Optional[Union['NgwafWorkspaceRuleRateLimitArgs', 'NgwafWorkspaceRuleRateLimitArgsDict']]] = None,
+                 multival_conditions: pulumi.Input[Optional[Sequence[pulumi.Input[Union['NgwafWorkspaceRuleMultivalConditionArgs', 'NgwafWorkspaceRuleMultivalConditionArgsDict', 'outputs.NgwafWorkspaceRuleMultivalCondition']]]]] = None,
+                 rate_limit: pulumi.Input[Optional[Union['NgwafWorkspaceRuleRateLimitArgs', 'NgwafWorkspaceRuleRateLimitArgsDict', 'outputs.NgwafWorkspaceRuleRateLimit']]] = None,
                  request_logging: pulumi.Input[Optional[_builtins.str]] = None,
                  type: pulumi.Input[Optional[_builtins.str]] = None,
                  workspace_id: pulumi.Input[Optional[_builtins.str]] = None,
@@ -1075,14 +1075,14 @@ class NgwafWorkspaceRule(pulumi.CustomResource):
     def get(resource_name: str,
             id: pulumi.Input[str],
             opts: Optional[pulumi.ResourceOptions] = None,
-            actions: pulumi.Input[Optional[Sequence[pulumi.Input[Union['NgwafWorkspaceRuleActionArgs', 'NgwafWorkspaceRuleActionArgsDict']]]]] = None,
-            conditions: pulumi.Input[Optional[Sequence[pulumi.Input[Union['NgwafWorkspaceRuleConditionArgs', 'NgwafWorkspaceRuleConditionArgsDict']]]]] = None,
+            actions: pulumi.Input[Optional[Sequence[pulumi.Input[Union['NgwafWorkspaceRuleActionArgs', 'NgwafWorkspaceRuleActionArgsDict', 'outputs.NgwafWorkspaceRuleAction']]]]] = None,
+            conditions: pulumi.Input[Optional[Sequence[pulumi.Input[Union['NgwafWorkspaceRuleConditionArgs', 'NgwafWorkspaceRuleConditionArgsDict', 'outputs.NgwafWorkspaceRuleCondition']]]]] = None,
             description: pulumi.Input[Optional[_builtins.str]] = None,
             enabled: pulumi.Input[Optional[_builtins.bool]] = None,
-            group_conditions: pulumi.Input[Optional[Sequence[pulumi.Input[Union['NgwafWorkspaceRuleGroupConditionArgs', 'NgwafWorkspaceRuleGroupConditionArgsDict']]]]] = None,
+            group_conditions: pulumi.Input[Optional[Sequence[pulumi.Input[Union['NgwafWorkspaceRuleGroupConditionArgs', 'NgwafWorkspaceRuleGroupConditionArgsDict', 'outputs.NgwafWorkspaceRuleGroupCondition']]]]] = None,
             group_operator: pulumi.Input[Optional[_builtins.str]] = None,
-            multival_conditions: pulumi.Input[Optional[Sequence[pulumi.Input[Union['NgwafWorkspaceRuleMultivalConditionArgs', 'NgwafWorkspaceRuleMultivalConditionArgsDict']]]]] = None,
-            rate_limit: pulumi.Input[Optional[Union['NgwafWorkspaceRuleRateLimitArgs', 'NgwafWorkspaceRuleRateLimitArgsDict']]] = None,
+            multival_conditions: pulumi.Input[Optional[Sequence[pulumi.Input[Union['NgwafWorkspaceRuleMultivalConditionArgs', 'NgwafWorkspaceRuleMultivalConditionArgsDict', 'outputs.NgwafWorkspaceRuleMultivalCondition']]]]] = None,
+            rate_limit: pulumi.Input[Optional[Union['NgwafWorkspaceRuleRateLimitArgs', 'NgwafWorkspaceRuleRateLimitArgsDict', 'outputs.NgwafWorkspaceRuleRateLimit']]] = None,
             request_logging: pulumi.Input[Optional[_builtins.str]] = None,
             type: pulumi.Input[Optional[_builtins.str]] = None,
             workspace_id: pulumi.Input[Optional[_builtins.str]] = None) -> 'NgwafWorkspaceRule':
@@ -1093,14 +1093,14 @@ class NgwafWorkspaceRule(pulumi.CustomResource):
         :param str resource_name: The unique name of the resulting resource.
         :param pulumi.Input[str] id: The unique provider ID of the resource to lookup.
         :param pulumi.ResourceOptions opts: Options for the resource.
-        :param pulumi.Input[Sequence[pulumi.Input[Union['NgwafWorkspaceRuleActionArgs', 'NgwafWorkspaceRuleActionArgsDict']]]] actions: List of actions to perform when the rule matches.
-        :param pulumi.Input[Sequence[pulumi.Input[Union['NgwafWorkspaceRuleConditionArgs', 'NgwafWorkspaceRuleConditionArgsDict']]]] conditions: Flat list of individual conditions. Each must include `field`, `operator`, and `value`.
+        :param pulumi.Input[Sequence[pulumi.Input[Union['NgwafWorkspaceRuleActionArgs', 'NgwafWorkspaceRuleActionArgsDict', 'outputs.NgwafWorkspaceRuleAction']]]] actions: List of actions to perform when the rule matches.
+        :param pulumi.Input[Sequence[pulumi.Input[Union['NgwafWorkspaceRuleConditionArgs', 'NgwafWorkspaceRuleConditionArgsDict', 'outputs.NgwafWorkspaceRuleCondition']]]] conditions: Flat list of individual conditions. Each must include `field`, `operator`, and `value`.
         :param pulumi.Input[_builtins.str] description: The description of the rule.
         :param pulumi.Input[_builtins.bool] enabled: Whether the rule is currently enabled.
-        :param pulumi.Input[Sequence[pulumi.Input[Union['NgwafWorkspaceRuleGroupConditionArgs', 'NgwafWorkspaceRuleGroupConditionArgsDict']]]] group_conditions: List of grouped conditions with nested logic. Each group must define a `group_operator` and at least one condition or multival*condition.
+        :param pulumi.Input[Sequence[pulumi.Input[Union['NgwafWorkspaceRuleGroupConditionArgs', 'NgwafWorkspaceRuleGroupConditionArgsDict', 'outputs.NgwafWorkspaceRuleGroupCondition']]]] group_conditions: List of grouped conditions with nested logic. Each group must define a `group_operator` and at least one condition or multival*condition.
         :param pulumi.Input[_builtins.str] group_operator: Logical operator to apply to group conditions. Accepted values are `any` and `all`.
-        :param pulumi.Input[Sequence[pulumi.Input[Union['NgwafWorkspaceRuleMultivalConditionArgs', 'NgwafWorkspaceRuleMultivalConditionArgsDict']]]] multival_conditions: List of multival conditions with nested logic. Each multival list must define a `field, operator, group_operator` and at least one condition.
-        :param pulumi.Input[Union['NgwafWorkspaceRuleRateLimitArgs', 'NgwafWorkspaceRuleRateLimitArgsDict']] rate_limit: Block specifically for rate*limit rules.
+        :param pulumi.Input[Sequence[pulumi.Input[Union['NgwafWorkspaceRuleMultivalConditionArgs', 'NgwafWorkspaceRuleMultivalConditionArgsDict', 'outputs.NgwafWorkspaceRuleMultivalCondition']]]] multival_conditions: List of multival conditions with nested logic. Each multival list must define a `field, operator, group_operator` and at least one condition.
+        :param pulumi.Input[Union['NgwafWorkspaceRuleRateLimitArgs', 'NgwafWorkspaceRuleRateLimitArgsDict', 'outputs.NgwafWorkspaceRuleRateLimit']] rate_limit: Block specifically for rate*limit rules.
         :param pulumi.Input[_builtins.str] request_logging: Logging behavior for matching requests. Accepted values are `sampled` and `none`.
         :param pulumi.Input[_builtins.str] type: The type of the rule. Accepted values are `request`, `signal`, `rate_limit`, and `templated_signal`.
         :param pulumi.Input[_builtins.str] workspace_id: The ID of the workspace.

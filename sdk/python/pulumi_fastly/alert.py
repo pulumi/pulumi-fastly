@@ -296,8 +296,8 @@ class Alert(pulumi.CustomResource):
                  resource_name: str,
                  opts: Optional[pulumi.ResourceOptions] = None,
                  description: pulumi.Input[Optional[_builtins.str]] = None,
-                 dimensions: pulumi.Input[Optional[Union['AlertDimensionsArgs', 'AlertDimensionsArgsDict']]] = None,
-                 evaluation_strategy: pulumi.Input[Optional[Union['AlertEvaluationStrategyArgs', 'AlertEvaluationStrategyArgsDict']]] = None,
+                 dimensions: pulumi.Input[Optional[Union['AlertDimensionsArgs', 'AlertDimensionsArgsDict', 'outputs.AlertDimensions']]] = None,
+                 evaluation_strategy: pulumi.Input[Optional[Union['AlertEvaluationStrategyArgs', 'AlertEvaluationStrategyArgsDict', 'outputs.AlertEvaluationStrategy']]] = None,
                  integration_ids: pulumi.Input[Optional[Sequence[pulumi.Input[_builtins.str]]]] = None,
                  metric: pulumi.Input[Optional[_builtins.str]] = None,
                  name: pulumi.Input[Optional[_builtins.str]] = None,
@@ -350,8 +350,8 @@ class Alert(pulumi.CustomResource):
         :param str resource_name: The name of the resource.
         :param pulumi.ResourceOptions opts: Options for the resource.
         :param pulumi.Input[_builtins.str] description: Additional text that is included in the alert notification.
-        :param pulumi.Input[Union['AlertDimensionsArgs', 'AlertDimensionsArgsDict']] dimensions: More filters depending on the source type.
-        :param pulumi.Input[Union['AlertEvaluationStrategyArgs', 'AlertEvaluationStrategyArgsDict']] evaluation_strategy: Criteria on how to alert.
+        :param pulumi.Input[Union['AlertDimensionsArgs', 'AlertDimensionsArgsDict', 'outputs.AlertDimensions']] dimensions: More filters depending on the source type.
+        :param pulumi.Input[Union['AlertEvaluationStrategyArgs', 'AlertEvaluationStrategyArgsDict', 'outputs.AlertEvaluationStrategy']] evaluation_strategy: Criteria on how to alert.
         :param pulumi.Input[Sequence[pulumi.Input[_builtins.str]]] integration_ids: List of integrations used to notify when alert fires.
         :param pulumi.Input[_builtins.str] metric: The metric name to alert on for a specific source: [domains](https://developer.fastly.com/reference/api/metrics-stats/domain-inspector/historical), [origins](https://developer.fastly.com/reference/api/metrics-stats/origin-inspector/historical), or [stats](https://developer.fastly.com/reference/api/metrics-stats/historical-stats).
         :param pulumi.Input[_builtins.str] name: The name of the alert.
@@ -423,8 +423,8 @@ class Alert(pulumi.CustomResource):
                  resource_name: str,
                  opts: Optional[pulumi.ResourceOptions] = None,
                  description: pulumi.Input[Optional[_builtins.str]] = None,
-                 dimensions: pulumi.Input[Optional[Union['AlertDimensionsArgs', 'AlertDimensionsArgsDict']]] = None,
-                 evaluation_strategy: pulumi.Input[Optional[Union['AlertEvaluationStrategyArgs', 'AlertEvaluationStrategyArgsDict']]] = None,
+                 dimensions: pulumi.Input[Optional[Union['AlertDimensionsArgs', 'AlertDimensionsArgsDict', 'outputs.AlertDimensions']]] = None,
+                 evaluation_strategy: pulumi.Input[Optional[Union['AlertEvaluationStrategyArgs', 'AlertEvaluationStrategyArgsDict', 'outputs.AlertEvaluationStrategy']]] = None,
                  integration_ids: pulumi.Input[Optional[Sequence[pulumi.Input[_builtins.str]]]] = None,
                  metric: pulumi.Input[Optional[_builtins.str]] = None,
                  name: pulumi.Input[Optional[_builtins.str]] = None,
@@ -464,8 +464,8 @@ class Alert(pulumi.CustomResource):
             id: pulumi.Input[str],
             opts: Optional[pulumi.ResourceOptions] = None,
             description: pulumi.Input[Optional[_builtins.str]] = None,
-            dimensions: pulumi.Input[Optional[Union['AlertDimensionsArgs', 'AlertDimensionsArgsDict']]] = None,
-            evaluation_strategy: pulumi.Input[Optional[Union['AlertEvaluationStrategyArgs', 'AlertEvaluationStrategyArgsDict']]] = None,
+            dimensions: pulumi.Input[Optional[Union['AlertDimensionsArgs', 'AlertDimensionsArgsDict', 'outputs.AlertDimensions']]] = None,
+            evaluation_strategy: pulumi.Input[Optional[Union['AlertEvaluationStrategyArgs', 'AlertEvaluationStrategyArgsDict', 'outputs.AlertEvaluationStrategy']]] = None,
             integration_ids: pulumi.Input[Optional[Sequence[pulumi.Input[_builtins.str]]]] = None,
             metric: pulumi.Input[Optional[_builtins.str]] = None,
             name: pulumi.Input[Optional[_builtins.str]] = None,
@@ -479,8 +479,8 @@ class Alert(pulumi.CustomResource):
         :param pulumi.Input[str] id: The unique provider ID of the resource to lookup.
         :param pulumi.ResourceOptions opts: Options for the resource.
         :param pulumi.Input[_builtins.str] description: Additional text that is included in the alert notification.
-        :param pulumi.Input[Union['AlertDimensionsArgs', 'AlertDimensionsArgsDict']] dimensions: More filters depending on the source type.
-        :param pulumi.Input[Union['AlertEvaluationStrategyArgs', 'AlertEvaluationStrategyArgsDict']] evaluation_strategy: Criteria on how to alert.
+        :param pulumi.Input[Union['AlertDimensionsArgs', 'AlertDimensionsArgsDict', 'outputs.AlertDimensions']] dimensions: More filters depending on the source type.
+        :param pulumi.Input[Union['AlertEvaluationStrategyArgs', 'AlertEvaluationStrategyArgsDict', 'outputs.AlertEvaluationStrategy']] evaluation_strategy: Criteria on how to alert.
         :param pulumi.Input[Sequence[pulumi.Input[_builtins.str]]] integration_ids: List of integrations used to notify when alert fires.
         :param pulumi.Input[_builtins.str] metric: The metric name to alert on for a specific source: [domains](https://developer.fastly.com/reference/api/metrics-stats/domain-inspector/historical), [origins](https://developer.fastly.com/reference/api/metrics-stats/origin-inspector/historical), or [stats](https://developer.fastly.com/reference/api/metrics-stats/historical-stats).
         :param pulumi.Input[_builtins.str] name: The name of the alert.

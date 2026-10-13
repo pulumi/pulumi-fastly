@@ -23,7 +23,7 @@ import * as utilities from "./utilities";
  *         name: "tf-test-backend-1",
  *     }],
  * });
- * // Optional: create a tag so the data source returns a predictable result
+ * // Optional: create a tag so the function returns a predictable result
  * const example = new fastly.ApiSecurityOperationTag("example", {
  *     serviceId: svc1.id,
  *     name: "example-tag",
@@ -91,7 +91,7 @@ export interface GetApiSecurityOperationTagsResult {
  *         name: "tf-test-backend-1",
  *     }],
  * });
- * // Optional: create a tag so the data source returns a predictable result
+ * // Optional: create a tag so the function returns a predictable result
  * const example = new fastly.ApiSecurityOperationTag("example", {
  *     serviceId: svc1.id,
  *     name: "example-tag",

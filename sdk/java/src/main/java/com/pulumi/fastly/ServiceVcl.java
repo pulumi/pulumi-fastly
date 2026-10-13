@@ -214,7 +214,7 @@ import javax.annotation.Nullable;
  *             .build());
  * 
  *         var websiteConfig = new S3BucketWebsiteConfiguration("websiteConfig", S3BucketWebsiteConfigurationArgs.builder()
- *             .bucket(websiteBucket.id())
+ *             .bucket(websiteBucket.get("id"))
  *             .indexDocument(Arrays.asList(Map.of("suffix", "index.html")))
  *             .errorDocument(Arrays.asList(Map.of("key", "error.html")))
  *             .build());

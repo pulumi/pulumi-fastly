@@ -46,8 +46,8 @@ import javax.annotation.Nullable;
  * 
  *     public static void stack(Context ctx) {
  *         var example = new DomainServiceLink("example", DomainServiceLinkArgs.builder()
- *             .domainId(exampleFastlyDomain.id())
- *             .serviceId(exampleFastlyServiceVcl.id())
+ *             .domainId(exampleFastlyDomain.get("id"))
+ *             .serviceId(exampleFastlyServiceVcl.get("id"))
  *             .build());
  * 
  *     }

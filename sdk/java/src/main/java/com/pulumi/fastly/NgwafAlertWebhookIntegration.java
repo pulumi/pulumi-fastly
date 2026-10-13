@@ -47,7 +47,7 @@ import javax.annotation.Nullable;
  *         var demoWebhookAlert = new NgwafAlertWebhookIntegration("demoWebhookAlert", NgwafAlertWebhookIntegrationArgs.builder()
  *             .description("Some Description")
  *             .webhook("https://example.com/webhooks/my-service")
- *             .workspaceId(demo.id())
+ *             .workspaceId(demo.get("id"))
  *             .build());
  * 
  *     }

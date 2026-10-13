@@ -40,7 +40,7 @@ import (
 //			if err != nil {
 //				return err
 //			}
-//			// Optional: create a tag so the data source returns a predictable result
+//			// Optional: create a tag so the function returns a predictable result
 //			_, err = fastly.NewApiSecurityOperationTag(ctx, "example", &fastly.ApiSecurityOperationTagArgs{
 //				ServiceId:   svc1.ID().ToIDOutput().ToStringOutput(),
 //				Name:        pulumi.String("example-tag"),

@@ -48,7 +48,7 @@ import javax.annotation.Nullable;
  *             .action("block")
  *             .enabled(true)
  *             .virtualPatchId("CVE-2017-5638")
- *             .workspaceId(demoFastlyNgwafWorkspace.id())
+ *             .workspaceId(demoFastlyNgwafWorkspace.get("id"))
  *             .build());
  * 
  *     }

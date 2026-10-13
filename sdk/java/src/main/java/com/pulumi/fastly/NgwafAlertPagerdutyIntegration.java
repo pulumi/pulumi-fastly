@@ -47,7 +47,7 @@ import javax.annotation.Nullable;
  *         var demoPagerdutyAlert = new NgwafAlertPagerdutyIntegration("demoPagerdutyAlert", NgwafAlertPagerdutyIntegrationArgs.builder()
  *             .description("Some Description")
  *             .key("1234567890abcdef1234567890abcdef")
- *             .workspaceId(demo.id())
+ *             .workspaceId(demo.get("id"))
  *             .build());
  * 
  *     }

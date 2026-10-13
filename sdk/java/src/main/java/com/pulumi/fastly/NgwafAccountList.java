@@ -63,7 +63,7 @@ import javax.annotation.Nullable;
  * 
  *         // Example usage with a rule. 
  *         var exampleNgwafWorkspaceRule = new NgwafWorkspaceRule("exampleNgwafWorkspaceRule", NgwafWorkspaceRuleArgs.builder()
- *             .workspaceId(exampleFastlyNgwafWorkspace.id())
+ *             .workspaceId(exampleFastlyNgwafWorkspace.get("id"))
  *             .type("request")
  *             .description("Example usage of a workspace list rule")
  *             .enabled(true)

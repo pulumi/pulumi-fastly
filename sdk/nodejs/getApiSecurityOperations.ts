@@ -23,7 +23,7 @@ import * as utilities from "./utilities";
  *         name: "tf-test-backend-1",
  *     }],
  * });
- * // Optional: create an operation (so the data source returns something predictable)
+ * // Optional: create an operation (so the function returns something predictable)
  * const example = new fastly.ApiSecurityOperation("example", {
  *     serviceId: svc1.id,
  *     method: "GET",
@@ -132,7 +132,7 @@ export interface GetApiSecurityOperationsResult {
  *         name: "tf-test-backend-1",
  *     }],
  * });
- * // Optional: create an operation (so the data source returns something predictable)
+ * // Optional: create an operation (so the function returns something predictable)
  * const example = new fastly.ApiSecurityOperation("example", {
  *     serviceId: svc1.id,
  *     method: "GET",

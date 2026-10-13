@@ -48,7 +48,7 @@ import javax.annotation.Nullable;
  *             .name("example.com.")
  *             .description("My secondary DNS zone")
  *             .xfrConfigInbound(DnsZoneXfrConfigInboundArgs.builder()
- *                 .inboundTsigKeyId(exampleFastlyTsigKey.id())
+ *                 .inboundTsigKeyId(exampleFastlyTsigKey.get("id"))
  *                 .primaries(                
  *                     DnsZoneXfrConfigInboundPrimaryArgs.builder()
  *                         .address("192.0.2.1")

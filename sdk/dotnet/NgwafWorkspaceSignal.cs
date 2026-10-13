@@ -37,7 +37,7 @@ namespace Pulumi.Fastly
     ///             "X-Real-IP",
     ///         },
     ///         DefaultBlockingResponseCode = 429,
-    ///         AttackSignalThresholds = null,
+    ///         AttackSignalThresholds = new() { },
     ///     });
     /// 
     ///     var exampleNgwafWorkspaceSignal = new Fastly.NgwafWorkspaceSignal("example", new()

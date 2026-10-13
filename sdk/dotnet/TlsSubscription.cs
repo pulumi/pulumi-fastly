@@ -142,7 +142,7 @@ namespace Pulumi.Fastly
     ///         },
     ///     });
     /// 
-    ///     // This data source lists all available configuration objects.
+    ///     // This function lists all available configuration objects.
     ///     // It uses a `default` attribute to narrow down the list to just one configuration object.
     ///     // If the filtered list has a length that is not exactly one element, you'll see an error returned.
     ///     // The single TLS configuration is then returned and can be referenced by other resources (see aws_route53_record below).
@@ -150,7 +150,7 @@ namespace Pulumi.Fastly
     ///     // IMPORTANT: Not all customers will have a 'default' configuration.
     ///     // If you have issues filtering with `default = true`, then you may need another attribute.
     ///     // Refer to the fastly_tls_configuration documentation for available attributes:
-    ///     // https://registry.terraform.io/providers/fastly/fastly/latest/docs/data-sources/tls_configuration#optional
+    ///     // https://registry.pulumi.io/providers/fastly/fastly/latest/docs/data-sources/tls_configuration#optional
     ///     var defaultTls = Fastly.GetTlsConfiguration.Invoke(new()
     ///     {
     ///         Default = true,
@@ -285,7 +285,7 @@ namespace Pulumi.Fastly
     ///         },
     ///     });
     /// 
-    ///     // This data source lists all available configuration objects.
+    ///     // This function lists all available configuration objects.
     ///     // It uses a `default` attribute to narrow down the list to just one configuration object.
     ///     // If the filtered list has a length that is not exactly one element, you'll see an error returned.
     ///     // The single TLS configuration is then returned and can be referenced by other resources (see aws_route53_record below).
@@ -293,7 +293,7 @@ namespace Pulumi.Fastly
     ///     // IMPORTANT: Not all customers will have a 'default' configuration.
     ///     // If you have issues filtering with `default = true`, then you may need another attribute.
     ///     // Refer to the fastly_tls_configuration documentation for available attributes:
-    ///     // https://registry.terraform.io/providers/fastly/fastly/latest/docs/data-sources/tls_configuration#optional
+    ///     // https://registry.pulumi.io/providers/fastly/fastly/latest/docs/data-sources/tls_configuration#optional
     ///     var defaultTls = Fastly.GetTlsConfiguration.Invoke(new()
     ///     {
     ///         Default = true,

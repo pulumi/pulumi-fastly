@@ -104,20 +104,20 @@ namespace Pulumi.Fastly
     /// 
     ///     var aclEntries = new[]
     ///     {
-    ///         
+    ///         new Dictionary&lt;string, object?&gt;
     ///         {
-    ///             { "ip", "1.2.3.4" },
-    ///             { "comment", "acl_entry_1" },
+    ///             ["ip"] = "1.2.3.4",
+    ///             ["comment"] = "acl_entry_1",
     ///         },
-    ///         
+    ///         new Dictionary&lt;string, object?&gt;
     ///         {
-    ///             { "ip", "1.2.3.5" },
-    ///             { "comment", "acl_entry_2" },
+    ///             ["ip"] = "1.2.3.5",
+    ///             ["comment"] = "acl_entry_2",
     ///         },
-    ///         
+    ///         new Dictionary&lt;string, object?&gt;
     ///         {
-    ///             { "ip", "1.2.3.6" },
-    ///             { "comment", "acl_entry_3" },
+    ///             ["ip"] = "1.2.3.6",
+    ///             ["comment"] = "acl_entry_3",
     ///         },
     ///     };
     /// 
@@ -279,7 +279,7 @@ namespace Pulumi.Fastly
     ///     var entries = new List&lt;Fastly.ServiceACLEntries&gt;();
     ///     foreach (var range in .ToDictionary(item =&gt; {
     ///         var d = item.Value;
-    ///         return d.Name;
+    ///         return d.Name.ToString(System.Globalization.CultureInfo.InvariantCulture);
     ///     }, item =&gt; {
     ///         var d = item.Value;
     ///         return d;

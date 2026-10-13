@@ -118,7 +118,7 @@ import (
 //				}, nil)
 //			}
 //			// The activation was created automatically by Fastly when the certificate was
-//			// issued; this data source reads it (e.g. to consume dns_records/IDs).
+//			// issued; this function reads it (e.g. to consume dns_records/IDs).
 //			_ := forResult0
 //			forResult1 := pulumi.StringMap{}
 //			forRange1 := exampleTlsSubscriptionValidation

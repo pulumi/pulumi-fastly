@@ -38,7 +38,7 @@ namespace Pulumi.Fastly
         ///         },
         ///     });
         /// 
-        ///     // Optional: create a tag so the data source returns a predictable result
+        ///     // Optional: create a tag so the function returns a predictable result
         ///     var example = new Fastly.ApiSecurityOperationTag("example", new()
         ///     {
         ///         ServiceId = svc1.Id,
@@ -89,7 +89,7 @@ namespace Pulumi.Fastly
         ///         },
         ///     });
         /// 
-        ///     // Optional: create a tag so the data source returns a predictable result
+        ///     // Optional: create a tag so the function returns a predictable result
         ///     var example = new Fastly.ApiSecurityOperationTag("example", new()
         ///     {
         ///         ServiceId = svc1.Id,
@@ -140,7 +140,7 @@ namespace Pulumi.Fastly
         ///         },
         ///     });
         /// 
-        ///     // Optional: create a tag so the data source returns a predictable result
+        ///     // Optional: create a tag so the function returns a predictable result
         ///     var example = new Fastly.ApiSecurityOperationTag("example", new()
         ///     {
         ///         ServiceId = svc1.Id,

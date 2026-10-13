@@ -423,12 +423,12 @@ class TlsSubscription(pulumi.CustomResource):
                     ttl=60,
                     opts = pulumi.ResourceOptions(depends_on=[example_tls_subscription]))
 
-        example_tls_subscription.domains.apply(lambda resolved_outputs: create_domain_validation({domain: example_tls_subscription.managed_dns_challenges.apply(lambda managed_dns_challenges: [obj for obj in managed_dns_challenges if obj.record_name == f"_acme-challenge.{domain}"])[0] for domain in resolved_outputs['domains']}))
+        example_tls_subscription.domains.apply(lambda resolved_outputs: create_domain_validation({domain: example_tls_subscription.managed_dns_challenges.apply(lambda managed_dns_challenges: [obj for obj in managed_dns_challenges if obj.record_name == f"_acme-challenge.{domain}"])[0] for domain in resolved_outputs}))
         # This is a resource that other resources can depend on if they require the certificate to be issued.
         # NOTE: Internally the resource keeps retrying `GetTLSSubscription` until no error is returned (or the configured timeout is reached).
         example_tls_subscription_validation = fastly.TlsSubscriptionValidation("example", subscription_id=example_tls_subscription.id,
         opts = pulumi.ResourceOptions(depends_on=[domain_validation]))
-        # This data source lists all available configuration objects.
+        # This function lists all available configuration objects.
         # It uses a `default` attribute to narrow down the list to just one configuration object.
         # If the filtered list has a length that is not exactly one element, you'll see an error returned.
         # The single TLS configuration is then returned and can be referenced by other resources (see aws_route53_record below).
@@ -436,7 +436,7 @@ class TlsSubscription(pulumi.CustomResource):
         # IMPORTANT: Not all customers will have a 'default' configuration.
         # If you have issues filtering with `default = true`, then you may need another attribute.
         # Refer to the fastly_tls_configuration documentation for available attributes:
-        # https://registry.terraform.io/providers/fastly/fastly/latest/docs/data-sources/tls_configuration#optional
+        # https://registry.pulumi.io/providers/fastly/fastly/latest/docs/data-sources/tls_configuration#optional
         default_tls = fastly.get_tls_configuration(default=True)
         # Once validation is complete and we've retrieved the TLS configuration data, we can create multiple subdomain records.
         subdomain: list[aws.Route53Record] = []
@@ -502,12 +502,12 @@ class TlsSubscription(pulumi.CustomResource):
             search="*.",
             replace="")["result"]): example_tls_subscription.managed_dns_challenges.apply(lambda managed_dns_challenges: [obj for obj in managed_dns_challenges if obj.record_name == f"_acme-challenge.{std.replace(text=domain,
             search='*.',
-            replace='')['result']}"])[0] for domain in resolved_outputs['domains']}))
+            replace='')['result']}"])[0] for domain in resolved_outputs}))
         # This is a resource that other resources can depend on if they require the certificate to be issued.
         # NOTE: Internally the resource keeps retrying `GetTLSSubscription` until no error is returned (or the configured timeout is reached).
         example_tls_subscription_validation = fastly.TlsSubscriptionValidation("example", subscription_id=example_tls_subscription.id,
         opts = pulumi.ResourceOptions(depends_on=[domain_validation]))
-        # This data source lists all available configuration objects.
+        # This function lists all available configuration objects.
         # It uses a `default` attribute to narrow down the list to just one configuration object.
         # If the filtered list has a length that is not exactly one element, you'll see an error returned.
         # The single TLS configuration is then returned and can be referenced by other resources (see aws_route53_record below).
@@ -515,7 +515,7 @@ class TlsSubscription(pulumi.CustomResource):
         # IMPORTANT: Not all customers will have a 'default' configuration.
         # If you have issues filtering with `default = true`, then you may need another attribute.
         # Refer to the fastly_tls_configuration documentation for available attributes:
-        # https://registry.terraform.io/providers/fastly/fastly/latest/docs/data-sources/tls_configuration#optional
+        # https://registry.pulumi.io/providers/fastly/fastly/latest/docs/data-sources/tls_configuration#optional
         default_tls = fastly.get_tls_configuration(default=True)
         # Once validation is complete and we've retrieved the TLS configuration data, we can create multiple records...
         apex = aws.Route53Record("apex",
@@ -625,12 +625,12 @@ class TlsSubscription(pulumi.CustomResource):
                     ttl=60,
                     opts = pulumi.ResourceOptions(depends_on=[example_tls_subscription]))
 
-        example_tls_subscription.domains.apply(lambda resolved_outputs: create_domain_validation({domain: example_tls_subscription.managed_dns_challenges.apply(lambda managed_dns_challenges: [obj for obj in managed_dns_challenges if obj.record_name == f"_acme-challenge.{domain}"])[0] for domain in resolved_outputs['domains']}))
+        example_tls_subscription.domains.apply(lambda resolved_outputs: create_domain_validation({domain: example_tls_subscription.managed_dns_challenges.apply(lambda managed_dns_challenges: [obj for obj in managed_dns_challenges if obj.record_name == f"_acme-challenge.{domain}"])[0] for domain in resolved_outputs}))
         # This is a resource that other resources can depend on if they require the certificate to be issued.
         # NOTE: Internally the resource keeps retrying `GetTLSSubscription` until no error is returned (or the configured timeout is reached).
         example_tls_subscription_validation = fastly.TlsSubscriptionValidation("example", subscription_id=example_tls_subscription.id,
         opts = pulumi.ResourceOptions(depends_on=[domain_validation]))
-        # This data source lists all available configuration objects.
+        # This function lists all available configuration objects.
         # It uses a `default` attribute to narrow down the list to just one configuration object.
         # If the filtered list has a length that is not exactly one element, you'll see an error returned.
         # The single TLS configuration is then returned and can be referenced by other resources (see aws_route53_record below).
@@ -638,7 +638,7 @@ class TlsSubscription(pulumi.CustomResource):
         # IMPORTANT: Not all customers will have a 'default' configuration.
         # If you have issues filtering with `default = true`, then you may need another attribute.
         # Refer to the fastly_tls_configuration documentation for available attributes:
-        # https://registry.terraform.io/providers/fastly/fastly/latest/docs/data-sources/tls_configuration#optional
+        # https://registry.pulumi.io/providers/fastly/fastly/latest/docs/data-sources/tls_configuration#optional
         default_tls = fastly.get_tls_configuration(default=True)
         # Once validation is complete and we've retrieved the TLS configuration data, we can create multiple subdomain records.
         subdomain: list[aws.Route53Record] = []
@@ -704,12 +704,12 @@ class TlsSubscription(pulumi.CustomResource):
             search="*.",
             replace="")["result"]): example_tls_subscription.managed_dns_challenges.apply(lambda managed_dns_challenges: [obj for obj in managed_dns_challenges if obj.record_name == f"_acme-challenge.{std.replace(text=domain,
             search='*.',
-            replace='')['result']}"])[0] for domain in resolved_outputs['domains']}))
+            replace='')['result']}"])[0] for domain in resolved_outputs}))
         # This is a resource that other resources can depend on if they require the certificate to be issued.
         # NOTE: Internally the resource keeps retrying `GetTLSSubscription` until no error is returned (or the configured timeout is reached).
         example_tls_subscription_validation = fastly.TlsSubscriptionValidation("example", subscription_id=example_tls_subscription.id,
         opts = pulumi.ResourceOptions(depends_on=[domain_validation]))
-        # This data source lists all available configuration objects.
+        # This function lists all available configuration objects.
         # It uses a `default` attribute to narrow down the list to just one configuration object.
         # If the filtered list has a length that is not exactly one element, you'll see an error returned.
         # The single TLS configuration is then returned and can be referenced by other resources (see aws_route53_record below).
@@ -717,7 +717,7 @@ class TlsSubscription(pulumi.CustomResource):
         # IMPORTANT: Not all customers will have a 'default' configuration.
         # If you have issues filtering with `default = true`, then you may need another attribute.
         # Refer to the fastly_tls_configuration documentation for available attributes:
-        # https://registry.terraform.io/providers/fastly/fastly/latest/docs/data-sources/tls_configuration#optional
+        # https://registry.pulumi.io/providers/fastly/fastly/latest/docs/data-sources/tls_configuration#optional
         default_tls = fastly.get_tls_configuration(default=True)
         # Once validation is complete and we've retrieved the TLS configuration data, we can create multiple records...
         apex = aws.Route53Record("apex",
@@ -810,8 +810,8 @@ class TlsSubscription(pulumi.CustomResource):
             force_destroy: pulumi.Input[Optional[_builtins.bool]] = None,
             force_update: pulumi.Input[Optional[_builtins.bool]] = None,
             managed_dns_challenge: pulumi.Input[Optional[Mapping[str, pulumi.Input[_builtins.str]]]] = None,
-            managed_dns_challenges: pulumi.Input[Optional[Sequence[pulumi.Input[Union['TlsSubscriptionManagedDnsChallengeArgs', 'TlsSubscriptionManagedDnsChallengeArgsDict']]]]] = None,
-            managed_http_challenges: pulumi.Input[Optional[Sequence[pulumi.Input[Union['TlsSubscriptionManagedHttpChallengeArgs', 'TlsSubscriptionManagedHttpChallengeArgsDict']]]]] = None,
+            managed_dns_challenges: pulumi.Input[Optional[Sequence[pulumi.Input[Union['TlsSubscriptionManagedDnsChallengeArgs', 'TlsSubscriptionManagedDnsChallengeArgsDict', 'outputs.TlsSubscriptionManagedDnsChallenge']]]]] = None,
+            managed_http_challenges: pulumi.Input[Optional[Sequence[pulumi.Input[Union['TlsSubscriptionManagedHttpChallengeArgs', 'TlsSubscriptionManagedHttpChallengeArgsDict', 'outputs.TlsSubscriptionManagedHttpChallenge']]]]] = None,
             state: pulumi.Input[Optional[_builtins.str]] = None,
             updated_at: pulumi.Input[Optional[_builtins.str]] = None) -> 'TlsSubscription':
         """
@@ -830,8 +830,8 @@ class TlsSubscription(pulumi.CustomResource):
         :param pulumi.Input[_builtins.bool] force_destroy: Force delete the subscription even if it has active domains. Warning: this can disable production traffic if used incorrectly. Defaults to false.
         :param pulumi.Input[_builtins.bool] force_update: Force update the subscription even if it has active domains. Warning: this can disable production traffic if used incorrectly.
         :param pulumi.Input[Mapping[str, pulumi.Input[_builtins.str]]] managed_dns_challenge: The details required to configure DNS to respond to ACME DNS challenge in order to verify domain ownership.
-        :param pulumi.Input[Sequence[pulumi.Input[Union['TlsSubscriptionManagedDnsChallengeArgs', 'TlsSubscriptionManagedDnsChallengeArgsDict']]]] managed_dns_challenges: A list of options for configuring DNS to respond to ACME DNS challenge in order to verify domain ownership.
-        :param pulumi.Input[Sequence[pulumi.Input[Union['TlsSubscriptionManagedHttpChallengeArgs', 'TlsSubscriptionManagedHttpChallengeArgsDict']]]] managed_http_challenges: A list of options for configuring DNS to respond to ACME HTTP challenge in order to verify domain ownership. Best accessed through a `for` expression to filter the relevant record.
+        :param pulumi.Input[Sequence[pulumi.Input[Union['TlsSubscriptionManagedDnsChallengeArgs', 'TlsSubscriptionManagedDnsChallengeArgsDict', 'outputs.TlsSubscriptionManagedDnsChallenge']]]] managed_dns_challenges: A list of options for configuring DNS to respond to ACME DNS challenge in order to verify domain ownership.
+        :param pulumi.Input[Sequence[pulumi.Input[Union['TlsSubscriptionManagedHttpChallengeArgs', 'TlsSubscriptionManagedHttpChallengeArgsDict', 'outputs.TlsSubscriptionManagedHttpChallenge']]]] managed_http_challenges: A list of options for configuring DNS to respond to ACME HTTP challenge in order to verify domain ownership. Best accessed through a `for` expression to filter the relevant record.
         :param pulumi.Input[_builtins.str] state: The current state of the subscription. The list of possible states are: `pending`, `processing`, `issued`, and `renewing`.
         :param pulumi.Input[_builtins.str] updated_at: Timestamp (GMT) when the subscription was updated.
         """
