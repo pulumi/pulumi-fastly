@@ -215,7 +215,7 @@ class ServiceDynamicSnippetContent(pulumi.CustomResource):
          set req.http.my-snippet-test-header = "true";
         }\"\"\")
 
-        myservice.dynamicsnippets.apply(lambda resolved_outputs: create_my_dyn_content({d.name: d for d in resolved_outputs['dynamicsnippets'] if d.name == "My Dynamic Snippet"}))
+        myservice.dynamicsnippets.apply(lambda resolved_outputs: create_my_dyn_content({d.name: d for d in resolved_outputs if d.name == "My Dynamic Snippet"}))
         ```
 
         Multiple dynamic snippets:
@@ -260,7 +260,7 @@ class ServiceDynamicSnippetContent(pulumi.CustomResource):
          set req.http.my-snippet-test-header-one = "true";
         }\"\"\")
 
-        myservice.dynamicsnippets.apply(lambda resolved_outputs: create_my_dyn_content_one({d.name: d for d in resolved_outputs['dynamicsnippets'] if d.name == "My Dynamic Snippet One"}))
+        myservice.dynamicsnippets.apply(lambda resolved_outputs: create_my_dyn_content_one({d.name: d for d in resolved_outputs if d.name == "My Dynamic Snippet One"}))
         my_dyn_content_two: dict[str, fastly.ServiceDynamicSnippetContent] = {}
         def create_my_dyn_content_two(range_body):
             for my_dyn_content_two_range in [{"key": k, "value": v} for [k, v] in sorted((range_body).items())]:
@@ -271,7 +271,7 @@ class ServiceDynamicSnippetContent(pulumi.CustomResource):
          set req.http.my-snippet-test-header-two = "true";
         }\"\"\")
 
-        myservice.dynamicsnippets.apply(lambda resolved_outputs: create_my_dyn_content_two({d.name: d for d in resolved_outputs['dynamicsnippets'] if d.name == "My Dynamic Snippet Two"}))
+        myservice.dynamicsnippets.apply(lambda resolved_outputs: create_my_dyn_content_two({d.name: d for d in resolved_outputs if d.name == "My Dynamic Snippet Two"}))
         ```
 
         ### Terraform >= 0.12.0 && < 0.12.6)
@@ -417,7 +417,7 @@ class ServiceDynamicSnippetContent(pulumi.CustomResource):
          set req.http.my-snippet-test-header = "true";
         }\"\"\")
 
-        myservice.dynamicsnippets.apply(lambda resolved_outputs: create_my_dyn_content({d.name: d for d in resolved_outputs['dynamicsnippets'] if d.name == "My Dynamic Snippet"}))
+        myservice.dynamicsnippets.apply(lambda resolved_outputs: create_my_dyn_content({d.name: d for d in resolved_outputs if d.name == "My Dynamic Snippet"}))
         ```
 
         Multiple dynamic snippets:
@@ -462,7 +462,7 @@ class ServiceDynamicSnippetContent(pulumi.CustomResource):
          set req.http.my-snippet-test-header-one = "true";
         }\"\"\")
 
-        myservice.dynamicsnippets.apply(lambda resolved_outputs: create_my_dyn_content_one({d.name: d for d in resolved_outputs['dynamicsnippets'] if d.name == "My Dynamic Snippet One"}))
+        myservice.dynamicsnippets.apply(lambda resolved_outputs: create_my_dyn_content_one({d.name: d for d in resolved_outputs if d.name == "My Dynamic Snippet One"}))
         my_dyn_content_two: dict[str, fastly.ServiceDynamicSnippetContent] = {}
         def create_my_dyn_content_two(range_body):
             for my_dyn_content_two_range in [{"key": k, "value": v} for [k, v] in sorted((range_body).items())]:
@@ -473,7 +473,7 @@ class ServiceDynamicSnippetContent(pulumi.CustomResource):
          set req.http.my-snippet-test-header-two = "true";
         }\"\"\")
 
-        myservice.dynamicsnippets.apply(lambda resolved_outputs: create_my_dyn_content_two({d.name: d for d in resolved_outputs['dynamicsnippets'] if d.name == "My Dynamic Snippet Two"}))
+        myservice.dynamicsnippets.apply(lambda resolved_outputs: create_my_dyn_content_two({d.name: d for d in resolved_outputs if d.name == "My Dynamic Snippet Two"}))
         ```
 
         ### Terraform >= 0.12.0 && < 0.12.6)

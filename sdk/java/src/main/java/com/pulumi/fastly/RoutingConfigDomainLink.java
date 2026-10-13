@@ -45,8 +45,8 @@ import javax.annotation.Nullable;
  * 
  *     public static void stack(Context ctx) {
  *         var example = new RoutingConfigDomainLink("example", RoutingConfigDomainLinkArgs.builder()
- *             .domainId(exampleFastlyDomain.domainId())
- *             .routingConfigId(exampleFastlyRoutingConfig.routingConfigId())
+ *             .domainId(exampleFastlyDomain.get("domainId"))
+ *             .routingConfigId(exampleFastlyRoutingConfig.get("routingConfigId"))
  *             .build());
  * 
  *     }

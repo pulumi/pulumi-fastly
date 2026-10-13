@@ -47,7 +47,7 @@ import javax.annotation.Nullable;
  *         var demoMicrosoftTeamsAlert = new NgwafAlertMicrosoftTeamsIntegration("demoMicrosoftTeamsAlert", NgwafAlertMicrosoftTeamsIntegrationArgs.builder()
  *             .description("Some Description")
  *             .webhook("https://example.com/microsoft-teams/my-service")
- *             .workspaceId(demo.id())
+ *             .workspaceId(demo.get("id"))
  *             .build());
  * 
  *     }

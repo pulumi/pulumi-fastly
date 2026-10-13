@@ -156,7 +156,7 @@ def get_api_security_operations(domains: Optional[Sequence[_builtins.str]] = Non
             "address": "example.com",
             "name": "tf-test-backend-1",
         }])
-    # Optional: create an operation (so the data source returns something predictable)
+    # Optional: create an operation (so the function returns something predictable)
     example = fastly.ApiSecurityOperation("example",
         service_id=svc1.id,
         method="GET",
@@ -218,7 +218,7 @@ def get_api_security_operations_output(domains: pulumi.Input[Optional[Optional[S
             "address": "example.com",
             "name": "tf-test-backend-1",
         }])
-    # Optional: create an operation (so the data source returns something predictable)
+    # Optional: create an operation (so the function returns something predictable)
     example = fastly.ApiSecurityOperation("example",
         service_id=svc1.id,
         method="GET",

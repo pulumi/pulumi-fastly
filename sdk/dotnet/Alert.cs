@@ -55,7 +55,7 @@ namespace Pulumi.Fastly
     ///         {
     ///             Type = "above_threshold",
     ///             Period = "5m",
-    ///             Threshold = 10,
+    ///             Threshold = 10.0,
     ///         },
     ///         IntegrationIds = new[]
     ///         {

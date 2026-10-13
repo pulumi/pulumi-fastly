@@ -48,7 +48,7 @@ import javax.annotation.Nullable;
  *             .description("Some Description")
  *             .key("123456789")
  *             .site("us1")
- *             .workspaceId(demo.id())
+ *             .workspaceId(demo.get("id"))
  *             .build());
  * 
  *     }

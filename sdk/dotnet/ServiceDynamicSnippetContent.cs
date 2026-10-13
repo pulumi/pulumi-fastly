@@ -253,7 +253,7 @@ namespace Pulumi.Fastly
     ///     var myDynContent = new List&lt;Fastly.ServiceDynamicSnippetContent&gt;();
     ///     foreach (var range in .ToDictionary(item =&gt; {
     ///         var d = item.Value;
-    ///         return d.Name;
+    ///         return d.Name.ToString(System.Globalization.CultureInfo.InvariantCulture);
     ///     }, item =&gt; {
     ///         var d = item.Value;
     ///         return d;

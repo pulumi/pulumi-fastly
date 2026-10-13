@@ -138,7 +138,7 @@ class RoutingConfig(pulumi.CustomResource):
                  resource_name: str,
                  opts: Optional[pulumi.ResourceOptions] = None,
                  name: pulumi.Input[Optional[_builtins.str]] = None,
-                 paths: pulumi.Input[Optional[Sequence[pulumi.Input[Union['RoutingConfigPathArgs', 'RoutingConfigPathArgsDict']]]]] = None,
+                 paths: pulumi.Input[Optional[Sequence[pulumi.Input[Union['RoutingConfigPathArgs', 'RoutingConfigPathArgsDict', 'outputs.RoutingConfigPath']]]]] = None,
                  __props__=None):
         """
         Routing configs let you route requests to different services (or other destinations) based on
@@ -208,7 +208,7 @@ class RoutingConfig(pulumi.CustomResource):
         :param str resource_name: The name of the resource.
         :param pulumi.ResourceOptions opts: Options for the resource.
         :param pulumi.Input[_builtins.str] name: The user-defined name of the routing config. Can be created, but not updated.
-        :param pulumi.Input[Sequence[pulumi.Input[Union['RoutingConfigPathArgs', 'RoutingConfigPathArgsDict']]]] paths: A URL path pattern and the rules used to route matching requests.
+        :param pulumi.Input[Sequence[pulumi.Input[Union['RoutingConfigPathArgs', 'RoutingConfigPathArgsDict', 'outputs.RoutingConfigPath']]]] paths: A URL path pattern and the rules used to route matching requests.
         """
         ...
     @overload
@@ -297,7 +297,7 @@ class RoutingConfig(pulumi.CustomResource):
                  resource_name: str,
                  opts: Optional[pulumi.ResourceOptions] = None,
                  name: pulumi.Input[Optional[_builtins.str]] = None,
-                 paths: pulumi.Input[Optional[Sequence[pulumi.Input[Union['RoutingConfigPathArgs', 'RoutingConfigPathArgsDict']]]]] = None,
+                 paths: pulumi.Input[Optional[Sequence[pulumi.Input[Union['RoutingConfigPathArgs', 'RoutingConfigPathArgsDict', 'outputs.RoutingConfigPath']]]]] = None,
                  __props__=None):
         opts = pulumi.ResourceOptions.merge(_utilities.get_resource_opts_defaults(), opts)
         if not isinstance(opts, pulumi.ResourceOptions):
@@ -325,7 +325,7 @@ class RoutingConfig(pulumi.CustomResource):
             opts: Optional[pulumi.ResourceOptions] = None,
             activated_at: pulumi.Input[Optional[_builtins.str]] = None,
             name: pulumi.Input[Optional[_builtins.str]] = None,
-            paths: pulumi.Input[Optional[Sequence[pulumi.Input[Union['RoutingConfigPathArgs', 'RoutingConfigPathArgsDict']]]]] = None,
+            paths: pulumi.Input[Optional[Sequence[pulumi.Input[Union['RoutingConfigPathArgs', 'RoutingConfigPathArgsDict', 'outputs.RoutingConfigPath']]]]] = None,
             routing_config_id: pulumi.Input[Optional[_builtins.str]] = None) -> 'RoutingConfig':
         """
         Get an existing RoutingConfig resource's state with the given name, id, and optional extra
@@ -336,7 +336,7 @@ class RoutingConfig(pulumi.CustomResource):
         :param pulumi.ResourceOptions opts: Options for the resource.
         :param pulumi.Input[_builtins.str] activated_at: The date and time the routing config's active version was last activated, in ISO 8601 format.
         :param pulumi.Input[_builtins.str] name: The user-defined name of the routing config. Can be created, but not updated.
-        :param pulumi.Input[Sequence[pulumi.Input[Union['RoutingConfigPathArgs', 'RoutingConfigPathArgsDict']]]] paths: A URL path pattern and the rules used to route matching requests.
+        :param pulumi.Input[Sequence[pulumi.Input[Union['RoutingConfigPathArgs', 'RoutingConfigPathArgsDict', 'outputs.RoutingConfigPath']]]] paths: A URL path pattern and the rules used to route matching requests.
         :param pulumi.Input[_builtins.str] routing_config_id: The routing config identifier.
         """
         opts = pulumi.ResourceOptions.merge(opts, pulumi.ResourceOptions(id=id))

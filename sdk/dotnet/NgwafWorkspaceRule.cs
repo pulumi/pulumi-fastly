@@ -37,7 +37,7 @@ namespace Pulumi.Fastly
     ///             "X-Real-IP",
     ///         },
     ///         DefaultBlockingResponseCode = 429,
-    ///         AttackSignalThresholds = null,
+    ///         AttackSignalThresholds = new() { },
     ///     });
     /// 
     ///     var exampleNgwafWorkspaceRule = new Fastly.NgwafWorkspaceRule("example", new()
@@ -97,7 +97,7 @@ namespace Pulumi.Fastly
     ///             "X-Real-IP",
     ///         },
     ///         DefaultBlockingResponseCode = 429,
-    ///         AttackSignalThresholds = null,
+    ///         AttackSignalThresholds = new() { },
     ///     });
     /// 
     ///     var exampleNgwafWorkspaceRule = new Fastly.NgwafWorkspaceRule("example", new()
@@ -157,7 +157,7 @@ namespace Pulumi.Fastly
     ///             "X-Real-IP",
     ///         },
     ///         DefaultBlockingResponseCode = 429,
-    ///         AttackSignalThresholds = null,
+    ///         AttackSignalThresholds = new() { },
     ///     });
     /// 
     ///     var exampleNgwafWorkspaceRule = new Fastly.NgwafWorkspaceRule("example", new()
@@ -249,7 +249,7 @@ namespace Pulumi.Fastly
     ///             "X-Real-IP",
     ///         },
     ///         DefaultBlockingResponseCode = 429,
-    ///         AttackSignalThresholds = null,
+    ///         AttackSignalThresholds = new() { },
     ///     });
     /// 
     ///     var exampleNgwafWorkspaceRule = new Fastly.NgwafWorkspaceRule("example", new()
@@ -324,7 +324,7 @@ namespace Pulumi.Fastly
     ///             "X-Real-IP",
     ///         },
     ///         DefaultBlockingResponseCode = 429,
-    ///         AttackSignalThresholds = null,
+    ///         AttackSignalThresholds = new() { },
     ///     });
     /// 
     ///     var demoSignal = new Fastly.NgwafWorkspaceSignal("demo_signal", new()
@@ -398,7 +398,7 @@ namespace Pulumi.Fastly
     ///             "X-Real-IP",
     ///         },
     ///         DefaultBlockingResponseCode = 429,
-    ///         AttackSignalThresholds = null,
+    ///         AttackSignalThresholds = new() { },
     ///     });
     /// 
     ///     var excludeXssSignal = new Fastly.NgwafWorkspaceRule("exclude_xss_signal", new()

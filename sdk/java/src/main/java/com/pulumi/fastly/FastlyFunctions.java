@@ -699,7 +699,7 @@ public final class FastlyFunctions {
      *                 .build())
      *             .build());
      * 
-     *         // Optional: create a tag so the data source returns a predictable result
+     *         // Optional: create a tag so the function returns a predictable result
      *         var example = new ApiSecurityOperationTag("example", ApiSecurityOperationTagArgs.builder()
      *             .serviceId(svc1.id())
      *             .name("example-tag")
@@ -762,7 +762,7 @@ public final class FastlyFunctions {
      *                 .build())
      *             .build());
      * 
-     *         // Optional: create a tag so the data source returns a predictable result
+     *         // Optional: create a tag so the function returns a predictable result
      *         var example = new ApiSecurityOperationTag("example", ApiSecurityOperationTagArgs.builder()
      *             .serviceId(svc1.id())
      *             .name("example-tag")
@@ -825,7 +825,7 @@ public final class FastlyFunctions {
      *                 .build())
      *             .build());
      * 
-     *         // Optional: create a tag so the data source returns a predictable result
+     *         // Optional: create a tag so the function returns a predictable result
      *         var example = new ApiSecurityOperationTag("example", ApiSecurityOperationTagArgs.builder()
      *             .serviceId(svc1.id())
      *             .name("example-tag")
@@ -888,7 +888,7 @@ public final class FastlyFunctions {
      *                 .build())
      *             .build());
      * 
-     *         // Optional: create a tag so the data source returns a predictable result
+     *         // Optional: create a tag so the function returns a predictable result
      *         var example = new ApiSecurityOperationTag("example", ApiSecurityOperationTagArgs.builder()
      *             .serviceId(svc1.id())
      *             .name("example-tag")
@@ -951,7 +951,7 @@ public final class FastlyFunctions {
      *                 .build())
      *             .build());
      * 
-     *         // Optional: create a tag so the data source returns a predictable result
+     *         // Optional: create a tag so the function returns a predictable result
      *         var example = new ApiSecurityOperationTag("example", ApiSecurityOperationTagArgs.builder()
      *             .serviceId(svc1.id())
      *             .name("example-tag")
@@ -1014,7 +1014,7 @@ public final class FastlyFunctions {
      *                 .build())
      *             .build());
      * 
-     *         // Optional: create an operation (so the data source returns something predictable)
+     *         // Optional: create an operation (so the function returns something predictable)
      *         var example = new ApiSecurityOperation("example", ApiSecurityOperationArgs.builder()
      *             .serviceId(svc1.id())
      *             .method("GET")
@@ -1082,7 +1082,7 @@ public final class FastlyFunctions {
      *                 .build())
      *             .build());
      * 
-     *         // Optional: create an operation (so the data source returns something predictable)
+     *         // Optional: create an operation (so the function returns something predictable)
      *         var example = new ApiSecurityOperation("example", ApiSecurityOperationArgs.builder()
      *             .serviceId(svc1.id())
      *             .method("GET")
@@ -1150,7 +1150,7 @@ public final class FastlyFunctions {
      *                 .build())
      *             .build());
      * 
-     *         // Optional: create an operation (so the data source returns something predictable)
+     *         // Optional: create an operation (so the function returns something predictable)
      *         var example = new ApiSecurityOperation("example", ApiSecurityOperationArgs.builder()
      *             .serviceId(svc1.id())
      *             .method("GET")
@@ -1218,7 +1218,7 @@ public final class FastlyFunctions {
      *                 .build())
      *             .build());
      * 
-     *         // Optional: create an operation (so the data source returns something predictable)
+     *         // Optional: create an operation (so the function returns something predictable)
      *         var example = new ApiSecurityOperation("example", ApiSecurityOperationArgs.builder()
      *             .serviceId(svc1.id())
      *             .method("GET")
@@ -1286,7 +1286,7 @@ public final class FastlyFunctions {
      *                 .build())
      *             .build());
      * 
-     *         // Optional: create an operation (so the data source returns something predictable)
+     *         // Optional: create an operation (so the function returns something predictable)
      *         var example = new ApiSecurityOperation("example", ApiSecurityOperationArgs.builder()
      *             .serviceId(svc1.id())
      *             .method("GET")
@@ -3911,7 +3911,7 @@ public final class FastlyFunctions {
      * 
      *     public static void stack(Context ctx) {
      *         final var ngwafDatadogAlerts = FastlyFunctions.getNgwafAlertDatadogIntegration(GetNgwafAlertDatadogIntegrationArgs.builder()
-     *             .workspaceId(testRedactionsWorkspace.id())
+     *             .workspaceId(testRedactionsWorkspace.get("id"))
      *             .build());
      * 
      *         ctx.export("ngwafDatadogAlertsAll", datadogAlerts);
@@ -3952,7 +3952,7 @@ public final class FastlyFunctions {
      * 
      *     public static void stack(Context ctx) {
      *         final var ngwafDatadogAlerts = FastlyFunctions.getNgwafAlertDatadogIntegration(GetNgwafAlertDatadogIntegrationArgs.builder()
-     *             .workspaceId(testRedactionsWorkspace.id())
+     *             .workspaceId(testRedactionsWorkspace.get("id"))
      *             .build());
      * 
      *         ctx.export("ngwafDatadogAlertsAll", datadogAlerts);
@@ -3993,7 +3993,7 @@ public final class FastlyFunctions {
      * 
      *     public static void stack(Context ctx) {
      *         final var ngwafDatadogAlerts = FastlyFunctions.getNgwafAlertDatadogIntegration(GetNgwafAlertDatadogIntegrationArgs.builder()
-     *             .workspaceId(testRedactionsWorkspace.id())
+     *             .workspaceId(testRedactionsWorkspace.get("id"))
      *             .build());
      * 
      *         ctx.export("ngwafDatadogAlertsAll", datadogAlerts);
@@ -4034,7 +4034,7 @@ public final class FastlyFunctions {
      * 
      *     public static void stack(Context ctx) {
      *         final var ngwafDatadogAlerts = FastlyFunctions.getNgwafAlertDatadogIntegration(GetNgwafAlertDatadogIntegrationArgs.builder()
-     *             .workspaceId(testRedactionsWorkspace.id())
+     *             .workspaceId(testRedactionsWorkspace.get("id"))
      *             .build());
      * 
      *         ctx.export("ngwafDatadogAlertsAll", datadogAlerts);
@@ -4075,7 +4075,7 @@ public final class FastlyFunctions {
      * 
      *     public static void stack(Context ctx) {
      *         final var ngwafDatadogAlerts = FastlyFunctions.getNgwafAlertDatadogIntegration(GetNgwafAlertDatadogIntegrationArgs.builder()
-     *             .workspaceId(testRedactionsWorkspace.id())
+     *             .workspaceId(testRedactionsWorkspace.get("id"))
      *             .build());
      * 
      *         ctx.export("ngwafDatadogAlertsAll", datadogAlerts);
@@ -4116,7 +4116,7 @@ public final class FastlyFunctions {
      * 
      *     public static void stack(Context ctx) {
      *         final var ngwafJiraAlerts = FastlyFunctions.getNgwafAlertJiraIntegration(GetNgwafAlertJiraIntegrationArgs.builder()
-     *             .workspaceId(testRedactionsWorkspace.id())
+     *             .workspaceId(testRedactionsWorkspace.get("id"))
      *             .build());
      * 
      *         ctx.export("ngwafJiraAlertsAll", jiraAlerts);
@@ -4157,7 +4157,7 @@ public final class FastlyFunctions {
      * 
      *     public static void stack(Context ctx) {
      *         final var ngwafJiraAlerts = FastlyFunctions.getNgwafAlertJiraIntegration(GetNgwafAlertJiraIntegrationArgs.builder()
-     *             .workspaceId(testRedactionsWorkspace.id())
+     *             .workspaceId(testRedactionsWorkspace.get("id"))
      *             .build());
      * 
      *         ctx.export("ngwafJiraAlertsAll", jiraAlerts);
@@ -4198,7 +4198,7 @@ public final class FastlyFunctions {
      * 
      *     public static void stack(Context ctx) {
      *         final var ngwafJiraAlerts = FastlyFunctions.getNgwafAlertJiraIntegration(GetNgwafAlertJiraIntegrationArgs.builder()
-     *             .workspaceId(testRedactionsWorkspace.id())
+     *             .workspaceId(testRedactionsWorkspace.get("id"))
      *             .build());
      * 
      *         ctx.export("ngwafJiraAlertsAll", jiraAlerts);
@@ -4239,7 +4239,7 @@ public final class FastlyFunctions {
      * 
      *     public static void stack(Context ctx) {
      *         final var ngwafJiraAlerts = FastlyFunctions.getNgwafAlertJiraIntegration(GetNgwafAlertJiraIntegrationArgs.builder()
-     *             .workspaceId(testRedactionsWorkspace.id())
+     *             .workspaceId(testRedactionsWorkspace.get("id"))
      *             .build());
      * 
      *         ctx.export("ngwafJiraAlertsAll", jiraAlerts);
@@ -4280,7 +4280,7 @@ public final class FastlyFunctions {
      * 
      *     public static void stack(Context ctx) {
      *         final var ngwafJiraAlerts = FastlyFunctions.getNgwafAlertJiraIntegration(GetNgwafAlertJiraIntegrationArgs.builder()
-     *             .workspaceId(testRedactionsWorkspace.id())
+     *             .workspaceId(testRedactionsWorkspace.get("id"))
      *             .build());
      * 
      *         ctx.export("ngwafJiraAlertsAll", jiraAlerts);
@@ -4321,7 +4321,7 @@ public final class FastlyFunctions {
      * 
      *     public static void stack(Context ctx) {
      *         final var ngwafJiraAlerts = FastlyFunctions.getNgwafAlertJiraIntegration(GetNgwafAlertJiraIntegrationArgs.builder()
-     *             .workspaceId(testRedactionsWorkspace.id())
+     *             .workspaceId(testRedactionsWorkspace.get("id"))
      *             .build());
      * 
      *         ctx.export("ngwafJiraAlertsAll", jiraAlerts);
@@ -4362,7 +4362,7 @@ public final class FastlyFunctions {
      * 
      *     public static void stack(Context ctx) {
      *         final var ngwafJiraAlerts = FastlyFunctions.getNgwafAlertJiraIntegration(GetNgwafAlertJiraIntegrationArgs.builder()
-     *             .workspaceId(testRedactionsWorkspace.id())
+     *             .workspaceId(testRedactionsWorkspace.get("id"))
      *             .build());
      * 
      *         ctx.export("ngwafJiraAlertsAll", jiraAlerts);
@@ -4403,7 +4403,7 @@ public final class FastlyFunctions {
      * 
      *     public static void stack(Context ctx) {
      *         final var ngwafJiraAlerts = FastlyFunctions.getNgwafAlertJiraIntegration(GetNgwafAlertJiraIntegrationArgs.builder()
-     *             .workspaceId(testRedactionsWorkspace.id())
+     *             .workspaceId(testRedactionsWorkspace.get("id"))
      *             .build());
      * 
      *         ctx.export("ngwafJiraAlertsAll", jiraAlerts);
@@ -4444,7 +4444,7 @@ public final class FastlyFunctions {
      * 
      *     public static void stack(Context ctx) {
      *         final var ngwafJiraAlerts = FastlyFunctions.getNgwafAlertJiraIntegration(GetNgwafAlertJiraIntegrationArgs.builder()
-     *             .workspaceId(testRedactionsWorkspace.id())
+     *             .workspaceId(testRedactionsWorkspace.get("id"))
      *             .build());
      * 
      *         ctx.export("ngwafJiraAlertsAll", jiraAlerts);
@@ -4485,7 +4485,7 @@ public final class FastlyFunctions {
      * 
      *     public static void stack(Context ctx) {
      *         final var ngwafJiraAlerts = FastlyFunctions.getNgwafAlertJiraIntegration(GetNgwafAlertJiraIntegrationArgs.builder()
-     *             .workspaceId(testRedactionsWorkspace.id())
+     *             .workspaceId(testRedactionsWorkspace.get("id"))
      *             .build());
      * 
      *         ctx.export("ngwafJiraAlertsAll", jiraAlerts);
@@ -4526,7 +4526,7 @@ public final class FastlyFunctions {
      * 
      *     public static void stack(Context ctx) {
      *         final var ngwafJiraAlerts = FastlyFunctions.getNgwafAlertJiraIntegration(GetNgwafAlertJiraIntegrationArgs.builder()
-     *             .workspaceId(testRedactionsWorkspace.id())
+     *             .workspaceId(testRedactionsWorkspace.get("id"))
      *             .build());
      * 
      *         ctx.export("ngwafJiraAlertsAll", jiraAlerts);
@@ -4567,7 +4567,7 @@ public final class FastlyFunctions {
      * 
      *     public static void stack(Context ctx) {
      *         final var ngwafJiraAlerts = FastlyFunctions.getNgwafAlertJiraIntegration(GetNgwafAlertJiraIntegrationArgs.builder()
-     *             .workspaceId(testRedactionsWorkspace.id())
+     *             .workspaceId(testRedactionsWorkspace.get("id"))
      *             .build());
      * 
      *         ctx.export("ngwafJiraAlertsAll", jiraAlerts);
@@ -4608,7 +4608,7 @@ public final class FastlyFunctions {
      * 
      *     public static void stack(Context ctx) {
      *         final var ngwafJiraAlerts = FastlyFunctions.getNgwafAlertJiraIntegration(GetNgwafAlertJiraIntegrationArgs.builder()
-     *             .workspaceId(testRedactionsWorkspace.id())
+     *             .workspaceId(testRedactionsWorkspace.get("id"))
      *             .build());
      * 
      *         ctx.export("ngwafJiraAlertsAll", jiraAlerts);
@@ -4649,7 +4649,7 @@ public final class FastlyFunctions {
      * 
      *     public static void stack(Context ctx) {
      *         final var ngwafJiraAlerts = FastlyFunctions.getNgwafAlertJiraIntegration(GetNgwafAlertJiraIntegrationArgs.builder()
-     *             .workspaceId(testRedactionsWorkspace.id())
+     *             .workspaceId(testRedactionsWorkspace.get("id"))
      *             .build());
      * 
      *         ctx.export("ngwafJiraAlertsAll", jiraAlerts);
@@ -4690,7 +4690,7 @@ public final class FastlyFunctions {
      * 
      *     public static void stack(Context ctx) {
      *         final var ngwafJiraAlerts = FastlyFunctions.getNgwafAlertJiraIntegration(GetNgwafAlertJiraIntegrationArgs.builder()
-     *             .workspaceId(testRedactionsWorkspace.id())
+     *             .workspaceId(testRedactionsWorkspace.get("id"))
      *             .build());
      * 
      *         ctx.export("ngwafJiraAlertsAll", jiraAlerts);
@@ -4731,7 +4731,7 @@ public final class FastlyFunctions {
      * 
      *     public static void stack(Context ctx) {
      *         final var ngwafOpsgenieAlerts = FastlyFunctions.getNgwafAlertOpsgenieIntegration(GetNgwafAlertOpsgenieIntegrationArgs.builder()
-     *             .workspaceId(testRedactionsWorkspace.id())
+     *             .workspaceId(testRedactionsWorkspace.get("id"))
      *             .build());
      * 
      *         ctx.export("ngwafOpsgenieAlertsAll", opsgenieAlerts);
@@ -4772,7 +4772,7 @@ public final class FastlyFunctions {
      * 
      *     public static void stack(Context ctx) {
      *         final var ngwafOpsgenieAlerts = FastlyFunctions.getNgwafAlertOpsgenieIntegration(GetNgwafAlertOpsgenieIntegrationArgs.builder()
-     *             .workspaceId(testRedactionsWorkspace.id())
+     *             .workspaceId(testRedactionsWorkspace.get("id"))
      *             .build());
      * 
      *         ctx.export("ngwafOpsgenieAlertsAll", opsgenieAlerts);
@@ -4813,7 +4813,7 @@ public final class FastlyFunctions {
      * 
      *     public static void stack(Context ctx) {
      *         final var ngwafOpsgenieAlerts = FastlyFunctions.getNgwafAlertOpsgenieIntegration(GetNgwafAlertOpsgenieIntegrationArgs.builder()
-     *             .workspaceId(testRedactionsWorkspace.id())
+     *             .workspaceId(testRedactionsWorkspace.get("id"))
      *             .build());
      * 
      *         ctx.export("ngwafOpsgenieAlertsAll", opsgenieAlerts);
@@ -4854,7 +4854,7 @@ public final class FastlyFunctions {
      * 
      *     public static void stack(Context ctx) {
      *         final var ngwafOpsgenieAlerts = FastlyFunctions.getNgwafAlertOpsgenieIntegration(GetNgwafAlertOpsgenieIntegrationArgs.builder()
-     *             .workspaceId(testRedactionsWorkspace.id())
+     *             .workspaceId(testRedactionsWorkspace.get("id"))
      *             .build());
      * 
      *         ctx.export("ngwafOpsgenieAlertsAll", opsgenieAlerts);
@@ -4895,7 +4895,7 @@ public final class FastlyFunctions {
      * 
      *     public static void stack(Context ctx) {
      *         final var ngwafOpsgenieAlerts = FastlyFunctions.getNgwafAlertOpsgenieIntegration(GetNgwafAlertOpsgenieIntegrationArgs.builder()
-     *             .workspaceId(testRedactionsWorkspace.id())
+     *             .workspaceId(testRedactionsWorkspace.get("id"))
      *             .build());
      * 
      *         ctx.export("ngwafOpsgenieAlertsAll", opsgenieAlerts);
@@ -4936,7 +4936,7 @@ public final class FastlyFunctions {
      * 
      *     public static void stack(Context ctx) {
      *         final var ngwafPagerdutyAlerts = FastlyFunctions.getNgwafAlertPagerdutyIntegration(GetNgwafAlertPagerdutyIntegrationArgs.builder()
-     *             .workspaceId(example.id())
+     *             .workspaceId(example.get("id"))
      *             .build());
      * 
      *         ctx.export("ngwafPagerdutyAlertsAll", ngwafPagerdutyAlerts);
@@ -4977,7 +4977,7 @@ public final class FastlyFunctions {
      * 
      *     public static void stack(Context ctx) {
      *         final var ngwafPagerdutyAlerts = FastlyFunctions.getNgwafAlertPagerdutyIntegration(GetNgwafAlertPagerdutyIntegrationArgs.builder()
-     *             .workspaceId(example.id())
+     *             .workspaceId(example.get("id"))
      *             .build());
      * 
      *         ctx.export("ngwafPagerdutyAlertsAll", ngwafPagerdutyAlerts);
@@ -5018,7 +5018,7 @@ public final class FastlyFunctions {
      * 
      *     public static void stack(Context ctx) {
      *         final var ngwafPagerdutyAlerts = FastlyFunctions.getNgwafAlertPagerdutyIntegration(GetNgwafAlertPagerdutyIntegrationArgs.builder()
-     *             .workspaceId(example.id())
+     *             .workspaceId(example.get("id"))
      *             .build());
      * 
      *         ctx.export("ngwafPagerdutyAlertsAll", ngwafPagerdutyAlerts);
@@ -5059,7 +5059,7 @@ public final class FastlyFunctions {
      * 
      *     public static void stack(Context ctx) {
      *         final var ngwafPagerdutyAlerts = FastlyFunctions.getNgwafAlertPagerdutyIntegration(GetNgwafAlertPagerdutyIntegrationArgs.builder()
-     *             .workspaceId(example.id())
+     *             .workspaceId(example.get("id"))
      *             .build());
      * 
      *         ctx.export("ngwafPagerdutyAlertsAll", ngwafPagerdutyAlerts);
@@ -5100,7 +5100,7 @@ public final class FastlyFunctions {
      * 
      *     public static void stack(Context ctx) {
      *         final var ngwafPagerdutyAlerts = FastlyFunctions.getNgwafAlertPagerdutyIntegration(GetNgwafAlertPagerdutyIntegrationArgs.builder()
-     *             .workspaceId(example.id())
+     *             .workspaceId(example.get("id"))
      *             .build());
      * 
      *         ctx.export("ngwafPagerdutyAlertsAll", ngwafPagerdutyAlerts);
@@ -5141,7 +5141,7 @@ public final class FastlyFunctions {
      * 
      *     public static void stack(Context ctx) {
      *         final var ngwafSlackAlerts = FastlyFunctions.getNgwafAlertSlackIntegration(GetNgwafAlertSlackIntegrationArgs.builder()
-     *             .workspaceId(example.id())
+     *             .workspaceId(example.get("id"))
      *             .build());
      * 
      *         ctx.export("ngwafSlackAlertsAll", ngwafSlackAlerts);
@@ -5182,7 +5182,7 @@ public final class FastlyFunctions {
      * 
      *     public static void stack(Context ctx) {
      *         final var ngwafSlackAlerts = FastlyFunctions.getNgwafAlertSlackIntegration(GetNgwafAlertSlackIntegrationArgs.builder()
-     *             .workspaceId(example.id())
+     *             .workspaceId(example.get("id"))
      *             .build());
      * 
      *         ctx.export("ngwafSlackAlertsAll", ngwafSlackAlerts);
@@ -5223,7 +5223,7 @@ public final class FastlyFunctions {
      * 
      *     public static void stack(Context ctx) {
      *         final var ngwafSlackAlerts = FastlyFunctions.getNgwafAlertSlackIntegration(GetNgwafAlertSlackIntegrationArgs.builder()
-     *             .workspaceId(example.id())
+     *             .workspaceId(example.get("id"))
      *             .build());
      * 
      *         ctx.export("ngwafSlackAlertsAll", ngwafSlackAlerts);
@@ -5264,7 +5264,7 @@ public final class FastlyFunctions {
      * 
      *     public static void stack(Context ctx) {
      *         final var ngwafSlackAlerts = FastlyFunctions.getNgwafAlertSlackIntegration(GetNgwafAlertSlackIntegrationArgs.builder()
-     *             .workspaceId(example.id())
+     *             .workspaceId(example.get("id"))
      *             .build());
      * 
      *         ctx.export("ngwafSlackAlertsAll", ngwafSlackAlerts);
@@ -5305,7 +5305,7 @@ public final class FastlyFunctions {
      * 
      *     public static void stack(Context ctx) {
      *         final var ngwafSlackAlerts = FastlyFunctions.getNgwafAlertSlackIntegration(GetNgwafAlertSlackIntegrationArgs.builder()
-     *             .workspaceId(example.id())
+     *             .workspaceId(example.get("id"))
      *             .build());
      * 
      *         ctx.export("ngwafSlackAlertsAll", ngwafSlackAlerts);
@@ -5346,7 +5346,7 @@ public final class FastlyFunctions {
      * 
      *     public static void stack(Context ctx) {
      *         final var ngwafWebhookAlerts = FastlyFunctions.getNgwafAlertWebhookIntegration(GetNgwafAlertWebhookIntegrationArgs.builder()
-     *             .workspaceId(example.id())
+     *             .workspaceId(example.get("id"))
      *             .build());
      * 
      *         ctx.export("ngwafWebhookAlertsAll", ngwafWebhookAlerts);
@@ -5387,7 +5387,7 @@ public final class FastlyFunctions {
      * 
      *     public static void stack(Context ctx) {
      *         final var ngwafWebhookAlerts = FastlyFunctions.getNgwafAlertWebhookIntegration(GetNgwafAlertWebhookIntegrationArgs.builder()
-     *             .workspaceId(example.id())
+     *             .workspaceId(example.get("id"))
      *             .build());
      * 
      *         ctx.export("ngwafWebhookAlertsAll", ngwafWebhookAlerts);
@@ -5428,7 +5428,7 @@ public final class FastlyFunctions {
      * 
      *     public static void stack(Context ctx) {
      *         final var ngwafWebhookAlerts = FastlyFunctions.getNgwafAlertWebhookIntegration(GetNgwafAlertWebhookIntegrationArgs.builder()
-     *             .workspaceId(example.id())
+     *             .workspaceId(example.get("id"))
      *             .build());
      * 
      *         ctx.export("ngwafWebhookAlertsAll", ngwafWebhookAlerts);
@@ -5469,7 +5469,7 @@ public final class FastlyFunctions {
      * 
      *     public static void stack(Context ctx) {
      *         final var ngwafWebhookAlerts = FastlyFunctions.getNgwafAlertWebhookIntegration(GetNgwafAlertWebhookIntegrationArgs.builder()
-     *             .workspaceId(example.id())
+     *             .workspaceId(example.get("id"))
      *             .build());
      * 
      *         ctx.export("ngwafWebhookAlertsAll", ngwafWebhookAlerts);
@@ -5510,7 +5510,7 @@ public final class FastlyFunctions {
      * 
      *     public static void stack(Context ctx) {
      *         final var ngwafWebhookAlerts = FastlyFunctions.getNgwafAlertWebhookIntegration(GetNgwafAlertWebhookIntegrationArgs.builder()
-     *             .workspaceId(example.id())
+     *             .workspaceId(example.get("id"))
      *             .build());
      * 
      *         ctx.export("ngwafWebhookAlertsAll", ngwafWebhookAlerts);
@@ -5551,7 +5551,7 @@ public final class FastlyFunctions {
      * 
      *     public static void stack(Context ctx) {
      *         final var ngwafRedactions = FastlyFunctions.getNgwafRedactions(GetNgwafRedactionsArgs.builder()
-     *             .workspaceId(testRedactionsWorkspace.id())
+     *             .workspaceId(testRedactionsWorkspace.get("id"))
      *             .build());
      * 
      *         ctx.export("fastlyNgwafRedactionsAll", redactions);
@@ -5594,7 +5594,7 @@ public final class FastlyFunctions {
      * 
      *     public static void stack(Context ctx) {
      *         final var ngwafRedactions = FastlyFunctions.getNgwafRedactions(GetNgwafRedactionsArgs.builder()
-     *             .workspaceId(testRedactionsWorkspace.id())
+     *             .workspaceId(testRedactionsWorkspace.get("id"))
      *             .build());
      * 
      *         ctx.export("fastlyNgwafRedactionsAll", redactions);
@@ -5637,7 +5637,7 @@ public final class FastlyFunctions {
      * 
      *     public static void stack(Context ctx) {
      *         final var ngwafRedactions = FastlyFunctions.getNgwafRedactions(GetNgwafRedactionsArgs.builder()
-     *             .workspaceId(testRedactionsWorkspace.id())
+     *             .workspaceId(testRedactionsWorkspace.get("id"))
      *             .build());
      * 
      *         ctx.export("fastlyNgwafRedactionsAll", redactions);
@@ -5680,7 +5680,7 @@ public final class FastlyFunctions {
      * 
      *     public static void stack(Context ctx) {
      *         final var ngwafRedactions = FastlyFunctions.getNgwafRedactions(GetNgwafRedactionsArgs.builder()
-     *             .workspaceId(testRedactionsWorkspace.id())
+     *             .workspaceId(testRedactionsWorkspace.get("id"))
      *             .build());
      * 
      *         ctx.export("fastlyNgwafRedactionsAll", redactions);
@@ -5723,7 +5723,7 @@ public final class FastlyFunctions {
      * 
      *     public static void stack(Context ctx) {
      *         final var ngwafRedactions = FastlyFunctions.getNgwafRedactions(GetNgwafRedactionsArgs.builder()
-     *             .workspaceId(testRedactionsWorkspace.id())
+     *             .workspaceId(testRedactionsWorkspace.get("id"))
      *             .build());
      * 
      *         ctx.export("fastlyNgwafRedactionsAll", redactions);
@@ -5781,7 +5781,7 @@ public final class FastlyFunctions {
      * 
      *     public static void stack(Context ctx) {
      *         final var listPatches = FastlyFunctions.getNgwafVirtualPatches(GetNgwafVirtualPatchesArgs.builder()
-     *             .workspaceId(testVirtualPatchesWorkspace.id())
+     *             .workspaceId(testVirtualPatchesWorkspace.get("id"))
      *             .build());
      * 
      *         ctx.export("fastlyNgwafVirtualPatchesAll", listPatches);
@@ -5824,7 +5824,7 @@ public final class FastlyFunctions {
      * 
      *     public static void stack(Context ctx) {
      *         final var listPatches = FastlyFunctions.getNgwafVirtualPatches(GetNgwafVirtualPatchesArgs.builder()
-     *             .workspaceId(testVirtualPatchesWorkspace.id())
+     *             .workspaceId(testVirtualPatchesWorkspace.get("id"))
      *             .build());
      * 
      *         ctx.export("fastlyNgwafVirtualPatchesAll", listPatches);
@@ -5867,7 +5867,7 @@ public final class FastlyFunctions {
      * 
      *     public static void stack(Context ctx) {
      *         final var listPatches = FastlyFunctions.getNgwafVirtualPatches(GetNgwafVirtualPatchesArgs.builder()
-     *             .workspaceId(testVirtualPatchesWorkspace.id())
+     *             .workspaceId(testVirtualPatchesWorkspace.get("id"))
      *             .build());
      * 
      *         ctx.export("fastlyNgwafVirtualPatchesAll", listPatches);
@@ -5910,7 +5910,7 @@ public final class FastlyFunctions {
      * 
      *     public static void stack(Context ctx) {
      *         final var listPatches = FastlyFunctions.getNgwafVirtualPatches(GetNgwafVirtualPatchesArgs.builder()
-     *             .workspaceId(testVirtualPatchesWorkspace.id())
+     *             .workspaceId(testVirtualPatchesWorkspace.get("id"))
      *             .build());
      * 
      *         ctx.export("fastlyNgwafVirtualPatchesAll", listPatches);
@@ -5953,7 +5953,7 @@ public final class FastlyFunctions {
      * 
      *     public static void stack(Context ctx) {
      *         final var listPatches = FastlyFunctions.getNgwafVirtualPatches(GetNgwafVirtualPatchesArgs.builder()
-     *             .workspaceId(testVirtualPatchesWorkspace.id())
+     *             .workspaceId(testVirtualPatchesWorkspace.get("id"))
      *             .build());
      * 
      *         ctx.export("fastlyNgwafVirtualPatchesAll", listPatches);
@@ -5996,7 +5996,7 @@ public final class FastlyFunctions {
      * 
      *     public static void stack(Context ctx) {
      *         final var workspaceLists = FastlyFunctions.getNgwafWorkspaceLists(GetNgwafWorkspaceListsArgs.builder()
-     *             .workspaceId(example.id())
+     *             .workspaceId(example.get("id"))
      *             .build());
      * 
      *         ctx.export("fastlyNgwafWorkspaceListsAll", workspaceLists);
@@ -6037,7 +6037,7 @@ public final class FastlyFunctions {
      * 
      *     public static void stack(Context ctx) {
      *         final var workspaceLists = FastlyFunctions.getNgwafWorkspaceLists(GetNgwafWorkspaceListsArgs.builder()
-     *             .workspaceId(example.id())
+     *             .workspaceId(example.get("id"))
      *             .build());
      * 
      *         ctx.export("fastlyNgwafWorkspaceListsAll", workspaceLists);
@@ -6078,7 +6078,7 @@ public final class FastlyFunctions {
      * 
      *     public static void stack(Context ctx) {
      *         final var workspaceLists = FastlyFunctions.getNgwafWorkspaceLists(GetNgwafWorkspaceListsArgs.builder()
-     *             .workspaceId(example.id())
+     *             .workspaceId(example.get("id"))
      *             .build());
      * 
      *         ctx.export("fastlyNgwafWorkspaceListsAll", workspaceLists);
@@ -6119,7 +6119,7 @@ public final class FastlyFunctions {
      * 
      *     public static void stack(Context ctx) {
      *         final var workspaceLists = FastlyFunctions.getNgwafWorkspaceLists(GetNgwafWorkspaceListsArgs.builder()
-     *             .workspaceId(example.id())
+     *             .workspaceId(example.get("id"))
      *             .build());
      * 
      *         ctx.export("fastlyNgwafWorkspaceListsAll", workspaceLists);
@@ -6160,7 +6160,7 @@ public final class FastlyFunctions {
      * 
      *     public static void stack(Context ctx) {
      *         final var workspaceLists = FastlyFunctions.getNgwafWorkspaceLists(GetNgwafWorkspaceListsArgs.builder()
-     *             .workspaceId(example.id())
+     *             .workspaceId(example.get("id"))
      *             .build());
      * 
      *         ctx.export("fastlyNgwafWorkspaceListsAll", workspaceLists);
@@ -6201,7 +6201,7 @@ public final class FastlyFunctions {
      * 
      *     public static void stack(Context ctx) {
      *         final var workspaceRules = FastlyFunctions.getNgwafWorkspaceRules(GetNgwafWorkspaceRulesArgs.builder()
-     *             .workspaceId(example.id())
+     *             .workspaceId(example.get("id"))
      *             .build());
      * 
      *         ctx.export("fastlyNgwafWorkspaceRulesAll", workspaceRules);
@@ -6242,7 +6242,7 @@ public final class FastlyFunctions {
      * 
      *     public static void stack(Context ctx) {
      *         final var workspaceRules = FastlyFunctions.getNgwafWorkspaceRules(GetNgwafWorkspaceRulesArgs.builder()
-     *             .workspaceId(example.id())
+     *             .workspaceId(example.get("id"))
      *             .build());
      * 
      *         ctx.export("fastlyNgwafWorkspaceRulesAll", workspaceRules);
@@ -6283,7 +6283,7 @@ public final class FastlyFunctions {
      * 
      *     public static void stack(Context ctx) {
      *         final var workspaceRules = FastlyFunctions.getNgwafWorkspaceRules(GetNgwafWorkspaceRulesArgs.builder()
-     *             .workspaceId(example.id())
+     *             .workspaceId(example.get("id"))
      *             .build());
      * 
      *         ctx.export("fastlyNgwafWorkspaceRulesAll", workspaceRules);
@@ -6324,7 +6324,7 @@ public final class FastlyFunctions {
      * 
      *     public static void stack(Context ctx) {
      *         final var workspaceRules = FastlyFunctions.getNgwafWorkspaceRules(GetNgwafWorkspaceRulesArgs.builder()
-     *             .workspaceId(example.id())
+     *             .workspaceId(example.get("id"))
      *             .build());
      * 
      *         ctx.export("fastlyNgwafWorkspaceRulesAll", workspaceRules);
@@ -6365,7 +6365,7 @@ public final class FastlyFunctions {
      * 
      *     public static void stack(Context ctx) {
      *         final var workspaceRules = FastlyFunctions.getNgwafWorkspaceRules(GetNgwafWorkspaceRulesArgs.builder()
-     *             .workspaceId(example.id())
+     *             .workspaceId(example.get("id"))
      *             .build());
      * 
      *         ctx.export("fastlyNgwafWorkspaceRulesAll", workspaceRules);
@@ -6406,7 +6406,7 @@ public final class FastlyFunctions {
      * 
      *     public static void stack(Context ctx) {
      *         final var workspaceSignals = FastlyFunctions.getNgwafWorkspaceSignals(GetNgwafWorkspaceSignalsArgs.builder()
-     *             .workspaceId(example.id())
+     *             .workspaceId(example.get("id"))
      *             .build());
      * 
      *         ctx.export("fastlyNgwafWorkspaceSignalsAll", workspaceSignals);
@@ -6447,7 +6447,7 @@ public final class FastlyFunctions {
      * 
      *     public static void stack(Context ctx) {
      *         final var workspaceSignals = FastlyFunctions.getNgwafWorkspaceSignals(GetNgwafWorkspaceSignalsArgs.builder()
-     *             .workspaceId(example.id())
+     *             .workspaceId(example.get("id"))
      *             .build());
      * 
      *         ctx.export("fastlyNgwafWorkspaceSignalsAll", workspaceSignals);
@@ -6488,7 +6488,7 @@ public final class FastlyFunctions {
      * 
      *     public static void stack(Context ctx) {
      *         final var workspaceSignals = FastlyFunctions.getNgwafWorkspaceSignals(GetNgwafWorkspaceSignalsArgs.builder()
-     *             .workspaceId(example.id())
+     *             .workspaceId(example.get("id"))
      *             .build());
      * 
      *         ctx.export("fastlyNgwafWorkspaceSignalsAll", workspaceSignals);
@@ -6529,7 +6529,7 @@ public final class FastlyFunctions {
      * 
      *     public static void stack(Context ctx) {
      *         final var workspaceSignals = FastlyFunctions.getNgwafWorkspaceSignals(GetNgwafWorkspaceSignalsArgs.builder()
-     *             .workspaceId(example.id())
+     *             .workspaceId(example.get("id"))
      *             .build());
      * 
      *         ctx.export("fastlyNgwafWorkspaceSignalsAll", workspaceSignals);
@@ -6570,7 +6570,7 @@ public final class FastlyFunctions {
      * 
      *     public static void stack(Context ctx) {
      *         final var workspaceSignals = FastlyFunctions.getNgwafWorkspaceSignals(GetNgwafWorkspaceSignalsArgs.builder()
-     *             .workspaceId(example.id())
+     *             .workspaceId(example.get("id"))
      *             .build());
      * 
      *         ctx.export("fastlyNgwafWorkspaceSignalsAll", workspaceSignals);
@@ -9922,7 +9922,7 @@ public final class FastlyFunctions {
      *         final var demo = FastlyFunctions.getTlsPrivateKeyIds(%!v(PANIC=Format method: runtime error: invalid memory address or nil pointer dereference);
      * 
      *         final var example = FastlyFunctions.getTlsPrivateKey(GetTlsPrivateKeyArgs.builder()
-     *             .id(demoFastlyTlsPrivateKeyIds.ids()[0])
+     *             .id(demoFastlyTlsPrivateKeyIds.get("ids")[0])
      *             .build());
      * 
      *     }
@@ -9964,7 +9964,7 @@ public final class FastlyFunctions {
      *         final var demo = FastlyFunctions.getTlsPrivateKeyIds(%!v(PANIC=Format method: runtime error: invalid memory address or nil pointer dereference);
      * 
      *         final var example = FastlyFunctions.getTlsPrivateKey(GetTlsPrivateKeyArgs.builder()
-     *             .id(demoFastlyTlsPrivateKeyIds.ids()[0])
+     *             .id(demoFastlyTlsPrivateKeyIds.get("ids")[0])
      *             .build());
      * 
      *     }
@@ -10006,7 +10006,7 @@ public final class FastlyFunctions {
      *         final var demo = FastlyFunctions.getTlsPrivateKeyIds(%!v(PANIC=Format method: runtime error: invalid memory address or nil pointer dereference);
      * 
      *         final var example = FastlyFunctions.getTlsPrivateKey(GetTlsPrivateKeyArgs.builder()
-     *             .id(demoFastlyTlsPrivateKeyIds.ids()[0])
+     *             .id(demoFastlyTlsPrivateKeyIds.get("ids")[0])
      *             .build());
      * 
      *     }
@@ -10048,7 +10048,7 @@ public final class FastlyFunctions {
      *         final var demo = FastlyFunctions.getTlsPrivateKeyIds(%!v(PANIC=Format method: runtime error: invalid memory address or nil pointer dereference);
      * 
      *         final var example = FastlyFunctions.getTlsPrivateKey(GetTlsPrivateKeyArgs.builder()
-     *             .id(demoFastlyTlsPrivateKeyIds.ids()[0])
+     *             .id(demoFastlyTlsPrivateKeyIds.get("ids")[0])
      *             .build());
      * 
      *     }
@@ -10090,7 +10090,7 @@ public final class FastlyFunctions {
      *         final var demo = FastlyFunctions.getTlsPrivateKeyIds(%!v(PANIC=Format method: runtime error: invalid memory address or nil pointer dereference);
      * 
      *         final var example = FastlyFunctions.getTlsPrivateKey(GetTlsPrivateKeyArgs.builder()
-     *             .id(demoFastlyTlsPrivateKeyIds.ids()[0])
+     *             .id(demoFastlyTlsPrivateKeyIds.get("ids")[0])
      *             .build());
      * 
      *     }
@@ -10132,7 +10132,7 @@ public final class FastlyFunctions {
      *         final var demo = FastlyFunctions.getTlsPrivateKeyIds(%!v(PANIC=Format method: runtime error: invalid memory address or nil pointer dereference);
      * 
      *         final var example = FastlyFunctions.getTlsPrivateKey(GetTlsPrivateKeyArgs.builder()
-     *             .id(demoFastlyTlsPrivateKeyIds.ids()[0])
+     *             .id(demoFastlyTlsPrivateKeyIds.get("ids")[0])
      *             .build());
      * 
      *     }
@@ -10174,7 +10174,7 @@ public final class FastlyFunctions {
      *         final var demo = FastlyFunctions.getTlsPrivateKeyIds(%!v(PANIC=Format method: runtime error: invalid memory address or nil pointer dereference);
      * 
      *         final var example = FastlyFunctions.getTlsPrivateKey(GetTlsPrivateKeyArgs.builder()
-     *             .id(demoFastlyTlsPrivateKeyIds.ids()[0])
+     *             .id(demoFastlyTlsPrivateKeyIds.get("ids")[0])
      *             .build());
      * 
      *     }

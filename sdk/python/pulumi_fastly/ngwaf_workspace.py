@@ -295,7 +295,7 @@ class NgwafWorkspace(pulumi.CustomResource):
     def __init__(__self__,
                  resource_name: str,
                  opts: Optional[pulumi.ResourceOptions] = None,
-                 attack_signal_thresholds: pulumi.Input[Optional[Union['NgwafWorkspaceAttackSignalThresholdsArgs', 'NgwafWorkspaceAttackSignalThresholdsArgsDict']]] = None,
+                 attack_signal_thresholds: pulumi.Input[Optional[Union['NgwafWorkspaceAttackSignalThresholdsArgs', 'NgwafWorkspaceAttackSignalThresholdsArgsDict', 'outputs.NgwafWorkspaceAttackSignalThresholds']]] = None,
                  client_ip_headers: pulumi.Input[Optional[Sequence[pulumi.Input[_builtins.str]]]] = None,
                  default_blocking_response_code: pulumi.Input[Optional[_builtins.int]] = None,
                  default_redirect_url: pulumi.Input[Optional[_builtins.str]] = None,
@@ -340,7 +340,7 @@ class NgwafWorkspace(pulumi.CustomResource):
 
         :param str resource_name: The name of the resource.
         :param pulumi.ResourceOptions opts: Options for the resource.
-        :param pulumi.Input[Union['NgwafWorkspaceAttackSignalThresholdsArgs', 'NgwafWorkspaceAttackSignalThresholdsArgsDict']] attack_signal_thresholds: Attack threshold parameters for system site alerts. Each threshold value is the number of attack signals per IP address that must be detected during the interval before the related IP address is flagged. If no values are set then the default value for each field will be applied
+        :param pulumi.Input[Union['NgwafWorkspaceAttackSignalThresholdsArgs', 'NgwafWorkspaceAttackSignalThresholdsArgsDict', 'outputs.NgwafWorkspaceAttackSignalThresholds']] attack_signal_thresholds: Attack threshold parameters for system site alerts. Each threshold value is the number of attack signals per IP address that must be detected during the interval before the related IP address is flagged. If no values are set then the default value for each field will be applied
         :param pulumi.Input[Sequence[pulumi.Input[_builtins.str]]] client_ip_headers: Specifies the request headers containing the client IP address. Maximum of 10 header names.
         :param pulumi.Input[_builtins.int] default_blocking_response_code: The status code returned when a request is blocked. This configuration is applied at the workspace but can be overwritten in rules. Accepted values are [`301`, `302`, `400..599`]. Default value `406`.
         :param pulumi.Input[_builtins.str] default_redirect_url: The redirect URL used if default*blocking*response_code is `301` or `302`.
@@ -404,7 +404,7 @@ class NgwafWorkspace(pulumi.CustomResource):
     def _internal_init(__self__,
                  resource_name: str,
                  opts: Optional[pulumi.ResourceOptions] = None,
-                 attack_signal_thresholds: pulumi.Input[Optional[Union['NgwafWorkspaceAttackSignalThresholdsArgs', 'NgwafWorkspaceAttackSignalThresholdsArgsDict']]] = None,
+                 attack_signal_thresholds: pulumi.Input[Optional[Union['NgwafWorkspaceAttackSignalThresholdsArgs', 'NgwafWorkspaceAttackSignalThresholdsArgsDict', 'outputs.NgwafWorkspaceAttackSignalThresholds']]] = None,
                  client_ip_headers: pulumi.Input[Optional[Sequence[pulumi.Input[_builtins.str]]]] = None,
                  default_blocking_response_code: pulumi.Input[Optional[_builtins.int]] = None,
                  default_redirect_url: pulumi.Input[Optional[_builtins.str]] = None,
@@ -445,7 +445,7 @@ class NgwafWorkspace(pulumi.CustomResource):
     def get(resource_name: str,
             id: pulumi.Input[str],
             opts: Optional[pulumi.ResourceOptions] = None,
-            attack_signal_thresholds: pulumi.Input[Optional[Union['NgwafWorkspaceAttackSignalThresholdsArgs', 'NgwafWorkspaceAttackSignalThresholdsArgsDict']]] = None,
+            attack_signal_thresholds: pulumi.Input[Optional[Union['NgwafWorkspaceAttackSignalThresholdsArgs', 'NgwafWorkspaceAttackSignalThresholdsArgsDict', 'outputs.NgwafWorkspaceAttackSignalThresholds']]] = None,
             client_ip_headers: pulumi.Input[Optional[Sequence[pulumi.Input[_builtins.str]]]] = None,
             default_blocking_response_code: pulumi.Input[Optional[_builtins.int]] = None,
             default_redirect_url: pulumi.Input[Optional[_builtins.str]] = None,
@@ -460,7 +460,7 @@ class NgwafWorkspace(pulumi.CustomResource):
         :param str resource_name: The unique name of the resulting resource.
         :param pulumi.Input[str] id: The unique provider ID of the resource to lookup.
         :param pulumi.ResourceOptions opts: Options for the resource.
-        :param pulumi.Input[Union['NgwafWorkspaceAttackSignalThresholdsArgs', 'NgwafWorkspaceAttackSignalThresholdsArgsDict']] attack_signal_thresholds: Attack threshold parameters for system site alerts. Each threshold value is the number of attack signals per IP address that must be detected during the interval before the related IP address is flagged. If no values are set then the default value for each field will be applied
+        :param pulumi.Input[Union['NgwafWorkspaceAttackSignalThresholdsArgs', 'NgwafWorkspaceAttackSignalThresholdsArgsDict', 'outputs.NgwafWorkspaceAttackSignalThresholds']] attack_signal_thresholds: Attack threshold parameters for system site alerts. Each threshold value is the number of attack signals per IP address that must be detected during the interval before the related IP address is flagged. If no values are set then the default value for each field will be applied
         :param pulumi.Input[Sequence[pulumi.Input[_builtins.str]]] client_ip_headers: Specifies the request headers containing the client IP address. Maximum of 10 header names.
         :param pulumi.Input[_builtins.int] default_blocking_response_code: The status code returned when a request is blocked. This configuration is applied at the workspace but can be overwritten in rules. Accepted values are [`301`, `302`, `400..599`]. Default value `406`.
         :param pulumi.Input[_builtins.str] default_redirect_url: The redirect URL used if default*blocking*response_code is `301` or `302`.

@@ -196,7 +196,7 @@ public class App {
 {{% /choosable %}}
 {{% choosable language hcl %}}
 ```hcl
-pulumi {
+terraform {
   required_providers {
     fastly = {
       source = "pulumi/fastly"
@@ -205,7 +205,10 @@ pulumi {
 }
 
 # Create a Service
-resource "fastly_servicevcl" "myservice" {
+resource "fastly_service_vcl" "myservice" {
+  lifecycle {
+    create_before_destroy = true
+  }
   name = "myawesometestservice"
 }
 ```
@@ -383,7 +386,7 @@ public class App {
 {{% /choosable %}}
 {{% choosable language hcl %}}
 ```hcl
-pulumi {
+terraform {
   required_providers {
     fastly = {
       source = "pulumi/fastly"
@@ -391,7 +394,10 @@ pulumi {
   }
 }
 
-resource "fastly_servicevcl" "myservice" {
+resource "fastly_service_vcl" "myservice" {
+  lifecycle {
+    create_before_destroy = true
+  }
 }
 ```
 
@@ -498,7 +504,7 @@ public class App {
 {{% /choosable %}}
 {{% choosable language hcl %}}
 ```hcl
-pulumi {
+terraform {
   required_providers {
     fastly = {
       source = "pulumi/fastly"
@@ -506,7 +512,10 @@ pulumi {
   }
 }
 
-resource "fastly_servicevcl" "myservice" {
+resource "fastly_service_vcl" "myservice" {
+  lifecycle {
+    create_before_destroy = true
+  }
 }
 ```
 

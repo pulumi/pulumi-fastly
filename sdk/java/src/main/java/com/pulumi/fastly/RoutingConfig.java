@@ -67,7 +67,7 @@ import javax.annotation.Nullable;
  *                     .path("/api/*")
  *                     .rules(RoutingConfigPathRuleArgs.builder()
  *                         .actionType("service")
- *                         .actionValue(exampleFastlyServiceVcl.id())
+ *                         .actionValue(exampleFastlyServiceVcl.get("id"))
  *                         .build())
  *                     .build(),
  *                 RoutingConfigPathArgs.builder()
@@ -75,7 +75,7 @@ import javax.annotation.Nullable;
  *                     .rules(                    
  *                         RoutingConfigPathRuleArgs.builder()
  *                             .actionType("service")
- *                             .actionValue(exampleFastlyServiceVcl.id())
+ *                             .actionValue(exampleFastlyServiceVcl.get("id"))
  *                             .conditions(RoutingConfigPathRuleConditionArgs.builder()
  *                                 .type("header")
  *                                 .key("X-Beta")
@@ -85,7 +85,7 @@ import javax.annotation.Nullable;
  *                             .build(),
  *                         RoutingConfigPathRuleArgs.builder()
  *                             .actionType("service")
- *                             .actionValue(exampleFastlyServiceVcl.id())
+ *                             .actionValue(exampleFastlyServiceVcl.get("id"))
  *                             .build())
  *                     .build())
  *             .build());

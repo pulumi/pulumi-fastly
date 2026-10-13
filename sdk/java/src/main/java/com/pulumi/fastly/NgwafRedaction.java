@@ -45,7 +45,7 @@ import javax.annotation.Nullable;
  *         var demoRedaction = new NgwafRedaction("demoRedaction", NgwafRedactionArgs.builder()
  *             .field("some field")
  *             .type("request_header")
- *             .workspaceId(demo.id())
+ *             .workspaceId(demo.get("id"))
  *             .build());
  * 
  *     }

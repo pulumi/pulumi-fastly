@@ -104,7 +104,7 @@ def get_api_security_operation_tags(service_id: Optional[_builtins.str] = None,
             "address": "example.com",
             "name": "tf-test-backend-1",
         }])
-    # Optional: create a tag so the data source returns a predictable result
+    # Optional: create a tag so the function returns a predictable result
     example = fastly.ApiSecurityOperationTag("example",
         service_id=svc1.id,
         name="example-tag",
@@ -145,7 +145,7 @@ def get_api_security_operation_tags_output(service_id: pulumi.Input[Optional[_bu
             "address": "example.com",
             "name": "tf-test-backend-1",
         }])
-    # Optional: create a tag so the data source returns a predictable result
+    # Optional: create a tag so the function returns a predictable result
     example = fastly.ApiSecurityOperationTag("example",
         service_id=svc1.id,
         name="example-tag",

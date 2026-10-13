@@ -47,7 +47,7 @@ import javax.annotation.Nullable;
  *         var demoSlackAlert = new NgwafAlertSlackIntegration("demoSlackAlert", NgwafAlertSlackIntegrationArgs.builder()
  *             .description("Some Description")
  *             .webhook("https://example.com/webhooks/my-service")
- *             .workspaceId(demo.id())
+ *             .workspaceId(demo.get("id"))
  *             .build());
  * 
  *     }

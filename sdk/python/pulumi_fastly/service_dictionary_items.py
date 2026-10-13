@@ -225,7 +225,7 @@ class ServiceDictionaryItems(pulumi.CustomResource):
                         "key2": "value2",
                     })
 
-        myservice.dictionaries.apply(lambda resolved_outputs: create_items({d.name: d for d in resolved_outputs['dictionaries'] if d.name == mydict_name}))
+        myservice.dictionaries.apply(lambda resolved_outputs: create_items({d.name: d for d in resolved_outputs if d.name == mydict_name}))
         ```
 
         Complex object usage:
@@ -268,7 +268,7 @@ class ServiceDictionaryItems(pulumi.CustomResource):
                     dictionary_id=items_range["value"].dictionary_id,
                     items=mydict["items"])
 
-        myservice.dictionaries.apply(lambda resolved_outputs: create_items({d.name: d for d in resolved_outputs['dictionaries'] if d.name == mydict["name"]}))
+        myservice.dictionaries.apply(lambda resolved_outputs: create_items({d.name: d for d in resolved_outputs if d.name == mydict["name"]}))
         ```
 
         Expression and functions usage:
@@ -316,7 +316,7 @@ class ServiceDictionaryItems(pulumi.CustomResource):
                             host_base,
                         ])["result"] for division in host_divisions})
 
-        myservice.dictionaries.apply(lambda resolved_outputs: create_project({d.name: d for d in resolved_outputs['dictionaries'] if d.name == dictionary_name}))
+        myservice.dictionaries.apply(lambda resolved_outputs: create_project({d.name: d for d in resolved_outputs if d.name == dictionary_name}))
         ```
 
         ### Terraform >= 0.12.0 && < 0.12.6)
@@ -477,7 +477,7 @@ class ServiceDictionaryItems(pulumi.CustomResource):
                         "key2": "value2",
                     })
 
-        myservice.dictionaries.apply(lambda resolved_outputs: create_items({d.name: d for d in resolved_outputs['dictionaries'] if d.name == mydict_name}))
+        myservice.dictionaries.apply(lambda resolved_outputs: create_items({d.name: d for d in resolved_outputs if d.name == mydict_name}))
         ```
 
         Complex object usage:
@@ -520,7 +520,7 @@ class ServiceDictionaryItems(pulumi.CustomResource):
                     dictionary_id=items_range["value"].dictionary_id,
                     items=mydict["items"])
 
-        myservice.dictionaries.apply(lambda resolved_outputs: create_items({d.name: d for d in resolved_outputs['dictionaries'] if d.name == mydict["name"]}))
+        myservice.dictionaries.apply(lambda resolved_outputs: create_items({d.name: d for d in resolved_outputs if d.name == mydict["name"]}))
         ```
 
         Expression and functions usage:
@@ -568,7 +568,7 @@ class ServiceDictionaryItems(pulumi.CustomResource):
                             host_base,
                         ])["result"] for division in host_divisions})
 
-        myservice.dictionaries.apply(lambda resolved_outputs: create_project({d.name: d for d in resolved_outputs['dictionaries'] if d.name == dictionary_name}))
+        myservice.dictionaries.apply(lambda resolved_outputs: create_project({d.name: d for d in resolved_outputs if d.name == dictionary_name}))
         ```
 
         ### Terraform >= 0.12.0 && < 0.12.6)

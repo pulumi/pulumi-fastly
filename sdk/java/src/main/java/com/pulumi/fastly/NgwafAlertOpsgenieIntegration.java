@@ -47,7 +47,7 @@ import javax.annotation.Nullable;
  *         var demoOpsgenieAlert = new NgwafAlertOpsgenieIntegration("demoOpsgenieAlert", NgwafAlertOpsgenieIntegrationArgs.builder()
  *             .description("A description")
  *             .key("123456789")
- *             .workspaceId(demo.id())
+ *             .workspaceId(demo.get("id"))
  *             .build());
  * 
  *     }
