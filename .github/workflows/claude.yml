@@ -86,7 +86,7 @@ jobs:
             REPO: ${{ github.repository }}
             PR NUMBER: ${{ github.event.pull_request.number || github.event.issue.number }}
 
-            Review this pull request using the provider-code-review skill for guidelines.
+            Review this pull request using the repository development guidelines.
             The PR branch is already checked out in the current working directory.
 
             Use `gh pr comment` for top-level feedback.
