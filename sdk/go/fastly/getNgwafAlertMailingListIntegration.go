@@ -66,12 +66,8 @@ type LookupNgwafAlertMailingListIntegrationResult struct {
 }
 
 func LookupNgwafAlertMailingListIntegrationOutput(ctx *pulumi.Context, args LookupNgwafAlertMailingListIntegrationOutputArgs, opts ...pulumi.InvokeOption) LookupNgwafAlertMailingListIntegrationResultOutput {
-	return pulumi.ToOutputWithContext(ctx.Context(), args).
-		ApplyT(func(v interface{}) (LookupNgwafAlertMailingListIntegrationResultOutput, error) {
-			args := v.(LookupNgwafAlertMailingListIntegrationArgs)
-			options := pulumi.InvokeOutputOptions{InvokeOptions: internal.PkgInvokeDefaultOpts(opts)}
-			return ctx.InvokeOutput("fastly:index/getNgwafAlertMailingListIntegration:getNgwafAlertMailingListIntegration", args, LookupNgwafAlertMailingListIntegrationResultOutput{}, options).(LookupNgwafAlertMailingListIntegrationResultOutput), nil
-		}).(LookupNgwafAlertMailingListIntegrationResultOutput)
+	options := pulumi.InvokeOutputOptions{InvokeOptions: internal.PkgInvokeDefaultOpts(opts)}
+	return ctx.InvokeOutput("fastly:index/getNgwafAlertMailingListIntegration:getNgwafAlertMailingListIntegration", args, LookupNgwafAlertMailingListIntegrationResultOutput{}, options).(LookupNgwafAlertMailingListIntegrationResultOutput)
 }
 
 // A collection of arguments for invoking getNgwafAlertMailingListIntegration.

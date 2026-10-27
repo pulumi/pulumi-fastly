@@ -23,8 +23,8 @@ class ServiceACLEntriesArgs:
     def __init__(__self__, *,
                  acl_id: pulumi.Input[_builtins.str],
                  service_id: pulumi.Input[_builtins.str],
-                 entries: Optional[pulumi.Input[Sequence[pulumi.Input['ServiceACLEntriesEntryArgs']]]] = None,
-                 manage_entries: Optional[pulumi.Input[_builtins.bool]] = None):
+                 entries: pulumi.Input[Optional[Sequence[pulumi.Input['ServiceACLEntriesEntryArgs']]]] = None,
+                 manage_entries: pulumi.Input[Optional[_builtins.bool]] = None):
         """
         The set of arguments for constructing a ServiceACLEntries resource.
 
@@ -66,36 +66,36 @@ class ServiceACLEntriesArgs:
 
     @_builtins.property
     @pulumi.getter
-    def entries(self) -> Optional[pulumi.Input[Sequence[pulumi.Input['ServiceACLEntriesEntryArgs']]]]:
+    def entries(self) -> pulumi.Input[Optional[Sequence[pulumi.Input['ServiceACLEntriesEntryArgs']]]]:
         """
         ACL Entries
         """
         return pulumi.get(self, "entries")
 
     @entries.setter
-    def entries(self, value: Optional[pulumi.Input[Sequence[pulumi.Input['ServiceACLEntriesEntryArgs']]]]):
+    def entries(self, value: pulumi.Input[Optional[Sequence[pulumi.Input['ServiceACLEntriesEntryArgs']]]]):
         pulumi.set(self, "entries", value)
 
     @_builtins.property
     @pulumi.getter(name="manageEntries")
-    def manage_entries(self) -> Optional[pulumi.Input[_builtins.bool]]:
+    def manage_entries(self) -> pulumi.Input[Optional[_builtins.bool]]:
         """
         Whether to reapply changes if the state of the entries drifts, i.e. if entries are managed externally
         """
         return pulumi.get(self, "manage_entries")
 
     @manage_entries.setter
-    def manage_entries(self, value: Optional[pulumi.Input[_builtins.bool]]):
+    def manage_entries(self, value: pulumi.Input[Optional[_builtins.bool]]):
         pulumi.set(self, "manage_entries", value)
 
 
 @pulumi.input_type
 class _ServiceACLEntriesState:
     def __init__(__self__, *,
-                 acl_id: Optional[pulumi.Input[_builtins.str]] = None,
-                 entries: Optional[pulumi.Input[Sequence[pulumi.Input['ServiceACLEntriesEntryArgs']]]] = None,
-                 manage_entries: Optional[pulumi.Input[_builtins.bool]] = None,
-                 service_id: Optional[pulumi.Input[_builtins.str]] = None):
+                 acl_id: pulumi.Input[Optional[_builtins.str]] = None,
+                 entries: pulumi.Input[Optional[Sequence[pulumi.Input['ServiceACLEntriesEntryArgs']]]] = None,
+                 manage_entries: pulumi.Input[Optional[_builtins.bool]] = None,
+                 service_id: pulumi.Input[Optional[_builtins.str]] = None):
         """
         Input properties used for looking up and filtering ServiceACLEntries resources.
 
@@ -115,50 +115,50 @@ class _ServiceACLEntriesState:
 
     @_builtins.property
     @pulumi.getter(name="aclId")
-    def acl_id(self) -> Optional[pulumi.Input[_builtins.str]]:
+    def acl_id(self) -> pulumi.Input[Optional[_builtins.str]]:
         """
         The ID of the ACL that the items belong to
         """
         return pulumi.get(self, "acl_id")
 
     @acl_id.setter
-    def acl_id(self, value: Optional[pulumi.Input[_builtins.str]]):
+    def acl_id(self, value: pulumi.Input[Optional[_builtins.str]]):
         pulumi.set(self, "acl_id", value)
 
     @_builtins.property
     @pulumi.getter
-    def entries(self) -> Optional[pulumi.Input[Sequence[pulumi.Input['ServiceACLEntriesEntryArgs']]]]:
+    def entries(self) -> pulumi.Input[Optional[Sequence[pulumi.Input['ServiceACLEntriesEntryArgs']]]]:
         """
         ACL Entries
         """
         return pulumi.get(self, "entries")
 
     @entries.setter
-    def entries(self, value: Optional[pulumi.Input[Sequence[pulumi.Input['ServiceACLEntriesEntryArgs']]]]):
+    def entries(self, value: pulumi.Input[Optional[Sequence[pulumi.Input['ServiceACLEntriesEntryArgs']]]]):
         pulumi.set(self, "entries", value)
 
     @_builtins.property
     @pulumi.getter(name="manageEntries")
-    def manage_entries(self) -> Optional[pulumi.Input[_builtins.bool]]:
+    def manage_entries(self) -> pulumi.Input[Optional[_builtins.bool]]:
         """
         Whether to reapply changes if the state of the entries drifts, i.e. if entries are managed externally
         """
         return pulumi.get(self, "manage_entries")
 
     @manage_entries.setter
-    def manage_entries(self, value: Optional[pulumi.Input[_builtins.bool]]):
+    def manage_entries(self, value: pulumi.Input[Optional[_builtins.bool]]):
         pulumi.set(self, "manage_entries", value)
 
     @_builtins.property
     @pulumi.getter(name="serviceId")
-    def service_id(self) -> Optional[pulumi.Input[_builtins.str]]:
+    def service_id(self) -> pulumi.Input[Optional[_builtins.str]]:
         """
         The ID of the Service that the ACL belongs to
         """
         return pulumi.get(self, "service_id")
 
     @service_id.setter
-    def service_id(self, value: Optional[pulumi.Input[_builtins.str]]):
+    def service_id(self, value: pulumi.Input[Optional[_builtins.str]]):
         pulumi.set(self, "service_id", value)
 
 
@@ -168,16 +168,17 @@ class ServiceACLEntries(pulumi.CustomResource):
     def __init__(__self__,
                  resource_name: str,
                  opts: Optional[pulumi.ResourceOptions] = None,
-                 acl_id: Optional[pulumi.Input[_builtins.str]] = None,
-                 entries: Optional[pulumi.Input[Sequence[pulumi.Input[Union['ServiceACLEntriesEntryArgs', 'ServiceACLEntriesEntryArgsDict']]]]] = None,
-                 manage_entries: Optional[pulumi.Input[_builtins.bool]] = None,
-                 service_id: Optional[pulumi.Input[_builtins.str]] = None,
+                 acl_id: pulumi.Input[Optional[_builtins.str]] = None,
+                 entries: pulumi.Input[Optional[Sequence[pulumi.Input[Union['ServiceACLEntriesEntryArgs', 'ServiceACLEntriesEntryArgsDict', 'outputs.ServiceACLEntriesEntry']]]]] = None,
+                 manage_entries: pulumi.Input[Optional[_builtins.bool]] = None,
+                 service_id: pulumi.Input[Optional[_builtins.str]] = None,
                  __props__=None):
         """
-        Defines a set of Fastly ACL entries that can be used to populate a service ACL.  This resource will populate an ACL with the entries and will track their state.
+        Defines a set of Fastly ACL entries that can be used to populate a service ACL. This resource seeds configured entries when it is created.
 
-        > **Note:** By default the Terraform provider allows you to externally manage the entries via API or UI.
-        If you wish to apply your changes in the HCL, then you should explicitly set the `manage_entries` attribute. An example of this configuration is provided below.
+        > **Note:** By default (`manage_entries = false`), the Terraform provider allows you to externally manage ACL entries via API or UI. In this mode, entry data is cleared from Terraform state during refresh so large externally managed ACLs are not retained in state. Changes to configured `entry` blocks after creation are ignored. Set `manage_entries = true` if Terraform should track and reconcile the ACL entries.
+
+        > **Note:** Because unmanaged entry data is not retained in Terraform state, removing a `ServiceACLEntries` resource with `manage_entries = false` does not delete the ACL entries that it originally seeded.
 
         ## Example Usage
 
@@ -187,6 +188,7 @@ class ServiceACLEntries(pulumi.CustomResource):
 
         ```python
         import pulumi
+        from typing import Any
         import pulumi_fastly as fastly
 
         config = pulumi.Config()
@@ -208,25 +210,79 @@ class ServiceACLEntries(pulumi.CustomResource):
                 "name": myacl_name,
             }],
             force_destroy=True)
-        entries = []
+        entries: dict[str, fastly.ServiceACLEntries] = {}
         def create_entries(range_body):
-            for range in [{"key": k, "value": v} for [k, v] in (range_body).items()]:
-                entries.append(fastly.ServiceACLEntries(f"entries-{range['key']}",
+            for entries_range in [{"key": k, "value": v} for [k, v] in sorted((range_body).items())]:
+                entries[entries_range['key']] = fastly.ServiceACLEntries(f"entries-{entries_range['key']}",
                     service_id=myservice.id,
-                    acl_id=range["value"].acl_id,
+                    acl_id=entries_range["value"].acl_id,
                     entries=[{
                         "ip": "127.0.0.1",
                         "subnet": "24",
                         "negated": False,
                         "comment": "ACL Entry 1",
-                    }]))
+                    }])
 
-        myservice.acls.apply(lambda resolved_outputs: create_entries({d.name: d for d in resolved_outputs['acls'] if d.name == myacl_name}))
+        myservice.acls.apply(lambda resolved_outputs: create_entries({d.name: d for d in resolved_outputs if d.name == myacl_name}))
         ```
 
         Complex object usage:
 
         The following example demonstrates the use of dynamic nested blocks to create ACL entries.
+
+        ```python
+        import pulumi
+        from typing import Any
+        import pulumi_fastly as fastly
+
+        acl_name = "my_acl"
+        acl_entries = [
+            {
+                "ip": "1.2.3.4",
+                "comment": "acl_entry_1",
+            },
+            {
+                "ip": "1.2.3.5",
+                "comment": "acl_entry_2",
+            },
+            {
+                "ip": "1.2.3.6",
+                "comment": "acl_entry_3",
+            },
+        ]
+        myservice = fastly.ServiceVcl("myservice",
+            name="demofastly",
+            domains=[{
+                "name": "demo.notexample.com",
+                "comment": "demo",
+            }],
+            backends=[{
+                "address": "1.2.3.4",
+                "name": "localhost",
+                "port": 80,
+            }],
+            acls=[{
+                "name": acl_name,
+            }],
+            force_destroy=True)
+        entries: dict[str, fastly.ServiceACLEntries] = {}
+        def create_entries(range_body):
+            for entries_range in [{"key": k, "value": v} for [k, v] in sorted((range_body).items())]:
+                entries[entries_range['key']] = fastly.ServiceACLEntries(f"entries-{entries_range['key']}",
+                    entries=[{
+                        "ip": entry["ip"],
+                        "subnet": "22",
+                        "comment": entry["comment"],
+                        "negated": False,
+                    } for entry in [{
+                        "ip": e["ip"],
+                        "comment": e["comment"],
+                    } for e in acl_entries]],
+                    service_id=myservice.id,
+                    acl_id=entries_range["value"].acl_id)
+
+        myservice.acls.apply(lambda resolved_outputs: create_entries({d.name: d for d in resolved_outputs if d.name == acl_name}))
+        ```
 
         ### Terraform >= 0.12.0 && < 0.12.6)
 
@@ -286,21 +342,22 @@ class ServiceACLEntries(pulumi.CustomResource):
 
         ```python
         import pulumi
+        from typing import Any
         import pulumi_fastly as fastly
 
         #...
-        entries = []
-        for range in [{"key": k, "value": v} for [k, v] in ({d.name: d for d in myservice.acl if d.name == myacl_name}).items()]:
-            entries.append(fastly.ServiceACLEntries(f"entries-{range['key']}",
+        entries: dict[str, fastly.ServiceACLEntries] = {}
+        for entries_range in [{"key": k, "value": v} for [k, v] in sorted(({d.name: d for d in myservice.acl if d.name == myacl_name}).items())]:
+            entries[entries_range['key']] = fastly.ServiceACLEntries(f"entries-{entries_range['key']}",
                 service_id=myservice["id"],
-                acl_id=range["value"]["aclId"],
+                acl_id=entries_range["value"]["aclId"],
                 manage_entries=True,
                 entries=[{
                     "ip": "127.0.0.1",
                     "subnet": "24",
                     "negated": False,
                     "comment": "ACL Entry 1",
-                }]))
+                }])
         ```
 
         ## Import
@@ -323,7 +380,7 @@ class ServiceACLEntries(pulumi.CustomResource):
         :param str resource_name: The name of the resource.
         :param pulumi.ResourceOptions opts: Options for the resource.
         :param pulumi.Input[_builtins.str] acl_id: The ID of the ACL that the items belong to
-        :param pulumi.Input[Sequence[pulumi.Input[Union['ServiceACLEntriesEntryArgs', 'ServiceACLEntriesEntryArgsDict']]]] entries: ACL Entries
+        :param pulumi.Input[Sequence[pulumi.Input[Union['ServiceACLEntriesEntryArgs', 'ServiceACLEntriesEntryArgsDict', 'outputs.ServiceACLEntriesEntry']]]] entries: ACL Entries
         :param pulumi.Input[_builtins.bool] manage_entries: Whether to reapply changes if the state of the entries drifts, i.e. if entries are managed externally
         :param pulumi.Input[_builtins.str] service_id: The ID of the Service that the ACL belongs to
         """
@@ -334,10 +391,11 @@ class ServiceACLEntries(pulumi.CustomResource):
                  args: ServiceACLEntriesArgs,
                  opts: Optional[pulumi.ResourceOptions] = None):
         """
-        Defines a set of Fastly ACL entries that can be used to populate a service ACL.  This resource will populate an ACL with the entries and will track their state.
+        Defines a set of Fastly ACL entries that can be used to populate a service ACL. This resource seeds configured entries when it is created.
 
-        > **Note:** By default the Terraform provider allows you to externally manage the entries via API or UI.
-        If you wish to apply your changes in the HCL, then you should explicitly set the `manage_entries` attribute. An example of this configuration is provided below.
+        > **Note:** By default (`manage_entries = false`), the Terraform provider allows you to externally manage ACL entries via API or UI. In this mode, entry data is cleared from Terraform state during refresh so large externally managed ACLs are not retained in state. Changes to configured `entry` blocks after creation are ignored. Set `manage_entries = true` if Terraform should track and reconcile the ACL entries.
+
+        > **Note:** Because unmanaged entry data is not retained in Terraform state, removing a `ServiceACLEntries` resource with `manage_entries = false` does not delete the ACL entries that it originally seeded.
 
         ## Example Usage
 
@@ -347,6 +405,7 @@ class ServiceACLEntries(pulumi.CustomResource):
 
         ```python
         import pulumi
+        from typing import Any
         import pulumi_fastly as fastly
 
         config = pulumi.Config()
@@ -368,25 +427,79 @@ class ServiceACLEntries(pulumi.CustomResource):
                 "name": myacl_name,
             }],
             force_destroy=True)
-        entries = []
+        entries: dict[str, fastly.ServiceACLEntries] = {}
         def create_entries(range_body):
-            for range in [{"key": k, "value": v} for [k, v] in (range_body).items()]:
-                entries.append(fastly.ServiceACLEntries(f"entries-{range['key']}",
+            for entries_range in [{"key": k, "value": v} for [k, v] in sorted((range_body).items())]:
+                entries[entries_range['key']] = fastly.ServiceACLEntries(f"entries-{entries_range['key']}",
                     service_id=myservice.id,
-                    acl_id=range["value"].acl_id,
+                    acl_id=entries_range["value"].acl_id,
                     entries=[{
                         "ip": "127.0.0.1",
                         "subnet": "24",
                         "negated": False,
                         "comment": "ACL Entry 1",
-                    }]))
+                    }])
 
-        myservice.acls.apply(lambda resolved_outputs: create_entries({d.name: d for d in resolved_outputs['acls'] if d.name == myacl_name}))
+        myservice.acls.apply(lambda resolved_outputs: create_entries({d.name: d for d in resolved_outputs if d.name == myacl_name}))
         ```
 
         Complex object usage:
 
         The following example demonstrates the use of dynamic nested blocks to create ACL entries.
+
+        ```python
+        import pulumi
+        from typing import Any
+        import pulumi_fastly as fastly
+
+        acl_name = "my_acl"
+        acl_entries = [
+            {
+                "ip": "1.2.3.4",
+                "comment": "acl_entry_1",
+            },
+            {
+                "ip": "1.2.3.5",
+                "comment": "acl_entry_2",
+            },
+            {
+                "ip": "1.2.3.6",
+                "comment": "acl_entry_3",
+            },
+        ]
+        myservice = fastly.ServiceVcl("myservice",
+            name="demofastly",
+            domains=[{
+                "name": "demo.notexample.com",
+                "comment": "demo",
+            }],
+            backends=[{
+                "address": "1.2.3.4",
+                "name": "localhost",
+                "port": 80,
+            }],
+            acls=[{
+                "name": acl_name,
+            }],
+            force_destroy=True)
+        entries: dict[str, fastly.ServiceACLEntries] = {}
+        def create_entries(range_body):
+            for entries_range in [{"key": k, "value": v} for [k, v] in sorted((range_body).items())]:
+                entries[entries_range['key']] = fastly.ServiceACLEntries(f"entries-{entries_range['key']}",
+                    entries=[{
+                        "ip": entry["ip"],
+                        "subnet": "22",
+                        "comment": entry["comment"],
+                        "negated": False,
+                    } for entry in [{
+                        "ip": e["ip"],
+                        "comment": e["comment"],
+                    } for e in acl_entries]],
+                    service_id=myservice.id,
+                    acl_id=entries_range["value"].acl_id)
+
+        myservice.acls.apply(lambda resolved_outputs: create_entries({d.name: d for d in resolved_outputs if d.name == acl_name}))
+        ```
 
         ### Terraform >= 0.12.0 && < 0.12.6)
 
@@ -446,21 +559,22 @@ class ServiceACLEntries(pulumi.CustomResource):
 
         ```python
         import pulumi
+        from typing import Any
         import pulumi_fastly as fastly
 
         #...
-        entries = []
-        for range in [{"key": k, "value": v} for [k, v] in ({d.name: d for d in myservice.acl if d.name == myacl_name}).items()]:
-            entries.append(fastly.ServiceACLEntries(f"entries-{range['key']}",
+        entries: dict[str, fastly.ServiceACLEntries] = {}
+        for entries_range in [{"key": k, "value": v} for [k, v] in sorted(({d.name: d for d in myservice.acl if d.name == myacl_name}).items())]:
+            entries[entries_range['key']] = fastly.ServiceACLEntries(f"entries-{entries_range['key']}",
                 service_id=myservice["id"],
-                acl_id=range["value"]["aclId"],
+                acl_id=entries_range["value"]["aclId"],
                 manage_entries=True,
                 entries=[{
                     "ip": "127.0.0.1",
                     "subnet": "24",
                     "negated": False,
                     "comment": "ACL Entry 1",
-                }]))
+                }])
         ```
 
         ## Import
@@ -495,10 +609,10 @@ class ServiceACLEntries(pulumi.CustomResource):
     def _internal_init(__self__,
                  resource_name: str,
                  opts: Optional[pulumi.ResourceOptions] = None,
-                 acl_id: Optional[pulumi.Input[_builtins.str]] = None,
-                 entries: Optional[pulumi.Input[Sequence[pulumi.Input[Union['ServiceACLEntriesEntryArgs', 'ServiceACLEntriesEntryArgsDict']]]]] = None,
-                 manage_entries: Optional[pulumi.Input[_builtins.bool]] = None,
-                 service_id: Optional[pulumi.Input[_builtins.str]] = None,
+                 acl_id: pulumi.Input[Optional[_builtins.str]] = None,
+                 entries: pulumi.Input[Optional[Sequence[pulumi.Input[Union['ServiceACLEntriesEntryArgs', 'ServiceACLEntriesEntryArgsDict', 'outputs.ServiceACLEntriesEntry']]]]] = None,
+                 manage_entries: pulumi.Input[Optional[_builtins.bool]] = None,
+                 service_id: pulumi.Input[Optional[_builtins.str]] = None,
                  __props__=None):
         opts = pulumi.ResourceOptions.merge(_utilities.get_resource_opts_defaults(), opts)
         if not isinstance(opts, pulumi.ResourceOptions):
@@ -526,10 +640,10 @@ class ServiceACLEntries(pulumi.CustomResource):
     def get(resource_name: str,
             id: pulumi.Input[str],
             opts: Optional[pulumi.ResourceOptions] = None,
-            acl_id: Optional[pulumi.Input[_builtins.str]] = None,
-            entries: Optional[pulumi.Input[Sequence[pulumi.Input[Union['ServiceACLEntriesEntryArgs', 'ServiceACLEntriesEntryArgsDict']]]]] = None,
-            manage_entries: Optional[pulumi.Input[_builtins.bool]] = None,
-            service_id: Optional[pulumi.Input[_builtins.str]] = None) -> 'ServiceACLEntries':
+            acl_id: pulumi.Input[Optional[_builtins.str]] = None,
+            entries: pulumi.Input[Optional[Sequence[pulumi.Input[Union['ServiceACLEntriesEntryArgs', 'ServiceACLEntriesEntryArgsDict', 'outputs.ServiceACLEntriesEntry']]]]] = None,
+            manage_entries: pulumi.Input[Optional[_builtins.bool]] = None,
+            service_id: pulumi.Input[Optional[_builtins.str]] = None) -> 'ServiceACLEntries':
         """
         Get an existing ServiceACLEntries resource's state with the given name, id, and optional extra
         properties used to qualify the lookup.
@@ -538,7 +652,7 @@ class ServiceACLEntries(pulumi.CustomResource):
         :param pulumi.Input[str] id: The unique provider ID of the resource to lookup.
         :param pulumi.ResourceOptions opts: Options for the resource.
         :param pulumi.Input[_builtins.str] acl_id: The ID of the ACL that the items belong to
-        :param pulumi.Input[Sequence[pulumi.Input[Union['ServiceACLEntriesEntryArgs', 'ServiceACLEntriesEntryArgsDict']]]] entries: ACL Entries
+        :param pulumi.Input[Sequence[pulumi.Input[Union['ServiceACLEntriesEntryArgs', 'ServiceACLEntriesEntryArgsDict', 'outputs.ServiceACLEntriesEntry']]]] entries: ACL Entries
         :param pulumi.Input[_builtins.bool] manage_entries: Whether to reapply changes if the state of the entries drifts, i.e. if entries are managed externally
         :param pulumi.Input[_builtins.str] service_id: The ID of the Service that the ACL belongs to
         """

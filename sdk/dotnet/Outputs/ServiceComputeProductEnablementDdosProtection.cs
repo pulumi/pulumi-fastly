@@ -18,7 +18,7 @@ namespace Pulumi.Fastly.Outputs
         /// </summary>
         public readonly bool Enabled;
         /// <summary>
-        /// Operation mode. Can be either `Off`, `Log`, or `Block`.
+        /// Operation mode. Can be `Off`, `Log`, `Block`, or `ClientChallenge`.
         /// </summary>
         public readonly string Mode;
 

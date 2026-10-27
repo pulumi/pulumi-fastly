@@ -31,10 +31,8 @@ type GetDatacentersResult struct {
 }
 
 func GetDatacentersOutput(ctx *pulumi.Context, opts ...pulumi.InvokeOption) GetDatacentersResultOutput {
-	return pulumi.ToOutput(0).ApplyT(func(int) (GetDatacentersResultOutput, error) {
-		options := pulumi.InvokeOutputOptions{InvokeOptions: internal.PkgInvokeDefaultOpts(opts)}
-		return ctx.InvokeOutput("fastly:index/getDatacenters:getDatacenters", nil, GetDatacentersResultOutput{}, options).(GetDatacentersResultOutput), nil
-	}).(GetDatacentersResultOutput)
+	options := pulumi.InvokeOutputOptions{InvokeOptions: internal.PkgInvokeDefaultOpts(opts)}
+	return ctx.InvokeOutput("fastly:index/getDatacenters:getDatacenters", nil, GetDatacentersResultOutput{}, options).(GetDatacentersResultOutput)
 }
 
 // A collection of values returned by getDatacenters.

@@ -16,6 +16,21 @@ public final class TlsSubscriptionValidationState extends com.pulumi.resources.R
     public static final TlsSubscriptionValidationState Empty = new TlsSubscriptionValidationState();
 
     /**
+     * The ID of the certificate issued for the validated subscription. Only populated once the subscription reaches the `issued` state. Reference this from `fastly_tls_activation.certificate_id` to guarantee the activation is created after the certificate exists, within a single apply.
+     * 
+     */
+    @Import(name="certificateId")
+    private @Nullable Output<String> certificateId;
+
+    /**
+     * @return The ID of the certificate issued for the validated subscription. Only populated once the subscription reaches the `issued` state. Reference this from `fastly_tls_activation.certificate_id` to guarantee the activation is created after the certificate exists, within a single apply.
+     * 
+     */
+    public Optional<Output<String>> certificateId() {
+        return Optional.ofNullable(this.certificateId);
+    }
+
+    /**
      * The ID of the TLS Subscription that should be validated.
      * 
      */
@@ -33,6 +48,7 @@ public final class TlsSubscriptionValidationState extends com.pulumi.resources.R
     private TlsSubscriptionValidationState() {}
 
     private TlsSubscriptionValidationState(TlsSubscriptionValidationState $) {
+        this.certificateId = $.certificateId;
         this.subscriptionId = $.subscriptionId;
     }
 
@@ -52,6 +68,27 @@ public final class TlsSubscriptionValidationState extends com.pulumi.resources.R
 
         public Builder(TlsSubscriptionValidationState defaults) {
             $ = new TlsSubscriptionValidationState(Objects.requireNonNull(defaults));
+        }
+
+        /**
+         * @param certificateId The ID of the certificate issued for the validated subscription. Only populated once the subscription reaches the `issued` state. Reference this from `fastly_tls_activation.certificate_id` to guarantee the activation is created after the certificate exists, within a single apply.
+         * 
+         * @return builder
+         * 
+         */
+        public Builder certificateId(@Nullable Output<String> certificateId) {
+            $.certificateId = certificateId;
+            return this;
+        }
+
+        /**
+         * @param certificateId The ID of the certificate issued for the validated subscription. Only populated once the subscription reaches the `issued` state. Reference this from `fastly_tls_activation.certificate_id` to guarantee the activation is created after the certificate exists, within a single apply.
+         * 
+         * @return builder
+         * 
+         */
+        public Builder certificateId(String certificateId) {
+            return certificateId(Output.of(certificateId));
         }
 
         /**

@@ -31,8 +31,8 @@ import javax.annotation.Nullable;
  * import com.pulumi.core.Output;
  * import com.pulumi.fastly.NgwafAlertOpsgenieIntegration;
  * import com.pulumi.fastly.NgwafAlertOpsgenieIntegrationArgs;
- * import java.util.List;
  * import java.util.ArrayList;
+ * import java.util.Arrays;
  * import java.util.Map;
  * import java.io.File;
  * import java.nio.file.Files;
@@ -47,7 +47,7 @@ import javax.annotation.Nullable;
  *         var demoOpsgenieAlert = new NgwafAlertOpsgenieIntegration("demoOpsgenieAlert", NgwafAlertOpsgenieIntegrationArgs.builder()
  *             .description("A description")
  *             .key("123456789")
- *             .workspaceId(demo.id())
+ *             .workspaceId(demo.get("id"))
  *             .build());
  * 
  *     }

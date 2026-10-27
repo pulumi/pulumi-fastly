@@ -120,9 +120,9 @@ export interface GetTlsPlatformCertificateOutputArgs {
     /**
      * Domains that are listed in any certificate's Subject Alternative Names (SAN) list.
      */
-    domains?: pulumi.Input<pulumi.Input<string>[]>;
+    domains?: pulumi.Input<pulumi.Input<string>[] | undefined>;
     /**
      * Unique ID assigned to certificate by Fastly. Conflicts with all the other filters.
      */
-    id?: pulumi.Input<string>;
+    id?: pulumi.Input<string | undefined>;
 }

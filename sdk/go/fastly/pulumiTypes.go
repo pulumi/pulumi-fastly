@@ -753,6 +753,268 @@ func (o CustomDashboardDashboardItemVisualizationConfigOutput) PlotType() pulumi
 	return o.ApplyT(func(v CustomDashboardDashboardItemVisualizationConfig) string { return v.PlotType }).(pulumi.StringOutput)
 }
 
+type DnsZoneXfrConfigInbound struct {
+	// The ID of the TSIG key used to secure inbound zone transfers.
+	InboundTsigKeyId *string `pulumi:"inboundTsigKeyId"`
+	// An array of the primary DNS server objects associated with inbound zone transfers.
+	Primaries []DnsZoneXfrConfigInboundPrimary `pulumi:"primaries"`
+}
+
+// DnsZoneXfrConfigInboundInput is an input type that accepts DnsZoneXfrConfigInboundArgs and DnsZoneXfrConfigInboundOutput values.
+// You can construct a concrete instance of `DnsZoneXfrConfigInboundInput` via:
+//
+//	DnsZoneXfrConfigInboundArgs{...}
+type DnsZoneXfrConfigInboundInput interface {
+	pulumi.Input
+
+	ToDnsZoneXfrConfigInboundOutput() DnsZoneXfrConfigInboundOutput
+	ToDnsZoneXfrConfigInboundOutputWithContext(context.Context) DnsZoneXfrConfigInboundOutput
+}
+
+type DnsZoneXfrConfigInboundArgs struct {
+	// The ID of the TSIG key used to secure inbound zone transfers.
+	InboundTsigKeyId pulumi.StringPtrInput `pulumi:"inboundTsigKeyId"`
+	// An array of the primary DNS server objects associated with inbound zone transfers.
+	Primaries DnsZoneXfrConfigInboundPrimaryArrayInput `pulumi:"primaries"`
+}
+
+func (DnsZoneXfrConfigInboundArgs) ElementType() reflect.Type {
+	return reflect.TypeOf((*DnsZoneXfrConfigInbound)(nil)).Elem()
+}
+
+func (i DnsZoneXfrConfigInboundArgs) ToDnsZoneXfrConfigInboundOutput() DnsZoneXfrConfigInboundOutput {
+	return i.ToDnsZoneXfrConfigInboundOutputWithContext(context.Background())
+}
+
+func (i DnsZoneXfrConfigInboundArgs) ToDnsZoneXfrConfigInboundOutputWithContext(ctx context.Context) DnsZoneXfrConfigInboundOutput {
+	return pulumi.ToOutputWithContext(ctx, i).(DnsZoneXfrConfigInboundOutput)
+}
+
+func (i DnsZoneXfrConfigInboundArgs) ToDnsZoneXfrConfigInboundPtrOutput() DnsZoneXfrConfigInboundPtrOutput {
+	return i.ToDnsZoneXfrConfigInboundPtrOutputWithContext(context.Background())
+}
+
+func (i DnsZoneXfrConfigInboundArgs) ToDnsZoneXfrConfigInboundPtrOutputWithContext(ctx context.Context) DnsZoneXfrConfigInboundPtrOutput {
+	return pulumi.ToOutputWithContext(ctx, i).(DnsZoneXfrConfigInboundOutput).ToDnsZoneXfrConfigInboundPtrOutputWithContext(ctx)
+}
+
+// DnsZoneXfrConfigInboundPtrInput is an input type that accepts DnsZoneXfrConfigInboundArgs, DnsZoneXfrConfigInboundPtr and DnsZoneXfrConfigInboundPtrOutput values.
+// You can construct a concrete instance of `DnsZoneXfrConfigInboundPtrInput` via:
+//
+//	        DnsZoneXfrConfigInboundArgs{...}
+//
+//	or:
+//
+//	        nil
+type DnsZoneXfrConfigInboundPtrInput interface {
+	pulumi.Input
+
+	ToDnsZoneXfrConfigInboundPtrOutput() DnsZoneXfrConfigInboundPtrOutput
+	ToDnsZoneXfrConfigInboundPtrOutputWithContext(context.Context) DnsZoneXfrConfigInboundPtrOutput
+}
+
+type dnsZoneXfrConfigInboundPtrType DnsZoneXfrConfigInboundArgs
+
+func DnsZoneXfrConfigInboundPtr(v *DnsZoneXfrConfigInboundArgs) DnsZoneXfrConfigInboundPtrInput {
+	return (*dnsZoneXfrConfigInboundPtrType)(v)
+}
+
+func (*dnsZoneXfrConfigInboundPtrType) ElementType() reflect.Type {
+	return reflect.TypeOf((**DnsZoneXfrConfigInbound)(nil)).Elem()
+}
+
+func (i *dnsZoneXfrConfigInboundPtrType) ToDnsZoneXfrConfigInboundPtrOutput() DnsZoneXfrConfigInboundPtrOutput {
+	return i.ToDnsZoneXfrConfigInboundPtrOutputWithContext(context.Background())
+}
+
+func (i *dnsZoneXfrConfigInboundPtrType) ToDnsZoneXfrConfigInboundPtrOutputWithContext(ctx context.Context) DnsZoneXfrConfigInboundPtrOutput {
+	return pulumi.ToOutputWithContext(ctx, i).(DnsZoneXfrConfigInboundPtrOutput)
+}
+
+type DnsZoneXfrConfigInboundOutput struct{ *pulumi.OutputState }
+
+func (DnsZoneXfrConfigInboundOutput) ElementType() reflect.Type {
+	return reflect.TypeOf((*DnsZoneXfrConfigInbound)(nil)).Elem()
+}
+
+func (o DnsZoneXfrConfigInboundOutput) ToDnsZoneXfrConfigInboundOutput() DnsZoneXfrConfigInboundOutput {
+	return o
+}
+
+func (o DnsZoneXfrConfigInboundOutput) ToDnsZoneXfrConfigInboundOutputWithContext(ctx context.Context) DnsZoneXfrConfigInboundOutput {
+	return o
+}
+
+func (o DnsZoneXfrConfigInboundOutput) ToDnsZoneXfrConfigInboundPtrOutput() DnsZoneXfrConfigInboundPtrOutput {
+	return o.ToDnsZoneXfrConfigInboundPtrOutputWithContext(context.Background())
+}
+
+func (o DnsZoneXfrConfigInboundOutput) ToDnsZoneXfrConfigInboundPtrOutputWithContext(ctx context.Context) DnsZoneXfrConfigInboundPtrOutput {
+	return o.ApplyTWithContext(ctx, func(_ context.Context, v DnsZoneXfrConfigInbound) *DnsZoneXfrConfigInbound {
+		return &v
+	}).(DnsZoneXfrConfigInboundPtrOutput)
+}
+
+// The ID of the TSIG key used to secure inbound zone transfers.
+func (o DnsZoneXfrConfigInboundOutput) InboundTsigKeyId() pulumi.StringPtrOutput {
+	return o.ApplyT(func(v DnsZoneXfrConfigInbound) *string { return v.InboundTsigKeyId }).(pulumi.StringPtrOutput)
+}
+
+// An array of the primary DNS server objects associated with inbound zone transfers.
+func (o DnsZoneXfrConfigInboundOutput) Primaries() DnsZoneXfrConfigInboundPrimaryArrayOutput {
+	return o.ApplyT(func(v DnsZoneXfrConfigInbound) []DnsZoneXfrConfigInboundPrimary { return v.Primaries }).(DnsZoneXfrConfigInboundPrimaryArrayOutput)
+}
+
+type DnsZoneXfrConfigInboundPtrOutput struct{ *pulumi.OutputState }
+
+func (DnsZoneXfrConfigInboundPtrOutput) ElementType() reflect.Type {
+	return reflect.TypeOf((**DnsZoneXfrConfigInbound)(nil)).Elem()
+}
+
+func (o DnsZoneXfrConfigInboundPtrOutput) ToDnsZoneXfrConfigInboundPtrOutput() DnsZoneXfrConfigInboundPtrOutput {
+	return o
+}
+
+func (o DnsZoneXfrConfigInboundPtrOutput) ToDnsZoneXfrConfigInboundPtrOutputWithContext(ctx context.Context) DnsZoneXfrConfigInboundPtrOutput {
+	return o
+}
+
+func (o DnsZoneXfrConfigInboundPtrOutput) Elem() DnsZoneXfrConfigInboundOutput {
+	return o.ApplyT(func(v *DnsZoneXfrConfigInbound) DnsZoneXfrConfigInbound {
+		if v != nil {
+			return *v
+		}
+		var ret DnsZoneXfrConfigInbound
+		return ret
+	}).(DnsZoneXfrConfigInboundOutput)
+}
+
+// The ID of the TSIG key used to secure inbound zone transfers.
+func (o DnsZoneXfrConfigInboundPtrOutput) InboundTsigKeyId() pulumi.StringPtrOutput {
+	return o.ApplyT(func(v *DnsZoneXfrConfigInbound) *string {
+		if v == nil {
+			return nil
+		}
+		return v.InboundTsigKeyId
+	}).(pulumi.StringPtrOutput)
+}
+
+// An array of the primary DNS server objects associated with inbound zone transfers.
+func (o DnsZoneXfrConfigInboundPtrOutput) Primaries() DnsZoneXfrConfigInboundPrimaryArrayOutput {
+	return o.ApplyT(func(v *DnsZoneXfrConfigInbound) []DnsZoneXfrConfigInboundPrimary {
+		if v == nil {
+			return nil
+		}
+		return v.Primaries
+	}).(DnsZoneXfrConfigInboundPrimaryArrayOutput)
+}
+
+type DnsZoneXfrConfigInboundPrimary struct {
+	// An IPv4 address for the Primary DNS Server.
+	Address *string `pulumi:"address"`
+	// A description of the Primary DNS server.
+	Description *string `pulumi:"description"`
+}
+
+// DnsZoneXfrConfigInboundPrimaryInput is an input type that accepts DnsZoneXfrConfigInboundPrimaryArgs and DnsZoneXfrConfigInboundPrimaryOutput values.
+// You can construct a concrete instance of `DnsZoneXfrConfigInboundPrimaryInput` via:
+//
+//	DnsZoneXfrConfigInboundPrimaryArgs{...}
+type DnsZoneXfrConfigInboundPrimaryInput interface {
+	pulumi.Input
+
+	ToDnsZoneXfrConfigInboundPrimaryOutput() DnsZoneXfrConfigInboundPrimaryOutput
+	ToDnsZoneXfrConfigInboundPrimaryOutputWithContext(context.Context) DnsZoneXfrConfigInboundPrimaryOutput
+}
+
+type DnsZoneXfrConfigInboundPrimaryArgs struct {
+	// An IPv4 address for the Primary DNS Server.
+	Address pulumi.StringPtrInput `pulumi:"address"`
+	// A description of the Primary DNS server.
+	Description pulumi.StringPtrInput `pulumi:"description"`
+}
+
+func (DnsZoneXfrConfigInboundPrimaryArgs) ElementType() reflect.Type {
+	return reflect.TypeOf((*DnsZoneXfrConfigInboundPrimary)(nil)).Elem()
+}
+
+func (i DnsZoneXfrConfigInboundPrimaryArgs) ToDnsZoneXfrConfigInboundPrimaryOutput() DnsZoneXfrConfigInboundPrimaryOutput {
+	return i.ToDnsZoneXfrConfigInboundPrimaryOutputWithContext(context.Background())
+}
+
+func (i DnsZoneXfrConfigInboundPrimaryArgs) ToDnsZoneXfrConfigInboundPrimaryOutputWithContext(ctx context.Context) DnsZoneXfrConfigInboundPrimaryOutput {
+	return pulumi.ToOutputWithContext(ctx, i).(DnsZoneXfrConfigInboundPrimaryOutput)
+}
+
+// DnsZoneXfrConfigInboundPrimaryArrayInput is an input type that accepts DnsZoneXfrConfigInboundPrimaryArray and DnsZoneXfrConfigInboundPrimaryArrayOutput values.
+// You can construct a concrete instance of `DnsZoneXfrConfigInboundPrimaryArrayInput` via:
+//
+//	DnsZoneXfrConfigInboundPrimaryArray{ DnsZoneXfrConfigInboundPrimaryArgs{...} }
+type DnsZoneXfrConfigInboundPrimaryArrayInput interface {
+	pulumi.Input
+
+	ToDnsZoneXfrConfigInboundPrimaryArrayOutput() DnsZoneXfrConfigInboundPrimaryArrayOutput
+	ToDnsZoneXfrConfigInboundPrimaryArrayOutputWithContext(context.Context) DnsZoneXfrConfigInboundPrimaryArrayOutput
+}
+
+type DnsZoneXfrConfigInboundPrimaryArray []DnsZoneXfrConfigInboundPrimaryInput
+
+func (DnsZoneXfrConfigInboundPrimaryArray) ElementType() reflect.Type {
+	return reflect.TypeOf((*[]DnsZoneXfrConfigInboundPrimary)(nil)).Elem()
+}
+
+func (i DnsZoneXfrConfigInboundPrimaryArray) ToDnsZoneXfrConfigInboundPrimaryArrayOutput() DnsZoneXfrConfigInboundPrimaryArrayOutput {
+	return i.ToDnsZoneXfrConfigInboundPrimaryArrayOutputWithContext(context.Background())
+}
+
+func (i DnsZoneXfrConfigInboundPrimaryArray) ToDnsZoneXfrConfigInboundPrimaryArrayOutputWithContext(ctx context.Context) DnsZoneXfrConfigInboundPrimaryArrayOutput {
+	return pulumi.ToOutputWithContext(ctx, i).(DnsZoneXfrConfigInboundPrimaryArrayOutput)
+}
+
+type DnsZoneXfrConfigInboundPrimaryOutput struct{ *pulumi.OutputState }
+
+func (DnsZoneXfrConfigInboundPrimaryOutput) ElementType() reflect.Type {
+	return reflect.TypeOf((*DnsZoneXfrConfigInboundPrimary)(nil)).Elem()
+}
+
+func (o DnsZoneXfrConfigInboundPrimaryOutput) ToDnsZoneXfrConfigInboundPrimaryOutput() DnsZoneXfrConfigInboundPrimaryOutput {
+	return o
+}
+
+func (o DnsZoneXfrConfigInboundPrimaryOutput) ToDnsZoneXfrConfigInboundPrimaryOutputWithContext(ctx context.Context) DnsZoneXfrConfigInboundPrimaryOutput {
+	return o
+}
+
+// An IPv4 address for the Primary DNS Server.
+func (o DnsZoneXfrConfigInboundPrimaryOutput) Address() pulumi.StringPtrOutput {
+	return o.ApplyT(func(v DnsZoneXfrConfigInboundPrimary) *string { return v.Address }).(pulumi.StringPtrOutput)
+}
+
+// A description of the Primary DNS server.
+func (o DnsZoneXfrConfigInboundPrimaryOutput) Description() pulumi.StringPtrOutput {
+	return o.ApplyT(func(v DnsZoneXfrConfigInboundPrimary) *string { return v.Description }).(pulumi.StringPtrOutput)
+}
+
+type DnsZoneXfrConfigInboundPrimaryArrayOutput struct{ *pulumi.OutputState }
+
+func (DnsZoneXfrConfigInboundPrimaryArrayOutput) ElementType() reflect.Type {
+	return reflect.TypeOf((*[]DnsZoneXfrConfigInboundPrimary)(nil)).Elem()
+}
+
+func (o DnsZoneXfrConfigInboundPrimaryArrayOutput) ToDnsZoneXfrConfigInboundPrimaryArrayOutput() DnsZoneXfrConfigInboundPrimaryArrayOutput {
+	return o
+}
+
+func (o DnsZoneXfrConfigInboundPrimaryArrayOutput) ToDnsZoneXfrConfigInboundPrimaryArrayOutputWithContext(ctx context.Context) DnsZoneXfrConfigInboundPrimaryArrayOutput {
+	return o
+}
+
+func (o DnsZoneXfrConfigInboundPrimaryArrayOutput) Index(i pulumi.IntInput) DnsZoneXfrConfigInboundPrimaryOutput {
+	return pulumi.All(o, i).ApplyT(func(vs []interface{}) DnsZoneXfrConfigInboundPrimary {
+		return vs[0].([]DnsZoneXfrConfigInboundPrimary)[vs[1].(int)]
+	}).(DnsZoneXfrConfigInboundPrimaryOutput)
+}
+
 type NgwafAccountRuleAction struct {
 	// Signal name to exclude (used when `type = excludeSignal`).
 	Signal *string `pulumi:"signal"`
@@ -3185,6 +3447,378 @@ func (o NgwafWorkspaceRuleRateLimitClientIdentifierArrayOutput) Index(i pulumi.I
 	}).(NgwafWorkspaceRuleRateLimitClientIdentifierOutput)
 }
 
+type RoutingConfigPath struct {
+	// The URL path pattern (max 2048 characters, starts with `/`).
+	Path string `pulumi:"path"`
+	// The path identifier.
+	PathId *string `pulumi:"pathId"`
+	// A conditional routing rule for this path. A rule with no `condition` blocks is the default (catch-all) rule for the path.
+	Rules []RoutingConfigPathRule `pulumi:"rules"`
+}
+
+// RoutingConfigPathInput is an input type that accepts RoutingConfigPathArgs and RoutingConfigPathOutput values.
+// You can construct a concrete instance of `RoutingConfigPathInput` via:
+//
+//	RoutingConfigPathArgs{...}
+type RoutingConfigPathInput interface {
+	pulumi.Input
+
+	ToRoutingConfigPathOutput() RoutingConfigPathOutput
+	ToRoutingConfigPathOutputWithContext(context.Context) RoutingConfigPathOutput
+}
+
+type RoutingConfigPathArgs struct {
+	// The URL path pattern (max 2048 characters, starts with `/`).
+	Path pulumi.StringInput `pulumi:"path"`
+	// The path identifier.
+	PathId pulumi.StringPtrInput `pulumi:"pathId"`
+	// A conditional routing rule for this path. A rule with no `condition` blocks is the default (catch-all) rule for the path.
+	Rules RoutingConfigPathRuleArrayInput `pulumi:"rules"`
+}
+
+func (RoutingConfigPathArgs) ElementType() reflect.Type {
+	return reflect.TypeOf((*RoutingConfigPath)(nil)).Elem()
+}
+
+func (i RoutingConfigPathArgs) ToRoutingConfigPathOutput() RoutingConfigPathOutput {
+	return i.ToRoutingConfigPathOutputWithContext(context.Background())
+}
+
+func (i RoutingConfigPathArgs) ToRoutingConfigPathOutputWithContext(ctx context.Context) RoutingConfigPathOutput {
+	return pulumi.ToOutputWithContext(ctx, i).(RoutingConfigPathOutput)
+}
+
+// RoutingConfigPathArrayInput is an input type that accepts RoutingConfigPathArray and RoutingConfigPathArrayOutput values.
+// You can construct a concrete instance of `RoutingConfigPathArrayInput` via:
+//
+//	RoutingConfigPathArray{ RoutingConfigPathArgs{...} }
+type RoutingConfigPathArrayInput interface {
+	pulumi.Input
+
+	ToRoutingConfigPathArrayOutput() RoutingConfigPathArrayOutput
+	ToRoutingConfigPathArrayOutputWithContext(context.Context) RoutingConfigPathArrayOutput
+}
+
+type RoutingConfigPathArray []RoutingConfigPathInput
+
+func (RoutingConfigPathArray) ElementType() reflect.Type {
+	return reflect.TypeOf((*[]RoutingConfigPath)(nil)).Elem()
+}
+
+func (i RoutingConfigPathArray) ToRoutingConfigPathArrayOutput() RoutingConfigPathArrayOutput {
+	return i.ToRoutingConfigPathArrayOutputWithContext(context.Background())
+}
+
+func (i RoutingConfigPathArray) ToRoutingConfigPathArrayOutputWithContext(ctx context.Context) RoutingConfigPathArrayOutput {
+	return pulumi.ToOutputWithContext(ctx, i).(RoutingConfigPathArrayOutput)
+}
+
+type RoutingConfigPathOutput struct{ *pulumi.OutputState }
+
+func (RoutingConfigPathOutput) ElementType() reflect.Type {
+	return reflect.TypeOf((*RoutingConfigPath)(nil)).Elem()
+}
+
+func (o RoutingConfigPathOutput) ToRoutingConfigPathOutput() RoutingConfigPathOutput {
+	return o
+}
+
+func (o RoutingConfigPathOutput) ToRoutingConfigPathOutputWithContext(ctx context.Context) RoutingConfigPathOutput {
+	return o
+}
+
+// The URL path pattern (max 2048 characters, starts with `/`).
+func (o RoutingConfigPathOutput) Path() pulumi.StringOutput {
+	return o.ApplyT(func(v RoutingConfigPath) string { return v.Path }).(pulumi.StringOutput)
+}
+
+// The path identifier.
+func (o RoutingConfigPathOutput) PathId() pulumi.StringPtrOutput {
+	return o.ApplyT(func(v RoutingConfigPath) *string { return v.PathId }).(pulumi.StringPtrOutput)
+}
+
+// A conditional routing rule for this path. A rule with no `condition` blocks is the default (catch-all) rule for the path.
+func (o RoutingConfigPathOutput) Rules() RoutingConfigPathRuleArrayOutput {
+	return o.ApplyT(func(v RoutingConfigPath) []RoutingConfigPathRule { return v.Rules }).(RoutingConfigPathRuleArrayOutput)
+}
+
+type RoutingConfigPathArrayOutput struct{ *pulumi.OutputState }
+
+func (RoutingConfigPathArrayOutput) ElementType() reflect.Type {
+	return reflect.TypeOf((*[]RoutingConfigPath)(nil)).Elem()
+}
+
+func (o RoutingConfigPathArrayOutput) ToRoutingConfigPathArrayOutput() RoutingConfigPathArrayOutput {
+	return o
+}
+
+func (o RoutingConfigPathArrayOutput) ToRoutingConfigPathArrayOutputWithContext(ctx context.Context) RoutingConfigPathArrayOutput {
+	return o
+}
+
+func (o RoutingConfigPathArrayOutput) Index(i pulumi.IntInput) RoutingConfigPathOutput {
+	return pulumi.All(o, i).ApplyT(func(vs []interface{}) RoutingConfigPath {
+		return vs[0].([]RoutingConfigPath)[vs[1].(int)]
+	}).(RoutingConfigPathOutput)
+}
+
+type RoutingConfigPathRule struct {
+	// The action type. Currently only `service` is supported.
+	ActionType string `pulumi:"actionType"`
+	// The destination for the action (e.g. a service ID when `actionType` is `service`).
+	ActionValue string `pulumi:"actionValue"`
+	// A matching criterion evaluated against the incoming request. Omit to make this the default (catch-all) rule for the path.
+	Conditions []RoutingConfigPathRuleCondition `pulumi:"conditions"`
+	// Whether this is the catch-all rule for its path (i.e. it has no conditions).
+	IsDefault *bool `pulumi:"isDefault"`
+	// The rule identifier.
+	RuleId *string `pulumi:"ruleId"`
+}
+
+// RoutingConfigPathRuleInput is an input type that accepts RoutingConfigPathRuleArgs and RoutingConfigPathRuleOutput values.
+// You can construct a concrete instance of `RoutingConfigPathRuleInput` via:
+//
+//	RoutingConfigPathRuleArgs{...}
+type RoutingConfigPathRuleInput interface {
+	pulumi.Input
+
+	ToRoutingConfigPathRuleOutput() RoutingConfigPathRuleOutput
+	ToRoutingConfigPathRuleOutputWithContext(context.Context) RoutingConfigPathRuleOutput
+}
+
+type RoutingConfigPathRuleArgs struct {
+	// The action type. Currently only `service` is supported.
+	ActionType pulumi.StringInput `pulumi:"actionType"`
+	// The destination for the action (e.g. a service ID when `actionType` is `service`).
+	ActionValue pulumi.StringInput `pulumi:"actionValue"`
+	// A matching criterion evaluated against the incoming request. Omit to make this the default (catch-all) rule for the path.
+	Conditions RoutingConfigPathRuleConditionArrayInput `pulumi:"conditions"`
+	// Whether this is the catch-all rule for its path (i.e. it has no conditions).
+	IsDefault pulumi.BoolPtrInput `pulumi:"isDefault"`
+	// The rule identifier.
+	RuleId pulumi.StringPtrInput `pulumi:"ruleId"`
+}
+
+func (RoutingConfigPathRuleArgs) ElementType() reflect.Type {
+	return reflect.TypeOf((*RoutingConfigPathRule)(nil)).Elem()
+}
+
+func (i RoutingConfigPathRuleArgs) ToRoutingConfigPathRuleOutput() RoutingConfigPathRuleOutput {
+	return i.ToRoutingConfigPathRuleOutputWithContext(context.Background())
+}
+
+func (i RoutingConfigPathRuleArgs) ToRoutingConfigPathRuleOutputWithContext(ctx context.Context) RoutingConfigPathRuleOutput {
+	return pulumi.ToOutputWithContext(ctx, i).(RoutingConfigPathRuleOutput)
+}
+
+// RoutingConfigPathRuleArrayInput is an input type that accepts RoutingConfigPathRuleArray and RoutingConfigPathRuleArrayOutput values.
+// You can construct a concrete instance of `RoutingConfigPathRuleArrayInput` via:
+//
+//	RoutingConfigPathRuleArray{ RoutingConfigPathRuleArgs{...} }
+type RoutingConfigPathRuleArrayInput interface {
+	pulumi.Input
+
+	ToRoutingConfigPathRuleArrayOutput() RoutingConfigPathRuleArrayOutput
+	ToRoutingConfigPathRuleArrayOutputWithContext(context.Context) RoutingConfigPathRuleArrayOutput
+}
+
+type RoutingConfigPathRuleArray []RoutingConfigPathRuleInput
+
+func (RoutingConfigPathRuleArray) ElementType() reflect.Type {
+	return reflect.TypeOf((*[]RoutingConfigPathRule)(nil)).Elem()
+}
+
+func (i RoutingConfigPathRuleArray) ToRoutingConfigPathRuleArrayOutput() RoutingConfigPathRuleArrayOutput {
+	return i.ToRoutingConfigPathRuleArrayOutputWithContext(context.Background())
+}
+
+func (i RoutingConfigPathRuleArray) ToRoutingConfigPathRuleArrayOutputWithContext(ctx context.Context) RoutingConfigPathRuleArrayOutput {
+	return pulumi.ToOutputWithContext(ctx, i).(RoutingConfigPathRuleArrayOutput)
+}
+
+type RoutingConfigPathRuleOutput struct{ *pulumi.OutputState }
+
+func (RoutingConfigPathRuleOutput) ElementType() reflect.Type {
+	return reflect.TypeOf((*RoutingConfigPathRule)(nil)).Elem()
+}
+
+func (o RoutingConfigPathRuleOutput) ToRoutingConfigPathRuleOutput() RoutingConfigPathRuleOutput {
+	return o
+}
+
+func (o RoutingConfigPathRuleOutput) ToRoutingConfigPathRuleOutputWithContext(ctx context.Context) RoutingConfigPathRuleOutput {
+	return o
+}
+
+// The action type. Currently only `service` is supported.
+func (o RoutingConfigPathRuleOutput) ActionType() pulumi.StringOutput {
+	return o.ApplyT(func(v RoutingConfigPathRule) string { return v.ActionType }).(pulumi.StringOutput)
+}
+
+// The destination for the action (e.g. a service ID when `actionType` is `service`).
+func (o RoutingConfigPathRuleOutput) ActionValue() pulumi.StringOutput {
+	return o.ApplyT(func(v RoutingConfigPathRule) string { return v.ActionValue }).(pulumi.StringOutput)
+}
+
+// A matching criterion evaluated against the incoming request. Omit to make this the default (catch-all) rule for the path.
+func (o RoutingConfigPathRuleOutput) Conditions() RoutingConfigPathRuleConditionArrayOutput {
+	return o.ApplyT(func(v RoutingConfigPathRule) []RoutingConfigPathRuleCondition { return v.Conditions }).(RoutingConfigPathRuleConditionArrayOutput)
+}
+
+// Whether this is the catch-all rule for its path (i.e. it has no conditions).
+func (o RoutingConfigPathRuleOutput) IsDefault() pulumi.BoolPtrOutput {
+	return o.ApplyT(func(v RoutingConfigPathRule) *bool { return v.IsDefault }).(pulumi.BoolPtrOutput)
+}
+
+// The rule identifier.
+func (o RoutingConfigPathRuleOutput) RuleId() pulumi.StringPtrOutput {
+	return o.ApplyT(func(v RoutingConfigPathRule) *string { return v.RuleId }).(pulumi.StringPtrOutput)
+}
+
+type RoutingConfigPathRuleArrayOutput struct{ *pulumi.OutputState }
+
+func (RoutingConfigPathRuleArrayOutput) ElementType() reflect.Type {
+	return reflect.TypeOf((*[]RoutingConfigPathRule)(nil)).Elem()
+}
+
+func (o RoutingConfigPathRuleArrayOutput) ToRoutingConfigPathRuleArrayOutput() RoutingConfigPathRuleArrayOutput {
+	return o
+}
+
+func (o RoutingConfigPathRuleArrayOutput) ToRoutingConfigPathRuleArrayOutputWithContext(ctx context.Context) RoutingConfigPathRuleArrayOutput {
+	return o
+}
+
+func (o RoutingConfigPathRuleArrayOutput) Index(i pulumi.IntInput) RoutingConfigPathRuleOutput {
+	return pulumi.All(o, i).ApplyT(func(vs []interface{}) RoutingConfigPathRule {
+		return vs[0].([]RoutingConfigPathRule)[vs[1].(int)]
+	}).(RoutingConfigPathRuleOutput)
+}
+
+type RoutingConfigPathRuleCondition struct {
+	// The header name to match against. Only applicable when `type` is `header`.
+	Key *string `pulumi:"key"`
+	// The comparison operator used to evaluate `value` against the request. One of `equals`, `startsWith`, `endsWith`, or `contains`.
+	Operator string `pulumi:"operator"`
+	// The condition category. Currently only `header` is supported.
+	Type string `pulumi:"type"`
+	// The value compared against the request using `operator`.
+	Value string `pulumi:"value"`
+}
+
+// RoutingConfigPathRuleConditionInput is an input type that accepts RoutingConfigPathRuleConditionArgs and RoutingConfigPathRuleConditionOutput values.
+// You can construct a concrete instance of `RoutingConfigPathRuleConditionInput` via:
+//
+//	RoutingConfigPathRuleConditionArgs{...}
+type RoutingConfigPathRuleConditionInput interface {
+	pulumi.Input
+
+	ToRoutingConfigPathRuleConditionOutput() RoutingConfigPathRuleConditionOutput
+	ToRoutingConfigPathRuleConditionOutputWithContext(context.Context) RoutingConfigPathRuleConditionOutput
+}
+
+type RoutingConfigPathRuleConditionArgs struct {
+	// The header name to match against. Only applicable when `type` is `header`.
+	Key pulumi.StringPtrInput `pulumi:"key"`
+	// The comparison operator used to evaluate `value` against the request. One of `equals`, `startsWith`, `endsWith`, or `contains`.
+	Operator pulumi.StringInput `pulumi:"operator"`
+	// The condition category. Currently only `header` is supported.
+	Type pulumi.StringInput `pulumi:"type"`
+	// The value compared against the request using `operator`.
+	Value pulumi.StringInput `pulumi:"value"`
+}
+
+func (RoutingConfigPathRuleConditionArgs) ElementType() reflect.Type {
+	return reflect.TypeOf((*RoutingConfigPathRuleCondition)(nil)).Elem()
+}
+
+func (i RoutingConfigPathRuleConditionArgs) ToRoutingConfigPathRuleConditionOutput() RoutingConfigPathRuleConditionOutput {
+	return i.ToRoutingConfigPathRuleConditionOutputWithContext(context.Background())
+}
+
+func (i RoutingConfigPathRuleConditionArgs) ToRoutingConfigPathRuleConditionOutputWithContext(ctx context.Context) RoutingConfigPathRuleConditionOutput {
+	return pulumi.ToOutputWithContext(ctx, i).(RoutingConfigPathRuleConditionOutput)
+}
+
+// RoutingConfigPathRuleConditionArrayInput is an input type that accepts RoutingConfigPathRuleConditionArray and RoutingConfigPathRuleConditionArrayOutput values.
+// You can construct a concrete instance of `RoutingConfigPathRuleConditionArrayInput` via:
+//
+//	RoutingConfigPathRuleConditionArray{ RoutingConfigPathRuleConditionArgs{...} }
+type RoutingConfigPathRuleConditionArrayInput interface {
+	pulumi.Input
+
+	ToRoutingConfigPathRuleConditionArrayOutput() RoutingConfigPathRuleConditionArrayOutput
+	ToRoutingConfigPathRuleConditionArrayOutputWithContext(context.Context) RoutingConfigPathRuleConditionArrayOutput
+}
+
+type RoutingConfigPathRuleConditionArray []RoutingConfigPathRuleConditionInput
+
+func (RoutingConfigPathRuleConditionArray) ElementType() reflect.Type {
+	return reflect.TypeOf((*[]RoutingConfigPathRuleCondition)(nil)).Elem()
+}
+
+func (i RoutingConfigPathRuleConditionArray) ToRoutingConfigPathRuleConditionArrayOutput() RoutingConfigPathRuleConditionArrayOutput {
+	return i.ToRoutingConfigPathRuleConditionArrayOutputWithContext(context.Background())
+}
+
+func (i RoutingConfigPathRuleConditionArray) ToRoutingConfigPathRuleConditionArrayOutputWithContext(ctx context.Context) RoutingConfigPathRuleConditionArrayOutput {
+	return pulumi.ToOutputWithContext(ctx, i).(RoutingConfigPathRuleConditionArrayOutput)
+}
+
+type RoutingConfigPathRuleConditionOutput struct{ *pulumi.OutputState }
+
+func (RoutingConfigPathRuleConditionOutput) ElementType() reflect.Type {
+	return reflect.TypeOf((*RoutingConfigPathRuleCondition)(nil)).Elem()
+}
+
+func (o RoutingConfigPathRuleConditionOutput) ToRoutingConfigPathRuleConditionOutput() RoutingConfigPathRuleConditionOutput {
+	return o
+}
+
+func (o RoutingConfigPathRuleConditionOutput) ToRoutingConfigPathRuleConditionOutputWithContext(ctx context.Context) RoutingConfigPathRuleConditionOutput {
+	return o
+}
+
+// The header name to match against. Only applicable when `type` is `header`.
+func (o RoutingConfigPathRuleConditionOutput) Key() pulumi.StringPtrOutput {
+	return o.ApplyT(func(v RoutingConfigPathRuleCondition) *string { return v.Key }).(pulumi.StringPtrOutput)
+}
+
+// The comparison operator used to evaluate `value` against the request. One of `equals`, `startsWith`, `endsWith`, or `contains`.
+func (o RoutingConfigPathRuleConditionOutput) Operator() pulumi.StringOutput {
+	return o.ApplyT(func(v RoutingConfigPathRuleCondition) string { return v.Operator }).(pulumi.StringOutput)
+}
+
+// The condition category. Currently only `header` is supported.
+func (o RoutingConfigPathRuleConditionOutput) Type() pulumi.StringOutput {
+	return o.ApplyT(func(v RoutingConfigPathRuleCondition) string { return v.Type }).(pulumi.StringOutput)
+}
+
+// The value compared against the request using `operator`.
+func (o RoutingConfigPathRuleConditionOutput) Value() pulumi.StringOutput {
+	return o.ApplyT(func(v RoutingConfigPathRuleCondition) string { return v.Value }).(pulumi.StringOutput)
+}
+
+type RoutingConfigPathRuleConditionArrayOutput struct{ *pulumi.OutputState }
+
+func (RoutingConfigPathRuleConditionArrayOutput) ElementType() reflect.Type {
+	return reflect.TypeOf((*[]RoutingConfigPathRuleCondition)(nil)).Elem()
+}
+
+func (o RoutingConfigPathRuleConditionArrayOutput) ToRoutingConfigPathRuleConditionArrayOutput() RoutingConfigPathRuleConditionArrayOutput {
+	return o
+}
+
+func (o RoutingConfigPathRuleConditionArrayOutput) ToRoutingConfigPathRuleConditionArrayOutputWithContext(ctx context.Context) RoutingConfigPathRuleConditionArrayOutput {
+	return o
+}
+
+func (o RoutingConfigPathRuleConditionArrayOutput) Index(i pulumi.IntInput) RoutingConfigPathRuleConditionOutput {
+	return pulumi.All(o, i).ApplyT(func(vs []interface{}) RoutingConfigPathRuleCondition {
+		return vs[0].([]RoutingConfigPathRuleCondition)[vs[1].(int)]
+	}).(RoutingConfigPathRuleConditionOutput)
+}
+
 type ServiceACLEntriesEntry struct {
 	// A personal freeform descriptive note
 	Comment *string `pulumi:"comment"`
@@ -3335,8 +3969,12 @@ type ServiceComputeBackend struct {
 	KeepaliveTime *int `pulumi:"keepaliveTime"`
 	// Maximum number of connections for this Backend. Default `200`
 	MaxConn *int `pulumi:"maxConn"`
+	// Maximum time from creation (in milliseconds) that a pooled HTTP keepalive connection will be eligible for reuse; 0 is treated as unlimited - which is the default behavior.
+	MaxLifetime *int `pulumi:"maxLifetime"`
 	// Maximum allowed TLS version on SSL connections to this backend.
 	MaxTlsVersion *string `pulumi:"maxTlsVersion"`
+	// Maximum number of requests allowed over a single, pooled HTTP keepalive connection to this backend; 0 is treated as unlimited - which is the default behavior.
+	MaxUse *int `pulumi:"maxUse"`
 	// Minimum allowed TLS version on SSL connections to this backend.
 	MinTlsVersion *string `pulumi:"minTlsVersion"`
 	// Name for this Backend. Must be unique to this Service. It is important to note that changing this attribute will delete and recreate the resource
@@ -3399,8 +4037,12 @@ type ServiceComputeBackendArgs struct {
 	KeepaliveTime pulumi.IntPtrInput `pulumi:"keepaliveTime"`
 	// Maximum number of connections for this Backend. Default `200`
 	MaxConn pulumi.IntPtrInput `pulumi:"maxConn"`
+	// Maximum time from creation (in milliseconds) that a pooled HTTP keepalive connection will be eligible for reuse; 0 is treated as unlimited - which is the default behavior.
+	MaxLifetime pulumi.IntPtrInput `pulumi:"maxLifetime"`
 	// Maximum allowed TLS version on SSL connections to this backend.
 	MaxTlsVersion pulumi.StringPtrInput `pulumi:"maxTlsVersion"`
+	// Maximum number of requests allowed over a single, pooled HTTP keepalive connection to this backend; 0 is treated as unlimited - which is the default behavior.
+	MaxUse pulumi.IntPtrInput `pulumi:"maxUse"`
 	// Minimum allowed TLS version on SSL connections to this backend.
 	MinTlsVersion pulumi.StringPtrInput `pulumi:"minTlsVersion"`
 	// Name for this Backend. Must be unique to this Service. It is important to note that changing this attribute will delete and recreate the resource
@@ -3526,9 +4168,19 @@ func (o ServiceComputeBackendOutput) MaxConn() pulumi.IntPtrOutput {
 	return o.ApplyT(func(v ServiceComputeBackend) *int { return v.MaxConn }).(pulumi.IntPtrOutput)
 }
 
+// Maximum time from creation (in milliseconds) that a pooled HTTP keepalive connection will be eligible for reuse; 0 is treated as unlimited - which is the default behavior.
+func (o ServiceComputeBackendOutput) MaxLifetime() pulumi.IntPtrOutput {
+	return o.ApplyT(func(v ServiceComputeBackend) *int { return v.MaxLifetime }).(pulumi.IntPtrOutput)
+}
+
 // Maximum allowed TLS version on SSL connections to this backend.
 func (o ServiceComputeBackendOutput) MaxTlsVersion() pulumi.StringPtrOutput {
 	return o.ApplyT(func(v ServiceComputeBackend) *string { return v.MaxTlsVersion }).(pulumi.StringPtrOutput)
+}
+
+// Maximum number of requests allowed over a single, pooled HTTP keepalive connection to this backend; 0 is treated as unlimited - which is the default behavior.
+func (o ServiceComputeBackendOutput) MaxUse() pulumi.IntPtrOutput {
+	return o.ApplyT(func(v ServiceComputeBackend) *int { return v.MaxUse }).(pulumi.IntPtrOutput)
 }
 
 // Minimum allowed TLS version on SSL connections to this backend.
@@ -9323,6 +9975,8 @@ func (o ServiceComputePackagePtrOutput) SourceCodeHash() pulumi.StringPtrOutput 
 type ServiceComputeProductEnablement struct {
 	// Enable API Discovery support
 	ApiDiscovery *bool `pulumi:"apiDiscovery"`
+	// Enable Bot Management support
+	BotManagement *ServiceComputeProductEnablementBotManagement `pulumi:"botManagement"`
 	// DDoS Protection product
 	DdosProtection *ServiceComputeProductEnablementDdosProtection `pulumi:"ddosProtection"`
 	// Enable Domain Inspector support
@@ -9353,6 +10007,8 @@ type ServiceComputeProductEnablementInput interface {
 type ServiceComputeProductEnablementArgs struct {
 	// Enable API Discovery support
 	ApiDiscovery pulumi.BoolPtrInput `pulumi:"apiDiscovery"`
+	// Enable Bot Management support
+	BotManagement ServiceComputeProductEnablementBotManagementPtrInput `pulumi:"botManagement"`
 	// DDoS Protection product
 	DdosProtection ServiceComputeProductEnablementDdosProtectionPtrInput `pulumi:"ddosProtection"`
 	// Enable Domain Inspector support
@@ -9451,6 +10107,13 @@ func (o ServiceComputeProductEnablementOutput) ApiDiscovery() pulumi.BoolPtrOutp
 	return o.ApplyT(func(v ServiceComputeProductEnablement) *bool { return v.ApiDiscovery }).(pulumi.BoolPtrOutput)
 }
 
+// Enable Bot Management support
+func (o ServiceComputeProductEnablementOutput) BotManagement() ServiceComputeProductEnablementBotManagementPtrOutput {
+	return o.ApplyT(func(v ServiceComputeProductEnablement) *ServiceComputeProductEnablementBotManagement {
+		return v.BotManagement
+	}).(ServiceComputeProductEnablementBotManagementPtrOutput)
+}
+
 // DDoS Protection product
 func (o ServiceComputeProductEnablementOutput) DdosProtection() ServiceComputeProductEnablementDdosProtectionPtrOutput {
 	return o.ApplyT(func(v ServiceComputeProductEnablement) *ServiceComputeProductEnablementDdosProtection {
@@ -9520,6 +10183,16 @@ func (o ServiceComputeProductEnablementPtrOutput) ApiDiscovery() pulumi.BoolPtrO
 		}
 		return v.ApiDiscovery
 	}).(pulumi.BoolPtrOutput)
+}
+
+// Enable Bot Management support
+func (o ServiceComputeProductEnablementPtrOutput) BotManagement() ServiceComputeProductEnablementBotManagementPtrOutput {
+	return o.ApplyT(func(v *ServiceComputeProductEnablement) *ServiceComputeProductEnablementBotManagement {
+		if v == nil {
+			return nil
+		}
+		return v.BotManagement
+	}).(ServiceComputeProductEnablementBotManagementPtrOutput)
 }
 
 // DDoS Protection product
@@ -9592,10 +10265,166 @@ func (o ServiceComputeProductEnablementPtrOutput) Websockets() pulumi.BoolPtrOut
 	}).(pulumi.BoolPtrOutput)
 }
 
+type ServiceComputeProductEnablementBotManagement struct {
+	// ContentGuard status. Can be either `off`, or `on`.
+	Contentguard string `pulumi:"contentguard"`
+	// Enable Bot Management support
+	Enabled bool `pulumi:"enabled"`
+}
+
+// ServiceComputeProductEnablementBotManagementInput is an input type that accepts ServiceComputeProductEnablementBotManagementArgs and ServiceComputeProductEnablementBotManagementOutput values.
+// You can construct a concrete instance of `ServiceComputeProductEnablementBotManagementInput` via:
+//
+//	ServiceComputeProductEnablementBotManagementArgs{...}
+type ServiceComputeProductEnablementBotManagementInput interface {
+	pulumi.Input
+
+	ToServiceComputeProductEnablementBotManagementOutput() ServiceComputeProductEnablementBotManagementOutput
+	ToServiceComputeProductEnablementBotManagementOutputWithContext(context.Context) ServiceComputeProductEnablementBotManagementOutput
+}
+
+type ServiceComputeProductEnablementBotManagementArgs struct {
+	// ContentGuard status. Can be either `off`, or `on`.
+	Contentguard pulumi.StringInput `pulumi:"contentguard"`
+	// Enable Bot Management support
+	Enabled pulumi.BoolInput `pulumi:"enabled"`
+}
+
+func (ServiceComputeProductEnablementBotManagementArgs) ElementType() reflect.Type {
+	return reflect.TypeOf((*ServiceComputeProductEnablementBotManagement)(nil)).Elem()
+}
+
+func (i ServiceComputeProductEnablementBotManagementArgs) ToServiceComputeProductEnablementBotManagementOutput() ServiceComputeProductEnablementBotManagementOutput {
+	return i.ToServiceComputeProductEnablementBotManagementOutputWithContext(context.Background())
+}
+
+func (i ServiceComputeProductEnablementBotManagementArgs) ToServiceComputeProductEnablementBotManagementOutputWithContext(ctx context.Context) ServiceComputeProductEnablementBotManagementOutput {
+	return pulumi.ToOutputWithContext(ctx, i).(ServiceComputeProductEnablementBotManagementOutput)
+}
+
+func (i ServiceComputeProductEnablementBotManagementArgs) ToServiceComputeProductEnablementBotManagementPtrOutput() ServiceComputeProductEnablementBotManagementPtrOutput {
+	return i.ToServiceComputeProductEnablementBotManagementPtrOutputWithContext(context.Background())
+}
+
+func (i ServiceComputeProductEnablementBotManagementArgs) ToServiceComputeProductEnablementBotManagementPtrOutputWithContext(ctx context.Context) ServiceComputeProductEnablementBotManagementPtrOutput {
+	return pulumi.ToOutputWithContext(ctx, i).(ServiceComputeProductEnablementBotManagementOutput).ToServiceComputeProductEnablementBotManagementPtrOutputWithContext(ctx)
+}
+
+// ServiceComputeProductEnablementBotManagementPtrInput is an input type that accepts ServiceComputeProductEnablementBotManagementArgs, ServiceComputeProductEnablementBotManagementPtr and ServiceComputeProductEnablementBotManagementPtrOutput values.
+// You can construct a concrete instance of `ServiceComputeProductEnablementBotManagementPtrInput` via:
+//
+//	        ServiceComputeProductEnablementBotManagementArgs{...}
+//
+//	or:
+//
+//	        nil
+type ServiceComputeProductEnablementBotManagementPtrInput interface {
+	pulumi.Input
+
+	ToServiceComputeProductEnablementBotManagementPtrOutput() ServiceComputeProductEnablementBotManagementPtrOutput
+	ToServiceComputeProductEnablementBotManagementPtrOutputWithContext(context.Context) ServiceComputeProductEnablementBotManagementPtrOutput
+}
+
+type serviceComputeProductEnablementBotManagementPtrType ServiceComputeProductEnablementBotManagementArgs
+
+func ServiceComputeProductEnablementBotManagementPtr(v *ServiceComputeProductEnablementBotManagementArgs) ServiceComputeProductEnablementBotManagementPtrInput {
+	return (*serviceComputeProductEnablementBotManagementPtrType)(v)
+}
+
+func (*serviceComputeProductEnablementBotManagementPtrType) ElementType() reflect.Type {
+	return reflect.TypeOf((**ServiceComputeProductEnablementBotManagement)(nil)).Elem()
+}
+
+func (i *serviceComputeProductEnablementBotManagementPtrType) ToServiceComputeProductEnablementBotManagementPtrOutput() ServiceComputeProductEnablementBotManagementPtrOutput {
+	return i.ToServiceComputeProductEnablementBotManagementPtrOutputWithContext(context.Background())
+}
+
+func (i *serviceComputeProductEnablementBotManagementPtrType) ToServiceComputeProductEnablementBotManagementPtrOutputWithContext(ctx context.Context) ServiceComputeProductEnablementBotManagementPtrOutput {
+	return pulumi.ToOutputWithContext(ctx, i).(ServiceComputeProductEnablementBotManagementPtrOutput)
+}
+
+type ServiceComputeProductEnablementBotManagementOutput struct{ *pulumi.OutputState }
+
+func (ServiceComputeProductEnablementBotManagementOutput) ElementType() reflect.Type {
+	return reflect.TypeOf((*ServiceComputeProductEnablementBotManagement)(nil)).Elem()
+}
+
+func (o ServiceComputeProductEnablementBotManagementOutput) ToServiceComputeProductEnablementBotManagementOutput() ServiceComputeProductEnablementBotManagementOutput {
+	return o
+}
+
+func (o ServiceComputeProductEnablementBotManagementOutput) ToServiceComputeProductEnablementBotManagementOutputWithContext(ctx context.Context) ServiceComputeProductEnablementBotManagementOutput {
+	return o
+}
+
+func (o ServiceComputeProductEnablementBotManagementOutput) ToServiceComputeProductEnablementBotManagementPtrOutput() ServiceComputeProductEnablementBotManagementPtrOutput {
+	return o.ToServiceComputeProductEnablementBotManagementPtrOutputWithContext(context.Background())
+}
+
+func (o ServiceComputeProductEnablementBotManagementOutput) ToServiceComputeProductEnablementBotManagementPtrOutputWithContext(ctx context.Context) ServiceComputeProductEnablementBotManagementPtrOutput {
+	return o.ApplyTWithContext(ctx, func(_ context.Context, v ServiceComputeProductEnablementBotManagement) *ServiceComputeProductEnablementBotManagement {
+		return &v
+	}).(ServiceComputeProductEnablementBotManagementPtrOutput)
+}
+
+// ContentGuard status. Can be either `off`, or `on`.
+func (o ServiceComputeProductEnablementBotManagementOutput) Contentguard() pulumi.StringOutput {
+	return o.ApplyT(func(v ServiceComputeProductEnablementBotManagement) string { return v.Contentguard }).(pulumi.StringOutput)
+}
+
+// Enable Bot Management support
+func (o ServiceComputeProductEnablementBotManagementOutput) Enabled() pulumi.BoolOutput {
+	return o.ApplyT(func(v ServiceComputeProductEnablementBotManagement) bool { return v.Enabled }).(pulumi.BoolOutput)
+}
+
+type ServiceComputeProductEnablementBotManagementPtrOutput struct{ *pulumi.OutputState }
+
+func (ServiceComputeProductEnablementBotManagementPtrOutput) ElementType() reflect.Type {
+	return reflect.TypeOf((**ServiceComputeProductEnablementBotManagement)(nil)).Elem()
+}
+
+func (o ServiceComputeProductEnablementBotManagementPtrOutput) ToServiceComputeProductEnablementBotManagementPtrOutput() ServiceComputeProductEnablementBotManagementPtrOutput {
+	return o
+}
+
+func (o ServiceComputeProductEnablementBotManagementPtrOutput) ToServiceComputeProductEnablementBotManagementPtrOutputWithContext(ctx context.Context) ServiceComputeProductEnablementBotManagementPtrOutput {
+	return o
+}
+
+func (o ServiceComputeProductEnablementBotManagementPtrOutput) Elem() ServiceComputeProductEnablementBotManagementOutput {
+	return o.ApplyT(func(v *ServiceComputeProductEnablementBotManagement) ServiceComputeProductEnablementBotManagement {
+		if v != nil {
+			return *v
+		}
+		var ret ServiceComputeProductEnablementBotManagement
+		return ret
+	}).(ServiceComputeProductEnablementBotManagementOutput)
+}
+
+// ContentGuard status. Can be either `off`, or `on`.
+func (o ServiceComputeProductEnablementBotManagementPtrOutput) Contentguard() pulumi.StringPtrOutput {
+	return o.ApplyT(func(v *ServiceComputeProductEnablementBotManagement) *string {
+		if v == nil {
+			return nil
+		}
+		return &v.Contentguard
+	}).(pulumi.StringPtrOutput)
+}
+
+// Enable Bot Management support
+func (o ServiceComputeProductEnablementBotManagementPtrOutput) Enabled() pulumi.BoolPtrOutput {
+	return o.ApplyT(func(v *ServiceComputeProductEnablementBotManagement) *bool {
+		if v == nil {
+			return nil
+		}
+		return &v.Enabled
+	}).(pulumi.BoolPtrOutput)
+}
+
 type ServiceComputeProductEnablementDdosProtection struct {
 	// Enable DDoS Protection support
 	Enabled bool `pulumi:"enabled"`
-	// Operation mode. Can be either `off`, `log`, or `block`.
+	// Operation mode. Can be `off`, `log`, `block`, or `clientChallenge`.
 	Mode string `pulumi:"mode"`
 }
 
@@ -9613,7 +10442,7 @@ type ServiceComputeProductEnablementDdosProtectionInput interface {
 type ServiceComputeProductEnablementDdosProtectionArgs struct {
 	// Enable DDoS Protection support
 	Enabled pulumi.BoolInput `pulumi:"enabled"`
-	// Operation mode. Can be either `off`, `log`, or `block`.
+	// Operation mode. Can be `off`, `log`, `block`, or `clientChallenge`.
 	Mode pulumi.StringInput `pulumi:"mode"`
 }
 
@@ -9699,7 +10528,7 @@ func (o ServiceComputeProductEnablementDdosProtectionOutput) Enabled() pulumi.Bo
 	return o.ApplyT(func(v ServiceComputeProductEnablementDdosProtection) bool { return v.Enabled }).(pulumi.BoolOutput)
 }
 
-// Operation mode. Can be either `off`, `log`, or `block`.
+// Operation mode. Can be `off`, `log`, `block`, or `clientChallenge`.
 func (o ServiceComputeProductEnablementDdosProtectionOutput) Mode() pulumi.StringOutput {
 	return o.ApplyT(func(v ServiceComputeProductEnablementDdosProtection) string { return v.Mode }).(pulumi.StringOutput)
 }
@@ -9738,7 +10567,7 @@ func (o ServiceComputeProductEnablementDdosProtectionPtrOutput) Enabled() pulumi
 	}).(pulumi.BoolPtrOutput)
 }
 
-// Operation mode. Can be either `off`, `log`, or `block`.
+// Operation mode. Can be `off`, `log`, `block`, or `clientChallenge`.
 func (o ServiceComputeProductEnablementDdosProtectionPtrOutput) Mode() pulumi.StringPtrOutput {
 	return o.ApplyT(func(v *ServiceComputeProductEnablementDdosProtection) *string {
 		if v == nil {
@@ -9751,8 +10580,6 @@ func (o ServiceComputeProductEnablementDdosProtectionPtrOutput) Mode() pulumi.St
 type ServiceComputeProductEnablementNgwaf struct {
 	// Enable Next-Gen WAF support
 	Enabled bool `pulumi:"enabled"`
-	// The percentage of traffic to inspect
-	TrafficRamp *int `pulumi:"trafficRamp"`
 	// The workspace to link
 	WorkspaceId string `pulumi:"workspaceId"`
 }
@@ -9771,8 +10598,6 @@ type ServiceComputeProductEnablementNgwafInput interface {
 type ServiceComputeProductEnablementNgwafArgs struct {
 	// Enable Next-Gen WAF support
 	Enabled pulumi.BoolInput `pulumi:"enabled"`
-	// The percentage of traffic to inspect
-	TrafficRamp pulumi.IntPtrInput `pulumi:"trafficRamp"`
 	// The workspace to link
 	WorkspaceId pulumi.StringInput `pulumi:"workspaceId"`
 }
@@ -9859,11 +10684,6 @@ func (o ServiceComputeProductEnablementNgwafOutput) Enabled() pulumi.BoolOutput 
 	return o.ApplyT(func(v ServiceComputeProductEnablementNgwaf) bool { return v.Enabled }).(pulumi.BoolOutput)
 }
 
-// The percentage of traffic to inspect
-func (o ServiceComputeProductEnablementNgwafOutput) TrafficRamp() pulumi.IntPtrOutput {
-	return o.ApplyT(func(v ServiceComputeProductEnablementNgwaf) *int { return v.TrafficRamp }).(pulumi.IntPtrOutput)
-}
-
 // The workspace to link
 func (o ServiceComputeProductEnablementNgwafOutput) WorkspaceId() pulumi.StringOutput {
 	return o.ApplyT(func(v ServiceComputeProductEnablementNgwaf) string { return v.WorkspaceId }).(pulumi.StringOutput)
@@ -9901,16 +10721,6 @@ func (o ServiceComputeProductEnablementNgwafPtrOutput) Enabled() pulumi.BoolPtrO
 		}
 		return &v.Enabled
 	}).(pulumi.BoolPtrOutput)
-}
-
-// The percentage of traffic to inspect
-func (o ServiceComputeProductEnablementNgwafPtrOutput) TrafficRamp() pulumi.IntPtrOutput {
-	return o.ApplyT(func(v *ServiceComputeProductEnablementNgwaf) *int {
-		if v == nil {
-			return nil
-		}
-		return v.TrafficRamp
-	}).(pulumi.IntPtrOutput)
 }
 
 // The workspace to link
@@ -10172,8 +10982,12 @@ type ServiceVclBackend struct {
 	KeepaliveTime *int `pulumi:"keepaliveTime"`
 	// Maximum number of connections for this Backend. Default `200`
 	MaxConn *int `pulumi:"maxConn"`
+	// Maximum time from creation (in milliseconds) that a pooled HTTP keepalive connection will be eligible for reuse; 0 is treated as unlimited - which is the default behavior.
+	MaxLifetime *int `pulumi:"maxLifetime"`
 	// Maximum allowed TLS version on SSL connections to this backend.
 	MaxTlsVersion *string `pulumi:"maxTlsVersion"`
+	// Maximum number of requests allowed over a single, pooled HTTP keepalive connection to this backend; 0 is treated as unlimited - which is the default behavior.
+	MaxUse *int `pulumi:"maxUse"`
 	// Minimum allowed TLS version on SSL connections to this backend.
 	MinTlsVersion *string `pulumi:"minTlsVersion"`
 	// Name for this Backend. Must be unique to this Service. It is important to note that changing this attribute will delete and recreate the resource
@@ -10240,8 +11054,12 @@ type ServiceVclBackendArgs struct {
 	KeepaliveTime pulumi.IntPtrInput `pulumi:"keepaliveTime"`
 	// Maximum number of connections for this Backend. Default `200`
 	MaxConn pulumi.IntPtrInput `pulumi:"maxConn"`
+	// Maximum time from creation (in milliseconds) that a pooled HTTP keepalive connection will be eligible for reuse; 0 is treated as unlimited - which is the default behavior.
+	MaxLifetime pulumi.IntPtrInput `pulumi:"maxLifetime"`
 	// Maximum allowed TLS version on SSL connections to this backend.
 	MaxTlsVersion pulumi.StringPtrInput `pulumi:"maxTlsVersion"`
+	// Maximum number of requests allowed over a single, pooled HTTP keepalive connection to this backend; 0 is treated as unlimited - which is the default behavior.
+	MaxUse pulumi.IntPtrInput `pulumi:"maxUse"`
 	// Minimum allowed TLS version on SSL connections to this backend.
 	MinTlsVersion pulumi.StringPtrInput `pulumi:"minTlsVersion"`
 	// Name for this Backend. Must be unique to this Service. It is important to note that changing this attribute will delete and recreate the resource
@@ -10374,9 +11192,19 @@ func (o ServiceVclBackendOutput) MaxConn() pulumi.IntPtrOutput {
 	return o.ApplyT(func(v ServiceVclBackend) *int { return v.MaxConn }).(pulumi.IntPtrOutput)
 }
 
+// Maximum time from creation (in milliseconds) that a pooled HTTP keepalive connection will be eligible for reuse; 0 is treated as unlimited - which is the default behavior.
+func (o ServiceVclBackendOutput) MaxLifetime() pulumi.IntPtrOutput {
+	return o.ApplyT(func(v ServiceVclBackend) *int { return v.MaxLifetime }).(pulumi.IntPtrOutput)
+}
+
 // Maximum allowed TLS version on SSL connections to this backend.
 func (o ServiceVclBackendOutput) MaxTlsVersion() pulumi.StringPtrOutput {
 	return o.ApplyT(func(v ServiceVclBackend) *string { return v.MaxTlsVersion }).(pulumi.StringPtrOutput)
+}
+
+// Maximum number of requests allowed over a single, pooled HTTP keepalive connection to this backend; 0 is treated as unlimited - which is the default behavior.
+func (o ServiceVclBackendOutput) MaxUse() pulumi.IntPtrOutput {
+	return o.ApplyT(func(v ServiceVclBackend) *int { return v.MaxUse }).(pulumi.IntPtrOutput)
 }
 
 // Minimum allowed TLS version on SSL connections to this backend.
@@ -18310,7 +19138,7 @@ func (o ServiceVclProductEnablementBotManagementPtrOutput) Enabled() pulumi.Bool
 type ServiceVclProductEnablementDdosProtection struct {
 	// Enable DDoS Protection support
 	Enabled bool `pulumi:"enabled"`
-	// Operation mode. Can be either `off`, `log`, or `block`.
+	// Operation mode. Can be `off`, `log`, `block`, or `clientChallenge`.
 	Mode string `pulumi:"mode"`
 }
 
@@ -18328,7 +19156,7 @@ type ServiceVclProductEnablementDdosProtectionInput interface {
 type ServiceVclProductEnablementDdosProtectionArgs struct {
 	// Enable DDoS Protection support
 	Enabled pulumi.BoolInput `pulumi:"enabled"`
-	// Operation mode. Can be either `off`, `log`, or `block`.
+	// Operation mode. Can be `off`, `log`, `block`, or `clientChallenge`.
 	Mode pulumi.StringInput `pulumi:"mode"`
 }
 
@@ -18414,7 +19242,7 @@ func (o ServiceVclProductEnablementDdosProtectionOutput) Enabled() pulumi.BoolOu
 	return o.ApplyT(func(v ServiceVclProductEnablementDdosProtection) bool { return v.Enabled }).(pulumi.BoolOutput)
 }
 
-// Operation mode. Can be either `off`, `log`, or `block`.
+// Operation mode. Can be `off`, `log`, `block`, or `clientChallenge`.
 func (o ServiceVclProductEnablementDdosProtectionOutput) Mode() pulumi.StringOutput {
 	return o.ApplyT(func(v ServiceVclProductEnablementDdosProtection) string { return v.Mode }).(pulumi.StringOutput)
 }
@@ -18453,7 +19281,7 @@ func (o ServiceVclProductEnablementDdosProtectionPtrOutput) Enabled() pulumi.Boo
 	}).(pulumi.BoolPtrOutput)
 }
 
-// Operation mode. Can be either `off`, `log`, or `block`.
+// Operation mode. Can be `off`, `log`, `block`, or `clientChallenge`.
 func (o ServiceVclProductEnablementDdosProtectionPtrOutput) Mode() pulumi.StringPtrOutput {
 	return o.ApplyT(func(v *ServiceVclProductEnablementDdosProtection) *string {
 		if v == nil {
@@ -19825,6 +20653,612 @@ func (o TlsSubscriptionManagedHttpChallengeArrayOutput) Index(i pulumi.IntInput)
 	}).(TlsSubscriptionManagedHttpChallengeOutput)
 }
 
+type GetAiRuntimeControlProviderConnectionsProviderConnection struct {
+	// The base URL for the provider's API.
+	BaseUrl string `pulumi:"baseUrl"`
+	// Timestamp (UTC) of when the provider connection was created.
+	CreatedAt string `pulumi:"createdAt"`
+	// The ID of the provider connection.
+	Id string `pulumi:"id"`
+	// The allowed AI model identifiers.
+	Models []string `pulumi:"models"`
+	// The human-readable name of the provider.
+	Name string `pulumi:"name"`
+	// A hash representing the API key used to create the provider connection.
+	SecretId string `pulumi:"secretId"`
+	// Timestamp (UTC) of when the provider connection was last updated.
+	UpdatedAt string `pulumi:"updatedAt"`
+}
+
+// GetAiRuntimeControlProviderConnectionsProviderConnectionInput is an input type that accepts GetAiRuntimeControlProviderConnectionsProviderConnectionArgs and GetAiRuntimeControlProviderConnectionsProviderConnectionOutput values.
+// You can construct a concrete instance of `GetAiRuntimeControlProviderConnectionsProviderConnectionInput` via:
+//
+//	GetAiRuntimeControlProviderConnectionsProviderConnectionArgs{...}
+type GetAiRuntimeControlProviderConnectionsProviderConnectionInput interface {
+	pulumi.Input
+
+	ToGetAiRuntimeControlProviderConnectionsProviderConnectionOutput() GetAiRuntimeControlProviderConnectionsProviderConnectionOutput
+	ToGetAiRuntimeControlProviderConnectionsProviderConnectionOutputWithContext(context.Context) GetAiRuntimeControlProviderConnectionsProviderConnectionOutput
+}
+
+type GetAiRuntimeControlProviderConnectionsProviderConnectionArgs struct {
+	// The base URL for the provider's API.
+	BaseUrl pulumi.StringInput `pulumi:"baseUrl"`
+	// Timestamp (UTC) of when the provider connection was created.
+	CreatedAt pulumi.StringInput `pulumi:"createdAt"`
+	// The ID of the provider connection.
+	Id pulumi.StringInput `pulumi:"id"`
+	// The allowed AI model identifiers.
+	Models pulumi.StringArrayInput `pulumi:"models"`
+	// The human-readable name of the provider.
+	Name pulumi.StringInput `pulumi:"name"`
+	// A hash representing the API key used to create the provider connection.
+	SecretId pulumi.StringInput `pulumi:"secretId"`
+	// Timestamp (UTC) of when the provider connection was last updated.
+	UpdatedAt pulumi.StringInput `pulumi:"updatedAt"`
+}
+
+func (GetAiRuntimeControlProviderConnectionsProviderConnectionArgs) ElementType() reflect.Type {
+	return reflect.TypeOf((*GetAiRuntimeControlProviderConnectionsProviderConnection)(nil)).Elem()
+}
+
+func (i GetAiRuntimeControlProviderConnectionsProviderConnectionArgs) ToGetAiRuntimeControlProviderConnectionsProviderConnectionOutput() GetAiRuntimeControlProviderConnectionsProviderConnectionOutput {
+	return i.ToGetAiRuntimeControlProviderConnectionsProviderConnectionOutputWithContext(context.Background())
+}
+
+func (i GetAiRuntimeControlProviderConnectionsProviderConnectionArgs) ToGetAiRuntimeControlProviderConnectionsProviderConnectionOutputWithContext(ctx context.Context) GetAiRuntimeControlProviderConnectionsProviderConnectionOutput {
+	return pulumi.ToOutputWithContext(ctx, i).(GetAiRuntimeControlProviderConnectionsProviderConnectionOutput)
+}
+
+// GetAiRuntimeControlProviderConnectionsProviderConnectionArrayInput is an input type that accepts GetAiRuntimeControlProviderConnectionsProviderConnectionArray and GetAiRuntimeControlProviderConnectionsProviderConnectionArrayOutput values.
+// You can construct a concrete instance of `GetAiRuntimeControlProviderConnectionsProviderConnectionArrayInput` via:
+//
+//	GetAiRuntimeControlProviderConnectionsProviderConnectionArray{ GetAiRuntimeControlProviderConnectionsProviderConnectionArgs{...} }
+type GetAiRuntimeControlProviderConnectionsProviderConnectionArrayInput interface {
+	pulumi.Input
+
+	ToGetAiRuntimeControlProviderConnectionsProviderConnectionArrayOutput() GetAiRuntimeControlProviderConnectionsProviderConnectionArrayOutput
+	ToGetAiRuntimeControlProviderConnectionsProviderConnectionArrayOutputWithContext(context.Context) GetAiRuntimeControlProviderConnectionsProviderConnectionArrayOutput
+}
+
+type GetAiRuntimeControlProviderConnectionsProviderConnectionArray []GetAiRuntimeControlProviderConnectionsProviderConnectionInput
+
+func (GetAiRuntimeControlProviderConnectionsProviderConnectionArray) ElementType() reflect.Type {
+	return reflect.TypeOf((*[]GetAiRuntimeControlProviderConnectionsProviderConnection)(nil)).Elem()
+}
+
+func (i GetAiRuntimeControlProviderConnectionsProviderConnectionArray) ToGetAiRuntimeControlProviderConnectionsProviderConnectionArrayOutput() GetAiRuntimeControlProviderConnectionsProviderConnectionArrayOutput {
+	return i.ToGetAiRuntimeControlProviderConnectionsProviderConnectionArrayOutputWithContext(context.Background())
+}
+
+func (i GetAiRuntimeControlProviderConnectionsProviderConnectionArray) ToGetAiRuntimeControlProviderConnectionsProviderConnectionArrayOutputWithContext(ctx context.Context) GetAiRuntimeControlProviderConnectionsProviderConnectionArrayOutput {
+	return pulumi.ToOutputWithContext(ctx, i).(GetAiRuntimeControlProviderConnectionsProviderConnectionArrayOutput)
+}
+
+type GetAiRuntimeControlProviderConnectionsProviderConnectionOutput struct{ *pulumi.OutputState }
+
+func (GetAiRuntimeControlProviderConnectionsProviderConnectionOutput) ElementType() reflect.Type {
+	return reflect.TypeOf((*GetAiRuntimeControlProviderConnectionsProviderConnection)(nil)).Elem()
+}
+
+func (o GetAiRuntimeControlProviderConnectionsProviderConnectionOutput) ToGetAiRuntimeControlProviderConnectionsProviderConnectionOutput() GetAiRuntimeControlProviderConnectionsProviderConnectionOutput {
+	return o
+}
+
+func (o GetAiRuntimeControlProviderConnectionsProviderConnectionOutput) ToGetAiRuntimeControlProviderConnectionsProviderConnectionOutputWithContext(ctx context.Context) GetAiRuntimeControlProviderConnectionsProviderConnectionOutput {
+	return o
+}
+
+// The base URL for the provider's API.
+func (o GetAiRuntimeControlProviderConnectionsProviderConnectionOutput) BaseUrl() pulumi.StringOutput {
+	return o.ApplyT(func(v GetAiRuntimeControlProviderConnectionsProviderConnection) string { return v.BaseUrl }).(pulumi.StringOutput)
+}
+
+// Timestamp (UTC) of when the provider connection was created.
+func (o GetAiRuntimeControlProviderConnectionsProviderConnectionOutput) CreatedAt() pulumi.StringOutput {
+	return o.ApplyT(func(v GetAiRuntimeControlProviderConnectionsProviderConnection) string { return v.CreatedAt }).(pulumi.StringOutput)
+}
+
+// The ID of the provider connection.
+func (o GetAiRuntimeControlProviderConnectionsProviderConnectionOutput) Id() pulumi.StringOutput {
+	return o.ApplyT(func(v GetAiRuntimeControlProviderConnectionsProviderConnection) string { return v.Id }).(pulumi.StringOutput)
+}
+
+// The allowed AI model identifiers.
+func (o GetAiRuntimeControlProviderConnectionsProviderConnectionOutput) Models() pulumi.StringArrayOutput {
+	return o.ApplyT(func(v GetAiRuntimeControlProviderConnectionsProviderConnection) []string { return v.Models }).(pulumi.StringArrayOutput)
+}
+
+// The human-readable name of the provider.
+func (o GetAiRuntimeControlProviderConnectionsProviderConnectionOutput) Name() pulumi.StringOutput {
+	return o.ApplyT(func(v GetAiRuntimeControlProviderConnectionsProviderConnection) string { return v.Name }).(pulumi.StringOutput)
+}
+
+// A hash representing the API key used to create the provider connection.
+func (o GetAiRuntimeControlProviderConnectionsProviderConnectionOutput) SecretId() pulumi.StringOutput {
+	return o.ApplyT(func(v GetAiRuntimeControlProviderConnectionsProviderConnection) string { return v.SecretId }).(pulumi.StringOutput)
+}
+
+// Timestamp (UTC) of when the provider connection was last updated.
+func (o GetAiRuntimeControlProviderConnectionsProviderConnectionOutput) UpdatedAt() pulumi.StringOutput {
+	return o.ApplyT(func(v GetAiRuntimeControlProviderConnectionsProviderConnection) string { return v.UpdatedAt }).(pulumi.StringOutput)
+}
+
+type GetAiRuntimeControlProviderConnectionsProviderConnectionArrayOutput struct{ *pulumi.OutputState }
+
+func (GetAiRuntimeControlProviderConnectionsProviderConnectionArrayOutput) ElementType() reflect.Type {
+	return reflect.TypeOf((*[]GetAiRuntimeControlProviderConnectionsProviderConnection)(nil)).Elem()
+}
+
+func (o GetAiRuntimeControlProviderConnectionsProviderConnectionArrayOutput) ToGetAiRuntimeControlProviderConnectionsProviderConnectionArrayOutput() GetAiRuntimeControlProviderConnectionsProviderConnectionArrayOutput {
+	return o
+}
+
+func (o GetAiRuntimeControlProviderConnectionsProviderConnectionArrayOutput) ToGetAiRuntimeControlProviderConnectionsProviderConnectionArrayOutputWithContext(ctx context.Context) GetAiRuntimeControlProviderConnectionsProviderConnectionArrayOutput {
+	return o
+}
+
+func (o GetAiRuntimeControlProviderConnectionsProviderConnectionArrayOutput) Index(i pulumi.IntInput) GetAiRuntimeControlProviderConnectionsProviderConnectionOutput {
+	return pulumi.All(o, i).ApplyT(func(vs []interface{}) GetAiRuntimeControlProviderConnectionsProviderConnection {
+		return vs[0].([]GetAiRuntimeControlProviderConnectionsProviderConnection)[vs[1].(int)]
+	}).(GetAiRuntimeControlProviderConnectionsProviderConnectionOutput)
+}
+
+type GetAiRuntimeControlProvidersProvider struct {
+	// The default API base URL for the provider.
+	DefaultBaseUrl string `pulumi:"defaultBaseUrl"`
+	// The human-readable provider name, e.g. `Anthropic`.
+	DisplayName string `pulumi:"displayName"`
+	// The provider identifier, e.g. `anthropic`.
+	Id string `pulumi:"id"`
+	// The models available for the provider.
+	Models []GetAiRuntimeControlProvidersProviderModel `pulumi:"models"`
+}
+
+// GetAiRuntimeControlProvidersProviderInput is an input type that accepts GetAiRuntimeControlProvidersProviderArgs and GetAiRuntimeControlProvidersProviderOutput values.
+// You can construct a concrete instance of `GetAiRuntimeControlProvidersProviderInput` via:
+//
+//	GetAiRuntimeControlProvidersProviderArgs{...}
+type GetAiRuntimeControlProvidersProviderInput interface {
+	pulumi.Input
+
+	ToGetAiRuntimeControlProvidersProviderOutput() GetAiRuntimeControlProvidersProviderOutput
+	ToGetAiRuntimeControlProvidersProviderOutputWithContext(context.Context) GetAiRuntimeControlProvidersProviderOutput
+}
+
+type GetAiRuntimeControlProvidersProviderArgs struct {
+	// The default API base URL for the provider.
+	DefaultBaseUrl pulumi.StringInput `pulumi:"defaultBaseUrl"`
+	// The human-readable provider name, e.g. `Anthropic`.
+	DisplayName pulumi.StringInput `pulumi:"displayName"`
+	// The provider identifier, e.g. `anthropic`.
+	Id pulumi.StringInput `pulumi:"id"`
+	// The models available for the provider.
+	Models GetAiRuntimeControlProvidersProviderModelArrayInput `pulumi:"models"`
+}
+
+func (GetAiRuntimeControlProvidersProviderArgs) ElementType() reflect.Type {
+	return reflect.TypeOf((*GetAiRuntimeControlProvidersProvider)(nil)).Elem()
+}
+
+func (i GetAiRuntimeControlProvidersProviderArgs) ToGetAiRuntimeControlProvidersProviderOutput() GetAiRuntimeControlProvidersProviderOutput {
+	return i.ToGetAiRuntimeControlProvidersProviderOutputWithContext(context.Background())
+}
+
+func (i GetAiRuntimeControlProvidersProviderArgs) ToGetAiRuntimeControlProvidersProviderOutputWithContext(ctx context.Context) GetAiRuntimeControlProvidersProviderOutput {
+	return pulumi.ToOutputWithContext(ctx, i).(GetAiRuntimeControlProvidersProviderOutput)
+}
+
+// GetAiRuntimeControlProvidersProviderArrayInput is an input type that accepts GetAiRuntimeControlProvidersProviderArray and GetAiRuntimeControlProvidersProviderArrayOutput values.
+// You can construct a concrete instance of `GetAiRuntimeControlProvidersProviderArrayInput` via:
+//
+//	GetAiRuntimeControlProvidersProviderArray{ GetAiRuntimeControlProvidersProviderArgs{...} }
+type GetAiRuntimeControlProvidersProviderArrayInput interface {
+	pulumi.Input
+
+	ToGetAiRuntimeControlProvidersProviderArrayOutput() GetAiRuntimeControlProvidersProviderArrayOutput
+	ToGetAiRuntimeControlProvidersProviderArrayOutputWithContext(context.Context) GetAiRuntimeControlProvidersProviderArrayOutput
+}
+
+type GetAiRuntimeControlProvidersProviderArray []GetAiRuntimeControlProvidersProviderInput
+
+func (GetAiRuntimeControlProvidersProviderArray) ElementType() reflect.Type {
+	return reflect.TypeOf((*[]GetAiRuntimeControlProvidersProvider)(nil)).Elem()
+}
+
+func (i GetAiRuntimeControlProvidersProviderArray) ToGetAiRuntimeControlProvidersProviderArrayOutput() GetAiRuntimeControlProvidersProviderArrayOutput {
+	return i.ToGetAiRuntimeControlProvidersProviderArrayOutputWithContext(context.Background())
+}
+
+func (i GetAiRuntimeControlProvidersProviderArray) ToGetAiRuntimeControlProvidersProviderArrayOutputWithContext(ctx context.Context) GetAiRuntimeControlProvidersProviderArrayOutput {
+	return pulumi.ToOutputWithContext(ctx, i).(GetAiRuntimeControlProvidersProviderArrayOutput)
+}
+
+type GetAiRuntimeControlProvidersProviderOutput struct{ *pulumi.OutputState }
+
+func (GetAiRuntimeControlProvidersProviderOutput) ElementType() reflect.Type {
+	return reflect.TypeOf((*GetAiRuntimeControlProvidersProvider)(nil)).Elem()
+}
+
+func (o GetAiRuntimeControlProvidersProviderOutput) ToGetAiRuntimeControlProvidersProviderOutput() GetAiRuntimeControlProvidersProviderOutput {
+	return o
+}
+
+func (o GetAiRuntimeControlProvidersProviderOutput) ToGetAiRuntimeControlProvidersProviderOutputWithContext(ctx context.Context) GetAiRuntimeControlProvidersProviderOutput {
+	return o
+}
+
+// The default API base URL for the provider.
+func (o GetAiRuntimeControlProvidersProviderOutput) DefaultBaseUrl() pulumi.StringOutput {
+	return o.ApplyT(func(v GetAiRuntimeControlProvidersProvider) string { return v.DefaultBaseUrl }).(pulumi.StringOutput)
+}
+
+// The human-readable provider name, e.g. `Anthropic`.
+func (o GetAiRuntimeControlProvidersProviderOutput) DisplayName() pulumi.StringOutput {
+	return o.ApplyT(func(v GetAiRuntimeControlProvidersProvider) string { return v.DisplayName }).(pulumi.StringOutput)
+}
+
+// The provider identifier, e.g. `anthropic`.
+func (o GetAiRuntimeControlProvidersProviderOutput) Id() pulumi.StringOutput {
+	return o.ApplyT(func(v GetAiRuntimeControlProvidersProvider) string { return v.Id }).(pulumi.StringOutput)
+}
+
+// The models available for the provider.
+func (o GetAiRuntimeControlProvidersProviderOutput) Models() GetAiRuntimeControlProvidersProviderModelArrayOutput {
+	return o.ApplyT(func(v GetAiRuntimeControlProvidersProvider) []GetAiRuntimeControlProvidersProviderModel {
+		return v.Models
+	}).(GetAiRuntimeControlProvidersProviderModelArrayOutput)
+}
+
+type GetAiRuntimeControlProvidersProviderArrayOutput struct{ *pulumi.OutputState }
+
+func (GetAiRuntimeControlProvidersProviderArrayOutput) ElementType() reflect.Type {
+	return reflect.TypeOf((*[]GetAiRuntimeControlProvidersProvider)(nil)).Elem()
+}
+
+func (o GetAiRuntimeControlProvidersProviderArrayOutput) ToGetAiRuntimeControlProvidersProviderArrayOutput() GetAiRuntimeControlProvidersProviderArrayOutput {
+	return o
+}
+
+func (o GetAiRuntimeControlProvidersProviderArrayOutput) ToGetAiRuntimeControlProvidersProviderArrayOutputWithContext(ctx context.Context) GetAiRuntimeControlProvidersProviderArrayOutput {
+	return o
+}
+
+func (o GetAiRuntimeControlProvidersProviderArrayOutput) Index(i pulumi.IntInput) GetAiRuntimeControlProvidersProviderOutput {
+	return pulumi.All(o, i).ApplyT(func(vs []interface{}) GetAiRuntimeControlProvidersProvider {
+		return vs[0].([]GetAiRuntimeControlProvidersProvider)[vs[1].(int)]
+	}).(GetAiRuntimeControlProvidersProviderOutput)
+}
+
+type GetAiRuntimeControlProvidersProviderModel struct {
+	// The human-readable model name, e.g. `Claude Sonnet 4`.
+	DisplayName string `pulumi:"displayName"`
+	// The model identifier, e.g. `claude-sonnet-4-20250514`.
+	Id string `pulumi:"id"`
+	// The ID of the provider this model belongs to.
+	ProviderId string `pulumi:"providerId"`
+}
+
+// GetAiRuntimeControlProvidersProviderModelInput is an input type that accepts GetAiRuntimeControlProvidersProviderModelArgs and GetAiRuntimeControlProvidersProviderModelOutput values.
+// You can construct a concrete instance of `GetAiRuntimeControlProvidersProviderModelInput` via:
+//
+//	GetAiRuntimeControlProvidersProviderModelArgs{...}
+type GetAiRuntimeControlProvidersProviderModelInput interface {
+	pulumi.Input
+
+	ToGetAiRuntimeControlProvidersProviderModelOutput() GetAiRuntimeControlProvidersProviderModelOutput
+	ToGetAiRuntimeControlProvidersProviderModelOutputWithContext(context.Context) GetAiRuntimeControlProvidersProviderModelOutput
+}
+
+type GetAiRuntimeControlProvidersProviderModelArgs struct {
+	// The human-readable model name, e.g. `Claude Sonnet 4`.
+	DisplayName pulumi.StringInput `pulumi:"displayName"`
+	// The model identifier, e.g. `claude-sonnet-4-20250514`.
+	Id pulumi.StringInput `pulumi:"id"`
+	// The ID of the provider this model belongs to.
+	ProviderId pulumi.StringInput `pulumi:"providerId"`
+}
+
+func (GetAiRuntimeControlProvidersProviderModelArgs) ElementType() reflect.Type {
+	return reflect.TypeOf((*GetAiRuntimeControlProvidersProviderModel)(nil)).Elem()
+}
+
+func (i GetAiRuntimeControlProvidersProviderModelArgs) ToGetAiRuntimeControlProvidersProviderModelOutput() GetAiRuntimeControlProvidersProviderModelOutput {
+	return i.ToGetAiRuntimeControlProvidersProviderModelOutputWithContext(context.Background())
+}
+
+func (i GetAiRuntimeControlProvidersProviderModelArgs) ToGetAiRuntimeControlProvidersProviderModelOutputWithContext(ctx context.Context) GetAiRuntimeControlProvidersProviderModelOutput {
+	return pulumi.ToOutputWithContext(ctx, i).(GetAiRuntimeControlProvidersProviderModelOutput)
+}
+
+// GetAiRuntimeControlProvidersProviderModelArrayInput is an input type that accepts GetAiRuntimeControlProvidersProviderModelArray and GetAiRuntimeControlProvidersProviderModelArrayOutput values.
+// You can construct a concrete instance of `GetAiRuntimeControlProvidersProviderModelArrayInput` via:
+//
+//	GetAiRuntimeControlProvidersProviderModelArray{ GetAiRuntimeControlProvidersProviderModelArgs{...} }
+type GetAiRuntimeControlProvidersProviderModelArrayInput interface {
+	pulumi.Input
+
+	ToGetAiRuntimeControlProvidersProviderModelArrayOutput() GetAiRuntimeControlProvidersProviderModelArrayOutput
+	ToGetAiRuntimeControlProvidersProviderModelArrayOutputWithContext(context.Context) GetAiRuntimeControlProvidersProviderModelArrayOutput
+}
+
+type GetAiRuntimeControlProvidersProviderModelArray []GetAiRuntimeControlProvidersProviderModelInput
+
+func (GetAiRuntimeControlProvidersProviderModelArray) ElementType() reflect.Type {
+	return reflect.TypeOf((*[]GetAiRuntimeControlProvidersProviderModel)(nil)).Elem()
+}
+
+func (i GetAiRuntimeControlProvidersProviderModelArray) ToGetAiRuntimeControlProvidersProviderModelArrayOutput() GetAiRuntimeControlProvidersProviderModelArrayOutput {
+	return i.ToGetAiRuntimeControlProvidersProviderModelArrayOutputWithContext(context.Background())
+}
+
+func (i GetAiRuntimeControlProvidersProviderModelArray) ToGetAiRuntimeControlProvidersProviderModelArrayOutputWithContext(ctx context.Context) GetAiRuntimeControlProvidersProviderModelArrayOutput {
+	return pulumi.ToOutputWithContext(ctx, i).(GetAiRuntimeControlProvidersProviderModelArrayOutput)
+}
+
+type GetAiRuntimeControlProvidersProviderModelOutput struct{ *pulumi.OutputState }
+
+func (GetAiRuntimeControlProvidersProviderModelOutput) ElementType() reflect.Type {
+	return reflect.TypeOf((*GetAiRuntimeControlProvidersProviderModel)(nil)).Elem()
+}
+
+func (o GetAiRuntimeControlProvidersProviderModelOutput) ToGetAiRuntimeControlProvidersProviderModelOutput() GetAiRuntimeControlProvidersProviderModelOutput {
+	return o
+}
+
+func (o GetAiRuntimeControlProvidersProviderModelOutput) ToGetAiRuntimeControlProvidersProviderModelOutputWithContext(ctx context.Context) GetAiRuntimeControlProvidersProviderModelOutput {
+	return o
+}
+
+// The human-readable model name, e.g. `Claude Sonnet 4`.
+func (o GetAiRuntimeControlProvidersProviderModelOutput) DisplayName() pulumi.StringOutput {
+	return o.ApplyT(func(v GetAiRuntimeControlProvidersProviderModel) string { return v.DisplayName }).(pulumi.StringOutput)
+}
+
+// The model identifier, e.g. `claude-sonnet-4-20250514`.
+func (o GetAiRuntimeControlProvidersProviderModelOutput) Id() pulumi.StringOutput {
+	return o.ApplyT(func(v GetAiRuntimeControlProvidersProviderModel) string { return v.Id }).(pulumi.StringOutput)
+}
+
+// The ID of the provider this model belongs to.
+func (o GetAiRuntimeControlProvidersProviderModelOutput) ProviderId() pulumi.StringOutput {
+	return o.ApplyT(func(v GetAiRuntimeControlProvidersProviderModel) string { return v.ProviderId }).(pulumi.StringOutput)
+}
+
+type GetAiRuntimeControlProvidersProviderModelArrayOutput struct{ *pulumi.OutputState }
+
+func (GetAiRuntimeControlProvidersProviderModelArrayOutput) ElementType() reflect.Type {
+	return reflect.TypeOf((*[]GetAiRuntimeControlProvidersProviderModel)(nil)).Elem()
+}
+
+func (o GetAiRuntimeControlProvidersProviderModelArrayOutput) ToGetAiRuntimeControlProvidersProviderModelArrayOutput() GetAiRuntimeControlProvidersProviderModelArrayOutput {
+	return o
+}
+
+func (o GetAiRuntimeControlProvidersProviderModelArrayOutput) ToGetAiRuntimeControlProvidersProviderModelArrayOutputWithContext(ctx context.Context) GetAiRuntimeControlProvidersProviderModelArrayOutput {
+	return o
+}
+
+func (o GetAiRuntimeControlProvidersProviderModelArrayOutput) Index(i pulumi.IntInput) GetAiRuntimeControlProvidersProviderModelOutput {
+	return pulumi.All(o, i).ApplyT(func(vs []interface{}) GetAiRuntimeControlProvidersProviderModel {
+		return vs[0].([]GetAiRuntimeControlProvidersProviderModel)[vs[1].(int)]
+	}).(GetAiRuntimeControlProvidersProviderModelOutput)
+}
+
+type GetAiRuntimeControlVirtualKeysVirtualKey struct {
+	// Timestamp (UTC) of when the virtual key was created.
+	CreatedAt string `pulumi:"createdAt"`
+	// The display name of the user who created the virtual key.
+	CreatedBy string `pulumi:"createdBy"`
+	// The ID of the customer that owns the virtual key.
+	CustomerId string `pulumi:"customerId"`
+	// Timestamp (UTC) of when the virtual key was deleted, if applicable.
+	DeletedAt string `pulumi:"deletedAt"`
+	// The expiration timestamp of the virtual key, if any.
+	ExpiresAt string `pulumi:"expiresAt"`
+	// The ID of the virtual key.
+	Id string `pulumi:"id"`
+	// Timestamp (UTC) of when the virtual key was last used, if applicable.
+	LastUsedAt string `pulumi:"lastUsedAt"`
+	// The AI model identifier.
+	Model string `pulumi:"model"`
+	// The human-readable name of the virtual key.
+	Name string `pulumi:"name"`
+	// The AI model provider name.
+	Provider string `pulumi:"provider"`
+	// The type of the virtual key.
+	Type string `pulumi:"type"`
+	// Timestamp (UTC) of when the virtual key was last updated.
+	UpdatedAt string `pulumi:"updatedAt"`
+	// The ID of the user who created the virtual key.
+	UserId string `pulumi:"userId"`
+	// The display name of the user who created the virtual key.
+	UserName string `pulumi:"userName"`
+}
+
+// GetAiRuntimeControlVirtualKeysVirtualKeyInput is an input type that accepts GetAiRuntimeControlVirtualKeysVirtualKeyArgs and GetAiRuntimeControlVirtualKeysVirtualKeyOutput values.
+// You can construct a concrete instance of `GetAiRuntimeControlVirtualKeysVirtualKeyInput` via:
+//
+//	GetAiRuntimeControlVirtualKeysVirtualKeyArgs{...}
+type GetAiRuntimeControlVirtualKeysVirtualKeyInput interface {
+	pulumi.Input
+
+	ToGetAiRuntimeControlVirtualKeysVirtualKeyOutput() GetAiRuntimeControlVirtualKeysVirtualKeyOutput
+	ToGetAiRuntimeControlVirtualKeysVirtualKeyOutputWithContext(context.Context) GetAiRuntimeControlVirtualKeysVirtualKeyOutput
+}
+
+type GetAiRuntimeControlVirtualKeysVirtualKeyArgs struct {
+	// Timestamp (UTC) of when the virtual key was created.
+	CreatedAt pulumi.StringInput `pulumi:"createdAt"`
+	// The display name of the user who created the virtual key.
+	CreatedBy pulumi.StringInput `pulumi:"createdBy"`
+	// The ID of the customer that owns the virtual key.
+	CustomerId pulumi.StringInput `pulumi:"customerId"`
+	// Timestamp (UTC) of when the virtual key was deleted, if applicable.
+	DeletedAt pulumi.StringInput `pulumi:"deletedAt"`
+	// The expiration timestamp of the virtual key, if any.
+	ExpiresAt pulumi.StringInput `pulumi:"expiresAt"`
+	// The ID of the virtual key.
+	Id pulumi.StringInput `pulumi:"id"`
+	// Timestamp (UTC) of when the virtual key was last used, if applicable.
+	LastUsedAt pulumi.StringInput `pulumi:"lastUsedAt"`
+	// The AI model identifier.
+	Model pulumi.StringInput `pulumi:"model"`
+	// The human-readable name of the virtual key.
+	Name pulumi.StringInput `pulumi:"name"`
+	// The AI model provider name.
+	Provider pulumi.StringInput `pulumi:"provider"`
+	// The type of the virtual key.
+	Type pulumi.StringInput `pulumi:"type"`
+	// Timestamp (UTC) of when the virtual key was last updated.
+	UpdatedAt pulumi.StringInput `pulumi:"updatedAt"`
+	// The ID of the user who created the virtual key.
+	UserId pulumi.StringInput `pulumi:"userId"`
+	// The display name of the user who created the virtual key.
+	UserName pulumi.StringInput `pulumi:"userName"`
+}
+
+func (GetAiRuntimeControlVirtualKeysVirtualKeyArgs) ElementType() reflect.Type {
+	return reflect.TypeOf((*GetAiRuntimeControlVirtualKeysVirtualKey)(nil)).Elem()
+}
+
+func (i GetAiRuntimeControlVirtualKeysVirtualKeyArgs) ToGetAiRuntimeControlVirtualKeysVirtualKeyOutput() GetAiRuntimeControlVirtualKeysVirtualKeyOutput {
+	return i.ToGetAiRuntimeControlVirtualKeysVirtualKeyOutputWithContext(context.Background())
+}
+
+func (i GetAiRuntimeControlVirtualKeysVirtualKeyArgs) ToGetAiRuntimeControlVirtualKeysVirtualKeyOutputWithContext(ctx context.Context) GetAiRuntimeControlVirtualKeysVirtualKeyOutput {
+	return pulumi.ToOutputWithContext(ctx, i).(GetAiRuntimeControlVirtualKeysVirtualKeyOutput)
+}
+
+// GetAiRuntimeControlVirtualKeysVirtualKeyArrayInput is an input type that accepts GetAiRuntimeControlVirtualKeysVirtualKeyArray and GetAiRuntimeControlVirtualKeysVirtualKeyArrayOutput values.
+// You can construct a concrete instance of `GetAiRuntimeControlVirtualKeysVirtualKeyArrayInput` via:
+//
+//	GetAiRuntimeControlVirtualKeysVirtualKeyArray{ GetAiRuntimeControlVirtualKeysVirtualKeyArgs{...} }
+type GetAiRuntimeControlVirtualKeysVirtualKeyArrayInput interface {
+	pulumi.Input
+
+	ToGetAiRuntimeControlVirtualKeysVirtualKeyArrayOutput() GetAiRuntimeControlVirtualKeysVirtualKeyArrayOutput
+	ToGetAiRuntimeControlVirtualKeysVirtualKeyArrayOutputWithContext(context.Context) GetAiRuntimeControlVirtualKeysVirtualKeyArrayOutput
+}
+
+type GetAiRuntimeControlVirtualKeysVirtualKeyArray []GetAiRuntimeControlVirtualKeysVirtualKeyInput
+
+func (GetAiRuntimeControlVirtualKeysVirtualKeyArray) ElementType() reflect.Type {
+	return reflect.TypeOf((*[]GetAiRuntimeControlVirtualKeysVirtualKey)(nil)).Elem()
+}
+
+func (i GetAiRuntimeControlVirtualKeysVirtualKeyArray) ToGetAiRuntimeControlVirtualKeysVirtualKeyArrayOutput() GetAiRuntimeControlVirtualKeysVirtualKeyArrayOutput {
+	return i.ToGetAiRuntimeControlVirtualKeysVirtualKeyArrayOutputWithContext(context.Background())
+}
+
+func (i GetAiRuntimeControlVirtualKeysVirtualKeyArray) ToGetAiRuntimeControlVirtualKeysVirtualKeyArrayOutputWithContext(ctx context.Context) GetAiRuntimeControlVirtualKeysVirtualKeyArrayOutput {
+	return pulumi.ToOutputWithContext(ctx, i).(GetAiRuntimeControlVirtualKeysVirtualKeyArrayOutput)
+}
+
+type GetAiRuntimeControlVirtualKeysVirtualKeyOutput struct{ *pulumi.OutputState }
+
+func (GetAiRuntimeControlVirtualKeysVirtualKeyOutput) ElementType() reflect.Type {
+	return reflect.TypeOf((*GetAiRuntimeControlVirtualKeysVirtualKey)(nil)).Elem()
+}
+
+func (o GetAiRuntimeControlVirtualKeysVirtualKeyOutput) ToGetAiRuntimeControlVirtualKeysVirtualKeyOutput() GetAiRuntimeControlVirtualKeysVirtualKeyOutput {
+	return o
+}
+
+func (o GetAiRuntimeControlVirtualKeysVirtualKeyOutput) ToGetAiRuntimeControlVirtualKeysVirtualKeyOutputWithContext(ctx context.Context) GetAiRuntimeControlVirtualKeysVirtualKeyOutput {
+	return o
+}
+
+// Timestamp (UTC) of when the virtual key was created.
+func (o GetAiRuntimeControlVirtualKeysVirtualKeyOutput) CreatedAt() pulumi.StringOutput {
+	return o.ApplyT(func(v GetAiRuntimeControlVirtualKeysVirtualKey) string { return v.CreatedAt }).(pulumi.StringOutput)
+}
+
+// The display name of the user who created the virtual key.
+func (o GetAiRuntimeControlVirtualKeysVirtualKeyOutput) CreatedBy() pulumi.StringOutput {
+	return o.ApplyT(func(v GetAiRuntimeControlVirtualKeysVirtualKey) string { return v.CreatedBy }).(pulumi.StringOutput)
+}
+
+// The ID of the customer that owns the virtual key.
+func (o GetAiRuntimeControlVirtualKeysVirtualKeyOutput) CustomerId() pulumi.StringOutput {
+	return o.ApplyT(func(v GetAiRuntimeControlVirtualKeysVirtualKey) string { return v.CustomerId }).(pulumi.StringOutput)
+}
+
+// Timestamp (UTC) of when the virtual key was deleted, if applicable.
+func (o GetAiRuntimeControlVirtualKeysVirtualKeyOutput) DeletedAt() pulumi.StringOutput {
+	return o.ApplyT(func(v GetAiRuntimeControlVirtualKeysVirtualKey) string { return v.DeletedAt }).(pulumi.StringOutput)
+}
+
+// The expiration timestamp of the virtual key, if any.
+func (o GetAiRuntimeControlVirtualKeysVirtualKeyOutput) ExpiresAt() pulumi.StringOutput {
+	return o.ApplyT(func(v GetAiRuntimeControlVirtualKeysVirtualKey) string { return v.ExpiresAt }).(pulumi.StringOutput)
+}
+
+// The ID of the virtual key.
+func (o GetAiRuntimeControlVirtualKeysVirtualKeyOutput) Id() pulumi.StringOutput {
+	return o.ApplyT(func(v GetAiRuntimeControlVirtualKeysVirtualKey) string { return v.Id }).(pulumi.StringOutput)
+}
+
+// Timestamp (UTC) of when the virtual key was last used, if applicable.
+func (o GetAiRuntimeControlVirtualKeysVirtualKeyOutput) LastUsedAt() pulumi.StringOutput {
+	return o.ApplyT(func(v GetAiRuntimeControlVirtualKeysVirtualKey) string { return v.LastUsedAt }).(pulumi.StringOutput)
+}
+
+// The AI model identifier.
+func (o GetAiRuntimeControlVirtualKeysVirtualKeyOutput) Model() pulumi.StringOutput {
+	return o.ApplyT(func(v GetAiRuntimeControlVirtualKeysVirtualKey) string { return v.Model }).(pulumi.StringOutput)
+}
+
+// The human-readable name of the virtual key.
+func (o GetAiRuntimeControlVirtualKeysVirtualKeyOutput) Name() pulumi.StringOutput {
+	return o.ApplyT(func(v GetAiRuntimeControlVirtualKeysVirtualKey) string { return v.Name }).(pulumi.StringOutput)
+}
+
+// The AI model provider name.
+func (o GetAiRuntimeControlVirtualKeysVirtualKeyOutput) Provider() pulumi.StringOutput {
+	return o.ApplyT(func(v GetAiRuntimeControlVirtualKeysVirtualKey) string { return v.Provider }).(pulumi.StringOutput)
+}
+
+// The type of the virtual key.
+func (o GetAiRuntimeControlVirtualKeysVirtualKeyOutput) Type() pulumi.StringOutput {
+	return o.ApplyT(func(v GetAiRuntimeControlVirtualKeysVirtualKey) string { return v.Type }).(pulumi.StringOutput)
+}
+
+// Timestamp (UTC) of when the virtual key was last updated.
+func (o GetAiRuntimeControlVirtualKeysVirtualKeyOutput) UpdatedAt() pulumi.StringOutput {
+	return o.ApplyT(func(v GetAiRuntimeControlVirtualKeysVirtualKey) string { return v.UpdatedAt }).(pulumi.StringOutput)
+}
+
+// The ID of the user who created the virtual key.
+func (o GetAiRuntimeControlVirtualKeysVirtualKeyOutput) UserId() pulumi.StringOutput {
+	return o.ApplyT(func(v GetAiRuntimeControlVirtualKeysVirtualKey) string { return v.UserId }).(pulumi.StringOutput)
+}
+
+// The display name of the user who created the virtual key.
+func (o GetAiRuntimeControlVirtualKeysVirtualKeyOutput) UserName() pulumi.StringOutput {
+	return o.ApplyT(func(v GetAiRuntimeControlVirtualKeysVirtualKey) string { return v.UserName }).(pulumi.StringOutput)
+}
+
+type GetAiRuntimeControlVirtualKeysVirtualKeyArrayOutput struct{ *pulumi.OutputState }
+
+func (GetAiRuntimeControlVirtualKeysVirtualKeyArrayOutput) ElementType() reflect.Type {
+	return reflect.TypeOf((*[]GetAiRuntimeControlVirtualKeysVirtualKey)(nil)).Elem()
+}
+
+func (o GetAiRuntimeControlVirtualKeysVirtualKeyArrayOutput) ToGetAiRuntimeControlVirtualKeysVirtualKeyArrayOutput() GetAiRuntimeControlVirtualKeysVirtualKeyArrayOutput {
+	return o
+}
+
+func (o GetAiRuntimeControlVirtualKeysVirtualKeyArrayOutput) ToGetAiRuntimeControlVirtualKeysVirtualKeyArrayOutputWithContext(ctx context.Context) GetAiRuntimeControlVirtualKeysVirtualKeyArrayOutput {
+	return o
+}
+
+func (o GetAiRuntimeControlVirtualKeysVirtualKeyArrayOutput) Index(i pulumi.IntInput) GetAiRuntimeControlVirtualKeysVirtualKeyOutput {
+	return pulumi.All(o, i).ApplyT(func(vs []interface{}) GetAiRuntimeControlVirtualKeysVirtualKey {
+		return vs[0].([]GetAiRuntimeControlVirtualKeysVirtualKey)[vs[1].(int)]
+	}).(GetAiRuntimeControlVirtualKeysVirtualKeyOutput)
+}
+
 type GetApiSecurityDiscoveredOperationsOperation struct {
 	// Discovered operation domain.
 	Domain string `pulumi:"domain"`
@@ -20763,6 +22197,121 @@ func (o GetDictionariesDictionaryArrayOutput) Index(i pulumi.IntInput) GetDictio
 	return pulumi.All(o, i).ApplyT(func(vs []interface{}) GetDictionariesDictionary {
 		return vs[0].([]GetDictionariesDictionary)[vs[1].(int)]
 	}).(GetDictionariesDictionaryOutput)
+}
+
+type GetDnsZonesZone struct {
+	// A freeform descriptive note.
+	Description string `pulumi:"description"`
+	// Zone Identifier (UUID).
+	Id string `pulumi:"id"`
+	// The domain name for the zone.
+	Name string `pulumi:"name"`
+}
+
+// GetDnsZonesZoneInput is an input type that accepts GetDnsZonesZoneArgs and GetDnsZonesZoneOutput values.
+// You can construct a concrete instance of `GetDnsZonesZoneInput` via:
+//
+//	GetDnsZonesZoneArgs{...}
+type GetDnsZonesZoneInput interface {
+	pulumi.Input
+
+	ToGetDnsZonesZoneOutput() GetDnsZonesZoneOutput
+	ToGetDnsZonesZoneOutputWithContext(context.Context) GetDnsZonesZoneOutput
+}
+
+type GetDnsZonesZoneArgs struct {
+	// A freeform descriptive note.
+	Description pulumi.StringInput `pulumi:"description"`
+	// Zone Identifier (UUID).
+	Id pulumi.StringInput `pulumi:"id"`
+	// The domain name for the zone.
+	Name pulumi.StringInput `pulumi:"name"`
+}
+
+func (GetDnsZonesZoneArgs) ElementType() reflect.Type {
+	return reflect.TypeOf((*GetDnsZonesZone)(nil)).Elem()
+}
+
+func (i GetDnsZonesZoneArgs) ToGetDnsZonesZoneOutput() GetDnsZonesZoneOutput {
+	return i.ToGetDnsZonesZoneOutputWithContext(context.Background())
+}
+
+func (i GetDnsZonesZoneArgs) ToGetDnsZonesZoneOutputWithContext(ctx context.Context) GetDnsZonesZoneOutput {
+	return pulumi.ToOutputWithContext(ctx, i).(GetDnsZonesZoneOutput)
+}
+
+// GetDnsZonesZoneArrayInput is an input type that accepts GetDnsZonesZoneArray and GetDnsZonesZoneArrayOutput values.
+// You can construct a concrete instance of `GetDnsZonesZoneArrayInput` via:
+//
+//	GetDnsZonesZoneArray{ GetDnsZonesZoneArgs{...} }
+type GetDnsZonesZoneArrayInput interface {
+	pulumi.Input
+
+	ToGetDnsZonesZoneArrayOutput() GetDnsZonesZoneArrayOutput
+	ToGetDnsZonesZoneArrayOutputWithContext(context.Context) GetDnsZonesZoneArrayOutput
+}
+
+type GetDnsZonesZoneArray []GetDnsZonesZoneInput
+
+func (GetDnsZonesZoneArray) ElementType() reflect.Type {
+	return reflect.TypeOf((*[]GetDnsZonesZone)(nil)).Elem()
+}
+
+func (i GetDnsZonesZoneArray) ToGetDnsZonesZoneArrayOutput() GetDnsZonesZoneArrayOutput {
+	return i.ToGetDnsZonesZoneArrayOutputWithContext(context.Background())
+}
+
+func (i GetDnsZonesZoneArray) ToGetDnsZonesZoneArrayOutputWithContext(ctx context.Context) GetDnsZonesZoneArrayOutput {
+	return pulumi.ToOutputWithContext(ctx, i).(GetDnsZonesZoneArrayOutput)
+}
+
+type GetDnsZonesZoneOutput struct{ *pulumi.OutputState }
+
+func (GetDnsZonesZoneOutput) ElementType() reflect.Type {
+	return reflect.TypeOf((*GetDnsZonesZone)(nil)).Elem()
+}
+
+func (o GetDnsZonesZoneOutput) ToGetDnsZonesZoneOutput() GetDnsZonesZoneOutput {
+	return o
+}
+
+func (o GetDnsZonesZoneOutput) ToGetDnsZonesZoneOutputWithContext(ctx context.Context) GetDnsZonesZoneOutput {
+	return o
+}
+
+// A freeform descriptive note.
+func (o GetDnsZonesZoneOutput) Description() pulumi.StringOutput {
+	return o.ApplyT(func(v GetDnsZonesZone) string { return v.Description }).(pulumi.StringOutput)
+}
+
+// Zone Identifier (UUID).
+func (o GetDnsZonesZoneOutput) Id() pulumi.StringOutput {
+	return o.ApplyT(func(v GetDnsZonesZone) string { return v.Id }).(pulumi.StringOutput)
+}
+
+// The domain name for the zone.
+func (o GetDnsZonesZoneOutput) Name() pulumi.StringOutput {
+	return o.ApplyT(func(v GetDnsZonesZone) string { return v.Name }).(pulumi.StringOutput)
+}
+
+type GetDnsZonesZoneArrayOutput struct{ *pulumi.OutputState }
+
+func (GetDnsZonesZoneArrayOutput) ElementType() reflect.Type {
+	return reflect.TypeOf((*[]GetDnsZonesZone)(nil)).Elem()
+}
+
+func (o GetDnsZonesZoneArrayOutput) ToGetDnsZonesZoneArrayOutput() GetDnsZonesZoneArrayOutput {
+	return o
+}
+
+func (o GetDnsZonesZoneArrayOutput) ToGetDnsZonesZoneArrayOutputWithContext(ctx context.Context) GetDnsZonesZoneArrayOutput {
+	return o
+}
+
+func (o GetDnsZonesZoneArrayOutput) Index(i pulumi.IntInput) GetDnsZonesZoneOutput {
+	return pulumi.All(o, i).ApplyT(func(vs []interface{}) GetDnsZonesZone {
+		return vs[0].([]GetDnsZonesZone)[vs[1].(int)]
+	}).(GetDnsZonesZoneOutput)
 }
 
 type GetDomainsDomain struct {
@@ -23631,6 +25180,130 @@ func (o GetTlsConfigurationDnsRecordArrayOutput) Index(i pulumi.IntInput) GetTls
 	}).(GetTlsConfigurationDnsRecordOutput)
 }
 
+type GetTsigKeysKey struct {
+	// The algorithm of the TSIG key.
+	Algorithm string `pulumi:"algorithm"`
+	// A freeform descriptive note.
+	Description string `pulumi:"description"`
+	// TSIG Key Identifier (UUID).
+	Id string `pulumi:"id"`
+	// The name of the TSIG key.
+	Name string `pulumi:"name"`
+}
+
+// GetTsigKeysKeyInput is an input type that accepts GetTsigKeysKeyArgs and GetTsigKeysKeyOutput values.
+// You can construct a concrete instance of `GetTsigKeysKeyInput` via:
+//
+//	GetTsigKeysKeyArgs{...}
+type GetTsigKeysKeyInput interface {
+	pulumi.Input
+
+	ToGetTsigKeysKeyOutput() GetTsigKeysKeyOutput
+	ToGetTsigKeysKeyOutputWithContext(context.Context) GetTsigKeysKeyOutput
+}
+
+type GetTsigKeysKeyArgs struct {
+	// The algorithm of the TSIG key.
+	Algorithm pulumi.StringInput `pulumi:"algorithm"`
+	// A freeform descriptive note.
+	Description pulumi.StringInput `pulumi:"description"`
+	// TSIG Key Identifier (UUID).
+	Id pulumi.StringInput `pulumi:"id"`
+	// The name of the TSIG key.
+	Name pulumi.StringInput `pulumi:"name"`
+}
+
+func (GetTsigKeysKeyArgs) ElementType() reflect.Type {
+	return reflect.TypeOf((*GetTsigKeysKey)(nil)).Elem()
+}
+
+func (i GetTsigKeysKeyArgs) ToGetTsigKeysKeyOutput() GetTsigKeysKeyOutput {
+	return i.ToGetTsigKeysKeyOutputWithContext(context.Background())
+}
+
+func (i GetTsigKeysKeyArgs) ToGetTsigKeysKeyOutputWithContext(ctx context.Context) GetTsigKeysKeyOutput {
+	return pulumi.ToOutputWithContext(ctx, i).(GetTsigKeysKeyOutput)
+}
+
+// GetTsigKeysKeyArrayInput is an input type that accepts GetTsigKeysKeyArray and GetTsigKeysKeyArrayOutput values.
+// You can construct a concrete instance of `GetTsigKeysKeyArrayInput` via:
+//
+//	GetTsigKeysKeyArray{ GetTsigKeysKeyArgs{...} }
+type GetTsigKeysKeyArrayInput interface {
+	pulumi.Input
+
+	ToGetTsigKeysKeyArrayOutput() GetTsigKeysKeyArrayOutput
+	ToGetTsigKeysKeyArrayOutputWithContext(context.Context) GetTsigKeysKeyArrayOutput
+}
+
+type GetTsigKeysKeyArray []GetTsigKeysKeyInput
+
+func (GetTsigKeysKeyArray) ElementType() reflect.Type {
+	return reflect.TypeOf((*[]GetTsigKeysKey)(nil)).Elem()
+}
+
+func (i GetTsigKeysKeyArray) ToGetTsigKeysKeyArrayOutput() GetTsigKeysKeyArrayOutput {
+	return i.ToGetTsigKeysKeyArrayOutputWithContext(context.Background())
+}
+
+func (i GetTsigKeysKeyArray) ToGetTsigKeysKeyArrayOutputWithContext(ctx context.Context) GetTsigKeysKeyArrayOutput {
+	return pulumi.ToOutputWithContext(ctx, i).(GetTsigKeysKeyArrayOutput)
+}
+
+type GetTsigKeysKeyOutput struct{ *pulumi.OutputState }
+
+func (GetTsigKeysKeyOutput) ElementType() reflect.Type {
+	return reflect.TypeOf((*GetTsigKeysKey)(nil)).Elem()
+}
+
+func (o GetTsigKeysKeyOutput) ToGetTsigKeysKeyOutput() GetTsigKeysKeyOutput {
+	return o
+}
+
+func (o GetTsigKeysKeyOutput) ToGetTsigKeysKeyOutputWithContext(ctx context.Context) GetTsigKeysKeyOutput {
+	return o
+}
+
+// The algorithm of the TSIG key.
+func (o GetTsigKeysKeyOutput) Algorithm() pulumi.StringOutput {
+	return o.ApplyT(func(v GetTsigKeysKey) string { return v.Algorithm }).(pulumi.StringOutput)
+}
+
+// A freeform descriptive note.
+func (o GetTsigKeysKeyOutput) Description() pulumi.StringOutput {
+	return o.ApplyT(func(v GetTsigKeysKey) string { return v.Description }).(pulumi.StringOutput)
+}
+
+// TSIG Key Identifier (UUID).
+func (o GetTsigKeysKeyOutput) Id() pulumi.StringOutput {
+	return o.ApplyT(func(v GetTsigKeysKey) string { return v.Id }).(pulumi.StringOutput)
+}
+
+// The name of the TSIG key.
+func (o GetTsigKeysKeyOutput) Name() pulumi.StringOutput {
+	return o.ApplyT(func(v GetTsigKeysKey) string { return v.Name }).(pulumi.StringOutput)
+}
+
+type GetTsigKeysKeyArrayOutput struct{ *pulumi.OutputState }
+
+func (GetTsigKeysKeyArrayOutput) ElementType() reflect.Type {
+	return reflect.TypeOf((*[]GetTsigKeysKey)(nil)).Elem()
+}
+
+func (o GetTsigKeysKeyArrayOutput) ToGetTsigKeysKeyArrayOutput() GetTsigKeysKeyArrayOutput {
+	return o
+}
+
+func (o GetTsigKeysKeyArrayOutput) ToGetTsigKeysKeyArrayOutputWithContext(ctx context.Context) GetTsigKeysKeyArrayOutput {
+	return o
+}
+
+func (o GetTsigKeysKeyArrayOutput) Index(i pulumi.IntInput) GetTsigKeysKeyOutput {
+	return pulumi.All(o, i).ApplyT(func(vs []interface{}) GetTsigKeysKey {
+		return vs[0].([]GetTsigKeysKey)[vs[1].(int)]
+	}).(GetTsigKeysKeyOutput)
+}
+
 type GetVclSnippetsVclSnippet struct {
 	// The VCL code that specifies exactly what the snippet does.
 	Content string `pulumi:"content"`
@@ -23775,6 +25448,10 @@ func init() {
 	pulumi.RegisterInputType(reflect.TypeOf((*CustomDashboardDashboardItemDataSourceConfigInput)(nil)).Elem(), CustomDashboardDashboardItemDataSourceConfigArgs{})
 	pulumi.RegisterInputType(reflect.TypeOf((*CustomDashboardDashboardItemVisualizationInput)(nil)).Elem(), CustomDashboardDashboardItemVisualizationArgs{})
 	pulumi.RegisterInputType(reflect.TypeOf((*CustomDashboardDashboardItemVisualizationConfigInput)(nil)).Elem(), CustomDashboardDashboardItemVisualizationConfigArgs{})
+	pulumi.RegisterInputType(reflect.TypeOf((*DnsZoneXfrConfigInboundInput)(nil)).Elem(), DnsZoneXfrConfigInboundArgs{})
+	pulumi.RegisterInputType(reflect.TypeOf((*DnsZoneXfrConfigInboundPtrInput)(nil)).Elem(), DnsZoneXfrConfigInboundArgs{})
+	pulumi.RegisterInputType(reflect.TypeOf((*DnsZoneXfrConfigInboundPrimaryInput)(nil)).Elem(), DnsZoneXfrConfigInboundPrimaryArgs{})
+	pulumi.RegisterInputType(reflect.TypeOf((*DnsZoneXfrConfigInboundPrimaryArrayInput)(nil)).Elem(), DnsZoneXfrConfigInboundPrimaryArray{})
 	pulumi.RegisterInputType(reflect.TypeOf((*NgwafAccountRuleActionInput)(nil)).Elem(), NgwafAccountRuleActionArgs{})
 	pulumi.RegisterInputType(reflect.TypeOf((*NgwafAccountRuleActionArrayInput)(nil)).Elem(), NgwafAccountRuleActionArray{})
 	pulumi.RegisterInputType(reflect.TypeOf((*NgwafAccountRuleConditionInput)(nil)).Elem(), NgwafAccountRuleConditionArgs{})
@@ -23813,6 +25490,12 @@ func init() {
 	pulumi.RegisterInputType(reflect.TypeOf((*NgwafWorkspaceRuleRateLimitPtrInput)(nil)).Elem(), NgwafWorkspaceRuleRateLimitArgs{})
 	pulumi.RegisterInputType(reflect.TypeOf((*NgwafWorkspaceRuleRateLimitClientIdentifierInput)(nil)).Elem(), NgwafWorkspaceRuleRateLimitClientIdentifierArgs{})
 	pulumi.RegisterInputType(reflect.TypeOf((*NgwafWorkspaceRuleRateLimitClientIdentifierArrayInput)(nil)).Elem(), NgwafWorkspaceRuleRateLimitClientIdentifierArray{})
+	pulumi.RegisterInputType(reflect.TypeOf((*RoutingConfigPathInput)(nil)).Elem(), RoutingConfigPathArgs{})
+	pulumi.RegisterInputType(reflect.TypeOf((*RoutingConfigPathArrayInput)(nil)).Elem(), RoutingConfigPathArray{})
+	pulumi.RegisterInputType(reflect.TypeOf((*RoutingConfigPathRuleInput)(nil)).Elem(), RoutingConfigPathRuleArgs{})
+	pulumi.RegisterInputType(reflect.TypeOf((*RoutingConfigPathRuleArrayInput)(nil)).Elem(), RoutingConfigPathRuleArray{})
+	pulumi.RegisterInputType(reflect.TypeOf((*RoutingConfigPathRuleConditionInput)(nil)).Elem(), RoutingConfigPathRuleConditionArgs{})
+	pulumi.RegisterInputType(reflect.TypeOf((*RoutingConfigPathRuleConditionArrayInput)(nil)).Elem(), RoutingConfigPathRuleConditionArray{})
 	pulumi.RegisterInputType(reflect.TypeOf((*ServiceACLEntriesEntryInput)(nil)).Elem(), ServiceACLEntriesEntryArgs{})
 	pulumi.RegisterInputType(reflect.TypeOf((*ServiceACLEntriesEntryArrayInput)(nil)).Elem(), ServiceACLEntriesEntryArray{})
 	pulumi.RegisterInputType(reflect.TypeOf((*ServiceComputeBackendInput)(nil)).Elem(), ServiceComputeBackendArgs{})
@@ -23885,6 +25568,8 @@ func init() {
 	pulumi.RegisterInputType(reflect.TypeOf((*ServiceComputePackagePtrInput)(nil)).Elem(), ServiceComputePackageArgs{})
 	pulumi.RegisterInputType(reflect.TypeOf((*ServiceComputeProductEnablementInput)(nil)).Elem(), ServiceComputeProductEnablementArgs{})
 	pulumi.RegisterInputType(reflect.TypeOf((*ServiceComputeProductEnablementPtrInput)(nil)).Elem(), ServiceComputeProductEnablementArgs{})
+	pulumi.RegisterInputType(reflect.TypeOf((*ServiceComputeProductEnablementBotManagementInput)(nil)).Elem(), ServiceComputeProductEnablementBotManagementArgs{})
+	pulumi.RegisterInputType(reflect.TypeOf((*ServiceComputeProductEnablementBotManagementPtrInput)(nil)).Elem(), ServiceComputeProductEnablementBotManagementArgs{})
 	pulumi.RegisterInputType(reflect.TypeOf((*ServiceComputeProductEnablementDdosProtectionInput)(nil)).Elem(), ServiceComputeProductEnablementDdosProtectionArgs{})
 	pulumi.RegisterInputType(reflect.TypeOf((*ServiceComputeProductEnablementDdosProtectionPtrInput)(nil)).Elem(), ServiceComputeProductEnablementDdosProtectionArgs{})
 	pulumi.RegisterInputType(reflect.TypeOf((*ServiceComputeProductEnablementNgwafInput)(nil)).Elem(), ServiceComputeProductEnablementNgwafArgs{})
@@ -23995,6 +25680,14 @@ func init() {
 	pulumi.RegisterInputType(reflect.TypeOf((*TlsSubscriptionManagedDnsChallengeArrayInput)(nil)).Elem(), TlsSubscriptionManagedDnsChallengeArray{})
 	pulumi.RegisterInputType(reflect.TypeOf((*TlsSubscriptionManagedHttpChallengeInput)(nil)).Elem(), TlsSubscriptionManagedHttpChallengeArgs{})
 	pulumi.RegisterInputType(reflect.TypeOf((*TlsSubscriptionManagedHttpChallengeArrayInput)(nil)).Elem(), TlsSubscriptionManagedHttpChallengeArray{})
+	pulumi.RegisterInputType(reflect.TypeOf((*GetAiRuntimeControlProviderConnectionsProviderConnectionInput)(nil)).Elem(), GetAiRuntimeControlProviderConnectionsProviderConnectionArgs{})
+	pulumi.RegisterInputType(reflect.TypeOf((*GetAiRuntimeControlProviderConnectionsProviderConnectionArrayInput)(nil)).Elem(), GetAiRuntimeControlProviderConnectionsProviderConnectionArray{})
+	pulumi.RegisterInputType(reflect.TypeOf((*GetAiRuntimeControlProvidersProviderInput)(nil)).Elem(), GetAiRuntimeControlProvidersProviderArgs{})
+	pulumi.RegisterInputType(reflect.TypeOf((*GetAiRuntimeControlProvidersProviderArrayInput)(nil)).Elem(), GetAiRuntimeControlProvidersProviderArray{})
+	pulumi.RegisterInputType(reflect.TypeOf((*GetAiRuntimeControlProvidersProviderModelInput)(nil)).Elem(), GetAiRuntimeControlProvidersProviderModelArgs{})
+	pulumi.RegisterInputType(reflect.TypeOf((*GetAiRuntimeControlProvidersProviderModelArrayInput)(nil)).Elem(), GetAiRuntimeControlProvidersProviderModelArray{})
+	pulumi.RegisterInputType(reflect.TypeOf((*GetAiRuntimeControlVirtualKeysVirtualKeyInput)(nil)).Elem(), GetAiRuntimeControlVirtualKeysVirtualKeyArgs{})
+	pulumi.RegisterInputType(reflect.TypeOf((*GetAiRuntimeControlVirtualKeysVirtualKeyArrayInput)(nil)).Elem(), GetAiRuntimeControlVirtualKeysVirtualKeyArray{})
 	pulumi.RegisterInputType(reflect.TypeOf((*GetApiSecurityDiscoveredOperationsOperationInput)(nil)).Elem(), GetApiSecurityDiscoveredOperationsOperationArgs{})
 	pulumi.RegisterInputType(reflect.TypeOf((*GetApiSecurityDiscoveredOperationsOperationArrayInput)(nil)).Elem(), GetApiSecurityDiscoveredOperationsOperationArray{})
 	pulumi.RegisterInputType(reflect.TypeOf((*GetApiSecurityOperationTagsTagInput)(nil)).Elem(), GetApiSecurityOperationTagsTagArgs{})
@@ -24009,6 +25702,8 @@ func init() {
 	pulumi.RegisterInputType(reflect.TypeOf((*GetDatacentersPopArrayInput)(nil)).Elem(), GetDatacentersPopArray{})
 	pulumi.RegisterInputType(reflect.TypeOf((*GetDictionariesDictionaryInput)(nil)).Elem(), GetDictionariesDictionaryArgs{})
 	pulumi.RegisterInputType(reflect.TypeOf((*GetDictionariesDictionaryArrayInput)(nil)).Elem(), GetDictionariesDictionaryArray{})
+	pulumi.RegisterInputType(reflect.TypeOf((*GetDnsZonesZoneInput)(nil)).Elem(), GetDnsZonesZoneArgs{})
+	pulumi.RegisterInputType(reflect.TypeOf((*GetDnsZonesZoneArrayInput)(nil)).Elem(), GetDnsZonesZoneArray{})
 	pulumi.RegisterInputType(reflect.TypeOf((*GetDomainsDomainInput)(nil)).Elem(), GetDomainsDomainArgs{})
 	pulumi.RegisterInputType(reflect.TypeOf((*GetDomainsDomainArrayInput)(nil)).Elem(), GetDomainsDomainArray{})
 	pulumi.RegisterInputType(reflect.TypeOf((*GetDomainsV1DomainInput)(nil)).Elem(), GetDomainsV1DomainArgs{})
@@ -24059,6 +25754,8 @@ func init() {
 	pulumi.RegisterInputType(reflect.TypeOf((*GetStagingIpsDomainArrayInput)(nil)).Elem(), GetStagingIpsDomainArray{})
 	pulumi.RegisterInputType(reflect.TypeOf((*GetTlsConfigurationDnsRecordInput)(nil)).Elem(), GetTlsConfigurationDnsRecordArgs{})
 	pulumi.RegisterInputType(reflect.TypeOf((*GetTlsConfigurationDnsRecordArrayInput)(nil)).Elem(), GetTlsConfigurationDnsRecordArray{})
+	pulumi.RegisterInputType(reflect.TypeOf((*GetTsigKeysKeyInput)(nil)).Elem(), GetTsigKeysKeyArgs{})
+	pulumi.RegisterInputType(reflect.TypeOf((*GetTsigKeysKeyArrayInput)(nil)).Elem(), GetTsigKeysKeyArray{})
 	pulumi.RegisterInputType(reflect.TypeOf((*GetVclSnippetsVclSnippetInput)(nil)).Elem(), GetVclSnippetsVclSnippetArgs{})
 	pulumi.RegisterInputType(reflect.TypeOf((*GetVclSnippetsVclSnippetArrayInput)(nil)).Elem(), GetVclSnippetsVclSnippetArray{})
 	pulumi.RegisterOutputType(AlertDimensionsOutput{})
@@ -24071,6 +25768,10 @@ func init() {
 	pulumi.RegisterOutputType(CustomDashboardDashboardItemDataSourceConfigOutput{})
 	pulumi.RegisterOutputType(CustomDashboardDashboardItemVisualizationOutput{})
 	pulumi.RegisterOutputType(CustomDashboardDashboardItemVisualizationConfigOutput{})
+	pulumi.RegisterOutputType(DnsZoneXfrConfigInboundOutput{})
+	pulumi.RegisterOutputType(DnsZoneXfrConfigInboundPtrOutput{})
+	pulumi.RegisterOutputType(DnsZoneXfrConfigInboundPrimaryOutput{})
+	pulumi.RegisterOutputType(DnsZoneXfrConfigInboundPrimaryArrayOutput{})
 	pulumi.RegisterOutputType(NgwafAccountRuleActionOutput{})
 	pulumi.RegisterOutputType(NgwafAccountRuleActionArrayOutput{})
 	pulumi.RegisterOutputType(NgwafAccountRuleConditionOutput{})
@@ -24109,6 +25810,12 @@ func init() {
 	pulumi.RegisterOutputType(NgwafWorkspaceRuleRateLimitPtrOutput{})
 	pulumi.RegisterOutputType(NgwafWorkspaceRuleRateLimitClientIdentifierOutput{})
 	pulumi.RegisterOutputType(NgwafWorkspaceRuleRateLimitClientIdentifierArrayOutput{})
+	pulumi.RegisterOutputType(RoutingConfigPathOutput{})
+	pulumi.RegisterOutputType(RoutingConfigPathArrayOutput{})
+	pulumi.RegisterOutputType(RoutingConfigPathRuleOutput{})
+	pulumi.RegisterOutputType(RoutingConfigPathRuleArrayOutput{})
+	pulumi.RegisterOutputType(RoutingConfigPathRuleConditionOutput{})
+	pulumi.RegisterOutputType(RoutingConfigPathRuleConditionArrayOutput{})
 	pulumi.RegisterOutputType(ServiceACLEntriesEntryOutput{})
 	pulumi.RegisterOutputType(ServiceACLEntriesEntryArrayOutput{})
 	pulumi.RegisterOutputType(ServiceComputeBackendOutput{})
@@ -24181,6 +25888,8 @@ func init() {
 	pulumi.RegisterOutputType(ServiceComputePackagePtrOutput{})
 	pulumi.RegisterOutputType(ServiceComputeProductEnablementOutput{})
 	pulumi.RegisterOutputType(ServiceComputeProductEnablementPtrOutput{})
+	pulumi.RegisterOutputType(ServiceComputeProductEnablementBotManagementOutput{})
+	pulumi.RegisterOutputType(ServiceComputeProductEnablementBotManagementPtrOutput{})
 	pulumi.RegisterOutputType(ServiceComputeProductEnablementDdosProtectionOutput{})
 	pulumi.RegisterOutputType(ServiceComputeProductEnablementDdosProtectionPtrOutput{})
 	pulumi.RegisterOutputType(ServiceComputeProductEnablementNgwafOutput{})
@@ -24291,6 +26000,14 @@ func init() {
 	pulumi.RegisterOutputType(TlsSubscriptionManagedDnsChallengeArrayOutput{})
 	pulumi.RegisterOutputType(TlsSubscriptionManagedHttpChallengeOutput{})
 	pulumi.RegisterOutputType(TlsSubscriptionManagedHttpChallengeArrayOutput{})
+	pulumi.RegisterOutputType(GetAiRuntimeControlProviderConnectionsProviderConnectionOutput{})
+	pulumi.RegisterOutputType(GetAiRuntimeControlProviderConnectionsProviderConnectionArrayOutput{})
+	pulumi.RegisterOutputType(GetAiRuntimeControlProvidersProviderOutput{})
+	pulumi.RegisterOutputType(GetAiRuntimeControlProvidersProviderArrayOutput{})
+	pulumi.RegisterOutputType(GetAiRuntimeControlProvidersProviderModelOutput{})
+	pulumi.RegisterOutputType(GetAiRuntimeControlProvidersProviderModelArrayOutput{})
+	pulumi.RegisterOutputType(GetAiRuntimeControlVirtualKeysVirtualKeyOutput{})
+	pulumi.RegisterOutputType(GetAiRuntimeControlVirtualKeysVirtualKeyArrayOutput{})
 	pulumi.RegisterOutputType(GetApiSecurityDiscoveredOperationsOperationOutput{})
 	pulumi.RegisterOutputType(GetApiSecurityDiscoveredOperationsOperationArrayOutput{})
 	pulumi.RegisterOutputType(GetApiSecurityOperationTagsTagOutput{})
@@ -24305,6 +26022,8 @@ func init() {
 	pulumi.RegisterOutputType(GetDatacentersPopArrayOutput{})
 	pulumi.RegisterOutputType(GetDictionariesDictionaryOutput{})
 	pulumi.RegisterOutputType(GetDictionariesDictionaryArrayOutput{})
+	pulumi.RegisterOutputType(GetDnsZonesZoneOutput{})
+	pulumi.RegisterOutputType(GetDnsZonesZoneArrayOutput{})
 	pulumi.RegisterOutputType(GetDomainsDomainOutput{})
 	pulumi.RegisterOutputType(GetDomainsDomainArrayOutput{})
 	pulumi.RegisterOutputType(GetDomainsV1DomainOutput{})
@@ -24355,6 +26074,8 @@ func init() {
 	pulumi.RegisterOutputType(GetStagingIpsDomainArrayOutput{})
 	pulumi.RegisterOutputType(GetTlsConfigurationDnsRecordOutput{})
 	pulumi.RegisterOutputType(GetTlsConfigurationDnsRecordArrayOutput{})
+	pulumi.RegisterOutputType(GetTsigKeysKeyOutput{})
+	pulumi.RegisterOutputType(GetTsigKeysKeyArrayOutput{})
 	pulumi.RegisterOutputType(GetVclSnippetsVclSnippetOutput{})
 	pulumi.RegisterOutputType(GetVclSnippetsVclSnippetArrayOutput{})
 }

@@ -31,18 +31,18 @@ namespace Pulumi.Fastly
     /// return await Deployment.RunAsync(() =&gt; 
     /// {
     ///     // NOTE: Creating a hosted zone will automatically create SOA/NS records.
-    ///     var production = new Aws.Index.Route53Zone("production", new()
+    ///     var production = new Aws.Route53Zone("production", new()
     ///     {
     ///         Name = "example.com",
     ///     });
     /// 
-    ///     var example = new Aws.Index.Route53domainsRegisteredDomain("example", new()
+    ///     var example = new Aws.Route53domainsRegisteredDomain("example", new()
     ///     {
     ///         NameServer = .Select(entry =&gt; 
     ///         {
     ///             return 
     ///             {
-    ///                 { "name", entry.Value },
+    ///                 { "name", entry },
     ///             };
     ///         }).ToList(),
     ///         DomainName = "example.com",
@@ -54,13 +54,13 @@ namespace Pulumi.Fastly
     ///         "b.example.com",
     ///     };
     /// 
-    ///     var exampleServiceVcl = new Fastly.Index.ServiceVcl("example", new()
+    ///     var exampleServiceVcl = new Fastly.ServiceVcl("example", new()
     ///     {
-    ///         Domains = subdomains.Select((v, k) =&gt; new { Key = k, Value = v }).Select(entry =&gt; 
+    ///         Domains = subdomains.Select(entry =&gt; 
     ///         {
     ///             return new Fastly.Inputs.ServiceVclDomainArgs
     ///             {
-    ///                 Name = entry.Value,
+    ///                 Name = entry,
     ///             };
     ///         }).ToList(),
     ///         Name = "example-service",
@@ -75,7 +75,7 @@ namespace Pulumi.Fastly
     ///         ForceDestroy = true,
     ///     });
     /// 
-    ///     var exampleTlsSubscription = new Fastly.Index.TlsSubscription("example", new()
+    ///     var exampleTlsSubscription = new Fastly.TlsSubscription("example", new()
     ///     {
     ///         Domains = exampleServiceVcl.Domains.Apply(domains =&gt; .Select(domain =&gt; 
     ///         {
@@ -84,7 +84,7 @@ namespace Pulumi.Fastly
     ///         CertificateAuthority = "lets-encrypt",
     ///     });
     /// 
-    ///     var domainValidation = new List&lt;Aws.Index.Route53Record&gt;();
+    ///     var domainValidation = new List&lt;Aws.Route53Record&gt;();
     ///     foreach (var range in exampleTlsSubscription.Domains.Apply(domains =&gt; domains.ToDictionary(item =&gt; {
     ///         var domain = item.Value;
     ///         return domain;
@@ -96,7 +96,7 @@ namespace Pulumi.Fastly
     ///         }).ToList())[0];
     ///     })).Select(pair =&gt; new { pair.Key, pair.Value }))
     ///     {
-    ///         domainValidation.Add(new Aws.Index.Route53Record($"domain_validation-{range.Key}", new()
+    ///         domainValidation.Add(new Aws.Route53Record($"domain_validation-{range.Key}", new()
     ///         {
     ///             Name = range.Value.RecordName,
     ///             Type = range.Value.RecordType,
@@ -117,7 +117,7 @@ namespace Pulumi.Fastly
     ///     }
     ///     // This is a resource that other resources can depend on if they require the certificate to be issued.
     ///     // NOTE: Internally the resource keeps retrying `GetTLSSubscription` until no error is returned (or the configured timeout is reached).
-    ///     var exampleTlsSubscriptionValidation = new Fastly.Index.TlsSubscriptionValidation("example", new()
+    ///     var exampleTlsSubscriptionValidation = new Fastly.TlsSubscriptionValidation("example", new()
     ///     {
     ///         SubscriptionId = exampleTlsSubscription.Id,
     ///     }, new CustomResourceOptions
@@ -128,7 +128,7 @@ namespace Pulumi.Fastly
     ///         },
     ///     });
     /// 
-    ///     // This data source lists all available configuration objects.
+    ///     // This function lists all available configuration objects.
     ///     // It uses a `default` attribute to narrow down the list to just one configuration object.
     ///     // If the filtered list has a length that is not exactly one element, you'll see an error returned.
     ///     // The single TLS configuration is then returned and can be referenced by other resources (see aws_route53_record below).
@@ -136,21 +136,21 @@ namespace Pulumi.Fastly
     ///     // IMPORTANT: Not all customers will have a 'default' configuration.
     ///     // If you have issues filtering with `default = true`, then you may need another attribute.
     ///     // Refer to the fastly_tls_configuration documentation for available attributes:
-    ///     // https://registry.terraform.io/providers/fastly/fastly/latest/docs/data-sources/tls_configuration#optional
-    ///     var defaultTls = Fastly.Index.GetTlsConfiguration.Invoke(new()
+    ///     // https://registry.pulumi.io/providers/fastly/fastly/latest/docs/data-sources/tls_configuration#optional
+    ///     var defaultTls = Fastly.GetTlsConfiguration.Invoke(new()
     ///     {
     ///         Default = true,
     ///     });
     /// 
     ///     // Once validation is complete and we've retrieved the TLS configuration data, we can create multiple subdomain records.
-    ///     var subdomain = new List&lt;Aws.Index.Route53Record&gt;();
-    ///     for (var rangeIndex = 0; rangeIndex &lt; Std.Index.Toset.Invoke(new()
+    ///     var subdomain = new List&lt;Aws.Route53Record&gt;();
+    ///     for (var rangeIndex = 0; rangeIndex &lt; Std.Toset.Invoke(new()
     ///     {
     ///         Input = subdomains,
     ///     }).Result; rangeIndex++)
     ///     {
     ///         var range = new { Value = rangeIndex };
-    ///         subdomain.Add(new Aws.Index.Route53Record($"subdomain-{range.Value}", new()
+    ///         subdomain.Add(new Aws.Route53Record($"subdomain-{range.Value}", new()
     ///         {
     ///             Name = range.Value,
     ///             Records = ,
@@ -161,10 +161,126 @@ namespace Pulumi.Fastly
     ///     }
     /// });
     /// ```
+    /// 
+    /// Managed certificates for multiple domains, in a single apply:
+    /// 
+    /// The `CertificateId` attribute is only populated once the certificate has been issued, so resources referencing it are guaranteed to run after issuance — unlike `fastly_tls_subscription.&lt;name&gt;.certificate_id`, which is empty on first apply (certificates are issued asynchronously after domain validation) and causes API 400 errors when consumed in the same apply.
+    /// 
+    /// &gt; **Note:** Fastly automatically activates TLS on a subscription's domains once the certificate is issued — set `ConfigurationId` on the `fastly.TlsSubscription` itself and do **not** create a `fastly.TlsActivation` for those domains (it fails with `400 DomainId has already been taken`). Use the `fastly.TlsActivation` data source to read the automatically-created activation.
+    /// 
+    /// ```csharp
+    /// using System.Collections.Generic;
+    /// using System.Linq;
+    /// using Pulumi;
+    /// using Aws = Pulumi.Aws;
+    /// using Fastly = Pulumi.Fastly;
+    /// 
+    /// return await Deployment.RunAsync(() =&gt; 
+    /// {
+    ///     var config = new Config();
+    ///     var certificates = config.RequireObject&lt;Dictionary&lt;string, Certificates&gt;&gt;("certificates");
+    ///     var defaultTls = Fastly.GetTlsConfiguration.Invoke(new()
+    ///     {
+    ///         Default = true,
+    ///     });
+    /// 
+    ///     var exampleTlsSubscription = new List&lt;Fastly.TlsSubscription&gt;();
+    ///     foreach (var range in certificates.Select(pair =&gt; new { pair.Key, pair.Value }))
+    ///     {
+    ///         exampleTlsSubscription.Add(new Fastly.TlsSubscription($"example-{range.Key}", new()
+    ///         {
+    ///             CertificateAuthority = range.Value.Authority,
+    ///             CommonName = range.Value.CommonName,
+    ///             Domains = range.Value.Domains,
+    ///             ForceDestroy = range.Value.ForceDestroy,
+    ///             ConfigurationId = defaultTls.Apply(getTlsConfigurationResult =&gt; getTlsConfigurationResult.Id),
+    ///         }));
+    ///     }
+    ///     // The domain validation challenge records MUST be created before validation
+    ///     // can succeed. This example uses DNS-based validation: replace with your DNS
+    ///     // provider's record resource, fed from
+    ///     // fastly_tls_subscription.example[each.key].managed_dns_challenges
+    ///     // (see the fastly_tls_subscription documentation for a Route53 example).
+    ///     var domainValidation = new List&lt;Aws.Route53Record&gt;();
+    ///     exampleTlsSubscription.Apply(rangeBody =&gt;
+    ///     {
+    ///         foreach (var range in rangeBody.Select(pair =&gt; new { pair.Key, pair.Value }))
+    ///         {
+    ///             domainValidation.Add(new Aws.Route53Record($"domain_validation-{range.Key}", new()
+    ///             {
+    ///                 Name = range.Value.ManagedDnsChallenges[0].RecordName,
+    ///                 Type = range.Value.ManagedDnsChallenges[0].RecordType,
+    ///                 Records = new[]
+    ///                 {
+    ///                     range.Value.ManagedDnsChallenges[0].RecordValue,
+    ///                 },
+    ///                 ZoneId = "REPLACE_WITH_YOUR_ZONE_ID",
+    ///                 AllowOverwrite = true,
+    ///                 Ttl = 60,
+    ///             }));
+    ///         }
+    ///         return 0;
+    ///     });
+    ///     // Blocks until the certificate has been issued. Its certificate_id attribute
+    ///     // is only known after issuance, so downstream resources referencing it are
+    ///     // guaranteed to run with a valid certificate — all in a single apply.
+    ///     var exampleTlsSubscriptionValidation = new List&lt;Fastly.TlsSubscriptionValidation&gt;();
+    ///     foreach (var range in certificates.Select(pair =&gt; new { pair.Key, pair.Value }))
+    ///     {
+    ///         exampleTlsSubscriptionValidation.Add(new Fastly.TlsSubscriptionValidation($"example-{range.Key}", new()
+    ///         {
+    ///             SubscriptionId = exampleTlsSubscription[range.Key].Id,
+    ///         }, new CustomResourceOptions
+    ///         {
+    ///             DependsOn =
+    ///             {
+    ///                 domainValidation,
+    ///             },
+    ///         }));
+    ///     }
+    ///     // The activation was created automatically by Fastly when the certificate was
+    ///     // issued; this function reads it (e.g. to consume dns_records/IDs).
+    ///     var example = certificates.Select(pair =&gt; new { pair.Key, pair.Value }).ToDictionary(item =&gt; {
+    ///         var __key = item.Key;
+    ///         return __key;
+    ///     }, item =&gt; {
+    ///         var __value = item.Value;
+    ///         return Fastly.GetTlsActivation.Invoke(new()
+    ///         {
+    ///             Domain = __value.CommonName,
+    ///         });
+    ///     });
+    /// 
+    ///     return new Dictionary&lt;string, object?&gt;
+    ///     {
+    ///         ["certificateIds"] = exampleTlsSubscriptionValidation.Select(pair =&gt; new { pair.Key, pair.Value }).ToDictionary(item =&gt; {
+    ///             var k = item.Key;
+    ///             return k;
+    ///         }, item =&gt; {
+    ///             var v = item.Value;
+    ///             return v.CertificateId;
+    ///         }),
+    ///     };
+    /// });
+    /// 
+    /// public class Certificates
+    /// {
+    ///     public string authority { get; set; }
+    ///     public string commonName { get; set; }
+    ///     public List&lt;string&gt; domains { get; set; }
+    ///     public bool forceDestroy { get; set; }
+    /// }
+    /// ```
     /// </summary>
     [FastlyResourceType("fastly:index/tlsSubscriptionValidation:TlsSubscriptionValidation")]
     public partial class TlsSubscriptionValidation : global::Pulumi.CustomResource
     {
+        /// <summary>
+        /// The ID of the certificate issued for the validated subscription. Only populated once the subscription reaches the `Issued` state. Reference this from `fastly_tls_activation.certificate_id` to guarantee the activation is created after the certificate exists, within a single apply.
+        /// </summary>
+        [Output("certificateId")]
+        public Output<string> CertificateId { get; private set; } = null!;
+
         /// <summary>
         /// The ID of the TLS Subscription that should be validated.
         /// </summary>
@@ -231,6 +347,12 @@ namespace Pulumi.Fastly
 
     public sealed class TlsSubscriptionValidationState : global::Pulumi.ResourceArgs
     {
+        /// <summary>
+        /// The ID of the certificate issued for the validated subscription. Only populated once the subscription reaches the `Issued` state. Reference this from `fastly_tls_activation.certificate_id` to guarantee the activation is created after the certificate exists, within a single apply.
+        /// </summary>
+        [Input("certificateId")]
+        public Input<string>? CertificateId { get; set; }
+
         /// <summary>
         /// The ID of the TLS Subscription that should be validated.
         /// </summary>

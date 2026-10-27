@@ -66,12 +66,8 @@ type GetNgwafWorkspaceSignalsResult struct {
 }
 
 func GetNgwafWorkspaceSignalsOutput(ctx *pulumi.Context, args GetNgwafWorkspaceSignalsOutputArgs, opts ...pulumi.InvokeOption) GetNgwafWorkspaceSignalsResultOutput {
-	return pulumi.ToOutputWithContext(ctx.Context(), args).
-		ApplyT(func(v interface{}) (GetNgwafWorkspaceSignalsResultOutput, error) {
-			args := v.(GetNgwafWorkspaceSignalsArgs)
-			options := pulumi.InvokeOutputOptions{InvokeOptions: internal.PkgInvokeDefaultOpts(opts)}
-			return ctx.InvokeOutput("fastly:index/getNgwafWorkspaceSignals:getNgwafWorkspaceSignals", args, GetNgwafWorkspaceSignalsResultOutput{}, options).(GetNgwafWorkspaceSignalsResultOutput), nil
-		}).(GetNgwafWorkspaceSignalsResultOutput)
+	options := pulumi.InvokeOutputOptions{InvokeOptions: internal.PkgInvokeDefaultOpts(opts)}
+	return ctx.InvokeOutput("fastly:index/getNgwafWorkspaceSignals:getNgwafWorkspaceSignals", args, GetNgwafWorkspaceSignalsResultOutput{}, options).(GetNgwafWorkspaceSignalsResultOutput)
 }
 
 // A collection of arguments for invoking getNgwafWorkspaceSignals.

@@ -5,6 +5,7 @@ package com.pulumi.fastly.inputs;
 
 import com.pulumi.core.Output;
 import com.pulumi.core.annotations.Import;
+import com.pulumi.fastly.inputs.ServiceComputeProductEnablementBotManagementArgs;
 import com.pulumi.fastly.inputs.ServiceComputeProductEnablementDdosProtectionArgs;
 import com.pulumi.fastly.inputs.ServiceComputeProductEnablementNgwafArgs;
 import java.lang.Boolean;
@@ -31,6 +32,21 @@ public final class ServiceComputeProductEnablementArgs extends com.pulumi.resour
      */
     public Optional<Output<Boolean>> apiDiscovery() {
         return Optional.ofNullable(this.apiDiscovery);
+    }
+
+    /**
+     * Enable Bot Management support
+     * 
+     */
+    @Import(name="botManagement")
+    private @Nullable Output<ServiceComputeProductEnablementBotManagementArgs> botManagement;
+
+    /**
+     * @return Enable Bot Management support
+     * 
+     */
+    public Optional<Output<ServiceComputeProductEnablementBotManagementArgs>> botManagement() {
+        return Optional.ofNullable(this.botManagement);
     }
 
     /**
@@ -142,6 +158,7 @@ public final class ServiceComputeProductEnablementArgs extends com.pulumi.resour
 
     private ServiceComputeProductEnablementArgs(ServiceComputeProductEnablementArgs $) {
         this.apiDiscovery = $.apiDiscovery;
+        this.botManagement = $.botManagement;
         this.ddosProtection = $.ddosProtection;
         this.domainInspector = $.domainInspector;
         this.fanout = $.fanout;
@@ -188,6 +205,27 @@ public final class ServiceComputeProductEnablementArgs extends com.pulumi.resour
          */
         public Builder apiDiscovery(Boolean apiDiscovery) {
             return apiDiscovery(Output.of(apiDiscovery));
+        }
+
+        /**
+         * @param botManagement Enable Bot Management support
+         * 
+         * @return builder
+         * 
+         */
+        public Builder botManagement(@Nullable Output<ServiceComputeProductEnablementBotManagementArgs> botManagement) {
+            $.botManagement = botManagement;
+            return this;
+        }
+
+        /**
+         * @param botManagement Enable Bot Management support
+         * 
+         * @return builder
+         * 
+         */
+        public Builder botManagement(ServiceComputeProductEnablementBotManagementArgs botManagement) {
+            return botManagement(Output.of(botManagement));
         }
 
         /**

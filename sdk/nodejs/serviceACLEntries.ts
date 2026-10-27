@@ -7,10 +7,11 @@ import * as outputs from "./types/output";
 import * as utilities from "./utilities";
 
 /**
- * Defines a set of Fastly ACL entries that can be used to populate a service ACL.  This resource will populate an ACL with the entries and will track their state.
+ * Defines a set of Fastly ACL entries that can be used to populate a service ACL. This resource seeds configured entries when it is created.
  *
- * > **Note:** By default the Terraform provider allows you to externally manage the entries via API or UI.
- * If you wish to apply your changes in the HCL, then you should explicitly set the `manageEntries` attribute. An example of this configuration is provided below.
+ * > **Note:** By default (`manageEntries = false`), the Terraform provider allows you to externally manage ACL entries via API or UI. In this mode, entry data is cleared from Terraform state during refresh so large externally managed ACLs are not retained in state. Changes to configured `entry` blocks after creation are ignored. Set `manageEntries = true` if Terraform should track and reconcile the ACL entries.
+ *
+ * > **Note:** Because unmanaged entry data is not retained in Terraform state, removing a `fastly.ServiceACLEntries` resource with `manageEntries = false` does not delete the ACL entries that it originally seeded.
  *
  * ## Example Usage
  *
@@ -40,12 +41,12 @@ import * as utilities from "./utilities";
  *     }],
  *     forceDestroy: true,
  * });
- * const entries: fastly.ServiceACLEntries[] = [];
+ * const entries: {[key: string]: fastly.ServiceACLEntries} = {};
  * myservice.acls.apply(acls => {
- *     const entries: fastly.ServiceACLEntries[] = [];
+ *     const entries: {[key: string]: fastly.ServiceACLEntries} = {};
  * pulumi.all(.filter(d => d.name == myaclName).reduce((__obj, d) => ({ ...__obj, [d.name]: d }), {})).apply(rangeBody => {
- *         for (const range of Object.entries(rangeBody).map(([k, v]) => ({key: k, value: v}))) {
- *             entries.push(new fastly.ServiceACLEntries(`entries-${range.key}`, {
+ *         for (const range of Object.entries(rangeBody).sort().map(([k, v]) => ({key: k, value: v}))) {
+ *             entries[range.key] = new fastly.ServiceACLEntries(`entries-${range.key}`, {
  *                 serviceId: myservice.id,
  *                 aclId: range.value.aclId,
  *                 entries: [{
@@ -54,7 +55,7 @@ import * as utilities from "./utilities";
  *                     negated: false,
  *                     comment: "ACL Entry 1",
  *                 }],
- *             }));
+ *             });
  *         }
  *     });
  * });
@@ -63,6 +64,64 @@ import * as utilities from "./utilities";
  * Complex object usage:
  *
  * The following example demonstrates the use of dynamic nested blocks to create ACL entries.
+ *
+ * ```typescript
+ * import * as pulumi from "@pulumi/pulumi";
+ * import * as fastly from "@pulumi/fastly";
+ *
+ * const aclName = "my_acl";
+ * const aclEntries = [
+ *     {
+ *         ip: "1.2.3.4",
+ *         comment: "acl_entry_1",
+ *     },
+ *     {
+ *         ip: "1.2.3.5",
+ *         comment: "acl_entry_2",
+ *     },
+ *     {
+ *         ip: "1.2.3.6",
+ *         comment: "acl_entry_3",
+ *     },
+ * ];
+ * const myservice = new fastly.ServiceVcl("myservice", {
+ *     name: "demofastly",
+ *     domains: [{
+ *         name: "demo.notexample.com",
+ *         comment: "demo",
+ *     }],
+ *     backends: [{
+ *         address: "1.2.3.4",
+ *         name: "localhost",
+ *         port: 80,
+ *     }],
+ *     acls: [{
+ *         name: aclName,
+ *     }],
+ *     forceDestroy: true,
+ * });
+ * const entries: {[key: string]: fastly.ServiceACLEntries} = {};
+ * myservice.acls.apply(acls => {
+ *     const entries: {[key: string]: fastly.ServiceACLEntries} = {};
+ * pulumi.all(.filter(d => d.name == aclName).reduce((__obj, d) => ({ ...__obj, [d.name]: d }), {})).apply(rangeBody => {
+ *         for (const range of Object.entries(rangeBody).sort().map(([k, v]) => ({key: k, value: v}))) {
+ *             entries[range.key] = new fastly.ServiceACLEntries(`entries-${range.key}`, {
+ *                 entries: aclEntries.map(e => ({
+ *                     ip: e.ip,
+ *                     comment: e.comment,
+ *                 })).map(entry => ({
+ *                     ip: entry.ip,
+ *                     subnet: "22",
+ *                     comment: entry.comment,
+ *                     negated: false,
+ *                 })),
+ *                 serviceId: myservice.id,
+ *                 aclId: range.value.aclId,
+ *             });
+ *         }
+ *     });
+ * });
+ * ```
  *
  * ### Terraform >= 0.12.0 && < 0.12.6)
  *
@@ -125,9 +184,9 @@ import * as utilities from "./utilities";
  * import * as fastly from "@pulumi/fastly";
  *
  * //...
- * const entries: fastly.ServiceACLEntries[] = [];
- * for (const range of Object.entries(.filter(d => d.name == myaclName).reduce((__obj, d) => ({ ...__obj, [d.name]: d }), {})).map(([k, v]) => ({key: k, value: v}))) {
- *     entries.push(new fastly.ServiceACLEntries(`entries-${range.key}`, {
+ * const entries: {[key: string]: fastly.ServiceACLEntries} = {};
+ * for (const range of Object.entries(.filter(d => d.name == myaclName).reduce((__obj, d) => ({ ...__obj, [d.name]: d }), {})).sort().map(([k, v]) => ({key: k, value: v}))) {
+ *     entries[range.key] = new fastly.ServiceACLEntries(`entries-${range.key}`, {
  *         serviceId: myservice.id,
  *         aclId: range.value.aclId,
  *         manageEntries: true,
@@ -137,7 +196,7 @@ import * as utilities from "./utilities";
  *             negated: false,
  *             comment: "ACL Entry 1",
  *         }],
- *     }));
+ *     });
  * }
  * ```
  *
@@ -244,19 +303,19 @@ export interface ServiceACLEntriesState {
     /**
      * The ID of the ACL that the items belong to
      */
-    aclId?: pulumi.Input<string>;
+    aclId?: pulumi.Input<string | undefined>;
     /**
      * ACL Entries
      */
-    entries?: pulumi.Input<pulumi.Input<inputs.ServiceACLEntriesEntry>[]>;
+    entries?: pulumi.Input<pulumi.Input<inputs.ServiceACLEntriesEntry>[] | undefined>;
     /**
      * Whether to reapply changes if the state of the entries drifts, i.e. if entries are managed externally
      */
-    manageEntries?: pulumi.Input<boolean>;
+    manageEntries?: pulumi.Input<boolean | undefined>;
     /**
      * The ID of the Service that the ACL belongs to
      */
-    serviceId?: pulumi.Input<string>;
+    serviceId?: pulumi.Input<string | undefined>;
 }
 
 /**
@@ -270,11 +329,11 @@ export interface ServiceACLEntriesArgs {
     /**
      * ACL Entries
      */
-    entries?: pulumi.Input<pulumi.Input<inputs.ServiceACLEntriesEntry>[]>;
+    entries?: pulumi.Input<pulumi.Input<inputs.ServiceACLEntriesEntry>[] | undefined>;
     /**
      * Whether to reapply changes if the state of the entries drifts, i.e. if entries are managed externally
      */
-    manageEntries?: pulumi.Input<boolean>;
+    manageEntries?: pulumi.Input<boolean | undefined>;
     /**
      * The ID of the Service that the ACL belongs to
      */

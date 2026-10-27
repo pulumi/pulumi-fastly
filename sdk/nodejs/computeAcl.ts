@@ -111,7 +111,7 @@ export interface ComputeAclState {
     /**
      * A unique name to identify the Compute ACL. It is important to note that changing this attribute will delete and recreate the Compute ACL, and discard the current entries. You MUST first delete the associated resourceLink block from your service before modifying this field.
      */
-    name?: pulumi.Input<string>;
+    name?: pulumi.Input<string | undefined>;
 }
 
 /**
@@ -121,5 +121,5 @@ export interface ComputeAclArgs {
     /**
      * A unique name to identify the Compute ACL. It is important to note that changing this attribute will delete and recreate the Compute ACL, and discard the current entries. You MUST first delete the associated resourceLink block from your service before modifying this field.
      */
-    name?: pulumi.Input<string>;
+    name?: pulumi.Input<string | undefined>;
 }

@@ -7,11 +7,8 @@ import com.pulumi.core.Output;
 import com.pulumi.core.annotations.Import;
 import com.pulumi.exceptions.MissingRequiredPropertyException;
 import java.lang.Boolean;
-import java.lang.Integer;
 import java.lang.String;
 import java.util.Objects;
-import java.util.Optional;
-import javax.annotation.Nullable;
 
 
 public final class ServiceComputeProductEnablementNgwafArgs extends com.pulumi.resources.ResourceArgs {
@@ -34,21 +31,6 @@ public final class ServiceComputeProductEnablementNgwafArgs extends com.pulumi.r
     }
 
     /**
-     * The percentage of traffic to inspect
-     * 
-     */
-    @Import(name="trafficRamp")
-    private @Nullable Output<Integer> trafficRamp;
-
-    /**
-     * @return The percentage of traffic to inspect
-     * 
-     */
-    public Optional<Output<Integer>> trafficRamp() {
-        return Optional.ofNullable(this.trafficRamp);
-    }
-
-    /**
      * The workspace to link
      * 
      */
@@ -67,7 +49,6 @@ public final class ServiceComputeProductEnablementNgwafArgs extends com.pulumi.r
 
     private ServiceComputeProductEnablementNgwafArgs(ServiceComputeProductEnablementNgwafArgs $) {
         this.enabled = $.enabled;
-        this.trafficRamp = $.trafficRamp;
         this.workspaceId = $.workspaceId;
     }
 
@@ -108,27 +89,6 @@ public final class ServiceComputeProductEnablementNgwafArgs extends com.pulumi.r
          */
         public Builder enabled(Boolean enabled) {
             return enabled(Output.of(enabled));
-        }
-
-        /**
-         * @param trafficRamp The percentage of traffic to inspect
-         * 
-         * @return builder
-         * 
-         */
-        public Builder trafficRamp(@Nullable Output<Integer> trafficRamp) {
-            $.trafficRamp = trafficRamp;
-            return this;
-        }
-
-        /**
-         * @param trafficRamp The percentage of traffic to inspect
-         * 
-         * @return builder
-         * 
-         */
-        public Builder trafficRamp(Integer trafficRamp) {
-            return trafficRamp(Output.of(trafficRamp));
         }
 
         /**

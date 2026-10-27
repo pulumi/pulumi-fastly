@@ -31,8 +31,8 @@ import javax.annotation.Nullable;
  * import com.pulumi.core.Output;
  * import com.pulumi.fastly.NgwafAlertJiraIntegration;
  * import com.pulumi.fastly.NgwafAlertJiraIntegrationArgs;
- * import java.util.List;
  * import java.util.ArrayList;
+ * import java.util.Arrays;
  * import java.util.Map;
  * import java.io.File;
  * import java.nio.file.Files;
@@ -51,7 +51,7 @@ import javax.annotation.Nullable;
  *             .key("a1b2c3d4e5f6789012345678901234567")
  *             .project("test")
  *             .username("user")
- *             .workspaceId(demo.id())
+ *             .workspaceId(demo.get("id"))
  *             .build());
  * 
  *     }

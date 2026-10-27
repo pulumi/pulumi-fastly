@@ -24,9 +24,29 @@ import javax.annotation.Nullable;
  * 
  * DNS Validation with AWS Route53:
  * 
+ * Managed certificates for multiple domains, in a single apply:
+ * 
+ * The `certificateId` attribute is only populated once the certificate has been issued, so resources referencing it are guaranteed to run after issuance — unlike `fastly_tls_subscription.&lt;name&gt;.certificate_id`, which is empty on first apply (certificates are issued asynchronously after domain validation) and causes API 400 errors when consumed in the same apply.
+ * 
+ * &gt; **Note:** Fastly automatically activates TLS on a subscription&#39;s domains once the certificate is issued — set `configurationId` on the `fastly.TlsSubscription` itself and do **not** create a `fastly.TlsActivation` for those domains (it fails with `400 domainId has already been taken`). Use the `fastly.TlsActivation` data source to read the automatically-created activation.
+ * 
  */
 @ResourceType(type="fastly:index/tlsSubscriptionValidation:TlsSubscriptionValidation")
 public class TlsSubscriptionValidation extends com.pulumi.resources.CustomResource {
+    /**
+     * The ID of the certificate issued for the validated subscription. Only populated once the subscription reaches the `issued` state. Reference this from `fastly_tls_activation.certificate_id` to guarantee the activation is created after the certificate exists, within a single apply.
+     * 
+     */
+    @Export(name="certificateId", refs={String.class}, tree="[0]")
+    private Output<String> certificateId;
+
+    /**
+     * @return The ID of the certificate issued for the validated subscription. Only populated once the subscription reaches the `issued` state. Reference this from `fastly_tls_activation.certificate_id` to guarantee the activation is created after the certificate exists, within a single apply.
+     * 
+     */
+    public Output<String> certificateId() {
+        return this.certificateId;
+    }
     /**
      * The ID of the TLS Subscription that should be validated.
      * 

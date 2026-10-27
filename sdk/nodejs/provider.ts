@@ -71,19 +71,19 @@ export interface ProviderArgs {
     /**
      * Fastly API Key from https://app.fastly.com/#account
      */
-    apiKey?: pulumi.Input<string>;
+    apiKey?: pulumi.Input<string | undefined>;
     /**
      * Fastly API URL
      */
-    baseUrl?: pulumi.Input<string>;
+    baseUrl?: pulumi.Input<string | undefined>;
     /**
      * Set this to `true` to disable HTTP/1.x fallback mechanism that the underlying Go library will attempt upon connection to `api.fastly.com:443` by default. This may slightly improve the provider's performance and reduce unnecessary TLS handshakes. Default: `false`
      */
-    forceHttp2?: pulumi.Input<boolean>;
+    forceHttp2?: pulumi.Input<boolean | undefined>;
     /**
      * Set to `true` if your configuration only consumes data sources that do not require authentication, such as `fastly.getFastlyIpRanges`
      */
-    noAuth?: pulumi.Input<boolean>;
+    noAuth?: pulumi.Input<boolean | undefined>;
 }
 
 export namespace Provider {

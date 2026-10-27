@@ -106,6 +106,152 @@ export interface CustomDashboardDashboardItemVisualizationConfig {
     plotType: string;
 }
 
+export interface DnsZoneXfrConfigInbound {
+    /**
+     * The ID of the TSIG key used to secure inbound zone transfers.
+     */
+    inboundTsigKeyId?: string;
+    /**
+     * An array of the primary DNS server objects associated with inbound zone transfers.
+     */
+    primaries?: outputs.DnsZoneXfrConfigInboundPrimary[];
+}
+
+export interface DnsZoneXfrConfigInboundPrimary {
+    /**
+     * An IPv4 address for the Primary DNS Server.
+     */
+    address?: string;
+    /**
+     * A description of the Primary DNS server.
+     */
+    description?: string;
+}
+
+export interface GetAiRuntimeControlProviderConnectionsProviderConnection {
+    /**
+     * The base URL for the provider's API.
+     */
+    baseUrl: string;
+    /**
+     * Timestamp (UTC) of when the provider connection was created.
+     */
+    createdAt: string;
+    /**
+     * The ID of the provider connection.
+     */
+    id: string;
+    /**
+     * The allowed AI model identifiers.
+     */
+    models: string[];
+    /**
+     * The human-readable name of the provider.
+     */
+    name: string;
+    /**
+     * A hash representing the API key used to create the provider connection.
+     */
+    secretId: string;
+    /**
+     * Timestamp (UTC) of when the provider connection was last updated.
+     */
+    updatedAt: string;
+}
+
+export interface GetAiRuntimeControlProvidersProvider {
+    /**
+     * The default API base URL for the provider.
+     */
+    defaultBaseUrl: string;
+    /**
+     * The human-readable provider name, e.g. `Anthropic`.
+     */
+    displayName: string;
+    /**
+     * The provider identifier, e.g. `anthropic`.
+     */
+    id: string;
+    /**
+     * The models available for the provider.
+     */
+    models: outputs.GetAiRuntimeControlProvidersProviderModel[];
+}
+
+export interface GetAiRuntimeControlProvidersProviderModel {
+    /**
+     * The human-readable model name, e.g. `Claude Sonnet 4`.
+     */
+    displayName: string;
+    /**
+     * The model identifier, e.g. `claude-sonnet-4-20250514`.
+     */
+    id: string;
+    /**
+     * The ID of the provider this model belongs to.
+     */
+    providerId: string;
+}
+
+export interface GetAiRuntimeControlVirtualKeysVirtualKey {
+    /**
+     * Timestamp (UTC) of when the virtual key was created.
+     */
+    createdAt: string;
+    /**
+     * The display name of the user who created the virtual key.
+     */
+    createdBy: string;
+    /**
+     * The ID of the customer that owns the virtual key.
+     */
+    customerId: string;
+    /**
+     * Timestamp (UTC) of when the virtual key was deleted, if applicable.
+     */
+    deletedAt: string;
+    /**
+     * The expiration timestamp of the virtual key, if any.
+     */
+    expiresAt: string;
+    /**
+     * The ID of the virtual key.
+     */
+    id: string;
+    /**
+     * Timestamp (UTC) of when the virtual key was last used, if applicable.
+     */
+    lastUsedAt: string;
+    /**
+     * The AI model identifier.
+     */
+    model: string;
+    /**
+     * The human-readable name of the virtual key.
+     */
+    name: string;
+    /**
+     * The AI model provider name.
+     */
+    provider: string;
+    /**
+     * The type of the virtual key.
+     */
+    type: string;
+    /**
+     * Timestamp (UTC) of when the virtual key was last updated.
+     */
+    updatedAt: string;
+    /**
+     * The ID of the user who created the virtual key.
+     */
+    userId: string;
+    /**
+     * The display name of the user who created the virtual key.
+     */
+    userName: string;
+}
+
 export interface GetApiSecurityDiscoveredOperationsOperation {
     /**
      * Discovered operation domain.
@@ -269,6 +415,21 @@ export interface GetDictionariesDictionary {
      * Indicates if items in the dictionary are readable or not.
      */
     writeOnly: boolean;
+}
+
+export interface GetDnsZonesZone {
+    /**
+     * A freeform descriptive note.
+     */
+    description: string;
+    /**
+     * Zone Identifier (UUID).
+     */
+    id: string;
+    /**
+     * The domain name for the zone.
+     */
+    name: string;
 }
 
 export interface GetDomainsDomain {
@@ -642,6 +803,25 @@ export interface GetTlsConfigurationDnsRecord {
     region: string;
 }
 
+export interface GetTsigKeysKey {
+    /**
+     * The algorithm of the TSIG key.
+     */
+    algorithm: string;
+    /**
+     * A freeform descriptive note.
+     */
+    description: string;
+    /**
+     * TSIG Key Identifier (UUID).
+     */
+    id: string;
+    /**
+     * The name of the TSIG key.
+     */
+    name: string;
+}
+
 export interface GetVclSnippetsVclSnippet {
     /**
      * The VCL code that specifies exactly what the snippet does.
@@ -986,6 +1166,63 @@ export interface NgwafWorkspaceRuleRateLimitClientIdentifier {
     type: string;
 }
 
+export interface RoutingConfigPath {
+    /**
+     * The URL path pattern (max 2048 characters, starts with `/`).
+     */
+    path: string;
+    /**
+     * The path identifier.
+     */
+    pathId: string;
+    /**
+     * A conditional routing rule for this path. A rule with no `condition` blocks is the default (catch-all) rule for the path.
+     */
+    rules: outputs.RoutingConfigPathRule[];
+}
+
+export interface RoutingConfigPathRule {
+    /**
+     * The action type. Currently only `service` is supported.
+     */
+    actionType: string;
+    /**
+     * The destination for the action (e.g. a service ID when `actionType` is `service`).
+     */
+    actionValue: string;
+    /**
+     * A matching criterion evaluated against the incoming request. Omit to make this the default (catch-all) rule for the path.
+     */
+    conditions?: outputs.RoutingConfigPathRuleCondition[];
+    /**
+     * Whether this is the catch-all rule for its path (i.e. it has no conditions).
+     */
+    isDefault: boolean;
+    /**
+     * The rule identifier.
+     */
+    ruleId: string;
+}
+
+export interface RoutingConfigPathRuleCondition {
+    /**
+     * The header name to match against. Only applicable when `type` is `header`.
+     */
+    key?: string;
+    /**
+     * The comparison operator used to evaluate `value` against the request. One of `equals`, `startsWith`, `endsWith`, or `contains`.
+     */
+    operator: string;
+    /**
+     * The condition category. Currently only `header` is supported.
+     */
+    type: string;
+    /**
+     * The value compared against the request using `operator`.
+     */
+    value: string;
+}
+
 export interface ServiceACLEntriesEntry {
     /**
      * A personal freeform descriptive note
@@ -1043,9 +1280,17 @@ export interface ServiceComputeBackend {
      */
     maxConn?: number;
     /**
+     * Maximum time from creation (in milliseconds) that a pooled HTTP keepalive connection will be eligible for reuse; 0 is treated as unlimited - which is the default behavior.
+     */
+    maxLifetime?: number;
+    /**
      * Maximum allowed TLS version on SSL connections to this backend.
      */
     maxTlsVersion?: string;
+    /**
+     * Maximum number of requests allowed over a single, pooled HTTP keepalive connection to this backend; 0 is treated as unlimited - which is the default behavior.
+     */
+    maxUse?: number;
     /**
      * Minimum allowed TLS version on SSL connections to this backend.
      */
@@ -2373,6 +2618,10 @@ export interface ServiceComputeProductEnablement {
      */
     apiDiscovery?: boolean;
     /**
+     * Enable Bot Management support
+     */
+    botManagement?: outputs.ServiceComputeProductEnablementBotManagement;
+    /**
      * DDoS Protection product
      */
     ddosProtection?: outputs.ServiceComputeProductEnablementDdosProtection;
@@ -2402,13 +2651,24 @@ export interface ServiceComputeProductEnablement {
     websockets?: boolean;
 }
 
+export interface ServiceComputeProductEnablementBotManagement {
+    /**
+     * ContentGuard status. Can be either `off`, or `on`.
+     */
+    contentguard: string;
+    /**
+     * Enable Bot Management support
+     */
+    enabled: boolean;
+}
+
 export interface ServiceComputeProductEnablementDdosProtection {
     /**
      * Enable DDoS Protection support
      */
     enabled: boolean;
     /**
-     * Operation mode. Can be either `off`, `log`, or `block`.
+     * Operation mode. Can be `off`, `log`, `block`, or `clientChallenge`.
      */
     mode: string;
 }
@@ -2418,10 +2678,6 @@ export interface ServiceComputeProductEnablementNgwaf {
      * Enable Next-Gen WAF support
      */
     enabled: boolean;
-    /**
-     * The percentage of traffic to inspect
-     */
-    trafficRamp?: number;
     /**
      * The workspace to link
      */
@@ -2496,9 +2752,17 @@ export interface ServiceVclBackend {
      */
     maxConn?: number;
     /**
+     * Maximum time from creation (in milliseconds) that a pooled HTTP keepalive connection will be eligible for reuse; 0 is treated as unlimited - which is the default behavior.
+     */
+    maxLifetime?: number;
+    /**
      * Maximum allowed TLS version on SSL connections to this backend.
      */
     maxTlsVersion?: string;
+    /**
+     * Maximum number of requests allowed over a single, pooled HTTP keepalive connection to this backend; 0 is treated as unlimited - which is the default behavior.
+     */
+    maxUse?: number;
     /**
      * Minimum allowed TLS version on SSL connections to this backend.
      */
@@ -4467,7 +4731,7 @@ export interface ServiceVclProductEnablementDdosProtection {
      */
     enabled: boolean;
     /**
-     * Operation mode. Can be either `off`, `log`, or `block`.
+     * Operation mode. Can be `off`, `log`, `block`, or `clientChallenge`.
      */
     mode: string;
 }

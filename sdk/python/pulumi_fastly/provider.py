@@ -19,10 +19,10 @@ __all__ = ['ProviderArgs', 'Provider']
 @pulumi.input_type
 class ProviderArgs:
     def __init__(__self__, *,
-                 api_key: Optional[pulumi.Input[_builtins.str]] = None,
-                 base_url: Optional[pulumi.Input[_builtins.str]] = None,
-                 force_http2: Optional[pulumi.Input[_builtins.bool]] = None,
-                 no_auth: Optional[pulumi.Input[_builtins.bool]] = None):
+                 api_key: pulumi.Input[Optional[_builtins.str]] = None,
+                 base_url: pulumi.Input[Optional[_builtins.str]] = None,
+                 force_http2: pulumi.Input[Optional[_builtins.bool]] = None,
+                 no_auth: pulumi.Input[Optional[_builtins.bool]] = None):
         """
         The set of arguments for constructing a Provider resource.
 
@@ -42,50 +42,50 @@ class ProviderArgs:
 
     @_builtins.property
     @pulumi.getter(name="apiKey")
-    def api_key(self) -> Optional[pulumi.Input[_builtins.str]]:
+    def api_key(self) -> pulumi.Input[Optional[_builtins.str]]:
         """
         Fastly API Key from https://app.fastly.com/#account
         """
         return pulumi.get(self, "api_key")
 
     @api_key.setter
-    def api_key(self, value: Optional[pulumi.Input[_builtins.str]]):
+    def api_key(self, value: pulumi.Input[Optional[_builtins.str]]):
         pulumi.set(self, "api_key", value)
 
     @_builtins.property
     @pulumi.getter(name="baseUrl")
-    def base_url(self) -> Optional[pulumi.Input[_builtins.str]]:
+    def base_url(self) -> pulumi.Input[Optional[_builtins.str]]:
         """
         Fastly API URL
         """
         return pulumi.get(self, "base_url")
 
     @base_url.setter
-    def base_url(self, value: Optional[pulumi.Input[_builtins.str]]):
+    def base_url(self, value: pulumi.Input[Optional[_builtins.str]]):
         pulumi.set(self, "base_url", value)
 
     @_builtins.property
     @pulumi.getter(name="forceHttp2")
-    def force_http2(self) -> Optional[pulumi.Input[_builtins.bool]]:
+    def force_http2(self) -> pulumi.Input[Optional[_builtins.bool]]:
         """
         Set this to `true` to disable HTTP/1.x fallback mechanism that the underlying Go library will attempt upon connection to `api.fastly.com:443` by default. This may slightly improve the provider's performance and reduce unnecessary TLS handshakes. Default: `false`
         """
         return pulumi.get(self, "force_http2")
 
     @force_http2.setter
-    def force_http2(self, value: Optional[pulumi.Input[_builtins.bool]]):
+    def force_http2(self, value: pulumi.Input[Optional[_builtins.bool]]):
         pulumi.set(self, "force_http2", value)
 
     @_builtins.property
     @pulumi.getter(name="noAuth")
-    def no_auth(self) -> Optional[pulumi.Input[_builtins.bool]]:
+    def no_auth(self) -> pulumi.Input[Optional[_builtins.bool]]:
         """
         Set to `true` if your configuration only consumes data sources that do not require authentication, such as `get_fastly_ip_ranges`
         """
         return pulumi.get(self, "no_auth")
 
     @no_auth.setter
-    def no_auth(self, value: Optional[pulumi.Input[_builtins.bool]]):
+    def no_auth(self, value: pulumi.Input[Optional[_builtins.bool]]):
         pulumi.set(self, "no_auth", value)
 
 
@@ -95,10 +95,10 @@ class Provider(pulumi.ProviderResource):
     def __init__(__self__,
                  resource_name: str,
                  opts: Optional[pulumi.ResourceOptions] = None,
-                 api_key: Optional[pulumi.Input[_builtins.str]] = None,
-                 base_url: Optional[pulumi.Input[_builtins.str]] = None,
-                 force_http2: Optional[pulumi.Input[_builtins.bool]] = None,
-                 no_auth: Optional[pulumi.Input[_builtins.bool]] = None,
+                 api_key: pulumi.Input[Optional[_builtins.str]] = None,
+                 base_url: pulumi.Input[Optional[_builtins.str]] = None,
+                 force_http2: pulumi.Input[Optional[_builtins.bool]] = None,
+                 no_auth: pulumi.Input[Optional[_builtins.bool]] = None,
                  __props__=None):
         """
         The provider type for the fastly package. By default, resources use package-wide configuration
@@ -142,10 +142,10 @@ class Provider(pulumi.ProviderResource):
     def _internal_init(__self__,
                  resource_name: str,
                  opts: Optional[pulumi.ResourceOptions] = None,
-                 api_key: Optional[pulumi.Input[_builtins.str]] = None,
-                 base_url: Optional[pulumi.Input[_builtins.str]] = None,
-                 force_http2: Optional[pulumi.Input[_builtins.bool]] = None,
-                 no_auth: Optional[pulumi.Input[_builtins.bool]] = None,
+                 api_key: pulumi.Input[Optional[_builtins.str]] = None,
+                 base_url: pulumi.Input[Optional[_builtins.str]] = None,
+                 force_http2: pulumi.Input[Optional[_builtins.bool]] = None,
+                 no_auth: pulumi.Input[Optional[_builtins.bool]] = None,
                  __props__=None):
         opts = pulumi.ResourceOptions.merge(_utilities.get_resource_opts_defaults(), opts)
         if not isinstance(opts, pulumi.ResourceOptions):

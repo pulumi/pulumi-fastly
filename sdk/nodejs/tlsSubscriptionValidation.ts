@@ -24,8 +24,8 @@ import * as utilities from "./utilities";
  * // NOTE: Creating a hosted zone will automatically create SOA/NS records.
  * const production = new aws.index.Route53Zone("production", {name: "example.com"});
  * const example = new aws.index.Route53domainsRegisteredDomain("example", {
- *     nameServer: Object.entries(production.nameServers).map(([k, v]) => ({key: k, value: v})).map(entry => ({
- *         name: entry.value,
+ *     nameServer: .map(entry => ({
+ *         name: entry,
  *     })),
  *     domainName: "example.com",
  * });
@@ -34,8 +34,8 @@ import * as utilities from "./utilities";
  *     "b.example.com",
  * ];
  * const exampleServiceVcl = new fastly.ServiceVcl("example", {
- *     domains: subdomains.map((v, k) => ({key: k, value: v})).map(entry => ({
- *         name: entry.value,
+ *     domains: subdomains.map(entry => ({
+ *         name: entry,
  *     })),
  *     name: "example-service",
  *     backends: [{
@@ -48,10 +48,10 @@ import * as utilities from "./utilities";
  *     domains: exampleServiceVcl.domains.apply(domains => .map(domain => (domain.name))),
  *     certificateAuthority: "lets-encrypt",
  * });
- * const domainValidation: aws.index.Route53Record[] = [];
+ * const domainValidation: {[key: string]: aws.index.Route53Record} = {};
  * exampleTlsSubscription.domains.apply(domains => {
- *     for (const range of Object.entries(domains.reduce((__obj, domain) => ({ ...__obj, [domain]: exampleTlsSubscription.managedDnsChallenges.apply(managedDnsChallenges => managedDnsChallenges.filter(obj => obj.recordName == `_acme-challenge.${domain}`).map(obj => (obj)))[0] }), {})).map(([k, v]) => ({key: k, value: v}))) {
- *         domainValidation.push(new aws.index.Route53Record(`domain_validation-${range.key}`, {
+ *     for (const range of Object.entries(domains.reduce((__obj, domain) => ({ ...__obj, [domain]: exampleTlsSubscription.managedDnsChallenges.apply(managedDnsChallenges => managedDnsChallenges.filter(obj => obj.recordName == `_acme-challenge.${domain}`).map(obj => (obj)))[0] }), {})).sort().map(([k, v]) => ({key: k, value: v}))) {
+ *         domainValidation[range.key] = new aws.index.Route53Record(`domain_validation-${range.key}`, {
  *             name: range.value.recordName,
  *             type: range.value.recordType,
  *             zoneId: production.zoneId,
@@ -60,7 +60,7 @@ import * as utilities from "./utilities";
  *             ttl: 60,
  *         }, {
  *         dependsOn: [exampleTlsSubscription],
- *     }));
+ *     });
  *     }
  * });
  * // This is a resource that other resources can depend on if they require the certificate to be issued.
@@ -68,7 +68,7 @@ import * as utilities from "./utilities";
  * const exampleTlsSubscriptionValidation = new fastly.TlsSubscriptionValidation("example", {subscriptionId: exampleTlsSubscription.id}, {
  *     dependsOn: [domainValidation],
  * });
- * // This data source lists all available configuration objects.
+ * // This function lists all available configuration objects.
  * // It uses a `default` attribute to narrow down the list to just one configuration object.
  * // If the filtered list has a length that is not exactly one element, you'll see an error returned.
  * // The single TLS configuration is then returned and can be referenced by other resources (see aws_route53_record below).
@@ -76,23 +76,84 @@ import * as utilities from "./utilities";
  * // IMPORTANT: Not all customers will have a 'default' configuration.
  * // If you have issues filtering with `default = true`, then you may need another attribute.
  * // Refer to the fastly_tls_configuration documentation for available attributes:
- * // https://registry.terraform.io/providers/fastly/fastly/latest/docs/data-sources/tls_configuration#optional
+ * // https://registry.pulumi.io/providers/fastly/fastly/latest/docs/data-sources/tls_configuration#optional
  * const defaultTls = fastly.getTlsConfiguration({
  *     "default": true,
  * });
  * // Once validation is complete and we've retrieved the TLS configuration data, we can create multiple subdomain records.
  * const subdomain: aws.index.Route53Record[] = [];
- * for (const range = {value: 0}; range.value < std.toset({
+ * for (let range = 0; range < std.toset({
  *     input: subdomains,
- * }).result; range.value++) {
- *     subdomain.push(new aws.index.Route53Record(`subdomain-${range.value}`, {
- *         name: range.value,
+ * }).result; range++) {
+ *     subdomain.push(new aws.index.Route53Record(`subdomain-${range}`, {
+ *         name: range,
  *         records: .filter(record => record.recordType == "CNAME").map(record => (record.recordValue)),
  *         ttl: 300,
  *         type: "CNAME",
  *         zoneId: production.zoneId,
  *     }));
  * }
+ * ```
+ *
+ * Managed certificates for multiple domains, in a single apply:
+ *
+ * The `certificateId` attribute is only populated once the certificate has been issued, so resources referencing it are guaranteed to run after issuance — unlike `fastly_tls_subscription.<name>.certificate_id`, which is empty on first apply (certificates are issued asynchronously after domain validation) and causes API 400 errors when consumed in the same apply.
+ *
+ * > **Note:** Fastly automatically activates TLS on a subscription's domains once the certificate is issued — set `configurationId` on the `fastly.TlsSubscription` itself and do **not** create a `fastly.TlsActivation` for those domains (it fails with `400 domainId has already been taken`). Use the `fastly.TlsActivation` data source to read the automatically-created activation.
+ *
+ * ```typescript
+ * import * as pulumi from "@pulumi/pulumi";
+ * import * as aws from "@pulumi/aws";
+ * import * as fastly from "@pulumi/fastly";
+ *
+ * const config = new pulumi.Config();
+ * const certificates = config.requireObject<Record<string, {authority?: string, commonName?: string, domains?: Array<string>, forceDestroy?: boolean}>>("certificates");
+ * const defaultTls = fastly.getTlsConfiguration({
+ *     "default": true,
+ * });
+ * const exampleTlsSubscription: {[key: string]: fastly.TlsSubscription} = {};
+ * for (const range of Object.entries(certificates).sort().map(([k, v]) => ({key: k, value: v}))) {
+ *     exampleTlsSubscription[range.key] = new fastly.TlsSubscription(`example-${range.key}`, {
+ *         certificateAuthority: range.value.authority,
+ *         commonName: range.value.commonName,
+ *         domains: range.value.domains,
+ *         forceDestroy: range.value.forceDestroy,
+ *         configurationId: defaultTls.then(defaultTls => defaultTls.id),
+ *     });
+ * }
+ * // The domain validation challenge records MUST be created before validation
+ * // can succeed. This example uses DNS-based validation: replace with your DNS
+ * // provider's record resource, fed from
+ * // fastly_tls_subscription.example[each.key].managed_dns_challenges
+ * // (see the fastly_tls_subscription documentation for a Route53 example).
+ * const domainValidation: {[key: string]: aws.index.Route53Record} = {};
+ * exampleTlsSubscription.apply(rangeBody => {
+ *     for (const range of Object.entries(rangeBody).sort().map(([k, v]) => ({key: k, value: v}))) {
+ *         domainValidation[range.key] = new aws.index.Route53Record(`domain_validation-${range.key}`, {
+ *             name: range.value.managedDnsChallenges[0].recordName,
+ *             type: range.value.managedDnsChallenges[0].recordType,
+ *             records: [range.value.managedDnsChallenges[0].recordValue],
+ *             zoneId: "REPLACE_WITH_YOUR_ZONE_ID",
+ *             allowOverwrite: true,
+ *             ttl: 60,
+ *         });
+ *     }
+ * });
+ * // Blocks until the certificate has been issued. Its certificate_id attribute
+ * // is only known after issuance, so downstream resources referencing it are
+ * // guaranteed to run with a valid certificate — all in a single apply.
+ * const exampleTlsSubscriptionValidation: {[key: string]: fastly.TlsSubscriptionValidation} = {};
+ * for (const range of Object.entries(certificates).sort().map(([k, v]) => ({key: k, value: v}))) {
+ *     exampleTlsSubscriptionValidation[range.key] = new fastly.TlsSubscriptionValidation(`example-${range.key}`, {subscriptionId: exampleTlsSubscription[range.key].id}, {
+ *     dependsOn: [domainValidation],
+ * });
+ * }
+ * // The activation was created automatically by Fastly when the certificate was
+ * // issued; this function reads it (e.g. to consume dns_records/IDs).
+ * const example = Object.entries(certificates).sort().reduce((__obj, [__key, __value]) => ({ ...__obj, [__key]: fastly.getTlsActivation({
+ *     domain: __value.commonName,
+ * }) }), {});
+ * export const certificateIds = Object.entries(exampleTlsSubscriptionValidation).sort().reduce((__obj, [k, v]) => ({ ...__obj, [k]: v.certificateId }), {});
  * ```
  */
 export class TlsSubscriptionValidation extends pulumi.CustomResource {
@@ -124,6 +185,10 @@ export class TlsSubscriptionValidation extends pulumi.CustomResource {
     }
 
     /**
+     * The ID of the certificate issued for the validated subscription. Only populated once the subscription reaches the `issued` state. Reference this from `fastly_tls_activation.certificate_id` to guarantee the activation is created after the certificate exists, within a single apply.
+     */
+    declare public /*out*/ readonly certificateId: pulumi.Output<string>;
+    /**
      * The ID of the TLS Subscription that should be validated.
      */
     declare public readonly subscriptionId: pulumi.Output<string>;
@@ -141,6 +206,7 @@ export class TlsSubscriptionValidation extends pulumi.CustomResource {
         opts = opts || {};
         if (opts.id) {
             const state = argsOrState as TlsSubscriptionValidationState | undefined;
+            resourceInputs["certificateId"] = state?.certificateId;
             resourceInputs["subscriptionId"] = state?.subscriptionId;
         } else {
             const args = argsOrState as TlsSubscriptionValidationArgs | undefined;
@@ -148,6 +214,7 @@ export class TlsSubscriptionValidation extends pulumi.CustomResource {
                 throw new Error("Missing required property 'subscriptionId'");
             }
             resourceInputs["subscriptionId"] = args?.subscriptionId;
+            resourceInputs["certificateId"] = undefined /*out*/;
         }
         opts = pulumi.mergeOptions(utilities.resourceOptsDefaults(), opts);
         super(TlsSubscriptionValidation.__pulumiType, name, resourceInputs, opts);
@@ -159,9 +226,13 @@ export class TlsSubscriptionValidation extends pulumi.CustomResource {
  */
 export interface TlsSubscriptionValidationState {
     /**
+     * The ID of the certificate issued for the validated subscription. Only populated once the subscription reaches the `issued` state. Reference this from `fastly_tls_activation.certificate_id` to guarantee the activation is created after the certificate exists, within a single apply.
+     */
+    certificateId?: pulumi.Input<string | undefined>;
+    /**
      * The ID of the TLS Subscription that should be validated.
      */
-    subscriptionId?: pulumi.Input<string>;
+    subscriptionId?: pulumi.Input<string | undefined>;
 }
 
 /**

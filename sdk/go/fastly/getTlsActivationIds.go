@@ -41,12 +41,8 @@ type GetTlsActivationIdsResult struct {
 }
 
 func GetTlsActivationIdsOutput(ctx *pulumi.Context, args GetTlsActivationIdsOutputArgs, opts ...pulumi.InvokeOption) GetTlsActivationIdsResultOutput {
-	return pulumi.ToOutputWithContext(ctx.Context(), args).
-		ApplyT(func(v interface{}) (GetTlsActivationIdsResultOutput, error) {
-			args := v.(GetTlsActivationIdsArgs)
-			options := pulumi.InvokeOutputOptions{InvokeOptions: internal.PkgInvokeDefaultOpts(opts)}
-			return ctx.InvokeOutput("fastly:index/getTlsActivationIds:getTlsActivationIds", args, GetTlsActivationIdsResultOutput{}, options).(GetTlsActivationIdsResultOutput), nil
-		}).(GetTlsActivationIdsResultOutput)
+	options := pulumi.InvokeOutputOptions{InvokeOptions: internal.PkgInvokeDefaultOpts(opts)}
+	return ctx.InvokeOutput("fastly:index/getTlsActivationIds:getTlsActivationIds", args, GetTlsActivationIdsResultOutput{}, options).(GetTlsActivationIdsResultOutput)
 }
 
 // A collection of arguments for invoking getTlsActivationIds.

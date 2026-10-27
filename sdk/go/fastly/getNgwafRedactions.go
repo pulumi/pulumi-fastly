@@ -68,12 +68,8 @@ type GetNgwafRedactionsResult struct {
 }
 
 func GetNgwafRedactionsOutput(ctx *pulumi.Context, args GetNgwafRedactionsOutputArgs, opts ...pulumi.InvokeOption) GetNgwafRedactionsResultOutput {
-	return pulumi.ToOutputWithContext(ctx.Context(), args).
-		ApplyT(func(v interface{}) (GetNgwafRedactionsResultOutput, error) {
-			args := v.(GetNgwafRedactionsArgs)
-			options := pulumi.InvokeOutputOptions{InvokeOptions: internal.PkgInvokeDefaultOpts(opts)}
-			return ctx.InvokeOutput("fastly:index/getNgwafRedactions:getNgwafRedactions", args, GetNgwafRedactionsResultOutput{}, options).(GetNgwafRedactionsResultOutput), nil
-		}).(GetNgwafRedactionsResultOutput)
+	options := pulumi.InvokeOutputOptions{InvokeOptions: internal.PkgInvokeDefaultOpts(opts)}
+	return ctx.InvokeOutput("fastly:index/getNgwafRedactions:getNgwafRedactions", args, GetNgwafRedactionsResultOutput{}, options).(GetNgwafRedactionsResultOutput)
 }
 
 // A collection of arguments for invoking getNgwafRedactions.

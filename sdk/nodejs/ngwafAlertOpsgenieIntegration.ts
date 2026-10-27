@@ -113,15 +113,15 @@ export interface NgwafAlertOpsgenieIntegrationState {
     /**
      * The description of the alert.
      */
-    description?: pulumi.Input<string>;
+    description?: pulumi.Input<string | undefined>;
     /**
      * The Opsgenie key.
      */
-    key?: pulumi.Input<string>;
+    key?: pulumi.Input<string | undefined>;
     /**
      * The ID of the workspace.
      */
-    workspaceId?: pulumi.Input<string>;
+    workspaceId?: pulumi.Input<string | undefined>;
 }
 
 /**
@@ -131,7 +131,7 @@ export interface NgwafAlertOpsgenieIntegrationArgs {
     /**
      * The description of the alert.
      */
-    description?: pulumi.Input<string>;
+    description?: pulumi.Input<string | undefined>;
     /**
      * The Opsgenie key.
      */

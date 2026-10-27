@@ -23,6 +23,8 @@ __all__ = [
     'CustomDashboardDashboardItemDataSourceConfig',
     'CustomDashboardDashboardItemVisualization',
     'CustomDashboardDashboardItemVisualizationConfig',
+    'DnsZoneXfrConfigInbound',
+    'DnsZoneXfrConfigInboundPrimary',
     'NgwafAccountRuleAction',
     'NgwafAccountRuleCondition',
     'NgwafAccountRuleGroupCondition',
@@ -42,6 +44,9 @@ __all__ = [
     'NgwafWorkspaceRuleMultivalConditionCondition',
     'NgwafWorkspaceRuleRateLimit',
     'NgwafWorkspaceRuleRateLimitClientIdentifier',
+    'RoutingConfigPath',
+    'RoutingConfigPathRule',
+    'RoutingConfigPathRuleCondition',
     'ServiceACLEntriesEntry',
     'ServiceComputeBackend',
     'ServiceComputeDictionary',
@@ -78,6 +83,7 @@ __all__ = [
     'ServiceComputeLoggingSyslog',
     'ServiceComputePackage',
     'ServiceComputeProductEnablement',
+    'ServiceComputeProductEnablementBotManagement',
     'ServiceComputeProductEnablementDdosProtection',
     'ServiceComputeProductEnablementNgwaf',
     'ServiceComputeResourceLink',
@@ -133,6 +139,10 @@ __all__ = [
     'ServiceVclVcl',
     'TlsSubscriptionManagedDnsChallenge',
     'TlsSubscriptionManagedHttpChallenge',
+    'GetAiRuntimeControlProviderConnectionsProviderConnectionResult',
+    'GetAiRuntimeControlProvidersProviderResult',
+    'GetAiRuntimeControlProvidersProviderModelResult',
+    'GetAiRuntimeControlVirtualKeysVirtualKeyResult',
     'GetApiSecurityDiscoveredOperationsOperationResult',
     'GetApiSecurityOperationTagsTagResult',
     'GetApiSecurityOperationsOperationResult',
@@ -140,6 +150,7 @@ __all__ = [
     'GetConfigstoresStoreResult',
     'GetDatacentersPopResult',
     'GetDictionariesDictionaryResult',
+    'GetDnsZonesZoneResult',
     'GetDomainsDomainResult',
     'GetDomainsV1DomainResult',
     'GetKvstoresStoreResult',
@@ -165,6 +176,7 @@ __all__ = [
     'GetServicesDetailResult',
     'GetStagingIpsDomainResult',
     'GetTlsConfigurationDnsRecordResult',
+    'GetTsigKeysKeyResult',
     'GetVclSnippetsVclSnippetResult',
 ]
 
@@ -494,6 +506,85 @@ class CustomDashboardDashboardItemVisualizationConfig(dict):
         The units to use to format the data. One of: `number`, `bytes`, `percent`, `requests`, `responses`, `seconds`, `milliseconds`, `ratio`, `bitrate`.
         """
         return pulumi.get(self, "format")
+
+
+@pulumi.output_type
+class DnsZoneXfrConfigInbound(dict):
+    @staticmethod
+    def __key_warning(key: str):
+        suggest = None
+        if key == "inboundTsigKeyId":
+            suggest = "inbound_tsig_key_id"
+
+        if suggest:
+            pulumi.log.warn(f"Key '{key}' not found in DnsZoneXfrConfigInbound. Access the value via the '{suggest}' property getter instead.")
+
+    def __getitem__(self, key: str) -> Any:
+        DnsZoneXfrConfigInbound.__key_warning(key)
+        return super().__getitem__(key)
+
+    def get(self, key: str, default = None) -> Any:
+        DnsZoneXfrConfigInbound.__key_warning(key)
+        return super().get(key, default)
+
+    def __init__(__self__, *,
+                 inbound_tsig_key_id: Optional[_builtins.str] = None,
+                 primaries: Optional[Sequence['outputs.DnsZoneXfrConfigInboundPrimary']] = None):
+        """
+        :param _builtins.str inbound_tsig_key_id: The ID of the TSIG key used to secure inbound zone transfers.
+        :param Sequence['DnsZoneXfrConfigInboundPrimaryArgs'] primaries: An array of the primary DNS server objects associated with inbound zone transfers.
+        """
+        if inbound_tsig_key_id is not None:
+            pulumi.set(__self__, "inbound_tsig_key_id", inbound_tsig_key_id)
+        if primaries is not None:
+            pulumi.set(__self__, "primaries", primaries)
+
+    @_builtins.property
+    @pulumi.getter(name="inboundTsigKeyId")
+    def inbound_tsig_key_id(self) -> Optional[_builtins.str]:
+        """
+        The ID of the TSIG key used to secure inbound zone transfers.
+        """
+        return pulumi.get(self, "inbound_tsig_key_id")
+
+    @_builtins.property
+    @pulumi.getter
+    def primaries(self) -> Optional[Sequence['outputs.DnsZoneXfrConfigInboundPrimary']]:
+        """
+        An array of the primary DNS server objects associated with inbound zone transfers.
+        """
+        return pulumi.get(self, "primaries")
+
+
+@pulumi.output_type
+class DnsZoneXfrConfigInboundPrimary(dict):
+    def __init__(__self__, *,
+                 address: Optional[_builtins.str] = None,
+                 description: Optional[_builtins.str] = None):
+        """
+        :param _builtins.str address: An IPv4 address for the Primary DNS Server.
+        :param _builtins.str description: A description of the Primary DNS server.
+        """
+        if address is not None:
+            pulumi.set(__self__, "address", address)
+        if description is not None:
+            pulumi.set(__self__, "description", description)
+
+    @_builtins.property
+    @pulumi.getter
+    def address(self) -> Optional[_builtins.str]:
+        """
+        An IPv4 address for the Primary DNS Server.
+        """
+        return pulumi.get(self, "address")
+
+    @_builtins.property
+    @pulumi.getter
+    def description(self) -> Optional[_builtins.str]:
+        """
+        A description of the Primary DNS server.
+        """
+        return pulumi.get(self, "description")
 
 
 @pulumi.output_type
@@ -1539,6 +1630,204 @@ class NgwafWorkspaceRuleRateLimitClientIdentifier(dict):
 
 
 @pulumi.output_type
+class RoutingConfigPath(dict):
+    @staticmethod
+    def __key_warning(key: str):
+        suggest = None
+        if key == "pathId":
+            suggest = "path_id"
+
+        if suggest:
+            pulumi.log.warn(f"Key '{key}' not found in RoutingConfigPath. Access the value via the '{suggest}' property getter instead.")
+
+    def __getitem__(self, key: str) -> Any:
+        RoutingConfigPath.__key_warning(key)
+        return super().__getitem__(key)
+
+    def get(self, key: str, default = None) -> Any:
+        RoutingConfigPath.__key_warning(key)
+        return super().get(key, default)
+
+    def __init__(__self__, *,
+                 path: _builtins.str,
+                 rules: Sequence['outputs.RoutingConfigPathRule'],
+                 path_id: Optional[_builtins.str] = None):
+        """
+        :param _builtins.str path: The URL path pattern (max 2048 characters, starts with `/`).
+        :param Sequence['RoutingConfigPathRuleArgs'] rules: A conditional routing rule for this path. A rule with no `condition` blocks is the default (catch-all) rule for the path.
+        :param _builtins.str path_id: The path identifier.
+        """
+        pulumi.set(__self__, "path", path)
+        pulumi.set(__self__, "rules", rules)
+        if path_id is not None:
+            pulumi.set(__self__, "path_id", path_id)
+
+    @_builtins.property
+    @pulumi.getter
+    def path(self) -> _builtins.str:
+        """
+        The URL path pattern (max 2048 characters, starts with `/`).
+        """
+        return pulumi.get(self, "path")
+
+    @_builtins.property
+    @pulumi.getter
+    def rules(self) -> Sequence['outputs.RoutingConfigPathRule']:
+        """
+        A conditional routing rule for this path. A rule with no `condition` blocks is the default (catch-all) rule for the path.
+        """
+        return pulumi.get(self, "rules")
+
+    @_builtins.property
+    @pulumi.getter(name="pathId")
+    def path_id(self) -> Optional[_builtins.str]:
+        """
+        The path identifier.
+        """
+        return pulumi.get(self, "path_id")
+
+
+@pulumi.output_type
+class RoutingConfigPathRule(dict):
+    @staticmethod
+    def __key_warning(key: str):
+        suggest = None
+        if key == "actionType":
+            suggest = "action_type"
+        elif key == "actionValue":
+            suggest = "action_value"
+        elif key == "isDefault":
+            suggest = "is_default"
+        elif key == "ruleId":
+            suggest = "rule_id"
+
+        if suggest:
+            pulumi.log.warn(f"Key '{key}' not found in RoutingConfigPathRule. Access the value via the '{suggest}' property getter instead.")
+
+    def __getitem__(self, key: str) -> Any:
+        RoutingConfigPathRule.__key_warning(key)
+        return super().__getitem__(key)
+
+    def get(self, key: str, default = None) -> Any:
+        RoutingConfigPathRule.__key_warning(key)
+        return super().get(key, default)
+
+    def __init__(__self__, *,
+                 action_type: _builtins.str,
+                 action_value: _builtins.str,
+                 conditions: Optional[Sequence['outputs.RoutingConfigPathRuleCondition']] = None,
+                 is_default: Optional[_builtins.bool] = None,
+                 rule_id: Optional[_builtins.str] = None):
+        """
+        :param _builtins.str action_type: The action type. Currently only `service` is supported.
+        :param _builtins.str action_value: The destination for the action (e.g. a service ID when `action_type` is `service`).
+        :param Sequence['RoutingConfigPathRuleConditionArgs'] conditions: A matching criterion evaluated against the incoming request. Omit to make this the default (catch-all) rule for the path.
+        :param _builtins.bool is_default: Whether this is the catch-all rule for its path (i.e. it has no conditions).
+        :param _builtins.str rule_id: The rule identifier.
+        """
+        pulumi.set(__self__, "action_type", action_type)
+        pulumi.set(__self__, "action_value", action_value)
+        if conditions is not None:
+            pulumi.set(__self__, "conditions", conditions)
+        if is_default is not None:
+            pulumi.set(__self__, "is_default", is_default)
+        if rule_id is not None:
+            pulumi.set(__self__, "rule_id", rule_id)
+
+    @_builtins.property
+    @pulumi.getter(name="actionType")
+    def action_type(self) -> _builtins.str:
+        """
+        The action type. Currently only `service` is supported.
+        """
+        return pulumi.get(self, "action_type")
+
+    @_builtins.property
+    @pulumi.getter(name="actionValue")
+    def action_value(self) -> _builtins.str:
+        """
+        The destination for the action (e.g. a service ID when `action_type` is `service`).
+        """
+        return pulumi.get(self, "action_value")
+
+    @_builtins.property
+    @pulumi.getter
+    def conditions(self) -> Optional[Sequence['outputs.RoutingConfigPathRuleCondition']]:
+        """
+        A matching criterion evaluated against the incoming request. Omit to make this the default (catch-all) rule for the path.
+        """
+        return pulumi.get(self, "conditions")
+
+    @_builtins.property
+    @pulumi.getter(name="isDefault")
+    def is_default(self) -> Optional[_builtins.bool]:
+        """
+        Whether this is the catch-all rule for its path (i.e. it has no conditions).
+        """
+        return pulumi.get(self, "is_default")
+
+    @_builtins.property
+    @pulumi.getter(name="ruleId")
+    def rule_id(self) -> Optional[_builtins.str]:
+        """
+        The rule identifier.
+        """
+        return pulumi.get(self, "rule_id")
+
+
+@pulumi.output_type
+class RoutingConfigPathRuleCondition(dict):
+    def __init__(__self__, *,
+                 operator: _builtins.str,
+                 type: _builtins.str,
+                 value: _builtins.str,
+                 key: Optional[_builtins.str] = None):
+        """
+        :param _builtins.str operator: The comparison operator used to evaluate `value` against the request. One of `equals`, `starts_with`, `ends_with`, or `contains`.
+        :param _builtins.str type: The condition category. Currently only `header` is supported.
+        :param _builtins.str value: The value compared against the request using `operator`.
+        :param _builtins.str key: The header name to match against. Only applicable when `type` is `header`.
+        """
+        pulumi.set(__self__, "operator", operator)
+        pulumi.set(__self__, "type", type)
+        pulumi.set(__self__, "value", value)
+        if key is not None:
+            pulumi.set(__self__, "key", key)
+
+    @_builtins.property
+    @pulumi.getter
+    def operator(self) -> _builtins.str:
+        """
+        The comparison operator used to evaluate `value` against the request. One of `equals`, `starts_with`, `ends_with`, or `contains`.
+        """
+        return pulumi.get(self, "operator")
+
+    @_builtins.property
+    @pulumi.getter
+    def type(self) -> _builtins.str:
+        """
+        The condition category. Currently only `header` is supported.
+        """
+        return pulumi.get(self, "type")
+
+    @_builtins.property
+    @pulumi.getter
+    def value(self) -> _builtins.str:
+        """
+        The value compared against the request using `operator`.
+        """
+        return pulumi.get(self, "value")
+
+    @_builtins.property
+    @pulumi.getter
+    def key(self) -> Optional[_builtins.str]:
+        """
+        The header name to match against. Only applicable when `type` is `header`.
+        """
+        return pulumi.get(self, "key")
+
+
+@pulumi.output_type
 class ServiceACLEntriesEntry(dict):
     def __init__(__self__, *,
                  ip: _builtins.str,
@@ -1621,8 +1910,12 @@ class ServiceComputeBackend(dict):
             suggest = "keepalive_time"
         elif key == "maxConn":
             suggest = "max_conn"
+        elif key == "maxLifetime":
+            suggest = "max_lifetime"
         elif key == "maxTlsVersion":
             suggest = "max_tls_version"
+        elif key == "maxUse":
+            suggest = "max_use"
         elif key == "minTlsVersion":
             suggest = "min_tls_version"
         elif key == "overrideHost":
@@ -1669,7 +1962,9 @@ class ServiceComputeBackend(dict):
                  healthcheck: Optional[_builtins.str] = None,
                  keepalive_time: Optional[_builtins.int] = None,
                  max_conn: Optional[_builtins.int] = None,
+                 max_lifetime: Optional[_builtins.int] = None,
                  max_tls_version: Optional[_builtins.str] = None,
+                 max_use: Optional[_builtins.int] = None,
                  min_tls_version: Optional[_builtins.str] = None,
                  override_host: Optional[_builtins.str] = None,
                  port: Optional[_builtins.int] = None,
@@ -1695,7 +1990,9 @@ class ServiceComputeBackend(dict):
         :param _builtins.str healthcheck: Name of a defined `healthcheck` to assign to this backend
         :param _builtins.int keepalive_time: How long in seconds to keep a persistent connection to the backend between requests.
         :param _builtins.int max_conn: Maximum number of connections for this Backend. Default `200`
+        :param _builtins.int max_lifetime: Maximum time from creation (in milliseconds) that a pooled HTTP keepalive connection will be eligible for reuse; 0 is treated as unlimited - which is the default behavior.
         :param _builtins.str max_tls_version: Maximum allowed TLS version on SSL connections to this backend.
+        :param _builtins.int max_use: Maximum number of requests allowed over a single, pooled HTTP keepalive connection to this backend; 0 is treated as unlimited - which is the default behavior.
         :param _builtins.str min_tls_version: Minimum allowed TLS version on SSL connections to this backend.
         :param _builtins.str override_host: The hostname to override the Host header
         :param _builtins.int port: The port number on which the Backend responds. Default `80`
@@ -1728,8 +2025,12 @@ class ServiceComputeBackend(dict):
             pulumi.set(__self__, "keepalive_time", keepalive_time)
         if max_conn is not None:
             pulumi.set(__self__, "max_conn", max_conn)
+        if max_lifetime is not None:
+            pulumi.set(__self__, "max_lifetime", max_lifetime)
         if max_tls_version is not None:
             pulumi.set(__self__, "max_tls_version", max_tls_version)
+        if max_use is not None:
+            pulumi.set(__self__, "max_use", max_use)
         if min_tls_version is not None:
             pulumi.set(__self__, "min_tls_version", min_tls_version)
         if override_host is not None:
@@ -1834,12 +2135,28 @@ class ServiceComputeBackend(dict):
         return pulumi.get(self, "max_conn")
 
     @_builtins.property
+    @pulumi.getter(name="maxLifetime")
+    def max_lifetime(self) -> Optional[_builtins.int]:
+        """
+        Maximum time from creation (in milliseconds) that a pooled HTTP keepalive connection will be eligible for reuse; 0 is treated as unlimited - which is the default behavior.
+        """
+        return pulumi.get(self, "max_lifetime")
+
+    @_builtins.property
     @pulumi.getter(name="maxTlsVersion")
     def max_tls_version(self) -> Optional[_builtins.str]:
         """
         Maximum allowed TLS version on SSL connections to this backend.
         """
         return pulumi.get(self, "max_tls_version")
+
+    @_builtins.property
+    @pulumi.getter(name="maxUse")
+    def max_use(self) -> Optional[_builtins.int]:
+        """
+        Maximum number of requests allowed over a single, pooled HTTP keepalive connection to this backend; 0 is treated as unlimited - which is the default behavior.
+        """
+        return pulumi.get(self, "max_use")
 
     @_builtins.property
     @pulumi.getter(name="minTlsVersion")
@@ -6359,6 +6676,8 @@ class ServiceComputeProductEnablement(dict):
         suggest = None
         if key == "apiDiscovery":
             suggest = "api_discovery"
+        elif key == "botManagement":
+            suggest = "bot_management"
         elif key == "ddosProtection":
             suggest = "ddos_protection"
         elif key == "domainInspector":
@@ -6379,6 +6698,7 @@ class ServiceComputeProductEnablement(dict):
 
     def __init__(__self__, *,
                  api_discovery: Optional[_builtins.bool] = None,
+                 bot_management: Optional['outputs.ServiceComputeProductEnablementBotManagement'] = None,
                  ddos_protection: Optional['outputs.ServiceComputeProductEnablementDdosProtection'] = None,
                  domain_inspector: Optional[_builtins.bool] = None,
                  fanout: Optional[_builtins.bool] = None,
@@ -6388,6 +6708,7 @@ class ServiceComputeProductEnablement(dict):
                  websockets: Optional[_builtins.bool] = None):
         """
         :param _builtins.bool api_discovery: Enable API Discovery support
+        :param 'ServiceComputeProductEnablementBotManagementArgs' bot_management: Enable Bot Management support
         :param 'ServiceComputeProductEnablementDdosProtectionArgs' ddos_protection: DDoS Protection product
         :param _builtins.bool domain_inspector: Enable Domain Inspector support
         :param _builtins.bool fanout: Enable Fanout support
@@ -6398,6 +6719,8 @@ class ServiceComputeProductEnablement(dict):
         """
         if api_discovery is not None:
             pulumi.set(__self__, "api_discovery", api_discovery)
+        if bot_management is not None:
+            pulumi.set(__self__, "bot_management", bot_management)
         if ddos_protection is not None:
             pulumi.set(__self__, "ddos_protection", ddos_protection)
         if domain_inspector is not None:
@@ -6420,6 +6743,14 @@ class ServiceComputeProductEnablement(dict):
         Enable API Discovery support
         """
         return pulumi.get(self, "api_discovery")
+
+    @_builtins.property
+    @pulumi.getter(name="botManagement")
+    def bot_management(self) -> Optional['outputs.ServiceComputeProductEnablementBotManagement']:
+        """
+        Enable Bot Management support
+        """
+        return pulumi.get(self, "bot_management")
 
     @_builtins.property
     @pulumi.getter(name="ddosProtection")
@@ -6479,13 +6810,42 @@ class ServiceComputeProductEnablement(dict):
 
 
 @pulumi.output_type
+class ServiceComputeProductEnablementBotManagement(dict):
+    def __init__(__self__, *,
+                 contentguard: _builtins.str,
+                 enabled: _builtins.bool):
+        """
+        :param _builtins.str contentguard: ContentGuard status. Can be either `off`, or `on`.
+        :param _builtins.bool enabled: Enable Bot Management support
+        """
+        pulumi.set(__self__, "contentguard", contentguard)
+        pulumi.set(__self__, "enabled", enabled)
+
+    @_builtins.property
+    @pulumi.getter
+    def contentguard(self) -> _builtins.str:
+        """
+        ContentGuard status. Can be either `off`, or `on`.
+        """
+        return pulumi.get(self, "contentguard")
+
+    @_builtins.property
+    @pulumi.getter
+    def enabled(self) -> _builtins.bool:
+        """
+        Enable Bot Management support
+        """
+        return pulumi.get(self, "enabled")
+
+
+@pulumi.output_type
 class ServiceComputeProductEnablementDdosProtection(dict):
     def __init__(__self__, *,
                  enabled: _builtins.bool,
                  mode: _builtins.str):
         """
         :param _builtins.bool enabled: Enable DDoS Protection support
-        :param _builtins.str mode: Operation mode. Can be either `off`, `log`, or `block`.
+        :param _builtins.str mode: Operation mode. Can be `off`, `log`, `block`, or `client_challenge`.
         """
         pulumi.set(__self__, "enabled", enabled)
         pulumi.set(__self__, "mode", mode)
@@ -6502,7 +6862,7 @@ class ServiceComputeProductEnablementDdosProtection(dict):
     @pulumi.getter
     def mode(self) -> _builtins.str:
         """
-        Operation mode. Can be either `off`, `log`, or `block`.
+        Operation mode. Can be `off`, `log`, `block`, or `client_challenge`.
         """
         return pulumi.get(self, "mode")
 
@@ -6514,8 +6874,6 @@ class ServiceComputeProductEnablementNgwaf(dict):
         suggest = None
         if key == "workspaceId":
             suggest = "workspace_id"
-        elif key == "trafficRamp":
-            suggest = "traffic_ramp"
 
         if suggest:
             pulumi.log.warn(f"Key '{key}' not found in ServiceComputeProductEnablementNgwaf. Access the value via the '{suggest}' property getter instead.")
@@ -6530,17 +6888,13 @@ class ServiceComputeProductEnablementNgwaf(dict):
 
     def __init__(__self__, *,
                  enabled: _builtins.bool,
-                 workspace_id: _builtins.str,
-                 traffic_ramp: Optional[_builtins.int] = None):
+                 workspace_id: _builtins.str):
         """
         :param _builtins.bool enabled: Enable Next-Gen WAF support
         :param _builtins.str workspace_id: The workspace to link
-        :param _builtins.int traffic_ramp: The percentage of traffic to inspect
         """
         pulumi.set(__self__, "enabled", enabled)
         pulumi.set(__self__, "workspace_id", workspace_id)
-        if traffic_ramp is not None:
-            pulumi.set(__self__, "traffic_ramp", traffic_ramp)
 
     @_builtins.property
     @pulumi.getter
@@ -6557,14 +6911,6 @@ class ServiceComputeProductEnablementNgwaf(dict):
         The workspace to link
         """
         return pulumi.get(self, "workspace_id")
-
-    @_builtins.property
-    @pulumi.getter(name="trafficRamp")
-    def traffic_ramp(self) -> Optional[_builtins.int]:
-        """
-        The percentage of traffic to inspect
-        """
-        return pulumi.get(self, "traffic_ramp")
 
 
 @pulumi.output_type
@@ -6707,8 +7053,12 @@ class ServiceVclBackend(dict):
             suggest = "keepalive_time"
         elif key == "maxConn":
             suggest = "max_conn"
+        elif key == "maxLifetime":
+            suggest = "max_lifetime"
         elif key == "maxTlsVersion":
             suggest = "max_tls_version"
+        elif key == "maxUse":
+            suggest = "max_use"
         elif key == "minTlsVersion":
             suggest = "min_tls_version"
         elif key == "overrideHost":
@@ -6758,7 +7108,9 @@ class ServiceVclBackend(dict):
                  healthcheck: Optional[_builtins.str] = None,
                  keepalive_time: Optional[_builtins.int] = None,
                  max_conn: Optional[_builtins.int] = None,
+                 max_lifetime: Optional[_builtins.int] = None,
                  max_tls_version: Optional[_builtins.str] = None,
+                 max_use: Optional[_builtins.int] = None,
                  min_tls_version: Optional[_builtins.str] = None,
                  override_host: Optional[_builtins.str] = None,
                  port: Optional[_builtins.int] = None,
@@ -6786,7 +7138,9 @@ class ServiceVclBackend(dict):
         :param _builtins.str healthcheck: Name of a defined `healthcheck` to assign to this backend
         :param _builtins.int keepalive_time: How long in seconds to keep a persistent connection to the backend between requests.
         :param _builtins.int max_conn: Maximum number of connections for this Backend. Default `200`
+        :param _builtins.int max_lifetime: Maximum time from creation (in milliseconds) that a pooled HTTP keepalive connection will be eligible for reuse; 0 is treated as unlimited - which is the default behavior.
         :param _builtins.str max_tls_version: Maximum allowed TLS version on SSL connections to this backend.
+        :param _builtins.int max_use: Maximum number of requests allowed over a single, pooled HTTP keepalive connection to this backend; 0 is treated as unlimited - which is the default behavior.
         :param _builtins.str min_tls_version: Minimum allowed TLS version on SSL connections to this backend.
         :param _builtins.str override_host: The hostname to override the Host header
         :param _builtins.int port: The port number on which the Backend responds. Default `80`
@@ -6822,8 +7176,12 @@ class ServiceVclBackend(dict):
             pulumi.set(__self__, "keepalive_time", keepalive_time)
         if max_conn is not None:
             pulumi.set(__self__, "max_conn", max_conn)
+        if max_lifetime is not None:
+            pulumi.set(__self__, "max_lifetime", max_lifetime)
         if max_tls_version is not None:
             pulumi.set(__self__, "max_tls_version", max_tls_version)
+        if max_use is not None:
+            pulumi.set(__self__, "max_use", max_use)
         if min_tls_version is not None:
             pulumi.set(__self__, "min_tls_version", min_tls_version)
         if override_host is not None:
@@ -6938,12 +7296,28 @@ class ServiceVclBackend(dict):
         return pulumi.get(self, "max_conn")
 
     @_builtins.property
+    @pulumi.getter(name="maxLifetime")
+    def max_lifetime(self) -> Optional[_builtins.int]:
+        """
+        Maximum time from creation (in milliseconds) that a pooled HTTP keepalive connection will be eligible for reuse; 0 is treated as unlimited - which is the default behavior.
+        """
+        return pulumi.get(self, "max_lifetime")
+
+    @_builtins.property
     @pulumi.getter(name="maxTlsVersion")
     def max_tls_version(self) -> Optional[_builtins.str]:
         """
         Maximum allowed TLS version on SSL connections to this backend.
         """
         return pulumi.get(self, "max_tls_version")
+
+    @_builtins.property
+    @pulumi.getter(name="maxUse")
+    def max_use(self) -> Optional[_builtins.int]:
+        """
+        Maximum number of requests allowed over a single, pooled HTTP keepalive connection to this backend; 0 is treated as unlimited - which is the default behavior.
+        """
+        return pulumi.get(self, "max_use")
 
     @_builtins.property
     @pulumi.getter(name="minTlsVersion")
@@ -13551,7 +13925,7 @@ class ServiceVclProductEnablementDdosProtection(dict):
                  mode: _builtins.str):
         """
         :param _builtins.bool enabled: Enable DDoS Protection support
-        :param _builtins.str mode: Operation mode. Can be either `off`, `log`, or `block`.
+        :param _builtins.str mode: Operation mode. Can be `off`, `log`, `block`, or `client_challenge`.
         """
         pulumi.set(__self__, "enabled", enabled)
         pulumi.set(__self__, "mode", mode)
@@ -13568,7 +13942,7 @@ class ServiceVclProductEnablementDdosProtection(dict):
     @pulumi.getter
     def mode(self) -> _builtins.str:
         """
-        Operation mode. Can be either `off`, `log`, or `block`.
+        Operation mode. Can be `off`, `log`, `block`, or `client_challenge`.
         """
         return pulumi.get(self, "mode")
 
@@ -14383,6 +14757,342 @@ class TlsSubscriptionManagedHttpChallenge(dict):
 
 
 @pulumi.output_type
+class GetAiRuntimeControlProviderConnectionsProviderConnectionResult(dict):
+    def __init__(__self__, *,
+                 base_url: _builtins.str,
+                 created_at: _builtins.str,
+                 id: _builtins.str,
+                 models: Sequence[_builtins.str],
+                 name: _builtins.str,
+                 secret_id: _builtins.str,
+                 updated_at: _builtins.str):
+        """
+        :param _builtins.str base_url: The base URL for the provider's API.
+        :param _builtins.str created_at: Timestamp (UTC) of when the provider connection was created.
+        :param _builtins.str id: The ID of the provider connection.
+        :param Sequence[_builtins.str] models: The allowed AI model identifiers.
+        :param _builtins.str name: The human-readable name of the provider.
+        :param _builtins.str secret_id: A hash representing the API key used to create the provider connection.
+        :param _builtins.str updated_at: Timestamp (UTC) of when the provider connection was last updated.
+        """
+        pulumi.set(__self__, "base_url", base_url)
+        pulumi.set(__self__, "created_at", created_at)
+        pulumi.set(__self__, "id", id)
+        pulumi.set(__self__, "models", models)
+        pulumi.set(__self__, "name", name)
+        pulumi.set(__self__, "secret_id", secret_id)
+        pulumi.set(__self__, "updated_at", updated_at)
+
+    @_builtins.property
+    @pulumi.getter(name="baseUrl")
+    def base_url(self) -> _builtins.str:
+        """
+        The base URL for the provider's API.
+        """
+        return pulumi.get(self, "base_url")
+
+    @_builtins.property
+    @pulumi.getter(name="createdAt")
+    def created_at(self) -> _builtins.str:
+        """
+        Timestamp (UTC) of when the provider connection was created.
+        """
+        return pulumi.get(self, "created_at")
+
+    @_builtins.property
+    @pulumi.getter
+    def id(self) -> _builtins.str:
+        """
+        The ID of the provider connection.
+        """
+        return pulumi.get(self, "id")
+
+    @_builtins.property
+    @pulumi.getter
+    def models(self) -> Sequence[_builtins.str]:
+        """
+        The allowed AI model identifiers.
+        """
+        return pulumi.get(self, "models")
+
+    @_builtins.property
+    @pulumi.getter
+    def name(self) -> _builtins.str:
+        """
+        The human-readable name of the provider.
+        """
+        return pulumi.get(self, "name")
+
+    @_builtins.property
+    @pulumi.getter(name="secretId")
+    def secret_id(self) -> _builtins.str:
+        """
+        A hash representing the API key used to create the provider connection.
+        """
+        return pulumi.get(self, "secret_id")
+
+    @_builtins.property
+    @pulumi.getter(name="updatedAt")
+    def updated_at(self) -> _builtins.str:
+        """
+        Timestamp (UTC) of when the provider connection was last updated.
+        """
+        return pulumi.get(self, "updated_at")
+
+
+@pulumi.output_type
+class GetAiRuntimeControlProvidersProviderResult(dict):
+    def __init__(__self__, *,
+                 default_base_url: _builtins.str,
+                 display_name: _builtins.str,
+                 id: _builtins.str,
+                 models: Sequence['outputs.GetAiRuntimeControlProvidersProviderModelResult']):
+        """
+        :param _builtins.str default_base_url: The default API base URL for the provider.
+        :param _builtins.str display_name: The human-readable provider name, e.g. `Anthropic`.
+        :param _builtins.str id: The provider identifier, e.g. `anthropic`.
+        :param Sequence['GetAiRuntimeControlProvidersProviderModelArgs'] models: The models available for the provider.
+        """
+        pulumi.set(__self__, "default_base_url", default_base_url)
+        pulumi.set(__self__, "display_name", display_name)
+        pulumi.set(__self__, "id", id)
+        pulumi.set(__self__, "models", models)
+
+    @_builtins.property
+    @pulumi.getter(name="defaultBaseUrl")
+    def default_base_url(self) -> _builtins.str:
+        """
+        The default API base URL for the provider.
+        """
+        return pulumi.get(self, "default_base_url")
+
+    @_builtins.property
+    @pulumi.getter(name="displayName")
+    def display_name(self) -> _builtins.str:
+        """
+        The human-readable provider name, e.g. `Anthropic`.
+        """
+        return pulumi.get(self, "display_name")
+
+    @_builtins.property
+    @pulumi.getter
+    def id(self) -> _builtins.str:
+        """
+        The provider identifier, e.g. `anthropic`.
+        """
+        return pulumi.get(self, "id")
+
+    @_builtins.property
+    @pulumi.getter
+    def models(self) -> Sequence['outputs.GetAiRuntimeControlProvidersProviderModelResult']:
+        """
+        The models available for the provider.
+        """
+        return pulumi.get(self, "models")
+
+
+@pulumi.output_type
+class GetAiRuntimeControlProvidersProviderModelResult(dict):
+    def __init__(__self__, *,
+                 display_name: _builtins.str,
+                 id: _builtins.str,
+                 provider_id: _builtins.str):
+        """
+        :param _builtins.str display_name: The human-readable model name, e.g. `Claude Sonnet 4`.
+        :param _builtins.str id: The model identifier, e.g. `claude-sonnet-4-20250514`.
+        :param _builtins.str provider_id: The ID of the provider this model belongs to.
+        """
+        pulumi.set(__self__, "display_name", display_name)
+        pulumi.set(__self__, "id", id)
+        pulumi.set(__self__, "provider_id", provider_id)
+
+    @_builtins.property
+    @pulumi.getter(name="displayName")
+    def display_name(self) -> _builtins.str:
+        """
+        The human-readable model name, e.g. `Claude Sonnet 4`.
+        """
+        return pulumi.get(self, "display_name")
+
+    @_builtins.property
+    @pulumi.getter
+    def id(self) -> _builtins.str:
+        """
+        The model identifier, e.g. `claude-sonnet-4-20250514`.
+        """
+        return pulumi.get(self, "id")
+
+    @_builtins.property
+    @pulumi.getter(name="providerId")
+    def provider_id(self) -> _builtins.str:
+        """
+        The ID of the provider this model belongs to.
+        """
+        return pulumi.get(self, "provider_id")
+
+
+@pulumi.output_type
+class GetAiRuntimeControlVirtualKeysVirtualKeyResult(dict):
+    def __init__(__self__, *,
+                 created_at: _builtins.str,
+                 created_by: _builtins.str,
+                 customer_id: _builtins.str,
+                 deleted_at: _builtins.str,
+                 expires_at: _builtins.str,
+                 id: _builtins.str,
+                 last_used_at: _builtins.str,
+                 model: _builtins.str,
+                 name: _builtins.str,
+                 provider: _builtins.str,
+                 type: _builtins.str,
+                 updated_at: _builtins.str,
+                 user_id: _builtins.str,
+                 user_name: _builtins.str):
+        """
+        :param _builtins.str created_at: Timestamp (UTC) of when the virtual key was created.
+        :param _builtins.str created_by: The display name of the user who created the virtual key.
+        :param _builtins.str customer_id: The ID of the customer that owns the virtual key.
+        :param _builtins.str deleted_at: Timestamp (UTC) of when the virtual key was deleted, if applicable.
+        :param _builtins.str expires_at: The expiration timestamp of the virtual key, if any.
+        :param _builtins.str id: The ID of the virtual key.
+        :param _builtins.str last_used_at: Timestamp (UTC) of when the virtual key was last used, if applicable.
+        :param _builtins.str model: The AI model identifier.
+        :param _builtins.str name: The human-readable name of the virtual key.
+        :param _builtins.str provider: The AI model provider name.
+        :param _builtins.str type: The type of the virtual key.
+        :param _builtins.str updated_at: Timestamp (UTC) of when the virtual key was last updated.
+        :param _builtins.str user_id: The ID of the user who created the virtual key.
+        :param _builtins.str user_name: The display name of the user who created the virtual key.
+        """
+        pulumi.set(__self__, "created_at", created_at)
+        pulumi.set(__self__, "created_by", created_by)
+        pulumi.set(__self__, "customer_id", customer_id)
+        pulumi.set(__self__, "deleted_at", deleted_at)
+        pulumi.set(__self__, "expires_at", expires_at)
+        pulumi.set(__self__, "id", id)
+        pulumi.set(__self__, "last_used_at", last_used_at)
+        pulumi.set(__self__, "model", model)
+        pulumi.set(__self__, "name", name)
+        pulumi.set(__self__, "provider", provider)
+        pulumi.set(__self__, "type", type)
+        pulumi.set(__self__, "updated_at", updated_at)
+        pulumi.set(__self__, "user_id", user_id)
+        pulumi.set(__self__, "user_name", user_name)
+
+    @_builtins.property
+    @pulumi.getter(name="createdAt")
+    def created_at(self) -> _builtins.str:
+        """
+        Timestamp (UTC) of when the virtual key was created.
+        """
+        return pulumi.get(self, "created_at")
+
+    @_builtins.property
+    @pulumi.getter(name="createdBy")
+    def created_by(self) -> _builtins.str:
+        """
+        The display name of the user who created the virtual key.
+        """
+        return pulumi.get(self, "created_by")
+
+    @_builtins.property
+    @pulumi.getter(name="customerId")
+    def customer_id(self) -> _builtins.str:
+        """
+        The ID of the customer that owns the virtual key.
+        """
+        return pulumi.get(self, "customer_id")
+
+    @_builtins.property
+    @pulumi.getter(name="deletedAt")
+    def deleted_at(self) -> _builtins.str:
+        """
+        Timestamp (UTC) of when the virtual key was deleted, if applicable.
+        """
+        return pulumi.get(self, "deleted_at")
+
+    @_builtins.property
+    @pulumi.getter(name="expiresAt")
+    def expires_at(self) -> _builtins.str:
+        """
+        The expiration timestamp of the virtual key, if any.
+        """
+        return pulumi.get(self, "expires_at")
+
+    @_builtins.property
+    @pulumi.getter
+    def id(self) -> _builtins.str:
+        """
+        The ID of the virtual key.
+        """
+        return pulumi.get(self, "id")
+
+    @_builtins.property
+    @pulumi.getter(name="lastUsedAt")
+    def last_used_at(self) -> _builtins.str:
+        """
+        Timestamp (UTC) of when the virtual key was last used, if applicable.
+        """
+        return pulumi.get(self, "last_used_at")
+
+    @_builtins.property
+    @pulumi.getter
+    def model(self) -> _builtins.str:
+        """
+        The AI model identifier.
+        """
+        return pulumi.get(self, "model")
+
+    @_builtins.property
+    @pulumi.getter
+    def name(self) -> _builtins.str:
+        """
+        The human-readable name of the virtual key.
+        """
+        return pulumi.get(self, "name")
+
+    @_builtins.property
+    @pulumi.getter
+    def provider(self) -> _builtins.str:
+        """
+        The AI model provider name.
+        """
+        return pulumi.get(self, "provider")
+
+    @_builtins.property
+    @pulumi.getter
+    def type(self) -> _builtins.str:
+        """
+        The type of the virtual key.
+        """
+        return pulumi.get(self, "type")
+
+    @_builtins.property
+    @pulumi.getter(name="updatedAt")
+    def updated_at(self) -> _builtins.str:
+        """
+        Timestamp (UTC) of when the virtual key was last updated.
+        """
+        return pulumi.get(self, "updated_at")
+
+    @_builtins.property
+    @pulumi.getter(name="userId")
+    def user_id(self) -> _builtins.str:
+        """
+        The ID of the user who created the virtual key.
+        """
+        return pulumi.get(self, "user_id")
+
+    @_builtins.property
+    @pulumi.getter(name="userName")
+    def user_name(self) -> _builtins.str:
+        """
+        The display name of the user who created the virtual key.
+        """
+        return pulumi.get(self, "user_name")
+
+
+@pulumi.output_type
 class GetApiSecurityDiscoveredOperationsOperationResult(dict):
     def __init__(__self__, *,
                  domain: _builtins.str,
@@ -14825,6 +15535,46 @@ class GetDictionariesDictionaryResult(dict):
         Indicates if items in the dictionary are readable or not.
         """
         return pulumi.get(self, "write_only")
+
+
+@pulumi.output_type
+class GetDnsZonesZoneResult(dict):
+    def __init__(__self__, *,
+                 description: _builtins.str,
+                 id: _builtins.str,
+                 name: _builtins.str):
+        """
+        :param _builtins.str description: A freeform descriptive note.
+        :param _builtins.str id: Zone Identifier (UUID).
+        :param _builtins.str name: The domain name for the zone.
+        """
+        pulumi.set(__self__, "description", description)
+        pulumi.set(__self__, "id", id)
+        pulumi.set(__self__, "name", name)
+
+    @_builtins.property
+    @pulumi.getter
+    def description(self) -> _builtins.str:
+        """
+        A freeform descriptive note.
+        """
+        return pulumi.get(self, "description")
+
+    @_builtins.property
+    @pulumi.getter
+    def id(self) -> _builtins.str:
+        """
+        Zone Identifier (UUID).
+        """
+        return pulumi.get(self, "id")
+
+    @_builtins.property
+    @pulumi.getter
+    def name(self) -> _builtins.str:
+        """
+        The domain name for the zone.
+        """
+        return pulumi.get(self, "name")
 
 
 @pulumi.output_type
@@ -15814,6 +16564,57 @@ class GetTlsConfigurationDnsRecordResult(dict):
         The regions that will be used to route traffic. Select DNS Records with a `global` region to route traffic to the most performant point of presence (POP) worldwide (global pricing will apply). Select DNS records with a `us-eu` region to exclusively land traffic on North American and European POPs.
         """
         return pulumi.get(self, "region")
+
+
+@pulumi.output_type
+class GetTsigKeysKeyResult(dict):
+    def __init__(__self__, *,
+                 algorithm: _builtins.str,
+                 description: _builtins.str,
+                 id: _builtins.str,
+                 name: _builtins.str):
+        """
+        :param _builtins.str algorithm: The algorithm of the TSIG key.
+        :param _builtins.str description: A freeform descriptive note.
+        :param _builtins.str id: TSIG Key Identifier (UUID).
+        :param _builtins.str name: The name of the TSIG key.
+        """
+        pulumi.set(__self__, "algorithm", algorithm)
+        pulumi.set(__self__, "description", description)
+        pulumi.set(__self__, "id", id)
+        pulumi.set(__self__, "name", name)
+
+    @_builtins.property
+    @pulumi.getter
+    def algorithm(self) -> _builtins.str:
+        """
+        The algorithm of the TSIG key.
+        """
+        return pulumi.get(self, "algorithm")
+
+    @_builtins.property
+    @pulumi.getter
+    def description(self) -> _builtins.str:
+        """
+        A freeform descriptive note.
+        """
+        return pulumi.get(self, "description")
+
+    @_builtins.property
+    @pulumi.getter
+    def id(self) -> _builtins.str:
+        """
+        TSIG Key Identifier (UUID).
+        """
+        return pulumi.get(self, "id")
+
+    @_builtins.property
+    @pulumi.getter
+    def name(self) -> _builtins.str:
+        """
+        The name of the TSIG key.
+        """
+        return pulumi.get(self, "name")
 
 
 @pulumi.output_type

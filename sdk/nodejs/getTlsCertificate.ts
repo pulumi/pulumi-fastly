@@ -146,21 +146,21 @@ export interface GetTlsCertificateOutputArgs {
     /**
      * Domains that are listed in any certificates' Subject Alternative Names (SAN) list.
      */
-    domains?: pulumi.Input<pulumi.Input<string>[]>;
+    domains?: pulumi.Input<pulumi.Input<string>[] | undefined>;
     /**
      * Unique ID assigned to certificate by Fastly
      */
-    id?: pulumi.Input<string>;
+    id?: pulumi.Input<string | undefined>;
     /**
      * The hostname for which a certificate was issued.
      */
-    issuedTo?: pulumi.Input<string>;
+    issuedTo?: pulumi.Input<string | undefined>;
     /**
      * The certificate authority that issued the certificate.
      */
-    issuer?: pulumi.Input<string>;
+    issuer?: pulumi.Input<string | undefined>;
     /**
      * Human-readable name used to identify the certificate. Defaults to the certificate's Common Name or first Subject Alternative Name entry.
      */
-    name?: pulumi.Input<string>;
+    name?: pulumi.Input<string | undefined>;
 }

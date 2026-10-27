@@ -26,7 +26,7 @@ Pricing and signup information can be found at <https://www.fastly.com/signup>
 Use the navigation to the left to read about the available resources.
 ## Example Usage
 
-{{< chooser language "typescript,python,go,csharp,java,yaml" >}}
+{{< chooser language "typescript,python,go,csharp,java,yaml,hcl" >}}
 {{% choosable language typescript %}}
 ```yaml
 # Pulumi.yaml provider configuration file
@@ -87,7 +87,7 @@ using Fastly = Pulumi.Fastly;
 return await Deployment.RunAsync(() =>
 {
     // Create a Service
-    var myservice = new Fastly.Index.ServiceVcl("myservice", new()
+    var myservice = new Fastly.ServiceVcl("myservice", new()
     {
         Name = "myawesometestservice",
     });
@@ -171,8 +171,8 @@ import com.pulumi.Pulumi;
 import com.pulumi.core.Output;
 import com.pulumi.fastly.ServiceVcl;
 import com.pulumi.fastly.ServiceVclArgs;
-import java.util.List;
 import java.util.ArrayList;
+import java.util.Arrays;
 import java.util.Map;
 import java.io.File;
 import java.nio.file.Files;
@@ -190,6 +190,26 @@ public class App {
             .build());
 
     }
+}
+```
+
+{{% /choosable %}}
+{{% choosable language hcl %}}
+```hcl
+terraform {
+  required_providers {
+    fastly = {
+      source = "pulumi/fastly"
+    }
+  }
+}
+
+# Create a Service
+resource "fastly_service_vcl" "myservice" {
+  lifecycle {
+    create_before_destroy = true
+  }
+  name = "myawesometestservice"
 }
 ```
 
@@ -212,7 +232,7 @@ Static credentials can be provided by adding a `apiKey` in-line:
 
 Usage:
 
-{{< chooser language "typescript,python,go,csharp,java,yaml" >}}
+{{< chooser language "typescript,python,go,csharp,java,yaml,hcl" >}}
 {{% choosable language typescript %}}
 ```yaml
 # Pulumi.yaml provider configuration file
@@ -270,7 +290,7 @@ using Fastly = Pulumi.Fastly;
 
 return await Deployment.RunAsync(() =>
 {
-    var myservice = new Fastly.Index.ServiceVcl("myservice");
+    var myservice = new Fastly.ServiceVcl("myservice");
 
 });
 
@@ -344,8 +364,8 @@ import com.pulumi.Context;
 import com.pulumi.Pulumi;
 import com.pulumi.core.Output;
 import com.pulumi.fastly.ServiceVcl;
-import java.util.List;
 import java.util.ArrayList;
+import java.util.Arrays;
 import java.util.Map;
 import java.io.File;
 import java.nio.file.Files;
@@ -364,6 +384,24 @@ public class App {
 ```
 
 {{% /choosable %}}
+{{% choosable language hcl %}}
+```hcl
+terraform {
+  required_providers {
+    fastly = {
+      source = "pulumi/fastly"
+    }
+  }
+}
+
+resource "fastly_service_vcl" "myservice" {
+  lifecycle {
+    create_before_destroy = true
+  }
+}
+```
+
+{{% /choosable %}}
 {{< /chooser >}}
 
 You can create a credential on the Personal API Tokens page: <https://manage.fastly.com/account/personal/tokens>
@@ -372,7 +410,7 @@ You can create a credential on the Personal API Tokens page: <https://manage.fas
 You can provide your API key via `FASTLY_API_KEY` environment variable,
 representing your Fastly API key.
 
-{{< chooser language "typescript,python,go,csharp,java,yaml" >}}
+{{< chooser language "typescript,python,go,csharp,java,yaml,hcl" >}}
 {{% choosable language typescript %}}
 ```typescript
 import * as pulumi from "@pulumi/pulumi";
@@ -400,7 +438,7 @@ using Fastly = Pulumi.Fastly;
 
 return await Deployment.RunAsync(() =>
 {
-    var myservice = new Fastly.Index.ServiceVcl("myservice");
+    var myservice = new Fastly.ServiceVcl("myservice");
 
 });
 
@@ -444,8 +482,8 @@ import com.pulumi.Context;
 import com.pulumi.Pulumi;
 import com.pulumi.core.Output;
 import com.pulumi.fastly.ServiceVcl;
-import java.util.List;
 import java.util.ArrayList;
+import java.util.Arrays;
 import java.util.Map;
 import java.io.File;
 import java.nio.file.Files;
@@ -460,6 +498,24 @@ public class App {
         var myservice = new ServiceVcl("myservice");
 
     }
+}
+```
+
+{{% /choosable %}}
+{{% choosable language hcl %}}
+```hcl
+terraform {
+  required_providers {
+    fastly = {
+      source = "pulumi/fastly"
+    }
+  }
+}
+
+resource "fastly_service_vcl" "myservice" {
+  lifecycle {
+    create_before_destroy = true
+  }
 }
 ```
 

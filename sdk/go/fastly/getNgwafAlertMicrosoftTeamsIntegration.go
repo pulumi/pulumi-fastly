@@ -66,12 +66,8 @@ type LookupNgwafAlertMicrosoftTeamsIntegrationResult struct {
 }
 
 func LookupNgwafAlertMicrosoftTeamsIntegrationOutput(ctx *pulumi.Context, args LookupNgwafAlertMicrosoftTeamsIntegrationOutputArgs, opts ...pulumi.InvokeOption) LookupNgwafAlertMicrosoftTeamsIntegrationResultOutput {
-	return pulumi.ToOutputWithContext(ctx.Context(), args).
-		ApplyT(func(v interface{}) (LookupNgwafAlertMicrosoftTeamsIntegrationResultOutput, error) {
-			args := v.(LookupNgwafAlertMicrosoftTeamsIntegrationArgs)
-			options := pulumi.InvokeOutputOptions{InvokeOptions: internal.PkgInvokeDefaultOpts(opts)}
-			return ctx.InvokeOutput("fastly:index/getNgwafAlertMicrosoftTeamsIntegration:getNgwafAlertMicrosoftTeamsIntegration", args, LookupNgwafAlertMicrosoftTeamsIntegrationResultOutput{}, options).(LookupNgwafAlertMicrosoftTeamsIntegrationResultOutput), nil
-		}).(LookupNgwafAlertMicrosoftTeamsIntegrationResultOutput)
+	options := pulumi.InvokeOutputOptions{InvokeOptions: internal.PkgInvokeDefaultOpts(opts)}
+	return ctx.InvokeOutput("fastly:index/getNgwafAlertMicrosoftTeamsIntegration:getNgwafAlertMicrosoftTeamsIntegration", args, LookupNgwafAlertMicrosoftTeamsIntegrationResultOutput{}, options).(LookupNgwafAlertMicrosoftTeamsIntegrationResultOutput)
 }
 
 // A collection of arguments for invoking getNgwafAlertMicrosoftTeamsIntegration.

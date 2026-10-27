@@ -31,8 +31,8 @@ import javax.annotation.Nullable;
  * import com.pulumi.core.Output;
  * import com.pulumi.fastly.NgwafVirtualPatches;
  * import com.pulumi.fastly.NgwafVirtualPatchesArgs;
- * import java.util.List;
  * import java.util.ArrayList;
+ * import java.util.Arrays;
  * import java.util.Map;
  * import java.io.File;
  * import java.nio.file.Files;
@@ -48,7 +48,7 @@ import javax.annotation.Nullable;
  *             .action("block")
  *             .enabled(true)
  *             .virtualPatchId("CVE-2017-5638")
- *             .workspaceId(demoFastlyNgwafWorkspace.id())
+ *             .workspaceId(demoFastlyNgwafWorkspace.get("id"))
  *             .build());
  * 
  *     }

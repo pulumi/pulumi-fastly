@@ -43,8 +43,8 @@ import javax.annotation.Nullable;
  * import com.pulumi.fastly.NgwafWorkspaceRuleArgs;
  * import com.pulumi.fastly.inputs.NgwafWorkspaceRuleActionArgs;
  * import com.pulumi.fastly.inputs.NgwafWorkspaceRuleConditionArgs;
- * import java.util.List;
  * import java.util.ArrayList;
+ * import java.util.Arrays;
  * import java.util.Map;
  * import java.io.File;
  * import java.nio.file.Files;
@@ -113,8 +113,8 @@ import javax.annotation.Nullable;
  * import com.pulumi.fastly.NgwafWorkspaceRuleArgs;
  * import com.pulumi.fastly.inputs.NgwafWorkspaceRuleConditionArgs;
  * import com.pulumi.fastly.inputs.NgwafWorkspaceRuleActionArgs;
- * import java.util.List;
  * import java.util.ArrayList;
+ * import java.util.Arrays;
  * import java.util.Map;
  * import java.io.File;
  * import java.nio.file.Files;
@@ -141,10 +141,10 @@ import javax.annotation.Nullable;
  * 
  *         var exampleNgwafWorkspaceRule = new NgwafWorkspaceRule("exampleNgwafWorkspaceRule", NgwafWorkspaceRuleArgs.builder()
  *             .workspaceId(example.id())
- *             .type("request")
  *             .description("")
  *             .enabled(true)
  *             .groupOperator("all")
+ *             .type("templated_signal")
  *             .conditions(            
  *                 NgwafWorkspaceRuleConditionArgs.builder()
  *                     .field("method")
@@ -183,8 +183,9 @@ import javax.annotation.Nullable;
  * import com.pulumi.fastly.NgwafWorkspaceRuleArgs;
  * import com.pulumi.fastly.inputs.NgwafWorkspaceRuleActionArgs;
  * import com.pulumi.fastly.inputs.NgwafWorkspaceRuleGroupConditionArgs;
- * import java.util.List;
+ * import com.pulumi.fastly.inputs.NgwafWorkspaceRuleGroupConditionConditionArgs;
  * import java.util.ArrayList;
+ * import java.util.Arrays;
  * import java.util.Map;
  * import java.io.File;
  * import java.nio.file.Files;
@@ -276,8 +277,9 @@ import javax.annotation.Nullable;
  * import com.pulumi.fastly.NgwafWorkspaceRuleArgs;
  * import com.pulumi.fastly.inputs.NgwafWorkspaceRuleActionArgs;
  * import com.pulumi.fastly.inputs.NgwafWorkspaceRuleMultivalConditionArgs;
- * import java.util.List;
+ * import com.pulumi.fastly.inputs.NgwafWorkspaceRuleMultivalConditionConditionArgs;
  * import java.util.ArrayList;
+ * import java.util.Arrays;
  * import java.util.Map;
  * import java.io.File;
  * import java.nio.file.Files;
@@ -358,9 +360,10 @@ import javax.annotation.Nullable;
  * import com.pulumi.fastly.NgwafWorkspaceRuleArgs;
  * import com.pulumi.fastly.inputs.NgwafWorkspaceRuleConditionArgs;
  * import com.pulumi.fastly.inputs.NgwafWorkspaceRuleRateLimitArgs;
+ * import com.pulumi.fastly.inputs.NgwafWorkspaceRuleRateLimitClientIdentifierArgs;
  * import com.pulumi.fastly.inputs.NgwafWorkspaceRuleActionArgs;
- * import java.util.List;
  * import java.util.ArrayList;
+ * import java.util.Arrays;
  * import java.util.Map;
  * import java.io.File;
  * import java.nio.file.Files;
@@ -437,8 +440,8 @@ import javax.annotation.Nullable;
  * import com.pulumi.fastly.NgwafWorkspaceRuleArgs;
  * import com.pulumi.fastly.inputs.NgwafWorkspaceRuleConditionArgs;
  * import com.pulumi.fastly.inputs.NgwafWorkspaceRuleActionArgs;
- * import java.util.List;
  * import java.util.ArrayList;
+ * import java.util.Arrays;
  * import java.util.Map;
  * import java.io.File;
  * import java.nio.file.Files;

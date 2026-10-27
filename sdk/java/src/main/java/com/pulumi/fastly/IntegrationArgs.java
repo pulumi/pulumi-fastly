@@ -63,14 +63,14 @@ public final class IntegrationArgs extends com.pulumi.resources.ResourceArgs {
     }
 
     /**
-     * Type of the integration. One of: `mailinglist`, `microsoftteams`, `newrelic`, `pagerduty`, `slack`, `webhook`.
+     * Type of the integration. One of: `datadog`, `jiraissue`, `jsm`, `mailinglist`, `microsoftteams`, `newrelic`, `opsgenie`, `pagerduty`, `slack`, `splunkoncall`, `webhook`.
      * 
      */
     @Import(name="type", required=true)
     private Output<String> type;
 
     /**
-     * @return Type of the integration. One of: `mailinglist`, `microsoftteams`, `newrelic`, `pagerduty`, `slack`, `webhook`.
+     * @return Type of the integration. One of: `datadog`, `jiraissue`, `jsm`, `mailinglist`, `microsoftteams`, `newrelic`, `opsgenie`, `pagerduty`, `slack`, `splunkoncall`, `webhook`.
      * 
      */
     public Output<String> type() {
@@ -168,7 +168,7 @@ public final class IntegrationArgs extends com.pulumi.resources.ResourceArgs {
         }
 
         /**
-         * @param type Type of the integration. One of: `mailinglist`, `microsoftteams`, `newrelic`, `pagerduty`, `slack`, `webhook`.
+         * @param type Type of the integration. One of: `datadog`, `jiraissue`, `jsm`, `mailinglist`, `microsoftteams`, `newrelic`, `opsgenie`, `pagerduty`, `slack`, `splunkoncall`, `webhook`.
          * 
          * @return builder
          * 
@@ -179,7 +179,7 @@ public final class IntegrationArgs extends com.pulumi.resources.ResourceArgs {
         }
 
         /**
-         * @param type Type of the integration. One of: `mailinglist`, `microsoftteams`, `newrelic`, `pagerduty`, `slack`, `webhook`.
+         * @param type Type of the integration. One of: `datadog`, `jiraissue`, `jsm`, `mailinglist`, `microsoftteams`, `newrelic`, `opsgenie`, `pagerduty`, `slack`, `splunkoncall`, `webhook`.
          * 
          * @return builder
          * 

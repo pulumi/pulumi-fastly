@@ -61,10 +61,22 @@ namespace Pulumi.Fastly.Inputs
         public Input<int>? MaxConn { get; set; }
 
         /// <summary>
+        /// Maximum time from creation (in milliseconds) that a pooled HTTP keepalive connection will be eligible for reuse; 0 is treated as unlimited - which is the default behavior.
+        /// </summary>
+        [Input("maxLifetime")]
+        public Input<int>? MaxLifetime { get; set; }
+
+        /// <summary>
         /// Maximum allowed TLS version on SSL connections to this backend.
         /// </summary>
         [Input("maxTlsVersion")]
         public Input<string>? MaxTlsVersion { get; set; }
+
+        /// <summary>
+        /// Maximum number of requests allowed over a single, pooled HTTP keepalive connection to this backend; 0 is treated as unlimited - which is the default behavior.
+        /// </summary>
+        [Input("maxUse")]
+        public Input<int>? MaxUse { get; set; }
 
         /// <summary>
         /// Minimum allowed TLS version on SSL connections to this backend.

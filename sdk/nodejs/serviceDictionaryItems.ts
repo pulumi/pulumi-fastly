@@ -5,10 +5,13 @@ import * as pulumi from "@pulumi/pulumi";
 import * as utilities from "./utilities";
 
 /**
- * Defines a map of Fastly dictionary items that can be used to populate a service dictionary.  This resource will populate a dictionary with the items and will track their state.
+ * Defines a map of Fastly dictionary items that can be used to populate a service dictionary. This resource seeds configured items when it is created.
  *
- * > **Note:** By default the Terraform provider allows you to externally manage the items via API or UI.
- * If you wish to apply your changes in the HCL, then you should explicitly set the `manageItems` attribute. An example of this configuration is provided below.
+ * > **Note:** By default (`manageItems = false`), the Terraform provider allows you to externally manage dictionary items via API or UI. In this mode, item data is cleared from Terraform state during refresh and remote items are not listed by the provider. Changes to configured `items` after creation are ignored. Set `manageItems = true` if Terraform should track and reconcile the dictionary items.
+ *
+ * > **Note:** Because unmanaged item data is not retained in Terraform state, removing a `fastly.ServiceDictionaryItems` resource with `manageItems = false` does not delete the items that it originally seeded. If management is later enabled, Terraform performs one remote reconciliation so existing items can be adopted without blindly recreating them.
+ *
+ * > **Note:** Use `manageItems = true` cautiously. Terraform will overwrite external changes and delete remote items that are not present in the configured `items` map.
  *
  * ## Limitations
  *
@@ -42,19 +45,19 @@ import * as utilities from "./utilities";
  *     }],
  *     forceDestroy: true,
  * });
- * const items: fastly.ServiceDictionaryItems[] = [];
+ * const items: {[key: string]: fastly.ServiceDictionaryItems} = {};
  * myservice.dictionaries.apply(dictionaries => {
- *     const items: fastly.ServiceDictionaryItems[] = [];
+ *     const items: {[key: string]: fastly.ServiceDictionaryItems} = {};
  * pulumi.all(.filter(d => d.name == mydictName).reduce((__obj, d) => ({ ...__obj, [d.name]: d }), {})).apply(rangeBody => {
- *         for (const range of Object.entries(rangeBody).map(([k, v]) => ({key: k, value: v}))) {
- *             items.push(new fastly.ServiceDictionaryItems(`items-${range.key}`, {
+ *         for (const range of Object.entries(rangeBody).sort().map(([k, v]) => ({key: k, value: v}))) {
+ *             items[range.key] = new fastly.ServiceDictionaryItems(`items-${range.key}`, {
  *                 serviceId: myservice.id,
  *                 dictionaryId: range.value.dictionaryId,
  *                 items: {
  *                     key1: "value1",
  *                     key2: "value2",
  *                 },
- *             }));
+ *             });
  *         }
  *     });
  * });
@@ -90,16 +93,16 @@ import * as utilities from "./utilities";
  *     }],
  *     forceDestroy: true,
  * });
- * const items: fastly.ServiceDictionaryItems[] = [];
+ * const items: {[key: string]: fastly.ServiceDictionaryItems} = {};
  * myservice.dictionaries.apply(dictionaries => {
- *     const items: fastly.ServiceDictionaryItems[] = [];
+ *     const items: {[key: string]: fastly.ServiceDictionaryItems} = {};
  * pulumi.all(.filter(d => d.name == mydict.name).reduce((__obj, d) => ({ ...__obj, [d.name]: d }), {})).apply(rangeBody => {
- *         for (const range of Object.entries(rangeBody).map(([k, v]) => ({key: k, value: v}))) {
- *             items.push(new fastly.ServiceDictionaryItems(`items-${range.key}`, {
+ *         for (const range of Object.entries(rangeBody).sort().map(([k, v]) => ({key: k, value: v}))) {
+ *             items[range.key] = new fastly.ServiceDictionaryItems(`items-${range.key}`, {
  *                 serviceId: myservice.id,
  *                 dictionaryId: range.value.dictionaryId,
  *                 items: mydict.items,
- *             }));
+ *             });
  *         }
  *     });
  * });
@@ -138,12 +141,12 @@ import * as utilities from "./utilities";
  *     forceDestroy: true,
  * });
  * // This resource is dynamically creating the items from the local variables through for expressions and functions.
- * const project: fastly.ServiceDictionaryItems[] = [];
+ * const project: {[key: string]: fastly.ServiceDictionaryItems} = {};
  * myservice.dictionaries.apply(dictionaries => {
- *     const project: fastly.ServiceDictionaryItems[] = [];
+ *     const project: {[key: string]: fastly.ServiceDictionaryItems} = {};
  * pulumi.all(.filter(d => d.name == dictionaryName).reduce((__obj, d) => ({ ...__obj, [d.name]: d }), {})).apply(rangeBody => {
- *         for (const range of Object.entries(rangeBody).map(([k, v]) => ({key: k, value: v}))) {
- *             project.push(new fastly.ServiceDictionaryItems(`project-${range.key}`, {
+ *         for (const range of Object.entries(rangeBody).sort().map(([k, v]) => ({key: k, value: v}))) {
+ *             project[range.key] = new fastly.ServiceDictionaryItems(`project-${range.key}`, {
  *                 serviceId: myservice.id,
  *                 dictionaryId: range.value.dictionaryId,
  *                 items: hostDivisions.reduce((__obj, division) => ({ ...__obj, [division]: std.format({
@@ -153,7 +156,7 @@ import * as utilities from "./utilities";
  *                         hostBase,
  *                     ],
  *                 }).result }), {}),
- *             }));
+ *             });
  *         }
  *     });
  * });
@@ -218,9 +221,9 @@ import * as utilities from "./utilities";
  * import * as fastly from "@pulumi/fastly";
  *
  * //...
- * const items: fastly.ServiceDictionaryItems[] = [];
- * for (const range of Object.entries(.filter(d => d.name == mydictName).reduce((__obj, d) => ({ ...__obj, [d.name]: d }), {})).map(([k, v]) => ({key: k, value: v}))) {
- *     items.push(new fastly.ServiceDictionaryItems(`items-${range.key}`, {
+ * const items: {[key: string]: fastly.ServiceDictionaryItems} = {};
+ * for (const range of Object.entries(.filter(d => d.name == mydictName).reduce((__obj, d) => ({ ...__obj, [d.name]: d }), {})).sort().map(([k, v]) => ({key: k, value: v}))) {
+ *     items[range.key] = new fastly.ServiceDictionaryItems(`items-${range.key}`, {
  *         serviceId: myservice.id,
  *         dictionaryId: range.value.dictionaryId,
  *         manageItems: true,
@@ -228,7 +231,7 @@ import * as utilities from "./utilities";
  *             key1: "value1",
  *             key2: "value2",
  *         },
- *     }));
+ *     });
  * }
  * ```
  *
@@ -337,19 +340,19 @@ export interface ServiceDictionaryItemsState {
     /**
      * The ID of the dictionary that the items belong to
      */
-    dictionaryId?: pulumi.Input<string>;
+    dictionaryId?: pulumi.Input<string | undefined>;
     /**
      * A map representing an entry in the dictionary, (key/value)
      */
-    items?: pulumi.Input<{[key: string]: pulumi.Input<string>}>;
+    items?: pulumi.Input<{[key: string]: pulumi.Input<string>} | undefined>;
     /**
      * Whether to reapply changes if the state of the items drifts, i.e. if items are managed externally
      */
-    manageItems?: pulumi.Input<boolean>;
+    manageItems?: pulumi.Input<boolean | undefined>;
     /**
      * The ID of the service that the dictionary belongs to
      */
-    serviceId?: pulumi.Input<string>;
+    serviceId?: pulumi.Input<string | undefined>;
 }
 
 /**
@@ -363,11 +366,11 @@ export interface ServiceDictionaryItemsArgs {
     /**
      * A map representing an entry in the dictionary, (key/value)
      */
-    items?: pulumi.Input<{[key: string]: pulumi.Input<string>}>;
+    items?: pulumi.Input<{[key: string]: pulumi.Input<string>} | undefined>;
     /**
      * Whether to reapply changes if the state of the items drifts, i.e. if items are managed externally
      */
-    manageItems?: pulumi.Input<boolean>;
+    manageItems?: pulumi.Input<boolean | undefined>;
     /**
      * The ID of the service that the dictionary belongs to
      */

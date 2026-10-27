@@ -119,8 +119,8 @@ def get_package_hash(content: Optional[_builtins.str] = None,
         filename=pulumi.get(__ret__, 'filename'),
         hash=pulumi.get(__ret__, 'hash'),
         id=pulumi.get(__ret__, 'id'))
-def get_package_hash_output(content: Optional[pulumi.Input[Optional[_builtins.str]]] = None,
-                            filename: Optional[pulumi.Input[Optional[_builtins.str]]] = None,
+def get_package_hash_output(content: pulumi.Input[Optional[Optional[_builtins.str]]] = None,
+                            filename: pulumi.Input[Optional[Optional[_builtins.str]]] = None,
                             opts: Optional[Union[pulumi.InvokeOptions, pulumi.InvokeOutputOptions]] = None) -> pulumi.Output[GetPackageHashResult]:
     """
     Use this data source to generate a SHA512 hash of all files (in sorted order) within the package.

@@ -174,12 +174,12 @@ def get_tls_private_key(created_at: Optional[_builtins.str] = None,
         name=pulumi.get(__ret__, 'name'),
         public_key_sha1=pulumi.get(__ret__, 'public_key_sha1'),
         replace=pulumi.get(__ret__, 'replace'))
-def get_tls_private_key_output(created_at: Optional[pulumi.Input[Optional[_builtins.str]]] = None,
-                               id: Optional[pulumi.Input[Optional[_builtins.str]]] = None,
-                               key_length: Optional[pulumi.Input[Optional[_builtins.int]]] = None,
-                               key_type: Optional[pulumi.Input[Optional[_builtins.str]]] = None,
-                               name: Optional[pulumi.Input[Optional[_builtins.str]]] = None,
-                               public_key_sha1: Optional[pulumi.Input[Optional[_builtins.str]]] = None,
+def get_tls_private_key_output(created_at: pulumi.Input[Optional[Optional[_builtins.str]]] = None,
+                               id: pulumi.Input[Optional[Optional[_builtins.str]]] = None,
+                               key_length: pulumi.Input[Optional[Optional[_builtins.int]]] = None,
+                               key_type: pulumi.Input[Optional[Optional[_builtins.str]]] = None,
+                               name: pulumi.Input[Optional[Optional[_builtins.str]]] = None,
+                               public_key_sha1: pulumi.Input[Optional[Optional[_builtins.str]]] = None,
                                opts: Optional[Union[pulumi.InvokeOptions, pulumi.InvokeOutputOptions]] = None) -> pulumi.Output[GetTlsPrivateKeyResult]:
     """
     Use this data source to get information on a TLS Private Key uploaded to Fastly.

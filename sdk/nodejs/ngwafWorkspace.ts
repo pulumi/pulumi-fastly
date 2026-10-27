@@ -154,35 +154,35 @@ export interface NgwafWorkspaceState {
     /**
      * Attack threshold parameters for system site alerts. Each threshold value is the number of attack signals per IP address that must be detected during the interval before the related IP address is flagged. If no values are set then the default value for each field will be applied
      */
-    attackSignalThresholds?: pulumi.Input<inputs.NgwafWorkspaceAttackSignalThresholds>;
+    attackSignalThresholds?: pulumi.Input<inputs.NgwafWorkspaceAttackSignalThresholds | undefined>;
     /**
      * Specifies the request headers containing the client IP address. Maximum of 10 header names.
      */
-    clientIpHeaders?: pulumi.Input<pulumi.Input<string>[]>;
+    clientIpHeaders?: pulumi.Input<pulumi.Input<string>[] | undefined>;
     /**
      * The status code returned when a request is blocked. This configuration is applied at the workspace but can be overwritten in rules. Accepted values are [`301`, `302`, `400..599`]. Default value `406`.
      */
-    defaultBlockingResponseCode?: pulumi.Input<number>;
+    defaultBlockingResponseCode?: pulumi.Input<number | undefined>;
     /**
      * The redirect URL used if default*blocking*response_code is `301` or `302`.
      */
-    defaultRedirectUrl?: pulumi.Input<string>;
+    defaultRedirectUrl?: pulumi.Input<string | undefined>;
     /**
      * The description of the workspace
      */
-    description?: pulumi.Input<string>;
+    description?: pulumi.Input<string | undefined>;
     /**
      * Agents will anonymize IP addresses according to the option selected. Accepted value is `hashed`.
      */
-    ipAnonymization?: pulumi.Input<string>;
+    ipAnonymization?: pulumi.Input<string | undefined>;
     /**
      * The operation mode of the workspace. Accepted values are `off`, `block`, and `log`.
      */
-    mode?: pulumi.Input<string>;
+    mode?: pulumi.Input<string | undefined>;
     /**
      * The display name of the workspace.
      */
-    name?: pulumi.Input<string>;
+    name?: pulumi.Input<string | undefined>;
 }
 
 /**
@@ -196,15 +196,15 @@ export interface NgwafWorkspaceArgs {
     /**
      * Specifies the request headers containing the client IP address. Maximum of 10 header names.
      */
-    clientIpHeaders?: pulumi.Input<pulumi.Input<string>[]>;
+    clientIpHeaders?: pulumi.Input<pulumi.Input<string>[] | undefined>;
     /**
      * The status code returned when a request is blocked. This configuration is applied at the workspace but can be overwritten in rules. Accepted values are [`301`, `302`, `400..599`]. Default value `406`.
      */
-    defaultBlockingResponseCode?: pulumi.Input<number>;
+    defaultBlockingResponseCode?: pulumi.Input<number | undefined>;
     /**
      * The redirect URL used if default*blocking*response_code is `301` or `302`.
      */
-    defaultRedirectUrl?: pulumi.Input<string>;
+    defaultRedirectUrl?: pulumi.Input<string | undefined>;
     /**
      * The description of the workspace
      */
@@ -212,7 +212,7 @@ export interface NgwafWorkspaceArgs {
     /**
      * Agents will anonymize IP addresses according to the option selected. Accepted value is `hashed`.
      */
-    ipAnonymization?: pulumi.Input<string>;
+    ipAnonymization?: pulumi.Input<string | undefined>;
     /**
      * The operation mode of the workspace. Accepted values are `off`, `block`, and `log`.
      */
@@ -220,5 +220,5 @@ export interface NgwafWorkspaceArgs {
     /**
      * The display name of the workspace.
      */
-    name?: pulumi.Input<string>;
+    name?: pulumi.Input<string | undefined>;
 }

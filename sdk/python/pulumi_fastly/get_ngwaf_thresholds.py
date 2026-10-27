@@ -90,7 +90,7 @@ def get_ngwaf_thresholds(workspace_id: Optional[_builtins.str] = None,
         id=pulumi.get(__ret__, 'id'),
         thresholds=pulumi.get(__ret__, 'thresholds'),
         workspace_id=pulumi.get(__ret__, 'workspace_id'))
-def get_ngwaf_thresholds_output(workspace_id: Optional[pulumi.Input[_builtins.str]] = None,
+def get_ngwaf_thresholds_output(workspace_id: pulumi.Input[Optional[_builtins.str]] = None,
                                 opts: Optional[Union[pulumi.InvokeOptions, pulumi.InvokeOutputOptions]] = None) -> pulumi.Output[GetNgwafThresholdsResult]:
     """
     Use this data source to access information about an existing resource.

@@ -124,17 +124,17 @@ export interface GetTlsSubscriptionOutputArgs {
     /**
      * The entity that issues and certifies the TLS certificates for the subscription.
      */
-    certificateAuthority?: pulumi.Input<string>;
+    certificateAuthority?: pulumi.Input<string | undefined>;
     /**
      * ID of TLS configuration used to terminate TLS traffic.
      */
-    configurationId?: pulumi.Input<string>;
+    configurationId?: pulumi.Input<string | undefined>;
     /**
      * List of domains on which to enable TLS.
      */
-    domains?: pulumi.Input<pulumi.Input<string>[]>;
+    domains?: pulumi.Input<pulumi.Input<string>[] | undefined>;
     /**
      * ID of TLS subscription. Conflicts with all the other filters.
      */
-    id?: pulumi.Input<string>;
+    id?: pulumi.Input<string | undefined>;
 }

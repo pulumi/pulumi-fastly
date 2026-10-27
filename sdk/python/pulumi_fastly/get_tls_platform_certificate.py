@@ -173,8 +173,8 @@ def get_tls_platform_certificate(domains: Optional[Sequence[_builtins.str]] = No
         not_before=pulumi.get(__ret__, 'not_before'),
         replace=pulumi.get(__ret__, 'replace'),
         updated_at=pulumi.get(__ret__, 'updated_at'))
-def get_tls_platform_certificate_output(domains: Optional[pulumi.Input[Optional[Sequence[_builtins.str]]]] = None,
-                                        id: Optional[pulumi.Input[Optional[_builtins.str]]] = None,
+def get_tls_platform_certificate_output(domains: pulumi.Input[Optional[Optional[Sequence[_builtins.str]]]] = None,
+                                        id: pulumi.Input[Optional[Optional[_builtins.str]]] = None,
                                         opts: Optional[Union[pulumi.InvokeOptions, pulumi.InvokeOutputOptions]] = None) -> pulumi.Output[GetTlsPlatformCertificateResult]:
     """
     Use this data source to get information of a Platform TLS certificate for use with other resources.

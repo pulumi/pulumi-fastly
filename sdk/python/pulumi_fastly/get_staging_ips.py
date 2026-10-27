@@ -106,8 +106,8 @@ def get_staging_ips(service_id: Optional[_builtins.str] = None,
         id=pulumi.get(__ret__, 'id'),
         service_id=pulumi.get(__ret__, 'service_id'),
         service_version=pulumi.get(__ret__, 'service_version'))
-def get_staging_ips_output(service_id: Optional[pulumi.Input[_builtins.str]] = None,
-                           service_version: Optional[pulumi.Input[_builtins.int]] = None,
+def get_staging_ips_output(service_id: pulumi.Input[Optional[_builtins.str]] = None,
+                           service_version: pulumi.Input[Optional[_builtins.int]] = None,
                            opts: Optional[Union[pulumi.InvokeOptions, pulumi.InvokeOutputOptions]] = None) -> pulumi.Output[GetStagingIpsResult]:
     """
     Use this data source to access information about an existing resource.

@@ -38,8 +38,8 @@ import javax.annotation.Nullable;
  * import com.pulumi.fastly.inputs.NgwafWorkspaceRuleConditionArgs;
  * import com.pulumi.fastly.inputs.NgwafWorkspaceRuleActionArgs;
  * import com.pulumi.resources.CustomResourceOptions;
- * import java.util.List;
  * import java.util.ArrayList;
+ * import java.util.Arrays;
  * import java.util.Map;
  * import java.io.File;
  * import java.nio.file.Files;
@@ -63,7 +63,7 @@ import javax.annotation.Nullable;
  * 
  *         // Example usage with a rule. 
  *         var exampleNgwafWorkspaceRule = new NgwafWorkspaceRule("exampleNgwafWorkspaceRule", NgwafWorkspaceRuleArgs.builder()
- *             .workspaceId(exampleFastlyNgwafWorkspace.id())
+ *             .workspaceId(exampleFastlyNgwafWorkspace.get("id"))
  *             .type("request")
  *             .description("Example usage of a workspace list rule")
  *             .enabled(true)

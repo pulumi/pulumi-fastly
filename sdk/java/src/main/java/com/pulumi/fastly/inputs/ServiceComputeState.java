@@ -55,14 +55,14 @@ public final class ServiceComputeState extends com.pulumi.resources.ResourceArgs
     public static final ServiceComputeState Empty = new ServiceComputeState();
 
     /**
-     * Conditionally prevents new service versions from being activated. The apply step will create a new draft version but will not activate it if this is set to `false`. Default `true`
+     * Controls whether newly created service versions are activated. When versioned configuration changes, the apply step creates a draft version but does not activate it if this is set to `false`. Versionless service attributes, such as `name` and `comment`, are updated regardless of this setting. Default `true`
      * 
      */
     @Import(name="activate")
     private @Nullable Output<Boolean> activate;
 
     /**
-     * @return Conditionally prevents new service versions from being activated. The apply step will create a new draft version but will not activate it if this is set to `false`. Default `true`
+     * @return Controls whether newly created service versions are activated. When versioned configuration changes, the apply step creates a draft version but does not activate it if this is set to `false`. Versionless service attributes, such as `name` and `comment`, are updated regardless of this setting. Default `true`
      * 
      */
     public Optional<Output<Boolean>> activate() {
@@ -107,14 +107,14 @@ public final class ServiceComputeState extends com.pulumi.resources.ResourceArgs
     }
 
     /**
-     * Description field for the service. Default `Managed by Terraform`
+     * Description field for the service. This versionless attribute is updated regardless of the `activate` and `stage` settings. Default `Managed by Terraform`
      * 
      */
     @Import(name="comment")
     private @Nullable Output<String> comment;
 
     /**
-     * @return Description field for the service. Default `Managed by Terraform`
+     * @return Description field for the service. This versionless attribute is updated regardless of the `activate` and `stage` settings. Default `Managed by Terraform`
      * 
      */
     public Optional<Output<String>> comment() {
@@ -399,14 +399,14 @@ public final class ServiceComputeState extends com.pulumi.resources.ResourceArgs
     }
 
     /**
-     * The unique name for the Service to create
+     * The unique name for the Service to create. This versionless attribute is updated regardless of the `activate` and `stage` settings
      * 
      */
     @Import(name="name")
     private @Nullable Output<String> name;
 
     /**
-     * @return The unique name for the Service to create
+     * @return The unique name for the Service to create. This versionless attribute is updated regardless of the `activate` and `stage` settings
      * 
      */
     public Optional<Output<String>> name() {
@@ -466,14 +466,14 @@ public final class ServiceComputeState extends com.pulumi.resources.ResourceArgs
     }
 
     /**
-     * Conditionally enables new service versions to be staged. If set to `true`, all changes made by an `apply` step will be staged, even if `apply` did not create a new draft version. Default `false`
+     * Conditionally enables new service versions to be staged. If set to `true`, versioned changes made by an `apply` step will be staged, even if `apply` did not create a new draft version. Versionless service attributes, such as `name` and `comment`, are updated regardless of this setting. Default `false`
      * 
      */
     @Import(name="stage")
     private @Nullable Output<Boolean> stage;
 
     /**
-     * @return Conditionally enables new service versions to be staged. If set to `true`, all changes made by an `apply` step will be staged, even if `apply` did not create a new draft version. Default `false`
+     * @return Conditionally enables new service versions to be staged. If set to `true`, versioned changes made by an `apply` step will be staged, even if `apply` did not create a new draft version. Versionless service attributes, such as `name` and `comment`, are updated regardless of this setting. Default `false`
      * 
      */
     public Optional<Output<Boolean>> stage() {
@@ -582,7 +582,7 @@ public final class ServiceComputeState extends com.pulumi.resources.ResourceArgs
         }
 
         /**
-         * @param activate Conditionally prevents new service versions from being activated. The apply step will create a new draft version but will not activate it if this is set to `false`. Default `true`
+         * @param activate Controls whether newly created service versions are activated. When versioned configuration changes, the apply step creates a draft version but does not activate it if this is set to `false`. Versionless service attributes, such as `name` and `comment`, are updated regardless of this setting. Default `true`
          * 
          * @return builder
          * 
@@ -593,7 +593,7 @@ public final class ServiceComputeState extends com.pulumi.resources.ResourceArgs
         }
 
         /**
-         * @param activate Conditionally prevents new service versions from being activated. The apply step will create a new draft version but will not activate it if this is set to `false`. Default `true`
+         * @param activate Controls whether newly created service versions are activated. When versioned configuration changes, the apply step creates a draft version but does not activate it if this is set to `false`. Versionless service attributes, such as `name` and `comment`, are updated regardless of this setting. Default `true`
          * 
          * @return builder
          * 
@@ -658,7 +658,7 @@ public final class ServiceComputeState extends com.pulumi.resources.ResourceArgs
         }
 
         /**
-         * @param comment Description field for the service. Default `Managed by Terraform`
+         * @param comment Description field for the service. This versionless attribute is updated regardless of the `activate` and `stage` settings. Default `Managed by Terraform`
          * 
          * @return builder
          * 
@@ -669,7 +669,7 @@ public final class ServiceComputeState extends com.pulumi.resources.ResourceArgs
         }
 
         /**
-         * @param comment Description field for the service. Default `Managed by Terraform`
+         * @param comment Description field for the service. This versionless attribute is updated regardless of the `activate` and `stage` settings. Default `Managed by Terraform`
          * 
          * @return builder
          * 
@@ -1172,7 +1172,7 @@ public final class ServiceComputeState extends com.pulumi.resources.ResourceArgs
         }
 
         /**
-         * @param name The unique name for the Service to create
+         * @param name The unique name for the Service to create. This versionless attribute is updated regardless of the `activate` and `stage` settings
          * 
          * @return builder
          * 
@@ -1183,7 +1183,7 @@ public final class ServiceComputeState extends com.pulumi.resources.ResourceArgs
         }
 
         /**
-         * @param name The unique name for the Service to create
+         * @param name The unique name for the Service to create. This versionless attribute is updated regardless of the `activate` and `stage` settings
          * 
          * @return builder
          * 
@@ -1275,7 +1275,7 @@ public final class ServiceComputeState extends com.pulumi.resources.ResourceArgs
         }
 
         /**
-         * @param stage Conditionally enables new service versions to be staged. If set to `true`, all changes made by an `apply` step will be staged, even if `apply` did not create a new draft version. Default `false`
+         * @param stage Conditionally enables new service versions to be staged. If set to `true`, versioned changes made by an `apply` step will be staged, even if `apply` did not create a new draft version. Versionless service attributes, such as `name` and `comment`, are updated regardless of this setting. Default `false`
          * 
          * @return builder
          * 
@@ -1286,7 +1286,7 @@ public final class ServiceComputeState extends com.pulumi.resources.ResourceArgs
         }
 
         /**
-         * @param stage Conditionally enables new service versions to be staged. If set to `true`, all changes made by an `apply` step will be staged, even if `apply` did not create a new draft version. Default `false`
+         * @param stage Conditionally enables new service versions to be staged. If set to `true`, versioned changes made by an `apply` step will be staged, even if `apply` did not create a new draft version. Versionless service attributes, such as `name` and `comment`, are updated regardless of this setting. Default `false`
          * 
          * @return builder
          * 

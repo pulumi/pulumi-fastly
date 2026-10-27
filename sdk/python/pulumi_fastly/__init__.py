@@ -6,25 +6,34 @@ import builtins as _builtins
 from . import _utilities
 import typing
 # Export this package's modules as members:
+from .ai_runtime_control_provider_connection import *
+from .ai_runtime_control_virtual_key import *
 from .alert import *
 from .api_security_operation import *
 from .api_security_operation_tag import *
+from .audit_log_event_mapping import *
 from .compute_acl import *
 from .compute_acl_entries import *
 from .configstore import *
 from .configstore_entries import *
 from .custom_dashboard import *
+from .dns_zone import *
 from .domain import *
 from .domain_service_link import *
 from .domain_v1 import *
 from .domain_v1_service_link import *
+from .get_ai_runtime_control_provider_connections import *
+from .get_ai_runtime_control_providers import *
+from .get_ai_runtime_control_virtual_keys import *
 from .get_api_security_discovered_operations import *
 from .get_api_security_operation_tags import *
 from .get_api_security_operations import *
+from .get_audit_log_event_mapping import *
 from .get_compute_acls import *
 from .get_configstores import *
 from .get_datacenters import *
 from .get_dictionaries import *
+from .get_dns_zones import *
 from .get_domains import *
 from .get_domains_v1 import *
 from .get_fastly_ip_ranges import *
@@ -64,6 +73,7 @@ from .get_tls_private_key import *
 from .get_tls_private_key_ids import *
 from .get_tls_subscription import *
 from .get_tls_subscription_ids import *
+from .get_tsig_keys import *
 from .get_vcl_snippets import *
 from .integration import *
 from .kvstore import *
@@ -87,6 +97,8 @@ from .ngwaf_workspace_rule import *
 from .ngwaf_workspace_signal import *
 from .object_storage_access_keys import *
 from .provider import *
+from .routing_config import *
+from .routing_config_domain_link import *
 from .secretstore import *
 from .service_acl_entries import *
 from .service_authorization import *
@@ -101,6 +113,7 @@ from .tls_platform_certificate import *
 from .tls_private_key import *
 from .tls_subscription import *
 from .tls_subscription_validation import *
+from .tsig_key import *
 from .user import *
 from ._inputs import *
 from . import outputs
@@ -115,6 +128,22 @@ else:
 _utilities.register(
     resource_modules="""
 [
+ {
+  "pkg": "fastly",
+  "mod": "index/aiRuntimeControlProviderConnection",
+  "fqn": "pulumi_fastly",
+  "classes": {
+   "fastly:index/aiRuntimeControlProviderConnection:AiRuntimeControlProviderConnection": "AiRuntimeControlProviderConnection"
+  }
+ },
+ {
+  "pkg": "fastly",
+  "mod": "index/aiRuntimeControlVirtualKey",
+  "fqn": "pulumi_fastly",
+  "classes": {
+   "fastly:index/aiRuntimeControlVirtualKey:AiRuntimeControlVirtualKey": "AiRuntimeControlVirtualKey"
+  }
+ },
  {
   "pkg": "fastly",
   "mod": "index/alert",
@@ -137,6 +166,14 @@ _utilities.register(
   "fqn": "pulumi_fastly",
   "classes": {
    "fastly:index/apiSecurityOperationTag:ApiSecurityOperationTag": "ApiSecurityOperationTag"
+  }
+ },
+ {
+  "pkg": "fastly",
+  "mod": "index/auditLogEventMapping",
+  "fqn": "pulumi_fastly",
+  "classes": {
+   "fastly:index/auditLogEventMapping:AuditLogEventMapping": "AuditLogEventMapping"
   }
  },
  {
@@ -177,6 +214,14 @@ _utilities.register(
   "fqn": "pulumi_fastly",
   "classes": {
    "fastly:index/customDashboard:CustomDashboard": "CustomDashboard"
+  }
+ },
+ {
+  "pkg": "fastly",
+  "mod": "index/dnsZone",
+  "fqn": "pulumi_fastly",
+  "classes": {
+   "fastly:index/dnsZone:DnsZone": "DnsZone"
   }
  },
  {
@@ -381,6 +426,22 @@ _utilities.register(
  },
  {
   "pkg": "fastly",
+  "mod": "index/routingConfig",
+  "fqn": "pulumi_fastly",
+  "classes": {
+   "fastly:index/routingConfig:RoutingConfig": "RoutingConfig"
+  }
+ },
+ {
+  "pkg": "fastly",
+  "mod": "index/routingConfigDomainLink",
+  "fqn": "pulumi_fastly",
+  "classes": {
+   "fastly:index/routingConfigDomainLink:RoutingConfigDomainLink": "RoutingConfigDomainLink"
+  }
+ },
+ {
+  "pkg": "fastly",
   "mod": "index/secretstore",
   "fqn": "pulumi_fastly",
   "classes": {
@@ -489,6 +550,14 @@ _utilities.register(
   "fqn": "pulumi_fastly",
   "classes": {
    "fastly:index/tlsSubscriptionValidation:TlsSubscriptionValidation": "TlsSubscriptionValidation"
+  }
+ },
+ {
+  "pkg": "fastly",
+  "mod": "index/tsigKey",
+  "fqn": "pulumi_fastly",
+  "classes": {
+   "fastly:index/tsigKey:TsigKey": "TsigKey"
   }
  },
  {

@@ -48,8 +48,8 @@ import javax.annotation.Nullable;
  * import com.pulumi.fastly.TlsPlatformCertificate;
  * import com.pulumi.fastly.TlsPlatformCertificateArgs;
  * import com.pulumi.resources.CustomResourceOptions;
- * import java.util.List;
  * import java.util.ArrayList;
+ * import java.util.Arrays;
  * import java.util.Map;
  * import java.io.File;
  * import java.nio.file.Files;
@@ -72,7 +72,7 @@ import javax.annotation.Nullable;
  *         var ca = new SelfSignedCert("ca", SelfSignedCertArgs.builder()
  *             .keyAlgorithm(caKey.algorithm())
  *             .privateKeyPem(caKey.privateKeyPem())
- *             .subject(SelfSignedCertSubjectArgs.builder()
+ *             .subject(com.pulumi.tls.inputs.SelfSignedCertSubjectArgs.builder()
  *                 .commonName("Example CA")
  *                 .build())
  *             .isCaCertificate(true)
@@ -85,7 +85,7 @@ import javax.annotation.Nullable;
  *         var example = new CertRequest("example", CertRequestArgs.builder()
  *             .keyAlgorithm(key.algorithm())
  *             .privateKeyPem(key.privateKeyPem())
- *             .subject(CertRequestSubjectArgs.builder()
+ *             .subject(com.pulumi.tls.inputs.CertRequestSubjectArgs.builder()
  *                 .commonName("example.com")
  *                 .build())
  *             .dnsNames(            

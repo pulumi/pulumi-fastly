@@ -101,7 +101,7 @@ def get_ngwaf_workspace_rules(workspace_id: Optional[_builtins.str] = None,
         id=pulumi.get(__ret__, 'id'),
         rules=pulumi.get(__ret__, 'rules'),
         workspace_id=pulumi.get(__ret__, 'workspace_id'))
-def get_ngwaf_workspace_rules_output(workspace_id: Optional[pulumi.Input[_builtins.str]] = None,
+def get_ngwaf_workspace_rules_output(workspace_id: pulumi.Input[Optional[_builtins.str]] = None,
                                      opts: Optional[Union[pulumi.InvokeOptions, pulumi.InvokeOutputOptions]] = None) -> pulumi.Output[GetNgwafWorkspaceRulesResult]:
     """
     Use this data source to get a Fastly Next-Gen WAF Workspace Rule.

@@ -18,10 +18,6 @@ namespace Pulumi.Fastly.Outputs
         /// </summary>
         public readonly bool Enabled;
         /// <summary>
-        /// The percentage of traffic to inspect
-        /// </summary>
-        public readonly int? TrafficRamp;
-        /// <summary>
         /// The workspace to link
         /// </summary>
         public readonly string WorkspaceId;
@@ -30,12 +26,9 @@ namespace Pulumi.Fastly.Outputs
         private ServiceComputeProductEnablementNgwaf(
             bool enabled,
 
-            int? trafficRamp,
-
             string workspaceId)
         {
             Enabled = enabled;
-            TrafficRamp = trafficRamp;
             WorkspaceId = workspaceId;
         }
     }

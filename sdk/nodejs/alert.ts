@@ -165,35 +165,35 @@ export interface AlertState {
     /**
      * Additional text that is included in the alert notification.
      */
-    description?: pulumi.Input<string>;
+    description?: pulumi.Input<string | undefined>;
     /**
      * More filters depending on the source type.
      */
-    dimensions?: pulumi.Input<inputs.AlertDimensions>;
+    dimensions?: pulumi.Input<inputs.AlertDimensions | undefined>;
     /**
      * Criteria on how to alert.
      */
-    evaluationStrategy?: pulumi.Input<inputs.AlertEvaluationStrategy>;
+    evaluationStrategy?: pulumi.Input<inputs.AlertEvaluationStrategy | undefined>;
     /**
      * List of integrations used to notify when alert fires.
      */
-    integrationIds?: pulumi.Input<pulumi.Input<string>[]>;
+    integrationIds?: pulumi.Input<pulumi.Input<string>[] | undefined>;
     /**
      * The metric name to alert on for a specific source: [domains](https://developer.fastly.com/reference/api/metrics-stats/domain-inspector/historical), [origins](https://developer.fastly.com/reference/api/metrics-stats/origin-inspector/historical), or [stats](https://developer.fastly.com/reference/api/metrics-stats/historical-stats).
      */
-    metric?: pulumi.Input<string>;
+    metric?: pulumi.Input<string | undefined>;
     /**
      * The name of the alert.
      */
-    name?: pulumi.Input<string>;
+    name?: pulumi.Input<string | undefined>;
     /**
      * The service which the alert monitors. Optional when using `stats` as the `source`.
      */
-    serviceId?: pulumi.Input<string>;
+    serviceId?: pulumi.Input<string | undefined>;
     /**
      * The source where the metric comes from. One of: `domains`, `origins`, `stats`.
      */
-    source?: pulumi.Input<string>;
+    source?: pulumi.Input<string | undefined>;
 }
 
 /**
@@ -203,11 +203,11 @@ export interface AlertArgs {
     /**
      * Additional text that is included in the alert notification.
      */
-    description?: pulumi.Input<string>;
+    description?: pulumi.Input<string | undefined>;
     /**
      * More filters depending on the source type.
      */
-    dimensions?: pulumi.Input<inputs.AlertDimensions>;
+    dimensions?: pulumi.Input<inputs.AlertDimensions | undefined>;
     /**
      * Criteria on how to alert.
      */
@@ -215,7 +215,7 @@ export interface AlertArgs {
     /**
      * List of integrations used to notify when alert fires.
      */
-    integrationIds?: pulumi.Input<pulumi.Input<string>[]>;
+    integrationIds?: pulumi.Input<pulumi.Input<string>[] | undefined>;
     /**
      * The metric name to alert on for a specific source: [domains](https://developer.fastly.com/reference/api/metrics-stats/domain-inspector/historical), [origins](https://developer.fastly.com/reference/api/metrics-stats/origin-inspector/historical), or [stats](https://developer.fastly.com/reference/api/metrics-stats/historical-stats).
      */
@@ -223,11 +223,11 @@ export interface AlertArgs {
     /**
      * The name of the alert.
      */
-    name?: pulumi.Input<string>;
+    name?: pulumi.Input<string | undefined>;
     /**
      * The service which the alert monitors. Optional when using `stats` as the `source`.
      */
-    serviceId?: pulumi.Input<string>;
+    serviceId?: pulumi.Input<string | undefined>;
     /**
      * The source where the metric comes from. One of: `domains`, `origins`, `stats`.
      */

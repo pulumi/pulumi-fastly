@@ -23,7 +23,7 @@ import * as utilities from "./utilities";
  *         name: "tf-test-backend-1",
  *     }],
  * });
- * // Optional: create a tag so the data source returns a predictable result
+ * // Optional: create a tag so the function returns a predictable result
  * const example = new fastly.ApiSecurityOperationTag("example", {
  *     serviceId: svc1.id,
  *     name: "example-tag",
@@ -33,7 +33,7 @@ import * as utilities from "./utilities";
  *     serviceId: svc1.id,
  * });
  * export const apiSecurityOperationTags = tags.apply(tags => tags.tags);
- * export const apiSecurityOperationTagsTotal = tags.apply(tags => tags.total);
+ * export const apiSecurityOperationTagsTotal = tags.total;
  * ```
  */
 export function getApiSecurityOperationTags(args: GetApiSecurityOperationTagsArgs, opts?: pulumi.InvokeOptions): Promise<GetApiSecurityOperationTagsResult> {
@@ -91,7 +91,7 @@ export interface GetApiSecurityOperationTagsResult {
  *         name: "tf-test-backend-1",
  *     }],
  * });
- * // Optional: create a tag so the data source returns a predictable result
+ * // Optional: create a tag so the function returns a predictable result
  * const example = new fastly.ApiSecurityOperationTag("example", {
  *     serviceId: svc1.id,
  *     name: "example-tag",
@@ -101,7 +101,7 @@ export interface GetApiSecurityOperationTagsResult {
  *     serviceId: svc1.id,
  * });
  * export const apiSecurityOperationTags = tags.apply(tags => tags.tags);
- * export const apiSecurityOperationTagsTotal = tags.apply(tags => tags.total);
+ * export const apiSecurityOperationTagsTotal = tags.total;
  * ```
  */
 export function getApiSecurityOperationTagsOutput(args: GetApiSecurityOperationTagsOutputArgs, opts?: pulumi.InvokeOutputOptions): pulumi.Output<GetApiSecurityOperationTagsResult> {

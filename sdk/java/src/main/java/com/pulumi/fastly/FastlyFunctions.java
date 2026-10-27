@@ -9,14 +9,20 @@ import com.pulumi.deployment.Deployment;
 import com.pulumi.deployment.InvokeOptions;
 import com.pulumi.deployment.InvokeOutputOptions;
 import com.pulumi.fastly.Utilities;
+import com.pulumi.fastly.inputs.GetAiRuntimeControlVirtualKeysArgs;
+import com.pulumi.fastly.inputs.GetAiRuntimeControlVirtualKeysPlainArgs;
 import com.pulumi.fastly.inputs.GetApiSecurityDiscoveredOperationsArgs;
 import com.pulumi.fastly.inputs.GetApiSecurityDiscoveredOperationsPlainArgs;
 import com.pulumi.fastly.inputs.GetApiSecurityOperationTagsArgs;
 import com.pulumi.fastly.inputs.GetApiSecurityOperationTagsPlainArgs;
 import com.pulumi.fastly.inputs.GetApiSecurityOperationsArgs;
 import com.pulumi.fastly.inputs.GetApiSecurityOperationsPlainArgs;
+import com.pulumi.fastly.inputs.GetAuditLogEventMappingArgs;
+import com.pulumi.fastly.inputs.GetAuditLogEventMappingPlainArgs;
 import com.pulumi.fastly.inputs.GetDictionariesArgs;
 import com.pulumi.fastly.inputs.GetDictionariesPlainArgs;
+import com.pulumi.fastly.inputs.GetDnsZonesArgs;
+import com.pulumi.fastly.inputs.GetDnsZonesPlainArgs;
 import com.pulumi.fastly.inputs.GetDomainsArgs;
 import com.pulumi.fastly.inputs.GetDomainsPlainArgs;
 import com.pulumi.fastly.inputs.GetDomainsV1Args;
@@ -69,15 +75,22 @@ import com.pulumi.fastly.inputs.GetTlsPrivateKeyArgs;
 import com.pulumi.fastly.inputs.GetTlsPrivateKeyPlainArgs;
 import com.pulumi.fastly.inputs.GetTlsSubscriptionArgs;
 import com.pulumi.fastly.inputs.GetTlsSubscriptionPlainArgs;
+import com.pulumi.fastly.inputs.GetTsigKeysArgs;
+import com.pulumi.fastly.inputs.GetTsigKeysPlainArgs;
 import com.pulumi.fastly.inputs.GetVclSnippetsArgs;
 import com.pulumi.fastly.inputs.GetVclSnippetsPlainArgs;
+import com.pulumi.fastly.outputs.GetAiRuntimeControlProviderConnectionsResult;
+import com.pulumi.fastly.outputs.GetAiRuntimeControlProvidersResult;
+import com.pulumi.fastly.outputs.GetAiRuntimeControlVirtualKeysResult;
 import com.pulumi.fastly.outputs.GetApiSecurityDiscoveredOperationsResult;
 import com.pulumi.fastly.outputs.GetApiSecurityOperationTagsResult;
 import com.pulumi.fastly.outputs.GetApiSecurityOperationsResult;
+import com.pulumi.fastly.outputs.GetAuditLogEventMappingResult;
 import com.pulumi.fastly.outputs.GetComputeAclsResult;
 import com.pulumi.fastly.outputs.GetConfigstoresResult;
 import com.pulumi.fastly.outputs.GetDatacentersResult;
 import com.pulumi.fastly.outputs.GetDictionariesResult;
+import com.pulumi.fastly.outputs.GetDnsZonesResult;
 import com.pulumi.fastly.outputs.GetDomainsResult;
 import com.pulumi.fastly.outputs.GetDomainsV1Result;
 import com.pulumi.fastly.outputs.GetFastlyIpRangesResult;
@@ -117,11 +130,229 @@ import com.pulumi.fastly.outputs.GetTlsPrivateKeyIdsResult;
 import com.pulumi.fastly.outputs.GetTlsPrivateKeyResult;
 import com.pulumi.fastly.outputs.GetTlsSubscriptionIdsResult;
 import com.pulumi.fastly.outputs.GetTlsSubscriptionResult;
+import com.pulumi.fastly.outputs.GetTsigKeysResult;
 import com.pulumi.fastly.outputs.GetVclSnippetsResult;
 import com.pulumi.resources.InvokeArgs;
 import java.util.concurrent.CompletableFuture;
 
 public final class FastlyFunctions {
+    /**
+     * Use this data source to get the list of provider connections configured for your
+     * customer account in [Fastly AI Runtime Control](https://www.fastly.com/documentation/reference/api/ai-runtime-control/).
+     * 
+     */
+    public static Output<GetAiRuntimeControlProviderConnectionsResult> getAiRuntimeControlProviderConnections() {
+        return getAiRuntimeControlProviderConnections(InvokeArgs.Empty, InvokeOptions.Empty);
+    }
+    /**
+     * Use this data source to get the list of provider connections configured for your
+     * customer account in [Fastly AI Runtime Control](https://www.fastly.com/documentation/reference/api/ai-runtime-control/).
+     * 
+     */
+    public static CompletableFuture<GetAiRuntimeControlProviderConnectionsResult> getAiRuntimeControlProviderConnectionsPlain() {
+        return getAiRuntimeControlProviderConnectionsPlain(InvokeArgs.Empty, InvokeOptions.Empty);
+    }
+    /**
+     * Use this data source to get the list of provider connections configured for your
+     * customer account in [Fastly AI Runtime Control](https://www.fastly.com/documentation/reference/api/ai-runtime-control/).
+     * 
+     */
+    public static Output<GetAiRuntimeControlProviderConnectionsResult> getAiRuntimeControlProviderConnections(InvokeArgs args) {
+        return getAiRuntimeControlProviderConnections(args, InvokeOptions.Empty);
+    }
+    /**
+     * Use this data source to get the list of provider connections configured for your
+     * customer account in [Fastly AI Runtime Control](https://www.fastly.com/documentation/reference/api/ai-runtime-control/).
+     * 
+     */
+    public static CompletableFuture<GetAiRuntimeControlProviderConnectionsResult> getAiRuntimeControlProviderConnectionsPlain(InvokeArgs args) {
+        return getAiRuntimeControlProviderConnectionsPlain(args, InvokeOptions.Empty);
+    }
+    /**
+     * Use this data source to get the list of provider connections configured for your
+     * customer account in [Fastly AI Runtime Control](https://www.fastly.com/documentation/reference/api/ai-runtime-control/).
+     * 
+     */
+    public static Output<GetAiRuntimeControlProviderConnectionsResult> getAiRuntimeControlProviderConnections(InvokeArgs args, InvokeOptions options) {
+        return Deployment.getInstance().invoke("fastly:index/getAiRuntimeControlProviderConnections:getAiRuntimeControlProviderConnections", TypeShape.of(GetAiRuntimeControlProviderConnectionsResult.class), args, Utilities.withVersion(options));
+    }
+    /**
+     * Use this data source to get the list of provider connections configured for your
+     * customer account in [Fastly AI Runtime Control](https://www.fastly.com/documentation/reference/api/ai-runtime-control/).
+     * 
+     */
+    public static Output<GetAiRuntimeControlProviderConnectionsResult> getAiRuntimeControlProviderConnections(InvokeArgs args, InvokeOutputOptions options) {
+        return Deployment.getInstance().invoke("fastly:index/getAiRuntimeControlProviderConnections:getAiRuntimeControlProviderConnections", TypeShape.of(GetAiRuntimeControlProviderConnectionsResult.class), args, Utilities.withVersion(options));
+    }
+    /**
+     * Use this data source to get the list of provider connections configured for your
+     * customer account in [Fastly AI Runtime Control](https://www.fastly.com/documentation/reference/api/ai-runtime-control/).
+     * 
+     */
+    public static CompletableFuture<GetAiRuntimeControlProviderConnectionsResult> getAiRuntimeControlProviderConnectionsPlain(InvokeArgs args, InvokeOptions options) {
+        return Deployment.getInstance().invokeAsync("fastly:index/getAiRuntimeControlProviderConnections:getAiRuntimeControlProviderConnections", TypeShape.of(GetAiRuntimeControlProviderConnectionsResult.class), args, Utilities.withVersion(options));
+    }
+    /**
+     * Use this data source to get the list of AI providers supported by [Fastly AI
+     * Runtime Control][1], with each provider&#39;s available models nested within.
+     * 
+     */
+    public static Output<GetAiRuntimeControlProvidersResult> getAiRuntimeControlProviders() {
+        return getAiRuntimeControlProviders(InvokeArgs.Empty, InvokeOptions.Empty);
+    }
+    /**
+     * Use this data source to get the list of AI providers supported by [Fastly AI
+     * Runtime Control][1], with each provider&#39;s available models nested within.
+     * 
+     */
+    public static CompletableFuture<GetAiRuntimeControlProvidersResult> getAiRuntimeControlProvidersPlain() {
+        return getAiRuntimeControlProvidersPlain(InvokeArgs.Empty, InvokeOptions.Empty);
+    }
+    /**
+     * Use this data source to get the list of AI providers supported by [Fastly AI
+     * Runtime Control][1], with each provider&#39;s available models nested within.
+     * 
+     */
+    public static Output<GetAiRuntimeControlProvidersResult> getAiRuntimeControlProviders(InvokeArgs args) {
+        return getAiRuntimeControlProviders(args, InvokeOptions.Empty);
+    }
+    /**
+     * Use this data source to get the list of AI providers supported by [Fastly AI
+     * Runtime Control][1], with each provider&#39;s available models nested within.
+     * 
+     */
+    public static CompletableFuture<GetAiRuntimeControlProvidersResult> getAiRuntimeControlProvidersPlain(InvokeArgs args) {
+        return getAiRuntimeControlProvidersPlain(args, InvokeOptions.Empty);
+    }
+    /**
+     * Use this data source to get the list of AI providers supported by [Fastly AI
+     * Runtime Control][1], with each provider&#39;s available models nested within.
+     * 
+     */
+    public static Output<GetAiRuntimeControlProvidersResult> getAiRuntimeControlProviders(InvokeArgs args, InvokeOptions options) {
+        return Deployment.getInstance().invoke("fastly:index/getAiRuntimeControlProviders:getAiRuntimeControlProviders", TypeShape.of(GetAiRuntimeControlProvidersResult.class), args, Utilities.withVersion(options));
+    }
+    /**
+     * Use this data source to get the list of AI providers supported by [Fastly AI
+     * Runtime Control][1], with each provider&#39;s available models nested within.
+     * 
+     */
+    public static Output<GetAiRuntimeControlProvidersResult> getAiRuntimeControlProviders(InvokeArgs args, InvokeOutputOptions options) {
+        return Deployment.getInstance().invoke("fastly:index/getAiRuntimeControlProviders:getAiRuntimeControlProviders", TypeShape.of(GetAiRuntimeControlProvidersResult.class), args, Utilities.withVersion(options));
+    }
+    /**
+     * Use this data source to get the list of AI providers supported by [Fastly AI
+     * Runtime Control][1], with each provider&#39;s available models nested within.
+     * 
+     */
+    public static CompletableFuture<GetAiRuntimeControlProvidersResult> getAiRuntimeControlProvidersPlain(InvokeArgs args, InvokeOptions options) {
+        return Deployment.getInstance().invokeAsync("fastly:index/getAiRuntimeControlProviders:getAiRuntimeControlProviders", TypeShape.of(GetAiRuntimeControlProvidersResult.class), args, Utilities.withVersion(options));
+    }
+    /**
+     * Use this data source to get the list of virtual keys configured for your customer
+     * account in [Fastly AI Runtime Control](https://www.fastly.com/documentation/reference/api/ai-runtime-control/), optionally filtered by model,
+     * provider, or a substring match on the key name.
+     * 
+     * &gt; **Note:** Access tokens are never returned by this endpoint.
+     * 
+     * ## Example Usage
+     * 
+     * [1]: https://www.fastly.com/documentation/reference/api/ai-runtime-control/
+     * 
+     */
+    public static Output<GetAiRuntimeControlVirtualKeysResult> getAiRuntimeControlVirtualKeys() {
+        return getAiRuntimeControlVirtualKeys(GetAiRuntimeControlVirtualKeysArgs.Empty, InvokeOptions.Empty);
+    }
+    /**
+     * Use this data source to get the list of virtual keys configured for your customer
+     * account in [Fastly AI Runtime Control](https://www.fastly.com/documentation/reference/api/ai-runtime-control/), optionally filtered by model,
+     * provider, or a substring match on the key name.
+     * 
+     * &gt; **Note:** Access tokens are never returned by this endpoint.
+     * 
+     * ## Example Usage
+     * 
+     * [1]: https://www.fastly.com/documentation/reference/api/ai-runtime-control/
+     * 
+     */
+    public static CompletableFuture<GetAiRuntimeControlVirtualKeysResult> getAiRuntimeControlVirtualKeysPlain() {
+        return getAiRuntimeControlVirtualKeysPlain(GetAiRuntimeControlVirtualKeysPlainArgs.Empty, InvokeOptions.Empty);
+    }
+    /**
+     * Use this data source to get the list of virtual keys configured for your customer
+     * account in [Fastly AI Runtime Control](https://www.fastly.com/documentation/reference/api/ai-runtime-control/), optionally filtered by model,
+     * provider, or a substring match on the key name.
+     * 
+     * &gt; **Note:** Access tokens are never returned by this endpoint.
+     * 
+     * ## Example Usage
+     * 
+     * [1]: https://www.fastly.com/documentation/reference/api/ai-runtime-control/
+     * 
+     */
+    public static Output<GetAiRuntimeControlVirtualKeysResult> getAiRuntimeControlVirtualKeys(GetAiRuntimeControlVirtualKeysArgs args) {
+        return getAiRuntimeControlVirtualKeys(args, InvokeOptions.Empty);
+    }
+    /**
+     * Use this data source to get the list of virtual keys configured for your customer
+     * account in [Fastly AI Runtime Control](https://www.fastly.com/documentation/reference/api/ai-runtime-control/), optionally filtered by model,
+     * provider, or a substring match on the key name.
+     * 
+     * &gt; **Note:** Access tokens are never returned by this endpoint.
+     * 
+     * ## Example Usage
+     * 
+     * [1]: https://www.fastly.com/documentation/reference/api/ai-runtime-control/
+     * 
+     */
+    public static CompletableFuture<GetAiRuntimeControlVirtualKeysResult> getAiRuntimeControlVirtualKeysPlain(GetAiRuntimeControlVirtualKeysPlainArgs args) {
+        return getAiRuntimeControlVirtualKeysPlain(args, InvokeOptions.Empty);
+    }
+    /**
+     * Use this data source to get the list of virtual keys configured for your customer
+     * account in [Fastly AI Runtime Control](https://www.fastly.com/documentation/reference/api/ai-runtime-control/), optionally filtered by model,
+     * provider, or a substring match on the key name.
+     * 
+     * &gt; **Note:** Access tokens are never returned by this endpoint.
+     * 
+     * ## Example Usage
+     * 
+     * [1]: https://www.fastly.com/documentation/reference/api/ai-runtime-control/
+     * 
+     */
+    public static Output<GetAiRuntimeControlVirtualKeysResult> getAiRuntimeControlVirtualKeys(GetAiRuntimeControlVirtualKeysArgs args, InvokeOptions options) {
+        return Deployment.getInstance().invoke("fastly:index/getAiRuntimeControlVirtualKeys:getAiRuntimeControlVirtualKeys", TypeShape.of(GetAiRuntimeControlVirtualKeysResult.class), args, Utilities.withVersion(options));
+    }
+    /**
+     * Use this data source to get the list of virtual keys configured for your customer
+     * account in [Fastly AI Runtime Control](https://www.fastly.com/documentation/reference/api/ai-runtime-control/), optionally filtered by model,
+     * provider, or a substring match on the key name.
+     * 
+     * &gt; **Note:** Access tokens are never returned by this endpoint.
+     * 
+     * ## Example Usage
+     * 
+     * [1]: https://www.fastly.com/documentation/reference/api/ai-runtime-control/
+     * 
+     */
+    public static Output<GetAiRuntimeControlVirtualKeysResult> getAiRuntimeControlVirtualKeys(GetAiRuntimeControlVirtualKeysArgs args, InvokeOutputOptions options) {
+        return Deployment.getInstance().invoke("fastly:index/getAiRuntimeControlVirtualKeys:getAiRuntimeControlVirtualKeys", TypeShape.of(GetAiRuntimeControlVirtualKeysResult.class), args, Utilities.withVersion(options));
+    }
+    /**
+     * Use this data source to get the list of virtual keys configured for your customer
+     * account in [Fastly AI Runtime Control](https://www.fastly.com/documentation/reference/api/ai-runtime-control/), optionally filtered by model,
+     * provider, or a substring match on the key name.
+     * 
+     * &gt; **Note:** Access tokens are never returned by this endpoint.
+     * 
+     * ## Example Usage
+     * 
+     * [1]: https://www.fastly.com/documentation/reference/api/ai-runtime-control/
+     * 
+     */
+    public static CompletableFuture<GetAiRuntimeControlVirtualKeysResult> getAiRuntimeControlVirtualKeysPlain(GetAiRuntimeControlVirtualKeysPlainArgs args, InvokeOptions options) {
+        return Deployment.getInstance().invokeAsync("fastly:index/getAiRuntimeControlVirtualKeys:getAiRuntimeControlVirtualKeys", TypeShape.of(GetAiRuntimeControlVirtualKeysResult.class), args, Utilities.withVersion(options));
+    }
     /**
      * Use this data source to list API Security discovered operations for a Fastly service.
      * 
@@ -141,8 +372,8 @@ public final class FastlyFunctions {
      * import com.pulumi.fastly.inputs.ServiceVclBackendArgs;
      * import com.pulumi.fastly.FastlyFunctions;
      * import com.pulumi.fastly.inputs.GetApiSecurityDiscoveredOperationsArgs;
-     * import java.util.List;
      * import java.util.ArrayList;
+     * import java.util.Arrays;
      * import java.util.Map;
      * import java.io.File;
      * import java.nio.file.Files;
@@ -202,8 +433,8 @@ public final class FastlyFunctions {
      * import com.pulumi.fastly.inputs.ServiceVclBackendArgs;
      * import com.pulumi.fastly.FastlyFunctions;
      * import com.pulumi.fastly.inputs.GetApiSecurityDiscoveredOperationsArgs;
-     * import java.util.List;
      * import java.util.ArrayList;
+     * import java.util.Arrays;
      * import java.util.Map;
      * import java.io.File;
      * import java.nio.file.Files;
@@ -263,8 +494,8 @@ public final class FastlyFunctions {
      * import com.pulumi.fastly.inputs.ServiceVclBackendArgs;
      * import com.pulumi.fastly.FastlyFunctions;
      * import com.pulumi.fastly.inputs.GetApiSecurityDiscoveredOperationsArgs;
-     * import java.util.List;
      * import java.util.ArrayList;
+     * import java.util.Arrays;
      * import java.util.Map;
      * import java.io.File;
      * import java.nio.file.Files;
@@ -324,8 +555,8 @@ public final class FastlyFunctions {
      * import com.pulumi.fastly.inputs.ServiceVclBackendArgs;
      * import com.pulumi.fastly.FastlyFunctions;
      * import com.pulumi.fastly.inputs.GetApiSecurityDiscoveredOperationsArgs;
-     * import java.util.List;
      * import java.util.ArrayList;
+     * import java.util.Arrays;
      * import java.util.Map;
      * import java.io.File;
      * import java.nio.file.Files;
@@ -385,8 +616,8 @@ public final class FastlyFunctions {
      * import com.pulumi.fastly.inputs.ServiceVclBackendArgs;
      * import com.pulumi.fastly.FastlyFunctions;
      * import com.pulumi.fastly.inputs.GetApiSecurityDiscoveredOperationsArgs;
-     * import java.util.List;
      * import java.util.ArrayList;
+     * import java.util.Arrays;
      * import java.util.Map;
      * import java.io.File;
      * import java.nio.file.Files;
@@ -446,8 +677,8 @@ public final class FastlyFunctions {
      * import com.pulumi.fastly.ApiSecurityOperationTagArgs;
      * import com.pulumi.fastly.FastlyFunctions;
      * import com.pulumi.fastly.inputs.GetApiSecurityOperationTagsArgs;
-     * import java.util.List;
      * import java.util.ArrayList;
+     * import java.util.Arrays;
      * import java.util.Map;
      * import java.io.File;
      * import java.nio.file.Files;
@@ -468,7 +699,7 @@ public final class FastlyFunctions {
      *                 .build())
      *             .build());
      * 
-     *         // Optional: create a tag so the data source returns a predictable result
+     *         // Optional: create a tag so the function returns a predictable result
      *         var example = new ApiSecurityOperationTag("example", ApiSecurityOperationTagArgs.builder()
      *             .serviceId(svc1.id())
      *             .name("example-tag")
@@ -509,8 +740,8 @@ public final class FastlyFunctions {
      * import com.pulumi.fastly.ApiSecurityOperationTagArgs;
      * import com.pulumi.fastly.FastlyFunctions;
      * import com.pulumi.fastly.inputs.GetApiSecurityOperationTagsArgs;
-     * import java.util.List;
      * import java.util.ArrayList;
+     * import java.util.Arrays;
      * import java.util.Map;
      * import java.io.File;
      * import java.nio.file.Files;
@@ -531,7 +762,7 @@ public final class FastlyFunctions {
      *                 .build())
      *             .build());
      * 
-     *         // Optional: create a tag so the data source returns a predictable result
+     *         // Optional: create a tag so the function returns a predictable result
      *         var example = new ApiSecurityOperationTag("example", ApiSecurityOperationTagArgs.builder()
      *             .serviceId(svc1.id())
      *             .name("example-tag")
@@ -572,8 +803,8 @@ public final class FastlyFunctions {
      * import com.pulumi.fastly.ApiSecurityOperationTagArgs;
      * import com.pulumi.fastly.FastlyFunctions;
      * import com.pulumi.fastly.inputs.GetApiSecurityOperationTagsArgs;
-     * import java.util.List;
      * import java.util.ArrayList;
+     * import java.util.Arrays;
      * import java.util.Map;
      * import java.io.File;
      * import java.nio.file.Files;
@@ -594,7 +825,7 @@ public final class FastlyFunctions {
      *                 .build())
      *             .build());
      * 
-     *         // Optional: create a tag so the data source returns a predictable result
+     *         // Optional: create a tag so the function returns a predictable result
      *         var example = new ApiSecurityOperationTag("example", ApiSecurityOperationTagArgs.builder()
      *             .serviceId(svc1.id())
      *             .name("example-tag")
@@ -635,8 +866,8 @@ public final class FastlyFunctions {
      * import com.pulumi.fastly.ApiSecurityOperationTagArgs;
      * import com.pulumi.fastly.FastlyFunctions;
      * import com.pulumi.fastly.inputs.GetApiSecurityOperationTagsArgs;
-     * import java.util.List;
      * import java.util.ArrayList;
+     * import java.util.Arrays;
      * import java.util.Map;
      * import java.io.File;
      * import java.nio.file.Files;
@@ -657,7 +888,7 @@ public final class FastlyFunctions {
      *                 .build())
      *             .build());
      * 
-     *         // Optional: create a tag so the data source returns a predictable result
+     *         // Optional: create a tag so the function returns a predictable result
      *         var example = new ApiSecurityOperationTag("example", ApiSecurityOperationTagArgs.builder()
      *             .serviceId(svc1.id())
      *             .name("example-tag")
@@ -698,8 +929,8 @@ public final class FastlyFunctions {
      * import com.pulumi.fastly.ApiSecurityOperationTagArgs;
      * import com.pulumi.fastly.FastlyFunctions;
      * import com.pulumi.fastly.inputs.GetApiSecurityOperationTagsArgs;
-     * import java.util.List;
      * import java.util.ArrayList;
+     * import java.util.Arrays;
      * import java.util.Map;
      * import java.io.File;
      * import java.nio.file.Files;
@@ -720,7 +951,7 @@ public final class FastlyFunctions {
      *                 .build())
      *             .build());
      * 
-     *         // Optional: create a tag so the data source returns a predictable result
+     *         // Optional: create a tag so the function returns a predictable result
      *         var example = new ApiSecurityOperationTag("example", ApiSecurityOperationTagArgs.builder()
      *             .serviceId(svc1.id())
      *             .name("example-tag")
@@ -761,8 +992,8 @@ public final class FastlyFunctions {
      * import com.pulumi.fastly.ApiSecurityOperationArgs;
      * import com.pulumi.fastly.FastlyFunctions;
      * import com.pulumi.fastly.inputs.GetApiSecurityOperationsArgs;
-     * import java.util.List;
      * import java.util.ArrayList;
+     * import java.util.Arrays;
      * import java.util.Map;
      * import java.io.File;
      * import java.nio.file.Files;
@@ -783,7 +1014,7 @@ public final class FastlyFunctions {
      *                 .build())
      *             .build());
      * 
-     *         // Optional: create an operation (so the data source returns something predictable)
+     *         // Optional: create an operation (so the function returns something predictable)
      *         var example = new ApiSecurityOperation("example", ApiSecurityOperationArgs.builder()
      *             .serviceId(svc1.id())
      *             .method("GET")
@@ -829,8 +1060,8 @@ public final class FastlyFunctions {
      * import com.pulumi.fastly.ApiSecurityOperationArgs;
      * import com.pulumi.fastly.FastlyFunctions;
      * import com.pulumi.fastly.inputs.GetApiSecurityOperationsArgs;
-     * import java.util.List;
      * import java.util.ArrayList;
+     * import java.util.Arrays;
      * import java.util.Map;
      * import java.io.File;
      * import java.nio.file.Files;
@@ -851,7 +1082,7 @@ public final class FastlyFunctions {
      *                 .build())
      *             .build());
      * 
-     *         // Optional: create an operation (so the data source returns something predictable)
+     *         // Optional: create an operation (so the function returns something predictable)
      *         var example = new ApiSecurityOperation("example", ApiSecurityOperationArgs.builder()
      *             .serviceId(svc1.id())
      *             .method("GET")
@@ -897,8 +1128,8 @@ public final class FastlyFunctions {
      * import com.pulumi.fastly.ApiSecurityOperationArgs;
      * import com.pulumi.fastly.FastlyFunctions;
      * import com.pulumi.fastly.inputs.GetApiSecurityOperationsArgs;
-     * import java.util.List;
      * import java.util.ArrayList;
+     * import java.util.Arrays;
      * import java.util.Map;
      * import java.io.File;
      * import java.nio.file.Files;
@@ -919,7 +1150,7 @@ public final class FastlyFunctions {
      *                 .build())
      *             .build());
      * 
-     *         // Optional: create an operation (so the data source returns something predictable)
+     *         // Optional: create an operation (so the function returns something predictable)
      *         var example = new ApiSecurityOperation("example", ApiSecurityOperationArgs.builder()
      *             .serviceId(svc1.id())
      *             .method("GET")
@@ -965,8 +1196,8 @@ public final class FastlyFunctions {
      * import com.pulumi.fastly.ApiSecurityOperationArgs;
      * import com.pulumi.fastly.FastlyFunctions;
      * import com.pulumi.fastly.inputs.GetApiSecurityOperationsArgs;
-     * import java.util.List;
      * import java.util.ArrayList;
+     * import java.util.Arrays;
      * import java.util.Map;
      * import java.io.File;
      * import java.nio.file.Files;
@@ -987,7 +1218,7 @@ public final class FastlyFunctions {
      *                 .build())
      *             .build());
      * 
-     *         // Optional: create an operation (so the data source returns something predictable)
+     *         // Optional: create an operation (so the function returns something predictable)
      *         var example = new ApiSecurityOperation("example", ApiSecurityOperationArgs.builder()
      *             .serviceId(svc1.id())
      *             .method("GET")
@@ -1033,8 +1264,8 @@ public final class FastlyFunctions {
      * import com.pulumi.fastly.ApiSecurityOperationArgs;
      * import com.pulumi.fastly.FastlyFunctions;
      * import com.pulumi.fastly.inputs.GetApiSecurityOperationsArgs;
-     * import java.util.List;
      * import java.util.ArrayList;
+     * import java.util.Arrays;
      * import java.util.Map;
      * import java.io.File;
      * import java.nio.file.Files;
@@ -1055,7 +1286,7 @@ public final class FastlyFunctions {
      *                 .build())
      *             .build());
      * 
-     *         // Optional: create an operation (so the data source returns something predictable)
+     *         // Optional: create an operation (so the function returns something predictable)
      *         var example = new ApiSecurityOperation("example", ApiSecurityOperationArgs.builder()
      *             .serviceId(svc1.id())
      *             .method("GET")
@@ -1081,6 +1312,342 @@ public final class FastlyFunctions {
      */
     public static CompletableFuture<GetApiSecurityOperationsResult> getApiSecurityOperationsPlain(GetApiSecurityOperationsPlainArgs args, InvokeOptions options) {
         return Deployment.getInstance().invokeAsync("fastly:index/getApiSecurityOperations:getApiSecurityOperations", TypeShape.of(GetApiSecurityOperationsResult.class), args, Utilities.withVersion(options));
+    }
+    /**
+     * Use this data source to get information about an existing Audit Log Event
+     * Mapping for use with other resources.
+     * 
+     * &gt; **Warning:** The data source&#39;s filters are applied using an **AND** boolean operator, so depending on the combination
+     * of filters, they may become mutually exclusive. The exception to this is `id` which must not be specified in combination
+     * with any of the others.
+     * 
+     * &gt; **Note:** If more or less than a single match is returned by the search, an error will be reported. Ensure that your search is specific enough to return a single mapping.
+     * 
+     * ## Example Usage
+     * 
+     * <pre>
+     * {@code
+     * package generated_program;
+     * 
+     * import com.pulumi.Context;
+     * import com.pulumi.Pulumi;
+     * import com.pulumi.core.Output;
+     * import com.pulumi.fastly.FastlyFunctions;
+     * import com.pulumi.fastly.inputs.GetAuditLogEventMappingArgs;
+     * import java.util.ArrayList;
+     * import java.util.Arrays;
+     * import java.util.Map;
+     * import java.io.File;
+     * import java.nio.file.Files;
+     * import java.nio.file.Paths;
+     * 
+     * public class App {
+     *     public static void main(String[] args) {
+     *         Pulumi.run(App::stack);
+     *     }
+     * 
+     *     public static void stack(Context ctx) {
+     *         final var example = FastlyFunctions.getAuditLogEventMapping(GetAuditLogEventMappingArgs.builder()
+     *             .name("Example mapping")
+     *             .scopeType("account")
+     *             .build());
+     * 
+     *     }
+     * }
+     * }
+     * </pre>
+     * 
+     */
+    public static Output<GetAuditLogEventMappingResult> getAuditLogEventMapping() {
+        return getAuditLogEventMapping(GetAuditLogEventMappingArgs.Empty, InvokeOptions.Empty);
+    }
+    /**
+     * Use this data source to get information about an existing Audit Log Event
+     * Mapping for use with other resources.
+     * 
+     * &gt; **Warning:** The data source&#39;s filters are applied using an **AND** boolean operator, so depending on the combination
+     * of filters, they may become mutually exclusive. The exception to this is `id` which must not be specified in combination
+     * with any of the others.
+     * 
+     * &gt; **Note:** If more or less than a single match is returned by the search, an error will be reported. Ensure that your search is specific enough to return a single mapping.
+     * 
+     * ## Example Usage
+     * 
+     * <pre>
+     * {@code
+     * package generated_program;
+     * 
+     * import com.pulumi.Context;
+     * import com.pulumi.Pulumi;
+     * import com.pulumi.core.Output;
+     * import com.pulumi.fastly.FastlyFunctions;
+     * import com.pulumi.fastly.inputs.GetAuditLogEventMappingArgs;
+     * import java.util.ArrayList;
+     * import java.util.Arrays;
+     * import java.util.Map;
+     * import java.io.File;
+     * import java.nio.file.Files;
+     * import java.nio.file.Paths;
+     * 
+     * public class App {
+     *     public static void main(String[] args) {
+     *         Pulumi.run(App::stack);
+     *     }
+     * 
+     *     public static void stack(Context ctx) {
+     *         final var example = FastlyFunctions.getAuditLogEventMapping(GetAuditLogEventMappingArgs.builder()
+     *             .name("Example mapping")
+     *             .scopeType("account")
+     *             .build());
+     * 
+     *     }
+     * }
+     * }
+     * </pre>
+     * 
+     */
+    public static CompletableFuture<GetAuditLogEventMappingResult> getAuditLogEventMappingPlain() {
+        return getAuditLogEventMappingPlain(GetAuditLogEventMappingPlainArgs.Empty, InvokeOptions.Empty);
+    }
+    /**
+     * Use this data source to get information about an existing Audit Log Event
+     * Mapping for use with other resources.
+     * 
+     * &gt; **Warning:** The data source&#39;s filters are applied using an **AND** boolean operator, so depending on the combination
+     * of filters, they may become mutually exclusive. The exception to this is `id` which must not be specified in combination
+     * with any of the others.
+     * 
+     * &gt; **Note:** If more or less than a single match is returned by the search, an error will be reported. Ensure that your search is specific enough to return a single mapping.
+     * 
+     * ## Example Usage
+     * 
+     * <pre>
+     * {@code
+     * package generated_program;
+     * 
+     * import com.pulumi.Context;
+     * import com.pulumi.Pulumi;
+     * import com.pulumi.core.Output;
+     * import com.pulumi.fastly.FastlyFunctions;
+     * import com.pulumi.fastly.inputs.GetAuditLogEventMappingArgs;
+     * import java.util.ArrayList;
+     * import java.util.Arrays;
+     * import java.util.Map;
+     * import java.io.File;
+     * import java.nio.file.Files;
+     * import java.nio.file.Paths;
+     * 
+     * public class App {
+     *     public static void main(String[] args) {
+     *         Pulumi.run(App::stack);
+     *     }
+     * 
+     *     public static void stack(Context ctx) {
+     *         final var example = FastlyFunctions.getAuditLogEventMapping(GetAuditLogEventMappingArgs.builder()
+     *             .name("Example mapping")
+     *             .scopeType("account")
+     *             .build());
+     * 
+     *     }
+     * }
+     * }
+     * </pre>
+     * 
+     */
+    public static Output<GetAuditLogEventMappingResult> getAuditLogEventMapping(GetAuditLogEventMappingArgs args) {
+        return getAuditLogEventMapping(args, InvokeOptions.Empty);
+    }
+    /**
+     * Use this data source to get information about an existing Audit Log Event
+     * Mapping for use with other resources.
+     * 
+     * &gt; **Warning:** The data source&#39;s filters are applied using an **AND** boolean operator, so depending on the combination
+     * of filters, they may become mutually exclusive. The exception to this is `id` which must not be specified in combination
+     * with any of the others.
+     * 
+     * &gt; **Note:** If more or less than a single match is returned by the search, an error will be reported. Ensure that your search is specific enough to return a single mapping.
+     * 
+     * ## Example Usage
+     * 
+     * <pre>
+     * {@code
+     * package generated_program;
+     * 
+     * import com.pulumi.Context;
+     * import com.pulumi.Pulumi;
+     * import com.pulumi.core.Output;
+     * import com.pulumi.fastly.FastlyFunctions;
+     * import com.pulumi.fastly.inputs.GetAuditLogEventMappingArgs;
+     * import java.util.ArrayList;
+     * import java.util.Arrays;
+     * import java.util.Map;
+     * import java.io.File;
+     * import java.nio.file.Files;
+     * import java.nio.file.Paths;
+     * 
+     * public class App {
+     *     public static void main(String[] args) {
+     *         Pulumi.run(App::stack);
+     *     }
+     * 
+     *     public static void stack(Context ctx) {
+     *         final var example = FastlyFunctions.getAuditLogEventMapping(GetAuditLogEventMappingArgs.builder()
+     *             .name("Example mapping")
+     *             .scopeType("account")
+     *             .build());
+     * 
+     *     }
+     * }
+     * }
+     * </pre>
+     * 
+     */
+    public static CompletableFuture<GetAuditLogEventMappingResult> getAuditLogEventMappingPlain(GetAuditLogEventMappingPlainArgs args) {
+        return getAuditLogEventMappingPlain(args, InvokeOptions.Empty);
+    }
+    /**
+     * Use this data source to get information about an existing Audit Log Event
+     * Mapping for use with other resources.
+     * 
+     * &gt; **Warning:** The data source&#39;s filters are applied using an **AND** boolean operator, so depending on the combination
+     * of filters, they may become mutually exclusive. The exception to this is `id` which must not be specified in combination
+     * with any of the others.
+     * 
+     * &gt; **Note:** If more or less than a single match is returned by the search, an error will be reported. Ensure that your search is specific enough to return a single mapping.
+     * 
+     * ## Example Usage
+     * 
+     * <pre>
+     * {@code
+     * package generated_program;
+     * 
+     * import com.pulumi.Context;
+     * import com.pulumi.Pulumi;
+     * import com.pulumi.core.Output;
+     * import com.pulumi.fastly.FastlyFunctions;
+     * import com.pulumi.fastly.inputs.GetAuditLogEventMappingArgs;
+     * import java.util.ArrayList;
+     * import java.util.Arrays;
+     * import java.util.Map;
+     * import java.io.File;
+     * import java.nio.file.Files;
+     * import java.nio.file.Paths;
+     * 
+     * public class App {
+     *     public static void main(String[] args) {
+     *         Pulumi.run(App::stack);
+     *     }
+     * 
+     *     public static void stack(Context ctx) {
+     *         final var example = FastlyFunctions.getAuditLogEventMapping(GetAuditLogEventMappingArgs.builder()
+     *             .name("Example mapping")
+     *             .scopeType("account")
+     *             .build());
+     * 
+     *     }
+     * }
+     * }
+     * </pre>
+     * 
+     */
+    public static Output<GetAuditLogEventMappingResult> getAuditLogEventMapping(GetAuditLogEventMappingArgs args, InvokeOptions options) {
+        return Deployment.getInstance().invoke("fastly:index/getAuditLogEventMapping:getAuditLogEventMapping", TypeShape.of(GetAuditLogEventMappingResult.class), args, Utilities.withVersion(options));
+    }
+    /**
+     * Use this data source to get information about an existing Audit Log Event
+     * Mapping for use with other resources.
+     * 
+     * &gt; **Warning:** The data source&#39;s filters are applied using an **AND** boolean operator, so depending on the combination
+     * of filters, they may become mutually exclusive. The exception to this is `id` which must not be specified in combination
+     * with any of the others.
+     * 
+     * &gt; **Note:** If more or less than a single match is returned by the search, an error will be reported. Ensure that your search is specific enough to return a single mapping.
+     * 
+     * ## Example Usage
+     * 
+     * <pre>
+     * {@code
+     * package generated_program;
+     * 
+     * import com.pulumi.Context;
+     * import com.pulumi.Pulumi;
+     * import com.pulumi.core.Output;
+     * import com.pulumi.fastly.FastlyFunctions;
+     * import com.pulumi.fastly.inputs.GetAuditLogEventMappingArgs;
+     * import java.util.ArrayList;
+     * import java.util.Arrays;
+     * import java.util.Map;
+     * import java.io.File;
+     * import java.nio.file.Files;
+     * import java.nio.file.Paths;
+     * 
+     * public class App {
+     *     public static void main(String[] args) {
+     *         Pulumi.run(App::stack);
+     *     }
+     * 
+     *     public static void stack(Context ctx) {
+     *         final var example = FastlyFunctions.getAuditLogEventMapping(GetAuditLogEventMappingArgs.builder()
+     *             .name("Example mapping")
+     *             .scopeType("account")
+     *             .build());
+     * 
+     *     }
+     * }
+     * }
+     * </pre>
+     * 
+     */
+    public static Output<GetAuditLogEventMappingResult> getAuditLogEventMapping(GetAuditLogEventMappingArgs args, InvokeOutputOptions options) {
+        return Deployment.getInstance().invoke("fastly:index/getAuditLogEventMapping:getAuditLogEventMapping", TypeShape.of(GetAuditLogEventMappingResult.class), args, Utilities.withVersion(options));
+    }
+    /**
+     * Use this data source to get information about an existing Audit Log Event
+     * Mapping for use with other resources.
+     * 
+     * &gt; **Warning:** The data source&#39;s filters are applied using an **AND** boolean operator, so depending on the combination
+     * of filters, they may become mutually exclusive. The exception to this is `id` which must not be specified in combination
+     * with any of the others.
+     * 
+     * &gt; **Note:** If more or less than a single match is returned by the search, an error will be reported. Ensure that your search is specific enough to return a single mapping.
+     * 
+     * ## Example Usage
+     * 
+     * <pre>
+     * {@code
+     * package generated_program;
+     * 
+     * import com.pulumi.Context;
+     * import com.pulumi.Pulumi;
+     * import com.pulumi.core.Output;
+     * import com.pulumi.fastly.FastlyFunctions;
+     * import com.pulumi.fastly.inputs.GetAuditLogEventMappingArgs;
+     * import java.util.ArrayList;
+     * import java.util.Arrays;
+     * import java.util.Map;
+     * import java.io.File;
+     * import java.nio.file.Files;
+     * import java.nio.file.Paths;
+     * 
+     * public class App {
+     *     public static void main(String[] args) {
+     *         Pulumi.run(App::stack);
+     *     }
+     * 
+     *     public static void stack(Context ctx) {
+     *         final var example = FastlyFunctions.getAuditLogEventMapping(GetAuditLogEventMappingArgs.builder()
+     *             .name("Example mapping")
+     *             .scopeType("account")
+     *             .build());
+     * 
+     *     }
+     * }
+     * }
+     * </pre>
+     * 
+     */
+    public static CompletableFuture<GetAuditLogEventMappingResult> getAuditLogEventMappingPlain(GetAuditLogEventMappingPlainArgs args, InvokeOptions options) {
+        return Deployment.getInstance().invokeAsync("fastly:index/getAuditLogEventMapping:getAuditLogEventMapping", TypeShape.of(GetAuditLogEventMappingResult.class), args, Utilities.withVersion(options));
     }
     /**
      * Use this data source to retrieve a list of [Fastly Compute ACLs](https://www.fastly.com/documentation/reference/api/compute-acls/).
@@ -1219,8 +1786,8 @@ public final class FastlyFunctions {
      * import com.pulumi.fastly.inputs.ServiceVclDictionaryArgs;
      * import com.pulumi.fastly.FastlyFunctions;
      * import com.pulumi.fastly.inputs.GetDictionariesArgs;
-     * import java.util.List;
      * import java.util.ArrayList;
+     * import java.util.Arrays;
      * import java.util.Map;
      * import java.io.File;
      * import java.nio.file.Files;
@@ -1285,8 +1852,8 @@ public final class FastlyFunctions {
      * import com.pulumi.fastly.inputs.ServiceVclDictionaryArgs;
      * import com.pulumi.fastly.FastlyFunctions;
      * import com.pulumi.fastly.inputs.GetDictionariesArgs;
-     * import java.util.List;
      * import java.util.ArrayList;
+     * import java.util.Arrays;
      * import java.util.Map;
      * import java.io.File;
      * import java.nio.file.Files;
@@ -1351,8 +1918,8 @@ public final class FastlyFunctions {
      * import com.pulumi.fastly.inputs.ServiceVclDictionaryArgs;
      * import com.pulumi.fastly.FastlyFunctions;
      * import com.pulumi.fastly.inputs.GetDictionariesArgs;
-     * import java.util.List;
      * import java.util.ArrayList;
+     * import java.util.Arrays;
      * import java.util.Map;
      * import java.io.File;
      * import java.nio.file.Files;
@@ -1417,8 +1984,8 @@ public final class FastlyFunctions {
      * import com.pulumi.fastly.inputs.ServiceVclDictionaryArgs;
      * import com.pulumi.fastly.FastlyFunctions;
      * import com.pulumi.fastly.inputs.GetDictionariesArgs;
-     * import java.util.List;
      * import java.util.ArrayList;
+     * import java.util.Arrays;
      * import java.util.Map;
      * import java.io.File;
      * import java.nio.file.Files;
@@ -1483,8 +2050,8 @@ public final class FastlyFunctions {
      * import com.pulumi.fastly.inputs.ServiceVclDictionaryArgs;
      * import com.pulumi.fastly.FastlyFunctions;
      * import com.pulumi.fastly.inputs.GetDictionariesArgs;
-     * import java.util.List;
      * import java.util.ArrayList;
+     * import java.util.Arrays;
      * import java.util.Map;
      * import java.io.File;
      * import java.nio.file.Files;
@@ -1532,6 +2099,286 @@ public final class FastlyFunctions {
         return Deployment.getInstance().invokeAsync("fastly:index/getDictionaries:getDictionaries", TypeShape.of(GetDictionariesResult.class), args, Utilities.withVersion(options));
     }
     /**
+     * Use this data source to get a list of Fastly DNS Zones.
+     * 
+     * ## Example Usage
+     * 
+     * <pre>
+     * {@code
+     * package generated_program;
+     * 
+     * import com.pulumi.Context;
+     * import com.pulumi.Pulumi;
+     * import com.pulumi.core.Output;
+     * import com.pulumi.fastly.FastlyFunctions;
+     * import com.pulumi.fastly.inputs.GetDnsZonesArgs;
+     * import java.util.ArrayList;
+     * import java.util.Arrays;
+     * import java.util.Map;
+     * import java.io.File;
+     * import java.nio.file.Files;
+     * import java.nio.file.Paths;
+     * 
+     * public class App {
+     *     public static void main(String[] args) {
+     *         Pulumi.run(App::stack);
+     *     }
+     * 
+     *     public static void stack(Context ctx) {
+     *         final var example = FastlyFunctions.getDnsZones(GetDnsZonesArgs.builder()
+     *             .build());
+     * 
+     *         ctx.export("fastlyDnsZonesAll", example.zones());
+     *     }
+     * }
+     * }
+     * </pre>
+     * 
+     */
+    public static Output<GetDnsZonesResult> getDnsZones() {
+        return getDnsZones(GetDnsZonesArgs.Empty, InvokeOptions.Empty);
+    }
+    /**
+     * Use this data source to get a list of Fastly DNS Zones.
+     * 
+     * ## Example Usage
+     * 
+     * <pre>
+     * {@code
+     * package generated_program;
+     * 
+     * import com.pulumi.Context;
+     * import com.pulumi.Pulumi;
+     * import com.pulumi.core.Output;
+     * import com.pulumi.fastly.FastlyFunctions;
+     * import com.pulumi.fastly.inputs.GetDnsZonesArgs;
+     * import java.util.ArrayList;
+     * import java.util.Arrays;
+     * import java.util.Map;
+     * import java.io.File;
+     * import java.nio.file.Files;
+     * import java.nio.file.Paths;
+     * 
+     * public class App {
+     *     public static void main(String[] args) {
+     *         Pulumi.run(App::stack);
+     *     }
+     * 
+     *     public static void stack(Context ctx) {
+     *         final var example = FastlyFunctions.getDnsZones(GetDnsZonesArgs.builder()
+     *             .build());
+     * 
+     *         ctx.export("fastlyDnsZonesAll", example.zones());
+     *     }
+     * }
+     * }
+     * </pre>
+     * 
+     */
+    public static CompletableFuture<GetDnsZonesResult> getDnsZonesPlain() {
+        return getDnsZonesPlain(GetDnsZonesPlainArgs.Empty, InvokeOptions.Empty);
+    }
+    /**
+     * Use this data source to get a list of Fastly DNS Zones.
+     * 
+     * ## Example Usage
+     * 
+     * <pre>
+     * {@code
+     * package generated_program;
+     * 
+     * import com.pulumi.Context;
+     * import com.pulumi.Pulumi;
+     * import com.pulumi.core.Output;
+     * import com.pulumi.fastly.FastlyFunctions;
+     * import com.pulumi.fastly.inputs.GetDnsZonesArgs;
+     * import java.util.ArrayList;
+     * import java.util.Arrays;
+     * import java.util.Map;
+     * import java.io.File;
+     * import java.nio.file.Files;
+     * import java.nio.file.Paths;
+     * 
+     * public class App {
+     *     public static void main(String[] args) {
+     *         Pulumi.run(App::stack);
+     *     }
+     * 
+     *     public static void stack(Context ctx) {
+     *         final var example = FastlyFunctions.getDnsZones(GetDnsZonesArgs.builder()
+     *             .build());
+     * 
+     *         ctx.export("fastlyDnsZonesAll", example.zones());
+     *     }
+     * }
+     * }
+     * </pre>
+     * 
+     */
+    public static Output<GetDnsZonesResult> getDnsZones(GetDnsZonesArgs args) {
+        return getDnsZones(args, InvokeOptions.Empty);
+    }
+    /**
+     * Use this data source to get a list of Fastly DNS Zones.
+     * 
+     * ## Example Usage
+     * 
+     * <pre>
+     * {@code
+     * package generated_program;
+     * 
+     * import com.pulumi.Context;
+     * import com.pulumi.Pulumi;
+     * import com.pulumi.core.Output;
+     * import com.pulumi.fastly.FastlyFunctions;
+     * import com.pulumi.fastly.inputs.GetDnsZonesArgs;
+     * import java.util.ArrayList;
+     * import java.util.Arrays;
+     * import java.util.Map;
+     * import java.io.File;
+     * import java.nio.file.Files;
+     * import java.nio.file.Paths;
+     * 
+     * public class App {
+     *     public static void main(String[] args) {
+     *         Pulumi.run(App::stack);
+     *     }
+     * 
+     *     public static void stack(Context ctx) {
+     *         final var example = FastlyFunctions.getDnsZones(GetDnsZonesArgs.builder()
+     *             .build());
+     * 
+     *         ctx.export("fastlyDnsZonesAll", example.zones());
+     *     }
+     * }
+     * }
+     * </pre>
+     * 
+     */
+    public static CompletableFuture<GetDnsZonesResult> getDnsZonesPlain(GetDnsZonesPlainArgs args) {
+        return getDnsZonesPlain(args, InvokeOptions.Empty);
+    }
+    /**
+     * Use this data source to get a list of Fastly DNS Zones.
+     * 
+     * ## Example Usage
+     * 
+     * <pre>
+     * {@code
+     * package generated_program;
+     * 
+     * import com.pulumi.Context;
+     * import com.pulumi.Pulumi;
+     * import com.pulumi.core.Output;
+     * import com.pulumi.fastly.FastlyFunctions;
+     * import com.pulumi.fastly.inputs.GetDnsZonesArgs;
+     * import java.util.ArrayList;
+     * import java.util.Arrays;
+     * import java.util.Map;
+     * import java.io.File;
+     * import java.nio.file.Files;
+     * import java.nio.file.Paths;
+     * 
+     * public class App {
+     *     public static void main(String[] args) {
+     *         Pulumi.run(App::stack);
+     *     }
+     * 
+     *     public static void stack(Context ctx) {
+     *         final var example = FastlyFunctions.getDnsZones(GetDnsZonesArgs.builder()
+     *             .build());
+     * 
+     *         ctx.export("fastlyDnsZonesAll", example.zones());
+     *     }
+     * }
+     * }
+     * </pre>
+     * 
+     */
+    public static Output<GetDnsZonesResult> getDnsZones(GetDnsZonesArgs args, InvokeOptions options) {
+        return Deployment.getInstance().invoke("fastly:index/getDnsZones:getDnsZones", TypeShape.of(GetDnsZonesResult.class), args, Utilities.withVersion(options));
+    }
+    /**
+     * Use this data source to get a list of Fastly DNS Zones.
+     * 
+     * ## Example Usage
+     * 
+     * <pre>
+     * {@code
+     * package generated_program;
+     * 
+     * import com.pulumi.Context;
+     * import com.pulumi.Pulumi;
+     * import com.pulumi.core.Output;
+     * import com.pulumi.fastly.FastlyFunctions;
+     * import com.pulumi.fastly.inputs.GetDnsZonesArgs;
+     * import java.util.ArrayList;
+     * import java.util.Arrays;
+     * import java.util.Map;
+     * import java.io.File;
+     * import java.nio.file.Files;
+     * import java.nio.file.Paths;
+     * 
+     * public class App {
+     *     public static void main(String[] args) {
+     *         Pulumi.run(App::stack);
+     *     }
+     * 
+     *     public static void stack(Context ctx) {
+     *         final var example = FastlyFunctions.getDnsZones(GetDnsZonesArgs.builder()
+     *             .build());
+     * 
+     *         ctx.export("fastlyDnsZonesAll", example.zones());
+     *     }
+     * }
+     * }
+     * </pre>
+     * 
+     */
+    public static Output<GetDnsZonesResult> getDnsZones(GetDnsZonesArgs args, InvokeOutputOptions options) {
+        return Deployment.getInstance().invoke("fastly:index/getDnsZones:getDnsZones", TypeShape.of(GetDnsZonesResult.class), args, Utilities.withVersion(options));
+    }
+    /**
+     * Use this data source to get a list of Fastly DNS Zones.
+     * 
+     * ## Example Usage
+     * 
+     * <pre>
+     * {@code
+     * package generated_program;
+     * 
+     * import com.pulumi.Context;
+     * import com.pulumi.Pulumi;
+     * import com.pulumi.core.Output;
+     * import com.pulumi.fastly.FastlyFunctions;
+     * import com.pulumi.fastly.inputs.GetDnsZonesArgs;
+     * import java.util.ArrayList;
+     * import java.util.Arrays;
+     * import java.util.Map;
+     * import java.io.File;
+     * import java.nio.file.Files;
+     * import java.nio.file.Paths;
+     * 
+     * public class App {
+     *     public static void main(String[] args) {
+     *         Pulumi.run(App::stack);
+     *     }
+     * 
+     *     public static void stack(Context ctx) {
+     *         final var example = FastlyFunctions.getDnsZones(GetDnsZonesArgs.builder()
+     *             .build());
+     * 
+     *         ctx.export("fastlyDnsZonesAll", example.zones());
+     *     }
+     * }
+     * }
+     * </pre>
+     * 
+     */
+    public static CompletableFuture<GetDnsZonesResult> getDnsZonesPlain(GetDnsZonesPlainArgs args, InvokeOptions options) {
+        return Deployment.getInstance().invokeAsync("fastly:index/getDnsZones:getDnsZones", TypeShape.of(GetDnsZonesResult.class), args, Utilities.withVersion(options));
+    }
+    /**
      * Use this data source to get information about versionless domains.
      * 
      * ## Example Usage
@@ -1545,8 +2392,8 @@ public final class FastlyFunctions {
      * import com.pulumi.core.Output;
      * import com.pulumi.fastly.FastlyFunctions;
      * import com.pulumi.fastly.inputs.GetDomainsArgs;
-     * import java.util.List;
      * import java.util.ArrayList;
+     * import java.util.Arrays;
      * import java.util.Map;
      * import java.io.File;
      * import java.nio.file.Files;
@@ -1588,8 +2435,8 @@ public final class FastlyFunctions {
      * import com.pulumi.core.Output;
      * import com.pulumi.fastly.FastlyFunctions;
      * import com.pulumi.fastly.inputs.GetDomainsArgs;
-     * import java.util.List;
      * import java.util.ArrayList;
+     * import java.util.Arrays;
      * import java.util.Map;
      * import java.io.File;
      * import java.nio.file.Files;
@@ -1631,8 +2478,8 @@ public final class FastlyFunctions {
      * import com.pulumi.core.Output;
      * import com.pulumi.fastly.FastlyFunctions;
      * import com.pulumi.fastly.inputs.GetDomainsArgs;
-     * import java.util.List;
      * import java.util.ArrayList;
+     * import java.util.Arrays;
      * import java.util.Map;
      * import java.io.File;
      * import java.nio.file.Files;
@@ -1674,8 +2521,8 @@ public final class FastlyFunctions {
      * import com.pulumi.core.Output;
      * import com.pulumi.fastly.FastlyFunctions;
      * import com.pulumi.fastly.inputs.GetDomainsArgs;
-     * import java.util.List;
      * import java.util.ArrayList;
+     * import java.util.Arrays;
      * import java.util.Map;
      * import java.io.File;
      * import java.nio.file.Files;
@@ -1717,8 +2564,8 @@ public final class FastlyFunctions {
      * import com.pulumi.core.Output;
      * import com.pulumi.fastly.FastlyFunctions;
      * import com.pulumi.fastly.inputs.GetDomainsArgs;
-     * import java.util.List;
      * import java.util.ArrayList;
+     * import java.util.Arrays;
      * import java.util.Map;
      * import java.io.File;
      * import java.nio.file.Files;
@@ -1760,8 +2607,8 @@ public final class FastlyFunctions {
      * import com.pulumi.core.Output;
      * import com.pulumi.fastly.FastlyFunctions;
      * import com.pulumi.fastly.inputs.GetDomainsArgs;
-     * import java.util.List;
      * import java.util.ArrayList;
+     * import java.util.Arrays;
      * import java.util.Map;
      * import java.io.File;
      * import java.nio.file.Files;
@@ -1803,8 +2650,8 @@ public final class FastlyFunctions {
      * import com.pulumi.core.Output;
      * import com.pulumi.fastly.FastlyFunctions;
      * import com.pulumi.fastly.inputs.GetDomainsArgs;
-     * import java.util.List;
      * import java.util.ArrayList;
+     * import java.util.Arrays;
      * import java.util.Map;
      * import java.io.File;
      * import java.nio.file.Files;
@@ -1868,8 +2715,8 @@ public final class FastlyFunctions {
      * import com.pulumi.fastly.FastlyFunctions;
      * import com.pulumi.aws.SecurityGroup;
      * import com.pulumi.aws.SecurityGroupArgs;
-     * import java.util.List;
      * import java.util.ArrayList;
+     * import java.util.Arrays;
      * import java.util.Map;
      * import java.io.File;
      * import java.nio.file.Files;
@@ -1885,7 +2732,7 @@ public final class FastlyFunctions {
      * 
      *         var fromFastly = new SecurityGroup("fromFastly", SecurityGroupArgs.builder()
      *             .name("from_fastly")
-     *             .ingress(List.of(Map.ofEntries(
+     *             .ingress(Arrays.asList(Map.ofEntries(
      *                 Map.entry("fromPort", "443"),
      *                 Map.entry("toPort", "443"),
      *                 Map.entry("protocol", "tcp"),
@@ -1920,8 +2767,8 @@ public final class FastlyFunctions {
      * import com.pulumi.fastly.FastlyFunctions;
      * import com.pulumi.aws.SecurityGroup;
      * import com.pulumi.aws.SecurityGroupArgs;
-     * import java.util.List;
      * import java.util.ArrayList;
+     * import java.util.Arrays;
      * import java.util.Map;
      * import java.io.File;
      * import java.nio.file.Files;
@@ -1937,7 +2784,7 @@ public final class FastlyFunctions {
      * 
      *         var fromFastly = new SecurityGroup("fromFastly", SecurityGroupArgs.builder()
      *             .name("from_fastly")
-     *             .ingress(List.of(Map.ofEntries(
+     *             .ingress(Arrays.asList(Map.ofEntries(
      *                 Map.entry("fromPort", "443"),
      *                 Map.entry("toPort", "443"),
      *                 Map.entry("protocol", "tcp"),
@@ -1972,8 +2819,8 @@ public final class FastlyFunctions {
      * import com.pulumi.fastly.FastlyFunctions;
      * import com.pulumi.aws.SecurityGroup;
      * import com.pulumi.aws.SecurityGroupArgs;
-     * import java.util.List;
      * import java.util.ArrayList;
+     * import java.util.Arrays;
      * import java.util.Map;
      * import java.io.File;
      * import java.nio.file.Files;
@@ -1989,7 +2836,7 @@ public final class FastlyFunctions {
      * 
      *         var fromFastly = new SecurityGroup("fromFastly", SecurityGroupArgs.builder()
      *             .name("from_fastly")
-     *             .ingress(List.of(Map.ofEntries(
+     *             .ingress(Arrays.asList(Map.ofEntries(
      *                 Map.entry("fromPort", "443"),
      *                 Map.entry("toPort", "443"),
      *                 Map.entry("protocol", "tcp"),
@@ -2024,8 +2871,8 @@ public final class FastlyFunctions {
      * import com.pulumi.fastly.FastlyFunctions;
      * import com.pulumi.aws.SecurityGroup;
      * import com.pulumi.aws.SecurityGroupArgs;
-     * import java.util.List;
      * import java.util.ArrayList;
+     * import java.util.Arrays;
      * import java.util.Map;
      * import java.io.File;
      * import java.nio.file.Files;
@@ -2041,7 +2888,7 @@ public final class FastlyFunctions {
      * 
      *         var fromFastly = new SecurityGroup("fromFastly", SecurityGroupArgs.builder()
      *             .name("from_fastly")
-     *             .ingress(List.of(Map.ofEntries(
+     *             .ingress(Arrays.asList(Map.ofEntries(
      *                 Map.entry("fromPort", "443"),
      *                 Map.entry("toPort", "443"),
      *                 Map.entry("protocol", "tcp"),
@@ -2076,8 +2923,8 @@ public final class FastlyFunctions {
      * import com.pulumi.fastly.FastlyFunctions;
      * import com.pulumi.aws.SecurityGroup;
      * import com.pulumi.aws.SecurityGroupArgs;
-     * import java.util.List;
      * import java.util.ArrayList;
+     * import java.util.Arrays;
      * import java.util.Map;
      * import java.io.File;
      * import java.nio.file.Files;
@@ -2093,7 +2940,7 @@ public final class FastlyFunctions {
      * 
      *         var fromFastly = new SecurityGroup("fromFastly", SecurityGroupArgs.builder()
      *             .name("from_fastly")
-     *             .ingress(List.of(Map.ofEntries(
+     *             .ingress(Arrays.asList(Map.ofEntries(
      *                 Map.entry("fromPort", "443"),
      *                 Map.entry("toPort", "443"),
      *                 Map.entry("protocol", "tcp"),
@@ -2128,8 +2975,8 @@ public final class FastlyFunctions {
      * import com.pulumi.fastly.FastlyFunctions;
      * import com.pulumi.aws.SecurityGroup;
      * import com.pulumi.aws.SecurityGroupArgs;
-     * import java.util.List;
      * import java.util.ArrayList;
+     * import java.util.Arrays;
      * import java.util.Map;
      * import java.io.File;
      * import java.nio.file.Files;
@@ -2145,7 +2992,7 @@ public final class FastlyFunctions {
      * 
      *         var fromFastly = new SecurityGroup("fromFastly", SecurityGroupArgs.builder()
      *             .name("from_fastly")
-     *             .ingress(List.of(Map.ofEntries(
+     *             .ingress(Arrays.asList(Map.ofEntries(
      *                 Map.entry("fromPort", "443"),
      *                 Map.entry("toPort", "443"),
      *                 Map.entry("protocol", "tcp"),
@@ -2180,8 +3027,8 @@ public final class FastlyFunctions {
      * import com.pulumi.fastly.FastlyFunctions;
      * import com.pulumi.aws.SecurityGroup;
      * import com.pulumi.aws.SecurityGroupArgs;
-     * import java.util.List;
      * import java.util.ArrayList;
+     * import java.util.Arrays;
      * import java.util.Map;
      * import java.io.File;
      * import java.nio.file.Files;
@@ -2197,7 +3044,7 @@ public final class FastlyFunctions {
      * 
      *         var fromFastly = new SecurityGroup("fromFastly", SecurityGroupArgs.builder()
      *             .name("from_fastly")
-     *             .ingress(List.of(Map.ofEntries(
+     *             .ingress(Arrays.asList(Map.ofEntries(
      *                 Map.entry("fromPort", "443"),
      *                 Map.entry("toPort", "443"),
      *                 Map.entry("protocol", "tcp"),
@@ -2251,8 +3098,8 @@ public final class FastlyFunctions {
      * import com.pulumi.Pulumi;
      * import com.pulumi.core.Output;
      * import com.pulumi.fastly.FastlyFunctions;
-     * import java.util.List;
      * import java.util.ArrayList;
+     * import java.util.Arrays;
      * import java.util.Map;
      * import java.io.File;
      * import java.nio.file.Files;
@@ -2289,8 +3136,8 @@ public final class FastlyFunctions {
      * import com.pulumi.Pulumi;
      * import com.pulumi.core.Output;
      * import com.pulumi.fastly.FastlyFunctions;
-     * import java.util.List;
      * import java.util.ArrayList;
+     * import java.util.Arrays;
      * import java.util.Map;
      * import java.io.File;
      * import java.nio.file.Files;
@@ -2327,8 +3174,8 @@ public final class FastlyFunctions {
      * import com.pulumi.Pulumi;
      * import com.pulumi.core.Output;
      * import com.pulumi.fastly.FastlyFunctions;
-     * import java.util.List;
      * import java.util.ArrayList;
+     * import java.util.Arrays;
      * import java.util.Map;
      * import java.io.File;
      * import java.nio.file.Files;
@@ -2365,8 +3212,8 @@ public final class FastlyFunctions {
      * import com.pulumi.Pulumi;
      * import com.pulumi.core.Output;
      * import com.pulumi.fastly.FastlyFunctions;
-     * import java.util.List;
      * import java.util.ArrayList;
+     * import java.util.Arrays;
      * import java.util.Map;
      * import java.io.File;
      * import java.nio.file.Files;
@@ -2403,8 +3250,8 @@ public final class FastlyFunctions {
      * import com.pulumi.Pulumi;
      * import com.pulumi.core.Output;
      * import com.pulumi.fastly.FastlyFunctions;
-     * import java.util.List;
      * import java.util.ArrayList;
+     * import java.util.Arrays;
      * import java.util.Map;
      * import java.io.File;
      * import java.nio.file.Files;
@@ -2441,8 +3288,8 @@ public final class FastlyFunctions {
      * import com.pulumi.Pulumi;
      * import com.pulumi.core.Output;
      * import com.pulumi.fastly.FastlyFunctions;
-     * import java.util.List;
      * import java.util.ArrayList;
+     * import java.util.Arrays;
      * import java.util.Map;
      * import java.io.File;
      * import java.nio.file.Files;
@@ -2479,8 +3326,8 @@ public final class FastlyFunctions {
      * import com.pulumi.Pulumi;
      * import com.pulumi.core.Output;
      * import com.pulumi.fastly.FastlyFunctions;
-     * import java.util.List;
      * import java.util.ArrayList;
+     * import java.util.Arrays;
      * import java.util.Map;
      * import java.io.File;
      * import java.nio.file.Files;
@@ -2517,8 +3364,8 @@ public final class FastlyFunctions {
      * import com.pulumi.Pulumi;
      * import com.pulumi.core.Output;
      * import com.pulumi.fastly.FastlyFunctions;
-     * import java.util.List;
      * import java.util.ArrayList;
+     * import java.util.Arrays;
      * import java.util.Map;
      * import java.io.File;
      * import java.nio.file.Files;
@@ -2555,8 +3402,8 @@ public final class FastlyFunctions {
      * import com.pulumi.Pulumi;
      * import com.pulumi.core.Output;
      * import com.pulumi.fastly.FastlyFunctions;
-     * import java.util.List;
      * import java.util.ArrayList;
+     * import java.util.Arrays;
      * import java.util.Map;
      * import java.io.File;
      * import java.nio.file.Files;
@@ -2593,8 +3440,8 @@ public final class FastlyFunctions {
      * import com.pulumi.Pulumi;
      * import com.pulumi.core.Output;
      * import com.pulumi.fastly.FastlyFunctions;
-     * import java.util.List;
      * import java.util.ArrayList;
+     * import java.util.Arrays;
      * import java.util.Map;
      * import java.io.File;
      * import java.nio.file.Files;
@@ -2631,8 +3478,8 @@ public final class FastlyFunctions {
      * import com.pulumi.Pulumi;
      * import com.pulumi.core.Output;
      * import com.pulumi.fastly.FastlyFunctions;
-     * import java.util.List;
      * import java.util.ArrayList;
+     * import java.util.Arrays;
      * import java.util.Map;
      * import java.io.File;
      * import java.nio.file.Files;
@@ -2669,8 +3516,8 @@ public final class FastlyFunctions {
      * import com.pulumi.Pulumi;
      * import com.pulumi.core.Output;
      * import com.pulumi.fastly.FastlyFunctions;
-     * import java.util.List;
      * import java.util.ArrayList;
+     * import java.util.Arrays;
      * import java.util.Map;
      * import java.io.File;
      * import java.nio.file.Files;
@@ -2707,8 +3554,8 @@ public final class FastlyFunctions {
      * import com.pulumi.Pulumi;
      * import com.pulumi.core.Output;
      * import com.pulumi.fastly.FastlyFunctions;
-     * import java.util.List;
      * import java.util.ArrayList;
+     * import java.util.Arrays;
      * import java.util.Map;
      * import java.io.File;
      * import java.nio.file.Files;
@@ -2745,8 +3592,8 @@ public final class FastlyFunctions {
      * import com.pulumi.Pulumi;
      * import com.pulumi.core.Output;
      * import com.pulumi.fastly.FastlyFunctions;
-     * import java.util.List;
      * import java.util.ArrayList;
+     * import java.util.Arrays;
      * import java.util.Map;
      * import java.io.File;
      * import java.nio.file.Files;
@@ -2783,8 +3630,8 @@ public final class FastlyFunctions {
      * import com.pulumi.Pulumi;
      * import com.pulumi.core.Output;
      * import com.pulumi.fastly.FastlyFunctions;
-     * import java.util.List;
      * import java.util.ArrayList;
+     * import java.util.Arrays;
      * import java.util.Map;
      * import java.io.File;
      * import java.nio.file.Files;
@@ -2821,8 +3668,8 @@ public final class FastlyFunctions {
      * import com.pulumi.Pulumi;
      * import com.pulumi.core.Output;
      * import com.pulumi.fastly.FastlyFunctions;
-     * import java.util.List;
      * import java.util.ArrayList;
+     * import java.util.Arrays;
      * import java.util.Map;
      * import java.io.File;
      * import java.nio.file.Files;
@@ -2859,8 +3706,8 @@ public final class FastlyFunctions {
      * import com.pulumi.Pulumi;
      * import com.pulumi.core.Output;
      * import com.pulumi.fastly.FastlyFunctions;
-     * import java.util.List;
      * import java.util.ArrayList;
+     * import java.util.Arrays;
      * import java.util.Map;
      * import java.io.File;
      * import java.nio.file.Files;
@@ -2897,8 +3744,8 @@ public final class FastlyFunctions {
      * import com.pulumi.Pulumi;
      * import com.pulumi.core.Output;
      * import com.pulumi.fastly.FastlyFunctions;
-     * import java.util.List;
      * import java.util.ArrayList;
+     * import java.util.Arrays;
      * import java.util.Map;
      * import java.io.File;
      * import java.nio.file.Files;
@@ -2935,8 +3782,8 @@ public final class FastlyFunctions {
      * import com.pulumi.Pulumi;
      * import com.pulumi.core.Output;
      * import com.pulumi.fastly.FastlyFunctions;
-     * import java.util.List;
      * import java.util.ArrayList;
+     * import java.util.Arrays;
      * import java.util.Map;
      * import java.io.File;
      * import java.nio.file.Files;
@@ -2973,8 +3820,8 @@ public final class FastlyFunctions {
      * import com.pulumi.Pulumi;
      * import com.pulumi.core.Output;
      * import com.pulumi.fastly.FastlyFunctions;
-     * import java.util.List;
      * import java.util.ArrayList;
+     * import java.util.Arrays;
      * import java.util.Map;
      * import java.io.File;
      * import java.nio.file.Files;
@@ -3011,8 +3858,8 @@ public final class FastlyFunctions {
      * import com.pulumi.Pulumi;
      * import com.pulumi.core.Output;
      * import com.pulumi.fastly.FastlyFunctions;
-     * import java.util.List;
      * import java.util.ArrayList;
+     * import java.util.Arrays;
      * import java.util.Map;
      * import java.io.File;
      * import java.nio.file.Files;
@@ -3050,8 +3897,8 @@ public final class FastlyFunctions {
      * import com.pulumi.core.Output;
      * import com.pulumi.fastly.FastlyFunctions;
      * import com.pulumi.fastly.inputs.GetNgwafAlertDatadogIntegrationArgs;
-     * import java.util.List;
      * import java.util.ArrayList;
+     * import java.util.Arrays;
      * import java.util.Map;
      * import java.io.File;
      * import java.nio.file.Files;
@@ -3064,7 +3911,7 @@ public final class FastlyFunctions {
      * 
      *     public static void stack(Context ctx) {
      *         final var ngwafDatadogAlerts = FastlyFunctions.getNgwafAlertDatadogIntegration(GetNgwafAlertDatadogIntegrationArgs.builder()
-     *             .workspaceId(testRedactionsWorkspace.id())
+     *             .workspaceId(testRedactionsWorkspace.get("id"))
      *             .build());
      * 
      *         ctx.export("ngwafDatadogAlertsAll", datadogAlerts);
@@ -3091,8 +3938,8 @@ public final class FastlyFunctions {
      * import com.pulumi.core.Output;
      * import com.pulumi.fastly.FastlyFunctions;
      * import com.pulumi.fastly.inputs.GetNgwafAlertDatadogIntegrationArgs;
-     * import java.util.List;
      * import java.util.ArrayList;
+     * import java.util.Arrays;
      * import java.util.Map;
      * import java.io.File;
      * import java.nio.file.Files;
@@ -3105,7 +3952,7 @@ public final class FastlyFunctions {
      * 
      *     public static void stack(Context ctx) {
      *         final var ngwafDatadogAlerts = FastlyFunctions.getNgwafAlertDatadogIntegration(GetNgwafAlertDatadogIntegrationArgs.builder()
-     *             .workspaceId(testRedactionsWorkspace.id())
+     *             .workspaceId(testRedactionsWorkspace.get("id"))
      *             .build());
      * 
      *         ctx.export("ngwafDatadogAlertsAll", datadogAlerts);
@@ -3132,8 +3979,8 @@ public final class FastlyFunctions {
      * import com.pulumi.core.Output;
      * import com.pulumi.fastly.FastlyFunctions;
      * import com.pulumi.fastly.inputs.GetNgwafAlertDatadogIntegrationArgs;
-     * import java.util.List;
      * import java.util.ArrayList;
+     * import java.util.Arrays;
      * import java.util.Map;
      * import java.io.File;
      * import java.nio.file.Files;
@@ -3146,7 +3993,7 @@ public final class FastlyFunctions {
      * 
      *     public static void stack(Context ctx) {
      *         final var ngwafDatadogAlerts = FastlyFunctions.getNgwafAlertDatadogIntegration(GetNgwafAlertDatadogIntegrationArgs.builder()
-     *             .workspaceId(testRedactionsWorkspace.id())
+     *             .workspaceId(testRedactionsWorkspace.get("id"))
      *             .build());
      * 
      *         ctx.export("ngwafDatadogAlertsAll", datadogAlerts);
@@ -3173,8 +4020,8 @@ public final class FastlyFunctions {
      * import com.pulumi.core.Output;
      * import com.pulumi.fastly.FastlyFunctions;
      * import com.pulumi.fastly.inputs.GetNgwafAlertDatadogIntegrationArgs;
-     * import java.util.List;
      * import java.util.ArrayList;
+     * import java.util.Arrays;
      * import java.util.Map;
      * import java.io.File;
      * import java.nio.file.Files;
@@ -3187,7 +4034,7 @@ public final class FastlyFunctions {
      * 
      *     public static void stack(Context ctx) {
      *         final var ngwafDatadogAlerts = FastlyFunctions.getNgwafAlertDatadogIntegration(GetNgwafAlertDatadogIntegrationArgs.builder()
-     *             .workspaceId(testRedactionsWorkspace.id())
+     *             .workspaceId(testRedactionsWorkspace.get("id"))
      *             .build());
      * 
      *         ctx.export("ngwafDatadogAlertsAll", datadogAlerts);
@@ -3214,8 +4061,8 @@ public final class FastlyFunctions {
      * import com.pulumi.core.Output;
      * import com.pulumi.fastly.FastlyFunctions;
      * import com.pulumi.fastly.inputs.GetNgwafAlertDatadogIntegrationArgs;
-     * import java.util.List;
      * import java.util.ArrayList;
+     * import java.util.Arrays;
      * import java.util.Map;
      * import java.io.File;
      * import java.nio.file.Files;
@@ -3228,7 +4075,7 @@ public final class FastlyFunctions {
      * 
      *     public static void stack(Context ctx) {
      *         final var ngwafDatadogAlerts = FastlyFunctions.getNgwafAlertDatadogIntegration(GetNgwafAlertDatadogIntegrationArgs.builder()
-     *             .workspaceId(testRedactionsWorkspace.id())
+     *             .workspaceId(testRedactionsWorkspace.get("id"))
      *             .build());
      * 
      *         ctx.export("ngwafDatadogAlertsAll", datadogAlerts);
@@ -3255,8 +4102,8 @@ public final class FastlyFunctions {
      * import com.pulumi.core.Output;
      * import com.pulumi.fastly.FastlyFunctions;
      * import com.pulumi.fastly.inputs.GetNgwafAlertJiraIntegrationArgs;
-     * import java.util.List;
      * import java.util.ArrayList;
+     * import java.util.Arrays;
      * import java.util.Map;
      * import java.io.File;
      * import java.nio.file.Files;
@@ -3269,7 +4116,7 @@ public final class FastlyFunctions {
      * 
      *     public static void stack(Context ctx) {
      *         final var ngwafJiraAlerts = FastlyFunctions.getNgwafAlertJiraIntegration(GetNgwafAlertJiraIntegrationArgs.builder()
-     *             .workspaceId(testRedactionsWorkspace.id())
+     *             .workspaceId(testRedactionsWorkspace.get("id"))
      *             .build());
      * 
      *         ctx.export("ngwafJiraAlertsAll", jiraAlerts);
@@ -3296,8 +4143,8 @@ public final class FastlyFunctions {
      * import com.pulumi.core.Output;
      * import com.pulumi.fastly.FastlyFunctions;
      * import com.pulumi.fastly.inputs.GetNgwafAlertJiraIntegrationArgs;
-     * import java.util.List;
      * import java.util.ArrayList;
+     * import java.util.Arrays;
      * import java.util.Map;
      * import java.io.File;
      * import java.nio.file.Files;
@@ -3310,7 +4157,7 @@ public final class FastlyFunctions {
      * 
      *     public static void stack(Context ctx) {
      *         final var ngwafJiraAlerts = FastlyFunctions.getNgwafAlertJiraIntegration(GetNgwafAlertJiraIntegrationArgs.builder()
-     *             .workspaceId(testRedactionsWorkspace.id())
+     *             .workspaceId(testRedactionsWorkspace.get("id"))
      *             .build());
      * 
      *         ctx.export("ngwafJiraAlertsAll", jiraAlerts);
@@ -3337,8 +4184,8 @@ public final class FastlyFunctions {
      * import com.pulumi.core.Output;
      * import com.pulumi.fastly.FastlyFunctions;
      * import com.pulumi.fastly.inputs.GetNgwafAlertJiraIntegrationArgs;
-     * import java.util.List;
      * import java.util.ArrayList;
+     * import java.util.Arrays;
      * import java.util.Map;
      * import java.io.File;
      * import java.nio.file.Files;
@@ -3351,7 +4198,7 @@ public final class FastlyFunctions {
      * 
      *     public static void stack(Context ctx) {
      *         final var ngwafJiraAlerts = FastlyFunctions.getNgwafAlertJiraIntegration(GetNgwafAlertJiraIntegrationArgs.builder()
-     *             .workspaceId(testRedactionsWorkspace.id())
+     *             .workspaceId(testRedactionsWorkspace.get("id"))
      *             .build());
      * 
      *         ctx.export("ngwafJiraAlertsAll", jiraAlerts);
@@ -3378,8 +4225,8 @@ public final class FastlyFunctions {
      * import com.pulumi.core.Output;
      * import com.pulumi.fastly.FastlyFunctions;
      * import com.pulumi.fastly.inputs.GetNgwafAlertJiraIntegrationArgs;
-     * import java.util.List;
      * import java.util.ArrayList;
+     * import java.util.Arrays;
      * import java.util.Map;
      * import java.io.File;
      * import java.nio.file.Files;
@@ -3392,7 +4239,7 @@ public final class FastlyFunctions {
      * 
      *     public static void stack(Context ctx) {
      *         final var ngwafJiraAlerts = FastlyFunctions.getNgwafAlertJiraIntegration(GetNgwafAlertJiraIntegrationArgs.builder()
-     *             .workspaceId(testRedactionsWorkspace.id())
+     *             .workspaceId(testRedactionsWorkspace.get("id"))
      *             .build());
      * 
      *         ctx.export("ngwafJiraAlertsAll", jiraAlerts);
@@ -3419,8 +4266,8 @@ public final class FastlyFunctions {
      * import com.pulumi.core.Output;
      * import com.pulumi.fastly.FastlyFunctions;
      * import com.pulumi.fastly.inputs.GetNgwafAlertJiraIntegrationArgs;
-     * import java.util.List;
      * import java.util.ArrayList;
+     * import java.util.Arrays;
      * import java.util.Map;
      * import java.io.File;
      * import java.nio.file.Files;
@@ -3433,7 +4280,7 @@ public final class FastlyFunctions {
      * 
      *     public static void stack(Context ctx) {
      *         final var ngwafJiraAlerts = FastlyFunctions.getNgwafAlertJiraIntegration(GetNgwafAlertJiraIntegrationArgs.builder()
-     *             .workspaceId(testRedactionsWorkspace.id())
+     *             .workspaceId(testRedactionsWorkspace.get("id"))
      *             .build());
      * 
      *         ctx.export("ngwafJiraAlertsAll", jiraAlerts);
@@ -3460,8 +4307,8 @@ public final class FastlyFunctions {
      * import com.pulumi.core.Output;
      * import com.pulumi.fastly.FastlyFunctions;
      * import com.pulumi.fastly.inputs.GetNgwafAlertJiraIntegrationArgs;
-     * import java.util.List;
      * import java.util.ArrayList;
+     * import java.util.Arrays;
      * import java.util.Map;
      * import java.io.File;
      * import java.nio.file.Files;
@@ -3474,7 +4321,7 @@ public final class FastlyFunctions {
      * 
      *     public static void stack(Context ctx) {
      *         final var ngwafJiraAlerts = FastlyFunctions.getNgwafAlertJiraIntegration(GetNgwafAlertJiraIntegrationArgs.builder()
-     *             .workspaceId(testRedactionsWorkspace.id())
+     *             .workspaceId(testRedactionsWorkspace.get("id"))
      *             .build());
      * 
      *         ctx.export("ngwafJiraAlertsAll", jiraAlerts);
@@ -3501,8 +4348,8 @@ public final class FastlyFunctions {
      * import com.pulumi.core.Output;
      * import com.pulumi.fastly.FastlyFunctions;
      * import com.pulumi.fastly.inputs.GetNgwafAlertJiraIntegrationArgs;
-     * import java.util.List;
      * import java.util.ArrayList;
+     * import java.util.Arrays;
      * import java.util.Map;
      * import java.io.File;
      * import java.nio.file.Files;
@@ -3515,7 +4362,7 @@ public final class FastlyFunctions {
      * 
      *     public static void stack(Context ctx) {
      *         final var ngwafJiraAlerts = FastlyFunctions.getNgwafAlertJiraIntegration(GetNgwafAlertJiraIntegrationArgs.builder()
-     *             .workspaceId(testRedactionsWorkspace.id())
+     *             .workspaceId(testRedactionsWorkspace.get("id"))
      *             .build());
      * 
      *         ctx.export("ngwafJiraAlertsAll", jiraAlerts);
@@ -3542,8 +4389,8 @@ public final class FastlyFunctions {
      * import com.pulumi.core.Output;
      * import com.pulumi.fastly.FastlyFunctions;
      * import com.pulumi.fastly.inputs.GetNgwafAlertJiraIntegrationArgs;
-     * import java.util.List;
      * import java.util.ArrayList;
+     * import java.util.Arrays;
      * import java.util.Map;
      * import java.io.File;
      * import java.nio.file.Files;
@@ -3556,7 +4403,7 @@ public final class FastlyFunctions {
      * 
      *     public static void stack(Context ctx) {
      *         final var ngwafJiraAlerts = FastlyFunctions.getNgwafAlertJiraIntegration(GetNgwafAlertJiraIntegrationArgs.builder()
-     *             .workspaceId(testRedactionsWorkspace.id())
+     *             .workspaceId(testRedactionsWorkspace.get("id"))
      *             .build());
      * 
      *         ctx.export("ngwafJiraAlertsAll", jiraAlerts);
@@ -3583,8 +4430,8 @@ public final class FastlyFunctions {
      * import com.pulumi.core.Output;
      * import com.pulumi.fastly.FastlyFunctions;
      * import com.pulumi.fastly.inputs.GetNgwafAlertJiraIntegrationArgs;
-     * import java.util.List;
      * import java.util.ArrayList;
+     * import java.util.Arrays;
      * import java.util.Map;
      * import java.io.File;
      * import java.nio.file.Files;
@@ -3597,7 +4444,7 @@ public final class FastlyFunctions {
      * 
      *     public static void stack(Context ctx) {
      *         final var ngwafJiraAlerts = FastlyFunctions.getNgwafAlertJiraIntegration(GetNgwafAlertJiraIntegrationArgs.builder()
-     *             .workspaceId(testRedactionsWorkspace.id())
+     *             .workspaceId(testRedactionsWorkspace.get("id"))
      *             .build());
      * 
      *         ctx.export("ngwafJiraAlertsAll", jiraAlerts);
@@ -3624,8 +4471,8 @@ public final class FastlyFunctions {
      * import com.pulumi.core.Output;
      * import com.pulumi.fastly.FastlyFunctions;
      * import com.pulumi.fastly.inputs.GetNgwafAlertJiraIntegrationArgs;
-     * import java.util.List;
      * import java.util.ArrayList;
+     * import java.util.Arrays;
      * import java.util.Map;
      * import java.io.File;
      * import java.nio.file.Files;
@@ -3638,7 +4485,7 @@ public final class FastlyFunctions {
      * 
      *     public static void stack(Context ctx) {
      *         final var ngwafJiraAlerts = FastlyFunctions.getNgwafAlertJiraIntegration(GetNgwafAlertJiraIntegrationArgs.builder()
-     *             .workspaceId(testRedactionsWorkspace.id())
+     *             .workspaceId(testRedactionsWorkspace.get("id"))
      *             .build());
      * 
      *         ctx.export("ngwafJiraAlertsAll", jiraAlerts);
@@ -3665,8 +4512,8 @@ public final class FastlyFunctions {
      * import com.pulumi.core.Output;
      * import com.pulumi.fastly.FastlyFunctions;
      * import com.pulumi.fastly.inputs.GetNgwafAlertJiraIntegrationArgs;
-     * import java.util.List;
      * import java.util.ArrayList;
+     * import java.util.Arrays;
      * import java.util.Map;
      * import java.io.File;
      * import java.nio.file.Files;
@@ -3679,7 +4526,7 @@ public final class FastlyFunctions {
      * 
      *     public static void stack(Context ctx) {
      *         final var ngwafJiraAlerts = FastlyFunctions.getNgwafAlertJiraIntegration(GetNgwafAlertJiraIntegrationArgs.builder()
-     *             .workspaceId(testRedactionsWorkspace.id())
+     *             .workspaceId(testRedactionsWorkspace.get("id"))
      *             .build());
      * 
      *         ctx.export("ngwafJiraAlertsAll", jiraAlerts);
@@ -3706,8 +4553,8 @@ public final class FastlyFunctions {
      * import com.pulumi.core.Output;
      * import com.pulumi.fastly.FastlyFunctions;
      * import com.pulumi.fastly.inputs.GetNgwafAlertJiraIntegrationArgs;
-     * import java.util.List;
      * import java.util.ArrayList;
+     * import java.util.Arrays;
      * import java.util.Map;
      * import java.io.File;
      * import java.nio.file.Files;
@@ -3720,7 +4567,7 @@ public final class FastlyFunctions {
      * 
      *     public static void stack(Context ctx) {
      *         final var ngwafJiraAlerts = FastlyFunctions.getNgwafAlertJiraIntegration(GetNgwafAlertJiraIntegrationArgs.builder()
-     *             .workspaceId(testRedactionsWorkspace.id())
+     *             .workspaceId(testRedactionsWorkspace.get("id"))
      *             .build());
      * 
      *         ctx.export("ngwafJiraAlertsAll", jiraAlerts);
@@ -3747,8 +4594,8 @@ public final class FastlyFunctions {
      * import com.pulumi.core.Output;
      * import com.pulumi.fastly.FastlyFunctions;
      * import com.pulumi.fastly.inputs.GetNgwafAlertJiraIntegrationArgs;
-     * import java.util.List;
      * import java.util.ArrayList;
+     * import java.util.Arrays;
      * import java.util.Map;
      * import java.io.File;
      * import java.nio.file.Files;
@@ -3761,7 +4608,7 @@ public final class FastlyFunctions {
      * 
      *     public static void stack(Context ctx) {
      *         final var ngwafJiraAlerts = FastlyFunctions.getNgwafAlertJiraIntegration(GetNgwafAlertJiraIntegrationArgs.builder()
-     *             .workspaceId(testRedactionsWorkspace.id())
+     *             .workspaceId(testRedactionsWorkspace.get("id"))
      *             .build());
      * 
      *         ctx.export("ngwafJiraAlertsAll", jiraAlerts);
@@ -3788,8 +4635,8 @@ public final class FastlyFunctions {
      * import com.pulumi.core.Output;
      * import com.pulumi.fastly.FastlyFunctions;
      * import com.pulumi.fastly.inputs.GetNgwafAlertJiraIntegrationArgs;
-     * import java.util.List;
      * import java.util.ArrayList;
+     * import java.util.Arrays;
      * import java.util.Map;
      * import java.io.File;
      * import java.nio.file.Files;
@@ -3802,7 +4649,7 @@ public final class FastlyFunctions {
      * 
      *     public static void stack(Context ctx) {
      *         final var ngwafJiraAlerts = FastlyFunctions.getNgwafAlertJiraIntegration(GetNgwafAlertJiraIntegrationArgs.builder()
-     *             .workspaceId(testRedactionsWorkspace.id())
+     *             .workspaceId(testRedactionsWorkspace.get("id"))
      *             .build());
      * 
      *         ctx.export("ngwafJiraAlertsAll", jiraAlerts);
@@ -3829,8 +4676,8 @@ public final class FastlyFunctions {
      * import com.pulumi.core.Output;
      * import com.pulumi.fastly.FastlyFunctions;
      * import com.pulumi.fastly.inputs.GetNgwafAlertJiraIntegrationArgs;
-     * import java.util.List;
      * import java.util.ArrayList;
+     * import java.util.Arrays;
      * import java.util.Map;
      * import java.io.File;
      * import java.nio.file.Files;
@@ -3843,7 +4690,7 @@ public final class FastlyFunctions {
      * 
      *     public static void stack(Context ctx) {
      *         final var ngwafJiraAlerts = FastlyFunctions.getNgwafAlertJiraIntegration(GetNgwafAlertJiraIntegrationArgs.builder()
-     *             .workspaceId(testRedactionsWorkspace.id())
+     *             .workspaceId(testRedactionsWorkspace.get("id"))
      *             .build());
      * 
      *         ctx.export("ngwafJiraAlertsAll", jiraAlerts);
@@ -3870,8 +4717,8 @@ public final class FastlyFunctions {
      * import com.pulumi.core.Output;
      * import com.pulumi.fastly.FastlyFunctions;
      * import com.pulumi.fastly.inputs.GetNgwafAlertOpsgenieIntegrationArgs;
-     * import java.util.List;
      * import java.util.ArrayList;
+     * import java.util.Arrays;
      * import java.util.Map;
      * import java.io.File;
      * import java.nio.file.Files;
@@ -3884,7 +4731,7 @@ public final class FastlyFunctions {
      * 
      *     public static void stack(Context ctx) {
      *         final var ngwafOpsgenieAlerts = FastlyFunctions.getNgwafAlertOpsgenieIntegration(GetNgwafAlertOpsgenieIntegrationArgs.builder()
-     *             .workspaceId(testRedactionsWorkspace.id())
+     *             .workspaceId(testRedactionsWorkspace.get("id"))
      *             .build());
      * 
      *         ctx.export("ngwafOpsgenieAlertsAll", opsgenieAlerts);
@@ -3911,8 +4758,8 @@ public final class FastlyFunctions {
      * import com.pulumi.core.Output;
      * import com.pulumi.fastly.FastlyFunctions;
      * import com.pulumi.fastly.inputs.GetNgwafAlertOpsgenieIntegrationArgs;
-     * import java.util.List;
      * import java.util.ArrayList;
+     * import java.util.Arrays;
      * import java.util.Map;
      * import java.io.File;
      * import java.nio.file.Files;
@@ -3925,7 +4772,7 @@ public final class FastlyFunctions {
      * 
      *     public static void stack(Context ctx) {
      *         final var ngwafOpsgenieAlerts = FastlyFunctions.getNgwafAlertOpsgenieIntegration(GetNgwafAlertOpsgenieIntegrationArgs.builder()
-     *             .workspaceId(testRedactionsWorkspace.id())
+     *             .workspaceId(testRedactionsWorkspace.get("id"))
      *             .build());
      * 
      *         ctx.export("ngwafOpsgenieAlertsAll", opsgenieAlerts);
@@ -3952,8 +4799,8 @@ public final class FastlyFunctions {
      * import com.pulumi.core.Output;
      * import com.pulumi.fastly.FastlyFunctions;
      * import com.pulumi.fastly.inputs.GetNgwafAlertOpsgenieIntegrationArgs;
-     * import java.util.List;
      * import java.util.ArrayList;
+     * import java.util.Arrays;
      * import java.util.Map;
      * import java.io.File;
      * import java.nio.file.Files;
@@ -3966,7 +4813,7 @@ public final class FastlyFunctions {
      * 
      *     public static void stack(Context ctx) {
      *         final var ngwafOpsgenieAlerts = FastlyFunctions.getNgwafAlertOpsgenieIntegration(GetNgwafAlertOpsgenieIntegrationArgs.builder()
-     *             .workspaceId(testRedactionsWorkspace.id())
+     *             .workspaceId(testRedactionsWorkspace.get("id"))
      *             .build());
      * 
      *         ctx.export("ngwafOpsgenieAlertsAll", opsgenieAlerts);
@@ -3993,8 +4840,8 @@ public final class FastlyFunctions {
      * import com.pulumi.core.Output;
      * import com.pulumi.fastly.FastlyFunctions;
      * import com.pulumi.fastly.inputs.GetNgwafAlertOpsgenieIntegrationArgs;
-     * import java.util.List;
      * import java.util.ArrayList;
+     * import java.util.Arrays;
      * import java.util.Map;
      * import java.io.File;
      * import java.nio.file.Files;
@@ -4007,7 +4854,7 @@ public final class FastlyFunctions {
      * 
      *     public static void stack(Context ctx) {
      *         final var ngwafOpsgenieAlerts = FastlyFunctions.getNgwafAlertOpsgenieIntegration(GetNgwafAlertOpsgenieIntegrationArgs.builder()
-     *             .workspaceId(testRedactionsWorkspace.id())
+     *             .workspaceId(testRedactionsWorkspace.get("id"))
      *             .build());
      * 
      *         ctx.export("ngwafOpsgenieAlertsAll", opsgenieAlerts);
@@ -4034,8 +4881,8 @@ public final class FastlyFunctions {
      * import com.pulumi.core.Output;
      * import com.pulumi.fastly.FastlyFunctions;
      * import com.pulumi.fastly.inputs.GetNgwafAlertOpsgenieIntegrationArgs;
-     * import java.util.List;
      * import java.util.ArrayList;
+     * import java.util.Arrays;
      * import java.util.Map;
      * import java.io.File;
      * import java.nio.file.Files;
@@ -4048,7 +4895,7 @@ public final class FastlyFunctions {
      * 
      *     public static void stack(Context ctx) {
      *         final var ngwafOpsgenieAlerts = FastlyFunctions.getNgwafAlertOpsgenieIntegration(GetNgwafAlertOpsgenieIntegrationArgs.builder()
-     *             .workspaceId(testRedactionsWorkspace.id())
+     *             .workspaceId(testRedactionsWorkspace.get("id"))
      *             .build());
      * 
      *         ctx.export("ngwafOpsgenieAlertsAll", opsgenieAlerts);
@@ -4075,8 +4922,8 @@ public final class FastlyFunctions {
      * import com.pulumi.core.Output;
      * import com.pulumi.fastly.FastlyFunctions;
      * import com.pulumi.fastly.inputs.GetNgwafAlertPagerdutyIntegrationArgs;
-     * import java.util.List;
      * import java.util.ArrayList;
+     * import java.util.Arrays;
      * import java.util.Map;
      * import java.io.File;
      * import java.nio.file.Files;
@@ -4089,7 +4936,7 @@ public final class FastlyFunctions {
      * 
      *     public static void stack(Context ctx) {
      *         final var ngwafPagerdutyAlerts = FastlyFunctions.getNgwafAlertPagerdutyIntegration(GetNgwafAlertPagerdutyIntegrationArgs.builder()
-     *             .workspaceId(example.id())
+     *             .workspaceId(example.get("id"))
      *             .build());
      * 
      *         ctx.export("ngwafPagerdutyAlertsAll", ngwafPagerdutyAlerts);
@@ -4116,8 +4963,8 @@ public final class FastlyFunctions {
      * import com.pulumi.core.Output;
      * import com.pulumi.fastly.FastlyFunctions;
      * import com.pulumi.fastly.inputs.GetNgwafAlertPagerdutyIntegrationArgs;
-     * import java.util.List;
      * import java.util.ArrayList;
+     * import java.util.Arrays;
      * import java.util.Map;
      * import java.io.File;
      * import java.nio.file.Files;
@@ -4130,7 +4977,7 @@ public final class FastlyFunctions {
      * 
      *     public static void stack(Context ctx) {
      *         final var ngwafPagerdutyAlerts = FastlyFunctions.getNgwafAlertPagerdutyIntegration(GetNgwafAlertPagerdutyIntegrationArgs.builder()
-     *             .workspaceId(example.id())
+     *             .workspaceId(example.get("id"))
      *             .build());
      * 
      *         ctx.export("ngwafPagerdutyAlertsAll", ngwafPagerdutyAlerts);
@@ -4157,8 +5004,8 @@ public final class FastlyFunctions {
      * import com.pulumi.core.Output;
      * import com.pulumi.fastly.FastlyFunctions;
      * import com.pulumi.fastly.inputs.GetNgwafAlertPagerdutyIntegrationArgs;
-     * import java.util.List;
      * import java.util.ArrayList;
+     * import java.util.Arrays;
      * import java.util.Map;
      * import java.io.File;
      * import java.nio.file.Files;
@@ -4171,7 +5018,7 @@ public final class FastlyFunctions {
      * 
      *     public static void stack(Context ctx) {
      *         final var ngwafPagerdutyAlerts = FastlyFunctions.getNgwafAlertPagerdutyIntegration(GetNgwafAlertPagerdutyIntegrationArgs.builder()
-     *             .workspaceId(example.id())
+     *             .workspaceId(example.get("id"))
      *             .build());
      * 
      *         ctx.export("ngwafPagerdutyAlertsAll", ngwafPagerdutyAlerts);
@@ -4198,8 +5045,8 @@ public final class FastlyFunctions {
      * import com.pulumi.core.Output;
      * import com.pulumi.fastly.FastlyFunctions;
      * import com.pulumi.fastly.inputs.GetNgwafAlertPagerdutyIntegrationArgs;
-     * import java.util.List;
      * import java.util.ArrayList;
+     * import java.util.Arrays;
      * import java.util.Map;
      * import java.io.File;
      * import java.nio.file.Files;
@@ -4212,7 +5059,7 @@ public final class FastlyFunctions {
      * 
      *     public static void stack(Context ctx) {
      *         final var ngwafPagerdutyAlerts = FastlyFunctions.getNgwafAlertPagerdutyIntegration(GetNgwafAlertPagerdutyIntegrationArgs.builder()
-     *             .workspaceId(example.id())
+     *             .workspaceId(example.get("id"))
      *             .build());
      * 
      *         ctx.export("ngwafPagerdutyAlertsAll", ngwafPagerdutyAlerts);
@@ -4239,8 +5086,8 @@ public final class FastlyFunctions {
      * import com.pulumi.core.Output;
      * import com.pulumi.fastly.FastlyFunctions;
      * import com.pulumi.fastly.inputs.GetNgwafAlertPagerdutyIntegrationArgs;
-     * import java.util.List;
      * import java.util.ArrayList;
+     * import java.util.Arrays;
      * import java.util.Map;
      * import java.io.File;
      * import java.nio.file.Files;
@@ -4253,7 +5100,7 @@ public final class FastlyFunctions {
      * 
      *     public static void stack(Context ctx) {
      *         final var ngwafPagerdutyAlerts = FastlyFunctions.getNgwafAlertPagerdutyIntegration(GetNgwafAlertPagerdutyIntegrationArgs.builder()
-     *             .workspaceId(example.id())
+     *             .workspaceId(example.get("id"))
      *             .build());
      * 
      *         ctx.export("ngwafPagerdutyAlertsAll", ngwafPagerdutyAlerts);
@@ -4280,8 +5127,8 @@ public final class FastlyFunctions {
      * import com.pulumi.core.Output;
      * import com.pulumi.fastly.FastlyFunctions;
      * import com.pulumi.fastly.inputs.GetNgwafAlertSlackIntegrationArgs;
-     * import java.util.List;
      * import java.util.ArrayList;
+     * import java.util.Arrays;
      * import java.util.Map;
      * import java.io.File;
      * import java.nio.file.Files;
@@ -4294,7 +5141,7 @@ public final class FastlyFunctions {
      * 
      *     public static void stack(Context ctx) {
      *         final var ngwafSlackAlerts = FastlyFunctions.getNgwafAlertSlackIntegration(GetNgwafAlertSlackIntegrationArgs.builder()
-     *             .workspaceId(example.id())
+     *             .workspaceId(example.get("id"))
      *             .build());
      * 
      *         ctx.export("ngwafSlackAlertsAll", ngwafSlackAlerts);
@@ -4321,8 +5168,8 @@ public final class FastlyFunctions {
      * import com.pulumi.core.Output;
      * import com.pulumi.fastly.FastlyFunctions;
      * import com.pulumi.fastly.inputs.GetNgwafAlertSlackIntegrationArgs;
-     * import java.util.List;
      * import java.util.ArrayList;
+     * import java.util.Arrays;
      * import java.util.Map;
      * import java.io.File;
      * import java.nio.file.Files;
@@ -4335,7 +5182,7 @@ public final class FastlyFunctions {
      * 
      *     public static void stack(Context ctx) {
      *         final var ngwafSlackAlerts = FastlyFunctions.getNgwafAlertSlackIntegration(GetNgwafAlertSlackIntegrationArgs.builder()
-     *             .workspaceId(example.id())
+     *             .workspaceId(example.get("id"))
      *             .build());
      * 
      *         ctx.export("ngwafSlackAlertsAll", ngwafSlackAlerts);
@@ -4362,8 +5209,8 @@ public final class FastlyFunctions {
      * import com.pulumi.core.Output;
      * import com.pulumi.fastly.FastlyFunctions;
      * import com.pulumi.fastly.inputs.GetNgwafAlertSlackIntegrationArgs;
-     * import java.util.List;
      * import java.util.ArrayList;
+     * import java.util.Arrays;
      * import java.util.Map;
      * import java.io.File;
      * import java.nio.file.Files;
@@ -4376,7 +5223,7 @@ public final class FastlyFunctions {
      * 
      *     public static void stack(Context ctx) {
      *         final var ngwafSlackAlerts = FastlyFunctions.getNgwafAlertSlackIntegration(GetNgwafAlertSlackIntegrationArgs.builder()
-     *             .workspaceId(example.id())
+     *             .workspaceId(example.get("id"))
      *             .build());
      * 
      *         ctx.export("ngwafSlackAlertsAll", ngwafSlackAlerts);
@@ -4403,8 +5250,8 @@ public final class FastlyFunctions {
      * import com.pulumi.core.Output;
      * import com.pulumi.fastly.FastlyFunctions;
      * import com.pulumi.fastly.inputs.GetNgwafAlertSlackIntegrationArgs;
-     * import java.util.List;
      * import java.util.ArrayList;
+     * import java.util.Arrays;
      * import java.util.Map;
      * import java.io.File;
      * import java.nio.file.Files;
@@ -4417,7 +5264,7 @@ public final class FastlyFunctions {
      * 
      *     public static void stack(Context ctx) {
      *         final var ngwafSlackAlerts = FastlyFunctions.getNgwafAlertSlackIntegration(GetNgwafAlertSlackIntegrationArgs.builder()
-     *             .workspaceId(example.id())
+     *             .workspaceId(example.get("id"))
      *             .build());
      * 
      *         ctx.export("ngwafSlackAlertsAll", ngwafSlackAlerts);
@@ -4444,8 +5291,8 @@ public final class FastlyFunctions {
      * import com.pulumi.core.Output;
      * import com.pulumi.fastly.FastlyFunctions;
      * import com.pulumi.fastly.inputs.GetNgwafAlertSlackIntegrationArgs;
-     * import java.util.List;
      * import java.util.ArrayList;
+     * import java.util.Arrays;
      * import java.util.Map;
      * import java.io.File;
      * import java.nio.file.Files;
@@ -4458,7 +5305,7 @@ public final class FastlyFunctions {
      * 
      *     public static void stack(Context ctx) {
      *         final var ngwafSlackAlerts = FastlyFunctions.getNgwafAlertSlackIntegration(GetNgwafAlertSlackIntegrationArgs.builder()
-     *             .workspaceId(example.id())
+     *             .workspaceId(example.get("id"))
      *             .build());
      * 
      *         ctx.export("ngwafSlackAlertsAll", ngwafSlackAlerts);
@@ -4485,8 +5332,8 @@ public final class FastlyFunctions {
      * import com.pulumi.core.Output;
      * import com.pulumi.fastly.FastlyFunctions;
      * import com.pulumi.fastly.inputs.GetNgwafAlertWebhookIntegrationArgs;
-     * import java.util.List;
      * import java.util.ArrayList;
+     * import java.util.Arrays;
      * import java.util.Map;
      * import java.io.File;
      * import java.nio.file.Files;
@@ -4499,7 +5346,7 @@ public final class FastlyFunctions {
      * 
      *     public static void stack(Context ctx) {
      *         final var ngwafWebhookAlerts = FastlyFunctions.getNgwafAlertWebhookIntegration(GetNgwafAlertWebhookIntegrationArgs.builder()
-     *             .workspaceId(example.id())
+     *             .workspaceId(example.get("id"))
      *             .build());
      * 
      *         ctx.export("ngwafWebhookAlertsAll", ngwafWebhookAlerts);
@@ -4526,8 +5373,8 @@ public final class FastlyFunctions {
      * import com.pulumi.core.Output;
      * import com.pulumi.fastly.FastlyFunctions;
      * import com.pulumi.fastly.inputs.GetNgwafAlertWebhookIntegrationArgs;
-     * import java.util.List;
      * import java.util.ArrayList;
+     * import java.util.Arrays;
      * import java.util.Map;
      * import java.io.File;
      * import java.nio.file.Files;
@@ -4540,7 +5387,7 @@ public final class FastlyFunctions {
      * 
      *     public static void stack(Context ctx) {
      *         final var ngwafWebhookAlerts = FastlyFunctions.getNgwafAlertWebhookIntegration(GetNgwafAlertWebhookIntegrationArgs.builder()
-     *             .workspaceId(example.id())
+     *             .workspaceId(example.get("id"))
      *             .build());
      * 
      *         ctx.export("ngwafWebhookAlertsAll", ngwafWebhookAlerts);
@@ -4567,8 +5414,8 @@ public final class FastlyFunctions {
      * import com.pulumi.core.Output;
      * import com.pulumi.fastly.FastlyFunctions;
      * import com.pulumi.fastly.inputs.GetNgwafAlertWebhookIntegrationArgs;
-     * import java.util.List;
      * import java.util.ArrayList;
+     * import java.util.Arrays;
      * import java.util.Map;
      * import java.io.File;
      * import java.nio.file.Files;
@@ -4581,7 +5428,7 @@ public final class FastlyFunctions {
      * 
      *     public static void stack(Context ctx) {
      *         final var ngwafWebhookAlerts = FastlyFunctions.getNgwafAlertWebhookIntegration(GetNgwafAlertWebhookIntegrationArgs.builder()
-     *             .workspaceId(example.id())
+     *             .workspaceId(example.get("id"))
      *             .build());
      * 
      *         ctx.export("ngwafWebhookAlertsAll", ngwafWebhookAlerts);
@@ -4608,8 +5455,8 @@ public final class FastlyFunctions {
      * import com.pulumi.core.Output;
      * import com.pulumi.fastly.FastlyFunctions;
      * import com.pulumi.fastly.inputs.GetNgwafAlertWebhookIntegrationArgs;
-     * import java.util.List;
      * import java.util.ArrayList;
+     * import java.util.Arrays;
      * import java.util.Map;
      * import java.io.File;
      * import java.nio.file.Files;
@@ -4622,7 +5469,7 @@ public final class FastlyFunctions {
      * 
      *     public static void stack(Context ctx) {
      *         final var ngwafWebhookAlerts = FastlyFunctions.getNgwafAlertWebhookIntegration(GetNgwafAlertWebhookIntegrationArgs.builder()
-     *             .workspaceId(example.id())
+     *             .workspaceId(example.get("id"))
      *             .build());
      * 
      *         ctx.export("ngwafWebhookAlertsAll", ngwafWebhookAlerts);
@@ -4649,8 +5496,8 @@ public final class FastlyFunctions {
      * import com.pulumi.core.Output;
      * import com.pulumi.fastly.FastlyFunctions;
      * import com.pulumi.fastly.inputs.GetNgwafAlertWebhookIntegrationArgs;
-     * import java.util.List;
      * import java.util.ArrayList;
+     * import java.util.Arrays;
      * import java.util.Map;
      * import java.io.File;
      * import java.nio.file.Files;
@@ -4663,7 +5510,7 @@ public final class FastlyFunctions {
      * 
      *     public static void stack(Context ctx) {
      *         final var ngwafWebhookAlerts = FastlyFunctions.getNgwafAlertWebhookIntegration(GetNgwafAlertWebhookIntegrationArgs.builder()
-     *             .workspaceId(example.id())
+     *             .workspaceId(example.get("id"))
      *             .build());
      * 
      *         ctx.export("ngwafWebhookAlertsAll", ngwafWebhookAlerts);
@@ -4690,8 +5537,8 @@ public final class FastlyFunctions {
      * import com.pulumi.core.Output;
      * import com.pulumi.fastly.FastlyFunctions;
      * import com.pulumi.fastly.inputs.GetNgwafRedactionsArgs;
-     * import java.util.List;
      * import java.util.ArrayList;
+     * import java.util.Arrays;
      * import java.util.Map;
      * import java.io.File;
      * import java.nio.file.Files;
@@ -4704,7 +5551,7 @@ public final class FastlyFunctions {
      * 
      *     public static void stack(Context ctx) {
      *         final var ngwafRedactions = FastlyFunctions.getNgwafRedactions(GetNgwafRedactionsArgs.builder()
-     *             .workspaceId(testRedactionsWorkspace.id())
+     *             .workspaceId(testRedactionsWorkspace.get("id"))
      *             .build());
      * 
      *         ctx.export("fastlyNgwafRedactionsAll", redactions);
@@ -4733,8 +5580,8 @@ public final class FastlyFunctions {
      * import com.pulumi.core.Output;
      * import com.pulumi.fastly.FastlyFunctions;
      * import com.pulumi.fastly.inputs.GetNgwafRedactionsArgs;
-     * import java.util.List;
      * import java.util.ArrayList;
+     * import java.util.Arrays;
      * import java.util.Map;
      * import java.io.File;
      * import java.nio.file.Files;
@@ -4747,7 +5594,7 @@ public final class FastlyFunctions {
      * 
      *     public static void stack(Context ctx) {
      *         final var ngwafRedactions = FastlyFunctions.getNgwafRedactions(GetNgwafRedactionsArgs.builder()
-     *             .workspaceId(testRedactionsWorkspace.id())
+     *             .workspaceId(testRedactionsWorkspace.get("id"))
      *             .build());
      * 
      *         ctx.export("fastlyNgwafRedactionsAll", redactions);
@@ -4776,8 +5623,8 @@ public final class FastlyFunctions {
      * import com.pulumi.core.Output;
      * import com.pulumi.fastly.FastlyFunctions;
      * import com.pulumi.fastly.inputs.GetNgwafRedactionsArgs;
-     * import java.util.List;
      * import java.util.ArrayList;
+     * import java.util.Arrays;
      * import java.util.Map;
      * import java.io.File;
      * import java.nio.file.Files;
@@ -4790,7 +5637,7 @@ public final class FastlyFunctions {
      * 
      *     public static void stack(Context ctx) {
      *         final var ngwafRedactions = FastlyFunctions.getNgwafRedactions(GetNgwafRedactionsArgs.builder()
-     *             .workspaceId(testRedactionsWorkspace.id())
+     *             .workspaceId(testRedactionsWorkspace.get("id"))
      *             .build());
      * 
      *         ctx.export("fastlyNgwafRedactionsAll", redactions);
@@ -4819,8 +5666,8 @@ public final class FastlyFunctions {
      * import com.pulumi.core.Output;
      * import com.pulumi.fastly.FastlyFunctions;
      * import com.pulumi.fastly.inputs.GetNgwafRedactionsArgs;
-     * import java.util.List;
      * import java.util.ArrayList;
+     * import java.util.Arrays;
      * import java.util.Map;
      * import java.io.File;
      * import java.nio.file.Files;
@@ -4833,7 +5680,7 @@ public final class FastlyFunctions {
      * 
      *     public static void stack(Context ctx) {
      *         final var ngwafRedactions = FastlyFunctions.getNgwafRedactions(GetNgwafRedactionsArgs.builder()
-     *             .workspaceId(testRedactionsWorkspace.id())
+     *             .workspaceId(testRedactionsWorkspace.get("id"))
      *             .build());
      * 
      *         ctx.export("fastlyNgwafRedactionsAll", redactions);
@@ -4862,8 +5709,8 @@ public final class FastlyFunctions {
      * import com.pulumi.core.Output;
      * import com.pulumi.fastly.FastlyFunctions;
      * import com.pulumi.fastly.inputs.GetNgwafRedactionsArgs;
-     * import java.util.List;
      * import java.util.ArrayList;
+     * import java.util.Arrays;
      * import java.util.Map;
      * import java.io.File;
      * import java.nio.file.Files;
@@ -4876,7 +5723,7 @@ public final class FastlyFunctions {
      * 
      *     public static void stack(Context ctx) {
      *         final var ngwafRedactions = FastlyFunctions.getNgwafRedactions(GetNgwafRedactionsArgs.builder()
-     *             .workspaceId(testRedactionsWorkspace.id())
+     *             .workspaceId(testRedactionsWorkspace.get("id"))
      *             .build());
      * 
      *         ctx.export("fastlyNgwafRedactionsAll", redactions);
@@ -4920,8 +5767,8 @@ public final class FastlyFunctions {
      * import com.pulumi.core.Output;
      * import com.pulumi.fastly.FastlyFunctions;
      * import com.pulumi.fastly.inputs.GetNgwafVirtualPatchesArgs;
-     * import java.util.List;
      * import java.util.ArrayList;
+     * import java.util.Arrays;
      * import java.util.Map;
      * import java.io.File;
      * import java.nio.file.Files;
@@ -4934,7 +5781,7 @@ public final class FastlyFunctions {
      * 
      *     public static void stack(Context ctx) {
      *         final var listPatches = FastlyFunctions.getNgwafVirtualPatches(GetNgwafVirtualPatchesArgs.builder()
-     *             .workspaceId(testVirtualPatchesWorkspace.id())
+     *             .workspaceId(testVirtualPatchesWorkspace.get("id"))
      *             .build());
      * 
      *         ctx.export("fastlyNgwafVirtualPatchesAll", listPatches);
@@ -4963,8 +5810,8 @@ public final class FastlyFunctions {
      * import com.pulumi.core.Output;
      * import com.pulumi.fastly.FastlyFunctions;
      * import com.pulumi.fastly.inputs.GetNgwafVirtualPatchesArgs;
-     * import java.util.List;
      * import java.util.ArrayList;
+     * import java.util.Arrays;
      * import java.util.Map;
      * import java.io.File;
      * import java.nio.file.Files;
@@ -4977,7 +5824,7 @@ public final class FastlyFunctions {
      * 
      *     public static void stack(Context ctx) {
      *         final var listPatches = FastlyFunctions.getNgwafVirtualPatches(GetNgwafVirtualPatchesArgs.builder()
-     *             .workspaceId(testVirtualPatchesWorkspace.id())
+     *             .workspaceId(testVirtualPatchesWorkspace.get("id"))
      *             .build());
      * 
      *         ctx.export("fastlyNgwafVirtualPatchesAll", listPatches);
@@ -5006,8 +5853,8 @@ public final class FastlyFunctions {
      * import com.pulumi.core.Output;
      * import com.pulumi.fastly.FastlyFunctions;
      * import com.pulumi.fastly.inputs.GetNgwafVirtualPatchesArgs;
-     * import java.util.List;
      * import java.util.ArrayList;
+     * import java.util.Arrays;
      * import java.util.Map;
      * import java.io.File;
      * import java.nio.file.Files;
@@ -5020,7 +5867,7 @@ public final class FastlyFunctions {
      * 
      *     public static void stack(Context ctx) {
      *         final var listPatches = FastlyFunctions.getNgwafVirtualPatches(GetNgwafVirtualPatchesArgs.builder()
-     *             .workspaceId(testVirtualPatchesWorkspace.id())
+     *             .workspaceId(testVirtualPatchesWorkspace.get("id"))
      *             .build());
      * 
      *         ctx.export("fastlyNgwafVirtualPatchesAll", listPatches);
@@ -5049,8 +5896,8 @@ public final class FastlyFunctions {
      * import com.pulumi.core.Output;
      * import com.pulumi.fastly.FastlyFunctions;
      * import com.pulumi.fastly.inputs.GetNgwafVirtualPatchesArgs;
-     * import java.util.List;
      * import java.util.ArrayList;
+     * import java.util.Arrays;
      * import java.util.Map;
      * import java.io.File;
      * import java.nio.file.Files;
@@ -5063,7 +5910,7 @@ public final class FastlyFunctions {
      * 
      *     public static void stack(Context ctx) {
      *         final var listPatches = FastlyFunctions.getNgwafVirtualPatches(GetNgwafVirtualPatchesArgs.builder()
-     *             .workspaceId(testVirtualPatchesWorkspace.id())
+     *             .workspaceId(testVirtualPatchesWorkspace.get("id"))
      *             .build());
      * 
      *         ctx.export("fastlyNgwafVirtualPatchesAll", listPatches);
@@ -5092,8 +5939,8 @@ public final class FastlyFunctions {
      * import com.pulumi.core.Output;
      * import com.pulumi.fastly.FastlyFunctions;
      * import com.pulumi.fastly.inputs.GetNgwafVirtualPatchesArgs;
-     * import java.util.List;
      * import java.util.ArrayList;
+     * import java.util.Arrays;
      * import java.util.Map;
      * import java.io.File;
      * import java.nio.file.Files;
@@ -5106,7 +5953,7 @@ public final class FastlyFunctions {
      * 
      *     public static void stack(Context ctx) {
      *         final var listPatches = FastlyFunctions.getNgwafVirtualPatches(GetNgwafVirtualPatchesArgs.builder()
-     *             .workspaceId(testVirtualPatchesWorkspace.id())
+     *             .workspaceId(testVirtualPatchesWorkspace.get("id"))
      *             .build());
      * 
      *         ctx.export("fastlyNgwafVirtualPatchesAll", listPatches);
@@ -5135,8 +5982,8 @@ public final class FastlyFunctions {
      * import com.pulumi.core.Output;
      * import com.pulumi.fastly.FastlyFunctions;
      * import com.pulumi.fastly.inputs.GetNgwafWorkspaceListsArgs;
-     * import java.util.List;
      * import java.util.ArrayList;
+     * import java.util.Arrays;
      * import java.util.Map;
      * import java.io.File;
      * import java.nio.file.Files;
@@ -5149,7 +5996,7 @@ public final class FastlyFunctions {
      * 
      *     public static void stack(Context ctx) {
      *         final var workspaceLists = FastlyFunctions.getNgwafWorkspaceLists(GetNgwafWorkspaceListsArgs.builder()
-     *             .workspaceId(example.id())
+     *             .workspaceId(example.get("id"))
      *             .build());
      * 
      *         ctx.export("fastlyNgwafWorkspaceListsAll", workspaceLists);
@@ -5176,8 +6023,8 @@ public final class FastlyFunctions {
      * import com.pulumi.core.Output;
      * import com.pulumi.fastly.FastlyFunctions;
      * import com.pulumi.fastly.inputs.GetNgwafWorkspaceListsArgs;
-     * import java.util.List;
      * import java.util.ArrayList;
+     * import java.util.Arrays;
      * import java.util.Map;
      * import java.io.File;
      * import java.nio.file.Files;
@@ -5190,7 +6037,7 @@ public final class FastlyFunctions {
      * 
      *     public static void stack(Context ctx) {
      *         final var workspaceLists = FastlyFunctions.getNgwafWorkspaceLists(GetNgwafWorkspaceListsArgs.builder()
-     *             .workspaceId(example.id())
+     *             .workspaceId(example.get("id"))
      *             .build());
      * 
      *         ctx.export("fastlyNgwafWorkspaceListsAll", workspaceLists);
@@ -5217,8 +6064,8 @@ public final class FastlyFunctions {
      * import com.pulumi.core.Output;
      * import com.pulumi.fastly.FastlyFunctions;
      * import com.pulumi.fastly.inputs.GetNgwafWorkspaceListsArgs;
-     * import java.util.List;
      * import java.util.ArrayList;
+     * import java.util.Arrays;
      * import java.util.Map;
      * import java.io.File;
      * import java.nio.file.Files;
@@ -5231,7 +6078,7 @@ public final class FastlyFunctions {
      * 
      *     public static void stack(Context ctx) {
      *         final var workspaceLists = FastlyFunctions.getNgwafWorkspaceLists(GetNgwafWorkspaceListsArgs.builder()
-     *             .workspaceId(example.id())
+     *             .workspaceId(example.get("id"))
      *             .build());
      * 
      *         ctx.export("fastlyNgwafWorkspaceListsAll", workspaceLists);
@@ -5258,8 +6105,8 @@ public final class FastlyFunctions {
      * import com.pulumi.core.Output;
      * import com.pulumi.fastly.FastlyFunctions;
      * import com.pulumi.fastly.inputs.GetNgwafWorkspaceListsArgs;
-     * import java.util.List;
      * import java.util.ArrayList;
+     * import java.util.Arrays;
      * import java.util.Map;
      * import java.io.File;
      * import java.nio.file.Files;
@@ -5272,7 +6119,7 @@ public final class FastlyFunctions {
      * 
      *     public static void stack(Context ctx) {
      *         final var workspaceLists = FastlyFunctions.getNgwafWorkspaceLists(GetNgwafWorkspaceListsArgs.builder()
-     *             .workspaceId(example.id())
+     *             .workspaceId(example.get("id"))
      *             .build());
      * 
      *         ctx.export("fastlyNgwafWorkspaceListsAll", workspaceLists);
@@ -5299,8 +6146,8 @@ public final class FastlyFunctions {
      * import com.pulumi.core.Output;
      * import com.pulumi.fastly.FastlyFunctions;
      * import com.pulumi.fastly.inputs.GetNgwafWorkspaceListsArgs;
-     * import java.util.List;
      * import java.util.ArrayList;
+     * import java.util.Arrays;
      * import java.util.Map;
      * import java.io.File;
      * import java.nio.file.Files;
@@ -5313,7 +6160,7 @@ public final class FastlyFunctions {
      * 
      *     public static void stack(Context ctx) {
      *         final var workspaceLists = FastlyFunctions.getNgwafWorkspaceLists(GetNgwafWorkspaceListsArgs.builder()
-     *             .workspaceId(example.id())
+     *             .workspaceId(example.get("id"))
      *             .build());
      * 
      *         ctx.export("fastlyNgwafWorkspaceListsAll", workspaceLists);
@@ -5340,8 +6187,8 @@ public final class FastlyFunctions {
      * import com.pulumi.core.Output;
      * import com.pulumi.fastly.FastlyFunctions;
      * import com.pulumi.fastly.inputs.GetNgwafWorkspaceRulesArgs;
-     * import java.util.List;
      * import java.util.ArrayList;
+     * import java.util.Arrays;
      * import java.util.Map;
      * import java.io.File;
      * import java.nio.file.Files;
@@ -5354,7 +6201,7 @@ public final class FastlyFunctions {
      * 
      *     public static void stack(Context ctx) {
      *         final var workspaceRules = FastlyFunctions.getNgwafWorkspaceRules(GetNgwafWorkspaceRulesArgs.builder()
-     *             .workspaceId(example.id())
+     *             .workspaceId(example.get("id"))
      *             .build());
      * 
      *         ctx.export("fastlyNgwafWorkspaceRulesAll", workspaceRules);
@@ -5381,8 +6228,8 @@ public final class FastlyFunctions {
      * import com.pulumi.core.Output;
      * import com.pulumi.fastly.FastlyFunctions;
      * import com.pulumi.fastly.inputs.GetNgwafWorkspaceRulesArgs;
-     * import java.util.List;
      * import java.util.ArrayList;
+     * import java.util.Arrays;
      * import java.util.Map;
      * import java.io.File;
      * import java.nio.file.Files;
@@ -5395,7 +6242,7 @@ public final class FastlyFunctions {
      * 
      *     public static void stack(Context ctx) {
      *         final var workspaceRules = FastlyFunctions.getNgwafWorkspaceRules(GetNgwafWorkspaceRulesArgs.builder()
-     *             .workspaceId(example.id())
+     *             .workspaceId(example.get("id"))
      *             .build());
      * 
      *         ctx.export("fastlyNgwafWorkspaceRulesAll", workspaceRules);
@@ -5422,8 +6269,8 @@ public final class FastlyFunctions {
      * import com.pulumi.core.Output;
      * import com.pulumi.fastly.FastlyFunctions;
      * import com.pulumi.fastly.inputs.GetNgwafWorkspaceRulesArgs;
-     * import java.util.List;
      * import java.util.ArrayList;
+     * import java.util.Arrays;
      * import java.util.Map;
      * import java.io.File;
      * import java.nio.file.Files;
@@ -5436,7 +6283,7 @@ public final class FastlyFunctions {
      * 
      *     public static void stack(Context ctx) {
      *         final var workspaceRules = FastlyFunctions.getNgwafWorkspaceRules(GetNgwafWorkspaceRulesArgs.builder()
-     *             .workspaceId(example.id())
+     *             .workspaceId(example.get("id"))
      *             .build());
      * 
      *         ctx.export("fastlyNgwafWorkspaceRulesAll", workspaceRules);
@@ -5463,8 +6310,8 @@ public final class FastlyFunctions {
      * import com.pulumi.core.Output;
      * import com.pulumi.fastly.FastlyFunctions;
      * import com.pulumi.fastly.inputs.GetNgwafWorkspaceRulesArgs;
-     * import java.util.List;
      * import java.util.ArrayList;
+     * import java.util.Arrays;
      * import java.util.Map;
      * import java.io.File;
      * import java.nio.file.Files;
@@ -5477,7 +6324,7 @@ public final class FastlyFunctions {
      * 
      *     public static void stack(Context ctx) {
      *         final var workspaceRules = FastlyFunctions.getNgwafWorkspaceRules(GetNgwafWorkspaceRulesArgs.builder()
-     *             .workspaceId(example.id())
+     *             .workspaceId(example.get("id"))
      *             .build());
      * 
      *         ctx.export("fastlyNgwafWorkspaceRulesAll", workspaceRules);
@@ -5504,8 +6351,8 @@ public final class FastlyFunctions {
      * import com.pulumi.core.Output;
      * import com.pulumi.fastly.FastlyFunctions;
      * import com.pulumi.fastly.inputs.GetNgwafWorkspaceRulesArgs;
-     * import java.util.List;
      * import java.util.ArrayList;
+     * import java.util.Arrays;
      * import java.util.Map;
      * import java.io.File;
      * import java.nio.file.Files;
@@ -5518,7 +6365,7 @@ public final class FastlyFunctions {
      * 
      *     public static void stack(Context ctx) {
      *         final var workspaceRules = FastlyFunctions.getNgwafWorkspaceRules(GetNgwafWorkspaceRulesArgs.builder()
-     *             .workspaceId(example.id())
+     *             .workspaceId(example.get("id"))
      *             .build());
      * 
      *         ctx.export("fastlyNgwafWorkspaceRulesAll", workspaceRules);
@@ -5545,8 +6392,8 @@ public final class FastlyFunctions {
      * import com.pulumi.core.Output;
      * import com.pulumi.fastly.FastlyFunctions;
      * import com.pulumi.fastly.inputs.GetNgwafWorkspaceSignalsArgs;
-     * import java.util.List;
      * import java.util.ArrayList;
+     * import java.util.Arrays;
      * import java.util.Map;
      * import java.io.File;
      * import java.nio.file.Files;
@@ -5559,7 +6406,7 @@ public final class FastlyFunctions {
      * 
      *     public static void stack(Context ctx) {
      *         final var workspaceSignals = FastlyFunctions.getNgwafWorkspaceSignals(GetNgwafWorkspaceSignalsArgs.builder()
-     *             .workspaceId(example.id())
+     *             .workspaceId(example.get("id"))
      *             .build());
      * 
      *         ctx.export("fastlyNgwafWorkspaceSignalsAll", workspaceSignals);
@@ -5586,8 +6433,8 @@ public final class FastlyFunctions {
      * import com.pulumi.core.Output;
      * import com.pulumi.fastly.FastlyFunctions;
      * import com.pulumi.fastly.inputs.GetNgwafWorkspaceSignalsArgs;
-     * import java.util.List;
      * import java.util.ArrayList;
+     * import java.util.Arrays;
      * import java.util.Map;
      * import java.io.File;
      * import java.nio.file.Files;
@@ -5600,7 +6447,7 @@ public final class FastlyFunctions {
      * 
      *     public static void stack(Context ctx) {
      *         final var workspaceSignals = FastlyFunctions.getNgwafWorkspaceSignals(GetNgwafWorkspaceSignalsArgs.builder()
-     *             .workspaceId(example.id())
+     *             .workspaceId(example.get("id"))
      *             .build());
      * 
      *         ctx.export("fastlyNgwafWorkspaceSignalsAll", workspaceSignals);
@@ -5627,8 +6474,8 @@ public final class FastlyFunctions {
      * import com.pulumi.core.Output;
      * import com.pulumi.fastly.FastlyFunctions;
      * import com.pulumi.fastly.inputs.GetNgwafWorkspaceSignalsArgs;
-     * import java.util.List;
      * import java.util.ArrayList;
+     * import java.util.Arrays;
      * import java.util.Map;
      * import java.io.File;
      * import java.nio.file.Files;
@@ -5641,7 +6488,7 @@ public final class FastlyFunctions {
      * 
      *     public static void stack(Context ctx) {
      *         final var workspaceSignals = FastlyFunctions.getNgwafWorkspaceSignals(GetNgwafWorkspaceSignalsArgs.builder()
-     *             .workspaceId(example.id())
+     *             .workspaceId(example.get("id"))
      *             .build());
      * 
      *         ctx.export("fastlyNgwafWorkspaceSignalsAll", workspaceSignals);
@@ -5668,8 +6515,8 @@ public final class FastlyFunctions {
      * import com.pulumi.core.Output;
      * import com.pulumi.fastly.FastlyFunctions;
      * import com.pulumi.fastly.inputs.GetNgwafWorkspaceSignalsArgs;
-     * import java.util.List;
      * import java.util.ArrayList;
+     * import java.util.Arrays;
      * import java.util.Map;
      * import java.io.File;
      * import java.nio.file.Files;
@@ -5682,7 +6529,7 @@ public final class FastlyFunctions {
      * 
      *     public static void stack(Context ctx) {
      *         final var workspaceSignals = FastlyFunctions.getNgwafWorkspaceSignals(GetNgwafWorkspaceSignalsArgs.builder()
-     *             .workspaceId(example.id())
+     *             .workspaceId(example.get("id"))
      *             .build());
      * 
      *         ctx.export("fastlyNgwafWorkspaceSignalsAll", workspaceSignals);
@@ -5709,8 +6556,8 @@ public final class FastlyFunctions {
      * import com.pulumi.core.Output;
      * import com.pulumi.fastly.FastlyFunctions;
      * import com.pulumi.fastly.inputs.GetNgwafWorkspaceSignalsArgs;
-     * import java.util.List;
      * import java.util.ArrayList;
+     * import java.util.Arrays;
      * import java.util.Map;
      * import java.io.File;
      * import java.nio.file.Files;
@@ -5723,7 +6570,7 @@ public final class FastlyFunctions {
      * 
      *     public static void stack(Context ctx) {
      *         final var workspaceSignals = FastlyFunctions.getNgwafWorkspaceSignals(GetNgwafWorkspaceSignalsArgs.builder()
-     *             .workspaceId(example.id())
+     *             .workspaceId(example.get("id"))
      *             .build());
      * 
      *         ctx.export("fastlyNgwafWorkspaceSignalsAll", workspaceSignals);
@@ -5802,8 +6649,8 @@ public final class FastlyFunctions {
      * import com.pulumi.fastly.ServiceCompute;
      * import com.pulumi.fastly.ServiceComputeArgs;
      * import com.pulumi.fastly.inputs.ServiceComputePackageArgs;
-     * import java.util.List;
      * import java.util.ArrayList;
+     * import java.util.Arrays;
      * import java.util.Map;
      * import java.io.File;
      * import java.nio.file.Files;
@@ -5852,8 +6699,8 @@ public final class FastlyFunctions {
      * import com.pulumi.fastly.ServiceCompute;
      * import com.pulumi.fastly.ServiceComputeArgs;
      * import com.pulumi.fastly.inputs.ServiceComputePackageArgs;
-     * import java.util.List;
      * import java.util.ArrayList;
+     * import java.util.Arrays;
      * import java.util.Map;
      * import java.io.File;
      * import java.nio.file.Files;
@@ -5902,8 +6749,8 @@ public final class FastlyFunctions {
      * import com.pulumi.fastly.ServiceCompute;
      * import com.pulumi.fastly.ServiceComputeArgs;
      * import com.pulumi.fastly.inputs.ServiceComputePackageArgs;
-     * import java.util.List;
      * import java.util.ArrayList;
+     * import java.util.Arrays;
      * import java.util.Map;
      * import java.io.File;
      * import java.nio.file.Files;
@@ -5952,8 +6799,8 @@ public final class FastlyFunctions {
      * import com.pulumi.fastly.ServiceCompute;
      * import com.pulumi.fastly.ServiceComputeArgs;
      * import com.pulumi.fastly.inputs.ServiceComputePackageArgs;
-     * import java.util.List;
      * import java.util.ArrayList;
+     * import java.util.Arrays;
      * import java.util.Map;
      * import java.io.File;
      * import java.nio.file.Files;
@@ -6002,8 +6849,8 @@ public final class FastlyFunctions {
      * import com.pulumi.fastly.ServiceCompute;
      * import com.pulumi.fastly.ServiceComputeArgs;
      * import com.pulumi.fastly.inputs.ServiceComputePackageArgs;
-     * import java.util.List;
      * import java.util.ArrayList;
+     * import java.util.Arrays;
      * import java.util.Map;
      * import java.io.File;
      * import java.nio.file.Files;
@@ -6052,8 +6899,8 @@ public final class FastlyFunctions {
      * import com.pulumi.fastly.ServiceCompute;
      * import com.pulumi.fastly.ServiceComputeArgs;
      * import com.pulumi.fastly.inputs.ServiceComputePackageArgs;
-     * import java.util.List;
      * import java.util.ArrayList;
+     * import java.util.Arrays;
      * import java.util.Map;
      * import java.io.File;
      * import java.nio.file.Files;
@@ -6102,8 +6949,8 @@ public final class FastlyFunctions {
      * import com.pulumi.fastly.ServiceCompute;
      * import com.pulumi.fastly.ServiceComputeArgs;
      * import com.pulumi.fastly.inputs.ServiceComputePackageArgs;
-     * import java.util.List;
      * import java.util.ArrayList;
+     * import java.util.Arrays;
      * import java.util.Map;
      * import java.io.File;
      * import java.nio.file.Files;
@@ -6240,8 +7087,8 @@ public final class FastlyFunctions {
      * import com.pulumi.core.Output;
      * import com.pulumi.fastly.FastlyFunctions;
      * import com.pulumi.fastly.inputs.GetTlsActivationArgs;
-     * import java.util.List;
      * import java.util.ArrayList;
+     * import java.util.Arrays;
      * import java.util.Map;
      * import java.io.File;
      * import java.nio.file.Files;
@@ -6286,8 +7133,8 @@ public final class FastlyFunctions {
      * import com.pulumi.core.Output;
      * import com.pulumi.fastly.FastlyFunctions;
      * import com.pulumi.fastly.inputs.GetTlsActivationArgs;
-     * import java.util.List;
      * import java.util.ArrayList;
+     * import java.util.Arrays;
      * import java.util.Map;
      * import java.io.File;
      * import java.nio.file.Files;
@@ -6332,8 +7179,8 @@ public final class FastlyFunctions {
      * import com.pulumi.core.Output;
      * import com.pulumi.fastly.FastlyFunctions;
      * import com.pulumi.fastly.inputs.GetTlsActivationArgs;
-     * import java.util.List;
      * import java.util.ArrayList;
+     * import java.util.Arrays;
      * import java.util.Map;
      * import java.io.File;
      * import java.nio.file.Files;
@@ -6378,8 +7225,8 @@ public final class FastlyFunctions {
      * import com.pulumi.core.Output;
      * import com.pulumi.fastly.FastlyFunctions;
      * import com.pulumi.fastly.inputs.GetTlsActivationArgs;
-     * import java.util.List;
      * import java.util.ArrayList;
+     * import java.util.Arrays;
      * import java.util.Map;
      * import java.io.File;
      * import java.nio.file.Files;
@@ -6424,8 +7271,8 @@ public final class FastlyFunctions {
      * import com.pulumi.core.Output;
      * import com.pulumi.fastly.FastlyFunctions;
      * import com.pulumi.fastly.inputs.GetTlsActivationArgs;
-     * import java.util.List;
      * import java.util.ArrayList;
+     * import java.util.Arrays;
      * import java.util.Map;
      * import java.io.File;
      * import java.nio.file.Files;
@@ -6470,8 +7317,8 @@ public final class FastlyFunctions {
      * import com.pulumi.core.Output;
      * import com.pulumi.fastly.FastlyFunctions;
      * import com.pulumi.fastly.inputs.GetTlsActivationArgs;
-     * import java.util.List;
      * import java.util.ArrayList;
+     * import java.util.Arrays;
      * import java.util.Map;
      * import java.io.File;
      * import java.nio.file.Files;
@@ -6516,8 +7363,8 @@ public final class FastlyFunctions {
      * import com.pulumi.core.Output;
      * import com.pulumi.fastly.FastlyFunctions;
      * import com.pulumi.fastly.inputs.GetTlsActivationArgs;
-     * import java.util.List;
      * import java.util.ArrayList;
+     * import java.util.Arrays;
      * import java.util.Map;
      * import java.io.File;
      * import java.nio.file.Files;
@@ -6625,8 +7472,8 @@ public final class FastlyFunctions {
      * import com.pulumi.core.Output;
      * import com.pulumi.fastly.FastlyFunctions;
      * import com.pulumi.fastly.inputs.GetTlsCertificateArgs;
-     * import java.util.List;
      * import java.util.ArrayList;
+     * import java.util.Arrays;
      * import java.util.Map;
      * import java.io.File;
      * import java.nio.file.Files;
@@ -6671,8 +7518,8 @@ public final class FastlyFunctions {
      * import com.pulumi.core.Output;
      * import com.pulumi.fastly.FastlyFunctions;
      * import com.pulumi.fastly.inputs.GetTlsCertificateArgs;
-     * import java.util.List;
      * import java.util.ArrayList;
+     * import java.util.Arrays;
      * import java.util.Map;
      * import java.io.File;
      * import java.nio.file.Files;
@@ -6717,8 +7564,8 @@ public final class FastlyFunctions {
      * import com.pulumi.core.Output;
      * import com.pulumi.fastly.FastlyFunctions;
      * import com.pulumi.fastly.inputs.GetTlsCertificateArgs;
-     * import java.util.List;
      * import java.util.ArrayList;
+     * import java.util.Arrays;
      * import java.util.Map;
      * import java.io.File;
      * import java.nio.file.Files;
@@ -6763,8 +7610,8 @@ public final class FastlyFunctions {
      * import com.pulumi.core.Output;
      * import com.pulumi.fastly.FastlyFunctions;
      * import com.pulumi.fastly.inputs.GetTlsCertificateArgs;
-     * import java.util.List;
      * import java.util.ArrayList;
+     * import java.util.Arrays;
      * import java.util.Map;
      * import java.io.File;
      * import java.nio.file.Files;
@@ -6809,8 +7656,8 @@ public final class FastlyFunctions {
      * import com.pulumi.core.Output;
      * import com.pulumi.fastly.FastlyFunctions;
      * import com.pulumi.fastly.inputs.GetTlsCertificateArgs;
-     * import java.util.List;
      * import java.util.ArrayList;
+     * import java.util.Arrays;
      * import java.util.Map;
      * import java.io.File;
      * import java.nio.file.Files;
@@ -6855,8 +7702,8 @@ public final class FastlyFunctions {
      * import com.pulumi.core.Output;
      * import com.pulumi.fastly.FastlyFunctions;
      * import com.pulumi.fastly.inputs.GetTlsCertificateArgs;
-     * import java.util.List;
      * import java.util.ArrayList;
+     * import java.util.Arrays;
      * import java.util.Map;
      * import java.io.File;
      * import java.nio.file.Files;
@@ -6901,8 +7748,8 @@ public final class FastlyFunctions {
      * import com.pulumi.core.Output;
      * import com.pulumi.fastly.FastlyFunctions;
      * import com.pulumi.fastly.inputs.GetTlsCertificateArgs;
-     * import java.util.List;
      * import java.util.ArrayList;
+     * import java.util.Arrays;
      * import java.util.Map;
      * import java.io.File;
      * import java.nio.file.Files;
@@ -6942,8 +7789,8 @@ public final class FastlyFunctions {
      * import com.pulumi.fastly.FastlyFunctions;
      * import com.pulumi.fastly.TlsActivation;
      * import com.pulumi.fastly.TlsActivationArgs;
-     * import java.util.List;
      * import java.util.ArrayList;
+     * import java.util.Arrays;
      * import java.util.Map;
      * import java.io.File;
      * import java.nio.file.Files;
@@ -6985,8 +7832,8 @@ public final class FastlyFunctions {
      * import com.pulumi.fastly.FastlyFunctions;
      * import com.pulumi.fastly.TlsActivation;
      * import com.pulumi.fastly.TlsActivationArgs;
-     * import java.util.List;
      * import java.util.ArrayList;
+     * import java.util.Arrays;
      * import java.util.Map;
      * import java.io.File;
      * import java.nio.file.Files;
@@ -7028,8 +7875,8 @@ public final class FastlyFunctions {
      * import com.pulumi.fastly.FastlyFunctions;
      * import com.pulumi.fastly.TlsActivation;
      * import com.pulumi.fastly.TlsActivationArgs;
-     * import java.util.List;
      * import java.util.ArrayList;
+     * import java.util.Arrays;
      * import java.util.Map;
      * import java.io.File;
      * import java.nio.file.Files;
@@ -7071,8 +7918,8 @@ public final class FastlyFunctions {
      * import com.pulumi.fastly.FastlyFunctions;
      * import com.pulumi.fastly.TlsActivation;
      * import com.pulumi.fastly.TlsActivationArgs;
-     * import java.util.List;
      * import java.util.ArrayList;
+     * import java.util.Arrays;
      * import java.util.Map;
      * import java.io.File;
      * import java.nio.file.Files;
@@ -7114,8 +7961,8 @@ public final class FastlyFunctions {
      * import com.pulumi.fastly.FastlyFunctions;
      * import com.pulumi.fastly.TlsActivation;
      * import com.pulumi.fastly.TlsActivationArgs;
-     * import java.util.List;
      * import java.util.ArrayList;
+     * import java.util.Arrays;
      * import java.util.Map;
      * import java.io.File;
      * import java.nio.file.Files;
@@ -7157,8 +8004,8 @@ public final class FastlyFunctions {
      * import com.pulumi.fastly.FastlyFunctions;
      * import com.pulumi.fastly.TlsActivation;
      * import com.pulumi.fastly.TlsActivationArgs;
-     * import java.util.List;
      * import java.util.ArrayList;
+     * import java.util.Arrays;
      * import java.util.Map;
      * import java.io.File;
      * import java.nio.file.Files;
@@ -7200,8 +8047,8 @@ public final class FastlyFunctions {
      * import com.pulumi.fastly.FastlyFunctions;
      * import com.pulumi.fastly.TlsActivation;
      * import com.pulumi.fastly.TlsActivationArgs;
-     * import java.util.List;
      * import java.util.ArrayList;
+     * import java.util.Arrays;
      * import java.util.Map;
      * import java.io.File;
      * import java.nio.file.Files;
@@ -7250,8 +8097,8 @@ public final class FastlyFunctions {
      * import com.pulumi.fastly.inputs.GetTlsConfigurationArgs;
      * import com.pulumi.fastly.TlsActivation;
      * import com.pulumi.fastly.TlsActivationArgs;
-     * import java.util.List;
      * import java.util.ArrayList;
+     * import java.util.Arrays;
      * import java.util.Map;
      * import java.io.File;
      * import java.nio.file.Files;
@@ -7302,8 +8149,8 @@ public final class FastlyFunctions {
      * import com.pulumi.fastly.inputs.GetTlsConfigurationArgs;
      * import com.pulumi.fastly.TlsActivation;
      * import com.pulumi.fastly.TlsActivationArgs;
-     * import java.util.List;
      * import java.util.ArrayList;
+     * import java.util.Arrays;
      * import java.util.Map;
      * import java.io.File;
      * import java.nio.file.Files;
@@ -7354,8 +8201,8 @@ public final class FastlyFunctions {
      * import com.pulumi.fastly.inputs.GetTlsConfigurationArgs;
      * import com.pulumi.fastly.TlsActivation;
      * import com.pulumi.fastly.TlsActivationArgs;
-     * import java.util.List;
      * import java.util.ArrayList;
+     * import java.util.Arrays;
      * import java.util.Map;
      * import java.io.File;
      * import java.nio.file.Files;
@@ -7406,8 +8253,8 @@ public final class FastlyFunctions {
      * import com.pulumi.fastly.inputs.GetTlsConfigurationArgs;
      * import com.pulumi.fastly.TlsActivation;
      * import com.pulumi.fastly.TlsActivationArgs;
-     * import java.util.List;
      * import java.util.ArrayList;
+     * import java.util.Arrays;
      * import java.util.Map;
      * import java.io.File;
      * import java.nio.file.Files;
@@ -7458,8 +8305,8 @@ public final class FastlyFunctions {
      * import com.pulumi.fastly.inputs.GetTlsConfigurationArgs;
      * import com.pulumi.fastly.TlsActivation;
      * import com.pulumi.fastly.TlsActivationArgs;
-     * import java.util.List;
      * import java.util.ArrayList;
+     * import java.util.Arrays;
      * import java.util.Map;
      * import java.io.File;
      * import java.nio.file.Files;
@@ -7510,8 +8357,8 @@ public final class FastlyFunctions {
      * import com.pulumi.fastly.inputs.GetTlsConfigurationArgs;
      * import com.pulumi.fastly.TlsActivation;
      * import com.pulumi.fastly.TlsActivationArgs;
-     * import java.util.List;
      * import java.util.ArrayList;
+     * import java.util.Arrays;
      * import java.util.Map;
      * import java.io.File;
      * import java.nio.file.Files;
@@ -7562,8 +8409,8 @@ public final class FastlyFunctions {
      * import com.pulumi.fastly.inputs.GetTlsConfigurationArgs;
      * import com.pulumi.fastly.TlsActivation;
      * import com.pulumi.fastly.TlsActivationArgs;
-     * import java.util.List;
      * import java.util.ArrayList;
+     * import java.util.Arrays;
      * import java.util.Map;
      * import java.io.File;
      * import java.nio.file.Files;
@@ -7607,8 +8454,8 @@ public final class FastlyFunctions {
      * import com.pulumi.fastly.FastlyFunctions;
      * import com.pulumi.fastly.TlsActivation;
      * import com.pulumi.fastly.TlsActivationArgs;
-     * import java.util.List;
      * import java.util.ArrayList;
+     * import java.util.Arrays;
      * import java.util.Map;
      * import java.io.File;
      * import java.nio.file.Files;
@@ -7650,8 +8497,8 @@ public final class FastlyFunctions {
      * import com.pulumi.fastly.FastlyFunctions;
      * import com.pulumi.fastly.TlsActivation;
      * import com.pulumi.fastly.TlsActivationArgs;
-     * import java.util.List;
      * import java.util.ArrayList;
+     * import java.util.Arrays;
      * import java.util.Map;
      * import java.io.File;
      * import java.nio.file.Files;
@@ -7693,8 +8540,8 @@ public final class FastlyFunctions {
      * import com.pulumi.fastly.FastlyFunctions;
      * import com.pulumi.fastly.TlsActivation;
      * import com.pulumi.fastly.TlsActivationArgs;
-     * import java.util.List;
      * import java.util.ArrayList;
+     * import java.util.Arrays;
      * import java.util.Map;
      * import java.io.File;
      * import java.nio.file.Files;
@@ -7736,8 +8583,8 @@ public final class FastlyFunctions {
      * import com.pulumi.fastly.FastlyFunctions;
      * import com.pulumi.fastly.TlsActivation;
      * import com.pulumi.fastly.TlsActivationArgs;
-     * import java.util.List;
      * import java.util.ArrayList;
+     * import java.util.Arrays;
      * import java.util.Map;
      * import java.io.File;
      * import java.nio.file.Files;
@@ -7779,8 +8626,8 @@ public final class FastlyFunctions {
      * import com.pulumi.fastly.FastlyFunctions;
      * import com.pulumi.fastly.TlsActivation;
      * import com.pulumi.fastly.TlsActivationArgs;
-     * import java.util.List;
      * import java.util.ArrayList;
+     * import java.util.Arrays;
      * import java.util.Map;
      * import java.io.File;
      * import java.nio.file.Files;
@@ -7822,8 +8669,8 @@ public final class FastlyFunctions {
      * import com.pulumi.fastly.FastlyFunctions;
      * import com.pulumi.fastly.TlsActivation;
      * import com.pulumi.fastly.TlsActivationArgs;
-     * import java.util.List;
      * import java.util.ArrayList;
+     * import java.util.Arrays;
      * import java.util.Map;
      * import java.io.File;
      * import java.nio.file.Files;
@@ -7865,8 +8712,8 @@ public final class FastlyFunctions {
      * import com.pulumi.fastly.FastlyFunctions;
      * import com.pulumi.fastly.TlsActivation;
      * import com.pulumi.fastly.TlsActivationArgs;
-     * import java.util.List;
      * import java.util.ArrayList;
+     * import java.util.Arrays;
      * import java.util.Map;
      * import java.io.File;
      * import java.nio.file.Files;
@@ -7907,8 +8754,8 @@ public final class FastlyFunctions {
      * import com.pulumi.core.Output;
      * import com.pulumi.fastly.FastlyFunctions;
      * import com.pulumi.fastly.inputs.GetTlsDomainArgs;
-     * import java.util.List;
      * import java.util.ArrayList;
+     * import java.util.Arrays;
      * import java.util.Map;
      * import java.io.File;
      * import java.nio.file.Files;
@@ -7947,8 +8794,8 @@ public final class FastlyFunctions {
      * import com.pulumi.core.Output;
      * import com.pulumi.fastly.FastlyFunctions;
      * import com.pulumi.fastly.inputs.GetTlsDomainArgs;
-     * import java.util.List;
      * import java.util.ArrayList;
+     * import java.util.Arrays;
      * import java.util.Map;
      * import java.io.File;
      * import java.nio.file.Files;
@@ -7987,8 +8834,8 @@ public final class FastlyFunctions {
      * import com.pulumi.core.Output;
      * import com.pulumi.fastly.FastlyFunctions;
      * import com.pulumi.fastly.inputs.GetTlsDomainArgs;
-     * import java.util.List;
      * import java.util.ArrayList;
+     * import java.util.Arrays;
      * import java.util.Map;
      * import java.io.File;
      * import java.nio.file.Files;
@@ -8027,8 +8874,8 @@ public final class FastlyFunctions {
      * import com.pulumi.core.Output;
      * import com.pulumi.fastly.FastlyFunctions;
      * import com.pulumi.fastly.inputs.GetTlsDomainArgs;
-     * import java.util.List;
      * import java.util.ArrayList;
+     * import java.util.Arrays;
      * import java.util.Map;
      * import java.io.File;
      * import java.nio.file.Files;
@@ -8067,8 +8914,8 @@ public final class FastlyFunctions {
      * import com.pulumi.core.Output;
      * import com.pulumi.fastly.FastlyFunctions;
      * import com.pulumi.fastly.inputs.GetTlsDomainArgs;
-     * import java.util.List;
      * import java.util.ArrayList;
+     * import java.util.Arrays;
      * import java.util.Map;
      * import java.io.File;
      * import java.nio.file.Files;
@@ -8113,8 +8960,8 @@ public final class FastlyFunctions {
      * import com.pulumi.core.Output;
      * import com.pulumi.fastly.FastlyFunctions;
      * import com.pulumi.fastly.inputs.GetTlsPlatformCertificateArgs;
-     * import java.util.List;
      * import java.util.ArrayList;
+     * import java.util.Arrays;
      * import java.util.Map;
      * import java.io.File;
      * import java.nio.file.Files;
@@ -8159,8 +9006,8 @@ public final class FastlyFunctions {
      * import com.pulumi.core.Output;
      * import com.pulumi.fastly.FastlyFunctions;
      * import com.pulumi.fastly.inputs.GetTlsPlatformCertificateArgs;
-     * import java.util.List;
      * import java.util.ArrayList;
+     * import java.util.Arrays;
      * import java.util.Map;
      * import java.io.File;
      * import java.nio.file.Files;
@@ -8205,8 +9052,8 @@ public final class FastlyFunctions {
      * import com.pulumi.core.Output;
      * import com.pulumi.fastly.FastlyFunctions;
      * import com.pulumi.fastly.inputs.GetTlsPlatformCertificateArgs;
-     * import java.util.List;
      * import java.util.ArrayList;
+     * import java.util.Arrays;
      * import java.util.Map;
      * import java.io.File;
      * import java.nio.file.Files;
@@ -8251,8 +9098,8 @@ public final class FastlyFunctions {
      * import com.pulumi.core.Output;
      * import com.pulumi.fastly.FastlyFunctions;
      * import com.pulumi.fastly.inputs.GetTlsPlatformCertificateArgs;
-     * import java.util.List;
      * import java.util.ArrayList;
+     * import java.util.Arrays;
      * import java.util.Map;
      * import java.io.File;
      * import java.nio.file.Files;
@@ -8297,8 +9144,8 @@ public final class FastlyFunctions {
      * import com.pulumi.core.Output;
      * import com.pulumi.fastly.FastlyFunctions;
      * import com.pulumi.fastly.inputs.GetTlsPlatformCertificateArgs;
-     * import java.util.List;
      * import java.util.ArrayList;
+     * import java.util.Arrays;
      * import java.util.Map;
      * import java.io.File;
      * import java.nio.file.Files;
@@ -8343,8 +9190,8 @@ public final class FastlyFunctions {
      * import com.pulumi.core.Output;
      * import com.pulumi.fastly.FastlyFunctions;
      * import com.pulumi.fastly.inputs.GetTlsPlatformCertificateArgs;
-     * import java.util.List;
      * import java.util.ArrayList;
+     * import java.util.Arrays;
      * import java.util.Map;
      * import java.io.File;
      * import java.nio.file.Files;
@@ -8389,8 +9236,8 @@ public final class FastlyFunctions {
      * import com.pulumi.core.Output;
      * import com.pulumi.fastly.FastlyFunctions;
      * import com.pulumi.fastly.inputs.GetTlsPlatformCertificateArgs;
-     * import java.util.List;
      * import java.util.ArrayList;
+     * import java.util.Arrays;
      * import java.util.Map;
      * import java.io.File;
      * import java.nio.file.Files;
@@ -8429,8 +9276,8 @@ public final class FastlyFunctions {
      * import com.pulumi.core.Output;
      * import com.pulumi.fastly.FastlyFunctions;
      * import com.pulumi.fastly.inputs.GetTlsPlatformCertificateArgs;
-     * import java.util.List;
      * import java.util.ArrayList;
+     * import java.util.Arrays;
      * import java.util.Map;
      * import java.io.File;
      * import java.nio.file.Files;
@@ -8471,8 +9318,8 @@ public final class FastlyFunctions {
      * import com.pulumi.core.Output;
      * import com.pulumi.fastly.FastlyFunctions;
      * import com.pulumi.fastly.inputs.GetTlsPlatformCertificateArgs;
-     * import java.util.List;
      * import java.util.ArrayList;
+     * import java.util.Arrays;
      * import java.util.Map;
      * import java.io.File;
      * import java.nio.file.Files;
@@ -8513,8 +9360,8 @@ public final class FastlyFunctions {
      * import com.pulumi.core.Output;
      * import com.pulumi.fastly.FastlyFunctions;
      * import com.pulumi.fastly.inputs.GetTlsPlatformCertificateArgs;
-     * import java.util.List;
      * import java.util.ArrayList;
+     * import java.util.Arrays;
      * import java.util.Map;
      * import java.io.File;
      * import java.nio.file.Files;
@@ -8555,8 +9402,8 @@ public final class FastlyFunctions {
      * import com.pulumi.core.Output;
      * import com.pulumi.fastly.FastlyFunctions;
      * import com.pulumi.fastly.inputs.GetTlsPlatformCertificateArgs;
-     * import java.util.List;
      * import java.util.ArrayList;
+     * import java.util.Arrays;
      * import java.util.Map;
      * import java.io.File;
      * import java.nio.file.Files;
@@ -8597,8 +9444,8 @@ public final class FastlyFunctions {
      * import com.pulumi.core.Output;
      * import com.pulumi.fastly.FastlyFunctions;
      * import com.pulumi.fastly.inputs.GetTlsPlatformCertificateArgs;
-     * import java.util.List;
      * import java.util.ArrayList;
+     * import java.util.Arrays;
      * import java.util.Map;
      * import java.io.File;
      * import java.nio.file.Files;
@@ -8639,8 +9486,8 @@ public final class FastlyFunctions {
      * import com.pulumi.core.Output;
      * import com.pulumi.fastly.FastlyFunctions;
      * import com.pulumi.fastly.inputs.GetTlsPlatformCertificateArgs;
-     * import java.util.List;
      * import java.util.ArrayList;
+     * import java.util.Arrays;
      * import java.util.Map;
      * import java.io.File;
      * import java.nio.file.Files;
@@ -8681,8 +9528,8 @@ public final class FastlyFunctions {
      * import com.pulumi.core.Output;
      * import com.pulumi.fastly.FastlyFunctions;
      * import com.pulumi.fastly.inputs.GetTlsPlatformCertificateArgs;
-     * import java.util.List;
      * import java.util.ArrayList;
+     * import java.util.Arrays;
      * import java.util.Map;
      * import java.io.File;
      * import java.nio.file.Files;
@@ -8730,8 +9577,8 @@ public final class FastlyFunctions {
      * import com.pulumi.core.Output;
      * import com.pulumi.fastly.FastlyFunctions;
      * import com.pulumi.fastly.inputs.GetTlsPrivateKeyArgs;
-     * import java.util.List;
      * import java.util.ArrayList;
+     * import java.util.Arrays;
      * import java.util.Map;
      * import java.io.File;
      * import java.nio.file.Files;
@@ -8778,8 +9625,8 @@ public final class FastlyFunctions {
      * import com.pulumi.core.Output;
      * import com.pulumi.fastly.FastlyFunctions;
      * import com.pulumi.fastly.inputs.GetTlsPrivateKeyArgs;
-     * import java.util.List;
      * import java.util.ArrayList;
+     * import java.util.Arrays;
      * import java.util.Map;
      * import java.io.File;
      * import java.nio.file.Files;
@@ -8826,8 +9673,8 @@ public final class FastlyFunctions {
      * import com.pulumi.core.Output;
      * import com.pulumi.fastly.FastlyFunctions;
      * import com.pulumi.fastly.inputs.GetTlsPrivateKeyArgs;
-     * import java.util.List;
      * import java.util.ArrayList;
+     * import java.util.Arrays;
      * import java.util.Map;
      * import java.io.File;
      * import java.nio.file.Files;
@@ -8874,8 +9721,8 @@ public final class FastlyFunctions {
      * import com.pulumi.core.Output;
      * import com.pulumi.fastly.FastlyFunctions;
      * import com.pulumi.fastly.inputs.GetTlsPrivateKeyArgs;
-     * import java.util.List;
      * import java.util.ArrayList;
+     * import java.util.Arrays;
      * import java.util.Map;
      * import java.io.File;
      * import java.nio.file.Files;
@@ -8922,8 +9769,8 @@ public final class FastlyFunctions {
      * import com.pulumi.core.Output;
      * import com.pulumi.fastly.FastlyFunctions;
      * import com.pulumi.fastly.inputs.GetTlsPrivateKeyArgs;
-     * import java.util.List;
      * import java.util.ArrayList;
+     * import java.util.Arrays;
      * import java.util.Map;
      * import java.io.File;
      * import java.nio.file.Files;
@@ -8970,8 +9817,8 @@ public final class FastlyFunctions {
      * import com.pulumi.core.Output;
      * import com.pulumi.fastly.FastlyFunctions;
      * import com.pulumi.fastly.inputs.GetTlsPrivateKeyArgs;
-     * import java.util.List;
      * import java.util.ArrayList;
+     * import java.util.Arrays;
      * import java.util.Map;
      * import java.io.File;
      * import java.nio.file.Files;
@@ -9018,8 +9865,8 @@ public final class FastlyFunctions {
      * import com.pulumi.core.Output;
      * import com.pulumi.fastly.FastlyFunctions;
      * import com.pulumi.fastly.inputs.GetTlsPrivateKeyArgs;
-     * import java.util.List;
      * import java.util.ArrayList;
+     * import java.util.Arrays;
      * import java.util.Map;
      * import java.io.File;
      * import java.nio.file.Files;
@@ -9059,8 +9906,8 @@ public final class FastlyFunctions {
      * import com.pulumi.core.Output;
      * import com.pulumi.fastly.FastlyFunctions;
      * import com.pulumi.fastly.inputs.GetTlsPrivateKeyArgs;
-     * import java.util.List;
      * import java.util.ArrayList;
+     * import java.util.Arrays;
      * import java.util.Map;
      * import java.io.File;
      * import java.nio.file.Files;
@@ -9075,7 +9922,7 @@ public final class FastlyFunctions {
      *         final var demo = FastlyFunctions.getTlsPrivateKeyIds(%!v(PANIC=Format method: runtime error: invalid memory address or nil pointer dereference);
      * 
      *         final var example = FastlyFunctions.getTlsPrivateKey(GetTlsPrivateKeyArgs.builder()
-     *             .id(demoFastlyTlsPrivateKeyIds.ids()[0])
+     *             .id(demoFastlyTlsPrivateKeyIds.get("ids")[0])
      *             .build());
      * 
      *     }
@@ -9101,8 +9948,8 @@ public final class FastlyFunctions {
      * import com.pulumi.core.Output;
      * import com.pulumi.fastly.FastlyFunctions;
      * import com.pulumi.fastly.inputs.GetTlsPrivateKeyArgs;
-     * import java.util.List;
      * import java.util.ArrayList;
+     * import java.util.Arrays;
      * import java.util.Map;
      * import java.io.File;
      * import java.nio.file.Files;
@@ -9117,7 +9964,7 @@ public final class FastlyFunctions {
      *         final var demo = FastlyFunctions.getTlsPrivateKeyIds(%!v(PANIC=Format method: runtime error: invalid memory address or nil pointer dereference);
      * 
      *         final var example = FastlyFunctions.getTlsPrivateKey(GetTlsPrivateKeyArgs.builder()
-     *             .id(demoFastlyTlsPrivateKeyIds.ids()[0])
+     *             .id(demoFastlyTlsPrivateKeyIds.get("ids")[0])
      *             .build());
      * 
      *     }
@@ -9143,8 +9990,8 @@ public final class FastlyFunctions {
      * import com.pulumi.core.Output;
      * import com.pulumi.fastly.FastlyFunctions;
      * import com.pulumi.fastly.inputs.GetTlsPrivateKeyArgs;
-     * import java.util.List;
      * import java.util.ArrayList;
+     * import java.util.Arrays;
      * import java.util.Map;
      * import java.io.File;
      * import java.nio.file.Files;
@@ -9159,7 +10006,7 @@ public final class FastlyFunctions {
      *         final var demo = FastlyFunctions.getTlsPrivateKeyIds(%!v(PANIC=Format method: runtime error: invalid memory address or nil pointer dereference);
      * 
      *         final var example = FastlyFunctions.getTlsPrivateKey(GetTlsPrivateKeyArgs.builder()
-     *             .id(demoFastlyTlsPrivateKeyIds.ids()[0])
+     *             .id(demoFastlyTlsPrivateKeyIds.get("ids")[0])
      *             .build());
      * 
      *     }
@@ -9185,8 +10032,8 @@ public final class FastlyFunctions {
      * import com.pulumi.core.Output;
      * import com.pulumi.fastly.FastlyFunctions;
      * import com.pulumi.fastly.inputs.GetTlsPrivateKeyArgs;
-     * import java.util.List;
      * import java.util.ArrayList;
+     * import java.util.Arrays;
      * import java.util.Map;
      * import java.io.File;
      * import java.nio.file.Files;
@@ -9201,7 +10048,7 @@ public final class FastlyFunctions {
      *         final var demo = FastlyFunctions.getTlsPrivateKeyIds(%!v(PANIC=Format method: runtime error: invalid memory address or nil pointer dereference);
      * 
      *         final var example = FastlyFunctions.getTlsPrivateKey(GetTlsPrivateKeyArgs.builder()
-     *             .id(demoFastlyTlsPrivateKeyIds.ids()[0])
+     *             .id(demoFastlyTlsPrivateKeyIds.get("ids")[0])
      *             .build());
      * 
      *     }
@@ -9227,8 +10074,8 @@ public final class FastlyFunctions {
      * import com.pulumi.core.Output;
      * import com.pulumi.fastly.FastlyFunctions;
      * import com.pulumi.fastly.inputs.GetTlsPrivateKeyArgs;
-     * import java.util.List;
      * import java.util.ArrayList;
+     * import java.util.Arrays;
      * import java.util.Map;
      * import java.io.File;
      * import java.nio.file.Files;
@@ -9243,7 +10090,7 @@ public final class FastlyFunctions {
      *         final var demo = FastlyFunctions.getTlsPrivateKeyIds(%!v(PANIC=Format method: runtime error: invalid memory address or nil pointer dereference);
      * 
      *         final var example = FastlyFunctions.getTlsPrivateKey(GetTlsPrivateKeyArgs.builder()
-     *             .id(demoFastlyTlsPrivateKeyIds.ids()[0])
+     *             .id(demoFastlyTlsPrivateKeyIds.get("ids")[0])
      *             .build());
      * 
      *     }
@@ -9269,8 +10116,8 @@ public final class FastlyFunctions {
      * import com.pulumi.core.Output;
      * import com.pulumi.fastly.FastlyFunctions;
      * import com.pulumi.fastly.inputs.GetTlsPrivateKeyArgs;
-     * import java.util.List;
      * import java.util.ArrayList;
+     * import java.util.Arrays;
      * import java.util.Map;
      * import java.io.File;
      * import java.nio.file.Files;
@@ -9285,7 +10132,7 @@ public final class FastlyFunctions {
      *         final var demo = FastlyFunctions.getTlsPrivateKeyIds(%!v(PANIC=Format method: runtime error: invalid memory address or nil pointer dereference);
      * 
      *         final var example = FastlyFunctions.getTlsPrivateKey(GetTlsPrivateKeyArgs.builder()
-     *             .id(demoFastlyTlsPrivateKeyIds.ids()[0])
+     *             .id(demoFastlyTlsPrivateKeyIds.get("ids")[0])
      *             .build());
      * 
      *     }
@@ -9311,8 +10158,8 @@ public final class FastlyFunctions {
      * import com.pulumi.core.Output;
      * import com.pulumi.fastly.FastlyFunctions;
      * import com.pulumi.fastly.inputs.GetTlsPrivateKeyArgs;
-     * import java.util.List;
      * import java.util.ArrayList;
+     * import java.util.Arrays;
      * import java.util.Map;
      * import java.io.File;
      * import java.nio.file.Files;
@@ -9327,7 +10174,7 @@ public final class FastlyFunctions {
      *         final var demo = FastlyFunctions.getTlsPrivateKeyIds(%!v(PANIC=Format method: runtime error: invalid memory address or nil pointer dereference);
      * 
      *         final var example = FastlyFunctions.getTlsPrivateKey(GetTlsPrivateKeyArgs.builder()
-     *             .id(demoFastlyTlsPrivateKeyIds.ids()[0])
+     *             .id(demoFastlyTlsPrivateKeyIds.get("ids")[0])
      *             .build());
      * 
      *     }
@@ -9353,8 +10200,8 @@ public final class FastlyFunctions {
      * import com.pulumi.core.Output;
      * import com.pulumi.fastly.FastlyFunctions;
      * import com.pulumi.fastly.inputs.GetTlsSubscriptionArgs;
-     * import java.util.List;
      * import java.util.ArrayList;
+     * import java.util.Arrays;
      * import java.util.Map;
      * import java.io.File;
      * import java.nio.file.Files;
@@ -9393,8 +10240,8 @@ public final class FastlyFunctions {
      * import com.pulumi.core.Output;
      * import com.pulumi.fastly.FastlyFunctions;
      * import com.pulumi.fastly.inputs.GetTlsSubscriptionArgs;
-     * import java.util.List;
      * import java.util.ArrayList;
+     * import java.util.Arrays;
      * import java.util.Map;
      * import java.io.File;
      * import java.nio.file.Files;
@@ -9433,8 +10280,8 @@ public final class FastlyFunctions {
      * import com.pulumi.core.Output;
      * import com.pulumi.fastly.FastlyFunctions;
      * import com.pulumi.fastly.inputs.GetTlsSubscriptionArgs;
-     * import java.util.List;
      * import java.util.ArrayList;
+     * import java.util.Arrays;
      * import java.util.Map;
      * import java.io.File;
      * import java.nio.file.Files;
@@ -9473,8 +10320,8 @@ public final class FastlyFunctions {
      * import com.pulumi.core.Output;
      * import com.pulumi.fastly.FastlyFunctions;
      * import com.pulumi.fastly.inputs.GetTlsSubscriptionArgs;
-     * import java.util.List;
      * import java.util.ArrayList;
+     * import java.util.Arrays;
      * import java.util.Map;
      * import java.io.File;
      * import java.nio.file.Files;
@@ -9513,8 +10360,8 @@ public final class FastlyFunctions {
      * import com.pulumi.core.Output;
      * import com.pulumi.fastly.FastlyFunctions;
      * import com.pulumi.fastly.inputs.GetTlsSubscriptionArgs;
-     * import java.util.List;
      * import java.util.ArrayList;
+     * import java.util.Arrays;
      * import java.util.Map;
      * import java.io.File;
      * import java.nio.file.Files;
@@ -9553,8 +10400,8 @@ public final class FastlyFunctions {
      * import com.pulumi.core.Output;
      * import com.pulumi.fastly.FastlyFunctions;
      * import com.pulumi.fastly.inputs.GetTlsSubscriptionArgs;
-     * import java.util.List;
      * import java.util.ArrayList;
+     * import java.util.Arrays;
      * import java.util.Map;
      * import java.io.File;
      * import java.nio.file.Files;
@@ -9593,8 +10440,8 @@ public final class FastlyFunctions {
      * import com.pulumi.core.Output;
      * import com.pulumi.fastly.FastlyFunctions;
      * import com.pulumi.fastly.inputs.GetTlsSubscriptionArgs;
-     * import java.util.List;
      * import java.util.ArrayList;
+     * import java.util.Arrays;
      * import java.util.Map;
      * import java.io.File;
      * import java.nio.file.Files;
@@ -9683,6 +10530,286 @@ public final class FastlyFunctions {
         return Deployment.getInstance().invokeAsync("fastly:index/getTlsSubscriptionIds:getTlsSubscriptionIds", TypeShape.of(GetTlsSubscriptionIdsResult.class), args, Utilities.withVersion(options));
     }
     /**
+     * Use this data source to get a list of Fastly TSIG Keys.
+     * 
+     * ## Example Usage
+     * 
+     * <pre>
+     * {@code
+     * package generated_program;
+     * 
+     * import com.pulumi.Context;
+     * import com.pulumi.Pulumi;
+     * import com.pulumi.core.Output;
+     * import com.pulumi.fastly.FastlyFunctions;
+     * import com.pulumi.fastly.inputs.GetTsigKeysArgs;
+     * import java.util.ArrayList;
+     * import java.util.Arrays;
+     * import java.util.Map;
+     * import java.io.File;
+     * import java.nio.file.Files;
+     * import java.nio.file.Paths;
+     * 
+     * public class App {
+     *     public static void main(String[] args) {
+     *         Pulumi.run(App::stack);
+     *     }
+     * 
+     *     public static void stack(Context ctx) {
+     *         final var example = FastlyFunctions.getTsigKeys(GetTsigKeysArgs.builder()
+     *             .build());
+     * 
+     *         ctx.export("fastlyTsigKeysAll", example.keys());
+     *     }
+     * }
+     * }
+     * </pre>
+     * 
+     */
+    public static Output<GetTsigKeysResult> getTsigKeys() {
+        return getTsigKeys(GetTsigKeysArgs.Empty, InvokeOptions.Empty);
+    }
+    /**
+     * Use this data source to get a list of Fastly TSIG Keys.
+     * 
+     * ## Example Usage
+     * 
+     * <pre>
+     * {@code
+     * package generated_program;
+     * 
+     * import com.pulumi.Context;
+     * import com.pulumi.Pulumi;
+     * import com.pulumi.core.Output;
+     * import com.pulumi.fastly.FastlyFunctions;
+     * import com.pulumi.fastly.inputs.GetTsigKeysArgs;
+     * import java.util.ArrayList;
+     * import java.util.Arrays;
+     * import java.util.Map;
+     * import java.io.File;
+     * import java.nio.file.Files;
+     * import java.nio.file.Paths;
+     * 
+     * public class App {
+     *     public static void main(String[] args) {
+     *         Pulumi.run(App::stack);
+     *     }
+     * 
+     *     public static void stack(Context ctx) {
+     *         final var example = FastlyFunctions.getTsigKeys(GetTsigKeysArgs.builder()
+     *             .build());
+     * 
+     *         ctx.export("fastlyTsigKeysAll", example.keys());
+     *     }
+     * }
+     * }
+     * </pre>
+     * 
+     */
+    public static CompletableFuture<GetTsigKeysResult> getTsigKeysPlain() {
+        return getTsigKeysPlain(GetTsigKeysPlainArgs.Empty, InvokeOptions.Empty);
+    }
+    /**
+     * Use this data source to get a list of Fastly TSIG Keys.
+     * 
+     * ## Example Usage
+     * 
+     * <pre>
+     * {@code
+     * package generated_program;
+     * 
+     * import com.pulumi.Context;
+     * import com.pulumi.Pulumi;
+     * import com.pulumi.core.Output;
+     * import com.pulumi.fastly.FastlyFunctions;
+     * import com.pulumi.fastly.inputs.GetTsigKeysArgs;
+     * import java.util.ArrayList;
+     * import java.util.Arrays;
+     * import java.util.Map;
+     * import java.io.File;
+     * import java.nio.file.Files;
+     * import java.nio.file.Paths;
+     * 
+     * public class App {
+     *     public static void main(String[] args) {
+     *         Pulumi.run(App::stack);
+     *     }
+     * 
+     *     public static void stack(Context ctx) {
+     *         final var example = FastlyFunctions.getTsigKeys(GetTsigKeysArgs.builder()
+     *             .build());
+     * 
+     *         ctx.export("fastlyTsigKeysAll", example.keys());
+     *     }
+     * }
+     * }
+     * </pre>
+     * 
+     */
+    public static Output<GetTsigKeysResult> getTsigKeys(GetTsigKeysArgs args) {
+        return getTsigKeys(args, InvokeOptions.Empty);
+    }
+    /**
+     * Use this data source to get a list of Fastly TSIG Keys.
+     * 
+     * ## Example Usage
+     * 
+     * <pre>
+     * {@code
+     * package generated_program;
+     * 
+     * import com.pulumi.Context;
+     * import com.pulumi.Pulumi;
+     * import com.pulumi.core.Output;
+     * import com.pulumi.fastly.FastlyFunctions;
+     * import com.pulumi.fastly.inputs.GetTsigKeysArgs;
+     * import java.util.ArrayList;
+     * import java.util.Arrays;
+     * import java.util.Map;
+     * import java.io.File;
+     * import java.nio.file.Files;
+     * import java.nio.file.Paths;
+     * 
+     * public class App {
+     *     public static void main(String[] args) {
+     *         Pulumi.run(App::stack);
+     *     }
+     * 
+     *     public static void stack(Context ctx) {
+     *         final var example = FastlyFunctions.getTsigKeys(GetTsigKeysArgs.builder()
+     *             .build());
+     * 
+     *         ctx.export("fastlyTsigKeysAll", example.keys());
+     *     }
+     * }
+     * }
+     * </pre>
+     * 
+     */
+    public static CompletableFuture<GetTsigKeysResult> getTsigKeysPlain(GetTsigKeysPlainArgs args) {
+        return getTsigKeysPlain(args, InvokeOptions.Empty);
+    }
+    /**
+     * Use this data source to get a list of Fastly TSIG Keys.
+     * 
+     * ## Example Usage
+     * 
+     * <pre>
+     * {@code
+     * package generated_program;
+     * 
+     * import com.pulumi.Context;
+     * import com.pulumi.Pulumi;
+     * import com.pulumi.core.Output;
+     * import com.pulumi.fastly.FastlyFunctions;
+     * import com.pulumi.fastly.inputs.GetTsigKeysArgs;
+     * import java.util.ArrayList;
+     * import java.util.Arrays;
+     * import java.util.Map;
+     * import java.io.File;
+     * import java.nio.file.Files;
+     * import java.nio.file.Paths;
+     * 
+     * public class App {
+     *     public static void main(String[] args) {
+     *         Pulumi.run(App::stack);
+     *     }
+     * 
+     *     public static void stack(Context ctx) {
+     *         final var example = FastlyFunctions.getTsigKeys(GetTsigKeysArgs.builder()
+     *             .build());
+     * 
+     *         ctx.export("fastlyTsigKeysAll", example.keys());
+     *     }
+     * }
+     * }
+     * </pre>
+     * 
+     */
+    public static Output<GetTsigKeysResult> getTsigKeys(GetTsigKeysArgs args, InvokeOptions options) {
+        return Deployment.getInstance().invoke("fastly:index/getTsigKeys:getTsigKeys", TypeShape.of(GetTsigKeysResult.class), args, Utilities.withVersion(options));
+    }
+    /**
+     * Use this data source to get a list of Fastly TSIG Keys.
+     * 
+     * ## Example Usage
+     * 
+     * <pre>
+     * {@code
+     * package generated_program;
+     * 
+     * import com.pulumi.Context;
+     * import com.pulumi.Pulumi;
+     * import com.pulumi.core.Output;
+     * import com.pulumi.fastly.FastlyFunctions;
+     * import com.pulumi.fastly.inputs.GetTsigKeysArgs;
+     * import java.util.ArrayList;
+     * import java.util.Arrays;
+     * import java.util.Map;
+     * import java.io.File;
+     * import java.nio.file.Files;
+     * import java.nio.file.Paths;
+     * 
+     * public class App {
+     *     public static void main(String[] args) {
+     *         Pulumi.run(App::stack);
+     *     }
+     * 
+     *     public static void stack(Context ctx) {
+     *         final var example = FastlyFunctions.getTsigKeys(GetTsigKeysArgs.builder()
+     *             .build());
+     * 
+     *         ctx.export("fastlyTsigKeysAll", example.keys());
+     *     }
+     * }
+     * }
+     * </pre>
+     * 
+     */
+    public static Output<GetTsigKeysResult> getTsigKeys(GetTsigKeysArgs args, InvokeOutputOptions options) {
+        return Deployment.getInstance().invoke("fastly:index/getTsigKeys:getTsigKeys", TypeShape.of(GetTsigKeysResult.class), args, Utilities.withVersion(options));
+    }
+    /**
+     * Use this data source to get a list of Fastly TSIG Keys.
+     * 
+     * ## Example Usage
+     * 
+     * <pre>
+     * {@code
+     * package generated_program;
+     * 
+     * import com.pulumi.Context;
+     * import com.pulumi.Pulumi;
+     * import com.pulumi.core.Output;
+     * import com.pulumi.fastly.FastlyFunctions;
+     * import com.pulumi.fastly.inputs.GetTsigKeysArgs;
+     * import java.util.ArrayList;
+     * import java.util.Arrays;
+     * import java.util.Map;
+     * import java.io.File;
+     * import java.nio.file.Files;
+     * import java.nio.file.Paths;
+     * 
+     * public class App {
+     *     public static void main(String[] args) {
+     *         Pulumi.run(App::stack);
+     *     }
+     * 
+     *     public static void stack(Context ctx) {
+     *         final var example = FastlyFunctions.getTsigKeys(GetTsigKeysArgs.builder()
+     *             .build());
+     * 
+     *         ctx.export("fastlyTsigKeysAll", example.keys());
+     *     }
+     * }
+     * }
+     * </pre>
+     * 
+     */
+    public static CompletableFuture<GetTsigKeysResult> getTsigKeysPlain(GetTsigKeysPlainArgs args, InvokeOptions options) {
+        return Deployment.getInstance().invokeAsync("fastly:index/getTsigKeys:getTsigKeys", TypeShape.of(GetTsigKeysResult.class), args, Utilities.withVersion(options));
+    }
+    /**
      * VCL Snippets are blocks of VCL logic inserted into your service&#39;s configuration that don&#39;t require custom VCL.
      * 
      * Use this data source to get a list of [Fastly VCL Snippets](https://www.fastly.com/documentation/reference/api/vcl-services/snippet/) for the specified service/version.
@@ -9701,8 +10828,8 @@ public final class FastlyFunctions {
      * import com.pulumi.fastly.inputs.ServiceVclDomainArgs;
      * import com.pulumi.fastly.FastlyFunctions;
      * import com.pulumi.fastly.inputs.GetVclSnippetsArgs;
-     * import java.util.List;
      * import java.util.ArrayList;
+     * import java.util.Arrays;
      * import java.util.Map;
      * import java.io.File;
      * import java.nio.file.Files;
@@ -9758,8 +10885,8 @@ public final class FastlyFunctions {
      * import com.pulumi.fastly.inputs.ServiceVclDomainArgs;
      * import com.pulumi.fastly.FastlyFunctions;
      * import com.pulumi.fastly.inputs.GetVclSnippetsArgs;
-     * import java.util.List;
      * import java.util.ArrayList;
+     * import java.util.Arrays;
      * import java.util.Map;
      * import java.io.File;
      * import java.nio.file.Files;
@@ -9815,8 +10942,8 @@ public final class FastlyFunctions {
      * import com.pulumi.fastly.inputs.ServiceVclDomainArgs;
      * import com.pulumi.fastly.FastlyFunctions;
      * import com.pulumi.fastly.inputs.GetVclSnippetsArgs;
-     * import java.util.List;
      * import java.util.ArrayList;
+     * import java.util.Arrays;
      * import java.util.Map;
      * import java.io.File;
      * import java.nio.file.Files;
@@ -9872,8 +10999,8 @@ public final class FastlyFunctions {
      * import com.pulumi.fastly.inputs.ServiceVclDomainArgs;
      * import com.pulumi.fastly.FastlyFunctions;
      * import com.pulumi.fastly.inputs.GetVclSnippetsArgs;
-     * import java.util.List;
      * import java.util.ArrayList;
+     * import java.util.Arrays;
      * import java.util.Map;
      * import java.io.File;
      * import java.nio.file.Files;
@@ -9929,8 +11056,8 @@ public final class FastlyFunctions {
      * import com.pulumi.fastly.inputs.ServiceVclDomainArgs;
      * import com.pulumi.fastly.FastlyFunctions;
      * import com.pulumi.fastly.inputs.GetVclSnippetsArgs;
-     * import java.util.List;
      * import java.util.ArrayList;
+     * import java.util.Arrays;
      * import java.util.Map;
      * import java.io.File;
      * import java.nio.file.Files;

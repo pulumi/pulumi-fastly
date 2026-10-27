@@ -26,7 +26,7 @@ namespace Pulumi.Fastly
     /// 
     /// return await Deployment.RunAsync(() =&gt; 
     /// {
-    ///     var example = new Fastly.Index.NgwafWorkspace("example", new()
+    ///     var example = new Fastly.NgwafWorkspace("example", new()
     ///     {
     ///         Name = "example",
     ///         Description = "Workspace with custom list",
@@ -47,7 +47,7 @@ namespace Pulumi.Fastly
     ///         },
     ///     });
     /// 
-    ///     var exampleNgwafWorkspaceList = new Fastly.Index.NgwafWorkspaceList("example", new()
+    ///     var exampleNgwafWorkspaceList = new Fastly.NgwafWorkspaceList("example", new()
     ///     {
     ///         WorkspaceId = example.Id,
     ///         Name = "local-allowlist",
@@ -61,7 +61,7 @@ namespace Pulumi.Fastly
     ///     });
     /// 
     ///     // Example usage with a rule. 
-    ///     var exampleNgwafWorkspaceRule = new Fastly.Index.NgwafWorkspaceRule("example", new()
+    ///     var exampleNgwafWorkspaceRule = new Fastly.NgwafWorkspaceRule("example", new()
     ///     {
     ///         WorkspaceId = example.Id,
     ///         Type = "request",

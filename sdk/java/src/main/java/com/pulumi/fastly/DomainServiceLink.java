@@ -32,8 +32,8 @@ import javax.annotation.Nullable;
  * import com.pulumi.core.Output;
  * import com.pulumi.fastly.DomainServiceLink;
  * import com.pulumi.fastly.DomainServiceLinkArgs;
- * import java.util.List;
  * import java.util.ArrayList;
+ * import java.util.Arrays;
  * import java.util.Map;
  * import java.io.File;
  * import java.nio.file.Files;
@@ -46,8 +46,8 @@ import javax.annotation.Nullable;
  * 
  *     public static void stack(Context ctx) {
  *         var example = new DomainServiceLink("example", DomainServiceLinkArgs.builder()
- *             .domainId(exampleFastlyDomain.id())
- *             .serviceId(exampleFastlyServiceVcl.id())
+ *             .domainId(exampleFastlyDomain.get("id"))
+ *             .serviceId(exampleFastlyServiceVcl.get("id"))
  *             .build());
  * 
  *     }

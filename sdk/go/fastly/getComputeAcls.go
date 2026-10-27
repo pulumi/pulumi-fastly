@@ -31,10 +31,8 @@ type GetComputeAclsResult struct {
 }
 
 func GetComputeAclsOutput(ctx *pulumi.Context, opts ...pulumi.InvokeOption) GetComputeAclsResultOutput {
-	return pulumi.ToOutput(0).ApplyT(func(int) (GetComputeAclsResultOutput, error) {
-		options := pulumi.InvokeOutputOptions{InvokeOptions: internal.PkgInvokeDefaultOpts(opts)}
-		return ctx.InvokeOutput("fastly:index/getComputeAcls:getComputeAcls", nil, GetComputeAclsResultOutput{}, options).(GetComputeAclsResultOutput), nil
-	}).(GetComputeAclsResultOutput)
+	options := pulumi.InvokeOutputOptions{InvokeOptions: internal.PkgInvokeDefaultOpts(opts)}
+	return ctx.InvokeOutput("fastly:index/getComputeAcls:getComputeAcls", nil, GetComputeAclsResultOutput{}, options).(GetComputeAclsResultOutput)
 }
 
 // A collection of values returned by getComputeAcls.

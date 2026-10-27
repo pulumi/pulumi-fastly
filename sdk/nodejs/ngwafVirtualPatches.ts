@@ -125,19 +125,19 @@ export interface NgwafVirtualPatchesState {
     /**
      * Action to take when a signal for virtual patch is detected. Accepted values are `log` and `block`.
      */
-    action?: pulumi.Input<string>;
+    action?: pulumi.Input<string | undefined>;
     /**
      * Control for enabling and disabling a virtual patch.
      */
-    enabled?: pulumi.Input<boolean>;
+    enabled?: pulumi.Input<boolean | undefined>;
     /**
      * The ID of the virtual patch.
      */
-    virtualPatchId?: pulumi.Input<string>;
+    virtualPatchId?: pulumi.Input<string | undefined>;
     /**
      * The ID of the workspace.
      */
-    workspaceId?: pulumi.Input<string>;
+    workspaceId?: pulumi.Input<string | undefined>;
 }
 
 /**

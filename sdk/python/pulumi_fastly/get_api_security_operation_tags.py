@@ -104,7 +104,7 @@ def get_api_security_operation_tags(service_id: Optional[_builtins.str] = None,
             "address": "example.com",
             "name": "tf-test-backend-1",
         }])
-    # Optional: create a tag so the data source returns a predictable result
+    # Optional: create a tag so the function returns a predictable result
     example = fastly.ApiSecurityOperationTag("example",
         service_id=svc1.id,
         name="example-tag",
@@ -127,7 +127,7 @@ def get_api_security_operation_tags(service_id: Optional[_builtins.str] = None,
         service_id=pulumi.get(__ret__, 'service_id'),
         tags=pulumi.get(__ret__, 'tags'),
         total=pulumi.get(__ret__, 'total'))
-def get_api_security_operation_tags_output(service_id: Optional[pulumi.Input[_builtins.str]] = None,
+def get_api_security_operation_tags_output(service_id: pulumi.Input[Optional[_builtins.str]] = None,
                                            opts: Optional[Union[pulumi.InvokeOptions, pulumi.InvokeOutputOptions]] = None) -> pulumi.Output[GetApiSecurityOperationTagsResult]:
     """
     Use this data source to list API Security operation tags for a Fastly service.
@@ -145,7 +145,7 @@ def get_api_security_operation_tags_output(service_id: Optional[pulumi.Input[_bu
             "address": "example.com",
             "name": "tf-test-backend-1",
         }])
-    # Optional: create a tag so the data source returns a predictable result
+    # Optional: create a tag so the function returns a predictable result
     example = fastly.ApiSecurityOperationTag("example",
         service_id=svc1.id,
         name="example-tag",

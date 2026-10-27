@@ -21,8 +21,8 @@ class ServiceDictionaryItemsArgs:
     def __init__(__self__, *,
                  dictionary_id: pulumi.Input[_builtins.str],
                  service_id: pulumi.Input[_builtins.str],
-                 items: Optional[pulumi.Input[Mapping[str, pulumi.Input[_builtins.str]]]] = None,
-                 manage_items: Optional[pulumi.Input[_builtins.bool]] = None):
+                 items: pulumi.Input[Optional[Mapping[str, pulumi.Input[_builtins.str]]]] = None,
+                 manage_items: pulumi.Input[Optional[_builtins.bool]] = None):
         """
         The set of arguments for constructing a ServiceDictionaryItems resource.
 
@@ -64,36 +64,36 @@ class ServiceDictionaryItemsArgs:
 
     @_builtins.property
     @pulumi.getter
-    def items(self) -> Optional[pulumi.Input[Mapping[str, pulumi.Input[_builtins.str]]]]:
+    def items(self) -> pulumi.Input[Optional[Mapping[str, pulumi.Input[_builtins.str]]]]:
         """
         A map representing an entry in the dictionary, (key/value)
         """
         return pulumi.get(self, "items")
 
     @items.setter
-    def items(self, value: Optional[pulumi.Input[Mapping[str, pulumi.Input[_builtins.str]]]]):
+    def items(self, value: pulumi.Input[Optional[Mapping[str, pulumi.Input[_builtins.str]]]]):
         pulumi.set(self, "items", value)
 
     @_builtins.property
     @pulumi.getter(name="manageItems")
-    def manage_items(self) -> Optional[pulumi.Input[_builtins.bool]]:
+    def manage_items(self) -> pulumi.Input[Optional[_builtins.bool]]:
         """
         Whether to reapply changes if the state of the items drifts, i.e. if items are managed externally
         """
         return pulumi.get(self, "manage_items")
 
     @manage_items.setter
-    def manage_items(self, value: Optional[pulumi.Input[_builtins.bool]]):
+    def manage_items(self, value: pulumi.Input[Optional[_builtins.bool]]):
         pulumi.set(self, "manage_items", value)
 
 
 @pulumi.input_type
 class _ServiceDictionaryItemsState:
     def __init__(__self__, *,
-                 dictionary_id: Optional[pulumi.Input[_builtins.str]] = None,
-                 items: Optional[pulumi.Input[Mapping[str, pulumi.Input[_builtins.str]]]] = None,
-                 manage_items: Optional[pulumi.Input[_builtins.bool]] = None,
-                 service_id: Optional[pulumi.Input[_builtins.str]] = None):
+                 dictionary_id: pulumi.Input[Optional[_builtins.str]] = None,
+                 items: pulumi.Input[Optional[Mapping[str, pulumi.Input[_builtins.str]]]] = None,
+                 manage_items: pulumi.Input[Optional[_builtins.bool]] = None,
+                 service_id: pulumi.Input[Optional[_builtins.str]] = None):
         """
         Input properties used for looking up and filtering ServiceDictionaryItems resources.
 
@@ -113,50 +113,50 @@ class _ServiceDictionaryItemsState:
 
     @_builtins.property
     @pulumi.getter(name="dictionaryId")
-    def dictionary_id(self) -> Optional[pulumi.Input[_builtins.str]]:
+    def dictionary_id(self) -> pulumi.Input[Optional[_builtins.str]]:
         """
         The ID of the dictionary that the items belong to
         """
         return pulumi.get(self, "dictionary_id")
 
     @dictionary_id.setter
-    def dictionary_id(self, value: Optional[pulumi.Input[_builtins.str]]):
+    def dictionary_id(self, value: pulumi.Input[Optional[_builtins.str]]):
         pulumi.set(self, "dictionary_id", value)
 
     @_builtins.property
     @pulumi.getter
-    def items(self) -> Optional[pulumi.Input[Mapping[str, pulumi.Input[_builtins.str]]]]:
+    def items(self) -> pulumi.Input[Optional[Mapping[str, pulumi.Input[_builtins.str]]]]:
         """
         A map representing an entry in the dictionary, (key/value)
         """
         return pulumi.get(self, "items")
 
     @items.setter
-    def items(self, value: Optional[pulumi.Input[Mapping[str, pulumi.Input[_builtins.str]]]]):
+    def items(self, value: pulumi.Input[Optional[Mapping[str, pulumi.Input[_builtins.str]]]]):
         pulumi.set(self, "items", value)
 
     @_builtins.property
     @pulumi.getter(name="manageItems")
-    def manage_items(self) -> Optional[pulumi.Input[_builtins.bool]]:
+    def manage_items(self) -> pulumi.Input[Optional[_builtins.bool]]:
         """
         Whether to reapply changes if the state of the items drifts, i.e. if items are managed externally
         """
         return pulumi.get(self, "manage_items")
 
     @manage_items.setter
-    def manage_items(self, value: Optional[pulumi.Input[_builtins.bool]]):
+    def manage_items(self, value: pulumi.Input[Optional[_builtins.bool]]):
         pulumi.set(self, "manage_items", value)
 
     @_builtins.property
     @pulumi.getter(name="serviceId")
-    def service_id(self) -> Optional[pulumi.Input[_builtins.str]]:
+    def service_id(self) -> pulumi.Input[Optional[_builtins.str]]:
         """
         The ID of the service that the dictionary belongs to
         """
         return pulumi.get(self, "service_id")
 
     @service_id.setter
-    def service_id(self, value: Optional[pulumi.Input[_builtins.str]]):
+    def service_id(self, value: pulumi.Input[Optional[_builtins.str]]):
         pulumi.set(self, "service_id", value)
 
 
@@ -166,16 +166,19 @@ class ServiceDictionaryItems(pulumi.CustomResource):
     def __init__(__self__,
                  resource_name: str,
                  opts: Optional[pulumi.ResourceOptions] = None,
-                 dictionary_id: Optional[pulumi.Input[_builtins.str]] = None,
-                 items: Optional[pulumi.Input[Mapping[str, pulumi.Input[_builtins.str]]]] = None,
-                 manage_items: Optional[pulumi.Input[_builtins.bool]] = None,
-                 service_id: Optional[pulumi.Input[_builtins.str]] = None,
+                 dictionary_id: pulumi.Input[Optional[_builtins.str]] = None,
+                 items: pulumi.Input[Optional[Mapping[str, pulumi.Input[_builtins.str]]]] = None,
+                 manage_items: pulumi.Input[Optional[_builtins.bool]] = None,
+                 service_id: pulumi.Input[Optional[_builtins.str]] = None,
                  __props__=None):
         """
-        Defines a map of Fastly dictionary items that can be used to populate a service dictionary.  This resource will populate a dictionary with the items and will track their state.
+        Defines a map of Fastly dictionary items that can be used to populate a service dictionary. This resource seeds configured items when it is created.
 
-        > **Note:** By default the Terraform provider allows you to externally manage the items via API or UI.
-        If you wish to apply your changes in the HCL, then you should explicitly set the `manage_items` attribute. An example of this configuration is provided below.
+        > **Note:** By default (`manage_items = false`), the Terraform provider allows you to externally manage dictionary items via API or UI. In this mode, item data is cleared from Terraform state during refresh and remote items are not listed by the provider. Changes to configured `items` after creation are ignored. Set `manage_items = true` if Terraform should track and reconcile the dictionary items.
+
+        > **Note:** Because unmanaged item data is not retained in Terraform state, removing a `ServiceDictionaryItems` resource with `manage_items = false` does not delete the items that it originally seeded. If management is later enabled, Terraform performs one remote reconciliation so existing items can be adopted without blindly recreating them.
+
+        > **Note:** Use `manage_items = true` cautiously. Terraform will overwrite external changes and delete remote items that are not present in the configured `items` map.
 
         ## Limitations
 
@@ -189,6 +192,7 @@ class ServiceDictionaryItems(pulumi.CustomResource):
 
         ```python
         import pulumi
+        from typing import Any
         import pulumi_fastly as fastly
 
         config = pulumi.Config()
@@ -210,24 +214,25 @@ class ServiceDictionaryItems(pulumi.CustomResource):
                 "name": mydict_name,
             }],
             force_destroy=True)
-        items = []
+        items: dict[str, fastly.ServiceDictionaryItems] = {}
         def create_items(range_body):
-            for range in [{"key": k, "value": v} for [k, v] in (range_body).items()]:
-                items.append(fastly.ServiceDictionaryItems(f"items-{range['key']}",
+            for items_range in [{"key": k, "value": v} for [k, v] in sorted((range_body).items())]:
+                items[items_range['key']] = fastly.ServiceDictionaryItems(f"items-{items_range['key']}",
                     service_id=myservice.id,
-                    dictionary_id=range["value"].dictionary_id,
+                    dictionary_id=items_range["value"].dictionary_id,
                     items={
                         "key1": "value1",
                         "key2": "value2",
-                    }))
+                    })
 
-        myservice.dictionaries.apply(lambda resolved_outputs: create_items({d.name: d for d in resolved_outputs['dictionaries'] if d.name == mydict_name}))
+        myservice.dictionaries.apply(lambda resolved_outputs: create_items({d.name: d for d in resolved_outputs if d.name == mydict_name}))
         ```
 
         Complex object usage:
 
         ```python
         import pulumi
+        from typing import Any
         import pulumi_fastly as fastly
 
         config = pulumi.Config()
@@ -255,21 +260,22 @@ class ServiceDictionaryItems(pulumi.CustomResource):
                 "name": mydict["name"],
             }],
             force_destroy=True)
-        items = []
+        items: dict[str, fastly.ServiceDictionaryItems] = {}
         def create_items(range_body):
-            for range in [{"key": k, "value": v} for [k, v] in (range_body).items()]:
-                items.append(fastly.ServiceDictionaryItems(f"items-{range['key']}",
+            for items_range in [{"key": k, "value": v} for [k, v] in sorted((range_body).items())]:
+                items[items_range['key']] = fastly.ServiceDictionaryItems(f"items-{items_range['key']}",
                     service_id=myservice.id,
-                    dictionary_id=range["value"].dictionary_id,
-                    items=mydict["items"]))
+                    dictionary_id=items_range["value"].dictionary_id,
+                    items=mydict["items"])
 
-        myservice.dictionaries.apply(lambda resolved_outputs: create_items({d.name: d for d in resolved_outputs['dictionaries'] if d.name == mydict["name"]}))
+        myservice.dictionaries.apply(lambda resolved_outputs: create_items({d.name: d for d in resolved_outputs if d.name == mydict["name"]}))
         ```
 
         Expression and functions usage:
 
         ```python
         import pulumi
+        from typing import Any
         import pulumi_fastly as fastly
         import pulumi_std as std
 
@@ -298,19 +304,19 @@ class ServiceDictionaryItems(pulumi.CustomResource):
             }],
             force_destroy=True)
         # This resource is dynamically creating the items from the local variables through for expressions and functions.
-        project = []
+        project: dict[str, fastly.ServiceDictionaryItems] = {}
         def create_project(range_body):
-            for range in [{"key": k, "value": v} for [k, v] in (range_body).items()]:
-                project.append(fastly.ServiceDictionaryItems(f"project-{range['key']}",
+            for project_range in [{"key": k, "value": v} for [k, v] in sorted((range_body).items())]:
+                project[project_range['key']] = fastly.ServiceDictionaryItems(f"project-{project_range['key']}",
                     service_id=myservice.id,
-                    dictionary_id=range["value"].dictionary_id,
+                    dictionary_id=project_range["value"].dictionary_id,
                     items={division: std.format(input="%s.%s",
                         args=[
                             division,
                             host_base,
-                        ])["result"] for division in host_divisions}))
+                        ])["result"] for division in host_divisions})
 
-        myservice.dictionaries.apply(lambda resolved_outputs: create_project({d.name: d for d in resolved_outputs['dictionaries'] if d.name == dictionary_name}))
+        myservice.dictionaries.apply(lambda resolved_outputs: create_project({d.name: d for d in resolved_outputs if d.name == dictionary_name}))
         ```
 
         ### Terraform >= 0.12.0 && < 0.12.6)
@@ -369,19 +375,20 @@ class ServiceDictionaryItems(pulumi.CustomResource):
 
         ```python
         import pulumi
+        from typing import Any
         import pulumi_fastly as fastly
 
         #...
-        items = []
-        for range in [{"key": k, "value": v} for [k, v] in ({d.name: d for d in myservice.dictionary if d.name == mydict_name}).items()]:
-            items.append(fastly.ServiceDictionaryItems(f"items-{range['key']}",
+        items: dict[str, fastly.ServiceDictionaryItems] = {}
+        for items_range in [{"key": k, "value": v} for [k, v] in sorted(({d.name: d for d in myservice.dictionary if d.name == mydict_name}).items())]:
+            items[items_range['key']] = fastly.ServiceDictionaryItems(f"items-{items_range['key']}",
                 service_id=myservice["id"],
-                dictionary_id=range["value"]["dictionaryId"],
+                dictionary_id=items_range["value"]["dictionaryId"],
                 manage_items=True,
                 items={
                     "key1": "value1",
                     "key2": "value2",
-                }))
+                })
         ```
 
         ## Import
@@ -417,10 +424,13 @@ class ServiceDictionaryItems(pulumi.CustomResource):
                  args: ServiceDictionaryItemsArgs,
                  opts: Optional[pulumi.ResourceOptions] = None):
         """
-        Defines a map of Fastly dictionary items that can be used to populate a service dictionary.  This resource will populate a dictionary with the items and will track their state.
+        Defines a map of Fastly dictionary items that can be used to populate a service dictionary. This resource seeds configured items when it is created.
 
-        > **Note:** By default the Terraform provider allows you to externally manage the items via API or UI.
-        If you wish to apply your changes in the HCL, then you should explicitly set the `manage_items` attribute. An example of this configuration is provided below.
+        > **Note:** By default (`manage_items = false`), the Terraform provider allows you to externally manage dictionary items via API or UI. In this mode, item data is cleared from Terraform state during refresh and remote items are not listed by the provider. Changes to configured `items` after creation are ignored. Set `manage_items = true` if Terraform should track and reconcile the dictionary items.
+
+        > **Note:** Because unmanaged item data is not retained in Terraform state, removing a `ServiceDictionaryItems` resource with `manage_items = false` does not delete the items that it originally seeded. If management is later enabled, Terraform performs one remote reconciliation so existing items can be adopted without blindly recreating them.
+
+        > **Note:** Use `manage_items = true` cautiously. Terraform will overwrite external changes and delete remote items that are not present in the configured `items` map.
 
         ## Limitations
 
@@ -434,6 +444,7 @@ class ServiceDictionaryItems(pulumi.CustomResource):
 
         ```python
         import pulumi
+        from typing import Any
         import pulumi_fastly as fastly
 
         config = pulumi.Config()
@@ -455,24 +466,25 @@ class ServiceDictionaryItems(pulumi.CustomResource):
                 "name": mydict_name,
             }],
             force_destroy=True)
-        items = []
+        items: dict[str, fastly.ServiceDictionaryItems] = {}
         def create_items(range_body):
-            for range in [{"key": k, "value": v} for [k, v] in (range_body).items()]:
-                items.append(fastly.ServiceDictionaryItems(f"items-{range['key']}",
+            for items_range in [{"key": k, "value": v} for [k, v] in sorted((range_body).items())]:
+                items[items_range['key']] = fastly.ServiceDictionaryItems(f"items-{items_range['key']}",
                     service_id=myservice.id,
-                    dictionary_id=range["value"].dictionary_id,
+                    dictionary_id=items_range["value"].dictionary_id,
                     items={
                         "key1": "value1",
                         "key2": "value2",
-                    }))
+                    })
 
-        myservice.dictionaries.apply(lambda resolved_outputs: create_items({d.name: d for d in resolved_outputs['dictionaries'] if d.name == mydict_name}))
+        myservice.dictionaries.apply(lambda resolved_outputs: create_items({d.name: d for d in resolved_outputs if d.name == mydict_name}))
         ```
 
         Complex object usage:
 
         ```python
         import pulumi
+        from typing import Any
         import pulumi_fastly as fastly
 
         config = pulumi.Config()
@@ -500,21 +512,22 @@ class ServiceDictionaryItems(pulumi.CustomResource):
                 "name": mydict["name"],
             }],
             force_destroy=True)
-        items = []
+        items: dict[str, fastly.ServiceDictionaryItems] = {}
         def create_items(range_body):
-            for range in [{"key": k, "value": v} for [k, v] in (range_body).items()]:
-                items.append(fastly.ServiceDictionaryItems(f"items-{range['key']}",
+            for items_range in [{"key": k, "value": v} for [k, v] in sorted((range_body).items())]:
+                items[items_range['key']] = fastly.ServiceDictionaryItems(f"items-{items_range['key']}",
                     service_id=myservice.id,
-                    dictionary_id=range["value"].dictionary_id,
-                    items=mydict["items"]))
+                    dictionary_id=items_range["value"].dictionary_id,
+                    items=mydict["items"])
 
-        myservice.dictionaries.apply(lambda resolved_outputs: create_items({d.name: d for d in resolved_outputs['dictionaries'] if d.name == mydict["name"]}))
+        myservice.dictionaries.apply(lambda resolved_outputs: create_items({d.name: d for d in resolved_outputs if d.name == mydict["name"]}))
         ```
 
         Expression and functions usage:
 
         ```python
         import pulumi
+        from typing import Any
         import pulumi_fastly as fastly
         import pulumi_std as std
 
@@ -543,19 +556,19 @@ class ServiceDictionaryItems(pulumi.CustomResource):
             }],
             force_destroy=True)
         # This resource is dynamically creating the items from the local variables through for expressions and functions.
-        project = []
+        project: dict[str, fastly.ServiceDictionaryItems] = {}
         def create_project(range_body):
-            for range in [{"key": k, "value": v} for [k, v] in (range_body).items()]:
-                project.append(fastly.ServiceDictionaryItems(f"project-{range['key']}",
+            for project_range in [{"key": k, "value": v} for [k, v] in sorted((range_body).items())]:
+                project[project_range['key']] = fastly.ServiceDictionaryItems(f"project-{project_range['key']}",
                     service_id=myservice.id,
-                    dictionary_id=range["value"].dictionary_id,
+                    dictionary_id=project_range["value"].dictionary_id,
                     items={division: std.format(input="%s.%s",
                         args=[
                             division,
                             host_base,
-                        ])["result"] for division in host_divisions}))
+                        ])["result"] for division in host_divisions})
 
-        myservice.dictionaries.apply(lambda resolved_outputs: create_project({d.name: d for d in resolved_outputs['dictionaries'] if d.name == dictionary_name}))
+        myservice.dictionaries.apply(lambda resolved_outputs: create_project({d.name: d for d in resolved_outputs if d.name == dictionary_name}))
         ```
 
         ### Terraform >= 0.12.0 && < 0.12.6)
@@ -614,19 +627,20 @@ class ServiceDictionaryItems(pulumi.CustomResource):
 
         ```python
         import pulumi
+        from typing import Any
         import pulumi_fastly as fastly
 
         #...
-        items = []
-        for range in [{"key": k, "value": v} for [k, v] in ({d.name: d for d in myservice.dictionary if d.name == mydict_name}).items()]:
-            items.append(fastly.ServiceDictionaryItems(f"items-{range['key']}",
+        items: dict[str, fastly.ServiceDictionaryItems] = {}
+        for items_range in [{"key": k, "value": v} for [k, v] in sorted(({d.name: d for d in myservice.dictionary if d.name == mydict_name}).items())]:
+            items[items_range['key']] = fastly.ServiceDictionaryItems(f"items-{items_range['key']}",
                 service_id=myservice["id"],
-                dictionary_id=range["value"]["dictionaryId"],
+                dictionary_id=items_range["value"]["dictionaryId"],
                 manage_items=True,
                 items={
                     "key1": "value1",
                     "key2": "value2",
-                }))
+                })
         ```
 
         ## Import
@@ -663,10 +677,10 @@ class ServiceDictionaryItems(pulumi.CustomResource):
     def _internal_init(__self__,
                  resource_name: str,
                  opts: Optional[pulumi.ResourceOptions] = None,
-                 dictionary_id: Optional[pulumi.Input[_builtins.str]] = None,
-                 items: Optional[pulumi.Input[Mapping[str, pulumi.Input[_builtins.str]]]] = None,
-                 manage_items: Optional[pulumi.Input[_builtins.bool]] = None,
-                 service_id: Optional[pulumi.Input[_builtins.str]] = None,
+                 dictionary_id: pulumi.Input[Optional[_builtins.str]] = None,
+                 items: pulumi.Input[Optional[Mapping[str, pulumi.Input[_builtins.str]]]] = None,
+                 manage_items: pulumi.Input[Optional[_builtins.bool]] = None,
+                 service_id: pulumi.Input[Optional[_builtins.str]] = None,
                  __props__=None):
         opts = pulumi.ResourceOptions.merge(_utilities.get_resource_opts_defaults(), opts)
         if not isinstance(opts, pulumi.ResourceOptions):
@@ -694,10 +708,10 @@ class ServiceDictionaryItems(pulumi.CustomResource):
     def get(resource_name: str,
             id: pulumi.Input[str],
             opts: Optional[pulumi.ResourceOptions] = None,
-            dictionary_id: Optional[pulumi.Input[_builtins.str]] = None,
-            items: Optional[pulumi.Input[Mapping[str, pulumi.Input[_builtins.str]]]] = None,
-            manage_items: Optional[pulumi.Input[_builtins.bool]] = None,
-            service_id: Optional[pulumi.Input[_builtins.str]] = None) -> 'ServiceDictionaryItems':
+            dictionary_id: pulumi.Input[Optional[_builtins.str]] = None,
+            items: pulumi.Input[Optional[Mapping[str, pulumi.Input[_builtins.str]]]] = None,
+            manage_items: pulumi.Input[Optional[_builtins.bool]] = None,
+            service_id: pulumi.Input[Optional[_builtins.str]] = None) -> 'ServiceDictionaryItems':
         """
         Get an existing ServiceDictionaryItems resource's state with the given name, id, and optional extra
         properties used to qualify the lookup.

@@ -200,12 +200,12 @@ def get_tls_configuration(default: Optional[_builtins.bool] = None,
         tls_protocols=pulumi.get(__ret__, 'tls_protocols'),
         tls_service=pulumi.get(__ret__, 'tls_service'),
         updated_at=pulumi.get(__ret__, 'updated_at'))
-def get_tls_configuration_output(default: Optional[pulumi.Input[Optional[_builtins.bool]]] = None,
-                                 http_protocols: Optional[pulumi.Input[Optional[Sequence[_builtins.str]]]] = None,
-                                 id: Optional[pulumi.Input[Optional[_builtins.str]]] = None,
-                                 name: Optional[pulumi.Input[Optional[_builtins.str]]] = None,
-                                 tls_protocols: Optional[pulumi.Input[Optional[Sequence[_builtins.str]]]] = None,
-                                 tls_service: Optional[pulumi.Input[Optional[_builtins.str]]] = None,
+def get_tls_configuration_output(default: pulumi.Input[Optional[Optional[_builtins.bool]]] = None,
+                                 http_protocols: pulumi.Input[Optional[Optional[Sequence[_builtins.str]]]] = None,
+                                 id: pulumi.Input[Optional[Optional[_builtins.str]]] = None,
+                                 name: pulumi.Input[Optional[Optional[_builtins.str]]] = None,
+                                 tls_protocols: pulumi.Input[Optional[Optional[Sequence[_builtins.str]]]] = None,
+                                 tls_service: pulumi.Input[Optional[Optional[_builtins.str]]] = None,
                                  opts: Optional[Union[pulumi.InvokeOptions, pulumi.InvokeOutputOptions]] = None) -> pulumi.Output[GetTlsConfigurationResult]:
     """
     Use this data source to get the ID of a TLS configuration for use with other resources.

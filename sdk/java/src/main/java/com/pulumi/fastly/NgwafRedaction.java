@@ -29,8 +29,8 @@ import javax.annotation.Nullable;
  * import com.pulumi.core.Output;
  * import com.pulumi.fastly.NgwafRedaction;
  * import com.pulumi.fastly.NgwafRedactionArgs;
- * import java.util.List;
  * import java.util.ArrayList;
+ * import java.util.Arrays;
  * import java.util.Map;
  * import java.io.File;
  * import java.nio.file.Files;
@@ -45,7 +45,7 @@ import javax.annotation.Nullable;
  *         var demoRedaction = new NgwafRedaction("demoRedaction", NgwafRedactionArgs.builder()
  *             .field("some field")
  *             .type("request_header")
- *             .workspaceId(demo.id())
+ *             .workspaceId(demo.get("id"))
  *             .build());
  * 
  *     }

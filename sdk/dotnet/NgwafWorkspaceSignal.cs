@@ -25,7 +25,7 @@ namespace Pulumi.Fastly
     /// 
     /// return await Deployment.RunAsync(() =&gt; 
     /// {
-    ///     var example = new Fastly.Index.NgwafWorkspace("example", new()
+    ///     var example = new Fastly.NgwafWorkspace("example", new()
     ///     {
     ///         Name = "example",
     ///         Description = "Test NGWAF Workspace",
@@ -37,10 +37,10 @@ namespace Pulumi.Fastly
     ///             "X-Real-IP",
     ///         },
     ///         DefaultBlockingResponseCode = 429,
-    ///         AttackSignalThresholds = null,
+    ///         AttackSignalThresholds = new() { },
     ///     });
     /// 
-    ///     var exampleNgwafWorkspaceSignal = new Fastly.Index.NgwafWorkspaceSignal("example", new()
+    ///     var exampleNgwafWorkspaceSignal = new Fastly.NgwafWorkspaceSignal("example", new()
     ///     {
     ///         WorkspaceId = example.Id,
     ///         Description = "example",

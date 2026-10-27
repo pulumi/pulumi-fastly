@@ -127,19 +127,19 @@ export interface NgwafWorkspaceSignalState {
     /**
      * The description of the signal.
      */
-    description?: pulumi.Input<string>;
+    description?: pulumi.Input<string | undefined>;
     /**
      * The name of the signal. Special characters and periods are not accepted.
      */
-    name?: pulumi.Input<string>;
+    name?: pulumi.Input<string | undefined>;
     /**
      * The generated reference ID of the signal.
      */
-    referenceId?: pulumi.Input<string>;
+    referenceId?: pulumi.Input<string | undefined>;
     /**
      * The ID of the workspace.
      */
-    workspaceId?: pulumi.Input<string>;
+    workspaceId?: pulumi.Input<string | undefined>;
 }
 
 /**
@@ -149,11 +149,11 @@ export interface NgwafWorkspaceSignalArgs {
     /**
      * The description of the signal.
      */
-    description?: pulumi.Input<string>;
+    description?: pulumi.Input<string | undefined>;
     /**
      * The name of the signal. Special characters and periods are not accepted.
      */
-    name?: pulumi.Input<string>;
+    name?: pulumi.Input<string | undefined>;
     /**
      * The ID of the workspace.
      */

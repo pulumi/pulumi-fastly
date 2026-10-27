@@ -50,7 +50,7 @@ import (
 //				KeyAlgorithm:  caKey.Algorithm,
 //				PrivateKeyPem: caKey.PrivateKeyPem,
 //				Subject: tls.SelfSignedCertSubjectArgs{
-//					map[string]interface{}{
+//					map[string]string{
 //						"commonName": "Example CA",
 //					},
 //				},
@@ -68,7 +68,7 @@ import (
 //				KeyAlgorithm:  key.Algorithm,
 //				PrivateKeyPem: key.PrivateKeyPem,
 //				Subject: tls.CertRequestSubjectArgs{
-//					map[string]interface{}{
+//					map[string]string{
 //						"commonName": "example.com",
 //					},
 //				},
@@ -110,7 +110,7 @@ import (
 //			_, err = fastly.NewTlsPlatformCertificate(ctx, "cert", &fastly.TlsPlatformCertificateArgs{
 //				CertificateBody:    cert.CertPem,
 //				IntermediatesBlob:  ca.CertPem,
-//				ConfigurationId:    pulumi.String(pulumi.String(config.Id)),
+//				ConfigurationId:    pulumi.String(config.Id),
 //				AllowUntrustedRoot: pulumi.Bool(true),
 //			}, pulumi.DependsOn([]pulumi.Resource{
 //				keyTlsPrivateKey,

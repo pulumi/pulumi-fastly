@@ -154,6 +154,21 @@ public final class ServiceVclBackendArgs extends com.pulumi.resources.ResourceAr
     }
 
     /**
+     * Maximum time from creation (in milliseconds) that a pooled HTTP keepalive connection will be eligible for reuse; 0 is treated as unlimited - which is the default behavior.
+     * 
+     */
+    @Import(name="maxLifetime")
+    private @Nullable Output<Integer> maxLifetime;
+
+    /**
+     * @return Maximum time from creation (in milliseconds) that a pooled HTTP keepalive connection will be eligible for reuse; 0 is treated as unlimited - which is the default behavior.
+     * 
+     */
+    public Optional<Output<Integer>> maxLifetime() {
+        return Optional.ofNullable(this.maxLifetime);
+    }
+
+    /**
      * Maximum allowed TLS version on SSL connections to this backend.
      * 
      */
@@ -166,6 +181,21 @@ public final class ServiceVclBackendArgs extends com.pulumi.resources.ResourceAr
      */
     public Optional<Output<String>> maxTlsVersion() {
         return Optional.ofNullable(this.maxTlsVersion);
+    }
+
+    /**
+     * Maximum number of requests allowed over a single, pooled HTTP keepalive connection to this backend; 0 is treated as unlimited - which is the default behavior.
+     * 
+     */
+    @Import(name="maxUse")
+    private @Nullable Output<Integer> maxUse;
+
+    /**
+     * @return Maximum number of requests allowed over a single, pooled HTTP keepalive connection to this backend; 0 is treated as unlimited - which is the default behavior.
+     * 
+     */
+    public Optional<Output<Integer>> maxUse() {
+        return Optional.ofNullable(this.maxUse);
     }
 
     /**
@@ -435,7 +465,9 @@ public final class ServiceVclBackendArgs extends com.pulumi.resources.ResourceAr
         this.healthcheck = $.healthcheck;
         this.keepaliveTime = $.keepaliveTime;
         this.maxConn = $.maxConn;
+        this.maxLifetime = $.maxLifetime;
         this.maxTlsVersion = $.maxTlsVersion;
+        this.maxUse = $.maxUse;
         this.minTlsVersion = $.minTlsVersion;
         this.name = $.name;
         this.overrideHost = $.overrideHost;
@@ -663,6 +695,27 @@ public final class ServiceVclBackendArgs extends com.pulumi.resources.ResourceAr
         }
 
         /**
+         * @param maxLifetime Maximum time from creation (in milliseconds) that a pooled HTTP keepalive connection will be eligible for reuse; 0 is treated as unlimited - which is the default behavior.
+         * 
+         * @return builder
+         * 
+         */
+        public Builder maxLifetime(@Nullable Output<Integer> maxLifetime) {
+            $.maxLifetime = maxLifetime;
+            return this;
+        }
+
+        /**
+         * @param maxLifetime Maximum time from creation (in milliseconds) that a pooled HTTP keepalive connection will be eligible for reuse; 0 is treated as unlimited - which is the default behavior.
+         * 
+         * @return builder
+         * 
+         */
+        public Builder maxLifetime(Integer maxLifetime) {
+            return maxLifetime(Output.of(maxLifetime));
+        }
+
+        /**
          * @param maxTlsVersion Maximum allowed TLS version on SSL connections to this backend.
          * 
          * @return builder
@@ -681,6 +734,27 @@ public final class ServiceVclBackendArgs extends com.pulumi.resources.ResourceAr
          */
         public Builder maxTlsVersion(String maxTlsVersion) {
             return maxTlsVersion(Output.of(maxTlsVersion));
+        }
+
+        /**
+         * @param maxUse Maximum number of requests allowed over a single, pooled HTTP keepalive connection to this backend; 0 is treated as unlimited - which is the default behavior.
+         * 
+         * @return builder
+         * 
+         */
+        public Builder maxUse(@Nullable Output<Integer> maxUse) {
+            $.maxUse = maxUse;
+            return this;
+        }
+
+        /**
+         * @param maxUse Maximum number of requests allowed over a single, pooled HTTP keepalive connection to this backend; 0 is treated as unlimited - which is the default behavior.
+         * 
+         * @return builder
+         * 
+         */
+        public Builder maxUse(Integer maxUse) {
+            return maxUse(Output.of(maxUse));
         }
 
         /**

@@ -32,8 +32,8 @@ import javax.annotation.Nullable;
  * import com.pulumi.core.Output;
  * import com.pulumi.fastly.NgwafThresholds;
  * import com.pulumi.fastly.NgwafThresholdsArgs;
- * import java.util.List;
  * import java.util.ArrayList;
+ * import java.util.Arrays;
  * import java.util.Map;
  * import java.io.File;
  * import java.nio.file.Files;
@@ -54,7 +54,7 @@ import javax.annotation.Nullable;
  *             .limit(10)
  *             .name("%s")
  *             .signal("SQLI")
- *             .workspaceId(example.id())
+ *             .workspaceId(example.get("id"))
  *             .build());
  * 
  *     }

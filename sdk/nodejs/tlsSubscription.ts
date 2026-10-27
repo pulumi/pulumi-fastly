@@ -27,6 +27,8 @@ import * as utilities from "./utilities";
  *
  * We configure the `fastly.TlsSubscriptionValidation` resource, which blocks other resources until the challenge DNS records have been validated by Fastly.
  *
+ * > **Warning:** Do not create a `fastly.TlsActivation` for this subscription's domains. Fastly activates TLS on them automatically once the certificate is issued (a manual activation fails with `400 domainId has already been taken`, or with an empty-certificate 400 if created in the same apply). Set `configurationId` on this resource to control the TLS configuration, and reference `fastly_tls_subscription_validation.<name>.certificate_id` when another resource needs the issued certificate — see the `fastly.TlsSubscriptionValidation` documentation for a complete example.
+ *
  * Once the validation has been successful, the configured `fastly.getTlsConfiguration` data source will filter the available results looking for an appropriate TLS configuration object. If that filtering process is successful, then the subsequent `awsRoute53Record` resources (for configuring the subdomains) will be executed using the returned TLS configuration data.
  *
  * ```typescript
@@ -38,8 +40,8 @@ import * as utilities from "./utilities";
  * // NOTE: Creating a hosted zone will automatically create SOA/NS records.
  * const production = new aws.index.Route53Zone("production", {name: "example.com"});
  * const example = new aws.index.Route53domainsRegisteredDomain("example", {
- *     nameServer: Object.entries(production.nameServers).map(([k, v]) => ({key: k, value: v})).map(entry => ({
- *         name: entry.value,
+ *     nameServer: .map(entry => ({
+ *         name: entry,
  *     })),
  *     domainName: "example.com",
  * });
@@ -48,8 +50,8 @@ import * as utilities from "./utilities";
  *     "b.example.com",
  * ];
  * const exampleServiceVcl = new fastly.ServiceVcl("example", {
- *     domains: subdomains.map((v, k) => ({key: k, value: v})).map(entry => ({
- *         name: entry.value,
+ *     domains: subdomains.map(entry => ({
+ *         name: entry,
  *     })),
  *     name: "example-service",
  *     backends: [{
@@ -62,10 +64,10 @@ import * as utilities from "./utilities";
  *     domains: exampleServiceVcl.domains.apply(domains => .map(domain => (domain.name))),
  *     certificateAuthority: "lets-encrypt",
  * });
- * const domainValidation: aws.index.Route53Record[] = [];
+ * const domainValidation: {[key: string]: aws.index.Route53Record} = {};
  * exampleTlsSubscription.domains.apply(domains => {
- *     for (const range of Object.entries(domains.reduce((__obj, domain) => ({ ...__obj, [domain]: exampleTlsSubscription.managedDnsChallenges.apply(managedDnsChallenges => managedDnsChallenges.filter(obj => obj.recordName == `_acme-challenge.${domain}`).map(obj => (obj)))[0] }), {})).map(([k, v]) => ({key: k, value: v}))) {
- *         domainValidation.push(new aws.index.Route53Record(`domain_validation-${range.key}`, {
+ *     for (const range of Object.entries(domains.reduce((__obj, domain) => ({ ...__obj, [domain]: exampleTlsSubscription.managedDnsChallenges.apply(managedDnsChallenges => managedDnsChallenges.filter(obj => obj.recordName == `_acme-challenge.${domain}`).map(obj => (obj)))[0] }), {})).sort().map(([k, v]) => ({key: k, value: v}))) {
+ *         domainValidation[range.key] = new aws.index.Route53Record(`domain_validation-${range.key}`, {
  *             name: range.value.recordName,
  *             type: range.value.recordType,
  *             zoneId: production.zoneId,
@@ -74,7 +76,7 @@ import * as utilities from "./utilities";
  *             ttl: 60,
  *         }, {
  *         dependsOn: [exampleTlsSubscription],
- *     }));
+ *     });
  *     }
  * });
  * // This is a resource that other resources can depend on if they require the certificate to be issued.
@@ -82,7 +84,7 @@ import * as utilities from "./utilities";
  * const exampleTlsSubscriptionValidation = new fastly.TlsSubscriptionValidation("example", {subscriptionId: exampleTlsSubscription.id}, {
  *     dependsOn: [domainValidation],
  * });
- * // This data source lists all available configuration objects.
+ * // This function lists all available configuration objects.
  * // It uses a `default` attribute to narrow down the list to just one configuration object.
  * // If the filtered list has a length that is not exactly one element, you'll see an error returned.
  * // The single TLS configuration is then returned and can be referenced by other resources (see aws_route53_record below).
@@ -90,17 +92,17 @@ import * as utilities from "./utilities";
  * // IMPORTANT: Not all customers will have a 'default' configuration.
  * // If you have issues filtering with `default = true`, then you may need another attribute.
  * // Refer to the fastly_tls_configuration documentation for available attributes:
- * // https://registry.terraform.io/providers/fastly/fastly/latest/docs/data-sources/tls_configuration#optional
+ * // https://registry.pulumi.io/providers/fastly/fastly/latest/docs/data-sources/tls_configuration#optional
  * const defaultTls = fastly.getTlsConfiguration({
  *     "default": true,
  * });
  * // Once validation is complete and we've retrieved the TLS configuration data, we can create multiple subdomain records.
  * const subdomain: aws.index.Route53Record[] = [];
- * for (const range = {value: 0}; range.value < std.toset({
+ * for (let range = 0; range < std.toset({
  *     input: subdomains,
- * }).result; range.value++) {
- *     subdomain.push(new aws.index.Route53Record(`subdomain-${range.value}`, {
- *         name: range.value,
+ * }).result; range++) {
+ *     subdomain.push(new aws.index.Route53Record(`subdomain-${range}`, {
+ *         name: range,
  *         records: .filter(record => record.recordType == "CNAME").map(record => (record.recordValue)),
  *         ttl: 300,
  *         type: "CNAME",
@@ -124,8 +126,8 @@ import * as utilities from "./utilities";
  * // NOTE: Creating a hosted zone will automatically create SOA/NS records.
  * const production = new aws.index.Route53Zone("production", {name: "example.com"});
  * const example = new aws.index.Route53domainsRegisteredDomain("example", {
- *     nameServer: Object.entries(production.nameServers).map(([k, v]) => ({key: k, value: v})).map(entry => ({
- *         name: entry.value,
+ *     nameServer: .map(entry => ({
+ *         name: entry,
  *     })),
  *     domainName: "example.com",
  * });
@@ -134,8 +136,8 @@ import * as utilities from "./utilities";
  *     "*.example.com",
  * ];
  * const exampleServiceVcl = new fastly.ServiceVcl("example", {
- *     domains: domains.map((v, k) => ({key: k, value: v})).map(entry => ({
- *         name: entry.value,
+ *     domains: domains.map(entry => ({
+ *         name: entry,
  *     })),
  *     name: "example-service",
  *     backends: [{
@@ -148,20 +150,20 @@ import * as utilities from "./utilities";
  *     domains: exampleServiceVcl.domains.apply(domains => .map(domain => (domain.name))),
  *     certificateAuthority: "lets-encrypt",
  * });
- * const domainValidation: aws.index.Route53Record[] = [];
+ * const domainValidation: {[key: string]: aws.index.Route53Record} = {};
  * exampleTlsSubscription.domains.apply(domains => {
- *     const domainValidation: aws.index.Route53Record[] = [];
- * pulumi.all(domains.reduce((__obj, domain) => ({ ...__obj, [std.replace({
+ *     const domainValidation: {[key: string]: aws.index.Route53Record} = {};
+ * pulumi.all(domains.reduce((__obj, domain) => ({ ...__obj, [String(std.replace({
  *         text: domain,
  *         search: "*.",
  *         replace: "",
- *     }).result]: exampleTlsSubscription.managedDnsChallenges.apply(managedDnsChallenges => managedDnsChallenges.filter(obj => obj.recordName == `_acme-challenge.${std.replace({
+ *     }).result)]: exampleTlsSubscription.managedDnsChallenges.apply(managedDnsChallenges => managedDnsChallenges.filter(obj => obj.recordName == `_acme-challenge.${std.replace({
  *         text: domain,
  *         search: "*.",
  *         replace: "",
  *     }).result}`).map(obj => (obj)))[0] }), {})).apply(rangeBody => {
- *         for (const range of Object.entries(rangeBody).map(([k, v]) => ({key: k, value: v}))) {
- *             domainValidation.push(new aws.index.Route53Record(`domain_validation-${range.key}`, {
+ *         for (const range of Object.entries(rangeBody).sort().map(([k, v]) => ({key: k, value: v}))) {
+ *             domainValidation[range.key] = new aws.index.Route53Record(`domain_validation-${range.key}`, {
  *                 name: range.value[0].recordName,
  *                 type: range.value[0].recordType,
  *                 zoneId: production.zoneId,
@@ -170,7 +172,7 @@ import * as utilities from "./utilities";
  *                 ttl: 60,
  *             }, {
  *             dependsOn: [exampleTlsSubscription],
- *         }));
+ *         });
  *         }
  *     });
  * });
@@ -179,7 +181,7 @@ import * as utilities from "./utilities";
  * const exampleTlsSubscriptionValidation = new fastly.TlsSubscriptionValidation("example", {subscriptionId: exampleTlsSubscription.id}, {
  *     dependsOn: [domainValidation],
  * });
- * // This data source lists all available configuration objects.
+ * // This function lists all available configuration objects.
  * // It uses a `default` attribute to narrow down the list to just one configuration object.
  * // If the filtered list has a length that is not exactly one element, you'll see an error returned.
  * // The single TLS configuration is then returned and can be referenced by other resources (see aws_route53_record below).
@@ -187,7 +189,7 @@ import * as utilities from "./utilities";
  * // IMPORTANT: Not all customers will have a 'default' configuration.
  * // If you have issues filtering with `default = true`, then you may need another attribute.
  * // Refer to the fastly_tls_configuration documentation for available attributes:
- * // https://registry.terraform.io/providers/fastly/fastly/latest/docs/data-sources/tls_configuration#optional
+ * // https://registry.pulumi.io/providers/fastly/fastly/latest/docs/data-sources/tls_configuration#optional
  * const defaultTls = fastly.getTlsConfiguration({
  *     "default": true,
  * });
@@ -360,57 +362,57 @@ export interface TlsSubscriptionState {
     /**
      * The entity that issues and certifies the TLS certificates for your subscription. Valid values are `lets-encrypt`, `globalsign` or `certainly`.
      */
-    certificateAuthority?: pulumi.Input<string>;
+    certificateAuthority?: pulumi.Input<string | undefined>;
     /**
      * The certificate ID associated with the subscription.
      */
-    certificateId?: pulumi.Input<string>;
+    certificateId?: pulumi.Input<string | undefined>;
     /**
      * The common name associated with the subscription generated by Fastly TLS. If you do not pass a common name on create, we will default to the first TLS domain included. If provided, the domain chosen as the common name must be included in TLS domains.
      */
-    commonName?: pulumi.Input<string>;
+    commonName?: pulumi.Input<string | undefined>;
     /**
      * The ID of the set of TLS configuration options that apply to the enabled domains on this subscription.
      */
-    configurationId?: pulumi.Input<string>;
+    configurationId?: pulumi.Input<string | undefined>;
     /**
      * Timestamp (GMT) when the subscription was created.
      */
-    createdAt?: pulumi.Input<string>;
+    createdAt?: pulumi.Input<string | undefined>;
     /**
      * List of domains on which to enable TLS.
      */
-    domains?: pulumi.Input<pulumi.Input<string>[]>;
+    domains?: pulumi.Input<pulumi.Input<string>[] | undefined>;
     /**
      * Force delete the subscription even if it has active domains. Warning: this can disable production traffic if used incorrectly. Defaults to false.
      */
-    forceDestroy?: pulumi.Input<boolean>;
+    forceDestroy?: pulumi.Input<boolean | undefined>;
     /**
      * Force update the subscription even if it has active domains. Warning: this can disable production traffic if used incorrectly.
      */
-    forceUpdate?: pulumi.Input<boolean>;
+    forceUpdate?: pulumi.Input<boolean | undefined>;
     /**
      * The details required to configure DNS to respond to ACME DNS challenge in order to verify domain ownership.
      *
      * @deprecated Use 'managed_dns_challenges' attribute instead
      */
-    managedDnsChallenge?: pulumi.Input<{[key: string]: pulumi.Input<string>}>;
+    managedDnsChallenge?: pulumi.Input<{[key: string]: pulumi.Input<string>} | undefined>;
     /**
      * A list of options for configuring DNS to respond to ACME DNS challenge in order to verify domain ownership.
      */
-    managedDnsChallenges?: pulumi.Input<pulumi.Input<inputs.TlsSubscriptionManagedDnsChallenge>[]>;
+    managedDnsChallenges?: pulumi.Input<pulumi.Input<inputs.TlsSubscriptionManagedDnsChallenge>[] | undefined>;
     /**
      * A list of options for configuring DNS to respond to ACME HTTP challenge in order to verify domain ownership. Best accessed through a `for` expression to filter the relevant record.
      */
-    managedHttpChallenges?: pulumi.Input<pulumi.Input<inputs.TlsSubscriptionManagedHttpChallenge>[]>;
+    managedHttpChallenges?: pulumi.Input<pulumi.Input<inputs.TlsSubscriptionManagedHttpChallenge>[] | undefined>;
     /**
      * The current state of the subscription. The list of possible states are: `pending`, `processing`, `issued`, and `renewing`.
      */
-    state?: pulumi.Input<string>;
+    state?: pulumi.Input<string | undefined>;
     /**
      * Timestamp (GMT) when the subscription was updated.
      */
-    updatedAt?: pulumi.Input<string>;
+    updatedAt?: pulumi.Input<string | undefined>;
 }
 
 /**
@@ -424,11 +426,11 @@ export interface TlsSubscriptionArgs {
     /**
      * The common name associated with the subscription generated by Fastly TLS. If you do not pass a common name on create, we will default to the first TLS domain included. If provided, the domain chosen as the common name must be included in TLS domains.
      */
-    commonName?: pulumi.Input<string>;
+    commonName?: pulumi.Input<string | undefined>;
     /**
      * The ID of the set of TLS configuration options that apply to the enabled domains on this subscription.
      */
-    configurationId?: pulumi.Input<string>;
+    configurationId?: pulumi.Input<string | undefined>;
     /**
      * List of domains on which to enable TLS.
      */
@@ -436,9 +438,9 @@ export interface TlsSubscriptionArgs {
     /**
      * Force delete the subscription even if it has active domains. Warning: this can disable production traffic if used incorrectly. Defaults to false.
      */
-    forceDestroy?: pulumi.Input<boolean>;
+    forceDestroy?: pulumi.Input<boolean | undefined>;
     /**
      * Force update the subscription even if it has active domains. Warning: this can disable production traffic if used incorrectly.
      */
-    forceUpdate?: pulumi.Input<boolean>;
+    forceUpdate?: pulumi.Input<boolean | undefined>;
 }

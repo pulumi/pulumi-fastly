@@ -20,7 +20,7 @@ __all__ = ['TlsPrivateKeyArgs', 'TlsPrivateKey']
 class TlsPrivateKeyArgs:
     def __init__(__self__, *,
                  key_pem: pulumi.Input[_builtins.str],
-                 name: Optional[pulumi.Input[_builtins.str]] = None):
+                 name: pulumi.Input[Optional[_builtins.str]] = None):
         """
         The set of arguments for constructing a TlsPrivateKey resource.
 
@@ -45,27 +45,27 @@ class TlsPrivateKeyArgs:
 
     @_builtins.property
     @pulumi.getter
-    def name(self) -> Optional[pulumi.Input[_builtins.str]]:
+    def name(self) -> pulumi.Input[Optional[_builtins.str]]:
         """
         Customisable name of the private key.
         """
         return pulumi.get(self, "name")
 
     @name.setter
-    def name(self, value: Optional[pulumi.Input[_builtins.str]]):
+    def name(self, value: pulumi.Input[Optional[_builtins.str]]):
         pulumi.set(self, "name", value)
 
 
 @pulumi.input_type
 class _TlsPrivateKeyState:
     def __init__(__self__, *,
-                 created_at: Optional[pulumi.Input[_builtins.str]] = None,
-                 key_length: Optional[pulumi.Input[_builtins.int]] = None,
-                 key_pem: Optional[pulumi.Input[_builtins.str]] = None,
-                 key_type: Optional[pulumi.Input[_builtins.str]] = None,
-                 name: Optional[pulumi.Input[_builtins.str]] = None,
-                 public_key_sha1: Optional[pulumi.Input[_builtins.str]] = None,
-                 replace: Optional[pulumi.Input[_builtins.bool]] = None):
+                 created_at: pulumi.Input[Optional[_builtins.str]] = None,
+                 key_length: pulumi.Input[Optional[_builtins.int]] = None,
+                 key_pem: pulumi.Input[Optional[_builtins.str]] = None,
+                 key_type: pulumi.Input[Optional[_builtins.str]] = None,
+                 name: pulumi.Input[Optional[_builtins.str]] = None,
+                 public_key_sha1: pulumi.Input[Optional[_builtins.str]] = None,
+                 replace: pulumi.Input[Optional[_builtins.bool]] = None):
         """
         Input properties used for looking up and filtering TlsPrivateKey resources.
 
@@ -94,86 +94,86 @@ class _TlsPrivateKeyState:
 
     @_builtins.property
     @pulumi.getter(name="createdAt")
-    def created_at(self) -> Optional[pulumi.Input[_builtins.str]]:
+    def created_at(self) -> pulumi.Input[Optional[_builtins.str]]:
         """
         Time-stamp (GMT) when the private key was created.
         """
         return pulumi.get(self, "created_at")
 
     @created_at.setter
-    def created_at(self, value: Optional[pulumi.Input[_builtins.str]]):
+    def created_at(self, value: pulumi.Input[Optional[_builtins.str]]):
         pulumi.set(self, "created_at", value)
 
     @_builtins.property
     @pulumi.getter(name="keyLength")
-    def key_length(self) -> Optional[pulumi.Input[_builtins.int]]:
+    def key_length(self) -> pulumi.Input[Optional[_builtins.int]]:
         """
         The key length used to generate the private key.
         """
         return pulumi.get(self, "key_length")
 
     @key_length.setter
-    def key_length(self, value: Optional[pulumi.Input[_builtins.int]]):
+    def key_length(self, value: pulumi.Input[Optional[_builtins.int]]):
         pulumi.set(self, "key_length", value)
 
     @_builtins.property
     @pulumi.getter(name="keyPem")
-    def key_pem(self) -> Optional[pulumi.Input[_builtins.str]]:
+    def key_pem(self) -> pulumi.Input[Optional[_builtins.str]]:
         """
         Private key in PEM format.
         """
         return pulumi.get(self, "key_pem")
 
     @key_pem.setter
-    def key_pem(self, value: Optional[pulumi.Input[_builtins.str]]):
+    def key_pem(self, value: pulumi.Input[Optional[_builtins.str]]):
         pulumi.set(self, "key_pem", value)
 
     @_builtins.property
     @pulumi.getter(name="keyType")
-    def key_type(self) -> Optional[pulumi.Input[_builtins.str]]:
+    def key_type(self) -> pulumi.Input[Optional[_builtins.str]]:
         """
         The algorithm used to generate the private key. Must be RSA.
         """
         return pulumi.get(self, "key_type")
 
     @key_type.setter
-    def key_type(self, value: Optional[pulumi.Input[_builtins.str]]):
+    def key_type(self, value: pulumi.Input[Optional[_builtins.str]]):
         pulumi.set(self, "key_type", value)
 
     @_builtins.property
     @pulumi.getter
-    def name(self) -> Optional[pulumi.Input[_builtins.str]]:
+    def name(self) -> pulumi.Input[Optional[_builtins.str]]:
         """
         Customisable name of the private key.
         """
         return pulumi.get(self, "name")
 
     @name.setter
-    def name(self, value: Optional[pulumi.Input[_builtins.str]]):
+    def name(self, value: pulumi.Input[Optional[_builtins.str]]):
         pulumi.set(self, "name", value)
 
     @_builtins.property
     @pulumi.getter(name="publicKeySha1")
-    def public_key_sha1(self) -> Optional[pulumi.Input[_builtins.str]]:
+    def public_key_sha1(self) -> pulumi.Input[Optional[_builtins.str]]:
         """
         Useful for safely identifying the key.
         """
         return pulumi.get(self, "public_key_sha1")
 
     @public_key_sha1.setter
-    def public_key_sha1(self, value: Optional[pulumi.Input[_builtins.str]]):
+    def public_key_sha1(self, value: pulumi.Input[Optional[_builtins.str]]):
         pulumi.set(self, "public_key_sha1", value)
 
     @_builtins.property
     @pulumi.getter
-    def replace(self) -> Optional[pulumi.Input[_builtins.bool]]:
+    def replace(self) -> pulumi.Input[Optional[_builtins.bool]]:
         """
         Whether Fastly recommends replacing this private key.
         """
         return pulumi.get(self, "replace")
 
     @replace.setter
-    def replace(self, value: Optional[pulumi.Input[_builtins.bool]]):
+    def replace(self, value: pulumi.Input[Optional[_builtins.bool]]):
         pulumi.set(self, "replace", value)
 
 
@@ -183,8 +183,8 @@ class TlsPrivateKey(pulumi.CustomResource):
     def __init__(__self__,
                  resource_name: str,
                  opts: Optional[pulumi.ResourceOptions] = None,
-                 key_pem: Optional[pulumi.Input[_builtins.str]] = None,
-                 name: Optional[pulumi.Input[_builtins.str]] = None,
+                 key_pem: pulumi.Input[Optional[_builtins.str]] = None,
+                 name: pulumi.Input[Optional[_builtins.str]] = None,
                  __props__=None):
         """
         Uploads a Custom TLS Private Key to Fastly. This can be combined with a `TlsCertificate` resource to provide a TLS Certificate able to be applied to a Fastly Service.
@@ -270,8 +270,8 @@ class TlsPrivateKey(pulumi.CustomResource):
     def _internal_init(__self__,
                  resource_name: str,
                  opts: Optional[pulumi.ResourceOptions] = None,
-                 key_pem: Optional[pulumi.Input[_builtins.str]] = None,
-                 name: Optional[pulumi.Input[_builtins.str]] = None,
+                 key_pem: pulumi.Input[Optional[_builtins.str]] = None,
+                 name: pulumi.Input[Optional[_builtins.str]] = None,
                  __props__=None):
         opts = pulumi.ResourceOptions.merge(_utilities.get_resource_opts_defaults(), opts)
         if not isinstance(opts, pulumi.ResourceOptions):
@@ -302,13 +302,13 @@ class TlsPrivateKey(pulumi.CustomResource):
     def get(resource_name: str,
             id: pulumi.Input[str],
             opts: Optional[pulumi.ResourceOptions] = None,
-            created_at: Optional[pulumi.Input[_builtins.str]] = None,
-            key_length: Optional[pulumi.Input[_builtins.int]] = None,
-            key_pem: Optional[pulumi.Input[_builtins.str]] = None,
-            key_type: Optional[pulumi.Input[_builtins.str]] = None,
-            name: Optional[pulumi.Input[_builtins.str]] = None,
-            public_key_sha1: Optional[pulumi.Input[_builtins.str]] = None,
-            replace: Optional[pulumi.Input[_builtins.bool]] = None) -> 'TlsPrivateKey':
+            created_at: pulumi.Input[Optional[_builtins.str]] = None,
+            key_length: pulumi.Input[Optional[_builtins.int]] = None,
+            key_pem: pulumi.Input[Optional[_builtins.str]] = None,
+            key_type: pulumi.Input[Optional[_builtins.str]] = None,
+            name: pulumi.Input[Optional[_builtins.str]] = None,
+            public_key_sha1: pulumi.Input[Optional[_builtins.str]] = None,
+            replace: pulumi.Input[Optional[_builtins.bool]] = None) -> 'TlsPrivateKey':
         """
         Get an existing TlsPrivateKey resource's state with the given name, id, and optional extra
         properties used to qualify the lookup.

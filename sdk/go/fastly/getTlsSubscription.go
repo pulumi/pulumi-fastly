@@ -85,12 +85,8 @@ type LookupTlsSubscriptionResult struct {
 }
 
 func LookupTlsSubscriptionOutput(ctx *pulumi.Context, args LookupTlsSubscriptionOutputArgs, opts ...pulumi.InvokeOption) LookupTlsSubscriptionResultOutput {
-	return pulumi.ToOutputWithContext(ctx.Context(), args).
-		ApplyT(func(v interface{}) (LookupTlsSubscriptionResultOutput, error) {
-			args := v.(LookupTlsSubscriptionArgs)
-			options := pulumi.InvokeOutputOptions{InvokeOptions: internal.PkgInvokeDefaultOpts(opts)}
-			return ctx.InvokeOutput("fastly:index/getTlsSubscription:getTlsSubscription", args, LookupTlsSubscriptionResultOutput{}, options).(LookupTlsSubscriptionResultOutput), nil
-		}).(LookupTlsSubscriptionResultOutput)
+	options := pulumi.InvokeOutputOptions{InvokeOptions: internal.PkgInvokeDefaultOpts(opts)}
+	return ctx.InvokeOutput("fastly:index/getTlsSubscription:getTlsSubscription", args, LookupTlsSubscriptionResultOutput{}, options).(LookupTlsSubscriptionResultOutput)
 }
 
 // A collection of arguments for invoking getTlsSubscription.

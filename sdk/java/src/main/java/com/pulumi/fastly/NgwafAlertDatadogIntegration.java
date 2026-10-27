@@ -31,8 +31,8 @@ import javax.annotation.Nullable;
  * import com.pulumi.core.Output;
  * import com.pulumi.fastly.NgwafAlertDatadogIntegration;
  * import com.pulumi.fastly.NgwafAlertDatadogIntegrationArgs;
- * import java.util.List;
  * import java.util.ArrayList;
+ * import java.util.Arrays;
  * import java.util.Map;
  * import java.io.File;
  * import java.nio.file.Files;
@@ -48,7 +48,7 @@ import javax.annotation.Nullable;
  *             .description("Some Description")
  *             .key("123456789")
  *             .site("us1")
- *             .workspaceId(demo.id())
+ *             .workspaceId(demo.get("id"))
  *             .build());
  * 
  *     }

@@ -125,7 +125,7 @@ def get_tls_domain(domain: Optional[_builtins.str] = None,
         tls_activation_ids=pulumi.get(__ret__, 'tls_activation_ids'),
         tls_certificate_ids=pulumi.get(__ret__, 'tls_certificate_ids'),
         tls_subscription_ids=pulumi.get(__ret__, 'tls_subscription_ids'))
-def get_tls_domain_output(domain: Optional[pulumi.Input[_builtins.str]] = None,
+def get_tls_domain_output(domain: pulumi.Input[Optional[_builtins.str]] = None,
                           opts: Optional[Union[pulumi.InvokeOptions, pulumi.InvokeOutputOptions]] = None) -> pulumi.Output[GetTlsDomainResult]:
     """
     Use this data source to get the IDs of activations, certificates and subscriptions associated with a domain.

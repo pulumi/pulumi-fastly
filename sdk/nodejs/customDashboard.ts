@@ -330,15 +330,15 @@ export interface CustomDashboardState {
     /**
      * A list of dashboard items.
      */
-    dashboardItems?: pulumi.Input<pulumi.Input<inputs.CustomDashboardDashboardItem>[]>;
+    dashboardItems?: pulumi.Input<pulumi.Input<inputs.CustomDashboardDashboardItem>[] | undefined>;
     /**
      * A short description of the dashboard.
      */
-    description?: pulumi.Input<string>;
+    description?: pulumi.Input<string | undefined>;
     /**
      * A human-readable name.
      */
-    name?: pulumi.Input<string>;
+    name?: pulumi.Input<string | undefined>;
 }
 
 /**
@@ -348,13 +348,13 @@ export interface CustomDashboardArgs {
     /**
      * A list of dashboard items.
      */
-    dashboardItems?: pulumi.Input<pulumi.Input<inputs.CustomDashboardDashboardItem>[]>;
+    dashboardItems?: pulumi.Input<pulumi.Input<inputs.CustomDashboardDashboardItem>[] | undefined>;
     /**
      * A short description of the dashboard.
      */
-    description?: pulumi.Input<string>;
+    description?: pulumi.Input<string | undefined>;
     /**
      * A human-readable name.
      */
-    name?: pulumi.Input<string>;
+    name?: pulumi.Input<string | undefined>;
 }

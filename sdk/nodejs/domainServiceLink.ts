@@ -107,11 +107,11 @@ export interface DomainServiceLinkState {
     /**
      * The Domain Identifier of the versionless domain being linked (UUID).
      */
-    domainId?: pulumi.Input<string>;
+    domainId?: pulumi.Input<string | undefined>;
     /**
      * The serviceId associated with your domain
      */
-    serviceId?: pulumi.Input<string>;
+    serviceId?: pulumi.Input<string | undefined>;
 }
 
 /**

@@ -208,11 +208,11 @@ def get_tls_certificate(domains: Optional[Sequence[_builtins.str]] = None,
         serial_number=pulumi.get(__ret__, 'serial_number'),
         signature_algorithm=pulumi.get(__ret__, 'signature_algorithm'),
         updated_at=pulumi.get(__ret__, 'updated_at'))
-def get_tls_certificate_output(domains: Optional[pulumi.Input[Optional[Sequence[_builtins.str]]]] = None,
-                               id: Optional[pulumi.Input[Optional[_builtins.str]]] = None,
-                               issued_to: Optional[pulumi.Input[Optional[_builtins.str]]] = None,
-                               issuer: Optional[pulumi.Input[Optional[_builtins.str]]] = None,
-                               name: Optional[pulumi.Input[Optional[_builtins.str]]] = None,
+def get_tls_certificate_output(domains: pulumi.Input[Optional[Optional[Sequence[_builtins.str]]]] = None,
+                               id: pulumi.Input[Optional[Optional[_builtins.str]]] = None,
+                               issued_to: pulumi.Input[Optional[Optional[_builtins.str]]] = None,
+                               issuer: pulumi.Input[Optional[Optional[_builtins.str]]] = None,
+                               name: pulumi.Input[Optional[Optional[_builtins.str]]] = None,
                                opts: Optional[Union[pulumi.InvokeOptions, pulumi.InvokeOutputOptions]] = None) -> pulumi.Output[GetTlsCertificateResult]:
     """
     Use this data source to get information of a TLS certificate for use with other resources.

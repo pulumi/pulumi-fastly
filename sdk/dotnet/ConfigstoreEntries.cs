@@ -12,9 +12,13 @@ namespace Pulumi.Fastly
     /// <summary>
     /// The Config Store (`fastly.Configstore`) can be seeded with initial key-value pairs using the `fastly.ConfigstoreEntries` resource.
     /// 
-    /// After the first `pulumi up` the default behaviour is to ignore any further configuration changes to those key-value pairs. Terraform will expect modifications to happen outside of Terraform (e.g. new key-value pairs to be managed using the [Fastly API](https://developer.fastly.com/reference/api/) or [Fastly CLI](https://developer.fastly.com/learning/tools/cli/)).
+    /// By default (`ManageEntries = false`), Terraform seeds the configured key-value pairs when the resource is created and then allows the entries to be managed externally using the [Fastly API](https://developer.fastly.com/reference/api/) or [Fastly CLI](https://developer.fastly.com/learning/tools/cli/). In this mode, entry data is cleared from Terraform state during refresh and remote entries are not listed by the provider. Changes to configured `Entries` after creation are ignored.
     /// 
-    /// To change the default behaviour (so Terraform continues to manage the key-value pairs within the configuration) set `ManageEntries = true`.
+    /// Set `ManageEntries = true` if Terraform should continue to track and reconcile the Config Store entries. If management is enabled after being disabled, Terraform performs one remote reconciliation so existing entries can be adopted without blindly recreating them.
+    /// 
+    /// &gt; **Note:** Because unmanaged entry data is not retained in Terraform state, removing a `fastly.ConfigstoreEntries` resource with `ManageEntries = false` does not delete the entries that it originally seeded.
+    /// 
+    /// &gt; **Note:** Use `ManageEntries = true` cautiously. Terraform will overwrite external changes and delete remote entries that are not present in the configured `Entries` map.
     /// 
     /// &gt; **Note:** Terraform should not be used to store large amounts of data, so it's recommended you leave the default behaviour in place and only seed the store with a small amount of key-value pairs. For more information see "Configuration not data".
     /// 
@@ -33,12 +37,12 @@ namespace Pulumi.Fastly
     ///     // IMPORTANT: Deleting a Config Store requires first deleting its resource_link.
     ///     // This requires a two-step `pulumi up` as we can't guarantee deletion order.
     ///     // e.g. resource_link deletion within fastly_service_compute might not finish first.
-    ///     var exampleConfigstore = new Fastly.Index.Configstore("example", new()
+    ///     var exampleConfigstore = new Fastly.Configstore("example", new()
     ///     {
     ///         Name = "%s",
     ///     });
     /// 
-    ///     var exampleConfigstoreEntries = new Fastly.Index.ConfigstoreEntries("example", new()
+    ///     var exampleConfigstoreEntries = new Fastly.ConfigstoreEntries("example", new()
     ///     {
     ///         StoreId = exampleConfigstore.Id,
     ///         Entries = 
@@ -48,12 +52,12 @@ namespace Pulumi.Fastly
     ///         },
     ///     });
     /// 
-    ///     var example = Fastly.Index.GetPackageHash.Invoke(new()
+    ///     var example = Fastly.GetPackageHash.Invoke(new()
     ///     {
     ///         Filename = "package.tar.gz",
     ///     });
     /// 
-    ///     var exampleServiceCompute = new Fastly.Index.ServiceCompute("example", new()
+    ///     var exampleServiceCompute = new Fastly.ServiceCompute("example", new()
     ///     {
     ///         Name = "my_compute_service",
     ///         Domains = new[]
@@ -95,12 +99,12 @@ namespace Pulumi.Fastly
     ///     // IMPORTANT: Deleting a Config Store requires first deleting its resource_link.
     ///     // This requires a two-step `pulumi up` as we can't guarantee deletion order.
     ///     // e.g. resource_link deletion within fastly_service_compute might not finish first.
-    ///     var exampleConfigstore = new Fastly.Index.Configstore("example", new()
+    ///     var exampleConfigstore = new Fastly.Configstore("example", new()
     ///     {
     ///         Name = "%s",
     ///     });
     /// 
-    ///     var exampleConfigstoreEntries = new Fastly.Index.ConfigstoreEntries("example", new()
+    ///     var exampleConfigstoreEntries = new Fastly.ConfigstoreEntries("example", new()
     ///     {
     ///         StoreId = exampleConfigstore.Id,
     ///         Entries = 
@@ -111,12 +115,12 @@ namespace Pulumi.Fastly
     ///         ManageEntries = true,
     ///     });
     /// 
-    ///     var example = Fastly.Index.GetPackageHash.Invoke(new()
+    ///     var example = Fastly.GetPackageHash.Invoke(new()
     ///     {
     ///         Filename = "package.tar.gz",
     ///     });
     /// 
-    ///     var exampleServiceCompute = new Fastly.Index.ServiceCompute("example", new()
+    ///     var exampleServiceCompute = new Fastly.ServiceCompute("example", new()
     ///     {
     ///         Name = "my_compute_service",
     ///         Domains = new[]

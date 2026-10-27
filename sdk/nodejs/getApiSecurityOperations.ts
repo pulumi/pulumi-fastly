@@ -23,7 +23,7 @@ import * as utilities from "./utilities";
  *         name: "tf-test-backend-1",
  *     }],
  * });
- * // Optional: create an operation (so the data source returns something predictable)
+ * // Optional: create an operation (so the function returns something predictable)
  * const example = new fastly.ApiSecurityOperation("example", {
  *     serviceId: svc1.id,
  *     method: "GET",
@@ -38,7 +38,7 @@ import * as utilities from "./utilities";
  *     path: "/v1/things",
  * });
  * export const apiSecurityOperations = ops.apply(ops => ops.operations);
- * export const apiSecurityOperationsTotal = ops.apply(ops => ops.total);
+ * export const apiSecurityOperationsTotal = ops.total;
  * ```
  */
 export function getApiSecurityOperations(args: GetApiSecurityOperationsArgs, opts?: pulumi.InvokeOptions): Promise<GetApiSecurityOperationsResult> {
@@ -132,7 +132,7 @@ export interface GetApiSecurityOperationsResult {
  *         name: "tf-test-backend-1",
  *     }],
  * });
- * // Optional: create an operation (so the data source returns something predictable)
+ * // Optional: create an operation (so the function returns something predictable)
  * const example = new fastly.ApiSecurityOperation("example", {
  *     serviceId: svc1.id,
  *     method: "GET",
@@ -147,7 +147,7 @@ export interface GetApiSecurityOperationsResult {
  *     path: "/v1/things",
  * });
  * export const apiSecurityOperations = ops.apply(ops => ops.operations);
- * export const apiSecurityOperationsTotal = ops.apply(ops => ops.total);
+ * export const apiSecurityOperationsTotal = ops.total;
  * ```
  */
 export function getApiSecurityOperationsOutput(args: GetApiSecurityOperationsOutputArgs, opts?: pulumi.InvokeOutputOptions): pulumi.Output<GetApiSecurityOperationsResult> {
@@ -168,15 +168,15 @@ export interface GetApiSecurityOperationsOutputArgs {
     /**
      * Filter by one or more domains (exact match).
      */
-    domains?: pulumi.Input<pulumi.Input<string>[]>;
+    domains?: pulumi.Input<pulumi.Input<string>[] | undefined>;
     /**
      * Filter by one or more HTTP methods.
      */
-    methods?: pulumi.Input<pulumi.Input<string>[]>;
+    methods?: pulumi.Input<pulumi.Input<string>[] | undefined>;
     /**
      * Filter by path (exact match).
      */
-    path?: pulumi.Input<string>;
+    path?: pulumi.Input<string | undefined>;
     /**
      * Service ID.
      */
@@ -184,5 +184,5 @@ export interface GetApiSecurityOperationsOutputArgs {
     /**
      * Filter by tag ID.
      */
-    tagId?: pulumi.Input<string>;
+    tagId?: pulumi.Input<string | undefined>;
 }

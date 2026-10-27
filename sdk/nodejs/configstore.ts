@@ -118,11 +118,11 @@ export interface ConfigstoreState {
     /**
      * Allow the Config Store to be deleted, even if it contains entries. Defaults to false.
      */
-    forceDestroy?: pulumi.Input<boolean>;
+    forceDestroy?: pulumi.Input<boolean | undefined>;
     /**
      * A unique name to identify the Config Store. It is important to note that changing this attribute will delete and recreate the Config Store, and discard the current entries. You MUST first delete the associated resourceLink block from your service before modifying this field.
      */
-    name?: pulumi.Input<string>;
+    name?: pulumi.Input<string | undefined>;
 }
 
 /**
@@ -132,9 +132,9 @@ export interface ConfigstoreArgs {
     /**
      * Allow the Config Store to be deleted, even if it contains entries. Defaults to false.
      */
-    forceDestroy?: pulumi.Input<boolean>;
+    forceDestroy?: pulumi.Input<boolean | undefined>;
     /**
      * A unique name to identify the Config Store. It is important to note that changing this attribute will delete and recreate the Config Store, and discard the current entries. You MUST first delete the associated resourceLink block from your service before modifying this field.
      */
-    name?: pulumi.Input<string>;
+    name?: pulumi.Input<string | undefined>;
 }

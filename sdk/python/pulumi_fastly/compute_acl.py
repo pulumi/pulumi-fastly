@@ -19,7 +19,7 @@ __all__ = ['ComputeAclArgs', 'ComputeAcl']
 @pulumi.input_type
 class ComputeAclArgs:
     def __init__(__self__, *,
-                 name: Optional[pulumi.Input[_builtins.str]] = None):
+                 name: pulumi.Input[Optional[_builtins.str]] = None):
         """
         The set of arguments for constructing a ComputeAcl resource.
 
@@ -30,21 +30,21 @@ class ComputeAclArgs:
 
     @_builtins.property
     @pulumi.getter
-    def name(self) -> Optional[pulumi.Input[_builtins.str]]:
+    def name(self) -> pulumi.Input[Optional[_builtins.str]]:
         """
         A unique name to identify the Compute ACL. It is important to note that changing this attribute will delete and recreate the Compute ACL, and discard the current entries. You MUST first delete the associated resource_link block from your service before modifying this field.
         """
         return pulumi.get(self, "name")
 
     @name.setter
-    def name(self, value: Optional[pulumi.Input[_builtins.str]]):
+    def name(self, value: pulumi.Input[Optional[_builtins.str]]):
         pulumi.set(self, "name", value)
 
 
 @pulumi.input_type
 class _ComputeAclState:
     def __init__(__self__, *,
-                 name: Optional[pulumi.Input[_builtins.str]] = None):
+                 name: pulumi.Input[Optional[_builtins.str]] = None):
         """
         Input properties used for looking up and filtering ComputeAcl resources.
 
@@ -55,14 +55,14 @@ class _ComputeAclState:
 
     @_builtins.property
     @pulumi.getter
-    def name(self) -> Optional[pulumi.Input[_builtins.str]]:
+    def name(self) -> pulumi.Input[Optional[_builtins.str]]:
         """
         A unique name to identify the Compute ACL. It is important to note that changing this attribute will delete and recreate the Compute ACL, and discard the current entries. You MUST first delete the associated resource_link block from your service before modifying this field.
         """
         return pulumi.get(self, "name")
 
     @name.setter
-    def name(self, value: Optional[pulumi.Input[_builtins.str]]):
+    def name(self, value: pulumi.Input[Optional[_builtins.str]]):
         pulumi.set(self, "name", value)
 
 
@@ -72,7 +72,7 @@ class ComputeAcl(pulumi.CustomResource):
     def __init__(__self__,
                  resource_name: str,
                  opts: Optional[pulumi.ResourceOptions] = None,
-                 name: Optional[pulumi.Input[_builtins.str]] = None,
+                 name: pulumi.Input[Optional[_builtins.str]] = None,
                  __props__=None):
         """
         Provides a Compute Access Control List (ACL) that defines CIDR-based access rules (e.g., allow/block IP ranges) and is accessible to Compute services during request processing.
@@ -183,7 +183,7 @@ class ComputeAcl(pulumi.CustomResource):
     def _internal_init(__self__,
                  resource_name: str,
                  opts: Optional[pulumi.ResourceOptions] = None,
-                 name: Optional[pulumi.Input[_builtins.str]] = None,
+                 name: pulumi.Input[Optional[_builtins.str]] = None,
                  __props__=None):
         opts = pulumi.ResourceOptions.merge(_utilities.get_resource_opts_defaults(), opts)
         if not isinstance(opts, pulumi.ResourceOptions):
@@ -204,7 +204,7 @@ class ComputeAcl(pulumi.CustomResource):
     def get(resource_name: str,
             id: pulumi.Input[str],
             opts: Optional[pulumi.ResourceOptions] = None,
-            name: Optional[pulumi.Input[_builtins.str]] = None) -> 'ComputeAcl':
+            name: pulumi.Input[Optional[_builtins.str]] = None) -> 'ComputeAcl':
         """
         Get an existing ComputeAcl resource's state with the given name, id, and optional extra
         properties used to qualify the lookup.

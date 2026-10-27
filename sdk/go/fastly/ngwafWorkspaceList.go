@@ -55,7 +55,7 @@ import (
 //				return err
 //			}
 //			exampleNgwafWorkspaceList, err := fastly.NewNgwafWorkspaceList(ctx, "example", &fastly.NgwafWorkspaceListArgs{
-//				WorkspaceId: example.ID(),
+//				WorkspaceId: example.ID().ToIDOutput().ToStringOutput(),
 //				Name:        pulumi.String("local-allowlist"),
 //				Description: pulumi.String("IP allowlist for this workspace"),
 //				Type:        pulumi.String("ip"),
@@ -69,7 +69,7 @@ import (
 //			}
 //			// Example usage with a rule.
 //			_, err = fastly.NewNgwafWorkspaceRule(ctx, "example", &fastly.NgwafWorkspaceRuleArgs{
-//				WorkspaceId:    example.ID(),
+//				WorkspaceId:    example.ID().ToIDOutput().ToStringOutput(),
 //				Type:           pulumi.String("request"),
 //				Description:    pulumi.String("Example usage of a workspace list rule"),
 //				Enabled:        pulumi.Bool(true),

@@ -140,10 +140,10 @@ def get_tls_activation(certificate_id: Optional[_builtins.str] = None,
         created_at=pulumi.get(__ret__, 'created_at'),
         domain=pulumi.get(__ret__, 'domain'),
         id=pulumi.get(__ret__, 'id'))
-def get_tls_activation_output(certificate_id: Optional[pulumi.Input[Optional[_builtins.str]]] = None,
-                              configuration_id: Optional[pulumi.Input[Optional[_builtins.str]]] = None,
-                              domain: Optional[pulumi.Input[Optional[_builtins.str]]] = None,
-                              id: Optional[pulumi.Input[Optional[_builtins.str]]] = None,
+def get_tls_activation_output(certificate_id: pulumi.Input[Optional[Optional[_builtins.str]]] = None,
+                              configuration_id: pulumi.Input[Optional[Optional[_builtins.str]]] = None,
+                              domain: pulumi.Input[Optional[Optional[_builtins.str]]] = None,
+                              id: pulumi.Input[Optional[Optional[_builtins.str]]] = None,
                               opts: Optional[Union[pulumi.InvokeOptions, pulumi.InvokeOutputOptions]] = None) -> pulumi.Output[GetTlsActivationResult]:
     """
     Use this data source to get information on a TLS activation, including the certificate used, and the domain on which TLS was enabled.

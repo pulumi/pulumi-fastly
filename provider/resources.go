@@ -77,7 +77,7 @@ func Provider() tfbridge.ProviderInfo {
 	// Create a Pulumi provider mapping
 	prov := tfbridge.ProviderInfo{
 		P:                 p,
-		Name:              "fastly",
+		Name:              mainPkg,
 		DisplayName:       "Fastly",
 		TFProviderVersion: "4",
 		Description:       "A Pulumi package for creating and managing fastly cloud resources.",

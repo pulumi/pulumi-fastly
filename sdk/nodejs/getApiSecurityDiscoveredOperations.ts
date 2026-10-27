@@ -34,7 +34,7 @@ import * as utilities from "./utilities";
  *     path: "/v1/things",
  * });
  * export const apiSecurityDiscoveredOperations = discovered.apply(discovered => discovered.operations);
- * export const apiSecurityDiscoveredOperationsTotal = discovered.apply(discovered => discovered.total);
+ * export const apiSecurityDiscoveredOperationsTotal = discovered.total;
  * ```
  */
 export function getApiSecurityDiscoveredOperations(args: GetApiSecurityDiscoveredOperationsArgs, opts?: pulumi.InvokeOptions): Promise<GetApiSecurityDiscoveredOperationsResult> {
@@ -139,7 +139,7 @@ export interface GetApiSecurityDiscoveredOperationsResult {
  *     path: "/v1/things",
  * });
  * export const apiSecurityDiscoveredOperations = discovered.apply(discovered => discovered.operations);
- * export const apiSecurityDiscoveredOperationsTotal = discovered.apply(discovered => discovered.total);
+ * export const apiSecurityDiscoveredOperationsTotal = discovered.total;
  * ```
  */
 export function getApiSecurityDiscoveredOperationsOutput(args: GetApiSecurityDiscoveredOperationsOutputArgs, opts?: pulumi.InvokeOutputOptions): pulumi.Output<GetApiSecurityDiscoveredOperationsResult> {
@@ -160,15 +160,15 @@ export interface GetApiSecurityDiscoveredOperationsOutputArgs {
     /**
      * Filter by one or more fully-qualified domains (exact match).
      */
-    domains?: pulumi.Input<pulumi.Input<string>[]>;
+    domains?: pulumi.Input<pulumi.Input<string>[] | undefined>;
     /**
      * Filter by one or more HTTP methods.
      */
-    methods?: pulumi.Input<pulumi.Input<string>[]>;
+    methods?: pulumi.Input<pulumi.Input<string>[] | undefined>;
     /**
      * Filter by path (exact match).
      */
-    path?: pulumi.Input<string>;
+    path?: pulumi.Input<string | undefined>;
     /**
      * Service ID.
      */
@@ -176,5 +176,5 @@ export interface GetApiSecurityDiscoveredOperationsOutputArgs {
     /**
      * Filter discovered operations by status. Accepted values are `DISCOVERED`, `SAVED`, and `IGNORED`.
      */
-    status?: pulumi.Input<string>;
+    status?: pulumi.Input<string | undefined>;
 }

@@ -14,15 +14,15 @@ import * as utilities from "./utilities";
  * import * as aws from "@pulumi/aws";
  * import * as fastly from "@pulumi/fastly";
  *
- * const fastly = fastly.getFastlyIpRanges({});
+ * const fastly2 = fastly.getFastlyIpRanges({});
  * const fromFastly = new aws.index.SecurityGroup("from_fastly", {
  *     name: "from_fastly",
  *     ingress: [{
  *         fromPort: "443",
  *         toPort: "443",
  *         protocol: "tcp",
- *         cidrBlocks: fastly.cidrBlocks,
- *         ipv6CidrBlocks: fastly.ipv6CidrBlocks,
+ *         cidrBlocks: fastly2.cidrBlocks,
+ *         ipv6CidrBlocks: fastly2.ipv6CidrBlocks,
  *     }],
  * });
  * ```
@@ -62,15 +62,15 @@ export interface GetFastlyIpRangesResult {
  * import * as aws from "@pulumi/aws";
  * import * as fastly from "@pulumi/fastly";
  *
- * const fastly = fastly.getFastlyIpRanges({});
+ * const fastly2 = fastly.getFastlyIpRanges({});
  * const fromFastly = new aws.index.SecurityGroup("from_fastly", {
  *     name: "from_fastly",
  *     ingress: [{
  *         fromPort: "443",
  *         toPort: "443",
  *         protocol: "tcp",
- *         cidrBlocks: fastly.cidrBlocks,
- *         ipv6CidrBlocks: fastly.ipv6CidrBlocks,
+ *         cidrBlocks: fastly2.cidrBlocks,
+ *         ipv6CidrBlocks: fastly2.ipv6CidrBlocks,
  *     }],
  * });
  * ```

@@ -17,7 +17,7 @@ public final class ServiceVclProductEnablementDdosProtection {
      */
     private Boolean enabled;
     /**
-     * @return Operation mode. Can be either `off`, `log`, or `block`.
+     * @return Operation mode. Can be `off`, `log`, `block`, or `clientChallenge`.
      * 
      */
     private String mode;
@@ -31,7 +31,7 @@ public final class ServiceVclProductEnablementDdosProtection {
         return this.enabled;
     }
     /**
-     * @return Operation mode. Can be either `off`, `log`, or `block`.
+     * @return Operation mode. Can be `off`, `log`, `block`, or `clientChallenge`.
      * 
      */
     public String mode() {

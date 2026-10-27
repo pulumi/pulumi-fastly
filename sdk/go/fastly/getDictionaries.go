@@ -51,7 +51,7 @@ import (
 //				return err
 //			}
 //			example := fastly.GetDictionariesOutput(ctx, fastly.GetDictionariesOutputArgs{
-//				ServiceId:      exampleServiceVcl.ID(),
+//				ServiceId:      exampleServiceVcl.ID().ToIDOutput().ToStringOutput(),
 //				ServiceVersion: exampleServiceVcl.ActiveVersion,
 //			}, nil)
 //			ctx.Export("serviceDictionaries", example)
@@ -93,12 +93,8 @@ type GetDictionariesResult struct {
 }
 
 func GetDictionariesOutput(ctx *pulumi.Context, args GetDictionariesOutputArgs, opts ...pulumi.InvokeOption) GetDictionariesResultOutput {
-	return pulumi.ToOutputWithContext(ctx.Context(), args).
-		ApplyT(func(v interface{}) (GetDictionariesResultOutput, error) {
-			args := v.(GetDictionariesArgs)
-			options := pulumi.InvokeOutputOptions{InvokeOptions: internal.PkgInvokeDefaultOpts(opts)}
-			return ctx.InvokeOutput("fastly:index/getDictionaries:getDictionaries", args, GetDictionariesResultOutput{}, options).(GetDictionariesResultOutput), nil
-		}).(GetDictionariesResultOutput)
+	options := pulumi.InvokeOutputOptions{InvokeOptions: internal.PkgInvokeDefaultOpts(opts)}
+	return ctx.InvokeOutput("fastly:index/getDictionaries:getDictionaries", args, GetDictionariesResultOutput{}, options).(GetDictionariesResultOutput)
 }
 
 // A collection of arguments for invoking getDictionaries.

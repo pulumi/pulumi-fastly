@@ -56,10 +56,8 @@ type GetNgwafAccountSignalsResult struct {
 }
 
 func GetNgwafAccountSignalsOutput(ctx *pulumi.Context, opts ...pulumi.InvokeOption) GetNgwafAccountSignalsResultOutput {
-	return pulumi.ToOutput(0).ApplyT(func(int) (GetNgwafAccountSignalsResultOutput, error) {
-		options := pulumi.InvokeOutputOptions{InvokeOptions: internal.PkgInvokeDefaultOpts(opts)}
-		return ctx.InvokeOutput("fastly:index/getNgwafAccountSignals:getNgwafAccountSignals", nil, GetNgwafAccountSignalsResultOutput{}, options).(GetNgwafAccountSignalsResultOutput), nil
-	}).(GetNgwafAccountSignalsResultOutput)
+	options := pulumi.InvokeOutputOptions{InvokeOptions: internal.PkgInvokeDefaultOpts(opts)}
+	return ctx.InvokeOutput("fastly:index/getNgwafAccountSignals:getNgwafAccountSignals", nil, GetNgwafAccountSignalsResultOutput{}, options).(GetNgwafAccountSignalsResultOutput)
 }
 
 // A collection of values returned by getNgwafAccountSignals.

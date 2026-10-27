@@ -5,6 +5,16 @@ import * as pulumi from "@pulumi/pulumi";
 import * as utilities from "./utilities";
 
 // Export members:
+export { AiRuntimeControlProviderConnectionArgs, AiRuntimeControlProviderConnectionState } from "./aiRuntimeControlProviderConnection";
+export type AiRuntimeControlProviderConnection = import("./aiRuntimeControlProviderConnection").AiRuntimeControlProviderConnection;
+export const AiRuntimeControlProviderConnection: typeof import("./aiRuntimeControlProviderConnection").AiRuntimeControlProviderConnection = null as any;
+utilities.lazyLoad(exports, ["AiRuntimeControlProviderConnection"], () => require("./aiRuntimeControlProviderConnection"));
+
+export { AiRuntimeControlVirtualKeyArgs, AiRuntimeControlVirtualKeyState } from "./aiRuntimeControlVirtualKey";
+export type AiRuntimeControlVirtualKey = import("./aiRuntimeControlVirtualKey").AiRuntimeControlVirtualKey;
+export const AiRuntimeControlVirtualKey: typeof import("./aiRuntimeControlVirtualKey").AiRuntimeControlVirtualKey = null as any;
+utilities.lazyLoad(exports, ["AiRuntimeControlVirtualKey"], () => require("./aiRuntimeControlVirtualKey"));
+
 export { AlertArgs, AlertState } from "./alert";
 export type Alert = import("./alert").Alert;
 export const Alert: typeof import("./alert").Alert = null as any;
@@ -19,6 +29,11 @@ export { ApiSecurityOperationTagArgs, ApiSecurityOperationTagState } from "./api
 export type ApiSecurityOperationTag = import("./apiSecurityOperationTag").ApiSecurityOperationTag;
 export const ApiSecurityOperationTag: typeof import("./apiSecurityOperationTag").ApiSecurityOperationTag = null as any;
 utilities.lazyLoad(exports, ["ApiSecurityOperationTag"], () => require("./apiSecurityOperationTag"));
+
+export { AuditLogEventMappingArgs, AuditLogEventMappingState } from "./auditLogEventMapping";
+export type AuditLogEventMapping = import("./auditLogEventMapping").AuditLogEventMapping;
+export const AuditLogEventMapping: typeof import("./auditLogEventMapping").AuditLogEventMapping = null as any;
+utilities.lazyLoad(exports, ["AuditLogEventMapping"], () => require("./auditLogEventMapping"));
 
 export { ComputeAclArgs, ComputeAclState } from "./computeAcl";
 export type ComputeAcl = import("./computeAcl").ComputeAcl;
@@ -45,6 +60,11 @@ export type CustomDashboard = import("./customDashboard").CustomDashboard;
 export const CustomDashboard: typeof import("./customDashboard").CustomDashboard = null as any;
 utilities.lazyLoad(exports, ["CustomDashboard"], () => require("./customDashboard"));
 
+export { DnsZoneArgs, DnsZoneState } from "./dnsZone";
+export type DnsZone = import("./dnsZone").DnsZone;
+export const DnsZone: typeof import("./dnsZone").DnsZone = null as any;
+utilities.lazyLoad(exports, ["DnsZone"], () => require("./dnsZone"));
+
 export { DomainArgs, DomainState } from "./domain";
 export type Domain = import("./domain").Domain;
 export const Domain: typeof import("./domain").Domain = null as any;
@@ -65,6 +85,21 @@ export type DomainV1ServiceLink = import("./domainV1ServiceLink").DomainV1Servic
 export const DomainV1ServiceLink: typeof import("./domainV1ServiceLink").DomainV1ServiceLink = null as any;
 utilities.lazyLoad(exports, ["DomainV1ServiceLink"], () => require("./domainV1ServiceLink"));
 
+export { GetAiRuntimeControlProviderConnectionsResult } from "./getAiRuntimeControlProviderConnections";
+export const getAiRuntimeControlProviderConnections: typeof import("./getAiRuntimeControlProviderConnections").getAiRuntimeControlProviderConnections = null as any;
+export const getAiRuntimeControlProviderConnectionsOutput: typeof import("./getAiRuntimeControlProviderConnections").getAiRuntimeControlProviderConnectionsOutput = null as any;
+utilities.lazyLoad(exports, ["getAiRuntimeControlProviderConnections","getAiRuntimeControlProviderConnectionsOutput"], () => require("./getAiRuntimeControlProviderConnections"));
+
+export { GetAiRuntimeControlProvidersResult } from "./getAiRuntimeControlProviders";
+export const getAiRuntimeControlProviders: typeof import("./getAiRuntimeControlProviders").getAiRuntimeControlProviders = null as any;
+export const getAiRuntimeControlProvidersOutput: typeof import("./getAiRuntimeControlProviders").getAiRuntimeControlProvidersOutput = null as any;
+utilities.lazyLoad(exports, ["getAiRuntimeControlProviders","getAiRuntimeControlProvidersOutput"], () => require("./getAiRuntimeControlProviders"));
+
+export { GetAiRuntimeControlVirtualKeysArgs, GetAiRuntimeControlVirtualKeysResult, GetAiRuntimeControlVirtualKeysOutputArgs } from "./getAiRuntimeControlVirtualKeys";
+export const getAiRuntimeControlVirtualKeys: typeof import("./getAiRuntimeControlVirtualKeys").getAiRuntimeControlVirtualKeys = null as any;
+export const getAiRuntimeControlVirtualKeysOutput: typeof import("./getAiRuntimeControlVirtualKeys").getAiRuntimeControlVirtualKeysOutput = null as any;
+utilities.lazyLoad(exports, ["getAiRuntimeControlVirtualKeys","getAiRuntimeControlVirtualKeysOutput"], () => require("./getAiRuntimeControlVirtualKeys"));
+
 export { GetApiSecurityDiscoveredOperationsArgs, GetApiSecurityDiscoveredOperationsResult, GetApiSecurityDiscoveredOperationsOutputArgs } from "./getApiSecurityDiscoveredOperations";
 export const getApiSecurityDiscoveredOperations: typeof import("./getApiSecurityDiscoveredOperations").getApiSecurityDiscoveredOperations = null as any;
 export const getApiSecurityDiscoveredOperationsOutput: typeof import("./getApiSecurityDiscoveredOperations").getApiSecurityDiscoveredOperationsOutput = null as any;
@@ -79,6 +114,11 @@ export { GetApiSecurityOperationsArgs, GetApiSecurityOperationsResult, GetApiSec
 export const getApiSecurityOperations: typeof import("./getApiSecurityOperations").getApiSecurityOperations = null as any;
 export const getApiSecurityOperationsOutput: typeof import("./getApiSecurityOperations").getApiSecurityOperationsOutput = null as any;
 utilities.lazyLoad(exports, ["getApiSecurityOperations","getApiSecurityOperationsOutput"], () => require("./getApiSecurityOperations"));
+
+export { GetAuditLogEventMappingArgs, GetAuditLogEventMappingResult, GetAuditLogEventMappingOutputArgs } from "./getAuditLogEventMapping";
+export const getAuditLogEventMapping: typeof import("./getAuditLogEventMapping").getAuditLogEventMapping = null as any;
+export const getAuditLogEventMappingOutput: typeof import("./getAuditLogEventMapping").getAuditLogEventMappingOutput = null as any;
+utilities.lazyLoad(exports, ["getAuditLogEventMapping","getAuditLogEventMappingOutput"], () => require("./getAuditLogEventMapping"));
 
 export { GetComputeAclsResult } from "./getComputeAcls";
 export const getComputeAcls: typeof import("./getComputeAcls").getComputeAcls = null as any;
@@ -99,6 +139,11 @@ export { GetDictionariesArgs, GetDictionariesResult, GetDictionariesOutputArgs }
 export const getDictionaries: typeof import("./getDictionaries").getDictionaries = null as any;
 export const getDictionariesOutput: typeof import("./getDictionaries").getDictionariesOutput = null as any;
 utilities.lazyLoad(exports, ["getDictionaries","getDictionariesOutput"], () => require("./getDictionaries"));
+
+export { GetDnsZonesArgs, GetDnsZonesResult, GetDnsZonesOutputArgs } from "./getDnsZones";
+export const getDnsZones: typeof import("./getDnsZones").getDnsZones = null as any;
+export const getDnsZonesOutput: typeof import("./getDnsZones").getDnsZonesOutput = null as any;
+utilities.lazyLoad(exports, ["getDnsZones","getDnsZonesOutput"], () => require("./getDnsZones"));
 
 export { GetDomainsArgs, GetDomainsResult, GetDomainsOutputArgs } from "./getDomains";
 export const getDomains: typeof import("./getDomains").getDomains = null as any;
@@ -295,6 +340,11 @@ export const getTlsSubscriptionIds: typeof import("./getTlsSubscriptionIds").get
 export const getTlsSubscriptionIdsOutput: typeof import("./getTlsSubscriptionIds").getTlsSubscriptionIdsOutput = null as any;
 utilities.lazyLoad(exports, ["getTlsSubscriptionIds","getTlsSubscriptionIdsOutput"], () => require("./getTlsSubscriptionIds"));
 
+export { GetTsigKeysArgs, GetTsigKeysResult, GetTsigKeysOutputArgs } from "./getTsigKeys";
+export const getTsigKeys: typeof import("./getTsigKeys").getTsigKeys = null as any;
+export const getTsigKeysOutput: typeof import("./getTsigKeys").getTsigKeysOutput = null as any;
+utilities.lazyLoad(exports, ["getTsigKeys","getTsigKeysOutput"], () => require("./getTsigKeys"));
+
 export { GetVclSnippetsArgs, GetVclSnippetsResult, GetVclSnippetsOutputArgs } from "./getVclSnippets";
 export const getVclSnippets: typeof import("./getVclSnippets").getVclSnippets = null as any;
 export const getVclSnippetsOutput: typeof import("./getVclSnippets").getVclSnippetsOutput = null as any;
@@ -408,6 +458,16 @@ utilities.lazyLoad(exports, ["ObjectStorageAccessKeys"], () => require("./object
 export * from "./provider";
 import { Provider } from "./provider";
 
+export { RoutingConfigArgs, RoutingConfigState } from "./routingConfig";
+export type RoutingConfig = import("./routingConfig").RoutingConfig;
+export const RoutingConfig: typeof import("./routingConfig").RoutingConfig = null as any;
+utilities.lazyLoad(exports, ["RoutingConfig"], () => require("./routingConfig"));
+
+export { RoutingConfigDomainLinkArgs, RoutingConfigDomainLinkState } from "./routingConfigDomainLink";
+export type RoutingConfigDomainLink = import("./routingConfigDomainLink").RoutingConfigDomainLink;
+export const RoutingConfigDomainLink: typeof import("./routingConfigDomainLink").RoutingConfigDomainLink = null as any;
+utilities.lazyLoad(exports, ["RoutingConfigDomainLink"], () => require("./routingConfigDomainLink"));
+
 export { SecretstoreArgs, SecretstoreState } from "./secretstore";
 export type Secretstore = import("./secretstore").Secretstore;
 export const Secretstore: typeof import("./secretstore").Secretstore = null as any;
@@ -478,6 +538,11 @@ export type TlsSubscriptionValidation = import("./tlsSubscriptionValidation").Tl
 export const TlsSubscriptionValidation: typeof import("./tlsSubscriptionValidation").TlsSubscriptionValidation = null as any;
 utilities.lazyLoad(exports, ["TlsSubscriptionValidation"], () => require("./tlsSubscriptionValidation"));
 
+export { TsigKeyArgs, TsigKeyState } from "./tsigKey";
+export type TsigKey = import("./tsigKey").TsigKey;
+export const TsigKey: typeof import("./tsigKey").TsigKey = null as any;
+utilities.lazyLoad(exports, ["TsigKey"], () => require("./tsigKey"));
+
 export { UserArgs, UserState } from "./user";
 export type User = import("./user").User;
 export const User: typeof import("./user").User = null as any;
@@ -497,12 +562,18 @@ const _module = {
     version: utilities.getVersion(),
     construct: (name: string, type: string, urn: string): pulumi.Resource => {
         switch (type) {
+            case "fastly:index/aiRuntimeControlProviderConnection:AiRuntimeControlProviderConnection":
+                return new AiRuntimeControlProviderConnection(name, <any>undefined, { urn })
+            case "fastly:index/aiRuntimeControlVirtualKey:AiRuntimeControlVirtualKey":
+                return new AiRuntimeControlVirtualKey(name, <any>undefined, { urn })
             case "fastly:index/alert:Alert":
                 return new Alert(name, <any>undefined, { urn })
             case "fastly:index/apiSecurityOperation:ApiSecurityOperation":
                 return new ApiSecurityOperation(name, <any>undefined, { urn })
             case "fastly:index/apiSecurityOperationTag:ApiSecurityOperationTag":
                 return new ApiSecurityOperationTag(name, <any>undefined, { urn })
+            case "fastly:index/auditLogEventMapping:AuditLogEventMapping":
+                return new AuditLogEventMapping(name, <any>undefined, { urn })
             case "fastly:index/computeAcl:ComputeAcl":
                 return new ComputeAcl(name, <any>undefined, { urn })
             case "fastly:index/computeAclEntries:ComputeAclEntries":
@@ -513,6 +584,8 @@ const _module = {
                 return new ConfigstoreEntries(name, <any>undefined, { urn })
             case "fastly:index/customDashboard:CustomDashboard":
                 return new CustomDashboard(name, <any>undefined, { urn })
+            case "fastly:index/dnsZone:DnsZone":
+                return new DnsZone(name, <any>undefined, { urn })
             case "fastly:index/domain:Domain":
                 return new Domain(name, <any>undefined, { urn })
             case "fastly:index/domainServiceLink:DomainServiceLink":
@@ -563,6 +636,10 @@ const _module = {
                 return new NgwafWorkspaceSignal(name, <any>undefined, { urn })
             case "fastly:index/objectStorageAccessKeys:ObjectStorageAccessKeys":
                 return new ObjectStorageAccessKeys(name, <any>undefined, { urn })
+            case "fastly:index/routingConfig:RoutingConfig":
+                return new RoutingConfig(name, <any>undefined, { urn })
+            case "fastly:index/routingConfigDomainLink:RoutingConfigDomainLink":
+                return new RoutingConfigDomainLink(name, <any>undefined, { urn })
             case "fastly:index/secretstore:Secretstore":
                 return new Secretstore(name, <any>undefined, { urn })
             case "fastly:index/serviceACLEntries:ServiceACLEntries":
@@ -591,6 +668,8 @@ const _module = {
                 return new TlsSubscription(name, <any>undefined, { urn })
             case "fastly:index/tlsSubscriptionValidation:TlsSubscriptionValidation":
                 return new TlsSubscriptionValidation(name, <any>undefined, { urn })
+            case "fastly:index/tsigKey:TsigKey":
+                return new TsigKey(name, <any>undefined, { urn })
             case "fastly:index/user:User":
                 return new User(name, <any>undefined, { urn })
             default:
@@ -598,14 +677,18 @@ const _module = {
         }
     },
 };
+pulumi.runtime.registerResourceModule("fastly", "index/aiRuntimeControlProviderConnection", _module)
+pulumi.runtime.registerResourceModule("fastly", "index/aiRuntimeControlVirtualKey", _module)
 pulumi.runtime.registerResourceModule("fastly", "index/alert", _module)
 pulumi.runtime.registerResourceModule("fastly", "index/apiSecurityOperation", _module)
 pulumi.runtime.registerResourceModule("fastly", "index/apiSecurityOperationTag", _module)
+pulumi.runtime.registerResourceModule("fastly", "index/auditLogEventMapping", _module)
 pulumi.runtime.registerResourceModule("fastly", "index/computeAcl", _module)
 pulumi.runtime.registerResourceModule("fastly", "index/computeAclEntries", _module)
 pulumi.runtime.registerResourceModule("fastly", "index/configstore", _module)
 pulumi.runtime.registerResourceModule("fastly", "index/configstoreEntries", _module)
 pulumi.runtime.registerResourceModule("fastly", "index/customDashboard", _module)
+pulumi.runtime.registerResourceModule("fastly", "index/dnsZone", _module)
 pulumi.runtime.registerResourceModule("fastly", "index/domain", _module)
 pulumi.runtime.registerResourceModule("fastly", "index/domainServiceLink", _module)
 pulumi.runtime.registerResourceModule("fastly", "index/domainV1", _module)
@@ -631,6 +714,8 @@ pulumi.runtime.registerResourceModule("fastly", "index/ngwafWorkspaceList", _mod
 pulumi.runtime.registerResourceModule("fastly", "index/ngwafWorkspaceRule", _module)
 pulumi.runtime.registerResourceModule("fastly", "index/ngwafWorkspaceSignal", _module)
 pulumi.runtime.registerResourceModule("fastly", "index/objectStorageAccessKeys", _module)
+pulumi.runtime.registerResourceModule("fastly", "index/routingConfig", _module)
+pulumi.runtime.registerResourceModule("fastly", "index/routingConfigDomainLink", _module)
 pulumi.runtime.registerResourceModule("fastly", "index/secretstore", _module)
 pulumi.runtime.registerResourceModule("fastly", "index/serviceACLEntries", _module)
 pulumi.runtime.registerResourceModule("fastly", "index/serviceAuthorization", _module)
@@ -645,6 +730,7 @@ pulumi.runtime.registerResourceModule("fastly", "index/tlsPlatformCertificate", 
 pulumi.runtime.registerResourceModule("fastly", "index/tlsPrivateKey", _module)
 pulumi.runtime.registerResourceModule("fastly", "index/tlsSubscription", _module)
 pulumi.runtime.registerResourceModule("fastly", "index/tlsSubscriptionValidation", _module)
+pulumi.runtime.registerResourceModule("fastly", "index/tsigKey", _module)
 pulumi.runtime.registerResourceModule("fastly", "index/user", _module)
 pulumi.runtime.registerResourcePackage("fastly", {
     version: utilities.getVersion(),

@@ -1,6 +1,17 @@
 {
     "auto-aliasing": {
         "resources": {
+            "fastly_ai_runtime_control_provider_connection": {
+                "current": "fastly:index/aiRuntimeControlProviderConnection:AiRuntimeControlProviderConnection",
+                "fields": {
+                    "models": {
+                        "maxItemsOne": false
+                    }
+                }
+            },
+            "fastly_ai_runtime_control_virtual_key": {
+                "current": "fastly:index/aiRuntimeControlVirtualKey:AiRuntimeControlVirtualKey"
+            },
             "fastly_alert": {
                 "current": "fastly:index/alert:Alert",
                 "fields": {
@@ -35,6 +46,20 @@
             },
             "fastly_api_security_operation_tag": {
                 "current": "fastly:index/apiSecurityOperationTag:ApiSecurityOperationTag"
+            },
+            "fastly_audit_log_event_mapping": {
+                "current": "fastly:index/auditLogEventMapping:AuditLogEventMapping",
+                "fields": {
+                    "event_types": {
+                        "maxItemsOne": false
+                    },
+                    "integration_ids": {
+                        "maxItemsOne": false
+                    },
+                    "scope_ids": {
+                        "maxItemsOne": false
+                    }
+                }
             },
             "fastly_compute_acl": {
                 "current": "fastly:index/computeAcl:ComputeAcl"
@@ -81,6 +106,21 @@
                                             }
                                         }
                                     }
+                                }
+                            }
+                        }
+                    }
+                }
+            },
+            "fastly_dns_zone": {
+                "current": "fastly:index/dnsZone:DnsZone",
+                "fields": {
+                    "xfr_config_inbound": {
+                        "maxItemsOne": true,
+                        "elem": {
+                            "fields": {
+                                "primaries": {
+                                    "maxItemsOne": false
                                 }
                             }
                         }
@@ -282,6 +322,31 @@
                     }
                 }
             },
+            "fastly_routing_config": {
+                "current": "fastly:index/routingConfig:RoutingConfig",
+                "fields": {
+                    "path": {
+                        "maxItemsOne": false,
+                        "elem": {
+                            "fields": {
+                                "rule": {
+                                    "maxItemsOne": false,
+                                    "elem": {
+                                        "fields": {
+                                            "condition": {
+                                                "maxItemsOne": false
+                                            }
+                                        }
+                                    }
+                                }
+                            }
+                        }
+                    }
+                }
+            },
+            "fastly_routing_config_domain_link": {
+                "current": "fastly:index/routingConfigDomainLink:RoutingConfigDomainLink"
+            },
             "fastly_secretstore": {
                 "current": "fastly:index/secretstore:Secretstore"
             },
@@ -412,6 +477,9 @@
                         "maxItemsOne": true,
                         "elem": {
                             "fields": {
+                                "bot_management": {
+                                    "maxItemsOne": true
+                                },
                                 "ddos_protection": {
                                     "maxItemsOne": true
                                 },
@@ -676,11 +744,52 @@
             "fastly_tls_subscription_validation": {
                 "current": "fastly:index/tlsSubscriptionValidation:TlsSubscriptionValidation"
             },
+            "fastly_tsig_key": {
+                "current": "fastly:index/tsigKey:TsigKey"
+            },
             "fastly_user": {
                 "current": "fastly:index/user:User"
             }
         },
         "datasources": {
+            "fastly_ai_runtime_control_provider_connections": {
+                "current": "fastly:index/getAiRuntimeControlProviderConnections:getAiRuntimeControlProviderConnections",
+                "fields": {
+                    "provider_connections": {
+                        "maxItemsOne": false,
+                        "elem": {
+                            "fields": {
+                                "models": {
+                                    "maxItemsOne": false
+                                }
+                            }
+                        }
+                    }
+                }
+            },
+            "fastly_ai_runtime_control_providers": {
+                "current": "fastly:index/getAiRuntimeControlProviders:getAiRuntimeControlProviders",
+                "fields": {
+                    "providers": {
+                        "maxItemsOne": false,
+                        "elem": {
+                            "fields": {
+                                "models": {
+                                    "maxItemsOne": false
+                                }
+                            }
+                        }
+                    }
+                }
+            },
+            "fastly_ai_runtime_control_virtual_keys": {
+                "current": "fastly:index/getAiRuntimeControlVirtualKeys:getAiRuntimeControlVirtualKeys",
+                "fields": {
+                    "virtual_keys": {
+                        "maxItemsOne": false
+                    }
+                }
+            },
             "fastly_api_security_discovered_operations": {
                 "current": "fastly:index/getApiSecurityDiscoveredOperations:getApiSecurityDiscoveredOperations",
                 "fields": {
@@ -724,6 +833,20 @@
                     }
                 }
             },
+            "fastly_audit_log_event_mapping": {
+                "current": "fastly:index/getAuditLogEventMapping:getAuditLogEventMapping",
+                "fields": {
+                    "event_types": {
+                        "maxItemsOne": false
+                    },
+                    "integration_ids": {
+                        "maxItemsOne": false
+                    },
+                    "scope_ids": {
+                        "maxItemsOne": false
+                    }
+                }
+            },
             "fastly_compute_acls": {
                 "current": "fastly:index/getComputeAcls:getComputeAcls",
                 "fields": {
@@ -752,6 +875,14 @@
                 "current": "fastly:index/getDictionaries:getDictionaries",
                 "fields": {
                     "dictionaries": {
+                        "maxItemsOne": false
+                    }
+                }
+            },
+            "fastly_dns_zones": {
+                "current": "fastly:index/getDnsZones:getDnsZones",
+                "fields": {
+                    "zones": {
                         "maxItemsOne": false
                     }
                 }
@@ -1070,6 +1201,14 @@
                 "current": "fastly:index/getTlsSubscriptionIds:getTlsSubscriptionIds",
                 "fields": {
                     "ids": {
+                        "maxItemsOne": false
+                    }
+                }
+            },
+            "fastly_tsig_keys": {
+                "current": "fastly:index/getTsigKeys:getTsigKeys",
+                "fields": {
+                    "keys": {
                         "maxItemsOne": false
                     }
                 }

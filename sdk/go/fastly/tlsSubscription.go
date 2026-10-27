@@ -32,6 +32,8 @@ import (
 //
 // We configure the `TlsSubscriptionValidation` resource, which blocks other resources until the challenge DNS records have been validated by Fastly.
 //
+// > **Warning:** Do not create a `TlsActivation` for this subscription's domains. Fastly activates TLS on them automatically once the certificate is issued (a manual activation fails with `400 domainId has already been taken`, or with an empty-certificate 400 if created in the same apply). Set `configurationId` on this resource to control the TLS configuration, and reference `fastly_tls_subscription_validation.<name>.certificate_id` when another resource needs the issued certificate — see the `TlsSubscriptionValidation` documentation for a complete example.
+//
 // Once the validation has been successful, the configured `getTlsConfiguration` data source will filter the available results looking for an appropriate TLS configuration object. If that filtering process is successful, then the subsequent `awsRoute53Record` resources (for configuring the subdomains) will be executed using the returned TLS configuration data.
 //
 // **Configuring an apex and a wildcard domain:**

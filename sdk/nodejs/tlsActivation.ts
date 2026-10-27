@@ -9,6 +9,8 @@ import * as utilities from "./utilities";
  *
  * > **Note:** The Fastly service must be provisioned _prior_ to enabling TLS on it. This can be achieved in Pulumi using `dependsOn`.
  *
+ * > **Warning:** This resource is for custom (uploaded) certificates. Do not pair it with a `fastly.TlsSubscription` — Fastly automatically activates TLS on a subscription's domains once the managed certificate is issued, so creating an activation for those domains fails with `400 domainId has already been taken` (and referencing `fastly_tls_subscription.<name>.certificate_id` in the same apply fails earlier with an empty certificate ID). For managed certificates, set `configurationId` on the subscription and use the `fastly.TlsActivation` data source to read the automatically-created activation — see the `fastly.TlsSubscriptionValidation` documentation for a complete example.
+ *
  * ## Example Usage
  *
  * Basic usage:
@@ -149,23 +151,23 @@ export interface TlsActivationState {
     /**
      * ID of certificate to use. Must have the `domain` specified in the certificate's Subject Alternative Names.
      */
-    certificateId?: pulumi.Input<string>;
+    certificateId?: pulumi.Input<string | undefined>;
     /**
      * ID of TLS configuration to be used to terminate TLS traffic, or use the default one if missing.
      */
-    configurationId?: pulumi.Input<string>;
+    configurationId?: pulumi.Input<string | undefined>;
     /**
      * Time-stamp (GMT) when TLS was enabled.
      */
-    createdAt?: pulumi.Input<string>;
+    createdAt?: pulumi.Input<string | undefined>;
     /**
      * Domain to enable TLS on. Must be assigned to an existing Fastly Service.
      */
-    domain?: pulumi.Input<string>;
+    domain?: pulumi.Input<string | undefined>;
     /**
      * An alphanumeric string identifying a mutual authentication.
      */
-    mutualAuthenticationId?: pulumi.Input<string>;
+    mutualAuthenticationId?: pulumi.Input<string | undefined>;
 }
 
 /**
@@ -179,7 +181,7 @@ export interface TlsActivationArgs {
     /**
      * ID of TLS configuration to be used to terminate TLS traffic, or use the default one if missing.
      */
-    configurationId?: pulumi.Input<string>;
+    configurationId?: pulumi.Input<string | undefined>;
     /**
      * Domain to enable TLS on. Must be assigned to an existing Fastly Service.
      */
@@ -187,5 +189,5 @@ export interface TlsActivationArgs {
     /**
      * An alphanumeric string identifying a mutual authentication.
      */
-    mutualAuthenticationId?: pulumi.Input<string>;
+    mutualAuthenticationId?: pulumi.Input<string | undefined>;
 }

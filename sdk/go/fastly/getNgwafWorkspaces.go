@@ -31,10 +31,8 @@ type GetNgwafWorkspacesResult struct {
 }
 
 func GetNgwafWorkspacesOutput(ctx *pulumi.Context, opts ...pulumi.InvokeOption) GetNgwafWorkspacesResultOutput {
-	return pulumi.ToOutput(0).ApplyT(func(int) (GetNgwafWorkspacesResultOutput, error) {
-		options := pulumi.InvokeOutputOptions{InvokeOptions: internal.PkgInvokeDefaultOpts(opts)}
-		return ctx.InvokeOutput("fastly:index/getNgwafWorkspaces:getNgwafWorkspaces", nil, GetNgwafWorkspacesResultOutput{}, options).(GetNgwafWorkspacesResultOutput), nil
-	}).(GetNgwafWorkspacesResultOutput)
+	options := pulumi.InvokeOutputOptions{InvokeOptions: internal.PkgInvokeDefaultOpts(opts)}
+	return ctx.InvokeOutput("fastly:index/getNgwafWorkspaces:getNgwafWorkspaces", nil, GetNgwafWorkspacesResultOutput{}, options).(GetNgwafWorkspacesResultOutput)
 }
 
 // A collection of values returned by getNgwafWorkspaces.

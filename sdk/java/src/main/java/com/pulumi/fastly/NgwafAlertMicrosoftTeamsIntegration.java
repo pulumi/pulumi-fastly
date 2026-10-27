@@ -31,8 +31,8 @@ import javax.annotation.Nullable;
  * import com.pulumi.core.Output;
  * import com.pulumi.fastly.NgwafAlertMicrosoftTeamsIntegration;
  * import com.pulumi.fastly.NgwafAlertMicrosoftTeamsIntegrationArgs;
- * import java.util.List;
  * import java.util.ArrayList;
+ * import java.util.Arrays;
  * import java.util.Map;
  * import java.io.File;
  * import java.nio.file.Files;
@@ -47,7 +47,7 @@ import javax.annotation.Nullable;
  *         var demoMicrosoftTeamsAlert = new NgwafAlertMicrosoftTeamsIntegration("demoMicrosoftTeamsAlert", NgwafAlertMicrosoftTeamsIntegrationArgs.builder()
  *             .description("Some Description")
  *             .webhook("https://example.com/microsoft-teams/my-service")
- *             .workspaceId(demo.id())
+ *             .workspaceId(demo.get("id"))
  *             .build());
  * 
  *     }

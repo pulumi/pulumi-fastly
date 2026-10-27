@@ -20,10 +20,10 @@ __all__ = ['TlsMutualAuthenticationArgs', 'TlsMutualAuthentication']
 class TlsMutualAuthenticationArgs:
     def __init__(__self__, *,
                  cert_bundle: pulumi.Input[_builtins.str],
-                 activation_ids: Optional[pulumi.Input[Sequence[pulumi.Input[_builtins.str]]]] = None,
-                 enforced: Optional[pulumi.Input[_builtins.bool]] = None,
-                 include: Optional[pulumi.Input[_builtins.str]] = None,
-                 name: Optional[pulumi.Input[_builtins.str]] = None):
+                 activation_ids: pulumi.Input[Optional[Sequence[pulumi.Input[_builtins.str]]]] = None,
+                 enforced: pulumi.Input[Optional[_builtins.bool]] = None,
+                 include: pulumi.Input[Optional[_builtins.str]] = None,
+                 name: pulumi.Input[Optional[_builtins.str]] = None):
         """
         The set of arguments for constructing a TlsMutualAuthentication resource.
 
@@ -57,64 +57,64 @@ class TlsMutualAuthenticationArgs:
 
     @_builtins.property
     @pulumi.getter(name="activationIds")
-    def activation_ids(self) -> Optional[pulumi.Input[Sequence[pulumi.Input[_builtins.str]]]]:
+    def activation_ids(self) -> pulumi.Input[Optional[Sequence[pulumi.Input[_builtins.str]]]]:
         """
         List of TLS Activation IDs
         """
         return pulumi.get(self, "activation_ids")
 
     @activation_ids.setter
-    def activation_ids(self, value: Optional[pulumi.Input[Sequence[pulumi.Input[_builtins.str]]]]):
+    def activation_ids(self, value: pulumi.Input[Optional[Sequence[pulumi.Input[_builtins.str]]]]):
         pulumi.set(self, "activation_ids", value)
 
     @_builtins.property
     @pulumi.getter
-    def enforced(self) -> Optional[pulumi.Input[_builtins.bool]]:
+    def enforced(self) -> pulumi.Input[Optional[_builtins.bool]]:
         """
         Determines whether Mutual TLS will fail closed (enforced) or fail open. A true value will require a successful Mutual TLS handshake for the connection to continue and will fail closed if unsuccessful. A false value will fail open and allow the connection to proceed (if this attribute is not set we default to `false`).
         """
         return pulumi.get(self, "enforced")
 
     @enforced.setter
-    def enforced(self, value: Optional[pulumi.Input[_builtins.bool]]):
+    def enforced(self, value: pulumi.Input[Optional[_builtins.bool]]):
         pulumi.set(self, "enforced", value)
 
     @_builtins.property
     @pulumi.getter
-    def include(self) -> Optional[pulumi.Input[_builtins.str]]:
+    def include(self) -> pulumi.Input[Optional[_builtins.str]]:
         """
         A comma-separated list used by the Terraform provider during a state refresh to return more data related to your mutual authentication from the Fastly API (permitted values: `tls_activations`).
         """
         return pulumi.get(self, "include")
 
     @include.setter
-    def include(self, value: Optional[pulumi.Input[_builtins.str]]):
+    def include(self, value: pulumi.Input[Optional[_builtins.str]]):
         pulumi.set(self, "include", value)
 
     @_builtins.property
     @pulumi.getter
-    def name(self) -> Optional[pulumi.Input[_builtins.str]]:
+    def name(self) -> pulumi.Input[Optional[_builtins.str]]:
         """
         A custom name for your mutual authentication. If name is not supplied we will auto-generate one.
         """
         return pulumi.get(self, "name")
 
     @name.setter
-    def name(self, value: Optional[pulumi.Input[_builtins.str]]):
+    def name(self, value: pulumi.Input[Optional[_builtins.str]]):
         pulumi.set(self, "name", value)
 
 
 @pulumi.input_type
 class _TlsMutualAuthenticationState:
     def __init__(__self__, *,
-                 activation_ids: Optional[pulumi.Input[Sequence[pulumi.Input[_builtins.str]]]] = None,
-                 cert_bundle: Optional[pulumi.Input[_builtins.str]] = None,
-                 created_at: Optional[pulumi.Input[_builtins.str]] = None,
-                 enforced: Optional[pulumi.Input[_builtins.bool]] = None,
-                 include: Optional[pulumi.Input[_builtins.str]] = None,
-                 name: Optional[pulumi.Input[_builtins.str]] = None,
-                 tls_activations: Optional[pulumi.Input[Sequence[pulumi.Input[_builtins.str]]]] = None,
-                 updated_at: Optional[pulumi.Input[_builtins.str]] = None):
+                 activation_ids: pulumi.Input[Optional[Sequence[pulumi.Input[_builtins.str]]]] = None,
+                 cert_bundle: pulumi.Input[Optional[_builtins.str]] = None,
+                 created_at: pulumi.Input[Optional[_builtins.str]] = None,
+                 enforced: pulumi.Input[Optional[_builtins.bool]] = None,
+                 include: pulumi.Input[Optional[_builtins.str]] = None,
+                 name: pulumi.Input[Optional[_builtins.str]] = None,
+                 tls_activations: pulumi.Input[Optional[Sequence[pulumi.Input[_builtins.str]]]] = None,
+                 updated_at: pulumi.Input[Optional[_builtins.str]] = None):
         """
         Input properties used for looking up and filtering TlsMutualAuthentication resources.
 
@@ -146,98 +146,98 @@ class _TlsMutualAuthenticationState:
 
     @_builtins.property
     @pulumi.getter(name="activationIds")
-    def activation_ids(self) -> Optional[pulumi.Input[Sequence[pulumi.Input[_builtins.str]]]]:
+    def activation_ids(self) -> pulumi.Input[Optional[Sequence[pulumi.Input[_builtins.str]]]]:
         """
         List of TLS Activation IDs
         """
         return pulumi.get(self, "activation_ids")
 
     @activation_ids.setter
-    def activation_ids(self, value: Optional[pulumi.Input[Sequence[pulumi.Input[_builtins.str]]]]):
+    def activation_ids(self, value: pulumi.Input[Optional[Sequence[pulumi.Input[_builtins.str]]]]):
         pulumi.set(self, "activation_ids", value)
 
     @_builtins.property
     @pulumi.getter(name="certBundle")
-    def cert_bundle(self) -> Optional[pulumi.Input[_builtins.str]]:
+    def cert_bundle(self) -> pulumi.Input[Optional[_builtins.str]]:
         """
         One or more certificates. Enter each individual certificate blob on a new line. Must be PEM-formatted.
         """
         return pulumi.get(self, "cert_bundle")
 
     @cert_bundle.setter
-    def cert_bundle(self, value: Optional[pulumi.Input[_builtins.str]]):
+    def cert_bundle(self, value: pulumi.Input[Optional[_builtins.str]]):
         pulumi.set(self, "cert_bundle", value)
 
     @_builtins.property
     @pulumi.getter(name="createdAt")
-    def created_at(self) -> Optional[pulumi.Input[_builtins.str]]:
+    def created_at(self) -> pulumi.Input[Optional[_builtins.str]]:
         """
         Date and time in ISO 8601 format.
         """
         return pulumi.get(self, "created_at")
 
     @created_at.setter
-    def created_at(self, value: Optional[pulumi.Input[_builtins.str]]):
+    def created_at(self, value: pulumi.Input[Optional[_builtins.str]]):
         pulumi.set(self, "created_at", value)
 
     @_builtins.property
     @pulumi.getter
-    def enforced(self) -> Optional[pulumi.Input[_builtins.bool]]:
+    def enforced(self) -> pulumi.Input[Optional[_builtins.bool]]:
         """
         Determines whether Mutual TLS will fail closed (enforced) or fail open. A true value will require a successful Mutual TLS handshake for the connection to continue and will fail closed if unsuccessful. A false value will fail open and allow the connection to proceed (if this attribute is not set we default to `false`).
         """
         return pulumi.get(self, "enforced")
 
     @enforced.setter
-    def enforced(self, value: Optional[pulumi.Input[_builtins.bool]]):
+    def enforced(self, value: pulumi.Input[Optional[_builtins.bool]]):
         pulumi.set(self, "enforced", value)
 
     @_builtins.property
     @pulumi.getter
-    def include(self) -> Optional[pulumi.Input[_builtins.str]]:
+    def include(self) -> pulumi.Input[Optional[_builtins.str]]:
         """
         A comma-separated list used by the Terraform provider during a state refresh to return more data related to your mutual authentication from the Fastly API (permitted values: `tls_activations`).
         """
         return pulumi.get(self, "include")
 
     @include.setter
-    def include(self, value: Optional[pulumi.Input[_builtins.str]]):
+    def include(self, value: pulumi.Input[Optional[_builtins.str]]):
         pulumi.set(self, "include", value)
 
     @_builtins.property
     @pulumi.getter
-    def name(self) -> Optional[pulumi.Input[_builtins.str]]:
+    def name(self) -> pulumi.Input[Optional[_builtins.str]]:
         """
         A custom name for your mutual authentication. If name is not supplied we will auto-generate one.
         """
         return pulumi.get(self, "name")
 
     @name.setter
-    def name(self, value: Optional[pulumi.Input[_builtins.str]]):
+    def name(self, value: pulumi.Input[Optional[_builtins.str]]):
         pulumi.set(self, "name", value)
 
     @_builtins.property
     @pulumi.getter(name="tlsActivations")
-    def tls_activations(self) -> Optional[pulumi.Input[Sequence[pulumi.Input[_builtins.str]]]]:
+    def tls_activations(self) -> pulumi.Input[Optional[Sequence[pulumi.Input[_builtins.str]]]]:
         """
         List of alphanumeric strings identifying TLS activations.
         """
         return pulumi.get(self, "tls_activations")
 
     @tls_activations.setter
-    def tls_activations(self, value: Optional[pulumi.Input[Sequence[pulumi.Input[_builtins.str]]]]):
+    def tls_activations(self, value: pulumi.Input[Optional[Sequence[pulumi.Input[_builtins.str]]]]):
         pulumi.set(self, "tls_activations", value)
 
     @_builtins.property
     @pulumi.getter(name="updatedAt")
-    def updated_at(self) -> Optional[pulumi.Input[_builtins.str]]:
+    def updated_at(self) -> pulumi.Input[Optional[_builtins.str]]:
         """
         Date and time in ISO 8601 format.
         """
         return pulumi.get(self, "updated_at")
 
     @updated_at.setter
-    def updated_at(self, value: Optional[pulumi.Input[_builtins.str]]):
+    def updated_at(self, value: pulumi.Input[Optional[_builtins.str]]):
         pulumi.set(self, "updated_at", value)
 
 
@@ -247,11 +247,11 @@ class TlsMutualAuthentication(pulumi.CustomResource):
     def __init__(__self__,
                  resource_name: str,
                  opts: Optional[pulumi.ResourceOptions] = None,
-                 activation_ids: Optional[pulumi.Input[Sequence[pulumi.Input[_builtins.str]]]] = None,
-                 cert_bundle: Optional[pulumi.Input[_builtins.str]] = None,
-                 enforced: Optional[pulumi.Input[_builtins.bool]] = None,
-                 include: Optional[pulumi.Input[_builtins.str]] = None,
-                 name: Optional[pulumi.Input[_builtins.str]] = None,
+                 activation_ids: pulumi.Input[Optional[Sequence[pulumi.Input[_builtins.str]]]] = None,
+                 cert_bundle: pulumi.Input[Optional[_builtins.str]] = None,
+                 enforced: pulumi.Input[Optional[_builtins.bool]] = None,
+                 include: pulumi.Input[Optional[_builtins.str]] = None,
+                 name: pulumi.Input[Optional[_builtins.str]] = None,
                  __props__=None):
         """
         The Mutual TLS API allows for client-to-server authentication using client-side X.509 authentication.
@@ -302,11 +302,11 @@ class TlsMutualAuthentication(pulumi.CustomResource):
     def _internal_init(__self__,
                  resource_name: str,
                  opts: Optional[pulumi.ResourceOptions] = None,
-                 activation_ids: Optional[pulumi.Input[Sequence[pulumi.Input[_builtins.str]]]] = None,
-                 cert_bundle: Optional[pulumi.Input[_builtins.str]] = None,
-                 enforced: Optional[pulumi.Input[_builtins.bool]] = None,
-                 include: Optional[pulumi.Input[_builtins.str]] = None,
-                 name: Optional[pulumi.Input[_builtins.str]] = None,
+                 activation_ids: pulumi.Input[Optional[Sequence[pulumi.Input[_builtins.str]]]] = None,
+                 cert_bundle: pulumi.Input[Optional[_builtins.str]] = None,
+                 enforced: pulumi.Input[Optional[_builtins.bool]] = None,
+                 include: pulumi.Input[Optional[_builtins.str]] = None,
+                 name: pulumi.Input[Optional[_builtins.str]] = None,
                  __props__=None):
         opts = pulumi.ResourceOptions.merge(_utilities.get_resource_opts_defaults(), opts)
         if not isinstance(opts, pulumi.ResourceOptions):
@@ -336,14 +336,14 @@ class TlsMutualAuthentication(pulumi.CustomResource):
     def get(resource_name: str,
             id: pulumi.Input[str],
             opts: Optional[pulumi.ResourceOptions] = None,
-            activation_ids: Optional[pulumi.Input[Sequence[pulumi.Input[_builtins.str]]]] = None,
-            cert_bundle: Optional[pulumi.Input[_builtins.str]] = None,
-            created_at: Optional[pulumi.Input[_builtins.str]] = None,
-            enforced: Optional[pulumi.Input[_builtins.bool]] = None,
-            include: Optional[pulumi.Input[_builtins.str]] = None,
-            name: Optional[pulumi.Input[_builtins.str]] = None,
-            tls_activations: Optional[pulumi.Input[Sequence[pulumi.Input[_builtins.str]]]] = None,
-            updated_at: Optional[pulumi.Input[_builtins.str]] = None) -> 'TlsMutualAuthentication':
+            activation_ids: pulumi.Input[Optional[Sequence[pulumi.Input[_builtins.str]]]] = None,
+            cert_bundle: pulumi.Input[Optional[_builtins.str]] = None,
+            created_at: pulumi.Input[Optional[_builtins.str]] = None,
+            enforced: pulumi.Input[Optional[_builtins.bool]] = None,
+            include: pulumi.Input[Optional[_builtins.str]] = None,
+            name: pulumi.Input[Optional[_builtins.str]] = None,
+            tls_activations: pulumi.Input[Optional[Sequence[pulumi.Input[_builtins.str]]]] = None,
+            updated_at: pulumi.Input[Optional[_builtins.str]] = None) -> 'TlsMutualAuthentication':
         """
         Get an existing TlsMutualAuthentication resource's state with the given name, id, and optional extra
         properties used to qualify the lookup.

@@ -137,31 +137,31 @@ export interface TlsPrivateKeyState {
     /**
      * Time-stamp (GMT) when the private key was created.
      */
-    createdAt?: pulumi.Input<string>;
+    createdAt?: pulumi.Input<string | undefined>;
     /**
      * The key length used to generate the private key.
      */
-    keyLength?: pulumi.Input<number>;
+    keyLength?: pulumi.Input<number | undefined>;
     /**
      * Private key in PEM format.
      */
-    keyPem?: pulumi.Input<string>;
+    keyPem?: pulumi.Input<string | undefined>;
     /**
      * The algorithm used to generate the private key. Must be RSA.
      */
-    keyType?: pulumi.Input<string>;
+    keyType?: pulumi.Input<string | undefined>;
     /**
      * Customisable name of the private key.
      */
-    name?: pulumi.Input<string>;
+    name?: pulumi.Input<string | undefined>;
     /**
      * Useful for safely identifying the key.
      */
-    publicKeySha1?: pulumi.Input<string>;
+    publicKeySha1?: pulumi.Input<string | undefined>;
     /**
      * Whether Fastly recommends replacing this private key.
      */
-    replace?: pulumi.Input<boolean>;
+    replace?: pulumi.Input<boolean | undefined>;
 }
 
 /**
@@ -175,5 +175,5 @@ export interface TlsPrivateKeyArgs {
     /**
      * Customisable name of the private key.
      */
-    name?: pulumi.Input<string>;
+    name?: pulumi.Input<string | undefined>;
 }

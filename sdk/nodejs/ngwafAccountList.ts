@@ -150,23 +150,23 @@ export interface NgwafAccountListState {
     /**
      * INTERNAL: Used to build scope for account-scoped lists. Not user-configurable.
      */
-    appliesTos?: pulumi.Input<pulumi.Input<string>[]>;
+    appliesTos?: pulumi.Input<pulumi.Input<string>[] | undefined>;
     /**
      * The description of the list.
      */
-    description?: pulumi.Input<string>;
+    description?: pulumi.Input<string | undefined>;
     /**
      * The values in the list.
      */
-    entries?: pulumi.Input<pulumi.Input<string>[]>;
+    entries?: pulumi.Input<pulumi.Input<string>[] | undefined>;
     /**
      * The name of the list.
      */
-    name?: pulumi.Input<string>;
+    name?: pulumi.Input<string | undefined>;
     /**
      * The type of list. Accepted values are `string`, `wildcard`, `ip`, `country`, and `signal`.
      */
-    type?: pulumi.Input<string>;
+    type?: pulumi.Input<string | undefined>;
 }
 
 /**
@@ -176,7 +176,7 @@ export interface NgwafAccountListArgs {
     /**
      * The description of the list.
      */
-    description?: pulumi.Input<string>;
+    description?: pulumi.Input<string | undefined>;
     /**
      * The values in the list.
      */
@@ -184,7 +184,7 @@ export interface NgwafAccountListArgs {
     /**
      * The name of the list.
      */
-    name?: pulumi.Input<string>;
+    name?: pulumi.Input<string | undefined>;
     /**
      * The type of list. Accepted values are `string`, `wildcard`, `ip`, `country`, and `signal`.
      */

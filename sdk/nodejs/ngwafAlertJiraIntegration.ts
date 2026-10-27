@@ -150,31 +150,31 @@ export interface NgwafAlertJiraIntegrationState {
     /**
      * The description of the alert.
      */
-    description?: pulumi.Input<string>;
+    description?: pulumi.Input<string | undefined>;
     /**
      * The name of the Jira instance.
      */
-    host?: pulumi.Input<string>;
+    host?: pulumi.Input<string | undefined>;
     /**
      * The Jira issue type associated with the ticket.
      */
-    issueType?: pulumi.Input<string>;
+    issueType?: pulumi.Input<string | undefined>;
     /**
      * The Jira key.
      */
-    key?: pulumi.Input<string>;
+    key?: pulumi.Input<string | undefined>;
     /**
      * The Jira project where the issue will be created.
      */
-    project?: pulumi.Input<string>;
+    project?: pulumi.Input<string | undefined>;
     /**
      * The Jira username of the user who created the ticket.
      */
-    username?: pulumi.Input<string>;
+    username?: pulumi.Input<string | undefined>;
     /**
      * The ID of the workspace.
      */
-    workspaceId?: pulumi.Input<string>;
+    workspaceId?: pulumi.Input<string | undefined>;
 }
 
 /**
@@ -184,7 +184,7 @@ export interface NgwafAlertJiraIntegrationArgs {
     /**
      * The description of the alert.
      */
-    description?: pulumi.Input<string>;
+    description?: pulumi.Input<string | undefined>;
     /**
      * The name of the Jira instance.
      */
@@ -192,7 +192,7 @@ export interface NgwafAlertJiraIntegrationArgs {
     /**
      * The Jira issue type associated with the ticket.
      */
-    issueType?: pulumi.Input<string>;
+    issueType?: pulumi.Input<string | undefined>;
     /**
      * The Jira key.
      */

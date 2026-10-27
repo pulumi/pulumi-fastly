@@ -44,7 +44,7 @@ import (
 //				KeyAlgorithm:  key.Algorithm,
 //				PrivateKeyPem: key.PrivateKeyPem,
 //				Subject: tls.SelfSignedCertSubjectArgs{
-//					map[string]interface{}{
+//					map[string]string{
 //						"commonName": "example.com",
 //					},
 //				},

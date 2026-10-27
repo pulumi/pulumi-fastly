@@ -28,7 +28,7 @@ import (
 //
 //	func main() {
 //		pulumi.Run(func(ctx *pulumi.Context) error {
-//			fastly, err := fastly.GetFastlyIpRanges(ctx, map[string]interface{}{}, nil)
+//			fastly2, err := fastly.GetFastlyIpRanges(ctx, map[string]interface{}{}, nil)
 //			if err != nil {
 //				return err
 //			}
@@ -39,8 +39,8 @@ import (
 //						"fromPort":       "443",
 //						"toPort":         "443",
 //						"protocol":       "tcp",
-//						"cidrBlocks":     fastly.CidrBlocks,
-//						"ipv6CidrBlocks": fastly.Ipv6CidrBlocks,
+//						"cidrBlocks":     fastly2.CidrBlocks,
+//						"ipv6CidrBlocks": fastly2.Ipv6CidrBlocks,
 //					},
 //				},
 //			})
@@ -75,10 +75,8 @@ type GetFastlyIpRangesResult struct {
 }
 
 func GetFastlyIpRangesOutput(ctx *pulumi.Context, opts ...pulumi.InvokeOption) GetFastlyIpRangesResultOutput {
-	return pulumi.ToOutput(0).ApplyT(func(int) (GetFastlyIpRangesResultOutput, error) {
-		options := pulumi.InvokeOutputOptions{InvokeOptions: internal.PkgInvokeDefaultOpts(opts)}
-		return ctx.InvokeOutput("fastly:index/getFastlyIpRanges:getFastlyIpRanges", nil, GetFastlyIpRangesResultOutput{}, options).(GetFastlyIpRangesResultOutput), nil
-	}).(GetFastlyIpRangesResultOutput)
+	options := pulumi.InvokeOutputOptions{InvokeOptions: internal.PkgInvokeDefaultOpts(opts)}
+	return ctx.InvokeOutput("fastly:index/getFastlyIpRanges:getFastlyIpRanges", nil, GetFastlyIpRangesResultOutput{}, options).(GetFastlyIpRangesResultOutput)
 }
 
 // A collection of values returned by getFastlyIpRanges.

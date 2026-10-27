@@ -61,10 +61,8 @@ type GetTlsPrivateKeyIdsResult struct {
 }
 
 func GetTlsPrivateKeyIdsOutput(ctx *pulumi.Context, opts ...pulumi.InvokeOption) GetTlsPrivateKeyIdsResultOutput {
-	return pulumi.ToOutput(0).ApplyT(func(int) (GetTlsPrivateKeyIdsResultOutput, error) {
-		options := pulumi.InvokeOutputOptions{InvokeOptions: internal.PkgInvokeDefaultOpts(opts)}
-		return ctx.InvokeOutput("fastly:index/getTlsPrivateKeyIds:getTlsPrivateKeyIds", nil, GetTlsPrivateKeyIdsResultOutput{}, options).(GetTlsPrivateKeyIdsResultOutput), nil
-	}).(GetTlsPrivateKeyIdsResultOutput)
+	options := pulumi.InvokeOutputOptions{InvokeOptions: internal.PkgInvokeDefaultOpts(opts)}
+	return ctx.InvokeOutput("fastly:index/getTlsPrivateKeyIds:getTlsPrivateKeyIds", nil, GetTlsPrivateKeyIdsResultOutput{}, options).(GetTlsPrivateKeyIdsResultOutput)
 }
 
 // A collection of values returned by getTlsPrivateKeyIds.

@@ -66,12 +66,8 @@ type LookupNgwafAlertDatadogIntegrationResult struct {
 }
 
 func LookupNgwafAlertDatadogIntegrationOutput(ctx *pulumi.Context, args LookupNgwafAlertDatadogIntegrationOutputArgs, opts ...pulumi.InvokeOption) LookupNgwafAlertDatadogIntegrationResultOutput {
-	return pulumi.ToOutputWithContext(ctx.Context(), args).
-		ApplyT(func(v interface{}) (LookupNgwafAlertDatadogIntegrationResultOutput, error) {
-			args := v.(LookupNgwafAlertDatadogIntegrationArgs)
-			options := pulumi.InvokeOutputOptions{InvokeOptions: internal.PkgInvokeDefaultOpts(opts)}
-			return ctx.InvokeOutput("fastly:index/getNgwafAlertDatadogIntegration:getNgwafAlertDatadogIntegration", args, LookupNgwafAlertDatadogIntegrationResultOutput{}, options).(LookupNgwafAlertDatadogIntegrationResultOutput), nil
-		}).(LookupNgwafAlertDatadogIntegrationResultOutput)
+	options := pulumi.InvokeOutputOptions{InvokeOptions: internal.PkgInvokeDefaultOpts(opts)}
+	return ctx.InvokeOutput("fastly:index/getNgwafAlertDatadogIntegration:getNgwafAlertDatadogIntegration", args, LookupNgwafAlertDatadogIntegrationResultOutput{}, options).(LookupNgwafAlertDatadogIntegrationResultOutput)
 }
 
 // A collection of arguments for invoking getNgwafAlertDatadogIntegration.

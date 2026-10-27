@@ -24,9 +24,9 @@ namespace Pulumi.Fastly
         /// 
         /// return await Deployment.RunAsync(() =&gt; 
         /// {
-        ///     var example = Fastly.Index.GetTlsPlatformCertificateIds.Invoke();
+        ///     var example = Fastly.GetTlsPlatformCertificateIds.Invoke();
         /// 
-        ///     var exampleGetTlsPlatformCertificate = Fastly.Index.GetTlsPlatformCertificate.Invoke(new()
+        ///     var exampleGetTlsPlatformCertificate = Fastly.GetTlsPlatformCertificate.Invoke(new()
         ///     {
         ///         Id = example.Apply(getTlsPlatformCertificateIdsResult =&gt; getTlsPlatformCertificateIdsResult.Ids[0]),
         ///     });
@@ -50,9 +50,9 @@ namespace Pulumi.Fastly
         /// 
         /// return await Deployment.RunAsync(() =&gt; 
         /// {
-        ///     var example = Fastly.Index.GetTlsPlatformCertificateIds.Invoke();
+        ///     var example = Fastly.GetTlsPlatformCertificateIds.Invoke();
         /// 
-        ///     var exampleGetTlsPlatformCertificate = Fastly.Index.GetTlsPlatformCertificate.Invoke(new()
+        ///     var exampleGetTlsPlatformCertificate = Fastly.GetTlsPlatformCertificate.Invoke(new()
         ///     {
         ///         Id = example.Apply(getTlsPlatformCertificateIdsResult =&gt; getTlsPlatformCertificateIdsResult.Ids[0]),
         ///     });
@@ -76,9 +76,9 @@ namespace Pulumi.Fastly
         /// 
         /// return await Deployment.RunAsync(() =&gt; 
         /// {
-        ///     var example = Fastly.Index.GetTlsPlatformCertificateIds.Invoke();
+        ///     var example = Fastly.GetTlsPlatformCertificateIds.Invoke();
         /// 
-        ///     var exampleGetTlsPlatformCertificate = Fastly.Index.GetTlsPlatformCertificate.Invoke(new()
+        ///     var exampleGetTlsPlatformCertificate = Fastly.GetTlsPlatformCertificate.Invoke(new()
         ///     {
         ///         Id = example.Apply(getTlsPlatformCertificateIdsResult =&gt; getTlsPlatformCertificateIdsResult.Ids[0]),
         ///     });

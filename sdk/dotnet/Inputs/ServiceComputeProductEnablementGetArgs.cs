@@ -19,6 +19,12 @@ namespace Pulumi.Fastly.Inputs
         public Input<bool>? ApiDiscovery { get; set; }
 
         /// <summary>
+        /// Enable Bot Management support
+        /// </summary>
+        [Input("botManagement")]
+        public Input<Inputs.ServiceComputeProductEnablementBotManagementGetArgs>? BotManagement { get; set; }
+
+        /// <summary>
         /// DDoS Protection product
         /// </summary>
         [Input("ddosProtection")]

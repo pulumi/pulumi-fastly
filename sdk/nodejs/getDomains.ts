@@ -88,5 +88,5 @@ export interface GetDomainsOutputArgs {
     /**
      * The total number of domains returned.
      */
-    total?: pulumi.Input<number>;
+    total?: pulumi.Input<number | undefined>;
 }

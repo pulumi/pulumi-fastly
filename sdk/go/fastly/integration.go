@@ -12,7 +12,7 @@ import (
 	"github.com/pulumi/pulumi/sdk/v3/go/pulumi"
 )
 
-// Provides a Fastly integration. Fastly will use these integrations to send you notifications and alerts related to the Fastly product. Mailing list, Microsoft Teams, New Relic, PagerDuty, Slack, and webhook are supported as integrations.
+// Provides a Fastly integration. Fastly will use these integrations to send you notifications and alerts related to the Fastly product. Datadog, Jira, Jira Service Management, Mailing list, Microsoft Teams, New Relic, OpsGenie, PagerDuty, Slack, Splunk On-Call, and webhook are supported as integrations.
 //
 // > **IMPORTANT:** The mailing list integrations require confirmation. To send a confirmation email and verify integration status, after applying changes using Terraform, please visit https://manage.fastly.com/observability/alerts/integrations
 //
@@ -30,7 +30,45 @@ import (
 //
 //	func main() {
 //		pulumi.Run(func(ctx *pulumi.Context) error {
-//			_, err := fastly.NewIntegration(ctx, "mailinglist_example", &fastly.IntegrationArgs{
+//			_, err := fastly.NewIntegration(ctx, "datadog_example", &fastly.IntegrationArgs{
+//				Name:        pulumi.String("my Datadog integration"),
+//				Description: pulumi.String("example Datadog integration"),
+//				Type:        pulumi.String("datadog"),
+//				Config: pulumi.StringMap{
+//					"apikey": pulumi.String("XXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXX"),
+//					"site":   pulumi.String("datadoghq.eu"),
+//				},
+//			})
+//			if err != nil {
+//				return err
+//			}
+//			_, err = fastly.NewIntegration(ctx, "jiraissue_example", &fastly.IntegrationArgs{
+//				Name:        pulumi.String("my Jira integration"),
+//				Description: pulumi.String("example Jira integration"),
+//				Type:        pulumi.String("jiraissue"),
+//				Config: pulumi.StringMap{
+//					"baseurl":    pulumi.String("https://my-org.atlassian.net"),
+//					"username":   pulumi.String("user@my-org.com"),
+//					"token":      pulumi.String("XXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXX"),
+//					"projectkey": pulumi.String("ABC"),
+//					"issuetype":  pulumi.String("Bug"),
+//				},
+//			})
+//			if err != nil {
+//				return err
+//			}
+//			_, err = fastly.NewIntegration(ctx, "jsm_example", &fastly.IntegrationArgs{
+//				Name:        pulumi.String("my Jira Service Management integration"),
+//				Description: pulumi.String("example Jira Service Management integration"),
+//				Type:        pulumi.String("jsm"),
+//				Config: pulumi.StringMap{
+//					"apikey": pulumi.String("XXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXX"),
+//				},
+//			})
+//			if err != nil {
+//				return err
+//			}
+//			_, err = fastly.NewIntegration(ctx, "mailinglist_example", &fastly.IntegrationArgs{
 //				Name:        pulumi.String("my mailing list integration"),
 //				Description: pulumi.String("example mailing list integration"),
 //				Type:        pulumi.String("mailinglist"),
@@ -64,6 +102,17 @@ import (
 //			if err != nil {
 //				return err
 //			}
+//			_, err = fastly.NewIntegration(ctx, "opsgenie_example", &fastly.IntegrationArgs{
+//				Name:        pulumi.String("my OpsGenie integration"),
+//				Description: pulumi.String("example OpsGenie integration"),
+//				Type:        pulumi.String("opsgenie"),
+//				Config: pulumi.StringMap{
+//					"apikey": pulumi.String("XXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXX"),
+//				},
+//			})
+//			if err != nil {
+//				return err
+//			}
 //			_, err = fastly.NewIntegration(ctx, "pagerduty_example", &fastly.IntegrationArgs{
 //				Name:        pulumi.String("my PagerDuty integration"),
 //				Description: pulumi.String("example PagerDuty integration"),
@@ -81,6 +130,17 @@ import (
 //				Type:        pulumi.String("slack"),
 //				Config: pulumi.StringMap{
 //					"webhook": pulumi.String("https://hooks.slack.com/services/T00000000/B00000000/XXXXXXXXXXXXXXXXXXXXXXXX"),
+//				},
+//			})
+//			if err != nil {
+//				return err
+//			}
+//			_, err = fastly.NewIntegration(ctx, "splunkoncall_example", &fastly.IntegrationArgs{
+//				Name:        pulumi.String("my Splunk On-Call integration"),
+//				Description: pulumi.String("example Splunk On-Call integration"),
+//				Type:        pulumi.String("splunkoncall"),
+//				Config: pulumi.StringMap{
+//					"url": pulumi.String("https://alert.victorops.com/integrations/generic/20131114/alert/XXXXXXXXXXXXXXXXXXXXXXXX"),
 //				},
 //			})
 //			if err != nil {
@@ -111,7 +171,7 @@ type Integration struct {
 	Description pulumi.StringPtrOutput `pulumi:"description"`
 	// User submitted name of the integration.
 	Name pulumi.StringOutput `pulumi:"name"`
-	// Type of the integration. One of: `mailinglist`, `microsoftteams`, `newrelic`, `pagerduty`, `slack`, `webhook`.
+	// Type of the integration. One of: `datadog`, `jiraissue`, `jsm`, `mailinglist`, `microsoftteams`, `newrelic`, `opsgenie`, `pagerduty`, `slack`, `splunkoncall`, `webhook`.
 	Type pulumi.StringOutput `pulumi:"type"`
 }
 
@@ -164,7 +224,7 @@ type integrationState struct {
 	Description *string `pulumi:"description"`
 	// User submitted name of the integration.
 	Name *string `pulumi:"name"`
-	// Type of the integration. One of: `mailinglist`, `microsoftteams`, `newrelic`, `pagerduty`, `slack`, `webhook`.
+	// Type of the integration. One of: `datadog`, `jiraissue`, `jsm`, `mailinglist`, `microsoftteams`, `newrelic`, `opsgenie`, `pagerduty`, `slack`, `splunkoncall`, `webhook`.
 	Type *string `pulumi:"type"`
 }
 
@@ -175,7 +235,7 @@ type IntegrationState struct {
 	Description pulumi.StringPtrInput
 	// User submitted name of the integration.
 	Name pulumi.StringPtrInput
-	// Type of the integration. One of: `mailinglist`, `microsoftteams`, `newrelic`, `pagerduty`, `slack`, `webhook`.
+	// Type of the integration. One of: `datadog`, `jiraissue`, `jsm`, `mailinglist`, `microsoftteams`, `newrelic`, `opsgenie`, `pagerduty`, `slack`, `splunkoncall`, `webhook`.
 	Type pulumi.StringPtrInput
 }
 
@@ -190,7 +250,7 @@ type integrationArgs struct {
 	Description *string `pulumi:"description"`
 	// User submitted name of the integration.
 	Name *string `pulumi:"name"`
-	// Type of the integration. One of: `mailinglist`, `microsoftteams`, `newrelic`, `pagerduty`, `slack`, `webhook`.
+	// Type of the integration. One of: `datadog`, `jiraissue`, `jsm`, `mailinglist`, `microsoftteams`, `newrelic`, `opsgenie`, `pagerduty`, `slack`, `splunkoncall`, `webhook`.
 	Type string `pulumi:"type"`
 }
 
@@ -202,7 +262,7 @@ type IntegrationArgs struct {
 	Description pulumi.StringPtrInput
 	// User submitted name of the integration.
 	Name pulumi.StringPtrInput
-	// Type of the integration. One of: `mailinglist`, `microsoftteams`, `newrelic`, `pagerduty`, `slack`, `webhook`.
+	// Type of the integration. One of: `datadog`, `jiraissue`, `jsm`, `mailinglist`, `microsoftteams`, `newrelic`, `opsgenie`, `pagerduty`, `slack`, `splunkoncall`, `webhook`.
 	Type pulumi.StringInput
 }
 
@@ -308,7 +368,7 @@ func (o IntegrationOutput) Name() pulumi.StringOutput {
 	return o.ApplyT(func(v *Integration) pulumi.StringOutput { return v.Name }).(pulumi.StringOutput)
 }
 
-// Type of the integration. One of: `mailinglist`, `microsoftteams`, `newrelic`, `pagerduty`, `slack`, `webhook`.
+// Type of the integration. One of: `datadog`, `jiraissue`, `jsm`, `mailinglist`, `microsoftteams`, `newrelic`, `opsgenie`, `pagerduty`, `slack`, `splunkoncall`, `webhook`.
 func (o IntegrationOutput) Type() pulumi.StringOutput {
 	return o.ApplyT(func(v *Integration) pulumi.StringOutput { return v.Type }).(pulumi.StringOutput)
 }

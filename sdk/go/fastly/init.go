@@ -21,12 +21,18 @@ func (m *module) Version() semver.Version {
 
 func (m *module) Construct(ctx *pulumi.Context, name, typ, urn string) (r pulumi.Resource, err error) {
 	switch typ {
+	case "fastly:index/aiRuntimeControlProviderConnection:AiRuntimeControlProviderConnection":
+		r = &AiRuntimeControlProviderConnection{}
+	case "fastly:index/aiRuntimeControlVirtualKey:AiRuntimeControlVirtualKey":
+		r = &AiRuntimeControlVirtualKey{}
 	case "fastly:index/alert:Alert":
 		r = &Alert{}
 	case "fastly:index/apiSecurityOperation:ApiSecurityOperation":
 		r = &ApiSecurityOperation{}
 	case "fastly:index/apiSecurityOperationTag:ApiSecurityOperationTag":
 		r = &ApiSecurityOperationTag{}
+	case "fastly:index/auditLogEventMapping:AuditLogEventMapping":
+		r = &AuditLogEventMapping{}
 	case "fastly:index/computeAcl:ComputeAcl":
 		r = &ComputeAcl{}
 	case "fastly:index/computeAclEntries:ComputeAclEntries":
@@ -37,6 +43,8 @@ func (m *module) Construct(ctx *pulumi.Context, name, typ, urn string) (r pulumi
 		r = &ConfigstoreEntries{}
 	case "fastly:index/customDashboard:CustomDashboard":
 		r = &CustomDashboard{}
+	case "fastly:index/dnsZone:DnsZone":
+		r = &DnsZone{}
 	case "fastly:index/domain:Domain":
 		r = &Domain{}
 	case "fastly:index/domainServiceLink:DomainServiceLink":
@@ -87,6 +95,10 @@ func (m *module) Construct(ctx *pulumi.Context, name, typ, urn string) (r pulumi
 		r = &NgwafWorkspaceSignal{}
 	case "fastly:index/objectStorageAccessKeys:ObjectStorageAccessKeys":
 		r = &ObjectStorageAccessKeys{}
+	case "fastly:index/routingConfig:RoutingConfig":
+		r = &RoutingConfig{}
+	case "fastly:index/routingConfigDomainLink:RoutingConfigDomainLink":
+		r = &RoutingConfigDomainLink{}
 	case "fastly:index/secretstore:Secretstore":
 		r = &Secretstore{}
 	case "fastly:index/serviceACLEntries:ServiceACLEntries":
@@ -115,6 +127,8 @@ func (m *module) Construct(ctx *pulumi.Context, name, typ, urn string) (r pulumi
 		r = &TlsSubscription{}
 	case "fastly:index/tlsSubscriptionValidation:TlsSubscriptionValidation":
 		r = &TlsSubscriptionValidation{}
+	case "fastly:index/tsigKey:TsigKey":
+		r = &TsigKey{}
 	case "fastly:index/user:User":
 		r = &User{}
 	default:
@@ -150,6 +164,16 @@ func init() {
 	}
 	pulumi.RegisterResourceModule(
 		"fastly",
+		"index/aiRuntimeControlProviderConnection",
+		&module{version},
+	)
+	pulumi.RegisterResourceModule(
+		"fastly",
+		"index/aiRuntimeControlVirtualKey",
+		&module{version},
+	)
+	pulumi.RegisterResourceModule(
+		"fastly",
 		"index/alert",
 		&module{version},
 	)
@@ -161,6 +185,11 @@ func init() {
 	pulumi.RegisterResourceModule(
 		"fastly",
 		"index/apiSecurityOperationTag",
+		&module{version},
+	)
+	pulumi.RegisterResourceModule(
+		"fastly",
+		"index/auditLogEventMapping",
 		&module{version},
 	)
 	pulumi.RegisterResourceModule(
@@ -186,6 +215,11 @@ func init() {
 	pulumi.RegisterResourceModule(
 		"fastly",
 		"index/customDashboard",
+		&module{version},
+	)
+	pulumi.RegisterResourceModule(
+		"fastly",
+		"index/dnsZone",
 		&module{version},
 	)
 	pulumi.RegisterResourceModule(
@@ -315,6 +349,16 @@ func init() {
 	)
 	pulumi.RegisterResourceModule(
 		"fastly",
+		"index/routingConfig",
+		&module{version},
+	)
+	pulumi.RegisterResourceModule(
+		"fastly",
+		"index/routingConfigDomainLink",
+		&module{version},
+	)
+	pulumi.RegisterResourceModule(
+		"fastly",
 		"index/secretstore",
 		&module{version},
 	)
@@ -381,6 +425,11 @@ func init() {
 	pulumi.RegisterResourceModule(
 		"fastly",
 		"index/tlsSubscriptionValidation",
+		&module{version},
+	)
+	pulumi.RegisterResourceModule(
+		"fastly",
+		"index/tsigKey",
 		&module{version},
 	)
 	pulumi.RegisterResourceModule(

@@ -21,7 +21,7 @@ class ConfigstoreEntriesArgs:
     def __init__(__self__, *,
                  entries: pulumi.Input[Mapping[str, pulumi.Input[_builtins.str]]],
                  store_id: pulumi.Input[_builtins.str],
-                 manage_entries: Optional[pulumi.Input[_builtins.bool]] = None):
+                 manage_entries: pulumi.Input[Optional[_builtins.bool]] = None):
         """
         The set of arguments for constructing a ConfigstoreEntries resource.
 
@@ -60,23 +60,23 @@ class ConfigstoreEntriesArgs:
 
     @_builtins.property
     @pulumi.getter(name="manageEntries")
-    def manage_entries(self) -> Optional[pulumi.Input[_builtins.bool]]:
+    def manage_entries(self) -> pulumi.Input[Optional[_builtins.bool]]:
         """
         Have Terraform manage the entries (default: false). If set to `true` Terraform will remove any entries that were added externally from the config seeded values.
         """
         return pulumi.get(self, "manage_entries")
 
     @manage_entries.setter
-    def manage_entries(self, value: Optional[pulumi.Input[_builtins.bool]]):
+    def manage_entries(self, value: pulumi.Input[Optional[_builtins.bool]]):
         pulumi.set(self, "manage_entries", value)
 
 
 @pulumi.input_type
 class _ConfigstoreEntriesState:
     def __init__(__self__, *,
-                 entries: Optional[pulumi.Input[Mapping[str, pulumi.Input[_builtins.str]]]] = None,
-                 manage_entries: Optional[pulumi.Input[_builtins.bool]] = None,
-                 store_id: Optional[pulumi.Input[_builtins.str]] = None):
+                 entries: pulumi.Input[Optional[Mapping[str, pulumi.Input[_builtins.str]]]] = None,
+                 manage_entries: pulumi.Input[Optional[_builtins.bool]] = None,
+                 store_id: pulumi.Input[Optional[_builtins.str]] = None):
         """
         Input properties used for looking up and filtering ConfigstoreEntries resources.
 
@@ -93,38 +93,38 @@ class _ConfigstoreEntriesState:
 
     @_builtins.property
     @pulumi.getter
-    def entries(self) -> Optional[pulumi.Input[Mapping[str, pulumi.Input[_builtins.str]]]]:
+    def entries(self) -> pulumi.Input[Optional[Mapping[str, pulumi.Input[_builtins.str]]]]:
         """
         A map representing an entry in the Config Store, (key/value)
         """
         return pulumi.get(self, "entries")
 
     @entries.setter
-    def entries(self, value: Optional[pulumi.Input[Mapping[str, pulumi.Input[_builtins.str]]]]):
+    def entries(self, value: pulumi.Input[Optional[Mapping[str, pulumi.Input[_builtins.str]]]]):
         pulumi.set(self, "entries", value)
 
     @_builtins.property
     @pulumi.getter(name="manageEntries")
-    def manage_entries(self) -> Optional[pulumi.Input[_builtins.bool]]:
+    def manage_entries(self) -> pulumi.Input[Optional[_builtins.bool]]:
         """
         Have Terraform manage the entries (default: false). If set to `true` Terraform will remove any entries that were added externally from the config seeded values.
         """
         return pulumi.get(self, "manage_entries")
 
     @manage_entries.setter
-    def manage_entries(self, value: Optional[pulumi.Input[_builtins.bool]]):
+    def manage_entries(self, value: pulumi.Input[Optional[_builtins.bool]]):
         pulumi.set(self, "manage_entries", value)
 
     @_builtins.property
     @pulumi.getter(name="storeId")
-    def store_id(self) -> Optional[pulumi.Input[_builtins.str]]:
+    def store_id(self) -> pulumi.Input[Optional[_builtins.str]]:
         """
         An alphanumeric string identifying the Config Store.
         """
         return pulumi.get(self, "store_id")
 
     @store_id.setter
-    def store_id(self, value: Optional[pulumi.Input[_builtins.str]]):
+    def store_id(self, value: pulumi.Input[Optional[_builtins.str]]):
         pulumi.set(self, "store_id", value)
 
 
@@ -134,16 +134,20 @@ class ConfigstoreEntries(pulumi.CustomResource):
     def __init__(__self__,
                  resource_name: str,
                  opts: Optional[pulumi.ResourceOptions] = None,
-                 entries: Optional[pulumi.Input[Mapping[str, pulumi.Input[_builtins.str]]]] = None,
-                 manage_entries: Optional[pulumi.Input[_builtins.bool]] = None,
-                 store_id: Optional[pulumi.Input[_builtins.str]] = None,
+                 entries: pulumi.Input[Optional[Mapping[str, pulumi.Input[_builtins.str]]]] = None,
+                 manage_entries: pulumi.Input[Optional[_builtins.bool]] = None,
+                 store_id: pulumi.Input[Optional[_builtins.str]] = None,
                  __props__=None):
         """
         The Config Store (`Configstore`) can be seeded with initial key-value pairs using the `ConfigstoreEntries` resource.
 
-        After the first `pulumi up` the default behaviour is to ignore any further configuration changes to those key-value pairs. Terraform will expect modifications to happen outside of Terraform (e.g. new key-value pairs to be managed using the [Fastly API](https://developer.fastly.com/reference/api/) or [Fastly CLI](https://developer.fastly.com/learning/tools/cli/)).
+        By default (`manage_entries = false`), Terraform seeds the configured key-value pairs when the resource is created and then allows the entries to be managed externally using the [Fastly API](https://developer.fastly.com/reference/api/) or [Fastly CLI](https://developer.fastly.com/learning/tools/cli/). In this mode, entry data is cleared from Terraform state during refresh and remote entries are not listed by the provider. Changes to configured `entries` after creation are ignored.
 
-        To change the default behaviour (so Terraform continues to manage the key-value pairs within the configuration) set `manage_entries = true`.
+        Set `manage_entries = true` if Terraform should continue to track and reconcile the Config Store entries. If management is enabled after being disabled, Terraform performs one remote reconciliation so existing entries can be adopted without blindly recreating them.
+
+        > **Note:** Because unmanaged entry data is not retained in Terraform state, removing a `ConfigstoreEntries` resource with `manage_entries = false` does not delete the entries that it originally seeded.
+
+        > **Note:** Use `manage_entries = true` cautiously. Terraform will overwrite external changes and delete remote entries that are not present in the configured `entries` map.
 
         > **Note:** Terraform should not be used to store large amounts of data, so it's recommended you leave the default behaviour in place and only seed the store with a small amount of key-value pairs. For more information see "Configuration not data".
 
@@ -240,9 +244,13 @@ class ConfigstoreEntries(pulumi.CustomResource):
         """
         The Config Store (`Configstore`) can be seeded with initial key-value pairs using the `ConfigstoreEntries` resource.
 
-        After the first `pulumi up` the default behaviour is to ignore any further configuration changes to those key-value pairs. Terraform will expect modifications to happen outside of Terraform (e.g. new key-value pairs to be managed using the [Fastly API](https://developer.fastly.com/reference/api/) or [Fastly CLI](https://developer.fastly.com/learning/tools/cli/)).
+        By default (`manage_entries = false`), Terraform seeds the configured key-value pairs when the resource is created and then allows the entries to be managed externally using the [Fastly API](https://developer.fastly.com/reference/api/) or [Fastly CLI](https://developer.fastly.com/learning/tools/cli/). In this mode, entry data is cleared from Terraform state during refresh and remote entries are not listed by the provider. Changes to configured `entries` after creation are ignored.
 
-        To change the default behaviour (so Terraform continues to manage the key-value pairs within the configuration) set `manage_entries = true`.
+        Set `manage_entries = true` if Terraform should continue to track and reconcile the Config Store entries. If management is enabled after being disabled, Terraform performs one remote reconciliation so existing entries can be adopted without blindly recreating them.
+
+        > **Note:** Because unmanaged entry data is not retained in Terraform state, removing a `ConfigstoreEntries` resource with `manage_entries = false` does not delete the entries that it originally seeded.
+
+        > **Note:** Use `manage_entries = true` cautiously. Terraform will overwrite external changes and delete remote entries that are not present in the configured `entries` map.
 
         > **Note:** Terraform should not be used to store large amounts of data, so it's recommended you leave the default behaviour in place and only seed the store with a small amount of key-value pairs. For more information see "Configuration not data".
 
@@ -339,9 +347,9 @@ class ConfigstoreEntries(pulumi.CustomResource):
     def _internal_init(__self__,
                  resource_name: str,
                  opts: Optional[pulumi.ResourceOptions] = None,
-                 entries: Optional[pulumi.Input[Mapping[str, pulumi.Input[_builtins.str]]]] = None,
-                 manage_entries: Optional[pulumi.Input[_builtins.bool]] = None,
-                 store_id: Optional[pulumi.Input[_builtins.str]] = None,
+                 entries: pulumi.Input[Optional[Mapping[str, pulumi.Input[_builtins.str]]]] = None,
+                 manage_entries: pulumi.Input[Optional[_builtins.bool]] = None,
+                 store_id: pulumi.Input[Optional[_builtins.str]] = None,
                  __props__=None):
         opts = pulumi.ResourceOptions.merge(_utilities.get_resource_opts_defaults(), opts)
         if not isinstance(opts, pulumi.ResourceOptions):
@@ -368,9 +376,9 @@ class ConfigstoreEntries(pulumi.CustomResource):
     def get(resource_name: str,
             id: pulumi.Input[str],
             opts: Optional[pulumi.ResourceOptions] = None,
-            entries: Optional[pulumi.Input[Mapping[str, pulumi.Input[_builtins.str]]]] = None,
-            manage_entries: Optional[pulumi.Input[_builtins.bool]] = None,
-            store_id: Optional[pulumi.Input[_builtins.str]] = None) -> 'ConfigstoreEntries':
+            entries: pulumi.Input[Optional[Mapping[str, pulumi.Input[_builtins.str]]]] = None,
+            manage_entries: pulumi.Input[Optional[_builtins.bool]] = None,
+            store_id: pulumi.Input[Optional[_builtins.str]] = None) -> 'ConfigstoreEntries':
         """
         Get an existing ConfigstoreEntries resource's state with the given name, id, and optional extra
         properties used to qualify the lookup.

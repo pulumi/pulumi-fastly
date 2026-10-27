@@ -210,51 +210,51 @@ export interface ApiSecurityOperationState {
     /**
      * Created timestamp (when present).
      */
-    createdAt?: pulumi.Input<string>;
+    createdAt?: pulumi.Input<string | undefined>;
     /**
      * A description of the operation.
      */
-    description?: pulumi.Input<string>;
+    description?: pulumi.Input<string | undefined>;
     /**
      * Domain for the operation (exact match). Can be created, but not updated.
      */
-    domain?: pulumi.Input<string>;
+    domain?: pulumi.Input<string | undefined>;
     /**
      * Last seen timestamp (when present).
      */
-    lastSeenAt?: pulumi.Input<string>;
+    lastSeenAt?: pulumi.Input<string | undefined>;
     /**
      * HTTP method for the operation (e.g. GET, POST). Can be created, but not updated.
      */
-    method?: pulumi.Input<string>;
+    method?: pulumi.Input<string | undefined>;
     /**
      * The operation ID.
      */
-    operationId?: pulumi.Input<string>;
+    operationId?: pulumi.Input<string | undefined>;
     /**
      * Path for the operation (exact match). Can be created, but not updated.
      */
-    path?: pulumi.Input<string>;
+    path?: pulumi.Input<string | undefined>;
     /**
      * Observed requests per second (when present).
      */
-    rps?: pulumi.Input<number>;
+    rps?: pulumi.Input<number | undefined>;
     /**
      * Service ID the operation belongs to. To import, use: \n\n/\n\n.
      */
-    serviceId?: pulumi.Input<string>;
+    serviceId?: pulumi.Input<string | undefined>;
     /**
      * Discovery status (when present).
      */
-    status?: pulumi.Input<string>;
+    status?: pulumi.Input<string | undefined>;
     /**
      * Associated operation tag IDs.
      */
-    tagIds?: pulumi.Input<pulumi.Input<string>[]>;
+    tagIds?: pulumi.Input<pulumi.Input<string>[] | undefined>;
     /**
      * Updated timestamp (when present).
      */
-    updatedAt?: pulumi.Input<string>;
+    updatedAt?: pulumi.Input<string | undefined>;
 }
 
 /**
@@ -264,7 +264,7 @@ export interface ApiSecurityOperationArgs {
     /**
      * A description of the operation.
      */
-    description?: pulumi.Input<string>;
+    description?: pulumi.Input<string | undefined>;
     /**
      * Domain for the operation (exact match). Can be created, but not updated.
      */
@@ -284,5 +284,5 @@ export interface ApiSecurityOperationArgs {
     /**
      * Associated operation tag IDs.
      */
-    tagIds?: pulumi.Input<pulumi.Input<string>[]>;
+    tagIds?: pulumi.Input<pulumi.Input<string>[] | undefined>;
 }
