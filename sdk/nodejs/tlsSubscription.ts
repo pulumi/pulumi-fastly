@@ -152,8 +152,7 @@ import * as utilities from "./utilities";
  * });
  * const domainValidation: {[key: string]: aws.index.Route53Record} = {};
  * exampleTlsSubscription.domains.apply(domains => {
- *     const domainValidation: {[key: string]: aws.index.Route53Record} = {};
- * pulumi.all(domains.reduce((__obj, domain) => ({ ...__obj, [String(std.replace({
+ *     for (const range of Object.entries(domains.reduce((__obj, domain) => ({ ...__obj, [String(std.replace({
  *         text: domain,
  *         search: "*.",
  *         replace: "",
@@ -161,20 +160,18 @@ import * as utilities from "./utilities";
  *         text: domain,
  *         search: "*.",
  *         replace: "",
- *     }).result}`).map(obj => (obj)))[0] }), {})).apply(rangeBody => {
- *         for (const range of Object.entries(rangeBody).sort().map(([k, v]) => ({key: k, value: v}))) {
- *             domainValidation[range.key] = new aws.index.Route53Record(`domain_validation-${range.key}`, {
- *                 name: range.value[0].recordName,
- *                 type: range.value[0].recordType,
- *                 zoneId: production.zoneId,
- *                 allowOverwrite: true,
- *                 records: [range.value[0].recordValue],
- *                 ttl: 60,
- *             }, {
- *             dependsOn: [exampleTlsSubscription],
- *         });
- *         }
+ *     }).result}`).map(obj => (obj)))[0] }), {})).sort().map(([k, v]) => ({key: k, value: v}))) {
+ *         domainValidation[range.key] = new aws.index.Route53Record(`domain_validation-${range.key}`, {
+ *             name: range.value[0].recordName,
+ *             type: range.value[0].recordType,
+ *             zoneId: production.zoneId,
+ *             allowOverwrite: true,
+ *             records: [range.value[0].recordValue],
+ *             ttl: 60,
+ *         }, {
+ *         dependsOn: [exampleTlsSubscription],
  *     });
+ *     }
  * });
  * // This is a resource that other resources can depend on if they require the certificate to be issued.
  * // NOTE: Internally the resource keeps retrying `GetTLSSubscription` until no error is returned (or the configured timeout is reached).

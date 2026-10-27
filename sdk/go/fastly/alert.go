@@ -52,7 +52,7 @@ import (
 //			}
 //			_, err = fastly.NewAlert(ctx, "example", &fastly.AlertArgs{
 //				Name:      pulumi.String("my_vcl_service errors"),
-//				ServiceId: example.ID().ToIDOutput().ToStringOutput(),
+//				ServiceId: example.ID(),
 //				Source:    pulumi.String("stats"),
 //				Metric:    pulumi.String("status_5xx"),
 //				EvaluationStrategy: &fastly.AlertEvaluationStrategyArgs{
@@ -61,7 +61,7 @@ import (
 //					Threshold: pulumi.Float64(10),
 //				},
 //				IntegrationIds: pulumi.StringArray{
-//					exampleIntegration.ID().ToIDOutput().ToStringOutput(),
+//					exampleIntegration.ID(),
 //				},
 //			})
 //			if err != nil {

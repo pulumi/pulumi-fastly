@@ -41,18 +41,15 @@ import * as utilities from "./utilities";
  * });
  * const myDynContent: {[key: string]: fastly.ServiceDynamicSnippetContent} = {};
  * myservice.dynamicsnippets.apply(dynamicsnippets => {
- *     const myDynContent: {[key: string]: fastly.ServiceDynamicSnippetContent} = {};
- * pulumi.all(.filter(d => d.name == "My Dynamic Snippet").reduce((__obj, d) => ({ ...__obj, [d.name]: d }), {})).apply(rangeBody => {
- *         for (const range of Object.entries(rangeBody).sort().map(([k, v]) => ({key: k, value: v}))) {
- *             myDynContent[range.key] = new fastly.ServiceDynamicSnippetContent(`my_dyn_content-${range.key}`, {
- *                 serviceId: myservice.id,
- *                 snippetId: range.value.snippetId,
- *                 content: `if ( req.url ) {
+ *     for (const range of Object.entries(.filter(d => d.name == "My Dynamic Snippet").reduce((__obj, d) => ({ ...__obj, [d.name]: d }), {})).sort().map(([k, v]) => ({key: k, value: v}))) {
+ *         myDynContent[range.key] = new fastly.ServiceDynamicSnippetContent(`my_dyn_content-${range.key}`, {
+ *             serviceId: myservice.id,
+ *             snippetId: range.value.snippetId,
+ *             content: `if ( req.url ) {
  *  set req.http.my-snippet-test-header = "true";
  * }`,
- *             });
- *         }
- *     });
+ *         });
+ *     }
  * });
  * ```
  *
@@ -90,33 +87,27 @@ import * as utilities from "./utilities";
  * });
  * const myDynContentOne: {[key: string]: fastly.ServiceDynamicSnippetContent} = {};
  * myservice.dynamicsnippets.apply(dynamicsnippets => {
- *     const myDynContentOne: {[key: string]: fastly.ServiceDynamicSnippetContent} = {};
- * pulumi.all(.filter(d => d.name == "My Dynamic Snippet One").reduce((__obj, d) => ({ ...__obj, [d.name]: d }), {})).apply(rangeBody => {
- *         for (const range of Object.entries(rangeBody).sort().map(([k, v]) => ({key: k, value: v}))) {
- *             myDynContentOne[range.key] = new fastly.ServiceDynamicSnippetContent(`my_dyn_content_one-${range.key}`, {
- *                 serviceId: myservice.id,
- *                 snippetId: range.value.snippetId,
- *                 content: `if ( req.url ) {
+ *     for (const range of Object.entries(.filter(d => d.name == "My Dynamic Snippet One").reduce((__obj, d) => ({ ...__obj, [d.name]: d }), {})).sort().map(([k, v]) => ({key: k, value: v}))) {
+ *         myDynContentOne[range.key] = new fastly.ServiceDynamicSnippetContent(`my_dyn_content_one-${range.key}`, {
+ *             serviceId: myservice.id,
+ *             snippetId: range.value.snippetId,
+ *             content: `if ( req.url ) {
  *  set req.http.my-snippet-test-header-one = "true";
  * }`,
- *             });
- *         }
- *     });
+ *         });
+ *     }
  * });
  * const myDynContentTwo: {[key: string]: fastly.ServiceDynamicSnippetContent} = {};
  * myservice.dynamicsnippets.apply(dynamicsnippets => {
- *     const myDynContentTwo: {[key: string]: fastly.ServiceDynamicSnippetContent} = {};
- * pulumi.all(.filter(d => d.name == "My Dynamic Snippet Two").reduce((__obj, d) => ({ ...__obj, [d.name]: d }), {})).apply(rangeBody => {
- *         for (const range of Object.entries(rangeBody).sort().map(([k, v]) => ({key: k, value: v}))) {
- *             myDynContentTwo[range.key] = new fastly.ServiceDynamicSnippetContent(`my_dyn_content_two-${range.key}`, {
- *                 serviceId: myservice.id,
- *                 snippetId: range.value.snippetId,
- *                 content: `if ( req.url ) {
+ *     for (const range of Object.entries(.filter(d => d.name == "My Dynamic Snippet Two").reduce((__obj, d) => ({ ...__obj, [d.name]: d }), {})).sort().map(([k, v]) => ({key: k, value: v}))) {
+ *         myDynContentTwo[range.key] = new fastly.ServiceDynamicSnippetContent(`my_dyn_content_two-${range.key}`, {
+ *             serviceId: myservice.id,
+ *             snippetId: range.value.snippetId,
+ *             content: `if ( req.url ) {
  *  set req.http.my-snippet-test-header-two = "true";
  * }`,
- *             });
- *         }
- *     });
+ *         });
+ *     }
  * });
  * ```
  *

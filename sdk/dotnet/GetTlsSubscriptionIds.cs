@@ -26,14 +26,23 @@ namespace Pulumi.Fastly
         /// {
         ///     var example = Fastly.GetTlsSubscriptionIds.Invoke();
         /// 
-        ///     var exampleGetTlsSubscription = ;
+        ///     var exampleGetTlsSubscription = .ToDictionary(item =&gt; {
+        ///         var __key = item.Key;
+        ///         return __key.ToString(System.Globalization.CultureInfo.InvariantCulture);
+        ///     }, item =&gt; {
+        ///         var __value = item.Value;
+        ///         return Fastly.GetTlsSubscription.Invoke(new()
+        ///         {
+        ///             Id = __value,
+        ///         });
+        ///     });
         /// 
         ///     return new Dictionary&lt;string, object?&gt;
         ///     {
-        ///         ["subscriptionDomains"] = exampleGetTlsSubscription.Apply(exampleGetTlsSubscription =&gt; (exampleGetTlsSubscription).Values.Select(a =&gt; 
+        ///         ["subscriptionDomains"] = (exampleGetTlsSubscription).Values.Select(a =&gt; 
         ///         {
         ///             return a.CertificateAuthority;
-        ///         }).ToList()),
+        ///         }).ToList(),
         ///     };
         /// });
         /// ```
@@ -56,14 +65,23 @@ namespace Pulumi.Fastly
         /// {
         ///     var example = Fastly.GetTlsSubscriptionIds.Invoke();
         /// 
-        ///     var exampleGetTlsSubscription = ;
+        ///     var exampleGetTlsSubscription = .ToDictionary(item =&gt; {
+        ///         var __key = item.Key;
+        ///         return __key.ToString(System.Globalization.CultureInfo.InvariantCulture);
+        ///     }, item =&gt; {
+        ///         var __value = item.Value;
+        ///         return Fastly.GetTlsSubscription.Invoke(new()
+        ///         {
+        ///             Id = __value,
+        ///         });
+        ///     });
         /// 
         ///     return new Dictionary&lt;string, object?&gt;
         ///     {
-        ///         ["subscriptionDomains"] = exampleGetTlsSubscription.Apply(exampleGetTlsSubscription =&gt; (exampleGetTlsSubscription).Values.Select(a =&gt; 
+        ///         ["subscriptionDomains"] = (exampleGetTlsSubscription).Values.Select(a =&gt; 
         ///         {
         ///             return a.CertificateAuthority;
-        ///         }).ToList()),
+        ///         }).ToList(),
         ///     };
         /// });
         /// ```
@@ -86,14 +104,23 @@ namespace Pulumi.Fastly
         /// {
         ///     var example = Fastly.GetTlsSubscriptionIds.Invoke();
         /// 
-        ///     var exampleGetTlsSubscription = ;
+        ///     var exampleGetTlsSubscription = .ToDictionary(item =&gt; {
+        ///         var __key = item.Key;
+        ///         return __key.ToString(System.Globalization.CultureInfo.InvariantCulture);
+        ///     }, item =&gt; {
+        ///         var __value = item.Value;
+        ///         return Fastly.GetTlsSubscription.Invoke(new()
+        ///         {
+        ///             Id = __value,
+        ///         });
+        ///     });
         /// 
         ///     return new Dictionary&lt;string, object?&gt;
         ///     {
-        ///         ["subscriptionDomains"] = exampleGetTlsSubscription.Apply(exampleGetTlsSubscription =&gt; (exampleGetTlsSubscription).Values.Select(a =&gt; 
+        ///         ["subscriptionDomains"] = (exampleGetTlsSubscription).Values.Select(a =&gt; 
         ///         {
         ///             return a.CertificateAuthority;
-        ///         }).ToList()),
+        ///         }).ToList(),
         ///     };
         /// });
         /// ```

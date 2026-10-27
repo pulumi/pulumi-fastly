@@ -42,7 +42,7 @@ import (
 //			}
 //			// Optional: create an operation (so the function returns something predictable)
 //			_, err = fastly.NewApiSecurityOperation(ctx, "example", &fastly.ApiSecurityOperationArgs{
-//				ServiceId:   svc1.ID().ToIDOutput().ToStringOutput(),
+//				ServiceId:   svc1.ID(),
 //				Method:      pulumi.String("GET"),
 //				Domain:      pulumi.String("api.example.com"),
 //				Path:        pulumi.String("/v1/things"),
@@ -52,7 +52,7 @@ import (
 //				return err
 //			}
 //			ops := fastly.GetApiSecurityOperationsOutput(ctx, fastly.GetApiSecurityOperationsOutputArgs{
-//				ServiceId: svc1.ID().ToIDOutput().ToStringOutput(),
+//				ServiceId: svc1.ID(),
 //				Methods: pulumi.StringArray{
 //					pulumi.String("GET"),
 //				},

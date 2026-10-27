@@ -47,19 +47,16 @@ import * as utilities from "./utilities";
  * });
  * const items: {[key: string]: fastly.ServiceDictionaryItems} = {};
  * myservice.dictionaries.apply(dictionaries => {
- *     const items: {[key: string]: fastly.ServiceDictionaryItems} = {};
- * pulumi.all(.filter(d => d.name == mydictName).reduce((__obj, d) => ({ ...__obj, [d.name]: d }), {})).apply(rangeBody => {
- *         for (const range of Object.entries(rangeBody).sort().map(([k, v]) => ({key: k, value: v}))) {
- *             items[range.key] = new fastly.ServiceDictionaryItems(`items-${range.key}`, {
- *                 serviceId: myservice.id,
- *                 dictionaryId: range.value.dictionaryId,
- *                 items: {
- *                     key1: "value1",
- *                     key2: "value2",
- *                 },
- *             });
- *         }
- *     });
+ *     for (const range of Object.entries(.filter(d => d.name == mydictName).reduce((__obj, d) => ({ ...__obj, [d.name]: d }), {})).sort().map(([k, v]) => ({key: k, value: v}))) {
+ *         items[range.key] = new fastly.ServiceDictionaryItems(`items-${range.key}`, {
+ *             serviceId: myservice.id,
+ *             dictionaryId: range.value.dictionaryId,
+ *             items: {
+ *                 key1: "value1",
+ *                 key2: "value2",
+ *             },
+ *         });
+ *     }
  * });
  * ```
  *
@@ -95,16 +92,13 @@ import * as utilities from "./utilities";
  * });
  * const items: {[key: string]: fastly.ServiceDictionaryItems} = {};
  * myservice.dictionaries.apply(dictionaries => {
- *     const items: {[key: string]: fastly.ServiceDictionaryItems} = {};
- * pulumi.all(.filter(d => d.name == mydict.name).reduce((__obj, d) => ({ ...__obj, [d.name]: d }), {})).apply(rangeBody => {
- *         for (const range of Object.entries(rangeBody).sort().map(([k, v]) => ({key: k, value: v}))) {
- *             items[range.key] = new fastly.ServiceDictionaryItems(`items-${range.key}`, {
- *                 serviceId: myservice.id,
- *                 dictionaryId: range.value.dictionaryId,
- *                 items: mydict.items,
- *             });
- *         }
- *     });
+ *     for (const range of Object.entries(.filter(d => d.name == mydict.name).reduce((__obj, d) => ({ ...__obj, [d.name]: d }), {})).sort().map(([k, v]) => ({key: k, value: v}))) {
+ *         items[range.key] = new fastly.ServiceDictionaryItems(`items-${range.key}`, {
+ *             serviceId: myservice.id,
+ *             dictionaryId: range.value.dictionaryId,
+ *             items: mydict.items,
+ *         });
+ *     }
  * });
  * ```
  *
@@ -143,22 +137,19 @@ import * as utilities from "./utilities";
  * // This resource is dynamically creating the items from the local variables through for expressions and functions.
  * const project: {[key: string]: fastly.ServiceDictionaryItems} = {};
  * myservice.dictionaries.apply(dictionaries => {
- *     const project: {[key: string]: fastly.ServiceDictionaryItems} = {};
- * pulumi.all(.filter(d => d.name == dictionaryName).reduce((__obj, d) => ({ ...__obj, [d.name]: d }), {})).apply(rangeBody => {
- *         for (const range of Object.entries(rangeBody).sort().map(([k, v]) => ({key: k, value: v}))) {
- *             project[range.key] = new fastly.ServiceDictionaryItems(`project-${range.key}`, {
- *                 serviceId: myservice.id,
- *                 dictionaryId: range.value.dictionaryId,
- *                 items: hostDivisions.reduce((__obj, division) => ({ ...__obj, [division]: std.format({
- *                     input: "%s.%s",
- *                     args: [
- *                         division,
- *                         hostBase,
- *                     ],
- *                 }).result }), {}),
- *             });
- *         }
- *     });
+ *     for (const range of Object.entries(.filter(d => d.name == dictionaryName).reduce((__obj, d) => ({ ...__obj, [d.name]: d }), {})).sort().map(([k, v]) => ({key: k, value: v}))) {
+ *         project[range.key] = new fastly.ServiceDictionaryItems(`project-${range.key}`, {
+ *             serviceId: myservice.id,
+ *             dictionaryId: range.value.dictionaryId,
+ *             items: hostDivisions.reduce((__obj, division) => ({ ...__obj, [division]: std.format({
+ *                 input: "%s.%s",
+ *                 args: [
+ *                     division,
+ *                     hostBase,
+ *                 ],
+ *             }).result }), {}),
+ *         });
+ *     }
  * });
  * ```
  *

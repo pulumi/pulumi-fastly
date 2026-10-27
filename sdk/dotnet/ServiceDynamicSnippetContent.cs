@@ -63,21 +63,23 @@ namespace Pulumi.Fastly
     ///     });
     /// 
     ///     var myDynContent = new List&lt;Fastly.ServiceDynamicSnippetContent&gt;();
-    ///     .Apply(rangeBody =&gt;
+    ///     foreach (var range in myservice.Dynamicsnippets.Apply(dynamicsnippets =&gt; .ToDictionary(item =&gt; {
+    ///         var d = item.Value;
+    ///         return d.Name;
+    ///     }, item =&gt; {
+    ///         var d = item.Value;
+    ///         return d;
+    ///     })).Select(pair =&gt; new { pair.Key, pair.Value }))
     ///     {
-    ///         foreach (var range in rangeBody.Select(pair =&gt; new { pair.Key, pair.Value }))
+    ///         myDynContent.Add(new Fastly.ServiceDynamicSnippetContent($"my_dyn_content-{range.Key}", new()
     ///         {
-    ///             myDynContent.Add(new Fastly.ServiceDynamicSnippetContent($"my_dyn_content-{range.Key}", new()
-    ///             {
-    ///                 ServiceId = myservice.Id,
-    ///                 SnippetId = range.Value.SnippetId,
-    ///                 Content = @"if ( req.url ) {
+    ///             ServiceId = myservice.Id,
+    ///             SnippetId = range.Value.SnippetId,
+    ///             Content = @"if ( req.url ) {
     ///  set req.http.my-snippet-test-header = ""true"";
     /// }",
-    ///             }));
-    ///         }
-    ///         return 0;
-    ///     });
+    ///         }));
+    ///     }
     /// });
     /// ```
     /// 
@@ -131,37 +133,41 @@ namespace Pulumi.Fastly
     ///     });
     /// 
     ///     var myDynContentOne = new List&lt;Fastly.ServiceDynamicSnippetContent&gt;();
-    ///     .Apply(rangeBody =&gt;
+    ///     foreach (var range in myservice.Dynamicsnippets.Apply(dynamicsnippets =&gt; .ToDictionary(item =&gt; {
+    ///         var d = item.Value;
+    ///         return d.Name;
+    ///     }, item =&gt; {
+    ///         var d = item.Value;
+    ///         return d;
+    ///     })).Select(pair =&gt; new { pair.Key, pair.Value }))
     ///     {
-    ///         foreach (var range in rangeBody.Select(pair =&gt; new { pair.Key, pair.Value }))
+    ///         myDynContentOne.Add(new Fastly.ServiceDynamicSnippetContent($"my_dyn_content_one-{range.Key}", new()
     ///         {
-    ///             myDynContentOne.Add(new Fastly.ServiceDynamicSnippetContent($"my_dyn_content_one-{range.Key}", new()
-    ///             {
-    ///                 ServiceId = myservice.Id,
-    ///                 SnippetId = range.Value.SnippetId,
-    ///                 Content = @"if ( req.url ) {
+    ///             ServiceId = myservice.Id,
+    ///             SnippetId = range.Value.SnippetId,
+    ///             Content = @"if ( req.url ) {
     ///  set req.http.my-snippet-test-header-one = ""true"";
     /// }",
-    ///             }));
-    ///         }
-    ///         return 0;
-    ///     });
+    ///         }));
+    ///     }
     ///     var myDynContentTwo = new List&lt;Fastly.ServiceDynamicSnippetContent&gt;();
-    ///     .Apply(rangeBody =&gt;
+    ///     foreach (var range in myservice.Dynamicsnippets.Apply(dynamicsnippets =&gt; .ToDictionary(item =&gt; {
+    ///         var d = item.Value;
+    ///         return d.Name;
+    ///     }, item =&gt; {
+    ///         var d = item.Value;
+    ///         return d;
+    ///     })).Select(pair =&gt; new { pair.Key, pair.Value }))
     ///     {
-    ///         foreach (var range in rangeBody.Select(pair =&gt; new { pair.Key, pair.Value }))
+    ///         myDynContentTwo.Add(new Fastly.ServiceDynamicSnippetContent($"my_dyn_content_two-{range.Key}", new()
     ///         {
-    ///             myDynContentTwo.Add(new Fastly.ServiceDynamicSnippetContent($"my_dyn_content_two-{range.Key}", new()
-    ///             {
-    ///                 ServiceId = myservice.Id,
-    ///                 SnippetId = range.Value.SnippetId,
-    ///                 Content = @"if ( req.url ) {
+    ///             ServiceId = myservice.Id,
+    ///             SnippetId = range.Value.SnippetId,
+    ///             Content = @"if ( req.url ) {
     ///  set req.http.my-snippet-test-header-two = ""true"";
     /// }",
-    ///             }));
-    ///         }
-    ///         return 0;
-    ///     });
+    ///         }));
+    ///     }
     /// });
     /// ```
     /// 

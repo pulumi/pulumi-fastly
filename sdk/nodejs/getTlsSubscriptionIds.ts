@@ -17,7 +17,7 @@ import * as utilities from "./utilities";
  * const exampleGetTlsSubscription = example.then(example => .reduce((__obj, [__key, __value]) => ({ ...__obj, [String(__key)]: fastly.getTlsSubscription({
  *     id: __value,
  * }) }), {}));
- * export const subscriptionDomains = exampleGetTlsSubscription.apply(exampleGetTlsSubscription => Object.values(exampleGetTlsSubscription).map(a => (a.certificateAuthority)));
+ * export const subscriptionDomains = Object.values(exampleGetTlsSubscription).map(a => (a.certificateAuthority));
  * ```
  */
 export function getTlsSubscriptionIds(opts?: pulumi.InvokeOptions): Promise<GetTlsSubscriptionIdsResult> {
@@ -52,7 +52,7 @@ export interface GetTlsSubscriptionIdsResult {
  * const exampleGetTlsSubscription = example.then(example => .reduce((__obj, [__key, __value]) => ({ ...__obj, [String(__key)]: fastly.getTlsSubscription({
  *     id: __value,
  * }) }), {}));
- * export const subscriptionDomains = exampleGetTlsSubscription.apply(exampleGetTlsSubscription => Object.values(exampleGetTlsSubscription).map(a => (a.certificateAuthority)));
+ * export const subscriptionDomains = Object.values(exampleGetTlsSubscription).map(a => (a.certificateAuthority));
  * ```
  */
 export function getTlsSubscriptionIdsOutput(opts?: pulumi.InvokeOutputOptions): pulumi.Output<GetTlsSubscriptionIdsResult> {

@@ -44,7 +44,7 @@ import (
 //			}
 //			// Discovered operations depend on traffic and may legitimately be empty.
 //			discovered := fastly.GetApiSecurityDiscoveredOperationsOutput(ctx, fastly.GetApiSecurityDiscoveredOperationsOutputArgs{
-//				ServiceId: svc1.ID().ToIDOutput().ToStringOutput(),
+//				ServiceId: svc1.ID(),
 //				Status:    pulumi.String("SAVED"),
 //				Methods: pulumi.StringArray{
 //					pulumi.String("GET"),

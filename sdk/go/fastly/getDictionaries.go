@@ -51,7 +51,7 @@ import (
 //				return err
 //			}
 //			example := fastly.GetDictionariesOutput(ctx, fastly.GetDictionariesOutputArgs{
-//				ServiceId:      exampleServiceVcl.ID().ToIDOutput().ToStringOutput(),
+//				ServiceId:      exampleServiceVcl.ID(),
 //				ServiceVersion: exampleServiceVcl.ActiveVersion,
 //			}, nil)
 //			ctx.Export("serviceDictionaries", example)

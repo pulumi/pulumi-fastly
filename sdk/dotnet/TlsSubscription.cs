@@ -247,31 +247,46 @@ namespace Pulumi.Fastly
     ///     });
     /// 
     ///     var domainValidation = new List&lt;Aws.Route53Record&gt;();
-    ///     domains.Apply(rangeBody =&gt;
-    ///     {
-    ///         foreach (var range in rangeBody.Select(pair =&gt; new { pair.Key, pair.Value }))
+    ///     foreach (var range in exampleTlsSubscription.Domains.Apply(domains =&gt; domains.ToDictionary(item =&gt; {
+    ///         var domain = item.Value;
+    ///         return Std.Replace.Invoke(new()
     ///         {
-    ///             domainValidation.Add(new Aws.Route53Record($"domain_validation-{range.Key}", new()
+    ///             Text = domain,
+    ///             Search = "*.",
+    ///             Replace = "",
+    ///         }).Result.ToString(System.Globalization.CultureInfo.InvariantCulture);
+    ///     }, item =&gt; {
+    ///         var domain = item.Value;
+    ///         return exampleTlsSubscription.ManagedDnsChallenges.Apply(managedDnsChallenges =&gt; managedDnsChallenges.Where(obj =&gt; obj.RecordName == $"_acme-challenge.{Std.Replace.Invoke(new()
+    ///         {
+    ///             Text = domain,
+    ///             Search = "*.",
+    ///             Replace = "",
+    ///         }).Result}").Select(obj =&gt; 
+    ///         {
+    ///             return obj;
+    ///         }).ToList())[0];
+    ///     })).Select(pair =&gt; new { pair.Key, pair.Value }))
+    ///     {
+    ///         domainValidation.Add(new Aws.Route53Record($"domain_validation-{range.Key}", new()
+    ///         {
+    ///             Name = range.Value[0].RecordName,
+    ///             Type = range.Value[0].RecordType,
+    ///             ZoneId = production.ZoneId,
+    ///             AllowOverwrite = true,
+    ///             Records = new[]
     ///             {
-    ///                 Name = range.Value[0].RecordName,
-    ///                 Type = range.Value[0].RecordType,
-    ///                 ZoneId = production.ZoneId,
-    ///                 AllowOverwrite = true,
-    ///                 Records = new[]
-    ///                 {
-    ///                     range.Value[0].RecordValue,
-    ///                 },
-    ///                 Ttl = 60,
-    ///             }, new CustomResourceOptions
+    ///                 range.Value[0].RecordValue,
+    ///             },
+    ///             Ttl = 60,
+    ///         }, new CustomResourceOptions
+    ///         {
+    ///             DependsOn =
     ///             {
-    ///                 DependsOn =
-    ///                 {
-    ///                     exampleTlsSubscription,
-    ///                 },
-    ///             }));
-    ///         }
-    ///         return 0;
-    ///     });
+    ///                 exampleTlsSubscription,
+    ///             },
+    ///         }));
+    ///     }
     ///     // This is a resource that other resources can depend on if they require the certificate to be issued.
     ///     // NOTE: Internally the resource keeps retrying `GetTLSSubscription` until no error is returned (or the configured timeout is reached).
     ///     var exampleTlsSubscriptionValidation = new Fastly.TlsSubscriptionValidation("example", new()
