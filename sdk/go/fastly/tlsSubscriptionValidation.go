@@ -95,7 +95,7 @@ import (
 //			var exampleTlsSubscriptionValidation []*fastly.TlsSubscriptionValidation
 //			for key0, _ := range certificates {
 //				__res, err := fastly.NewTlsSubscriptionValidation(ctx, fmt.Sprintf("example-%v", key0), &fastly.TlsSubscriptionValidationArgs{
-//					SubscriptionId: exampleTlsSubscription[key0].ID().ToIDOutput().ToStringOutput(),
+//					SubscriptionId: exampleTlsSubscription[key0].ID(),
 //				}, pulumi.DependsOn([]pulumi.Resource{
 //					domainValidation,
 //				}))

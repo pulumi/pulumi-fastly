@@ -19,7 +19,7 @@ import * as utilities from "./utilities";
  * const exampleGetTlsActivation = example.then(example => .reduce((__obj, [__key, __value]) => ({ ...__obj, [String(__key)]: fastly.getTlsActivation({
  *     id: __value,
  * }) }), {}));
- * export const activationDomains = exampleGetTlsActivation.apply(exampleGetTlsActivation => Object.values(exampleGetTlsActivation).map(a => (a.domain)));
+ * export const activationDomains = Object.values(exampleGetTlsActivation).map(a => (a.domain));
  * ```
  */
 export function getTlsActivationIds(args?: GetTlsActivationIdsArgs, opts?: pulumi.InvokeOptions): Promise<GetTlsActivationIdsResult> {
@@ -72,7 +72,7 @@ export interface GetTlsActivationIdsResult {
  * const exampleGetTlsActivation = example.then(example => .reduce((__obj, [__key, __value]) => ({ ...__obj, [String(__key)]: fastly.getTlsActivation({
  *     id: __value,
  * }) }), {}));
- * export const activationDomains = exampleGetTlsActivation.apply(exampleGetTlsActivation => Object.values(exampleGetTlsActivation).map(a => (a.domain)));
+ * export const activationDomains = Object.values(exampleGetTlsActivation).map(a => (a.domain));
  * ```
  */
 export function getTlsActivationIdsOutput(args?: GetTlsActivationIdsOutputArgs, opts?: pulumi.InvokeOutputOptions): pulumi.Output<GetTlsActivationIdsResult> {

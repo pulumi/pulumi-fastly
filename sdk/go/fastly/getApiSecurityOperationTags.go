@@ -42,7 +42,7 @@ import (
 //			}
 //			// Optional: create a tag so the function returns a predictable result
 //			_, err = fastly.NewApiSecurityOperationTag(ctx, "example", &fastly.ApiSecurityOperationTagArgs{
-//				ServiceId:   svc1.ID().ToIDOutput().ToStringOutput(),
+//				ServiceId:   svc1.ID(),
 //				Name:        pulumi.String("example-tag"),
 //				Description: pulumi.String("Example tag"),
 //			})
@@ -50,7 +50,7 @@ import (
 //				return err
 //			}
 //			tags := fastly.GetApiSecurityOperationTagsOutput(ctx, fastly.GetApiSecurityOperationTagsOutputArgs{
-//				ServiceId: svc1.ID().ToIDOutput().ToStringOutput(),
+//				ServiceId: svc1.ID(),
 //			}, nil)
 //			ctx.Export("apiSecurityOperationTags", tags.ApplyT(func(tags fastly.GetApiSecurityOperationTagsResult) ([]fastly.GetApiSecurityOperationTagsTag, error) {
 //				return tags.Tags.([]fastly.GetApiSecurityOperationTagsTag), nil

@@ -43,21 +43,18 @@ import * as utilities from "./utilities";
  * });
  * const entries: {[key: string]: fastly.ServiceACLEntries} = {};
  * myservice.acls.apply(acls => {
- *     const entries: {[key: string]: fastly.ServiceACLEntries} = {};
- * pulumi.all(.filter(d => d.name == myaclName).reduce((__obj, d) => ({ ...__obj, [d.name]: d }), {})).apply(rangeBody => {
- *         for (const range of Object.entries(rangeBody).sort().map(([k, v]) => ({key: k, value: v}))) {
- *             entries[range.key] = new fastly.ServiceACLEntries(`entries-${range.key}`, {
- *                 serviceId: myservice.id,
- *                 aclId: range.value.aclId,
- *                 entries: [{
- *                     ip: "127.0.0.1",
- *                     subnet: "24",
- *                     negated: false,
- *                     comment: "ACL Entry 1",
- *                 }],
- *             });
- *         }
- *     });
+ *     for (const range of Object.entries(.filter(d => d.name == myaclName).reduce((__obj, d) => ({ ...__obj, [d.name]: d }), {})).sort().map(([k, v]) => ({key: k, value: v}))) {
+ *         entries[range.key] = new fastly.ServiceACLEntries(`entries-${range.key}`, {
+ *             serviceId: myservice.id,
+ *             aclId: range.value.aclId,
+ *             entries: [{
+ *                 ip: "127.0.0.1",
+ *                 subnet: "24",
+ *                 negated: false,
+ *                 comment: "ACL Entry 1",
+ *             }],
+ *         });
+ *     }
  * });
  * ```
  *
@@ -102,24 +99,21 @@ import * as utilities from "./utilities";
  * });
  * const entries: {[key: string]: fastly.ServiceACLEntries} = {};
  * myservice.acls.apply(acls => {
- *     const entries: {[key: string]: fastly.ServiceACLEntries} = {};
- * pulumi.all(.filter(d => d.name == aclName).reduce((__obj, d) => ({ ...__obj, [d.name]: d }), {})).apply(rangeBody => {
- *         for (const range of Object.entries(rangeBody).sort().map(([k, v]) => ({key: k, value: v}))) {
- *             entries[range.key] = new fastly.ServiceACLEntries(`entries-${range.key}`, {
- *                 entries: aclEntries.map(e => ({
- *                     ip: e.ip,
- *                     comment: e.comment,
- *                 })).map(entry => ({
- *                     ip: entry.ip,
- *                     subnet: "22",
- *                     comment: entry.comment,
- *                     negated: false,
- *                 })),
- *                 serviceId: myservice.id,
- *                 aclId: range.value.aclId,
- *             });
- *         }
- *     });
+ *     for (const range of Object.entries(.filter(d => d.name == aclName).reduce((__obj, d) => ({ ...__obj, [d.name]: d }), {})).sort().map(([k, v]) => ({key: k, value: v}))) {
+ *         entries[range.key] = new fastly.ServiceACLEntries(`entries-${range.key}`, {
+ *             entries: aclEntries.map(e => ({
+ *                 ip: e.ip,
+ *                 comment: e.comment,
+ *             })).map(entry => ({
+ *                 ip: entry.ip,
+ *                 subnet: "22",
+ *                 comment: entry.comment,
+ *                 negated: false,
+ *             })),
+ *             serviceId: myservice.id,
+ *             aclId: range.value.aclId,
+ *         });
+ *     }
  * });
  * ```
  *

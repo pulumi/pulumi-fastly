@@ -69,23 +69,25 @@ namespace Pulumi.Fastly
     ///     });
     /// 
     ///     var items = new List&lt;Fastly.ServiceDictionaryItems&gt;();
-    ///     .Apply(rangeBody =&gt;
+    ///     foreach (var range in myservice.Dictionaries.Apply(dictionaries =&gt; .ToDictionary(item =&gt; {
+    ///         var d = item.Value;
+    ///         return d.Name;
+    ///     }, item =&gt; {
+    ///         var d = item.Value;
+    ///         return d;
+    ///     })).Select(pair =&gt; new { pair.Key, pair.Value }))
     ///     {
-    ///         foreach (var range in rangeBody.Select(pair =&gt; new { pair.Key, pair.Value }))
+    ///         items.Add(new Fastly.ServiceDictionaryItems($"items-{range.Key}", new()
     ///         {
-    ///             items.Add(new Fastly.ServiceDictionaryItems($"items-{range.Key}", new()
+    ///             ServiceId = myservice.Id,
+    ///             DictionaryId = range.Value.DictionaryId,
+    ///             Items = 
     ///             {
-    ///                 ServiceId = myservice.Id,
-    ///                 DictionaryId = range.Value.DictionaryId,
-    ///                 Items = 
-    ///                 {
-    ///                     { "key1", "value1" },
-    ///                     { "key2", "value2" },
-    ///                 },
-    ///             }));
-    ///         }
-    ///         return 0;
-    ///     });
+    ///                 { "key1", "value1" },
+    ///                 { "key2", "value2" },
+    ///             },
+    ///         }));
+    ///     }
     /// });
     /// ```
     /// 
@@ -140,19 +142,21 @@ namespace Pulumi.Fastly
     ///     });
     /// 
     ///     var items = new List&lt;Fastly.ServiceDictionaryItems&gt;();
-    ///     .Apply(rangeBody =&gt;
+    ///     foreach (var range in myservice.Dictionaries.Apply(dictionaries =&gt; .ToDictionary(item =&gt; {
+    ///         var d = item.Value;
+    ///         return d.Name;
+    ///     }, item =&gt; {
+    ///         var d = item.Value;
+    ///         return d;
+    ///     })).Select(pair =&gt; new { pair.Key, pair.Value }))
     ///     {
-    ///         foreach (var range in rangeBody.Select(pair =&gt; new { pair.Key, pair.Value }))
+    ///         items.Add(new Fastly.ServiceDictionaryItems($"items-{range.Key}", new()
     ///         {
-    ///             items.Add(new Fastly.ServiceDictionaryItems($"items-{range.Key}", new()
-    ///             {
-    ///                 ServiceId = myservice.Id,
-    ///                 DictionaryId = range.Value.DictionaryId,
-    ///                 Items = mydict.Items,
-    ///             }));
-    ///         }
-    ///         return 0;
-    ///     });
+    ///             ServiceId = myservice.Id,
+    ///             DictionaryId = range.Value.DictionaryId,
+    ///             Items = mydict.Items,
+    ///         }));
+    ///     }
     /// });
     /// 
     /// public class Mydict
@@ -218,33 +222,35 @@ namespace Pulumi.Fastly
     /// 
     ///     // This resource is dynamically creating the items from the local variables through for expressions and functions.
     ///     var project = new List&lt;Fastly.ServiceDictionaryItems&gt;();
-    ///     .Apply(rangeBody =&gt;
+    ///     foreach (var range in myservice.Dictionaries.Apply(dictionaries =&gt; .ToDictionary(item =&gt; {
+    ///         var d = item.Value;
+    ///         return d.Name;
+    ///     }, item =&gt; {
+    ///         var d = item.Value;
+    ///         return d;
+    ///     })).Select(pair =&gt; new { pair.Key, pair.Value }))
     ///     {
-    ///         foreach (var range in rangeBody.Select(pair =&gt; new { pair.Key, pair.Value }))
+    ///         project.Add(new Fastly.ServiceDictionaryItems($"project-{range.Key}", new()
     ///         {
-    ///             project.Add(new Fastly.ServiceDictionaryItems($"project-{range.Key}", new()
-    ///             {
-    ///                 ServiceId = myservice.Id,
-    ///                 DictionaryId = range.Value.DictionaryId,
-    ///                 Items = hostDivisions.ToDictionary(item =&gt; {
-    ///                     var division = item.Value;
-    ///                     return division;
-    ///                 }, item =&gt; {
-    ///                     var division = item.Value;
-    ///                     return Std.Format.Invoke(new()
+    ///             ServiceId = myservice.Id,
+    ///             DictionaryId = range.Value.DictionaryId,
+    ///             Items = hostDivisions.ToDictionary(item =&gt; {
+    ///                 var division = item.Value;
+    ///                 return division;
+    ///             }, item =&gt; {
+    ///                 var division = item.Value;
+    ///                 return Std.Format.Invoke(new()
+    ///                 {
+    ///                     Input = "%s.%s",
+    ///                     Args = 
     ///                     {
-    ///                         Input = "%s.%s",
-    ///                         Args = 
-    ///                         {
-    ///                             division,
-    ///                             hostBase,
-    ///                         },
-    ///                     }).Result;
-    ///                 }),
-    ///             }));
-    ///         }
-    ///         return 0;
-    ///     });
+    ///                         division,
+    ///                         hostBase,
+    ///                     },
+    ///                 }).Result;
+    ///             }),
+    ///         }));
+    ///     }
     /// });
     /// ```
     /// 

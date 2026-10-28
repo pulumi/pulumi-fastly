@@ -63,28 +63,30 @@ namespace Pulumi.Fastly
     ///     });
     /// 
     ///     var entries = new List&lt;Fastly.ServiceACLEntries&gt;();
-    ///     .Apply(rangeBody =&gt;
+    ///     foreach (var range in myservice.Acls.Apply(acls =&gt; .ToDictionary(item =&gt; {
+    ///         var d = item.Value;
+    ///         return d.Name;
+    ///     }, item =&gt; {
+    ///         var d = item.Value;
+    ///         return d;
+    ///     })).Select(pair =&gt; new { pair.Key, pair.Value }))
     ///     {
-    ///         foreach (var range in rangeBody.Select(pair =&gt; new { pair.Key, pair.Value }))
+    ///         entries.Add(new Fastly.ServiceACLEntries($"entries-{range.Key}", new()
     ///         {
-    ///             entries.Add(new Fastly.ServiceACLEntries($"entries-{range.Key}", new()
+    ///             ServiceId = myservice.Id,
+    ///             AclId = range.Value.AclId,
+    ///             Entries = new[]
     ///             {
-    ///                 ServiceId = myservice.Id,
-    ///                 AclId = range.Value.AclId,
-    ///                 Entries = new[]
+    ///                 new Fastly.Inputs.ServiceACLEntriesEntryArgs
     ///                 {
-    ///                     new Fastly.Inputs.ServiceACLEntriesEntryArgs
-    ///                     {
-    ///                         Ip = "127.0.0.1",
-    ///                         Subnet = "24",
-    ///                         Negated = false,
-    ///                         Comment = "ACL Entry 1",
-    ///                     },
+    ///                     Ip = "127.0.0.1",
+    ///                     Subnet = "24",
+    ///                     Negated = false,
+    ///                     Comment = "ACL Entry 1",
     ///                 },
-    ///             }));
-    ///         }
-    ///         return 0;
-    ///     });
+    ///             },
+    ///         }));
+    ///     }
     /// });
     /// ```
     /// 
@@ -152,35 +154,37 @@ namespace Pulumi.Fastly
     ///     });
     /// 
     ///     var entries = new List&lt;Fastly.ServiceACLEntries&gt;();
-    ///     .Apply(rangeBody =&gt;
+    ///     foreach (var range in myservice.Acls.Apply(acls =&gt; .ToDictionary(item =&gt; {
+    ///         var d = item.Value;
+    ///         return d.Name;
+    ///     }, item =&gt; {
+    ///         var d = item.Value;
+    ///         return d;
+    ///     })).Select(pair =&gt; new { pair.Key, pair.Value }))
     ///     {
-    ///         foreach (var range in rangeBody.Select(pair =&gt; new { pair.Key, pair.Value }))
+    ///         entries.Add(new Fastly.ServiceACLEntries($"entries-{range.Key}", new()
     ///         {
-    ///             entries.Add(new Fastly.ServiceACLEntries($"entries-{range.Key}", new()
+    ///             Entries = aclEntries.Select(e =&gt; 
     ///             {
-    ///                 Entries = aclEntries.Select(e =&gt; 
+    ///                 return 
     ///                 {
-    ///                     return 
-    ///                     {
-    ///                         { "ip", e.Ip },
-    ///                         { "comment", e.Comment },
-    ///                     };
-    ///                 }).ToList().Select(entry =&gt; 
+    ///                     { "ip", e.Ip },
+    ///                     { "comment", e.Comment },
+    ///                 };
+    ///             }).ToList().Select(entry =&gt; 
+    ///             {
+    ///                 return new Fastly.Inputs.ServiceACLEntriesEntryArgs
     ///                 {
-    ///                     return new Fastly.Inputs.ServiceACLEntriesEntryArgs
-    ///                     {
-    ///                         Ip = entry.Ip,
-    ///                         Subnet = "22",
-    ///                         Comment = entry.Comment,
-    ///                         Negated = false,
-    ///                     };
-    ///                 }).ToList(),
-    ///                 ServiceId = myservice.Id,
-    ///                 AclId = range.Value.AclId,
-    ///             }));
-    ///         }
-    ///         return 0;
-    ///     });
+    ///                     Ip = entry.Ip,
+    ///                     Subnet = "22",
+    ///                     Comment = entry.Comment,
+    ///                     Negated = false,
+    ///                 };
+    ///             }).ToList(),
+    ///             ServiceId = myservice.Id,
+    ///             AclId = range.Value.AclId,
+    ///         }));
+    ///     }
     /// });
     /// ```
     /// 

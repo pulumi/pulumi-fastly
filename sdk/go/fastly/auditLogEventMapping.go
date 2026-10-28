@@ -48,7 +48,7 @@ import (
 //					pulumi.String("user.login"),
 //				},
 //				IntegrationIds: pulumi.StringArray{
-//					example.ID().ToIDOutput().ToStringOutput(),
+//					example.ID(),
 //				},
 //			})
 //			if err != nil {
