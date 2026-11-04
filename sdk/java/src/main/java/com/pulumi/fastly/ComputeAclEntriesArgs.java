@@ -19,14 +19,14 @@ public final class ComputeAclEntriesArgs extends com.pulumi.resources.ResourceAr
     public static final ComputeAclEntriesArgs Empty = new ComputeAclEntriesArgs();
 
     /**
-     * Manages entries for a Fastly Compute Access Control List (ACL). To import, use the format \n\n/entries.
+     * Manages entries for a Fastly Compute Access Control List (ACL). To import, use the format &#92;n&#92;n/entries.
      * 
      */
     @Import(name="computeAclId", required=true)
     private Output<String> computeAclId;
 
     /**
-     * @return Manages entries for a Fastly Compute Access Control List (ACL). To import, use the format \n\n/entries.
+     * @return Manages entries for a Fastly Compute Access Control List (ACL). To import, use the format &#92;n&#92;n/entries.
      * 
      */
     public Output<String> computeAclId() {
@@ -90,7 +90,7 @@ public final class ComputeAclEntriesArgs extends com.pulumi.resources.ResourceAr
         }
 
         /**
-         * @param computeAclId Manages entries for a Fastly Compute Access Control List (ACL). To import, use the format \n\n/entries.
+         * @param computeAclId Manages entries for a Fastly Compute Access Control List (ACL). To import, use the format &#92;n&#92;n/entries.
          * 
          * @return builder
          * 
@@ -101,7 +101,7 @@ public final class ComputeAclEntriesArgs extends com.pulumi.resources.ResourceAr
         }
 
         /**
-         * @param computeAclId Manages entries for a Fastly Compute Access Control List (ACL). To import, use the format \n\n/entries.
+         * @param computeAclId Manages entries for a Fastly Compute Access Control List (ACL). To import, use the format &#92;n&#92;n/entries.
          * 
          * @return builder
          * 

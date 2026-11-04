@@ -164,6 +164,12 @@ func (AiRuntimeControlProviderConnectionState) ElementType() reflect.Type {
 	return reflect.TypeOf((*aiRuntimeControlProviderConnectionState)(nil)).Elem()
 }
 
+// AiRuntimeControlProviderConnectionExists checks whether an existing AiRuntimeControlProviderConnection resource with the given ID exists.
+func AiRuntimeControlProviderConnectionExists(ctx *pulumi.Context,
+	id pulumi.StringInput, state *AiRuntimeControlProviderConnectionState, opts ...pulumi.ResourceOption) pulumi.BoolOutput {
+	return ctx.ExistsResource("fastly:index/aiRuntimeControlProviderConnection:AiRuntimeControlProviderConnection", id, state, "", opts...)
+}
+
 type aiRuntimeControlProviderConnectionArgs struct {
 	// The provider's secret key used for authentication. Never returned by the API, so it cannot be reconciled with the remote state.
 	ApiKey string `pulumi:"apiKey"`

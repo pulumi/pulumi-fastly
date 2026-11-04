@@ -572,6 +572,12 @@ func (NgwafWorkspaceRuleState) ElementType() reflect.Type {
 	return reflect.TypeOf((*ngwafWorkspaceRuleState)(nil)).Elem()
 }
 
+// NgwafWorkspaceRuleExists checks whether an existing NgwafWorkspaceRule resource with the given ID exists.
+func NgwafWorkspaceRuleExists(ctx *pulumi.Context,
+	id pulumi.StringInput, state *NgwafWorkspaceRuleState, opts ...pulumi.ResourceOption) pulumi.BoolOutput {
+	return ctx.ExistsResource("fastly:index/ngwafWorkspaceRule:NgwafWorkspaceRule", id, state, "", opts...)
+}
+
 type ngwafWorkspaceRuleArgs struct {
 	// List of actions to perform when the rule matches.
 	Actions []NgwafWorkspaceRuleAction `pulumi:"actions"`

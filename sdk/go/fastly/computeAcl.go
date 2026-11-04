@@ -130,6 +130,12 @@ func (ComputeAclState) ElementType() reflect.Type {
 	return reflect.TypeOf((*computeAclState)(nil)).Elem()
 }
 
+// ComputeAclExists checks whether an existing ComputeAcl resource with the given ID exists.
+func ComputeAclExists(ctx *pulumi.Context,
+	id pulumi.StringInput, state *ComputeAclState, opts ...pulumi.ResourceOption) pulumi.BoolOutput {
+	return ctx.ExistsResource("fastly:index/computeAcl:ComputeAcl", id, state, "", opts...)
+}
+
 type computeAclArgs struct {
 	// A unique name to identify the Compute ACL. It is important to note that changing this attribute will delete and recreate the Compute ACL, and discard the current entries. You MUST first delete the associated resourceLink block from your service before modifying this field.
 	Name *string `pulumi:"name"`

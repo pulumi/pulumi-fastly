@@ -143,22 +143,20 @@ public final class TlsSubscriptionState extends com.pulumi.resources.ResourceArg
     /**
      * The details required to configure DNS to respond to ACME DNS challenge in order to verify domain ownership.
      * 
-     * @deprecated
-     * Use &#39;managed_dns_challenges&#39; attribute instead
+     * @deprecated Use &#39;managed_dns_challenges&#39; attribute instead
      * 
      */
-    @Deprecated /* Use 'managed_dns_challenges' attribute instead */
+    @Deprecated
     @Import(name="managedDnsChallenge")
     private @Nullable Output<Map<String,String>> managedDnsChallenge;
 
     /**
      * @return The details required to configure DNS to respond to ACME DNS challenge in order to verify domain ownership.
      * 
-     * @deprecated
-     * Use &#39;managed_dns_challenges&#39; attribute instead
+     * @deprecated Use &#39;managed_dns_challenges&#39; attribute instead
      * 
      */
-    @Deprecated /* Use 'managed_dns_challenges' attribute instead */
+    @Deprecated
     public Optional<Output<Map<String,String>>> managedDnsChallenge() {
         return Optional.ofNullable(this.managedDnsChallenge);
     }
@@ -442,11 +440,10 @@ public final class TlsSubscriptionState extends com.pulumi.resources.ResourceArg
          * 
          * @return builder
          * 
-         * @deprecated
-         * Use &#39;managed_dns_challenges&#39; attribute instead
+         * @deprecated Use &#39;managed_dns_challenges&#39; attribute instead
          * 
          */
-        @Deprecated /* Use 'managed_dns_challenges' attribute instead */
+        @Deprecated
         public Builder managedDnsChallenge(@Nullable Output<Map<String,String>> managedDnsChallenge) {
             $.managedDnsChallenge = managedDnsChallenge;
             return this;
@@ -457,11 +454,10 @@ public final class TlsSubscriptionState extends com.pulumi.resources.ResourceArg
          * 
          * @return builder
          * 
-         * @deprecated
-         * Use &#39;managed_dns_challenges&#39; attribute instead
+         * @deprecated Use &#39;managed_dns_challenges&#39; attribute instead
          * 
          */
-        @Deprecated /* Use 'managed_dns_challenges' attribute instead */
+        @Deprecated
         public Builder managedDnsChallenge(Map<String,String> managedDnsChallenge) {
             return managedDnsChallenge(Output.of(managedDnsChallenge));
         }

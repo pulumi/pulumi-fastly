@@ -337,6 +337,26 @@ class TlsPrivateKey(pulumi.CustomResource):
         __props__.__dict__["replace"] = replace
         return TlsPrivateKey(resource_name, opts=opts, __props__=__props__)
 
+    @staticmethod
+    def exists(id: pulumi.Input[str],
+            opts: Optional[pulumi.ResourceOptions] = None,
+            created_at: pulumi.Input[Optional[_builtins.str]] = None,
+            key_length: pulumi.Input[Optional[_builtins.int]] = None,
+            key_pem: pulumi.Input[Optional[_builtins.str]] = None,
+            key_type: pulumi.Input[Optional[_builtins.str]] = None,
+            name: pulumi.Input[Optional[_builtins.str]] = None,
+            public_key_sha1: pulumi.Input[Optional[_builtins.str]] = None,
+            replace: pulumi.Input[Optional[_builtins.bool]] = None) -> pulumi.Output[bool]:
+        __props__: dict = {}
+        __props__["createdAt"] = created_at
+        __props__["keyLength"] = key_length
+        __props__["keyPem"] = key_pem
+        __props__["keyType"] = key_type
+        __props__["name"] = name
+        __props__["publicKeySha1"] = public_key_sha1
+        __props__["replace"] = replace
+        return pulumi.runtime.exists_resource(None, 'fastly:index/tlsPrivateKey:TlsPrivateKey', id, __props__, opts or pulumi.ResourceOptions())
+
     @_builtins.property
     @pulumi.getter(name="createdAt")
     def created_at(self) -> pulumi.Output[_builtins.str]:

@@ -174,6 +174,12 @@ func (AuditLogEventMappingState) ElementType() reflect.Type {
 	return reflect.TypeOf((*auditLogEventMappingState)(nil)).Elem()
 }
 
+// AuditLogEventMappingExists checks whether an existing AuditLogEventMapping resource with the given ID exists.
+func AuditLogEventMappingExists(ctx *pulumi.Context,
+	id pulumi.StringInput, state *AuditLogEventMappingState, opts ...pulumi.ResourceOption) pulumi.BoolOutput {
+	return ctx.ExistsResource("fastly:index/auditLogEventMapping:AuditLogEventMapping", id, state, "", opts...)
+}
+
 type auditLogEventMappingArgs struct {
 	// Description of the mapping.
 	Description *string `pulumi:"description"`

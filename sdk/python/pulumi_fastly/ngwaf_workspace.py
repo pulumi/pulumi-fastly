@@ -483,6 +483,28 @@ class NgwafWorkspace(pulumi.CustomResource):
         __props__.__dict__["name"] = name
         return NgwafWorkspace(resource_name, opts=opts, __props__=__props__)
 
+    @staticmethod
+    def exists(id: pulumi.Input[str],
+            opts: Optional[pulumi.ResourceOptions] = None,
+            attack_signal_thresholds: pulumi.Input[Optional[Union['NgwafWorkspaceAttackSignalThresholdsArgs', 'NgwafWorkspaceAttackSignalThresholdsArgsDict', 'outputs.NgwafWorkspaceAttackSignalThresholds']]] = None,
+            client_ip_headers: pulumi.Input[Optional[Sequence[pulumi.Input[_builtins.str]]]] = None,
+            default_blocking_response_code: pulumi.Input[Optional[_builtins.int]] = None,
+            default_redirect_url: pulumi.Input[Optional[_builtins.str]] = None,
+            description: pulumi.Input[Optional[_builtins.str]] = None,
+            ip_anonymization: pulumi.Input[Optional[_builtins.str]] = None,
+            mode: pulumi.Input[Optional[_builtins.str]] = None,
+            name: pulumi.Input[Optional[_builtins.str]] = None) -> pulumi.Output[bool]:
+        __props__: dict = {}
+        __props__["attackSignalThresholds"] = attack_signal_thresholds
+        __props__["clientIpHeaders"] = client_ip_headers
+        __props__["defaultBlockingResponseCode"] = default_blocking_response_code
+        __props__["defaultRedirectUrl"] = default_redirect_url
+        __props__["description"] = description
+        __props__["ipAnonymization"] = ip_anonymization
+        __props__["mode"] = mode
+        __props__["name"] = name
+        return pulumi.runtime.exists_resource(None, 'fastly:index/ngwafWorkspace:NgwafWorkspace', id, __props__, opts or pulumi.ResourceOptions())
+
     @_builtins.property
     @pulumi.getter(name="attackSignalThresholds")
     def attack_signal_thresholds(self) -> pulumi.Output['outputs.NgwafWorkspaceAttackSignalThresholds']:

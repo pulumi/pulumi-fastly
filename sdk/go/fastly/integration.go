@@ -243,6 +243,12 @@ func (IntegrationState) ElementType() reflect.Type {
 	return reflect.TypeOf((*integrationState)(nil)).Elem()
 }
 
+// IntegrationExists checks whether an existing Integration resource with the given ID exists.
+func IntegrationExists(ctx *pulumi.Context,
+	id pulumi.StringInput, state *IntegrationState, opts ...pulumi.ResourceOption) pulumi.BoolOutput {
+	return ctx.ExistsResource("fastly:index/integration:Integration", id, state, "", opts...)
+}
+
 type integrationArgs struct {
 	// Configuration specific to the integration `type` (see documentation examples).
 	Config map[string]string `pulumi:"config"`

@@ -114,6 +114,12 @@ func (TlsMutualAuthenticationState) ElementType() reflect.Type {
 	return reflect.TypeOf((*tlsMutualAuthenticationState)(nil)).Elem()
 }
 
+// TlsMutualAuthenticationExists checks whether an existing TlsMutualAuthentication resource with the given ID exists.
+func TlsMutualAuthenticationExists(ctx *pulumi.Context,
+	id pulumi.StringInput, state *TlsMutualAuthenticationState, opts ...pulumi.ResourceOption) pulumi.BoolOutput {
+	return ctx.ExistsResource("fastly:index/tlsMutualAuthentication:TlsMutualAuthentication", id, state, "", opts...)
+}
+
 type tlsMutualAuthenticationArgs struct {
 	// List of TLS Activation IDs
 	ActivationIds []string `pulumi:"activationIds"`

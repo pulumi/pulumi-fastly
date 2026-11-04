@@ -165,6 +165,12 @@ func (RoutingConfigState) ElementType() reflect.Type {
 	return reflect.TypeOf((*routingConfigState)(nil)).Elem()
 }
 
+// RoutingConfigExists checks whether an existing RoutingConfig resource with the given ID exists.
+func RoutingConfigExists(ctx *pulumi.Context,
+	id pulumi.StringInput, state *RoutingConfigState, opts ...pulumi.ResourceOption) pulumi.BoolOutput {
+	return ctx.ExistsResource("fastly:index/routingConfig:RoutingConfig", id, state, "", opts...)
+}
+
 type routingConfigArgs struct {
 	// The user-defined name of the routing config. Can be created, but not updated.
 	Name *string `pulumi:"name"`

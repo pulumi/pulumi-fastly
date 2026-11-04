@@ -232,6 +232,12 @@ func (ComputeAclEntriesState) ElementType() reflect.Type {
 	return reflect.TypeOf((*computeAclEntriesState)(nil)).Elem()
 }
 
+// ComputeAclEntriesExists checks whether an existing ComputeAclEntries resource with the given ID exists.
+func ComputeAclEntriesExists(ctx *pulumi.Context,
+	id pulumi.StringInput, state *ComputeAclEntriesState, opts ...pulumi.ResourceOption) pulumi.BoolOutput {
+	return ctx.ExistsResource("fastly:index/computeAclEntries:ComputeAclEntries", id, state, "", opts...)
+}
+
 type computeAclEntriesArgs struct {
 	// Manages entries for a Fastly Compute Access Control List (ACL). To import, use the format \n\n/entries.
 	ComputeAclId string `pulumi:"computeAclId"`

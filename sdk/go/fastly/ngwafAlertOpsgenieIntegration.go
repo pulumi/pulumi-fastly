@@ -126,6 +126,12 @@ func (NgwafAlertOpsgenieIntegrationState) ElementType() reflect.Type {
 	return reflect.TypeOf((*ngwafAlertOpsgenieIntegrationState)(nil)).Elem()
 }
 
+// NgwafAlertOpsgenieIntegrationExists checks whether an existing NgwafAlertOpsgenieIntegration resource with the given ID exists.
+func NgwafAlertOpsgenieIntegrationExists(ctx *pulumi.Context,
+	id pulumi.StringInput, state *NgwafAlertOpsgenieIntegrationState, opts ...pulumi.ResourceOption) pulumi.BoolOutput {
+	return ctx.ExistsResource("fastly:index/ngwafAlertOpsgenieIntegration:NgwafAlertOpsgenieIntegration", id, state, "", opts...)
+}
+
 type ngwafAlertOpsgenieIntegrationArgs struct {
 	// The description of the alert.
 	Description *string `pulumi:"description"`

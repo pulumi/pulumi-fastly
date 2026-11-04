@@ -83,6 +83,12 @@ func (DomainV1State) ElementType() reflect.Type {
 	return reflect.TypeOf((*domainV1State)(nil)).Elem()
 }
 
+// DomainV1Exists checks whether an existing DomainV1 resource with the given ID exists.
+func DomainV1Exists(ctx *pulumi.Context,
+	id pulumi.StringInput, state *DomainV1State, opts ...pulumi.ResourceOption) pulumi.BoolOutput {
+	return ctx.ExistsResource("fastly:index/domainV1:DomainV1", id, state, "", opts...)
+}
+
 type domainV1Args struct {
 	// The description for your domain.
 	Description *string `pulumi:"description"`

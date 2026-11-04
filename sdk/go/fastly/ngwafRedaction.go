@@ -122,6 +122,12 @@ func (NgwafRedactionState) ElementType() reflect.Type {
 	return reflect.TypeOf((*ngwafRedactionState)(nil)).Elem()
 }
 
+// NgwafRedactionExists checks whether an existing NgwafRedaction resource with the given ID exists.
+func NgwafRedactionExists(ctx *pulumi.Context,
+	id pulumi.StringInput, state *NgwafRedactionState, opts ...pulumi.ResourceOption) pulumi.BoolOutput {
+	return ctx.ExistsResource("fastly:index/ngwafRedaction:NgwafRedaction", id, state, "", opts...)
+}
+
 type ngwafRedactionArgs struct {
 	// The name of the field that should be redacted.
 	Field string `pulumi:"field"`

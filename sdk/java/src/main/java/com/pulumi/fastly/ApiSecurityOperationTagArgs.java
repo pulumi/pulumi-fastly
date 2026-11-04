@@ -47,14 +47,14 @@ public final class ApiSecurityOperationTagArgs extends com.pulumi.resources.Reso
     }
 
     /**
-     * Service ID the tag belongs to. To import, use: \n\n/\n\n.
+     * Service ID the tag belongs to. To import, use: &#92;n&#92;n/&#92;n&#92;n.
      * 
      */
     @Import(name="serviceId", required=true)
     private Output<String> serviceId;
 
     /**
-     * @return Service ID the tag belongs to. To import, use: \n\n/\n\n.
+     * @return Service ID the tag belongs to. To import, use: &#92;n&#92;n/&#92;n&#92;n.
      * 
      */
     public Output<String> serviceId() {
@@ -130,7 +130,7 @@ public final class ApiSecurityOperationTagArgs extends com.pulumi.resources.Reso
         }
 
         /**
-         * @param serviceId Service ID the tag belongs to. To import, use: \n\n/\n\n.
+         * @param serviceId Service ID the tag belongs to. To import, use: &#92;n&#92;n/&#92;n&#92;n.
          * 
          * @return builder
          * 
@@ -141,7 +141,7 @@ public final class ApiSecurityOperationTagArgs extends com.pulumi.resources.Reso
         }
 
         /**
-         * @param serviceId Service ID the tag belongs to. To import, use: \n\n/\n\n.
+         * @param serviceId Service ID the tag belongs to. To import, use: &#92;n&#92;n/&#92;n&#92;n.
          * 
          * @return builder
          * 

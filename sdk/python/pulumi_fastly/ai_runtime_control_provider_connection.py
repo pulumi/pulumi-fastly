@@ -393,6 +393,26 @@ class AiRuntimeControlProviderConnection(pulumi.CustomResource):
         __props__.__dict__["updated_at"] = updated_at
         return AiRuntimeControlProviderConnection(resource_name, opts=opts, __props__=__props__)
 
+    @staticmethod
+    def exists(id: pulumi.Input[str],
+            opts: Optional[pulumi.ResourceOptions] = None,
+            api_key: pulumi.Input[Optional[_builtins.str]] = None,
+            base_url: pulumi.Input[Optional[_builtins.str]] = None,
+            created_at: pulumi.Input[Optional[_builtins.str]] = None,
+            models: pulumi.Input[Optional[Sequence[pulumi.Input[_builtins.str]]]] = None,
+            name: pulumi.Input[Optional[_builtins.str]] = None,
+            secret_id: pulumi.Input[Optional[_builtins.str]] = None,
+            updated_at: pulumi.Input[Optional[_builtins.str]] = None) -> pulumi.Output[bool]:
+        __props__: dict = {}
+        __props__["apiKey"] = api_key
+        __props__["baseUrl"] = base_url
+        __props__["createdAt"] = created_at
+        __props__["models"] = models
+        __props__["name"] = name
+        __props__["secretId"] = secret_id
+        __props__["updatedAt"] = updated_at
+        return pulumi.runtime.exists_resource(None, 'fastly:index/aiRuntimeControlProviderConnection:AiRuntimeControlProviderConnection', id, __props__, opts or pulumi.ResourceOptions())
+
     @_builtins.property
     @pulumi.getter(name="apiKey")
     def api_key(self) -> pulumi.Output[_builtins.str]:

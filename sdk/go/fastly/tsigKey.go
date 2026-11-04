@@ -134,6 +134,12 @@ func (TsigKeyState) ElementType() reflect.Type {
 	return reflect.TypeOf((*tsigKeyState)(nil)).Elem()
 }
 
+// TsigKeyExists checks whether an existing TsigKey resource with the given ID exists.
+func TsigKeyExists(ctx *pulumi.Context,
+	id pulumi.StringInput, state *TsigKeyState, opts ...pulumi.ResourceOption) pulumi.BoolOutput {
+	return ctx.ExistsResource("fastly:index/tsigKey:TsigKey", id, state, "", opts...)
+}
+
 type tsigKeyArgs struct {
 	// The algorithm of the TSIG key. One of: `hmac-sha224`, `hmac-sha256`, `hmac-sha384`, `hmac-sha512`.
 	Algorithm string `pulumi:"algorithm"`

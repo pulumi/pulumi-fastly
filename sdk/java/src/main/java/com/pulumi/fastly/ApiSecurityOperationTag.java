@@ -135,14 +135,14 @@ public class ApiSecurityOperationTag extends com.pulumi.resources.CustomResource
         return this.operationCount;
     }
     /**
-     * Service ID the tag belongs to. To import, use: \n\n/\n\n.
+     * Service ID the tag belongs to. To import, use: &#92;n&#92;n/&#92;n&#92;n.
      * 
      */
     @Export(name="serviceId", refs={String.class}, tree="[0]")
     private Output<String> serviceId;
 
     /**
-     * @return Service ID the tag belongs to. To import, use: \n\n/\n\n.
+     * @return Service ID the tag belongs to. To import, use: &#92;n&#92;n/&#92;n&#92;n.
      * 
      */
     public Output<String> serviceId() {

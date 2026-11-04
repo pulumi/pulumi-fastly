@@ -482,6 +482,34 @@ class AiRuntimeControlVirtualKey(pulumi.CustomResource):
         __props__.__dict__["user_id"] = user_id
         return AiRuntimeControlVirtualKey(resource_name, opts=opts, __props__=__props__)
 
+    @staticmethod
+    def exists(id: pulumi.Input[str],
+            opts: Optional[pulumi.ResourceOptions] = None,
+            access_token: pulumi.Input[Optional[_builtins.str]] = None,
+            created_at: pulumi.Input[Optional[_builtins.str]] = None,
+            created_by: pulumi.Input[Optional[_builtins.str]] = None,
+            expires_at: pulumi.Input[Optional[_builtins.str]] = None,
+            last_used_at: pulumi.Input[Optional[_builtins.str]] = None,
+            model: pulumi.Input[Optional[_builtins.str]] = None,
+            name: pulumi.Input[Optional[_builtins.str]] = None,
+            provider_name: pulumi.Input[Optional[_builtins.str]] = None,
+            type: pulumi.Input[Optional[_builtins.str]] = None,
+            updated_at: pulumi.Input[Optional[_builtins.str]] = None,
+            user_id: pulumi.Input[Optional[_builtins.str]] = None) -> pulumi.Output[bool]:
+        __props__: dict = {}
+        __props__["accessToken"] = access_token
+        __props__["createdAt"] = created_at
+        __props__["createdBy"] = created_by
+        __props__["expiresAt"] = expires_at
+        __props__["lastUsedAt"] = last_used_at
+        __props__["model"] = model
+        __props__["name"] = name
+        __props__["providerName"] = provider_name
+        __props__["type"] = type
+        __props__["updatedAt"] = updated_at
+        __props__["userId"] = user_id
+        return pulumi.runtime.exists_resource(None, 'fastly:index/aiRuntimeControlVirtualKey:AiRuntimeControlVirtualKey', id, __props__, opts or pulumi.ResourceOptions())
+
     @_builtins.property
     @pulumi.getter(name="accessToken")
     def access_token(self) -> pulumi.Output[_builtins.str]:

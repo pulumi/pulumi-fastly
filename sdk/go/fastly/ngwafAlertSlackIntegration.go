@@ -126,6 +126,12 @@ func (NgwafAlertSlackIntegrationState) ElementType() reflect.Type {
 	return reflect.TypeOf((*ngwafAlertSlackIntegrationState)(nil)).Elem()
 }
 
+// NgwafAlertSlackIntegrationExists checks whether an existing NgwafAlertSlackIntegration resource with the given ID exists.
+func NgwafAlertSlackIntegrationExists(ctx *pulumi.Context,
+	id pulumi.StringInput, state *NgwafAlertSlackIntegrationState, opts ...pulumi.ResourceOption) pulumi.BoolOutput {
+	return ctx.ExistsResource("fastly:index/ngwafAlertSlackIntegration:NgwafAlertSlackIntegration", id, state, "", opts...)
+}
+
 type ngwafAlertSlackIntegrationArgs struct {
 	// The description of the alert.
 	Description *string `pulumi:"description"`

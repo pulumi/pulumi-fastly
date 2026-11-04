@@ -347,6 +347,12 @@ func (CustomDashboardState) ElementType() reflect.Type {
 	return reflect.TypeOf((*customDashboardState)(nil)).Elem()
 }
 
+// CustomDashboardExists checks whether an existing CustomDashboard resource with the given ID exists.
+func CustomDashboardExists(ctx *pulumi.Context,
+	id pulumi.StringInput, state *CustomDashboardState, opts ...pulumi.ResourceOption) pulumi.BoolOutput {
+	return ctx.ExistsResource("fastly:index/customDashboard:CustomDashboard", id, state, "", opts...)
+}
+
 type customDashboardArgs struct {
 	// A list of dashboard items.
 	DashboardItems []CustomDashboardDashboardItem `pulumi:"dashboardItems"`

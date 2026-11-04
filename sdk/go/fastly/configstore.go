@@ -137,6 +137,12 @@ func (ConfigstoreState) ElementType() reflect.Type {
 	return reflect.TypeOf((*configstoreState)(nil)).Elem()
 }
 
+// ConfigstoreExists checks whether an existing Configstore resource with the given ID exists.
+func ConfigstoreExists(ctx *pulumi.Context,
+	id pulumi.StringInput, state *ConfigstoreState, opts ...pulumi.ResourceOption) pulumi.BoolOutput {
+	return ctx.ExistsResource("fastly:index/configstore:Configstore", id, state, "", opts...)
+}
+
 type configstoreArgs struct {
 	// Allow the Config Store to be deleted, even if it contains entries. Defaults to false.
 	ForceDestroy *bool `pulumi:"forceDestroy"`

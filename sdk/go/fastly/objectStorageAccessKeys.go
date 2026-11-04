@@ -133,6 +133,12 @@ func (ObjectStorageAccessKeysState) ElementType() reflect.Type {
 	return reflect.TypeOf((*objectStorageAccessKeysState)(nil)).Elem()
 }
 
+// ObjectStorageAccessKeysExists checks whether an existing ObjectStorageAccessKeys resource with the given ID exists.
+func ObjectStorageAccessKeysExists(ctx *pulumi.Context,
+	id pulumi.StringInput, state *ObjectStorageAccessKeysState, opts ...pulumi.ResourceOption) pulumi.BoolOutput {
+	return ctx.ExistsResource("fastly:index/objectStorageAccessKeys:ObjectStorageAccessKeys", id, state, "", opts...)
+}
+
 type objectStorageAccessKeysArgs struct {
 	// Optional list of buckets the access key will be associated with.  Example: `["bucket1", "bucket2"]`
 	Buckets []string `pulumi:"buckets"`

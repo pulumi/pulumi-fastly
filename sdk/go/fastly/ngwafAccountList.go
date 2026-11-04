@@ -171,6 +171,12 @@ func (NgwafAccountListState) ElementType() reflect.Type {
 	return reflect.TypeOf((*ngwafAccountListState)(nil)).Elem()
 }
 
+// NgwafAccountListExists checks whether an existing NgwafAccountList resource with the given ID exists.
+func NgwafAccountListExists(ctx *pulumi.Context,
+	id pulumi.StringInput, state *NgwafAccountListState, opts ...pulumi.ResourceOption) pulumi.BoolOutput {
+	return ctx.ExistsResource("fastly:index/ngwafAccountList:NgwafAccountList", id, state, "", opts...)
+}
+
 type ngwafAccountListArgs struct {
 	// The description of the list.
 	Description *string `pulumi:"description"`

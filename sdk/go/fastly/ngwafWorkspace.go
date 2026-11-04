@@ -160,6 +160,12 @@ func (NgwafWorkspaceState) ElementType() reflect.Type {
 	return reflect.TypeOf((*ngwafWorkspaceState)(nil)).Elem()
 }
 
+// NgwafWorkspaceExists checks whether an existing NgwafWorkspace resource with the given ID exists.
+func NgwafWorkspaceExists(ctx *pulumi.Context,
+	id pulumi.StringInput, state *NgwafWorkspaceState, opts ...pulumi.ResourceOption) pulumi.BoolOutput {
+	return ctx.ExistsResource("fastly:index/ngwafWorkspace:NgwafWorkspace", id, state, "", opts...)
+}
+
 type ngwafWorkspaceArgs struct {
 	// Attack threshold parameters for system site alerts. Each threshold value is the number of attack signals per IP address that must be detected during the interval before the related IP address is flagged. If no values are set then the default value for each field will be applied
 	AttackSignalThresholds NgwafWorkspaceAttackSignalThresholds `pulumi:"attackSignalThresholds"`

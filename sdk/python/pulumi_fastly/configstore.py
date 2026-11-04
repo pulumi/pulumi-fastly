@@ -262,6 +262,16 @@ class Configstore(pulumi.CustomResource):
         __props__.__dict__["name"] = name
         return Configstore(resource_name, opts=opts, __props__=__props__)
 
+    @staticmethod
+    def exists(id: pulumi.Input[str],
+            opts: Optional[pulumi.ResourceOptions] = None,
+            force_destroy: pulumi.Input[Optional[_builtins.bool]] = None,
+            name: pulumi.Input[Optional[_builtins.str]] = None) -> pulumi.Output[bool]:
+        __props__: dict = {}
+        __props__["forceDestroy"] = force_destroy
+        __props__["name"] = name
+        return pulumi.runtime.exists_resource(None, 'fastly:index/configstore:Configstore', id, __props__, opts or pulumi.ResourceOptions())
+
     @_builtins.property
     @pulumi.getter(name="forceDestroy")
     def force_destroy(self) -> pulumi.Output[Optional[_builtins.bool]]:

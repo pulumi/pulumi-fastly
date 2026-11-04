@@ -126,6 +126,12 @@ func (NgwafAlertMicrosoftTeamsIntegrationState) ElementType() reflect.Type {
 	return reflect.TypeOf((*ngwafAlertMicrosoftTeamsIntegrationState)(nil)).Elem()
 }
 
+// NgwafAlertMicrosoftTeamsIntegrationExists checks whether an existing NgwafAlertMicrosoftTeamsIntegration resource with the given ID exists.
+func NgwafAlertMicrosoftTeamsIntegrationExists(ctx *pulumi.Context,
+	id pulumi.StringInput, state *NgwafAlertMicrosoftTeamsIntegrationState, opts ...pulumi.ResourceOption) pulumi.BoolOutput {
+	return ctx.ExistsResource("fastly:index/ngwafAlertMicrosoftTeamsIntegration:NgwafAlertMicrosoftTeamsIntegration", id, state, "", opts...)
+}
+
 type ngwafAlertMicrosoftTeamsIntegrationArgs struct {
 	// The description of the alert.
 	Description *string `pulumi:"description"`

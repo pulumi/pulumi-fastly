@@ -176,6 +176,12 @@ func (NgwafThresholdsState) ElementType() reflect.Type {
 	return reflect.TypeOf((*ngwafThresholdsState)(nil)).Elem()
 }
 
+// NgwafThresholdsExists checks whether an existing NgwafThresholds resource with the given ID exists.
+func NgwafThresholdsExists(ctx *pulumi.Context,
+	id pulumi.StringInput, state *NgwafThresholdsState, opts ...pulumi.ResourceOption) pulumi.BoolOutput {
+	return ctx.ExistsResource("fastly:index/ngwafThresholds:NgwafThresholds", id, state, "", opts...)
+}
+
 type ngwafThresholdsArgs struct {
 	// Action to take when threshold is exceeded.
 	Action string `pulumi:"action"`

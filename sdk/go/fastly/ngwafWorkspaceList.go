@@ -187,6 +187,12 @@ func (NgwafWorkspaceListState) ElementType() reflect.Type {
 	return reflect.TypeOf((*ngwafWorkspaceListState)(nil)).Elem()
 }
 
+// NgwafWorkspaceListExists checks whether an existing NgwafWorkspaceList resource with the given ID exists.
+func NgwafWorkspaceListExists(ctx *pulumi.Context,
+	id pulumi.StringInput, state *NgwafWorkspaceListState, opts ...pulumi.ResourceOption) pulumi.BoolOutput {
+	return ctx.ExistsResource("fastly:index/ngwafWorkspaceList:NgwafWorkspaceList", id, state, "", opts...)
+}
+
 type ngwafWorkspaceListArgs struct {
 	// The description of the list.
 	Description *string `pulumi:"description"`

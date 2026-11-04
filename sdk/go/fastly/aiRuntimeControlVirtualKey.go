@@ -180,6 +180,12 @@ func (AiRuntimeControlVirtualKeyState) ElementType() reflect.Type {
 	return reflect.TypeOf((*aiRuntimeControlVirtualKeyState)(nil)).Elem()
 }
 
+// AiRuntimeControlVirtualKeyExists checks whether an existing AiRuntimeControlVirtualKey resource with the given ID exists.
+func AiRuntimeControlVirtualKeyExists(ctx *pulumi.Context,
+	id pulumi.StringInput, state *AiRuntimeControlVirtualKeyState, opts ...pulumi.ResourceOption) pulumi.BoolOutput {
+	return ctx.ExistsResource("fastly:index/aiRuntimeControlVirtualKey:AiRuntimeControlVirtualKey", id, state, "", opts...)
+}
+
 type aiRuntimeControlVirtualKeyArgs struct {
 	// The expiration timestamp of the virtual key, in RFC 3339 format. Once set, this value cannot be unset, only changed.
 	ExpiresAt *string `pulumi:"expiresAt"`

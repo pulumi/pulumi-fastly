@@ -136,6 +136,12 @@ func (NgwafAlertDatadogIntegrationState) ElementType() reflect.Type {
 	return reflect.TypeOf((*ngwafAlertDatadogIntegrationState)(nil)).Elem()
 }
 
+// NgwafAlertDatadogIntegrationExists checks whether an existing NgwafAlertDatadogIntegration resource with the given ID exists.
+func NgwafAlertDatadogIntegrationExists(ctx *pulumi.Context,
+	id pulumi.StringInput, state *NgwafAlertDatadogIntegrationState, opts ...pulumi.ResourceOption) pulumi.BoolOutput {
+	return ctx.ExistsResource("fastly:index/ngwafAlertDatadogIntegration:NgwafAlertDatadogIntegration", id, state, "", opts...)
+}
+
 type ngwafAlertDatadogIntegrationArgs struct {
 	// The description of the alert.
 	Description *string `pulumi:"description"`

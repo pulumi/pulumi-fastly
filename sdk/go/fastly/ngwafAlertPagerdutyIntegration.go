@@ -126,6 +126,12 @@ func (NgwafAlertPagerdutyIntegrationState) ElementType() reflect.Type {
 	return reflect.TypeOf((*ngwafAlertPagerdutyIntegrationState)(nil)).Elem()
 }
 
+// NgwafAlertPagerdutyIntegrationExists checks whether an existing NgwafAlertPagerdutyIntegration resource with the given ID exists.
+func NgwafAlertPagerdutyIntegrationExists(ctx *pulumi.Context,
+	id pulumi.StringInput, state *NgwafAlertPagerdutyIntegrationState, opts ...pulumi.ResourceOption) pulumi.BoolOutput {
+	return ctx.ExistsResource("fastly:index/ngwafAlertPagerdutyIntegration:NgwafAlertPagerdutyIntegration", id, state, "", opts...)
+}
+
 type ngwafAlertPagerdutyIntegrationArgs struct {
 	// The description of the alert.
 	Description *string `pulumi:"description"`

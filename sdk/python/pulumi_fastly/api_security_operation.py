@@ -578,6 +578,36 @@ class ApiSecurityOperation(pulumi.CustomResource):
         __props__.__dict__["updated_at"] = updated_at
         return ApiSecurityOperation(resource_name, opts=opts, __props__=__props__)
 
+    @staticmethod
+    def exists(id: pulumi.Input[str],
+            opts: Optional[pulumi.ResourceOptions] = None,
+            created_at: pulumi.Input[Optional[_builtins.str]] = None,
+            description: pulumi.Input[Optional[_builtins.str]] = None,
+            domain: pulumi.Input[Optional[_builtins.str]] = None,
+            last_seen_at: pulumi.Input[Optional[_builtins.str]] = None,
+            method: pulumi.Input[Optional[_builtins.str]] = None,
+            operation_id: pulumi.Input[Optional[_builtins.str]] = None,
+            path: pulumi.Input[Optional[_builtins.str]] = None,
+            rps: pulumi.Input[Optional[_builtins.float]] = None,
+            service_id: pulumi.Input[Optional[_builtins.str]] = None,
+            status: pulumi.Input[Optional[_builtins.str]] = None,
+            tag_ids: pulumi.Input[Optional[Sequence[pulumi.Input[_builtins.str]]]] = None,
+            updated_at: pulumi.Input[Optional[_builtins.str]] = None) -> pulumi.Output[bool]:
+        __props__: dict = {}
+        __props__["createdAt"] = created_at
+        __props__["description"] = description
+        __props__["domain"] = domain
+        __props__["lastSeenAt"] = last_seen_at
+        __props__["method"] = method
+        __props__["operationId"] = operation_id
+        __props__["path"] = path
+        __props__["rps"] = rps
+        __props__["serviceId"] = service_id
+        __props__["status"] = status
+        __props__["tagIds"] = tag_ids
+        __props__["updatedAt"] = updated_at
+        return pulumi.runtime.exists_resource(None, 'fastly:index/apiSecurityOperation:ApiSecurityOperation', id, __props__, opts or pulumi.ResourceOptions())
+
     @_builtins.property
     @pulumi.getter(name="createdAt")
     def created_at(self) -> pulumi.Output[_builtins.str]:

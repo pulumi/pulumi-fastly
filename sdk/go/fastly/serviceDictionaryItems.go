@@ -153,6 +153,12 @@ func (ServiceDictionaryItemsState) ElementType() reflect.Type {
 	return reflect.TypeOf((*serviceDictionaryItemsState)(nil)).Elem()
 }
 
+// ServiceDictionaryItemsExists checks whether an existing ServiceDictionaryItems resource with the given ID exists.
+func ServiceDictionaryItemsExists(ctx *pulumi.Context,
+	id pulumi.StringInput, state *ServiceDictionaryItemsState, opts ...pulumi.ResourceOption) pulumi.BoolOutput {
+	return ctx.ExistsResource("fastly:index/serviceDictionaryItems:ServiceDictionaryItems", id, state, "", opts...)
+}
+
 type serviceDictionaryItemsArgs struct {
 	// The ID of the dictionary that the items belong to
 	DictionaryId string `pulumi:"dictionaryId"`

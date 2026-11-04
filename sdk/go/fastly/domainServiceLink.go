@@ -115,6 +115,12 @@ func (DomainServiceLinkState) ElementType() reflect.Type {
 	return reflect.TypeOf((*domainServiceLinkState)(nil)).Elem()
 }
 
+// DomainServiceLinkExists checks whether an existing DomainServiceLink resource with the given ID exists.
+func DomainServiceLinkExists(ctx *pulumi.Context,
+	id pulumi.StringInput, state *DomainServiceLinkState, opts ...pulumi.ResourceOption) pulumi.BoolOutput {
+	return ctx.ExistsResource("fastly:index/domainServiceLink:DomainServiceLink", id, state, "", opts...)
+}
+
 type domainServiceLinkArgs struct {
 	// The Domain Identifier of the versionless domain being linked (UUID).
 	DomainId string `pulumi:"domainId"`

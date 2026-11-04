@@ -172,6 +172,12 @@ func (TlsActivationState) ElementType() reflect.Type {
 	return reflect.TypeOf((*tlsActivationState)(nil)).Elem()
 }
 
+// TlsActivationExists checks whether an existing TlsActivation resource with the given ID exists.
+func TlsActivationExists(ctx *pulumi.Context,
+	id pulumi.StringInput, state *TlsActivationState, opts ...pulumi.ResourceOption) pulumi.BoolOutput {
+	return ctx.ExistsResource("fastly:index/tlsActivation:TlsActivation", id, state, "", opts...)
+}
+
 type tlsActivationArgs struct {
 	// ID of certificate to use. Must have the `domain` specified in the certificate's Subject Alternative Names.
 	CertificateId string `pulumi:"certificateId"`

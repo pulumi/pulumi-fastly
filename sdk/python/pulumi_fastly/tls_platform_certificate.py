@@ -517,6 +517,32 @@ class TlsPlatformCertificate(pulumi.CustomResource):
         __props__.__dict__["updated_at"] = updated_at
         return TlsPlatformCertificate(resource_name, opts=opts, __props__=__props__)
 
+    @staticmethod
+    def exists(id: pulumi.Input[str],
+            opts: Optional[pulumi.ResourceOptions] = None,
+            allow_untrusted_root: pulumi.Input[Optional[_builtins.bool]] = None,
+            certificate_body: pulumi.Input[Optional[_builtins.str]] = None,
+            configuration_id: pulumi.Input[Optional[_builtins.str]] = None,
+            created_at: pulumi.Input[Optional[_builtins.str]] = None,
+            domains: pulumi.Input[Optional[Sequence[pulumi.Input[_builtins.str]]]] = None,
+            intermediates_blob: pulumi.Input[Optional[_builtins.str]] = None,
+            not_after: pulumi.Input[Optional[_builtins.str]] = None,
+            not_before: pulumi.Input[Optional[_builtins.str]] = None,
+            replace: pulumi.Input[Optional[_builtins.bool]] = None,
+            updated_at: pulumi.Input[Optional[_builtins.str]] = None) -> pulumi.Output[bool]:
+        __props__: dict = {}
+        __props__["allowUntrustedRoot"] = allow_untrusted_root
+        __props__["certificateBody"] = certificate_body
+        __props__["configurationId"] = configuration_id
+        __props__["createdAt"] = created_at
+        __props__["domains"] = domains
+        __props__["intermediatesBlob"] = intermediates_blob
+        __props__["notAfter"] = not_after
+        __props__["notBefore"] = not_before
+        __props__["replace"] = replace
+        __props__["updatedAt"] = updated_at
+        return pulumi.runtime.exists_resource(None, 'fastly:index/tlsPlatformCertificate:TlsPlatformCertificate', id, __props__, opts or pulumi.ResourceOptions())
+
     @_builtins.property
     @pulumi.getter(name="allowUntrustedRoot")
     def allow_untrusted_root(self) -> pulumi.Output[Optional[_builtins.bool]]:
