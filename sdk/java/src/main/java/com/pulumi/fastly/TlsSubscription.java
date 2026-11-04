@@ -176,11 +176,10 @@ public class TlsSubscription extends com.pulumi.resources.CustomResource {
     /**
      * The details required to configure DNS to respond to ACME DNS challenge in order to verify domain ownership.
      * 
-     * @deprecated
-     * Use &#39;managed_dns_challenges&#39; attribute instead
+     * @deprecated Use &#39;managed_dns_challenges&#39; attribute instead
      * 
      */
-    @Deprecated /* Use 'managed_dns_challenges' attribute instead */
+    @Deprecated
     @Export(name="managedDnsChallenge", refs={Map.class,String.class}, tree="[0,1,1]")
     private Output<Map<String,String>> managedDnsChallenge;
 

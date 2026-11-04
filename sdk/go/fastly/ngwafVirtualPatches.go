@@ -133,6 +133,12 @@ func (NgwafVirtualPatchesState) ElementType() reflect.Type {
 	return reflect.TypeOf((*ngwafVirtualPatchesState)(nil)).Elem()
 }
 
+// NgwafVirtualPatchesExists checks whether an existing NgwafVirtualPatches resource with the given ID exists.
+func NgwafVirtualPatchesExists(ctx *pulumi.Context,
+	id pulumi.StringInput, state *NgwafVirtualPatchesState, opts ...pulumi.ResourceOption) pulumi.BoolOutput {
+	return ctx.ExistsResource("fastly:index/ngwafVirtualPatches:NgwafVirtualPatches", id, state, "", opts...)
+}
+
 type ngwafVirtualPatchesArgs struct {
 	// Action to take when a signal for virtual patch is detected. Accepted values are `log` and `block`.
 	Action string `pulumi:"action"`

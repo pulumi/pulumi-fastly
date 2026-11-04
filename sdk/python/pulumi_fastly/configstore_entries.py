@@ -399,6 +399,18 @@ class ConfigstoreEntries(pulumi.CustomResource):
         __props__.__dict__["store_id"] = store_id
         return ConfigstoreEntries(resource_name, opts=opts, __props__=__props__)
 
+    @staticmethod
+    def exists(id: pulumi.Input[str],
+            opts: Optional[pulumi.ResourceOptions] = None,
+            entries: pulumi.Input[Optional[Mapping[str, pulumi.Input[_builtins.str]]]] = None,
+            manage_entries: pulumi.Input[Optional[_builtins.bool]] = None,
+            store_id: pulumi.Input[Optional[_builtins.str]] = None) -> pulumi.Output[bool]:
+        __props__: dict = {}
+        __props__["entries"] = entries
+        __props__["manageEntries"] = manage_entries
+        __props__["storeId"] = store_id
+        return pulumi.runtime.exists_resource(None, 'fastly:index/configstoreEntries:ConfigstoreEntries', id, __props__, opts or pulumi.ResourceOptions())
+
     @_builtins.property
     @pulumi.getter
     def entries(self) -> pulumi.Output[Mapping[str, _builtins.str]]:

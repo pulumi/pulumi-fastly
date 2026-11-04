@@ -145,6 +145,12 @@ func (ServiceDynamicSnippetContentState) ElementType() reflect.Type {
 	return reflect.TypeOf((*serviceDynamicSnippetContentState)(nil)).Elem()
 }
 
+// ServiceDynamicSnippetContentExists checks whether an existing ServiceDynamicSnippetContent resource with the given ID exists.
+func ServiceDynamicSnippetContentExists(ctx *pulumi.Context,
+	id pulumi.StringInput, state *ServiceDynamicSnippetContentState, opts ...pulumi.ResourceOption) pulumi.BoolOutput {
+	return ctx.ExistsResource("fastly:index/serviceDynamicSnippetContent:ServiceDynamicSnippetContent", id, state, "", opts...)
+}
+
 type serviceDynamicSnippetContentArgs struct {
 	// The VCL code that specifies exactly what the snippet does
 	Content string `pulumi:"content"`

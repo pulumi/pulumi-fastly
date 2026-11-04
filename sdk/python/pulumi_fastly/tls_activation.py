@@ -374,6 +374,22 @@ class TlsActivation(pulumi.CustomResource):
         __props__.__dict__["mutual_authentication_id"] = mutual_authentication_id
         return TlsActivation(resource_name, opts=opts, __props__=__props__)
 
+    @staticmethod
+    def exists(id: pulumi.Input[str],
+            opts: Optional[pulumi.ResourceOptions] = None,
+            certificate_id: pulumi.Input[Optional[_builtins.str]] = None,
+            configuration_id: pulumi.Input[Optional[_builtins.str]] = None,
+            created_at: pulumi.Input[Optional[_builtins.str]] = None,
+            domain: pulumi.Input[Optional[_builtins.str]] = None,
+            mutual_authentication_id: pulumi.Input[Optional[_builtins.str]] = None) -> pulumi.Output[bool]:
+        __props__: dict = {}
+        __props__["certificateId"] = certificate_id
+        __props__["configurationId"] = configuration_id
+        __props__["createdAt"] = created_at
+        __props__["domain"] = domain
+        __props__["mutualAuthenticationId"] = mutual_authentication_id
+        return pulumi.runtime.exists_resource(None, 'fastly:index/tlsActivation:TlsActivation', id, __props__, opts or pulumi.ResourceOptions())
+
     @_builtins.property
     @pulumi.getter(name="certificateId")
     def certificate_id(self) -> pulumi.Output[_builtins.str]:

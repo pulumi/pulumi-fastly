@@ -351,6 +351,12 @@ func (ServiceComputeState) ElementType() reflect.Type {
 	return reflect.TypeOf((*serviceComputeState)(nil)).Elem()
 }
 
+// ServiceComputeExists checks whether an existing ServiceCompute resource with the given ID exists.
+func ServiceComputeExists(ctx *pulumi.Context,
+	id pulumi.StringInput, state *ServiceComputeState, opts ...pulumi.ResourceOption) pulumi.BoolOutput {
+	return ctx.ExistsResource("fastly:index/serviceCompute:ServiceCompute", id, state, "", opts...)
+}
+
 type serviceComputeArgs struct {
 	// Controls whether newly created service versions are activated. When versioned configuration changes, the apply step creates a draft version but does not activate it if this is set to `false`. Versionless service attributes, such as `name` and `comment`, are updated regardless of this setting. Default `true`
 	Activate *bool                   `pulumi:"activate"`

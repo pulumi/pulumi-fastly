@@ -153,6 +153,12 @@ func (ApiSecurityOperationTagState) ElementType() reflect.Type {
 	return reflect.TypeOf((*apiSecurityOperationTagState)(nil)).Elem()
 }
 
+// ApiSecurityOperationTagExists checks whether an existing ApiSecurityOperationTag resource with the given ID exists.
+func ApiSecurityOperationTagExists(ctx *pulumi.Context,
+	id pulumi.StringInput, state *ApiSecurityOperationTagState, opts ...pulumi.ResourceOption) pulumi.BoolOutput {
+	return ctx.ExistsResource("fastly:index/apiSecurityOperationTag:ApiSecurityOperationTag", id, state, "", opts...)
+}
+
 type apiSecurityOperationTagArgs struct {
 	// The description of the operation tag.
 	Description *string `pulumi:"description"`

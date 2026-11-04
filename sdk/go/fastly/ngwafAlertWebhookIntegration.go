@@ -126,6 +126,12 @@ func (NgwafAlertWebhookIntegrationState) ElementType() reflect.Type {
 	return reflect.TypeOf((*ngwafAlertWebhookIntegrationState)(nil)).Elem()
 }
 
+// NgwafAlertWebhookIntegrationExists checks whether an existing NgwafAlertWebhookIntegration resource with the given ID exists.
+func NgwafAlertWebhookIntegrationExists(ctx *pulumi.Context,
+	id pulumi.StringInput, state *NgwafAlertWebhookIntegrationState, opts ...pulumi.ResourceOption) pulumi.BoolOutput {
+	return ctx.ExistsResource("fastly:index/ngwafAlertWebhookIntegration:NgwafAlertWebhookIntegration", id, state, "", opts...)
+}
+
 type ngwafAlertWebhookIntegrationArgs struct {
 	// The description of the alert.
 	Description *string `pulumi:"description"`

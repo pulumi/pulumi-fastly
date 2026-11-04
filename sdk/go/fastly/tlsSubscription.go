@@ -183,6 +183,12 @@ func (TlsSubscriptionState) ElementType() reflect.Type {
 	return reflect.TypeOf((*tlsSubscriptionState)(nil)).Elem()
 }
 
+// TlsSubscriptionExists checks whether an existing TlsSubscription resource with the given ID exists.
+func TlsSubscriptionExists(ctx *pulumi.Context,
+	id pulumi.StringInput, state *TlsSubscriptionState, opts ...pulumi.ResourceOption) pulumi.BoolOutput {
+	return ctx.ExistsResource("fastly:index/tlsSubscription:TlsSubscription", id, state, "", opts...)
+}
+
 type tlsSubscriptionArgs struct {
 	// The entity that issues and certifies the TLS certificates for your subscription. Valid values are `lets-encrypt`, `globalsign` or `certainly`.
 	CertificateAuthority string `pulumi:"certificateAuthority"`

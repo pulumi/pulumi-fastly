@@ -122,6 +122,12 @@ func (DnsZoneState) ElementType() reflect.Type {
 	return reflect.TypeOf((*dnsZoneState)(nil)).Elem()
 }
 
+// DnsZoneExists checks whether an existing DnsZone resource with the given ID exists.
+func DnsZoneExists(ctx *pulumi.Context,
+	id pulumi.StringInput, state *DnsZoneState, opts ...pulumi.ResourceOption) pulumi.BoolOutput {
+	return ctx.ExistsResource("fastly:index/dnsZone:DnsZone", id, state, "", opts...)
+}
+
 type dnsZoneArgs struct {
 	// A freeform descriptive note.
 	Description *string `pulumi:"description"`

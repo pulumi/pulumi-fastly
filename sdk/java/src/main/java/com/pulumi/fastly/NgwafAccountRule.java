@@ -21,7 +21,7 @@ import java.util.Optional;
 import javax.annotation.Nullable;
 
 /**
- * Provides a Fastly Next-Gen WAF Account Rule.\
+ * Provides a Fastly Next-Gen WAF Account Rule.&#92;
  * Account-level rules apply across one or more workspaces and are useful for defining shared or global WAF logic.
  * 
  * ## Example Usage

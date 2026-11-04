@@ -455,6 +455,32 @@ class TlsCertificate(pulumi.CustomResource):
         __props__.__dict__["updated_at"] = updated_at
         return TlsCertificate(resource_name, opts=opts, __props__=__props__)
 
+    @staticmethod
+    def exists(id: pulumi.Input[str],
+            opts: Optional[pulumi.ResourceOptions] = None,
+            certificate_body: pulumi.Input[Optional[_builtins.str]] = None,
+            created_at: pulumi.Input[Optional[_builtins.str]] = None,
+            domains: pulumi.Input[Optional[Sequence[pulumi.Input[_builtins.str]]]] = None,
+            issued_to: pulumi.Input[Optional[_builtins.str]] = None,
+            issuer: pulumi.Input[Optional[_builtins.str]] = None,
+            name: pulumi.Input[Optional[_builtins.str]] = None,
+            replace: pulumi.Input[Optional[_builtins.bool]] = None,
+            serial_number: pulumi.Input[Optional[_builtins.str]] = None,
+            signature_algorithm: pulumi.Input[Optional[_builtins.str]] = None,
+            updated_at: pulumi.Input[Optional[_builtins.str]] = None) -> pulumi.Output[bool]:
+        __props__: dict = {}
+        __props__["certificateBody"] = certificate_body
+        __props__["createdAt"] = created_at
+        __props__["domains"] = domains
+        __props__["issuedTo"] = issued_to
+        __props__["issuer"] = issuer
+        __props__["name"] = name
+        __props__["replace"] = replace
+        __props__["serialNumber"] = serial_number
+        __props__["signatureAlgorithm"] = signature_algorithm
+        __props__["updatedAt"] = updated_at
+        return pulumi.runtime.exists_resource(None, 'fastly:index/tlsCertificate:TlsCertificate', id, __props__, opts or pulumi.ResourceOptions())
+
     @_builtins.property
     @pulumi.getter(name="certificateBody")
     def certificate_body(self) -> pulumi.Output[_builtins.str]:

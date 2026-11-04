@@ -478,6 +478,12 @@ func (ServiceVclState) ElementType() reflect.Type {
 	return reflect.TypeOf((*serviceVclState)(nil)).Elem()
 }
 
+// ServiceVclExists checks whether an existing ServiceVcl resource with the given ID exists.
+func ServiceVclExists(ctx *pulumi.Context,
+	id pulumi.StringInput, state *ServiceVclState, opts ...pulumi.ResourceOption) pulumi.BoolOutput {
+	return ctx.ExistsResource("fastly:index/serviceVcl:ServiceVcl", id, state, "", opts...)
+}
+
 type serviceVclArgs struct {
 	Acls []ServiceVclAcl `pulumi:"acls"`
 	// Controls whether newly created service versions are activated. When versioned configuration changes, the apply step creates a draft version but does not activate it if this is set to `false`. Versionless service attributes, such as `name` and `comment`, are updated regardless of this setting. Default `true`

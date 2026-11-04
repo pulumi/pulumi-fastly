@@ -1122,6 +1122,34 @@ class NgwafWorkspaceRule(pulumi.CustomResource):
         __props__.__dict__["workspace_id"] = workspace_id
         return NgwafWorkspaceRule(resource_name, opts=opts, __props__=__props__)
 
+    @staticmethod
+    def exists(id: pulumi.Input[str],
+            opts: Optional[pulumi.ResourceOptions] = None,
+            actions: pulumi.Input[Optional[Sequence[pulumi.Input[Union['NgwafWorkspaceRuleActionArgs', 'NgwafWorkspaceRuleActionArgsDict', 'outputs.NgwafWorkspaceRuleAction']]]]] = None,
+            conditions: pulumi.Input[Optional[Sequence[pulumi.Input[Union['NgwafWorkspaceRuleConditionArgs', 'NgwafWorkspaceRuleConditionArgsDict', 'outputs.NgwafWorkspaceRuleCondition']]]]] = None,
+            description: pulumi.Input[Optional[_builtins.str]] = None,
+            enabled: pulumi.Input[Optional[_builtins.bool]] = None,
+            group_conditions: pulumi.Input[Optional[Sequence[pulumi.Input[Union['NgwafWorkspaceRuleGroupConditionArgs', 'NgwafWorkspaceRuleGroupConditionArgsDict', 'outputs.NgwafWorkspaceRuleGroupCondition']]]]] = None,
+            group_operator: pulumi.Input[Optional[_builtins.str]] = None,
+            multival_conditions: pulumi.Input[Optional[Sequence[pulumi.Input[Union['NgwafWorkspaceRuleMultivalConditionArgs', 'NgwafWorkspaceRuleMultivalConditionArgsDict', 'outputs.NgwafWorkspaceRuleMultivalCondition']]]]] = None,
+            rate_limit: pulumi.Input[Optional[Union['NgwafWorkspaceRuleRateLimitArgs', 'NgwafWorkspaceRuleRateLimitArgsDict', 'outputs.NgwafWorkspaceRuleRateLimit']]] = None,
+            request_logging: pulumi.Input[Optional[_builtins.str]] = None,
+            type: pulumi.Input[Optional[_builtins.str]] = None,
+            workspace_id: pulumi.Input[Optional[_builtins.str]] = None) -> pulumi.Output[bool]:
+        __props__: dict = {}
+        __props__["actions"] = actions
+        __props__["conditions"] = conditions
+        __props__["description"] = description
+        __props__["enabled"] = enabled
+        __props__["groupConditions"] = group_conditions
+        __props__["groupOperator"] = group_operator
+        __props__["multivalConditions"] = multival_conditions
+        __props__["rateLimit"] = rate_limit
+        __props__["requestLogging"] = request_logging
+        __props__["type"] = type
+        __props__["workspaceId"] = workspace_id
+        return pulumi.runtime.exists_resource(None, 'fastly:index/ngwafWorkspaceRule:NgwafWorkspaceRule', id, __props__, opts or pulumi.ResourceOptions())
+
     @_builtins.property
     @pulumi.getter
     def actions(self) -> pulumi.Output[Sequence['outputs.NgwafWorkspaceRuleAction']]:

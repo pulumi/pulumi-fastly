@@ -22,7 +22,7 @@ import java.util.Optional;
 import javax.annotation.Nullable;
 
 /**
- * Provides a Fastly Next-Gen WAF Workspace Rule, scoped to a specific NGWAF workspace.\
+ * Provides a Fastly Next-Gen WAF Workspace Rule, scoped to a specific NGWAF workspace.&#92;
  * These rules define conditions and actions that trigger WAF enforcement at the workspace level.
  * 
  * ## Example Usage

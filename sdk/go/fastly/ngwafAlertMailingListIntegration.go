@@ -123,6 +123,12 @@ func (NgwafAlertMailingListIntegrationState) ElementType() reflect.Type {
 	return reflect.TypeOf((*ngwafAlertMailingListIntegrationState)(nil)).Elem()
 }
 
+// NgwafAlertMailingListIntegrationExists checks whether an existing NgwafAlertMailingListIntegration resource with the given ID exists.
+func NgwafAlertMailingListIntegrationExists(ctx *pulumi.Context,
+	id pulumi.StringInput, state *NgwafAlertMailingListIntegrationState, opts ...pulumi.ResourceOption) pulumi.BoolOutput {
+	return ctx.ExistsResource("fastly:index/ngwafAlertMailingListIntegration:NgwafAlertMailingListIntegration", id, state, "", opts...)
+}
+
 type ngwafAlertMailingListIntegrationArgs struct {
 	// Email address that the alert will use.
 	Address string `pulumi:"address"`

@@ -155,6 +155,12 @@ func (TlsPrivateKeyState) ElementType() reflect.Type {
 	return reflect.TypeOf((*tlsPrivateKeyState)(nil)).Elem()
 }
 
+// TlsPrivateKeyExists checks whether an existing TlsPrivateKey resource with the given ID exists.
+func TlsPrivateKeyExists(ctx *pulumi.Context,
+	id pulumi.StringInput, state *TlsPrivateKeyState, opts ...pulumi.ResourceOption) pulumi.BoolOutput {
+	return ctx.ExistsResource("fastly:index/tlsPrivateKey:TlsPrivateKey", id, state, "", opts...)
+}
+
 type tlsPrivateKeyArgs struct {
 	// Private key in PEM format.
 	KeyPem string `pulumi:"keyPem"`

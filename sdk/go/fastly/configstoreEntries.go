@@ -236,6 +236,12 @@ func (ConfigstoreEntriesState) ElementType() reflect.Type {
 	return reflect.TypeOf((*configstoreEntriesState)(nil)).Elem()
 }
 
+// ConfigstoreEntriesExists checks whether an existing ConfigstoreEntries resource with the given ID exists.
+func ConfigstoreEntriesExists(ctx *pulumi.Context,
+	id pulumi.StringInput, state *ConfigstoreEntriesState, opts ...pulumi.ResourceOption) pulumi.BoolOutput {
+	return ctx.ExistsResource("fastly:index/configstoreEntries:ConfigstoreEntries", id, state, "", opts...)
+}
+
 type configstoreEntriesArgs struct {
 	// A map representing an entry in the Config Store, (key/value)
 	Entries map[string]string `pulumi:"entries"`

@@ -248,6 +248,12 @@ func (ApiSecurityOperationState) ElementType() reflect.Type {
 	return reflect.TypeOf((*apiSecurityOperationState)(nil)).Elem()
 }
 
+// ApiSecurityOperationExists checks whether an existing ApiSecurityOperation resource with the given ID exists.
+func ApiSecurityOperationExists(ctx *pulumi.Context,
+	id pulumi.StringInput, state *ApiSecurityOperationState, opts ...pulumi.ResourceOption) pulumi.BoolOutput {
+	return ctx.ExistsResource("fastly:index/apiSecurityOperation:ApiSecurityOperation", id, state, "", opts...)
+}
+
 type apiSecurityOperationArgs struct {
 	// A description of the operation.
 	Description *string `pulumi:"description"`

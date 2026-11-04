@@ -163,6 +163,12 @@ func (NgwafAlertJiraIntegrationState) ElementType() reflect.Type {
 	return reflect.TypeOf((*ngwafAlertJiraIntegrationState)(nil)).Elem()
 }
 
+// NgwafAlertJiraIntegrationExists checks whether an existing NgwafAlertJiraIntegration resource with the given ID exists.
+func NgwafAlertJiraIntegrationExists(ctx *pulumi.Context,
+	id pulumi.StringInput, state *NgwafAlertJiraIntegrationState, opts ...pulumi.ResourceOption) pulumi.BoolOutput {
+	return ctx.ExistsResource("fastly:index/ngwafAlertJiraIntegration:NgwafAlertJiraIntegration", id, state, "", opts...)
+}
+
 type ngwafAlertJiraIntegrationArgs struct {
 	// The description of the alert.
 	Description *string `pulumi:"description"`

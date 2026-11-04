@@ -244,6 +244,12 @@ func (TlsPlatformCertificateState) ElementType() reflect.Type {
 	return reflect.TypeOf((*tlsPlatformCertificateState)(nil)).Elem()
 }
 
+// TlsPlatformCertificateExists checks whether an existing TlsPlatformCertificate resource with the given ID exists.
+func TlsPlatformCertificateExists(ctx *pulumi.Context,
+	id pulumi.StringInput, state *TlsPlatformCertificateState, opts ...pulumi.ResourceOption) pulumi.BoolOutput {
+	return ctx.ExistsResource("fastly:index/tlsPlatformCertificate:TlsPlatformCertificate", id, state, "", opts...)
+}
+
 type tlsPlatformCertificateArgs struct {
 	// Disable checking whether the root of the certificate chain is trusted. Useful for development purposes to allow use of self-signed CAs. Defaults to false. Write-only on create.
 	AllowUntrustedRoot *bool `pulumi:"allowUntrustedRoot"`

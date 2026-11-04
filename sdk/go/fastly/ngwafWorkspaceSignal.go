@@ -138,6 +138,12 @@ func (NgwafWorkspaceSignalState) ElementType() reflect.Type {
 	return reflect.TypeOf((*ngwafWorkspaceSignalState)(nil)).Elem()
 }
 
+// NgwafWorkspaceSignalExists checks whether an existing NgwafWorkspaceSignal resource with the given ID exists.
+func NgwafWorkspaceSignalExists(ctx *pulumi.Context,
+	id pulumi.StringInput, state *NgwafWorkspaceSignalState, opts ...pulumi.ResourceOption) pulumi.BoolOutput {
+	return ctx.ExistsResource("fastly:index/ngwafWorkspaceSignal:NgwafWorkspaceSignal", id, state, "", opts...)
+}
+
 type ngwafWorkspaceSignalArgs struct {
 	// The description of the signal.
 	Description *string `pulumi:"description"`

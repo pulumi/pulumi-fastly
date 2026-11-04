@@ -114,6 +114,12 @@ func (RoutingConfigDomainLinkState) ElementType() reflect.Type {
 	return reflect.TypeOf((*routingConfigDomainLinkState)(nil)).Elem()
 }
 
+// RoutingConfigDomainLinkExists checks whether an existing RoutingConfigDomainLink resource with the given ID exists.
+func RoutingConfigDomainLinkExists(ctx *pulumi.Context,
+	id pulumi.StringInput, state *RoutingConfigDomainLinkState, opts ...pulumi.ResourceOption) pulumi.BoolOutput {
+	return ctx.ExistsResource("fastly:index/routingConfigDomainLink:RoutingConfigDomainLink", id, state, "", opts...)
+}
+
 type routingConfigDomainLinkArgs struct {
 	// The Domain Identifier of the versionless domain being linked (UUID).
 	DomainId string `pulumi:"domainId"`

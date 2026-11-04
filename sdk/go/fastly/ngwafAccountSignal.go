@@ -125,6 +125,12 @@ func (NgwafAccountSignalState) ElementType() reflect.Type {
 	return reflect.TypeOf((*ngwafAccountSignalState)(nil)).Elem()
 }
 
+// NgwafAccountSignalExists checks whether an existing NgwafAccountSignal resource with the given ID exists.
+func NgwafAccountSignalExists(ctx *pulumi.Context,
+	id pulumi.StringInput, state *NgwafAccountSignalState, opts ...pulumi.ResourceOption) pulumi.BoolOutput {
+	return ctx.ExistsResource("fastly:index/ngwafAccountSignal:NgwafAccountSignal", id, state, "", opts...)
+}
+
 type ngwafAccountSignalArgs struct {
 	// The list of workspace IDs this signal applies to, or the wildcard `*` if it applies to all workspaces.
 	AppliesTos []string `pulumi:"appliesTos"`

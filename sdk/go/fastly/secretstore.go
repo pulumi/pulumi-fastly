@@ -135,6 +135,12 @@ func (SecretstoreState) ElementType() reflect.Type {
 	return reflect.TypeOf((*secretstoreState)(nil)).Elem()
 }
 
+// SecretstoreExists checks whether an existing Secretstore resource with the given ID exists.
+func SecretstoreExists(ctx *pulumi.Context,
+	id pulumi.StringInput, state *SecretstoreState, opts ...pulumi.ResourceOption) pulumi.BoolOutput {
+	return ctx.ExistsResource("fastly:index/secretstore:Secretstore", id, state, "", opts...)
+}
+
 type secretstoreArgs struct {
 	// A human-readable name for the Secret Store. The value must contain only letters, numbers, dashes (-), underscores (*), or periods (.). It is important to note that changing this attribute will delete and recreate the Secret Store, and discard the current entries. You MUST first delete the associated resource*link block from your service before modifying this field.
 	Name *string `pulumi:"name"`

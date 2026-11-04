@@ -209,6 +209,12 @@ func (TlsCertificateState) ElementType() reflect.Type {
 	return reflect.TypeOf((*tlsCertificateState)(nil)).Elem()
 }
 
+// TlsCertificateExists checks whether an existing TlsCertificate resource with the given ID exists.
+func TlsCertificateExists(ctx *pulumi.Context,
+	id pulumi.StringInput, state *TlsCertificateState, opts ...pulumi.ResourceOption) pulumi.BoolOutput {
+	return ctx.ExistsResource("fastly:index/tlsCertificate:TlsCertificate", id, state, "", opts...)
+}
+
 type tlsCertificateArgs struct {
 	// PEM-formatted certificate, optionally including any intermediary certificates.
 	CertificateBody string `pulumi:"certificateBody"`

@@ -587,6 +587,32 @@ class NgwafAccountRule(pulumi.CustomResource):
         __props__.__dict__["type"] = type
         return NgwafAccountRule(resource_name, opts=opts, __props__=__props__)
 
+    @staticmethod
+    def exists(id: pulumi.Input[str],
+            opts: Optional[pulumi.ResourceOptions] = None,
+            actions: pulumi.Input[Optional[Sequence[pulumi.Input[Union['NgwafAccountRuleActionArgs', 'NgwafAccountRuleActionArgsDict', 'outputs.NgwafAccountRuleAction']]]]] = None,
+            applies_tos: pulumi.Input[Optional[Sequence[pulumi.Input[_builtins.str]]]] = None,
+            conditions: pulumi.Input[Optional[Sequence[pulumi.Input[Union['NgwafAccountRuleConditionArgs', 'NgwafAccountRuleConditionArgsDict', 'outputs.NgwafAccountRuleCondition']]]]] = None,
+            description: pulumi.Input[Optional[_builtins.str]] = None,
+            enabled: pulumi.Input[Optional[_builtins.bool]] = None,
+            group_conditions: pulumi.Input[Optional[Sequence[pulumi.Input[Union['NgwafAccountRuleGroupConditionArgs', 'NgwafAccountRuleGroupConditionArgsDict', 'outputs.NgwafAccountRuleGroupCondition']]]]] = None,
+            group_operator: pulumi.Input[Optional[_builtins.str]] = None,
+            multival_conditions: pulumi.Input[Optional[Sequence[pulumi.Input[Union['NgwafAccountRuleMultivalConditionArgs', 'NgwafAccountRuleMultivalConditionArgsDict', 'outputs.NgwafAccountRuleMultivalCondition']]]]] = None,
+            request_logging: pulumi.Input[Optional[_builtins.str]] = None,
+            type: pulumi.Input[Optional[_builtins.str]] = None) -> pulumi.Output[bool]:
+        __props__: dict = {}
+        __props__["actions"] = actions
+        __props__["appliesTos"] = applies_tos
+        __props__["conditions"] = conditions
+        __props__["description"] = description
+        __props__["enabled"] = enabled
+        __props__["groupConditions"] = group_conditions
+        __props__["groupOperator"] = group_operator
+        __props__["multivalConditions"] = multival_conditions
+        __props__["requestLogging"] = request_logging
+        __props__["type"] = type
+        return pulumi.runtime.exists_resource(None, 'fastly:index/ngwafAccountRule:NgwafAccountRule', id, __props__, opts or pulumi.ResourceOptions())
+
     @_builtins.property
     @pulumi.getter
     def actions(self) -> pulumi.Output[Sequence['outputs.NgwafAccountRuleAction']]:

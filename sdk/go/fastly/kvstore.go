@@ -143,6 +143,12 @@ func (KvstoreState) ElementType() reflect.Type {
 	return reflect.TypeOf((*kvstoreState)(nil)).Elem()
 }
 
+// KvstoreExists checks whether an existing Kvstore resource with the given ID exists.
+func KvstoreExists(ctx *pulumi.Context,
+	id pulumi.StringInput, state *KvstoreState, opts ...pulumi.ResourceOption) pulumi.BoolOutput {
+	return ctx.ExistsResource("fastly:index/kvstore:Kvstore", id, state, "", opts...)
+}
+
 type kvstoreArgs struct {
 	// Allow the KV Store to be deleted, even if it contains entries. Defaults to false.
 	ForceDestroy *bool `pulumi:"forceDestroy"`

@@ -186,14 +186,14 @@ import javax.annotation.Nullable;
 @ResourceType(type="fastly:index/computeAclEntries:ComputeAclEntries")
 public class ComputeAclEntries extends com.pulumi.resources.CustomResource {
     /**
-     * Manages entries for a Fastly Compute Access Control List (ACL). To import, use the format \n\n/entries.
+     * Manages entries for a Fastly Compute Access Control List (ACL). To import, use the format &#92;n&#92;n/entries.
      * 
      */
     @Export(name="computeAclId", refs={String.class}, tree="[0]")
     private Output<String> computeAclId;
 
     /**
-     * @return Manages entries for a Fastly Compute Access Control List (ACL). To import, use the format \n\n/entries.
+     * @return Manages entries for a Fastly Compute Access Control List (ACL). To import, use the format &#92;n&#92;n/entries.
      * 
      */
     public Output<String> computeAclId() {

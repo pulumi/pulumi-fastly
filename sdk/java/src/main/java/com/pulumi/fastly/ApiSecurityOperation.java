@@ -252,14 +252,14 @@ public class ApiSecurityOperation extends com.pulumi.resources.CustomResource {
         return this.rps;
     }
     /**
-     * Service ID the operation belongs to. To import, use: \n\n/\n\n.
+     * Service ID the operation belongs to. To import, use: &#92;n&#92;n/&#92;n&#92;n.
      * 
      */
     @Export(name="serviceId", refs={String.class}, tree="[0]")
     private Output<String> serviceId;
 
     /**
-     * @return Service ID the operation belongs to. To import, use: \n\n/\n\n.
+     * @return Service ID the operation belongs to. To import, use: &#92;n&#92;n/&#92;n&#92;n.
      * 
      */
     public Output<String> serviceId() {

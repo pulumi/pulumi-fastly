@@ -145,6 +145,12 @@ func (ServiceACLEntriesState) ElementType() reflect.Type {
 	return reflect.TypeOf((*serviceACLEntriesState)(nil)).Elem()
 }
 
+// ServiceACLEntriesExists checks whether an existing ServiceACLEntries resource with the given ID exists.
+func ServiceACLEntriesExists(ctx *pulumi.Context,
+	id pulumi.StringInput, state *ServiceACLEntriesState, opts ...pulumi.ResourceOption) pulumi.BoolOutput {
+	return ctx.ExistsResource("fastly:index/serviceACLEntries:ServiceACLEntries", id, state, "", opts...)
+}
+
 type serviceACLEntriesArgs struct {
 	// The ID of the ACL that the items belong to
 	AclId string `pulumi:"aclId"`

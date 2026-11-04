@@ -138,14 +138,14 @@ public final class ApiSecurityOperationState extends com.pulumi.resources.Resour
     }
 
     /**
-     * Service ID the operation belongs to. To import, use: \n\n/\n\n.
+     * Service ID the operation belongs to. To import, use: &#92;n&#92;n/&#92;n&#92;n.
      * 
      */
     @Import(name="serviceId")
     private @Nullable Output<String> serviceId;
 
     /**
-     * @return Service ID the operation belongs to. To import, use: \n\n/\n\n.
+     * @return Service ID the operation belongs to. To import, use: &#92;n&#92;n/&#92;n&#92;n.
      * 
      */
     public Optional<Output<String>> serviceId() {
@@ -401,7 +401,7 @@ public final class ApiSecurityOperationState extends com.pulumi.resources.Resour
         }
 
         /**
-         * @param serviceId Service ID the operation belongs to. To import, use: \n\n/\n\n.
+         * @param serviceId Service ID the operation belongs to. To import, use: &#92;n&#92;n/&#92;n&#92;n.
          * 
          * @return builder
          * 
@@ -412,7 +412,7 @@ public final class ApiSecurityOperationState extends com.pulumi.resources.Resour
         }
 
         /**
-         * @param serviceId Service ID the operation belongs to. To import, use: \n\n/\n\n.
+         * @param serviceId Service ID the operation belongs to. To import, use: &#92;n&#92;n/&#92;n&#92;n.
          * 
          * @return builder
          * 

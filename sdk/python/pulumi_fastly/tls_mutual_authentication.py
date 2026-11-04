@@ -374,6 +374,28 @@ class TlsMutualAuthentication(pulumi.CustomResource):
         __props__.__dict__["updated_at"] = updated_at
         return TlsMutualAuthentication(resource_name, opts=opts, __props__=__props__)
 
+    @staticmethod
+    def exists(id: pulumi.Input[str],
+            opts: Optional[pulumi.ResourceOptions] = None,
+            activation_ids: pulumi.Input[Optional[Sequence[pulumi.Input[_builtins.str]]]] = None,
+            cert_bundle: pulumi.Input[Optional[_builtins.str]] = None,
+            created_at: pulumi.Input[Optional[_builtins.str]] = None,
+            enforced: pulumi.Input[Optional[_builtins.bool]] = None,
+            include: pulumi.Input[Optional[_builtins.str]] = None,
+            name: pulumi.Input[Optional[_builtins.str]] = None,
+            tls_activations: pulumi.Input[Optional[Sequence[pulumi.Input[_builtins.str]]]] = None,
+            updated_at: pulumi.Input[Optional[_builtins.str]] = None) -> pulumi.Output[bool]:
+        __props__: dict = {}
+        __props__["activationIds"] = activation_ids
+        __props__["certBundle"] = cert_bundle
+        __props__["createdAt"] = created_at
+        __props__["enforced"] = enforced
+        __props__["include"] = include
+        __props__["name"] = name
+        __props__["tlsActivations"] = tls_activations
+        __props__["updatedAt"] = updated_at
+        return pulumi.runtime.exists_resource(None, 'fastly:index/tlsMutualAuthentication:TlsMutualAuthentication', id, __props__, opts or pulumi.ResourceOptions())
+
     @_builtins.property
     @pulumi.getter(name="activationIds")
     def activation_ids(self) -> pulumi.Output[Optional[Sequence[_builtins.str]]]:

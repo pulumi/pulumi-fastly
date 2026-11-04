@@ -143,6 +143,12 @@ func (ServiceAuthorizationState) ElementType() reflect.Type {
 	return reflect.TypeOf((*serviceAuthorizationState)(nil)).Elem()
 }
 
+// ServiceAuthorizationExists checks whether an existing ServiceAuthorization resource with the given ID exists.
+func ServiceAuthorizationExists(ctx *pulumi.Context,
+	id pulumi.StringInput, state *ServiceAuthorizationState, opts ...pulumi.ResourceOption) pulumi.BoolOutput {
+	return ctx.ExistsResource("fastly:index/serviceAuthorization:ServiceAuthorization", id, state, "", opts...)
+}
+
 type serviceAuthorizationArgs struct {
 	// The permissions to grant the user. Can be `full`, `readOnly`, `purgeSelect` or `purgeAll`.
 	Permission string `pulumi:"permission"`

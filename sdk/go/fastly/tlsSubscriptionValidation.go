@@ -196,6 +196,12 @@ func (TlsSubscriptionValidationState) ElementType() reflect.Type {
 	return reflect.TypeOf((*tlsSubscriptionValidationState)(nil)).Elem()
 }
 
+// TlsSubscriptionValidationExists checks whether an existing TlsSubscriptionValidation resource with the given ID exists.
+func TlsSubscriptionValidationExists(ctx *pulumi.Context,
+	id pulumi.StringInput, state *TlsSubscriptionValidationState, opts ...pulumi.ResourceOption) pulumi.BoolOutput {
+	return ctx.ExistsResource("fastly:index/tlsSubscriptionValidation:TlsSubscriptionValidation", id, state, "", opts...)
+}
+
 type tlsSubscriptionValidationArgs struct {
 	// The ID of the TLS Subscription that should be validated.
 	SubscriptionId string `pulumi:"subscriptionId"`
