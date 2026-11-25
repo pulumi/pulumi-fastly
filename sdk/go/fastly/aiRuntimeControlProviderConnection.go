@@ -8,12 +8,17 @@ import (
 	"reflect"
 
 	"errors"
-	"github.com/pulumi/pulumi-fastly/sdk/v12/go/fastly/internal"
+	"github.com/pulumi/pulumi-fastly/sdk/v13/go/fastly/internal"
 	"github.com/pulumi/pulumi/sdk/v3/go/pulumi"
 )
 
-// Provides a Fastly AI Runtime Control provider connection, which stores the
-// authentication details and the set of allowed models for an AI model provider.
+// Provides a Fastly AI Runtime Control provider connection, which supplies the
+// credentials AI Runtime Control uses to reach an AI provider on your behalf, along
+// with the set of models the connection is allowed to use. Each customer account is
+// limited to 25 provider connections.
+//
+// > **Note:** A provider connection cannot be deleted while it is still referenced
+// by a virtual key's failover policy.
 //
 // > **Note:** The API never returns the provider's `apiKey`, so its value cannot
 // be reconciled against the remote state. Terraform will only update it when the
@@ -28,7 +33,7 @@ import (
 //
 // import (
 //
-//	"github.com/pulumi/pulumi-fastly/sdk/v12/go/fastly"
+//	"github.com/pulumi/pulumi-fastly/sdk/v13/go/fastly"
 //	"github.com/pulumi/pulumi/sdk/v3/go/pulumi"
 //
 // )
@@ -65,17 +70,17 @@ import (
 type AiRuntimeControlProviderConnection struct {
 	pulumi.CustomResourceState
 
-	// The provider's secret key used for authentication. Never returned by the API, so it cannot be reconciled with the remote state.
+	// The provider's secret API key. Never returned by the API, so it cannot be reconciled with the remote state.
 	ApiKey pulumi.StringOutput `pulumi:"apiKey"`
-	// The base URL for the provider's API, e.g. `https://api.openai.com`. Must not include a `/v1` suffix, which the API appends automatically. Trailing slashes are stripped.
+	// The base URL of the provider's API, e.g. `https://api.openai.com`. Must be an absolute http or https URL, and must not include a `/v1` suffix, which the API appends automatically. Trailing slashes are stripped.
 	BaseUrl pulumi.StringOutput `pulumi:"baseUrl"`
 	// Timestamp (UTC) of when the provider connection was created.
 	CreatedAt pulumi.StringOutput `pulumi:"createdAt"`
-	// The set of allowed AI model identifiers, e.g. `["gpt-4o", "gpt-4o-mini"]`.
+	// The set of AI model identifiers this provider connection is allowed to use, e.g. `["gpt-4o", "gpt-4o-mini"]`.
 	Models pulumi.StringArrayOutput `pulumi:"models"`
-	// A human-readable name for the provider. Changing this forces a new provider connection to be created.
+	// The display name of the provider connection. Changing this forces a new provider connection to be created.
 	Name pulumi.StringOutput `pulumi:"name"`
-	// A hash representing the `apiKey` used to create the provider connection.
+	// An opaque identifier for the secret material backing this provider connection. Not the secret itself.
 	SecretId pulumi.StringOutput `pulumi:"secretId"`
 	// Timestamp (UTC) of when the provider connection was last updated.
 	UpdatedAt pulumi.StringOutput `pulumi:"updatedAt"`
@@ -127,34 +132,34 @@ func GetAiRuntimeControlProviderConnection(ctx *pulumi.Context,
 
 // Input properties used for looking up and filtering AiRuntimeControlProviderConnection resources.
 type aiRuntimeControlProviderConnectionState struct {
-	// The provider's secret key used for authentication. Never returned by the API, so it cannot be reconciled with the remote state.
+	// The provider's secret API key. Never returned by the API, so it cannot be reconciled with the remote state.
 	ApiKey *string `pulumi:"apiKey"`
-	// The base URL for the provider's API, e.g. `https://api.openai.com`. Must not include a `/v1` suffix, which the API appends automatically. Trailing slashes are stripped.
+	// The base URL of the provider's API, e.g. `https://api.openai.com`. Must be an absolute http or https URL, and must not include a `/v1` suffix, which the API appends automatically. Trailing slashes are stripped.
 	BaseUrl *string `pulumi:"baseUrl"`
 	// Timestamp (UTC) of when the provider connection was created.
 	CreatedAt *string `pulumi:"createdAt"`
-	// The set of allowed AI model identifiers, e.g. `["gpt-4o", "gpt-4o-mini"]`.
+	// The set of AI model identifiers this provider connection is allowed to use, e.g. `["gpt-4o", "gpt-4o-mini"]`.
 	Models []string `pulumi:"models"`
-	// A human-readable name for the provider. Changing this forces a new provider connection to be created.
+	// The display name of the provider connection. Changing this forces a new provider connection to be created.
 	Name *string `pulumi:"name"`
-	// A hash representing the `apiKey` used to create the provider connection.
+	// An opaque identifier for the secret material backing this provider connection. Not the secret itself.
 	SecretId *string `pulumi:"secretId"`
 	// Timestamp (UTC) of when the provider connection was last updated.
 	UpdatedAt *string `pulumi:"updatedAt"`
 }
 
 type AiRuntimeControlProviderConnectionState struct {
-	// The provider's secret key used for authentication. Never returned by the API, so it cannot be reconciled with the remote state.
+	// The provider's secret API key. Never returned by the API, so it cannot be reconciled with the remote state.
 	ApiKey pulumi.StringPtrInput
-	// The base URL for the provider's API, e.g. `https://api.openai.com`. Must not include a `/v1` suffix, which the API appends automatically. Trailing slashes are stripped.
+	// The base URL of the provider's API, e.g. `https://api.openai.com`. Must be an absolute http or https URL, and must not include a `/v1` suffix, which the API appends automatically. Trailing slashes are stripped.
 	BaseUrl pulumi.StringPtrInput
 	// Timestamp (UTC) of when the provider connection was created.
 	CreatedAt pulumi.StringPtrInput
-	// The set of allowed AI model identifiers, e.g. `["gpt-4o", "gpt-4o-mini"]`.
+	// The set of AI model identifiers this provider connection is allowed to use, e.g. `["gpt-4o", "gpt-4o-mini"]`.
 	Models pulumi.StringArrayInput
-	// A human-readable name for the provider. Changing this forces a new provider connection to be created.
+	// The display name of the provider connection. Changing this forces a new provider connection to be created.
 	Name pulumi.StringPtrInput
-	// A hash representing the `apiKey` used to create the provider connection.
+	// An opaque identifier for the secret material backing this provider connection. Not the secret itself.
 	SecretId pulumi.StringPtrInput
 	// Timestamp (UTC) of when the provider connection was last updated.
 	UpdatedAt pulumi.StringPtrInput
@@ -171,25 +176,25 @@ func AiRuntimeControlProviderConnectionExists(ctx *pulumi.Context,
 }
 
 type aiRuntimeControlProviderConnectionArgs struct {
-	// The provider's secret key used for authentication. Never returned by the API, so it cannot be reconciled with the remote state.
+	// The provider's secret API key. Never returned by the API, so it cannot be reconciled with the remote state.
 	ApiKey string `pulumi:"apiKey"`
-	// The base URL for the provider's API, e.g. `https://api.openai.com`. Must not include a `/v1` suffix, which the API appends automatically. Trailing slashes are stripped.
+	// The base URL of the provider's API, e.g. `https://api.openai.com`. Must be an absolute http or https URL, and must not include a `/v1` suffix, which the API appends automatically. Trailing slashes are stripped.
 	BaseUrl string `pulumi:"baseUrl"`
-	// The set of allowed AI model identifiers, e.g. `["gpt-4o", "gpt-4o-mini"]`.
+	// The set of AI model identifiers this provider connection is allowed to use, e.g. `["gpt-4o", "gpt-4o-mini"]`.
 	Models []string `pulumi:"models"`
-	// A human-readable name for the provider. Changing this forces a new provider connection to be created.
+	// The display name of the provider connection. Changing this forces a new provider connection to be created.
 	Name *string `pulumi:"name"`
 }
 
 // The set of arguments for constructing a AiRuntimeControlProviderConnection resource.
 type AiRuntimeControlProviderConnectionArgs struct {
-	// The provider's secret key used for authentication. Never returned by the API, so it cannot be reconciled with the remote state.
+	// The provider's secret API key. Never returned by the API, so it cannot be reconciled with the remote state.
 	ApiKey pulumi.StringInput
-	// The base URL for the provider's API, e.g. `https://api.openai.com`. Must not include a `/v1` suffix, which the API appends automatically. Trailing slashes are stripped.
+	// The base URL of the provider's API, e.g. `https://api.openai.com`. Must be an absolute http or https URL, and must not include a `/v1` suffix, which the API appends automatically. Trailing slashes are stripped.
 	BaseUrl pulumi.StringInput
-	// The set of allowed AI model identifiers, e.g. `["gpt-4o", "gpt-4o-mini"]`.
+	// The set of AI model identifiers this provider connection is allowed to use, e.g. `["gpt-4o", "gpt-4o-mini"]`.
 	Models pulumi.StringArrayInput
-	// A human-readable name for the provider. Changing this forces a new provider connection to be created.
+	// The display name of the provider connection. Changing this forces a new provider connection to be created.
 	Name pulumi.StringPtrInput
 }
 
@@ -280,12 +285,12 @@ func (o AiRuntimeControlProviderConnectionOutput) ToAiRuntimeControlProviderConn
 	return o
 }
 
-// The provider's secret key used for authentication. Never returned by the API, so it cannot be reconciled with the remote state.
+// The provider's secret API key. Never returned by the API, so it cannot be reconciled with the remote state.
 func (o AiRuntimeControlProviderConnectionOutput) ApiKey() pulumi.StringOutput {
 	return o.ApplyT(func(v *AiRuntimeControlProviderConnection) pulumi.StringOutput { return v.ApiKey }).(pulumi.StringOutput)
 }
 
-// The base URL for the provider's API, e.g. `https://api.openai.com`. Must not include a `/v1` suffix, which the API appends automatically. Trailing slashes are stripped.
+// The base URL of the provider's API, e.g. `https://api.openai.com`. Must be an absolute http or https URL, and must not include a `/v1` suffix, which the API appends automatically. Trailing slashes are stripped.
 func (o AiRuntimeControlProviderConnectionOutput) BaseUrl() pulumi.StringOutput {
 	return o.ApplyT(func(v *AiRuntimeControlProviderConnection) pulumi.StringOutput { return v.BaseUrl }).(pulumi.StringOutput)
 }
@@ -295,17 +300,17 @@ func (o AiRuntimeControlProviderConnectionOutput) CreatedAt() pulumi.StringOutpu
 	return o.ApplyT(func(v *AiRuntimeControlProviderConnection) pulumi.StringOutput { return v.CreatedAt }).(pulumi.StringOutput)
 }
 
-// The set of allowed AI model identifiers, e.g. `["gpt-4o", "gpt-4o-mini"]`.
+// The set of AI model identifiers this provider connection is allowed to use, e.g. `["gpt-4o", "gpt-4o-mini"]`.
 func (o AiRuntimeControlProviderConnectionOutput) Models() pulumi.StringArrayOutput {
 	return o.ApplyT(func(v *AiRuntimeControlProviderConnection) pulumi.StringArrayOutput { return v.Models }).(pulumi.StringArrayOutput)
 }
 
-// A human-readable name for the provider. Changing this forces a new provider connection to be created.
+// The display name of the provider connection. Changing this forces a new provider connection to be created.
 func (o AiRuntimeControlProviderConnectionOutput) Name() pulumi.StringOutput {
 	return o.ApplyT(func(v *AiRuntimeControlProviderConnection) pulumi.StringOutput { return v.Name }).(pulumi.StringOutput)
 }
 
-// A hash representing the `apiKey` used to create the provider connection.
+// An opaque identifier for the secret material backing this provider connection. Not the secret itself.
 func (o AiRuntimeControlProviderConnectionOutput) SecretId() pulumi.StringOutput {
 	return o.ApplyT(func(v *AiRuntimeControlProviderConnection) pulumi.StringOutput { return v.SecretId }).(pulumi.StringOutput)
 }

@@ -60,7 +60,7 @@ export interface GetAiRuntimeControlVirtualKeysArgs {
      */
     providerName?: string;
     /**
-     * Filter the results by a substring match on the virtual key name.
+     * Filter the results to virtual keys whose name contains this substring.
      */
     search?: string;
 }
@@ -86,7 +86,7 @@ export interface GetAiRuntimeControlVirtualKeysResult {
      */
     readonly providerName?: string;
     /**
-     * Filter the results by a substring match on the virtual key name.
+     * Filter the results to virtual keys whose name contains this substring.
      */
     readonly search?: string;
     /**
@@ -152,7 +152,7 @@ export interface GetAiRuntimeControlVirtualKeysOutputArgs {
      */
     providerName?: pulumi.Input<string | undefined>;
     /**
-     * Filter the results by a substring match on the virtual key name.
+     * Filter the results to virtual keys whose name contains this substring.
      */
     search?: pulumi.Input<string | undefined>;
 }

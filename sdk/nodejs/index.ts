@@ -35,6 +35,21 @@ export type AuditLogEventMapping = import("./auditLogEventMapping").AuditLogEven
 export const AuditLogEventMapping: typeof import("./auditLogEventMapping").AuditLogEventMapping = null as any;
 utilities.lazyLoad(exports, ["AuditLogEventMapping"], () => require("./auditLogEventMapping"));
 
+export { BotManagementBotArgs, BotManagementBotState } from "./botManagementBot";
+export type BotManagementBot = import("./botManagementBot").BotManagementBot;
+export const BotManagementBot: typeof import("./botManagementBot").BotManagementBot = null as any;
+utilities.lazyLoad(exports, ["BotManagementBot"], () => require("./botManagementBot"));
+
+export { BotManagementCategoryArgs, BotManagementCategoryState } from "./botManagementCategory";
+export type BotManagementCategory = import("./botManagementCategory").BotManagementCategory;
+export const BotManagementCategory: typeof import("./botManagementCategory").BotManagementCategory = null as any;
+utilities.lazyLoad(exports, ["BotManagementCategory"], () => require("./botManagementCategory"));
+
+export { BotManagementWorkspaceArgs, BotManagementWorkspaceState } from "./botManagementWorkspace";
+export type BotManagementWorkspace = import("./botManagementWorkspace").BotManagementWorkspace;
+export const BotManagementWorkspace: typeof import("./botManagementWorkspace").BotManagementWorkspace = null as any;
+utilities.lazyLoad(exports, ["BotManagementWorkspace"], () => require("./botManagementWorkspace"));
+
 export { ComputeAclArgs, ComputeAclState } from "./computeAcl";
 export type ComputeAcl = import("./computeAcl").ComputeAcl;
 export const ComputeAcl: typeof import("./computeAcl").ComputeAcl = null as any;
@@ -119,6 +134,21 @@ export { GetAuditLogEventMappingArgs, GetAuditLogEventMappingResult, GetAuditLog
 export const getAuditLogEventMapping: typeof import("./getAuditLogEventMapping").getAuditLogEventMapping = null as any;
 export const getAuditLogEventMappingOutput: typeof import("./getAuditLogEventMapping").getAuditLogEventMappingOutput = null as any;
 utilities.lazyLoad(exports, ["getAuditLogEventMapping","getAuditLogEventMappingOutput"], () => require("./getAuditLogEventMapping"));
+
+export { GetBotManagementBotsArgs, GetBotManagementBotsResult, GetBotManagementBotsOutputArgs } from "./getBotManagementBots";
+export const getBotManagementBots: typeof import("./getBotManagementBots").getBotManagementBots = null as any;
+export const getBotManagementBotsOutput: typeof import("./getBotManagementBots").getBotManagementBotsOutput = null as any;
+utilities.lazyLoad(exports, ["getBotManagementBots","getBotManagementBotsOutput"], () => require("./getBotManagementBots"));
+
+export { GetBotManagementCategoriesArgs, GetBotManagementCategoriesResult, GetBotManagementCategoriesOutputArgs } from "./getBotManagementCategories";
+export const getBotManagementCategories: typeof import("./getBotManagementCategories").getBotManagementCategories = null as any;
+export const getBotManagementCategoriesOutput: typeof import("./getBotManagementCategories").getBotManagementCategoriesOutput = null as any;
+utilities.lazyLoad(exports, ["getBotManagementCategories","getBotManagementCategoriesOutput"], () => require("./getBotManagementCategories"));
+
+export { GetBotManagementWorkspaceArgs, GetBotManagementWorkspaceResult, GetBotManagementWorkspaceOutputArgs } from "./getBotManagementWorkspace";
+export const getBotManagementWorkspace: typeof import("./getBotManagementWorkspace").getBotManagementWorkspace = null as any;
+export const getBotManagementWorkspaceOutput: typeof import("./getBotManagementWorkspace").getBotManagementWorkspaceOutput = null as any;
+utilities.lazyLoad(exports, ["getBotManagementWorkspace","getBotManagementWorkspaceOutput"], () => require("./getBotManagementWorkspace"));
 
 export { GetComputeAclsResult } from "./getComputeAcls";
 export const getComputeAcls: typeof import("./getComputeAcls").getComputeAcls = null as any;
@@ -574,6 +604,12 @@ const _module = {
                 return new ApiSecurityOperationTag(name, <any>undefined, { urn })
             case "fastly:index/auditLogEventMapping:AuditLogEventMapping":
                 return new AuditLogEventMapping(name, <any>undefined, { urn })
+            case "fastly:index/botManagementBot:BotManagementBot":
+                return new BotManagementBot(name, <any>undefined, { urn })
+            case "fastly:index/botManagementCategory:BotManagementCategory":
+                return new BotManagementCategory(name, <any>undefined, { urn })
+            case "fastly:index/botManagementWorkspace:BotManagementWorkspace":
+                return new BotManagementWorkspace(name, <any>undefined, { urn })
             case "fastly:index/computeAcl:ComputeAcl":
                 return new ComputeAcl(name, <any>undefined, { urn })
             case "fastly:index/computeAclEntries:ComputeAclEntries":
@@ -683,6 +719,9 @@ pulumi.runtime.registerResourceModule("fastly", "index/alert", _module)
 pulumi.runtime.registerResourceModule("fastly", "index/apiSecurityOperation", _module)
 pulumi.runtime.registerResourceModule("fastly", "index/apiSecurityOperationTag", _module)
 pulumi.runtime.registerResourceModule("fastly", "index/auditLogEventMapping", _module)
+pulumi.runtime.registerResourceModule("fastly", "index/botManagementBot", _module)
+pulumi.runtime.registerResourceModule("fastly", "index/botManagementCategory", _module)
+pulumi.runtime.registerResourceModule("fastly", "index/botManagementWorkspace", _module)
 pulumi.runtime.registerResourceModule("fastly", "index/computeAcl", _module)
 pulumi.runtime.registerResourceModule("fastly", "index/computeAclEntries", _module)
 pulumi.runtime.registerResourceModule("fastly", "index/configstore", _module)

@@ -21,17 +21,17 @@ public final class GetAiRuntimeControlVirtualKeysVirtualKey {
      */
     private String createdBy;
     /**
-     * @return The ID of the customer that owns the virtual key.
+     * @return The ID of the customer account that owns the virtual key.
      * 
      */
     private String customerId;
     /**
-     * @return Timestamp (UTC) of when the virtual key was deleted, if applicable.
+     * @return Timestamp (UTC) of when the virtual key was deleted. Only set when `includeDeleted` is `true`.
      * 
      */
     private String deletedAt;
     /**
-     * @return The expiration timestamp of the virtual key, if any.
+     * @return The date and time the virtual key expires, in RFC 3339 format. Empty if the virtual key doesn&#39;t expire.
      * 
      */
     private String expiresAt;
@@ -41,7 +41,7 @@ public final class GetAiRuntimeControlVirtualKeysVirtualKey {
      */
     private String id;
     /**
-     * @return Timestamp (UTC) of when the virtual key was last used, if applicable.
+     * @return Timestamp (UTC) of when the virtual key was last used to make a request. Empty if the virtual key has never been used.
      * 
      */
     private String lastUsedAt;
@@ -51,7 +51,7 @@ public final class GetAiRuntimeControlVirtualKeysVirtualKey {
      */
     private String model;
     /**
-     * @return The human-readable name of the virtual key.
+     * @return The display name of the virtual key.
      * 
      */
     private String name;
@@ -61,7 +61,7 @@ public final class GetAiRuntimeControlVirtualKeysVirtualKey {
      */
     private String provider;
     /**
-     * @return The type of the virtual key.
+     * @return The type of the resource.
      * 
      */
     private String type;
@@ -97,21 +97,21 @@ public final class GetAiRuntimeControlVirtualKeysVirtualKey {
         return this.createdBy;
     }
     /**
-     * @return The ID of the customer that owns the virtual key.
+     * @return The ID of the customer account that owns the virtual key.
      * 
      */
     public String customerId() {
         return this.customerId;
     }
     /**
-     * @return Timestamp (UTC) of when the virtual key was deleted, if applicable.
+     * @return Timestamp (UTC) of when the virtual key was deleted. Only set when `includeDeleted` is `true`.
      * 
      */
     public String deletedAt() {
         return this.deletedAt;
     }
     /**
-     * @return The expiration timestamp of the virtual key, if any.
+     * @return The date and time the virtual key expires, in RFC 3339 format. Empty if the virtual key doesn&#39;t expire.
      * 
      */
     public String expiresAt() {
@@ -125,7 +125,7 @@ public final class GetAiRuntimeControlVirtualKeysVirtualKey {
         return this.id;
     }
     /**
-     * @return Timestamp (UTC) of when the virtual key was last used, if applicable.
+     * @return Timestamp (UTC) of when the virtual key was last used to make a request. Empty if the virtual key has never been used.
      * 
      */
     public String lastUsedAt() {
@@ -139,7 +139,7 @@ public final class GetAiRuntimeControlVirtualKeysVirtualKey {
         return this.model;
     }
     /**
-     * @return The human-readable name of the virtual key.
+     * @return The display name of the virtual key.
      * 
      */
     public String name() {
@@ -153,7 +153,7 @@ public final class GetAiRuntimeControlVirtualKeysVirtualKey {
         return this.provider;
     }
     /**
-     * @return The type of the virtual key.
+     * @return The type of the resource.
      * 
      */
     public String type() {

@@ -24,6 +24,7 @@ class NgwafWorkspaceArgs:
                  attack_signal_thresholds: pulumi.Input['NgwafWorkspaceAttackSignalThresholdsArgs'],
                  description: pulumi.Input[_builtins.str],
                  mode: pulumi.Input[_builtins.str],
+                 auto_enable_new_virtual_patches: pulumi.Input[Optional[_builtins.bool]] = None,
                  client_ip_headers: pulumi.Input[Optional[Sequence[pulumi.Input[_builtins.str]]]] = None,
                  default_blocking_response_code: pulumi.Input[Optional[_builtins.int]] = None,
                  default_redirect_url: pulumi.Input[Optional[_builtins.str]] = None,
@@ -35,6 +36,7 @@ class NgwafWorkspaceArgs:
         :param pulumi.Input['NgwafWorkspaceAttackSignalThresholdsArgs'] attack_signal_thresholds: Attack threshold parameters for system site alerts. Each threshold value is the number of attack signals per IP address that must be detected during the interval before the related IP address is flagged. If no values are set then the default value for each field will be applied
         :param pulumi.Input[_builtins.str] description: The description of the workspace
         :param pulumi.Input[_builtins.str] mode: The operation mode of the workspace. Accepted values are `off`, `block`, and `log`.
+        :param pulumi.Input[_builtins.bool] auto_enable_new_virtual_patches: Whether virtual patches released after this setting is enabled are automatically enabled for the workspace in block mode. Virtual patches released before it was enabled are not changed. Default value `false`.
         :param pulumi.Input[Sequence[pulumi.Input[_builtins.str]]] client_ip_headers: Specifies the request headers containing the client IP address. Maximum of 10 header names.
         :param pulumi.Input[_builtins.int] default_blocking_response_code: The status code returned when a request is blocked. This configuration is applied at the workspace but can be overwritten in rules. Accepted values are [`301`, `302`, `400..599`]. Default value `406`.
         :param pulumi.Input[_builtins.str] default_redirect_url: The redirect URL used if default*blocking*response_code is `301` or `302`.
@@ -44,6 +46,8 @@ class NgwafWorkspaceArgs:
         pulumi.set(__self__, "attack_signal_thresholds", attack_signal_thresholds)
         pulumi.set(__self__, "description", description)
         pulumi.set(__self__, "mode", mode)
+        if auto_enable_new_virtual_patches is not None:
+            pulumi.set(__self__, "auto_enable_new_virtual_patches", auto_enable_new_virtual_patches)
         if client_ip_headers is not None:
             pulumi.set(__self__, "client_ip_headers", client_ip_headers)
         if default_blocking_response_code is not None:
@@ -90,6 +94,18 @@ class NgwafWorkspaceArgs:
     @mode.setter
     def mode(self, value: pulumi.Input[_builtins.str]):
         pulumi.set(self, "mode", value)
+
+    @_builtins.property
+    @pulumi.getter(name="autoEnableNewVirtualPatches")
+    def auto_enable_new_virtual_patches(self) -> pulumi.Input[Optional[_builtins.bool]]:
+        """
+        Whether virtual patches released after this setting is enabled are automatically enabled for the workspace in block mode. Virtual patches released before it was enabled are not changed. Default value `false`.
+        """
+        return pulumi.get(self, "auto_enable_new_virtual_patches")
+
+    @auto_enable_new_virtual_patches.setter
+    def auto_enable_new_virtual_patches(self, value: pulumi.Input[Optional[_builtins.bool]]):
+        pulumi.set(self, "auto_enable_new_virtual_patches", value)
 
     @_builtins.property
     @pulumi.getter(name="clientIpHeaders")
@@ -156,6 +172,7 @@ class NgwafWorkspaceArgs:
 class _NgwafWorkspaceState:
     def __init__(__self__, *,
                  attack_signal_thresholds: pulumi.Input[Optional['NgwafWorkspaceAttackSignalThresholdsArgs']] = None,
+                 auto_enable_new_virtual_patches: pulumi.Input[Optional[_builtins.bool]] = None,
                  client_ip_headers: pulumi.Input[Optional[Sequence[pulumi.Input[_builtins.str]]]] = None,
                  default_blocking_response_code: pulumi.Input[Optional[_builtins.int]] = None,
                  default_redirect_url: pulumi.Input[Optional[_builtins.str]] = None,
@@ -167,6 +184,7 @@ class _NgwafWorkspaceState:
         Input properties used for looking up and filtering NgwafWorkspace resources.
 
         :param pulumi.Input['NgwafWorkspaceAttackSignalThresholdsArgs'] attack_signal_thresholds: Attack threshold parameters for system site alerts. Each threshold value is the number of attack signals per IP address that must be detected during the interval before the related IP address is flagged. If no values are set then the default value for each field will be applied
+        :param pulumi.Input[_builtins.bool] auto_enable_new_virtual_patches: Whether virtual patches released after this setting is enabled are automatically enabled for the workspace in block mode. Virtual patches released before it was enabled are not changed. Default value `false`.
         :param pulumi.Input[Sequence[pulumi.Input[_builtins.str]]] client_ip_headers: Specifies the request headers containing the client IP address. Maximum of 10 header names.
         :param pulumi.Input[_builtins.int] default_blocking_response_code: The status code returned when a request is blocked. This configuration is applied at the workspace but can be overwritten in rules. Accepted values are [`301`, `302`, `400..599`]. Default value `406`.
         :param pulumi.Input[_builtins.str] default_redirect_url: The redirect URL used if default*blocking*response_code is `301` or `302`.
@@ -177,6 +195,8 @@ class _NgwafWorkspaceState:
         """
         if attack_signal_thresholds is not None:
             pulumi.set(__self__, "attack_signal_thresholds", attack_signal_thresholds)
+        if auto_enable_new_virtual_patches is not None:
+            pulumi.set(__self__, "auto_enable_new_virtual_patches", auto_enable_new_virtual_patches)
         if client_ip_headers is not None:
             pulumi.set(__self__, "client_ip_headers", client_ip_headers)
         if default_blocking_response_code is not None:
@@ -203,6 +223,18 @@ class _NgwafWorkspaceState:
     @attack_signal_thresholds.setter
     def attack_signal_thresholds(self, value: pulumi.Input[Optional['NgwafWorkspaceAttackSignalThresholdsArgs']]):
         pulumi.set(self, "attack_signal_thresholds", value)
+
+    @_builtins.property
+    @pulumi.getter(name="autoEnableNewVirtualPatches")
+    def auto_enable_new_virtual_patches(self) -> pulumi.Input[Optional[_builtins.bool]]:
+        """
+        Whether virtual patches released after this setting is enabled are automatically enabled for the workspace in block mode. Virtual patches released before it was enabled are not changed. Default value `false`.
+        """
+        return pulumi.get(self, "auto_enable_new_virtual_patches")
+
+    @auto_enable_new_virtual_patches.setter
+    def auto_enable_new_virtual_patches(self, value: pulumi.Input[Optional[_builtins.bool]]):
+        pulumi.set(self, "auto_enable_new_virtual_patches", value)
 
     @_builtins.property
     @pulumi.getter(name="clientIpHeaders")
@@ -296,6 +328,7 @@ class NgwafWorkspace(pulumi.CustomResource):
                  resource_name: str,
                  opts: Optional[pulumi.ResourceOptions] = None,
                  attack_signal_thresholds: pulumi.Input[Optional[Union['NgwafWorkspaceAttackSignalThresholdsArgs', 'NgwafWorkspaceAttackSignalThresholdsArgsDict', 'outputs.NgwafWorkspaceAttackSignalThresholds']]] = None,
+                 auto_enable_new_virtual_patches: pulumi.Input[Optional[_builtins.bool]] = None,
                  client_ip_headers: pulumi.Input[Optional[Sequence[pulumi.Input[_builtins.str]]]] = None,
                  default_blocking_response_code: pulumi.Input[Optional[_builtins.int]] = None,
                  default_redirect_url: pulumi.Input[Optional[_builtins.str]] = None,
@@ -341,6 +374,7 @@ class NgwafWorkspace(pulumi.CustomResource):
         :param str resource_name: The name of the resource.
         :param pulumi.ResourceOptions opts: Options for the resource.
         :param pulumi.Input[Union['NgwafWorkspaceAttackSignalThresholdsArgs', 'NgwafWorkspaceAttackSignalThresholdsArgsDict', 'outputs.NgwafWorkspaceAttackSignalThresholds']] attack_signal_thresholds: Attack threshold parameters for system site alerts. Each threshold value is the number of attack signals per IP address that must be detected during the interval before the related IP address is flagged. If no values are set then the default value for each field will be applied
+        :param pulumi.Input[_builtins.bool] auto_enable_new_virtual_patches: Whether virtual patches released after this setting is enabled are automatically enabled for the workspace in block mode. Virtual patches released before it was enabled are not changed. Default value `false`.
         :param pulumi.Input[Sequence[pulumi.Input[_builtins.str]]] client_ip_headers: Specifies the request headers containing the client IP address. Maximum of 10 header names.
         :param pulumi.Input[_builtins.int] default_blocking_response_code: The status code returned when a request is blocked. This configuration is applied at the workspace but can be overwritten in rules. Accepted values are [`301`, `302`, `400..599`]. Default value `406`.
         :param pulumi.Input[_builtins.str] default_redirect_url: The redirect URL used if default*blocking*response_code is `301` or `302`.
@@ -405,6 +439,7 @@ class NgwafWorkspace(pulumi.CustomResource):
                  resource_name: str,
                  opts: Optional[pulumi.ResourceOptions] = None,
                  attack_signal_thresholds: pulumi.Input[Optional[Union['NgwafWorkspaceAttackSignalThresholdsArgs', 'NgwafWorkspaceAttackSignalThresholdsArgsDict', 'outputs.NgwafWorkspaceAttackSignalThresholds']]] = None,
+                 auto_enable_new_virtual_patches: pulumi.Input[Optional[_builtins.bool]] = None,
                  client_ip_headers: pulumi.Input[Optional[Sequence[pulumi.Input[_builtins.str]]]] = None,
                  default_blocking_response_code: pulumi.Input[Optional[_builtins.int]] = None,
                  default_redirect_url: pulumi.Input[Optional[_builtins.str]] = None,
@@ -424,6 +459,7 @@ class NgwafWorkspace(pulumi.CustomResource):
             if attack_signal_thresholds is None and not opts.urn:
                 raise TypeError("Missing required property 'attack_signal_thresholds'")
             __props__.__dict__["attack_signal_thresholds"] = attack_signal_thresholds
+            __props__.__dict__["auto_enable_new_virtual_patches"] = auto_enable_new_virtual_patches
             __props__.__dict__["client_ip_headers"] = client_ip_headers
             __props__.__dict__["default_blocking_response_code"] = default_blocking_response_code
             __props__.__dict__["default_redirect_url"] = default_redirect_url
@@ -446,6 +482,7 @@ class NgwafWorkspace(pulumi.CustomResource):
             id: pulumi.Input[str],
             opts: Optional[pulumi.ResourceOptions] = None,
             attack_signal_thresholds: pulumi.Input[Optional[Union['NgwafWorkspaceAttackSignalThresholdsArgs', 'NgwafWorkspaceAttackSignalThresholdsArgsDict', 'outputs.NgwafWorkspaceAttackSignalThresholds']]] = None,
+            auto_enable_new_virtual_patches: pulumi.Input[Optional[_builtins.bool]] = None,
             client_ip_headers: pulumi.Input[Optional[Sequence[pulumi.Input[_builtins.str]]]] = None,
             default_blocking_response_code: pulumi.Input[Optional[_builtins.int]] = None,
             default_redirect_url: pulumi.Input[Optional[_builtins.str]] = None,
@@ -461,6 +498,7 @@ class NgwafWorkspace(pulumi.CustomResource):
         :param pulumi.Input[str] id: The unique provider ID of the resource to lookup.
         :param pulumi.ResourceOptions opts: Options for the resource.
         :param pulumi.Input[Union['NgwafWorkspaceAttackSignalThresholdsArgs', 'NgwafWorkspaceAttackSignalThresholdsArgsDict', 'outputs.NgwafWorkspaceAttackSignalThresholds']] attack_signal_thresholds: Attack threshold parameters for system site alerts. Each threshold value is the number of attack signals per IP address that must be detected during the interval before the related IP address is flagged. If no values are set then the default value for each field will be applied
+        :param pulumi.Input[_builtins.bool] auto_enable_new_virtual_patches: Whether virtual patches released after this setting is enabled are automatically enabled for the workspace in block mode. Virtual patches released before it was enabled are not changed. Default value `false`.
         :param pulumi.Input[Sequence[pulumi.Input[_builtins.str]]] client_ip_headers: Specifies the request headers containing the client IP address. Maximum of 10 header names.
         :param pulumi.Input[_builtins.int] default_blocking_response_code: The status code returned when a request is blocked. This configuration is applied at the workspace but can be overwritten in rules. Accepted values are [`301`, `302`, `400..599`]. Default value `406`.
         :param pulumi.Input[_builtins.str] default_redirect_url: The redirect URL used if default*blocking*response_code is `301` or `302`.
@@ -474,6 +512,7 @@ class NgwafWorkspace(pulumi.CustomResource):
         __props__ = _NgwafWorkspaceState.__new__(_NgwafWorkspaceState)
 
         __props__.__dict__["attack_signal_thresholds"] = attack_signal_thresholds
+        __props__.__dict__["auto_enable_new_virtual_patches"] = auto_enable_new_virtual_patches
         __props__.__dict__["client_ip_headers"] = client_ip_headers
         __props__.__dict__["default_blocking_response_code"] = default_blocking_response_code
         __props__.__dict__["default_redirect_url"] = default_redirect_url
@@ -487,6 +526,7 @@ class NgwafWorkspace(pulumi.CustomResource):
     def exists(id: pulumi.Input[str],
             opts: Optional[pulumi.ResourceOptions] = None,
             attack_signal_thresholds: pulumi.Input[Optional[Union['NgwafWorkspaceAttackSignalThresholdsArgs', 'NgwafWorkspaceAttackSignalThresholdsArgsDict', 'outputs.NgwafWorkspaceAttackSignalThresholds']]] = None,
+            auto_enable_new_virtual_patches: pulumi.Input[Optional[_builtins.bool]] = None,
             client_ip_headers: pulumi.Input[Optional[Sequence[pulumi.Input[_builtins.str]]]] = None,
             default_blocking_response_code: pulumi.Input[Optional[_builtins.int]] = None,
             default_redirect_url: pulumi.Input[Optional[_builtins.str]] = None,
@@ -496,6 +536,7 @@ class NgwafWorkspace(pulumi.CustomResource):
             name: pulumi.Input[Optional[_builtins.str]] = None) -> pulumi.Output[bool]:
         __props__: dict = {}
         __props__["attackSignalThresholds"] = attack_signal_thresholds
+        __props__["autoEnableNewVirtualPatches"] = auto_enable_new_virtual_patches
         __props__["clientIpHeaders"] = client_ip_headers
         __props__["defaultBlockingResponseCode"] = default_blocking_response_code
         __props__["defaultRedirectUrl"] = default_redirect_url
@@ -512,6 +553,14 @@ class NgwafWorkspace(pulumi.CustomResource):
         Attack threshold parameters for system site alerts. Each threshold value is the number of attack signals per IP address that must be detected during the interval before the related IP address is flagged. If no values are set then the default value for each field will be applied
         """
         return pulumi.get(self, "attack_signal_thresholds")
+
+    @_builtins.property
+    @pulumi.getter(name="autoEnableNewVirtualPatches")
+    def auto_enable_new_virtual_patches(self) -> pulumi.Output[Optional[_builtins.bool]]:
+        """
+        Whether virtual patches released after this setting is enabled are automatically enabled for the workspace in block mode. Virtual patches released before it was enabled are not changed. Default value `false`.
+        """
+        return pulumi.get(self, "auto_enable_new_virtual_patches")
 
     @_builtins.property
     @pulumi.getter(name="clientIpHeaders")

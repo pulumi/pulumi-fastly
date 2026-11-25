@@ -399,17 +399,19 @@ class TlsSubscription(pulumi.CustomResource):
             "b.example.com",
         ]
         example_service_vcl = fastly.ServiceVcl("example",
-            domains=[{
-                "name": entry,
-            } for entry in subdomains],
             name="example-service",
             backends=[{
                 "address": "127.0.0.1",
                 "name": "localhost",
             }],
             force_destroy=True)
+        example_domain: list[fastly.Domain] = []
+        for example_domain_range in [{"value": i} for i in range(0, std.toset(input=subdomains).result)]:
+            example_domain.append(fastly.Domain(f"example-{example_domain_range['value']}",
+                fqdn=example_domain_range["value"],
+                service_id=example_service_vcl.id))
         example_tls_subscription = fastly.TlsSubscription("example",
-            domains=example_service_vcl.domains.apply(lambda domains: [domain.name for domain in domains]),
+            domains=[domain.fqdn for domain in example_domain],
             certificate_authority="lets-encrypt")
         domain_validation: dict[str, aws.Route53Record] = {}
         def create_domain_validation(range_body):
@@ -474,17 +476,19 @@ class TlsSubscription(pulumi.CustomResource):
             "*.example.com",
         ]
         example_service_vcl = fastly.ServiceVcl("example",
-            domains=[{
-                "name": entry,
-            } for entry in domains],
             name="example-service",
             backends=[{
                 "address": "127.0.0.1",
                 "name": "localhost",
             }],
             force_destroy=True)
+        example_domain: list[fastly.Domain] = []
+        for example_domain_range in [{"value": i} for i in range(0, std.toset(input=domains).result)]:
+            example_domain.append(fastly.Domain(f"example-{example_domain_range['value']}",
+                fqdn=example_domain_range["value"],
+                service_id=example_service_vcl.id))
         example_tls_subscription = fastly.TlsSubscription("example",
-            domains=example_service_vcl.domains.apply(lambda domains: [domain.name for domain in domains]),
+            domains=[domain.fqdn for domain in example_domain],
             certificate_authority="lets-encrypt")
         domain_validation: dict[str, aws.Route53Record] = {}
         def create_domain_validation(range_body):
@@ -601,17 +605,19 @@ class TlsSubscription(pulumi.CustomResource):
             "b.example.com",
         ]
         example_service_vcl = fastly.ServiceVcl("example",
-            domains=[{
-                "name": entry,
-            } for entry in subdomains],
             name="example-service",
             backends=[{
                 "address": "127.0.0.1",
                 "name": "localhost",
             }],
             force_destroy=True)
+        example_domain: list[fastly.Domain] = []
+        for example_domain_range in [{"value": i} for i in range(0, std.toset(input=subdomains).result)]:
+            example_domain.append(fastly.Domain(f"example-{example_domain_range['value']}",
+                fqdn=example_domain_range["value"],
+                service_id=example_service_vcl.id))
         example_tls_subscription = fastly.TlsSubscription("example",
-            domains=example_service_vcl.domains.apply(lambda domains: [domain.name for domain in domains]),
+            domains=[domain.fqdn for domain in example_domain],
             certificate_authority="lets-encrypt")
         domain_validation: dict[str, aws.Route53Record] = {}
         def create_domain_validation(range_body):
@@ -676,17 +682,19 @@ class TlsSubscription(pulumi.CustomResource):
             "*.example.com",
         ]
         example_service_vcl = fastly.ServiceVcl("example",
-            domains=[{
-                "name": entry,
-            } for entry in domains],
             name="example-service",
             backends=[{
                 "address": "127.0.0.1",
                 "name": "localhost",
             }],
             force_destroy=True)
+        example_domain: list[fastly.Domain] = []
+        for example_domain_range in [{"value": i} for i in range(0, std.toset(input=domains).result)]:
+            example_domain.append(fastly.Domain(f"example-{example_domain_range['value']}",
+                fqdn=example_domain_range["value"],
+                service_id=example_service_vcl.id))
         example_tls_subscription = fastly.TlsSubscription("example",
-            domains=example_service_vcl.domains.apply(lambda domains: [domain.name for domain in domains]),
+            domains=[domain.fqdn for domain in example_domain],
             certificate_authority="lets-encrypt")
         domain_validation: dict[str, aws.Route53Record] = {}
         def create_domain_validation(range_body):

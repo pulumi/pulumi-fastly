@@ -7,13 +7,17 @@ import * as outputs from "../types/output";
 
 export interface AlertDimensions {
     /**
-     * Names of a subset of domains that the alert monitors.
+     * Names of a subset of domains that the alert monitors, or empty array `[]` to monitor all domains.
      */
     domains?: string[];
     /**
-     * Addresses of a subset of backends that the alert monitors.
+     * Addresses of a subset of backends that the alert monitors, or empty array `[]` to monitor all origins.
      */
     origins?: string[];
+    /**
+     * List of service IDs to monitor individually, or empty array `[]` to monitor all services.
+     */
+    services?: string[];
 }
 
 export interface AlertEvaluationStrategy {
@@ -130,7 +134,7 @@ export interface DnsZoneXfrConfigInboundPrimary {
 
 export interface GetAiRuntimeControlProviderConnectionsProviderConnection {
     /**
-     * The base URL for the provider's API.
+     * The base URL of the provider's API.
      */
     baseUrl: string;
     /**
@@ -142,15 +146,15 @@ export interface GetAiRuntimeControlProviderConnectionsProviderConnection {
      */
     id: string;
     /**
-     * The allowed AI model identifiers.
+     * The AI model identifiers this provider connection is allowed to use.
      */
     models: string[];
     /**
-     * The human-readable name of the provider.
+     * The display name of the provider connection.
      */
     name: string;
     /**
-     * A hash representing the API key used to create the provider connection.
+     * An opaque identifier for the secret material backing this provider connection. Not the secret itself.
      */
     secretId: string;
     /**
@@ -165,7 +169,7 @@ export interface GetAiRuntimeControlProvidersProvider {
      */
     defaultBaseUrl: string;
     /**
-     * The human-readable provider name, e.g. `Anthropic`.
+     * The human-readable name of the provider, e.g. `Anthropic`.
      */
     displayName: string;
     /**
@@ -173,14 +177,14 @@ export interface GetAiRuntimeControlProvidersProvider {
      */
     id: string;
     /**
-     * The models available for the provider.
+     * The models available from this provider.
      */
     models: outputs.GetAiRuntimeControlProvidersProviderModel[];
 }
 
 export interface GetAiRuntimeControlProvidersProviderModel {
     /**
-     * The human-readable model name, e.g. `Claude Sonnet 4`.
+     * The human-readable name of the model, e.g. `Claude Sonnet 4`.
      */
     displayName: string;
     /**
@@ -203,15 +207,15 @@ export interface GetAiRuntimeControlVirtualKeysVirtualKey {
      */
     createdBy: string;
     /**
-     * The ID of the customer that owns the virtual key.
+     * The ID of the customer account that owns the virtual key.
      */
     customerId: string;
     /**
-     * Timestamp (UTC) of when the virtual key was deleted, if applicable.
+     * Timestamp (UTC) of when the virtual key was deleted. Only set when `includeDeleted` is `true`.
      */
     deletedAt: string;
     /**
-     * The expiration timestamp of the virtual key, if any.
+     * The date and time the virtual key expires, in RFC 3339 format. Empty if the virtual key doesn't expire.
      */
     expiresAt: string;
     /**
@@ -219,7 +223,7 @@ export interface GetAiRuntimeControlVirtualKeysVirtualKey {
      */
     id: string;
     /**
-     * Timestamp (UTC) of when the virtual key was last used, if applicable.
+     * Timestamp (UTC) of when the virtual key was last used to make a request. Empty if the virtual key has never been used.
      */
     lastUsedAt: string;
     /**
@@ -227,7 +231,7 @@ export interface GetAiRuntimeControlVirtualKeysVirtualKey {
      */
     model: string;
     /**
-     * The human-readable name of the virtual key.
+     * The display name of the virtual key.
      */
     name: string;
     /**
@@ -235,7 +239,7 @@ export interface GetAiRuntimeControlVirtualKeysVirtualKey {
      */
     provider: string;
     /**
-     * The type of the virtual key.
+     * The type of the resource.
      */
     type: string;
     /**
@@ -359,6 +363,44 @@ export interface GetApiSecurityOperationsOperation {
      * Updated timestamp (when present).
      */
     updatedAt: string;
+}
+
+export interface GetBotManagementBotsBot {
+    /**
+     * The bot's action. One of `allow`, `block`, `challenge`, or `inherit` (no override; follows the category's action).
+     */
+    action: string;
+    /**
+     * The ID of the bot.
+     */
+    botId: string;
+    /**
+     * The ID of the category the bot belongs to.
+     */
+    categoryId: string;
+    /**
+     * The display name of the bot.
+     */
+    name: string;
+}
+
+export interface GetBotManagementCategoriesCategory {
+    /**
+     * The category's action. One of `allow`, `block`, or `challenge`.
+     */
+    action: string;
+    /**
+     * The ID of the category.
+     */
+    categoryId: string;
+    /**
+     * A description of the bots the category contains.
+     */
+    description: string;
+    /**
+     * The display name of the category.
+     */
+    name: string;
 }
 
 export interface GetComputeAclsAcl {
@@ -1759,6 +1801,53 @@ export interface ServiceComputeLoggingElasticsearch {
     user?: string;
 }
 
+export interface ServiceComputeLoggingFo {
+    /**
+     * The name of the Fastly Object Storage bucket in which to store the logs
+     */
+    bucketName: string;
+    /**
+     * The codec used for compression of your logs. Valid values are zstd, snappy, and gzip. If the specified codec is "gzip", gzipLevel will default to 3. To specify a different level, leave compressionCodec blank and explicitly set the level using gzip_level. Specifying both compressionCodec and gzipLevel in the same API request will result in an error.
+     */
+    compressionCodec?: string;
+    /**
+     * Maximum size of an uploaded log file, if non-zero. The minimum value is 1048576 bytes (1 MiB).
+     */
+    fileMaxBytes?: number;
+    /**
+     * Level of Gzip compression from `0-9`. `0` means no compression. `1` is the fastest and the least compressed version, `9` is the slowest and the most compressed version. Default `0`
+     */
+    gzipLevel?: number;
+    /**
+     * How the message should be formatted. Can be either `classic`, `loggly`, `logplex` or `blank`. Default is `classic`
+     */
+    messageType?: string;
+    /**
+     * The unique name of the Fastly Object Storage logging endpoint. It is important to note that changing this attribute will delete and recreate the resource
+     */
+    name: string;
+    /**
+     * Path to store the files. Must end with a trailing slash. If this field is left empty, the files will be saved in the bucket's root path
+     */
+    path?: string;
+    /**
+     * How frequently the logs should be transferred, in seconds. Default `3600`
+     */
+    period?: number;
+    /**
+     * A PGP public key that Fastly will use to encrypt your log files before writing them to disk
+     */
+    publicKey?: string;
+    /**
+     * The region of the Fastly Object Storage bucket (e.g. `us-east`)
+     */
+    region: string;
+    /**
+     * The `strftime` specified timestamp formatting (default `%Y-%m-%dT%H:%M:%S.000`)
+     */
+    timestampFormat?: string;
+}
+
 export interface ServiceComputeLoggingFtp {
     /**
      * The FTP address to stream logs to
@@ -1855,6 +1944,10 @@ export interface ServiceComputeLoggingGc {
      * The ID of your Google Cloud Platform project
      */
     projectId?: string;
+    /**
+     * A PGP public key that Fastly will use to encrypt your log files before writing them to disk
+     */
+    publicKey?: string;
     /**
      * The secret key associated with the target gcs bucket on your account. You may optionally provide this secret via an environment variable, `FASTLY_GCS_SECRET_KEY`. A typical format for the key is PEM format, containing actual newline characters where required
      */
@@ -2744,6 +2837,26 @@ export interface ServiceVclBackend {
      */
     healthcheck?: string;
     /**
+     * If the backend is using IAM authentication and the IAM system policy requires a matching external identifier, it should match this value. Your Fastly customer ID will be used if this attribute is not set.
+     */
+    iamExternalId?: string;
+    /**
+     * If the backend is using IAM authentication, the IAM signature will use this as the product element.
+     */
+    iamProduct?: string;
+    /**
+     * If the backend is using IAM authentication, this region will be used for signing and access.
+     */
+    iamRegion?: string;
+    /**
+     * If the backend is using IAM authentication, the fully qualified role string supplied by the storage vendor.
+     */
+    iamRole?: string;
+    /**
+     * A label that identifies the storage vendor. Providing a value in this field enables IAM usage, and all other IAM fields depend on its value.
+     */
+    iamVendor?: string;
+    /**
      * How long in seconds to keep a persistent connection to the backend between requests.
      */
     keepaliveTime: number;
@@ -3493,6 +3606,69 @@ export interface ServiceVclLoggingElasticsearch {
     user?: string;
 }
 
+export interface ServiceVclLoggingFo {
+    /**
+     * The name of the Fastly Object Storage bucket in which to store the logs
+     */
+    bucketName: string;
+    /**
+     * The codec used for compression of your logs. Valid values are zstd, snappy, and gzip. If the specified codec is "gzip", gzipLevel will default to 3. To specify a different level, leave compressionCodec blank and explicitly set the level using gzip_level. Specifying both compressionCodec and gzipLevel in the same API request will result in an error.
+     */
+    compressionCodec?: string;
+    /**
+     * Maximum size of an uploaded log file, if non-zero. The minimum value is 1048576 bytes (1 MiB).
+     */
+    fileMaxBytes?: number;
+    /**
+     * Apache-style string or VCL variables to use for log formatting.
+     */
+    format?: string;
+    /**
+     * The version of the custom logging format used for the configured endpoint. Can be either 1 or 2. (Default: 2).
+     */
+    formatVersion?: number;
+    /**
+     * Level of Gzip compression from `0-9`. `0` means no compression. `1` is the fastest and the least compressed version, `9` is the slowest and the most compressed version. Default `0`
+     */
+    gzipLevel?: number;
+    /**
+     * How the message should be formatted. Can be either `classic`, `loggly`, `logplex` or `blank`. Default is `classic`
+     */
+    messageType?: string;
+    /**
+     * The unique name of the Fastly Object Storage logging endpoint. It is important to note that changing this attribute will delete and recreate the resource
+     */
+    name: string;
+    /**
+     * Path to store the files. Must end with a trailing slash. If this field is left empty, the files will be saved in the bucket's root path
+     */
+    path?: string;
+    /**
+     * How frequently the logs should be transferred, in seconds. Default `3600`
+     */
+    period?: number;
+    /**
+     * Where in the generated VCL the logging call should be placed.
+     */
+    placement?: string;
+    /**
+     * A PGP public key that Fastly will use to encrypt your log files before writing them to disk
+     */
+    publicKey?: string;
+    /**
+     * The region of the Fastly Object Storage bucket (e.g. `us-east`)
+     */
+    region: string;
+    /**
+     * Name of blockAttributes condition to apply this logging.
+     */
+    responseCondition?: string;
+    /**
+     * The `strftime` specified timestamp formatting (default `%Y-%m-%dT%H:%M:%S.000`)
+     */
+    timestampFormat?: string;
+}
+
 export interface ServiceVclLoggingFtp {
     /**
      * The FTP address to stream logs to
@@ -3617,6 +3793,10 @@ export interface ServiceVclLoggingGc {
      * The ID of your Google Cloud Platform project
      */
     projectId?: string;
+    /**
+     * A PGP public key that Fastly will use to encrypt your log files before writing them to disk
+     */
+    publicKey?: string;
     /**
      * Name of a condition to apply this logging.
      */

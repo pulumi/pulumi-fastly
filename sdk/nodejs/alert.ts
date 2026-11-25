@@ -15,13 +15,7 @@ import * as utilities from "./utilities";
  * import * as pulumi from "@pulumi/pulumi";
  * import * as fastly from "@pulumi/fastly";
  *
- * const example = new fastly.ServiceVcl("example", {
- *     name: "my_vcl_service",
- *     domains: [{
- *         name: "demo.notexample.com",
- *         comment: "demo",
- *     }],
- * });
+ * const example = new fastly.ServiceVcl("example", {name: "my_vcl_service"});
  * const exampleIntegration = new fastly.Integration("example", {
  *     name: "my_integration",
  *     type: "a_valid_type",
@@ -95,7 +89,7 @@ export class Alert extends pulumi.CustomResource {
      */
     declare public readonly description: pulumi.Output<string | undefined>;
     /**
-     * More filters depending on the source type.
+     * Additional filters and aggregation criteria depending on the source type. For source type `stats`, use empty `{}` to monitor a single service or all services (aggregated), or include the `services` array to monitor all or a set of services (not aggregated). For source type `domains` or `origins`, the `domains` or `origins` array must be included to monitor all or a set (not aggregated).
      */
     declare public readonly dimensions: pulumi.Output<outputs.AlertDimensions | undefined>;
     /**
@@ -115,7 +109,7 @@ export class Alert extends pulumi.CustomResource {
      */
     declare public readonly name: pulumi.Output<string>;
     /**
-     * The service which the alert monitors. Optional when using `stats` as the `source`.
+     * The service to monitor. Can be a specific service ID to monitor a single service, or omit to monitor all services (aggregated) or all or a set of services (not aggregated) (see `dimensions` for details).
      */
     declare public readonly serviceId: pulumi.Output<string | undefined>;
     /**
@@ -178,7 +172,7 @@ export interface AlertState {
      */
     description?: pulumi.Input<string | undefined>;
     /**
-     * More filters depending on the source type.
+     * Additional filters and aggregation criteria depending on the source type. For source type `stats`, use empty `{}` to monitor a single service or all services (aggregated), or include the `services` array to monitor all or a set of services (not aggregated). For source type `domains` or `origins`, the `domains` or `origins` array must be included to monitor all or a set (not aggregated).
      */
     dimensions?: pulumi.Input<inputs.AlertDimensions | undefined>;
     /**
@@ -198,7 +192,7 @@ export interface AlertState {
      */
     name?: pulumi.Input<string | undefined>;
     /**
-     * The service which the alert monitors. Optional when using `stats` as the `source`.
+     * The service to monitor. Can be a specific service ID to monitor a single service, or omit to monitor all services (aggregated) or all or a set of services (not aggregated) (see `dimensions` for details).
      */
     serviceId?: pulumi.Input<string | undefined>;
     /**
@@ -216,7 +210,7 @@ export interface AlertArgs {
      */
     description?: pulumi.Input<string | undefined>;
     /**
-     * More filters depending on the source type.
+     * Additional filters and aggregation criteria depending on the source type. For source type `stats`, use empty `{}` to monitor a single service or all services (aggregated), or include the `services` array to monitor all or a set of services (not aggregated). For source type `domains` or `origins`, the `domains` or `origins` array must be included to monitor all or a set (not aggregated).
      */
     dimensions?: pulumi.Input<inputs.AlertDimensions | undefined>;
     /**
@@ -236,7 +230,7 @@ export interface AlertArgs {
      */
     name?: pulumi.Input<string | undefined>;
     /**
-     * The service which the alert monitors. Optional when using `stats` as the `source`.
+     * The service to monitor. Can be a specific service ID to monitor a single service, or omit to monitor all services (aggregated) or all or a set of services (not aggregated) (see `dimensions` for details).
      */
     serviceId?: pulumi.Input<string | undefined>;
     /**

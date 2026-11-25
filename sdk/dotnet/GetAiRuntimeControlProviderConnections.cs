@@ -42,7 +42,7 @@ namespace Pulumi.Fastly
         /// </summary>
         public readonly string Id;
         /// <summary>
-        /// The provider connections configured for the customer.
+        /// The provider connections configured for your customer account.
         /// </summary>
         public readonly ImmutableArray<Outputs.GetAiRuntimeControlProviderConnectionsProviderConnectionResult> ProviderConnections;
         /// <summary>

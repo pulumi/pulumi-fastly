@@ -25,14 +25,6 @@ namespace Pulumi.Fastly
     ///     var example = new Fastly.ServiceVcl("example", new()
     ///     {
     ///         Name = "my_vcl_service",
-    ///         Domains = new[]
-    ///         {
-    ///             new Fastly.Inputs.ServiceVclDomainArgs
-    ///             {
-    ///                 Name = "demo.notexample.com",
-    ///                 Comment = "demo",
-    ///             },
-    ///         },
     ///     });
     /// 
     ///     var exampleIntegration = new Fastly.Integration("example", new()
@@ -84,7 +76,7 @@ namespace Pulumi.Fastly
         public Output<string?> Description { get; private set; } = null!;
 
         /// <summary>
-        /// More filters depending on the source type.
+        /// Additional filters and aggregation criteria depending on the source type. For source type `Stats`, use empty `{}` to monitor a single service or all services (aggregated), or include the `Services` array to monitor all or a set of services (not aggregated). For source type `Domains` or `Origins`, the `Domains` or `Origins` array must be included to monitor all or a set (not aggregated).
         /// </summary>
         [Output("dimensions")]
         public Output<Outputs.AlertDimensions?> Dimensions { get; private set; } = null!;
@@ -114,7 +106,7 @@ namespace Pulumi.Fastly
         public Output<string> Name { get; private set; } = null!;
 
         /// <summary>
-        /// The service which the alert monitors. Optional when using `Stats` as the `Source`.
+        /// The service to monitor. Can be a specific service ID to monitor a single service, or omit to monitor all services (aggregated) or all or a set of services (not aggregated) (see `Dimensions` for details).
         /// </summary>
         [Output("serviceId")]
         public Output<string?> ServiceId { get; private set; } = null!;
@@ -178,7 +170,7 @@ namespace Pulumi.Fastly
         public Input<string>? Description { get; set; }
 
         /// <summary>
-        /// More filters depending on the source type.
+        /// Additional filters and aggregation criteria depending on the source type. For source type `Stats`, use empty `{}` to monitor a single service or all services (aggregated), or include the `Services` array to monitor all or a set of services (not aggregated). For source type `Domains` or `Origins`, the `Domains` or `Origins` array must be included to monitor all or a set (not aggregated).
         /// </summary>
         [Input("dimensions")]
         public Input<Inputs.AlertDimensionsArgs>? Dimensions { get; set; }
@@ -214,7 +206,7 @@ namespace Pulumi.Fastly
         public Input<string>? Name { get; set; }
 
         /// <summary>
-        /// The service which the alert monitors. Optional when using `Stats` as the `Source`.
+        /// The service to monitor. Can be a specific service ID to monitor a single service, or omit to monitor all services (aggregated) or all or a set of services (not aggregated) (see `Dimensions` for details).
         /// </summary>
         [Input("serviceId")]
         public Input<string>? ServiceId { get; set; }
@@ -240,7 +232,7 @@ namespace Pulumi.Fastly
         public Input<string>? Description { get; set; }
 
         /// <summary>
-        /// More filters depending on the source type.
+        /// Additional filters and aggregation criteria depending on the source type. For source type `Stats`, use empty `{}` to monitor a single service or all services (aggregated), or include the `Services` array to monitor all or a set of services (not aggregated). For source type `Domains` or `Origins`, the `Domains` or `Origins` array must be included to monitor all or a set (not aggregated).
         /// </summary>
         [Input("dimensions")]
         public Input<Inputs.AlertDimensionsGetArgs>? Dimensions { get; set; }
@@ -276,7 +268,7 @@ namespace Pulumi.Fastly
         public Input<string>? Name { get; set; }
 
         /// <summary>
-        /// The service which the alert monitors. Optional when using `Stats` as the `Source`.
+        /// The service to monitor. Can be a specific service ID to monitor a single service, or omit to monitor all services (aggregated) or all or a set of services (not aggregated) (see `Dimensions` for details).
         /// </summary>
         [Input("serviceId")]
         public Input<string>? ServiceId { get; set; }

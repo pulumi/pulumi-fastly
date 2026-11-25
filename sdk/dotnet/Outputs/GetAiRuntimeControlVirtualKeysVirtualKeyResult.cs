@@ -22,15 +22,15 @@ namespace Pulumi.Fastly.Outputs
         /// </summary>
         public readonly string CreatedBy;
         /// <summary>
-        /// The ID of the customer that owns the virtual key.
+        /// The ID of the customer account that owns the virtual key.
         /// </summary>
         public readonly string CustomerId;
         /// <summary>
-        /// Timestamp (UTC) of when the virtual key was deleted, if applicable.
+        /// Timestamp (UTC) of when the virtual key was deleted. Only set when `IncludeDeleted` is `True`.
         /// </summary>
         public readonly string DeletedAt;
         /// <summary>
-        /// The expiration timestamp of the virtual key, if any.
+        /// The date and time the virtual key expires, in RFC 3339 format. Empty if the virtual key doesn't expire.
         /// </summary>
         public readonly string ExpiresAt;
         /// <summary>
@@ -38,7 +38,7 @@ namespace Pulumi.Fastly.Outputs
         /// </summary>
         public readonly string Id;
         /// <summary>
-        /// Timestamp (UTC) of when the virtual key was last used, if applicable.
+        /// Timestamp (UTC) of when the virtual key was last used to make a request. Empty if the virtual key has never been used.
         /// </summary>
         public readonly string LastUsedAt;
         /// <summary>
@@ -46,7 +46,7 @@ namespace Pulumi.Fastly.Outputs
         /// </summary>
         public readonly string Model;
         /// <summary>
-        /// The human-readable name of the virtual key.
+        /// The display name of the virtual key.
         /// </summary>
         public readonly string Name;
         /// <summary>
@@ -54,7 +54,7 @@ namespace Pulumi.Fastly.Outputs
         /// </summary>
         public readonly string Provider;
         /// <summary>
-        /// The type of the virtual key.
+        /// The type of the resource.
         /// </summary>
         public readonly string Type;
         /// <summary>

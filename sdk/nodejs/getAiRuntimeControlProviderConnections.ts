@@ -25,7 +25,7 @@ export interface GetAiRuntimeControlProviderConnectionsResult {
      */
     readonly id: string;
     /**
-     * The provider connections configured for the customer.
+     * The provider connections configured for your customer account.
      */
     readonly providerConnections: outputs.GetAiRuntimeControlProviderConnectionsProviderConnection[];
     /**

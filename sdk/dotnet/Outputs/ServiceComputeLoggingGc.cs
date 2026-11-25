@@ -54,6 +54,10 @@ namespace Pulumi.Fastly.Outputs
         /// </summary>
         public readonly string? ProjectId;
         /// <summary>
+        /// A PGP public key that Fastly will use to encrypt your log files before writing them to disk
+        /// </summary>
+        public readonly string? PublicKey;
+        /// <summary>
         /// The secret key associated with the target gcs bucket on your account. You may optionally provide this secret via an environment variable, `FASTLY_GCS_SECRET_KEY`. A typical format for the key is PEM format, containing actual newline characters where required
         /// </summary>
         public readonly string? SecretKey;
@@ -88,6 +92,8 @@ namespace Pulumi.Fastly.Outputs
 
             string? projectId,
 
+            string? publicKey,
+
             string? secretKey,
 
             string? timestampFormat,
@@ -104,6 +110,7 @@ namespace Pulumi.Fastly.Outputs
             Period = period;
             ProcessingRegion = processingRegion;
             ProjectId = projectId;
+            PublicKey = publicKey;
             SecretKey = secretKey;
             TimestampFormat = timestampFormat;
             User = user;

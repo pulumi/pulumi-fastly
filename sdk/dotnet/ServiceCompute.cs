@@ -14,6 +14,8 @@ namespace Pulumi.Fastly
     /// 
     /// The Service resource requires a domain name that is correctly set up to direct traffic to the Fastly service. See Fastly's guide on [Adding CNAME Records](https://docs.fastly.com/en/guides/adding-cname-records) on their documentation site for guidance.
     /// 
+    /// &gt; **Note:** The nested `Domain` block uses classic domains, which are only available to accounts created before 2025-09-16. Use the versionless `fastly.Domain` resource to attach domains to a service, as in the examples below.
+    /// 
     /// &gt; **Note:** If you omit the `Package` block, you must set `activate = false` to avoid service validation errors.
     /// 
     /// ## Activation and Staging
@@ -64,20 +66,19 @@ namespace Pulumi.Fastly
     ///     var exampleServiceCompute = new Fastly.ServiceCompute("example", new()
     ///     {
     ///         Name = "demofastly",
-    ///         Domains = new[]
-    ///         {
-    ///             new Fastly.Inputs.ServiceComputeDomainArgs
-    ///             {
-    ///                 Name = "demo.notexample.com",
-    ///                 Comment = "demo",
-    ///             },
-    ///         },
     ///         Package = new Fastly.Inputs.ServiceComputePackageArgs
     ///         {
     ///             Filename = "package.tar.gz",
     ///             SourceCodeHash = example.Apply(getPackageHashResult =&gt; getPackageHashResult.Hash),
     ///         },
     ///         ForceDestroy = true,
+    ///     });
+    /// 
+    ///     var exampleDomain = new Fastly.Domain("example", new()
+    ///     {
+    ///         Fqdn = "demo.notexample.com",
+    ///         Description = "demo",
+    ///         ServiceId = exampleServiceCompute.Id,
     ///     });
     /// 
     /// });
@@ -146,7 +147,7 @@ namespace Pulumi.Fastly
         public Output<ImmutableArray<Outputs.ServiceComputeDictionary>> Dictionaries { get; private set; } = null!;
 
         /// <summary>
-        /// A set of Domain names to serve as entry points for your Service
+        /// A set of Domain names to serve as entry points for your Service. Classic domains are only available to accounts created before 2025-09-16; for newer accounts use the versionless `fastly.Domain` resource instead.
         /// </summary>
         [Output("domains")]
         public Output<ImmutableArray<Outputs.ServiceComputeDomain>> Domains { get; private set; } = null!;
@@ -192,6 +193,9 @@ namespace Pulumi.Fastly
 
         [Output("loggingElasticsearches")]
         public Output<ImmutableArray<Outputs.ServiceComputeLoggingElasticsearch>> LoggingElasticsearches { get; private set; } = null!;
+
+        [Output("loggingFos")]
+        public Output<ImmutableArray<Outputs.ServiceComputeLoggingFo>> LoggingFos { get; private set; } = null!;
 
         [Output("loggingFtps")]
         public Output<ImmutableArray<Outputs.ServiceComputeLoggingFtp>> LoggingFtps { get; private set; } = null!;
@@ -382,7 +386,7 @@ namespace Pulumi.Fastly
         private InputList<Inputs.ServiceComputeDomainArgs>? _domains;
 
         /// <summary>
-        /// A set of Domain names to serve as entry points for your Service
+        /// A set of Domain names to serve as entry points for your Service. Classic domains are only available to accounts created before 2025-09-16; for newer accounts use the versionless `fastly.Domain` resource instead.
         /// </summary>
         public InputList<Inputs.ServiceComputeDomainArgs> Domains
         {
@@ -453,6 +457,14 @@ namespace Pulumi.Fastly
         {
             get => _loggingElasticsearches ?? (_loggingElasticsearches = new InputList<Inputs.ServiceComputeLoggingElasticsearchArgs>());
             set => _loggingElasticsearches = value;
+        }
+
+        [Input("loggingFos")]
+        private InputList<Inputs.ServiceComputeLoggingFoArgs>? _loggingFos;
+        public InputList<Inputs.ServiceComputeLoggingFoArgs> LoggingFos
+        {
+            get => _loggingFos ?? (_loggingFos = new InputList<Inputs.ServiceComputeLoggingFoArgs>());
+            set => _loggingFos = value;
         }
 
         [Input("loggingFtps")]
@@ -728,7 +740,7 @@ namespace Pulumi.Fastly
         private InputList<Inputs.ServiceComputeDomainGetArgs>? _domains;
 
         /// <summary>
-        /// A set of Domain names to serve as entry points for your Service
+        /// A set of Domain names to serve as entry points for your Service. Classic domains are only available to accounts created before 2025-09-16; for newer accounts use the versionless `fastly.Domain` resource instead.
         /// </summary>
         public InputList<Inputs.ServiceComputeDomainGetArgs> Domains
         {
@@ -811,6 +823,14 @@ namespace Pulumi.Fastly
         {
             get => _loggingElasticsearches ?? (_loggingElasticsearches = new InputList<Inputs.ServiceComputeLoggingElasticsearchGetArgs>());
             set => _loggingElasticsearches = value;
+        }
+
+        [Input("loggingFos")]
+        private InputList<Inputs.ServiceComputeLoggingFoGetArgs>? _loggingFos;
+        public InputList<Inputs.ServiceComputeLoggingFoGetArgs> LoggingFos
+        {
+            get => _loggingFos ?? (_loggingFos = new InputList<Inputs.ServiceComputeLoggingFoGetArgs>());
+            set => _loggingFos = value;
         }
 
         [Input("loggingFtps")]

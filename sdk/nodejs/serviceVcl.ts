@@ -15,6 +15,10 @@ import * as utilities from "./utilities";
  * traffic to the Fastly service. See Fastly's guide on [Adding CNAME Records][fastly-cname]
  * on their documentation site for guidance.
  *
+ * > **Note:** The nested `domain` block uses classic domains, which are only
+ * available to accounts created before 2025-09-16. Use the versionless
+ * `fastly.Domain` resource to attach domains to a service, as in the examples below.
+ *
  * ## Activation and Staging
  *
  * By default, the `activate` attribute is `true`, and the `stage`
@@ -53,16 +57,17 @@ import * as utilities from "./utilities";
  *
  * const demo = new fastly.ServiceVcl("demo", {
  *     name: "demofastly",
- *     domains: [{
- *         name: "demo.notexample.com",
- *         comment: "demo",
- *     }],
  *     backends: [{
  *         address: "127.0.0.1",
  *         name: "localhost",
  *         port: 80,
  *     }],
  *     forceDestroy: true,
+ * });
+ * const demoDomain = new fastly.Domain("demo", {
+ *     fqdn: "demo.notexample.com",
+ *     description: "demo",
+ *     serviceId: demo.id,
  * });
  * ```
  *
@@ -75,10 +80,6 @@ import * as utilities from "./utilities";
  *
  * const demo = new fastly.ServiceVcl("demo", {
  *     name: "demofastly",
- *     domains: [{
- *         name: "demo.notexample.com",
- *         comment: "demo",
- *     }],
  *     backends: [{
  *         address: "http-me.fastly.dev",
  *         name: "Glitch Test Site",
@@ -113,6 +114,11 @@ import * as utilities from "./utilities";
  *     errorDocument: [{
  *         key: "error.html",
  *     }],
+ * });
+ * const demoDomain = new fastly.Domain("demo", {
+ *     fqdn: "demo.notexample.com",
+ *     description: "demo",
+ *     serviceId: demo.id,
  * });
  * ```
  *
@@ -204,7 +210,7 @@ export class ServiceVcl extends pulumi.CustomResource {
     declare public readonly dictionaries: pulumi.Output<outputs.ServiceVclDictionary[] | undefined>;
     declare public readonly directors: pulumi.Output<outputs.ServiceVclDirector[] | undefined>;
     /**
-     * A set of Domain names to serve as entry points for your Service
+     * A set of Domain names to serve as entry points for your Service. Classic domains are only available to accounts created before 2025-09-16; for newer accounts use the versionless `fastly.Domain` resource instead.
      */
     declare public readonly domains: pulumi.Output<outputs.ServiceVclDomain[] | undefined>;
     declare public readonly dynamicsnippets: pulumi.Output<outputs.ServiceVclDynamicsnippet[] | undefined>;
@@ -234,6 +240,7 @@ export class ServiceVcl extends pulumi.CustomResource {
     declare public readonly loggingDatadogs: pulumi.Output<outputs.ServiceVclLoggingDatadog[] | undefined>;
     declare public readonly loggingDigitaloceans: pulumi.Output<outputs.ServiceVclLoggingDigitalocean[] | undefined>;
     declare public readonly loggingElasticsearches: pulumi.Output<outputs.ServiceVclLoggingElasticsearch[] | undefined>;
+    declare public readonly loggingFos: pulumi.Output<outputs.ServiceVclLoggingFo[] | undefined>;
     declare public readonly loggingFtps: pulumi.Output<outputs.ServiceVclLoggingFtp[] | undefined>;
     declare public readonly loggingGcs: pulumi.Output<outputs.ServiceVclLoggingGc[] | undefined>;
     declare public readonly loggingGooglepubsubs: pulumi.Output<outputs.ServiceVclLoggingGooglepubsub[] | undefined>;
@@ -332,6 +339,7 @@ export class ServiceVcl extends pulumi.CustomResource {
             resourceInputs["loggingDatadogs"] = state?.loggingDatadogs;
             resourceInputs["loggingDigitaloceans"] = state?.loggingDigitaloceans;
             resourceInputs["loggingElasticsearches"] = state?.loggingElasticsearches;
+            resourceInputs["loggingFos"] = state?.loggingFos;
             resourceInputs["loggingFtps"] = state?.loggingFtps;
             resourceInputs["loggingGcs"] = state?.loggingGcs;
             resourceInputs["loggingGooglepubsubs"] = state?.loggingGooglepubsubs;
@@ -393,6 +401,7 @@ export class ServiceVcl extends pulumi.CustomResource {
             resourceInputs["loggingDatadogs"] = args?.loggingDatadogs;
             resourceInputs["loggingDigitaloceans"] = args?.loggingDigitaloceans;
             resourceInputs["loggingElasticsearches"] = args?.loggingElasticsearches;
+            resourceInputs["loggingFos"] = args?.loggingFos;
             resourceInputs["loggingFtps"] = args?.loggingFtps;
             resourceInputs["loggingGcs"] = args?.loggingGcs;
             resourceInputs["loggingGooglepubsubs"] = args?.loggingGooglepubsubs;
@@ -473,7 +482,7 @@ export interface ServiceVclState {
     dictionaries?: pulumi.Input<pulumi.Input<inputs.ServiceVclDictionary>[] | undefined>;
     directors?: pulumi.Input<pulumi.Input<inputs.ServiceVclDirector>[] | undefined>;
     /**
-     * A set of Domain names to serve as entry points for your Service
+     * A set of Domain names to serve as entry points for your Service. Classic domains are only available to accounts created before 2025-09-16; for newer accounts use the versionless `fastly.Domain` resource instead.
      */
     domains?: pulumi.Input<pulumi.Input<inputs.ServiceVclDomain>[] | undefined>;
     dynamicsnippets?: pulumi.Input<pulumi.Input<inputs.ServiceVclDynamicsnippet>[] | undefined>;
@@ -503,6 +512,7 @@ export interface ServiceVclState {
     loggingDatadogs?: pulumi.Input<pulumi.Input<inputs.ServiceVclLoggingDatadog>[] | undefined>;
     loggingDigitaloceans?: pulumi.Input<pulumi.Input<inputs.ServiceVclLoggingDigitalocean>[] | undefined>;
     loggingElasticsearches?: pulumi.Input<pulumi.Input<inputs.ServiceVclLoggingElasticsearch>[] | undefined>;
+    loggingFos?: pulumi.Input<pulumi.Input<inputs.ServiceVclLoggingFo>[] | undefined>;
     loggingFtps?: pulumi.Input<pulumi.Input<inputs.ServiceVclLoggingFtp>[] | undefined>;
     loggingGcs?: pulumi.Input<pulumi.Input<inputs.ServiceVclLoggingGc>[] | undefined>;
     loggingGooglepubsubs?: pulumi.Input<pulumi.Input<inputs.ServiceVclLoggingGooglepubsub>[] | undefined>;
@@ -588,7 +598,7 @@ export interface ServiceVclArgs {
     dictionaries?: pulumi.Input<pulumi.Input<inputs.ServiceVclDictionary>[] | undefined>;
     directors?: pulumi.Input<pulumi.Input<inputs.ServiceVclDirector>[] | undefined>;
     /**
-     * A set of Domain names to serve as entry points for your Service
+     * A set of Domain names to serve as entry points for your Service. Classic domains are only available to accounts created before 2025-09-16; for newer accounts use the versionless `fastly.Domain` resource instead.
      */
     domains?: pulumi.Input<pulumi.Input<inputs.ServiceVclDomain>[] | undefined>;
     dynamicsnippets?: pulumi.Input<pulumi.Input<inputs.ServiceVclDynamicsnippet>[] | undefined>;
@@ -610,6 +620,7 @@ export interface ServiceVclArgs {
     loggingDatadogs?: pulumi.Input<pulumi.Input<inputs.ServiceVclLoggingDatadog>[] | undefined>;
     loggingDigitaloceans?: pulumi.Input<pulumi.Input<inputs.ServiceVclLoggingDigitalocean>[] | undefined>;
     loggingElasticsearches?: pulumi.Input<pulumi.Input<inputs.ServiceVclLoggingElasticsearch>[] | undefined>;
+    loggingFos?: pulumi.Input<pulumi.Input<inputs.ServiceVclLoggingFo>[] | undefined>;
     loggingFtps?: pulumi.Input<pulumi.Input<inputs.ServiceVclLoggingFtp>[] | undefined>;
     loggingGcs?: pulumi.Input<pulumi.Input<inputs.ServiceVclLoggingGc>[] | undefined>;
     loggingGooglepubsubs?: pulumi.Input<pulumi.Input<inputs.ServiceVclLoggingGooglepubsub>[] | undefined>;

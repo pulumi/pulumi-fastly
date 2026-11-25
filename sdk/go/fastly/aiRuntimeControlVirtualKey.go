@@ -8,13 +8,16 @@ import (
 	"reflect"
 
 	"errors"
-	"github.com/pulumi/pulumi-fastly/sdk/v12/go/fastly/internal"
+	"github.com/pulumi/pulumi-fastly/sdk/v13/go/fastly/internal"
 	"github.com/pulumi/pulumi/sdk/v3/go/pulumi"
 )
 
 // Provides a Fastly AI Runtime Control virtual key, used to authenticate
-// requests to an AI service and to attribute usage and session logs back to a
-// named key.
+// requests made through the AI Runtime Control gateway and to attribute usage and
+// session logs back to a named key.
+//
+// > **Note:** Deleting a virtual key also deletes any security configuration
+// associated with the key.
 //
 // ## Example Usage
 //
@@ -25,7 +28,7 @@ import (
 //
 // import (
 //
-//	"github.com/pulumi/pulumi-fastly/sdk/v12/go/fastly"
+//	"github.com/pulumi/pulumi-fastly/sdk/v13/go/fastly"
 //	"github.com/pulumi/pulumi/sdk/v3/go/pulumi"
 //
 // )
@@ -36,7 +39,6 @@ import (
 //				Name:         pulumi.String("prod website chatbot"),
 //				Model:        pulumi.String("claude-sonnet-4-20250514"),
 //				ProviderName: pulumi.String("Anthropic"),
-//				UserId:       pulumi.String("6zhNCY1236787aJIwUgN"),
 //				ExpiresAt:    pulumi.String("2026-08-05T17:13:36Z"),
 //			})
 //			if err != nil {
@@ -60,27 +62,27 @@ import (
 type AiRuntimeControlVirtualKey struct {
 	pulumi.CustomResourceState
 
-	// The generated access token used to authenticate as this virtual key. Only returned by the API when the key is created.
+	// The access token for this virtual key. Only returned by the API when the key is created, and cannot be retrieved again afterward.
 	AccessToken pulumi.StringOutput `pulumi:"accessToken"`
 	// Timestamp (UTC) of when the virtual key was created.
 	CreatedAt pulumi.StringOutput `pulumi:"createdAt"`
 	// The display name of the user who created the virtual key.
 	CreatedBy pulumi.StringOutput `pulumi:"createdBy"`
-	// The expiration timestamp of the virtual key, in RFC 3339 format. Once set, this value cannot be unset, only changed.
+	// The date and time the virtual key expires, in RFC 3339 format. Once set, this value cannot be unset, only changed.
 	ExpiresAt pulumi.StringPtrOutput `pulumi:"expiresAt"`
-	// Timestamp (UTC) of when the virtual key was last used.
+	// Timestamp (UTC) of when the virtual key was last used to make a request.
 	LastUsedAt pulumi.StringOutput `pulumi:"lastUsedAt"`
 	// The AI model identifier, e.g. `claude-sonnet-4-20250514`.
 	Model pulumi.StringOutput `pulumi:"model"`
-	// A human-readable name for the virtual key.
+	// The display name of the virtual key.
 	Name pulumi.StringOutput `pulumi:"name"`
 	// The AI model provider name, e.g. `Anthropic`.
 	ProviderName pulumi.StringOutput `pulumi:"providerName"`
-	// The type of the virtual key.
+	// The type of the resource.
 	Type pulumi.StringOutput `pulumi:"type"`
 	// Timestamp (UTC) of when the virtual key was last updated.
 	UpdatedAt pulumi.StringOutput `pulumi:"updatedAt"`
-	// The ID of the user creating the virtual key. Changing this forces a new virtual key to be created.
+	// The ID of the user who created the virtual key.
 	UserId pulumi.StringOutput `pulumi:"userId"`
 }
 
@@ -96,9 +98,6 @@ func NewAiRuntimeControlVirtualKey(ctx *pulumi.Context,
 	}
 	if args.ProviderName == nil {
 		return nil, errors.New("invalid value for required argument 'ProviderName'")
-	}
-	if args.UserId == nil {
-		return nil, errors.New("invalid value for required argument 'UserId'")
 	}
 	secrets := pulumi.AdditionalSecretOutputs([]string{
 		"accessToken",
@@ -127,52 +126,52 @@ func GetAiRuntimeControlVirtualKey(ctx *pulumi.Context,
 
 // Input properties used for looking up and filtering AiRuntimeControlVirtualKey resources.
 type aiRuntimeControlVirtualKeyState struct {
-	// The generated access token used to authenticate as this virtual key. Only returned by the API when the key is created.
+	// The access token for this virtual key. Only returned by the API when the key is created, and cannot be retrieved again afterward.
 	AccessToken *string `pulumi:"accessToken"`
 	// Timestamp (UTC) of when the virtual key was created.
 	CreatedAt *string `pulumi:"createdAt"`
 	// The display name of the user who created the virtual key.
 	CreatedBy *string `pulumi:"createdBy"`
-	// The expiration timestamp of the virtual key, in RFC 3339 format. Once set, this value cannot be unset, only changed.
+	// The date and time the virtual key expires, in RFC 3339 format. Once set, this value cannot be unset, only changed.
 	ExpiresAt *string `pulumi:"expiresAt"`
-	// Timestamp (UTC) of when the virtual key was last used.
+	// Timestamp (UTC) of when the virtual key was last used to make a request.
 	LastUsedAt *string `pulumi:"lastUsedAt"`
 	// The AI model identifier, e.g. `claude-sonnet-4-20250514`.
 	Model *string `pulumi:"model"`
-	// A human-readable name for the virtual key.
+	// The display name of the virtual key.
 	Name *string `pulumi:"name"`
 	// The AI model provider name, e.g. `Anthropic`.
 	ProviderName *string `pulumi:"providerName"`
-	// The type of the virtual key.
+	// The type of the resource.
 	Type *string `pulumi:"type"`
 	// Timestamp (UTC) of when the virtual key was last updated.
 	UpdatedAt *string `pulumi:"updatedAt"`
-	// The ID of the user creating the virtual key. Changing this forces a new virtual key to be created.
+	// The ID of the user who created the virtual key.
 	UserId *string `pulumi:"userId"`
 }
 
 type AiRuntimeControlVirtualKeyState struct {
-	// The generated access token used to authenticate as this virtual key. Only returned by the API when the key is created.
+	// The access token for this virtual key. Only returned by the API when the key is created, and cannot be retrieved again afterward.
 	AccessToken pulumi.StringPtrInput
 	// Timestamp (UTC) of when the virtual key was created.
 	CreatedAt pulumi.StringPtrInput
 	// The display name of the user who created the virtual key.
 	CreatedBy pulumi.StringPtrInput
-	// The expiration timestamp of the virtual key, in RFC 3339 format. Once set, this value cannot be unset, only changed.
+	// The date and time the virtual key expires, in RFC 3339 format. Once set, this value cannot be unset, only changed.
 	ExpiresAt pulumi.StringPtrInput
-	// Timestamp (UTC) of when the virtual key was last used.
+	// Timestamp (UTC) of when the virtual key was last used to make a request.
 	LastUsedAt pulumi.StringPtrInput
 	// The AI model identifier, e.g. `claude-sonnet-4-20250514`.
 	Model pulumi.StringPtrInput
-	// A human-readable name for the virtual key.
+	// The display name of the virtual key.
 	Name pulumi.StringPtrInput
 	// The AI model provider name, e.g. `Anthropic`.
 	ProviderName pulumi.StringPtrInput
-	// The type of the virtual key.
+	// The type of the resource.
 	Type pulumi.StringPtrInput
 	// Timestamp (UTC) of when the virtual key was last updated.
 	UpdatedAt pulumi.StringPtrInput
-	// The ID of the user creating the virtual key. Changing this forces a new virtual key to be created.
+	// The ID of the user who created the virtual key.
 	UserId pulumi.StringPtrInput
 }
 
@@ -187,30 +186,26 @@ func AiRuntimeControlVirtualKeyExists(ctx *pulumi.Context,
 }
 
 type aiRuntimeControlVirtualKeyArgs struct {
-	// The expiration timestamp of the virtual key, in RFC 3339 format. Once set, this value cannot be unset, only changed.
+	// The date and time the virtual key expires, in RFC 3339 format. Once set, this value cannot be unset, only changed.
 	ExpiresAt *string `pulumi:"expiresAt"`
 	// The AI model identifier, e.g. `claude-sonnet-4-20250514`.
 	Model string `pulumi:"model"`
-	// A human-readable name for the virtual key.
+	// The display name of the virtual key.
 	Name *string `pulumi:"name"`
 	// The AI model provider name, e.g. `Anthropic`.
 	ProviderName string `pulumi:"providerName"`
-	// The ID of the user creating the virtual key. Changing this forces a new virtual key to be created.
-	UserId string `pulumi:"userId"`
 }
 
 // The set of arguments for constructing a AiRuntimeControlVirtualKey resource.
 type AiRuntimeControlVirtualKeyArgs struct {
-	// The expiration timestamp of the virtual key, in RFC 3339 format. Once set, this value cannot be unset, only changed.
+	// The date and time the virtual key expires, in RFC 3339 format. Once set, this value cannot be unset, only changed.
 	ExpiresAt pulumi.StringPtrInput
 	// The AI model identifier, e.g. `claude-sonnet-4-20250514`.
 	Model pulumi.StringInput
-	// A human-readable name for the virtual key.
+	// The display name of the virtual key.
 	Name pulumi.StringPtrInput
 	// The AI model provider name, e.g. `Anthropic`.
 	ProviderName pulumi.StringInput
-	// The ID of the user creating the virtual key. Changing this forces a new virtual key to be created.
-	UserId pulumi.StringInput
 }
 
 func (AiRuntimeControlVirtualKeyArgs) ElementType() reflect.Type {
@@ -300,7 +295,7 @@ func (o AiRuntimeControlVirtualKeyOutput) ToAiRuntimeControlVirtualKeyOutputWith
 	return o
 }
 
-// The generated access token used to authenticate as this virtual key. Only returned by the API when the key is created.
+// The access token for this virtual key. Only returned by the API when the key is created, and cannot be retrieved again afterward.
 func (o AiRuntimeControlVirtualKeyOutput) AccessToken() pulumi.StringOutput {
 	return o.ApplyT(func(v *AiRuntimeControlVirtualKey) pulumi.StringOutput { return v.AccessToken }).(pulumi.StringOutput)
 }
@@ -315,12 +310,12 @@ func (o AiRuntimeControlVirtualKeyOutput) CreatedBy() pulumi.StringOutput {
 	return o.ApplyT(func(v *AiRuntimeControlVirtualKey) pulumi.StringOutput { return v.CreatedBy }).(pulumi.StringOutput)
 }
 
-// The expiration timestamp of the virtual key, in RFC 3339 format. Once set, this value cannot be unset, only changed.
+// The date and time the virtual key expires, in RFC 3339 format. Once set, this value cannot be unset, only changed.
 func (o AiRuntimeControlVirtualKeyOutput) ExpiresAt() pulumi.StringPtrOutput {
 	return o.ApplyT(func(v *AiRuntimeControlVirtualKey) pulumi.StringPtrOutput { return v.ExpiresAt }).(pulumi.StringPtrOutput)
 }
 
-// Timestamp (UTC) of when the virtual key was last used.
+// Timestamp (UTC) of when the virtual key was last used to make a request.
 func (o AiRuntimeControlVirtualKeyOutput) LastUsedAt() pulumi.StringOutput {
 	return o.ApplyT(func(v *AiRuntimeControlVirtualKey) pulumi.StringOutput { return v.LastUsedAt }).(pulumi.StringOutput)
 }
@@ -330,7 +325,7 @@ func (o AiRuntimeControlVirtualKeyOutput) Model() pulumi.StringOutput {
 	return o.ApplyT(func(v *AiRuntimeControlVirtualKey) pulumi.StringOutput { return v.Model }).(pulumi.StringOutput)
 }
 
-// A human-readable name for the virtual key.
+// The display name of the virtual key.
 func (o AiRuntimeControlVirtualKeyOutput) Name() pulumi.StringOutput {
 	return o.ApplyT(func(v *AiRuntimeControlVirtualKey) pulumi.StringOutput { return v.Name }).(pulumi.StringOutput)
 }
@@ -340,7 +335,7 @@ func (o AiRuntimeControlVirtualKeyOutput) ProviderName() pulumi.StringOutput {
 	return o.ApplyT(func(v *AiRuntimeControlVirtualKey) pulumi.StringOutput { return v.ProviderName }).(pulumi.StringOutput)
 }
 
-// The type of the virtual key.
+// The type of the resource.
 func (o AiRuntimeControlVirtualKeyOutput) Type() pulumi.StringOutput {
 	return o.ApplyT(func(v *AiRuntimeControlVirtualKey) pulumi.StringOutput { return v.Type }).(pulumi.StringOutput)
 }
@@ -350,7 +345,7 @@ func (o AiRuntimeControlVirtualKeyOutput) UpdatedAt() pulumi.StringOutput {
 	return o.ApplyT(func(v *AiRuntimeControlVirtualKey) pulumi.StringOutput { return v.UpdatedAt }).(pulumi.StringOutput)
 }
 
-// The ID of the user creating the virtual key. Changing this forces a new virtual key to be created.
+// The ID of the user who created the virtual key.
 func (o AiRuntimeControlVirtualKeyOutput) UserId() pulumi.StringOutput {
 	return o.ApplyT(func(v *AiRuntimeControlVirtualKey) pulumi.StringOutput { return v.UserId }).(pulumi.StringOutput)
 }

@@ -7,7 +7,7 @@ import (
 	"context"
 	"reflect"
 
-	"github.com/pulumi/pulumi-fastly/sdk/v12/go/fastly/internal"
+	"github.com/pulumi/pulumi-fastly/sdk/v13/go/fastly/internal"
 	"github.com/pulumi/pulumi/sdk/v3/go/pulumi"
 )
 
@@ -20,7 +20,7 @@ import (
 //
 // import (
 //
-//	"github.com/pulumi/pulumi-fastly/sdk/v12/go/fastly"
+//	"github.com/pulumi/pulumi-fastly/sdk/v13/go/fastly"
 //	"github.com/pulumi/pulumi/sdk/v3/go/pulumi"
 //
 // )
@@ -29,11 +29,6 @@ import (
 //		pulumi.Run(func(ctx *pulumi.Context) error {
 //			exampleServiceVcl, err := fastly.NewServiceVcl(ctx, "example", &fastly.ServiceVclArgs{
 //				Name: pulumi.String("Example Service"),
-//				Domains: fastly.ServiceVclDomainArray{
-//					&fastly.ServiceVclDomainArgs{
-//						Name: pulumi.String("example.com"),
-//					},
-//				},
 //				Dictionaries: fastly.ServiceVclDictionaryArray{
 //					&fastly.ServiceVclDictionaryArgs{
 //						Name: pulumi.String("example_1"),

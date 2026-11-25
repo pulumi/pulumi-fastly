@@ -6,8 +6,11 @@ import * as utilities from "./utilities";
 
 /**
  * Provides a Fastly AI Runtime Control virtual key, used to authenticate
- * requests to an AI service and to attribute usage and session logs back to a
- * named key.
+ * requests made through the AI Runtime Control gateway and to attribute usage and
+ * session logs back to a named key.
+ *
+ * > **Note:** Deleting a virtual key also deletes any security configuration
+ * associated with the key.
  *
  * ## Example Usage
  *
@@ -21,7 +24,6 @@ import * as utilities from "./utilities";
  *     name: "prod website chatbot",
  *     model: "claude-sonnet-4-20250514",
  *     providerName: "Anthropic",
- *     userId: "6zhNCY1236787aJIwUgN",
  *     expiresAt: "2026-08-05T17:13:36Z",
  * });
  * ```
@@ -76,7 +78,7 @@ export class AiRuntimeControlVirtualKey extends pulumi.CustomResource {
     }
 
     /**
-     * The generated access token used to authenticate as this virtual key. Only returned by the API when the key is created.
+     * The access token for this virtual key. Only returned by the API when the key is created, and cannot be retrieved again afterward.
      */
     declare public /*out*/ readonly accessToken: pulumi.Output<string>;
     /**
@@ -88,11 +90,11 @@ export class AiRuntimeControlVirtualKey extends pulumi.CustomResource {
      */
     declare public /*out*/ readonly createdBy: pulumi.Output<string>;
     /**
-     * The expiration timestamp of the virtual key, in RFC 3339 format. Once set, this value cannot be unset, only changed.
+     * The date and time the virtual key expires, in RFC 3339 format. Once set, this value cannot be unset, only changed.
      */
     declare public readonly expiresAt: pulumi.Output<string | undefined>;
     /**
-     * Timestamp (UTC) of when the virtual key was last used.
+     * Timestamp (UTC) of when the virtual key was last used to make a request.
      */
     declare public /*out*/ readonly lastUsedAt: pulumi.Output<string>;
     /**
@@ -100,7 +102,7 @@ export class AiRuntimeControlVirtualKey extends pulumi.CustomResource {
      */
     declare public readonly model: pulumi.Output<string>;
     /**
-     * A human-readable name for the virtual key.
+     * The display name of the virtual key.
      */
     declare public readonly name: pulumi.Output<string>;
     /**
@@ -108,7 +110,7 @@ export class AiRuntimeControlVirtualKey extends pulumi.CustomResource {
      */
     declare public readonly providerName: pulumi.Output<string>;
     /**
-     * The type of the virtual key.
+     * The type of the resource.
      */
     declare public /*out*/ readonly type: pulumi.Output<string>;
     /**
@@ -116,9 +118,9 @@ export class AiRuntimeControlVirtualKey extends pulumi.CustomResource {
      */
     declare public /*out*/ readonly updatedAt: pulumi.Output<string>;
     /**
-     * The ID of the user creating the virtual key. Changing this forces a new virtual key to be created.
+     * The ID of the user who created the virtual key.
      */
-    declare public readonly userId: pulumi.Output<string>;
+    declare public /*out*/ readonly userId: pulumi.Output<string>;
 
     /**
      * Create a AiRuntimeControlVirtualKey resource with the given unique name, arguments, and options.
@@ -152,20 +154,17 @@ export class AiRuntimeControlVirtualKey extends pulumi.CustomResource {
             if (args?.providerName === undefined && !opts.urn) {
                 throw new Error("Missing required property 'providerName'");
             }
-            if (args?.userId === undefined && !opts.urn) {
-                throw new Error("Missing required property 'userId'");
-            }
             resourceInputs["expiresAt"] = args?.expiresAt;
             resourceInputs["model"] = args?.model;
             resourceInputs["name"] = args?.name;
             resourceInputs["providerName"] = args?.providerName;
-            resourceInputs["userId"] = args?.userId;
             resourceInputs["accessToken"] = undefined /*out*/;
             resourceInputs["createdAt"] = undefined /*out*/;
             resourceInputs["createdBy"] = undefined /*out*/;
             resourceInputs["lastUsedAt"] = undefined /*out*/;
             resourceInputs["type"] = undefined /*out*/;
             resourceInputs["updatedAt"] = undefined /*out*/;
+            resourceInputs["userId"] = undefined /*out*/;
         }
         opts = pulumi.mergeOptions(utilities.resourceOptsDefaults(), opts);
         const secretOpts = { additionalSecretOutputs: ["accessToken"] };
@@ -179,7 +178,7 @@ export class AiRuntimeControlVirtualKey extends pulumi.CustomResource {
  */
 export interface AiRuntimeControlVirtualKeyState {
     /**
-     * The generated access token used to authenticate as this virtual key. Only returned by the API when the key is created.
+     * The access token for this virtual key. Only returned by the API when the key is created, and cannot be retrieved again afterward.
      */
     accessToken?: pulumi.Input<string | undefined>;
     /**
@@ -191,11 +190,11 @@ export interface AiRuntimeControlVirtualKeyState {
      */
     createdBy?: pulumi.Input<string | undefined>;
     /**
-     * The expiration timestamp of the virtual key, in RFC 3339 format. Once set, this value cannot be unset, only changed.
+     * The date and time the virtual key expires, in RFC 3339 format. Once set, this value cannot be unset, only changed.
      */
     expiresAt?: pulumi.Input<string | undefined>;
     /**
-     * Timestamp (UTC) of when the virtual key was last used.
+     * Timestamp (UTC) of when the virtual key was last used to make a request.
      */
     lastUsedAt?: pulumi.Input<string | undefined>;
     /**
@@ -203,7 +202,7 @@ export interface AiRuntimeControlVirtualKeyState {
      */
     model?: pulumi.Input<string | undefined>;
     /**
-     * A human-readable name for the virtual key.
+     * The display name of the virtual key.
      */
     name?: pulumi.Input<string | undefined>;
     /**
@@ -211,7 +210,7 @@ export interface AiRuntimeControlVirtualKeyState {
      */
     providerName?: pulumi.Input<string | undefined>;
     /**
-     * The type of the virtual key.
+     * The type of the resource.
      */
     type?: pulumi.Input<string | undefined>;
     /**
@@ -219,7 +218,7 @@ export interface AiRuntimeControlVirtualKeyState {
      */
     updatedAt?: pulumi.Input<string | undefined>;
     /**
-     * The ID of the user creating the virtual key. Changing this forces a new virtual key to be created.
+     * The ID of the user who created the virtual key.
      */
     userId?: pulumi.Input<string | undefined>;
 }
@@ -229,7 +228,7 @@ export interface AiRuntimeControlVirtualKeyState {
  */
 export interface AiRuntimeControlVirtualKeyArgs {
     /**
-     * The expiration timestamp of the virtual key, in RFC 3339 format. Once set, this value cannot be unset, only changed.
+     * The date and time the virtual key expires, in RFC 3339 format. Once set, this value cannot be unset, only changed.
      */
     expiresAt?: pulumi.Input<string | undefined>;
     /**
@@ -237,15 +236,11 @@ export interface AiRuntimeControlVirtualKeyArgs {
      */
     model: pulumi.Input<string>;
     /**
-     * A human-readable name for the virtual key.
+     * The display name of the virtual key.
      */
     name?: pulumi.Input<string | undefined>;
     /**
      * The AI model provider name, e.g. `Anthropic`.
      */
     providerName: pulumi.Input<string>;
-    /**
-     * The ID of the user creating the virtual key. Changing this forces a new virtual key to be created.
-     */
-    userId: pulumi.Input<string>;
 }

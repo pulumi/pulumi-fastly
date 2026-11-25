@@ -45,6 +45,7 @@ class ServiceVclArgs:
                  logging_datadogs: pulumi.Input[Optional[Sequence[pulumi.Input['ServiceVclLoggingDatadogArgs']]]] = None,
                  logging_digitaloceans: pulumi.Input[Optional[Sequence[pulumi.Input['ServiceVclLoggingDigitaloceanArgs']]]] = None,
                  logging_elasticsearches: pulumi.Input[Optional[Sequence[pulumi.Input['ServiceVclLoggingElasticsearchArgs']]]] = None,
+                 logging_fos: pulumi.Input[Optional[Sequence[pulumi.Input['ServiceVclLoggingFoArgs']]]] = None,
                  logging_ftps: pulumi.Input[Optional[Sequence[pulumi.Input['ServiceVclLoggingFtpArgs']]]] = None,
                  logging_gcs: pulumi.Input[Optional[Sequence[pulumi.Input['ServiceVclLoggingGcArgs']]]] = None,
                  logging_googlepubsubs: pulumi.Input[Optional[Sequence[pulumi.Input['ServiceVclLoggingGooglepubsubArgs']]]] = None,
@@ -86,7 +87,7 @@ class ServiceVclArgs:
         :param pulumi.Input[_builtins.str] comment: Description field for the service. This versionless attribute is updated regardless of the `activate` and `stage` settings. Default `Managed by Terraform`
         :param pulumi.Input[_builtins.str] default_host: The default hostname
         :param pulumi.Input[_builtins.int] default_ttl: The default Time-to-live (TTL) for requests
-        :param pulumi.Input[Sequence[pulumi.Input['ServiceVclDomainArgs']]] domains: A set of Domain names to serve as entry points for your Service
+        :param pulumi.Input[Sequence[pulumi.Input['ServiceVclDomainArgs']]] domains: A set of Domain names to serve as entry points for your Service. Classic domains are only available to accounts created before 2025-09-16; for newer accounts use the versionless `Domain` resource instead.
         :param pulumi.Input[_builtins.bool] force_destroy: Services that are active cannot be destroyed. In order to destroy the Service, set `force_destroy` to `true`. Default `false`
         :param pulumi.Input[_builtins.bool] http3: Enables support for the HTTP/3 (QUIC) protocol
         :param pulumi.Input[_builtins.str] name: The unique name for the Service to create. This versionless attribute is updated regardless of the `activate` and `stage` settings
@@ -144,6 +145,8 @@ class ServiceVclArgs:
             pulumi.set(__self__, "logging_digitaloceans", logging_digitaloceans)
         if logging_elasticsearches is not None:
             pulumi.set(__self__, "logging_elasticsearches", logging_elasticsearches)
+        if logging_fos is not None:
+            pulumi.set(__self__, "logging_fos", logging_fos)
         if logging_ftps is not None:
             pulumi.set(__self__, "logging_ftps", logging_ftps)
         if logging_gcs is not None:
@@ -319,7 +322,7 @@ class ServiceVclArgs:
     @pulumi.getter
     def domains(self) -> pulumi.Input[Optional[Sequence[pulumi.Input['ServiceVclDomainArgs']]]]:
         """
-        A set of Domain names to serve as entry points for your Service
+        A set of Domain names to serve as entry points for your Service. Classic domains are only available to accounts created before 2025-09-16; for newer accounts use the versionless `Domain` resource instead.
         """
         return pulumi.get(self, "domains")
 
@@ -449,6 +452,15 @@ class ServiceVclArgs:
     @logging_elasticsearches.setter
     def logging_elasticsearches(self, value: pulumi.Input[Optional[Sequence[pulumi.Input['ServiceVclLoggingElasticsearchArgs']]]]):
         pulumi.set(self, "logging_elasticsearches", value)
+
+    @_builtins.property
+    @pulumi.getter(name="loggingFos")
+    def logging_fos(self) -> pulumi.Input[Optional[Sequence[pulumi.Input['ServiceVclLoggingFoArgs']]]]:
+        return pulumi.get(self, "logging_fos")
+
+    @logging_fos.setter
+    def logging_fos(self, value: pulumi.Input[Optional[Sequence[pulumi.Input['ServiceVclLoggingFoArgs']]]]):
+        pulumi.set(self, "logging_fos", value)
 
     @_builtins.property
     @pulumi.getter(name="loggingFtps")
@@ -806,6 +818,7 @@ class _ServiceVclState:
                  logging_datadogs: pulumi.Input[Optional[Sequence[pulumi.Input['ServiceVclLoggingDatadogArgs']]]] = None,
                  logging_digitaloceans: pulumi.Input[Optional[Sequence[pulumi.Input['ServiceVclLoggingDigitaloceanArgs']]]] = None,
                  logging_elasticsearches: pulumi.Input[Optional[Sequence[pulumi.Input['ServiceVclLoggingElasticsearchArgs']]]] = None,
+                 logging_fos: pulumi.Input[Optional[Sequence[pulumi.Input['ServiceVclLoggingFoArgs']]]] = None,
                  logging_ftps: pulumi.Input[Optional[Sequence[pulumi.Input['ServiceVclLoggingFtpArgs']]]] = None,
                  logging_gcs: pulumi.Input[Optional[Sequence[pulumi.Input['ServiceVclLoggingGcArgs']]]] = None,
                  logging_googlepubsubs: pulumi.Input[Optional[Sequence[pulumi.Input['ServiceVclLoggingGooglepubsubArgs']]]] = None,
@@ -850,7 +863,7 @@ class _ServiceVclState:
         :param pulumi.Input[_builtins.str] comment: Description field for the service. This versionless attribute is updated regardless of the `activate` and `stage` settings. Default `Managed by Terraform`
         :param pulumi.Input[_builtins.str] default_host: The default hostname
         :param pulumi.Input[_builtins.int] default_ttl: The default Time-to-live (TTL) for requests
-        :param pulumi.Input[Sequence[pulumi.Input['ServiceVclDomainArgs']]] domains: A set of Domain names to serve as entry points for your Service
+        :param pulumi.Input[Sequence[pulumi.Input['ServiceVclDomainArgs']]] domains: A set of Domain names to serve as entry points for your Service. Classic domains are only available to accounts created before 2025-09-16; for newer accounts use the versionless `Domain` resource instead.
         :param pulumi.Input[_builtins.bool] force_destroy: Services that are active cannot be destroyed. In order to destroy the Service, set `force_destroy` to `true`. Default `false`
         :param pulumi.Input[_builtins.bool] force_refresh: Used internally by the provider to temporarily indicate if all resources should call their associated API to update the local state. This is for scenarios where the service version has been reverted outside of Terraform (e.g. via the Fastly UI) and the provider needs to resync the state for a different active version (this is only if `activate` is `true`).
         :param pulumi.Input[_builtins.bool] http3: Enables support for the HTTP/3 (QUIC) protocol
@@ -919,6 +932,8 @@ class _ServiceVclState:
             pulumi.set(__self__, "logging_digitaloceans", logging_digitaloceans)
         if logging_elasticsearches is not None:
             pulumi.set(__self__, "logging_elasticsearches", logging_elasticsearches)
+        if logging_fos is not None:
+            pulumi.set(__self__, "logging_fos", logging_fos)
         if logging_ftps is not None:
             pulumi.set(__self__, "logging_ftps", logging_ftps)
         if logging_gcs is not None:
@@ -1120,7 +1135,7 @@ class _ServiceVclState:
     @pulumi.getter
     def domains(self) -> pulumi.Input[Optional[Sequence[pulumi.Input['ServiceVclDomainArgs']]]]:
         """
-        A set of Domain names to serve as entry points for your Service
+        A set of Domain names to serve as entry points for your Service. Classic domains are only available to accounts created before 2025-09-16; for newer accounts use the versionless `Domain` resource instead.
         """
         return pulumi.get(self, "domains")
 
@@ -1274,6 +1289,15 @@ class _ServiceVclState:
     @logging_elasticsearches.setter
     def logging_elasticsearches(self, value: pulumi.Input[Optional[Sequence[pulumi.Input['ServiceVclLoggingElasticsearchArgs']]]]):
         pulumi.set(self, "logging_elasticsearches", value)
+
+    @_builtins.property
+    @pulumi.getter(name="loggingFos")
+    def logging_fos(self) -> pulumi.Input[Optional[Sequence[pulumi.Input['ServiceVclLoggingFoArgs']]]]:
+        return pulumi.get(self, "logging_fos")
+
+    @logging_fos.setter
+    def logging_fos(self, value: pulumi.Input[Optional[Sequence[pulumi.Input['ServiceVclLoggingFoArgs']]]]):
+        pulumi.set(self, "logging_fos", value)
 
     @_builtins.property
     @pulumi.getter(name="loggingFtps")
@@ -1642,6 +1666,7 @@ class ServiceVcl(pulumi.CustomResource):
                  logging_datadogs: pulumi.Input[Optional[Sequence[pulumi.Input[Union['ServiceVclLoggingDatadogArgs', 'ServiceVclLoggingDatadogArgsDict', 'outputs.ServiceVclLoggingDatadog']]]]] = None,
                  logging_digitaloceans: pulumi.Input[Optional[Sequence[pulumi.Input[Union['ServiceVclLoggingDigitaloceanArgs', 'ServiceVclLoggingDigitaloceanArgsDict', 'outputs.ServiceVclLoggingDigitalocean']]]]] = None,
                  logging_elasticsearches: pulumi.Input[Optional[Sequence[pulumi.Input[Union['ServiceVclLoggingElasticsearchArgs', 'ServiceVclLoggingElasticsearchArgsDict', 'outputs.ServiceVclLoggingElasticsearch']]]]] = None,
+                 logging_fos: pulumi.Input[Optional[Sequence[pulumi.Input[Union['ServiceVclLoggingFoArgs', 'ServiceVclLoggingFoArgsDict', 'outputs.ServiceVclLoggingFo']]]]] = None,
                  logging_ftps: pulumi.Input[Optional[Sequence[pulumi.Input[Union['ServiceVclLoggingFtpArgs', 'ServiceVclLoggingFtpArgsDict', 'outputs.ServiceVclLoggingFtp']]]]] = None,
                  logging_gcs: pulumi.Input[Optional[Sequence[pulumi.Input[Union['ServiceVclLoggingGcArgs', 'ServiceVclLoggingGcArgsDict', 'outputs.ServiceVclLoggingGc']]]]] = None,
                  logging_googlepubsubs: pulumi.Input[Optional[Sequence[pulumi.Input[Union['ServiceVclLoggingGooglepubsubArgs', 'ServiceVclLoggingGooglepubsubArgsDict', 'outputs.ServiceVclLoggingGooglepubsub']]]]] = None,
@@ -1686,6 +1711,10 @@ class ServiceVcl(pulumi.CustomResource):
         traffic to the Fastly service. See Fastly's guide on [Adding CNAME Records][fastly-cname]
         on their documentation site for guidance.
 
+        > **Note:** The nested `domain` block uses classic domains, which are only
+        available to accounts created before 2025-09-16. Use the versionless
+        `Domain` resource to attach domains to a service, as in the examples below.
+
         ## Activation and Staging
 
         By default, the `activate` attribute is `true`, and the `stage`
@@ -1724,16 +1753,16 @@ class ServiceVcl(pulumi.CustomResource):
 
         demo = fastly.ServiceVcl("demo",
             name="demofastly",
-            domains=[{
-                "name": "demo.notexample.com",
-                "comment": "demo",
-            }],
             backends=[{
                 "address": "127.0.0.1",
                 "name": "localhost",
                 "port": 80,
             }],
             force_destroy=True)
+        demo_domain = fastly.Domain("demo",
+            fqdn="demo.notexample.com",
+            description="demo",
+            service_id=demo.id)
         ```
 
         Basic usage with an Amazon S3 Website and that removes the `x-amz-request-id` header:
@@ -1745,10 +1774,6 @@ class ServiceVcl(pulumi.CustomResource):
 
         demo = fastly.ServiceVcl("demo",
             name="demofastly",
-            domains=[{
-                "name": "demo.notexample.com",
-                "comment": "demo",
-            }],
             backends=[{
                 "address": "http-me.fastly.dev",
                 "name": "Glitch Test Site",
@@ -1782,6 +1807,10 @@ class ServiceVcl(pulumi.CustomResource):
             error_document=[{
                 key: error.html,
             }])
+        demo_domain = fastly.Domain("demo",
+            fqdn="demo.notexample.com",
+            description="demo",
+            service_id=demo.id)
         ```
 
         Basic usage with [custom
@@ -1809,7 +1838,7 @@ class ServiceVcl(pulumi.CustomResource):
         :param pulumi.Input[_builtins.str] comment: Description field for the service. This versionless attribute is updated regardless of the `activate` and `stage` settings. Default `Managed by Terraform`
         :param pulumi.Input[_builtins.str] default_host: The default hostname
         :param pulumi.Input[_builtins.int] default_ttl: The default Time-to-live (TTL) for requests
-        :param pulumi.Input[Sequence[pulumi.Input[Union['ServiceVclDomainArgs', 'ServiceVclDomainArgsDict', 'outputs.ServiceVclDomain']]]] domains: A set of Domain names to serve as entry points for your Service
+        :param pulumi.Input[Sequence[pulumi.Input[Union['ServiceVclDomainArgs', 'ServiceVclDomainArgsDict', 'outputs.ServiceVclDomain']]]] domains: A set of Domain names to serve as entry points for your Service. Classic domains are only available to accounts created before 2025-09-16; for newer accounts use the versionless `Domain` resource instead.
         :param pulumi.Input[_builtins.bool] force_destroy: Services that are active cannot be destroyed. In order to destroy the Service, set `force_destroy` to `true`. Default `false`
         :param pulumi.Input[_builtins.bool] http3: Enables support for the HTTP/3 (QUIC) protocol
         :param pulumi.Input[_builtins.str] name: The unique name for the Service to create. This versionless attribute is updated regardless of the `activate` and `stage` settings
@@ -1833,6 +1862,10 @@ class ServiceVcl(pulumi.CustomResource):
         The Service resource requires a domain name that is correctly set up to direct
         traffic to the Fastly service. See Fastly's guide on [Adding CNAME Records][fastly-cname]
         on their documentation site for guidance.
+
+        > **Note:** The nested `domain` block uses classic domains, which are only
+        available to accounts created before 2025-09-16. Use the versionless
+        `Domain` resource to attach domains to a service, as in the examples below.
 
         ## Activation and Staging
 
@@ -1872,16 +1905,16 @@ class ServiceVcl(pulumi.CustomResource):
 
         demo = fastly.ServiceVcl("demo",
             name="demofastly",
-            domains=[{
-                "name": "demo.notexample.com",
-                "comment": "demo",
-            }],
             backends=[{
                 "address": "127.0.0.1",
                 "name": "localhost",
                 "port": 80,
             }],
             force_destroy=True)
+        demo_domain = fastly.Domain("demo",
+            fqdn="demo.notexample.com",
+            description="demo",
+            service_id=demo.id)
         ```
 
         Basic usage with an Amazon S3 Website and that removes the `x-amz-request-id` header:
@@ -1893,10 +1926,6 @@ class ServiceVcl(pulumi.CustomResource):
 
         demo = fastly.ServiceVcl("demo",
             name="demofastly",
-            domains=[{
-                "name": "demo.notexample.com",
-                "comment": "demo",
-            }],
             backends=[{
                 "address": "http-me.fastly.dev",
                 "name": "Glitch Test Site",
@@ -1930,6 +1959,10 @@ class ServiceVcl(pulumi.CustomResource):
             error_document=[{
                 key: error.html,
             }])
+        demo_domain = fastly.Domain("demo",
+            fqdn="demo.notexample.com",
+            description="demo",
+            service_id=demo.id)
         ```
 
         Basic usage with [custom
@@ -1990,6 +2023,7 @@ class ServiceVcl(pulumi.CustomResource):
                  logging_datadogs: pulumi.Input[Optional[Sequence[pulumi.Input[Union['ServiceVclLoggingDatadogArgs', 'ServiceVclLoggingDatadogArgsDict', 'outputs.ServiceVclLoggingDatadog']]]]] = None,
                  logging_digitaloceans: pulumi.Input[Optional[Sequence[pulumi.Input[Union['ServiceVclLoggingDigitaloceanArgs', 'ServiceVclLoggingDigitaloceanArgsDict', 'outputs.ServiceVclLoggingDigitalocean']]]]] = None,
                  logging_elasticsearches: pulumi.Input[Optional[Sequence[pulumi.Input[Union['ServiceVclLoggingElasticsearchArgs', 'ServiceVclLoggingElasticsearchArgsDict', 'outputs.ServiceVclLoggingElasticsearch']]]]] = None,
+                 logging_fos: pulumi.Input[Optional[Sequence[pulumi.Input[Union['ServiceVclLoggingFoArgs', 'ServiceVclLoggingFoArgsDict', 'outputs.ServiceVclLoggingFo']]]]] = None,
                  logging_ftps: pulumi.Input[Optional[Sequence[pulumi.Input[Union['ServiceVclLoggingFtpArgs', 'ServiceVclLoggingFtpArgsDict', 'outputs.ServiceVclLoggingFtp']]]]] = None,
                  logging_gcs: pulumi.Input[Optional[Sequence[pulumi.Input[Union['ServiceVclLoggingGcArgs', 'ServiceVclLoggingGcArgsDict', 'outputs.ServiceVclLoggingGc']]]]] = None,
                  logging_googlepubsubs: pulumi.Input[Optional[Sequence[pulumi.Input[Union['ServiceVclLoggingGooglepubsubArgs', 'ServiceVclLoggingGooglepubsubArgsDict', 'outputs.ServiceVclLoggingGooglepubsub']]]]] = None,
@@ -2057,6 +2091,7 @@ class ServiceVcl(pulumi.CustomResource):
             __props__.__dict__["logging_datadogs"] = logging_datadogs
             __props__.__dict__["logging_digitaloceans"] = logging_digitaloceans
             __props__.__dict__["logging_elasticsearches"] = logging_elasticsearches
+            __props__.__dict__["logging_fos"] = logging_fos
             __props__.__dict__["logging_ftps"] = logging_ftps
             __props__.__dict__["logging_gcs"] = logging_gcs
             __props__.__dict__["logging_googlepubsubs"] = logging_googlepubsubs
@@ -2134,6 +2169,7 @@ class ServiceVcl(pulumi.CustomResource):
             logging_datadogs: pulumi.Input[Optional[Sequence[pulumi.Input[Union['ServiceVclLoggingDatadogArgs', 'ServiceVclLoggingDatadogArgsDict', 'outputs.ServiceVclLoggingDatadog']]]]] = None,
             logging_digitaloceans: pulumi.Input[Optional[Sequence[pulumi.Input[Union['ServiceVclLoggingDigitaloceanArgs', 'ServiceVclLoggingDigitaloceanArgsDict', 'outputs.ServiceVclLoggingDigitalocean']]]]] = None,
             logging_elasticsearches: pulumi.Input[Optional[Sequence[pulumi.Input[Union['ServiceVclLoggingElasticsearchArgs', 'ServiceVclLoggingElasticsearchArgsDict', 'outputs.ServiceVclLoggingElasticsearch']]]]] = None,
+            logging_fos: pulumi.Input[Optional[Sequence[pulumi.Input[Union['ServiceVclLoggingFoArgs', 'ServiceVclLoggingFoArgsDict', 'outputs.ServiceVclLoggingFo']]]]] = None,
             logging_ftps: pulumi.Input[Optional[Sequence[pulumi.Input[Union['ServiceVclLoggingFtpArgs', 'ServiceVclLoggingFtpArgsDict', 'outputs.ServiceVclLoggingFtp']]]]] = None,
             logging_gcs: pulumi.Input[Optional[Sequence[pulumi.Input[Union['ServiceVclLoggingGcArgs', 'ServiceVclLoggingGcArgsDict', 'outputs.ServiceVclLoggingGc']]]]] = None,
             logging_googlepubsubs: pulumi.Input[Optional[Sequence[pulumi.Input[Union['ServiceVclLoggingGooglepubsubArgs', 'ServiceVclLoggingGooglepubsubArgsDict', 'outputs.ServiceVclLoggingGooglepubsub']]]]] = None,
@@ -2182,7 +2218,7 @@ class ServiceVcl(pulumi.CustomResource):
         :param pulumi.Input[_builtins.str] comment: Description field for the service. This versionless attribute is updated regardless of the `activate` and `stage` settings. Default `Managed by Terraform`
         :param pulumi.Input[_builtins.str] default_host: The default hostname
         :param pulumi.Input[_builtins.int] default_ttl: The default Time-to-live (TTL) for requests
-        :param pulumi.Input[Sequence[pulumi.Input[Union['ServiceVclDomainArgs', 'ServiceVclDomainArgsDict', 'outputs.ServiceVclDomain']]]] domains: A set of Domain names to serve as entry points for your Service
+        :param pulumi.Input[Sequence[pulumi.Input[Union['ServiceVclDomainArgs', 'ServiceVclDomainArgsDict', 'outputs.ServiceVclDomain']]]] domains: A set of Domain names to serve as entry points for your Service. Classic domains are only available to accounts created before 2025-09-16; for newer accounts use the versionless `Domain` resource instead.
         :param pulumi.Input[_builtins.bool] force_destroy: Services that are active cannot be destroyed. In order to destroy the Service, set `force_destroy` to `true`. Default `false`
         :param pulumi.Input[_builtins.bool] force_refresh: Used internally by the provider to temporarily indicate if all resources should call their associated API to update the local state. This is for scenarios where the service version has been reverted outside of Terraform (e.g. via the Fastly UI) and the provider needs to resync the state for a different active version (this is only if `activate` is `true`).
         :param pulumi.Input[_builtins.bool] http3: Enables support for the HTTP/3 (QUIC) protocol
@@ -2227,6 +2263,7 @@ class ServiceVcl(pulumi.CustomResource):
         __props__.__dict__["logging_datadogs"] = logging_datadogs
         __props__.__dict__["logging_digitaloceans"] = logging_digitaloceans
         __props__.__dict__["logging_elasticsearches"] = logging_elasticsearches
+        __props__.__dict__["logging_fos"] = logging_fos
         __props__.__dict__["logging_ftps"] = logging_ftps
         __props__.__dict__["logging_gcs"] = logging_gcs
         __props__.__dict__["logging_googlepubsubs"] = logging_googlepubsubs
@@ -2295,6 +2332,7 @@ class ServiceVcl(pulumi.CustomResource):
             logging_datadogs: pulumi.Input[Optional[Sequence[pulumi.Input[Union['ServiceVclLoggingDatadogArgs', 'ServiceVclLoggingDatadogArgsDict', 'outputs.ServiceVclLoggingDatadog']]]]] = None,
             logging_digitaloceans: pulumi.Input[Optional[Sequence[pulumi.Input[Union['ServiceVclLoggingDigitaloceanArgs', 'ServiceVclLoggingDigitaloceanArgsDict', 'outputs.ServiceVclLoggingDigitalocean']]]]] = None,
             logging_elasticsearches: pulumi.Input[Optional[Sequence[pulumi.Input[Union['ServiceVclLoggingElasticsearchArgs', 'ServiceVclLoggingElasticsearchArgsDict', 'outputs.ServiceVclLoggingElasticsearch']]]]] = None,
+            logging_fos: pulumi.Input[Optional[Sequence[pulumi.Input[Union['ServiceVclLoggingFoArgs', 'ServiceVclLoggingFoArgsDict', 'outputs.ServiceVclLoggingFo']]]]] = None,
             logging_ftps: pulumi.Input[Optional[Sequence[pulumi.Input[Union['ServiceVclLoggingFtpArgs', 'ServiceVclLoggingFtpArgsDict', 'outputs.ServiceVclLoggingFtp']]]]] = None,
             logging_gcs: pulumi.Input[Optional[Sequence[pulumi.Input[Union['ServiceVclLoggingGcArgs', 'ServiceVclLoggingGcArgsDict', 'outputs.ServiceVclLoggingGc']]]]] = None,
             logging_googlepubsubs: pulumi.Input[Optional[Sequence[pulumi.Input[Union['ServiceVclLoggingGooglepubsubArgs', 'ServiceVclLoggingGooglepubsubArgsDict', 'outputs.ServiceVclLoggingGooglepubsub']]]]] = None,
@@ -2359,6 +2397,7 @@ class ServiceVcl(pulumi.CustomResource):
         __props__["loggingDatadogs"] = logging_datadogs
         __props__["loggingDigitaloceans"] = logging_digitaloceans
         __props__["loggingElasticsearches"] = logging_elasticsearches
+        __props__["loggingFos"] = logging_fos
         __props__["loggingFtps"] = logging_ftps
         __props__["loggingGcs"] = logging_gcs
         __props__["loggingGooglepubsubs"] = logging_googlepubsubs
@@ -2478,7 +2517,7 @@ class ServiceVcl(pulumi.CustomResource):
     @pulumi.getter
     def domains(self) -> pulumi.Output[Optional[Sequence['outputs.ServiceVclDomain']]]:
         """
-        A set of Domain names to serve as entry points for your Service
+        A set of Domain names to serve as entry points for your Service. Classic domains are only available to accounts created before 2025-09-16; for newer accounts use the versionless `Domain` resource instead.
         """
         return pulumi.get(self, "domains")
 
@@ -2568,6 +2607,11 @@ class ServiceVcl(pulumi.CustomResource):
     @pulumi.getter(name="loggingElasticsearches")
     def logging_elasticsearches(self) -> pulumi.Output[Optional[Sequence['outputs.ServiceVclLoggingElasticsearch']]]:
         return pulumi.get(self, "logging_elasticsearches")
+
+    @_builtins.property
+    @pulumi.getter(name="loggingFos")
+    def logging_fos(self) -> pulumi.Output[Optional[Sequence['outputs.ServiceVclLoggingFo']]]:
+        return pulumi.get(self, "logging_fos")
 
     @_builtins.property
     @pulumi.getter(name="loggingFtps")

@@ -1,4 +1,4 @@
-module github.com/pulumi/pulumi-fastly/sdk/v12
+module github.com/pulumi/pulumi-fastly/sdk/v13
 
 go 1.26.6
 

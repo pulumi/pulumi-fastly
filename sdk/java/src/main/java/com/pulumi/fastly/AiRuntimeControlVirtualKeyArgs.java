@@ -17,14 +17,14 @@ public final class AiRuntimeControlVirtualKeyArgs extends com.pulumi.resources.R
     public static final AiRuntimeControlVirtualKeyArgs Empty = new AiRuntimeControlVirtualKeyArgs();
 
     /**
-     * The expiration timestamp of the virtual key, in RFC 3339 format. Once set, this value cannot be unset, only changed.
+     * The date and time the virtual key expires, in RFC 3339 format. Once set, this value cannot be unset, only changed.
      * 
      */
     @Import(name="expiresAt")
     private @Nullable Output<String> expiresAt;
 
     /**
-     * @return The expiration timestamp of the virtual key, in RFC 3339 format. Once set, this value cannot be unset, only changed.
+     * @return The date and time the virtual key expires, in RFC 3339 format. Once set, this value cannot be unset, only changed.
      * 
      */
     public Optional<Output<String>> expiresAt() {
@@ -47,14 +47,14 @@ public final class AiRuntimeControlVirtualKeyArgs extends com.pulumi.resources.R
     }
 
     /**
-     * A human-readable name for the virtual key.
+     * The display name of the virtual key.
      * 
      */
     @Import(name="name")
     private @Nullable Output<String> name;
 
     /**
-     * @return A human-readable name for the virtual key.
+     * @return The display name of the virtual key.
      * 
      */
     public Optional<Output<String>> name() {
@@ -76,21 +76,6 @@ public final class AiRuntimeControlVirtualKeyArgs extends com.pulumi.resources.R
         return this.providerName;
     }
 
-    /**
-     * The ID of the user creating the virtual key. Changing this forces a new virtual key to be created.
-     * 
-     */
-    @Import(name="userId", required=true)
-    private Output<String> userId;
-
-    /**
-     * @return The ID of the user creating the virtual key. Changing this forces a new virtual key to be created.
-     * 
-     */
-    public Output<String> userId() {
-        return this.userId;
-    }
-
     private AiRuntimeControlVirtualKeyArgs() {}
 
     private AiRuntimeControlVirtualKeyArgs(AiRuntimeControlVirtualKeyArgs $) {
@@ -98,7 +83,6 @@ public final class AiRuntimeControlVirtualKeyArgs extends com.pulumi.resources.R
         this.model = $.model;
         this.name = $.name;
         this.providerName = $.providerName;
-        this.userId = $.userId;
     }
 
     public static Builder builder() {
@@ -120,7 +104,7 @@ public final class AiRuntimeControlVirtualKeyArgs extends com.pulumi.resources.R
         }
 
         /**
-         * @param expiresAt The expiration timestamp of the virtual key, in RFC 3339 format. Once set, this value cannot be unset, only changed.
+         * @param expiresAt The date and time the virtual key expires, in RFC 3339 format. Once set, this value cannot be unset, only changed.
          * 
          * @return builder
          * 
@@ -131,7 +115,7 @@ public final class AiRuntimeControlVirtualKeyArgs extends com.pulumi.resources.R
         }
 
         /**
-         * @param expiresAt The expiration timestamp of the virtual key, in RFC 3339 format. Once set, this value cannot be unset, only changed.
+         * @param expiresAt The date and time the virtual key expires, in RFC 3339 format. Once set, this value cannot be unset, only changed.
          * 
          * @return builder
          * 
@@ -162,7 +146,7 @@ public final class AiRuntimeControlVirtualKeyArgs extends com.pulumi.resources.R
         }
 
         /**
-         * @param name A human-readable name for the virtual key.
+         * @param name The display name of the virtual key.
          * 
          * @return builder
          * 
@@ -173,7 +157,7 @@ public final class AiRuntimeControlVirtualKeyArgs extends com.pulumi.resources.R
         }
 
         /**
-         * @param name A human-readable name for the virtual key.
+         * @param name The display name of the virtual key.
          * 
          * @return builder
          * 
@@ -203,36 +187,12 @@ public final class AiRuntimeControlVirtualKeyArgs extends com.pulumi.resources.R
             return providerName(Output.of(providerName));
         }
 
-        /**
-         * @param userId The ID of the user creating the virtual key. Changing this forces a new virtual key to be created.
-         * 
-         * @return builder
-         * 
-         */
-        public Builder userId(Output<String> userId) {
-            $.userId = userId;
-            return this;
-        }
-
-        /**
-         * @param userId The ID of the user creating the virtual key. Changing this forces a new virtual key to be created.
-         * 
-         * @return builder
-         * 
-         */
-        public Builder userId(String userId) {
-            return userId(Output.of(userId));
-        }
-
         public AiRuntimeControlVirtualKeyArgs build() {
             if ($.model == null) {
                 throw new MissingRequiredPropertyException("AiRuntimeControlVirtualKeyArgs", "model");
             }
             if ($.providerName == null) {
                 throw new MissingRequiredPropertyException("AiRuntimeControlVirtualKeyArgs", "providerName");
-            }
-            if ($.userId == null) {
-                throw new MissingRequiredPropertyException("AiRuntimeControlVirtualKeyArgs", "userId");
             }
             return $;
         }

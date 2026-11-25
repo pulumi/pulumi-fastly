@@ -57,13 +57,6 @@ namespace Pulumi.Fastly
     ///     var exampleServiceCompute = new Fastly.ServiceCompute("example", new()
     ///     {
     ///         Name = "my_compute_service",
-    ///         Domains = new[]
-    ///         {
-    ///             new Fastly.Inputs.ServiceComputeDomainArgs
-    ///             {
-    ///                 Name = "demo.example.com",
-    ///             },
-    ///         },
     ///         Package = new Fastly.Inputs.ServiceComputePackageArgs
     ///         {
     ///             Filename = "package.tar.gz",
@@ -119,13 +112,6 @@ namespace Pulumi.Fastly
     ///     var exampleServiceCompute = new Fastly.ServiceCompute("example", new()
     ///     {
     ///         Name = "my_compute_service",
-    ///         Domains = new[]
-    ///         {
-    ///             new Fastly.Inputs.ServiceComputeDomainArgs
-    ///             {
-    ///                 Name = "demo.example.com",
-    ///             },
-    ///         },
     ///         Package = new Fastly.Inputs.ServiceComputePackageArgs
     ///         {
     ///             Filename = "package.tar.gz",

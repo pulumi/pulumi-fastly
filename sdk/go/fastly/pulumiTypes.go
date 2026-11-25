@@ -7,17 +7,19 @@ import (
 	"context"
 	"reflect"
 
-	"github.com/pulumi/pulumi-fastly/sdk/v12/go/fastly/internal"
+	"github.com/pulumi/pulumi-fastly/sdk/v13/go/fastly/internal"
 	"github.com/pulumi/pulumi/sdk/v3/go/pulumi"
 )
 
 var _ = internal.GetEnvOrDefault
 
 type AlertDimensions struct {
-	// Names of a subset of domains that the alert monitors.
+	// Names of a subset of domains that the alert monitors, or empty array `[]` to monitor all domains.
 	Domains []string `pulumi:"domains"`
-	// Addresses of a subset of backends that the alert monitors.
+	// Addresses of a subset of backends that the alert monitors, or empty array `[]` to monitor all origins.
 	Origins []string `pulumi:"origins"`
+	// List of service IDs to monitor individually, or empty array `[]` to monitor all services.
+	Services []string `pulumi:"services"`
 }
 
 // AlertDimensionsInput is an input type that accepts AlertDimensionsArgs and AlertDimensionsOutput values.
@@ -32,10 +34,12 @@ type AlertDimensionsInput interface {
 }
 
 type AlertDimensionsArgs struct {
-	// Names of a subset of domains that the alert monitors.
+	// Names of a subset of domains that the alert monitors, or empty array `[]` to monitor all domains.
 	Domains pulumi.StringArrayInput `pulumi:"domains"`
-	// Addresses of a subset of backends that the alert monitors.
+	// Addresses of a subset of backends that the alert monitors, or empty array `[]` to monitor all origins.
 	Origins pulumi.StringArrayInput `pulumi:"origins"`
+	// List of service IDs to monitor individually, or empty array `[]` to monitor all services.
+	Services pulumi.StringArrayInput `pulumi:"services"`
 }
 
 func (AlertDimensionsArgs) ElementType() reflect.Type {
@@ -115,14 +119,19 @@ func (o AlertDimensionsOutput) ToAlertDimensionsPtrOutputWithContext(ctx context
 	}).(AlertDimensionsPtrOutput)
 }
 
-// Names of a subset of domains that the alert monitors.
+// Names of a subset of domains that the alert monitors, or empty array `[]` to monitor all domains.
 func (o AlertDimensionsOutput) Domains() pulumi.StringArrayOutput {
 	return o.ApplyT(func(v AlertDimensions) []string { return v.Domains }).(pulumi.StringArrayOutput)
 }
 
-// Addresses of a subset of backends that the alert monitors.
+// Addresses of a subset of backends that the alert monitors, or empty array `[]` to monitor all origins.
 func (o AlertDimensionsOutput) Origins() pulumi.StringArrayOutput {
 	return o.ApplyT(func(v AlertDimensions) []string { return v.Origins }).(pulumi.StringArrayOutput)
+}
+
+// List of service IDs to monitor individually, or empty array `[]` to monitor all services.
+func (o AlertDimensionsOutput) Services() pulumi.StringArrayOutput {
+	return o.ApplyT(func(v AlertDimensions) []string { return v.Services }).(pulumi.StringArrayOutput)
 }
 
 type AlertDimensionsPtrOutput struct{ *pulumi.OutputState }
@@ -149,7 +158,7 @@ func (o AlertDimensionsPtrOutput) Elem() AlertDimensionsOutput {
 	}).(AlertDimensionsOutput)
 }
 
-// Names of a subset of domains that the alert monitors.
+// Names of a subset of domains that the alert monitors, or empty array `[]` to monitor all domains.
 func (o AlertDimensionsPtrOutput) Domains() pulumi.StringArrayOutput {
 	return o.ApplyT(func(v *AlertDimensions) []string {
 		if v == nil {
@@ -159,13 +168,23 @@ func (o AlertDimensionsPtrOutput) Domains() pulumi.StringArrayOutput {
 	}).(pulumi.StringArrayOutput)
 }
 
-// Addresses of a subset of backends that the alert monitors.
+// Addresses of a subset of backends that the alert monitors, or empty array `[]` to monitor all origins.
 func (o AlertDimensionsPtrOutput) Origins() pulumi.StringArrayOutput {
 	return o.ApplyT(func(v *AlertDimensions) []string {
 		if v == nil {
 			return nil
 		}
 		return v.Origins
+	}).(pulumi.StringArrayOutput)
+}
+
+// List of service IDs to monitor individually, or empty array `[]` to monitor all services.
+func (o AlertDimensionsPtrOutput) Services() pulumi.StringArrayOutput {
+	return o.ApplyT(func(v *AlertDimensions) []string {
+		if v == nil {
+			return nil
+		}
+		return v.Services
 	}).(pulumi.StringArrayOutput)
 }
 
@@ -6124,6 +6143,193 @@ func (o ServiceComputeLoggingElasticsearchArrayOutput) Index(i pulumi.IntInput) 
 	}).(ServiceComputeLoggingElasticsearchOutput)
 }
 
+type ServiceComputeLoggingFo struct {
+	// The name of the Fastly Object Storage bucket in which to store the logs
+	BucketName string `pulumi:"bucketName"`
+	// The codec used for compression of your logs. Valid values are zstd, snappy, and gzip. If the specified codec is "gzip", gzipLevel will default to 3. To specify a different level, leave compressionCodec blank and explicitly set the level using gzip_level. Specifying both compressionCodec and gzipLevel in the same API request will result in an error.
+	CompressionCodec *string `pulumi:"compressionCodec"`
+	// Maximum size of an uploaded log file, if non-zero. The minimum value is 1048576 bytes (1 MiB).
+	FileMaxBytes *int `pulumi:"fileMaxBytes"`
+	// Level of Gzip compression from `0-9`. `0` means no compression. `1` is the fastest and the least compressed version, `9` is the slowest and the most compressed version. Default `0`
+	GzipLevel *int `pulumi:"gzipLevel"`
+	// How the message should be formatted. Can be either `classic`, `loggly`, `logplex` or `blank`. Default is `classic`
+	MessageType *string `pulumi:"messageType"`
+	// The unique name of the Fastly Object Storage logging endpoint. It is important to note that changing this attribute will delete and recreate the resource
+	Name string `pulumi:"name"`
+	// Path to store the files. Must end with a trailing slash. If this field is left empty, the files will be saved in the bucket's root path
+	Path *string `pulumi:"path"`
+	// How frequently the logs should be transferred, in seconds. Default `3600`
+	Period *int `pulumi:"period"`
+	// A PGP public key that Fastly will use to encrypt your log files before writing them to disk
+	PublicKey *string `pulumi:"publicKey"`
+	// The region of the Fastly Object Storage bucket (e.g. `us-east`)
+	Region string `pulumi:"region"`
+	// The `strftime` specified timestamp formatting (default `%Y-%m-%dT%H:%M:%S.000`)
+	TimestampFormat *string `pulumi:"timestampFormat"`
+}
+
+// ServiceComputeLoggingFoInput is an input type that accepts ServiceComputeLoggingFoArgs and ServiceComputeLoggingFoOutput values.
+// You can construct a concrete instance of `ServiceComputeLoggingFoInput` via:
+//
+//	ServiceComputeLoggingFoArgs{...}
+type ServiceComputeLoggingFoInput interface {
+	pulumi.Input
+
+	ToServiceComputeLoggingFoOutput() ServiceComputeLoggingFoOutput
+	ToServiceComputeLoggingFoOutputWithContext(context.Context) ServiceComputeLoggingFoOutput
+}
+
+type ServiceComputeLoggingFoArgs struct {
+	// The name of the Fastly Object Storage bucket in which to store the logs
+	BucketName pulumi.StringInput `pulumi:"bucketName"`
+	// The codec used for compression of your logs. Valid values are zstd, snappy, and gzip. If the specified codec is "gzip", gzipLevel will default to 3. To specify a different level, leave compressionCodec blank and explicitly set the level using gzip_level. Specifying both compressionCodec and gzipLevel in the same API request will result in an error.
+	CompressionCodec pulumi.StringPtrInput `pulumi:"compressionCodec"`
+	// Maximum size of an uploaded log file, if non-zero. The minimum value is 1048576 bytes (1 MiB).
+	FileMaxBytes pulumi.IntPtrInput `pulumi:"fileMaxBytes"`
+	// Level of Gzip compression from `0-9`. `0` means no compression. `1` is the fastest and the least compressed version, `9` is the slowest and the most compressed version. Default `0`
+	GzipLevel pulumi.IntPtrInput `pulumi:"gzipLevel"`
+	// How the message should be formatted. Can be either `classic`, `loggly`, `logplex` or `blank`. Default is `classic`
+	MessageType pulumi.StringPtrInput `pulumi:"messageType"`
+	// The unique name of the Fastly Object Storage logging endpoint. It is important to note that changing this attribute will delete and recreate the resource
+	Name pulumi.StringInput `pulumi:"name"`
+	// Path to store the files. Must end with a trailing slash. If this field is left empty, the files will be saved in the bucket's root path
+	Path pulumi.StringPtrInput `pulumi:"path"`
+	// How frequently the logs should be transferred, in seconds. Default `3600`
+	Period pulumi.IntPtrInput `pulumi:"period"`
+	// A PGP public key that Fastly will use to encrypt your log files before writing them to disk
+	PublicKey pulumi.StringPtrInput `pulumi:"publicKey"`
+	// The region of the Fastly Object Storage bucket (e.g. `us-east`)
+	Region pulumi.StringInput `pulumi:"region"`
+	// The `strftime` specified timestamp formatting (default `%Y-%m-%dT%H:%M:%S.000`)
+	TimestampFormat pulumi.StringPtrInput `pulumi:"timestampFormat"`
+}
+
+func (ServiceComputeLoggingFoArgs) ElementType() reflect.Type {
+	return reflect.TypeOf((*ServiceComputeLoggingFo)(nil)).Elem()
+}
+
+func (i ServiceComputeLoggingFoArgs) ToServiceComputeLoggingFoOutput() ServiceComputeLoggingFoOutput {
+	return i.ToServiceComputeLoggingFoOutputWithContext(context.Background())
+}
+
+func (i ServiceComputeLoggingFoArgs) ToServiceComputeLoggingFoOutputWithContext(ctx context.Context) ServiceComputeLoggingFoOutput {
+	return pulumi.ToOutputWithContext(ctx, i).(ServiceComputeLoggingFoOutput)
+}
+
+// ServiceComputeLoggingFoArrayInput is an input type that accepts ServiceComputeLoggingFoArray and ServiceComputeLoggingFoArrayOutput values.
+// You can construct a concrete instance of `ServiceComputeLoggingFoArrayInput` via:
+//
+//	ServiceComputeLoggingFoArray{ ServiceComputeLoggingFoArgs{...} }
+type ServiceComputeLoggingFoArrayInput interface {
+	pulumi.Input
+
+	ToServiceComputeLoggingFoArrayOutput() ServiceComputeLoggingFoArrayOutput
+	ToServiceComputeLoggingFoArrayOutputWithContext(context.Context) ServiceComputeLoggingFoArrayOutput
+}
+
+type ServiceComputeLoggingFoArray []ServiceComputeLoggingFoInput
+
+func (ServiceComputeLoggingFoArray) ElementType() reflect.Type {
+	return reflect.TypeOf((*[]ServiceComputeLoggingFo)(nil)).Elem()
+}
+
+func (i ServiceComputeLoggingFoArray) ToServiceComputeLoggingFoArrayOutput() ServiceComputeLoggingFoArrayOutput {
+	return i.ToServiceComputeLoggingFoArrayOutputWithContext(context.Background())
+}
+
+func (i ServiceComputeLoggingFoArray) ToServiceComputeLoggingFoArrayOutputWithContext(ctx context.Context) ServiceComputeLoggingFoArrayOutput {
+	return pulumi.ToOutputWithContext(ctx, i).(ServiceComputeLoggingFoArrayOutput)
+}
+
+type ServiceComputeLoggingFoOutput struct{ *pulumi.OutputState }
+
+func (ServiceComputeLoggingFoOutput) ElementType() reflect.Type {
+	return reflect.TypeOf((*ServiceComputeLoggingFo)(nil)).Elem()
+}
+
+func (o ServiceComputeLoggingFoOutput) ToServiceComputeLoggingFoOutput() ServiceComputeLoggingFoOutput {
+	return o
+}
+
+func (o ServiceComputeLoggingFoOutput) ToServiceComputeLoggingFoOutputWithContext(ctx context.Context) ServiceComputeLoggingFoOutput {
+	return o
+}
+
+// The name of the Fastly Object Storage bucket in which to store the logs
+func (o ServiceComputeLoggingFoOutput) BucketName() pulumi.StringOutput {
+	return o.ApplyT(func(v ServiceComputeLoggingFo) string { return v.BucketName }).(pulumi.StringOutput)
+}
+
+// The codec used for compression of your logs. Valid values are zstd, snappy, and gzip. If the specified codec is "gzip", gzipLevel will default to 3. To specify a different level, leave compressionCodec blank and explicitly set the level using gzip_level. Specifying both compressionCodec and gzipLevel in the same API request will result in an error.
+func (o ServiceComputeLoggingFoOutput) CompressionCodec() pulumi.StringPtrOutput {
+	return o.ApplyT(func(v ServiceComputeLoggingFo) *string { return v.CompressionCodec }).(pulumi.StringPtrOutput)
+}
+
+// Maximum size of an uploaded log file, if non-zero. The minimum value is 1048576 bytes (1 MiB).
+func (o ServiceComputeLoggingFoOutput) FileMaxBytes() pulumi.IntPtrOutput {
+	return o.ApplyT(func(v ServiceComputeLoggingFo) *int { return v.FileMaxBytes }).(pulumi.IntPtrOutput)
+}
+
+// Level of Gzip compression from `0-9`. `0` means no compression. `1` is the fastest and the least compressed version, `9` is the slowest and the most compressed version. Default `0`
+func (o ServiceComputeLoggingFoOutput) GzipLevel() pulumi.IntPtrOutput {
+	return o.ApplyT(func(v ServiceComputeLoggingFo) *int { return v.GzipLevel }).(pulumi.IntPtrOutput)
+}
+
+// How the message should be formatted. Can be either `classic`, `loggly`, `logplex` or `blank`. Default is `classic`
+func (o ServiceComputeLoggingFoOutput) MessageType() pulumi.StringPtrOutput {
+	return o.ApplyT(func(v ServiceComputeLoggingFo) *string { return v.MessageType }).(pulumi.StringPtrOutput)
+}
+
+// The unique name of the Fastly Object Storage logging endpoint. It is important to note that changing this attribute will delete and recreate the resource
+func (o ServiceComputeLoggingFoOutput) Name() pulumi.StringOutput {
+	return o.ApplyT(func(v ServiceComputeLoggingFo) string { return v.Name }).(pulumi.StringOutput)
+}
+
+// Path to store the files. Must end with a trailing slash. If this field is left empty, the files will be saved in the bucket's root path
+func (o ServiceComputeLoggingFoOutput) Path() pulumi.StringPtrOutput {
+	return o.ApplyT(func(v ServiceComputeLoggingFo) *string { return v.Path }).(pulumi.StringPtrOutput)
+}
+
+// How frequently the logs should be transferred, in seconds. Default `3600`
+func (o ServiceComputeLoggingFoOutput) Period() pulumi.IntPtrOutput {
+	return o.ApplyT(func(v ServiceComputeLoggingFo) *int { return v.Period }).(pulumi.IntPtrOutput)
+}
+
+// A PGP public key that Fastly will use to encrypt your log files before writing them to disk
+func (o ServiceComputeLoggingFoOutput) PublicKey() pulumi.StringPtrOutput {
+	return o.ApplyT(func(v ServiceComputeLoggingFo) *string { return v.PublicKey }).(pulumi.StringPtrOutput)
+}
+
+// The region of the Fastly Object Storage bucket (e.g. `us-east`)
+func (o ServiceComputeLoggingFoOutput) Region() pulumi.StringOutput {
+	return o.ApplyT(func(v ServiceComputeLoggingFo) string { return v.Region }).(pulumi.StringOutput)
+}
+
+// The `strftime` specified timestamp formatting (default `%Y-%m-%dT%H:%M:%S.000`)
+func (o ServiceComputeLoggingFoOutput) TimestampFormat() pulumi.StringPtrOutput {
+	return o.ApplyT(func(v ServiceComputeLoggingFo) *string { return v.TimestampFormat }).(pulumi.StringPtrOutput)
+}
+
+type ServiceComputeLoggingFoArrayOutput struct{ *pulumi.OutputState }
+
+func (ServiceComputeLoggingFoArrayOutput) ElementType() reflect.Type {
+	return reflect.TypeOf((*[]ServiceComputeLoggingFo)(nil)).Elem()
+}
+
+func (o ServiceComputeLoggingFoArrayOutput) ToServiceComputeLoggingFoArrayOutput() ServiceComputeLoggingFoArrayOutput {
+	return o
+}
+
+func (o ServiceComputeLoggingFoArrayOutput) ToServiceComputeLoggingFoArrayOutputWithContext(ctx context.Context) ServiceComputeLoggingFoArrayOutput {
+	return o
+}
+
+func (o ServiceComputeLoggingFoArrayOutput) Index(i pulumi.IntInput) ServiceComputeLoggingFoOutput {
+	return pulumi.All(o, i).ApplyT(func(vs []interface{}) ServiceComputeLoggingFo {
+		return vs[0].([]ServiceComputeLoggingFo)[vs[1].(int)]
+	}).(ServiceComputeLoggingFoOutput)
+}
+
 type ServiceComputeLoggingFtp struct {
 	// The FTP address to stream logs to
 	Address string `pulumi:"address"`
@@ -6350,6 +6556,8 @@ type ServiceComputeLoggingGc struct {
 	ProcessingRegion *string `pulumi:"processingRegion"`
 	// The ID of your Google Cloud Platform project
 	ProjectId *string `pulumi:"projectId"`
+	// A PGP public key that Fastly will use to encrypt your log files before writing them to disk
+	PublicKey *string `pulumi:"publicKey"`
 	// The secret key associated with the target gcs bucket on your account. You may optionally provide this secret via an environment variable, `FASTLY_GCS_SECRET_KEY`. A typical format for the key is PEM format, containing actual newline characters where required
 	SecretKey *string `pulumi:"secretKey"`
 	// The `strftime` specified timestamp formatting (default `%Y-%m-%dT%H:%M:%S.000`)
@@ -6390,6 +6598,8 @@ type ServiceComputeLoggingGcArgs struct {
 	ProcessingRegion pulumi.StringPtrInput `pulumi:"processingRegion"`
 	// The ID of your Google Cloud Platform project
 	ProjectId pulumi.StringPtrInput `pulumi:"projectId"`
+	// A PGP public key that Fastly will use to encrypt your log files before writing them to disk
+	PublicKey pulumi.StringPtrInput `pulumi:"publicKey"`
 	// The secret key associated with the target gcs bucket on your account. You may optionally provide this secret via an environment variable, `FASTLY_GCS_SECRET_KEY`. A typical format for the key is PEM format, containing actual newline characters where required
 	SecretKey pulumi.StringPtrInput `pulumi:"secretKey"`
 	// The `strftime` specified timestamp formatting (default `%Y-%m-%dT%H:%M:%S.000`)
@@ -6497,6 +6707,11 @@ func (o ServiceComputeLoggingGcOutput) ProcessingRegion() pulumi.StringPtrOutput
 // The ID of your Google Cloud Platform project
 func (o ServiceComputeLoggingGcOutput) ProjectId() pulumi.StringPtrOutput {
 	return o.ApplyT(func(v ServiceComputeLoggingGc) *string { return v.ProjectId }).(pulumi.StringPtrOutput)
+}
+
+// A PGP public key that Fastly will use to encrypt your log files before writing them to disk
+func (o ServiceComputeLoggingGcOutput) PublicKey() pulumi.StringPtrOutput {
+	return o.ApplyT(func(v ServiceComputeLoggingGc) *string { return v.PublicKey }).(pulumi.StringPtrOutput)
 }
 
 // The secret key associated with the target gcs bucket on your account. You may optionally provide this secret via an environment variable, `FASTLY_GCS_SECRET_KEY`. A typical format for the key is PEM format, containing actual newline characters where required
@@ -10978,6 +11193,16 @@ type ServiceVclBackend struct {
 	FirstByteTimeout *int `pulumi:"firstByteTimeout"`
 	// Name of a defined `healthcheck` to assign to this backend
 	Healthcheck *string `pulumi:"healthcheck"`
+	// If the backend is using IAM authentication and the IAM system policy requires a matching external identifier, it should match this value. Your Fastly customer ID will be used if this attribute is not set.
+	IamExternalId *string `pulumi:"iamExternalId"`
+	// If the backend is using IAM authentication, the IAM signature will use this as the product element.
+	IamProduct *string `pulumi:"iamProduct"`
+	// If the backend is using IAM authentication, this region will be used for signing and access.
+	IamRegion *string `pulumi:"iamRegion"`
+	// If the backend is using IAM authentication, the fully qualified role string supplied by the storage vendor.
+	IamRole *string `pulumi:"iamRole"`
+	// A label that identifies the storage vendor. Providing a value in this field enables IAM usage, and all other IAM fields depend on its value.
+	IamVendor *string `pulumi:"iamVendor"`
 	// How long in seconds to keep a persistent connection to the backend between requests.
 	KeepaliveTime *int `pulumi:"keepaliveTime"`
 	// Maximum number of connections for this Backend. Default `200`
@@ -11050,6 +11275,16 @@ type ServiceVclBackendArgs struct {
 	FirstByteTimeout pulumi.IntPtrInput `pulumi:"firstByteTimeout"`
 	// Name of a defined `healthcheck` to assign to this backend
 	Healthcheck pulumi.StringPtrInput `pulumi:"healthcheck"`
+	// If the backend is using IAM authentication and the IAM system policy requires a matching external identifier, it should match this value. Your Fastly customer ID will be used if this attribute is not set.
+	IamExternalId pulumi.StringPtrInput `pulumi:"iamExternalId"`
+	// If the backend is using IAM authentication, the IAM signature will use this as the product element.
+	IamProduct pulumi.StringPtrInput `pulumi:"iamProduct"`
+	// If the backend is using IAM authentication, this region will be used for signing and access.
+	IamRegion pulumi.StringPtrInput `pulumi:"iamRegion"`
+	// If the backend is using IAM authentication, the fully qualified role string supplied by the storage vendor.
+	IamRole pulumi.StringPtrInput `pulumi:"iamRole"`
+	// A label that identifies the storage vendor. Providing a value in this field enables IAM usage, and all other IAM fields depend on its value.
+	IamVendor pulumi.StringPtrInput `pulumi:"iamVendor"`
 	// How long in seconds to keep a persistent connection to the backend between requests.
 	KeepaliveTime pulumi.IntPtrInput `pulumi:"keepaliveTime"`
 	// Maximum number of connections for this Backend. Default `200`
@@ -11180,6 +11415,31 @@ func (o ServiceVclBackendOutput) FirstByteTimeout() pulumi.IntPtrOutput {
 // Name of a defined `healthcheck` to assign to this backend
 func (o ServiceVclBackendOutput) Healthcheck() pulumi.StringPtrOutput {
 	return o.ApplyT(func(v ServiceVclBackend) *string { return v.Healthcheck }).(pulumi.StringPtrOutput)
+}
+
+// If the backend is using IAM authentication and the IAM system policy requires a matching external identifier, it should match this value. Your Fastly customer ID will be used if this attribute is not set.
+func (o ServiceVclBackendOutput) IamExternalId() pulumi.StringPtrOutput {
+	return o.ApplyT(func(v ServiceVclBackend) *string { return v.IamExternalId }).(pulumi.StringPtrOutput)
+}
+
+// If the backend is using IAM authentication, the IAM signature will use this as the product element.
+func (o ServiceVclBackendOutput) IamProduct() pulumi.StringPtrOutput {
+	return o.ApplyT(func(v ServiceVclBackend) *string { return v.IamProduct }).(pulumi.StringPtrOutput)
+}
+
+// If the backend is using IAM authentication, this region will be used for signing and access.
+func (o ServiceVclBackendOutput) IamRegion() pulumi.StringPtrOutput {
+	return o.ApplyT(func(v ServiceVclBackend) *string { return v.IamRegion }).(pulumi.StringPtrOutput)
+}
+
+// If the backend is using IAM authentication, the fully qualified role string supplied by the storage vendor.
+func (o ServiceVclBackendOutput) IamRole() pulumi.StringPtrOutput {
+	return o.ApplyT(func(v ServiceVclBackend) *string { return v.IamRole }).(pulumi.StringPtrOutput)
+}
+
+// A label that identifies the storage vendor. Providing a value in this field enables IAM usage, and all other IAM fields depend on its value.
+func (o ServiceVclBackendOutput) IamVendor() pulumi.StringPtrOutput {
+	return o.ApplyT(func(v ServiceVclBackend) *string { return v.IamVendor }).(pulumi.StringPtrOutput)
 }
 
 // How long in seconds to keep a persistent connection to the backend between requests.
@@ -14221,6 +14481,229 @@ func (o ServiceVclLoggingElasticsearchArrayOutput) Index(i pulumi.IntInput) Serv
 	}).(ServiceVclLoggingElasticsearchOutput)
 }
 
+type ServiceVclLoggingFo struct {
+	// The name of the Fastly Object Storage bucket in which to store the logs
+	BucketName string `pulumi:"bucketName"`
+	// The codec used for compression of your logs. Valid values are zstd, snappy, and gzip. If the specified codec is "gzip", gzipLevel will default to 3. To specify a different level, leave compressionCodec blank and explicitly set the level using gzip_level. Specifying both compressionCodec and gzipLevel in the same API request will result in an error.
+	CompressionCodec *string `pulumi:"compressionCodec"`
+	// Maximum size of an uploaded log file, if non-zero. The minimum value is 1048576 bytes (1 MiB).
+	FileMaxBytes *int `pulumi:"fileMaxBytes"`
+	// Apache-style string or VCL variables to use for log formatting.
+	Format *string `pulumi:"format"`
+	// The version of the custom logging format used for the configured endpoint. Can be either 1 or 2. (Default: 2).
+	FormatVersion *int `pulumi:"formatVersion"`
+	// Level of Gzip compression from `0-9`. `0` means no compression. `1` is the fastest and the least compressed version, `9` is the slowest and the most compressed version. Default `0`
+	GzipLevel *int `pulumi:"gzipLevel"`
+	// How the message should be formatted. Can be either `classic`, `loggly`, `logplex` or `blank`. Default is `classic`
+	MessageType *string `pulumi:"messageType"`
+	// The unique name of the Fastly Object Storage logging endpoint. It is important to note that changing this attribute will delete and recreate the resource
+	Name string `pulumi:"name"`
+	// Path to store the files. Must end with a trailing slash. If this field is left empty, the files will be saved in the bucket's root path
+	Path *string `pulumi:"path"`
+	// How frequently the logs should be transferred, in seconds. Default `3600`
+	Period *int `pulumi:"period"`
+	// Where in the generated VCL the logging call should be placed.
+	Placement *string `pulumi:"placement"`
+	// A PGP public key that Fastly will use to encrypt your log files before writing them to disk
+	PublicKey *string `pulumi:"publicKey"`
+	// The region of the Fastly Object Storage bucket (e.g. `us-east`)
+	Region string `pulumi:"region"`
+	// Name of blockAttributes condition to apply this logging.
+	ResponseCondition *string `pulumi:"responseCondition"`
+	// The `strftime` specified timestamp formatting (default `%Y-%m-%dT%H:%M:%S.000`)
+	TimestampFormat *string `pulumi:"timestampFormat"`
+}
+
+// ServiceVclLoggingFoInput is an input type that accepts ServiceVclLoggingFoArgs and ServiceVclLoggingFoOutput values.
+// You can construct a concrete instance of `ServiceVclLoggingFoInput` via:
+//
+//	ServiceVclLoggingFoArgs{...}
+type ServiceVclLoggingFoInput interface {
+	pulumi.Input
+
+	ToServiceVclLoggingFoOutput() ServiceVclLoggingFoOutput
+	ToServiceVclLoggingFoOutputWithContext(context.Context) ServiceVclLoggingFoOutput
+}
+
+type ServiceVclLoggingFoArgs struct {
+	// The name of the Fastly Object Storage bucket in which to store the logs
+	BucketName pulumi.StringInput `pulumi:"bucketName"`
+	// The codec used for compression of your logs. Valid values are zstd, snappy, and gzip. If the specified codec is "gzip", gzipLevel will default to 3. To specify a different level, leave compressionCodec blank and explicitly set the level using gzip_level. Specifying both compressionCodec and gzipLevel in the same API request will result in an error.
+	CompressionCodec pulumi.StringPtrInput `pulumi:"compressionCodec"`
+	// Maximum size of an uploaded log file, if non-zero. The minimum value is 1048576 bytes (1 MiB).
+	FileMaxBytes pulumi.IntPtrInput `pulumi:"fileMaxBytes"`
+	// Apache-style string or VCL variables to use for log formatting.
+	Format pulumi.StringPtrInput `pulumi:"format"`
+	// The version of the custom logging format used for the configured endpoint. Can be either 1 or 2. (Default: 2).
+	FormatVersion pulumi.IntPtrInput `pulumi:"formatVersion"`
+	// Level of Gzip compression from `0-9`. `0` means no compression. `1` is the fastest and the least compressed version, `9` is the slowest and the most compressed version. Default `0`
+	GzipLevel pulumi.IntPtrInput `pulumi:"gzipLevel"`
+	// How the message should be formatted. Can be either `classic`, `loggly`, `logplex` or `blank`. Default is `classic`
+	MessageType pulumi.StringPtrInput `pulumi:"messageType"`
+	// The unique name of the Fastly Object Storage logging endpoint. It is important to note that changing this attribute will delete and recreate the resource
+	Name pulumi.StringInput `pulumi:"name"`
+	// Path to store the files. Must end with a trailing slash. If this field is left empty, the files will be saved in the bucket's root path
+	Path pulumi.StringPtrInput `pulumi:"path"`
+	// How frequently the logs should be transferred, in seconds. Default `3600`
+	Period pulumi.IntPtrInput `pulumi:"period"`
+	// Where in the generated VCL the logging call should be placed.
+	Placement pulumi.StringPtrInput `pulumi:"placement"`
+	// A PGP public key that Fastly will use to encrypt your log files before writing them to disk
+	PublicKey pulumi.StringPtrInput `pulumi:"publicKey"`
+	// The region of the Fastly Object Storage bucket (e.g. `us-east`)
+	Region pulumi.StringInput `pulumi:"region"`
+	// Name of blockAttributes condition to apply this logging.
+	ResponseCondition pulumi.StringPtrInput `pulumi:"responseCondition"`
+	// The `strftime` specified timestamp formatting (default `%Y-%m-%dT%H:%M:%S.000`)
+	TimestampFormat pulumi.StringPtrInput `pulumi:"timestampFormat"`
+}
+
+func (ServiceVclLoggingFoArgs) ElementType() reflect.Type {
+	return reflect.TypeOf((*ServiceVclLoggingFo)(nil)).Elem()
+}
+
+func (i ServiceVclLoggingFoArgs) ToServiceVclLoggingFoOutput() ServiceVclLoggingFoOutput {
+	return i.ToServiceVclLoggingFoOutputWithContext(context.Background())
+}
+
+func (i ServiceVclLoggingFoArgs) ToServiceVclLoggingFoOutputWithContext(ctx context.Context) ServiceVclLoggingFoOutput {
+	return pulumi.ToOutputWithContext(ctx, i).(ServiceVclLoggingFoOutput)
+}
+
+// ServiceVclLoggingFoArrayInput is an input type that accepts ServiceVclLoggingFoArray and ServiceVclLoggingFoArrayOutput values.
+// You can construct a concrete instance of `ServiceVclLoggingFoArrayInput` via:
+//
+//	ServiceVclLoggingFoArray{ ServiceVclLoggingFoArgs{...} }
+type ServiceVclLoggingFoArrayInput interface {
+	pulumi.Input
+
+	ToServiceVclLoggingFoArrayOutput() ServiceVclLoggingFoArrayOutput
+	ToServiceVclLoggingFoArrayOutputWithContext(context.Context) ServiceVclLoggingFoArrayOutput
+}
+
+type ServiceVclLoggingFoArray []ServiceVclLoggingFoInput
+
+func (ServiceVclLoggingFoArray) ElementType() reflect.Type {
+	return reflect.TypeOf((*[]ServiceVclLoggingFo)(nil)).Elem()
+}
+
+func (i ServiceVclLoggingFoArray) ToServiceVclLoggingFoArrayOutput() ServiceVclLoggingFoArrayOutput {
+	return i.ToServiceVclLoggingFoArrayOutputWithContext(context.Background())
+}
+
+func (i ServiceVclLoggingFoArray) ToServiceVclLoggingFoArrayOutputWithContext(ctx context.Context) ServiceVclLoggingFoArrayOutput {
+	return pulumi.ToOutputWithContext(ctx, i).(ServiceVclLoggingFoArrayOutput)
+}
+
+type ServiceVclLoggingFoOutput struct{ *pulumi.OutputState }
+
+func (ServiceVclLoggingFoOutput) ElementType() reflect.Type {
+	return reflect.TypeOf((*ServiceVclLoggingFo)(nil)).Elem()
+}
+
+func (o ServiceVclLoggingFoOutput) ToServiceVclLoggingFoOutput() ServiceVclLoggingFoOutput {
+	return o
+}
+
+func (o ServiceVclLoggingFoOutput) ToServiceVclLoggingFoOutputWithContext(ctx context.Context) ServiceVclLoggingFoOutput {
+	return o
+}
+
+// The name of the Fastly Object Storage bucket in which to store the logs
+func (o ServiceVclLoggingFoOutput) BucketName() pulumi.StringOutput {
+	return o.ApplyT(func(v ServiceVclLoggingFo) string { return v.BucketName }).(pulumi.StringOutput)
+}
+
+// The codec used for compression of your logs. Valid values are zstd, snappy, and gzip. If the specified codec is "gzip", gzipLevel will default to 3. To specify a different level, leave compressionCodec blank and explicitly set the level using gzip_level. Specifying both compressionCodec and gzipLevel in the same API request will result in an error.
+func (o ServiceVclLoggingFoOutput) CompressionCodec() pulumi.StringPtrOutput {
+	return o.ApplyT(func(v ServiceVclLoggingFo) *string { return v.CompressionCodec }).(pulumi.StringPtrOutput)
+}
+
+// Maximum size of an uploaded log file, if non-zero. The minimum value is 1048576 bytes (1 MiB).
+func (o ServiceVclLoggingFoOutput) FileMaxBytes() pulumi.IntPtrOutput {
+	return o.ApplyT(func(v ServiceVclLoggingFo) *int { return v.FileMaxBytes }).(pulumi.IntPtrOutput)
+}
+
+// Apache-style string or VCL variables to use for log formatting.
+func (o ServiceVclLoggingFoOutput) Format() pulumi.StringPtrOutput {
+	return o.ApplyT(func(v ServiceVclLoggingFo) *string { return v.Format }).(pulumi.StringPtrOutput)
+}
+
+// The version of the custom logging format used for the configured endpoint. Can be either 1 or 2. (Default: 2).
+func (o ServiceVclLoggingFoOutput) FormatVersion() pulumi.IntPtrOutput {
+	return o.ApplyT(func(v ServiceVclLoggingFo) *int { return v.FormatVersion }).(pulumi.IntPtrOutput)
+}
+
+// Level of Gzip compression from `0-9`. `0` means no compression. `1` is the fastest and the least compressed version, `9` is the slowest and the most compressed version. Default `0`
+func (o ServiceVclLoggingFoOutput) GzipLevel() pulumi.IntPtrOutput {
+	return o.ApplyT(func(v ServiceVclLoggingFo) *int { return v.GzipLevel }).(pulumi.IntPtrOutput)
+}
+
+// How the message should be formatted. Can be either `classic`, `loggly`, `logplex` or `blank`. Default is `classic`
+func (o ServiceVclLoggingFoOutput) MessageType() pulumi.StringPtrOutput {
+	return o.ApplyT(func(v ServiceVclLoggingFo) *string { return v.MessageType }).(pulumi.StringPtrOutput)
+}
+
+// The unique name of the Fastly Object Storage logging endpoint. It is important to note that changing this attribute will delete and recreate the resource
+func (o ServiceVclLoggingFoOutput) Name() pulumi.StringOutput {
+	return o.ApplyT(func(v ServiceVclLoggingFo) string { return v.Name }).(pulumi.StringOutput)
+}
+
+// Path to store the files. Must end with a trailing slash. If this field is left empty, the files will be saved in the bucket's root path
+func (o ServiceVclLoggingFoOutput) Path() pulumi.StringPtrOutput {
+	return o.ApplyT(func(v ServiceVclLoggingFo) *string { return v.Path }).(pulumi.StringPtrOutput)
+}
+
+// How frequently the logs should be transferred, in seconds. Default `3600`
+func (o ServiceVclLoggingFoOutput) Period() pulumi.IntPtrOutput {
+	return o.ApplyT(func(v ServiceVclLoggingFo) *int { return v.Period }).(pulumi.IntPtrOutput)
+}
+
+// Where in the generated VCL the logging call should be placed.
+func (o ServiceVclLoggingFoOutput) Placement() pulumi.StringPtrOutput {
+	return o.ApplyT(func(v ServiceVclLoggingFo) *string { return v.Placement }).(pulumi.StringPtrOutput)
+}
+
+// A PGP public key that Fastly will use to encrypt your log files before writing them to disk
+func (o ServiceVclLoggingFoOutput) PublicKey() pulumi.StringPtrOutput {
+	return o.ApplyT(func(v ServiceVclLoggingFo) *string { return v.PublicKey }).(pulumi.StringPtrOutput)
+}
+
+// The region of the Fastly Object Storage bucket (e.g. `us-east`)
+func (o ServiceVclLoggingFoOutput) Region() pulumi.StringOutput {
+	return o.ApplyT(func(v ServiceVclLoggingFo) string { return v.Region }).(pulumi.StringOutput)
+}
+
+// Name of blockAttributes condition to apply this logging.
+func (o ServiceVclLoggingFoOutput) ResponseCondition() pulumi.StringPtrOutput {
+	return o.ApplyT(func(v ServiceVclLoggingFo) *string { return v.ResponseCondition }).(pulumi.StringPtrOutput)
+}
+
+// The `strftime` specified timestamp formatting (default `%Y-%m-%dT%H:%M:%S.000`)
+func (o ServiceVclLoggingFoOutput) TimestampFormat() pulumi.StringPtrOutput {
+	return o.ApplyT(func(v ServiceVclLoggingFo) *string { return v.TimestampFormat }).(pulumi.StringPtrOutput)
+}
+
+type ServiceVclLoggingFoArrayOutput struct{ *pulumi.OutputState }
+
+func (ServiceVclLoggingFoArrayOutput) ElementType() reflect.Type {
+	return reflect.TypeOf((*[]ServiceVclLoggingFo)(nil)).Elem()
+}
+
+func (o ServiceVclLoggingFoArrayOutput) ToServiceVclLoggingFoArrayOutput() ServiceVclLoggingFoArrayOutput {
+	return o
+}
+
+func (o ServiceVclLoggingFoArrayOutput) ToServiceVclLoggingFoArrayOutputWithContext(ctx context.Context) ServiceVclLoggingFoArrayOutput {
+	return o
+}
+
+func (o ServiceVclLoggingFoArrayOutput) Index(i pulumi.IntInput) ServiceVclLoggingFoOutput {
+	return pulumi.All(o, i).ApplyT(func(vs []interface{}) ServiceVclLoggingFo {
+		return vs[0].([]ServiceVclLoggingFo)[vs[1].(int)]
+	}).(ServiceVclLoggingFoOutput)
+}
+
 type ServiceVclLoggingFtp struct {
 	// The FTP address to stream logs to
 	Address string `pulumi:"address"`
@@ -14489,6 +14972,8 @@ type ServiceVclLoggingGc struct {
 	ProcessingRegion *string `pulumi:"processingRegion"`
 	// The ID of your Google Cloud Platform project
 	ProjectId *string `pulumi:"projectId"`
+	// A PGP public key that Fastly will use to encrypt your log files before writing them to disk
+	PublicKey *string `pulumi:"publicKey"`
 	// Name of a condition to apply this logging.
 	ResponseCondition *string `pulumi:"responseCondition"`
 	// The secret key associated with the target gcs bucket on your account. You may optionally provide this secret via an environment variable, `FASTLY_GCS_SECRET_KEY`. A typical format for the key is PEM format, containing actual newline characters where required
@@ -14537,6 +15022,8 @@ type ServiceVclLoggingGcArgs struct {
 	ProcessingRegion pulumi.StringPtrInput `pulumi:"processingRegion"`
 	// The ID of your Google Cloud Platform project
 	ProjectId pulumi.StringPtrInput `pulumi:"projectId"`
+	// A PGP public key that Fastly will use to encrypt your log files before writing them to disk
+	PublicKey pulumi.StringPtrInput `pulumi:"publicKey"`
 	// Name of a condition to apply this logging.
 	ResponseCondition pulumi.StringPtrInput `pulumi:"responseCondition"`
 	// The secret key associated with the target gcs bucket on your account. You may optionally provide this secret via an environment variable, `FASTLY_GCS_SECRET_KEY`. A typical format for the key is PEM format, containing actual newline characters where required
@@ -14661,6 +15148,11 @@ func (o ServiceVclLoggingGcOutput) ProcessingRegion() pulumi.StringPtrOutput {
 // The ID of your Google Cloud Platform project
 func (o ServiceVclLoggingGcOutput) ProjectId() pulumi.StringPtrOutput {
 	return o.ApplyT(func(v ServiceVclLoggingGc) *string { return v.ProjectId }).(pulumi.StringPtrOutput)
+}
+
+// A PGP public key that Fastly will use to encrypt your log files before writing them to disk
+func (o ServiceVclLoggingGcOutput) PublicKey() pulumi.StringPtrOutput {
+	return o.ApplyT(func(v ServiceVclLoggingGc) *string { return v.PublicKey }).(pulumi.StringPtrOutput)
 }
 
 // Name of a condition to apply this logging.
@@ -20654,17 +21146,17 @@ func (o TlsSubscriptionManagedHttpChallengeArrayOutput) Index(i pulumi.IntInput)
 }
 
 type GetAiRuntimeControlProviderConnectionsProviderConnection struct {
-	// The base URL for the provider's API.
+	// The base URL of the provider's API.
 	BaseUrl string `pulumi:"baseUrl"`
 	// Timestamp (UTC) of when the provider connection was created.
 	CreatedAt string `pulumi:"createdAt"`
 	// The ID of the provider connection.
 	Id string `pulumi:"id"`
-	// The allowed AI model identifiers.
+	// The AI model identifiers this provider connection is allowed to use.
 	Models []string `pulumi:"models"`
-	// The human-readable name of the provider.
+	// The display name of the provider connection.
 	Name string `pulumi:"name"`
-	// A hash representing the API key used to create the provider connection.
+	// An opaque identifier for the secret material backing this provider connection. Not the secret itself.
 	SecretId string `pulumi:"secretId"`
 	// Timestamp (UTC) of when the provider connection was last updated.
 	UpdatedAt string `pulumi:"updatedAt"`
@@ -20682,17 +21174,17 @@ type GetAiRuntimeControlProviderConnectionsProviderConnectionInput interface {
 }
 
 type GetAiRuntimeControlProviderConnectionsProviderConnectionArgs struct {
-	// The base URL for the provider's API.
+	// The base URL of the provider's API.
 	BaseUrl pulumi.StringInput `pulumi:"baseUrl"`
 	// Timestamp (UTC) of when the provider connection was created.
 	CreatedAt pulumi.StringInput `pulumi:"createdAt"`
 	// The ID of the provider connection.
 	Id pulumi.StringInput `pulumi:"id"`
-	// The allowed AI model identifiers.
+	// The AI model identifiers this provider connection is allowed to use.
 	Models pulumi.StringArrayInput `pulumi:"models"`
-	// The human-readable name of the provider.
+	// The display name of the provider connection.
 	Name pulumi.StringInput `pulumi:"name"`
-	// A hash representing the API key used to create the provider connection.
+	// An opaque identifier for the secret material backing this provider connection. Not the secret itself.
 	SecretId pulumi.StringInput `pulumi:"secretId"`
 	// Timestamp (UTC) of when the provider connection was last updated.
 	UpdatedAt pulumi.StringInput `pulumi:"updatedAt"`
@@ -20749,7 +21241,7 @@ func (o GetAiRuntimeControlProviderConnectionsProviderConnectionOutput) ToGetAiR
 	return o
 }
 
-// The base URL for the provider's API.
+// The base URL of the provider's API.
 func (o GetAiRuntimeControlProviderConnectionsProviderConnectionOutput) BaseUrl() pulumi.StringOutput {
 	return o.ApplyT(func(v GetAiRuntimeControlProviderConnectionsProviderConnection) string { return v.BaseUrl }).(pulumi.StringOutput)
 }
@@ -20764,17 +21256,17 @@ func (o GetAiRuntimeControlProviderConnectionsProviderConnectionOutput) Id() pul
 	return o.ApplyT(func(v GetAiRuntimeControlProviderConnectionsProviderConnection) string { return v.Id }).(pulumi.StringOutput)
 }
 
-// The allowed AI model identifiers.
+// The AI model identifiers this provider connection is allowed to use.
 func (o GetAiRuntimeControlProviderConnectionsProviderConnectionOutput) Models() pulumi.StringArrayOutput {
 	return o.ApplyT(func(v GetAiRuntimeControlProviderConnectionsProviderConnection) []string { return v.Models }).(pulumi.StringArrayOutput)
 }
 
-// The human-readable name of the provider.
+// The display name of the provider connection.
 func (o GetAiRuntimeControlProviderConnectionsProviderConnectionOutput) Name() pulumi.StringOutput {
 	return o.ApplyT(func(v GetAiRuntimeControlProviderConnectionsProviderConnection) string { return v.Name }).(pulumi.StringOutput)
 }
 
-// A hash representing the API key used to create the provider connection.
+// An opaque identifier for the secret material backing this provider connection. Not the secret itself.
 func (o GetAiRuntimeControlProviderConnectionsProviderConnectionOutput) SecretId() pulumi.StringOutput {
 	return o.ApplyT(func(v GetAiRuntimeControlProviderConnectionsProviderConnection) string { return v.SecretId }).(pulumi.StringOutput)
 }
@@ -20807,11 +21299,11 @@ func (o GetAiRuntimeControlProviderConnectionsProviderConnectionArrayOutput) Ind
 type GetAiRuntimeControlProvidersProvider struct {
 	// The default API base URL for the provider.
 	DefaultBaseUrl string `pulumi:"defaultBaseUrl"`
-	// The human-readable provider name, e.g. `Anthropic`.
+	// The human-readable name of the provider, e.g. `Anthropic`.
 	DisplayName string `pulumi:"displayName"`
 	// The provider identifier, e.g. `anthropic`.
 	Id string `pulumi:"id"`
-	// The models available for the provider.
+	// The models available from this provider.
 	Models []GetAiRuntimeControlProvidersProviderModel `pulumi:"models"`
 }
 
@@ -20829,11 +21321,11 @@ type GetAiRuntimeControlProvidersProviderInput interface {
 type GetAiRuntimeControlProvidersProviderArgs struct {
 	// The default API base URL for the provider.
 	DefaultBaseUrl pulumi.StringInput `pulumi:"defaultBaseUrl"`
-	// The human-readable provider name, e.g. `Anthropic`.
+	// The human-readable name of the provider, e.g. `Anthropic`.
 	DisplayName pulumi.StringInput `pulumi:"displayName"`
 	// The provider identifier, e.g. `anthropic`.
 	Id pulumi.StringInput `pulumi:"id"`
-	// The models available for the provider.
+	// The models available from this provider.
 	Models GetAiRuntimeControlProvidersProviderModelArrayInput `pulumi:"models"`
 }
 
@@ -20893,7 +21385,7 @@ func (o GetAiRuntimeControlProvidersProviderOutput) DefaultBaseUrl() pulumi.Stri
 	return o.ApplyT(func(v GetAiRuntimeControlProvidersProvider) string { return v.DefaultBaseUrl }).(pulumi.StringOutput)
 }
 
-// The human-readable provider name, e.g. `Anthropic`.
+// The human-readable name of the provider, e.g. `Anthropic`.
 func (o GetAiRuntimeControlProvidersProviderOutput) DisplayName() pulumi.StringOutput {
 	return o.ApplyT(func(v GetAiRuntimeControlProvidersProvider) string { return v.DisplayName }).(pulumi.StringOutput)
 }
@@ -20903,7 +21395,7 @@ func (o GetAiRuntimeControlProvidersProviderOutput) Id() pulumi.StringOutput {
 	return o.ApplyT(func(v GetAiRuntimeControlProvidersProvider) string { return v.Id }).(pulumi.StringOutput)
 }
 
-// The models available for the provider.
+// The models available from this provider.
 func (o GetAiRuntimeControlProvidersProviderOutput) Models() GetAiRuntimeControlProvidersProviderModelArrayOutput {
 	return o.ApplyT(func(v GetAiRuntimeControlProvidersProvider) []GetAiRuntimeControlProvidersProviderModel {
 		return v.Models
@@ -20931,7 +21423,7 @@ func (o GetAiRuntimeControlProvidersProviderArrayOutput) Index(i pulumi.IntInput
 }
 
 type GetAiRuntimeControlProvidersProviderModel struct {
-	// The human-readable model name, e.g. `Claude Sonnet 4`.
+	// The human-readable name of the model, e.g. `Claude Sonnet 4`.
 	DisplayName string `pulumi:"displayName"`
 	// The model identifier, e.g. `claude-sonnet-4-20250514`.
 	Id string `pulumi:"id"`
@@ -20951,7 +21443,7 @@ type GetAiRuntimeControlProvidersProviderModelInput interface {
 }
 
 type GetAiRuntimeControlProvidersProviderModelArgs struct {
-	// The human-readable model name, e.g. `Claude Sonnet 4`.
+	// The human-readable name of the model, e.g. `Claude Sonnet 4`.
 	DisplayName pulumi.StringInput `pulumi:"displayName"`
 	// The model identifier, e.g. `claude-sonnet-4-20250514`.
 	Id pulumi.StringInput `pulumi:"id"`
@@ -21010,7 +21502,7 @@ func (o GetAiRuntimeControlProvidersProviderModelOutput) ToGetAiRuntimeControlPr
 	return o
 }
 
-// The human-readable model name, e.g. `Claude Sonnet 4`.
+// The human-readable name of the model, e.g. `Claude Sonnet 4`.
 func (o GetAiRuntimeControlProvidersProviderModelOutput) DisplayName() pulumi.StringOutput {
 	return o.ApplyT(func(v GetAiRuntimeControlProvidersProviderModel) string { return v.DisplayName }).(pulumi.StringOutput)
 }
@@ -21050,23 +21542,23 @@ type GetAiRuntimeControlVirtualKeysVirtualKey struct {
 	CreatedAt string `pulumi:"createdAt"`
 	// The display name of the user who created the virtual key.
 	CreatedBy string `pulumi:"createdBy"`
-	// The ID of the customer that owns the virtual key.
+	// The ID of the customer account that owns the virtual key.
 	CustomerId string `pulumi:"customerId"`
-	// Timestamp (UTC) of when the virtual key was deleted, if applicable.
+	// Timestamp (UTC) of when the virtual key was deleted. Only set when `includeDeleted` is `true`.
 	DeletedAt string `pulumi:"deletedAt"`
-	// The expiration timestamp of the virtual key, if any.
+	// The date and time the virtual key expires, in RFC 3339 format. Empty if the virtual key doesn't expire.
 	ExpiresAt string `pulumi:"expiresAt"`
 	// The ID of the virtual key.
 	Id string `pulumi:"id"`
-	// Timestamp (UTC) of when the virtual key was last used, if applicable.
+	// Timestamp (UTC) of when the virtual key was last used to make a request. Empty if the virtual key has never been used.
 	LastUsedAt string `pulumi:"lastUsedAt"`
 	// The AI model identifier.
 	Model string `pulumi:"model"`
-	// The human-readable name of the virtual key.
+	// The display name of the virtual key.
 	Name string `pulumi:"name"`
 	// The AI model provider name.
 	Provider string `pulumi:"provider"`
-	// The type of the virtual key.
+	// The type of the resource.
 	Type string `pulumi:"type"`
 	// Timestamp (UTC) of when the virtual key was last updated.
 	UpdatedAt string `pulumi:"updatedAt"`
@@ -21092,23 +21584,23 @@ type GetAiRuntimeControlVirtualKeysVirtualKeyArgs struct {
 	CreatedAt pulumi.StringInput `pulumi:"createdAt"`
 	// The display name of the user who created the virtual key.
 	CreatedBy pulumi.StringInput `pulumi:"createdBy"`
-	// The ID of the customer that owns the virtual key.
+	// The ID of the customer account that owns the virtual key.
 	CustomerId pulumi.StringInput `pulumi:"customerId"`
-	// Timestamp (UTC) of when the virtual key was deleted, if applicable.
+	// Timestamp (UTC) of when the virtual key was deleted. Only set when `includeDeleted` is `true`.
 	DeletedAt pulumi.StringInput `pulumi:"deletedAt"`
-	// The expiration timestamp of the virtual key, if any.
+	// The date and time the virtual key expires, in RFC 3339 format. Empty if the virtual key doesn't expire.
 	ExpiresAt pulumi.StringInput `pulumi:"expiresAt"`
 	// The ID of the virtual key.
 	Id pulumi.StringInput `pulumi:"id"`
-	// Timestamp (UTC) of when the virtual key was last used, if applicable.
+	// Timestamp (UTC) of when the virtual key was last used to make a request. Empty if the virtual key has never been used.
 	LastUsedAt pulumi.StringInput `pulumi:"lastUsedAt"`
 	// The AI model identifier.
 	Model pulumi.StringInput `pulumi:"model"`
-	// The human-readable name of the virtual key.
+	// The display name of the virtual key.
 	Name pulumi.StringInput `pulumi:"name"`
 	// The AI model provider name.
 	Provider pulumi.StringInput `pulumi:"provider"`
-	// The type of the virtual key.
+	// The type of the resource.
 	Type pulumi.StringInput `pulumi:"type"`
 	// Timestamp (UTC) of when the virtual key was last updated.
 	UpdatedAt pulumi.StringInput `pulumi:"updatedAt"`
@@ -21179,17 +21671,17 @@ func (o GetAiRuntimeControlVirtualKeysVirtualKeyOutput) CreatedBy() pulumi.Strin
 	return o.ApplyT(func(v GetAiRuntimeControlVirtualKeysVirtualKey) string { return v.CreatedBy }).(pulumi.StringOutput)
 }
 
-// The ID of the customer that owns the virtual key.
+// The ID of the customer account that owns the virtual key.
 func (o GetAiRuntimeControlVirtualKeysVirtualKeyOutput) CustomerId() pulumi.StringOutput {
 	return o.ApplyT(func(v GetAiRuntimeControlVirtualKeysVirtualKey) string { return v.CustomerId }).(pulumi.StringOutput)
 }
 
-// Timestamp (UTC) of when the virtual key was deleted, if applicable.
+// Timestamp (UTC) of when the virtual key was deleted. Only set when `includeDeleted` is `true`.
 func (o GetAiRuntimeControlVirtualKeysVirtualKeyOutput) DeletedAt() pulumi.StringOutput {
 	return o.ApplyT(func(v GetAiRuntimeControlVirtualKeysVirtualKey) string { return v.DeletedAt }).(pulumi.StringOutput)
 }
 
-// The expiration timestamp of the virtual key, if any.
+// The date and time the virtual key expires, in RFC 3339 format. Empty if the virtual key doesn't expire.
 func (o GetAiRuntimeControlVirtualKeysVirtualKeyOutput) ExpiresAt() pulumi.StringOutput {
 	return o.ApplyT(func(v GetAiRuntimeControlVirtualKeysVirtualKey) string { return v.ExpiresAt }).(pulumi.StringOutput)
 }
@@ -21199,7 +21691,7 @@ func (o GetAiRuntimeControlVirtualKeysVirtualKeyOutput) Id() pulumi.StringOutput
 	return o.ApplyT(func(v GetAiRuntimeControlVirtualKeysVirtualKey) string { return v.Id }).(pulumi.StringOutput)
 }
 
-// Timestamp (UTC) of when the virtual key was last used, if applicable.
+// Timestamp (UTC) of when the virtual key was last used to make a request. Empty if the virtual key has never been used.
 func (o GetAiRuntimeControlVirtualKeysVirtualKeyOutput) LastUsedAt() pulumi.StringOutput {
 	return o.ApplyT(func(v GetAiRuntimeControlVirtualKeysVirtualKey) string { return v.LastUsedAt }).(pulumi.StringOutput)
 }
@@ -21209,7 +21701,7 @@ func (o GetAiRuntimeControlVirtualKeysVirtualKeyOutput) Model() pulumi.StringOut
 	return o.ApplyT(func(v GetAiRuntimeControlVirtualKeysVirtualKey) string { return v.Model }).(pulumi.StringOutput)
 }
 
-// The human-readable name of the virtual key.
+// The display name of the virtual key.
 func (o GetAiRuntimeControlVirtualKeysVirtualKeyOutput) Name() pulumi.StringOutput {
 	return o.ApplyT(func(v GetAiRuntimeControlVirtualKeysVirtualKey) string { return v.Name }).(pulumi.StringOutput)
 }
@@ -21219,7 +21711,7 @@ func (o GetAiRuntimeControlVirtualKeysVirtualKeyOutput) Provider() pulumi.String
 	return o.ApplyT(func(v GetAiRuntimeControlVirtualKeysVirtualKey) string { return v.Provider }).(pulumi.StringOutput)
 }
 
-// The type of the virtual key.
+// The type of the resource.
 func (o GetAiRuntimeControlVirtualKeysVirtualKeyOutput) Type() pulumi.StringOutput {
 	return o.ApplyT(func(v GetAiRuntimeControlVirtualKeysVirtualKey) string { return v.Type }).(pulumi.StringOutput)
 }
@@ -21746,6 +22238,254 @@ func (o GetApiSecurityOperationsOperationArrayOutput) Index(i pulumi.IntInput) G
 	return pulumi.All(o, i).ApplyT(func(vs []interface{}) GetApiSecurityOperationsOperation {
 		return vs[0].([]GetApiSecurityOperationsOperation)[vs[1].(int)]
 	}).(GetApiSecurityOperationsOperationOutput)
+}
+
+type GetBotManagementBotsBot struct {
+	// The bot's action. One of `allow`, `block`, `challenge`, or `inherit` (no override; follows the category's action).
+	Action string `pulumi:"action"`
+	// The ID of the bot.
+	BotId string `pulumi:"botId"`
+	// The ID of the category the bot belongs to.
+	CategoryId string `pulumi:"categoryId"`
+	// The display name of the bot.
+	Name string `pulumi:"name"`
+}
+
+// GetBotManagementBotsBotInput is an input type that accepts GetBotManagementBotsBotArgs and GetBotManagementBotsBotOutput values.
+// You can construct a concrete instance of `GetBotManagementBotsBotInput` via:
+//
+//	GetBotManagementBotsBotArgs{...}
+type GetBotManagementBotsBotInput interface {
+	pulumi.Input
+
+	ToGetBotManagementBotsBotOutput() GetBotManagementBotsBotOutput
+	ToGetBotManagementBotsBotOutputWithContext(context.Context) GetBotManagementBotsBotOutput
+}
+
+type GetBotManagementBotsBotArgs struct {
+	// The bot's action. One of `allow`, `block`, `challenge`, or `inherit` (no override; follows the category's action).
+	Action pulumi.StringInput `pulumi:"action"`
+	// The ID of the bot.
+	BotId pulumi.StringInput `pulumi:"botId"`
+	// The ID of the category the bot belongs to.
+	CategoryId pulumi.StringInput `pulumi:"categoryId"`
+	// The display name of the bot.
+	Name pulumi.StringInput `pulumi:"name"`
+}
+
+func (GetBotManagementBotsBotArgs) ElementType() reflect.Type {
+	return reflect.TypeOf((*GetBotManagementBotsBot)(nil)).Elem()
+}
+
+func (i GetBotManagementBotsBotArgs) ToGetBotManagementBotsBotOutput() GetBotManagementBotsBotOutput {
+	return i.ToGetBotManagementBotsBotOutputWithContext(context.Background())
+}
+
+func (i GetBotManagementBotsBotArgs) ToGetBotManagementBotsBotOutputWithContext(ctx context.Context) GetBotManagementBotsBotOutput {
+	return pulumi.ToOutputWithContext(ctx, i).(GetBotManagementBotsBotOutput)
+}
+
+// GetBotManagementBotsBotArrayInput is an input type that accepts GetBotManagementBotsBotArray and GetBotManagementBotsBotArrayOutput values.
+// You can construct a concrete instance of `GetBotManagementBotsBotArrayInput` via:
+//
+//	GetBotManagementBotsBotArray{ GetBotManagementBotsBotArgs{...} }
+type GetBotManagementBotsBotArrayInput interface {
+	pulumi.Input
+
+	ToGetBotManagementBotsBotArrayOutput() GetBotManagementBotsBotArrayOutput
+	ToGetBotManagementBotsBotArrayOutputWithContext(context.Context) GetBotManagementBotsBotArrayOutput
+}
+
+type GetBotManagementBotsBotArray []GetBotManagementBotsBotInput
+
+func (GetBotManagementBotsBotArray) ElementType() reflect.Type {
+	return reflect.TypeOf((*[]GetBotManagementBotsBot)(nil)).Elem()
+}
+
+func (i GetBotManagementBotsBotArray) ToGetBotManagementBotsBotArrayOutput() GetBotManagementBotsBotArrayOutput {
+	return i.ToGetBotManagementBotsBotArrayOutputWithContext(context.Background())
+}
+
+func (i GetBotManagementBotsBotArray) ToGetBotManagementBotsBotArrayOutputWithContext(ctx context.Context) GetBotManagementBotsBotArrayOutput {
+	return pulumi.ToOutputWithContext(ctx, i).(GetBotManagementBotsBotArrayOutput)
+}
+
+type GetBotManagementBotsBotOutput struct{ *pulumi.OutputState }
+
+func (GetBotManagementBotsBotOutput) ElementType() reflect.Type {
+	return reflect.TypeOf((*GetBotManagementBotsBot)(nil)).Elem()
+}
+
+func (o GetBotManagementBotsBotOutput) ToGetBotManagementBotsBotOutput() GetBotManagementBotsBotOutput {
+	return o
+}
+
+func (o GetBotManagementBotsBotOutput) ToGetBotManagementBotsBotOutputWithContext(ctx context.Context) GetBotManagementBotsBotOutput {
+	return o
+}
+
+// The bot's action. One of `allow`, `block`, `challenge`, or `inherit` (no override; follows the category's action).
+func (o GetBotManagementBotsBotOutput) Action() pulumi.StringOutput {
+	return o.ApplyT(func(v GetBotManagementBotsBot) string { return v.Action }).(pulumi.StringOutput)
+}
+
+// The ID of the bot.
+func (o GetBotManagementBotsBotOutput) BotId() pulumi.StringOutput {
+	return o.ApplyT(func(v GetBotManagementBotsBot) string { return v.BotId }).(pulumi.StringOutput)
+}
+
+// The ID of the category the bot belongs to.
+func (o GetBotManagementBotsBotOutput) CategoryId() pulumi.StringOutput {
+	return o.ApplyT(func(v GetBotManagementBotsBot) string { return v.CategoryId }).(pulumi.StringOutput)
+}
+
+// The display name of the bot.
+func (o GetBotManagementBotsBotOutput) Name() pulumi.StringOutput {
+	return o.ApplyT(func(v GetBotManagementBotsBot) string { return v.Name }).(pulumi.StringOutput)
+}
+
+type GetBotManagementBotsBotArrayOutput struct{ *pulumi.OutputState }
+
+func (GetBotManagementBotsBotArrayOutput) ElementType() reflect.Type {
+	return reflect.TypeOf((*[]GetBotManagementBotsBot)(nil)).Elem()
+}
+
+func (o GetBotManagementBotsBotArrayOutput) ToGetBotManagementBotsBotArrayOutput() GetBotManagementBotsBotArrayOutput {
+	return o
+}
+
+func (o GetBotManagementBotsBotArrayOutput) ToGetBotManagementBotsBotArrayOutputWithContext(ctx context.Context) GetBotManagementBotsBotArrayOutput {
+	return o
+}
+
+func (o GetBotManagementBotsBotArrayOutput) Index(i pulumi.IntInput) GetBotManagementBotsBotOutput {
+	return pulumi.All(o, i).ApplyT(func(vs []interface{}) GetBotManagementBotsBot {
+		return vs[0].([]GetBotManagementBotsBot)[vs[1].(int)]
+	}).(GetBotManagementBotsBotOutput)
+}
+
+type GetBotManagementCategoriesCategory struct {
+	// The category's action. One of `allow`, `block`, or `challenge`.
+	Action string `pulumi:"action"`
+	// The ID of the category.
+	CategoryId string `pulumi:"categoryId"`
+	// A description of the bots the category contains.
+	Description string `pulumi:"description"`
+	// The display name of the category.
+	Name string `pulumi:"name"`
+}
+
+// GetBotManagementCategoriesCategoryInput is an input type that accepts GetBotManagementCategoriesCategoryArgs and GetBotManagementCategoriesCategoryOutput values.
+// You can construct a concrete instance of `GetBotManagementCategoriesCategoryInput` via:
+//
+//	GetBotManagementCategoriesCategoryArgs{...}
+type GetBotManagementCategoriesCategoryInput interface {
+	pulumi.Input
+
+	ToGetBotManagementCategoriesCategoryOutput() GetBotManagementCategoriesCategoryOutput
+	ToGetBotManagementCategoriesCategoryOutputWithContext(context.Context) GetBotManagementCategoriesCategoryOutput
+}
+
+type GetBotManagementCategoriesCategoryArgs struct {
+	// The category's action. One of `allow`, `block`, or `challenge`.
+	Action pulumi.StringInput `pulumi:"action"`
+	// The ID of the category.
+	CategoryId pulumi.StringInput `pulumi:"categoryId"`
+	// A description of the bots the category contains.
+	Description pulumi.StringInput `pulumi:"description"`
+	// The display name of the category.
+	Name pulumi.StringInput `pulumi:"name"`
+}
+
+func (GetBotManagementCategoriesCategoryArgs) ElementType() reflect.Type {
+	return reflect.TypeOf((*GetBotManagementCategoriesCategory)(nil)).Elem()
+}
+
+func (i GetBotManagementCategoriesCategoryArgs) ToGetBotManagementCategoriesCategoryOutput() GetBotManagementCategoriesCategoryOutput {
+	return i.ToGetBotManagementCategoriesCategoryOutputWithContext(context.Background())
+}
+
+func (i GetBotManagementCategoriesCategoryArgs) ToGetBotManagementCategoriesCategoryOutputWithContext(ctx context.Context) GetBotManagementCategoriesCategoryOutput {
+	return pulumi.ToOutputWithContext(ctx, i).(GetBotManagementCategoriesCategoryOutput)
+}
+
+// GetBotManagementCategoriesCategoryArrayInput is an input type that accepts GetBotManagementCategoriesCategoryArray and GetBotManagementCategoriesCategoryArrayOutput values.
+// You can construct a concrete instance of `GetBotManagementCategoriesCategoryArrayInput` via:
+//
+//	GetBotManagementCategoriesCategoryArray{ GetBotManagementCategoriesCategoryArgs{...} }
+type GetBotManagementCategoriesCategoryArrayInput interface {
+	pulumi.Input
+
+	ToGetBotManagementCategoriesCategoryArrayOutput() GetBotManagementCategoriesCategoryArrayOutput
+	ToGetBotManagementCategoriesCategoryArrayOutputWithContext(context.Context) GetBotManagementCategoriesCategoryArrayOutput
+}
+
+type GetBotManagementCategoriesCategoryArray []GetBotManagementCategoriesCategoryInput
+
+func (GetBotManagementCategoriesCategoryArray) ElementType() reflect.Type {
+	return reflect.TypeOf((*[]GetBotManagementCategoriesCategory)(nil)).Elem()
+}
+
+func (i GetBotManagementCategoriesCategoryArray) ToGetBotManagementCategoriesCategoryArrayOutput() GetBotManagementCategoriesCategoryArrayOutput {
+	return i.ToGetBotManagementCategoriesCategoryArrayOutputWithContext(context.Background())
+}
+
+func (i GetBotManagementCategoriesCategoryArray) ToGetBotManagementCategoriesCategoryArrayOutputWithContext(ctx context.Context) GetBotManagementCategoriesCategoryArrayOutput {
+	return pulumi.ToOutputWithContext(ctx, i).(GetBotManagementCategoriesCategoryArrayOutput)
+}
+
+type GetBotManagementCategoriesCategoryOutput struct{ *pulumi.OutputState }
+
+func (GetBotManagementCategoriesCategoryOutput) ElementType() reflect.Type {
+	return reflect.TypeOf((*GetBotManagementCategoriesCategory)(nil)).Elem()
+}
+
+func (o GetBotManagementCategoriesCategoryOutput) ToGetBotManagementCategoriesCategoryOutput() GetBotManagementCategoriesCategoryOutput {
+	return o
+}
+
+func (o GetBotManagementCategoriesCategoryOutput) ToGetBotManagementCategoriesCategoryOutputWithContext(ctx context.Context) GetBotManagementCategoriesCategoryOutput {
+	return o
+}
+
+// The category's action. One of `allow`, `block`, or `challenge`.
+func (o GetBotManagementCategoriesCategoryOutput) Action() pulumi.StringOutput {
+	return o.ApplyT(func(v GetBotManagementCategoriesCategory) string { return v.Action }).(pulumi.StringOutput)
+}
+
+// The ID of the category.
+func (o GetBotManagementCategoriesCategoryOutput) CategoryId() pulumi.StringOutput {
+	return o.ApplyT(func(v GetBotManagementCategoriesCategory) string { return v.CategoryId }).(pulumi.StringOutput)
+}
+
+// A description of the bots the category contains.
+func (o GetBotManagementCategoriesCategoryOutput) Description() pulumi.StringOutput {
+	return o.ApplyT(func(v GetBotManagementCategoriesCategory) string { return v.Description }).(pulumi.StringOutput)
+}
+
+// The display name of the category.
+func (o GetBotManagementCategoriesCategoryOutput) Name() pulumi.StringOutput {
+	return o.ApplyT(func(v GetBotManagementCategoriesCategory) string { return v.Name }).(pulumi.StringOutput)
+}
+
+type GetBotManagementCategoriesCategoryArrayOutput struct{ *pulumi.OutputState }
+
+func (GetBotManagementCategoriesCategoryArrayOutput) ElementType() reflect.Type {
+	return reflect.TypeOf((*[]GetBotManagementCategoriesCategory)(nil)).Elem()
+}
+
+func (o GetBotManagementCategoriesCategoryArrayOutput) ToGetBotManagementCategoriesCategoryArrayOutput() GetBotManagementCategoriesCategoryArrayOutput {
+	return o
+}
+
+func (o GetBotManagementCategoriesCategoryArrayOutput) ToGetBotManagementCategoriesCategoryArrayOutputWithContext(ctx context.Context) GetBotManagementCategoriesCategoryArrayOutput {
+	return o
+}
+
+func (o GetBotManagementCategoriesCategoryArrayOutput) Index(i pulumi.IntInput) GetBotManagementCategoriesCategoryOutput {
+	return pulumi.All(o, i).ApplyT(func(vs []interface{}) GetBotManagementCategoriesCategory {
+		return vs[0].([]GetBotManagementCategoriesCategory)[vs[1].(int)]
+	}).(GetBotManagementCategoriesCategoryOutput)
 }
 
 type GetComputeAclsAcl struct {
@@ -25520,6 +26260,8 @@ func init() {
 	pulumi.RegisterInputType(reflect.TypeOf((*ServiceComputeLoggingDigitaloceanArrayInput)(nil)).Elem(), ServiceComputeLoggingDigitaloceanArray{})
 	pulumi.RegisterInputType(reflect.TypeOf((*ServiceComputeLoggingElasticsearchInput)(nil)).Elem(), ServiceComputeLoggingElasticsearchArgs{})
 	pulumi.RegisterInputType(reflect.TypeOf((*ServiceComputeLoggingElasticsearchArrayInput)(nil)).Elem(), ServiceComputeLoggingElasticsearchArray{})
+	pulumi.RegisterInputType(reflect.TypeOf((*ServiceComputeLoggingFoInput)(nil)).Elem(), ServiceComputeLoggingFoArgs{})
+	pulumi.RegisterInputType(reflect.TypeOf((*ServiceComputeLoggingFoArrayInput)(nil)).Elem(), ServiceComputeLoggingFoArray{})
 	pulumi.RegisterInputType(reflect.TypeOf((*ServiceComputeLoggingFtpInput)(nil)).Elem(), ServiceComputeLoggingFtpArgs{})
 	pulumi.RegisterInputType(reflect.TypeOf((*ServiceComputeLoggingFtpArrayInput)(nil)).Elem(), ServiceComputeLoggingFtpArray{})
 	pulumi.RegisterInputType(reflect.TypeOf((*ServiceComputeLoggingGcInput)(nil)).Elem(), ServiceComputeLoggingGcArgs{})
@@ -25612,6 +26354,8 @@ func init() {
 	pulumi.RegisterInputType(reflect.TypeOf((*ServiceVclLoggingDigitaloceanArrayInput)(nil)).Elem(), ServiceVclLoggingDigitaloceanArray{})
 	pulumi.RegisterInputType(reflect.TypeOf((*ServiceVclLoggingElasticsearchInput)(nil)).Elem(), ServiceVclLoggingElasticsearchArgs{})
 	pulumi.RegisterInputType(reflect.TypeOf((*ServiceVclLoggingElasticsearchArrayInput)(nil)).Elem(), ServiceVclLoggingElasticsearchArray{})
+	pulumi.RegisterInputType(reflect.TypeOf((*ServiceVclLoggingFoInput)(nil)).Elem(), ServiceVclLoggingFoArgs{})
+	pulumi.RegisterInputType(reflect.TypeOf((*ServiceVclLoggingFoArrayInput)(nil)).Elem(), ServiceVclLoggingFoArray{})
 	pulumi.RegisterInputType(reflect.TypeOf((*ServiceVclLoggingFtpInput)(nil)).Elem(), ServiceVclLoggingFtpArgs{})
 	pulumi.RegisterInputType(reflect.TypeOf((*ServiceVclLoggingFtpArrayInput)(nil)).Elem(), ServiceVclLoggingFtpArray{})
 	pulumi.RegisterInputType(reflect.TypeOf((*ServiceVclLoggingGcInput)(nil)).Elem(), ServiceVclLoggingGcArgs{})
@@ -25694,6 +26438,10 @@ func init() {
 	pulumi.RegisterInputType(reflect.TypeOf((*GetApiSecurityOperationTagsTagArrayInput)(nil)).Elem(), GetApiSecurityOperationTagsTagArray{})
 	pulumi.RegisterInputType(reflect.TypeOf((*GetApiSecurityOperationsOperationInput)(nil)).Elem(), GetApiSecurityOperationsOperationArgs{})
 	pulumi.RegisterInputType(reflect.TypeOf((*GetApiSecurityOperationsOperationArrayInput)(nil)).Elem(), GetApiSecurityOperationsOperationArray{})
+	pulumi.RegisterInputType(reflect.TypeOf((*GetBotManagementBotsBotInput)(nil)).Elem(), GetBotManagementBotsBotArgs{})
+	pulumi.RegisterInputType(reflect.TypeOf((*GetBotManagementBotsBotArrayInput)(nil)).Elem(), GetBotManagementBotsBotArray{})
+	pulumi.RegisterInputType(reflect.TypeOf((*GetBotManagementCategoriesCategoryInput)(nil)).Elem(), GetBotManagementCategoriesCategoryArgs{})
+	pulumi.RegisterInputType(reflect.TypeOf((*GetBotManagementCategoriesCategoryArrayInput)(nil)).Elem(), GetBotManagementCategoriesCategoryArray{})
 	pulumi.RegisterInputType(reflect.TypeOf((*GetComputeAclsAclInput)(nil)).Elem(), GetComputeAclsAclArgs{})
 	pulumi.RegisterInputType(reflect.TypeOf((*GetComputeAclsAclArrayInput)(nil)).Elem(), GetComputeAclsAclArray{})
 	pulumi.RegisterInputType(reflect.TypeOf((*GetConfigstoresStoreInput)(nil)).Elem(), GetConfigstoresStoreArgs{})
@@ -25840,6 +26588,8 @@ func init() {
 	pulumi.RegisterOutputType(ServiceComputeLoggingDigitaloceanArrayOutput{})
 	pulumi.RegisterOutputType(ServiceComputeLoggingElasticsearchOutput{})
 	pulumi.RegisterOutputType(ServiceComputeLoggingElasticsearchArrayOutput{})
+	pulumi.RegisterOutputType(ServiceComputeLoggingFoOutput{})
+	pulumi.RegisterOutputType(ServiceComputeLoggingFoArrayOutput{})
 	pulumi.RegisterOutputType(ServiceComputeLoggingFtpOutput{})
 	pulumi.RegisterOutputType(ServiceComputeLoggingFtpArrayOutput{})
 	pulumi.RegisterOutputType(ServiceComputeLoggingGcOutput{})
@@ -25932,6 +26682,8 @@ func init() {
 	pulumi.RegisterOutputType(ServiceVclLoggingDigitaloceanArrayOutput{})
 	pulumi.RegisterOutputType(ServiceVclLoggingElasticsearchOutput{})
 	pulumi.RegisterOutputType(ServiceVclLoggingElasticsearchArrayOutput{})
+	pulumi.RegisterOutputType(ServiceVclLoggingFoOutput{})
+	pulumi.RegisterOutputType(ServiceVclLoggingFoArrayOutput{})
 	pulumi.RegisterOutputType(ServiceVclLoggingFtpOutput{})
 	pulumi.RegisterOutputType(ServiceVclLoggingFtpArrayOutput{})
 	pulumi.RegisterOutputType(ServiceVclLoggingGcOutput{})
@@ -26014,6 +26766,10 @@ func init() {
 	pulumi.RegisterOutputType(GetApiSecurityOperationTagsTagArrayOutput{})
 	pulumi.RegisterOutputType(GetApiSecurityOperationsOperationOutput{})
 	pulumi.RegisterOutputType(GetApiSecurityOperationsOperationArrayOutput{})
+	pulumi.RegisterOutputType(GetBotManagementBotsBotOutput{})
+	pulumi.RegisterOutputType(GetBotManagementBotsBotArrayOutput{})
+	pulumi.RegisterOutputType(GetBotManagementCategoriesCategoryOutput{})
+	pulumi.RegisterOutputType(GetBotManagementCategoriesCategoryArrayOutput{})
 	pulumi.RegisterOutputType(GetComputeAclsAclOutput{})
 	pulumi.RegisterOutputType(GetComputeAclsAclArrayOutput{})
 	pulumi.RegisterOutputType(GetConfigstoresStoreOutput{})

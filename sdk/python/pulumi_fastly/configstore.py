@@ -127,9 +127,6 @@ class Configstore(pulumi.CustomResource):
         example = fastly.get_package_hash(filename="package.tar.gz")
         example_service_compute = fastly.ServiceCompute("example",
             name="my_compute_service",
-            domains=[{
-                "name": "demo.example.com",
-            }],
             package={
                 "filename": "package.tar.gz",
                 "source_code_hash": example.hash,
@@ -181,9 +178,6 @@ class Configstore(pulumi.CustomResource):
         example = fastly.get_package_hash(filename="package.tar.gz")
         example_service_compute = fastly.ServiceCompute("example",
             name="my_compute_service",
-            domains=[{
-                "name": "demo.example.com",
-            }],
             package={
                 "filename": "package.tar.gz",
                 "source_code_hash": example.hash,

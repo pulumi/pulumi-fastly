@@ -84,6 +84,10 @@ export class NgwafWorkspace extends pulumi.CustomResource {
      */
     declare public readonly attackSignalThresholds: pulumi.Output<outputs.NgwafWorkspaceAttackSignalThresholds>;
     /**
+     * Whether virtual patches released after this setting is enabled are automatically enabled for the workspace in block mode. Virtual patches released before it was enabled are not changed. Default value `false`.
+     */
+    declare public readonly autoEnableNewVirtualPatches: pulumi.Output<boolean | undefined>;
+    /**
      * Specifies the request headers containing the client IP address. Maximum of 10 header names.
      */
     declare public readonly clientIpHeaders: pulumi.Output<string[] | undefined>;
@@ -126,6 +130,7 @@ export class NgwafWorkspace extends pulumi.CustomResource {
         if (opts.id) {
             const state = argsOrState as NgwafWorkspaceState | undefined;
             resourceInputs["attackSignalThresholds"] = state?.attackSignalThresholds;
+            resourceInputs["autoEnableNewVirtualPatches"] = state?.autoEnableNewVirtualPatches;
             resourceInputs["clientIpHeaders"] = state?.clientIpHeaders;
             resourceInputs["defaultBlockingResponseCode"] = state?.defaultBlockingResponseCode;
             resourceInputs["defaultRedirectUrl"] = state?.defaultRedirectUrl;
@@ -145,6 +150,7 @@ export class NgwafWorkspace extends pulumi.CustomResource {
                 throw new Error("Missing required property 'mode'");
             }
             resourceInputs["attackSignalThresholds"] = args?.attackSignalThresholds;
+            resourceInputs["autoEnableNewVirtualPatches"] = args?.autoEnableNewVirtualPatches;
             resourceInputs["clientIpHeaders"] = args?.clientIpHeaders;
             resourceInputs["defaultBlockingResponseCode"] = args?.defaultBlockingResponseCode;
             resourceInputs["defaultRedirectUrl"] = args?.defaultRedirectUrl;
@@ -166,6 +172,10 @@ export interface NgwafWorkspaceState {
      * Attack threshold parameters for system site alerts. Each threshold value is the number of attack signals per IP address that must be detected during the interval before the related IP address is flagged. If no values are set then the default value for each field will be applied
      */
     attackSignalThresholds?: pulumi.Input<inputs.NgwafWorkspaceAttackSignalThresholds | undefined>;
+    /**
+     * Whether virtual patches released after this setting is enabled are automatically enabled for the workspace in block mode. Virtual patches released before it was enabled are not changed. Default value `false`.
+     */
+    autoEnableNewVirtualPatches?: pulumi.Input<boolean | undefined>;
     /**
      * Specifies the request headers containing the client IP address. Maximum of 10 header names.
      */
@@ -204,6 +214,10 @@ export interface NgwafWorkspaceArgs {
      * Attack threshold parameters for system site alerts. Each threshold value is the number of attack signals per IP address that must be detected during the interval before the related IP address is flagged. If no values are set then the default value for each field will be applied
      */
     attackSignalThresholds: pulumi.Input<inputs.NgwafWorkspaceAttackSignalThresholds>;
+    /**
+     * Whether virtual patches released after this setting is enabled are automatically enabled for the workspace in block mode. Virtual patches released before it was enabled are not changed. Default value `false`.
+     */
+    autoEnableNewVirtualPatches?: pulumi.Input<boolean | undefined>;
     /**
      * Specifies the request headers containing the client IP address. Maximum of 10 header names.
      */

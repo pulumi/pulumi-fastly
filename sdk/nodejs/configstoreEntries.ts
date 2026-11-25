@@ -41,9 +41,6 @@ import * as utilities from "./utilities";
  * });
  * const exampleServiceCompute = new fastly.ServiceCompute("example", {
  *     name: "my_compute_service",
- *     domains: [{
- *         name: "demo.example.com",
- *     }],
  *     "package": {
  *         filename: "package.tar.gz",
  *         sourceCodeHash: example.then(example => example.hash),
@@ -79,9 +76,6 @@ import * as utilities from "./utilities";
  * });
  * const exampleServiceCompute = new fastly.ServiceCompute("example", {
  *     name: "my_compute_service",
- *     domains: [{
- *         name: "demo.example.com",
- *     }],
  *     "package": {
  *         filename: "package.tar.gz",
  *         sourceCodeHash: example.then(example => example.hash),

@@ -204,14 +204,14 @@ class TlsActivation(pulumi.CustomResource):
 
         demo = fastly.ServiceVcl("demo",
             name="my-service",
-            domains=[{
-                "name": "example.com",
-            }],
             backends=[{
                 "address": "127.0.0.1",
                 "name": "localhost",
             }],
             force_destroy=True)
+        demo_domain = fastly.Domain("demo",
+            fqdn="example.com",
+            service_id=demo.id)
         demo_tls_private_key = fastly.TlsPrivateKey("demo",
             key_pem="...",
             name="demo-key")
@@ -222,7 +222,7 @@ class TlsActivation(pulumi.CustomResource):
         test = fastly.TlsActivation("test",
             certificate_id=demo_tls_certificate.id,
             domain="example.com",
-            opts = pulumi.ResourceOptions(depends_on=[demo]))
+            opts = pulumi.ResourceOptions(depends_on=[demo_domain]))
         ```
 
         > **Warning:** Updating the `TlsPrivateKey`/`TlsCertificate` resources should be done in multiple plan/apply steps to avoid potential downtime. The new certificate and associated private key must first be created so they exist alongside the currently active resources. Once the new resources have been created, then the `TlsActivation` can be updated to point to the new certificate. Finally, the original key/certificate resources can be deleted.
@@ -266,14 +266,14 @@ class TlsActivation(pulumi.CustomResource):
 
         demo = fastly.ServiceVcl("demo",
             name="my-service",
-            domains=[{
-                "name": "example.com",
-            }],
             backends=[{
                 "address": "127.0.0.1",
                 "name": "localhost",
             }],
             force_destroy=True)
+        demo_domain = fastly.Domain("demo",
+            fqdn="example.com",
+            service_id=demo.id)
         demo_tls_private_key = fastly.TlsPrivateKey("demo",
             key_pem="...",
             name="demo-key")
@@ -284,7 +284,7 @@ class TlsActivation(pulumi.CustomResource):
         test = fastly.TlsActivation("test",
             certificate_id=demo_tls_certificate.id,
             domain="example.com",
-            opts = pulumi.ResourceOptions(depends_on=[demo]))
+            opts = pulumi.ResourceOptions(depends_on=[demo_domain]))
         ```
 
         > **Warning:** Updating the `TlsPrivateKey`/`TlsCertificate` resources should be done in multiple plan/apply steps to avoid potential downtime. The new certificate and associated private key must first be created so they exist alongside the currently active resources. Once the new resources have been created, then the `TlsActivation` can be updated to point to the new certificate. Finally, the original key/certificate resources can be deleted.

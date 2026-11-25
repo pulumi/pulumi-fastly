@@ -62,14 +62,14 @@ public final class GetAiRuntimeControlVirtualKeysArgs extends com.pulumi.resourc
     }
 
     /**
-     * Filter the results by a substring match on the virtual key name.
+     * Filter the results to virtual keys whose name contains this substring.
      * 
      */
     @Import(name="search")
     private @Nullable Output<String> search;
 
     /**
-     * @return Filter the results by a substring match on the virtual key name.
+     * @return Filter the results to virtual keys whose name contains this substring.
      * 
      */
     public Optional<Output<String>> search() {
@@ -167,7 +167,7 @@ public final class GetAiRuntimeControlVirtualKeysArgs extends com.pulumi.resourc
         }
 
         /**
-         * @param search Filter the results by a substring match on the virtual key name.
+         * @param search Filter the results to virtual keys whose name contains this substring.
          * 
          * @return builder
          * 
@@ -178,7 +178,7 @@ public final class GetAiRuntimeControlVirtualKeysArgs extends com.pulumi.resourc
         }
 
         /**
-         * @param search Filter the results by a substring match on the virtual key name.
+         * @param search Filter the results to virtual keys whose name contains this substring.
          * 
          * @return builder
          * 

@@ -213,6 +213,21 @@ public final class ServiceVclLoggingGcArgs extends com.pulumi.resources.Resource
     }
 
     /**
+     * A PGP public key that Fastly will use to encrypt your log files before writing them to disk
+     * 
+     */
+    @Import(name="publicKey")
+    private @Nullable Output<String> publicKey;
+
+    /**
+     * @return A PGP public key that Fastly will use to encrypt your log files before writing them to disk
+     * 
+     */
+    public Optional<Output<String>> publicKey() {
+        return Optional.ofNullable(this.publicKey);
+    }
+
+    /**
      * Name of a condition to apply this logging.
      * 
      */
@@ -288,6 +303,7 @@ public final class ServiceVclLoggingGcArgs extends com.pulumi.resources.Resource
         this.placement = $.placement;
         this.processingRegion = $.processingRegion;
         this.projectId = $.projectId;
+        this.publicKey = $.publicKey;
         this.responseCondition = $.responseCondition;
         this.secretKey = $.secretKey;
         this.timestampFormat = $.timestampFormat;
@@ -583,6 +599,27 @@ public final class ServiceVclLoggingGcArgs extends com.pulumi.resources.Resource
          */
         public Builder projectId(String projectId) {
             return projectId(Output.of(projectId));
+        }
+
+        /**
+         * @param publicKey A PGP public key that Fastly will use to encrypt your log files before writing them to disk
+         * 
+         * @return builder
+         * 
+         */
+        public Builder publicKey(@Nullable Output<String> publicKey) {
+            $.publicKey = publicKey;
+            return this;
+        }
+
+        /**
+         * @param publicKey A PGP public key that Fastly will use to encrypt your log files before writing them to disk
+         * 
+         * @return builder
+         * 
+         */
+        public Builder publicKey(String publicKey) {
+            return publicKey(Output.of(publicKey));
         }
 
         /**

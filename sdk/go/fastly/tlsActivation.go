@@ -8,7 +8,7 @@ import (
 	"reflect"
 
 	"errors"
-	"github.com/pulumi/pulumi-fastly/sdk/v12/go/fastly/internal"
+	"github.com/pulumi/pulumi-fastly/sdk/v13/go/fastly/internal"
 	"github.com/pulumi/pulumi/sdk/v3/go/pulumi"
 )
 
@@ -27,7 +27,7 @@ import (
 //
 // import (
 //
-//	"github.com/pulumi/pulumi-fastly/sdk/v12/go/fastly"
+//	"github.com/pulumi/pulumi-fastly/sdk/v13/go/fastly"
 //	"github.com/pulumi/pulumi/sdk/v3/go/pulumi"
 //
 // )
@@ -36,11 +36,6 @@ import (
 //		pulumi.Run(func(ctx *pulumi.Context) error {
 //			demo, err := fastly.NewServiceVcl(ctx, "demo", &fastly.ServiceVclArgs{
 //				Name: pulumi.String("my-service"),
-//				Domains: fastly.ServiceVclDomainArray{
-//					&fastly.ServiceVclDomainArgs{
-//						Name: pulumi.String("example.com"),
-//					},
-//				},
 //				Backends: fastly.ServiceVclBackendArray{
 //					&fastly.ServiceVclBackendArgs{
 //						Address: pulumi.String("127.0.0.1"),
@@ -48,6 +43,13 @@ import (
 //					},
 //				},
 //				ForceDestroy: pulumi.Bool(true),
+//			})
+//			if err != nil {
+//				return err
+//			}
+//			demoDomain, err := fastly.NewDomain(ctx, "demo", &fastly.DomainArgs{
+//				Fqdn:      pulumi.String("example.com"),
+//				ServiceId: demo.ID(),
 //			})
 //			if err != nil {
 //				return err
@@ -72,7 +74,7 @@ import (
 //				CertificateId: demoTlsCertificate.ID(),
 //				Domain:        pulumi.String("example.com"),
 //			}, pulumi.DependsOn([]pulumi.Resource{
-//				demo,
+//				demoDomain,
 //			}))
 //			if err != nil {
 //				return err

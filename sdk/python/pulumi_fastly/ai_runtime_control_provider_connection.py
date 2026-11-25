@@ -26,10 +26,10 @@ class AiRuntimeControlProviderConnectionArgs:
         """
         The set of arguments for constructing a AiRuntimeControlProviderConnection resource.
 
-        :param pulumi.Input[_builtins.str] api_key: The provider's secret key used for authentication. Never returned by the API, so it cannot be reconciled with the remote state.
-        :param pulumi.Input[_builtins.str] base_url: The base URL for the provider's API, e.g. `https://api.openai.com`. Must not include a `/v1` suffix, which the API appends automatically. Trailing slashes are stripped.
-        :param pulumi.Input[Sequence[pulumi.Input[_builtins.str]]] models: The set of allowed AI model identifiers, e.g. `["gpt-4o", "gpt-4o-mini"]`.
-        :param pulumi.Input[_builtins.str] name: A human-readable name for the provider. Changing this forces a new provider connection to be created.
+        :param pulumi.Input[_builtins.str] api_key: The provider's secret API key. Never returned by the API, so it cannot be reconciled with the remote state.
+        :param pulumi.Input[_builtins.str] base_url: The base URL of the provider's API, e.g. `https://api.openai.com`. Must be an absolute http or https URL, and must not include a `/v1` suffix, which the API appends automatically. Trailing slashes are stripped.
+        :param pulumi.Input[Sequence[pulumi.Input[_builtins.str]]] models: The set of AI model identifiers this provider connection is allowed to use, e.g. `["gpt-4o", "gpt-4o-mini"]`.
+        :param pulumi.Input[_builtins.str] name: The display name of the provider connection. Changing this forces a new provider connection to be created.
         """
         pulumi.set(__self__, "api_key", api_key)
         pulumi.set(__self__, "base_url", base_url)
@@ -41,7 +41,7 @@ class AiRuntimeControlProviderConnectionArgs:
     @pulumi.getter(name="apiKey")
     def api_key(self) -> pulumi.Input[_builtins.str]:
         """
-        The provider's secret key used for authentication. Never returned by the API, so it cannot be reconciled with the remote state.
+        The provider's secret API key. Never returned by the API, so it cannot be reconciled with the remote state.
         """
         return pulumi.get(self, "api_key")
 
@@ -53,7 +53,7 @@ class AiRuntimeControlProviderConnectionArgs:
     @pulumi.getter(name="baseUrl")
     def base_url(self) -> pulumi.Input[_builtins.str]:
         """
-        The base URL for the provider's API, e.g. `https://api.openai.com`. Must not include a `/v1` suffix, which the API appends automatically. Trailing slashes are stripped.
+        The base URL of the provider's API, e.g. `https://api.openai.com`. Must be an absolute http or https URL, and must not include a `/v1` suffix, which the API appends automatically. Trailing slashes are stripped.
         """
         return pulumi.get(self, "base_url")
 
@@ -65,7 +65,7 @@ class AiRuntimeControlProviderConnectionArgs:
     @pulumi.getter
     def models(self) -> pulumi.Input[Sequence[pulumi.Input[_builtins.str]]]:
         """
-        The set of allowed AI model identifiers, e.g. `["gpt-4o", "gpt-4o-mini"]`.
+        The set of AI model identifiers this provider connection is allowed to use, e.g. `["gpt-4o", "gpt-4o-mini"]`.
         """
         return pulumi.get(self, "models")
 
@@ -77,7 +77,7 @@ class AiRuntimeControlProviderConnectionArgs:
     @pulumi.getter
     def name(self) -> pulumi.Input[Optional[_builtins.str]]:
         """
-        A human-readable name for the provider. Changing this forces a new provider connection to be created.
+        The display name of the provider connection. Changing this forces a new provider connection to be created.
         """
         return pulumi.get(self, "name")
 
@@ -99,12 +99,12 @@ class _AiRuntimeControlProviderConnectionState:
         """
         Input properties used for looking up and filtering AiRuntimeControlProviderConnection resources.
 
-        :param pulumi.Input[_builtins.str] api_key: The provider's secret key used for authentication. Never returned by the API, so it cannot be reconciled with the remote state.
-        :param pulumi.Input[_builtins.str] base_url: The base URL for the provider's API, e.g. `https://api.openai.com`. Must not include a `/v1` suffix, which the API appends automatically. Trailing slashes are stripped.
+        :param pulumi.Input[_builtins.str] api_key: The provider's secret API key. Never returned by the API, so it cannot be reconciled with the remote state.
+        :param pulumi.Input[_builtins.str] base_url: The base URL of the provider's API, e.g. `https://api.openai.com`. Must be an absolute http or https URL, and must not include a `/v1` suffix, which the API appends automatically. Trailing slashes are stripped.
         :param pulumi.Input[_builtins.str] created_at: Timestamp (UTC) of when the provider connection was created.
-        :param pulumi.Input[Sequence[pulumi.Input[_builtins.str]]] models: The set of allowed AI model identifiers, e.g. `["gpt-4o", "gpt-4o-mini"]`.
-        :param pulumi.Input[_builtins.str] name: A human-readable name for the provider. Changing this forces a new provider connection to be created.
-        :param pulumi.Input[_builtins.str] secret_id: A hash representing the `api_key` used to create the provider connection.
+        :param pulumi.Input[Sequence[pulumi.Input[_builtins.str]]] models: The set of AI model identifiers this provider connection is allowed to use, e.g. `["gpt-4o", "gpt-4o-mini"]`.
+        :param pulumi.Input[_builtins.str] name: The display name of the provider connection. Changing this forces a new provider connection to be created.
+        :param pulumi.Input[_builtins.str] secret_id: An opaque identifier for the secret material backing this provider connection. Not the secret itself.
         :param pulumi.Input[_builtins.str] updated_at: Timestamp (UTC) of when the provider connection was last updated.
         """
         if api_key is not None:
@@ -126,7 +126,7 @@ class _AiRuntimeControlProviderConnectionState:
     @pulumi.getter(name="apiKey")
     def api_key(self) -> pulumi.Input[Optional[_builtins.str]]:
         """
-        The provider's secret key used for authentication. Never returned by the API, so it cannot be reconciled with the remote state.
+        The provider's secret API key. Never returned by the API, so it cannot be reconciled with the remote state.
         """
         return pulumi.get(self, "api_key")
 
@@ -138,7 +138,7 @@ class _AiRuntimeControlProviderConnectionState:
     @pulumi.getter(name="baseUrl")
     def base_url(self) -> pulumi.Input[Optional[_builtins.str]]:
         """
-        The base URL for the provider's API, e.g. `https://api.openai.com`. Must not include a `/v1` suffix, which the API appends automatically. Trailing slashes are stripped.
+        The base URL of the provider's API, e.g. `https://api.openai.com`. Must be an absolute http or https URL, and must not include a `/v1` suffix, which the API appends automatically. Trailing slashes are stripped.
         """
         return pulumi.get(self, "base_url")
 
@@ -162,7 +162,7 @@ class _AiRuntimeControlProviderConnectionState:
     @pulumi.getter
     def models(self) -> pulumi.Input[Optional[Sequence[pulumi.Input[_builtins.str]]]]:
         """
-        The set of allowed AI model identifiers, e.g. `["gpt-4o", "gpt-4o-mini"]`.
+        The set of AI model identifiers this provider connection is allowed to use, e.g. `["gpt-4o", "gpt-4o-mini"]`.
         """
         return pulumi.get(self, "models")
 
@@ -174,7 +174,7 @@ class _AiRuntimeControlProviderConnectionState:
     @pulumi.getter
     def name(self) -> pulumi.Input[Optional[_builtins.str]]:
         """
-        A human-readable name for the provider. Changing this forces a new provider connection to be created.
+        The display name of the provider connection. Changing this forces a new provider connection to be created.
         """
         return pulumi.get(self, "name")
 
@@ -186,7 +186,7 @@ class _AiRuntimeControlProviderConnectionState:
     @pulumi.getter(name="secretId")
     def secret_id(self) -> pulumi.Input[Optional[_builtins.str]]:
         """
-        A hash representing the `api_key` used to create the provider connection.
+        An opaque identifier for the secret material backing this provider connection. Not the secret itself.
         """
         return pulumi.get(self, "secret_id")
 
@@ -219,8 +219,13 @@ class AiRuntimeControlProviderConnection(pulumi.CustomResource):
                  name: pulumi.Input[Optional[_builtins.str]] = None,
                  __props__=None):
         """
-        Provides a Fastly AI Runtime Control provider connection, which stores the
-        authentication details and the set of allowed models for an AI model provider.
+        Provides a Fastly AI Runtime Control provider connection, which supplies the
+        credentials AI Runtime Control uses to reach an AI provider on your behalf, along
+        with the set of models the connection is allowed to use. Each customer account is
+        limited to 25 provider connections.
+
+        > **Note:** A provider connection cannot be deleted while it is still referenced
+        by a virtual key's failover policy.
 
         > **Note:** The API never returns the provider's `api_key`, so its value cannot
         be reconciled against the remote state. Terraform will only update it when the
@@ -257,10 +262,10 @@ class AiRuntimeControlProviderConnection(pulumi.CustomResource):
 
         :param str resource_name: The name of the resource.
         :param pulumi.ResourceOptions opts: Options for the resource.
-        :param pulumi.Input[_builtins.str] api_key: The provider's secret key used for authentication. Never returned by the API, so it cannot be reconciled with the remote state.
-        :param pulumi.Input[_builtins.str] base_url: The base URL for the provider's API, e.g. `https://api.openai.com`. Must not include a `/v1` suffix, which the API appends automatically. Trailing slashes are stripped.
-        :param pulumi.Input[Sequence[pulumi.Input[_builtins.str]]] models: The set of allowed AI model identifiers, e.g. `["gpt-4o", "gpt-4o-mini"]`.
-        :param pulumi.Input[_builtins.str] name: A human-readable name for the provider. Changing this forces a new provider connection to be created.
+        :param pulumi.Input[_builtins.str] api_key: The provider's secret API key. Never returned by the API, so it cannot be reconciled with the remote state.
+        :param pulumi.Input[_builtins.str] base_url: The base URL of the provider's API, e.g. `https://api.openai.com`. Must be an absolute http or https URL, and must not include a `/v1` suffix, which the API appends automatically. Trailing slashes are stripped.
+        :param pulumi.Input[Sequence[pulumi.Input[_builtins.str]]] models: The set of AI model identifiers this provider connection is allowed to use, e.g. `["gpt-4o", "gpt-4o-mini"]`.
+        :param pulumi.Input[_builtins.str] name: The display name of the provider connection. Changing this forces a new provider connection to be created.
         """
         ...
     @overload
@@ -269,8 +274,13 @@ class AiRuntimeControlProviderConnection(pulumi.CustomResource):
                  args: AiRuntimeControlProviderConnectionArgs,
                  opts: Optional[pulumi.ResourceOptions] = None):
         """
-        Provides a Fastly AI Runtime Control provider connection, which stores the
-        authentication details and the set of allowed models for an AI model provider.
+        Provides a Fastly AI Runtime Control provider connection, which supplies the
+        credentials AI Runtime Control uses to reach an AI provider on your behalf, along
+        with the set of models the connection is allowed to use. Each customer account is
+        limited to 25 provider connections.
+
+        > **Note:** A provider connection cannot be deleted while it is still referenced
+        by a virtual key's failover policy.
 
         > **Note:** The API never returns the provider's `api_key`, so its value cannot
         be reconciled against the remote state. Terraform will only update it when the
@@ -372,12 +382,12 @@ class AiRuntimeControlProviderConnection(pulumi.CustomResource):
         :param str resource_name: The unique name of the resulting resource.
         :param pulumi.Input[str] id: The unique provider ID of the resource to lookup.
         :param pulumi.ResourceOptions opts: Options for the resource.
-        :param pulumi.Input[_builtins.str] api_key: The provider's secret key used for authentication. Never returned by the API, so it cannot be reconciled with the remote state.
-        :param pulumi.Input[_builtins.str] base_url: The base URL for the provider's API, e.g. `https://api.openai.com`. Must not include a `/v1` suffix, which the API appends automatically. Trailing slashes are stripped.
+        :param pulumi.Input[_builtins.str] api_key: The provider's secret API key. Never returned by the API, so it cannot be reconciled with the remote state.
+        :param pulumi.Input[_builtins.str] base_url: The base URL of the provider's API, e.g. `https://api.openai.com`. Must be an absolute http or https URL, and must not include a `/v1` suffix, which the API appends automatically. Trailing slashes are stripped.
         :param pulumi.Input[_builtins.str] created_at: Timestamp (UTC) of when the provider connection was created.
-        :param pulumi.Input[Sequence[pulumi.Input[_builtins.str]]] models: The set of allowed AI model identifiers, e.g. `["gpt-4o", "gpt-4o-mini"]`.
-        :param pulumi.Input[_builtins.str] name: A human-readable name for the provider. Changing this forces a new provider connection to be created.
-        :param pulumi.Input[_builtins.str] secret_id: A hash representing the `api_key` used to create the provider connection.
+        :param pulumi.Input[Sequence[pulumi.Input[_builtins.str]]] models: The set of AI model identifiers this provider connection is allowed to use, e.g. `["gpt-4o", "gpt-4o-mini"]`.
+        :param pulumi.Input[_builtins.str] name: The display name of the provider connection. Changing this forces a new provider connection to be created.
+        :param pulumi.Input[_builtins.str] secret_id: An opaque identifier for the secret material backing this provider connection. Not the secret itself.
         :param pulumi.Input[_builtins.str] updated_at: Timestamp (UTC) of when the provider connection was last updated.
         """
         opts = pulumi.ResourceOptions.merge(opts, pulumi.ResourceOptions(id=id))
@@ -417,7 +427,7 @@ class AiRuntimeControlProviderConnection(pulumi.CustomResource):
     @pulumi.getter(name="apiKey")
     def api_key(self) -> pulumi.Output[_builtins.str]:
         """
-        The provider's secret key used for authentication. Never returned by the API, so it cannot be reconciled with the remote state.
+        The provider's secret API key. Never returned by the API, so it cannot be reconciled with the remote state.
         """
         return pulumi.get(self, "api_key")
 
@@ -425,7 +435,7 @@ class AiRuntimeControlProviderConnection(pulumi.CustomResource):
     @pulumi.getter(name="baseUrl")
     def base_url(self) -> pulumi.Output[_builtins.str]:
         """
-        The base URL for the provider's API, e.g. `https://api.openai.com`. Must not include a `/v1` suffix, which the API appends automatically. Trailing slashes are stripped.
+        The base URL of the provider's API, e.g. `https://api.openai.com`. Must be an absolute http or https URL, and must not include a `/v1` suffix, which the API appends automatically. Trailing slashes are stripped.
         """
         return pulumi.get(self, "base_url")
 
@@ -441,7 +451,7 @@ class AiRuntimeControlProviderConnection(pulumi.CustomResource):
     @pulumi.getter
     def models(self) -> pulumi.Output[Sequence[_builtins.str]]:
         """
-        The set of allowed AI model identifiers, e.g. `["gpt-4o", "gpt-4o-mini"]`.
+        The set of AI model identifiers this provider connection is allowed to use, e.g. `["gpt-4o", "gpt-4o-mini"]`.
         """
         return pulumi.get(self, "models")
 
@@ -449,7 +459,7 @@ class AiRuntimeControlProviderConnection(pulumi.CustomResource):
     @pulumi.getter
     def name(self) -> pulumi.Output[_builtins.str]:
         """
-        A human-readable name for the provider. Changing this forces a new provider connection to be created.
+        The display name of the provider connection. Changing this forces a new provider connection to be created.
         """
         return pulumi.get(self, "name")
 
@@ -457,7 +467,7 @@ class AiRuntimeControlProviderConnection(pulumi.CustomResource):
     @pulumi.getter(name="secretId")
     def secret_id(self) -> pulumi.Output[_builtins.str]:
         """
-        A hash representing the `api_key` used to create the provider connection.
+        An opaque identifier for the secret material backing this provider connection. Not the secret itself.
         """
         return pulumi.get(self, "secret_id")
 

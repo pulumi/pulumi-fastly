@@ -22,10 +22,6 @@ import * as utilities from "./utilities";
  *
  * const myservice = new fastly.ServiceVcl("myservice", {
  *     name: "snippet_test",
- *     domains: [{
- *         name: "snippet.fastlytestdomain.com",
- *         comment: "snippet test",
- *     }],
  *     backends: [{
  *         address: "http-me.fastly.dev",
  *         name: "Glitch Test Site",
@@ -61,10 +57,6 @@ import * as utilities from "./utilities";
  *
  * const myservice = new fastly.ServiceVcl("myservice", {
  *     name: "snippet_test",
- *     domains: [{
- *         name: "snippet.fastlytestdomain.com",
- *         comment: "snippet test",
- *     }],
  *     backends: [{
  *         address: "http-me.fastly.dev",
  *         name: "Glitch Test Site",
@@ -135,10 +127,6 @@ import * as utilities from "./utilities";
  *
  * const myservice = new fastly.ServiceVcl("myservice", {
  *     name: "demofastly",
- *     domains: [{
- *         name: "demo.notexample.com",
- *         comment: "demo",
- *     }],
  *     dynamicsnippets: [{
  *         name: "My Dynamic Snippet",
  *         type: "recv",

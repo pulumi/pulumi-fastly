@@ -102,9 +102,6 @@ def get_vcl_snippets(service_id: Optional[_builtins.str] = None,
 
     example_service_vcl = fastly.ServiceVcl("example",
         name="Example Service",
-        domains=[{
-            "name": "example.com",
-        }],
         force_destroy=True)
     example = fastly.get_vcl_snippets_output(service_id=example_service_vcl.id,
         service_version=example_service_vcl.active_version)
@@ -144,9 +141,6 @@ def get_vcl_snippets_output(service_id: pulumi.Input[Optional[_builtins.str]] = 
 
     example_service_vcl = fastly.ServiceVcl("example",
         name="Example Service",
-        domains=[{
-            "name": "example.com",
-        }],
         force_destroy=True)
     example = fastly.get_vcl_snippets_output(service_id=example_service_vcl.id,
         service_version=example_service_vcl.active_version)

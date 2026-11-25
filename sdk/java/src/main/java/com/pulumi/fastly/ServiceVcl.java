@@ -28,6 +28,7 @@ import com.pulumi.fastly.outputs.ServiceVclLoggingCloudfile;
 import com.pulumi.fastly.outputs.ServiceVclLoggingDatadog;
 import com.pulumi.fastly.outputs.ServiceVclLoggingDigitalocean;
 import com.pulumi.fastly.outputs.ServiceVclLoggingElasticsearch;
+import com.pulumi.fastly.outputs.ServiceVclLoggingFo;
 import com.pulumi.fastly.outputs.ServiceVclLoggingFtp;
 import com.pulumi.fastly.outputs.ServiceVclLoggingGc;
 import com.pulumi.fastly.outputs.ServiceVclLoggingGooglepubsub;
@@ -72,6 +73,10 @@ import javax.annotation.Nullable;
  * traffic to the Fastly service. See Fastly&#39;s guide on [Adding CNAME Records][fastly-cname]
  * on their documentation site for guidance.
  * 
+ * &gt; **Note:** The nested `domain` block uses classic domains, which are only
+ * available to accounts created before 2025-09-16. Use the versionless
+ * `fastly.Domain` resource to attach domains to a service, as in the examples below.
+ * 
  * ## Activation and Staging
  * 
  * By default, the `activate` attribute is `true`, and the `stage`
@@ -113,8 +118,9 @@ import javax.annotation.Nullable;
  * import com.pulumi.core.Output;
  * import com.pulumi.fastly.ServiceVcl;
  * import com.pulumi.fastly.ServiceVclArgs;
- * import com.pulumi.fastly.inputs.ServiceVclDomainArgs;
  * import com.pulumi.fastly.inputs.ServiceVclBackendArgs;
+ * import com.pulumi.fastly.Domain;
+ * import com.pulumi.fastly.DomainArgs;
  * import java.util.ArrayList;
  * import java.util.Arrays;
  * import java.util.Map;
@@ -130,16 +136,18 @@ import javax.annotation.Nullable;
  *     public static void stack(Context ctx) {
  *         var demo = new ServiceVcl("demo", ServiceVclArgs.builder()
  *             .name("demofastly")
- *             .domains(ServiceVclDomainArgs.builder()
- *                 .name("demo.notexample.com")
- *                 .comment("demo")
- *                 .build())
  *             .backends(ServiceVclBackendArgs.builder()
  *                 .address("127.0.0.1")
  *                 .name("localhost")
  *                 .port(80)
  *                 .build())
  *             .forceDestroy(true)
+ *             .build());
+ * 
+ *         var demoDomain = new Domain("demoDomain", DomainArgs.builder()
+ *             .fqdn("demo.notexample.com")
+ *             .description("demo")
+ *             .serviceId(demo.id())
  *             .build());
  * 
  *     }
@@ -158,7 +166,6 @@ import javax.annotation.Nullable;
  * import com.pulumi.core.Output;
  * import com.pulumi.fastly.ServiceVcl;
  * import com.pulumi.fastly.ServiceVclArgs;
- * import com.pulumi.fastly.inputs.ServiceVclDomainArgs;
  * import com.pulumi.fastly.inputs.ServiceVclBackendArgs;
  * import com.pulumi.fastly.inputs.ServiceVclHeaderArgs;
  * import com.pulumi.fastly.inputs.ServiceVclGzipArgs;
@@ -166,6 +173,8 @@ import javax.annotation.Nullable;
  * import com.pulumi.aws.S3BucketArgs;
  * import com.pulumi.aws.S3BucketWebsiteConfiguration;
  * import com.pulumi.aws.S3BucketWebsiteConfigurationArgs;
+ * import com.pulumi.fastly.Domain;
+ * import com.pulumi.fastly.DomainArgs;
  * import java.util.ArrayList;
  * import java.util.Arrays;
  * import java.util.Map;
@@ -181,10 +190,6 @@ import javax.annotation.Nullable;
  *     public static void stack(Context ctx) {
  *         var demo = new ServiceVcl("demo", ServiceVclArgs.builder()
  *             .name("demofastly")
- *             .domains(ServiceVclDomainArgs.builder()
- *                 .name("demo.notexample.com")
- *                 .comment("demo")
- *                 .build())
  *             .backends(ServiceVclBackendArgs.builder()
  *                 .address("http-me.fastly.dev")
  *                 .name("Glitch Test Site")
@@ -217,6 +222,12 @@ import javax.annotation.Nullable;
  *             .bucket(websiteBucket.get("id"))
  *             .indexDocument(Arrays.asList(Map.of("suffix", "index.html")))
  *             .errorDocument(Arrays.asList(Map.of("key", "error.html")))
+ *             .build());
+ * 
+ *         var demoDomain = new Domain("demoDomain", DomainArgs.builder()
+ *             .fqdn("demo.notexample.com")
+ *             .description("demo")
+ *             .serviceId(demo.id())
  *             .build());
  * 
  *     }
@@ -366,14 +377,14 @@ public class ServiceVcl extends com.pulumi.resources.CustomResource {
         return Codegen.optional(this.directors);
     }
     /**
-     * A set of Domain names to serve as entry points for your Service
+     * A set of Domain names to serve as entry points for your Service. Classic domains are only available to accounts created before 2025-09-16; for newer accounts use the versionless `fastly.Domain` resource instead.
      * 
      */
     @Export(name="domains", refs={List.class,ServiceVclDomain.class}, tree="[0,1]")
     private Output</* @Nullable */ List<ServiceVclDomain>> domains;
 
     /**
-     * @return A set of Domain names to serve as entry points for your Service
+     * @return A set of Domain names to serve as entry points for your Service. Classic domains are only available to accounts created before 2025-09-16; for newer accounts use the versionless `fastly.Domain` resource instead.
      * 
      */
     public Output<Optional<List<ServiceVclDomain>>> domains() {
@@ -500,6 +511,12 @@ public class ServiceVcl extends com.pulumi.resources.CustomResource {
 
     public Output<Optional<List<ServiceVclLoggingElasticsearch>>> loggingElasticsearches() {
         return Codegen.optional(this.loggingElasticsearches);
+    }
+    @Export(name="loggingFos", refs={List.class,ServiceVclLoggingFo.class}, tree="[0,1]")
+    private Output</* @Nullable */ List<ServiceVclLoggingFo>> loggingFos;
+
+    public Output<Optional<List<ServiceVclLoggingFo>>> loggingFos() {
+        return Codegen.optional(this.loggingFos);
     }
     @Export(name="loggingFtps", refs={List.class,ServiceVclLoggingFtp.class}, tree="[0,1]")
     private Output</* @Nullable */ List<ServiceVclLoggingFtp>> loggingFtps;

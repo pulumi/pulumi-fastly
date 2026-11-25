@@ -12,6 +12,9 @@ from .alert import *
 from .api_security_operation import *
 from .api_security_operation_tag import *
 from .audit_log_event_mapping import *
+from .bot_management_bot import *
+from .bot_management_category import *
+from .bot_management_workspace import *
 from .compute_acl import *
 from .compute_acl_entries import *
 from .configstore import *
@@ -29,6 +32,9 @@ from .get_api_security_discovered_operations import *
 from .get_api_security_operation_tags import *
 from .get_api_security_operations import *
 from .get_audit_log_event_mapping import *
+from .get_bot_management_bots import *
+from .get_bot_management_categories import *
+from .get_bot_management_workspace import *
 from .get_compute_acls import *
 from .get_configstores import *
 from .get_datacenters import *
@@ -174,6 +180,30 @@ _utilities.register(
   "fqn": "pulumi_fastly",
   "classes": {
    "fastly:index/auditLogEventMapping:AuditLogEventMapping": "AuditLogEventMapping"
+  }
+ },
+ {
+  "pkg": "fastly",
+  "mod": "index/botManagementBot",
+  "fqn": "pulumi_fastly",
+  "classes": {
+   "fastly:index/botManagementBot:BotManagementBot": "BotManagementBot"
+  }
+ },
+ {
+  "pkg": "fastly",
+  "mod": "index/botManagementCategory",
+  "fqn": "pulumi_fastly",
+  "classes": {
+   "fastly:index/botManagementCategory:BotManagementCategory": "BotManagementCategory"
+  }
+ },
+ {
+  "pkg": "fastly",
+  "mod": "index/botManagementWorkspace",
+  "fqn": "pulumi_fastly",
+  "classes": {
+   "fastly:index/botManagementWorkspace:BotManagementWorkspace": "BotManagementWorkspace"
   }
  },
  {

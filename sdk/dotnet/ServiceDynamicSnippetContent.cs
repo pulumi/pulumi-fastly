@@ -32,14 +32,6 @@ namespace Pulumi.Fastly
     ///     var myservice = new Fastly.ServiceVcl("myservice", new()
     ///     {
     ///         Name = "snippet_test",
-    ///         Domains = new[]
-    ///         {
-    ///             new Fastly.Inputs.ServiceVclDomainArgs
-    ///             {
-    ///                 Name = "snippet.fastlytestdomain.com",
-    ///                 Comment = "snippet test",
-    ///             },
-    ///         },
     ///         Backends = new[]
     ///         {
     ///             new Fastly.Inputs.ServiceVclBackendArgs
@@ -96,14 +88,6 @@ namespace Pulumi.Fastly
     ///     var myservice = new Fastly.ServiceVcl("myservice", new()
     ///     {
     ///         Name = "snippet_test",
-    ///         Domains = new[]
-    ///         {
-    ///             new Fastly.Inputs.ServiceVclDomainArgs
-    ///             {
-    ///                 Name = "snippet.fastlytestdomain.com",
-    ///                 Comment = "snippet test",
-    ///             },
-    ///         },
     ///         Backends = new[]
     ///         {
     ///             new Fastly.Inputs.ServiceVclBackendArgs
@@ -200,14 +184,6 @@ namespace Pulumi.Fastly
     ///     var myservice = new Fastly.ServiceVcl("myservice", new()
     ///     {
     ///         Name = "demofastly",
-    ///         Domains = new[]
-    ///         {
-    ///             new Fastly.Inputs.ServiceVclDomainArgs
-    ///             {
-    ///                 Name = "demo.notexample.com",
-    ///                 Comment = "demo",
-    ///             },
-    ///         },
     ///         Dynamicsnippets = new[]
     ///         {
     ///             new Fastly.Inputs.ServiceVclDynamicsnippetArgs

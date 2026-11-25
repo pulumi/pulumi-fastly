@@ -12,7 +12,7 @@ import java.util.Objects;
 @CustomType
 public final class GetAiRuntimeControlProviderConnectionsProviderConnection {
     /**
-     * @return The base URL for the provider&#39;s API.
+     * @return The base URL of the provider&#39;s API.
      * 
      */
     private String baseUrl;
@@ -27,17 +27,17 @@ public final class GetAiRuntimeControlProviderConnectionsProviderConnection {
      */
     private String id;
     /**
-     * @return The allowed AI model identifiers.
+     * @return The AI model identifiers this provider connection is allowed to use.
      * 
      */
     private List<String> models;
     /**
-     * @return The human-readable name of the provider.
+     * @return The display name of the provider connection.
      * 
      */
     private String name;
     /**
-     * @return A hash representing the API key used to create the provider connection.
+     * @return An opaque identifier for the secret material backing this provider connection. Not the secret itself.
      * 
      */
     private String secretId;
@@ -49,7 +49,7 @@ public final class GetAiRuntimeControlProviderConnectionsProviderConnection {
 
     private GetAiRuntimeControlProviderConnectionsProviderConnection() {}
     /**
-     * @return The base URL for the provider&#39;s API.
+     * @return The base URL of the provider&#39;s API.
      * 
      */
     public String baseUrl() {
@@ -70,21 +70,21 @@ public final class GetAiRuntimeControlProviderConnectionsProviderConnection {
         return this.id;
     }
     /**
-     * @return The allowed AI model identifiers.
+     * @return The AI model identifiers this provider connection is allowed to use.
      * 
      */
     public List<String> models() {
         return this.models;
     }
     /**
-     * @return The human-readable name of the provider.
+     * @return The display name of the provider connection.
      * 
      */
     public String name() {
         return this.name;
     }
     /**
-     * @return A hash representing the API key used to create the provider connection.
+     * @return An opaque identifier for the secret material backing this provider connection. Not the secret itself.
      * 
      */
     public String secretId() {

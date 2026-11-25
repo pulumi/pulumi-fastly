@@ -36,10 +36,10 @@ class AlertArgs:
         :param pulumi.Input[_builtins.str] metric: The metric name to alert on for a specific source: [domains](https://developer.fastly.com/reference/api/metrics-stats/domain-inspector/historical), [origins](https://developer.fastly.com/reference/api/metrics-stats/origin-inspector/historical), or [stats](https://developer.fastly.com/reference/api/metrics-stats/historical-stats).
         :param pulumi.Input[_builtins.str] source: The source where the metric comes from. One of: `domains`, `origins`, `stats`.
         :param pulumi.Input[_builtins.str] description: Additional text that is included in the alert notification.
-        :param pulumi.Input['AlertDimensionsArgs'] dimensions: More filters depending on the source type.
+        :param pulumi.Input['AlertDimensionsArgs'] dimensions: Additional filters and aggregation criteria depending on the source type. For source type `stats`, use empty `{}` to monitor a single service or all services (aggregated), or include the `services` array to monitor all or a set of services (not aggregated). For source type `domains` or `origins`, the `domains` or `origins` array must be included to monitor all or a set (not aggregated).
         :param pulumi.Input[Sequence[pulumi.Input[_builtins.str]]] integration_ids: List of integrations used to notify when alert fires.
         :param pulumi.Input[_builtins.str] name: The name of the alert.
-        :param pulumi.Input[_builtins.str] service_id: The service which the alert monitors. Optional when using `stats` as the `source`.
+        :param pulumi.Input[_builtins.str] service_id: The service to monitor. Can be a specific service ID to monitor a single service, or omit to monitor all services (aggregated) or all or a set of services (not aggregated) (see `dimensions` for details).
         """
         pulumi.set(__self__, "evaluation_strategy", evaluation_strategy)
         pulumi.set(__self__, "metric", metric)
@@ -107,7 +107,7 @@ class AlertArgs:
     @pulumi.getter
     def dimensions(self) -> pulumi.Input[Optional['AlertDimensionsArgs']]:
         """
-        More filters depending on the source type.
+        Additional filters and aggregation criteria depending on the source type. For source type `stats`, use empty `{}` to monitor a single service or all services (aggregated), or include the `services` array to monitor all or a set of services (not aggregated). For source type `domains` or `origins`, the `domains` or `origins` array must be included to monitor all or a set (not aggregated).
         """
         return pulumi.get(self, "dimensions")
 
@@ -143,7 +143,7 @@ class AlertArgs:
     @pulumi.getter(name="serviceId")
     def service_id(self) -> pulumi.Input[Optional[_builtins.str]]:
         """
-        The service which the alert monitors. Optional when using `stats` as the `source`.
+        The service to monitor. Can be a specific service ID to monitor a single service, or omit to monitor all services (aggregated) or all or a set of services (not aggregated) (see `dimensions` for details).
         """
         return pulumi.get(self, "service_id")
 
@@ -167,12 +167,12 @@ class _AlertState:
         Input properties used for looking up and filtering Alert resources.
 
         :param pulumi.Input[_builtins.str] description: Additional text that is included in the alert notification.
-        :param pulumi.Input['AlertDimensionsArgs'] dimensions: More filters depending on the source type.
+        :param pulumi.Input['AlertDimensionsArgs'] dimensions: Additional filters and aggregation criteria depending on the source type. For source type `stats`, use empty `{}` to monitor a single service or all services (aggregated), or include the `services` array to monitor all or a set of services (not aggregated). For source type `domains` or `origins`, the `domains` or `origins` array must be included to monitor all or a set (not aggregated).
         :param pulumi.Input['AlertEvaluationStrategyArgs'] evaluation_strategy: Criteria on how to alert.
         :param pulumi.Input[Sequence[pulumi.Input[_builtins.str]]] integration_ids: List of integrations used to notify when alert fires.
         :param pulumi.Input[_builtins.str] metric: The metric name to alert on for a specific source: [domains](https://developer.fastly.com/reference/api/metrics-stats/domain-inspector/historical), [origins](https://developer.fastly.com/reference/api/metrics-stats/origin-inspector/historical), or [stats](https://developer.fastly.com/reference/api/metrics-stats/historical-stats).
         :param pulumi.Input[_builtins.str] name: The name of the alert.
-        :param pulumi.Input[_builtins.str] service_id: The service which the alert monitors. Optional when using `stats` as the `source`.
+        :param pulumi.Input[_builtins.str] service_id: The service to monitor. Can be a specific service ID to monitor a single service, or omit to monitor all services (aggregated) or all or a set of services (not aggregated) (see `dimensions` for details).
         :param pulumi.Input[_builtins.str] source: The source where the metric comes from. One of: `domains`, `origins`, `stats`.
         """
         if description is not None:
@@ -208,7 +208,7 @@ class _AlertState:
     @pulumi.getter
     def dimensions(self) -> pulumi.Input[Optional['AlertDimensionsArgs']]:
         """
-        More filters depending on the source type.
+        Additional filters and aggregation criteria depending on the source type. For source type `stats`, use empty `{}` to monitor a single service or all services (aggregated), or include the `services` array to monitor all or a set of services (not aggregated). For source type `domains` or `origins`, the `domains` or `origins` array must be included to monitor all or a set (not aggregated).
         """
         return pulumi.get(self, "dimensions")
 
@@ -268,7 +268,7 @@ class _AlertState:
     @pulumi.getter(name="serviceId")
     def service_id(self) -> pulumi.Input[Optional[_builtins.str]]:
         """
-        The service which the alert monitors. Optional when using `stats` as the `source`.
+        The service to monitor. Can be a specific service ID to monitor a single service, or omit to monitor all services (aggregated) or all or a set of services (not aggregated) (see `dimensions` for details).
         """
         return pulumi.get(self, "service_id")
 
@@ -313,12 +313,7 @@ class Alert(pulumi.CustomResource):
         import pulumi
         import pulumi_fastly as fastly
 
-        example = fastly.ServiceVcl("example",
-            name="my_vcl_service",
-            domains=[{
-                "name": "demo.notexample.com",
-                "comment": "demo",
-            }])
+        example = fastly.ServiceVcl("example", name="my_vcl_service")
         example_integration = fastly.Integration("example",
             name="my_integration",
             type="a_valid_type",
@@ -350,12 +345,12 @@ class Alert(pulumi.CustomResource):
         :param str resource_name: The name of the resource.
         :param pulumi.ResourceOptions opts: Options for the resource.
         :param pulumi.Input[_builtins.str] description: Additional text that is included in the alert notification.
-        :param pulumi.Input[Union['AlertDimensionsArgs', 'AlertDimensionsArgsDict', 'outputs.AlertDimensions']] dimensions: More filters depending on the source type.
+        :param pulumi.Input[Union['AlertDimensionsArgs', 'AlertDimensionsArgsDict', 'outputs.AlertDimensions']] dimensions: Additional filters and aggregation criteria depending on the source type. For source type `stats`, use empty `{}` to monitor a single service or all services (aggregated), or include the `services` array to monitor all or a set of services (not aggregated). For source type `domains` or `origins`, the `domains` or `origins` array must be included to monitor all or a set (not aggregated).
         :param pulumi.Input[Union['AlertEvaluationStrategyArgs', 'AlertEvaluationStrategyArgsDict', 'outputs.AlertEvaluationStrategy']] evaluation_strategy: Criteria on how to alert.
         :param pulumi.Input[Sequence[pulumi.Input[_builtins.str]]] integration_ids: List of integrations used to notify when alert fires.
         :param pulumi.Input[_builtins.str] metric: The metric name to alert on for a specific source: [domains](https://developer.fastly.com/reference/api/metrics-stats/domain-inspector/historical), [origins](https://developer.fastly.com/reference/api/metrics-stats/origin-inspector/historical), or [stats](https://developer.fastly.com/reference/api/metrics-stats/historical-stats).
         :param pulumi.Input[_builtins.str] name: The name of the alert.
-        :param pulumi.Input[_builtins.str] service_id: The service which the alert monitors. Optional when using `stats` as the `source`.
+        :param pulumi.Input[_builtins.str] service_id: The service to monitor. Can be a specific service ID to monitor a single service, or omit to monitor all services (aggregated) or all or a set of services (not aggregated) (see `dimensions` for details).
         :param pulumi.Input[_builtins.str] source: The source where the metric comes from. One of: `domains`, `origins`, `stats`.
         """
         ...
@@ -373,12 +368,7 @@ class Alert(pulumi.CustomResource):
         import pulumi
         import pulumi_fastly as fastly
 
-        example = fastly.ServiceVcl("example",
-            name="my_vcl_service",
-            domains=[{
-                "name": "demo.notexample.com",
-                "comment": "demo",
-            }])
+        example = fastly.ServiceVcl("example", name="my_vcl_service")
         example_integration = fastly.Integration("example",
             name="my_integration",
             type="a_valid_type",
@@ -479,12 +469,12 @@ class Alert(pulumi.CustomResource):
         :param pulumi.Input[str] id: The unique provider ID of the resource to lookup.
         :param pulumi.ResourceOptions opts: Options for the resource.
         :param pulumi.Input[_builtins.str] description: Additional text that is included in the alert notification.
-        :param pulumi.Input[Union['AlertDimensionsArgs', 'AlertDimensionsArgsDict', 'outputs.AlertDimensions']] dimensions: More filters depending on the source type.
+        :param pulumi.Input[Union['AlertDimensionsArgs', 'AlertDimensionsArgsDict', 'outputs.AlertDimensions']] dimensions: Additional filters and aggregation criteria depending on the source type. For source type `stats`, use empty `{}` to monitor a single service or all services (aggregated), or include the `services` array to monitor all or a set of services (not aggregated). For source type `domains` or `origins`, the `domains` or `origins` array must be included to monitor all or a set (not aggregated).
         :param pulumi.Input[Union['AlertEvaluationStrategyArgs', 'AlertEvaluationStrategyArgsDict', 'outputs.AlertEvaluationStrategy']] evaluation_strategy: Criteria on how to alert.
         :param pulumi.Input[Sequence[pulumi.Input[_builtins.str]]] integration_ids: List of integrations used to notify when alert fires.
         :param pulumi.Input[_builtins.str] metric: The metric name to alert on for a specific source: [domains](https://developer.fastly.com/reference/api/metrics-stats/domain-inspector/historical), [origins](https://developer.fastly.com/reference/api/metrics-stats/origin-inspector/historical), or [stats](https://developer.fastly.com/reference/api/metrics-stats/historical-stats).
         :param pulumi.Input[_builtins.str] name: The name of the alert.
-        :param pulumi.Input[_builtins.str] service_id: The service which the alert monitors. Optional when using `stats` as the `source`.
+        :param pulumi.Input[_builtins.str] service_id: The service to monitor. Can be a specific service ID to monitor a single service, or omit to monitor all services (aggregated) or all or a set of services (not aggregated) (see `dimensions` for details).
         :param pulumi.Input[_builtins.str] source: The source where the metric comes from. One of: `domains`, `origins`, `stats`.
         """
         opts = pulumi.ResourceOptions.merge(opts, pulumi.ResourceOptions(id=id))
@@ -535,7 +525,7 @@ class Alert(pulumi.CustomResource):
     @pulumi.getter
     def dimensions(self) -> pulumi.Output[Optional['outputs.AlertDimensions']]:
         """
-        More filters depending on the source type.
+        Additional filters and aggregation criteria depending on the source type. For source type `stats`, use empty `{}` to monitor a single service or all services (aggregated), or include the `services` array to monitor all or a set of services (not aggregated). For source type `domains` or `origins`, the `domains` or `origins` array must be included to monitor all or a set (not aggregated).
         """
         return pulumi.get(self, "dimensions")
 
@@ -575,7 +565,7 @@ class Alert(pulumi.CustomResource):
     @pulumi.getter(name="serviceId")
     def service_id(self) -> pulumi.Output[Optional[_builtins.str]]:
         """
-        The service which the alert monitors. Optional when using `stats` as the `source`.
+        The service to monitor. Can be a specific service ID to monitor a single service, or omit to monitor all services (aggregated) or all or a set of services (not aggregated) (see `dimensions` for details).
         """
         return pulumi.get(self, "service_id")
 

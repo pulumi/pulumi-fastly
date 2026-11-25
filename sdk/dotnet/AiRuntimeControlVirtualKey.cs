@@ -11,8 +11,11 @@ namespace Pulumi.Fastly
 {
     /// <summary>
     /// Provides a Fastly AI Runtime Control virtual key, used to authenticate
-    /// requests to an AI service and to attribute usage and session logs back to a
-    /// named key.
+    /// requests made through the AI Runtime Control gateway and to attribute usage and
+    /// session logs back to a named key.
+    /// 
+    /// &gt; **Note:** Deleting a virtual key also deletes any security configuration
+    /// associated with the key.
     /// 
     /// ## Example Usage
     /// 
@@ -31,7 +34,6 @@ namespace Pulumi.Fastly
     ///         Name = "prod website chatbot",
     ///         Model = "claude-sonnet-4-20250514",
     ///         ProviderName = "Anthropic",
-    ///         UserId = "6zhNCY1236787aJIwUgN",
     ///         ExpiresAt = "2026-08-05T17:13:36Z",
     ///     });
     /// 
@@ -52,7 +54,7 @@ namespace Pulumi.Fastly
     public partial class AiRuntimeControlVirtualKey : global::Pulumi.CustomResource
     {
         /// <summary>
-        /// The generated access token used to authenticate as this virtual key. Only returned by the API when the key is created.
+        /// The access token for this virtual key. Only returned by the API when the key is created, and cannot be retrieved again afterward.
         /// </summary>
         [Output("accessToken")]
         public Output<string> AccessToken { get; private set; } = null!;
@@ -70,13 +72,13 @@ namespace Pulumi.Fastly
         public Output<string> CreatedBy { get; private set; } = null!;
 
         /// <summary>
-        /// The expiration timestamp of the virtual key, in RFC 3339 format. Once set, this value cannot be unset, only changed.
+        /// The date and time the virtual key expires, in RFC 3339 format. Once set, this value cannot be unset, only changed.
         /// </summary>
         [Output("expiresAt")]
         public Output<string?> ExpiresAt { get; private set; } = null!;
 
         /// <summary>
-        /// Timestamp (UTC) of when the virtual key was last used.
+        /// Timestamp (UTC) of when the virtual key was last used to make a request.
         /// </summary>
         [Output("lastUsedAt")]
         public Output<string> LastUsedAt { get; private set; } = null!;
@@ -88,7 +90,7 @@ namespace Pulumi.Fastly
         public Output<string> Model { get; private set; } = null!;
 
         /// <summary>
-        /// A human-readable name for the virtual key.
+        /// The display name of the virtual key.
         /// </summary>
         [Output("name")]
         public Output<string> Name { get; private set; } = null!;
@@ -100,7 +102,7 @@ namespace Pulumi.Fastly
         public Output<string> ProviderName { get; private set; } = null!;
 
         /// <summary>
-        /// The type of the virtual key.
+        /// The type of the resource.
         /// </summary>
         [Output("type")]
         public Output<string> Type { get; private set; } = null!;
@@ -112,7 +114,7 @@ namespace Pulumi.Fastly
         public Output<string> UpdatedAt { get; private set; } = null!;
 
         /// <summary>
-        /// The ID of the user creating the virtual key. Changing this forces a new virtual key to be created.
+        /// The ID of the user who created the virtual key.
         /// </summary>
         [Output("userId")]
         public Output<string> UserId { get; private set; } = null!;
@@ -168,7 +170,7 @@ namespace Pulumi.Fastly
     public sealed class AiRuntimeControlVirtualKeyArgs : global::Pulumi.ResourceArgs
     {
         /// <summary>
-        /// The expiration timestamp of the virtual key, in RFC 3339 format. Once set, this value cannot be unset, only changed.
+        /// The date and time the virtual key expires, in RFC 3339 format. Once set, this value cannot be unset, only changed.
         /// </summary>
         [Input("expiresAt")]
         public Input<string>? ExpiresAt { get; set; }
@@ -180,7 +182,7 @@ namespace Pulumi.Fastly
         public Input<string> Model { get; set; } = null!;
 
         /// <summary>
-        /// A human-readable name for the virtual key.
+        /// The display name of the virtual key.
         /// </summary>
         [Input("name")]
         public Input<string>? Name { get; set; }
@@ -190,12 +192,6 @@ namespace Pulumi.Fastly
         /// </summary>
         [Input("providerName", required: true)]
         public Input<string> ProviderName { get; set; } = null!;
-
-        /// <summary>
-        /// The ID of the user creating the virtual key. Changing this forces a new virtual key to be created.
-        /// </summary>
-        [Input("userId", required: true)]
-        public Input<string> UserId { get; set; } = null!;
 
         public AiRuntimeControlVirtualKeyArgs()
         {
@@ -209,7 +205,7 @@ namespace Pulumi.Fastly
         private Input<string>? _accessToken;
 
         /// <summary>
-        /// The generated access token used to authenticate as this virtual key. Only returned by the API when the key is created.
+        /// The access token for this virtual key. Only returned by the API when the key is created, and cannot be retrieved again afterward.
         /// </summary>
         public Input<string>? AccessToken
         {
@@ -234,13 +230,13 @@ namespace Pulumi.Fastly
         public Input<string>? CreatedBy { get; set; }
 
         /// <summary>
-        /// The expiration timestamp of the virtual key, in RFC 3339 format. Once set, this value cannot be unset, only changed.
+        /// The date and time the virtual key expires, in RFC 3339 format. Once set, this value cannot be unset, only changed.
         /// </summary>
         [Input("expiresAt")]
         public Input<string>? ExpiresAt { get; set; }
 
         /// <summary>
-        /// Timestamp (UTC) of when the virtual key was last used.
+        /// Timestamp (UTC) of when the virtual key was last used to make a request.
         /// </summary>
         [Input("lastUsedAt")]
         public Input<string>? LastUsedAt { get; set; }
@@ -252,7 +248,7 @@ namespace Pulumi.Fastly
         public Input<string>? Model { get; set; }
 
         /// <summary>
-        /// A human-readable name for the virtual key.
+        /// The display name of the virtual key.
         /// </summary>
         [Input("name")]
         public Input<string>? Name { get; set; }
@@ -264,7 +260,7 @@ namespace Pulumi.Fastly
         public Input<string>? ProviderName { get; set; }
 
         /// <summary>
-        /// The type of the virtual key.
+        /// The type of the resource.
         /// </summary>
         [Input("type")]
         public Input<string>? Type { get; set; }
@@ -276,7 +272,7 @@ namespace Pulumi.Fastly
         public Input<string>? UpdatedAt { get; set; }
 
         /// <summary>
-        /// The ID of the user creating the virtual key. Changing this forces a new virtual key to be created.
+        /// The ID of the user who created the virtual key.
         /// </summary>
         [Input("userId")]
         public Input<string>? UserId { get; set; }

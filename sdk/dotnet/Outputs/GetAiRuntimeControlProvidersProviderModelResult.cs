@@ -14,7 +14,7 @@ namespace Pulumi.Fastly.Outputs
     public sealed class GetAiRuntimeControlProvidersProviderModelResult
     {
         /// <summary>
-        /// The human-readable model name, e.g. `Claude Sonnet 4`.
+        /// The human-readable name of the model, e.g. `Claude Sonnet 4`.
         /// </summary>
         public readonly string DisplayName;
         /// <summary>

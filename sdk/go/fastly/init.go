@@ -7,7 +7,7 @@ import (
 	"fmt"
 
 	"github.com/blang/semver"
-	"github.com/pulumi/pulumi-fastly/sdk/v12/go/fastly/internal"
+	"github.com/pulumi/pulumi-fastly/sdk/v13/go/fastly/internal"
 	"github.com/pulumi/pulumi/sdk/v3/go/pulumi"
 )
 
@@ -33,6 +33,12 @@ func (m *module) Construct(ctx *pulumi.Context, name, typ, urn string) (r pulumi
 		r = &ApiSecurityOperationTag{}
 	case "fastly:index/auditLogEventMapping:AuditLogEventMapping":
 		r = &AuditLogEventMapping{}
+	case "fastly:index/botManagementBot:BotManagementBot":
+		r = &BotManagementBot{}
+	case "fastly:index/botManagementCategory:BotManagementCategory":
+		r = &BotManagementCategory{}
+	case "fastly:index/botManagementWorkspace:BotManagementWorkspace":
+		r = &BotManagementWorkspace{}
 	case "fastly:index/computeAcl:ComputeAcl":
 		r = &ComputeAcl{}
 	case "fastly:index/computeAclEntries:ComputeAclEntries":
@@ -190,6 +196,21 @@ func init() {
 	pulumi.RegisterResourceModule(
 		"fastly",
 		"index/auditLogEventMapping",
+		&module{version},
+	)
+	pulumi.RegisterResourceModule(
+		"fastly",
+		"index/botManagementBot",
+		&module{version},
+	)
+	pulumi.RegisterResourceModule(
+		"fastly",
+		"index/botManagementCategory",
+		&module{version},
+	)
+	pulumi.RegisterResourceModule(
+		"fastly",
+		"index/botManagementWorkspace",
 		&module{version},
 	)
 	pulumi.RegisterResourceModule(

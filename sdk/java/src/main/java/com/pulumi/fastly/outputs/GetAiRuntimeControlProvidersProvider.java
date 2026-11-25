@@ -18,7 +18,7 @@ public final class GetAiRuntimeControlProvidersProvider {
      */
     private String defaultBaseUrl;
     /**
-     * @return The human-readable provider name, e.g. `Anthropic`.
+     * @return The human-readable name of the provider, e.g. `Anthropic`.
      * 
      */
     private String displayName;
@@ -28,7 +28,7 @@ public final class GetAiRuntimeControlProvidersProvider {
      */
     private String id;
     /**
-     * @return The models available for the provider.
+     * @return The models available from this provider.
      * 
      */
     private List<GetAiRuntimeControlProvidersProviderModel> models;
@@ -42,7 +42,7 @@ public final class GetAiRuntimeControlProvidersProvider {
         return this.defaultBaseUrl;
     }
     /**
-     * @return The human-readable provider name, e.g. `Anthropic`.
+     * @return The human-readable name of the provider, e.g. `Anthropic`.
      * 
      */
     public String displayName() {
@@ -56,7 +56,7 @@ public final class GetAiRuntimeControlProvidersProvider {
         return this.id;
     }
     /**
-     * @return The models available for the provider.
+     * @return The models available from this provider.
      * 
      */
     public List<GetAiRuntimeControlProvidersProviderModel> models() {

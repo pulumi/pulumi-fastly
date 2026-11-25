@@ -17,9 +17,6 @@ import * as utilities from "./utilities";
  *
  * const exampleServiceVcl = new fastly.ServiceVcl("example", {
  *     name: "Example Service",
- *     domains: [{
- *         name: "example.com",
- *     }],
  *     dictionaries: [
  *         {
  *             name: "example_1",
@@ -96,9 +93,6 @@ export interface GetDictionariesResult {
  *
  * const exampleServiceVcl = new fastly.ServiceVcl("example", {
  *     name: "Example Service",
- *     domains: [{
- *         name: "example.com",
- *     }],
  *     dictionaries: [
  *         {
  *             name: "example_1",

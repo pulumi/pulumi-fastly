@@ -21,6 +21,7 @@ import com.pulumi.fastly.outputs.ServiceComputeLoggingCloudfile;
 import com.pulumi.fastly.outputs.ServiceComputeLoggingDatadog;
 import com.pulumi.fastly.outputs.ServiceComputeLoggingDigitalocean;
 import com.pulumi.fastly.outputs.ServiceComputeLoggingElasticsearch;
+import com.pulumi.fastly.outputs.ServiceComputeLoggingFo;
 import com.pulumi.fastly.outputs.ServiceComputeLoggingFtp;
 import com.pulumi.fastly.outputs.ServiceComputeLoggingGc;
 import com.pulumi.fastly.outputs.ServiceComputeLoggingGooglepubsub;
@@ -57,6 +58,8 @@ import javax.annotation.Nullable;
  * Provides a Fastly Compute service. Compute is a computation platform capable of running custom binaries that you compile on your own systems and upload to Fastly. Security and portability is provided by compiling your code to [WebAssembly](https://webassembly.org/) using the `wasm32-wasi` target. A compute service encompasses Domains and Backends.
  * 
  * The Service resource requires a domain name that is correctly set up to direct traffic to the Fastly service. See Fastly&#39;s guide on [Adding CNAME Records](https://docs.fastly.com/en/guides/adding-cname-records) on their documentation site for guidance.
+ * 
+ * &gt; **Note:** The nested `domain` block uses classic domains, which are only available to accounts created before 2025-09-16. Use the versionless `fastly.Domain` resource to attach domains to a service, as in the examples below.
  * 
  * &gt; **Note:** If you omit the `package` block, you must set `activate = false` to avoid service validation errors.
  * 
@@ -103,8 +106,9 @@ import javax.annotation.Nullable;
  * import com.pulumi.fastly.inputs.GetPackageHashArgs;
  * import com.pulumi.fastly.ServiceCompute;
  * import com.pulumi.fastly.ServiceComputeArgs;
- * import com.pulumi.fastly.inputs.ServiceComputeDomainArgs;
  * import com.pulumi.fastly.inputs.ServiceComputePackageArgs;
+ * import com.pulumi.fastly.Domain;
+ * import com.pulumi.fastly.DomainArgs;
  * import java.util.ArrayList;
  * import java.util.Arrays;
  * import java.util.Map;
@@ -124,15 +128,17 @@ import javax.annotation.Nullable;
  * 
  *         var exampleServiceCompute = new ServiceCompute("exampleServiceCompute", ServiceComputeArgs.builder()
  *             .name("demofastly")
- *             .domains(ServiceComputeDomainArgs.builder()
- *                 .name("demo.notexample.com")
- *                 .comment("demo")
- *                 .build())
  *             .package_(ServiceComputePackageArgs.builder()
  *                 .filename("package.tar.gz")
  *                 .sourceCodeHash(example.hash())
  *                 .build())
  *             .forceDestroy(true)
+ *             .build());
+ * 
+ *         var exampleDomain = new Domain("exampleDomain", DomainArgs.builder()
+ *             .fqdn("demo.notexample.com")
+ *             .description("demo")
+ *             .serviceId(exampleServiceCompute.id())
  *             .build());
  * 
  *     }
@@ -241,14 +247,14 @@ public class ServiceCompute extends com.pulumi.resources.CustomResource {
         return Codegen.optional(this.dictionaries);
     }
     /**
-     * A set of Domain names to serve as entry points for your Service
+     * A set of Domain names to serve as entry points for your Service. Classic domains are only available to accounts created before 2025-09-16; for newer accounts use the versionless `fastly.Domain` resource instead.
      * 
      */
     @Export(name="domains", refs={List.class,ServiceComputeDomain.class}, tree="[0,1]")
     private Output</* @Nullable */ List<ServiceComputeDomain>> domains;
 
     /**
-     * @return A set of Domain names to serve as entry points for your Service
+     * @return A set of Domain names to serve as entry points for your Service. Classic domains are only available to accounts created before 2025-09-16; for newer accounts use the versionless `fastly.Domain` resource instead.
      * 
      */
     public Output<Optional<List<ServiceComputeDomain>>> domains() {
@@ -343,6 +349,12 @@ public class ServiceCompute extends com.pulumi.resources.CustomResource {
 
     public Output<Optional<List<ServiceComputeLoggingElasticsearch>>> loggingElasticsearches() {
         return Codegen.optional(this.loggingElasticsearches);
+    }
+    @Export(name="loggingFos", refs={List.class,ServiceComputeLoggingFo.class}, tree="[0,1]")
+    private Output</* @Nullable */ List<ServiceComputeLoggingFo>> loggingFos;
+
+    public Output<Optional<List<ServiceComputeLoggingFo>>> loggingFos() {
+        return Codegen.optional(this.loggingFos);
     }
     @Export(name="loggingFtps", refs={List.class,ServiceComputeLoggingFtp.class}, tree="[0,1]")
     private Output</* @Nullable */ List<ServiceComputeLoggingFtp>> loggingFtps;

@@ -14,7 +14,7 @@ namespace Pulumi.Fastly.Outputs
     public sealed class GetAiRuntimeControlProviderConnectionsProviderConnectionResult
     {
         /// <summary>
-        /// The base URL for the provider's API.
+        /// The base URL of the provider's API.
         /// </summary>
         public readonly string BaseUrl;
         /// <summary>
@@ -26,15 +26,15 @@ namespace Pulumi.Fastly.Outputs
         /// </summary>
         public readonly string Id;
         /// <summary>
-        /// The allowed AI model identifiers.
+        /// The AI model identifiers this provider connection is allowed to use.
         /// </summary>
         public readonly ImmutableArray<string> Models;
         /// <summary>
-        /// The human-readable name of the provider.
+        /// The display name of the provider connection.
         /// </summary>
         public readonly string Name;
         /// <summary>
-        /// A hash representing the API key used to create the provider connection.
+        /// An opaque identifier for the secret material backing this provider connection. Not the secret itself.
         /// </summary>
         public readonly string SecretId;
         /// <summary>

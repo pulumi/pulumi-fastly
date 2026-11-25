@@ -8,7 +8,7 @@ import (
 	"reflect"
 
 	"errors"
-	"github.com/pulumi/pulumi-fastly/sdk/v12/go/fastly/internal"
+	"github.com/pulumi/pulumi-fastly/sdk/v13/go/fastly/internal"
 	"github.com/pulumi/pulumi/sdk/v3/go/pulumi"
 )
 
@@ -31,7 +31,7 @@ import (
 //
 // import (
 //
-//	"github.com/pulumi/pulumi-fastly/sdk/v12/go/fastly"
+//	"github.com/pulumi/pulumi-fastly/sdk/v13/go/fastly"
 //	"github.com/pulumi/pulumi/sdk/v3/go/pulumi"
 //
 // )
@@ -64,11 +64,6 @@ import (
 //			}
 //			_, err = fastly.NewServiceCompute(ctx, "example", &fastly.ServiceComputeArgs{
 //				Name: pulumi.String("my_compute_service"),
-//				Domains: fastly.ServiceComputeDomainArray{
-//					&fastly.ServiceComputeDomainArgs{
-//						Name: pulumi.String("demo.example.com"),
-//					},
-//				},
 //				Package: &fastly.ServiceComputePackageArgs{
 //					Filename:       pulumi.String("package.tar.gz"),
 //					SourceCodeHash: pulumi.String(example.Hash),
@@ -97,7 +92,7 @@ import (
 //
 // import (
 //
-//	"github.com/pulumi/pulumi-fastly/sdk/v12/go/fastly"
+//	"github.com/pulumi/pulumi-fastly/sdk/v13/go/fastly"
 //	"github.com/pulumi/pulumi/sdk/v3/go/pulumi"
 //
 // )
@@ -131,11 +126,6 @@ import (
 //			}
 //			_, err = fastly.NewServiceCompute(ctx, "example", &fastly.ServiceComputeArgs{
 //				Name: pulumi.String("my_compute_service"),
-//				Domains: fastly.ServiceComputeDomainArray{
-//					&fastly.ServiceComputeDomainArgs{
-//						Name: pulumi.String("demo.example.com"),
-//					},
-//				},
 //				Package: &fastly.ServiceComputePackageArgs{
 //					Filename:       pulumi.String("package.tar.gz"),
 //					SourceCodeHash: pulumi.String(example.Hash),

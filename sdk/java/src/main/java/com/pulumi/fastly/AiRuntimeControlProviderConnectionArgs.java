@@ -18,14 +18,14 @@ public final class AiRuntimeControlProviderConnectionArgs extends com.pulumi.res
     public static final AiRuntimeControlProviderConnectionArgs Empty = new AiRuntimeControlProviderConnectionArgs();
 
     /**
-     * The provider&#39;s secret key used for authentication. Never returned by the API, so it cannot be reconciled with the remote state.
+     * The provider&#39;s secret API key. Never returned by the API, so it cannot be reconciled with the remote state.
      * 
      */
     @Import(name="apiKey", required=true)
     private Output<String> apiKey;
 
     /**
-     * @return The provider&#39;s secret key used for authentication. Never returned by the API, so it cannot be reconciled with the remote state.
+     * @return The provider&#39;s secret API key. Never returned by the API, so it cannot be reconciled with the remote state.
      * 
      */
     public Output<String> apiKey() {
@@ -33,14 +33,14 @@ public final class AiRuntimeControlProviderConnectionArgs extends com.pulumi.res
     }
 
     /**
-     * The base URL for the provider&#39;s API, e.g. `https://api.openai.com`. Must not include a `/v1` suffix, which the API appends automatically. Trailing slashes are stripped.
+     * The base URL of the provider&#39;s API, e.g. `https://api.openai.com`. Must be an absolute http or https URL, and must not include a `/v1` suffix, which the API appends automatically. Trailing slashes are stripped.
      * 
      */
     @Import(name="baseUrl", required=true)
     private Output<String> baseUrl;
 
     /**
-     * @return The base URL for the provider&#39;s API, e.g. `https://api.openai.com`. Must not include a `/v1` suffix, which the API appends automatically. Trailing slashes are stripped.
+     * @return The base URL of the provider&#39;s API, e.g. `https://api.openai.com`. Must be an absolute http or https URL, and must not include a `/v1` suffix, which the API appends automatically. Trailing slashes are stripped.
      * 
      */
     public Output<String> baseUrl() {
@@ -48,14 +48,14 @@ public final class AiRuntimeControlProviderConnectionArgs extends com.pulumi.res
     }
 
     /**
-     * The set of allowed AI model identifiers, e.g. `[&#34;gpt-4o&#34;, &#34;gpt-4o-mini&#34;]`.
+     * The set of AI model identifiers this provider connection is allowed to use, e.g. `[&#34;gpt-4o&#34;, &#34;gpt-4o-mini&#34;]`.
      * 
      */
     @Import(name="models", required=true)
     private Output<List<String>> models;
 
     /**
-     * @return The set of allowed AI model identifiers, e.g. `[&#34;gpt-4o&#34;, &#34;gpt-4o-mini&#34;]`.
+     * @return The set of AI model identifiers this provider connection is allowed to use, e.g. `[&#34;gpt-4o&#34;, &#34;gpt-4o-mini&#34;]`.
      * 
      */
     public Output<List<String>> models() {
@@ -63,14 +63,14 @@ public final class AiRuntimeControlProviderConnectionArgs extends com.pulumi.res
     }
 
     /**
-     * A human-readable name for the provider. Changing this forces a new provider connection to be created.
+     * The display name of the provider connection. Changing this forces a new provider connection to be created.
      * 
      */
     @Import(name="name")
     private @Nullable Output<String> name;
 
     /**
-     * @return A human-readable name for the provider. Changing this forces a new provider connection to be created.
+     * @return The display name of the provider connection. Changing this forces a new provider connection to be created.
      * 
      */
     public Optional<Output<String>> name() {
@@ -105,7 +105,7 @@ public final class AiRuntimeControlProviderConnectionArgs extends com.pulumi.res
         }
 
         /**
-         * @param apiKey The provider&#39;s secret key used for authentication. Never returned by the API, so it cannot be reconciled with the remote state.
+         * @param apiKey The provider&#39;s secret API key. Never returned by the API, so it cannot be reconciled with the remote state.
          * 
          * @return builder
          * 
@@ -116,7 +116,7 @@ public final class AiRuntimeControlProviderConnectionArgs extends com.pulumi.res
         }
 
         /**
-         * @param apiKey The provider&#39;s secret key used for authentication. Never returned by the API, so it cannot be reconciled with the remote state.
+         * @param apiKey The provider&#39;s secret API key. Never returned by the API, so it cannot be reconciled with the remote state.
          * 
          * @return builder
          * 
@@ -126,7 +126,7 @@ public final class AiRuntimeControlProviderConnectionArgs extends com.pulumi.res
         }
 
         /**
-         * @param baseUrl The base URL for the provider&#39;s API, e.g. `https://api.openai.com`. Must not include a `/v1` suffix, which the API appends automatically. Trailing slashes are stripped.
+         * @param baseUrl The base URL of the provider&#39;s API, e.g. `https://api.openai.com`. Must be an absolute http or https URL, and must not include a `/v1` suffix, which the API appends automatically. Trailing slashes are stripped.
          * 
          * @return builder
          * 
@@ -137,7 +137,7 @@ public final class AiRuntimeControlProviderConnectionArgs extends com.pulumi.res
         }
 
         /**
-         * @param baseUrl The base URL for the provider&#39;s API, e.g. `https://api.openai.com`. Must not include a `/v1` suffix, which the API appends automatically. Trailing slashes are stripped.
+         * @param baseUrl The base URL of the provider&#39;s API, e.g. `https://api.openai.com`. Must be an absolute http or https URL, and must not include a `/v1` suffix, which the API appends automatically. Trailing slashes are stripped.
          * 
          * @return builder
          * 
@@ -147,7 +147,7 @@ public final class AiRuntimeControlProviderConnectionArgs extends com.pulumi.res
         }
 
         /**
-         * @param models The set of allowed AI model identifiers, e.g. `[&#34;gpt-4o&#34;, &#34;gpt-4o-mini&#34;]`.
+         * @param models The set of AI model identifiers this provider connection is allowed to use, e.g. `[&#34;gpt-4o&#34;, &#34;gpt-4o-mini&#34;]`.
          * 
          * @return builder
          * 
@@ -158,7 +158,7 @@ public final class AiRuntimeControlProviderConnectionArgs extends com.pulumi.res
         }
 
         /**
-         * @param models The set of allowed AI model identifiers, e.g. `[&#34;gpt-4o&#34;, &#34;gpt-4o-mini&#34;]`.
+         * @param models The set of AI model identifiers this provider connection is allowed to use, e.g. `[&#34;gpt-4o&#34;, &#34;gpt-4o-mini&#34;]`.
          * 
          * @return builder
          * 
@@ -168,7 +168,7 @@ public final class AiRuntimeControlProviderConnectionArgs extends com.pulumi.res
         }
 
         /**
-         * @param models The set of allowed AI model identifiers, e.g. `[&#34;gpt-4o&#34;, &#34;gpt-4o-mini&#34;]`.
+         * @param models The set of AI model identifiers this provider connection is allowed to use, e.g. `[&#34;gpt-4o&#34;, &#34;gpt-4o-mini&#34;]`.
          * 
          * @return builder
          * 
@@ -178,7 +178,7 @@ public final class AiRuntimeControlProviderConnectionArgs extends com.pulumi.res
         }
 
         /**
-         * @param name A human-readable name for the provider. Changing this forces a new provider connection to be created.
+         * @param name The display name of the provider connection. Changing this forces a new provider connection to be created.
          * 
          * @return builder
          * 
@@ -189,7 +189,7 @@ public final class AiRuntimeControlProviderConnectionArgs extends com.pulumi.res
         }
 
         /**
-         * @param name A human-readable name for the provider. Changing this forces a new provider connection to be created.
+         * @param name The display name of the provider connection. Changing this forces a new provider connection to be created.
          * 
          * @return builder
          * 

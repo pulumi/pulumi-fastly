@@ -19,9 +19,6 @@ import * as utilities from "./utilities";
  *
  * const exampleServiceVcl = new fastly.ServiceVcl("example", {
  *     name: "Example Service",
- *     domains: [{
- *         name: "example.com",
- *     }],
  *     forceDestroy: true,
  * });
  * const example = fastly.getVclSnippetsOutput({
@@ -89,9 +86,6 @@ export interface GetVclSnippetsResult {
  *
  * const exampleServiceVcl = new fastly.ServiceVcl("example", {
  *     name: "Example Service",
- *     domains: [{
- *         name: "example.com",
- *     }],
  *     forceDestroy: true,
  * });
  * const example = fastly.getVclSnippetsOutput({
