@@ -24,6 +24,9 @@
                                 },
                                 "origins": {
                                     "maxItemsOne": false
+                                },
+                                "services": {
+                                    "maxItemsOne": false
                                 }
                             }
                         }
@@ -60,6 +63,15 @@
                         "maxItemsOne": false
                     }
                 }
+            },
+            "fastly_bot_management_bot": {
+                "current": "fastly:index/botManagementBot:BotManagementBot"
+            },
+            "fastly_bot_management_category": {
+                "current": "fastly:index/botManagementCategory:BotManagementCategory"
+            },
+            "fastly_bot_management_workspace": {
+                "current": "fastly:index/botManagementWorkspace:BotManagementWorkspace"
             },
             "fastly_compute_acl": {
                 "current": "fastly:index/computeAcl:ComputeAcl"
@@ -404,6 +416,9 @@
                     "logging_elasticsearch": {
                         "maxItemsOne": false
                     },
+                    "logging_fos": {
+                        "maxItemsOne": false
+                    },
                     "logging_ftp": {
                         "maxItemsOne": false
                     },
@@ -579,6 +594,9 @@
                         "maxItemsOne": false
                     },
                     "logging_elasticsearch": {
+                        "maxItemsOne": false
+                    },
+                    "logging_fos": {
                         "maxItemsOne": false
                     },
                     "logging_ftp": {
@@ -843,6 +861,30 @@
                         "maxItemsOne": false
                     },
                     "scope_ids": {
+                        "maxItemsOne": false
+                    }
+                }
+            },
+            "fastly_bot_management_bots": {
+                "current": "fastly:index/getBotManagementBots:getBotManagementBots",
+                "fields": {
+                    "bots": {
+                        "maxItemsOne": false
+                    }
+                }
+            },
+            "fastly_bot_management_categories": {
+                "current": "fastly:index/getBotManagementCategories:getBotManagementCategories",
+                "fields": {
+                    "categories": {
+                        "maxItemsOne": false
+                    }
+                }
+            },
+            "fastly_bot_management_workspace": {
+                "current": "fastly:index/getBotManagementWorkspace:getBotManagementWorkspace",
+                "fields": {
+                    "services": {
                         "maxItemsOne": false
                     }
                 }
