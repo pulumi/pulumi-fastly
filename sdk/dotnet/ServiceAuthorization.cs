@@ -29,14 +29,6 @@ namespace Pulumi.Fastly
     ///     var demo = new Fastly.ServiceVcl("demo", new()
     ///     {
     ///         Name = "demofastly",
-    ///         Domains = new[]
-    ///         {
-    ///             new Fastly.Inputs.ServiceVclDomainArgs
-    ///             {
-    ///                 Name = "demo.notexample.com",
-    ///                 Comment = "demo",
-    ///             },
-    ///         },
     ///     });
     /// 
     ///     var user = new Fastly.User("user", new()

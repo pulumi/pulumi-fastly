@@ -17,13 +17,7 @@ import * as utilities from "./utilities";
  * import * as pulumi from "@pulumi/pulumi";
  * import * as fastly from "@pulumi/fastly";
  *
- * const demo = new fastly.ServiceVcl("demo", {
- *     name: "demofastly",
- *     domains: [{
- *         name: "demo.notexample.com",
- *         comment: "demo",
- *     }],
- * });
+ * const demo = new fastly.ServiceVcl("demo", {name: "demofastly"});
  * const user = new fastly.User("user", {
  *     login: "demo@example.com",
  *     name: "Demo User",

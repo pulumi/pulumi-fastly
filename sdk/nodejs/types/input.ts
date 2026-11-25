@@ -7,13 +7,17 @@ import * as outputs from "../types/output";
 
 export interface AlertDimensions {
     /**
-     * Names of a subset of domains that the alert monitors.
+     * Names of a subset of domains that the alert monitors, or empty array `[]` to monitor all domains.
      */
     domains?: pulumi.Input<pulumi.Input<string>[] | undefined>;
     /**
-     * Addresses of a subset of backends that the alert monitors.
+     * Addresses of a subset of backends that the alert monitors, or empty array `[]` to monitor all origins.
      */
     origins?: pulumi.Input<pulumi.Input<string>[] | undefined>;
+    /**
+     * List of service IDs to monitor individually, or empty array `[]` to monitor all services.
+     */
+    services?: pulumi.Input<pulumi.Input<string>[] | undefined>;
 }
 
 export interface AlertEvaluationStrategy {
@@ -1042,6 +1046,53 @@ export interface ServiceComputeLoggingElasticsearch {
     user?: pulumi.Input<string | undefined>;
 }
 
+export interface ServiceComputeLoggingFo {
+    /**
+     * The name of the Fastly Object Storage bucket in which to store the logs
+     */
+    bucketName: pulumi.Input<string>;
+    /**
+     * The codec used for compression of your logs. Valid values are zstd, snappy, and gzip. If the specified codec is "gzip", gzipLevel will default to 3. To specify a different level, leave compressionCodec blank and explicitly set the level using gzip_level. Specifying both compressionCodec and gzipLevel in the same API request will result in an error.
+     */
+    compressionCodec?: pulumi.Input<string | undefined>;
+    /**
+     * Maximum size of an uploaded log file, if non-zero. The minimum value is 1048576 bytes (1 MiB).
+     */
+    fileMaxBytes?: pulumi.Input<number | undefined>;
+    /**
+     * Level of Gzip compression from `0-9`. `0` means no compression. `1` is the fastest and the least compressed version, `9` is the slowest and the most compressed version. Default `0`
+     */
+    gzipLevel?: pulumi.Input<number | undefined>;
+    /**
+     * How the message should be formatted. Can be either `classic`, `loggly`, `logplex` or `blank`. Default is `classic`
+     */
+    messageType?: pulumi.Input<string | undefined>;
+    /**
+     * The unique name of the Fastly Object Storage logging endpoint. It is important to note that changing this attribute will delete and recreate the resource
+     */
+    name: pulumi.Input<string>;
+    /**
+     * Path to store the files. Must end with a trailing slash. If this field is left empty, the files will be saved in the bucket's root path
+     */
+    path?: pulumi.Input<string | undefined>;
+    /**
+     * How frequently the logs should be transferred, in seconds. Default `3600`
+     */
+    period?: pulumi.Input<number | undefined>;
+    /**
+     * A PGP public key that Fastly will use to encrypt your log files before writing them to disk
+     */
+    publicKey?: pulumi.Input<string | undefined>;
+    /**
+     * The region of the Fastly Object Storage bucket (e.g. `us-east`)
+     */
+    region: pulumi.Input<string>;
+    /**
+     * The `strftime` specified timestamp formatting (default `%Y-%m-%dT%H:%M:%S.000`)
+     */
+    timestampFormat?: pulumi.Input<string | undefined>;
+}
+
 export interface ServiceComputeLoggingFtp {
     /**
      * The FTP address to stream logs to
@@ -1138,6 +1189,10 @@ export interface ServiceComputeLoggingGc {
      * The ID of your Google Cloud Platform project
      */
     projectId?: pulumi.Input<string | undefined>;
+    /**
+     * A PGP public key that Fastly will use to encrypt your log files before writing them to disk
+     */
+    publicKey?: pulumi.Input<string | undefined>;
     /**
      * The secret key associated with the target gcs bucket on your account. You may optionally provide this secret via an environment variable, `FASTLY_GCS_SECRET_KEY`. A typical format for the key is PEM format, containing actual newline characters where required
      */
@@ -2027,6 +2082,26 @@ export interface ServiceVclBackend {
      */
     healthcheck?: pulumi.Input<string | undefined>;
     /**
+     * If the backend is using IAM authentication and the IAM system policy requires a matching external identifier, it should match this value. Your Fastly customer ID will be used if this attribute is not set.
+     */
+    iamExternalId?: pulumi.Input<string | undefined>;
+    /**
+     * If the backend is using IAM authentication, the IAM signature will use this as the product element.
+     */
+    iamProduct?: pulumi.Input<string | undefined>;
+    /**
+     * If the backend is using IAM authentication, this region will be used for signing and access.
+     */
+    iamRegion?: pulumi.Input<string | undefined>;
+    /**
+     * If the backend is using IAM authentication, the fully qualified role string supplied by the storage vendor.
+     */
+    iamRole?: pulumi.Input<string | undefined>;
+    /**
+     * A label that identifies the storage vendor. Providing a value in this field enables IAM usage, and all other IAM fields depend on its value.
+     */
+    iamVendor?: pulumi.Input<string | undefined>;
+    /**
      * How long in seconds to keep a persistent connection to the backend between requests.
      */
     keepaliveTime?: pulumi.Input<number | undefined>;
@@ -2776,6 +2851,69 @@ export interface ServiceVclLoggingElasticsearch {
     user?: pulumi.Input<string | undefined>;
 }
 
+export interface ServiceVclLoggingFo {
+    /**
+     * The name of the Fastly Object Storage bucket in which to store the logs
+     */
+    bucketName: pulumi.Input<string>;
+    /**
+     * The codec used for compression of your logs. Valid values are zstd, snappy, and gzip. If the specified codec is "gzip", gzipLevel will default to 3. To specify a different level, leave compressionCodec blank and explicitly set the level using gzip_level. Specifying both compressionCodec and gzipLevel in the same API request will result in an error.
+     */
+    compressionCodec?: pulumi.Input<string | undefined>;
+    /**
+     * Maximum size of an uploaded log file, if non-zero. The minimum value is 1048576 bytes (1 MiB).
+     */
+    fileMaxBytes?: pulumi.Input<number | undefined>;
+    /**
+     * Apache-style string or VCL variables to use for log formatting.
+     */
+    format?: pulumi.Input<string | undefined>;
+    /**
+     * The version of the custom logging format used for the configured endpoint. Can be either 1 or 2. (Default: 2).
+     */
+    formatVersion?: pulumi.Input<number | undefined>;
+    /**
+     * Level of Gzip compression from `0-9`. `0` means no compression. `1` is the fastest and the least compressed version, `9` is the slowest and the most compressed version. Default `0`
+     */
+    gzipLevel?: pulumi.Input<number | undefined>;
+    /**
+     * How the message should be formatted. Can be either `classic`, `loggly`, `logplex` or `blank`. Default is `classic`
+     */
+    messageType?: pulumi.Input<string | undefined>;
+    /**
+     * The unique name of the Fastly Object Storage logging endpoint. It is important to note that changing this attribute will delete and recreate the resource
+     */
+    name: pulumi.Input<string>;
+    /**
+     * Path to store the files. Must end with a trailing slash. If this field is left empty, the files will be saved in the bucket's root path
+     */
+    path?: pulumi.Input<string | undefined>;
+    /**
+     * How frequently the logs should be transferred, in seconds. Default `3600`
+     */
+    period?: pulumi.Input<number | undefined>;
+    /**
+     * Where in the generated VCL the logging call should be placed.
+     */
+    placement?: pulumi.Input<string | undefined>;
+    /**
+     * A PGP public key that Fastly will use to encrypt your log files before writing them to disk
+     */
+    publicKey?: pulumi.Input<string | undefined>;
+    /**
+     * The region of the Fastly Object Storage bucket (e.g. `us-east`)
+     */
+    region: pulumi.Input<string>;
+    /**
+     * Name of blockAttributes condition to apply this logging.
+     */
+    responseCondition?: pulumi.Input<string | undefined>;
+    /**
+     * The `strftime` specified timestamp formatting (default `%Y-%m-%dT%H:%M:%S.000`)
+     */
+    timestampFormat?: pulumi.Input<string | undefined>;
+}
+
 export interface ServiceVclLoggingFtp {
     /**
      * The FTP address to stream logs to
@@ -2900,6 +3038,10 @@ export interface ServiceVclLoggingGc {
      * The ID of your Google Cloud Platform project
      */
     projectId?: pulumi.Input<string | undefined>;
+    /**
+     * A PGP public key that Fastly will use to encrypt your log files before writing them to disk
+     */
+    publicKey?: pulumi.Input<string | undefined>;
     /**
      * Name of a condition to apply this logging.
      */

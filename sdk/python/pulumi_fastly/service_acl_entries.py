@@ -197,10 +197,6 @@ class ServiceACLEntries(pulumi.CustomResource):
             myacl_name = "My ACL"
         myservice = fastly.ServiceVcl("myservice",
             name="demofastly",
-            domains=[{
-                "name": "demo.notexample.com",
-                "comment": "demo",
-            }],
             backends=[{
                 "address": "http-me.fastly.dev",
                 "name": "Glitch Test Site",
@@ -252,10 +248,6 @@ class ServiceACLEntries(pulumi.CustomResource):
         ]
         myservice = fastly.ServiceVcl("myservice",
             name="demofastly",
-            domains=[{
-                "name": "demo.notexample.com",
-                "comment": "demo",
-            }],
             backends=[{
                 "address": "1.2.3.4",
                 "name": "localhost",
@@ -312,10 +304,6 @@ class ServiceACLEntries(pulumi.CustomResource):
             myacl_name = "My ACL"
         myservice = fastly.ServiceVcl("myservice",
             name="demofastly",
-            domains=[{
-                "name": "demo.notexample.com",
-                "comment": "demo",
-            }],
             acls=[{
                 "name": myacl_name,
             }])
@@ -414,10 +402,6 @@ class ServiceACLEntries(pulumi.CustomResource):
             myacl_name = "My ACL"
         myservice = fastly.ServiceVcl("myservice",
             name="demofastly",
-            domains=[{
-                "name": "demo.notexample.com",
-                "comment": "demo",
-            }],
             backends=[{
                 "address": "http-me.fastly.dev",
                 "name": "Glitch Test Site",
@@ -469,10 +453,6 @@ class ServiceACLEntries(pulumi.CustomResource):
         ]
         myservice = fastly.ServiceVcl("myservice",
             name="demofastly",
-            domains=[{
-                "name": "demo.notexample.com",
-                "comment": "demo",
-            }],
             backends=[{
                 "address": "1.2.3.4",
                 "name": "localhost",
@@ -529,10 +509,6 @@ class ServiceACLEntries(pulumi.CustomResource):
             myacl_name = "My ACL"
         myservice = fastly.ServiceVcl("myservice",
             name="demofastly",
-            domains=[{
-                "name": "demo.notexample.com",
-                "comment": "demo",
-            }],
             acls=[{
                 "name": myacl_name,
             }])

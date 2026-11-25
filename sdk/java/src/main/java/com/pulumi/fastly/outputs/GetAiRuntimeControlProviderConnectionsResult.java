@@ -19,7 +19,7 @@ public final class GetAiRuntimeControlProviderConnectionsResult {
      */
     private String id;
     /**
-     * @return The provider connections configured for the customer.
+     * @return The provider connections configured for your customer account.
      * 
      */
     private List<GetAiRuntimeControlProviderConnectionsProviderConnection> providerConnections;
@@ -38,7 +38,7 @@ public final class GetAiRuntimeControlProviderConnectionsResult {
         return this.id;
     }
     /**
-     * @return The provider connections configured for the customer.
+     * @return The provider connections configured for your customer account.
      * 
      */
     public List<GetAiRuntimeControlProviderConnectionsProviderConnection> providerConnections() {

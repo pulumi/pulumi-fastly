@@ -72,6 +72,12 @@ namespace Pulumi.Fastly.Inputs
         [Input("projectId")]
         public Input<string>? ProjectId { get; set; }
 
+        /// <summary>
+        /// A PGP public key that Fastly will use to encrypt your log files before writing them to disk
+        /// </summary>
+        [Input("publicKey")]
+        public Input<string>? PublicKey { get; set; }
+
         [Input("secretKey")]
         private Input<string>? _secretKey;
 

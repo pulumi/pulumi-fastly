@@ -7,7 +7,7 @@ import (
 	"context"
 	"reflect"
 
-	"github.com/pulumi/pulumi-fastly/sdk/v12/go/fastly/internal"
+	"github.com/pulumi/pulumi-fastly/sdk/v13/go/fastly/internal"
 	"github.com/pulumi/pulumi/sdk/v3/go/pulumi"
 )
 
@@ -38,7 +38,7 @@ type GetAiRuntimeControlVirtualKeysArgs struct {
 	Model *string `pulumi:"model"`
 	// Filter the results by AI model provider name.
 	ProviderName *string `pulumi:"providerName"`
-	// Filter the results by a substring match on the virtual key name.
+	// Filter the results to virtual keys whose name contains this substring.
 	Search *string `pulumi:"search"`
 }
 
@@ -52,7 +52,7 @@ type GetAiRuntimeControlVirtualKeysResult struct {
 	Model *string `pulumi:"model"`
 	// Filter the results by AI model provider name.
 	ProviderName *string `pulumi:"providerName"`
-	// Filter the results by a substring match on the virtual key name.
+	// Filter the results to virtual keys whose name contains this substring.
 	Search *string `pulumi:"search"`
 	// The total number of virtual keys returned.
 	Total int `pulumi:"total"`
@@ -73,7 +73,7 @@ type GetAiRuntimeControlVirtualKeysOutputArgs struct {
 	Model pulumi.StringPtrInput `pulumi:"model"`
 	// Filter the results by AI model provider name.
 	ProviderName pulumi.StringPtrInput `pulumi:"providerName"`
-	// Filter the results by a substring match on the virtual key name.
+	// Filter the results to virtual keys whose name contains this substring.
 	Search pulumi.StringPtrInput `pulumi:"search"`
 }
 
@@ -116,7 +116,7 @@ func (o GetAiRuntimeControlVirtualKeysResultOutput) ProviderName() pulumi.String
 	return o.ApplyT(func(v GetAiRuntimeControlVirtualKeysResult) *string { return v.ProviderName }).(pulumi.StringPtrOutput)
 }
 
-// Filter the results by a substring match on the virtual key name.
+// Filter the results to virtual keys whose name contains this substring.
 func (o GetAiRuntimeControlVirtualKeysResultOutput) Search() pulumi.StringPtrOutput {
 	return o.ApplyT(func(v GetAiRuntimeControlVirtualKeysResult) *string { return v.Search }).(pulumi.StringPtrOutput)
 }

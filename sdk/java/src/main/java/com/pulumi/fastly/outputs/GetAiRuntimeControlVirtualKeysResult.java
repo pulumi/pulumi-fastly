@@ -37,7 +37,7 @@ public final class GetAiRuntimeControlVirtualKeysResult {
      */
     private @Nullable String providerName;
     /**
-     * @return Filter the results by a substring match on the virtual key name.
+     * @return Filter the results to virtual keys whose name contains this substring.
      * 
      */
     private @Nullable String search;
@@ -82,7 +82,7 @@ public final class GetAiRuntimeControlVirtualKeysResult {
         return Optional.ofNullable(this.providerName);
     }
     /**
-     * @return Filter the results by a substring match on the virtual key name.
+     * @return Filter the results to virtual keys whose name contains this substring.
      * 
      */
     public Optional<String> search() {

@@ -21,14 +21,15 @@ import * as utilities from "./utilities";
  *
  * const demo = new fastly.ServiceVcl("demo", {
  *     name: "my-service",
- *     domains: [{
- *         name: "example.com",
- *     }],
  *     backends: [{
  *         address: "127.0.0.1",
  *         name: "localhost",
  *     }],
  *     forceDestroy: true,
+ * });
+ * const demoDomain = new fastly.Domain("demo", {
+ *     fqdn: "example.com",
+ *     serviceId: demo.id,
  * });
  * const demoTlsPrivateKey = new fastly.TlsPrivateKey("demo", {
  *     keyPem: "...",
@@ -44,7 +45,7 @@ import * as utilities from "./utilities";
  *     certificateId: demoTlsCertificate.id,
  *     domain: "example.com",
  * }, {
- *     dependsOn: [demo],
+ *     dependsOn: [demoDomain],
  * });
  * ```
  *

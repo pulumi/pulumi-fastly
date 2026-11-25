@@ -35,14 +35,14 @@ public final class AlertArgs extends com.pulumi.resources.ResourceArgs {
     }
 
     /**
-     * More filters depending on the source type.
+     * Additional filters and aggregation criteria depending on the source type. For source type `stats`, use empty `{}` to monitor a single service or all services (aggregated), or include the `services` array to monitor all or a set of services (not aggregated). For source type `domains` or `origins`, the `domains` or `origins` array must be included to monitor all or a set (not aggregated).
      * 
      */
     @Import(name="dimensions")
     private @Nullable Output<AlertDimensionsArgs> dimensions;
 
     /**
-     * @return More filters depending on the source type.
+     * @return Additional filters and aggregation criteria depending on the source type. For source type `stats`, use empty `{}` to monitor a single service or all services (aggregated), or include the `services` array to monitor all or a set of services (not aggregated). For source type `domains` or `origins`, the `domains` or `origins` array must be included to monitor all or a set (not aggregated).
      * 
      */
     public Optional<Output<AlertDimensionsArgs>> dimensions() {
@@ -110,14 +110,14 @@ public final class AlertArgs extends com.pulumi.resources.ResourceArgs {
     }
 
     /**
-     * The service which the alert monitors. Optional when using `stats` as the `source`.
+     * The service to monitor. Can be a specific service ID to monitor a single service, or omit to monitor all services (aggregated) or all or a set of services (not aggregated) (see `dimensions` for details).
      * 
      */
     @Import(name="serviceId")
     private @Nullable Output<String> serviceId;
 
     /**
-     * @return The service which the alert monitors. Optional when using `stats` as the `source`.
+     * @return The service to monitor. Can be a specific service ID to monitor a single service, or omit to monitor all services (aggregated) or all or a set of services (not aggregated) (see `dimensions` for details).
      * 
      */
     public Optional<Output<String>> serviceId() {
@@ -192,7 +192,7 @@ public final class AlertArgs extends com.pulumi.resources.ResourceArgs {
         }
 
         /**
-         * @param dimensions More filters depending on the source type.
+         * @param dimensions Additional filters and aggregation criteria depending on the source type. For source type `stats`, use empty `{}` to monitor a single service or all services (aggregated), or include the `services` array to monitor all or a set of services (not aggregated). For source type `domains` or `origins`, the `domains` or `origins` array must be included to monitor all or a set (not aggregated).
          * 
          * @return builder
          * 
@@ -203,7 +203,7 @@ public final class AlertArgs extends com.pulumi.resources.ResourceArgs {
         }
 
         /**
-         * @param dimensions More filters depending on the source type.
+         * @param dimensions Additional filters and aggregation criteria depending on the source type. For source type `stats`, use empty `{}` to monitor a single service or all services (aggregated), or include the `services` array to monitor all or a set of services (not aggregated). For source type `domains` or `origins`, the `domains` or `origins` array must be included to monitor all or a set (not aggregated).
          * 
          * @return builder
          * 
@@ -307,7 +307,7 @@ public final class AlertArgs extends com.pulumi.resources.ResourceArgs {
         }
 
         /**
-         * @param serviceId The service which the alert monitors. Optional when using `stats` as the `source`.
+         * @param serviceId The service to monitor. Can be a specific service ID to monitor a single service, or omit to monitor all services (aggregated) or all or a set of services (not aggregated) (see `dimensions` for details).
          * 
          * @return builder
          * 
@@ -318,7 +318,7 @@ public final class AlertArgs extends com.pulumi.resources.ResourceArgs {
         }
 
         /**
-         * @param serviceId The service which the alert monitors. Optional when using `stats` as the `source`.
+         * @param serviceId The service to monitor. Can be a specific service ID to monitor a single service, or omit to monitor all services (aggregated) or all or a set of services (not aggregated) (see `dimensions` for details).
          * 
          * @return builder
          * 

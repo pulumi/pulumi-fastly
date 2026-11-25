@@ -18,7 +18,7 @@ namespace Pulumi.Fastly.Outputs
         /// </summary>
         public readonly string DefaultBaseUrl;
         /// <summary>
-        /// The human-readable provider name, e.g. `Anthropic`.
+        /// The human-readable name of the provider, e.g. `Anthropic`.
         /// </summary>
         public readonly string DisplayName;
         /// <summary>
@@ -26,7 +26,7 @@ namespace Pulumi.Fastly.Outputs
         /// </summary>
         public readonly string Id;
         /// <summary>
-        /// The models available for the provider.
+        /// The models available from this provider.
         /// </summary>
         public readonly ImmutableArray<Outputs.GetAiRuntimeControlProvidersProviderModelResult> Models;
 

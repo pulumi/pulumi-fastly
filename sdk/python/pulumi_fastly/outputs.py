@@ -59,6 +59,7 @@ __all__ = [
     'ServiceComputeLoggingDatadog',
     'ServiceComputeLoggingDigitalocean',
     'ServiceComputeLoggingElasticsearch',
+    'ServiceComputeLoggingFo',
     'ServiceComputeLoggingFtp',
     'ServiceComputeLoggingGc',
     'ServiceComputeLoggingGooglepubsub',
@@ -105,6 +106,7 @@ __all__ = [
     'ServiceVclLoggingDatadog',
     'ServiceVclLoggingDigitalocean',
     'ServiceVclLoggingElasticsearch',
+    'ServiceVclLoggingFo',
     'ServiceVclLoggingFtp',
     'ServiceVclLoggingGc',
     'ServiceVclLoggingGooglepubsub',
@@ -146,6 +148,8 @@ __all__ = [
     'GetApiSecurityDiscoveredOperationsOperationResult',
     'GetApiSecurityOperationTagsTagResult',
     'GetApiSecurityOperationsOperationResult',
+    'GetBotManagementBotsBotResult',
+    'GetBotManagementCategoriesCategoryResult',
     'GetComputeAclsAclResult',
     'GetConfigstoresStoreResult',
     'GetDatacentersPopResult',
@@ -184,21 +188,25 @@ __all__ = [
 class AlertDimensions(dict):
     def __init__(__self__, *,
                  domains: Optional[Sequence[_builtins.str]] = None,
-                 origins: Optional[Sequence[_builtins.str]] = None):
+                 origins: Optional[Sequence[_builtins.str]] = None,
+                 services: Optional[Sequence[_builtins.str]] = None):
         """
-        :param Sequence[_builtins.str] domains: Names of a subset of domains that the alert monitors.
-        :param Sequence[_builtins.str] origins: Addresses of a subset of backends that the alert monitors.
+        :param Sequence[_builtins.str] domains: Names of a subset of domains that the alert monitors, or empty array `[]` to monitor all domains.
+        :param Sequence[_builtins.str] origins: Addresses of a subset of backends that the alert monitors, or empty array `[]` to monitor all origins.
+        :param Sequence[_builtins.str] services: List of service IDs to monitor individually, or empty array `[]` to monitor all services.
         """
         if domains is not None:
             pulumi.set(__self__, "domains", domains)
         if origins is not None:
             pulumi.set(__self__, "origins", origins)
+        if services is not None:
+            pulumi.set(__self__, "services", services)
 
     @_builtins.property
     @pulumi.getter
     def domains(self) -> Optional[Sequence[_builtins.str]]:
         """
-        Names of a subset of domains that the alert monitors.
+        Names of a subset of domains that the alert monitors, or empty array `[]` to monitor all domains.
         """
         return pulumi.get(self, "domains")
 
@@ -206,9 +214,17 @@ class AlertDimensions(dict):
     @pulumi.getter
     def origins(self) -> Optional[Sequence[_builtins.str]]:
         """
-        Addresses of a subset of backends that the alert monitors.
+        Addresses of a subset of backends that the alert monitors, or empty array `[]` to monitor all origins.
         """
         return pulumi.get(self, "origins")
+
+    @_builtins.property
+    @pulumi.getter
+    def services(self) -> Optional[Sequence[_builtins.str]]:
+        """
+        List of service IDs to monitor individually, or empty array `[]` to monitor all services.
+        """
+        return pulumi.get(self, "services")
 
 
 @pulumi.output_type
@@ -3663,6 +3679,171 @@ class ServiceComputeLoggingElasticsearch(dict):
 
 
 @pulumi.output_type
+class ServiceComputeLoggingFo(dict):
+    @staticmethod
+    def __key_warning(key: str):
+        suggest = None
+        if key == "bucketName":
+            suggest = "bucket_name"
+        elif key == "compressionCodec":
+            suggest = "compression_codec"
+        elif key == "fileMaxBytes":
+            suggest = "file_max_bytes"
+        elif key == "gzipLevel":
+            suggest = "gzip_level"
+        elif key == "messageType":
+            suggest = "message_type"
+        elif key == "publicKey":
+            suggest = "public_key"
+        elif key == "timestampFormat":
+            suggest = "timestamp_format"
+
+        if suggest:
+            pulumi.log.warn(f"Key '{key}' not found in ServiceComputeLoggingFo. Access the value via the '{suggest}' property getter instead.")
+
+    def __getitem__(self, key: str) -> Any:
+        ServiceComputeLoggingFo.__key_warning(key)
+        return super().__getitem__(key)
+
+    def get(self, key: str, default = None) -> Any:
+        ServiceComputeLoggingFo.__key_warning(key)
+        return super().get(key, default)
+
+    def __init__(__self__, *,
+                 bucket_name: _builtins.str,
+                 name: _builtins.str,
+                 region: _builtins.str,
+                 compression_codec: Optional[_builtins.str] = None,
+                 file_max_bytes: Optional[_builtins.int] = None,
+                 gzip_level: Optional[_builtins.int] = None,
+                 message_type: Optional[_builtins.str] = None,
+                 path: Optional[_builtins.str] = None,
+                 period: Optional[_builtins.int] = None,
+                 public_key: Optional[_builtins.str] = None,
+                 timestamp_format: Optional[_builtins.str] = None):
+        """
+        :param _builtins.str bucket_name: The name of the Fastly Object Storage bucket in which to store the logs
+        :param _builtins.str name: The unique name of the Fastly Object Storage logging endpoint. It is important to note that changing this attribute will delete and recreate the resource
+        :param _builtins.str region: The region of the Fastly Object Storage bucket (e.g. `us-east`)
+        :param _builtins.str compression_codec: The codec used for compression of your logs. Valid values are zstd, snappy, and gzip. If the specified codec is "gzip", gzip_level will default to 3. To specify a different level, leave compression_codec blank and explicitly set the level using gzip_level. Specifying both compression_codec and gzip_level in the same API request will result in an error.
+        :param _builtins.int file_max_bytes: Maximum size of an uploaded log file, if non-zero. The minimum value is 1048576 bytes (1 MiB).
+        :param _builtins.int gzip_level: Level of Gzip compression from `0-9`. `0` means no compression. `1` is the fastest and the least compressed version, `9` is the slowest and the most compressed version. Default `0`
+        :param _builtins.str message_type: How the message should be formatted. Can be either `classic`, `loggly`, `logplex` or `blank`. Default is `classic`
+        :param _builtins.str path: Path to store the files. Must end with a trailing slash. If this field is left empty, the files will be saved in the bucket's root path
+        :param _builtins.int period: How frequently the logs should be transferred, in seconds. Default `3600`
+        :param _builtins.str public_key: A PGP public key that Fastly will use to encrypt your log files before writing them to disk
+        :param _builtins.str timestamp_format: The `strftime` specified timestamp formatting (default `%Y-%m-%dT%H:%M:%S.000`)
+        """
+        pulumi.set(__self__, "bucket_name", bucket_name)
+        pulumi.set(__self__, "name", name)
+        pulumi.set(__self__, "region", region)
+        if compression_codec is not None:
+            pulumi.set(__self__, "compression_codec", compression_codec)
+        if file_max_bytes is not None:
+            pulumi.set(__self__, "file_max_bytes", file_max_bytes)
+        if gzip_level is not None:
+            pulumi.set(__self__, "gzip_level", gzip_level)
+        if message_type is not None:
+            pulumi.set(__self__, "message_type", message_type)
+        if path is not None:
+            pulumi.set(__self__, "path", path)
+        if period is not None:
+            pulumi.set(__self__, "period", period)
+        if public_key is not None:
+            pulumi.set(__self__, "public_key", public_key)
+        if timestamp_format is not None:
+            pulumi.set(__self__, "timestamp_format", timestamp_format)
+
+    @_builtins.property
+    @pulumi.getter(name="bucketName")
+    def bucket_name(self) -> _builtins.str:
+        """
+        The name of the Fastly Object Storage bucket in which to store the logs
+        """
+        return pulumi.get(self, "bucket_name")
+
+    @_builtins.property
+    @pulumi.getter
+    def name(self) -> _builtins.str:
+        """
+        The unique name of the Fastly Object Storage logging endpoint. It is important to note that changing this attribute will delete and recreate the resource
+        """
+        return pulumi.get(self, "name")
+
+    @_builtins.property
+    @pulumi.getter
+    def region(self) -> _builtins.str:
+        """
+        The region of the Fastly Object Storage bucket (e.g. `us-east`)
+        """
+        return pulumi.get(self, "region")
+
+    @_builtins.property
+    @pulumi.getter(name="compressionCodec")
+    def compression_codec(self) -> Optional[_builtins.str]:
+        """
+        The codec used for compression of your logs. Valid values are zstd, snappy, and gzip. If the specified codec is "gzip", gzip_level will default to 3. To specify a different level, leave compression_codec blank and explicitly set the level using gzip_level. Specifying both compression_codec and gzip_level in the same API request will result in an error.
+        """
+        return pulumi.get(self, "compression_codec")
+
+    @_builtins.property
+    @pulumi.getter(name="fileMaxBytes")
+    def file_max_bytes(self) -> Optional[_builtins.int]:
+        """
+        Maximum size of an uploaded log file, if non-zero. The minimum value is 1048576 bytes (1 MiB).
+        """
+        return pulumi.get(self, "file_max_bytes")
+
+    @_builtins.property
+    @pulumi.getter(name="gzipLevel")
+    def gzip_level(self) -> Optional[_builtins.int]:
+        """
+        Level of Gzip compression from `0-9`. `0` means no compression. `1` is the fastest and the least compressed version, `9` is the slowest and the most compressed version. Default `0`
+        """
+        return pulumi.get(self, "gzip_level")
+
+    @_builtins.property
+    @pulumi.getter(name="messageType")
+    def message_type(self) -> Optional[_builtins.str]:
+        """
+        How the message should be formatted. Can be either `classic`, `loggly`, `logplex` or `blank`. Default is `classic`
+        """
+        return pulumi.get(self, "message_type")
+
+    @_builtins.property
+    @pulumi.getter
+    def path(self) -> Optional[_builtins.str]:
+        """
+        Path to store the files. Must end with a trailing slash. If this field is left empty, the files will be saved in the bucket's root path
+        """
+        return pulumi.get(self, "path")
+
+    @_builtins.property
+    @pulumi.getter
+    def period(self) -> Optional[_builtins.int]:
+        """
+        How frequently the logs should be transferred, in seconds. Default `3600`
+        """
+        return pulumi.get(self, "period")
+
+    @_builtins.property
+    @pulumi.getter(name="publicKey")
+    def public_key(self) -> Optional[_builtins.str]:
+        """
+        A PGP public key that Fastly will use to encrypt your log files before writing them to disk
+        """
+        return pulumi.get(self, "public_key")
+
+    @_builtins.property
+    @pulumi.getter(name="timestampFormat")
+    def timestamp_format(self) -> Optional[_builtins.str]:
+        """
+        The `strftime` specified timestamp formatting (default `%Y-%m-%dT%H:%M:%S.000`)
+        """
+        return pulumi.get(self, "timestamp_format")
+
+
+@pulumi.output_type
 class ServiceComputeLoggingFtp(dict):
     @staticmethod
     def __key_warning(key: str):
@@ -3866,6 +4047,8 @@ class ServiceComputeLoggingGc(dict):
             suggest = "processing_region"
         elif key == "projectId":
             suggest = "project_id"
+        elif key == "publicKey":
+            suggest = "public_key"
         elif key == "secretKey":
             suggest = "secret_key"
         elif key == "timestampFormat":
@@ -3893,6 +4076,7 @@ class ServiceComputeLoggingGc(dict):
                  period: Optional[_builtins.int] = None,
                  processing_region: Optional[_builtins.str] = None,
                  project_id: Optional[_builtins.str] = None,
+                 public_key: Optional[_builtins.str] = None,
                  secret_key: Optional[_builtins.str] = None,
                  timestamp_format: Optional[_builtins.str] = None,
                  user: Optional[_builtins.str] = None):
@@ -3907,6 +4091,7 @@ class ServiceComputeLoggingGc(dict):
         :param _builtins.int period: How frequently the logs should be transferred, in seconds (Default 3600)
         :param _builtins.str processing_region: Region where logs will be processed before streaming to BigQuery. Valid values are 'none', 'us' and 'eu'.
         :param _builtins.str project_id: The ID of your Google Cloud Platform project
+        :param _builtins.str public_key: A PGP public key that Fastly will use to encrypt your log files before writing them to disk
         :param _builtins.str secret_key: The secret key associated with the target gcs bucket on your account. You may optionally provide this secret via an environment variable, `FASTLY_GCS_SECRET_KEY`. A typical format for the key is PEM format, containing actual newline characters where required
         :param _builtins.str timestamp_format: The `strftime` specified timestamp formatting (default `%Y-%m-%dT%H:%M:%S.000`)
         :param _builtins.str user: Your Google Cloud Platform service account email address. The `client_email` field in your service account authentication JSON. You may optionally provide this via an environment variable, `FASTLY_GCS_EMAIL`.
@@ -3929,6 +4114,8 @@ class ServiceComputeLoggingGc(dict):
             pulumi.set(__self__, "processing_region", processing_region)
         if project_id is not None:
             pulumi.set(__self__, "project_id", project_id)
+        if public_key is not None:
+            pulumi.set(__self__, "public_key", public_key)
         if secret_key is not None:
             pulumi.set(__self__, "secret_key", secret_key)
         if timestamp_format is not None:
@@ -4015,6 +4202,14 @@ class ServiceComputeLoggingGc(dict):
         The ID of your Google Cloud Platform project
         """
         return pulumi.get(self, "project_id")
+
+    @_builtins.property
+    @pulumi.getter(name="publicKey")
+    def public_key(self) -> Optional[_builtins.str]:
+        """
+        A PGP public key that Fastly will use to encrypt your log files before writing them to disk
+        """
+        return pulumi.get(self, "public_key")
 
     @_builtins.property
     @pulumi.getter(name="secretKey")
@@ -7049,6 +7244,16 @@ class ServiceVclBackend(dict):
             suggest = "error_threshold"
         elif key == "firstByteTimeout":
             suggest = "first_byte_timeout"
+        elif key == "iamExternalId":
+            suggest = "iam_external_id"
+        elif key == "iamProduct":
+            suggest = "iam_product"
+        elif key == "iamRegion":
+            suggest = "iam_region"
+        elif key == "iamRole":
+            suggest = "iam_role"
+        elif key == "iamVendor":
+            suggest = "iam_vendor"
         elif key == "keepaliveTime":
             suggest = "keepalive_time"
         elif key == "maxConn":
@@ -7106,6 +7311,11 @@ class ServiceVclBackend(dict):
                  error_threshold: Optional[_builtins.int] = None,
                  first_byte_timeout: Optional[_builtins.int] = None,
                  healthcheck: Optional[_builtins.str] = None,
+                 iam_external_id: Optional[_builtins.str] = None,
+                 iam_product: Optional[_builtins.str] = None,
+                 iam_region: Optional[_builtins.str] = None,
+                 iam_role: Optional[_builtins.str] = None,
+                 iam_vendor: Optional[_builtins.str] = None,
                  keepalive_time: Optional[_builtins.int] = None,
                  max_conn: Optional[_builtins.int] = None,
                  max_lifetime: Optional[_builtins.int] = None,
@@ -7136,6 +7346,11 @@ class ServiceVclBackend(dict):
         :param _builtins.int error_threshold: Number of errors to allow before the Backend is marked as down. Default `0`
         :param _builtins.int first_byte_timeout: How long to wait for the first bytes in milliseconds. Default `15000`
         :param _builtins.str healthcheck: Name of a defined `healthcheck` to assign to this backend
+        :param _builtins.str iam_external_id: If the backend is using IAM authentication and the IAM system policy requires a matching external identifier, it should match this value. Your Fastly customer ID will be used if this attribute is not set.
+        :param _builtins.str iam_product: If the backend is using IAM authentication, the IAM signature will use this as the product element.
+        :param _builtins.str iam_region: If the backend is using IAM authentication, this region will be used for signing and access.
+        :param _builtins.str iam_role: If the backend is using IAM authentication, the fully qualified role string supplied by the storage vendor.
+        :param _builtins.str iam_vendor: A label that identifies the storage vendor. Providing a value in this field enables IAM usage, and all other IAM fields depend on its value.
         :param _builtins.int keepalive_time: How long in seconds to keep a persistent connection to the backend between requests.
         :param _builtins.int max_conn: Maximum number of connections for this Backend. Default `200`
         :param _builtins.int max_lifetime: Maximum time from creation (in milliseconds) that a pooled HTTP keepalive connection will be eligible for reuse; 0 is treated as unlimited - which is the default behavior.
@@ -7172,6 +7387,16 @@ class ServiceVclBackend(dict):
             pulumi.set(__self__, "first_byte_timeout", first_byte_timeout)
         if healthcheck is not None:
             pulumi.set(__self__, "healthcheck", healthcheck)
+        if iam_external_id is not None:
+            pulumi.set(__self__, "iam_external_id", iam_external_id)
+        if iam_product is not None:
+            pulumi.set(__self__, "iam_product", iam_product)
+        if iam_region is not None:
+            pulumi.set(__self__, "iam_region", iam_region)
+        if iam_role is not None:
+            pulumi.set(__self__, "iam_role", iam_role)
+        if iam_vendor is not None:
+            pulumi.set(__self__, "iam_vendor", iam_vendor)
         if keepalive_time is not None:
             pulumi.set(__self__, "keepalive_time", keepalive_time)
         if max_conn is not None:
@@ -7278,6 +7503,46 @@ class ServiceVclBackend(dict):
         Name of a defined `healthcheck` to assign to this backend
         """
         return pulumi.get(self, "healthcheck")
+
+    @_builtins.property
+    @pulumi.getter(name="iamExternalId")
+    def iam_external_id(self) -> Optional[_builtins.str]:
+        """
+        If the backend is using IAM authentication and the IAM system policy requires a matching external identifier, it should match this value. Your Fastly customer ID will be used if this attribute is not set.
+        """
+        return pulumi.get(self, "iam_external_id")
+
+    @_builtins.property
+    @pulumi.getter(name="iamProduct")
+    def iam_product(self) -> Optional[_builtins.str]:
+        """
+        If the backend is using IAM authentication, the IAM signature will use this as the product element.
+        """
+        return pulumi.get(self, "iam_product")
+
+    @_builtins.property
+    @pulumi.getter(name="iamRegion")
+    def iam_region(self) -> Optional[_builtins.str]:
+        """
+        If the backend is using IAM authentication, this region will be used for signing and access.
+        """
+        return pulumi.get(self, "iam_region")
+
+    @_builtins.property
+    @pulumi.getter(name="iamRole")
+    def iam_role(self) -> Optional[_builtins.str]:
+        """
+        If the backend is using IAM authentication, the fully qualified role string supplied by the storage vendor.
+        """
+        return pulumi.get(self, "iam_role")
+
+    @_builtins.property
+    @pulumi.getter(name="iamVendor")
+    def iam_vendor(self) -> Optional[_builtins.str]:
+        """
+        A label that identifies the storage vendor. Providing a value in this field enables IAM usage, and all other IAM fields depend on its value.
+        """
+        return pulumi.get(self, "iam_vendor")
 
     @_builtins.property
     @pulumi.getter(name="keepaliveTime")
@@ -9681,6 +9946,223 @@ class ServiceVclLoggingElasticsearch(dict):
 
 
 @pulumi.output_type
+class ServiceVclLoggingFo(dict):
+    @staticmethod
+    def __key_warning(key: str):
+        suggest = None
+        if key == "bucketName":
+            suggest = "bucket_name"
+        elif key == "compressionCodec":
+            suggest = "compression_codec"
+        elif key == "fileMaxBytes":
+            suggest = "file_max_bytes"
+        elif key == "formatVersion":
+            suggest = "format_version"
+        elif key == "gzipLevel":
+            suggest = "gzip_level"
+        elif key == "messageType":
+            suggest = "message_type"
+        elif key == "publicKey":
+            suggest = "public_key"
+        elif key == "responseCondition":
+            suggest = "response_condition"
+        elif key == "timestampFormat":
+            suggest = "timestamp_format"
+
+        if suggest:
+            pulumi.log.warn(f"Key '{key}' not found in ServiceVclLoggingFo. Access the value via the '{suggest}' property getter instead.")
+
+    def __getitem__(self, key: str) -> Any:
+        ServiceVclLoggingFo.__key_warning(key)
+        return super().__getitem__(key)
+
+    def get(self, key: str, default = None) -> Any:
+        ServiceVclLoggingFo.__key_warning(key)
+        return super().get(key, default)
+
+    def __init__(__self__, *,
+                 bucket_name: _builtins.str,
+                 name: _builtins.str,
+                 region: _builtins.str,
+                 compression_codec: Optional[_builtins.str] = None,
+                 file_max_bytes: Optional[_builtins.int] = None,
+                 format: Optional[_builtins.str] = None,
+                 format_version: Optional[_builtins.int] = None,
+                 gzip_level: Optional[_builtins.int] = None,
+                 message_type: Optional[_builtins.str] = None,
+                 path: Optional[_builtins.str] = None,
+                 period: Optional[_builtins.int] = None,
+                 placement: Optional[_builtins.str] = None,
+                 public_key: Optional[_builtins.str] = None,
+                 response_condition: Optional[_builtins.str] = None,
+                 timestamp_format: Optional[_builtins.str] = None):
+        """
+        :param _builtins.str bucket_name: The name of the Fastly Object Storage bucket in which to store the logs
+        :param _builtins.str name: The unique name of the Fastly Object Storage logging endpoint. It is important to note that changing this attribute will delete and recreate the resource
+        :param _builtins.str region: The region of the Fastly Object Storage bucket (e.g. `us-east`)
+        :param _builtins.str compression_codec: The codec used for compression of your logs. Valid values are zstd, snappy, and gzip. If the specified codec is "gzip", gzip_level will default to 3. To specify a different level, leave compression_codec blank and explicitly set the level using gzip_level. Specifying both compression_codec and gzip_level in the same API request will result in an error.
+        :param _builtins.int file_max_bytes: Maximum size of an uploaded log file, if non-zero. The minimum value is 1048576 bytes (1 MiB).
+        :param _builtins.str format: Apache-style string or VCL variables to use for log formatting.
+        :param _builtins.int format_version: The version of the custom logging format used for the configured endpoint. Can be either 1 or 2. (Default: 2).
+        :param _builtins.int gzip_level: Level of Gzip compression from `0-9`. `0` means no compression. `1` is the fastest and the least compressed version, `9` is the slowest and the most compressed version. Default `0`
+        :param _builtins.str message_type: How the message should be formatted. Can be either `classic`, `loggly`, `logplex` or `blank`. Default is `classic`
+        :param _builtins.str path: Path to store the files. Must end with a trailing slash. If this field is left empty, the files will be saved in the bucket's root path
+        :param _builtins.int period: How frequently the logs should be transferred, in seconds. Default `3600`
+        :param _builtins.str placement: Where in the generated VCL the logging call should be placed.
+        :param _builtins.str public_key: A PGP public key that Fastly will use to encrypt your log files before writing them to disk
+        :param _builtins.str response_condition: Name of blockAttributes condition to apply this logging.
+        :param _builtins.str timestamp_format: The `strftime` specified timestamp formatting (default `%Y-%m-%dT%H:%M:%S.000`)
+        """
+        pulumi.set(__self__, "bucket_name", bucket_name)
+        pulumi.set(__self__, "name", name)
+        pulumi.set(__self__, "region", region)
+        if compression_codec is not None:
+            pulumi.set(__self__, "compression_codec", compression_codec)
+        if file_max_bytes is not None:
+            pulumi.set(__self__, "file_max_bytes", file_max_bytes)
+        if format is not None:
+            pulumi.set(__self__, "format", format)
+        if format_version is not None:
+            pulumi.set(__self__, "format_version", format_version)
+        if gzip_level is not None:
+            pulumi.set(__self__, "gzip_level", gzip_level)
+        if message_type is not None:
+            pulumi.set(__self__, "message_type", message_type)
+        if path is not None:
+            pulumi.set(__self__, "path", path)
+        if period is not None:
+            pulumi.set(__self__, "period", period)
+        if placement is not None:
+            pulumi.set(__self__, "placement", placement)
+        if public_key is not None:
+            pulumi.set(__self__, "public_key", public_key)
+        if response_condition is not None:
+            pulumi.set(__self__, "response_condition", response_condition)
+        if timestamp_format is not None:
+            pulumi.set(__self__, "timestamp_format", timestamp_format)
+
+    @_builtins.property
+    @pulumi.getter(name="bucketName")
+    def bucket_name(self) -> _builtins.str:
+        """
+        The name of the Fastly Object Storage bucket in which to store the logs
+        """
+        return pulumi.get(self, "bucket_name")
+
+    @_builtins.property
+    @pulumi.getter
+    def name(self) -> _builtins.str:
+        """
+        The unique name of the Fastly Object Storage logging endpoint. It is important to note that changing this attribute will delete and recreate the resource
+        """
+        return pulumi.get(self, "name")
+
+    @_builtins.property
+    @pulumi.getter
+    def region(self) -> _builtins.str:
+        """
+        The region of the Fastly Object Storage bucket (e.g. `us-east`)
+        """
+        return pulumi.get(self, "region")
+
+    @_builtins.property
+    @pulumi.getter(name="compressionCodec")
+    def compression_codec(self) -> Optional[_builtins.str]:
+        """
+        The codec used for compression of your logs. Valid values are zstd, snappy, and gzip. If the specified codec is "gzip", gzip_level will default to 3. To specify a different level, leave compression_codec blank and explicitly set the level using gzip_level. Specifying both compression_codec and gzip_level in the same API request will result in an error.
+        """
+        return pulumi.get(self, "compression_codec")
+
+    @_builtins.property
+    @pulumi.getter(name="fileMaxBytes")
+    def file_max_bytes(self) -> Optional[_builtins.int]:
+        """
+        Maximum size of an uploaded log file, if non-zero. The minimum value is 1048576 bytes (1 MiB).
+        """
+        return pulumi.get(self, "file_max_bytes")
+
+    @_builtins.property
+    @pulumi.getter
+    def format(self) -> Optional[_builtins.str]:
+        """
+        Apache-style string or VCL variables to use for log formatting.
+        """
+        return pulumi.get(self, "format")
+
+    @_builtins.property
+    @pulumi.getter(name="formatVersion")
+    def format_version(self) -> Optional[_builtins.int]:
+        """
+        The version of the custom logging format used for the configured endpoint. Can be either 1 or 2. (Default: 2).
+        """
+        return pulumi.get(self, "format_version")
+
+    @_builtins.property
+    @pulumi.getter(name="gzipLevel")
+    def gzip_level(self) -> Optional[_builtins.int]:
+        """
+        Level of Gzip compression from `0-9`. `0` means no compression. `1` is the fastest and the least compressed version, `9` is the slowest and the most compressed version. Default `0`
+        """
+        return pulumi.get(self, "gzip_level")
+
+    @_builtins.property
+    @pulumi.getter(name="messageType")
+    def message_type(self) -> Optional[_builtins.str]:
+        """
+        How the message should be formatted. Can be either `classic`, `loggly`, `logplex` or `blank`. Default is `classic`
+        """
+        return pulumi.get(self, "message_type")
+
+    @_builtins.property
+    @pulumi.getter
+    def path(self) -> Optional[_builtins.str]:
+        """
+        Path to store the files. Must end with a trailing slash. If this field is left empty, the files will be saved in the bucket's root path
+        """
+        return pulumi.get(self, "path")
+
+    @_builtins.property
+    @pulumi.getter
+    def period(self) -> Optional[_builtins.int]:
+        """
+        How frequently the logs should be transferred, in seconds. Default `3600`
+        """
+        return pulumi.get(self, "period")
+
+    @_builtins.property
+    @pulumi.getter
+    def placement(self) -> Optional[_builtins.str]:
+        """
+        Where in the generated VCL the logging call should be placed.
+        """
+        return pulumi.get(self, "placement")
+
+    @_builtins.property
+    @pulumi.getter(name="publicKey")
+    def public_key(self) -> Optional[_builtins.str]:
+        """
+        A PGP public key that Fastly will use to encrypt your log files before writing them to disk
+        """
+        return pulumi.get(self, "public_key")
+
+    @_builtins.property
+    @pulumi.getter(name="responseCondition")
+    def response_condition(self) -> Optional[_builtins.str]:
+        """
+        Name of blockAttributes condition to apply this logging.
+        """
+        return pulumi.get(self, "response_condition")
+
+    @_builtins.property
+    @pulumi.getter(name="timestampFormat")
+    def timestamp_format(self) -> Optional[_builtins.str]:
+        """
+        The `strftime` specified timestamp formatting (default `%Y-%m-%dT%H:%M:%S.000`)
+        """
+        return pulumi.get(self, "timestamp_format")
+
+
+@pulumi.output_type
 class ServiceVclLoggingFtp(dict):
     @staticmethod
     def __key_warning(key: str):
@@ -9938,6 +10420,8 @@ class ServiceVclLoggingGc(dict):
             suggest = "processing_region"
         elif key == "projectId":
             suggest = "project_id"
+        elif key == "publicKey":
+            suggest = "public_key"
         elif key == "responseCondition":
             suggest = "response_condition"
         elif key == "secretKey":
@@ -9970,6 +10454,7 @@ class ServiceVclLoggingGc(dict):
                  placement: Optional[_builtins.str] = None,
                  processing_region: Optional[_builtins.str] = None,
                  project_id: Optional[_builtins.str] = None,
+                 public_key: Optional[_builtins.str] = None,
                  response_condition: Optional[_builtins.str] = None,
                  secret_key: Optional[_builtins.str] = None,
                  timestamp_format: Optional[_builtins.str] = None,
@@ -9988,6 +10473,7 @@ class ServiceVclLoggingGc(dict):
         :param _builtins.str placement: Where in the generated VCL the logging call should be placed.
         :param _builtins.str processing_region: Region where logs will be processed before streaming to BigQuery. Valid values are 'none', 'us' and 'eu'.
         :param _builtins.str project_id: The ID of your Google Cloud Platform project
+        :param _builtins.str public_key: A PGP public key that Fastly will use to encrypt your log files before writing them to disk
         :param _builtins.str response_condition: Name of a condition to apply this logging.
         :param _builtins.str secret_key: The secret key associated with the target gcs bucket on your account. You may optionally provide this secret via an environment variable, `FASTLY_GCS_SECRET_KEY`. A typical format for the key is PEM format, containing actual newline characters where required
         :param _builtins.str timestamp_format: The `strftime` specified timestamp formatting (default `%Y-%m-%dT%H:%M:%S.000`)
@@ -10017,6 +10503,8 @@ class ServiceVclLoggingGc(dict):
             pulumi.set(__self__, "processing_region", processing_region)
         if project_id is not None:
             pulumi.set(__self__, "project_id", project_id)
+        if public_key is not None:
+            pulumi.set(__self__, "public_key", public_key)
         if response_condition is not None:
             pulumi.set(__self__, "response_condition", response_condition)
         if secret_key is not None:
@@ -10129,6 +10617,14 @@ class ServiceVclLoggingGc(dict):
         The ID of your Google Cloud Platform project
         """
         return pulumi.get(self, "project_id")
+
+    @_builtins.property
+    @pulumi.getter(name="publicKey")
+    def public_key(self) -> Optional[_builtins.str]:
+        """
+        A PGP public key that Fastly will use to encrypt your log files before writing them to disk
+        """
+        return pulumi.get(self, "public_key")
 
     @_builtins.property
     @pulumi.getter(name="responseCondition")
@@ -14767,12 +15263,12 @@ class GetAiRuntimeControlProviderConnectionsProviderConnectionResult(dict):
                  secret_id: _builtins.str,
                  updated_at: _builtins.str):
         """
-        :param _builtins.str base_url: The base URL for the provider's API.
+        :param _builtins.str base_url: The base URL of the provider's API.
         :param _builtins.str created_at: Timestamp (UTC) of when the provider connection was created.
         :param _builtins.str id: The ID of the provider connection.
-        :param Sequence[_builtins.str] models: The allowed AI model identifiers.
-        :param _builtins.str name: The human-readable name of the provider.
-        :param _builtins.str secret_id: A hash representing the API key used to create the provider connection.
+        :param Sequence[_builtins.str] models: The AI model identifiers this provider connection is allowed to use.
+        :param _builtins.str name: The display name of the provider connection.
+        :param _builtins.str secret_id: An opaque identifier for the secret material backing this provider connection. Not the secret itself.
         :param _builtins.str updated_at: Timestamp (UTC) of when the provider connection was last updated.
         """
         pulumi.set(__self__, "base_url", base_url)
@@ -14787,7 +15283,7 @@ class GetAiRuntimeControlProviderConnectionsProviderConnectionResult(dict):
     @pulumi.getter(name="baseUrl")
     def base_url(self) -> _builtins.str:
         """
-        The base URL for the provider's API.
+        The base URL of the provider's API.
         """
         return pulumi.get(self, "base_url")
 
@@ -14811,7 +15307,7 @@ class GetAiRuntimeControlProviderConnectionsProviderConnectionResult(dict):
     @pulumi.getter
     def models(self) -> Sequence[_builtins.str]:
         """
-        The allowed AI model identifiers.
+        The AI model identifiers this provider connection is allowed to use.
         """
         return pulumi.get(self, "models")
 
@@ -14819,7 +15315,7 @@ class GetAiRuntimeControlProviderConnectionsProviderConnectionResult(dict):
     @pulumi.getter
     def name(self) -> _builtins.str:
         """
-        The human-readable name of the provider.
+        The display name of the provider connection.
         """
         return pulumi.get(self, "name")
 
@@ -14827,7 +15323,7 @@ class GetAiRuntimeControlProviderConnectionsProviderConnectionResult(dict):
     @pulumi.getter(name="secretId")
     def secret_id(self) -> _builtins.str:
         """
-        A hash representing the API key used to create the provider connection.
+        An opaque identifier for the secret material backing this provider connection. Not the secret itself.
         """
         return pulumi.get(self, "secret_id")
 
@@ -14849,9 +15345,9 @@ class GetAiRuntimeControlProvidersProviderResult(dict):
                  models: Sequence['outputs.GetAiRuntimeControlProvidersProviderModelResult']):
         """
         :param _builtins.str default_base_url: The default API base URL for the provider.
-        :param _builtins.str display_name: The human-readable provider name, e.g. `Anthropic`.
+        :param _builtins.str display_name: The human-readable name of the provider, e.g. `Anthropic`.
         :param _builtins.str id: The provider identifier, e.g. `anthropic`.
-        :param Sequence['GetAiRuntimeControlProvidersProviderModelArgs'] models: The models available for the provider.
+        :param Sequence['GetAiRuntimeControlProvidersProviderModelArgs'] models: The models available from this provider.
         """
         pulumi.set(__self__, "default_base_url", default_base_url)
         pulumi.set(__self__, "display_name", display_name)
@@ -14870,7 +15366,7 @@ class GetAiRuntimeControlProvidersProviderResult(dict):
     @pulumi.getter(name="displayName")
     def display_name(self) -> _builtins.str:
         """
-        The human-readable provider name, e.g. `Anthropic`.
+        The human-readable name of the provider, e.g. `Anthropic`.
         """
         return pulumi.get(self, "display_name")
 
@@ -14886,7 +15382,7 @@ class GetAiRuntimeControlProvidersProviderResult(dict):
     @pulumi.getter
     def models(self) -> Sequence['outputs.GetAiRuntimeControlProvidersProviderModelResult']:
         """
-        The models available for the provider.
+        The models available from this provider.
         """
         return pulumi.get(self, "models")
 
@@ -14898,7 +15394,7 @@ class GetAiRuntimeControlProvidersProviderModelResult(dict):
                  id: _builtins.str,
                  provider_id: _builtins.str):
         """
-        :param _builtins.str display_name: The human-readable model name, e.g. `Claude Sonnet 4`.
+        :param _builtins.str display_name: The human-readable name of the model, e.g. `Claude Sonnet 4`.
         :param _builtins.str id: The model identifier, e.g. `claude-sonnet-4-20250514`.
         :param _builtins.str provider_id: The ID of the provider this model belongs to.
         """
@@ -14910,7 +15406,7 @@ class GetAiRuntimeControlProvidersProviderModelResult(dict):
     @pulumi.getter(name="displayName")
     def display_name(self) -> _builtins.str:
         """
-        The human-readable model name, e.g. `Claude Sonnet 4`.
+        The human-readable name of the model, e.g. `Claude Sonnet 4`.
         """
         return pulumi.get(self, "display_name")
 
@@ -14951,15 +15447,15 @@ class GetAiRuntimeControlVirtualKeysVirtualKeyResult(dict):
         """
         :param _builtins.str created_at: Timestamp (UTC) of when the virtual key was created.
         :param _builtins.str created_by: The display name of the user who created the virtual key.
-        :param _builtins.str customer_id: The ID of the customer that owns the virtual key.
-        :param _builtins.str deleted_at: Timestamp (UTC) of when the virtual key was deleted, if applicable.
-        :param _builtins.str expires_at: The expiration timestamp of the virtual key, if any.
+        :param _builtins.str customer_id: The ID of the customer account that owns the virtual key.
+        :param _builtins.str deleted_at: Timestamp (UTC) of when the virtual key was deleted. Only set when `include_deleted` is `true`.
+        :param _builtins.str expires_at: The date and time the virtual key expires, in RFC 3339 format. Empty if the virtual key doesn't expire.
         :param _builtins.str id: The ID of the virtual key.
-        :param _builtins.str last_used_at: Timestamp (UTC) of when the virtual key was last used, if applicable.
+        :param _builtins.str last_used_at: Timestamp (UTC) of when the virtual key was last used to make a request. Empty if the virtual key has never been used.
         :param _builtins.str model: The AI model identifier.
-        :param _builtins.str name: The human-readable name of the virtual key.
+        :param _builtins.str name: The display name of the virtual key.
         :param _builtins.str provider: The AI model provider name.
-        :param _builtins.str type: The type of the virtual key.
+        :param _builtins.str type: The type of the resource.
         :param _builtins.str updated_at: Timestamp (UTC) of when the virtual key was last updated.
         :param _builtins.str user_id: The ID of the user who created the virtual key.
         :param _builtins.str user_name: The display name of the user who created the virtual key.
@@ -14999,7 +15495,7 @@ class GetAiRuntimeControlVirtualKeysVirtualKeyResult(dict):
     @pulumi.getter(name="customerId")
     def customer_id(self) -> _builtins.str:
         """
-        The ID of the customer that owns the virtual key.
+        The ID of the customer account that owns the virtual key.
         """
         return pulumi.get(self, "customer_id")
 
@@ -15007,7 +15503,7 @@ class GetAiRuntimeControlVirtualKeysVirtualKeyResult(dict):
     @pulumi.getter(name="deletedAt")
     def deleted_at(self) -> _builtins.str:
         """
-        Timestamp (UTC) of when the virtual key was deleted, if applicable.
+        Timestamp (UTC) of when the virtual key was deleted. Only set when `include_deleted` is `true`.
         """
         return pulumi.get(self, "deleted_at")
 
@@ -15015,7 +15511,7 @@ class GetAiRuntimeControlVirtualKeysVirtualKeyResult(dict):
     @pulumi.getter(name="expiresAt")
     def expires_at(self) -> _builtins.str:
         """
-        The expiration timestamp of the virtual key, if any.
+        The date and time the virtual key expires, in RFC 3339 format. Empty if the virtual key doesn't expire.
         """
         return pulumi.get(self, "expires_at")
 
@@ -15031,7 +15527,7 @@ class GetAiRuntimeControlVirtualKeysVirtualKeyResult(dict):
     @pulumi.getter(name="lastUsedAt")
     def last_used_at(self) -> _builtins.str:
         """
-        Timestamp (UTC) of when the virtual key was last used, if applicable.
+        Timestamp (UTC) of when the virtual key was last used to make a request. Empty if the virtual key has never been used.
         """
         return pulumi.get(self, "last_used_at")
 
@@ -15047,7 +15543,7 @@ class GetAiRuntimeControlVirtualKeysVirtualKeyResult(dict):
     @pulumi.getter
     def name(self) -> _builtins.str:
         """
-        The human-readable name of the virtual key.
+        The display name of the virtual key.
         """
         return pulumi.get(self, "name")
 
@@ -15063,7 +15559,7 @@ class GetAiRuntimeControlVirtualKeysVirtualKeyResult(dict):
     @pulumi.getter
     def type(self) -> _builtins.str:
         """
-        The type of the virtual key.
+        The type of the resource.
         """
         return pulumi.get(self, "type")
 
@@ -15386,6 +15882,108 @@ class GetApiSecurityOperationsOperationResult(dict):
         Updated timestamp (when present).
         """
         return pulumi.get(self, "updated_at")
+
+
+@pulumi.output_type
+class GetBotManagementBotsBotResult(dict):
+    def __init__(__self__, *,
+                 action: _builtins.str,
+                 bot_id: _builtins.str,
+                 category_id: _builtins.str,
+                 name: _builtins.str):
+        """
+        :param _builtins.str action: The bot's action. One of `allow`, `block`, `challenge`, or `inherit` (no override; follows the category's action).
+        :param _builtins.str bot_id: The ID of the bot.
+        :param _builtins.str category_id: The ID of the category the bot belongs to.
+        :param _builtins.str name: The display name of the bot.
+        """
+        pulumi.set(__self__, "action", action)
+        pulumi.set(__self__, "bot_id", bot_id)
+        pulumi.set(__self__, "category_id", category_id)
+        pulumi.set(__self__, "name", name)
+
+    @_builtins.property
+    @pulumi.getter
+    def action(self) -> _builtins.str:
+        """
+        The bot's action. One of `allow`, `block`, `challenge`, or `inherit` (no override; follows the category's action).
+        """
+        return pulumi.get(self, "action")
+
+    @_builtins.property
+    @pulumi.getter(name="botId")
+    def bot_id(self) -> _builtins.str:
+        """
+        The ID of the bot.
+        """
+        return pulumi.get(self, "bot_id")
+
+    @_builtins.property
+    @pulumi.getter(name="categoryId")
+    def category_id(self) -> _builtins.str:
+        """
+        The ID of the category the bot belongs to.
+        """
+        return pulumi.get(self, "category_id")
+
+    @_builtins.property
+    @pulumi.getter
+    def name(self) -> _builtins.str:
+        """
+        The display name of the bot.
+        """
+        return pulumi.get(self, "name")
+
+
+@pulumi.output_type
+class GetBotManagementCategoriesCategoryResult(dict):
+    def __init__(__self__, *,
+                 action: _builtins.str,
+                 category_id: _builtins.str,
+                 description: _builtins.str,
+                 name: _builtins.str):
+        """
+        :param _builtins.str action: The category's action. One of `allow`, `block`, or `challenge`.
+        :param _builtins.str category_id: The ID of the category.
+        :param _builtins.str description: A description of the bots the category contains.
+        :param _builtins.str name: The display name of the category.
+        """
+        pulumi.set(__self__, "action", action)
+        pulumi.set(__self__, "category_id", category_id)
+        pulumi.set(__self__, "description", description)
+        pulumi.set(__self__, "name", name)
+
+    @_builtins.property
+    @pulumi.getter
+    def action(self) -> _builtins.str:
+        """
+        The category's action. One of `allow`, `block`, or `challenge`.
+        """
+        return pulumi.get(self, "action")
+
+    @_builtins.property
+    @pulumi.getter(name="categoryId")
+    def category_id(self) -> _builtins.str:
+        """
+        The ID of the category.
+        """
+        return pulumi.get(self, "category_id")
+
+    @_builtins.property
+    @pulumi.getter
+    def description(self) -> _builtins.str:
+        """
+        A description of the bots the category contains.
+        """
+        return pulumi.get(self, "description")
+
+    @_builtins.property
+    @pulumi.getter
+    def name(self) -> _builtins.str:
+        """
+        The display name of the category.
+        """
+        return pulumi.get(self, "name")
 
 
 @pulumi.output_type

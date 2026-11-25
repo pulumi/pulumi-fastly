@@ -79,6 +79,11 @@ public final class ServiceVclLoggingGc {
      */
     private @Nullable String projectId;
     /**
+     * @return A PGP public key that Fastly will use to encrypt your log files before writing them to disk
+     * 
+     */
+    private @Nullable String publicKey;
+    /**
      * @return Name of a condition to apply this logging.
      * 
      */
@@ -192,6 +197,13 @@ public final class ServiceVclLoggingGc {
         return Optional.ofNullable(this.projectId);
     }
     /**
+     * @return A PGP public key that Fastly will use to encrypt your log files before writing them to disk
+     * 
+     */
+    public Optional<String> publicKey() {
+        return Optional.ofNullable(this.publicKey);
+    }
+    /**
      * @return Name of a condition to apply this logging.
      * 
      */
@@ -242,6 +254,7 @@ public final class ServiceVclLoggingGc {
         private @Nullable String placement;
         private @Nullable String processingRegion;
         private @Nullable String projectId;
+        private @Nullable String publicKey;
         private @Nullable String responseCondition;
         private @Nullable String secretKey;
         private @Nullable String timestampFormat;
@@ -262,6 +275,7 @@ public final class ServiceVclLoggingGc {
     	      this.placement = defaults.placement;
     	      this.processingRegion = defaults.processingRegion;
     	      this.projectId = defaults.projectId;
+    	      this.publicKey = defaults.publicKey;
     	      this.responseCondition = defaults.responseCondition;
     	      this.secretKey = defaults.secretKey;
     	      this.timestampFormat = defaults.timestampFormat;
@@ -351,6 +365,12 @@ public final class ServiceVclLoggingGc {
             return this;
         }
         @CustomType.Setter
+        public Builder publicKey(@Nullable String publicKey) {
+
+            this.publicKey = publicKey;
+            return this;
+        }
+        @CustomType.Setter
         public Builder responseCondition(@Nullable String responseCondition) {
 
             this.responseCondition = responseCondition;
@@ -389,6 +409,7 @@ public final class ServiceVclLoggingGc {
             _resultValue.placement = placement;
             _resultValue.processingRegion = processingRegion;
             _resultValue.projectId = projectId;
+            _resultValue.publicKey = publicKey;
             _resultValue.responseCondition = responseCondition;
             _resultValue.secretKey = secretKey;
             _resultValue.timestampFormat = timestampFormat;

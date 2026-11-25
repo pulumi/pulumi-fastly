@@ -168,6 +168,21 @@ public final class ServiceComputeLoggingGcArgs extends com.pulumi.resources.Reso
     }
 
     /**
+     * A PGP public key that Fastly will use to encrypt your log files before writing them to disk
+     * 
+     */
+    @Import(name="publicKey")
+    private @Nullable Output<String> publicKey;
+
+    /**
+     * @return A PGP public key that Fastly will use to encrypt your log files before writing them to disk
+     * 
+     */
+    public Optional<Output<String>> publicKey() {
+        return Optional.ofNullable(this.publicKey);
+    }
+
+    /**
      * The secret key associated with the target gcs bucket on your account. You may optionally provide this secret via an environment variable, `FASTLY_GCS_SECRET_KEY`. A typical format for the key is PEM format, containing actual newline characters where required
      * 
      */
@@ -225,6 +240,7 @@ public final class ServiceComputeLoggingGcArgs extends com.pulumi.resources.Reso
         this.period = $.period;
         this.processingRegion = $.processingRegion;
         this.projectId = $.projectId;
+        this.publicKey = $.publicKey;
         this.secretKey = $.secretKey;
         this.timestampFormat = $.timestampFormat;
         this.user = $.user;
@@ -456,6 +472,27 @@ public final class ServiceComputeLoggingGcArgs extends com.pulumi.resources.Reso
          */
         public Builder projectId(String projectId) {
             return projectId(Output.of(projectId));
+        }
+
+        /**
+         * @param publicKey A PGP public key that Fastly will use to encrypt your log files before writing them to disk
+         * 
+         * @return builder
+         * 
+         */
+        public Builder publicKey(@Nullable Output<String> publicKey) {
+            $.publicKey = publicKey;
+            return this;
+        }
+
+        /**
+         * @param publicKey A PGP public key that Fastly will use to encrypt your log files before writing them to disk
+         * 
+         * @return builder
+         * 
+         */
+        public Builder publicKey(String publicKey) {
+            return publicKey(Output.of(publicKey));
         }
 
         /**

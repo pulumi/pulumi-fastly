@@ -11,6 +11,8 @@ import * as utilities from "./utilities";
  *
  * The Service resource requires a domain name that is correctly set up to direct traffic to the Fastly service. See Fastly's guide on [Adding CNAME Records](https://docs.fastly.com/en/guides/adding-cname-records) on their documentation site for guidance.
  *
+ * > **Note:** The nested `domain` block uses classic domains, which are only available to accounts created before 2025-09-16. Use the versionless `fastly.Domain` resource to attach domains to a service, as in the examples below.
+ *
  * > **Note:** If you omit the `package` block, you must set `activate = false` to avoid service validation errors.
  *
  * ## Activation and Staging
@@ -54,15 +56,16 @@ import * as utilities from "./utilities";
  * });
  * const exampleServiceCompute = new fastly.ServiceCompute("example", {
  *     name: "demofastly",
- *     domains: [{
- *         name: "demo.notexample.com",
- *         comment: "demo",
- *     }],
  *     "package": {
  *         filename: "package.tar.gz",
  *         sourceCodeHash: example.then(example => example.hash),
  *     },
  *     forceDestroy: true,
+ * });
+ * const exampleDomain = new fastly.Domain("example", {
+ *     fqdn: "demo.notexample.com",
+ *     description: "demo",
+ *     serviceId: exampleServiceCompute.id,
  * });
  * ```
  *
@@ -153,7 +156,7 @@ export class ServiceCompute extends pulumi.CustomResource {
     declare public readonly comment: pulumi.Output<string | undefined>;
     declare public readonly dictionaries: pulumi.Output<outputs.ServiceComputeDictionary[] | undefined>;
     /**
-     * A set of Domain names to serve as entry points for your Service
+     * A set of Domain names to serve as entry points for your Service. Classic domains are only available to accounts created before 2025-09-16; for newer accounts use the versionless `fastly.Domain` resource instead.
      */
     declare public readonly domains: pulumi.Output<outputs.ServiceComputeDomain[] | undefined>;
     /**
@@ -176,6 +179,7 @@ export class ServiceCompute extends pulumi.CustomResource {
     declare public readonly loggingDatadogs: pulumi.Output<outputs.ServiceComputeLoggingDatadog[] | undefined>;
     declare public readonly loggingDigitaloceans: pulumi.Output<outputs.ServiceComputeLoggingDigitalocean[] | undefined>;
     declare public readonly loggingElasticsearches: pulumi.Output<outputs.ServiceComputeLoggingElasticsearch[] | undefined>;
+    declare public readonly loggingFos: pulumi.Output<outputs.ServiceComputeLoggingFo[] | undefined>;
     declare public readonly loggingFtps: pulumi.Output<outputs.ServiceComputeLoggingFtp[] | undefined>;
     declare public readonly loggingGcs: pulumi.Output<outputs.ServiceComputeLoggingGc[] | undefined>;
     declare public readonly loggingGooglepubsubs: pulumi.Output<outputs.ServiceComputeLoggingGooglepubsub[] | undefined>;
@@ -259,6 +263,7 @@ export class ServiceCompute extends pulumi.CustomResource {
             resourceInputs["loggingDatadogs"] = state?.loggingDatadogs;
             resourceInputs["loggingDigitaloceans"] = state?.loggingDigitaloceans;
             resourceInputs["loggingElasticsearches"] = state?.loggingElasticsearches;
+            resourceInputs["loggingFos"] = state?.loggingFos;
             resourceInputs["loggingFtps"] = state?.loggingFtps;
             resourceInputs["loggingGcs"] = state?.loggingGcs;
             resourceInputs["loggingGooglepubsubs"] = state?.loggingGooglepubsubs;
@@ -305,6 +310,7 @@ export class ServiceCompute extends pulumi.CustomResource {
             resourceInputs["loggingDatadogs"] = args?.loggingDatadogs;
             resourceInputs["loggingDigitaloceans"] = args?.loggingDigitaloceans;
             resourceInputs["loggingElasticsearches"] = args?.loggingElasticsearches;
+            resourceInputs["loggingFos"] = args?.loggingFos;
             resourceInputs["loggingFtps"] = args?.loggingFtps;
             resourceInputs["loggingGcs"] = args?.loggingGcs;
             resourceInputs["loggingGooglepubsubs"] = args?.loggingGooglepubsubs;
@@ -368,7 +374,7 @@ export interface ServiceComputeState {
     comment?: pulumi.Input<string | undefined>;
     dictionaries?: pulumi.Input<pulumi.Input<inputs.ServiceComputeDictionary>[] | undefined>;
     /**
-     * A set of Domain names to serve as entry points for your Service
+     * A set of Domain names to serve as entry points for your Service. Classic domains are only available to accounts created before 2025-09-16; for newer accounts use the versionless `fastly.Domain` resource instead.
      */
     domains?: pulumi.Input<pulumi.Input<inputs.ServiceComputeDomain>[] | undefined>;
     /**
@@ -391,6 +397,7 @@ export interface ServiceComputeState {
     loggingDatadogs?: pulumi.Input<pulumi.Input<inputs.ServiceComputeLoggingDatadog>[] | undefined>;
     loggingDigitaloceans?: pulumi.Input<pulumi.Input<inputs.ServiceComputeLoggingDigitalocean>[] | undefined>;
     loggingElasticsearches?: pulumi.Input<pulumi.Input<inputs.ServiceComputeLoggingElasticsearch>[] | undefined>;
+    loggingFos?: pulumi.Input<pulumi.Input<inputs.ServiceComputeLoggingFo>[] | undefined>;
     loggingFtps?: pulumi.Input<pulumi.Input<inputs.ServiceComputeLoggingFtp>[] | undefined>;
     loggingGcs?: pulumi.Input<pulumi.Input<inputs.ServiceComputeLoggingGc>[] | undefined>;
     loggingGooglepubsubs?: pulumi.Input<pulumi.Input<inputs.ServiceComputeLoggingGooglepubsub>[] | undefined>;
@@ -459,7 +466,7 @@ export interface ServiceComputeArgs {
     comment?: pulumi.Input<string | undefined>;
     dictionaries?: pulumi.Input<pulumi.Input<inputs.ServiceComputeDictionary>[] | undefined>;
     /**
-     * A set of Domain names to serve as entry points for your Service
+     * A set of Domain names to serve as entry points for your Service. Classic domains are only available to accounts created before 2025-09-16; for newer accounts use the versionless `fastly.Domain` resource instead.
      */
     domains?: pulumi.Input<pulumi.Input<inputs.ServiceComputeDomain>[] | undefined>;
     /**
@@ -474,6 +481,7 @@ export interface ServiceComputeArgs {
     loggingDatadogs?: pulumi.Input<pulumi.Input<inputs.ServiceComputeLoggingDatadog>[] | undefined>;
     loggingDigitaloceans?: pulumi.Input<pulumi.Input<inputs.ServiceComputeLoggingDigitalocean>[] | undefined>;
     loggingElasticsearches?: pulumi.Input<pulumi.Input<inputs.ServiceComputeLoggingElasticsearch>[] | undefined>;
+    loggingFos?: pulumi.Input<pulumi.Input<inputs.ServiceComputeLoggingFo>[] | undefined>;
     loggingFtps?: pulumi.Input<pulumi.Input<inputs.ServiceComputeLoggingFtp>[] | undefined>;
     loggingGcs?: pulumi.Input<pulumi.Input<inputs.ServiceComputeLoggingGc>[] | undefined>;
     loggingGooglepubsubs?: pulumi.Input<pulumi.Input<inputs.ServiceComputeLoggingGooglepubsub>[] | undefined>;

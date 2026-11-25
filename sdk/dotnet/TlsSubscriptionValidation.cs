@@ -56,13 +56,6 @@ namespace Pulumi.Fastly
     /// 
     ///     var exampleServiceVcl = new Fastly.ServiceVcl("example", new()
     ///     {
-    ///         Domains = subdomains.Select(entry =&gt; 
-    ///         {
-    ///             return new Fastly.Inputs.ServiceVclDomainArgs
-    ///             {
-    ///                 Name = entry,
-    ///             };
-    ///         }).ToList(),
     ///         Name = "example-service",
     ///         Backends = new[]
     ///         {
@@ -75,12 +68,25 @@ namespace Pulumi.Fastly
     ///         ForceDestroy = true,
     ///     });
     /// 
+    ///     var exampleDomain = new List&lt;Fastly.Domain&gt;();
+    ///     for (var rangeIndex = 0; rangeIndex &lt; Std.Toset.Invoke(new()
+    ///     {
+    ///         Input = subdomains,
+    ///     }).Result; rangeIndex++)
+    ///     {
+    ///         var range = new { Value = rangeIndex };
+    ///         exampleDomain.Add(new Fastly.Domain($"example-{range.Value}", new()
+    ///         {
+    ///             Fqdn = range.Value,
+    ///             ServiceId = exampleServiceVcl.Id,
+    ///         }));
+    ///     }
     ///     var exampleTlsSubscription = new Fastly.TlsSubscription("example", new()
     ///     {
-    ///         Domains = exampleServiceVcl.Domains.Apply(domains =&gt; .Select(domain =&gt; 
+    ///         Domains = exampleDomain.Select(domain =&gt; 
     ///         {
-    ///             return domain.Name;
-    ///         }).ToList()),
+    ///             return domain.Fqdn;
+    ///         }).ToList(),
     ///         CertificateAuthority = "lets-encrypt",
     ///     });
     /// 

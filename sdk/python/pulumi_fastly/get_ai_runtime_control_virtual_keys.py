@@ -86,7 +86,7 @@ class GetAiRuntimeControlVirtualKeysResult:
     @pulumi.getter
     def search(self) -> Optional[_builtins.str]:
         """
-        Filter the results by a substring match on the virtual key name.
+        Filter the results to virtual keys whose name contains this substring.
         """
         return pulumi.get(self, "search")
 
@@ -153,7 +153,7 @@ def get_ai_runtime_control_virtual_keys(include_deleted: Optional[_builtins.bool
     :param _builtins.bool include_deleted: Include deleted virtual keys in the results. Default `false`.
     :param _builtins.str model: Filter the results by AI model identifier.
     :param _builtins.str provider_name: Filter the results by AI model provider name.
-    :param _builtins.str search: Filter the results by a substring match on the virtual key name.
+    :param _builtins.str search: Filter the results to virtual keys whose name contains this substring.
     """
     __args__ = dict()
     __args__['includeDeleted'] = include_deleted
@@ -202,7 +202,7 @@ def get_ai_runtime_control_virtual_keys_output(include_deleted: pulumi.Input[Opt
     :param _builtins.bool include_deleted: Include deleted virtual keys in the results. Default `false`.
     :param _builtins.str model: Filter the results by AI model identifier.
     :param _builtins.str provider_name: Filter the results by AI model provider name.
-    :param _builtins.str search: Filter the results by a substring match on the virtual key name.
+    :param _builtins.str search: Filter the results to virtual keys whose name contains this substring.
     """
     __args__ = dict()
     __args__['includeDeleted'] = include_deleted

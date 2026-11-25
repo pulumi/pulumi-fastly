@@ -201,10 +201,6 @@ class ServiceDictionaryItems(pulumi.CustomResource):
             mydict_name = "My Dictionary"
         myservice = fastly.ServiceVcl("myservice",
             name="demofastly",
-            domains=[{
-                "name": "demo.notexample.com",
-                "comment": "demo",
-            }],
             backends=[{
                 "address": "http-me.fastly.dev",
                 "name": "Glitch Test Site",
@@ -247,10 +243,6 @@ class ServiceDictionaryItems(pulumi.CustomResource):
             }
         myservice = fastly.ServiceVcl("myservice",
             name="demofastly",
-            domains=[{
-                "name": "demo.notexample.com",
-                "comment": "demo",
-            }],
             backends=[{
                 "address": "http-me.fastly.dev",
                 "name": "Glitch Test Site",
@@ -290,10 +282,6 @@ class ServiceDictionaryItems(pulumi.CustomResource):
         # Define the standard service that will be used to manage the dictionaries.
         myservice = fastly.ServiceVcl("myservice",
             name="demofastly",
-            domains=[{
-                "name": "demo.ocnotexample.com",
-                "comment": "demo",
-            }],
             backends=[{
                 "address": "http-me.fastly.dev",
                 "name": "Glitch Test Site",
@@ -347,10 +335,6 @@ class ServiceDictionaryItems(pulumi.CustomResource):
             mydict_name = "My Dictionary"
         myservice = fastly.ServiceVcl("myservice",
             name="demofastly",
-            domains=[{
-                "name": "demo.notexample.com",
-                "comment": "demo",
-            }],
             dictionaries=[{
                 "name": mydict_name,
             }])
@@ -453,10 +437,6 @@ class ServiceDictionaryItems(pulumi.CustomResource):
             mydict_name = "My Dictionary"
         myservice = fastly.ServiceVcl("myservice",
             name="demofastly",
-            domains=[{
-                "name": "demo.notexample.com",
-                "comment": "demo",
-            }],
             backends=[{
                 "address": "http-me.fastly.dev",
                 "name": "Glitch Test Site",
@@ -499,10 +479,6 @@ class ServiceDictionaryItems(pulumi.CustomResource):
             }
         myservice = fastly.ServiceVcl("myservice",
             name="demofastly",
-            domains=[{
-                "name": "demo.notexample.com",
-                "comment": "demo",
-            }],
             backends=[{
                 "address": "http-me.fastly.dev",
                 "name": "Glitch Test Site",
@@ -542,10 +518,6 @@ class ServiceDictionaryItems(pulumi.CustomResource):
         # Define the standard service that will be used to manage the dictionaries.
         myservice = fastly.ServiceVcl("myservice",
             name="demofastly",
-            domains=[{
-                "name": "demo.ocnotexample.com",
-                "comment": "demo",
-            }],
             backends=[{
                 "address": "http-me.fastly.dev",
                 "name": "Glitch Test Site",
@@ -599,10 +571,6 @@ class ServiceDictionaryItems(pulumi.CustomResource):
             mydict_name = "My Dictionary"
         myservice = fastly.ServiceVcl("myservice",
             name="demofastly",
-            domains=[{
-                "name": "demo.notexample.com",
-                "comment": "demo",
-            }],
             dictionaries=[{
                 "name": mydict_name,
             }])

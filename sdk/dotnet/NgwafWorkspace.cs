@@ -61,6 +61,12 @@ namespace Pulumi.Fastly
         public Output<Outputs.NgwafWorkspaceAttackSignalThresholds> AttackSignalThresholds { get; private set; } = null!;
 
         /// <summary>
+        /// Whether virtual patches released after this setting is enabled are automatically enabled for the workspace in block mode. Virtual patches released before it was enabled are not changed. Default value `False`.
+        /// </summary>
+        [Output("autoEnableNewVirtualPatches")]
+        public Output<bool?> AutoEnableNewVirtualPatches { get; private set; } = null!;
+
+        /// <summary>
         /// Specifies the request headers containing the client IP address. Maximum of 10 header names.
         /// </summary>
         [Output("clientIpHeaders")]
@@ -154,6 +160,12 @@ namespace Pulumi.Fastly
         [Input("attackSignalThresholds", required: true)]
         public Input<Inputs.NgwafWorkspaceAttackSignalThresholdsArgs> AttackSignalThresholds { get; set; } = null!;
 
+        /// <summary>
+        /// Whether virtual patches released after this setting is enabled are automatically enabled for the workspace in block mode. Virtual patches released before it was enabled are not changed. Default value `False`.
+        /// </summary>
+        [Input("autoEnableNewVirtualPatches")]
+        public Input<bool>? AutoEnableNewVirtualPatches { get; set; }
+
         [Input("clientIpHeaders")]
         private InputList<string>? _clientIpHeaders;
 
@@ -215,6 +227,12 @@ namespace Pulumi.Fastly
         /// </summary>
         [Input("attackSignalThresholds")]
         public Input<Inputs.NgwafWorkspaceAttackSignalThresholdsGetArgs>? AttackSignalThresholds { get; set; }
+
+        /// <summary>
+        /// Whether virtual patches released after this setting is enabled are automatically enabled for the workspace in block mode. Virtual patches released before it was enabled are not changed. Default value `False`.
+        /// </summary>
+        [Input("autoEnableNewVirtualPatches")]
+        public Input<bool>? AutoEnableNewVirtualPatches { get; set; }
 
         [Input("clientIpHeaders")]
         private InputList<string>? _clientIpHeaders;

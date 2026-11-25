@@ -8,7 +8,7 @@ import (
 	"reflect"
 
 	"errors"
-	"github.com/pulumi/pulumi-fastly/sdk/v12/go/fastly/internal"
+	"github.com/pulumi/pulumi-fastly/sdk/v13/go/fastly/internal"
 	"github.com/pulumi/pulumi/sdk/v3/go/pulumi"
 )
 
@@ -21,7 +21,7 @@ import (
 //
 // import (
 //
-//	"github.com/pulumi/pulumi-fastly/sdk/v12/go/fastly"
+//	"github.com/pulumi/pulumi-fastly/sdk/v13/go/fastly"
 //	"github.com/pulumi/pulumi/sdk/v3/go/pulumi"
 //
 // )
@@ -30,12 +30,6 @@ import (
 //		pulumi.Run(func(ctx *pulumi.Context) error {
 //			example, err := fastly.NewServiceVcl(ctx, "example", &fastly.ServiceVclArgs{
 //				Name: pulumi.String("my_vcl_service"),
-//				Domains: fastly.ServiceVclDomainArray{
-//					&fastly.ServiceVclDomainArgs{
-//						Name:    pulumi.String("demo.notexample.com"),
-//						Comment: pulumi.String("demo"),
-//					},
-//				},
 //			})
 //			if err != nil {
 //				return err
@@ -85,7 +79,7 @@ type Alert struct {
 
 	// Additional text that is included in the alert notification.
 	Description pulumi.StringPtrOutput `pulumi:"description"`
-	// More filters depending on the source type.
+	// Additional filters and aggregation criteria depending on the source type. For source type `stats`, use empty `{}` to monitor a single service or all services (aggregated), or include the `services` array to monitor all or a set of services (not aggregated). For source type `domains` or `origins`, the `domains` or `origins` array must be included to monitor all or a set (not aggregated).
 	Dimensions AlertDimensionsPtrOutput `pulumi:"dimensions"`
 	// Criteria on how to alert.
 	EvaluationStrategy AlertEvaluationStrategyOutput `pulumi:"evaluationStrategy"`
@@ -95,7 +89,7 @@ type Alert struct {
 	Metric pulumi.StringOutput `pulumi:"metric"`
 	// The name of the alert.
 	Name pulumi.StringOutput `pulumi:"name"`
-	// The service which the alert monitors. Optional when using `stats` as the `source`.
+	// The service to monitor. Can be a specific service ID to monitor a single service, or omit to monitor all services (aggregated) or all or a set of services (not aggregated) (see `dimensions` for details).
 	ServiceId pulumi.StringPtrOutput `pulumi:"serviceId"`
 	// The source where the metric comes from. One of: `domains`, `origins`, `stats`.
 	Source pulumi.StringOutput `pulumi:"source"`
@@ -142,7 +136,7 @@ func GetAlert(ctx *pulumi.Context,
 type alertState struct {
 	// Additional text that is included in the alert notification.
 	Description *string `pulumi:"description"`
-	// More filters depending on the source type.
+	// Additional filters and aggregation criteria depending on the source type. For source type `stats`, use empty `{}` to monitor a single service or all services (aggregated), or include the `services` array to monitor all or a set of services (not aggregated). For source type `domains` or `origins`, the `domains` or `origins` array must be included to monitor all or a set (not aggregated).
 	Dimensions *AlertDimensions `pulumi:"dimensions"`
 	// Criteria on how to alert.
 	EvaluationStrategy *AlertEvaluationStrategy `pulumi:"evaluationStrategy"`
@@ -152,7 +146,7 @@ type alertState struct {
 	Metric *string `pulumi:"metric"`
 	// The name of the alert.
 	Name *string `pulumi:"name"`
-	// The service which the alert monitors. Optional when using `stats` as the `source`.
+	// The service to monitor. Can be a specific service ID to monitor a single service, or omit to monitor all services (aggregated) or all or a set of services (not aggregated) (see `dimensions` for details).
 	ServiceId *string `pulumi:"serviceId"`
 	// The source where the metric comes from. One of: `domains`, `origins`, `stats`.
 	Source *string `pulumi:"source"`
@@ -161,7 +155,7 @@ type alertState struct {
 type AlertState struct {
 	// Additional text that is included in the alert notification.
 	Description pulumi.StringPtrInput
-	// More filters depending on the source type.
+	// Additional filters and aggregation criteria depending on the source type. For source type `stats`, use empty `{}` to monitor a single service or all services (aggregated), or include the `services` array to monitor all or a set of services (not aggregated). For source type `domains` or `origins`, the `domains` or `origins` array must be included to monitor all or a set (not aggregated).
 	Dimensions AlertDimensionsPtrInput
 	// Criteria on how to alert.
 	EvaluationStrategy AlertEvaluationStrategyPtrInput
@@ -171,7 +165,7 @@ type AlertState struct {
 	Metric pulumi.StringPtrInput
 	// The name of the alert.
 	Name pulumi.StringPtrInput
-	// The service which the alert monitors. Optional when using `stats` as the `source`.
+	// The service to monitor. Can be a specific service ID to monitor a single service, or omit to monitor all services (aggregated) or all or a set of services (not aggregated) (see `dimensions` for details).
 	ServiceId pulumi.StringPtrInput
 	// The source where the metric comes from. One of: `domains`, `origins`, `stats`.
 	Source pulumi.StringPtrInput
@@ -190,7 +184,7 @@ func AlertExists(ctx *pulumi.Context,
 type alertArgs struct {
 	// Additional text that is included in the alert notification.
 	Description *string `pulumi:"description"`
-	// More filters depending on the source type.
+	// Additional filters and aggregation criteria depending on the source type. For source type `stats`, use empty `{}` to monitor a single service or all services (aggregated), or include the `services` array to monitor all or a set of services (not aggregated). For source type `domains` or `origins`, the `domains` or `origins` array must be included to monitor all or a set (not aggregated).
 	Dimensions *AlertDimensions `pulumi:"dimensions"`
 	// Criteria on how to alert.
 	EvaluationStrategy AlertEvaluationStrategy `pulumi:"evaluationStrategy"`
@@ -200,7 +194,7 @@ type alertArgs struct {
 	Metric string `pulumi:"metric"`
 	// The name of the alert.
 	Name *string `pulumi:"name"`
-	// The service which the alert monitors. Optional when using `stats` as the `source`.
+	// The service to monitor. Can be a specific service ID to monitor a single service, or omit to monitor all services (aggregated) or all or a set of services (not aggregated) (see `dimensions` for details).
 	ServiceId *string `pulumi:"serviceId"`
 	// The source where the metric comes from. One of: `domains`, `origins`, `stats`.
 	Source string `pulumi:"source"`
@@ -210,7 +204,7 @@ type alertArgs struct {
 type AlertArgs struct {
 	// Additional text that is included in the alert notification.
 	Description pulumi.StringPtrInput
-	// More filters depending on the source type.
+	// Additional filters and aggregation criteria depending on the source type. For source type `stats`, use empty `{}` to monitor a single service or all services (aggregated), or include the `services` array to monitor all or a set of services (not aggregated). For source type `domains` or `origins`, the `domains` or `origins` array must be included to monitor all or a set (not aggregated).
 	Dimensions AlertDimensionsPtrInput
 	// Criteria on how to alert.
 	EvaluationStrategy AlertEvaluationStrategyInput
@@ -220,7 +214,7 @@ type AlertArgs struct {
 	Metric pulumi.StringInput
 	// The name of the alert.
 	Name pulumi.StringPtrInput
-	// The service which the alert monitors. Optional when using `stats` as the `source`.
+	// The service to monitor. Can be a specific service ID to monitor a single service, or omit to monitor all services (aggregated) or all or a set of services (not aggregated) (see `dimensions` for details).
 	ServiceId pulumi.StringPtrInput
 	// The source where the metric comes from. One of: `domains`, `origins`, `stats`.
 	Source pulumi.StringInput
@@ -318,7 +312,7 @@ func (o AlertOutput) Description() pulumi.StringPtrOutput {
 	return o.ApplyT(func(v *Alert) pulumi.StringPtrOutput { return v.Description }).(pulumi.StringPtrOutput)
 }
 
-// More filters depending on the source type.
+// Additional filters and aggregation criteria depending on the source type. For source type `stats`, use empty `{}` to monitor a single service or all services (aggregated), or include the `services` array to monitor all or a set of services (not aggregated). For source type `domains` or `origins`, the `domains` or `origins` array must be included to monitor all or a set (not aggregated).
 func (o AlertOutput) Dimensions() AlertDimensionsPtrOutput {
 	return o.ApplyT(func(v *Alert) AlertDimensionsPtrOutput { return v.Dimensions }).(AlertDimensionsPtrOutput)
 }
@@ -343,7 +337,7 @@ func (o AlertOutput) Name() pulumi.StringOutput {
 	return o.ApplyT(func(v *Alert) pulumi.StringOutput { return v.Name }).(pulumi.StringOutput)
 }
 
-// The service which the alert monitors. Optional when using `stats` as the `source`.
+// The service to monitor. Can be a specific service ID to monitor a single service, or omit to monitor all services (aggregated) or all or a set of services (not aggregated) (see `dimensions` for details).
 func (o AlertOutput) ServiceId() pulumi.StringPtrOutput {
 	return o.ApplyT(func(v *Alert) pulumi.StringPtrOutput { return v.ServiceId }).(pulumi.StringPtrOutput)
 }

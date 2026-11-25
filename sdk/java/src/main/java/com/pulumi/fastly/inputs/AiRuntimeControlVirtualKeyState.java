@@ -16,14 +16,14 @@ public final class AiRuntimeControlVirtualKeyState extends com.pulumi.resources.
     public static final AiRuntimeControlVirtualKeyState Empty = new AiRuntimeControlVirtualKeyState();
 
     /**
-     * The generated access token used to authenticate as this virtual key. Only returned by the API when the key is created.
+     * The access token for this virtual key. Only returned by the API when the key is created, and cannot be retrieved again afterward.
      * 
      */
     @Import(name="accessToken")
     private @Nullable Output<String> accessToken;
 
     /**
-     * @return The generated access token used to authenticate as this virtual key. Only returned by the API when the key is created.
+     * @return The access token for this virtual key. Only returned by the API when the key is created, and cannot be retrieved again afterward.
      * 
      */
     public Optional<Output<String>> accessToken() {
@@ -61,14 +61,14 @@ public final class AiRuntimeControlVirtualKeyState extends com.pulumi.resources.
     }
 
     /**
-     * The expiration timestamp of the virtual key, in RFC 3339 format. Once set, this value cannot be unset, only changed.
+     * The date and time the virtual key expires, in RFC 3339 format. Once set, this value cannot be unset, only changed.
      * 
      */
     @Import(name="expiresAt")
     private @Nullable Output<String> expiresAt;
 
     /**
-     * @return The expiration timestamp of the virtual key, in RFC 3339 format. Once set, this value cannot be unset, only changed.
+     * @return The date and time the virtual key expires, in RFC 3339 format. Once set, this value cannot be unset, only changed.
      * 
      */
     public Optional<Output<String>> expiresAt() {
@@ -76,14 +76,14 @@ public final class AiRuntimeControlVirtualKeyState extends com.pulumi.resources.
     }
 
     /**
-     * Timestamp (UTC) of when the virtual key was last used.
+     * Timestamp (UTC) of when the virtual key was last used to make a request.
      * 
      */
     @Import(name="lastUsedAt")
     private @Nullable Output<String> lastUsedAt;
 
     /**
-     * @return Timestamp (UTC) of when the virtual key was last used.
+     * @return Timestamp (UTC) of when the virtual key was last used to make a request.
      * 
      */
     public Optional<Output<String>> lastUsedAt() {
@@ -106,14 +106,14 @@ public final class AiRuntimeControlVirtualKeyState extends com.pulumi.resources.
     }
 
     /**
-     * A human-readable name for the virtual key.
+     * The display name of the virtual key.
      * 
      */
     @Import(name="name")
     private @Nullable Output<String> name;
 
     /**
-     * @return A human-readable name for the virtual key.
+     * @return The display name of the virtual key.
      * 
      */
     public Optional<Output<String>> name() {
@@ -136,14 +136,14 @@ public final class AiRuntimeControlVirtualKeyState extends com.pulumi.resources.
     }
 
     /**
-     * The type of the virtual key.
+     * The type of the resource.
      * 
      */
     @Import(name="type")
     private @Nullable Output<String> type;
 
     /**
-     * @return The type of the virtual key.
+     * @return The type of the resource.
      * 
      */
     public Optional<Output<String>> type() {
@@ -166,14 +166,14 @@ public final class AiRuntimeControlVirtualKeyState extends com.pulumi.resources.
     }
 
     /**
-     * The ID of the user creating the virtual key. Changing this forces a new virtual key to be created.
+     * The ID of the user who created the virtual key.
      * 
      */
     @Import(name="userId")
     private @Nullable Output<String> userId;
 
     /**
-     * @return The ID of the user creating the virtual key. Changing this forces a new virtual key to be created.
+     * @return The ID of the user who created the virtual key.
      * 
      */
     public Optional<Output<String>> userId() {
@@ -215,7 +215,7 @@ public final class AiRuntimeControlVirtualKeyState extends com.pulumi.resources.
         }
 
         /**
-         * @param accessToken The generated access token used to authenticate as this virtual key. Only returned by the API when the key is created.
+         * @param accessToken The access token for this virtual key. Only returned by the API when the key is created, and cannot be retrieved again afterward.
          * 
          * @return builder
          * 
@@ -226,7 +226,7 @@ public final class AiRuntimeControlVirtualKeyState extends com.pulumi.resources.
         }
 
         /**
-         * @param accessToken The generated access token used to authenticate as this virtual key. Only returned by the API when the key is created.
+         * @param accessToken The access token for this virtual key. Only returned by the API when the key is created, and cannot be retrieved again afterward.
          * 
          * @return builder
          * 
@@ -278,7 +278,7 @@ public final class AiRuntimeControlVirtualKeyState extends com.pulumi.resources.
         }
 
         /**
-         * @param expiresAt The expiration timestamp of the virtual key, in RFC 3339 format. Once set, this value cannot be unset, only changed.
+         * @param expiresAt The date and time the virtual key expires, in RFC 3339 format. Once set, this value cannot be unset, only changed.
          * 
          * @return builder
          * 
@@ -289,7 +289,7 @@ public final class AiRuntimeControlVirtualKeyState extends com.pulumi.resources.
         }
 
         /**
-         * @param expiresAt The expiration timestamp of the virtual key, in RFC 3339 format. Once set, this value cannot be unset, only changed.
+         * @param expiresAt The date and time the virtual key expires, in RFC 3339 format. Once set, this value cannot be unset, only changed.
          * 
          * @return builder
          * 
@@ -299,7 +299,7 @@ public final class AiRuntimeControlVirtualKeyState extends com.pulumi.resources.
         }
 
         /**
-         * @param lastUsedAt Timestamp (UTC) of when the virtual key was last used.
+         * @param lastUsedAt Timestamp (UTC) of when the virtual key was last used to make a request.
          * 
          * @return builder
          * 
@@ -310,7 +310,7 @@ public final class AiRuntimeControlVirtualKeyState extends com.pulumi.resources.
         }
 
         /**
-         * @param lastUsedAt Timestamp (UTC) of when the virtual key was last used.
+         * @param lastUsedAt Timestamp (UTC) of when the virtual key was last used to make a request.
          * 
          * @return builder
          * 
@@ -341,7 +341,7 @@ public final class AiRuntimeControlVirtualKeyState extends com.pulumi.resources.
         }
 
         /**
-         * @param name A human-readable name for the virtual key.
+         * @param name The display name of the virtual key.
          * 
          * @return builder
          * 
@@ -352,7 +352,7 @@ public final class AiRuntimeControlVirtualKeyState extends com.pulumi.resources.
         }
 
         /**
-         * @param name A human-readable name for the virtual key.
+         * @param name The display name of the virtual key.
          * 
          * @return builder
          * 
@@ -383,7 +383,7 @@ public final class AiRuntimeControlVirtualKeyState extends com.pulumi.resources.
         }
 
         /**
-         * @param type The type of the virtual key.
+         * @param type The type of the resource.
          * 
          * @return builder
          * 
@@ -394,7 +394,7 @@ public final class AiRuntimeControlVirtualKeyState extends com.pulumi.resources.
         }
 
         /**
-         * @param type The type of the virtual key.
+         * @param type The type of the resource.
          * 
          * @return builder
          * 
@@ -425,7 +425,7 @@ public final class AiRuntimeControlVirtualKeyState extends com.pulumi.resources.
         }
 
         /**
-         * @param userId The ID of the user creating the virtual key. Changing this forces a new virtual key to be created.
+         * @param userId The ID of the user who created the virtual key.
          * 
          * @return builder
          * 
@@ -436,7 +436,7 @@ public final class AiRuntimeControlVirtualKeyState extends com.pulumi.resources.
         }
 
         /**
-         * @param userId The ID of the user creating the virtual key. Changing this forces a new virtual key to be created.
+         * @param userId The ID of the user who created the virtual key.
          * 
          * @return builder
          * 

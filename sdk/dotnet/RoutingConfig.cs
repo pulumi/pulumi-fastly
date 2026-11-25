@@ -20,11 +20,6 @@ namespace Pulumi.Fastly
     /// A routing config isn't useful on its own; it must be linked to one or more domains via
     /// `fastly.RoutingConfigDomainLink` before it will route traffic.
     /// 
-    /// &gt; **Note:** This resource refreshes each `Path` and `Rule` it manages individually by ID rather
-    /// than listing a routing config's current paths/rules. This means it will not detect a path or rule
-    /// added to the routing config outside of Terraform (e.g. via the API or UI directly) — only drift on
-    /// paths/rules this resource already created, or that were imported.
-    /// 
     /// ## Example Usage
     /// 
     /// Basic usage:

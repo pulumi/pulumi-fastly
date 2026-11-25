@@ -11,7 +11,7 @@ import java.util.Objects;
 @CustomType
 public final class GetAiRuntimeControlProvidersProviderModel {
     /**
-     * @return The human-readable model name, e.g. `Claude Sonnet 4`.
+     * @return The human-readable name of the model, e.g. `Claude Sonnet 4`.
      * 
      */
     private String displayName;
@@ -28,7 +28,7 @@ public final class GetAiRuntimeControlProvidersProviderModel {
 
     private GetAiRuntimeControlProvidersProviderModel() {}
     /**
-     * @return The human-readable model name, e.g. `Claude Sonnet 4`.
+     * @return The human-readable name of the model, e.g. `Claude Sonnet 4`.
      * 
      */
     public String displayName() {

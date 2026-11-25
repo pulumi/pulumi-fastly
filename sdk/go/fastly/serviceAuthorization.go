@@ -8,7 +8,7 @@ import (
 	"reflect"
 
 	"errors"
-	"github.com/pulumi/pulumi-fastly/sdk/v12/go/fastly/internal"
+	"github.com/pulumi/pulumi-fastly/sdk/v13/go/fastly/internal"
 	"github.com/pulumi/pulumi/sdk/v3/go/pulumi"
 )
 
@@ -25,7 +25,7 @@ import (
 //
 // import (
 //
-//	"github.com/pulumi/pulumi-fastly/sdk/v12/go/fastly"
+//	"github.com/pulumi/pulumi-fastly/sdk/v13/go/fastly"
 //	"github.com/pulumi/pulumi/sdk/v3/go/pulumi"
 //
 // )
@@ -34,12 +34,6 @@ import (
 //		pulumi.Run(func(ctx *pulumi.Context) error {
 //			demo, err := fastly.NewServiceVcl(ctx, "demo", &fastly.ServiceVclArgs{
 //				Name: pulumi.String("demofastly"),
-//				Domains: fastly.ServiceVclDomainArray{
-//					&fastly.ServiceVclDomainArgs{
-//						Name:    pulumi.String("demo.notexample.com"),
-//						Comment: pulumi.String("demo"),
-//					},
-//				},
 //			})
 //			if err != nil {
 //				return err

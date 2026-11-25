@@ -50,6 +50,31 @@ public final class ServiceVclBackend {
      */
     private @Nullable String healthcheck;
     /**
+     * @return If the backend is using IAM authentication and the IAM system policy requires a matching external identifier, it should match this value. Your Fastly customer ID will be used if this attribute is not set.
+     * 
+     */
+    private @Nullable String iamExternalId;
+    /**
+     * @return If the backend is using IAM authentication, the IAM signature will use this as the product element.
+     * 
+     */
+    private @Nullable String iamProduct;
+    /**
+     * @return If the backend is using IAM authentication, this region will be used for signing and access.
+     * 
+     */
+    private @Nullable String iamRegion;
+    /**
+     * @return If the backend is using IAM authentication, the fully qualified role string supplied by the storage vendor.
+     * 
+     */
+    private @Nullable String iamRole;
+    /**
+     * @return A label that identifies the storage vendor. Providing a value in this field enables IAM usage, and all other IAM fields depend on its value.
+     * 
+     */
+    private @Nullable String iamVendor;
+    /**
      * @return How long in seconds to keep a persistent connection to the backend between requests.
      * 
      */
@@ -209,6 +234,41 @@ public final class ServiceVclBackend {
      */
     public Optional<String> healthcheck() {
         return Optional.ofNullable(this.healthcheck);
+    }
+    /**
+     * @return If the backend is using IAM authentication and the IAM system policy requires a matching external identifier, it should match this value. Your Fastly customer ID will be used if this attribute is not set.
+     * 
+     */
+    public Optional<String> iamExternalId() {
+        return Optional.ofNullable(this.iamExternalId);
+    }
+    /**
+     * @return If the backend is using IAM authentication, the IAM signature will use this as the product element.
+     * 
+     */
+    public Optional<String> iamProduct() {
+        return Optional.ofNullable(this.iamProduct);
+    }
+    /**
+     * @return If the backend is using IAM authentication, this region will be used for signing and access.
+     * 
+     */
+    public Optional<String> iamRegion() {
+        return Optional.ofNullable(this.iamRegion);
+    }
+    /**
+     * @return If the backend is using IAM authentication, the fully qualified role string supplied by the storage vendor.
+     * 
+     */
+    public Optional<String> iamRole() {
+        return Optional.ofNullable(this.iamRole);
+    }
+    /**
+     * @return A label that identifies the storage vendor. Providing a value in this field enables IAM usage, and all other IAM fields depend on its value.
+     * 
+     */
+    public Optional<String> iamVendor() {
+        return Optional.ofNullable(this.iamVendor);
     }
     /**
      * @return How long in seconds to keep a persistent connection to the backend between requests.
@@ -381,6 +441,11 @@ public final class ServiceVclBackend {
         private @Nullable Integer errorThreshold;
         private @Nullable Integer firstByteTimeout;
         private @Nullable String healthcheck;
+        private @Nullable String iamExternalId;
+        private @Nullable String iamProduct;
+        private @Nullable String iamRegion;
+        private @Nullable String iamRole;
+        private @Nullable String iamVendor;
         private @Nullable Integer keepaliveTime;
         private @Nullable Integer maxConn;
         private @Nullable Integer maxLifetime;
@@ -413,6 +478,11 @@ public final class ServiceVclBackend {
     	      this.errorThreshold = defaults.errorThreshold;
     	      this.firstByteTimeout = defaults.firstByteTimeout;
     	      this.healthcheck = defaults.healthcheck;
+    	      this.iamExternalId = defaults.iamExternalId;
+    	      this.iamProduct = defaults.iamProduct;
+    	      this.iamRegion = defaults.iamRegion;
+    	      this.iamRole = defaults.iamRole;
+    	      this.iamVendor = defaults.iamVendor;
     	      this.keepaliveTime = defaults.keepaliveTime;
     	      this.maxConn = defaults.maxConn;
     	      this.maxLifetime = defaults.maxLifetime;
@@ -479,6 +549,36 @@ public final class ServiceVclBackend {
         public Builder healthcheck(@Nullable String healthcheck) {
 
             this.healthcheck = healthcheck;
+            return this;
+        }
+        @CustomType.Setter
+        public Builder iamExternalId(@Nullable String iamExternalId) {
+
+            this.iamExternalId = iamExternalId;
+            return this;
+        }
+        @CustomType.Setter
+        public Builder iamProduct(@Nullable String iamProduct) {
+
+            this.iamProduct = iamProduct;
+            return this;
+        }
+        @CustomType.Setter
+        public Builder iamRegion(@Nullable String iamRegion) {
+
+            this.iamRegion = iamRegion;
+            return this;
+        }
+        @CustomType.Setter
+        public Builder iamRole(@Nullable String iamRole) {
+
+            this.iamRole = iamRole;
+            return this;
+        }
+        @CustomType.Setter
+        public Builder iamVendor(@Nullable String iamVendor) {
+
+            this.iamVendor = iamVendor;
             return this;
         }
         @CustomType.Setter
@@ -624,6 +724,11 @@ public final class ServiceVclBackend {
             _resultValue.errorThreshold = errorThreshold;
             _resultValue.firstByteTimeout = firstByteTimeout;
             _resultValue.healthcheck = healthcheck;
+            _resultValue.iamExternalId = iamExternalId;
+            _resultValue.iamProduct = iamProduct;
+            _resultValue.iamRegion = iamRegion;
+            _resultValue.iamRole = iamRole;
+            _resultValue.iamVendor = iamVendor;
             _resultValue.keepaliveTime = keepaliveTime;
             _resultValue.maxConn = maxConn;
             _resultValue.maxLifetime = maxLifetime;

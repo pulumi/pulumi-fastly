@@ -27,10 +27,6 @@ import * as utilities from "./utilities";
  * const myaclName = config.get("myaclName") || "My ACL";
  * const myservice = new fastly.ServiceVcl("myservice", {
  *     name: "demofastly",
- *     domains: [{
- *         name: "demo.notexample.com",
- *         comment: "demo",
- *     }],
  *     backends: [{
  *         address: "http-me.fastly.dev",
  *         name: "Glitch Test Site",
@@ -83,10 +79,6 @@ import * as utilities from "./utilities";
  * ];
  * const myservice = new fastly.ServiceVcl("myservice", {
  *     name: "demofastly",
- *     domains: [{
- *         name: "demo.notexample.com",
- *         comment: "demo",
- *     }],
  *     backends: [{
  *         address: "1.2.3.4",
  *         name: "localhost",
@@ -143,10 +135,6 @@ import * as utilities from "./utilities";
  * const myaclName = config.get("myaclName") || "My ACL";
  * const myservice = new fastly.ServiceVcl("myservice", {
  *     name: "demofastly",
- *     domains: [{
- *         name: "demo.notexample.com",
- *         comment: "demo",
- *     }],
  *     acls: [{
  *         name: myaclName,
  *     }],

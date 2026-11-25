@@ -17,14 +17,14 @@ public final class AlertDimensionsArgs extends com.pulumi.resources.ResourceArgs
     public static final AlertDimensionsArgs Empty = new AlertDimensionsArgs();
 
     /**
-     * Names of a subset of domains that the alert monitors.
+     * Names of a subset of domains that the alert monitors, or empty array `[]` to monitor all domains.
      * 
      */
     @Import(name="domains")
     private @Nullable Output<List<String>> domains;
 
     /**
-     * @return Names of a subset of domains that the alert monitors.
+     * @return Names of a subset of domains that the alert monitors, or empty array `[]` to monitor all domains.
      * 
      */
     public Optional<Output<List<String>>> domains() {
@@ -32,18 +32,33 @@ public final class AlertDimensionsArgs extends com.pulumi.resources.ResourceArgs
     }
 
     /**
-     * Addresses of a subset of backends that the alert monitors.
+     * Addresses of a subset of backends that the alert monitors, or empty array `[]` to monitor all origins.
      * 
      */
     @Import(name="origins")
     private @Nullable Output<List<String>> origins;
 
     /**
-     * @return Addresses of a subset of backends that the alert monitors.
+     * @return Addresses of a subset of backends that the alert monitors, or empty array `[]` to monitor all origins.
      * 
      */
     public Optional<Output<List<String>>> origins() {
         return Optional.ofNullable(this.origins);
+    }
+
+    /**
+     * List of service IDs to monitor individually, or empty array `[]` to monitor all services.
+     * 
+     */
+    @Import(name="services")
+    private @Nullable Output<List<String>> services;
+
+    /**
+     * @return List of service IDs to monitor individually, or empty array `[]` to monitor all services.
+     * 
+     */
+    public Optional<Output<List<String>>> services() {
+        return Optional.ofNullable(this.services);
     }
 
     private AlertDimensionsArgs() {}
@@ -51,6 +66,7 @@ public final class AlertDimensionsArgs extends com.pulumi.resources.ResourceArgs
     private AlertDimensionsArgs(AlertDimensionsArgs $) {
         this.domains = $.domains;
         this.origins = $.origins;
+        this.services = $.services;
     }
 
     public static Builder builder() {
@@ -72,7 +88,7 @@ public final class AlertDimensionsArgs extends com.pulumi.resources.ResourceArgs
         }
 
         /**
-         * @param domains Names of a subset of domains that the alert monitors.
+         * @param domains Names of a subset of domains that the alert monitors, or empty array `[]` to monitor all domains.
          * 
          * @return builder
          * 
@@ -83,7 +99,7 @@ public final class AlertDimensionsArgs extends com.pulumi.resources.ResourceArgs
         }
 
         /**
-         * @param domains Names of a subset of domains that the alert monitors.
+         * @param domains Names of a subset of domains that the alert monitors, or empty array `[]` to monitor all domains.
          * 
          * @return builder
          * 
@@ -93,7 +109,7 @@ public final class AlertDimensionsArgs extends com.pulumi.resources.ResourceArgs
         }
 
         /**
-         * @param domains Names of a subset of domains that the alert monitors.
+         * @param domains Names of a subset of domains that the alert monitors, or empty array `[]` to monitor all domains.
          * 
          * @return builder
          * 
@@ -103,7 +119,7 @@ public final class AlertDimensionsArgs extends com.pulumi.resources.ResourceArgs
         }
 
         /**
-         * @param origins Addresses of a subset of backends that the alert monitors.
+         * @param origins Addresses of a subset of backends that the alert monitors, or empty array `[]` to monitor all origins.
          * 
          * @return builder
          * 
@@ -114,7 +130,7 @@ public final class AlertDimensionsArgs extends com.pulumi.resources.ResourceArgs
         }
 
         /**
-         * @param origins Addresses of a subset of backends that the alert monitors.
+         * @param origins Addresses of a subset of backends that the alert monitors, or empty array `[]` to monitor all origins.
          * 
          * @return builder
          * 
@@ -124,13 +140,44 @@ public final class AlertDimensionsArgs extends com.pulumi.resources.ResourceArgs
         }
 
         /**
-         * @param origins Addresses of a subset of backends that the alert monitors.
+         * @param origins Addresses of a subset of backends that the alert monitors, or empty array `[]` to monitor all origins.
          * 
          * @return builder
          * 
          */
         public Builder origins(String... origins) {
             return origins(List.of(origins));
+        }
+
+        /**
+         * @param services List of service IDs to monitor individually, or empty array `[]` to monitor all services.
+         * 
+         * @return builder
+         * 
+         */
+        public Builder services(@Nullable Output<List<String>> services) {
+            $.services = services;
+            return this;
+        }
+
+        /**
+         * @param services List of service IDs to monitor individually, or empty array `[]` to monitor all services.
+         * 
+         * @return builder
+         * 
+         */
+        public Builder services(List<String> services) {
+            return services(Output.of(services));
+        }
+
+        /**
+         * @param services List of service IDs to monitor individually, or empty array `[]` to monitor all services.
+         * 
+         * @return builder
+         * 
+         */
+        public Builder services(String... services) {
+            return services(List.of(services));
         }
 
         public AlertDimensionsArgs build() {

@@ -50,9 +50,6 @@ import * as utilities from "./utilities";
  *     "b.example.com",
  * ];
  * const exampleServiceVcl = new fastly.ServiceVcl("example", {
- *     domains: subdomains.map(entry => ({
- *         name: entry,
- *     })),
  *     name: "example-service",
  *     backends: [{
  *         address: "127.0.0.1",
@@ -60,8 +57,17 @@ import * as utilities from "./utilities";
  *     }],
  *     forceDestroy: true,
  * });
+ * const exampleDomain: fastly.Domain[] = [];
+ * for (let range = 0; range < std.toset({
+ *     input: subdomains,
+ * }).result; range++) {
+ *     exampleDomain.push(new fastly.Domain(`example-${range}`, {
+ *         fqdn: range,
+ *         serviceId: exampleServiceVcl.id,
+ *     }));
+ * }
  * const exampleTlsSubscription = new fastly.TlsSubscription("example", {
- *     domains: exampleServiceVcl.domains.apply(domains => .map(domain => (domain.name))),
+ *     domains: exampleDomain.map(domain => (domain.fqdn)),
  *     certificateAuthority: "lets-encrypt",
  * });
  * const domainValidation: {[key: string]: aws.index.Route53Record} = {};
@@ -136,9 +142,6 @@ import * as utilities from "./utilities";
  *     "*.example.com",
  * ];
  * const exampleServiceVcl = new fastly.ServiceVcl("example", {
- *     domains: domains.map(entry => ({
- *         name: entry,
- *     })),
  *     name: "example-service",
  *     backends: [{
  *         address: "127.0.0.1",
@@ -146,8 +149,17 @@ import * as utilities from "./utilities";
  *     }],
  *     forceDestroy: true,
  * });
+ * const exampleDomain: fastly.Domain[] = [];
+ * for (let range = 0; range < std.toset({
+ *     input: domains,
+ * }).result; range++) {
+ *     exampleDomain.push(new fastly.Domain(`example-${range}`, {
+ *         fqdn: range,
+ *         serviceId: exampleServiceVcl.id,
+ *     }));
+ * }
  * const exampleTlsSubscription = new fastly.TlsSubscription("example", {
- *     domains: exampleServiceVcl.domains.apply(domains => .map(domain => (domain.name))),
+ *     domains: exampleDomain.map(domain => (domain.fqdn)),
  *     certificateAuthority: "lets-encrypt",
  * });
  * const domainValidation: {[key: string]: aws.index.Route53Record} = {};

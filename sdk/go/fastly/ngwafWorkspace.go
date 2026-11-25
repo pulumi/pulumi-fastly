@@ -8,7 +8,7 @@ import (
 	"reflect"
 
 	"errors"
-	"github.com/pulumi/pulumi-fastly/sdk/v12/go/fastly/internal"
+	"github.com/pulumi/pulumi-fastly/sdk/v13/go/fastly/internal"
 	"github.com/pulumi/pulumi/sdk/v3/go/pulumi"
 )
 
@@ -25,7 +25,7 @@ import (
 //
 // import (
 //
-//	"github.com/pulumi/pulumi-fastly/sdk/v12/go/fastly"
+//	"github.com/pulumi/pulumi-fastly/sdk/v13/go/fastly"
 //	"github.com/pulumi/pulumi/sdk/v3/go/pulumi"
 //
 // )
@@ -64,6 +64,8 @@ type NgwafWorkspace struct {
 
 	// Attack threshold parameters for system site alerts. Each threshold value is the number of attack signals per IP address that must be detected during the interval before the related IP address is flagged. If no values are set then the default value for each field will be applied
 	AttackSignalThresholds NgwafWorkspaceAttackSignalThresholdsOutput `pulumi:"attackSignalThresholds"`
+	// Whether virtual patches released after this setting is enabled are automatically enabled for the workspace in block mode. Virtual patches released before it was enabled are not changed. Default value `false`.
+	AutoEnableNewVirtualPatches pulumi.BoolPtrOutput `pulumi:"autoEnableNewVirtualPatches"`
 	// Specifies the request headers containing the client IP address. Maximum of 10 header names.
 	ClientIpHeaders pulumi.StringArrayOutput `pulumi:"clientIpHeaders"`
 	// The status code returned when a request is blocked. This configuration is applied at the workspace but can be overwritten in rules. Accepted values are [`301`, `302`, `400..599`]. Default value `406`.
@@ -121,6 +123,8 @@ func GetNgwafWorkspace(ctx *pulumi.Context,
 type ngwafWorkspaceState struct {
 	// Attack threshold parameters for system site alerts. Each threshold value is the number of attack signals per IP address that must be detected during the interval before the related IP address is flagged. If no values are set then the default value for each field will be applied
 	AttackSignalThresholds *NgwafWorkspaceAttackSignalThresholds `pulumi:"attackSignalThresholds"`
+	// Whether virtual patches released after this setting is enabled are automatically enabled for the workspace in block mode. Virtual patches released before it was enabled are not changed. Default value `false`.
+	AutoEnableNewVirtualPatches *bool `pulumi:"autoEnableNewVirtualPatches"`
 	// Specifies the request headers containing the client IP address. Maximum of 10 header names.
 	ClientIpHeaders []string `pulumi:"clientIpHeaders"`
 	// The status code returned when a request is blocked. This configuration is applied at the workspace but can be overwritten in rules. Accepted values are [`301`, `302`, `400..599`]. Default value `406`.
@@ -140,6 +144,8 @@ type ngwafWorkspaceState struct {
 type NgwafWorkspaceState struct {
 	// Attack threshold parameters for system site alerts. Each threshold value is the number of attack signals per IP address that must be detected during the interval before the related IP address is flagged. If no values are set then the default value for each field will be applied
 	AttackSignalThresholds NgwafWorkspaceAttackSignalThresholdsPtrInput
+	// Whether virtual patches released after this setting is enabled are automatically enabled for the workspace in block mode. Virtual patches released before it was enabled are not changed. Default value `false`.
+	AutoEnableNewVirtualPatches pulumi.BoolPtrInput
 	// Specifies the request headers containing the client IP address. Maximum of 10 header names.
 	ClientIpHeaders pulumi.StringArrayInput
 	// The status code returned when a request is blocked. This configuration is applied at the workspace but can be overwritten in rules. Accepted values are [`301`, `302`, `400..599`]. Default value `406`.
@@ -169,6 +175,8 @@ func NgwafWorkspaceExists(ctx *pulumi.Context,
 type ngwafWorkspaceArgs struct {
 	// Attack threshold parameters for system site alerts. Each threshold value is the number of attack signals per IP address that must be detected during the interval before the related IP address is flagged. If no values are set then the default value for each field will be applied
 	AttackSignalThresholds NgwafWorkspaceAttackSignalThresholds `pulumi:"attackSignalThresholds"`
+	// Whether virtual patches released after this setting is enabled are automatically enabled for the workspace in block mode. Virtual patches released before it was enabled are not changed. Default value `false`.
+	AutoEnableNewVirtualPatches *bool `pulumi:"autoEnableNewVirtualPatches"`
 	// Specifies the request headers containing the client IP address. Maximum of 10 header names.
 	ClientIpHeaders []string `pulumi:"clientIpHeaders"`
 	// The status code returned when a request is blocked. This configuration is applied at the workspace but can be overwritten in rules. Accepted values are [`301`, `302`, `400..599`]. Default value `406`.
@@ -189,6 +197,8 @@ type ngwafWorkspaceArgs struct {
 type NgwafWorkspaceArgs struct {
 	// Attack threshold parameters for system site alerts. Each threshold value is the number of attack signals per IP address that must be detected during the interval before the related IP address is flagged. If no values are set then the default value for each field will be applied
 	AttackSignalThresholds NgwafWorkspaceAttackSignalThresholdsInput
+	// Whether virtual patches released after this setting is enabled are automatically enabled for the workspace in block mode. Virtual patches released before it was enabled are not changed. Default value `false`.
+	AutoEnableNewVirtualPatches pulumi.BoolPtrInput
 	// Specifies the request headers containing the client IP address. Maximum of 10 header names.
 	ClientIpHeaders pulumi.StringArrayInput
 	// The status code returned when a request is blocked. This configuration is applied at the workspace but can be overwritten in rules. Accepted values are [`301`, `302`, `400..599`]. Default value `406`.
@@ -295,6 +305,11 @@ func (o NgwafWorkspaceOutput) ToNgwafWorkspaceOutputWithContext(ctx context.Cont
 // Attack threshold parameters for system site alerts. Each threshold value is the number of attack signals per IP address that must be detected during the interval before the related IP address is flagged. If no values are set then the default value for each field will be applied
 func (o NgwafWorkspaceOutput) AttackSignalThresholds() NgwafWorkspaceAttackSignalThresholdsOutput {
 	return o.ApplyT(func(v *NgwafWorkspace) NgwafWorkspaceAttackSignalThresholdsOutput { return v.AttackSignalThresholds }).(NgwafWorkspaceAttackSignalThresholdsOutput)
+}
+
+// Whether virtual patches released after this setting is enabled are automatically enabled for the workspace in block mode. Virtual patches released before it was enabled are not changed. Default value `false`.
+func (o NgwafWorkspaceOutput) AutoEnableNewVirtualPatches() pulumi.BoolPtrOutput {
+	return o.ApplyT(func(v *NgwafWorkspace) pulumi.BoolPtrOutput { return v.AutoEnableNewVirtualPatches }).(pulumi.BoolPtrOutput)
 }
 
 // Specifies the request headers containing the client IP address. Maximum of 10 header names.

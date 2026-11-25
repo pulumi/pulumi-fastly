@@ -23,6 +23,7 @@ import com.pulumi.fastly.inputs.ServiceVclLoggingCloudfileArgs;
 import com.pulumi.fastly.inputs.ServiceVclLoggingDatadogArgs;
 import com.pulumi.fastly.inputs.ServiceVclLoggingDigitaloceanArgs;
 import com.pulumi.fastly.inputs.ServiceVclLoggingElasticsearchArgs;
+import com.pulumi.fastly.inputs.ServiceVclLoggingFoArgs;
 import com.pulumi.fastly.inputs.ServiceVclLoggingFtpArgs;
 import com.pulumi.fastly.inputs.ServiceVclLoggingGcArgs;
 import com.pulumi.fastly.inputs.ServiceVclLoggingGooglepubsubArgs;
@@ -167,14 +168,14 @@ public final class ServiceVclArgs extends com.pulumi.resources.ResourceArgs {
     }
 
     /**
-     * A set of Domain names to serve as entry points for your Service
+     * A set of Domain names to serve as entry points for your Service. Classic domains are only available to accounts created before 2025-09-16; for newer accounts use the versionless `fastly.Domain` resource instead.
      * 
      */
     @Import(name="domains")
     private @Nullable Output<List<ServiceVclDomainArgs>> domains;
 
     /**
-     * @return A set of Domain names to serve as entry points for your Service
+     * @return A set of Domain names to serve as entry points for your Service. Classic domains are only available to accounts created before 2025-09-16; for newer accounts use the versionless `fastly.Domain` resource instead.
      * 
      */
     public Optional<Output<List<ServiceVclDomainArgs>>> domains() {
@@ -286,6 +287,13 @@ public final class ServiceVclArgs extends com.pulumi.resources.ResourceArgs {
 
     public Optional<Output<List<ServiceVclLoggingElasticsearchArgs>>> loggingElasticsearches() {
         return Optional.ofNullable(this.loggingElasticsearches);
+    }
+
+    @Import(name="loggingFos")
+    private @Nullable Output<List<ServiceVclLoggingFoArgs>> loggingFos;
+
+    public Optional<Output<List<ServiceVclLoggingFoArgs>>> loggingFos() {
+        return Optional.ofNullable(this.loggingFos);
     }
 
     @Import(name="loggingFtps")
@@ -601,6 +609,7 @@ public final class ServiceVclArgs extends com.pulumi.resources.ResourceArgs {
         this.loggingDatadogs = $.loggingDatadogs;
         this.loggingDigitaloceans = $.loggingDigitaloceans;
         this.loggingElasticsearches = $.loggingElasticsearches;
+        this.loggingFos = $.loggingFos;
         this.loggingFtps = $.loggingFtps;
         this.loggingGcs = $.loggingGcs;
         this.loggingGooglepubsubs = $.loggingGooglepubsubs;
@@ -818,7 +827,7 @@ public final class ServiceVclArgs extends com.pulumi.resources.ResourceArgs {
         }
 
         /**
-         * @param domains A set of Domain names to serve as entry points for your Service
+         * @param domains A set of Domain names to serve as entry points for your Service. Classic domains are only available to accounts created before 2025-09-16; for newer accounts use the versionless `fastly.Domain` resource instead.
          * 
          * @return builder
          * 
@@ -829,7 +838,7 @@ public final class ServiceVclArgs extends com.pulumi.resources.ResourceArgs {
         }
 
         /**
-         * @param domains A set of Domain names to serve as entry points for your Service
+         * @param domains A set of Domain names to serve as entry points for your Service. Classic domains are only available to accounts created before 2025-09-16; for newer accounts use the versionless `fastly.Domain` resource instead.
          * 
          * @return builder
          * 
@@ -839,7 +848,7 @@ public final class ServiceVclArgs extends com.pulumi.resources.ResourceArgs {
         }
 
         /**
-         * @param domains A set of Domain names to serve as entry points for your Service
+         * @param domains A set of Domain names to serve as entry points for your Service. Classic domains are only available to accounts created before 2025-09-16; for newer accounts use the versionless `fastly.Domain` resource instead.
          * 
          * @return builder
          * 
@@ -1027,6 +1036,19 @@ public final class ServiceVclArgs extends com.pulumi.resources.ResourceArgs {
 
         public Builder loggingElasticsearches(ServiceVclLoggingElasticsearchArgs... loggingElasticsearches) {
             return loggingElasticsearches(List.of(loggingElasticsearches));
+        }
+
+        public Builder loggingFos(@Nullable Output<List<ServiceVclLoggingFoArgs>> loggingFos) {
+            $.loggingFos = loggingFos;
+            return this;
+        }
+
+        public Builder loggingFos(List<ServiceVclLoggingFoArgs> loggingFos) {
+            return loggingFos(Output.of(loggingFos));
+        }
+
+        public Builder loggingFos(ServiceVclLoggingFoArgs... loggingFos) {
+            return loggingFos(List.of(loggingFos));
         }
 
         public Builder loggingFtps(@Nullable Output<List<ServiceVclLoggingFtpArgs>> loggingFtps) {

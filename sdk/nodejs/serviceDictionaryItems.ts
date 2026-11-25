@@ -31,10 +31,6 @@ import * as utilities from "./utilities";
  * const mydictName = config.get("mydictName") || "My Dictionary";
  * const myservice = new fastly.ServiceVcl("myservice", {
  *     name: "demofastly",
- *     domains: [{
- *         name: "demo.notexample.com",
- *         comment: "demo",
- *     }],
  *     backends: [{
  *         address: "http-me.fastly.dev",
  *         name: "Glitch Test Site",
@@ -76,10 +72,6 @@ import * as utilities from "./utilities";
  * };
  * const myservice = new fastly.ServiceVcl("myservice", {
  *     name: "demofastly",
- *     domains: [{
- *         name: "demo.notexample.com",
- *         comment: "demo",
- *     }],
  *     backends: [{
  *         address: "http-me.fastly.dev",
  *         name: "Glitch Test Site",
@@ -120,10 +112,6 @@ import * as utilities from "./utilities";
  * // Define the standard service that will be used to manage the dictionaries.
  * const myservice = new fastly.ServiceVcl("myservice", {
  *     name: "demofastly",
- *     domains: [{
- *         name: "demo.ocnotexample.com",
- *         comment: "demo",
- *     }],
  *     backends: [{
  *         address: "http-me.fastly.dev",
  *         name: "Glitch Test Site",
@@ -179,10 +167,6 @@ import * as utilities from "./utilities";
  * const mydictName = config.get("mydictName") || "My Dictionary";
  * const myservice = new fastly.ServiceVcl("myservice", {
  *     name: "demofastly",
- *     domains: [{
- *         name: "demo.notexample.com",
- *         comment: "demo",
- *     }],
  *     dictionaries: [{
  *         name: mydictName,
  *     }],

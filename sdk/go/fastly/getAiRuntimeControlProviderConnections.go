@@ -7,7 +7,7 @@ import (
 	"context"
 	"reflect"
 
-	"github.com/pulumi/pulumi-fastly/sdk/v12/go/fastly/internal"
+	"github.com/pulumi/pulumi-fastly/sdk/v13/go/fastly/internal"
 	"github.com/pulumi/pulumi/sdk/v3/go/pulumi"
 )
 
@@ -27,7 +27,7 @@ func GetAiRuntimeControlProviderConnections(ctx *pulumi.Context, opts ...pulumi.
 type GetAiRuntimeControlProviderConnectionsResult struct {
 	// The provider-assigned unique ID for this managed resource.
 	Id string `pulumi:"id"`
-	// The provider connections configured for the customer.
+	// The provider connections configured for your customer account.
 	ProviderConnections []GetAiRuntimeControlProviderConnectionsProviderConnection `pulumi:"providerConnections"`
 	// The total number of provider connections returned.
 	Total int `pulumi:"total"`
@@ -58,7 +58,7 @@ func (o GetAiRuntimeControlProviderConnectionsResultOutput) Id() pulumi.StringOu
 	return o.ApplyT(func(v GetAiRuntimeControlProviderConnectionsResult) string { return v.Id }).(pulumi.StringOutput)
 }
 
-// The provider connections configured for the customer.
+// The provider connections configured for your customer account.
 func (o GetAiRuntimeControlProviderConnectionsResultOutput) ProviderConnections() GetAiRuntimeControlProviderConnectionsProviderConnectionArrayOutput {
 	return o.ApplyT(func(v GetAiRuntimeControlProviderConnectionsResult) []GetAiRuntimeControlProviderConnectionsProviderConnection {
 		return v.ProviderConnections

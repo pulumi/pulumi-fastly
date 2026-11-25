@@ -5,8 +5,13 @@ import * as pulumi from "@pulumi/pulumi";
 import * as utilities from "./utilities";
 
 /**
- * Provides a Fastly AI Runtime Control provider connection, which stores the
- * authentication details and the set of allowed models for an AI model provider.
+ * Provides a Fastly AI Runtime Control provider connection, which supplies the
+ * credentials AI Runtime Control uses to reach an AI provider on your behalf, along
+ * with the set of models the connection is allowed to use. Each customer account is
+ * limited to 25 provider connections.
+ *
+ * > **Note:** A provider connection cannot be deleted while it is still referenced
+ * by a virtual key's failover policy.
  *
  * > **Note:** The API never returns the provider's `apiKey`, so its value cannot
  * be reconciled against the remote state. Terraform will only update it when the
@@ -81,11 +86,11 @@ export class AiRuntimeControlProviderConnection extends pulumi.CustomResource {
     }
 
     /**
-     * The provider's secret key used for authentication. Never returned by the API, so it cannot be reconciled with the remote state.
+     * The provider's secret API key. Never returned by the API, so it cannot be reconciled with the remote state.
      */
     declare public readonly apiKey: pulumi.Output<string>;
     /**
-     * The base URL for the provider's API, e.g. `https://api.openai.com`. Must not include a `/v1` suffix, which the API appends automatically. Trailing slashes are stripped.
+     * The base URL of the provider's API, e.g. `https://api.openai.com`. Must be an absolute http or https URL, and must not include a `/v1` suffix, which the API appends automatically. Trailing slashes are stripped.
      */
     declare public readonly baseUrl: pulumi.Output<string>;
     /**
@@ -93,15 +98,15 @@ export class AiRuntimeControlProviderConnection extends pulumi.CustomResource {
      */
     declare public /*out*/ readonly createdAt: pulumi.Output<string>;
     /**
-     * The set of allowed AI model identifiers, e.g. `["gpt-4o", "gpt-4o-mini"]`.
+     * The set of AI model identifiers this provider connection is allowed to use, e.g. `["gpt-4o", "gpt-4o-mini"]`.
      */
     declare public readonly models: pulumi.Output<string[]>;
     /**
-     * A human-readable name for the provider. Changing this forces a new provider connection to be created.
+     * The display name of the provider connection. Changing this forces a new provider connection to be created.
      */
     declare public readonly name: pulumi.Output<string>;
     /**
-     * A hash representing the `apiKey` used to create the provider connection.
+     * An opaque identifier for the secret material backing this provider connection. Not the secret itself.
      */
     declare public /*out*/ readonly secretId: pulumi.Output<string>;
     /**
@@ -160,11 +165,11 @@ export class AiRuntimeControlProviderConnection extends pulumi.CustomResource {
  */
 export interface AiRuntimeControlProviderConnectionState {
     /**
-     * The provider's secret key used for authentication. Never returned by the API, so it cannot be reconciled with the remote state.
+     * The provider's secret API key. Never returned by the API, so it cannot be reconciled with the remote state.
      */
     apiKey?: pulumi.Input<string | undefined>;
     /**
-     * The base URL for the provider's API, e.g. `https://api.openai.com`. Must not include a `/v1` suffix, which the API appends automatically. Trailing slashes are stripped.
+     * The base URL of the provider's API, e.g. `https://api.openai.com`. Must be an absolute http or https URL, and must not include a `/v1` suffix, which the API appends automatically. Trailing slashes are stripped.
      */
     baseUrl?: pulumi.Input<string | undefined>;
     /**
@@ -172,15 +177,15 @@ export interface AiRuntimeControlProviderConnectionState {
      */
     createdAt?: pulumi.Input<string | undefined>;
     /**
-     * The set of allowed AI model identifiers, e.g. `["gpt-4o", "gpt-4o-mini"]`.
+     * The set of AI model identifiers this provider connection is allowed to use, e.g. `["gpt-4o", "gpt-4o-mini"]`.
      */
     models?: pulumi.Input<pulumi.Input<string>[] | undefined>;
     /**
-     * A human-readable name for the provider. Changing this forces a new provider connection to be created.
+     * The display name of the provider connection. Changing this forces a new provider connection to be created.
      */
     name?: pulumi.Input<string | undefined>;
     /**
-     * A hash representing the `apiKey` used to create the provider connection.
+     * An opaque identifier for the secret material backing this provider connection. Not the secret itself.
      */
     secretId?: pulumi.Input<string | undefined>;
     /**
@@ -194,19 +199,19 @@ export interface AiRuntimeControlProviderConnectionState {
  */
 export interface AiRuntimeControlProviderConnectionArgs {
     /**
-     * The provider's secret key used for authentication. Never returned by the API, so it cannot be reconciled with the remote state.
+     * The provider's secret API key. Never returned by the API, so it cannot be reconciled with the remote state.
      */
     apiKey: pulumi.Input<string>;
     /**
-     * The base URL for the provider's API, e.g. `https://api.openai.com`. Must not include a `/v1` suffix, which the API appends automatically. Trailing slashes are stripped.
+     * The base URL of the provider's API, e.g. `https://api.openai.com`. Must be an absolute http or https URL, and must not include a `/v1` suffix, which the API appends automatically. Trailing slashes are stripped.
      */
     baseUrl: pulumi.Input<string>;
     /**
-     * The set of allowed AI model identifiers, e.g. `["gpt-4o", "gpt-4o-mini"]`.
+     * The set of AI model identifiers this provider connection is allowed to use, e.g. `["gpt-4o", "gpt-4o-mini"]`.
      */
     models: pulumi.Input<pulumi.Input<string>[]>;
     /**
-     * A human-readable name for the provider. Changing this forces a new provider connection to be created.
+     * The display name of the provider connection. Changing this forces a new provider connection to be created.
      */
     name?: pulumi.Input<string | undefined>;
 }

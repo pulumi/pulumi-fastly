@@ -33,8 +33,9 @@ import javax.annotation.Nullable;
  * import com.pulumi.core.Output;
  * import com.pulumi.fastly.ServiceVcl;
  * import com.pulumi.fastly.ServiceVclArgs;
- * import com.pulumi.fastly.inputs.ServiceVclDomainArgs;
  * import com.pulumi.fastly.inputs.ServiceVclBackendArgs;
+ * import com.pulumi.fastly.Domain;
+ * import com.pulumi.fastly.DomainArgs;
  * import com.pulumi.fastly.TlsPrivateKey;
  * import com.pulumi.fastly.TlsPrivateKeyArgs;
  * import com.pulumi.fastly.TlsCertificate;
@@ -57,14 +58,16 @@ import javax.annotation.Nullable;
  *     public static void stack(Context ctx) {
  *         var demo = new ServiceVcl("demo", ServiceVclArgs.builder()
  *             .name("my-service")
- *             .domains(ServiceVclDomainArgs.builder()
- *                 .name("example.com")
- *                 .build())
  *             .backends(ServiceVclBackendArgs.builder()
  *                 .address("127.0.0.1")
  *                 .name("localhost")
  *                 .build())
  *             .forceDestroy(true)
+ *             .build());
+ * 
+ *         var demoDomain = new Domain("demoDomain", DomainArgs.builder()
+ *             .fqdn("example.com")
+ *             .serviceId(demo.id())
  *             .build());
  * 
  *         var demoTlsPrivateKey = new TlsPrivateKey("demoTlsPrivateKey", TlsPrivateKeyArgs.builder()
@@ -83,7 +86,7 @@ import javax.annotation.Nullable;
  *             .certificateId(demoTlsCertificate.id())
  *             .domain("example.com")
  *             .build(), CustomResourceOptions.builder()
- *                 .dependsOn(demo)
+ *                 .dependsOn(demoDomain)
  *                 .build());
  * 
  *     }

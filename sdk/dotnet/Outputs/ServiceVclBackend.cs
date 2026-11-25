@@ -42,6 +42,26 @@ namespace Pulumi.Fastly.Outputs
         /// </summary>
         public readonly string? Healthcheck;
         /// <summary>
+        /// If the backend is using IAM authentication and the IAM system policy requires a matching external identifier, it should match this value. Your Fastly customer ID will be used if this attribute is not set.
+        /// </summary>
+        public readonly string? IamExternalId;
+        /// <summary>
+        /// If the backend is using IAM authentication, the IAM signature will use this as the product element.
+        /// </summary>
+        public readonly string? IamProduct;
+        /// <summary>
+        /// If the backend is using IAM authentication, this region will be used for signing and access.
+        /// </summary>
+        public readonly string? IamRegion;
+        /// <summary>
+        /// If the backend is using IAM authentication, the fully qualified role string supplied by the storage vendor.
+        /// </summary>
+        public readonly string? IamRole;
+        /// <summary>
+        /// A label that identifies the storage vendor. Providing a value in this field enables IAM usage, and all other IAM fields depend on its value.
+        /// </summary>
+        public readonly string? IamVendor;
+        /// <summary>
         /// How long in seconds to keep a persistent connection to the backend between requests.
         /// </summary>
         public readonly int? KeepaliveTime;
@@ -146,6 +166,16 @@ namespace Pulumi.Fastly.Outputs
 
             string? healthcheck,
 
+            string? iamExternalId,
+
+            string? iamProduct,
+
+            string? iamRegion,
+
+            string? iamRole,
+
+            string? iamVendor,
+
             int? keepaliveTime,
 
             int? maxConn,
@@ -197,6 +227,11 @@ namespace Pulumi.Fastly.Outputs
             ErrorThreshold = errorThreshold;
             FirstByteTimeout = firstByteTimeout;
             Healthcheck = healthcheck;
+            IamExternalId = iamExternalId;
+            IamProduct = iamProduct;
+            IamRegion = iamRegion;
+            IamRole = iamRole;
+            IamVendor = iamVendor;
             KeepaliveTime = keepaliveTime;
             MaxConn = maxConn;
             MaxLifetime = maxLifetime;

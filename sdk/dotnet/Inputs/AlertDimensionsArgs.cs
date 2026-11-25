@@ -16,7 +16,7 @@ namespace Pulumi.Fastly.Inputs
         private InputList<string>? _domains;
 
         /// <summary>
-        /// Names of a subset of domains that the alert monitors.
+        /// Names of a subset of domains that the alert monitors, or empty array `[]` to monitor all domains.
         /// </summary>
         public InputList<string> Domains
         {
@@ -28,12 +28,24 @@ namespace Pulumi.Fastly.Inputs
         private InputList<string>? _origins;
 
         /// <summary>
-        /// Addresses of a subset of backends that the alert monitors.
+        /// Addresses of a subset of backends that the alert monitors, or empty array `[]` to monitor all origins.
         /// </summary>
         public InputList<string> Origins
         {
             get => _origins ?? (_origins = new InputList<string>());
             set => _origins = value;
+        }
+
+        [Input("services")]
+        private InputList<string>? _services;
+
+        /// <summary>
+        /// List of service IDs to monitor individually, or empty array `[]` to monitor all services.
+        /// </summary>
+        public InputList<string> Services
+        {
+            get => _services ?? (_services = new InputList<string>());
+            set => _services = value;
         }
 
         public AlertDimensionsArgs()

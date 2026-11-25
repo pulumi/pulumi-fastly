@@ -6,6 +6,7 @@ package com.pulumi.fastly.inputs;
 import com.pulumi.core.Output;
 import com.pulumi.core.annotations.Import;
 import com.pulumi.fastly.inputs.NgwafWorkspaceAttackSignalThresholdsArgs;
+import java.lang.Boolean;
 import java.lang.Integer;
 import java.lang.String;
 import java.util.List;
@@ -31,6 +32,21 @@ public final class NgwafWorkspaceState extends com.pulumi.resources.ResourceArgs
      */
     public Optional<Output<NgwafWorkspaceAttackSignalThresholdsArgs>> attackSignalThresholds() {
         return Optional.ofNullable(this.attackSignalThresholds);
+    }
+
+    /**
+     * Whether virtual patches released after this setting is enabled are automatically enabled for the workspace in block mode. Virtual patches released before it was enabled are not changed. Default value `false`.
+     * 
+     */
+    @Import(name="autoEnableNewVirtualPatches")
+    private @Nullable Output<Boolean> autoEnableNewVirtualPatches;
+
+    /**
+     * @return Whether virtual patches released after this setting is enabled are automatically enabled for the workspace in block mode. Virtual patches released before it was enabled are not changed. Default value `false`.
+     * 
+     */
+    public Optional<Output<Boolean>> autoEnableNewVirtualPatches() {
+        return Optional.ofNullable(this.autoEnableNewVirtualPatches);
     }
 
     /**
@@ -142,6 +158,7 @@ public final class NgwafWorkspaceState extends com.pulumi.resources.ResourceArgs
 
     private NgwafWorkspaceState(NgwafWorkspaceState $) {
         this.attackSignalThresholds = $.attackSignalThresholds;
+        this.autoEnableNewVirtualPatches = $.autoEnableNewVirtualPatches;
         this.clientIpHeaders = $.clientIpHeaders;
         this.defaultBlockingResponseCode = $.defaultBlockingResponseCode;
         this.defaultRedirectUrl = $.defaultRedirectUrl;
@@ -188,6 +205,27 @@ public final class NgwafWorkspaceState extends com.pulumi.resources.ResourceArgs
          */
         public Builder attackSignalThresholds(NgwafWorkspaceAttackSignalThresholdsArgs attackSignalThresholds) {
             return attackSignalThresholds(Output.of(attackSignalThresholds));
+        }
+
+        /**
+         * @param autoEnableNewVirtualPatches Whether virtual patches released after this setting is enabled are automatically enabled for the workspace in block mode. Virtual patches released before it was enabled are not changed. Default value `false`.
+         * 
+         * @return builder
+         * 
+         */
+        public Builder autoEnableNewVirtualPatches(@Nullable Output<Boolean> autoEnableNewVirtualPatches) {
+            $.autoEnableNewVirtualPatches = autoEnableNewVirtualPatches;
+            return this;
+        }
+
+        /**
+         * @param autoEnableNewVirtualPatches Whether virtual patches released after this setting is enabled are automatically enabled for the workspace in block mode. Virtual patches released before it was enabled are not changed. Default value `false`.
+         * 
+         * @return builder
+         * 
+         */
+        public Builder autoEnableNewVirtualPatches(Boolean autoEnableNewVirtualPatches) {
+            return autoEnableNewVirtualPatches(Output.of(autoEnableNewVirtualPatches));
         }
 
         /**

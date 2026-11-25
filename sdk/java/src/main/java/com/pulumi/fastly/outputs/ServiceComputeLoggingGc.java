@@ -64,6 +64,11 @@ public final class ServiceComputeLoggingGc {
      */
     private @Nullable String projectId;
     /**
+     * @return A PGP public key that Fastly will use to encrypt your log files before writing them to disk
+     * 
+     */
+    private @Nullable String publicKey;
+    /**
      * @return The secret key associated with the target gcs bucket on your account. You may optionally provide this secret via an environment variable, `FASTLY_GCS_SECRET_KEY`. A typical format for the key is PEM format, containing actual newline characters where required
      * 
      */
@@ -151,6 +156,13 @@ public final class ServiceComputeLoggingGc {
         return Optional.ofNullable(this.projectId);
     }
     /**
+     * @return A PGP public key that Fastly will use to encrypt your log files before writing them to disk
+     * 
+     */
+    public Optional<String> publicKey() {
+        return Optional.ofNullable(this.publicKey);
+    }
+    /**
      * @return The secret key associated with the target gcs bucket on your account. You may optionally provide this secret via an environment variable, `FASTLY_GCS_SECRET_KEY`. A typical format for the key is PEM format, containing actual newline characters where required
      * 
      */
@@ -191,6 +203,7 @@ public final class ServiceComputeLoggingGc {
         private @Nullable Integer period;
         private @Nullable String processingRegion;
         private @Nullable String projectId;
+        private @Nullable String publicKey;
         private @Nullable String secretKey;
         private @Nullable String timestampFormat;
         private @Nullable String user;
@@ -207,6 +220,7 @@ public final class ServiceComputeLoggingGc {
     	      this.period = defaults.period;
     	      this.processingRegion = defaults.processingRegion;
     	      this.projectId = defaults.projectId;
+    	      this.publicKey = defaults.publicKey;
     	      this.secretKey = defaults.secretKey;
     	      this.timestampFormat = defaults.timestampFormat;
     	      this.user = defaults.user;
@@ -277,6 +291,12 @@ public final class ServiceComputeLoggingGc {
             return this;
         }
         @CustomType.Setter
+        public Builder publicKey(@Nullable String publicKey) {
+
+            this.publicKey = publicKey;
+            return this;
+        }
+        @CustomType.Setter
         public Builder secretKey(@Nullable String secretKey) {
 
             this.secretKey = secretKey;
@@ -306,6 +326,7 @@ public final class ServiceComputeLoggingGc {
             _resultValue.period = period;
             _resultValue.processingRegion = processingRegion;
             _resultValue.projectId = projectId;
+            _resultValue.publicKey = publicKey;
             _resultValue.secretKey = secretKey;
             _resultValue.timestampFormat = timestampFormat;
             _resultValue.user = user;

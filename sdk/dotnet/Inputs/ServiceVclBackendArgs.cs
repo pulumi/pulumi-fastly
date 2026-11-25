@@ -55,6 +55,36 @@ namespace Pulumi.Fastly.Inputs
         public Input<string>? Healthcheck { get; set; }
 
         /// <summary>
+        /// If the backend is using IAM authentication and the IAM system policy requires a matching external identifier, it should match this value. Your Fastly customer ID will be used if this attribute is not set.
+        /// </summary>
+        [Input("iamExternalId")]
+        public Input<string>? IamExternalId { get; set; }
+
+        /// <summary>
+        /// If the backend is using IAM authentication, the IAM signature will use this as the product element.
+        /// </summary>
+        [Input("iamProduct")]
+        public Input<string>? IamProduct { get; set; }
+
+        /// <summary>
+        /// If the backend is using IAM authentication, this region will be used for signing and access.
+        /// </summary>
+        [Input("iamRegion")]
+        public Input<string>? IamRegion { get; set; }
+
+        /// <summary>
+        /// If the backend is using IAM authentication, the fully qualified role string supplied by the storage vendor.
+        /// </summary>
+        [Input("iamRole")]
+        public Input<string>? IamRole { get; set; }
+
+        /// <summary>
+        /// A label that identifies the storage vendor. Providing a value in this field enables IAM usage, and all other IAM fields depend on its value.
+        /// </summary>
+        [Input("iamVendor")]
+        public Input<string>? IamVendor { get; set; }
+
+        /// <summary>
         /// How long in seconds to keep a persistent connection to the backend between requests.
         /// </summary>
         [Input("keepaliveTime")]

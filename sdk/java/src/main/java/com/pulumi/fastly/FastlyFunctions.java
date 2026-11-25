@@ -19,6 +19,12 @@ import com.pulumi.fastly.inputs.GetApiSecurityOperationsArgs;
 import com.pulumi.fastly.inputs.GetApiSecurityOperationsPlainArgs;
 import com.pulumi.fastly.inputs.GetAuditLogEventMappingArgs;
 import com.pulumi.fastly.inputs.GetAuditLogEventMappingPlainArgs;
+import com.pulumi.fastly.inputs.GetBotManagementBotsArgs;
+import com.pulumi.fastly.inputs.GetBotManagementBotsPlainArgs;
+import com.pulumi.fastly.inputs.GetBotManagementCategoriesArgs;
+import com.pulumi.fastly.inputs.GetBotManagementCategoriesPlainArgs;
+import com.pulumi.fastly.inputs.GetBotManagementWorkspaceArgs;
+import com.pulumi.fastly.inputs.GetBotManagementWorkspacePlainArgs;
 import com.pulumi.fastly.inputs.GetDictionariesArgs;
 import com.pulumi.fastly.inputs.GetDictionariesPlainArgs;
 import com.pulumi.fastly.inputs.GetDnsZonesArgs;
@@ -86,6 +92,9 @@ import com.pulumi.fastly.outputs.GetApiSecurityDiscoveredOperationsResult;
 import com.pulumi.fastly.outputs.GetApiSecurityOperationTagsResult;
 import com.pulumi.fastly.outputs.GetApiSecurityOperationsResult;
 import com.pulumi.fastly.outputs.GetAuditLogEventMappingResult;
+import com.pulumi.fastly.outputs.GetBotManagementBotsResult;
+import com.pulumi.fastly.outputs.GetBotManagementCategoriesResult;
+import com.pulumi.fastly.outputs.GetBotManagementWorkspaceResult;
 import com.pulumi.fastly.outputs.GetComputeAclsResult;
 import com.pulumi.fastly.outputs.GetConfigstoresResult;
 import com.pulumi.fastly.outputs.GetDatacentersResult;
@@ -1650,6 +1659,466 @@ public final class FastlyFunctions {
         return Deployment.getInstance().invokeAsync("fastly:index/getAuditLogEventMapping:getAuditLogEventMapping", TypeShape.of(GetAuditLogEventMappingResult.class), args, Utilities.withVersion(options));
     }
     /**
+     * Use this data source to list the predefined bots in a [Fastly Bot Management workspace](https://www.fastly.com/documentation/reference/api/bot-management/), optionally limited to one category, for example to find bot IDs for `fastly.BotManagementBot`.
+     * 
+     * ## Example Usage
+     * 
+     * [1]: https://www.fastly.com/documentation/reference/api/bot-management/
+     * 
+     */
+    public static Output<GetBotManagementBotsResult> getBotManagementBots(GetBotManagementBotsArgs args) {
+        return getBotManagementBots(args, InvokeOptions.Empty);
+    }
+    /**
+     * Use this data source to list the predefined bots in a [Fastly Bot Management workspace](https://www.fastly.com/documentation/reference/api/bot-management/), optionally limited to one category, for example to find bot IDs for `fastly.BotManagementBot`.
+     * 
+     * ## Example Usage
+     * 
+     * [1]: https://www.fastly.com/documentation/reference/api/bot-management/
+     * 
+     */
+    public static CompletableFuture<GetBotManagementBotsResult> getBotManagementBotsPlain(GetBotManagementBotsPlainArgs args) {
+        return getBotManagementBotsPlain(args, InvokeOptions.Empty);
+    }
+    /**
+     * Use this data source to list the predefined bots in a [Fastly Bot Management workspace](https://www.fastly.com/documentation/reference/api/bot-management/), optionally limited to one category, for example to find bot IDs for `fastly.BotManagementBot`.
+     * 
+     * ## Example Usage
+     * 
+     * [1]: https://www.fastly.com/documentation/reference/api/bot-management/
+     * 
+     */
+    public static Output<GetBotManagementBotsResult> getBotManagementBots(GetBotManagementBotsArgs args, InvokeOptions options) {
+        return Deployment.getInstance().invoke("fastly:index/getBotManagementBots:getBotManagementBots", TypeShape.of(GetBotManagementBotsResult.class), args, Utilities.withVersion(options));
+    }
+    /**
+     * Use this data source to list the predefined bots in a [Fastly Bot Management workspace](https://www.fastly.com/documentation/reference/api/bot-management/), optionally limited to one category, for example to find bot IDs for `fastly.BotManagementBot`.
+     * 
+     * ## Example Usage
+     * 
+     * [1]: https://www.fastly.com/documentation/reference/api/bot-management/
+     * 
+     */
+    public static Output<GetBotManagementBotsResult> getBotManagementBots(GetBotManagementBotsArgs args, InvokeOutputOptions options) {
+        return Deployment.getInstance().invoke("fastly:index/getBotManagementBots:getBotManagementBots", TypeShape.of(GetBotManagementBotsResult.class), args, Utilities.withVersion(options));
+    }
+    /**
+     * Use this data source to list the predefined bots in a [Fastly Bot Management workspace](https://www.fastly.com/documentation/reference/api/bot-management/), optionally limited to one category, for example to find bot IDs for `fastly.BotManagementBot`.
+     * 
+     * ## Example Usage
+     * 
+     * [1]: https://www.fastly.com/documentation/reference/api/bot-management/
+     * 
+     */
+    public static CompletableFuture<GetBotManagementBotsResult> getBotManagementBotsPlain(GetBotManagementBotsPlainArgs args, InvokeOptions options) {
+        return Deployment.getInstance().invokeAsync("fastly:index/getBotManagementBots:getBotManagementBots", TypeShape.of(GetBotManagementBotsResult.class), args, Utilities.withVersion(options));
+    }
+    /**
+     * Use this data source to list the predefined bot categories in a [Fastly Bot Management workspace](https://www.fastly.com/documentation/reference/api/bot-management/), for example to find category IDs for `fastly.BotManagementCategory`.
+     * 
+     * ## Example Usage
+     * 
+     * [1]: https://www.fastly.com/documentation/reference/api/bot-management/
+     * 
+     */
+    public static Output<GetBotManagementCategoriesResult> getBotManagementCategories(GetBotManagementCategoriesArgs args) {
+        return getBotManagementCategories(args, InvokeOptions.Empty);
+    }
+    /**
+     * Use this data source to list the predefined bot categories in a [Fastly Bot Management workspace](https://www.fastly.com/documentation/reference/api/bot-management/), for example to find category IDs for `fastly.BotManagementCategory`.
+     * 
+     * ## Example Usage
+     * 
+     * [1]: https://www.fastly.com/documentation/reference/api/bot-management/
+     * 
+     */
+    public static CompletableFuture<GetBotManagementCategoriesResult> getBotManagementCategoriesPlain(GetBotManagementCategoriesPlainArgs args) {
+        return getBotManagementCategoriesPlain(args, InvokeOptions.Empty);
+    }
+    /**
+     * Use this data source to list the predefined bot categories in a [Fastly Bot Management workspace](https://www.fastly.com/documentation/reference/api/bot-management/), for example to find category IDs for `fastly.BotManagementCategory`.
+     * 
+     * ## Example Usage
+     * 
+     * [1]: https://www.fastly.com/documentation/reference/api/bot-management/
+     * 
+     */
+    public static Output<GetBotManagementCategoriesResult> getBotManagementCategories(GetBotManagementCategoriesArgs args, InvokeOptions options) {
+        return Deployment.getInstance().invoke("fastly:index/getBotManagementCategories:getBotManagementCategories", TypeShape.of(GetBotManagementCategoriesResult.class), args, Utilities.withVersion(options));
+    }
+    /**
+     * Use this data source to list the predefined bot categories in a [Fastly Bot Management workspace](https://www.fastly.com/documentation/reference/api/bot-management/), for example to find category IDs for `fastly.BotManagementCategory`.
+     * 
+     * ## Example Usage
+     * 
+     * [1]: https://www.fastly.com/documentation/reference/api/bot-management/
+     * 
+     */
+    public static Output<GetBotManagementCategoriesResult> getBotManagementCategories(GetBotManagementCategoriesArgs args, InvokeOutputOptions options) {
+        return Deployment.getInstance().invoke("fastly:index/getBotManagementCategories:getBotManagementCategories", TypeShape.of(GetBotManagementCategoriesResult.class), args, Utilities.withVersion(options));
+    }
+    /**
+     * Use this data source to list the predefined bot categories in a [Fastly Bot Management workspace](https://www.fastly.com/documentation/reference/api/bot-management/), for example to find category IDs for `fastly.BotManagementCategory`.
+     * 
+     * ## Example Usage
+     * 
+     * [1]: https://www.fastly.com/documentation/reference/api/bot-management/
+     * 
+     */
+    public static CompletableFuture<GetBotManagementCategoriesResult> getBotManagementCategoriesPlain(GetBotManagementCategoriesPlainArgs args, InvokeOptions options) {
+        return Deployment.getInstance().invokeAsync("fastly:index/getBotManagementCategories:getBotManagementCategories", TypeShape.of(GetBotManagementCategoriesResult.class), args, Utilities.withVersion(options));
+    }
+    /**
+     * Use this data source to look up a [Fastly Bot Management workspace](https://www.fastly.com/documentation/reference/api/bot-management/), either by the ID of a service attached to it or by its workspace ID. Exactly one of `serviceId` or `workspaceId` must be set.
+     * 
+     * &gt; **Warning:** A Bot Management workspace is created the first time `contentguard` is set to `on` in a service&#39;s `productEnablement` `botManagement` block. Set it in a separate `apply` before looking up the workspace with the `fastly.BotManagementWorkspace` data source.
+     * 
+     * ## Example Usage
+     * 
+     * <pre>
+     * {@code
+     * package generated_program;
+     * 
+     * import com.pulumi.Context;
+     * import com.pulumi.Pulumi;
+     * import com.pulumi.core.Output;
+     * import com.pulumi.fastly.FastlyFunctions;
+     * import com.pulumi.fastly.inputs.GetBotManagementWorkspaceArgs;
+     * import java.util.ArrayList;
+     * import java.util.Arrays;
+     * import java.util.Map;
+     * import java.io.File;
+     * import java.nio.file.Files;
+     * import java.nio.file.Paths;
+     * 
+     * public class App {
+     *     public static void main(String[] args) {
+     *         Pulumi.run(App::stack);
+     *     }
+     * 
+     *     public static void stack(Context ctx) {
+     *         final var byService = FastlyFunctions.getBotManagementWorkspace(GetBotManagementWorkspaceArgs.builder()
+     *             .serviceId(example.get("id"))
+     *             .build());
+     * 
+     *         // Or look it up by its workspace ID.
+     *         final var byId = FastlyFunctions.getBotManagementWorkspace(GetBotManagementWorkspaceArgs.builder()
+     *             .workspaceId(workspaceId)
+     *             .build());
+     * 
+     *         ctx.export("protectionMode", byService.protectionMode());
+     *     }
+     * }
+     * }
+     * </pre>
+     * 
+     * [1]: https://www.fastly.com/documentation/reference/api/bot-management/
+     * 
+     */
+    public static Output<GetBotManagementWorkspaceResult> getBotManagementWorkspace() {
+        return getBotManagementWorkspace(GetBotManagementWorkspaceArgs.Empty, InvokeOptions.Empty);
+    }
+    /**
+     * Use this data source to look up a [Fastly Bot Management workspace](https://www.fastly.com/documentation/reference/api/bot-management/), either by the ID of a service attached to it or by its workspace ID. Exactly one of `serviceId` or `workspaceId` must be set.
+     * 
+     * &gt; **Warning:** A Bot Management workspace is created the first time `contentguard` is set to `on` in a service&#39;s `productEnablement` `botManagement` block. Set it in a separate `apply` before looking up the workspace with the `fastly.BotManagementWorkspace` data source.
+     * 
+     * ## Example Usage
+     * 
+     * <pre>
+     * {@code
+     * package generated_program;
+     * 
+     * import com.pulumi.Context;
+     * import com.pulumi.Pulumi;
+     * import com.pulumi.core.Output;
+     * import com.pulumi.fastly.FastlyFunctions;
+     * import com.pulumi.fastly.inputs.GetBotManagementWorkspaceArgs;
+     * import java.util.ArrayList;
+     * import java.util.Arrays;
+     * import java.util.Map;
+     * import java.io.File;
+     * import java.nio.file.Files;
+     * import java.nio.file.Paths;
+     * 
+     * public class App {
+     *     public static void main(String[] args) {
+     *         Pulumi.run(App::stack);
+     *     }
+     * 
+     *     public static void stack(Context ctx) {
+     *         final var byService = FastlyFunctions.getBotManagementWorkspace(GetBotManagementWorkspaceArgs.builder()
+     *             .serviceId(example.get("id"))
+     *             .build());
+     * 
+     *         // Or look it up by its workspace ID.
+     *         final var byId = FastlyFunctions.getBotManagementWorkspace(GetBotManagementWorkspaceArgs.builder()
+     *             .workspaceId(workspaceId)
+     *             .build());
+     * 
+     *         ctx.export("protectionMode", byService.protectionMode());
+     *     }
+     * }
+     * }
+     * </pre>
+     * 
+     * [1]: https://www.fastly.com/documentation/reference/api/bot-management/
+     * 
+     */
+    public static CompletableFuture<GetBotManagementWorkspaceResult> getBotManagementWorkspacePlain() {
+        return getBotManagementWorkspacePlain(GetBotManagementWorkspacePlainArgs.Empty, InvokeOptions.Empty);
+    }
+    /**
+     * Use this data source to look up a [Fastly Bot Management workspace](https://www.fastly.com/documentation/reference/api/bot-management/), either by the ID of a service attached to it or by its workspace ID. Exactly one of `serviceId` or `workspaceId` must be set.
+     * 
+     * &gt; **Warning:** A Bot Management workspace is created the first time `contentguard` is set to `on` in a service&#39;s `productEnablement` `botManagement` block. Set it in a separate `apply` before looking up the workspace with the `fastly.BotManagementWorkspace` data source.
+     * 
+     * ## Example Usage
+     * 
+     * <pre>
+     * {@code
+     * package generated_program;
+     * 
+     * import com.pulumi.Context;
+     * import com.pulumi.Pulumi;
+     * import com.pulumi.core.Output;
+     * import com.pulumi.fastly.FastlyFunctions;
+     * import com.pulumi.fastly.inputs.GetBotManagementWorkspaceArgs;
+     * import java.util.ArrayList;
+     * import java.util.Arrays;
+     * import java.util.Map;
+     * import java.io.File;
+     * import java.nio.file.Files;
+     * import java.nio.file.Paths;
+     * 
+     * public class App {
+     *     public static void main(String[] args) {
+     *         Pulumi.run(App::stack);
+     *     }
+     * 
+     *     public static void stack(Context ctx) {
+     *         final var byService = FastlyFunctions.getBotManagementWorkspace(GetBotManagementWorkspaceArgs.builder()
+     *             .serviceId(example.get("id"))
+     *             .build());
+     * 
+     *         // Or look it up by its workspace ID.
+     *         final var byId = FastlyFunctions.getBotManagementWorkspace(GetBotManagementWorkspaceArgs.builder()
+     *             .workspaceId(workspaceId)
+     *             .build());
+     * 
+     *         ctx.export("protectionMode", byService.protectionMode());
+     *     }
+     * }
+     * }
+     * </pre>
+     * 
+     * [1]: https://www.fastly.com/documentation/reference/api/bot-management/
+     * 
+     */
+    public static Output<GetBotManagementWorkspaceResult> getBotManagementWorkspace(GetBotManagementWorkspaceArgs args) {
+        return getBotManagementWorkspace(args, InvokeOptions.Empty);
+    }
+    /**
+     * Use this data source to look up a [Fastly Bot Management workspace](https://www.fastly.com/documentation/reference/api/bot-management/), either by the ID of a service attached to it or by its workspace ID. Exactly one of `serviceId` or `workspaceId` must be set.
+     * 
+     * &gt; **Warning:** A Bot Management workspace is created the first time `contentguard` is set to `on` in a service&#39;s `productEnablement` `botManagement` block. Set it in a separate `apply` before looking up the workspace with the `fastly.BotManagementWorkspace` data source.
+     * 
+     * ## Example Usage
+     * 
+     * <pre>
+     * {@code
+     * package generated_program;
+     * 
+     * import com.pulumi.Context;
+     * import com.pulumi.Pulumi;
+     * import com.pulumi.core.Output;
+     * import com.pulumi.fastly.FastlyFunctions;
+     * import com.pulumi.fastly.inputs.GetBotManagementWorkspaceArgs;
+     * import java.util.ArrayList;
+     * import java.util.Arrays;
+     * import java.util.Map;
+     * import java.io.File;
+     * import java.nio.file.Files;
+     * import java.nio.file.Paths;
+     * 
+     * public class App {
+     *     public static void main(String[] args) {
+     *         Pulumi.run(App::stack);
+     *     }
+     * 
+     *     public static void stack(Context ctx) {
+     *         final var byService = FastlyFunctions.getBotManagementWorkspace(GetBotManagementWorkspaceArgs.builder()
+     *             .serviceId(example.get("id"))
+     *             .build());
+     * 
+     *         // Or look it up by its workspace ID.
+     *         final var byId = FastlyFunctions.getBotManagementWorkspace(GetBotManagementWorkspaceArgs.builder()
+     *             .workspaceId(workspaceId)
+     *             .build());
+     * 
+     *         ctx.export("protectionMode", byService.protectionMode());
+     *     }
+     * }
+     * }
+     * </pre>
+     * 
+     * [1]: https://www.fastly.com/documentation/reference/api/bot-management/
+     * 
+     */
+    public static CompletableFuture<GetBotManagementWorkspaceResult> getBotManagementWorkspacePlain(GetBotManagementWorkspacePlainArgs args) {
+        return getBotManagementWorkspacePlain(args, InvokeOptions.Empty);
+    }
+    /**
+     * Use this data source to look up a [Fastly Bot Management workspace](https://www.fastly.com/documentation/reference/api/bot-management/), either by the ID of a service attached to it or by its workspace ID. Exactly one of `serviceId` or `workspaceId` must be set.
+     * 
+     * &gt; **Warning:** A Bot Management workspace is created the first time `contentguard` is set to `on` in a service&#39;s `productEnablement` `botManagement` block. Set it in a separate `apply` before looking up the workspace with the `fastly.BotManagementWorkspace` data source.
+     * 
+     * ## Example Usage
+     * 
+     * <pre>
+     * {@code
+     * package generated_program;
+     * 
+     * import com.pulumi.Context;
+     * import com.pulumi.Pulumi;
+     * import com.pulumi.core.Output;
+     * import com.pulumi.fastly.FastlyFunctions;
+     * import com.pulumi.fastly.inputs.GetBotManagementWorkspaceArgs;
+     * import java.util.ArrayList;
+     * import java.util.Arrays;
+     * import java.util.Map;
+     * import java.io.File;
+     * import java.nio.file.Files;
+     * import java.nio.file.Paths;
+     * 
+     * public class App {
+     *     public static void main(String[] args) {
+     *         Pulumi.run(App::stack);
+     *     }
+     * 
+     *     public static void stack(Context ctx) {
+     *         final var byService = FastlyFunctions.getBotManagementWorkspace(GetBotManagementWorkspaceArgs.builder()
+     *             .serviceId(example.get("id"))
+     *             .build());
+     * 
+     *         // Or look it up by its workspace ID.
+     *         final var byId = FastlyFunctions.getBotManagementWorkspace(GetBotManagementWorkspaceArgs.builder()
+     *             .workspaceId(workspaceId)
+     *             .build());
+     * 
+     *         ctx.export("protectionMode", byService.protectionMode());
+     *     }
+     * }
+     * }
+     * </pre>
+     * 
+     * [1]: https://www.fastly.com/documentation/reference/api/bot-management/
+     * 
+     */
+    public static Output<GetBotManagementWorkspaceResult> getBotManagementWorkspace(GetBotManagementWorkspaceArgs args, InvokeOptions options) {
+        return Deployment.getInstance().invoke("fastly:index/getBotManagementWorkspace:getBotManagementWorkspace", TypeShape.of(GetBotManagementWorkspaceResult.class), args, Utilities.withVersion(options));
+    }
+    /**
+     * Use this data source to look up a [Fastly Bot Management workspace](https://www.fastly.com/documentation/reference/api/bot-management/), either by the ID of a service attached to it or by its workspace ID. Exactly one of `serviceId` or `workspaceId` must be set.
+     * 
+     * &gt; **Warning:** A Bot Management workspace is created the first time `contentguard` is set to `on` in a service&#39;s `productEnablement` `botManagement` block. Set it in a separate `apply` before looking up the workspace with the `fastly.BotManagementWorkspace` data source.
+     * 
+     * ## Example Usage
+     * 
+     * <pre>
+     * {@code
+     * package generated_program;
+     * 
+     * import com.pulumi.Context;
+     * import com.pulumi.Pulumi;
+     * import com.pulumi.core.Output;
+     * import com.pulumi.fastly.FastlyFunctions;
+     * import com.pulumi.fastly.inputs.GetBotManagementWorkspaceArgs;
+     * import java.util.ArrayList;
+     * import java.util.Arrays;
+     * import java.util.Map;
+     * import java.io.File;
+     * import java.nio.file.Files;
+     * import java.nio.file.Paths;
+     * 
+     * public class App {
+     *     public static void main(String[] args) {
+     *         Pulumi.run(App::stack);
+     *     }
+     * 
+     *     public static void stack(Context ctx) {
+     *         final var byService = FastlyFunctions.getBotManagementWorkspace(GetBotManagementWorkspaceArgs.builder()
+     *             .serviceId(example.get("id"))
+     *             .build());
+     * 
+     *         // Or look it up by its workspace ID.
+     *         final var byId = FastlyFunctions.getBotManagementWorkspace(GetBotManagementWorkspaceArgs.builder()
+     *             .workspaceId(workspaceId)
+     *             .build());
+     * 
+     *         ctx.export("protectionMode", byService.protectionMode());
+     *     }
+     * }
+     * }
+     * </pre>
+     * 
+     * [1]: https://www.fastly.com/documentation/reference/api/bot-management/
+     * 
+     */
+    public static Output<GetBotManagementWorkspaceResult> getBotManagementWorkspace(GetBotManagementWorkspaceArgs args, InvokeOutputOptions options) {
+        return Deployment.getInstance().invoke("fastly:index/getBotManagementWorkspace:getBotManagementWorkspace", TypeShape.of(GetBotManagementWorkspaceResult.class), args, Utilities.withVersion(options));
+    }
+    /**
+     * Use this data source to look up a [Fastly Bot Management workspace](https://www.fastly.com/documentation/reference/api/bot-management/), either by the ID of a service attached to it or by its workspace ID. Exactly one of `serviceId` or `workspaceId` must be set.
+     * 
+     * &gt; **Warning:** A Bot Management workspace is created the first time `contentguard` is set to `on` in a service&#39;s `productEnablement` `botManagement` block. Set it in a separate `apply` before looking up the workspace with the `fastly.BotManagementWorkspace` data source.
+     * 
+     * ## Example Usage
+     * 
+     * <pre>
+     * {@code
+     * package generated_program;
+     * 
+     * import com.pulumi.Context;
+     * import com.pulumi.Pulumi;
+     * import com.pulumi.core.Output;
+     * import com.pulumi.fastly.FastlyFunctions;
+     * import com.pulumi.fastly.inputs.GetBotManagementWorkspaceArgs;
+     * import java.util.ArrayList;
+     * import java.util.Arrays;
+     * import java.util.Map;
+     * import java.io.File;
+     * import java.nio.file.Files;
+     * import java.nio.file.Paths;
+     * 
+     * public class App {
+     *     public static void main(String[] args) {
+     *         Pulumi.run(App::stack);
+     *     }
+     * 
+     *     public static void stack(Context ctx) {
+     *         final var byService = FastlyFunctions.getBotManagementWorkspace(GetBotManagementWorkspaceArgs.builder()
+     *             .serviceId(example.get("id"))
+     *             .build());
+     * 
+     *         // Or look it up by its workspace ID.
+     *         final var byId = FastlyFunctions.getBotManagementWorkspace(GetBotManagementWorkspaceArgs.builder()
+     *             .workspaceId(workspaceId)
+     *             .build());
+     * 
+     *         ctx.export("protectionMode", byService.protectionMode());
+     *     }
+     * }
+     * }
+     * </pre>
+     * 
+     * [1]: https://www.fastly.com/documentation/reference/api/bot-management/
+     * 
+     */
+    public static CompletableFuture<GetBotManagementWorkspaceResult> getBotManagementWorkspacePlain(GetBotManagementWorkspacePlainArgs args, InvokeOptions options) {
+        return Deployment.getInstance().invokeAsync("fastly:index/getBotManagementWorkspace:getBotManagementWorkspace", TypeShape.of(GetBotManagementWorkspaceResult.class), args, Utilities.withVersion(options));
+    }
+    /**
      * Use this data source to retrieve a list of [Fastly Compute ACLs](https://www.fastly.com/documentation/reference/api/compute-acls/).
      * 
      */
@@ -1782,7 +2251,6 @@ public final class FastlyFunctions {
      * import com.pulumi.core.Output;
      * import com.pulumi.fastly.ServiceVcl;
      * import com.pulumi.fastly.ServiceVclArgs;
-     * import com.pulumi.fastly.inputs.ServiceVclDomainArgs;
      * import com.pulumi.fastly.inputs.ServiceVclDictionaryArgs;
      * import com.pulumi.fastly.FastlyFunctions;
      * import com.pulumi.fastly.inputs.GetDictionariesArgs;
@@ -1801,9 +2269,6 @@ public final class FastlyFunctions {
      *     public static void stack(Context ctx) {
      *         var exampleServiceVcl = new ServiceVcl("exampleServiceVcl", ServiceVclArgs.builder()
      *             .name("Example Service")
-     *             .domains(ServiceVclDomainArgs.builder()
-     *                 .name("example.com")
-     *                 .build())
      *             .dictionaries(            
      *                 ServiceVclDictionaryArgs.builder()
      *                     .name("example_1")
@@ -1848,7 +2313,6 @@ public final class FastlyFunctions {
      * import com.pulumi.core.Output;
      * import com.pulumi.fastly.ServiceVcl;
      * import com.pulumi.fastly.ServiceVclArgs;
-     * import com.pulumi.fastly.inputs.ServiceVclDomainArgs;
      * import com.pulumi.fastly.inputs.ServiceVclDictionaryArgs;
      * import com.pulumi.fastly.FastlyFunctions;
      * import com.pulumi.fastly.inputs.GetDictionariesArgs;
@@ -1867,9 +2331,6 @@ public final class FastlyFunctions {
      *     public static void stack(Context ctx) {
      *         var exampleServiceVcl = new ServiceVcl("exampleServiceVcl", ServiceVclArgs.builder()
      *             .name("Example Service")
-     *             .domains(ServiceVclDomainArgs.builder()
-     *                 .name("example.com")
-     *                 .build())
      *             .dictionaries(            
      *                 ServiceVclDictionaryArgs.builder()
      *                     .name("example_1")
@@ -1914,7 +2375,6 @@ public final class FastlyFunctions {
      * import com.pulumi.core.Output;
      * import com.pulumi.fastly.ServiceVcl;
      * import com.pulumi.fastly.ServiceVclArgs;
-     * import com.pulumi.fastly.inputs.ServiceVclDomainArgs;
      * import com.pulumi.fastly.inputs.ServiceVclDictionaryArgs;
      * import com.pulumi.fastly.FastlyFunctions;
      * import com.pulumi.fastly.inputs.GetDictionariesArgs;
@@ -1933,9 +2393,6 @@ public final class FastlyFunctions {
      *     public static void stack(Context ctx) {
      *         var exampleServiceVcl = new ServiceVcl("exampleServiceVcl", ServiceVclArgs.builder()
      *             .name("Example Service")
-     *             .domains(ServiceVclDomainArgs.builder()
-     *                 .name("example.com")
-     *                 .build())
      *             .dictionaries(            
      *                 ServiceVclDictionaryArgs.builder()
      *                     .name("example_1")
@@ -1980,7 +2437,6 @@ public final class FastlyFunctions {
      * import com.pulumi.core.Output;
      * import com.pulumi.fastly.ServiceVcl;
      * import com.pulumi.fastly.ServiceVclArgs;
-     * import com.pulumi.fastly.inputs.ServiceVclDomainArgs;
      * import com.pulumi.fastly.inputs.ServiceVclDictionaryArgs;
      * import com.pulumi.fastly.FastlyFunctions;
      * import com.pulumi.fastly.inputs.GetDictionariesArgs;
@@ -1999,9 +2455,6 @@ public final class FastlyFunctions {
      *     public static void stack(Context ctx) {
      *         var exampleServiceVcl = new ServiceVcl("exampleServiceVcl", ServiceVclArgs.builder()
      *             .name("Example Service")
-     *             .domains(ServiceVclDomainArgs.builder()
-     *                 .name("example.com")
-     *                 .build())
      *             .dictionaries(            
      *                 ServiceVclDictionaryArgs.builder()
      *                     .name("example_1")
@@ -2046,7 +2499,6 @@ public final class FastlyFunctions {
      * import com.pulumi.core.Output;
      * import com.pulumi.fastly.ServiceVcl;
      * import com.pulumi.fastly.ServiceVclArgs;
-     * import com.pulumi.fastly.inputs.ServiceVclDomainArgs;
      * import com.pulumi.fastly.inputs.ServiceVclDictionaryArgs;
      * import com.pulumi.fastly.FastlyFunctions;
      * import com.pulumi.fastly.inputs.GetDictionariesArgs;
@@ -2065,9 +2517,6 @@ public final class FastlyFunctions {
      *     public static void stack(Context ctx) {
      *         var exampleServiceVcl = new ServiceVcl("exampleServiceVcl", ServiceVclArgs.builder()
      *             .name("Example Service")
-     *             .domains(ServiceVclDomainArgs.builder()
-     *                 .name("example.com")
-     *                 .build())
      *             .dictionaries(            
      *                 ServiceVclDictionaryArgs.builder()
      *                     .name("example_1")
@@ -10825,7 +11274,6 @@ public final class FastlyFunctions {
      * import com.pulumi.core.Output;
      * import com.pulumi.fastly.ServiceVcl;
      * import com.pulumi.fastly.ServiceVclArgs;
-     * import com.pulumi.fastly.inputs.ServiceVclDomainArgs;
      * import com.pulumi.fastly.FastlyFunctions;
      * import com.pulumi.fastly.inputs.GetVclSnippetsArgs;
      * import java.util.ArrayList;
@@ -10843,9 +11291,6 @@ public final class FastlyFunctions {
      *     public static void stack(Context ctx) {
      *         var exampleServiceVcl = new ServiceVcl("exampleServiceVcl", ServiceVclArgs.builder()
      *             .name("Example Service")
-     *             .domains(ServiceVclDomainArgs.builder()
-     *                 .name("example.com")
-     *                 .build())
      *             .forceDestroy(true)
      *             .build());
      * 
@@ -10882,7 +11327,6 @@ public final class FastlyFunctions {
      * import com.pulumi.core.Output;
      * import com.pulumi.fastly.ServiceVcl;
      * import com.pulumi.fastly.ServiceVclArgs;
-     * import com.pulumi.fastly.inputs.ServiceVclDomainArgs;
      * import com.pulumi.fastly.FastlyFunctions;
      * import com.pulumi.fastly.inputs.GetVclSnippetsArgs;
      * import java.util.ArrayList;
@@ -10900,9 +11344,6 @@ public final class FastlyFunctions {
      *     public static void stack(Context ctx) {
      *         var exampleServiceVcl = new ServiceVcl("exampleServiceVcl", ServiceVclArgs.builder()
      *             .name("Example Service")
-     *             .domains(ServiceVclDomainArgs.builder()
-     *                 .name("example.com")
-     *                 .build())
      *             .forceDestroy(true)
      *             .build());
      * 
@@ -10939,7 +11380,6 @@ public final class FastlyFunctions {
      * import com.pulumi.core.Output;
      * import com.pulumi.fastly.ServiceVcl;
      * import com.pulumi.fastly.ServiceVclArgs;
-     * import com.pulumi.fastly.inputs.ServiceVclDomainArgs;
      * import com.pulumi.fastly.FastlyFunctions;
      * import com.pulumi.fastly.inputs.GetVclSnippetsArgs;
      * import java.util.ArrayList;
@@ -10957,9 +11397,6 @@ public final class FastlyFunctions {
      *     public static void stack(Context ctx) {
      *         var exampleServiceVcl = new ServiceVcl("exampleServiceVcl", ServiceVclArgs.builder()
      *             .name("Example Service")
-     *             .domains(ServiceVclDomainArgs.builder()
-     *                 .name("example.com")
-     *                 .build())
      *             .forceDestroy(true)
      *             .build());
      * 
@@ -10996,7 +11433,6 @@ public final class FastlyFunctions {
      * import com.pulumi.core.Output;
      * import com.pulumi.fastly.ServiceVcl;
      * import com.pulumi.fastly.ServiceVclArgs;
-     * import com.pulumi.fastly.inputs.ServiceVclDomainArgs;
      * import com.pulumi.fastly.FastlyFunctions;
      * import com.pulumi.fastly.inputs.GetVclSnippetsArgs;
      * import java.util.ArrayList;
@@ -11014,9 +11450,6 @@ public final class FastlyFunctions {
      *     public static void stack(Context ctx) {
      *         var exampleServiceVcl = new ServiceVcl("exampleServiceVcl", ServiceVclArgs.builder()
      *             .name("Example Service")
-     *             .domains(ServiceVclDomainArgs.builder()
-     *                 .name("example.com")
-     *                 .build())
      *             .forceDestroy(true)
      *             .build());
      * 
@@ -11053,7 +11486,6 @@ public final class FastlyFunctions {
      * import com.pulumi.core.Output;
      * import com.pulumi.fastly.ServiceVcl;
      * import com.pulumi.fastly.ServiceVclArgs;
-     * import com.pulumi.fastly.inputs.ServiceVclDomainArgs;
      * import com.pulumi.fastly.FastlyFunctions;
      * import com.pulumi.fastly.inputs.GetVclSnippetsArgs;
      * import java.util.ArrayList;
@@ -11071,9 +11503,6 @@ public final class FastlyFunctions {
      *     public static void stack(Context ctx) {
      *         var exampleServiceVcl = new ServiceVcl("exampleServiceVcl", ServiceVclArgs.builder()
      *             .name("Example Service")
-     *             .domains(ServiceVclDomainArgs.builder()
-     *                 .name("example.com")
-     *                 .build())
      *             .forceDestroy(true)
      *             .build());
      * 

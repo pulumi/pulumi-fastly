@@ -166,7 +166,7 @@ namespace Pulumi.Fastly
         public string? ProviderName { get; set; }
 
         /// <summary>
-        /// Filter the results by a substring match on the virtual key name.
+        /// Filter the results to virtual keys whose name contains this substring.
         /// </summary>
         [Input("search")]
         public string? Search { get; set; }
@@ -198,7 +198,7 @@ namespace Pulumi.Fastly
         public Input<string>? ProviderName { get; set; }
 
         /// <summary>
-        /// Filter the results by a substring match on the virtual key name.
+        /// Filter the results to virtual keys whose name contains this substring.
         /// </summary>
         [Input("search")]
         public Input<string>? Search { get; set; }
@@ -230,7 +230,7 @@ namespace Pulumi.Fastly
         /// </summary>
         public readonly string? ProviderName;
         /// <summary>
-        /// Filter the results by a substring match on the virtual key name.
+        /// Filter the results to virtual keys whose name contains this substring.
         /// </summary>
         public readonly string? Search;
         /// <summary>

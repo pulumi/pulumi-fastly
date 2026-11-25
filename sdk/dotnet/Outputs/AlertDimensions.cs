@@ -14,22 +14,29 @@ namespace Pulumi.Fastly.Outputs
     public sealed class AlertDimensions
     {
         /// <summary>
-        /// Names of a subset of domains that the alert monitors.
+        /// Names of a subset of domains that the alert monitors, or empty array `[]` to monitor all domains.
         /// </summary>
         public readonly ImmutableArray<string> Domains;
         /// <summary>
-        /// Addresses of a subset of backends that the alert monitors.
+        /// Addresses of a subset of backends that the alert monitors, or empty array `[]` to monitor all origins.
         /// </summary>
         public readonly ImmutableArray<string> Origins;
+        /// <summary>
+        /// List of service IDs to monitor individually, or empty array `[]` to monitor all services.
+        /// </summary>
+        public readonly ImmutableArray<string> Services;
 
         [OutputConstructor]
         private AlertDimensions(
             ImmutableArray<string> domains,
 
-            ImmutableArray<string> origins)
+            ImmutableArray<string> origins,
+
+            ImmutableArray<string> services)
         {
             Domains = domains;
             Origins = origins;
+            Services = services;
         }
     }
 }

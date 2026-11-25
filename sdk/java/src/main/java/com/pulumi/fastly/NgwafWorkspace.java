@@ -11,6 +11,7 @@ import com.pulumi.fastly.NgwafWorkspaceArgs;
 import com.pulumi.fastly.Utilities;
 import com.pulumi.fastly.inputs.NgwafWorkspaceState;
 import com.pulumi.fastly.outputs.NgwafWorkspaceAttackSignalThresholds;
+import java.lang.Boolean;
 import java.lang.Integer;
 import java.lang.String;
 import java.util.List;
@@ -90,6 +91,20 @@ public class NgwafWorkspace extends com.pulumi.resources.CustomResource {
      */
     public Output<NgwafWorkspaceAttackSignalThresholds> attackSignalThresholds() {
         return this.attackSignalThresholds;
+    }
+    /**
+     * Whether virtual patches released after this setting is enabled are automatically enabled for the workspace in block mode. Virtual patches released before it was enabled are not changed. Default value `false`.
+     * 
+     */
+    @Export(name="autoEnableNewVirtualPatches", refs={Boolean.class}, tree="[0]")
+    private Output</* @Nullable */ Boolean> autoEnableNewVirtualPatches;
+
+    /**
+     * @return Whether virtual patches released after this setting is enabled are automatically enabled for the workspace in block mode. Virtual patches released before it was enabled are not changed. Default value `false`.
+     * 
+     */
+    public Output<Optional<Boolean>> autoEnableNewVirtualPatches() {
+        return Codegen.optional(this.autoEnableNewVirtualPatches);
     }
     /**
      * Specifies the request headers containing the client IP address. Maximum of 10 header names.

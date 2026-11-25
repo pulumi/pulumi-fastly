@@ -12,30 +12,42 @@ import javax.annotation.Nullable;
 @CustomType
 public final class AlertDimensions {
     /**
-     * @return Names of a subset of domains that the alert monitors.
+     * @return Names of a subset of domains that the alert monitors, or empty array `[]` to monitor all domains.
      * 
      */
     private @Nullable List<String> domains;
     /**
-     * @return Addresses of a subset of backends that the alert monitors.
+     * @return Addresses of a subset of backends that the alert monitors, or empty array `[]` to monitor all origins.
      * 
      */
     private @Nullable List<String> origins;
+    /**
+     * @return List of service IDs to monitor individually, or empty array `[]` to monitor all services.
+     * 
+     */
+    private @Nullable List<String> services;
 
     private AlertDimensions() {}
     /**
-     * @return Names of a subset of domains that the alert monitors.
+     * @return Names of a subset of domains that the alert monitors, or empty array `[]` to monitor all domains.
      * 
      */
     public List<String> domains() {
         return this.domains == null ? List.of() : this.domains;
     }
     /**
-     * @return Addresses of a subset of backends that the alert monitors.
+     * @return Addresses of a subset of backends that the alert monitors, or empty array `[]` to monitor all origins.
      * 
      */
     public List<String> origins() {
         return this.origins == null ? List.of() : this.origins;
+    }
+    /**
+     * @return List of service IDs to monitor individually, or empty array `[]` to monitor all services.
+     * 
+     */
+    public List<String> services() {
+        return this.services == null ? List.of() : this.services;
     }
 
     public static Builder builder() {
@@ -49,11 +61,13 @@ public final class AlertDimensions {
     public static final class Builder {
         private @Nullable List<String> domains;
         private @Nullable List<String> origins;
+        private @Nullable List<String> services;
         public Builder() {}
         public Builder(AlertDimensions defaults) {
     	      Objects.requireNonNull(defaults);
     	      this.domains = defaults.domains;
     	      this.origins = defaults.origins;
+    	      this.services = defaults.services;
         }
 
         @CustomType.Setter
@@ -74,10 +88,20 @@ public final class AlertDimensions {
         public Builder origins(String... origins) {
             return origins(List.of(origins));
         }
+        @CustomType.Setter
+        public Builder services(@Nullable List<String> services) {
+
+            this.services = services;
+            return this;
+        }
+        public Builder services(String... services) {
+            return services(List.of(services));
+        }
         public AlertDimensions build() {
             final var _resultValue = new AlertDimensions();
             _resultValue.domains = domains;
             _resultValue.origins = origins;
+            _resultValue.services = services;
             return _resultValue;
         }
     }

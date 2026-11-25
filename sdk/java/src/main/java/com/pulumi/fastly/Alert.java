@@ -31,7 +31,6 @@ import javax.annotation.Nullable;
  * import com.pulumi.core.Output;
  * import com.pulumi.fastly.ServiceVcl;
  * import com.pulumi.fastly.ServiceVclArgs;
- * import com.pulumi.fastly.inputs.ServiceVclDomainArgs;
  * import com.pulumi.fastly.Integration;
  * import com.pulumi.fastly.IntegrationArgs;
  * import com.pulumi.fastly.Alert;
@@ -52,10 +51,6 @@ import javax.annotation.Nullable;
  *     public static void stack(Context ctx) {
  *         var example = new ServiceVcl("example", ServiceVclArgs.builder()
  *             .name("my_vcl_service")
- *             .domains(ServiceVclDomainArgs.builder()
- *                 .name("demo.notexample.com")
- *                 .comment("demo")
- *                 .build())
  *             .build());
  * 
  *         var exampleIntegration = new Integration("exampleIntegration", IntegrationArgs.builder()
@@ -108,14 +103,14 @@ public class Alert extends com.pulumi.resources.CustomResource {
         return Codegen.optional(this.description);
     }
     /**
-     * More filters depending on the source type.
+     * Additional filters and aggregation criteria depending on the source type. For source type `stats`, use empty `{}` to monitor a single service or all services (aggregated), or include the `services` array to monitor all or a set of services (not aggregated). For source type `domains` or `origins`, the `domains` or `origins` array must be included to monitor all or a set (not aggregated).
      * 
      */
     @Export(name="dimensions", refs={AlertDimensions.class}, tree="[0]")
     private Output</* @Nullable */ AlertDimensions> dimensions;
 
     /**
-     * @return More filters depending on the source type.
+     * @return Additional filters and aggregation criteria depending on the source type. For source type `stats`, use empty `{}` to monitor a single service or all services (aggregated), or include the `services` array to monitor all or a set of services (not aggregated). For source type `domains` or `origins`, the `domains` or `origins` array must be included to monitor all or a set (not aggregated).
      * 
      */
     public Output<Optional<AlertDimensions>> dimensions() {
@@ -178,14 +173,14 @@ public class Alert extends com.pulumi.resources.CustomResource {
         return this.name;
     }
     /**
-     * The service which the alert monitors. Optional when using `stats` as the `source`.
+     * The service to monitor. Can be a specific service ID to monitor a single service, or omit to monitor all services (aggregated) or all or a set of services (not aggregated) (see `dimensions` for details).
      * 
      */
     @Export(name="serviceId", refs={String.class}, tree="[0]")
     private Output</* @Nullable */ String> serviceId;
 
     /**
-     * @return The service which the alert monitors. Optional when using `stats` as the `source`.
+     * @return The service to monitor. Can be a specific service ID to monitor a single service, or omit to monitor all services (aggregated) or all or a set of services (not aggregated) (see `dimensions` for details).
      * 
      */
     public Output<Optional<String>> serviceId() {

@@ -50,7 +50,7 @@ class GetAiRuntimeControlProviderConnectionsResult:
     @pulumi.getter(name="providerConnections")
     def provider_connections(self) -> Sequence['outputs.GetAiRuntimeControlProviderConnectionsProviderConnectionResult']:
         """
-        The provider connections configured for the customer.
+        The provider connections configured for your customer account.
         """
         return pulumi.get(self, "provider_connections")
 

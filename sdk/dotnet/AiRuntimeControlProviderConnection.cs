@@ -10,8 +10,13 @@ using Pulumi.Serialization;
 namespace Pulumi.Fastly
 {
     /// <summary>
-    /// Provides a Fastly AI Runtime Control provider connection, which stores the
-    /// authentication details and the set of allowed models for an AI model provider.
+    /// Provides a Fastly AI Runtime Control provider connection, which supplies the
+    /// credentials AI Runtime Control uses to reach an AI provider on your behalf, along
+    /// with the set of models the connection is allowed to use. Each customer account is
+    /// limited to 25 provider connections.
+    /// 
+    /// &gt; **Note:** A provider connection cannot be deleted while it is still referenced
+    /// by a virtual key's failover policy.
     /// 
     /// &gt; **Note:** The API never returns the provider's `ApiKey`, so its value cannot
     /// be reconciled against the remote state. Terraform will only update it when the
@@ -58,13 +63,13 @@ namespace Pulumi.Fastly
     public partial class AiRuntimeControlProviderConnection : global::Pulumi.CustomResource
     {
         /// <summary>
-        /// The provider's secret key used for authentication. Never returned by the API, so it cannot be reconciled with the remote state.
+        /// The provider's secret API key. Never returned by the API, so it cannot be reconciled with the remote state.
         /// </summary>
         [Output("apiKey")]
         public Output<string> ApiKey { get; private set; } = null!;
 
         /// <summary>
-        /// The base URL for the provider's API, e.g. `https://api.openai.com`. Must not include a `/v1` suffix, which the API appends automatically. Trailing slashes are stripped.
+        /// The base URL of the provider's API, e.g. `https://api.openai.com`. Must be an absolute http or https URL, and must not include a `/v1` suffix, which the API appends automatically. Trailing slashes are stripped.
         /// </summary>
         [Output("baseUrl")]
         public Output<string> BaseUrl { get; private set; } = null!;
@@ -76,19 +81,19 @@ namespace Pulumi.Fastly
         public Output<string> CreatedAt { get; private set; } = null!;
 
         /// <summary>
-        /// The set of allowed AI model identifiers, e.g. `["gpt-4o", "gpt-4o-mini"]`.
+        /// The set of AI model identifiers this provider connection is allowed to use, e.g. `["gpt-4o", "gpt-4o-mini"]`.
         /// </summary>
         [Output("models")]
         public Output<ImmutableArray<string>> Models { get; private set; } = null!;
 
         /// <summary>
-        /// A human-readable name for the provider. Changing this forces a new provider connection to be created.
+        /// The display name of the provider connection. Changing this forces a new provider connection to be created.
         /// </summary>
         [Output("name")]
         public Output<string> Name { get; private set; } = null!;
 
         /// <summary>
-        /// A hash representing the `ApiKey` used to create the provider connection.
+        /// An opaque identifier for the secret material backing this provider connection. Not the secret itself.
         /// </summary>
         [Output("secretId")]
         public Output<string> SecretId { get; private set; } = null!;
@@ -153,7 +158,7 @@ namespace Pulumi.Fastly
         private Input<string>? _apiKey;
 
         /// <summary>
-        /// The provider's secret key used for authentication. Never returned by the API, so it cannot be reconciled with the remote state.
+        /// The provider's secret API key. Never returned by the API, so it cannot be reconciled with the remote state.
         /// </summary>
         public Input<string>? ApiKey
         {
@@ -166,7 +171,7 @@ namespace Pulumi.Fastly
         }
 
         /// <summary>
-        /// The base URL for the provider's API, e.g. `https://api.openai.com`. Must not include a `/v1` suffix, which the API appends automatically. Trailing slashes are stripped.
+        /// The base URL of the provider's API, e.g. `https://api.openai.com`. Must be an absolute http or https URL, and must not include a `/v1` suffix, which the API appends automatically. Trailing slashes are stripped.
         /// </summary>
         [Input("baseUrl", required: true)]
         public Input<string> BaseUrl { get; set; } = null!;
@@ -175,7 +180,7 @@ namespace Pulumi.Fastly
         private InputList<string>? _models;
 
         /// <summary>
-        /// The set of allowed AI model identifiers, e.g. `["gpt-4o", "gpt-4o-mini"]`.
+        /// The set of AI model identifiers this provider connection is allowed to use, e.g. `["gpt-4o", "gpt-4o-mini"]`.
         /// </summary>
         public InputList<string> Models
         {
@@ -184,7 +189,7 @@ namespace Pulumi.Fastly
         }
 
         /// <summary>
-        /// A human-readable name for the provider. Changing this forces a new provider connection to be created.
+        /// The display name of the provider connection. Changing this forces a new provider connection to be created.
         /// </summary>
         [Input("name")]
         public Input<string>? Name { get; set; }
@@ -201,7 +206,7 @@ namespace Pulumi.Fastly
         private Input<string>? _apiKey;
 
         /// <summary>
-        /// The provider's secret key used for authentication. Never returned by the API, so it cannot be reconciled with the remote state.
+        /// The provider's secret API key. Never returned by the API, so it cannot be reconciled with the remote state.
         /// </summary>
         public Input<string>? ApiKey
         {
@@ -214,7 +219,7 @@ namespace Pulumi.Fastly
         }
 
         /// <summary>
-        /// The base URL for the provider's API, e.g. `https://api.openai.com`. Must not include a `/v1` suffix, which the API appends automatically. Trailing slashes are stripped.
+        /// The base URL of the provider's API, e.g. `https://api.openai.com`. Must be an absolute http or https URL, and must not include a `/v1` suffix, which the API appends automatically. Trailing slashes are stripped.
         /// </summary>
         [Input("baseUrl")]
         public Input<string>? BaseUrl { get; set; }
@@ -229,7 +234,7 @@ namespace Pulumi.Fastly
         private InputList<string>? _models;
 
         /// <summary>
-        /// The set of allowed AI model identifiers, e.g. `["gpt-4o", "gpt-4o-mini"]`.
+        /// The set of AI model identifiers this provider connection is allowed to use, e.g. `["gpt-4o", "gpt-4o-mini"]`.
         /// </summary>
         public InputList<string> Models
         {
@@ -238,13 +243,13 @@ namespace Pulumi.Fastly
         }
 
         /// <summary>
-        /// A human-readable name for the provider. Changing this forces a new provider connection to be created.
+        /// The display name of the provider connection. Changing this forces a new provider connection to be created.
         /// </summary>
         [Input("name")]
         public Input<string>? Name { get; set; }
 
         /// <summary>
-        /// A hash representing the `ApiKey` used to create the provider connection.
+        /// An opaque identifier for the secret material backing this provider connection. Not the secret itself.
         /// </summary>
         [Input("secretId")]
         public Input<string>? SecretId { get; set; }

@@ -7,7 +7,7 @@ import (
 	"context"
 	"reflect"
 
-	"github.com/pulumi/pulumi-fastly/sdk/v12/go/fastly/internal"
+	"github.com/pulumi/pulumi-fastly/sdk/v13/go/fastly/internal"
 	"github.com/pulumi/pulumi/sdk/v3/go/pulumi"
 )
 
@@ -18,6 +18,10 @@ import (
 // The Service resource requires a domain name that is correctly set up to direct
 // traffic to the Fastly service. See Fastly's guide on [Adding CNAME Records][fastly-cname]
 // on their documentation site for guidance.
+//
+// > **Note:** The nested `domain` block uses classic domains, which are only
+// available to accounts created before 2025-09-16. Use the versionless
+// `Domain` resource to attach domains to a service, as in the examples below.
 //
 // ## Activation and Staging
 //
@@ -56,21 +60,15 @@ import (
 //
 // import (
 //
-//	"github.com/pulumi/pulumi-fastly/sdk/v12/go/fastly"
+//	"github.com/pulumi/pulumi-fastly/sdk/v13/go/fastly"
 //	"github.com/pulumi/pulumi/sdk/v3/go/pulumi"
 //
 // )
 //
 //	func main() {
 //		pulumi.Run(func(ctx *pulumi.Context) error {
-//			_, err := fastly.NewServiceVcl(ctx, "demo", &fastly.ServiceVclArgs{
+//			demo, err := fastly.NewServiceVcl(ctx, "demo", &fastly.ServiceVclArgs{
 //				Name: pulumi.String("demofastly"),
-//				Domains: fastly.ServiceVclDomainArray{
-//					&fastly.ServiceVclDomainArgs{
-//						Name:    pulumi.String("demo.notexample.com"),
-//						Comment: pulumi.String("demo"),
-//					},
-//				},
 //				Backends: fastly.ServiceVclBackendArray{
 //					&fastly.ServiceVclBackendArgs{
 //						Address: pulumi.String("127.0.0.1"),
@@ -79,6 +77,14 @@ import (
 //					},
 //				},
 //				ForceDestroy: pulumi.Bool(true),
+//			})
+//			if err != nil {
+//				return err
+//			}
+//			_, err = fastly.NewDomain(ctx, "demo", &fastly.DomainArgs{
+//				Fqdn:        pulumi.String("demo.notexample.com"),
+//				Description: pulumi.String("demo"),
+//				ServiceId:   demo.ID(),
 //			})
 //			if err != nil {
 //				return err
@@ -97,21 +103,15 @@ import (
 // import (
 //
 //	"github.com/pulumi/pulumi-aws/sdk/v7/go/aws"
-//	"github.com/pulumi/pulumi-fastly/sdk/v12/go/fastly"
+//	"github.com/pulumi/pulumi-fastly/sdk/v13/go/fastly"
 //	"github.com/pulumi/pulumi/sdk/v3/go/pulumi"
 //
 // )
 //
 //	func main() {
 //		pulumi.Run(func(ctx *pulumi.Context) error {
-//			_, err := fastly.NewServiceVcl(ctx, "demo", &fastly.ServiceVclArgs{
+//			demo, err := fastly.NewServiceVcl(ctx, "demo", &fastly.ServiceVclArgs{
 //				Name: pulumi.String("demofastly"),
-//				Domains: fastly.ServiceVclDomainArray{
-//					&fastly.ServiceVclDomainArgs{
-//						Name:    pulumi.String("demo.notexample.com"),
-//						Comment: pulumi.String("demo"),
-//					},
-//				},
 //				Backends: fastly.ServiceVclBackendArray{
 //					&fastly.ServiceVclBackendArgs{
 //						Address:      pulumi.String("http-me.fastly.dev"),
@@ -168,6 +168,14 @@ import (
 //			if err != nil {
 //				return err
 //			}
+//			_, err = fastly.NewDomain(ctx, "demo", &fastly.DomainArgs{
+//				Fqdn:        pulumi.String("demo.notexample.com"),
+//				Description: pulumi.String("demo"),
+//				ServiceId:   demo.ID(),
+//			})
+//			if err != nil {
+//				return err
+//			}
 //			return nil
 //		})
 //	}
@@ -212,7 +220,7 @@ type ServiceVcl struct {
 	DefaultTtl   pulumi.IntPtrOutput             `pulumi:"defaultTtl"`
 	Dictionaries ServiceVclDictionaryArrayOutput `pulumi:"dictionaries"`
 	Directors    ServiceVclDirectorArrayOutput   `pulumi:"directors"`
-	// A set of Domain names to serve as entry points for your Service
+	// A set of Domain names to serve as entry points for your Service. Classic domains are only available to accounts created before 2025-09-16; for newer accounts use the versionless `Domain` resource instead.
 	Domains         ServiceVclDomainArrayOutput         `pulumi:"domains"`
 	Dynamicsnippets ServiceVclDynamicsnippetArrayOutput `pulumi:"dynamicsnippets"`
 	// Services that are active cannot be destroyed. In order to destroy the Service, set `forceDestroy` to `true`. Default `false`
@@ -233,6 +241,7 @@ type ServiceVcl struct {
 	LoggingDatadogs         ServiceVclLoggingDatadogArrayOutput         `pulumi:"loggingDatadogs"`
 	LoggingDigitaloceans    ServiceVclLoggingDigitaloceanArrayOutput    `pulumi:"loggingDigitaloceans"`
 	LoggingElasticsearches  ServiceVclLoggingElasticsearchArrayOutput   `pulumi:"loggingElasticsearches"`
+	LoggingFos              ServiceVclLoggingFoArrayOutput              `pulumi:"loggingFos"`
 	LoggingFtps             ServiceVclLoggingFtpArrayOutput             `pulumi:"loggingFtps"`
 	LoggingGcs              ServiceVclLoggingGcArrayOutput              `pulumi:"loggingGcs"`
 	LoggingGooglepubsubs    ServiceVclLoggingGooglepubsubArrayOutput    `pulumi:"loggingGooglepubsubs"`
@@ -325,7 +334,7 @@ type serviceVclState struct {
 	DefaultTtl   *int                   `pulumi:"defaultTtl"`
 	Dictionaries []ServiceVclDictionary `pulumi:"dictionaries"`
 	Directors    []ServiceVclDirector   `pulumi:"directors"`
-	// A set of Domain names to serve as entry points for your Service
+	// A set of Domain names to serve as entry points for your Service. Classic domains are only available to accounts created before 2025-09-16; for newer accounts use the versionless `Domain` resource instead.
 	Domains         []ServiceVclDomain         `pulumi:"domains"`
 	Dynamicsnippets []ServiceVclDynamicsnippet `pulumi:"dynamicsnippets"`
 	// Services that are active cannot be destroyed. In order to destroy the Service, set `forceDestroy` to `true`. Default `false`
@@ -346,6 +355,7 @@ type serviceVclState struct {
 	LoggingDatadogs         []ServiceVclLoggingDatadog         `pulumi:"loggingDatadogs"`
 	LoggingDigitaloceans    []ServiceVclLoggingDigitalocean    `pulumi:"loggingDigitaloceans"`
 	LoggingElasticsearches  []ServiceVclLoggingElasticsearch   `pulumi:"loggingElasticsearches"`
+	LoggingFos              []ServiceVclLoggingFo              `pulumi:"loggingFos"`
 	LoggingFtps             []ServiceVclLoggingFtp             `pulumi:"loggingFtps"`
 	LoggingGcs              []ServiceVclLoggingGc              `pulumi:"loggingGcs"`
 	LoggingGooglepubsubs    []ServiceVclLoggingGooglepubsub    `pulumi:"loggingGooglepubsubs"`
@@ -409,7 +419,7 @@ type ServiceVclState struct {
 	DefaultTtl   pulumi.IntPtrInput
 	Dictionaries ServiceVclDictionaryArrayInput
 	Directors    ServiceVclDirectorArrayInput
-	// A set of Domain names to serve as entry points for your Service
+	// A set of Domain names to serve as entry points for your Service. Classic domains are only available to accounts created before 2025-09-16; for newer accounts use the versionless `Domain` resource instead.
 	Domains         ServiceVclDomainArrayInput
 	Dynamicsnippets ServiceVclDynamicsnippetArrayInput
 	// Services that are active cannot be destroyed. In order to destroy the Service, set `forceDestroy` to `true`. Default `false`
@@ -430,6 +440,7 @@ type ServiceVclState struct {
 	LoggingDatadogs         ServiceVclLoggingDatadogArrayInput
 	LoggingDigitaloceans    ServiceVclLoggingDigitaloceanArrayInput
 	LoggingElasticsearches  ServiceVclLoggingElasticsearchArrayInput
+	LoggingFos              ServiceVclLoggingFoArrayInput
 	LoggingFtps             ServiceVclLoggingFtpArrayInput
 	LoggingGcs              ServiceVclLoggingGcArrayInput
 	LoggingGooglepubsubs    ServiceVclLoggingGooglepubsubArrayInput
@@ -499,7 +510,7 @@ type serviceVclArgs struct {
 	DefaultTtl   *int                   `pulumi:"defaultTtl"`
 	Dictionaries []ServiceVclDictionary `pulumi:"dictionaries"`
 	Directors    []ServiceVclDirector   `pulumi:"directors"`
-	// A set of Domain names to serve as entry points for your Service
+	// A set of Domain names to serve as entry points for your Service. Classic domains are only available to accounts created before 2025-09-16; for newer accounts use the versionless `Domain` resource instead.
 	Domains         []ServiceVclDomain         `pulumi:"domains"`
 	Dynamicsnippets []ServiceVclDynamicsnippet `pulumi:"dynamicsnippets"`
 	// Services that are active cannot be destroyed. In order to destroy the Service, set `forceDestroy` to `true`. Default `false`
@@ -516,6 +527,7 @@ type serviceVclArgs struct {
 	LoggingDatadogs               []ServiceVclLoggingDatadog               `pulumi:"loggingDatadogs"`
 	LoggingDigitaloceans          []ServiceVclLoggingDigitalocean          `pulumi:"loggingDigitaloceans"`
 	LoggingElasticsearches        []ServiceVclLoggingElasticsearch         `pulumi:"loggingElasticsearches"`
+	LoggingFos                    []ServiceVclLoggingFo                    `pulumi:"loggingFos"`
 	LoggingFtps                   []ServiceVclLoggingFtp                   `pulumi:"loggingFtps"`
 	LoggingGcs                    []ServiceVclLoggingGc                    `pulumi:"loggingGcs"`
 	LoggingGooglepubsubs          []ServiceVclLoggingGooglepubsub          `pulumi:"loggingGooglepubsubs"`
@@ -574,7 +586,7 @@ type ServiceVclArgs struct {
 	DefaultTtl   pulumi.IntPtrInput
 	Dictionaries ServiceVclDictionaryArrayInput
 	Directors    ServiceVclDirectorArrayInput
-	// A set of Domain names to serve as entry points for your Service
+	// A set of Domain names to serve as entry points for your Service. Classic domains are only available to accounts created before 2025-09-16; for newer accounts use the versionless `Domain` resource instead.
 	Domains         ServiceVclDomainArrayInput
 	Dynamicsnippets ServiceVclDynamicsnippetArrayInput
 	// Services that are active cannot be destroyed. In order to destroy the Service, set `forceDestroy` to `true`. Default `false`
@@ -591,6 +603,7 @@ type ServiceVclArgs struct {
 	LoggingDatadogs               ServiceVclLoggingDatadogArrayInput
 	LoggingDigitaloceans          ServiceVclLoggingDigitaloceanArrayInput
 	LoggingElasticsearches        ServiceVclLoggingElasticsearchArrayInput
+	LoggingFos                    ServiceVclLoggingFoArrayInput
 	LoggingFtps                   ServiceVclLoggingFtpArrayInput
 	LoggingGcs                    ServiceVclLoggingGcArrayInput
 	LoggingGooglepubsubs          ServiceVclLoggingGooglepubsubArrayInput
@@ -774,7 +787,7 @@ func (o ServiceVclOutput) Directors() ServiceVclDirectorArrayOutput {
 	return o.ApplyT(func(v *ServiceVcl) ServiceVclDirectorArrayOutput { return v.Directors }).(ServiceVclDirectorArrayOutput)
 }
 
-// A set of Domain names to serve as entry points for your Service
+// A set of Domain names to serve as entry points for your Service. Classic domains are only available to accounts created before 2025-09-16; for newer accounts use the versionless `Domain` resource instead.
 func (o ServiceVclOutput) Domains() ServiceVclDomainArrayOutput {
 	return o.ApplyT(func(v *ServiceVcl) ServiceVclDomainArrayOutput { return v.Domains }).(ServiceVclDomainArrayOutput)
 }
@@ -843,6 +856,10 @@ func (o ServiceVclOutput) LoggingDigitaloceans() ServiceVclLoggingDigitaloceanAr
 
 func (o ServiceVclOutput) LoggingElasticsearches() ServiceVclLoggingElasticsearchArrayOutput {
 	return o.ApplyT(func(v *ServiceVcl) ServiceVclLoggingElasticsearchArrayOutput { return v.LoggingElasticsearches }).(ServiceVclLoggingElasticsearchArrayOutput)
+}
+
+func (o ServiceVclOutput) LoggingFos() ServiceVclLoggingFoArrayOutput {
+	return o.ApplyT(func(v *ServiceVcl) ServiceVclLoggingFoArrayOutput { return v.LoggingFos }).(ServiceVclLoggingFoArrayOutput)
 }
 
 func (o ServiceVclOutput) LoggingFtps() ServiceVclLoggingFtpArrayOutput {

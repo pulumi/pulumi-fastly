@@ -31,7 +31,6 @@ import javax.annotation.Nullable;
  * import com.pulumi.core.Output;
  * import com.pulumi.fastly.ServiceVcl;
  * import com.pulumi.fastly.ServiceVclArgs;
- * import com.pulumi.fastly.inputs.ServiceVclDomainArgs;
  * import com.pulumi.fastly.User;
  * import com.pulumi.fastly.UserArgs;
  * import com.pulumi.fastly.ServiceAuthorization;
@@ -51,10 +50,6 @@ import javax.annotation.Nullable;
  *     public static void stack(Context ctx) }{{@code
  *         var demo = new ServiceVcl("demo", ServiceVclArgs.builder()
  *             .name("demofastly")
- *             .domains(ServiceVclDomainArgs.builder()
- *                 .name("demo.notexample.com")
- *                 .comment("demo")
- *                 .build())
  *             .build());
  * 
  *         var user = new User("user", UserArgs.builder()

@@ -124,6 +124,81 @@ public final class ServiceVclBackendArgs extends com.pulumi.resources.ResourceAr
     }
 
     /**
+     * If the backend is using IAM authentication and the IAM system policy requires a matching external identifier, it should match this value. Your Fastly customer ID will be used if this attribute is not set.
+     * 
+     */
+    @Import(name="iamExternalId")
+    private @Nullable Output<String> iamExternalId;
+
+    /**
+     * @return If the backend is using IAM authentication and the IAM system policy requires a matching external identifier, it should match this value. Your Fastly customer ID will be used if this attribute is not set.
+     * 
+     */
+    public Optional<Output<String>> iamExternalId() {
+        return Optional.ofNullable(this.iamExternalId);
+    }
+
+    /**
+     * If the backend is using IAM authentication, the IAM signature will use this as the product element.
+     * 
+     */
+    @Import(name="iamProduct")
+    private @Nullable Output<String> iamProduct;
+
+    /**
+     * @return If the backend is using IAM authentication, the IAM signature will use this as the product element.
+     * 
+     */
+    public Optional<Output<String>> iamProduct() {
+        return Optional.ofNullable(this.iamProduct);
+    }
+
+    /**
+     * If the backend is using IAM authentication, this region will be used for signing and access.
+     * 
+     */
+    @Import(name="iamRegion")
+    private @Nullable Output<String> iamRegion;
+
+    /**
+     * @return If the backend is using IAM authentication, this region will be used for signing and access.
+     * 
+     */
+    public Optional<Output<String>> iamRegion() {
+        return Optional.ofNullable(this.iamRegion);
+    }
+
+    /**
+     * If the backend is using IAM authentication, the fully qualified role string supplied by the storage vendor.
+     * 
+     */
+    @Import(name="iamRole")
+    private @Nullable Output<String> iamRole;
+
+    /**
+     * @return If the backend is using IAM authentication, the fully qualified role string supplied by the storage vendor.
+     * 
+     */
+    public Optional<Output<String>> iamRole() {
+        return Optional.ofNullable(this.iamRole);
+    }
+
+    /**
+     * A label that identifies the storage vendor. Providing a value in this field enables IAM usage, and all other IAM fields depend on its value.
+     * 
+     */
+    @Import(name="iamVendor")
+    private @Nullable Output<String> iamVendor;
+
+    /**
+     * @return A label that identifies the storage vendor. Providing a value in this field enables IAM usage, and all other IAM fields depend on its value.
+     * 
+     */
+    public Optional<Output<String>> iamVendor() {
+        return Optional.ofNullable(this.iamVendor);
+    }
+
+    /**
      * How long in seconds to keep a persistent connection to the backend between requests.
      * 
      */
@@ -463,6 +538,11 @@ public final class ServiceVclBackendArgs extends com.pulumi.resources.ResourceAr
         this.errorThreshold = $.errorThreshold;
         this.firstByteTimeout = $.firstByteTimeout;
         this.healthcheck = $.healthcheck;
+        this.iamExternalId = $.iamExternalId;
+        this.iamProduct = $.iamProduct;
+        this.iamRegion = $.iamRegion;
+        this.iamRole = $.iamRole;
+        this.iamVendor = $.iamVendor;
         this.keepaliveTime = $.keepaliveTime;
         this.maxConn = $.maxConn;
         this.maxLifetime = $.maxLifetime;
@@ -650,6 +730,111 @@ public final class ServiceVclBackendArgs extends com.pulumi.resources.ResourceAr
          */
         public Builder healthcheck(String healthcheck) {
             return healthcheck(Output.of(healthcheck));
+        }
+
+        /**
+         * @param iamExternalId If the backend is using IAM authentication and the IAM system policy requires a matching external identifier, it should match this value. Your Fastly customer ID will be used if this attribute is not set.
+         * 
+         * @return builder
+         * 
+         */
+        public Builder iamExternalId(@Nullable Output<String> iamExternalId) {
+            $.iamExternalId = iamExternalId;
+            return this;
+        }
+
+        /**
+         * @param iamExternalId If the backend is using IAM authentication and the IAM system policy requires a matching external identifier, it should match this value. Your Fastly customer ID will be used if this attribute is not set.
+         * 
+         * @return builder
+         * 
+         */
+        public Builder iamExternalId(String iamExternalId) {
+            return iamExternalId(Output.of(iamExternalId));
+        }
+
+        /**
+         * @param iamProduct If the backend is using IAM authentication, the IAM signature will use this as the product element.
+         * 
+         * @return builder
+         * 
+         */
+        public Builder iamProduct(@Nullable Output<String> iamProduct) {
+            $.iamProduct = iamProduct;
+            return this;
+        }
+
+        /**
+         * @param iamProduct If the backend is using IAM authentication, the IAM signature will use this as the product element.
+         * 
+         * @return builder
+         * 
+         */
+        public Builder iamProduct(String iamProduct) {
+            return iamProduct(Output.of(iamProduct));
+        }
+
+        /**
+         * @param iamRegion If the backend is using IAM authentication, this region will be used for signing and access.
+         * 
+         * @return builder
+         * 
+         */
+        public Builder iamRegion(@Nullable Output<String> iamRegion) {
+            $.iamRegion = iamRegion;
+            return this;
+        }
+
+        /**
+         * @param iamRegion If the backend is using IAM authentication, this region will be used for signing and access.
+         * 
+         * @return builder
+         * 
+         */
+        public Builder iamRegion(String iamRegion) {
+            return iamRegion(Output.of(iamRegion));
+        }
+
+        /**
+         * @param iamRole If the backend is using IAM authentication, the fully qualified role string supplied by the storage vendor.
+         * 
+         * @return builder
+         * 
+         */
+        public Builder iamRole(@Nullable Output<String> iamRole) {
+            $.iamRole = iamRole;
+            return this;
+        }
+
+        /**
+         * @param iamRole If the backend is using IAM authentication, the fully qualified role string supplied by the storage vendor.
+         * 
+         * @return builder
+         * 
+         */
+        public Builder iamRole(String iamRole) {
+            return iamRole(Output.of(iamRole));
+        }
+
+        /**
+         * @param iamVendor A label that identifies the storage vendor. Providing a value in this field enables IAM usage, and all other IAM fields depend on its value.
+         * 
+         * @return builder
+         * 
+         */
+        public Builder iamVendor(@Nullable Output<String> iamVendor) {
+            $.iamVendor = iamVendor;
+            return this;
+        }
+
+        /**
+         * @param iamVendor A label that identifies the storage vendor. Providing a value in this field enables IAM usage, and all other IAM fields depend on its value.
+         * 
+         * @return builder
+         * 
+         */
+        public Builder iamVendor(String iamVendor) {
+            return iamVendor(Output.of(iamVendor));
         }
 
         /**

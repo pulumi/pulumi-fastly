@@ -7,13 +7,15 @@ import (
 	"context"
 	"reflect"
 
-	"github.com/pulumi/pulumi-fastly/sdk/v12/go/fastly/internal"
+	"github.com/pulumi/pulumi-fastly/sdk/v13/go/fastly/internal"
 	"github.com/pulumi/pulumi/sdk/v3/go/pulumi"
 )
 
 // Provides a Fastly Compute service. Compute is a computation platform capable of running custom binaries that you compile on your own systems and upload to Fastly. Security and portability is provided by compiling your code to [WebAssembly](https://webassembly.org/) using the `wasm32-wasi` target. A compute service encompasses Domains and Backends.
 //
 // The Service resource requires a domain name that is correctly set up to direct traffic to the Fastly service. See Fastly's guide on [Adding CNAME Records](https://docs.fastly.com/en/guides/adding-cname-records) on their documentation site for guidance.
+//
+// > **Note:** The nested `domain` block uses classic domains, which are only available to accounts created before 2025-09-16. Use the versionless `Domain` resource to attach domains to a service, as in the examples below.
 //
 // > **Note:** If you omit the `package` block, you must set `activate = false` to avoid service validation errors.
 //
@@ -54,7 +56,7 @@ import (
 //
 // import (
 //
-//	"github.com/pulumi/pulumi-fastly/sdk/v12/go/fastly"
+//	"github.com/pulumi/pulumi-fastly/sdk/v13/go/fastly"
 //	"github.com/pulumi/pulumi/sdk/v3/go/pulumi"
 //
 // )
@@ -67,19 +69,21 @@ import (
 //			if err != nil {
 //				return err
 //			}
-//			_, err = fastly.NewServiceCompute(ctx, "example", &fastly.ServiceComputeArgs{
+//			exampleServiceCompute, err := fastly.NewServiceCompute(ctx, "example", &fastly.ServiceComputeArgs{
 //				Name: pulumi.String("demofastly"),
-//				Domains: fastly.ServiceComputeDomainArray{
-//					&fastly.ServiceComputeDomainArgs{
-//						Name:    pulumi.String("demo.notexample.com"),
-//						Comment: pulumi.String("demo"),
-//					},
-//				},
 //				Package: &fastly.ServiceComputePackageArgs{
 //					Filename:       pulumi.String("package.tar.gz"),
 //					SourceCodeHash: pulumi.String(example.Hash),
 //				},
 //				ForceDestroy: pulumi.Bool(true),
+//			})
+//			if err != nil {
+//				return err
+//			}
+//			_, err = fastly.NewDomain(ctx, "example", &fastly.DomainArgs{
+//				Fqdn:        pulumi.String("demo.notexample.com"),
+//				Description: pulumi.String("demo"),
+//				ServiceId:   exampleServiceCompute.ID(),
 //			})
 //			if err != nil {
 //				return err
@@ -131,7 +135,7 @@ type ServiceCompute struct {
 	// Description field for the service. This versionless attribute is updated regardless of the `activate` and `stage` settings. Default `Managed by Terraform`
 	Comment      pulumi.StringPtrOutput              `pulumi:"comment"`
 	Dictionaries ServiceComputeDictionaryArrayOutput `pulumi:"dictionaries"`
-	// A set of Domain names to serve as entry points for your Service
+	// A set of Domain names to serve as entry points for your Service. Classic domains are only available to accounts created before 2025-09-16; for newer accounts use the versionless `Domain` resource instead.
 	Domains ServiceComputeDomainArrayOutput `pulumi:"domains"`
 	// Services that are active cannot be destroyed. In order to destroy the Service, set `forceDestroy` to `true`. Default `false`
 	ForceDestroy pulumi.BoolPtrOutput `pulumi:"forceDestroy"`
@@ -147,6 +151,7 @@ type ServiceCompute struct {
 	LoggingDatadogs         ServiceComputeLoggingDatadogArrayOutput         `pulumi:"loggingDatadogs"`
 	LoggingDigitaloceans    ServiceComputeLoggingDigitaloceanArrayOutput    `pulumi:"loggingDigitaloceans"`
 	LoggingElasticsearches  ServiceComputeLoggingElasticsearchArrayOutput   `pulumi:"loggingElasticsearches"`
+	LoggingFos              ServiceComputeLoggingFoArrayOutput              `pulumi:"loggingFos"`
 	LoggingFtps             ServiceComputeLoggingFtpArrayOutput             `pulumi:"loggingFtps"`
 	LoggingGcs              ServiceComputeLoggingGcArrayOutput              `pulumi:"loggingGcs"`
 	LoggingGooglepubsubs    ServiceComputeLoggingGooglepubsubArrayOutput    `pulumi:"loggingGooglepubsubs"`
@@ -226,7 +231,7 @@ type serviceComputeState struct {
 	// Description field for the service. This versionless attribute is updated regardless of the `activate` and `stage` settings. Default `Managed by Terraform`
 	Comment      *string                    `pulumi:"comment"`
 	Dictionaries []ServiceComputeDictionary `pulumi:"dictionaries"`
-	// A set of Domain names to serve as entry points for your Service
+	// A set of Domain names to serve as entry points for your Service. Classic domains are only available to accounts created before 2025-09-16; for newer accounts use the versionless `Domain` resource instead.
 	Domains []ServiceComputeDomain `pulumi:"domains"`
 	// Services that are active cannot be destroyed. In order to destroy the Service, set `forceDestroy` to `true`. Default `false`
 	ForceDestroy *bool `pulumi:"forceDestroy"`
@@ -242,6 +247,7 @@ type serviceComputeState struct {
 	LoggingDatadogs         []ServiceComputeLoggingDatadog         `pulumi:"loggingDatadogs"`
 	LoggingDigitaloceans    []ServiceComputeLoggingDigitalocean    `pulumi:"loggingDigitaloceans"`
 	LoggingElasticsearches  []ServiceComputeLoggingElasticsearch   `pulumi:"loggingElasticsearches"`
+	LoggingFos              []ServiceComputeLoggingFo              `pulumi:"loggingFos"`
 	LoggingFtps             []ServiceComputeLoggingFtp             `pulumi:"loggingFtps"`
 	LoggingGcs              []ServiceComputeLoggingGc              `pulumi:"loggingGcs"`
 	LoggingGooglepubsubs    []ServiceComputeLoggingGooglepubsub    `pulumi:"loggingGooglepubsubs"`
@@ -292,7 +298,7 @@ type ServiceComputeState struct {
 	// Description field for the service. This versionless attribute is updated regardless of the `activate` and `stage` settings. Default `Managed by Terraform`
 	Comment      pulumi.StringPtrInput
 	Dictionaries ServiceComputeDictionaryArrayInput
-	// A set of Domain names to serve as entry points for your Service
+	// A set of Domain names to serve as entry points for your Service. Classic domains are only available to accounts created before 2025-09-16; for newer accounts use the versionless `Domain` resource instead.
 	Domains ServiceComputeDomainArrayInput
 	// Services that are active cannot be destroyed. In order to destroy the Service, set `forceDestroy` to `true`. Default `false`
 	ForceDestroy pulumi.BoolPtrInput
@@ -308,6 +314,7 @@ type ServiceComputeState struct {
 	LoggingDatadogs         ServiceComputeLoggingDatadogArrayInput
 	LoggingDigitaloceans    ServiceComputeLoggingDigitaloceanArrayInput
 	LoggingElasticsearches  ServiceComputeLoggingElasticsearchArrayInput
+	LoggingFos              ServiceComputeLoggingFoArrayInput
 	LoggingFtps             ServiceComputeLoggingFtpArrayInput
 	LoggingGcs              ServiceComputeLoggingGcArrayInput
 	LoggingGooglepubsubs    ServiceComputeLoggingGooglepubsubArrayInput
@@ -364,7 +371,7 @@ type serviceComputeArgs struct {
 	// Description field for the service. This versionless attribute is updated regardless of the `activate` and `stage` settings. Default `Managed by Terraform`
 	Comment      *string                    `pulumi:"comment"`
 	Dictionaries []ServiceComputeDictionary `pulumi:"dictionaries"`
-	// A set of Domain names to serve as entry points for your Service
+	// A set of Domain names to serve as entry points for your Service. Classic domains are only available to accounts created before 2025-09-16; for newer accounts use the versionless `Domain` resource instead.
 	Domains []ServiceComputeDomain `pulumi:"domains"`
 	// Services that are active cannot be destroyed. In order to destroy the Service, set `forceDestroy` to `true`. Default `false`
 	ForceDestroy                  *bool                                        `pulumi:"forceDestroy"`
@@ -376,6 +383,7 @@ type serviceComputeArgs struct {
 	LoggingDatadogs               []ServiceComputeLoggingDatadog               `pulumi:"loggingDatadogs"`
 	LoggingDigitaloceans          []ServiceComputeLoggingDigitalocean          `pulumi:"loggingDigitaloceans"`
 	LoggingElasticsearches        []ServiceComputeLoggingElasticsearch         `pulumi:"loggingElasticsearches"`
+	LoggingFos                    []ServiceComputeLoggingFo                    `pulumi:"loggingFos"`
 	LoggingFtps                   []ServiceComputeLoggingFtp                   `pulumi:"loggingFtps"`
 	LoggingGcs                    []ServiceComputeLoggingGc                    `pulumi:"loggingGcs"`
 	LoggingGooglepubsubs          []ServiceComputeLoggingGooglepubsub          `pulumi:"loggingGooglepubsubs"`
@@ -421,7 +429,7 @@ type ServiceComputeArgs struct {
 	// Description field for the service. This versionless attribute is updated regardless of the `activate` and `stage` settings. Default `Managed by Terraform`
 	Comment      pulumi.StringPtrInput
 	Dictionaries ServiceComputeDictionaryArrayInput
-	// A set of Domain names to serve as entry points for your Service
+	// A set of Domain names to serve as entry points for your Service. Classic domains are only available to accounts created before 2025-09-16; for newer accounts use the versionless `Domain` resource instead.
 	Domains ServiceComputeDomainArrayInput
 	// Services that are active cannot be destroyed. In order to destroy the Service, set `forceDestroy` to `true`. Default `false`
 	ForceDestroy                  pulumi.BoolPtrInput
@@ -433,6 +441,7 @@ type ServiceComputeArgs struct {
 	LoggingDatadogs               ServiceComputeLoggingDatadogArrayInput
 	LoggingDigitaloceans          ServiceComputeLoggingDigitaloceanArrayInput
 	LoggingElasticsearches        ServiceComputeLoggingElasticsearchArrayInput
+	LoggingFos                    ServiceComputeLoggingFoArrayInput
 	LoggingFtps                   ServiceComputeLoggingFtpArrayInput
 	LoggingGcs                    ServiceComputeLoggingGcArrayInput
 	LoggingGooglepubsubs          ServiceComputeLoggingGooglepubsubArrayInput
@@ -585,7 +594,7 @@ func (o ServiceComputeOutput) Dictionaries() ServiceComputeDictionaryArrayOutput
 	return o.ApplyT(func(v *ServiceCompute) ServiceComputeDictionaryArrayOutput { return v.Dictionaries }).(ServiceComputeDictionaryArrayOutput)
 }
 
-// A set of Domain names to serve as entry points for your Service
+// A set of Domain names to serve as entry points for your Service. Classic domains are only available to accounts created before 2025-09-16; for newer accounts use the versionless `Domain` resource instead.
 func (o ServiceComputeOutput) Domains() ServiceComputeDomainArrayOutput {
 	return o.ApplyT(func(v *ServiceCompute) ServiceComputeDomainArrayOutput { return v.Domains }).(ServiceComputeDomainArrayOutput)
 }
@@ -637,6 +646,10 @@ func (o ServiceComputeOutput) LoggingDigitaloceans() ServiceComputeLoggingDigita
 
 func (o ServiceComputeOutput) LoggingElasticsearches() ServiceComputeLoggingElasticsearchArrayOutput {
 	return o.ApplyT(func(v *ServiceCompute) ServiceComputeLoggingElasticsearchArrayOutput { return v.LoggingElasticsearches }).(ServiceComputeLoggingElasticsearchArrayOutput)
+}
+
+func (o ServiceComputeOutput) LoggingFos() ServiceComputeLoggingFoArrayOutput {
+	return o.ApplyT(func(v *ServiceCompute) ServiceComputeLoggingFoArrayOutput { return v.LoggingFos }).(ServiceComputeLoggingFoArrayOutput)
 }
 
 func (o ServiceComputeOutput) LoggingFtps() ServiceComputeLoggingFtpArrayOutput {

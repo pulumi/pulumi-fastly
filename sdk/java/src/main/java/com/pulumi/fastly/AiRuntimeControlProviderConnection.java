@@ -15,8 +15,13 @@ import java.util.List;
 import javax.annotation.Nullable;
 
 /**
- * Provides a Fastly AI Runtime Control provider connection, which stores the
- * authentication details and the set of allowed models for an AI model provider.
+ * Provides a Fastly AI Runtime Control provider connection, which supplies the
+ * credentials AI Runtime Control uses to reach an AI provider on your behalf, along
+ * with the set of models the connection is allowed to use. Each customer account is
+ * limited to 25 provider connections.
+ * 
+ * &gt; **Note:** A provider connection cannot be deleted while it is still referenced
+ * by a virtual key&#39;s failover policy.
  * 
  * &gt; **Note:** The API never returns the provider&#39;s `apiKey`, so its value cannot
  * be reconciled against the remote state. Terraform will only update it when the
@@ -76,28 +81,28 @@ import javax.annotation.Nullable;
 @ResourceType(type="fastly:index/aiRuntimeControlProviderConnection:AiRuntimeControlProviderConnection")
 public class AiRuntimeControlProviderConnection extends com.pulumi.resources.CustomResource {
     /**
-     * The provider&#39;s secret key used for authentication. Never returned by the API, so it cannot be reconciled with the remote state.
+     * The provider&#39;s secret API key. Never returned by the API, so it cannot be reconciled with the remote state.
      * 
      */
     @Export(name="apiKey", refs={String.class}, tree="[0]")
     private Output<String> apiKey;
 
     /**
-     * @return The provider&#39;s secret key used for authentication. Never returned by the API, so it cannot be reconciled with the remote state.
+     * @return The provider&#39;s secret API key. Never returned by the API, so it cannot be reconciled with the remote state.
      * 
      */
     public Output<String> apiKey() {
         return this.apiKey;
     }
     /**
-     * The base URL for the provider&#39;s API, e.g. `https://api.openai.com`. Must not include a `/v1` suffix, which the API appends automatically. Trailing slashes are stripped.
+     * The base URL of the provider&#39;s API, e.g. `https://api.openai.com`. Must be an absolute http or https URL, and must not include a `/v1` suffix, which the API appends automatically. Trailing slashes are stripped.
      * 
      */
     @Export(name="baseUrl", refs={String.class}, tree="[0]")
     private Output<String> baseUrl;
 
     /**
-     * @return The base URL for the provider&#39;s API, e.g. `https://api.openai.com`. Must not include a `/v1` suffix, which the API appends automatically. Trailing slashes are stripped.
+     * @return The base URL of the provider&#39;s API, e.g. `https://api.openai.com`. Must be an absolute http or https URL, and must not include a `/v1` suffix, which the API appends automatically. Trailing slashes are stripped.
      * 
      */
     public Output<String> baseUrl() {
@@ -118,42 +123,42 @@ public class AiRuntimeControlProviderConnection extends com.pulumi.resources.Cus
         return this.createdAt;
     }
     /**
-     * The set of allowed AI model identifiers, e.g. `[&#34;gpt-4o&#34;, &#34;gpt-4o-mini&#34;]`.
+     * The set of AI model identifiers this provider connection is allowed to use, e.g. `[&#34;gpt-4o&#34;, &#34;gpt-4o-mini&#34;]`.
      * 
      */
     @Export(name="models", refs={List.class,String.class}, tree="[0,1]")
     private Output<List<String>> models;
 
     /**
-     * @return The set of allowed AI model identifiers, e.g. `[&#34;gpt-4o&#34;, &#34;gpt-4o-mini&#34;]`.
+     * @return The set of AI model identifiers this provider connection is allowed to use, e.g. `[&#34;gpt-4o&#34;, &#34;gpt-4o-mini&#34;]`.
      * 
      */
     public Output<List<String>> models() {
         return this.models;
     }
     /**
-     * A human-readable name for the provider. Changing this forces a new provider connection to be created.
+     * The display name of the provider connection. Changing this forces a new provider connection to be created.
      * 
      */
     @Export(name="name", refs={String.class}, tree="[0]")
     private Output<String> name;
 
     /**
-     * @return A human-readable name for the provider. Changing this forces a new provider connection to be created.
+     * @return The display name of the provider connection. Changing this forces a new provider connection to be created.
      * 
      */
     public Output<String> name() {
         return this.name;
     }
     /**
-     * A hash representing the `apiKey` used to create the provider connection.
+     * An opaque identifier for the secret material backing this provider connection. Not the secret itself.
      * 
      */
     @Export(name="secretId", refs={String.class}, tree="[0]")
     private Output<String> secretId;
 
     /**
-     * @return A hash representing the `apiKey` used to create the provider connection.
+     * @return An opaque identifier for the secret material backing this provider connection. Not the secret itself.
      * 
      */
     public Output<String> secretId() {

@@ -66,6 +66,10 @@ namespace Pulumi.Fastly.Outputs
         /// </summary>
         public readonly string? ProjectId;
         /// <summary>
+        /// A PGP public key that Fastly will use to encrypt your log files before writing them to disk
+        /// </summary>
+        public readonly string? PublicKey;
+        /// <summary>
         /// Name of a condition to apply this logging.
         /// </summary>
         public readonly string? ResponseCondition;
@@ -110,6 +114,8 @@ namespace Pulumi.Fastly.Outputs
 
             string? projectId,
 
+            string? publicKey,
+
             string? responseCondition,
 
             string? secretKey,
@@ -131,6 +137,7 @@ namespace Pulumi.Fastly.Outputs
             Placement = placement;
             ProcessingRegion = processingRegion;
             ProjectId = projectId;
+            PublicKey = publicKey;
             ResponseCondition = responseCondition;
             SecretKey = secretKey;
             TimestampFormat = timestampFormat;

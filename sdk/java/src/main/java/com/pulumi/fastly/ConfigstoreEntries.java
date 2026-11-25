@@ -48,7 +48,6 @@ import javax.annotation.Nullable;
  * import com.pulumi.fastly.inputs.GetPackageHashArgs;
  * import com.pulumi.fastly.ServiceCompute;
  * import com.pulumi.fastly.ServiceComputeArgs;
- * import com.pulumi.fastly.inputs.ServiceComputeDomainArgs;
  * import com.pulumi.fastly.inputs.ServiceComputePackageArgs;
  * import com.pulumi.fastly.inputs.ServiceComputeResourceLinkArgs;
  * import java.util.ArrayList;
@@ -85,9 +84,6 @@ import javax.annotation.Nullable;
  * 
  *         var exampleServiceCompute = new ServiceCompute("exampleServiceCompute", ServiceComputeArgs.builder()
  *             .name("my_compute_service")
- *             .domains(ServiceComputeDomainArgs.builder()
- *                 .name("demo.example.com")
- *                 .build())
  *             .package_(ServiceComputePackageArgs.builder()
  *                 .filename("package.tar.gz")
  *                 .sourceCodeHash(example.hash())
@@ -121,7 +117,6 @@ import javax.annotation.Nullable;
  * import com.pulumi.fastly.inputs.GetPackageHashArgs;
  * import com.pulumi.fastly.ServiceCompute;
  * import com.pulumi.fastly.ServiceComputeArgs;
- * import com.pulumi.fastly.inputs.ServiceComputeDomainArgs;
  * import com.pulumi.fastly.inputs.ServiceComputePackageArgs;
  * import com.pulumi.fastly.inputs.ServiceComputeResourceLinkArgs;
  * import java.util.ArrayList;
@@ -159,9 +154,6 @@ import javax.annotation.Nullable;
  * 
  *         var exampleServiceCompute = new ServiceCompute("exampleServiceCompute", ServiceComputeArgs.builder()
  *             .name("my_compute_service")
- *             .domains(ServiceComputeDomainArgs.builder()
- *                 .name("demo.example.com")
- *                 .build())
  *             .package_(ServiceComputePackageArgs.builder()
  *                 .filename("package.tar.gz")
  *                 .sourceCodeHash(example.hash())
